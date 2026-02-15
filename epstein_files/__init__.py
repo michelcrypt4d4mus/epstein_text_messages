@@ -17,23 +17,23 @@ from rich.text import Text
 
 from epstein_files.epstein_files import EpsteinFiles, document_cls
 from epstein_files.documents.document import INFO_PADDING, Document
+from epstein_files.documents.documents.word_count import write_word_counts_html
 from epstein_files.documents.doj_file import DojFile
 from epstein_files.documents.email import Email
 from epstein_files.documents.messenger_log import MessengerLog
 from epstein_files.documents.other_file import OtherFile
+from epstein_files.output.output import (print_doj_files, print_emails_section, print_json_files,
+     print_stats, print_other_files_section, print_text_messages_section, print_email_timeline,
+     print_emailers_info, print_json_metadata, write_urls)
+from epstein_files.output.rich import (build_highlighter, console, highlighter, print_color_key,
+     print_json, print_title_page_header, print_title_page_tables, print_subtitle_panel, write_html)
 from epstein_files.util.constant.output_files import make_clean
 from epstein_files.util.constant.strings import HOUSE_OVERSIGHT_NOV_2025_ID_REGEX
-from epstein_files.util.data import flatten
 from epstein_files.util.env import args
-from epstein_files.util.file_helper import extract_file_id
+from epstein_files.util.helpers.data_helpers import flatten
+from epstein_files.util.helpers.file_helper import extract_file_id
 from epstein_files.util.logging import exit_with_error, logger
-from epstein_files.util.output import (print_doj_files, print_emails_section, print_json_files, print_stats,
-     print_other_files_section, print_text_messages_section, print_email_timeline, print_emailers_info,
-     print_json_metadata, write_urls)
-from epstein_files.util.rich import (build_highlighter, console, highlighter, print_color_key, print_json,
-     print_title_page_header, print_title_page_tables, print_subtitle_panel, write_html)
 from epstein_files.util.timer import Timer
-from epstein_files.util.word_count import write_word_counts_html
 
 
 def generate_html() -> None:
@@ -147,6 +147,7 @@ def epstein_grep():
 
             console.line()
             console.print(doc.locations, style='dim')
+            console.line()
 
 
 def epstein_show():

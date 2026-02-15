@@ -1,5 +1,5 @@
 from epstein_files.util.constant.names import extract_last_name
-from epstein_files.util.data import constantize_names
+from epstein_files.util.helpers.data_helpers import constantize_names
 
 
 def test_constantize_names():

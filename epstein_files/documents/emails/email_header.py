@@ -2,13 +2,13 @@ import json
 import re
 from dataclasses import asdict, dataclass, field
 
+from epstein_files.documents.documents.doc_cfg import EmailCfg
 from epstein_files.documents.emails.emailers import BAD_EMAILER_REGEX, TIME_REGEX
+from epstein_files.output.rich import UNKNOWN
 from epstein_files.util.constant.strings import AUTHOR
-from epstein_files.util.constants import ALL_CONFIGS
-from epstein_files.util.doc_cfg import EmailCfg
+from epstein_files.util.constants import CONFIGS_BY_ID
 from epstein_files.util.helpers.string_helper import indented
 from epstein_files.util.logging import logger
-from epstein_files.util.rich import UNKNOWN
 
 FIELD_NAMES = ['Date', 'From', 'Sent', 'Subject']
 ON_BEHALF_OF = 'on behalf of'
@@ -41,7 +41,7 @@ EMAIL_SIMPLE_HEADER_LINE_BREAK_REGEX = re.compile(HEADER_REGEX_STR)
 EMAIL_PRE_FORWARD_REGEX = re.compile(r"(.{3,2000}?)" + HEADER_REGEX_STR, re.DOTALL)  # Match up to the next email header section
 
 CONFIGURED_ACTUAL_TEXTS = [
-    cfg.actual_text for cfg in ALL_CONFIGS
+    cfg.actual_text for cfg in CONFIGS_BY_ID.values()
     if isinstance(cfg, EmailCfg) and cfg.actual_text is not None
 ]
 

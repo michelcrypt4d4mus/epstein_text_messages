@@ -5,7 +5,7 @@ load_dotenv()
 
 from epstein_files.documents.document import Document
 from epstein_files.epstein_files import EpsteinFiles
-from epstein_files.util.rich import *
+from epstein_files.output.rich import *
 
 OK_FILE_IDS = ['025594', '025603']
 

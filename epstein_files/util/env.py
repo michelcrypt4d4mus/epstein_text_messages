@@ -14,6 +14,7 @@ DEFAULT_WIDTH = 155
 DEFAULT_FILE = 'default_file'
 EPSTEIN_GENERATE = 'epstein_generate'
 HTML_SCRIPTS = [EPSTEIN_GENERATE, 'epstein_word_count']
+PICKLED_PATH = Path("the_epstein_files.pkl.gz")
 
 # Get dirs from Env vars
 DOCS_DIR_ENV_VAR = 'EPSTEIN_DOCS_DIR'
@@ -33,6 +34,7 @@ parser = ArgumentParser(description="Parse epstein OCR docs and generate HTML pa
 parser.add_argument('--make-clean', action='store_true', help='delete all HTML build artifact and write latest URLs to .urls.env')
 parser.add_argument('--name', '-n', action='append', dest='names', help='specify the name(s) whose communications should be output')
 parser.add_argument('--overwrite-pickle', '-op', action='store_true', help='re-parse the files and ovewrite cached data')
+parser.add_argument('--pickle-path', '-fp', help='path to load saved data from', default=PICKLED_PATH)
 
 output = parser.add_argument_group('OUTPUT', 'Options used by epstein_generate.')
 output.add_argument('--all-emails', '-ae', action='store_true', help='all the emails instead of just the interesting ones')
@@ -58,7 +60,7 @@ scripts.add_argument('--min-line-length', type=int, help='epstein_grep minimum l
 scripts.add_argument('--open-both', '-ob', action='store_true', help='open the source PDF and txt after showing')
 scripts.add_argument('--open-pdf', '-pdf', action='store_true', help='open the source PDF file after showing (if it exists)')
 scripts.add_argument('--open-txt', '-o', action='store_true', help='open the file in a text editor after showing')
-scripts.add_argument('--open-url', '-ou', action='store_true', help='open the source URL in a web browser')
+scripts.add_argument('--open-url', '-web', action='store_true', help='open the source URL in a web browser')
 scripts.add_argument('--raw', '-r', action='store_true', help='show raw contents of file (used by epstein_show)')
 scripts.add_argument('--whole-file', '-wf', action='store_true', help='print whole files')
 

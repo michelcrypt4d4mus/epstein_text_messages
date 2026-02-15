@@ -1,4 +1,7 @@
 # NEXT RELEASE
+* Add `uncertain_reason` to `DocCfg` and `recipient_uncertain` to `CommunicationCfg`, show question marks in info sentence next to uncertain recipients
+
+### 1.5.3
 
 ### 1.5.2
 * `ContactInfo` class to unify regexes and biographical info

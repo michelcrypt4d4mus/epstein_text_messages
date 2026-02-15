@@ -1,8 +1,12 @@
 import re
 
-from epstein_files.util.constant.strings import QUESTION_MARKS, remove_question_marks
+from epstein_files.util.constant.strings import PALM_BEACH, QUESTION_MARKS, VIRGIN_ISLANDS
+from epstein_files.util.helpers.string_helper import remove_question_marks
 
 Name = str | None
+
+# Unknown / None
+UNKNOWN = '(unknown)'
 
 # Texting Names
 ANDRZEJ_DUDA = 'Andrzej Duda or entourage'
@@ -183,8 +187,6 @@ VINCENZO_IOZZO = 'Vincenzo Iozzo'
 VINIT_SAHNI = 'Vinit Sahni'
 ZUBAIR_KHAN = 'Zubair Khan'
 
-UNKNOWN = '(unknown)'
-
 # DOJ files emails
 ADAM_BACK = 'Adam Back'
 ALEKSANDRA_KARPOVA = 'Aleksandra Karpova'
@@ -244,6 +246,9 @@ BLOCKSTREAM = 'Blockstream'
 BOFA = 'BofA'
 BOFA_MERRILL = f'{BOFA} / Merrill Lynch'
 BUREAU_OF_PRISONS = 'Bureau of Prisons'
+CANTOR = 'Cantor Fitzgerald'
+CANTOR_URRAMOOR = 'Cantor Urramoor Asset Management'
+COINBASE = 'Coinbase'
 CNN = 'CNN'
 CRYPTO_CURRENCY_PARTNERS_II = 'Crypto Currency Partners II'
 CRYPTO_PR_LAB = 'Crypto PR Lab'
@@ -254,12 +259,12 @@ FBI = 'FBI'
 GOLDMAN_SACHS = 'Goldman Sachs'
 GOLDMAN_INVESTMENT_MGMT = f'{GOLDMAN_SACHS} Investment Management Division'
 GOOGLE_PLUS = 'Google Plus'
-HARVARD = 'Harvard'
 INSIGHTS_POD = f"InsightsPod"  # Zubair bots
 JP_MORGAN = 'JP Morgan'
-KYARA_INVESTMENTS = 'Kyara Investments'
+KYARA_INVESTMENT = 'Kyara Investment'
 MIT_MEDIA_LAB = 'MIT Media Lab'
 NEXT_MANAGEMENT = 'Next Management LLC'
+NOBEL_CHARITABLE_TRUST = 'Nobel Charitable Trust'
 OFFICE_OF_THE_DEPUTY_ATTORNEY_GENERAL = 'Office of the Deputy Attorney General'
 OSBORNE_LLP = f"{IAN_OSBORNE} & Partners"  # Ian Osborne's PR firm
 ROTHSTEIN_ROSENFELDT_ADLER = "Rothstein Rosenfeldt Adler (Rothstein was Roger Stone's partner)"  # and a crook
@@ -267,29 +272,49 @@ SDNY = 'SDNY'
 TRUMP_ORG = 'Trump Organization'
 UBS = 'UBS'
 USANYS = 'USANYS'
+US_ORG = 'US Office of Government Information Services'
+VALAR_GLOBAL_FUND = 'Valar Global Fund'
 VALAR_VENTURES = 'Valar Ventures'
+
+# Publications
+BBC = 'BBC'
+BLOOMBERG = 'Bloomberg'
+CHINA_DAILY = "China Daily"
+DAILY_MAIL = 'Daily Mail'
+DAILY_TELEGRAPH = "Daily Telegraph"
+LA_TIMES = 'LA Times'
+LEXIS_NEXIS = 'Lexis Nexis'
+MIAMI_HERALD = 'Miami Herald'
+NYT = "New York Times"
+PALM_BEACH_DAILY_NEWS = f'{PALM_BEACH} Daily News'
+PALM_BEACH_POST = f'{PALM_BEACH} Post'
+SHIMON_POST = 'The Shimon Post'
+THE_REAL_DEAL = 'The Real Deal'
+VI_DAILY_NEWS = f'{VIRGIN_ISLANDS} Daily News'
+WAPO = 'WaPo'
+
 
 # First and last names that should be made part of a highlighting regex for emailers
 NAMES_TO_NOT_HIGHLIGHT = """
     adam al alain alan alison alfredo allen alex alexander amanda andres andrew anthony audrey
-    back bard barnaby barrett barry bennet bernard bill black bob boris brad brenner bruce
+    back bard barnaby barrett barry bennet bernard bill black bob boris boyle brad brenner bruce
     cameron caroline carolyn chris christian christina cohen
     dan daniel danny darren dave david debbie donald douglas
     ed edward edwards enforcement enterprise enterprises entourage epstein eric erika etienne
-    faith fisher forget fred friendly frost fuller
+    faith fisher fitzgerald forget fred friendly frost fuller fund
     gates gerald george gold gordon
     haddad hanson harry hay heather henry hill hoffman howard
-    ian ivan
+    ian inc inc. ivan
     jack james jay jean jeff jeffrey jennifer jeremy jessica joel john jon jonathan joseph jr
     kafka kahn karl kate katherine kelly ken kevin krassner
     larry larsen laurie lawrence leon lesley linda link lisa
-    mann marc marie mark martin matthew melanie michael mike miller mitchell miles morris moskowitz
+    management mann marc marie mark martin matthew melanie michael mike miller mitchell miles morris moskowitz
     nancy nathan neal new nicole norman
     owen
     paul paula pen peter philip pierce prince
     randall rangel reid richard robert rodriguez roger rosenberg ross roth roy rubenstein rubin
-    scott sean skip smith stacey stanley stern stephen steve steven stone susan
-    team terry the thomas tim tom tony tyler
+    scott sean service services skip smith stacey stanley stern stephen steve steven stone susan
+    team terry the thomas tim tom tony trust tyler
     ventures victor
     wade waters
     y

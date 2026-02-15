@@ -3,18 +3,19 @@ from pathlib import Path
 
 from rich.text import Text
 
-from epstein_files.util.file_helper import extract_file_id, is_doj_file
-from epstein_files.util.rich import ARCHIVE_LINK_COLOR, prefix_with, styled_dict
+from epstein_files.output.rich import prefix_with, styled_dict
+from epstein_files.util.helpers.file_helper import extract_file_id, is_doj_file
 
 
 @dataclass(kw_only=True)
 class DocLocation:
     """
     Attributes:
-        `external_url` (str): a web URL where the source document can theoretically be seen
-        `local_path` (Path): local path of the document's underlying .txt file
-        `local_pdf_path` (Path, optional): local path to the source PDF the .txt was extracted from (if any)
-        `source_url` (str, optional): official government source URL
+        external_url (str): a web URL where the source document can theoretically be seen
+        file_id (str): ID extracted from the filename
+        local_path (Path): local path of the document's underlying .txt file
+        local_pdf_path (Path, optional): local path to the source PDF the .txt was extracted from (if any)
+        source_url (str, optional): official government source URL
     """
     external_url: str
     file_id: str = field(init=False)
@@ -44,7 +45,7 @@ class DocLocation:
 
     def __rich__(self) -> Text:
         """Text obj with local paths and URLs."""
-        txt_lines = styled_dict({'file_id': self.file_id, **self.paths, **self.urls}, key_style='khaki3', sep=': ')
+        txt_lines = styled_dict({'file_id': self.file_id, **self.paths, **self.urls}, sep=': ')
         return prefix_with(txt_lines, ' ', pfx_style='grey', indent=2)
 
     def __str__(self) -> str:

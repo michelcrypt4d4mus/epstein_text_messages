@@ -7,10 +7,10 @@ from dotenv import load_dotenv
 load_dotenv()
 from rich.text import Text
 
-from epstein_files.util.constants import REPLY_REGEX
+from epstein_files.documents.emails.constants import REPLY_REGEX
+from epstein_files.output.rich import console
 from epstein_files.util.constant.strings import HOUSE_OVERSIGHT_PREFIX
 from epstein_files.util.env import DOCS_DIR, args
-from epstein_files.util.rich import console
 
 FILE_PREFIX_LENGTH = len(HOUSE_OVERSIGHT_PREFIX) + 10
 MIN_LINE_LENGTH = FILE_PREFIX_LENGTH + 14

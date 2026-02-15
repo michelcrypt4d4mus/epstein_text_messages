@@ -7,8 +7,8 @@ from typing import ClassVar
 from rich.text import Text
 
 from epstein_files.documents.other_file import Metadata, OtherFile
+from epstein_files.output.rich import INFO_STYLE
 from epstein_files.util.constant.strings import JSON
-from epstein_files.util.rich import INFO_STYLE
 
 DESCRIPTION = "JSON data containing preview info for links sent in a messaging app like iMessage"
 
@@ -37,7 +37,7 @@ class JsonFile(OtherFile):
         return False
 
     @property
-    def info_txt(self) -> Text | None:
+    def subheader(self) -> Text | None:
         return Text(DESCRIPTION, style=INFO_STYLE)
 
     @property

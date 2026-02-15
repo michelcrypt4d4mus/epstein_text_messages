@@ -9,14 +9,14 @@ from rich.table import Table
 from rich.text import Text
 
 from epstein_files.documents.communication import Communication
+from epstein_files.documents.documents.doc_cfg import Metadata, TextCfg
 from epstein_files.documents.imessage.text_message import TextMessage
+from epstein_files.output.highlight_config import styled_name
+from epstein_files.output.rich import LAST_TIMESTAMP_STYLE, build_table, highlighter
 from epstein_files.util.constant.names import JEFFREY_EPSTEIN, Name
 from epstein_files.util.constant.strings import AUTHOR, TIMESTAMP_STYLE
-from epstein_files.util.data import days_between, days_between_str, iso_timestamp, sort_dict
-from epstein_files.util.doc_cfg import Metadata, TextCfg
-from epstein_files.util.highlighted_group import styled_name
+from epstein_files.util.helpers.data_helpers import days_between, days_between_str, iso_timestamp, sort_dict
 from epstein_files.util.logging import logger
-from epstein_files.util.rich import LAST_TIMESTAMP_STYLE, build_table, highlighter
 
 CONFIRMED_MSG = 'with confirmed counterparty'
 GUESSED_MSG = 'and is probably with'
@@ -27,7 +27,6 @@ REDACTED_AUTHOR_REGEX = re.compile(r"^([-+•_1MENO.=F]+|[4Ide])$")
 @dataclass
 class MessengerLog(Communication):
     """Class representing one iMessage log file (one conversation between Epstein and some counterparty)."""
-    config: TextCfg | None = None
     messages: list[TextMessage] = field(default_factory=list)
     phone_number: str | None = None
 
@@ -36,7 +35,17 @@ class MessengerLog(Communication):
         return self.author_style
 
     @property
-    def info_txt(self) -> Text | None:
+    def metadata(self) -> Metadata:
+        metadata = super().metadata
+        metadata.update({'num_messages': len(self.messages)})
+
+        if self.phone_number:
+            metadata['phone_number'] = self.phone_number
+
+        return metadata
+
+    @property
+    def subheader(self) -> Text | None:
         num_days_str = days_between_str(self.timestamp, self.messages[-1].parse_timestamp())
         txt = Text(f"(Covers {num_days_str} starting ", style='dim')
         txt.append(self.date_str, style=TIMESTAMP_STYLE).append(' ')
@@ -51,16 +60,6 @@ class MessengerLog(Communication):
             txt.append(highlighter(f" using the phone number {self.phone_number}"))
 
         return txt.append(')')
-
-    @property
-    def metadata(self) -> Metadata:
-        metadata = super().metadata
-        metadata.update({'num_messages': len(self.messages)})
-
-        if self.phone_number:
-            metadata['phone_number'] = self.phone_number
-
-        return metadata
 
     def __post_init__(self):
         super().__post_init__()

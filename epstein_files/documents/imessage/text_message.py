@@ -4,12 +4,13 @@ from datetime import datetime
 
 from rich.text import Text
 
-from epstein_files.util.constant.names import ANTHONY_SCARAMUCCI, JEFFREY_EPSTEIN, STEVE_BANNON, UNKNOWN, Name, extract_last_name
+from epstein_files.output.highlight_config import get_style_for_name
+from epstein_files.output.rich import TEXT_LINK, highlighter
+from epstein_files.util.constant.names import (ANTHONY_SCARAMUCCI, JEFFREY_EPSTEIN, STEVE_BANNON,
+     UNKNOWN, Name, extract_last_name)
 from epstein_files.util.constant.strings import TIMESTAMP_DIM
-from epstein_files.util.data import AMERICAN_DATE_FORMAT, iso_timestamp
-from epstein_files.util.highlighted_group import get_style_for_name
+from epstein_files.util.helpers.data_helpers import AMERICAN_DATE_FORMAT, iso_timestamp
 from epstein_files.util.logging import logger
-from epstein_files.util.rich import TEXT_LINK, highlighter
 
 EPSTEIN_TEXTERS = ['e:', 'e:jeeitunes@gmail.com']
 PHONE_NUMBER_REGEX = re.compile(r'^[\d+]+.*')

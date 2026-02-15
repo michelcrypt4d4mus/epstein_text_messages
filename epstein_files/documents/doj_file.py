@@ -10,17 +10,17 @@ from rich.text import Text
 
 from epstein_files.documents.document import CHECK_LINK_FOR_DETAILS, Document
 from epstein_files.documents.email import Email
+from epstein_files.documents.emails.constants import FALLBACK_TIMESTAMP
 from epstein_files.documents.emails.email_header import FIELDS_COLON_PATTERN
 from epstein_files.documents.other_file import OtherFile
-from epstein_files.util.constants import FALLBACK_TIMESTAMP
-from epstein_files.util.layout.left_bar_panel import LeftBarPanel
+from epstein_files.output.left_bar_panel import LeftBarPanel
+from epstein_files.output.rich import RAINBOW, highlighter, wrap_in_markup_style
 from epstein_files.util.logging import logger
-from epstein_files.util.rich import RAINBOW, highlighter, wrap_in_markup_style
 
 IMAGE_PANEL_REGEX = re.compile(r"\n╭─* Page \d+, Image \d+.*?╯\n", re.DOTALL)
 IGNORE_LINE_REGEX = re.compile(r"^(\d+\n?|[\s+❑]{2,})$")
-SINGLE_IMAGE_NO_TEXT = 'single image with no text'
 MIN_VALID_LENGTH = 10
+SINGLE_IMAGE_NO_TEXT = 'single image with no text'
 WORD_REGEX = re.compile(r"[A-Za-z]{3,}")
 
 OTHER_DOC_URLS = {
@@ -80,7 +80,6 @@ BAD_OCR_FILE_IDS = [
     'EFTA00002816',
     'EFTA00001114',
     'EFTA00008445',
-    'EFTA00000476',
     'EFTA00001979',
     'EFTA00001655',
     'EFTA00001654',
@@ -124,6 +123,7 @@ BAD_OCR_FILE_IDS = [
     'EFTA00008469',
     'EFTA00008461',
     'EFTA00000509',
+    'EFTA00002859',
     'EFTA00000514',
     'EFTA00000516',
     'EFTA00000531',
@@ -207,13 +207,12 @@ NO_IMAGE_SUFFIX = """
 
 @dataclass
 class DojFile(OtherFile):
-    """
-    Class for the files released by DOJ on 2026-01-30 with `EFTA000` prefix.
-    """
+    """Class for the files released by DOJ on 2026-01-30 with `EFTA000` prefix."""
     _border_style: str | None = None
 
+    # Class variables
     border_style_rainbow_idx: ClassVar[int] = 0  # ClassVar to help change color as we print, no impact beyond fancier output
-    max_timestamp: ClassVar[datetime] = datetime(2025, 1, 29) # Overloaded in DojFile
+    max_timestamp: ClassVar[datetime] = datetime(2025, 1, 29)  # Cutoff for _extract_timestamp(), Overloads superclass
 
     @property
     def border_style(self) -> str:
@@ -335,12 +334,6 @@ class DojFile(OtherFile):
         table = LeftBarPanel.build(*panel_args)
         yield Padding(table, (0, 0, 1, 1))
 
-    def _repair(self) -> None:
-        """Overloads superclass method."""
-        new_text = self.repair_ocr_text(OCR_REPAIRS, self.text)
-        self._set_computed_fields(text=new_text)
-        self._remove_number_only_lines()
-
     def _remove_number_only_lines(self) -> None:
         """Remove number only lines (which happen a lot in legal doc OCR) if there are more than a certain amount of them."""
         non_number_lines = [line for line in self.lines if not IGNORE_LINE_REGEX.match(line)]
@@ -349,3 +342,9 @@ class DojFile(OtherFile):
         if number_only_line_count > 20:
             self.warn(f"Reduced line count from {len(self.lines)} to {len(non_number_lines)} by stripping number only lines")
             self._set_computed_fields(lines=non_number_lines)
+
+    def _repair(self) -> None:
+        """Overloads superclass method."""
+        new_text = self.repair_ocr_text(OCR_REPAIRS, self.text)
+        self._set_computed_fields(text=new_text)
+        self._remove_number_only_lines()

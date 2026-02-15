@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "epstein-files"
-version = "1.5.2"
+version = "1.5.3"
 description = "Tools for working with the Jeffrey Epstein documents released in November 2025."
 authors = ["Michel de Cryptadamus"]
 readme = "README.md"
@@ -71,5 +71,5 @@ build-backend = "poetry.core.masonry.api"
 
 
 [tool.pytest.ini_options]
-addopts = ["--import-mode=importlib", "-vv"]
+addopts = ["--import-mode=importlib", "-v"]
 pythonpath = ["."]

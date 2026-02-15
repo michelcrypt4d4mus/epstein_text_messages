@@ -13,23 +13,31 @@ from scripts.use_pickled import console, epstein_files
 from epstein_files.epstein_files import document_cls
 from epstein_files.documents.document import Document
 from epstein_files.documents.email import Email, UNINTERESTING_EMAILERS
+from epstein_files.documents.other_file import OtherFile
+from epstein_files.output.highlight_config import HIGHLIGHT_GROUPS, get_style_for_name
+from epstein_files.output.highlighted_names import HighlightedNames
 from epstein_files.util.constant.names import *
-from epstein_files.util.constants import ALL_FILE_CONFIGS
-from epstein_files.util.data import *
-from epstein_files.util.highlighted_group import HIGHLIGHTED_NAMES, HighlightedNames, get_style_for_name
+from epstein_files.util.constant.strings import LETTER
+from epstein_files.util.constants import CONFIGS_BY_ID, EmailCfg
+from epstein_files.util.helpers.data_helpers import *
+from epstein_files.util.helpers.debugging_helper import print_interesting_doc_panels_and_props
+from epstein_files.util.helpers.string_helper import quote
 from epstein_files.util.logging import logger
-from epstein_files.util.rich import console, highlighter, print_json, print_subtitle_panel
+from epstein_files.output.rich import bool_txt, console, highlighter, styled_key_value, print_subtitle_panel
 
-# sys.exit()
-# from epstein_files.util.helpers.debugging_helper import _show_timestamps
-# _show_timestamps(epstein_files)
-# sys.exit()
 
-# Print all DOJ files from biggest to smallest.
-for i, doc in enumerate(sorted(epstein_files.doj_files, key=lambda f: -f.length)):
-    # txt = Text('').append(Text('interesting', style='green') if doc.is_interesting else Text('not interesting', style='red'))
-    # console.print(txt.append(': ') + doc.summary)
-    console.print(doc)
+# Print CRYPTO_CURRENCY_PARTNERS_II OtherFiles
+for i, doc in enumerate(epstein_files.other_files):
+    # if CRYPTO_CURRENCY_PARTNERS_II.lower() in doc.preview_text.lower():
+    if doc.category == LETTER:
+        # if not doc.config:
+        #     doc.log(f"No config for {doc.file_id}\n", logging.ERROR)
+
+        console.line(2)
+        console.print(doc.preview_text)
+        console.line(2)
+        # import pdb;pdb.set_trace()
+        console.print(doc)
 
 sys.exit()
 
@@ -69,7 +77,7 @@ for i, doc in enumerate(sorted(epstein_files.doj_files, key=lambda f: -f.length)
 
 sys.exit()
 
-for email in epstein_files.non_duplicate_emails():
+for email in epstein_files.non_duplicate_emails:
     if email._is_first_for_user:
         print(f"{email}, _is_first_for_user={email._is_first_for_user}")
 
@@ -78,7 +86,7 @@ sys.exit()
 
 
 def print_first_emails():
-    emailers = sorted(epstein_files.emailers(), key=lambda e: e.earliest_email_at)
+    emailers = sorted(epstein_files.emailers, key=lambda e: e.earliest_email_at)
 
     for emailer in emailers:
         first_email = emailer.emails[0]
@@ -103,7 +111,7 @@ def print_partial_names_used_in_regexes():
     names = []
     partial_name_counts = defaultdict(int)
 
-    for highlight in HIGHLIGHTED_NAMES:
+    for highlight in HIGHLIGHT_GROUPS:
         if type(highlight) != HighlightedNames:
             continue
         elif not highlight.should_match_first_last_name:
@@ -138,10 +146,10 @@ counts = defaultdict(int)
 
 
 def print_potential_uninteresting_emailers():
-    emailers = sorted(epstein_files.emailers(), key=lambda e: epstein_files.earliest_email_at(e.name))
+    emailers = sorted(epstein_files.emailers, key=lambda e: epstein_files.earliest_email_at(e.name))
 
     for emailer in emailers:
-        emails = epstein_files.emails_for(emailer)
+        emails = emailer.emails
         emails_sent_by = [e for e in emails if e.author == emailer]
         emailer_str = f"(useless emailer) {emailer}" if emailer in UNINTERESTING_EMAILERS else emailer
         txt = Text('')
@@ -153,7 +161,7 @@ def print_potential_uninteresting_emailers():
                 console.print(txt.append(' [RECEIVED ONE]', style='bright_red dim').append(highlighter(f" {emailer_str} ({len(emails[0].recipients)} recipients)")))
         elif len(emails_sent_by) == 0:
             console.print(txt.append('    [NONE SENT]', style='dim').append(highlighter(f" {emailer_str} received {len(emails)} emails but sent none")))
-        elif get_style_for_name(emailer, default_style='none') == 'none':
+        elif get_style_for_name(emailer.name, default_style='none') == 'none':
             console.print(Text('     [NO STYLE]', style='wheat4').append(highlighter(f" {emailer_str} has no associated styling")))
 
 
@@ -187,7 +195,7 @@ for i, id_count in enumerate(sort_dict(max_sizes)):
 
     id = id_count[0]
     count = id_count[1]
-    email = epstein_files.for_ids([id])[0]
+    email = epstein_files.get_ids([id])[0]
     console.print(f"{count:6d}: {email.summary.plain}")
 
 

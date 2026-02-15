@@ -2,8 +2,8 @@ from datetime import datetime
 
 from epstein_files.documents.doj_file import DojFile
 from epstein_files.epstein_files import count_by_month
-from epstein_files.util.constants import ALL_FILE_CONFIGS
-from epstein_files.util.rich import console
+from epstein_files.output.rich import console
+from epstein_files.util.constants import CONFIGS_BY_ID
 
 EXPECTED_MONTHLY_COUNTS = {
     "1985-01": 1,
@@ -91,14 +91,14 @@ EXPECTED_MONTHLY_COUNTS = {
     "2010-11": 9,
     "2010-12": 12,
     "2011-01": 16,
-    "2011-02": 18,
+    "2011-02": 16,
     "2011-03": 63,
     "2011-04": 38,
     "2011-05": 16,
     "2011-06": 25,
     "2011-07": 37,
     "2011-08": 20,
-    "2011-09": 7,
+    "2011-09": 8,
     "2011-10": 9,
     "2011-11": 12,
     "2011-12": 5,
@@ -124,12 +124,12 @@ EXPECTED_MONTHLY_COUNTS = {
     "2013-08": 13,
     "2013-09": 13,
     "2013-10": 24,
-    "2013-11": 9,
+    "2013-11": 8,
     "2013-12": 14,
     "2014-01": 23,
     "2014-02": 13,
     "2014-03": 19,
-    "2014-04": 23,
+    "2014-04": 24,
     "2014-05": 17,
     "2014-06": 15,
     "2014-07": 19,
@@ -141,9 +141,9 @@ EXPECTED_MONTHLY_COUNTS = {
     "2015-01": 79,
     "2015-02": 15,
     "2015-03": 25,
-    "2015-04": 23,
+    "2015-04": 22,
     "2015-05": 9,
-    "2015-06": 9,
+    "2015-06": 10,
     "2015-07": 14,
     "2015-08": 23,
     "2015-09": 26,
@@ -168,13 +168,13 @@ EXPECTED_MONTHLY_COUNTS = {
     "2017-04": 44,
     "2017-05": 79,
     "2017-06": 41,
-    "2017-07": 50,
+    "2017-07": 51,
     "2017-08": 25,
     "2017-09": 84,
     "2017-10": 42,
     "2017-11": 71,
     "2017-12": 55,
-    "2018-01": 98,
+    "2018-01": 99,
     "2018-02": 49,
     "2018-03": 82,
     "2018-04": 54,
@@ -187,7 +187,7 @@ EXPECTED_MONTHLY_COUNTS = {
     "2018-11": 45,
     "2018-12": 79,
     "2019-01": 25,
-    "2019-02": 96,
+    "2019-02": 97,
     "2019-03": 57,
     "2019-04": 36,
     "2019-05": 79,
@@ -205,7 +205,7 @@ EXPECTED_MONTHLY_COUNTS = {
     "2020-06": 2,
     "2020-07": 37,
     "2020-08": 2,
-    "2020-09": 14,
+    "2020-09": 13,
     "2020-10": 1,
     "2020-11": 9,
     "2021-01": 3,
@@ -240,13 +240,13 @@ EXPECTED_MONTHLY_COUNTS = {
     "2024-10": 2,
     "2024-11": 2,
     "2024-12": 1,
-    None: 2145
+    None: 2144
 }
 
 
 def test_all_configs_exist(epstein_files):
     all_ids = [doc.file_id for doc in epstein_files.all_documents]
-    missing_ids = [id for id in ALL_FILE_CONFIGS.keys() if id not in all_ids]
+    missing_ids = [id for id in CONFIGS_BY_ID.keys() if id not in all_ids]
     assert len(missing_ids) == 0, f"Missing {len(missing_ids)} files that are configured: {missing_ids}"
 
 
@@ -254,7 +254,7 @@ def test_document_monthly_counts(epstein_files):
     counts = count_by_month(epstein_files.all_documents)
     assert counts == EXPECTED_MONTHLY_COUNTS
     len_all_files = len(epstein_files.all_files)
-    assert sum(counts.values()) == len_all_files - 1255  # There's 1246 empty files # TODO: this is the wrong number?
+    assert sum(counts.values()) == len_all_files - 1256  # There's 1246 empty files # TODO: this is the wrong number?
 
 
 def test_no_files_after_2025(epstein_files):

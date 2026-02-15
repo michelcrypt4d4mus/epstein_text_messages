@@ -2,7 +2,7 @@
 # Print arguments used to correct emails to a dict (LINE_REPAIR_MERGES variable)
 from scripts.use_pickled import console, epstein_files
 from epstein_files.documents.document import Document
-from epstein_files.util.data import all_elements_same
+from epstein_files.util.helpers.data_helpers import all_elements_same
 
 
 print("LINE_REPAIR_MERGES = {")

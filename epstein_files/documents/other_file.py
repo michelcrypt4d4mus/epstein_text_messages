@@ -13,14 +13,15 @@ from rich.table import Table
 from rich.text import Text
 
 from epstein_files.documents.document import CLOSE_PROPERTIES_CHAR, WHITESPACE_REGEX, Document
+from epstein_files.documents.documents.doc_cfg import DocCfg, Metadata
+from epstein_files.output.highlight_config import QUESTION_MARKS_TXT, styled_category
+from epstein_files.output.rich import build_table, highlighter
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constants import *
-from epstein_files.util.doc_cfg import DocCfg, Metadata
-from epstein_files.util.data import days_between, remove_timezone, uniquify
-from epstein_files.util.file_helper import FILENAME_LENGTH
+from epstein_files.util.helpers.data_helpers import days_between, remove_timezone, uniquify
+from epstein_files.util.helpers.file_helper import FILENAME_LENGTH
+from epstein_files.util.helpers.string_helper import has_line_starting_with
 from epstein_files.util.env import args
-from epstein_files.util.highlighted_group import QUESTION_MARKS_TXT, styled_category
-from epstein_files.util.rich import build_table, highlighter
 from epstein_files.util.logging import logger
 
 FIRST_FEW_LINES = 'First Few Lines'
@@ -32,51 +33,13 @@ LOG_INDENT = '\n         '
 PREVIEW_CHARS = int(580 * (1 if args.all_other_files else 1.5))
 TIMESTAMP_LOG_INDENT = f'{LOG_INDENT}    '
 VAST_HOUSE = 'vast house'  # Michael Wolff article draft about Epstein indicator
+
+LEGAL_FILING_REGEX = re.compile(r"^Case (\d+:\d+-.*?) Doc")
 VI_DAILY_NEWS_REGEX = re.compile(r'virgin\s*is[kl][ai]nds\s*daily\s*news', re.IGNORECASE)
 
 SKIP_TIMESTAMP_EXTRACT = [
     PALM_BEACH_TSV,
     PALM_BEACH_PROPERTY_INFO,
-]
-
-UNINTERESTING_CATEGORIES = [
-    ACADEMIA,
-    ARTICLE,
-    ARTS,
-    BOOK,
-    CONFERENCE,
-    JUNK,
-    POLITICS,
-    SKYPE_LOG,
-]
-
-# OtherFiles whose descriptions/info match these prefixes are not displayed unless --all-other-files is used
-UNINTERESTING_PREFIXES = [
-    'article about',
-    BROCKMAN_INC,
-    CVRA,
-    DERSH_GIUFFRE_TWEET,
-    GORDON_GETTY,
-    f"{HARVARD} Econ",
-    HARVARD_POETRY,
-    JASTA,
-    LEXIS_NEXIS,
-    NOBEL_CHARITABLE_TRUST,
-    PALM_BEACH_CODE_ENFORCEMENT,
-    PALM_BEACH_TSV,
-    PALM_BEACH_WATER_COMMITTEE,
-    TWEET,
-    UN_GENERAL_ASSEMBLY,
-    'US Office',
-]
-
-INTERESTING_AUTHORS = [
-    EDWARD_JAY_EPSTEIN,
-    EHUD_BARAK,
-    JOI_ITO,
-    NOAM_CHOMSKY,
-    MICHAEL_WOLFF,
-    SVETLANA_POZHIDAEVA,
 ]
 
 
@@ -86,54 +49,30 @@ class OtherFile(Document):
     File that is not an email, an iMessage log, or JSON data.
 
     Attributes:
+        derived_cfg (DocCfg, optional): a DocCfg object derived from contents of the file
         was_timestamp_extracted (bool): True if the timestamp was programmatically extracted (and could be wrong)
     """
+    derived_cfg: DocCfg | None = None
     was_timestamp_extracted: bool = False
+
+    # Class vars
     include_description_in_summary_panel: ClassVar[bool] = True  # Class var for logging output
     max_timestamp: ClassVar[datetime] = datetime(2022, 12, 31) # Overloaded in DojFile
 
     @property
-    def config_description(self) -> str | None:
+    def config(self) -> DocCfg | None:
+        return super().config or self.derived_cfg
+
+    @property
+    def config_description(self) -> str:
         """Overloads superclass property."""
-        if self.config and self.config.description:
-            return self.config.complete_description
+        return self.config.complete_description if self.config else ''
 
     @property
-    def category(self) -> str | None:
-        return self.config and self.config.category
-
-    @property
-    def category_txt(self) -> Text | None:
-        return styled_category(self.category)
-
-    @property
-    def is_interesting(self) -> bool:
-        """Overloaded. False for lame prefixes, duplicates, and other boring files."""
-        info_sentences = self.info
-        info_sentence = info_sentences[0].plain if info_sentences else ''
-
-        if self.is_duplicate:
-            return False
-        elif len(info_sentences) == 0 and not self.is_doj_file:
-            return True
-        elif self.config:
-            if self.config.is_interesting is not None:
-                return self.config.is_interesting
-            elif self.config.author in INTERESTING_AUTHORS:
-                return True
-            elif self.category == FINANCE and self.author is not None:
-                return False
-            elif self.category in UNINTERESTING_CATEGORIES:
-                return False
-            elif self.category == CRYPTO:
-                return True
-
-        for prefix in UNINTERESTING_PREFIXES:
-            if info_sentence.startswith(prefix):
-                return False
-
-        # Default to True for HOUSE_OVERSIGHT files, False for DOJ files
-        return not self.is_doj_file
+    def category_txt(self) -> Text:
+        """Returns '???' for missing category."""
+        # TODO: create synthetic DocCfg so we don't have to handle QUESTION_MARKS return here
+        return QUESTION_MARKS_TXT if not (self.config and self.config.category) else self.config.category_txt
 
     @property
     def metadata(self) -> Metadata:
@@ -163,9 +102,24 @@ class OtherFile(Document):
     def __post_init__(self):
         super().__post_init__()
 
-        if self.config is None and VI_DAILY_NEWS_REGEX.search(self.text):
-            self.log(f"Creating synthetic config for VI Daily News article...")
-            self.config = DocCfg(id=self.file_id, author=VI_DAILY_NEWS, category=ARTICLE, description='article')
+        if not self.config:
+            self.derived_cfg = self._build_derived_cfg()
+
+    def _build_derived_cfg(self) -> DocCfg | None:
+        """Create a `DocCfg` object if there is none configured and the contents warrant it."""
+        cfg = None
+
+        if VI_DAILY_NEWS_REGEX.search(self.text):
+            cfg = DocCfg(id=self.file_id, author=VI_DAILY_NEWS, category=ARTICLE)
+        elif has_line_starting_with(self.text, [VALAR_GLOBAL_FUND, VALAR_VENTURES], 2):
+            cfg = DocCfg(id=self.file_id, author=VALAR_VENTURES, category=CRYPTO, description=f"is a {PETER_THIEL} fintech fund")
+        elif (case_match := LEGAL_FILING_REGEX.search(self.text)):
+            cfg = DocCfg(id=self.file_id, category=LEGAL, description=f"legal filing in case {case_match.group(1)}")
+
+        if cfg:
+            self.warn(f"Built synthetic cfg: {cfg}")
+
+        return cfg
 
     def _extract_timestamp(self) -> datetime | None:
         """Return configured timestamp or value extracted by scanning text with datefinder."""

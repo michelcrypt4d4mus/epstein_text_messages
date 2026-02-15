@@ -5,7 +5,7 @@ from dataclasses import asdict, dataclass, field
 from datetime import datetime
 from pathlib import Path
 from subprocess import run
-from typing import Callable, ClassVar, Self, Sequence, TypeVar
+from typing import Callable, ClassVar, Self, Sequence, Type, TypeVar
 
 from rich.console import Console, ConsoleOptions, Group, RenderResult
 from rich.markup import escape
@@ -14,21 +14,23 @@ from rich.panel import Panel
 from rich.text import Text
 from rich.table import Table
 
+from epstein_files.documents.documents.doc_cfg import DUPE_TYPE_STRS, EmailCfg, DocCfg, Metadata, TextCfg
 from epstein_files.documents.documents.doc_locations import DocLocation
+from epstein_files.documents.documents.search_result import MatchedLine
+from epstein_files.documents.emails.constants import FALLBACK_TIMESTAMP
 from epstein_files.documents.emails.email_header import DETECT_EMAIL_REGEX
+from epstein_files.output.rich import (INFO_STYLE, NA_TXT, SKIPPED_FILE_MSG_PADDING, SYMBOL_STYLE,
+     add_cols_to_table, build_table, console, highlighter, join_texts, styled_key_value, link_text_obj,
+     parenthesize, wrap_in_markup_style)
 from epstein_files.util.constant.names import *
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constant.urls import *
-from epstein_files.util.constants import ALL_FILE_CONFIGS, DOJ_FILE_STEM_REGEX, FALLBACK_TIMESTAMP
-from epstein_files.util.data import collapse_newlines, date_str, patternize, remove_zero_time, without_falsey
-from epstein_files.util.doc_cfg import DUPE_TYPE_STRS, EmailCfg, DocCfg, Metadata, TextCfg
+from epstein_files.util.constants import CONFIGS_BY_ID, DOJ_FILE_STEM_REGEX, MAX_CHARS_TO_PRINT
+from epstein_files.util.helpers.data_helpers import collapse_newlines, date_str, patternize, remove_zero_time, without_falsey
 from epstein_files.util.env import DOCS_DIR, DOJ_PDFS_20260130_DIR
-from epstein_files.util.file_helper import (coerce_file_path, extract_file_id, file_size, file_size_str,
+from epstein_files.util.helpers.file_helper import (coerce_file_path, extract_file_id, file_size, file_size_str,
      file_size_to_str, is_local_extract_file)
 from epstein_files.util.logging import DOC_TYPE_STYLES, FILENAME_STYLE, logger
-from epstein_files.util.rich import (INFO_STYLE, NA_TXT, SKIPPED_FILE_MSG_PADDING, SYMBOL_STYLE, add_cols_to_table,
-     build_table, console, highlighter, join_texts, styled_key_value, link_text_obj, parenthesize, wrap_in_markup_style)
-from epstein_files.util.search_result import MatchedLine
 
 ALT_LINK_STYLE = 'white dim'
 CHECK_LINK_FOR_DETAILS = 'not shown here, check original PDF for details'
@@ -37,9 +39,9 @@ HOUSE_OVERSIGHT = HOUSE_OVERSIGHT_PREFIX.replace('_', ' ').strip()
 DOJ_DATASET_ID_REGEX = re.compile(r"(?:epstein_dataset_|DataSet )(\d+)")
 WHITESPACE_REGEX = re.compile(r"\s{2,}|\t|\n", re.MULTILINE)
 
+EMPTY_LENGTH = 15
 INFO_INDENT = 2
 INFO_PADDING = (0, 0, 0, INFO_INDENT)
-MAX_TOP_LINES_LEN = 4000  # Only for logging
 MIN_DOCUMENT_ID = 10477
 
 FILENAME_MATCH_STYLES = [
@@ -77,24 +79,21 @@ class Document:
     Attributes:
         file_path (Path): Local path to file
         author (Name): Who is responsible for the text in the file
-        config (DocCfg): Preconfigured information about this file
         doj_2026_dataset_id (int, optional): Only set for files that came from the DOJ website.
-        file_id (str): 6 digit (or 8 digits if it's a local extract file) string ID
-        filename (str): File's basename
-        lines (str): Number of lines in the file after all the cleanup
+        file_id (str): ID string - 6 numbers with zero padding for HOUSE_OVERSIGHT, full EFTAXXXXX for DOJ files.
+        lines (list[str]): Number of lines in the file after all the cleanup
         text (str): Contents of the file
-        timestamp (datetime | None): When the file was originally created
+        timestamp (datetime, optional): When the file was originally created
         url_slug (str): Version of the filename that works in links to epsteinify etc.
     """
     file_path: Path
-    # Optional fields
-    author: Name = None
-    config: EmailCfg | DocCfg | TextCfg | None = None
-    doj_2026_dataset_id: int | None = None
     file_id: str = field(init=False)
-    filename: str = field(init=False)
     lines: list[str] = field(default_factory=list)
     text: str = ''
+
+    # Optional fields
+    author: Name = None
+    doj_2026_dataset_id: int | None = None
     timestamp: datetime | None = None
     url_slug: str = ''
 
@@ -106,6 +105,18 @@ class Document:
     def border_style(self) -> str:
         """Should be overloaded in subclasses."""
         return 'white'
+
+    @property
+    def category(self) -> str:
+        if self.config and self.config.category:
+            return self.config.category
+        else:
+            return self.default_category()
+
+    @property
+    def config(self) -> DocCfg | None:
+        """Configured timestamp, if any."""
+        return CONFIGS_BY_ID.get(self.file_id)
 
     @property
     def config_description(self) -> str | None:
@@ -158,6 +169,10 @@ class Document:
             return epstein_media_doc_url(self.url_slug)
 
     @property
+    def filename(self) -> str:
+        return self.file_path.name
+
+    @property
     def file_id_debug_info(self) -> str:
         return ', '.join([f"{prop}={getattr(self, prop)}" for prop in ['file_id', 'filename', 'url_slug']])
 
@@ -173,14 +188,9 @@ class Document:
     def info(self) -> list[Text]:
         """0 to 2 sentences containing the info_txt() as well as any configured description."""
         return without_falsey([
-            self.info_txt,
+            self.subheader,
             highlighter(Text(self.config_description, style=INFO_STYLE)) if self.config_description else None
         ])
-
-    @property
-    def info_txt(self) -> Text | None:
-        """Secondary info about this file (description recipients, etc). Overload in subclasses."""
-        return None
 
     @property
     def is_attribution_uncertain(self) -> bool:
@@ -196,11 +206,13 @@ class Document:
 
     @property
     def is_empty(self) -> bool:
-        return len(self.text.strip()) < 20
+        return len(self.text.strip()) < EMPTY_LENGTH
 
     @property
-    def is_interesting(self) -> bool:
-        return bool(self.config and self.config.is_interesting)
+    def is_interesting(self) -> bool | None:
+        """TODO: currently default to True for HOUSE_OVERSIGHT_FILES, false for DOJ."""
+        if self.config and self.config.is_of_interest is not None:
+            return self.config.is_of_interest
 
     @property
     def is_local_extract_file(self) -> bool:
@@ -210,16 +222,6 @@ class Document:
     @property
     def length(self) -> int:
         return len(self.text)
-
-    @property
-    def local_path_and_url(self) -> Text:
-        """Text obj with local path and URL."""
-        txt = Text(f"{self.file_id}        URL: {self.external_url}\n{self.file_id} Local path: '{self.file_path}'")
-
-        if (pdf_path := self.local_pdf_path):
-            txt.append(f"\n{self.file_id}  Local PDF: '{pdf_path}'")
-
-        return txt
 
     @property
     def local_pdf_path(self) -> Path | None:
@@ -250,7 +252,7 @@ class Document:
             metadata['extracted_file'] = {
                 'explanation': 'manually extracted from one of the other files',
                 'extracted_from': self.url_slug + '.txt',
-                'url': extracted_file_url(self.filename),
+                'url': f"{EXTRACTS_BASE_URL}/{self.filename}",
             }
 
         return metadata
@@ -271,17 +273,9 @@ class Document:
     @property
     def prettified_text(self) -> Text:
         """Returns the string we want to print as the body of the document."""
-        style = ''
+        style = INFO_STYLE if self.replace_text_with and len(self.replace_text_with) < 300 else ''
+        text = self.replace_text_with or self.text
         trim_footer_txt = None
-
-        if self.config and self.config.replace_text_with:
-            if len(self.config.replace_text_with) < 300:
-                style = INFO_STYLE
-                text = f'(Text of {self.config.replace_text_with} {CHECK_LINK_FOR_DETAILS})'
-            else:
-                text = self.config.replace_text_with
-        else:
-            text = self.text
 
         if self.config and self.config.truncate_to:
             txt = highlighter(Text(text[0:self.config.truncate_to], style))
@@ -289,6 +283,25 @@ class Document:
             return txt.append('...\n\n').append(trim_footer_txt)
         else:
             return highlighter(Text(text, style))
+
+    @property
+    def replace_text_with(self) -> str | None:
+        """Configured replacement text."""
+        if self.config and self.config.replace_text_with:
+            if self.config.author:
+                text = f"{self.config.author} {self.config.replace_text_with}"
+            else:
+                text = self.config.replace_text_with
+
+            if len(text) < 300:
+                return f"(Text of {text} {CHECK_LINK_FOR_DETAILS})"
+            else:
+                return text
+
+    @property
+    def subheader(self) -> Text | None:
+        """Secondary info about this file (description, recipients, etc). Overload in subclasses."""
+        return None
 
     @property
     def summary(self) -> Text:
@@ -344,10 +357,8 @@ class Document:
         if not self.file_path.exists():
             raise FileNotFoundError(f"File '{self.file_path.name}' does not exist!")
 
-        self.filename = self.file_path.name
         self.file_id = extract_file_id(self.filename)
         # config and url_slug could have been pre-set in Email
-        self.config = self.config or deepcopy(ALL_FILE_CONFIGS.get(self.file_id))
         self.url_slug = self.url_slug or self.filename.split('.')[0]
 
         # Extract the DOJ dataset ID from the path
@@ -434,6 +445,10 @@ class Document:
         with open(self.file_path) as f:
             return f.read()
 
+    def reload(self) -> Self:
+        """Rebuild a new version of this object by loading the source file from disk again."""
+        return type(self)(self.file_path)
+
     def repair_ocr_text(self, repairs: dict[str | re.Pattern, str], text: str) -> str:
         """Apply a dict of repairs (key is pattern or string, value is replacement string) to text."""
         for k, v in repairs.items():
@@ -446,9 +461,10 @@ class Document:
 
     def top_lines(self, n: int = 10) -> str:
         """First n lines."""
-        return '\n'.join(self.lines[0:n])[:MAX_TOP_LINES_LEN]
+        return '\n'.join(self.lines[0:n])[:MAX_CHARS_TO_PRINT]
 
     def truncation_note(self, truncate_to: int) -> Text:
+        """String with link that will replace the text after the truncation point."""
         link_markup = self.external_link_markup
         trim_note = f"<...trimmed to {truncate_to:,} characters of {self.length:,}, read the rest at {link_markup}...>"
         return Text.from_markup(wrap_in_markup_style(trim_note, 'dim'))
@@ -458,7 +474,7 @@ class Document:
         self.log(msg, level=logging.WARNING)
 
     def _extract_author(self) -> None:
-        """Get author from config. Extended in Email subclass to also check headers."""
+        """Get author from config. Extended in `Email` subclass to also check headers."""
         if self.config and self.config.author:
             self.author = self.config.author
 
@@ -485,7 +501,7 @@ class Document:
 
     def _set_computed_fields(self, lines: list[str] | None = None, text: str | None = None) -> None:
         """Sets all fields derived from self.text based on either 'lines' or 'text' arg."""
-        if (lines and text):
+        if lines and text:
             raise RuntimeError(f"[{self.filename}] Either 'lines' or 'text' arg must be provided (got both)")
         elif lines is not None:
             self.text = '\n'.join(lines).strip()
@@ -531,6 +547,10 @@ class Document:
 
     def __str__(self) -> str:
         return self.summary.plain
+
+    @classmethod
+    def default_category(self) -> str:
+        return ''
 
     @classmethod
     def file_info_table(cls, title: str, first_col_name: str) -> Table:
