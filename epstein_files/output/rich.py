@@ -37,12 +37,12 @@ VALID_GREYS = [0, 3, 7, 11, 15, 19, 23, 27, 30, 35, 37, 39, 42, 46, 50, 53, 54, 
 DOJ_PAGE_LINK_MSG = 'WIP page with documents from the Epstein Files Transparency Act'
 
 INFO_STYLE = 'white dim italic'
-KEY_STYLE = 'grey42 bold'
-KEY_STYL_ALT = 'grey76 bold'
+KEY_STYLE = 'dim'
+KEY_STYL_ALT = 'gray58 bold'
 LAST_TIMESTAMP_STYLE = 'wheat4'
 OTHER_PAGE_MSG_STYLE = 'gray78 dim'
-STR_VAL_STYLE = 'light_goldenrod2 italic'
-STR_VAL_STYLE_ALT = 'light_salmon3 italic'
+STR_VAL_STYLE = 'cornsilk1 italic'
+STR_VAL_STYLE_ALT = 'light_yellow3 italic'
 SECTION_HEADER_STYLE = 'bold white on blue3'
 SOCIAL_MEDIA_LINK_STYLE = 'pale_turquoise4'
 SUBSTACK_POST_LINK_STYLE = 'bright_cyan'
@@ -322,21 +322,19 @@ def styled_key_value(
     sep='='
 ) -> Text:
     """Generate `Text` for 'key=value'."""
-    val_style = ''
-
-
     if '.' in key and key_style == KEY_STYLE:
         key_style = KEY_STYL_ALT
 
     if isinstance(val, Text):
         val_txt = val
+    elif isinstance(val, list):
+        val_txt = highlighter(json.dumps(val))
     elif isinstance(val, bool):
         val_txt = bool_txt(val)
     else:
         val_txt = None
+        val_style = ''
 
-        if isinstance(val, list):
-            val_txt = highlighter(json.dumps(val))
         if isinstance(val, int):
             val = str(val)
             val_style = 'cyan'
@@ -346,9 +344,10 @@ def styled_key_value(
         elif isinstance(val, str):
             if val.startswith('http'):
                 val_style = ARCHIVE_LINK_UNDERLINE
+            elif key.endswith('category'): # or key == 'author':
+                val_txt = highlighter(val)
             elif key.endswith('style'):
-                val_style = f"{val} bold reverse"
-                val = val.center(4, ' ')
+                val_style = f"{val} bold"
             elif key.endswith('_type'):
                 val_style = 'light_slate_gray bold'
             elif key.endswith('id'):
@@ -358,7 +357,6 @@ def styled_key_value(
                 val_txt = quote_txt(highlighter(val), style=val_style)
 
         val_txt = val_txt or Text(str(val), style=val_style or 'bright_white')
-        # val_txt = highlighter(val_txt)
 
     txt = Text('').append(f"{key:>{indent}}", style=key_style)
     txt.append(sep, style=SYMBOL_STYLE).append(val_txt)
