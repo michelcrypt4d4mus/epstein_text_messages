@@ -1,7 +1,7 @@
 from epstein_files.documents.documents.doc_cfg import INTERESTING_CATEGORIES, NEUTRAL_CATEGORIES, UNINTERESTING_CATEGORIES, CommunicationCfg, DocCfg, EmailCfg, TextCfg
 from epstein_files.documents.doj_files.full_text import EFTA00009622_TEXT
 from epstein_files.documents.emails.constants import FLIGHT_IN_2012_PEOPLE, IRAN_DEAL_RECIPIENTS, TRIVERS_CCS
-from epstein_files.util.helpers.string_helper import quote
+from epstein_files.util.helpers.string_helper import join_truthy, quote
 from epstein_files.util.constant.names import *
 from epstein_files.util.constant.strings import *
 from epstein_files.util.env import args
@@ -1309,7 +1309,6 @@ EMAILS_CONFIG = [
 
 # strings
 MEME = 'meme of'
-PRESS_RELEASE = 'press release'
 RESUME_OF = 'professional resumé'
 SCREENSHOT = 'screenshot of'
 TRANSLATION = 'translation of'
@@ -1806,7 +1805,8 @@ OTHER_FILES_FINANCE = [
     DocCfg(id='024817', description="Cowen's CBD / Cannabis report", date='2019-02-25', is_interesting=True),
     DocCfg(
         id='012048',
-        description=f"{PRESS_RELEASE} 'Rockefeller Partners with Gregory J. Fleming to Create Independent Financial Services Firm' and other articles"
+        category=PRESS_RELEASE,
+        description=f"Rockefeller Partners with Gregory J. Fleming to Create Independent Financial Services Firm and other articles"
     ),
 ]
 
@@ -1827,45 +1827,32 @@ OTHER_FILES_MONEY = [
     DocCfg(id='EFTA00000476', replace_text_with='photo of JEFFREY EPSTEIN CASH DISBURSEMENTS for the month 2006-09'),
 ]
 
+
+def blaine_letter(id: str, date: str, suffix: str = '') -> CommunicationCfg:
+    return CommunicationCfg(id=id, date=date, description=join_truthy(DAVID_BLAINE_VISA_LETTER, suffix), recipients=['Immigration'])
+
+
 # This category makes is_interesting default to True
 OTHER_FILES_LETTER = [
-    CommunicationCfg(
-        id='019086',
-        author=DAVID_BLAINE,
-        description=f"{DAVID_BLAINE_VISA_LETTER} naming various Putin puppet regimes",
-        date='2015-05-27',  # Date is a guess based on other drafts,
-        recipients=['immigration']
-    ),
-    CommunicationCfg(
-        id='019474',
-        author=DAVID_BLAINE,
-        description=DAVID_BLAINE_VISA_LETTER,
-        date='2015-05-29',
-        recipients=['immigration']
-    ),
-    CommunicationCfg(
-        id='019476',
-        author=DAVID_BLAINE,
-        description=DAVID_BLAINE_VISA_LETTER,
-        date='2015-06-01',
-        recipients=['immigration']
-    ),
     CommunicationCfg(
         id='026011',
         author='Gennady Mashtalyar',
         date='2016-06-24',  # date is based on Brexit reference but he could be backtesting,
         description=f"letter about algorithmic trading",
     ),
-    CommunicationCfg(id='026134', recipients=['George'], description=f'about investment opportunities in the Ukraine banking sector'),
-    # DOJ files
-    DocCfg(id='EFTA02731023', author='Senator Ron Wyden', description=f"to {LEON_BLACK}", is_interesting=False),
+    CommunicationCfg(id='026134', recipients=['George'], description=f'about opportunities to buy banks in Ukraine'),
+    CommunicationCfg(id='EFTA02731023', author='Senator Ron Wyden', recipients=[LEON_BLACK], is_interesting=False),
+    blaine_letter(id='019086', date='2015-05-27', suffix='naming various Putin puppet regimes'),
+    blaine_letter(id='019474', date='2015-05-29'),
+    blaine_letter(id='019476', date='2015-06-01'),
 ]
 
 OTHER_FILES_PROPERTY = [
     DocCfg(
         id='026759',
         author='Great Bay Condominium Owners Association',
-        description=f'{PRESS_RELEASE} about Hurricane Irma damage',
+        category=PRESS_RELEASE,
+        description=f'Hurricane Irma damage',
         date='2017-09-13',
         is_interesting=False,
     ),
@@ -1911,7 +1898,7 @@ OTHER_FILES_SOCIAL = [
     DocCfg(id='017787', author=ALAN_DERSHOWITZ, category=TWEET, description=DERSH_GIUFFRE_TWEET),
     DocCfg(id='033433', author=ALAN_DERSHOWITZ, category=TWEET, description=f"{DERSH_GIUFFRE_TWEET} / David Boies", date='2019-03-02'),
     DocCfg(id='033432', author=ALAN_DERSHOWITZ, category=TWEET, description=f"{DERSH_GIUFFRE_TWEET} / David Boies", date='2019-05-02'),
-    DocCfg(id='031546', author=DONALD_TRUMP, description=f"{TWEET}s by about Russian collusion", date='2018-01-06'),
+    DocCfg(id='031546', author=DONALD_TRUMP, category=TWEET, description=f"about Russian collusion", date='2018-01-06'),
     DocCfg(id='030884', author='Ed Krassenstein', category=TWEET),
     DocCfg(id='033236', category=TWEET, description=f'selection about Ivanka Trump in Arabic', date='2017-05-20'),
     # InsightsPod
@@ -2066,10 +2053,10 @@ OTHER_FILES_ARTS = [
 OTHER_FILES_MISC = [
     DocCfg(id='022780', category=FLIGHT_LOG),
     DocCfg(id='022816', category=FLIGHT_LOG),
+    DocCfg(id='029326', category=PRESS_RELEASE, author=EPSTEIN_FOUNDATION, date='2013-02-15'),
+    DocCfg(id='026565', category=PRESS_RELEASE, author=EPSTEIN_FOUNDATION, comment=f'maybe a draft of 029326', date='2013-02-15'),
     DocCfg(id='022494', author='DOJ', description=f'Foreign Corrupt Practices Act (FCPA) Resource Guide'),
     DocCfg(id='023096', author=EPSTEIN_FOUNDATION, description=f'blog post', date='2012-11-15'),
-    DocCfg(id='029326', author=EPSTEIN_FOUNDATION, description=f'{PRESS_RELEASE}', date='2013-02-15'),
-    DocCfg(id='026565', author=EPSTEIN_FOUNDATION, description=f'{PRESS_RELEASE}, maybe a draft of 029326', date='2013-02-15'),
     DocCfg(id='027071', author=FEMALE_HEALTH_COMPANY, description=f"brochure requesting donations for female condoms in Uganda"),
     DocCfg(id='027074', author=FEMALE_HEALTH_COMPANY, description=f"pitch deck (USAID was a customer)"),
     DocCfg(id='032735', author=GORDON_GETTY, description=f"on Trump", date='2018-03-20'),  # Dated based on concurrent emails from Getty
@@ -2083,13 +2070,15 @@ OTHER_FILES_MISC = [
     DocCfg(id='023644', description=f"interview with Mohammed bin Salman", date='2016-04-25'),
     DocCfg(
         id='030142',
+        author=f"{KATHRYN_RUEMMLER} & {KEN_STARR}",
         date='2016-09-01',
-        description=f"{JASTA} (Justice Against Sponsors of Terrorism Act) doc that's mostly empty, references suit against Saudi f. {KATHRYN_RUEMMLER} & {KEN_STARR}",
+        description=f"mostly empty {JASTA} (Justice Against Sponsors of Terrorism Act) doc referencing suit against Saudis",
     ),
     DocCfg(
         id='033338',
+        category=PRESS_RELEASE,
         date='2000-06-07',
-        description=f"{PRESS_RELEASE} announcing end of Donald Trump & {NICHOLAS_RIBIS} working relationship at Trump's casino",
+        description=f"end of {DONALD_TRUMP} & {NICHOLAS_RIBIS} working relationship at Trump's casino",
     ),
     DocCfg(id='029328', description=f"Rafanelli Events promotional deck", is_interesting=False),
     DocCfg(id='029475', description=f'{VIRGIN_ISLANDS} Twin City Mobile Integrated Health Services (TCMIH) proposal/request for donation'),
