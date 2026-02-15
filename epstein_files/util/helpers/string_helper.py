@@ -21,7 +21,7 @@ def indented(s: str, spaces: int = 4, prefix: str = '') -> str:
     return indent + f"\n{indent}".join(s.split('\n'))
 
 
-def optional_prefix(prefix: str | None, suffix: str | None, sep: str = '') -> str:
+def join_truthy(prefix: str | None, suffix: str | None, sep: str = '') -> str:
     sep = sep or (' ' if prefix and suffix else '')
     parts = [p.strip() for p in [prefix, suffix] if p and p.strip()]
     return sep.join(parts)

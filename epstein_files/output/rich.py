@@ -1,6 +1,7 @@
 # Rich reference: https://rich.readthedocs.io/en/latest/reference.html
 import json
 from copy import deepcopy
+from datetime import datetime
 from os import devnull
 from pathlib import Path
 
@@ -17,7 +18,7 @@ from epstein_files.output.epstein_highlighter import EpsteinHighlighter
 from epstein_files.output.highlight_config import HIGHLIGHT_GROUPS
 from epstein_files.util.constant.html import CONSOLE_HTML_FORMAT, HTML_TERMINAL_THEME, PAGE_TITLE
 from epstein_files.util.constant.names import UNKNOWN
-from epstein_files.util.constant.strings import DEFAULT, EMAIL, NA, TEXT_MESSAGE
+from epstein_files.util.constant.strings import AUTHOR, DEFAULT, EMAIL, NA, TEXT_MESSAGE, TIMESTAMP_STYLE
 from epstein_files.util.constant.urls import *
 from epstein_files.util.constants import HEADER_ABBREVIATIONS
 from epstein_files.util.env import args
@@ -331,6 +332,8 @@ def styled_key_value(
         val_txt = highlighter(json.dumps(val))
     elif isinstance(val, bool):
         val_txt = bool_txt(val)
+    elif isinstance(val, datetime):
+        val_txt = Text(str(val), style=TIMESTAMP_STYLE)
     else:
         val_txt = None
         val_style = ''
@@ -344,7 +347,7 @@ def styled_key_value(
         elif isinstance(val, str):
             if val.startswith('http'):
                 val_style = ARCHIVE_LINK_UNDERLINE
-            elif key.endswith('category'): # or key == 'author':
+            elif key.endswith('category') or key == AUTHOR:
                 val_txt = highlighter(val)
             elif key.endswith('style'):
                 val_style = f"{val} bold"

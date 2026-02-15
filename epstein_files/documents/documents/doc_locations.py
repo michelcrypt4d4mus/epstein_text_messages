@@ -44,7 +44,7 @@ class DocLocation:
 
     def __rich__(self) -> Text:
         """Text obj with local paths and URLs."""
-        txt_lines = styled_dict({'file_id': self.file_id, **self.paths, **self.urls}, key_style='khaki3', sep=': ')
+        txt_lines = styled_dict({'file_id': self.file_id, **self.paths, **self.urls}, sep=': ')
         return prefix_with(txt_lines, ' ', pfx_style='grey', indent=2)
 
     def __str__(self) -> str:

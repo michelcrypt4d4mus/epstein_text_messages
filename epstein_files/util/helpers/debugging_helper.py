@@ -1,3 +1,4 @@
+from rich.padding import Padding
 from rich.text import Text
 
 from epstein_files.documents.other_file import OtherFile
@@ -38,6 +39,7 @@ def print_interesting_doc_panels_and_props(epstein_files):
         else:
             props = {'doc.is_interesting': doc.is_interesting}
 
-        console.print(doc.summary_panel)
+        # console.print(doc.summary_panel)
+        console.print(Padding(doc.file_info_panel(), (0, 0, 1, 0)))
         console.print(styled_dict(props, sep=': '))
         console.line()
