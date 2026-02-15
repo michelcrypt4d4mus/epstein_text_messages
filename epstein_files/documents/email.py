@@ -198,17 +198,13 @@ class Email(Communication):
 
             if not self.derived_cfg and (extracted_from_cfg := CONFIGS_BY_ID.get(extracted_from_doc_id)):
                 # Copy info from original config for file this document was extracted from.
-                if (this_files_cfg := CONFIGS_BY_ID.get(self.file_id)):
-                    self.derived_cfg = cast(EmailCfg, deepcopy(this_files_cfg))
-                    self.log(f"Merging existing cfg for '{self.file_id}' with cfg for extracted document...")
+                if (my_cfg := CONFIGS_BY_ID.get(self.file_id)):
+                    self.derived_cfg = cast(EmailCfg, deepcopy(my_cfg))
                 else:
                     self.derived_cfg = EmailCfg(id=self.file_id)  # Create new EmailCfg
 
                 if (extracted_from_description := extracted_from_cfg.complete_description):
                     self.derived_cfg.description = f"{APPEARS_IN} {extracted_from_description}"
-
-                    if isinstance(extracted_from_cfg, EmailCfg):
-                        self.derived_cfg.description += ' email'
 
                 self.derived_cfg.is_interesting = self.derived_cfg.is_interesting or extracted_from_cfg.is_interesting
                 self.log(f"Constructed synthetic config: {self.derived_cfg}")
@@ -294,9 +290,6 @@ class Email(Communication):
         if self.is_local_extract_file:
             self.url_slug = LOCAL_EXTRACT_REGEX.sub('', file_stem_for_id(self.file_id))
             extracted_from_doc_id = self.url_slug.split('_')[-1]
-
-            if extracted_from_doc_id in CONFIGS_BY_ID:
-                self._set_config_for_extracted_file(CONFIGS_BY_ID[extracted_from_doc_id])
 
         super().__post_init__()
 

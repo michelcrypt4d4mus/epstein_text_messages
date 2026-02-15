@@ -1,7 +1,7 @@
 import re
 from dataclasses import dataclass, field
 from datetime import datetime
-from typing import ClassVar
+from typing import ClassVar, cast
 
 from rich.text import Text
 
@@ -11,6 +11,7 @@ from epstein_files.documents.emails.constants import FALLBACK_TIMESTAMP
 from epstein_files.output.highlight_config import get_style_for_name, styled_name
 from epstein_files.output.rich import styled_key_value
 from epstein_files.util.constant.names import UNKNOWN
+from epstein_files.util.constants import CONFIGS_BY_ID
 
 TIMESTAMP_SECONDS_REGEX = re.compile(r":\d{2}$")
 
@@ -31,6 +32,17 @@ class Communication(Document):
     @property
     def author_txt(self) -> Text:
         return styled_name(self.author)
+
+    @property
+    def config(self) -> CommunicationCfg | None:
+        """Configured timestamp, if any."""
+        cfg = CONFIGS_BY_ID.get(self.file_id)
+
+        if not isinstance(cfg, CommunicationCfg):
+            self.warn(f"Found config that's the wrong type! {repr(cfg)}")
+            cfg = cast(CommunicationCfg, cfg)
+
+        return cfg
 
     @property
     def is_recipient_uncertain(self) -> bool:
