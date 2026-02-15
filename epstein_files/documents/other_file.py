@@ -105,7 +105,7 @@ class OtherFile(Document):
         """Create a `DocCfg` object if there is none configured and the contents warrant it."""
         if VI_DAILY_NEWS_REGEX.search(self.text):
             self.log(f"Creating synthetic config for VI Daily News article...")
-            return DocCfg(id=self.file_id, author=VI_DAILY_NEWS, category=ARTICLE, description='article')
+            return DocCfg(id=self.file_id, author=VI_DAILY_NEWS, category=ARTICLE)
         elif has_line_starting_with(self.text, [VALAR_GLOBAL_FUND, VALAR_VENTURES], 2):
             self.log(f"Creating synthetic config for {VALAR_VENTURES}...")
 
