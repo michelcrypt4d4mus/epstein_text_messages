@@ -37,7 +37,6 @@ class EpsteinFiles:
     all_files: list[Path] = field(init=False)
     emails: list[Email] = field(default_factory=list)
     imessage_logs: list[MessengerLog] = field(default_factory=list)
-    json_files: list[JsonFile] = field(default_factory=list)
     other_files: list[OtherFile] = field(default_factory=list)
     timer: Timer = field(default_factory=lambda: Timer())
     uninteresting_ccs: list[Name] = field(default_factory=list)
@@ -50,6 +49,10 @@ class EpsteinFiles:
     def all_doj_files(self) -> Sequence[DojFile | Email]:
         """All files with the filename EFTAXXXXXX, including those that were turned into Email objs."""
         return [doc for doc in self.all_documents if doc.is_doj_file]
+
+    @property
+    def doj_files(self) -> list[DojFile]:
+        return Document.sort_by_timestamp([f for f in self.other_files if isinstance(f, DojFile)])
 
     @property
     def emailers(self) -> list[Person]:
@@ -92,10 +95,6 @@ class EpsteinFiles:
 
         # Set interdependent fields, dupes, etc.
         self._finalize_data()
-
-    @property
-    def doj_files(self) -> list[DojFile]:
-        return Document.sort_by_timestamp([f for f in self.other_files if isinstance(f, DojFile)])
 
     @classmethod
     def get_files(cls, timer: Timer | None = None) -> 'EpsteinFiles':
@@ -221,7 +220,7 @@ class EpsteinFiles:
 
         return [d.reload() if rebuild else d for d in docs]
 
-    def get_id(self, file_id: str, rebuild: bool = False, required_type: Type = Document) -> Document:
+    def get_id(self, file_id: str, rebuild: bool = False, required_type: Type[Document] = Document) -> Document:
         """Singular ID version of `get_ids()` but with option to require a type of document subclass."""
         doc = self.get_ids([file_id], rebuild)[0]
 
