@@ -20,6 +20,11 @@ def blockchain_cap_cfg() -> DocCfg:
 
 
 @pytest.fixture
+def book_cfg() -> DocCfg:
+    return _oversight_cfg(BOOK, author='Elon Musk', description="Illmatic")
+
+
+@pytest.fixture
 def empty_doj_cfg() -> DocCfg:
     return _doj_cfg()
 
@@ -90,8 +95,19 @@ def test_category_txt(blockchain_cap_cfg, empty_house_cfg, junk_doc_cfg, legal_c
     assert legal_cfg.category_txt.style == 'purple'
 
 
-def test_complete_description(blockchain_cap_cfg, empty_house_cfg, finance_report, junk_doc_cfg, legal_cfg, skype_cfg, skype_author, tweet_cfg):
+def test_complete_description(
+    blockchain_cap_cfg,
+    book_cfg,
+    empty_house_cfg,
+    finance_report,
+    junk_doc_cfg,
+    legal_cfg,
+    skype_cfg,
+    skype_author,
+    tweet_cfg
+):
     assert blockchain_cap_cfg.complete_description == "Blockchain Capital investor report"
+    assert book_cfg.complete_description == 'book titled "Illmatic" by Elon Musk'
     # Empty
     assert empty_house_cfg.complete_description == ''
     # Finance
@@ -109,9 +125,9 @@ def test_complete_description(blockchain_cap_cfg, empty_house_cfg, finance_repor
     skype_author.description = 'something'
     assert skype_author.complete_description == f"{SKYPE_LOG.lower()} of conversation with linkspirit something"
     # Tweet
-    assert tweet_cfg.complete_description == 'tweet by Klippenstein'
+    assert tweet_cfg.complete_description == 'Tweet by Klippenstein'
     tweet_cfg.description = 'libelous'
-    assert tweet_cfg.complete_description == 'tweet by Klippenstein libelous'
+    assert tweet_cfg.complete_description == 'Tweet by Klippenstein libelous'
 
 
 def test_is_of_interest(

@@ -104,12 +104,12 @@ NON_METADATA_FIELDS = [
 ]
 
 # Categories where we want to include the category name in the description
-PREAMBLE_CATEGORIES = set([
-    BOOK,
-    REPUTATION,
-    SKYPE_LOG,
-    TWEET,
-])
+CATEGORY_PREAMBLES = {
+    BOOK: 'book titled',
+    REPUTATION: REPUTATION_MGMT,
+    SKYPE_LOG: SKYPE_LOG,
+    TWEET: TWEET.title(),
+}
 
 
 @dataclass(kw_only=True)
@@ -162,7 +162,8 @@ class DocCfg:
     @property
     def complete_description(self) -> str:
         """String that summarizes what is known about this document."""
-        preamble = self.category if self.category in PREAMBLE_CATEGORIES else ''
+        # Set preamble to category if there's no author or description or CATEGORY_PREAMBLES entry
+        preamble = CATEGORY_PREAMBLES.get(self.category, '' if self.has_any_info else self.category)
         author_separator = ' '
         preamble_separator = ''
         description = ''
@@ -172,6 +173,9 @@ class DocCfg:
 
         if self.category in [ACADEMIA, BOOK]:
             description = optional_prefix(quote(self.description), self.author, ' by ')  # note reversed args
+
+            if self.category == BOOK:
+                author_separator = ': '
         if self.category == SKYPE_LOG:
             preamble_separator = " of conversation with "
         elif self.category == REPUTATION:
