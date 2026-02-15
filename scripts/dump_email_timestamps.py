@@ -17,6 +17,7 @@ from epstein_files.documents.other_file import OtherFile
 from epstein_files.output.highlight_config import HIGHLIGHT_GROUPS, get_style_for_name
 from epstein_files.output.highlighted_names import HighlightedNames
 from epstein_files.util.constant.names import *
+from epstein_files.util.constant.strings import LETTER
 from epstein_files.util.constants import CONFIGS_BY_ID, EmailCfg
 from epstein_files.util.helpers.data_helpers import *
 from epstein_files.util.helpers.debugging_helper import print_interesting_doc_panels_and_props
@@ -46,9 +47,10 @@ from epstein_files.output.rich import bool_txt, console, highlighter, styled_key
 
 # Print CRYPTO_CURRENCY_PARTNERS_II OtherFiles
 for i, doc in enumerate(epstein_files.other_files):
-    if CRYPTO_CURRENCY_PARTNERS_II.lower() in doc.preview_text.lower():
-        if not doc.config:
-            doc.log(f"No config for {doc.file_id}\n", logging.ERROR)
+    # if CRYPTO_CURRENCY_PARTNERS_II.lower() in doc.preview_text.lower():
+    if doc.category == LETTER:
+        # if not doc.config:
+        #     doc.log(f"No config for {doc.file_id}\n", logging.ERROR)
 
         console.line(2)
         console.print(doc.preview_text)
