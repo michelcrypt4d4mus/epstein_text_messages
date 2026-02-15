@@ -241,6 +241,11 @@ INTERESTING_FILE_IDS = [
 ]
 
 
+def test_interesting_file_count(epstein_files):
+    interesting_file_ids = sorted([f.file_id for f in epstein_files.interesting_other_files])
+    assert interesting_file_ids == INTERESTING_FILE_IDS
+
+
 def test_other_files_author_count(epstein_files):
     known_author_count = Document.known_author_count(epstein_files.other_files)
     assert known_author_count == 412
@@ -249,8 +254,3 @@ def test_other_files_author_count(epstein_files):
 
 def test_other_files_categories(epstein_files):
     assert len([f for f in epstein_files.other_files if not f.category]) == 2434
-
-
-def test_interesting_file_count(epstein_files):
-    interesting_file_ids = sorted([f.file_id for f in epstein_files.interesting_other_files])
-    assert interesting_file_ids == INTERESTING_FILE_IDS
