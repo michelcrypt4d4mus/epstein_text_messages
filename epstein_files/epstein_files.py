@@ -20,7 +20,7 @@ from epstein_files.documents.json_file import JsonFile
 from epstein_files.documents.messenger_log import MSG_REGEX, MessengerLog
 from epstein_files.documents.other_file import OtherFile
 from epstein_files.output.highlight_config import HIGHLIGHTED_NAMES, HighlightedNames
-from epstein_files.people.person import Person
+from epstein_files.people.person import INVALID_FOR_EPSTEIN_WEB, Person
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constants import *
 from epstein_files.util.env import DOCS_DIR, args, logger
@@ -342,9 +342,12 @@ class EpsteinFiles:
 
                 other_file.timestamp = email.timestamp
 
+        # Set the _is_first_for_user flag on the earliest Email we have for each user.
         for emailer in self.emailers:
-            first_email = emailer.emails[0]
-            first_email._is_first_for_user = True
+            if emailer.name in INVALID_FOR_EPSTEIN_WEB or len(emailer.unique_emails) == 0:
+                continue
+
+            emailer.unique_emails[0]._is_first_for_user = True
 
     def _load_file_paths(self, file_paths: list[Path]) -> Sequence[Document]:
         """Load a list of file paths into a list of `Document` object subclasses."""
