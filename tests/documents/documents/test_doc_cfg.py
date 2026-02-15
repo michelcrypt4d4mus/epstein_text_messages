@@ -2,6 +2,7 @@ import pytest
 from copy import deepcopy
 
 from epstein_files.documents.documents.doc_cfg import DocCfg, EmailCfg
+from epstein_files.output.highlight_config import QUESTION_MARKS_TXT
 from epstein_files.util.constant.names import BLOCKCHAIN_CAPITAL, BOFA_MERRILL, JOI_ITO, Name
 from epstein_files.util.constant.strings import *
 
@@ -16,6 +17,11 @@ def academia_doc() -> DocCfg:
 @pytest.fixture
 def blockchain_cap_cfg() -> DocCfg:
     return _oversight_cfg(CRYPTO, author=BLOCKCHAIN_CAPITAL, description="investor report")
+
+
+@pytest.fixture
+def empty_cfg() -> DocCfg:
+    return _doj_cfg()
 
 
 @pytest.fixture
@@ -65,8 +71,9 @@ def skype_author() -> DocCfg:
     return _oversight_cfg(SKYPE_LOG, author='linkspirit')
 
 
-def test_category_txt(junk_doc_cfg, legal_cfg, skype_cfg, skype_author):
+def test_category_txt(empty_cfg, junk_doc_cfg, legal_cfg, skype_cfg, skype_author):
     print('running test_category_txt()')
+    assert empty_cfg.category_txt == QUESTION_MARKS_TXT
     assert junk_doc_cfg.category_txt.plain == JUNK
     assert skype_cfg.category_txt.plain == SKYPE_LOG
     assert skype_cfg.category_txt.style == 'wheat4'
