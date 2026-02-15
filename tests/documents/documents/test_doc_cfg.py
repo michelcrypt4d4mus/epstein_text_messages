@@ -6,6 +6,7 @@ from epstein_files.documents.other_file import OtherFile
 from epstein_files.output.highlight_config import QUESTION_MARKS_TXT
 from epstein_files.util.constant.names import BLOCKCHAIN_CAPITAL, BOFA_MERRILL, JOI_ITO, Name
 from epstein_files.util.constant.strings import *
+from epstein_files.util.constants import CONFIGS_BY_ID
 
 RANDOM_ID = '123456'
 
@@ -177,6 +178,11 @@ def test_books(epstein_files):
     book = epstein_files.get_id('018438', required_type=OtherFile)
     assert book.config.category == BOOK
     assert book.config.complete_description == 'book titled "The S&M Feminist" by Clarisse Thorn'
+
+
+def test_misc_cfg():
+    misc_cfg = CONFIGS_BY_ID['EFTA00006100']
+    assert not misc_cfg.complete_description
 
 
 def _oversight_cfg(category: str = '', **kwargs) -> DocCfg:
