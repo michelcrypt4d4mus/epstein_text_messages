@@ -206,13 +206,12 @@ NO_IMAGE_SUFFIX = """
 
 @dataclass
 class DojFile(OtherFile):
-    """
-    Class for the files released by DOJ on 2026-01-30 with `EFTA000` prefix.
-    """
+    """Class for the files released by DOJ on 2026-01-30 with `EFTA000` prefix."""
     _border_style: str | None = None
 
+    # Class variables
     border_style_rainbow_idx: ClassVar[int] = 0  # ClassVar to help change color as we print, no impact beyond fancier output
-    max_timestamp: ClassVar[datetime] = datetime(2025, 1, 29) # Overloaded in DojFile
+    max_timestamp: ClassVar[datetime] = datetime(2025, 1, 29)  # Cutoff for _extract_timestamp(), Overloads superclass
 
     @property
     def border_style(self) -> str:

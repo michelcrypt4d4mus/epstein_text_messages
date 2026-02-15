@@ -36,9 +36,9 @@ class Communication(Document):
     @property
     def config(self) -> CommunicationCfg | None:
         """Configured timestamp, if any."""
-        cfg = CONFIGS_BY_ID.get(self.file_id)
+        cfg = super().config
 
-        if not isinstance(cfg, CommunicationCfg):
+        if cfg and not isinstance(cfg, CommunicationCfg):
             self.warn(f"Found config that's the wrong type! {repr(cfg)}")
             cfg = cast(CommunicationCfg, cfg)
 
