@@ -4,6 +4,7 @@ from copy import deepcopy
 from datetime import datetime
 from os import devnull
 from pathlib import Path
+from typing import Mapping, Sequence
 
 from rich.align import Align
 from rich.console import Console, Group, RenderableType
@@ -328,7 +329,7 @@ def quote_txt(t: Text | str, try_double_quote_first: bool = False, style: str = 
 
 def styled_key_value(
     key: str,
-    val: int | str | Path | Text,
+    val: bool | datetime | int | str | Path | Text | None,
     key_style: str = KEY_STYLE,
     indent: int = 0,
     sep='='
@@ -337,7 +338,9 @@ def styled_key_value(
     if '.' in key and key_style == KEY_STYLE:
         key_style = KEY_STYLE_ALT
 
-    if isinstance(val, Text):
+    if val is None:
+        val_txt = Text('None', style='dim italic')
+    elif isinstance(val, Text):
         val_txt = val
     elif isinstance(val, list):
         val_txt = highlighter(json.dumps(val))
@@ -378,7 +381,7 @@ def styled_key_value(
 
 
 def styled_dict(
-    d: dict[str, str | Path | Text],
+    d: Mapping[str, bool | datetime | str | Path | Text | None],
     key_style: str = KEY_STYLE,
     sep: str = '=',
     sort_fields: bool = True,

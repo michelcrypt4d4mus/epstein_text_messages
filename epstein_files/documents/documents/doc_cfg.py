@@ -3,7 +3,7 @@ import re
 from copy import deepcopy
 from dataclasses import asdict, dataclass, field, fields
 from datetime import datetime
-from typing import Generator, Literal, Self
+from typing import Generator, Literal, Mapping, Self
 
 from dateutil.parser import parse
 from rich.padding import Padding
@@ -314,7 +314,7 @@ class DocCfg:
         return metadata
 
     @property
-    def important_props(self) -> dict[str, str | None | bool]:
+    def important_props(self) -> dict[str, bool | str | None]:
         props = {k: v for k, v in asdict(self).items() if v or (k in FALSEABLE_PROPS and v is False)}
 
         if self.is_of_interest is not None:

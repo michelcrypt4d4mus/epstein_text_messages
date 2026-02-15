@@ -1,5 +1,6 @@
 from dataclasses import asdict, dataclass, field
 from pathlib import Path
+from typing import Mapping
 
 from rich.text import Text
 
@@ -25,11 +26,15 @@ class DocLocation:
     # jmail_url: str
 
     @property
-    def paths(self) -> dict[str, Path]:
+    def as_dict(self) -> Mapping[str, str | Path]:
+        return {'file_id': self.file_id, **self.paths, **self.urls}
+
+    @property
+    def paths(self) -> Mapping[str, Path]:
         return {k: Path(v) for k, v in self._props_with_suffix('path').items() if v}
 
     @property
-    def urls(self) -> dict[str, str]:
+    def urls(self) -> Mapping[str, str]:
         urls = {k: str(v) for k, v in self._props_with_suffix('url').items() if v}
         urls = {k: (v if v.startswith('http') else f"https://{v}") for k, v in urls.items()}
         return urls
@@ -40,12 +45,12 @@ class DocLocation:
         if is_doj_file(self.local_path):
             self.source_url = self.external_url
 
-    def _props_with_suffix(self, suffix: str) -> dict[str, str]:
+    def _props_with_suffix(self, suffix: str) -> Mapping[str, str]:
         return {k: v for k, v in asdict(self).items() if k.endswith(suffix)}
 
     def __rich__(self) -> Text:
         """Text obj with local paths and URLs."""
-        txt_lines = styled_dict({'file_id': self.file_id, **self.paths, **self.urls}, sep=': ')
+        txt_lines = styled_dict(self.as_dict, sep=': ')
         return prefix_with(txt_lines, ' ', pfx_style='grey', indent=2)
 
     def __str__(self) -> str:
