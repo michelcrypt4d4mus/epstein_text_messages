@@ -199,24 +199,24 @@ class DocCfg:
 
         # If description is set it must be fully constructed
         if self.category == BOOK or (self.category == ACADEMIA and self.author and self.description):
-            description = join_truthy(self.description, self.author, ' by ')  # note reversed args
+            description = join_truthy(self.description_as_title, self.author, ' by ')  # note reversed args
             description = join_truthy(preamble, description)
-        elif (self.category == LEGAL and 'v.' in self.author_str) or self.category == REPUTATION:
-            author_separator = ": "
-        elif self.category == PRESS_RELEASE:
-            description = join_truthy(preamble, self.description, ' announcing ')  # note reversed args
-            description = join_truthy(self.author, description)
-        elif self.category == SKYPE_LOG:
-            preamble_separator = " of conversation with "
+        elif self.category == FINANCE and self.is_description_a_title:
+            author_separator = ' report: '
         elif self.category == LETTER:
             description = join_truthy(preamble, self.author, ' from ')
             description = join_truthy(description, self.recipients_str, ' to ')
             description = join_truthy(description, self.description)
+        elif self.category == PRESS_RELEASE:
+            description = join_truthy(preamble, self.description, ' announcing ')  # note reversed args
+            description = join_truthy(self.author, description)
+        elif self.category == REPUTATION or (self.category == LEGAL and 'v.' in self.author_str):
+            author_separator = ': '
         elif self.category in [RESUME, TWEET]:
             preamble_separator = 'of' if self.category == RESUME else 'by'
             preamble_separator = preamble_separator.center(3, ' ')
-        elif self.category == FINANCE and self.author in FINANCIAL_REPORTS_AUTHORS and self.is_description_a_title:
-            author_separator = ' report: '
+        elif self.category == SKYPE_LOG:
+            preamble_separator = ' of conversation with '
 
         # Construct standard description from pieces if a custom one has not been created yet
         if not description:
@@ -248,10 +248,13 @@ class DocCfg:
     @property
     def is_description_a_title(self) -> bool:
         """True if first char is uppercase or a quote."""
-        if self.description and (first_char := self.description[0]):
-            return first_char.isupper() or first_char in ["'", '"']
-        else:
-            return False
+        if self.description and self.category in [ACADEMIA, BOOK, FINANCE]:
+            first_char = self.description[0]
+
+            if first_char.isupper() or first_char in ["'", '"']:
+                return self.category != FINANCE or self.author in FINANCIAL_REPORTS_AUTHORS
+
+        return False
 
     @property
     def is_doj_file(self) -> bool:
@@ -368,6 +371,11 @@ class DocCfg:
         if self.date:
             return parse(self.date)
 
+    @property
+    def description_as_title(self) -> str:
+        """Quote likely titles."""
+        return quote(self.description) if self.is_description_a_title else self.description
+
     def __post_init__(self):
         self.category = self.category.lower()
 
@@ -376,9 +384,6 @@ class DocCfg:
 
         if self.duplicate_of_id or self.duplicate_ids:
             self.dupe_type = self.dupe_type or SAME
-
-        if self.category in [ACADEMIA, BOOK, FINANCE]:  # Quote likely titles
-            self.description = quote(self.description) if self.is_description_a_title else self.description
 
     def duplicate_cfgs(self) -> Generator[Self, None, None]:
         """Create synthetic `DocCfg` objects that set the 'duplicate_of_id' field to point back to this object."""
