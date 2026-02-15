@@ -1,5 +1,6 @@
 from epstein_files.util.constant.strings import *
 
+
 CATEGORY_STYLE_MAPPING = {
     ARTICLE: JOURNALIST,
     BOOK: JOURNALIST,
@@ -10,6 +11,7 @@ CATEGORY_STYLE_MAPPING = {
     REPUTATION: PUBLICIST,
     TWEET: SOCIAL,
 }
+
 
 CATEGORY_STYLES = {
     JSON: 'dark_red',
