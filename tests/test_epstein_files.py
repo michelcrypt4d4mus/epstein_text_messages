@@ -1,5 +1,8 @@
 from datetime import datetime
 
+from epstein_files.documents.document import Document
+from epstein_files.documents.other_file import OtherFile
+
 from epstein_files.documents.messenger_log import MessengerLog
 from epstein_files.epstein_files import count_by_month
 from epstein_files.output.rich import console
@@ -7,26 +10,8 @@ from epstein_files.util.constant.names import *
 from epstein_files.util.constants import CONFIGS_BY_ID
 
 from .fixtures.file_counts_by_month import EXPECTED_MONTHLY_COUNTS
-
-MESSENGER_LOG_AUTHOR_COUNTS = {
-    None: 56,
-    ANDRZEJ_DUDA: 8,
-    ANIL_AMBANI: 24,
-    ANTHONY_SCARAMUCCI: 57,
-    ARDA_BESKARDES: 2,
-    CELINA_DUBIN: 49,
-    EVA: 13,
-    JEFFREY_EPSTEIN: 2561,
-    JOI_ITO: 10,
-    LARRY_SUMMERS: 31,
-    MELANIE_WALKER: 388,
-    MICHAEL_WOLFF: 7,
-    MIROSLAV_LAJCAK: 58,
-    SOON_YI_PREVIN: 29,
-    STACEY_PLASKETT: 12,
-    STEVE_BANNON: 1353,
-    TERJE_ROD_LARSEN: 10,
-}
+from .fixtures.messenger_logs.author_counts import MESSENGER_LOG_AUTHOR_COUNTS
+from .fixtures.other_files.interesting_file_ids import INTERESTING_FILE_IDS
 
 
 def test_all_configured_file_ids_exist(epstein_files):
@@ -47,6 +32,11 @@ def test_imessage_text_counts(epstein_files):
     assert MessengerLog.count_authors(epstein_files.imessage_logs) == MESSENGER_LOG_AUTHOR_COUNTS
 
 
+def test_interesting_file_count(epstein_files):
+    interesting_other_file_ids = sorted([f.file_id for f in epstein_files.interesting_other_files])
+    assert interesting_other_file_ids == sorted(INTERESTING_FILE_IDS)
+
+
 def test_no_files_after_2025(epstein_files):
     bad_docs = [d for d in epstein_files.all_documents if d.timestamp and d.timestamp > datetime(2025, 1, 1)]
 
@@ -54,3 +44,13 @@ def test_no_files_after_2025(epstein_files):
         console.print(doc)
 
     assert len(bad_docs) == 0
+
+
+def test_other_files_author_count(epstein_files):
+    known_author_count = Document.known_author_count(epstein_files.other_files)
+    assert known_author_count == 418
+    assert len(epstein_files.json_files) == 19
+
+
+def test_other_files_categories(epstein_files):
+    assert len([f for f in epstein_files.other_files if not f.category]) == 2425
