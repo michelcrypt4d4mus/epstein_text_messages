@@ -114,10 +114,10 @@ class OtherFile(Document):
         elif has_line_starting_with(self.text, [VALAR_GLOBAL_FUND, VALAR_VENTURES], 2):
             cfg = DocCfg(id=self.file_id, author=VALAR_VENTURES, category=CRYPTO, description=f"is a {PETER_THIEL} fintech fund")
         elif (case_match := LEGAL_FILING_REGEX.search(self.text)):
-            cfg = DocCfg(id=self.file_id, category=LEGAL, description=f"filing in case {case_match.group(1)}")
+            cfg = DocCfg(id=self.file_id, category=LEGAL, description=f"legal filing in case {case_match.group(1)}")
 
         if cfg:
-            self.warn(f"Build synthetic cfg: {cfg}")
+            self.warn(f"Built synthetic cfg: {cfg}")
 
         return cfg
 
