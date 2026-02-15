@@ -58,6 +58,7 @@ class OtherFile(Document):
     # Class vars
     include_description_in_summary_panel: ClassVar[bool] = True  # Class var for logging output
     max_timestamp: ClassVar[datetime] = datetime(2022, 12, 31) # Overloaded in DojFile
+    num_synthetic_cfgs_created: ClassVar[int] = 0
 
     @property
     def config(self) -> DocCfg | None:
@@ -118,6 +119,7 @@ class OtherFile(Document):
 
         if cfg:
             self.warn(f"Built synthetic cfg: {cfg}")
+            type(self).num_synthetic_cfgs_created += 1
 
         return cfg
 
