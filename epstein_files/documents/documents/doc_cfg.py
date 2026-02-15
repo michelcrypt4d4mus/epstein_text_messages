@@ -206,21 +206,26 @@ class DocCfg:
         return is_doj_file(self.id)
 
     @property
+    def is_house_file(self) -> bool:
+        return not self.is_doj_file
+
+    @property
     def is_of_interest(self) -> bool | None:
         """
-        Self.is_interesting` value takes precedence. After that applies rules below.
-        Default to True for HOUSE_OVERSIGHT files w/out info, None for DOJ files
-        Returns None (not False!) if there's no firm decision.
+        Self.is_interesting` value takes precedence. After that check rules below.
+        Defaults to True for HOUSE_OVERSIGHT files w/out info, None for DOJ files.
+        Returns None (not False) if there's no firm decision, leaving `Document` classes
+        to do any other checks they might want to.
 
-                  "+" = interesting  /  "-" = uninteresting
+                [+] = interesting  /  - = uninteresting
 
-          +  INTERESTING_CATEGORIES
-          +  INTERESTING_AUTHORS
-          +  having no author/description *if* HOUSE_OVERSIGHT
-          -  duplicates
-          -  descriptions with UNINTERESTING_PREFIXES
-          -  UNINTERESTING_CATEGORIES
-          -  finance category with any author
+            [+] INTERESTING_CATEGORIES
+            [+] INTERESTING_AUTHORS
+            [+] having no author/description *if* HOUSE_OVERSIGHT
+             -  duplicates
+             -  descriptions with UNINTERESTING_PREFIXES
+             -  UNINTERESTING_CATEGORIES
+             -  finance category with any author
         """
         if self.duplicate_of_id:
             return False
@@ -243,11 +248,13 @@ class DocCfg:
         if any (self.description.startswith(pfx) for pfx in UNINTERESTING_PREFIXES):
             return False
 
-        if not self.has_any_info:
-            # HOUSE_OVERSIGHT files w/no author or description are interesting, DOJ files with same are not (yet)
-            return False if self.is_doj_file else True
+        # HOUSE_OVERSIGHT files default True, DOJ files default False or None
+        if self.is_house_file:
+            return True
+        elif self.has_any_info:
+            return None
         else:
-            return None if self.is_doj_file else True
+            return False
 
     @property
     def metadata(self) -> Metadata:
