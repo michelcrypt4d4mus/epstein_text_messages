@@ -883,6 +883,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA01940349', author=CHRISTINA_GALBRAITH, author_uncertain='subject matter'),
     EmailCfg(id='EFTA01747822', author=DARREN_INDYKE, author_reason='reply'),
     EmailCfg(id='EFTA00039967', author='DOJ London', recipients=[USANYS]),
+    EmailCfg(id='EFTA00039660', author='DOJ Chief Psychologist', recipients=[USANYS], description="report on Epstein's psychological state in jail"),
     EmailCfg(id='EFTA01776893', author=DONALD_NORMAN, author_reason='"This is Donald"', duplicate_ids=['EFTA00915423']),
     EmailCfg(id='EFTA00656005', author=DONALD_NORMAN, author_reason='signed "Donald"', duplicate_ids=['EFTA02691296', 'EFTA01862178']),
     EmailCfg(id='EFTA02660820', author=FAWZI_SIAM, truncate_to=NO_TRUNCATE),
@@ -1433,6 +1434,7 @@ OTHER_FILES_ARTICLE = [
     DocCfg(id='024229', author=MICHAEL_WOLFF, description=MICHAEL_WOLFF_EPSTEIN_ARTICLE_DRAFT),
     DocCfg(id='031198', author='Morning News USA', description=f"article about identify of Jane Doe in {JANE_DOE_V_EPSTEIN_TRUMP}"),
     DocCfg(id='015462', author='Nautilus Education', description=f'magazine (?) issue'),
+
     DocCfg(id='031972', author=NYT, description=f"article about #MeToo allegations against {LAWRENCE_KRAUSS}", date='2018-03-07'),
     DocCfg(id='032435', author=NYT, description=f'article about Chinese butlers'),
     DocCfg(id='029452', author=NYT, description=f"article about {PETER_THIEL}"),
@@ -1443,6 +1445,7 @@ OTHER_FILES_ARTICLE = [
     DocCfg(id='023097', author=NYT, description=f"column about The Aristocrats by Frank Rich 'The Greatest Dirty Joke Ever Told'"),
     DocCfg(id='033365', author=NYT, description=f'column about trade war with China by Kevin Rudd'),
     DocCfg(id='019439', author=NYT, description=f"column about the Clintons and money by Maureen Dowd", date='2013-08-17'),
+    DocCfg(id='EFTA00040076', author=NYT, description=f"article about Epstein's death", date='2019-07-08'),
     DocCfg(id='029925', author='New Yorker', description=f"article about the placebo effect by Michael Specter"),
     DocCfg(id='013435', author=PALM_BEACH_DAILY_NEWS, description=f"article about Epstein's address book", date='2011-03-11'),
     DocCfg(id='013440', author=PALM_BEACH_DAILY_NEWS, description=f"article about Epstein's gag order", date='2011-07-13'),
