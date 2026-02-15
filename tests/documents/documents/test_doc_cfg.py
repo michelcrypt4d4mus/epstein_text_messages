@@ -2,6 +2,7 @@ import pytest
 from copy import deepcopy
 
 from epstein_files.documents.documents.doc_cfg import DocCfg, EmailCfg
+from epstein_files.documents.other_file import OtherFile
 from epstein_files.output.highlight_config import QUESTION_MARKS_TXT
 from epstein_files.util.constant.names import BLOCKCHAIN_CAPITAL, BOFA_MERRILL, JOI_ITO, Name
 from epstein_files.util.constant.strings import *
@@ -35,7 +36,7 @@ def empty_house_cfg() -> DocCfg:
 
 @pytest.fixture
 def finance_report() -> DocCfg:
-    return _oversight_cfg(FINANCE, author=BOFA_MERRILL, description="grapes")
+    return _oversight_cfg(FINANCE, author=BOFA_MERRILL, description="Grapes")
 
 @pytest.fixture
 def interesting_doc() -> DocCfg:
@@ -107,7 +108,7 @@ def test_complete_description(
     empty_house_cfg.attached_to_email_id = junk_email_cfg.id
     assert empty_house_cfg.complete_description == f"attached to email {junk_email_cfg.id}"
     # Finance
-    assert finance_report.complete_description == f"{BOFA_MERRILL} report: grapes"
+    assert finance_report.complete_description == f"{BOFA_MERRILL} report: Grapes"
     # Harvard
     assert harvard_poetry_cfg.complete_description == 'Harvard poetry stuff from Lisa New'
     # Junk
@@ -157,6 +158,11 @@ def test_is_of_interest(
     assert skype_cfg.is_of_interest is True
     assert uninteresting_description.is_of_interest is False
 
+
+
+def test_getty_book(epstein_files):
+    book = epstein_files.get_id('010912', required_type=OtherFile)
+    assert book.config.complete_description == 'Gordon Getty "Free Growth and Other Surprises" (draft)'
 
 
 def _oversight_cfg(category: str = '', **kwargs) -> DocCfg:

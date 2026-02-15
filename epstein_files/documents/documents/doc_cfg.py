@@ -179,14 +179,13 @@ class DocCfg:
             description = optional_prefix(quote(self.description), self.author, ' by ')  # note reversed args
         elif self.category == SKYPE_LOG:
             preamble_separator = " of conversation with "
-        elif self.category == REPUTATION:
-            preamble_separator = ": "
+        elif (self.category == LEGAL and 'v.' in self.author_str) or self.category == REPUTATION:
+            author_separator = ": "
         elif self.category == TWEET:
             preamble_separator = " by "
-        elif self.category == FINANCE and self.author in FINANCIAL_REPORTS_AUTHORS:
-            author_separator = ' report: '
-        elif self.category == LEGAL and 'v.' in self.author_str:
-            author_separator = ': '
+        elif self.category == FINANCE and self.description and (first_char := self.description[0]):
+            if (self.author in FINANCIAL_REPORTS_AUTHORS and first_char.isupper()) or first_char in ["'", '"']:
+                author_separator = ' report: '
 
         description = description or optional_prefix(self.author, self.description, author_separator)
         description = optional_prefix(preamble, description, preamble_separator)
@@ -287,14 +286,25 @@ class DocCfg:
                 props['cfg.complete_description'] = self.complete_description
 
         if (category_txt := self.category_txt):
-            props['cfg.category_txt'] = category_txt
-            # props['cfg.category_style'] = category_txt.style
+            if category_txt.plain == props.get('category'):
+                props.pop('category')  # Leave only the colored version of category_txt
+
+            # Only add ??? for non-email, non immesage
+            if category_txt.plain == QUESTION_MARKS:
+                if not isinstance(self, CommunicationCfg):
+                    props['cfg.category_txt'] = category_txt
+            else:
+                props['cfg.category_txt'] = category_txt
+                # props['cfg.category_style'] = category_txt.style
 
         if self.timestamp:
             props['timestamp'] = self.timestamp
 
             if 'date' in props:
                 props.pop('date')
+
+        if props.get('dupe_type') == SAME:
+            props.pop('dupe_type')
 
         return props
 
