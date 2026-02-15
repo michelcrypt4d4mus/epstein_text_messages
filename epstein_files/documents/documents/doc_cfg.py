@@ -188,13 +188,10 @@ class DocCfg:
     def complete_description(self) -> str:
         """String that summarizes what is known about this document."""
         # Set preamble to category if there's no author or description or CATEGORY_PREAMBLES entry
-        preamble = CATEGORY_PREAMBLES.get(self.category) or ('' if self.has_any_info else self.category)
+        preamble = CATEGORY_PREAMBLES.get(self.category) or ''
         preamble_separator = ''
         author_separator = ''
         description = ''
-
-        if not (preamble or self.has_any_info):
-            preamble = self.category
 
         # If description is set it must be fully constructed
         if self.category == BOOK or (self.category == ACADEMIA and self.author and self.description):
