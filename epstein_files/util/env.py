@@ -60,7 +60,7 @@ scripts.add_argument('--min-line-length', type=int, help='epstein_grep minimum l
 scripts.add_argument('--open-both', '-ob', action='store_true', help='open the source PDF and txt after showing')
 scripts.add_argument('--open-pdf', '-pdf', action='store_true', help='open the source PDF file after showing (if it exists)')
 scripts.add_argument('--open-txt', '-o', action='store_true', help='open the file in a text editor after showing')
-scripts.add_argument('--open-url', '-ou', action='store_true', help='open the source URL in a web browser')
+scripts.add_argument('--open-url', '-web', action='store_true', help='open the source URL in a web browser')
 scripts.add_argument('--raw', '-r', action='store_true', help='show raw contents of file (used by epstein_show)')
 scripts.add_argument('--whole-file', '-wf', action='store_true', help='print whole files')
 
