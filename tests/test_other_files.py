@@ -243,6 +243,7 @@ INTERESTING_FILE_IDS = [
 
 def test_interesting_file_count(epstein_files):
     interesting_file_ids = sorted([f.file_id for f in epstein_files.interesting_other_files])
+    assert len(interesting_file_ids) == len(INTERESTING_FILE_IDS)
     assert interesting_file_ids == sorted(INTERESTING_FILE_IDS)
 
 
