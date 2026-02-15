@@ -617,14 +617,9 @@ class Email(Communication):
             else:
                 num_chars = min(self.file_size, MAX_CHARS_TO_PRINT)
 
-<<<<<<< HEAD
-            # Always print whole email for 1st email for user
-            if self._is_first_for_user and num_chars < self.file_size and not self.is_duplicate and not self.is_fwded_article:
-=======
             # Always print whole email for 1st email for actual people
             if self._is_first_for_user and num_chars < self.file_size and \
                     not (self.is_duplicate or self.is_fwded_article or self.is_mailing_list):
->>>>>>> master
                 self.log(f"{self} Overriding cutoff {num_chars} for first email")
                 num_chars = self.file_size
 
