@@ -68,6 +68,7 @@ EMAIL_AUTHOR_COUNTS = {
     DAVID_STERN: 10,
     DEEPAK_CHOPRA: 18,
     DIANE_ZIMAN: 1,
+    'DOJ Chief Psychologist': 1,
     'DOJ London': 1,
     DONALD_NORMAN: 2,
     "Donald Rubin": 1,
