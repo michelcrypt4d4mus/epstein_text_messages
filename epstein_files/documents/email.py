@@ -155,7 +155,7 @@ class Email(Communication):
     Attributes:
         attached_docs (list[OtherFile]): any attachments that exist as `OtherFile` objects
         actual_text (str): Best effort at the text actually sent in this email, excluding quoted replies and forwards.
-        config (EmailCfg, optional): Manual config for this email (if it exists).
+        derived_cfg (EmailCfg): EmailCfg that was built instead of coming from CONFIGS_BY_ID
         header (EmailHeader): Header data extracted from the text (from/to/sent/subject etc).
         recipients (list[Name]): People to whom this email was sent.
         sent_from_device (str, optional): "Sent from my iPhone" style signature (if it exists).
@@ -164,7 +164,7 @@ class Email(Communication):
     """
     attached_docs: list[OtherFile] = field(default_factory=list)
     actual_text: str = field(init=False)
-    config: EmailCfg | None = None
+    derived_cfg: EmailCfg | None = None
     header: EmailHeader = field(init=False)
     recipients: list[Name] = field(default_factory=list)
     sent_from_device: str | None = None
@@ -189,6 +189,33 @@ class Email(Communication):
             style = self.author_style
 
         return style.replace('bold', '').strip()
+
+    @property
+    def config(self) -> DocCfg | None:
+        """Configured timestamp, if any."""
+        if self.is_local_extract_file:
+            extracted_from_doc_id = self.url_slug.split('_')[-1]
+
+            if not self.derived_cfg and (extracted_from_cfg := CONFIGS_BY_ID.get(extracted_from_doc_id)):
+                # Copy info from original config for file this document was extracted from.
+                if (this_files_cfg := CONFIGS_BY_ID.get(self.file_id)):
+                    self.derived_cfg = cast(EmailCfg, deepcopy(this_files_cfg))
+                    self.log(f"Merging existing cfg for '{self.file_id}' with cfg for extracted document...")
+                else:
+                    self.derived_cfg = EmailCfg(id=self.file_id)  # Create new EmailCfg
+
+                if (extracted_from_description := extracted_from_cfg.complete_description):
+                    self.derived_cfg.description = f"{APPEARS_IN} {extracted_from_description}"
+
+                    if isinstance(extracted_from_cfg, EmailCfg):
+                        self.derived_cfg.description += ' email'
+
+                self.derived_cfg.is_interesting = self.derived_cfg.is_interesting or extracted_from_cfg.is_interesting
+                self.log(f"Constructed synthetic config: {self.derived_cfg}")
+
+            return self.derived_cfg
+        else:
+            return super().config
 
     @property
     def external_link_markup(self) -> str:
@@ -551,28 +578,6 @@ class Email(Communication):
         if (sent_from_match := SENT_FROM_REGEX.search(self.actual_text)):
             sent_from = sent_from_match.group(0)
             return 'S' + sent_from[1:] if sent_from.startswith('sent') else sent_from
-
-    def _set_config_for_extracted_file(self, extracted_from_doc_cfg: DocCfg) -> None:
-        """Copy info from original config for file this document was extracted from."""
-        if self.file_id in CONFIGS_BY_ID:
-            self.config = cast(EmailCfg, deepcopy(CONFIGS_BY_ID[self.file_id]))
-            self.log(f"Merging existing cfg for '{self.file_id}' with cfg for extracted document...")
-        else:
-            self.config = EmailCfg(id=self.file_id)
-
-        if (extracted_from_description := extracted_from_doc_cfg.complete_description):
-            extracted_description = f"{APPEARS_IN} {extracted_from_description}"
-
-            if isinstance(extracted_from_doc_cfg, EmailCfg):
-                extracted_description += ' email'
-
-            if self.config_description:
-                self.warn(f"Overwriting description '{self.config_description}' with extract's '{extracted_from_description}'")
-
-            self.config.description = extracted_description
-
-        self.config.is_interesting = self.config.is_interesting or extracted_from_doc_cfg.is_interesting
-        self.log(f"Constructed synthetic config: {self.config}")
 
     def _truncate_to_length(self) -> int:
         """When printing truncate this email to this length."""

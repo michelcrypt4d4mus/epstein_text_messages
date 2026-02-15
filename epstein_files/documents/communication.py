@@ -18,7 +18,6 @@ TIMESTAMP_SECONDS_REGEX = re.compile(r":\d{2}$")
 @dataclass
 class Communication(Document):
     """Superclass for `Email` and `MessengerLog`."""
-    config: CommunicationCfg | None = None
     timestamp: datetime = FALLBACK_TIMESTAMP  # TODO this default sucks (though it never happens)
 
     @property

@@ -5,7 +5,7 @@ from dataclasses import asdict, dataclass, field
 from datetime import datetime
 from pathlib import Path
 from subprocess import run
-from typing import Callable, ClassVar, Self, Sequence, TypeVar
+from typing import Callable, ClassVar, Self, Sequence, Type, TypeVar
 
 from rich.console import Console, ConsoleOptions, Group, RenderResult
 from rich.markup import escape
@@ -79,7 +79,6 @@ class Document:
     Attributes:
         file_path (Path): Local path to file
         author (Name): Who is responsible for the text in the file
-        config (DocCfg, optional): Preconfigured information about this file
         doj_2026_dataset_id (int, optional): Only set for files that came from the DOJ website.
         file_id (str): ID string - 6 numbers with zero padding for HOUSE_OVERSIGHT, full EFTAXXXXX for DOJ files.
         lines (list[str]): Number of lines in the file after all the cleanup
@@ -94,7 +93,6 @@ class Document:
 
     # Optional fields
     author: Name = None
-    config: EmailCfg | DocCfg | TextCfg | None = None
     doj_2026_dataset_id: int | None = None
     timestamp: datetime | None = None
     url_slug: str = ''
@@ -114,6 +112,11 @@ class Document:
             return self.config.category
         else:
             return self.default_category()
+
+    @property
+    def config(self) -> DocCfg | None:
+        """Configured timestamp, if any."""
+        return CONFIGS_BY_ID.get(self.file_id)
 
     @property
     def config_description(self) -> str | None:
@@ -356,7 +359,6 @@ class Document:
 
         self.file_id = extract_file_id(self.filename)
         # config and url_slug could have been pre-set in Email
-        self.config = self.config or deepcopy(CONFIGS_BY_ID.get(self.file_id))
         self.url_slug = self.url_slug or self.filename.split('.')[0]
 
         # Extract the DOJ dataset ID from the path

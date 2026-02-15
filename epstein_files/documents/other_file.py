@@ -47,13 +47,19 @@ class OtherFile(Document):
     File that is not an email, an iMessage log, or JSON data.
 
     Attributes:
+        derived_cfg (DocCfg, optional): a DocCfg object derived from contents of the file
         was_timestamp_extracted (bool): True if the timestamp was programmatically extracted (and could be wrong)
     """
+    derived_cfg: DocCfg | None = None
     was_timestamp_extracted: bool = False
 
     # Class vars
     include_description_in_summary_panel: ClassVar[bool] = True  # Class var for logging output
     max_timestamp: ClassVar[datetime] = datetime(2022, 12, 31) # Overloaded in DojFile
+
+    @property
+    def config(self) -> DocCfg | None:
+        return super().config or self.derived_cfg
 
     @property
     def config_description(self) -> str:
@@ -93,7 +99,7 @@ class OtherFile(Document):
 
     def __post_init__(self):
         super().__post_init__()
-        self.config = self.config or self._build_derived_cfg()
+        self.derived_cfg = self.derived_cfg if self.config else self._build_derived_cfg()
 
     def _build_derived_cfg(self) -> DocCfg | None:
         """Create a `DocCfg` object if there is none configured and the contents warrant it."""
