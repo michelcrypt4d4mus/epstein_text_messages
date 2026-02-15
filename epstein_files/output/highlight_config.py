@@ -1946,11 +1946,10 @@ def get_style_for_name(name: str | None, default_style: str = DEFAULT_NAME_STYLE
 
 
 def styled_category(category: str | None) -> Text:
-    if not category:
+    if category:
+        return Text(category, get_style_for_category(category) or 'wheat4')
+    else:
         return QUESTION_MARKS_TXT
-
-    category_str = 'resumé' if category == 'resume' else category.lower()
-    return Text(category_str, get_style_for_category(category) or 'wheat4')
 
 
 def styled_name(name: str | None, default_style: str = DEFAULT_NAME_STYLE) -> Text:
