@@ -29,7 +29,6 @@ from epstein_files.util.helpers.file_helper import doj_txt_paths, file_size_str
 from epstein_files.util.timer import Timer
 
 DUPLICATE_PROPS_TO_COPY = ['author', 'recipients', 'timestamp']  # TODO: also copy the config, get rid of synthetic configs
-PICKLED_PATH = Path("the_epstein_files.pkl.gz")
 SLOW_FILE_SECONDS = 1.0
 
 
@@ -98,11 +97,11 @@ class EpsteinFiles:
         """Alternate constructor that reads/writes a pickled version of the data ('timer' arg is for logging)."""
         timer = timer or Timer()
 
-        if PICKLED_PATH.exists() and not args.overwrite_pickle and not args.skip_other_files:
-            with gzip.open(PICKLED_PATH, 'rb') as file:
+        if args.pickled_path.exists() and not args.overwrite_pickle and not args.skip_other_files:
+            with gzip.open(args.pickled_path, 'rb') as file:
                 epstein_files = pickle.load(file)
-                timer_msg = f"Loaded {len(epstein_files.all_files):,} documents from '{PICKLED_PATH}'"
-                timer.print_at_checkpoint(f"{timer_msg} ({file_size_str(PICKLED_PATH)})")
+                timer_msg = f"Loaded {len(epstein_files.all_files):,} documents from '{args.pickled_path}'"
+                timer.print_at_checkpoint(f"{timer_msg} ({file_size_str(args.pickled_path)})")
 
             if args.reload_doj:
                 epstein_files.reload_doj_files()
@@ -289,9 +288,9 @@ class EpsteinFiles:
 
     def save_to_disk(self) -> None:
         """Write a pickled version of this `EpsteinFiles` object with all documents etc."""
-        with gzip.open(PICKLED_PATH, 'wb') as file:
+        with gzip.open(args.pickled_path, 'wb') as file:
             pickle.dump(self, file)
-            logger.warning(f"Pickled data to '{PICKLED_PATH}' ({file_size_str(PICKLED_PATH)})...")
+            logger.warning(f"Pickled data to '{args.pickled_path}' ({file_size_str(args.pickled_path)})...")
 
     def unknown_recipient_ids(self) -> list[str]:
         """IDs of emails whose recipient is not known."""
