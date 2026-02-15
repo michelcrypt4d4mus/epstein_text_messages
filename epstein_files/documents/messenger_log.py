@@ -9,7 +9,7 @@ from rich.table import Table
 from rich.text import Text
 
 from epstein_files.documents.communication import Communication
-from epstein_files.documents.documents.doc_cfg import Metadata, TextCfg
+from epstein_files.documents.documents.doc_cfg import Metadata
 from epstein_files.documents.imessage.text_message import TextMessage
 from epstein_files.output.highlight_config import styled_name
 from epstein_files.output.rich import LAST_TIMESTAMP_STYLE, build_table, highlighter
