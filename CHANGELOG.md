@@ -1,4 +1,5 @@
 # NEXT RELEASE
+* Document configs (`DocCfg`, `EmailCfg`, etc) are no longer saved with the pickled data. Some configs are derived on the fly.
 * Add `uncertain_reason` to `DocCfg` and `recipient_uncertain` to `CommunicationCfg`, show question marks in info sentence next to uncertain recipients
 
 ### 1.5.3
