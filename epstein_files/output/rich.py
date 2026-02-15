@@ -308,11 +308,14 @@ def styled_key_value(
         if isinstance(val, int):
             val = str(val)
             val_style = 'cyan'
-        elif isinstance(val, str) and val.startswith('http'):
-            val_style = ARCHIVE_LINK_UNDERLINE
         elif isinstance(val, Path):
             val = val = f"'{val}'"
             val_style = 'deep_pink3'
+        elif isinstance(val, str):
+            if val.startswith('http'):
+                val_style = ARCHIVE_LINK_UNDERLINE
+            else:
+                val_style = 'spring_green1'
 
         val_txt = Text(str(val), style=val_style)
 

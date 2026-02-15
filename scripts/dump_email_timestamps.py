@@ -13,6 +13,7 @@ from scripts.use_pickled import console, epstein_files
 from epstein_files.epstein_files import document_cls
 from epstein_files.documents.document import Document
 from epstein_files.documents.email import Email, UNINTERESTING_EMAILERS
+from epstein_files.documents.other_file import OtherFile
 from epstein_files.output.highlight_config import HIGHLIGHT_GROUPS, get_style_for_name
 from epstein_files.output.highlighted_names import HighlightedNames
 from epstein_files.util.constant.names import *
@@ -20,26 +21,45 @@ from epstein_files.util.constants import CONFIGS_BY_ID, EmailCfg
 from epstein_files.util.helpers.data_helpers import *
 from epstein_files.util.helpers.string_helper import quote
 from epstein_files.util.logging import logger
-from epstein_files.output.rich import console, highlighter, print_json, print_subtitle_panel
+from epstein_files.output.rich import console, highlighter, styled_key_value, print_subtitle_panel
 
 
-for cfg in CONFIGS_BY_ID.values():
-    if isinstance(cfg, EmailCfg) and not cfg.description:
+# for cfg in CONFIGS_BY_ID.values():
+#     if isinstance(cfg, EmailCfg) and not cfg.description:
+#         continue
+
+#     txt = Text('').append(cfg.category_txt).append(f"{cfg.id} interesting? {cfg.is_of_interest}, ")
+#     txt.append(f"complete_description=", 'grey').append(quote(cfg.complete_description), style='wheat4')
+#     # console.print(txt)
+#     logger.warning(txt.plain)
+#     logger.warning(repr(cfg))
+#     # console.print(cfg.__rich__().plain)
+
+#     # if cfg.is_of_interest:
+#     #     console.line()
+#         # console.print(repr(cfg))
+
+#     console.line(2)
+
+
+for doc in epstein_files.all_documents:
+    txt = Text(f"interesting? {doc.is_interesting}, ").append(doc.summary)
+
+    if isinstance(doc, OtherFile) and doc.is_interesting:
+        console.print(txt)
+        console.print(doc.summary_panel)
+    elif doc.config and doc.config.has_any_info:
+        console.print(txt)
+        console.print(doc.summary_panel)
+    else:
         continue
 
-    txt = Text('').append(cfg.category_txt).append(f"{cfg.id} interesting? {cfg.is_of_interest}, ")
-    txt.append(f"complete_description=", 'grey').append(quote(cfg.complete_description), style='wheat4')
-    # console.print(txt)
-    logger.warning(txt.plain)
-    logger.warning(repr(cfg))
-    # console.print(cfg.__rich__().plain)
+    if doc.config:
+        console.print(styled_key_value('      complete_description', quote(doc.config.complete_description)))
 
-    # if cfg.is_of_interest:
-    #     console.line()
-        # console.print(repr(cfg))
+    console.line()
 
-    console.line(2)
-
+sys.exit()
 # # Print all DOJ files from biggest to smallest.
 # for i, doc in enumerate(sorted(epstein_files.doj_files, key=lambda f: -f.length)):
 #     # txt = Text('').append(Text('interesting', style='green') if doc.is_interesting else Text('not interesting', style='red'))
