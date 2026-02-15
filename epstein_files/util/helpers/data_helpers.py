@@ -93,8 +93,15 @@ def remove_timezone(timestamp: datetime) -> datetime:
 
 
 def sort_dict(d: dict[str | None, int] | dict[str, int]) -> list[tuple[str | None, int]]:
-    sort_key = lambda e: (e[0] or '').lower() if args.sort_alphabetical else [-e[1], (e[0] or '').lower()]
-    return sorted(d.items(), key=sort_key)
+    alpha_key = lambda kv: (kv[0] or '').lower()
+
+    try:
+        sort_key = alpha_key if args.sort_alphabetical else lambda kv: [-kv[1], alpha_key(kv)]
+        return sorted(d.items(), key=sort_key)
+    except TypeError as e:
+        return sorted(d.items(), key=lambda kv: f"Z{alpha_key(kv)}" if '.' in (kv[0] or '') else alpha_key(kv))
+
+
 
 
 def uniquify(_list: list[names.Name]) -> list[names.Name]:

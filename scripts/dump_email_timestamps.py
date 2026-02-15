@@ -22,7 +22,7 @@ from epstein_files.util.helpers.data_helpers import *
 from epstein_files.util.helpers.debugging_helper import print_interesting_doc_panels_and_props
 from epstein_files.util.helpers.string_helper import quote
 from epstein_files.util.logging import logger
-from epstein_files.output.rich import console, highlighter, styled_key_value, print_subtitle_panel
+from epstein_files.output.rich import bool_txt, console, highlighter, styled_key_value, print_subtitle_panel
 
 
 # for cfg in CONFIGS_BY_ID.values():

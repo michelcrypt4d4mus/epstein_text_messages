@@ -21,8 +21,9 @@ from epstein_files.util.constant.strings import DEFAULT, EMAIL, NA, TEXT_MESSAGE
 from epstein_files.util.constant.urls import *
 from epstein_files.util.constants import HEADER_ABBREVIATIONS
 from epstein_files.util.env import args
-from epstein_files.util.helpers.data_helpers import json_safe
+from epstein_files.util.helpers.data_helpers import json_safe, sort_dict
 from epstein_files.util.helpers.file_helper import log_file_write
+from epstein_files.util.helpers.string_helper import quote
 from epstein_files.util.logging import logger
 
 TITLE_WIDTH = 50
@@ -36,9 +37,12 @@ VALID_GREYS = [0, 3, 7, 11, 15, 19, 23, 27, 30, 35, 37, 39, 42, 46, 50, 53, 54, 
 DOJ_PAGE_LINK_MSG = 'WIP page with documents from the Epstein Files Transparency Act'
 
 INFO_STYLE = 'white dim italic'
-KEY_STYLE = 'honeydew2'
+KEY_STYLE = 'grey42 bold'
+KEY_STYL_ALT = 'grey76 bold'
 LAST_TIMESTAMP_STYLE = 'wheat4'
 OTHER_PAGE_MSG_STYLE = 'gray78 dim'
+STR_VAL_STYLE = 'light_goldenrod2 italic'
+STR_VAL_STYLE_ALT = 'light_salmon3 italic'
 SECTION_HEADER_STYLE = 'bold white on blue3'
 SOCIAL_MEDIA_LINK_STYLE = 'pale_turquoise4'
 SUBSTACK_POST_LINK_STYLE = 'bright_cyan'
@@ -114,6 +118,15 @@ def add_cols_to_table(table: Table, cols: list[str | dict], justify: str = 'cent
             col_kwargs = {'justify': col_justify}
 
         table.add_column(col_name, **col_kwargs)
+
+
+def bool_txt(b: bool | None) -> Text:
+    if b is False:
+        return Text(str(b), style='bright_red bold italic')
+    elif b is True:
+        return Text(str(b), style='bright_green bold italic')
+    else:
+        return Text(str(b), style='dim italic')
 
 
 def build_highlighter(pattern: str) -> EpsteinHighlighter:
@@ -300,11 +313,16 @@ def styled_key_value(
     sep='='
 ) -> Text:
     """Generate `Text` for 'key=value'."""
+    val_style = ''
+
+    if '.' in key and key_style == KEY_STYLE:
+        key_style = KEY_STYL_ALT
+
     if isinstance(val, Text):
         val_txt = val
+    elif isinstance(val, bool):
+        val_txt = bool_txt(val)
     else:
-        val_style: str = 'bright_white bold'
-
         if isinstance(val, int):
             val = str(val)
             val_style = 'cyan'
@@ -314,22 +332,31 @@ def styled_key_value(
         elif isinstance(val, str):
             if val.startswith('http'):
                 val_style = ARCHIVE_LINK_UNDERLINE
+            elif key.endswith('style'):
+                val_style = val
             else:
-                val_style = 'spring_green1'
+                val = quote(val, try_single_quote_first=True)
+                val_style = STR_VAL_STYLE_ALT if '.' in key else STR_VAL_STYLE
 
-        val_txt = Text(str(val), style=val_style)
+        val_txt = Text(str(val), style=val_style or 'bright_white')
 
     txt = Text('').append(f"{key:>{indent}}", style=key_style)
-    return txt.append(sep, style=SYMBOL_STYLE).append(val_txt)
+    txt.append(sep, style=SYMBOL_STYLE).append(val_txt)
+    return txt
 
 
-def styled_dict(d: dict[str, str | Path | Text], key_style: str = KEY_STYLE, sep: str = '=') -> Text:
+def styled_dict(
+        d: dict[str, str | Path | Text],
+        key_style: str = KEY_STYLE,
+        sep: str = '=',
+        sort_fields: bool = True,
+    ) -> Text:
     """Turn a dict into a colored representation."""
     key_column_width = max(len(k) for k in d.keys()) + 3
 
     return Text('\n').join([
         styled_key_value(k, v, key_style=key_style, indent=key_column_width, sep=sep)
-        for k, v in d.items()
+        for k, v in (sort_dict(d) if sort_fields else d.items())
     ])
 
 

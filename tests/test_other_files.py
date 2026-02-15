@@ -1,4 +1,7 @@
 from epstein_files.documents.document import Document
+from epstein_files.documents.other_file import OtherFile
+
+import pytest
 
 
 def test_other_files_author_count(epstein_files):

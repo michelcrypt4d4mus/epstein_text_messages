@@ -27,8 +27,11 @@ def optional_prefix(prefix: str | None, suffix: str | None, sep: str = '') -> st
     return sep.join(parts)
 
 
-def quote(s: str) -> str:
-    return f"'{s}'" if '"' in s else f'"{s}"'
+def quote(s: str, try_single_quote_first: bool = False) -> str:
+    if try_single_quote_first:
+        return f"'{s}'" if "'" not in s else f'"{s}"'
+    else:
+        return f"'{s}'" if '"' in s else f'"{s}"'
 
 
 def remove_question_marks(name: str):

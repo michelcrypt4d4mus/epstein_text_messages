@@ -11,6 +11,7 @@ from rich.text import Text
 from epstein_files.util.constant.names import *
 from epstein_files.util.constant.strings import *
 from epstein_files.util.env import args
+from epstein_files.util.helpers.data_helpers import without_falsey
 from epstein_files.util.helpers.file_helper import is_doj_file
 from epstein_files.util.helpers.string_helper import optional_prefix, quote
 
@@ -111,6 +112,9 @@ CATEGORY_PREAMBLES = {
     TWEET: TWEET.title(),
 }
 
+NULLABLE_PROPS = [AUTHOR]
+FALSEABLE_PROPS = ['is_interesting']
+
 
 @dataclass(kw_only=True)
 class DocCfg:
@@ -139,7 +143,7 @@ class DocCfg:
     author_uncertain: bool | str = ''
     category: str = ''
     comment: str = ''
-    date: str | None = None
+    date: str = ''
     description: str = ''
     dupe_type: DuplicateType | None = None
     duplicate_ids: list[str] = field(default_factory=list)
@@ -164,16 +168,16 @@ class DocCfg:
         """String that summarizes what is known about this document."""
         # Set preamble to category if there's no author or description or CATEGORY_PREAMBLES entry
         preamble = CATEGORY_PREAMBLES.get(self.category, '' if self.has_any_info else self.category)
-        author_separator = ' '
         preamble_separator = ''
+        author_separator = ''
         description = ''
 
         if not (preamble or self.has_any_info):
             preamble = self.category
 
-        if self.category in [ACADEMIA, BOOK]:
+        if self.category == BOOK or (self.category == ACADEMIA and self.author and self.description):
             description = optional_prefix(quote(self.description), self.author, ' by ')  # note reversed args
-        if self.category == SKYPE_LOG:
+        elif self.category == SKYPE_LOG:
             preamble_separator = " of conversation with "
         elif self.category == REPUTATION:
             preamble_separator = ": "
@@ -252,9 +256,9 @@ class DocCfg:
         if self.is_house_file:
             return True
         elif self.has_any_info:
-            return None
+            return True
         else:
-            return False
+            return None
 
     @property
     def metadata(self) -> Metadata:
@@ -264,6 +268,34 @@ class DocCfg:
             metadata['is_interesting'] = False
 
         return metadata
+
+    @property
+    def important_props(self) -> dict[str, str | None | bool]:
+        props = {k: v for k, v in asdict(self).items() if v or (k in FALSEABLE_PROPS and v is False)}
+
+        if self.is_of_interest is not None:
+            if self.is_of_interest == props.get('is_interesting'):
+                props['is_of_interest'] = props.pop('is_interesting')  # Remove is_intersting, just keep is_of_interest
+            else:
+                props['is_of_interest'] = self.is_of_interest
+
+        if self.complete_description:
+            description_pieces = without_falsey([self.author, self.description])
+
+            # Avoid showing complete_description if it's just the author or description and other prop doesn't exist
+            if len(description_pieces) != 1 or description_pieces[0] != self.complete_description:
+                props['cfg.complete_description'] = self.complete_description
+
+        if (category_txt := self.category_txt):
+            props['cfg.category_style'] = category_txt.style
+
+        if self.timestamp:
+            props['timestamp'] = self.timestamp
+
+            if 'date' in props:
+                props.pop('date')
+
+        return props
 
     @property
     def timestamp(self) -> datetime | None:
