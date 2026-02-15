@@ -1391,7 +1391,7 @@ OTHER_FILES_BOOK = [
     DocCfg(id='EFTA00008120', replace_text_with='"Part II: The Art of Receiving a Massage"'),
 ]
 
-OTHER_FILES_ARTICLES = [
+OTHER_FILES_ARTICLE = [
     DocCfg(id='030013', author='Aviation International News', description=f'article', date='2012-07-01'),
     DocCfg(id='013275', author=BLOOMBERG, description=f"article on notable 2013 obituaries", date='2013-12-26'),
     DocCfg(id='026543', author=BLOOMBERG, description=f"BNA article about taxes"),
@@ -1690,7 +1690,7 @@ OTHER_FILES_LEGAL = [
     DocCfg(id='EFTA00005569', replace_text_with='Palm Beach police photo lineup featuring Epstein', date='2005-03-17'),
 ]
 
-OTHER_FILES_CONFERENCES = [
+OTHER_FILES_CONFERENCE = [
     DocCfg(id='014315', author=BOFA_MERRILL, description=f'2016 Future of Financials Conference', attached_to_email_id='014312'),
     DocCfg(id='026825', author=DEUTSCHE_BANK, description=f"Asset & Wealth Management featured speaker bios"),  # Really "Deutsche Asset" which may not be Deutsche Bank?
     DocCfg(id='023123', author=LAWRENCE_KRAUSS_ASU_ORIGINS, description=f"{STRANGE_BEDFELLOWS} (old draft)"),
@@ -1827,7 +1827,7 @@ OTHER_FILES_MONEY = [
     DocCfg(id='EFTA00000476', replace_text_with='photo of JEFFREY EPSTEIN CASH DISBURSEMENTS for the month 2006-09'),
 ]
 
-OTHER_FILES_LETTERS = [
+OTHER_FILES_LETTER = [
     DocCfg(
         id='019086',
         author=DAVID_BLAINE,
@@ -2006,7 +2006,7 @@ OTHER_FILES_ACADEMIA = [
 ]
 
 # resumes and application letters
-OTHER_FILES_RESUMES = [
+OTHER_FILES_RESUME = [
     DocCfg(
         id='029304',
         attached_to_email_id='029299',
@@ -2229,7 +2229,7 @@ OTHER_FILES_CRYPTO = [
     DocCfg(id='EFTA00605996', description='Wedbush BUY rating on Digital Currency Group GBTC', is_interesting=False),
 ]
 
-OTHER_FILES_MESSAGING = [
+OTHER_FILES_TEXT_MSG = [
     # Skype
     DocCfg(
         id='018224',
@@ -2275,22 +2275,22 @@ OTHER_FILES_JUNK = [
 
 OTHER_FILES_CATEGORIES = [
     ACADEMIA,
-    f"{ARTICLE}s",
+    ARTICLE,
     ARTS,
     BOOK,
-    f"{CONFERENCE}s",
+    CONFERENCE,
     CRYPTO,
     FINANCE,
     JUNK,
     LEGAL,
-    'LETTERS',
-    'MESSAGING',
+    LETTER,
+    TEXT_MSG,
     MONEY,
-    'MISC',
+    MISC,
     POLITICS,
     PROPERTY,
     REPUTATION,
-    'RESUMES',
+    RESUME,
     SOCIAL,
 ]
 

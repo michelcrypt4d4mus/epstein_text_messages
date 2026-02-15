@@ -108,7 +108,9 @@ NON_METADATA_FIELDS = [
 # Categories where we want to include the category name in the description
 CATEGORY_PREAMBLES = {
     BOOK: 'book titled',
+    LETTER: 'letter',
     REPUTATION: REPUTATION_MGMT,
+    RESUME: 'professional resumé',
     SKYPE_LOG: SKYPE_LOG,
     TWEET: TWEET.title(),
 }
@@ -168,7 +170,7 @@ class DocCfg:
     def complete_description(self) -> str:
         """String that summarizes what is known about this document."""
         # Set preamble to category if there's no author or description or CATEGORY_PREAMBLES entry
-        preamble = CATEGORY_PREAMBLES.get(self.category, '' if self.has_any_info else self.category)
+        preamble = CATEGORY_PREAMBLES.get(self.category) or ('' if self.has_any_info else self.category)
         preamble_separator = ''
         author_separator = ''
         description = ''
@@ -178,10 +180,18 @@ class DocCfg:
 
         if self.category == BOOK or (self.category == ACADEMIA and self.author and self.description):
             description = join_truthy(quote(self.description), self.author, ' by ')  # note reversed args
-        elif self.category == SKYPE_LOG:
-            preamble_separator = " of conversation with "
         elif (self.category == LEGAL and 'v.' in self.author_str) or self.category == REPUTATION:
             author_separator = ": "
+        elif self.category == SKYPE_LOG:
+            preamble_separator = " of conversation with "
+        elif self.category == LETTER:
+            description = join_truthy(preamble, self.author, ' from ')
+
+            if 'recipients' in dir(self) and (recipients := getattr(self, 'recipients')):
+                recipient_str = recipients[0] if len(recipients) == 1 else ', '.join(recipients)
+                description = join_truthy(description, recipient_str, ' from ')
+        elif self.category == RESUME:
+            preamble_separator = ' of '
         elif self.category == TWEET:
             preamble_separator = " by "
         elif self.category == FINANCE and self.description and (first_char := self.description[0]):
@@ -321,13 +331,10 @@ class DocCfg:
             return parse(self.date)
 
     def __post_init__(self):
-        self.category = self.category.strip().lower()
+        self.category = self.category.lower()
 
         if self.author_uncertain and isinstance(self.author_uncertain, str):
             self.author_reason = self.author_uncertain  # Copy field
-
-        if self.category in [ARTS, POLITICS]:
-            self.category = self.category.removesuffix('s')
 
         if self.duplicate_of_id or self.duplicate_ids:
             self.dupe_type = self.dupe_type or SAME
