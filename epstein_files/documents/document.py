@@ -203,8 +203,6 @@ class Document:
         """TODO: currently default to True for HOUSE_OVERSIGHT_FILES, false for DOJ."""
         if self.config and self.config.is_of_interest is not None:
             return self.config.is_of_interest
-        else:
-            return None if self.is_doj_file else True
 
     @property
     def is_local_extract_file(self) -> bool:

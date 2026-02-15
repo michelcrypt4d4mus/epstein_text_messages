@@ -1,7 +1,7 @@
 import json
 import re
 from copy import deepcopy
-from dataclasses import Field, asdict, dataclass, field, fields
+from dataclasses import asdict, dataclass, field, fields
 from datetime import datetime
 from typing import Generator, Literal, Self
 
@@ -11,6 +11,7 @@ from rich.text import Text
 from epstein_files.util.constant.names import *
 from epstein_files.util.constant.strings import *
 from epstein_files.util.env import args
+from epstein_files.util.helpers.file_helper import is_doj_file
 from epstein_files.util.helpers.string_helper import optional_prefix, quote
 
 DuplicateType = Literal['bounced', 'earlier', 'quoted', 'redacted', 'same']
@@ -18,6 +19,10 @@ Metadata = dict[str, bool | datetime | int | str | list[str | None] |dict[str, b
 
 MAX_LINE_LENGTH = 135
 SAME = 'same'
+
+INTERESTING_CATEGORIES = [
+    CRYPTO,
+]
 
 UNINTERESTING_CATEGORIES = [
     ACADEMIA,
@@ -29,6 +34,18 @@ UNINTERESTING_CATEGORIES = [
     POLITICS,
     # SKYPE_LOG,
     # TWEET,
+]
+
+# Authors
+FINANCIAL_REPORTS_AUTHORS = [
+    BOFA_MERRILL,
+    DEUTSCHE_BANK,
+    ELECTRON_CAPITAL_PARTNERS,
+    GOLDMAN_INVESTMENT_MGMT,
+    'Invesco',
+    JP_MORGAN,
+    'Morgan Stanley',
+    'S&P',
 ]
 
 INTERESTING_AUTHORS = [
@@ -48,7 +65,7 @@ UNINTERESTING_AUTHORS = [
     UN_GENERAL_ASSEMBLY,
 ]
 
-# OtherFiles whose descriptions/info match these prefixes are not displayed unless --all-other-files is used
+# Description prefixes we are uninterested in
 UNINTERESTING_PREFIXES = [
     'article about',
     CVRA,
@@ -77,17 +94,6 @@ FIELD_SORT_KEY = {
     'duplicate_of_id': 'dupe',
     'recipients': 'aaa',
 }
-
-FINANCIAL_REPORTS_AUTHORS = [
-    BOFA_MERRILL,
-    DEUTSCHE_BANK,
-    ELECTRON_CAPITAL_PARTNERS,
-    GOLDMAN_INVESTMENT_MGMT,
-    'Invesco',
-    JP_MORGAN,
-    'Morgan Stanley',
-    'S&P',
-]
 
 # Fields like timestamp and author are better added from the Document object
 NON_METADATA_FIELDS = [
@@ -156,13 +162,12 @@ class DocCfg:
     @property
     def complete_description(self) -> str:
         """String that summarizes what is known about this document."""
-        has_any_info = bool(self.description or self.author)
         preamble = self.category if self.category in PREAMBLE_CATEGORIES else ''
         author_separator = ' '
         preamble_separator = ''
         description = ''
 
-        if not (preamble or has_any_info):
+        if not (preamble or self.has_any_info):
             preamble = self.category
 
         if self.category in [ACADEMIA, BOOK]:
@@ -187,24 +192,34 @@ class DocCfg:
         return description
 
     @property
+    def has_any_info(self) -> bool:
+        """True if either author or description is set."""
+        return bool(self.description or self.author)
+
+    @property
     def is_attribution_uncertain(self) -> bool:
         return bool(self.author_uncertain)
+
+    @property
+    def is_doj_file(self) -> bool:
+        return is_doj_file(self.id)
 
     @property
     def is_of_interest(self) -> bool | None:
         """
         Self.is_interesting` value takes precedence. After that applies rules below.
+        Default to True for HOUSE_OVERSIGHT files w/out info, None for DOJ files
         Returns None (not False!) if there's no firm decision.
 
                   "+" = interesting  /  "-" = uninteresting
 
-          + interesting: 'crypto' category
-          + interesting: INTERESTING_AUTHORS
-          + interesting: having no author/description *if* HOUSE_OVERSIGHT
-          - uninteresting: duplicates
-          - uninteresting: descriptions with UNINTERESTING_PREFIXES
-          - uninteresting: UNINTERESTING_CATEGORIES
-          - uninteresting: 'finance' with any author is uninteresting
+          +  INTERESTING_CATEGORIES
+          +  INTERESTING_AUTHORS
+          +  having no author/description *if* HOUSE_OVERSIGHT
+          -  duplicates
+          -  descriptions with UNINTERESTING_PREFIXES
+          -  UNINTERESTING_CATEGORIES
+          -  finance category with any author
         """
         if self.duplicate_of_id:
             return False
@@ -216,7 +231,7 @@ class DocCfg:
             return True
 
         # Category checks
-        if self.category == CRYPTO:
+        if self.category in INTERESTING_CATEGORIES:
             return True
         elif self.category == FINANCE and self.author is not None:
             return False
@@ -227,7 +242,11 @@ class DocCfg:
         if any (self.description.startswith(pfx) for pfx in UNINTERESTING_PREFIXES):
             return False
 
-        return None
+        if not self.has_any_info:
+            # HOUSE_OVERSIGHT files w/no author or description are interesting, DOJ files with same are not (yet)
+            return None if self.is_doj_file else True
+        else:
+            return None
 
     @property
     def metadata(self) -> Metadata:
