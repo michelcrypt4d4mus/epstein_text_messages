@@ -66,9 +66,11 @@ def skype_author() -> DocCfg:
 
 
 def test_category_txt(junk_doc_cfg, legal_cfg, skype_cfg, skype_author):
+    print('running test_category_txt()')
     assert junk_doc_cfg.category_txt.plain == JUNK
     assert skype_cfg.category_txt.plain == SKYPE_LOG
-    # import pdb;pdb.set_trace
+    assert skype_cfg.category_txt.style == 'wheat4'
+    assert legal_cfg.category_txt.style == 'purple'
 
 
 def test_complete_description(blockchain_cap_cfg, finance_report, junk_doc_cfg, legal_cfg, skype_cfg, skype_author):
