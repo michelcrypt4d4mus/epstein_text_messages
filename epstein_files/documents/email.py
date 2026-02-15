@@ -625,8 +625,7 @@ class Email(Communication):
         }
 
         log_args_str = ', '.join([f"{k}={v}" for k, v in log_args.items() if v])
-        logger.error(f"Truncate determination: {log_args_str}")
-        # import pdb;pdb.set_trace()
+        self.log(f"Truncate determination: {log_args_str}")
         return num_chars
 
     def __rich_console__(self, console: Console, options: ConsoleOptions) -> RenderResult:
