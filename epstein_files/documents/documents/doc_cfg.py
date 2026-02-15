@@ -248,7 +248,9 @@ class DocCfg:
     @property
     def is_description_a_title(self) -> bool:
         """True if first char is uppercase or a quote."""
-        if not (self.category in [ACADEMIA, BOOK, FINANCE] and self.description):
+        if not (self.author and self.description):
+            return False
+        elif self.category not in [ACADEMIA, BOOK, FINANCE]:
             return False
         elif self.category == FINANCE and self.author not in FINANCIAL_REPORTS_AUTHORS:
             return False
