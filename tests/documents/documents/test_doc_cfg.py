@@ -105,7 +105,7 @@ def test_complete_description(
     skype_author,
     tweet_cfg
 ):
-    assert attached_doc.complete_description == f"legal, attached to email {junk_email_cfg.id}"
+    assert attached_doc.complete_description == f"attached to email {junk_email_cfg.id}"
     assert blockchain_cap_cfg.complete_description == "Blockchain Capital investor report"
     assert book_cfg.complete_description == 'book titled "Illmatic" by Elon Musk'
     # Empty
