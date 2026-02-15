@@ -29,7 +29,6 @@ INTERESTING_CATEGORIES = [
     MONEY,
     REPUTATION,
     RESUME,
-    # SKYPE_LOG,
     TEXT_MSG,
 ]
 
@@ -49,6 +48,11 @@ UNINTERESTING_CATEGORIES = [
     POLITICS,
     PROPERTY,
     SOCIAL,
+]
+
+CATEGORIES_THAT_ARE_NOT_VARNAME_SUFFIXES = [
+    PRESS_RELEASE,
+    SKYPE_LOG,
 ]
 
 # Authors
@@ -123,6 +127,7 @@ NON_METADATA_FIELDS = [
 CATEGORY_PREAMBLES = {
     BOOK: 'book titled',
     LETTER: 'letter',
+    PRESS_RELEASE: PRESS_RELEASE,
     REPUTATION: REPUTATION_MGMT,
     RESUME: 'professional resumé',
     SKYPE_LOG: SKYPE_LOG,
@@ -198,6 +203,9 @@ class DocCfg:
             description = join_truthy(preamble, description)
         elif (self.category == LEGAL and 'v.' in self.author_str) or self.category == REPUTATION:
             author_separator = ": "
+        elif self.category == PRESS_RELEASE:
+            description = join_truthy(preamble, self.description, ' announcing ')  # note reversed args
+            description = join_truthy(self.author, description)
         elif self.category == SKYPE_LOG:
             preamble_separator = " of conversation with "
         elif self.category == LETTER:
@@ -411,7 +419,7 @@ class DocCfg:
         type_str = f"{type(self).__name__}("
         single_line_repr = type_str + ', '.join(props) + f')'
 
-        if len(single_line_repr) < MAX_LINE_LENGTH or (self.comment and getattr(self, 'is_fwded_article')):
+        if len(single_line_repr) < MAX_LINE_LENGTH or (self.comment and 'is_fwded_article' in dir(self) and (is_fwd := getattr(self, 'is_fwded_article'))):
             repr_str = single_line_repr
         else:
             repr_str = f"{type_str}{INDENT_NEWLINE}" + INDENTED_JOIN.join(props)
@@ -432,9 +440,11 @@ class CommunicationCfg(DocCfg):
     files to handle the terrible OCR text that Congress provided which messes up a lot of the email headers.
 
     Attributes:
+        is_fwded_article (bool, optional): `True` if this is a newspaper article someone fwded. Used to exclude articles from word counting.
         recipients (list[Name]): Who received the communication
         uncertain_recipient (str, optional): Optional explanation of why this recipient was attributed, but uncertainly
     """
+    is_fwded_article: bool | None = None
     recipients: list[Name] = field(default_factory=list)
     uncertain_recipient: str | None = None
 
@@ -453,14 +463,12 @@ class EmailCfg(CommunicationCfg):
         fwded_text_after (str, optional): If set, any text after this is a fwd of an article or similar.
         has_uninteresting_ccs (bool): If `True` this email's CC: recipients will be marked as 'uninteresting'.
         has_uninteresting_bccs (bool): If `True` this email's BCC: recipients will be marked as 'uninteresting'.
-        is_fwded_article (bool, optional): `True` if this is a newspaper article someone fwded. Used to exclude articles from word counting.
         subject (str, optional): Subject line.
     """
     actual_text: str | None = None
     fwded_text_after: str | None = None
     has_uninteresting_ccs: bool = False
     has_uninteresting_bccs: bool = False
-    is_fwded_article: bool | None = None
     subject: str | None = None
 
     # This is necessary because for some dumb reason @dataclass(repr=False) doesn't cut it
