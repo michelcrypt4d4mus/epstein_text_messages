@@ -117,7 +117,7 @@ def test_complete_description(
     # Harvard
     assert harvard_poetry_cfg.complete_description == 'Harvard poetry stuff from Lisa New'
     # Junk
-    assert junk_doc_cfg.complete_description == 'junk'
+    assert junk_doc_cfg.complete_description == ''
     junk_doc_cfg.description = 'junk mail'
     assert junk_doc_cfg.complete_description == 'junk mail'
     # Legal
@@ -149,11 +149,11 @@ def test_is_of_interest(
     legal_cfg,
     skype_cfg,
     uninteresting_description
-):
+):These documents come from the Nov.
     assert academia_doc.is_of_interest is False
     assert blockchain_cap_cfg.is_of_interest is True
     assert empty_doj_cfg.is_of_interest is None
-    assert empty_house_cfg.is_of_interest is True
+    assert empty_house_cfg.is_of_interest is None
     assert finance_report.is_of_interest is False
     assert fwded_article.is_of_interest is False
     assert harvard_poetry_cfg.is_of_interest is False
@@ -161,8 +161,8 @@ def test_is_of_interest(
     assert interesting_doc.is_of_interest is True
     assert junk_doc_cfg.is_of_interest is False
     assert junk_email_cfg.is_of_interest is False
-    assert legal_cfg.is_of_interest is True
-    assert skype_cfg.is_of_interest is True
+    assert legal_cfg.is_of_interest is None
+    assert skype_cfg.is_of_interest is None
     assert uninteresting_description.is_of_interest is False
 
 
