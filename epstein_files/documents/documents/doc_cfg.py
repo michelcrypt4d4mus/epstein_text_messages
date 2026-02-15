@@ -171,7 +171,6 @@ class DocCfg:
         """String that summarizes what is known about this document."""
         # Set preamble to category if there's no author or description or CATEGORY_PREAMBLES entry
         preamble = CATEGORY_PREAMBLES.get(self.category) or ('' if self.has_any_info else self.category)
-        author_description = ''
         preamble_separator = ''
         author_separator = ''
         description = ''
@@ -179,8 +178,10 @@ class DocCfg:
         if not (preamble or self.has_any_info):
             preamble = self.category
 
+        # If description is set it must be fully constructed
         if self.category == BOOK or (self.category == ACADEMIA and self.author and self.description):
-            author_description = join_truthy(quote(self.description), self.author, ' by ')  # note reversed args
+            description = join_truthy(quote(self.description), self.author, ' by ')  # note reversed args
+            description = join_truthy(preamble, description)
         elif (self.category == LEGAL and 'v.' in self.author_str) or self.category == REPUTATION:
             author_separator = ": "
         elif self.category == SKYPE_LOG:
@@ -199,13 +200,14 @@ class DocCfg:
             if (self.author in FINANCIAL_REPORTS_AUTHORS and first_char.isupper()) or first_char in ["'", '"']:
                 author_separator = ' report: '
 
-        preamble_author = join_truthy(preamble, self.author, preamble_separator)
-        author_description = author_description or join_truthy(self.author, self.description, author_separator)
+        if not description:
+            preamble_author = join_truthy(preamble, self.author, preamble_separator)
+            author_description = join_truthy(self.author, self.description, author_separator)
 
-        if self.author and preamble_author.endswith(self.author) and author_description.startswith(self.author):
-            author_description = author_description.removeprefix(self.author)
+            if self.author and preamble_author.endswith(self.author) and author_description.startswith(self.author):
+                preamble_author = preamble_author.removesuffix(self.author).strip()
 
-        description = join_truthy(preamble_author, author_description)
+            description = join_truthy(preamble_author, author_description)
 
         if self.author == INSIGHTS_POD:
             description = join_truthy(description, f"from {ZUBAIR_AND_ANYA}")
