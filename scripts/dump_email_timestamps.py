@@ -27,11 +27,17 @@ for cfg in CONFIGS_BY_ID.values():
     if isinstance(cfg, EmailCfg) and not cfg.description:
         continue
 
-    console.print(repr(cfg))
-    txt = Text(f"{cfg.id} interesting? {cfg.is_of_interest}, ")
+    txt = Text('').append(cfg.category_txt).append(f"{cfg.id} interesting? {cfg.is_of_interest}, ")
     txt.append(f"complete_description=", 'grey').append(quote(cfg.complete_description), style='wheat4')
     # console.print(txt)
     logger.warning(txt.plain)
+    logger.warning(repr(cfg))
+    # console.print(cfg.__rich__().plain)
+
+    # if cfg.is_of_interest:
+    #     console.line()
+        # console.print(repr(cfg))
+
     console.line(2)
 
 # # Print all DOJ files from biggest to smallest.
@@ -40,7 +46,7 @@ for cfg in CONFIGS_BY_ID.values():
 #     # console.print(txt.append(': ') + doc.summary)
 #     console.print(doc)
 
-# sys.exit()
+sys.exit()
 
 
 # Look for possible email files in the DOJ files

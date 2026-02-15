@@ -65,7 +65,8 @@ class OtherFile(Document):
     @property
     def category_txt(self) -> Text:
         """Returns '???' for missing category."""
-        return styled_category(self.category)
+        # TODO: create synthetic DocCfg so we don't have to handle QUESTION_MARKS return here
+        return QUESTION_MARKS_TXT if not (self.config and self.config.category) else self.config.category_txt
 
     @property
     def metadata(self) -> Metadata:
