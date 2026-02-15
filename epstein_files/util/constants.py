@@ -1838,7 +1838,7 @@ OTHER_FILES_LETTER = [
         id='026011',
         author='Gennady Mashtalyar',
         date='2016-06-24',  # date is based on Brexit reference but he could be backtesting,
-        description=f"letter about algorithmic trading",
+        description=f"about algorithmic trading",
     ),
     CommunicationCfg(id='026134', recipients=['George'], description=f'about opportunities to buy banks in Ukraine'),
     CommunicationCfg(id='EFTA02731023', author='Senator Ron Wyden', recipients=[LEON_BLACK], is_interesting=False),

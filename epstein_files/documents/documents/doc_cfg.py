@@ -209,23 +209,17 @@ class DocCfg:
         elif self.category == SKYPE_LOG:
             preamble_separator = " of conversation with "
         elif self.category == LETTER:
-            preamble_separator = ' from '
             description = join_truthy(preamble, self.author, ' from ')
-
-            if 'recipients' in dir(self) and (recipients := getattr(self, 'recipients')):
-                # import pdb; pdb.set_trace()
-                recipient_str = recipients[0] if len(recipients) == 1 else ', '.join(recipients)
-                description = join_truthy(description, recipient_str, ' to ')
-
+            description = join_truthy(description, self.recipients_str, ' to ')
             description = join_truthy(description, self.description)
         elif self.category in [RESUME, TWEET]:
             preamble_separator = 'of' if self.category == RESUME else 'by'
             preamble_separator = preamble_separator.center(3, ' ')
-        elif self.category == FINANCE and self.description and (first_char := self.description[0]):
-            if (self.author in FINANCIAL_REPORTS_AUTHORS and first_char.isupper()) or first_char in ["'", '"']:
-                self.description = quote(self.description) if first_char.isupper() else self.description
-                author_separator = ' report: '
+        elif self.category == FINANCE and self.author in FINANCIAL_REPORTS_AUTHORS and self.is_description_a_title:
+            self.description = quote(self.description)
+            author_separator = ' report: '
 
+        # Construct standard description from pieces if a custom one has not been created yet
         if not description:
             preamble_author = join_truthy(preamble, self.author, preamble_separator)
             author_description = join_truthy(self.author, self.description, author_separator)
@@ -251,6 +245,14 @@ class DocCfg:
     @property
     def is_attribution_uncertain(self) -> bool:
         return bool(self.author_uncertain)
+
+    @property
+    def is_description_a_title(self) -> bool:
+        """True if first char is uppercase or a quote."""
+        if self.description and (first_char := self.description[0]):
+            return first_char.isupper() or first_char in ["'", '"']
+        else:
+            return False
 
     @property
     def is_doj_file(self) -> bool:
@@ -358,6 +360,11 @@ class DocCfg:
         return props
 
     @property
+    def recipients_str(self) -> str:
+        """Overloaded in subclasses that support recipients."""
+        return ''
+
+    @property
     def timestamp(self) -> datetime | None:
         if self.date:
             return parse(self.date)
@@ -447,6 +454,10 @@ class CommunicationCfg(DocCfg):
     is_fwded_article: bool | None = None
     recipients: list[Name] = field(default_factory=list)
     uncertain_recipient: str | None = None
+
+    @property
+    def recipients_str(self) -> str:
+        return ', '.join([r or UNKNOWN for r in self.recipients])
 
     def __post_init__(self):
         return super().__post_init__()

@@ -28,7 +28,9 @@ def join_truthy(prefix: str | None, suffix: str | None, sep: str = '') -> str:
 
 
 def quote(s: str, try_single_quote_first: bool = False) -> str:
-    if try_single_quote_first:
+    if '"' in s and "'" in s:
+        return s
+    elif try_single_quote_first:
         return f"'{s}'" if "'" not in s else f'"{s}"'
     else:
         return f"'{s}'" if '"' in s else f'"{s}"'
