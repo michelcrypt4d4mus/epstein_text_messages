@@ -199,8 +199,7 @@ class DocCfg:
 
         # If description is set it must be fully constructed
         if self.category == BOOK or (self.category == ACADEMIA and self.author and self.description):
-            description = quote(self.description) if self.is_description_a_title else self.description
-            description = join_truthy(description, self.author, ' by ')  # note reversed args
+            description = join_truthy(self.description, self.author, ' by ')  # note reversed args
             description = join_truthy(preamble, description)
         elif (self.category == LEGAL and 'v.' in self.author_str) or self.category == REPUTATION:
             author_separator = ": "
@@ -217,7 +216,6 @@ class DocCfg:
             preamble_separator = 'of' if self.category == RESUME else 'by'
             preamble_separator = preamble_separator.center(3, ' ')
         elif self.category == FINANCE and self.author in FINANCIAL_REPORTS_AUTHORS and self.is_description_a_title:
-            self.description = quote(self.description)
             author_separator = ' report: '
 
         # Construct standard description from pieces if a custom one has not been created yet
@@ -378,6 +376,9 @@ class DocCfg:
 
         if self.duplicate_of_id or self.duplicate_ids:
             self.dupe_type = self.dupe_type or SAME
+
+        if self.category in [ACADEMIA, BOOK, FINANCE]:  # Quote likely titles
+            self.description = quote(self.description) if self.is_description_a_title else self.description
 
     def duplicate_cfgs(self) -> Generator[Self, None, None]:
         """Create synthetic `DocCfg` objects that set the 'duplicate_of_id' field to point back to this object."""
