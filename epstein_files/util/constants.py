@@ -853,7 +853,6 @@ EMAILS_CONFIG = [
     EmailCfg(id='027126', truncate_to=1000, comment='Summers'),
     EmailCfg(id='030950', truncate_to=4500, comment='Ian Osborne'),
     EmailCfg(id='029684', truncate_to=402, comment='Maldives reply'),
-    EmailCfg(id='018045', truncate_to=TRUNCATED_CHARS, comment='invite'),
     EmailCfg(id='017574', truncate_to=4000, comment='Lisa Randall invite'),
     EmailCfg(id='030589', truncate_to=1000, comment='Brett Jaffe Fwd'),
     EmailCfg(id='025655', truncate_to=400, comment='reply to article'),
@@ -865,14 +864,15 @@ EMAILS_CONFIG = [
     EmailCfg(id='028757', truncate_to=900, comment='Epstein in an argument with someone'),
     EmailCfg(id='027028', truncate_to=1000, comment='Tom Pritzer penny pritzker'),
     EmailCfg(id='031217', truncate_to=1800, duplicate_ids=['021761'], comment='1st email for dersh, has long article'),
+    EmailCfg(id='018045', truncate_to=TRUNCATED_CHARS, comment='invite'),
     EmailCfg(id='028494', truncate_to=NO_TRUNCATE, duplicate_ids=['026234'], comment='in palm beach w/trump people'),
-    EmailCfg(id='022265', truncate_to=NO_TRUNCATE),
-    EmailCfg(id='026243', truncate_to=NO_TRUNCATE),
     EmailCfg(id='032643', truncate_to=NO_TRUNCATE, comment='Anas al Rasheed'),
     EmailCfg(id='027059', truncate_to=NO_TRUNCATE, comment='Jean Luc Brunel and Boris Nikolic'),
     EmailCfg(id='028589', truncate_to=NO_TRUNCATE, comment='Long thread with Reid Weingarten'),
     EmailCfg(id='029910', truncate_to=NO_TRUNCATE, comment='Tom Pritzer Aspen'),
     EmailCfg(id='025163', truncate_to=NO_TRUNCATE, comment='Tom Pritzer'),
+    EmailCfg(id='022265', truncate_to=NO_TRUNCATE),
+    EmailCfg(id='026243', truncate_to=NO_TRUNCATE),
     EmailCfg(id='014797_1', has_uninteresting_bccs=True),
 
     # DOJ files
@@ -883,7 +883,13 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA01940349', author=CHRISTINA_GALBRAITH, author_uncertain='subject matter'),
     EmailCfg(id='EFTA01747822', author=DARREN_INDYKE, author_reason='reply'),
     EmailCfg(id='EFTA00039967', author='DOJ London', recipients=[USANYS]),
-    EmailCfg(id='EFTA00039660', author='DOJ Chief Psychologist', recipients=[USANYS], description="report on Epstein's psychological state in jail"),
+    EmailCfg(
+        id='EFTA00039660',
+        author='DOJ Chief Psychologist',
+        description="report on Epstein's psychological state in jail",
+        is_interesting=True,
+        recipients=[USANYS],
+    ),
     EmailCfg(id='EFTA01776893', author=DONALD_NORMAN, author_reason='"This is Donald"', duplicate_ids=['EFTA00915423']),
     EmailCfg(id='EFTA00656005', author=DONALD_NORMAN, author_reason='signed "Donald"', duplicate_ids=['EFTA02691296', 'EFTA01862178']),
     EmailCfg(id='EFTA02660820', author=FAWZI_SIAM, truncate_to=NO_TRUNCATE),
@@ -2267,10 +2273,8 @@ OTHER_FILES_JUNK = [
     DocCfg(id='EFTA02731728'),
 ]
 
-# These categories can be either interesting or not interesting. DocCfg will sort it out.
-OTHER_FILES_CATEGORIES = INTERESTING_CATEGORIES + UNINTERESTING_CATEGORIES + NEUTRAL_CATEGORIES
-
 # Build OtherFile / DojFile config list by combining OTHER_FILES_[BLAH] variables
+OTHER_FILES_CATEGORIES = INTERESTING_CATEGORIES + UNINTERESTING_CATEGORIES + NEUTRAL_CATEGORIES
 OTHER_FILES_CONFIG: list[DocCfg] = []
 
 for category in OTHER_FILES_CATEGORIES:

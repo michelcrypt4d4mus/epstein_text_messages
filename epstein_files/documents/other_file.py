@@ -58,6 +58,7 @@ class OtherFile(Document):
     # Class vars
     include_description_in_summary_panel: ClassVar[bool] = True  # Class var for logging output
     max_timestamp: ClassVar[datetime] = datetime(2022, 12, 31) # Overloaded in DojFile
+    num_synthetic_cfgs_created: ClassVar[int] = 0
 
     @property
     def config(self) -> DocCfg | None:
@@ -118,15 +119,16 @@ class OtherFile(Document):
 
         if cfg:
             self.warn(f"Built synthetic cfg: {cfg}")
+            type(self).num_synthetic_cfgs_created += 1
 
         return cfg
 
     def _extract_timestamp(self) -> datetime | None:
         """Return configured timestamp or value extracted by scanning text with datefinder."""
+        timestamps: list[datetime] = []
+
         if self.config and any([s in (self.config_description or '') for s in SKIP_TIMESTAMP_EXTRACT]):
             return None
-
-        timestamps: list[datetime] = []
 
         with warnings.catch_warnings():
             warnings.filterwarnings("ignore", module="dateutil")
@@ -169,7 +171,7 @@ class OtherFile(Document):
 
     @classmethod
     def files_preview_table(cls, files: Sequence['OtherFile'], title_pfx: str = '', title: str = '') -> Table:
-        """Build a table of OtherFile documents."""
+        """Build a table of `OtherFile` documents."""
         title = title or f'{title_pfx}Other Files Details in Chronological Order'
         table = build_table(title, show_lines=True, title_justify='left' if title else 'center')
         table.add_column('File', justify='center', width=FILENAME_LENGTH)

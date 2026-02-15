@@ -28,7 +28,7 @@ from epstein_files.util.constant.urls import URL_SIGNIFIERS
 from epstein_files.util.constants import *
 from epstein_files.util.helpers.data_helpers import AMERICAN_TIME_REGEX, TIMEZONE_INFO, collapse_newlines, remove_timezone, uniquify
 from epstein_files.util.helpers.file_helper import extract_file_id, file_stem_for_id
-from epstein_files.output.highlight_config import HIGHLIGHTED_NAMES, HighlightedNames, get_style_for_name
+from epstein_files.output.highlight_config import HIGHLIGHTED_NAMES, get_style_for_name
 from epstein_files.util.logging import logger
 
 BAD_FIRST_LINE_REGEX = re.compile(r'^(>>|Grant_Smith066474"eMailContent.htm|LOVE & KISSES)$')
@@ -191,7 +191,7 @@ class Email(Communication):
         return style.replace('bold', '').strip()
 
     @property
-    def config(self) -> DocCfg | None:
+    def config(self) -> EmailCfg | None:
         """Configured timestamp, if any."""
         if self.is_local_extract_file:
             extracted_from_doc_id = self.url_slug.split('_')[-1]
@@ -206,7 +206,10 @@ class Email(Communication):
                 if (extracted_from_description := extracted_from_cfg.complete_description):
                     self.derived_cfg.description = f"{APPEARS_IN} {extracted_from_description}"
 
+                self.derived_cfg.author_uncertain = self.derived_cfg.author_uncertain or extracted_from_cfg.author_uncertain
+                self.derived_cfg.category = self.derived_cfg.category or extracted_from_cfg.category
                 self.derived_cfg.is_interesting = self.derived_cfg.is_interesting or extracted_from_cfg.is_interesting
+                # replace_text_with
                 self.log(f"Constructed synthetic config: {self.derived_cfg}")
 
             return self.derived_cfg
@@ -218,17 +221,6 @@ class Email(Communication):
         return epstein_media_doc_link_markup(self.url_slug, self.author_style)
 
     @property
-    def subheader(self) -> Text:
-        txt = Text(f"OCR text of ", SUBHEADER_STYLE).append('fwded article' if self.is_fwded_article else 'email')
-        txt.append(' from ').append(self.author_txt)
-
-        if self.config and self.config.is_attribution_uncertain:
-            txt.append(f" {QUESTION_MARKS}", style=self.author_style)
-
-        txt.append(' to ').append(self.recipients_txt())
-        return txt.append(highlighter(f" probably sent at {self.timestamp}"))
-
-    @property
     def is_fwded_article(self) -> bool:
         if self.config is None:
             return False
@@ -236,6 +228,11 @@ class Email(Communication):
             return self.config.is_fwded_article is not False
         else:
             return bool(self.config.is_fwded_article)
+
+    @property
+    def is_interesting(self) -> bool | None:
+        """TODO: currently default to True for HOUSE_OVERSIGHT_FILES, false for DOJ."""
+        return False if self.is_mailing_list else super().is_interesting
 
     @property
     def is_junk_mail(self) -> bool:
@@ -265,6 +262,17 @@ class Email(Communication):
         metadata = super().metadata
         metadata.update({k: v for k, v in local_metadata.items() if v and k in METADATA_FIELDS})
         return metadata
+
+    @property
+    def subheader(self) -> Text:
+        txt = Text(f"OCR text of ", SUBHEADER_STYLE).append('fwded article' if self.is_fwded_article else 'email')
+        txt.append(' from ').append(self.author_txt)
+
+        if self.config and self.config.is_attribution_uncertain:
+            txt.append(f" {QUESTION_MARKS}", style=self.author_style)
+
+        txt.append(' to ').append(self.recipients_txt())
+        return txt.append(highlighter(f" probably sent at {self.timestamp}"))
 
     @property
     def subject(self) -> str:
@@ -479,7 +487,7 @@ class Email(Communication):
         text, num_plists_stripped = XML_PLIST_REGEX.subn(XML_STRIPPED_MSG, text)
 
         if num_plists_stripped:
-            self.warn(f"Replaced {num_plists_stripped} XML plists...")
+            self.log(f"Replaced {num_plists_stripped} XML plists...")
 
         return collapse_newlines(text).strip()
 
@@ -609,8 +617,14 @@ class Email(Communication):
             else:
                 num_chars = min(self.file_size, MAX_CHARS_TO_PRINT)
 
+<<<<<<< HEAD
             # Always print whole email for 1st email for user
             if self._is_first_for_user and num_chars < self.file_size and not self.is_duplicate and not self.is_fwded_article:
+=======
+            # Always print whole email for 1st email for actual people
+            if self._is_first_for_user and num_chars < self.file_size and \
+                    not (self.is_duplicate or self.is_fwded_article or self.is_mailing_list):
+>>>>>>> master
                 self.log(f"{self} Overriding cutoff {num_chars} for first email")
                 num_chars = self.file_size
 

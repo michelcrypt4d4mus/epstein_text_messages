@@ -6,6 +6,7 @@ from datetime import datetime
 from typing import Generator, Literal, Self
 
 from dateutil.parser import parse
+from rich.padding import Padding
 from rich.text import Text
 
 from epstein_files.util.constant.names import *
@@ -301,13 +302,7 @@ class DocCfg:
         elif any (self.description.startswith(pfx) for pfx in UNINTERESTING_PREFIXES):
             return False
 
-        # HOUSE_OVERSIGHT files default True, DOJ files default False or None
-        if self.is_house_file:
-            return True
-        elif self.has_any_info:
-            return True
-        else:
-            return None
+        return None
 
     @property
     def metadata(self) -> Metadata:

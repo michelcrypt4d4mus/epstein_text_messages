@@ -37,14 +37,14 @@ class JsonFile(OtherFile):
         return False
 
     @property
-    def subheader(self) -> Text | None:
-        return Text(DESCRIPTION, style=INFO_STYLE)
-
-    @property
     def metadata(self) -> Metadata:
         metadata = super().metadata
         metadata['description'] = DESCRIPTION
         return metadata
+
+    @property
+    def subheader(self) -> Text | None:
+        return Text(DESCRIPTION, style=INFO_STYLE)
 
     def __post_init__(self):
         super().__post_init__()
