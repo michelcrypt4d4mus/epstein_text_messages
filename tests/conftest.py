@@ -3,7 +3,7 @@ from os import environ
 import pytest
 from dotenv import load_dotenv
 load_dotenv()
-environ.setdefault('OVERWRITE_PICKLE', 'True')  # Set PICKLED=True to override this
+# environ.setdefault('OVERWRITE_PICKLE', 'True')  # Set PICKLED=True to override this
 environ['INVOKED_BY_PYTEST'] = 'True'
 
 from epstein_files.epstein_files import EpsteinFiles

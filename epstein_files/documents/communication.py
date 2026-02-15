@@ -56,8 +56,8 @@ class Communication(Document):
     @property
     def summary_with_author(self) -> Text:
         """Append author information to `super().summary`, bracket is left open."""
-        txt = super().summary.append(', ')
-        return txt.append(styled_key_value('author', Text(f"'{self.author_or_unknown}'", style=self.author_style)))
+        author_str = styled_key_value('author', Text(f"'{self.author_or_unknown}'", style=self.author_style))
+        return super().summary.append(', ').append(author_str)
 
     @property
     def timestamp_without_seconds(self) -> str:
