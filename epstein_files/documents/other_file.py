@@ -40,46 +40,6 @@ SKIP_TIMESTAMP_EXTRACT = [
     PALM_BEACH_PROPERTY_INFO,
 ]
 
-UNINTERESTING_CATEGORIES = [
-    ACADEMIA,
-    ARTICLE,
-    ARTS,
-    BOOK,
-    CONFERENCE,
-    JUNK,
-    POLITICS,
-    SKYPE_LOG,
-]
-
-# OtherFiles whose descriptions/info match these prefixes are not displayed unless --all-other-files is used
-UNINTERESTING_PREFIXES = [
-    'article about',
-    BROCKMAN_INC,
-    CVRA,
-    DERSH_GIUFFRE_TWEET,
-    GORDON_GETTY,
-    f"{HARVARD} Econ",
-    HARVARD_POETRY,
-    JASTA,
-    LEXIS_NEXIS,
-    NOBEL_CHARITABLE_TRUST,
-    PALM_BEACH_CODE_ENFORCEMENT,
-    PALM_BEACH_TSV,
-    PALM_BEACH_WATER_COMMITTEE,
-    TWEET,
-    UN_GENERAL_ASSEMBLY,
-    'US Office',
-]
-
-INTERESTING_AUTHORS = [
-    EDWARD_JAY_EPSTEIN,
-    EHUD_BARAK,
-    JOI_ITO,
-    NOAM_CHOMSKY,
-    MICHAEL_WOLFF,
-    SVETLANA_POZHIDAEVA,
-]
-
 
 @dataclass
 class OtherFile(Document):
@@ -94,47 +54,18 @@ class OtherFile(Document):
     max_timestamp: ClassVar[datetime] = datetime(2022, 12, 31) # Overloaded in DojFile
 
     @property
-    def config_description(self) -> str | None:
+    def config_description(self) -> str:
         """Overloads superclass property."""
-        if self.config and self.config.description:
-            return self.config.complete_description
+        return self.config.complete_description if self.config else ''
 
     @property
-    def category(self) -> str | None:
-        return self.config and self.config.category
+    def category(self) -> str:
+        return self.config.category if self.config else ''
 
     @property
-    def category_txt(self) -> Text | None:
+    def category_txt(self) -> Text:
+        """Returns '???' for missing category."""
         return styled_category(self.category)
-
-    @property
-    def is_interesting(self) -> bool:
-        """Overloaded. False for lame prefixes, duplicates, and other boring files."""
-        info_sentences = self.info
-        info_sentence = info_sentences[0].plain if info_sentences else ''
-
-        if self.is_duplicate:
-            return False
-        elif len(info_sentences) == 0 and not self.is_doj_file:
-            return True
-        elif self.config:
-            if self.config.is_interesting is not None:
-                return self.config.is_interesting
-            elif self.config.author in INTERESTING_AUTHORS:
-                return True
-            elif self.category == FINANCE and self.author is not None:
-                return False
-            elif self.category in UNINTERESTING_CATEGORIES:
-                return False
-            elif self.category == CRYPTO:
-                return True
-
-        for prefix in UNINTERESTING_PREFIXES:
-            if info_sentence.startswith(prefix):
-                return False
-
-        # Default to True for HOUSE_OVERSIGHT files, False for DOJ files
-        return not self.is_doj_file
 
     @property
     def metadata(self) -> Metadata:

@@ -188,9 +188,9 @@ class Email(Communication):
         return epstein_media_doc_link_markup(self.url_slug, self.author_style)
 
     @property
-    def info_txt(self) -> Text:
-        email_type = 'fwded article' if self.is_fwded_article else 'email'
-        txt = Text(f"OCR text of {email_type} from ", style='grey46').append(self.author_txt)
+    def subheader(self) -> Text:
+        txt = Text(f"OCR text of ", SUBHEADER_STYLE).append('fwded article' if self.is_fwded_article else 'email')
+        txt.append(self.author_txt)
 
         if self.config and self.config.is_attribution_uncertain:
             txt.append(f" {QUESTION_MARKS}", style=self.author_style)

@@ -24,6 +24,7 @@ PROPERTY = 'property'
 PUBLICIST = 'publicist'
 REPUTATION = 'reputation'
 SKYPE_LOG = 'skype log'
+TWEET = 'tweet'
 SOCIAL = 'social'
 
 # Locations
@@ -37,6 +38,7 @@ SiteType = Literal['email', 'text message']
 
 # Styles
 DEFAULT_NAME_STYLE = 'grey23'
+SUBHEADER_STYLE = 'grey46'
 TIMESTAMP_STYLE = 'turquoise4'
 TIMESTAMP_DIM = f"turquoise4 dim"
 
@@ -60,6 +62,20 @@ OTHER_FILE_CLASS = 'OtherFile'
 INDENT = '    '
 INDENT_NEWLINE = f'\n{INDENT}'
 INDENTED_JOIN = f',{INDENT_NEWLINE}'
+
+# Law
+CVRA = "Crime Victims' Rights Act [CVRA]"
+JASTA = 'JASTA'
+
+# Organizations
+BROCKMAN_INC = 'Brockman, Inc.'
+HARVARD = 'Harvard'
+HARVARD_POETRY = f'{HARVARD} poetry stuff from Lisa New'  # TODO: name be here?
+PALM_BEACH_CODE_ENFORCEMENT = f'{PALM_BEACH} Code Enforcement'
+PALM_BEACH_PROPERTY_INFO = f"{PALM_BEACH} property info"
+PALM_BEACH_TSV = f"TSV of {PALM_BEACH} property"
+PALM_BEACH_WATER_COMMITTEE = f'{PALM_BEACH} Water Committee'
+UN_GENERAL_ASSEMBLY = '67th U.N. General Assembly'
 
 # Regexes / file names
 EFTA_PREFIX = 'EFTA'

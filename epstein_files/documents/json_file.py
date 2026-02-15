@@ -37,7 +37,7 @@ class JsonFile(OtherFile):
         return False
 
     @property
-    def info_txt(self) -> Text | None:
+    def subheader(self) -> Text | None:
         return Text(DESCRIPTION, style=INFO_STYLE)
 
     @property

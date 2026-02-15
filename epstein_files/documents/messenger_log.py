@@ -36,7 +36,17 @@ class MessengerLog(Communication):
         return self.author_style
 
     @property
-    def info_txt(self) -> Text | None:
+    def metadata(self) -> Metadata:
+        metadata = super().metadata
+        metadata.update({'num_messages': len(self.messages)})
+
+        if self.phone_number:
+            metadata['phone_number'] = self.phone_number
+
+        return metadata
+
+    @property
+    def subheader(self) -> Text | None:
         num_days_str = days_between_str(self.timestamp, self.messages[-1].parse_timestamp())
         txt = Text(f"(Covers {num_days_str} starting ", style='dim')
         txt.append(self.date_str, style=TIMESTAMP_STYLE).append(' ')
@@ -51,16 +61,6 @@ class MessengerLog(Communication):
             txt.append(highlighter(f" using the phone number {self.phone_number}"))
 
         return txt.append(')')
-
-    @property
-    def metadata(self) -> Metadata:
-        metadata = super().metadata
-        metadata.update({'num_messages': len(self.messages)})
-
-        if self.phone_number:
-            metadata['phone_number'] = self.phone_number
-
-        return metadata
 
     def __post_init__(self):
         super().__post_init__()

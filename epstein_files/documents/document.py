@@ -178,14 +178,9 @@ class Document:
     def info(self) -> list[Text]:
         """0 to 2 sentences containing the info_txt() as well as any configured description."""
         return without_falsey([
-            self.info_txt,
+            self.subheader,
             highlighter(Text(self.config_description, style=INFO_STYLE)) if self.config_description else None
         ])
-
-    @property
-    def info_txt(self) -> Text | None:
-        """Secondary info about this file (description, recipients, etc). Overload in subclasses."""
-        return None
 
     @property
     def is_attribution_uncertain(self) -> bool:
@@ -204,8 +199,12 @@ class Document:
         return len(self.text.strip()) < EMPTY_LENGTH
 
     @property
-    def is_interesting(self) -> bool:
-        return bool(self.config and self.config.is_interesting)
+    def is_interesting(self) -> bool | None:
+        """TODO: currently default to True for HOUSE_OVERSIGHT_FILES, false for DOJ."""
+        if self.config and self.config.is_of_interest is not None:
+            return self.config.is_of_interest
+        else:
+            return None if self.is_doj_file else True
 
     @property
     def is_local_extract_file(self) -> bool:
@@ -290,6 +289,11 @@ class Document:
                 return f"(Text of {text} {CHECK_LINK_FOR_DETAILS})"
             else:
                 return text
+
+    @property
+    def subheader(self) -> Text | None:
+        """Secondary info about this file (description, recipients, etc). Overload in subclasses."""
+        return None
 
     @property
     def summary(self) -> Text:
