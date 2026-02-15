@@ -104,5 +104,5 @@ def sort_dict(d: dict[str | None, int] | dict[str, int]) -> list[tuple[str | Non
 
 
 
-def uniquify(_list: list[names.Name]) -> list[names.Name]:
+def uniquify(_list: list[T]) -> list[T]:
     return list(set(_list))
