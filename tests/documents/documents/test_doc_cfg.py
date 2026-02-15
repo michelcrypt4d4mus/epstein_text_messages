@@ -76,29 +76,32 @@ def skype_author() -> DocCfg:
     return _oversight_cfg(SKYPE_LOG, author='linkspirit')
 
 
-def test_category_txt(empty_cfg, junk_doc_cfg, legal_cfg, skype_cfg, skype_author):
-    print('running test_category_txt()')
-    assert empty_cfg.category_txt == QUESTION_MARKS_TXT
+def test_category_txt(blockchain_cap_cfg, empty_house_cfg, junk_doc_cfg, legal_cfg, skype_cfg, skype_author):
+    assert blockchain_cap_cfg.category_txt.style == 'orange1 bold'
+    assert empty_house_cfg.category_txt == QUESTION_MARKS_TXT
     assert junk_doc_cfg.category_txt.plain == JUNK
     assert skype_cfg.category_txt.plain == SKYPE_LOG
     assert skype_cfg.category_txt.style == 'wheat4'
     assert legal_cfg.category_txt.style == 'purple'
 
 
-def test_complete_description(blockchain_cap_cfg, finance_report, junk_doc_cfg, legal_cfg, skype_cfg, skype_author):
-    assert legal_cfg.complete_description == f"clinton v. trump: case law"
+def test_complete_description(blockchain_cap_cfg, empty_house_cfg, finance_report, junk_doc_cfg, legal_cfg, skype_cfg, skype_author):
+    assert blockchain_cap_cfg.complete_description == "Blockchain Capital investor report"
+    # Empty
+    assert empty_house_cfg.complete_description == ''
+    # Finance
+    assert finance_report.complete_description == f"{BOFA_MERRILL} report: grapes"
     # Junk
     assert junk_doc_cfg.complete_description == 'junk'
     junk_doc_cfg.description = 'junk mail'
     assert junk_doc_cfg.complete_description == 'junk mail'
+    # Legal
+    assert legal_cfg.complete_description == f"clinton v. trump: case law"
     # Skype
     assert skype_cfg.complete_description == SKYPE_LOG.lower()
     assert skype_author.complete_description == f"{SKYPE_LOG.lower()} of conversation with linkspirit"
     skype_author.description = 'something'
     assert skype_author.complete_description == f"{SKYPE_LOG.lower()} of conversation with linkspirit something"
-    # Finance
-    assert finance_report.complete_description == f"{BOFA_MERRILL} report: grapes"
-    assert blockchain_cap_cfg.complete_description == "Blockchain Capital investor report"
 
 
 def test_is_of_interest(
