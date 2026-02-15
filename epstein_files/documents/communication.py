@@ -11,7 +11,6 @@ from epstein_files.documents.emails.constants import FALLBACK_TIMESTAMP
 from epstein_files.output.highlight_config import get_style_for_name, styled_name
 from epstein_files.output.rich import styled_key_value
 from epstein_files.util.constant.names import UNKNOWN
-from epstein_files.util.constants import CONFIGS_BY_ID
 
 TIMESTAMP_SECONDS_REGEX = re.compile(r":\d{2}$")
 
