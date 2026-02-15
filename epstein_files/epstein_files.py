@@ -219,7 +219,7 @@ class EpsteinFiles:
             logger.warning(f"{len(file_ids)} file IDs provided but only {len(docs)} documents found!")
 
         return [d.reload() if rebuild else d for d in docs]
-
+    
     def get_id(self, file_id: str, rebuild: bool = False, required_type: Type[Document] = Document) -> Document:
         """Singular ID version of `get_ids()` but with option to require a type of document subclass."""
         doc = self.get_ids([file_id], rebuild)[0]
