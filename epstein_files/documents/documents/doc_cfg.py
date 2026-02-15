@@ -171,6 +171,7 @@ class DocCfg:
         """String that summarizes what is known about this document."""
         # Set preamble to category if there's no author or description or CATEGORY_PREAMBLES entry
         preamble = CATEGORY_PREAMBLES.get(self.category) or ('' if self.has_any_info else self.category)
+        author_description = ''
         preamble_separator = ''
         author_separator = ''
         description = ''
@@ -179,27 +180,32 @@ class DocCfg:
             preamble = self.category
 
         if self.category == BOOK or (self.category == ACADEMIA and self.author and self.description):
-            description = join_truthy(quote(self.description), self.author, ' by ')  # note reversed args
+            author_description = join_truthy(quote(self.description), self.author, ' by ')  # note reversed args
         elif (self.category == LEGAL and 'v.' in self.author_str) or self.category == REPUTATION:
             author_separator = ": "
         elif self.category == SKYPE_LOG:
             preamble_separator = " of conversation with "
         elif self.category == LETTER:
-            description = join_truthy(preamble, self.author, ' from ')
+            preamble_separator = ' from '
 
             if 'recipients' in dir(self) and (recipients := getattr(self, 'recipients')):
+                # import pdb; pdb.set_trace()
                 recipient_str = recipients[0] if len(recipients) == 1 else ', '.join(recipients)
-                description = join_truthy(description, recipient_str, ' from ')
-        elif self.category == RESUME:
-            preamble_separator = ' of '
-        elif self.category == TWEET:
-            preamble_separator = " by "
+                description = join_truthy(recipient_str, description, ', ')
+        elif self.category in [RESUME, TWEET]:
+            preamble_separator = 'of' if self.category == RESUME else 'by'
+            preamble_separator = preamble_separator.center(3, ' ')
         elif self.category == FINANCE and self.description and (first_char := self.description[0]):
             if (self.author in FINANCIAL_REPORTS_AUTHORS and first_char.isupper()) or first_char in ["'", '"']:
                 author_separator = ' report: '
 
-        description = description or join_truthy(self.author, self.description, author_separator)
-        description = join_truthy(preamble, description, preamble_separator)
+        preamble_author = join_truthy(preamble, self.author, preamble_separator)
+        author_description = author_description or join_truthy(self.author, self.description, author_separator)
+
+        if self.author and preamble_author.endswith(self.author) and author_description.startswith(self.author):
+            author_description = author_description.removeprefix(self.author)
+
+        description = join_truthy(preamble_author, author_description)
 
         if self.author == INSIGHTS_POD:
             description = join_truthy(description, f"from {ZUBAIR_AND_ANYA}")
@@ -408,8 +414,10 @@ class CommunicationCfg(DocCfg):
     files to handle the terrible OCR text that Congress provided which messes up a lot of the email headers.
 
     Attributes:
+        recipients (list[Name]): Who received the communication
         uncertain_recipient (str, optional): Optional explanation of why this recipient was attributed, but uncertainly
     """
+    recipients: list[Name] = field(default_factory=list)
     uncertain_recipient: str | None = None
 
     def __post_init__(self):
@@ -428,7 +436,6 @@ class EmailCfg(CommunicationCfg):
         has_uninteresting_ccs (bool): If `True` this email's CC: recipients will be marked as 'uninteresting'.
         has_uninteresting_bccs (bool): If `True` this email's BCC: recipients will be marked as 'uninteresting'.
         is_fwded_article (bool, optional): `True` if this is a newspaper article someone fwded. Used to exclude articles from word counting.
-        recipients (list[Name]): Who received the email.
         subject (str, optional): Subject line.
     """
     actual_text: str | None = None
@@ -436,7 +443,6 @@ class EmailCfg(CommunicationCfg):
     has_uninteresting_ccs: bool = False
     has_uninteresting_bccs: bool = False
     is_fwded_article: bool | None = None
-    recipients: list[Name] = field(default_factory=list)
     subject: str | None = None
 
     # This is necessary because for some dumb reason @dataclass(repr=False) doesn't cut it
