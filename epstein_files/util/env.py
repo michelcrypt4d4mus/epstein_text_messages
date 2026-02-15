@@ -14,6 +14,7 @@ DEFAULT_WIDTH = 155
 DEFAULT_FILE = 'default_file'
 EPSTEIN_GENERATE = 'epstein_generate'
 HTML_SCRIPTS = [EPSTEIN_GENERATE, 'epstein_word_count']
+PICKLED_PATH = Path("the_epstein_files.pkl.gz")
 
 # Get dirs from Env vars
 DOCS_DIR_ENV_VAR = 'EPSTEIN_DOCS_DIR'
@@ -33,6 +34,7 @@ parser = ArgumentParser(description="Parse epstein OCR docs and generate HTML pa
 parser.add_argument('--make-clean', action='store_true', help='delete all HTML build artifact and write latest URLs to .urls.env')
 parser.add_argument('--name', '-n', action='append', dest='names', help='specify the name(s) whose communications should be output')
 parser.add_argument('--overwrite-pickle', '-op', action='store_true', help='re-parse the files and ovewrite cached data')
+parser.add_argument('--from-pickle-path', '-fp', help='path to load saved data from', default=PICKLED_PATH)
 
 output = parser.add_argument_group('OUTPUT', 'Options used by epstein_generate.')
 output.add_argument('--all-emails', '-ae', action='store_true', help='all the emails instead of just the interesting ones')

@@ -21,19 +21,19 @@ def _verify_filenames(epstein_files):
 
 
 def print_interesting_doc_panels_and_props(epstein_files):
+    num_printed = 0
+
     for doc in epstein_files.all_documents:
-        if isinstance(doc, OtherFile) and doc.is_interesting:
-            pass
-        # elif doc.config and doc.config.has_any_info:
-        #     pass
-        else:
+        if not isinstance(doc, OtherFile):
+            continue
+        elif doc.is_interesting is None and doc.config is None:
             continue
 
         if doc.config:
             props = doc.config.important_props
             props.pop('id')
 
-            if doc.config.is_of_interest != doc.is_interesting:
+            if doc.is_interesting != doc.config.is_of_interest:
                 logger.warning(f"mismatch of config.is_of_interest and doc.is_interesting")
                 props['doc.is_interesting'] = doc.is_interesting
         else:
@@ -46,4 +46,7 @@ def print_interesting_doc_panels_and_props(epstein_files):
         if args.debug:
             console.print(styled_dict(props, sep=': '))
 
+        num_printed += 1
         console.line()
+
+    logger.warning(f"Printed {num_printed} object configs.")
