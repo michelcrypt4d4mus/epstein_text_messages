@@ -17,7 +17,7 @@ class Timer:
         if num_skipped == 0:
             prefix = 'all '
         elif num_skipped < 0:
-            suffix = f"(at least {num_skipped} {label}s printed more than once)"
+            suffix = f"(at least {-1 * num_skipped} {label}s printed more than once)"
         else:
             suffix = f"(skipped {num_skipped})"
 
