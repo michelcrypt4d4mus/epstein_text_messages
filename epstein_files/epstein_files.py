@@ -39,17 +39,16 @@ class EpsteinFiles:
     imessage_logs: list[MessengerLog] = field(default_factory=list)
     json_files: list[JsonFile] = field(default_factory=list)
     other_files: list[OtherFile] = field(default_factory=list)
-    doj_files: list[DojFile] = field(default_factory=list)
     timer: Timer = field(default_factory=lambda: Timer())
     uninteresting_ccs: list[Name] = field(default_factory=list)
 
     @property
     def all_documents(self) -> Sequence[Document]:
-        return self.imessage_logs + self.emails + self.other_files + self.doj_files
+        return Document.sort_by_timestamp(self.imessage_logs + self.emails + self.other_files)
 
     @property
     def all_doj_files(self) -> Sequence[DojFile | Email]:
-        """All files with the filename EFTAXXXXXX."""
+        """All files with the filename EFTAXXXXXX, including those that were turned into Email objs."""
         return [doc for doc in self.all_documents if doc.is_doj_file]
 
     @property
@@ -58,6 +57,10 @@ class EpsteinFiles:
         authors = [email.author for email in self.emails]
         recipients = flatten([email.recipients for email in self.emails])
         return self.person_objs(uniquify(authors + recipients))
+
+    @property
+    def json_files(self) -> list[JsonFile]:
+        return Document.sort_by_timestamp([d for d in self.other_files if isinstance(d, JsonFile)])
 
     @property
     def non_duplicate_emails(self) -> list[Email]:
@@ -83,14 +86,16 @@ class EpsteinFiles:
 
         # Split up by type
         docs = self._load_file_paths(self.all_files)
-        self.doj_files = Document.sort_by_timestamp([d for d in docs if isinstance(d, DojFile)])
         self.emails = Document.sort_by_timestamp([d for d in docs if isinstance(d, Email)])
         self.imessage_logs = Document.sort_by_timestamp([d for d in docs if isinstance(d, MessengerLog)])
-        self.json_files = Document.sort_by_timestamp([d for d in docs if isinstance(d, JsonFile)])
-        self.other_files = Document.sort_by_timestamp([d for d in docs if isinstance(d, OtherFile) and not isinstance(d, DojFile)])
+        self.other_files = Document.sort_by_timestamp([d for d in docs if isinstance(d, OtherFile)])
 
         # Set interdependent fields, dupes, etc.
         self._finalize_data()
+
+    @property
+    def doj_files(self) -> list[DojFile]:
+        return Document.sort_by_timestamp([f for f in self.other_files if isinstance(f, DojFile)])
 
     @classmethod
     def get_files(cls, timer: Timer | None = None) -> 'EpsteinFiles':

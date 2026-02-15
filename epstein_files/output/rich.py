@@ -147,6 +147,11 @@ def build_table(title: str | Text | None, cols: list[str | dict] | None = None, 
     return table
 
 
+def indent_txt(txt: Text, spaces: int = 4, prefix: str = '') -> Text:
+    indent = Text(' ' * spaces).append(prefix)
+    return indent + Text(f"\n{indent}").join(txt.split('\n'))
+
+
 def join_texts(txts: list[Text], join: str = ' ', encloser: str = '', encloser_style: str = 'wheat4') -> Text:
     """Join rich.Text objs into one."""
     if encloser:
@@ -172,14 +177,12 @@ def parenthesize(msg: str | Text, style: str = '') -> Text:
 
 
 def prefix_with(txt: list[str] | list[Text] | Text | str, pfx: str, pfx_style: str = '', indent: str | int = '') -> Text:
-
     indent = indent * ' ' if isinstance(indent, int) else indent
 
     lines = [
         Text('').append(f"{indent}{pfx} ", style=pfx_style).append(line)
         for line in (txt.split('\n') if isinstance(txt, (Text, str)) else txt)
     ]
-
 
     return Text('\n').join(lines)
 
@@ -367,16 +370,17 @@ def styled_key_value(
 
 
 def styled_dict(
-        d: dict[str, str | Path | Text],
-        key_style: str = KEY_STYLE,
-        sep: str = '=',
-        sort_fields: bool = True,
-    ) -> Text:
+    d: dict[str, str | Path | Text],
+    key_style: str = KEY_STYLE,
+    sep: str = '=',
+    sort_fields: bool = True,
+    min_indent: int = 20,
+) -> Text:
     """Turn a dict into a colored representation."""
-    key_column_width = max(len(k) for k in d.keys()) + 3
+    key_lengths = [len(k) for k in d.keys()] + [min_indent]
 
     return Text('\n').join([
-        styled_key_value(k, v, key_style=key_style, indent=key_column_width, sep=sep)
+        styled_key_value(k, v, key_style=key_style, indent=max(key_lengths) + 3, sep=sep)
         for k, v in (sort_dict(d) if sort_fields else d.items())
     ])
 

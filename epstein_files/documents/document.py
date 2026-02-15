@@ -109,6 +109,13 @@ class Document:
         return 'white'
 
     @property
+    def category(self) -> str:
+        if self.config and self.config.category:
+            return self.config.category
+        else:
+            return self.default_category()
+
+    @property
     def config_description(self) -> str | None:
         if self.config and self.config.description:
             return f"({self.config.description})"
@@ -538,6 +545,10 @@ class Document:
 
     def __str__(self) -> str:
         return self.summary.plain
+
+    @classmethod
+    def default_category(self) -> str:
+        return ''
 
     @classmethod
     def file_info_table(cls, title: str, first_col_name: str) -> Table:
