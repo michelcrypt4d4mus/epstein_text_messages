@@ -102,7 +102,7 @@ EMAIL_AUTHOR_COUNTS = {
     HEATHER_MANN: 2,
     HENRY_HOLT: 1,
     "How To Academy": 3,
-    'Ian ODonnell': 2,
+    IAN_ODONNELL: 2,
     IAN_OSBORNE: 2,
     'Ike Groff': 1,
     "Intelligence Squared": 4,

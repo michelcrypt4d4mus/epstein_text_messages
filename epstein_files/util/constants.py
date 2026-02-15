@@ -4,13 +4,13 @@ from epstein_files.documents.emails.constants import FLIGHT_IN_2012_PEOPLE, IRAN
 from epstein_files.util.helpers.string_helper import join_truthy, quote
 from epstein_files.util.constant.names import *
 from epstein_files.util.constant.strings import *
-from epstein_files.util.env import args
 from epstein_files.util.logging import logger
 
 MAX_CHARS_TO_PRINT = 4000
 NO_TRUNCATE = -1
 PARTICIPANTS_FIELD = 'Participants: field'
 TRUNCATED_CHARS = int(MAX_CHARS_TO_PRINT / 3)
+VALAR_FUND = f"{PETER_THIEL}'s {VALAR_VENTURES} fund"
 
 HEADER_ABBREVIATIONS = {
     "AD": "Abu Dhabi",
@@ -141,7 +141,7 @@ DROKOVA_TIMING_REASON = 'timing, subject (interviews/articles), and sequential I
 KATHY_REASON = 'from "Kathy" about dems, sent from iPad'
 LARRY_REASON = 'Planes discussion signed "Larry"'
 LINDA_STONE_ATTRIBUTION = '"iPhone word substitution" in signature, which is traced back to "Linda, thanks" in EFTA00961792'
-PAULA_REASON = 'Signature of "Sent via BlackBerry from T-Mobile"'
+PAULA_REASON = 'signature of "Sent via BlackBerry from T-Mobile"'
 PRUSAKOVA_BERKELY = 'Epstein paid for Prusakova to go to Berkeley'
 
 # Descriptions
@@ -153,8 +153,8 @@ VALAR_MEETING = f"meeting with {PETER_THIEL}'s {VALAR_VENTURES} fund"
 
 
 EMAILS_CONFIG = [
-    # 026294 and 026296 might also be Ittihadieh based on timing
-    EmailCfg(id='032436', author=ALIREZA_ITTIHADIEH, author_reason='Signature'),
+    # TODO: 026294 and 026296 might also be Ittihadieh based on timing
+    EmailCfg(id='032436', author=ALIREZA_ITTIHADIEH, author_reason='signature'),
     EmailCfg(id='032543', author=ANAS_ALRASHEED, author_reason='Later reply 033000 has quote'),
     EmailCfg(id='026167', author=ANAS_ALRASHEED, author_reason='name visible in 033022 reply'),
     EmailCfg(id='032571', author=ANAS_ALRASHEED, author_reason='name visible in 033022 reply'),
@@ -245,12 +245,12 @@ EMAILS_CONFIG = [
         subject='FW: Privileged and Confidential - Fwd: JAMES PATTERSON NEW BOOK TELLING FEDS COVER UP OF BILLIONAIRE JEFF EPSTEIN CHILD RAPES RELEASE DATE OCT 10 2016 STEVEN HOFFENBERG IS ON THE BOOK WRITING TEAM !!!!',
         truncate_to=2500,
     ),
-    EmailCfg(id='026290', author=DAVID_SCHOEN, author_reason='Signature'),
-    EmailCfg(id='031339', author=DAVID_SCHOEN, author_reason='Signature'),
-    EmailCfg(id='031492', author=DAVID_SCHOEN, author_reason='Signature'),
-    EmailCfg(id='031560', author=DAVID_SCHOEN, author_reason='Signature'),
-    EmailCfg(id='026287', author=DAVID_SCHOEN, author_reason='Signature'),
-    EmailCfg(id='033419', author=DAVID_SCHOEN, author_reason='Signature'),
+    EmailCfg(id='026290', author=DAVID_SCHOEN, author_reason='signature'),
+    EmailCfg(id='031339', author=DAVID_SCHOEN, author_reason='signature'),
+    EmailCfg(id='031492', author=DAVID_SCHOEN, author_reason='signature'),
+    EmailCfg(id='031560', author=DAVID_SCHOEN, author_reason='signature'),
+    EmailCfg(id='026287', author=DAVID_SCHOEN, author_reason='signature'),
+    EmailCfg(id='033419', author=DAVID_SCHOEN, author_reason='signature'),
     EmailCfg(id='031460', author=EDWARD_JAY_EPSTEIN, author_reason='quoted reply has edwardjayepstein.com', is_fwded_article=True),
     EmailCfg(
         id='030475',
@@ -267,7 +267,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='029959', author=GWENDOLYN_BECK, author_reason='signature "Beck Center for Longevity & Aging"'),
     EmailCfg(id='033360', author=HENRY_HOLT, author_reason='in signature'),
     EmailCfg(id='033384', author=JACK_GOLDBERGER, author_uncertain='Might be Paul Prosperi?'),
-    EmailCfg(id='026024', author=JEAN_HUGUEN, author_reason='Signature'),
+    EmailCfg(id='026024', author=JEAN_HUGUEN, author_reason='signature'),
     EmailCfg(id='021823', author=JEAN_LUC_BRUNEL, author_reason='Reply'),
     EmailCfg(id='031624', author=JEFFREY_EPSTEIN),
     EmailCfg(id='018726', author=JEFFREY_EPSTEIN, date='2018-06-08 08:36:00'),
@@ -320,14 +320,14 @@ EMAILS_CONFIG = [
     EmailCfg(id='033582', author=JONATHAN_FARKAS, author_reason='Reply', duplicate_ids=['032389']),
     EmailCfg(id='033203', author=JONATHAN_FARKAS, author_reason='Reply', duplicate_ids=['033581']),
     EmailCfg(id='032052', author=JONATHAN_FARKAS, author_reason='Reply', duplicate_ids=['031732']),
-    EmailCfg(id='033490', author=JONATHAN_FARKAS, author_reason='Signature', duplicate_ids=['032531']),
+    EmailCfg(id='033490', author=JONATHAN_FARKAS, author_reason='signature', duplicate_ids=['032531']),
     EmailCfg(id='032224', author=KATHRYN_RUEMMLER, recipients=[JEFFREY_EPSTEIN], author_reason='Reply'),
     EmailCfg(id='032386', author=KATHRYN_RUEMMLER, author_uncertain=KATHY_REASON),
     EmailCfg(id='032727', author=KATHRYN_RUEMMLER, author_uncertain=KATHY_REASON),
     EmailCfg(id='030478', author=LANDON_THOMAS),
     EmailCfg(id='029013', author=LARRY_SUMMERS, recipients=[JEFFREY_EPSTEIN]),
     EmailCfg(id='029196', author=LAWRENCE_KRAUSS, recipients=[JEFFREY_EPSTEIN], actual_text='Talk in 40?'),
-    EmailCfg(id='033593', author=LAWRANCE_VISOSKI, author_reason='Signature', truncate_to=NO_TRUNCATE, comment='visoski email about planes'),
+    EmailCfg(id='033593', author=LAWRANCE_VISOSKI, author_reason='signature', truncate_to=NO_TRUNCATE, comment='visoski email about planes'),
     EmailCfg(id='033370', author=LAWRANCE_VISOSKI, author_reason=LARRY_REASON),
     EmailCfg(id='033495', author=LAWRANCE_VISOSKI, author_reason=LARRY_REASON),
     EmailCfg(id='033487', author=LAWRANCE_VISOSKI, recipients=[JEFFREY_EPSTEIN]),
@@ -366,7 +366,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='021808', author=NADIA_MARCINKO, author_reason='reply', truncate_to=NO_TRUNCATE),
     EmailCfg(id='021818', author=NADIA_MARCINKO, author_reason='reply'),
     EmailCfg(id='022214', author=NADIA_MARCINKO, author_reason='Reply header'),
-    EmailCfg(id='021811', author=NADIA_MARCINKO, author_reason='Signature and email address in the message'),
+    EmailCfg(id='021811', author=NADIA_MARCINKO, author_reason='signature and email address in the message'),
     EmailCfg(id='028487', author=NORMAN_D_RAU, author_reason='Fwded from "to" address', duplicate_ids=['026612']),
     EmailCfg(
         id='024923',
@@ -393,7 +393,7 @@ EMAILS_CONFIG = [
     ),
     EmailCfg(id='031694', author=PEGGY_SIEGAL, author_uncertain='quoted'),
     EmailCfg(id='032219', author=PEGGY_SIEGAL, author_reason='Signed "Peggy"'),
-    EmailCfg(id='029020', author=RENATA_BOLOTOVA, author_reason='Signature'),
+    EmailCfg(id='029020', author=RENATA_BOLOTOVA, author_reason='signature'),
     EmailCfg(id='029605', author=RENATA_BOLOTOVA, author_reason=BOLOTOVA_REASON),
     EmailCfg(id='029606', author=RENATA_BOLOTOVA, author_reason=BOLOTOVA_REASON),
     EmailCfg(id='029604', author=RENATA_BOLOTOVA, author_reason='Continued in 239606 etc'),
@@ -1262,7 +1262,7 @@ EMAILS_CONFIG = [
         is_interesting=True,
         recipients=[LESLEY_GROFF],
     ),
-    EmailCfg(id='EFTA00999549', description=f"{JOI_ITO} and {JEREMY_RUBIN} meet {LARRY_SUMMERS} to discuss bitcoin", is_interesting=True),
+    EmailCfg(id='EFTA00836182', description=f'email to investors in {VALAR_FUND}'),
     EmailCfg(id='EFTA00901970', description=f"{AL_SECKEL}'s response to Epstein's forged email", is_interesting=True),
     EmailCfg(id='EFTA02372964', description='an "ICO" or "initial coin offering" was a very popular type of crypto scam at this time'),
     EmailCfg(id='EFTA00988395', description=f'"Andy Back" is probably Blockstream bitcoin dev {ADAM_BACK}', duplicate_ids=['EFTA01928856']),
@@ -1281,13 +1281,11 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00964459', description=f'discussion of sharia compliant crypto token', is_interesting=True),
     EmailCfg(id='EFTA00901772', description=f'discussion of the sale of Epstein stake in Coinbase'),
     EmailCfg(id='EFTA00671263', description="Eagle's View Capital Management September 2017 Performance Update"),
-    EmailCfg(
-        id='EFTA02671523',
-        description=f"Jones is former Google chief technology advocate and CEO of Wearality which Epstein & {JOI_ITO} invested in",
-    ),
+    EmailCfg(id='EFTA02671523', description=f"Jones is former Google chief technology advocate / CEO of Epstein investment Wearality"),
     EmailCfg(id='EFTA01139067', description=f'Epstein tells Farkas he has not invested in {CRYPTO_CURRENCY_PARTNERS_II}'),
     EmailCfg(id='EFTA00699275', description=f"'Fred' is probably Coinbase co-founder Fred Ehrsam"),
     EmailCfg(id='EFTA00830911', description='fundraising email for LedgerX which was later acquired by FTX for $298 million'),
+    EmailCfg(id='EFTA00999549', description=f"{JOI_ITO} and {JEREMY_RUBIN} meet {LARRY_SUMMERS} to discuss bitcoin", is_interesting=True),
     EmailCfg(id='EFTA00104945', description=f"{LEON_BLACK} / Rothschild Group {DEUTSCHE_BANK} transactions", is_interesting=True, truncate_to=700),
     EmailCfg(id='EFTA01013266', description=f"{MARIYA_PRUSAKOVA}'s {CRYPTO_PR_LAB} request for payment for Davos", is_interesting=True),
     EmailCfg(id='EFTA00900908', description="negotiation of repurchase of half of Epstein's stake in Coinbase"),
@@ -1359,7 +1357,6 @@ STRANGE_BEDFELLOWS = "'Strange Bedfellows' list of invitees f. Johnny Depp, Wood
 SWEDISH_LIFE_SCIENCES_SUMMIT = f"{BARBRO_C_EHNBOM}'s Swedish American Life Science Summit (SALSS)"
 TRUMP_DISCLOSURES = f"Donald Trump financial disclosures from U.S. Office of Government Ethics"
 UBS_CIO_REPORT = 'CIO Monthly Extended report'
-VALAR_FUND = f"{PETER_THIEL}'s {VALAR_VENTURES} fund"
 WOMEN_EMPOWERMENT = f"Women Empowerment (WE) conference"
 
 OTHER_FILES_BOOK = [
@@ -2165,7 +2162,6 @@ OTHER_FILES_CRYPTO = [
     DocCfg(id='EFTA00810239', author=VALAR_FUND, description='pitch deck'),
     DocCfg(id='EFTA00810510', author=VALAR_FUND, description='Fall 2016 Update'),
     DocCfg(id='EFTA00810474', author=VALAR_FUND, description='Fall 2018 Update'),
-    DocCfg(id='EFTA00836182', author=VALAR_FUND, description='Limited Partners email'),
     DocCfg(
         id='EFTA01612888',
         author='Kevin Peterson, Bammohan Deeduvanu, Pradip Kanjamala, and Kelly Boles',
