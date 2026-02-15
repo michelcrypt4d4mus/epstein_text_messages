@@ -283,6 +283,7 @@ class DocCfg:
              -  UNINTERESTING_CATEGORIES
              -  finance category with any author
         """
+        # import pdb;pdb.set_trace()
         if self.duplicate_of_id:
             return False
         elif self.is_interesting is not None:

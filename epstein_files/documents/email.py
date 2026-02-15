@@ -206,7 +206,10 @@ class Email(Communication):
                 if (extracted_from_description := extracted_from_cfg.complete_description):
                     self.derived_cfg.description = f"{APPEARS_IN} {extracted_from_description}"
 
+                self.derived_cfg.author_uncertain = self.derived_cfg.author_uncertain or extracted_from_cfg.author_uncertain
+                self.derived_cfg.category = self.derived_cfg.category or extracted_from_cfg.category
                 self.derived_cfg.is_interesting = self.derived_cfg.is_interesting or extracted_from_cfg.is_interesting
+                # replace_text_with
                 self.log(f"Constructed synthetic config: {self.derived_cfg}")
 
             return self.derived_cfg
@@ -316,6 +319,8 @@ class Email(Communication):
         self.text = self._prettify_text()
         self.actual_text = self._extract_actual_text()
         self.sent_from_device = self._sent_from_device()
+        # from epstein_files.util.constants import CONFIGS_BY_ID
+        # import pdb;pdb.set_trace()
 
     def is_from_or_to(self, name: str) -> bool:
         """True if `name` is either the author or one of the recipients."""
@@ -577,6 +582,7 @@ class Email(Communication):
         quote_cutoff = self._idx_of_nth_quoted_reply()  # Trim if there's many quoted replies
         includes_truncate_term = next((term for term in TRUNCATE_TERMS if term in self.text), None)
 
+        # import pdb;pdb.set_trace()
         if args.whole_file:
             num_chars = len(self.text)
         elif args.truncate:
@@ -609,8 +615,9 @@ class Email(Communication):
             else:
                 num_chars = min(self.file_size, MAX_CHARS_TO_PRINT)
 
-            # Always print whole email for 1st email for user
-            if self._is_first_for_user and num_chars < self.file_size and not self.is_duplicate and not self.is_fwded_article:
+            # Always print whole email for 1st email for actual people
+            if self._is_first_for_user and num_chars < self.file_size and \
+                    not (self.is_duplicate or self.is_fwded_article or self.is_mailing_list):
                 self.log(f"{self} Overriding cutoff {num_chars} for first email")
                 num_chars = self.file_size
 
