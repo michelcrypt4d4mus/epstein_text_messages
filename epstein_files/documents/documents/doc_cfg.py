@@ -6,21 +6,19 @@ from datetime import datetime
 from typing import Generator, Literal, Self
 
 from dateutil.parser import parse
+from rich.text import Text
 
 from epstein_files.util.constant.names import *
 from epstein_files.util.constant.strings import *
 from epstein_files.util.env import args
-from epstein_files.util.helpers.data_helpers import without_falsey
 from epstein_files.util.helpers.string_helper import optional_prefix, quote
 
 DuplicateType = Literal['bounced', 'earlier', 'quoted', 'redacted', 'same']
 Metadata = dict[str, bool | datetime | int | str | list[str | None] |dict[str, bool | str]]
 
-# Misc
 MAX_LINE_LENGTH = 135
 REPUTATION_MGMT = f'{REPUTATION} management'
 SAME = 'same'
-
 
 UNINTERESTING_CATEGORIES = [
     ACADEMIA,
@@ -101,7 +99,7 @@ NON_METADATA_FIELDS = [
 ]
 
 # Categories where we want to include the category name in the description
-DESCRIPTIVE_CATEGORIES = set([
+PREAMBLE_CATEGORIES = set([
     BOOK,
     REPUTATION,
     SKYPE_LOG,
@@ -151,33 +149,42 @@ class DocCfg:
         return self.author or ''
 
     @property
+    def category_txt(self) -> Text:
+        """Returns '???' for missing category."""
+        return styled_category(self.category)
+
+    @property
     def complete_description(self) -> str:
         """String that summarizes what is known about this document."""
         has_any_info = bool(self.description or self.author)
-        preamble = self.category if self.category in DESCRIPTIVE_CATEGORIES else ''
-        preamble = preamble if (has_any_info or preamble) else self.category
+        preamble = self.category if self.category in PREAMBLE_CATEGORIES else ''
         author_separator = ' '
+        preamble_separator = ''
         description = ''
+
+        if not (preamble or has_any_info):
+            preamble = self.category
 
         if self.category in [ACADEMIA, BOOK]:
             description = optional_prefix(quote(self.description), self.author, ' by ')  # note reversed args
         if self.category == SKYPE_LOG:
-            author_separator = " of conversation with "
+            preamble_separator = " of conversation with "
         elif self.category == REPUTATION:
-            author_separator = ": "
+            preamble_separator = ": "
         elif self.category == TWEET:
-            author_separator = " by "
+            preamble_separator = " by "
         elif self.category == FINANCE and self.author in FINANCIAL_REPORTS_AUTHORS:
             author_separator = ' report: '
         elif self.category == LEGAL and 'v.' in self.author_str:
             author_separator = ': '
 
-        author_and_description = description or optional_prefix(self.author, self.description, author_separator)
+        description = description or optional_prefix(self.author, self.description, author_separator)
+        description = optional_prefix(preamble, description, preamble_separator)
 
         if self.attached_to_email_id:
             description = optional_prefix(description, f"attached to email {self.attached_to_email_id}")
 
-        return optional_prefix(preamble, author_and_description)
+        return description
 
     @property
     def is_attribution_uncertain(self) -> bool:
@@ -189,7 +196,7 @@ class DocCfg:
         Self.is_interesting` value takes precedence. After that applies rules below.
         Returns None (not False!) if there's no firm decision.
 
-                   "+": interesting / "-": uninteresting
+                  "+" = interesting  /  "-" = uninteresting
 
           + interesting: 'crypto' category
           + interesting: INTERESTING_AUTHORS
@@ -203,7 +210,9 @@ class DocCfg:
             return False
         elif self.is_interesting is not None:
             return self.is_interesting
-        elif self.author in INTERESTING_AUTHORS:
+
+        # author check
+        if self.author in INTERESTING_AUTHORS:
             return True
 
         # Category checks
@@ -213,7 +222,9 @@ class DocCfg:
             return False
         elif self.category in UNINTERESTING_CATEGORIES:
             return False
-        elif any (self.description.startswith(pfx) for pfx in UNINTERESTING_PREFIXES):
+
+        # Description checks
+        if any (self.description.startswith(pfx) for pfx in UNINTERESTING_PREFIXES):
             return False
 
         return None
@@ -283,6 +294,9 @@ class DocCfg:
                 add_prop(_field, str(value))
 
         return props
+
+    def __rich__(self) -> Text:
+        return Text(', ').join([Text(p) for p in self._props_strs()])
 
     def __repr__(self) -> str:
         props = self._props_strs()

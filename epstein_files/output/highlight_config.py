@@ -4,6 +4,7 @@ from collections import defaultdict
 from rich.console import Console
 from rich.text import Text
 
+from epstein_files.documents.documents.categories import CATEGORY_STYLES, CATEGORY_STYLE_MAPPING
 from epstein_files.documents.documents.doc_cfg import *
 from epstein_files.documents.emails.constants import REPLY_REGEX, SENT_FROM_REGEX, XML_STRIPPED_MSG
 from epstein_files.output.highlighted_names import HighlightedNames, HighlightedText, ManualHighlight
@@ -25,22 +26,6 @@ MC2_MODEL_MANAGEMENT = f"{JEAN_LUC_BRUNEL}'s MC2 Model Management"
 QUESTION_MARKS_TXT = Text(QUESTION_MARKS, style='grey50')
 TECH_BRO = 'tech bro'
 VICTIM_COLOR = 'orchid1'
-
-CATEGORY_STYLE_MAPPING = {
-    ARTICLE: JOURNALIST,
-    BOOK: JOURNALIST,
-    LEGAL: LAWYER,
-    MONEY: FINANCE,
-    POLITICS: LOBBYIST,
-    PROPERTY: BUSINESS,
-    REPUTATION: PUBLICIST,
-    TWEET: SOCIAL,
-}
-
-CATEGORY_STYLES = {
-    JSON: 'dark_red',
-    'letter': 'medium_orchid1'
-}
 
 debug_console = Console(color_system='256')
 
