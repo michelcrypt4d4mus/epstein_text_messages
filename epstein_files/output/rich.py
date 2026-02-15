@@ -14,7 +14,7 @@ from rich.text import Text
 from rich.theme import Theme
 
 from epstein_files.output.epstein_highlighter import EpsteinHighlighter
-from epstein_files.output.highlight_config import ALL_HIGHLIGHTS, HIGHLIGHTED_NAMES
+from epstein_files.output.highlight_config import HIGHLIGHT_GROUPS
 from epstein_files.util.constant.html import CONSOLE_HTML_FORMAT, HTML_TERMINAL_THEME, PAGE_TITLE
 from epstein_files.util.constant.names import UNKNOWN
 from epstein_files.util.constant.strings import DEFAULT, EMAIL, NA, TEXT_MESSAGE
@@ -59,13 +59,13 @@ DEFAULT_TABLE_KWARGS = {
 
 HIGHLIGHTED_GROUP_COLOR_KEYS = [
     Text(highlight_group.label.replace('_', ' '), style=highlight_group.style)
-    for highlight_group in sorted(HIGHLIGHTED_NAMES, key=lambda hg: hg.label)
+    for highlight_group in sorted(HIGHLIGHT_GROUPS, key=lambda hg: hg.label)
 ]
 
 THEME_STYLES = {
     DEFAULT: 'wheat4',
     TEXT_LINK: 'deep_sky_blue4 underline',
-    **{hg.theme_style_name: hg.style for hg in ALL_HIGHLIGHTS},
+    **{hg.theme_style_name: hg.style for hg in HIGHLIGHT_GROUPS},
 }
 
 RAINBOW = [

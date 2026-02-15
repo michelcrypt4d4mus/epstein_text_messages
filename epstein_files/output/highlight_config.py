@@ -1,5 +1,6 @@
 import re
 from collections import defaultdict
+from typing import Sequence
 
 from rich.console import Console
 from rich.text import Text
@@ -7,7 +8,7 @@ from rich.text import Text
 from epstein_files.documents.documents.categories import CATEGORY_STYLES, CATEGORY_STYLE_MAPPING
 from epstein_files.documents.documents.doc_cfg import *
 from epstein_files.documents.emails.constants import REPLY_REGEX, SENT_FROM_REGEX, XML_STRIPPED_MSG
-from epstein_files.output.highlighted_names import HighlightedNames, HighlightedText, ManualHighlight
+from epstein_files.output.highlighted_names import BaseHighlight, HighlightedNames, HighlightedText, ManualHighlight
 from epstein_files.people.contact import Contact
 from epstein_files.util.constant.names import *
 from epstein_files.util.constant.strings import *
@@ -30,7 +31,7 @@ VICTIM_COLOR = 'orchid1'
 debug_console = Console(color_system='256')
 
 
-HIGHLIGHTED_NAMES: list[HighlightedNames | HighlightedText | ManualHighlight] = [
+HIGHLIGHT_GROUPS: Sequence[BaseHighlight] = [
     # This has to come first to get both stylings applied to the email subjects
     ManualHighlight(
         label='email_subject',
@@ -1857,11 +1858,9 @@ HIGHLIGHTED_NAMES: list[HighlightedNames | HighlightedText | ManualHighlight] = 
         style='cyan',
         patterns=[r'\(unknown\)']
     ),
-]
 
-# Highlight regexes for things other than names, only used by RegexHighlighter pattern matching
-HIGHLIGHTED_TEXTS = [
-    HighlightedText(
+    # Highlight regexes for things other than names, only used by RegexHighlighter pattern matching
+     HighlightedText(
         label='header_field',
         style='plum4',
         patterns=[r'^[>• ]{,4}(Date ?|From|Sent|To|C[cC]|Importance|Reply[- ]?To|Subject|Bee|B[cC]{2}|Attach(ed|ments)|Flag|Classification|[Il]nline-[Il]mages|((A|Debut du message transfer[&e]|De(stinataire)?|Envoye|Expe(cl|d)iteur|Objet|Q|Sujet) ?)):|^on behalf of'],
@@ -1914,16 +1913,14 @@ HIGHLIGHTED_TEXTS = [
     ),
 ]
 
-ALL_HIGHLIGHTS = HIGHLIGHTED_NAMES + HIGHLIGHTED_TEXTS
-JUNK_HIGHLIGHTS: HighlightedNames = [hn for hn in HIGHLIGHTED_NAMES if hn.label == JUNK][0]
-JUNK_EMAILERS = [contact.name for contact in JUNK_HIGHLIGHTS.contacts]
+HIGHLIGHTED_NAMES = [hg for hg in HIGHLIGHT_GROUPS if isinstance(hg, HighlightedNames)]
 
 
-def get_highlight_group_for_name(name: str | None) -> HighlightedNames | HighlightedText | ManualHighlight | None:
-    if name is None:
+def get_highlight_group_for_name(name: str | None) -> BaseHighlight | None:
+    if not name:
         return None
 
-    for highlight_group in HIGHLIGHTED_NAMES:
+    for highlight_group in HIGHLIGHT_GROUPS:
         if highlight_group.regex.search(name):
             return highlight_group
 
@@ -1936,7 +1933,7 @@ def get_style_for_category(category: str) -> str | None:
     elif category == SOCIAL:
         return get_style_for_category(PUBLICIST)
 
-    for highlight_group in HIGHLIGHTED_NAMES:
+    for highlight_group in HIGHLIGHT_GROUPS:
         if highlight_group.label == CATEGORY_STYLE_MAPPING.get(category, category):
             return highlight_group.style
 
@@ -1962,7 +1959,7 @@ def styled_name(name: str | None, default_style: str = DEFAULT_NAME_STYLE) -> Te
 
 
 def _print_highlighted_names_repr() -> None:
-    for hn in HIGHLIGHTED_NAMES:
+    for hn in HIGHLIGHT_GROUPS:
         if isinstance(hn, HighlightedNames):
             print(indented(repr(hn)) + ',')
             print(f"pattern: '{hn.regex.pattern}'")

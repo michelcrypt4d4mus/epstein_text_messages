@@ -13,7 +13,7 @@ from scripts.use_pickled import console, epstein_files
 from epstein_files.epstein_files import document_cls
 from epstein_files.documents.document import Document
 from epstein_files.documents.email import Email, UNINTERESTING_EMAILERS
-from epstein_files.output.highlight_config import HIGHLIGHTED_NAMES, get_style_for_name
+from epstein_files.output.highlight_config import HIGHLIGHT_GROUPS, get_style_for_name
 from epstein_files.output.highlighted_names import HighlightedNames
 from epstein_files.util.constant.names import *
 from epstein_files.util.constants import CONFIGS_BY_ID, EmailCfg
@@ -118,7 +118,7 @@ def print_partial_names_used_in_regexes():
     names = []
     partial_name_counts = defaultdict(int)
 
-    for highlight in HIGHLIGHTED_NAMES:
+    for highlight in HIGHLIGHT_GROUPS:
         if type(highlight) != HighlightedNames:
             continue
         elif not highlight.should_match_first_last_name:

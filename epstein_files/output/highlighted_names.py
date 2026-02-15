@@ -14,6 +14,7 @@ from epstein_files.util.logging import logger
 REGEX_STYLE_PREFIX = 'regex'
 
 
+# TODO: rename HighlightGroup
 @dataclass(kw_only=True)
 class BaseHighlight:
     """

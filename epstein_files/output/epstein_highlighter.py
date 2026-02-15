@@ -7,7 +7,7 @@ from rich.text import Text
 
 from epstein_files.documents.documents.doc_cfg import *
 from epstein_files.output.highlighted_names import REGEX_STYLE_PREFIX
-from epstein_files.output.highlight_config import ALL_HIGHLIGHTS
+from epstein_files.output.highlight_config import HIGHLIGHT_GROUPS
 from epstein_files.util.env import args
 from epstein_files.util.helpers.data_helpers import sort_dict
 from epstein_files.util.logging import logger
@@ -16,7 +16,7 @@ from epstein_files.util.logging import logger
 class EpsteinHighlighter(RegexHighlighter):
     """Finds and colors interesting keywords based on the above config."""
     base_style = f"{REGEX_STYLE_PREFIX}."
-    highlights = [highlight_group.regex for highlight_group in ALL_HIGHLIGHTS]
+    highlights = [highlight_group.regex for highlight_group in HIGHLIGHT_GROUPS]
     highlight_counts = defaultdict(int)
 
     def highlight(self, text: Text) -> None:
