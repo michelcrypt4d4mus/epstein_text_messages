@@ -1,4 +1,6 @@
-"""Help with strings."""
+"""
+String manipulation.
+"""
 import re
 
 from epstein_files.util.constant.strings import QUESTION_MARKS_REGEX
@@ -16,8 +18,7 @@ def has_line_starting_with(s: str | list[str], pfxes: str | list[str], limit: in
 
 
 def indented(s: str, spaces: int = 4, prefix: str = '') -> str:
-    indent = ' ' * spaces
-    indent += prefix
+    indent = (' ' * spaces) + prefix
     return indent + f"\n{indent}".join(s.split('\n'))
 
 
