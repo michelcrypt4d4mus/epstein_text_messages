@@ -237,7 +237,7 @@ HIGHLIGHT_GROUPS: Sequence[BaseHighlight] = [
             r"Coinbase",
             r"coins?(\s*Center)?",
             r"Cory\s*Fields",  # bitcoin dev
-            r"cr[iy]?pto\s*(coins?|currenc(y|ies)|PR\s*Lab)?",
+            r"cr[iy]?pto\s*(coins?|currenc(y|ies)|PR\s*Lab)?(\s*Partners(\s*II)?)?",
             r"crypto(prlab)?",
             r"(Dan\s*)?Morehead",
             r"Digital\s*Currenc(ies|y)(\s*Initiative)?",

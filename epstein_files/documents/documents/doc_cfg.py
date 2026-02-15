@@ -13,13 +13,14 @@ from epstein_files.util.constant.strings import *
 from epstein_files.util.env import args
 from epstein_files.util.helpers.data_helpers import without_falsey
 from epstein_files.util.helpers.file_helper import is_doj_file
-from epstein_files.util.helpers.string_helper import optional_prefix, quote
+from epstein_files.util.helpers.string_helper import join_truthy, quote
 
 DuplicateType = Literal['bounced', 'earlier', 'quoted', 'redacted', 'same']
 Metadata = dict[str, bool | datetime | int | str | list[str | None] |dict[str, bool | str]]
 
 MAX_LINE_LENGTH = 135
 SAME = 'same'
+ZUBAIR_AND_ANYA = f"{ZUBAIR_KHAN} and Anya Rasulova"
 
 INTERESTING_CATEGORIES = [
     CRYPTO,
@@ -176,7 +177,7 @@ class DocCfg:
             preamble = self.category
 
         if self.category == BOOK or (self.category == ACADEMIA and self.author and self.description):
-            description = optional_prefix(quote(self.description), self.author, ' by ')  # note reversed args
+            description = join_truthy(quote(self.description), self.author, ' by ')  # note reversed args
         elif self.category == SKYPE_LOG:
             preamble_separator = " of conversation with "
         elif (self.category == LEGAL and 'v.' in self.author_str) or self.category == REPUTATION:
@@ -187,11 +188,14 @@ class DocCfg:
             if (self.author in FINANCIAL_REPORTS_AUTHORS and first_char.isupper()) or first_char in ["'", '"']:
                 author_separator = ' report: '
 
-        description = description or optional_prefix(self.author, self.description, author_separator)
-        description = optional_prefix(preamble, description, preamble_separator)
+        description = description or join_truthy(self.author, self.description, author_separator)
+        description = join_truthy(preamble, description, preamble_separator)
+
+        if self.author == INSIGHTS_POD:
+            description = join_truthy(description, f"from {ZUBAIR_AND_ANYA}")
 
         if self.attached_to_email_id:
-            description = optional_prefix(description, f"attached to email {self.attached_to_email_id}", sep=', ')
+            description = join_truthy(description, f"attached to email {self.attached_to_email_id}", sep=', ')
 
         return description
 
@@ -295,7 +299,10 @@ class DocCfg:
                     props['cfg.category_txt'] = category_txt
             else:
                 props['cfg.category_txt'] = category_txt
-                # props['cfg.category_style'] = category_txt.style
+
+        # Remove duplicated / copied field
+        if (author_uncertain := props.get('author_uncertain')) and author_uncertain == props.get('author_reason'):
+            props.pop('author_reason')
 
         if self.timestamp:
             props['timestamp'] = self.timestamp
@@ -316,14 +323,14 @@ class DocCfg:
     def __post_init__(self):
         self.category = self.category.strip().lower()
 
+        if self.author_uncertain and isinstance(self.author_uncertain, str):
+            self.author_reason = self.author_uncertain  # Copy field
+
         if self.category in [ARTS, POLITICS]:
             self.category = self.category.removesuffix('s')
 
         if self.duplicate_of_id or self.duplicate_ids:
             self.dupe_type = self.dupe_type or SAME
-
-        if self.author_uncertain and isinstance(self.author_uncertain, str):
-            self.author_reason = self.author_uncertain
 
     def duplicate_cfgs(self) -> Generator[Self, None, None]:
         """Create synthetic `DocCfg` objects that set the 'duplicate_of_id' field to point back to this object."""

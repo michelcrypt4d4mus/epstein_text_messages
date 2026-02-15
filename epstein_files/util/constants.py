@@ -1355,9 +1355,8 @@ TRUMP_DISCLOSURES = f"Donald Trump financial disclosures from U.S. Office of Gov
 UBS_CIO_REPORT = 'CIO Monthly Extended report'
 VALAR_FUND = f"{PETER_THIEL}'s {VALAR_VENTURES} fund"
 WOMEN_EMPOWERMENT = f"Women Empowerment (WE) conference"
-ZUBAIR_AND_ANYA = f"{ZUBAIR_KHAN} and Anya Rasulova"
 
-OTHER_FILES_BOOKS = [
+OTHER_FILES_BOOK = [
     DocCfg(id='017088', author=ALAN_DERSHOWITZ, description=f'"Taking the Stand: My Life in the Law" (draft)', date='2012-04-02'),  # Slow file
     DocCfg(id='013501', author='Arnold J. Mandell', description=f'The Nearness Of Grace: A Personal Science Of Spiritual Transformation', date='2005-01-01'),
     DocCfg(id='012899', author='Ben Goertzel', description=f'Engineering General Intelligence: A Path to Advanced AGI Via Embodied Learning and Cognitive Synergy', date='2013-09-19'),
@@ -1915,12 +1914,12 @@ OTHER_FILES_SOCIAL = [
     DocCfg(id='030884', author='Ed Krassenstein', category=TWEET),
     DocCfg(id='033236', category=TWEET, description=f'selection about Ivanka Trump in Arabic', date='2017-05-20'),
     # InsightsPod
-    DocCfg(id='028815', author=ZUBAIR_AND_ANYA, description=f"{INSIGHTS_POD} business plan", date='2016-08-20', attached_to_email_id='033171'),
-    DocCfg(id='011170', author=ZUBAIR_AND_ANYA, description=f'{INSIGHTS_POD} collected tweets from #Brexit case study', date='2016-06-23', attached_to_email_id='033171'),
-    DocCfg(id='032324', author=ZUBAIR_AND_ANYA, description=f"{INSIGHTS_POD} election social media trend analysis", date='2016-11-05', attached_to_email_id='032323'),
-    DocCfg(id='032281', author=ZUBAIR_AND_ANYA, description=f"{INSIGHTS_POD} eleciton social media trends report", date='2016-10-25', attached_to_email_id='032280'),
-    DocCfg(id='028988', author=ZUBAIR_AND_ANYA, description=f"{INSIGHTS_POD} pitch deck", date='2016-08-20', attached_to_email_id='033171'),
-    DocCfg(id='026627', author=ZUBAIR_AND_ANYA, description=f"{INSIGHTS_POD} report on the presidential debate", attached_to_email_id='026626'),
+    DocCfg(id='028815', author=INSIGHTS_POD, description=f"business plan", date='2016-08-20', attached_to_email_id='033171'),
+    DocCfg(id='011170', author=INSIGHTS_POD, description=f'case study of social media vibe analysis using tweets from #Brexit', date='2016-06-23', attached_to_email_id='033171'),
+    DocCfg(id='032324', author=INSIGHTS_POD, description=f"social media election sentiment analysis", date='2016-11-05', attached_to_email_id='032323'),
+    DocCfg(id='032281', author=INSIGHTS_POD, description=f"social media election sentiment report", date='2016-10-25', attached_to_email_id='032280'),
+    DocCfg(id='028988', author=INSIGHTS_POD, description=f"pitch deck", date='2016-08-20', attached_to_email_id='033171'),
+    DocCfg(id='026627', author=INSIGHTS_POD, description=f"report on impact of presidential debate", attached_to_email_id='026626'),
     DocCfg(id='022213', description=f"{SCREENSHOT} Facebook group called 'Shit Pilots Say' disparaging a 'global girl'"),
 ]
 
@@ -2278,7 +2277,7 @@ OTHER_FILES_CATEGORIES = [
     ACADEMIA,
     f"{ARTICLE}s",
     ARTS,
-    f"{BOOK}s",
+    BOOK,
     f"{CONFERENCE}s",
     CRYPTO,
     FINANCE,

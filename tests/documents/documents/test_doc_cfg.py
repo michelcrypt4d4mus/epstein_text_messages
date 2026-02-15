@@ -160,9 +160,13 @@ def test_is_of_interest(
 
 
 
-def test_getty_book(epstein_files):
+def test_books(epstein_files):
     book = epstein_files.get_id('010912', required_type=OtherFile)
+    assert book.config.category == BOOK
     assert book.config.complete_description == 'Gordon Getty "Free Growth and Other Surprises" (draft)'
+    book = epstein_files.get_id('018438', required_type=OtherFile)
+    assert book.config.category == BOOK
+    assert book.config.complete_description == 'book by Clarisse Thorn: "The S&M Feminist"'
 
 
 def _oversight_cfg(category: str = '', **kwargs) -> DocCfg:
