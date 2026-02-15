@@ -11,10 +11,11 @@ from epstein_files.util.helpers.file_helper import extract_file_id, is_doj_file
 class DocLocation:
     """
     Attributes:
-        `external_url` (str): a web URL where the source document can theoretically be seen
-        `local_path` (Path): local path of the document's underlying .txt file
-        `local_pdf_path` (Path, optional): local path to the source PDF the .txt was extracted from (if any)
-        `source_url` (str, optional): official government source URL
+        external_url (str): a web URL where the source document can theoretically be seen
+        file_id (str): ID extracted from the filename
+        local_path (Path): local path of the document's underlying .txt file
+        local_pdf_path (Path, optional): local path to the source PDF the .txt was extracted from (if any)
+        source_url (str, optional): official government source URL
     """
     external_url: str
     file_id: str = field(init=False)
