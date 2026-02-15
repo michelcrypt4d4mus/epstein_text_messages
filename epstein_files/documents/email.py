@@ -221,17 +221,6 @@ class Email(Communication):
         return epstein_media_doc_link_markup(self.url_slug, self.author_style)
 
     @property
-    def subheader(self) -> Text:
-        txt = Text(f"OCR text of ", SUBHEADER_STYLE).append('fwded article' if self.is_fwded_article else 'email')
-        txt.append(' from ').append(self.author_txt)
-
-        if self.config and self.config.is_attribution_uncertain:
-            txt.append(f" {QUESTION_MARKS}", style=self.author_style)
-
-        txt.append(' to ').append(self.recipients_txt())
-        return txt.append(highlighter(f" probably sent at {self.timestamp}"))
-
-    @property
     def is_fwded_article(self) -> bool:
         if self.config is None:
             return False
@@ -243,8 +232,7 @@ class Email(Communication):
     @property
     def is_interesting(self) -> bool | None:
         """TODO: currently default to True for HOUSE_OVERSIGHT_FILES, false for DOJ."""
-        if self.config and self.config.is_of_interest is not None:
-            return self.config.is_of_interest
+        return False if self.is_mailing_list else super().is_interesting
 
     @property
     def is_junk_mail(self) -> bool:
@@ -274,6 +262,17 @@ class Email(Communication):
         metadata = super().metadata
         metadata.update({k: v for k, v in local_metadata.items() if v and k in METADATA_FIELDS})
         return metadata
+
+    @property
+    def subheader(self) -> Text:
+        txt = Text(f"OCR text of ", SUBHEADER_STYLE).append('fwded article' if self.is_fwded_article else 'email')
+        txt.append(' from ').append(self.author_txt)
+
+        if self.config and self.config.is_attribution_uncertain:
+            txt.append(f" {QUESTION_MARKS}", style=self.author_style)
+
+        txt.append(' to ').append(self.recipients_txt())
+        return txt.append(highlighter(f" probably sent at {self.timestamp}"))
 
     @property
     def subject(self) -> str:
