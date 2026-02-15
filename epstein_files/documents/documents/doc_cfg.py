@@ -193,7 +193,9 @@ class DocCfg:
         author_separator = ''
         description = ''
 
-        # If description is set it must be fully constructed
+        # If description is set at all in one of these if/else checks must be fully constructed
+        if self.replace_text_with and not self.description:
+            return ''
         if self.category == BOOK or (self.category == ACADEMIA and self.author and self.description):
             description = join_truthy(self.description, self.author, ' by ')  # note reversed args
             description = join_truthy(preamble, description)
