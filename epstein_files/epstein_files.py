@@ -243,7 +243,6 @@ class EpsteinFiles:
             'people': {
                 contact.name: highlighted_group.info_for(contact.name, include_category=True)
                 for highlighted_group in HIGHLIGHTED_NAMES
-                if isinstance(highlighted_group, HighlightedNames)
                 for contact in highlighted_group.contacts
                 if contact.info
             }

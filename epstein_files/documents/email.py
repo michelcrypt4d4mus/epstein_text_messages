@@ -28,7 +28,7 @@ from epstein_files.util.constant.urls import URL_SIGNIFIERS
 from epstein_files.util.constants import *
 from epstein_files.util.helpers.data_helpers import AMERICAN_TIME_REGEX, TIMEZONE_INFO, collapse_newlines, remove_timezone, uniquify
 from epstein_files.util.helpers.file_helper import extract_file_id, file_stem_for_id
-from epstein_files.output.highlight_config import JUNK_EMAILERS, get_style_for_name
+from epstein_files.output.highlight_config import HIGHLIGHTED_NAMES, HighlightedNames, get_style_for_name
 from epstein_files.util.logging import logger
 
 BAD_FIRST_LINE_REGEX = re.compile(r'^(>>|Grant_Smith066474"eMailContent.htm|LOVE & KISSES)$')
@@ -46,11 +46,19 @@ DATE_HEADER_REGEX = re.compile(r'(?:Date|Sent):? +(?!by|from|to|via)([^\n]{6,})\
 TIMESTAMP_LINE_REGEX = re.compile(r"\d+:\d+")
 LOCAL_EXTRACT_REGEX = re.compile(r"_\d$")
 
+# Junk mail
+JUNK_EMAILERS = [
+    contact.name
+    for junk_hg in HIGHLIGHTED_NAMES if junk_hg.category == JUNK
+    for contact in junk_hg.contacts
+]
+
 BCC_LISTS = JUNK_EMAILERS + MAILING_LISTS
 TRUNCATE_EMAILS_BY = BCC_LISTS + TRUNCATE_EMAILS_FROM
 REWRITTEN_HEADER_MSG = "(janky OCR header fields were prettified, check source if something seems off)"
 APPEARS_IN = 'appears in'
 
+# numbers
 MAX_NUM_HEADER_LINES = 14
 MAX_QUOTED_REPLIES = 1
 NUM_WORDS_IN_LAST_QUOTE = 6

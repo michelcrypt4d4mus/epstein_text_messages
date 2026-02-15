@@ -4,7 +4,7 @@ Constants and methods for dentifying people in email headers.
 import re
 
 from epstein_files.people.contact import Contact
-from epstein_files.output.highlight_config import HIGHLIGHTED_NAMES
+from epstein_files.output.highlight_config import HIGHLIGHT_GROUPS
 from epstein_files.output.highlighted_names import HighlightedNames
 from epstein_files.util.constant.names import *
 from epstein_files.util.constant.strings import REDACTED
@@ -53,7 +53,7 @@ ADDITIONAL_CONTACTS = [
     Contact('Steven Victor MD'),
 ]
 
-HIGHLIGHTED_CONTACTS = flatten([hn.contacts for hn in HIGHLIGHTED_NAMES if isinstance(hn, HighlightedNames)])
+HIGHLIGHTED_CONTACTS = flatten([hn.contacts for hn in HIGHLIGHT_GROUPS if isinstance(hn, HighlightedNames)])
 ALL_CONTACTS = HIGHLIGHTED_CONTACTS + ADDITIONAL_CONTACTS
 CONTACTS_DICT = {c.name: c for c in ALL_CONTACTS}
 EMAILER_ID_REGEXES = {c.name: c.emailer_regex for c in ALL_CONTACTS}
