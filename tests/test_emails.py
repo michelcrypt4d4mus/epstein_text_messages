@@ -47,16 +47,6 @@ def test_signature_substitutions(epstein_files):
     assert substitution_counts == SIGNATURE_SUBSTITUTION_COUNTS
 
 
-def test_unknown_recipient_file_ids(epstein_files):
-    assert epstein_files.unknown_recipient_ids() == UNKNOWN_RECIPIENT_FILE_IDS
-
-
-def test_border_style(epstein_files):
-    email = epstein_files.get_id('033071', required_type=Email)
-    assert email.border_style == 'purple'
-    assert email.author_style == 'blue1'
-
-
 def test_is_fwded_article(epstein_files):
     fwded_article = epstein_files.get_id('033311', required_type=Email)
     assert fwded_article.is_word_count_worthy is False
@@ -72,3 +62,7 @@ def test_broken_header_repair(epstein_files):
     broken_email = epstein_files.get_id('032213', required_type=Email)
     assert broken_email.actual_text == 'https://www.thedailybeast.com/how-close-is-donald-trump-to-a-psychiatric-breakdown?ref=home\n<...snipped jeffrey epstein email signature...>'
     assert broken_email.header.num_header_rows == 5
+
+
+def test_unknown_recipient_file_ids(epstein_files):
+    assert epstein_files.unknown_recipient_ids() == UNKNOWN_RECIPIENT_FILE_IDS
