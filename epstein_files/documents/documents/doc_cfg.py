@@ -128,7 +128,7 @@ class DocCfg:
         id (str): ID of file
         author (Name): Author of the document (if any)
         author_reason (str, optional): Optional explanation of why we are sure this email can be attributed to this author
-        author_uncertain_msg(str | bool, optional): Like setting `author_reason` but `is_attribution_uncertain` will be False
+        author_uncertain(str | bool, optional): Like setting `author_reason` but `is_attribution_uncertain` will be False
         category (str, optional): Type of file
         date (str | None): Parsed to a datetime by timestamp() if it exists
         dupe_type (DuplicateType | None): The type of duplicate this file is or its 'duplicate_ids' are

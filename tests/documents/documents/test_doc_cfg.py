@@ -108,7 +108,7 @@ def test_complete_description(
     empty_house_cfg.attached_to_email_id = junk_email_cfg.id
     assert empty_house_cfg.complete_description == f"attached to email {junk_email_cfg.id}"
     # Finance
-    assert finance_report.complete_description == f"{BOFA_MERRILL} report: Grapes"
+    assert finance_report.complete_description == f"{BOFA_MERRILL} report: \"Grapes\""
     # Harvard
     assert harvard_poetry_cfg.complete_description == 'Harvard poetry stuff from Lisa New'
     # Junk

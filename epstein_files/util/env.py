@@ -34,7 +34,7 @@ parser = ArgumentParser(description="Parse epstein OCR docs and generate HTML pa
 parser.add_argument('--make-clean', action='store_true', help='delete all HTML build artifact and write latest URLs to .urls.env')
 parser.add_argument('--name', '-n', action='append', dest='names', help='specify the name(s) whose communications should be output')
 parser.add_argument('--overwrite-pickle', '-op', action='store_true', help='re-parse the files and ovewrite cached data')
-parser.add_argument('--from-pickle-path', '-fp', help='path to load saved data from', default=PICKLED_PATH)
+parser.add_argument('--pickle-path', '-fp', help='path to load saved data from', default=PICKLED_PATH)
 
 output = parser.add_argument_group('OUTPUT', 'Options used by epstein_generate.')
 output.add_argument('--all-emails', '-ae', action='store_true', help='all the emails instead of just the interesting ones')
