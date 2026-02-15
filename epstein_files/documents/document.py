@@ -4,7 +4,7 @@ from dataclasses import asdict, dataclass, field
 from datetime import datetime
 from pathlib import Path
 from subprocess import run
-from typing import Callable, ClassVar, Self, Sequence, Type, TypeVar
+from typing import Callable, ClassVar, Mapping, Self, Sequence, Type, TypeVar
 
 from rich.console import Console, ConsoleOptions, Group, RenderResult
 from rich.markup import escape
@@ -20,15 +20,16 @@ from epstein_files.documents.emails.constants import FALLBACK_TIMESTAMP
 from epstein_files.documents.emails.email_header import DETECT_EMAIL_REGEX
 from epstein_files.output.rich import (INFO_STYLE, NA_TXT, SKIPPED_FILE_MSG_PADDING, SYMBOL_STYLE,
      add_cols_to_table, build_table, console, highlighter, join_texts, styled_key_value, link_text_obj,
-     parenthesize, wrap_in_markup_style)
+     parenthesize, prefix_with, styled_dict, wrap_in_markup_style)
 from epstein_files.util.constant.names import *
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constant.urls import *
 from epstein_files.util.constants import CONFIGS_BY_ID, DOJ_FILE_STEM_REGEX, MAX_CHARS_TO_PRINT
-from epstein_files.util.helpers.data_helpers import collapse_newlines, date_str, patternize, remove_zero_time, without_falsey
-from epstein_files.util.env import DOCS_DIR, DOJ_PDFS_20260130_DIR
+from epstein_files.util.helpers.data_helpers import (collapse_newlines, date_str, patternize, prefix_keys,
+     remove_zero_time, without_falsey)
 from epstein_files.util.helpers.file_helper import (coerce_file_path, extract_file_id, file_size, file_size_str,
      file_size_to_str, is_local_extract_file)
+from epstein_files.util.env import DOCS_DIR, DOJ_PDFS_20260130_DIR
 from epstein_files.util.logging import DOC_TYPE_STYLES, FILENAME_STYLE, logger
 
 ALT_LINK_STYLE = 'white dim'
@@ -130,6 +131,26 @@ class Document:
     @property
     def date_str(self) -> str | None:
         return date_str(self.timestamp)
+
+    @property
+    def debug_dict(self) -> Mapping[str, bool | str | Path | None]:
+        """Information about this document: config, locations, etc."""
+        config_info = prefix_keys('config.', self.config.important_props if self.config else {})
+        locations_dict = dict(self.locations.as_dict)
+
+        if config_info.get('id') == self.file_id:
+            config_info.pop('id')
+
+        if locations_dict.get('source_url') == locations_dict.get('external_url', 'blah'):
+            locations_dict.pop('external_url')
+
+        return {**locations_dict, **config_info}
+
+    @property
+    def debug_dict_txt(self) -> Text:
+        """Prettified version of `self.debug_dict` suitable for printing."""
+        txt_lines = styled_dict(self.debug_dict, sep=': ')
+        return prefix_with(txt_lines, ' ', pfx_style='grey', indent=2)
 
     @property
     def duplicate_file_txt(self) -> Text:

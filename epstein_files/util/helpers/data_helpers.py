@@ -84,6 +84,11 @@ def patternize(_pattern: str | re.Pattern) -> re.Pattern:
     return _pattern if isinstance(_pattern, re.Pattern) else re.compile(fr"({_pattern})", re.IGNORECASE)
 
 
+def prefix_keys(prefix: str, _dict: dict[str, T]) -> dict[str, T]:
+    """Add `prefix` to the front of all the keys in `_dict`."""
+    return {f"{prefix}{k}": v for k, v in _dict.items()}
+
+
 def remove_timezone(timestamp: datetime) -> datetime:
     if timestamp.tzinfo:
         timestamp = timestamp.astimezone(timezone.utc).replace(tzinfo=None)
@@ -100,8 +105,6 @@ def sort_dict(d: dict[str | None, int] | dict[str, int]) -> list[tuple[str | Non
         return sorted(d.items(), key=sort_key)
     except TypeError as e:
         return sorted(d.items(), key=lambda kv: f"Z{alpha_key(kv)}" if '.' in (kv[0] or '') else alpha_key(kv))
-
-
 
 
 def uniquify(_list: list[T]) -> list[T]:
