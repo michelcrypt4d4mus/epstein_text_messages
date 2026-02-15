@@ -39,7 +39,7 @@ DOJ_PAGE_LINK_MSG = 'WIP page with documents from the Epstein Files Transparency
 
 INFO_STYLE = 'white dim italic'
 KEY_STYLE = 'dim'
-KEY_STYL_ALT = 'gray58 bold'
+KEY_STYLE_ALT = 'gray58 bold'
 LAST_TIMESTAMP_STYLE = 'wheat4'
 OTHER_PAGE_MSG_STYLE = 'gray78 dim'
 STR_VAL_STYLE = 'cornsilk1 italic'
@@ -335,7 +335,7 @@ def styled_key_value(
 ) -> Text:
     """Generate `Text` for 'key=value'."""
     if '.' in key and key_style == KEY_STYLE:
-        key_style = KEY_STYL_ALT
+        key_style = KEY_STYLE_ALT
 
     if isinstance(val, Text):
         val_txt = val
