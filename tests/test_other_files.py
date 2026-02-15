@@ -248,7 +248,7 @@ def test_interesting_file_count(epstein_files):
 
 def test_other_files_author_count(epstein_files):
     known_author_count = Document.known_author_count(epstein_files.other_files)
-    assert known_author_count == 412
+    assert known_author_count == 417
     assert len(epstein_files.json_files) == 19
 
 
