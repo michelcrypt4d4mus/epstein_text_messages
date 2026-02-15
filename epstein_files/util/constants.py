@@ -2164,7 +2164,7 @@ OTHER_FILES_CRYPTO = [
     ),
     DocCfg(id='EFTA00797613', description='Alphabit crypto fund pitch deck', attached_to_email_id='EFTA00955063'),
     DocCfg(id='EFTA00811666', description='asset valuations of Epstein\'s holdings, includes "Coinbase via grat"'),
-    DocCfg(id='EFTA01088644', author=BLOCKCHAIN_CAPITAL, description="deck", date='2015-10-01'),
+    DocCfg(id='EFTA01088644', author=BLOCKCHAIN_CAPITAL, description="pitch deck", date='2015-10-01'),
     DocCfg(id='EFTA00604942', author=BLOCKCHAIN_CAPITAL, description="Investor Update", date='2015-10-01'),
     # Coinbase
     DocCfg(
@@ -2179,11 +2179,11 @@ OTHER_FILES_CRYPTO = [
     DocCfg(id='EFTA01120975', author=COINBASE, description='Series B stock purchase', date='2013-12-12', truncate_to=MAX_CHARS_TO_PRINT),
     DocCfg(id='EFTA01121035', author=COINBASE, description='Series C preferred stock purchase', date='2014-10-24'),
     # CCP (Brock Pierce / Blockchain Capital)
-    DocCfg(id='EFTA01089506', description=f"{CRYPTO_CURRENCY_PARTNERS_II} investor report", date='2014-11-01'),
-    DocCfg(id='EFTA01093509', description=f"{CRYPTO_CURRENCY_PARTNERS_II} partnership draft", truncate_to=MAX_CHARS_TO_PRINT * 2),
-    DocCfg(id='EFTA01089500', description=f"{CRYPTO_CURRENCY_PARTNERS_II} Investor Update", date='2015-01-01'),
-    DocCfg(id='EFTA01089526', description=f"{CRYPTO_CURRENCY_PARTNERS_II} investor report", date='2014-08-01'),
-    DocCfg(id='EFTA00621239', description=f"{CRYPTO_CURRENCY_PARTNERS_II} investor report", date='2014-10-01'),
+    DocCfg(id='EFTA01089506', author=CRYPTO_CURRENCY_PARTNERS_II, description=f"investor report", date='2014-11-01'),
+    DocCfg(id='EFTA01089500', author=CRYPTO_CURRENCY_PARTNERS_II, description=f"Investor Update", date='2015-01-01'),
+    DocCfg(id='EFTA01089526', author=CRYPTO_CURRENCY_PARTNERS_II, description=f"investor report", date='2014-08-01'),
+    DocCfg(id='EFTA00621239', author=CRYPTO_CURRENCY_PARTNERS_II, description=f"investor report", date='2014-10-01'),
+    DocCfg(id='EFTA01093509', author=CRYPTO_CURRENCY_PARTNERS_II, description=f"partnership draft", truncate_to=MAX_CHARS_TO_PRINT * 2),
     # Crypto PR Lab
     DocCfg(id='EFTA00295126', author=CRYPTO_PR_LAB, description="accounting statement"),
     DocCfg(id='EFTA01299820', author=CRYPTO_PR_LAB, description="bank transfer"),

@@ -42,13 +42,19 @@ from epstein_files.output.rich import bool_txt, console, highlighter, styled_key
 
 #     console.line(2)
 
-print_interesting_doc_panels_and_props(epstein_files)
-sys.exit()
-# # Print all DOJ files from biggest to smallest.
-# for i, doc in enumerate(sorted(epstein_files.doj_files, key=lambda f: -f.length)):
-#     # txt = Text('').append(Text('interesting', style='green') if doc.is_interesting else Text('not interesting', style='red'))
-#     # console.print(txt.append(': ') + doc.summary)
-#     console.print(doc)
+#print_interesting_doc_panels_and_props(epstein_files)
+
+# Print CRYPTO_CURRENCY_PARTNERS_II OtherFiles
+for i, doc in enumerate(epstein_files.other_files):
+    if CRYPTO_CURRENCY_PARTNERS_II.lower() in doc.preview_text.lower():
+        if not doc.config:
+            doc.log(f"No config for {doc.file_id}\n", logging.ERROR)
+
+        console.line(2)
+        console.print(doc.preview_text)
+        console.line(2)
+        # import pdb;pdb.set_trace()
+        console.print(doc)
 
 sys.exit()
 
