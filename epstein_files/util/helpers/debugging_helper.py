@@ -1,10 +1,11 @@
 from rich.padding import Padding
 from rich.text import Text
 
+from epstein_files.documents.emails.constants import FALLBACK_TIMESTAMP
 from epstein_files.documents.other_file import OtherFile
 from epstein_files.util.helpers.string_helper import quote
 from epstein_files.util.logging import logger
-from epstein_files.output.rich import bool_txt, console, styled_key_value, styled_dict
+from epstein_files.output.rich import bool_txt, console, indent_txt, styled_key_value, styled_dict
 
 
 def _show_timestamps(epstein_files):
@@ -20,10 +21,16 @@ def _verify_filenames(epstein_files):
             print(f"'{file_path}' is not in list of {len(doc_filenames)} Document obj filenames!")
 
 
-def print_interesting_doc_panels_and_props(epstein_files):
+def print_interesting_doc_panels_and_props(epstein_files, sort_by_category: bool = True):
     num_printed = 0
+    num_interesting = 0
 
-    for doc in epstein_files.all_documents:
+    if sort_by_category:
+        docs = sorted(epstein_files.all_documents, key=lambda d: [d.category, d.timestamp or FALLBACK_TIMESTAMP])
+    else:
+        docs = epstein_files.all_documents
+
+    for doc in docs:
         if not isinstance(doc, OtherFile):
             continue
         elif doc.is_interesting is None and doc.config is None:
@@ -40,13 +47,17 @@ def print_interesting_doc_panels_and_props(epstein_files):
             props = {'doc.is_interesting': doc.is_interesting}
 
         # console.print(doc.summary_panel)
-        console.print(Padding(doc.file_info_panel(), (0, 0, 1, 0)))
+        console.print(doc.file_info_panel())
         from epstein_files.util.env import args
 
         if args.debug:
-            console.print(styled_dict(props, sep=': '))
+            props_table = styled_dict(props, sep=': ')
+            props_table = Padding(indent_txt(props_table, 12), (0, 0, 1, 0))
+            console.print(props_table)
 
         num_printed += 1
-        console.line()
+        num_interesting += int(doc.is_interesting or False)
+        # console.line()
 
-    logger.warning(f"Printed {num_printed} object configs.")
+    print('')
+    logger.warning(f"Printed {num_printed} object configs, {num_interesting} interesting ones.\n\n")

@@ -1,6 +1,7 @@
 import re
 from dataclasses import dataclass, field
 from datetime import datetime
+from typing import ClassVar
 
 from rich.text import Text
 
@@ -54,3 +55,7 @@ class Communication(Document):
     def external_links_txt(self, _style: str = '', include_alt_links: bool = True) -> Text:
         """Overrides super() method to apply self.author_style."""
         return super().external_links_txt(self.author_style, include_alt_links=include_alt_links)
+
+    @classmethod
+    def default_category(self) -> str:
+        return type(self).__name__.lower()

@@ -261,20 +261,18 @@ class DocCfg:
         elif self.is_interesting is not None:
             return self.is_interesting
 
-        # author check
+        # author field check
         if self.author in INTERESTING_AUTHORS:
             return True
-
-        # Category checks
-        if self.category in INTERESTING_CATEGORIES:
+        # category field checks
+        elif self.category in INTERESTING_CATEGORIES:
             return True
         elif self.category == FINANCE and self.author is not None:
             return False
         elif self.category in UNINTERESTING_CATEGORIES:
             return False
-
-        # Description checks
-        if any (self.description.startswith(pfx) for pfx in UNINTERESTING_PREFIXES):
+        # description field checks
+        elif any (self.description.startswith(pfx) for pfx in UNINTERESTING_PREFIXES):
             return False
 
         # HOUSE_OVERSIGHT files default True, DOJ files default False or None

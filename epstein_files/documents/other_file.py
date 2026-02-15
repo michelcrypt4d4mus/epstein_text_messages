@@ -61,10 +61,6 @@ class OtherFile(Document):
         return self.config.complete_description if self.config else ''
 
     @property
-    def category(self) -> str:
-        return self.config.category if self.config else ''
-
-    @property
     def category_txt(self) -> Text:
         """Returns '???' for missing category."""
         # TODO: create synthetic DocCfg so we don't have to handle QUESTION_MARKS return here
