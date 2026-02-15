@@ -487,7 +487,7 @@ class Email(Communication):
         text, num_plists_stripped = XML_PLIST_REGEX.subn(XML_STRIPPED_MSG, text)
 
         if num_plists_stripped:
-            self.warn(f"Replaced {num_plists_stripped} XML plists...")
+            self.log(f"Replaced {num_plists_stripped} XML plists...")
 
         return collapse_newlines(text).strip()
 
