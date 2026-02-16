@@ -75,9 +75,15 @@ CONFIRMED_TEXTS_CONFIG = [
     TextCfg(id='027217', author=SOON_YI_PREVIN, author_reason='refs marriage to Woody Allen'),
     TextCfg(id='027244', author=SOON_YI_PREVIN, author_reason='refs Woody Allen'),
     TextCfg(id='027257', author=SOON_YI_PREVIN, author_reason=f"Woody Allen in {PARTICIPANTS_FIELD}"),
-    TextCfg(id='027460', author=STEVE_BANNON, author_reason='Discusses leaving scotland when Bannon was confirmed in Scotland, also NYT'),
+    TextCfg(
+        id='027460',
+        author=STEVE_BANNON,
+        author_reason='Discusses leaving scotland when Bannon was confirmed in Scotland, also NYT',
+        is_interesting=True,
+        comment='bannon and jabor',
+    ),
     TextCfg(id='027307', author=STEVE_BANNON, author_reason='texts mention "Epstein Bannon Kurz"'),
-    TextCfg(id='027278', author=TERJE_ROD_LARSEN, author_reason=PARTICIPANTS_FIELD),
+    TextCfg(id='027278', author=TERJE_ROD_LARSEN, author_reason=PARTICIPANTS_FIELD, is_interesting=True),
     TextCfg(id='027255', author=TERJE_ROD_LARSEN, author_reason=PARTICIPANTS_FIELD),
 ]
 
@@ -100,14 +106,11 @@ UNCONFIRMED_TEXTS_CONFIG = [
     TextCfg(id='027594', author=STEVE_BANNON),
     TextCfg(id='027549', author=STEVE_BANNON),
     TextCfg(id='027764', author=STEVE_BANNON),
-    TextCfg(id='025363', author=STEVE_BANNON, author_uncertain='Trump and New York Times coverage'),
-    TextCfg(id='025368', author=STEVE_BANNON, author_uncertain='Trump and New York Times coverage'),
     TextCfg(id='027585', author=STEVE_BANNON, author_uncertain='references Tokyo trip'),
     TextCfg(id='027720', author=STEVE_BANNON, author_uncertain='first 3 lines of 027722'),
     TextCfg(id='027434', author=STEVE_BANNON, author_uncertain='references Maher appearance'),
     TextCfg(id='027428', author=STEVE_BANNON, author_uncertain='references HBJ meeting on 9/28 from other Bannon/Epstein convo'),
     TextCfg(id='027374', author=STEVE_BANNON, author_uncertain='AI says China strategy and geopolitics'),
-    TextCfg(id='027445', author=STEVE_BANNON, author_uncertain='AI says China strategy and geopolitics; Trump discussions'),
     TextCfg(id='027455', author=STEVE_BANNON, author_uncertain='AI says China strategy and geopolitics; Trump discussions'),
     TextCfg(id='027536', author=STEVE_BANNON, author_uncertain='AI says China strategy and geopolitics; Trump discussions'),
     TextCfg(id='025479', author=STEVE_BANNON, author_uncertain='AI says China strategy and geopolitics; Trump discussions'),
@@ -116,8 +119,6 @@ UNCONFIRMED_TEXTS_CONFIG = [
     TextCfg(id='025400', author=STEVE_BANNON, author_uncertain='AI says Trump NYT article criticism; Hannity media strategy'),
     TextCfg(id='025408', author=STEVE_BANNON, author_uncertain='AI says Trump and New York Times coverage'),
     TextCfg(id='025452', author=STEVE_BANNON, author_uncertain='AI says Trump and New York Times coverage'),
-    TextCfg(id='025707', author=STEVE_BANNON, author_uncertain='AI says Trump and New York Times coverage'),
-    TextCfg(id='027260', author=STEVE_BANNON, author_uncertain='AI says Trump and New York Times coverage'),
     TextCfg(id='027281', author=STEVE_BANNON, author_uncertain='AI says Trump and New York Times coverage'),
     TextCfg(id='027346', author=STEVE_BANNON, author_uncertain='AI says Trump and New York Times coverage'),
     TextCfg(id='027365', author=STEVE_BANNON, author_uncertain='AI says Trump and New York Times coverage'),
@@ -126,8 +127,20 @@ UNCONFIRMED_TEXTS_CONFIG = [
     TextCfg(id='027722', author=STEVE_BANNON, author_uncertain='AI says Trump and New York Times coverage'),
     TextCfg(id='027735', author=STEVE_BANNON, author_uncertain='AI says Trump and New York Times coverage'),
     TextCfg(id='027794', author=STEVE_BANNON, author_uncertain='AI says Trump and New York Times coverage'),
-    TextCfg(id='029744', author=STEVE_BANNON, author_uncertain='AI says Trump and New York Times coverage'),
+    TextCfg(id='025368', author=STEVE_BANNON, author_uncertain='AI', is_interesting=True, comment='obama slander'),
+    TextCfg(id='025707', author=STEVE_BANNON, author_uncertain='AI', is_interesting=True, comment='mentions thiel, dubai'),
+    TextCfg(id='025363', author=STEVE_BANNON, author_uncertain='AI', is_interesting=True, comment='mooch discussion'),
+    TextCfg(id='027445', author=STEVE_BANNON, author_uncertain='AI', is_interesting=True),
+    TextCfg(id='027260', author=STEVE_BANNON, author_uncertain='AI', is_interesting=True),
+    TextCfg(
+        id='029744',
+        author=STEVE_BANNON,
+        author_uncertain='AI says Trump + NYT coverage',
+        is_interesting=True,
+        description='contains discussion of Chinese criminal Miles Guo AKA Miles Kwok'
+    ),
     TextCfg(id='031045', author=STEVE_BANNON, author_uncertain='AI says Trump and New York Times coverage'),
+    TextCfg(id='027275', is_interesting=True, comment='"Crypto- Kerry- Qatar -sessions"')
 ]
 
 for cfg in UNCONFIRMED_TEXTS_CONFIG:

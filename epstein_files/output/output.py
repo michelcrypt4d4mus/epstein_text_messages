@@ -268,7 +268,8 @@ def print_text_messages_section(epstein_files: EpsteinFiles) -> list[MessengerLo
         logger.warning(f"No MessengerLogs found for {args.names}")
         return imessage_logs
 
-    print_section_header('All of His Text Messages')
+
+    print_section_header(('Selections from ' if not args.all_texts else '') + 'His Text Messages')
     print_centered("(conversations are sorted chronologically based on timestamp of first message in the log file)", style='dim')
     console.line(2)
 
