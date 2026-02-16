@@ -15,7 +15,7 @@ from rich.text import Text
 from rich.table import Table
 
 from epstein_files.documents.documents.doc_cfg import DUPE_TYPE_STRS, DebugDict, EmailCfg, DocCfg, Metadata
-from epstein_files.documents.documents.doc_locations import FileInfo
+from epstein_files.documents.documents.file_info import FileInfo
 from epstein_files.documents.documents.search_result import MatchedLine
 from epstein_files.documents.emails.constants import FALLBACK_TIMESTAMP
 from epstein_files.documents.emails.email_header import DETECT_EMAIL_REGEX
@@ -28,8 +28,7 @@ from epstein_files.util.constant.urls import *
 from epstein_files.util.constants import CONFIGS_BY_ID, MAX_CHARS_TO_PRINT
 from epstein_files.util.helpers.data_helpers import (collapse_newlines, date_str, patternize, prefix_keys,
      remove_zero_time, without_falsey)
-from epstein_files.util.helpers.file_helper import (coerce_file_path, extract_file_id, file_size, file_size_str,
-     file_size_to_str)
+from epstein_files.util.helpers.file_helper import coerce_file_path, extract_file_id, file_size_to_str
 from epstein_files.util.env import DOCS_DIR
 from epstein_files.util.logging import DOC_TYPE_STYLES, FILENAME_STYLE, logger
 
@@ -63,7 +62,6 @@ SUMMARY_TABLE_COLS: list[str | dict] = [
 ]
 
 DEBUG_PROPS = [
-    'file_size',
     'is_interesting',
     'num_lines',
     'timestamp',
@@ -78,7 +76,6 @@ DEBUG_PROPS_TRUTHY_ONLY = [
 METADATA_FIELDS = [
     AUTHOR,
     'file_id',
-    'file_size',
     'filename',
     'num_lines',
     'timestamp',
@@ -99,12 +96,12 @@ class Document:
         timestamp (datetime, optional): When the file was originally created
     """
     file_path: Path
-    lines: list[str] = field(default_factory=list)
-    text: str = ''
 
-    # Optional derived fields
+    # Optional and/or derived at instantiation time
     author: Name = None
     file_info: FileInfo = field(init=False)
+    lines: list[str] = field(default_factory=list)
+    text: str = ''
     timestamp: datetime | None = None
 
     # Class variables
@@ -172,14 +169,6 @@ class Document:
         return self.file_info.file_id
 
     @property
-    def file_size(self) -> int:
-        return file_size(self.file_path)
-
-    @property
-    def file_size_str(self) -> str:
-        return file_size_str(self.file_path)
-
-    @property
     def filename(self) -> str:
         return self.file_path.name
 
@@ -223,6 +212,7 @@ class Document:
     def metadata(self) -> Metadata:
         metadata = self.config.metadata if self.config else {}
         metadata.update({k: getattr(self, k) for k in METADATA_FIELDS if getattr(self, k) is not None})
+        metadata['file_size'] = self.file_info.file_size
         metadata['type'] = self._class_name
 
         if self.file_info.is_local_extract_file:
@@ -420,7 +410,7 @@ class Document:
             locations_dict.pop('external_url')
 
         config_info = prefix_keys(type(self.config).__name__, config_info)
-        locations_dict = prefix_keys('locations', locations_dict)
+        locations_dict = prefix_keys(underscore(FileInfo.__name__), locations_dict)
         return {**locations_dict, **config_info, **self._debug_props()}
 
     def _debug_props(self) -> DebugDict:
@@ -428,8 +418,8 @@ class Document:
         props = {k: getattr(self, k) for k in DEBUG_PROPS}
         props.update({k: getattr(self, k) for k in DEBUG_PROPS_TRUTHY_ONLY if getattr(self, k)})
 
-        if self.file_size > 100 * 1024:
-            props['file_size_str'] = self.file_size_str
+        if self.file_info.file_size > 100 * 1024:
+            props['file_size_str'] = self.file_info.file_size_str
 
         return prefix_keys(self._debug_prefix, props)
 
@@ -537,7 +527,7 @@ class Document:
             'author_count': NA_TXT if is_author_na else str(author_count),
             'no_author_count': NA_TXT if is_author_na else str(file_count - author_count),
             'uncertain_author_count': NA_TXT if is_author_na else str(len([f for f in files if f.is_attribution_uncertain])),
-            'bytes': file_size_to_str(sum([f.file_size for f in files])),
+            'bytes': file_size_to_str(sum([f.file_info.file_size for f in files])),
         }
 
     @classmethod
@@ -590,7 +580,7 @@ class Document:
 
     @staticmethod
     def sort_by_length(docs: Sequence['DocumentType']) -> list['DocumentType']:
-        return sorted(docs, key=lambda d: d.file_size, reverse=True)
+        return sorted(docs, key=lambda d: d.file_info.file_size, reverse=True)
 
     @staticmethod
     def sort_by_timestamp(docs: Sequence['DocumentType']) -> list['DocumentType']:

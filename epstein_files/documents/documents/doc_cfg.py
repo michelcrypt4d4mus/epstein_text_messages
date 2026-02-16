@@ -328,7 +328,7 @@ class DocCfg:
 
             # Avoid showing complete_description if it's just the author or description and other prop doesn't exist
             if len(description_pieces) != 1 or description_pieces[0] != self.complete_description:
-                props['cfg.complete_description'] = self.complete_description
+                props['complete_description'] = self.complete_description
 
         if (category_txt := self.category_txt):
             if category_txt.plain == props.get('category'):
@@ -337,9 +337,9 @@ class DocCfg:
             # Only add ??? for non-email, non immesage
             if category_txt.plain == QUESTION_MARKS:
                 if not isinstance(self, CommunicationCfg):
-                    props['cfg.category_txt'] = category_txt
+                    props['category_txt'] = category_txt
             else:
-                props['cfg.category_txt'] = category_txt
+                props['category_txt'] = category_txt
 
         # Remove duplicated / copied field
         if (author_uncertain := props.get('author_uncertain')) and author_uncertain == props.get('author_reason'):

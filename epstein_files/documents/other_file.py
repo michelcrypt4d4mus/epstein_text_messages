@@ -14,7 +14,7 @@ from rich.text import Text
 
 from epstein_files.documents.document import CLOSE_PROPERTIES_CHAR, WHITESPACE_REGEX, Document
 from epstein_files.documents.documents.doc_cfg import DocCfg, Metadata
-from epstein_files.documents.documents.doc_locations import FileInfo
+from epstein_files.documents.documents.file_info import FileInfo
 from epstein_files.output.highlight_config import QUESTION_MARKS_TXT, styled_category
 from epstein_files.output.rich import build_table, highlighter
 from epstein_files.util.constant.strings import *
@@ -198,7 +198,7 @@ class OtherFile(Document):
             table.add_row(
                 Group(*link_and_info),
                 Text(date_str, style=TIMESTAMP_STYLE) if date_str else QUESTION_MARKS_TXT,
-                file.file_size_str,
+                file.file_info.file_size_str,
                 file.category_txt,
                 preview_text,
                 style=row_style
