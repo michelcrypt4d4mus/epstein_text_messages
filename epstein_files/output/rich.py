@@ -238,7 +238,7 @@ def print_title_page_header() -> None:
     console.line()
     print_starred_header('Not All The Epstein Files Are Here!', num_spaces=9 if args.all_emails else 6, num_stars=14)
     print_centered(f"This dataset includes everything from the {HOUSE_OVERSIGHT_TRANCHE}", style='gray74')
-    print_centered(f"as we all as a curated selection of the {DOJ_2026_TRANCHE}.", style='gray74')
+    print_centered(f"as we all as a curated selection of the {DOJ_2026_TRANCHE}.\n", style='gray74')
 
 
 def print_title_page_tables(epstein_files: 'EpsteinFiles') -> None:
