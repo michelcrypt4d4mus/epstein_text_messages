@@ -292,10 +292,10 @@ class EpsteinFiles:
             return f"(have {len(self.all_doj_files)}, {len(self.doj_files)} non-email)"
 
         # Remove old DOJ files
-        self.emails = [f for f in self.emails if not f.is_doj_file]
-        self.other_files = [f for f in self.other_files if not f.is_doj_file]
         timer = Timer()
         logger.warning(f"Only reloading DOJ files {doj_file_counts_str()}...")
+        self.emails = [f for f in self.emails if not f.is_doj_file]
+        self.other_files = [f for f in self.other_files if not f.is_doj_file]
 
         # Build new objects and append them
         new_docs = self._load_file_paths(doj_txt_paths())
