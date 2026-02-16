@@ -1,37 +1,95 @@
+import logging
 from dataclasses import asdict, dataclass, field
 from pathlib import Path
 from typing import Mapping
 
 from rich.text import Text
 
-from epstein_files.output.rich import prefix_with, styled_dict
-from epstein_files.util.helpers.file_helper import extract_file_id, is_doj_file
+from epstein_files.output.rich import join_texts, prefix_with, parenthesize, styled_dict
+from epstein_files.util.constant.strings import DOJ_DATASET_ID_REGEX
+from epstein_files.util.constant.urls import *
+from epstein_files.util.env import DOCS_DIR, DOJ_PDFS_20260130_DIR
+from epstein_files.util.helpers.file_helper import (coerce_file_stem, coerce_url_slug, extract_file_id, is_doj_file,
+     is_house_oversight_file, is_local_extract_file)
+
+FILE_PROPS = ['file_id', 'filename', 'is_doj_file', 'is_local_extract_file']
 
 
-@dataclass(kw_only=True)
+@dataclass
 class DocLocation:
     """
     Attributes:
-        external_url (str): a web URL where the source document can theoretically be seen
-        file_id (str): ID extracted from the filename
         local_path (Path): local path of the document's underlying .txt file
-        local_pdf_path (Path, optional): local path to the source PDF the .txt was extracted from (if any)
-        source_url (str, optional): official government source URL
+        doj_2026_dataset_id (int, optional): DataSet number for DOJ files
+        file_id (str): file_id (str): ID string - 6 numbers with zero padding for HOUSE_OVERSIGHT, full EFTAXXXXX for DOJ files
     """
-    external_url: str
-    file_id: str = field(init=False)
     local_path: Path
-    local_pdf_path: Path | None = None
-    source_url: str = ''
-    # jmail_url: str
+    doj_2026_dataset_id: int | None = None
+    file_id: str = field(init=False)
 
     @property
     def as_dict(self) -> Mapping[str, str | Path]:
-        return {'file_id': self.file_id, **self.paths, **self.urls}
+        props = {k: v for k, v in asdict(self).items() if v}
+        props.update({k: getattr(self, k) for k in FILE_PROPS if getattr(self, k)})
+        props.update(self.paths)
+        props.update(self.urls)
+
+        if self.url_slug != self.file_id:
+            props['url_slug'] = self.url_slug
+
+        return props
+
+    @property
+    def external_link_markup(self) -> str:
+        """Rich markup string with link to source document."""
+        return link_markup(self.external_url, coerce_file_stem(self.filename))
+
+    @property
+    def external_link_txt(self) -> Text:
+        return Text.from_markup(self.external_link_markup)
+
+    @property
+    def external_url(self) -> str:
+        """The primary external URL to use when linking to this document's source."""
+        if self.is_doj_file and self.doj_2026_dataset_id:
+            return doj_2026_file_url(self.doj_2026_dataset_id, self.url_slug)
+        else:
+            return epstein_media_doc_url(self.url_slug)
+
+    @property
+    def file_stem(self) -> str:
+        return coerce_file_stem(self.file_id)
+
+    @property
+    def filename(self) -> str:
+        return self.local_path.name
+
+    @property
+    def is_doj_file(self) -> bool:
+        return is_doj_file(self.file_stem)
+
+    @property
+    def is_house_oversight_file(self) -> bool:
+        return is_house_oversight_file(self.file_stem)
+
+    @property
+    def is_local_extract_file(self) -> bool:
+        """True if extracted from other file (identifiable from filename e.g. HOUSE_OVERSIGHT_012345_1.txt)."""
+        return is_local_extract_file(self.filename)
+
+    @property
+    def local_pdf_path(self) -> Path | None:
+        """Path to the source PDF (only applies to DOJ files that were manually extracted)."""
+        if self.is_doj_file:
+            return next((p for p in DOJ_PDFS_20260130_DIR.glob('**/*.pdf') if p.stem == self.file_stem), None)
 
     @property
     def paths(self) -> Mapping[str, Path]:
         return {k: Path(v) for k, v in self._props_with_suffix('path').items() if v}
+
+    @property
+    def url_slug(self) -> str:
+        return coerce_url_slug(self.file_id)
 
     @property
     def urls(self) -> Mapping[str, str]:
@@ -42,11 +100,60 @@ class DocLocation:
     def __post_init__(self):
         self.file_id = extract_file_id(self.local_path)
 
-        if is_doj_file(self.local_path):
-            self.source_url = self.external_url
+        # Extract the DOJ dataset ID from the path
+        if self.is_doj_file:
+            if (data_set_match := DOJ_DATASET_ID_REGEX.search(str(self.local_path))):
+                self.doj_2026_dataset_id = int(data_set_match.group(1))
+                logger.info(f"Extracted data set ID {self.doj_2026_dataset_id} for {self.url_slug}")
+            else:
+                self.warn(f"Couldn't find a data set ID in path '{self.local_path}'! Cannot create valid links.")
 
-    def _props_with_suffix(self, suffix: str) -> Mapping[str, str]:
-        return {k: v for k, v in asdict(self).items() if k.endswith(suffix)}
+    def epsteinify_link(self, style: str = ARCHIVE_LINK_COLOR, link_txt: str | None = None) -> Text:
+        return self.external_link(epsteinify_doc_url, style, link_txt)
+
+    def epstein_media_link(self, style: str = ARCHIVE_LINK_COLOR, link_txt: str | None = None) -> Text:
+        return self.external_link(epstein_media_doc_url, style, link_txt)
+
+    def epstein_web_link(self, style: str = ARCHIVE_LINK_COLOR, link_txt: str | None = None) -> Text:
+        return self.external_link(epstein_web_doc_url, style, link_txt)
+
+    def rollcall_link(self, style: str = ARCHIVE_LINK_COLOR, link_txt: str | None = None) -> Text:
+        return self.external_link(rollcall_doc_url, style, link_txt)
+
+    def external_link(self, fxn: Callable[[str], str], style: str = ARCHIVE_LINK_COLOR, link_txt: str | None = None) -> Text:
+        return link_text_obj(fxn(self.url_slug), link_txt or self.file_stem, style)
+
+    def external_links_txt(self, style: str = '', include_alt_links: bool = False) -> Text:
+        """Returns colored links to epstein.media and alternates in a Text object."""
+        links = [link_text_obj(self.external_url, self.url_slug, style=style)]
+
+        if include_alt_links:
+            if self.doj_2026_dataset_id:
+                jmail_url = jmail_doj_2026_file_url(self.doj_2026_dataset_id, self.file_id)
+                jmail_link = link_text_obj(jmail_url, JMAIL, style=f"{style} dim" if style else ARCHIVE_LINK_COLOR)
+                links.append(jmail_link)
+            else:
+                links.append(self.epsteinify_link(style=ALT_LINK_STYLE, link_txt=EPSTEINIFY))
+                links.append(self.epstein_web_link(style=ALT_LINK_STYLE, link_txt=EPSTEIN_WEB))
+
+                # TODO: pass the Document so we can reinstate this?
+                # if self._class_name == 'Email':
+                #     links.append(self.rollcall_link(style=ALT_LINK_STYLE, link_txt=ROLLCALL))
+
+        links = [links[0]] + [parenthesize(link) for link in links[1:]]
+        base_txt = Text('', style='white' if include_alt_links else ARCHIVE_LINK_COLOR)
+        return base_txt.append(join_texts(links))
+
+    def log(self, msg: str, level: int = logging.INFO):
+        """Log a message with with this document's filename as a prefix."""
+        logger.log(level, f"{self.file_stem} {msg}")
+
+    def warn(self, msg: str) -> None:
+        """Print a warning message prefixed by info about this `Document`."""
+        self.log(msg, level=logging.WARNING)
+
+    def _props_with_suffix(self, suffix: str) -> Mapping[str, str | Path]:
+        return {k: getattr(self, k) for k in dir(self) if k.endswith(suffix)}
 
     def __rich__(self) -> Text:
         """Text obj with local paths and URLs."""

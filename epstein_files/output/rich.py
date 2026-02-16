@@ -43,6 +43,7 @@ KEY_STYLE = 'dim'
 KEY_STYLE_ALT = 'light_steel_blue3'
 LAST_TIMESTAMP_STYLE = 'wheat4'
 OTHER_PAGE_MSG_STYLE = 'gray78 dim'
+PATH_STYLE = 'deep_pink3'
 STR_VAL_STYLE = 'cornsilk1 italic'
 STR_VAL_STYLE_ALT = 'light_yellow3 italic'
 SECTION_HEADER_STYLE = 'bold white on blue3'
@@ -373,12 +374,14 @@ def styled_key_value(
             val_style = 'cyan'
         elif isinstance(val, Path):
             val = val = f"'{val}'"
-            val_style = 'deep_pink3'
+            val_style = PATH_STYLE
         elif isinstance(val, str):
             if val.startswith('http'):
                 val_style = ARCHIVE_LINK_UNDERLINE
             elif key.endswith('category') or key == AUTHOR:
                 val_txt = highlighter(val)
+            elif key.endswith('filename'):
+                val_style = PATH_STYLE
             elif key.endswith('style'):
                 val_style = f"{val} bold"
             elif key.endswith('_type'):

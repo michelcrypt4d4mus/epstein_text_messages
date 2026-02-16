@@ -199,7 +199,7 @@ def print_emails_section(epstein_files: EpsteinFiles) -> list[Email]:
 def print_json_files(epstein_files: EpsteinFiles):
     """Print all the JsonFile objects"""
     if args.build:
-        json_data = {jf.url_slug: jf.json_data() for jf in epstein_files.json_files}
+        json_data = {jf.locations.url_slug: jf.json_data() for jf in epstein_files.json_files}
 
         with open(JSON_FILES_JSON_PATH, 'w') as f:
             f.write(json.dumps(json_data, sort_keys=True))

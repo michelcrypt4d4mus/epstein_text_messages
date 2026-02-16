@@ -11,6 +11,7 @@ from epstein_files.util.helpers.file_helper import coerce_file_stem
 from epstein_files.util.helpers.string_helper import remove_question_marks
 
 # Style stuff
+ALT_LINK_STYLE = 'white dim'
 ARCHIVE_LINK_COLOR = 'slate_blue3'
 ARCHIVE_LINK_UNDERLINE = f"{ARCHIVE_LINK_COLOR} underline"
 ARCHIVE_ALT_LINK_STYLE = 'medium_purple4 italic'

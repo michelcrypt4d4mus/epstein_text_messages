@@ -20,24 +20,22 @@ from epstein_files.documents.documents.search_result import MatchedLine
 from epstein_files.documents.emails.constants import FALLBACK_TIMESTAMP
 from epstein_files.documents.emails.email_header import DETECT_EMAIL_REGEX
 from epstein_files.output.rich import (INFO_STYLE, NA_TXT, SKIPPED_FILE_MSG_PADDING, SYMBOL_STYLE,
-     add_cols_to_table, build_table, console, highlighter, join_texts, styled_key_value, link_text_obj,
-     parenthesize, prefix_with, styled_dict, wrap_in_markup_style)
+     add_cols_to_table, build_table, console, highlighter, styled_key_value, prefix_with, styled_dict,
+     wrap_in_markup_style)
 from epstein_files.util.constant.names import *
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constant.urls import *
-from epstein_files.util.constants import CONFIGS_BY_ID, DOJ_FILE_STEM_REGEX, MAX_CHARS_TO_PRINT
+from epstein_files.util.constants import CONFIGS_BY_ID, MAX_CHARS_TO_PRINT
 from epstein_files.util.helpers.data_helpers import (collapse_newlines, date_str, patternize, prefix_keys,
      remove_zero_time, without_falsey)
 from epstein_files.util.helpers.file_helper import (coerce_file_path, extract_file_id, file_size, file_size_str,
-     file_size_to_str, is_local_extract_file)
-from epstein_files.util.env import DOCS_DIR, DOJ_PDFS_20260130_DIR
+     file_size_to_str)
+from epstein_files.util.env import DOCS_DIR
 from epstein_files.util.logging import DOC_TYPE_STYLES, FILENAME_STYLE, logger
 
-ALT_LINK_STYLE = 'white dim'
 CHECK_LINK_FOR_DETAILS = 'not shown here, check original PDF for details'
 CLOSE_PROPERTIES_CHAR = ']'
 HOUSE_OVERSIGHT = HOUSE_OVERSIGHT_PREFIX.replace('_', ' ').strip()
-DOJ_DATASET_ID_REGEX = re.compile(r"(?:epstein_dataset_|DataSet )(\d+)")
 WHITESPACE_REGEX = re.compile(r"\s{2,}|\t|\n", re.MULTILINE)
 
 EMPTY_LENGTH = 15
@@ -49,12 +47,6 @@ FILENAME_MATCH_STYLES = [
     'dark_green',
     'green',
     'spring_green4',
-]
-
-METADATA_FIELDS = [
-    'author',
-    'file_id',
-    'timestamp'
 ]
 
 OCR_REPAIRS = {
@@ -73,7 +65,6 @@ SUMMARY_TABLE_COLS: list[str | dict] = [
 
 DEBUG_PROPS = [
     'file_size',
-    'file_size_str',
     'is_interesting',
     'num_lines',
     'timestamp',
@@ -82,9 +73,13 @@ DEBUG_PROPS = [
 DEBUG_PROPS_TRUTHY_ONLY = [
     AUTHOR,
     'category',
-    'is_doj_file',
     'is_empty',
-    'is_local_extract_file',
+]
+
+METADATA_FIELDS = [
+    AUTHOR,
+    'file_id',
+    'timestamp',
 ]
 
 
@@ -95,24 +90,20 @@ class Document:
 
     Attributes:
         file_path (Path): Local path to file
-        author (Name): Who is responsible for the text in the file
-        doj_2026_dataset_id (int, optional): Only set for files that came from the DOJ website.
-        file_id (str): ID string - 6 numbers with zero padding for HOUSE_OVERSIGHT, full EFTAXXXXX for DOJ files.
+        author (Name): Writer of the text in the file
         lines (list[str]): Number of lines in the file after all the cleanup
+        locations (DocLocation): manages local paths and web URLs for this document
         text (str): Contents of the file
         timestamp (datetime, optional): When the file was originally created
-        url_slug (str): Version of the filename that works in links to epsteinify etc.
     """
     file_path: Path
-    file_id: str = field(init=False)
     lines: list[str] = field(default_factory=list)
     text: str = ''
 
-    # Optional fields
+    # Optional derived fields
     author: Name = None
-    doj_2026_dataset_id: int | None = None
+    locations: DocLocation = field(init=False)
     timestamp: datetime | None = None
-    url_slug: str = ''
 
     # Class variables
     include_description_in_summary_panel: ClassVar[bool] = False
@@ -169,29 +160,13 @@ class Document:
             return self.config.duplicate_of_id
 
     @property
-    def external_link_txt(self) -> Text:
-        return Text.from_markup(self.external_link_markup)
-
-    @property
     def external_link_markup(self) -> str:
         """Rich markup string with link to source document."""
-        return link_markup(self.external_url, coerce_file_stem(self.filename))
+        return self.locations.external_link_markup
 
     @property
-    def external_url(self) -> str:
-        """The primary external URL to use when linking to this document's source."""
-        if self.is_doj_file and self.doj_2026_dataset_id:
-            return doj_2026_file_url(self.doj_2026_dataset_id, self.url_slug)
-        else:
-            return epstein_media_doc_url(self.url_slug)
-
-    @property
-    def filename(self) -> str:
-        return self.file_path.name
-
-    @property
-    def file_id_debug_info(self) -> str:
-        return ', '.join([f"{prop}={getattr(self, prop)}" for prop in ['file_id', 'filename', 'url_slug']])
+    def file_id(self) -> str:
+        return self.locations.file_id
 
     @property
     def file_size(self) -> int:
@@ -200,6 +175,10 @@ class Document:
     @property
     def file_size_str(self, decimal_places: int | None = None) -> str:
         return file_size_str(self.file_path, decimal_places)
+
+    @property
+    def filename(self) -> str:
+        return self.file_path.name
 
     @property
     def info(self) -> list[Text]:
@@ -215,7 +194,7 @@ class Document:
 
     @property
     def is_doj_file(self) -> bool:
-        return bool(DOJ_FILE_STEM_REGEX.match(self.file_id))
+        return self.locations.is_doj_file
 
     @property
     def is_duplicate(self) -> bool:
@@ -226,55 +205,30 @@ class Document:
         return len(self.text.strip()) < EMPTY_LENGTH
 
     @property
-    def is_house_oversight_file(self) -> bool:
-        return not self.is_doj_file
-
-    @property
     def is_interesting(self) -> bool | None:
         """TODO: currently default to True for HOUSE_OVERSIGHT_FILES, false for DOJ."""
         if self.config and self.config.is_of_interest is not None:
             return self.config.is_of_interest
-        elif self.is_house_oversight_file and not (self.author or self.config):
+        elif self.locations.is_house_oversight_file and not (self.author or self.config):
             return True
-
-    @property
-    def is_local_extract_file(self) -> bool:
-        """True if extracted from other file (identifiable from filename e.g. HOUSE_OVERSIGHT_012345_1.txt)."""
-        return is_local_extract_file(self.filename)
 
     @property
     def length(self) -> int:
         return len(self.text)
 
     @property
-    def local_pdf_path(self) -> Path | None:
-        """Path to the source PDF (only applies to DOJ files that were manually extracted)."""
-        if not self.is_doj_file:
-            return None
-
-        return next((p for p in DOJ_PDFS_20260130_DIR.glob('**/*.pdf') if p.stem == self.file_path.stem), None)
-
-    @property
-    def locations(self) -> DocLocation:
-        return DocLocation(
-            local_path=self.file_path,
-            local_pdf_path=self.local_pdf_path,
-            external_url=self.external_url
-        )
-
-    @property
     def metadata(self) -> Metadata:
         metadata = self.config.metadata if self.config else {}
         metadata.update({k: v for k, v in asdict(self).items() if k in METADATA_FIELDS and v is not None})
         metadata['bytes'] = self.file_size
-        metadata['filename'] = f"{self.url_slug}.txt"
+        metadata['filename'] = self.locations.filename
         metadata['num_lines'] = self.num_lines
         metadata['type'] = self._class_name
 
-        if self.is_local_extract_file:
+        if self.locations.is_local_extract_file:
             metadata['extracted_file'] = {
                 'explanation': 'manually extracted from one of the other files',
-                'extracted_from': self.url_slug + '.txt',
+                'extracted_from': self.locations.url_slug + '.txt',
                 'url': f"{EXTRACTS_BASE_URL}/{self.filename}",
             }
 
@@ -384,18 +338,7 @@ class Document:
         if not self.file_path.exists():
             raise FileNotFoundError(f"File '{self.file_path.name}' does not exist!")
 
-        # url_slug could have been pre-set in Email subclass
-        self.url_slug = self.url_slug or self.filename.split('.')[0]
-        self.file_id = extract_file_id(self.filename)
-
-        # Extract the DOJ dataset ID from the path
-        if self.is_doj_file:
-            if (data_set_match := DOJ_DATASET_ID_REGEX.search(str(self.file_path))):
-                self.doj_2026_dataset_id = int(data_set_match.group(1))
-                logger.info(f"Extracted data set ID {self.doj_2026_dataset_id} for {self.url_slug}")
-            else:
-                self.warn(f"Couldn't find a data set ID in path '{self.file_path}'! Cannot create valid links.")
-
+        self.locations = DocLocation(self.file_path)
         self.text = self.text or self._load_file()
         self._set_computed_fields(text=self.text)
         self._repair()
@@ -407,44 +350,9 @@ class Document:
         """Alternate constructor that finds the file path automatically and builds a `Document`."""
         return cls(coerce_file_path(file_id))
 
-    def epsteinify_link(self, style: str = ARCHIVE_LINK_COLOR, link_txt: str | None = None) -> Text:
-        return self.external_link(epsteinify_doc_url, style, link_txt)
-
-    def epstein_media_link(self, style: str = ARCHIVE_LINK_COLOR, link_txt: str | None = None) -> Text:
-        return self.external_link(epstein_media_doc_url, style, link_txt)
-
-    def epstein_web_link(self, style: str = ARCHIVE_LINK_COLOR, link_txt: str | None = None) -> Text:
-        return self.external_link(epstein_web_doc_url, style, link_txt)
-
-    def rollcall_link(self, style: str = ARCHIVE_LINK_COLOR, link_txt: str | None = None) -> Text:
-        return self.external_link(rollcall_doc_url, style, link_txt)
-
-    def external_link(self, fxn: Callable[[str], str], style: str = ARCHIVE_LINK_COLOR, link_txt: str | None = None) -> Text:
-        return link_text_obj(fxn(self.url_slug), link_txt or self.file_path.stem, style)
-
-    def external_links_txt(self, style: str = '', include_alt_links: bool = False) -> Text:
-        """Returns colored links to epstein.media and alternates in a Text object."""
-        links = [link_text_obj(self.external_url, self.url_slug, style=style)]
-
-        if include_alt_links:
-            if self.doj_2026_dataset_id:
-                jmail_url = jmail_doj_2026_file_url(self.doj_2026_dataset_id, self.file_id)
-                jmail_link = link_text_obj(jmail_url, JMAIL, style=f"{style} dim" if style else ARCHIVE_LINK_COLOR)
-                links.append(jmail_link)
-            else:
-                links.append(self.epsteinify_link(style=ALT_LINK_STYLE, link_txt=EPSTEINIFY))
-                links.append(self.epstein_web_link(style=ALT_LINK_STYLE, link_txt=EPSTEIN_WEB))
-
-                if self._class_name == 'Email':
-                    links.append(self.rollcall_link(style=ALT_LINK_STYLE, link_txt=ROLLCALL))
-
-        links = [links[0]] + [parenthesize(link) for link in links[1:]]
-        base_txt = Text('', style='white' if include_alt_links else ARCHIVE_LINK_COLOR)
-        return base_txt.append(join_texts(links))
-
     def file_info_panel(self) -> Group:
         """Panel with filename linking to raw file plus any additional info about the file."""
-        panel = Panel(self.external_links_txt(include_alt_links=True), border_style=self.border_style, expand=False)
+        panel = Panel(self.locations.external_links_txt(include_alt_links=True), border_style=self.border_style, expand=False)
         padded_info = [Padding(sentence, INFO_PADDING) for sentence in self.info]
         return Group(*([panel] + padded_info))
 
@@ -492,7 +400,7 @@ class Document:
 
     def truncation_note(self, truncate_to: int) -> Text:
         """String with link that will replace the text after the truncation point."""
-        link_markup = self.external_link_markup
+        link_markup = self.locations.external_link_markup
         trim_note = f"<...trimmed to {truncate_to:,} characters of {self.length:,}, read the rest at {link_markup}...>"
         return Text.from_markup(wrap_in_markup_style(trim_note, 'dim'))
 
@@ -502,15 +410,17 @@ class Document:
 
     def _debug_dict(self) -> DebugDict:
         """Information about this document: config, locations, etc."""
-        config_info = prefix_keys(type(self.config).__name__, self.config.important_props if self.config else {})
-        locations_dict = prefix_keys('locations', dict(self.locations.as_dict))
+        config_info = self.config.important_props if self.config else {}
+        locations_dict = dict(self.locations.as_dict)
 
-        if config_info.get('id') == self.file_id:
+        if config_info.get('id') == locations_dict.get('file_id'):
             config_info.pop('id')
 
         if locations_dict.get('source_url') == locations_dict.get('external_url', 'blah'):
             locations_dict.pop('external_url')
 
+        config_info = prefix_keys(type(self.config).__name__, config_info)
+        locations_dict = prefix_keys('locations', locations_dict)
         return {**locations_dict, **config_info, **self._debug_props()}
 
     def _debug_props(self) -> DebugDict:
@@ -518,8 +428,8 @@ class Document:
         props = {k: getattr(self, k) for k in DEBUG_PROPS}
         props.update({k: getattr(self, k) for k in DEBUG_PROPS_TRUTHY_ONLY if getattr(self, k)})
 
-        if self.url_slug != self.file_id:
-            props['url_slug'] = self.url_slug
+        if self.file_size > 100 * 1024:
+            props['file_size_str'] = self.file_size_str
 
         return prefix_keys(self._debug_prefix, props)
 
