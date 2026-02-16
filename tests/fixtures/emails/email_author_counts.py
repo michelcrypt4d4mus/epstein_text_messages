@@ -37,7 +37,7 @@ EMAIL_AUTHOR_COUNTS = {
     "Bennet Moskowitz": 1,
     "Bill Siegel": 5,
     "Bob Crowe": 1,
-    BORIS_NIKOLIC: 24,
+    BORIS_NIKOLIC: 25,
     BRAD_EDWARDS: 1,
     BRAD_KARP: 5,
     BROCK_PIERCE: 40,
