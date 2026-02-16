@@ -265,6 +265,7 @@ EMAIL_RECIPIENT_COUNTS = {
     SOON_YI_PREVIN: 4,
     STACEY_RICHMAN: 1,
     "Stanley Rosenberg": 1,
+    'Stanley Santos': 1,
     STEPHEN_HANSON: 3,
     "Stephen Rubin": 1,
     STEVE_BANNON: 37,

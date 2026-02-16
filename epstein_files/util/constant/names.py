@@ -206,6 +206,7 @@ ELON_MUSK = 'Elon Musk'
 FAWZI_SIAM = 'Fawzi Siam'
 GANBAT_CHULUUNKHUU = 'Ganbat Chuluunkhuu'
 HASSAN_JAMEEL = 'Hassan Jameel'
+HONGBO_ROBERT_BAO = 'Hongbo Robert Bao'
 IAN_ODONNELL = "Ian O'Donnell"
 JAMES_FITZGERALD = 'James Fitzgerald'
 JULIA_SANTOS = 'Julia Santos'
