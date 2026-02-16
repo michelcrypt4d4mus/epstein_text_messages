@@ -287,7 +287,7 @@ HIGHLIGHT_GROUPS: Sequence[BaseHighlight] = [
             Contact(BARRY_J_COHEN, emailer_pattern=r"barry\s*((j.?|james)\s*)?cohen?"),
             Contact('David Mitchell', "Mitchell Holdings, New York real estate developer"),
             Contact(GERALD_BARTON, "Maryland property developer Landmark Land Company", r"Gerald.*Barton"),
-            Contact(NICOLE_JUNKERMANN, f"ex-model, NJF Capital, investor in Revolut, online poker, Carbyne w/{EHUD_BARAK}", r"(Nicole\s*)?Junkermann"),
+            Contact(NICOLE_JUNKERMANN, f"ex-model, NJF Capital, investor in Revolut, online poker, Carbyne w/{EHUD_BARAK}", r"(Nicole\s*)?Junkermann?"),
             Contact(GORDON_GETTY, "heir to oil tycoon J. Paul Getty"),
             Contact('Philip Kafka', f"president of Prince Concepts (and son of {TERRY_KAFKA}?)"),
             Contact(ROBERT_LAWRENCE_KUHN, "investment banker, China expert", r"Robert\s*(Lawrence)?\s*Kuhn"),

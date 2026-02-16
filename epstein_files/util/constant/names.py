@@ -314,7 +314,7 @@ NAMES_TO_NOT_HIGHLIGHT = """
     owen
     paul paula pen peter philip pierce prince
     randall rangel reid richard robert rodriguez roger rosenberg ross roth roy rubenstein rubin
-    scott sean service services skip smith stacey stanley stern stephen steve steven stone susan
+    santos scott sean service services skip smith stacey stanley stern stephen steve steven stone susan
     team terry the thomas tim tom tony trust tyler
     ventures victor
     wade waters
