@@ -152,7 +152,7 @@ class EpsteinFiles:
             if names and doc.author not in names:
                 continue
 
-            lines = doc.matching_lines(pattern)
+            lines = doc.lines_matching(pattern)
 
             if args.min_line_length:
                 lines = [line for line in lines if len(line.line) > args.min_line_length]

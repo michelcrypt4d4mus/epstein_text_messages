@@ -346,6 +346,11 @@ class Document:
         padded_info = [Padding(sentence, INFO_PADDING) for sentence in self.info]
         return Group(*([panel] + padded_info))
 
+    def lines_matching(self, _pattern: re.Pattern | str) -> list[MatchedLine]:
+        """Find lines in this file matching a regex pattern."""
+        pattern = patternize(_pattern)
+        return [MatchedLine(line, i) for i, line in enumerate(self.lines) if pattern.search(line)]
+
     def log(self, msg: str, level: int = logging.INFO):
         """Log a message with with this document's filename as a prefix."""
         logger.log(level, f"{self.file_path.stem} {msg}")
@@ -355,11 +360,6 @@ class Document:
         separator = '\n\n' if '\n' in msg else '. '
         msg = (msg + separator) if msg else ''
         self.log(f"{msg}First {n} lines:\n\n{self.top_lines(n)}\n", level)
-
-    def matching_lines(self, _pattern: re.Pattern | str) -> list[MatchedLine]:
-        """Return lines matching a regex as colored list[Text]."""
-        pattern = patternize(_pattern)
-        return [MatchedLine(line, i) for i, line in enumerate(self.lines) if pattern.search(line)]
 
     def printable_document(self) -> Self:
         """Overloaded by `DojFile` to convert some files to `Email` objects."""
