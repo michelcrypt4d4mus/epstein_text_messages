@@ -23,8 +23,8 @@ TEXT_FIELDS = [
 @dataclass
 class JsonFile(OtherFile):
     """File containing JSON data."""
-    include_description_in_summary_panel: ClassVar[bool] = False
-    strip_whitespace: ClassVar[bool] = False
+    INCLUDE_DESCRIPTION_IN_SUMMARY_PANEL: ClassVar[bool] = False
+    STRIP_WHITESPACE: ClassVar[bool] = False
 
     @property
     def category(self) -> str:
