@@ -16,7 +16,7 @@ FILE_PROPS = ['file_id', 'filename', 'is_doj_file', 'is_local_extract_file']
 
 
 @dataclass
-class DocLocation:
+class FileInfo:
     """
     Attributes:
         local_path (Path): local path of the document's underlying .txt file
