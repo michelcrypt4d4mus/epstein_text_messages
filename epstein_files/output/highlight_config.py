@@ -227,7 +227,7 @@ HIGHLIGHT_GROUPS: Sequence[BaseHighlight] = [
             r"Bart\s*Stephens",  # co-founder, Blockchain Capital
             r"Bioptix",  # Now RIOT Blockchain
             r"bitcoin(\s*Foundation)?",
-            r"Bit(Angels|Fury)",
+            r"Bit(Angels|Fury|Main)",
             r"block ?chain(\s*capital)?",
             r"Blockstream",
             r"Bradley\s*Rotter",
@@ -722,6 +722,7 @@ HIGHLIGHT_GROUPS: Sequence[BaseHighlight] = [
             r"Signature\s*Bank",
             r"(Ste(phen|ve)\s*)?Schwart?z?man",
             r"Susquehanna",
+            r"Teneo\s*Capital",
             r"UBS",
             r"us.gio@jpmorgan.com",
             r"Wall\s*Street(?!\s*Jour)",
@@ -1222,8 +1223,9 @@ HIGHLIGHT_GROUPS: Sequence[BaseHighlight] = [
             r"Abdullah",
             r"Abu\s+Dhabi",
             r"Afghanistan",
-            r"Al[-\s]?Qa[ei]da",
             r"Ahmadinejad",
+            r"Al[- ]?Qasimi",
+            r"Al[-\s]?Qa[ei]da",
             r"(Rakhat )?Aliyev",
             r"Arab",
             r"Aramco",

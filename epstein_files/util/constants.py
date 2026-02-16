@@ -1248,12 +1248,7 @@ EMAILS_CONFIG = [
         description=f'bitcoin dev {JEREMY_RUBIN} describes "grey area between pump and develop" when Epstein objects on ethical grounds',
         is_interesting=True,
     ),
-    EmailCfg(
-        id='EFTA02588748',
-        description=f'Epstein, Ito, and {VINCENZO_IOZZO} discuss crypto food stamps debit cards',
-        is_interesting=True,
-        truncate_to=800
-    ),
+    EmailCfg(id='EFTA02588748', description=f'discussion of crypto food stamps debit cards', is_interesting=True, truncate_to=800),
     EmailCfg(
         id='EFTA00384774',
         author_reason='unique email signature',
@@ -1275,11 +1270,14 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA01784901', description=f"discussion of checks {JEREMY_RUBIN} has cashed from Epstein", is_interesting=True),
     EmailCfg(id='EFTA01917402', description=f'discussion of Epstein investment in Blockstream funneled through {JOI_ITO}', is_interesting=True),
     EmailCfg(id='EFTA02483194', description=f"discussion of {GANBAT_CHULUUNKHUU}'s arrest", is_interesting=True),
+    EmailCfg(id='EFTA00637023', description=f"discussion of getting around laws against laundering money in places like Myanmar and Mongolia"),
     EmailCfg(id='EFTA02601259', description=f"discussion of investments hidden through {JOI_ITO}"),
+    EmailCfg(id='EFTA01004753', description=f"discussion of LayerOne crypto stuff"),    
     EmailCfg(id='EFTA00495372', description=f'discussion of Medici Bank, a new successor to Noble Bank as a crypto bank', is_interesting=True),
     EmailCfg(id='EFTA02629771', description=f"discussion of {RENATA_BOLOTOVA}'s employment at IPI", is_interesting=True),
     EmailCfg(id='EFTA00964459', description=f'discussion of sharia compliant crypto token', is_interesting=True),
     EmailCfg(id='EFTA00901772', description=f'discussion of the sale of Epstein stake in Coinbase'),
+    EmailCfg(id='EFTA01750652', description=f"discussion of using blockchains in the repo markets"),
     EmailCfg(id='EFTA00671263', description="Eagle's View Capital Management September 2017 Performance Update"),
     EmailCfg(id='EFTA02671523', description=f"Jones is former Google chief technology advocate / CEO of Epstein investment Wearality"),
     EmailCfg(id='EFTA01139067', description=f'Epstein tells Farkas he has not invested in {CRYPTO_CURRENCY_PARTNERS_II}'),
