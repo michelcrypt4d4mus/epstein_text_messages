@@ -57,8 +57,8 @@ class OtherFile(Document):
     was_timestamp_extracted: bool = False
 
     # Class vars
-    include_description_in_summary_panel: ClassVar[bool] = True  # Class var for logging output
-    max_timestamp: ClassVar[datetime] = datetime(2022, 12, 31) # Overloaded in DojFile
+    INCLUDE_DESCRIPTION_IN_SUMMARY_PANEL: ClassVar[bool] = True  # Class var for logging output
+    MAX_TIMESTAMP: ClassVar[datetime] = datetime(2022, 12, 31) # Overloaded in DojFile
     num_synthetic_cfgs_created: ClassVar[int] = 0
 
     @property
@@ -141,7 +141,7 @@ class OtherFile(Document):
                 for timestamp in datefinder.find_dates(self.text, strict=False):
                     timestamp = remove_timezone(timestamp)
 
-                    if MIN_TIMESTAMP < timestamp < self.max_timestamp:
+                    if MIN_TIMESTAMP < timestamp < self.MAX_TIMESTAMP:
                         timestamps.append(timestamp)
 
                     if len(timestamps) >= MAX_EXTRACTED_TIMESTAMPS:

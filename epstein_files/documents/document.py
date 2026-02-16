@@ -103,9 +103,9 @@ class Document:
     text: str = ''
     timestamp: datetime | None = None
 
-    # Class variables
-    include_description_in_summary_panel: ClassVar[bool] = False
-    strip_whitespace: ClassVar[bool] = True  # Overridden in JsonFile
+    # Class constants
+    INCLUDE_DESCRIPTION_IN_SUMMARY_PANEL: ClassVar[bool] = False
+    STRIP_WHITESPACE: ClassVar[bool] = True  # Overridden in JsonFile
 
     @property
     def border_style(self) -> str:
@@ -295,7 +295,7 @@ class Document:
         """Panelized description() with info_txt(), used in search results."""
         sentences = [self.summary]
 
-        if self.include_description_in_summary_panel:
+        if self.INCLUDE_DESCRIPTION_IN_SUMMARY_PANEL:
             sentences += [Text('', style='italic').append(h) for h in self.info]
 
         return Panel(Group(*sentences), border_style=self._class_style, expand=False)
@@ -444,7 +444,7 @@ class Document:
         text = self.repair_ocr_text(OCR_REPAIRS, text.strip())
 
         lines = [
-            line.strip() if self.strip_whitespace else line for line in text.split('\n')
+            line.strip() if self.STRIP_WHITESPACE else line for line in text.split('\n')
             if not (line.startswith(HOUSE_OVERSIGHT) or line.startswith('EFTA'))
         ]
 
@@ -465,7 +465,7 @@ class Document:
         else:
             raise RuntimeError(f"[{self.filename}] Either 'lines' or 'text' arg must be provided (neither was)")
 
-        self.lines = [line.strip() if self.strip_whitespace else line for line in self.text.split('\n')]
+        self.lines = [line.strip() if self.STRIP_WHITESPACE else line for line in self.text.split('\n')]
 
     def _write_clean_text(self, output_path: Path) -> None:
         """Write self.text to 'output_path'. Used only for diffing files."""
