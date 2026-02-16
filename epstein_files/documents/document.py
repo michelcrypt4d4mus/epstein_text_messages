@@ -399,7 +399,7 @@ class Document:
         return '\n'.join(self.lines[0:n])[:MAX_CHARS_TO_PRINT]
 
     def truncation_note(self, truncate_to: int) -> Text:
-        """String with link that will replace the text after the truncation point."""
+        """String with link to source URL that will replace the text after the truncation point."""
         link_markup = self.locations.external_link_markup
         trim_note = f"<...trimmed to {truncate_to:,} characters of {self.length:,}, read the rest at {link_markup}...>"
         return Text.from_markup(wrap_in_markup_style(trim_note, 'dim'))
