@@ -38,7 +38,6 @@ CLOSE_PROPERTIES_CHAR = ']'
 HOUSE_OVERSIGHT = HOUSE_OVERSIGHT_PREFIX.replace('_', ' ').strip()
 WHITESPACE_REGEX = re.compile(r"\s{2,}|\t|\n", re.MULTILINE)
 
-EMPTY_LENGTH = 15
 INFO_INDENT = 2
 INFO_PADDING = (0, 0, 0, INFO_INDENT)
 MIN_DOCUMENT_ID = 10477
@@ -206,7 +205,7 @@ class Document:
 
     @property
     def is_empty(self) -> bool:
-        return len(self.text.strip()) < EMPTY_LENGTH
+        return len(self.text.strip()) == 0
 
     @property
     def is_interesting(self) -> bool | None:
