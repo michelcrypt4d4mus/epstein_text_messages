@@ -34,7 +34,18 @@ SLOW_FILE_SECONDS = 1.0
 
 @dataclass
 class EpsteinFiles:
-    all_files: list[Path] = field(init=False)
+    """
+    Attributes:
+        file_paths (list[Path]): paths to Epstein related text documents
+        emails (list[Email]): all `Email` objects
+        imessage_logs (list[MessengerLog]): all `MessengerLog` objects
+        other_files (list[OtherFile]): all `OtherFile` objects
+        timer (Timer): for logging only
+        uninteresting_ccs (list[Name]): names of tangential people who were just CCed once or similar
+    """
+    file_paths: list[Path] = field(init=False)
+
+    # Derived fields
     emails: list[Email] = field(default_factory=list)
     imessage_logs: list[MessengerLog] = field(default_factory=list)
     other_files: list[OtherFile] = field(default_factory=list)
@@ -43,11 +54,12 @@ class EpsteinFiles:
 
     @property
     def all_documents(self) -> Sequence[Document]:
+        """All files sorted by timestamp (if available)."""
         return Document.sort_by_timestamp(self.imessage_logs + self.emails + self.other_files)
 
     @property
     def all_doj_files(self) -> Sequence[DojFile | Email]:
-        """All files with the filename EFTAXXXXXX, including those that were turned into Email objs."""
+        """All files with the filename EFTAXXXXXX, including those that were turned into `Email` objs."""
         return [doc for doc in self.all_documents if doc.is_doj_file]
 
     @property
@@ -63,15 +75,13 @@ class EpsteinFiles:
 
     @property
     def json_files(self) -> list[JsonFile]:
+        """JSON files from the November document dump, mostly Apple ads related."""
         return Document.sort_by_timestamp([d for d in self.other_files if isinstance(d, JsonFile)])
 
     @property
     def interesting_other_files(self) -> Sequence[OtherFile]:
+        """`OtherFile` objects that have been deemed of interest."""
         return [f for f in self.other_files if f.is_interesting]
-
-    @property
-    def non_duplicate_emails(self) -> list[Email]:
-        return Document.without_dupes(self.emails)
 
     @property
     def non_json_other_files(self) -> list[OtherFile]:
@@ -85,14 +95,19 @@ class EpsteinFiles:
 
         return self._uninteresting_emailers
 
+    @property
+    def unique_emails(self) -> list[Email]:
+        """All `Email` objects except for duplicates."""
+        return Document.without_dupes(self.emails)
+
     def __post_init__(self):
         """Iterate through files and build appropriate objects."""
         file_paths = [f for f in DOCS_DIR.iterdir() if f.is_file() and not f.name.startswith('.')]
         file_paths.extend(doj_txt_paths())
-        self.all_files = sorted(file_paths, reverse=True)
+        self.file_paths = sorted(file_paths, reverse=True)
 
         # Split up by type
-        docs = self._load_file_paths(self.all_files)
+        docs = self._load_file_paths(self.file_paths)
         self.emails = Document.sort_by_timestamp([d for d in docs if isinstance(d, Email)])
         self.imessage_logs = Document.sort_by_timestamp([d for d in docs if isinstance(d, MessengerLog)])
         self.other_files = Document.sort_by_timestamp([d for d in docs if isinstance(d, OtherFile)])
@@ -124,7 +139,7 @@ class EpsteinFiles:
         else:
             epstein_files.save_to_disk()
 
-        timer.print_at_checkpoint(f'Processed {len(epstein_files.all_files):,} files, {OtherFile.num_synthetic_cfgs_created} synthetic configs')
+        timer.print_at_checkpoint(f'Processed {len(epstein_files.file_paths):,} files, {OtherFile.num_synthetic_cfgs_created} synthetic configs')
         return epstein_files
 
     def docs_matching(self, pattern: re.Pattern | str, names: list[Name] | None = None) -> list[SearchResult]:
@@ -164,7 +179,7 @@ class EpsteinFiles:
         """Mapping of authors to all the device signatures identified in their history."""
         signatures = defaultdict(set)
 
-        for email in [e for e in self.non_duplicate_emails if e.sent_from_device]:
+        for email in [e for e in self.unique_emails if e.sent_from_device]:
             signatures[email.author_or_unknown].add(email.sent_from_device)
 
         return signatures
@@ -173,7 +188,7 @@ class EpsteinFiles:
         """Mapping of device signatures to all the users who ever signed an email with them."""
         signatures = defaultdict(set)
 
-        for email in [e for e in self.non_duplicate_emails if e.sent_from_device]:
+        for email in [e for e in self.unique_emails if e.sent_from_device]:
             signatures[email.sent_from_device].add(email.author_or_unknown)
 
         return signatures
