@@ -124,7 +124,7 @@ class EpsteinFiles:
         else:
             epstein_files.save_to_disk()
 
-        timer.print_at_checkpoint(f'Processed {len(epstein_files.all_files):,} documents (created {OtherFile.num_synthetic_cfgs_created} synthetic configs)')
+        timer.print_at_checkpoint(f'Processed {len(epstein_files.all_files):,} files, {OtherFile.num_synthetic_cfgs_created} synthetic configs')
         return epstein_files
 
     def docs_matching(self, pattern: re.Pattern | str, names: list[Name] | None = None) -> list[SearchResult]:
