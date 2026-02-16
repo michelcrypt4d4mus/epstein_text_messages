@@ -224,14 +224,6 @@ class DojFile(OtherFile):
         return self._border_style
 
     @property
-    def config_description(self) -> str | None:
-        """Overloads superclass property."""
-        if self.lines[0].lower() == 'valuation report':
-            return f"Epstein investment portfolio valuation report"
-        else:
-            return super().config_description
-
-    @property
     def empty_file_msg(self) -> RenderableType:
         """One line of linked text to show if this file doesn't seem to have any OCR text."""
         link_txt = Text('').append(Text.from_markup(super().external_link_markup))
