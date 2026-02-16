@@ -298,7 +298,7 @@ class DojFile(OtherFile):
 
     def printable_document(self) -> Self | Email:
         """Return a copy of this `DojFile` with simplified text if file ID is in `REPLACEMENT_TEXT`."""
-        if Document.is_email(self):
+        if self.is_email:
             try:
                 return Email(self.file_path, text=self.text)  # Pass text= to avoid reprocessing
             except Exception as e:
