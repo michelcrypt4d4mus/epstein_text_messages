@@ -1,4 +1,6 @@
 # NEXT RELEASE
+
+### 1.5.7
 * Move all URL and file path / name / etc. functionality to `DocLocation` class
 
 ### 1.5.6
