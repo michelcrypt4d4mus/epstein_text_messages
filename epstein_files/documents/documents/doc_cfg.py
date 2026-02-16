@@ -308,7 +308,7 @@ class DocCfg:
 
     @property
     def metadata(self) -> Metadata:
-        metadata = {k: v for k, v in asdict(self).items() if k not in NON_METADATA_FIELDS and v}
+        metadata = {k: v for k, v in asdict(self).items() if v and k not in NON_METADATA_FIELDS}
 
         if self.is_interesting is False:
             metadata['is_interesting'] = False
@@ -321,7 +321,7 @@ class DocCfg:
 
         if self.is_of_interest is not None:
             if self.is_of_interest == props.get('is_interesting'):
-                props['is_of_interest'] = props.pop('is_interesting')  # Remove is_intersting, just keep is_of_interest
+                props['is_of_interest'] = props.pop('is_interesting')  # Remove is_interesting, just keep is_of_interest
             else:
                 props['is_of_interest'] = self.is_of_interest
 
