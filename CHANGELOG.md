@@ -1,5 +1,9 @@
 # NEXT RELEASE
 
+### 1.5.5
+* Also copy properties to duplicate docs that aren't emails
+* Improve the categorization logic in `DocCfg`
+
 ### 1.5.4
 * Document configs (`DocCfg`, `EmailCfg`, etc) are no longer saved with the pickled data. Some configs are derived on the fly.
 * Add `uncertain_reason` to `DocCfg` and `recipient_uncertain` to `CommunicationCfg`, show question marks in info sentence next to uncertain recipients
