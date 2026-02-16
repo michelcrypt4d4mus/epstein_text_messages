@@ -47,6 +47,11 @@ DATE_HEADER_REGEX = re.compile(r'(?:Date|Sent):? +(?!by|from|to|via)([^\n]{6,})\
 TIMESTAMP_LINE_REGEX = re.compile(r"\d+:\d+")
 LOCAL_EXTRACT_REGEX = re.compile(r"_\d$")
 
+# numbers
+MAX_NUM_HEADER_LINES = 14
+MAX_QUOTED_REPLIES = 1
+NUM_WORDS_IN_LAST_QUOTE = 6
+
 # Junk mail
 JUNK_EMAILERS = [
     contact.name
@@ -57,11 +62,6 @@ JUNK_EMAILERS = [
 BCC_LISTS = JUNK_EMAILERS + MAILING_LISTS
 TRUNCATE_EMAILS_BY = BCC_LISTS + TRUNCATE_EMAILS_FROM
 REWRITTEN_HEADER_MSG = "(janky OCR header fields were prettified, check source if something seems off)"
-
-# numbers
-MAX_NUM_HEADER_LINES = 14
-MAX_QUOTED_REPLIES = 1
-NUM_WORDS_IN_LAST_QUOTE = 6
 
 REPLY_SPLITTERS = [f"{field}:" for field in FIELD_NAMES] + [
     '********************************',
@@ -709,7 +709,7 @@ class Email(Communication):
 
     @staticmethod
     def build_emails_table(emails: list['Email'], name: Name = '', title: str = '', show_length: bool = False) -> Table:
-        """Turn a set of Emails into a Table."""
+        """Turn a list of `Email` objects into a `Table` with sender, recipient, and subject line."""
         if title and name:
             raise ValueError(f"Can't provide both 'author' and 'title' args")
         elif name == '' and title == '':
