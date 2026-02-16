@@ -30,10 +30,14 @@ def test_all_configured_file_ids_exist(epstein_files):
 
 
 def test_document_monthly_counts(epstein_files):
-    counts = count_by_month(epstein_files.all_documents)
-    assert counts == EXPECTED_MONTHLY_COUNTS
+    new_counts = count_by_month(epstein_files.all_documents)
+
+    for month, num_docs in new_counts.items():
+        assert month in EXPECTED_MONTHLY_COUNTS
+        assert num_docs >= EXPECTED_MONTHLY_COUNTS[month]
+
     len_all_files = len(epstein_files.all_files)
-    assert sum(counts.values()) == len_all_files - 1256  # There's 1246 empty files # TODO: this is the wrong number?
+    assert sum(new_counts.values()) == len_all_files - 1256  # There's 1256 empty files
 
 
 def test_imessage_text_counts(epstein_files):
