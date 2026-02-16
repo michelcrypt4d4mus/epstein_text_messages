@@ -271,7 +271,7 @@ def print_json(label: str, obj: object, skip_falsey: bool = False) -> None:
 def print_other_page_link(epstein_files: 'EpsteinFiles') -> None:
     if args._site_type == SiteType.CURATED:
         txt = THE_OTHER_PAGE_TXT + Text(f' is uncurated and has all {len(epstein_files.emails):,} emails')
-        txt.append(f" and {len(epstein_files.other_files)} unclassifiable files")
+        txt.append(f" and {len(epstein_files.other_files):,} unclassifiable files")
     else:
         txt = THE_OTHER_PAGE_TXT + (f' displays a curated collection of emails and')
         txt.append(" unclassifiable files of particular interest")
