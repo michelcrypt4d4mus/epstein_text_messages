@@ -1,5 +1,4 @@
 import re
-from collections import defaultdict
 from typing import Sequence
 
 from rich.console import Console
