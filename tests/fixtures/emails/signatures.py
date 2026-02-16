@@ -441,7 +441,8 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
         "Sent from my iPhone"
     ],
     VINCENZO_IOZZO: [
-        "Sent from my Iphone"
+        'Sent from my Iphone',
+        'Sent from my iPhone',
     ],
     'Yuko Barnaby': [
         'Sent from my iPhone',
@@ -464,7 +465,7 @@ SIGNATURE_SUBSTITUTION_COUNTS = {
     ERIC_ROTH: 5,
     GHISLAINE_MAXWELL: 13,
     JEANNE_M_CHRISTENSEN: 37,
-    JEFFREY_EPSTEIN: 3873,
+    JEFFREY_EPSTEIN: 3926,
     JESSICA_CADWELL: 57,
     KEN_JENNE: 1,
     LARRY_SUMMERS: 235,
