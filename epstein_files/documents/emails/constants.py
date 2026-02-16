@@ -9,9 +9,10 @@ from epstein_files.util.constant.names import *
 from epstein_files.util.constant.strings import REDACTED
 
 FALLBACK_TIMESTAMP = parse("1/1/2051 12:01:01 AM")
+LOCAL_EXTRACT_REGEX = re.compile(r"_\d$")
 XML_STRIPPED_MSG = '<...removed Apple XML plist...>'
 
-# Regexes
+# Reply line regexes
 FORWARDED_LINE_PATTERN = r"-+ ?(Forwarded|Original)\s*Message ?-*|Begin forwarded message:?"
 FRENCH_REPLY_PATTERN = r"Le .* a ecrit:"
 GERMAN_REPLY_PATTERN = r"Am \d\d\.\d\d\..*schrieb.*"
