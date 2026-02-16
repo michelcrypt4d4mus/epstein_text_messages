@@ -256,6 +256,7 @@ HIGHLIGHT_GROUPS: Sequence[BaseHighlight] = [
             r"Libra",
             r"Madars",
             r"Medici\s*Bank",
+            r"Mercantile Global Holdings",
             r"Mi(chael|ke)\s*Novogratz",
             r"Noble\s*(Bank|Markets)",  # Crypto bank with Tether ties
             r"Pantera",
