@@ -72,6 +72,7 @@ SUMMARY_TABLE_COLS: list[str | dict] = [
 ]
 
 DEBUG_PROPS = [
+    'file_size',
     'file_size_str',
     'is_interesting',
     'num_lines',
@@ -604,7 +605,7 @@ class Document:
         return self.summary.plain
 
     @classmethod
-    def default_category(self) -> str:
+    def default_category(cls) -> str:
         return ''
 
     @classmethod

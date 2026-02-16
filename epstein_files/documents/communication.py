@@ -67,5 +67,5 @@ class Communication(Document):
         return super().external_links_txt(self.author_style, include_alt_links=include_alt_links)
 
     @classmethod
-    def default_category(self) -> str:
-        return type(self).__name__.lower()
+    def default_category(cls) -> str:
+        return cls.__name__.lower()

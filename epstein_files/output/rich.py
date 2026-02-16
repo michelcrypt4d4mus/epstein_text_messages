@@ -40,7 +40,7 @@ DOJ_PAGE_LINK_MSG = 'WIP page with documents from the Epstein Files Transparency
 
 INFO_STYLE = 'white dim italic'
 KEY_STYLE = 'dim'
-KEY_STYLE_ALT = 'gray58 bold'
+KEY_STYLE_ALT = 'light_steel_blue3'
 LAST_TIMESTAMP_STYLE = 'wheat4'
 OTHER_PAGE_MSG_STYLE = 'gray78 dim'
 STR_VAL_STYLE = 'cornsilk1 italic'
