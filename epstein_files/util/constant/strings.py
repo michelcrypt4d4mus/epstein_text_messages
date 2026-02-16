@@ -1,5 +1,4 @@
 import re
-from typing import Literal
 
 # Categories
 ACADEMIA = 'academia'
@@ -38,11 +37,6 @@ SOCIAL = 'social'
 PALM_BEACH = 'Palm Beach'
 VIRGIN_ISLANDS = 'Virgin Islands'
 
-# Site types
-EMAIL = 'email'
-TEXT_MESSAGE = 'text message'
-SiteType = Literal['email', 'text message']
-
 # Styles
 DEFAULT_NAME_STYLE = 'grey23'
 SUBHEADER_STYLE = 'grey46'
@@ -55,10 +49,12 @@ REGEX_STYLE_PREFIX = 'regex'
 APPEARS_IN = 'appears in'
 AUTHOR = 'author'
 DEFAULT = 'default'
+EMAIL = 'email'
 JSON = 'json'
 NA = 'n/a'
 REDACTED = '<REDACTED>'
 QUESTION_MARKS = '(???)'
+TEXT_MESSAGE = 'text message'
 
 # Document subclass names (this sucks)
 DOCUMENT_CLASS = 'Document'
@@ -67,11 +63,6 @@ EMAIL_CLASS = 'Email'
 JSON_FILE_CLASS = 'JsonFile'
 MESSENGER_LOG_CLASS = 'MessengerLog'
 OTHER_FILE_CLASS = 'OtherFile'
-
-# Whitespace
-INDENT = '    '
-INDENT_NEWLINE = f'\n{INDENT}'
-INDENTED_JOIN = f',{INDENT_NEWLINE}'
 
 # Law
 CVRA = "Crime Victims' Rights Act [CVRA]"
@@ -87,6 +78,11 @@ PALM_BEACH_TSV = f"TSV of {PALM_BEACH} property"
 PALM_BEACH_WATER_COMMITTEE = f'{PALM_BEACH} Water Committee'
 UN_GENERAL_ASSEMBLY = '67th U.N. General Assembly'
 
+# Tranches
+DOJ_2026_TRANCHE = 'Jan. 2026 DOJ tranche'
+HOUSE_OVERSIGHT_TRANCHE = '2025 House Oversight tranche'
+EPSTEIN_FILES_NOV_2025 = 'epstein_files_nov_2025'
+
 # Regexes / file names
 EFTA_PREFIX = 'EFTA'
 HOUSE_OVERSIGHT_PREFIX = 'HOUSE_OVERSIGHT_'
@@ -98,3 +94,12 @@ HOUSE_OVERSIGHT_NOV_2025_FILE_STEM_REGEX = re.compile(fr"{HOUSE_OVERSIGHT_PREFIX
 HOUSE_OVERSIGHT_NOV_2025_FILE_NAME_REGEX = re.compile(fr"{HOUSE_OVERSIGHT_NOV_2025_FILE_STEM_REGEX.pattern}(\.txt(\.json)?)?")
 LOCAL_EXTRACT_REGEX = re.compile(r"_\d$")
 QUESTION_MARKS_REGEX = re.compile(fr' {re.escape(QUESTION_MARKS)}$')
+
+# Decorative
+LEFT_ARROWS = '⇚ ⇠ ⇷ ⟵ ⇜ ⇽ ⬰ ⬲'
+RIGHT_ARROWS = '↦ ↠ ➔ ➤ ➦ ➱ ➪ ➾'
+
+# Whitespace
+INDENT = '    '
+INDENT_NEWLINE = f'\n{INDENT}'
+INDENTED_JOIN = f',{INDENT_NEWLINE}'

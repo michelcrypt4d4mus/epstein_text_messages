@@ -15,7 +15,7 @@ from epstein_files.output.rich import (console, highlighter, print_centered, pri
      print_subtitle_panel, print_starred_header, write_html)
 from epstein_files.util.constant.common_words import COMMON_WORDS_LIST, COMMON_WORDS, UNSINGULARIZABLE_WORDS
 from epstein_files.util.constant.names import OTHER_NAMES
-from epstein_files.util.constant.output_files import WORD_COUNT_HTML_PATH
+from epstein_files.util.constant.output_files import SiteType
 from epstein_files.util.env import args
 from epstein_files.util.helpers.data_helpers import ALL_NAMES, flatten, sort_dict
 from epstein_files.util.logging import logger
@@ -239,7 +239,7 @@ def write_word_counts_html() -> None:
     console.print(word_count)
     print_subtitle_panel(f"{len(COMMON_WORDS_LIST):,} Excluded Words")
     console.print(', '.join(COMMON_WORDS_LIST), highlight=False)
-    write_html(WORD_COUNT_HTML_PATH if args.build else None)
+    write_html(SiteType.build_path(SiteType.WORD_COUNT) if args.build else None)
     timer.print_at_checkpoint(f"Finished counting words")
 
 

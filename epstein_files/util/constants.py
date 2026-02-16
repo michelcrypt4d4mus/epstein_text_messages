@@ -63,7 +63,12 @@ CONFIRMED_TEXTS_CONFIG = [
     TextCfg(id='027650', author=JOI_ITO, author_reason=PARTICIPANTS_FIELD),
     TextCfg(id='027777', author=LARRY_SUMMERS, author_reason=PARTICIPANTS_FIELD),
     TextCfg(id='027515', author=MIROSLAV_LAJCAK, author_reason='https://x.com/ImDrinknWyn/status/1990210266114789713'),
-    TextCfg(id='027165', author=MELANIE_WALKER, author_reason='says "it\'s Melanie", also https://www.wired.com/story/jeffrey-epstein-claimed-intimate-knowledge-of-donald-trumps-views-in-texts-with-bill-gates-adviser/'),
+    TextCfg(
+        id='027165',
+        author=MELANIE_WALKER,
+        author_reason='says "it\'s Melanie", also https://www.wired.com/story/jeffrey-epstein-claimed-intimate-knowledge-of-donald-trumps-views-in-texts-with-bill-gates-adviser/',
+        is_interesting=True
+    ),
     TextCfg(id='027248', author=MELANIE_WALKER, author_reason='says "we met through Trump" which is confirmed by Melanie in 032803'),
     TextCfg(id='025429', author=STACEY_PLASKETT, author_reason='widely reported'),
     TextCfg(id='027128', author=SOON_YI_PREVIN, author_reason='https://x.com/ImDrinknWyn/status/1990227281101434923'),
