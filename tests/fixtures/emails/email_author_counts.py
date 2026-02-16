@@ -245,7 +245,7 @@ EMAIL_AUTHOR_COUNTS = {
     'USMS': 1,
     VALAR_VENTURES: 2,
     "Valeria Chomsky": 2,
-    VINCENZO_IOZZO: 34,
+    VINCENZO_IOZZO: 36,
     VINIT_SAHNI: 2,
     "Vladimir Yudashkin": 1,
     'Yuko Barnaby': 3,

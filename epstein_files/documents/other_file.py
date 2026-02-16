@@ -14,6 +14,7 @@ from rich.text import Text
 
 from epstein_files.documents.document import CLOSE_PROPERTIES_CHAR, WHITESPACE_REGEX, Document
 from epstein_files.documents.documents.doc_cfg import DocCfg, Metadata
+from epstein_files.documents.documents.doc_locations import DocLocation
 from epstein_files.output.highlight_config import QUESTION_MARKS_TXT, styled_category
 from epstein_files.output.rich import build_table, highlighter
 from epstein_files.util.constant.strings import *
@@ -183,7 +184,7 @@ class OtherFile(Document):
         table.add_column(FIRST_FEW_LINES, justify='left', style='pale_turquoise4')
 
         for file in files:
-            link_and_info = [cls.external_links_txt(file)]  # call superclass method to avoid border_style rainbow
+            link_and_info = [DocLocation.external_links_txt(file.locations)]  # call superclass method to avoid border_style rainbow
             date_str = file.date_str
 
             if file.is_duplicate:
