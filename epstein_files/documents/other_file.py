@@ -114,7 +114,7 @@ class OtherFile(Document):
         if VI_DAILY_NEWS_REGEX.search(self.text):
             cfg = DocCfg(id=self.file_id, category=ARTICLE, author=VI_DAILY_NEWS)
         elif self.lines[0].lower() == 'valuation report':
-            cfg = DocCfg(id=self.file_id, category=BUSINESS, description="value of Epstein's investments", is_interesting=True)
+            cfg = DocCfg(id=self.file_id, category=BUSINESS, description="valuations of Epstein's investments", is_interesting=True)
         elif has_line_starting_with(self.text, [VALAR_GLOBAL_FUND, VALAR_VENTURES], 2):
             cfg = DocCfg(id=self.file_id, category=CRYPTO, author=VALAR_VENTURES, description=f"is a {PETER_THIEL} fintech fund")
         elif (case_match := LEGAL_FILING_REGEX.search(self.text)):
