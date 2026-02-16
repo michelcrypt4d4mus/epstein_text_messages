@@ -35,7 +35,7 @@ def test_junk_emailers():
 def test_is_fwded_article(get_email):
     fwded_article = get_email('033311')
     assert fwded_article.is_word_count_worthy is False
-    non_article_with_fwd_text = get_email('012197_4', required_type=Email)
+    non_article_with_fwd_text = get_email('012197_4')
     assert non_article_with_fwd_text.is_fwded_article is False
     assert non_article_with_fwd_text.is_word_count_worthy is True
     article_with_fwd_text = get_email('016413')
