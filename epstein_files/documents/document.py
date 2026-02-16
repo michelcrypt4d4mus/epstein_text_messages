@@ -22,9 +22,8 @@ from epstein_files.documents.emails.email_header import DETECT_EMAIL_REGEX
 from epstein_files.output.rich import (INFO_STYLE, NA_TXT, SKIPPED_FILE_MSG_PADDING, SYMBOL_STYLE,
      add_cols_to_table, build_table, console, highlighter, styled_key_value, prefix_with, styled_dict,
      wrap_in_markup_style)
-from epstein_files.util.constant.names import *
 from epstein_files.util.constant.strings import *
-from epstein_files.util.constant.urls import *
+from epstein_files.util.constant.urls import epstein_media_doc_link_txt
 from epstein_files.util.constants import CONFIGS_BY_ID, MAX_CHARS_TO_PRINT
 from epstein_files.util.helpers.data_helpers import (collapse_newlines, date_str, patternize, prefix_keys,
      remove_zero_time, without_falsey)
@@ -517,7 +516,7 @@ class Document:
         return table
 
     @classmethod
-    def files_info(cls, files: Sequence['Document'], is_author_na: bool = False) -> dict[str, str | Text]:
+    def files_info(cls, files: Sequence[Self], is_author_na: bool = False) -> dict[str, str | Text]:
         """Summary info about a group of files."""
         file_count = len(files)
         author_count = cls.known_author_count(files)
