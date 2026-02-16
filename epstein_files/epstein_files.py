@@ -324,7 +324,7 @@ class EpsteinFiles:
         """IDs of emails whose recipient is not known."""
         return sorted([e.file_id for e in self.emails if None in e.recipients or not e.recipients])
 
-    def _copy_duplicate_email_properties(self) -> None:
+    def _copy_duplicate_doc_propeerties(self) -> None:
         """Ensure dupe emails have the properties of the emails they duplicate to capture any repairs, config etc."""
         for doc in self.all_documents:
             if not doc.duplicate_of_id:
@@ -344,7 +344,7 @@ class EpsteinFiles:
     def _finalize_data(self):
         """Handle computation of fields related to uninterestingness, relationships between documents, etc."""
         self._set_uninteresting_ccs()
-        self._copy_duplicate_email_properties()
+        self._copy_duplicate_doc_propeerties()
         self._find_email_attachments_and_set_is_first_for_user()
         self._sort_file_types_by_timestamp()
 
