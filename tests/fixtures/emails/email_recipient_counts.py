@@ -214,7 +214,7 @@ EMAIL_RECIPIENT_COUNTS = {
     NEAL_KASSELL: 1,
     "Neil Anderson": 1,
     NICHOLAS_RIBIS: 10,
-    NICOLE_JUNKERMANN: 7,
+    NICOLE_JUNKERMANN: 8,
     'Nick Kazan': 1,
     "Nili Priell Barak": 1,  # Wife of Ehud
     NOAM_CHOMSKY: 2,

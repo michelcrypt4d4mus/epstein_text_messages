@@ -66,7 +66,7 @@ def test_other_files_author_count(epstein_files):
 
 
 def test_other_files_categories(epstein_files):
-    assert len([f for f in epstein_files.other_files if not f.category]) == 2425
+    assert len([f for f in epstein_files.other_files if not f.category]) == 2412
 
 
 ################################################
