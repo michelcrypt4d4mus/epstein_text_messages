@@ -28,8 +28,7 @@ from epstein_files.util.constant.urls import *
 from epstein_files.util.constants import CONFIGS_BY_ID, MAX_CHARS_TO_PRINT
 from epstein_files.util.helpers.data_helpers import (collapse_newlines, date_str, patternize, prefix_keys,
      remove_zero_time, without_falsey)
-from epstein_files.util.helpers.file_helper import coerce_file_path, extract_file_id, file_size_to_str
-from epstein_files.util.env import DOCS_DIR
+from epstein_files.util.helpers.file_helper import coerce_file_path, file_size_to_str
 from epstein_files.util.logging import DOC_TYPE_STYLES, FILENAME_STYLE, logger
 
 CHECK_LINK_FOR_DETAILS = 'not shown here, check original PDF for details'
@@ -530,36 +529,6 @@ class Document:
         return [v for v in cls.files_info(files, author_na).values()]
 
     @staticmethod
-    def diff_files(files: list[str]) -> None:
-        """Diff the contents of two Documents after all cleanup, BOM removal, etc."""
-        if len(files) != 2:
-            raise RuntimeError('Need 2 files')
-        elif files[0] == files[1]:
-            raise RuntimeError(f"Filenames are the same!")
-
-        files = [f"{HOUSE_OVERSIGHT_PREFIX}{f}" if len(f) == 6 else f for f in files]
-        files = [f if f.endswith('.txt') else f"{f}.txt" for f in files]
-        tmpfiles = [Path(f"tmp_{f}") for f in files]
-        docs = [Document(DOCS_DIR.joinpath(f)) for f in files]
-
-        for i, doc in enumerate(docs):
-            doc._write_clean_text(tmpfiles[i])
-
-        cmd = f"diff {tmpfiles[0]} {tmpfiles[1]}"
-        console.print(f"Running '{cmd}'...")
-        results = run(cmd, shell=True, capture_output=True, text=True).stdout
-
-        for line in _color_diff_output(results):
-            console.print(line, highlight=True)
-
-        console.print(f"Possible suppression with: ")
-        console.print(Text('   suppress left: ').append(f"   '{extract_file_id(files[0])}': 'the same as {extract_file_id(files[1])}',", style='cyan'))
-        console.print(Text('  suppress right: ').append(f"   '{extract_file_id(files[1])}': 'the same as {extract_file_id(files[0])}',", style='cyan'))
-
-        for f in tmpfiles:
-            f.unlink()
-
-    @staticmethod
     def is_email(doc: 'Document') -> bool:
         search_area = doc.text[0:5000]  # Limit search area to avoid pointless scans of huge files
         return isinstance(doc.config, EmailCfg) or bool(DETECT_EMAIL_REGEX.match(search_area) and doc.config is None)
@@ -593,18 +562,3 @@ class Document:
 
 
 DocumentType = TypeVar('DocumentType', bound=Document)
-
-
-def _color_diff_output(diff_result: str) -> list[Text]:
-    txts = [Text('diff output:')]
-    style = 'dim'
-
-    for line in diff_result.split('\n'):
-        if line.startswith('>'):
-            style='spring_green4'
-        elif line.startswith('<'):
-            style='sea_green1'
-
-        txts.append(Text(line, style=style))
-
-    return txts

@@ -31,6 +31,7 @@ from epstein_files.util.constant.output_files import make_clean
 from epstein_files.util.constant.strings import HOUSE_OVERSIGHT_NOV_2025_ID_REGEX
 from epstein_files.util.env import args
 from epstein_files.util.helpers.data_helpers import flatten
+from epstein_files.util.helpers.document_helper import diff_files
 from epstein_files.util.helpers.file_helper import extract_file_id
 from epstein_files.util.logging import exit_with_error, logger
 from epstein_files.util.timer import Timer
@@ -96,7 +97,7 @@ def generate_html() -> None:
 
 def epstein_diff():
     """Diff the cleaned up text of two files."""
-    Document.diff_files(args.positional_args)
+    diff_files(args.positional_args)
 
 
 def epstein_grep():
