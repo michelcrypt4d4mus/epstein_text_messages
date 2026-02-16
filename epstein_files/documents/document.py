@@ -177,8 +177,8 @@ class Document:
         return file_size(self.file_path)
 
     @property
-    def file_size_str(self, decimal_places: int | None = None) -> str:
-        return file_size_str(self.file_path, decimal_places)
+    def file_size_str(self) -> str:
+        return file_size_str(self.file_path)
 
     @property
     def filename(self) -> str:
