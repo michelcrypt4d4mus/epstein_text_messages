@@ -1610,6 +1610,7 @@ HIGHLIGHT_GROUPS: Sequence[BaseHighlight] = [
             r"Pierre\s*Omidyar",
             r"Sergey\s*Brin",
             r"Silicon\s*Valley",
+            r"Skype",
             r"Softbank",
             r"SpaceX",
             r"Spotify",
