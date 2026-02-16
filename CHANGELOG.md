@@ -1,4 +1,7 @@
 # NEXT RELEASE
+* Move all URL and file path / name / etc. functionality to `DocLocation` class
+
+### 1.5.6
 
 ### 1.5.5
 * Also copy properties to duplicate docs that aren't emails

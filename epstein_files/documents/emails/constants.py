@@ -9,7 +9,6 @@ from epstein_files.util.constant.names import *
 from epstein_files.util.constant.strings import REDACTED
 
 FALLBACK_TIMESTAMP = parse("1/1/2051 12:01:01 AM")
-LOCAL_EXTRACT_REGEX = re.compile(r"_\d$")
 XML_STRIPPED_MSG = '<...removed Apple XML plist...>'
 
 # Reply line regexes

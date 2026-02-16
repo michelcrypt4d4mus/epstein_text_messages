@@ -22,7 +22,7 @@ from epstein_files.documents.emails.email_header import (EMAIL_SIMPLE_HEADER_REG
 from epstein_files.documents.emails.emailers import extract_emailer_names
 from epstein_files.documents.other_file import OtherFile
 from epstein_files.output.rich import *
-from epstein_files.util.constant.strings import REDACTED
+from epstein_files.util.constant.strings import LOCAL_EXTRACT_REGEX, REDACTED
 from epstein_files.util.constant.urls import URL_SIGNIFIERS
 from epstein_files.util.constants import *
 from epstein_files.util.helpers.data_helpers import (AMERICAN_TIME_REGEX, TIMEZONE_INFO, collapse_newlines,
@@ -149,14 +149,9 @@ METADATA_FIELDS = [
     'subject',
 ]
 
-DEBUG_PROPS = [
+DEBUG_PROPS = METADATA_FIELDS + [
     'attached_docs',
-    'is_junk_mail',
-    'is_mailing_list',
     'is_note_to_self',
-    'recipients',
-    'sent_from_device',
-    'subject',
 ]
 
 
@@ -204,10 +199,8 @@ class Email(Communication):
     @property
     def config(self) -> EmailCfg | None:
         """Configured timestamp, if any."""
-        if self.is_local_extract_file:
-            extracted_from_doc_id = self.url_slug.split('_')[-1]
-
-            if not self.derived_cfg and (extracted_from_cfg := CONFIGS_BY_ID.get(extracted_from_doc_id)):
+        if self.locations.is_local_extract_file:
+            if not self.derived_cfg and (extracted_from_cfg := CONFIGS_BY_ID.get(self.locations.url_slug)):
                 # Copy info from original config for file this document was extracted from.
                 if (my_cfg := CONFIGS_BY_ID.get(self.file_id)):
                     self.derived_cfg = cast(EmailCfg, deepcopy(my_cfg))
@@ -217,10 +210,10 @@ class Email(Communication):
                 if (extracted_from_description := extracted_from_cfg.complete_description):
                     self.derived_cfg.description = f"{APPEARS_IN} {extracted_from_description}"
 
+                # TODO: Copy replace_text_with?
                 self.derived_cfg.author_uncertain = self.derived_cfg.author_uncertain or extracted_from_cfg.author_uncertain
                 self.derived_cfg.category = self.derived_cfg.category or extracted_from_cfg.category
                 self.derived_cfg.is_interesting = self.derived_cfg.is_interesting or extracted_from_cfg.is_interesting
-                # replace_text_with
                 self.log(f"Constructed synthetic config: {self.derived_cfg}")
 
             return self.derived_cfg
@@ -229,7 +222,7 @@ class Email(Communication):
 
     @property
     def external_link_markup(self) -> str:
-        return epstein_media_doc_link_markup(self.url_slug, self.author_style)
+        return epstein_media_doc_link_markup(self.locations.url_slug, self.author_style)
 
     @property
     def is_fwded_article(self) -> bool:
@@ -242,7 +235,7 @@ class Email(Communication):
 
     @property
     def is_interesting(self) -> bool | None:
-        """TODO: currently default to True for HOUSE_OVERSIGHT_FILES, false for DOJ."""
+        """Junk emails are not interesting."""
         return False if self.is_mailing_list else super().is_interesting
 
     @property
@@ -259,6 +252,7 @@ class Email(Communication):
 
     @property
     def is_word_count_worthy(self) -> bool:
+        """True if this file should be included in word counts."""
         if self.is_fwded_article:
             return bool(self.config.fwded_text_after) or len(self.actual_text) < 150
         else:
@@ -266,12 +260,8 @@ class Email(Communication):
 
     @property
     def metadata(self) -> Metadata:
-        local_metadata = asdict(self)
-        local_metadata['is_junk_mail'] = self.is_junk_mail
-        local_metadata['is_mailing_list'] = self.is_junk_mail
-        local_metadata['subject'] = self.subject or None
         metadata = super().metadata
-        metadata.update({k: v for k, v in local_metadata.items() if v and k in METADATA_FIELDS})
+        metadata.update({k: getattr(self, k) for k in METADATA_FIELDS if getattr(self, k)})
         return metadata
 
     @property
@@ -303,13 +293,6 @@ class Email(Communication):
         return txt.append(CLOSE_PROPERTIES_CHAR)
 
     def __post_init__(self):
-        self.file_id = extract_file_id(self.filename)
-
-        # Special handling for copying properties out of the config for the document this one was extracted from
-        if self.is_local_extract_file:
-            self.url_slug = LOCAL_EXTRACT_REGEX.sub('', file_stem_for_id(self.file_id))
-            extracted_from_doc_id = self.url_slug.split('_')[-1]
-
         super().__post_init__()
 
         if self.config and self.config.recipients:
@@ -377,7 +360,7 @@ class Email(Communication):
         if reply_text_match:
             actual_num_chars = len(reply_text_match.group(1))
             actual_text_pct = f"{(100 * float(actual_num_chars) / len(text)):.1f}%"
-            logger.debug(f"'{self.url_slug}': actual_text() reply_text_match is {actual_num_chars:,} chars ({actual_text_pct} of {len(text):,})")
+            logger.debug(f"'{self.file_id}': actual_text() reply_text_match is {actual_num_chars:,} chars ({actual_text_pct} of {len(text):,})")
             text = reply_text_match.group(1)
 
         # If all else fails look for lines like 'From: blah', 'Subject: blah', and split on that.
@@ -390,7 +373,7 @@ class Email(Communication):
             pre_from_text = text.split(field_string)[0]
             actual_num_chars = len(pre_from_text)
             actual_text_pct = f"{(100 * float(actual_num_chars) / len(text)):.1f}%"
-            logger.debug(f"'{self.url_slug}': actual_text() fwd_text_match is {actual_num_chars:,} chars ({actual_text_pct} of {len(text):,})")
+            logger.debug(f"'{self.file_id}': actual_text() fwd_text_match is {actual_num_chars:,} chars ({actual_text_pct} of {len(text):,})")
             text = pre_from_text
             break
 
@@ -700,7 +683,7 @@ class Email(Communication):
         yield Padding(email_txt_panel, (0, 0, 1, INFO_INDENT))
 
         if self.attached_docs:
-            attachments_table_title = f" {self.url_slug} Email Attachments:"
+            attachments_table_title = f" {self.locations.url_slug} Email Attachments:"
             attachments_table = OtherFile.files_preview_table(self.attached_docs, title=attachments_table_title)
             yield Padding(attachments_table, (0, 0, 1, 12))
 
@@ -738,7 +721,7 @@ class Email(Communication):
 
         for email in emails:
             fields = [
-                link_text_obj(email.external_url, email.timestamp_without_seconds, style=link_style),
+                link_text_obj(email.locations.external_url, email.timestamp_without_seconds, style=link_style),
                 email.author_txt,
                 email.recipients_txt(max_full_names=1),
                 f"{email.length}",

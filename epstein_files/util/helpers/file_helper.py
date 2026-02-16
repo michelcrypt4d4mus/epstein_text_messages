@@ -3,7 +3,7 @@ from pathlib import Path
 
 from epstein_files.util.constant.strings import (DOJ_FILE_STEM_REGEX,
      HOUSE_OVERSIGHT_NOV_2025_FILE_NAME_REGEX, HOUSE_OVERSIGHT_NOV_2025_FILE_STEM_REGEX,
-     HOUSE_OVERSIGHT_PREFIX)
+     HOUSE_OVERSIGHT_PREFIX, LOCAL_EXTRACT_REGEX)
 from epstein_files.util.env import DOCS_DIR, DOJ_TXTS_20260130_DIR
 from epstein_files.util.logging import logger
 
@@ -52,6 +52,15 @@ def coerce_file_stem(filename_or_id: int | str | Path) -> str:
         raise RuntimeError(f"Invalid stem '{file_stem}' from '{filename_or_id}'")
 
     return file_stem
+
+
+def coerce_url_slug(filename_or_id: int | str | Path) -> str:
+    file_stem = coerce_file_stem(filename_or_id)
+
+    if is_local_extract_file(file_stem):
+        return LOCAL_EXTRACT_REGEX.sub('', file_stem)
+    else:
+        return file_stem
 
 
 def extract_file_id(filename_or_id: int | str | Path) -> str:
@@ -114,9 +123,13 @@ def format_house_oversight_id(id: int | str) -> str:
     return f"{int(id):06d}"
 
 
-def is_doj_file(file_or_id: str | Path) -> bool:
+def is_doj_file(file: str | Path) -> bool:
     """Check for EFTAXXXXXXX style files."""
-    return bool(DOJ_FILE_STEM_REGEX.search(str(file_or_id)))
+    return bool(DOJ_FILE_STEM_REGEX.search(str(file)))
+
+
+def is_house_oversight_file(file: str | Path) -> bool:
+    return bool(HOUSE_OVERSIGHT_NOV_2025_FILE_STEM_REGEX.search(str(file)))
 
 
 def is_local_extract_file(filename) -> bool:
