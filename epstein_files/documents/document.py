@@ -131,8 +131,9 @@ class Document:
 
     @property
     def config_description(self) -> str | None:
+        """Add parentheses to `self.config.description`."""
         if self.config and self.config.description:
-            return self.config.description
+            return f"({self.config.description})"
 
     @property
     def config_timestamp(self) -> datetime | None:
@@ -188,7 +189,7 @@ class Document:
         """0 to 2 sentences containing the info_txt() as well as any configured description."""
         return without_falsey([
             self.subheader,
-            highlighter(Text(f"({self.config_description})", style=INFO_STYLE)) if self.config_description else None
+            highlighter(Text(self.config_description, style=INFO_STYLE)) if self.config_description else None
         ])
 
     @property
