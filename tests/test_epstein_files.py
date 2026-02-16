@@ -36,8 +36,9 @@ def test_document_monthly_counts(epstein_files):
         assert month in EXPECTED_MONTHLY_COUNTS
         assert num_docs >= EXPECTED_MONTHLY_COUNTS[month]
 
-    len_all_files = len(epstein_files.file_paths)
-    assert sum(new_counts.values()) == len_all_files - 1256  # There's 1256 empty files
+    num_files_paths = len(epstein_files.file_paths)
+    num_document_objs = sum(new_counts.values())
+    assert num_document_objs == num_files_paths - 1256  # There's 1256 empty files
 
 
 def test_imessage_text_counts(epstein_files):
