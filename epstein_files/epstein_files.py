@@ -125,7 +125,7 @@ class EpsteinFiles:
         if args.pickle_path.exists() and not args.overwrite_pickle and not args.skip_other_files:
             with gzip.open(args.pickle_path, 'rb') as file:
                 epstein_files = pickle.load(file)
-                timer_msg = f"Loaded {len(epstein_files.all_files):,} documents from '{args.pickle_path}'"
+                timer_msg = f"Loaded {len(epstein_files.file_paths):,} documents from '{args.pickle_path}'"
                 timer.print_at_checkpoint(f"{timer_msg} ({file_size_str(args.pickle_path)})")
 
             if args.reload_doj:
