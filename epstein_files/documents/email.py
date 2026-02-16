@@ -298,7 +298,7 @@ class Email(Communication):
         if self.config and self.config.recipients:
             self.recipients = self.config.recipients
         else:
-            for recipient in self.header.recipients():
+            for recipient in self.header.recipients:
                 self.recipients.extend(extract_emailer_names(recipient))
 
             # Assume mailing list emails are to Epstein
