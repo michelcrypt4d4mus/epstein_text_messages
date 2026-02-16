@@ -238,10 +238,8 @@ class DojFile(OtherFile):
     @property
     def image_with_no_text_msg(self) -> RenderableType:
         """One line of linked text to show if this file doesn't seem to have any OCR text."""
-        return Padding(
-            Text('').append(Text.from_markup(super().external_link_markup)).append(f" is a {SINGLE_IMAGE_NO_TEXT}..."),
-            (0, 0, 0, 1)
-        )
+        link_txt = Text('').append(Text.from_markup(super().external_link_markup))
+        return Padding(link_txt.append(f" is a {SINGLE_IMAGE_NO_TEXT}..."), (0, 0, 0, 1))
 
     @property
     def preview_text_highlighted(self) -> Text:
