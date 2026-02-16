@@ -395,6 +395,7 @@ class EpsteinFiles:
         return docs
 
     def _set_uninteresting_ccs(self) -> None:
+        """Extract the recipients of emails configured has having uninteresting CCs or BCCs."""
         for email in [e for e in self.emails if e.config and e.config.has_uninteresting_bccs]:
             self.uninteresting_ccs += [bcc.lower() for bcc in cast(list[str], email.header.bcc)]
 
