@@ -3,7 +3,13 @@ String manipulation.
 """
 import re
 
+from inflection import underscore
+
 from epstein_files.util.constant.strings import QUESTION_MARKS_REGEX
+
+
+def constantize(s: str) -> str:
+    return underscore(s.upper())
 
 
 def has_line_starting_with(s: str | list[str], pfxes: str | list[str], limit: int | None = None) -> bool:

@@ -5,8 +5,7 @@ from pathlib import Path
 
 from rich_argparse_plus import RichHelpFormatterPlus
 
-from epstein_files.util.constant.output_files import (ALL_EMAILS_PATH, CHRONOLOGICAL_EMAILS_PATH,
-     DOJ_2026_HTML_PATH, TEXT_MSGS_HTML_PATH)
+from epstein_files.util.constant.output_files import *
 from epstein_files.util.helpers.env_helpers import get_env_dir
 from epstein_files.util.logging import env_log_level, exit_with_error, logger, set_log_level
 
@@ -16,7 +15,7 @@ EPSTEIN_GENERATE = 'epstein_generate'
 HTML_SCRIPTS = [EPSTEIN_GENERATE, 'epstein_word_count']
 PICKLED_PATH = Path("the_epstein_files.pkl.gz")
 
-# Get dirs from Env vars
+# Get source file dirs from these vars
 DOCS_DIR_ENV_VAR = 'EPSTEIN_DOCS_DIR'
 DOJ_PDFS_20260130_DIR_ENV_VAR = 'EPSTEIN_DOJ_PDFS_20260130_DIR'
 DOJ_TXTS_20260130_DIR_ENV_VAR = 'EPSTEIN_DOJ_TXTS_20260130_DIR'
@@ -26,7 +25,7 @@ DOJ_PDFS_20260130_DIR: Path = get_env_dir(DOJ_PDFS_20260130_DIR_ENV_VAR, must_ex
 DOJ_TXTS_20260130_DIR: Path = get_env_dir(DOJ_TXTS_20260130_DIR_ENV_VAR, must_exist=False)
 
 is_env_var_set = lambda s: len(environ.get(s) or '') > 0
-is_output_arg = lambda arg: any([arg.startswith(pfx) for pfx in ['colors_only', 'json', 'make_clean', 'output']])
+is_output_arg = lambda arg: any([arg.startswith(pfx) for pfx in ['all', 'colors_only', 'json', 'make_clean', 'output']])
 
 
 RichHelpFormatterPlus.choose_theme('morning_glory')
@@ -39,6 +38,7 @@ parser.add_argument('--pickle-path', '-fp', help='path to load saved data from',
 output = parser.add_argument_group('OUTPUT', 'Options used by epstein_generate.')
 output.add_argument('--all-emails', '-ae', action='store_true', help='all the emails instead of just the interesting ones')
 output.add_argument('--all-other-files', '-ao', action='store_true', help='all the non-email, non-text msg files instead of just the interesting ones')
+output.add_argument('--all-texts', '-at', action='store_true', help='all the text messages instead of just the interesting ones')
 parser.add_argument('--build', '-b', nargs="?", default=None, const=DEFAULT_FILE, help='write output to HTML file')
 output.add_argument('--email-timeline', action='store_true', help='print a table of all emails in chronological order')
 output.add_argument('--emailers-info', '-ei', action='store_true', help='write a .png of the eeailers info table')
@@ -60,7 +60,7 @@ scripts.add_argument('--min-line-length', type=int, help='epstein_grep minimum l
 scripts.add_argument('--open-both', '-ob', action='store_true', help='open the source PDF and txt after showing')
 scripts.add_argument('--open-pdf', '-pdf', action='store_true', help='open the source PDF file after showing (if it exists)')
 scripts.add_argument('--open-txt', '-o', action='store_true', help='open the file in a text editor after showing')
-scripts.add_argument('--open-url', '-web', action='store_true', help='open the source URL in a web browser')
+scripts.add_argument('--open-url', '-url', action='store_true', help='open the source URL in a web browser')
 scripts.add_argument('--raw', '-r', action='store_true', help='show raw contents of file (used by epstein_show)')
 scripts.add_argument('--whole-file', '-wf', action='store_true', help='print whole files')
 
@@ -89,9 +89,11 @@ args.debug = args.deep_debug or args.debug or is_env_var_set('DEBUG')
 args.names = [None if n == 'None' else n.strip() for n in (args.names or [])]
 args.output_emails = args.output_emails or args.all_emails
 args.output_other = args.output_other or args.all_other_files or args.uninteresting
+args.output_texts = args.output_texts or args.all_texts
 args.overwrite_pickle = args.overwrite_pickle or (is_env_var_set('OVERWRITE_PICKLE') and not is_env_var_set('PICKLED'))
 args.width = args.width if is_html_script else None
 args.any_output_selected = any([is_output_arg(arg) and val for arg, val in vars(args).items()])
+args._site_type = SiteType.CURATED
 
 if not (args.any_output_selected or args.email_timeline or args.emailers_info or args.stats):
     if is_html_script:
@@ -108,15 +110,19 @@ if is_html_script:
             if args.email_timeline:
                 exit_with_error(f"--email-timeline option is mutually exlusive with other output options")
 
+    # TODO: include the JSON and word count file outputs here
     if args.build == DEFAULT_FILE:
         if args.all_emails:
-            args.build = ALL_EMAILS_PATH
+            args._site_type = SiteType.GROUPED_EMAILS
+        elif args.all_texts:
+            args._site_type = SiteType.TEXT_MESSAGES
         elif args.email_timeline:
-            args.build = CHRONOLOGICAL_EMAILS_PATH
+            args._site_type = SiteType.CHRONOLOGICAL_EMAILS
         elif args.output_doj_files:
-            args.build = DOJ_2026_HTML_PATH
-        else:
-            args.build = TEXT_MSGS_HTML_PATH
+            args._site_type = SiteType.DOJ_FILES
+
+        args.build = SiteType.build_path(args._site_type)
+
 elif parser.prog.startswith('epstein_') and not args.positional_args and not args.names:
     exit_with_error(f"{parser.prog} requires positional arguments but got none!")
 
