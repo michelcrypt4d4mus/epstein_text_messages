@@ -77,8 +77,10 @@ git checkout gh_pages
 git merge --no-edit master --quiet
 
 # Build files
-print_deploy_step "Building text messages page... "
+print_deploy_step "Building curated index.html..."
 $GENERATE_CMD
+print_deploy_step "Building text messages page... "
+$GENERATE_CMD --all-texts
 
 if [ -n "$ONLY_TEXTS" ]; then
     print_deploy_step "Skipping build of emails pages..."
@@ -106,11 +108,14 @@ git checkout master
 
 source $URLS_ENV
 echo -e ""
-print_msg "                texts URL:" "$TEXT_MSGS_URL"
-print_msg "               emails URL:" "$ALL_EMAILS_URL"
-print_msg " chronological emails URL:" "$CHRONOLOGICAL_EMAILS_URL"
-print_msg "          word counts URL:" "$WORD_COUNT_URL"
-print_msg "        json metadata URL:" "$JSON_METADATA_URL"
-print_msg "           json files URL:" "$JSON_FILES_URL"
-print_msg "       DOJ 2026 files URL:" "$DOJ_2026_URL"
+cat $URLS_ENV
 echo -e "\n\n"
+# echo -e ""
+# print_msg "                texts URL:" "$TEXT_MSGS_URL"
+# print_msg "               emails URL:" "$ALL_EMAILS_URL"
+# print_msg " chronological emails URL:" "$CHRONOLOGICAL_EMAILS_URL"
+# print_msg "          word counts URL:" "$WORD_COUNT_URL"
+# print_msg "        json metadata URL:" "$JSON_METADATA_URL"
+# print_msg "           json files URL:" "$JSON_FILES_URL"
+# print_msg "       DOJ 2026 files URL:" "$DOJ_2026_URL"
+# echo -e "\n\n"

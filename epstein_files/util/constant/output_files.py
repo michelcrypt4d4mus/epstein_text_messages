@@ -1,53 +1,70 @@
+"""
+HTML file paths and URLs for files built by epstein_generate.
+"""
+from enum import auto, StrEnum
 from pathlib import Path
 
-from epstein_files.util.constant.strings import EMAIL, TEXT_MESSAGE, SiteType
 from epstein_files.util.logging import logger
+from epstein_files.util.constant.strings import DOJ_2026_TRANCHE, EPSTEIN_FILES_NOV_2025, HOUSE_OVERSIGHT_TRANCHE
 
-# Files output by the code
+GH_REPO_NAME = 'epstein_text_messages'
+GH_PAGES_BASE_URL = 'https://michelcrypt4d4mus.github.io'
+BASE_URL = f"{GH_PAGES_BASE_URL}/{GH_REPO_NAME}"
+
 HTML_DIR = Path('docs')
-EPSTEIN_FILES_NOV_2025 = 'epstein_files_nov_2025'
-ALL_EMAILS_PATH = HTML_DIR.joinpath(f'all_emails_{EPSTEIN_FILES_NOV_2025}.html')
-CHRONOLOGICAL_EMAILS_PATH = HTML_DIR.joinpath(f'chronological_emails_{EPSTEIN_FILES_NOV_2025}.html')
-JSON_FILES_JSON_PATH = HTML_DIR.joinpath(f'json_files_from_{EPSTEIN_FILES_NOV_2025}.json')
-JSON_METADATA_PATH = HTML_DIR.joinpath(f'file_metadata_{EPSTEIN_FILES_NOV_2025}.json')
-TEXT_MSGS_HTML_PATH = HTML_DIR.joinpath('index.html')
-WORD_COUNT_HTML_PATH = HTML_DIR.joinpath(f'communication_word_count_{EPSTEIN_FILES_NOV_2025}.html')
-# EPSTEIN_WORD_COUNT_HTML_PATH = HTML_DIR.joinpath('epstein_texts_and_emails_word_count.html')
-DOJ_2026_HTML_PATH = HTML_DIR.joinpath('doj_2026-01-30_files.html')
 URLS_ENV = '.urls.env'
 EMAILERS_TABLE_PNG_PATH = HTML_DIR.joinpath('emailers_info_table.png')
 
-# Deployment URLS
-# NOTE: don't rename these variables without changing deploy.sh
-GH_REPO_NAME = 'epstein_text_messages'
-GH_PAGES_BASE_URL = 'https://michelcrypt4d4mus.github.io'
-TEXT_MSGS_URL = f"{GH_PAGES_BASE_URL}/{GH_REPO_NAME}"
-ALL_EMAILS_URL = f"{TEXT_MSGS_URL}/{ALL_EMAILS_PATH.name}"
-CHRONOLOGICAL_EMAILS_URL = f"{TEXT_MSGS_URL}/{CHRONOLOGICAL_EMAILS_PATH.name}"
-JSON_FILES_URL = f"{TEXT_MSGS_URL}/{JSON_FILES_JSON_PATH.name}"
-JSON_METADATA_URL = f"{TEXT_MSGS_URL}/{JSON_METADATA_PATH.name}"
-WORD_COUNT_URL = f"{TEXT_MSGS_URL}/{WORD_COUNT_HTML_PATH.name}"
-DOJ_2026_URL = f"{TEXT_MSGS_URL}/{DOJ_2026_HTML_PATH.name}"
 
-SITE_URLS: dict[SiteType, str] = {
-    EMAIL: ALL_EMAILS_URL,
-    TEXT_MESSAGE: TEXT_MSGS_URL,
+class SiteType(StrEnum):
+    CHRONOLOGICAL_EMAILS = auto()
+    CURATED = auto()
+    DOJ_FILES = auto()
+    GROUPED_EMAILS = auto()
+    JSON_FILES = auto()
+    JSON_METADATA = auto()
+    TEXT_MESSAGES = auto()
+    WORD_COUNT = auto()
+
+    @classmethod
+    def build_path(cls, site_type: 'SiteType') -> Path:
+        return HTML_DIR.joinpath(HTML_BUILD_FILENAMES[site_type])
+
+    @classmethod
+    def get_url(cls, site_type: 'SiteType') -> str:
+        return f"{BASE_URL}/{cls.build_path(site_type).name}"
+
+
+HTML_BUILD_FILENAMES = {
+    SiteType.CHRONOLOGICAL_EMAILS: f'chronological_emails.html',
+    SiteType.CURATED:              f'index.html',
+    SiteType.DOJ_FILES:            f'doj_2026-01-30_non_email_files.html',
+    SiteType.GROUPED_EMAILS:       f'emails_grouped_by_counterparty.html',
+    SiteType.JSON_FILES:           f'json_files_from_{EPSTEIN_FILES_NOV_2025}.json',
+    SiteType.JSON_METADATA:        f'file_metadata_{EPSTEIN_FILES_NOV_2025}.json',
+    SiteType.TEXT_MESSAGES:        f'text_messages_{EPSTEIN_FILES_NOV_2025}.html',
+    SiteType.WORD_COUNT:           f'communication_word_count.html',
+#     SiteType.EPSTEIN_WORD_COUNT: 'epstein_texts_and_emails_word_count.html'),
 }
 
-BUILD_ARTIFACTS = [
-    ALL_EMAILS_PATH,
-    CHRONOLOGICAL_EMAILS_PATH,
-    # EPSTEIN_WORD_COUNT_HTML_PATH,
-    JSON_FILES_JSON_PATH,
-    JSON_METADATA_PATH,
-    TEXT_MSGS_HTML_PATH,
-    WORD_COUNT_HTML_PATH,
-]
+# Order matters, it's the order the links are shown in the header
+SITE_DESCRIPTIONS = {
+    SiteType.CURATED:              f"curated selection of files of particular interest",
+    SiteType.GROUPED_EMAILS:       f"emails grouped by counterparty and previews of all non email files",
+    SiteType.CHRONOLOGICAL_EMAILS: f"emails in chronological order",
+    SiteType.TEXT_MESSAGES:        f"iMessage conversations from the {HOUSE_OVERSIGHT_TRANCHE}",
+    SiteType.DOJ_FILES:            f"raw OCR text of non-email PDFs from {DOJ_2026_TRANCHE}",
+    SiteType.WORD_COUNT:           f"word count of all communications",
+    SiteType.JSON_METADATA:        f"metadata (author, attribution reasons, etc.)",
+    SiteType.JSON_FILES:           f"raw JSON files from the {HOUSE_OVERSIGHT_TRANCHE}",
+}
 
 
 def make_clean() -> None:
     """Delete all build artifacts."""
-    for build_file in BUILD_ARTIFACTS:
+    for site_type in SiteType:
+        build_file = SiteType.build_path(site_type)
+
         for file in [build_file, Path(f"{build_file}.txt")]:
             if file.exists():
                 logger.warning(f"Removing build file '{file}'...")

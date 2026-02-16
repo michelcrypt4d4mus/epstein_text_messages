@@ -36,6 +36,7 @@ TO_FROM = 'to/from'
 # External URLs
 COFFEEZILLA_ARCHIVE_URL = 'https://journaliststudio.google.com/pinpoint/search?collection=061ce61c9e70bdfd'
 COURIER_NEWSROOM_ARCHIVE_URL = 'https://journaliststudio.google.com/pinpoint/search?collection=092314e384a58618'
+DOJ_2026_FILE_BASE_URL = "https://www.justice.gov/epstein/files/DataSet%20"
 EPSTEIN_DOCS_URL = 'https://epstein-docs.github.io'
 OVERSIGHT_REPUBLICANS_PRESSER_URL = 'https://oversight.house.gov/release/oversight-committee-releases-additional-epstein-estate-documents/'
 RAW_OVERSIGHT_DOCS_GOOGLE_DRIVE_URL = 'https://drive.google.com/drive/folders/1hTNH5woIRio578onLGElkTWofUSWRoH_'
@@ -57,32 +58,35 @@ DOC_LINK_BASE_URLS: dict[ExternalSite, str] = {
     ROLLCALL: f'https://rollcall.com/factbase/epstein/file?id=',
 }
 
-# Example: https://www.justice.gov/epstein/files/DataSet%208/EFTA00009802.pdf
-DOJ_2026_FILE_BASE_URL = "https://www.justice.gov/epstein/files/DataSet%20"
-
 # Misc
 URL_SIGNIFIERS = ['?amp', 'amp?', 'cd=', 'click', 'CMP=', 'contentId', 'ft=', 'gclid', 'htm', 'mp=', 'keywords=', 'Id=', 'module=', 'mpweb', 'nlid=', 'ref=', 'smid=', 'sp=', 'usg=', 'utm']
 
 
+# Epsteinify
 epsteinify_api_url = lambda file_stem: f"{EPSTEINIFY_URL}/api/documents/{file_stem}"
 epsteinify_doc_link_markup = lambda filename_or_id, style = TEXT_LINK: external_doc_link_markup(EPSTEINIFY, filename_or_id, style)
 epsteinify_doc_link_txt = lambda filename_or_id, style = TEXT_LINK: Text.from_markup(external_doc_link_markup(filename_or_id, style))
 epsteinify_doc_url = lambda file_stem: build_doc_url(DOC_LINK_BASE_URLS[EPSTEINIFY], file_stem)
 epsteinify_name_url = lambda name: f"{EPSTEINIFY_URL}/?name={urllib.parse.quote(name)}"
 
+# epstein.media
 epstein_media_doc_url = lambda file_stem: build_doc_url(DOC_LINK_BASE_URLS[EPSTEIN_MEDIA], file_stem, 'lower')
 epstein_media_doc_link_markup = lambda filename_or_id, style = TEXT_LINK: external_doc_link_markup(EPSTEIN_MEDIA, filename_or_id, style)
 epstein_media_doc_link_txt = lambda filename_or_id, style = TEXT_LINK: Text.from_markup(epstein_media_doc_link_markup(filename_or_id, style))
 epstein_media_person_url = lambda person: f"{EPSTEIN_MEDIA_URL}/people/{parameterize(person)}"
 
+# EpsteinWeb
 epstein_web_doc_url = lambda file_stem: f"{DOC_LINK_BASE_URLS[EPSTEIN_WEB]}/{file_stem}.jpg"
 epstein_web_person_url = lambda person: f"{EPSTEIN_WEB_URL}/{parameterize(person)}"
 epstein_web_search_url = lambda s: f"{EPSTEIN_WEB_URL}/?ewmfileq={urllib.parse.quote(s)}&ewmfilepp=20"
 
+# Roll Call
 rollcall_doc_url = lambda file_stem: build_doc_url(DOC_LINK_BASE_URLS[ROLLCALL], file_stem, 'title')
 
+# Jmail
 search_jmail_url = lambda txt: f"{JMAIL_URL}/search?q={urllib.parse.quote(txt)}"
 search_twitter_url = lambda txt: f"https://x.com/search?q={urllib.parse.quote(txt)}&src=typed_query&f=live"
+
 
 PERSON_LINK_BUILDERS: dict[ExternalSite, Callable[[str], str]] = {
     EPSTEIN_MEDIA: epstein_media_person_url,
@@ -101,7 +105,7 @@ def build_doc_url(base_url: str, filename_or_id: int | str, case: Literal['lower
 
 
 def doj_2026_file_url(dataset_id: int, file_stem: str) -> str:
-    """Link to justice.gov for a DOJ file."""
+    """justice.gov link e.g. 'https://www.justice.gov/epstein/files/DataSet%208/EFTA00009802.pdf'"""
     return f"{DOJ_2026_FILE_BASE_URL}{dataset_id}/{file_stem}.pdf"
 
 
@@ -146,15 +150,15 @@ def link_text_obj(url: str, link_text: str | None = None, style: str = ARCHIVE_L
 
 
 def other_site_type() -> SiteType:
-    return TEXT_MESSAGE if args.all_emails else EMAIL
+    return SiteType.CURATED if args._site_type != SiteType.CURATED else SiteType.GROUPED_EMAILS
 
 
 def other_site_url() -> str:
-    return SITE_URLS[other_site_type()]
+    return SiteType.get_url(other_site_type())
 
 
 def this_site_url() -> str:
-    return SITE_URLS[EMAIL if other_site_type() == TEXT_MESSAGE else TEXT_MESSAGE]
+    return SiteType.get_url(args._site_type)
 
 
 CRYPTADAMUS_TWITTER = link_markup('https://x.com/cryptadamist', '@cryptadamist')

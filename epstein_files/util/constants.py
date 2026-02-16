@@ -63,16 +63,27 @@ CONFIRMED_TEXTS_CONFIG = [
     TextCfg(id='027650', author=JOI_ITO, author_reason=PARTICIPANTS_FIELD),
     TextCfg(id='027777', author=LARRY_SUMMERS, author_reason=PARTICIPANTS_FIELD),
     TextCfg(id='027515', author=MIROSLAV_LAJCAK, author_reason='https://x.com/ImDrinknWyn/status/1990210266114789713'),
-    TextCfg(id='027165', author=MELANIE_WALKER, author_reason='says "it\'s Melanie", also https://www.wired.com/story/jeffrey-epstein-claimed-intimate-knowledge-of-donald-trumps-views-in-texts-with-bill-gates-adviser/'),
+    TextCfg(
+        id='027165',
+        author=MELANIE_WALKER,
+        author_reason='says "it\'s Melanie", also https://www.wired.com/story/jeffrey-epstein-claimed-intimate-knowledge-of-donald-trumps-views-in-texts-with-bill-gates-adviser/',
+        is_interesting=True
+    ),
     TextCfg(id='027248', author=MELANIE_WALKER, author_reason='says "we met through Trump" which is confirmed by Melanie in 032803'),
     TextCfg(id='025429', author=STACEY_PLASKETT, author_reason='widely reported'),
     TextCfg(id='027128', author=SOON_YI_PREVIN, author_reason='https://x.com/ImDrinknWyn/status/1990227281101434923'),
     TextCfg(id='027217', author=SOON_YI_PREVIN, author_reason='refs marriage to Woody Allen'),
     TextCfg(id='027244', author=SOON_YI_PREVIN, author_reason='refs Woody Allen'),
     TextCfg(id='027257', author=SOON_YI_PREVIN, author_reason=f"Woody Allen in {PARTICIPANTS_FIELD}"),
-    TextCfg(id='027460', author=STEVE_BANNON, author_reason='Discusses leaving scotland when Bannon was confirmed in Scotland, also NYT'),
+    TextCfg(
+        id='027460',
+        author=STEVE_BANNON,
+        author_reason='Discusses leaving scotland when Bannon was confirmed in Scotland, also NYT',
+        is_interesting=True,
+        comment='bannon and jabor',
+    ),
     TextCfg(id='027307', author=STEVE_BANNON, author_reason='texts mention "Epstein Bannon Kurz"'),
-    TextCfg(id='027278', author=TERJE_ROD_LARSEN, author_reason=PARTICIPANTS_FIELD),
+    TextCfg(id='027278', author=TERJE_ROD_LARSEN, author_reason=PARTICIPANTS_FIELD, is_interesting=True),
     TextCfg(id='027255', author=TERJE_ROD_LARSEN, author_reason=PARTICIPANTS_FIELD),
 ]
 
@@ -95,14 +106,11 @@ UNCONFIRMED_TEXTS_CONFIG = [
     TextCfg(id='027594', author=STEVE_BANNON),
     TextCfg(id='027549', author=STEVE_BANNON),
     TextCfg(id='027764', author=STEVE_BANNON),
-    TextCfg(id='025363', author=STEVE_BANNON, author_uncertain='Trump and New York Times coverage'),
-    TextCfg(id='025368', author=STEVE_BANNON, author_uncertain='Trump and New York Times coverage'),
     TextCfg(id='027585', author=STEVE_BANNON, author_uncertain='references Tokyo trip'),
     TextCfg(id='027720', author=STEVE_BANNON, author_uncertain='first 3 lines of 027722'),
     TextCfg(id='027434', author=STEVE_BANNON, author_uncertain='references Maher appearance'),
     TextCfg(id='027428', author=STEVE_BANNON, author_uncertain='references HBJ meeting on 9/28 from other Bannon/Epstein convo'),
     TextCfg(id='027374', author=STEVE_BANNON, author_uncertain='AI says China strategy and geopolitics'),
-    TextCfg(id='027445', author=STEVE_BANNON, author_uncertain='AI says China strategy and geopolitics; Trump discussions'),
     TextCfg(id='027455', author=STEVE_BANNON, author_uncertain='AI says China strategy and geopolitics; Trump discussions'),
     TextCfg(id='027536', author=STEVE_BANNON, author_uncertain='AI says China strategy and geopolitics; Trump discussions'),
     TextCfg(id='025479', author=STEVE_BANNON, author_uncertain='AI says China strategy and geopolitics; Trump discussions'),
@@ -111,8 +119,6 @@ UNCONFIRMED_TEXTS_CONFIG = [
     TextCfg(id='025400', author=STEVE_BANNON, author_uncertain='AI says Trump NYT article criticism; Hannity media strategy'),
     TextCfg(id='025408', author=STEVE_BANNON, author_uncertain='AI says Trump and New York Times coverage'),
     TextCfg(id='025452', author=STEVE_BANNON, author_uncertain='AI says Trump and New York Times coverage'),
-    TextCfg(id='025707', author=STEVE_BANNON, author_uncertain='AI says Trump and New York Times coverage'),
-    TextCfg(id='027260', author=STEVE_BANNON, author_uncertain='AI says Trump and New York Times coverage'),
     TextCfg(id='027281', author=STEVE_BANNON, author_uncertain='AI says Trump and New York Times coverage'),
     TextCfg(id='027346', author=STEVE_BANNON, author_uncertain='AI says Trump and New York Times coverage'),
     TextCfg(id='027365', author=STEVE_BANNON, author_uncertain='AI says Trump and New York Times coverage'),
@@ -121,8 +127,20 @@ UNCONFIRMED_TEXTS_CONFIG = [
     TextCfg(id='027722', author=STEVE_BANNON, author_uncertain='AI says Trump and New York Times coverage'),
     TextCfg(id='027735', author=STEVE_BANNON, author_uncertain='AI says Trump and New York Times coverage'),
     TextCfg(id='027794', author=STEVE_BANNON, author_uncertain='AI says Trump and New York Times coverage'),
-    TextCfg(id='029744', author=STEVE_BANNON, author_uncertain='AI says Trump and New York Times coverage'),
+    TextCfg(id='025368', author=STEVE_BANNON, author_uncertain='AI', is_interesting=True, comment='obama slander'),
+    TextCfg(id='025707', author=STEVE_BANNON, author_uncertain='AI', is_interesting=True, comment='mentions thiel, dubai'),
+    TextCfg(id='025363', author=STEVE_BANNON, author_uncertain='AI', is_interesting=True, comment='mooch discussion'),
+    TextCfg(id='027445', author=STEVE_BANNON, author_uncertain='AI', is_interesting=True),
+    TextCfg(id='027260', author=STEVE_BANNON, author_uncertain='AI', is_interesting=True),
+    TextCfg(
+        id='029744',
+        author=STEVE_BANNON,
+        author_uncertain='AI says Trump + NYT coverage',
+        is_interesting=True,
+        description='contains discussion of Chinese criminal Miles Guo AKA Miles Kwok'
+    ),
     TextCfg(id='031045', author=STEVE_BANNON, author_uncertain='AI says Trump and New York Times coverage'),
+    TextCfg(id='027275', is_interesting=True, comment='"Crypto- Kerry- Qatar -sessions"')
 ]
 
 for cfg in UNCONFIRMED_TEXTS_CONFIG:
@@ -1287,6 +1305,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00999549', description=f"{JOI_ITO} and {JEREMY_RUBIN} meet {LARRY_SUMMERS} to discuss bitcoin", is_interesting=True),
     EmailCfg(id='EFTA00104945', description=f"{LEON_BLACK} / Rothschild Group {DEUTSCHE_BANK} transactions", is_interesting=True, truncate_to=700),
     EmailCfg(id='EFTA01013266', description=f"{MARIYA_PRUSAKOVA}'s {CRYPTO_PR_LAB} request for payment for Davos", is_interesting=True),
+    EmailCfg(id='EFTA02285514', description=f"Medici Bank and {MARIYA_PRUSAKOVA} meeting", is_interesting=True),
     EmailCfg(id='EFTA00900908', description="negotiation of repurchase of half of Epstein's stake in Coinbase"),
     EmailCfg(id='EFTA00754450', description='"PA" is probably Prince Andrew', duplicate_ids=['EFTA02418244']),
     EmailCfg(id='EFTA01003346', description=f"{PETER_THIEL} tells Epstein to invest in his fund", is_interesting=True),
@@ -2210,7 +2229,6 @@ OTHER_FILES_CRYPTO = [
     DocCfg(id='EFTA01734786', description='LedgerX Series B pitch deck'),
     DocCfg(id='EFTA02725909', description='memo to NYDFS for NYC Bitcoin Exchange, Balaji Srinivisan & Andrew Farkas on board'),
     # Medici / Noble
-    DocCfg(id='EFTA02285514', description=f"Medici Bank and {MARIYA_PRUSAKOVA} meeting"),
     DocCfg(id='EFTA01613731', description='Medici Bank conversation on Whatsapp'),
     DocCfg(id='EFTA00805569', description='Mercantile Global Holdings, San Juan Mercantile Bank & Trust, Noble Bank + Signature Bank + BitGo'),
     DocCfg(id='EFTA01088079', description="someone's thoughts on bitcoin"),

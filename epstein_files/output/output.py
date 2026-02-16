@@ -15,7 +15,7 @@ from epstein_files.people.person import Person
 from epstein_files.util.constant import output_files
 from epstein_files.util.constant.html import *
 from epstein_files.util.constant.names import *
-from epstein_files.util.constant.output_files import EMAILERS_TABLE_PNG_PATH, JSON_FILES_JSON_PATH, JSON_METADATA_PATH
+from epstein_files.util.constant.output_files import EMAILERS_TABLE_PNG_PATH
 from epstein_files.util.constant.strings import AUTHOR
 from epstein_files.util.env import args
 from epstein_files.util.helpers.data_helpers import dict_sets_to_lists
@@ -200,10 +200,11 @@ def print_json_files(epstein_files: EpsteinFiles):
     """Print all the JsonFile objects"""
     if args.build:
         json_data = {jf.file_info.url_slug: jf.json_data() for jf in epstein_files.json_files}
+        build_path = SiteType.build_path(SiteType.JSON_FILES)
 
-        with open(JSON_FILES_JSON_PATH, 'w') as f:
+        with open(build_path, 'wt') as f:
             f.write(json.dumps(json_data, sort_keys=True))
-            log_file_write(JSON_FILES_JSON_PATH)
+            log_file_write(build_path)
     else:
         for json_file in epstein_files.json_files:
             console.line(2)
@@ -215,9 +216,11 @@ def print_json_metadata(epstein_files: EpsteinFiles) -> None:
     json_str = epstein_files.json_metadata()
 
     if args.build:
-        with open(JSON_METADATA_PATH, 'w') as f:
+        build_path = SiteType.build_path(SiteType.JSON_METADATA)
+
+        with open(build_path, 'wt') as f:
             f.write(json_str)
-            log_file_write(JSON_METADATA_PATH)
+            log_file_write(build_path)
     else:
         console.print_json(json_str, indent=4, sort_keys=True)
 
@@ -237,7 +240,7 @@ def print_stats(epstein_files: EpsteinFiles) -> None:
 
 
 def print_other_files_section(epstein_files: EpsteinFiles) -> list[OtherFile]:
-    """Returns the OtherFile objects that were interesting enough to print."""
+    """Returns `OtherFile` objects that were interesting enough to print."""
     if args.uninteresting:
         files = [f for f in epstein_files.other_files if not f.is_interesting]
     else:
@@ -255,14 +258,18 @@ def print_other_files_section(epstein_files: EpsteinFiles) -> list[OtherFile]:
 
 
 def print_text_messages_section(epstein_files: EpsteinFiles) -> list[MessengerLog]:
-    """Print summary table and stats for text messages."""
-    imessage_logs = [log for log in epstein_files.imessage_logs if not args.names or log.author in args.names]
+    """Print summary table and stats for text messages. Returns objects that were printed."""
+    imessage_logs = [
+        log for log in epstein_files.imessage_logs
+        if args.all_texts or log.is_interesting or (args.names and log.author in args.names)
+    ]
 
     if not imessage_logs:
         logger.warning(f"No MessengerLogs found for {args.names}")
         return imessage_logs
 
-    print_section_header('All of His Text Messages')
+
+    print_section_header(('Selections from ' if not args.all_texts else '') + 'His Text Messages')
     print_centered("(conversations are sorted chronologically based on timestamp of first message in the log file)", style='dim')
     console.line(2)
 

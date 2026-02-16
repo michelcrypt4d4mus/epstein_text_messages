@@ -42,7 +42,7 @@ def test_imessage_text_counts(epstein_files):
     assert MessengerLog.count_authors(epstein_files.imessage_logs) == MESSENGER_LOG_AUTHOR_COUNTS
 
 
-def test_interesting_file_count(epstein_files):
+def test_interesting_other_files(epstein_files):
     interesting_other_file_ids = sorted([f.file_id for f in epstein_files.interesting_other_files])
     assert interesting_other_file_ids == sorted(INTERESTING_FILE_IDS)
 
@@ -89,10 +89,10 @@ def test_email_recipient_counts(epstein_files):
 
 
 def test_interesting_emails(epstein_files):
-    interesting_emails = [e for e in epstein_files.unique_emails if e.is_interesting]
-    uninteresting_emails = [e for e in epstein_files.unique_emails if e.is_interesting is False]
-    assert len(interesting_emails) == 111
-    assert len(uninteresting_emails) == 139
+    interesting_email_count = len([e for e in epstein_files.unique_emails if e.is_interesting])
+    uninteresting_emails_count = len([e for e in epstein_files.unique_emails if e.is_interesting is False])
+    assert interesting_email_count == 112
+    assert uninteresting_emails_count == 139
 
 
 def test_signature_substitutions(epstein_files):
