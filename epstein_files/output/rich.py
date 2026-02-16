@@ -41,6 +41,7 @@ DOJ_PAGE_LINK_MSG = 'WIP page with documents from the Epstein Files Transparency
 SITE_GLOSSARY_MSG = f"These pages include the following views of the underlying collection of Epstein's files:"
 YOU_ARE_HERE = Text('(').append('you are here', style='bold khaki1 blink').append(')')
 
+DATASET_DESCRIPTION_STYLE = 'gray74'
 INFO_STYLE = 'white dim italic'
 KEY_STYLE = 'dim'
 KEY_STYLE_ALT = 'light_steel_blue3'
@@ -237,8 +238,8 @@ def print_title_page_header() -> None:
     print_centered(Panel(sites_txt, expand=False, padding=(1, 5), border_style='dim'))
     console.line()
     print_starred_header('Not All The Epstein Files Are Here!', num_spaces=9 if args.all_emails else 6, num_stars=14)
-    print_centered(f"This dataset includes everything from the {HOUSE_OVERSIGHT_TRANCHE}", style='gray74')
-    print_centered(f"as we all as a curated selection of the {DOJ_2026_TRANCHE}.\n", style='gray74')
+    print_centered(f"This dataset includes everything from the {HOUSE_OVERSIGHT_TRANCHE}", style=DATASET_DESCRIPTION_STYLE)
+    print_centered(f"as we all as a curated selection of the {DOJ_2026_TRANCHE}.\n", style=DATASET_DESCRIPTION_STYLE)
 
 
 def print_title_page_tables(epstein_files: 'EpsteinFiles') -> None:
@@ -250,7 +251,7 @@ def print_title_page_tables(epstein_files: 'EpsteinFiles') -> None:
     console.line()
     print_color_key()
     print_centered(f"if you think there's an attribution error or can deanonymize an {UNKNOWN} contact {CRYPTADAMUS_TWITTER}", 'grey46')
-    print_centered('note this site is based on the OCR text provided by Congress which is not always the greatest', 'grey23')
+    print_centered('note this site is based on the government provided OCR text which is not always the greatest', 'grey23')
     print_centered(f"(thanks to {link_markup('https://x.com/ImDrinknWyn', '@ImDrinknWyn', 'dodger_blue3')} + others for help attributing redacted emails)")
     print_centered_link(SiteType.get_url(SiteType.JSON_METADATA), "(explanations of author attributions)", style='magenta')
 

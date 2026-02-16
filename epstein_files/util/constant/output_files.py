@@ -23,6 +23,7 @@ class SiteType(StrEnum):
     GROUPED_EMAILS = auto()
     JSON_FILES = auto()
     JSON_METADATA = auto()
+    OTHER_FILES_TABLE = auto()
     TEXT_MESSAGES = auto()
     WORD_COUNT = auto()
 
@@ -42,6 +43,7 @@ HTML_BUILD_FILENAMES = {
     SiteType.GROUPED_EMAILS:       f'emails_grouped_by_counterparty.html',
     SiteType.JSON_FILES:           f'json_files_from_{EPSTEIN_FILES_NOV_2025}.json',
     SiteType.JSON_METADATA:        f'file_metadata_{EPSTEIN_FILES_NOV_2025}.json',
+    SiteType.OTHER_FILES_TABLE:    f'other_files_table.html',
     SiteType.TEXT_MESSAGES:        f'text_messages_{EPSTEIN_FILES_NOV_2025}.html',
     SiteType.WORD_COUNT:           f'communication_word_count.html',
 #     SiteType.EPSTEIN_WORD_COUNT: 'epstein_texts_and_emails_word_count.html'),
@@ -50,13 +52,14 @@ HTML_BUILD_FILENAMES = {
 # Order matters, it's the order the links are shown in the header
 SITE_DESCRIPTIONS = {
     SiteType.CURATED:              f"curated selection of files of particular interest",
-    SiteType.GROUPED_EMAILS:       f"emails grouped by counterparty and previews of all non email files",
+    SiteType.GROUPED_EMAILS:       f"emails grouped by counterparty",
     SiteType.CHRONOLOGICAL_EMAILS: f"emails in chronological order",
-    SiteType.TEXT_MESSAGES:        f"iMessage conversations from the {HOUSE_OVERSIGHT_TRANCHE}",
+    SiteType.TEXT_MESSAGES:        f"text messages from {HOUSE_OVERSIGHT_TRANCHE}",
+    SiteType.OTHER_FILES_TABLE:    f"files that are neither emails nor text messages",
     SiteType.DOJ_FILES:            f"raw OCR text of non-email PDFs from {DOJ_2026_TRANCHE}",
     SiteType.WORD_COUNT:           f"word count of all communications",
     SiteType.JSON_METADATA:        f"metadata (author, attribution reasons, etc.)",
-    SiteType.JSON_FILES:           f"raw JSON files from the {HOUSE_OVERSIGHT_TRANCHE}",
+    SiteType.JSON_FILES:           f"raw JSON files from {HOUSE_OVERSIGHT_TRANCHE}",
 }
 
 
