@@ -147,6 +147,7 @@ DEVICE_SIGNATURE_TO_AUTHORS = {
         'Tonja Haddad Coleman',
         'Tyler Shears',
         USANYS,
+        VINCENZO_IOZZO,
         'Yuko Barnaby',
     ],
     "Sent from my iPhone and misspellings courtesy of iPhone.": [
