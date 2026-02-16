@@ -199,8 +199,8 @@ class Email(Communication):
     @property
     def config(self) -> EmailCfg | None:
         """Configured timestamp, if any."""
-        if self.locations.is_local_extract_file:
-            if not self.derived_cfg and (extracted_from_cfg := CONFIGS_BY_ID.get(self.locations.url_slug)):
+        if self.file_info.is_local_extract_file:
+            if not self.derived_cfg and (extracted_from_cfg := CONFIGS_BY_ID.get(self.file_info.url_slug)):
                 # Copy info from original config for file this document was extracted from.
                 if (my_cfg := CONFIGS_BY_ID.get(self.file_id)):
                     self.derived_cfg = cast(EmailCfg, deepcopy(my_cfg))
@@ -222,7 +222,7 @@ class Email(Communication):
 
     @property
     def external_link_markup(self) -> str:
-        return epstein_media_doc_link_markup(self.locations.url_slug, self.author_style)
+        return epstein_media_doc_link_markup(self.file_info.url_slug, self.author_style)
 
     @property
     def is_fwded_article(self) -> bool:
@@ -298,7 +298,7 @@ class Email(Communication):
         if self.config and self.config.recipients:
             self.recipients = self.config.recipients
         else:
-            for recipient in self.header.recipients():
+            for recipient in self.header.recipients:
                 self.recipients.extend(extract_emailer_names(recipient))
 
             # Assume mailing list emails are to Epstein
@@ -396,7 +396,7 @@ class Email(Communication):
             self.header = EmailHeader.from_header_lines(header_match.group(0))
 
             # DOJ file OCR text is broken in a less consistent way than the HOUSE_OVERSIGHT files
-            if self.header.is_empty() and not self.is_doj_file:
+            if self.header.is_empty and not self.file_info.is_doj_file:
                 self.header.repair_empty_header(self.lines)
         else:
             log_level = logging.INFO if self.config else logging.WARNING
@@ -465,7 +465,7 @@ class Email(Communication):
             else:
                 lines += [self.lines[idx1] + ' ' + self.lines[idx2]] + self.lines[idx1 + 1:idx2] + self.lines[idx2 + 1:]
 
-        self._set_computed_fields(lines=lines)
+        self._set_text(lines=lines)
 
     def _prettify_text(self) -> str:
         """Add newlines before quoted replies and snip signatures."""
@@ -496,15 +496,15 @@ class Email(Communication):
         num_lines = idx * 2
         self.log_top_lines(num_lines, msg=f'before removal of line {idx}')
         del self.lines[idx]
-        self._set_computed_fields(lines=self.lines)
+        self._set_text(lines=self.lines)
         self.log_top_lines(num_lines, msg=f'after removal of line {idx}')
 
     def _repair(self) -> None:
         """Repair particularly janky files. Note that OCR_REPAIRS are applied *after* other line adjustments."""
         if BAD_FIRST_LINE_REGEX.match(self.lines[0]):
-            self._set_computed_fields(lines=self.lines[1:])
+            self._set_text(lines=self.lines[1:])
 
-        self._set_computed_fields(lines=[line for line in self.lines if not BAD_LINE_REGEX.match(line)])
+        self._set_text(lines=[line for line in self.lines if not BAD_LINE_REGEX.match(line)])
         old_text = self.text
 
         if self.file_id in LINE_REPAIR_MERGES:
@@ -513,9 +513,9 @@ class Email(Communication):
 
         if self.file_id in ['025233']:
             self.lines[4] = f"Attachments: {self.lines[4]}"
-            self._set_computed_fields(lines=self.lines)
+            self._set_text(lines=self.lines)
         elif self.file_id == '029977':
-            self._set_computed_fields(text=self.text.replace('Sent 9/28/2012 2:41:02 PM', 'Sent: 9/28/2012 2:41:02 PM'))
+            self._set_text(text=self.text.replace('Sent 9/28/2012 2:41:02 PM', 'Sent: 9/28/2012 2:41:02 PM'))
 
         # Bad line removal
         if self.file_id == '025041':
@@ -529,7 +529,7 @@ class Email(Communication):
             self.log_top_lines(12, 'Result of modifications')
 
         repaired_text = self._repair_links_and_quoted_subjects(self.repair_ocr_text(OCR_REPAIRS, self.text))
-        self._set_computed_fields(text=repaired_text)
+        self._set_text(text=repaired_text)
 
     def _repair_links_and_quoted_subjects(self, text: str) -> str:
         """Repair links that the OCR has broken into multiple lines as well as 'Subject:' lines."""
@@ -615,13 +615,14 @@ class Email(Communication):
                 else:
                     num_chars = quote_cutoff
             else:
-                num_chars = min(self.file_size, MAX_CHARS_TO_PRINT)
+                # TODO: Added some padding to self.length because newlines may be added in prettification but this sucks
+                num_chars = min(self.length + 100, MAX_CHARS_TO_PRINT)
 
             # Always print whole email for 1st email for actual people
-            if self._is_first_for_user and num_chars < self.file_size and \
+            if self._is_first_for_user and num_chars < self.length and \
                     not (self.is_duplicate or self.is_fwded_article or self.is_mailing_list):
                 self.log(f"{self} Overriding cutoff {num_chars} for first email")
-                num_chars = self.file_size
+                num_chars = self.length + 100
 
         log_args = {
             'num_chars': num_chars,
@@ -683,7 +684,7 @@ class Email(Communication):
         yield Padding(email_txt_panel, (0, 0, 1, INFO_INDENT))
 
         if self.attached_docs:
-            attachments_table_title = f" {self.locations.url_slug} Email Attachments:"
+            attachments_table_title = f" {self.file_info.url_slug} Email Attachments:"
             attachments_table = OtherFile.files_preview_table(self.attached_docs, title=attachments_table_title)
             yield Padding(attachments_table, (0, 0, 1, 12))
 
@@ -721,7 +722,7 @@ class Email(Communication):
 
         for email in emails:
             fields = [
-                link_text_obj(email.locations.external_url, email.timestamp_without_seconds, style=link_style),
+                link_text_obj(email.file_info.external_url, email.timestamp_without_seconds, style=link_style),
                 email.author_txt,
                 email.recipients_txt(max_full_names=1),
                 f"{email.length}",

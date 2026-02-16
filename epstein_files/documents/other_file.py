@@ -14,7 +14,7 @@ from rich.text import Text
 
 from epstein_files.documents.document import CLOSE_PROPERTIES_CHAR, WHITESPACE_REGEX, Document
 from epstein_files.documents.documents.doc_cfg import DocCfg, Metadata
-from epstein_files.documents.documents.doc_locations import DocLocation
+from epstein_files.documents.documents.file_info import FileInfo
 from epstein_files.output.highlight_config import QUESTION_MARKS_TXT, styled_category
 from epstein_files.output.rich import build_table, highlighter
 from epstein_files.util.constant.strings import *
@@ -57,8 +57,8 @@ class OtherFile(Document):
     was_timestamp_extracted: bool = False
 
     # Class vars
-    include_description_in_summary_panel: ClassVar[bool] = True  # Class var for logging output
-    max_timestamp: ClassVar[datetime] = datetime(2022, 12, 31) # Overloaded in DojFile
+    INCLUDE_DESCRIPTION_IN_SUMMARY_PANEL: ClassVar[bool] = True  # Class var for logging output
+    MAX_TIMESTAMP: ClassVar[datetime] = datetime(2022, 12, 31) # Overloaded in DojFile
     num_synthetic_cfgs_created: ClassVar[int] = 0
 
     @property
@@ -114,7 +114,7 @@ class OtherFile(Document):
         if VI_DAILY_NEWS_REGEX.search(self.text):
             cfg = DocCfg(id=self.file_id, category=ARTICLE, author=VI_DAILY_NEWS)
         elif self.lines[0].lower() == 'valuation report':
-            cfg = DocCfg(id=self.file_id, category=BUSINESS, description="value of Epstein's investments", is_interesting=True)
+            cfg = DocCfg(id=self.file_id, category=BUSINESS, description="valuations of Epstein's investments", is_interesting=True)
         elif has_line_starting_with(self.text, [VALAR_GLOBAL_FUND, VALAR_VENTURES], 2):
             cfg = DocCfg(id=self.file_id, category=CRYPTO, author=VALAR_VENTURES, description=f"is a {PETER_THIEL} fintech fund")
         elif (case_match := LEGAL_FILING_REGEX.search(self.text)):
@@ -141,7 +141,7 @@ class OtherFile(Document):
                 for timestamp in datefinder.find_dates(self.text, strict=False):
                     timestamp = remove_timezone(timestamp)
 
-                    if MIN_TIMESTAMP < timestamp < self.max_timestamp:
+                    if MIN_TIMESTAMP < timestamp < self.MAX_TIMESTAMP:
                         timestamps.append(timestamp)
 
                     if len(timestamps) >= MAX_EXTRACTED_TIMESTAMPS:
@@ -184,7 +184,7 @@ class OtherFile(Document):
         table.add_column(FIRST_FEW_LINES, justify='left', style='pale_turquoise4')
 
         for file in files:
-            link_and_info = [DocLocation.external_links_txt(file.locations)]  # call superclass method to avoid border_style rainbow
+            link_and_info = [FileInfo.external_links_txt(file.file_info)]  # call superclass method to avoid border_style rainbow
             date_str = file.date_str
 
             if file.is_duplicate:
@@ -198,7 +198,7 @@ class OtherFile(Document):
             table.add_row(
                 Group(*link_and_info),
                 Text(date_str, style=TIMESTAMP_STYLE) if date_str else QUESTION_MARKS_TXT,
-                file.file_size_str,
+                file.file_info.file_size_str,
                 file.category_txt,
                 preview_text,
                 style=row_style

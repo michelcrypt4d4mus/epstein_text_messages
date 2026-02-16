@@ -19,7 +19,7 @@ for email in EpsteinFiles.get_files().emails:
 
     other_email = email_timestamps[email.timestamp]
 
-    if other_email.locations.url_slug == email.locations.url_slug:
+    if other_email.locations.url_slug == email.file_info.url_slug:
         console.print(f"Skipping same url_slug for '{email.filename}'...", style='dim')
         continue
     elif other_email.is_duplicate or email.is_duplicate:

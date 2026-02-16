@@ -31,6 +31,7 @@ from epstein_files.util.constant.output_files import make_clean
 from epstein_files.util.constant.strings import HOUSE_OVERSIGHT_NOV_2025_ID_REGEX
 from epstein_files.util.env import args
 from epstein_files.util.helpers.data_helpers import flatten
+from epstein_files.util.helpers.document_helper import diff_files
 from epstein_files.util.helpers.file_helper import extract_file_id
 from epstein_files.util.logging import exit_with_error, logger
 from epstein_files.util.timer import Timer
@@ -96,7 +97,7 @@ def generate_html() -> None:
 
 def epstein_diff():
     """Diff the cleaned up text of two files."""
-    Document.diff_files(args.positional_args)
+    diff_files(args.positional_args)
 
 
 def epstein_grep():
@@ -146,7 +147,7 @@ def epstein_grep():
                     console.print(Padding(temp_highlighter(line_txt), INFO_PADDING), style='gray37')
 
             console.line()
-            console.print(doc.locations, style='dim')
+            console.print(doc.file_info, style='dim')
             console.line()
 
 
@@ -194,7 +195,7 @@ def epstein_show():
             console.print(doc._debug_txt(), style='dim')
 
         if args.open_pdf:
-            check_output(['open', str(doc.locations.local_pdf_path)])
+            check_output(['open', str(doc.file_info.local_pdf_path)])
         if args.open_txt:
             check_output(['open', str(doc.file_path)])
         if args.open_url:

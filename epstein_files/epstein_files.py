@@ -62,7 +62,7 @@ class EpsteinFiles:
     @property
     def all_doj_files(self) -> Sequence[DojFile | Email]:
         """All files with the filename EFTAXXXXXX, including those that were turned into `Email` objs."""
-        return [doc for doc in self.all_documents if doc.is_doj_file]
+        return [doc for doc in self.all_documents if doc.file_info.is_doj_file]
 
     @property
     def doj_files(self) -> list[DojFile]:
@@ -152,7 +152,7 @@ class EpsteinFiles:
             if names and doc.author not in names:
                 continue
 
-            lines = doc.matching_lines(pattern)
+            lines = doc.lines_matching(pattern)
 
             if args.min_line_length:
                 lines = [line for line in lines if len(line.line) > args.min_line_length]
@@ -294,8 +294,8 @@ class EpsteinFiles:
         # Remove old DOJ files
         timer = Timer()
         logger.warning(f"Only reloading DOJ files {doj_file_counts_str()}...")
-        self.emails = [f for f in self.emails if not f.is_doj_file]
-        self.other_files = [f for f in self.other_files if not f.is_doj_file]
+        self.emails = [f for f in self.emails if not f.file_info.is_doj_file]
+        self.other_files = [f for f in self.other_files if not f.file_info.is_doj_file]
 
         # Build new objects and append them
         new_docs = self._load_file_paths(doj_txt_paths())
@@ -428,11 +428,11 @@ def document_cls(doc: Document) -> Type[Document]:
 
     if doc.length == 0:
         return Document
-    elif doc.is_doj_file:
+    elif doc.file_info.is_doj_file:
         return DojFile
     if doc.text[0] == '{':
         return JsonFile
-    elif Document.is_email(doc):  # TODO: right now we setup the DojFile which makes an Email obj only later at print time
+    elif doc.is_email:  # TODO: right now we setup the DojFile which makes an Email obj only later at print time
         return Email
     elif MSG_REGEX.search(search_area):
         return MessengerLog

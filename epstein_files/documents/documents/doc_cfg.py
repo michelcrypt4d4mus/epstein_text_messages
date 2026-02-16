@@ -1,13 +1,11 @@
 import json
-import re
 from copy import deepcopy
 from dataclasses import asdict, dataclass, field, fields
 from datetime import datetime
 from pathlib import Path
-from typing import Generator, Literal, Mapping, Self
+from typing import Generator, Literal, Self
 
 from dateutil.parser import parse
-from rich.padding import Padding
 from rich.text import Text
 
 from epstein_files.util.constant.names import *
@@ -270,7 +268,7 @@ class DocCfg:
     @property
     def is_of_interest(self) -> bool | None:
         """
-        Self.is_interesting` value takes precedence. After that check rules below.
+        `self.is_interesting` value takes precedence. If it's not set apply the rules below.
         Defaults to True for HOUSE_OVERSIGHT files w/out info, None for DOJ files.
         Returns None (not False) if there's no firm decision, leaving `Document` classes
         to do any other checks they might want to.
@@ -281,8 +279,8 @@ class DocCfg:
             [+] INTERESTING_AUTHORS
             [+] having no author/description *if* HOUSE_OVERSIGHT
              -  duplicates
-             -  descriptions with UNINTERESTING_PREFIXES
              -  UNINTERESTING_CATEGORIES
+             -  descriptions with UNINTERESTING_PREFIXES
              -  finance category with any author
         """
         if self.duplicate_of_id:
@@ -308,7 +306,7 @@ class DocCfg:
 
     @property
     def metadata(self) -> Metadata:
-        metadata = {k: v for k, v in asdict(self).items() if k not in NON_METADATA_FIELDS and v}
+        metadata = {k: v for k, v in asdict(self).items() if v and k not in NON_METADATA_FIELDS}
 
         if self.is_interesting is False:
             metadata['is_interesting'] = False
@@ -321,7 +319,7 @@ class DocCfg:
 
         if self.is_of_interest is not None:
             if self.is_of_interest == props.get('is_interesting'):
-                props['is_of_interest'] = props.pop('is_interesting')  # Remove is_intersting, just keep is_of_interest
+                props['is_of_interest'] = props.pop('is_interesting')  # Remove is_interesting, just keep is_of_interest
             else:
                 props['is_of_interest'] = self.is_of_interest
 
@@ -330,7 +328,7 @@ class DocCfg:
 
             # Avoid showing complete_description if it's just the author or description and other prop doesn't exist
             if len(description_pieces) != 1 or description_pieces[0] != self.complete_description:
-                props['cfg.complete_description'] = self.complete_description
+                props['complete_description'] = self.complete_description
 
         if (category_txt := self.category_txt):
             if category_txt.plain == props.get('category'):
@@ -339,9 +337,9 @@ class DocCfg:
             # Only add ??? for non-email, non immesage
             if category_txt.plain == QUESTION_MARKS:
                 if not isinstance(self, CommunicationCfg):
-                    props['cfg.category_txt'] = category_txt
+                    props['category_txt'] = category_txt
             else:
-                props['cfg.category_txt'] = category_txt
+                props['category_txt'] = category_txt
 
         # Remove duplicated / copied field
         if (author_uncertain := props.get('author_uncertain')) and author_uncertain == props.get('author_reason'):

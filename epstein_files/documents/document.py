@@ -3,8 +3,7 @@ import re
 from dataclasses import asdict, dataclass, field
 from datetime import datetime
 from pathlib import Path
-from subprocess import run
-from typing import Callable, ClassVar, Mapping, Self, Sequence, Type, TypeVar
+from typing import ClassVar, Self, Sequence, TypeVar
 
 from inflection import underscore
 from rich.console import Console, ConsoleOptions, Group, RenderResult
@@ -15,22 +14,20 @@ from rich.text import Text
 from rich.table import Table
 
 from epstein_files.documents.documents.doc_cfg import DUPE_TYPE_STRS, DebugDict, EmailCfg, DocCfg, Metadata
-from epstein_files.documents.documents.doc_locations import DocLocation
+from epstein_files.documents.documents.file_info import FileInfo
 from epstein_files.documents.documents.search_result import MatchedLine
 from epstein_files.documents.emails.constants import FALLBACK_TIMESTAMP
 from epstein_files.documents.emails.email_header import DETECT_EMAIL_REGEX
 from epstein_files.output.rich import (INFO_STYLE, NA_TXT, SKIPPED_FILE_MSG_PADDING, SYMBOL_STYLE,
      add_cols_to_table, build_table, console, highlighter, styled_key_value, prefix_with, styled_dict,
      wrap_in_markup_style)
-from epstein_files.util.constant.names import *
+from epstein_files.util.constant.names import Name
 from epstein_files.util.constant.strings import *
-from epstein_files.util.constant.urls import *
+from epstein_files.util.constant.urls import EXTRACTS_BASE_URL, epstein_media_doc_link_txt
 from epstein_files.util.constants import CONFIGS_BY_ID, MAX_CHARS_TO_PRINT
 from epstein_files.util.helpers.data_helpers import (collapse_newlines, date_str, patternize, prefix_keys,
      remove_zero_time, without_falsey)
-from epstein_files.util.helpers.file_helper import (coerce_file_path, extract_file_id, file_size, file_size_str,
-     file_size_to_str)
-from epstein_files.util.env import DOCS_DIR
+from epstein_files.util.helpers.file_helper import coerce_file_path, file_size_to_str
 from epstein_files.util.logging import DOC_TYPE_STYLES, FILENAME_STYLE, logger
 
 CHECK_LINK_FOR_DETAILS = 'not shown here, check original PDF for details'
@@ -38,7 +35,6 @@ CLOSE_PROPERTIES_CHAR = ']'
 HOUSE_OVERSIGHT = HOUSE_OVERSIGHT_PREFIX.replace('_', ' ').strip()
 WHITESPACE_REGEX = re.compile(r"\s{2,}|\t|\n", re.MULTILINE)
 
-EMPTY_LENGTH = 15
 INFO_INDENT = 2
 INFO_PADDING = (0, 0, 0, INFO_INDENT)
 MIN_DOCUMENT_ID = 10477
@@ -64,7 +60,6 @@ SUMMARY_TABLE_COLS: list[str | dict] = [
 ]
 
 DEBUG_PROPS = [
-    'file_size',
     'is_interesting',
     'num_lines',
     'timestamp',
@@ -79,6 +74,8 @@ DEBUG_PROPS_TRUTHY_ONLY = [
 METADATA_FIELDS = [
     AUTHOR,
     'file_id',
+    'filename',
+    'num_lines',
     'timestamp',
 ]
 
@@ -91,23 +88,23 @@ class Document:
     Attributes:
         file_path (Path): Local path to file
         author (Name): Writer of the text in the file
+        file_info (FileInfo): Manages things having to do with the underlying file (paths, URLs, etc.)
         lines (list[str]): Number of lines in the file after all the cleanup
-        locations (DocLocation): manages local paths and web URLs for this document
         text (str): Contents of the file
         timestamp (datetime, optional): When the file was originally created
     """
     file_path: Path
+
+    # Optional and/or derived at instantiation time
+    author: Name = None
+    file_info: FileInfo = field(init=False)
     lines: list[str] = field(default_factory=list)
     text: str = ''
-
-    # Optional derived fields
-    author: Name = None
-    locations: DocLocation = field(init=False)
     timestamp: datetime | None = None
 
-    # Class variables
-    include_description_in_summary_panel: ClassVar[bool] = False
-    strip_whitespace: ClassVar[bool] = True  # Overridden in JsonFile
+    # Class constants
+    INCLUDE_DESCRIPTION_IN_SUMMARY_PANEL: ClassVar[bool] = False
+    STRIP_WHITESPACE: ClassVar[bool] = True  # Overridden in JsonFile
 
     @property
     def border_style(self) -> str:
@@ -128,8 +125,23 @@ class Document:
 
     @property
     def config_description(self) -> str | None:
+        """Add parentheses to `self.config.description`."""
         if self.config and self.config.description:
             return f"({self.config.description})"
+
+    @property
+    def config_replace_text_with(self) -> str | None:
+        """Configured replacement text."""
+        if self.config and self.config.replace_text_with:
+            if self.config.author:
+                text = f"{self.config.author} {self.config.replace_text_with}"
+            else:
+                text = self.config.replace_text_with
+
+            if len(text) < 300:
+                return f"(Text of {text} {CHECK_LINK_FOR_DETAILS})"
+            else:
+                return text
 
     @property
     def config_timestamp(self) -> datetime | None:
@@ -162,23 +174,15 @@ class Document:
     @property
     def external_link_markup(self) -> str:
         """Rich markup string with link to source document."""
-        return self.locations.external_link_markup
+        return self.file_info.external_link_markup
 
     @property
     def file_id(self) -> str:
-        return self.locations.file_id
-
-    @property
-    def file_size(self) -> int:
-        return file_size(self.file_path)
-
-    @property
-    def file_size_str(self, decimal_places: int | None = None) -> str:
-        return file_size_str(self.file_path, decimal_places)
+        return self.file_info.file_id
 
     @property
     def filename(self) -> str:
-        return self.file_path.name
+        return self.file_info.filename
 
     @property
     def info(self) -> list[Text]:
@@ -193,23 +197,25 @@ class Document:
         return bool(self.config and self.config.is_attribution_uncertain)
 
     @property
-    def is_doj_file(self) -> bool:
-        return self.locations.is_doj_file
-
-    @property
     def is_duplicate(self) -> bool:
         return bool(self.duplicate_of_id)
 
     @property
+    def is_email(self) -> bool:
+        """True if the text looks like it's probably an email."""
+        search_area = self.text[0:5000]  # Limit search area to avoid pointless scans of huge files
+        return isinstance(self.config, EmailCfg) or bool(DETECT_EMAIL_REGEX.match(search_area) and self.config is None)
+
+    @property
     def is_empty(self) -> bool:
-        return len(self.text.strip()) < EMPTY_LENGTH
+        return len(self.text.strip()) == 0
 
     @property
     def is_interesting(self) -> bool | None:
         """TODO: currently default to True for HOUSE_OVERSIGHT_FILES, false for DOJ."""
         if self.config and self.config.is_of_interest is not None:
             return self.config.is_of_interest
-        elif self.locations.is_house_oversight_file and not (self.author or self.config):
+        elif self.file_info.is_house_oversight_file and not (self.author or self.config):
             return True
 
     @property
@@ -219,16 +225,14 @@ class Document:
     @property
     def metadata(self) -> Metadata:
         metadata = self.config.metadata if self.config else {}
-        metadata.update({k: v for k, v in asdict(self).items() if k in METADATA_FIELDS and v is not None})
-        metadata['bytes'] = self.file_size
-        metadata['filename'] = self.locations.filename
-        metadata['num_lines'] = self.num_lines
+        metadata.update({k: getattr(self, k) for k in METADATA_FIELDS if getattr(self, k) is not None})
+        metadata['file_size'] = self.file_info.file_size
         metadata['type'] = self._class_name
 
-        if self.locations.is_local_extract_file:
+        if self.file_info.is_local_extract_file:
             metadata['extracted_file'] = {
                 'explanation': 'manually extracted from one of the other files',
-                'extracted_from': self.locations.url_slug + '.txt',
+                'extracted_from': self.file_info.url_slug + '.txt',
                 'url': f"{EXTRACTS_BASE_URL}/{self.filename}",
             }
 
@@ -250,8 +254,8 @@ class Document:
     @property
     def prettified_text(self) -> Text:
         """Returns the string we want to print as the body of the document."""
-        style = INFO_STYLE if self.replace_text_with and len(self.replace_text_with) < 300 else ''
-        text = self.replace_text_with or self.text
+        style = INFO_STYLE if self.config_replace_text_with and len(self.config_replace_text_with) < 300 else ''
+        text = self.config_replace_text_with or self.text
         trim_footer_txt = None
 
         if self.config and self.config.truncate_to:
@@ -260,20 +264,6 @@ class Document:
             return txt.append('...\n\n').append(trim_footer_txt)
         else:
             return highlighter(Text(text, style))
-
-    @property
-    def replace_text_with(self) -> str | None:
-        """Configured replacement text."""
-        if self.config and self.config.replace_text_with:
-            if self.config.author:
-                text = f"{self.config.author} {self.config.replace_text_with}"
-            else:
-                text = self.config.replace_text_with
-
-            if len(text) < 300:
-                return f"(Text of {text} {CHECK_LINK_FOR_DETAILS})"
-            else:
-                return text
 
     @property
     def subheader(self) -> Text | None:
@@ -304,7 +294,7 @@ class Document:
         """Panelized description() with info_txt(), used in search results."""
         sentences = [self.summary]
 
-        if self.include_description_in_summary_panel:
+        if self.INCLUDE_DESCRIPTION_IN_SUMMARY_PANEL:
             sentences += [Text('', style='italic').append(h) for h in self.info]
 
         return Panel(Group(*sentences), border_style=self._class_style, expand=False)
@@ -323,8 +313,7 @@ class Document:
 
     @property
     def _class_name(self) -> str:
-        """Annoying workaround for circular import issues and isinstance()."""
-        return str(type(self).__name__)
+        return type(self).__name__
 
     @property
     def _class_style(self) -> str:
@@ -338,9 +327,9 @@ class Document:
         if not self.file_path.exists():
             raise FileNotFoundError(f"File '{self.file_path.name}' does not exist!")
 
-        self.locations = DocLocation(self.file_path)
+        self.file_info = FileInfo(self.file_path)
         self.text = self.text or self._load_file()
-        self._set_computed_fields(text=self.text)
+        self._set_text(text=self.text)
         self._repair()
         self._extract_author()
         self.timestamp = self.config_timestamp or self._extract_timestamp()
@@ -352,9 +341,14 @@ class Document:
 
     def file_info_panel(self) -> Group:
         """Panel with filename linking to raw file plus any additional info about the file."""
-        panel = Panel(self.locations.external_links_txt(include_alt_links=True), border_style=self.border_style, expand=False)
+        panel = Panel(self.file_info.external_links_txt(include_alt_links=True), border_style=self.border_style, expand=False)
         padded_info = [Padding(sentence, INFO_PADDING) for sentence in self.info]
         return Group(*([panel] + padded_info))
+
+    def lines_matching(self, _pattern: re.Pattern | str) -> list[MatchedLine]:
+        """Find lines in this file matching a regex pattern."""
+        pattern = patternize(_pattern)
+        return [MatchedLine(line, i) for i, line in enumerate(self.lines) if pattern.search(line)]
 
     def log(self, msg: str, level: int = logging.INFO):
         """Log a message with with this document's filename as a prefix."""
@@ -365,11 +359,6 @@ class Document:
         separator = '\n\n' if '\n' in msg else '. '
         msg = (msg + separator) if msg else ''
         self.log(f"{msg}First {n} lines:\n\n{self.top_lines(n)}\n", level)
-
-    def matching_lines(self, _pattern: re.Pattern | str) -> list[MatchedLine]:
-        """Return lines matching a regex as colored list[Text]."""
-        pattern = patternize(_pattern)
-        return [MatchedLine(line, i) for i, line in enumerate(self.lines) if pattern.search(line)]
 
     def printable_document(self) -> Self:
         """Overloaded by `DojFile` to convert some files to `Email` objects."""
@@ -399,8 +388,8 @@ class Document:
         return '\n'.join(self.lines[0:n])[:MAX_CHARS_TO_PRINT]
 
     def truncation_note(self, truncate_to: int) -> Text:
-        """String with link that will replace the text after the truncation point."""
-        link_markup = self.locations.external_link_markup
+        """String with link to source URL that will replace the text after the truncation point."""
+        link_markup = self.file_info.external_link_markup
         trim_note = f"<...trimmed to {truncate_to:,} characters of {self.length:,}, read the rest at {link_markup}...>"
         return Text.from_markup(wrap_in_markup_style(trim_note, 'dim'))
 
@@ -411,25 +400,25 @@ class Document:
     def _debug_dict(self) -> DebugDict:
         """Information about this document: config, locations, etc."""
         config_info = self.config.important_props if self.config else {}
-        locations_dict = dict(self.locations.as_dict)
+        file_info = dict(self.file_info.as_dict)
 
-        if config_info.get('id') == locations_dict.get('file_id'):
+        if config_info.get('id') == file_info.get('file_id'):
             config_info.pop('id')
 
-        if locations_dict.get('source_url') == locations_dict.get('external_url', 'blah'):
-            locations_dict.pop('external_url')
+        if file_info.get('source_url') == file_info.get('external_url', 'blah'):
+            file_info.pop('external_url')
 
         config_info = prefix_keys(type(self.config).__name__, config_info)
-        locations_dict = prefix_keys('locations', locations_dict)
-        return {**locations_dict, **config_info, **self._debug_props()}
+        file_info = prefix_keys(underscore(FileInfo.__name__), file_info)
+        return {**file_info, **config_info, **self._debug_props()}
 
     def _debug_props(self) -> DebugDict:
         """Collects props of this object only (not the config or locations)."""
         props = {k: getattr(self, k) for k in DEBUG_PROPS}
         props.update({k: getattr(self, k) for k in DEBUG_PROPS_TRUTHY_ONLY if getattr(self, k)})
 
-        if self.file_size > 100 * 1024:
-            props['file_size_str'] = self.file_size_str
+        if self.file_info.file_size > 100 * 1024:
+            props['file_size_str'] = self.file_info.file_size_str
 
         return prefix_keys(self._debug_prefix, props)
 
@@ -454,7 +443,7 @@ class Document:
         text = self.repair_ocr_text(OCR_REPAIRS, text.strip())
 
         lines = [
-            line.strip() if self.strip_whitespace else line for line in text.split('\n')
+            line.strip() if self.STRIP_WHITESPACE else line for line in text.split('\n')
             if not (line.startswith(HOUSE_OVERSIGHT) or line.startswith('EFTA'))
         ]
 
@@ -464,7 +453,7 @@ class Document:
         """Can optionally be overloaded in subclasses to further improve self.text."""
         pass
 
-    def _set_computed_fields(self, lines: list[str] | None = None, text: str | None = None) -> None:
+    def _set_text(self, lines: list[str] | None = None, text: str | None = None) -> None:
         """Sets all fields derived from self.text based on either 'lines' or 'text' arg."""
         if lines and text:
             raise RuntimeError(f"[{self.filename}] Either 'lines' or 'text' arg must be provided (got both)")
@@ -475,7 +464,7 @@ class Document:
         else:
             raise RuntimeError(f"[{self.filename}] Either 'lines' or 'text' arg must be provided (neither was)")
 
-        self.lines = [line.strip() if self.strip_whitespace else line for line in self.text.split('\n')]
+        self.lines = [line.strip() if self.STRIP_WHITESPACE else line for line in self.text.split('\n')]
 
     def _write_clean_text(self, output_path: Path) -> None:
         """Write self.text to 'output_path'. Used only for diffing files."""
@@ -527,7 +516,7 @@ class Document:
         return table
 
     @classmethod
-    def files_info(cls, files: Sequence['Document'], is_author_na: bool = False) -> dict[str, str | Text]:
+    def files_info(cls, files: Sequence[Self], is_author_na: bool = False) -> dict[str, str | Text]:
         """Summary info about a group of files."""
         file_count = len(files)
         author_count = cls.known_author_count(files)
@@ -537,50 +526,15 @@ class Document:
             'author_count': NA_TXT if is_author_na else str(author_count),
             'no_author_count': NA_TXT if is_author_na else str(file_count - author_count),
             'uncertain_author_count': NA_TXT if is_author_na else str(len([f for f in files if f.is_attribution_uncertain])),
-            'bytes': file_size_to_str(sum([f.file_size for f in files])),
+            'bytes': file_size_to_str(sum([f.file_info.file_size for f in files])),
         }
 
     @classmethod
-    def files_info_row(cls, files: Sequence['Document'], author_na: bool = False) -> Sequence[str | Text]:
+    def files_info_row(cls, files: Sequence[Self], author_na: bool = False) -> Sequence[str | Text]:
         return [v for v in cls.files_info(files, author_na).values()]
 
-    @staticmethod
-    def diff_files(files: list[str]) -> None:
-        """Diff the contents of two Documents after all cleanup, BOM removal, etc."""
-        if len(files) != 2:
-            raise RuntimeError('Need 2 files')
-        elif files[0] == files[1]:
-            raise RuntimeError(f"Filenames are the same!")
-
-        files = [f"{HOUSE_OVERSIGHT_PREFIX}{f}" if len(f) == 6 else f for f in files]
-        files = [f if f.endswith('.txt') else f"{f}.txt" for f in files]
-        tmpfiles = [Path(f"tmp_{f}") for f in files]
-        docs = [Document(DOCS_DIR.joinpath(f)) for f in files]
-
-        for i, doc in enumerate(docs):
-            doc._write_clean_text(tmpfiles[i])
-
-        cmd = f"diff {tmpfiles[0]} {tmpfiles[1]}"
-        console.print(f"Running '{cmd}'...")
-        results = run(cmd, shell=True, capture_output=True, text=True).stdout
-
-        for line in _color_diff_output(results):
-            console.print(line, highlight=True)
-
-        console.print(f"Possible suppression with: ")
-        console.print(Text('   suppress left: ').append(f"   '{extract_file_id(files[0])}': 'the same as {extract_file_id(files[1])}',", style='cyan'))
-        console.print(Text('  suppress right: ').append(f"   '{extract_file_id(files[1])}': 'the same as {extract_file_id(files[0])}',", style='cyan'))
-
-        for f in tmpfiles:
-            f.unlink()
-
-    @staticmethod
-    def is_email(doc: 'Document') -> bool:
-        search_area = doc.text[0:5000]  # Limit search area to avoid pointless scans of huge files
-        return isinstance(doc.config, EmailCfg) or bool(DETECT_EMAIL_REGEX.match(search_area) and doc.config is None)
-
-    @staticmethod
-    def known_author_count(docs: Sequence['Document']) -> int:
+    @classmethod
+    def known_author_count(cls, docs: Sequence[Self]) -> int:
         """Count of how many Document objects have an author attribution."""
         return len([doc for doc in docs if doc.author])
 
@@ -590,7 +544,7 @@ class Document:
 
     @staticmethod
     def sort_by_length(docs: Sequence['DocumentType']) -> list['DocumentType']:
-        return sorted(docs, key=lambda d: d.file_size, reverse=True)
+        return sorted(docs, key=lambda d: d.file_info.file_size, reverse=True)
 
     @staticmethod
     def sort_by_timestamp(docs: Sequence['DocumentType']) -> list['DocumentType']:
@@ -608,18 +562,3 @@ class Document:
 
 
 DocumentType = TypeVar('DocumentType', bound=Document)
-
-
-def _color_diff_output(diff_result: str) -> list[Text]:
-    txts = [Text('diff output:')]
-    style = 'dim'
-
-    for line in diff_result.split('\n'):
-        if line.startswith('>'):
-            style='spring_green4'
-        elif line.startswith('<'):
-            style='sea_green1'
-
-        txts.append(Text(line, style=style))
-
-    return txts

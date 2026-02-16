@@ -17,6 +17,7 @@ from epstein_files.output.left_bar_panel import LeftBarPanel
 from epstein_files.output.rich import RAINBOW, highlighter, wrap_in_markup_style
 from epstein_files.util.logging import logger
 
+EMPTY_LENGTH = 15
 IMAGE_PANEL_REGEX = re.compile(r"\n╭─* Page \d+, Image \d+.*?╯\n", re.DOTALL)
 IGNORE_LINE_REGEX = re.compile(r"^(\d+\n?|[\s+❑]{2,})$")
 MIN_VALID_LENGTH = 10
@@ -210,9 +211,9 @@ class DojFile(OtherFile):
     """Class for the files released by DOJ on 2026-01-30 with `EFTA000` prefix."""
     _border_style: str | None = None
 
-    # Class variables
+    # Class constants and variables
+    MAX_TIMESTAMP: ClassVar[datetime] = datetime(2025, 1, 29)  # Cutoff for _extract_timestamp(), Overloads superclass
     border_style_rainbow_idx: ClassVar[int] = 0  # ClassVar to help change color as we print, no impact beyond fancier output
-    max_timestamp: ClassVar[datetime] = datetime(2025, 1, 29)  # Cutoff for _extract_timestamp(), Overloads superclass
 
     @property
     def border_style(self) -> str:
@@ -293,11 +294,11 @@ class DojFile(OtherFile):
 
     def external_links_txt(self, _style: str = '', include_alt_links: bool = True) -> Text:
         """Overrides super() method to apply self.border_style."""
-        return self.locations.external_links_txt(self.border_style, include_alt_links=include_alt_links)
+        return self.file_info.external_links_txt(self.border_style, include_alt_links=include_alt_links)
 
     def printable_document(self) -> Self | Email:
         """Return a copy of this `DojFile` with simplified text if file ID is in `REPLACEMENT_TEXT`."""
-        if Document.is_email(self):
+        if self.is_email:
             try:
                 return Email(self.file_path, text=self.text)  # Pass text= to avoid reprocessing
             except Exception as e:
@@ -310,7 +311,7 @@ class DojFile(OtherFile):
         """Removes the ╭--- Page 5, Image 1 ---- panels from the text."""
         new_text, num_replaced = IMAGE_PANEL_REGEX.subn('', self.text)
         self.warn(f"Stripped {num_replaced} image panels.")
-        self._set_computed_fields(text=new_text)
+        self._set_text(text=new_text)
 
     def _left_bar_panel(self) -> RenderResult:
         """Alternate way of displaying DOJ files with a single color bar down the left side."""
@@ -331,10 +332,10 @@ class DojFile(OtherFile):
 
         if number_only_line_count > 20:
             self.warn(f"Reduced line count from {len(self.lines)} to {len(non_number_lines)} by stripping number only lines")
-            self._set_computed_fields(lines=non_number_lines)
+            self._set_text(lines=non_number_lines)
 
     def _repair(self) -> None:
         """Overloads superclass method."""
         new_text = self.repair_ocr_text(OCR_REPAIRS, self.text)
-        self._set_computed_fields(text=new_text)
+        self._set_text(text=new_text)
         self._remove_number_only_lines()

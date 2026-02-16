@@ -23,8 +23,8 @@ TEXT_FIELDS = [
 @dataclass
 class JsonFile(OtherFile):
     """File containing JSON data."""
-    include_description_in_summary_panel: ClassVar[bool] = False
-    strip_whitespace: ClassVar[bool] = False
+    INCLUDE_DESCRIPTION_IN_SUMMARY_PANEL: ClassVar[bool] = False
+    STRIP_WHITESPACE: ClassVar[bool] = False
 
     @property
     def category(self) -> str:
@@ -46,7 +46,7 @@ class JsonFile(OtherFile):
 
     def __post_init__(self):
         super().__post_init__()
-        self._set_computed_fields(text=self.json_str())
+        self._set_text(text=self.json_str())
 
     def json_data(self) -> object:
         with open(self.file_path, encoding='utf-8-sig') as f:
