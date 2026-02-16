@@ -425,4 +425,5 @@ class Person:
 
     @staticmethod
     def emails_from_people(people: list['Person']) -> Sequence[Email]:
+        """Collect all unique emails from a list of `Person` objects."""
         return Document.uniquify(flatten([list(p.unique_emails) for p in people]))
