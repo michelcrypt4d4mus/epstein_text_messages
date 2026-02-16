@@ -161,6 +161,7 @@ class EpsteinFiles:
         }
 
     def email_authors_to_device_signatures(self) -> dict[str, set[str]]:
+        """Mapping of authors to all the device signatures identified in their history."""
         signatures = defaultdict(set)
 
         for email in [e for e in self.non_duplicate_emails if e.sent_from_device]:
@@ -169,6 +170,7 @@ class EpsteinFiles:
         return signatures
 
     def email_device_signatures_to_authors(self) -> dict[str, set[str]]:
+        """Mapping of device signatures to all the users who ever signed an email with them."""
         signatures = defaultdict(set)
 
         for email in [e for e in self.non_duplicate_emails if e.sent_from_device]:
