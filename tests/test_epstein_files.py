@@ -87,6 +87,13 @@ def test_email_recipient_counts(epstein_files):
     assert recipient_counts == EMAIL_RECIPIENT_COUNTS
 
 
+def test_interesting_emails(epstein_files):
+    interesting_emails = [e for e in epstein_files.unique_emails if e.is_interesting]
+    uninteresting_emails = [e for e in epstein_files.unique_emails if e.is_interesting is False]
+    assert len(interesting_emails) == 111
+    assert len(uninteresting_emails) == 139
+
+
 def test_signature_substitutions(epstein_files):
     substitution_counts = epstein_files.email_signature_substitution_counts()
     # epstein_substitutions = substitution_counts.pop(JEFFREY_EPSTEIN)
