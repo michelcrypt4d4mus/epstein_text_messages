@@ -432,7 +432,7 @@ def document_cls(doc: Document) -> Type[Document]:
         return DojFile
     if doc.text[0] == '{':
         return JsonFile
-    elif Document.is_email(doc):  # TODO: right now we setup the DojFile which makes an Email obj only later at print time
+    elif doc.is_email:  # TODO: right now we setup the DojFile which makes an Email obj only later at print time
         return Email
     elif MSG_REGEX.search(search_area):
         return MessengerLog

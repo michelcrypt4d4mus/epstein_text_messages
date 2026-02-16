@@ -188,6 +188,12 @@ class Document:
         return bool(self.duplicate_of_id)
 
     @property
+    def is_email(self) -> bool:
+        """Returns True if the text looks like it's probably an email."""
+        search_area = self.text[0:5000]  # Limit search area to avoid pointless scans of huge files
+        return isinstance(self.config, EmailCfg) or bool(DETECT_EMAIL_REGEX.match(search_area) and self.config is None)
+
+    @property
     def is_empty(self) -> bool:
         return len(self.text.strip()) == 0
 
@@ -525,17 +531,11 @@ class Document:
         }
 
     @classmethod
-    def files_info_row(cls, files: Sequence['Document'], author_na: bool = False) -> Sequence[str | Text]:
+    def files_info_row(cls, files: Sequence[Self], author_na: bool = False) -> Sequence[str | Text]:
         return [v for v in cls.files_info(files, author_na).values()]
 
-    @staticmethod
-    def is_email(doc: 'Document') -> bool:
-        """Returns True if the text looks like it's probably an email."""
-        search_area = doc.text[0:5000]  # Limit search area to avoid pointless scans of huge files
-        return isinstance(doc.config, EmailCfg) or bool(DETECT_EMAIL_REGEX.match(search_area) and doc.config is None)
-
-    @staticmethod
-    def known_author_count(docs: Sequence['Document']) -> int:
+    @classmethod
+    def known_author_count(cls, docs: Sequence[Self]) -> int:
         """Count of how many Document objects have an author attribution."""
         return len([doc for doc in docs if doc.author])
 
