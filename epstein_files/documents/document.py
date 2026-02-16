@@ -22,6 +22,7 @@ from epstein_files.documents.emails.email_header import DETECT_EMAIL_REGEX
 from epstein_files.output.rich import (INFO_STYLE, NA_TXT, SKIPPED_FILE_MSG_PADDING, SYMBOL_STYLE,
      add_cols_to_table, build_table, console, highlighter, styled_key_value, prefix_with, styled_dict,
      wrap_in_markup_style)
+from epstein_files.util.constant.names import Name
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constant.urls import EXTRACTS_BASE_URL, epstein_media_doc_link_txt
 from epstein_files.util.constants import CONFIGS_BY_ID, MAX_CHARS_TO_PRINT
