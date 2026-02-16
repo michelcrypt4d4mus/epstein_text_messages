@@ -1,5 +1,7 @@
 # NEXT RELEASE
 
+### 1.5.6
+
 ### 1.5.5
 * Also copy properties to duplicate docs that aren't emails
 * Improve the categorization logic in `DocCfg`
