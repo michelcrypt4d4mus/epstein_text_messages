@@ -149,14 +149,9 @@ METADATA_FIELDS = [
     'subject',
 ]
 
-DEBUG_PROPS = [
+DEBUG_PROPS = METADATA_FIELDS + [
     'attached_docs',
-    'is_junk_mail',
-    'is_mailing_list',
     'is_note_to_self',
-    'recipients',
-    'sent_from_device',
-    'subject',
 ]
 
 
