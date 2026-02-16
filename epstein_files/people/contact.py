@@ -1,9 +1,6 @@
 import re
-from dataclasses import asdict, dataclass, field, fields
-from pathlib import Path
+from dataclasses import dataclass, field, fields
 from typing import Self
-
-from rich.text import Text
 
 from epstein_files.util.constant.names import (NAMES_TO_NOT_HIGHLIGHT, SIMPLE_NAME_REGEX, Name,
      constantize_name, extract_first_name, extract_last_name, reversed_name)

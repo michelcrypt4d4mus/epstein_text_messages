@@ -147,6 +147,7 @@ DEVICE_SIGNATURE_TO_AUTHORS = {
         'Tonja Haddad Coleman',
         'Tyler Shears',
         USANYS,
+        VINCENZO_IOZZO,
         'Yuko Barnaby',
     ],
     "Sent from my iPhone and misspellings courtesy of iPhone.": [
@@ -441,7 +442,8 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
         "Sent from my iPhone"
     ],
     VINCENZO_IOZZO: [
-        "Sent from my Iphone"
+        'Sent from my Iphone',
+        'Sent from my iPhone',
     ],
     'Yuko Barnaby': [
         'Sent from my iPhone',
@@ -464,7 +466,7 @@ SIGNATURE_SUBSTITUTION_COUNTS = {
     ERIC_ROTH: 5,
     GHISLAINE_MAXWELL: 13,
     JEANNE_M_CHRISTENSEN: 37,
-    JEFFREY_EPSTEIN: 3873,
+    JEFFREY_EPSTEIN: 3926,
     JESSICA_CADWELL: 57,
     KEN_JENNE: 1,
     LARRY_SUMMERS: 235,
@@ -477,7 +479,7 @@ SIGNATURE_SUBSTITUTION_COUNTS = {
     PAUL_BARRETT: 10,
     PETER_ATTIA: 3,
     PETER_MANDELSON: 10,
-    RICHARD_KAHN: 190,
+    RICHARD_KAHN: 191,
     ROSS_GOW: 7,
     STEPHEN_HANSON: 2,
     STEVEN_PFEIFFER: 11,

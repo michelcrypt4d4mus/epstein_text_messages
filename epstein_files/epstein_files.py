@@ -292,10 +292,10 @@ class EpsteinFiles:
             return f"(have {len(self.all_doj_files)}, {len(self.doj_files)} non-email)"
 
         # Remove old DOJ files
-        self.emails = [f for f in self.emails if not f.is_doj_file]
-        self.other_files = [f for f in self.other_files if not f.is_doj_file]
         timer = Timer()
         logger.warning(f"Only reloading DOJ files {doj_file_counts_str()}...")
+        self.emails = [f for f in self.emails if not f.is_doj_file]
+        self.other_files = [f for f in self.other_files if not f.is_doj_file]
 
         # Build new objects and append them
         new_docs = self._load_file_paths(doj_txt_paths())
@@ -324,7 +324,7 @@ class EpsteinFiles:
         """IDs of emails whose recipient is not known."""
         return sorted([e.file_id for e in self.emails if None in e.recipients or not e.recipients])
 
-    def _copy_duplicate_email_properties(self) -> None:
+    def _copy_duplicate_doc_propeerties(self) -> None:
         """Ensure dupe emails have the properties of the emails they duplicate to capture any repairs, config etc."""
         for doc in self.all_documents:
             if not doc.duplicate_of_id:
@@ -344,7 +344,7 @@ class EpsteinFiles:
     def _finalize_data(self):
         """Handle computation of fields related to uninterestingness, relationships between documents, etc."""
         self._set_uninteresting_ccs()
-        self._copy_duplicate_email_properties()
+        self._copy_duplicate_doc_propeerties()
         self._find_email_attachments_and_set_is_first_for_user()
         self._sort_file_types_by_timestamp()
 
@@ -395,6 +395,7 @@ class EpsteinFiles:
         return docs
 
     def _set_uninteresting_ccs(self) -> None:
+        """Extract the recipients of emails configured has having uninteresting CCs or BCCs."""
         for email in [e for e in self.emails if e.config and e.config.has_uninteresting_bccs]:
             self.uninteresting_ccs += [bcc.lower() for bcc in cast(list[str], email.header.bcc)]
 

@@ -3,15 +3,11 @@ from datetime import datetime
 import pytest
 
 from epstein_files.documents.document import Document
-from epstein_files.documents.email import Email
-from epstein_files.documents.other_file import OtherFile
 from epstein_files.documents.messenger_log import MessengerLog
 from epstein_files.epstein_files import count_by_month
 from epstein_files.output.rich import console
 from epstein_files.util.constant.names import *
 from epstein_files.util.constants import CONFIGS_BY_ID
-
-from epstein_files.util.constant.names import *
 from epstein_files.util.helpers.data_helpers import dict_sets_to_lists
 
 from .fixtures.emails.email_author_counts import EMAIL_AUTHOR_COUNTS
@@ -36,8 +32,9 @@ def test_document_monthly_counts(epstein_files):
         assert month in EXPECTED_MONTHLY_COUNTS
         assert num_docs >= EXPECTED_MONTHLY_COUNTS[month]
 
-    len_all_files = len(epstein_files.file_paths)
-    assert sum(new_counts.values()) == len_all_files - 1256  # There's 1256 empty files
+    num_files_paths = len(epstein_files.file_paths)
+    num_document_objs = sum(new_counts.values())
+    assert num_document_objs == num_files_paths - 1256  # There's 1256 empty files
 
 
 def test_imessage_text_counts(epstein_files):
@@ -66,7 +63,7 @@ def test_other_files_author_count(epstein_files):
 
 
 def test_other_files_categories(epstein_files):
-    assert len([f for f in epstein_files.other_files if not f.category]) == 2412
+    assert len([f for f in epstein_files.other_files if not f.category]) == 2413
 
 
 ################################################
