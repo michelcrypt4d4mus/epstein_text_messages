@@ -117,7 +117,7 @@ class OtherFile(Document):
         elif (case_match := LEGAL_FILING_REGEX.search(self.text)):
             cfg = DocCfg(id=self.file_id, category=LEGAL, description=f"legal filing in case {case_match.group(1)}")
         elif self.lines[0].lower() == 'valuation report':
-            cfg = DocCfg(id=self.file_id, category=BUSINESS, description="Epstein investment portfolio valuation report")
+            cfg = DocCfg(id=self.file_id, category=BUSINESS, description="Epstein's investment valuation", is_interesting=True)
 
         if cfg:
             self.warn(f"Built synthetic cfg: {cfg}")
