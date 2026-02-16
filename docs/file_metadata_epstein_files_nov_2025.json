@@ -59,6 +59,7 @@
             {
                 "author": "Michael Sanka",
                 "bytes": 1509,
+                "category": "legal",
                 "description": "appears in Jean Luc Brunel v. Jeffrey Epstein and Tyler McDonald d/b/a YI.org: court filing",
                 "extracted_file": {
                     "explanation": "manually extracted from one of the other files",
@@ -78,6 +79,7 @@
             {
                 "author": "Abi Schwinck",
                 "bytes": 738,
+                "category": "legal",
                 "description": "appears in Jean Luc Brunel v. Jeffrey Epstein and Tyler McDonald d/b/a YI.org: court filing",
                 "extracted_file": {
                     "explanation": "manually extracted from one of the other files",
@@ -99,6 +101,7 @@
             {
                 "author": "Manuela Martinez",
                 "bytes": 750,
+                "category": "legal",
                 "description": "appears in Jean Luc Brunel v. Jeffrey Epstein and Tyler McDonald d/b/a YI.org: court filing",
                 "extracted_file": {
                     "explanation": "manually extracted from one of the other files",
@@ -118,6 +121,7 @@
             {
                 "author": "Vladimir Yudashkin",
                 "bytes": 898,
+                "category": "legal",
                 "description": "appears in Jean Luc Brunel v. Jeffrey Epstein and Tyler McDonald d/b/a YI.org: court filing",
                 "extracted_file": {
                     "explanation": "manually extracted from one of the other files",
@@ -137,6 +141,7 @@
             {
                 "author": "lorraine@mc2mm.com",
                 "bytes": 1374,
+                "category": "legal",
                 "description": "appears in Jean Luc Brunel v. Jeffrey Epstein and Tyler McDonald d/b/a YI.org: court filing",
                 "extracted_file": {
                     "explanation": "manually extracted from one of the other files",
@@ -158,6 +163,7 @@
             {
                 "author": "Jeff Fuller",
                 "bytes": 4837,
+                "category": "legal",
                 "description": "appears in Jean Luc Brunel v. Jeffrey Epstein and Tyler McDonald d/b/a YI.org: court filing",
                 "extracted_file": {
                     "explanation": "manually extracted from one of the other files",
@@ -215,6 +221,7 @@
             {
                 "author": "Jay Lefkowitz",
                 "bytes": 2912,
+                "category": "legal",
                 "description": "appears in SDFL response to Jay Lefkowitz on Epstein Plea Agreement Compliance",
                 "extracted_file": {
                     "explanation": "manually extracted from one of the other files",
@@ -234,6 +241,7 @@
             {
                 "author": "Jay Lefkowitz",
                 "bytes": 2757,
+                "category": "legal",
                 "description": "appears in SDFL response to Jay Lefkowitz on Epstein Plea Agreement Compliance",
                 "extracted_file": {
                     "explanation": "manually extracted from one of the other files",
@@ -253,6 +261,7 @@
             {
                 "author": "Ann Marie Villafana",
                 "bytes": 1703,
+                "category": "legal",
                 "description": "appears in SDFL response to Jay Lefkowitz on Epstein Plea Agreement Compliance",
                 "extracted_file": {
                     "explanation": "manually extracted from one of the other files",
@@ -272,6 +281,7 @@
             {
                 "author": "Jay Lefkowitz",
                 "bytes": 2515,
+                "category": "legal",
                 "description": "appears in SDFL response to Jay Lefkowitz on Epstein Plea Agreement Compliance",
                 "extracted_file": {
                     "explanation": "manually extracted from one of the other files",
@@ -560,6 +570,7 @@
             {
                 "author": "Ross Gow",
                 "bytes": 1446,
+                "category": "legal",
                 "description": "appears in Virginia Giuffre v. Ghislaine Maxwell: Declaration of Laura A. Menninger in Opposition to Plaintiff's Motion",
                 "extracted_file": {
                     "explanation": "manually extracted from one of the other files",
@@ -643,6 +654,7 @@
             {
                 "author": "James Hill",
                 "bytes": 1670,
+                "category": "legal",
                 "description": "appears in Virginia Giuffre v. Ghislaine Maxwell: Defamation Complaint",
                 "extracted_file": {
                     "explanation": "manually extracted from one of the other files",
@@ -706,6 +718,7 @@
             {
                 "author": "Danny Frost",
                 "bytes": 6611,
+                "category": "legal",
                 "description": "appears in New York v. Jeffrey Epstein: New York Post Motion to Unseal Appellate Briefs",
                 "extracted_file": {
                     "explanation": "manually extracted from one of the other files",
@@ -1906,7 +1919,7 @@
             },
             {
                 "author": "Nadia Marcinko",
-                "author_reason": "Signature and email address in the message",
+                "author_reason": "signature and email address in the message",
                 "bytes": 5238,
                 "file_id": "021811",
                 "filename": "HOUSE_OVERSIGHT_021811.txt",
@@ -5522,7 +5535,7 @@
             },
             {
                 "author": "Jean Huguen",
-                "author_reason": "Signature",
+                "author_reason": "signature",
                 "bytes": 1524,
                 "file_id": "026024",
                 "filename": "HOUSE_OVERSIGHT_026024.txt",
@@ -6617,7 +6630,7 @@
             },
             {
                 "author": "David Schoen",
-                "author_reason": "Signature",
+                "author_reason": "signature",
                 "bytes": 8254,
                 "file_id": "026287",
                 "filename": "HOUSE_OVERSIGHT_026287.txt",
@@ -6631,7 +6644,7 @@
             },
             {
                 "author": "David Schoen",
-                "author_reason": "Signature",
+                "author_reason": "signature",
                 "bytes": 9634,
                 "file_id": "026290",
                 "filename": "HOUSE_OVERSIGHT_026290.txt",
@@ -10564,7 +10577,7 @@
             },
             {
                 "author": "Renata Bolotova",
-                "author_reason": "Signature",
+                "author_reason": "signature",
                 "bytes": 1142,
                 "file_id": "029020",
                 "filename": "HOUSE_OVERSIGHT_029020.txt",
@@ -14775,7 +14788,7 @@
             },
             {
                 "author": "Paula Heil Fisher (???)",
-                "author_reason": "Signature of \"Sent via BlackBerry from T-Mobile\"",
+                "author_reason": "signature of \"Sent via BlackBerry from T-Mobile\"",
                 "bytes": 1326,
                 "file_id": "030482",
                 "filename": "HOUSE_OVERSIGHT_030482.txt",
@@ -14947,8 +14960,8 @@
             },
             {
                 "author": "Jeffrey Epstein",
-                "author_reason": "Signature of \"Sent via BlackBerry from T-Mobile\"",
-                "author_uncertain": "Signature of \"Sent via BlackBerry from T-Mobile\"",
+                "author_reason": "signature of \"Sent via BlackBerry from T-Mobile\"",
+                "author_uncertain": "signature of \"Sent via BlackBerry from T-Mobile\"",
                 "bytes": 466,
                 "file_id": "030506",
                 "filename": "HOUSE_OVERSIGHT_030506.txt",
@@ -14963,8 +14976,8 @@
             },
             {
                 "author": "Jeffrey Epstein",
-                "author_reason": "Signature of \"Sent via BlackBerry from T-Mobile\"",
-                "author_uncertain": "Signature of \"Sent via BlackBerry from T-Mobile\"",
+                "author_reason": "signature of \"Sent via BlackBerry from T-Mobile\"",
+                "author_uncertain": "signature of \"Sent via BlackBerry from T-Mobile\"",
                 "bytes": 467,
                 "file_id": "030507",
                 "filename": "HOUSE_OVERSIGHT_030507.txt",
@@ -14979,8 +14992,8 @@
             },
             {
                 "author": "Jeffrey Epstein",
-                "author_reason": "Signature of \"Sent via BlackBerry from T-Mobile\"",
-                "author_uncertain": "Signature of \"Sent via BlackBerry from T-Mobile\"",
+                "author_reason": "signature of \"Sent via BlackBerry from T-Mobile\"",
+                "author_uncertain": "signature of \"Sent via BlackBerry from T-Mobile\"",
                 "bytes": 818,
                 "file_id": "030508",
                 "filename": "HOUSE_OVERSIGHT_030508.txt",
@@ -14995,8 +15008,8 @@
             },
             {
                 "author": "Jeffrey Epstein",
-                "author_reason": "Signature of \"Sent via BlackBerry from T-Mobile\"",
-                "author_uncertain": "Signature of \"Sent via BlackBerry from T-Mobile\"",
+                "author_reason": "signature of \"Sent via BlackBerry from T-Mobile\"",
+                "author_uncertain": "signature of \"Sent via BlackBerry from T-Mobile\"",
                 "bytes": 895,
                 "file_id": "030509",
                 "filename": "HOUSE_OVERSIGHT_030509.txt",
@@ -18930,7 +18943,7 @@
             },
             {
                 "author": "David Schoen",
-                "author_reason": "Signature",
+                "author_reason": "signature",
                 "bytes": 1743,
                 "file_id": "031339",
                 "filename": "HOUSE_OVERSIGHT_031339.txt",
@@ -19597,7 +19610,7 @@
             },
             {
                 "author": "David Schoen",
-                "author_reason": "Signature",
+                "author_reason": "signature",
                 "bytes": 9523,
                 "file_id": "031492",
                 "filename": "HOUSE_OVERSIGHT_031492.txt",
@@ -19948,7 +19961,7 @@
             },
             {
                 "author": "David Schoen",
-                "author_reason": "Signature",
+                "author_reason": "signature",
                 "bytes": 9197,
                 "file_id": "031560",
                 "filename": "HOUSE_OVERSIGHT_031560.txt",
@@ -23761,7 +23774,7 @@
             },
             {
                 "author": "Alireza Ittihadieh",
-                "author_reason": "Signature",
+                "author_reason": "signature",
                 "bytes": 1026,
                 "file_id": "032436",
                 "filename": "HOUSE_OVERSIGHT_032436.txt",
@@ -24449,7 +24462,7 @@
             },
             {
                 "author": "Jonathan Farkas",
-                "author_reason": "Signature",
+                "author_reason": "signature",
                 "bytes": 1250,
                 "dupe_type": "same",
                 "duplicate_of_id": "033490",
@@ -31587,7 +31600,7 @@
             },
             {
                 "author": "David Schoen",
-                "author_reason": "Signature",
+                "author_reason": "signature",
                 "bytes": 790,
                 "file_id": "033419",
                 "filename": "HOUSE_OVERSIGHT_033419.txt",
@@ -32036,7 +32049,7 @@
             },
             {
                 "author": "Jonathan Farkas",
-                "author_reason": "Signature",
+                "author_reason": "signature",
                 "bytes": 1237,
                 "dupe_type": "same",
                 "duplicate_ids": [
@@ -32611,7 +32624,7 @@
             },
             {
                 "author": "Lawrance Visoski",
-                "author_reason": "Signature",
+                "author_reason": "signature",
                 "bytes": 3024,
                 "comment": "visoski email about planes",
                 "file_id": "033593",
@@ -32730,12 +32743,13 @@
                 "description": "report on Epstein's psychological state in jail",
                 "file_id": "EFTA00039660",
                 "filename": "EFTA00039660.txt",
+                "is_interesting": true,
                 "num_lines": 48,
                 "recipients": [
                     "USANYS"
                 ],
                 "subject": "Epstein Update",
-                "timestamp": "2029-07-19T10:02:00",
+                "timestamp": "2019-07-29T10:02:00",
                 "type": "Email"
             },
             {
@@ -34476,6 +34490,20 @@
                 "type": "Email"
             },
             {
+                "author": "Andrew McCormack",
+                "bytes": 3226,
+                "file_id": "EFTA00638844",
+                "filename": "EFTA00638844.txt",
+                "num_lines": 57,
+                "recipients": [
+                    "James Fitzgerald",
+                    "Jeffrey Epstein"
+                ],
+                "subject": "Re: Opportunity to purchase Transferwise shares",
+                "timestamp": "2016-09-28T20:56:28",
+                "type": "Email"
+            },
+            {
                 "author": "Renata Bolotova",
                 "author_reason": "\"sneaky dog\" + \"Sincerely\"",
                 "bytes": 423,
@@ -35555,6 +35583,23 @@
                 "type": "Email"
             },
             {
+                "author": "Ian O'Donnell",
+                "bytes": 1569,
+                "description": "email to investors in Peter Thiel's Valar Ventures fund",
+                "file_id": "EFTA00836182",
+                "filename": "EFTA00836182.txt",
+                "num_lines": 25,
+                "recipients": [
+                    "Hongbo Robert Bao",
+                    "James Fitzgerald",
+                    "Reuben Kobulnik",
+                    "Stanley Santos"
+                ],
+                "subject": "Closing of Valar Global Fund III LP",
+                "timestamp": "2016-01-21T02:54:34",
+                "type": "Email"
+            },
+            {
                 "author": "Brock Pierce",
                 "bytes": 2580,
                 "file_id": "EFTA00836570",
@@ -36373,6 +36418,18 @@
             },
             {
                 "author": "Jeffrey Epstein",
+                "bytes": 836,
+                "file_id": "EFTA00955558",
+                "filename": "EFTA00955558.txt",
+                "num_lines": 18,
+                "recipients": [
+                    "Melanie Spinella"
+                ],
+                "timestamp": "2017-11-16T16:29:21",
+                "type": "Email"
+            },
+            {
+                "author": "Jeffrey Epstein",
                 "bytes": 3500,
                 "file_id": "EFTA00960647",
                 "filename": "EFTA00960647.txt",
@@ -36913,6 +36970,19 @@
                 "type": "Email"
             },
             {
+                "author": "Jeffrey Epstein",
+                "bytes": 2486,
+                "file_id": "EFTA01001321",
+                "filename": "EFTA01001321.txt",
+                "num_lines": 49,
+                "recipients": [
+                    "Peter Thiel"
+                ],
+                "subject": "Re: introductions",
+                "timestamp": "2014-11-15T09:21:05",
+                "type": "Email"
+            },
+            {
                 "author": "Andrew McCormack",
                 "bytes": 1209,
                 "file_id": "EFTA01001339",
@@ -36950,6 +37020,18 @@
                 ],
                 "subject": "Re: Coinbase",
                 "timestamp": "2014-12-03T16:32:35",
+                "type": "Email"
+            },
+            {
+                "author": "Jeffrey Epstein",
+                "bytes": 833,
+                "file_id": "EFTA01001763",
+                "filename": "EFTA01001763.txt",
+                "num_lines": 18,
+                "recipients": [
+                    "Landon Thomas Jr"
+                ],
+                "timestamp": "2017-11-22T15:44:11",
                 "type": "Email"
             },
             {
@@ -37030,7 +37112,7 @@
                 "filename": "EFTA01003348.txt",
                 "num_lines": 34,
                 "recipients": [
-                    "Hongbo Bao",
+                    "Hongbo Robert Bao",
                     "PROSPECTIVE INVESTORS",
                     "Reuben Kobulnik"
                 ],
@@ -37101,6 +37183,19 @@
                 ],
                 "subject": "Re: Valar Fund IV deck & PPM",
                 "timestamp": "2017-09-27T15:32:08",
+                "type": "Email"
+            },
+            {
+                "author": "Jeremy Rubin",
+                "bytes": 8105,
+                "file_id": "EFTA01005408",
+                "filename": "EFTA01005408.txt",
+                "num_lines": 124,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "subject": "Re: Investing in Layer One",
+                "timestamp": "2018-07-14T16:34:02",
                 "type": "Email"
             },
             {
@@ -37708,6 +37803,19 @@
                 "type": "Email"
             },
             {
+                "author": "Nicole Junkermann",
+                "bytes": 1329,
+                "file_id": "EFTA01033427",
+                "filename": "EFTA01033427.txt",
+                "num_lines": 26,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "subject": "RE:",
+                "timestamp": "2019-04-07T19:53:07",
+                "type": "Email"
+            },
+            {
                 "author": "Richard Kahn",
                 "bytes": 548,
                 "file_id": "EFTA01034779",
@@ -37758,6 +37866,19 @@
                 ],
                 "subject": "Fwd: bitcoin - a new liquid market?",
                 "timestamp": "2017-07-25T14:18:18",
+                "type": "Email"
+            },
+            {
+                "author": "Peter Thiel",
+                "bytes": 962,
+                "file_id": "EFTA01039680",
+                "filename": "EFTA01039680.txt",
+                "num_lines": 23,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "subject": "RE:",
+                "timestamp": "2017-07-25T23:46:16",
                 "type": "Email"
             },
             {
@@ -37848,6 +37969,19 @@
                 ],
                 "subject": "Re: Potential Valar Co-Invest -- CONFIDENTIAL and TIME-SENSITIVE",
                 "timestamp": "2017-06-15T17:45:44",
+                "type": "Email"
+            },
+            {
+                "author": "Richard Kahn",
+                "bytes": 889,
+                "file_id": "EFTA01047810",
+                "filename": "EFTA01047810.txt",
+                "num_lines": 22,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "subject": "Fwd: Valar Global Fund III LP - Capital Call 10",
+                "timestamp": "2018-06-01T10:34:06",
                 "type": "Email"
             },
             {
@@ -38476,6 +38610,19 @@
                 "type": "Email"
             },
             {
+                "author": "Valar Ventures",
+                "bytes": 1199,
+                "file_id": "EFTA01796367",
+                "filename": "EFTA01796367.txt",
+                "num_lines": 18,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "subject": "Number26 Series B",
+                "timestamp": "2016-06-21T17:52:00",
+                "type": "Email"
+            },
+            {
                 "author": "Renata Bolotova",
                 "author_reason": "\"sneaky dog\"",
                 "author_uncertain": "\"sneaky dog\"",
@@ -38602,6 +38749,19 @@
                 "sent_from_device": "Sent from my iPhone",
                 "subject": "Fwd: Jeffrey Epstein",
                 "timestamp": "2011-11-22T12:56:31",
+                "type": "Email"
+            },
+            {
+                "author": "Jeffrey Epstein",
+                "bytes": 1183,
+                "file_id": "EFTA01856718",
+                "filename": "EFTA01856718.txt",
+                "num_lines": 28,
+                "recipients": [
+                    "Ian Osborne"
+                ],
+                "subject": "Fwd: Ian O",
+                "timestamp": "2011-09-20T22:49:36",
                 "type": "Email"
             },
             {
@@ -39351,6 +39511,19 @@
                     "Jeffrey Epstein"
                 ],
                 "timestamp": "2012-02-23T23:47:15",
+                "type": "Email"
+            },
+            {
+                "author": "Nicole Junkermann",
+                "bytes": 1964,
+                "file_id": "EFTA01994876",
+                "filename": "EFTA01994876.txt",
+                "num_lines": 47,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "subject": "RE: News",
+                "timestamp": "2011-10-28T13:00:46",
                 "type": "Email"
             },
             {
@@ -40852,6 +41025,21 @@
                 "type": "Email"
             },
             {
+                "author": "Boris Nikolic",
+                "bytes": 1722,
+                "file_id": "EFTA02396347",
+                "filename": "EFTA02396347.txt",
+                "num_lines": 41,
+                "recipients": [
+                    "Jeffrey Epstein",
+                    "Nicole Junkermann"
+                ],
+                "sent_from_device": "Sent from my Windows Phone",
+                "subject": "RE:",
+                "timestamp": "2014-06-16T19:44:00",
+                "type": "Email"
+            },
+            {
                 "author": "Renata Bolotova",
                 "author_reason": "\"sneaky dog\"",
                 "author_uncertain": "\"sneaky dog\"",
@@ -40936,6 +41124,19 @@
                 ],
                 "subject": "Re: Battulga",
                 "timestamp": "2017-07-12T11:43:00",
+                "type": "Email"
+            },
+            {
+                "author": "Nicole Junkermann",
+                "bytes": 3385,
+                "file_id": "EFTA02415776",
+                "filename": "EFTA02415776.txt",
+                "num_lines": 65,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "subject": "AW:",
+                "timestamp": "2010-11-30T15:21:57",
                 "type": "Email"
             },
             {
@@ -41752,6 +41953,19 @@
                 "type": "Email"
             },
             {
+                "author": "Vincenzo Iozzo",
+                "bytes": 1263,
+                "file_id": "EFTA02601503",
+                "filename": "EFTA02601503.txt",
+                "num_lines": 21,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "subject": "Layerl investment / request for feedback",
+                "timestamp": "2018-07-17T21:53:00",
+                "type": "Email"
+            },
+            {
                 "author": "Richard Kahn",
                 "bytes": 3129,
                 "file_id": "EFTA02601958",
@@ -41983,6 +42197,19 @@
             },
             {
                 "author": "Richard Kahn",
+                "bytes": 2656,
+                "file_id": "EFTA02630287",
+                "filename": "EFTA02630287.txt",
+                "num_lines": 59,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "subject": "Re: Funds for moving",
+                "timestamp": "2019-02-14T13:38:00",
+                "type": "Email"
+            },
+            {
+                "author": "Richard Kahn",
                 "bytes": 5236,
                 "file_id": "EFTA02633233",
                 "filename": "EFTA02633233.txt",
@@ -42045,6 +42272,18 @@
                 "sent_from_device": "Sent from my iPhone",
                 "subject": "Re: ADGM I ADGM LAUNCHES CRYPTO ASSET REGULATORY FRAMEWORK",
                 "timestamp": "2019-03-28T08:05:00",
+                "type": "Email"
+            },
+            {
+                "author": "Jeffrey Epstein",
+                "bytes": 1165,
+                "file_id": "EFTA02639760",
+                "filename": "EFTA02639760.txt",
+                "num_lines": 15,
+                "recipients": [
+                    "Bill Gates"
+                ],
+                "timestamp": "2017-08-12T13:18:00",
                 "type": "Email"
             },
             {
@@ -42247,7 +42486,7 @@
             {
                 "author": "Joi Ito",
                 "bytes": 1140,
-                "description": "Jones is former Google chief technology advocate and CEO of Wearality which Epstein & Joi Ito invested in",
+                "description": "Jones is former Google chief technology advocate / CEO of Epstein investment Wearality",
                 "file_id": "EFTA02671523",
                 "filename": "EFTA02671523.txt",
                 "num_lines": 21,
@@ -44644,7 +44883,7 @@
                 "description": "letter to Scott J. Link alleging abuse of a girl from Kansas",
                 "file_id": "010560",
                 "filename": "HOUSE_OVERSIGHT_010560.txt",
-                "is_interesting": true,
+                "is_interesting": null,
                 "num_lines": 204,
                 "timestamp": "2019-06-19T00:00:00",
                 "type": "OtherFile"
@@ -44657,7 +44896,7 @@
                 "description": "Statement of Undisputed Facts",
                 "file_id": "010566",
                 "filename": "HOUSE_OVERSIGHT_010566.txt",
-                "is_interesting": true,
+                "is_interesting": null,
                 "num_lines": 997,
                 "timestamp": "2010-11-04T00:00:00",
                 "type": "OtherFile"
@@ -44739,7 +44978,7 @@
                 "description": "Dershowitz Reply in Support of Motion for Limited Intervention",
                 "file_id": "010735",
                 "filename": "HOUSE_OVERSIGHT_010735.txt",
-                "is_interesting": true,
+                "is_interesting": null,
                 "num_lines": 507,
                 "timestamp": "2015-02-02T00:00:00",
                 "type": "OtherFile"
@@ -44765,7 +45004,7 @@
                 "description": "plaintiff response to Dershowitz Motion to Determine Confidentiality of Court Records",
                 "file_id": "010757",
                 "filename": "HOUSE_OVERSIGHT_010757.txt",
-                "is_interesting": true,
+                "is_interesting": null,
                 "num_lines": 7348,
                 "timestamp": "2015-11-23T00:00:00",
                 "type": "OtherFile"
@@ -44778,7 +45017,7 @@
                 "description": "Dershowitz Motion for Clarification of Confidentiality Order",
                 "file_id": "010887",
                 "filename": "HOUSE_OVERSIGHT_010887.txt",
-                "is_interesting": true,
+                "is_interesting": null,
                 "num_lines": 558,
                 "timestamp": "2016-01-29T00:00:00",
                 "type": "OtherFile"
@@ -44833,7 +45072,7 @@
                 "description": "Oral Argument Transcript",
                 "file_id": "011304",
                 "filename": "HOUSE_OVERSIGHT_011304.txt",
-                "is_interesting": true,
+                "is_interesting": null,
                 "num_lines": 9187,
                 "timestamp": "2017-03-17T00:00:00",
                 "type": "OtherFile"
@@ -44877,7 +45116,7 @@
                 "description": "court filing",
                 "file_id": "011908",
                 "filename": "HOUSE_OVERSIGHT_011908.txt",
-                "is_interesting": true,
+                "is_interesting": null,
                 "num_lines": 3636,
                 "timestamp": "2015-01-26T12:26:55",
                 "type": "OtherFile",
@@ -44889,7 +45128,7 @@
                 "description": "Rockefeller Partners with Gregory J. Fleming to Create Independent Financial Services Firm and other articles",
                 "file_id": "012048",
                 "filename": "HOUSE_OVERSIGHT_012048.txt",
-                "is_interesting": true,
+                "is_interesting": null,
                 "num_lines": 2693,
                 "timestamp": "2019-03-15T00:00:00",
                 "type": "OtherFile",
@@ -44903,7 +45142,7 @@
                 "description": "Telephone Interview with Virginia Giuffre",
                 "file_id": "012103",
                 "filename": "HOUSE_OVERSIGHT_012103.txt",
-                "is_interesting": true,
+                "is_interesting": null,
                 "num_lines": 984,
                 "timestamp": "2011-05-17T00:00:00",
                 "type": "OtherFile"
@@ -44920,7 +45159,7 @@
                 ],
                 "file_id": "012130",
                 "filename": "HOUSE_OVERSIGHT_012130.txt",
-                "is_interesting": true,
+                "is_interesting": null,
                 "num_lines": 185,
                 "timestamp": "2008-06-19T00:00:00",
                 "type": "OtherFile"
@@ -44947,7 +45186,7 @@
                 "description": "response to Jay Lefkowitz on Epstein Plea Agreement Compliance",
                 "file_id": "012197",
                 "filename": "HOUSE_OVERSIGHT_012197.txt",
-                "is_interesting": true,
+                "is_interesting": null,
                 "num_lines": 16026,
                 "timestamp": "2014-12-13T15:00:00",
                 "type": "OtherFile",
@@ -45000,7 +45239,7 @@
                 "description": "Master Contact List - Privilege Log",
                 "file_id": "012707",
                 "filename": "HOUSE_OVERSIGHT_012707.txt",
-                "is_interesting": true,
+                "is_interesting": null,
                 "num_lines": 178,
                 "timestamp": "2011-03-22T00:00:00",
                 "type": "OtherFile"
@@ -45090,7 +45329,7 @@
                 "description": "Plaintiff Response to Epstein's Motion for Summary Judgment",
                 "file_id": "013304",
                 "filename": "HOUSE_OVERSIGHT_013304.txt",
-                "is_interesting": true,
+                "is_interesting": null,
                 "num_lines": 2218,
                 "timestamp": "2014-04-17T00:00:00",
                 "type": "OtherFile"
@@ -45180,7 +45419,7 @@
                 "description": "Deposition of Scott Rothstein",
                 "file_id": "013463",
                 "filename": "HOUSE_OVERSIGHT_013463.txt",
-                "is_interesting": true,
+                "is_interesting": null,
                 "num_lines": 633,
                 "timestamp": "2010-03-23T00:00:00",
                 "type": "OtherFile"
@@ -45193,7 +45432,7 @@
                 "description": "Affidavit of Brad Edwards",
                 "file_id": "013489",
                 "filename": "HOUSE_OVERSIGHT_013489.txt",
-                "is_interesting": true,
+                "is_interesting": null,
                 "num_lines": 445,
                 "timestamp": "2010-07-20T00:00:00",
                 "type": "OtherFile"
@@ -45231,7 +45470,7 @@
                 "description": "article on Crime Victims' Rights Act [CVRA]",
                 "file_id": "014037",
                 "filename": "HOUSE_OVERSIGHT_014037.txt",
-                "is_interesting": true,
+                "is_interesting": null,
                 "num_lines": 1911,
                 "timestamp": "2014-07-15T00:00:00",
                 "type": "OtherFile",
@@ -45245,7 +45484,7 @@
                 "description": "Jane Doe Response to Dershowitz's Motion for Limited Intervention",
                 "file_id": "014084",
                 "filename": "HOUSE_OVERSIGHT_014084.txt",
-                "is_interesting": true,
+                "is_interesting": null,
                 "num_lines": 968,
                 "timestamp": "2015-03-24T00:00:00",
                 "type": "OtherFile"
@@ -45258,7 +45497,7 @@
                 "description": "Declaration in Support of Motion to Compel Production of Documents",
                 "file_id": "014118",
                 "filename": "HOUSE_OVERSIGHT_014118.txt",
-                "is_interesting": true,
+                "is_interesting": null,
                 "num_lines": 15120,
                 "timestamp": "2016-10-21T00:00:00",
                 "type": "OtherFile"
@@ -45402,7 +45641,7 @@
                 "description": "Complaint",
                 "file_id": "014652",
                 "filename": "HOUSE_OVERSIGHT_014652.txt",
-                "is_interesting": true,
+                "is_interesting": null,
                 "num_lines": 704,
                 "timestamp": "2015-04-22T00:00:00",
                 "type": "OtherFile"
@@ -45462,7 +45701,7 @@
                 ],
                 "file_id": "014788",
                 "filename": "HOUSE_OVERSIGHT_014788.txt",
-                "is_interesting": true,
+                "is_interesting": null,
                 "num_lines": 194,
                 "timestamp": "2017-03-17T00:00:00",
                 "type": "OtherFile"
@@ -45475,7 +45714,7 @@
                 "description": "Declaration of Laura A. Menninger in Opposition to Plaintiff's Motion",
                 "file_id": "014797",
                 "filename": "HOUSE_OVERSIGHT_014797.txt",
-                "is_interesting": true,
+                "is_interesting": null,
                 "num_lines": 748,
                 "timestamp": "2017-03-17T00:00:00",
                 "type": "OtherFile"
@@ -45605,7 +45844,7 @@
                 "description": "Defamation Complaint",
                 "file_id": "015529",
                 "filename": "HOUSE_OVERSIGHT_015529.txt",
-                "is_interesting": true,
+                "is_interesting": null,
                 "num_lines": 1718,
                 "timestamp": "2015-09-21T00:00:00",
                 "type": "OtherFile"
@@ -45618,7 +45857,7 @@
                 "description": "Dershowitz Redacted Motion to Modify Confidentiality Order",
                 "file_id": "015590",
                 "filename": "HOUSE_OVERSIGHT_015590.txt",
-                "is_interesting": true,
+                "is_interesting": null,
                 "num_lines": 1201,
                 "timestamp": "2016-02-03T00:00:00",
                 "type": "OtherFile"
@@ -45631,7 +45870,7 @@
                 "description": "Giuffre Response to Dershowitz Motion for Clarification of Confidentiality Order",
                 "file_id": "015650",
                 "filename": "HOUSE_OVERSIGHT_015650.txt",
-                "is_interesting": true,
+                "is_interesting": null,
                 "num_lines": 169,
                 "timestamp": "2016-02-08T00:00:00",
                 "type": "OtherFile"
@@ -45695,7 +45934,7 @@
                 "description": "response to Florida Bar complaint by Alan Dershowitz about David Boies from Paul G. Cassell",
                 "file_id": "016197",
                 "filename": "HOUSE_OVERSIGHT_016197.txt",
-                "is_interesting": true,
+                "is_interesting": null,
                 "num_lines": 7,
                 "timestamp": "2019-07-03T00:00:00",
                 "type": "OtherFile",
@@ -45724,7 +45963,7 @@
                 "description": "New York Post Motion to Unseal Appellate Briefs",
                 "file_id": "016420",
                 "filename": "HOUSE_OVERSIGHT_016420.txt",
-                "is_interesting": true,
+                "is_interesting": null,
                 "num_lines": 1749,
                 "timestamp": "2019-01-11T00:00:00",
                 "type": "OtherFile"
@@ -46033,7 +46272,7 @@
                 "description": "Deposition of Scott Rothstein",
                 "file_id": "017488",
                 "filename": "HOUSE_OVERSIGHT_017488.txt",
-                "is_interesting": true,
+                "is_interesting": null,
                 "num_lines": 4376,
                 "timestamp": "2012-06-22T00:00:00",
                 "type": "OtherFile"
@@ -46124,7 +46363,7 @@
                 "description": "Vanity Fair article \"The Talented Mr. Epstein\" by Vicky Ward",
                 "file_id": "017771",
                 "filename": "HOUSE_OVERSIGHT_017771.txt",
-                "is_interesting": true,
+                "is_interesting": null,
                 "num_lines": 574,
                 "timestamp": "2011-06-27T00:00:00",
                 "type": "OtherFile"
@@ -46136,7 +46375,7 @@
                 "description": "about Virginia Giuffre",
                 "file_id": "017787",
                 "filename": "HOUSE_OVERSIGHT_017787.txt",
-                "is_interesting": true,
+                "is_interesting": null,
                 "num_lines": 4,
                 "timestamp": "2019-04-16T00:00:00",
                 "type": "OtherFile",
@@ -46149,7 +46388,7 @@
                 "description": "letter to Harvard Crimson complaining he was defamed",
                 "file_id": "017789",
                 "filename": "HOUSE_OVERSIGHT_017789.txt",
-                "is_interesting": true,
+                "is_interesting": null,
                 "num_lines": 4,
                 "timestamp": "2019-04-16T00:00:00",
                 "type": "OtherFile",
@@ -46188,7 +46427,7 @@
                 "description": "Miami Herald \"Perversion of Justice\" by Julie K. Brown",
                 "file_id": "017800",
                 "filename": "HOUSE_OVERSIGHT_017800.txt",
-                "is_interesting": true,
+                "is_interesting": null,
                 "num_lines": 471,
                 "timestamp": "2019-04-16T00:00:00",
                 "type": "OtherFile",
@@ -46202,7 +46441,7 @@
                 "description": "Miami Herald article about accusations against Alan Dershowitz by Julie K. Brown",
                 "file_id": "017818",
                 "filename": "HOUSE_OVERSIGHT_017818.txt",
-                "is_interesting": true,
+                "is_interesting": null,
                 "num_lines": 153,
                 "timestamp": "2018-12-27T00:00:00",
                 "type": "OtherFile"
@@ -46214,7 +46453,7 @@
                 "description": "Miami Herald article by Julie K. Brown",
                 "file_id": "017824",
                 "filename": "HOUSE_OVERSIGHT_017824.txt",
-                "is_interesting": true,
+                "is_interesting": null,
                 "num_lines": 42,
                 "timestamp": "2019-04-16T00:00:00",
                 "type": "OtherFile",
@@ -46227,7 +46466,7 @@
                 "description": "legal text and court documents",
                 "file_id": "017830",
                 "filename": "HOUSE_OVERSIGHT_017830.txt",
-                "is_interesting": true,
+                "is_interesting": null,
                 "num_lines": 6828,
                 "timestamp": "2012-10-03T20:04:00",
                 "type": "OtherFile",
@@ -46241,7 +46480,7 @@
                 "description": "Westlaw search results",
                 "file_id": "017904",
                 "filename": "HOUSE_OVERSIGHT_017904.txt",
-                "is_interesting": true,
+                "is_interesting": null,
                 "num_lines": 707,
                 "timestamp": "2019-01-01T00:00:00",
                 "type": "OtherFile"
@@ -46254,7 +46493,7 @@
                 "description": "defamation complaint",
                 "file_id": "017935",
                 "filename": "HOUSE_OVERSIGHT_017935.txt",
-                "is_interesting": true,
+                "is_interesting": null,
                 "num_lines": 2262,
                 "timestamp": "2019-04-16T00:00:00",
                 "type": "OtherFile"
@@ -46380,7 +46619,7 @@
                 "description": "seized property inventory (redacted)",
                 "file_id": "018872",
                 "filename": "HOUSE_OVERSIGHT_018872.txt",
-                "is_interesting": true,
+                "is_interesting": null,
                 "num_lines": 11058,
                 "timestamp": "2006-10-07T11:45:00",
                 "type": "OtherFile",
@@ -46504,7 +46743,7 @@
                 "description": "letter from Alan Dershowitz lawyer Andrew G. Celli",
                 "file_id": "019297",
                 "filename": "HOUSE_OVERSIGHT_019297.txt",
-                "is_interesting": true,
+                "is_interesting": null,
                 "num_lines": 132,
                 "timestamp": "2018-02-07T00:00:00",
                 "type": "OtherFile"
@@ -46529,7 +46768,7 @@
                 "description": "report on Epstein investigation (redacted)",
                 "file_id": "019352",
                 "filename": "HOUSE_OVERSIGHT_019352.txt",
-                "is_interesting": true,
+                "is_interesting": null,
                 "num_lines": 3017,
                 "timestamp": "2007-05-01T00:00:00",
                 "type": "OtherFile",
@@ -46592,7 +46831,7 @@
                 "description": "Haitian business investment proposal called Jacmel",
                 "file_id": "019448",
                 "filename": "HOUSE_OVERSIGHT_019448.txt",
-                "is_interesting": true,
+                "is_interesting": null,
                 "num_lines": 427,
                 "timestamp": "2012-06-22T23:08:00",
                 "type": "OtherFile",
@@ -46732,7 +46971,7 @@
                 "description": "Promoting Constructive Vigilance",
                 "file_id": "020447",
                 "filename": "HOUSE_OVERSIGHT_020447.txt",
-                "is_interesting": true,
+                "is_interesting": null,
                 "num_lines": 7325,
                 "timestamp": "2019-02-15T00:00:00",
                 "type": "OtherFile",
@@ -46745,7 +46984,7 @@
                 "description": "libel threat letter from Alan Dershowitz's British lawyers to Daily Mail",
                 "file_id": "020662",
                 "filename": "HOUSE_OVERSIGHT_020662.txt",
-                "is_interesting": true,
+                "is_interesting": null,
                 "num_lines": 124,
                 "timestamp": "2018-12-18T00:00:00",
                 "type": "OtherFile",
@@ -46848,7 +47087,7 @@
                 "description": "report on Epstein investigation (redacted)",
                 "file_id": "021434",
                 "filename": "HOUSE_OVERSIGHT_021434.txt",
-                "is_interesting": true,
+                "is_interesting": null,
                 "num_lines": 5512,
                 "timestamp": "2009-08-08T00:00:00",
                 "type": "OtherFile",
@@ -46861,7 +47100,7 @@
                 "description": "seized property inventory (redacted)",
                 "file_id": "021569",
                 "filename": "HOUSE_OVERSIGHT_021569.txt",
-                "is_interesting": true,
+                "is_interesting": null,
                 "num_lines": 11736,
                 "timestamp": "2014-03-01T00:00:00",
                 "type": "OtherFile",
@@ -46900,7 +47139,7 @@
                 "description": "deposition of Paul G. Cassell",
                 "file_id": "021824",
                 "filename": "HOUSE_OVERSIGHT_021824.txt",
-                "is_interesting": true,
+                "is_interesting": null,
                 "num_lines": 6853,
                 "timestamp": "2015-10-16T00:00:00",
                 "type": "OtherFile",
@@ -46998,7 +47237,7 @@
                 "description": "partial court filing with fact checking questions?",
                 "file_id": "022237",
                 "filename": "HOUSE_OVERSIGHT_022237.txt",
-                "is_interesting": true,
+                "is_interesting": null,
                 "num_lines": 266,
                 "timestamp": "2014-12-15T00:00:00",
                 "type": "OtherFile",
@@ -47172,7 +47411,7 @@
                 "description": "Foreign Corrupt Practices Act (FCPA) Resource Guide",
                 "file_id": "022494",
                 "filename": "HOUSE_OVERSIGHT_022494.txt",
-                "is_interesting": true,
+                "is_interesting": null,
                 "num_lines": 8418,
                 "timestamp": "2012-11-14T00:00:00",
                 "type": "OtherFile",
@@ -47222,7 +47461,7 @@
                 "category": "flight log",
                 "file_id": "022780",
                 "filename": "HOUSE_OVERSIGHT_022780.txt",
-                "is_interesting": true,
+                "is_interesting": null,
                 "num_lines": 421,
                 "timestamp": "2003-07-03T00:00:00",
                 "type": "OtherFile",
@@ -47246,7 +47485,7 @@
                 "category": "flight log",
                 "file_id": "022816",
                 "filename": "HOUSE_OVERSIGHT_022816.txt",
-                "is_interesting": true,
+                "is_interesting": null,
                 "num_lines": 93,
                 "type": "OtherFile"
             },
@@ -47433,7 +47672,7 @@
                 "description": "about Virginia Giuffre",
                 "file_id": "023050",
                 "filename": "HOUSE_OVERSIGHT_023050.txt",
-                "is_interesting": true,
+                "is_interesting": null,
                 "num_lines": 27,
                 "timestamp": "2019-03-02T00:00:00",
                 "type": "OtherFile",
@@ -47460,7 +47699,7 @@
                 "description": "blog post",
                 "file_id": "023096",
                 "filename": "HOUSE_OVERSIGHT_023096.txt",
-                "is_interesting": true,
+                "is_interesting": null,
                 "num_lines": 19,
                 "timestamp": "2012-11-15T00:00:00",
                 "type": "OtherFile"
@@ -47576,7 +47815,7 @@
                 "description": "legal text and court documents",
                 "file_id": "023361",
                 "filename": "HOUSE_OVERSIGHT_023361.txt",
-                "is_interesting": true,
+                "is_interesting": null,
                 "num_lines": 1415,
                 "timestamp": "2012-01-20T00:00:00",
                 "type": "OtherFile"
@@ -47760,7 +47999,7 @@
                 "description": "interview with Mohammed bin Salman",
                 "file_id": "023644",
                 "filename": "HOUSE_OVERSIGHT_023644.txt",
-                "is_interesting": true,
+                "is_interesting": null,
                 "num_lines": 138,
                 "timestamp": "2016-04-25T00:00:00",
                 "type": "OtherFile"
@@ -47836,7 +48075,7 @@
                 "description": "anti-money laundering (AML) & terrorist financing (CFT) U.S. law FAQ",
                 "file_id": "024117",
                 "filename": "HOUSE_OVERSIGHT_024117.txt",
-                "is_interesting": true,
+                "is_interesting": null,
                 "num_lines": 751,
                 "timestamp": "2012-07-15T00:00:00",
                 "type": "OtherFile",
@@ -48285,7 +48524,7 @@
                 ],
                 "file_id": "025353",
                 "filename": "HOUSE_OVERSIGHT_025353.txt",
-                "is_interesting": true,
+                "is_interesting": null,
                 "num_lines": 298,
                 "timestamp": "2008-05-19T00:00:00",
                 "type": "OtherFile"
@@ -48297,7 +48536,7 @@
                 "description": "rough draft of his side of the story",
                 "file_id": "025540",
                 "filename": "HOUSE_OVERSIGHT_025540.txt",
-                "is_interesting": true,
+                "is_interesting": null,
                 "num_lines": 36,
                 "timestamp": "2009-07-15T00:00:00",
                 "type": "OtherFile",
@@ -48359,7 +48598,7 @@
                 ],
                 "file_id": "025704",
                 "filename": "HOUSE_OVERSIGHT_025704.txt",
-                "is_interesting": true,
+                "is_interesting": null,
                 "num_lines": 127,
                 "timestamp": "2008-05-27T00:00:00",
                 "type": "OtherFile"
@@ -48410,7 +48649,7 @@
                 "description": "Affidavit of Tiffany Doe describing Jane Doe being raped by Epstein and Trump",
                 "file_id": "025937",
                 "filename": "HOUSE_OVERSIGHT_025937.txt",
-                "is_interesting": true,
+                "is_interesting": null,
                 "num_lines": 54,
                 "timestamp": "2016-06-20T00:00:00",
                 "type": "OtherFile"
@@ -48423,7 +48662,7 @@
                 "description": "Affidavit of Jane Doe describing being raped by Epstein",
                 "file_id": "025939",
                 "filename": "HOUSE_OVERSIGHT_025939.txt",
-                "is_interesting": true,
+                "is_interesting": null,
                 "num_lines": 63,
                 "timestamp": "2016-06-20T00:00:00",
                 "type": "OtherFile"
@@ -48491,7 +48730,7 @@
                 "description": "Complaint for rape and sexual abuse",
                 "file_id": "026384",
                 "filename": "HOUSE_OVERSIGHT_026384.txt",
-                "is_interesting": true,
+                "is_interesting": null,
                 "num_lines": 226,
                 "timestamp": "2016-04-28T16:39:12",
                 "type": "OtherFile"
@@ -48542,7 +48781,7 @@
                 "date": "2013-02-15",
                 "file_id": "026565",
                 "filename": "HOUSE_OVERSIGHT_026565.txt",
-                "is_interesting": true,
+                "is_interesting": null,
                 "num_lines": 11,
                 "timestamp": "2013-02-15T00:00:00",
                 "type": "OtherFile"
@@ -48628,7 +48867,7 @@
                 "description": "comments about an Apollo linked fund \"DE Fund VIII\"",
                 "file_id": "026634",
                 "filename": "HOUSE_OVERSIGHT_026634.txt",
-                "is_interesting": true,
+                "is_interesting": null,
                 "num_lines": 21,
                 "type": "OtherFile"
             },
@@ -48743,7 +48982,7 @@
                 "description": "letter from Steven Hoffenberg's lawyers offering to take over Epstein's business and resolve his legal issues",
                 "file_id": "026793",
                 "filename": "HOUSE_OVERSIGHT_026793.txt",
-                "is_interesting": true,
+                "is_interesting": null,
                 "num_lines": 39,
                 "timestamp": "2018-03-23T00:00:00",
                 "type": "OtherFile"
@@ -48807,7 +49046,7 @@
                 "description": "Civil Docket",
                 "file_id": "026854",
                 "filename": "HOUSE_OVERSIGHT_026854.txt",
-                "is_interesting": true,
+                "is_interesting": null,
                 "num_lines": 80,
                 "timestamp": "2016-09-09T15:15:00",
                 "type": "OtherFile",
@@ -48964,7 +49203,7 @@
                 "description": "brochure requesting donations for female condoms in Uganda",
                 "file_id": "027071",
                 "filename": "HOUSE_OVERSIGHT_027071.txt",
-                "is_interesting": true,
+                "is_interesting": null,
                 "num_lines": 120,
                 "timestamp": "2015-02-15T00:00:00",
                 "type": "OtherFile",
@@ -48977,7 +49216,7 @@
                 "description": "pitch deck (USAID was a customer)",
                 "file_id": "027074",
                 "filename": "HOUSE_OVERSIGHT_027074.txt",
-                "is_interesting": true,
+                "is_interesting": null,
                 "num_lines": 209,
                 "timestamp": "2006-01-01T00:00:00",
                 "type": "OtherFile",
@@ -49043,7 +49282,7 @@
                 "description": "decision in Budha Ismail Jam et al. v. INTERNATIONAL FINANCE CORP",
                 "file_id": "028540",
                 "filename": "HOUSE_OVERSIGHT_028540.txt",
-                "is_interesting": true,
+                "is_interesting": null,
                 "num_lines": 1310,
                 "timestamp": "2019-02-27T00:00:00",
                 "type": "OtherFile",
@@ -49103,7 +49342,7 @@
                 ],
                 "file_id": "028965",
                 "filename": "HOUSE_OVERSIGHT_028965.txt",
-                "is_interesting": true,
+                "is_interesting": null,
                 "num_lines": 79,
                 "timestamp": "2015-04-24T00:00:00",
                 "type": "OtherFile",
@@ -49210,7 +49449,7 @@
                 "description": "allegations and identity of plaintiff Katie Johnson",
                 "file_id": "029257",
                 "filename": "HOUSE_OVERSIGHT_029257.txt",
-                "is_interesting": true,
+                "is_interesting": null,
                 "num_lines": 9,
                 "timestamp": "2016-04-26T00:00:00",
                 "type": "OtherFile"
@@ -49290,7 +49529,7 @@
                 "description": "Plaintiff Motion for Summary Judgment by Jack Scarola",
                 "file_id": "029315",
                 "filename": "HOUSE_OVERSIGHT_029315.txt",
-                "is_interesting": true,
+                "is_interesting": null,
                 "num_lines": 381,
                 "timestamp": "2013-09-13T00:00:00",
                 "type": "OtherFile"
@@ -49302,7 +49541,7 @@
                 "date": "2013-02-15",
                 "file_id": "029326",
                 "filename": "HOUSE_OVERSIGHT_029326.txt",
-                "is_interesting": true,
+                "is_interesting": null,
                 "num_lines": 12,
                 "timestamp": "2013-02-15T00:00:00",
                 "type": "OtherFile"
@@ -49445,7 +49684,7 @@
                 "description": "article in Law.com",
                 "file_id": "029398",
                 "filename": "HOUSE_OVERSIGHT_029398.txt",
-                "is_interesting": true,
+                "is_interesting": null,
                 "num_lines": 95,
                 "timestamp": "2016-10-10T00:00:00",
                 "type": "OtherFile",
@@ -49478,7 +49717,7 @@
                 ],
                 "file_id": "029416",
                 "filename": "HOUSE_OVERSIGHT_029416.txt",
-                "is_interesting": true,
+                "is_interesting": null,
                 "num_lines": 264,
                 "timestamp": "2017-05-25T00:00:00",
                 "type": "OtherFile"
@@ -49514,7 +49753,7 @@
                 "description": "weird short essay titled 'President Obama and Self-Deception'",
                 "file_id": "029448",
                 "filename": "HOUSE_OVERSIGHT_029448.txt",
-                "is_interesting": true,
+                "is_interesting": null,
                 "num_lines": 25,
                 "timestamp": "2016-02-15T00:00:00",
                 "type": "OtherFile",
@@ -49539,7 +49778,7 @@
                 "description": "Virgin Islands Twin City Mobile Integrated Health Services (TCMIH) proposal/request for donation",
                 "file_id": "029475",
                 "filename": "HOUSE_OVERSIGHT_029475.txt",
-                "is_interesting": true,
+                "is_interesting": null,
                 "num_lines": 729,
                 "timestamp": "2018-03-10T00:00:00",
                 "type": "OtherFile",
@@ -49813,7 +50052,7 @@
                 "description": "mostly empty JASTA (Justice Against Sponsors of Terrorism Act) doc referencing suit against Saudis",
                 "file_id": "030142",
                 "filename": "HOUSE_OVERSIGHT_030142.txt",
-                "is_interesting": true,
+                "is_interesting": null,
                 "num_lines": 43,
                 "timestamp": "2016-09-01T00:00:00",
                 "type": "OtherFile"
@@ -50066,7 +50305,7 @@
                 "category": "tweet",
                 "file_id": "030884",
                 "filename": "HOUSE_OVERSIGHT_030884.txt",
-                "is_interesting": true,
+                "is_interesting": null,
                 "num_lines": 11,
                 "type": "OtherFile"
             },
@@ -50242,7 +50481,7 @@
                 "description": "letter from to Melanie Ann Pustay & Sean O'Neill re: Epstein FOIA request",
                 "file_id": "031447",
                 "filename": "HOUSE_OVERSIGHT_031447.txt",
-                "is_interesting": true,
+                "is_interesting": null,
                 "num_lines": 97,
                 "timestamp": "2015-10-15T00:00:00",
                 "type": "OtherFile",
@@ -50268,7 +50507,7 @@
                 "description": "about Russian collusion",
                 "file_id": "031546",
                 "filename": "HOUSE_OVERSIGHT_031546.txt",
-                "is_interesting": true,
+                "is_interesting": null,
                 "num_lines": 31,
                 "timestamp": "2018-01-06T00:00:00",
                 "type": "OtherFile"
@@ -50467,7 +50706,7 @@
                 "category": "skype log",
                 "file_id": "032206",
                 "filename": "HOUSE_OVERSIGHT_032206.txt",
-                "is_interesting": true,
+                "is_interesting": null,
                 "num_lines": 41,
                 "timestamp": "2017-08-24T19:14:01",
                 "type": "OtherFile",
@@ -50479,7 +50718,7 @@
                 "category": "skype log",
                 "file_id": "032208",
                 "filename": "HOUSE_OVERSIGHT_032208.txt",
-                "is_interesting": true,
+                "is_interesting": null,
                 "num_lines": 7,
                 "timestamp": "2017-07-11T23:42:34",
                 "type": "OtherFile",
@@ -50491,7 +50730,7 @@
                 "category": "skype log",
                 "file_id": "032209",
                 "filename": "HOUSE_OVERSIGHT_032209.txt",
-                "is_interesting": true,
+                "is_interesting": null,
                 "num_lines": 31,
                 "timestamp": "2017-07-05T23:01:43",
                 "type": "OtherFile",
@@ -50531,7 +50770,7 @@
                 "description": "Notice of Initial Conference",
                 "file_id": "032321",
                 "filename": "HOUSE_OVERSIGHT_032321.txt",
-                "is_interesting": true,
+                "is_interesting": null,
                 "num_lines": 58,
                 "timestamp": "2016-10-04T00:00:00",
                 "type": "OtherFile"
@@ -50612,7 +50851,7 @@
                 "description": "on Trump",
                 "file_id": "032735",
                 "filename": "HOUSE_OVERSIGHT_032735.txt",
-                "is_interesting": true,
+                "is_interesting": null,
                 "num_lines": 16,
                 "timestamp": "2018-03-20T00:00:00",
                 "type": "OtherFile"
@@ -50673,7 +50912,7 @@
                 "description": "selection about Ivanka Trump in Arabic",
                 "file_id": "033236",
                 "filename": "HOUSE_OVERSIGHT_033236.txt",
-                "is_interesting": true,
+                "is_interesting": null,
                 "num_lines": 22,
                 "timestamp": "2017-05-20T00:00:00",
                 "type": "OtherFile"
@@ -50712,7 +50951,7 @@
                 "description": "end of Donald Trump & Nicholas Ribis working relationship at Trump's casino",
                 "file_id": "033338",
                 "filename": "HOUSE_OVERSIGHT_033338.txt",
-                "is_interesting": true,
+                "is_interesting": null,
                 "num_lines": 25,
                 "timestamp": "2000-06-07T00:00:00",
                 "type": "OtherFile"
@@ -50751,7 +50990,7 @@
                 "description": "about Virginia Giuffre / David Boies",
                 "file_id": "033432",
                 "filename": "HOUSE_OVERSIGHT_033432.txt",
-                "is_interesting": true,
+                "is_interesting": null,
                 "num_lines": 25,
                 "timestamp": "2019-05-02T00:00:00",
                 "type": "OtherFile"
@@ -50764,7 +51003,7 @@
                 "description": "about Virginia Giuffre / David Boies",
                 "file_id": "033433",
                 "filename": "HOUSE_OVERSIGHT_033433.txt",
-                "is_interesting": true,
+                "is_interesting": null,
                 "num_lines": 26,
                 "timestamp": "2019-03-02T00:00:00",
                 "type": "OtherFile"
@@ -60030,7 +60269,7 @@
                 "description": "photo of letter from Virgin Islands DOJ to Epstein",
                 "file_id": "EFTA00001884",
                 "filename": "EFTA00001884.txt",
-                "is_interesting": true,
+                "is_interesting": null,
                 "num_lines": 45,
                 "timestamp": "2019-03-14T00:00:00",
                 "type": "DojFile"
@@ -67186,7 +67425,7 @@
                 "description": "heavily redacted handwritten note, 30+ completely redacted pages",
                 "file_id": "EFTA00005783",
                 "filename": "EFTA00005783.txt",
-                "is_interesting": true,
+                "is_interesting": null,
                 "num_lines": 86,
                 "timestamp": "2019-08-29T00:00:00",
                 "type": "DojFile"
@@ -67684,7 +67923,7 @@
                 "description": "victim list and police log",
                 "file_id": "EFTA00007157",
                 "filename": "EFTA00007157.txt",
-                "is_interesting": true,
+                "is_interesting": null,
                 "num_lines": 6136,
                 "timestamp": "2006-07-25T00:00:00",
                 "type": "DojFile",
@@ -69597,10 +69836,10 @@
             {
                 "bytes": 6528,
                 "category": "legal",
-                "description": "filing in case 1:19-cr-00490-RMB",
+                "description": "legal filing in case 1:19-cr-00490-RMB",
                 "file_id": "EFTA00009658",
                 "filename": "EFTA00009658.txt",
-                "is_interesting": true,
+                "is_interesting": null,
                 "num_lines": 150,
                 "timestamp": "2019-07-25T00:00:00",
                 "type": "DojFile",
@@ -69609,10 +69848,10 @@
             {
                 "bytes": 15058,
                 "category": "legal",
-                "description": "filing in case 1:20-cr-00330-AJN",
+                "description": "legal filing in case 1:20-cr-00330-AJN",
                 "file_id": "EFTA00009664",
                 "filename": "EFTA00009664.txt",
-                "is_interesting": true,
+                "is_interesting": null,
                 "num_lines": 302,
                 "timestamp": "2020-07-30T00:00:00",
                 "type": "DojFile",
@@ -69657,7 +69896,7 @@
                 "category": "misc",
                 "file_id": "EFTA00039156",
                 "filename": "EFTA00039156.txt",
-                "is_interesting": true,
+                "is_interesting": null,
                 "num_lines": 1833,
                 "timestamp": "2013-07-17T00:00:00",
                 "type": "DojFile",
@@ -69689,7 +69928,7 @@
                 "category": "misc",
                 "file_id": "EFTA00039227",
                 "filename": "EFTA00039227.txt",
-                "is_interesting": true,
+                "is_interesting": null,
                 "num_lines": 1776,
                 "timestamp": "2011-08-01T00:00:00",
                 "type": "DojFile",
@@ -69711,7 +69950,7 @@
                 "category": "misc",
                 "file_id": "EFTA00039295",
                 "filename": "EFTA00039295.txt",
-                "is_interesting": true,
+                "is_interesting": null,
                 "num_lines": 682,
                 "timestamp": "2008-02-11T00:00:00",
                 "type": "DojFile",
@@ -69723,7 +69962,7 @@
                 "category": "misc",
                 "file_id": "EFTA00039312",
                 "filename": "EFTA00039312.txt",
-                "is_interesting": true,
+                "is_interesting": null,
                 "num_lines": 1639,
                 "timestamp": "2005-01-15T00:00:00",
                 "type": "DojFile",
@@ -69735,7 +69974,7 @@
                 "category": "misc",
                 "file_id": "EFTA00039351",
                 "filename": "EFTA00039351.txt",
-                "is_interesting": true,
+                "is_interesting": null,
                 "num_lines": 189,
                 "timestamp": "2003-09-10T00:00:00",
                 "type": "DojFile",
@@ -69764,10 +70003,10 @@
             {
                 "bytes": 67007,
                 "category": "legal",
-                "description": "filing in case 1:19-cr-00490-RMB",
+                "description": "legal filing in case 1:19-cr-00490-RMB",
                 "file_id": "EFTA00039383",
                 "filename": "EFTA00039383.txt",
-                "is_interesting": true,
+                "is_interesting": null,
                 "num_lines": 817,
                 "timestamp": "2019-07-18T00:00:00",
                 "type": "DojFile",
@@ -69796,10 +70035,10 @@
             {
                 "bytes": 4023,
                 "category": "legal",
-                "description": "filing in case 1:20-cr-00330-AJN",
+                "description": "legal filing in case 1:20-cr-00330-AJN",
                 "file_id": "EFTA00039791",
                 "filename": "EFTA00039791.txt",
-                "is_interesting": true,
+                "is_interesting": null,
                 "num_lines": 64,
                 "timestamp": "2021-04-23T14:30:00",
                 "type": "DojFile",
@@ -69808,10 +70047,10 @@
             {
                 "bytes": 4023,
                 "category": "legal",
-                "description": "filing in case 1:20-cr-00330-AJN",
+                "description": "legal filing in case 1:20-cr-00330-AJN",
                 "file_id": "EFTA00039817",
                 "filename": "EFTA00039817.txt",
-                "is_interesting": true,
+                "is_interesting": null,
                 "num_lines": 64,
                 "timestamp": "2021-04-23T14:30:00",
                 "type": "DojFile",
@@ -69862,10 +70101,10 @@
             {
                 "bytes": 24555,
                 "category": "legal",
-                "description": "filing in case 1:20-cv-00833-PAE",
+                "description": "legal filing in case 1:20-cv-00833-PAE",
                 "file_id": "EFTA00039895",
                 "filename": "EFTA00039895.txt",
-                "is_interesting": true,
+                "is_interesting": null,
                 "num_lines": 313,
                 "timestamp": "2020-08-05T13:00:00",
                 "type": "DojFile",
@@ -69874,10 +70113,10 @@
             {
                 "bytes": 75888,
                 "category": "legal",
-                "description": "filing in case 1:20-cv-00833-PAE",
+                "description": "legal filing in case 1:20-cv-00833-PAE",
                 "file_id": "EFTA00039908",
                 "filename": "EFTA00039908.txt",
-                "is_interesting": true,
+                "is_interesting": null,
                 "num_lines": 1285,
                 "timestamp": "2023-07-11T20:19:00",
                 "type": "DojFile",
@@ -70360,9 +70599,11 @@
             },
             {
                 "bytes": 15120,
+                "category": "business",
+                "description": "Epstein's investment valuation",
                 "file_id": "EFTA00617222",
                 "filename": "EFTA00617222.txt",
-                "is_interesting": null,
+                "is_interesting": true,
                 "num_lines": 289,
                 "timestamp": "2020-09-01T00:00:00",
                 "type": "DojFile",
@@ -70383,9 +70624,11 @@
             },
             {
                 "bytes": 14789,
+                "category": "business",
+                "description": "Epstein's investment valuation",
                 "file_id": "EFTA00621739",
                 "filename": "EFTA00621739.txt",
-                "is_interesting": null,
+                "is_interesting": true,
                 "num_lines": 275,
                 "timestamp": "2020-09-01T00:00:00",
                 "type": "DojFile",
@@ -70762,9 +71005,11 @@
             },
             {
                 "bytes": 14616,
+                "category": "business",
+                "description": "Epstein's investment valuation",
                 "file_id": "EFTA00811479",
                 "filename": "EFTA00811479.txt",
-                "is_interesting": null,
+                "is_interesting": true,
                 "num_lines": 277,
                 "timestamp": "2020-09-01T00:00:00",
                 "type": "DojFile",
@@ -70772,9 +71017,11 @@
             },
             {
                 "bytes": 14775,
+                "category": "business",
+                "description": "Epstein's investment valuation",
                 "file_id": "EFTA00811490",
                 "filename": "EFTA00811490.txt",
-                "is_interesting": null,
+                "is_interesting": true,
                 "num_lines": 298,
                 "timestamp": "2020-01-15T00:00:00",
                 "type": "DojFile",
@@ -70782,9 +71029,11 @@
             },
             {
                 "bytes": 14801,
+                "category": "business",
+                "description": "Epstein's investment valuation",
                 "file_id": "EFTA00811508",
                 "filename": "EFTA00811508.txt",
-                "is_interesting": null,
+                "is_interesting": true,
                 "num_lines": 275,
                 "timestamp": "2020-09-01T00:00:00",
                 "type": "DojFile",
@@ -70792,9 +71041,11 @@
             },
             {
                 "bytes": 15234,
+                "category": "business",
+                "description": "Epstein's investment valuation",
                 "file_id": "EFTA00811530",
                 "filename": "EFTA00811530.txt",
-                "is_interesting": null,
+                "is_interesting": true,
                 "num_lines": 273,
                 "timestamp": "2020-09-01T00:00:00",
                 "type": "DojFile",
@@ -70802,9 +71053,11 @@
             },
             {
                 "bytes": 15600,
+                "category": "business",
+                "description": "Epstein's investment valuation",
                 "file_id": "EFTA00811539",
                 "filename": "EFTA00811539.txt",
-                "is_interesting": null,
+                "is_interesting": true,
                 "num_lines": 468,
                 "timestamp": "2020-09-01T00:00:00",
                 "type": "DojFile",
@@ -70812,9 +71065,11 @@
             },
             {
                 "bytes": 15119,
+                "category": "business",
+                "description": "Epstein's investment valuation",
                 "file_id": "EFTA00811552",
                 "filename": "EFTA00811552.txt",
-                "is_interesting": null,
+                "is_interesting": true,
                 "num_lines": 289,
                 "timestamp": "2020-09-01T00:00:00",
                 "type": "DojFile",
@@ -70822,9 +71077,11 @@
             },
             {
                 "bytes": 19972,
+                "category": "business",
+                "description": "Epstein's investment valuation",
                 "file_id": "EFTA00811649",
                 "filename": "EFTA00811649.txt",
-                "is_interesting": null,
+                "is_interesting": true,
                 "num_lines": 364,
                 "timestamp": "2020-09-01T00:00:00",
                 "type": "DojFile",
@@ -70844,9 +71101,11 @@
             },
             {
                 "bytes": 21494,
+                "category": "business",
+                "description": "Epstein's investment valuation",
                 "file_id": "EFTA00811705",
                 "filename": "EFTA00811705.txt",
-                "is_interesting": null,
+                "is_interesting": true,
                 "num_lines": 379,
                 "timestamp": "2020-09-01T00:00:00",
                 "type": "DojFile",
@@ -70892,9 +71151,11 @@
             },
             {
                 "bytes": 14735,
+                "category": "business",
+                "description": "Epstein's investment valuation",
                 "file_id": "EFTA00811948",
                 "filename": "EFTA00811948.txt",
-                "is_interesting": null,
+                "is_interesting": true,
                 "num_lines": 264,
                 "timestamp": "2020-09-01T00:00:00",
                 "type": "DojFile",
@@ -70907,19 +71168,6 @@
                 "is_interesting": null,
                 "num_lines": 1409,
                 "timestamp": "2019-02-22T00:00:00",
-                "type": "DojFile",
-                "was_timestamp_extracted": true
-            },
-            {
-                "author": "Peter Thiel's Valar Ventures fund",
-                "bytes": 1585,
-                "category": "crypto",
-                "description": "Limited Partners email",
-                "file_id": "EFTA00836182",
-                "filename": "EFTA00836182.txt",
-                "is_interesting": true,
-                "num_lines": 28,
-                "timestamp": "2016-01-20T00:00:00",
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
@@ -71123,9 +71371,11 @@
             },
             {
                 "bytes": 11701,
+                "category": "business",
+                "description": "Epstein's investment valuation",
                 "file_id": "EFTA01118143",
                 "filename": "EFTA01118143.txt",
-                "is_interesting": null,
+                "is_interesting": true,
                 "num_lines": 237,
                 "timestamp": "2014-10-31T00:00:00",
                 "type": "DojFile",
@@ -71145,9 +71395,11 @@
             },
             {
                 "bytes": 12599,
+                "category": "business",
+                "description": "Epstein's investment valuation",
                 "file_id": "EFTA01118275",
                 "filename": "EFTA01118275.txt",
-                "is_interesting": null,
+                "is_interesting": true,
                 "num_lines": 264,
                 "timestamp": "2020-09-01T00:00:00",
                 "type": "DojFile",
@@ -71294,7 +71546,7 @@
                 "description": "actress Athena Zelcovich, Joscha Bach, and Lawrence Krauss",
                 "file_id": "EFTA01217703",
                 "filename": "EFTA01217703.txt",
-                "is_interesting": true,
+                "is_interesting": null,
                 "num_lines": 552,
                 "timestamp": "2014-05-13T22:32:18",
                 "type": "DojFile",
@@ -71306,7 +71558,7 @@
                 "description": "actress Athena Zelcovich, Tyler Shears",
                 "file_id": "EFTA01217736",
                 "filename": "EFTA01217736.txt",
-                "is_interesting": true,
+                "is_interesting": null,
                 "num_lines": 579,
                 "timestamp": "2014-05-26T19:52:08",
                 "type": "DojFile",
@@ -71953,7 +72205,7 @@
                 "description": "evidence inventory that appears to have since been deleted from the DOJ website",
                 "file_id": "EFTA02730274",
                 "filename": "EFTA02730274.txt",
-                "is_interesting": true,
+                "is_interesting": null,
                 "num_lines": 7296,
                 "timestamp": "2021-01-02T00:00:00",
                 "type": "DojFile",
@@ -72458,8 +72710,9 @@
         "Harry Fisch": "academia, men's health expert at New York-Presbyterian / Weill Cornell (?)",
         "Heather Mann": "modeling, South African former model, ex-girlfriend of Prince Andrew (?)",
         "Henry Holt": "journalist, Michael Wolff's book publisher (company not a person)",
+        "Hongbo Robert Bao": "tech bro, Peter Thiel's Valar Ventures",
         "Howard Rubenstein": "lawyer, Epstein's former spokesman",
-        "Ian O'Donnell": "tech bro, Thiel's Valar Ventures",
+        "Ian O'Donnell": "tech bro, Peter Thiel's Valar Ventures",
         "Ian Osborne": "publicist, Ian Osborne & Partners reputation repairer hired in 2011",
         "Ike Groff": "employee, brother of Lesley Groff?",
         "Ivan Glasenberg": "Africa, South African former CEO of Glencore, one of the world's largest commodity trading and mining companies",
@@ -72468,7 +72721,7 @@
         "Jack Lang": "Europe, former French Minister of National Education",
         "Jack Scarola": "victim lawyer, Searcy Denney Scarola Barnhart & Shipley",
         "Jackie Perczek": "lawyer, criminal defense attorney on 2008 case",
-        "James Fitzgerald": "tech bro, Peter Thiel's Valar Ventures (???)",
+        "James Fitzgerald": "tech bro, Peter Thiel's Valar Ventures",
         "James Hill": "journalist, ABC News",
         "Janusz Banasiak": "employee, Epstein's house manager",
         "Jay Lefkowitz": "lawyer, Kirkland & Ellis partner, criminal defense attorney on 2008 case",
@@ -72549,7 +72802,7 @@
         "Neal Kassell": "academia, professor of neurosurgery at University of Virginia",
         "Newsmax": "journalist, right wing American news outlet",
         "Nicholas Ribis": "Trump, Hilton CEO, former president of Trump Organization",
-        "Nicole Junkermann": "business, ex-model, NJF Capital, German investor in Revolut, Winamax (online poker) and Carbyen (Ehud Barak)",
+        "Nicole Junkermann": "business, ex-model, NJF Capital, investor in Revolut, online poker, Carbyne w/Ehud Barak",
         "Nili Priell Barak": "Israel, wife of Ehud Barak",
         "Noam Chomsky": "academia, professor of linguistics at MIT",
         "Norman D. Rau": "finance, managing director at Morgan Stanley",
@@ -72577,6 +72830,7 @@
         "Reid Hoffman": "tech bro, PayPal mafia member, founder of LinkedIn",
         "Reid Weingarten": "lawyer, Steptoe LLP partner",
         "Renata Bolotova": "Russia, former model, fund manager at New York State Insurance Fund, \u0420\u0435\u043d\u0430\u0442\u0430 \u0411\u043e\u043b\u043e\u0442\u043e\u0432\u0430",
+        "Reuben Kobulnik": "tech bro, Peter Thiel's Valar Ventures",
         "Richard Kahn": "lawyer, Epstein estate executor",
         "Richard Merkin": "arts, painter, illustrator and arts educator",
         "Robert D. Critton Jr.": "lawyer, criminal defense attorney",
