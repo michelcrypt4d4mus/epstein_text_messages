@@ -56,7 +56,7 @@ EMAIL_AUTHOR_COUNTS = {
     DANGENE_AND_JENNIE_ENTERPRISE: 4,
     DANIEL_SABBA: 3,
     DANIEL_SIAD: 2,
-    "Danny Frost": 1,
+    DANNY_FROST: 1,
     'Daphne Wallace': 1,
     DARREN_INDYKE: 50,
     "Dave Hope": 1,
