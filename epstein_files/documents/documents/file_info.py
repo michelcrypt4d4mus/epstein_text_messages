@@ -8,11 +8,16 @@ from rich.text import Text
 from epstein_files.output.rich import join_texts, prefix_with, parenthesize, styled_dict
 from epstein_files.util.constant.strings import DOJ_DATASET_ID_REGEX
 from epstein_files.util.constant.urls import *
-from epstein_files.util.env import DOCS_DIR, DOJ_PDFS_20260130_DIR
+from epstein_files.util.env import DOJ_PDFS_20260130_DIR
 from epstein_files.util.helpers.file_helper import (coerce_file_stem, coerce_url_slug, extract_file_id, is_doj_file,
      is_house_oversight_file, is_local_extract_file)
 
-FILE_PROPS = ['file_id', 'filename', 'is_doj_file', 'is_local_extract_file']
+FILE_PROPS = [
+    'file_id',
+    'filename',
+    'is_doj_file',
+    'is_local_extract_file'
+]
 
 
 @dataclass
@@ -80,7 +85,7 @@ class FileInfo:
     @property
     def local_pdf_path(self) -> Path | None:
         """Path to the source PDF (only applies to DOJ files that were manually extracted)."""
-        if self.is_doj_file:
+        if self.is_doj_file and DOJ_PDFS_20260130_DIR:
             return next((p for p in DOJ_PDFS_20260130_DIR.glob('**/*.pdf') if p.stem == self.file_stem), None)
 
     @property

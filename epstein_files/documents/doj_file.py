@@ -294,7 +294,7 @@ class DojFile(OtherFile):
 
     def external_links_txt(self, _style: str = '', include_alt_links: bool = True) -> Text:
         """Overrides super() method to apply self.border_style."""
-        return self.locations.external_links_txt(self.border_style, include_alt_links=include_alt_links)
+        return self.file_info.external_links_txt(self.border_style, include_alt_links=include_alt_links)
 
     def printable_document(self) -> Self | Email:
         """Return a copy of this `DojFile` with simplified text if file ID is in `REPLACEMENT_TEXT`."""
