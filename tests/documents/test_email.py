@@ -58,6 +58,7 @@ def test_is_fwded_article(get_email):
     non_article_with_fwd_text = get_email('012197_4')
     assert non_article_with_fwd_text.is_fwded_article is False
     assert non_article_with_fwd_text.is_word_count_worthy is True
+
     article_with_fwd_text = get_email('016413')
     assert article_with_fwd_text.is_fwded_article is True
     assert article_with_fwd_text.is_word_count_worthy is True

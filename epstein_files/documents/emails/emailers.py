@@ -15,13 +15,7 @@ BAD_EMAILER_REGEX = re.compile(r'^(>|11111111)|agreed|ok|sexy|re:|fwd:|Multiple 
 BAD_NAME_CHARS_REGEX = re.compile(r"[\"'\[\]*><•=()‹?]")
 TIME_REGEX = re.compile(r'^((\d{1,2}/\d{1,2}/\d{2,4}|Thursday|Monday|Tuesday|Wednesday|Friday|Saturday|Sunday)|\d{4} ).*')
 
-SUPPRESS_LOGS_FOR_AUTHORS = [
-    'Multiple Senders Multiple Senders',
-    'Undisclosed recipients:',
-    'undisclosed-recipients:',
-]
-
-# Unhighlighted / uncategorized emailer regexes
+# Unhighlighted / uncategorized emailers we don't know much about but need regexes to identify
 ADDITIONAL_CONTACTS = [
     # Custom regex
     Contact('Daphne Wallace', emailer_pattern=r"Da[p ]hne Wallace"),
@@ -53,14 +47,21 @@ ADDITIONAL_CONTACTS = [
     Contact('Steven Victor MD'),
 ]
 
+SUPPRESS_LOGS_FOR_AUTHORS = [
+    'Multiple Senders Multiple Senders',
+    'Undisclosed recipients:',
+    'undisclosed-recipients:',
+]
+
+# Collect all regexes and contacts
 HIGHLIGHTED_CONTACTS = flatten([hn.contacts for hn in HIGHLIGHT_GROUPS if isinstance(hn, HighlightedNames)])
 ALL_CONTACTS = HIGHLIGHTED_CONTACTS + ADDITIONAL_CONTACTS
 CONTACTS_DICT = {c.name: c for c in ALL_CONTACTS}
 EMAILER_ID_REGEXES = {c.name: c.emailer_regex for c in ALL_CONTACTS}
 
 
-def cleanup_str(_str: str) -> str:
-    return BAD_NAME_CHARS_REGEX.sub('', _str.replace(REDACTED, '')).strip().strip('_').strip()
+def cleanup_str(s: str) -> str:
+    return BAD_NAME_CHARS_REGEX.sub('', s.replace(REDACTED, '')).strip().strip('_').strip()
 
 
 def extract_emailer_names(emailer_str: str) -> list[Name]:
