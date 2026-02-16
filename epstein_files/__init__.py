@@ -146,7 +146,7 @@ def epstein_grep():
                     console.print(Padding(temp_highlighter(line_txt), INFO_PADDING), style='gray37')
 
             console.line()
-            console.print(doc.locations, style='dim')
+            console.print(doc.file_info, style='dim')
             console.line()
 
 
@@ -194,7 +194,7 @@ def epstein_show():
             console.print(doc._debug_txt(), style='dim')
 
         if args.open_pdf:
-            check_output(['open', str(doc.locations.local_pdf_path)])
+            check_output(['open', str(doc.file_info.local_pdf_path)])
         if args.open_txt:
             check_output(['open', str(doc.file_path)])
         if args.open_url:

@@ -199,8 +199,8 @@ class Email(Communication):
     @property
     def config(self) -> EmailCfg | None:
         """Configured timestamp, if any."""
-        if self.locations.is_local_extract_file:
-            if not self.derived_cfg and (extracted_from_cfg := CONFIGS_BY_ID.get(self.locations.url_slug)):
+        if self.file_info.is_local_extract_file:
+            if not self.derived_cfg and (extracted_from_cfg := CONFIGS_BY_ID.get(self.file_info.url_slug)):
                 # Copy info from original config for file this document was extracted from.
                 if (my_cfg := CONFIGS_BY_ID.get(self.file_id)):
                     self.derived_cfg = cast(EmailCfg, deepcopy(my_cfg))
@@ -222,7 +222,7 @@ class Email(Communication):
 
     @property
     def external_link_markup(self) -> str:
-        return epstein_media_doc_link_markup(self.locations.url_slug, self.author_style)
+        return epstein_media_doc_link_markup(self.file_info.url_slug, self.author_style)
 
     @property
     def is_fwded_article(self) -> bool:
@@ -683,7 +683,7 @@ class Email(Communication):
         yield Padding(email_txt_panel, (0, 0, 1, INFO_INDENT))
 
         if self.attached_docs:
-            attachments_table_title = f" {self.locations.url_slug} Email Attachments:"
+            attachments_table_title = f" {self.file_info.url_slug} Email Attachments:"
             attachments_table = OtherFile.files_preview_table(self.attached_docs, title=attachments_table_title)
             yield Padding(attachments_table, (0, 0, 1, 12))
 
@@ -721,7 +721,7 @@ class Email(Communication):
 
         for email in emails:
             fields = [
-                link_text_obj(email.locations.external_url, email.timestamp_without_seconds, style=link_style),
+                link_text_obj(email.file_info.external_url, email.timestamp_without_seconds, style=link_style),
                 email.author_txt,
                 email.recipients_txt(max_full_names=1),
                 f"{email.length}",

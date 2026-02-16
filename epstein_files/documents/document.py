@@ -93,8 +93,8 @@ class Document:
     Attributes:
         file_path (Path): Local path to file
         author (Name): Writer of the text in the file
+        file_info (FileInfo): Manages things having to do with the underlying file (paths, URLs, etc.)
         lines (list[str]): Number of lines in the file after all the cleanup
-        locations (DocLocation): manages local paths and web URLs for this document
         text (str): Contents of the file
         timestamp (datetime, optional): When the file was originally created
     """
@@ -104,7 +104,7 @@ class Document:
 
     # Optional derived fields
     author: Name = None
-    locations: FileInfo = field(init=False)
+    file_info: FileInfo = field(init=False)
     timestamp: datetime | None = None
 
     # Class variables
@@ -165,11 +165,11 @@ class Document:
     @property
     def external_link_markup(self) -> str:
         """Rich markup string with link to source document."""
-        return self.locations.external_link_markup
+        return self.file_info.external_link_markup
 
     @property
     def file_id(self) -> str:
-        return self.locations.file_id
+        return self.file_info.file_id
 
     @property
     def file_size(self) -> int:
@@ -197,7 +197,7 @@ class Document:
 
     @property
     def is_doj_file(self) -> bool:
-        return self.locations.is_doj_file
+        return self.file_info.is_doj_file
 
     @property
     def is_duplicate(self) -> bool:
@@ -212,7 +212,7 @@ class Document:
         """TODO: currently default to True for HOUSE_OVERSIGHT_FILES, false for DOJ."""
         if self.config and self.config.is_of_interest is not None:
             return self.config.is_of_interest
-        elif self.locations.is_house_oversight_file and not (self.author or self.config):
+        elif self.file_info.is_house_oversight_file and not (self.author or self.config):
             return True
 
     @property
@@ -225,10 +225,10 @@ class Document:
         metadata.update({k: getattr(self, k) for k in METADATA_FIELDS if getattr(self, k) is not None})
         metadata['type'] = self._class_name
 
-        if self.locations.is_local_extract_file:
+        if self.file_info.is_local_extract_file:
             metadata['extracted_file'] = {
                 'explanation': 'manually extracted from one of the other files',
-                'extracted_from': self.locations.url_slug + '.txt',
+                'extracted_from': self.file_info.url_slug + '.txt',
                 'url': f"{EXTRACTS_BASE_URL}/{self.filename}",
             }
 
@@ -338,7 +338,7 @@ class Document:
         if not self.file_path.exists():
             raise FileNotFoundError(f"File '{self.file_path.name}' does not exist!")
 
-        self.locations = FileInfo(self.file_path)
+        self.file_info = FileInfo(self.file_path)
         self.text = self.text or self._load_file()
         self._set_computed_fields(text=self.text)
         self._repair()
@@ -352,7 +352,7 @@ class Document:
 
     def file_info_panel(self) -> Group:
         """Panel with filename linking to raw file plus any additional info about the file."""
-        panel = Panel(self.locations.external_links_txt(include_alt_links=True), border_style=self.border_style, expand=False)
+        panel = Panel(self.file_info.external_links_txt(include_alt_links=True), border_style=self.border_style, expand=False)
         padded_info = [Padding(sentence, INFO_PADDING) for sentence in self.info]
         return Group(*([panel] + padded_info))
 
@@ -400,7 +400,7 @@ class Document:
 
     def truncation_note(self, truncate_to: int) -> Text:
         """String with link to source URL that will replace the text after the truncation point."""
-        link_markup = self.locations.external_link_markup
+        link_markup = self.file_info.external_link_markup
         trim_note = f"<...trimmed to {truncate_to:,} characters of {self.length:,}, read the rest at {link_markup}...>"
         return Text.from_markup(wrap_in_markup_style(trim_note, 'dim'))
 
@@ -411,7 +411,7 @@ class Document:
     def _debug_dict(self) -> DebugDict:
         """Information about this document: config, locations, etc."""
         config_info = self.config.important_props if self.config else {}
-        locations_dict = dict(self.locations.as_dict)
+        locations_dict = dict(self.file_info.as_dict)
 
         if config_info.get('id') == locations_dict.get('file_id'):
             config_info.pop('id')
