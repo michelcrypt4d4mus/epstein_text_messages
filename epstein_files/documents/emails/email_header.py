@@ -79,6 +79,10 @@ class EmailHeader:
     def is_empty(self) -> bool:
         return not any([v for _k, v in self.as_dict().items()])
 
+    @property
+    def recipients(self) -> list[str]:
+        return (self.to or []) + (self.cc or []) + (self.bcc or [])
+
     def __post_init__(self):
         self.num_header_rows = len(self.field_names)
         self.was_initially_empty = self.is_empty
@@ -86,9 +90,6 @@ class EmailHeader:
     def as_dict(self) -> dict[str, str | None]:
         """Remove housekeeping fields that don't actually come from the email."""
         return {k: v for k, v in asdict(self).items() if k not in NON_HEADER_FIELDS}
-
-    def recipients(self) -> list[str]:
-        return (self.to or []) + (self.cc or []) + (self.bcc or [])
 
     def repair_empty_header(self, email_lines: list[str]) -> None:
         num_headers = len(self.field_names)
