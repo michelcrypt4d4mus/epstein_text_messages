@@ -401,17 +401,17 @@ class Document:
     def _debug_dict(self) -> DebugDict:
         """Information about this document: config, locations, etc."""
         config_info = self.config.important_props if self.config else {}
-        locations_dict = dict(self.file_info.as_dict)
+        file_info = dict(self.file_info.as_dict)
 
-        if config_info.get('id') == locations_dict.get('file_id'):
+        if config_info.get('id') == file_info.get('file_id'):
             config_info.pop('id')
 
-        if locations_dict.get('source_url') == locations_dict.get('external_url', 'blah'):
-            locations_dict.pop('external_url')
+        if file_info.get('source_url') == file_info.get('external_url', 'blah'):
+            file_info.pop('external_url')
 
         config_info = prefix_keys(type(self.config).__name__, config_info)
-        locations_dict = prefix_keys(underscore(FileInfo.__name__), locations_dict)
-        return {**locations_dict, **config_info, **self._debug_props()}
+        file_info = prefix_keys(underscore(FileInfo.__name__), file_info)
+        return {**file_info, **config_info, **self._debug_props()}
 
     def _debug_props(self) -> DebugDict:
         """Collects props of this object only (not the config or locations)."""
