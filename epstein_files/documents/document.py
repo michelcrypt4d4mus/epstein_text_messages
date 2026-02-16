@@ -309,8 +309,7 @@ class Document:
 
     @property
     def _class_name(self) -> str:
-        """Annoying workaround for circular import issues and isinstance()."""
-        return str(type(self).__name__)
+        return type(self).__name__
 
     @property
     def _class_style(self) -> str:
@@ -326,7 +325,7 @@ class Document:
 
         self.file_info = FileInfo(self.file_path)
         self.text = self.text or self._load_file()
-        self._set_computed_fields(text=self.text)
+        self._set_text(text=self.text)
         self._repair()
         self._extract_author()
         self.timestamp = self.config_timestamp or self._extract_timestamp()
@@ -450,7 +449,7 @@ class Document:
         """Can optionally be overloaded in subclasses to further improve self.text."""
         pass
 
-    def _set_computed_fields(self, lines: list[str] | None = None, text: str | None = None) -> None:
+    def _set_text(self, lines: list[str] | None = None, text: str | None = None) -> None:
         """Sets all fields derived from self.text based on either 'lines' or 'text' arg."""
         if lines and text:
             raise RuntimeError(f"[{self.filename}] Either 'lines' or 'text' arg must be provided (got both)")
