@@ -1292,6 +1292,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00999549', description=f"{JOI_ITO} and {JEREMY_RUBIN} meet {LARRY_SUMMERS} to discuss bitcoin", is_interesting=True),
     EmailCfg(id='EFTA00104945', description=f"{LEON_BLACK} / Rothschild Group {DEUTSCHE_BANK} transactions", is_interesting=True, truncate_to=700),
     EmailCfg(id='EFTA01013266', description=f"{MARIYA_PRUSAKOVA}'s {CRYPTO_PR_LAB} request for payment for Davos", is_interesting=True),
+    EmailCfg(id='EFTA02285514', description=f"Medici Bank and {MARIYA_PRUSAKOVA} meeting", is_interesting=True),
     EmailCfg(id='EFTA00900908', description="negotiation of repurchase of half of Epstein's stake in Coinbase"),
     EmailCfg(id='EFTA00754450', description='"PA" is probably Prince Andrew', duplicate_ids=['EFTA02418244']),
     EmailCfg(id='EFTA01003346', description=f"{PETER_THIEL} tells Epstein to invest in his fund", is_interesting=True),
@@ -2215,7 +2216,6 @@ OTHER_FILES_CRYPTO = [
     DocCfg(id='EFTA01734786', description='LedgerX Series B pitch deck'),
     DocCfg(id='EFTA02725909', description='memo to NYDFS for NYC Bitcoin Exchange, Balaji Srinivisan & Andrew Farkas on board'),
     # Medici / Noble
-    DocCfg(id='EFTA02285514', description=f"Medici Bank and {MARIYA_PRUSAKOVA} meeting"),
     DocCfg(id='EFTA01613731', description='Medici Bank conversation on Whatsapp'),
     DocCfg(id='EFTA00805569', description='Mercantile Global Holdings, San Juan Mercantile Bank & Trust, Noble Bank + Signature Bank + BitGo'),
     DocCfg(id='EFTA01088079', description="someone's thoughts on bitcoin"),
