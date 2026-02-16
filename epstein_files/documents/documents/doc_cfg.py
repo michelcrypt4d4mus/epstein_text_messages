@@ -268,7 +268,7 @@ class DocCfg:
     @property
     def is_of_interest(self) -> bool | None:
         """
-        Self.is_interesting` value takes precedence. After that check rules below.
+        `self.is_interesting` value takes precedence. If it's not set apply the rules below.
         Defaults to True for HOUSE_OVERSIGHT files w/out info, None for DOJ files.
         Returns None (not False) if there's no firm decision, leaving `Document` classes
         to do any other checks they might want to.
@@ -279,8 +279,8 @@ class DocCfg:
             [+] INTERESTING_AUTHORS
             [+] having no author/description *if* HOUSE_OVERSIGHT
              -  duplicates
-             -  descriptions with UNINTERESTING_PREFIXES
              -  UNINTERESTING_CATEGORIES
+             -  descriptions with UNINTERESTING_PREFIXES
              -  finance category with any author
         """
         if self.duplicate_of_id:
