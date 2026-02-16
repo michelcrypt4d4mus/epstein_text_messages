@@ -178,10 +178,7 @@ class EpsteinFiles:
 
     def email_recipient_counts(self) -> dict[Name, int]:
         """Returns dict counting up how many emails were received by each person."""
-        return {
-            person.name: len(person.unique_emails_to)
-            for person in self.emailers if len(person.unique_emails_to) > 0
-        }
+        return {p.name: len(p.unique_emails_to) for p in self.emailers if len(p.unique_emails_to) > 0}
 
     def email_signature_substitution_counts(self) -> dict[str, int]:
         """Return the number of times an email signature was replaced with "<...snipped...>" for each author."""
