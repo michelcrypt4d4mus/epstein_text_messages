@@ -173,6 +173,7 @@ def epstein_show():
         exit_with_error(str(e))
 
     for doc in docs:
+        doc = doc.printable_document()
         console.print('\n', doc)
 
         if args.raw:
@@ -189,7 +190,7 @@ def epstein_show():
                 metadata['_is_first_for_user'] = doc._is_first_for_user
                 print_json(f"{doc.file_id} Metadata", metadata)
 
-        console.print(doc.debug_dict_txt, style='dim')
+        console.print(doc._debug_txt(), style='dim')
 
         # if args.debug and doc.config:
         #     console.line()

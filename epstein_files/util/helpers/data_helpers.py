@@ -84,9 +84,9 @@ def patternize(_pattern: str | re.Pattern) -> re.Pattern:
     return _pattern if isinstance(_pattern, re.Pattern) else re.compile(fr"({_pattern})", re.IGNORECASE)
 
 
-def prefix_keys(prefix: str, _dict: dict[str, T]) -> dict[str, T]:
+def prefix_keys(prefix: str, _dict: dict[str, T], sep='.') -> dict[str, T]:
     """Add `prefix` to the front of all the keys in `_dict`."""
-    return {f"{prefix}{k}": v for k, v in _dict.items()}
+    return {f"{prefix}{sep}{k}": v for k, v in _dict.items()}
 
 
 def remove_timezone(timestamp: datetime) -> datetime:
@@ -104,6 +104,7 @@ def sort_dict(d: dict[str | None, int] | dict[str, int]) -> list[tuple[str | Non
         sort_key = alpha_key if args.sort_alphabetical else lambda kv: [-kv[1], alpha_key(kv)]
         return sorted(d.items(), key=sort_key)
     except TypeError as e:
+        alpha_key = lambda kv: kv[0] or ''
         return sorted(d.items(), key=lambda kv: f"Z{alpha_key(kv)}" if '.' in (kv[0] or '') else alpha_key(kv))
 
 

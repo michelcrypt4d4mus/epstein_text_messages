@@ -327,6 +327,22 @@ def quote_txt(t: Text | str, try_double_quote_first: bool = False, style: str = 
     return Text(quote_char, style=style).append(t).append(quote_char)
 
 
+def styled_dict(
+    d: Mapping[str, bool | datetime | str | Path | Text | None],
+    key_style: str = KEY_STYLE,
+    sep: str = '=',
+    sort_fields: bool = True,
+    min_indent: int = 20,
+) -> Text:
+    """Turn a dict into a colored representation."""
+    key_lengths = [len(k) for k in d.keys()] + [min_indent]
+
+    return Text('\n').join([
+        styled_key_value(k, v, key_style=key_style, indent=max(key_lengths) + 3, sep=sep)
+        for k, v in (sort_dict(d) if sort_fields else d.items())
+    ])
+
+
 def styled_key_value(
     key: str,
     val: bool | datetime | int | str | Path | Text | None,
@@ -378,22 +394,6 @@ def styled_key_value(
     txt = Text('').append(f"{key:>{indent}}", style=key_style)
     txt.append(sep, style=SYMBOL_STYLE).append(val_txt)
     return txt
-
-
-def styled_dict(
-    d: Mapping[str, bool | datetime | str | Path | Text | None],
-    key_style: str = KEY_STYLE,
-    sep: str = '=',
-    sort_fields: bool = True,
-    min_indent: int = 20,
-) -> Text:
-    """Turn a dict into a colored representation."""
-    key_lengths = [len(k) for k in d.keys()] + [min_indent]
-
-    return Text('\n').join([
-        styled_key_value(k, v, key_style=key_style, indent=max(key_lengths) + 3, sep=sep)
-        for k, v in (sort_dict(d) if sort_fields else d.items())
-    ])
 
 
 def vertically_pad(obj: RenderableType, amount: int = 1) -> Padding:

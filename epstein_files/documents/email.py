@@ -15,7 +15,7 @@ from rich.text import Text
 
 from epstein_files.documents.communication import Communication
 from epstein_files.documents.document import CLOSE_PROPERTIES_CHAR, INFO_INDENT
-from epstein_files.documents.documents.doc_cfg import EmailCfg, Metadata
+from epstein_files.documents.documents.doc_cfg import DebugDict, EmailCfg, Metadata
 from epstein_files.documents.emails.constants import *
 from epstein_files.documents.emails.email_header import (EMAIL_SIMPLE_HEADER_REGEX,
      EMAIL_SIMPLE_HEADER_LINE_BREAK_REGEX, FIELD_NAMES, FIELDS_COLON_PATTERN, EmailHeader)
@@ -26,7 +26,8 @@ from epstein_files.util.constant.names import *
 from epstein_files.util.constant.strings import REDACTED
 from epstein_files.util.constant.urls import URL_SIGNIFIERS
 from epstein_files.util.constants import *
-from epstein_files.util.helpers.data_helpers import AMERICAN_TIME_REGEX, TIMEZONE_INFO, collapse_newlines, remove_timezone, uniquify
+from epstein_files.util.helpers.data_helpers import (AMERICAN_TIME_REGEX, TIMEZONE_INFO, collapse_newlines,
+     prefix_keys, remove_timezone, uniquify)
 from epstein_files.util.helpers.file_helper import extract_file_id, file_stem_for_id
 from epstein_files.output.highlight_config import HIGHLIGHTED_NAMES, get_style_for_name
 from epstein_files.util.logging import logger
@@ -143,6 +144,16 @@ OCR_REPAIRS: dict[str | re.Pattern, str] = {
 METADATA_FIELDS = [
     'is_junk_mail',
     'is_mailing_list',
+    'recipients',
+    'sent_from_device',
+    'subject',
+]
+
+DEBUG_PROPS = [
+    'attached_docs',
+    'is_junk_mail',
+    'is_mailing_list',
+    'is_note_to_self',
     'recipients',
     'sent_from_device',
     'subject',
@@ -340,6 +351,12 @@ class Email(Communication):
         ]
 
         return join_texts(names, join=', ')
+
+    def _debug_props(self) -> DebugDict:
+        props = super()._debug_props()
+        local_props = {k: getattr(self, k) for k in DEBUG_PROPS if getattr(self, k)}
+        props.update(prefix_keys(self._debug_prefix, local_props))
+        return props
 
     def _extract_actual_text(self) -> str:
         """The text that comes before likely quoted replies and forwards etc."""

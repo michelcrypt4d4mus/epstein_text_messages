@@ -3,6 +3,7 @@ import re
 from copy import deepcopy
 from dataclasses import asdict, dataclass, field, fields
 from datetime import datetime
+from pathlib import Path
 from typing import Generator, Literal, Mapping, Self
 
 from dateutil.parser import parse
@@ -16,6 +17,7 @@ from epstein_files.util.helpers.data_helpers import without_falsey
 from epstein_files.util.helpers.file_helper import is_doj_file
 from epstein_files.util.helpers.string_helper import join_truthy, quote
 
+DebugDict = dict[str, bool | datetime | str | Path | None]
 DuplicateType = Literal['bounced', 'earlier', 'quoted', 'redacted', 'same']
 Metadata = dict[str, bool | datetime | int | str | list[str | None] |dict[str, bool | str]]
 
