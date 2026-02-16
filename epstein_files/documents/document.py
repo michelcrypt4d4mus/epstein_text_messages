@@ -170,7 +170,7 @@ class Document:
 
     @property
     def filename(self) -> str:
-        return self.file_path.name
+        return self.file_info.filename
 
     @property
     def info(self) -> list[Text]:

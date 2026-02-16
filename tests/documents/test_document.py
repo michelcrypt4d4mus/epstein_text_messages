@@ -5,7 +5,7 @@ from epstein_files.util.constant.names import CECILE_DE_JONGH, JEFFREY_EPSTEIN
 
 def test_debug_dict(email):
     debug_dict = email._debug_dict()
-    debug_dict.pop('locations.local_path')
+    debug_dict.pop('file_info.local_path')
 
     assert debug_dict == {
         'EmailCfg.author': 'Christina Galbraith',
