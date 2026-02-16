@@ -291,13 +291,21 @@ class EpsteinFiles:
 
         timer = Timer()
         logger.warning(f"Only reloading DOJ files {doj_file_counts_str()}...")
-        house_oversight_emails = [e for e in self.emails if not e.is_doj_file]
-        docs = self._load_file_paths(doj_txt_paths())
-        doj_emails = [d for d in docs if isinstance(d, Email)]
-        self.doj_files = Document.sort_by_timestamp([d for d in docs if isinstance(d, DojFile)])
-        self.emails = Document.sort_by_timestamp(house_oversight_emails + doj_emails)
-        timer.print_at_checkpoint(f"Reloaded DOJ files {doj_file_counts_str()}")
+
+        # Remove old DOJ files
+        self.emails = [f for f in self.emails if not f.is_doj_file]
+        self.other_files = [f for f in self.other_files if not f.is_doj_file]
+
+        # Build new objects
+        new_docs = self._load_file_paths(doj_txt_paths())
+        new_doj_files = [d for d in new_docs if isinstance(d, DojFile)]
+        new_doj_emails = [e for e in new_docs if isinstance(e, Email)]
+
+        # Add HOUSE_OVERSIGHT files to new DOJ files
+        self.emails = Document.sort_by_timestamp(self.emails + new_doj_emails)
+        self.other_files = Document.sort_by_timestamp(self.other_files + new_doj_files)
         self._finalize_data()
+        timer.print_at_checkpoint(f"Reloaded DOJ files {doj_file_counts_str()}")
         self.save_to_disk()
 
     def overview_table(self) -> Table:
