@@ -3,8 +3,7 @@ import re
 from dataclasses import asdict, dataclass, field
 from datetime import datetime
 from pathlib import Path
-from subprocess import run
-from typing import Callable, ClassVar, Mapping, Self, Sequence, Type, TypeVar
+from typing import ClassVar, Self, Sequence, TypeVar
 
 from inflection import underscore
 from rich.console import Console, ConsoleOptions, Group, RenderResult
@@ -131,6 +130,20 @@ class Document:
             return f"({self.config.description})"
 
     @property
+    def config_replace_text_with(self) -> str | None:
+        """Configured replacement text."""
+        if self.config and self.config.replace_text_with:
+            if self.config.author:
+                text = f"{self.config.author} {self.config.replace_text_with}"
+            else:
+                text = self.config.replace_text_with
+
+            if len(text) < 300:
+                return f"(Text of {text} {CHECK_LINK_FOR_DETAILS})"
+            else:
+                return text
+
+    @property
     def config_timestamp(self) -> datetime | None:
         """Configured timestamp, if any."""
         return self.config.timestamp if self.config and self.config.timestamp else None
@@ -189,7 +202,7 @@ class Document:
 
     @property
     def is_email(self) -> bool:
-        """Returns True if the text looks like it's probably an email."""
+        """True if the text looks like it's probably an email."""
         search_area = self.text[0:5000]  # Limit search area to avoid pointless scans of huge files
         return isinstance(self.config, EmailCfg) or bool(DETECT_EMAIL_REGEX.match(search_area) and self.config is None)
 
@@ -241,8 +254,8 @@ class Document:
     @property
     def prettified_text(self) -> Text:
         """Returns the string we want to print as the body of the document."""
-        style = INFO_STYLE if self.replace_text_with and len(self.replace_text_with) < 300 else ''
-        text = self.replace_text_with or self.text
+        style = INFO_STYLE if self.config_replace_text_with and len(self.config_replace_text_with) < 300 else ''
+        text = self.config_replace_text_with or self.text
         trim_footer_txt = None
 
         if self.config and self.config.truncate_to:
@@ -251,20 +264,6 @@ class Document:
             return txt.append('...\n\n').append(trim_footer_txt)
         else:
             return highlighter(Text(text, style))
-
-    @property
-    def replace_text_with(self) -> str | None:
-        """Configured replacement text."""
-        if self.config and self.config.replace_text_with:
-            if self.config.author:
-                text = f"{self.config.author} {self.config.replace_text_with}"
-            else:
-                text = self.config.replace_text_with
-
-            if len(text) < 300:
-                return f"(Text of {text} {CHECK_LINK_FOR_DETAILS})"
-            else:
-                return text
 
     @property
     def subheader(self) -> Text | None:
