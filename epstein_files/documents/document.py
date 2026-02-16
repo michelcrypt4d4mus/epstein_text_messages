@@ -530,6 +530,7 @@ class Document:
 
     @staticmethod
     def is_email(doc: 'Document') -> bool:
+        """Returns True if the text looks like it's probably an email."""
         search_area = doc.text[0:5000]  # Limit search area to avoid pointless scans of huge files
         return isinstance(doc.config, EmailCfg) or bool(DETECT_EMAIL_REGEX.match(search_area) and doc.config is None)
 
