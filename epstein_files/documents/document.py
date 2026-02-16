@@ -15,7 +15,7 @@ from rich.text import Text
 from rich.table import Table
 
 from epstein_files.documents.documents.doc_cfg import DUPE_TYPE_STRS, DebugDict, EmailCfg, DocCfg, Metadata
-from epstein_files.documents.documents.doc_locations import DocLocation
+from epstein_files.documents.documents.doc_locations import FileInfo
 from epstein_files.documents.documents.search_result import MatchedLine
 from epstein_files.documents.emails.constants import FALLBACK_TIMESTAMP
 from epstein_files.documents.emails.email_header import DETECT_EMAIL_REGEX
@@ -104,7 +104,7 @@ class Document:
 
     # Optional derived fields
     author: Name = None
-    locations: DocLocation = field(init=False)
+    locations: FileInfo = field(init=False)
     timestamp: datetime | None = None
 
     # Class variables
@@ -338,7 +338,7 @@ class Document:
         if not self.file_path.exists():
             raise FileNotFoundError(f"File '{self.file_path.name}' does not exist!")
 
-        self.locations = DocLocation(self.file_path)
+        self.locations = FileInfo(self.file_path)
         self.text = self.text or self._load_file()
         self._set_computed_fields(text=self.text)
         self._repair()
