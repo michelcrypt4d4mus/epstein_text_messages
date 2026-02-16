@@ -3,15 +3,11 @@ from datetime import datetime
 import pytest
 
 from epstein_files.documents.document import Document
-from epstein_files.documents.email import Email
-from epstein_files.documents.other_file import OtherFile
 from epstein_files.documents.messenger_log import MessengerLog
 from epstein_files.epstein_files import count_by_month
 from epstein_files.output.rich import console
 from epstein_files.util.constant.names import *
 from epstein_files.util.constants import CONFIGS_BY_ID
-
-from epstein_files.util.constant.names import *
 from epstein_files.util.helpers.data_helpers import dict_sets_to_lists
 
 from .fixtures.emails.email_author_counts import EMAIL_AUTHOR_COUNTS
