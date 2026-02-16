@@ -232,14 +232,14 @@ class DojFile(OtherFile):
             return super().config_description
 
     @property
-    def external_link_markup(self) -> str:
-        return wrap_in_markup_style(super().external_link_markup, self.border_style)
-
-    @property
-    def image_with_no_text_msg(self) -> RenderableType:
+    def empty_file_msg(self) -> RenderableType:
         """One line of linked text to show if this file doesn't seem to have any OCR text."""
         link_txt = Text('').append(Text.from_markup(super().external_link_markup))
         return Padding(link_txt.append(f" is a {SINGLE_IMAGE_NO_TEXT}..."), (0, 0, 0, 1))
+
+    @property
+    def external_link_markup(self) -> str:
+        return wrap_in_markup_style(super().external_link_markup, self.border_style)
 
     @property
     def preview_text_highlighted(self) -> Text:
