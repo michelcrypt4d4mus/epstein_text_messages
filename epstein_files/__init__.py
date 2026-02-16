@@ -190,12 +190,8 @@ def epstein_show():
                 metadata['_is_first_for_user'] = doc._is_first_for_user
                 print_json(f"{doc.file_id} Metadata", metadata)
 
-        console.print(doc._debug_txt(), style='dim')
-
-        # if args.debug and doc.config:
-        #     console.line()
-        #     console.print(styled_key_value('doc.is_interesting', doc.is_interesting, indent=39, sep=': '))
-        #     console.print(cfg_table(doc.config))
+        if args.debug:
+            console.print(doc._debug_txt(), style='dim')
 
         if args.open_pdf:
             check_output(['open', str(doc.locations.local_pdf_path)])
@@ -203,6 +199,7 @@ def epstein_show():
             check_output(['open', str(doc.file_path)])
         if args.open_url:
             check_output(['open', str(doc.external_url)])
+
 
 def epstein_word_count() -> None:
     write_word_counts_html()
