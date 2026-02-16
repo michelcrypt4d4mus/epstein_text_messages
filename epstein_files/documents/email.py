@@ -396,7 +396,7 @@ class Email(Communication):
             self.header = EmailHeader.from_header_lines(header_match.group(0))
 
             # DOJ file OCR text is broken in a less consistent way than the HOUSE_OVERSIGHT files
-            if self.header.is_empty() and not self.is_doj_file:
+            if self.header.is_empty and not self.is_doj_file:
                 self.header.repair_empty_header(self.lines)
         else:
             log_level = logging.INFO if self.config else logging.WARNING

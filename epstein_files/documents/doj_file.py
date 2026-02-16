@@ -17,6 +17,7 @@ from epstein_files.output.left_bar_panel import LeftBarPanel
 from epstein_files.output.rich import RAINBOW, highlighter, wrap_in_markup_style
 from epstein_files.util.logging import logger
 
+EMPTY_LENGTH = 15
 IMAGE_PANEL_REGEX = re.compile(r"\n╭─* Page \d+, Image \d+.*?╯\n", re.DOTALL)
 IGNORE_LINE_REGEX = re.compile(r"^(\d+\n?|[\s+❑]{2,})$")
 MIN_VALID_LENGTH = 10
