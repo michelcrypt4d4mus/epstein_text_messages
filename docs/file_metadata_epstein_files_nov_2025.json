@@ -38278,6 +38278,19 @@
                 "type": "Email"
             },
             {
+                "author": "Vincenzo Iozzo",
+                "bytes": 2255,
+                "file_id": "EFTA01738841",
+                "filename": "EFTA01738841.txt",
+                "num_lines": 32,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "subject": "a few things from yesterday",
+                "timestamp": "2014-05-19T15:15:11",
+                "type": "Email"
+            },
+            {
                 "author": "Andrew McCormack",
                 "bytes": 1335,
                 "file_id": "EFTA01743904",
@@ -38315,6 +38328,19 @@
                 ],
                 "subject": "RE:",
                 "timestamp": "2014-12-18T18:45:30",
+                "type": "Email"
+            },
+            {
+                "author": "Vincenzo Iozzo",
+                "bytes": 3801,
+                "file_id": "EFTA01747994",
+                "filename": "EFTA01747994.txt",
+                "num_lines": 86,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "subject": "Re: hedge funds strategy discussion",
+                "timestamp": "2014-11-17T13:11:00",
                 "type": "Email"
             },
             {
@@ -49657,7 +49683,7 @@
                 "filename": "HOUSE_OVERSIGHT_029356.txt",
                 "is_interesting": false,
                 "num_lines": 18,
-                "timestamp": "2001-08-15T00:00:00",
+                "timestamp": "2013-01-12T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -70600,7 +70626,7 @@
             {
                 "bytes": 15120,
                 "category": "business",
-                "description": "Epstein's investment valuation",
+                "description": "value of Epstein's investments",
                 "file_id": "EFTA00617222",
                 "filename": "EFTA00617222.txt",
                 "is_interesting": true,
@@ -70625,7 +70651,7 @@
             {
                 "bytes": 14789,
                 "category": "business",
-                "description": "Epstein's investment valuation",
+                "description": "value of Epstein's investments",
                 "file_id": "EFTA00621739",
                 "filename": "EFTA00621739.txt",
                 "is_interesting": true,
@@ -71006,7 +71032,7 @@
             {
                 "bytes": 14616,
                 "category": "business",
-                "description": "Epstein's investment valuation",
+                "description": "value of Epstein's investments",
                 "file_id": "EFTA00811479",
                 "filename": "EFTA00811479.txt",
                 "is_interesting": true,
@@ -71018,7 +71044,7 @@
             {
                 "bytes": 14775,
                 "category": "business",
-                "description": "Epstein's investment valuation",
+                "description": "value of Epstein's investments",
                 "file_id": "EFTA00811490",
                 "filename": "EFTA00811490.txt",
                 "is_interesting": true,
@@ -71030,7 +71056,7 @@
             {
                 "bytes": 14801,
                 "category": "business",
-                "description": "Epstein's investment valuation",
+                "description": "value of Epstein's investments",
                 "file_id": "EFTA00811508",
                 "filename": "EFTA00811508.txt",
                 "is_interesting": true,
@@ -71042,7 +71068,7 @@
             {
                 "bytes": 15234,
                 "category": "business",
-                "description": "Epstein's investment valuation",
+                "description": "value of Epstein's investments",
                 "file_id": "EFTA00811530",
                 "filename": "EFTA00811530.txt",
                 "is_interesting": true,
@@ -71054,7 +71080,7 @@
             {
                 "bytes": 15600,
                 "category": "business",
-                "description": "Epstein's investment valuation",
+                "description": "value of Epstein's investments",
                 "file_id": "EFTA00811539",
                 "filename": "EFTA00811539.txt",
                 "is_interesting": true,
@@ -71066,7 +71092,7 @@
             {
                 "bytes": 15119,
                 "category": "business",
-                "description": "Epstein's investment valuation",
+                "description": "value of Epstein's investments",
                 "file_id": "EFTA00811552",
                 "filename": "EFTA00811552.txt",
                 "is_interesting": true,
@@ -71078,7 +71104,7 @@
             {
                 "bytes": 19972,
                 "category": "business",
-                "description": "Epstein's investment valuation",
+                "description": "value of Epstein's investments",
                 "file_id": "EFTA00811649",
                 "filename": "EFTA00811649.txt",
                 "is_interesting": true,
@@ -71102,7 +71128,7 @@
             {
                 "bytes": 21494,
                 "category": "business",
-                "description": "Epstein's investment valuation",
+                "description": "value of Epstein's investments",
                 "file_id": "EFTA00811705",
                 "filename": "EFTA00811705.txt",
                 "is_interesting": true,
@@ -71152,7 +71178,7 @@
             {
                 "bytes": 14735,
                 "category": "business",
-                "description": "Epstein's investment valuation",
+                "description": "value of Epstein's investments",
                 "file_id": "EFTA00811948",
                 "filename": "EFTA00811948.txt",
                 "is_interesting": true,
@@ -71372,7 +71398,7 @@
             {
                 "bytes": 11701,
                 "category": "business",
-                "description": "Epstein's investment valuation",
+                "description": "value of Epstein's investments",
                 "file_id": "EFTA01118143",
                 "filename": "EFTA01118143.txt",
                 "is_interesting": true,
@@ -71396,7 +71422,7 @@
             {
                 "bytes": 12599,
                 "category": "business",
-                "description": "Epstein's investment valuation",
+                "description": "value of Epstein's investments",
                 "file_id": "EFTA01118275",
                 "filename": "EFTA01118275.txt",
                 "is_interesting": true,
