@@ -34463,6 +34463,20 @@
                 "type": "Email"
             },
             {
+                "author": "Vincenzo Iozzo",
+                "bytes": 5757,
+                "description": "discussion of getting around laws against laundering money in places like Myanmar and Mongolia",
+                "file_id": "EFTA00637023",
+                "filename": "EFTA00637023.txt",
+                "num_lines": 77,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "subject": "Fwd: problems we should focus on (important, please read & put up with the snark)",
+                "timestamp": "2014-12-07T20:49:53",
+                "type": "Email"
+            },
+            {
                 "author": "Richard Kahn",
                 "bytes": 1099,
                 "file_id": "EFTA00637297",
@@ -36717,6 +36731,20 @@
                 "type": "Email"
             },
             {
+                "author": "Vincenzo Iozzo",
+                "bytes": 5165,
+                "file_id": "EFTA00995592",
+                "filename": "EFTA00995592.txt",
+                "num_lines": 90,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "sent_from_device": "Sent from my Iphone",
+                "subject": "Re: Taxes",
+                "timestamp": "2014-08-17T14:09:58",
+                "type": "Email"
+            },
+            {
                 "author": "Brock Pierce",
                 "bytes": 1511,
                 "file_id": "EFTA00997251",
@@ -37134,6 +37162,20 @@
                 "type": "Email"
             },
             {
+                "author": "Vincenzo Iozzo",
+                "bytes": 16740,
+                "file_id": "EFTA01004115",
+                "filename": "EFTA01004115.txt",
+                "num_lines": 327,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "sent_from_device": "Sent from my Iphone",
+                "subject": "Re: Bitmain Follow-up",
+                "timestamp": "2018-08-02T20:08:52",
+                "type": "Email"
+            },
+            {
                 "author": "Richard Kahn",
                 "bytes": 695,
                 "file_id": "EFTA01004291",
@@ -37144,6 +37186,153 @@
                 ],
                 "subject": "Valar II and III 6-30-2018 Financial Statements",
                 "timestamp": "2018-07-31T15:43:58",
+                "type": "Email"
+            },
+            {
+                "author": "Jeremy Rubin",
+                "bytes": 808,
+                "file_id": "EFTA01004511",
+                "filename": "EFTA01004511.txt",
+                "num_lines": 19,
+                "recipients": [
+                    "Jeffrey Epstein",
+                    "Vincenzo Iozzo"
+                ],
+                "subject": "Re: Bitmain investment (time sensitive)",
+                "timestamp": "2018-08-01T21:36:25",
+                "type": "Email"
+            },
+            {
+                "author": "Vincenzo Iozzo",
+                "bytes": 898,
+                "file_id": "EFTA01004520",
+                "filename": "EFTA01004520.txt",
+                "num_lines": 17,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "sent_from_device": "Sent from my Iphone",
+                "subject": "Bitmain does",
+                "timestamp": "2018-08-01T23:41:03",
+                "type": "Email"
+            },
+            {
+                "author": "Jeremy Rubin",
+                "bytes": 2184,
+                "file_id": "EFTA01004523",
+                "filename": "EFTA01004523.txt",
+                "num_lines": 32,
+                "recipients": [
+                    "Jeffrey Epstein",
+                    "Vincenzo Iozzo"
+                ],
+                "subject": "Re: Notes from the call",
+                "timestamp": "2018-08-02T06:51:14",
+                "type": "Email"
+            },
+            {
+                "author": "Jeffrey Epstein",
+                "bytes": 2967,
+                "file_id": "EFTA01004524",
+                "filename": "EFTA01004524.txt",
+                "num_lines": 49,
+                "recipients": [
+                    "Jeremy Rubin"
+                ],
+                "subject": "Re: Notes from the call",
+                "timestamp": "2018-08-02T10:09:46",
+                "type": "Email"
+            },
+            {
+                "author": "Jeffrey Epstein",
+                "bytes": 8672,
+                "file_id": "EFTA01004537",
+                "filename": "EFTA01004537.txt",
+                "num_lines": 129,
+                "recipients": [
+                    "Jeremy Rubin",
+                    "Vincenzo Iozzo"
+                ],
+                "subject": "Re: Bitmain Follow-up",
+                "timestamp": "2018-08-02T11:56:14",
+                "type": "Email"
+            },
+            {
+                "author": "Jeffrey Epstein",
+                "bytes": 11350,
+                "file_id": "EFTA01004570",
+                "filename": "EFTA01004570.txt",
+                "num_lines": 196,
+                "recipients": [
+                    "Vincenzo Iozzo"
+                ],
+                "subject": "Re: Bitmain Follow-up",
+                "timestamp": "2018-08-02T13:57:12",
+                "type": "Email"
+            },
+            {
+                "author": "Jeffrey Epstein",
+                "bytes": 10868,
+                "file_id": "EFTA01004576",
+                "filename": "EFTA01004576.txt",
+                "num_lines": 188,
+                "recipients": [
+                    "Richard Kahn"
+                ],
+                "subject": "Re: Bitmain Follow-up",
+                "timestamp": "2018-08-02T13:57:46",
+                "type": "Email"
+            },
+            {
+                "author": "Jeffrey Epstein",
+                "bytes": 12306,
+                "file_id": "EFTA01004589",
+                "filename": "EFTA01004589.txt",
+                "num_lines": 219,
+                "recipients": [
+                    "Vincenzo Iozzo"
+                ],
+                "subject": "Re: Bitmain Follow-up",
+                "timestamp": "2018-08-02T14:03:29",
+                "type": "Email"
+            },
+            {
+                "author": "Vincenzo Iozzo",
+                "bytes": 12821,
+                "file_id": "EFTA01004600",
+                "filename": "EFTA01004600.txt",
+                "num_lines": 229,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "subject": "Re: Bitmain Follow-up",
+                "timestamp": "2018-08-02T14:06:21",
+                "type": "Email"
+            },
+            {
+                "author": "Richard Kahn",
+                "bytes": 1758,
+                "file_id": "EFTA01004607",
+                "filename": "EFTA01004607.txt",
+                "num_lines": 43,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "subject": "Fwd: Bitmain",
+                "timestamp": "2018-08-02T14:11:57",
+                "type": "Email"
+            },
+            {
+                "author": "Jeffrey Epstein",
+                "bytes": 13531,
+                "file_id": "EFTA01004609",
+                "filename": "EFTA01004609.txt",
+                "num_lines": 247,
+                "recipients": [
+                    "Vincenzo Iozzo"
+                ],
+                "subject": "Re: Bitmain Follow-up",
+                "timestamp": "2018-08-02T14:14:39",
                 "type": "Email"
             },
             {
@@ -37170,6 +37359,21 @@
                 ],
                 "subject": "Re: Thanks - just the three of us",
                 "timestamp": "2018-07-21T13:33:21",
+                "type": "Email"
+            },
+            {
+                "author": "Vincenzo Iozzo",
+                "bytes": 5941,
+                "description": "discussion of LayerOne crypto stuff",
+                "file_id": "EFTA01004753",
+                "filename": "EFTA01004753.txt",
+                "num_lines": 123,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "sent_from_device": "Sent from my Iphone",
+                "subject": "Re: July 28th",
+                "timestamp": "2018-07-21T18:35:02",
                 "type": "Email"
             },
             {
@@ -37307,6 +37511,19 @@
                 "type": "Email"
             },
             {
+                "author": "Vincenzo Iozzo",
+                "bytes": 6197,
+                "file_id": "EFTA01006661",
+                "filename": "EFTA01006661.txt",
+                "num_lines": 92,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "subject": "Re: Investment opportunity - Fwd: Radius Due Diligence Materials",
+                "timestamp": "2018-08-14T16:15:14",
+                "type": "Email"
+            },
+            {
                 "author": "Richard Kahn",
                 "bytes": 5898,
                 "file_id": "EFTA01006915",
@@ -37332,6 +37549,19 @@
                 ],
                 "subject": "Re: What are next steps?",
                 "timestamp": "2018-08-23T23:19:07",
+                "type": "Email"
+            },
+            {
+                "author": "Vincenzo Iozzo",
+                "bytes": 1382,
+                "file_id": "EFTA01008230",
+                "filename": "EFTA01008230.txt",
+                "num_lines": 26,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "subject": "Fwd: Radius Investment Does",
+                "timestamp": "2018-08-16T18:06:56",
                 "type": "Email"
             },
             {
@@ -38090,6 +38320,20 @@
                 "type": "Email"
             },
             {
+                "author": "Vincenzo Iozzo",
+                "bytes": 2823,
+                "file_id": "EFTA01060993",
+                "filename": "EFTA01060993.txt",
+                "num_lines": 63,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "sent_from_device": "Sent from my Iphone",
+                "subject": "Re: bitcoin question",
+                "timestamp": "2018-05-12T02:46:31",
+                "type": "Email"
+            },
+            {
                 "author": "Brock Pierce",
                 "bytes": 2974,
                 "file_id": "EFTA01061411",
@@ -38195,6 +38439,19 @@
                 ],
                 "subject": "Re: Fw: Fwd: Blockchain Capital",
                 "timestamp": "2014-11-07T15:33:30",
+                "type": "Email"
+            },
+            {
+                "author": "Vincenzo Iozzo",
+                "bytes": 2039,
+                "file_id": "EFTA01183391",
+                "filename": "EFTA01183391.txt",
+                "num_lines": 36,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "subject": "Fwd: Vincenzo",
+                "timestamp": "2016-04-14T22:45:37",
                 "type": "Email"
             },
             {
@@ -38317,6 +38574,20 @@
                 "type": "Email"
             },
             {
+                "author": "Vincenzo Iozzo",
+                "bytes": 1450,
+                "file_id": "EFTA01747791",
+                "filename": "EFTA01747791.txt",
+                "num_lines": 27,
+                "recipients": [
+                    "Jeffrey Epstein",
+                    "Joi Ito"
+                ],
+                "subject": "Re: some are more equals than others",
+                "timestamp": "2015-01-30T15:24:23",
+                "type": "Email"
+            },
+            {
                 "author": "Darren Indyke",
                 "author_reason": "reply",
                 "bytes": 978,
@@ -38328,6 +38599,19 @@
                 ],
                 "subject": "RE:",
                 "timestamp": "2014-12-18T18:45:30",
+                "type": "Email"
+            },
+            {
+                "author": "Vincenzo Iozzo",
+                "bytes": 3801,
+                "file_id": "EFTA01747994",
+                "filename": "EFTA01747994.txt",
+                "num_lines": 86,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "subject": "Re: hedge funds strategy discussion",
+                "timestamp": "2014-11-17T13:11:00",
                 "type": "Email"
             },
             {
@@ -38388,6 +38672,33 @@
                 "type": "Email"
             },
             {
+                "author": "Vincenzo Iozzo",
+                "bytes": 1352,
+                "file_id": "EFTA01749028",
+                "filename": "EFTA01749028.txt",
+                "num_lines": 30,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "subject": "Re: two ideas / Paris?",
+                "timestamp": "2014-08-22T14:35:34",
+                "type": "Email"
+            },
+            {
+                "author": "Vincenzo Iozzo",
+                "bytes": 3673,
+                "description": "discussion of using blockchains in the repo markets",
+                "file_id": "EFTA01750652",
+                "filename": "EFTA01750652.txt",
+                "num_lines": 87,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "subject": "Re: repo market - an alternative ath",
+                "timestamp": "2014-09-02T05:45:00",
+                "type": "Email"
+            },
+            {
                 "author": "Austin Hill",
                 "bytes": 423,
                 "file_id": "EFTA01750836",
@@ -38398,6 +38709,19 @@
                 ],
                 "subject": "Travelling with limited Connectivity Until September 8th. Re:",
                 "timestamp": "2014-09-02T11:13:29",
+                "type": "Email"
+            },
+            {
+                "author": "Vincenzo Iozzo",
+                "bytes": 1619,
+                "file_id": "EFTA01751416",
+                "filename": "EFTA01751416.txt",
+                "num_lines": 30,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "subject": "Re: decentralized prediction markets and order books (w/ bitcoin) & meeting",
+                "timestamp": "2014-06-25T19:14:14",
                 "type": "Email"
             },
             {
@@ -38660,6 +38984,20 @@
                     "Jeffrey Epstein"
                 ],
                 "timestamp": "2016-10-13T09:06:00",
+                "type": "Email"
+            },
+            {
+                "author": "Vincenzo Iozzo",
+                "bytes": 1126,
+                "file_id": "EFTA01801927",
+                "filename": "EFTA01801927.txt",
+                "num_lines": 34,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "sent_from_device": "Sent from my iPhone",
+                "subject": "Re: Board room guide to hacking",
+                "timestamp": "2015-10-11T12:14:00",
                 "type": "Email"
             },
             {
@@ -41865,7 +42203,7 @@
             {
                 "author": "Vincenzo Iozzo",
                 "bytes": 4769,
-                "description": "Epstein, Ito, and Vincenzo Iozzo discuss crypto food stamps debit cards",
+                "description": "discussion of crypto food stamps debit cards",
                 "file_id": "EFTA02588748",
                 "filename": "EFTA02588748.txt",
                 "is_interesting": true,
@@ -41951,6 +42289,32 @@
                 "type": "Email"
             },
             {
+                "author": "Vincenzo Iozzo",
+                "bytes": 1102,
+                "file_id": "EFTA02598396",
+                "filename": "EFTA02598396.txt",
+                "num_lines": 30,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "subject": "danny hill's",
+                "timestamp": "2014-12-04T19:58:00",
+                "type": "Email"
+            },
+            {
+                "author": "Jeffrey Epstein",
+                "bytes": 1393,
+                "file_id": "EFTA02598866",
+                "filename": "EFTA02598866.txt",
+                "num_lines": 20,
+                "recipients": [
+                    "Vincenzo Iozzo"
+                ],
+                "subject": "Re: Jeffrey meet Kelly, Kelly meet Jeffrey",
+                "timestamp": "2014-12-01T16:42:00",
+                "type": "Email"
+            },
+            {
                 "author": "Lesley Groff",
                 "bytes": 502,
                 "file_id": "EFTA02599239",
@@ -41962,6 +42326,20 @@
                     "Lyn Fontanilla"
                 ],
                 "timestamp": "2014-11-29T17:22:00",
+                "type": "Email"
+            },
+            {
+                "author": "Jeremy Rubin",
+                "bytes": 1138,
+                "file_id": "EFTA02600944",
+                "filename": "EFTA02600944.txt",
+                "num_lines": 28,
+                "recipients": [
+                    "Jeffrey Epstein",
+                    "Vincenzo Iozzo"
+                ],
+                "subject": "Re: Bitmain investment (time sensitive)",
+                "timestamp": "2018-08-01T09:46:00",
                 "type": "Email"
             },
             {
@@ -42002,6 +42380,20 @@
                 ],
                 "subject": "Crypto Exchange Coinbase Tells a Fib, Forms a PAC - 24/7 Wall St.",
                 "timestamp": "2018-07-24T02:18:00",
+                "type": "Email"
+            },
+            {
+                "author": "Vincenzo Iozzo",
+                "bytes": 4171,
+                "file_id": "EFTA02602523",
+                "filename": "EFTA02602523.txt",
+                "num_lines": 106,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "sent_from_device": "Sent from my iPhone",
+                "subject": "Re: Defcon badges",
+                "timestamp": "2018-07-31T18:46:00",
                 "type": "Email"
             },
             {
@@ -42139,6 +42531,19 @@
                 "type": "Email"
             },
             {
+                "author": "Vincenzo Iozzo",
+                "bytes": 1070,
+                "file_id": "EFTA02620663",
+                "filename": "EFTA02620663.txt",
+                "num_lines": 18,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "subject": "Re: Coinbase - series E",
+                "timestamp": "2018-10-05T08:53:00",
+                "type": "Email"
+            },
+            {
                 "author": "Madars Virza",
                 "bytes": 1285,
                 "file_id": "EFTA02620980",
@@ -42165,6 +42570,20 @@
                 "type": "Email"
             },
             {
+                "author": "Vincenzo Iozzo",
+                "bytes": 2492,
+                "file_id": "EFTA02621780",
+                "filename": "EFTA02621780.txt",
+                "num_lines": 45,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "sent_from_device": "Sent from my iPhone",
+                "subject": "Insurance idea",
+                "timestamp": "2018-09-18T19:14:00",
+                "type": "Email"
+            },
+            {
                 "author": "Jeffrey Epstein",
                 "author_reason": "https://x.com/FlippersUpNow/status/2021662725412110565",
                 "bytes": 3995,
@@ -42176,6 +42595,19 @@
                 ],
                 "subject": "Re:",
                 "timestamp": "2018-09-21T11:34:00",
+                "type": "Email"
+            },
+            {
+                "author": "Vincenzo Iozzo",
+                "bytes": 1067,
+                "file_id": "EFTA02624738",
+                "filename": "EFTA02624738.txt",
+                "num_lines": 25,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "subject": "final deck - Offense: RIP good times",
+                "timestamp": "2018-09-06T02:44:00",
                 "type": "Email"
             },
             {
@@ -42302,6 +42734,19 @@
             },
             {
                 "author": "Jeffrey Epstein",
+                "bytes": 1269,
+                "file_id": "EFTA02638071",
+                "filename": "EFTA02638071.txt",
+                "num_lines": 19,
+                "recipients": [
+                    "Vincenzo Iozzo"
+                ],
+                "subject": "Re: Al Qasimi / trust",
+                "timestamp": "2017-09-02T14:58:00",
+                "type": "Email"
+            },
+            {
+                "author": "Jeffrey Epstein",
                 "bytes": 1165,
                 "file_id": "EFTA02639760",
                 "filename": "EFTA02639760.txt",
@@ -42403,6 +42848,20 @@
                 "type": "Email"
             },
             {
+                "author": "Vincenzo Iozzo",
+                "bytes": 870,
+                "file_id": "EFTA02646968",
+                "filename": "EFTA02646968.txt",
+                "num_lines": 28,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "sent_from_device": "Sent from my iPhone",
+                "subject": "Question",
+                "timestamp": "2017-06-07T13:10:00",
+                "type": "Email"
+            },
+            {
                 "author": "Joi Ito",
                 "bytes": 6398,
                 "file_id": "EFTA02647229",
@@ -42455,6 +42914,33 @@
                 "type": "Email"
             },
             {
+                "author": "Vincenzo Iozzo",
+                "bytes": 813,
+                "file_id": "EFTA02659812",
+                "filename": "EFTA02659812.txt",
+                "num_lines": 28,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "sent_from_device": "Sent from my iPhone",
+                "subject": "Psychometry",
+                "timestamp": "2017-02-14T20:09:00",
+                "type": "Email"
+            },
+            {
+                "author": "Jeffrey Epstein",
+                "bytes": 1234,
+                "file_id": "EFTA02659832",
+                "filename": "EFTA02659832.txt",
+                "num_lines": 18,
+                "recipients": [
+                    "Vincenzo Iozzo"
+                ],
+                "subject": "Re: Psychometry",
+                "timestamp": "2017-02-14T20:46:00",
+                "type": "Email"
+            },
+            {
                 "author": "Fawzi Siam",
                 "bytes": 6333,
                 "file_id": "EFTA02660820",
@@ -42493,6 +42979,20 @@
                 ],
                 "subject": "Re: Block chain",
                 "timestamp": "2017-01-26T10:07:00",
+                "type": "Email"
+            },
+            {
+                "author": "Vincenzo Iozzo",
+                "bytes": 944,
+                "file_id": "EFTA02663762",
+                "filename": "EFTA02663762.txt",
+                "num_lines": 31,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "sent_from_device": "Sent from my iPhone",
+                "subject": "Nowak",
+                "timestamp": "2017-01-03T10:54:00",
                 "type": "Email"
             },
             {
@@ -72117,6 +72617,16 @@
                 "is_interesting": null,
                 "num_lines": 12,
                 "timestamp": "2013-10-31T15:15:43",
+                "type": "DojFile",
+                "was_timestamp_extracted": true
+            },
+            {
+                "bytes": 2178,
+                "file_id": "EFTA01977800",
+                "filename": "EFTA01977800.txt",
+                "is_interesting": null,
+                "num_lines": 48,
+                "timestamp": "2014-08-13T18:53:49",
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
