@@ -79,6 +79,9 @@ DEBUG_PROPS_TRUTHY_ONLY = [
 METADATA_FIELDS = [
     AUTHOR,
     'file_id',
+    'file_size',
+    'filename',
+    'num_lines',
     'timestamp',
 ]
 
@@ -129,7 +132,7 @@ class Document:
     @property
     def config_description(self) -> str | None:
         if self.config and self.config.description:
-            return f"({self.config.description})"
+            return self.config.description
 
     @property
     def config_timestamp(self) -> datetime | None:
@@ -185,7 +188,7 @@ class Document:
         """0 to 2 sentences containing the info_txt() as well as any configured description."""
         return without_falsey([
             self.subheader,
-            highlighter(Text(self.config_description, style=INFO_STYLE)) if self.config_description else None
+            highlighter(Text(f"({self.config_description})", style=INFO_STYLE)) if self.config_description else None
         ])
 
     @property
@@ -219,10 +222,7 @@ class Document:
     @property
     def metadata(self) -> Metadata:
         metadata = self.config.metadata if self.config else {}
-        metadata.update({k: v for k, v in asdict(self).items() if k in METADATA_FIELDS and v is not None})
-        metadata['bytes'] = self.file_size
-        metadata['filename'] = self.locations.filename
-        metadata['num_lines'] = self.num_lines
+        metadata.update({k: getattr(self, k) for k in METADATA_FIELDS if getattr(self, k) is not None})
         metadata['type'] = self._class_name
 
         if self.locations.is_local_extract_file:
