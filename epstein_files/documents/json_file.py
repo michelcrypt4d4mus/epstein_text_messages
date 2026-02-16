@@ -1,7 +1,5 @@
 import json
-import logging
 from dataclasses import dataclass
-from pathlib import Path
 from typing import ClassVar
 
 from rich.text import Text
