@@ -465,7 +465,7 @@ class Email(Communication):
             else:
                 lines += [self.lines[idx1] + ' ' + self.lines[idx2]] + self.lines[idx1 + 1:idx2] + self.lines[idx2 + 1:]
 
-        self._set_computed_fields(lines=lines)
+        self._set_text(lines=lines)
 
     def _prettify_text(self) -> str:
         """Add newlines before quoted replies and snip signatures."""
@@ -496,15 +496,15 @@ class Email(Communication):
         num_lines = idx * 2
         self.log_top_lines(num_lines, msg=f'before removal of line {idx}')
         del self.lines[idx]
-        self._set_computed_fields(lines=self.lines)
+        self._set_text(lines=self.lines)
         self.log_top_lines(num_lines, msg=f'after removal of line {idx}')
 
     def _repair(self) -> None:
         """Repair particularly janky files. Note that OCR_REPAIRS are applied *after* other line adjustments."""
         if BAD_FIRST_LINE_REGEX.match(self.lines[0]):
-            self._set_computed_fields(lines=self.lines[1:])
+            self._set_text(lines=self.lines[1:])
 
-        self._set_computed_fields(lines=[line for line in self.lines if not BAD_LINE_REGEX.match(line)])
+        self._set_text(lines=[line for line in self.lines if not BAD_LINE_REGEX.match(line)])
         old_text = self.text
 
         if self.file_id in LINE_REPAIR_MERGES:
@@ -513,9 +513,9 @@ class Email(Communication):
 
         if self.file_id in ['025233']:
             self.lines[4] = f"Attachments: {self.lines[4]}"
-            self._set_computed_fields(lines=self.lines)
+            self._set_text(lines=self.lines)
         elif self.file_id == '029977':
-            self._set_computed_fields(text=self.text.replace('Sent 9/28/2012 2:41:02 PM', 'Sent: 9/28/2012 2:41:02 PM'))
+            self._set_text(text=self.text.replace('Sent 9/28/2012 2:41:02 PM', 'Sent: 9/28/2012 2:41:02 PM'))
 
         # Bad line removal
         if self.file_id == '025041':
@@ -529,7 +529,7 @@ class Email(Communication):
             self.log_top_lines(12, 'Result of modifications')
 
         repaired_text = self._repair_links_and_quoted_subjects(self.repair_ocr_text(OCR_REPAIRS, self.text))
-        self._set_computed_fields(text=repaired_text)
+        self._set_text(text=repaired_text)
 
     def _repair_links_and_quoted_subjects(self, text: str) -> str:
         """Repair links that the OCR has broken into multiple lines as well as 'Subject:' lines."""

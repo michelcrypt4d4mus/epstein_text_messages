@@ -311,7 +311,7 @@ class DojFile(OtherFile):
         """Removes the ╭--- Page 5, Image 1 ---- panels from the text."""
         new_text, num_replaced = IMAGE_PANEL_REGEX.subn('', self.text)
         self.warn(f"Stripped {num_replaced} image panels.")
-        self._set_computed_fields(text=new_text)
+        self._set_text(text=new_text)
 
     def _left_bar_panel(self) -> RenderResult:
         """Alternate way of displaying DOJ files with a single color bar down the left side."""
@@ -332,10 +332,10 @@ class DojFile(OtherFile):
 
         if number_only_line_count > 20:
             self.warn(f"Reduced line count from {len(self.lines)} to {len(non_number_lines)} by stripping number only lines")
-            self._set_computed_fields(lines=non_number_lines)
+            self._set_text(lines=non_number_lines)
 
     def _repair(self) -> None:
         """Overloads superclass method."""
         new_text = self.repair_ocr_text(OCR_REPAIRS, self.text)
-        self._set_computed_fields(text=new_text)
+        self._set_text(text=new_text)
         self._remove_number_only_lines()
