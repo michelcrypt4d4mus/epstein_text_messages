@@ -15,22 +15,23 @@ from rich.text import Text
 
 from epstein_files.documents.communication import Communication
 from epstein_files.documents.document import CLOSE_PROPERTIES_CHAR, INFO_INDENT
-from epstein_files.documents.documents.doc_cfg import EmailCfg, Metadata
+from epstein_files.documents.documents.doc_cfg import DebugDict, EmailCfg, Metadata
 from epstein_files.documents.emails.constants import *
 from epstein_files.documents.emails.email_header import (EMAIL_SIMPLE_HEADER_REGEX,
      EMAIL_SIMPLE_HEADER_LINE_BREAK_REGEX, FIELD_NAMES, FIELDS_COLON_PATTERN, EmailHeader)
 from epstein_files.documents.emails.emailers import extract_emailer_names
 from epstein_files.documents.other_file import OtherFile
 from epstein_files.output.rich import *
-from epstein_files.util.constant.names import *
 from epstein_files.util.constant.strings import REDACTED
 from epstein_files.util.constant.urls import URL_SIGNIFIERS
 from epstein_files.util.constants import *
-from epstein_files.util.helpers.data_helpers import AMERICAN_TIME_REGEX, TIMEZONE_INFO, collapse_newlines, remove_timezone, uniquify
+from epstein_files.util.helpers.data_helpers import (AMERICAN_TIME_REGEX, TIMEZONE_INFO, collapse_newlines,
+     prefix_keys, remove_timezone, uniquify)
 from epstein_files.util.helpers.file_helper import extract_file_id, file_stem_for_id
 from epstein_files.output.highlight_config import HIGHLIGHTED_NAMES, get_style_for_name
 from epstein_files.util.logging import logger
 
+# Email bod regexes
 BAD_FIRST_LINE_REGEX = re.compile(r'^(>>|Grant_Smith066474"eMailContent.htm|LOVE & KISSES)$')
 BAD_LINE_REGEX = re.compile(r'^(>;?|\d{1,2}|PAGE INTENTIONALLY LEFT BLANK|Classification: External Communication|Hide caption|Importance:?\s*High|[iI,•]|[1i] (_ )?[il]|, [-,]|L\._|_filtered|.*(yiv0232|font-family:|margin-bottom:).*)$')
 BAD_SUBJECT_CONTINUATIONS = ['orwarded', 'Hi ', 'Sent ', 'AmLaw', 'Original Message', 'Privileged', 'Sorry', '---']
@@ -41,10 +42,15 @@ QUOTED_REPLY_LINE_REGEX = re.compile(r'(\nFrom:(.*)|wrote:)\n', re.IGNORECASE)
 REPLY_TEXT_REGEX = re.compile(rf"^(.*?){REPLY_LINE_PATTERN}", re.DOTALL | re.IGNORECASE | re.MULTILINE)
 XML_PLIST_REGEX = re.compile(r"<\?xml version.*</(plist|xml)>", re.DOTALL)
 
+# Timestamp regexes
 BAD_TIMEZONE_REGEX = re.compile(fr'\((UTC|GMT\+\d\d:\d\d)\)|{REDACTED}')
 DATE_HEADER_REGEX = re.compile(r'(?:Date|Sent):? +(?!by|from|to|via)([^\n]{6,})\n')
 TIMESTAMP_LINE_REGEX = re.compile(r"\d+:\d+")
-LOCAL_EXTRACT_REGEX = re.compile(r"_\d$")
+
+# numbers
+MAX_NUM_HEADER_LINES = 14
+MAX_QUOTED_REPLIES = 1
+NUM_WORDS_IN_LAST_QUOTE = 6
 
 # Junk mail
 JUNK_EMAILERS = [
@@ -56,11 +62,6 @@ JUNK_EMAILERS = [
 BCC_LISTS = JUNK_EMAILERS + MAILING_LISTS
 TRUNCATE_EMAILS_BY = BCC_LISTS + TRUNCATE_EMAILS_FROM
 REWRITTEN_HEADER_MSG = "(janky OCR header fields were prettified, check source if something seems off)"
-
-# numbers
-MAX_NUM_HEADER_LINES = 14
-MAX_QUOTED_REPLIES = 1
-NUM_WORDS_IN_LAST_QUOTE = 6
 
 REPLY_SPLITTERS = [f"{field}:" for field in FIELD_NAMES] + [
     '********************************',
@@ -143,6 +144,16 @@ OCR_REPAIRS: dict[str | re.Pattern, str] = {
 METADATA_FIELDS = [
     'is_junk_mail',
     'is_mailing_list',
+    'recipients',
+    'sent_from_device',
+    'subject',
+]
+
+DEBUG_PROPS = [
+    'attached_docs',
+    'is_junk_mail',
+    'is_mailing_list',
+    'is_note_to_self',
     'recipients',
     'sent_from_device',
     'subject',
@@ -340,6 +351,12 @@ class Email(Communication):
         ]
 
         return join_texts(names, join=', ')
+
+    def _debug_props(self) -> DebugDict:
+        props = super()._debug_props()
+        local_props = {k: getattr(self, k) for k in DEBUG_PROPS if getattr(self, k)}
+        props.update(prefix_keys(self._debug_prefix, local_props))
+        return props
 
     def _extract_actual_text(self) -> str:
         """The text that comes before likely quoted replies and forwards etc."""
@@ -692,7 +709,7 @@ class Email(Communication):
 
     @staticmethod
     def build_emails_table(emails: list['Email'], name: Name = '', title: str = '', show_length: bool = False) -> Table:
-        """Turn a set of Emails into a Table."""
+        """Turn a list of `Email` objects into a `Table` with sender, recipient, and subject line."""
         if title and name:
             raise ValueError(f"Can't provide both 'author' and 'title' args")
         elif name == '' and title == '':

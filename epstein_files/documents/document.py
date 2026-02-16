@@ -4,8 +4,9 @@ from dataclasses import asdict, dataclass, field
 from datetime import datetime
 from pathlib import Path
 from subprocess import run
-from typing import Callable, ClassVar, Self, Sequence, Type, TypeVar
+from typing import Callable, ClassVar, Mapping, Self, Sequence, Type, TypeVar
 
+from inflection import underscore
 from rich.console import Console, ConsoleOptions, Group, RenderResult
 from rich.markup import escape
 from rich.padding import Padding
@@ -13,22 +14,23 @@ from rich.panel import Panel
 from rich.text import Text
 from rich.table import Table
 
-from epstein_files.documents.documents.doc_cfg import DUPE_TYPE_STRS, EmailCfg, DocCfg, Metadata, TextCfg
+from epstein_files.documents.documents.doc_cfg import DUPE_TYPE_STRS, DebugDict, EmailCfg, DocCfg, Metadata
 from epstein_files.documents.documents.doc_locations import DocLocation
 from epstein_files.documents.documents.search_result import MatchedLine
 from epstein_files.documents.emails.constants import FALLBACK_TIMESTAMP
 from epstein_files.documents.emails.email_header import DETECT_EMAIL_REGEX
 from epstein_files.output.rich import (INFO_STYLE, NA_TXT, SKIPPED_FILE_MSG_PADDING, SYMBOL_STYLE,
      add_cols_to_table, build_table, console, highlighter, join_texts, styled_key_value, link_text_obj,
-     parenthesize, wrap_in_markup_style)
+     parenthesize, prefix_with, styled_dict, wrap_in_markup_style)
 from epstein_files.util.constant.names import *
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constant.urls import *
 from epstein_files.util.constants import CONFIGS_BY_ID, DOJ_FILE_STEM_REGEX, MAX_CHARS_TO_PRINT
-from epstein_files.util.helpers.data_helpers import collapse_newlines, date_str, patternize, remove_zero_time, without_falsey
-from epstein_files.util.env import DOCS_DIR, DOJ_PDFS_20260130_DIR
+from epstein_files.util.helpers.data_helpers import (collapse_newlines, date_str, patternize, prefix_keys,
+     remove_zero_time, without_falsey)
 from epstein_files.util.helpers.file_helper import (coerce_file_path, extract_file_id, file_size, file_size_str,
      file_size_to_str, is_local_extract_file)
+from epstein_files.util.env import DOCS_DIR, DOJ_PDFS_20260130_DIR
 from epstein_files.util.logging import DOC_TYPE_STYLES, FILENAME_STYLE, logger
 
 ALT_LINK_STYLE = 'white dim'
@@ -67,6 +69,22 @@ SUMMARY_TABLE_COLS: list[str | dict] = [
     {'name': 'No Author', 'style': 'wheat4'},
     {'name': 'Uncertain Author', 'style': 'royal_blue1 dim'},
     {'name': 'Size', 'justify': 'right', 'style': 'dim'},
+]
+
+DEBUG_PROPS = [
+    'file_size',
+    'file_size_str',
+    'is_interesting',
+    'num_lines',
+    'timestamp',
+]
+
+DEBUG_PROPS_TRUTHY_ONLY = [
+    AUTHOR,
+    'category',
+    'is_doj_file',
+    'is_empty',
+    'is_local_extract_file',
 ]
 
 
@@ -358,13 +376,17 @@ class Document:
     def _class_style(self) -> str:
         return DOC_TYPE_STYLES[self._class_name]
 
+    @property
+    def _debug_prefix(self) -> str:
+        return underscore(self._class_name).lower()
+
     def __post_init__(self):
         if not self.file_path.exists():
             raise FileNotFoundError(f"File '{self.file_path.name}' does not exist!")
 
-        self.file_id = extract_file_id(self.filename)
-        # config and url_slug could have been pre-set in Email
+        # url_slug could have been pre-set in Email subclass
         self.url_slug = self.url_slug or self.filename.split('.')[0]
+        self.file_id = extract_file_id(self.filename)
 
         # Extract the DOJ dataset ID from the path
         if self.is_doj_file:
@@ -478,6 +500,34 @@ class Document:
         """Print a warning message prefixed by info about this `Document`."""
         self.log(msg, level=logging.WARNING)
 
+    def _debug_dict(self) -> DebugDict:
+        """Information about this document: config, locations, etc."""
+        config_info = prefix_keys(type(self.config).__name__, self.config.important_props if self.config else {})
+        locations_dict = prefix_keys('locations', dict(self.locations.as_dict))
+
+        if config_info.get('id') == self.file_id:
+            config_info.pop('id')
+
+        if locations_dict.get('source_url') == locations_dict.get('external_url', 'blah'):
+            locations_dict.pop('external_url')
+
+        return {**locations_dict, **config_info, **self._debug_props()}
+
+    def _debug_props(self) -> DebugDict:
+        """Collects props of this object only (not the config or locations)."""
+        props = {k: getattr(self, k) for k in DEBUG_PROPS}
+        props.update({k: getattr(self, k) for k in DEBUG_PROPS_TRUTHY_ONLY if getattr(self, k)})
+
+        if self.url_slug != self.file_id:
+            props['url_slug'] = self.url_slug
+
+        return prefix_keys(self._debug_prefix, props)
+
+    def _debug_txt(self) -> Text:
+        """Prettified version of `self._debug_dict()` suitable for printing."""
+        txt_lines = styled_dict(self._debug_dict(), sep=': ')
+        return prefix_with(txt_lines, ' ', pfx_style='grey', indent=2)
+
     def _extract_author(self) -> None:
         """Get author from config. Extended in `Email` subclass to also check headers."""
         if self.config and self.config.author:
@@ -537,24 +587,25 @@ class Document:
         # Emails handle their own formatting
         if type(self) != type(doc):
             yield doc
-        else:
-            yield self.file_info_panel()
+            return
 
-            text_panel = Panel(
-                self.prettified_text,
-                border_style=self.border_style,
-                expand=False,
-                title=Text(f"({self.panel_title_timestamp})", style='dim') if self.panel_title_timestamp else None,
-                title_align='right',
-            )
+        yield self.file_info_panel()
 
-            yield Padding(text_panel, (0, 0, 1, INFO_INDENT))
+        text_panel = Panel(
+            self.prettified_text,
+            border_style=self.border_style,
+            expand=False,
+            title=Text(f"({self.panel_title_timestamp})", style='dim') if self.panel_title_timestamp else None,
+            title_align='right',
+        )
+
+        yield Padding(text_panel, (0, 0, 1, INFO_INDENT))
 
     def __str__(self) -> str:
         return self.summary.plain
 
     @classmethod
-    def default_category(self) -> str:
+    def default_category(cls) -> str:
         return ''
 
     @classmethod

@@ -4,6 +4,7 @@ from copy import deepcopy
 from datetime import datetime
 from os import devnull
 from pathlib import Path
+from typing import Mapping, Sequence
 
 from rich.align import Align
 from rich.console import Console, Group, RenderableType
@@ -39,7 +40,7 @@ DOJ_PAGE_LINK_MSG = 'WIP page with documents from the Epstein Files Transparency
 
 INFO_STYLE = 'white dim italic'
 KEY_STYLE = 'dim'
-KEY_STYLE_ALT = 'gray58 bold'
+KEY_STYLE_ALT = 'light_steel_blue3'
 LAST_TIMESTAMP_STYLE = 'wheat4'
 OTHER_PAGE_MSG_STYLE = 'gray78 dim'
 STR_VAL_STYLE = 'cornsilk1 italic'
@@ -326,9 +327,25 @@ def quote_txt(t: Text | str, try_double_quote_first: bool = False, style: str = 
     return Text(quote_char, style=style).append(t).append(quote_char)
 
 
+def styled_dict(
+    d: Mapping[str, bool | datetime | str | Path | Text | None],
+    key_style: str = KEY_STYLE,
+    sep: str = '=',
+    sort_fields: bool = True,
+    min_indent: int = 20,
+) -> Text:
+    """Turn a dict into a colored representation."""
+    key_lengths = [len(k) for k in d.keys()] + [min_indent]
+
+    return Text('\n').join([
+        styled_key_value(k, v, key_style=key_style, indent=max(key_lengths) + 3, sep=sep)
+        for k, v in (sort_dict(d) if sort_fields else d.items())
+    ])
+
+
 def styled_key_value(
     key: str,
-    val: int | str | Path | Text,
+    val: bool | datetime | int | str | Path | Text | None,
     key_style: str = KEY_STYLE,
     indent: int = 0,
     sep='='
@@ -337,7 +354,9 @@ def styled_key_value(
     if '.' in key and key_style == KEY_STYLE:
         key_style = KEY_STYLE_ALT
 
-    if isinstance(val, Text):
+    if val is None:
+        val_txt = Text('None', style='dim italic')
+    elif isinstance(val, Text):
         val_txt = val
     elif isinstance(val, list):
         val_txt = highlighter(json.dumps(val))
@@ -375,22 +394,6 @@ def styled_key_value(
     txt = Text('').append(f"{key:>{indent}}", style=key_style)
     txt.append(sep, style=SYMBOL_STYLE).append(val_txt)
     return txt
-
-
-def styled_dict(
-    d: dict[str, str | Path | Text],
-    key_style: str = KEY_STYLE,
-    sep: str = '=',
-    sort_fields: bool = True,
-    min_indent: int = 20,
-) -> Text:
-    """Turn a dict into a colored representation."""
-    key_lengths = [len(k) for k in d.keys()] + [min_indent]
-
-    return Text('\n').join([
-        styled_key_value(k, v, key_style=key_style, indent=max(key_lengths) + 3, sep=sep)
-        for k, v in (sort_dict(d) if sort_fields else d.items())
-    ])
 
 
 def vertically_pad(obj: RenderableType, amount: int = 1) -> Padding:

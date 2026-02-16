@@ -160,7 +160,7 @@ def epstein_show():
             people = EpsteinFiles.get_files().person_objs(args.names)
             raw_docs = [doc for doc in flatten([p.emails for p in people])]
         else:
-            ids = [extract_file_id(arg.strip().strip('_')) for arg in args.positional_args]
+            ids = [extract_file_id(arg.upper().strip().strip('_')) for arg in args.positional_args]
             logger.info(f"extracted IDs: {ids}")
             raw_docs = [Document.from_file_id(id) for id in ids]
             logger.info(f"raw docs: {raw_docs}")
@@ -173,6 +173,7 @@ def epstein_show():
         exit_with_error(str(e))
 
     for doc in docs:
+        doc = doc.printable_document()
         console.print('\n', doc)
 
         if args.raw:
@@ -189,12 +190,8 @@ def epstein_show():
                 metadata['_is_first_for_user'] = doc._is_first_for_user
                 print_json(f"{doc.file_id} Metadata", metadata)
 
-        console.print(doc.locations, style='dim')
-
-        if args.debug and doc.config:
-            console.line()
-            console.print(styled_key_value('doc.is_interesting', doc.is_interesting, indent=39, sep=': '))
-            console.print(cfg_table(doc.config))
+        if args.debug:
+            console.print(doc._debug_txt(), style='dim')
 
         if args.open_pdf:
             check_output(['open', str(doc.locations.local_pdf_path)])
@@ -202,6 +199,7 @@ def epstein_show():
             check_output(['open', str(doc.file_path)])
         if args.open_url:
             check_output(['open', str(doc.external_url)])
+
 
 def epstein_word_count() -> None:
     write_word_counts_html()

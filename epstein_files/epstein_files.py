@@ -34,7 +34,18 @@ SLOW_FILE_SECONDS = 1.0
 
 @dataclass
 class EpsteinFiles:
-    all_files: list[Path] = field(init=False)
+    """
+    Attributes:
+        file_paths (list[Path]): paths to Epstein related text documents
+        emails (list[Email]): all `Email` objects
+        imessage_logs (list[MessengerLog]): all `MessengerLog` objects
+        other_files (list[OtherFile]): all `OtherFile` objects
+        timer (Timer): for logging only
+        uninteresting_ccs (list[Name]): names of tangential people who were just CCed once or similar
+    """
+    file_paths: list[Path] = field(init=False)
+
+    # Derived fields
     emails: list[Email] = field(default_factory=list)
     imessage_logs: list[MessengerLog] = field(default_factory=list)
     other_files: list[OtherFile] = field(default_factory=list)
@@ -43,11 +54,12 @@ class EpsteinFiles:
 
     @property
     def all_documents(self) -> Sequence[Document]:
+        """All files sorted by timestamp (if available)."""
         return Document.sort_by_timestamp(self.imessage_logs + self.emails + self.other_files)
 
     @property
     def all_doj_files(self) -> Sequence[DojFile | Email]:
-        """All files with the filename EFTAXXXXXX, including those that were turned into Email objs."""
+        """All files with the filename EFTAXXXXXX, including those that were turned into `Email` objs."""
         return [doc for doc in self.all_documents if doc.is_doj_file]
 
     @property
@@ -63,15 +75,13 @@ class EpsteinFiles:
 
     @property
     def json_files(self) -> list[JsonFile]:
+        """JSON files from the November document dump, mostly Apple ads related."""
         return Document.sort_by_timestamp([d for d in self.other_files if isinstance(d, JsonFile)])
 
     @property
     def interesting_other_files(self) -> Sequence[OtherFile]:
+        """`OtherFile` objects that have been deemed of interest."""
         return [f for f in self.other_files if f.is_interesting]
-
-    @property
-    def non_duplicate_emails(self) -> list[Email]:
-        return Document.without_dupes(self.emails)
 
     @property
     def non_json_other_files(self) -> list[OtherFile]:
@@ -85,14 +95,19 @@ class EpsteinFiles:
 
         return self._uninteresting_emailers
 
+    @property
+    def unique_emails(self) -> list[Email]:
+        """All `Email` objects except for duplicates."""
+        return Document.without_dupes(self.emails)
+
     def __post_init__(self):
         """Iterate through files and build appropriate objects."""
         file_paths = [f for f in DOCS_DIR.iterdir() if f.is_file() and not f.name.startswith('.')]
         file_paths.extend(doj_txt_paths())
-        self.all_files = sorted(file_paths, reverse=True)
+        self.file_paths = sorted(file_paths, reverse=True)
 
         # Split up by type
-        docs = self._load_file_paths(self.all_files)
+        docs = self._load_file_paths(self.file_paths)
         self.emails = Document.sort_by_timestamp([d for d in docs if isinstance(d, Email)])
         self.imessage_logs = Document.sort_by_timestamp([d for d in docs if isinstance(d, MessengerLog)])
         self.other_files = Document.sort_by_timestamp([d for d in docs if isinstance(d, OtherFile)])
@@ -124,7 +139,7 @@ class EpsteinFiles:
         else:
             epstein_files.save_to_disk()
 
-        timer.print_at_checkpoint(f'Processed {len(epstein_files.all_files):,} documents (created {OtherFile.num_synthetic_cfgs_created} synthetic configs)')
+        timer.print_at_checkpoint(f'Processed {len(epstein_files.file_paths):,} files, {OtherFile.num_synthetic_cfgs_created} synthetic configs')
         return epstein_files
 
     def docs_matching(self, pattern: re.Pattern | str, names: list[Name] | None = None) -> list[SearchResult]:
@@ -161,27 +176,26 @@ class EpsteinFiles:
         }
 
     def email_authors_to_device_signatures(self) -> dict[str, set[str]]:
+        """Mapping of authors to all the device signatures identified in their history."""
         signatures = defaultdict(set)
 
-        for email in [e for e in self.non_duplicate_emails if e.sent_from_device]:
+        for email in [e for e in self.unique_emails if e.sent_from_device]:
             signatures[email.author_or_unknown].add(email.sent_from_device)
 
         return signatures
 
     def email_device_signatures_to_authors(self) -> dict[str, set[str]]:
+        """Mapping of device signatures to all the users who ever signed an email with them."""
         signatures = defaultdict(set)
 
-        for email in [e for e in self.non_duplicate_emails if e.sent_from_device]:
+        for email in [e for e in self.unique_emails if e.sent_from_device]:
             signatures[email.sent_from_device].add(email.author_or_unknown)
 
         return signatures
 
     def email_recipient_counts(self) -> dict[Name, int]:
         """Returns dict counting up how many emails were received by each person."""
-        return {
-            person.name: len(person.unique_emails_to)
-            for person in self.emailers if len(person.unique_emails_to) > 0
-        }
+        return {p.name: len(p.unique_emails_to) for p in self.emailers if len(p.unique_emails_to) > 0}
 
     def email_signature_substitution_counts(self) -> dict[str, int]:
         """Return the number of times an email signature was replaced with "<...snipped...>" for each author."""
@@ -277,13 +291,21 @@ class EpsteinFiles:
 
         timer = Timer()
         logger.warning(f"Only reloading DOJ files {doj_file_counts_str()}...")
-        house_oversight_emails = [e for e in self.emails if not e.is_doj_file]
-        docs = self._load_file_paths(doj_txt_paths())
-        doj_emails = [d for d in docs if isinstance(d, Email)]
-        self.doj_files = Document.sort_by_timestamp([d for d in docs if isinstance(d, DojFile)])
-        self.emails = Document.sort_by_timestamp(house_oversight_emails + doj_emails)
-        timer.print_at_checkpoint(f"Reloaded DOJ files {doj_file_counts_str()}")
+
+        # Remove old DOJ files
+        self.emails = [f for f in self.emails if not f.is_doj_file]
+        self.other_files = [f for f in self.other_files if not f.is_doj_file]
+
+        # Build new objects
+        new_docs = self._load_file_paths(doj_txt_paths())
+        new_doj_files = [d for d in new_docs if isinstance(d, DojFile)]
+        new_doj_emails = [e for e in new_docs if isinstance(e, Email)]
+
+        # Add HOUSE_OVERSIGHT files to new DOJ files
+        self.emails = Document.sort_by_timestamp(self.emails + new_doj_emails)
+        self.other_files = Document.sort_by_timestamp(self.other_files + new_doj_files)
         self._finalize_data()
+        timer.print_at_checkpoint(f"Reloaded DOJ files {doj_file_counts_str()}")
         self.save_to_disk()
 
     def overview_table(self) -> Table:

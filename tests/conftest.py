@@ -1,4 +1,5 @@
 from os import environ
+from typing import Callable
 
 import pytest
 from dotenv import load_dotenv
@@ -6,6 +7,9 @@ load_dotenv()
 # environ.setdefault('OVERWRITE_PICKLE', 'True')  # Set PICKLED=True to override this
 environ['INVOKED_BY_PYTEST'] = 'True'
 
+from epstein_files.documents.doj_file import DojFile
+from epstein_files.documents.other_file import OtherFile
+from epstein_files.documents.email import Email
 from epstein_files.epstein_files import EpsteinFiles
 from epstein_files.util.helpers.file_helper import *
 
@@ -28,6 +32,30 @@ def file_stem(file_id) -> str:
 @pytest.fixture
 def file_name(file_stem) -> str:
     return f"{file_stem}.txt"
+
+
+@pytest.fixture
+def get_doj_file(epstein_files) -> Callable[[str], DojFile]:
+    def _get_doj_file(id: str):
+        return epstein_files.get_id(id, required_type=DojFile)
+
+    return _get_doj_file
+
+
+@pytest.fixture
+def get_email(epstein_files) -> Callable[[str], Email]:
+    def _get_email(id: str):
+        return epstein_files.get_id(id, required_type=Email)
+
+    return _get_email
+
+
+@pytest.fixture
+def get_other_file(epstein_files) -> Callable[[str], OtherFile]:
+    def _get_other_file(id: str):
+        return epstein_files.get_id(id, required_type=OtherFile)
+
+    return _get_other_file
 
 
 @pytest.fixture

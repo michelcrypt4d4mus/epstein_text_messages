@@ -12,28 +12,8 @@ MESSENGER_LOG_ID = '027133'
 
 
 @pytest.fixture
-def harvard_poetry_doc(epstein_files) -> OtherFile:
-    return epstein_files.get_id('023452', required_type=OtherFile)
-
-
-@pytest.fixture
-def harvard_poetry_cfg(harvard_poetry_doc) -> DocCfg:
-    return harvard_poetry_doc.config
-
-
-@pytest.fixture
-def email() -> Email:
-    return Email.from_file_id('019446')
-
-
-@pytest.fixture
-def messenger_log() -> MessengerLog:
-    return MessengerLog.from_file_id(MESSENGER_LOG_ID)
-
-
-@pytest.fixture
-def other_file() -> OtherFile:
-    return OtherFile.from_file_id('019448') # Jacmel Haiti proposal
+def blockchain_capital_coinbase_nda(get_doj_file) -> DojFile:
+    return get_doj_file('EFTA01082451')
 
 
 # DOJ files
@@ -48,10 +28,30 @@ def doj_email_file() -> DojFile:
 
 
 @pytest.fixture
-def blockchain_capital_coinbase_nda(epstein_files) -> DojFile:
-    return epstein_files.get_id('EFTA01082451', required_type=DojFile)
+def email() -> Email:
+    return Email.from_file_id('019446')
 
 
 @pytest.fixture
-def valar_ventures_doc(epstein_files) -> DojFile:
-    return epstein_files.get_id('EFTA00609489', required_type=DojFile)
+def harvard_poetry_doc(get_other_file) -> OtherFile:
+    return get_other_file('023452')
+
+
+@pytest.fixture
+def harvard_poetry_cfg(harvard_poetry_doc) -> DocCfg:
+    return harvard_poetry_doc.config
+
+
+@pytest.fixture
+def messenger_log() -> MessengerLog:
+    return MessengerLog.from_file_id(MESSENGER_LOG_ID)
+
+
+@pytest.fixture
+def other_file() -> OtherFile:
+    return OtherFile.from_file_id('019448') # Jacmel Haiti proposal
+
+
+@pytest.fixture
+def valar_ventures_doc(get_doj_file) -> DojFile:
+    return get_doj_file('EFTA00609489')

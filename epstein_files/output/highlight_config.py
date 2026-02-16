@@ -1,5 +1,4 @@
 import re
-from collections import defaultdict
 from typing import Sequence
 
 from rich.console import Console
@@ -24,6 +23,7 @@ ESTATE_EXECUTOR = 'estate executor'
 EPSTEIN_ESTATE_EXECUTOR = f"Epstein {ESTATE_EXECUTOR}"
 MC2_MODEL_MANAGEMENT = f"{JEAN_LUC_BRUNEL}'s MC2 Model Management"
 QUESTION_MARKS_TXT = Text(QUESTION_MARKS, style='grey50')
+THIELS_VALAR = f"{PETER_THIEL}'s {VALAR_VENTURES}"
 TECH_BRO = 'tech bro'
 VICTIM_COLOR = 'orchid1'
 
@@ -286,7 +286,7 @@ HIGHLIGHT_GROUPS: Sequence[BaseHighlight] = [
             Contact(BARRY_J_COHEN, emailer_pattern=r"barry\s*((j.?|james)\s*)?cohen?"),
             Contact('David Mitchell', "Mitchell Holdings, New York real estate developer"),
             Contact(GERALD_BARTON, "Maryland property developer Landmark Land Company", r"Gerald.*Barton"),
-            Contact(NICOLE_JUNKERMANN, f"ex-model, NJF Capital, German investor in Revolut, Winamax (online poker) and Carbyen ({EHUD_BARAK})"),
+            Contact(NICOLE_JUNKERMANN, f"ex-model, NJF Capital, investor in Revolut, online poker, Carbyne w/{EHUD_BARAK}", r"(Nicole\s*)?Junkermann?"),
             Contact(GORDON_GETTY, "heir to oil tycoon J. Paul Getty"),
             Contact('Philip Kafka', f"president of Prince Concepts (and son of {TERRY_KAFKA}?)"),
             Contact(ROBERT_LAWRENCE_KUHN, "investment banker, China expert", r"Robert\s*(Lawrence)?\s*Kuhn"),
@@ -1355,7 +1355,7 @@ HIGHLIGHT_GROUPS: Sequence[BaseHighlight] = [
             Contact(AL_SECKEL, "Isabel Maxwell's husband, Mindshift conference, fell off a cliff"),
             Contact('Barnaby Marsh', "co-founder of philanthropy services company Saint Partners"),
             Contact(CHRISTINA_GALBRAITH, f"{JEFFREY_EPSTEIN} VI Foundation Media/PR, worked with {TYLER_SHEARS}"),
-            Contact(IAN_OSBORNE, f"{IAN_OSBORNE} & Partners reputation repairer hired in 2011"),
+            Contact(IAN_OSBORNE, f"{IAN_OSBORNE} & Partners reputation repairer hired in 2011", fr"{IAN_OSBORNE}|lan Osbome"),
             Contact(MATTHEW_HILTZIK, "crisis PR at Hiltzik Strategies"),
             Contact(MICHAEL_SITRICK, "crisis PR", r"(Mi(chael|ke).{0,5})?[CS]itrick"),
             Contact('Owen Blicksilver', "OBPR, Inc."),
@@ -1561,23 +1561,21 @@ HIGHLIGHT_GROUPS: Sequence[BaseHighlight] = [
         style='bright_cyan',
         contacts=[
             Contact('Alisa Bekins', f"{PETER_THIEL}'s assistant"),
-            Contact(ANDREW_MCCORMACK, f"partner at {PETER_THIEL}'s {VALAR_VENTURES} {'(???)'}", r"Andrew\s*McCorm(ack?)?"),
+            Contact(ANDREW_MCCORMACK, f"partner at {THIELS_VALAR} {'(???)'}", r"Andrew\s*McCorm(ack?)?"),
             Contact('Auren Hoffman', "CEO of SafeGraph (firm that gathers location data from mobile devices) and LiveRamp"),
             Contact(ELON_MUSK, "father of Mecha-Hitler"),
             Contact(GOOGLE_PLUS, "Google+", r"Google\+"),
-            Contact(IAN_ODONNELL, f"Thiel's {VALAR_VENTURES}", r"Ian\s*O'?Donnell|O'?Donnell,\s*Ian"),
-            Contact(
-                name=JAMES_FITZGERALD,
-                info=f"{PETER_THIEL}'s {VALAR_VENTURES} {QUESTION_MARKS}",
-                emailer_pattern=r"James Fitz[g ]eral?d?",
-            ),
+            Contact(HONGBO_ROBERT_BAO, THIELS_VALAR, r"Hong,? Robert Bao|Hongbo(\s*Robert)?\s*Bao"),
+            Contact(IAN_ODONNELL, THIELS_VALAR, r"Ian\s*O'?Donnell|O'?Donnell,\s*Ian"),
+            Contact(JAMES_FITZGERALD, THIELS_VALAR, r"James Fitz[g ]eral?d?"),
             Contact('LinkedIn', "LinkedIn", r"Linked[Il]n(\s*Updates)?"),
             Contact(PETER_THIEL, "Paypal mafia member, founder of Palantir, Facebook investor"),
             Contact(REID_HOFFMAN, "PayPal mafia member, founder of LinkedIn"),
+            Contact('Reuben Kobulnik', THIELS_VALAR),
             Contact(STEVEN_SINOFSKY, "a16z, ex-Microsoft, loves bitcoin", r"Steven Sinofsky?"),
             Contact(VALAR_VENTURES, f"{PETER_THIEL} affiliated fintech venture fund", r"V[ae]lar\s*(Global\s*Fund|Ventures)?"),
             Contact(VINCENZO_IOZZO, "CEO of the identity-security company SlashID", r"Vincenzo [IL]ozzo"),
-            Contact(ZUBAIR_KHAN, f"Tranchulas cybersecurity, {'InsightsPod'} founder, Islamabad / Dubai")
+            Contact(ZUBAIR_KHAN, f"Tranchulas cybersecurity, InsightsPod founder, Islamabad / Dubai")
         ],
         patterns=[
             r"a16z|(?<!Gavin )Andree?ss?e?[eo]n(\s&Horowitz)?",
