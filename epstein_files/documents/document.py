@@ -185,10 +185,6 @@ class Document:
         return bool(self.config and self.config.is_attribution_uncertain)
 
     @property
-    def is_doj_file(self) -> bool:
-        return self.file_info.is_doj_file
-
-    @property
     def is_duplicate(self) -> bool:
         return bool(self.duplicate_of_id)
 

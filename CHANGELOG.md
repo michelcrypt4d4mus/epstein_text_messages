@@ -1,4 +1,5 @@
 # NEXT RELEASE
+* Rename `DocLocation` to `FileInfo` and delegate things like `file_size` to it
 
 ### 1.5.7
 * Move all URL and file path / name / etc. functionality to `DocLocation` class

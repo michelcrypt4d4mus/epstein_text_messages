@@ -26,5 +26,5 @@ def test_debug_dict(email):
 
 
 def test_is_doj_file(doj_file, messenger_log):
-    assert doj_file.is_doj_file is True
-    assert messenger_log.is_doj_file is False
+    assert doj_file.file_info.is_doj_file is True
+    assert messenger_log.file_info.is_doj_file is False
