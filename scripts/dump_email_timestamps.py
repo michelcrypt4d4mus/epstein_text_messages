@@ -60,7 +60,7 @@ with open('timestamps_cfg.txt', 'wt') as f:
                     f.write(f"    EmailCfg(id='{doc.file_id}', date='{doc.timestamp}'),\n")
                     logger.warning(f"Wrote EmailCfg line with timestamp {doc.timestamp}...")
         else:
-            logger.warning(f"{doc.file_id}: {doc.file_size_str} ({doc.length:,} bytes) is not an Email...")
+            logger.warning(f"{doc.file_id}: {doc.file_info.file_size_str} ({doc.length:,} bytes) is not an Email...")
 
 console.print(f"Found {len(emails)} emails out of {len(epstein_files.doj_files)} DOJ files.")
 sys.exit()
@@ -68,7 +68,7 @@ sys.exit()
 
 # Show biggest files
 for i, doc in enumerate(sorted(epstein_files.doj_files, key=lambda f: -f.length)):
-    console.print(f"{doc.file_id}: {doc.file_size_str} ({doc.length:,} bytes)")
+    console.print(f"{doc.file_id}: {doc.file_info.file_size_str} ({doc.length:,} bytes)")
 
     if i > 2000:
         break

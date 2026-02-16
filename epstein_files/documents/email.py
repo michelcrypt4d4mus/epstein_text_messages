@@ -615,13 +615,14 @@ class Email(Communication):
                 else:
                     num_chars = quote_cutoff
             else:
-                num_chars = min(self.file_size, MAX_CHARS_TO_PRINT)
+                # TODO: Added some padding to self.length because newlines may be added in prettification but this sucks
+                num_chars = min(self.length + 100, MAX_CHARS_TO_PRINT)
 
             # Always print whole email for 1st email for actual people
             if self._is_first_for_user and num_chars < self.file_size and \
                     not (self.is_duplicate or self.is_fwded_article or self.is_mailing_list):
                 self.log(f"{self} Overriding cutoff {num_chars} for first email")
-                num_chars = self.file_size
+                num_chars = self.length + 100
 
         log_args = {
             'num_chars': num_chars,

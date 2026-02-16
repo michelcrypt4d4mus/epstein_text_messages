@@ -1,6 +1,6 @@
 import pytest
 
-from epstein_files.documents.documents.doc_locations import FileInfo
+from epstein_files.documents.documents.file_info import FileInfo
 from epstein_files.util.helpers.file_helper import DOCS_DIR, DOJ_TXTS_20260130_DIR
 
 
