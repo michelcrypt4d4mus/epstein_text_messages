@@ -19,7 +19,7 @@ from epstein_files.documents.emails.constants import UNINTERESTING_EMAILERS
 from epstein_files.documents.json_file import JsonFile
 from epstein_files.documents.messenger_log import MSG_REGEX, MessengerLog
 from epstein_files.documents.other_file import OtherFile
-from epstein_files.output.highlight_config import HIGHLIGHTED_NAMES, HighlightedNames
+from epstein_files.output.highlight_config import HIGHLIGHTED_NAMES
 from epstein_files.people.person import INVALID_FOR_EPSTEIN_WEB, Person
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constants import *
@@ -28,7 +28,9 @@ from epstein_files.util.helpers.data_helpers import flatten, json_safe, listify,
 from epstein_files.util.helpers.file_helper import doj_txt_paths, file_size_str
 from epstein_files.util.timer import Timer
 
-DUPLICATE_PROPS_TO_COPY = ['author', 'recipients', 'timestamp']  # TODO: also copy the config, get rid of synthetic configs
+# TODO: also copy the config, get rid of synthetic configs
+DUPLICATE_PROPS_TO_COPY = ['author', 'timestamp']
+EMAIL_PROPS_TO_COPY = DUPLICATE_PROPS_TO_COPY + ['recipients']
 SLOW_FILE_SECONDS = 1.0
 
 
@@ -64,7 +66,7 @@ class EpsteinFiles:
 
     @property
     def doj_files(self) -> list[DojFile]:
-        return Document.sort_by_timestamp([f for f in self.other_files if isinstance(f, DojFile)])
+        return [f for f in self.other_files if isinstance(f, DojFile)]
 
     @property
     def emailers(self) -> list[Person]:
@@ -76,7 +78,7 @@ class EpsteinFiles:
     @property
     def json_files(self) -> list[JsonFile]:
         """JSON files from the November document dump, mostly Apple ads related."""
-        return Document.sort_by_timestamp([d for d in self.other_files if isinstance(d, JsonFile)])
+        return [d for d in self.other_files if isinstance(d, JsonFile)]
 
     @property
     def interesting_other_files(self) -> Sequence[OtherFile]:
@@ -106,13 +108,13 @@ class EpsteinFiles:
         file_paths.extend(doj_txt_paths())
         self.file_paths = sorted(file_paths, reverse=True)
 
-        # Split up by type
+        # Load docs and split up by type
         docs = self._load_file_paths(self.file_paths)
-        self.emails = Document.sort_by_timestamp([d for d in docs if isinstance(d, Email)])
-        self.imessage_logs = Document.sort_by_timestamp([d for d in docs if isinstance(d, MessengerLog)])
-        self.other_files = Document.sort_by_timestamp([d for d in docs if isinstance(d, OtherFile)])
+        self.emails = [d for d in docs if isinstance(d, Email)]
+        self.imessage_logs = [d for d in docs if isinstance(d, MessengerLog)]
+        self.other_files =[d for d in docs if isinstance(d, OtherFile)]
 
-        # Set interdependent fields, dupes, etc.
+        # Set interdependent fields, dupes, sort by timestamp, etc.
         self._finalize_data()
 
     @classmethod
@@ -123,7 +125,7 @@ class EpsteinFiles:
         if args.pickle_path.exists() and not args.overwrite_pickle and not args.skip_other_files:
             with gzip.open(args.pickle_path, 'rb') as file:
                 epstein_files = pickle.load(file)
-                timer_msg = f"Loaded {len(epstein_files.all_files):,} documents from '{args.pickle_path}'"
+                timer_msg = f"Loaded {len(epstein_files.file_paths):,} documents from '{args.pickle_path}'"
                 timer.print_at_checkpoint(f"{timer_msg} ({file_size_str(args.pickle_path)})")
 
             if args.reload_doj:
@@ -289,26 +291,22 @@ class EpsteinFiles:
         def doj_file_counts_str():
             return f"(have {len(self.all_doj_files)}, {len(self.doj_files)} non-email)"
 
-        timer = Timer()
-        logger.warning(f"Only reloading DOJ files {doj_file_counts_str()}...")
-
         # Remove old DOJ files
         self.emails = [f for f in self.emails if not f.is_doj_file]
         self.other_files = [f for f in self.other_files if not f.is_doj_file]
+        timer = Timer()
+        logger.warning(f"Only reloading DOJ files {doj_file_counts_str()}...")
 
-        # Build new objects
+        # Build new objects and append them
         new_docs = self._load_file_paths(doj_txt_paths())
-        new_doj_files = [d for d in new_docs if isinstance(d, DojFile)]
-        new_doj_emails = [e for e in new_docs if isinstance(e, Email)]
-
-        # Add HOUSE_OVERSIGHT files to new DOJ files
-        self.emails = Document.sort_by_timestamp(self.emails + new_doj_emails)
-        self.other_files = Document.sort_by_timestamp(self.other_files + new_doj_files)
+        self.emails += [e for e in new_docs if isinstance(e, Email)]
+        self.other_files += [d for d in new_docs if isinstance(d, DojFile)]
         self._finalize_data()
-        timer.print_at_checkpoint(f"Reloaded DOJ files {doj_file_counts_str()}")
         self.save_to_disk()
+        timer.print_at_checkpoint(f"Reloaded DOJ files {doj_file_counts_str()}")
 
     def overview_table(self) -> Table:
+        """Table showing file counts by type."""
         table = Document.file_info_table('Files Overview', 'File Type')
         table.add_row('Emails', *Document.files_info_row(self.emails))
         table.add_row('iMessage Logs', *Document.files_info_row(self.imessage_logs))
@@ -328,28 +326,27 @@ class EpsteinFiles:
 
     def _copy_duplicate_email_properties(self) -> None:
         """Ensure dupe emails have the properties of the emails they duplicate to capture any repairs, config etc."""
-        for email in self.emails:
-            if not email.duplicate_of_id:
+        for doc in self.all_documents:
+            if not doc.duplicate_of_id:
                 continue
 
-            original = self.get_id(email.duplicate_of_id, required_type=Email)
+            original = self.get_id(doc.duplicate_of_id)
+            props_to_copy = EMAIL_PROPS_TO_COPY if isinstance(doc, Email) else DUPLICATE_PROPS_TO_COPY
 
-            for field_name in DUPLICATE_PROPS_TO_COPY:
+            for field_name in props_to_copy:
                 original_prop = getattr(original, field_name)
-                duplicate_prop = getattr(email, field_name)
+                duplicate_prop = getattr(doc, field_name)
 
                 if original_prop != duplicate_prop:
-                    email.warn(f"Replacing {field_name} {duplicate_prop} with {original_prop} from duplicated '{original.file_id}'")
-                    setattr(email, field_name, original_prop)
-
-        # Resort in case any timestamp were updated
-        self.emails = Document.sort_by_timestamp(self.emails)
+                    doc.warn(f"Replacing {field_name} {duplicate_prop} with {original_prop} from duplicated '{original.file_id}'")
+                    setattr(doc, field_name, original_prop)
 
     def _finalize_data(self):
         """Handle computation of fields related to uninterestingness, relationships between documents, etc."""
         self._set_uninteresting_ccs()
         self._copy_duplicate_email_properties()
         self._find_email_attachments_and_set_is_first_for_user()
+        self._sort_file_types_by_timestamp()
 
     def _find_email_attachments_and_set_is_first_for_user(self) -> None:
         for other_file in (self.other_files + self.doj_files):
@@ -406,6 +403,11 @@ class EpsteinFiles:
 
         self.uninteresting_ccs = sorted(uniquify(self.uninteresting_ccs))
         logger.info(f"Extracted uninteresting_ccs: {self.uninteresting_ccs}")
+
+    def _sort_file_types_by_timestamp(self) -> None:
+        self.emails = Document.sort_by_timestamp(self.emails)
+        self.imessage_logs = Document.sort_by_timestamp(self.imessage_logs)
+        self.other_files = Document.sort_by_timestamp(self.other_files)
 
 
 def count_by_month(docs: Sequence[Document]) -> dict[str | None, int]:
