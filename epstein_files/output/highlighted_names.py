@@ -76,7 +76,6 @@ class HighlightedNames(HighlightedText):
         contacts (list[ContactInfo]): optional `ContactInfo` objects with names and regexes
         contacts_lookup (dict[Name, ContactInfo]): lookup dictionary for `ContactInfo` objects
         should_match_first_last_name (bool): if False don't match first/last/reversed versions of emailers
-        _pattern (str): regex pattern combining 'pattern' with first & last names of all 'emailers'
     """
     category: str = ''
     contacts: list[Contact] = field(default_factory=list)
