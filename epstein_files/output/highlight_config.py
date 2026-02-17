@@ -1748,11 +1748,9 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
 
     # Individuals
     HighlightedNames(
-        contacts=[
-            Contact(STEVEN_HOFFENBERG, "Epstein's Towers Financial ponzi partner, prison for 18 years")
-        ],
+        contacts=[Contact(STEVEN_HOFFENBERG, "Epstein's Towers Financial ponzi partner, prison for 18 years")],
         style='dark_olive_green3',
-        category=FINANCE,
+        category=Neutral.FINANCE,
         patterns=[r"(steven?\s*)?hoffenberg?w?"],
     ),
     HighlightedNames(
@@ -1919,7 +1917,7 @@ def get_highlight_group_for_name(name: str | None) -> HighlightGroup | None:
 def get_style_for_category(category: str) -> str | None:
     if category in CATEGORY_STYLES:
         return CATEGORY_STYLES[category]
-    elif category == CONFERENCE:
+    elif category == Uninteresting.CONFERENCE:
         return f"{get_style_for_category(ACADEMIA)} dim"
 
     for highlight_group in HIGHLIGHT_GROUPS:

@@ -76,11 +76,11 @@ def skype_cfg() -> DocCfg:
 
 @pytest.fixture
 def tweet_cfg() -> DocCfg:
-    return _doj_cfg(TWEET, author='Klippenstein')
+    return _doj_cfg(Neutral.TWEET, author='Klippenstein')
 
 @pytest.fixture
 def uninteresting_description() -> DocCfg:
-    return _doj_cfg(LEGAL, description=CVRA + " law stuff")
+    return _doj_cfg(Neutral.LEGAL, description=CVRA + " law stuff")
 
 
 def test_category_txt(blockchain_cap_cfg, empty_house_cfg, junk_doc_cfg, legal_cfg, skype_cfg, skype_author):
@@ -175,10 +175,10 @@ def test_academia(epstein_files):
 
 def test_books(epstein_files):
     book = epstein_files.get_id('010912', required_type=OtherFile)
-    assert book.config.category == BOOK
+    assert book.config.category == Uninteresting.BOOK
     assert book.config.complete_description == "book titled \"Free Growth and Other Surprises\" (draft) by Gordon Getty"
     book = epstein_files.get_id('018438', required_type=OtherFile)
-    assert book.config.category == BOOK
+    assert book.config.category == Uninteresting.BOOK
     assert book.config.complete_description == 'book titled "The S&M Feminist" by Clarisse Thorn'
 
 

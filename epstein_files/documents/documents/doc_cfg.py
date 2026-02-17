@@ -103,11 +103,11 @@ NON_METADATA_FIELDS = [
 CATEGORY_PREAMBLES = {
     Uninteresting.BOOK: 'book titled',
     Interesting.LETTER: 'letter',
-    Neutral.PRESS_RELEASE: Neutral.PRESS_RELEASE.replace('_', ' '),
+    Neutral.PRESSER: Neutral.PRESSER.replace('_', ' '),
     Interesting.REPUTATION: REPUTATION_MGMT,
     Interesting.RESUMÉ: 'professional resumé',
     Neutral.SKYPE_LOG: Neutral.SKYPE_LOG.replace('_', ' '),
-    Neutral.TWEET: TWEET.title(),
+    Neutral.TWEET: Neutral.TWEET.title(),
 }
 
 
@@ -184,10 +184,10 @@ class DocCfg:
         elif self.category == Category.PRESS_RELEASE:
             description = join_truthy(preamble, self.description, ' announcing ')  # note reversed args
             description = join_truthy(self.author, description)
-        elif self.category == Category.REPUTATION or (self.category == Category.LEGAL and 'v.' in self.author_str):
+        elif self.category == Category.REPUTATION or (self.category == Neutral.LEGAL and 'v.' in self.author_str):
             author_separator = ': '
         elif self.category in [Interesting.RESUMÉ, Category.TWEET]:
-            preamble_separator = 'of' if self.category == RESUME else 'by'
+            preamble_separator = 'of' if self.category == Interesting.RESUMÉ else 'by'
             preamble_separator = preamble_separator.center(3, ' ')
         elif self.category == Category.SKYPE_LOG:
             preamble_separator = ' of conversation with '

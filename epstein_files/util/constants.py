@@ -1830,7 +1830,7 @@ OTHER_FILES_FINANCE = [
     DocCfg(id='024817', description="Cowen's CBD / Cannabis report", date='2019-02-25', is_interesting=True),
     DocCfg(
         id='012048',
-        category=Neutral.PRESS_RELEASE,
+        category=Neutral.PRESSER,
         description=f"Rockefeller Partners with Gregory J. Fleming to Create Independent Financial Services Firm and other articles"
     ),
 ]
@@ -1876,7 +1876,7 @@ OTHER_FILES_PROPERTY = [
     DocCfg(
         id='026759',
         author='Great Bay Condominium Owners Association',
-        category=Neutral.PRESS_RELEASE,
+        category=Neutral.PRESSER,
         description=f'Hurricane Irma damage',
         date='2017-09-13',
         is_interesting=False,
@@ -2081,8 +2081,8 @@ OTHER_FILES_FLIGHT_LOG = [
 ]
 
 OTHER_FILES_MISC = [
-    DocCfg(id='029326', category=Neutral.PRESS_RELEASE, author=EPSTEIN_FOUNDATION, date='2013-02-15'),
-    DocCfg(id='026565', category=Neutral.PRESS_RELEASE, author=EPSTEIN_FOUNDATION, comment=f'maybe a draft of 029326', date='2013-02-15'),
+    DocCfg(id='029326', category=Neutral.PRESSER, author=EPSTEIN_FOUNDATION, date='2013-02-15'),
+    DocCfg(id='026565', category=Neutral.PRESSER, author=EPSTEIN_FOUNDATION, comment=f'maybe a draft of 029326', date='2013-02-15'),
     DocCfg(id='022494', author='DOJ', description=f'Foreign Corrupt Practices Act (FCPA) Resource Guide'),
     DocCfg(id='023096', author=EPSTEIN_FOUNDATION, description=f'blog post', date='2012-11-15'),
     DocCfg(id='027071', author=FEMALE_HEALTH_COMPANY, description=f"brochure requesting donations for female condoms in Uganda"),
@@ -2104,7 +2104,7 @@ OTHER_FILES_MISC = [
     ),
     DocCfg(
         id='033338',
-        category=Neutral.PRESS_RELEASE,
+        category=Neutral.PRESSER,
         date='2000-06-07',
         description=f"end of {DONALD_TRUMP} & {NICHOLAS_RIBIS} working relationship at Trump's casino",
     ),

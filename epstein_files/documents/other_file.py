@@ -14,6 +14,7 @@ from rich.table import Table
 from rich.text import Text
 
 from epstein_files.documents.document import CLOSE_PROPERTIES_CHAR, WHITESPACE_REGEX, Document
+from epstein_files.documents.documents.categories import Interesting, Uninteresting
 from epstein_files.documents.documents.doc_cfg import DocCfg, Metadata
 from epstein_files.documents.documents.file_info import FileInfo
 from epstein_files.output.highlight_config import QUESTION_MARKS_TXT, styled_category
@@ -114,7 +115,7 @@ class OtherFile(Document):
         cfg = None
 
         if VI_DAILY_NEWS_REGEX.search(self.text):
-            cfg = self._build_cfg(category=ARTICLE, author=VI_DAILY_NEWS)
+            cfg = self._build_cfg(category=Uninteresting.ARTICLE, author=VI_DAILY_NEWS)
         elif self.lines[0].lower() == 'valuation report':
             try:
                 self.timestamp = parse(self.lines[1])
@@ -127,7 +128,7 @@ class OtherFile(Document):
         elif VALAR_CAPITAL_CALL_REGEX.search(self.text):
             cfg = self._build_valar_cfg('requesting money previously promised by Epstein to invest in a new opportunity')
         elif (case_match := LEGAL_FILING_REGEX.search(self.text)):
-            cfg = self._build_cfg(category=LEGAL, description=f"legal filing in case {case_match.group(1)}")
+            cfg = self._build_cfg(category=Neutral.LEGAL, description=f"legal filing in case {case_match.group(1)}")
 
         if cfg:
             self.warn(f"Built synthetic cfg: {cfg.complete_description}")
@@ -140,7 +141,7 @@ class OtherFile(Document):
 
     def _build_valar_cfg(self, description: str = '') -> DocCfg:
         return self._build_cfg(
-            category=CRYPTO,
+            category=Interesting.CRYPTO,  # TODO: not really crypto?
             author=VALAR_VENTURES,
             description=description or f"is a {PETER_THIEL} fintech fund"
         )
