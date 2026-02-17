@@ -16,53 +16,38 @@ from rich.table import Table
 from rich.text import Text
 from rich.theme import Theme
 
-from epstein_files.output.demi_table import build_demi_table
 from epstein_files.output.epstein_highlighter import EpsteinHighlighter
-from epstein_files.output.highlight_config import HIGHLIGHT_GROUPS
+from epstein_files.output.highlight_config import HIGHLIGHT_GROUPS, HIGHLIGHTED_NAMES
 from epstein_files.util.constant.html import CONSOLE_HTML_FORMAT, HTML_TERMINAL_THEME, PAGE_TITLE
 from epstein_files.util.constant.names import UNKNOWN
-from epstein_files.util.constant.output_files import GH_PROJECT_URL, SITE_DESCRIPTIONS, parenthesize
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constant.urls import *
-from epstein_files.util.constants import HEADER_ABBREVIATIONS
 from epstein_files.util.env import args
 from epstein_files.util.helpers.data_helpers import json_safe, sort_dict, without_falsey
 from epstein_files.util.helpers.file_helper import log_file_write
 from epstein_files.util.helpers.link_helper import link_markup, link_text_obj
-from epstein_files.util.helpers.string_helper import quote
 from epstein_files.util.logging import logger
 
-TITLE_WIDTH = 50
 SUBTITLE_WIDTH = 110
-NUM_COLOR_KEY_COLS = 6
 NA_TXT = Text(NA, style='dim')
 SKIPPED_FILE_MSG_PADDING = (0, 0, 0, 4)
 SUBTITLE_PADDING = (2, 0, 1, 0)
 GREY_NUMBERS = [58, 39, 39, 35, 30, 27, 23, 23, 19, 19, 15, 15, 15]
 VALID_GREYS = [0, 3, 7, 11, 15, 19, 23, 27, 30, 35, 37, 39, 42, 46, 50, 53, 54, 58, 62, 63, 66, 69, 70, 74, 78, 82, 84, 85, 89, 93]
 
-DOJ_PAGE_LINK_MSG = 'WIP page with documents from the Epstein Files Transparency Act'
-SITE_GLOSSARY_MSG = f"These pages include the following views of the underlying collection of Epstein's files:"
-YOU_ARE_HERE = Text('«').append('you are here', style='bold khaki1 blink').append('»')
-
 DATASET_DESCRIPTION_STYLE = 'gray74'
 INFO_STYLE = 'white dim italic'
 KEY_STYLE = 'dim'
 KEY_STYLE_ALT = 'light_steel_blue3'
 LAST_TIMESTAMP_STYLE = 'wheat4'
-OTHER_PAGE_MSG_STYLE = 'gray78 dim'
 PATH_STYLE = 'deep_pink3'
 STR_VAL_STYLE = 'cornsilk1 italic'
 STR_VAL_STYLE_ALT = 'light_yellow3 italic'
-SECTION_HEADER_STYLE = 'bold white on blue3'
-SOCIAL_MEDIA_LINK_STYLE = 'pale_turquoise4'
-SUBSTACK_POST_LINK_STYLE = 'bright_cyan'
 SYMBOL_STYLE = 'grey70'
 TABLE_BORDER_STYLE = 'grey46'
 TABLE_TITLE_STYLE = f"gray54 italic"
-TITLE_STYLE = 'black on bright_white bold'
-
-OTHER_SITE_LINK_STYLE = 'dark_goldenrod'
+TITLE_STYLE = 'black on white' # color(103)'
+WARNING_STYLE = 'bold black on white'
 
 DEFAULT_TABLE_KWARGS = {
     'border_style': TABLE_BORDER_STYLE,
@@ -73,7 +58,7 @@ DEFAULT_TABLE_KWARGS = {
 
 HIGHLIGHTED_GROUP_COLOR_KEYS = [
     Text(highlight_group.label.replace('_', ' '), style=highlight_group.style)
-    for highlight_group in sorted(HIGHLIGHT_GROUPS, key=lambda hg: hg.label)
+    for highlight_group in sorted(HIGHLIGHTED_NAMES, key=lambda hg: hg.label)
 ]
 
 THEME_STYLES = {
@@ -219,7 +204,7 @@ def print_subtitle_panel(msg: str, style: str = 'black on white') -> None:
     print_centered(Padding(panel, SUBTITLE_PADDING))
 
 
-def print_starred_header(msg: str, num_stars: int = 7, num_spaces: int = 2, style: str = TITLE_STYLE) -> None:
+def print_starred_header(msg: str, num_stars: int = 7, num_spaces: int = 2, style: str = WARNING_STYLE) -> None:
     stars = '*' * num_stars
     spaces = ' ' * num_spaces
     msg = f"{spaces}{stars} {msg} {stars}{spaces}"

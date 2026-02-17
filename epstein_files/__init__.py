@@ -24,10 +24,10 @@ from epstein_files.documents.messenger_log import MessengerLog
 from epstein_files.documents.other_file import OtherFile
 from epstein_files.output.output import (print_doj_files, print_emails_section, print_json_files,
      print_stats, print_other_files_section, print_text_messages_section, print_email_timeline,
-     print_emailers_info, print_json_metadata, write_urls)
+     print_emailers_info, print_json_metadata, show_urls)
 from epstein_files.output.rich import (build_highlighter, console, highlighter,
-     print_json, print_subtitle_panel, write_html)
-from epstein_files.output.title_page import print_color_key, print_section_links, print_title_page_header, print_title_page_tables
+     print_json, print_subtitle_panel, styled_dict, write_html)
+from epstein_files.output.title_page import print_color_key, print_title_page_top, print_title_page_bottom
 from epstein_files.util.constant.output_files import SiteType, make_clean
 from epstein_files.util.constant.strings import HOUSE_OVERSIGHT_NOV_2025_ID_REGEX
 from epstein_files.util.env import args
@@ -39,9 +39,12 @@ from epstein_files.util.timer import Timer
 
 
 def generate_html() -> None:
-    if args.make_clean:
-        make_clean()
-        write_urls()
+    if args.make_clean or args.show_urls:
+        if args.make_clean:
+            make_clean()
+        if args.show_urls:
+            show_urls()
+
         exit()
 
     timer = Timer()
@@ -57,12 +60,12 @@ def generate_html() -> None:
         print_json_files(epstein_files)
         exit()
 
-    print_title_page_header()
+    print_title_page_top()
 
-    if args.email_timeline:
+    if args.email_timeline or args.output_word_count:
         print_color_key()
     else:
-        print_title_page_tables(epstein_files)
+        print_title_page_bottom(epstein_files)
 
     if args.colors_only:
         exit()
@@ -85,6 +88,10 @@ def generate_html() -> None:
     if args.output_other:
         printed_files = print_other_files_section(epstein_files)
         timer.log_section_complete('OtherFile', epstein_files.other_files, printed_files)
+
+    if args.output_word_count:
+        write_word_counts_html()
+        timer.print_at_checkpoint(f"Finished counting words")
 
     write_html(args.build)
     logger.warning(f"Total time: {timer.seconds_since_start_str()}")
@@ -200,7 +207,3 @@ def epstein_show():
             check_output(['open', str(doc.file_path)])
         if args.open_url:
             check_output(['open', str(doc.external_url)])
-
-
-def epstein_word_count() -> None:
-    write_word_counts_html()

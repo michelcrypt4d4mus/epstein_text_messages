@@ -53,7 +53,7 @@ epstein_show --raw 030999
 epstein_show HOUSE_OVERSIGHT_030999
 
 # Count words used by Epstein and Bannon
-epstein_word_count --name 'Jeffrey Epstein' --name 'Steve Bannon'
+epstein_show --output-word-count --name 'Jeffrey Epstein' --name 'Steve Bannon'
 
 # Diff two epstein files after all the cleanup (stripping BOMs, matching newline chars, etc):
 epstein_diff 030999 020442

@@ -7,10 +7,10 @@ from inflection import parameterize
 from rich.text import Text
 
 from epstein_files.util.env import args
-from epstein_files.util.constant.output_files import SiteType, link_markup
+from epstein_files.util.constant.output_files import SiteType
 from epstein_files.util.constant.strings import TEXT_LINK
 from epstein_files.util.helpers.file_helper import coerce_file_stem
-from epstein_files.util.helpers.link_helper import link_text_obj
+from epstein_files.util.helpers.link_helper import link_markup, link_text_obj
 from epstein_files.util.helpers.string_helper import remove_question_marks
 
 # External site names
@@ -54,9 +54,9 @@ DOC_LINK_BASE_URLS: dict[ExternalSite, str] = {
 EXTERNAL_LINK_MSGS = {
     JMAIL_URL: 'read His Emails via Gmail interface',
     EPSTEIN_DOCS_URL: 'searchable archive',
-    EPSTEINIFY_URL: 'raw document images',
-    EPSTEIN_WEB_URL: 'character summaries',
     EPSTEIN_MEDIA_URL: 'raw document images',
+    EPSTEINIFY_URL: 'raw images alt',
+    EPSTEIN_WEB_URL: 'biographies',
 }
 
 # Misc
@@ -87,7 +87,6 @@ rollcall_doc_url = lambda file_stem: build_doc_url(DOC_LINK_BASE_URLS[ROLLCALL],
 # Jmail
 search_jmail_url = lambda txt: f"{JMAIL_URL}/search?q={urllib.parse.quote(txt)}"
 search_twitter_url = lambda txt: f"https://x.com/search?q={urllib.parse.quote(txt)}&src=typed_query&f=live"
-
 
 PERSON_LINK_BUILDERS: dict[ExternalSite, Callable[[str], str]] = {
     EPSTEIN_MEDIA: epstein_media_person_url,
@@ -158,7 +157,7 @@ THE_OTHER_PAGE_TXT = Text.from_markup(THE_OTHER_PAGE_MARKUP)
 #############################
 #  Internal sections links  #
 #############################
-SECTION_LINK_MSG = 'jump to different sections of this page'
+SECTION_LINK_MSG = 'jump to a different section of this page'
 TO_FROM = 'to/from'
 
 

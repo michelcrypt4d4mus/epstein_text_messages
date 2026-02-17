@@ -4,11 +4,9 @@
 set -e
 source .env
 
-
 CURRENT_BRANCH=$(git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/')
 PICKLE_ARG=$([[ $1 == '--pickled' ]] && echo "" || echo "--overwrite-pickle")
 GENERATE_CMD='epstein_generate --build --suppress-output'
-URLS_ENV=.urls.env
 
 if [ -n "$BASH_COLORS_PATH" ]; then
     source "$BASH_COLORS_PATH"
@@ -94,7 +92,7 @@ else
 fi
 
 print_deploy_step "Building word counts page..."
-epstein_word_count --build --suppress-output --width 125
+$GENERATE_CMD --output-word-count --width 125
 print_deploy_step "Building JSON metadata page..."
 $GENERATE_CMD --json-metadata
 print_deploy_step "Building JSON files data..."
@@ -108,16 +106,5 @@ git commit -am"Update HTML"
 git push origin gh_pages --quiet
 git checkout master
 
-source $URLS_ENV
-echo -e ""
-cat $URLS_ENV
-echo -e "\n\n"
-# echo -e ""
-# print_msg "                texts URL:" "$TEXT_MSGS_URL"
-# print_msg "               emails URL:" "$ALL_EMAILS_URL"
-# print_msg " chronological emails URL:" "$CHRONOLOGICAL_EMAILS_URL"
-# print_msg "          word counts URL:" "$WORD_COUNT_URL"
-# print_msg "        json metadata URL:" "$JSON_METADATA_URL"
-# print_msg "           json files URL:" "$JSON_FILES_URL"
-# print_msg "       DOJ 2026 files URL:" "$DOJ_2026_URL"
-# echo -e "\n\n"
+print_deploy_step "Deployed URLs:"
+epstein_generate --show-urls

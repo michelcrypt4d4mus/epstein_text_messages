@@ -11,12 +11,9 @@ from rich.text import Text
 from epstein_files.documents.documents.search_result import MatchedLine, SearchResult
 from epstein_files.documents.emails.emailers import cleanup_str
 from epstein_files.epstein_files import EpsteinFiles
-from epstein_files.output.rich import (console, highlighter, print_centered,
-     print_subtitle_panel, print_starred_header, write_html)
-from epstein_files.output.title_page import print_color_key, print_page_title
+from epstein_files.output.rich import console, highlighter, print_centered, print_subtitle_panel
 from epstein_files.util.constant.common_words import COMMON_WORDS_LIST, COMMON_WORDS, UNSINGULARIZABLE_WORDS
 from epstein_files.util.constant.names import OTHER_NAMES
-from epstein_files.util.constant.output_files import SiteType
 from epstein_files.util.env import args
 from epstein_files.util.helpers.data_helpers import ALL_NAMES, flatten, sort_dict
 from epstein_files.util.logging import logger
@@ -231,17 +228,12 @@ def write_word_counts_html() -> None:
             for word in msg.text.split():
                 word_count.tally_word(word, SearchResult(imessage_log, [MatchedLine(msg.text, i)]))
 
-    print_page_title(expand=False)
-    print_starred_header(f"Most Common Words in {len(emails):,} Emails and {len(epstein_files.imessage_logs)} iMessage Logs")
+    print_subtitle_panel(f"Most Common Words in {len(emails):,} Emails and {len(epstein_files.imessage_logs)} iMessage Logs")
     print_centered(f"(excluding {len(COMMON_WORDS_LIST)} particularly common words at bottom)", style='dim')
-    console.line()
-    print_color_key()
     console.line()
     console.print(word_count)
     print_subtitle_panel(f"{len(COMMON_WORDS_LIST):,} Excluded Words")
     console.print(', '.join(COMMON_WORDS_LIST), highlight=False)
-    write_html(SiteType.build_path(SiteType.WORD_COUNT) if args.build else None)
-    timer.print_at_checkpoint(f"Finished counting words")
 
 
 def _word_style(word: str | None) -> str:

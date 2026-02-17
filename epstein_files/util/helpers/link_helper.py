@@ -9,7 +9,7 @@ from epstein_files.util.constant.strings import ARCHIVE_LINK_COLOR
 
 def link_markup(
     url: str,
-    link_text: str | None = None,
+    link_text: str = '',
     style: str | None = ARCHIVE_LINK_COLOR,
     underline: bool = True
 ) -> str:
@@ -18,5 +18,5 @@ def link_markup(
     return (f"[{style}][link={url}]{link_text}[/link][/{style}]")
 
 
-def link_text_obj(url: str, link_text: str | None = None, style: str = ARCHIVE_LINK_COLOR, parentheses: bool = False) -> Text:
+def link_text_obj(url: str, link_text: str = '', style: str = ARCHIVE_LINK_COLOR) -> Text:
     return Text.from_markup(link_markup(url, link_text, style))

@@ -8,7 +8,7 @@ from typing import Self
 from rich.markup import escape
 from rich.text import Text
 
-from epstein_files.util.helpers.link_helper import link_markup, link_text_obj
+from epstein_files.util.helpers.link_helper import link_text_obj
 from epstein_files.util.logging import logger
 from epstein_files.util.constant.strings import AUX_SITE_LINK_STYLE, DOJ_2026_TRANCHE, EPSTEIN_FILES_NOV_2025, HOUSE_OVERSIGHT_TRANCHE
 
@@ -35,6 +35,14 @@ class SiteType(StrEnum):
     OTHER_FILES_TABLE = auto()
     TEXT_MESSAGES = auto()
     WORD_COUNT = auto()
+
+    @classmethod
+    def all_urls(cls) -> dict[Self, str]:
+        return {site_type: cls.get_url(site_type) for site_type in cls}
+
+    @classmethod
+    def all_links(cls) -> dict['SiteType', Text]:
+        return {site_type: SiteType.link_txt(site_type) for site_type in SITE_DESCRIPTIONS.keys()}
 
     @classmethod
     def build_path(cls, site_type: Self) -> Path:
