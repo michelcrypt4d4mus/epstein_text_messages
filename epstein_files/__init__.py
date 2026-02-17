@@ -25,9 +25,10 @@ from epstein_files.documents.other_file import OtherFile
 from epstein_files.output.output import (print_doj_files, print_emails_section, print_json_files,
      print_stats, print_other_files_section, print_text_messages_section, print_email_timeline,
      print_emailers_info, print_json_metadata, write_urls)
-from epstein_files.output.rich import (build_highlighter, cfg_table, console, highlighter, print_color_key,
-     print_json, print_title_page_header, print_title_page_tables, print_subtitle_panel, styled_key_value, write_html)
-from epstein_files.util.constant.output_files import make_clean
+from epstein_files.output.rich import (build_highlighter, console, highlighter,
+     print_json, print_subtitle_panel, write_html)
+from epstein_files.output.title_page import print_color_key, print_section_links, print_title_page_header, print_title_page_tables
+from epstein_files.util.constant.output_files import SiteType, make_clean
 from epstein_files.util.constant.strings import HOUSE_OVERSIGHT_NOV_2025_ID_REGEX
 from epstein_files.util.env import args
 from epstein_files.util.helpers.data_helpers import flatten
