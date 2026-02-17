@@ -14,20 +14,17 @@ from rich.text import Text
 from epstein_files.output.demi_table import build_demi_table
 from epstein_files.output.rich import *
 from epstein_files.util.constant.names import UNKNOWN
-from epstein_files.util.constant.output_files import GH_PROJECT_URL, SITE_DESCRIPTIONS, parenthesize
+from epstein_files.util.constant.output_files import GH_PROJECT_URL
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constant.urls import *
 from epstein_files.util.constants import HEADER_ABBREVIATIONS
 from epstein_files.util.env import args
-from epstein_files.util.helpers.link_helper import link_markup, link_text_obj
+from epstein_files.util.helpers.link_helper import link_markup, link_text_obj, parenthesize
 from epstein_files.util.logging import logger
 
 TITLE_WIDTH = 50
 SUBTITLE_WIDTH = 110
 NUM_COLOR_KEY_COLS = 6
-
-SITE_GLOSSARY_MSG = f"The following views of the underlying selection of Epstein Files are available:"
-YOU_ARE_HERE = Text('«').append('you are here', style='bold khaki1 blink').append('»')
 
 DATASET_DESCRIPTION_STYLE = 'gray74'
 OTHER_PAGE_MSG_STYLE = 'gray78 dim'
@@ -38,10 +35,18 @@ SECTION_HEADER_STYLE = 'bold black on color(146)'
 SOCIAL_MEDIA_LINK_STYLE = 'pale_turquoise4'
 SUBSTACK_POST_LINK_STYLE = 'bright_cyan'
 
+SITE_GLOSSARY_MSG = f"The following views of the underlying selection of Epstein Files are available:"
+YOU_ARE_HERE = Text('«').append('you are here', style='bold khaki1 blink').append('»')
+
+# label of the HighlightedNames objects colors with the style of that same HighlightedNames
+COLOR_KEYS = [
+    Text(highlight_group.label.replace('_', ' '), style=highlight_group.style)
+    for highlight_group in sorted(HIGHLIGHTED_NAMES, key=lambda hg: hg.label)
+]
 
 def print_color_key() -> None:
     color_table = build_table('Rough Guide to Highlighted Colors', show_header=False)
-    num_colors = len(HIGHLIGHTED_GROUP_COLOR_KEYS)
+    num_colors = len(COLOR_KEYS)
     row_number = 0
 
     for i in range(0, NUM_COLOR_KEY_COLS):
@@ -49,7 +54,7 @@ def print_color_key() -> None:
 
     while (row_number * NUM_COLOR_KEY_COLS) < num_colors:
         idx = row_number * NUM_COLOR_KEY_COLS
-        color_table.add_row(*HIGHLIGHTED_GROUP_COLOR_KEYS[idx:(idx + NUM_COLOR_KEY_COLS)])
+        color_table.add_row(*COLOR_KEYS[idx:(idx + NUM_COLOR_KEY_COLS)])
         row_number += 1
 
     print_centered(vertically_pad(color_table))
@@ -131,6 +136,7 @@ def print_title_page_bottom(epstein_files: 'EpsteinFiles') -> None:
     print_centered(f"(thanks to {link_markup('https://x.com/ImDrinknWyn', '@ImDrinknWyn', 'dodger_blue3')} + others for help attributing redacted emails)")
     print_centered_link(SiteType.get_url(SiteType.JSON_METADATA), "(explanations of author attributions)", style='magenta')
     _print_external_links()
+
 
 def _bulleted_site_link(site_type: SiteType, link: Text) -> Text:
     you_are_here = YOU_ARE_HERE if site_type == args._site_type else ''

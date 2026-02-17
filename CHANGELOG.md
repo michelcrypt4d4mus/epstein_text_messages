@@ -1,7 +1,6 @@
 # NEXT RELEASE
 * site index at top that cross links all sites
 * internal section links on `CURATED` page
-* lower `DEFAULT_WIDTH` from 155 to 140
 * `Category` enum
 
 # 1.6.0

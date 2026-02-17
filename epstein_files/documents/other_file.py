@@ -121,7 +121,7 @@ class OtherFile(Document):
             except Exception as e:
                 self.warn(f"Failed to parse valuation report date from {self.lines[0:2]}")
 
-            cfg = self._build_cfg(category=BUSINESS, description="valuations of Epstein's investments", is_interesting=True)
+            cfg = self._build_cfg(category=Neutral.FINANCE, description="valuations of Epstein's investments", is_interesting=True)
         elif has_line_starting_with(self.text, [VALAR_GLOBAL_FUND, VALAR_VENTURES], 2):
             cfg = self._build_valar_cfg()
         elif VALAR_CAPITAL_CALL_REGEX.search(self.text):
@@ -130,7 +130,7 @@ class OtherFile(Document):
             cfg = self._build_cfg(category=LEGAL, description=f"legal filing in case {case_match.group(1)}")
 
         if cfg:
-            self.warn(f"Built synthetic cfg: {cfg}")
+            self.warn(f"Built synthetic cfg: {cfg.complete_description}")
             type(self).num_synthetic_cfgs_created += 1
 
         return cfg

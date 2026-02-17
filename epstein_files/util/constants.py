@@ -1166,13 +1166,13 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA02731490', author=USANYS, recipients=[USANYS], author_uncertain=True),
     EmailCfg(id='EFTA02731477', author=USANYS, recipients=[USANYS], author_uncertain=True),
     EmailCfg(id='EFTA02731660', author=USANYS, recipients=[USANYS], author_uncertain=True),
+    EmailCfg(id='EFTA00039820', author=USANYS, recipients=[USANYS], author_uncertain=True),
     EmailCfg(id='EFTA02731638', author=USANYS, recipients=[USANYS], author_uncertain=True),
     EmailCfg(id='EFTA02731636', author=USANYS, recipients=[USANYS], author_uncertain=True),
     EmailCfg(id='EFTA02731637', author=USANYS, recipients=[USANYS], author_uncertain=True),
     EmailCfg(id='EFTA02731659', author=USANYS, recipients=[USANYS], author_uncertain=True),
     EmailCfg(id='EFTA02731781', author=USANYS, recipients=[USANYS], author_uncertain=True),
     EmailCfg(id='EFTA02731774', author=USANYS, recipients=[USANYS], author_uncertain=True),
-    EmailCfg(id='EFTA02731754', author=USANYS, recipients=[USANYS], date='2024-03-06T23:24:00', author_uncertain=True),
     EmailCfg(id='EFTA02731724', author=USANYS, recipients=[USANYS], author_uncertain=True),
     EmailCfg(id='EFTA02731771', author=USANYS, recipients=[USANYS], author_uncertain=True),
     EmailCfg(id='EFTA02731486', author=USANYS, recipients=[USANYS], author_uncertain=True),
@@ -1185,6 +1185,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA02731484', author=USANYS, recipients=[USANYS], author_uncertain=True),
     EmailCfg(id='EFTA02731757', author=USANYS, recipients=[USANYS], author_uncertain=True),
     EmailCfg(id='EFTA02731623', author=USANYS, recipients=[USANYS], author_uncertain=True),
+    EmailCfg(id='EFTA02731754', author=USANYS, recipients=[USANYS], date='2024-03-06T23:24:00', author_uncertain=True),
     EmailCfg(id='EFTA02731732', author=USANYS, recipients=[USANYS], date='2024-03-06T12:21:00', author_uncertain=True),
     EmailCfg(id='EFTA02731528', author=USANYS, recipients=[USANYS], date='2021-05-06 09:39:15', author_uncertain=True),
     EmailCfg(id='EFTA02731475', author=USANYS, recipients=[USANYS], date='2023-05-31T20:53:00', author_uncertain=True),
@@ -1849,7 +1850,7 @@ OTHER_FILES_MONEY = [
     DocCfg(id='024003', description=f"New Leaf Ventures ($375 million biotech fund) private placement memorandum"),
     # DOJ files
     DocCfg(id='EFTA01087311', description=f'{LEON_BLACK} Family Partners cash projections'),
-    DocCfg(id='EFTA00007781', description='paychecks signed by Epstein deposited at Colonial Bank'),
+    DocCfg(id='EFTA00007781', description='paychecks signed by Epstein deposited at Colonial Bank', date='2005-08-12'),
     DocCfg(id='EFTA00811866', description="list of Epstein's bank accounts"),
     DocCfg(id='EFTA01273102', description=f"payment from Epstein to {RENATA_BOLOTOVA}'s father's account at Sberbank"),
     DocCfg(id='EFTA00000476', replace_text_with='photo of JEFFREY EPSTEIN CASH DISBURSEMENTS for the month 2006-09'),
@@ -2198,7 +2199,7 @@ OTHER_FILES_CRYPTO = [
         description='A Blockchain-Based Approach to Health Information Exchange Networks',
     ),
     DocCfg(id='EFTA00797613', description='Alphabit crypto fund pitch deck', attached_to_email_id='EFTA00955063'),
-    DocCfg(id='EFTA00811666', description='asset valuations of Epstein\'s holdings, includes "Coinbase via grat"'),
+    DocCfg(id='EFTA00811666', description='asset valuations of Epstein\'s holdings, includes "Coinbase via grat"', date='2018-01-31'),
     DocCfg(id='EFTA01088644', author=BLOCKCHAIN_CAPITAL, description="pitch deck", date='2015-10-01'),
     DocCfg(id='EFTA00604942', author=BLOCKCHAIN_CAPITAL, description="Investor Update", date='2015-10-01'),
     # Coinbase
@@ -2221,7 +2222,7 @@ OTHER_FILES_CRYPTO = [
     DocCfg(id='EFTA01093509', author=CRYPTO_CURRENCY_PARTNERS_II, description=f"partnership draft", truncate_to=MAX_CHARS_TO_PRINT * 2),
     # Crypto PR Lab
     DocCfg(id='EFTA00295126', author=CRYPTO_PR_LAB, description="accounting statement"),
-    DocCfg(id='EFTA01299820', author=CRYPTO_PR_LAB, description="bank transfer"),
+    DocCfg(id='EFTA01299820', author=CRYPTO_PR_LAB, description="bank transfer", date='2018-12-18'),
     DocCfg(id='EFTA00309271', author=CRYPTO_PR_LAB, description='financial statement'),
     DocCfg(id='EFTA01613759', author=CRYPTO_PR_LAB, description="letter of intent of acquisitionfrom Transform Group"),
     DocCfg(id='EFTA01613762', author=CRYPTO_PR_LAB, description=f"WhatsApp convo with {MARIA_PRUSAKOVA}"),
@@ -2331,3 +2332,10 @@ def check_no_overlapping_configs():
 
 
 check_no_overlapping_configs()
+
+
+# TODO: These have UNKNOWN recipient so they currently get printed but we should configure it so they don't
+UNINTERESTING_EMAIL_IDS = [
+    'EFTA00039894',
+    'EFTA00039878',
+]

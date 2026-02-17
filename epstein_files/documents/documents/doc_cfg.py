@@ -103,10 +103,10 @@ NON_METADATA_FIELDS = [
 CATEGORY_PREAMBLES = {
     Uninteresting.BOOK: 'book titled',
     Interesting.LETTER: 'letter',
-    Neutral.PRESS_RELEASE: PRESS_RELEASE,
+    Neutral.PRESS_RELEASE: Neutral.PRESS_RELEASE.replace('_', ' '),
     Interesting.REPUTATION: REPUTATION_MGMT,
     Interesting.RESUME: 'professional resumé',
-    Neutral.SKYPE_LOG: Neutral.SKYPE_LOG,
+    Neutral.SKYPE_LOG: Neutral.SKYPE_LOG.replace('_', ' '),
     Neutral.TWEET: TWEET.title(),
 }
 

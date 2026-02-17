@@ -256,10 +256,7 @@ class DojFile(OtherFile):
     @property
     def preview_text(self) -> str:
         """Text at start of file stripped of newlinesfor display in tables and other cramped settings."""
-        if self.is_empty or self.is_bad_ocr:
-            return SINGLE_IMAGE_NO_TEXT
-        else:
-            return super().preview_text
+        return SINGLE_IMAGE_NO_TEXT if self.is_empty or self.is_bad_ocr else super().preview_text
 
     @property
     def timestamp_sort_key(self) -> tuple[datetime, str, int]:

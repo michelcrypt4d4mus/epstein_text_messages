@@ -18,14 +18,11 @@ from rich.theme import Theme
 
 from epstein_files.output.epstein_highlighter import EpsteinHighlighter
 from epstein_files.output.highlight_config import HIGHLIGHT_GROUPS, HIGHLIGHTED_NAMES
-from epstein_files.util.constant.html import CONSOLE_HTML_FORMAT, HTML_TERMINAL_THEME, PAGE_TITLE
-from epstein_files.util.constant.names import UNKNOWN
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constant.urls import *
 from epstein_files.util.env import args
-from epstein_files.util.helpers.data_helpers import json_safe, sort_dict, without_falsey
-from epstein_files.util.helpers.file_helper import log_file_write
-from epstein_files.util.helpers.link_helper import link_markup, link_text_obj
+from epstein_files.util.helpers.data_helpers import json_safe, sort_dict
+from epstein_files.util.helpers.link_helper import link_markup
 from epstein_files.util.logging import logger
 
 SUBTITLE_WIDTH = 110
@@ -46,7 +43,7 @@ STR_VAL_STYLE_ALT = 'light_yellow3 italic'
 SYMBOL_STYLE = 'grey70'
 TABLE_BORDER_STYLE = 'grey46'
 TABLE_TITLE_STYLE = f"gray54 italic"
-TITLE_STYLE = 'black on white' # color(103)'
+TITLE_STYLE = 'black on white'  # color(103)'
 WARNING_STYLE = 'bold black on white'
 
 DEFAULT_TABLE_KWARGS = {
@@ -55,11 +52,6 @@ DEFAULT_TABLE_KWARGS = {
     'header_style': "bold",
     'title_style': TABLE_TITLE_STYLE,
 }
-
-HIGHLIGHTED_GROUP_COLOR_KEYS = [
-    Text(highlight_group.label.replace('_', ' '), style=highlight_group.style)
-    for highlight_group in sorted(HIGHLIGHTED_NAMES, key=lambda hg: hg.label)
-]
 
 THEME_STYLES = {
     DEFAULT: 'wheat4',
@@ -199,23 +191,17 @@ def print_json(label: str, obj: object, skip_falsey: bool = False) -> None:
     console.line()
 
 
-def print_subtitle_panel(msg: str, style: str = 'black on white') -> None:
-    panel = Panel(Text.from_markup(msg, justify='center'), width=SUBTITLE_WIDTH, style=style)
-    print_centered(Padding(panel, SUBTITLE_PADDING))
-
-
 def print_starred_header(msg: str, num_stars: int = 7, num_spaces: int = 2, style: str = WARNING_STYLE) -> None:
+    """String like '  *** Title Msg ***  '."""
     stars = '*' * num_stars
     spaces = ' ' * num_spaces
     msg = f"{spaces}{stars} {msg} {stars}{spaces}"
     print_centered(wrap_in_markup_style(msg, style))
 
 
-def cfg_table(cfg: 'DocCfg') -> Padding:
-    props = cfg.important_props
-    props.pop('id')
-    props_table = styled_dict(props, sep=': ')
-    return Padding(indent_txt(props_table, 12), (0, 0, 1, 0))
+def print_subtitle_panel(msg: str, style: str = 'black on white') -> None:
+    panel = Panel(Text.from_markup(msg, justify='center'), width=SUBTITLE_WIDTH, style=style)
+    print_centered(Padding(panel, SUBTITLE_PADDING))
 
 
 def quote_txt(t: Text | str, try_double_quote_first: bool = False, style: str = '') -> Text:
@@ -318,20 +304,6 @@ def wrap_in_markup_style(msg: str, style: str | None = None) -> str:
         modifier = ''
 
     return msg
-
-
-def write_html(output_path: Path | None) -> None:
-    if not output_path:
-        logger.warning(f"Not writing HTML because args.build={args.build}.")
-        return
-
-    console.save_html(str(output_path), clear=False, code_format=CONSOLE_HTML_FORMAT, theme=HTML_TERMINAL_THEME)
-    log_file_write(output_path)
-
-    if args.write_txt:
-        txt_path = f"{output_path}.txt"
-        console.save_text(txt_path)
-        log_file_write(txt_path)
 
 
 if args.colors_only:
