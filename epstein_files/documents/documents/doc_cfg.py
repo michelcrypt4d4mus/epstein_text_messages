@@ -105,7 +105,7 @@ CATEGORY_PREAMBLES = {
     Interesting.LETTER: 'letter',
     Neutral.PRESS_RELEASE: Neutral.PRESS_RELEASE.replace('_', ' '),
     Interesting.REPUTATION: REPUTATION_MGMT,
-    Interesting.RESUME: 'professional resumé',
+    Interesting.RESUMÉ: 'professional resumé',
     Neutral.SKYPE_LOG: Neutral.SKYPE_LOG.replace('_', ' '),
     Neutral.TWEET: TWEET.title(),
 }
