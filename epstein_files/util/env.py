@@ -9,7 +9,7 @@ from epstein_files.util.constant.output_files import *
 from epstein_files.util.helpers.env_helpers import get_env_dir
 from epstein_files.util.logging import env_log_level, exit_with_error, logger, set_log_level
 
-DEFAULT_WIDTH = 140
+DEFAULT_WIDTH = 155
 DEFAULT_FILE = 'default_file'
 EPSTEIN_GENERATE = 'epstein_generate'
 HTML_SCRIPTS = [EPSTEIN_GENERATE]
