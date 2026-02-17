@@ -35,10 +35,12 @@ MID_TIMESTAMP = datetime(2007, 1, 1)
 LOG_INDENT = '\n         '
 PREVIEW_CHARS = int(580 * (1 if args.all_other_files else 1.5))
 TIMESTAMP_LOG_INDENT = f'{LOG_INDENT}    '
-VALAR_CAPITAL_CALL_REGEX = re.compile(r"^Valor .{,50} Capital Call", re.MULTILINE)
 VAST_HOUSE = 'vast house'  # Michael Wolff article draft about Epstein indicator
 
+# Inferred category config regexes
+FBI_FILE_REGEX = re.compile(r"^(UNCLASSIFIED\s+)?FEDERAL BUREAU OF INVESTIGATION")
 LEGAL_FILING_REGEX = re.compile(r"^Case (\d+:\d+-.*?) Doc")
+VALAR_CAPITAL_CALL_REGEX = re.compile(r"^Valor .{,50} Capital Call", re.MULTILINE)
 VI_DAILY_NEWS_REGEX = re.compile(r'virgin\s*is[kl][ai]nds\s*daily\s*news', re.IGNORECASE)
 
 SKIP_TIMESTAMP_EXTRACT = [
@@ -114,8 +116,16 @@ class OtherFile(Document):
         """Create a `DocCfg` object if there is none configured and the contents warrant it."""
         cfg = None
 
-        if VI_DAILY_NEWS_REGEX.search(self.text):
+        if FBI_FILE_REGEX.match(self.text):
+            cfg = self._build_cfg(category=Neutral.LEGAL, author=FBI, description='memorandum or report')
+        elif VI_DAILY_NEWS_REGEX.search(self.text):
             cfg = self._build_cfg(category=Uninteresting.ARTICLE, author=VI_DAILY_NEWS)
+        elif has_line_starting_with(self.text, [VALAR_GLOBAL_FUND, VALAR_VENTURES], 2):
+            cfg = self._build_valar_cfg()
+        elif VALAR_CAPITAL_CALL_REGEX.search(self.text):
+            cfg = self._build_valar_cfg('requesting money previously promised by Epstein to invest in a new opportunity')
+        elif (case_match := LEGAL_FILING_REGEX.search(self.text)):
+            cfg = self._build_cfg(category=Neutral.LEGAL, description=f"legal filing in case {case_match.group(1)}")
         elif self.lines[0].lower() == 'valuation report':
             try:
                 self.timestamp = parse(self.lines[1])
@@ -123,12 +133,6 @@ class OtherFile(Document):
                 self.warn(f"Failed to parse valuation report date from {self.lines[0:2]}")
 
             cfg = self._build_cfg(category=Neutral.FINANCE, description="valuations of Epstein's investments", is_interesting=True)
-        elif has_line_starting_with(self.text, [VALAR_GLOBAL_FUND, VALAR_VENTURES], 2):
-            cfg = self._build_valar_cfg()
-        elif VALAR_CAPITAL_CALL_REGEX.search(self.text):
-            cfg = self._build_valar_cfg('requesting money previously promised by Epstein to invest in a new opportunity')
-        elif (case_match := LEGAL_FILING_REGEX.search(self.text)):
-            cfg = self._build_cfg(category=Neutral.LEGAL, description=f"legal filing in case {case_match.group(1)}")
 
         if cfg:
             self.warn(f"Built synthetic cfg: {cfg.complete_description}")
