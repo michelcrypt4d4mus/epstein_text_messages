@@ -161,7 +161,7 @@ def join_texts(txts: Sequence[str | Text], join: str = ' ', encloser: str = '', 
     """Join rich.Text objs into one."""
     txt = Text('')
 
-    for i, _txt in enumerate(without_falsey(txts)):
+    for i, _txt in enumerate(txts):
         txt.append(join if i >= 1 else '').append(enclose(_txt, encloser, encloser_style))
 
     return txt

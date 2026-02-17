@@ -72,7 +72,8 @@ CONFIRMED_TEXTS_CONFIG = [
         id='027165',
         author=MELANIE_WALKER,
         author_reason='says "it\'s Melanie", also https://www.wired.com/story/jeffrey-epstein-claimed-intimate-knowledge-of-donald-trumps-views-in-texts-with-bill-gates-adviser/',
-        is_interesting=True
+        is_interesting=True,
+        comment='crypto health'
     ),
     TextCfg(id='027248', author=MELANIE_WALKER, author_reason='says "we met through Trump" which is confirmed by Melanie in 032803'),
     TextCfg(id='025429', author=STACEY_PLASKETT, author_reason='widely reported'),

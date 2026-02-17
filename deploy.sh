@@ -95,8 +95,8 @@ print_deploy_step "Building word counts page..."
 $GENERATE_CMD --output-word-count --width 125
 print_deploy_step "Building JSON metadata page..."
 $GENERATE_CMD --json-metadata
-print_deploy_step "Building JSON files data..."
-$GENERATE_CMD --json-files
+# print_deploy_step "Building JSON files data..."
+# $GENERATE_CMD --json-files
 print_deploy_step "Building DOJ 2026 files..."
 $GENERATE_CMD --output-doj-files --whole-file
 

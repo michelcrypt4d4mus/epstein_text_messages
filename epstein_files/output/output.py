@@ -11,9 +11,9 @@ from epstein_files.documents.email import Email
 from epstein_files.documents.messenger_log import MessengerLog
 from epstein_files.documents.other_file import FIRST_FEW_LINES, OtherFile
 from epstein_files.epstein_files import EpsteinFiles, count_by_month
-from epstein_files.output.title_page import print_color_key, print_other_page_link, print_section_header, print_section_links, print_section_summary_table
+from epstein_files.output.title_page import (print_color_key, print_other_page_link, print_section_header,
+     print_section_summary_table)
 from epstein_files.people.person import Person
-from epstein_files.util.constant import output_files
 from epstein_files.util.constant.html import *
 from epstein_files.util.constant.names import *
 from epstein_files.util.constant.output_files import EMAILERS_TABLE_PNG_PATH
@@ -63,11 +63,6 @@ DEFAULT_EMAILERS = [
     JEFFREY_EPSTEIN,
 ]
 
-INTERESTING_TEXT_IDS = [
-    '027275',  # "Crypto- Kerry- Qatar -sessions"
-    '027165',  # melaniee walker crypto health
-]
-
 
 def print_doj_files(epstein_files: EpsteinFiles) -> list[DojFile | Email]:
     """Doesn't print DojFiles that are actually Emails, that's handled in print_emails()."""
@@ -107,7 +102,7 @@ def print_email_timeline(epstein_files: EpsteinFiles) -> None:
 
 
 def print_emailers_info(epstein_files: EpsteinFiles) -> None:
-    """Print tbe summary table of everyone in the files to an image."""
+    """Print tbe summary table of everyone who sent or received an email to a .png file."""
     print_color_key()
     console.line()
     all_emailers = sorted(epstein_files.emailers, key=lambda person: person.sort_key)
@@ -136,7 +131,7 @@ def print_emailers_info(epstein_files: EpsteinFiles) -> None:
 
 
 def print_emails_section(epstein_files: EpsteinFiles) -> list[Email]:
-    """Returns emails that were printed (may contain dupes if printed for both author and recipient)."""
+    """Prints emails, returns emails that were printed (may return dupes if printed for both author and recipient)."""
     print_section_header(('Selections from ' if not args.all_emails else '') + 'His Emails')
     print_other_page_link(epstein_files)
     all_emailers = sorted(epstein_files.emailers, key=lambda person: person.earliest_email_at)
@@ -198,10 +193,11 @@ def print_emails_section(epstein_files: EpsteinFiles) -> list[Email]:
 
 
 def print_json_files(epstein_files: EpsteinFiles):
-    """Print all the JsonFile objects"""
+    """Print all the `JsonFile` objects to a unified JSON file."""
     if args.build:
         json_data = {jf.file_info.url_slug: jf.json_data() for jf in epstein_files.json_files}
-        build_path = SiteType.build_path('json_files')# SiteType.JSON_FILES)
+        # TODO: stopgap so this doesn't break but we're no longer building this file.
+        build_path = 'json_files.json' # SiteType.build_path('json_files')# SiteType.JSON_FILES)
 
         with open(build_path, 'wt') as f:
             f.write(json.dumps(json_data, sort_keys=True))
@@ -214,6 +210,7 @@ def print_json_files(epstein_files: EpsteinFiles):
 
 
 def print_json_metadata(epstein_files: EpsteinFiles) -> None:
+    """Print all our `DocCfg` and derived info about authorship etc."""
     json_str = epstein_files.json_metadata()
 
     if args.build:
@@ -224,20 +221,6 @@ def print_json_metadata(epstein_files: EpsteinFiles) -> None:
             log_file_write(build_path)
     else:
         console.print_json(json_str, indent=4, sort_keys=True)
-
-
-def print_stats(epstein_files: EpsteinFiles) -> None:
-    console.line(5)
-    console.print(Panel('JSON Stats Dump', expand=True, style='reverse bold'), '\n')
-    print_json(f"MessengerLog Sender Counts", MessengerLog.count_authors(epstein_files.imessage_logs), skip_falsey=True)
-    print_json(f"Email Author Counts", epstein_files.email_author_counts(), skip_falsey=True)
-    print_json(f"Email Recipient Counts", epstein_files.email_recipient_counts(), skip_falsey=True)
-    print_json("Email signature_substitution_countss", epstein_files.email_signature_substitution_counts(), skip_falsey=True)
-    print_json("email_author_device_signatures", dict_sets_to_lists(epstein_files.email_authors_to_device_signatures()))
-    print_json("email_sent_from_devices", dict_sets_to_lists(epstein_files.email_device_signatures_to_authors()))
-    print_json("unknown_recipient_ids", epstein_files.unknown_recipient_ids())
-    print_json("count_by_month", count_by_month(epstein_files.all_documents))
-    print_json("Interesting OtherFile IDs", sorted([f.file_id for f in epstein_files.interesting_other_files]))
 
 
 def print_other_files_section(epstein_files: EpsteinFiles) -> list[OtherFile]:
@@ -256,6 +239,21 @@ def print_other_files_section(epstein_files: EpsteinFiles) -> list[OtherFile]:
     print_section_summary_table(category_table)
     console.print(other_files_preview_table)
     return files
+
+
+def print_stats(epstein_files: EpsteinFiles) -> None:
+    """Used to generate fixture data for pytest."""
+    console.line(5)
+    console.print(Panel('JSON Stats Dump', expand=True, style='reverse bold'), '\n')
+    print_json(f"MessengerLog Sender Counts", MessengerLog.count_authors(epstein_files.imessage_logs), skip_falsey=True)
+    print_json(f"Email Author Counts", epstein_files.email_author_counts(), skip_falsey=True)
+    print_json(f"Email Recipient Counts", epstein_files.email_recipient_counts(), skip_falsey=True)
+    print_json("Email signature_substitution_countss", epstein_files.email_signature_substitution_counts(), skip_falsey=True)
+    print_json("email_author_device_signatures", dict_sets_to_lists(epstein_files.email_authors_to_device_signatures()))
+    print_json("email_sent_from_devices", dict_sets_to_lists(epstein_files.email_device_signatures_to_authors()))
+    print_json("unknown_recipient_ids", epstein_files.unknown_recipient_ids())
+    print_json("count_by_month", count_by_month(epstein_files.all_documents))
+    print_json("Interesting OtherFile IDs", sorted([f.file_id for f in epstein_files.interesting_other_files]))
 
 
 def print_text_messages_section(epstein_files: EpsteinFiles) -> list[MessengerLog]:

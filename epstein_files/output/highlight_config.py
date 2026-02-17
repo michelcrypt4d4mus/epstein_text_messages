@@ -6,7 +6,7 @@ from rich.text import Text
 
 from epstein_files.documents.documents.categories import CATEGORY_STYLES, CATEGORY_STYLE_MAPPING
 from epstein_files.documents.emails.constants import REPLY_REGEX, SENT_FROM_REGEX, XML_STRIPPED_MSG
-from epstein_files.output.highlighted_names import BaseHighlight, HighlightedNames, HighlightedText, ManualHighlight
+from epstein_files.output.highlighted_names import HighlightGroup, HighlightedNames, HighlightedText, ManualHighlight
 from epstein_files.people.contact import Contact
 from epstein_files.util.constant.names import *
 from epstein_files.util.constant.strings import *
@@ -29,7 +29,7 @@ VICTIM_COLOR = 'orchid1'
 debug_console = Console(color_system='256')
 
 
-HIGHLIGHT_GROUPS: Sequence[BaseHighlight] = [
+HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
     # This has to come first to get both stylings applied to the email subjects
     ManualHighlight(
         label='email_subject',
@@ -1918,7 +1918,7 @@ HIGHLIGHT_GROUPS: Sequence[BaseHighlight] = [
 HIGHLIGHTED_NAMES = [hg for hg in HIGHLIGHT_GROUPS if isinstance(hg, HighlightedNames)]
 
 
-def get_highlight_group_for_name(name: str | None) -> BaseHighlight | None:
+def get_highlight_group_for_name(name: str | None) -> HighlightGroup | None:
     if not name:
         return None
 
