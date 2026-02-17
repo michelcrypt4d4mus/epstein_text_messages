@@ -1,7 +1,6 @@
 from dataclasses import dataclass
 
 from rich.text import Text
-# from epstein_files.documents.document import type Document
 
 
 @dataclass
