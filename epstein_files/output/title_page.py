@@ -142,18 +142,14 @@ def print_title_page_header() -> None:
     max_link_len = max(len(link.plain) for link in links.values())
     num_link_indent_spaces = max(2, int((len(SITE_GLOSSARY_MSG) - max_link_len) / 2)) - 2
     sites_txt.append(indent_txt(join_texts(links_txts, '\n'), num_link_indent_spaces))
-
-    if args._site_type == SiteType.CURATED:
-        sites_panel_contents = Group(sites_txt, '\n', SECTION_LINKS_TABLE)
-    else:
-        sites_panel_contents = sites_txt
-
-    print_centered(Panel(sites_panel_contents, border_style='dim', padding=(1, 5)))
-
+    print_centered(Panel(sites_txt, border_style='dim', padding=(1, 5)))
     console.line()
     print_starred_header('Not All Epstein Files Are Here!', num_spaces=9 if args.all_emails else 6, num_stars=14)
     print_centered(f"This dataset includes everything from the {HOUSE_OVERSIGHT_TRANCHE}", style=DATASET_DESCRIPTION_STYLE)
     print_centered(f"as well as a curated selection of the {DOJ_2026_TRANCHE}.\n", style=DATASET_DESCRIPTION_STYLE)
+
+    if args._site_type == SiteType.CURATED:
+        print_section_links()
 
 
 def print_title_page_tables(epstein_files: 'EpsteinFiles') -> None:
