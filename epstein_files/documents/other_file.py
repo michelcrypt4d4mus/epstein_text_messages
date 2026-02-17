@@ -39,6 +39,7 @@ VAST_HOUSE = 'vast house'  # Michael Wolff article draft about Epstein indicator
 
 # Inferred category config regexes
 DEUTSCHE_SOUTHERN_REGEX = re.compile(r"^Deutsche Bank.*(SOUTHERN TRUST|RED HOOK QUARTER)", re.DOTALL)
+EVIDENCE_REGEX = re.compile(r"^ITEM\s+WAS\s+NOT\s+SCANNED")
 FBI_FILE_REGEX = re.compile(r"^(UNCLASSIFIED\s+)?FEDERAL BUREAU OF INVESTIGATION")
 SUBPOENA_REGEX = re.compile(r"GRAND JURY SUBPOENA")
 LEGAL_FILING_REGEX = re.compile(r"^Case (\d+:\d+-.*?) Doc")
@@ -121,6 +122,8 @@ class OtherFile(Document):
 
         if FBI_FILE_REGEX.match(self.text):
             cfg = self._build_cfg(category=Neutral.LEGAL, author=FBI, description='memorandum or report')
+        elif EVIDENCE_REGEX.match(self.text):
+            cfg = self._build_cfg(category=Neutral.LEGAL, description='photos of collected evidence')
         elif SUBPOENA_REGEX.search(self.text):
             cfg = self._build_cfg(category=Neutral.LEGAL, description='grand jury subpoena or response')
         elif VI_DAILY_NEWS_REGEX.search(self.text):
