@@ -4,7 +4,6 @@
 set -e
 source .env
 
-
 CURRENT_BRANCH=$(git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/')
 PICKLE_ARG=$([[ $1 == '--pickled' ]] && echo "" || echo "--overwrite-pickle")
 GENERATE_CMD='epstein_generate --build --suppress-output'
