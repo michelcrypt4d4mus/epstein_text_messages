@@ -20,7 +20,7 @@ from epstein_files.output.highlight_config import QUESTION_MARKS_TXT, styled_cat
 from epstein_files.output.rich import build_table, highlighter
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constants import *
-from epstein_files.util.helpers.data_helpers import date_str, days_between, remove_timezone, uniquify
+from epstein_files.util.helpers.data_helpers import days_between, remove_timezone, uniquify
 from epstein_files.util.helpers.file_helper import FILENAME_LENGTH
 from epstein_files.util.helpers.string_helper import has_line_starting_with
 from epstein_files.util.env import args

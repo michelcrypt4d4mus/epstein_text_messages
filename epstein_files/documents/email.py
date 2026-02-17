@@ -22,12 +22,11 @@ from epstein_files.documents.emails.email_header import (EMAIL_SIMPLE_HEADER_REG
 from epstein_files.documents.emails.emailers import extract_emailer_names
 from epstein_files.documents.other_file import OtherFile
 from epstein_files.output.rich import *
-from epstein_files.util.constant.strings import LOCAL_EXTRACT_REGEX, REDACTED
+from epstein_files.util.constant.strings import REDACTED
 from epstein_files.util.constant.urls import URL_SIGNIFIERS
 from epstein_files.util.constants import *
 from epstein_files.util.helpers.data_helpers import (AMERICAN_TIME_REGEX, TIMEZONE_INFO, collapse_newlines,
      prefix_keys, remove_timezone, uniquify)
-from epstein_files.util.helpers.file_helper import extract_file_id, file_stem_for_id
 from epstein_files.output.highlight_config import HIGHLIGHTED_NAMES, get_style_for_name
 from epstein_files.util.logging import logger
 
