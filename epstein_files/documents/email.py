@@ -141,6 +141,7 @@ OCR_REPAIRS: dict[str | re.Pattern, str] = {
 }
 
 METADATA_FIELDS = [
+    'attachments',
     'is_junk_mail',
     'is_mailing_list',
     'recipients',
@@ -261,6 +262,10 @@ class Email(Communication):
     def metadata(self) -> Metadata:
         metadata = super().metadata
         metadata.update({k: getattr(self, k) for k in METADATA_FIELDS if getattr(self, k)})
+
+        if self.attached_docs:
+            metadata['attachment_file_ids'] = [f.file_id for f in self.attached_docs]
+
         return metadata
 
     @property
