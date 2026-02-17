@@ -31,7 +31,7 @@ class SiteType(StrEnum):
     CURATED = auto()
     DOJ_FILES = auto()
     GROUPED_EMAILS = auto()
-    JSON_FILES = auto()
+    #JSON_FILES = auto()
     JSON_METADATA = auto()
     OTHER_FILES_TABLE = auto()
     TEXT_MESSAGES = auto()
@@ -51,25 +51,23 @@ class SiteType(StrEnum):
         extra_info = ''
 
         if cls._is_lesser_site(site_type):
-            style = 'light_pink4'
-            style_mod = 'dim'
+            style = 'gray30'# 'light_pink4'
         else:
             style = AUX_SITE_LINK_STYLE
-            style_mod = ''
 
         if ':' in description:
             description, extra_info = SITE_DESCRIPTIONS[site_type].split(':')
-            extra_info = Text(escape(extra_info), style=f'plum4 italic {style_mod}')
+            extra_info = Text(escape(extra_info), style=f'plum4 italic')
             extra_info = Text(' ').append(parenthesize(extra_info, 'color(147) dim'))
 
-        # style_mod = 'bold'
-        link = link_text_obj(SiteType.get_url(site_type), description, f"{style} {style_mod}")
+        style_mod = '' if cls._is_lesser_site(site_type) else 'bold'
+        link = link_text_obj(SiteType.get_url(site_type), escape(description), f"{style} {style_mod}")
         link.append(extra_info)
         return link
 
     @classmethod
     def _is_lesser_site(cls, site_type: Self) -> bool:
-        return site_type in [cls.DOJ_FILES, cls.JSON_METADATA, cls.JSON_FILES]
+        return site_type in [cls.DOJ_FILES, cls.JSON_METADATA]  #+ [cls.JSON_FILES]
 
 
 HTML_BUILD_FILENAMES = {
@@ -77,7 +75,7 @@ HTML_BUILD_FILENAMES = {
     SiteType.CURATED:              f'index.html',
     SiteType.DOJ_FILES:            f'doj_2026-01-30_non_email_files.html',
     SiteType.GROUPED_EMAILS:       f'emails_grouped_by_counterparty.html',
-    SiteType.JSON_FILES:           f'json_files_from_{EPSTEIN_FILES_NOV_2025}.json',
+    # SiteType.JSON_FILES:           f'json_files_from_{EPSTEIN_FILES_NOV_2025}.json',
     SiteType.JSON_METADATA:        f'file_metadata_{EPSTEIN_FILES_NOV_2025}.json',
     SiteType.OTHER_FILES_TABLE:    f'other_files_table.html',
     SiteType.TEXT_MESSAGES:        f'text_messages_{EPSTEIN_FILES_NOV_2025}.html',
@@ -88,15 +86,15 @@ HTML_BUILD_FILENAMES = {
 # Order matters, it's the order the links are shown in the header
 # Colons are used to break and parenthesize display
 SITE_DESCRIPTIONS = {
-    SiteType.CURATED:              f"curated:by my interests",
-    SiteType.GROUPED_EMAILS:       f"emails:grouped by counterparty",
-    SiteType.CHRONOLOGICAL_EMAILS: f"emails:chronological order",
-    SiteType.TEXT_MESSAGES:        f"text messages:from {HOUSE_OVERSIGHT_TRANCHE}",
-    SiteType.OTHER_FILES_TABLE:    f"other files [table]:files that aren't emails or texts",
-    SiteType.WORD_COUNT:           f"word count:includes all forms of communication",
-    SiteType.DOJ_FILES:            f"doj files:raw OCR text of {DOJ_2026_TRANCHE}",
-    SiteType.JSON_METADATA:        f"metadata:author, attribution reasons, etc.",
-    SiteType.JSON_FILES:           f"raw JSON files from {HOUSE_OVERSIGHT_TRANCHE}",
+    SiteType.CURATED:              f"curated:by my interests, all types",
+    SiteType.GROUPED_EMAILS:       f"emailers:emails grouped by counterparty",
+    SiteType.CHRONOLOGICAL_EMAILS: f"emails:pure chronological order",
+    SiteType.TEXT_MESSAGES:        f"text messages:{HOUSE_OVERSIGHT_TRANCHE}",
+    SiteType.OTHER_FILES_TABLE:    f"other:files that are not emails or texts",
+    SiteType.WORD_COUNT:           f"word count:of Epstein's communications",
+    SiteType.DOJ_FILES:            f"doj files:raw OCR text {DOJ_2026_TRANCHE}",
+    SiteType.JSON_METADATA:        f"metadata:attribution reasons, categories",
+    # SiteType.JSON_FILES:           f"raw JSON files:from {HOUSE_OVERSIGHT_TRANCHE}, uninteresting",
 }
 
 

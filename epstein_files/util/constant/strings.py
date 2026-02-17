@@ -84,7 +84,7 @@ UN_GENERAL_ASSEMBLY = '67th U.N. General Assembly'
 
 # Tranches
 DOJ_2026_TRANCHE = '2026 DOJ tranche'
-HOUSE_OVERSIGHT_TRANCHE = '2025 House Oversight tranche'
+HOUSE_OVERSIGHT_TRANCHE = '2025 estate tranche'
 EPSTEIN_FILES_NOV_2025 = 'epstein_files_nov_2025'
 
 # Regexes / file names
