@@ -62,7 +62,7 @@ class SiteType(StrEnum):
             extra_info = Text(escape(extra_info), style=f'plum4 italic {style_mod}')
             extra_info = Text(' ').append(parenthesize(extra_info, 'color(147) dim'))
 
-        style_mod = 'bold'
+        # style_mod = 'bold'
         link = link_text_obj(SiteType.get_url(site_type), description, f"{style} {style_mod}")
         link.append(extra_info)
         return link
