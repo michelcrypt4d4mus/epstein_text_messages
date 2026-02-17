@@ -48,6 +48,7 @@ output.add_argument('--output-doj-files', '-od', action='store_true', help='gene
 output.add_argument('--output-emails', '-oe', action='store_true', help='generate emails section')
 output.add_argument('--output-other', '-oo', action='store_true', help='generate other files section')
 output.add_argument('--output-texts', '-ot', action='store_true', help='generate text messages section')
+output.add_argument('--output-word-count', '-ow', action='store_true', help='generate table of most frequently used words')
 output.add_argument('--sort-alphabetical', action='store_true', help='sort tables alphabetically intead of by count')
 output.add_argument('--suppress-output', action='store_true', help='no output to terminal (use with --build)')
 output.add_argument('--uninteresting', action='store_true', help='only output uninteresting other files')
@@ -123,6 +124,8 @@ if is_html_script:
             args._site_type = SiteType.CHRONOLOGICAL_EMAILS
         elif args.output_doj_files:
             args._site_type = SiteType.DOJ_FILES
+        elif args.output_word_counts:
+            args._site_type = SiteType.WORD_COUNT
 
         args.build = SiteType.build_path(args._site_type)
 

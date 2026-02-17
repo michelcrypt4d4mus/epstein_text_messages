@@ -89,6 +89,10 @@ def generate_html() -> None:
         printed_files = print_other_files_section(epstein_files)
         timer.log_section_complete('OtherFile', epstein_files.other_files, printed_files)
 
+    if args.output_word_counts:
+        write_word_counts_html()
+        timer.print_at_checkpoint(f"Finished counting words")
+
     write_html(args.build)
     logger.warning(f"Total time: {timer.seconds_since_start_str()}")
 
