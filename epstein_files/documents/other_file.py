@@ -38,9 +38,11 @@ TIMESTAMP_LOG_INDENT = f'{LOG_INDENT}    '
 VAST_HOUSE = 'vast house'  # Michael Wolff article draft about Epstein indicator
 
 # Inferred category config regexes
+DEUTSCHE_SOUTHERN_REGEX = re.compile(r"^Deutsche Bank.*(SOUTHERN TRUST|RED HOOK QUARTER)", re.DOTALL)
 FBI_FILE_REGEX = re.compile(r"^(UNCLASSIFIED\s+)?FEDERAL BUREAU OF INVESTIGATION")
 SUBPOENA_REGEX = re.compile(r"GRAND JURY SUBPOENA")
 LEGAL_FILING_REGEX = re.compile(r"^Case (\d+:\d+-.*?) Doc")
+SOUTHERN_FINANCIAL_REGEX = re.compile(r"^Southern Financial LLC salesforce.com")
 VALAR_CAPITAL_CALL_REGEX = re.compile(r"^Valor .{,50} Capital Call", re.MULTILINE)
 VI_DAILY_NEWS_REGEX = re.compile(r'virgin\s*is[kl][ai]nds\s*daily\s*news', re.IGNORECASE)
 
@@ -125,6 +127,10 @@ class OtherFile(Document):
             cfg = self._build_cfg(category=Uninteresting.ARTICLE, author=VI_DAILY_NEWS)
         elif has_line_starting_with(self.text, [VALAR_GLOBAL_FUND, VALAR_VENTURES.upper()], 2):
             cfg = self._build_valar_cfg()
+        elif SOUTHERN_FINANCIAL_REGEX.match(self.text):
+            cfg = self._build_cfg(category=Interesting.MONEY, description="transactions by Epstein's Southern Financial LLC")
+        elif DEUTSCHE_SOUTHERN_REGEX.match(self.text):
+            cfg = self._build_cfg(category=Interesting.MONEY, description=f"{DEUTSCHE_BANK} statement for Epstein's Southern Trust Company")
         elif VALAR_CAPITAL_CALL_REGEX.search(self.text):
             cfg = self._build_valar_cfg('requesting money previously promised by Epstein to invest in a new opportunity')
         elif (case_match := LEGAL_FILING_REGEX.search(self.text)):
