@@ -1682,7 +1682,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"USVI",
             r"(?<!stein |vis-a-)VI(?!s-a-)",
             r"(The\s*)?Virgin\s*Is(al|la)nd?s(\s*Daily\s*News)?",  # Hard to make this work right
-            r"(West\s*)?Palm\s*Beach(\s*County)?(?!\s*(Daily|Post))",
+            r"(West\s*)?Palm\s*Beach(\s*County)?(?!\s*(Daily|Police|Post))",
         ],
     ),
     HighlightedNames(

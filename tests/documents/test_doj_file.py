@@ -12,4 +12,4 @@ def test_crypto_doc_with_author(blockchain_capital_coinbase_nda):
 
 def test_valar_cfg_creation(valar_ventures_doc):
     assert valar_ventures_doc.config is not None
-    assert valar_ventures_doc.info[0].plain.strip() == 'Valar Ventures is a Peter Thiel fintech fund'
+    assert valar_ventures_doc.info[0].plain.strip() == 'Valar Ventures is a fintech focused Peter Thiel fund Epstein was invested in'

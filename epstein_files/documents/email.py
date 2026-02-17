@@ -184,7 +184,7 @@ class Email(Communication):
     @property
     def attachments(self) -> list[str]:
         """Strings in the Attachments: field in the header, split by semicolon."""
-        return (self.header.attachments or '').split(';')
+        return [a.strip() for a in (self.header.attachments or '').split(';')]
 
     @property
     def border_style(self) -> str:
