@@ -205,7 +205,7 @@ EMAIL_AUTHOR_COUNTS = {
     'Records Management (Sun Sentinel?)': 1,
     REID_HOFFMAN: 1,
     REID_WEINGARTEN: 72,
-    RENATA_BOLOTOVA: 56,
+    RENATA_BOLOTOVA: 57,
     "Richard Merkin": 3,
     ROBERT_LAWRENCE_KUHN: 26,
     ROBERT_TRIVERS: 15,

@@ -58,12 +58,12 @@ def test_no_files_after_2025(epstein_files):
 
 def test_other_files_author_count(epstein_files):
     known_author_count = Document.known_author_count(epstein_files.other_files)
-    assert known_author_count == 431
+    assert known_author_count == 438
     assert len(epstein_files.json_files) == 19
 
 
 def test_other_files_categories(epstein_files):
-    assert len([f for f in epstein_files.other_files if not f.category]) == 2389
+    assert len([f for f in epstein_files.other_files if not f.category]) == 2298
 
 
 ################################################
@@ -97,8 +97,7 @@ def test_interesting_emails(epstein_files):
 
 def test_signature_substitutions(epstein_files):
     substitution_counts = epstein_files.email_signature_substitution_counts()
-    # epstein_substitutions = substitution_counts.pop(JEFFREY_EPSTEIN)
-    # assert epstein_substitutions > 3840
+    assert substitution_counts.pop(JEFFREY_EPSTEIN) > 3900
     assert substitution_counts == SIGNATURE_SUBSTITUTION_COUNTS
 
 
