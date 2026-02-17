@@ -4,8 +4,8 @@ from dataclasses import asdict, dataclass, field
 
 from epstein_files.documents.documents.doc_cfg import EmailCfg
 from epstein_files.documents.emails.emailers import BAD_EMAILER_REGEX, TIME_REGEX
-from epstein_files.output.rich import UNKNOWN
 from epstein_files.util.constant.strings import AUTHOR
+from epstein_files.util.constant.names import UNKNOWN
 from epstein_files.util.constants import CONFIGS_BY_ID
 from epstein_files.util.helpers.string_helper import indented
 from epstein_files.util.logging import logger
