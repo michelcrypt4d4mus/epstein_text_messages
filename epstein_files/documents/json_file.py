@@ -5,6 +5,7 @@ from typing import ClassVar
 from rich.text import Text
 
 from epstein_files.documents.other_file import Metadata, OtherFile
+from epstein_files.output.highlight_config import styled_category
 from epstein_files.output.rich import INFO_STYLE
 from epstein_files.util.constant.strings import JSON
 
@@ -27,8 +28,8 @@ class JsonFile(OtherFile):
     STRIP_WHITESPACE: ClassVar[bool] = False
 
     @property
-    def category(self) -> str:
-        return JSON
+    def category_txt(self) -> Text:
+        styled_category(self.category)
 
     @property
     def is_interesting(self):
