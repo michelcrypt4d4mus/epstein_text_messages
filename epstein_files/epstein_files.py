@@ -53,6 +53,7 @@ class EpsteinFiles:
     other_files: list[OtherFile] = field(default_factory=list)
     timer: Timer = field(default_factory=lambda: Timer())
     uninteresting_ccs: list[Name] = field(default_factory=list)
+    _empty_file_ids: set[str] = field(default_factory=set)
 
     @property
     def all_documents(self) -> Sequence[Document]:
@@ -384,7 +385,10 @@ class EpsteinFiles:
             cls = document_cls(document)
 
             if document.length == 0:
-                logger.warning(f"Skipping empty file: {document}]")
+                if document.file_id not in self._empty_file_ids:
+                    logger.warning(f"Skipping empty file: {document}]")
+                    self._empty_file_ids.add(document.file_id)
+
                 continue
             elif args.skip_other_files and cls == OtherFile and file_type_count[cls.__name__] > 1:
                 document.log(f"Skipping OtherFile...")
