@@ -135,6 +135,11 @@ class Document:
             return ''
 
     @property
+    def config_description_txt(self) -> Text | None:
+        """Add parentheses to `self.config.description`."""
+        return highlighter(Text(self.config_description, style=INFO_STYLE)) if self.config_description else None
+
+    @property
     def config_replace_text_with(self) -> str | None:
         """Configured replacement text."""
         if self.config and self.config.replace_text_with:
@@ -189,10 +194,7 @@ class Document:
     @property
     def info(self) -> list[Text]:
         """0 to 2 sentences containing the info_txt() as well as any configured description."""
-        return without_falsey([
-            self.subheader,
-            highlighter(Text(self.config_description, style=INFO_STYLE)) if self.config_description else None
-        ])
+        return without_falsey([self.subheader, self.config_description_txt])
 
     @property
     def is_attribution_uncertain(self) -> bool:
@@ -283,7 +285,7 @@ class Document:
     def summary(self) -> Text:
         """Summary of this file for logging. Subclasses should extend with a method that closes the open '['."""
         txt = Text('').append(self._class_name, style=self._class_style)
-        txt.append(f" {self.file_path.stem}", style=FILENAME_STYLE)
+        txt.append(f" {self.file_id}", style=FILENAME_STYLE)
 
         if self.timestamp:
             timestamp_str = remove_zero_time(self.timestamp).replace('T', ' ')

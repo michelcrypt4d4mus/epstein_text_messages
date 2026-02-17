@@ -107,13 +107,15 @@ def add_cols_to_table(table: Table, cols: list[str | dict], justify: str = 'cent
         table.add_column(col_name, **col_kwargs)
 
 
-def bool_txt(b: bool | None) -> Text:
+def bool_txt(b: bool | None, match_width: bool = False) -> Text:
+    txt = Text('')
+
     if b is False:
-        return Text(str(b), style='bright_red bold italic')
+        return txt.append(str(b), style='bright_red bold italic')
     elif b is True:
-        return Text(str(b), style='bright_green bold italic')
+        return txt.append(f" {b}" if match_width else str(b), style='bright_green bold italic')
     else:
-        return Text(str(b), style='dim italic')
+        return txt.append(str(b), style='dim italic')
 
 
 def build_highlighter(pattern: str) -> EpsteinHighlighter:
