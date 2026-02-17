@@ -1338,10 +1338,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact('lorraine@mc2mm.com', f"{JEAN_LUC_BRUNEL}'s MC2 Model Management"),
             Contact('pink@mc2mm.com', f"{JEAN_LUC_BRUNEL}'s MC2 Model Management", r"^Pink$|pink@mc2mm\.com"),
             Contact(MANUELA_MARTINEZ, "Mega Partners (Brazilian agency)", r"Manuela (- Mega Partners|Martinez)"),
-            Contact(
-                name=MARIANA_IDZKOWSKA,
-                emailer_pattern=r"Mariana [Il]d[źi]kowska?",
-            ),
+            Contact(MARIANA_IDZKOWSKA, emailer_pattern=r"Mariana [Il]d[źi]kowska?"),
             Contact('Michael Sanka', f"{JEAN_LUC_BRUNEL}'s MC2 Model Management {'(???)'}"),
             Contact('Vladimir Yudashkin', "director of the 1 Mother Agency")
         ],
