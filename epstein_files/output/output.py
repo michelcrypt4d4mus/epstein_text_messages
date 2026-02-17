@@ -44,6 +44,7 @@ DEFAULT_EMAILERS = [
     MARIA_PRUSAKOVA,
     JEREMY_RUBIN,
     JEAN_LUC_BRUNEL,
+    DAVID_STERN,
     STEVEN_HOFFENBERG,
     EHUD_BARAK,
     MASHA_DROKOVA,
@@ -258,10 +259,10 @@ def print_stats(epstein_files: EpsteinFiles) -> None:
 
 def print_text_messages_section(epstein_files: EpsteinFiles) -> list[MessengerLog]:
     """Print summary table and stats for text messages. Returns objects that were printed."""
-    imessage_logs = [
-        log for log in epstein_files.imessage_logs
-        if args.all_texts or log.is_interesting or (args.names and log.author in args.names)
-    ]
+    if args.names:
+        imessage_logs = [log for log in epstein_files.imessage_logs if log.author in args.names]
+    else:
+        imessage_logs = [log for log in epstein_files.imessage_logs if (args.all_texts or log.is_interesting)]
 
     if not imessage_logs:
         logger.warning(f"No MessengerLogs found for {args.names}")
