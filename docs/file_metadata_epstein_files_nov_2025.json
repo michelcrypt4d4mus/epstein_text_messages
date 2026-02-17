@@ -34954,7 +34954,7 @@
             },
             {
                 "author": "Ganbat Chuluunkhuu",
-                "description": "discussion of getting a job in sustainable energy in Mongolia for <REDACTED> (maybe Renata Bolotova?)",
+                "description": "discussion of getting a job in sustainable energy in Mongolia for <REDACTED> (Renata Bolotova?)",
                 "file_id": "EFTA00677752",
                 "file_size": 13399,
                 "filename": "EFTA00677752.txt",
@@ -39576,6 +39576,19 @@
                 "type": "Email"
             },
             {
+                "author": "Austin Hill",
+                "file_id": "EFTA01932159",
+                "file_size": 2558,
+                "filename": "EFTA01932159.txt",
+                "num_lines": 56,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "subject": "Re: Austin Hill & Jeffrey",
+                "timestamp": "2014-03-20T02:09:51",
+                "type": "Email"
+            },
+            {
                 "author": "Tyler Shears",
                 "file_id": "EFTA01932234",
                 "file_size": 428,
@@ -39684,6 +39697,14 @@
                 "sent_from_device": "Sent from my iPhone",
                 "subject": "Re: points to review...",
                 "timestamp": "2013-11-14T00:11:34",
+                "type": "Email"
+            },
+            {
+                "file_id": "EFTA01951947",
+                "file_size": 529,
+                "filename": "EFTA01951947.txt",
+                "num_lines": 12,
+                "timestamp": "2013-10-31T15:15:43",
                 "type": "Email"
             },
             {
@@ -39838,6 +39859,20 @@
                 ],
                 "subject": "Brock Pierce's recent post, and other updates from your network",
                 "timestamp": "2013-04-29T15:18:36",
+                "type": "Email"
+            },
+            {
+                "author": "Vincenzo Iozzo",
+                "file_id": "EFTA01977800",
+                "file_size": 2178,
+                "filename": "EFTA01977800.txt",
+                "num_lines": 48,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "sent_from_device": "Sent from my Iphone",
+                "subject": "Re: Complex currency stuff",
+                "timestamp": "2014-08-13T18:53:49",
                 "type": "Email"
             },
             {
@@ -40376,6 +40411,18 @@
                 "type": "Email"
             },
             {
+                "file_id": "EFTA02102384",
+                "file_size": 1618,
+                "filename": "EFTA02102384.txt",
+                "num_lines": 37,
+                "recipients": [
+                    "Brock Pierce"
+                ],
+                "sent_from_device": "Sent from my iPhone",
+                "timestamp": "2014-07-10T16:09:52",
+                "type": "Email"
+            },
+            {
                 "author": "Lesley Groff",
                 "author_reason": "Epstein scheduling",
                 "author_uncertain": "Epstein scheduling",
@@ -40600,6 +40647,19 @@
                 "type": "Email"
             },
             {
+                "author": "Lesley Groff",
+                "file_id": "EFTA02229350",
+                "file_size": 1249,
+                "filename": "EFTA02229350.txt",
+                "num_lines": 53,
+                "recipients": [
+                    "Richard Kahn"
+                ],
+                "subject": "Re: Velar Call",
+                "timestamp": "2017-11-10T14:40:00",
+                "type": "Email"
+            },
+            {
                 "file_id": "EFTA02229402",
                 "file_size": 1877,
                 "filename": "EFTA02229402.txt",
@@ -40632,6 +40692,19 @@
                 "num_lines": 5,
                 "subject": "Jeffrey is ready for your Valar call",
                 "timestamp": "2017-11-10T19:44:26",
+                "type": "Email"
+            },
+            {
+                "author": "Richard Kahn",
+                "file_id": "EFTA02230132",
+                "file_size": 1859,
+                "filename": "EFTA02230132.txt",
+                "num_lines": 58,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "subject": "Re: Valar Call",
+                "timestamp": "2017-11-10T13:33:42",
                 "type": "Email"
             },
             {
@@ -40844,6 +40917,21 @@
                 "subject": "Re: Crypto PR Lab Financials",
                 "timestamp": "2018-12-09T20:01:40",
                 "type": "Email"
+            },
+            {
+                "author": "Lesley Groff",
+                "file_id": "EFTA02267133",
+                "file_size": 1737,
+                "filename": "EFTA02267133.txt",
+                "num_lines": 41,
+                "recipients": [
+                    "Maria Prusakova"
+                ],
+                "subject": "Re: Crypt() PR Lab Financials",
+                "timestamp": "2018-12-09T23:44:34",
+                "truncate_to": -1,
+                "type": "Email",
+                "uncertain_recipient": "Crypto PR Lab signature"
             },
             {
                 "author": "Lesley Groff",
@@ -41995,7 +42083,7 @@
             },
             {
                 "author": "Renata Bolotova",
-                "author_reason": "\"sneaky dog\" + Terje mention",
+                "author_reason": "\"sneaky dog\" + Terje R\u00f8d-Larsen mention",
                 "description": "email about a future job at Terje R\u00f8d-Larsen's International Peace Institute",
                 "file_id": "EFTA02538649",
                 "file_size": 1609,
@@ -42010,7 +42098,7 @@
             },
             {
                 "author": "Renata Bolotova",
-                "author_reason": "\"sneaky dog\" + Terje mention",
+                "author_reason": "\"sneaky dog\" + Terje R\u00f8d-Larsen mention",
                 "description": "email about a future job at Terje R\u00f8d-Larsen's International Peace Institute",
                 "file_id": "EFTA02540487",
                 "file_size": 484,
@@ -44332,11 +44420,16 @@
                 "type": "Email"
             },
             {
+                "author": "USANYS",
                 "date": "2022-01-21 17:28:00",
                 "file_id": "EFTA02731783",
                 "file_size": 7034,
                 "filename": "EFTA02731783.txt",
-                "num_lines": 197,
+                "num_lines": 198,
+                "recipients": [
+                    "USANYS"
+                ],
+                "subject": "RE: [EXTERNAL] / Leon Black",
                 "timestamp": "2022-01-21T17:28:00",
                 "type": "Email"
             }
@@ -44346,7 +44439,7 @@
                 "description": "JSON data containing preview info for links sent in a messaging app like iMessage",
                 "file_id": "028326",
                 "file_size": 51084,
-                "filename": "HOUSE_OVERSIGHT_028326.txt.json",
+                "filename": "HOUSE_OVERSIGHT_028326.txt",
                 "is_interesting": false,
                 "num_lines": 2217,
                 "timestamp": "2018-09-24T18:30:02",
@@ -44357,7 +44450,7 @@
                 "description": "JSON data containing preview info for links sent in a messaging app like iMessage",
                 "file_id": "028336",
                 "file_size": 51587,
-                "filename": "HOUSE_OVERSIGHT_028336.txt.json",
+                "filename": "HOUSE_OVERSIGHT_028336.txt",
                 "is_interesting": false,
                 "num_lines": 2571,
                 "timestamp": "2018-09-25T00:07:41",
@@ -44368,7 +44461,7 @@
                 "description": "JSON data containing preview info for links sent in a messaging app like iMessage",
                 "file_id": "028347",
                 "file_size": 364367,
-                "filename": "HOUSE_OVERSIGHT_028347.txt.json",
+                "filename": "HOUSE_OVERSIGHT_028347.txt",
                 "is_interesting": false,
                 "num_lines": 6859,
                 "timestamp": "2018-09-24T18:06:16",
@@ -44379,7 +44472,7 @@
                 "description": "JSON data containing preview info for links sent in a messaging app like iMessage",
                 "file_id": "028375",
                 "file_size": 32184,
-                "filename": "HOUSE_OVERSIGHT_028375.txt.json",
+                "filename": "HOUSE_OVERSIGHT_028375.txt",
                 "is_interesting": false,
                 "num_lines": 1690,
                 "timestamp": "2018-12-16T00:00:00",
@@ -44390,7 +44483,7 @@
                 "description": "JSON data containing preview info for links sent in a messaging app like iMessage",
                 "file_id": "028382",
                 "file_size": 64769,
-                "filename": "HOUSE_OVERSIGHT_028382.txt.json",
+                "filename": "HOUSE_OVERSIGHT_028382.txt",
                 "is_interesting": false,
                 "num_lines": 3780,
                 "timestamp": "2018-09-24T15:15:15",
@@ -44401,7 +44494,7 @@
                 "description": "JSON data containing preview info for links sent in a messaging app like iMessage",
                 "file_id": "028397",
                 "file_size": 41793,
-                "filename": "HOUSE_OVERSIGHT_028397.txt.json",
+                "filename": "HOUSE_OVERSIGHT_028397.txt",
                 "is_interesting": false,
                 "num_lines": 2052,
                 "timestamp": "2018-09-25T00:07:35",
@@ -44412,7 +44505,7 @@
                 "description": "JSON data containing preview info for links sent in a messaging app like iMessage",
                 "file_id": "028406",
                 "file_size": 31470,
-                "filename": "HOUSE_OVERSIGHT_028406.txt.json",
+                "filename": "HOUSE_OVERSIGHT_028406.txt",
                 "is_interesting": false,
                 "num_lines": 1534,
                 "timestamp": "2018-09-24T18:58:00",
@@ -44423,7 +44516,7 @@
                 "description": "JSON data containing preview info for links sent in a messaging app like iMessage",
                 "file_id": "028413",
                 "file_size": 56791,
-                "filename": "HOUSE_OVERSIGHT_028413.txt.json",
+                "filename": "HOUSE_OVERSIGHT_028413.txt",
                 "is_interesting": false,
                 "num_lines": 2750,
                 "timestamp": "2018-09-24T10:09:00",
@@ -44434,7 +44527,7 @@
                 "description": "JSON data containing preview info for links sent in a messaging app like iMessage",
                 "file_id": "028425",
                 "file_size": 31808,
-                "filename": "HOUSE_OVERSIGHT_028425.txt.json",
+                "filename": "HOUSE_OVERSIGHT_028425.txt",
                 "is_interesting": false,
                 "num_lines": 1589,
                 "timestamp": "2018-09-24T10:08:56",
@@ -44445,7 +44538,7 @@
                 "description": "JSON data containing preview info for links sent in a messaging app like iMessage",
                 "file_id": "028432",
                 "file_size": 36890,
-                "filename": "HOUSE_OVERSIGHT_028432.txt.json",
+                "filename": "HOUSE_OVERSIGHT_028432.txt",
                 "is_interesting": false,
                 "num_lines": 1891,
                 "timestamp": "2018-09-25T00:18:43",
@@ -44456,7 +44549,7 @@
                 "description": "JSON data containing preview info for links sent in a messaging app like iMessage",
                 "file_id": "028440",
                 "file_size": 28667,
-                "filename": "HOUSE_OVERSIGHT_028440.txt.json",
+                "filename": "HOUSE_OVERSIGHT_028440.txt",
                 "is_interesting": false,
                 "num_lines": 1146,
                 "timestamp": "2018-09-24T19:55:08.111000",
@@ -44467,7 +44560,7 @@
                 "description": "JSON data containing preview info for links sent in a messaging app like iMessage",
                 "file_id": "028446",
                 "file_size": 33014,
-                "filename": "HOUSE_OVERSIGHT_028446.txt.json",
+                "filename": "HOUSE_OVERSIGHT_028446.txt",
                 "is_interesting": false,
                 "num_lines": 1742,
                 "timestamp": "2018-09-24T23:59:21",
@@ -44478,7 +44571,7 @@
                 "description": "JSON data containing preview info for links sent in a messaging app like iMessage",
                 "file_id": "028453",
                 "file_size": 66691,
-                "filename": "HOUSE_OVERSIGHT_028453.txt.json",
+                "filename": "HOUSE_OVERSIGHT_028453.txt",
                 "is_interesting": false,
                 "num_lines": 3831,
                 "timestamp": "2018-09-24T21:45:51",
@@ -44489,7 +44582,7 @@
                 "description": "JSON data containing preview info for links sent in a messaging app like iMessage",
                 "file_id": "028467",
                 "file_size": 67159,
-                "filename": "HOUSE_OVERSIGHT_028467.txt.json",
+                "filename": "HOUSE_OVERSIGHT_028467.txt",
                 "is_interesting": false,
                 "num_lines": 3791,
                 "timestamp": "2018-09-24T04:32:20",
@@ -44500,7 +44593,7 @@
                 "description": "JSON data containing preview info for links sent in a messaging app like iMessage",
                 "file_id": "031059",
                 "file_size": 53121,
-                "filename": "HOUSE_OVERSIGHT_031059.txt.json",
+                "filename": "HOUSE_OVERSIGHT_031059.txt",
                 "is_interesting": false,
                 "num_lines": 1240,
                 "timestamp": "2018-09-24T21:08:57.136000",
@@ -44511,7 +44604,7 @@
                 "description": "JSON data containing preview info for links sent in a messaging app like iMessage",
                 "file_id": "031178",
                 "file_size": 19878,
-                "filename": "HOUSE_OVERSIGHT_031178.txt.json",
+                "filename": "HOUSE_OVERSIGHT_031178.txt",
                 "is_interesting": false,
                 "num_lines": 881,
                 "timestamp": "2019-02-18T00:00:00",
@@ -44522,7 +44615,7 @@
                 "description": "JSON data containing preview info for links sent in a messaging app like iMessage",
                 "file_id": "031966",
                 "file_size": 26708,
-                "filename": "HOUSE_OVERSIGHT_031966.txt.json",
+                "filename": "HOUSE_OVERSIGHT_031966.txt",
                 "is_interesting": false,
                 "num_lines": 1087,
                 "timestamp": "2018-12-14T00:00:00",
@@ -44533,7 +44626,7 @@
                 "description": "JSON data containing preview info for links sent in a messaging app like iMessage",
                 "file_id": "033469",
                 "file_size": 22954,
-                "filename": "HOUSE_OVERSIGHT_033469.txt.json",
+                "filename": "HOUSE_OVERSIGHT_033469.txt",
                 "is_interesting": false,
                 "num_lines": 1173,
                 "timestamp": "2018-09-24T20:35:40",
@@ -44544,7 +44637,7 @@
                 "description": "JSON data containing preview info for links sent in a messaging app like iMessage",
                 "file_id": "033474",
                 "file_size": 15390,
-                "filename": "HOUSE_OVERSIGHT_033474.txt.json",
+                "filename": "HOUSE_OVERSIGHT_033474.txt",
                 "is_interesting": false,
                 "num_lines": 739,
                 "timestamp": "2018-09-24T23:55:00",
@@ -45630,7 +45723,7 @@
                 "file_id": "011170",
                 "file_size": 297574,
                 "filename": "HOUSE_OVERSIGHT_011170.txt",
-                "is_interesting": false,
+                "is_interesting": true,
                 "num_lines": 13903,
                 "timestamp": "2016-09-27T21:46:03",
                 "type": "OtherFile"
@@ -45709,7 +45802,7 @@
                 "was_timestamp_extracted": true
             },
             {
-                "category": "press release",
+                "category": "press_release",
                 "description": "Rockefeller Partners with Gregory J. Fleming to Create Independent Financial Services Firm and other articles",
                 "file_id": "012048",
                 "file_size": 114857,
@@ -47099,7 +47192,7 @@
             },
             {
                 "author": "linkspirit (French?) and Lawrence Krauss",
-                "category": "skype log",
+                "category": "skype_log",
                 "file_id": "018224",
                 "file_size": 32487,
                 "filename": "HOUSE_OVERSIGHT_018224.txt",
@@ -47812,7 +47905,7 @@
                 "file_id": "022213",
                 "file_size": 685,
                 "filename": "HOUSE_OVERSIGHT_022213.txt",
-                "is_interesting": false,
+                "is_interesting": true,
                 "num_lines": 29,
                 "type": "OtherFile"
             },
@@ -48043,7 +48136,7 @@
                 "was_timestamp_extracted": true
             },
             {
-                "category": "flight log",
+                "category": "flight_log",
                 "file_id": "022780",
                 "file_size": 5448,
                 "filename": "HOUSE_OVERSIGHT_022780.txt",
@@ -48067,7 +48160,7 @@
                 "type": "OtherFile"
             },
             {
-                "category": "flight log",
+                "category": "flight_log",
                 "file_id": "022816",
                 "file_size": 1278,
                 "filename": "HOUSE_OVERSIGHT_022816.txt",
@@ -49361,7 +49454,7 @@
             },
             {
                 "author": "Jeffrey Epstein VI Foundation",
-                "category": "press release",
+                "category": "press_release",
                 "comment": "maybe a draft of 029326",
                 "date": "2013-02-15",
                 "file_id": "026565",
@@ -49440,7 +49533,7 @@
                 "file_id": "026627",
                 "file_size": 1437,
                 "filename": "HOUSE_OVERSIGHT_026627.txt",
-                "is_interesting": false,
+                "is_interesting": true,
                 "num_lines": 98,
                 "timestamp": "2016-10-25T09:07:53",
                 "type": "OtherFile",
@@ -49536,7 +49629,7 @@
             },
             {
                 "author": "Great Bay Condominium Owners Association",
-                "category": "press release",
+                "category": "press_release",
                 "date": "2017-09-13",
                 "description": "Hurricane Irma damage",
                 "file_id": "026759",
@@ -49883,7 +49976,7 @@
                 "file_id": "028815",
                 "file_size": 43135,
                 "filename": "HOUSE_OVERSIGHT_028815.txt",
-                "is_interesting": false,
+                "is_interesting": true,
                 "num_lines": 719,
                 "timestamp": "2016-09-27T21:46:03",
                 "type": "OtherFile"
@@ -49943,7 +50036,7 @@
                 "file_id": "028988",
                 "file_size": 4537,
                 "filename": "HOUSE_OVERSIGHT_028988.txt",
-                "is_interesting": false,
+                "is_interesting": true,
                 "num_lines": 152,
                 "timestamp": "2016-09-27T21:46:03",
                 "type": "OtherFile"
@@ -50122,7 +50215,7 @@
             },
             {
                 "author": "Jeffrey Epstein VI Foundation",
-                "category": "press release",
+                "category": "press_release",
                 "date": "2013-02-15",
                 "file_id": "029326",
                 "file_size": 2842,
@@ -51288,7 +51381,7 @@
             },
             {
                 "author": "Lawrence Krauss",
-                "category": "skype log",
+                "category": "skype_log",
                 "file_id": "032206",
                 "file_size": 2326,
                 "filename": "HOUSE_OVERSIGHT_032206.txt",
@@ -51300,7 +51393,7 @@
             },
             {
                 "author": "Lawrence Krauss",
-                "category": "skype log",
+                "category": "skype_log",
                 "file_id": "032208",
                 "file_size": 216,
                 "filename": "HOUSE_OVERSIGHT_032208.txt",
@@ -51312,7 +51405,7 @@
             },
             {
                 "author": "Lawrence Krauss",
-                "category": "skype log",
+                "category": "skype_log",
                 "file_id": "032209",
                 "file_size": 910,
                 "filename": "HOUSE_OVERSIGHT_032209.txt",
@@ -51324,7 +51417,7 @@
             },
             {
                 "author": "linkspirit",
-                "category": "skype log",
+                "category": "skype_log",
                 "file_id": "032210",
                 "file_size": 1121,
                 "filename": "HOUSE_OVERSIGHT_032210.txt",
@@ -51343,7 +51436,7 @@
                 "file_id": "032281",
                 "file_size": 2162,
                 "filename": "HOUSE_OVERSIGHT_032281.txt",
-                "is_interesting": false,
+                "is_interesting": true,
                 "num_lines": 40,
                 "timestamp": "2016-09-15T17:02:37",
                 "type": "OtherFile"
@@ -51370,7 +51463,7 @@
                 "file_id": "032324",
                 "file_size": 787,
                 "filename": "HOUSE_OVERSIGHT_032324.txt",
-                "is_interesting": false,
+                "is_interesting": true,
                 "num_lines": 21,
                 "timestamp": "2016-11-04T12:43:32",
                 "type": "OtherFile"
@@ -51531,7 +51624,7 @@
                 "type": "OtherFile"
             },
             {
-                "category": "press release",
+                "category": "press_release",
                 "date": "2000-06-07",
                 "description": "end of Donald Trump & Nicholas Ribis working relationship at Trump's casino",
                 "file_id": "033338",
@@ -68382,75 +68475,85 @@
                 "type": "DojFile"
             },
             {
-                "category": "misc",
+                "author": "T-Mobile",
+                "category": "phone_bill",
                 "file_id": "EFTA00006387",
                 "file_size": 1145841,
                 "filename": "EFTA00006387.txt",
-                "is_interesting": null,
+                "is_interesting": false,
                 "num_lines": 10411,
                 "timestamp": "2008-06-18T00:00:00",
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
             {
-                "category": "misc",
+                "author": "T-Mobile",
+                "category": "phone_bill",
                 "file_id": "EFTA00006487",
                 "file_size": 803124,
                 "filename": "EFTA00006487.txt",
-                "is_interesting": null,
+                "is_interesting": false,
                 "num_lines": 8841,
                 "timestamp": "2008-08-21T00:00:00",
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
             {
-                "category": "misc",
+                "author": "T-Mobile",
+                "category": "phone_bill",
                 "file_id": "EFTA00006587",
                 "file_size": 894717,
                 "filename": "EFTA00006587.txt",
-                "is_interesting": null,
+                "is_interesting": false,
                 "num_lines": 9379,
                 "timestamp": "2008-09-21T00:00:00",
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
             {
-                "category": "misc",
+                "author": "T-Mobile",
+                "category": "phone_bill",
                 "file_id": "EFTA00006687",
                 "file_size": 749125,
                 "filename": "EFTA00006687.txt",
-                "is_interesting": null,
+                "is_interesting": false,
                 "num_lines": 8590,
                 "timestamp": "2008-11-21T00:00:00",
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
             {
+                "author": "MetroPCS",
+                "category": "phone_bill",
                 "file_id": "EFTA00006770",
                 "file_size": 220005,
                 "filename": "EFTA00006770.txt",
-                "is_interesting": null,
-                "num_lines": 11405,
+                "is_interesting": false,
+                "num_lines": 11581,
                 "timestamp": "2024-05-02T00:00:00",
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
             {
+                "author": "MetroPCS",
+                "category": "phone_bill",
                 "file_id": "EFTA00006870",
                 "file_size": 285588,
                 "filename": "EFTA00006870.txt",
-                "is_interesting": null,
-                "num_lines": 10428,
+                "is_interesting": false,
+                "num_lines": 11009,
                 "timestamp": "2014-05-01T09:02:38",
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
             {
+                "author": "MetroPCS",
+                "category": "phone_bill",
                 "file_id": "EFTA00006970",
                 "file_size": 258260,
                 "filename": "EFTA00006970.txt",
-                "is_interesting": null,
-                "num_lines": 9266,
+                "is_interesting": false,
+                "num_lines": 9619,
                 "timestamp": "2008-04-29T08:45:53",
                 "type": "DojFile",
                 "was_timestamp_extracted": true
@@ -68516,44 +68619,48 @@
                 "was_timestamp_extracted": true
             },
             {
-                "category": "misc",
+                "author": "T-Mobile",
+                "category": "phone_bill",
+                "date": "2007-03-23",
                 "file_id": "EFTA00007253",
                 "file_size": 95583,
                 "filename": "EFTA00007253.txt",
-                "is_interesting": null,
+                "is_interesting": false,
                 "num_lines": 2971,
-                "timestamp": "2022-05-03T05:00:00",
-                "type": "DojFile",
-                "was_timestamp_extracted": true
+                "timestamp": "2007-03-23T00:00:00",
+                "type": "DojFile"
             },
             {
-                "category": "misc",
+                "author": "T-Mobile",
+                "category": "phone_bill",
+                "date": "2007-03-23",
                 "file_id": "EFTA00007301",
                 "file_size": 561120,
                 "filename": "EFTA00007301.txt",
-                "is_interesting": null,
+                "is_interesting": false,
                 "num_lines": 7578,
-                "timestamp": "2009-08-01T16:33:00",
-                "type": "DojFile",
-                "was_timestamp_extracted": true
+                "timestamp": "2007-03-23T00:00:00",
+                "type": "DojFile"
             },
             {
-                "category": "misc",
+                "author": "T-Mobile",
+                "category": "phone_bill",
                 "file_id": "EFTA00007401",
                 "file_size": 755582,
                 "filename": "EFTA00007401.txt",
-                "is_interesting": null,
+                "is_interesting": false,
                 "num_lines": 9073,
                 "timestamp": "2008-09-21T00:00:00",
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
             {
-                "category": "misc",
+                "author": "T-Mobile",
+                "category": "phone_bill",
                 "file_id": "EFTA00007501",
                 "file_size": 249479,
                 "filename": "EFTA00007501.txt",
-                "is_interesting": null,
+                "is_interesting": false,
                 "num_lines": 3516,
                 "timestamp": "2006-08-16T00:00:00",
                 "type": "DojFile",
@@ -70992,30 +71099,39 @@
                 "was_timestamp_extracted": true
             },
             {
+                "author": "Valar Ventures",
+                "category": "crypto",
+                "description": "requesting money previously promised by Epstein to invest in a new opportunity",
                 "file_id": "EFTA00591792",
                 "file_size": 1209,
                 "filename": "EFTA00591792.txt",
-                "is_interesting": null,
+                "is_interesting": true,
                 "num_lines": 34,
                 "timestamp": "2017-08-03T00:00:00",
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
             {
+                "author": "Valar Ventures",
+                "category": "crypto",
+                "description": "requesting money previously promised by Epstein to invest in a new opportunity",
                 "file_id": "EFTA00593085",
                 "file_size": 1140,
                 "filename": "EFTA00593085.txt",
-                "is_interesting": null,
+                "is_interesting": true,
                 "num_lines": 32,
                 "timestamp": "2017-03-03T00:00:00",
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
             {
+                "author": "Valar Ventures",
+                "category": "crypto",
+                "description": "requesting money previously promised by Epstein to invest in a new opportunity",
                 "file_id": "EFTA00593789",
                 "file_size": 1189,
                 "filename": "EFTA00593789.txt",
-                "is_interesting": null,
+                "is_interesting": true,
                 "num_lines": 34,
                 "timestamp": "2016-07-01T00:00:00",
                 "type": "DojFile",
@@ -71045,15 +71161,16 @@
                 "was_timestamp_extracted": true
             },
             {
-                "category": "misc",
-                "date": "2017-07-31",
+                "category": "business",
+                "description": "valuations of Epstein's investments",
                 "file_id": "EFTA00599617",
                 "file_size": 15621,
                 "filename": "EFTA00599617.txt",
-                "is_interesting": null,
+                "is_interesting": true,
                 "num_lines": 468,
                 "timestamp": "2017-07-31T00:00:00",
-                "type": "DojFile"
+                "type": "DojFile",
+                "was_timestamp_extracted": true
             },
             {
                 "category": "crypto",
@@ -71128,10 +71245,13 @@
                 "was_timestamp_extracted": true
             },
             {
+                "author": "Valar Ventures",
+                "category": "crypto",
+                "description": "requesting money previously promised by Epstein to invest in a new opportunity",
                 "file_id": "EFTA00608737",
                 "file_size": 1201,
                 "filename": "EFTA00608737.txt",
-                "is_interesting": null,
+                "is_interesting": true,
                 "num_lines": 35,
                 "timestamp": "2017-05-05T00:00:00",
                 "type": "DojFile",
@@ -71191,7 +71311,7 @@
                 "filename": "EFTA00617222.txt",
                 "is_interesting": true,
                 "num_lines": 289,
-                "timestamp": "2020-09-01T00:00:00",
+                "timestamp": "2017-07-31T00:00:00",
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
@@ -71216,7 +71336,7 @@
                 "filename": "EFTA00621739.txt",
                 "is_interesting": true,
                 "num_lines": 275,
-                "timestamp": "2020-09-01T00:00:00",
+                "timestamp": "2017-05-31T00:00:00",
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
@@ -71408,10 +71528,13 @@
                 "was_timestamp_extracted": true
             },
             {
+                "author": "Valar Ventures",
+                "category": "crypto",
+                "description": "requesting money previously promised by Epstein to invest in a new opportunity",
                 "file_id": "EFTA00810311",
                 "file_size": 1153,
                 "filename": "EFTA00810311.txt",
-                "is_interesting": null,
+                "is_interesting": true,
                 "num_lines": 31,
                 "timestamp": "2017-10-20T00:00:00",
                 "type": "DojFile",
@@ -71454,60 +71577,78 @@
                 "was_timestamp_extracted": true
             },
             {
+                "author": "Valar Ventures",
+                "category": "crypto",
+                "description": "requesting money previously promised by Epstein to invest in a new opportunity",
                 "file_id": "EFTA00810356",
                 "file_size": 1155,
                 "filename": "EFTA00810356.txt",
-                "is_interesting": null,
+                "is_interesting": true,
                 "num_lines": 31,
                 "timestamp": "2018-06-14T00:00:00",
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
             {
+                "author": "Valar Ventures",
+                "category": "crypto",
+                "description": "requesting money previously promised by Epstein to invest in a new opportunity",
                 "file_id": "EFTA00810357",
                 "file_size": 1157,
                 "filename": "EFTA00810357.txt",
-                "is_interesting": null,
+                "is_interesting": true,
                 "num_lines": 31,
                 "timestamp": "2017-05-05T00:00:00",
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
             {
+                "author": "Valar Ventures",
+                "category": "crypto",
+                "description": "requesting money previously promised by Epstein to invest in a new opportunity",
                 "file_id": "EFTA00810358",
                 "file_size": 1166,
                 "filename": "EFTA00810358.txt",
-                "is_interesting": null,
+                "is_interesting": true,
                 "num_lines": 31,
                 "timestamp": "2017-08-03T00:00:00",
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
             {
+                "author": "Valar Ventures",
+                "category": "crypto",
+                "description": "requesting money previously promised by Epstein to invest in a new opportunity",
                 "file_id": "EFTA00810359",
                 "file_size": 1162,
                 "filename": "EFTA00810359.txt",
-                "is_interesting": null,
+                "is_interesting": true,
                 "num_lines": 31,
                 "timestamp": "2017-10-20T00:00:00",
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
             {
+                "author": "Valar Ventures",
+                "category": "crypto",
+                "description": "requesting money previously promised by Epstein to invest in a new opportunity",
                 "file_id": "EFTA00810360",
                 "file_size": 1168,
                 "filename": "EFTA00810360.txt",
-                "is_interesting": null,
+                "is_interesting": true,
                 "num_lines": 31,
                 "timestamp": "2018-01-17T00:00:00",
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
             {
+                "author": "Valar Ventures",
+                "category": "crypto",
+                "description": "requesting money previously promised by Epstein to invest in a new opportunity",
                 "file_id": "EFTA00810361",
                 "file_size": 1154,
                 "filename": "EFTA00810361.txt",
-                "is_interesting": null,
+                "is_interesting": true,
                 "num_lines": 31,
                 "timestamp": "2018-03-01T00:00:00",
                 "type": "DojFile",
@@ -71597,7 +71738,7 @@
                 "filename": "EFTA00811479.txt",
                 "is_interesting": true,
                 "num_lines": 277,
-                "timestamp": "2020-09-01T00:00:00",
+                "timestamp": "2017-03-31T00:00:00",
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
@@ -71609,7 +71750,7 @@
                 "filename": "EFTA00811490.txt",
                 "is_interesting": true,
                 "num_lines": 298,
-                "timestamp": "2020-01-15T00:00:00",
+                "timestamp": "2017-04-30T00:00:00",
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
@@ -71621,7 +71762,7 @@
                 "filename": "EFTA00811508.txt",
                 "is_interesting": true,
                 "num_lines": 275,
-                "timestamp": "2020-09-01T00:00:00",
+                "timestamp": "2017-05-31T00:00:00",
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
@@ -71633,7 +71774,7 @@
                 "filename": "EFTA00811530.txt",
                 "is_interesting": true,
                 "num_lines": 273,
-                "timestamp": "2020-09-01T00:00:00",
+                "timestamp": "2017-06-30T00:00:00",
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
@@ -71645,7 +71786,7 @@
                 "filename": "EFTA00811539.txt",
                 "is_interesting": true,
                 "num_lines": 468,
-                "timestamp": "2020-09-01T00:00:00",
+                "timestamp": "2017-07-31T00:00:00",
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
@@ -71657,7 +71798,7 @@
                 "filename": "EFTA00811552.txt",
                 "is_interesting": true,
                 "num_lines": 289,
-                "timestamp": "2020-09-01T00:00:00",
+                "timestamp": "2017-07-31T00:00:00",
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
@@ -71669,7 +71810,7 @@
                 "filename": "EFTA00811649.txt",
                 "is_interesting": true,
                 "num_lines": 364,
-                "timestamp": "2020-09-01T00:00:00",
+                "timestamp": "2017-12-31T00:00:00",
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
@@ -71693,7 +71834,7 @@
                 "filename": "EFTA00811705.txt",
                 "is_interesting": true,
                 "num_lines": 379,
-                "timestamp": "2020-09-01T00:00:00",
+                "timestamp": "2018-04-30T00:00:00",
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
@@ -71743,7 +71884,7 @@
                 "filename": "EFTA00811948.txt",
                 "is_interesting": true,
                 "num_lines": 264,
-                "timestamp": "2020-09-01T00:00:00",
+                "timestamp": "2019-01-31T00:00:00",
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
@@ -71987,7 +72128,7 @@
                 "filename": "EFTA01118275.txt",
                 "is_interesting": true,
                 "num_lines": 264,
-                "timestamp": "2020-09-01T00:00:00",
+                "timestamp": "2015-10-31T00:00:00",
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
@@ -72019,10 +72160,13 @@
                 "type": "DojFile"
             },
             {
+                "author": "Valar Ventures",
+                "category": "crypto",
+                "description": "requesting money previously promised by Epstein to invest in a new opportunity",
                 "file_id": "EFTA01121678",
                 "file_size": 1177,
                 "filename": "EFTA01121678.txt",
-                "is_interesting": null,
+                "is_interesting": true,
                 "num_lines": 33,
                 "timestamp": "2016-04-06T00:00:00",
                 "type": "DojFile",
@@ -72075,10 +72219,13 @@
                 "was_timestamp_extracted": true
             },
             {
+                "author": "Valar Ventures",
+                "category": "crypto",
+                "description": "requesting money previously promised by Epstein to invest in a new opportunity",
                 "file_id": "EFTA01158019",
                 "file_size": 1210,
                 "filename": "EFTA01158019.txt",
-                "is_interesting": null,
+                "is_interesting": true,
                 "num_lines": 38,
                 "timestamp": "2015-10-16T00:00:00",
                 "type": "DojFile",
@@ -72097,10 +72244,13 @@
                 "was_timestamp_extracted": true
             },
             {
+                "author": "Valar Ventures",
+                "category": "crypto",
+                "description": "requesting money previously promised by Epstein to invest in a new opportunity",
                 "file_id": "EFTA01193042",
                 "file_size": 1200,
                 "filename": "EFTA01193042.txt",
-                "is_interesting": null,
+                "is_interesting": true,
                 "num_lines": 33,
                 "timestamp": "2015-02-25T00:00:00",
                 "type": "DojFile",
@@ -72127,8 +72277,8 @@
                 "was_timestamp_extracted": true
             },
             {
-                "category": "skype log",
-                "description": "actress Athena Zelcovich, Joscha Bach, and Lawrence Krauss",
+                "author": "actress Athena Zelcovich, Joscha Bach, and Lawrence Krauss",
+                "category": "skype_log",
                 "file_id": "EFTA01217703",
                 "file_size": 15858,
                 "filename": "EFTA01217703.txt",
@@ -72139,8 +72289,8 @@
                 "was_timestamp_extracted": true
             },
             {
-                "category": "skype log",
-                "description": "actress Athena Zelcovich, Tyler Shears",
+                "author": "actress Athena Zelcovich, Tyler Shears",
+                "category": "skype_log",
                 "file_id": "EFTA01217736",
                 "file_size": 17271,
                 "filename": "EFTA01217736.txt",
@@ -72151,8 +72301,8 @@
                 "was_timestamp_extracted": true
             },
             {
-                "category": "skype log",
-                "description": "Tyler Shears & Hanna Traff at Spotify",
+                "author": "Tyler Shears & Hanna Traff at Spotify",
+                "category": "skype_log",
                 "file_id": "EFTA01217787",
                 "file_size": 17008,
                 "filename": "EFTA01217787.txt",
@@ -72661,36 +72811,6 @@
                 "was_timestamp_extracted": true
             },
             {
-                "file_id": "EFTA01932159",
-                "file_size": 2558,
-                "filename": "EFTA01932159.txt",
-                "is_interesting": null,
-                "num_lines": 56,
-                "timestamp": "2014-03-20T02:09:51",
-                "type": "DojFile",
-                "was_timestamp_extracted": true
-            },
-            {
-                "file_id": "EFTA01951947",
-                "file_size": 510,
-                "filename": "EFTA01951947.txt",
-                "is_interesting": null,
-                "num_lines": 12,
-                "timestamp": "2013-10-31T15:15:43",
-                "type": "DojFile",
-                "was_timestamp_extracted": true
-            },
-            {
-                "file_id": "EFTA01977800",
-                "file_size": 2178,
-                "filename": "EFTA01977800.txt",
-                "is_interesting": null,
-                "num_lines": 48,
-                "timestamp": "2014-08-13T18:53:49",
-                "type": "DojFile",
-                "was_timestamp_extracted": true
-            },
-            {
                 "category": "misc",
                 "date": "2011-09-09",
                 "file_id": "EFTA02025218",
@@ -72708,46 +72828,6 @@
                 "is_interesting": null,
                 "num_lines": 84,
                 "timestamp": "2012-02-16T20:41:00",
-                "type": "DojFile",
-                "was_timestamp_extracted": true
-            },
-            {
-                "file_id": "EFTA02102384",
-                "file_size": 1618,
-                "filename": "EFTA02102384.txt",
-                "is_interesting": null,
-                "num_lines": 37,
-                "timestamp": "2014-07-10T16:09:52",
-                "type": "DojFile",
-                "was_timestamp_extracted": true
-            },
-            {
-                "file_id": "EFTA02229350",
-                "file_size": 1228,
-                "filename": "EFTA02229350.txt",
-                "is_interesting": null,
-                "num_lines": 56,
-                "timestamp": "2017-11-10T14:40:00",
-                "type": "DojFile",
-                "was_timestamp_extracted": true
-            },
-            {
-                "file_id": "EFTA02230132",
-                "file_size": 1860,
-                "filename": "EFTA02230132.txt",
-                "is_interesting": null,
-                "num_lines": 58,
-                "timestamp": "2017-11-10T13:33:42",
-                "type": "DojFile",
-                "was_timestamp_extracted": true
-            },
-            {
-                "file_id": "EFTA02267133",
-                "file_size": 1712,
-                "filename": "EFTA02267133.txt",
-                "is_interesting": null,
-                "num_lines": 42,
-                "timestamp": "2018-12-09T23:44:34",
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
