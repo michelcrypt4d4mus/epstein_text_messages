@@ -171,25 +171,25 @@ class DocCfg:
         # If description is set at all in one of these if/else checks must be fully constructed
         if self.replace_text_with and not self.description:
             return ''
-        if self.category == Category.BOOK or \
-                (self.category == Category.ACADEMIA and self.author and self.description):
+        if self.category == Uninteresting.BOOK or \
+                (self.category == Uninteresting.ACADEMIA and self.author and self.description):
             description = join_truthy(self.description, self.author, ' by ')  # note reversed args
             description = join_truthy(preamble, description)
-        elif self.category == Category.FINANCE and self.is_description_a_title:
+        elif self.category == Neutral.FINANCE and self.is_description_a_title:
             author_separator = ' report: '
-        elif self.category == Category.LETTER:
+        elif self.category == Interesting.LETTER:
             description = join_truthy(preamble, self.author, ' from ')
             description = join_truthy(description, self.recipients_str, ' to ')
             description = join_truthy(description, self.description)
-        elif self.category == Category.PRESS_RELEASE:
+        elif self.category == Neutral.PRESSER:
             description = join_truthy(preamble, self.description, ' announcing ')  # note reversed args
             description = join_truthy(self.author, description)
-        elif self.category == Category.REPUTATION or (self.category == Neutral.LEGAL and 'v.' in self.author_str):
+        elif self.category == Interesting.REPUTATION or (self.category == Neutral.LEGAL and 'v.' in self.author_str):
             author_separator = ': '
-        elif self.category in [Interesting.RESUMÉ, Category.TWEET]:
+        elif self.category in [Interesting.RESUMÉ, Neutral.TWEET]:
             preamble_separator = 'of' if self.category == Interesting.RESUMÉ else 'by'
             preamble_separator = preamble_separator.center(3, ' ')
-        elif self.category == Category.SKYPE_LOG:
+        elif self.category == Neutral.SKYPE_LOG:
             preamble_separator = ' of conversation with '
 
         # Construct standard description from pieces if a custom one has not been created yet
