@@ -1396,6 +1396,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         patterns=[
             r"Alberto\sGonzale[sz]",
             r"(Alex\s*)?Acosta",
+            r"Ann\s*Coulter",
             r"(Ben\s*)?Sasse",
             r"Betsy Devos",
             r"((Bill|William)\s*)?Barr",
