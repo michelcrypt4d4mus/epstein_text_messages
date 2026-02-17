@@ -38,6 +38,11 @@ PALM_BEACH = 'Palm Beach'
 VIRGIN_ISLANDS = 'Virgin Islands'
 
 # Styles
+ALT_LINK_STYLE = 'white dim'
+ARCHIVE_LINK_COLOR = 'slate_blue3'
+ARCHIVE_LINK_UNDERLINE = f"{ARCHIVE_LINK_COLOR} underline"
+ARCHIVE_ALT_LINK_STYLE = 'medium_purple4 italic'
+TEXT_LINK = 'text_link'
 DEFAULT_NAME_STYLE = 'grey23'
 SUBHEADER_STYLE = 'grey46'
 TIMESTAMP_STYLE = 'turquoise4'

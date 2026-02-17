@@ -5,17 +5,11 @@ from typing import Callable, Literal
 from inflection import parameterize
 from rich.text import Text
 
-from epstein_files.util.constant.output_files import *
 from epstein_files.util.env import args
+from epstein_files.util.constant.output_files import SiteType, link_markup
+from epstein_files.util.constant.strings import TEXT_LINK
 from epstein_files.util.helpers.file_helper import coerce_file_stem
 from epstein_files.util.helpers.string_helper import remove_question_marks
-
-# Style stuff
-ALT_LINK_STYLE = 'white dim'
-ARCHIVE_LINK_COLOR = 'slate_blue3'
-ARCHIVE_LINK_UNDERLINE = f"{ARCHIVE_LINK_COLOR} underline"
-ARCHIVE_ALT_LINK_STYLE = 'medium_purple4 italic'
-TEXT_LINK = 'text_link'
 
 # External site names
 ExternalSite = Literal['epstein.media', 'epsteinify', 'EpsteinWeb', 'Jmail', 'RollCall', 'search X']
@@ -26,11 +20,6 @@ JMAIL = 'Jmail'
 ROLLCALL = 'RollCall'
 TWITTER = 'search X'
 
-# Github URLs
-GH_PROJECT_URL = f'https://github.com/michelcrypt4d4mus/{GH_REPO_NAME}'
-GH_MASTER_URL = f"{GH_PROJECT_URL}/blob/master"
-ATTRIBUTIONS_URL = f'{GH_MASTER_URL}/epstein_files/util/constants.py'
-EXTRACTS_BASE_URL = f'{GH_MASTER_URL}/emails_extracted_from_legal_filings'
 TO_FROM = 'to/from'
 
 # External URLs
@@ -132,21 +121,6 @@ def internal_link_to_emails(name: str) -> str:
     """e.g. https://michelcrypt4d4mus.github.io/epstein_text_messages/all_emails_epstein_files_nov_2025.html#:~:text=to%2Ffrom%20Jack%20Goldberger"""
     search_term = urllib.parse.quote(f"{TO_FROM} {remove_question_marks(name)}")
     return f"{this_site_url()}#:~:text={search_term}"
-
-
-def link_markup(
-    url: str,
-    link_text: str | None = None,
-    style: str | None = ARCHIVE_LINK_COLOR,
-    underline: bool = True
-) -> str:
-    link_text = link_text or url.removeprefix('https://')
-    style = ((style or '') + (' underline' if underline else '')).strip()
-    return (f"[{style}][link={url}]{link_text}[/link][/{style}]")
-
-
-def link_text_obj(url: str, link_text: str | None = None, style: str = ARCHIVE_LINK_COLOR) -> Text:
-    return Text.from_markup(link_markup(url, link_text, style))
 
 
 def other_site_type() -> SiteType:

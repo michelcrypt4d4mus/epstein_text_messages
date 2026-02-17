@@ -164,7 +164,7 @@ def epstein_show():
             ids = [extract_file_id(arg.upper().strip().strip('_')) for arg in args.positional_args]
             logger.info(f"extracted IDs: {ids}")
             raw_docs = [Document.from_file_id(id) for id in ids]
-            logger.info(f"raw docs: {raw_docs}")
+            logger.debug(f"raw docs: {raw_docs}")
 
         # Rebuild the Document objs so we can see result of latest processing
         docs = Document.sort_by_timestamp([document_cls(doc)(doc.file_path) for doc in raw_docs])

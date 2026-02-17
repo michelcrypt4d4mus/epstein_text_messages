@@ -10,7 +10,6 @@ from epstein_files.output.highlighted_names import BaseHighlight, HighlightedNam
 from epstein_files.people.contact import Contact
 from epstein_files.util.constant.names import *
 from epstein_files.util.constant.strings import *
-from epstein_files.util.constant.urls import ARCHIVE_LINK_COLOR
 from epstein_files.util.constants import EPSTEIN_V_ROTHSTEIN_EDWARDS
 from epstein_files.util.helpers.string_helper import indented
 from epstein_files.util.logging import logger

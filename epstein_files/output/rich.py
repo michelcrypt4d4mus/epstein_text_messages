@@ -19,12 +19,14 @@ from epstein_files.output.epstein_highlighter import EpsteinHighlighter
 from epstein_files.output.highlight_config import HIGHLIGHT_GROUPS
 from epstein_files.util.constant.html import CONSOLE_HTML_FORMAT, HTML_TERMINAL_THEME, PAGE_TITLE
 from epstein_files.util.constant.names import UNKNOWN
-from epstein_files.util.constant.strings import AUTHOR, DEFAULT, EMAIL, NA, TEXT_MESSAGE, TIMESTAMP_STYLE
+from epstein_files.util.constant.output_files import GH_PROJECT_URL, SITE_DESCRIPTIONS
+from epstein_files.util.constant.strings import ARCHIVE_ALT_LINK_STYLE, ARCHIVE_LINK_COLOR, ARCHIVE_LINK_UNDERLINE, AUTHOR, DEFAULT, DOJ_2026_TRANCHE, HOUSE_OVERSIGHT_TRANCHE, NA, TIMESTAMP_STYLE
 from epstein_files.util.constant.urls import *
 from epstein_files.util.constants import HEADER_ABBREVIATIONS
 from epstein_files.util.env import args
 from epstein_files.util.helpers.data_helpers import json_safe, sort_dict
 from epstein_files.util.helpers.file_helper import log_file_write
+from epstein_files.util.helpers.link_helper import link_markup, link_text_obj
 from epstein_files.util.helpers.string_helper import quote
 from epstein_files.util.logging import logger
 
@@ -290,7 +292,7 @@ def print_page_title(expand: bool = True, width: int | None = None) -> None:
     title_panel = Panel(Text(PAGE_TITLE, justify='center'), expand=expand, style=TITLE_STYLE, width=width)
     print_centered(vertically_pad(title_panel))
     _print_social_media_links()
-    console.line(2)
+    console.line()
 
 
 def print_subtitle_panel(msg: str, style: str = 'black on white') -> None:

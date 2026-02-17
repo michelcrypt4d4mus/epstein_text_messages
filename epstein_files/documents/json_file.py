@@ -28,8 +28,8 @@ class JsonFile(OtherFile):
     STRIP_WHITESPACE: ClassVar[bool] = False
 
     @property
-    def category_txt(self) -> Text:
-        styled_category(self.category)
+    def category(self) -> str:
+        return JSON
 
     @property
     def is_interesting(self):

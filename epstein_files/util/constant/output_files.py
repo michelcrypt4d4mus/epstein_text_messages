@@ -4,16 +4,24 @@ HTML file paths and URLs for files built by epstein_generate.
 from enum import auto, StrEnum
 from pathlib import Path
 
-from epstein_files.util.logging import logger
-from epstein_files.util.constant.strings import DOJ_2026_TRANCHE, EPSTEIN_FILES_NOV_2025, HOUSE_OVERSIGHT_TRANCHE
+from rich.text import Text
 
-GH_REPO_NAME = 'epstein_text_messages'
-GH_PAGES_BASE_URL = 'https://michelcrypt4d4mus.github.io'
-BASE_URL = f"{GH_PAGES_BASE_URL}/{GH_REPO_NAME}"
+from epstein_files.util.helpers.link_helper import link_markup, link_text_obj
+from epstein_files.util.logging import logger
+from epstein_files.util.constant.strings import ARCHIVE_LINK_COLOR, DOJ_2026_TRANCHE, EPSTEIN_FILES_NOV_2025, HOUSE_OVERSIGHT_TRANCHE
 
 HTML_DIR = Path('docs')
 URLS_ENV = '.urls.env'
 EMAILERS_TABLE_PNG_PATH = HTML_DIR.joinpath('emailers_info_table.png')
+
+# Github URLs
+GH_REPO_NAME = 'epstein_text_messages'
+GH_PAGES_BASE_URL = 'https://michelcrypt4d4mus.github.io'
+GH_PROJECT_URL = f'https://github.com/michelcrypt4d4mus/{GH_REPO_NAME}'
+GH_MASTER_URL = f"{GH_PROJECT_URL}/blob/master"
+ATTRIBUTIONS_URL = f'{GH_MASTER_URL}/epstein_files/util/constants.py'
+EXTRACTS_BASE_URL = f'{GH_MASTER_URL}/emails_extracted_from_legal_filings'
+BASE_URL = f"{GH_PAGES_BASE_URL}/{GH_REPO_NAME}"
 
 
 class SiteType(StrEnum):
@@ -35,6 +43,10 @@ class SiteType(StrEnum):
     def get_url(cls, site_type: 'SiteType') -> str:
         return f"{BASE_URL}/{cls.build_path(site_type).name}"
 
+    @classmethod
+    def link_txt(cls, site_type: 'SiteType') -> Text:
+        link_text_obj(SiteType.get_url(site_type), description, AUX_SITE_LINK_STYLE)
+
 
 HTML_BUILD_FILENAMES = {
     SiteType.CHRONOLOGICAL_EMAILS: f'chronological_emails.html',
@@ -51,12 +63,12 @@ HTML_BUILD_FILENAMES = {
 
 # Order matters, it's the order the links are shown in the header
 SITE_DESCRIPTIONS = {
-    SiteType.CURATED:              f"curated selection of files of particular interest",
+    SiteType.CURATED:              f"curated selection (files of particular interest)",
     SiteType.GROUPED_EMAILS:       f"emails grouped by counterparty",
     SiteType.CHRONOLOGICAL_EMAILS: f"emails in chronological order",
     SiteType.TEXT_MESSAGES:        f"text messages from {HOUSE_OVERSIGHT_TRANCHE}",
-    SiteType.OTHER_FILES_TABLE:    f"files that are neither emails nor text messages",
-    SiteType.DOJ_FILES:            f"raw OCR text of non-email PDFs from {DOJ_2026_TRANCHE}",
+    SiteType.OTHER_FILES_TABLE:    f"other files (neither emails nor text messages)",
+    SiteType.DOJ_FILES:            f"raw OCR text of non-emails from {DOJ_2026_TRANCHE}",
     SiteType.WORD_COUNT:           f"word count of all communications",
     SiteType.JSON_METADATA:        f"metadata (author, attribution reasons, etc.)",
     SiteType.JSON_FILES:           f"raw JSON files from {HOUSE_OVERSIGHT_TRANCHE}",
