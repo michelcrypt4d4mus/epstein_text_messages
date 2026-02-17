@@ -27,7 +27,7 @@ from epstein_files.output.output import (print_doj_files, print_emails_section, 
      print_emailers_info, print_json_metadata, show_urls)
 from epstein_files.output.rich import (build_highlighter, console, highlighter,
      print_json, print_subtitle_panel, styled_dict, write_html)
-from epstein_files.output.title_page import print_color_key, print_section_links, print_title_page_header, print_title_page_tables
+from epstein_files.output.title_page import print_color_key, print_title_page_header, print_title_page_tables
 from epstein_files.util.constant.output_files import SiteType, make_clean
 from epstein_files.util.constant.strings import HOUSE_OVERSIGHT_NOV_2025_ID_REGEX
 from epstein_files.util.env import args

@@ -45,6 +45,7 @@ VALID_GREYS = [0, 3, 7, 11, 15, 19, 23, 27, 30, 35, 37, 39, 42, 46, 50, 53, 54, 
 DOJ_PAGE_LINK_MSG = 'WIP page with documents from the Epstein Files Transparency Act'
 SITE_GLOSSARY_MSG = f"These pages include the following views of the underlying collection of Epstein's files:"
 YOU_ARE_HERE = Text('«').append('you are here', style='bold khaki1 blink').append('»')
+SECTION_LINKS_TABLE = Group(*build_demi_table(SECTION_LINK_MSG, SECTION_LINKS))
 
 DATASET_DESCRIPTION_STYLE = 'gray74'
 INFO_STYLE = 'white dim italic'
@@ -108,8 +109,7 @@ def print_page_title(expand: bool = True, width: int | None = None) -> None:
 
 def print_section_links() -> None:
     """Print links to the various sections within the curated page."""
-    for table_piece in build_demi_table(SECTION_LINK_MSG, SECTION_LINKS):
-        print_centered(table_piece)
+    print_centered(SECTION_LINKS_TABLE)
 
 
 def print_section_header(msg: str, style: str = SECTION_HEADER_STYLE, is_centered: bool = False) -> None:
@@ -142,14 +142,18 @@ def print_title_page_header() -> None:
     max_link_len = max(len(link.plain) for link in links.values())
     num_link_indent_spaces = max(2, int((len(SITE_GLOSSARY_MSG) - max_link_len) / 2)) - 2
     sites_txt.append(indent_txt(join_texts(links_txts, '\n'), num_link_indent_spaces))
-    print_centered(Panel(sites_txt, border_style='dim', padding=(1, 5)))
+
+    if args._site_type == SiteType.CURATED:
+        sites_panel_contents = Group(sites_txt, '\n', SECTION_LINKS_TABLE)
+    else:
+        sites_panel_contents = sites_txt
+
+    print_centered(Panel(sites_panel_contents, border_style='dim', padding=(1, 5)))
+
     console.line()
     print_starred_header('Not All Epstein Files Are Here!', num_spaces=9 if args.all_emails else 6, num_stars=14)
     print_centered(f"This dataset includes everything from the {HOUSE_OVERSIGHT_TRANCHE}", style=DATASET_DESCRIPTION_STYLE)
     print_centered(f"as well as a curated selection of the {DOJ_2026_TRANCHE}.\n", style=DATASET_DESCRIPTION_STYLE)
-
-    if args._site_type == SiteType.CURATED:
-        print_section_links()
 
 
 def print_title_page_tables(epstein_files: 'EpsteinFiles') -> None:
