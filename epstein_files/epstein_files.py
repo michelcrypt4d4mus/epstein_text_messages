@@ -114,7 +114,7 @@ class EpsteinFiles:
         """Alternate constructor that reads/writes a pickled version of the data ('timer' arg is for logging)."""
         timer = timer or Timer()
 
-        if args.pickle_path.exists() and not args.overwrite_pickle and not args.skip_other_files:
+        if args.pickle_path.exists() and not args.overwrite_pickle:
             with gzip.open(args.pickle_path, 'rb') as file:
                 epstein_files = pickle.load(file)
                 timer_msg = f"Loaded {len(epstein_files.file_paths):,} documents from '{args.pickle_path}'"
@@ -129,12 +129,7 @@ class EpsteinFiles:
 
         logger.warning(f"Building new cache file, this will take a few minutes...")
         epstein_files = EpsteinFiles()
-
-        if args.skip_other_files:
-            logger.warning(f"Not writing pickled data because --skip-other-files")
-        else:
-            epstein_files.save_to_disk()
-
+        epstein_files.save_to_disk()
         timer.print_at_checkpoint(f'Processed {len(epstein_files.file_paths):,} files, {OtherFile.num_synthetic_cfgs_created} synthetic configs')
         return epstein_files
 
@@ -389,9 +384,6 @@ class EpsteinFiles:
                     logger.warning(f"Skipping empty file: {document}]")
                     self._empty_file_ids.add(document.file_id)
 
-                continue
-            elif args.skip_other_files and cls == OtherFile and file_type_count[cls.__name__] > 1:
-                document.log(f"Skipping OtherFile...")
                 continue
 
             docs.append(cls(file_path, lines=document.lines, text=document.text).printable_document())
