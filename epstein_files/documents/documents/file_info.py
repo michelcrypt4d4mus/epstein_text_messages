@@ -9,8 +9,8 @@ from epstein_files.output.rich import join_texts, prefix_with, styled_dict
 from epstein_files.util.constant.strings import ALT_LINK_STYLE, ARCHIVE_LINK_COLOR, DOJ_DATASET_ID_REGEX
 from epstein_files.util.constant.urls import *
 from epstein_files.util.env import DOJ_PDFS_20260130_DIR
-from epstein_files.util.helpers.file_helper import (coerce_file_stem, coerce_url_slug, extract_file_id, file_size,
-     file_size_to_str, is_doj_file, is_house_oversight_file, is_local_extract_file)
+from epstein_files.util.helpers.file_helper import (coerce_file_stem, coerce_url_slug, extract_file_id, extract_efta_id,
+     file_size, file_size_to_str, is_doj_file, is_house_oversight_file, is_local_extract_file)
 from epstein_files.util.helpers.link_helper import link_text_obj, parenthesize
 from epstein_files.util.logging import logger
 
@@ -46,6 +46,13 @@ class FileInfo:
             props['url_slug'] = self.url_slug
 
         return props
+
+    @property
+    def efta_id(self) -> int:
+        if self.is_doj_file:
+            return extract_efta_id(self.file_id)
+        else:
+            raise ValueError(f"{self.file_id} is not an EFTA prefix file!")
 
     @property
     def external_link_markup(self) -> str:

@@ -397,6 +397,10 @@ class Document:
         trim_note = f"<...trimmed to {truncate_to:,} characters of {self.length:,}, read the rest at {link_markup}...>"
         return Text.from_markup(wrap_in_markup_style(trim_note, 'dim'))
 
+    def truthy_props(self, prop_names: list[str]) -> DebugDict:
+        """Return key/value pairs but only if the value is truthy."""
+        return {prop: getattr(self, prop) for prop in prop_names if getattr(self, prop)}
+
     def warn(self, msg: str) -> None:
         """Print a warning message prefixed by info about this `Document`."""
         self.log(msg, level=logging.WARNING)
@@ -419,7 +423,7 @@ class Document:
     def _debug_props(self) -> DebugDict:
         """Collects props of this object only (not the config or locations)."""
         props = {k: getattr(self, k) for k in DEBUG_PROPS}
-        props.update({k: getattr(self, k) for k in DEBUG_PROPS_TRUTHY_ONLY if getattr(self, k)})
+        props.update(self.truthy_props(DEBUG_PROPS_TRUTHY_ONLY))
 
         if self.file_info.file_size > 100 * 1024:
             props['file_size_str'] = self.file_info.file_size_str

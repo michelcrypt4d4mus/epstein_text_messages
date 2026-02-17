@@ -262,7 +262,7 @@ class Email(Communication):
     @property
     def metadata(self) -> Metadata:
         metadata = super().metadata
-        metadata.update({k: getattr(self, k) for k in METADATA_FIELDS if getattr(self, k)})
+        metadata.update(self.truthy_props(METADATA_FIELDS))
 
         if self.attached_docs:
             metadata['attachment_file_ids'] = [f.file_id for f in self.attached_docs]
@@ -342,8 +342,7 @@ class Email(Communication):
 
     def _debug_props(self) -> DebugDict:
         props = super()._debug_props()
-        local_props = {k: getattr(self, k) for k in DEBUG_PROPS if getattr(self, k)}
-        props.update(prefix_keys(self._debug_prefix, local_props))
+        props.update(prefix_keys(self._debug_prefix, self.truthy_props(DEBUG_PROPS)))
         return props
 
     def _extract_actual_text(self) -> str:

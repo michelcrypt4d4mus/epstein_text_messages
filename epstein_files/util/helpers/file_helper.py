@@ -1,7 +1,7 @@
 import re
 from pathlib import Path
 
-from epstein_files.util.constant.strings import (DOJ_FILE_STEM_REGEX,
+from epstein_files.util.constant.strings import (DOJ_FILE_STEM_REGEX, EFTA_PREFIX,
      HOUSE_OVERSIGHT_NOV_2025_FILE_NAME_REGEX, HOUSE_OVERSIGHT_NOV_2025_FILE_STEM_REGEX,
      HOUSE_OVERSIGHT_PREFIX, LOCAL_EXTRACT_REGEX)
 from epstein_files.util.env import DOCS_DIR, DOJ_TXTS_20260130_DIR
@@ -61,6 +61,10 @@ def coerce_url_slug(filename_or_id: int | str | Path) -> str:
         return LOCAL_EXTRACT_REGEX.sub('', file_stem)
     else:
         return file_stem
+
+
+def extract_efta_id(file_id: str) -> int:
+    return int(file_id.removeprefix(EFTA_PREFIX))
 
 
 def extract_file_id(filename_or_id: int | str | Path) -> str:
