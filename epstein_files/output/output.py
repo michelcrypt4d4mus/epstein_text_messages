@@ -11,10 +11,11 @@ from epstein_files.documents.email import Email
 from epstein_files.documents.messenger_log import MessengerLog
 from epstein_files.documents.other_file import FIRST_FEW_LINES, OtherFile
 from epstein_files.epstein_files import EpsteinFiles, count_by_month
+from epstein_files.output.rich import *
 from epstein_files.output.title_page import (print_color_key, print_other_page_link, print_section_header,
      print_section_summary_table)
 from epstein_files.people.person import Person
-from epstein_files.util.constant.html import *
+from epstein_files.util.constant.html import CONSOLE_HTML_FORMAT, HTML_TERMINAL_THEME, PAGE_TITLE
 from epstein_files.util.constant.names import *
 from epstein_files.util.constant.output_files import EMAILERS_TABLE_PNG_PATH
 from epstein_files.util.constant.strings import AUTHOR
@@ -22,7 +23,6 @@ from epstein_files.util.env import args
 from epstein_files.util.helpers.data_helpers import dict_sets_to_lists
 from epstein_files.util.helpers.file_helper import log_file_write
 from epstein_files.util.logging import logger, exit_with_error
-from epstein_files.output.rich import *
 
 DEVICE_SIGNATURE_SUBTITLE = f"Email [italic]Sent from \\[DEVICE][/italic] Signature Breakdown"
 DEVICE_SIGNATURE = 'Device Signature'
