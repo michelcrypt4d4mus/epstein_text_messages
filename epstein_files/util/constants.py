@@ -2199,7 +2199,7 @@ OTHER_FILES_CRYPTO = [
         description='A Blockchain-Based Approach to Health Information Exchange Networks',
     ),
     DocCfg(id='EFTA00797613', description='Alphabit crypto fund pitch deck', attached_to_email_id='EFTA00955063'),
-    DocCfg(id='EFTA00811666', description='asset valuations of Epstein\'s holdings, includes "Coinbase via grat"'),
+    DocCfg(id='EFTA00811666', description='asset valuations of Epstein\'s holdings, includes "Coinbase via grat"', date='2018-01-31'),
     DocCfg(id='EFTA01088644', author=BLOCKCHAIN_CAPITAL, description="pitch deck", date='2015-10-01'),
     DocCfg(id='EFTA00604942', author=BLOCKCHAIN_CAPITAL, description="Investor Update", date='2015-10-01'),
     # Coinbase
@@ -2222,7 +2222,7 @@ OTHER_FILES_CRYPTO = [
     DocCfg(id='EFTA01093509', author=CRYPTO_CURRENCY_PARTNERS_II, description=f"partnership draft", truncate_to=MAX_CHARS_TO_PRINT * 2),
     # Crypto PR Lab
     DocCfg(id='EFTA00295126', author=CRYPTO_PR_LAB, description="accounting statement"),
-    DocCfg(id='EFTA01299820', author=CRYPTO_PR_LAB, description="bank transfer"),
+    DocCfg(id='EFTA01299820', author=CRYPTO_PR_LAB, description="bank transfer", date='2018-12-18'),
     DocCfg(id='EFTA00309271', author=CRYPTO_PR_LAB, description='financial statement'),
     DocCfg(id='EFTA01613759', author=CRYPTO_PR_LAB, description="letter of intent of acquisitionfrom Transform Group"),
     DocCfg(id='EFTA01613762', author=CRYPTO_PR_LAB, description=f"WhatsApp convo with {MARIA_PRUSAKOVA}"),
