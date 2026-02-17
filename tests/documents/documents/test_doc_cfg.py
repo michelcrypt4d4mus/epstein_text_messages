@@ -124,11 +124,12 @@ def test_complete_description(
     # Legal
     assert legal_cfg.complete_description == f"clinton v. trump: case law"
     # Skype no author
-    assert skype_cfg.complete_description == Neutral.SKYPE_LOG
+    skype_log = Neutral.SKYPE_LOG.replace('_', ' ')
+    assert skype_cfg.complete_description == skype_log
     # Skype with author
-    assert skype_author.complete_description == f"{Neutral.SKYPE_LOG} of conversation with linkspirit"
+    assert skype_author.complete_description == f"{skype_log} of conversation with linkspirit"
     skype_author.description = 'something'
-    assert skype_author.complete_description == f"{Neutral.SKYPE_LOG} of conversation with linkspirit something"
+    assert skype_author.complete_description == f"{skype_log} of conversation with linkspirit something"
     # Tweet
     assert tweet_cfg.complete_description == 'Tweet by Klippenstein'
     tweet_cfg.description = 'libelous'
