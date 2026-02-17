@@ -1410,7 +1410,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Darrell\s*Issa",
             r"Devin\s*Nunes",
             r"(Don\s*)?McGa[hn]n",
-            r"Erik Prince",
+            r"Erik\s*Prince",
             r"Gary\s*Cohn",
             r"George\s*(H\.?\s*)?(W\.?\s*)?Bush",
             r"(George\s*)?Nader",
