@@ -121,7 +121,7 @@ class OtherFile(Document):
             except Exception as e:
                 self.warn(f"Failed to parse valuation report date from {self.lines[0:2]}")
 
-            cfg = self._build_cfg(category=BUSINESS, description="valuations of Epstein's investments", is_interesting=True)
+            cfg = self._build_cfg(category=Neutral.FINANCE, description="valuations of Epstein's investments", is_interesting=True)
         elif has_line_starting_with(self.text, [VALAR_GLOBAL_FUND, VALAR_VENTURES], 2):
             cfg = self._build_valar_cfg()
         elif VALAR_CAPITAL_CALL_REGEX.search(self.text):
