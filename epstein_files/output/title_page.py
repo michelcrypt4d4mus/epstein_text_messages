@@ -38,14 +38,15 @@ SUBSTACK_POST_LINK_STYLE = 'bright_cyan'
 SITE_GLOSSARY_MSG = f"The following views of the underlying selection of Epstein Files are available:"
 YOU_ARE_HERE = Text('«').append('you are here', style='bold khaki1 blink').append('»')
 
-HIGHLIGHTED_GROUP_COLOR_KEYS = [
+# label of the HighlightedNames objects colors with the style of that same HighlightedNames
+COLOR_KEYS = [
     Text(highlight_group.label.replace('_', ' '), style=highlight_group.style)
     for highlight_group in sorted(HIGHLIGHTED_NAMES, key=lambda hg: hg.label)
 ]
 
 def print_color_key() -> None:
     color_table = build_table('Rough Guide to Highlighted Colors', show_header=False)
-    num_colors = len(HIGHLIGHTED_GROUP_COLOR_KEYS)
+    num_colors = len(COLOR_KEYS)
     row_number = 0
 
     for i in range(0, NUM_COLOR_KEY_COLS):
@@ -53,7 +54,7 @@ def print_color_key() -> None:
 
     while (row_number * NUM_COLOR_KEY_COLS) < num_colors:
         idx = row_number * NUM_COLOR_KEY_COLS
-        color_table.add_row(*HIGHLIGHTED_GROUP_COLOR_KEYS[idx:(idx + NUM_COLOR_KEY_COLS)])
+        color_table.add_row(*COLOR_KEYS[idx:(idx + NUM_COLOR_KEY_COLS)])
         row_number += 1
 
     print_centered(vertically_pad(color_table))
