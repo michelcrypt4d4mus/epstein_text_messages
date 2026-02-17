@@ -8,7 +8,7 @@ from typing import Generator, Literal, Self
 from dateutil.parser import parse
 from rich.text import Text
 
-from epstein_files.documents.documents.categories import Category
+from epstein_files.documents.documents.categories import Category, INTERESTING_CATEGORIES, UNINTERESTING_CATEGORIES
 from epstein_files.util.constant.names import *
 from epstein_files.util.constant.strings import *
 from epstein_files.util.env import args
@@ -24,40 +24,6 @@ FALSEABLE_PROPS = ['is_interesting']
 MAX_LINE_LENGTH = 135
 SAME = 'same'
 ZUBAIR_AND_ANYA = f"{ZUBAIR_KHAN} and Anya Rasulova"
-
-# These category names correspond to OTHER_FILES_[CATEGORY] vars in constants.py
-INTERESTING_CATEGORIES = [
-    CRYPTO,
-    LETTER,
-    MONEY,
-    REPUTATION,
-    RESUME,
-    TEXT_MSG,
-]
-
-NEUTRAL_CATEGORIES = [
-    FINANCE,
-    LEGAL,
-    MISC,
-]
-
-UNINTERESTING_CATEGORIES = [
-    ACADEMIA,
-    ARTICLE,
-    ARTS,
-    BOOK,
-    CONFERENCE,
-    JUNK,
-    POLITICS,
-    PROPERTY,
-    SOCIAL,
-]
-
-CATEGORIES_THAT_ARE_NOT_VARNAME_SUFFIXES = [
-    Category.PHONE_BILL,
-    PRESS_RELEASE,
-    SKYPE_LOG,
-]
 
 # Authors of financial report pablum
 FINANCIAL_REPORTS_AUTHORS = [

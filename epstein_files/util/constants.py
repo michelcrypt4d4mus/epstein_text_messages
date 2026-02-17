@@ -1,9 +1,8 @@
 """
 Custom configurations for various files.
 """
-from epstein_files.documents.documents.categories import Category
-from epstein_files.documents.documents.doc_cfg import (INTERESTING_CATEGORIES, NEUTRAL_CATEGORIES,
-     UNINTERESTING_CATEGORIES, CommunicationCfg, DocCfg, EmailCfg, TextCfg, phone_bill_cfg)
+from epstein_files.documents.documents.categories import Category, INTERESTING_CATEGORIES, NEUTRAL_CATEGORIES, UNINTERESTING_CATEGORIES
+from epstein_files.documents.documents.doc_cfg import CommunicationCfg, DocCfg, EmailCfg, TextCfg, phone_bill_cfg
 from epstein_files.documents.doj_files.full_text import EFTA00009622_TEXT
 from epstein_files.documents.emails.constants import FLIGHT_IN_2012_PEOPLE, IRAN_DEAL_RECIPIENTS, TRIVERS_CCS
 from epstein_files.util.helpers.string_helper import join_truthy, quote
@@ -2148,9 +2147,13 @@ OTHER_FILES_MISC = [
     DocCfg(id='EFTA00004070', replace_text_with="photos of Epstein with handwritten caption that didn't OCR well"),
     DocCfg(id='EFTA02731260', replace_text_with='notebook full of handwritten love letters with terrible OCR text'),
     DocCfg(id='EFTA00006100', replace_text_with='Palm Beach Police fax machine activity log 2005-12-28 to 2006-01-04'),
-    # Phone bills (first two are subpoena response letters w/attached phone bill)
-    phone_bill_cfg('EFTA00007301', 'T-Mobile', 'Blackberry phone logs for 2005', date='2007-03-23'),
-    phone_bill_cfg('EFTA00007253', 'T-Mobile', date='2007-03-23'),
+    # Attachments
+    DocCfg(id='EFTA00590685', attached_to_email_id='EFTA00830911'),
+    # Dates
+    DocCfg(id='EFTA02025218', date='2011-09-09'),
+]
+
+OTHER_FILES_PHONE_BILL = [
     phone_bill_cfg('EFTA00006387', 'T-Mobile', '2006-06-15 to 2006-07-23'),
     phone_bill_cfg('EFTA00007501', 'T-Mobile', '2005'),
     phone_bill_cfg('EFTA00006487', 'T-Mobile', '2006'),
@@ -2160,10 +2163,9 @@ OTHER_FILES_MISC = [
     phone_bill_cfg('EFTA00006770', 'MetroPCS', '2006-02-01 to 2006-06-16'),
     phone_bill_cfg('EFTA00006870', 'MetroPCS', '2006-02-09 to 2006-07'),
     phone_bill_cfg('EFTA00006970', 'MetroPCS', '2006-04-15 to 2006-07-16'),
-    # Attachments
-    DocCfg(id='EFTA00590685', attached_to_email_id='EFTA00830911'),
-    # Dates
-    DocCfg(id='EFTA02025218', date='2011-09-09'),
+    # These two are subpoena response letters w/attached phone bill)
+    phone_bill_cfg('EFTA00007301', 'T-Mobile', 'Blackberry phone logs for 2005', date='2007-03-23'),
+    phone_bill_cfg('EFTA00007253', 'T-Mobile', date='2007-03-23'),
 ]
 
 # This category is automatically 'interesting', see OtherFile class
