@@ -123,7 +123,7 @@ class OtherFile(Document):
             cfg = self._build_cfg(category=Neutral.LEGAL, description='grand jury subpoena or response')
         elif VI_DAILY_NEWS_REGEX.search(self.text):
             cfg = self._build_cfg(category=Uninteresting.ARTICLE, author=VI_DAILY_NEWS)
-        elif has_line_starting_with(self.text, [VALAR_GLOBAL_FUND, VALAR_VENTURES], 2):
+        elif has_line_starting_with(self.text, [VALAR_GLOBAL_FUND, VALAR_VENTURES.upper()], 2):
             cfg = self._build_valar_cfg()
         elif VALAR_CAPITAL_CALL_REGEX.search(self.text):
             cfg = self._build_valar_cfg('requesting money previously promised by Epstein to invest in a new opportunity')
@@ -150,7 +150,7 @@ class OtherFile(Document):
         return self._build_cfg(
             category=Interesting.CRYPTO,  # TODO: not really crypto?
             author=VALAR_VENTURES,
-            description=description or f"is a {PETER_THIEL} fintech fund"
+            description=description or f"is a fintech focused {PETER_THIEL} fund Epstein was invested in",
         )
 
     def _extract_timestamp(self) -> datetime | None:

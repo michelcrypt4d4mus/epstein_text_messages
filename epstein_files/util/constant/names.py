@@ -271,6 +271,7 @@ OSBORNE_LLP = f"{IAN_OSBORNE} & Partners"  # Ian Osborne's PR firm
 PALM_BEACH_POLICE = f"{PALM_BEACH} Police"
 ROTHSTEIN_ROSENFELDT_ADLER = "Rothstein Rosenfeldt Adler (Rothstein was Roger Stone's partner)"  # and a crook
 SDNY = 'SDNY'
+SOUTHERN_TRUST_COMPANY = 'Southern Trust Company'
 TRUMP_ORG = 'Trump Organization'
 UBS = 'UBS'
 USANYS = 'USANYS'
