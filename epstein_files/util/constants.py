@@ -1042,12 +1042,6 @@ EMAILS_CONFIG = [
         author_uncertain=SNEAKY_DOG,
     ),
     EmailCfg(
-        id='EFTA01961947',
-        author=RENATA_BOLOTOVA,
-        recipients=[JEFFREY_EPSTEIN],
-        author_uncertain=SNEAKY_DOG,
-    ),
-    EmailCfg(
         id='EFTA02561760',
         author=RENATA_BOLOTOVA,
         author_reason=SINCERELY_SNEAKY,
@@ -1117,6 +1111,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA01931339', author=RENATA_BOLOTOVA, author_uncertain=SNEAKY_DOG),
     EmailCfg(id='EFTA00659818', author=RENATA_BOLOTOVA, author_uncertain=SNEAKY_DOG),
     EmailCfg(id='EFTA01757037', author=RENATA_BOLOTOVA, author_uncertain=SNEAKY_DOG),
+    EmailCfg(id='EFTA01961947', author=RENATA_BOLOTOVA, author_uncertain=SNEAKY_DOG, recipients=[JEFFREY_EPSTEIN]),
     EmailCfg(id='EFTA00676720', author=RENATA_BOLOTOVA, author_uncertain=SNEAKY_DOG, duplicate_ids=['EFTA01961947']),
     EmailCfg(id='EFTA00826575', author=RENATA_BOLOTOVA, author_uncertain=SNEAKY_DOG, duplicate_ids=['EFTA02462211']),
     EmailCfg(id='EFTA00039796', author=SDNY, recipients=[USANYS]),
