@@ -46,7 +46,8 @@ STR_VAL_STYLE_ALT = 'light_yellow3 italic'
 SYMBOL_STYLE = 'grey70'
 TABLE_BORDER_STYLE = 'grey46'
 TABLE_TITLE_STYLE = f"gray54 italic"
-TITLE_STYLE = 'black on bright_white bold'
+TITLE_STYLE = 'black on white' # color(103)'
+WARNING_STYLE = 'bold black on white'
 
 DEFAULT_TABLE_KWARGS = {
     'border_style': TABLE_BORDER_STYLE,
@@ -203,7 +204,7 @@ def print_subtitle_panel(msg: str, style: str = 'black on white') -> None:
     print_centered(Padding(panel, SUBTITLE_PADDING))
 
 
-def print_starred_header(msg: str, num_stars: int = 7, num_spaces: int = 2, style: str = TITLE_STYLE) -> None:
+def print_starred_header(msg: str, num_stars: int = 7, num_spaces: int = 2, style: str = WARNING_STYLE) -> None:
     stars = '*' * num_stars
     spaces = ' ' * num_spaces
     msg = f"{spaces}{stars} {msg} {stars}{spaces}"

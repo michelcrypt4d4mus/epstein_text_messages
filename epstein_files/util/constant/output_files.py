@@ -37,8 +37,12 @@ class SiteType(StrEnum):
     WORD_COUNT = auto()
 
     @classmethod
-    def all_links(cls) -> dict[str, str]:
+    def all_urls(cls) -> dict[Self, str]:
         return {site_type: cls.get_url(site_type) for site_type in cls}
+
+    @classmethod
+    def all_links(cls) -> dict['SiteType', Text]:
+        return {site_type: SiteType.link_txt(site_type) for site_type in SITE_DESCRIPTIONS.keys()}
 
     @classmethod
     def build_path(cls, site_type: Self) -> Path:
