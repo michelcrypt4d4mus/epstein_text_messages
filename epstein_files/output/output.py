@@ -223,20 +223,6 @@ def print_json_metadata(epstein_files: EpsteinFiles) -> None:
         console.print_json(json_str, indent=4, sort_keys=True)
 
 
-def print_stats(epstein_files: EpsteinFiles) -> None:
-    console.line(5)
-    console.print(Panel('JSON Stats Dump', expand=True, style='reverse bold'), '\n')
-    print_json(f"MessengerLog Sender Counts", MessengerLog.count_authors(epstein_files.imessage_logs), skip_falsey=True)
-    print_json(f"Email Author Counts", epstein_files.email_author_counts(), skip_falsey=True)
-    print_json(f"Email Recipient Counts", epstein_files.email_recipient_counts(), skip_falsey=True)
-    print_json("Email signature_substitution_countss", epstein_files.email_signature_substitution_counts(), skip_falsey=True)
-    print_json("email_author_device_signatures", dict_sets_to_lists(epstein_files.email_authors_to_device_signatures()))
-    print_json("email_sent_from_devices", dict_sets_to_lists(epstein_files.email_device_signatures_to_authors()))
-    print_json("unknown_recipient_ids", epstein_files.unknown_recipient_ids())
-    print_json("count_by_month", count_by_month(epstein_files.all_documents))
-    print_json("Interesting OtherFile IDs", sorted([f.file_id for f in epstein_files.interesting_other_files]))
-
-
 def print_other_files_section(epstein_files: EpsteinFiles) -> list[OtherFile]:
     """Returns `OtherFile` objects that were interesting enough to print."""
     if args.uninteresting:
@@ -253,6 +239,21 @@ def print_other_files_section(epstein_files: EpsteinFiles) -> list[OtherFile]:
     print_section_summary_table(category_table)
     console.print(other_files_preview_table)
     return files
+
+
+def print_stats(epstein_files: EpsteinFiles) -> None:
+    """Used to generate fixture data for pytest."""
+    console.line(5)
+    console.print(Panel('JSON Stats Dump', expand=True, style='reverse bold'), '\n')
+    print_json(f"MessengerLog Sender Counts", MessengerLog.count_authors(epstein_files.imessage_logs), skip_falsey=True)
+    print_json(f"Email Author Counts", epstein_files.email_author_counts(), skip_falsey=True)
+    print_json(f"Email Recipient Counts", epstein_files.email_recipient_counts(), skip_falsey=True)
+    print_json("Email signature_substitution_countss", epstein_files.email_signature_substitution_counts(), skip_falsey=True)
+    print_json("email_author_device_signatures", dict_sets_to_lists(epstein_files.email_authors_to_device_signatures()))
+    print_json("email_sent_from_devices", dict_sets_to_lists(epstein_files.email_device_signatures_to_authors()))
+    print_json("unknown_recipient_ids", epstein_files.unknown_recipient_ids())
+    print_json("count_by_month", count_by_month(epstein_files.all_documents))
+    print_json("Interesting OtherFile IDs", sorted([f.file_id for f in epstein_files.interesting_other_files]))
 
 
 def print_text_messages_section(epstein_files: EpsteinFiles) -> list[MessengerLog]:
