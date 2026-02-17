@@ -201,7 +201,8 @@ def print_json_files(epstein_files: EpsteinFiles):
     """Print all the JsonFile objects"""
     if args.build:
         json_data = {jf.file_info.url_slug: jf.json_data() for jf in epstein_files.json_files}
-        build_path = SiteType.build_path('json_files')# SiteType.JSON_FILES)
+        # TODO: stopgap so this doesn't break but we're no longer building this file.
+        build_path = 'json_files.json' # SiteType.build_path('json_files')# SiteType.JSON_FILES)
 
         with open(build_path, 'wt') as f:
             f.write(json.dumps(json_data, sort_keys=True))
