@@ -13,9 +13,8 @@ from epstein_files.util.helpers.data_helpers import without_falsey
 from epstein_files.util.logging import logger
 
 
-# TODO: rename HighlightGroup
 @dataclass(kw_only=True)
-class BaseHighlight:
+class HighlightGroup:
     """
     Regex and style information for things we want to highlight.
 
@@ -42,7 +41,7 @@ class BaseHighlight:
 
 
 @dataclass(kw_only=True)
-class HighlightedText(BaseHighlight):
+class HighlightedText(HighlightGroup):
     """
     Color highlighting for things other than people's names (e.g. phone numbers, email headers).
 
@@ -146,7 +145,7 @@ class HighlightedNames(HighlightedText):
 
 
 @dataclass(kw_only=True)
-class ManualHighlight(BaseHighlight):
+class ManualHighlight(HighlightGroup):
     """For when you can't construct the regex."""
     pattern: str
 
