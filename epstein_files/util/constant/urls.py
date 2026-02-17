@@ -7,10 +7,10 @@ from inflection import parameterize
 from rich.text import Text
 
 from epstein_files.util.env import args
-from epstein_files.util.constant.output_files import SiteType, link_markup
+from epstein_files.util.constant.output_files import SiteType
 from epstein_files.util.constant.strings import TEXT_LINK
 from epstein_files.util.helpers.file_helper import coerce_file_stem
-from epstein_files.util.helpers.link_helper import link_text_obj
+from epstein_files.util.helpers.link_helper import link_markup, link_text_obj
 from epstein_files.util.helpers.string_helper import remove_question_marks
 
 # External site names
