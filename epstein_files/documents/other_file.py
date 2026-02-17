@@ -39,6 +39,7 @@ VAST_HOUSE = 'vast house'  # Michael Wolff article draft about Epstein indicator
 
 # Inferred category config regexes
 FBI_FILE_REGEX = re.compile(r"^(UNCLASSIFIED\s+)?FEDERAL BUREAU OF INVESTIGATION")
+SUBPOENA_REGEX = re.compile(r"GRAND JURY SUBPOENA")
 LEGAL_FILING_REGEX = re.compile(r"^Case (\d+:\d+-.*?) Doc")
 VALAR_CAPITAL_CALL_REGEX = re.compile(r"^Valor .{,50} Capital Call", re.MULTILINE)
 VI_DAILY_NEWS_REGEX = re.compile(r'virgin\s*is[kl][ai]nds\s*daily\s*news', re.IGNORECASE)
@@ -94,7 +95,7 @@ class OtherFile(Document):
     @property
     def preview_text(self) -> str:
         """Text at start of file stripped of newlinesfor display in tables and other cramped settings."""
-        text = self.config.replace_text_with if (self.config and self.config.replace_text_with) else self.text
+        text = self.config_replace_text_with if self.config_replace_text_with else self.text
         return WHITESPACE_REGEX.sub(' ', text)[0:PREVIEW_CHARS]
 
     @property
@@ -118,6 +119,8 @@ class OtherFile(Document):
 
         if FBI_FILE_REGEX.match(self.text):
             cfg = self._build_cfg(category=Neutral.LEGAL, author=FBI, description='memorandum or report')
+        elif SUBPOENA_REGEX.search(self.text):
+            cfg = self._build_cfg(category=Neutral.LEGAL, description='grand jury subpoena or response')
         elif VI_DAILY_NEWS_REGEX.search(self.text):
             cfg = self._build_cfg(category=Uninteresting.ARTICLE, author=VI_DAILY_NEWS)
         elif has_line_starting_with(self.text, [VALAR_GLOBAL_FUND, VALAR_VENTURES], 2):

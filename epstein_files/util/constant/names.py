@@ -268,6 +268,7 @@ NEXT_MANAGEMENT = 'Next Management LLC'
 NOBEL_CHARITABLE_TRUST = 'Nobel Charitable Trust'
 OFFICE_OF_THE_DEPUTY_ATTORNEY_GENERAL = 'Office of the Deputy Attorney General'
 OSBORNE_LLP = f"{IAN_OSBORNE} & Partners"  # Ian Osborne's PR firm
+PALM_BEACH_POLICE = f"{PALM_BEACH} Police"
 ROTHSTEIN_ROSENFELDT_ADLER = "Rothstein Rosenfeldt Adler (Rothstein was Roger Stone's partner)"  # and a crook
 SDNY = 'SDNY'
 TRUMP_ORG = 'Trump Organization'
@@ -300,7 +301,7 @@ NAMES_TO_NOT_HIGHLIGHT = """
     adam al alain alan alison alfredo allen alex alexander amanda andres andrew ann anthony audrey
     back bard barnaby barrett barry bennet bernard bill black bob boris boyle brad brenner bruce
     cameron caroline carolyn chris christian christina cohen
-    dan daniel danny darren dave david debbie donald douglas
+    dan daniel danny darren dave david debbie department donald douglas
     ed edward edwards enforcement enterprise enterprises entourage epstein eric erika etienne
     faith fisher fitzgerald forget fred friendly frost fuller fund
     gates gerald george gold gordon
@@ -312,7 +313,7 @@ NAMES_TO_NOT_HIGHLIGHT = """
     management mann marc marie mark martin matthew melanie michael mike miller mitchell miles morris moskowitz
     nancy nathan neal new nicole norman ny
     owen
-    paul paula pen peter philip pierce prince
+    paul paula pen peter philip pierce police prince
     randall rangel reid richard robert rodriguez roger rosenberg ross roth roy rubenstein rubin
     santos scott sean service services skip smith stacey stanley stern stephen steve steven stone susan
     team terry the thomas tim tom tony trust tyler

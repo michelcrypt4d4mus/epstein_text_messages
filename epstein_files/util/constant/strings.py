@@ -13,7 +13,6 @@ MIDEAST = 'mideast'
 PUBLICIST = 'publicist'
 REPUTATION = 'reputation'
 REPUTATION_MGMT = f'{REPUTATION} management'
-RESUME = 'resume'
 TECH_BRO = 'tech bro'
 
 # Locations
