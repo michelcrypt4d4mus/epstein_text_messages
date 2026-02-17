@@ -1,4 +1,6 @@
 # NEXT RELEASE
+
+### 1.6.1
 * site index at top that cross links all sites
 * internal section links on `CURATED` page
 * `Category` enum
