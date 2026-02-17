@@ -11,9 +11,9 @@ from epstein_files.documents.email import Email
 from epstein_files.documents.messenger_log import MessengerLog
 from epstein_files.documents.other_file import FIRST_FEW_LINES, OtherFile
 from epstein_files.epstein_files import EpsteinFiles, count_by_month
-from epstein_files.output.title_page import print_color_key, print_other_page_link, print_section_header, print_section_links, print_section_summary_table
+from epstein_files.output.title_page import (print_color_key, print_other_page_link, print_section_header,
+     print_section_summary_table)
 from epstein_files.people.person import Person
-from epstein_files.util.constant import output_files
 from epstein_files.util.constant.html import *
 from epstein_files.util.constant.names import *
 from epstein_files.util.constant.output_files import EMAILERS_TABLE_PNG_PATH
@@ -63,11 +63,6 @@ DEFAULT_EMAILERS = [
     JEFFREY_EPSTEIN,
 ]
 
-INTERESTING_TEXT_IDS = [
-    '027275',  # "Crypto- Kerry- Qatar -sessions"
-    '027165',  # melaniee walker crypto health
-]
-
 
 def print_doj_files(epstein_files: EpsteinFiles) -> list[DojFile | Email]:
     """Doesn't print DojFiles that are actually Emails, that's handled in print_emails()."""
@@ -107,7 +102,7 @@ def print_email_timeline(epstein_files: EpsteinFiles) -> None:
 
 
 def print_emailers_info(epstein_files: EpsteinFiles) -> None:
-    """Print tbe summary table of everyone in the files to an image."""
+    """Print tbe summary table of everyone who sent or received an email to a .png file."""
     print_color_key()
     console.line()
     all_emailers = sorted(epstein_files.emailers, key=lambda person: person.sort_key)
