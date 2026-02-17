@@ -3,6 +3,7 @@ HTML file paths and URLs for files built by epstein_generate.
 """
 from enum import auto, StrEnum
 from pathlib import Path
+from typing import Self
 
 from rich.markup import escape
 from rich.text import Text
@@ -37,26 +38,38 @@ class SiteType(StrEnum):
     WORD_COUNT = auto()
 
     @classmethod
-    def build_path(cls, site_type: 'SiteType') -> Path:
+    def build_path(cls, site_type: Self) -> Path:
         return HTML_DIR.joinpath(HTML_BUILD_FILENAMES[site_type])
 
     @classmethod
-    def get_url(cls, site_type: 'SiteType') -> str:
+    def get_url(cls, site_type: Self) -> str:
         return f"{BASE_URL}/{cls.build_path(site_type).name}"
 
     @classmethod
-    def link_txt(cls, site_type: 'SiteType') -> Text:
+    def link_txt(cls, site_type: Self) -> Text:
         description = SITE_DESCRIPTIONS[site_type]
         extra_info = ''
 
+        if cls._is_lesser_site(site_type):
+            style = 'light_pink4'
+            style_mod = 'dim'
+        else:
+            style = AUX_SITE_LINK_STYLE
+            style_mod = ''
+
         if ':' in description:
             description, extra_info = SITE_DESCRIPTIONS[site_type].split(':')
-            extra_info = Text(escape(extra_info), 'plum4 italic')
-            extra_info = Text(' ').append(parenthesize(extra_info, 'grey'))
+            extra_info = Text(escape(extra_info), style=f'plum4 italic {style_mod}')
+            extra_info = Text(' ').append(parenthesize(extra_info, 'color(147) dim'))
 
-        link = link_text_obj(SiteType.get_url(site_type), description, f"{AUX_SITE_LINK_STYLE} bold")
+        style_mod = 'bold'
+        link = link_text_obj(SiteType.get_url(site_type), description, f"{style} {style_mod}")
         link.append(extra_info)
         return link
+
+    @classmethod
+    def _is_lesser_site(cls, site_type: Self) -> bool:
+        return site_type in [cls.DOJ_FILES, cls.JSON_METADATA, cls.JSON_FILES]
 
 
 HTML_BUILD_FILENAMES = {
@@ -80,8 +93,8 @@ SITE_DESCRIPTIONS = {
     SiteType.CHRONOLOGICAL_EMAILS: f"emails:chronological order",
     SiteType.TEXT_MESSAGES:        f"text messages:from {HOUSE_OVERSIGHT_TRANCHE}",
     SiteType.OTHER_FILES_TABLE:    f"other files [table]:files that aren't emails or texts",
-    SiteType.DOJ_FILES:            f"doj files:raw OCR text of {DOJ_2026_TRANCHE}",
     SiteType.WORD_COUNT:           f"word count:includes all forms of communication",
+    SiteType.DOJ_FILES:            f"doj files:raw OCR text of {DOJ_2026_TRANCHE}",
     SiteType.JSON_METADATA:        f"metadata:author, attribution reasons, etc.",
     SiteType.JSON_FILES:           f"raw JSON files from {HOUSE_OVERSIGHT_TRANCHE}",
 }

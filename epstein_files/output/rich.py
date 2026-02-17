@@ -228,7 +228,7 @@ def print_title_page_header() -> None:
     max_link_len = max(len(link.plain) for link in links.values())
     num_link_indent_spaces = max(2, int((len(SITE_GLOSSARY_MSG) - max_link_len) / 2)) - 2
     sites_txt.append(indent_txt(join_texts(links_txts, '\n'), num_link_indent_spaces))
-    print_centered(Panel(sites_txt, expand=False, padding=(1, 5), border_style='dim'))
+    print_centered(Panel(sites_txt, border_style='dim', padding=(1, 5)))
     console.line()
     print_starred_header('Not All The Epstein Files Are Here!', num_spaces=9 if args.all_emails else 6, num_stars=14)
     print_centered(f"This dataset includes everything from the {HOUSE_OVERSIGHT_TRANCHE}", style=DATASET_DESCRIPTION_STYLE)
