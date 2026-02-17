@@ -88,7 +88,7 @@ def test_category_txt(blockchain_cap_cfg, empty_house_cfg, junk_doc_cfg, legal_c
     assert empty_house_cfg.category_txt == QUESTION_MARKS_TXT
     assert junk_doc_cfg.category_txt.plain == JUNK
     assert skype_cfg.category_txt.plain == Neutral.SKYPE_LOG
-    assert skype_cfg.category_txt.style == 'wheat4'
+    assert skype_cfg.category_txt.style == 'bright_cyan'
     assert legal_cfg.category_txt.style == 'purple'
 
 

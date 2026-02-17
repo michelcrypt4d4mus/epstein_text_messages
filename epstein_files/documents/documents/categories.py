@@ -57,6 +57,7 @@ CATEGORY_STYLE_MAPPING = {
     Interesting.MONEY: FINANCE,
     Interesting.REPUTATION: PUBLICIST,
     Neutral.LEGAL: LAWYER,
+    Neutral.SKYPE_LOG: TECH_BRO,
     Neutral.TWEET: SOCIAL,
     Uninteresting.ARTICLE: JOURNALIST,
     Uninteresting.BOOK: JOURNALIST,
@@ -71,7 +72,6 @@ CATEGORY_STYLES = {
     Interesting.SOCIAL: 'yellow1',
     Neutral.FLIGHT_LOG: 'cyan',
     Neutral.PRESS_RELEASE: 'sandy_brown',
-    Neutral.SKYPE_LOG: 'cyan',
     Uninteresting.JSON: 'dark_red',
     Uninteresting.PHONE_BILL: 'cyan',
 }

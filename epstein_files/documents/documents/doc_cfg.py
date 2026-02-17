@@ -186,7 +186,7 @@ class DocCfg:
             description = join_truthy(self.author, description)
         elif self.category == Category.REPUTATION or (self.category == Category.LEGAL and 'v.' in self.author_str):
             author_separator = ': '
-        elif self.category in [Category.RESUME, Category.TWEET]:
+        elif self.category in [Interesting.RESUMÉ, Category.TWEET]:
             preamble_separator = 'of' if self.category == RESUME else 'by'
             preamble_separator = preamble_separator.center(3, ' ')
         elif self.category == Category.SKYPE_LOG:
