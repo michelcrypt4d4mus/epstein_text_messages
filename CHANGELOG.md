@@ -1,4 +1,5 @@
 # NEXT RELEASE
+* `Category` enum
 
 # 1.6.0
 * Rework the way the various generated HTML pages link to each other, update header to reflect it
