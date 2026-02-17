@@ -33,6 +33,7 @@ MID_TIMESTAMP = datetime(2007, 1, 1)
 LOG_INDENT = '\n         '
 PREVIEW_CHARS = int(580 * (1 if args.all_other_files else 1.5))
 TIMESTAMP_LOG_INDENT = f'{LOG_INDENT}    '
+VALAR_CAPITAL_CALL_REGEX = re.compile(r"^Valor .{,50} Capital Call", re.MULTILINE)
 VAST_HOUSE = 'vast house'  # Michael Wolff article draft about Epstein indicator
 
 LEGAL_FILING_REGEX = re.compile(r"^Case (\d+:\d+-.*?) Doc")
@@ -112,19 +113,31 @@ class OtherFile(Document):
         cfg = None
 
         if VI_DAILY_NEWS_REGEX.search(self.text):
-            cfg = DocCfg(id=self.file_id, category=ARTICLE, author=VI_DAILY_NEWS)
+            cfg = self._build_cfg(category=ARTICLE, author=VI_DAILY_NEWS)
         elif self.lines[0].lower() == 'valuation report':
-            cfg = DocCfg(id=self.file_id, category=BUSINESS, description="valuations of Epstein's investments", is_interesting=True)
+            cfg = self._build_cfg(category=BUSINESS, description="valuations of Epstein's investments", is_interesting=True)
         elif has_line_starting_with(self.text, [VALAR_GLOBAL_FUND, VALAR_VENTURES], 2):
-            cfg = DocCfg(id=self.file_id, category=CRYPTO, author=VALAR_VENTURES, description=f"is a {PETER_THIEL} fintech fund")
+            cfg = self._build_valar_cfg()
+        elif VALAR_CAPITAL_CALL_REGEX.search(self.text):
+            cfg = self._build_valar_cfg('requesting money previously promised by Epstein to invest in a new opportunity')
         elif (case_match := LEGAL_FILING_REGEX.search(self.text)):
-            cfg = DocCfg(id=self.file_id, category=LEGAL, description=f"legal filing in case {case_match.group(1)}")
+            cfg = self._build_cfg(category=LEGAL, description=f"legal filing in case {case_match.group(1)}")
 
         if cfg:
             self.warn(f"Built synthetic cfg: {cfg}")
             type(self).num_synthetic_cfgs_created += 1
 
         return cfg
+
+    def _build_cfg(self, **kwargs) -> DocCfg:
+        return DocCfg(id=self.file_id, **kwargs)
+
+    def _build_valar_cfg(self, description: str = '') -> DocCfg:
+        return self._build_cfg(
+            category=CRYPTO,
+            author=VALAR_VENTURES,
+            description=description or f"is a {PETER_THIEL} fintech fund"
+        )
 
     def _extract_timestamp(self) -> datetime | None:
         """Return configured timestamp or value extracted by scanning text with datefinder."""

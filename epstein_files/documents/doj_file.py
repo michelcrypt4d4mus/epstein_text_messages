@@ -32,6 +32,7 @@ OTHER_DOC_URLS = {
 OCR_REPAIRS: dict[str | re.Pattern, str] = {
     re.compile(r"^Sent (Sun|Mon|Tue|Wed|Thu|Fri|Sat)", re.MULTILINE): r"Sent: \1",
     re.compile(fr"({FIELDS_COLON_PATTERN}.*\n)\nSubject:", re.MULTILINE): r'\1Subject:',
+    re.compile(r"^Fran:", re.MULTILINE): 'From:',
 }
 
 BAD_OCR_FILE_IDS = [
