@@ -29,6 +29,7 @@ DEVICE_SIGNATURE = 'Device Signature'
 DEVICE_SIGNATURE_PADDING = (1, 0)
 OTHER_INTERESTING_EMAILS_SUBTITLE = 'Other Interesting Emails\n(these emails have been flagged as being of particular interest)'
 PRINT_COLOR_KEY_EVERY_N_EMAILS = 150
+URLS_ENV = '.urls.env'
 
 # Order matters. Default names to print emails for.
 DEFAULT_EMAILERS = [

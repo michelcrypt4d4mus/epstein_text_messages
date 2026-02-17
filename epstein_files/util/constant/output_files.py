@@ -13,7 +13,6 @@ from epstein_files.util.logging import logger
 from epstein_files.util.constant.strings import AUX_SITE_LINK_STYLE, DOJ_2026_TRANCHE, EPSTEIN_FILES_NOV_2025, HOUSE_OVERSIGHT_TRANCHE
 
 HTML_DIR = Path('docs')
-URLS_ENV = '.urls.env'
 EMAILERS_TABLE_PNG_PATH = HTML_DIR.joinpath('emailers_info_table.png')
 
 # Github URLs
