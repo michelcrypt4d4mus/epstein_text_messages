@@ -156,6 +156,17 @@ def build_table(title: str | Text | None, cols: list[str | dict] | None = None, 
     return table
 
 
+def enclose(txt: str | Text, encloser: str = '', encloser_style: str = 'wheat4') -> Text:
+    """Surround with something."""
+    if not encloser:
+        return Text('').append(txt)
+    elif len(encloser) != 2:
+        raise ValueError(f"'encloser' arg is '{encloser}' which is not 2 characters long")
+
+    enclose_start, enclose_end = (encloser[0], encloser[1])
+    return Text('').append(enclose_start, encloser_style).append(txt).append(enclose_end, encloser_style)
+
+
 def indent_txt(txt: str | Text, spaces: int = 4, prefix: str = '') -> Text:
     indent = Text(' ' * spaces).append(prefix)
     return indent + Text(f"\n{indent}").join(txt.split('\n'))
@@ -163,19 +174,10 @@ def indent_txt(txt: str | Text, spaces: int = 4, prefix: str = '') -> Text:
 
 def join_texts(txts: Sequence[str | Text], join: str = ' ', encloser: str = '', encloser_style: str = 'wheat4') -> Text:
     """Join rich.Text objs into one."""
-    if encloser:
-        if len(encloser) != 2:
-            raise ValueError(f"'encloser' arg is '{encloser}' which is not 2 characters long")
-
-        enclose_start, enclose_end = (encloser[0], encloser[1])
-    else:
-        enclose_start = enclose_end = ''
-
     txt = Text('')
 
     for i, _txt in enumerate(without_falsey(txts)):
-        txt.append(join if i >= 1 else '').append(enclose_start, style=encloser_style)
-        txt.append(_txt).append(enclose_end, style=encloser_style)
+        txt.append(join if i >= 1 else '').append(enclose(_txt, encloser, encloser_style))
 
     return txt
 
@@ -442,15 +444,6 @@ def _print_abbreviations_table() -> None:
 
     console.print(Align.center(vertically_pad(table)))
 
-EXTERNAL_STYLE = 'light_slate_grey bold'
-
-EXTERNAL_LINKS = {
-    JMAIL_URL: 'read His Emails via Gmail interface',
-    EPSTEIN_DOCS_URL: 'searchable archive',
-    EPSTEINIFY_URL: 'raw document images',
-    EPSTEIN_WEB_URL: 'character summaries',
-    EPSTEIN_MEDIA_URL: 'raw document images',
-}
 
 def _link_with_comment(url: str, comment: str | Text, _link_text: str = '') -> Text:
     link_text = _link_text if _link_text else (JMAIL if url == JMAIL_URL else None)
@@ -459,7 +452,7 @@ def _link_with_comment(url: str, comment: str | Text, _link_text: str = '') -> T
         comment = comment
         link_style = 'navajo_white3 bold'
     else:
-        comment = Text(f"({comment})", 'dim italic')
+        comment = enclose(Text(comment, 'color(195) dim italic'), '()', 'gray27')
         link_style = EXTERNAL_STYLE
 
     return link_text_obj(url, link_text=link_text, style=link_style).append(' ').append(comment)
@@ -468,15 +461,13 @@ def _link_with_comment(url: str, comment: str | Text, _link_text: str = '') -> T
 def _print_external_links() -> None:
     console.line()
     print_centered(Text('External Links', style=TABLE_TITLE_STYLE))
-    doj_docs_link = link_text_obj(DOJ_2026_URL, 'DOJ Epstein Files Transparency Act Disclosures', EXTERNAL_STYLE)
     doj_search_link = join_texts([link_text_obj(DOJ_SEARCH_URL, 'search', style=ARCHIVE_ALT_LINK_STYLE)], encloser='()')
     print_centered(_link_with_comment(DOJ_2026_URL, doj_search_link, 'Dept of Justice Epstein Files Transparency Act Disclosures'))
-    # print_centered(join_texts([doj_docs_link, doj_search_link]))
-    raw_docs_link = link_text_obj(RAW_OVERSIGHT_DOCS_GOOGLE_DRIVE_URL, 'raw files', style=ARCHIVE_ALT_LINK_STYLE)
+    raw_docs_link = link_text_obj(OVERSIGHT_DRIVE_URL, 'raw files', style=ARCHIVE_ALT_LINK_STYLE)
     raw_docs_link = join_texts([raw_docs_link], encloser='()')
-    print_centered(_link_with_comment(OVERSIGHT_REPUBLICANS_PRESSER_URL, raw_docs_link, 'Official Oversight Committee Press Release'))
+    print_centered(_link_with_comment(OVERSIGHT_REPUBS_PRESSER_URL, raw_docs_link, 'Official Oversight Committee Press Release'))
 
-    for url, link in EXTERNAL_LINKS.items():
+    for url, link in EXTERNAL_LINK_MSGS.items():
         print_centered(_link_with_comment(url, link))
 
 

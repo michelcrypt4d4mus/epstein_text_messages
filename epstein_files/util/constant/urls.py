@@ -22,16 +22,15 @@ JMAIL = 'Jmail'
 ROLLCALL = 'RollCall'
 TWITTER = 'search X'
 
-SECTION_LINK_MSG = 'jump to different sections of this page'
-TO_FROM = 'to/from'
+EXTERNAL_STYLE = 'light_slate_grey bold'
 
 # External URLs
 COFFEEZILLA_ARCHIVE_URL = 'https://journaliststudio.google.com/pinpoint/search?collection=061ce61c9e70bdfd'
 COURIER_NEWSROOM_ARCHIVE_URL = 'https://journaliststudio.google.com/pinpoint/search?collection=092314e384a58618'
 DOJ_2026_FILE_BASE_URL = "https://www.justice.gov/epstein/files/DataSet%20"
 EPSTEIN_DOCS_URL = 'https://epstein-docs.github.io'
-OVERSIGHT_REPUBLICANS_PRESSER_URL = 'https://oversight.house.gov/release/oversight-committee-releases-additional-epstein-estate-documents/'
-RAW_OVERSIGHT_DOCS_GOOGLE_DRIVE_URL = 'https://drive.google.com/drive/folders/1hTNH5woIRio578onLGElkTWofUSWRoH_'
+OVERSIGHT_REPUBS_PRESSER_URL = 'https://oversight.house.gov/release/oversight-committee-releases-additional-epstein-estate-documents/'
+OVERSIGHT_DRIVE_URL = 'https://drive.google.com/drive/folders/1hTNH5woIRio578onLGElkTWofUSWRoH_'
 SUBSTACK_URL = 'https://cryptadamus.substack.com/p/i-made-epsteins-text-messages-great'
 # DOJ docs
 DOJ_2026_URL = 'https://www.justice.gov/epstein/doj-disclosures'
@@ -50,6 +49,14 @@ DOC_LINK_BASE_URLS: dict[ExternalSite, str] = {
     EPSTEIN_WEB: f'{EPSTEIN_WEB_URL}/wp-content/uploads/epstein_evidence/images/',
     EPSTEINIFY: f"{EPSTEINIFY_URL}/document/",
     ROLLCALL: f'https://rollcall.com/factbase/epstein/file?id=',
+}
+
+EXTERNAL_LINK_MSGS = {
+    JMAIL_URL: 'read His Emails via Gmail interface',
+    EPSTEIN_DOCS_URL: 'searchable archive',
+    EPSTEINIFY_URL: 'raw document images',
+    EPSTEIN_WEB_URL: 'character summaries',
+    EPSTEIN_MEDIA_URL: 'raw document images',
 }
 
 # Misc
@@ -151,6 +158,9 @@ THE_OTHER_PAGE_TXT = Text.from_markup(THE_OTHER_PAGE_MARKUP)
 #############################
 #  Internal sections links  #
 #############################
+SECTION_LINK_MSG = 'jump to different sections of this page'
+TO_FROM = 'to/from'
+
 
 class PageSections(StrEnum):
     TEXT_MESSAGES = auto()
