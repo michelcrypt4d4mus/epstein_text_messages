@@ -663,10 +663,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(MELANIE_SPINELLA, f"representative of {LEON_BLACK}", r"M?elanie Spine[Il]{2}a"),
             Contact(MORTIMER_ZUCKERMAN, "business partner of Epstein, newspaper publisher"),
             Contact(NORMAN_D_RAU, "managing director at Morgan Stanley"),
-            Contact(
-                name=PAUL_BARRETT,
-                emailer_pattern=r"Paul Barre(d|tt)",
-            ),
+            Contact(PAUL_BARRETT, emailer_pattern=r"Paul Barre(d|tt)"),
             Contact(PAUL_MORRIS, f"{DEUTSCHE_BANK}", r"morris, paul|Paul Morris"),
             Contact('Skip Rimer', "Milken Institute (Michael Milken)"),
             Contact('Steven Elkman', f"{DEUTSCHE_BANK}"),
