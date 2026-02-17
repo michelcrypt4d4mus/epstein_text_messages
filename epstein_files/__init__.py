@@ -162,13 +162,12 @@ def epstein_show():
             raw_docs = [doc for doc in flatten([p.emails for p in people])]
         else:
             ids = [extract_file_id(arg.upper().strip().strip('_')) for arg in args.positional_args]
-            logger.info(f"extracted IDs: {ids}")
             raw_docs = [Document.from_file_id(id) for id in ids]
             logger.debug(f"raw docs: {raw_docs}")
 
         # Rebuild the Document objs so we can see result of latest processing
         docs = Document.sort_by_timestamp([document_cls(doc)(doc.file_path) for doc in raw_docs])
-        logger.info(f"Document types: {[doc._class_name for doc in docs]}")
+        logger.info(f"Found file IDs {ids} with types: {[doc._class_name for doc in docs]}")
     except Exception as e:
         console.print_exception()
         exit_with_error(str(e))
