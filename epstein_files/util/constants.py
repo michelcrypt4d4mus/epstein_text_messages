@@ -284,6 +284,7 @@ EMAILS_CONFIG = [
         description="why is David Stern's name redacted?",
         is_interesting=True,
     ),
+    EmailCfg(id='EFTA02494000', description=f"Epstein and {DAVID_STERN} discussing setting up a crypto exchange in Belarus"),
     EmailCfg(id='031460', author=EDWARD_JAY_EPSTEIN, author_reason='quoted reply has edwardjayepstein.com', is_fwded_article=True),
     EmailCfg(
         id='030475',
