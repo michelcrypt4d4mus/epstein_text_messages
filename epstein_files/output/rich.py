@@ -200,6 +200,7 @@ def print_json(label: str, obj: object, skip_falsey: bool = False) -> None:
 
 
 def print_starred_header(msg: str, num_stars: int = 7, num_spaces: int = 2, style: str = WARNING_STYLE) -> None:
+    """String like '  *** Title Msg ***  '."""
     stars = '*' * num_stars
     spaces = ' ' * num_spaces
     msg = f"{spaces}{stars} {msg} {stars}{spaces}"
