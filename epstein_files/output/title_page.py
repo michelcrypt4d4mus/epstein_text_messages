@@ -38,6 +38,10 @@ SECTION_HEADER_STYLE = 'bold black on color(146)'
 SOCIAL_MEDIA_LINK_STYLE = 'pale_turquoise4'
 SUBSTACK_POST_LINK_STYLE = 'bright_cyan'
 
+HIGHLIGHTED_GROUP_COLOR_KEYS = [
+    Text(highlight_group.label.replace('_', ' '), style=highlight_group.style)
+    for highlight_group in sorted(HIGHLIGHTED_NAMES, key=lambda hg: hg.label)
+]
 
 def print_color_key() -> None:
     color_table = build_table('Rough Guide to Highlighted Colors', show_header=False)

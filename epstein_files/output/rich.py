@@ -43,7 +43,7 @@ STR_VAL_STYLE_ALT = 'light_yellow3 italic'
 SYMBOL_STYLE = 'grey70'
 TABLE_BORDER_STYLE = 'grey46'
 TABLE_TITLE_STYLE = f"gray54 italic"
-TITLE_STYLE = 'black on white' # color(103)'
+TITLE_STYLE = 'black on white'  # color(103)'
 WARNING_STYLE = 'bold black on white'
 
 DEFAULT_TABLE_KWARGS = {
@@ -52,11 +52,6 @@ DEFAULT_TABLE_KWARGS = {
     'header_style': "bold",
     'title_style': TABLE_TITLE_STYLE,
 }
-
-HIGHLIGHTED_GROUP_COLOR_KEYS = [
-    Text(highlight_group.label.replace('_', ' '), style=highlight_group.style)
-    for highlight_group in sorted(HIGHLIGHTED_NAMES, key=lambda hg: hg.label)
-]
 
 THEME_STYLES = {
     DEFAULT: 'wheat4',
