@@ -40,6 +40,7 @@ ALT_LINK_STYLE = 'white dim'
 ARCHIVE_LINK_COLOR = 'slate_blue3'
 ARCHIVE_LINK_UNDERLINE = f"{ARCHIVE_LINK_COLOR} underline"
 ARCHIVE_ALT_LINK_STYLE = 'medium_purple4 italic'
+AUX_SITE_LINK_STYLE = 'dark_orange3'
 TEXT_LINK = 'text_link'
 DEFAULT_NAME_STYLE = 'grey23'
 SUBHEADER_STYLE = 'grey46'
@@ -82,7 +83,7 @@ PALM_BEACH_WATER_COMMITTEE = f'{PALM_BEACH} Water Committee'
 UN_GENERAL_ASSEMBLY = '67th U.N. General Assembly'
 
 # Tranches
-DOJ_2026_TRANCHE = 'Jan. 2026 DOJ tranche'
+DOJ_2026_TRANCHE = '2026 DOJ tranche'
 HOUSE_OVERSIGHT_TRANCHE = '2025 House Oversight tranche'
 EPSTEIN_FILES_NOV_2025 = 'epstein_files_nov_2025'
 

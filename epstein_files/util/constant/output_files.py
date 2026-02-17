@@ -4,11 +4,12 @@ HTML file paths and URLs for files built by epstein_generate.
 from enum import auto, StrEnum
 from pathlib import Path
 
+from rich.markup import escape
 from rich.text import Text
 
 from epstein_files.util.helpers.link_helper import link_markup, link_text_obj
 from epstein_files.util.logging import logger
-from epstein_files.util.constant.strings import ARCHIVE_LINK_COLOR, DOJ_2026_TRANCHE, EPSTEIN_FILES_NOV_2025, HOUSE_OVERSIGHT_TRANCHE
+from epstein_files.util.constant.strings import AUX_SITE_LINK_STYLE, DOJ_2026_TRANCHE, EPSTEIN_FILES_NOV_2025, HOUSE_OVERSIGHT_TRANCHE
 
 HTML_DIR = Path('docs')
 URLS_ENV = '.urls.env'
@@ -45,7 +46,17 @@ class SiteType(StrEnum):
 
     @classmethod
     def link_txt(cls, site_type: 'SiteType') -> Text:
-        link_text_obj(SiteType.get_url(site_type), description, AUX_SITE_LINK_STYLE)
+        description = SITE_DESCRIPTIONS[site_type]
+        extra_info = ''
+
+        if ':' in description:
+            description, extra_info = SITE_DESCRIPTIONS[site_type].split(':')
+            extra_info = Text(escape(extra_info), 'plum4 italic')
+            extra_info = Text(' ').append(parenthesize(extra_info, 'grey'))
+
+        link = link_text_obj(SiteType.get_url(site_type), description, f"{AUX_SITE_LINK_STYLE} bold")
+        link.append(extra_info)
+        return link
 
 
 HTML_BUILD_FILENAMES = {
@@ -64,13 +75,13 @@ HTML_BUILD_FILENAMES = {
 # Order matters, it's the order the links are shown in the header
 # Colons are used to break and parenthesize display
 SITE_DESCRIPTIONS = {
-    SiteType.CURATED:              f"curated selection:files of particular interest",
-    SiteType.GROUPED_EMAILS:       f"emails grouped by counterparty",
-    SiteType.CHRONOLOGICAL_EMAILS: f"emails in chronological order",
-    SiteType.TEXT_MESSAGES:        f"text messages from {HOUSE_OVERSIGHT_TRANCHE}",
-    SiteType.OTHER_FILES_TABLE:    f"other files:neither emails nor text messages",
-    SiteType.DOJ_FILES:            f"raw OCR text of non-emails from {DOJ_2026_TRANCHE}",
-    SiteType.WORD_COUNT:           f"word count of all communications",
+    SiteType.CURATED:              f"curated:by my interests",
+    SiteType.GROUPED_EMAILS:       f"emails:grouped by counterparty",
+    SiteType.CHRONOLOGICAL_EMAILS: f"emails:chronological order",
+    SiteType.TEXT_MESSAGES:        f"text messages:from {HOUSE_OVERSIGHT_TRANCHE}",
+    SiteType.OTHER_FILES_TABLE:    f"other files [table]:files that aren't emails or texts",
+    SiteType.DOJ_FILES:            f"doj files:raw OCR text of {DOJ_2026_TRANCHE}",
+    SiteType.WORD_COUNT:           f"word count:includes all forms of communication",
     SiteType.JSON_METADATA:        f"metadata:author, attribution reasons, etc.",
     SiteType.JSON_FILES:           f"raw JSON files from {HOUSE_OVERSIGHT_TRANCHE}",
 }
@@ -85,3 +96,8 @@ def make_clean() -> None:
             if file.exists():
                 logger.warning(f"Removing build file '{file}'...")
                 file.unlink()
+
+
+def parenthesize(msg: str | Text, parentheses_style: str = '') -> Text:
+    txt = Text(msg) if isinstance(msg, str) else msg
+    return Text('(', style=parentheses_style).append(txt).append(')')
