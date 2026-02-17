@@ -285,6 +285,20 @@ def show_urls() -> None:
     console.print(Padding(styled_dict(SiteType.all_urls(), sep=' '), (1)))
 
 
+def write_html(output_path: Path | None) -> None:
+    if not output_path:
+        logger.warning(f"Not writing HTML because args.build={args.build}.")
+        return
+
+    console.save_html(str(output_path), clear=False, code_format=CONSOLE_HTML_FORMAT, theme=HTML_TERMINAL_THEME)
+    log_file_write(output_path)
+
+    if args.write_txt:
+        txt_path = f"{output_path}.txt"
+        console.save_text(txt_path)
+        log_file_write(txt_path)
+
+
 def _print_email_device_signature_info(epstein_files: EpsteinFiles) -> None:
     print_subtitle_panel(DEVICE_SIGNATURE_SUBTITLE)
     console.print(_signature_table(epstein_files.email_device_signatures_to_authors(), (DEVICE_SIGNATURE, AUTHOR), ', '))

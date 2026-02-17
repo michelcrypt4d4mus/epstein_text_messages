@@ -20,3 +20,8 @@ def link_markup(
 
 def link_text_obj(url: str, link_text: str = '', style: str = ARCHIVE_LINK_COLOR) -> Text:
     return Text.from_markup(link_markup(url, link_text, style))
+
+
+def parenthesize(msg: str | Text, parentheses_style: str = '') -> Text:
+    txt = Text(msg) if isinstance(msg, str) else msg
+    return Text('(', style=parentheses_style).append(txt).append(')')

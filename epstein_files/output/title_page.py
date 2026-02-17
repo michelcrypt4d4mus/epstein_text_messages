@@ -14,12 +14,12 @@ from rich.text import Text
 from epstein_files.output.demi_table import build_demi_table
 from epstein_files.output.rich import *
 from epstein_files.util.constant.names import UNKNOWN
-from epstein_files.util.constant.output_files import GH_PROJECT_URL, SITE_DESCRIPTIONS, parenthesize
+from epstein_files.util.constant.output_files import GH_PROJECT_URL
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constant.urls import *
 from epstein_files.util.constants import HEADER_ABBREVIATIONS
 from epstein_files.util.env import args
-from epstein_files.util.helpers.link_helper import link_markup, link_text_obj
+from epstein_files.util.helpers.link_helper import link_markup, link_text_obj, parenthesize
 from epstein_files.util.logging import logger
 
 TITLE_WIDTH = 50

@@ -320,19 +320,5 @@ def wrap_in_markup_style(msg: str, style: str | None = None) -> str:
     return msg
 
 
-def write_html(output_path: Path | None) -> None:
-    if not output_path:
-        logger.warning(f"Not writing HTML because args.build={args.build}.")
-        return
-
-    console.save_html(str(output_path), clear=False, code_format=CONSOLE_HTML_FORMAT, theme=HTML_TERMINAL_THEME)
-    log_file_write(output_path)
-
-    if args.write_txt:
-        txt_path = f"{output_path}.txt"
-        console.save_text(txt_path)
-        log_file_write(txt_path)
-
-
 if args.colors_only:
     print_json('THEME_STYLES', THEME_STYLES)

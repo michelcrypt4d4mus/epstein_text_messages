@@ -8,9 +8,10 @@ from typing import Self
 from rich.markup import escape
 from rich.text import Text
 
-from epstein_files.util.helpers.link_helper import link_text_obj
+from epstein_files.util.constant.strings import (AUX_SITE_LINK_STYLE, DOJ_2026_TRANCHE,
+     EPSTEIN_FILES_NOV_2025, HOUSE_OVERSIGHT_TRANCHE)
+from epstein_files.util.helpers.link_helper import link_text_obj, parenthesize
 from epstein_files.util.logging import logger
-from epstein_files.util.constant.strings import AUX_SITE_LINK_STYLE, DOJ_2026_TRANCHE, EPSTEIN_FILES_NOV_2025, HOUSE_OVERSIGHT_TRANCHE
 
 HTML_DIR = Path('docs')
 EMAILERS_TABLE_PNG_PATH = HTML_DIR.joinpath('emailers_info_table.png')
@@ -112,8 +113,3 @@ def make_clean() -> None:
             if file.exists():
                 logger.warning(f"Removing build file '{file}'...")
                 file.unlink()
-
-
-def parenthesize(msg: str | Text, parentheses_style: str = '') -> Text:
-    txt = Text(msg) if isinstance(msg, str) else msg
-    return Text('(', style=parentheses_style).append(txt).append(')')
