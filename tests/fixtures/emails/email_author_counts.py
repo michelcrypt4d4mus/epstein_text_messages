@@ -65,7 +65,7 @@ EMAIL_AUTHOR_COUNTS = {
     "David Haig": 1,
     "David Mitchell": 1,
     DAVID_SCHOEN: 11,
-    DAVID_STERN: 15,
+    DAVID_STERN: 19,
     DEEPAK_CHOPRA: 18,
     DIANE_ZIMAN: 1,
     'DOJ Chief Psychologist': 1,
