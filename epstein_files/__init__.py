@@ -62,7 +62,7 @@ def generate_html() -> None:
 
     print_title_page_header()
 
-    if args.email_timeline:
+    if args.email_timeline or args.output_word_count:
         print_color_key()
     else:
         print_title_page_tables(epstein_files)
@@ -89,7 +89,7 @@ def generate_html() -> None:
         printed_files = print_other_files_section(epstein_files)
         timer.log_section_complete('OtherFile', epstein_files.other_files, printed_files)
 
-    if args.output_word_counts:
+    if args.output_word_count:
         write_word_counts_html()
         timer.print_at_checkpoint(f"Finished counting words")
 
@@ -207,7 +207,3 @@ def epstein_show():
             check_output(['open', str(doc.file_path)])
         if args.open_url:
             check_output(['open', str(doc.external_url)])
-
-
-def epstein_word_count() -> None:
-    write_word_counts_html()

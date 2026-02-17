@@ -231,11 +231,8 @@ def write_word_counts_html() -> None:
             for word in msg.text.split():
                 word_count.tally_word(word, SearchResult(imessage_log, [MatchedLine(msg.text, i)]))
 
-    print_page_title(expand=False)
-    print_starred_header(f"Most Common Words in {len(emails):,} Emails and {len(epstein_files.imessage_logs)} iMessage Logs")
+    print_subtitle_panel(f"Most Common Words in {len(emails):,} Emails and {len(epstein_files.imessage_logs)} iMessage Logs")
     print_centered(f"(excluding {len(COMMON_WORDS_LIST)} particularly common words at bottom)", style='dim')
-    console.line()
-    print_color_key()
     console.line()
     console.print(word_count)
     print_subtitle_panel(f"{len(COMMON_WORDS_LIST):,} Excluded Words")

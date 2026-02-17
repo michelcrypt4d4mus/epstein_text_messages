@@ -12,7 +12,7 @@ from epstein_files.util.logging import env_log_level, exit_with_error, logger, s
 DEFAULT_WIDTH = 155
 DEFAULT_FILE = 'default_file'
 EPSTEIN_GENERATE = 'epstein_generate'
-HTML_SCRIPTS = [EPSTEIN_GENERATE, 'epstein_word_count']
+HTML_SCRIPTS = [EPSTEIN_GENERATE]
 PICKLED_PATH = Path("the_epstein_files.pkl.gz")
 
 # Get source file dirs from these vars
@@ -124,7 +124,7 @@ if is_html_script:
             args._site_type = SiteType.CHRONOLOGICAL_EMAILS
         elif args.output_doj_files:
             args._site_type = SiteType.DOJ_FILES
-        elif args.output_word_counts:
+        elif args.output_word_count:
             args._site_type = SiteType.WORD_COUNT
 
         args.build = SiteType.build_path(args._site_type)

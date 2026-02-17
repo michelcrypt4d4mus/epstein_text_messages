@@ -92,7 +92,7 @@ else
 fi
 
 print_deploy_step "Building word counts page..."
-epstein_word_count --build --suppress-output --width 125
+$GENERATE_CMD --output-word-count --width 125
 print_deploy_step "Building JSON metadata page..."
 $GENERATE_CMD --json-metadata
 print_deploy_step "Building JSON files data..."
