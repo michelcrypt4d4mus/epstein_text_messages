@@ -8,13 +8,14 @@ from typing import Generator, Literal, Self
 from dateutil.parser import parse
 from rich.text import Text
 
-from epstein_files.documents.documents.categories import Category, INTERESTING_CATEGORIES, UNINTERESTING_CATEGORIES
+from epstein_files.documents.documents.categories import Category, Interesting, Neutral, Uninteresting, is_category, is_interesting, is_uninteresting
 from epstein_files.util.constant.names import *
 from epstein_files.util.constant.strings import *
 from epstein_files.util.env import args
 from epstein_files.util.helpers.data_helpers import without_falsey
 from epstein_files.util.helpers.file_helper import is_doj_file
 from epstein_files.util.helpers.string_helper import join_truthy, quote
+from epstein_files.util.logging import logger
 
 DebugDict = dict[str, bool | datetime | str | Path | None]
 DuplicateType = Literal['bounced', 'earlier', 'quoted', 'redacted', 'same']
@@ -53,6 +54,7 @@ INTERESTING_AUTHORS = [
 
 UNINTERESTING_AUTHORS = [
     GORDON_GETTY,
+    LAWRENCE_KRAUSS,
     NOBEL_CHARITABLE_TRUST,
     PALM_BEACH_CODE_ENFORCEMENT,
     PALM_BEACH_WATER_COMMITTEE,
@@ -82,7 +84,7 @@ DUPE_TYPE_STRS: dict[DuplicateType, str] = {
 # only used to order fields in metadtaa and repr()
 FIELD_SORT_KEY = {
     'id': 'a',
-    'author': 'aa',
+    AUTHOR: 'aa',
     'comment': 'zz',
     'duplicate_ids': 'dup',
     'duplicate_of_id': 'dupe',
@@ -99,13 +101,13 @@ NON_METADATA_FIELDS = [
 
 # Categories where we want to include the category name at start of the description string
 CATEGORY_PREAMBLES = {
-    BOOK: 'book titled',
-    LETTER: 'letter',
-    PRESS_RELEASE: PRESS_RELEASE,
-    REPUTATION: REPUTATION_MGMT,
-    RESUME: 'professional resumé',
-    SKYPE_LOG: SKYPE_LOG,
-    TWEET: TWEET.title(),
+    Uninteresting.BOOK: 'book titled',
+    Interesting.LETTER: 'letter',
+    Neutral.PRESS_RELEASE: PRESS_RELEASE,
+    Interesting.REPUTATION: REPUTATION_MGMT,
+    Interesting.RESUME: 'professional resumé',
+    Neutral.SKYPE_LOG: Neutral.SKYPE_LOG,
+    Neutral.TWEET: TWEET.title(),
 }
 
 
@@ -169,24 +171,25 @@ class DocCfg:
         # If description is set at all in one of these if/else checks must be fully constructed
         if self.replace_text_with and not self.description:
             return ''
-        if self.category == BOOK or (self.category == ACADEMIA and self.author and self.description):
+        if self.category == Category.BOOK or \
+                (self.category == Category.ACADEMIA and self.author and self.description):
             description = join_truthy(self.description, self.author, ' by ')  # note reversed args
             description = join_truthy(preamble, description)
-        elif self.category == FINANCE and self.is_description_a_title:
+        elif self.category == Category.FINANCE and self.is_description_a_title:
             author_separator = ' report: '
-        elif self.category == LETTER:
+        elif self.category == Category.LETTER:
             description = join_truthy(preamble, self.author, ' from ')
             description = join_truthy(description, self.recipients_str, ' to ')
             description = join_truthy(description, self.description)
-        elif self.category == PRESS_RELEASE:
+        elif self.category == Category.PRESS_RELEASE:
             description = join_truthy(preamble, self.description, ' announcing ')  # note reversed args
             description = join_truthy(self.author, description)
-        elif self.category == REPUTATION or (self.category == LEGAL and 'v.' in self.author_str):
+        elif self.category == Category.REPUTATION or (self.category == Category.LEGAL and 'v.' in self.author_str):
             author_separator = ': '
-        elif self.category in [RESUME, TWEET]:
+        elif self.category in [Category.RESUME, Category.TWEET]:
             preamble_separator = 'of' if self.category == RESUME else 'by'
             preamble_separator = preamble_separator.center(3, ' ')
-        elif self.category == SKYPE_LOG:
+        elif self.category == Category.SKYPE_LOG:
             preamble_separator = ' of conversation with '
 
         # Construct standard description from pieces if a custom one has not been created yet
@@ -221,9 +224,9 @@ class DocCfg:
         """True if first char is uppercase or a quote."""
         if not (self.author and self.description):
             return False
-        elif self.category not in [ACADEMIA, BOOK, FINANCE]:
+        elif self.category not in [Category.ACADEMIA, Category.BOOK, Category.FINANCE]:
             return False
-        elif self.category == FINANCE and self.author not in FINANCIAL_REPORTS_AUTHORS:
+        elif self.category == Category.FINANCE and self.author not in FINANCIAL_REPORTS_AUTHORS:
             return False
 
         first_char = self.description[0]
@@ -247,11 +250,11 @@ class DocCfg:
 
                 [+] = interesting  /  - = uninteresting
 
-            [+] INTERESTING_CATEGORIES
+            [+] is_interesting
             [+] INTERESTING_AUTHORS
             [+] having no author/description *if* HOUSE_OVERSIGHT
              -  duplicates
-             -  UNINTERESTING_CATEGORIES
+             -  is_uninteresting
              -  descriptions with UNINTERESTING_PREFIXES
              -  finance category with any author
         """
@@ -264,11 +267,11 @@ class DocCfg:
         if self.author in INTERESTING_AUTHORS:
             return True
         # category field checks
-        elif self.category in INTERESTING_CATEGORIES:
+        elif is_interesting(self.category):
             return True
-        elif self.category == FINANCE and self.author is not None:
+        elif self.category == Category.FINANCE and self.author is not None:
             return False
-        elif self.category in UNINTERESTING_CATEGORIES:
+        elif is_uninteresting(self.category):
             return False
         # description field checks
         elif any (self.description.startswith(pfx) for pfx in UNINTERESTING_PREFIXES):
@@ -361,6 +364,10 @@ class DocCfg:
     def set_category(self, category: str) -> None:
         """Update the title if we changed to a category that allows titling (books, academia, finance)."""
         self.category = category.lower()
+
+        if category and not is_category(self.category):
+            logger.warning(f"'{self.category}' does not appear to be a valid category")
+
         self.description = quote(self.description) if self.is_description_a_title else self.description
 
     def _props_strs(self) -> list[str]:
@@ -480,7 +487,7 @@ def phone_bill_cfg(id: str, author: str, dates: str = '', **kwargs) -> DocCfg:
     return DocCfg(
         id=id,
         author=author,
-        category=Category.PHONE_BILL,
+        category=Uninteresting.PHONE_BILL,
         replace_text_with=f"phone bill" + (f" covering {dates}" if dates else ''),
         **kwargs
     )

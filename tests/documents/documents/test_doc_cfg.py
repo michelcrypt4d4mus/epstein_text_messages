@@ -1,6 +1,7 @@
 import pytest
 from copy import deepcopy
 
+from epstein_files.documents.documents.categories import Interesting, Neutral, Uninteresting
 from epstein_files.documents.documents.doc_cfg import DocCfg, EmailCfg
 from epstein_files.documents.other_file import OtherFile
 from epstein_files.output.highlight_config import QUESTION_MARKS_TXT
@@ -13,19 +14,19 @@ RANDOM_ID = '123456'
 
 @pytest.fixture
 def academia_doc() -> DocCfg:
-    return _oversight_cfg(ACADEMIA)
+    return _oversight_cfg(Uninteresting.ACADEMIA)
 
 @pytest.fixture
 def attached_doc(junk_email_cfg) -> DocCfg:
-    return _oversight_cfg(LEGAL, attached_to_email_id=junk_email_cfg.id)
+    return _oversight_cfg(Neutral.LEGAL, attached_to_email_id=junk_email_cfg.id)
 
 @pytest.fixture
 def blockchain_cap_cfg() -> DocCfg:
-    return _oversight_cfg(CRYPTO, author=BLOCKCHAIN_CAPITAL, description="investor report")
+    return _oversight_cfg(Interesting.CRYPTO, author=BLOCKCHAIN_CAPITAL, description="investor report")
 
 @pytest.fixture
 def book_cfg() -> DocCfg:
-    return _oversight_cfg(BOOK, author='Elon Musk', description="Illmatic")
+    return _oversight_cfg(Uninteresting.BOOK, author='Elon Musk', description="Illmatic")
 
 @pytest.fixture
 def empty_doj_cfg() -> DocCfg:
@@ -37,7 +38,7 @@ def empty_house_cfg() -> DocCfg:
 
 @pytest.fixture
 def finance_report() -> DocCfg:
-    return _oversight_cfg(FINANCE, author=BOFA_MERRILL, description="Grapes")
+    return _oversight_cfg(Neutral.FINANCE, author=BOFA_MERRILL, description="Grapes")
 
 @pytest.fixture
 def fwded_article() -> EmailCfg:
@@ -45,13 +46,13 @@ def fwded_article() -> EmailCfg:
 
 @pytest.fixture
 def interesting_doc() -> DocCfg:
-    cfg = _oversight_cfg(ACADEMIA)
+    cfg = _oversight_cfg(Uninteresting.ACADEMIA)
     cfg.is_interesting = True
     return cfg
 
 @pytest.fixture
 def interesting_author() -> DocCfg:
-    return _doj_cfg(ACADEMIA, author=JOI_ITO)
+    return _doj_cfg(Uninteresting.ACADEMIA, author=JOI_ITO)
 
 @pytest.fixture
 def junk_doc_cfg() -> DocCfg:
@@ -63,15 +64,15 @@ def junk_email_cfg() -> EmailCfg:
 
 @pytest.fixture
 def legal_cfg() -> DocCfg:
-    return _oversight_cfg(LEGAL, author='clinton v. trump', description='case law')
+    return _oversight_cfg(Neutral.LEGAL, author='clinton v. trump', description='case law')
 
 @pytest.fixture
 def skype_author() -> DocCfg:
-    return _oversight_cfg(SKYPE_LOG, author='linkspirit')
+    return _oversight_cfg(Neutral.SKYPE_LOG, author='linkspirit')
 
 @pytest.fixture
 def skype_cfg() -> DocCfg:
-    return _oversight_cfg(SKYPE_LOG)
+    return _oversight_cfg(Neutral.SKYPE_LOG)
 
 @pytest.fixture
 def tweet_cfg() -> DocCfg:
@@ -86,7 +87,7 @@ def test_category_txt(blockchain_cap_cfg, empty_house_cfg, junk_doc_cfg, legal_c
     assert blockchain_cap_cfg.category_txt.style == 'orange1 bold'
     assert empty_house_cfg.category_txt == QUESTION_MARKS_TXT
     assert junk_doc_cfg.category_txt.plain == JUNK
-    assert skype_cfg.category_txt.plain == SKYPE_LOG
+    assert skype_cfg.category_txt.plain == Neutral.SKYPE_LOG
     assert skype_cfg.category_txt.style == 'wheat4'
     assert legal_cfg.category_txt.style == 'purple'
 
@@ -123,11 +124,11 @@ def test_complete_description(
     # Legal
     assert legal_cfg.complete_description == f"clinton v. trump: case law"
     # Skype no author
-    assert skype_cfg.complete_description == SKYPE_LOG.lower()
+    assert skype_cfg.complete_description == Neutral.SKYPE_LOG
     # Skype with author
-    assert skype_author.complete_description == f"{SKYPE_LOG.lower()} of conversation with linkspirit"
+    assert skype_author.complete_description == f"{Neutral.SKYPE_LOG} of conversation with linkspirit"
     skype_author.description = 'something'
-    assert skype_author.complete_description == f"{SKYPE_LOG.lower()} of conversation with linkspirit something"
+    assert skype_author.complete_description == f"{Neutral.SKYPE_LOG} of conversation with linkspirit something"
     # Tweet
     assert tweet_cfg.complete_description == 'Tweet by Klippenstein'
     tweet_cfg.description = 'libelous'
