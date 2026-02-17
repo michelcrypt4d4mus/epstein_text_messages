@@ -28,7 +28,7 @@ from epstein_files.util.helpers.file_helper import log_file_write
 from epstein_files.util.helpers.link_helper import link_markup, link_text_obj
 from epstein_files.util.logging import logger
 
-TITLE_WIDTH = 50
+TITLE_WIDTH = 60
 SUBTITLE_WIDTH = 110
 NUM_COLOR_KEY_COLS = 6
 NA_TXT = Text(NA, style='dim')
@@ -50,7 +50,6 @@ OTHER_PAGE_MSG_STYLE = 'gray78 dim'
 PATH_STYLE = 'deep_pink3'
 STR_VAL_STYLE = 'cornsilk1 italic'
 STR_VAL_STYLE_ALT = 'light_yellow3 italic'
-SECTION_HEADER_STYLE = 'bold white on blue3'
 SOCIAL_MEDIA_LINK_STYLE = 'pale_turquoise4'
 SUBSTACK_POST_LINK_STYLE = 'bright_cyan'
 SYMBOL_STYLE = 'grey70'
