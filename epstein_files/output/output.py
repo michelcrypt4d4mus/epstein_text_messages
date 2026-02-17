@@ -14,7 +14,7 @@ from epstein_files.epstein_files import EpsteinFiles, count_by_month
 from epstein_files.output.rich import *
 from epstein_files.output.title_page import (print_color_key, print_other_page_link, print_section_header,
      print_section_summary_table)
-from epstein_files.people.interesting_people import PERSONS_OF_INTEREST
+from epstein_files.people.interesting_people import EMAILERS_OF_INTEREST
 from epstein_files.people.person import Person
 from epstein_files.util.constant.html import CONSOLE_HTML_FORMAT, HTML_TERMINAL_THEME, PAGE_TITLE
 from epstein_files.util.constant.names import *
@@ -117,7 +117,7 @@ def print_emails_section(epstein_files: EpsteinFiles) -> list[Email]:
         if args.all_emails:
             people_to_print = all_emailers
         else:
-            people_to_print = epstein_files.person_objs(PERSONS_OF_INTEREST)
+            people_to_print = epstein_files.person_objs(EMAILERS_OF_INTEREST)
 
         print_section_summary_table(Person.emailer_info_table(all_emailers, people_to_print))
 

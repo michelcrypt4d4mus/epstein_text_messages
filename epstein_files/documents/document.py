@@ -21,6 +21,7 @@ from epstein_files.documents.emails.email_header import DETECT_EMAIL_REGEX
 from epstein_files.output.rich import (INFO_STYLE, NA_TXT, SKIPPED_FILE_MSG_PADDING, SYMBOL_STYLE,
      add_cols_to_table, build_table, console, highlighter, styled_key_value, prefix_with, styled_dict,
      wrap_in_markup_style)
+from epstein_files.people.interesting_people import UNINTERESTING_AUTHORS
 from epstein_files.util.constant.names import Name
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constant.output_files import EXTRACTS_BASE_URL
@@ -215,12 +216,16 @@ class Document:
     def is_interesting(self) -> bool | None:
         """
         If `self.config.is_of_interest` returns a bool use that, otherwise house oversight files are
-        interesting if they are empty. Everything else returns `None`.
+        interesting if they are empty and uninteresting authors are uninteresting.
+        Checking of `TEXTERS_OF_INTEREST` etc. is left to the relevant subclass in cases where this
+        function returns None.
         """
         if self.config and self.config.is_of_interest is not None:
             return self.config.is_of_interest
         elif self.file_info.is_house_oversight_file and not (self.author or self.config):
             return True
+        elif self.author in UNINTERESTING_AUTHORS:
+            return False
 
     @property
     def length(self) -> int:
