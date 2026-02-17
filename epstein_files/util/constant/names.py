@@ -241,6 +241,7 @@ TULSI_GABBARD = 'Tulsi Gabbard'
 VIRGINIA_GIUFFRE = 'Virginia Giuffre'
 
 # Organizations
+ASIA_GATEWAY = 'Asia Gateway'
 ATT_COURT_APPEARANCE_TEAM = 'AT&T Court Appearance Team'
 BLOCKCHAIN_CAPITAL = 'Blockchain Capital'
 BLOCKSTREAM = 'Blockstream'
@@ -300,13 +301,13 @@ WAPO = 'WaPo'
 
 # First and last names that should be made part of a highlighting regex for emailers
 NAMES_TO_NOT_HIGHLIGHT = """
-    adam al alain alan alison alfredo allen alex alexander amanda andres andrew ann anthony audrey
+    adam al alain alan alison alfredo allen alex alexander amanda andres andrew ann anthony asia audrey
     back bard barnaby barrett barry bennet bernard bill black bob boris boyle brad brenner bruce
     cameron caroline carolyn chris christian christina cohen
     dan daniel danny darren dave david debbie department donald douglas
     ed edward edwards enforcement enterprise enterprises entourage epstein eric erika etienne
     faith fisher fitzgerald forget fred friendly frost fuller fund
-    gates gerald george gold gordon
+    gates gateway gerald george gold gordon
     haddad hanson harry hay heather henry hill hoffman howard
     ian inc inc. ivan
     jack james jay jean jeff jeffrey jennifer jeremy jessica joel john jon jonathan joseph jr

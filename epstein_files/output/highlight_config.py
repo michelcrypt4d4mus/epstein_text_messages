@@ -447,6 +447,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         label='Epstein',
         style='blue1',
         contacts=[
+            Contact(ASIA_GATEWAY, f"corporate vehicle set up by Epstein and {DAVID_STERN}"),
             Contact(
                 name=JEFFREY_EPSTEIN,
                 emailer_pattern=r"[djl]\s?ee[vy]acation[©@]?g?(mail.com)?|Epstine|\bJEE?\b|Jeff(rey)? (Edward )?E((sp|ps)tein?)?( VI Foundation)?|jeeproject@yahoo.com|J Jep|Jeffery Edwards|(?<!(ark L.|rd Jay|Edward) )Epstein",
@@ -938,12 +939,14 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         ],
         patterns=[
             r"AIPAC",
+            r"(Bank\s*)?Leumi",
             r"Bibi",
             r"Carbyne",   # Co. invested in by barak + epstein
             r"(eh|(Ehud|Nili Priell)\s*)?barak",
             r"EB",
             r"Ehud\s*Barack",
             r"Hapoalim",
+            r"Idan\s*Ofer",
             r"Israeli?",
             r"Jerusalem",
             r"J\s*Street",

@@ -277,6 +277,13 @@ EMAILS_CONFIG = [
     EmailCfg(id='031560', author=DAVID_SCHOEN, author_reason='signature'),
     EmailCfg(id='026287', author=DAVID_SCHOEN, author_reason='signature'),
     EmailCfg(id='033419', author=DAVID_SCHOEN, author_reason='signature'),
+    EmailCfg(
+        id='EFTA02442672',
+        author=DAVID_STERN,
+        author_reason=f"{ASIA_GATEWAY} + 'D.' in signature",
+        description="why is David Stern's name redacted?",
+        is_interesting=True,
+    ),
     EmailCfg(id='031460', author=EDWARD_JAY_EPSTEIN, author_reason='quoted reply has edwardjayepstein.com', is_fwded_article=True),
     EmailCfg(
         id='030475',
