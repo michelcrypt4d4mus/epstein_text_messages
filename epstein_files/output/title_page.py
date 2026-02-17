@@ -26,9 +26,6 @@ TITLE_WIDTH = 50
 SUBTITLE_WIDTH = 110
 NUM_COLOR_KEY_COLS = 6
 
-SITE_GLOSSARY_MSG = f"The following views of the underlying selection of Epstein Files are available:"
-YOU_ARE_HERE = Text('«').append('you are here', style='bold khaki1 blink').append('»')
-
 DATASET_DESCRIPTION_STYLE = 'gray74'
 OTHER_PAGE_MSG_STYLE = 'gray78 dim'
 PATH_STYLE = 'deep_pink3'
@@ -37,6 +34,9 @@ STR_VAL_STYLE_ALT = 'light_yellow3 italic'
 SECTION_HEADER_STYLE = 'bold black on color(146)'
 SOCIAL_MEDIA_LINK_STYLE = 'pale_turquoise4'
 SUBSTACK_POST_LINK_STYLE = 'bright_cyan'
+
+SITE_GLOSSARY_MSG = f"The following views of the underlying selection of Epstein Files are available:"
+YOU_ARE_HERE = Text('«').append('you are here', style='bold khaki1 blink').append('»')
 
 HIGHLIGHTED_GROUP_COLOR_KEYS = [
     Text(highlight_group.label.replace('_', ' '), style=highlight_group.style)
