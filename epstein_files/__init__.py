@@ -42,8 +42,9 @@ def generate_html() -> None:
     if args.make_clean or args.show_urls:
         if args.make_clean:
             make_clean()
+        if args.show_urls:
+            console.print(Padding(styled_dict(SiteType.all_links(), sep=' '), (1)))
 
-        console.print(Padding(styled_dict(SiteType.all_links(), sep=' '), (1)))
         exit()
 
     timer = Timer()

@@ -8,7 +8,7 @@ from typing import Self
 from rich.markup import escape
 from rich.text import Text
 
-from epstein_files.util.helpers.link_helper import link_markup, link_text_obj
+from epstein_files.util.helpers.link_helper import link_text_obj
 from epstein_files.util.logging import logger
 from epstein_files.util.constant.strings import AUX_SITE_LINK_STYLE, DOJ_2026_TRANCHE, EPSTEIN_FILES_NOV_2025, HOUSE_OVERSIGHT_TRANCHE
 

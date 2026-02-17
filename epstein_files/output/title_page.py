@@ -167,7 +167,7 @@ def print_title_page_tables(epstein_files: 'EpsteinFiles') -> None:
 
 
 def _link_with_comment(url: str, comment: str | Text, _link_text: str = '') -> Text:
-    link_text = _link_text if _link_text else (JMAIL if url == JMAIL_URL else None)
+    link_text = _link_text if _link_text else (JMAIL if url == JMAIL_URL else '')
 
     if isinstance(comment, Text):
         comment = comment
