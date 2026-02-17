@@ -16,6 +16,7 @@ from rich.table import Table
 from rich.text import Text
 from rich.theme import Theme
 
+from epstein_files.output.demi_table import build_demi_table
 from epstein_files.output.epstein_highlighter import EpsteinHighlighter
 from epstein_files.output.highlight_config import HIGHLIGHT_GROUPS
 from epstein_files.util.constant.html import CONSOLE_HTML_FORMAT, HTML_TERMINAL_THEME, PAGE_TITLE
@@ -241,10 +242,10 @@ def print_title_page_header() -> None:
 
 def print_title_page_tables(epstein_files: 'EpsteinFiles') -> None:
     """Bottom half of the title page."""
-    _print_external_links()
     console.line()
     _print_abbreviations_table()
     print_centered(epstein_files.overview_table())
+    _print_external_links()
     console.line()
     print_color_key()
     print_centered(f"(if you think there's an attribution error or can deanonymize an {UNKNOWN} contact {CRYPTADAMUS_TWITTER})", 'grey46')
@@ -441,62 +442,47 @@ def _print_abbreviations_table() -> None:
 
     console.print(Align.center(vertically_pad(table)))
 
+EXTERNAL_STYLE = 'light_slate_grey bold'
+
+EXTERNAL_LINKS = {
+    JMAIL_URL: 'read His Emails via Gmail interface',
+    EPSTEIN_DOCS_URL: 'searchable archive',
+    EPSTEINIFY_URL: 'raw document images',
+    EPSTEIN_WEB_URL: 'character summaries',
+    EPSTEIN_MEDIA_URL: 'raw document images',
+}
+
+def _link_with_comment(url: str, comment: str | Text, _link_text: str = '') -> Text:
+    link_text = _link_text if _link_text else (JMAIL if url == JMAIL_URL else None)
+
+    if isinstance(comment, Text):
+        comment = comment
+        link_style = 'navajo_white3 bold'
+    else:
+        comment = Text(f"({comment})", 'dim italic')
+        link_style = EXTERNAL_STYLE
+
+    return link_text_obj(url, link_text=link_text, style=link_style).append(' ').append(comment)
+
 
 def _print_external_links() -> None:
     console.line()
     print_centered(Text('External Links', style=TABLE_TITLE_STYLE))
-    presser_link = link_text_obj(OVERSIGHT_REPUBLICANS_PRESSER_URL, 'Official Oversight Committee Press Release')
+    doj_docs_link = link_text_obj(DOJ_2026_URL, 'DOJ Epstein Files Transparency Act Disclosures', EXTERNAL_STYLE)
+    doj_search_link = join_texts([link_text_obj(DOJ_SEARCH_URL, 'search', style=ARCHIVE_ALT_LINK_STYLE)], encloser='()')
+    print_centered(_link_with_comment(DOJ_2026_URL, doj_search_link, 'Dept of Justice Epstein Files Transparency Act Disclosures'))
+    # print_centered(join_texts([doj_docs_link, doj_search_link]))
     raw_docs_link = link_text_obj(RAW_OVERSIGHT_DOCS_GOOGLE_DRIVE_URL, 'raw files', style=ARCHIVE_ALT_LINK_STYLE)
     raw_docs_link = join_texts([raw_docs_link], encloser='()')
-    print_centered(join_texts([presser_link, raw_docs_link]))
-    doj_docs_link = link_text_obj(DOJ_2026_URL, 'Epstein Files Transparency Act Disclosures')
-    doj_search_link = join_texts([link_text_obj(DOJ_SEARCH_URL, 'search', style=ARCHIVE_ALT_LINK_STYLE)], encloser='()')
-    print_centered(join_texts([doj_docs_link, doj_search_link]))
-    print_centered(link_markup(JMAIL_URL, JMAIL) + " (read His Emails via Gmail interface)")
-    print_centered(link_markup(EPSTEIN_DOCS_URL) + " (searchable archive)")
-    print_centered(link_markup(EPSTEINIFY_URL) + " (raw document images)")
-    print_centered(link_markup(EPSTEIN_WEB_URL) + " (character summaries)")
-    print_centered(link_markup(EPSTEIN_MEDIA_URL) + " (raw document images)")
+    print_centered(_link_with_comment(OVERSIGHT_REPUBLICANS_PRESSER_URL, raw_docs_link, 'Official Oversight Committee Press Release'))
 
+    for url, link in EXTERNAL_LINKS.items():
+        print_centered(_link_with_comment(url, link))
 
-SECTION_LINK_MSG = 'jump to different sections of this page'
-from enum import auto, StrEnum
-from rich.segment import Segment
-
-class PageSections(StrEnum):
-    TEXT_MESSAGES = auto()
-    EMAILS = auto()
-    OTHER_FILES = auto()
-
-SECTION_ANCHORS = {
-    PageSections.TEXT_MESSAGES: 'Selections from His Text Messages',
-    PageSections.EMAILS: 'Selections from His Emails',
-    PageSections.OTHER_FILES: 'Selected Files That Are Neither Emails Nor',
-}
-
-SECTION_LINKS = [
-    link_text_obj(internal_link_url(anchor), section_name, 'indian_red')
-    for section_name, anchor in SECTION_ANCHORS.items()
-]
 
 def _print_section_links() -> None:
-    sections_container = Table(box=box.ROUNDED, show_header=False, collapse_padding=True, show_edge=False, style='gray23')
-    sections_container.add_column('msg', width=19, style='dim', justify='right')
-    sections_container.add_column('link', justify='left')
-    links_table = Table(show_header=False, collapse_padding=True, show_edge=False, style='gray23')
-    links_table.add_column('link', justify='left')
-
-    for link in SECTION_LINKS:
-        links_table.add_row(link)
-
-    sections_container.add_row(SECTION_LINK_MSG, links_table)
-    print_centered('-' * 50, style='grey15')
-    print_centered(sections_container)
-    print_centered('-' * 50, style='grey15')
-
-    # print_centered('jump to different sections of this page:')
-    # for link in section_links:
-    #     print_centered(link)
+    for table_piece in build_demi_table(SECTION_LINK_MSG, SECTION_LINKS):
+        print_centered(table_piece)
 
 
 def _print_social_media_links() -> None:

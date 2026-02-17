@@ -1,5 +1,6 @@
 import re
 import urllib.parse
+from enum import auto, StrEnum
 from typing import Callable, Literal
 
 from inflection import parameterize
@@ -9,6 +10,7 @@ from epstein_files.util.env import args
 from epstein_files.util.constant.output_files import SiteType, link_markup
 from epstein_files.util.constant.strings import TEXT_LINK
 from epstein_files.util.helpers.file_helper import coerce_file_stem
+from epstein_files.util.helpers.link_helper import link_text_obj
 from epstein_files.util.helpers.string_helper import remove_question_marks
 
 # External site names
@@ -20,6 +22,7 @@ JMAIL = 'Jmail'
 ROLLCALL = 'RollCall'
 TWITTER = 'search X'
 
+SECTION_LINK_MSG = 'jump to different sections of this page'
 TO_FROM = 'to/from'
 
 # External URLs
@@ -33,6 +36,8 @@ SUBSTACK_URL = 'https://cryptadamus.substack.com/p/i-made-epsteins-text-messages
 # DOJ docs
 DOJ_2026_URL = 'https://www.justice.gov/epstein/doj-disclosures'
 DOJ_SEARCH_URL = 'https://www.justice.gov/epstein/search'
+# ours
+CRYPTADAMUS_TWITTER = link_markup('https://x.com/cryptadamist', '@cryptadamist')
 
 # Document source sites
 EPSTEINIFY_URL = 'https://epsteinify.com'
@@ -139,6 +144,28 @@ def this_site_url() -> str:
     return SiteType.get_url(args._site_type)
 
 
-CRYPTADAMUS_TWITTER = link_markup('https://x.com/cryptadamist', '@cryptadamist')
 THE_OTHER_PAGE_MARKUP = link_markup(other_site_url(), 'the other page', style='light_slate_grey bold')
 THE_OTHER_PAGE_TXT = Text.from_markup(THE_OTHER_PAGE_MARKUP)
+
+
+#############################
+#  Internal sections links  #
+#############################
+
+class PageSections(StrEnum):
+    TEXT_MESSAGES = auto()
+    EMAILS = auto()
+    OTHER_FILES = auto()
+
+
+# Search terms that take you to the desired section
+SECTION_ANCHORS = {
+    PageSections.TEXT_MESSAGES: 'Selections from His Text Messages',
+    PageSections.EMAILS: 'Selections from His Emails',
+    PageSections.OTHER_FILES: 'Selected Files That Are Neither Emails Nor',
+}
+
+SECTION_LINKS = [
+    link_text_obj(internal_link_url(anchor), section_name, 'indian_red')
+    for section_name, anchor in SECTION_ANCHORS.items()
+]
