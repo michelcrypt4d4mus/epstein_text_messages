@@ -117,10 +117,14 @@ def external_doc_link_txt(site: ExternalSite, filename_or_id: int | str, style: 
     return Text.from_markup(external_doc_link_markup(site, filename_or_id, style))
 
 
-def internal_link_to_emails(name: str) -> str:
+def internal_link_url(search_term: str) -> str:
+    """Hack a local link with the `#:~text=` url comment."""
+    return f"{this_site_url()}#:~:text={urllib.parse.quote(search_term)}"
+
+
+def internal_person_link_url(name: str) -> str:
     """e.g. https://michelcrypt4d4mus.github.io/epstein_text_messages/all_emails_epstein_files_nov_2025.html#:~:text=to%2Ffrom%20Jack%20Goldberger"""
-    search_term = urllib.parse.quote(f"{TO_FROM} {remove_question_marks(name)}")
-    return f"{this_site_url()}#:~:text={search_term}"
+    return internal_link_url(f"{TO_FROM} {remove_question_marks(name)}")
 
 
 def other_site_type() -> SiteType:

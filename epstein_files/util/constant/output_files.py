@@ -75,7 +75,6 @@ HTML_BUILD_FILENAMES = {
     SiteType.CURATED:              f'index.html',
     SiteType.DOJ_FILES:            f'doj_2026-01-30_non_email_files.html',
     SiteType.GROUPED_EMAILS:       f'emails_grouped_by_counterparty.html',
-    # SiteType.JSON_FILES:           f'json_files_from_{EPSTEIN_FILES_NOV_2025}.json',
     SiteType.JSON_METADATA:        f'file_metadata_{EPSTEIN_FILES_NOV_2025}.json',
     SiteType.OTHER_FILES_TABLE:    f'other_files_table.html',
     SiteType.TEXT_MESSAGES:        f'text_messages_{EPSTEIN_FILES_NOV_2025}.html',
@@ -86,7 +85,7 @@ HTML_BUILD_FILENAMES = {
 # Order matters, it's the order the links are shown in the header
 # Colons are used to break and parenthesize display
 SITE_DESCRIPTIONS = {
-    SiteType.CURATED:              f"curated:by my interests, all types",
+    SiteType.CURATED:              f"curated:by my interests",
     SiteType.GROUPED_EMAILS:       f"emailers:emails grouped by counterparty",
     SiteType.CHRONOLOGICAL_EMAILS: f"emails:pure chronological order",
     SiteType.TEXT_MESSAGES:        f"text messages:{HOUSE_OVERSIGHT_TRANCHE}",
@@ -94,7 +93,6 @@ SITE_DESCRIPTIONS = {
     SiteType.WORD_COUNT:           f"word count:of Epstein's communications",
     SiteType.DOJ_FILES:            f"doj files:raw OCR text {DOJ_2026_TRANCHE}",
     SiteType.JSON_METADATA:        f"metadata:attribution reasons, categories",
-    # SiteType.JSON_FILES:           f"raw JSON files:from {HOUSE_OVERSIGHT_TRANCHE}, uninteresting",
 }
 
 

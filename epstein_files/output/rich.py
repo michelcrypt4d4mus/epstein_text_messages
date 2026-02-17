@@ -41,7 +41,7 @@ VALID_GREYS = [0, 3, 7, 11, 15, 19, 23, 27, 30, 35, 37, 39, 42, 46, 50, 53, 54, 
 
 DOJ_PAGE_LINK_MSG = 'WIP page with documents from the Epstein Files Transparency Act'
 SITE_GLOSSARY_MSG = f"These pages include the following views of the underlying collection of Epstein's files:"
-YOU_ARE_HERE = Text('(').append('you are here', style='bold khaki1 blink').append(')')
+YOU_ARE_HERE = Text('«').append('you are here', style='bold khaki1 blink').append('»')
 
 DATASET_DESCRIPTION_STYLE = 'gray74'
 INFO_STYLE = 'white dim italic'
@@ -230,9 +230,10 @@ def print_title_page_header() -> None:
     sites_txt.append(indent_txt(join_texts(links_txts, '\n'), num_link_indent_spaces))
     print_centered(Panel(sites_txt, border_style='dim', padding=(1, 5)))
     console.line()
-    print_starred_header('Not All The Epstein Files Are Here!', num_spaces=9 if args.all_emails else 6, num_stars=14)
+    print_starred_header('Not All Epstein Files Are Here!', num_spaces=9 if args.all_emails else 6, num_stars=14)
     print_centered(f"This dataset includes everything from the {HOUSE_OVERSIGHT_TRANCHE}", style=DATASET_DESCRIPTION_STYLE)
-    print_centered(f"as we all as a curated selection of the {DOJ_2026_TRANCHE}.\n", style=DATASET_DESCRIPTION_STYLE)
+    print_centered(f"as well as a curated selection of the {DOJ_2026_TRANCHE}.\n", style=DATASET_DESCRIPTION_STYLE)
+    _print_section_links()
 
 
 def print_title_page_tables(epstein_files: 'EpsteinFiles') -> None:
@@ -453,6 +454,22 @@ def _print_external_links() -> None:
     print_centered(link_markup(EPSTEINIFY_URL) + " (raw document images)")
     print_centered(link_markup(EPSTEIN_WEB_URL) + " (character summaries)")
     print_centered(link_markup(EPSTEIN_MEDIA_URL) + " (raw document images)")
+
+
+def _print_section_links() -> None:
+    if args._site_type != SiteType.CURATED:
+        return
+
+    links = [
+        link_text_obj(internal_link_url('Selections from His Text Messages'), 'text messages'),
+        link_text_obj(internal_link_url('Selections from His Emails'), 'emails'),
+        link_text_obj(internal_link_url('Selected Files That Are Neither Emails Nor'), 'other files'),
+    ]
+
+    print_centered('jump to different sections of this page:')
+
+    for link in links:
+        print_centered(link)
 
 
 def _print_social_media_links() -> None:
