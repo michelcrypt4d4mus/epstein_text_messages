@@ -131,7 +131,7 @@ def print_emailers_info(epstein_files: EpsteinFiles) -> None:
 
 
 def print_emails_section(epstein_files: EpsteinFiles) -> list[Email]:
-    """Returns emails that were printed (may contain dupes if printed for both author and recipient)."""
+    """Prints emails, returns emails that were printed (may return dupes if printed for both author and recipient)."""
     print_section_header(('Selections from ' if not args.all_emails else '') + 'His Emails')
     print_other_page_link(epstein_files)
     all_emailers = sorted(epstein_files.emailers, key=lambda person: person.earliest_email_at)
