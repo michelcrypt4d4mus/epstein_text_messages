@@ -626,6 +626,7 @@ HIGHLIGHT_GROUPS: Sequence[BaseHighlight] = [
             r"Strauss[- ]?Kahn",
             r"Swed(en|ish)(?![-\s]+American Life Scienc)",
             r"Swi(ss|tzerland)",
+            r"Tommy\s*Robinson",
             r"(Tony\s)?Blair",
             r"United\s*Kingdom",
             r"U\.K\.",
