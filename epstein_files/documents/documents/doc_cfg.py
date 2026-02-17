@@ -19,7 +19,7 @@ from epstein_files.util.logging import logger
 
 DebugDict = dict[str, bool | datetime | str | Path | None]
 DuplicateType = Literal['bounced', 'earlier', 'quoted', 'redacted', 'same']
-Metadata = dict[str, bool | datetime | int | str | list[str | None] |dict[str, bool | str]]
+Metadata = dict[str, bool | datetime | int | str | None | list[str | None] |dict[str, bool | str]]
 
 FALSEABLE_PROPS = ['is_interesting']
 MAX_LINE_LENGTH = 135

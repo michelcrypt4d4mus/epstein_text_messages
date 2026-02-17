@@ -226,6 +226,7 @@ class Email(Communication):
 
     @property
     def is_fwded_article(self) -> bool:
+        """True if this email is just a forward of an article from WSJ or whatever."""
         if self.config is None:
             return False
         elif self.config.fwded_text_after:

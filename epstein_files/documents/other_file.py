@@ -149,7 +149,7 @@ class OtherFile(Document):
         """Return configured timestamp or value extracted by scanning text with datefinder."""
         timestamps: list[datetime] = []
 
-        if self.config and any([s in (self.config_description or '') for s in SKIP_TIMESTAMP_EXTRACT]):
+        if self.config and any([s in self.config_description for s in SKIP_TIMESTAMP_EXTRACT]):
             return None
 
         with warnings.catch_warnings():
