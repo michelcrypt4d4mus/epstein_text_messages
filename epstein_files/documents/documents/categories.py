@@ -56,6 +56,7 @@ class Category(StrEnum):
 CATEGORY_STYLE_MAPPING = {
     Interesting.MONEY: FINANCE,
     Interesting.REPUTATION: PUBLICIST,
+    Interesting.TEXT_MSG: TECH_BRO,
     Neutral.LEGAL: LAWYER,
     Neutral.SKYPE_LOG: TECH_BRO,
     Neutral.TWEET: SOCIAL,
@@ -71,6 +72,7 @@ CATEGORY_STYLES = {
     Interesting.RESUMÉ: 'deep_pink4',
     Interesting.SOCIAL: 'yellow1',
     Neutral.FLIGHT_LOG: 'cyan',
+    Neutral.MISC: 'deep_pink3',
     Neutral.PRESS_RELEASE: 'sandy_brown',
     Uninteresting.JSON: 'dark_red',
     Uninteresting.PHONE_BILL: 'cyan',
