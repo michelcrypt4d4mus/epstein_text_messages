@@ -8,6 +8,7 @@ from typing import Type
 
 from epstein_files.util.constant.strings import *
 
+DEFAULT_CATEGORY_STYLE = 'wheat4'
 
 class Interesting(StrEnum):
     CRYPTO = auto()
@@ -59,7 +60,7 @@ CATEGORY_STYLE_MAPPING = {
     Neutral.TWEET: SOCIAL,
     Uninteresting.ARTICLE: JOURNALIST,
     Uninteresting.BOOK: JOURNALIST,
-    Uninteresting.CONFERENCE: ACADEMIA,
+    Uninteresting.CONFERENCE: ACADEMIA,  # TODO: this maps to f"{get_style_for_category(ACADEMIA)} dim"
     Uninteresting.POLITICS: LOBBYIST,
     Uninteresting.PROPERTY: BUSINESS,
 }

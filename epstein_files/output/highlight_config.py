@@ -4,7 +4,8 @@ from typing import Sequence
 from rich.console import Console
 from rich.text import Text
 
-from epstein_files.documents.documents.categories import CATEGORY_STYLES, CATEGORY_STYLE_MAPPING, Interesting, Neutral, Uninteresting
+from epstein_files.documents.documents.categories import (CATEGORY_STYLES, CATEGORY_STYLE_MAPPING,
+     DEFAULT_CATEGORY_STYLE, Interesting, Neutral, Uninteresting)
 from epstein_files.documents.emails.constants import REPLY_REGEX, SENT_FROM_REGEX, XML_STRIPPED_MSG
 from epstein_files.output.highlighted_names import HighlightGroup, HighlightedNames, HighlightedText, ManualHighlight
 from epstein_files.people.contact import Contact
@@ -1921,8 +1922,6 @@ def get_style_for_category(category: str) -> str | None:
         return CATEGORY_STYLES[category]
     elif category == CONFERENCE:
         return f"{get_style_for_category(ACADEMIA)} dim"
-    elif category == SOCIAL:
-        return get_style_for_category(PUBLICIST)
 
     for highlight_group in HIGHLIGHT_GROUPS:
         if highlight_group.label == CATEGORY_STYLE_MAPPING.get(category, category):
@@ -1939,7 +1938,7 @@ def get_style_for_name(name: str | None, default_style: str = DEFAULT_NAME_STYLE
 
 def styled_category(category: str | None) -> Text:
     if category:
-        return Text(category, get_style_for_category(category) or 'wheat4')
+        return Text(category, get_style_for_category(category) or DEFAULT_CATEGORY_STYLE)
     else:
         return QUESTION_MARKS_TXT
 
