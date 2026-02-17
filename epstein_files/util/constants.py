@@ -1166,13 +1166,13 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA02731490', author=USANYS, recipients=[USANYS], author_uncertain=True),
     EmailCfg(id='EFTA02731477', author=USANYS, recipients=[USANYS], author_uncertain=True),
     EmailCfg(id='EFTA02731660', author=USANYS, recipients=[USANYS], author_uncertain=True),
+    EmailCfg(id='EFTA00039820', author=USANYS, recipients=[USANYS], author_uncertain=True),
     EmailCfg(id='EFTA02731638', author=USANYS, recipients=[USANYS], author_uncertain=True),
     EmailCfg(id='EFTA02731636', author=USANYS, recipients=[USANYS], author_uncertain=True),
     EmailCfg(id='EFTA02731637', author=USANYS, recipients=[USANYS], author_uncertain=True),
     EmailCfg(id='EFTA02731659', author=USANYS, recipients=[USANYS], author_uncertain=True),
     EmailCfg(id='EFTA02731781', author=USANYS, recipients=[USANYS], author_uncertain=True),
     EmailCfg(id='EFTA02731774', author=USANYS, recipients=[USANYS], author_uncertain=True),
-    EmailCfg(id='EFTA02731754', author=USANYS, recipients=[USANYS], date='2024-03-06T23:24:00', author_uncertain=True),
     EmailCfg(id='EFTA02731724', author=USANYS, recipients=[USANYS], author_uncertain=True),
     EmailCfg(id='EFTA02731771', author=USANYS, recipients=[USANYS], author_uncertain=True),
     EmailCfg(id='EFTA02731486', author=USANYS, recipients=[USANYS], author_uncertain=True),
@@ -1185,6 +1185,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA02731484', author=USANYS, recipients=[USANYS], author_uncertain=True),
     EmailCfg(id='EFTA02731757', author=USANYS, recipients=[USANYS], author_uncertain=True),
     EmailCfg(id='EFTA02731623', author=USANYS, recipients=[USANYS], author_uncertain=True),
+    EmailCfg(id='EFTA02731754', author=USANYS, recipients=[USANYS], date='2024-03-06T23:24:00', author_uncertain=True),
     EmailCfg(id='EFTA02731732', author=USANYS, recipients=[USANYS], date='2024-03-06T12:21:00', author_uncertain=True),
     EmailCfg(id='EFTA02731528', author=USANYS, recipients=[USANYS], date='2021-05-06 09:39:15', author_uncertain=True),
     EmailCfg(id='EFTA02731475', author=USANYS, recipients=[USANYS], date='2023-05-31T20:53:00', author_uncertain=True),
@@ -2331,3 +2332,10 @@ def check_no_overlapping_configs():
 
 
 check_no_overlapping_configs()
+
+
+# TODO: These have UNKNOWN recipient so they currently get printed but we should configure it so they don't
+UNINTERESTING_EMAIL_IDS = [
+    'EFTA00039894',
+    'EFTA00039878',
+]
