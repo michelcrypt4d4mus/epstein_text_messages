@@ -155,5 +155,5 @@ elif not env_log_level:
 
 logger.debug(f'Log level set to {logger.level}...')
 args_str = ',\n'.join([f"{k}={v}" for k, v in vars(args).items() if v])
-logger.info(f"'{parser.prog}' script invoked\n{args_str}")
+logger.debug(f"'{parser.prog}' script invoked\n{args_str}")
 logger.debug(f"Reading Epstein documents from '{DOCS_DIR}'...")
