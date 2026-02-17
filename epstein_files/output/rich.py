@@ -199,11 +199,6 @@ def print_json(label: str, obj: object, skip_falsey: bool = False) -> None:
     console.line()
 
 
-def print_subtitle_panel(msg: str, style: str = 'black on white') -> None:
-    panel = Panel(Text.from_markup(msg, justify='center'), width=SUBTITLE_WIDTH, style=style)
-    print_centered(Padding(panel, SUBTITLE_PADDING))
-
-
 def print_starred_header(msg: str, num_stars: int = 7, num_spaces: int = 2, style: str = WARNING_STYLE) -> None:
     stars = '*' * num_stars
     spaces = ' ' * num_spaces
@@ -211,11 +206,9 @@ def print_starred_header(msg: str, num_stars: int = 7, num_spaces: int = 2, styl
     print_centered(wrap_in_markup_style(msg, style))
 
 
-def cfg_table(cfg: 'DocCfg') -> Padding:
-    props = cfg.important_props
-    props.pop('id')
-    props_table = styled_dict(props, sep=': ')
-    return Padding(indent_txt(props_table, 12), (0, 0, 1, 0))
+def print_subtitle_panel(msg: str, style: str = 'black on white') -> None:
+    panel = Panel(Text.from_markup(msg, justify='center'), width=SUBTITLE_WIDTH, style=style)
+    print_centered(Padding(panel, SUBTITLE_PADDING))
 
 
 def quote_txt(t: Text | str, try_double_quote_first: bool = False, style: str = '') -> Text:
