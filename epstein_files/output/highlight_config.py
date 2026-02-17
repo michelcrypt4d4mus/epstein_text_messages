@@ -4,7 +4,8 @@ from typing import Sequence
 from rich.console import Console
 from rich.text import Text
 
-from epstein_files.documents.documents.categories import CATEGORY_STYLES, CATEGORY_STYLE_MAPPING
+from epstein_files.documents.documents.categories import (CATEGORY_STYLES, CATEGORY_STYLE_MAPPING,
+     DEFAULT_CATEGORY_STYLE, Interesting, Neutral, Uninteresting)
 from epstein_files.documents.emails.constants import REPLY_REGEX, SENT_FROM_REGEX, XML_STRIPPED_MSG
 from epstein_files.output.highlighted_names import HighlightGroup, HighlightedNames, HighlightedText, ManualHighlight
 from epstein_files.people.contact import Contact
@@ -23,7 +24,6 @@ EPSTEIN_ESTATE_EXECUTOR = f"Epstein {ESTATE_EXECUTOR}"
 MC2_MODEL_MANAGEMENT = f"{JEAN_LUC_BRUNEL}'s MC2 Model Management"
 QUESTION_MARKS_TXT = Text(QUESTION_MARKS, style='grey50')
 THIELS_VALAR = f"{PETER_THIEL}'s {VALAR_VENTURES}"
-TECH_BRO = 'tech bro'
 VICTIM_COLOR = 'orchid1'
 
 debug_console = Console(color_system='256')
@@ -37,7 +37,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         pattern=r"^(> )?(Classification|Flag|Subject|Sujet ?): (?P<email_subject>.*)",
     ),
     HighlightedNames(
-        label=ACADEMIA,
+        label=Uninteresting.ACADEMIA,
         style='light_goldenrod2',
         contacts=[
             Contact('Daniel Kahneman', "Nobel economic sciences laureate and cognitivie psychologist (?)"),
@@ -193,7 +193,88 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         ],
     ),
     HighlightedNames(
-        label=CRYPTO,
+        label=BUSINESS,
+        style='spring_green4',
+        contacts=[
+            Contact(ALIREZA_ITTIHADIEH, "CEO Freestream Aircraft Limited", r"Alireza.[Il]ttihadieh"),
+            Contact('AT&T Court Appearance Team', "AT&T"),
+            Contact(BARBRO_C_EHNBOM, "Swedish pharmaceuticals, SALSS", r"behnbom@aol.com|(Barbro\s.*)?Ehnbom"),
+            Contact(BARRY_J_COHEN, emailer_pattern=r"barry\s*((j.?|james)\s*)?cohen?"),
+            Contact('David Mitchell', "Mitchell Holdings, New York real estate developer"),
+            Contact(GERALD_BARTON, "Maryland property developer Landmark Land Company", r"Gerald.*Barton"),
+            Contact(NICOLE_JUNKERMANN, f"ex-model, NJF Capital, investor in Revolut, online poker, Carbyne w/{EHUD_BARAK}", r"(Nicole\s*)?Junkermann?"),
+            Contact(GORDON_GETTY, "heir to oil tycoon J. Paul Getty"),
+            Contact('Philip Kafka', f"president of Prince Concepts (and son of {TERRY_KAFKA}?)"),
+            Contact(ROBERT_LAWRENCE_KUHN, "investment banker, China expert", r"Robert\s*(Lawrence)?\s*Kuhn"),
+            Contact(TERRY_KAFKA, "CEO of Impact Outdoor (highway billboards)", r"Terry Kafka?"),
+            Contact(TOM_PRITZKER, "chairman of The Pritzker Organization and Hyatt Hotels")
+        ],
+        patterns=[
+            r"Arthur Klein",
+            r"(Barry\s*)?Honig",
+            r"((Bill|David)\s*)?Koch(\s*(Bro(s|thers)|Industries))?",
+            r"Gruterite",
+            r"((John|Patricia)\s*)?Kluge",
+            r"Mar[ck]\s+Rich",
+            r"(Mi(chael|ke)\s*)?Ovitz",
+            r"(Steve\s+)?Wynn",
+            r"(Les(lie)?\s+)?Wexner",
+            r"Michael\s*Klein",
+            r"New Leaf Ventures",
+            r"Park Partners",
+            r"SALSS",
+            r"Swedish[-\s]*American\s*Life\s*Science\s*Summit",
+            r"Trilateral Commission",
+            r"Valhi",
+            r"(Yves\s*)?Bouvier",
+        ],
+    ),
+    HighlightedNames(
+        label='cannabis',
+        style='chartreuse2',
+        patterns=[
+            r"CBD",
+            r"cannabis",
+            r"marijuana",
+            r"psychedelic",
+            r"THC",
+            r"WEED(guide|maps)?[^s]?",
+        ],
+    ),
+    HighlightedNames(
+        label='China',
+        style='bright_red',
+        contacts=[
+            Contact('Gino Yu', "professor / game designer in Hong Kong")
+        ],
+        patterns=[
+            r"Ali.?baba",
+            r"Beijing",
+            r"CCP",
+            r"Chin(a|e?se)(?! Daily)",
+            r"DPRK",
+            r"Global Times",
+            r"Guo",
+            r"Hong",
+            r"Huaw[ae]i",
+            r"Kim\s*Jong\s*Un",
+            r"Kong",
+            r"Jack\s+Ma",
+            r"Kwok",
+            r"Ministry\sof\sState\sSecurity",
+            r"Mongolian?",
+            r"MSS",
+            r"North\s*Korean?",
+            r"Peking",
+            r"PRC",
+            r"Pyongyang",
+            r"SCMP",
+            r"Xi(aomi)?",
+            r"Jinping",
+        ],
+    ),
+    HighlightedNames(
+        label=Interesting.CRYPTO,
         style='orange1 bold',
         contacts=[
             Contact(
@@ -274,87 +355,6 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"ZECC?",
             r"ZeroCoin",
             r"(zero\s+knowledge\s+|zk)pro(of|tocols?)",
-        ],
-    ),
-    HighlightedNames(
-        label=BUSINESS,
-        style='spring_green4',
-        contacts=[
-            Contact(ALIREZA_ITTIHADIEH, "CEO Freestream Aircraft Limited", r"Alireza.[Il]ttihadieh"),
-            Contact('AT&T Court Appearance Team', "AT&T"),
-            Contact(BARBRO_C_EHNBOM, "Swedish pharmaceuticals, SALSS", r"behnbom@aol.com|(Barbro\s.*)?Ehnbom"),
-            Contact(BARRY_J_COHEN, emailer_pattern=r"barry\s*((j.?|james)\s*)?cohen?"),
-            Contact('David Mitchell', "Mitchell Holdings, New York real estate developer"),
-            Contact(GERALD_BARTON, "Maryland property developer Landmark Land Company", r"Gerald.*Barton"),
-            Contact(NICOLE_JUNKERMANN, f"ex-model, NJF Capital, investor in Revolut, online poker, Carbyne w/{EHUD_BARAK}", r"(Nicole\s*)?Junkermann?"),
-            Contact(GORDON_GETTY, "heir to oil tycoon J. Paul Getty"),
-            Contact('Philip Kafka', f"president of Prince Concepts (and son of {TERRY_KAFKA}?)"),
-            Contact(ROBERT_LAWRENCE_KUHN, "investment banker, China expert", r"Robert\s*(Lawrence)?\s*Kuhn"),
-            Contact(TERRY_KAFKA, "CEO of Impact Outdoor (highway billboards)", r"Terry Kafka?"),
-            Contact(TOM_PRITZKER, "chairman of The Pritzker Organization and Hyatt Hotels")
-        ],
-        patterns=[
-            r"Arthur Klein",
-            r"(Barry\s*)?Honig",
-            r"((Bill|David)\s*)?Koch(\s*(Bro(s|thers)|Industries))?",
-            r"Gruterite",
-            r"((John|Patricia)\s*)?Kluge",
-            r"Mar[ck]\s+Rich",
-            r"(Mi(chael|ke)\s*)?Ovitz",
-            r"(Steve\s+)?Wynn",
-            r"(Les(lie)?\s+)?Wexner",
-            r"Michael\s*Klein",
-            r"New Leaf Ventures",
-            r"Park Partners",
-            r"SALSS",
-            r"Swedish[-\s]*American\s*Life\s*Science\s*Summit",
-            r"Trilateral Commission",
-            r"Valhi",
-            r"(Yves\s*)?Bouvier",
-        ],
-    ),
-    HighlightedNames(
-        label='cannabis',
-        style='chartreuse2',
-        patterns=[
-            r"CBD",
-            r"cannabis",
-            r"marijuana",
-            r"psychedelic",
-            r"THC",
-            r"WEED(guide|maps)?[^s]?",
-        ],
-    ),
-    HighlightedNames(
-        label='China',
-        style='bright_red',
-        contacts=[
-            Contact('Gino Yu', "professor / game designer in Hong Kong")
-        ],
-        patterns=[
-            r"Ali.?baba",
-            r"Beijing",
-            r"CCP",
-            r"Chin(a|e?se)(?! Daily)",
-            r"DPRK",
-            r"Global Times",
-            r"Guo",
-            r"Hong",
-            r"Huaw[ae]i",
-            r"Kim\s*Jong\s*Un",
-            r"Kong",
-            r"Jack\s+Ma",
-            r"Kwok",
-            r"Ministry\sof\sState\sSecurity",
-            r"Mongolian?",
-            r"MSS",
-            r"North\s*Korean?",
-            r"Peking",
-            r"PRC",
-            r"Pyongyang",
-            r"SCMP",
-            r"Xi(aomi)?",
-            r"Jinping",
         ],
     ),
     HighlightedNames(
@@ -475,7 +475,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         ],
     ),
     HighlightedNames(
-        label=LAWYER,
+        label=LAWYER,  # Epstein's lawyers
         style='purple',
         contacts=[
             Contact('Alan Dlugash', 'tax partner at Paneth and Shrone'),
@@ -639,7 +639,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         ],
     ),
     HighlightedNames(
-        label=FINANCE,
+        label=Neutral.FINANCE,
         style='green',
         contacts=[
             Contact(AMANDA_ENS, "Citigroup", r"ens, amanda?|Amanda.Ens"),
@@ -1131,7 +1131,6 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
     HighlightedNames(
         label=LOBBYIST,
         style='light_coral',
-
         contacts=[
             Contact(BOB_CROWE, "partner at Nelson Mullins", r"[BR]ob Crowe"),
             Contact(
@@ -1749,11 +1748,9 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
 
     # Individuals
     HighlightedNames(
-        contacts=[
-            Contact(STEVEN_HOFFENBERG, "Epstein's Towers Financial ponzi partner, prison for 18 years")
-        ],
+        contacts=[Contact(STEVEN_HOFFENBERG, "Epstein's Towers Financial ponzi partner, prison for 18 years")],
         style='dark_olive_green3',
-        category=FINANCE,
+        category=Neutral.FINANCE,
         patterns=[r"(steven?\s*)?hoffenberg?w?"],
     ),
     HighlightedNames(
@@ -1800,11 +1797,9 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         category=FRIEND
     ),
     HighlightedNames(
-        contacts=[
-            Contact(PAULA, "Epstein's ex-girlfriend who is now in the opera world", r"^Paula( Heil Fisher)?$")
-        ],
         label='paula',
         style='pink1',
+        contacts=[Contact(PAULA, "Epstein's ex-girlfriend who is now in the opera world", r"^Paula( Heil Fisher)?$")],
         category=FRIEND
     ),
     HighlightedNames(
@@ -1814,7 +1809,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"(?<!Cantor )Urramoor(\s*Limited)?",
         ],
         style='dodger_blue1',
-        category='Europe'
+        category='Europe',
     ),
     HighlightedNames(
         contacts=[Contact(SOON_YI_PREVIN, "wife of Woody Allen", r"Soon[- ]Yi Previn?")],
@@ -1824,7 +1819,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
     HighlightedNames(
         contacts=[
             Contact(
-                name='Sultan Ahmed Bin Sulayem',
+                name=SULTAN_BIN_SULAYEM,
                 info="chairman of ports in Dubai, CEO of DP World",
                 emailer_pattern=r"Sultan (Ahmed )?bin Sulaye?m?",
             )
@@ -1833,19 +1828,11 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         category=MIDEAST
     ),
 
-    # HighlightedText not HighlightedNames bc of word boundary issue
+    # HighlightedText not HighlightedNames bc of word boundary (\b) issue with '#'
     HighlightedText(
         label='metoo',
         style=VICTIM_COLOR,
         patterns=[r"#metoo"]
-    ),
-    HighlightedText(
-        label='phone_number',
-        style='bright_green',
-        patterns=[
-            r"\+?(1?\(?\d{3}\)?[- ]\d{3}[- ]\d{4}|\d{2}[- ]\(?0?\)?\d{2}[- ]\d{4}[- ]\d{4})",
-            r"(\b|\+)[\d+]{10,12}\b",
-        ],
     ),
     HighlightedText(
         label='unknown',
@@ -1854,6 +1841,14 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
     ),
 
     # Highlight regexes for things other than names, only used by RegexHighlighter pattern matching
+    HighlightedText(
+        label='phone_number',
+        style='bright_green',
+        patterns=[
+            r"\+?(1?\(?\d{3}\)?[- ]\d{3}[- ]\d{4}|\d{2}[- ]\(?0?\)?\d{2}[- ]\d{4}[- ]\d{4})",
+            r"(\b|\+)[\d+]{10,12}\b",
+        ],
+    ),
      HighlightedText(
         label='header_field',
         style='plum4',
@@ -1922,10 +1917,8 @@ def get_highlight_group_for_name(name: str | None) -> HighlightGroup | None:
 def get_style_for_category(category: str) -> str | None:
     if category in CATEGORY_STYLES:
         return CATEGORY_STYLES[category]
-    elif category == CONFERENCE:
+    elif category == Uninteresting.CONFERENCE:
         return f"{get_style_for_category(ACADEMIA)} dim"
-    elif category == SOCIAL:
-        return get_style_for_category(PUBLICIST)
 
     for highlight_group in HIGHLIGHT_GROUPS:
         if highlight_group.label == CATEGORY_STYLE_MAPPING.get(category, category):
@@ -1942,7 +1935,7 @@ def get_style_for_name(name: str | None, default_style: str = DEFAULT_NAME_STYLE
 
 def styled_category(category: str | None) -> Text:
     if category:
-        return Text(category, get_style_for_category(category) or 'wheat4')
+        return Text(category, get_style_for_category(category) or DEFAULT_CATEGORY_STYLE)
     else:
         return QUESTION_MARKS_TXT
 

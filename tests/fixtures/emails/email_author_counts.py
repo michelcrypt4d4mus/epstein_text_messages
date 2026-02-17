@@ -2,7 +2,7 @@ from epstein_files.util.constant.names import *
 
 
 EMAIL_AUTHOR_COUNTS = {
-    None: 93,
+    None: 91,
     "Abi Schwinck": 1,
     AL_SECKEL: 8,
     "Alain Forget": 3,
@@ -240,8 +240,8 @@ EMAIL_AUTHOR_COUNTS = {
     TOM_BARRACK: 1,
     TOM_PRITZKER: 6,
     TONJA_HADDAD_COLEMAN: 5,
-    TYLER_SHEARS: 19,
-    USANYS: 80,
+    TYLER_SHEARS: 20,
+    USANYS: 81,
     'USMS': 1,
     VALAR_VENTURES: 2,
     "Valeria Chomsky": 2,

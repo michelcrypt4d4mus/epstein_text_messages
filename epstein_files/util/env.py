@@ -13,7 +13,7 @@ DEFAULT_WIDTH = 155
 DEFAULT_FILE = 'default_file'
 EPSTEIN_GENERATE = 'epstein_generate'
 HTML_SCRIPTS = [EPSTEIN_GENERATE]
-PICKLED_PATH = Path("the_epstein_files.pkl.gz")
+PICKLED_PATH = Path("the_epstein_files.local.pkl.gz")
 
 # Get source file dirs from these vars
 DOCS_DIR_ENV_VAR = 'EPSTEIN_DOCS_DIR'

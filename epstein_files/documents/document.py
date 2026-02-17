@@ -126,10 +126,12 @@ class Document:
         return CONFIGS_BY_ID.get(self.file_id)
 
     @property
-    def config_description(self) -> str | None:
+    def config_description(self) -> str:
         """Add parentheses to `self.config.description`."""
         if self.config and self.config.description:
             return f"({self.config.description})"
+        else:
+            return ''
 
     @property
     def config_replace_text_with(self) -> str | None:
@@ -211,7 +213,10 @@ class Document:
 
     @property
     def is_interesting(self) -> bool | None:
-        """TODO: currently default to True for HOUSE_OVERSIGHT_FILES, false for DOJ."""
+        """
+        If `self.config.is_of_interest` returns a bool use that, otherwise house oversight files are
+        interesting if they are empty. Everything else returns `None`.
+        """
         if self.config and self.config.is_of_interest is not None:
             return self.config.is_of_interest
         elif self.file_info.is_house_oversight_file and not (self.author or self.config):
@@ -392,12 +397,16 @@ class Document:
         trim_note = f"<...trimmed to {truncate_to:,} characters of {self.length:,}, read the rest at {link_markup}...>"
         return Text.from_markup(wrap_in_markup_style(trim_note, 'dim'))
 
+    def truthy_props(self, prop_names: list[str]) -> DebugDict:
+        """Return key/value pairs but only if the value is truthy."""
+        return {prop: getattr(self, prop) for prop in prop_names if getattr(self, prop)}
+
     def warn(self, msg: str) -> None:
         """Print a warning message prefixed by info about this `Document`."""
         self.log(msg, level=logging.WARNING)
 
     def _debug_dict(self) -> DebugDict:
-        """Information about this document: config, locations, etc."""
+        """Merge information about this document from config, file info, etc."""
         config_info = self.config.important_props if self.config else {}
         file_info = dict(self.file_info.as_dict)
 
@@ -414,7 +423,7 @@ class Document:
     def _debug_props(self) -> DebugDict:
         """Collects props of this object only (not the config or locations)."""
         props = {k: getattr(self, k) for k in DEBUG_PROPS}
-        props.update({k: getattr(self, k) for k in DEBUG_PROPS_TRUTHY_ONLY if getattr(self, k)})
+        props.update(self.truthy_props(DEBUG_PROPS_TRUTHY_ONLY))
 
         if self.file_info.file_size > 100 * 1024:
             props['file_size_str'] = self.file_info.file_size_str
@@ -453,7 +462,7 @@ class Document:
         pass
 
     def _set_text(self, lines: list[str] | None = None, text: str | None = None) -> None:
-        """Sets all fields derived from self.text based on either 'lines' or 'text' arg."""
+        """Set `self.text` and `self.lines` based on arguments passed."""
         if lines and text:
             raise RuntimeError(f"[{self.filename}] Either 'lines' or 'text' arg must be provided (got both)")
         elif lines is not None:

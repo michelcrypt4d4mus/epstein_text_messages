@@ -91,7 +91,7 @@ def test_email_recipient_counts(epstein_files):
 def test_interesting_emails(epstein_files):
     interesting_email_count = len([e for e in epstein_files.unique_emails if e.is_interesting])
     uninteresting_emails_count = len([e for e in epstein_files.unique_emails if e.is_interesting is False])
-    assert interesting_email_count == 112
+    assert interesting_email_count == 114
     assert uninteresting_emails_count == 139
 
 

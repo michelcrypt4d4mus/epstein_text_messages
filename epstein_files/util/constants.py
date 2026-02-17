@@ -1067,6 +1067,7 @@ EMAILS_CONFIG = [
         description=f"reads like {RENATA_BOLOTOVA} talking about recruiting girls for Epstein",
         is_interesting=True,
     ),
+    EmailCfg(id='EFTA02025944', author=RENATA_BOLOTOVA, recipients=[JEFFREY_EPSTEIN], date='2012-01-23 06:00:00'),
     EmailCfg(id='EFTA01985762', author=RENATA_BOLOTOVA, recipients=[JEFFREY_EPSTEIN], date='2012-01-24 09:35:00'),
     EmailCfg(id='EFTA00920177', author=RENATA_BOLOTOVA, author_reason='discussion of employment at Institute'),
     EmailCfg(id='EFTA00920010', author=RENATA_BOLOTOVA, author_reason='renbolotova@gmail in body'),
@@ -1707,11 +1708,13 @@ OTHER_FILES_LEGAL = [
     DocCfg(id='022277', description=f"text of National Labour Relations Board (NLRB) law", is_interesting=False),
 
     # DOJ files
+    DocCfg(id='EFTA02731082', author=DOJ, description="memo about investigation into Epstein's co-conspirators", is_interesting=True),
+    DocCfg(id='EFTA00005569', author=PALM_BEACH_POLICE, replace_text_with='photo lineup featuring Epstein', date='2005-03-17'),
+    DocCfg(id='EFTA00007893', author=PALM_BEACH_POLICE, description=f"receipts, notes, bank statements of {GHISLAINE_MAXWELL}"),
     DocCfg(id='EFTA02730274', description='evidence inventory that appears to have since been deleted from the DOJ website'),
     DocCfg(id='EFTA00001884', description='photo of letter from Virgin Islands DOJ to Epstein', date='2019-03-14'),
     DocCfg(id='EFTA00007157', description='victim list and police log'),
     DocCfg(id='EFTA00005586', replace_text_with='completely redacted 69 pages labeled "Grand Jury - NY"'),
-    DocCfg(id='EFTA00005569', replace_text_with='Palm Beach police photo lineup featuring Epstein', date='2005-03-17'),
 ]
 
 OTHER_FILES_CONFERENCE = [
@@ -1830,7 +1833,7 @@ OTHER_FILES_FINANCE = [
     DocCfg(id='024817', description="Cowen's CBD / Cannabis report", date='2019-02-25', is_interesting=True),
     DocCfg(
         id='012048',
-        category=Neutral.PRESS_RELEASE,
+        category=Neutral.PRESSER,
         description=f"Rockefeller Partners with Gregory J. Fleming to Create Independent Financial Services Firm and other articles"
     ),
 ]
@@ -1845,6 +1848,8 @@ OTHER_FILES_MONEY = [
     ),
     DocCfg(id='024003', description=f"New Leaf Ventures ($375 million biotech fund) private placement memorandum"),
     # DOJ files
+    # DocCfg(id='EFTA01359553', description='Southern Financial LLC wire transfers'), # now inferred
+    DocCfg(id='EFTA01285411', description=f"bank statement for Epstein's {SOUTHERN_TRUST_COMPANY} showing $82 million balance"),
     DocCfg(id='EFTA01087311', description=f'{LEON_BLACK} Family Partners cash projections'),
     DocCfg(id='EFTA00007781', description='paychecks signed by Epstein deposited at Colonial Bank', date='2005-08-12'),
     DocCfg(id='EFTA00811866', description="list of Epstein's bank accounts"),
@@ -1876,7 +1881,7 @@ OTHER_FILES_PROPERTY = [
     DocCfg(
         id='026759',
         author='Great Bay Condominium Owners Association',
-        category=Neutral.PRESS_RELEASE,
+        category=Neutral.PRESSER,
         description=f'Hurricane Irma damage',
         date='2017-09-13',
         is_interesting=False,
@@ -2020,7 +2025,7 @@ OTHER_FILES_ACADEMIA = [
 ]
 
 # resumes and application letters
-OTHER_FILES_RESUME = [
+OTHER_FILES_RESUMÉ = [
     DocCfg(
         id='029304',
         attached_to_email_id='029299',
@@ -2081,8 +2086,8 @@ OTHER_FILES_FLIGHT_LOG = [
 ]
 
 OTHER_FILES_MISC = [
-    DocCfg(id='029326', category=Neutral.PRESS_RELEASE, author=EPSTEIN_FOUNDATION, date='2013-02-15'),
-    DocCfg(id='026565', category=Neutral.PRESS_RELEASE, author=EPSTEIN_FOUNDATION, comment=f'maybe a draft of 029326', date='2013-02-15'),
+    DocCfg(id='029326', category=Neutral.PRESSER, author=EPSTEIN_FOUNDATION, date='2013-02-15'),
+    DocCfg(id='026565', category=Neutral.PRESSER, author=EPSTEIN_FOUNDATION, comment=f'maybe a draft of 029326', date='2013-02-15'),
     DocCfg(id='022494', author='DOJ', description=f'Foreign Corrupt Practices Act (FCPA) Resource Guide'),
     DocCfg(id='023096', author=EPSTEIN_FOUNDATION, description=f'blog post', date='2012-11-15'),
     DocCfg(id='027071', author=FEMALE_HEALTH_COMPANY, description=f"brochure requesting donations for female condoms in Uganda"),
@@ -2104,7 +2109,7 @@ OTHER_FILES_MISC = [
     ),
     DocCfg(
         id='033338',
-        category=Neutral.PRESS_RELEASE,
+        category=Neutral.PRESSER,
         date='2000-06-07',
         description=f"end of {DONALD_TRUMP} & {NICHOLAS_RIBIS} working relationship at Trump's casino",
     ),
@@ -2115,7 +2120,7 @@ OTHER_FILES_MISC = [
     # DOJ files
     DocCfg(id='EFTA00039025', author=BUREAU_OF_PRISONS, description=f"report on death of Jeffrey Epstein", is_interesting=True),
     DocCfg(id='EFTA00039227', author=BUREAU_OF_PRISONS, replace_text_with='Inmate Discipline Program Statement'),
-    DocCfg(id='EFTA00039295', author=BUREAU_OF_PRISONS, replace_text_with='inmate telephone privileges Program Statement'),
+    DocCfg(id='EFTA00039295', author=BUREAU_OF_PRISONS, replace_text_with='Inmate Telephone Privileges Program Statement'),
     DocCfg(id='EFTA00039312', author=BUREAU_OF_PRISONS, replace_text_with='Program Statement / Memo about BOP Pharmacy Program'),
     DocCfg(id='EFTA00039351', author=BUREAU_OF_PRISONS, replace_text_with='Program Statement / Memo about BOP Pharmacy Program'),
     DocCfg(id='EFTA00039156', author=BUREAU_OF_PRISONS, replace_text_with='Standards of Employee Conduct'),
@@ -2154,15 +2159,16 @@ OTHER_FILES_MISC = [
 ]
 
 OTHER_FILES_PHONE_BILL = [
-    phone_bill_cfg('EFTA00006387', 'T-Mobile', '2006-06-15 to 2006-07-23'),
-    phone_bill_cfg('EFTA00007501', 'T-Mobile', '2005'),
-    phone_bill_cfg('EFTA00006487', 'T-Mobile', '2006'),
-    phone_bill_cfg('EFTA00006587', 'T-Mobile', '2006-09-04 to 2016-10-15'),
-    phone_bill_cfg('EFTA00006687', 'T-Mobile', '2006-10-31 to 2006-12-25'),
-    phone_bill_cfg('EFTA00007401', 'T-Mobile', '2004-08-25 to 2005-07-13'),
+    phone_bill_cfg('EFTA00007070', 'MetroPCS', '2006'),
     phone_bill_cfg('EFTA00006770', 'MetroPCS', '2006-02-01 to 2006-06-16'),
     phone_bill_cfg('EFTA00006870', 'MetroPCS', '2006-02-09 to 2006-07'),
     phone_bill_cfg('EFTA00006970', 'MetroPCS', '2006-04-15 to 2006-07-16'),
+    phone_bill_cfg('EFTA00007501', 'T-Mobile', '2005'),
+    phone_bill_cfg('EFTA00006487', 'T-Mobile', '2006'),
+    phone_bill_cfg('EFTA00006387', 'T-Mobile', '2006-06-15 to 2006-07-23'),
+    phone_bill_cfg('EFTA00006587', 'T-Mobile', '2006-09-04 to 2016-10-15'),
+    phone_bill_cfg('EFTA00006687', 'T-Mobile', '2006-10-31 to 2006-12-25'),
+    phone_bill_cfg('EFTA00007401', 'T-Mobile', '2004-08-25 to 2005-07-13'),
     # These two are subpoena response letters w/attached phone bill)
     phone_bill_cfg('EFTA00007301', 'T-Mobile', 'Blackberry phone logs for 2005', date='2007-03-23'),
     phone_bill_cfg('EFTA00007253', 'T-Mobile', date='2007-03-23'),
@@ -2187,6 +2193,7 @@ OTHER_FILES_CRYPTO = [
     DocCfg(id='EFTA00603445', author=HONEYCOMB_FUND, description="July 2017 report", is_interesting=True),
     DocCfg(id='EFTA00803464', author=HONEYCOMB_FUND, description="July 2018 report", is_interesting=True),
     DocCfg(id='EFTA00810239', author=VALAR_FUND, description='pitch deck'),
+    DocCfg(id='EFTA00591045', author=VALAR_FUND, description='brochure'),
     DocCfg(id='EFTA00810510', author=VALAR_FUND, description='Fall 2016 Update'),
     DocCfg(id='EFTA00810474', author=VALAR_FUND, description='Fall 2018 Update'),
     DocCfg(
@@ -2205,14 +2212,15 @@ OTHER_FILES_CRYPTO = [
         date='2014-11-10',
         description=f'/ {COINBASE} nondisclosure agreement possibly regarding Epstein investment',
         is_interesting=True,
-        truncate_to=2000
+        truncate_to=2000,
     ),
     DocCfg(id='EFTA01092555', author=COINBASE, description='certificate of incorporation', date='2013-12-12', truncate_to=TRUNCATED_CHARS),
     DocCfg(id='EFTA01120975', author=COINBASE, description='Series B stock purchase', date='2013-12-12', truncate_to=MAX_CHARS_TO_PRINT),
     DocCfg(id='EFTA01121035', author=COINBASE, description='Series C preferred stock purchase', date='2014-10-24'),
     # CCP (Brock Pierce / Blockchain Capital)
+    DocCfg(id='EFTA01089535', author=CRYPTO_CURRENCY_PARTNERS_II, description=f"investor report", date='2014-10-01'),
     DocCfg(id='EFTA01089506', author=CRYPTO_CURRENCY_PARTNERS_II, description=f"investor report", date='2014-11-01'),
-    DocCfg(id='EFTA01089500', author=CRYPTO_CURRENCY_PARTNERS_II, description=f"Investor Update", date='2015-01-01'),
+    DocCfg(id='EFTA01089500', author=CRYPTO_CURRENCY_PARTNERS_II, description=f"investor report", date='2015-01-01'),
     DocCfg(id='EFTA01089526', author=CRYPTO_CURRENCY_PARTNERS_II, description=f"investor report", date='2014-08-01'),
     DocCfg(id='EFTA00621239', author=CRYPTO_CURRENCY_PARTNERS_II, description=f"investor report", date='2014-10-01'),
     DocCfg(id='EFTA01093509', author=CRYPTO_CURRENCY_PARTNERS_II, description=f"partnership draft", truncate_to=MAX_CHARS_TO_PRINT * 2),
@@ -2263,8 +2271,9 @@ OTHER_FILES_SKYPE_LOG = [
 ]
 
 OTHER_FILES_TEXT_MSG = [
-    DocCfg(id='EFTA01622387', author=RENATA_BOLOTOVA, description=f'iMessage screenshots', author_uncertain=True),
-    DocCfg(id='EFTA01618494', author=RENATA_BOLOTOVA, description=f'iMessage screenshots', author_uncertain=True),
+    DocCfg(id='EFTA01618381', author=RENATA_BOLOTOVA, description=f'iMessage screenshots', author_uncertain='sneaky'),
+    DocCfg(id='EFTA01622387', author=RENATA_BOLOTOVA, description=f'iMessage screenshots', author_uncertain='sneaky'),
+    DocCfg(id='EFTA01618494', author=RENATA_BOLOTOVA, description=f'iMessage screenshots', author_uncertain='sneaky'),
     DocCfg(
         id='EFTA01620764',
         author=MELANIE_WALKER,

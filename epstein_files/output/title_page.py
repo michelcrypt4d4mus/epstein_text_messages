@@ -22,13 +22,8 @@ from epstein_files.util.env import args
 from epstein_files.util.helpers.link_helper import link_markup, link_text_obj, parenthesize
 from epstein_files.util.logging import logger
 
-TITLE_WIDTH = 50
-SUBTITLE_WIDTH = 110
-NUM_COLOR_KEY_COLS = 6
-
 DATASET_DESCRIPTION_STYLE = 'gray74'
 OTHER_PAGE_MSG_STYLE = 'gray78 dim'
-PATH_STYLE = 'deep_pink3'
 STR_VAL_STYLE = 'cornsilk1 italic'
 STR_VAL_STYLE_ALT = 'light_yellow3 italic'
 SECTION_HEADER_STYLE = 'bold black on color(146)'
@@ -37,12 +32,16 @@ SUBSTACK_POST_LINK_STYLE = 'bright_cyan'
 
 SITE_GLOSSARY_MSG = f"The following views of the underlying selection of Epstein Files are available:"
 YOU_ARE_HERE = Text('«').append('you are here', style='bold khaki1 blink').append('»')
+NUM_COLOR_KEY_COLS = 6
+SUBTITLE_WIDTH = 110
+TITLE_WIDTH = 50
 
 # label of the HighlightedNames objects colors with the style of that same HighlightedNames
 COLOR_KEYS = [
     Text(highlight_group.label.replace('_', ' '), style=highlight_group.style)
     for highlight_group in sorted(HIGHLIGHTED_NAMES, key=lambda hg: hg.label)
 ]
+
 
 def print_color_key() -> None:
     color_table = build_table('Rough Guide to Highlighted Colors', show_header=False)

@@ -14,6 +14,7 @@ from rich.table import Table
 from rich.text import Text
 
 from epstein_files.documents.document import CLOSE_PROPERTIES_CHAR, WHITESPACE_REGEX, Document
+from epstein_files.documents.documents.config_builder import build_cfg_from_text
 from epstein_files.documents.documents.doc_cfg import DocCfg, Metadata
 from epstein_files.documents.documents.file_info import FileInfo
 from epstein_files.output.highlight_config import QUESTION_MARKS_TXT, styled_category
@@ -22,7 +23,6 @@ from epstein_files.util.constant.strings import *
 from epstein_files.util.constants import *
 from epstein_files.util.helpers.data_helpers import days_between, remove_timezone, uniquify
 from epstein_files.util.helpers.file_helper import FILENAME_LENGTH
-from epstein_files.util.helpers.string_helper import has_line_starting_with
 from epstein_files.util.env import args
 from epstein_files.util.logging import logger
 
@@ -30,15 +30,10 @@ FIRST_FEW_LINES = 'First Few Lines'
 MAX_DAYS_SPANNED_TO_BE_VALID = 10
 MAX_EXTRACTED_TIMESTAMPS = 100
 MIN_TIMESTAMP = datetime(2000, 1, 1)
-MID_TIMESTAMP = datetime(2007, 1, 1)
 LOG_INDENT = '\n         '
 PREVIEW_CHARS = int(580 * (1 if args.all_other_files else 1.5))
 TIMESTAMP_LOG_INDENT = f'{LOG_INDENT}    '
-VALAR_CAPITAL_CALL_REGEX = re.compile(r"^Valor .{,50} Capital Call", re.MULTILINE)
 VAST_HOUSE = 'vast house'  # Michael Wolff article draft about Epstein indicator
-
-LEGAL_FILING_REGEX = re.compile(r"^Case (\d+:\d+-.*?) Doc")
-VI_DAILY_NEWS_REGEX = re.compile(r'virgin\s*is[kl][ai]nds\s*daily\s*news', re.IGNORECASE)
 
 SKIP_TIMESTAMP_EXTRACT = [
     PALM_BEACH_TSV,
@@ -91,7 +86,7 @@ class OtherFile(Document):
     @property
     def preview_text(self) -> str:
         """Text at start of file stripped of newlinesfor display in tables and other cramped settings."""
-        text = self.config.replace_text_with if (self.config and self.config.replace_text_with) else self.text
+        text = self.config_replace_text_with if self.config_replace_text_with else self.text
         return WHITESPACE_REGEX.sub(' ', text)[0:PREVIEW_CHARS]
 
     @property
@@ -106,50 +101,17 @@ class OtherFile(Document):
     def __post_init__(self):
         super().__post_init__()
 
-        if not self.config:
-            self.derived_cfg = self._derive_cfg_from_text()
+        if not self.config and (cfg := build_cfg_from_text(self.text)):
+            if cfg.date:
+                self.timestamp = cfg.timestamp
 
-    def _derive_cfg_from_text(self) -> DocCfg | None:
-        """Create a `DocCfg` object if there is none configured and the contents warrant it."""
-        cfg = None
-
-        if VI_DAILY_NEWS_REGEX.search(self.text):
-            cfg = self._build_cfg(category=ARTICLE, author=VI_DAILY_NEWS)
-        elif self.lines[0].lower() == 'valuation report':
-            try:
-                self.timestamp = parse(self.lines[1])
-            except Exception as e:
-                self.warn(f"Failed to parse valuation report date from {self.lines[0:2]}")
-
-            cfg = self._build_cfg(category=Neutral.FINANCE, description="valuations of Epstein's investments", is_interesting=True)
-        elif has_line_starting_with(self.text, [VALAR_GLOBAL_FUND, VALAR_VENTURES], 2):
-            cfg = self._build_valar_cfg()
-        elif VALAR_CAPITAL_CALL_REGEX.search(self.text):
-            cfg = self._build_valar_cfg('requesting money previously promised by Epstein to invest in a new opportunity')
-        elif (case_match := LEGAL_FILING_REGEX.search(self.text)):
-            cfg = self._build_cfg(category=LEGAL, description=f"legal filing in case {case_match.group(1)}")
-
-        if cfg:
-            self.warn(f"Built synthetic cfg: {cfg.complete_description}")
-            type(self).num_synthetic_cfgs_created += 1
-
-        return cfg
-
-    def _build_cfg(self, **kwargs) -> DocCfg:
-        return DocCfg(id=self.file_id, **kwargs)
-
-    def _build_valar_cfg(self, description: str = '') -> DocCfg:
-        return self._build_cfg(
-            category=CRYPTO,
-            author=VALAR_VENTURES,
-            description=description or f"is a {PETER_THIEL} fintech fund"
-        )
+            self.derived_cfg = cfg
 
     def _extract_timestamp(self) -> datetime | None:
         """Return configured timestamp or value extracted by scanning text with datefinder."""
         timestamps: list[datetime] = []
 
-        if self.config and any([s in (self.config_description or '') for s in SKIP_TIMESTAMP_EXTRACT]):
+        if self.config and any([s in self.config_description for s in SKIP_TIMESTAMP_EXTRACT]):
             return None
 
         with warnings.catch_warnings():

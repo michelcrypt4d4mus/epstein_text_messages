@@ -8,6 +8,7 @@ from rich.padding import Padding
 from rich.panel import Panel
 from rich.text import Text
 
+from epstein_files.documents.documents.doc_cfg import DebugDict
 from epstein_files.documents.email import Email
 from epstein_files.documents.emails.constants import FALLBACK_TIMESTAMP
 from epstein_files.documents.emails.email_header import FIELDS_COLON_PATTERN
@@ -15,13 +16,29 @@ from epstein_files.documents.other_file import OtherFile
 from epstein_files.output.left_bar_panel import LeftBarPanel
 from epstein_files.output.rich import RAINBOW, highlighter, wrap_in_markup_style
 from epstein_files.util.logging import logger
+from epstein_files.util.helpers.data_helpers import prefix_keys
 
 EMPTY_LENGTH = 15
+BAD_OCR_EMPTY_LENGTH = 150
 IMAGE_PANEL_REGEX = re.compile(r"\n╭─* Page \d+, Image \d+.*?╯\n", re.DOTALL)
 IGNORE_LINE_REGEX = re.compile(r"^(\d+\n?|[\s+❑]{2,})$")
 MIN_VALID_LENGTH = 10
-SINGLE_IMAGE_NO_TEXT = 'single image with no text'
+SINGLE_IMAGE_NO_TEXT = 'no text found in image(s)'
 WORD_REGEX = re.compile(r"[A-Za-z]{3,}")
+
+# From EFTA00000020 to EFTA00000344 there doesn't seem to be any text
+BAD_OCR_ID_RANGES = [
+    range(20, 345),
+    range(347, 431),
+    range(434, 646),
+    range(652, 773),
+    range(776, 843),
+    range(846, 882),
+    range(916, 1188),
+    range(1189, 1335),
+    range(1396, 1484),
+    range(1735, 1888),
+]
 
 OTHER_DOC_URLS = {
     '245-22.pdf': 'https://www.justice.gov/multimedia/Court%20Records/Government%20of%20the%20United%20States%20Virgin%20Islands%20v.%20JPMorgan%20Chase%20Bank,%20N.A.,%20No.%20122-cv-10904%20(S.D.N.Y.%202022)/245-22.pdf'
@@ -63,6 +80,7 @@ BAD_OCR_FILE_IDS = [
     'EFTA00003082',
     'EFTA00008413',
     'EFTA00002061',
+    'EFTA00001347',
     'EFTA00001809',
     'EFTA00002831',
     'EFTA00007864',
@@ -197,6 +215,10 @@ NO_IMAGE_SUFFIX = """
 │ (no text found in image) │
 ╰──────────────────────────╯""".strip()
 
+DEBUG_PROPS = [
+    'is_bad_ocr',
+]
+
 
 @dataclass
 class DojFile(OtherFile):
@@ -227,21 +249,16 @@ class DojFile(OtherFile):
         return wrap_in_markup_style(super().external_link_markup, self.border_style)
 
     @property
-    def preview_text_highlighted(self) -> Text:
-        """Overloads superclass method."""
-        if self.preview_text == SINGLE_IMAGE_NO_TEXT:
-            return Text(self.preview_text, style='dim italic')
-        else:
-            return super().preview_text_highlighted
-
-    @property
     def info(self) -> list[Text]:
         """Overloads superclass to adjust formatting."""
         return [Text(' ').append(sentence) for sentence in super().info]
 
     @property
     def is_bad_ocr(self) -> bool:
+        import pdb;pdb.set_trace()
         if self.file_id in BAD_OCR_FILE_IDS:
+            return True
+        elif any(self.file_info.efta_id in r for r in BAD_OCR_ID_RANGES) and self.length < BAD_OCR_EMPTY_LENGTH:
             return True
         else:
             return not bool(WORD_REGEX.search(self.text))
@@ -255,6 +272,14 @@ class DojFile(OtherFile):
     def preview_text(self) -> str:
         """Text at start of file stripped of newlinesfor display in tables and other cramped settings."""
         return SINGLE_IMAGE_NO_TEXT if self.is_empty or self.is_bad_ocr else super().preview_text
+
+    @property
+    def preview_text_highlighted(self) -> Text:
+        """Overloads superclass method."""
+        if self.preview_text == SINGLE_IMAGE_NO_TEXT:
+            return Text(self.preview_text, style='dim italic')
+        else:
+            return super().preview_text_highlighted
 
     @property
     def timestamp_sort_key(self) -> tuple[datetime, str, int]:
@@ -291,6 +316,11 @@ class DojFile(OtherFile):
         new_text, num_replaced = IMAGE_PANEL_REGEX.subn('', self.text)
         self.warn(f"Stripped {num_replaced} image panels.")
         self._set_text(text=new_text)
+
+    def _debug_props(self) -> DebugDict:
+        props = super()._debug_props()
+        props.update(prefix_keys(self._debug_prefix, self.truthy_props(DEBUG_PROPS)))
+        return props
 
     def _left_bar_panel(self) -> RenderResult:
         """Alternate way of displaying DOJ files with a single color bar down the left side."""

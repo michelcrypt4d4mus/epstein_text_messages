@@ -2,28 +2,33 @@
 The values in the enums match the suffixes of constants.py variables whose names
 take the form 'OTHER_FILES_[enum_value]'.
 """
-from enum import auto, StrEnum
+from enum import StrEnum, auto
 from itertools import chain
 from typing import Type
 
 from epstein_files.util.constant.strings import *
 
+DEFAULT_CATEGORY_STYLE = 'wheat4'
+
+class CategoryEnum(StrEnum):
+    pass
 
 class Interesting(StrEnum):
     CRYPTO = auto()
     LETTER = auto()
     MONEY = auto()
     REPUTATION = auto()
-    RESUME = auto()
+    RESUMÉ = auto()
     SOCIAL = auto()
     TEXT_MSG = auto()
 
 class Neutral(StrEnum):
+    BUSINESS = auto()
     FINANCE = auto()
     FLIGHT_LOG = auto()
     LEGAL = auto()
     MISC = auto()
-    PRESS_RELEASE = auto()
+    PRESSER = auto()
     SKYPE_LOG = auto()
     TWEET = auto()
 
@@ -51,24 +56,40 @@ class Category(StrEnum):
         return str(self.value)
 
 
+# These categories map to highlighted group labels for the purposes of coloring
 CATEGORY_STYLE_MAPPING = {
+    Interesting.MONEY: Neutral.FINANCE,
+    Interesting.REPUTATION: PUBLICIST,
+    Interesting.TEXT_MSG: TECH_BRO,
+    Neutral.LEGAL: LAWYER,
+    Neutral.SKYPE_LOG: TECH_BRO,
+    Neutral.TWEET: Interesting.SOCIAL,
     Uninteresting.ARTICLE: JOURNALIST,
     Uninteresting.BOOK: JOURNALIST,
-    Neutral.LEGAL: LAWYER,
-    Interesting.MONEY: FINANCE,
+    Uninteresting.CONFERENCE: ACADEMIA,  # TODO: this maps to f"{get_style_for_category(ACADEMIA)} dim"
     Uninteresting.POLITICS: LOBBYIST,
     Uninteresting.PROPERTY: BUSINESS,
-    Interesting.REPUTATION: PUBLICIST,
-    Neutral.TWEET: SOCIAL,
 }
 
 CATEGORY_STYLES = {
+    Interesting.LETTER: 'medium_orchid1',
+    Interesting.RESUMÉ: 'deep_pink4',
+    Interesting.SOCIAL: 'yellow1',
+    Neutral.FLIGHT_LOG: 'cyan',
+    Neutral.MISC: 'deep_pink3',
+    Neutral.PRESSER: 'sandy_brown',
     Uninteresting.JSON: 'dark_red',
-    Interesting.LETTER: 'medium_orchid1'
+    Uninteresting.PHONE_BILL: 'cyan',
 }
 
 # These are the categories we expect to see as OTHER_FILES_[category] variables for in constants.py
-CONSTANT_CATEGORIES = [c for c in Category if c not in [Uninteresting.JSON, Neutral.PRESS_RELEASE]]
+CONSTANT_CATEGORIES = [
+    c for c in Category if c not in [
+        Neutral.BUSINESS,
+        Neutral.PRESSER,
+        Uninteresting.JSON,
+    ]
+]
 
 
 is_interesting = lambda category: is_in_enum(category, Interesting)
