@@ -54,9 +54,9 @@ DOC_LINK_BASE_URLS: dict[ExternalSite, str] = {
 EXTERNAL_LINK_MSGS = {
     JMAIL_URL: 'read His Emails via Gmail interface',
     EPSTEIN_DOCS_URL: 'searchable archive',
-    EPSTEINIFY_URL: 'raw document images',
-    EPSTEIN_WEB_URL: 'character summaries',
     EPSTEIN_MEDIA_URL: 'raw document images',
+    EPSTEINIFY_URL: 'raw images alt',
+    EPSTEIN_WEB_URL: 'biographies',
 }
 
 # Misc

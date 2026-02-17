@@ -26,7 +26,7 @@ TITLE_WIDTH = 50
 SUBTITLE_WIDTH = 110
 NUM_COLOR_KEY_COLS = 6
 
-SITE_GLOSSARY_MSG = f"These pages include the following views of the underlying collection of Epstein's files:"
+SITE_GLOSSARY_MSG = f"The following views of the underlying selection of Epstein Files are available:"
 YOU_ARE_HERE = Text('«').append('you are here', style='bold khaki1 blink').append('»')
 
 DATASET_DESCRIPTION_STYLE = 'gray74'
@@ -81,9 +81,13 @@ def print_page_title(width: int = TITLE_WIDTH) -> None:
 
 
 def print_section_header(msg: str, style: str = SECTION_HEADER_STYLE, is_centered: bool = False) -> None:
+    if args._site_type == SiteType.CURATED:
+        console.line(2)
+        print_section_links()
+
     panel = Panel(Text(msg, justify='center'), expand=True, padding=(1, 1), style=style)
     panel = Align.center(panel) if is_centered else panel
-    console.print(Padding(panel, (3, 25, 1, 25)))
+    console.print(Padding(panel, (2, 25, 1, 25)))
 
 
 def print_section_links(style: str = '') -> None:
@@ -93,10 +97,6 @@ def print_section_links(style: str = '') -> None:
 
 def print_section_summary_table(table: Table) -> None:
     """Precede it with internal section links if it's the curated page."""
-    if args._site_type == SiteType.CURATED:
-        console.line()
-        print_section_links()
-
     print_centered(Padding(table, (2, 0, 2, 0)))
 
 
@@ -116,10 +116,7 @@ def print_title_page_top() -> None:
     # warning and internal links
     print_starred_header('Not All Epstein Files Are Here!', num_spaces=9 if args.all_emails else 6, num_stars=14)
     print_centered(f"This dataset includes everything from the {HOUSE_OVERSIGHT_TRANCHE}", style=DATASET_DESCRIPTION_STYLE)
-    print_centered(f"as well as a curated selection of the {DOJ_2026_TRANCHE}.\n", style=DATASET_DESCRIPTION_STYLE)
-
-    if args._site_type == SiteType.CURATED:
-        print_section_links()
+    print_centered(f"as well as a curated selection of the {DOJ_2026_TRANCHE}.", style=DATASET_DESCRIPTION_STYLE)
 
 
 def print_title_page_bottom(epstein_files: 'EpsteinFiles') -> None:
@@ -127,14 +124,13 @@ def print_title_page_bottom(epstein_files: 'EpsteinFiles') -> None:
     console.line()
     _print_abbreviations_table()
     print_centered(epstein_files.overview_table())
-    _print_external_links()
     console.line()
     print_color_key()
     print_centered(f"(if you think there's an attribution error or can deanonymize an {UNKNOWN} contact {CRYPTADAMUS_TWITTER})", 'grey46')
     print_centered(parenthesize('note this site is based on the government provided OCR text which is not always the greatest'), 'grey23')
     print_centered(f"(thanks to {link_markup('https://x.com/ImDrinknWyn', '@ImDrinknWyn', 'dodger_blue3')} + others for help attributing redacted emails)")
     print_centered_link(SiteType.get_url(SiteType.JSON_METADATA), "(explanations of author attributions)", style='magenta')
-
+    _print_external_links()
 
 def _bulleted_site_link(site_type: SiteType, link: Text) -> Text:
     you_are_here = YOU_ARE_HERE if site_type == args._site_type else ''
@@ -169,10 +165,10 @@ def _print_external_links() -> None:
     console.line()
     print_centered(Text('External Links', style=TABLE_TITLE_STYLE))
     doj_search_link = join_texts([link_text_obj(DOJ_SEARCH_URL, 'search', style=ARCHIVE_ALT_LINK_STYLE)], encloser='()')
-    print_centered(_link_with_comment(DOJ_2026_URL, doj_search_link, 'Dept of Justice Epstein Files Transparency Act Disclosures'))
+    print_centered(_link_with_comment(DOJ_2026_URL, doj_search_link, 'DOJ Epstein Files Transparency Act Disclosures'))
     raw_docs_link = link_text_obj(OVERSIGHT_DRIVE_URL, 'raw files', style=ARCHIVE_ALT_LINK_STYLE)
     raw_docs_link = join_texts([raw_docs_link], encloser='()')
-    print_centered(_link_with_comment(OVERSIGHT_REPUBS_PRESSER_URL, raw_docs_link, 'Official Oversight Committee Press Release'))
+    print_centered(_link_with_comment(OVERSIGHT_REPUBS_PRESSER_URL, raw_docs_link, '2025 Oversight Committee Press Release'))
 
     for url, link in EXTERNAL_LINK_MSGS.items():
         print_centered(_link_with_comment(url, link))
