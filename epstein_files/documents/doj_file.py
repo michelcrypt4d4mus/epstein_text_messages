@@ -278,7 +278,7 @@ class DojFile(OtherFile):
         return self.file_info.external_links_txt(self.border_style, include_alt_links=include_alt_links)
 
     def printable_document(self) -> Self | Email:
-        """Return a copy of this `DojFile` with simplified text if file ID is in `REPLACEMENT_TEXT`."""
+        """Some `DojFile` objects contain text that looks like an email so we return an `Email` object."""
         if self.is_email:
             try:
                 return Email(self.file_path, text=self.text)  # Pass text= to avoid reprocessing

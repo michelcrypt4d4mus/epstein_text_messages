@@ -349,7 +349,7 @@ class Document:
         pattern = patternize(_pattern)
         return [MatchedLine(line, i) for i, line in enumerate(self.lines) if pattern.search(line)]
 
-    def log(self, msg: str, level: int = logging.INFO):
+    def log(self, msg: str, level: int = logging.INFO) -> None:
         """Log a message with with this document's filename as a prefix."""
         logger.log(level, f"{self.file_id} {msg}")
 
