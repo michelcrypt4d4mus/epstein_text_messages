@@ -1,3 +1,6 @@
+"""
+Methods that print the title page with all the links etc.
+"""
 # Rich reference: https://rich.readthedocs.io/en/latest/reference.html
 from rich import box
 from rich.align import Align
@@ -17,7 +20,6 @@ from epstein_files.util.constant.urls import *
 from epstein_files.util.constants import HEADER_ABBREVIATIONS
 from epstein_files.util.env import args
 from epstein_files.util.helpers.link_helper import link_markup, link_text_obj
-from epstein_files.util.helpers.string_helper import quote
 from epstein_files.util.logging import logger
 
 TITLE_WIDTH = 50
@@ -77,15 +79,15 @@ def print_page_title(expand: bool = True, width: int = TITLE_WIDTH) -> None:
     console.line()
 
 
-def print_section_links(style: str = '') -> None:
-    """Print links to the various sections within the curated page."""
-    print_centered(build_demi_table(SECTION_LINK_MSG, SECTION_LINKS), style=style)
-
-
 def print_section_header(msg: str, style: str = SECTION_HEADER_STYLE, is_centered: bool = False) -> None:
     panel = Panel(Text(msg, justify='center'), expand=True, padding=(1, 1), style=style)
     panel = Align.center(panel) if is_centered else panel
     console.print(Padding(panel, (3, 25, 1, 25)))
+
+
+def print_section_links(style: str = '') -> None:
+    """Print links to the various sections within the curated page."""
+    print_centered(build_demi_table(SECTION_LINK_MSG, SECTION_LINKS), style=style)
 
 
 def print_section_summary_table(table: Table) -> None:
