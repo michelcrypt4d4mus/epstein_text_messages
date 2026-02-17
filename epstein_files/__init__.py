@@ -27,7 +27,7 @@ from epstein_files.output.output import (print_doj_files, print_emails_section, 
      print_emailers_info, print_json_metadata, show_urls)
 from epstein_files.output.rich import (build_highlighter, console, highlighter,
      print_json, print_subtitle_panel, styled_dict, write_html)
-from epstein_files.output.title_page import print_color_key, print_title_page_header, print_title_page_tables
+from epstein_files.output.title_page import print_color_key, print_title_page_top, print_title_page_bottom
 from epstein_files.util.constant.output_files import SiteType, make_clean
 from epstein_files.util.constant.strings import HOUSE_OVERSIGHT_NOV_2025_ID_REGEX
 from epstein_files.util.env import args
@@ -60,12 +60,12 @@ def generate_html() -> None:
         print_json_files(epstein_files)
         exit()
 
-    print_title_page_header()
+    print_title_page_top()
 
     if args.email_timeline or args.output_word_count:
         print_color_key()
     else:
-        print_title_page_tables(epstein_files)
+        print_title_page_bottom(epstein_files)
 
     if args.colors_only:
         exit()

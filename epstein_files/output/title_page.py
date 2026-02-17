@@ -99,7 +99,7 @@ def print_section_summary_table(table: Table) -> None:
     print_centered(Padding(table, (2, 0, 2, 0)))
 
 
-def print_title_page_header() -> None:
+def print_title_page_top() -> None:
     """Top half of the title page."""
     links = {site_type: SiteType.link_txt(site_type) for site_type in SITE_DESCRIPTIONS.keys()}
 
@@ -124,7 +124,7 @@ def print_title_page_header() -> None:
         print_section_links()
 
 
-def print_title_page_tables(epstein_files: 'EpsteinFiles') -> None:
+def print_title_page_bottom(epstein_files: 'EpsteinFiles') -> None:
     """Bottom half of the title page."""
     console.line()
     _print_abbreviations_table()
