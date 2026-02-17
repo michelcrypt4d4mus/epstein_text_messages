@@ -107,7 +107,7 @@ class EpsteinFiles:
         """Iterate through files and build appropriate objects."""
         self.file_paths = sorted(all_txt_paths(), reverse=True)
         self._sift_documents(self._load_file_paths(self.file_paths))
-        self._finalize_data()
+        self._finalize_data_and_write_to_disk()
 
     @classmethod
     def get_files(cls, timer: Timer | None = None) -> 'EpsteinFiles':
@@ -129,7 +129,6 @@ class EpsteinFiles:
 
         logger.warning(f"Building new cache file, this will take a few minutes...")
         epstein_files = EpsteinFiles()
-        epstein_files.save_to_disk()
         timer.print_at_checkpoint(f'Processed {len(epstein_files.file_paths):,} files, {OtherFile.num_synthetic_cfgs_created} synthetic configs')
         return epstein_files
 
@@ -282,8 +281,7 @@ class EpsteinFiles:
         new_docs = self._load_file_paths(new_paths)
         logger.warning(f"Loaded {len(new_docs)} new files: {[d.file_id for d in new_docs]}")
         self._sift_documents(new_docs)
-        self._finalize_data()
-        self.save_to_disk()
+        self._finalize_data_and_write_to_disk()
 
     def reload_doj_files(self) -> None:
         """Reload only the DOJ PDF extracts (keep HOUSE_OVERSIGHT stuff unchanged)."""
@@ -299,8 +297,7 @@ class EpsteinFiles:
         # Build new objects and append them
         new_docs = self._load_file_paths(doj_txt_paths())
         self._sift_documents(new_docs)
-        self._finalize_data()
-        self.save_to_disk()
+        self._finalize_data_and_write_to_disk()
         timer.print_at_checkpoint(f"Reloaded DOJ files {doj_file_counts_str()}")
 
     def overview_table(self) -> Table:
@@ -342,12 +339,13 @@ class EpsteinFiles:
     def _docs_by_id(self) -> Mapping[str, Document]:
         return {doc.file_id: doc for doc in self.all_documents}
 
-    def _finalize_data(self):
+    def _finalize_data_and_write_to_disk(self):
         """Handle computation of fields related to uninterestingness, relationships between documents, etc."""
         self._set_uninteresting_ccs()
         self._copy_duplicate_doc_propeerties()
         self._find_email_attachments_and_set_is_first_for_user()
         self._sort_file_types_by_timestamp()
+        self.save_to_disk()
 
     def _find_email_attachments_and_set_is_first_for_user(self) -> None:
         for other_file in (self.other_files + self.doj_files):
