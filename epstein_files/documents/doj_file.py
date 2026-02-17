@@ -255,7 +255,6 @@ class DojFile(OtherFile):
 
     @property
     def is_bad_ocr(self) -> bool:
-        import pdb;pdb.set_trace()
         if self.file_id in BAD_OCR_FILE_IDS:
             return True
         elif any(self.file_info.efta_id in r for r in BAD_OCR_ID_RANGES) and self.length < BAD_OCR_EMPTY_LENGTH:
