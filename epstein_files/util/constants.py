@@ -781,7 +781,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='033585', duplicate_ids=['032279']),
     EmailCfg(id='031220', duplicate_ids=['031189']),
     EmailCfg(id='032779', duplicate_ids=['033563']),
-    EmailCfg(id='033230', duplicate_ids=['033577']),
+    EmailCfg(id='033230', duplicate_ids=['033576', '033577']),
     EmailCfg(id='032125', duplicate_ids=['023971']),
     EmailCfg(id='031230', duplicate_ids=['031203']),
     EmailCfg(id='031773', duplicate_ids=['032050']),

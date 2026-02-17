@@ -207,7 +207,7 @@ class EpsteinFiles:
         emails = self.emails_by(name) + self.emails_to(name)
 
         if len(emails) == 0:
-            raise RuntimeError(f"No emails found for '{name}'")
+            logger.warning(f"No emails found for '{name}'")
 
         return Document.sort_by_timestamp(Document.uniquify(emails))
 
