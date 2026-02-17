@@ -24,7 +24,7 @@ from epstein_files.util.constant.strings import ARCHIVE_ALT_LINK_STYLE, ARCHIVE_
 from epstein_files.util.constant.urls import *
 from epstein_files.util.constants import HEADER_ABBREVIATIONS
 from epstein_files.util.env import args
-from epstein_files.util.helpers.data_helpers import json_safe, sort_dict
+from epstein_files.util.helpers.data_helpers import json_safe, sort_dict, without_falsey
 from epstein_files.util.helpers.file_helper import log_file_write
 from epstein_files.util.helpers.link_helper import link_markup, link_text_obj
 from epstein_files.util.helpers.string_helper import quote
@@ -155,12 +155,12 @@ def build_table(title: str | Text | None, cols: list[str | dict] | None = None, 
     return table
 
 
-def indent_txt(txt: Text, spaces: int = 4, prefix: str = '') -> Text:
+def indent_txt(txt: str | Text, spaces: int = 4, prefix: str = '') -> Text:
     indent = Text(' ' * spaces).append(prefix)
     return indent + Text(f"\n{indent}").join(txt.split('\n'))
 
 
-def join_texts(txts: list[Text], join: str = ' ', encloser: str = '', encloser_style: str = 'wheat4') -> Text:
+def join_texts(txts: list[str | Text], join: str = ' ', encloser: str = '', encloser_style: str = 'wheat4') -> Text:
     """Join rich.Text objs into one."""
     if encloser:
         if len(encloser) != 2:
@@ -172,7 +172,7 @@ def join_texts(txts: list[Text], join: str = ' ', encloser: str = '', encloser_s
 
     txt = Text('')
 
-    for i, _txt in enumerate(txts):
+    for i, _txt in enumerate(without_falsey(txts)):
         txt.append(join if i >= 1 else '').append(enclose_start, style=encloser_style)
         txt.append(_txt).append(enclose_end, style=encloser_style)
 
@@ -221,10 +221,18 @@ def print_color_key() -> None:
 
 def print_title_page_header() -> None:
     """Top half of the title page."""
-    links = {
-        site_type: link_text_obj(SiteType.get_url(site_type), description, AUX_SITE_LINK_STYLE)
-        for site_type, description in SITE_DESCRIPTIONS.items()
-    }
+
+    def build_site_link(site_type: SiteType) -> Text:
+        description = SITE_DESCRIPTIONS[site_type]
+        extra_info = ''
+
+        if ':' in description:
+            description, extra_info = SITE_DESCRIPTIONS[site_type].split(':')
+
+        link = link_text_obj(SiteType.get_url(site_type), description, AUX_SITE_LINK_STYLE)
+        return join_texts([link, Text(f"({extra_info})", f'wheat4 dim')])
+
+    links = {site_type: build_site_link(site_type) for site_type in SITE_DESCRIPTIONS.keys()}
 
     def site_link_line(site_type: SiteType, bulleted_link: Text) -> Text:
         you_are_here = YOU_ARE_HERE if site_type == args._site_type else ''
@@ -252,8 +260,8 @@ def print_title_page_tables(epstein_files: 'EpsteinFiles') -> None:
     print_centered(epstein_files.overview_table())
     console.line()
     print_color_key()
-    print_centered(f"if you think there's an attribution error or can deanonymize an {UNKNOWN} contact {CRYPTADAMUS_TWITTER}", 'grey46')
-    print_centered('note this site is based on the government provided OCR text which is not always the greatest', 'grey23')
+    print_centered(f"(if you think there's an attribution error or can deanonymize an {UNKNOWN} contact {CRYPTADAMUS_TWITTER})", 'grey46')
+    print_centered(parenthesize('note this site is based on the government provided OCR text which is not always the greatest'), 'grey23')
     print_centered(f"(thanks to {link_markup('https://x.com/ImDrinknWyn', '@ImDrinknWyn', 'dodger_blue3')} + others for help attributing redacted emails)")
     print_centered_link(SiteType.get_url(SiteType.JSON_METADATA), "(explanations of author attributions)", style='magenta')
 

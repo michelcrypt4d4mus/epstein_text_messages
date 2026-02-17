@@ -62,15 +62,16 @@ HTML_BUILD_FILENAMES = {
 }
 
 # Order matters, it's the order the links are shown in the header
+# Colons are used to break and parenthesize display
 SITE_DESCRIPTIONS = {
-    SiteType.CURATED:              f"curated selection (files of particular interest)",
+    SiteType.CURATED:              f"curated selection:files of particular interest",
     SiteType.GROUPED_EMAILS:       f"emails grouped by counterparty",
     SiteType.CHRONOLOGICAL_EMAILS: f"emails in chronological order",
     SiteType.TEXT_MESSAGES:        f"text messages from {HOUSE_OVERSIGHT_TRANCHE}",
-    SiteType.OTHER_FILES_TABLE:    f"other files (neither emails nor text messages)",
+    SiteType.OTHER_FILES_TABLE:    f"other files:neither emails nor text messages",
     SiteType.DOJ_FILES:            f"raw OCR text of non-emails from {DOJ_2026_TRANCHE}",
     SiteType.WORD_COUNT:           f"word count of all communications",
-    SiteType.JSON_METADATA:        f"metadata (author, attribution reasons, etc.)",
+    SiteType.JSON_METADATA:        f"metadata:author, attribution reasons, etc.",
     SiteType.JSON_FILES:           f"raw JSON files from {HOUSE_OVERSIGHT_TRANCHE}",
 }
 
