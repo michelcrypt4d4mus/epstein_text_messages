@@ -8,8 +8,6 @@ from rich.padding import Padding
 from rich.panel import Panel
 from rich.text import Text
 
-from epstein_files.documents.document import CHECK_LINK_FOR_DETAILS, Document
-from epstein_files.documents.documents.doc_cfg import DocCfg
 from epstein_files.documents.email import Email
 from epstein_files.documents.emails.constants import FALLBACK_TIMESTAMP
 from epstein_files.documents.emails.email_header import FIELDS_COLON_PATTERN
@@ -278,7 +276,7 @@ class DojFile(OtherFile):
         return self.file_info.external_links_txt(self.border_style, include_alt_links=include_alt_links)
 
     def printable_document(self) -> Self | Email:
-        """Return a copy of this `DojFile` with simplified text if file ID is in `REPLACEMENT_TEXT`."""
+        """Some `DojFile` objects contain text that looks like an email so we return an `Email` object."""
         if self.is_email:
             try:
                 return Email(self.file_path, text=self.text)  # Pass text= to avoid reprocessing

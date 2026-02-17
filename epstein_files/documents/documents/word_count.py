@@ -31,7 +31,7 @@ SPLIT_WORDS_BY = ['@', '/']
 FLAGGED_WORDS = []  # For debugging, log extra info when one of these is encountered
 
 NON_SINGULARIZABLE = UNSINGULARIZABLE_WORDS + [n for n in FIRST_AND_LAST_NAMES if n.endswith('s')]
-SKIP_WORDS_REGEX = re.compile(r"^(asmallworld@|enwiki|http|imagepng|nymagcomnymetro|addresswww|mailto|www|/font|colordu|classdms|targetdblank|nymagcom|palmbeachdailynews)|jee[vy]acation|fontfamily|(gif|html?|jpe?g|utm)$")
+SKIP_WORDS_REGEX = re.compile(r"^(asmallworld@|enwiki|http|imagepng|nymagcomnymetro|addresswww|mailto|www|/font|colordu|classdms|targetdblank|nymagcom|capitalaccountstatementvalarglobalftmdiilp|palmbeachdailynews)|jee[vy]acation|fontfamily|(gif|html?|jpe?g|utm)$")
 BAD_CHARS_REGEX = re.compile(r"[-–=+()$€£©°«—^&%!#_`,.;:'‘’\"„“”?\d\\]")
 NO_SINGULARIZE_REGEX = re.compile(r".*[io]us$")
 PADDING = (0, 0, 2, 2)

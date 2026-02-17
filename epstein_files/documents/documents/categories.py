@@ -50,6 +50,7 @@ class Category(StrEnum):
     def __str__(self):
         return str(self.value)
 
+
 CATEGORY_STYLE_MAPPING = {
     Uninteresting.ARTICLE: JOURNALIST,
     Uninteresting.BOOK: JOURNALIST,

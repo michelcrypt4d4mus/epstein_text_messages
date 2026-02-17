@@ -663,10 +663,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(MELANIE_SPINELLA, f"representative of {LEON_BLACK}", r"M?elanie Spine[Il]{2}a"),
             Contact(MORTIMER_ZUCKERMAN, "business partner of Epstein, newspaper publisher"),
             Contact(NORMAN_D_RAU, "managing director at Morgan Stanley"),
-            Contact(
-                name=PAUL_BARRETT,
-                emailer_pattern=r"Paul Barre(d|tt)",
-            ),
+            Contact(PAUL_BARRETT, emailer_pattern=r"Paul Barre(d|tt)"),
             Contact(PAUL_MORRIS, f"{DEUTSCHE_BANK}", r"morris, paul|Paul Morris"),
             Contact('Skip Rimer', "Milken Institute (Michael Milken)"),
             Contact('Steven Elkman', f"{DEUTSCHE_BANK}"),
@@ -748,10 +745,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             ),
             Contact('linkspirit', "Skype username of someone Epstein communicated with"),
             Contact('Peter Thomas Roth', "student of Epstein at Dalton, skincare company founder"),
-            Contact(
-                name=STEPHEN_HANSON,
-                emailer_pattern=r"ste(phen|ve) hanson?|Shanson900",
-            ),
+            Contact(STEPHEN_HANSON, emailer_pattern=r"ste(phen|ve) hanson?|Shanson900"),
             Contact(TOM_BARRACK, "long time friend of Trump")
         ],
         patterns=[
@@ -1338,10 +1332,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact('lorraine@mc2mm.com', f"{JEAN_LUC_BRUNEL}'s MC2 Model Management"),
             Contact('pink@mc2mm.com', f"{JEAN_LUC_BRUNEL}'s MC2 Model Management", r"^Pink$|pink@mc2mm\.com"),
             Contact(MANUELA_MARTINEZ, "Mega Partners (Brazilian agency)", r"Manuela (- Mega Partners|Martinez)"),
-            Contact(
-                name=MARIANA_IDZKOWSKA,
-                emailer_pattern=r"Mariana [Il]d[źi]kowska?",
-            ),
+            Contact(MARIANA_IDZKOWSKA, emailer_pattern=r"Mariana [Il]d[źi]kowska?"),
             Contact('Michael Sanka', f"{JEAN_LUC_BRUNEL}'s MC2 Model Management {'(???)'}"),
             Contact('Vladimir Yudashkin', "director of the 1 Mother Agency")
         ],
@@ -1396,6 +1387,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         patterns=[
             r"Alberto\sGonzale[sz]",
             r"(Alex\s*)?Acosta",
+            r"Ann\s*Coulter",
             r"(Ben\s*)?Sasse",
             r"Betsy Devos",
             r"((Bill|William)\s*)?Barr",
@@ -1409,7 +1401,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Darrell\s*Issa",
             r"Devin\s*Nunes",
             r"(Don\s*)?McGa[hn]n",
-            r"Erik Prince",
+            r"Erik\s*Prince",
             r"Gary\s*Cohn",
             r"George\s*(H\.?\s*)?(W\.?\s*)?Bush",
             r"(George\s*)?Nader",
