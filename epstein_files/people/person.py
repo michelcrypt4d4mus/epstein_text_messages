@@ -377,7 +377,7 @@ class Person:
                  f" out of {len(all_emails):,} emails, {len(all_emails) - len(attributed_emails)} still unknown)"
 
         if is_selection:
-            title = Text(f"{EMAILER_INFO_TITLE} in This Order for the Highlighted Names (", style=TABLE_TITLE_STYLE)
+            title = Text(f"{EMAILER_INFO_TITLE} for the Highlighted Names Only (", style=TABLE_TITLE_STYLE)
             title.append(THE_OTHER_PAGE_TXT).append(" has the rest)")
         else:
             title = f"{EMAILER_INFO_TITLE} in Chronological Order Based on Timestamp of First Email"

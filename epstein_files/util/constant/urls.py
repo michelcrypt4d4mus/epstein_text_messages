@@ -88,7 +88,6 @@ rollcall_doc_url = lambda file_stem: build_doc_url(DOC_LINK_BASE_URLS[ROLLCALL],
 search_jmail_url = lambda txt: f"{JMAIL_URL}/search?q={urllib.parse.quote(txt)}"
 search_twitter_url = lambda txt: f"https://x.com/search?q={urllib.parse.quote(txt)}&src=typed_query&f=live"
 
-
 PERSON_LINK_BUILDERS: dict[ExternalSite, Callable[[str], str]] = {
     EPSTEIN_MEDIA: epstein_media_person_url,
     EPSTEIN_WEB: epstein_web_person_url,

@@ -34,7 +34,7 @@ OTHER_PAGE_MSG_STYLE = 'gray78 dim'
 PATH_STYLE = 'deep_pink3'
 STR_VAL_STYLE = 'cornsilk1 italic'
 STR_VAL_STYLE_ALT = 'light_yellow3 italic'
-SECTION_HEADER_STYLE = 'bold black on pale_turquoise4'
+SECTION_HEADER_STYLE = 'bold black on color(146)'
 SOCIAL_MEDIA_LINK_STYLE = 'pale_turquoise4'
 SUBSTACK_POST_LINK_STYLE = 'bright_cyan'
 
