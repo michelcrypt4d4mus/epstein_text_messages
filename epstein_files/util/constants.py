@@ -277,6 +277,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='031560', author=DAVID_SCHOEN, author_reason='signature'),
     EmailCfg(id='026287', author=DAVID_SCHOEN, author_reason='signature'),
     EmailCfg(id='033419', author=DAVID_SCHOEN, author_reason='signature'),
+    EmailCfg(id='EFTA01781620', author=DAVID_SCHOEN, author_uncertain='"Sent from AOL Mobile Mail" in chain'),
     EmailCfg(
         id='EFTA02442672',
         author=DAVID_STERN,
