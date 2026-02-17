@@ -193,7 +193,7 @@ def print_emails_section(epstein_files: EpsteinFiles) -> list[Email]:
 
 
 def print_json_files(epstein_files: EpsteinFiles):
-    """Print all the JsonFile objects"""
+    """Print all the `JsonFile` objects to a unified JSON file."""
     if args.build:
         json_data = {jf.file_info.url_slug: jf.json_data() for jf in epstein_files.json_files}
         # TODO: stopgap so this doesn't break but we're no longer building this file.
@@ -210,6 +210,7 @@ def print_json_files(epstein_files: EpsteinFiles):
 
 
 def print_json_metadata(epstein_files: EpsteinFiles) -> None:
+    """Print all our `DocCfg` and derived info about authorship etc."""
     json_str = epstein_files.json_metadata()
 
     if args.build:
