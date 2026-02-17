@@ -130,7 +130,7 @@ class OtherFile(Document):
             cfg = self._build_cfg(category=LEGAL, description=f"legal filing in case {case_match.group(1)}")
 
         if cfg:
-            self.warn(f"Built synthetic cfg: {cfg}")
+            self.warn(f"Built synthetic cfg: {cfg.complete_description}")
             type(self).num_synthetic_cfgs_created += 1
 
         return cfg

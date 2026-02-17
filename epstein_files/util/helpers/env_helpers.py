@@ -11,7 +11,7 @@ def get_env_dir(env_var_name: str, must_exist: bool = True) -> Path | None:
         error_msg = f"env var {env_var_name} set to '{dir}' but that's not a directory"
 
         if dir.is_dir():
-            return dir.resolve()
+            return dir
         elif must_exist:
             exit_with_error(f"Required {error_msg}.\n")
         else:
