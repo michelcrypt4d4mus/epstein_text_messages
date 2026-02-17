@@ -1,5 +1,6 @@
 # NEXT RELEASE
 * Include a compressed pickle file with all the archived data in this repo
+* `--load-new` option to scan for only new files
 
 ### 1.6.1
 * site index at top that cross links all sites
