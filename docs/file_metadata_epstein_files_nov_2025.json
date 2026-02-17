@@ -32948,12 +32948,14 @@
                 "type": "Email"
             },
             {
+                "author": "USANYS",
+                "author_uncertain": true,
                 "file_id": "EFTA00039820",
                 "file_size": 10584,
                 "filename": "EFTA00039820.txt",
                 "num_lines": 157,
                 "recipients": [
-                    null
+                    "USANYS"
                 ],
                 "subject": "RE: US v Maxwell - [conferrals regarding pretrial disclosures & redactions to replies]",
                 "timestamp": "2021-04-22T21:47:47",
@@ -39700,10 +39702,16 @@
                 "type": "Email"
             },
             {
+                "author": "Tyler Shears",
                 "file_id": "EFTA01951947",
                 "file_size": 529,
                 "filename": "EFTA01951947.txt",
                 "num_lines": 12,
+                "recipients": [
+                    "Jeffrey Epstein",
+                    "Richard Kahn"
+                ],
+                "subject": "Artist Press Release",
                 "timestamp": "2013-10-31T15:15:43",
                 "type": "Email"
             },
@@ -40923,7 +40931,7 @@
                 "file_id": "EFTA02267133",
                 "file_size": 1737,
                 "filename": "EFTA02267133.txt",
-                "num_lines": 41,
+                "num_lines": 44,
                 "recipients": [
                     "Maria Prusakova"
                 ],
@@ -44475,7 +44483,7 @@
                 "filename": "HOUSE_OVERSIGHT_028375.txt",
                 "is_interesting": false,
                 "num_lines": 1690,
-                "timestamp": "2018-12-16T00:00:00",
+                "timestamp": "2018-12-17T00:00:00",
                 "type": "JsonFile",
                 "was_timestamp_extracted": true
             },
@@ -45810,7 +45818,7 @@
                 "filename": "HOUSE_OVERSIGHT_012048.txt",
                 "is_interesting": null,
                 "num_lines": 2693,
-                "timestamp": "2019-03-16T00:00:00",
+                "timestamp": "2019-03-17T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -45984,7 +45992,7 @@
                 "filename": "HOUSE_OVERSIGHT_013268.txt",
                 "is_interesting": false,
                 "num_lines": 139,
-                "timestamp": "2014-01-16T00:00:00",
+                "timestamp": "2014-01-17T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -46139,7 +46147,7 @@
                 "filename": "HOUSE_OVERSIGHT_013796.txt",
                 "is_interesting": false,
                 "num_lines": 8095,
-                "timestamp": "2009-02-16T00:00:00",
+                "timestamp": "2009-02-17T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -46152,7 +46160,7 @@
                 "filename": "HOUSE_OVERSIGHT_014037.txt",
                 "is_interesting": null,
                 "num_lines": 1911,
-                "timestamp": "2014-07-16T00:00:00",
+                "timestamp": "2014-07-17T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -46486,7 +46494,7 @@
                 "filename": "HOUSE_OVERSIGHT_015032.txt",
                 "is_interesting": false,
                 "num_lines": 1918,
-                "timestamp": "2017-07-16T00:00:00",
+                "timestamp": "2017-07-17T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -46499,7 +46507,7 @@
                 "filename": "HOUSE_OVERSIGHT_015462.txt",
                 "is_interesting": false,
                 "num_lines": 1810,
-                "timestamp": "2013-10-16T00:00:00",
+                "timestamp": "2013-10-17T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -46512,7 +46520,7 @@
                 "filename": "HOUSE_OVERSIGHT_015501.txt",
                 "is_interesting": false,
                 "num_lines": 1214,
-                "timestamp": "2016-02-16T00:00:00",
+                "timestamp": "2016-02-17T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -46822,7 +46830,7 @@
                 "filename": "HOUSE_OVERSIGHT_016636.txt",
                 "is_interesting": false,
                 "num_lines": 1535,
-                "timestamp": "2009-02-16T00:00:00",
+                "timestamp": "2009-02-17T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -46979,7 +46987,7 @@
                 "filename": "HOUSE_OVERSIGHT_017526.txt",
                 "is_interesting": false,
                 "num_lines": 4127,
-                "timestamp": "2012-06-16T00:00:00",
+                "timestamp": "2012-06-17T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -47238,7 +47246,7 @@
                 "filename": "HOUSE_OVERSIGHT_018703.txt",
                 "is_interesting": false,
                 "num_lines": 124,
-                "timestamp": "2016-06-16T00:00:00",
+                "timestamp": "2016-06-17T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -47262,7 +47270,7 @@
                 "filename": "HOUSE_OVERSIGHT_018743.txt",
                 "is_interesting": false,
                 "num_lines": 1855,
-                "timestamp": "2018-02-16T00:00:00",
+                "timestamp": "2018-02-17T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -47569,7 +47577,7 @@
                 "filename": "HOUSE_OVERSIGHT_019477.txt",
                 "is_interesting": true,
                 "num_lines": 11950,
-                "timestamp": "2017-02-16T00:00:00",
+                "timestamp": "2017-02-17T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -47640,7 +47648,7 @@
                 "filename": "HOUSE_OVERSIGHT_020153.txt",
                 "is_interesting": true,
                 "num_lines": 2848,
-                "timestamp": "2016-02-16T00:00:00",
+                "timestamp": "2016-02-17T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -47653,7 +47661,7 @@
                 "filename": "HOUSE_OVERSIGHT_020447.txt",
                 "is_interesting": null,
                 "num_lines": 7325,
-                "timestamp": "2019-02-16T00:00:00",
+                "timestamp": "2019-02-17T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -47692,7 +47700,7 @@
                 "filename": "HOUSE_OVERSIGHT_021092.txt",
                 "is_interesting": false,
                 "num_lines": 77,
-                "timestamp": "2001-02-16T00:00:00",
+                "timestamp": "2001-02-17T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -47704,7 +47712,7 @@
                 "filename": "HOUSE_OVERSIGHT_021093.txt",
                 "is_interesting": false,
                 "num_lines": 96,
-                "timestamp": "2003-02-16T00:00:00",
+                "timestamp": "2003-02-17T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -47743,7 +47751,7 @@
                 "filename": "HOUSE_OVERSIGHT_021145.txt",
                 "is_interesting": false,
                 "num_lines": 6213,
-                "timestamp": "2008-02-16T00:00:00",
+                "timestamp": "2008-02-17T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -47794,7 +47802,7 @@
                 "filename": "HOUSE_OVERSIGHT_021718.txt",
                 "is_interesting": false,
                 "num_lines": 1754,
-                "timestamp": "2016-02-16T00:00:00",
+                "timestamp": "2016-02-17T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -47821,7 +47829,7 @@
                 "filename": "HOUSE_OVERSIGHT_021824.txt",
                 "is_interesting": null,
                 "num_lines": 6853,
-                "timestamp": "2015-10-16T00:00:00",
+                "timestamp": "2015-10-17T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -47896,7 +47904,7 @@
                 "filename": "HOUSE_OVERSIGHT_022212.txt",
                 "is_interesting": false,
                 "num_lines": 107,
-                "timestamp": "2020-02-16T00:00:00",
+                "timestamp": "2020-02-17T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -47919,7 +47927,7 @@
                 "filename": "HOUSE_OVERSIGHT_022237.txt",
                 "is_interesting": null,
                 "num_lines": 266,
-                "timestamp": "2014-12-16T00:00:00",
+                "timestamp": "2014-12-17T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -48043,7 +48051,7 @@
                 "filename": "HOUSE_OVERSIGHT_022407.txt",
                 "is_interesting": true,
                 "num_lines": 79,
-                "timestamp": "2018-02-16T00:00:00",
+                "timestamp": "2018-02-17T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -48056,7 +48064,7 @@
                 "filename": "HOUSE_OVERSIGHT_022417.txt",
                 "is_interesting": false,
                 "num_lines": 1118,
-                "timestamp": "2017-02-16T00:00:00",
+                "timestamp": "2017-02-17T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -48106,7 +48114,7 @@
                 "filename": "HOUSE_OVERSIGHT_022707.txt",
                 "is_interesting": true,
                 "num_lines": 146,
-                "timestamp": "2014-02-16T00:00:00",
+                "timestamp": "2014-02-17T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -48119,7 +48127,7 @@
                 "filename": "HOUSE_OVERSIGHT_022727.txt",
                 "is_interesting": true,
                 "num_lines": 146,
-                "timestamp": "2014-02-16T00:00:00",
+                "timestamp": "2014-02-17T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -48132,7 +48140,7 @@
                 "filename": "HOUSE_OVERSIGHT_022746.txt",
                 "is_interesting": true,
                 "num_lines": 149,
-                "timestamp": "2014-02-16T00:00:00",
+                "timestamp": "2014-02-17T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -48178,7 +48186,7 @@
                 "filename": "HOUSE_OVERSIGHT_022844.txt",
                 "is_interesting": true,
                 "num_lines": 149,
-                "timestamp": "2014-02-16T00:00:00",
+                "timestamp": "2014-02-17T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -48191,7 +48199,7 @@
                 "filename": "HOUSE_OVERSIGHT_022863.txt",
                 "is_interesting": true,
                 "num_lines": 109,
-                "timestamp": "2009-02-16T00:00:00",
+                "timestamp": "2009-02-17T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -48204,7 +48212,7 @@
                 "filename": "HOUSE_OVERSIGHT_022894.txt",
                 "is_interesting": true,
                 "num_lines": 99,
-                "timestamp": "2009-02-16T00:00:00",
+                "timestamp": "2009-02-17T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -48217,7 +48225,7 @@
                 "filename": "HOUSE_OVERSIGHT_022952.txt",
                 "is_interesting": true,
                 "num_lines": 140,
-                "timestamp": "2014-02-16T00:00:00",
+                "timestamp": "2014-02-17T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -48518,7 +48526,7 @@
                 "filename": "HOUSE_OVERSIGHT_023435.txt",
                 "is_interesting": false,
                 "num_lines": 107,
-                "timestamp": "2016-02-16T00:00:00",
+                "timestamp": "2016-02-17T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -48720,7 +48728,7 @@
                 "filename": "HOUSE_OVERSIGHT_023720.txt",
                 "is_interesting": false,
                 "num_lines": 280,
-                "timestamp": "2012-02-16T00:00:00",
+                "timestamp": "2012-02-17T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -48733,7 +48741,7 @@
                 "filename": "HOUSE_OVERSIGHT_023731.txt",
                 "is_interesting": false,
                 "num_lines": 8219,
-                "timestamp": "2011-02-16T00:00:00",
+                "timestamp": "2011-02-17T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -48745,7 +48753,7 @@
                 "filename": "HOUSE_OVERSIGHT_024003.txt",
                 "is_interesting": true,
                 "num_lines": 5090,
-                "timestamp": "2020-02-16T00:00:00",
+                "timestamp": "2020-02-17T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -48757,7 +48765,7 @@
                 "filename": "HOUSE_OVERSIGHT_024117.txt",
                 "is_interesting": null,
                 "num_lines": 751,
-                "timestamp": "2012-07-16T00:00:00",
+                "timestamp": "2012-07-17T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -48848,7 +48856,7 @@
                 "filename": "HOUSE_OVERSIGHT_024229.txt",
                 "is_interesting": true,
                 "num_lines": 79,
-                "timestamp": "2009-02-16T00:00:00",
+                "timestamp": "2009-02-17T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -48861,7 +48869,7 @@
                 "filename": "HOUSE_OVERSIGHT_024256.txt",
                 "is_interesting": true,
                 "num_lines": 498,
-                "timestamp": "2017-05-16T00:00:00",
+                "timestamp": "2017-05-17T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -48924,7 +48932,7 @@
                 "filename": "HOUSE_OVERSIGHT_024374.txt",
                 "is_interesting": false,
                 "num_lines": 83,
-                "timestamp": "2019-02-16T00:00:00",
+                "timestamp": "2019-02-17T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -48962,7 +48970,7 @@
                 "filename": "HOUSE_OVERSIGHT_024631.txt",
                 "is_interesting": true,
                 "num_lines": 6977,
-                "timestamp": "2019-02-16T00:00:00",
+                "timestamp": "2019-02-17T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -49025,7 +49033,7 @@
                 "filename": "HOUSE_OVERSIGHT_025104.txt",
                 "is_interesting": false,
                 "num_lines": 365,
-                "timestamp": "2020-02-16T00:00:00",
+                "timestamp": "2020-02-17T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -49161,7 +49169,7 @@
                 "filename": "HOUSE_OVERSIGHT_025292.txt",
                 "is_interesting": false,
                 "num_lines": 80,
-                "timestamp": "2016-02-16T00:00:00",
+                "timestamp": "2016-02-17T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -49218,7 +49226,7 @@
                 "filename": "HOUSE_OVERSIGHT_025540.txt",
                 "is_interesting": null,
                 "num_lines": 36,
-                "timestamp": "2009-07-16T00:00:00",
+                "timestamp": "2009-07-17T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -49317,7 +49325,7 @@
                 "filename": "HOUSE_OVERSIGHT_025849.txt",
                 "is_interesting": false,
                 "num_lines": 603,
-                "timestamp": "2014-02-16T00:00:00",
+                "timestamp": "2014-02-17T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -49384,7 +49392,7 @@
                 "recipients": [
                     "George"
                 ],
-                "timestamp": "2020-02-16T00:00:00",
+                "timestamp": "2020-02-17T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -49449,7 +49457,7 @@
                 "filename": "HOUSE_OVERSIGHT_026543.txt",
                 "is_interesting": false,
                 "num_lines": 143,
-                "timestamp": "2020-02-16T00:00:00",
+                "timestamp": "2020-02-17T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -49610,7 +49618,7 @@
                 "filename": "HOUSE_OVERSIGHT_026731.txt",
                 "is_interesting": false,
                 "num_lines": 250,
-                "timestamp": "2020-02-16T00:00:00",
+                "timestamp": "2020-02-17T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -49676,7 +49684,7 @@
                 "filename": "HOUSE_OVERSIGHT_026794.txt",
                 "is_interesting": false,
                 "num_lines": 673,
-                "timestamp": "2020-02-16T00:00:00",
+                "timestamp": "2020-02-17T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -49689,7 +49697,7 @@
                 "filename": "HOUSE_OVERSIGHT_026825.txt",
                 "is_interesting": false,
                 "num_lines": 81,
-                "timestamp": "2015-02-16T00:00:00",
+                "timestamp": "2015-02-17T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -49885,7 +49893,7 @@
                 "filename": "HOUSE_OVERSIGHT_027071.txt",
                 "is_interesting": null,
                 "num_lines": 120,
-                "timestamp": "2015-02-16T00:00:00",
+                "timestamp": "2015-02-17T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -50051,7 +50059,7 @@
                 "filename": "HOUSE_OVERSIGHT_029102.txt",
                 "is_interesting": true,
                 "num_lines": 94,
-                "timestamp": "2016-02-16T00:00:00",
+                "timestamp": "2016-02-17T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -50064,7 +50072,7 @@
                 "filename": "HOUSE_OVERSIGHT_029104.txt",
                 "is_interesting": true,
                 "num_lines": 94,
-                "timestamp": "2016-02-16T00:00:00",
+                "timestamp": "2016-02-17T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -50234,7 +50242,7 @@
                 "filename": "HOUSE_OVERSIGHT_029328.txt",
                 "is_interesting": false,
                 "num_lines": 230,
-                "timestamp": "2011-02-16T00:00:00",
+                "timestamp": "2011-02-17T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -50247,7 +50255,7 @@
                 "filename": "HOUSE_OVERSIGHT_029340.txt",
                 "is_interesting": false,
                 "num_lines": 59,
-                "timestamp": "2014-02-16T00:00:00",
+                "timestamp": "2014-02-17T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -50435,7 +50443,7 @@
                 "filename": "HOUSE_OVERSIGHT_029448.txt",
                 "is_interesting": null,
                 "num_lines": 25,
-                "timestamp": "2016-02-16T00:00:00",
+                "timestamp": "2016-02-17T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -50924,7 +50932,7 @@
                 "filename": "HOUSE_OVERSIGHT_030825.txt",
                 "is_interesting": false,
                 "num_lines": 15,
-                "timestamp": "2013-06-16T00:00:00",
+                "timestamp": "2013-06-17T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -50950,7 +50958,7 @@
                 "filename": "HOUSE_OVERSIGHT_030840.txt",
                 "is_interesting": false,
                 "num_lines": 332,
-                "timestamp": "2014-02-16T00:00:00",
+                "timestamp": "2014-02-17T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -50975,7 +50983,7 @@
                 "filename": "HOUSE_OVERSIGHT_030875.txt",
                 "is_interesting": true,
                 "num_lines": 22,
-                "timestamp": "2004-02-16T00:00:00",
+                "timestamp": "2004-02-17T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -51094,7 +51102,7 @@
                 "filename": "HOUSE_OVERSIGHT_031354.txt",
                 "is_interesting": false,
                 "num_lines": 182,
-                "timestamp": "2012-02-16T00:00:00",
+                "timestamp": "2012-02-17T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -51107,7 +51115,7 @@
                 "filename": "HOUSE_OVERSIGHT_031359.txt",
                 "is_interesting": false,
                 "num_lines": 794,
-                "timestamp": "2012-05-16T00:00:00",
+                "timestamp": "2012-05-17T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -51163,7 +51171,7 @@
                 "filename": "HOUSE_OVERSIGHT_031447.txt",
                 "is_interesting": null,
                 "num_lines": 97,
-                "timestamp": "2015-10-16T00:00:00",
+                "timestamp": "2015-10-17T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -51175,7 +51183,7 @@
                 "filename": "HOUSE_OVERSIGHT_031533.txt",
                 "is_interesting": false,
                 "num_lines": 67,
-                "timestamp": "2016-05-16T00:00:00",
+                "timestamp": "2016-05-17T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -51286,7 +51294,7 @@
                 "filename": "HOUSE_OVERSIGHT_031794.txt",
                 "is_interesting": false,
                 "num_lines": 24,
-                "timestamp": "2008-02-16T00:00:00",
+                "timestamp": "2008-02-17T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -51568,7 +51576,7 @@
                 "filename": "HOUSE_OVERSIGHT_033220.txt",
                 "is_interesting": true,
                 "num_lines": 212,
-                "timestamp": "2018-02-16T00:00:00",
+                "timestamp": "2018-02-17T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -53904,7 +53912,7 @@
                 "filename": "EFTA00000476.txt",
                 "is_interesting": true,
                 "num_lines": 109,
-                "timestamp": "2004-02-16T00:00:00",
+                "timestamp": "2004-02-17T00:00:00",
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
@@ -54186,7 +54194,7 @@
                 "filename": "EFTA00000535.txt",
                 "is_interesting": null,
                 "num_lines": 24,
-                "timestamp": "2019-02-16T00:00:00",
+                "timestamp": "2019-02-17T00:00:00",
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
@@ -55622,7 +55630,7 @@
                 "filename": "EFTA00000837.txt",
                 "is_interesting": null,
                 "num_lines": 15,
-                "timestamp": "2019-02-16T00:00:00",
+                "timestamp": "2019-02-17T00:00:00",
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
@@ -61108,7 +61116,7 @@
                 "filename": "EFTA00001911.txt",
                 "is_interesting": null,
                 "num_lines": 40,
-                "timestamp": "2012-02-16T00:00:00",
+                "timestamp": "2012-02-17T00:00:00",
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
@@ -61972,7 +61980,7 @@
                 "filename": "EFTA00002061.txt",
                 "is_interesting": null,
                 "num_lines": 14,
-                "timestamp": "2019-02-16T00:00:00",
+                "timestamp": "2019-02-17T00:00:00",
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
@@ -62528,7 +62536,7 @@
                 "filename": "EFTA00002172.txt",
                 "is_interesting": null,
                 "num_lines": 58,
-                "timestamp": "2010-01-16T00:00:00",
+                "timestamp": "2010-01-17T00:00:00",
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
@@ -62554,7 +62562,7 @@
                 "filename": "EFTA00002178.txt",
                 "is_interesting": null,
                 "num_lines": 21,
-                "timestamp": "2019-02-16T00:00:00",
+                "timestamp": "2019-02-17T00:00:00",
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
@@ -67180,7 +67188,7 @@
                 "filename": "EFTA00003116.txt",
                 "is_interesting": null,
                 "num_lines": 55,
-                "timestamp": "2016-01-16T00:00:00",
+                "timestamp": "2016-01-17T00:00:00",
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
@@ -67844,7 +67852,7 @@
                 "filename": "EFTA00005091.txt",
                 "is_interesting": null,
                 "num_lines": 1389,
-                "timestamp": "2024-02-16T00:00:00",
+                "timestamp": "2024-02-17T00:00:00",
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
@@ -67864,7 +67872,7 @@
                 "filename": "EFTA00005284.txt",
                 "is_interesting": null,
                 "num_lines": 1230,
-                "timestamp": "2024-02-16T00:00:00",
+                "timestamp": "2024-02-17T00:00:00",
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
@@ -68290,7 +68298,7 @@
                 "filename": "EFTA00006055.txt",
                 "is_interesting": null,
                 "num_lines": 742,
-                "timestamp": "2015-05-16T00:00:00",
+                "timestamp": "2015-05-17T00:00:00",
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
@@ -68310,7 +68318,7 @@
                 "filename": "EFTA00006069.txt",
                 "is_interesting": null,
                 "num_lines": 243,
-                "timestamp": "2005-02-16T00:00:00",
+                "timestamp": "2005-02-17T00:00:00",
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
@@ -68330,7 +68338,7 @@
                 "filename": "EFTA00006085.txt",
                 "is_interesting": null,
                 "num_lines": 384,
-                "timestamp": "2007-02-16T00:00:00",
+                "timestamp": "2007-02-17T00:00:00",
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
@@ -68359,7 +68367,7 @@
                 "filename": "EFTA00006100.txt",
                 "is_interesting": null,
                 "num_lines": 450,
-                "timestamp": "2006-03-16T14:36:47",
+                "timestamp": "2006-03-17T14:36:47",
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
@@ -68583,7 +68591,7 @@
                 "filename": "EFTA00007087.txt",
                 "is_interesting": null,
                 "num_lines": 61,
-                "timestamp": "2007-08-16T00:00:00",
+                "timestamp": "2007-08-17T00:00:00",
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
@@ -68603,7 +68611,7 @@
                 "filename": "EFTA00007097.txt",
                 "is_interesting": null,
                 "num_lines": 1850,
-                "timestamp": "2009-05-16T00:00:00",
+                "timestamp": "2009-05-17T00:00:00",
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
@@ -69111,15 +69119,15 @@
             },
             {
                 "category": "money",
+                "date": "2005-08-12",
                 "description": "paychecks signed by Epstein deposited at Colonial Bank",
                 "file_id": "EFTA00007781",
                 "file_size": 109034,
                 "filename": "EFTA00007781.txt",
                 "is_interesting": true,
                 "num_lines": 1779,
-                "timestamp": "2022-02-16T00:00:00",
-                "type": "DojFile",
-                "was_timestamp_extracted": true
+                "timestamp": "2005-08-12T00:00:00",
+                "type": "DojFile"
             },
             {
                 "file_id": "EFTA00007824",
@@ -69127,7 +69135,7 @@
                 "filename": "EFTA00007824.txt",
                 "is_interesting": null,
                 "num_lines": 1357,
-                "timestamp": "2022-02-16T00:00:00",
+                "timestamp": "2022-02-17T00:00:00",
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
@@ -70570,7 +70578,7 @@
                 "filename": "EFTA00039025.txt",
                 "is_interesting": true,
                 "num_lines": 4486,
-                "timestamp": "2021-12-16T00:00:00",
+                "timestamp": "2021-12-17T00:00:00",
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
@@ -70690,7 +70698,7 @@
                 "filename": "EFTA00039367.txt",
                 "is_interesting": null,
                 "num_lines": 619,
-                "timestamp": "2019-12-16T00:00:00",
+                "timestamp": "2019-12-17T00:00:00",
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
@@ -70722,7 +70730,7 @@
                 "filename": "EFTA00039421.txt",
                 "is_interesting": null,
                 "num_lines": 6506,
-                "timestamp": "2021-02-16T00:00:00",
+                "timestamp": "2021-02-17T00:00:00",
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
@@ -70858,7 +70866,7 @@
                 "filename": "EFTA00040006.txt",
                 "is_interesting": null,
                 "num_lines": 2345,
-                "timestamp": "2024-02-16T00:00:00",
+                "timestamp": "2024-02-17T00:00:00",
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
@@ -71094,7 +71102,7 @@
                 "filename": "EFTA00591691.txt",
                 "is_interesting": true,
                 "num_lines": 2525,
-                "timestamp": "2016-02-16T00:00:00",
+                "timestamp": "2016-02-17T00:00:00",
                 "truncate_to": 4000,
                 "type": "DojFile",
                 "was_timestamp_extracted": true
@@ -71162,7 +71170,7 @@
                 "was_timestamp_extracted": true
             },
             {
-                "category": "business",
+                "category": "finance",
                 "description": "valuations of Epstein's investments",
                 "file_id": "EFTA00599617",
                 "file_size": 15621,
@@ -71194,7 +71202,7 @@
                 "filename": "EFTA00603445.txt",
                 "is_interesting": true,
                 "num_lines": 220,
-                "timestamp": "2020-02-16T00:00:00",
+                "timestamp": "2020-02-17T00:00:00",
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
@@ -71305,7 +71313,7 @@
                 "was_timestamp_extracted": true
             },
             {
-                "category": "business",
+                "category": "finance",
                 "description": "valuations of Epstein's investments",
                 "file_id": "EFTA00617222",
                 "file_size": 15120,
@@ -71330,7 +71338,7 @@
                 "type": "DojFile"
             },
             {
-                "category": "business",
+                "category": "finance",
                 "description": "valuations of Epstein's investments",
                 "file_id": "EFTA00621739",
                 "file_size": 14789,
@@ -71410,7 +71418,7 @@
                 "filename": "EFTA00803405.txt",
                 "is_interesting": true,
                 "num_lines": 1305,
-                "timestamp": "2018-03-16T00:00:00",
+                "timestamp": "2018-03-17T00:00:00",
                 "truncate_to": 4000,
                 "type": "DojFile",
                 "was_timestamp_extracted": true
@@ -71424,7 +71432,7 @@
                 "filename": "EFTA00803459.txt",
                 "is_interesting": true,
                 "num_lines": 225,
-                "timestamp": "2019-02-16T00:00:00",
+                "timestamp": "2019-02-17T00:00:00",
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
@@ -71437,7 +71445,7 @@
                 "filename": "EFTA00803464.txt",
                 "is_interesting": true,
                 "num_lines": 432,
-                "timestamp": "2022-02-16T00:00:00",
+                "timestamp": "2022-02-17T00:00:00",
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
@@ -71462,7 +71470,7 @@
                 "filename": "EFTA00805569.txt",
                 "is_interesting": true,
                 "num_lines": 1239,
-                "timestamp": "2019-05-16T00:00:00",
+                "timestamp": "2019-05-17T00:00:00",
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
@@ -71501,7 +71509,7 @@
                 "filename": "EFTA00810239.txt",
                 "is_interesting": true,
                 "num_lines": 768,
-                "timestamp": "2018-01-16T00:00:00",
+                "timestamp": "2018-01-17T00:00:00",
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
@@ -71664,7 +71672,7 @@
                 "filename": "EFTA00810362.txt",
                 "is_interesting": true,
                 "num_lines": 1600,
-                "timestamp": "2015-02-16T00:00:00",
+                "timestamp": "2015-02-17T00:00:00",
                 "truncate_to": 4000,
                 "type": "DojFile",
                 "was_timestamp_extracted": true
@@ -71691,7 +71699,7 @@
                 "filename": "EFTA00810474.txt",
                 "is_interesting": true,
                 "num_lines": 885,
-                "timestamp": "2020-02-16T00:00:00",
+                "timestamp": "2020-02-17T00:00:00",
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
@@ -71701,7 +71709,7 @@
                 "filename": "EFTA00810509.txt",
                 "is_interesting": null,
                 "num_lines": 36,
-                "timestamp": "2018-04-16T00:00:00",
+                "timestamp": "2018-04-17T00:00:00",
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
@@ -71714,7 +71722,7 @@
                 "filename": "EFTA00810510.txt",
                 "is_interesting": true,
                 "num_lines": 1206,
-                "timestamp": "2019-02-16T00:00:00",
+                "timestamp": "2019-02-17T00:00:00",
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
@@ -71732,7 +71740,7 @@
                 "was_timestamp_extracted": true
             },
             {
-                "category": "business",
+                "category": "finance",
                 "description": "valuations of Epstein's investments",
                 "file_id": "EFTA00811479",
                 "file_size": 14616,
@@ -71744,7 +71752,7 @@
                 "was_timestamp_extracted": true
             },
             {
-                "category": "business",
+                "category": "finance",
                 "description": "valuations of Epstein's investments",
                 "file_id": "EFTA00811490",
                 "file_size": 14775,
@@ -71756,7 +71764,7 @@
                 "was_timestamp_extracted": true
             },
             {
-                "category": "business",
+                "category": "finance",
                 "description": "valuations of Epstein's investments",
                 "file_id": "EFTA00811508",
                 "file_size": 14801,
@@ -71768,7 +71776,7 @@
                 "was_timestamp_extracted": true
             },
             {
-                "category": "business",
+                "category": "finance",
                 "description": "valuations of Epstein's investments",
                 "file_id": "EFTA00811530",
                 "file_size": 15234,
@@ -71780,7 +71788,7 @@
                 "was_timestamp_extracted": true
             },
             {
-                "category": "business",
+                "category": "finance",
                 "description": "valuations of Epstein's investments",
                 "file_id": "EFTA00811539",
                 "file_size": 15600,
@@ -71792,7 +71800,7 @@
                 "was_timestamp_extracted": true
             },
             {
-                "category": "business",
+                "category": "finance",
                 "description": "valuations of Epstein's investments",
                 "file_id": "EFTA00811552",
                 "file_size": 15119,
@@ -71804,7 +71812,7 @@
                 "was_timestamp_extracted": true
             },
             {
-                "category": "business",
+                "category": "finance",
                 "description": "valuations of Epstein's investments",
                 "file_id": "EFTA00811649",
                 "file_size": 19972,
@@ -71817,18 +71825,18 @@
             },
             {
                 "category": "crypto",
+                "date": "2018-01-31",
                 "description": "asset valuations of Epstein's holdings, includes \"Coinbase via grat\"",
                 "file_id": "EFTA00811666",
                 "file_size": 21703,
                 "filename": "EFTA00811666.txt",
                 "is_interesting": true,
                 "num_lines": 392,
-                "timestamp": "2020-09-01T00:00:00",
-                "type": "DojFile",
-                "was_timestamp_extracted": true
+                "timestamp": "2018-01-31T00:00:00",
+                "type": "DojFile"
             },
             {
-                "category": "business",
+                "category": "finance",
                 "description": "valuations of Epstein's investments",
                 "file_id": "EFTA00811705",
                 "file_size": 21494,
@@ -71878,7 +71886,7 @@
                 "was_timestamp_extracted": true
             },
             {
-                "category": "business",
+                "category": "finance",
                 "description": "valuations of Epstein's investments",
                 "file_id": "EFTA00811948",
                 "file_size": 14735,
@@ -71931,7 +71939,7 @@
                 "filename": "EFTA01087311.txt",
                 "is_interesting": true,
                 "num_lines": 116,
-                "timestamp": "2015-12-16T00:00:00",
+                "timestamp": "2015-12-17T00:00:00",
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
@@ -71943,7 +71951,7 @@
                 "filename": "EFTA01088079.txt",
                 "is_interesting": true,
                 "num_lines": 288,
-                "timestamp": "2011-02-16T00:00:00",
+                "timestamp": "2011-02-17T00:00:00",
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
@@ -71956,7 +71964,7 @@
                 "filename": "EFTA01088484.txt",
                 "is_interesting": true,
                 "num_lines": 2604,
-                "timestamp": "2016-02-16T00:00:00",
+                "timestamp": "2016-02-17T00:00:00",
                 "truncate_to": 4000,
                 "type": "DojFile",
                 "was_timestamp_extracted": true
@@ -72019,7 +72027,7 @@
                 "filename": "EFTA01089535.txt",
                 "is_interesting": null,
                 "num_lines": 195,
-                "timestamp": "2015-02-16T00:00:00",
+                "timestamp": "2015-02-17T00:00:00",
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
@@ -72046,7 +72054,7 @@
                 "filename": "EFTA01093509.txt",
                 "is_interesting": true,
                 "num_lines": 1830,
-                "timestamp": "2014-10-16T00:00:00",
+                "timestamp": "2014-10-17T00:00:00",
                 "truncate_to": 8000,
                 "type": "DojFile",
                 "was_timestamp_extracted": true
@@ -72081,7 +72089,7 @@
                 "filename": "EFTA01110414.txt",
                 "is_interesting": null,
                 "num_lines": 356,
-                "timestamp": "2016-03-16T00:00:00",
+                "timestamp": "2016-03-17T00:00:00",
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
@@ -72098,7 +72106,7 @@
                 "was_timestamp_extracted": true
             },
             {
-                "category": "business",
+                "category": "finance",
                 "description": "valuations of Epstein's investments",
                 "file_id": "EFTA01118143",
                 "file_size": 11701,
@@ -72122,7 +72130,7 @@
                 "type": "DojFile"
             },
             {
-                "category": "business",
+                "category": "finance",
                 "description": "valuations of Epstein's investments",
                 "file_id": "EFTA01118275",
                 "file_size": 12599,
@@ -72193,7 +72201,7 @@
                 "filename": "EFTA01123862.txt",
                 "is_interesting": null,
                 "num_lines": 502,
-                "timestamp": "2016-02-16T00:00:00",
+                "timestamp": "2016-02-17T00:00:00",
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
@@ -72203,7 +72211,7 @@
                 "filename": "EFTA01126582.txt",
                 "is_interesting": null,
                 "num_lines": 159,
-                "timestamp": "2014-04-16T00:00:00",
+                "timestamp": "2014-04-17T00:00:00",
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
@@ -72215,7 +72223,7 @@
                 "filename": "EFTA01141453.txt",
                 "is_interesting": true,
                 "num_lines": 290,
-                "timestamp": "2013-11-16T00:00:00",
+                "timestamp": "2013-11-17T00:00:00",
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
@@ -72228,7 +72236,7 @@
                 "filename": "EFTA01158019.txt",
                 "is_interesting": true,
                 "num_lines": 38,
-                "timestamp": "2015-10-16T00:00:00",
+                "timestamp": "2015-10-17T00:00:00",
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
@@ -72319,7 +72327,7 @@
                 "filename": "EFTA01255984.txt",
                 "is_interesting": null,
                 "num_lines": 95,
-                "timestamp": "2020-02-16T00:00:00",
+                "timestamp": "2020-02-17T00:00:00",
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
@@ -72428,15 +72436,15 @@
             {
                 "author": "Crypto PR Lab",
                 "category": "crypto",
+                "date": "2018-12-18",
                 "description": "bank transfer",
                 "file_id": "EFTA01299820",
                 "file_size": 3348,
                 "filename": "EFTA01299820.txt",
                 "is_interesting": true,
                 "num_lines": 163,
-                "timestamp": "2020-02-16T00:00:00",
-                "type": "DojFile",
-                "was_timestamp_extracted": true
+                "timestamp": "2018-12-18T00:00:00",
+                "type": "DojFile"
             },
             {
                 "file_id": "EFTA01359508",
@@ -72620,7 +72628,7 @@
                 "filename": "EFTA01613762.txt",
                 "is_interesting": true,
                 "num_lines": 215,
-                "timestamp": "2022-07-16T00:00:00",
+                "timestamp": "2022-07-17T00:00:00",
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
@@ -72794,7 +72802,7 @@
                 "filename": "EFTA01734786.txt",
                 "is_interesting": true,
                 "num_lines": 333,
-                "timestamp": "2015-10-16T00:00:00",
+                "timestamp": "2015-10-17T00:00:00",
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
@@ -72828,7 +72836,7 @@
                 "filename": "EFTA02025944.txt",
                 "is_interesting": null,
                 "num_lines": 84,
-                "timestamp": "2012-02-16T20:41:00",
+                "timestamp": "2012-02-17T20:41:00",
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
@@ -72840,7 +72848,7 @@
                 "filename": "EFTA02725909.txt",
                 "is_interesting": true,
                 "num_lines": 214,
-                "timestamp": "2009-02-16T00:00:00",
+                "timestamp": "2009-02-17T00:00:00",
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
@@ -72850,7 +72858,7 @@
                 "filename": "EFTA02730267.txt",
                 "is_interesting": null,
                 "num_lines": 147,
-                "timestamp": "2022-02-16T00:00:00",
+                "timestamp": "2022-02-17T00:00:00",
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
@@ -72860,7 +72868,7 @@
                 "filename": "EFTA02730271.txt",
                 "is_interesting": null,
                 "num_lines": 102,
-                "timestamp": "2022-02-16T00:00:00",
+                "timestamp": "2022-02-17T00:00:00",
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
@@ -72882,7 +72890,7 @@
                 "filename": "EFTA02730477.txt",
                 "is_interesting": null,
                 "num_lines": 120,
-                "timestamp": "2022-02-16T00:00:00",
+                "timestamp": "2022-02-17T00:00:00",
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
@@ -72892,7 +72900,7 @@
                 "filename": "EFTA02730486.txt",
                 "is_interesting": null,
                 "num_lines": 5818,
-                "timestamp": "2024-11-16T00:00:00",
+                "timestamp": "2024-11-17T00:00:00",
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
@@ -72902,7 +72910,7 @@
                 "filename": "EFTA02730741.txt",
                 "is_interesting": null,
                 "num_lines": 5787,
-                "timestamp": "2024-11-16T00:00:00",
+                "timestamp": "2024-11-17T00:00:00",
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
@@ -72977,7 +72985,7 @@
                 "filename": "EFTA02731168.txt",
                 "is_interesting": null,
                 "num_lines": 689,
-                "timestamp": "2020-04-16T00:00:00",
+                "timestamp": "2020-04-17T00:00:00",
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
@@ -73028,7 +73036,7 @@
                 "filename": "EFTA02731341.txt",
                 "is_interesting": null,
                 "num_lines": 472,
-                "timestamp": "2003-02-16T00:00:00",
+                "timestamp": "2003-02-17T00:00:00",
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
@@ -73038,7 +73046,7 @@
                 "filename": "EFTA02731361.txt",
                 "is_interesting": null,
                 "num_lines": 573,
-                "timestamp": "2003-09-16T00:00:00",
+                "timestamp": "2003-09-17T00:00:00",
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
@@ -73166,7 +73174,7 @@
                 "filename": "EFTA02731529.txt",
                 "is_interesting": null,
                 "num_lines": 66,
-                "timestamp": "2017-02-16T00:00:00",
+                "timestamp": "2017-02-17T00:00:00",
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
@@ -73176,7 +73184,7 @@
                 "filename": "EFTA02731556.txt",
                 "is_interesting": null,
                 "num_lines": 63,
-                "timestamp": "2013-04-16T00:00:00",
+                "timestamp": "2013-04-17T00:00:00",
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
