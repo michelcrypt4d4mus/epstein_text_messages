@@ -284,7 +284,7 @@ class EpsteinFiles:
         self.file_paths = all_txt_paths()
         new_paths = [p for p in self.file_paths if extract_file_id(p) not in current_docs]
         new_docs = self._load_file_paths(new_paths)
-        logger.warning(f"Loaded {len(new_docs)} new files...")
+        logger.warning(f"Loaded {len(new_docs)} new files: {[d.file_id for d in new_docs]}")
         self._sift_documents(new_docs)
         self._finalize_data()
         self.save_to_disk()
