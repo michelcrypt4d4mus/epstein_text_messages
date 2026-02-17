@@ -14,7 +14,7 @@ class Interesting(StrEnum):
     LETTER = auto()
     MONEY = auto()
     REPUTATION = auto()
-    RESUME = auto()
+    RESUMÉ = auto()
     SOCIAL = auto()
     TEXT_MSG = auto()
 
@@ -51,20 +51,28 @@ class Category(StrEnum):
         return str(self.value)
 
 
+# These categories map to highlighted group labels for the purposes of coloring
 CATEGORY_STYLE_MAPPING = {
+    Interesting.MONEY: FINANCE,
+    Interesting.REPUTATION: PUBLICIST,
+    Neutral.LEGAL: LAWYER,
+    Neutral.TWEET: SOCIAL,
     Uninteresting.ARTICLE: JOURNALIST,
     Uninteresting.BOOK: JOURNALIST,
-    Neutral.LEGAL: LAWYER,
-    Interesting.MONEY: FINANCE,
+    Uninteresting.CONFERENCE: ACADEMIA,
     Uninteresting.POLITICS: LOBBYIST,
     Uninteresting.PROPERTY: BUSINESS,
-    Interesting.REPUTATION: PUBLICIST,
-    Neutral.TWEET: SOCIAL,
 }
 
 CATEGORY_STYLES = {
+    Interesting.LETTER: 'medium_orchid1',
+    Interesting.RESUMÉ: 'deep_pink4',
+    Interesting.SOCIAL: 'yellow1',
+    Neutral.FLIGHT_LOG: 'cyan',
+    Neutral.PRESS_RELEASE: 'sandy_brown',
+    Neutral.SKYPE_LOG: 'cyan',
     Uninteresting.JSON: 'dark_red',
-    Interesting.LETTER: 'medium_orchid1'
+    Uninteresting.PHONE_BILL: 'cyan',
 }
 
 # These are the categories we expect to see as OTHER_FILES_[category] variables for in constants.py

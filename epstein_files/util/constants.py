@@ -2020,7 +2020,7 @@ OTHER_FILES_ACADEMIA = [
 ]
 
 # resumes and application letters
-OTHER_FILES_RESUME = [
+OTHER_FILES_RESUMÉ = [
     DocCfg(
         id='029304',
         attached_to_email_id='029299',

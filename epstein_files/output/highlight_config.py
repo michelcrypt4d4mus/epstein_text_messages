@@ -4,7 +4,7 @@ from typing import Sequence
 from rich.console import Console
 from rich.text import Text
 
-from epstein_files.documents.documents.categories import CATEGORY_STYLES, CATEGORY_STYLE_MAPPING
+from epstein_files.documents.documents.categories import CATEGORY_STYLES, CATEGORY_STYLE_MAPPING, Interesting, Neutral, Uninteresting
 from epstein_files.documents.emails.constants import REPLY_REGEX, SENT_FROM_REGEX, XML_STRIPPED_MSG
 from epstein_files.output.highlighted_names import HighlightGroup, HighlightedNames, HighlightedText, ManualHighlight
 from epstein_files.people.contact import Contact
@@ -37,7 +37,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         pattern=r"^(> )?(Classification|Flag|Subject|Sujet ?): (?P<email_subject>.*)",
     ),
     HighlightedNames(
-        label=ACADEMIA,
+        label=Uninteresting.ACADEMIA,
         style='light_goldenrod2',
         contacts=[
             Contact('Daniel Kahneman', "Nobel economic sciences laureate and cognitivie psychologist (?)"),
@@ -193,7 +193,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         ],
     ),
     HighlightedNames(
-        label=CRYPTO,
+        label=Interesting.CRYPTO,
         style='orange1 bold',
         contacts=[
             Contact(
@@ -475,7 +475,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         ],
     ),
     HighlightedNames(
-        label=LAWYER,
+        label=LAWYER,  # Epstein's lawyers
         style='purple',
         contacts=[
             Contact('Alan Dlugash', 'tax partner at Paneth and Shrone'),
@@ -639,7 +639,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         ],
     ),
     HighlightedNames(
-        label=FINANCE,
+        label=Neutral.FINANCE,
         style='green',
         contacts=[
             Contact(AMANDA_ENS, "Citigroup", r"ens, amanda?|Amanda.Ens"),
@@ -1131,7 +1131,6 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
     HighlightedNames(
         label=LOBBYIST,
         style='light_coral',
-
         contacts=[
             Contact(BOB_CROWE, "partner at Nelson Mullins", r"[BR]ob Crowe"),
             Contact(
@@ -1800,11 +1799,9 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         category=FRIEND
     ),
     HighlightedNames(
-        contacts=[
-            Contact(PAULA, "Epstein's ex-girlfriend who is now in the opera world", r"^Paula( Heil Fisher)?$")
-        ],
         label='paula',
         style='pink1',
+        contacts=[Contact(PAULA, "Epstein's ex-girlfriend who is now in the opera world", r"^Paula( Heil Fisher)?$")],
         category=FRIEND
     ),
     HighlightedNames(
@@ -1814,7 +1811,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"(?<!Cantor )Urramoor(\s*Limited)?",
         ],
         style='dodger_blue1',
-        category='Europe'
+        category='Europe',
     ),
     HighlightedNames(
         contacts=[Contact(SOON_YI_PREVIN, "wife of Woody Allen", r"Soon[- ]Yi Previn?")],
@@ -1824,7 +1821,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
     HighlightedNames(
         contacts=[
             Contact(
-                name='Sultan Ahmed Bin Sulayem',
+                name=SULTAN_BIN_SULAYEM,
                 info="chairman of ports in Dubai, CEO of DP World",
                 emailer_pattern=r"Sultan (Ahmed )?bin Sulaye?m?",
             )
@@ -1833,19 +1830,11 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         category=MIDEAST
     ),
 
-    # HighlightedText not HighlightedNames bc of word boundary issue
+    # HighlightedText not HighlightedNames bc of word boundary (\b) issue with '#'
     HighlightedText(
         label='metoo',
         style=VICTIM_COLOR,
         patterns=[r"#metoo"]
-    ),
-    HighlightedText(
-        label='phone_number',
-        style='bright_green',
-        patterns=[
-            r"\+?(1?\(?\d{3}\)?[- ]\d{3}[- ]\d{4}|\d{2}[- ]\(?0?\)?\d{2}[- ]\d{4}[- ]\d{4})",
-            r"(\b|\+)[\d+]{10,12}\b",
-        ],
     ),
     HighlightedText(
         label='unknown',
@@ -1854,6 +1843,14 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
     ),
 
     # Highlight regexes for things other than names, only used by RegexHighlighter pattern matching
+    HighlightedText(
+        label='phone_number',
+        style='bright_green',
+        patterns=[
+            r"\+?(1?\(?\d{3}\)?[- ]\d{3}[- ]\d{4}|\d{2}[- ]\(?0?\)?\d{2}[- ]\d{4}[- ]\d{4})",
+            r"(\b|\+)[\d+]{10,12}\b",
+        ],
+    ),
      HighlightedText(
         label='header_field',
         style='plum4',
