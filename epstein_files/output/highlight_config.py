@@ -234,7 +234,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         style='chartreuse2',
         patterns=[
             r"CBD",
-            r"cannabis",
+            r"cann?abis",
             r"marijuana",
             r"psychedelic",
             r"THC",
