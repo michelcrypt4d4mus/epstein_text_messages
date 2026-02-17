@@ -14,7 +14,7 @@
 Use `poetry install` for easiest time installing. `pip install epstein-files` should also work, though `pipx install epstein-files` is usually better.
 
 Then there's two options as far as the data:
-1. To work with the files that have already been parsed (which you will not be able to update), copy the pickled data file to the root directory of the project with `cp emails_extracted_from_legal_filings/the_epstein_files.pkl.gz .`
+1. To work with the data set included in this repo copy the pickled data file into place: `cp ./the_epstein_files.pkl.gz ./the_epstein_files.local.pkl.gz`
 1. To parse your own files:
    1. Requires you have a local copy of the OCR text files from the House Oversight document release in a directory `/path/to/epstein/ocr_txt_files`. You can download those OCR text files from [the Congressional Google Drive folder](https://drive.google.com/drive/folders/1ldncvdqIf6miiskDp_EDuGSDAaI_fJx8) (make sure you grab both the `001/` and `002/` folders).
    1. (Optional) If you want to work with the documents released by DOJ on January 30th 2026 you'll need to also download the PDF collections from [the DOJ site](https://www.justice.gov/epstein/doj-disclosures) (they're in the "Epstein Files Transparency Act" section) and OCR them or find another way to get the OCR text.
