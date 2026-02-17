@@ -45,7 +45,6 @@ VALID_GREYS = [0, 3, 7, 11, 15, 19, 23, 27, 30, 35, 37, 39, 42, 46, 50, 53, 54, 
 DOJ_PAGE_LINK_MSG = 'WIP page with documents from the Epstein Files Transparency Act'
 SITE_GLOSSARY_MSG = f"These pages include the following views of the underlying collection of Epstein's files:"
 YOU_ARE_HERE = Text('«').append('you are here', style='bold khaki1 blink').append('»')
-SECTION_LINKS_TABLE = Group(*build_demi_table(SECTION_LINK_MSG, SECTION_LINKS))
 
 DATASET_DESCRIPTION_STYLE = 'gray74'
 INFO_STYLE = 'white dim italic'
@@ -109,7 +108,7 @@ def print_page_title(expand: bool = True, width: int | None = None) -> None:
 
 def print_section_links() -> None:
     """Print links to the various sections within the curated page."""
-    print_centered(SECTION_LINKS_TABLE)
+    print_centered(build_demi_table(SECTION_LINK_MSG, SECTION_LINKS))
 
 
 def print_section_header(msg: str, style: str = SECTION_HEADER_STYLE, is_centered: bool = False) -> None:
