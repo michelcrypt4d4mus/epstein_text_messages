@@ -158,7 +158,7 @@ THE_OTHER_PAGE_TXT = Text.from_markup(THE_OTHER_PAGE_MARKUP)
 #############################
 #  Internal sections links  #
 #############################
-SECTION_LINK_MSG = 'jump to different sections of this page'
+SECTION_LINK_MSG = 'jump to a different section of this page'
 TO_FROM = 'to/from'
 
 
