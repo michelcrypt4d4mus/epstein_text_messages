@@ -1,4 +1,8 @@
-from epstein_files.documents.documents.doc_cfg import INTERESTING_CATEGORIES, NEUTRAL_CATEGORIES, UNINTERESTING_CATEGORIES, CommunicationCfg, DocCfg, EmailCfg, TextCfg
+"""
+Custom configurations for various files.
+"""
+from epstein_files.documents.documents.doc_cfg import (INTERESTING_CATEGORIES, NEUTRAL_CATEGORIES,
+     UNINTERESTING_CATEGORIES, CommunicationCfg, DocCfg, EmailCfg, TextCfg, phone_bill_cfg)
 from epstein_files.documents.doj_files.full_text import EFTA00009622_TEXT
 from epstein_files.documents.emails.constants import FLIGHT_IN_2012_PEOPLE, IRAN_DEAL_RECIPIENTS, TRIVERS_CCS
 from epstein_files.util.helpers.string_helper import join_truthy, quote
@@ -2144,18 +2148,18 @@ OTHER_FILES_MISC = [
     DocCfg(id='EFTA02731260', replace_text_with='notebook full of handwritten love letters with terrible OCR text'),
     # Phone bills TODO: Some kind of special handling?
     DocCfg(id='EFTA00006100', replace_text_with='Palm Beach Police fax machine activity log 2005-12-28 to 2006-01-04'),
-    DocCfg(id='EFTA00006387', replace_text_with='T-Mobile phone bill covering 2006-06-15 to 2006-07-23'),
-    DocCfg(id='EFTA00007501', replace_text_with='T-Mobile phone bill from 2005'),
-    DocCfg(id='EFTA00006587', replace_text_with='T-Mobile phone bill from 2006-09-04 to 2016-10-15'),
-    DocCfg(id='EFTA00006687', replace_text_with='T-Mobile phone bill from 2006-10-31 to 2006-12-25'),
-    DocCfg(id='EFTA00007401', replace_text_with='T-Mobile phone bill from 2004-08-25 to 2005-07-13'),
+    phone_bill_cfg('EFTA00006387', 'T-Mobile', '2006-06-15 to 2006-07-23'),
+    phone_bill_cfg('EFTA00007501', 'T-Mobile', '2005'),
+    phone_bill_cfg('EFTA00006487', 'T-Mobile', '2006'),
+    phone_bill_cfg('EFTA00006587', 'T-Mobile', '2006-09-04 to 2016-10-15'),
+    phone_bill_cfg('EFTA00006687', 'T-Mobile', '2006-10-31 to 2006-12-25'),
+    phone_bill_cfg('EFTA00007401', 'T-Mobile', '2004-08-25 to 2005-07-13'),
     DocCfg(id='EFTA00007301', replace_text_with='T-Mobile response to subpoena March 23, 2007 - Blackberry phone logs for 2005'),
-    DocCfg(id='EFTA00006487', replace_text_with='T-Mobile phone bill 2006-08-26'),
+
     DocCfg(id='EFTA00007253', replace_text_with='T-Mobile response to subpoena March 23, 2007 - phone bill'),
     # Attachments
     DocCfg(id='EFTA00590685', attached_to_email_id='EFTA00830911'),
     # Dates
-    DocCfg(id='EFTA00599617', date='2017-07-31'),
     DocCfg(id='EFTA02025218', date='2011-09-09'),
 ]
 

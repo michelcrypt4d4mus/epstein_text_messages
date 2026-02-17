@@ -29,6 +29,7 @@ def indented(s: str, spaces: int = 4, prefix: str = '') -> str:
 
 
 def join_truthy(prefix: str | None, suffix: str | None, sep: str = '') -> str:
+    """Join two strings but only if they are not empty."""
     sep = sep or (' ' if prefix and suffix else '')
     parts = [p.strip() for p in [prefix, suffix] if p and p.strip()]
     return sep.join(parts)

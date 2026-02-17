@@ -9,6 +9,7 @@ from rich.panel import Panel
 from rich.text import Text
 
 from epstein_files.documents.document import CHECK_LINK_FOR_DETAILS, Document
+from epstein_files.documents.documents.doc_cfg import DocCfg
 from epstein_files.documents.email import Email
 from epstein_files.documents.emails.constants import FALLBACK_TIMESTAMP
 from epstein_files.documents.emails.email_header import FIELDS_COLON_PATTERN
