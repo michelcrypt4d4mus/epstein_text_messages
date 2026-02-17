@@ -9,6 +9,7 @@ from rich.panel import Panel
 from rich.text import Text
 
 from epstein_files.documents.document import CHECK_LINK_FOR_DETAILS, Document
+from epstein_files.documents.documents.doc_cfg import DocCfg
 from epstein_files.documents.email import Email
 from epstein_files.documents.emails.constants import FALLBACK_TIMESTAMP
 from epstein_files.documents.emails.email_header import FIELDS_COLON_PATTERN
@@ -32,6 +33,7 @@ OTHER_DOC_URLS = {
 OCR_REPAIRS: dict[str | re.Pattern, str] = {
     re.compile(r"^Sent (Sun|Mon|Tue|Wed|Thu|Fri|Sat)", re.MULTILINE): r"Sent: \1",
     re.compile(fr"({FIELDS_COLON_PATTERN}.*\n)\nSubject:", re.MULTILINE): r'\1Subject:',
+    re.compile(r"^Fran:", re.MULTILINE): 'From:',
 }
 
 BAD_OCR_FILE_IDS = [
@@ -178,13 +180,6 @@ BAD_OCR_FILE_IDS = [
     'EFTA00008506',
 ]
 
-PHONE_BILL_IDS = {
-    'EFTA00006770': 'covering 2006-02-01 to 2006-06-16',
-    'EFTA00006870': 'covering 2006-02-09 to 2006-07',
-    'EFTA00006970': 'covering 2006-04-15 to 2006-07-16',
-    # 'EFTA00007070':  # TODO: not a messy phone bill, short, has additional info at end
-}
-
 STRIP_IMAGE_PANEL_IDS = [
     'EFTA00384774',
     'EFTA00007693',
@@ -202,8 +197,7 @@ STRIP_IMAGE_PANEL_IDS = [
 NO_IMAGE_SUFFIX = """
 ╭──── Page 1, Image 1 ─────╮
 │ (no text found in image) │
-╰──────────────────────────╯
-""".strip()
+╰──────────────────────────╯""".strip()
 
 
 @dataclass
@@ -260,16 +254,6 @@ class DojFile(OtherFile):
         return len(self.text.strip().removesuffix(NO_IMAGE_SUFFIX)) < MIN_VALID_LENGTH
 
     @property
-    def prettified_text(self) -> Text:
-        """Returns the string we want to print as the body of the document."""
-        if self.file_id in PHONE_BILL_IDS:
-            pages = self.text.split('MetroPCS')
-            text = f"{pages[0]}\n\n(Redacted phone bill {PHONE_BILL_IDS[self.file_id]} {CHECK_LINK_FOR_DETAILS})"
-            return highlighter(text)
-        else:
-            return super().prettified_text
-
-    @property
     def preview_text(self) -> str:
         """Text at start of file stripped of newlinesfor display in tables and other cramped settings."""
         if self.is_empty or self.is_bad_ocr:
@@ -289,7 +273,7 @@ class DojFile(OtherFile):
     def __post_init__(self):
         super().__post_init__()
 
-        if self.file_id in PHONE_BILL_IDS or self.file_id in STRIP_IMAGE_PANEL_IDS:
+        if self.file_id in STRIP_IMAGE_PANEL_IDS:
             self.strip_image_ocr_panels()
 
     def external_links_txt(self, _style: str = '', include_alt_links: bool = True) -> Text:

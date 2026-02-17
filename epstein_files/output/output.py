@@ -11,6 +11,7 @@ from epstein_files.documents.email import Email
 from epstein_files.documents.messenger_log import MessengerLog
 from epstein_files.documents.other_file import FIRST_FEW_LINES, OtherFile
 from epstein_files.epstein_files import EpsteinFiles, count_by_month
+from epstein_files.output.title_page import print_color_key, print_other_page_link, print_section_header, print_section_links, print_section_summary_table
 from epstein_files.people.person import Person
 from epstein_files.util.constant import output_files
 from epstein_files.util.constant.html import *
@@ -28,6 +29,7 @@ DEVICE_SIGNATURE = 'Device Signature'
 DEVICE_SIGNATURE_PADDING = (1, 0)
 OTHER_INTERESTING_EMAILS_SUBTITLE = 'Other Interesting Emails\n(these emails have been flagged as being of particular interest)'
 PRINT_COLOR_KEY_EVERY_N_EMAILS = 150
+URLS_ENV = '.urls.env'
 
 # Order matters. Default names to print emails for.
 DEFAULT_EMAILERS = [
@@ -40,7 +42,7 @@ DEFAULT_EMAILERS = [
     AL_SECKEL,
     AUSTIN_HILL,
     VINCENZO_IOZZO,
-    MARIYA_PRUSAKOVA,
+    MARIA_PRUSAKOVA,
     JEREMY_RUBIN,
     JEAN_LUC_BRUNEL,
     STEVEN_HOFFENBERG,
@@ -137,6 +139,7 @@ def print_emailers_info(epstein_files: EpsteinFiles) -> None:
 def print_emails_section(epstein_files: EpsteinFiles) -> list[Email]:
     """Returns emails that were printed (may contain dupes if printed for both author and recipient)."""
     print_section_header(('Selections from ' if not args.all_emails else '') + 'His Emails')
+    print_other_page_link(epstein_files)
     all_emailers = sorted(epstein_files.emailers, key=lambda person: person.earliest_email_at)
     all_emails = Person.emails_from_people(all_emailers)
     num_emails_printed_since_last_color_key = 0
@@ -154,8 +157,7 @@ def print_emails_section(epstein_files: EpsteinFiles) -> list[Email]:
         else:
             people_to_print = epstein_files.person_objs(DEFAULT_EMAILERS)
 
-        print_other_page_link(epstein_files)
-        print_centered(Padding(Person.emailer_info_table(all_emailers, people_to_print), (2, 0, 1, 0)))
+        print_section_summary_table(Person.emailer_info_table(all_emailers, people_to_print))
 
     for person in people_to_print:
         if person.name in epstein_files.uninteresting_emailers and not args.names:
@@ -200,7 +202,7 @@ def print_json_files(epstein_files: EpsteinFiles):
     """Print all the JsonFile objects"""
     if args.build:
         json_data = {jf.file_info.url_slug: jf.json_data() for jf in epstein_files.json_files}
-        build_path = SiteType.build_path(SiteType.JSON_FILES)
+        build_path = SiteType.build_path('json_files')# SiteType.JSON_FILES)
 
         with open(build_path, 'wt') as f:
             f.write(json.dumps(json_data, sort_keys=True))
@@ -252,7 +254,7 @@ def print_other_files_section(epstein_files: EpsteinFiles) -> list[OtherFile]:
     other_files_preview_table = OtherFile.files_preview_table(files, title_pfx=title_pfx)
     print_section_header(f"{FIRST_FEW_LINES} of {len(files)} {title_pfx}Files That Are Neither Emails Nor Text Messages")
     print_other_page_link(epstein_files)
-    print_centered(Padding(category_table, (2, 0)))
+    print_section_summary_table(category_table)
     console.print(other_files_preview_table)
     return files
 
@@ -268,14 +270,11 @@ def print_text_messages_section(epstein_files: EpsteinFiles) -> list[MessengerLo
         logger.warning(f"No MessengerLogs found for {args.names}")
         return imessage_logs
 
-
     print_section_header(('Selections from ' if not args.all_texts else '') + 'His Text Messages')
     print_centered("(conversations are sorted chronologically based on timestamp of first message in the log file)", style='dim')
-    console.line(2)
 
     if not args.names:
-        print_centered(MessengerLog.summary_table(imessage_logs))
-        console.line(2)
+        print_section_summary_table(MessengerLog.summary_table(imessage_logs))
 
     for log_file in imessage_logs:
         console.print(Padding(log_file))

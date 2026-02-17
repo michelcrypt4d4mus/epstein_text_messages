@@ -3,17 +3,26 @@ HTML file paths and URLs for files built by epstein_generate.
 """
 from enum import auto, StrEnum
 from pathlib import Path
+from typing import Self
 
+from rich.markup import escape
+from rich.text import Text
+
+from epstein_files.util.helpers.link_helper import link_markup, link_text_obj
 from epstein_files.util.logging import logger
-from epstein_files.util.constant.strings import DOJ_2026_TRANCHE, EPSTEIN_FILES_NOV_2025, HOUSE_OVERSIGHT_TRANCHE
-
-GH_REPO_NAME = 'epstein_text_messages'
-GH_PAGES_BASE_URL = 'https://michelcrypt4d4mus.github.io'
-BASE_URL = f"{GH_PAGES_BASE_URL}/{GH_REPO_NAME}"
+from epstein_files.util.constant.strings import AUX_SITE_LINK_STYLE, DOJ_2026_TRANCHE, EPSTEIN_FILES_NOV_2025, HOUSE_OVERSIGHT_TRANCHE
 
 HTML_DIR = Path('docs')
-URLS_ENV = '.urls.env'
 EMAILERS_TABLE_PNG_PATH = HTML_DIR.joinpath('emailers_info_table.png')
+
+# Github URLs
+GH_REPO_NAME = 'epstein_text_messages'
+GH_PAGES_BASE_URL = 'https://michelcrypt4d4mus.github.io'
+GH_PROJECT_URL = f'https://github.com/michelcrypt4d4mus/{GH_REPO_NAME}'
+GH_MASTER_URL = f"{GH_PROJECT_URL}/blob/master"
+ATTRIBUTIONS_URL = f'{GH_MASTER_URL}/epstein_files/util/constants.py'
+EXTRACTS_BASE_URL = f'{GH_MASTER_URL}/emails_extracted_from_legal_filings'
+BASE_URL = f"{GH_PAGES_BASE_URL}/{GH_REPO_NAME}"
 
 
 class SiteType(StrEnum):
@@ -21,18 +30,43 @@ class SiteType(StrEnum):
     CURATED = auto()
     DOJ_FILES = auto()
     GROUPED_EMAILS = auto()
-    JSON_FILES = auto()
+    #JSON_FILES = auto()
     JSON_METADATA = auto()
+    OTHER_FILES_TABLE = auto()
     TEXT_MESSAGES = auto()
     WORD_COUNT = auto()
 
     @classmethod
-    def build_path(cls, site_type: 'SiteType') -> Path:
+    def build_path(cls, site_type: Self) -> Path:
         return HTML_DIR.joinpath(HTML_BUILD_FILENAMES[site_type])
 
     @classmethod
-    def get_url(cls, site_type: 'SiteType') -> str:
+    def get_url(cls, site_type: Self) -> str:
         return f"{BASE_URL}/{cls.build_path(site_type).name}"
+
+    @classmethod
+    def link_txt(cls, site_type: Self) -> Text:
+        description = SITE_DESCRIPTIONS[site_type]
+        extra_info = ''
+
+        if cls._is_lesser_site(site_type):
+            style = 'gray30'# 'light_pink4'
+        else:
+            style = AUX_SITE_LINK_STYLE
+
+        if ':' in description:
+            description, extra_info = SITE_DESCRIPTIONS[site_type].split(':')
+            extra_info = Text(escape(extra_info), style=f'plum4 italic')
+            extra_info = Text(' ').append(parenthesize(extra_info, 'color(147) dim'))
+
+        style_mod = '' if cls._is_lesser_site(site_type) else 'bold'
+        link = link_text_obj(SiteType.get_url(site_type), escape(description), f"{style} {style_mod}")
+        link.append(extra_info)
+        return link
+
+    @classmethod
+    def _is_lesser_site(cls, site_type: Self) -> bool:
+        return site_type in [cls.DOJ_FILES, cls.JSON_METADATA]  #+ [cls.JSON_FILES]
 
 
 HTML_BUILD_FILENAMES = {
@@ -40,23 +74,24 @@ HTML_BUILD_FILENAMES = {
     SiteType.CURATED:              f'index.html',
     SiteType.DOJ_FILES:            f'doj_2026-01-30_non_email_files.html',
     SiteType.GROUPED_EMAILS:       f'emails_grouped_by_counterparty.html',
-    SiteType.JSON_FILES:           f'json_files_from_{EPSTEIN_FILES_NOV_2025}.json',
     SiteType.JSON_METADATA:        f'file_metadata_{EPSTEIN_FILES_NOV_2025}.json',
+    SiteType.OTHER_FILES_TABLE:    f'other_files_table.html',
     SiteType.TEXT_MESSAGES:        f'text_messages_{EPSTEIN_FILES_NOV_2025}.html',
     SiteType.WORD_COUNT:           f'communication_word_count.html',
 #     SiteType.EPSTEIN_WORD_COUNT: 'epstein_texts_and_emails_word_count.html'),
 }
 
 # Order matters, it's the order the links are shown in the header
+# Colons are used to break and parenthesize display
 SITE_DESCRIPTIONS = {
-    SiteType.CURATED:              f"curated selection of files of particular interest",
-    SiteType.GROUPED_EMAILS:       f"emails grouped by counterparty and previews of all non email files",
-    SiteType.CHRONOLOGICAL_EMAILS: f"emails in chronological order",
-    SiteType.TEXT_MESSAGES:        f"iMessage conversations from the {HOUSE_OVERSIGHT_TRANCHE}",
-    SiteType.DOJ_FILES:            f"raw OCR text of non-email PDFs from {DOJ_2026_TRANCHE}",
-    SiteType.WORD_COUNT:           f"word count of all communications",
-    SiteType.JSON_METADATA:        f"metadata (author, attribution reasons, etc.)",
-    SiteType.JSON_FILES:           f"raw JSON files from the {HOUSE_OVERSIGHT_TRANCHE}",
+    SiteType.CURATED:              f"curated:by my interests",
+    SiteType.GROUPED_EMAILS:       f"emailers:emails grouped by counterparty",
+    SiteType.CHRONOLOGICAL_EMAILS: f"emails:pure chronological order",
+    SiteType.TEXT_MESSAGES:        f"text messages:{HOUSE_OVERSIGHT_TRANCHE}",
+    SiteType.OTHER_FILES_TABLE:    f"other:files that are not emails or texts",
+    SiteType.WORD_COUNT:           f"word count:of Epstein's communications",
+    SiteType.DOJ_FILES:            f"doj files:raw OCR text {DOJ_2026_TRANCHE}",
+    SiteType.JSON_METADATA:        f"metadata:attribution reasons, categories",
 }
 
 
@@ -69,3 +104,8 @@ def make_clean() -> None:
             if file.exists():
                 logger.warning(f"Removing build file '{file}'...")
                 file.unlink()
+
+
+def parenthesize(msg: str | Text, parentheses_style: str = '') -> Text:
+    txt = Text(msg) if isinstance(msg, str) else msg
+    return Text('(', style=parentheses_style).append(txt).append(')')

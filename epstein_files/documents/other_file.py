@@ -6,6 +6,7 @@ from datetime import datetime
 from typing import ClassVar, Sequence
 
 import datefinder
+from dateutil.parser import parse
 from rich.console import Group
 from rich.markup import escape
 from rich.panel import Panel
@@ -19,7 +20,7 @@ from epstein_files.output.highlight_config import QUESTION_MARKS_TXT, styled_cat
 from epstein_files.output.rich import build_table, highlighter
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constants import *
-from epstein_files.util.helpers.data_helpers import days_between, remove_timezone, uniquify
+from epstein_files.util.helpers.data_helpers import date_str, days_between, remove_timezone, uniquify
 from epstein_files.util.helpers.file_helper import FILENAME_LENGTH
 from epstein_files.util.helpers.string_helper import has_line_starting_with
 from epstein_files.util.env import args
@@ -33,6 +34,7 @@ MID_TIMESTAMP = datetime(2007, 1, 1)
 LOG_INDENT = '\n         '
 PREVIEW_CHARS = int(580 * (1 if args.all_other_files else 1.5))
 TIMESTAMP_LOG_INDENT = f'{LOG_INDENT}    '
+VALAR_CAPITAL_CALL_REGEX = re.compile(r"^Valor .{,50} Capital Call", re.MULTILINE)
 VAST_HOUSE = 'vast house'  # Michael Wolff article draft about Epstein indicator
 
 LEGAL_FILING_REGEX = re.compile(r"^Case (\d+:\d+-.*?) Doc")
@@ -74,7 +76,7 @@ class OtherFile(Document):
     def category_txt(self) -> Text:
         """Returns '???' for missing category."""
         # TODO: create synthetic DocCfg so we don't have to handle QUESTION_MARKS return here
-        return QUESTION_MARKS_TXT if not (self.config and self.config.category) else self.config.category_txt
+        return styled_category(self.category) if self.category else QUESTION_MARKS_TXT
 
     @property
     def metadata(self) -> Metadata:
@@ -105,26 +107,43 @@ class OtherFile(Document):
         super().__post_init__()
 
         if not self.config:
-            self.derived_cfg = self._build_derived_cfg()
+            self.derived_cfg = self._derive_cfg_from_text()
 
-    def _build_derived_cfg(self) -> DocCfg | None:
+    def _derive_cfg_from_text(self) -> DocCfg | None:
         """Create a `DocCfg` object if there is none configured and the contents warrant it."""
         cfg = None
 
         if VI_DAILY_NEWS_REGEX.search(self.text):
-            cfg = DocCfg(id=self.file_id, category=ARTICLE, author=VI_DAILY_NEWS)
+            cfg = self._build_cfg(category=ARTICLE, author=VI_DAILY_NEWS)
         elif self.lines[0].lower() == 'valuation report':
-            cfg = DocCfg(id=self.file_id, category=BUSINESS, description="valuations of Epstein's investments", is_interesting=True)
+            try:
+                self.timestamp = parse(self.lines[1])
+            except Exception as e:
+                self.warn(f"Failed to parse valuation report date from {self.lines[0:2]}")
+
+            cfg = self._build_cfg(category=BUSINESS, description="valuations of Epstein's investments", is_interesting=True)
         elif has_line_starting_with(self.text, [VALAR_GLOBAL_FUND, VALAR_VENTURES], 2):
-            cfg = DocCfg(id=self.file_id, category=CRYPTO, author=VALAR_VENTURES, description=f"is a {PETER_THIEL} fintech fund")
+            cfg = self._build_valar_cfg()
+        elif VALAR_CAPITAL_CALL_REGEX.search(self.text):
+            cfg = self._build_valar_cfg('requesting money previously promised by Epstein to invest in a new opportunity')
         elif (case_match := LEGAL_FILING_REGEX.search(self.text)):
-            cfg = DocCfg(id=self.file_id, category=LEGAL, description=f"legal filing in case {case_match.group(1)}")
+            cfg = self._build_cfg(category=LEGAL, description=f"legal filing in case {case_match.group(1)}")
 
         if cfg:
             self.warn(f"Built synthetic cfg: {cfg}")
             type(self).num_synthetic_cfgs_created += 1
 
         return cfg
+
+    def _build_cfg(self, **kwargs) -> DocCfg:
+        return DocCfg(id=self.file_id, **kwargs)
+
+    def _build_valar_cfg(self, description: str = '') -> DocCfg:
+        return self._build_cfg(
+            category=CRYPTO,
+            author=VALAR_VENTURES,
+            description=description or f"is a {PETER_THIEL} fintech fund"
+        )
 
     def _extract_timestamp(self) -> datetime | None:
         """Return configured timestamp or value extracted by scanning text with datefinder."""

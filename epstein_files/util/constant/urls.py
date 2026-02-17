@@ -1,21 +1,17 @@
 import re
 import urllib.parse
+from enum import auto, StrEnum
 from typing import Callable, Literal
 
 from inflection import parameterize
 from rich.text import Text
 
-from epstein_files.util.constant.output_files import *
 from epstein_files.util.env import args
+from epstein_files.util.constant.output_files import SiteType, link_markup
+from epstein_files.util.constant.strings import TEXT_LINK
 from epstein_files.util.helpers.file_helper import coerce_file_stem
+from epstein_files.util.helpers.link_helper import link_text_obj
 from epstein_files.util.helpers.string_helper import remove_question_marks
-
-# Style stuff
-ALT_LINK_STYLE = 'white dim'
-ARCHIVE_LINK_COLOR = 'slate_blue3'
-ARCHIVE_LINK_UNDERLINE = f"{ARCHIVE_LINK_COLOR} underline"
-ARCHIVE_ALT_LINK_STYLE = 'medium_purple4 italic'
-TEXT_LINK = 'text_link'
 
 # External site names
 ExternalSite = Literal['epstein.media', 'epsteinify', 'EpsteinWeb', 'Jmail', 'RollCall', 'search X']
@@ -26,24 +22,21 @@ JMAIL = 'Jmail'
 ROLLCALL = 'RollCall'
 TWITTER = 'search X'
 
-# Github URLs
-GH_PROJECT_URL = f'https://github.com/michelcrypt4d4mus/{GH_REPO_NAME}'
-GH_MASTER_URL = f"{GH_PROJECT_URL}/blob/master"
-ATTRIBUTIONS_URL = f'{GH_MASTER_URL}/epstein_files/util/constants.py'
-EXTRACTS_BASE_URL = f'{GH_MASTER_URL}/emails_extracted_from_legal_filings'
-TO_FROM = 'to/from'
+EXTERNAL_STYLE = 'light_slate_grey bold'
 
 # External URLs
 COFFEEZILLA_ARCHIVE_URL = 'https://journaliststudio.google.com/pinpoint/search?collection=061ce61c9e70bdfd'
 COURIER_NEWSROOM_ARCHIVE_URL = 'https://journaliststudio.google.com/pinpoint/search?collection=092314e384a58618'
 DOJ_2026_FILE_BASE_URL = "https://www.justice.gov/epstein/files/DataSet%20"
 EPSTEIN_DOCS_URL = 'https://epstein-docs.github.io'
-OVERSIGHT_REPUBLICANS_PRESSER_URL = 'https://oversight.house.gov/release/oversight-committee-releases-additional-epstein-estate-documents/'
-RAW_OVERSIGHT_DOCS_GOOGLE_DRIVE_URL = 'https://drive.google.com/drive/folders/1hTNH5woIRio578onLGElkTWofUSWRoH_'
+OVERSIGHT_REPUBS_PRESSER_URL = 'https://oversight.house.gov/release/oversight-committee-releases-additional-epstein-estate-documents/'
+OVERSIGHT_DRIVE_URL = 'https://drive.google.com/drive/folders/1hTNH5woIRio578onLGElkTWofUSWRoH_'
 SUBSTACK_URL = 'https://cryptadamus.substack.com/p/i-made-epsteins-text-messages-great'
 # DOJ docs
 DOJ_2026_URL = 'https://www.justice.gov/epstein/doj-disclosures'
 DOJ_SEARCH_URL = 'https://www.justice.gov/epstein/search'
+# ours
+CRYPTADAMUS_TWITTER = link_markup('https://x.com/cryptadamist', '@cryptadamist')
 
 # Document source sites
 EPSTEINIFY_URL = 'https://epsteinify.com'
@@ -56,6 +49,14 @@ DOC_LINK_BASE_URLS: dict[ExternalSite, str] = {
     EPSTEIN_WEB: f'{EPSTEIN_WEB_URL}/wp-content/uploads/epstein_evidence/images/',
     EPSTEINIFY: f"{EPSTEINIFY_URL}/document/",
     ROLLCALL: f'https://rollcall.com/factbase/epstein/file?id=',
+}
+
+EXTERNAL_LINK_MSGS = {
+    JMAIL_URL: 'read His Emails via Gmail interface',
+    EPSTEIN_DOCS_URL: 'searchable archive',
+    EPSTEINIFY_URL: 'raw document images',
+    EPSTEIN_WEB_URL: 'character summaries',
+    EPSTEIN_MEDIA_URL: 'raw document images',
 }
 
 # Misc
@@ -128,25 +129,14 @@ def external_doc_link_txt(site: ExternalSite, filename_or_id: int | str, style: 
     return Text.from_markup(external_doc_link_markup(site, filename_or_id, style))
 
 
-def internal_link_to_emails(name: str) -> str:
+def internal_link_url(search_term: str) -> str:
+    """Hack a local link with the `#:~text=` url comment."""
+    return f"{this_site_url()}#:~:text={urllib.parse.quote(search_term)}"
+
+
+def internal_person_link_url(name: str) -> str:
     """e.g. https://michelcrypt4d4mus.github.io/epstein_text_messages/all_emails_epstein_files_nov_2025.html#:~:text=to%2Ffrom%20Jack%20Goldberger"""
-    search_term = urllib.parse.quote(f"{TO_FROM} {remove_question_marks(name)}")
-    return f"{this_site_url()}#:~:text={search_term}"
-
-
-def link_markup(
-    url: str,
-    link_text: str | None = None,
-    style: str | None = ARCHIVE_LINK_COLOR,
-    underline: bool = True
-) -> str:
-    link_text = link_text or url.removeprefix('https://')
-    style = ((style or '') + (' underline' if underline else '')).strip()
-    return (f"[{style}][link={url}]{link_text}[/link][/{style}]")
-
-
-def link_text_obj(url: str, link_text: str | None = None, style: str = ARCHIVE_LINK_COLOR) -> Text:
-    return Text.from_markup(link_markup(url, link_text, style))
+    return internal_link_url(f"{TO_FROM} {remove_question_marks(name)}")
 
 
 def other_site_type() -> SiteType:
@@ -161,6 +151,31 @@ def this_site_url() -> str:
     return SiteType.get_url(args._site_type)
 
 
-CRYPTADAMUS_TWITTER = link_markup('https://x.com/cryptadamist', '@cryptadamist')
 THE_OTHER_PAGE_MARKUP = link_markup(other_site_url(), 'the other page', style='light_slate_grey bold')
 THE_OTHER_PAGE_TXT = Text.from_markup(THE_OTHER_PAGE_MARKUP)
+
+
+#############################
+#  Internal sections links  #
+#############################
+SECTION_LINK_MSG = 'jump to different sections of this page'
+TO_FROM = 'to/from'
+
+
+class PageSections(StrEnum):
+    TEXT_MESSAGES = auto()
+    EMAILS = auto()
+    OTHER_FILES = auto()
+
+
+# Search terms that take you to the desired section
+SECTION_ANCHORS = {
+    PageSections.TEXT_MESSAGES: 'Selections from His Text Messages',
+    PageSections.EMAILS: 'Selections from His Emails',
+    PageSections.OTHER_FILES: 'Selected Files That Are Neither Emails Nor',
+}
+
+SECTION_LINKS = [
+    link_text_obj(internal_link_url(anchor), section_name, 'indian_red')
+    for section_name, anchor in SECTION_ANCHORS.items()
+]

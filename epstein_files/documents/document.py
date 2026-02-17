@@ -23,11 +23,13 @@ from epstein_files.output.rich import (INFO_STYLE, NA_TXT, SKIPPED_FILE_MSG_PADD
      wrap_in_markup_style)
 from epstein_files.util.constant.names import Name
 from epstein_files.util.constant.strings import *
-from epstein_files.util.constant.urls import EXTRACTS_BASE_URL, epstein_media_doc_link_txt
+from epstein_files.util.constant.output_files import EXTRACTS_BASE_URL
+from epstein_files.util.constant.urls import epstein_media_doc_link_txt
 from epstein_files.util.constants import CONFIGS_BY_ID, MAX_CHARS_TO_PRINT
 from epstein_files.util.helpers.data_helpers import (collapse_newlines, date_str, patternize, prefix_keys,
      remove_zero_time, without_falsey)
 from epstein_files.util.helpers.file_helper import coerce_file_path, file_size_to_str
+from epstein_files.util.helpers.string_helper import join_truthy
 from epstein_files.util.logging import DOC_TYPE_STYLES, FILENAME_STYLE, logger
 
 CHECK_LINK_FOR_DETAILS = 'not shown here, check original PDF for details'
@@ -133,10 +135,7 @@ class Document:
     def config_replace_text_with(self) -> str | None:
         """Configured replacement text."""
         if self.config and self.config.replace_text_with:
-            if self.config.author:
-                text = f"{self.config.author} {self.config.replace_text_with}"
-            else:
-                text = self.config.replace_text_with
+            text = join_truthy(self.config.author, self.config.replace_text_with)
 
             if len(text) < 300:
                 return f"(Text of {text} {CHECK_LINK_FOR_DETAILS})"
@@ -325,7 +324,7 @@ class Document:
 
     def __post_init__(self):
         if not self.file_path.exists():
-            raise FileNotFoundError(f"File '{self.file_path.name}' does not exist!")
+            raise FileNotFoundError(f"File '{self.file_path}' does not exist!")
 
         self.file_info = FileInfo(self.file_path)
         self.text = self.text or self._load_file()

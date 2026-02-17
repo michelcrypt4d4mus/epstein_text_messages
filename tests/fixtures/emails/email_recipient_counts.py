@@ -2,7 +2,7 @@ from epstein_files.util.constant.names import *
 
 
 EMAIL_RECIPIENT_COUNTS = {
-    None: 88,
+    None: 89,
     "ACT for America": 1,
     ADAM_BACK: 4,
     AL_SECKEL: 1,
@@ -46,7 +46,7 @@ EMAIL_RECIPIENT_COUNTS = {
     BRAD_KARP: 6,
     BRAD_WECHSLER: 2,
     'Brittany Henderson': 1,
-    BROCK_PIERCE: 26,
+    BROCK_PIERCE: 27,
     BRYAN_BISHOP: 1,
     BUREAU_OF_PRISONS: 1,
     "Caroline Lang": 2,
@@ -180,7 +180,7 @@ EMAIL_RECIPIENT_COUNTS = {
     MARIANA_IDZKOWSKA: 1,
     'Marie Moneysmith': 1,
     'Marites Tess McCorquodale': 1,
-    MARIYA_PRUSAKOVA: 1,
+    MARIA_PRUSAKOVA: 1,
     "Mark Albert": 1,
     MARK_EPSTEIN: 3,
     "Marshall Funk": 1,
@@ -292,7 +292,7 @@ EMAIL_RECIPIENT_COUNTS = {
     TYLER_SHEARS: 7,
     'USAHUB-USAJournal111': 1,
     "Uri Fouzailov": 1,
-    USANYS: 73,
+    USANYS: 74,
     'USMS': 1,
     "Vahe Stepanian": 1,
     "Val Sherman": 1,

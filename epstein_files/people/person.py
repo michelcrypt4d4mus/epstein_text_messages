@@ -200,7 +200,7 @@ class Person:
     @property
     def internal_link(self) -> Text:
         """Kind of like an anchor link to the section of the page containing these emails."""
-        return link_text_obj(internal_link_to_emails(self.name_str), self.name_str, style=self.style())
+        return link_text_obj(internal_person_link_url(self.name_str), self.name_str, style=self.style())
 
     @property
     def is_a_mystery(self) -> bool:

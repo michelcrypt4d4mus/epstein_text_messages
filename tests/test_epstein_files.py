@@ -30,7 +30,7 @@ def test_document_monthly_counts(epstein_files):
 
     for month, num_docs in new_counts.items():
         assert month in EXPECTED_MONTHLY_COUNTS
-        assert num_docs >= EXPECTED_MONTHLY_COUNTS[month]
+        assert num_docs >= EXPECTED_MONTHLY_COUNTS[month], f"Expected {EXPECTED_MONTHLY_COUNTS[month]} for {month}, found {num_docs}"
 
     num_files_paths = len(epstein_files.file_paths)
     num_document_objs = sum(new_counts.values())
@@ -58,12 +58,12 @@ def test_no_files_after_2025(epstein_files):
 
 def test_other_files_author_count(epstein_files):
     known_author_count = Document.known_author_count(epstein_files.other_files)
-    assert known_author_count == 417
+    assert known_author_count == 431
     assert len(epstein_files.json_files) == 19
 
 
 def test_other_files_categories(epstein_files):
-    assert len([f for f in epstein_files.other_files if not f.category]) == 2413
+    assert len([f for f in epstein_files.other_files if not f.category]) == 2389
 
 
 ################################################
@@ -108,4 +108,5 @@ def test_signatures(epstein_files):
 
 
 def test_unknown_recipient_file_ids(epstein_files):
-    assert epstein_files.unknown_recipient_ids() == UNKNOWN_RECIPIENT_FILE_IDS
+    unknown_recipient_ids = epstein_files.unknown_recipient_ids()
+    assert unknown_recipient_ids == sorted(UNKNOWN_RECIPIENT_FILE_IDS)

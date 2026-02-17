@@ -5,6 +5,7 @@ from typing import ClassVar
 from rich.text import Text
 
 from epstein_files.documents.other_file import Metadata, OtherFile
+from epstein_files.output.highlight_config import styled_category
 from epstein_files.output.rich import INFO_STYLE
 from epstein_files.util.constant.strings import JSON
 

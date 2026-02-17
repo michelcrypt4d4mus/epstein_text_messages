@@ -86,9 +86,11 @@ if [ -n "$ONLY_TEXTS" ]; then
     print_deploy_step "Skipping build of emails pages..."
 else
     print_deploy_step "Building all emails page..."
-    $GENERATE_CMD --all-emails --all-other-files
+    $GENERATE_CMD --all-emails
     print_deploy_step "Building chronological emails page..."
     $GENERATE_CMD --email-timeline
+    print_deploy_step "Building other files table page..."
+    $GENERATE_CMD --all-other-files
 fi
 
 print_deploy_step "Building word counts page..."

@@ -1,4 +1,8 @@
 # NEXT RELEASE
+* `Category` enum
+
+# 1.6.0
+* Rework the way the various generated HTML pages link to each other, update header to reflect it
 * Rename `DocLocation` to `FileInfo` and delegate things like `file_size` to it
 
 ### 1.5.7

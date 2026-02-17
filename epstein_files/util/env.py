@@ -116,6 +116,8 @@ if is_html_script:
             args._site_type = SiteType.GROUPED_EMAILS
         elif args.all_texts:
             args._site_type = SiteType.TEXT_MESSAGES
+        elif args.all_other_files:
+            args._site_type = SiteType.OTHER_FILES_TABLE
         elif args.email_timeline:
             args._site_type = SiteType.CHRONOLOGICAL_EMAILS
         elif args.output_doj_files:

@@ -6,6 +6,7 @@ from os import devnull
 from pathlib import Path
 from typing import Mapping, Sequence
 
+from rich import box
 from rich.align import Align
 from rich.console import Console, Group, RenderableType
 from rich.markup import escape
@@ -15,16 +16,19 @@ from rich.table import Table
 from rich.text import Text
 from rich.theme import Theme
 
+from epstein_files.output.demi_table import build_demi_table
 from epstein_files.output.epstein_highlighter import EpsteinHighlighter
 from epstein_files.output.highlight_config import HIGHLIGHT_GROUPS
 from epstein_files.util.constant.html import CONSOLE_HTML_FORMAT, HTML_TERMINAL_THEME, PAGE_TITLE
 from epstein_files.util.constant.names import UNKNOWN
-from epstein_files.util.constant.strings import AUTHOR, DEFAULT, EMAIL, NA, TEXT_MESSAGE, TIMESTAMP_STYLE
+from epstein_files.util.constant.output_files import GH_PROJECT_URL, SITE_DESCRIPTIONS, parenthesize
+from epstein_files.util.constant.strings import *
 from epstein_files.util.constant.urls import *
 from epstein_files.util.constants import HEADER_ABBREVIATIONS
 from epstein_files.util.env import args
-from epstein_files.util.helpers.data_helpers import json_safe, sort_dict
+from epstein_files.util.helpers.data_helpers import json_safe, sort_dict, without_falsey
 from epstein_files.util.helpers.file_helper import log_file_write
+from epstein_files.util.helpers.link_helper import link_markup, link_text_obj
 from epstein_files.util.helpers.string_helper import quote
 from epstein_files.util.logging import logger
 
@@ -39,8 +43,9 @@ VALID_GREYS = [0, 3, 7, 11, 15, 19, 23, 27, 30, 35, 37, 39, 42, 46, 50, 53, 54, 
 
 DOJ_PAGE_LINK_MSG = 'WIP page with documents from the Epstein Files Transparency Act'
 SITE_GLOSSARY_MSG = f"These pages include the following views of the underlying collection of Epstein's files:"
-YOU_ARE_HERE = Text('(').append('you are here', style='bold khaki1 blink').append(')')
+YOU_ARE_HERE = Text('«').append('you are here', style='bold khaki1 blink').append('»')
 
+DATASET_DESCRIPTION_STYLE = 'gray74'
 INFO_STYLE = 'white dim italic'
 KEY_STYLE = 'dim'
 KEY_STYLE_ALT = 'light_steel_blue3'
@@ -57,7 +62,6 @@ TABLE_BORDER_STYLE = 'grey46'
 TABLE_TITLE_STYLE = f"gray54 italic"
 TITLE_STYLE = 'black on bright_white bold'
 
-AUX_SITE_LINK_STYLE = 'dark_orange3'
 OTHER_SITE_LINK_STYLE = 'dark_goldenrod'
 
 DEFAULT_TABLE_KWARGS = {
@@ -152,33 +156,30 @@ def build_table(title: str | Text | None, cols: list[str | dict] | None = None, 
     return table
 
 
-def indent_txt(txt: Text, spaces: int = 4, prefix: str = '') -> Text:
+def enclose(txt: str | Text, encloser: str = '', encloser_style: str = 'wheat4') -> Text:
+    """Surround with something."""
+    if not encloser:
+        return Text('').append(txt)
+    elif len(encloser) != 2:
+        raise ValueError(f"'encloser' arg is '{encloser}' which is not 2 characters long")
+
+    enclose_start, enclose_end = (encloser[0], encloser[1])
+    return Text('').append(enclose_start, encloser_style).append(txt).append(enclose_end, encloser_style)
+
+
+def indent_txt(txt: str | Text, spaces: int = 4, prefix: str = '') -> Text:
     indent = Text(' ' * spaces).append(prefix)
     return indent + Text(f"\n{indent}").join(txt.split('\n'))
 
 
-def join_texts(txts: list[Text], join: str = ' ', encloser: str = '', encloser_style: str = 'wheat4') -> Text:
+def join_texts(txts: Sequence[str | Text], join: str = ' ', encloser: str = '', encloser_style: str = 'wheat4') -> Text:
     """Join rich.Text objs into one."""
-    if encloser:
-        if len(encloser) != 2:
-            raise ValueError(f"'encloser' arg is '{encloser}' which is not 2 characters long")
-
-        enclose_start, enclose_end = (encloser[0], encloser[1])
-    else:
-        enclose_start = enclose_end = ''
-
     txt = Text('')
 
-    for i, _txt in enumerate(txts):
-        txt.append(join if i >= 1 else '').append(enclose_start, style=encloser_style)
-        txt.append(_txt).append(enclose_end, style=encloser_style)
+    for i, _txt in enumerate(without_falsey(txts)):
+        txt.append(join if i >= 1 else '').append(enclose(_txt, encloser, encloser_style))
 
     return txt
-
-
-def parenthesize(msg: str | Text, style: str = '') -> Text:
-    txt = Text(msg) if isinstance(msg, str) else msg
-    return Text('(', style=style).append(txt).append(')')
 
 
 def prefix_with(txt: list[str] | list[Text] | Text | str, pfx: str, pfx_style: str = '', indent: str | int = '') -> Text:
@@ -200,61 +201,6 @@ def print_centered_link(url: str, link_text: str, style: str | None = None) -> N
     print_centered(link_markup(url, link_text, style or ARCHIVE_LINK_COLOR))
 
 
-def print_color_key() -> None:
-    color_table = build_table('Rough Guide to Highlighted Colors', show_header=False)
-    num_colors = len(HIGHLIGHTED_GROUP_COLOR_KEYS)
-    row_number = 0
-
-    for i in range(0, NUM_COLOR_KEY_COLS):
-        color_table.add_column(f"color_col_{i}", justify='center')
-
-    while (row_number * NUM_COLOR_KEY_COLS) < num_colors:
-        idx = row_number * NUM_COLOR_KEY_COLS
-        color_table.add_row(*HIGHLIGHTED_GROUP_COLOR_KEYS[idx:(idx + NUM_COLOR_KEY_COLS)])
-        row_number += 1
-
-    print_centered(vertically_pad(color_table))
-
-
-def print_title_page_header() -> None:
-    """Top half of the title page."""
-    links = {
-        site_type: link_text_obj(SiteType.get_url(site_type), description, AUX_SITE_LINK_STYLE)
-        for site_type, description in SITE_DESCRIPTIONS.items()
-    }
-
-    def site_link_line(site_type: SiteType, bulleted_link: Text) -> Text:
-        you_are_here = YOU_ARE_HERE if site_type == args._site_type else ''
-        return Text('➱ ').append(bulleted_link).append(' ').append(you_are_here)
-
-    # Print the stuff
-    print_page_title(width=TITLE_WIDTH)
-    sites_txt = Text('').append(SITE_GLOSSARY_MSG, style='wheat4 bold').append('\n\n')
-    links_txts = [site_link_line(site_type, link) for site_type, link in links.items()]
-    max_link_len = max(len(link.plain) for link in links.values())
-    num_link_indent_spaces = max(2, int((len(SITE_GLOSSARY_MSG) - max_link_len) / 2)) - 2
-    sites_txt.append(indent_txt(join_texts(links_txts, '\n'), num_link_indent_spaces))
-    print_centered(Panel(sites_txt, expand=False, padding=(1, 5), border_style='dim'))
-    console.line()
-    print_starred_header('Not All The Epstein Files Are Here!', num_spaces=9 if args.all_emails else 6, num_stars=14)
-    print_centered(f"This dataset includes everything from the {HOUSE_OVERSIGHT_TRANCHE}", style='gray74')
-    print_centered(f"as we all as a curated selection of the {DOJ_2026_TRANCHE}.", style='gray74')
-
-
-def print_title_page_tables(epstein_files: 'EpsteinFiles') -> None:
-    """Bottom half of the title page."""
-    _print_external_links()
-    console.line()
-    _print_abbreviations_table()
-    print_centered(epstein_files.overview_table())
-    console.line()
-    print_color_key()
-    print_centered(f"if you think there's an attribution error or can deanonymize an {UNKNOWN} contact {CRYPTADAMUS_TWITTER}", 'grey46')
-    print_centered('note this site is based on the OCR text provided by Congress which is not always the greatest', 'grey23')
-    print_centered(f"(thanks to {link_markup('https://x.com/ImDrinknWyn', '@ImDrinknWyn', 'dodger_blue3')} + others for help attributing redacted emails)")
-    print_centered_link(SiteType.get_url(SiteType.JSON_METADATA), "(explanations of author attributions)", style='magenta')
-
-
 def print_json(label: str, obj: object, skip_falsey: bool = False) -> None:
     if isinstance(obj, dict):
         if skip_falsey:
@@ -268,39 +214,9 @@ def print_json(label: str, obj: object, skip_falsey: bool = False) -> None:
     console.line()
 
 
-def print_other_page_link(epstein_files: 'EpsteinFiles') -> None:
-    if args._site_type == SiteType.CURATED:
-        txt = THE_OTHER_PAGE_TXT + Text(f' is uncurated and has all {len(epstein_files.emails):,} emails')
-        txt.append(f" and {len(epstein_files.other_files):,} unclassifiable files")
-    else:
-        txt = THE_OTHER_PAGE_TXT + (f' displays a curated collection of emails and')
-        txt.append(" unclassifiable files of particular interest")
-
-    print_centered(parenthesize(txt), style=OTHER_PAGE_MSG_STYLE)
-    chrono_emails_link = link_text_obj(SiteType.get_url(SiteType.CHRONOLOGICAL_EMAILS), 'a page', style='light_slate_grey bold')
-    chrono_emails_txt = Text(f"there's also ").append(chrono_emails_link)
-    chrono_emails_txt.append(' with all the emails in chronological order')
-    print_centered(parenthesize(chrono_emails_txt), style=OTHER_PAGE_MSG_STYLE)
-
-
-def print_page_title(expand: bool = True, width: int | None = None) -> None:
-    warning = f"This page was generated by {link_markup('https://pypi.org/project/rich/', 'rich')}."
-    print_centered(f"{warning} It is not optimized for mobile.", style='dim')
-    title_panel = Panel(Text(PAGE_TITLE, justify='center'), expand=expand, style=TITLE_STYLE, width=width)
-    print_centered(vertically_pad(title_panel))
-    _print_social_media_links()
-    console.line(2)
-
-
 def print_subtitle_panel(msg: str, style: str = 'black on white') -> None:
     panel = Panel(Text.from_markup(msg, justify='center'), width=SUBTITLE_WIDTH, style=style)
     print_centered(Padding(panel, SUBTITLE_PADDING))
-
-
-def print_section_header(msg: str, style: str = SECTION_HEADER_STYLE, is_centered: bool = False) -> None:
-    panel = Panel(Text(msg, justify='center'), expand=True, padding=(1, 1), style=style)
-    panel = Align.center(panel) if is_centered else panel
-    console.print(Padding(panel, (3, 5, 1, 5)))
 
 
 def print_starred_header(msg: str, num_stars: int = 7, num_spaces: int = 2, style: str = TITLE_STYLE) -> None:
@@ -431,53 +347,6 @@ def write_html(output_path: Path | None) -> None:
         txt_path = f"{output_path}.txt"
         console.save_text(txt_path)
         log_file_write(txt_path)
-
-
-def _print_abbreviations_table() -> None:
-    table = build_table(title="Abbreviations Used Frequently In These Conversations", show_header=False)
-    table.add_column("Abbreviation", justify="center", style='bold')
-    table.add_column("Translation", justify="center", min_width=62, style="white")
-
-    for k, v in HEADER_ABBREVIATIONS.items():
-        table.add_row(highlighter(k), v)
-
-    console.print(Align.center(vertically_pad(table)))
-
-
-def _print_external_links() -> None:
-    console.line()
-    print_centered(Text('External Links', style=TABLE_TITLE_STYLE))
-    presser_link = link_text_obj(OVERSIGHT_REPUBLICANS_PRESSER_URL, 'Official Oversight Committee Press Release')
-    raw_docs_link = link_text_obj(RAW_OVERSIGHT_DOCS_GOOGLE_DRIVE_URL, 'raw files', style=ARCHIVE_ALT_LINK_STYLE)
-    raw_docs_link = join_texts([raw_docs_link], encloser='()')
-    print_centered(join_texts([presser_link, raw_docs_link]))
-    doj_docs_link = link_text_obj(DOJ_2026_URL, 'Epstein Files Transparency Act Disclosures')
-    doj_search_link = join_texts([link_text_obj(DOJ_SEARCH_URL, 'search', style=ARCHIVE_ALT_LINK_STYLE)], encloser='()')
-    print_centered(join_texts([doj_docs_link, doj_search_link]))
-    print_centered(link_markup(JMAIL_URL, JMAIL) + " (read His Emails via Gmail interface)")
-    print_centered(link_markup(EPSTEIN_DOCS_URL) + " (searchable archive)")
-    print_centered(link_markup(EPSTEINIFY_URL) + " (raw document images)")
-    print_centered(link_markup(EPSTEIN_WEB_URL) + " (character summaries)")
-    print_centered(link_markup(EPSTEIN_MEDIA_URL) + " (raw document images)")
-
-
-def _print_social_media_links() -> None:
-    print_centered_link(
-        SUBSTACK_URL,
-        "I Made Epstein's Text Messages Great Again (And You Should Read Them)",
-        style=f'{SUBSTACK_POST_LINK_STYLE} bold'
-    )
-
-    print_centered_link(SUBSTACK_URL, SUBSTACK_URL.removeprefix('https://'), style=f'{SUBSTACK_POST_LINK_STYLE} dim')
-
-    social_links = [
-        link_text_obj('https://universeodon.com/@cryptadamist/115572634993386057', '@mastodon', style=SOCIAL_MEDIA_LINK_STYLE),
-        link_text_obj(SUBSTACK_URL, '@substack', style=SOCIAL_MEDIA_LINK_STYLE),
-        link_text_obj('https://x.com/Cryptadamist/status/1990866804630036988', '@twitter', style=SOCIAL_MEDIA_LINK_STYLE),
-        link_text_obj(GH_PROJECT_URL, '@github', style=SOCIAL_MEDIA_LINK_STYLE)
-    ]
-
-    print_centered(join_texts(social_links, join='  /  '))#, encloser='()'))#, encloser='‹›'))
 
 
 if args.colors_only:

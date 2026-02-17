@@ -10,7 +10,6 @@ CONFERENCE = 'conference'
 CRYPTO = 'crypto'
 FINANCE = 'finance'
 FRIEND = 'friend'
-FLIGHT_LOG = 'flight log'
 JOURNALIST = 'journalist'
 JUNK = 'junk'
 LAWYER = 'lawyer'
@@ -28,7 +27,6 @@ REPUTATION = 'reputation'
 REPUTATION_MGMT = f'{REPUTATION} management'
 RESUME = 'resume'
 # RESUME_ACCENTED = 'resumé'
-SKYPE_LOG = 'skype log'
 TEXT_MSG = 'text_msg'
 TWEET = 'tweet'
 SOCIAL = 'social'
@@ -38,6 +36,12 @@ PALM_BEACH = 'Palm Beach'
 VIRGIN_ISLANDS = 'Virgin Islands'
 
 # Styles
+ALT_LINK_STYLE = 'white dim'
+ARCHIVE_LINK_COLOR = 'slate_blue3'
+ARCHIVE_LINK_UNDERLINE = f"{ARCHIVE_LINK_COLOR} underline"
+ARCHIVE_ALT_LINK_STYLE = 'medium_purple4 italic'  # "(raw files)" link
+AUX_SITE_LINK_STYLE = 'dark_orange3'
+TEXT_LINK = 'text_link'
 DEFAULT_NAME_STYLE = 'grey23'
 SUBHEADER_STYLE = 'grey46'
 TIMESTAMP_STYLE = 'turquoise4'
@@ -79,8 +83,8 @@ PALM_BEACH_WATER_COMMITTEE = f'{PALM_BEACH} Water Committee'
 UN_GENERAL_ASSEMBLY = '67th U.N. General Assembly'
 
 # Tranches
-DOJ_2026_TRANCHE = 'Jan. 2026 DOJ tranche'
-HOUSE_OVERSIGHT_TRANCHE = '2025 House Oversight tranche'
+DOJ_2026_TRANCHE = '2026 DOJ tranche'
+HOUSE_OVERSIGHT_TRANCHE = '2025 estate tranche'
 EPSTEIN_FILES_NOV_2025 = 'epstein_files_nov_2025'
 
 # Regexes / file names
