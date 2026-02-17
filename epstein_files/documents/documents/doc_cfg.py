@@ -510,10 +510,11 @@ class TextCfg(CommunicationCfg):
         return super().__repr__()
 
 
-def phone_bill_cfg(id: str, author: str, dates: str = '') -> DocCfg:
+def phone_bill_cfg(id: str, author: str, dates: str = '', **kwargs) -> DocCfg:
     return DocCfg(
         id=id,
         author=author,
         category=Category.PHONE_BILL,
-        replace_text_with=f"phone bill" + (f" covering {dates}" if dates else '')
+        replace_text_with=f"phone bill" + (f" covering {dates}" if dates else ''),
+        **kwargs
     )

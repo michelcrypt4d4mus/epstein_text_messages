@@ -180,13 +180,6 @@ BAD_OCR_FILE_IDS = [
     'EFTA00008506',
 ]
 
-PHONE_BILL_IDS = {
-    'EFTA00006770': 'covering 2006-02-01 to 2006-06-16',
-    'EFTA00006870': 'covering 2006-02-09 to 2006-07',
-    'EFTA00006970': 'covering 2006-04-15 to 2006-07-16',
-    # 'EFTA00007070':  # TODO: not a messy phone bill, short, has additional info at end
-}
-
 STRIP_IMAGE_PANEL_IDS = [
     'EFTA00384774',
     'EFTA00007693',
@@ -204,8 +197,7 @@ STRIP_IMAGE_PANEL_IDS = [
 NO_IMAGE_SUFFIX = """
 ╭──── Page 1, Image 1 ─────╮
 │ (no text found in image) │
-╰──────────────────────────╯
-""".strip()
+╰──────────────────────────╯""".strip()
 
 
 @dataclass
@@ -262,16 +254,6 @@ class DojFile(OtherFile):
         return len(self.text.strip().removesuffix(NO_IMAGE_SUFFIX)) < MIN_VALID_LENGTH
 
     @property
-    def prettified_text(self) -> Text:
-        """Returns the string we want to print as the body of the document."""
-        if self.file_id in PHONE_BILL_IDS:
-            pages = self.text.split('MetroPCS')
-            text = f"{pages[0]}\n\n(Redacted phone bill {PHONE_BILL_IDS[self.file_id]} {CHECK_LINK_FOR_DETAILS})"
-            return highlighter(text)
-        else:
-            return super().prettified_text
-
-    @property
     def preview_text(self) -> str:
         """Text at start of file stripped of newlinesfor display in tables and other cramped settings."""
         if self.is_empty or self.is_bad_ocr:
@@ -291,7 +273,7 @@ class DojFile(OtherFile):
     def __post_init__(self):
         super().__post_init__()
 
-        if self.file_id in PHONE_BILL_IDS or self.file_id in STRIP_IMAGE_PANEL_IDS:
+        if self.file_id in STRIP_IMAGE_PANEL_IDS:
             self.strip_image_ocr_panels()
 
     def external_links_txt(self, _style: str = '', include_alt_links: bool = True) -> Text:

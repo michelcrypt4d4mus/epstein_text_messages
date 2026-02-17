@@ -1,6 +1,7 @@
 """
 Custom configurations for various files.
 """
+from epstein_files.documents.documents.categories import Category
 from epstein_files.documents.documents.doc_cfg import (INTERESTING_CATEGORIES, NEUTRAL_CATEGORIES,
      UNINTERESTING_CATEGORIES, CommunicationCfg, DocCfg, EmailCfg, TextCfg, phone_bill_cfg)
 from epstein_files.documents.doj_files.full_text import EFTA00009622_TEXT
@@ -2146,17 +2147,19 @@ OTHER_FILES_MISC = [
     ),
     DocCfg(id='EFTA00004070', replace_text_with="photos of Epstein with handwritten caption that didn't OCR well"),
     DocCfg(id='EFTA02731260', replace_text_with='notebook full of handwritten love letters with terrible OCR text'),
-    # Phone bills TODO: Some kind of special handling?
     DocCfg(id='EFTA00006100', replace_text_with='Palm Beach Police fax machine activity log 2005-12-28 to 2006-01-04'),
+    # Phone bills (first two are subpoena response letters w/attached phone bill)
+    phone_bill_cfg('EFTA00007301', 'T-Mobile', 'Blackberry phone logs for 2005', date='2007-03-23'),
+    phone_bill_cfg('EFTA00007253', 'T-Mobile', date='2007-03-23'),
     phone_bill_cfg('EFTA00006387', 'T-Mobile', '2006-06-15 to 2006-07-23'),
     phone_bill_cfg('EFTA00007501', 'T-Mobile', '2005'),
     phone_bill_cfg('EFTA00006487', 'T-Mobile', '2006'),
     phone_bill_cfg('EFTA00006587', 'T-Mobile', '2006-09-04 to 2016-10-15'),
     phone_bill_cfg('EFTA00006687', 'T-Mobile', '2006-10-31 to 2006-12-25'),
     phone_bill_cfg('EFTA00007401', 'T-Mobile', '2004-08-25 to 2005-07-13'),
-    DocCfg(id='EFTA00007301', replace_text_with='T-Mobile response to subpoena March 23, 2007 - Blackberry phone logs for 2005'),
-
-    DocCfg(id='EFTA00007253', replace_text_with='T-Mobile response to subpoena March 23, 2007 - phone bill'),
+    phone_bill_cfg('EFTA00006770', 'MetroPCS', '2006-02-01 to 2006-06-16'),
+    phone_bill_cfg('EFTA00006870', 'MetroPCS', '2006-02-09 to 2006-07'),
+    phone_bill_cfg('EFTA00006970', 'MetroPCS', '2006-04-15 to 2006-07-16'),
     # Attachments
     DocCfg(id='EFTA00590685', attached_to_email_id='EFTA00830911'),
     # Dates
