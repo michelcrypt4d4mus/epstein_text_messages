@@ -28,36 +28,25 @@ from epstein_files.util.helpers.file_helper import log_file_write
 from epstein_files.util.helpers.link_helper import link_markup, link_text_obj
 from epstein_files.util.logging import logger
 
-TITLE_WIDTH = 60
 SUBTITLE_WIDTH = 110
-NUM_COLOR_KEY_COLS = 6
 NA_TXT = Text(NA, style='dim')
 SKIPPED_FILE_MSG_PADDING = (0, 0, 0, 4)
 SUBTITLE_PADDING = (2, 0, 1, 0)
 GREY_NUMBERS = [58, 39, 39, 35, 30, 27, 23, 23, 19, 19, 15, 15, 15]
 VALID_GREYS = [0, 3, 7, 11, 15, 19, 23, 27, 30, 35, 37, 39, 42, 46, 50, 53, 54, 58, 62, 63, 66, 69, 70, 74, 78, 82, 84, 85, 89, 93]
 
-DOJ_PAGE_LINK_MSG = 'WIP page with documents from the Epstein Files Transparency Act'
-SITE_GLOSSARY_MSG = f"These pages include the following views of the underlying collection of Epstein's files:"
-YOU_ARE_HERE = Text('«').append('you are here', style='bold khaki1 blink').append('»')
-
 DATASET_DESCRIPTION_STYLE = 'gray74'
 INFO_STYLE = 'white dim italic'
 KEY_STYLE = 'dim'
 KEY_STYLE_ALT = 'light_steel_blue3'
 LAST_TIMESTAMP_STYLE = 'wheat4'
-OTHER_PAGE_MSG_STYLE = 'gray78 dim'
 PATH_STYLE = 'deep_pink3'
 STR_VAL_STYLE = 'cornsilk1 italic'
 STR_VAL_STYLE_ALT = 'light_yellow3 italic'
-SOCIAL_MEDIA_LINK_STYLE = 'pale_turquoise4'
-SUBSTACK_POST_LINK_STYLE = 'bright_cyan'
 SYMBOL_STYLE = 'grey70'
 TABLE_BORDER_STYLE = 'grey46'
 TABLE_TITLE_STYLE = f"gray54 italic"
 TITLE_STYLE = 'black on bright_white bold'
-
-OTHER_SITE_LINK_STYLE = 'dark_goldenrod'
 
 DEFAULT_TABLE_KWARGS = {
     'border_style': TABLE_BORDER_STYLE,
