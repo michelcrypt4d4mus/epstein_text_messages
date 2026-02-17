@@ -20,11 +20,12 @@ from epstein_files.documents.json_file import JsonFile
 from epstein_files.documents.messenger_log import MSG_REGEX, MessengerLog
 from epstein_files.documents.other_file import OtherFile
 from epstein_files.output.highlight_config import HIGHLIGHTED_NAMES
+from epstein_files.output.rich import console
 from epstein_files.people.person import INVALID_FOR_EPSTEIN_WEB, Person
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constants import *
 from epstein_files.util.env import DOCS_DIR, args, logger
-from epstein_files.util.helpers.data_helpers import flatten, json_safe, listify, uniquify
+from epstein_files.util.helpers.data_helpers import flatten, json_safe, uniquify
 from epstein_files.util.helpers.file_helper import all_txt_paths, doj_txt_paths, extract_file_id, file_size_str
 from epstein_files.util.timer import Timer
 
@@ -279,6 +280,10 @@ class EpsteinFiles:
         self.file_paths = all_txt_paths()
         new_paths = [p for p in self.file_paths if extract_file_id(p) not in current_docs]
         new_docs = self._load_file_paths(new_paths)
+
+        for doc in new_docs:
+            console.print(doc)
+
         logger.warning(f"Loaded {len(new_docs)} new files: {[d.file_id for d in new_docs]}")
         self._sift_documents(new_docs)
         self._finalize_data_and_write_to_disk()
