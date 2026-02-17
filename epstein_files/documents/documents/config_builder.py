@@ -11,9 +11,10 @@ from epstein_files.util.logging import logger
 DEUTSCHE_SOUTHERN_REGEX = re.compile(r"^Deutsche Bank.*(SOUTHERN TRUST|RED HOOK QUARTER)", re.DOTALL)
 EVIDENCE_REGEX = re.compile(r"^ITEM\s+WAS\s+NOT\s+SCANNED")
 FBI_FILE_REGEX = re.compile(r"^(UNCLASSIFIED\s+)?FEDERAL BUREAU OF INVESTIGATION")
-SUBPOENA_REGEX = re.compile(r"GRAND JURY SUBPOENA")
 LEGAL_FILING_REGEX = re.compile(r"^Case (\d+:\d+-.*?) Doc")
+LSJE_FORM_REGEX = re.compile(r".{,5}LSJE, LLC.*Emergency Contact Form", re.DOTALL)
 SOUTHERN_FINANCIAL_REGEX = re.compile(r"^Southern Financial LLC salesforce.com")
+SUBPOENA_REGEX = re.compile(r"GRAND JURY SUBPOENA")
 VALAR_CAPITAL_CALL_REGEX = re.compile(r"^Valor .{,50} Capital Call", re.MULTILINE)
 VI_DAILY_NEWS_REGEX = re.compile(r'virgin\s*is[kl][ai]nds\s*daily\s*news', re.IGNORECASE)
 
@@ -23,10 +24,12 @@ def build_cfg_from_text(text: str) -> DocCfg | None:
     lines = text.split('\n')
     cfg = None
 
-    if FBI_FILE_REGEX.match(text):
+    if FBI_FILE_REGEX.search(text):
         return _cfg(category=Neutral.LEGAL, author=FBI, description='memorandum or report')
-    elif EVIDENCE_REGEX.match(text):
+    elif EVIDENCE_REGEX.search(text):
         return _cfg(category=Neutral.LEGAL, description='photos of collected evidence')
+    elif LSJE_FORM_REGEX.search(text):
+        return _cfg(category=Neutral.BUSINESS, description="emergency contact form for employee of Epstein's LSJE")
     elif SUBPOENA_REGEX.search(text):
         return _cfg(category=Neutral.LEGAL, description='grand jury subpoena or response')
     elif VI_DAILY_NEWS_REGEX.search(text):

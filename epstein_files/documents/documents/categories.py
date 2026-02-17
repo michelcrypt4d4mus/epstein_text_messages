@@ -23,6 +23,7 @@ class Interesting(StrEnum):
     TEXT_MSG = auto()
 
 class Neutral(StrEnum):
+    BUSINESS = auto()
     FINANCE = auto()
     FLIGHT_LOG = auto()
     LEGAL = auto()
@@ -82,7 +83,13 @@ CATEGORY_STYLES = {
 }
 
 # These are the categories we expect to see as OTHER_FILES_[category] variables for in constants.py
-CONSTANT_CATEGORIES = [c for c in Category if c not in [Uninteresting.JSON, Neutral.PRESSER]]
+CONSTANT_CATEGORIES = [
+    c for c in Category if c not in [
+        Neutral.BUSINESS,
+        Neutral.PRESSER,
+        Uninteresting.JSON,
+    ]
+]
 
 
 is_interesting = lambda category: is_in_enum(category, Interesting)
