@@ -14191,9 +14191,9 @@
             },
             {
                 "attachment_file_ids": [
-                    "029304",
+                    "029301",
                     "029302",
-                    "029301"
+                    "029304"
                 ],
                 "attachments": [
                     "image001.jpg",
@@ -34986,8 +34986,8 @@
             },
             {
                 "attachment_file_ids": [
-                    "016699",
-                    "010617"
+                    "010617",
+                    "016699"
                 ],
                 "attachments": [
                     ""
@@ -35793,9 +35793,9 @@
             },
             {
                 "attachment_file_ids": [
-                    "028988",
+                    "011170",
                     "028815",
-                    "011170"
+                    "028988"
                 ],
                 "attachments": [
                     ""
@@ -41129,12 +41129,14 @@
                     "IMDSdecauthorizedJuly122018.pdf"
                 ],
                 "author": "Christopher Dilorio",
+                "description": "whistleblower emails to SEC, rest is visible in EFTA00039689",
                 "file_id": "EFTA00093702",
                 "file_size": 304752,
                 "filename": "EFTA00093702.txt",
                 "num_lines": 4577,
                 "subject": "Fw: Formal appeal for covered action 2015-016/ Knight Capital TCR & Appendix",
                 "timestamp": "2021-09-08T12:37:16",
+                "truncate_to": 102000,
                 "type": "Email"
             },
             {
@@ -41482,7 +41484,6 @@
                     ""
                 ],
                 "author": "Brock Pierce",
-                "description": "whistleblower emails to SEC, rest is visible in EFTA00039689",
                 "file_id": "EFTA00362171",
                 "file_size": 7453,
                 "filename": "EFTA00362171.txt",
@@ -41493,7 +41494,6 @@
                 ],
                 "subject": "Re: 7pm Jeffrey tonight",
                 "timestamp": "2014-09-22T23:19:45",
-                "truncate_to": 102000,
                 "type": "Email"
             },
             {
@@ -41992,6 +41992,23 @@
                 ],
                 "subject": "Invitation: Sharia Coin Brainstorming Session @ Sat Nov II, 2017 2pm - 5:50pm (M",
                 "timestamp": "2017-11-08T23:48:57",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    "Coinbase Global - Amended_and Restated_Voting_Agreement.pdf",
+                    "Coinbase Global - Series_ Purchase_Agreement.pc"
+                ],
+                "author": "Bebe Avdiu",
+                "file_id": "EFTA00468404",
+                "file_size": 6937,
+                "filename": "EFTA00468404.txt",
+                "num_lines": 51,
+                "recipients": [
+                    "Lesley Groff"
+                ],
+                "subject": "Print",
+                "timestamp": "2018-01-29T18:21:31",
                 "type": "Email"
             },
             {
@@ -42636,6 +42653,23 @@
                 "attachments": [
                     ""
                 ],
+                "author": "Steven Sinofsky",
+                "file_id": "EFTA00661348",
+                "file_size": 2765,
+                "filename": "EFTA00661348.txt",
+                "num_lines": 61,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "subject": "Re:",
+                "timestamp": "2014-12-01T22:39:02",
+                "truncate_to": -1,
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    ""
+                ],
                 "author": "Brock Pierce",
                 "file_id": "EFTA00664424",
                 "file_size": 920,
@@ -42984,6 +43018,30 @@
             },
             {
                 "attachments": [
+                    "4855_001.pdf",
+                    "Amended_and_Restated_Co-Sale_Agreement_(Series_B).pdf",
+                    "Amended_and_Restatedinvestor_Rights_Agreement_(Series_B).pdf",
+                    "Amended_and Restated_Voting_Agreement_(Series_B).pdf",
+                    "Capitalization_Table.xls",
+                    "Coinbase Global - Amended_and Restated Certificate of Incorporation.pdf",
+                    "Coinbase_Series -C7pdf",
+                    "Series_t\u00a7tock_Pur \u2014chase_Agrier tiSeries_B).pdf",
+                    "Series_C_Term_Sheet.pdf"
+                ],
+                "author": "Brock Pierce",
+                "file_id": "EFTA00679451",
+                "file_size": 1018,
+                "filename": "EFTA00679451.txt",
+                "num_lines": 11,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "subject": "Fwd: The Stephens brothers - Potential Series C Investors",
+                "timestamp": "2014-12-01T18:18:21",
+                "type": "Email"
+            },
+            {
+                "attachments": [
                     ""
                 ],
                 "author": "Renata Bolotova",
@@ -42998,6 +43056,24 @@
                 ],
                 "subject": "Re: Re:",
                 "timestamp": "2012-02-25T01:23:54",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    ""
+                ],
+                "author": "LinkedIn",
+                "description": "Brock Pierce posted a review of the infamous Russian criminal crypto exchange BTC-e to LinkedIn",
+                "file_id": "EFTA00689503",
+                "file_size": 4074,
+                "filename": "EFTA00689503.txt",
+                "is_interesting": true,
+                "num_lines": 152,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "subject": "Steve Gold's new job, and other updates from your network",
+                "timestamp": "2013-10-07T17:31:09",
                 "type": "Email"
             },
             {
@@ -44345,6 +44421,21 @@
             },
             {
                 "attachments": [
+                    ""
+                ],
+                "author": "Masha Drokova",
+                "file_id": "EFTA00877487",
+                "file_size": 872,
+                "filename": "EFTA00877487.txt",
+                "num_lines": 13,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "timestamp": "2018-02-21T06:21:56",
+                "type": "Email"
+            },
+            {
+                "attachments": [
                     "Valar_Global_Fund_III_LP_-_Capital_Call_9_(Southem_Trust_Company,inc.).pdf"
                 ],
                 "author": "Richard Kahn",
@@ -44408,6 +44499,22 @@
                 "attachments": [
                     ""
                 ],
+                "author": "Richard Kahn",
+                "file_id": "EFTA00895984",
+                "file_size": 1867,
+                "filename": "EFTA00895984.txt",
+                "num_lines": 44,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "subject": "Coinbase",
+                "timestamp": "2018-01-31T19:09:35",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    ""
+                ],
                 "author": "Jeffrey Epstein",
                 "description": "negotiation of repurchase of half of Epstein's stake in Coinbase",
                 "file_id": "EFTA00900908",
@@ -44426,7 +44533,7 @@
                     ""
                 ],
                 "author": "Richard Kahn",
-                "description": "discussion of the sale of Epstein stake in Coinbase",
+                "description": "Epstein makes a large investment in Coinbase that would earn him most of $100 million",
                 "file_id": "EFTA00901772",
                 "file_size": 11168,
                 "filename": "EFTA00901772.txt",
@@ -44678,6 +44785,24 @@
                 ],
                 "subject": "Re: Valar Global Fund III LP - Capital Call 8",
                 "timestamp": "2018-01-03T23:49:32",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    ""
+                ],
+                "author": "Philip Rosedale",
+                "description": "discussion of a symposium on deception and alternative finance",
+                "file_id": "EFTA00926593",
+                "file_size": 1555,
+                "filename": "EFTA00926593.txt",
+                "is_interesting": true,
+                "num_lines": 33,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "subject": "Symposia",
+                "timestamp": "2011-12-17T06:23:19",
                 "type": "Email"
             },
             {
@@ -44969,6 +45094,22 @@
                 "attachments": [
                     ""
                 ],
+                "author": "Philip Rosedale",
+                "file_id": "EFTA00956237",
+                "file_size": 1167,
+                "filename": "EFTA00956237.txt",
+                "num_lines": 23,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "subject": "Re:",
+                "timestamp": "2013-03-06T04:39:10",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    ""
+                ],
                 "author": "Jeffrey Epstein",
                 "file_id": "EFTA00960647",
                 "file_size": 3500,
@@ -45053,6 +45194,22 @@
                 "attachments": [
                     ""
                 ],
+                "author": "Gino Yu",
+                "file_id": "EFTA00972124",
+                "file_size": 4529,
+                "filename": "EFTA00972124.txt",
+                "num_lines": 75,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "subject": "Re: Post-Cuba Event in NYC",
+                "timestamp": "2017-10-23T23:53:07",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    ""
+                ],
                 "author": "Jeffrey Epstein",
                 "file_id": "EFTA00974046",
                 "file_size": 3725,
@@ -45079,6 +45236,22 @@
                 ],
                 "subject": "Re: Valar Fund IV deck & PPM",
                 "timestamp": "2017-10-25T14:37:51",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    ""
+                ],
+                "author": "Masha Drokova",
+                "file_id": "EFTA00974250",
+                "file_size": 4614,
+                "filename": "EFTA00974250.txt",
+                "num_lines": 77,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "subject": "Re: Post-Cuba Event in NYC",
+                "timestamp": "2017-10-25T16:06:07",
                 "type": "Email"
             },
             {
@@ -45731,6 +45904,22 @@
                 "attachments": [
                     ""
                 ],
+                "author": "Brock Pierce",
+                "file_id": "EFTA01001754",
+                "file_size": 886,
+                "filename": "EFTA01001754.txt",
+                "num_lines": 22,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "subject": "Coinbase",
+                "timestamp": "2014-12-03T16:19:31",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    ""
+                ],
                 "author": "Jeffrey Epstein",
                 "file_id": "EFTA01001755",
                 "file_size": 1584,
@@ -45954,7 +46143,7 @@
                 ],
                 "author": "Vincenzo Iozzo",
                 "file_id": "EFTA01004520",
-                "file_size": 898,
+                "file_size": 897,
                 "filename": "EFTA01004520.txt",
                 "num_lines": 17,
                 "recipients": [
@@ -46029,6 +46218,23 @@
                 ],
                 "subject": "Re: Bitmain Follow-up",
                 "timestamp": "2018-08-02T12:25:45",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    ""
+                ],
+                "author": "Vincenzo Iozzo",
+                "file_id": "EFTA01004560",
+                "file_size": 9662,
+                "filename": "EFTA01004560.txt",
+                "num_lines": 155,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "sent_from_device": "Sent from my Iphone",
+                "subject": "Re: Bitmain Follow-up",
+                "timestamp": "2018-08-02T12:30:45",
                 "type": "Email"
             },
             {
@@ -46410,12 +46616,33 @@
             },
             {
                 "attachments": [
+                    "Series_B_Addendum_(FINAL_8-9-18).pdf",
+                    "Blocktree_Private_Opportunities_LLC_- Ist_AR LLC_Agreement_EXECUTED.pdf",
+                    "Series_B_Side_Letter vF.pdf",
+                    "-\u00a7ubscripjon_Agreement_-_Blocktree_Private_Opportunities_LLC.pdf",
+                    "DE_Good_Standing_(Blocktree_Private_Opportunities_LLC).pdf"
+                ],
+                "author": "Vincenzo Iozzo",
+                "file_id": "EFTA01008228",
+                "file_size": 2304,
+                "filename": "EFTA01008228.txt",
+                "num_lines": 35,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "sent_from_device": "Sent from my Iphone",
+                "subject": "Fwd: Radius Deal Does",
+                "timestamp": "2018-08-16T17:07:15",
+                "type": "Email"
+            },
+            {
+                "attachments": [
                     "Redline_Radiusintelligence n Preferred_Stock_Purchase_Agreement_(Series_l-A).pdf",
                     ""
                 ],
                 "author": "Vincenzo Iozzo",
                 "file_id": "EFTA01008230",
-                "file_size": 1382,
+                "file_size": 1386,
                 "filename": "EFTA01008230.txt",
                 "num_lines": 26,
                 "recipients": [
@@ -46423,6 +46650,24 @@
                 ],
                 "subject": "Fwd: Radius Investment Does",
                 "timestamp": "2018-08-16T18:06:56",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    ""
+                ],
+                "author": "Vincenzo Iozzo",
+                "description": "Epstein passes on an investment in Radius",
+                "file_id": "EFTA01008242",
+                "file_size": 2212,
+                "filename": "EFTA01008242.txt",
+                "num_lines": 46,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "sent_from_device": "Sent from my Iphone",
+                "subject": "Re: Radius Deal Docs",
+                "timestamp": "2018-08-16T19:35:12",
                 "type": "Email"
             },
             {
@@ -46566,6 +46811,22 @@
                 ],
                 "subject": "Re: Valar Global Fund IV LP - Draft Subscription Documents \"Action Required\"",
                 "timestamp": "2018-06-12T16:00:14",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    ""
+                ],
+                "author": "Vincenzo Iozzo",
+                "file_id": "EFTA01020019",
+                "file_size": 2513,
+                "filename": "EFTA01020019.txt",
+                "num_lines": 33,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "subject": "Coinbase Series E follow up",
+                "timestamp": "2018-10-12T07:14:09",
                 "type": "Email"
             },
             {
@@ -47425,6 +47686,23 @@
                 "attachments": [
                     ""
                 ],
+                "author": "Brock Pierce",
+                "file_id": "EFTA01059089",
+                "file_size": 2279,
+                "filename": "EFTA01059089.txt",
+                "num_lines": 68,
+                "recipients": [
+                    "Jeffrey Epstein",
+                    "Richard Kahn"
+                ],
+                "subject": "Fwd: FW: Coinbase Investor Newsletter I Nov 2016",
+                "timestamp": "2016-12-16T01:23:46",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    ""
+                ],
                 "author": "Vincenzo Iozzo",
                 "file_id": "EFTA01060993",
                 "file_size": 2823,
@@ -48003,6 +48281,22 @@
                 "attachments": [
                     ""
                 ],
+                "author": "Jeffrey Epstein",
+                "file_id": "EFTA01770220",
+                "file_size": 488,
+                "filename": "EFTA01770220.txt",
+                "num_lines": 11,
+                "recipients": [
+                    "Boris Nikolic"
+                ],
+                "subject": "Re: Philip Rosedale",
+                "timestamp": "2012-02-29T13:32:00",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    ""
+                ],
                 "author": "Renata Bolotova",
                 "author_reason": "\"sneaky dog\"",
                 "author_uncertain": "\"sneaky dog\"",
@@ -48205,6 +48499,22 @@
             },
             {
                 "attachments": [
+                    ""
+                ],
+                "author": "Richard Kahn",
+                "file_id": "EFTA01785924",
+                "file_size": 1801,
+                "filename": "EFTA01785924.txt",
+                "num_lines": 46,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "subject": "Brock",
+                "timestamp": "2016-11-30T13:44:00",
+                "type": "Email"
+            },
+            {
+                "attachments": [
                     "signature.asc"
                 ],
                 "author": "Joi Ito",
@@ -48299,6 +48609,25 @@
                 "sent_from_device": "Sent from my iPhone",
                 "subject": "Re: Board room guide to hacking",
                 "timestamp": "2015-10-11T12:14:00",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    "Untitled attachment 00208.dat",
+                    "Untitled attachment 00211.htm",
+                    "120113_GELDKULTUREN Ablauf Arbeitsstand.pdf",
+                    "Untitled attachment O0214.htm"
+                ],
+                "author": "Linda Stone",
+                "file_id": "EFTA01802168",
+                "file_size": 3279,
+                "filename": "EFTA01802168.txt",
+                "num_lines": 48,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "subject": "Monetary Theory",
+                "timestamp": "2012-01-27T15:46:00",
                 "type": "Email"
             },
             {
@@ -48565,6 +48894,22 @@
                 "attachments": [
                     ""
                 ],
+                "author": "Philip Rosedale",
+                "file_id": "EFTA01896926",
+                "file_size": 2255,
+                "filename": "EFTA01896926.txt",
+                "num_lines": 44,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "subject": "Re:",
+                "timestamp": "2013-03-19T00:51:15",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    ""
+                ],
                 "author": "LinkedIn",
                 "file_id": "EFTA01897111",
                 "file_size": 2881,
@@ -48575,6 +48920,23 @@
                 ],
                 "subject": "Gaddo Cardini's new endorsement, and more updates from your network",
                 "timestamp": "2013-04-08T15:22:35",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    ""
+                ],
+                "author": "Philip Rosedale",
+                "file_id": "EFTA01899565",
+                "file_size": 2083,
+                "filename": "EFTA01899565.txt",
+                "num_lines": 41,
+                "recipients": [
+                    "Jeffrey Epstein",
+                    "Lesley Groff"
+                ],
+                "subject": "Re:",
+                "timestamp": "2013-03-07T23:57:55",
                 "type": "Email"
             },
             {
@@ -48616,6 +48978,21 @@
                 "attachments": [
                     ""
                 ],
+                "file_id": "EFTA01903448",
+                "file_size": 2240,
+                "filename": "EFTA01903448.txt",
+                "num_lines": 49,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "subject": "Philip Rosedale: NEED his EMAIL ADDRESS",
+                "timestamp": "2013-03-06T15:45:17",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    ""
+                ],
                 "file_id": "EFTA01903950",
                 "file_size": 324,
                 "filename": "EFTA01903950.txt",
@@ -48643,6 +49020,22 @@
                 "sent_from_device": "Sent from Windows Mail",
                 "subject": "RE:",
                 "timestamp": "2012-12-30T19:08:54",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    ""
+                ],
+                "author": "Peter Thiel",
+                "file_id": "EFTA01914912",
+                "file_size": 1016,
+                "filename": "EFTA01914912.txt",
+                "num_lines": 23,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "subject": "RE: as i told you",
+                "timestamp": "2014-07-20T19:38:07",
                 "type": "Email"
             },
             {
@@ -50048,7 +50441,7 @@
                 "author": "Lesley Groff",
                 "author_uncertain": true,
                 "file_id": "EFTA02095399",
-                "file_size": 3455,
+                "file_size": 3463,
                 "filename": "EFTA02095399.txt",
                 "num_lines": 82,
                 "recipients": [
@@ -50227,6 +50620,26 @@
                 "sent_from_device": "Sent from my iPhone",
                 "subject": "Re: Jeffrey Epstein",
                 "timestamp": "2012-02-15T12:43:43",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    ""
+                ],
+                "author": "Linda Stone",
+                "author_reason": "\"Hi Linda\"",
+                "author_uncertain": "\"Hi Linda\"",
+                "description": "Epstein planning a symposium \"on Alternative Money or Complementary Currency\" in 2012",
+                "file_id": "EFTA02177147",
+                "file_size": 2045,
+                "filename": "EFTA02177147.txt",
+                "is_interesting": true,
+                "num_lines": 47,
+                "recipients": [
+                    "Lesley Groff"
+                ],
+                "subject": "Re: alternative $",
+                "timestamp": "2012-01-10T18:25:23",
                 "type": "Email"
             },
             {
@@ -51129,6 +51542,24 @@
                 "attachments": [
                     ""
                 ],
+                "author": "Linda Stone",
+                "author_reason": "\"iPhone word substitution\" in signature, which is traced back to \"Linda, thanks\" in EFTA00961792",
+                "file_id": "EFTA02354559",
+                "file_size": 820,
+                "filename": "EFTA02354559.txt",
+                "num_lines": 28,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "sent_from_device": "Typos, misspellings courtesy of iPhone word & thought substitution.",
+                "subject": "Alt currency",
+                "timestamp": "2013-06-27T20:40:00",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    ""
+                ],
                 "author": "Lesley Groff",
                 "file_id": "EFTA02358856",
                 "file_size": 336,
@@ -51178,6 +51609,22 @@
                 "attachments": [
                     ""
                 ],
+                "author": "Brock Pierce",
+                "file_id": "EFTA02365466",
+                "file_size": 911,
+                "filename": "EFTA02365466.txt",
+                "num_lines": 18,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "subject": "Coinbase",
+                "timestamp": "2014-12-02T01:02:00",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    ""
+                ],
                 "author": "Alireza Ittihadieh",
                 "file_id": "EFTA02369832",
                 "file_size": 3097,
@@ -51204,6 +51651,22 @@
                 ],
                 "subject": "Re: Valar update",
                 "timestamp": "2015-08-21T16:34:00",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    ""
+                ],
+                "author": "Brock Pierce",
+                "file_id": "EFTA02371875",
+                "file_size": 932,
+                "filename": "EFTA02371875.txt",
+                "num_lines": 18,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "subject": "Coinbase",
+                "timestamp": "2014-11-14T01:31:00",
                 "type": "Email"
             },
             {
@@ -51397,6 +51860,22 @@
                 "attachments": [
                     ""
                 ],
+                "author": "Brock Pierce",
+                "file_id": "EFTA02392007",
+                "file_size": 962,
+                "filename": "EFTA02392007.txt",
+                "num_lines": 19,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "subject": "Coinbase",
+                "timestamp": "2014-12-02T20:26:00",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    ""
+                ],
                 "author": "Renata Bolotova",
                 "author_reason": "\"sneaky dog\"",
                 "author_uncertain": "\"sneaky dog\"",
@@ -51464,6 +51943,22 @@
                 ],
                 "subject": "Re:",
                 "timestamp": "2012-02-06T14:44:03",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    ""
+                ],
+                "author": "Jeremy Rubin",
+                "file_id": "EFTA02402899",
+                "file_size": 2411,
+                "filename": "EFTA02402899.txt",
+                "num_lines": 40,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "subject": "Fwd: BTC Game Theory",
+                "timestamp": "2015-10-19T20:41:00",
                 "type": "Email"
             },
             {
@@ -51627,6 +52122,23 @@
                     "Jeffrey Epstein"
                 ],
                 "timestamp": "2010-01-19T11:11:13",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    ""
+                ],
+                "author": "Boris Nikolic",
+                "description": "one of Epstein's goals in life was to make a lot of money in virtual currency",
+                "file_id": "EFTA02436105",
+                "file_size": 1592,
+                "filename": "EFTA02436105.txt",
+                "num_lines": 26,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "subject": "RE:",
+                "timestamp": "2009-11-25T21:54:51",
                 "type": "Email"
             },
             {
@@ -52118,6 +52630,22 @@
                 "attachments": [
                     ""
                 ],
+                "author": "Jeffrey Epstein",
+                "file_id": "EFTA02510290",
+                "file_size": 2740,
+                "filename": "EFTA02510290.txt",
+                "num_lines": 54,
+                "recipients": [
+                    "Brock Pierce"
+                ],
+                "subject": "Re: Coinbase",
+                "timestamp": "2018-03-05T16:24:00",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    ""
+                ],
                 "author": "Tyler Shears",
                 "file_id": "EFTA02511281",
                 "file_size": 802,
@@ -52129,6 +52657,38 @@
                 ],
                 "subject": "SCG Follow Up",
                 "timestamp": "2015-02-26T20:51:00",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    ""
+                ],
+                "author": "Jeffrey Epstein",
+                "file_id": "EFTA02514539",
+                "file_size": 2128,
+                "filename": "EFTA02514539.txt",
+                "num_lines": 40,
+                "recipients": [
+                    "Alan Dlugash"
+                ],
+                "subject": "Re: Coinbase",
+                "timestamp": "2018-03-03T00:04:00",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    ""
+                ],
+                "file_id": "EFTA02516264",
+                "file_size": 1206,
+                "filename": "EFTA02516264.txt",
+                "num_lines": 26,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "sent_from_device": "Sent from my iPhone",
+                "subject": "Re: Coinbase",
+                "timestamp": "2018-03-02T22:06:00",
                 "type": "Email"
             },
             {
@@ -52235,6 +52795,23 @@
                 "attachments": [
                     ""
                 ],
+                "author": "Brock Pierce",
+                "file_id": "EFTA02523986",
+                "file_size": 3729,
+                "filename": "EFTA02523986.txt",
+                "num_lines": 82,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "sent_from_device": "Sent from my iPhone",
+                "subject": "Re:",
+                "timestamp": "2018-02-22T19:16:00",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    ""
+                ],
                 "author": "Jeffrey Epstein",
                 "file_id": "EFTA02525282",
                 "file_size": 2835,
@@ -52245,6 +52822,22 @@
                 ],
                 "subject": "Re:",
                 "timestamp": "2018-02-20T14:45:00",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    ""
+                ],
+                "author": "Vincenzo Iozzo",
+                "file_id": "EFTA02529170",
+                "file_size": 5385,
+                "filename": "EFTA02529170.txt",
+                "num_lines": 84,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "subject": "Fwd: Investment Opportunity - Grab Series H Preferred Shares",
+                "timestamp": "2018-06-28T15:10:00",
                 "type": "Email"
             },
             {
@@ -52267,6 +52860,22 @@
                 "attachments": [
                     ""
                 ],
+                "author": "Richard Kahn",
+                "file_id": "EFTA02533329",
+                "file_size": 628,
+                "filename": "EFTA02533329.txt",
+                "num_lines": 14,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "subject": "Coinbase",
+                "timestamp": "2018-02-01T22:08:00",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    ""
+                ],
                 "author": "Masha Drokova",
                 "file_id": "EFTA02534854",
                 "file_size": 305,
@@ -52276,6 +52885,38 @@
                     "Jeffrey Epstein"
                 ],
                 "timestamp": "2018-01-26T04:29:00",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    ""
+                ],
+                "author": "Reid Hoffman",
+                "file_id": "EFTA02535488",
+                "file_size": 2109,
+                "filename": "EFTA02535488.txt",
+                "num_lines": 39,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "subject": "Re:",
+                "timestamp": "2018-01-27T19:43:00",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    ""
+                ],
+                "author": "Jeffrey Epstein",
+                "file_id": "EFTA02536604",
+                "file_size": 1137,
+                "filename": "EFTA02536604.txt",
+                "num_lines": 17,
+                "recipients": [
+                    "Brock Pierce"
+                ],
+                "subject": "Re: Happy Birthday!",
+                "timestamp": "2018-01-21T01:21:00",
                 "type": "Email"
             },
             {
@@ -52635,6 +53276,21 @@
                 "attachments": [
                     ""
                 ],
+                "author": "Jeffrey Epstein",
+                "file_id": "EFTA02596743",
+                "file_size": 958,
+                "filename": "EFTA02596743.txt",
+                "num_lines": 13,
+                "recipients": [
+                    "Reid Hoffman"
+                ],
+                "timestamp": "2014-12-02T11:04:00",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    ""
+                ],
                 "author": "Lesley Groff",
                 "file_id": "EFTA02596951",
                 "file_size": 503,
@@ -52646,6 +53302,22 @@
                     "Lyn Fontanilla"
                 ],
                 "timestamp": "2014-11-30T21:39:00",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    ""
+                ],
+                "author": "Reid Hoffman",
+                "file_id": "EFTA02597021",
+                "file_size": 1106,
+                "filename": "EFTA02597021.txt",
+                "num_lines": 18,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "subject": "Re:",
+                "timestamp": "2014-12-02T12:52:00",
                 "type": "Email"
             },
             {
@@ -52871,6 +53543,22 @@
                     ""
                 ],
                 "author": "Jeffrey Epstein",
+                "file_id": "EFTA02606117",
+                "file_size": 2192,
+                "filename": "EFTA02606117.txt",
+                "num_lines": 61,
+                "recipients": [
+                    "Richard Kahn"
+                ],
+                "subject": "Re: Coinbase",
+                "timestamp": "2018-06-11T18:21:00",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    ""
+                ],
+                "author": "Jeffrey Epstein",
                 "file_id": "EFTA02607982",
                 "file_size": 490,
                 "filename": "EFTA02607982.txt",
@@ -52880,6 +53568,22 @@
                 ],
                 "subject": "Re: Happy New Year!",
                 "timestamp": "2019-01-01T18:54:00",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    ""
+                ],
+                "author": "Jeffrey Epstein",
+                "file_id": "EFTA02608112",
+                "file_size": 2792,
+                "filename": "EFTA02608112.txt",
+                "num_lines": 84,
+                "recipients": [
+                    "Richard Kahn"
+                ],
+                "subject": "Re: Coinbase",
+                "timestamp": "2018-06-11T18:58:00",
                 "type": "Email"
             },
             {
@@ -53198,6 +53902,19 @@
                 "attachments": [
                     ""
                 ],
+                "author": "Brock Pierce",
+                "file_id": "EFTA02630357",
+                "file_size": 2933,
+                "filename": "EFTA02630357.txt",
+                "num_lines": 59,
+                "subject": "Re: Checking in",
+                "timestamp": "2019-03-11T19:41:00",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    ""
+                ],
                 "author": "Richard Kahn",
                 "file_id": "EFTA02633233",
                 "file_size": 5236,
@@ -53263,9 +53980,11 @@
                     ""
                 ],
                 "author": "Aziza Alahmadi",
+                "comment": "Aziza Alahmadi says BTC to fiat is legalized in middle east",
                 "file_id": "EFTA02637315",
                 "file_size": 538,
                 "filename": "EFTA02637315.txt",
+                "is_interesting": true,
                 "num_lines": 14,
                 "recipients": [
                     "Jeffrey Epstein"
@@ -53791,6 +54510,22 @@
                     "Jeffrey Epstein"
                 ],
                 "timestamp": "2014-11-11T10:12:00",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    ""
+                ],
+                "author": "Philip Rosedale",
+                "file_id": "EFTA02720981",
+                "file_size": 1668,
+                "filename": "EFTA02720981.txt",
+                "num_lines": 32,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "subject": "Re:",
+                "timestamp": "2014-08-18T17:19:35",
                 "type": "Email"
             },
             {
@@ -84394,7 +85129,7 @@
         "Gerald Lefcourt": "lawyer, friend of Alan Dershowitz",
         "Ghislaine Maxwell": "Epstein, Epstein's girlfriend, daughter of the spy Robert Maxwell",
         "Gianni Serazzi": "modeling, fashion consultant?",
-        "Gino Yu": "China, professor / game designer in Hong Kong",
+        "Gino Yu": "China, professor / game designer in Hong Kong, worked with Masha Drokova on PR for Epstein (?)",
         "Glenn Dubin": "Dubins, Highbridge Capital Management, married to Epstein's ex-gf Eva",
         "Google Plus": "tech bro, Google+",
         "Gordon Getty": "business, heir to oil tycoon J. Paul Getty",
@@ -84516,6 +85251,7 @@
         "Peter Thiel": "tech bro, Paypal mafia member, founder of Palantir, Facebook investor",
         "Peter Thomas Roth": "friend, student of Epstein at Dalton, skincare company founder",
         "Philip Kafka": "business, president of Prince Concepts (and son of Terry Kafka?)",
+        "Philip Rosedale": "tech bro, Second Life Founder",
         "Police Code Enforcement": "government, Palm Beach buildings code enforcement",
         "Prince Andrew": "Europe, British royal family",
         "Purevsuren Lundeg": "lobbyist, Mongolian ambassador to the UN",
@@ -84574,7 +85310,7 @@
         "Vinit Sahni": "finance, analyst at Deutsche Bank and Goldman Sachs",
         "Vladimir Yudashkin": "modeling, director of the 1 Mother Agency",
         "Yuko Barnaby": "academia, MIT Media Lab Assistant to the Director",
-        "Zubair Khan": "tech bro, Tranchulas cybersecurity, InsightsPod founder, Islamabad / Dubai",
+        "Zubair Khan": "tech bro, Tranchulas cybersecurity, InsightsPod founder, Islamabad / Dubai, friend of Masha Drokova",
         "linkspirit": "friend, Skype username of someone Epstein communicated with",
         "lorraine@mc2mm.com": "modeling, Jean Luc Brunel's MC2 Model Management",
         "pink@mc2mm.com": "modeling, Jean Luc Brunel's MC2 Model Management"
