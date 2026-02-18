@@ -304,10 +304,10 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"((Andy|Adam)\s*)Back",
             r"Balaji(\s*Srinivisan)?",
             r"Barry Silbert",
-            r"Bart\s*Stephens",  # co-founder, Blockchain Capital
+            r"(Brad(ford)?|Bart)\s*Stephens",  # co-founder, Blockchain Capital
             r"Bioptix",  # Now RIOT Blockchain
             r"bitcoin(\s*Foundation)?",
-            r"Bit(Angels|Fury|Main)",
+            r"Bit(Angels|Finex|Fury|Main)",
             r"block ?chain(\s*capital)?",
             r"Blockstream",
             r"Bradley\s*Rotter",
@@ -330,6 +330,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"(Howard\s+)?Lutnic?k",
             r"ICO",
             r"(Jim\s*)Pallotta",  # Media lab advisory board
+            r"Kathryn\s*Haun",
             r"Kraken",
             r"Kyara(\s*Investments?)?(\s*[IV]+)?",  # crypto vehicle with Joi Ito
             r"Layer\s+(1|One)",
@@ -1571,6 +1572,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(IAN_ODONNELL, THIELS_VALAR, r"Ian\s*O'?Donnell|O'?Donnell,\s*Ian"),
             Contact(JAMES_FITZGERALD, THIELS_VALAR, r"James Fitz[g ]eral?d?"),
             Contact('LinkedIn', "LinkedIn", r"Linked[Il]n(\s*Updates)?"),
+            Contact(PHILIP_ROSEDALE, 'Second Life Founder'),
             Contact(PETER_THIEL, "Paypal mafia member, founder of Palantir, Facebook investor"),
             Contact(REID_HOFFMAN, "PayPal mafia member, founder of LinkedIn"),
             Contact('Reuben Kobulnik', THIELS_VALAR),
