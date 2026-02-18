@@ -1,3 +1,5 @@
+from collections import defaultdict
+
 from rich.padding import Padding
 from rich.text import Text
 
@@ -21,6 +23,16 @@ def print_all_timestamps(epstein_files):
 
     no_timestamp = len(epstein_files.unique_documents) - valid - fallbacks
     console.print(f"\nFound {i + 1} documents (no_timestamp={no_timestamp}, valid={valid}, fallback={fallbacks})\n")
+
+
+def print_file_counts(epstein_files) -> None:
+    counts = defaultdict(int)
+
+    for i, doc in enumerate(epstein_files.unique_documents):
+        counts[doc._class_name] += 1
+
+    counts['total'] = i + 1
+    console.print(styled_dict(counts))
 
 
 def _verify_filenames(epstein_files):

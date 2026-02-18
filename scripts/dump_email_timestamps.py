@@ -19,13 +19,14 @@ from epstein_files.output.highlighted_names import HighlightedNames
 from epstein_files.util.constant.names import *
 from epstein_files.util.constants import CONFIGS_BY_ID, EmailCfg
 from epstein_files.util.helpers.data_helpers import *
-from epstein_files.util.helpers.debugging_helper import print_all_timestamps
+from epstein_files.util.helpers.debugging_helper import print_all_timestamps, print_file_counts
 from epstein_files.util.helpers.string_helper import quote
 from epstein_files.util.logging import logger
 from epstein_files.output.rich import bool_txt, console, highlighter, styled_key_value, print_subtitle_panel
 
 
-print_all_timestamps(epstein_files)
+print_file_counts(epstein_files)
+# print_all_timestamps(epstein_files)
 sys.exit()
 
 # Look for possible email files in the DOJ files
