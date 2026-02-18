@@ -22,7 +22,7 @@ from epstein_files.output.highlight_config import get_style_for_name
 from epstein_files.output.rich import (INFO_STYLE, NA_TXT, SKIPPED_FILE_MSG_PADDING, SYMBOL_STYLE,
      add_cols_to_table, build_table, console, highlighter, styled_key_value, prefix_with, styled_dict,
      wrap_in_markup_style)
-from epstein_files.output.sites import EXTRACTS_BASE_URL
+from epstein_files.output.site.sites import EXTRACTS_BASE_URL
 from epstein_files.people.interesting_people import UNINTERESTING_AUTHORS
 from epstein_files.util.constant.names import Name
 from epstein_files.util.constant.strings import *

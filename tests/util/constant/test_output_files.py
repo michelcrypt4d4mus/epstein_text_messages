@@ -1,4 +1,4 @@
-from epstein_files.output.sites import HTML_BUILD_FILENAMES, SiteType
+from epstein_files.output.site.sites import HTML_BUILD_FILENAMES, SiteType
 
 
 for site_type in SiteType:

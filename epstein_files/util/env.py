@@ -5,7 +5,7 @@ from pathlib import Path
 
 from rich_argparse_plus import RichHelpFormatterPlus
 
-from epstein_files.output.sites import *
+from epstein_files.output.site.sites import *
 from epstein_files.util.helpers.env_helpers import get_env_dir
 from epstein_files.util.logging import env_log_level, exit_with_error, logger, set_log_level
 
