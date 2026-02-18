@@ -319,7 +319,9 @@ class Person:
     def print_emails(self) -> list[Email]:
         """Print complete emails to or from a particular 'author'. Returns the Emails that were printed."""
         print_centered(self.info_panel)
-        self.print_emails_table()
+
+        if not args.mobile:
+            self.print_emails_table()
 
         if self.name in SPECIAL_NOTES:
             print_centered(Padding(Panel(SPECIAL_NOTES[self.name], expand=True, padding=(1, 3), style='reverse'), (0, 0, 2, 0)))
