@@ -4,7 +4,7 @@ from collections import defaultdict
 from dataclasses import dataclass, field
 from datetime import datetime, timedelta
 
-from rich.console import Console, ConsoleOptions, RenderResult
+from rich.console import Console, ConsoleOptions, NewLine, RenderResult
 from rich.table import Table
 from rich.text import Text
 
@@ -118,10 +118,12 @@ class MessengerLog(Communication):
 
     def __rich_console__(self, console: Console, options: ConsoleOptions) -> RenderResult:
         yield self.file_info_panel()
-        yield Text('')
+        yield NewLine()
 
         for message in self.messages:
             yield message
+
+        yield NewLine()
 
     @classmethod
     def count_authors(cls, imessage_logs: list['MessengerLog']) -> dict[Name, int]:

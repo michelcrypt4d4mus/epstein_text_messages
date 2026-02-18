@@ -43,7 +43,8 @@ def print_curated_chronological(epstein_files: EpsteinFiles) -> list[Document]:
             other_files_queue.append(doc)
             continue
         elif other_files_queue:
-            console.print(Padding(OtherFile.files_preview_table(other_files_queue), (0, 0, 1, 2)))
+            other_files_table = OtherFile.files_preview_table(other_files_queue, title=None)
+            console.print(Padding(other_files_table, (0, 0, 1, 2)))
             printed_docs.extend(other_files_queue)
             other_files_queue = []
 
@@ -263,8 +264,8 @@ def print_text_messages_section(epstein_files: EpsteinFiles) -> list[MessengerLo
         print_section_summary_table(MessengerLog.summary_table(imessage_logs))
 
     for log_file in imessage_logs:
-        console.print(Padding(log_file))
-        console.line(2)
+        console.print(log_file)
+        console.line()
 
     return imessage_logs
 

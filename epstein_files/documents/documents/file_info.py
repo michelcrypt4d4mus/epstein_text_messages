@@ -139,7 +139,7 @@ class FileInfo:
         return self._build_link(rollcall_doc_url, style, link_txt)
 
     def external_link_markup(self, style: str = '') -> str:
-        return link_markup(self.external_url, self.file_id, style=no_bold(style))
+        return link_markup(self.external_url, self.file_stem, style=no_bold(style))
 
     def external_link_txt(self, style: str = '') -> Text:
         return Text.from_markup(self.external_link_markup(style))

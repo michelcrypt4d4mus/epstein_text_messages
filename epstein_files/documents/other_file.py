@@ -165,9 +165,9 @@ class OtherFile(Document):
             self.log_top_lines(15, msg=timestamps_log_msg, level=logging.DEBUG)
 
     @classmethod
-    def files_preview_table(cls, files: Sequence['OtherFile'], title_pfx: str = '', title: str = '') -> Table:
+    def files_preview_table(cls, files: Sequence['OtherFile'], title_pfx: str = '', title: str | None = '') -> Table:
         """Build a table of `OtherFile` documents."""
-        title = title or f'{title_pfx}Other Files Details in Chronological Order'
+        title = '' if title is None else (title or f'{title_pfx}Other Files Details in Chronological Order')
         table = build_table(title, show_lines=True, title_justify='left' if title else 'center')
         table.add_column('File', justify='center', width=FILENAME_LENGTH)
         table.add_column('Date', justify='center')
