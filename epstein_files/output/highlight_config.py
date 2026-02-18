@@ -738,7 +738,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 emailer_pattern=r"Andrew\s*(L\.\s*)?Farkas|Farkas,\s*Andrew(\s*L\.?)?",
             ),
             Contact(DANGENE_AND_JENNIE_ENTERPRISE, "founders of the members-only CORE club"),
-            Contact(DAVID_STERN, f"emailed Epstein from Moscow, knows chairman of {DEUTSCHE_BANK} (?)", r"David\s*Ste(m|rn)"),
+            Contact(DAVID_STERN, f"emailed Epstein from Moscow, knows chairman of {DEUTSCHE_BANK} (?)", r"David\s*Ste(m|rn?)"),
             Contact(
                 name=JONATHAN_FARKAS,
                 info="heir to the Alexander's department store fortune",
