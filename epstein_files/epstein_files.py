@@ -369,7 +369,10 @@ class EpsteinFiles:
         self.save_to_disk()
 
     def _find_email_attachments_and_set_is_first_for_user(self) -> None:
-        for other_file in (self.other_files + self.doj_files):
+        for email in self.emails:
+            email.attached_docs = []  # Remove all attachments before re-finding them if it's a repair
+
+        for other_file in self.other_files:
             if other_file.config and other_file.config.attached_to_email_id:
                 email: Email = self.get_id(other_file.config.attached_to_email_id, required_type=Email)
                 email.attached_docs.append(other_file)
