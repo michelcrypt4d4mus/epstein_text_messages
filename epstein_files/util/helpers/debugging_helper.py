@@ -8,9 +8,19 @@ from epstein_files.util.logging import logger
 from epstein_files.output.rich import bool_txt, console, indent_txt, styled_key_value, styled_dict
 
 
-def _show_timestamps(epstein_files):
-    for doc in epstein_files.doj_files:
-        doc.warn(f"timestamp: {doc.timestamp}")
+def print_all_timestamps(epstein_files):
+    fallbacks = valid = 0
+
+    for i, doc in enumerate(epstein_files.unique_documents):
+        console.print(doc.summary)
+
+        if doc.timestamp == FALLBACK_TIMESTAMP:
+            fallbacks += 1
+        elif doc.timestamp:
+            valid += 1
+
+    no_timestamp = len(epstein_files.unique_documents) - valid - fallbacks
+    console.print(f"\nFound {i + 1} documents (no_timestamp={no_timestamp}, valid={valid}, fallback={fallbacks})\n")
 
 
 def _verify_filenames(epstein_files):

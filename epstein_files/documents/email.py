@@ -304,9 +304,8 @@ class Email(Communication):
     def __post_init__(self):
         super().__post_init__()
 
-        if self.config and self.config.recipients:
-            self.recipients = self.config.recipients
-        else:
+        # Recipients could have already been set from the config in superclass
+        if not self.recipients:
             for recipient in self.header.recipients:
                 self.recipients.extend(extract_emailer_names(recipient))
 
@@ -390,7 +389,6 @@ class Email(Communication):
     def _extract_author(self) -> None:
         """Overloads superclass method, called at instantiation time."""
         self._extract_header()
-        super()._extract_author()
 
         if not self.author and self.header.author:
             authors = extract_emailer_names(self.header.author)

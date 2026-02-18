@@ -12,7 +12,7 @@ from rich.table import Table
 from yaralyzer.util.helpers.interaction_helper import ask_to_proceed
 
 from epstein_files.documents.document import Document
-from epstein_files.documents.documents.doc_cfg import Metadata
+from epstein_files.documents.documents.doc_cfg import EMAIL_PROPS_TO_COPY, PROPS_TO_COPY, Metadata
 from epstein_files.documents.documents.search_result import SearchResult
 from epstein_files.documents.doj_file import DojFile
 from epstein_files.documents.email import Email
@@ -25,14 +25,11 @@ from epstein_files.output.rich import console
 from epstein_files.people.person import INVALID_FOR_EPSTEIN_WEB, Person
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constants import *
-from epstein_files.util.env import DOCS_DIR, args, logger
+from epstein_files.util.env import args, logger
 from epstein_files.util.helpers.data_helpers import flatten, json_safe, uniquify
 from epstein_files.util.helpers.file_helper import all_txt_paths, doj_txt_paths, extract_file_id, file_size_str
 from epstein_files.util.timer import Timer
 
-# TODO: also copy the config, get rid of synthetic configs
-DUPLICATE_PROPS_TO_COPY = ['author', 'timestamp']
-EMAIL_PROPS_TO_COPY = DUPLICATE_PROPS_TO_COPY + ['recipients']
 SLOW_FILE_SECONDS = 1.0
 
 
@@ -342,7 +339,7 @@ class EpsteinFiles:
                 continue
 
             original = self.get_id(doc.duplicate_of_id)
-            props_to_copy = EMAIL_PROPS_TO_COPY if isinstance(doc, Email) else DUPLICATE_PROPS_TO_COPY
+            props_to_copy = (EMAIL_PROPS_TO_COPY + PROPS_TO_COPY) if isinstance(doc, Email) else PROPS_TO_COPY
 
             for field_name in props_to_copy:
                 original_prop = getattr(original, field_name)
@@ -376,17 +373,16 @@ class EpsteinFiles:
         for email in self.emails:
             email.attached_docs = []  # Remove all attachments before re-finding them if it's a repair
 
-        for other_file in self.other_files:
-            if other_file.config and other_file.config.attached_to_email_id:
-                email: Email = self.get_id(other_file.config.attached_to_email_id, required_type=Email)
-                email.attached_docs.append(other_file)
+        for file in [f for f in self.other_files if f.config and f.config.attached_to_email_id]:
+            email: Email = self.get_id(file.config.attached_to_email_id, required_type=Email)
+            email.attached_docs.append(file)
 
-                if other_file.timestamp \
-                        and other_file.timestamp != email.timestamp \
-                        and not other_file.config_timestamp:
-                    other_file.warn(f"Overwriting '{other_file.timestamp}' with {email}'s timestamp {email.timestamp}")
+            if file.config.timestamp:  # Don't overwrite configured timestamps (think of a book or article attachment)
+                continue
+            elif file.timestamp and file.timestamp != email.timestamp:
+                file.warn(f"Overwriting '{file.timestamp}' with {email}'s timestamp {email.timestamp}")
 
-                other_file.timestamp = email.timestamp
+            file.timestamp = email.timestamp
 
         # Set the _is_first_for_user flag on the earliest Email we have for each user.
         for emailer in self.emailers:

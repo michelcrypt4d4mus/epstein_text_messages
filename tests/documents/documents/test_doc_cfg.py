@@ -177,6 +177,11 @@ def test_books(epstein_files):
     assert book.config.complete_description == 'book titled "The S&M Feminist" by Clarisse Thorn'
 
 
+def test_props_to_copy(get_email):
+    email = get_email('EFTA00039890')
+    assert email.config.props_to_copy == {'author': 'USANYS'}
+
+
 def test_misc_cfg():
     misc_cfg = CONFIGS_BY_ID['EFTA00006100']
     assert not misc_cfg.complete_description
