@@ -1,10 +1,11 @@
 """
 Functions that build rich Text links.
 """
-
 from rich.text import Text
 
 from epstein_files.util.constant.strings import ARCHIVE_LINK_COLOR
+
+SUBSTACK_POST_LINK_STYLE = 'bright_cyan'
 
 
 def link_markup(

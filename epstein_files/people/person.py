@@ -19,6 +19,7 @@ from epstein_files.output.highlighted_names import HighlightedNames, Highlighted
 from epstein_files.output.rich import (GREY_NUMBERS, TABLE_TITLE_STYLE, build_table,
      console, join_texts, print_centered)
 from epstein_files.people.contact import Contact
+from epstein_files.people.interesting_people import SPECIAL_NOTES
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constant.urls import *
 from epstein_files.util.constants import *
@@ -149,6 +150,9 @@ class Person:
 
         if self.info_with_category:
             elements.append(Text(f"({self.info_with_category})", justify='center', style=f"{style} italic"))
+
+        if self.name in SPECIAL_NOTES:
+            elements.append(Padding(Panel(SPECIAL_NOTES[self.name], padding=(1, 3)), (1, 0, 0, 0)))
 
         return Padding(Group(*elements), (2, 0, 1, 0))
 

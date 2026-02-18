@@ -10,7 +10,7 @@ from epstein_files.util.env import args
 from epstein_files.util.constant.output_files import SiteType
 from epstein_files.util.constant.strings import TEXT_LINK
 from epstein_files.util.helpers.file_helper import coerce_file_stem
-from epstein_files.util.helpers.link_helper import link_markup, link_text_obj
+from epstein_files.util.helpers.link_helper import SUBSTACK_POST_LINK_STYLE, link_markup, link_text_obj
 from epstein_files.util.helpers.string_helper import remove_question_marks
 
 # External site names
@@ -32,6 +32,14 @@ EPSTEIN_DOCS_URL = 'https://epstein-docs.github.io'
 OVERSIGHT_REPUBS_PRESSER_URL = 'https://oversight.house.gov/release/oversight-committee-releases-additional-epstein-estate-documents/'
 OVERSIGHT_DRIVE_URL = 'https://drive.google.com/drive/folders/1hTNH5woIRio578onLGElkTWofUSWRoH_'
 SUBSTACK_URL = 'https://cryptadamus.substack.com/p/i-made-epsteins-text-messages-great'
+SUBSTACK_INSIGHTS_POD = 'https://cryptadamus.substack.com/p/maybe-the-russian-bots-were-jeffrey'
+
+SUBSTACK_INSIGHTS_LINK = link_text_obj(
+    SUBSTACK_INSIGHTS_POD,
+    '"Maybe The Russian Bots Were Jeffrey Epstein The Whole Time"',
+    SUBSTACK_POST_LINK_STYLE
+)
+
 # DOJ docs
 DOJ_2026_URL = 'https://www.justice.gov/epstein/doj-disclosures'
 DOJ_SEARCH_URL = 'https://www.justice.gov/epstein/search'
