@@ -1895,6 +1895,7 @@ OTHER_FILES_MONEY = [
     DocCfg(id='EFTA00007781', description='paychecks signed by Epstein deposited at Colonial Bank', date='2005-08-12'),
     DocCfg(id='EFTA00811866', description="list of Epstein's bank accounts"),
     DocCfg(id='EFTA01273102', description=f"payment from Epstein to {RENATA_BOLOTOVA}'s father's account at Sberbank"),
+    DocCfg(id='EFTA00238499', description='wire transfer to Signature Bank account'),
     DocCfg(id='EFTA00000476', replace_text_with='photo of JEFFREY EPSTEIN CASH DISBURSEMENTS for the month 2006-09', date='2006-09-01'),
 ]
 
@@ -1911,6 +1912,7 @@ OTHER_FILES_LETTER = [
         date='2016-06-24',  # date is based on Brexit reference but he could be backtesting,
         description=f"about algorithmic trading",
     ),
+    CommunicationCfg(id='EFTA00007609', recipients=['Alberto'], duplicate_ids=['EFTA00007582']),
     CommunicationCfg(id='026134', recipients=['George'], description=f'about opportunities to buy banks in Ukraine'),
     CommunicationCfg(id='EFTA02731023', author='Senator Ron Wyden', recipients=[LEON_BLACK], is_interesting=False),
     blaine_letter(id='019086', date='2015-05-27', suffix='naming various Putin puppet regimes'),
@@ -2324,6 +2326,9 @@ OTHER_FILES_TEXT_MSG = [
         is_interesting=True,
     ),
     DocCfg(id='033434', description=f"{SCREENSHOT} iMessage chat labeled 'Edwards'"),
+    CommunicationCfg(id='EFTA01611042', author=ED_BOYLE, recipients=[None, MARIA_PRUSAKOVA]),
+    DocCfg(id='EFTA01611898', description=f"screenshot of recent contacts in an iPhone"),
+    CommunicationCfg(id='EFTA02731525', author=LEON_BLACK, author_uncertain=True),
 ]
 
 OTHER_FILES_JUNK = [

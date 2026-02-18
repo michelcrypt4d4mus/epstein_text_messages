@@ -87,6 +87,7 @@ CATEGORY_PREAMBLES = {
     Interesting.LETTER: 'letter',
     Interesting.REPUTATION: REPUTATION_MGMT,
     Interesting.RESUMÉ: 'professional resumé',
+    Interesting.TEXT_MSG: 'text message',
     Neutral.FLIGHT_LOG: Neutral.FLIGHT_LOG.replace('_', ' '),
     Neutral.PRESSER: Neutral.PRESSER.replace('_', ' '),
     Neutral.SKYPE_LOG: Neutral.SKYPE_LOG.replace('_', ' '),
@@ -161,7 +162,7 @@ class DocCfg:
             description = join_truthy(preamble, description)
         elif self.category == Neutral.FINANCE and self.is_description_a_title:
             author_separator = ' report: '
-        elif self.category == Interesting.LETTER:
+        elif self.category in [Interesting.LETTER, Interesting.TEXT_MSG]:
             description = join_truthy(preamble, self.author, ' from ')
             description = join_truthy(description, self.recipients_str, ' to ')
             description = join_truthy(description, self.description)

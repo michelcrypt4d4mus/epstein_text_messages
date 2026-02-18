@@ -9,8 +9,9 @@ from epstein_files.util.logging import logger
 
 # Inferred category config regexes
 DEUTSCHE_SOUTHERN_REGEX = re.compile(r"^Deutsche Bank.*(SOUTHERN TRUST|RED HOOK QUARTER)", re.DOTALL)
-EVIDENCE_REGEX = re.compile(r"^ITEM\s+WAS\s+NOT\s+SCANNED")
+EVIDENCE_REGEX = re.compile(r".{,1000}ITEM\s+WAS\s+NOT\s+SCANNED")
 FBI_FILE_REGEX = re.compile(r"^(UNCLASSIFIED\s+)?FEDERAL BUREAU OF INVESTIGATION")
+HARD_DRIVE_REGEX = re.compile(r"westerndigital|Gold SATA")
 LEGAL_FILING_REGEX = re.compile(r"^Case (\d+:\d+-.*?) Doc")
 LSJE_FORM_REGEX = re.compile(r".{,5}LSJE,\s+LLC.*Emergency\s+Contact\s+Form", re.DOTALL)
 SOUTHERN_FINANCIAL_REGEX = re.compile(r"^Southern Financial LLC salesforce.com")
@@ -44,6 +45,8 @@ def build_cfg_from_text(text: str) -> DocCfg | None:
         return valar_cfg('requesting money previously promised by Epstein to invest in a new opportunity')
     elif (case_match := LEGAL_FILING_REGEX.search(text)):
         return _cfg(category=Neutral.LEGAL, description=f"legal filing in case {case_match.group(1)}")
+    elif len(text) < 2600 and HARD_DRIVE_REGEX.search(text):
+        return _cfg(category=Neutral.MISC, description='photo of a hard drive')
     elif lines[0].lower() == 'valuation report':
         cfg = _cfg(category=Neutral.FINANCE, description="valuations of Epstein's investments", is_interesting=True)
 
