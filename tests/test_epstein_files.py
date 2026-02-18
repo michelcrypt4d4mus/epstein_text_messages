@@ -40,6 +40,16 @@ def test_imessage_text_counts(epstein_files):
 
 
 def test_interesting_other_files(epstein_files):
+    missing_file_ids = []
+
+    for file in epstein_files.interesting_other_files:
+        if file.file_id not in INTERESTING_FILE_IDS:
+            missing_file_ids.append(file.file_id)
+            console.print(f"\n{file.file_id} not in interesting list!\n", file)
+
+    if missing_file_ids:
+        print(f"Missing file IDs in interesting list:\n\n{missing_file_ids}\n")
+
     interesting_other_file_ids = sorted([f.file_id for f in epstein_files.interesting_other_files])
     assert interesting_other_file_ids == sorted(INTERESTING_FILE_IDS)
 
