@@ -20,7 +20,8 @@ def test_info_sentences(get_email):
     assert len(email_with_description.info) == 2
 
 
-def test_interesting(get_email):
+def test_is_interesting(get_email, ito_email):
+    assert ito_email.is_interesting
     email = get_email('025041')
     assert not email.config.is_of_interest
     assert not email.is_interesting

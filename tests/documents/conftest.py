@@ -43,6 +43,11 @@ def harvard_poetry_cfg(harvard_poetry_doc) -> DocCfg:
 
 
 @pytest.fixture
+def ito_email(get_email) -> Email:
+    return get_email('EFTA00866712')
+
+
+@pytest.fixture
 def messenger_log() -> MessengerLog:
     return MessengerLog.from_file_id(MESSENGER_LOG_ID)
 

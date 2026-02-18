@@ -13,6 +13,10 @@ FILENAME_LENGTH = len(HOUSE_OVERSIGHT_PREFIX) + 6
 KB = 1024
 MB = KB * KB
 
+all_txt_paths = lambda: doj_txt_paths() + oversight_txt_paths()
+doj_txt_paths = lambda: [f for f in DOJ_TXTS_20260130_DIR.glob('**/*.txt')] if DOJ_TXTS_20260130_DIR else []
+oversight_txt_paths = lambda: [f for f in DOCS_DIR.iterdir() if f.is_file() and not f.name.startswith('.')]
+
 file_size = lambda file_path: Path(file_path).stat().st_size
 
 
@@ -85,10 +89,6 @@ def extract_file_id(filename_or_id: int | str | Path) -> str:
         return file_match.group(1)
     else:
         raise RuntimeError(f"Failed to extract file ID from '{filename_or_id}' (type: {type(filename_or_id).__name__}!")
-
-
-def doj_txt_paths() -> list[Path]:
-    return [f for f in DOJ_TXTS_20260130_DIR.glob('**/*.txt')] if DOJ_TXTS_20260130_DIR else []
 
 
 def file_size_str(file_path: str | Path, digits: int | None = None):

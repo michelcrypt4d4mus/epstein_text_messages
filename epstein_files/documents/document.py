@@ -21,6 +21,7 @@ from epstein_files.documents.emails.email_header import DETECT_EMAIL_REGEX
 from epstein_files.output.rich import (INFO_STYLE, NA_TXT, SKIPPED_FILE_MSG_PADDING, SYMBOL_STYLE,
      add_cols_to_table, build_table, console, highlighter, styled_key_value, prefix_with, styled_dict,
      wrap_in_markup_style)
+from epstein_files.people.interesting_people import UNINTERESTING_AUTHORS
 from epstein_files.util.constant.names import Name
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constant.output_files import EXTRACTS_BASE_URL
@@ -134,6 +135,11 @@ class Document:
             return ''
 
     @property
+    def config_description_txt(self) -> Text | None:
+        """Add parentheses to `self.config.description`."""
+        return highlighter(Text(self.config_description, style=INFO_STYLE)) if self.config_description else None
+
+    @property
     def config_replace_text_with(self) -> str | None:
         """Configured replacement text."""
         if self.config and self.config.replace_text_with:
@@ -188,10 +194,7 @@ class Document:
     @property
     def info(self) -> list[Text]:
         """0 to 2 sentences containing the info_txt() as well as any configured description."""
-        return without_falsey([
-            self.subheader,
-            highlighter(Text(self.config_description, style=INFO_STYLE)) if self.config_description else None
-        ])
+        return without_falsey([self.subheader, self.config_description_txt])
 
     @property
     def is_attribution_uncertain(self) -> bool:
@@ -215,12 +218,16 @@ class Document:
     def is_interesting(self) -> bool | None:
         """
         If `self.config.is_of_interest` returns a bool use that, otherwise house oversight files are
-        interesting if they are empty. Everything else returns `None`.
+        interesting if they are empty and uninteresting authors are uninteresting.
+        Checking of `TEXTERS_OF_INTEREST` etc. is left to the relevant subclass in cases where this
+        function returns None.
         """
         if self.config and self.config.is_of_interest is not None:
             return self.config.is_of_interest
         elif self.file_info.is_house_oversight_file and not (self.author or self.config):
             return True
+        elif self.author in UNINTERESTING_AUTHORS:
+            return False
 
     @property
     def length(self) -> int:
@@ -278,7 +285,7 @@ class Document:
     def summary(self) -> Text:
         """Summary of this file for logging. Subclasses should extend with a method that closes the open '['."""
         txt = Text('').append(self._class_name, style=self._class_style)
-        txt.append(f" {self.file_path.stem}", style=FILENAME_STYLE)
+        txt.append(f" {self.file_id}", style=FILENAME_STYLE)
 
         if self.timestamp:
             timestamp_str = remove_zero_time(self.timestamp).replace('T', ' ')

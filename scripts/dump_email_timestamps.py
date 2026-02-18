@@ -17,7 +17,6 @@ from epstein_files.documents.other_file import OtherFile
 from epstein_files.output.highlight_config import HIGHLIGHT_GROUPS, get_style_for_name
 from epstein_files.output.highlighted_names import HighlightedNames
 from epstein_files.util.constant.names import *
-from epstein_files.util.constant.strings import LETTER
 from epstein_files.util.constants import CONFIGS_BY_ID, EmailCfg
 from epstein_files.util.helpers.data_helpers import *
 from epstein_files.util.helpers.debugging_helper import print_interesting_doc_panels_and_props

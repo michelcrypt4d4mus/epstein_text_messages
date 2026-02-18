@@ -1,5 +1,6 @@
 import time
 from dataclasses import dataclass, field
+from typing import Sequence
 
 from epstein_files.util.logging import logger
 
@@ -10,7 +11,7 @@ class Timer:
     checkpoint_at: float = field(default_factory=lambda: time.perf_counter())
     decimals: int = 2
 
-    def log_section_complete(self, label: str, all_docs: list, printed_docs: list) -> None:
+    def log_section_complete(self, label: str, all_docs: Sequence, printed_docs: Sequence) -> None:
         num_skipped = len(all_docs) - len(printed_docs)
         prefix = suffix = ''
 

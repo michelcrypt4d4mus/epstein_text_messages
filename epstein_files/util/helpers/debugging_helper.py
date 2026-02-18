@@ -22,6 +22,7 @@ def _verify_filenames(epstein_files):
 
 
 def print_interesting_doc_panels_and_props(epstein_files, sort_by_category: bool = True):
+    """Only prints OtherFile objects."""
     num_printed = 0
     num_interesting = 0
 

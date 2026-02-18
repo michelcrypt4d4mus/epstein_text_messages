@@ -2,7 +2,7 @@ from epstein_files.util.constant.names import *
 
 
 EMAIL_AUTHOR_COUNTS = {
-    None: 91,
+    None: 92,
     "Abi Schwinck": 1,
     AL_SECKEL: 8,
     "Alain Forget": 3,
@@ -65,7 +65,7 @@ EMAIL_AUTHOR_COUNTS = {
     "David Haig": 1,
     "David Mitchell": 1,
     DAVID_SCHOEN: 11,
-    DAVID_STERN: 10,
+    DAVID_STERN: 19,
     DEEPAK_CHOPRA: 18,
     DIANE_ZIMAN: 1,
     'DOJ Chief Psychologist': 1,
@@ -205,7 +205,7 @@ EMAIL_AUTHOR_COUNTS = {
     'Records Management (Sun Sentinel?)': 1,
     REID_HOFFMAN: 1,
     REID_WEINGARTEN: 72,
-    RENATA_BOLOTOVA: 56,
+    RENATA_BOLOTOVA: 57,
     "Richard Merkin": 3,
     ROBERT_LAWRENCE_KUHN: 26,
     ROBERT_TRIVERS: 15,

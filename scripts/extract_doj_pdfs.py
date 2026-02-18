@@ -56,4 +56,4 @@ for dir in [d for d in DOJ_PDFS_20260130_DIR.glob('*') if d.is_dir()]:
         logger.debug(result.output_logs(), extra={"highlighter": None})
         console.line()
 
-EpsteinFiles.get_files().reload_doj_files()
+EpsteinFiles.get_files().load_new_files()

@@ -40,28 +40,6 @@ FINANCIAL_REPORTS_AUTHORS = [
     'S&P',
 ]
 
-INTERESTING_AUTHORS = [
-    ANTHONY_SCARAMUCCI,
-    ANIL_AMBANI,
-    EDWARD_JAY_EPSTEIN,
-    EHUD_BARAK,
-    JOI_ITO,
-    # NOAM_CHOMSKY,
-    MICHAEL_WOLFF,
-    STACEY_PLASKETT,
-    STEVE_BANNON,
-    SVETLANA_POZHIDAEVA,
-]
-
-UNINTERESTING_AUTHORS = [
-    GORDON_GETTY,
-    LAWRENCE_KRAUSS,
-    NOBEL_CHARITABLE_TRUST,
-    PALM_BEACH_CODE_ENFORCEMENT,
-    PALM_BEACH_WATER_COMMITTEE,
-    UN_GENERAL_ASSEMBLY,
-]
-
 # Description prefixes we are uninterested in
 UNINTERESTING_PREFIXES = [
     'article about',
@@ -102,13 +80,14 @@ NON_METADATA_FIELDS = [
 
 # Categories where we want to include the category name at start of the description string
 CATEGORY_PREAMBLES = {
-    Uninteresting.BOOK: 'book titled',
     Interesting.LETTER: 'letter',
-    Neutral.PRESSER: Neutral.PRESSER.replace('_', ' '),
     Interesting.REPUTATION: REPUTATION_MGMT,
     Interesting.RESUMÉ: 'professional resumé',
+    Neutral.FLIGHT_LOG: Neutral.FLIGHT_LOG.replace('_', ' '),
+    Neutral.PRESSER: Neutral.PRESSER.replace('_', ' '),
     Neutral.SKYPE_LOG: Neutral.SKYPE_LOG.replace('_', ' '),
     Neutral.TWEET: Neutral.TWEET.title(),
+    Uninteresting.BOOK: 'book titled',
 }
 
 
@@ -264,11 +243,8 @@ class DocCfg:
         elif self.is_interesting is not None:
             return self.is_interesting
 
-        # author field check
-        if self.author in INTERESTING_AUTHORS:
-            return True
         # category field checks
-        elif is_interesting(self.category):
+        if is_interesting(self.category):
             return True
         elif self.category == Category.FINANCE and self.author is not None:
             return False

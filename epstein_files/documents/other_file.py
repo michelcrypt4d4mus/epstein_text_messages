@@ -19,6 +19,7 @@ from epstein_files.documents.documents.doc_cfg import DocCfg, Metadata
 from epstein_files.documents.documents.file_info import FileInfo
 from epstein_files.output.highlight_config import QUESTION_MARKS_TXT, styled_category
 from epstein_files.output.rich import build_table, highlighter
+from epstein_files.people.interesting_people import PERSONS_OF_INTEREST
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constants import *
 from epstein_files.util.helpers.data_helpers import days_between, remove_timezone, uniquify
@@ -72,6 +73,16 @@ class OtherFile(Document):
         """Returns '???' for missing category."""
         # TODO: create synthetic DocCfg so we don't have to handle QUESTION_MARKS return here
         return styled_category(self.category) if self.category else QUESTION_MARKS_TXT
+
+    @property
+    def is_interesting(self) -> bool | None:
+        """Junk emails are not interesting."""
+        if (is_interesting := super().is_interesting) is not None:
+            return is_interesting
+        elif self.author is None and self.file_info.is_house_oversight_file:
+            return True
+        elif self.author is not None and self.author in PERSONS_OF_INTEREST:
+            return True
 
     @property
     def metadata(self) -> Metadata:

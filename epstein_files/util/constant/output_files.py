@@ -29,6 +29,7 @@ BASE_URL = f"{GH_PAGES_BASE_URL}/{GH_REPO_NAME}"
 class SiteType(StrEnum):
     CHRONOLOGICAL_EMAILS = auto()
     CURATED = auto()
+    CURATED_CHRONOLOGICAL = auto()
     DOJ_FILES = auto()
     GROUPED_EMAILS = auto()
     #JSON_FILES = auto()
@@ -79,28 +80,30 @@ class SiteType(StrEnum):
 
 
 HTML_BUILD_FILENAMES = {
-    SiteType.CHRONOLOGICAL_EMAILS: f'chronological_emails.html',
-    SiteType.CURATED:              f'index.html',
-    SiteType.DOJ_FILES:            f'doj_2026-01-30_non_email_files.html',
-    SiteType.GROUPED_EMAILS:       f'emails_grouped_by_counterparty.html',
-    SiteType.JSON_METADATA:        f'file_metadata_{EPSTEIN_FILES_NOV_2025}.json',
-    SiteType.OTHER_FILES_TABLE:    f'other_files_table.html',
-    SiteType.TEXT_MESSAGES:        f'text_messages_{EPSTEIN_FILES_NOV_2025}.html',
-    SiteType.WORD_COUNT:           f'communication_word_count.html',
+    SiteType.CHRONOLOGICAL_EMAILS:  f'chronological_emails.html',
+    SiteType.CURATED:               f'index.html',
+    SiteType.CURATED_CHRONOLOGICAL: f"curated_chronological.html",
+    SiteType.DOJ_FILES:             f'doj_2026-01-30_non_email_files.html',
+    SiteType.GROUPED_EMAILS:        f'emails_grouped_by_counterparty.html',
+    SiteType.JSON_METADATA:         f'file_metadata_{EPSTEIN_FILES_NOV_2025}.json',
+    SiteType.OTHER_FILES_TABLE:     f'other_files_table.html',
+    SiteType.TEXT_MESSAGES:         f'text_messages_{EPSTEIN_FILES_NOV_2025}.html',
+    SiteType.WORD_COUNT:            f'communication_word_count.html',
 #     SiteType.EPSTEIN_WORD_COUNT: 'epstein_texts_and_emails_word_count.html'),
 }
 
 # Order matters, it's the order the links are shown in the header
 # Colons are used to break and parenthesize display
 SITE_DESCRIPTIONS = {
-    SiteType.CURATED:              f"curated:by my interests",
-    SiteType.GROUPED_EMAILS:       f"emailers:emails grouped by counterparty",
-    SiteType.CHRONOLOGICAL_EMAILS: f"emails:pure chronological order",
-    SiteType.TEXT_MESSAGES:        f"text messages:{HOUSE_OVERSIGHT_TRANCHE}",
-    SiteType.OTHER_FILES_TABLE:    f"other:files that are not emails or texts",
-    SiteType.WORD_COUNT:           f"word count:of Epstein's communications",
-    SiteType.DOJ_FILES:            f"doj files:raw OCR text {DOJ_2026_TRANCHE}",
-    SiteType.JSON_METADATA:        f"metadata:attribution reasons, categories",
+    SiteType.CURATED:               f"curated:by my interests, files grouped by type",
+    SiteType.CURATED_CHRONOLOGICAL: f"curated chronological:all types intermingled",
+    SiteType.GROUPED_EMAILS:        f"emailers:emails grouped by counterparty",
+    SiteType.CHRONOLOGICAL_EMAILS:  f"emails:pure chronological order",
+    SiteType.TEXT_MESSAGES:         f"text messages:{HOUSE_OVERSIGHT_TRANCHE}",
+    SiteType.OTHER_FILES_TABLE:     f"other:files that are not emails or texts",
+    SiteType.WORD_COUNT:            f"word count:of Epstein's communications",
+    SiteType.DOJ_FILES:             f"doj files:raw OCR text {DOJ_2026_TRANCHE}",
+    SiteType.JSON_METADATA:         f"metadata:attribution reasons, categories",
 }
 
 

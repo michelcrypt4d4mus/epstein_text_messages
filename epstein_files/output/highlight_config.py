@@ -234,7 +234,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         style='chartreuse2',
         patterns=[
             r"CBD",
-            r"cannabis",
+            r"cann?abis",
             r"marijuana",
             r"psychedelic",
             r"THC",
@@ -738,7 +738,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 emailer_pattern=r"Andrew\s*(L\.\s*)?Farkas|Farkas,\s*Andrew(\s*L\.?)?",
             ),
             Contact(DANGENE_AND_JENNIE_ENTERPRISE, "founders of the members-only CORE club"),
-            Contact(name=DAVID_STERN, info=f"emailed Epstein from Moscow, knows chairman of {DEUTSCHE_BANK} (?)"),
+            Contact(DAVID_STERN, f"emailed Epstein from Moscow, knows chairman of {DEUTSCHE_BANK} (?)", r"David\s*Ste(m|rn?)"),
             Contact(
                 name=JONATHAN_FARKAS,
                 info="heir to the Alexander's department store fortune",
@@ -1682,7 +1682,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"USVI",
             r"(?<!stein |vis-a-)VI(?!s-a-)",
             r"(The\s*)?Virgin\s*Is(al|la)nd?s(\s*Daily\s*News)?",  # Hard to make this work right
-            r"(West\s*)?Palm\s*Beach(\s*County)?(?!\s*(Daily|Post))",
+            r"(West\s*)?Palm\s*Beach(\s*County)?(?!\s*(Daily|Police|Post))",
         ],
     ),
     HighlightedNames(

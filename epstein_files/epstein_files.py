@@ -6,7 +6,7 @@ from collections import defaultdict
 from dataclasses import dataclass, field
 from datetime import datetime
 from pathlib import Path
-from typing import Sequence, Type, cast
+from typing import Mapping, Sequence, Type, cast
 
 from rich.table import Table
 
@@ -20,12 +20,13 @@ from epstein_files.documents.json_file import JsonFile
 from epstein_files.documents.messenger_log import MSG_REGEX, MessengerLog
 from epstein_files.documents.other_file import OtherFile
 from epstein_files.output.highlight_config import HIGHLIGHTED_NAMES
+from epstein_files.output.rich import console
 from epstein_files.people.person import INVALID_FOR_EPSTEIN_WEB, Person
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constants import *
 from epstein_files.util.env import DOCS_DIR, args, logger
-from epstein_files.util.helpers.data_helpers import flatten, json_safe, listify, uniquify
-from epstein_files.util.helpers.file_helper import doj_txt_paths, file_size_str
+from epstein_files.util.helpers.data_helpers import flatten, json_safe, uniquify
+from epstein_files.util.helpers.file_helper import all_txt_paths, doj_txt_paths, extract_file_id, file_size_str
 from epstein_files.util.timer import Timer
 
 # TODO: also copy the config, get rid of synthetic configs
@@ -53,6 +54,7 @@ class EpsteinFiles:
     other_files: list[OtherFile] = field(default_factory=list)
     timer: Timer = field(default_factory=lambda: Timer())
     uninteresting_ccs: list[Name] = field(default_factory=list)
+    _empty_file_ids: set[str] = field(default_factory=set)
 
     @property
     def all_documents(self) -> Sequence[Document]:
@@ -98,31 +100,26 @@ class EpsteinFiles:
         return self._uninteresting_emailers
 
     @property
+    def unique_documents(self) -> Sequence[Document]:
+        return Document.without_dupes(self.all_documents)
+
+    @property
     def unique_emails(self) -> list[Email]:
         """All `Email` objects except for duplicates."""
         return Document.without_dupes(self.emails)
 
     def __post_init__(self):
         """Iterate through files and build appropriate objects."""
-        file_paths = [f for f in DOCS_DIR.iterdir() if f.is_file() and not f.name.startswith('.')]
-        file_paths.extend(doj_txt_paths())
-        self.file_paths = sorted(file_paths, reverse=True)
-
-        # Load docs and split up by type
-        docs = self._load_file_paths(self.file_paths)
-        self.emails = [d for d in docs if isinstance(d, Email)]
-        self.imessage_logs = [d for d in docs if isinstance(d, MessengerLog)]
-        self.other_files =[d for d in docs if isinstance(d, OtherFile)]
-
-        # Set interdependent fields, dupes, sort by timestamp, etc.
-        self._finalize_data()
+        self.file_paths = sorted(all_txt_paths(), reverse=True)
+        self._sift_documents(self._load_file_paths(self.file_paths))
+        self._finalize_data_and_write_to_disk()
 
     @classmethod
     def get_files(cls, timer: Timer | None = None) -> 'EpsteinFiles':
         """Alternate constructor that reads/writes a pickled version of the data ('timer' arg is for logging)."""
         timer = timer or Timer()
 
-        if args.pickle_path.exists() and not args.overwrite_pickle and not args.skip_other_files:
+        if args.pickle_path.exists() and not args.overwrite_pickle:
             with gzip.open(args.pickle_path, 'rb') as file:
                 epstein_files = pickle.load(file)
                 timer_msg = f"Loaded {len(epstein_files.file_paths):,} documents from '{args.pickle_path}'"
@@ -130,17 +127,13 @@ class EpsteinFiles:
 
             if args.reload_doj:
                 epstein_files.reload_doj_files()
+            elif args.load_new:
+                epstein_files.load_new_files()
 
             return epstein_files
 
         logger.warning(f"Building new cache file, this will take a few minutes...")
         epstein_files = EpsteinFiles()
-
-        if args.skip_other_files:
-            logger.warning(f"Not writing pickled data because --skip-other-files")
-        else:
-            epstein_files.save_to_disk()
-
         timer.print_at_checkpoint(f'Processed {len(epstein_files.file_paths):,} files, {OtherFile.num_synthetic_cfgs_created} synthetic configs')
         return epstein_files
 
@@ -218,7 +211,7 @@ class EpsteinFiles:
         emails = self.emails_by(name) + self.emails_to(name)
 
         if len(emails) == 0:
-            raise RuntimeError(f"No emails found for '{name}'")
+            logger.warning(f"No emails found for '{name}'")
 
         return Document.sort_by_timestamp(Document.uniquify(emails))
 
@@ -286,6 +279,19 @@ class EpsteinFiles:
             for name in names
         ]
 
+    def load_new_files(self) -> None:
+        current_docs = self._docs_by_id()
+        self.file_paths = all_txt_paths()
+        new_paths = [p for p in self.file_paths if extract_file_id(p) not in current_docs]
+        new_docs = self._load_file_paths(new_paths)
+
+        for doc in new_docs:
+            console.print(doc)
+
+        logger.warning(f"Loaded {len(new_docs)} new files: {[d.file_id for d in new_docs]}")
+        self._sift_documents(new_docs)
+        self._finalize_data_and_write_to_disk()
+
     def reload_doj_files(self) -> None:
         """Reload only the DOJ PDF extracts (keep HOUSE_OVERSIGHT stuff unchanged)."""
         def doj_file_counts_str():
@@ -293,16 +299,14 @@ class EpsteinFiles:
 
         # Remove old DOJ files
         timer = Timer()
-        logger.warning(f"Only reloading DOJ files {doj_file_counts_str()}...")
+        logger.warning(f"Only loading new DOJ files {doj_file_counts_str()}...")
         self.emails = [f for f in self.emails if not f.file_info.is_doj_file]
         self.other_files = [f for f in self.other_files if not f.file_info.is_doj_file]
 
         # Build new objects and append them
         new_docs = self._load_file_paths(doj_txt_paths())
-        self.emails += [e for e in new_docs if isinstance(e, Email)]
-        self.other_files += [d for d in new_docs if isinstance(d, DojFile)]
-        self._finalize_data()
-        self.save_to_disk()
+        self._sift_documents(new_docs)
+        self._finalize_data_and_write_to_disk()
         timer.print_at_checkpoint(f"Reloaded DOJ files {doj_file_counts_str()}")
 
     def overview_table(self) -> Table:
@@ -341,12 +345,16 @@ class EpsteinFiles:
                     doc.warn(f"Replacing {field_name} {duplicate_prop} with {original_prop} from duplicated '{original.file_id}'")
                     setattr(doc, field_name, original_prop)
 
-    def _finalize_data(self):
+    def _docs_by_id(self) -> Mapping[str, Document]:
+        return {doc.file_id: doc for doc in self.all_documents}
+
+    def _finalize_data_and_write_to_disk(self):
         """Handle computation of fields related to uninterestingness, relationships between documents, etc."""
         self._set_uninteresting_ccs()
         self._copy_duplicate_doc_propeerties()
         self._find_email_attachments_and_set_is_first_for_user()
         self._sort_file_types_by_timestamp()
+        self.save_to_disk()
 
     def _find_email_attachments_and_set_is_first_for_user(self) -> None:
         for other_file in (self.other_files + self.doj_files):
@@ -379,10 +387,10 @@ class EpsteinFiles:
             cls = document_cls(document)
 
             if document.length == 0:
-                logger.warning(f"Skipping empty file: {document}]")
-                continue
-            elif args.skip_other_files and cls == OtherFile and file_type_count[cls.__name__] > 1:
-                document.log(f"Skipping OtherFile...")
+                if document.file_id not in self._empty_file_ids:
+                    document.warn(f"Skipping empty file...")
+                    self._empty_file_ids.add(document.file_id)
+
                 continue
 
             docs.append(cls(file_path, lines=document.lines, text=document.text).printable_document())
@@ -404,6 +412,13 @@ class EpsteinFiles:
 
         self.uninteresting_ccs = sorted(uniquify(self.uninteresting_ccs))
         logger.info(f"Extracted uninteresting_ccs: {self.uninteresting_ccs}")
+
+    # TODO: this is dumb, just maintain one list and filter as needed
+    def _sift_documents(self, docs: Sequence[Document]) -> None:
+        """Assign documents to their respective variables."""
+        self.emails += [d for d in docs if isinstance(d, Email)]
+        self.imessage_logs += [d for d in docs if isinstance(d, MessengerLog)]
+        self.other_files += [d for d in docs if isinstance(d, OtherFile)]
 
     def _sort_file_types_by_timestamp(self) -> None:
         self.emails = Document.sort_by_timestamp(self.emails)

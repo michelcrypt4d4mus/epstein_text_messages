@@ -10,14 +10,20 @@ from epstein_files.documents.documents.doc_cfg import CommunicationCfg
 from epstein_files.documents.emails.constants import FALLBACK_TIMESTAMP
 from epstein_files.output.highlight_config import get_style_for_name, styled_name
 from epstein_files.output.rich import styled_key_value
-from epstein_files.util.constant.names import UNKNOWN
+from epstein_files.util.constant.names import UNKNOWN, Name
 
 TIMESTAMP_SECONDS_REGEX = re.compile(r":\d{2}$")
 
 
 @dataclass
 class Communication(Document):
-    """Superclass for `Email` and `MessengerLog`."""
+    """
+    Superclass for `Email` and `MessengerLog`.
+
+    Attributes:
+        recipients (list[Name]): People to whom this email was sent.
+    """
+    recipients: list[Name] = field(default_factory=list)
     timestamp: datetime = FALLBACK_TIMESTAMP  # TODO this default sucks (though it never happens)
 
     @property
@@ -46,6 +52,11 @@ class Communication(Document):
     @property
     def is_recipient_uncertain(self) -> bool:
         return bool(self.config and self.config.uncertain_recipient)
+
+    @property
+    def participants(self) -> set[Name]:
+        """Author + recipients. Adds a `None` if `self.recipient`s` is empty."""
+        return set([self.author] + (self.recipients or [None]))
 
     @property
     def summary(self) -> Text:

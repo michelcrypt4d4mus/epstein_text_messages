@@ -211,6 +211,7 @@ __marimo__/
 
 social_media_post_with_url.txt
 /scripts/epstein_files/**/*
+/scripts/validate_pkl.py
 /source_data/**/*
 LICENSE
 the_epstein_files.local.pkl.gz

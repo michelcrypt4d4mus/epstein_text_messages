@@ -2,7 +2,7 @@ from epstein_files.util.constant.names import *
 
 
 EMAIL_RECIPIENT_COUNTS = {
-    None: 86,
+    None: 87,
     "ACT for America": 1,
     ADAM_BACK: 4,
     AL_SECKEL: 1,
@@ -19,7 +19,7 @@ EMAIL_RECIPIENT_COUNTS = {
     'Amanda Kirby': 1,
     AMIR_TAAKI: 5,
     ANAS_ALRASHEED: 6,
-    ANDREW_FARKAS: 6,
+    ANDREW_FARKAS: 7,
     "Andrew Friendly": 1,
     ANDREW_MCCORMACK: 16,
     'Andrew Stemmer': 2,
@@ -69,7 +69,7 @@ EMAIL_RECIPIENT_COUNTS = {
     "David Grosof": 6,
     DAVID_HAIG: 2,
     DAVID_SCHOEN: 3,
-    DAVID_STERN: 1,
+    DAVID_STERN: 4,
     DEBBIE_FEIN: 5,
     DEEPAK_CHOPRA: 1,
     "Diane Ziman": 1,
@@ -135,6 +135,7 @@ EMAIL_RECIPIENT_COUNTS = {
     JESSICA_CADWELL: 3,
     "Joel": 3,
     "Joel Dunn": 1,
+    'John Brockman': 1,
     JOHN_PAGE: 1,
     "John Zouzelka": 1,
     JOI_ITO: 26,
@@ -247,7 +248,7 @@ EMAIL_RECIPIENT_COUNTS = {
     'Reuben Kobulnik': 3,
     "Richard Barnnet": 1,
     "Richard Joshi": 1,
-    "Richard Merkin": 1,
+    "Richard Merkin": 2,
     "Rita Hortenstine": 1,
     ROBERT_D_CRITTON_JR: 6,
     "Robert Gold": 1,

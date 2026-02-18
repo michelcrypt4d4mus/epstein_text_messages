@@ -1,0 +1,38 @@
+#!/usr/bin/env python
+# Print list of all files with non-null is_interesting value along with counts of interestingness.
+# Takes one positional argument (optional) that can be "True" or "False"
+from collections import defaultdict
+
+from rich.panel import Panel
+from rich.table import Table
+from rich.text import Text
+
+from scripts.use_pickled import console, epstein_files
+from epstein_files.output.rich import bool_txt, console, styled_dict, print_subtitle_panel
+from epstein_files.util.env import args
+from epstein_files.util.helpers.debugging_helper import print_interesting_doc_panels_and_props
+from epstein_files.util.logging import logger
+
+
+counts: dict[str, int] = defaultdict(int)
+filter_for = eval(args.positional_args[0]) if args.positional_args else None
+print(f"filter_for: {filter_for}")
+
+for doc in epstein_files.unique_documents:
+    counts[str(doc.is_interesting)] += 1
+
+    if doc.is_interesting is not None:
+        if filter_for is not None and doc.is_interesting != filter_for:
+            continue
+
+        txt = bool_txt(doc.is_interesting, match_width=True).append(': ').append(doc.summary)
+
+        if doc.config_description_txt:
+            txt.append(' ').append(doc.config_description_txt)
+
+        console.print(txt)
+
+
+console.print(f"\nInterestingness counts:")
+console.print(styled_dict(counts))
+console.line
