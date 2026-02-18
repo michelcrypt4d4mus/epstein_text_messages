@@ -358,7 +358,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='032224', author=KATHRYN_RUEMMLER, recipients=[JEFFREY_EPSTEIN], author_reason='Reply'),
     EmailCfg(id='032386', author=KATHRYN_RUEMMLER, author_uncertain=KATHY_REASON),
     EmailCfg(id='032727', author=KATHRYN_RUEMMLER, author_uncertain=KATHY_REASON),
-    EmailCfg(id='EFTA02587320', author=KATHRYN_RUEMMLER, description=f"Kathy Ruemmler, crypto bro-ette"),
+    EmailCfg(id='EFTA02587320', author=KATHRYN_RUEMMLER, description=f"Kathy Ruemmler, crypto bro-ette", is_interesting=True),
     EmailCfg(id='030478', author=LANDON_THOMAS),
     EmailCfg(id='029013', author=LARRY_SUMMERS, recipients=[JEFFREY_EPSTEIN]),
     EmailCfg(id='029196', author=LAWRENCE_KRAUSS, recipients=[JEFFREY_EPSTEIN], actual_text='Talk in 40?'),
