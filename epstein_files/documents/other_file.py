@@ -186,7 +186,7 @@ class OtherFile(Document):
                 row_style = 'dim'
             else:
                 link_and_info += file.info
-                row_style = 'dim italic' if file.config_replace_text_with else row_style
+                row_style = 'dim' if file.config_replace_text_with else row_style
 
             table.add_row(
                 Group(*link_and_info),
