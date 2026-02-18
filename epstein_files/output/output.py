@@ -18,7 +18,7 @@ from epstein_files.people.interesting_people import EMAILERS_TO_PRINT
 from epstein_files.people.person import Person
 from epstein_files.util.constant.html import CONSOLE_HTML_FORMAT, HTML_TERMINAL_THEME, PAGE_TITLE
 from epstein_files.util.constant.names import *
-from epstein_files.util.constant.output_files import EMAILERS_TABLE_PNG_PATH
+from epstein_files.output.sites import EMAILERS_TABLE_PNG_PATH
 from epstein_files.util.constant.strings import AUTHOR
 from epstein_files.util.env import args
 from epstein_files.util.helpers.data_helpers import dict_sets_to_lists
