@@ -19,6 +19,7 @@ from epstein_files.output.highlighted_names import HighlightedNames, Highlighted
 from epstein_files.output.rich import (GREY_NUMBERS, TABLE_TITLE_STYLE, build_table,
      console, join_texts, print_centered)
 from epstein_files.people.contact import Contact
+from epstein_files.people.interesting_people import SPECIAL_NOTES
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constant.urls import *
 from epstein_files.util.constants import *
@@ -319,6 +320,10 @@ class Person:
         """Print complete emails to or from a particular 'author'. Returns the Emails that were printed."""
         print_centered(self.info_panel)
         self.print_emails_table()
+
+        if self.name in SPECIAL_NOTES:
+            print_centered(Padding(Panel(SPECIAL_NOTES[self.name], expand=True, padding=(1, 3), style='reverse'), (0, 0, 2, 0)))
+
         last_printed_email_was_duplicate = False
 
         if self.category == JUNK:

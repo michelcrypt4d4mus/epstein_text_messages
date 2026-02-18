@@ -48,6 +48,7 @@ FIELDS_COLON_PATTERN = fr"^({FIELDS_PATTERN}):"
 DOJ_EMAIL_OCR_REPAIRS: dict[str | re.Pattern, str] = {
     re.compile(r"^Sent (Sun|Mon|Tue|Wed|Thu|Fri|Sat)", re.MULTILINE): r"Sent: \1",
     re.compile(fr"({FIELDS_COLON_PATTERN}.*\n)\nSubject:", re.MULTILINE): r'\1Subject:',
+    re.compile(r"^Subject[•]", re.MULTILINE): 'Subject:',
     re.compile(r"^Fran:", re.MULTILINE): 'From:',
 }
 
@@ -207,7 +208,6 @@ UNINTERESTING_EMAILERS = FLIGHT_IN_2012_PEOPLE + IRAN_DEAL_RECIPIENTS + TRIVERS_
     'Alan Rogers',                           # Random CC
     'Andrew Friendly',                       # Presumably some relation of Kelly Friendly
     'Ariane Dwyer',                          # Daniel Sabba CC
-    'BS Stern',                              # A random fwd of email we have
     'Cheryl Kleen',                          # One email from Anne Boyles is displayed under Anne Boyles
     'Connie Zaguirre',                       # Random CC
     'Dan Fleuette',                          # Sean Bannon CC

@@ -19,7 +19,7 @@ from epstein_files.util.constant.strings import *
 from epstein_files.util.constant.urls import *
 from epstein_files.util.constants import HEADER_ABBREVIATIONS
 from epstein_files.util.env import args
-from epstein_files.util.helpers.link_helper import link_markup, link_text_obj, parenthesize
+from epstein_files.util.helpers.link_helper import SUBSTACK_POST_LINK_STYLE, link_markup, link_text_obj, parenthesize
 from epstein_files.util.logging import logger
 
 DATASET_DESCRIPTION_STYLE = 'gray74'
@@ -28,7 +28,6 @@ STR_VAL_STYLE = 'cornsilk1 italic'
 STR_VAL_STYLE_ALT = 'light_yellow3 italic'
 SECTION_HEADER_STYLE = 'bold black on color(146)'
 SOCIAL_MEDIA_LINK_STYLE = 'pale_turquoise4'
-SUBSTACK_POST_LINK_STYLE = 'bright_cyan'
 
 SITE_GLOSSARY_MSG = f"The following views of the underlying selection of Epstein Files are available:"
 YOU_ARE_HERE = Text('«').append('you are here', style='bold khaki1 blink').append('»')

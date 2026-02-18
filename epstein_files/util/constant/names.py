@@ -216,6 +216,7 @@ LORENZO_DE_MEDICI = 'Lorenzo de Medici'
 MADARS_VIRZA = 'Madars Virza'
 NICOLE_JUNKERMANN = 'Nicole Junkermann'
 PERKINS_COIE = 'Perkins Coie'
+PHILIP_ROSEDALE = 'Philip Rosedale'
 SETH_LLOYD = 'Seth Lloyd'
 STACEY_RICHMAN = 'Stacey Richman'
 STORY_COWLES = 'Story Cowles'
@@ -303,7 +304,7 @@ WAPO = 'WaPo'
 # First and last names that should be made part of a highlighting regex for emailers
 NAMES_TO_NOT_HIGHLIGHT = """
     adam al alain alan alison alfredo allen alex alexander amanda andres andrew ann anthony asia audrey
-    back bard barnaby barrett barry bennet bernard bill black bob boris boyle brad brenner bruce
+    back bard barrett barry bennet bernard bill black bob boris boyle brad brenner bruce
     cameron caroline carolyn chris christian christina cohen
     dan daniel danny darren dave david debbie department donald douglas
     ed edward edwards enforcement enterprise enterprises entourage epstein eric erika etienne

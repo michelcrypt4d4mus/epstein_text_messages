@@ -245,7 +245,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         label='China',
         style='bright_red',
         contacts=[
-            Contact('Gino Yu', "professor / game designer in Hong Kong")
+            Contact("Gino Yu", f"professor / game designer in Hong Kong, worked with {MASHA_DROKOVA} on PR for Epstein (?)"),
         ],
         patterns=[
             r"Ali.?baba",
@@ -304,11 +304,12 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"((Andy|Adam)\s*)Back",
             r"Balaji(\s*Srinivisan)?",
             r"Barry Silbert",
-            r"Bart\s*Stephens",  # co-founder, Blockchain Capital
+            r"Ben\s*Forman",
+            r"(Brad(ford)?|Bart)\s*Stephens",  # co-founder, Blockchain Capital
             r"Bioptix",  # Now RIOT Blockchain
             r"bitcoin(\s*Foundation)?",
-            r"Bit(Angels|Fury|Main)",
-            r"block ?chain(\s*capital)?",
+            r"Bit(Angels|Finex|Fury|Main)",
+            r"block ?(chain|tree)(\s*capital)?",
             r"Blockstream",
             r"Bradley\s*Rotter",
             r"Brian Forde",
@@ -325,16 +326,19 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Fred\s*Ehrsam",
             r"FTX",
             r"(Gavin )?Andress?en",  # bitcoin dev
+            r"GogoCoin",
             r"(Hester\s*)?Peirce",
             r"(Howard\s+)?Lutnic?k",
             r"ICO",
             r"(Jim\s*)Pallotta",  # Media lab advisory board
+            r"Kathryn\s*Haun",
             r"Kraken",
             r"Kyara(\s*Investments?)?(\s*[IV]+)?",  # crypto vehicle with Joi Ito
             r"Layer\s+(1|One)",
             r"LedgerX",
             r"Libra",
             r"Madars",
+            r"Matthew\s*Roszak",
             r"Medici\s*Bank",
             r"Mercantile Global Holdings",
             r"Mi(chael|ke)\s*Novogratz",
@@ -347,8 +351,9 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"(Ross\s*)?Ulbricht",
             r"Silk\s*Road",
             r"SpanCash",
+            r"Steve\s*Waterhouse",
             r"Tether",
-            r"virtual\s*currenc(ies|y)",
+            r"virtual\s*(currenc(ies|y)|money)",
             r"Wire\s*ca\n?rd",
             r"Wladimir( van der Laan)?",  # bitcoin dev
             r"ZCash",
@@ -675,6 +680,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         patterns=[
             r"Ace\s*Greenberg",
             r"AIG",
+            r"alterna[tv]i[tv]e\s*finance",
             r"((anti.?)?money\s+)?launder(s?|ers?|ing)?(\s+money)?",
             r"Apollo",
             r"Ari\s*Glass",
@@ -854,7 +860,8 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Public\s*Corruption\s*Unit",
             r"SCOTUS",
             r"SD(FL|NY)",
-            r"SEC(\.gov)?",
+            r"(?-i:SEC)",
+            r"sec.gov",
             r"Secret\s*Service",
             r"Securities\s*and\s*Exchange\s*Commission",
             r"Southern\s*District(\s*of\s*(Florida|New\s*York))?",
@@ -1567,13 +1574,14 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(IAN_ODONNELL, THIELS_VALAR, r"Ian\s*O'?Donnell|O'?Donnell,\s*Ian"),
             Contact(JAMES_FITZGERALD, THIELS_VALAR, r"James Fitz[g ]eral?d?"),
             Contact('LinkedIn', "LinkedIn", r"Linked[Il]n(\s*Updates)?"),
+            Contact(PHILIP_ROSEDALE, 'Second Life Founder'),
             Contact(PETER_THIEL, "Paypal mafia member, founder of Palantir, Facebook investor"),
             Contact(REID_HOFFMAN, "PayPal mafia member, founder of LinkedIn"),
             Contact('Reuben Kobulnik', THIELS_VALAR),
             Contact(STEVEN_SINOFSKY, "a16z, ex-Microsoft, loves bitcoin", r"Steven Sinofsky?"),
             Contact(VALAR_VENTURES, f"{PETER_THIEL} affiliated fintech venture fund", r"V[ae]lar\s*(Global\s*Fund|Ventures)?"),
             Contact(VINCENZO_IOZZO, "CEO of the identity-security company SlashID", r"Vincenzo [IL]ozzo"),
-            Contact(ZUBAIR_KHAN, f"Tranchulas cybersecurity, InsightsPod founder, Islamabad / Dubai")
+            Contact(ZUBAIR_KHAN, f"Tranchulas cybersecurity, InsightsPod founder, Islamabad / Dubai, friend of {MASHA_DROKOVA}"),
         ],
         patterns=[
             r"a16z|(?<!Gavin )Andree?ss?e?[eo]n(\s&Horowitz)?",
@@ -1604,6 +1612,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Palantir",
             r"(Peter\s)?Th(ie|ei)l",
             r"Pierre\s*Omidyar",
+            r"Second\s*Life",
             r"Sergey\s*Brin",
             r"Silicon\s*Valley",
             r"Skype",
