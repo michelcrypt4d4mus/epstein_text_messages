@@ -157,7 +157,7 @@ def _link_with_comment(url: str, comment: str | Text, _link_text: str = '') -> T
 def _print_abbreviations_table() -> None:
     table = build_table(title="Abbreviations Used Frequently In These Conversations", show_header=False)
     table.add_column("Abbreviation", justify="center", style='bold')
-    table.add_column("Translation", justify="center", min_width=62, style="white")
+    table.add_column("Translation", justify="center", min_width=None if args.mobile else 62, style="white")
 
     for k, v in HEADER_ABBREVIATIONS.items():
         table.add_row(highlighter(k), v)
