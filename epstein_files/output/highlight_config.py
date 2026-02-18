@@ -323,6 +323,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"(Dan\s*)?Morehead",
             r"Digital\s*Currenc(ies|y)(\s*Initiative)?",
             r"e-?currency",
+            r"Erik\s*Svenson",  # Blockstream
             r"Fred\s*Ehrsam",
             r"FTX",
             r"(Gavin )?Andress?en",  # bitcoin dev

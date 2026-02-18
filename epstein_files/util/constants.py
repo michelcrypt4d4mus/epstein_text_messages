@@ -1358,6 +1358,8 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00428083', duplicate_ids=['EFTA02183761']),
     EmailCfg(id='EFTA00869828', truncate_to=TRUNCATED_CHARS),
     EmailCfg(id='EFTA00661348', truncate_to=NO_TRUNCATE),
+    EmailCfg(id='EFTA01731638', truncate_to=530),
+    EmailCfg(id='EFTA00836570', truncate_to=1600),
 ]
 
 
@@ -2374,8 +2376,9 @@ def check_no_overlapping_configs():
 check_no_overlapping_configs()
 
 
-# TODO: These have UNKNOWN recipient so they currently get printed but we should configure it so they don't
 UNINTERESTING_EMAIL_IDS = [
+    '030786',  # Jabor boring
+    # TODO: These have UNKNOWN recipient so they currently get printed but we should configure it so they don't
     'EFTA00039894',
     'EFTA00039878',
 ]
