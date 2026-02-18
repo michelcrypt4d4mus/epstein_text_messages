@@ -101,7 +101,13 @@ class OtherFile(Document):
 
     @property
     def preview_text_highlighted(self) -> Text:
-        return highlighter(escape(self.preview_text))
+        txt = highlighter(escape(self.preview_text))
+
+        if self.length > args._site.other_files_preview_chars and not self.config_replace_text_with:
+            num_missing_chars = self.length - len(txt)
+            txt.append(f"... ({num_missing_chars:,} more chars)", 'dim italic')
+
+        return txt
 
     @property
     def summary(self) -> Text:
