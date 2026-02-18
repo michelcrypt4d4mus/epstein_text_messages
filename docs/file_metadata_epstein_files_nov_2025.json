@@ -44544,9 +44544,11 @@
                     ""
                 ],
                 "author": "Jeffrey Epstein",
+                "description": "Epstein and Steve Bannon discuss collection donations in bitcoin",
                 "file_id": "EFTA00881759",
                 "file_size": 9376,
                 "filename": "EFTA00881759.txt",
+                "is_interesting": true,
                 "num_lines": 186,
                 "recipients": [
                     "Steve Bannon"
