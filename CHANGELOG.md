@@ -1,4 +1,6 @@
 # NEXT RELEASE
+
+# 1.7.0
 * Include a compressed pickle file with all the archived data in this repo
 * `--load-new` option to scan for only new files
 * `--output-chrono` option to print all file types intermingled in chronological order
