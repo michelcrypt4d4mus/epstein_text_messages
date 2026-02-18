@@ -1,4 +1,5 @@
 # NEXT RELEASE
+* Add a `--mobile` version of the site
 * Get rid of the documents by type variables, just maintain one master `documents` list in `EpsteinFiles` instance
 
 # 1.7.0
