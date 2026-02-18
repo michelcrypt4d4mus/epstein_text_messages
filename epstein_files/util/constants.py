@@ -1035,6 +1035,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00706814', author=LINDA_STONE, author_reason=LINDA_STONE_ATTRIBUTION),
     EmailCfg(id='EFTA00703417', author=LINDA_STONE, author_reason=LINDA_STONE_ATTRIBUTION),
     EmailCfg(id='EFTA02354559', author=LINDA_STONE, author_reason=LINDA_STONE_ATTRIBUTION),
+    EmailCfg(id='EFTA01802168', author=LINDA_STONE),
     EmailCfg(id='EFTA00397956', author=LINDA_STONE, author_reason='unique email signature'),
     EmailCfg(id='EFTA02267133', author=LESLEY_GROFF, recipients=[MARIA_PRUSAKOVA], uncertain_recipient=f"{CRYPTO_PR_LAB} signature", truncate_to=NO_TRUNCATE),  # only uncertain bc it could be other crypto pr lab person
     EmailCfg(id='EFTA02349697', author=MARIA_PRUSAKOVA, author_reason='boyfriend Christian, same as 032374'),
@@ -1268,6 +1269,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA02731482', recipients=[USANYS], uncertain_recipient='true'),
     EmailCfg(id='EFTA02731713', recipients=[USANYS], uncertain_recipient='true'),
     EmailCfg(id='EFTA02731718', recipients=[USANYS], uncertain_recipient='true'),
+    EmailCfg(id='EFTA02637315', is_interesting=True, comment=f"{AZIZA_ALAHMADI} says BTC to fiat is legalized in middle east"),
     EmailCfg(id='EFTA02730481', date='2023-07-07T11:01:00'),  # TODO: actually reply timestamp
     EmailCfg(id='EFTA02731577', date='2024-10-16T00:00:00'),  # TODO: actually reply timestamp
     EmailCfg(id='EFTA02730468', date='2019-07-11T08:25:00'),  # TODO: This is just wrong
@@ -1311,6 +1313,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00658457', description=f'{BROCK_PIERCE} says they will not invest in Bitfury'),
     EmailCfg(id='EFTA00998595', description=f'{BROCK_PIERCE} and Epstein discuss structure of crypto investments'),
     EmailCfg(id='EFTA01000882', description=f"{BROCK_PIERCE} asks for Epstein's permission to disclose his name to Coinbase team", is_interesting=True),
+    EmailCfg(id='EFTA00689503', description=f"{BROCK_PIERCE} posted a review of the infamous Russian criminal crypto exchange BTC-e to LinkedIn", is_interesting=True),
     EmailCfg(id='EFTA00626220', description=f'discussion of a "sidecar fund" with {BROCK_PIERCE} / {CRYPTO_CURRENCY_PARTNERS_II}'),
     EmailCfg(id='EFTA01784901', description=f"discussion of checks {JEREMY_RUBIN} has cashed from Epstein", is_interesting=True),
     EmailCfg(id='EFTA01917402', description=f'discussion of Epstein investment in Blockstream funneled through {JOI_ITO}', is_interesting=True),

@@ -245,7 +245,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         label='China',
         style='bright_red',
         contacts=[
-            Contact('Gino Yu', "professor / game designer in Hong Kong")
+            Contact("Gino Yu", f"professor / game designer in Hong Kong, worked with {MASHA_DROKOVA} on PR for Epstein (?)"),
         ],
         patterns=[
             r"Ali.?baba",
@@ -1612,6 +1612,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Palantir",
             r"(Peter\s)?Th(ie|ei)l",
             r"Pierre\s*Omidyar",
+            r"Second\s*Life",
             r"Sergey\s*Brin",
             r"Silicon\s*Valley",
             r"Skype",

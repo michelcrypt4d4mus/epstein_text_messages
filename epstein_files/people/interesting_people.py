@@ -45,6 +45,7 @@ EMAILERS_OF_INTEREST = [
     ZUBAIR_KHAN,
     ROSS_GOW,
     DAVID_BLAINE,
+    PETER_THIEL,
     None,
 ]
 
