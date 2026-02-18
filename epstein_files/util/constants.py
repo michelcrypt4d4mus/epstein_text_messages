@@ -2318,6 +2318,7 @@ OTHER_FILES_TEXT_MSG = [
     DocCfg(id='EFTA01618381', author=RENATA_BOLOTOVA, description=f'iMessage screenshots', author_uncertain='sneaky'),
     DocCfg(id='EFTA01622387', author=RENATA_BOLOTOVA, description=f'iMessage screenshots', author_uncertain='sneaky'),
     DocCfg(id='EFTA01618494', author=RENATA_BOLOTOVA, description=f'iMessage screenshots', author_uncertain='sneaky'),
+    DocCfg(id='EFTA01618400', author=RENATA_BOLOTOVA, description=f'iMessage screenshots', author_uncertain='sneaky'),
     DocCfg(
         id='EFTA01620764',
         author=MELANIE_WALKER,
