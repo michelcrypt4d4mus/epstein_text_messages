@@ -177,20 +177,18 @@ class OtherFile(Document):
         for file in files:
             # call superclass method to avoid border_style rainbow
             link_and_info = [FileInfo.build_external_links(file.file_info, id_only=bool(args.mobile))]
-            date_str = file.date_str
-            preview_text = file.preview_text_highlighted
-            row_style = ''
 
             if file.is_duplicate:
                 preview_text = file.duplicate_file_txt
                 row_style = 'dim'
             else:
+                preview_text = file.preview_text_highlighted
+                row_style = 'italic' if file.config_replace_text_with else ''
                 link_and_info += file.info
-                row_style = 'dim' if file.config_replace_text_with else row_style
 
             table.add_row(
                 Group(*link_and_info),
-                Text(date_str, style=TIMESTAMP_STYLE) if date_str else QUESTION_MARKS_TXT,
+                Text(file.date_str, style=TIMESTAMP_STYLE) if file.date_str else QUESTION_MARKS_TXT,
                 file.file_info.file_size_str,
                 file.category_txt,
                 preview_text,
