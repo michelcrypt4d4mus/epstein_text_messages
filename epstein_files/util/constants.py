@@ -976,6 +976,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA02246900', author=LESLEY_GROFF),
     EmailCfg(id='EFTA00461202', author=LESLEY_GROFF),
     EmailCfg(id='EFTA02246744', author=LESLEY_GROFF),
+    EmailCfg(id='EFTA02102384', author=LESLEY_GROFF),
     EmailCfg(id='EFTA01731288', author=LESLEY_GROFF, author_reason='signature'),
     EmailCfg(id='EFTA02104454', author=LESLEY_GROFF, author_uncertain='Epstein scheduling'),
     EmailCfg(id='EFTA02067245', author=LESLEY_GROFF, description=VALAR_MEETING, is_interesting=True, author_uncertain=True),
@@ -1317,6 +1318,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00998595', description=f'{BROCK_PIERCE} and Epstein discuss structure of crypto investments'),
     EmailCfg(id='EFTA01000882', description=f"{BROCK_PIERCE} asks for Epstein's permission to disclose his name to Coinbase team", is_interesting=True),
     EmailCfg(id='EFTA00689503', description=f"{BROCK_PIERCE} posted a review of the infamous Russian criminal crypto exchange BTC-e to LinkedIn", is_interesting=True),
+    EmailCfg(id='EFTA00664424', description=f"{BROCK_PIERCE} suggests {LARRY_SUMMERS} could get involved with Tether and Noble Bank"),
     EmailCfg(id='EFTA00626220', description=f'discussion of a "sidecar fund" with {BROCK_PIERCE} / {CRYPTO_CURRENCY_PARTNERS_II}'),
     EmailCfg(id='EFTA01784901', description=f"discussion of checks {JEREMY_RUBIN} has cashed from Epstein", is_interesting=True),
     EmailCfg(id='EFTA01917402', description=f'discussion of Epstein investment in Blockstream funneled through {JOI_ITO}', is_interesting=True),
@@ -1361,6 +1363,8 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA01776411', duplicate_ids=['EFTA02691069']),
     EmailCfg(id='EFTA02390441', duplicate_ids=['EFTA02403336']),
     EmailCfg(id='EFTA00428083', duplicate_ids=['EFTA02183761']),
+    EmailCfg(id='EFTA00915302', duplicate_ids=['EFTA01860910', 'EFTA01986221', 'EFTA01776411']),
+    EmailCfg(id='EFTA01776613', duplicate_ids=['EFTA01860812', 'EFTA00915297']),
     EmailCfg(id='EFTA00869828', truncate_to=TRUNCATED_CHARS),
     EmailCfg(id='EFTA00661348', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA01731638', truncate_to=530),
@@ -1895,7 +1899,8 @@ OTHER_FILES_MONEY = [
     DocCfg(id='EFTA00007781', description='paychecks signed by Epstein deposited at Colonial Bank', date='2005-08-12'),
     DocCfg(id='EFTA00811866', description="list of Epstein's bank accounts"),
     DocCfg(id='EFTA01273102', description=f"payment from Epstein to {RENATA_BOLOTOVA}'s father's account at Sberbank"),
-    DocCfg(id='EFTA00000476', replace_text_with='photo of JEFFREY EPSTEIN CASH DISBURSEMENTS for the month 2006-09'),
+    DocCfg(id='EFTA00238499', description='wire transfer to Signature Bank account'),
+    DocCfg(id='EFTA00000476', replace_text_with='photo of JEFFREY EPSTEIN CASH DISBURSEMENTS for the month 2006-09', date='2006-09-01'),
 ]
 
 
@@ -1911,6 +1916,7 @@ OTHER_FILES_LETTER = [
         date='2016-06-24',  # date is based on Brexit reference but he could be backtesting,
         description=f"about algorithmic trading",
     ),
+    CommunicationCfg(id='EFTA00007609', recipients=['Alberto'], duplicate_ids=['EFTA00007582']),
     CommunicationCfg(id='026134', recipients=['George'], description=f'about opportunities to buy banks in Ukraine'),
     CommunicationCfg(id='EFTA02731023', author='Senator Ron Wyden', recipients=[LEON_BLACK], is_interesting=False),
     blaine_letter(id='019086', date='2015-05-27', suffix='naming various Putin puppet regimes'),
@@ -2316,6 +2322,7 @@ OTHER_FILES_TEXT_MSG = [
     DocCfg(id='EFTA01618381', author=RENATA_BOLOTOVA, description=f'iMessage screenshots', author_uncertain='sneaky'),
     DocCfg(id='EFTA01622387', author=RENATA_BOLOTOVA, description=f'iMessage screenshots', author_uncertain='sneaky'),
     DocCfg(id='EFTA01618494', author=RENATA_BOLOTOVA, description=f'iMessage screenshots', author_uncertain='sneaky'),
+    DocCfg(id='EFTA01618400', author=RENATA_BOLOTOVA, description=f'iMessage screenshots', author_uncertain='sneaky'),
     DocCfg(
         id='EFTA01620764',
         author=MELANIE_WALKER,
@@ -2324,6 +2331,9 @@ OTHER_FILES_TEXT_MSG = [
         is_interesting=True,
     ),
     DocCfg(id='033434', description=f"{SCREENSHOT} iMessage chat labeled 'Edwards'"),
+    CommunicationCfg(id='EFTA01611042', author=ED_BOYLE, recipients=[None, MARIA_PRUSAKOVA]),
+    DocCfg(id='EFTA01611898', description=f"screenshot of recent contacts in an iPhone"),
+    CommunicationCfg(id='EFTA02731525', author=LEON_BLACK, author_uncertain=True),
 ]
 
 OTHER_FILES_JUNK = [

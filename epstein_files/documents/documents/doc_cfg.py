@@ -87,6 +87,7 @@ CATEGORY_PREAMBLES = {
     Interesting.LETTER: 'letter',
     Interesting.REPUTATION: REPUTATION_MGMT,
     Interesting.RESUMÉ: 'professional resumé',
+    Interesting.TEXT_MSG: 'text message',
     Neutral.FLIGHT_LOG: Neutral.FLIGHT_LOG.replace('_', ' '),
     Neutral.PRESSER: Neutral.PRESSER.replace('_', ' '),
     Neutral.SKYPE_LOG: Neutral.SKYPE_LOG.replace('_', ' '),
@@ -151,23 +152,24 @@ class DocCfg:
         preamble_separator = ''
         author_separator = ''
         description = ''
+        author = f"{self.author} {QUESTION_MARKS}" if self.author and self.author_uncertain else self.author
 
         # If description is set at all in one of these if/else checks must be fully constructed
         if self.replace_text_with and not self.description:
             return ''
         if self.category == Uninteresting.BOOK or \
                 (self.category == Uninteresting.ACADEMIA and self.author and self.description):
-            description = join_truthy(self.description, self.author, ' by ')  # note reversed args
+            description = join_truthy(self.description, author, ' by ')  # note reversed args
             description = join_truthy(preamble, description)
         elif self.category == Neutral.FINANCE and self.is_description_a_title:
             author_separator = ' report: '
-        elif self.category == Interesting.LETTER:
-            description = join_truthy(preamble, self.author, ' from ')
+        elif self.category in [Interesting.LETTER, Interesting.TEXT_MSG]:
+            description = join_truthy(preamble, author, ' from ')
             description = join_truthy(description, self.recipients_str, ' to ')
             description = join_truthy(description, self.description)
         elif self.category == Neutral.PRESSER:
             description = join_truthy(preamble, self.description, ' announcing ')  # note reversed args
-            description = join_truthy(self.author, description)
+            description = join_truthy(author, description)
         elif self.category == Interesting.REPUTATION or (self.category == Neutral.LEGAL and 'v.' in self.author_str):
             author_separator = ': '
         elif self.category in [Interesting.RESUMÉ, Category.TWEET]:
@@ -178,11 +180,11 @@ class DocCfg:
 
         # Construct standard description from pieces if a custom one has not been created yet
         if not description:
-            preamble_author = join_truthy(preamble, self.author, preamble_separator)
-            author_description = join_truthy(self.author, self.description, author_separator)
+            preamble_author = join_truthy(preamble, author, preamble_separator)
+            author_description = join_truthy(author, self.description, author_separator)
 
-            if self.author and preamble_author.endswith(self.author) and author_description.startswith(self.author):
-                preamble_author = preamble_author.removesuffix(self.author).strip()
+            if author and preamble_author.endswith(author) and author_description.startswith(author):
+                preamble_author = preamble_author.removesuffix(author).strip()
 
             description = join_truthy(preamble_author, author_description)
 

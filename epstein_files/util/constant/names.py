@@ -308,7 +308,7 @@ NAMES_TO_NOT_HIGHLIGHT = """
     cameron caroline carolyn chris christian christina cohen
     dan daniel danny darren dave david debbie department donald douglas
     ed edward edwards enforcement enterprise enterprises entourage epstein eric erika etienne
-    faith fisher fitzgerald forget fred friendly frost fuller fund
+    faith fisher fitzgerald forget frances fred friendly frost fuller fund
     gates gateway gerald george gold gordon greg
     haddad hanson harry hay heather henry hill hoffman howard
     ian inc inc. ivan
@@ -320,7 +320,7 @@ NAMES_TO_NOT_HIGHLIGHT = """
     owen
     paul paula pen peter philip pierce police prince
     randall rangel reid richard robert rodriguez roger rosenberg ross roth roy rubenstein rubin
-    santos scott sean service services skip smith stacey stanley stern stephen steve steven stone susan
+    santos scott sean service services skip smith stacey stanley stern stephen steve steven stone story susan
     team terry the thomas tim tom tony trust tyler
     ventures victor
     wade waters

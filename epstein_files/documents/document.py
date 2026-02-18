@@ -18,6 +18,7 @@ from epstein_files.documents.documents.file_info import FileInfo
 from epstein_files.documents.documents.search_result import MatchedLine
 from epstein_files.documents.emails.constants import DOJ_EMAIL_OCR_REPAIRS, FALLBACK_TIMESTAMP
 from epstein_files.documents.emails.email_header import DETECT_EMAIL_REGEX
+from epstein_files.output.highlight_config import get_style_for_name
 from epstein_files.output.rich import (INFO_STYLE, NA_TXT, SKIPPED_FILE_MSG_PADDING, SYMBOL_STYLE,
      add_cols_to_table, build_table, console, highlighter, styled_key_value, prefix_with, styled_dict,
      wrap_in_markup_style)
@@ -170,7 +171,7 @@ class Document:
     @property
     def external_link_markup(self) -> str:
         """Rich markup string with link to source document."""
-        return self.file_info.external_link_markup
+        return self.file_info.external_link_markup(get_style_for_name(self.author) if self.author else '')
 
     @property
     def file_id(self) -> str:
@@ -345,9 +346,13 @@ class Document:
         """Alternate constructor that finds the file path automatically and builds a `Document`."""
         return cls(coerce_file_path(file_id))
 
+    def colored_external_links(self) -> Text:
+        return self.file_info.build_external_links(include_alt_links=True)
+
     def file_info_panel(self) -> Group:
         """Panel with filename linking to raw file plus any additional info about the file."""
-        panel = Panel(self.file_info.external_links_txt(include_alt_links=True), border_style=self.border_style, expand=False)
+        links_txt = self.colored_external_links()
+        panel = Panel(links_txt, border_style=self.border_style, expand=False)
         padded_info = [Padding(sentence, INFO_PADDING) for sentence in self.info]
         return Group(*([panel] + padded_info))
 
@@ -391,7 +396,7 @@ class Document:
 
     def truncation_note(self, truncate_to: int) -> Text:
         """String with link to source URL that will replace the text after the truncation point."""
-        link_markup = self.file_info.external_link_markup
+        link_markup = self.external_link_markup
         trim_note = f"<...trimmed to {truncate_to:,} characters of {self.length:,}, read the rest at {link_markup}...>"
         return Text.from_markup(wrap_in_markup_style(trim_note, 'dim'))
 

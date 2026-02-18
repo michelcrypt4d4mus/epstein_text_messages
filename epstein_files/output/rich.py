@@ -88,6 +88,7 @@ if args.suppress_output:
 
 console = Console(**CONSOLE_ARGS)
 highlighter = CONSOLE_ARGS['highlighter']
+no_bold = lambda style: style.replace('bold', '').strip()
 
 
 def add_cols_to_table(table: Table, cols: list[str | dict], justify: str = 'center') -> None:

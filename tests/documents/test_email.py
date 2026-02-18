@@ -6,10 +6,10 @@ def test_attached_docs(get_email):
     assert len(email_with_attached.attached_docs) == 3
 
 
-def test_border_style(get_email):
+def test_author_and_border_style(get_email):
     email = get_email('033071')
-    assert email.border_style == 'purple'
     assert email.author_style == 'blue1'
+    assert email.border_style == 'purple'
 
 
 def test_broken_header_repair(get_email):

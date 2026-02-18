@@ -323,7 +323,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"crypto(prlab)?",
             r"(Dan\s*)?Morehead",
             r"Digital\s*Currenc(ies|y)(\s*Initiative)?",
-            r"e-?currency",
+            r"e-?(currency|gold)",
             r"Erik\s*Svenson",  # Blockstream
             r"Fred\s*Ehrsam",
             r"FTX",
@@ -1951,7 +1951,7 @@ def get_style_for_name(name: str | None, default_style: str = DEFAULT_NAME_STYLE
 
 def styled_category(category: str | None) -> Text:
     if category:
-        return Text(category, get_style_for_category(category) or DEFAULT_CATEGORY_STYLE)
+        return Text(category.split('_')[0], get_style_for_category(category) or DEFAULT_CATEGORY_STYLE)
     else:
         return QUESTION_MARKS_TXT
 

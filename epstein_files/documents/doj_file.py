@@ -173,6 +173,10 @@ BAD_OCR_FILE_IDS = [
     'EFTA00002812',
     'EFTA00002543',
     'EFTA00002786',
+    'EFTA00003074',
+    'EFTA00001710',
+    'EFTA00001427',
+    'EFTA00000325',
     'EFTA00001271',
     'EFTA00002523',
     'EFTA00001979',
@@ -289,7 +293,7 @@ class DojFile(OtherFile):
 
     def external_links_txt(self, _style: str = '', include_alt_links: bool = True) -> Text:
         """Overrides super() method to apply self.border_style."""
-        return self.file_info.external_links_txt(self.border_style, include_alt_links=include_alt_links)
+        return self.file_info.build_external_links(self.border_style, include_alt_links=include_alt_links)
 
     def strip_image_ocr_panels(self) -> None:
         """Removes the ╭--- Page 5, Image 1 ---- panels from the text."""
