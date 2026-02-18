@@ -388,7 +388,7 @@ class EpsteinFiles:
 
             if document.length == 0:
                 if document.file_id not in self._empty_file_ids:
-                    logger.warning(f"Skipping empty file: {document}]")
+                    document.warn(f"Skipping empty file...")
                     self._empty_file_ids.add(document.file_id)
 
                 continue
