@@ -80,13 +80,14 @@ NON_METADATA_FIELDS = [
 
 # Categories where we want to include the category name at start of the description string
 CATEGORY_PREAMBLES = {
-    Uninteresting.BOOK: 'book titled',
     Interesting.LETTER: 'letter',
-    Neutral.PRESSER: Neutral.PRESSER.replace('_', ' '),
     Interesting.REPUTATION: REPUTATION_MGMT,
     Interesting.RESUMÉ: 'professional resumé',
+    Neutral.FLIGHT_LOG: Neutral.FLIGHT_LOG.replace('_', ' '),
+    Neutral.PRESSER: Neutral.PRESSER.replace('_', ' '),
     Neutral.SKYPE_LOG: Neutral.SKYPE_LOG.replace('_', ' '),
     Neutral.TWEET: Neutral.TWEET.title(),
+    Uninteresting.BOOK: 'book titled',
 }
 
 

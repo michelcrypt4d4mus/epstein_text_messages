@@ -100,6 +100,10 @@ class EpsteinFiles:
         return self._uninteresting_emailers
 
     @property
+    def unique_documents(self) -> Sequence[Document]:
+        return Document.without_dupes(self.all_documents)
+
+    @property
     def unique_emails(self) -> list[Email]:
         """All `Email` objects except for duplicates."""
         return Document.without_dupes(self.emails)
