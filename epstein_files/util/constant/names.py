@@ -308,7 +308,7 @@ NAMES_TO_NOT_HIGHLIGHT = """
     cameron caroline carolyn chris christian christina cohen
     dan daniel danny darren dave david debbie department donald douglas
     ed edward edwards enforcement enterprise enterprises entourage epstein eric erika etienne
-    faith fisher fitzgerald forget fred friendly frost fuller fund
+    faith fisher fitzgerald forget frances fred friendly frost fuller fund
     gates gateway gerald george gold gordon greg
     haddad hanson harry hay heather henry hill hoffman howard
     ian inc inc. ivan

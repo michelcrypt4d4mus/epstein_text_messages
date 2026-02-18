@@ -5,7 +5,7 @@ from typing import Mapping
 
 from rich.text import Text
 
-from epstein_files.output.rich import join_texts, prefix_with, styled_dict
+from epstein_files.output.rich import join_texts, no_bold, prefix_with, styled_dict
 from epstein_files.util.constant.strings import ALT_LINK_STYLE, ARCHIVE_LINK_COLOR, DOJ_DATASET_ID_REGEX
 from epstein_files.util.constant.urls import *
 from epstein_files.util.env import DOJ_PDFS_20260130_DIR
@@ -53,15 +53,6 @@ class FileInfo:
             return extract_efta_id(self.file_id)
         else:
             raise ValueError(f"{self.file_id} is not an EFTA prefix file!")
-
-    @property
-    def external_link_markup(self) -> str:
-        """Rich markup string with link to source document."""
-        return link_markup(self.external_url, coerce_file_stem(self.filename))
-
-    @property
-    def external_link_txt(self) -> Text:
-        return Text.from_markup(self.external_link_markup)
 
     @property
     def external_url(self) -> str:
@@ -135,24 +126,27 @@ class FileInfo:
             else:
                 self.warn(f"Couldn't find a data set ID in path '{self.local_path}'! Cannot create valid links.")
 
-    def epsteinify_link(self, style: str = ARCHIVE_LINK_COLOR, link_txt: str | None = None) -> Text:
-        return self.external_link(epsteinify_doc_url, style, link_txt)
+    def epsteinify_link(self, style: str = ARCHIVE_LINK_COLOR, link_txt: str = '') -> Text:
+        return self._build_link(epsteinify_doc_url, style, link_txt)
 
-    def epstein_media_link(self, style: str = ARCHIVE_LINK_COLOR, link_txt: str | None = None) -> Text:
-        return self.external_link(epstein_media_doc_url, style, link_txt)
+    def epstein_media_link(self, style: str = ARCHIVE_LINK_COLOR, link_txt: str = '') -> Text:
+        return self._build_link(epstein_media_doc_url, style, link_txt)
 
-    def epstein_web_link(self, style: str = ARCHIVE_LINK_COLOR, link_txt: str | None = None) -> Text:
-        return self.external_link(epstein_web_doc_url, style, link_txt)
+    def epstein_web_link(self, style: str = ARCHIVE_LINK_COLOR, link_txt: str = '') -> Text:
+        return self._build_link(epstein_web_doc_url, style, link_txt)
 
-    def rollcall_link(self, style: str = ARCHIVE_LINK_COLOR, link_txt: str | None = None) -> Text:
-        return self.external_link(rollcall_doc_url, style, link_txt)
+    def rollcall_link(self, style: str = ARCHIVE_LINK_COLOR, link_txt: str = '') -> Text:
+        return self._build_link(rollcall_doc_url, style, link_txt)
 
-    def external_link(self, fxn: Callable[[str], str], style: str = ARCHIVE_LINK_COLOR, link_txt: str | None = None) -> Text:
-        return link_text_obj(fxn(self.url_slug), link_txt or self.file_stem, style)
+    def external_link_markup(self, style: str = '') -> str:
+        return link_markup(self.external_url, self.file_id, style=no_bold(style))
 
-    def external_links_txt(self, style: str = '', include_alt_links: bool = False) -> Text:
+    def external_link_txt(self, style: str = '') -> Text:
+        return Text.from_markup(self.external_link_markup(style))
+
+    def build_external_links(self, style: str = '', include_alt_links: bool = False) -> Text:
         """Returns colored links to epstein.media and alternates in a Text object."""
-        links = [link_text_obj(self.external_url, self.url_slug, style=style)]
+        links = [self.external_link_txt(style)]
 
         if include_alt_links:
             if self.doj_2026_dataset_id:
@@ -178,6 +172,9 @@ class FileInfo:
     def warn(self, msg: str) -> None:
         """Print a warning message prefixed by info about this `Document`."""
         self.log(msg, level=logging.WARNING)
+
+    def _build_link(self, fxn: Callable[[str], str], style: str = ARCHIVE_LINK_COLOR, link_txt: str = '') -> Text:
+        return link_text_obj(fxn(self.url_slug), link_txt or self.file_stem, style)
 
     def _props_with_suffix(self, suffix: str) -> Mapping[str, str | Path]:
         return {k: getattr(self, k) for k in dir(self) if k.endswith(suffix)}

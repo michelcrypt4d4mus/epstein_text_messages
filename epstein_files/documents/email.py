@@ -22,12 +22,14 @@ from epstein_files.documents.emails.email_header import (EMAIL_SIMPLE_HEADER_REG
 from epstein_files.documents.emails.emailers import extract_emailer_names
 from epstein_files.documents.other_file import OtherFile
 from epstein_files.people.interesting_people import EMAILERS_OF_INTEREST_SET
-from epstein_files.output.rich import *
+from epstein_files.output.rich import DEFAULT_TABLE_KWARGS, build_table, highlighter, join_texts, no_bold, styled_key_value
 from epstein_files.util.constant.strings import REDACTED
-from epstein_files.util.constant.urls import URL_SIGNIFIERS
+from epstein_files.util.constant.urls import URL_SIGNIFIERS, epstein_media_doc_link_markup
 from epstein_files.util.constants import *
+from epstein_files.util.env import args
 from epstein_files.util.helpers.data_helpers import (AMERICAN_TIME_REGEX, TIMEZONE_INFO, collapse_newlines,
      prefix_keys, remove_timezone, uniquify)
+from epstein_files.util.helpers.link_helper import link_text_obj
 from epstein_files.output.highlight_config import HIGHLIGHTED_NAMES, get_style_for_name
 from epstein_files.util.logging import logger
 
@@ -145,6 +147,7 @@ OCR_REPAIRS: dict[str | re.Pattern, str] = {
 
 METADATA_FIELDS = [
     'attachments',
+    'attachment_file_ids',
     'is_junk_mail',
     'is_mailing_list',
     'recipients',
@@ -183,6 +186,11 @@ class Email(Communication):
     rewritten_header_ids: ClassVar[set[str]] = set([])
 
     @property
+    def attachment_file_ids(self) -> list[str]:
+        """Strings in the Attachments: field in the header, split by semicolon."""
+        return [a.file_id for a in self.attached_docs]
+
+    @property
     def attachments(self) -> list[str]:
         """Strings in the Attachments: field in the header, split by semicolon."""
         return [a.strip() for a in (self.header.attachments or '').split(';')]
@@ -195,7 +203,7 @@ class Email(Communication):
         else:
             style = self.author_style
 
-        return style.replace('bold', '').strip()
+        return no_bold(style)
 
     @property
     def config(self) -> EmailCfg | None:
@@ -220,10 +228,6 @@ class Email(Communication):
             return self.derived_cfg
         else:
             return super().config
-
-    @property
-    def external_link_markup(self) -> str:
-        return epstein_media_doc_link_markup(self.file_info.url_slug, self.author_style)
 
     @property
     def is_fwded_article(self) -> bool:

@@ -293,7 +293,7 @@ class DojFile(OtherFile):
 
     def external_links_txt(self, _style: str = '', include_alt_links: bool = True) -> Text:
         """Overrides super() method to apply self.border_style."""
-        return self.file_info.external_links_txt(self.border_style, include_alt_links=include_alt_links)
+        return self.file_info.build_external_links(self.border_style, include_alt_links=include_alt_links)
 
     def strip_image_ocr_panels(self) -> None:
         """Removes the ╭--- Page 5, Image 1 ---- panels from the text."""

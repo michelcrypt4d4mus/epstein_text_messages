@@ -73,9 +73,9 @@ class Communication(Document):
     def timestamp_without_seconds(self) -> str:
         return TIMESTAMP_SECONDS_REGEX.sub('', str(self.timestamp))
 
-    def external_links_txt(self, _style: str = '', include_alt_links: bool = True) -> Text:
+    def colored_external_links(self) -> Text:
         """Overrides super() method to apply `self.author_style`."""
-        return self.file_info.external_links_txt(self.author_style, include_alt_links=include_alt_links)
+        return self.file_info.build_external_links(self.author_style, include_alt_links=True)
 
     @classmethod
     def default_category(cls) -> str:
