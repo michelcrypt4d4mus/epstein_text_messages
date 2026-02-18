@@ -104,7 +104,7 @@ class OtherFile(Document):
         txt = highlighter(escape(self.preview_text))
 
         if self.config_replace_text_with:
-            txt = Text('', style='italic').append(txt)
+            txt = highlighter(Text(escape(self.preview_text), style='italic grey35'))
         elif self.length > args._site.other_files_preview_chars:
             num_missing_chars = self.length - len(txt)
             txt.append(f"... ({num_missing_chars:,} more chars)", 'dim italic')
