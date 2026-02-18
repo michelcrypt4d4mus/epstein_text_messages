@@ -30,7 +30,6 @@ class Neutral(StrEnum):
     MISC = auto()
     PRESSER = auto()
     SKYPE_LOG = auto()
-    TWEET = auto()
 
 class Uninteresting(StrEnum):
     ACADEMIA = auto()
@@ -43,6 +42,7 @@ class Uninteresting(StrEnum):
     POLITICS = auto()
     PHONE_BILL = auto()
     PROPERTY = auto()
+    TWEET = auto()
 
 # Enum concat from here: https://stackoverflow.com/questions/71527981/combine-two-or-more-enumeration-classes-in-order-to-have-more-levels-access
 class Category(StrEnum):
@@ -63,12 +63,12 @@ CATEGORY_STYLE_MAPPING = {
     Interesting.TEXT_MSG: TECH_BRO,
     Neutral.LEGAL: LAWYER,
     Neutral.SKYPE_LOG: TECH_BRO,
-    Neutral.TWEET: Interesting.SOCIAL,
     Uninteresting.ARTICLE: JOURNALIST,
     Uninteresting.BOOK: JOURNALIST,
     Uninteresting.CONFERENCE: ACADEMIA,  # TODO: this maps to f"{get_style_for_category(ACADEMIA)} dim"
     Uninteresting.POLITICS: LOBBYIST,
     Uninteresting.PROPERTY: BUSINESS,
+    Uninteresting.TWEET: Interesting.SOCIAL,
 }
 
 CATEGORY_STYLES = {

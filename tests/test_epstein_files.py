@@ -92,7 +92,7 @@ def test_interesting_emails(epstein_files):
     interesting_email_count = len([e for e in epstein_files.unique_emails if e.is_interesting])
     uninteresting_emails_count = len([e for e in epstein_files.unique_emails if e.is_interesting is False])
     assert interesting_email_count == 817
-    assert uninteresting_emails_count == 139
+    assert uninteresting_emails_count == 172
 
 
 def test_signature_substitutions(epstein_files):

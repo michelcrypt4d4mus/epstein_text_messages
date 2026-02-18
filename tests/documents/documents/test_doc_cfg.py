@@ -72,7 +72,7 @@ def skype_cfg() -> DocCfg:
 
 @pytest.fixture
 def tweet_cfg() -> DocCfg:
-    return _doj_cfg(Neutral.TWEET, author='Klippenstein')
+    return _doj_cfg(Uninteresting.TWEET, author='Klippenstein')
 
 @pytest.fixture
 def uninteresting_description() -> DocCfg:
@@ -127,6 +127,7 @@ def test_complete_description(
     skype_author.description = 'something'
     assert skype_author.complete_description == f"{skype_log} of conversation with linkspirit something"
     # Tweet
+    assert tweet_cfg.is_interesting is None
     assert tweet_cfg.complete_description == 'Tweet by Klippenstein'
     tweet_cfg.description = 'libelous'
     assert tweet_cfg.complete_description == 'Tweet by Klippenstein libelous'

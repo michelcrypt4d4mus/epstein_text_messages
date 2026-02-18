@@ -5,6 +5,7 @@ from epstein_files.util.constant.strings import PALM_BEACH_CODE_ENFORCEMENT, PAL
 # People who are of interest as authors of non-emails
 AUTHORS_OF_INTEREST = [
     EDWARD_JAY_EPSTEIN,
+    INSIGHTS_POD,
     # NOAM_CHOMSKY,
     MICHAEL_WOLFF,
     SVETLANA_POZHIDAEVA,
