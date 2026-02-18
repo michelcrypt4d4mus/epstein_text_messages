@@ -2,9 +2,11 @@
 Mobile vs. non-mobile.
 """
 from dataclasses import dataclass
+from datetime import datetime
 from typing import ClassVar
 
 from epstein_files.util.helpers.link_helper import link_markup
+from epstein_files.util.helpers.string_helper import iso_timestamp
 
 ALL_OTHER_FILES_MULTIPLIER = 1.5  # applied when --all-other-files is in use
 DEFAULT_WIDTH = 155
@@ -21,6 +23,10 @@ class SiteConfig:
     show_emailer_tables: bool = True
     width: ClassVar[int] = DEFAULT_WIDTH
 
+    @classmethod
+    def format_text_msg_time(cls, dt: datetime) -> str:
+        return iso_timestamp(dt)
+
 
 class MobileConfig(SiteConfig):
     abbreviations_width: ClassVar[int | None] = None
@@ -28,3 +34,7 @@ class MobileConfig(SiteConfig):
     other_files_preview_chars: ClassVar[int] = 300
     show_emailer_tables: bool = False
     width: ClassVar[int] = 45
+
+    @classmethod
+    def format_text_msg_time(cls, dt: datetime) -> str:
+        return dt.strftime(r"%-d/%-m/%-y %-H:%M")

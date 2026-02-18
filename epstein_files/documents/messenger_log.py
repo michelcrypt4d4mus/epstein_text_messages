@@ -16,7 +16,8 @@ from epstein_files.output.rich import LAST_TIMESTAMP_STYLE, build_table, highlig
 from epstein_files.people.interesting_people import PERSONS_OF_INTEREST
 from epstein_files.util.constant.names import JEFFREY_EPSTEIN, Name
 from epstein_files.util.constant.strings import AUTHOR, TIMESTAMP_STYLE
-from epstein_files.util.helpers.data_helpers import days_between, days_between_str, iso_timestamp, sort_dict
+from epstein_files.util.helpers.data_helpers import days_between, days_between_str, sort_dict
+from epstein_files.util.helpers.string_helper import iso_timestamp
 from epstein_files.util.logging import logger
 
 CONFIRMED_MSG = 'with confirmed counterparty'

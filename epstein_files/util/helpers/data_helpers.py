@@ -28,7 +28,6 @@ collapse_newlines = lambda text: MULTINEWLINE_REGEX.sub('\n\n', text)
 date_str = lambda dt: dt.isoformat()[0:10] if dt else None
 escape_double_quotes = lambda text: text.replace('"', r'\"')
 escape_single_quotes = lambda text: text.replace("'", r"\'")
-iso_timestamp = lambda dt: dt.isoformat().replace('T', ' ')
 days_between = lambda dt1, dt2: (dt2 - dt1).days + 1
 days_between_str = lambda dt1, dt2: f"{days_between(dt1, dt2)} day" + ('s' if days_between(dt1, dt2) > 1 else '')
 remove_zero_time = lambda dt: dt.isoformat().removesuffix('T00:00:00')
