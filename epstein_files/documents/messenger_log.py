@@ -13,7 +13,7 @@ from epstein_files.documents.documents.doc_cfg import Metadata
 from epstein_files.documents.imessage.text_message import TextMessage
 from epstein_files.output.highlight_config import styled_name
 from epstein_files.output.rich import LAST_TIMESTAMP_STYLE, build_table, highlighter
-from epstein_files.people.interesting_people import TEXTERS_OF_INTEREST
+from epstein_files.people.interesting_people import PERSONS_OF_INTEREST
 from epstein_files.util.constant.names import JEFFREY_EPSTEIN, Name
 from epstein_files.util.constant.strings import AUTHOR, TIMESTAMP_STYLE
 from epstein_files.util.helpers.data_helpers import days_between, days_between_str, iso_timestamp, sort_dict
@@ -42,7 +42,7 @@ class MessengerLog(Communication):
         """Junk emails are not interesting."""
         if (is_interesting := super().is_interesting) is not None:
             return is_interesting
-        elif self.author is None or self.author in TEXTERS_OF_INTEREST:
+        elif self.author is None or self.author in PERSONS_OF_INTEREST:
             return True
 
     @property
