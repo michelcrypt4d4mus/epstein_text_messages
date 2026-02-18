@@ -938,6 +938,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA02645857', author=GANBAT_CHULUUNKHUU),
     EmailCfg(id='EFTA02406725', author=GANBAT_CHULUUNKHUU),
     EmailCfg(id='EFTA01030561', author=GANBAT_CHULUUNKHUU, author_reason='signature'),
+    EmailCfg(id='EFTA00845330', author=GREG_WYLER, author_reason='"Greg" + Wyler is on other emails with Stern and Epstein at that time'),
     EmailCfg(id='EFTA02640711', author=JABOR_Y, description='Jabor Y / HBJ home address', is_interesting=True),
     EmailCfg(
         id='EFTA00838218',
@@ -1844,7 +1845,8 @@ OTHER_FILES_FINANCE = [
     DocCfg(
         id='012048',
         category=Neutral.PRESSER,
-        description=f"Rockefeller Partners with Gregory J. Fleming to Create Independent Financial Services Firm and other articles"
+        description=f"Rockefeller Partners with Gregory J. Fleming to Create Independent Financial Services Firm and other articles",
+        is_interesting=False,
     ),
 ]
 
@@ -2110,7 +2112,7 @@ OTHER_FILES_MISC = [
     DocCfg(id='024117', description=f"anti-money laundering (AML) & terrorist financing (CFT) U.S. law FAQ"),
     DocCfg(id='012718', description=f"{CVRA} congressional record", date='2011-06-17'),
     DocCfg(id='019448', description=f"Haitian business investment proposal called Jacmel", attached_to_email_id='019446'),
-    DocCfg(id='023644', description=f"interview with Mohammed bin Salman", date='2016-04-25'),
+    DocCfg(id='023644', description=f"interview with Mohammed bin Salman", date='2016-04-25', is_interesting=False),
     DocCfg(
         id='030142',
         author=f"{KATHRYN_RUEMMLER} & {KEN_STARR}",
@@ -2122,9 +2124,10 @@ OTHER_FILES_MISC = [
         category=Neutral.PRESSER,
         date='2000-06-07',
         description=f"end of {DONALD_TRUMP} & {NICHOLAS_RIBIS} working relationship at Trump's casino",
+        is_interesting=True,
     ),
     DocCfg(id='029328', description=f"Rafanelli Events promotional deck", is_interesting=False),
-    DocCfg(id='029475', description=f'{VIRGIN_ISLANDS} Twin City Mobile Integrated Health Services (TCMIH) proposal/request for donation'),
+    DocCfg(id='029475', description=f'{VIRGIN_ISLANDS} Twin City Mobile Integrated Health Services (TCMIH) proposal/request for donation', is_interesting=False),
     DocCfg(id='029448', description=f"weird short essay titled 'President Obama and Self-Deception'"),
 
     # DOJ files

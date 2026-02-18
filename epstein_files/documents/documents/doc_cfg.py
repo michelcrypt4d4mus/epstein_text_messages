@@ -10,6 +10,7 @@ from rich.text import Text
 
 from epstein_files.documents.documents.categories import (Category, Interesting, Neutral, Uninteresting,
      is_category, is_interesting, is_uninteresting)
+from epstein_files.people.interesting_people import PERSONS_OF_INTEREST
 from epstein_files.util.constant.names import *
 from epstein_files.util.constant.strings import *
 from epstein_files.util.env import args
@@ -33,7 +34,6 @@ FINANCIAL_REPORTS_AUTHORS = [
     DEUTSCHE_BANK,
     ELECTRON_CAPITAL_PARTNERS,
     GOLDMAN_INVESTMENT_MGMT,
-    INSIGHTS_POD,
     'Invesco',
     JP_MORGAN,
     'Morgan Stanley',
@@ -86,8 +86,8 @@ CATEGORY_PREAMBLES = {
     Neutral.FLIGHT_LOG: Neutral.FLIGHT_LOG.replace('_', ' '),
     Neutral.PRESSER: Neutral.PRESSER.replace('_', ' '),
     Neutral.SKYPE_LOG: Neutral.SKYPE_LOG.replace('_', ' '),
-    Neutral.TWEET: Neutral.TWEET.title(),
     Uninteresting.BOOK: 'book titled',
+    Uninteresting.TWEET: Uninteresting.TWEET.title(),
 }
 
 
@@ -166,7 +166,7 @@ class DocCfg:
             description = join_truthy(self.author, description)
         elif self.category == Interesting.REPUTATION or (self.category == Neutral.LEGAL and 'v.' in self.author_str):
             author_separator = ': '
-        elif self.category in [Interesting.RESUMÉ, Neutral.TWEET]:
+        elif self.category in [Interesting.RESUMÉ, Category.TWEET]:
             preamble_separator = 'of' if self.category == Interesting.RESUMÉ else 'by'
             preamble_separator = preamble_separator.center(3, ' ')
         elif self.category == Neutral.SKYPE_LOG:
@@ -243,6 +243,10 @@ class DocCfg:
         elif self.is_interesting is not None:
             return self.is_interesting
 
+        # Author check  # NOTE: this only applies to configured authors or derived_cfg! so not most emails
+        if self.author and self.author in PERSONS_OF_INTEREST:
+            return True
+
         # category field checks
         if is_interesting(self.category):
             return True
@@ -250,8 +254,9 @@ class DocCfg:
             return False
         elif is_uninteresting(self.category):
             return False
+
         # description field checks
-        elif any (self.description.startswith(pfx) for pfx in UNINTERESTING_PREFIXES):
+        if any (self.description.startswith(pfx) for pfx in UNINTERESTING_PREFIXES):
             return False
 
         return None

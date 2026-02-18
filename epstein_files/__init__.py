@@ -59,6 +59,10 @@ def generate_html() -> None:
     elif args.json_files:
         print_json_files(epstein_files)
         exit()
+    elif args.repair:
+        epstein_files.repair_ids(args.positional_args)
+        timer.print_at_checkpoint(f"Repaired {len(args.positional_args)} documents")
+        exit()
 
     print_title_page_top()
 

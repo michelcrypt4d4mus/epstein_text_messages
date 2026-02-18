@@ -9,6 +9,7 @@ from pathlib import Path
 from typing import Mapping, Sequence, Type, cast
 
 from rich.table import Table
+from yaralyzer.util.helpers.interaction_helper import ask_to_proceed
 
 from epstein_files.documents.document import Document
 from epstein_files.documents.documents.doc_cfg import Metadata
@@ -284,10 +285,7 @@ class EpsteinFiles:
         self.file_paths = all_txt_paths()
         new_paths = [p for p in self.file_paths if extract_file_id(p) not in current_docs]
         new_docs = self._load_file_paths(new_paths)
-
-        for doc in new_docs:
-            console.print(doc)
-
+        console.print(*new_docs)
         logger.warning(f"Loaded {len(new_docs)} new files: {[d.file_id for d in new_docs]}")
         self._sift_documents(new_docs)
         self._finalize_data_and_write_to_disk()
@@ -317,6 +315,20 @@ class EpsteinFiles:
         table.add_row('JSON Data', *Document.files_info_row(self.json_files, True))
         table.add_row('Other', *Document.files_info_row(self.non_json_other_files))
         return table
+
+    def repair_ids(self, ids: list[str]) -> None:
+        """Repair/reload the ids specified and save to disk."""
+        doc_paths = [d.file_path for d in self.all_documents if d.file_id in ids]
+
+        if len(doc_paths) != len(ids):
+            raise RuntimeError(f"{len(ids)} specified but only {len(doc_paths)} Document objects found!")
+
+        self._remove_ids(ids)
+        repaired_docs = self._load_file_paths(doc_paths)
+        self._sift_documents(repaired_docs)
+        console.print(*repaired_docs, '\n')
+        ask_to_proceed(f"Looks ok?")
+        self._finalize_data_and_write_to_disk()
 
     def save_to_disk(self) -> None:
         """Write a pickled version of this `EpsteinFiles` object with all documents etc."""
@@ -401,6 +413,12 @@ class EpsteinFiles:
                 doc_timer.print_at_checkpoint(f"Slow file: {docs[-1]} processed")
 
         return docs
+
+    def _remove_ids(self, ids: list[str]) -> None:
+        """TODO: this sucks, just use a single list to store Document objs."""
+        self.emails = [e for e in self.emails if e.file_id not in ids]
+        self.imessage_logs = [e for e in self.imessage_logs if e.file_id not in ids]
+        self.other_files = [f for f in self.other_files if f.file_id not in ids]
 
     def _set_uninteresting_ccs(self) -> None:
         """Extract the recipients of emails configured has having uninteresting CCs or BCCs."""

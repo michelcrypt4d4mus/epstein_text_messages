@@ -51,10 +51,6 @@ def interesting_doc() -> DocCfg:
     return cfg
 
 @pytest.fixture
-def interesting_author() -> DocCfg:
-    return _doj_cfg(Uninteresting.ACADEMIA, author=JOI_ITO)
-
-@pytest.fixture
 def junk_doc_cfg() -> DocCfg:
     return _oversight_cfg(JUNK)
 
@@ -76,7 +72,7 @@ def skype_cfg() -> DocCfg:
 
 @pytest.fixture
 def tweet_cfg() -> DocCfg:
-    return _doj_cfg(Neutral.TWEET, author='Klippenstein')
+    return _doj_cfg(Uninteresting.TWEET, author='Klippenstein')
 
 @pytest.fixture
 def uninteresting_description() -> DocCfg:
@@ -131,6 +127,7 @@ def test_complete_description(
     skype_author.description = 'something'
     assert skype_author.complete_description == f"{skype_log} of conversation with linkspirit something"
     # Tweet
+    assert tweet_cfg.is_interesting is None
     assert tweet_cfg.complete_description == 'Tweet by Klippenstein'
     tweet_cfg.description = 'libelous'
     assert tweet_cfg.complete_description == 'Tweet by Klippenstein libelous'
@@ -144,7 +141,6 @@ def test_is_of_interest(
     finance_report,
     fwded_article,
     harvard_poetry_cfg,
-    interesting_author,
     interesting_doc,
     junk_doc_cfg,
     junk_email_cfg,
@@ -159,7 +155,6 @@ def test_is_of_interest(
     assert finance_report.is_of_interest is False
     assert fwded_article.is_of_interest is False
     assert harvard_poetry_cfg.is_of_interest is False
-    assert interesting_author.is_of_interest is True
     assert interesting_doc.is_of_interest is True
     assert junk_doc_cfg.is_of_interest is False
     assert junk_email_cfg.is_of_interest is False
