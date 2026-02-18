@@ -87,6 +87,8 @@ $GENERATE_CMD --mobile
 if [ -n "$ONLY_TEXTS" ]; then
     print_deploy_step "Skipping build of emails pages..."
 else
+    print_deploy_step "Building curated chronological page..."
+    $GENERATE_CMD --output-chrono
     print_deploy_step "Building all emails page..."
     $GENERATE_CMD --all-emails
     print_deploy_step "Building chronological emails page..."
