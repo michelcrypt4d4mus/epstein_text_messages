@@ -6,8 +6,8 @@ from typing import Callable, Literal
 from inflection import parameterize
 from rich.text import Text
 
-from epstein_files.util.env import args
 from epstein_files.output.sites import SiteType
+from epstein_files.util.env import args
 from epstein_files.util.constant.strings import TEXT_LINK
 from epstein_files.util.helpers.file_helper import coerce_file_stem
 from epstein_files.util.helpers.link_helper import SUBSTACK_POST_LINK_STYLE, link_markup, link_text_obj

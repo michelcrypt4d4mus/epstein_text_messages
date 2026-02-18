@@ -13,8 +13,8 @@ from rich.text import Text
 
 from epstein_files.output.demi_table import build_demi_table
 from epstein_files.output.rich import *
-from epstein_files.util.constant.names import UNKNOWN
 from epstein_files.output.sites import GH_PROJECT_URL
+from epstein_files.util.constant.names import UNKNOWN
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constant.urls import *
 from epstein_files.util.constants import HEADER_ABBREVIATIONS

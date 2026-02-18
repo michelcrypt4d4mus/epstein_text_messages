@@ -27,8 +27,8 @@ from epstein_files.output.output import (print_curated_chronological, print_doj_
      print_emailers_info, print_json_metadata, show_urls, write_html)
 from epstein_files.output.rich import (build_highlighter, console, highlighter,
      print_json, print_subtitle_panel)
-from epstein_files.output.title_page import print_color_key, print_title_page_top, print_title_page_bottom
 from epstein_files.output.sites import make_clean
+from epstein_files.output.title_page import print_color_key, print_title_page_top, print_title_page_bottom
 from epstein_files.util.constant.strings import HOUSE_OVERSIGHT_NOV_2025_ID_REGEX
 from epstein_files.util.env import args
 from epstein_files.util.helpers.data_helpers import flatten
