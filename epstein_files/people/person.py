@@ -318,29 +318,29 @@ class Person:
 
     def print_emails(self) -> list[Email]:
         """Print complete emails to or from a particular 'author'. Returns the Emails that were printed."""
+        last_email_was_suppressed = False
         print_centered(self.info_panel)
 
         if site_config.show_emailer_tables:
             self.print_emails_table()
 
-        if self.name in SPECIAL_NOTES:
+        if self.category == JUNK:
+            logger.warning(f"Not printing junk emailer '{self.name}'")  # Junk emailers only get a table
+            return self._printable_emails
+        elif self.name in SPECIAL_NOTES:
             print_centered(Padding(Panel(SPECIAL_NOTES[self.name], expand=True, padding=(1, 3), style='reverse'), (0, 0, 2, 0)))
 
-        last_printed_email_was_duplicate = False
+        for email in self._printable_emails:
+            if email.suppressed_txt:
+                email.print()
+                last_email_was_suppressed = True
+                continue
 
-        if self.category == JUNK:
-            logger.warning(f"Not printing junk emailer '{self.name}'")
-        else:
-            for email in self._printable_emails:
-                if email.is_duplicate:
-                    console.print(email.duplicate_file_txt_padded)
-                    last_printed_email_was_duplicate = True
-                else:
-                    if last_printed_email_was_duplicate:
-                        console.line()
+            if last_email_was_suppressed:
+                console.line()
 
-                    console.print(email)
-                    last_printed_email_was_duplicate = False
+            last_email_was_suppressed = False
+            email.print()
 
         return self._printable_emails
 

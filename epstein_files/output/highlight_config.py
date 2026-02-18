@@ -981,6 +981,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         patterns=[
             r"BOJ",
             r"(Bank\s+of\s+)?Japan(ese)?",
+            r"Digital\s*Garage",  # Joi Ito Japan co.
             r"jpy?(?! Morgan)",
             r"SG",
             r"Singapore",

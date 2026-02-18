@@ -26,10 +26,11 @@ from epstein_files.output.site.sites import EXTRACTS_BASE_URL
 from epstein_files.people.interesting_people import UNINTERESTING_AUTHORS
 from epstein_files.util.constant.names import Name
 from epstein_files.util.constant.strings import *
-from epstein_files.util.constant.urls import epstein_media_doc_link_txt
 from epstein_files.util.constants import CONFIGS_BY_ID, MAX_CHARS_TO_PRINT
+from epstein_files.util.env import args
 from epstein_files.util.helpers.data_helpers import (collapse_newlines, date_str, patternize, prefix_keys,
      remove_zero_time, without_falsey)
+from epstein_files.util.helpers.link_helper import link_text_obj
 from epstein_files.util.helpers.file_helper import coerce_file_path, file_size_to_str
 from epstein_files.util.helpers.string_helper import join_truthy
 from epstein_files.util.logging import DOC_TYPE_STYLES, FILENAME_STYLE, logger
@@ -150,18 +151,12 @@ class Document:
         return date_str(self.timestamp)
 
     @property
-    def duplicate_file_txt(self) -> Text:
+    def duplicate_file_txt(self) -> Text | None:
         """If the file is a dupe make a nice message to explain what file it's a duplicate of."""
-        if not self.is_duplicate:
-            raise RuntimeError(f"duplicate_file_txt() called on {self.summary} but not a dupe! config:\n\n{self.config}")
-
-        txt = Text(f"Not showing ", style=INFO_STYLE).append(epstein_media_doc_link_txt(self.file_id, style='cyan'))
-        txt.append(f" because it's {DUPE_TYPE_STRS[self.config.dupe_type]} ")
-        return txt.append(epstein_media_doc_link_txt(self.config.duplicate_of_id, style='royal_blue1'))
-
-    @property
-    def duplicate_file_txt_padded(self) -> Padding:
-        return Padding(self.duplicate_file_txt.append('...'), SKIPPED_FILE_MSG_PADDING)
+        if self.is_duplicate:
+            # TODO: this link is incorrect for DOJ files
+            link = link_text_obj(FileInfo.url_for_id(self.file_info.url_slug), self.file_id, 'royal_blue1')
+            return self._skipped_file_txt(Text(f"{DUPE_TYPE_STRS[self.config.dupe_type]} ").append(link))
 
     @property
     def duplicate_of_id(self) -> str | None:
@@ -169,9 +164,18 @@ class Document:
             return self.config.duplicate_of_id
 
     @property
+    def empty_file_txt(self) -> Text | None:
+        """Overridden in DojFile."""
+        pass
+
+    @property
     def external_link_markup(self) -> str:
         """Rich markup string with link to source document."""
         return self.file_info.external_link_markup(get_style_for_name(self.author) if self.author else '')
+
+    @property
+    def external_link_txt(self) -> Text:
+        return Text.from_markup(self.external_link_markup)
 
     @property
     def file_id(self) -> str:
@@ -267,6 +271,11 @@ class Document:
             return highlighter(Text(text, style))
 
     @property
+    def suppressed_txt(self) -> Text | None:
+        """`Text` object to print if this documents is suppressed for various reasons."""
+        return self.uninteresting_txt or self.duplicate_file_txt or self.empty_file_txt
+
+    @property
     def subheader(self) -> Text | None:
         """Secondary info about this file (description, recipients, etc). Overload in subclasses."""
         return None
@@ -311,6 +320,12 @@ class Document:
             dupe_idx = 0
 
         return (self.timestamp or FALLBACK_TIMESTAMP, sort_id, dupe_idx)
+
+    @property
+    def uninteresting_txt(self) -> Text | None:
+        """Text to print for uninteresting files."""
+        if self.config and self.config.is_interesting is False and args.suppress_uninteresting:
+            return self._skipped_file_txt("uninteresting")
 
     @property
     def _class_name(self) -> str:
@@ -370,6 +385,15 @@ class Document:
         separator = '\n\n' if '\n' in msg else '. '
         msg = (msg + separator) if msg else ''
         self.log(f"{msg}First {n} lines:\n\n{self.top_lines(n)}\n", level)
+
+    def print(self) -> bool:
+        """Decide whether to print a dupe/suppression message or actual object. Returns True if object was printed."""
+        if (skipped_file_txt := self.suppressed_txt):
+            console.print(Padding(skipped_file_txt, SKIPPED_FILE_MSG_PADDING))
+            return False
+        else:
+            console.print(self)
+            return True
 
     def raw_text(self) -> str:
         """Reload the raw data from the underlying file and return it."""
@@ -475,6 +499,10 @@ class Document:
             raise RuntimeError(f"[{self.filename}] Either 'lines' or 'text' arg must be provided (neither was)")
 
         self.lines = [line.strip() if self.STRIP_WHITESPACE else line for line in self.text.split('\n')]
+
+    def _skipped_file_txt(self, reason: str | Text) -> Text:
+        txt = Text(f"Skipping ", INFO_STYLE).append(self.external_link_txt)
+        return txt.append(" because it's ").append(reason).append('...')
 
     def _write_clean_text(self, output_path: Path) -> None:
         """Write self.text to 'output_path'. Used only for diffing files."""

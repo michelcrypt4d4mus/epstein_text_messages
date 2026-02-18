@@ -1377,6 +1377,34 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA01061414', truncate_to=440),
 ]
 
+UNINTERESTING_EMAIL_IDS = [
+    '030786',  # Jabor boring
+    # TODO: These have UNKNOWN recipient so they currently get printed but we should configure it so they don't
+    'EFTA00039894',
+    'EFTA00039878',
+    # Brock
+    'EFTA02174702',
+    'EFTA02160842',
+    'EFTA00405824',
+    'EFTA00361736',
+    'EFTA00997251',
+    'EFTA02092108',
+    'EFTA00645400',
+    'EFTA01002109',
+    'EFTA02365466',
+    'EFTA00709543',
+    # DOJ / USANYS
+    'EFTA02730469',
+    'EFTA02730471',
+]
+
+for id in UNINTERESTING_EMAIL_IDS:
+    if (cfg := next((c for c in EMAILS_CONFIG if c.id == id), None)):
+        assert not cfg.is_interesting, f"Can't overwrite is_interesting value for {cfg}"
+        cfg.is_interesting = False
+    else:
+        EMAILS_CONFIG.append(EmailCfg(id='id', is_interesting=False))
+
 
 ################################################################################################
 ####################################### OTHER FILES ############################################
@@ -2394,25 +2422,3 @@ def check_no_overlapping_configs():
 
 
 check_no_overlapping_configs()
-
-
-UNINTERESTING_EMAIL_IDS = [
-    '030786',  # Jabor boring
-    # TODO: These have UNKNOWN recipient so they currently get printed but we should configure it so they don't
-    'EFTA00039894',
-    'EFTA00039878',
-    # Brock
-    'EFTA02174702',
-    'EFTA02160842',
-    'EFTA00405824',
-    'EFTA00361736',
-    'EFTA00997251',
-    'EFTA02092108',
-    'EFTA00645400',
-    'EFTA01002109',
-    'EFTA02365466',
-    'EFTA00709543',
-    # DOJ / USANYS
-    'EFTA02730469',
-    'EFTA02730471',
-]
