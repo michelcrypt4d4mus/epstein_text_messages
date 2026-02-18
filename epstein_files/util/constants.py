@@ -358,6 +358,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='032224', author=KATHRYN_RUEMMLER, recipients=[JEFFREY_EPSTEIN], author_reason='Reply'),
     EmailCfg(id='032386', author=KATHRYN_RUEMMLER, author_uncertain=KATHY_REASON),
     EmailCfg(id='032727', author=KATHRYN_RUEMMLER, author_uncertain=KATHY_REASON),
+    EmailCfg(id='EFTA02587320', author=KATHRYN_RUEMMLER, description=f"Kathy Ruemmler, crypto bro-ette", is_interesting=True),
     EmailCfg(id='030478', author=LANDON_THOMAS),
     EmailCfg(id='029013', author=LARRY_SUMMERS, recipients=[JEFFREY_EPSTEIN]),
     EmailCfg(id='029196', author=LAWRENCE_KRAUSS, recipients=[JEFFREY_EPSTEIN], actual_text='Talk in 40?'),
@@ -559,6 +560,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='026026', description=IS_IT_ROGER_STONE),
     EmailCfg(id='026030', description=IS_IT_ROGER_STONE),
     EmailCfg(id='026033', description=IS_IT_ROGER_STONE),
+    EmailCfg(id='026360', description=f"{JOI_ITO} writes to Epstein to thank him for providing funding for the bitcoin core development team"),
     EmailCfg(id='031011', description='jokes about Chicago corruption', duplicate_ids=['031090'], truncate_to=TRUNCATED_CHARS),
     EmailCfg(id='023627', description=MICHAEL_WOLFF_EPSTEIN_ARTICLE_DRAFT, is_fwded_article=True, is_interesting=True, truncate_to=16800),
     EmailCfg(id='030745', description="planning a public statement for Ghislaine", truncate_to=NO_TRUNCATE),
@@ -1011,6 +1013,14 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00405795', author=LESLEY_GROFF, duplicate_ids=['EFTA02159829']),
     EmailCfg(id='EFTA00419742', author=LESLEY_GROFF, duplicate_ids=['EFTA02174857']),
     EmailCfg(
+        id='EFTA00384774',
+        author_reason='unique email signature',
+        author=LINDA_STONE,
+        description='visiting for the death of Red Burns',
+        is_interesting=True,
+        recipients=[LESLEY_GROFF],
+    ),
+    EmailCfg(
         id='EFTA02177147',
         author=LINDA_STONE,
         author_uncertain='"Hi Linda"',
@@ -1035,7 +1045,8 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00706814', author=LINDA_STONE, author_reason=LINDA_STONE_ATTRIBUTION),
     EmailCfg(id='EFTA00703417', author=LINDA_STONE, author_reason=LINDA_STONE_ATTRIBUTION),
     EmailCfg(id='EFTA02354559', author=LINDA_STONE, author_reason=LINDA_STONE_ATTRIBUTION),
-    EmailCfg(id='EFTA01802168', author=LINDA_STONE),
+    EmailCfg(id='EFTA01802168', author=LINDA_STONE, author_uncertain='"Stone"'),
+    EmailCfg(id='EFTA00701326', author=LINDA_STONE, author_uncertain='"Stone"'),
     EmailCfg(id='EFTA00397956', author=LINDA_STONE, author_reason='unique email signature'),
     EmailCfg(id='EFTA02267133', author=LESLEY_GROFF, recipients=[MARIA_PRUSAKOVA], uncertain_recipient=f"{CRYPTO_PR_LAB} signature", truncate_to=NO_TRUNCATE),  # only uncertain bc it could be other crypto pr lab person
     EmailCfg(id='EFTA02349697', author=MARIA_PRUSAKOVA, author_reason='boyfriend Christian, same as 032374'),
@@ -1296,14 +1307,6 @@ EMAILS_CONFIG = [
         is_interesting=True,
     ),
     EmailCfg(id='EFTA02588748', description=f'discussion of crypto food stamps debit cards', is_interesting=True, truncate_to=800),
-    EmailCfg(
-        id='EFTA00384774',
-        author_reason='unique email signature',
-        author=LINDA_STONE,
-        description='visiting for the death of Red Burns',
-        is_interesting=True,
-        recipients=[LESLEY_GROFF],
-    ),
     EmailCfg(id='EFTA00901970', description=f"{AL_SECKEL}'s response to Epstein's forged email", is_interesting=True),
     EmailCfg(id='EFTA02372964', description='an "ICO" or "initial coin offering" was a very popular type of crypto scam at this time'),
     EmailCfg(id='EFTA00988395', description=f'"Andy Back" is probably Blockstream bitcoin dev {ADAM_BACK}', duplicate_ids=['EFTA01928856']),
@@ -1329,6 +1332,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00671263', description="Eagle's View Capital Management September 2017 Performance Update"),
     EmailCfg(id='EFTA00836182', description=f'email to investors in {VALAR_FUND}'),
     EmailCfg(id='EFTA02494000', description=f"Epstein and {DAVID_STERN} discussing setting up a crypto exchange in Belarus", is_interesting=True),
+    EmailCfg(id='efta00881759', description=f"Epstein and {STEVE_BANNON} discuss collection donations in bitcoin", is_interesting=True),
     EmailCfg(id='EFTA01008242', description='Epstein passes on an investment in Radius'),
     EmailCfg(id='EFTA01139067', description=f'Epstein tells Farkas he has not invested in {CRYPTO_CURRENCY_PARTNERS_II}', is_interesting=True),
     EmailCfg(id='EFTA00699275', description=f"'Fred' is probably Coinbase co-founder Fred Ehrsam"),
@@ -1338,6 +1342,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00104945', description=f"{LEON_BLACK} / Rothschild Group {DEUTSCHE_BANK} transactions", is_interesting=True, truncate_to=700),
     EmailCfg(id='EFTA01013266', description=f"{MARIA_PRUSAKOVA}'s {CRYPTO_PR_LAB} request for payment for Davos", is_interesting=True),
     EmailCfg(id='EFTA02285514', description=f"Medici Bank and {MARIA_PRUSAKOVA} meeting", is_interesting=True),
+    EmailCfg(id='EFTA00752383', description=f"Mindshift conference attendee list", is_interesting=True),
     EmailCfg(id='EFTA00900908', description="negotiation of repurchase of half of Epstein's stake in Coinbase"),
     EmailCfg(id='EFTA00754450', description='"PA" is probably Prince Andrew', duplicate_ids=['EFTA02418244']),
     EmailCfg(id='EFTA01003346', description=f"{PETER_THIEL} tells Epstein to invest in his fund", is_interesting=True),
@@ -1358,6 +1363,8 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00428083', duplicate_ids=['EFTA02183761']),
     EmailCfg(id='EFTA00869828', truncate_to=TRUNCATED_CHARS),
     EmailCfg(id='EFTA00661348', truncate_to=NO_TRUNCATE),
+    EmailCfg(id='EFTA01731638', truncate_to=530),
+    EmailCfg(id='EFTA00836570', truncate_to=1600),
 ]
 
 
@@ -2374,8 +2381,9 @@ def check_no_overlapping_configs():
 check_no_overlapping_configs()
 
 
-# TODO: These have UNKNOWN recipient so they currently get printed but we should configure it so they don't
 UNINTERESTING_EMAIL_IDS = [
+    '030786',  # Jabor boring
+    # TODO: These have UNKNOWN recipient so they currently get printed but we should configure it so they don't
     'EFTA00039894',
     'EFTA00039878',
 ]

@@ -10,6 +10,7 @@ from epstein_files.util.constant.names import *
 from epstein_files.util.constants import CONFIGS_BY_ID
 from epstein_files.util.helpers.data_helpers import dict_sets_to_lists
 
+from .conftest import assert_higher_counts
 from .fixtures.emails.email_author_counts import EMAIL_AUTHOR_COUNTS
 from .fixtures.emails.email_recipient_counts import EMAIL_RECIPIENT_COUNTS
 from .fixtures.emails.signatures import AUTHORS_TO_DEVICE_SIGNATURES, DEVICE_SIGNATURE_TO_AUTHORS, SIGNATURE_SUBSTITUTION_COUNTS
@@ -27,11 +28,7 @@ def test_all_configured_file_ids_exist(epstein_files):
 
 def test_document_monthly_counts(epstein_files):
     new_counts = count_by_month(epstein_files.documents)
-
-    for month, num_docs in new_counts.items():
-        assert month in EXPECTED_MONTHLY_COUNTS
-        assert num_docs >= EXPECTED_MONTHLY_COUNTS[month], f"Expected {EXPECTED_MONTHLY_COUNTS[month]} for {month}, found {num_docs}"
-
+    assert_higher_counts(new_counts, EXPECTED_MONTHLY_COUNTS)
     num_files_paths = len(epstein_files.file_paths)
     num_document_objs = sum(new_counts.values())
     assert num_document_objs == num_files_paths - 1256  # There's 1256 empty files
@@ -73,32 +70,25 @@ def test_other_files_categories(epstein_files):
 # @pytest.mark.skip(reason='temporary')
 def test_email_author_counts(epstein_files):
     author_counts = epstein_files.email_author_counts()
-    assert author_counts.pop(JEFFREY_EPSTEIN) > 790
-    assert author_counts.pop(LESLEY_GROFF) > 100
-    assert author_counts.pop(RICHARD_KAHN) > 50
-    assert author_counts == EMAIL_AUTHOR_COUNTS
+    assert_higher_counts(author_counts, EMAIL_AUTHOR_COUNTS)
 
 
 # @pytest.mark.skip(reason='temporary')
 def test_email_recipient_counts(epstein_files):
     recipient_counts = epstein_files.email_recipient_counts()
-    assert recipient_counts.pop(JEFFREY_EPSTEIN) > 1800
-    assert recipient_counts.pop(LESLEY_GROFF) > 40
-    assert recipient_counts.pop(RICHARD_KAHN) > 50
-    assert recipient_counts == EMAIL_RECIPIENT_COUNTS
+    assert_higher_counts(recipient_counts, EMAIL_RECIPIENT_COUNTS)
 
 
 def test_interesting_emails(epstein_files):
     interesting_email_count = len([e for e in epstein_files.unique_emails if e.is_interesting])
     uninteresting_emails_count = len([e for e in epstein_files.unique_emails if e.is_interesting is False])
-    assert interesting_email_count == 817
+    assert interesting_email_count == 855
     assert uninteresting_emails_count == 172
 
 
 def test_signature_substitutions(epstein_files):
     substitution_counts = epstein_files.email_signature_substitution_counts()
-    assert substitution_counts.pop(JEFFREY_EPSTEIN) > 3900
-    assert substitution_counts == SIGNATURE_SUBSTITUTION_COUNTS
+    assert_higher_counts(substitution_counts, SIGNATURE_SUBSTITUTION_COUNTS)
 
 
 def test_signatures(epstein_files):

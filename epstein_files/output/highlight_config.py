@@ -300,6 +300,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(MADARS_VIRZA, f"ZCash lead dev, {MIT_MEDIA_LAB}")
         ],
         patterns=[
+            r"a16z|(?<!Gavin )Andree?ss?e?[eo]n(\s&Horowitz)?",
             r"Alphabit",
             r"((Andy|Adam)\s*)Back",
             r"Balaji(\s*Srinivisan)?",
@@ -323,6 +324,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"(Dan\s*)?Morehead",
             r"Digital\s*Currenc(ies|y)(\s*Initiative)?",
             r"e-?currency",
+            r"Erik\s*Svenson",  # Blockstream
             r"Fred\s*Ehrsam",
             r"FTX",
             r"(Gavin )?Andress?en",  # bitcoin dev
@@ -338,6 +340,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"LedgerX",
             r"Libra",
             r"Madars",
+            r"(Marc\s*)?(?<!Gavin )Andreess?en", r"adreeson",
             r"Matthew\s*Roszak",
             r"Medici\s*Bank",
             r"Mercantile Global Holdings",
@@ -595,6 +598,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Dutch",
             r"ECB",
             r"England",
+            r"ethereum",
             r"EU",
             r"Europe(an)?(\s*Union)?",
             r"Fr(ance|ench)",
@@ -614,6 +618,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Macron",
             r"Melusine",
             r"MI\s*5",
+            r"Monaco",
             r"Munich",
             r"NATO",
             r"(Nicholas\s*)?Sarkozy",
@@ -637,6 +642,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"United\s*Kingdom",
             r"U\.K\.",
             r"Ukrain(e|ian)",
+            r"Vatican",
             r"Venice",
             r"(Vi(c|k)tor\s+)?Orbah?n",
             r"Vienna",
@@ -1584,7 +1590,6 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(ZUBAIR_KHAN, f"Tranchulas cybersecurity, InsightsPod founder, Islamabad / Dubai, friend of {MASHA_DROKOVA}"),
         ],
         patterns=[
-            r"a16z|(?<!Gavin )Andree?ss?e?[eo]n(\s&Horowitz)?",
             r"AG?I",
             r"Artificial\s*(General\s*)?Intelligence",
             r"Ben\s*Horowitz",
@@ -1603,7 +1608,6 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"(Jeff\s*)?Bezos",
             r"Larry Page",
             r"LinkedIn",
-            r"(Marc\s*)?(?<!Gavin )Andreess?en",
             r"(Mark\s*)?Zuckerberg",
             r"Masa(yoshi)?(\sSon)?",
             r"Neoteny",  # Joi Ito Japanese fund?

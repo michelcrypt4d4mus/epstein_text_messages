@@ -98,6 +98,7 @@ DEVICE_SIGNATURE_TO_AUTHORS = {
         ANAS_ALRASHEED,
         'Audrey Strauss',
         AZIZA_ALAHMADI,
+        BROCK_PIERCE,
         'Bruce Moskowitz',
         'Darren Indyke',
         'David Schoen',
@@ -213,6 +214,7 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
     ],
     BROCK_PIERCE: [
         'Sent from my iPad',
+        'Sent from my iPhone',
     ],
     "Bruce Moskowitz": [
         "Sent from my iPad",
@@ -466,7 +468,7 @@ SIGNATURE_SUBSTITUTION_COUNTS = {
     ERIC_ROTH: 5,
     GHISLAINE_MAXWELL: 13,
     JEANNE_M_CHRISTENSEN: 37,
-    # JEFFREY_EPSTEIN: 3935,
+    JEFFREY_EPSTEIN: 3935,
     JESSICA_CADWELL: 57,
     KEN_JENNE: 1,
     LARRY_SUMMERS: 235,

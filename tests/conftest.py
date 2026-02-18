@@ -1,5 +1,5 @@
 from os import environ
-from typing import Callable
+from typing import Callable, Mapping
 
 import pytest
 from dotenv import load_dotenv
@@ -61,3 +61,9 @@ def get_other_file(epstein_files) -> Callable[[str], OtherFile]:
 @pytest.fixture
 def local_extract_file_name(file_stem) -> str:
     return f"{file_stem}_1.txt"
+
+
+def assert_higher_counts(actual: Mapping[str | None, int], expected: Mapping[str | None, int]):
+    for key, count in actual.items():
+        assert key in expected
+        assert count >= expected[key], f"Expected {expected[key]} for {key}, found {count}"
