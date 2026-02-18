@@ -81,6 +81,8 @@ print_deploy_step "Building curated index.html..."
 $GENERATE_CMD
 print_deploy_step "Building text messages page... "
 $GENERATE_CMD --all-texts
+print_deploy_step "Building mobile page... "
+$GENERATE_CMD --mobile
 
 if [ -n "$ONLY_TEXTS" ]; then
     print_deploy_step "Skipping build of emails pages..."

@@ -1332,7 +1332,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00671263', description="Eagle's View Capital Management September 2017 Performance Update"),
     EmailCfg(id='EFTA00836182', description=f'email to investors in {VALAR_FUND}'),
     EmailCfg(id='EFTA02494000', description=f"Epstein and {DAVID_STERN} discussing setting up a crypto exchange in Belarus", is_interesting=True),
-    EmailCfg(id='efta00881759', description=f"Epstein and {STEVE_BANNON} discuss collection donations in bitcoin", is_interesting=True),
+    EmailCfg(id='EFTA00881759', description=f"Epstein and {STEVE_BANNON} discuss collection donations in bitcoin", is_interesting=True),
     EmailCfg(id='EFTA01008242', description='Epstein passes on an investment in Radius'),
     EmailCfg(id='EFTA01139067', description=f'Epstein tells Farkas he has not invested in {CRYPTO_CURRENCY_PARTNERS_II}', is_interesting=True),
     EmailCfg(id='EFTA00699275', description=f"'Fred' is probably Coinbase co-founder Fred Ehrsam"),

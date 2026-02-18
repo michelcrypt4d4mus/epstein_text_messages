@@ -34,6 +34,7 @@ class SiteType(StrEnum):
     GROUPED_EMAILS = auto()
     #JSON_FILES = auto()
     JSON_METADATA = auto()
+    MOBILE = auto()
     OTHER_FILES_TABLE = auto()
     TEXT_MESSAGES = auto()
     WORD_COUNT = auto()
@@ -86,6 +87,7 @@ HTML_BUILD_FILENAMES = {
     SiteType.DOJ_FILES:             f'doj_2026-01-30_non_email_files.html',
     SiteType.GROUPED_EMAILS:        f'emails_grouped_by_counterparty.html',
     SiteType.JSON_METADATA:         f'file_metadata_{EPSTEIN_FILES_NOV_2025}.json',
+    SiteType.MOBILE:                f'curated_mobile.html',
     SiteType.OTHER_FILES_TABLE:     f'other_files_table.html',
     SiteType.TEXT_MESSAGES:         f'text_messages_{EPSTEIN_FILES_NOV_2025}.html',
     SiteType.WORD_COUNT:            f'communication_word_count.html',
@@ -97,6 +99,7 @@ HTML_BUILD_FILENAMES = {
 SITE_DESCRIPTIONS = {
     SiteType.CURATED:               f"curated:by my interests, files grouped by type",
     SiteType.CURATED_CHRONOLOGICAL: f"curated chronological:all types intermingled",
+    SiteType.MOBILE:                f"an attempt at mobile compatibility",
     SiteType.GROUPED_EMAILS:        f"emailers:emails grouped by counterparty",
     SiteType.CHRONOLOGICAL_EMAILS:  f"emails:pure chronological order",
     SiteType.TEXT_MESSAGES:         f"text messages:{HOUSE_OVERSIGHT_TRANCHE}",

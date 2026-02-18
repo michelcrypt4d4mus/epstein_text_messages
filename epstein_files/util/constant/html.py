@@ -1,6 +1,7 @@
 from rich.terminal_theme import TerminalTheme
 
 from epstein_files.util.env import args
+from epstein_files.output.sites import SiteType
 
 
 PAGE_TITLE = '   ∞ Michel de Cryptadamus ∞   '
@@ -20,6 +21,12 @@ CONSOLE_HTML_FORMAT = """
     <meta charset="UTF-8">
     <link rel="icon" type="image/x-icon" href="https://media.universeodon.com/accounts/avatars/109/363/179/904/598/380/original/eecdc2393e75e8bf.jpg" />
 
+    <script type="text/javascript">
+        if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {{
+            window.location.href = """ + f'"{SiteType.get_url(SiteType.MOBILE)}";' + """
+        }}
+    </script>
+
     <style>
         {stylesheet}
         body {{
@@ -29,6 +36,7 @@ CONSOLE_HTML_FORMAT = """
     </style>
 """ + f"<title>Epstein {page_type}</title>" + """
 </head>
+
 <body>
     <pre style="font-family: Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace; white-space: pre-wrap; overflow-wrap: break-word;">
         <code style="font-family: inherit; white-space: pre-wrap; overflow-wrap: break-word;">{code}</code>

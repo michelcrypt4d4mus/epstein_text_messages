@@ -5,11 +5,12 @@ from pathlib import Path
 
 from rich_argparse_plus import RichHelpFormatterPlus
 
-from epstein_files.util.constant.output_files import *
+from epstein_files.output.sites import *
 from epstein_files.util.helpers.env_helpers import get_env_dir
 from epstein_files.util.logging import env_log_level, exit_with_error, logger, set_log_level
 
 DEFAULT_WIDTH = 155
+MOBILE_WIDTH = 45
 DEFAULT_FILE = 'default_file'
 EPSTEIN_GENERATE = 'epstein_generate'
 HTML_SCRIPTS = [EPSTEIN_GENERATE]
@@ -44,6 +45,7 @@ output.add_argument('--email-timeline', action='store_true', help='print a table
 output.add_argument('--emailers-info', '-ei', action='store_true', help='write a .png of the eeailers info table')
 output.add_argument('--json-files', action='store_true', help='pretty print all the raw JSON data files in the collection and exit')
 output.add_argument('--json-metadata', '-jm', action='store_true', help='dump JSON metadata for all files and exit')
+output.add_argument('--mobile', '-m', action='store_true', help='build a mobile version of the site')
 output.add_argument('--output-chrono', '-oc', action='store_true', help='output curated files of all types in chronological order')
 output.add_argument('--output-doj-files', '-od', action='store_true', help='generate the DOJ files from 2026-01-30')
 output.add_argument('--output-emails', '-oe', action='store_true', help='generate emails section')
@@ -89,6 +91,10 @@ else:
 
 is_html_script = parser.prog in HTML_SCRIPTS
 
+if args.mobile:
+    args.output_emails = True
+    args.width = MOBILE_WIDTH
+
 args.debug = args.deep_debug or args.debug or is_env_var_set('DEBUG')
 args.names = [None if n == 'None' else n.strip() for n in (args.names or [])]
 args.output_emails = args.output_emails or args.all_emails
@@ -108,11 +114,8 @@ if not (args.any_output_selected or args.email_timeline or args.emailers_info or
 if is_html_script:
     if args.positional_args and not args.repair:
         exit_with_error(f"{parser.prog} does not accept positional arguments (receeived {args.positional_args})")
-
-    if parser.prog == EPSTEIN_GENERATE:
-        if args.any_output_selected:
-            if args.email_timeline:
-                exit_with_error(f"--email-timeline option is mutually exlusive with other output options")
+    elif parser.prog == EPSTEIN_GENERATE and args.any_output_selected and args.email_timeline:
+        exit_with_error(f"--email-timeline option is mutually exlusive with other output options")
 
     # TODO: include the JSON and word count file outputs here
     if args.build == DEFAULT_FILE:
@@ -124,6 +127,8 @@ if is_html_script:
             args._site_type = SiteType.OTHER_FILES_TABLE
         elif args.email_timeline:
             args._site_type = SiteType.CHRONOLOGICAL_EMAILS
+        elif args.mobile:  # must come before CURATED_CHRONOLOGICAL
+            args._site_type = SiteType.MOBILE
         elif args.output_chrono:
             args._site_type = SiteType.CURATED_CHRONOLOGICAL
         elif args.output_doj_files:
