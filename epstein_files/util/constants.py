@@ -1313,12 +1313,15 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00988395', description=f'"Andy Back" is probably Blockstream bitcoin dev {ADAM_BACK}', duplicate_ids=['EFTA01928856']),
     EmailCfg(id='EFTA02436105', description="one of Epstein's goals in life was to make a lot of money in virtual currency"),
     EmailCfg(id='EFTA00955063', description=f'{AUSTIN_HILL} discusses crypto funds engaged in fraudulent wash trading', is_interesting=True),
+    EmailCfg(id='EFTA00673123', description=f"{BROCK_PIERCE} and Epstein invested in Coinbase which would turn out to be extremely lucrative", duplicate_ids=['EFTA02371875']),
     EmailCfg(id='EFTA01051074', description=f'{BROCK_PIERCE} arranging meeting between Bannon and Epstein (in Doha?)'),
+    EmailCfg(id='EFTA02361144', description=f'{BROCK_PIERCE} brings Epstein an opportunity to invest in Blockstream, bitcoin developer {ADAM_BACK}\'s company'),
     EmailCfg(id='EFTA00658457', description=f'{BROCK_PIERCE} says they will not invest in Bitfury'),
     EmailCfg(id='EFTA00998595', description=f'{BROCK_PIERCE} and Epstein discuss structure of crypto investments'),
     EmailCfg(id='EFTA01000882', description=f"{BROCK_PIERCE} asks for Epstein's permission to disclose his name to Coinbase team", is_interesting=True),
     EmailCfg(id='EFTA00689503', description=f"{BROCK_PIERCE} posted a review of the infamous Russian criminal crypto exchange BTC-e to LinkedIn", is_interesting=True),
     EmailCfg(id='EFTA00664424', description=f"{BROCK_PIERCE} suggests {LARRY_SUMMERS} could get involved with Tether and Noble Bank"),
+    EmailCfg(id='EFTA02541344', description=f"{BROCK_PIERCE} on marriage and polygamy with people named Crystal and Sue"),
     EmailCfg(id='EFTA00626220', description=f'discussion of a "sidecar fund" with {BROCK_PIERCE} / {CRYPTO_CURRENCY_PARTNERS_II}'),
     EmailCfg(id='EFTA01784901', description=f"discussion of checks {JEREMY_RUBIN} has cashed from Epstein", is_interesting=True),
     EmailCfg(id='EFTA01917402', description=f'discussion of Epstein investment in Blockstream funneled through {JOI_ITO}', is_interesting=True),
@@ -1335,6 +1338,8 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00836182', description=f'email to investors in {VALAR_FUND}'),
     EmailCfg(id='EFTA02494000', description=f"Epstein and {DAVID_STERN} discussing setting up a crypto exchange in Belarus", is_interesting=True),
     EmailCfg(id='EFTA00881759', description=f"Epstein and {STEVE_BANNON} discuss collection donations in bitcoin", is_interesting=True),
+    EmailCfg(id='EFTA02592748', description=f"Epstein asking {BROCK_PIERCE} for a favour related to someone named 'Sue'"),
+    EmailCfg(id='EFTA00999392', description=f"Epstein and {BROCK_PIERCE} discuss what looks like a sham marriage for immigration purposes"),
     EmailCfg(id='EFTA01008242', description='Epstein passes on an investment in Radius'),
     EmailCfg(id='EFTA01139067', description=f'Epstein tells Farkas he has not invested in {CRYPTO_CURRENCY_PARTNERS_II}', is_interesting=True),
     EmailCfg(id='EFTA00699275', description=f"'Fred' is probably Coinbase co-founder Fred Ehrsam"),
@@ -1369,6 +1374,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00661348', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA01731638', truncate_to=530),
     EmailCfg(id='EFTA00836570', truncate_to=1600),
+    EmailCfg(id='EFTA01061414', truncate_to=440),
 ]
 
 
@@ -2395,4 +2401,18 @@ UNINTERESTING_EMAIL_IDS = [
     # TODO: These have UNKNOWN recipient so they currently get printed but we should configure it so they don't
     'EFTA00039894',
     'EFTA00039878',
+    # Brock
+    'EFTA02174702',
+    'EFTA02160842',
+    'EFTA00405824',
+    'EFTA00361736',
+    'EFTA00997251',
+    'EFTA02092108',
+    'EFTA00645400',
+    'EFTA01002109',
+    'EFTA02365466',
+    'EFTA00709543',
+    # DOJ / USANYS
+    'EFTA02730469',
+    'EFTA02730471',
 ]

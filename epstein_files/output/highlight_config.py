@@ -1883,6 +1883,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             REPLY_REGEX.pattern, r"^(> )?wrote:$",
             r"CONFIDENTIAL FOR ATTORNEY'S EYES ONLY(\nDO NOT COPY)?",
             r"PRIVILEGED ?- ?ATTORNEY WORK.*(\nCONFIDENTIAL - SUBJECT TO.*)?",
+            r"Managing Partner - Crypto Currency Partners",  # custom for brock pierce
         ],
     ),
     HighlightedText(
