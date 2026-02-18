@@ -325,6 +325,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Fred\s*Ehrsam",
             r"FTX",
             r"(Gavin )?Andress?en",  # bitcoin dev
+            r"GogoCoin",
             r"(Hester\s*)?Peirce",
             r"(Howard\s+)?Lutnic?k",
             r"ICO",
@@ -335,6 +336,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"LedgerX",
             r"Libra",
             r"Madars",
+            r"Matthew\s*Roszak",
             r"Medici\s*Bank",
             r"Mercantile Global Holdings",
             r"Mi(chael|ke)\s*Novogratz",
@@ -347,6 +349,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"(Ross\s*)?Ulbricht",
             r"Silk\s*Road",
             r"SpanCash",
+            r"Steve\s*Waterhouse",
             r"Tether",
             r"virtual\s*currenc(ies|y)",
             r"Wire\s*ca\n?rd",

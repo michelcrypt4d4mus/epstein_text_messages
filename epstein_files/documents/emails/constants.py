@@ -48,6 +48,7 @@ FIELDS_COLON_PATTERN = fr"^({FIELDS_PATTERN}):"
 DOJ_EMAIL_OCR_REPAIRS: dict[str | re.Pattern, str] = {
     re.compile(r"^Sent (Sun|Mon|Tue|Wed|Thu|Fri|Sat)", re.MULTILINE): r"Sent: \1",
     re.compile(fr"({FIELDS_COLON_PATTERN}.*\n)\nSubject:", re.MULTILINE): r'\1Subject:',
+    re.compile(r"^Subject[•]", re.MULTILINE): 'Subject:',
     re.compile(r"^Fran:", re.MULTILINE): 'From:',
 }
 
