@@ -31,6 +31,9 @@ DEVICE_SIGNATURE_TO_AUTHORS = {
     'Sent from Surface': [
         UNKNOWN
     ],
+    'Sent from Surface RT': [
+        STEVEN_SINOFSKY,
+    ],
     'Sent from Windows Mail': [
         'Steven Sinofsky',
     ],
@@ -73,6 +76,7 @@ DEVICE_SIGNATURE_TO_AUTHORS = {
     ],
     "Sent from my iPad": [
         UNKNOWN,
+        ANDREW_FARKAS,
         BROCK_PIERCE,
         'Bruce Moskowitz',
         CECILIA_STEEN,
@@ -194,6 +198,9 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
     ],
     ANAS_ALRASHEED: [
         "Sent from my iPhone",
+    ],
+    ANDREW_FARKAS: [
+        'Sent from my iPad',
     ],
     'Audrey Strauss': [
         "Sent from my iPhone",
@@ -419,6 +426,7 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
         "Sent via BlackBerry by AT&T"
     ],
     STEVEN_SINOFSKY: [
+        'Sent from Surface RT',
         'Sent from Windows Mail',
     ],
     "Sultan Ahmed Bin Sulayem": [
