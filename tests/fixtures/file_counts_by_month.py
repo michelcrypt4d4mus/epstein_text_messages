@@ -1,4 +1,3 @@
-
 EXPECTED_MONTHLY_COUNTS = {
     "1985-01": 1,
     "2000-01": 1,

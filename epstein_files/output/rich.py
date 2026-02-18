@@ -218,7 +218,7 @@ def quote_txt(t: Text | str, try_double_quote_first: bool = False, style: str = 
 def styled_dict(
     d: Mapping[str, bool | datetime | str | Path | Text | None],
     key_style: str = KEY_STYLE,
-    sep: str = '=',
+    sep: str = ': ',
     sort_fields: bool = True,
     min_indent: int = 20,
 ) -> Text:

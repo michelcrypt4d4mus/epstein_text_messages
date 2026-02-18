@@ -9,9 +9,7 @@ from rich.panel import Panel
 from rich.text import Text
 
 from epstein_files.documents.documents.doc_cfg import DebugDict
-from epstein_files.documents.email import Email
-from epstein_files.documents.emails.constants import FALLBACK_TIMESTAMP
-from epstein_files.documents.emails.email_header import FIELDS_COLON_PATTERN
+from epstein_files.documents.emails.constants import DOJ_EMAIL_OCR_REPAIRS, FALLBACK_TIMESTAMP
 from epstein_files.documents.other_file import OtherFile
 from epstein_files.output.left_bar_panel import LeftBarPanel
 from epstein_files.output.rich import RAINBOW, highlighter, wrap_in_markup_style
@@ -42,13 +40,6 @@ BAD_OCR_ID_RANGES = [
 
 OTHER_DOC_URLS = {
     '245-22.pdf': 'https://www.justice.gov/multimedia/Court%20Records/Government%20of%20the%20United%20States%20Virgin%20Islands%20v.%20JPMorgan%20Chase%20Bank,%20N.A.,%20No.%20122-cv-10904%20(S.D.N.Y.%202022)/245-22.pdf'
-}
-
-# DojFile specific repair
-OCR_REPAIRS: dict[str | re.Pattern, str] = {
-    re.compile(r"^Sent (Sun|Mon|Tue|Wed|Thu|Fri|Sat)", re.MULTILINE): r"Sent: \1",
-    re.compile(fr"({FIELDS_COLON_PATTERN}.*\n)\nSubject:", re.MULTILINE): r'\1Subject:',
-    re.compile(r"^Fran:", re.MULTILINE): 'From:',
 }
 
 BAD_OCR_FILE_IDS = [
@@ -208,6 +199,7 @@ STRIP_IMAGE_PANEL_IDS = [
     'EFTA00007893',
     'EFTA02731433',
     'EFTA00005731',
+    'EFTA00424931',
 ]
 
 NO_IMAGE_SUFFIX = """
@@ -299,17 +291,6 @@ class DojFile(OtherFile):
         """Overrides super() method to apply self.border_style."""
         return self.file_info.external_links_txt(self.border_style, include_alt_links=include_alt_links)
 
-    def printable_document(self) -> Self | Email:
-        """Some `DojFile` objects contain text that looks like an email so we return an `Email` object."""
-        if self.is_email:
-            try:
-                return Email(self.file_path, text=self.text)  # Pass text= to avoid reprocessing
-            except Exception as e:
-                self.warn(f"Error creating Email object, trying full reload of text...")
-                return Email(self.file_path)
-        else:
-            return self
-
     def strip_image_ocr_panels(self) -> None:
         """Removes the ╭--- Page 5, Image 1 ---- panels from the text."""
         new_text, num_replaced = IMAGE_PANEL_REGEX.subn('', self.text)
@@ -344,6 +325,6 @@ class DojFile(OtherFile):
 
     def _repair(self) -> None:
         """Overloads superclass method."""
-        new_text = self.repair_ocr_text(OCR_REPAIRS, self.text)
+        new_text = self.repair_ocr_text(DOJ_EMAIL_OCR_REPAIRS, self.text)
         self._set_text(text=new_text)
         self._remove_number_only_lines()

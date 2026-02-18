@@ -400,13 +400,11 @@ class EpsteinFiles:
 
     def _load_file_paths(self, file_paths: list[Path]) -> list[Document]:
         """Load a list of file paths into a list of `Document` object subclasses."""
-        file_type_count = defaultdict(int)  # Hack used by --skip-other-files option to get a few files parsed before skipping the rest
         docs: list[Document] = []
 
         for file_path in file_paths:
             doc_timer = Timer(decimals=2)
             document = Document(file_path)
-            cls = document_cls(document)
 
             if document.length == 0:
                 if document.file_id not in self._empty_file_ids:
@@ -415,9 +413,9 @@ class EpsteinFiles:
 
                 continue
 
-            docs.append(cls(file_path, lines=document.lines, text=document.text).printable_document())
+            cls = document_cls(document)
+            docs.append(cls(file_path, lines=document.lines, text=document.text))
             logger.info(str(docs[-1]))
-            file_type_count[cls.__name__] += 1
 
             if doc_timer.seconds_since_start() > SLOW_FILE_SECONDS:
                 doc_timer.print_at_checkpoint(f"Slow file: {docs[-1]} processed")
@@ -449,17 +447,16 @@ def count_by_month(docs: Sequence[Document]) -> dict[str | None, int]:
 
 
 def document_cls(doc: Document) -> Type[Document]:
-    search_area = doc.text[0:5000]  # Limit search area to avoid pointless scans of huge files
-
+    """Find the appropriate `Document` subclass for this file based on the contents."""
     if doc.length == 0:
         return Document
+    elif doc.text[0] == '{':
+        return JsonFile
+    elif doc.is_email:
+        return Email
     elif doc.file_info.is_doj_file:
         return DojFile
-    if doc.text[0] == '{':
-        return JsonFile
-    elif doc.is_email:  # TODO: right now we setup the DojFile which makes an Email obj only later at print time
-        return Email
-    elif MSG_REGEX.search(search_area):
+    elif MSG_REGEX.search(doc.text[0:5000]):  # Limit search area to avoid pointless scans of huge files
         return MessengerLog
     else:
         return OtherFile

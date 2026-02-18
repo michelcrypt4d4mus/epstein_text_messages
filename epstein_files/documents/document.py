@@ -16,7 +16,7 @@ from rich.table import Table
 from epstein_files.documents.documents.doc_cfg import DUPE_TYPE_STRS, DebugDict, EmailCfg, DocCfg, Metadata
 from epstein_files.documents.documents.file_info import FileInfo
 from epstein_files.documents.documents.search_result import MatchedLine
-from epstein_files.documents.emails.constants import FALLBACK_TIMESTAMP
+from epstein_files.documents.emails.constants import DOJ_EMAIL_OCR_REPAIRS, FALLBACK_TIMESTAMP
 from epstein_files.documents.emails.email_header import DETECT_EMAIL_REGEX
 from epstein_files.output.rich import (INFO_STYLE, NA_TXT, SKIPPED_FILE_MSG_PADDING, SYMBOL_STYLE,
      add_cols_to_table, build_table, console, highlighter, styled_key_value, prefix_with, styled_dict,
@@ -196,7 +196,7 @@ class Document:
     @property
     def is_email(self) -> bool:
         """True if the text looks like it's probably an email."""
-        search_area = self.text[0:5000]  # Limit search area to avoid pointless scans of huge files
+        search_area = self.repair_ocr_text(DOJ_EMAIL_OCR_REPAIRS, self.text[0:5000])
         return isinstance(self.config, EmailCfg) or bool(DETECT_EMAIL_REGEX.match(search_area) and self.config is None)
 
     @property
@@ -366,10 +366,6 @@ class Document:
         msg = (msg + separator) if msg else ''
         self.log(f"{msg}First {n} lines:\n\n{self.top_lines(n)}\n", level)
 
-    def printable_document(self) -> Self:
-        """Overloaded by `DojFile` to convert some files to `Email` objects."""
-        return self
-
     def raw_text(self) -> str:
         """Reload the raw data from the underlying file and return it."""
         with open(self.file_path) as f:
@@ -490,13 +486,6 @@ class Document:
 
     def __rich_console__(self, console: Console, options: ConsoleOptions) -> RenderResult:
         """Default `Document` renderer (Email and MessengerLog override this)."""
-        doc = self.printable_document()
-
-        # Emails handle their own formatting
-        if type(self) != type(doc):
-            yield doc
-            return
-
         yield self.file_info_panel()
 
         text_panel = Panel(

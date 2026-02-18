@@ -18,7 +18,7 @@ from epstein_files.documents.document import CLOSE_PROPERTIES_CHAR, INFO_INDENT
 from epstein_files.documents.documents.doc_cfg import DebugDict, EmailCfg, Metadata
 from epstein_files.documents.emails.constants import *
 from epstein_files.documents.emails.email_header import (EMAIL_SIMPLE_HEADER_REGEX,
-     EMAIL_SIMPLE_HEADER_LINE_BREAK_REGEX, FIELD_NAMES, FIELDS_COLON_PATTERN, EmailHeader)
+     EMAIL_SIMPLE_HEADER_LINE_BREAK_REGEX, FIELD_NAMES, EmailHeader)
 from epstein_files.documents.emails.emailers import extract_emailer_names
 from epstein_files.documents.other_file import OtherFile
 from epstein_files.people.interesting_people import EMAILERS_OF_INTEREST_SET
@@ -507,6 +507,10 @@ class Email(Communication):
 
     def _repair(self) -> None:
         """Repair particularly janky files. Note that OCR_REPAIRS are applied *after* other line adjustments."""
+        # Some DOJ cleanup needs to happen first if this is a DOJ file.
+        if self.file_info.is_doj_file:
+            self._set_text(text=self.repair_ocr_text(DOJ_EMAIL_OCR_REPAIRS, self.text))
+
         if BAD_FIRST_LINE_REGEX.match(self.lines[0]):
             self._set_text(lines=self.lines[1:])
 

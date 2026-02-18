@@ -24,6 +24,33 @@ REPLY_LINE_PATTERN = rf"({FRENCH_REPLY_PATTERN}|{GERMAN_REPLY_PATTERN}|{NORWEGAI
 REPLY_REGEX = re.compile(REPLY_LINE_PATTERN, re.IGNORECASE | re.MULTILINE)
 SENT_FROM_REGEX = re.compile(r'^(?:(Please forgive|Sorry for all the) typos.{1,4})?((Envoyé de mon|Sent (from|via)).*(and string|AT&T|Droid|iPad|Phone|Mail|Surface|BlackBerry(.*(smartphone|device|Handheld|AT&T|T- ?Mobile))?)\.?)|Co-authored with iPhone auto-correct|Typos,? misspellings courtesy of iPhone(\s*word & thought substitution)?\.?', re.M | re.I)
 
+FIELD_PATTERNS = [
+    'Date',
+    'From',
+    'Sent',
+    'To',
+    r"C[cC]",
+    r"B[cC][cC]",
+    'Importance',
+    'Subject',
+    'Attachments',
+    'Attached',
+    'Classification',
+    'Flag',
+    'Reply-To',
+    'Inline-Images'
+]
+
+FIELDS_PATTERN = '|'.join(FIELD_PATTERNS)
+FIELDS_COLON_PATTERN = fr"^({FIELDS_PATTERN}):"
+
+# DojFile specific repairs must be applied before checking doc.is_email
+DOJ_EMAIL_OCR_REPAIRS: dict[str | re.Pattern, str] = {
+    re.compile(r"^Sent (Sun|Mon|Tue|Wed|Thu|Fri|Sat)", re.MULTILINE): r"Sent: \1",
+    re.compile(fr"({FIELDS_COLON_PATTERN}.*\n)\nSubject:", re.MULTILINE): r'\1Subject:',
+    re.compile(r"^Fran:", re.MULTILINE): 'From:',
+}
+
 MAILING_LISTS = [
     CAROLYN_RANGEL,
     INTELLIGENCE_SQUARED,
