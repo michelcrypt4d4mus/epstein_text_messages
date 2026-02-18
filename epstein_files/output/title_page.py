@@ -31,7 +31,7 @@ SOCIAL_MEDIA_LINK_STYLE = 'pale_turquoise4'
 
 SITE_GLOSSARY_MSG = f"The following views of the underlying selection of Epstein Files are available:"
 YOU_ARE_HERE = Text('«').append('you are here', style='bold khaki1 blink').append('»')
-NUM_COLOR_KEY_COLS = 6
+NUM_COLOR_KEY_COLS = 2 if args.mobile else 6
 SUBTITLE_WIDTH = 110
 TITLE_WIDTH = 50
 
@@ -59,7 +59,9 @@ def print_color_key() -> None:
 
 
 def print_other_page_link(epstein_files: 'EpsteinFiles') -> None:
-    if args._site_type == SiteType.CURATED:
+    if args._site_type == SiteType.MOBILE:
+        return
+    elif args._site_type == SiteType.CURATED:
         txt = THE_OTHER_PAGE_TXT + Text(f' is uncurated and has all {len(epstein_files.emails):,} emails')
         txt.append(f" and {len(epstein_files.other_files):,} unclassifiable files")
     else:
@@ -157,7 +159,7 @@ def _link_with_comment(url: str, comment: str | Text, _link_text: str = '') -> T
 def _print_abbreviations_table() -> None:
     table = build_table(title="Abbreviations Used Frequently In These Conversations", show_header=False)
     table.add_column("Abbreviation", justify="center", style='bold')
-    table.add_column("Translation", justify="center", min_width=62, style="white")
+    table.add_column("Translation", justify="center", min_width=None if args.mobile else 62, style="white")
 
     for k, v in HEADER_ABBREVIATIONS.items():
         table.add_row(highlighter(k), v)
