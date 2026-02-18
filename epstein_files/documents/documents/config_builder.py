@@ -8,7 +8,7 @@ from epstein_files.util.helpers.string_helper import has_line_starting_with
 from epstein_files.util.logging import logger
 
 # Inferred category config regexes
-DEUTSCHE_SOUTHERN_REGEX = re.compile(r"^Deutsche Bank.*(SOUTHERN TRUST|RED HOOK QUARTER)", re.DOTALL)
+DEUTSCHE_SOUTHERN_REGEX = re.compile(r"^.{,50}Deutsche Bank.{,1000}(SOUTHERN TRUST|RED HOOK QUARTER)", re.DOTALL)
 EVIDENCE_REGEX = re.compile(r".{,1000}ITEM\s+WAS\s+NOT\s+SCANNED")
 FBI_FILE_REGEX = re.compile(r"^(UNCLASSIFIED\s+)?FEDERAL BUREAU OF INVESTIGATION")
 HARD_DRIVE_REGEX = re.compile(r"westerndigital|Gold SATA")
@@ -16,9 +16,10 @@ LEGAL_FILING_REGEX = re.compile(r"^Case (\d+:\d+-.*?) Doc")
 LSJE_FORM_REGEX = re.compile(r".{,5}LSJE,\s+LLC.*Emergency\s+Contact\s+Form", re.DOTALL)
 SOUTHERN_FINANCIAL_REGEX = re.compile(r"^Southern Financial LLC salesforce.com")
 SUBPOENA_REGEX = re.compile(r"GRAND JURY SUBPOENA")
-VALAR_CAPITAL_CALL_REGEX = re.compile(r"^Valor .{,50} Capital Call", re.MULTILINE)
+VALAR_CAPITAL_CALL_REGEX = re.compile(r"^Val[ao]r.{,190} Capital Call", re.MULTILINE | re.IGNORECASE | re.DOTALL)
 VI_DAILY_NEWS_REGEX = re.compile(r'virgin\s*is[kl][ai]nds\s*daily\s*news', re.IGNORECASE)
 
+LEDGERX_MSG = 'LedgerX was later acquired by FTX for $298 million'
 
 def build_cfg_from_text(text: str) -> DocCfg | None:
     """Scan the text to see if an author and description can be inferred."""
@@ -29,6 +30,8 @@ def build_cfg_from_text(text: str) -> DocCfg | None:
         return _cfg(category=Neutral.LEGAL, author=FBI, description='memorandum or report')
     elif EVIDENCE_REGEX.search(text):
         return _cfg(category=Neutral.LEGAL, description='photos of collected evidence')
+    elif 'LedgerX' in text[0:500]:
+        return _cfg(category=Interesting.CRYPTO, description=LEDGERX_MSG)
     elif LSJE_FORM_REGEX.search(text):
         return _cfg(category=Neutral.BUSINESS, description="emergency contact form for employee of Epstein's LSJE")
     elif SUBPOENA_REGEX.search(text):
