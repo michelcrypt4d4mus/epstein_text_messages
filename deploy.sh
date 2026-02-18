@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 # Use --pickled arg to use pickled data file, otherwise pickled data will always be overwritten
 # Set ONLY_TEXTS=true to skip build/deploy of full emails site.
+# Set TAG_RELEASE=true to upload the pkl.gz file to the repo
 set -e
 source .env
 
@@ -57,9 +58,11 @@ epstein_generate --make-clean --suppress-output
 print_deploy_step "Building emailer info .png... $PICKLE_ARG"
 $GENERATE_CMD --emailers-info $PICKLE_ARG
 
-print_deploy_step "Copying 'the_epstein_files.local.pkl.gz' to 'the_epstein_files.pkl.gz'..."
-scripts/validate_pkl.py
-cp ./the_epstein_files.local.pkl.gz ./the_epstein_files.pkl.gz
+if [ -n "$TAG_RELEASE" ]; then
+    print_deploy_step "Copying 'the_epstein_files.local.pkl.gz' to 'the_epstein_files.pkl.gz'..."
+    scripts/validate_pkl.py
+    cp ./the_epstein_files.local.pkl.gz ./the_epstein_files.pkl.gz
+fi
 
 # Commit if any changes
 if any_uncommitted_changes; then
