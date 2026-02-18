@@ -32,7 +32,7 @@ MAX_DAYS_SPANNED_TO_BE_VALID = 10
 MAX_EXTRACTED_TIMESTAMPS = 100
 MIN_TIMESTAMP = datetime(2000, 1, 1)
 LOG_INDENT = '\n         '
-PREVIEW_CHARS = int(580 * (1 if args.all_other_files else 1.5))
+PREVIEW_CHARS = int(580 * (1 if args.all_other_files else 1.5) * (0.5 if args.mobile else 1))
 TIMESTAMP_LOG_INDENT = f'{LOG_INDENT}    '
 VAST_HOUSE = 'vast house'  # Michael Wolff article draft about Epstein indicator
 
@@ -176,7 +176,8 @@ class OtherFile(Document):
         table.add_column(FIRST_FEW_LINES, justify='left', style='pale_turquoise4')
 
         for file in files:
-            link_and_info = [FileInfo.build_external_links(file.file_info)]  # call superclass method to avoid border_style rainbow
+            # call superclass method to avoid border_style rainbow
+            link_and_info = [FileInfo.build_external_links(file.file_info, id_only=bool(args.mobile))]
             date_str = file.date_str
             preview_text = file.preview_text_highlighted
             row_style = ''
@@ -195,6 +196,24 @@ class OtherFile(Document):
                 file.category_txt,
                 preview_text,
                 style=row_style
+            )
+
+        return cls._mobilize_table(table) if args.mobile else table
+
+    @classmethod
+    def _mobilize_table(cls, _table: Table) -> Table:
+        """Make a mobile version of the `files_preview_table()`."""
+        table = build_table(_table.title, show_lines=_table.show_lines, title_justify=_table.title_justify)
+        table.add_column('File', justify='center', width=len('EFTA00424931'))
+        table.add_column(FIRST_FEW_LINES, justify='left', style='pale_turquoise4')
+        max_col_idx = len(_table.columns) - 1
+
+        for i, row in enumerate(_table.rows):
+            table.add_row(
+                # Collapse all but last col into one
+                Group(*[_table.columns[col_num]._cells[i] for col_num in range(0, max_col_idx)]),
+                _table.columns[max_col_idx]._cells[i],
+                style=row.style
             )
 
         return table

@@ -347,7 +347,7 @@ class Document:
         return cls(coerce_file_path(file_id))
 
     def colored_external_links(self) -> Text:
-        return self.file_info.build_external_links(include_alt_links=True)
+        return self.file_info.build_external_links(with_alt_links=True)
 
     def file_info_panel(self) -> Group:
         """Panel with filename linking to raw file plus any additional info about the file."""

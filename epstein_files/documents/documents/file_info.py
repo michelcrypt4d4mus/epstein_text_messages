@@ -138,17 +138,18 @@ class FileInfo:
     def rollcall_link(self, style: str = ARCHIVE_LINK_COLOR, link_txt: str = '') -> Text:
         return self._build_link(rollcall_doc_url, style, link_txt)
 
-    def external_link_markup(self, style: str = '') -> str:
-        return link_markup(self.external_url, self.file_stem, style=no_bold(style))
+    def external_link_markup(self, style: str = '', id_only: bool = False) -> str:
+        link_txt = self.file_id if id_only else self.file_stem
+        return link_markup(self.external_url, link_txt, style=no_bold(style))
 
-    def external_link_txt(self, style: str = '') -> Text:
-        return Text.from_markup(self.external_link_markup(style))
+    def external_link_txt(self, style: str = '', id_only: bool = False) -> Text:
+        return Text.from_markup(self.external_link_markup(style, id_only))
 
-    def build_external_links(self, style: str = '', include_alt_links: bool = False) -> Text:
+    def build_external_links(self, style: str = '', with_alt_links: bool = False, id_only: bool = False) -> Text:
         """Returns colored links to epstein.media and alternates in a Text object."""
-        links = [self.external_link_txt(style)]
+        links = [self.external_link_txt(style, id_only)]
 
-        if include_alt_links:
+        if with_alt_links:
             if self.doj_2026_dataset_id:
                 jmail_url = jmail_doj_2026_file_url(self.doj_2026_dataset_id, self.file_id)
                 jmail_link = link_text_obj(jmail_url, JMAIL, style=f"{style} dim" if style else ARCHIVE_LINK_COLOR)
@@ -162,7 +163,7 @@ class FileInfo:
                 #     links.append(self.rollcall_link(style=ALT_LINK_STYLE, link_txt=ROLLCALL))
 
         links = [links[0]] + [parenthesize(link) for link in links[1:]]
-        base_txt = Text('', style='white' if include_alt_links else ARCHIVE_LINK_COLOR)
+        base_txt = Text('', style='white' if with_alt_links else ARCHIVE_LINK_COLOR)
         return base_txt.append(join_texts(links))
 
     def log(self, msg: str, level: int = logging.INFO):

@@ -291,9 +291,9 @@ class DojFile(OtherFile):
         if self.file_id in STRIP_IMAGE_PANEL_IDS:
             self.strip_image_ocr_panels()
 
-    def external_links_txt(self, _style: str = '', include_alt_links: bool = True) -> Text:
+    def external_links_txt(self, _style: str = '', with_alt_links: bool = True) -> Text:
         """Overrides super() method to apply self.border_style."""
-        return self.file_info.build_external_links(self.border_style, include_alt_links=include_alt_links)
+        return self.file_info.build_external_links(self.border_style, with_alt_links=with_alt_links)
 
     def strip_image_ocr_panels(self) -> None:
         """Removes the ╭--- Page 5, Image 1 ---- panels from the text."""

@@ -92,7 +92,7 @@ else:
 is_html_script = parser.prog in HTML_SCRIPTS
 
 if args.mobile:
-    args.output_emails = True
+    args.output_chrono = True
     args.width = MOBILE_WIDTH
 
 args.debug = args.deep_debug or args.debug or is_env_var_set('DEBUG')
