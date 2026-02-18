@@ -68,5 +68,6 @@ UNINTERESTING_AUTHORS = [
 ]
 
 SPECIAL_NOTES = {
-    ZUBAIR_KHAN: Text('', justify='center').append(SUBSTACK_INSIGHTS_LINK).append('\n(a post by me about the social media work Zubair Khan was doing for Epstein)'),
+    ZUBAIR_KHAN: Text('', 'bold', justify='center').append(SUBSTACK_INSIGHTS_LINK) + \
+        Text('\n(a post by me about the social media work Zubair Khan was doing for Epstein during the 2016 election)', 'italic'),
 }

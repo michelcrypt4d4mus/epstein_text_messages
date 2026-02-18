@@ -1573,7 +1573,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(STEVEN_SINOFSKY, "a16z, ex-Microsoft, loves bitcoin", r"Steven Sinofsky?"),
             Contact(VALAR_VENTURES, f"{PETER_THIEL} affiliated fintech venture fund", r"V[ae]lar\s*(Global\s*Fund|Ventures)?"),
             Contact(VINCENZO_IOZZO, "CEO of the identity-security company SlashID", r"Vincenzo [IL]ozzo"),
-            Contact(ZUBAIR_KHAN, f"Tranchulas cybersecurity, InsightsPod founder, Islamabad / Dubai")
+            Contact(ZUBAIR_KHAN, f"Tranchulas cybersecurity, InsightsPod founder, Islamabad / Dubai, friend of {MASHA_DROKOVA}"),
         ],
         patterns=[
             r"a16z|(?<!Gavin )Andree?ss?e?[eo]n(\s&Horowitz)?",

@@ -151,9 +151,6 @@ class Person:
         if self.info_with_category:
             elements.append(Text(f"({self.info_with_category})", justify='center', style=f"{style} italic"))
 
-        if self.name in SPECIAL_NOTES:
-            elements.append(Padding(Panel(SPECIAL_NOTES[self.name], padding=(1, 3)), (1, 0, 0, 0)))
-
         return Padding(Group(*elements), (2, 0, 1, 0))
 
     @property
@@ -323,6 +320,10 @@ class Person:
         """Print complete emails to or from a particular 'author'. Returns the Emails that were printed."""
         print_centered(self.info_panel)
         self.print_emails_table()
+
+        if self.name in SPECIAL_NOTES:
+            print_centered(Padding(Panel(SPECIAL_NOTES[self.name], expand=True, padding=(1, 3), style='reverse'), (0, 0, 2, 0)))
+
         last_printed_email_was_duplicate = False
 
         if self.category == JUNK:
