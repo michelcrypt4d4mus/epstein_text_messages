@@ -24,9 +24,9 @@ from epstein_files.documents.other_file import OtherFile
 from epstein_files.people.interesting_people import EMAILERS_OF_INTEREST_SET
 from epstein_files.output.rich import DEFAULT_TABLE_KWARGS, build_table, highlighter, join_texts, no_bold, styled_key_value
 from epstein_files.util.constant.strings import REDACTED
-from epstein_files.util.constant.urls import URL_SIGNIFIERS, epstein_media_doc_link_markup
+from epstein_files.util.constant.urls import URL_SIGNIFIERS
 from epstein_files.util.constants import *
-from epstein_files.util.env import args
+from epstein_files.util.env import args, site_config
 from epstein_files.util.helpers.data_helpers import (AMERICAN_TIME_REGEX, TIMEZONE_INFO, collapse_newlines,
      prefix_keys, remove_timezone, uniquify)
 from epstein_files.util.helpers.link_helper import link_text_obj
@@ -281,14 +281,13 @@ class Email(Communication):
 
     @property
     def subheader(self) -> Text:
-        txt = Text(f"OCR text of ", SUBHEADER_STYLE).append('fwded article' if self.is_fwded_article else 'email')
-        txt.append(' from ').append(self.author_txt)
+        email_type = 'fwded article' if self.is_fwded_article else 'email'
+        author_txt = self.author_txt
 
         if self.config and self.config.is_attribution_uncertain:
-            txt.append(f" {QUESTION_MARKS}", style=self.author_style)
+            author_txt += Text(f" {QUESTION_MARKS}", style=self.author_style)
 
-        txt.append(' to ').append(self.recipients_txt())
-        return txt.append(highlighter(f" probably sent at {self.timestamp}"))
+        return site_config.email_subheader(email_type, author_txt, self.recipients_txt(), self.timestamp)
 
     @property
     def subject(self) -> str:

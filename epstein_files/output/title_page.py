@@ -19,7 +19,7 @@ from epstein_files.util.constant.names import UNKNOWN
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constant.urls import *
 from epstein_files.util.constants import HEADER_ABBREVIATIONS
-from epstein_files.util.env import args
+from epstein_files.util.env import args, site_config
 from epstein_files.util.helpers.link_helper import SUBSTACK_POST_LINK_STYLE, link_markup, link_text_obj, parenthesize
 from epstein_files.util.logging import logger
 
@@ -47,12 +47,12 @@ def print_color_key() -> None:
     num_colors = len(COLOR_KEYS)
     row_number = 0
 
-    for i in range(0, args._site.num_color_key_cols):
+    for i in range(0, site_config.num_color_key_cols):
         color_table.add_column(f"color_col_{i}", justify='center')
 
-    while (row_number * args._site.num_color_key_cols) < num_colors:
-        idx = row_number * args._site.num_color_key_cols
-        color_table.add_row(*COLOR_KEYS[idx:(idx + args._site.num_color_key_cols)])
+    while (row_number * site_config.num_color_key_cols) < num_colors:
+        idx = row_number * site_config.num_color_key_cols
+        color_table.add_row(*COLOR_KEYS[idx:(idx + site_config.num_color_key_cols)])
         row_number += 1
 
     print_centered(vertically_pad(color_table))
@@ -164,7 +164,7 @@ def _print_abbreviations_table() -> None:
     table.add_column(
         "Translation",
         justify="center",
-        min_width=args._site.abbreviations_width,
+        min_width=site_config.abbreviations_width,
         style="white"
     )
 

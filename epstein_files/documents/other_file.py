@@ -24,7 +24,7 @@ from epstein_files.util.constant.strings import *
 from epstein_files.util.constants import *
 from epstein_files.util.helpers.data_helpers import days_between, remove_timezone, uniquify
 from epstein_files.util.helpers.file_helper import FILENAME_LENGTH
-from epstein_files.util.env import args
+from epstein_files.util.env import args, site_config
 from epstein_files.util.logging import logger
 
 FIRST_FEW_LINES = 'First Few Lines'
@@ -97,7 +97,7 @@ class OtherFile(Document):
     def preview_text(self) -> str:
         """Text at start of file stripped of newlinesfor display in tables and other cramped settings."""
         text = self.config_replace_text_with if self.config_replace_text_with else self.text
-        return WHITESPACE_REGEX.sub(' ', text)[0:args._site.other_files_preview_chars]
+        return WHITESPACE_REGEX.sub(' ', text)[0:site_config.other_files_preview_chars]
 
     @property
     def preview_text_highlighted(self) -> Text:
@@ -105,7 +105,7 @@ class OtherFile(Document):
 
         if self.config_replace_text_with:
             txt = highlighter(Text(escape(self.preview_text), style='italic grey35'))
-        elif self.length > args._site.other_files_preview_chars:
+        elif self.length > site_config.other_files_preview_chars:
             num_missing_chars = self.length - len(txt)
             txt.append(f"... ({num_missing_chars:,} more chars)", 'dim italic')
 

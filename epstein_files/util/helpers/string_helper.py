@@ -7,6 +7,7 @@ from inflection import underscore
 
 from epstein_files.util.constant.strings import QUESTION_MARKS_REGEX
 
+capitalize_first = lambda s: s[0].upper() + s[1:]
 iso_timestamp = lambda dt: dt.isoformat().replace('T', ' ')
 
 

@@ -57,9 +57,10 @@ class TextMessage:
         return datetime.strptime(self.timestamp_str, AMERICAN_DATE_FORMAT)
 
     def timestamp_txt(self) -> Text:
+        from epstein_files.util.env import site_config
+
         try:
-            from epstein_files.util.env import args
-            timestamp_str = args._site.format_text_msg_time(self.parse_timestamp())
+            timestamp_str = site_config.format_text_msg_time(self.parse_timestamp())
         except Exception as e:
             logger.info(f"Failed to parse timestamp for {self}")
             timestamp_str = self.timestamp_str

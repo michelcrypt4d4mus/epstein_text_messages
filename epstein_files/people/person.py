@@ -23,7 +23,7 @@ from epstein_files.people.interesting_people import SPECIAL_NOTES
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constant.urls import *
 from epstein_files.util.constants import *
-from epstein_files.util.env import args
+from epstein_files.util.env import args, site_config
 from epstein_files.util.helpers.data_helpers import days_between, flatten, uniquify, without_falsey
 
 ALT_INFO_STYLE = 'medium_purple4'
@@ -320,7 +320,7 @@ class Person:
         """Print complete emails to or from a particular 'author'. Returns the Emails that were printed."""
         print_centered(self.info_panel)
 
-        if args._site.show_emailer_tables:
+        if site_config.show_emailer_tables:
             self.print_emails_table()
 
         if self.name in SPECIAL_NOTES:
