@@ -552,7 +552,6 @@
             },
             {
                 "attachment_file_ids": [
-                    "014315",
                     "014315"
                 ],
                 "attachments": [
@@ -1602,7 +1601,6 @@
             },
             {
                 "attachment_file_ids": [
-                    "019448",
                     "019448"
                 ],
                 "attachments": [
@@ -2272,7 +2270,6 @@
             },
             {
                 "attachment_file_ids": [
-                    "021775",
                     "021775"
                 ],
                 "attachments": [
@@ -2917,7 +2914,6 @@
             },
             {
                 "attachment_file_ids": [
-                    "022361",
                     "022361"
                 ],
                 "attachments": [
@@ -9950,7 +9946,6 @@
             },
             {
                 "attachment_file_ids": [
-                    "026627",
                     "026627"
                 ],
                 "attachments": [
@@ -10577,7 +10572,6 @@
             },
             {
                 "attachment_file_ids": [
-                    "026909",
                     "026909"
                 ],
                 "attachments": [
@@ -11047,7 +11041,6 @@
             },
             {
                 "attachment_file_ids": [
-                    "027051",
                     "027051"
                 ],
                 "attachments": [
@@ -13508,7 +13501,6 @@
             },
             {
                 "attachment_file_ids": [
-                    "029176",
                     "029176"
                 ],
                 "attachments": [
@@ -14201,10 +14193,7 @@
                 "attachment_file_ids": [
                     "029304",
                     "029302",
-                    "029301",
-                    "029301",
-                    "029302",
-                    "029304"
+                    "029301"
                 ],
                 "attachments": [
                     "image001.jpg",
@@ -15484,7 +15473,6 @@
             },
             {
                 "attachment_file_ids": [
-                    "026384",
                     "026384"
                 ],
                 "attachments": [
@@ -16367,7 +16355,6 @@
             },
             {
                 "attachment_file_ids": [
-                    "030010",
                     "030010"
                 ],
                 "attachments": [
@@ -22679,7 +22666,6 @@
             },
             {
                 "attachment_file_ids": [
-                    "026747",
                     "026747"
                 ],
                 "attachments": [
@@ -22767,7 +22753,6 @@
             },
             {
                 "attachment_file_ids": [
-                    "017524",
                     "017524"
                 ],
                 "attachments": [
@@ -27784,7 +27769,6 @@
             },
             {
                 "attachment_file_ids": [
-                    "032281",
                     "032281"
                 ],
                 "attachments": [
@@ -28154,7 +28138,6 @@
             },
             {
                 "attachment_file_ids": [
-                    "032324",
                     "032324"
                 ],
                 "attachments": [
@@ -30956,7 +30939,6 @@
             },
             {
                 "attachment_file_ids": [
-                    "032638",
                     "032638"
                 ],
                 "attachments": [
@@ -35005,9 +34987,7 @@
             {
                 "attachment_file_ids": [
                     "016699",
-                    "010617",
-                    "010617",
-                    "016699"
+                    "010617"
                 ],
                 "attachments": [
                     ""
@@ -35815,10 +35795,7 @@
                 "attachment_file_ids": [
                     "028988",
                     "028815",
-                    "011170",
-                    "011170",
-                    "028815",
-                    "028988"
+                    "011170"
                 ],
                 "attachments": [
                     ""
@@ -36883,9 +36860,7 @@
             {
                 "attachment_file_ids": [
                     "033253",
-                    "023666",
-                    "023666",
-                    "033253"
+                    "023666"
                 ],
                 "attachments": [
                     "BBC World News - Kuhn - China, North Korea Bomb, BRICS Summit - 09_03_17.pdf",
@@ -41128,7 +41103,7 @@
                 "file_id": "EFTA00080250",
                 "file_size": 21079,
                 "filename": "EFTA00080250.txt",
-                "num_lines": 586,
+                "num_lines": 761,
                 "recipients": [
                     null,
                     "Andrew Stemmer",
@@ -41171,7 +41146,7 @@
                 "file_size": 21187,
                 "filename": "EFTA00104945.txt",
                 "is_interesting": true,
-                "num_lines": 575,
+                "num_lines": 752,
                 "recipients": [
                     "Andrew Stemmer",
                     "Erika Engelson",
@@ -41718,7 +41693,7 @@
                 "file_size": 14274,
                 "filename": "EFTA00384774.txt",
                 "is_interesting": true,
-                "num_lines": 70,
+                "num_lines": 141,
                 "recipients": [
                     "Lesley Groff"
                 ],
@@ -41852,7 +41827,7 @@
                     "EFTA02174857"
                 ],
                 "file_id": "EFTA00419742",
-                "file_size": 918,
+                "file_size": 933,
                 "filename": "EFTA00419742.txt",
                 "num_lines": 35,
                 "recipients": [
@@ -41907,6 +41882,10 @@
                     ""
                 ],
                 "author": "Brock Pierce",
+                "dupe_type": "same",
+                "duplicate_ids": [
+                    "EFTA02183761"
+                ],
                 "file_id": "EFTA00428083",
                 "file_size": 862,
                 "filename": "EFTA00428083.txt",
@@ -43773,9 +43752,6 @@
             },
             {
                 "attachment_file_ids": [
-                    "EFTA00590685",
-                    "EFTA00590685",
-                    "EFTA00590685",
                     "EFTA00590685"
                 ],
                 "attachments": [
@@ -44952,9 +44928,6 @@
             },
             {
                 "attachment_file_ids": [
-                    "EFTA00797613",
-                    "EFTA00797613",
-                    "EFTA00797613",
                     "EFTA00797613"
                 ],
                 "attachments": [
@@ -50281,6 +50254,8 @@
                     ""
                 ],
                 "author": "Brock Pierce",
+                "dupe_type": "same",
+                "duplicate_of_id": "EFTA00428083",
                 "file_id": "EFTA02183761",
                 "file_size": 822,
                 "filename": "EFTA02183761.txt",
@@ -56454,7 +56429,7 @@
                 "filename": "HOUSE_OVERSIGHT_010617.txt",
                 "is_interesting": true,
                 "num_lines": 9890,
-                "timestamp": "2018-04-22T19:28:13",
+                "timestamp": "2017-01-20T00:00:00",
                 "type": "OtherFile"
             },
             {
@@ -56576,7 +56551,7 @@
                 "filename": "HOUSE_OVERSIGHT_011170.txt",
                 "is_interesting": true,
                 "num_lines": 13903,
-                "timestamp": "2016-09-27T21:46:03",
+                "timestamp": "2016-06-23T00:00:00",
                 "type": "OtherFile"
             },
             {
@@ -57736,7 +57711,7 @@
                 "filename": "HOUSE_OVERSIGHT_016699.txt",
                 "is_interesting": true,
                 "num_lines": 8319,
-                "timestamp": "2018-04-22T19:28:13",
+                "timestamp": "2017-01-20T00:00:00",
                 "type": "OtherFile"
             },
             {
@@ -57818,7 +57793,7 @@
                 "filename": "HOUSE_OVERSIGHT_017524.txt",
                 "is_interesting": false,
                 "num_lines": 256,
-                "timestamp": "2012-08-18T16:11:07",
+                "timestamp": "2012-08-18T00:00:00",
                 "type": "OtherFile"
             },
             {
@@ -58844,7 +58819,7 @@
                 "filename": "HOUSE_OVERSIGHT_022361.txt",
                 "is_interesting": false,
                 "num_lines": 245,
-                "timestamp": "2013-04-30T18:57:28",
+                "timestamp": "2013-05-01T00:00:00",
                 "type": "OtherFile"
             },
             {
@@ -59545,7 +59520,7 @@
                 "filename": "HOUSE_OVERSIGHT_023666.txt",
                 "is_interesting": false,
                 "num_lines": 4828,
-                "timestamp": "2017-09-25T07:06:34",
+                "timestamp": "2018-09-30T00:00:00",
                 "type": "OtherFile"
             },
             {
@@ -60262,7 +60237,7 @@
                 "filename": "HOUSE_OVERSIGHT_026384.txt",
                 "is_interesting": null,
                 "num_lines": 226,
-                "timestamp": "2016-04-28T16:39:12",
+                "timestamp": "2016-06-20T00:00:00",
                 "type": "OtherFile"
             },
             {
@@ -60475,7 +60450,7 @@
                 "filename": "HOUSE_OVERSIGHT_026747.txt",
                 "is_interesting": false,
                 "num_lines": 169,
-                "timestamp": "2017-07-19T14:09:32",
+                "timestamp": "2017-08-23T00:00:00",
                 "type": "OtherFile"
             },
             {
@@ -60645,7 +60620,7 @@
                 "filename": "HOUSE_OVERSIGHT_026909.txt",
                 "is_interesting": false,
                 "num_lines": 652,
-                "timestamp": "2018-10-15T18:56:57",
+                "timestamp": "2018-10-14T00:00:00",
                 "type": "OtherFile"
             },
             {
@@ -60710,7 +60685,7 @@
                 "filename": "HOUSE_OVERSIGHT_027051.txt",
                 "is_interesting": false,
                 "num_lines": 213,
-                "timestamp": "2012-05-07T23:21:03",
+                "timestamp": "2013-01-01T00:00:00",
                 "type": "OtherFile"
             },
             {
@@ -60829,7 +60804,7 @@
                 "filename": "HOUSE_OVERSIGHT_028815.txt",
                 "is_interesting": true,
                 "num_lines": 719,
-                "timestamp": "2016-09-27T21:46:03",
+                "timestamp": "2016-08-20T00:00:00",
                 "type": "OtherFile"
             },
             {
@@ -60889,7 +60864,7 @@
                 "filename": "HOUSE_OVERSIGHT_028988.txt",
                 "is_interesting": true,
                 "num_lines": 152,
-                "timestamp": "2016-09-27T21:46:03",
+                "timestamp": "2016-08-20T00:00:00",
                 "type": "OtherFile"
             },
             {
@@ -61007,7 +60982,7 @@
                 "filename": "HOUSE_OVERSIGHT_029301.txt",
                 "is_interesting": true,
                 "num_lines": 25,
-                "timestamp": "2011-08-07T16:01:33",
+                "timestamp": "2011-08-07T00:00:00",
                 "type": "OtherFile"
             },
             {
@@ -61021,7 +60996,7 @@
                 "filename": "HOUSE_OVERSIGHT_029302.txt",
                 "is_interesting": true,
                 "num_lines": 89,
-                "timestamp": "2011-08-07T16:01:33",
+                "timestamp": "2011-08-07T00:00:00",
                 "type": "OtherFile"
             },
             {
@@ -61520,7 +61495,7 @@
                 "filename": "HOUSE_OVERSIGHT_030010.txt",
                 "is_interesting": false,
                 "num_lines": 161,
-                "timestamp": "2011-06-14T11:54:12",
+                "timestamp": "2011-06-14T00:00:00",
                 "type": "OtherFile"
             },
             {
@@ -62289,7 +62264,7 @@
                 "filename": "HOUSE_OVERSIGHT_032281.txt",
                 "is_interesting": true,
                 "num_lines": 40,
-                "timestamp": "2016-09-15T17:02:37",
+                "timestamp": "2016-10-25T00:00:00",
                 "type": "OtherFile"
             },
             {
@@ -62316,7 +62291,7 @@
                 "filename": "HOUSE_OVERSIGHT_032324.txt",
                 "is_interesting": true,
                 "num_lines": 21,
-                "timestamp": "2016-11-04T12:43:32",
+                "timestamp": "2016-11-05T00:00:00",
                 "type": "OtherFile"
             },
             {
