@@ -19,26 +19,15 @@ from epstein_files.output.highlighted_names import HighlightedNames
 from epstein_files.util.constant.names import *
 from epstein_files.util.constants import CONFIGS_BY_ID, EmailCfg
 from epstein_files.util.helpers.data_helpers import *
-from epstein_files.util.helpers.debugging_helper import print_interesting_doc_panels_and_props
+from epstein_files.util.helpers.debugging_helper import print_all_timestamps, print_file_counts
 from epstein_files.util.helpers.string_helper import quote
 from epstein_files.util.logging import logger
 from epstein_files.output.rich import bool_txt, console, highlighter, styled_key_value, print_subtitle_panel
 
 
-# Print CRYPTO_CURRENCY_PARTNERS_II OtherFiles
-for i, doc in enumerate(epstein_files.other_files):
-    # if CRYPTO_CURRENCY_PARTNERS_II.lower() in doc.preview_text.lower():
-    if doc.category == LETTER:
-        # if not doc.config:
-        #     doc.log(f"No config for {doc.file_id}\n", logging.ERROR)
-
-        console.line(2)
-        console.print(doc.preview_text)
-        console.line(2)
-        console.print(doc)
-
+print_file_counts(epstein_files)
+# print_all_timestamps(epstein_files)
 sys.exit()
-
 
 # Look for possible email files in the DOJ files
 with open('timestamps_cfg.txt', 'wt') as f:
@@ -137,7 +126,7 @@ print_partial_names_used_in_regexes()
 max_sizes = defaultdict(int)
 counts = defaultdict(int)
 
-# for doc in sorted(epstein_files.all_documents, key=lambda e: e.file_id):
+# for doc in sorted(epstein_files.documents, key=lambda e: e.file_id):
 #     max_file_sizes[doc.class_name()] = max(max_file_sizes[doc.class_name()], doc.file_size())
 #     console.print(doc.summary)
 #     print_json('metadata', doc.metadata())

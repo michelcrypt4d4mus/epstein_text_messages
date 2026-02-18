@@ -55,7 +55,7 @@ class Communication(Document):
 
     @property
     def participants(self) -> set[Name]:
-        """Author + recipients. Adds a `None` if `self.recipient`s` is empty."""
+        """Author + recipients including a `None` if `self.recipients` is empty."""
         return set([self.author] + (self.recipients or [None]))
 
     @property
@@ -74,7 +74,7 @@ class Communication(Document):
         return TIMESTAMP_SECONDS_REGEX.sub('', str(self.timestamp))
 
     def external_links_txt(self, _style: str = '', include_alt_links: bool = True) -> Text:
-        """Overrides super() method to apply self.author_style."""
+        """Overrides super() method to apply `self.author_style`."""
         return self.file_info.external_links_txt(self.author_style, include_alt_links=include_alt_links)
 
     @classmethod

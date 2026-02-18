@@ -1,6 +1,11 @@
 from epstein_files.documents.email import JUNK_EMAILERS, Email
 
 
+def test_attached_docs(get_email):
+    email_with_attached: Email = get_email('029299')
+    assert len(email_with_attached.attached_docs) == 3
+
+
 def test_border_style(get_email):
     email = get_email('033071')
     assert email.border_style == 'purple'

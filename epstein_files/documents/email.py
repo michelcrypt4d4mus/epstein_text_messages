@@ -18,7 +18,7 @@ from epstein_files.documents.document import CLOSE_PROPERTIES_CHAR, INFO_INDENT
 from epstein_files.documents.documents.doc_cfg import DebugDict, EmailCfg, Metadata
 from epstein_files.documents.emails.constants import *
 from epstein_files.documents.emails.email_header import (EMAIL_SIMPLE_HEADER_REGEX,
-     EMAIL_SIMPLE_HEADER_LINE_BREAK_REGEX, FIELD_NAMES, FIELDS_COLON_PATTERN, EmailHeader)
+     EMAIL_SIMPLE_HEADER_LINE_BREAK_REGEX, FIELD_NAMES, EmailHeader)
 from epstein_files.documents.emails.emailers import extract_emailer_names
 from epstein_files.documents.other_file import OtherFile
 from epstein_files.people.interesting_people import EMAILERS_OF_INTEREST_SET
@@ -304,9 +304,8 @@ class Email(Communication):
     def __post_init__(self):
         super().__post_init__()
 
-        if self.config and self.config.recipients:
-            self.recipients = self.config.recipients
-        else:
+        # Recipients could have already been set from the config in superclass
+        if not self.recipients:
             for recipient in self.header.recipients:
                 self.recipients.extend(extract_emailer_names(recipient))
 
@@ -390,7 +389,6 @@ class Email(Communication):
     def _extract_author(self) -> None:
         """Overloads superclass method, called at instantiation time."""
         self._extract_header()
-        super()._extract_author()
 
         if not self.author and self.header.author:
             authors = extract_emailer_names(self.header.author)
@@ -509,6 +507,10 @@ class Email(Communication):
 
     def _repair(self) -> None:
         """Repair particularly janky files. Note that OCR_REPAIRS are applied *after* other line adjustments."""
+        # Some DOJ cleanup needs to happen first if this is a DOJ file.
+        if self.file_info.is_doj_file:
+            self._set_text(text=self.repair_ocr_text(DOJ_EMAIL_OCR_REPAIRS, self.text))
+
         if BAD_FIRST_LINE_REGEX.match(self.lines[0]):
             self._set_text(lines=self.lines[1:])
 
@@ -599,7 +601,7 @@ class Email(Communication):
             num_chars = args.truncate
         elif self.config and self.config.truncate_to is not None:
             num_chars = len(self.text) if self.config.truncate_to == NO_TRUNCATE else self.config.truncate_to
-        elif self.is_interesting:
+        elif self.config and self.config.is_interesting:
             num_chars = len(self.text)
         elif self.author in TRUNCATE_EMAILS_BY \
                 or any([self.is_from_or_to(n) for n in TRUNCATE_EMAILS_FROM_OR_TO]) \

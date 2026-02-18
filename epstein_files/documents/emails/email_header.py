@@ -3,6 +3,7 @@ import re
 from dataclasses import asdict, dataclass, field
 
 from epstein_files.documents.documents.doc_cfg import EmailCfg
+from epstein_files.documents.emails.constants import FIELDS_PATTERN
 from epstein_files.documents.emails.emailers import BAD_EMAILER_REGEX, TIME_REGEX
 from epstein_files.util.constant.strings import AUTHOR
 from epstein_files.util.constant.names import UNKNOWN
@@ -15,26 +16,7 @@ ON_BEHALF_OF = 'on behalf of'
 TO_FIELDS = ['bcc', 'cc', 'to']
 EMAILER_FIELDS = [AUTHOR] + TO_FIELDS
 
-FIELD_PATTERNS = [
-    'Date',
-    'From',
-    'Sent',
-    'To',
-    r"C[cC]",
-    r"B[cC][cC]",
-    'Importance',
-    'Subject',
-    'Attachments',
-    'Attached',
-    'Classification',
-    'Flag',
-    'Reply-To',
-    'Inline-Images'
-]
-
 DETECT_EMAIL_REGEX = re.compile(r'^(.*\n){0,2}(From|Subject):')  # IDed 140 emails out of 3777 DOJ files with just 'From:' match
-FIELDS_PATTERN = '|'.join(FIELD_PATTERNS)
-FIELDS_COLON_PATTERN = fr"^({FIELDS_PATTERN}):"
 HEADER_REGEX_STR = fr"(((?:(?:{FIELDS_PATTERN}|Bee):|on behalf of ?)(?! +(by |from my|via )).*\n){{3,}})"
 EMAIL_SIMPLE_HEADER_REGEX = re.compile(rf'^{HEADER_REGEX_STR}')
 EMAIL_SIMPLE_HEADER_LINE_BREAK_REGEX = re.compile(HEADER_REGEX_STR)

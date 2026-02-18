@@ -16,7 +16,7 @@ from rich.table import Table
 from epstein_files.documents.documents.doc_cfg import DUPE_TYPE_STRS, DebugDict, EmailCfg, DocCfg, Metadata
 from epstein_files.documents.documents.file_info import FileInfo
 from epstein_files.documents.documents.search_result import MatchedLine
-from epstein_files.documents.emails.constants import FALLBACK_TIMESTAMP
+from epstein_files.documents.emails.constants import DOJ_EMAIL_OCR_REPAIRS, FALLBACK_TIMESTAMP
 from epstein_files.documents.emails.email_header import DETECT_EMAIL_REGEX
 from epstein_files.output.rich import (INFO_STYLE, NA_TXT, SKIPPED_FILE_MSG_PADDING, SYMBOL_STYLE,
      add_cols_to_table, build_table, console, highlighter, styled_key_value, prefix_with, styled_dict,
@@ -116,10 +116,7 @@ class Document:
 
     @property
     def category(self) -> str:
-        if self.config and self.config.category:
-            return self.config.category
-        else:
-            return self.default_category()
+        return self.config.category if self.config and self.config.category else self.default_category()
 
     @property
     def config(self) -> DocCfg | None:
@@ -129,10 +126,7 @@ class Document:
     @property
     def config_description(self) -> str:
         """Add parentheses to `self.config.description`."""
-        if self.config and self.config.description:
-            return f"({self.config.description})"
-        else:
-            return ''
+        return f"({self.config.description})" if self.config and self.config.description else ''
 
     @property
     def config_description_txt(self) -> Text | None:
@@ -149,11 +143,6 @@ class Document:
                 return f"(Text of {text} {CHECK_LINK_FOR_DETAILS})"
             else:
                 return text
-
-    @property
-    def config_timestamp(self) -> datetime | None:
-        """Configured timestamp, if any."""
-        return self.config.timestamp if self.config and self.config.timestamp else None
 
     @property
     def date_str(self) -> str | None:
@@ -207,7 +196,7 @@ class Document:
     @property
     def is_email(self) -> bool:
         """True if the text looks like it's probably an email."""
-        search_area = self.text[0:5000]  # Limit search area to avoid pointless scans of huge files
+        search_area = self.repair_ocr_text(DOJ_EMAIL_OCR_REPAIRS, self.text[0:5000])
         return isinstance(self.config, EmailCfg) or bool(DETECT_EMAIL_REGEX.match(search_area) and self.config is None)
 
     @property
@@ -302,7 +291,7 @@ class Document:
 
     @property
     def summary_panel(self) -> Panel:
-        """Panelized description() with info_txt(), used in search results."""
+        """Panelized description() with info_txt(). Used in search results not in production HTML."""
         sentences = [self.summary]
 
         if self.INCLUDE_DESCRIPTION_IN_SUMMARY_PANEL:
@@ -342,8 +331,14 @@ class Document:
         self.text = self.text or self._load_file()
         self._set_text(text=self.text)
         self._repair()
+
+        if self.config:
+            for k, v in self.config.props_to_copy.items():
+                setattr(self, k, v)
+
         self._extract_author()
-        self.timestamp = self.config_timestamp or self._extract_timestamp()
+        # TODO: Communication subclass sets FALLBACK_TIMESTAMP as default to keep type checking from whining :(
+        self.timestamp = self._extract_timestamp() if self.timestamp in [None, FALLBACK_TIMESTAMP] else self.timestamp
 
     @classmethod
     def from_file_id(cls, file_id: str | int) -> Self:
@@ -370,10 +365,6 @@ class Document:
         separator = '\n\n' if '\n' in msg else '. '
         msg = (msg + separator) if msg else ''
         self.log(f"{msg}First {n} lines:\n\n{self.top_lines(n)}\n", level)
-
-    def printable_document(self) -> Self:
-        """Overloaded by `DojFile` to convert some files to `Email` objects."""
-        return self
 
     def raw_text(self) -> str:
         """Reload the raw data from the underlying file and return it."""
@@ -443,9 +434,8 @@ class Document:
         return prefix_with(txt_lines, ' ', pfx_style='grey', indent=2)
 
     def _extract_author(self) -> None:
-        """Get author from config. Extended in `Email` subclass to also check headers."""
-        if self.config and self.config.author:
-            self.author = self.config.author
+        """Extended in `Email` subclass to pull from  headers."""
+        pass
 
     def _extract_timestamp(self) -> datetime | None:
         """Should be implemented in subclasses."""
@@ -496,13 +486,6 @@ class Document:
 
     def __rich_console__(self, console: Console, options: ConsoleOptions) -> RenderResult:
         """Default `Document` renderer (Email and MessengerLog override this)."""
-        doc = self.printable_document()
-
-        # Emails handle their own formatting
-        if type(self) != type(doc):
-            yield doc
-            return
-
         yield self.file_info_panel()
 
         text_panel = Panel(
@@ -546,11 +529,12 @@ class Document:
 
     @classmethod
     def files_info_row(cls, files: Sequence[Self], author_na: bool = False) -> Sequence[str | Text]:
+        """Turn the values in the `cls.files_info()` dict into a list so they can be used as a table row."""
         return [v for v in cls.files_info(files, author_na).values()]
 
     @classmethod
     def known_author_count(cls, docs: Sequence[Self]) -> int:
-        """Count of how many Document objects have an author attribution."""
+        """Number of elements of `docs` that have an author attribution."""
         return len([doc for doc in docs if doc.author])
 
     @staticmethod
@@ -573,6 +557,7 @@ class Document:
 
     @staticmethod
     def without_dupes(docs: Sequence['DocumentType']) -> list['DocumentType']:
+        """Remove any duplicate documents."""
         return [doc for doc in docs if not doc.is_duplicate]
 
 

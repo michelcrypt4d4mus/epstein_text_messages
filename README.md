@@ -78,7 +78,7 @@ from epstein_files.epstein_files import EpsteinFiles
 epstein_files = EpsteinFiles.get_files()
 
 # All files
-for document in epstein_files.all_documents():
+for document in epstein_files.documents():
     do_stuff(document)
 
 # Emails

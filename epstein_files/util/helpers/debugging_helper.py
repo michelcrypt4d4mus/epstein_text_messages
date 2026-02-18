@@ -1,3 +1,5 @@
+from collections import defaultdict
+
 from rich.padding import Padding
 from rich.text import Text
 
@@ -8,13 +10,33 @@ from epstein_files.util.logging import logger
 from epstein_files.output.rich import bool_txt, console, indent_txt, styled_key_value, styled_dict
 
 
-def _show_timestamps(epstein_files):
-    for doc in epstein_files.doj_files:
-        doc.warn(f"timestamp: {doc.timestamp}")
+def print_all_timestamps(epstein_files):
+    fallbacks = valid = 0
+
+    for i, doc in enumerate(epstein_files.unique_documents):
+        console.print(doc.summary)
+
+        if doc.timestamp == FALLBACK_TIMESTAMP:
+            fallbacks += 1
+        elif doc.timestamp:
+            valid += 1
+
+    no_timestamp = len(epstein_files.unique_documents) - valid - fallbacks
+    console.print(f"\nFound {i + 1} documents (no_timestamp={no_timestamp}, valid={valid}, fallback={fallbacks})\n")
+
+
+def print_file_counts(epstein_files) -> None:
+    counts = defaultdict(int)
+
+    for i, doc in enumerate(epstein_files.unique_documents):
+        counts[doc._class_name] += 1
+
+    counts['total'] = i + 1
+    console.print(styled_dict(counts))
 
 
 def _verify_filenames(epstein_files):
-    doc_filenames = set([doc.file_path.name for doc in epstein_files.all_documents])
+    doc_filenames = set([doc.file_path.name for doc in epstein_files.documents])
 
     for file_path in epstein_files.file_paths:
         if file_path.name not in doc_filenames:
@@ -27,9 +49,9 @@ def print_interesting_doc_panels_and_props(epstein_files, sort_by_category: bool
     num_interesting = 0
 
     if sort_by_category:
-        docs = sorted(epstein_files.all_documents, key=lambda d: [d.category, d.timestamp or FALLBACK_TIMESTAMP])
+        docs = sorted(epstein_files.documents, key=lambda d: [d.category, d.timestamp or FALLBACK_TIMESTAMP])
     else:
-        docs = epstein_files.all_documents
+        docs = epstein_files.documents
 
     for doc in docs:
         if not isinstance(doc, OtherFile):

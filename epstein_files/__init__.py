@@ -132,7 +132,7 @@ def epstein_grep():
         last_document = None
 
         for search_result in search_results:
-            doc = search_result.document.printable_document()
+            doc = search_result.document
             lines = search_result.lines
 
             if (isinstance(doc, Email) and not args.output_emails) \
@@ -189,7 +189,6 @@ def epstein_show():
         exit_with_error(str(e))
 
     for doc in docs:
-        doc = doc.printable_document()
         console.print('\n', doc)
 
         if args.raw:
