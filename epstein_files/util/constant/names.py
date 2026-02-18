@@ -205,6 +205,7 @@ ED_BOYLE = 'Ed Boyle'
 ELON_MUSK = 'Elon Musk'
 FAWZI_SIAM = 'Fawzi Siam'
 GANBAT_CHULUUNKHUU = 'Ganbat Chuluunkhuu'
+GREG_WYLER = 'Greg Wyler'
 HASSAN_JAMEEL = 'Hassan Jameel'
 HONGBO_ROBERT_BAO = 'Hongbo Robert Bao'
 IAN_ODONNELL = "Ian O'Donnell"
@@ -307,7 +308,7 @@ NAMES_TO_NOT_HIGHLIGHT = """
     dan daniel danny darren dave david debbie department donald douglas
     ed edward edwards enforcement enterprise enterprises entourage epstein eric erika etienne
     faith fisher fitzgerald forget fred friendly frost fuller fund
-    gates gateway gerald george gold gordon
+    gates gateway gerald george gold gordon greg
     haddad hanson harry hay heather henry hill hoffman howard
     ian inc inc. ivan
     jack james jay jean jeff jeffrey jennifer jeremy jessica joel john jon jonathan joseph jr

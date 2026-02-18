@@ -23,7 +23,7 @@ EMAIL_RECIPIENT_COUNTS = {
     "Andrew Friendly": 1,
     ANDREW_MCCORMACK: 16,
     'Andrew Stemmer': 2,
-    "Anil Ambani": 1,
+    #"Anil Ambani": 1,  # TODO: where did it go?
     "Ann Marie Villafana": 3,
     "Anthony Barrett": 1,
     ARIANE_DE_ROTHSCHILD: 3,
@@ -48,6 +48,7 @@ EMAIL_RECIPIENT_COUNTS = {
     'Brittany Henderson': 1,
     BROCK_PIERCE: 27,
     BRYAN_BISHOP: 1,
+    'BS Stern': 1,
     BUREAU_OF_PRISONS: 1,
     "Caroline Lang": 2,
     'Caryl Ratner': 2,

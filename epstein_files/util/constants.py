@@ -938,6 +938,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA02645857', author=GANBAT_CHULUUNKHUU),
     EmailCfg(id='EFTA02406725', author=GANBAT_CHULUUNKHUU),
     EmailCfg(id='EFTA01030561', author=GANBAT_CHULUUNKHUU, author_reason='signature'),
+    EmailCfg(id='EFTA00845330', author=GREG_WYLER, author_reason='"Greg" + Wyler is on other emails with Stern and Epstein at that time'),
     EmailCfg(id='EFTA02640711', author=JABOR_Y, description='Jabor Y / HBJ home address', is_interesting=True),
     EmailCfg(
         id='EFTA00838218',
