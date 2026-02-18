@@ -32,6 +32,27 @@ OTHER_INTERESTING_EMAILS_SUBTITLE = 'Other Interesting Emails\n(these emails hav
 PRINT_COLOR_KEY_EVERY_N_EMAILS = 150
 
 
+def print_curated_chronological(epstein_files: EpsteinFiles) -> list[Document]:
+    other_files_queue = []  # Collect other files into tables
+    printed_docs: list[Document] = []
+
+    for doc in epstein_files.unique_documents:
+        if not doc.is_interesting:
+            continue
+        elif isinstance(doc, OtherFile):
+            other_files_queue.append(doc)
+            continue
+        elif other_files_queue:
+            console.print(Padding(OtherFile.files_preview_table(other_files_queue), (0, 0, 1, 2)))
+            printed_docs.extend(other_files_queue)
+            other_files_queue = []
+
+        console.print(doc)
+        printed_docs.append(doc)
+
+    return printed_docs
+
+
 def print_doj_files(epstein_files: EpsteinFiles) -> list[DojFile | Email]:
     """Doesn't print DojFiles that are actually Emails, that's handled in print_emails()."""
     printed_doj_files: list[DojFile | Email] = []

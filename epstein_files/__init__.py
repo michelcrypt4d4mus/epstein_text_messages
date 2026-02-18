@@ -22,8 +22,8 @@ from epstein_files.documents.doj_file import DojFile
 from epstein_files.documents.email import Email
 from epstein_files.documents.messenger_log import MessengerLog
 from epstein_files.documents.other_file import OtherFile
-from epstein_files.output.output import (print_doj_files, print_emails_section, print_json_files,
-     print_stats, print_other_files_section, print_text_messages_section, print_email_timeline,
+from epstein_files.output.output import (print_curated_chronological, print_doj_files, print_emails_section,
+     print_json_files, print_stats, print_other_files_section, print_text_messages_section, print_email_timeline,
      print_emailers_info, print_json_metadata, show_urls, write_html)
 from epstein_files.output.rich import (build_highlighter, console, highlighter,
      print_json, print_subtitle_panel)
@@ -69,6 +69,10 @@ def generate_html() -> None:
 
     if args.colors_only:
         exit()
+
+    if args.output_chrono:
+        printed_docs = print_curated_chronological(epstein_files)
+        timer.log_section_complete('Chronological documents', epstein_files.unique_documents, printed_docs)
 
     if args.output_doj_files:
         printed_doj_files = print_doj_files(epstein_files)
