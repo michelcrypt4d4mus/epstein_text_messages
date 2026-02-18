@@ -304,11 +304,12 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"((Andy|Adam)\s*)Back",
             r"Balaji(\s*Srinivisan)?",
             r"Barry Silbert",
+            r"Ben\s*Forman",
             r"(Brad(ford)?|Bart)\s*Stephens",  # co-founder, Blockchain Capital
             r"Bioptix",  # Now RIOT Blockchain
             r"bitcoin(\s*Foundation)?",
             r"Bit(Angels|Finex|Fury|Main)",
-            r"block ?chain(\s*capital)?",
+            r"block ?(chain|tree)(\s*capital)?",
             r"Blockstream",
             r"Bradley\s*Rotter",
             r"Brian Forde",
@@ -352,7 +353,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"SpanCash",
             r"Steve\s*Waterhouse",
             r"Tether",
-            r"virtual\s*currenc(ies|y)",
+            r"virtual\s*(currenc(ies|y)|money)",
             r"Wire\s*ca\n?rd",
             r"Wladimir( van der Laan)?",  # bitcoin dev
             r"ZCash",
@@ -679,6 +680,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         patterns=[
             r"Ace\s*Greenberg",
             r"AIG",
+            r"alterna[tv]i[tv]e\s*finance",
             r"((anti.?)?money\s+)?launder(s?|ers?|ing)?(\s+money)?",
             r"Apollo",
             r"Ari\s*Glass",

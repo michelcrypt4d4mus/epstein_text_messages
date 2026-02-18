@@ -1012,9 +1012,11 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00419742', author=LESLEY_GROFF, duplicate_ids=['EFTA02174857']),
     EmailCfg(
         id='EFTA02177147',
-        author=LESLEY_GROFF,
+        author=LINDA_STONE,
+        author_uncertain='"Hi Linda"',
         description=f"Epstein planning a symposium \"on Alternative Money or Complementary Currency\" in 2012",
         is_interesting=True,
+        recipients=[LESLEY_GROFF],
     ),
     EmailCfg(
         id='EFTA02730473',
@@ -1236,9 +1238,9 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA02731632', recipients=[OFFICE_OF_THE_DEPUTY_ATTORNEY_GENERAL]),
     EmailCfg(
         id='EFTA00926593',
+        author=PHILIP_ROSEDALE,
         description='discussion of a symposium on deception and alternative finance',
         is_interesting=True,
-        recipients=[PHILIP_ROSEDALE],
     ),
     EmailCfg(id='EFTA01843319', recipients=[RENATA_BOLOTOVA], author_reason=SNEAKY_DOG),
     EmailCfg(id='EFTA01006355', recipients=[RENATA_BOLOTOVA], author_reason=SNEAKY_DOG),
@@ -1303,6 +1305,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00901970', description=f"{AL_SECKEL}'s response to Epstein's forged email", is_interesting=True),
     EmailCfg(id='EFTA02372964', description='an "ICO" or "initial coin offering" was a very popular type of crypto scam at this time'),
     EmailCfg(id='EFTA00988395', description=f'"Andy Back" is probably Blockstream bitcoin dev {ADAM_BACK}', duplicate_ids=['EFTA01928856']),
+    EmailCfg(id='EFTA02436105', description="one of Epstein's goals in life was to make a lot of money in virtual currency"),
     EmailCfg(id='EFTA00955063', description=f'{AUSTIN_HILL} discusses crypto funds engaged in fraudulent wash trading', is_interesting=True),
     EmailCfg(id='EFTA01051074', description=f'{BROCK_PIERCE} arranging meeting between Bannon and Epstein (in Doha?)'),
     EmailCfg(id='EFTA00658457', description=f'{BROCK_PIERCE} says they will not invest in Bitfury'),
@@ -1351,6 +1354,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA02390441', duplicate_ids=['EFTA02403336']),
     EmailCfg(id='EFTA00428083', duplicate_ids=['EFTA02183761']),
     EmailCfg(id='EFTA00869828', truncate_to=TRUNCATED_CHARS),
+    EmailCfg(id='EFTA00661348', truncate_to=NO_TRUNCATE),
 ]
 
 
