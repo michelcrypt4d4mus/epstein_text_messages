@@ -21,7 +21,7 @@ from epstein_files.documents.emails.email_header import (EMAIL_SIMPLE_HEADER_REG
      EMAIL_SIMPLE_HEADER_LINE_BREAK_REGEX, FIELD_NAMES, FIELDS_COLON_PATTERN, EmailHeader)
 from epstein_files.documents.emails.emailers import extract_emailer_names
 from epstein_files.documents.other_file import OtherFile
-from epstein_files.people.interesting_people import EMAILERS_OF_INTEREST
+from epstein_files.people.interesting_people import EMAILERS_OF_INTEREST_SET
 from epstein_files.output.rich import *
 from epstein_files.util.constant.strings import REDACTED
 from epstein_files.util.constant.urls import URL_SIGNIFIERS
@@ -164,7 +164,6 @@ class Email(Communication):
         actual_text (str): Best effort at the text actually sent in this email, excluding quoted replies and forwards.
         derived_cfg (EmailCfg): EmailCfg that was built instead of coming from CONFIGS_BY_ID
         header (EmailHeader): Header data extracted from the text (from/to/sent/subject etc).
-        recipients (list[Name]): People to whom this email was sent.
         sent_from_device (str, optional): "Sent from my iPhone" style signature (if it exists).
         signature_substitution_counts (dict[str, int]): Number of times a signature was replaced with
             <...snipped...> per name
@@ -173,7 +172,6 @@ class Email(Communication):
     actual_text: str = field(init=False)
     derived_cfg: EmailCfg | None = None
     header: EmailHeader = field(init=False)
-    recipients: list[Name] = field(default_factory=list)
     sent_from_device: str | None = None
     signature_substitution_counts: dict[str, int] = field(default_factory=dict)  # defaultdict breaks asdict :(
     _is_first_for_user: bool = False  # Only set when printing
@@ -242,7 +240,7 @@ class Email(Communication):
             return False
         elif (is_interesting := super().is_interesting) is not None:
             return is_interesting
-        elif self.author in EMAILERS_OF_INTEREST:
+        elif self.participants.intersection(EMAILERS_OF_INTEREST_SET):
             return True
 
     @property
