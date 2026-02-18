@@ -79,11 +79,11 @@ def uninteresting_description() -> DocCfg:
     return _doj_cfg(Neutral.LEGAL, description=CVRA + " law stuff")
 
 
-def test_category_txt(blockchain_cap_cfg, empty_house_cfg, junk_doc_cfg, legal_cfg, skype_cfg, skype_author):
+def test_category_txt(blockchain_cap_cfg, empty_house_cfg, junk_doc_cfg, legal_cfg, skype_cfg):
     assert blockchain_cap_cfg.category_txt.style == 'orange1 bold'
     assert empty_house_cfg.category_txt == QUESTION_MARKS_TXT
     assert junk_doc_cfg.category_txt.plain == JUNK
-    assert skype_cfg.category_txt.plain == Neutral.SKYPE_LOG
+    assert skype_cfg.category_txt.plain == 'skype'
     assert skype_cfg.category_txt.style == 'bright_cyan'
     assert legal_cfg.category_txt.style == 'purple'
 

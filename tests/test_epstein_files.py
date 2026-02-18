@@ -55,12 +55,12 @@ def test_no_files_after_2025(epstein_files):
 
 def test_other_files_author_count(epstein_files):
     known_author_count = Document.known_author_count(epstein_files.other_files)
-    assert known_author_count == 438
+    assert known_author_count == 441
     assert len(epstein_files.json_files) == 19
 
 
 def test_other_files_categories(epstein_files):
-    assert len([f for f in epstein_files.other_files if not f.category]) == 2298
+    assert len([f for f in epstein_files.other_files if not f.category]) == 2236
 
 
 ################################################
@@ -82,7 +82,7 @@ def test_email_recipient_counts(epstein_files):
 def test_interesting_emails(epstein_files):
     interesting_email_count = len([e for e in epstein_files.unique_emails if e.is_interesting])
     uninteresting_emails_count = len([e for e in epstein_files.unique_emails if e.is_interesting is False])
-    assert interesting_email_count == 868
+    assert interesting_email_count == 863
     assert uninteresting_emails_count == 172
 
 
