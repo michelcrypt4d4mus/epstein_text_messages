@@ -31,7 +31,7 @@ SOCIAL_MEDIA_LINK_STYLE = 'pale_turquoise4'
 
 SITE_GLOSSARY_MSG = f"The following views of the underlying selection of Epstein Files are available:"
 YOU_ARE_HERE = Text('«').append('you are here', style='bold khaki1 blink').append('»')
-NUM_COLOR_KEY_COLS = 6
+NUM_COLOR_KEY_COLS = 2 if args.mobile else 6
 SUBTITLE_WIDTH = 110
 TITLE_WIDTH = 50
 
@@ -59,7 +59,9 @@ def print_color_key() -> None:
 
 
 def print_other_page_link(epstein_files: 'EpsteinFiles') -> None:
-    if args._site_type == SiteType.CURATED:
+    if args._site_type == SiteType.MOBILE:
+        return
+    elif args._site_type == SiteType.CURATED:
         txt = THE_OTHER_PAGE_TXT + Text(f' is uncurated and has all {len(epstein_files.emails):,} emails')
         txt.append(f" and {len(epstein_files.other_files):,} unclassifiable files")
     else:
