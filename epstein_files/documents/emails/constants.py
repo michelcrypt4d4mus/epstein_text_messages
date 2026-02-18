@@ -207,7 +207,6 @@ UNINTERESTING_EMAILERS = FLIGHT_IN_2012_PEOPLE + IRAN_DEAL_RECIPIENTS + TRIVERS_
     'Alan Rogers',                           # Random CC
     'Andrew Friendly',                       # Presumably some relation of Kelly Friendly
     'Ariane Dwyer',                          # Daniel Sabba CC
-    'BS Stern',                              # A random fwd of email we have
     'Cheryl Kleen',                          # One email from Anne Boyles is displayed under Anne Boyles
     'Connie Zaguirre',                       # Random CC
     'Dan Fleuette',                          # Sean Bannon CC
