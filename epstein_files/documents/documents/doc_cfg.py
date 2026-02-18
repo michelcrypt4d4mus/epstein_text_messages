@@ -128,7 +128,7 @@ class DocCfg:
     dupe_type: DuplicateType | None = None
     duplicate_ids: list[str] = field(default_factory=list)
     duplicate_of_id: str | None = None
-    is_interesting: bool | None = None
+    is_interesting: bool | None = None  # NOTE: if True emails will not be truncated!
     is_synthetic: bool = False
     replace_text_with: str = ''
     truncate_to: int | None = None
