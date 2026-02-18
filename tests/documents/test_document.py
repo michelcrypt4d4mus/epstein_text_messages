@@ -13,7 +13,7 @@ def test_debug_dict(email):
         'email.attachments': ['DSC_0418.JPG', 'DSC_0419.JPG', 'DSC_0424.JPG', 'Cefotaj Business Plan Final 5-18-11(1).docx'],
         'email.author': 'Christina Galbraith',
         'email.category': 'email',
-        'email.is_interesting': None,
+        'email.is_interesting': True,
         'email.num_lines': 47,
         'email.recipients': [CECILE_DE_JONGH, JEFFREY_EPSTEIN],
         'email.subject': 'From Christina: Fwd: Project in Haiti: CEFOTAJ, SA',

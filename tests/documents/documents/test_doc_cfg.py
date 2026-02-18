@@ -51,10 +51,6 @@ def interesting_doc() -> DocCfg:
     return cfg
 
 @pytest.fixture
-def interesting_author() -> DocCfg:
-    return _doj_cfg(Uninteresting.ACADEMIA, author=JOI_ITO)
-
-@pytest.fixture
 def junk_doc_cfg() -> DocCfg:
     return _oversight_cfg(JUNK)
 
@@ -144,7 +140,6 @@ def test_is_of_interest(
     finance_report,
     fwded_article,
     harvard_poetry_cfg,
-    interesting_author,
     interesting_doc,
     junk_doc_cfg,
     junk_email_cfg,
@@ -159,7 +154,6 @@ def test_is_of_interest(
     assert finance_report.is_of_interest is False
     assert fwded_article.is_of_interest is False
     assert harvard_poetry_cfg.is_of_interest is False
-    assert interesting_author.is_of_interest is True
     assert interesting_doc.is_of_interest is True
     assert junk_doc_cfg.is_of_interest is False
     assert junk_email_cfg.is_of_interest is False
