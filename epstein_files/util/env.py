@@ -5,12 +5,11 @@ from pathlib import Path
 
 from rich_argparse_plus import RichHelpFormatterPlus
 
+from epstein_files.output.site.site_config import ALL_OTHER_FILES_MULTIPLIER, DEFAULT_WIDTH, MobileConfig, SiteConfig
 from epstein_files.output.site.sites import *
 from epstein_files.util.helpers.env_helpers import get_env_dir
 from epstein_files.util.logging import env_log_level, exit_with_error, logger, set_log_level
 
-DEFAULT_WIDTH = 155
-MOBILE_WIDTH = 45
 DEFAULT_FILE = 'default_file'
 EPSTEIN_GENERATE = 'epstein_generate'
 HTML_SCRIPTS = [EPSTEIN_GENERATE]
@@ -92,8 +91,10 @@ else:
 is_html_script = parser.prog in HTML_SCRIPTS
 
 if args.mobile:
+    args._site = MobileConfig
     args.output_chrono = True
-    args.width = MOBILE_WIDTH
+else:
+    args._site = SiteConfig
 
 args.debug = args.deep_debug or args.debug or is_env_var_set('DEBUG')
 args.names = [None if n == 'None' else n.strip() for n in (args.names or [])]
@@ -101,7 +102,7 @@ args.output_emails = args.output_emails or args.all_emails
 args.output_other = args.output_other or args.all_other_files or args.uninteresting
 args.output_texts = args.output_texts or args.all_texts
 args.overwrite_pickle = args.overwrite_pickle or (is_env_var_set('OVERWRITE_PICKLE') and not is_env_var_set('PICKLED'))
-args.width = args.width if is_html_script else None
+args.width = args._site.width if is_html_script else None
 args.any_output_selected = any([is_output_arg(arg) and val for arg, val in vars(args).items()])
 args._site_type = SiteType.CURATED
 
@@ -137,9 +138,11 @@ if is_html_script:
             args._site_type = SiteType.WORD_COUNT
 
         args.build = SiteType.build_path(args._site_type)
-
 elif parser.prog.startswith('epstein_') and not args.positional_args and not args.names:
     exit_with_error(f"{parser.prog} requires positional arguments but got none!")
+
+if args.all_other_files:
+    args._site.other_files_preview_chars = int(args._site.other_files_preview_chars * ALL_OTHER_FILES_MULTIPLIER)
 
 if args.names:
     logger.warning(f"Output restricted to {args.names}")

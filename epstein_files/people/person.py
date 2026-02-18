@@ -320,7 +320,7 @@ class Person:
         """Print complete emails to or from a particular 'author'. Returns the Emails that were printed."""
         print_centered(self.info_panel)
 
-        if not args.mobile:
+        if args._site.show_emailer_tables:
             self.print_emails_table()
 
         if self.name in SPECIAL_NOTES:
