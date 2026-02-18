@@ -14,7 +14,7 @@ def _show_timestamps(epstein_files):
 
 
 def _verify_filenames(epstein_files):
-    doc_filenames = set([doc.file_path.name for doc in epstein_files.all_documents])
+    doc_filenames = set([doc.file_path.name for doc in epstein_files.documents])
 
     for file_path in epstein_files.file_paths:
         if file_path.name not in doc_filenames:
@@ -27,9 +27,9 @@ def print_interesting_doc_panels_and_props(epstein_files, sort_by_category: bool
     num_interesting = 0
 
     if sort_by_category:
-        docs = sorted(epstein_files.all_documents, key=lambda d: [d.category, d.timestamp or FALLBACK_TIMESTAMP])
+        docs = sorted(epstein_files.documents, key=lambda d: [d.category, d.timestamp or FALLBACK_TIMESTAMP])
     else:
-        docs = epstein_files.all_documents
+        docs = epstein_files.documents
 
     for doc in docs:
         if not isinstance(doc, OtherFile):

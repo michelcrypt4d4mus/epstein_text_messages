@@ -241,7 +241,7 @@ def print_stats(epstein_files: EpsteinFiles) -> None:
     print_json("email_author_device_signatures", dict_sets_to_lists(epstein_files.email_authors_to_device_signatures()))
     print_json("email_sent_from_devices", dict_sets_to_lists(epstein_files.email_device_signatures_to_authors()))
     print_json("unknown_recipient_ids", epstein_files.unknown_recipient_ids())
-    print_json("count_by_month", count_by_month(epstein_files.all_documents))
+    print_json("count_by_month", count_by_month(epstein_files.documents))
     print_json("Interesting OtherFile IDs", sorted([f.file_id for f in epstein_files.interesting_other_files]))
 
 

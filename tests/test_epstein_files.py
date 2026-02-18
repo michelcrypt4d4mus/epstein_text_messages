@@ -20,13 +20,13 @@ from .fixtures.other_files.interesting_file_ids import INTERESTING_FILE_IDS
 
 
 def test_all_configured_file_ids_exist(epstein_files):
-    all_ids = [doc.file_id for doc in epstein_files.all_documents]
+    all_ids = [doc.file_id for doc in epstein_files.documents]
     missing_ids = [id for id in CONFIGS_BY_ID.keys() if id not in all_ids]
     assert len(missing_ids) == 0, f"Missing {len(missing_ids)} files that are configured: {missing_ids}"
 
 
 def test_document_monthly_counts(epstein_files):
-    new_counts = count_by_month(epstein_files.all_documents)
+    new_counts = count_by_month(epstein_files.documents)
 
     for month, num_docs in new_counts.items():
         assert month in EXPECTED_MONTHLY_COUNTS
@@ -48,7 +48,7 @@ def test_interesting_other_files(epstein_files):
 
 
 def test_no_files_after_2025(epstein_files):
-    bad_docs = [d for d in epstein_files.all_documents if d.timestamp and d.timestamp > datetime(2025, 1, 1)]
+    bad_docs = [d for d in epstein_files.documents if d.timestamp and d.timestamp > datetime(2025, 1, 1)]
 
     for doc in bad_docs:
         console.print(doc)
