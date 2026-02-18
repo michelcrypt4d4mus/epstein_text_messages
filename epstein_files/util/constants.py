@@ -1324,7 +1324,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA01003346', description=f"{PETER_THIEL} tells Epstein to invest in his fund", is_interesting=True),
     EmailCfg(id='EFTA00758140', description="possibly about Sarah Ferguson?"),
     EmailCfg(id='EFTA00039689', description=f"{SEC_WHISTLEBLOWER} re: Signature Bank, Hapoalim, Bioptix/RIOT, Barry Honig, etc.", truncate_to=NO_TRUNCATE),
-    EmailCfg(id='EFTA00362171', description=f"{SEC_WHISTLEBLOWER}, rest is visible in EFTA00039689", truncate_to=102_000),
+    EmailCfg(id='EFTA00093702', description=f"{SEC_WHISTLEBLOWER}, rest is visible in EFTA00039689", truncate_to=102_000),
     EmailCfg(id='EFTA02505439', description=f'summary of {KYARA_INVESTMENT} shell companies with {JOI_ITO}'),
     EmailCfg(id='EFTA02517623', description=f"{VINCENZO_IOZZO} explains to Epstein how to deanonymize bitcoin", is_interesting=True),
     EmailCfg(id='EFTA00875181', duplicate_ids=['EFTA01901268']),
