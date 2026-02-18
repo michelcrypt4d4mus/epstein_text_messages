@@ -103,7 +103,8 @@ $GENERATE_CMD --output-doj-files --whole-file
 echo -e ""
 git commit -am"Update HTML"
 git push origin gh_pages --quiet
-git checkout master
 
 print_deploy_step "Deployed URLs:"
 epstein_generate --show-urls
+
+git checkout master
