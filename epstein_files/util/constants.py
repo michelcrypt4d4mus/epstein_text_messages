@@ -2277,8 +2277,8 @@ OTHER_FILES_CRYPTO = [
     DocCfg(id='EFTA01299820', author=CRYPTO_PR_LAB, description="bank transfer", date='2018-12-18'),
     DocCfg(id='EFTA00309271', author=CRYPTO_PR_LAB, description='financial statement'),
     DocCfg(id='EFTA01613759', author=CRYPTO_PR_LAB, description="letter of intent of acquisitionfrom Transform Group"),
-    DocCfg(id='EFTA01613762', author=CRYPTO_PR_LAB, description=f"WhatsApp convo with {MARIA_PRUSAKOVA}"),
-    DocCfg(id='EFTA01612721', author=CRYPTO_PR_LAB, description=f"WhatsApp convo with {MARIA_PRUSAKOVA}"),
+    DocCfg(id='EFTA01613762', author=CRYPTO_PR_LAB, description=f"WhatsApp convo with {MARIA_PRUSAKOVA}", date='2019-05-21'),
+    DocCfg(id='EFTA01612721', author=CRYPTO_PR_LAB, description=f"WhatsApp convo with {MARIA_PRUSAKOVA}", date='2019-05-21'),
     # ZCash
     DocCfg(id='EFTA00811130', author=PERKINS_COIE, description='tax opinion on ZCash tokens'),
     DocCfg(id='EFTA00603348', description=f"Electric Coin Company created the untraceable crypto ZCash funded by {LARRY_SUMMERS}'s DCG"),

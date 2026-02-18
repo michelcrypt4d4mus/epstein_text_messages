@@ -1628,6 +1628,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Valar(\s*(Global\s*Fund|Ventures))?",
             r"Vision\s*Fund",
             r"Wearality(\s*Corporation)?",
+            r"WhatsApp",
             r"WikiLeak(ed|s)",
         ],
     ),
