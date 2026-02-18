@@ -103,7 +103,9 @@ class OtherFile(Document):
     def preview_text_highlighted(self) -> Text:
         txt = highlighter(escape(self.preview_text))
 
-        if self.length > args._site.other_files_preview_chars and not self.config_replace_text_with:
+        if self.config_replace_text_with:
+            txt = Text('', style='italic').append(txt)
+        elif self.length > args._site.other_files_preview_chars:
             num_missing_chars = self.length - len(txt)
             txt.append(f"... ({num_missing_chars:,} more chars)", 'dim italic')
 
@@ -175,28 +177,29 @@ class OtherFile(Document):
         title = '' if title is None else (title or f'{title_pfx}Other Files Details in Chronological Order')
         table = build_table(title, show_lines=True, title_justify='left' if title else 'center')
         table.add_column('File', justify='center', width=FILENAME_LENGTH)
-        table.add_column('Date', justify='center')
-        table.add_column('Size', justify='right', style='dim')
-        table.add_column('Category', justify='center')
+        table.add_column('Info', justify='center')
         table.add_column(FIRST_FEW_LINES, justify='left', style='pale_turquoise4')
 
         for file in files:
             # call superclass method to avoid border_style rainbow
             link_and_info = [FileInfo.build_external_links(file.file_info, id_only=bool(args.mobile))]
 
+            if file.date_str:
+                date_txt = Text(file.date_str, style=TIMESTAMP_STYLE)
+            else:
+                date_txt = Text('(no date)', style=f"{TIMESTAMP_STYLE} dim italic")
+
             if file.is_duplicate:
                 preview_text = file.duplicate_file_txt
                 row_style = 'dim'
             else:
                 preview_text = file.preview_text_highlighted
-                row_style = 'italic' if file.config_replace_text_with else ''
+                row_style = ''
                 link_and_info += file.info
 
             table.add_row(
                 Group(*link_and_info),
-                Text(file.date_str, style=TIMESTAMP_STYLE) if file.date_str else QUESTION_MARKS_TXT,
-                file.file_info.file_size_str,
-                file.category_txt,
+                Group(date_txt, file.category_txt, Text(file.file_info.file_size_str, style='wheat4 dim')),
                 preview_text,
                 style=row_style
             )
