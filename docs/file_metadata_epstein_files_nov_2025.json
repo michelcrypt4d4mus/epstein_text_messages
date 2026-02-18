@@ -14192,9 +14192,9 @@
             },
             {
                 "attachment_file_ids": [
-                    "029301",
+                    "029304",
                     "029302",
-                    "029304"
+                    "029301"
                 ],
                 "attachments": [
                     "image001.jpg",
@@ -34987,8 +34987,8 @@
             },
             {
                 "attachment_file_ids": [
-                    "010617",
-                    "016699"
+                    "016699",
+                    "010617"
                 ],
                 "attachments": [
                     ""
@@ -35794,9 +35794,9 @@
             },
             {
                 "attachment_file_ids": [
-                    "011170",
+                    "028988",
                     "028815",
-                    "028988"
+                    "011170"
                 ],
                 "attachments": [
                     ""
@@ -42689,6 +42689,7 @@
                     ""
                 ],
                 "author": "Brock Pierce",
+                "description": "Brock Pierce suggests Larry Summers could get involved with Tether and Noble Bank",
                 "file_id": "EFTA00664424",
                 "file_size": 920,
                 "filename": "EFTA00664424.txt",
@@ -44744,6 +44745,8 @@
                     ""
                 ],
                 "author": "Amir Taaki",
+                "dupe_type": "same",
+                "duplicate_of_id": "EFTA01776613",
                 "file_id": "EFTA00915297",
                 "file_size": 1350,
                 "filename": "EFTA00915297.txt",
@@ -44752,7 +44755,7 @@
                     "Jeffrey Epstein"
                 ],
                 "subject": "Bitcoin",
-                "timestamp": "2011-07-07T22:33:38",
+                "timestamp": "2011-07-07T22:34:00",
                 "type": "Email"
             },
             {
@@ -44792,6 +44795,12 @@
                     ""
                 ],
                 "author": "Amir Taaki",
+                "dupe_type": "same",
+                "duplicate_ids": [
+                    "EFTA01860910",
+                    "EFTA01986221",
+                    "EFTA01776411"
+                ],
                 "file_id": "EFTA00915302",
                 "file_size": 2410,
                 "filename": "EFTA00915302.txt",
@@ -48543,9 +48552,7 @@
                 ],
                 "author": "Amir Taaki",
                 "dupe_type": "same",
-                "duplicate_ids": [
-                    "EFTA02691069"
-                ],
+                "duplicate_of_id": "EFTA00915302",
                 "file_id": "EFTA01776411",
                 "file_size": 2925,
                 "filename": "EFTA01776411.txt",
@@ -48554,7 +48561,7 @@
                     "Jeffrey Epstein"
                 ],
                 "subject": "Re: Bitcoin",
-                "timestamp": "2011-07-07T22:53:00",
+                "timestamp": "2011-07-07T22:52:40",
                 "type": "Email"
             },
             {
@@ -48564,7 +48571,8 @@
                 "author": "Amir Taaki",
                 "dupe_type": "same",
                 "duplicate_ids": [
-                    "EFTA02691059"
+                    "EFTA01860812",
+                    "EFTA00915297"
                 ],
                 "file_id": "EFTA01776613",
                 "file_size": 1958,
@@ -49014,6 +49022,8 @@
                     ""
                 ],
                 "author": "Amir Taaki",
+                "dupe_type": "same",
+                "duplicate_of_id": "EFTA01776613",
                 "file_id": "EFTA01860812",
                 "file_size": 1421,
                 "filename": "EFTA01860812.txt",
@@ -49022,7 +49032,7 @@
                     "Jeffrey Epstein"
                 ],
                 "subject": "Bitcoin",
-                "timestamp": "2011-07-07T22:33:38",
+                "timestamp": "2011-07-07T22:34:00",
                 "type": "Email"
             },
             {
@@ -49030,6 +49040,8 @@
                     ""
                 ],
                 "author": "Amir Taaki",
+                "dupe_type": "same",
+                "duplicate_of_id": "EFTA00915302",
                 "file_id": "EFTA01860910",
                 "file_size": 2536,
                 "filename": "EFTA01860910.txt",
@@ -50035,6 +50047,8 @@
                     ""
                 ],
                 "author": "Amir Taaki",
+                "dupe_type": "same",
+                "duplicate_of_id": "EFTA00915302",
                 "file_id": "EFTA01986221",
                 "file_size": 274,
                 "filename": "EFTA01986221.txt",
@@ -50711,6 +50725,7 @@
                 "attachments": [
                     ""
                 ],
+                "author": "Lesley Groff",
                 "file_id": "EFTA02102384",
                 "file_size": 1618,
                 "filename": "EFTA02102384.txt",
@@ -54214,6 +54229,9 @@
                 "file_size": 2948,
                 "filename": "EFTA02630357.txt",
                 "num_lines": 59,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
                 "subject": "Re: Checking in",
                 "timestamp": "2019-03-11T19:41:00",
                 "type": "Email"
@@ -65782,14 +65800,14 @@
             },
             {
                 "category": "money",
+                "date": "2006-09-01",
                 "file_id": "EFTA00000476",
                 "file_size": 2382,
                 "filename": "EFTA00000476.txt",
                 "is_interesting": true,
                 "num_lines": 109,
-                "timestamp": "2004-02-18T00:00:00",
-                "type": "DojFile",
-                "was_timestamp_extracted": true
+                "timestamp": "2006-09-01T00:00:00",
+                "type": "DojFile"
             },
             {
                 "file_id": "EFTA00000478",
@@ -76022,6 +76040,8 @@
                 "was_timestamp_extracted": true
             },
             {
+                "category": "misc",
+                "description": "photo of a hard drive",
                 "file_id": "EFTA00002513",
                 "file_size": 1983,
                 "filename": "EFTA00002513.txt",
@@ -76030,6 +76050,8 @@
                 "type": "DojFile"
             },
             {
+                "category": "misc",
+                "description": "photo of a hard drive",
                 "file_id": "EFTA00002514",
                 "file_size": 1037,
                 "filename": "EFTA00002514.txt",
@@ -76038,6 +76060,8 @@
                 "type": "DojFile"
             },
             {
+                "category": "misc",
+                "description": "photo of a hard drive",
                 "file_id": "EFTA00002515",
                 "file_size": 887,
                 "filename": "EFTA00002515.txt",
@@ -76046,6 +76070,8 @@
                 "type": "DojFile"
             },
             {
+                "category": "misc",
+                "description": "photo of a hard drive",
                 "file_id": "EFTA00002516",
                 "file_size": 2346,
                 "filename": "EFTA00002516.txt",
@@ -76182,6 +76208,8 @@
                 "type": "DojFile"
             },
             {
+                "category": "misc",
+                "description": "photo of a hard drive",
                 "file_id": "EFTA00002536",
                 "file_size": 600,
                 "filename": "EFTA00002536.txt",
@@ -79358,6 +79386,8 @@
                 "was_timestamp_extracted": true
             },
             {
+                "category": "legal",
+                "description": "photos of collected evidence",
                 "file_id": "EFTA00003858",
                 "file_size": 1523,
                 "filename": "EFTA00003858.txt",
@@ -79466,6 +79496,8 @@
                 "type": "DojFile"
             },
             {
+                "category": "legal",
+                "description": "photos of collected evidence",
                 "file_id": "EFTA00003936",
                 "file_size": 3207,
                 "filename": "EFTA00003936.txt",
@@ -79474,6 +79506,8 @@
                 "type": "DojFile"
             },
             {
+                "category": "legal",
+                "description": "photos of collected evidence",
                 "file_id": "EFTA00003939",
                 "file_size": 2729,
                 "filename": "EFTA00003939.txt",
@@ -79496,6 +79530,8 @@
                 "was_timestamp_extracted": true
             },
             {
+                "category": "legal",
+                "description": "photos of collected evidence",
                 "file_id": "EFTA00003945",
                 "file_size": 2418,
                 "filename": "EFTA00003945.txt",
@@ -79616,6 +79652,8 @@
                 "was_timestamp_extracted": true
             },
             {
+                "category": "legal",
+                "description": "photos of collected evidence",
                 "file_id": "EFTA00004066",
                 "file_size": 4986,
                 "filename": "EFTA00004066.txt",
@@ -79671,6 +79709,8 @@
                 "was_timestamp_extracted": true
             },
             {
+                "category": "legal",
+                "description": "photos of collected evidence",
                 "file_id": "EFTA00004231",
                 "file_size": 2423,
                 "filename": "EFTA00004231.txt",
@@ -79713,6 +79753,8 @@
                 "type": "DojFile"
             },
             {
+                "category": "legal",
+                "description": "photos of collected evidence",
                 "file_id": "EFTA00004250",
                 "file_size": 98808,
                 "filename": "EFTA00004250.txt",
@@ -79723,6 +79765,8 @@
                 "was_timestamp_extracted": true
             },
             {
+                "category": "legal",
+                "description": "photos of collected evidence",
                 "file_id": "EFTA00004348",
                 "file_size": 80951,
                 "filename": "EFTA00004348.txt",
@@ -79733,6 +79777,8 @@
                 "was_timestamp_extracted": true
             },
             {
+                "category": "legal",
+                "description": "photos of collected evidence",
                 "file_id": "EFTA00004448",
                 "file_size": 54494,
                 "filename": "EFTA00004448.txt",
@@ -79752,6 +79798,8 @@
                 "was_timestamp_extracted": true
             },
             {
+                "category": "legal",
+                "description": "photos of collected evidence",
                 "file_id": "EFTA00004577",
                 "file_size": 143771,
                 "filename": "EFTA00004577.txt",
@@ -79762,6 +79810,8 @@
                 "was_timestamp_extracted": true
             },
             {
+                "category": "legal",
+                "description": "photos of collected evidence",
                 "file_id": "EFTA00004663",
                 "file_size": 89256,
                 "filename": "EFTA00004663.txt",
@@ -79772,6 +79822,8 @@
                 "was_timestamp_extracted": true
             },
             {
+                "category": "legal",
+                "description": "photos of collected evidence",
                 "file_id": "EFTA00004763",
                 "file_size": 31359,
                 "filename": "EFTA00004763.txt",
@@ -79780,6 +79832,8 @@
                 "type": "DojFile"
             },
             {
+                "category": "legal",
+                "description": "photos of collected evidence",
                 "file_id": "EFTA00004800",
                 "file_size": 96024,
                 "filename": "EFTA00004800.txt",
@@ -79790,6 +79844,8 @@
                 "was_timestamp_extracted": true
             },
             {
+                "category": "legal",
+                "description": "photos of collected evidence",
                 "file_id": "EFTA00004898",
                 "file_size": 50220,
                 "filename": "EFTA00004898.txt",
@@ -79800,6 +79856,8 @@
                 "was_timestamp_extracted": true
             },
             {
+                "category": "legal",
+                "description": "photos of collected evidence",
                 "file_id": "EFTA00004975",
                 "file_size": 44744,
                 "filename": "EFTA00004975.txt",
@@ -79810,6 +79868,8 @@
                 "was_timestamp_extracted": true
             },
             {
+                "category": "legal",
+                "description": "photos of collected evidence",
                 "file_id": "EFTA00005075",
                 "file_size": 11432,
                 "filename": "EFTA00005075.txt",
@@ -79818,6 +79878,8 @@
                 "type": "DojFile"
             },
             {
+                "category": "legal",
+                "description": "photos of collected evidence",
                 "file_id": "EFTA00005091",
                 "file_size": 49204,
                 "filename": "EFTA00005091.txt",
@@ -79828,6 +79890,8 @@
                 "was_timestamp_extracted": true
             },
             {
+                "category": "legal",
+                "description": "photos of collected evidence",
                 "file_id": "EFTA00005191",
                 "file_size": 155152,
                 "filename": "EFTA00005191.txt",
@@ -79838,6 +79902,8 @@
                 "was_timestamp_extracted": true
             },
             {
+                "category": "legal",
+                "description": "photos of collected evidence",
                 "file_id": "EFTA00005284",
                 "file_size": 75271,
                 "filename": "EFTA00005284.txt",
@@ -80262,6 +80328,8 @@
                 "type": "DojFile"
             },
             {
+                "category": "legal",
+                "description": "photos of collected evidence",
                 "file_id": "EFTA00006043",
                 "file_size": 2490,
                 "filename": "EFTA00006043.txt",
@@ -80669,6 +80737,8 @@
                 "was_timestamp_extracted": true
             },
             {
+                "category": "legal",
+                "description": "photos of collected evidence",
                 "file_id": "EFTA00007543",
                 "file_size": 3400,
                 "filename": "EFTA00007543.txt",
@@ -80717,6 +80787,8 @@
                 "type": "DojFile"
             },
             {
+                "category": "legal",
+                "description": "photos of collected evidence",
                 "file_id": "EFTA00007558",
                 "file_size": 2837,
                 "filename": "EFTA00007558.txt",
@@ -80757,6 +80829,8 @@
                 "type": "DojFile"
             },
             {
+                "category": "legal",
+                "description": "photos of collected evidence",
                 "file_id": "EFTA00007565",
                 "file_size": 7819,
                 "filename": "EFTA00007565.txt",
@@ -80765,6 +80839,8 @@
                 "type": "DojFile"
             },
             {
+                "category": "legal",
+                "description": "photos of collected evidence",
                 "file_id": "EFTA00007570",
                 "file_size": 6448,
                 "filename": "EFTA00007570.txt",
@@ -80787,11 +80863,17 @@
                 "was_timestamp_extracted": true
             },
             {
+                "category": "letter",
+                "dupe_type": "same",
+                "duplicate_of_id": "EFTA00007609",
                 "file_id": "EFTA00007582",
                 "file_size": 5133,
                 "filename": "EFTA00007582.txt",
-                "is_interesting": null,
+                "is_interesting": false,
                 "num_lines": 56,
+                "recipients": [
+                    "Alberto"
+                ],
                 "type": "DojFile"
             },
             {
@@ -80825,11 +80907,19 @@
                 "was_timestamp_extracted": true
             },
             {
+                "category": "letter",
+                "dupe_type": "same",
+                "duplicate_ids": [
+                    "EFTA00007582"
+                ],
                 "file_id": "EFTA00007609",
                 "file_size": 3314,
                 "filename": "EFTA00007609.txt",
-                "is_interesting": null,
+                "is_interesting": true,
                 "num_lines": 33,
+                "recipients": [
+                    "Alberto"
+                ],
                 "type": "DojFile"
             },
             {
@@ -81039,6 +81129,8 @@
                 "type": "DojFile"
             },
             {
+                "category": "legal",
+                "description": "photos of collected evidence",
                 "file_id": "EFTA00007704",
                 "file_size": 2276,
                 "filename": "EFTA00007704.txt",
@@ -81049,6 +81141,8 @@
                 "was_timestamp_extracted": true
             },
             {
+                "category": "legal",
+                "description": "photos of collected evidence",
                 "file_id": "EFTA00007714",
                 "file_size": 2952,
                 "filename": "EFTA00007714.txt",
@@ -81057,6 +81151,8 @@
                 "type": "DojFile"
             },
             {
+                "category": "legal",
+                "description": "photos of collected evidence",
                 "file_id": "EFTA00007720",
                 "file_size": 7677,
                 "filename": "EFTA00007720.txt",
@@ -81067,6 +81163,8 @@
                 "was_timestamp_extracted": true
             },
             {
+                "category": "legal",
+                "description": "photos of collected evidence",
                 "file_id": "EFTA00007735",
                 "file_size": 4658,
                 "filename": "EFTA00007735.txt",
@@ -81075,6 +81173,8 @@
                 "type": "DojFile"
             },
             {
+                "category": "legal",
+                "description": "photos of collected evidence",
                 "file_id": "EFTA00007741",
                 "file_size": 13960,
                 "filename": "EFTA00007741.txt",
@@ -81085,6 +81185,8 @@
                 "was_timestamp_extracted": true
             },
             {
+                "category": "legal",
+                "description": "photos of collected evidence",
                 "file_id": "EFTA00007747",
                 "file_size": 4605,
                 "filename": "EFTA00007747.txt",
@@ -81093,6 +81195,8 @@
                 "type": "DojFile"
             },
             {
+                "category": "legal",
+                "description": "photos of collected evidence",
                 "file_id": "EFTA00007753",
                 "file_size": 20352,
                 "filename": "EFTA00007753.txt",
@@ -81103,6 +81207,8 @@
                 "was_timestamp_extracted": true
             },
             {
+                "category": "legal",
+                "description": "photos of collected evidence",
                 "file_id": "EFTA00007763",
                 "file_size": 9839,
                 "filename": "EFTA00007763.txt",
@@ -81113,6 +81219,8 @@
                 "was_timestamp_extracted": true
             },
             {
+                "category": "legal",
+                "description": "photos of collected evidence",
                 "file_id": "EFTA00007769",
                 "file_size": 9059,
                 "filename": "EFTA00007769.txt",
@@ -81121,6 +81229,8 @@
                 "type": "DojFile"
             },
             {
+                "category": "legal",
+                "description": "photos of collected evidence",
                 "file_id": "EFTA00007775",
                 "file_size": 7478,
                 "filename": "EFTA00007775.txt",
@@ -81187,6 +81297,8 @@
                 "was_timestamp_extracted": true
             },
             {
+                "category": "legal",
+                "description": "photos of collected evidence",
                 "file_id": "EFTA00007881",
                 "file_size": 9693,
                 "filename": "EFTA00007881.txt",
@@ -81195,6 +81307,8 @@
                 "type": "DojFile"
             },
             {
+                "category": "legal",
+                "description": "photos of collected evidence",
                 "file_id": "EFTA00007887",
                 "file_size": 4598,
                 "filename": "EFTA00007887.txt",
@@ -81216,6 +81330,8 @@
                 "was_timestamp_extracted": true
             },
             {
+                "category": "legal",
+                "description": "photos of collected evidence",
                 "file_id": "EFTA00007956",
                 "file_size": 2910,
                 "filename": "EFTA00007956.txt",
@@ -81224,6 +81340,8 @@
                 "type": "DojFile"
             },
             {
+                "category": "legal",
+                "description": "photos of collected evidence",
                 "file_id": "EFTA00007959",
                 "file_size": 5968,
                 "filename": "EFTA00007959.txt",
@@ -81232,6 +81350,8 @@
                 "type": "DojFile"
             },
             {
+                "category": "legal",
+                "description": "photos of collected evidence",
                 "file_id": "EFTA00007962",
                 "file_size": 8227,
                 "filename": "EFTA00007962.txt",
@@ -81242,6 +81362,8 @@
                 "was_timestamp_extracted": true
             },
             {
+                "category": "legal",
+                "description": "photos of collected evidence",
                 "file_id": "EFTA00007965",
                 "file_size": 8102,
                 "filename": "EFTA00007965.txt",
@@ -81252,6 +81374,8 @@
                 "was_timestamp_extracted": true
             },
             {
+                "category": "legal",
+                "description": "photos of collected evidence",
                 "file_id": "EFTA00007968",
                 "file_size": 7999,
                 "filename": "EFTA00007968.txt",
@@ -81272,6 +81396,8 @@
                 "type": "DojFile"
             },
             {
+                "category": "legal",
+                "description": "photos of collected evidence",
                 "file_id": "EFTA00007975",
                 "file_size": 8591,
                 "filename": "EFTA00007975.txt",
@@ -81302,6 +81428,8 @@
                 "type": "DojFile"
             },
             {
+                "category": "legal",
+                "description": "photos of collected evidence",
                 "file_id": "EFTA00007984",
                 "file_size": 3340,
                 "filename": "EFTA00007984.txt",
@@ -81310,6 +81438,8 @@
                 "type": "DojFile"
             },
             {
+                "category": "legal",
+                "description": "photos of collected evidence",
                 "file_id": "EFTA00007987",
                 "file_size": 2582,
                 "filename": "EFTA00007987.txt",
@@ -81318,6 +81448,8 @@
                 "type": "DojFile"
             },
             {
+                "category": "legal",
+                "description": "photos of collected evidence",
                 "file_id": "EFTA00007990",
                 "file_size": 3307,
                 "filename": "EFTA00007990.txt",
@@ -81336,6 +81468,8 @@
                 "type": "DojFile"
             },
             {
+                "category": "legal",
+                "description": "photos of collected evidence",
                 "file_id": "EFTA00007998",
                 "file_size": 4996,
                 "filename": "EFTA00007998.txt",
@@ -81346,6 +81480,8 @@
                 "was_timestamp_extracted": true
             },
             {
+                "category": "legal",
+                "description": "photos of collected evidence",
                 "file_id": "EFTA00008008",
                 "file_size": 8629,
                 "filename": "EFTA00008008.txt",
@@ -83032,10 +83168,12 @@
                 "was_timestamp_extracted": true
             },
             {
+                "category": "money",
+                "description": "wire transfer to Signature Bank account",
                 "file_id": "EFTA00238499",
                 "file_size": 134,
                 "filename": "EFTA00238499.txt",
-                "is_interesting": null,
+                "is_interesting": true,
                 "num_lines": 3,
                 "type": "DojFile"
             },
@@ -83349,15 +83487,15 @@
                 "was_timestamp_extracted": true
             },
             {
-                "category": "finance",
-                "date": "2017-07-31 00:00:00",
-                "description": "valuations of Epstein's investments",
+                "author": "Valar Ventures",
+                "category": "crypto",
+                "description": "requesting money previously promised by Epstein to invest in a new opportunity",
                 "file_id": "EFTA00617222",
                 "file_size": 15120,
                 "filename": "EFTA00617222.txt",
                 "is_interesting": true,
                 "num_lines": 289,
-                "timestamp": "2017-07-31T00:00:00",
+                "timestamp": "2020-09-01T00:00:00",
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
@@ -83794,15 +83932,15 @@
                 "was_timestamp_extracted": true
             },
             {
-                "category": "finance",
-                "date": "2017-04-30 00:00:00",
-                "description": "valuations of Epstein's investments",
+                "author": "Valar Ventures",
+                "category": "crypto",
+                "description": "requesting money previously promised by Epstein to invest in a new opportunity",
                 "file_id": "EFTA00811490",
                 "file_size": 14775,
                 "filename": "EFTA00811490.txt",
                 "is_interesting": true,
                 "num_lines": 298,
-                "timestamp": "2017-04-30T00:00:00",
+                "timestamp": "2020-01-15T00:00:00",
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
@@ -83846,15 +83984,15 @@
                 "was_timestamp_extracted": true
             },
             {
-                "category": "finance",
-                "date": "2017-07-31 00:00:00",
-                "description": "valuations of Epstein's investments",
+                "author": "Valar Ventures",
+                "category": "crypto",
+                "description": "requesting money previously promised by Epstein to invest in a new opportunity",
                 "file_id": "EFTA00811552",
                 "file_size": 15119,
                 "filename": "EFTA00811552.txt",
                 "is_interesting": true,
                 "num_lines": 289,
-                "timestamp": "2017-07-31T00:00:00",
+                "timestamp": "2020-09-01T00:00:00",
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
@@ -83935,15 +84073,15 @@
                 "was_timestamp_extracted": true
             },
             {
-                "category": "finance",
-                "date": "2019-01-31 00:00:00",
-                "description": "valuations of Epstein's investments",
+                "author": "Valar Ventures",
+                "category": "crypto",
+                "description": "requesting money previously promised by Epstein to invest in a new opportunity",
                 "file_id": "EFTA00811948",
                 "file_size": 14735,
                 "filename": "EFTA00811948.txt",
                 "is_interesting": true,
                 "num_lines": 264,
-                "timestamp": "2019-01-31T00:00:00",
+                "timestamp": "2020-09-01T00:00:00",
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
@@ -84137,10 +84275,12 @@
                 "was_timestamp_extracted": true
             },
             {
+                "category": "crypto",
+                "description": "LedgerX was later acquired by FTX for $298 million",
                 "file_id": "EFTA01110414",
                 "file_size": 12933,
                 "filename": "EFTA01110414.txt",
-                "is_interesting": null,
+                "is_interesting": true,
                 "num_lines": 356,
                 "timestamp": "2016-03-18T00:00:00",
                 "type": "DojFile",
@@ -84324,10 +84464,13 @@
                 "was_timestamp_extracted": true
             },
             {
+                "author": "Valar Ventures",
+                "category": "crypto",
+                "description": "requesting money previously promised by Epstein to invest in a new opportunity",
                 "file_id": "EFTA01203276",
                 "file_size": 774,
                 "filename": "EFTA01203276.txt",
-                "is_interesting": null,
+                "is_interesting": true,
                 "num_lines": 22,
                 "timestamp": "2016-01-05T20:15:00",
                 "type": "DojFile",
@@ -84451,10 +84594,12 @@
                 "was_timestamp_extracted": true
             },
             {
+                "category": "money",
+                "description": "Deutsche Bank statement for Epstein's Southern Trust Company",
                 "file_id": "EFTA01286240",
                 "file_size": 4679,
                 "filename": "EFTA01286240.txt",
-                "is_interesting": null,
+                "is_interesting": true,
                 "num_lines": 104,
                 "timestamp": "2016-06-30T00:00:00",
                 "type": "DojFile",
@@ -84608,18 +84753,26 @@
                 "was_timestamp_extracted": true
             },
             {
+                "author": "Ed Boyle",
+                "category": "text_msg",
                 "file_id": "EFTA01611042",
                 "file_size": 593,
                 "filename": "EFTA01611042.txt",
-                "is_interesting": null,
+                "is_interesting": true,
                 "num_lines": 25,
+                "recipients": [
+                    null,
+                    "Maria Prusakova"
+                ],
                 "type": "DojFile"
             },
             {
+                "category": "text_msg",
+                "description": "screenshot of recent contacts in an iPhone",
                 "file_id": "EFTA01611898",
                 "file_size": 445,
                 "filename": "EFTA01611898.txt",
-                "is_interesting": null,
+                "is_interesting": true,
                 "num_lines": 43,
                 "type": "DojFile"
             },
@@ -84753,10 +84906,15 @@
                 "was_timestamp_extracted": true
             },
             {
+                "author": "Renata Bolotova",
+                "author_reason": "sneaky",
+                "author_uncertain": "sneaky",
+                "category": "text_msg",
+                "description": "iMessage screenshots",
                 "file_id": "EFTA01618400",
                 "file_size": 2948,
                 "filename": "EFTA01618400.txt",
-                "is_interesting": null,
+                "is_interesting": true,
                 "num_lines": 154,
                 "timestamp": "2016-12-23T11:12:58",
                 "type": "DojFile",
@@ -85238,10 +85396,13 @@
                 "was_timestamp_extracted": true
             },
             {
+                "author": "Leon Black",
+                "author_uncertain": true,
+                "category": "text_msg",
                 "file_id": "EFTA02731525",
                 "file_size": 359,
                 "filename": "EFTA02731525.txt",
-                "is_interesting": null,
+                "is_interesting": true,
                 "num_lines": 15,
                 "type": "DojFile"
             },
