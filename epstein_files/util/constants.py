@@ -557,6 +557,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='032671', description='connections to Fusion GPS who produced the Steele Dossier on Trump'),
     EmailCfg(id='033052', description='connections to Fusion GPS who produced the Steele Dossier on Trump'),
     EmailCfg(id='031472', description="discussion of publishing an audio recording related to the coup in Turkey"),
+    EmailCfg(id='031830', description='Epstein gets defensive about what went on during the 2008 financial crisis as portrayed in "Inside Job"'),
     EmailCfg(id='031333', description='Fort Knox conspiracy theory, looks like a Russian disinfo article', is_fwded_article=True),
     EmailCfg(id='031335', description='Fort Knox conspiracy theory, looks like a Russian disinfo article', is_fwded_article=True),
     EmailCfg(id='030648', description=IS_IT_ROGER_STONE),
@@ -2480,14 +2481,15 @@ OTHER_FILES_CRYPTO = [
 ]
 
 OTHER_FILES_SKYPE_LOG = [
-    DocCfg(id='032206', author=LAWRENCE_KRAUSS),
-    DocCfg(id='032208', author=LAWRENCE_KRAUSS),
-    DocCfg(id='032209', author=LAWRENCE_KRAUSS),
-    DocCfg(id='032210', author='linkspirit', is_interesting=True),
-    DocCfg(id='018224', author=f'linkspirit (French?) and {LAWRENCE_KRAUSS}', is_interesting=True),  # we don't know who linkspirit is yet
-    DocCfg(id='EFTA01217787', author=f'{TYLER_SHEARS} & Hanna Traff at Spotify', is_interesting=True),
-    DocCfg(id='EFTA01217703', author=f'actress Athena Zelcovich, {JOSCHA_BACH}, and {LAWRENCE_KRAUSS}'),
-    DocCfg(id='EFTA01217736', author=f'actress Athena Zelcovich, {TYLER_SHEARS}'),
+    CommunicationCfg(id='032206', author=LAWRENCE_KRAUSS),
+    CommunicationCfg(id='032208', author=LAWRENCE_KRAUSS),
+    CommunicationCfg(id='032209', author=LAWRENCE_KRAUSS),
+    CommunicationCfg(id='032210', author='linkspirit', is_interesting=True),
+    CommunicationCfg(id='018224', recipients=['linkspirit', LAWRENCE_KRAUSS], is_interesting=True),  # we don't know who linkspirit is yet
+    CommunicationCfg(id='EFTA01217787', recipients=[TYLER_SHEARS, 'Hanna Traff at Spotify'], is_interesting=True),
+    CommunicationCfg(id='EFTA01217703', recipients=['actress Athena Zelcovich', JOSCHA_BACH, LAWRENCE_KRAUSS]),
+    CommunicationCfg(id='EFTA01217736', recipients=['actress Athena Zelcovich', TYLER_SHEARS]),
+    CommunicationCfg(id='EFTA01616933', description='"now im finding pussy for you"'),
 ]
 
 OTHER_FILES_TEXT_MSG = [

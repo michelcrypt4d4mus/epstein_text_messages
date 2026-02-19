@@ -163,10 +163,18 @@ class DocCfg:
             description = join_truthy(preamble, description)
         elif self.category == Neutral.FINANCE and self.is_description_a_title:
             author_separator = ' report: '
-        elif self.category in [Interesting.LETTER, Interesting.TEXT_MSG]:
-            description = join_truthy(preamble, author, ' from ')
-            description = join_truthy(description, self.recipients_str, ' to ')
+        elif self.category in [Interesting.LETTER, Interesting.TEXT_MSG, Neutral.SKYPE_LOG]:
+            if self.category != Neutral.SKYPE_LOG:
+                description = join_truthy(preamble, author, 'from')
+            else:
+                description = join_truthy(preamble, author)
+
+            recipients_sep = ' of conversation with ' if self.category == Neutral.SKYPE_LOG else ' to '
+            description = join_truthy(description, self.recipients_str, recipients_sep)
             description = join_truthy(description, self.description)
+        elif self.category == Neutral.SKYPE_LOG:
+            author = JEFFREY_EPSTEIN if self.recipients_str and not author else author
+            preamble_separator = ' of conversation with '
         elif self.category == Neutral.PRESSER:
             description = join_truthy(preamble, self.description, ' announcing ')  # note reversed args
             description = join_truthy(author, description)
@@ -175,8 +183,6 @@ class DocCfg:
         elif self.category in [Category.RESUMÉ, Category.TWEET]:
             preamble_separator = 'of' if self.category == Category.RESUMÉ else 'by'
             preamble_separator = preamble_separator.center(3, ' ')
-        elif self.category == Neutral.SKYPE_LOG:
-            preamble_separator = ' of conversation with '
 
         # Construct standard description from pieces if a custom one has not been created yet
         if not description:
@@ -244,7 +250,6 @@ class DocCfg:
              -  descriptions with UNINTERESTING_PREFIXES
              -  finance category with any author
         """
-        # import pdb;pdb.set_trace()
         if self.duplicate_of_id:
             return False
         elif self.is_interesting is not None:
