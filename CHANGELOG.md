@@ -1,5 +1,7 @@
 # NEXT RELEASE
 
+### 1.8.1
+
 # 1.8.0
 * Add a `--mobile` version of the site
 * Print emails first in the curated sites, text messages second

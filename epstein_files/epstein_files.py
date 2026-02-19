@@ -382,12 +382,12 @@ class EpsteinFiles:
 
             file.timestamp = email.timestamp
 
-        # Set the _is_first_for_user flag on the earliest Email we have for each user.
+        # Set the is_persons_first_email flag on the earliest Email we have for each person.
         for emailer in self.emailers:
             if emailer.name in INVALID_FOR_EPSTEIN_WEB or len(emailer.unique_emails) == 0:
                 continue
 
-            emailer.unique_emails[0]._is_first_for_user = True
+            emailer.unique_emails[0].is_persons_first_email = True
 
     def _finalize_new_docs_if_approved(self, new_docs: list[Document]) -> None:
         """Same as _finalize_data_and_write_to_disk() but prints new docs and asks for permission."""

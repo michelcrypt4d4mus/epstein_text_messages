@@ -26,8 +26,8 @@ from epstein_files.output.site.sites import EXTRACTS_BASE_URL
 from epstein_files.people.interesting_people import UNINTERESTING_AUTHORS
 from epstein_files.util.constant.names import Name
 from epstein_files.util.constant.strings import *
-from epstein_files.util.constants import CONFIGS_BY_ID, MAX_CHARS_TO_PRINT
-from epstein_files.util.env import args
+from epstein_files.util.constants import CONFIGS_BY_ID, DEFAULT_TRUNCATE_TO
+from epstein_files.util.env import args, site_config
 from epstein_files.util.helpers.data_helpers import (collapse_newlines, date_str, patternize, prefix_keys,
      remove_zero_time, without_falsey)
 from epstein_files.util.helpers.link_helper import link_text_obj
@@ -218,10 +218,10 @@ class Document:
         """
         if self.config and self.config.is_of_interest is not None:
             return self.config.is_of_interest
-        elif self.file_info.is_house_oversight_file and not (self.author or self.config):
-            return True
         elif self.author in UNINTERESTING_AUTHORS:
             return False
+        elif self.file_info.is_house_oversight_file and not (self.author or self.config):
+            return True
 
     @property
     def length(self) -> int:
@@ -412,7 +412,7 @@ class Document:
 
     def top_lines(self, n: int = 10) -> str:
         """First n lines."""
-        return '\n'.join(self.lines[0:n])[:MAX_CHARS_TO_PRINT]
+        return '\n'.join(self.lines[0:n])[:DEFAULT_TRUNCATE_TO]
 
     def truncation_note(self, truncate_to: int) -> Text:
         """String with link to source URL that will replace the text after the truncation point."""
@@ -436,7 +436,7 @@ class Document:
 
     def _debug_dict(self) -> DebugDict:
         """Merge information about this document from config, file info, etc."""
-        config_info = self.config.important_props if self.config else {}
+        config_info = self.config.truthy_props if self.config else {}
         file_info = dict(self.file_info.as_dict)
 
         if config_info.get('id') == file_info.get('file_id'):
@@ -445,9 +445,10 @@ class Document:
         if file_info.get('source_url') == file_info.get('external_url', 'blah'):
             file_info.pop('external_url')
 
-        config_info = prefix_keys(type(self.config).__name__, config_info)
-        file_info = prefix_keys(underscore(FileInfo.__name__), file_info)
-        return {**file_info, **config_info, **self._debug_props()}
+        props = self._debug_props()
+        props[type(self.config).__name__] = config_info
+        props[FileInfo.__name__] = file_info
+        return props
 
     def _debug_props(self) -> DebugDict:
         """Collects props of this object only (not the config or locations)."""
@@ -504,7 +505,7 @@ class Document:
 
     def _skipped_file_txt(self, reason: str | Text) -> Text:
         txt = Text(f"Skipping ", INFO_STYLE).append(self.external_link_txt)
-        return txt.append(" because it's ").append(reason).append('...')
+        return txt.append(" because it's ").append(reason)
 
     def _write_clean_text(self, output_path: Path) -> None:
         """Write self.text to 'output_path'. Used only for diffing files."""

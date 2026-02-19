@@ -21,7 +21,7 @@ VI_DAILY_NEWS_REGEX = re.compile(r'virgin\s*is[kl][ai]nds\s*daily\s*news', re.IG
 LEDGERX_MSG = 'LedgerX was later acquired by FTX for $298 million'
 
 def build_cfg_from_text(doc: 'Document') -> DocCfg | None:
-    """Scan the text to see if an author and description can be inferred."""
+    """Scan the text to see if author, description, category, etc. can be derived from the contents."""
     text = doc.text
     lines = text.split('\n')
     cfg = None

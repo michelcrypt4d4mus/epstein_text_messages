@@ -2,7 +2,7 @@ from epstein_files.util.constant.names import *
 
 
 EMAIL_RECIPIENT_COUNTS = {
-    None: 87,
+    None: 83,
     "ACT for America": 1,
     ADAM_BACK: 4,
     AL_SECKEL: 1,
@@ -29,7 +29,7 @@ EMAIL_RECIPIENT_COUNTS = {
     ARIANE_DE_ROTHSCHILD: 3,
     'Ariane Dwyer': 1,
     ATT_COURT_APPEARANCE_TEAM: 1,
-    AUSTIN_HILL: 26,
+    AUSTIN_HILL: 25,
     'Barb Cowles': 1,
     "Barnaby Marsh": 2,
     'Bella Klein': 1,
@@ -98,6 +98,7 @@ EMAIL_RECIPIENT_COUNTS = {
     "George Krassner": 3,
     "Gerald Barton": 1,
     GERALD_LEFCOURT: 1,
+    GWENDOLYN_BECK: 1,
     GHISLAINE_MAXWELL: 9,
     "Gianni Serazzi": 1,
     GLENN_DUBIN: 1,
@@ -149,6 +150,7 @@ EMAIL_RECIPIENT_COUNTS = {
     "Joshua Cooper Ramo": 1,
     JULIA_SANTOS: 1,
     'Juliana Shkreli': 1,
+    'Julie Shample': 1,
     'Justin Alfano': 1,
     KARYNA_SHULIAK: 4,
     KATHERINE_KEATING: 3,

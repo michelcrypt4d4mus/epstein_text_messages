@@ -214,6 +214,8 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Arthur Klein",
             r"(Barry\s*)?Honig",
             r"((Bill|David)\s*)?Koch(\s*(Bro(s|thers)|Industries))?",
+            r"BP",
+            r"CEO",
             r"Gruterite",
             r"Island\s*Capital\s*Group(,?\s*LLC)?"
             r"((John|Patricia)\s*)?Kluge",
@@ -843,6 +845,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"(www\.)?FINRA(\.org)?",
             r"Florence Hutner",
             r"FOIA",
+            r"food\s*stamps",
             r"FTC",
             r"Gary\s*Gensler",
             r"(General\s*)?P(a|e)traeus",
@@ -1119,7 +1122,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         ],
     ),
     HighlightedNames(
-        label=JUNK,
+        label=Uninteresting.JUNK,
         style='gray46',
         contacts=[
             Contact('asmallworld@travel.asmallworld.net'),
@@ -1603,6 +1606,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(ZUBAIR_KHAN, f"Tranchulas cybersecurity, InsightsPod founder, Islamabad / Dubai, friend of {MASHA_DROKOVA}"),
         ],
         patterns=[
+            r"Accel",
             r"AG?I",
             r"Artificial\s*(General\s*)?Intelligence",
             r"Ben\s*Horowitz",

@@ -8,7 +8,7 @@ from rich.text import Text
 from epstein_files.output.rich import join_texts, no_bold, prefix_with, styled_dict
 from epstein_files.util.constant.strings import ALT_LINK_STYLE, ARCHIVE_LINK_COLOR, DOJ_DATASET_ID_REGEX
 from epstein_files.util.constant.urls import *
-from epstein_files.util.env import DOJ_PDFS_20260130_DIR
+from epstein_files.util.env import DOJ_PDFS_20260130_DIR, site_config
 from epstein_files.util.helpers.file_helper import (coerce_file_stem, coerce_url_slug, extract_file_id, extract_efta_id,
      file_size, file_size_to_str, is_doj_file, is_house_oversight_file, is_local_extract_file)
 from epstein_files.util.helpers.link_helper import link_text_obj, parenthesize
@@ -162,6 +162,7 @@ class FileInfo:
                 # if self._class_name == 'Email':
                 #     links.append(self.rollcall_link(style=ALT_LINK_STYLE, link_txt=ROLLCALL))
 
+        links = links if site_config.max_alt_links is None else links[0:site_config.max_alt_links + 1]
         links = [links[0]] + [parenthesize(link) for link in links[1:]]
         base_txt = Text('', style='white' if with_alt_links else ARCHIVE_LINK_COLOR)
         return base_txt.append(join_texts(links))
@@ -171,7 +172,7 @@ class FileInfo:
         logger.log(level, f"{self.file_stem} {msg}")
 
     def warn(self, msg: str) -> None:
-        """Print a warning message prefixed by info about this `Document`."""
+        """Print a warning message prefixed by info about this `file_id`."""
         self.log(msg, level=logging.WARNING)
 
     def _build_link(self, fxn: Callable[[str], str], style: str = ARCHIVE_LINK_COLOR, link_txt: str = '') -> Text:

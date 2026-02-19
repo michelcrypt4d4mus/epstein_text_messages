@@ -2,7 +2,7 @@ import json
 import logging
 import re
 from copy import deepcopy
-from dataclasses import asdict, dataclass, field
+from dataclasses import dataclass, field
 from datetime import datetime
 from typing import ClassVar, cast
 
@@ -15,6 +15,7 @@ from rich.text import Text
 
 from epstein_files.documents.communication import Communication
 from epstein_files.documents.document import CLOSE_PROPERTIES_CHAR, INFO_INDENT
+from epstein_files.documents.documents.categories import Uninteresting
 from epstein_files.documents.documents.doc_cfg import DebugDict, EmailCfg, Metadata
 from epstein_files.documents.emails.constants import *
 from epstein_files.documents.emails.email_header import (EMAIL_SIMPLE_HEADER_REGEX,
@@ -22,10 +23,10 @@ from epstein_files.documents.emails.email_header import (EMAIL_SIMPLE_HEADER_REG
 from epstein_files.documents.emails.emailers import extract_emailer_names
 from epstein_files.documents.other_file import OtherFile
 from epstein_files.people.interesting_people import EMAILERS_OF_INTEREST_SET
-from epstein_files.output.rich import DEFAULT_TABLE_KWARGS, build_table, highlighter, join_texts, no_bold, styled_key_value
-from epstein_files.util.constant.strings import REDACTED
+from epstein_files.output.rich import DEFAULT_TABLE_KWARGS, build_table, highlighter, join_texts, styled_key_value
+from epstein_files.util.constant.strings import ARCHIVE_LINK_COLOR, REDACTED, TIMESTAMP_DIM
 from epstein_files.util.constant.urls import URL_SIGNIFIERS
-from epstein_files.util.constants import *
+from epstein_files.util.constants import CONFIGS_BY_ID, DEFAULT_TRUNCATE_TO, NO_TRUNCATE, SHORT_TRUNCATE_TO
 from epstein_files.util.env import args, site_config
 from epstein_files.util.helpers.data_helpers import (AMERICAN_TIME_REGEX, TIMEZONE_INFO, collapse_newlines,
      prefix_keys, remove_timezone, uniquify)
@@ -57,7 +58,7 @@ NUM_WORDS_IN_LAST_QUOTE = 6
 # Junk mail
 JUNK_EMAILERS = [
     contact.name
-    for junk_hg in HIGHLIGHTED_NAMES if junk_hg.label == JUNK
+    for junk_hg in HIGHLIGHTED_NAMES if junk_hg.label == Uninteresting.JUNK
     for contact in junk_hg.contacts
 ]
 
@@ -152,12 +153,12 @@ METADATA_FIELDS = [
     'is_mailing_list',
     'recipients',
     'sent_from_device',
-    'subject',
 ]
 
 DEBUG_PROPS = METADATA_FIELDS + [
-    'attached_docs',
     'is_note_to_self',
+    'is_persons_first_email',
+    'is_word_count_worthy',
 ]
 
 
@@ -169,6 +170,7 @@ class Email(Communication):
         actual_text (str): Best effort at the text actually sent in this email, excluding quoted replies and forwards.
         derived_cfg (EmailCfg): EmailCfg that was built instead of coming from CONFIGS_BY_ID
         header (EmailHeader): Header data extracted from the text (from/to/sent/subject etc).
+        is_persons_first_email (bool): is this the first email we have for this person, whether sender or recipient?
         sent_from_device (str, optional): "Sent from my iPhone" style signature (if it exists).
         signature_substitution_counts (dict[str, int]): Number of times a signature was replaced with
             <...snipped...> per name
@@ -177,9 +179,9 @@ class Email(Communication):
     actual_text: str = field(init=False)
     derived_cfg: EmailCfg | None = None
     header: EmailHeader = field(init=False)
+    is_persons_first_email: bool = False
     sent_from_device: str | None = None
     signature_substitution_counts: dict[str, int] = field(default_factory=dict)  # defaultdict breaks asdict :(
-    _is_first_for_user: bool = False  # Only set when printing
     _line_merge_arguments: list[tuple[int] | tuple[int, int]] = field(default_factory=list)
 
     # Class variable logging how many headers we prettified while printing, kind of janky
@@ -264,6 +266,9 @@ class Email(Communication):
         metadata = super().metadata
         metadata.update(self.truthy_props(METADATA_FIELDS))
 
+        if not self.header.is_empty:
+            metadata['header'] = self.header.as_dict()
+
         if self.attached_docs:
             metadata['attachment_file_ids'] = [f.file_id for f in self.attached_docs]
 
@@ -295,6 +300,15 @@ class Email(Communication):
             txt.append(', ').append(styled_key_value('recipients', self.recipients_txt()))
 
         return txt.append(CLOSE_PROPERTIES_CHAR)
+
+    @property
+    def uninteresting_txt(self) -> Text | None:
+        """Text to print for uninteresting files."""
+        if (uninteresting_txt := super().uninteresting_txt):
+            if self.subject:
+                uninteresting_txt.append(f' ("{self.subject}")', style='light_yellow3')
+
+            return uninteresting_txt
 
     def __post_init__(self):
         super().__post_init__()
@@ -340,7 +354,12 @@ class Email(Communication):
 
     def _debug_props(self) -> DebugDict:
         props = super()._debug_props()
-        props.update(prefix_keys(self._debug_prefix, self.truthy_props(DEBUG_PROPS)))
+        local_props = self.truthy_props(DEBUG_PROPS)
+
+        if not self.header.is_empty:
+            local_props['header'] = self.header.as_dict()
+
+        props.update(prefix_keys(self._debug_prefix, local_props))
         return props
 
     def _extract_actual_text(self) -> str:
@@ -602,9 +621,9 @@ class Email(Communication):
                 or any([self.is_from_or_to(n) for n in TRUNCATE_EMAILS_FROM_OR_TO]) \
                 or self.is_fwded_article \
                 or includes_truncate_term:
-            num_chars = min(quote_cutoff or MAX_CHARS_TO_PRINT, TRUNCATED_CHARS)
+            num_chars = min(quote_cutoff or DEFAULT_TRUNCATE_TO, SHORT_TRUNCATE_TO)
         else:
-            if quote_cutoff and quote_cutoff < MAX_CHARS_TO_PRINT:
+            if quote_cutoff and quote_cutoff < DEFAULT_TRUNCATE_TO:
                 trimmed_words = self.text[quote_cutoff:].split()
 
                 if '<...snipped' in trimmed_words[:NUM_WORDS_IN_LAST_QUOTE]:
@@ -621,17 +640,17 @@ class Email(Communication):
                     num_chars = quote_cutoff
             else:
                 # TODO: Added some padding to self.length because newlines may be added in prettification but this sucks
-                num_chars = min(self.length + 100, MAX_CHARS_TO_PRINT)
+                num_chars = min(self.length + 100, DEFAULT_TRUNCATE_TO)
 
             # Always print whole email for 1st email for actual people
-            if self._is_first_for_user and num_chars < self.length and \
+            if self.is_persons_first_email and num_chars < self.length and \
                     not (self.is_duplicate or self.is_fwded_article or self.is_mailing_list):
                 self.log(f"{self} Overriding cutoff {num_chars} for first email")
                 num_chars = self.length + 100
 
         log_args = {
             'num_chars': num_chars,
-            '_is_first_for_user': self._is_first_for_user,
+            'is_persons_first_email': self.is_persons_first_email,
             'author_truncate': self.author in TRUNCATE_EMAILS_BY,
             'is_fwded_article': self.is_fwded_article,
             'is_quote_cutoff': quote_cutoff == num_chars,
