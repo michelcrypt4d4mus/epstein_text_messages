@@ -287,6 +287,7 @@ EMAILS_CONFIG = [
         description="why is David Stern's name redacted?",
         is_interesting=True,
     ),
+    EmailCfg(id='EFTA01775500', author=DAVID_STERN, author_reason='in quoted reply', description=f'"PA" is probably {PRINCE_ANDREW}'),
     EmailCfg(id='031460', author=EDWARD_JAY_EPSTEIN, author_reason='quoted reply has edwardjayepstein.com', is_fwded_article=True),
     EmailCfg(
         id='030475',
@@ -633,7 +634,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='016218', is_fwded_article=True, comment='AT&T confirms it paid Trump lawyer Cohen for insights on Trump'),
     EmailCfg(id='030209', is_fwded_article=True, comment='Atlantic Council "Syria: Blackberry Diplomacy"'),
     EmailCfg(id='030372', is_fwded_article=True, comment='Bannon China Iran'),
-    EmailCfg(id='031688', is_fwded_article=True, comment='Bill Siegel fwd of email about Hamas'),
+    EmailCfg(id='031688', recipients=[JEFFREY_EPSTEIN], uncertain_recipient='yes', is_fwded_article=True, comment='Bill Siegel fwd of email about Hamas'),
     EmailCfg(id='023564', is_fwded_article=True, comment="Bloomberg: Leon Black's Tax-Overhaul Dilemma Could Alter Wall Street Model"),
     EmailCfg(id='024300', is_fwded_article=True, comment='Bookstore owner calls police after customer confronted Steve Bannon'),
     EmailCfg(id='016801', is_fwded_article=True, comment='Capital Market Outlook'),
@@ -873,7 +874,7 @@ EMAILS_CONFIG = [
         is_interesting=True,
         truncate_to=4500,
     ),
-    EmailCfg(id='033453', is_interesting=True, description='possibly an email from one of the women who sued Trump'),
+    EmailCfg(id='033453', is_interesting=True, description='possibly an email from one of the women who sued Trump?'),
     EmailCfg(id='029342', is_interesting=True, truncate_to=2000, comment='Hakeem Jeffries'),
     EmailCfg(id='026036', is_interesting=True, truncate_to=6000, comment='Gino Yu blockchain mention'),
     EmailCfg(
@@ -1334,6 +1335,7 @@ EMAILS_CONFIG = [
         description=f'bitcoin dev {JEREMY_RUBIN} describes "grey area between pump and develop" when Epstein objects on ethical grounds',
         is_interesting=True,
     ),
+    EmailCfg(id='EFTA01013922', description=f"{CRYPTO_PR_LAB} business plan", is_interesting=True),
     EmailCfg(id='EFTA02374960', description=f"Epstein says that he will fund a seat at MIT Media Lab for ZCash founder {MADARS_VIRZA}", is_interesting=True),
     EmailCfg(id='EFTA02588748', description=f'discussion of crypto food stamps debit cards', is_interesting=True, truncate_to=800),
     EmailCfg(id='EFTA00901970', description=f"{AL_SECKEL}'s response to Epstein's forged email", is_interesting=True),
@@ -1394,7 +1396,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00999549', description=f"{JOI_ITO} and {JEREMY_RUBIN} meet {LARRY_SUMMERS} to discuss bitcoin", is_interesting=True),
     EmailCfg(id='EFTA01752601', description=f"{JOI_ITO} and Epstein name their new fund Kyara"),
     EmailCfg(id='EFTA02671523', description=f"Jones is former Google chief technology advocate / CEO of Epstein investment Wearality"),
-    EmailCfg(id='EFTA00104945', description=f"{LEON_BLACK} / Rothschild Group {DEUTSCHE_BANK} transactions", is_interesting=True, truncate_to=700),
+    EmailCfg(id='EFTA00080250', description=f"{LEON_BLACK} / Rothschild Group {DEUTSCHE_BANK} transactions", is_interesting=True),
     EmailCfg(id='EFTA01013266', description=f"{MARIA_PRUSAKOVA}'s {CRYPTO_PR_LAB} request for payment for Davos", is_interesting=True),
     EmailCfg(id='EFTA02285514', description=f"Medici Bank and {MARIA_PRUSAKOVA} meeting", is_interesting=True),
     EmailCfg(id='EFTA00752383', description=f"Mindshift conference attendee list", is_interesting=True),
@@ -1459,6 +1461,8 @@ UNINTERESTING_EMAIL_IDS = [
     'EFTA02365466',
     'EFTA00362163',
     'EFTA00709543',
+    # Eric Roth
+    '033386',
     # Joi Ito
     '029500',
     '029279',
@@ -1468,6 +1472,9 @@ UNINTERESTING_EMAIL_IDS = [
     '029429',
     '029587',
     'EFTA02647229',
+    'EFTA02238841',
+    # Krassner
+    '033345',
     # Amir Taaki
     'EFTA01983108',
     # austin hill
@@ -1480,17 +1487,53 @@ UNINTERESTING_EMAIL_IDS = [
     'EFTA02228570',
     # Iozzo
     '033280',
+    # Lesley?
+    'EFTA02229402',
+    'EFTA02229659',
     # DOJ / USANYS
+    'EFTA00039799',
     'EFTA02730469',
     'EFTA02730471',
     'EFTA02731662',
+    'EFTA02731648',
+    'EFTA02731473',
+    'EFTA02731735',
+    'EFTA02731734',
+    'EFTA02731628',
+    'EFTA00040144',
+    'EFTA00040105',
+    'EFTA00040118',
+    'EFTA00040124',
+    'EFTA00040141',
+    'EFTA02730485',
+    'EFTA02731526',
+    'EFTA00039802',
+    'EFTA00039867',
+    'EFTA00039995',
+    'EFTA00039981',
+    'EFTA00104945',
+    'EFTA00039893',
     'EFTA02730481',
     'EFTA02730483',
     # TODO: These have UNKNOWN recipient so they currently get printed but we should configure it so they don't
     'EFTA00039894',
     'EFTA00039878',
     # Unknown
+    '032213',
     '029206',
+    '031822',
+    '030768',
+    '026659',
+    '032951',
+    '023062',
+    '030324',
+    '031990',
+    '024930',
+    '029982',
+    '022187',
+    '033486',
+    '029446',
+    '019873',
 ]
 
 for id in UNINTERESTING_EMAIL_IDS:
