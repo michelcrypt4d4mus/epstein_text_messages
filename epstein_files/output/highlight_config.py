@@ -214,6 +214,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"(Barry\s*)?Honig",
             r"((Bill|David)\s*)?Koch(\s*(Bro(s|thers)|Industries))?",
             r"Gruterite",
+            r"Island\s*Capital\s*Group(,?\s*LLC)?"
             r"((John|Patricia)\s*)?Kluge",
             r"Mar[ck]\s+Rich",
             r"(Mi(chael|ke)\s*)?Ovitz",
@@ -310,7 +311,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Ben\s*Forman",
             r"(Brad(ford)?|Bart)\s*Stephens",  # co-founder, Blockchain Capital
             r"Bioptix",  # Now RIOT Blockchain
-            r"bitcoin(\s*Foundation)?",
+            r"bito?coin(\s*Foundation)?",
             r"Bit(Angels|Finex|Fury|Main)",
             r"block ?(chain|tree)(\s*capital)?",
             r"Blockstream",
@@ -753,7 +754,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         contacts=[
             Contact(
                 name=ANDREW_FARKAS,
-                info="heir to the Alexander's department store fortune",
+                info="heir to the Alexander's department store fortune, Island Capital Group",
                 emailer_pattern=r"Andrew\s*(L\.\s*)?Farkas|Farkas,\s*Andrew(\s*L\.?)?",
             ),
             Contact(DANGENE_AND_JENNIE_ENTERPRISE, "founders of the members-only CORE club"),
@@ -819,7 +820,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"(Assistant\s+)?State\s*Attorney",
             r"Attorney General",
             r'Barbara\s*Burns',  # AUSA
-            r"Ben\s*Lawsky",
+            r"(Ben\s*)?Lawsky",
             r"((Bob|Robert)\s*)?Mueller",
             r"(Byung\s)?Pak",
             r"Case 1:19-cv-03377(-LAP)?",
