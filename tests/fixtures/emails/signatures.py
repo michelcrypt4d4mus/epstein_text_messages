@@ -186,7 +186,6 @@ DEVICE_SIGNATURE_TO_AUTHORS = {
 
 AUTHORS_TO_DEVICE_SIGNATURES = {
     UNKNOWN: [
-        'Sent from Surface',
         "Sent from my Windows 10 phone",
         "Sent from my iPad",
         "Sent from my iPhone",

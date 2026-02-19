@@ -150,6 +150,7 @@ EMAIL_RECIPIENT_COUNTS = {
     "Joshua Cooper Ramo": 1,
     JULIA_SANTOS: 1,
     'Juliana Shkreli': 1,
+    'Julie Shample': 1,
     'Justin Alfano': 1,
     KARYNA_SHULIAK: 4,
     KATHERINE_KEATING: 3,
