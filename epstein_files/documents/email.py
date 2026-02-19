@@ -156,8 +156,9 @@ METADATA_FIELDS = [
 ]
 
 DEBUG_PROPS = METADATA_FIELDS + [
-    'attached_docs',
     'is_note_to_self',
+    'is_persons_first_email',
+    'is_word_count_worthy',
 ]
 
 
@@ -169,6 +170,7 @@ class Email(Communication):
         actual_text (str): Best effort at the text actually sent in this email, excluding quoted replies and forwards.
         derived_cfg (EmailCfg): EmailCfg that was built instead of coming from CONFIGS_BY_ID
         header (EmailHeader): Header data extracted from the text (from/to/sent/subject etc).
+        is_persons_first_email (bool): is this the first email we have for this person, whether sender or recipient?
         sent_from_device (str, optional): "Sent from my iPhone" style signature (if it exists).
         signature_substitution_counts (dict[str, int]): Number of times a signature was replaced with
             <...snipped...> per name
@@ -177,9 +179,9 @@ class Email(Communication):
     actual_text: str = field(init=False)
     derived_cfg: EmailCfg | None = None
     header: EmailHeader = field(init=False)
+    is_persons_first_email: bool = False  # Only set when printing
     sent_from_device: str | None = None
     signature_substitution_counts: dict[str, int] = field(default_factory=dict)  # defaultdict breaks asdict :(
-    _is_first_for_user: bool = False  # Only set when printing
     _line_merge_arguments: list[tuple[int] | tuple[int, int]] = field(default_factory=list)
 
     # Class variable logging how many headers we prettified while printing, kind of janky
@@ -624,14 +626,14 @@ class Email(Communication):
                 num_chars = min(self.length + 100, DEFAULT_TRUNCATE_TO)
 
             # Always print whole email for 1st email for actual people
-            if self._is_first_for_user and num_chars < self.length and \
+            if self.is_persons_first_email and num_chars < self.length and \
                     not (self.is_duplicate or self.is_fwded_article or self.is_mailing_list):
                 self.log(f"{self} Overriding cutoff {num_chars} for first email")
                 num_chars = self.length + 100
 
         log_args = {
             'num_chars': num_chars,
-            '_is_first_for_user': self._is_first_for_user,
+            'is_persons_first_email': self.is_persons_first_email,
             'author_truncate': self.author in TRUNCATE_EMAILS_BY,
             'is_fwded_article': self.is_fwded_article,
             'is_quote_cutoff': quote_cutoff == num_chars,

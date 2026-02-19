@@ -15,6 +15,7 @@ def test_debug_dict(email):
         'email.author': 'Christina Galbraith',
         'email.category': 'email',
         'email.is_interesting': True,
+        'email.is_word_count_worthy': True,
         'email.num_lines': 47,
         'email.recipients': [CECILE_DE_JONGH, JEFFREY_EPSTEIN],
         'email.subject': 'From Christina: Fwd: Project in Haiti: CEFOTAJ, SA',

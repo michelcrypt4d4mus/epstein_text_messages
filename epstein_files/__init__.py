@@ -176,11 +176,6 @@ def epstein_show():
             if isinstance(doc, Email):
                 console.print(Panel(Text("actual_text: ").append(doc.summary), expand=False, style=doc.border_style))
                 console.print(escape(doc._extract_actual_text()), '\n')
-                metadata = doc.metadata
-                metadata['is_fwded_article'] = doc.is_fwded_article
-                metadata['is_word_count_worthy'] = doc.is_word_count_worthy
-                metadata['_is_first_for_user'] = doc._is_first_for_user
-                print_json(f"{doc.file_id} Metadata", metadata)
 
         if args.debug:
             console.print(doc._debug_txt(), style='dim')

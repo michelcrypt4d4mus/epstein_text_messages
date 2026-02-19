@@ -277,7 +277,22 @@ class DocCfg:
         return metadata
 
     @property
-    def important_props(self) -> dict[str, bool | str | None]:
+    def props_to_copy(self) -> dict[str, str | datetime]:
+        """These props are copied into the `Document` object (other props are lazily accessed)."""
+        return {k: getattr(self, k) for k in PROPS_TO_COPY if getattr(self, k)}
+
+    @property
+    def recipients_str(self) -> str:
+        """Overloaded in subclasses that support recipients."""
+        return ''
+
+    @property
+    def timestamp(self) -> datetime | None:
+        if self.date:
+            return parse(self.date)
+
+    @property
+    def truthy_props(self) -> dict[str, bool | str | None]:
         props = {k: v for k, v in asdict(self).items() if v or (k in FALSEABLE_PROPS and v is False)}
 
         if self.is_of_interest is not None:
@@ -319,21 +334,6 @@ class DocCfg:
 
         return props
 
-    @property
-    def props_to_copy(self) -> dict[str, str | datetime]:
-        """These props are copied into the `Document` object (other props are lazily accessed)."""
-        return {k: getattr(self, k) for k in PROPS_TO_COPY if getattr(self, k)}
-
-    @property
-    def recipients_str(self) -> str:
-        """Overloaded in subclasses that support recipients."""
-        return ''
-
-    @property
-    def timestamp(self) -> datetime | None:
-        if self.date:
-            return parse(self.date)
-
     def __post_init__(self):
         self.set_category(self.category)
 
@@ -373,7 +373,7 @@ class DocCfg:
             if _field.name in ['actual_text', 'is_fwded_article', 'is_interesting']:  # fields can be False or None or ''
                 if value is not None:
                     add_prop(_field, json.dumps(value))
-            elif not value or _field.name == 'dupe_type' and value == 'same':
+            elif not value or (_field.name == 'dupe_type' and value == 'same'):
                 continue
             elif _field.name == AUTHOR:
                 add_prop(_field, constantize_name(str(value)) if args.constantize else f"'{value}'")

@@ -60,7 +60,7 @@ def print_interesting_doc_panels_and_props(epstein_files, sort_by_category: bool
             continue
 
         if doc.config:
-            props = doc.config.important_props
+            props = doc.config.truthy_props
             props.pop('id')
 
             if doc.is_interesting != doc.config.is_of_interest:

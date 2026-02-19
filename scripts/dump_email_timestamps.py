@@ -65,8 +65,8 @@ for i, doc in enumerate(sorted(epstein_files.doj_files, key=lambda f: -f.length)
 sys.exit()
 
 for email in epstein_files.unique_emails:
-    if email._is_first_for_user:
-        print(f"{email}, _is_first_for_user={email._is_first_for_user}")
+    if email.is_persons_first_email:
+        print(f"{email}, is_persons_first_email={email.is_persons_first_email}")
 
 
 sys.exit()

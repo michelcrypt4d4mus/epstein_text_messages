@@ -436,7 +436,7 @@ class Document:
 
     def _debug_dict(self) -> DebugDict:
         """Merge information about this document from config, file info, etc."""
-        config_info = self.config.important_props if self.config else {}
+        config_info = self.config.truthy_props if self.config else {}
         file_info = dict(self.file_info.as_dict)
 
         if config_info.get('id') == file_info.get('file_id'):
