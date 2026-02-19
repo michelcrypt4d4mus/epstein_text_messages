@@ -2489,7 +2489,11 @@ OTHER_FILES_SKYPE_LOG = [
     CommunicationCfg(id='EFTA01217787', recipients=[TYLER_SHEARS, 'Hanna Traff at Spotify'], is_interesting=True),
     CommunicationCfg(id='EFTA01217703', recipients=['actress Athena Zelcovich', JOSCHA_BACH, LAWRENCE_KRAUSS]),
     CommunicationCfg(id='EFTA01217736', recipients=['actress Athena Zelcovich', TYLER_SHEARS]),
-    CommunicationCfg(id='EFTA01616933', description='"now im finding pussy for you"'),
+    CommunicationCfg(
+        id='EFTA01616933',
+        description='"now im finding pussy for you" / "no one can beat your pussy network"',
+        is_interesting=True,
+    ),
 ]
 
 OTHER_FILES_TEXT_MSG = [
