@@ -445,8 +445,8 @@ class Document:
 
     def _debug_dict(self) -> DebugDict:
         """Merge information about this document from config, file info, etc."""
-        config_info = prefix_keys(type(self.config).__name__, self.config.truthy_props) if self.config else {}
-        file_info = prefix_keys(underscore(type(self.config).__name__), self.file_info.as_dict)
+        config_info = self.config.truthy_props if self.config else {}
+        file_info = self.file_info.as_dict
 
         if config_info.get('id') == file_info.get('file_id'):
             config_info.pop('id')
@@ -455,8 +455,8 @@ class Document:
             file_info.pop('external_url')
 
         props = self._debug_props()
-        props.update(config_info)
-        props.update(file_info)
+        props.update(prefix_keys(type(self.config).__name__, config_info))
+        props.update(prefix_keys(underscore(type(self.config).__name__), file_info))
         return props
 
     def _debug_props(self) -> DebugDict:
