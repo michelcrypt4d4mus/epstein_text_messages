@@ -90,14 +90,14 @@ CONSTANT_CATEGORIES = [
 ]
 
 
-is_interesting = lambda category: is_in_enum(category, Interesting)
-is_neutral = lambda category: is_in_enum(category, Neutral)
-is_uninteresting = lambda category: is_in_enum(category, Uninteresting)
+is_interesting = lambda category: _is_in_enum(category, Interesting)
+is_neutral = lambda category: _is_in_enum(category, Neutral)
+is_uninteresting = lambda category: _is_in_enum(category, Uninteresting)
 
 
 def is_category(s: str) -> bool:
     return any(fxn(s) for fxn in [is_interesting, is_neutral, is_uninteresting])
 
 
-def is_in_enum(category: str, e: Type[StrEnum]) -> bool:
+def _is_in_enum(category: str, e: Type[StrEnum]) -> bool:
     return bool(next((c for c in e if c == category), False))

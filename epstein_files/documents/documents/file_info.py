@@ -172,7 +172,7 @@ class FileInfo:
         logger.log(level, f"{self.file_stem} {msg}")
 
     def warn(self, msg: str) -> None:
-        """Print a warning message prefixed by info about this `Document`."""
+        """Print a warning message prefixed by info about this `file_id`."""
         self.log(msg, level=logging.WARNING)
 
     def _build_link(self, fxn: Callable[[str], str], style: str = ARCHIVE_LINK_COLOR, link_txt: str = '') -> Text:
