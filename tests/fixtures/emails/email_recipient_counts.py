@@ -224,7 +224,7 @@ EMAIL_RECIPIENT_COUNTS = {
     NICHOLAS_RIBIS: 10,
     NICOLE_JUNKERMANN: 8,
     'Nick Kazan': 1,
-    "Nili Priell Barak": 1,  # Wife of Ehud
+    NILI_PRIELL_BARAK: 1,  # Wife of Ehud
     NOAM_CHOMSKY: 2,
     "Norman Finkelstein": 1,
     'NY FBI': 3,

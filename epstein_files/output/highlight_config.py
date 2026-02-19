@@ -59,6 +59,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(SETH_LLOYD, "professor of mechanical engineering at MIT"),
             Contact('Valeria Chomsky', f"wife of {NOAM_CHOMSKY}"),
             Contact(YUKO_BARNABY, f"{MIT_MEDIA_LAB} Assistant to the Director", r"Y[ou]ko\s*Ba(m|rn)(aby)?"),
+            Contact(WHITFIELD_DIFFIE, f"MIT cryptographer and mathematician", r"whitfield.{,3}diffie?"),
         ],
         patterns=[
             r"Andy\s*Lippman",  # Media Lab
@@ -295,6 +296,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(DONALD_NORMAN, f"co-founder of early British crypto exchange Intersango with {AMIR_TAAKI}"),
             Contact(ED_BOYLE, f"Medici Bank", r"Ed\s*Boy(el|le)"),
             Contact(FRANCESCA_HALL, f"assistant to {AUSTIN_HILL}"),
+            Contact(GAVIN_ANDRESEN, 'core bitcoin developer', r"(Gavin )?Andress?en"),
             Contact(JEFFREY_WERNICK, "former COO of Parler, involved in numerous crypto companies like Bitforex"),
             Contact(JEREMY_RUBIN, "developer/researcher", r"Jeremy\s*Rubin"),
             Contact(
@@ -314,7 +316,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Ben\s*Forman",
             r"(Brad(ford)?|Bart)\s*Stephens",  # co-founder, Blockchain Capital
             r"Bioptix",  # Now RIOT Blockchain
-            r"bito?coin(\s*Foundation)?",
+            r"bit[o ]?coin(\s*Foundation)?",
             r"Bit(Angels|Finex|Fury|Main)",
             r"block ?(chain|tree)(\s*capital)?",
             r"Blockstream",
@@ -333,7 +335,6 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Erik\s*Svenson",  # Blockstream
             r"Fred\s*Ehrsam",
             r"FTX",
-            r"(Gavin )?Andress?en",  # bitcoin dev
             r"GogoCoin",
             r"(Hester\s*)?Peirce",
             r"(Howard\s+)?Lutnic?k",
@@ -496,7 +497,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         label=LAWYER,  # Epstein's lawyers
         style='purple',
         contacts=[
-            Contact('Alan Dlugash', 'tax partner at Paneth and Shrone'),
+            Contact(ALAN_DLUGASH, 'tax partner at Paneth and Shrone', r"Alan\s+J.?\s+Dlugash"),
             Contact('Alan S Halperin', "partner at Paul, Weiss"),
             Contact(ALAN_DERSHOWITZ, f"{HARVARD} Law School professor", r"(alan.{1,7})?dershowi(lz?|t?z)|AlanDersh"),
             Contact(ARDA_BESKARDES, "NYC immigration attorney allegedly involved in sex-trafficking operations"),
@@ -910,7 +911,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(
                 LARRY_SUMMERS,
                 info="board of Digital Currency Group (DCG), Obama economic advisor",
-                emailer_pattern=r"(La(wrence|rry).{1,5})?Summers?|^LH$|LHS|[Il]hsofficel?",
+                emailer_pattern=r"(La(wrence|(n|rr)y).{1,5})?Summers?|^LH$|LHS|[Il]hsofficel?",
             ),
             Contact('Leah Reis-Dennis', f"producer for {LISA_NEW}'s Poetry in America"),
             Contact(LISA_NEW, f'professor of poetry, wife of {LARRY_SUMMERS}, AKA "Elisa New"', r"E?Lisa New?\b"),
@@ -959,7 +960,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 emailer_pattern=r"(ehud|e?h)\s*barak|\behud",
             ),
             Contact('Mitchell Bard', "director of the American-Israeli Cooperative Enterprise (AICE)"),
-            Contact(NILI_PRIELL_BARAK, f"wife of {EHUD_BARAK}")
+            Contact(NILI_PRIELL_BARAK, f"wife of {EHUD_BARAK}", r"Nili\s*Priell?"),
         ],
         patterns=[
             r"AIPAC",
@@ -1732,7 +1733,8 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Katie\s*Johnson",
             r"Midget stripper",
             r"Minor\s*Victim",
-            r"pedophile",
+            r"pa?edophile",
+            r"pussy",
             r"Stephanie\s*Clifford",
             r"Stormy\s*Daniels",
             r"(Virginia\s+((L\.?|Roberts)\s+)?)?Giuffre",
@@ -1907,6 +1909,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Managing Partner - Crypto Currency Partners",  # brock pierce
             r"Please use this email for.*general Media Lab.*",  # Joi Ito
             r"-Austin\nAustin Hill - B..dder.*(\n.*B92ED3E3)?",
+            r"^Please note my new email address?:?.*$", # summers
         ],
     ),
     HighlightedText(
@@ -1995,3 +1998,4 @@ def _print_highlighted_names_repr() -> None:
     sys.exit()
 
 #_print_highlighted_names_repr()
+

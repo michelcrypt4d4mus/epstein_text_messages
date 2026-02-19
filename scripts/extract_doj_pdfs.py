@@ -47,11 +47,11 @@ for dir in [d for d in DOJ_PDFS_20260130_DIR.glob('*') if d.is_dir()]:
 
         if txt_file_path.exists():
             logger.info(f"Skipping file that already exists '{pdf_path}' in .txt format...")
-            skipped += 1
 
             if skipped % 100 == 0:
                 logger.warning(f"Skipped {skipped} PDFs that already exist as .txt...")
 
+            skipped += 1
             continue
 
         pdf_file = PdfFile(pdf_path)
