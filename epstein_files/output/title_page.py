@@ -140,7 +140,12 @@ def print_title_page_bottom(epstein_files: 'EpsteinFiles') -> None:
 
 
 def _bulleted_site_link(site_type: SiteType, link: Text) -> Text:
-    you_are_here = YOU_ARE_HERE if site_type == args._site_type else ''
+    # the mobile site is just a different rendering of the curated site
+    if args.mobile:
+        you_are_here = YOU_ARE_HERE if site_type == SiteType.MOBILE else ''
+    else:
+        you_are_here = YOU_ARE_HERE if site_type == args._site_type else ''
+
     return Text('➱ ').append(link).append(' ').append(you_are_here)
 
 
