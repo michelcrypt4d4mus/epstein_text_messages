@@ -878,6 +878,8 @@ EMAILS_CONFIG = [
         is_interesting=True,
         comment='Zubair',
     ),
+    EmailCfg(id='025594', truncate_to=720),
+    EmailCfg(id='025603', truncate_to=850),
     EmailCfg(id='026059', truncate_to=2650, comment='Rothschild'),
     EmailCfg(id='031619', truncate_to=652, comment='Reply to grab em by the pussy story'),
     EmailCfg(id='021096', truncate_to=700, comment='Sinofsky article quote'),
@@ -1307,6 +1309,7 @@ EMAILS_CONFIG = [
         description=f'bitcoin dev {JEREMY_RUBIN} describes "grey area between pump and develop" when Epstein objects on ethical grounds',
         is_interesting=True,
     ),
+    EmailCfg(id='EFTA02374960', description=f"Epstein says that he will fund a seat at MIT Media Lab for ZCash founder {MADARS_VIRZA}", is_interesting=True),
     EmailCfg(id='EFTA02588748', description=f'discussion of crypto food stamps debit cards', is_interesting=True, truncate_to=800),
     EmailCfg(id='EFTA00901970', description=f"{AL_SECKEL}'s response to Epstein's forged email", is_interesting=True),
     EmailCfg(id='EFTA02372964', description='an "ICO" or "initial coin offering" was a very popular type of crypto scam at this time'),
@@ -1379,6 +1382,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00362171', truncate_to=1096),
 ]
 
+# These emails will be suppressed in the curated views
 UNINTERESTING_EMAIL_IDS = [
     # Jabor
     '030786',
@@ -1400,6 +1404,15 @@ UNINTERESTING_EMAIL_IDS = [
     'EFTA02365466',
     'EFTA00362163',
     'EFTA00709543',
+    # Joi Ito
+    '029500',
+    '029279',
+    '029088',
+    '029094',
+    '029096',
+    '029429',
+    '029587',
+    'EFTA02647229',
     # DOJ / USANYS
     'EFTA02730469',
     'EFTA02730471',

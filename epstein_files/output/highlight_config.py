@@ -1881,10 +1881,12 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         label='quoted_reply_line',
         style='dim',
         patterns=[
-            REPLY_REGEX.pattern, r"^(> )?wrote:$",
+            REPLY_REGEX.pattern,
+            r"^(> )?wrote:$",
             r"CONFIDENTIAL FOR ATTORNEY'S EYES ONLY(\nDO NOT COPY)?",
             r"PRIVILEGED ?- ?ATTORNEY WORK.*(\nCONFIDENTIAL - SUBJECT TO.*)?",
-            r"Managing Partner - Crypto Currency Partners",  # custom for brock pierce
+            r"Managing Partner - Crypto Currency Partners",  # brock pierce
+            r"Please use this email for.*general Media Lab.*",  # Joi Ito
         ],
     ),
     HighlightedText(

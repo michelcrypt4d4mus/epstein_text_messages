@@ -35,7 +35,7 @@ from epstein_files.util.logging import logger
 
 # Email bod regexes
 BAD_FIRST_LINE_REGEX = re.compile(r'^(>>|Grant_Smith066474"eMailContent.htm|LOVE & KISSES)$')
-BAD_LINE_REGEX = re.compile(r'^(>;?|\d{1,2}|PAGE INTENTIONALLY LEFT BLANK|Classification: External Communication|Hide caption|Importance:?\s*High|[iI,•]|[1i] (_ )?[il]|, [-,]|L\._|_filtered|si[ag]nature.asc|.*(yiv0232|font-family:|margin-bottom:).*)$')
+BAD_LINE_REGEX = re.compile(r'^(>;?|\d{1,2}|PAGE INTENTIONALLY LEFT BLANK|Classification: External Communication|Hide caption|Importance:?\s*High|[iI,•]|[1i] (_ )?[il]|, [-,]|L\._|_filtered|si[agn]nature.asc|.*(yiv0232|font-family:|margin-bottom:).*)$')
 BAD_SUBJECT_CONTINUATIONS = ['orwarded', 'Hi ', 'Sent ', 'AmLaw', 'Original Message', 'Privileged', 'Sorry', '---']
 FIELDS_COLON_REGEX = re.compile(FIELDS_COLON_PATTERN)
 LINK_LINE_REGEX = re.compile(f"^[>• ]*htt")
@@ -194,16 +194,6 @@ class Email(Communication):
     def attachments(self) -> list[str]:
         """Strings in the Attachments: field in the header, split by semicolon."""
         return [a.strip() for a in (self.header.attachments or '').split(';')]
-
-    @property
-    def border_style(self) -> str:
-        """Color emails from epstein to others with the color for the first recipient."""
-        if self.author == JEFFREY_EPSTEIN and len(self.recipients) > 0:
-            style = get_style_for_name(self.recipients[0])
-        else:
-            style = self.author_style
-
-        return no_bold(style)
 
     @property
     def config(self) -> EmailCfg | None:

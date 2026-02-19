@@ -35,10 +35,6 @@ class MessengerLog(Communication):
     phone_number: str | None = None
 
     @property
-    def border_style(self) -> str:
-        return self.author_style
-
-    @property
     def is_interesting(self) -> bool | None:
         """Junk emails are not interesting."""
         if (is_interesting := super().is_interesting) is not None:
