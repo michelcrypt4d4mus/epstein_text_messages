@@ -1,7 +1,6 @@
 from dateutil.parser import parse
 
-from epstein_files.documents.documents.categories import (Category, Interesting, Neutral, Uninteresting,
-     is_category, is_interesting, is_uninteresting)
+from epstein_files.documents.documents.categories import Category, Interesting, Neutral, Uninteresting
 from epstein_files.documents.documents.doc_cfg import DocCfg
 from epstein_files.util.constant.names import *
 from epstein_files.util.helpers.string_helper import has_line_starting_with
@@ -56,7 +55,7 @@ def build_cfg_from_text(text: str) -> DocCfg | None:
         try:
             cfg.date = str(parse(lines[1]))
         except Exception as e:
-            logger.warning(f"Failed to parse valuation report date from {lines[0:2]}")
+            logger.warning(f"Failed to parse valuation report date for derived DocCfg from {lines[0:2]}")
 
         return cfg
 
