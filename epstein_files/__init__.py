@@ -4,9 +4,8 @@ Reformat Epstein text message files for readability and count email senders.
 
     Run: 'EPSTEIN_DOCS_DIR=/path/to/TXT epstein_generate'
 """
-import re
+import sys
 from subprocess import check_output
-from sys import exit
 
 from dotenv import load_dotenv
 load_dotenv()
@@ -38,32 +37,8 @@ from epstein_files.util.logging import exit_with_error, logger
 from epstein_files.util.timer import Timer
 
 
-def generate_html() -> None:
-    if args.make_clean or args.show_urls:
-        if args.make_clean:
-            make_clean()
-        if args.show_urls:
-            show_urls()
-
-        exit()
-
-    timer = Timer()
-    epstein_files = EpsteinFiles.get_files(timer)
-
-    if args.emailers_info:
-        print_emailers_info(epstein_files)
-        exit()
-    elif args.json_metadata:
-        print_json_metadata(epstein_files)
-        exit()
-    elif args.json_files:
-        print_json_files(epstein_files)
-        exit()
-    elif args.repair:
-        epstein_files.repair_ids(args.positional_args)
-        timer.print_at_checkpoint(f"Repaired {len(args.positional_args)} documents")
-        exit()
-
+def epstein_generate() -> None:
+    timer, epstein_files = _load_files_and_check_early_exit_args()
     print_title_page_top()
 
     if args.email_timeline or args.output_word_count:
@@ -77,29 +52,28 @@ def generate_html() -> None:
     if args.output_chrono:
         printed_docs = print_curated_chronological(epstein_files)
         timer.log_section_complete('Chronological documents', epstein_files.unique_documents, printed_docs)
-
-    if args.output_doj_files:
-        printed_doj_files = print_doj_files(epstein_files)
-        timer.log_section_complete('DojFile', epstein_files.doj_files, printed_doj_files)
-
-    if args.output_texts:
-        printed_logs = print_text_messages_section(epstein_files)
-        timer.log_section_complete('MessengerLog', epstein_files.imessage_logs, printed_logs)
-
-    if args.output_emails:
-        printed_emails = print_emails_section(epstein_files)
-        timer.log_section_complete('Email', epstein_files.emails, printed_emails)
-    elif args.email_timeline:
-        print_email_timeline(epstein_files)
-        timer.print_at_checkpoint(f"Printed chronological emails table")
-
-    if args.output_other:
-        printed_files = print_other_files_section(epstein_files)
-        timer.log_section_complete('OtherFile', epstein_files.other_files, printed_files)
-
-    if args.output_word_count:
+    elif args.output_word_count:
         write_word_counts_html()
         timer.print_at_checkpoint(f"Finished counting words")
+    else:
+        if args.output_emails:
+            printed_emails = print_emails_section(epstein_files)
+            timer.log_section_complete('Email', epstein_files.emails, printed_emails)
+        elif args.email_timeline:
+            print_email_timeline(epstein_files)
+            timer.print_at_checkpoint(f"Printed chronological emails table")
+
+        if args.output_texts:
+            printed_logs = print_text_messages_section(epstein_files)
+            timer.log_section_complete('MessengerLog', epstein_files.imessage_logs, printed_logs)
+
+        if args.output_other:
+            printed_files = print_other_files_section(epstein_files)
+            timer.log_section_complete('OtherFile', epstein_files.other_files, printed_files)
+
+        if args.output_doj_files:
+            printed_doj_files = print_doj_files(epstein_files)
+            timer.log_section_complete('DojFile', epstein_files.doj_files, printed_doj_files)
 
     write_html(args.build)
     logger.warning(f"Total time: {timer.seconds_since_start_str()}")
@@ -214,3 +188,26 @@ def epstein_show():
             check_output(['open', str(doc.file_path)])
         if args.open_url:
             check_output(['open', str(doc.external_url)])
+
+
+def _load_files_and_check_early_exit_args() -> tuple[Timer, EpsteinFiles]:
+    if args.make_clean:
+        make_clean()
+    elif args.show_urls:
+        show_urls()
+    else:
+        timer = Timer()
+        epstein_files = EpsteinFiles.get_files(timer)
+
+        if args.emailers_info:
+            print_emailers_info(epstein_files)
+        elif args.json_metadata:
+            print_json_metadata(epstein_files)
+        elif args.json_files:
+            print_json_files(epstein_files)
+        elif args.repair:
+            epstein_files.repair_ids(args.positional_args)
+        else:
+            return timer, epstein_files
+
+    sys.exit()
