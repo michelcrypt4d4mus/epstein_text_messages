@@ -19,10 +19,10 @@ NORWEGAIN_REPLY_PATTERN = r"(Den .* folgende|(fre|lor|son)\. .* skrev .*):"
 REPLY_LINE_IN_A_MSG_PATTERN = r"In a message dated \d+/\d+/\d+.*writes:"
 REPLY_LINE_ENDING_PATTERN = r"[_ \n](AM|PM|[<_]|wrote:?)"
 REPLY_LINE_ON_NUMERIC_DATE_PATTERN = fr"(?<!M)On \d+/[\d\w]+/\d+[, ].*{REPLY_LINE_ENDING_PATTERN}"
-REPLY_LINE_ON_DATE_PATTERN = fr"^[> •]*On (\d+ )?((Mon|Tues?|Wed(nes)?|Thu(rs)?|Fri|Sat(ur)?|Sun)(day)?|(Jan|Fe(b|vr\.)|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\w*)[, ].*{REPLY_LINE_ENDING_PATTERN}"
-REPLY_LINE_PATTERN = rf"({FRENCH_REPLY_PATTERN}|{GERMAN_REPLY_PATTERN}|{NORWEGAIN_REPLY_PATTERN}|{REPLY_LINE_IN_A_MSG_PATTERN}|{REPLY_LINE_ON_NUMERIC_DATE_PATTERN}|{REPLY_LINE_ON_DATE_PATTERN}|{FORWARDED_LINE_PATTERN})"
+REPLY_LINE_ON_DATE_PATTERN = fr"On (\d+ )?((Mon|Tues?|Wed(nes)?|Thu(rs)?|Fri|Sat(ur)?|Sun)(day)?|(Jan|Fe(b|vr\.)|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\w*)[, ].*{REPLY_LINE_ENDING_PATTERN}"
+REPLY_LINE_PATTERN = rf"^([> •]*({FRENCH_REPLY_PATTERN}|{GERMAN_REPLY_PATTERN}|{NORWEGAIN_REPLY_PATTERN}|{REPLY_LINE_IN_A_MSG_PATTERN}|{REPLY_LINE_ON_NUMERIC_DATE_PATTERN}|{REPLY_LINE_ON_DATE_PATTERN}|{FORWARDED_LINE_PATTERN}))"
 REPLY_REGEX = re.compile(REPLY_LINE_PATTERN, re.IGNORECASE | re.MULTILINE)
-SENT_FROM_REGEX = re.compile(r'^(?:(Please forgive|Sorry for all the) typos.{1,4})?((Envoyé de mon|Sent (from|via)).*(and string|AT&T|Droid|iPad|Phone|Mail|Surface( RT)?|BlackBerry(.*(smartphone|device|Handheld|AT&T|T- ?Mobile))?)\.?)|Co-authored with iPhone auto-correct|Typos,? misspellings courtesy of iPhone(\s*word & thought substitution)?\.?', re.M | re.I)
+SENT_FROM_REGEX = re.compile(r'^(?:(Please forgive|Sorry for all the) typos.{1,4})?((Envoyé de mon|Sent (from|via)).*(and string|AT&T|Droid|iPad|Phone|Mail|Surface( RT)?|BlackBerry(.*(smartphone|device|Handheld|AT&T|T- ?Mobile))?)\.?)|Co-authored with iPhone auto-correct|Typos,? misspellings courtesy of iPhone(\s*word & thought substitution|Send from my mobile...please excuse typos)?\.?', re.M | re.I)
 
 FIELD_PATTERNS = [
     'Date',
@@ -112,9 +112,12 @@ EMAIL_SIGNATURE_REGEXES = {
     DEEPAK_CHOPRA: re.compile(fr"({DEEPAK_CHOPRA}( MD)?\n)?2013 Costa Del Mar Road\nCarlsbad, CA 92009(\n(Chopra Foundation|Super Genes: Unlock.*))?(\nJiyo)?(\nChopra Center for Wellbeing)?(\nHome: Where Everyone is Welcome)?"),
     EDUARDO_ROBLES: re.compile(r"(• )?email:.*\n(• )?email:\n(• )?website: www.creativekingdom.com\n(• )?address: 5th Floor Office No:504 Aspect Tower,\nBusiness Bay, Dubai United Arab Emirates."),
     ERIC_ROTH: re.compile(r"2221 Smithtown Avenue\nLong Island.*\nRonkonkoma.*\n(.1. )?Phone\nFax\nCell\ne-mail"),
+    FRANCESCA_HALL: re.compile(r"The contents of this e-mail message and.{,600}message and its attachments[.,]? if any", re.DOTALL),
     GHISLAINE_MAXWELL: re.compile(r"FACEBOOK\nTWITTER\nG\+\nPINTEREST\nINSTAGRAM\nPLEDGE\nTHE DAILY CATCH"),
     JEANNE_M_CHRISTENSEN: re.compile(r"A?Please consider the environment.*\nThis communication may.*\nWork Product.*\nresponsible.*\nanyone.*\nhereof.*|This communication may contain Confidential.*\nyou are not the addressee.*\nto such person.*\nor delete this.*"),
-    JEFFREY_EPSTEIN: re.compile(r"((\*+|please note)\n+)?([>»•]+ )*The info[r=]mation contained i[n=] this communication is\s*([>»] )*confidential.{,512}all\s+([>»] )*attachments.( copyright [-=]all rights reserved?)?", re.DOTALL),
+
+    JEFFREY_EPSTEIN: re.compile(r"((\*+|please note)\n+)?([>»•]+ )*The info[r=]mation contained i[n=] this communication.{,556}all\s+([>»] )*attachment[s=].( copyright [-=]all rights reserved?)?", re.DOTALL),
+
     JESSICA_CADWELL: re.compile(r"(f.*\n)?Certified Para.*\nFlorida.*\nBURMAN.*\n515.*\nSuite.*\nWest Palm.*(\nTel:.*)?(\nEmail:.*)?", re.IGNORECASE),
     KEN_JENNE: re.compile(r"Ken Jenne\nRothstein.*\n401 E.*\nFort Lauderdale.*", re.IGNORECASE),
     LARRY_SUMMERS: re.compile(r"Please direct all scheduling.*\nFollow me on twitter.*\nwww.larrysummers.*", re.IGNORECASE),
