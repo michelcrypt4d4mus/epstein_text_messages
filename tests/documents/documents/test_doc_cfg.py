@@ -13,7 +13,7 @@ RANDOM_ID = '123456'
 
 
 @pytest.fixture
-def academia_doc() -> DocCfg:
+def academia_cfg() -> DocCfg:
     return _oversight_cfg(Uninteresting.ACADEMIA)
 
 @pytest.fixture
@@ -137,8 +137,14 @@ def test_complete_description(
     assert tweet_cfg.complete_description == 'Tweet by Klippenstein libelous'
 
 
+def test_is_empty(academia_cfg, empty_doj_cfg, empty_house_cfg):
+    assert not academia_cfg.is_empty
+    assert empty_doj_cfg.is_empty
+    assert empty_house_cfg.is_empty
+
+
 def test_is_of_interest(
-    academia_doc,
+    academia_cfg,
     blockchain_cap_cfg,
     empty_doj_cfg,
     empty_house_cfg,
@@ -153,7 +159,7 @@ def test_is_of_interest(
     uninteresting_description,
     UN_cfg
 ):
-    assert academia_doc.is_of_interest is False
+    assert academia_cfg.is_of_interest is False
     assert blockchain_cap_cfg.is_of_interest is True
     assert empty_doj_cfg.is_of_interest is None
     assert empty_house_cfg.is_of_interest is None

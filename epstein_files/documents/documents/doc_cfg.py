@@ -213,7 +213,7 @@ class DocCfg:
 
     @property
     def is_empty(self) -> bool:
-        return not any(v for v in asdict(self).values())
+        return not any([v for k, v in asdict(self).items() if k != 'id'])
 
     @property
     def is_description_a_title(self) -> bool:
