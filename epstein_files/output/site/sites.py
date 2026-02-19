@@ -114,17 +114,22 @@ SITE_DESCRIPTIONS = {
 ###########################################
 ########  Internal sections links  ########
 ###########################################
+SELECTIONS_FROM = 'Selections from '
+HIS_EMAILS = 'His Emails'
+HIS_TEXT_MESSAGES = 'His Text Messages'
+FILEs_THAT_ARE_NEITHER_EMAILS_NOR = 'Files That Are Neither Emails Nor Text Messages'
+
 
 class PageSections(StrEnum):
     EMAILS = auto()
     OTHER_FILES = auto()
     TEXT_MESSAGES = auto()
 
-# Search terms that take you to the desired section
+# Search terms that take you to the desired section via magic URL comment arg
 SECTION_ANCHORS = {
-    PageSections.EMAILS: 'Selections from His Emails',
-    PageSections.TEXT_MESSAGES: 'Selections from His Text Messages',
-    PageSections.OTHER_FILES: 'Selected Files That Are Neither Emails Nor',
+    PageSections.EMAILS: SELECTIONS_FROM + HIS_EMAILS,
+    PageSections.TEXT_MESSAGES: SELECTIONS_FROM + HIS_TEXT_MESSAGES,
+    PageSections.OTHER_FILES: FILEs_THAT_ARE_NEITHER_EMAILS_NOR,
 }
 
 

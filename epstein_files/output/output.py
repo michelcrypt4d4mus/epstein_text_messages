@@ -12,6 +12,7 @@ from epstein_files.documents.messenger_log import MessengerLog
 from epstein_files.documents.other_file import FIRST_FEW_LINES, OtherFile
 from epstein_files.epstein_files import EpsteinFiles, count_by_month
 from epstein_files.output.rich import *
+from epstein_files.output.site.sites import FILEs_THAT_ARE_NEITHER_EMAILS_NOR, HIS_EMAILS, HIS_TEXT_MESSAGES, SELECTIONS_FROM
 from epstein_files.output.title_page import print_color_key, print_other_page_link, print_section_header
 from epstein_files.people.interesting_people import EMAILERS_TO_PRINT
 from epstein_files.people.person import Person
@@ -118,7 +119,7 @@ def print_emailers_info(epstein_files: EpsteinFiles) -> None:
 
 def print_emails_section(epstein_files: EpsteinFiles) -> list[Email]:
     """Prints emails, returns emails that were printed (may return dupes if printed for both author and recipient)."""
-    print_section_header(('Selections from ' if not args.all_emails else '') + 'His Emails')
+    print_section_header((SELECTIONS_FROM if not args.all_emails else '') + HIS_EMAILS)
     print_other_page_link(epstein_files)
     all_emailers = sorted(epstein_files.emailers, key=lambda person: person.earliest_email_at)
     all_emails = Person.emails_from_people(all_emailers)
@@ -220,7 +221,7 @@ def print_other_files_section(epstein_files: EpsteinFiles) -> list[OtherFile]:
     title_pfx = '' if args.all_other_files else 'Selected '
     category_table = OtherFile.summary_table(files, title_pfx=title_pfx)
     other_files_preview_table = OtherFile.files_preview_table(files, title_pfx=title_pfx)
-    print_section_header(f"{FIRST_FEW_LINES} of {len(files)} {title_pfx}Files That Are Neither Emails Nor Text Messages")
+    print_section_header(f"{FIRST_FEW_LINES} of {len(files)} {title_pfx}{FILEs_THAT_ARE_NEITHER_EMAILS_NOR}")
     print_other_page_link(epstein_files)
     _print_section_summary_table(category_table)
     console.print(other_files_preview_table)
@@ -253,7 +254,7 @@ def print_text_messages_section(epstein_files: EpsteinFiles) -> list[MessengerLo
         logger.warning(f"No MessengerLog found for {args.names}")
         return imessage_logs
 
-    print_section_header(('Selections from ' if not args.all_texts else '') + 'His Text Messages')
+    print_section_header((SELECTIONS_FROM if not args.all_texts else '') + HIS_TEXT_MESSAGES)
     print_centered("(conversations sorted chronologically based on timestamp of the first text message)", style='dim')
 
     if not args.names:
