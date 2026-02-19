@@ -191,6 +191,10 @@ class Document:
         return without_falsey([self.subheader, self.config_description_txt])
 
     @property
+    def is_attachment(self) -> bool:
+        return bool(self.config and self.config.attached_to_email_id)
+
+    @property
     def is_attribution_uncertain(self) -> bool:
         return bool(self.config and self.config.is_attribution_uncertain)
 
@@ -218,6 +222,8 @@ class Document:
         """
         if self.config and self.config.is_of_interest is not None:
             return self.config.is_of_interest
+        elif self.is_attachment:
+            return False
         elif self.author in UNINTERESTING_AUTHORS:
             return False
         elif self.file_info.is_house_oversight_file and not (self.author or self.config):
@@ -324,8 +330,11 @@ class Document:
     @property
     def uninteresting_txt(self) -> Text | None:
         """Text to print for uninteresting files."""
-        if self.config and self.config.is_interesting is False and args.suppress_uninteresting:
-            return self._skipped_file_txt("uninteresting")
+        if self.config:
+            if self.config.attached_to_email_id:
+                return self._skipped_file_txt(f"attached to {self.config.attached_to_email_id}")
+            elif args.suppress_uninteresting and self.config.is_interesting is False:
+                return self._skipped_file_txt("uninteresting")
 
     @property
     def _class_name(self) -> str:
@@ -382,14 +391,14 @@ class Document:
         msg = (msg + separator) if msg else ''
         self.log(f"{msg}First {n} lines:\n\n{self.top_lines(n)}\n", level)
 
-    def print(self) -> bool:
-        """Decide whether to print a dupe/suppression message or actual object. Returns True if object was printed."""
+    def print(self) -> None:
+        """Print this object for some suppression message."""
+        if self.is_attachment:
+            pass
         if (skipped_file_txt := self.suppressed_txt):
             console.print(Padding(skipped_file_txt, SKIPPED_FILE_MSG_PADDING))
-            return False
         else:
             console.print(self)
-            return True
 
     def raw_text(self) -> str:
         """Reload the raw data from the underlying file and return it."""
@@ -437,7 +446,7 @@ class Document:
     def _debug_dict(self) -> DebugDict:
         """Merge information about this document from config, file info, etc."""
         config_info = self.config.truthy_props if self.config else {}
-        file_info = dict(self.file_info.as_dict)
+        file_info = self.file_info.as_dict
 
         if config_info.get('id') == file_info.get('file_id'):
             config_info.pop('id')
@@ -446,8 +455,8 @@ class Document:
             file_info.pop('external_url')
 
         props = self._debug_props()
-        props[type(self.config).__name__] = config_info
-        props[FileInfo.__name__] = file_info
+        props.update(prefix_keys(type(self.config).__name__, config_info))
+        props.update(prefix_keys(underscore(type(self.config).__name__), file_info))
         return props
 
     def _debug_props(self) -> DebugDict:

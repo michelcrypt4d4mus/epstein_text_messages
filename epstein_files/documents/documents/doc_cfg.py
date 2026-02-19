@@ -86,7 +86,7 @@ NON_METADATA_FIELDS = [
 CATEGORY_PREAMBLES = {
     Interesting.LETTER: 'letter',
     Interesting.REPUTATION: REPUTATION_MGMT,
-    Interesting.RESUMÉ: 'professional resumé',
+    Neutral.RESUMÉ: 'professional resumé',
     Interesting.TEXT_MSG: 'text message',
     Neutral.FLIGHT_LOG: Neutral.FLIGHT_LOG.replace('_', ' '),
     Neutral.PRESSER: Neutral.PRESSER.replace('_', ' '),
@@ -163,20 +163,26 @@ class DocCfg:
             description = join_truthy(preamble, description)
         elif self.category == Neutral.FINANCE and self.is_description_a_title:
             author_separator = ' report: '
-        elif self.category in [Interesting.LETTER, Interesting.TEXT_MSG]:
-            description = join_truthy(preamble, author, ' from ')
-            description = join_truthy(description, self.recipients_str, ' to ')
+        elif self.category in [Interesting.LETTER, Interesting.TEXT_MSG, Neutral.SKYPE_LOG]:
+            if self.category != Neutral.SKYPE_LOG:
+                description = join_truthy(preamble, author, 'from')
+            else:
+                description = join_truthy(preamble, author)
+
+            recipients_sep = ' of conversation with ' if self.category == Neutral.SKYPE_LOG else ' to '
+            description = join_truthy(description, self.recipients_str, recipients_sep)
             description = join_truthy(description, self.description)
+        elif self.category == Neutral.SKYPE_LOG:
+            author = JEFFREY_EPSTEIN if self.recipients_str and not author else author
+            preamble_separator = ' of conversation with '
         elif self.category == Neutral.PRESSER:
             description = join_truthy(preamble, self.description, ' announcing ')  # note reversed args
             description = join_truthy(author, description)
         elif self.category == Interesting.REPUTATION or (self.category == Neutral.LEGAL and 'v.' in self.author_str):
             author_separator = ': '
-        elif self.category in [Interesting.RESUMÉ, Category.TWEET]:
-            preamble_separator = 'of' if self.category == Interesting.RESUMÉ else 'by'
+        elif self.category in [Category.RESUMÉ, Category.TWEET]:
+            preamble_separator = 'of' if self.category == Category.RESUMÉ else 'by'
             preamble_separator = preamble_separator.center(3, ' ')
-        elif self.category == Neutral.SKYPE_LOG:
-            preamble_separator = ' of conversation with '
 
         # Construct standard description from pieces if a custom one has not been created yet
         if not description:

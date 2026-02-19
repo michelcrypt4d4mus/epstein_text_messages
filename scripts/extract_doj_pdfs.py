@@ -33,6 +33,7 @@ for dir in [d for d in DOJ_PDFS_20260130_DIR.glob('*') if d.is_dir()]:
         continue
 
     extracted_text_dir = DOJ_TXTS_20260130_DIR.joinpath(dir.name)
+    skipped = 0
 
     if not extracted_text_dir.exists():
         logger.warning(f"Export dir '{extracted_text_dir}' does not exist, creating...")
@@ -45,7 +46,12 @@ for dir in [d for d in DOJ_PDFS_20260130_DIR.glob('*') if d.is_dir()]:
         txt_file_path = extracted_text_dir.joinpath(pdf_path.stem + '.txt')
 
         if txt_file_path.exists():
-            logger.warning(f"Skipping file that already exists '{pdf_path}' in .txt format...")
+            logger.info(f"Skipping file that already exists '{pdf_path}' in .txt format...")
+
+            if skipped % 100 == 0:
+                logger.warning(f"Skipped {skipped} PDFs that already exist as .txt...")
+
+            skipped += 1
             continue
 
         pdf_file = PdfFile(pdf_path)

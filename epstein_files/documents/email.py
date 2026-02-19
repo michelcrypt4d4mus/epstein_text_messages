@@ -83,7 +83,7 @@ OCR_REPAIRS: dict[str | re.Pattern, str] = {
     'I nline-Images:': 'Inline-Images:',
     re.compile(r"^From "): 'From: ',
     re.compile(r"^(Sent|Subject) (?![Ff]rom|[Vv]ia)", re.MULTILINE): r'\1: ',
-    re.compile(r"^Forwarded Message$", re.IGNORECASE | re.MULTILINE): '--- Forwarded Message ---',
+    re.compile(r"^(Forwarded|Original) Message$", re.IGNORECASE | re.MULTILINE): r"--- \1 Message ---",
     # Names / email addresses
     'Alireza lttihadieh': ALIREZA_ITTIHADIEH,
     'Miroslav Laj6ak': MIROSLAV_LAJCAK,
@@ -156,6 +156,7 @@ METADATA_FIELDS = [
 ]
 
 DEBUG_PROPS = METADATA_FIELDS + [
+    'attachment_file_ids',
     'is_note_to_self',
     'is_persons_first_email',
     'is_word_count_worthy',
@@ -335,6 +336,10 @@ class Email(Communication):
         self.text = self._prettify_text()
         self.actual_text = self._extract_actual_text()
         self.sent_from_device = self._sent_from_device()
+
+        for signature, name  in KNOWN_SIGNATURES.items():
+            if self.has_unknown_participant and signature.lower() in self.text.lower():
+                self.warn(f"Found known signature for {name} in unattributed email.")
 
     def is_from_or_to(self, name: str) -> bool:
         """True if `name` is either the author or one of the recipients."""
@@ -710,7 +715,7 @@ class Email(Communication):
         if self.attached_docs:
             attachments_table_title = f" {self.file_info.url_slug} Email Attachments:"
             attachments_table = OtherFile.files_preview_table(self.attached_docs, title=attachments_table_title)
-            yield Padding(attachments_table, (0, 0, 1, 12))
+            yield Padding(attachments_table, (0, 0, 1, site_config.attachment_indent))
 
         if should_rewrite_header:
             self.log_top_lines(self.header.num_header_rows + 4, f'Original header:')

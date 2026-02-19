@@ -55,6 +55,14 @@ class Communication(Document):
         return cfg
 
     @property
+    def has_unknown_participant(self) -> bool:
+        return None in self.participants
+
+    @property
+    def has_unknown_recipient(self) -> bool:
+        return None in (self.recipients or [None])
+
+    @property
     def is_recipient_uncertain(self) -> bool:
         return bool(self.config and self.config.uncertain_recipient)
 
