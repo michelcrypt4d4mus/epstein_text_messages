@@ -1712,6 +1712,7 @@
                     "image1.png"
                 ],
                 "author": "Steven Sinofsky",
+                "description": "Steven Sinofsky has heard a sad story about women in tech from Masha Drokova",
                 "file_id": "020143",
                 "file_size": 14121,
                 "filename": "HOUSE_OVERSIGHT_020143.txt",
@@ -1721,6 +1722,7 @@
                 ],
                 "subject": "Fwd: Pro Rata: Wednesday, February 21",
                 "timestamp": "2018-02-21T17:48:07",
+                "truncate_to": 1000,
                 "type": "Email"
             },
             {
@@ -5945,6 +5947,7 @@
                 ],
                 "subject": "Re: $25K from ASU",
                 "timestamp": "2019-05-06T11:15:00",
+                "truncate_to": 720,
                 "type": "Email"
             },
             {
@@ -5994,6 +5997,7 @@
                 "sent_from_device": "Sent from my iPhone",
                 "subject": "Re: $25K from ASU",
                 "timestamp": "2019-05-06T11:15:00",
+                "truncate_to": 850,
                 "type": "Email"
             },
             {
@@ -13163,6 +13167,7 @@
                 "file_id": "029088",
                 "file_size": 1907,
                 "filename": "HOUSE_OVERSIGHT_029088.txt",
+                "is_interesting": false,
                 "num_lines": 39,
                 "recipients": [
                     "Jeffrey Epstein"
@@ -13212,6 +13217,7 @@
                 "file_id": "029094",
                 "file_size": 1466,
                 "filename": "HOUSE_OVERSIGHT_029094.txt",
+                "is_interesting": false,
                 "num_lines": 26,
                 "recipients": [
                     "Jeffrey Epstein"
@@ -13244,6 +13250,7 @@
                 "file_id": "029096",
                 "file_size": 3466,
                 "filename": "HOUSE_OVERSIGHT_029096.txt",
+                "is_interesting": false,
                 "num_lines": 69,
                 "recipients": [
                     "Jeffrey Epstein"
@@ -13625,6 +13632,7 @@
                 "file_id": "029206",
                 "file_size": 895,
                 "filename": "HOUSE_OVERSIGHT_029206.txt",
+                "is_interesting": false,
                 "num_lines": 19,
                 "subject": "good for the gay comminuty",
                 "timestamp": "2014-06-20T10:50:00",
@@ -14055,6 +14063,7 @@
                 "file_id": "029279",
                 "file_size": 918,
                 "filename": "HOUSE_OVERSIGHT_029279.txt",
+                "is_interesting": false,
                 "num_lines": 18,
                 "recipients": [
                     "Joi Ito"
@@ -14192,9 +14201,9 @@
             },
             {
                 "attachment_file_ids": [
-                    "029304",
+                    "029301",
                     "029302",
-                    "029301"
+                    "029304"
                 ],
                 "attachments": [
                     "image001.jpg",
@@ -14353,6 +14362,7 @@
                 "file_id": "029429",
                 "file_size": 5366,
                 "filename": "HOUSE_OVERSIGHT_029429.txt",
+                "is_interesting": false,
                 "num_lines": 58,
                 "recipients": [
                     "Jeffrey Epstein"
@@ -14533,6 +14543,7 @@
                 "file_id": "029500",
                 "file_size": 217,
                 "filename": "HOUSE_OVERSIGHT_029500.txt",
+                "is_interesting": false,
                 "num_lines": 6,
                 "recipients": [
                     "Jeffrey Epstein"
@@ -14939,6 +14950,7 @@
                 "file_id": "029587",
                 "file_size": 2841,
                 "filename": "HOUSE_OVERSIGHT_029587.txt",
+                "is_interesting": false,
                 "num_lines": 61,
                 "recipients": [
                     "Joi Ito"
@@ -15965,6 +15977,8 @@
                 "attachments": [
                     ""
                 ],
+                "author": "Gwendolyn Beck",
+                "author_reason": "widely reported",
                 "file_id": "029958",
                 "file_size": 767,
                 "filename": "HOUSE_OVERSIGHT_029958.txt",
@@ -16022,6 +16036,9 @@
                 "file_size": 1329,
                 "filename": "HOUSE_OVERSIGHT_029962.txt",
                 "num_lines": 27,
+                "recipients": [
+                    "Gwendolyn Beck"
+                ],
                 "subject": "Re: I beat Bush",
                 "timestamp": "2016-02-03T13:22:56",
                 "type": "Email"
@@ -20523,6 +20540,7 @@
                 "file_id": "030786",
                 "file_size": 1116,
                 "filename": "HOUSE_OVERSIGHT_030786.txt",
+                "is_interesting": false,
                 "num_lines": 21,
                 "recipients": [
                     "Jabor Y"
@@ -34255,6 +34273,7 @@
                 "file_id": "033011",
                 "file_size": 795,
                 "filename": "HOUSE_OVERSIGHT_033011.txt",
+                "is_interesting": false,
                 "num_lines": 17,
                 "recipients": [
                     "Jabor Y"
@@ -34987,8 +35006,8 @@
             },
             {
                 "attachment_file_ids": [
-                    "016699",
-                    "010617"
+                    "010617",
+                    "016699"
                 ],
                 "attachments": [
                     ""
@@ -35794,9 +35813,9 @@
             },
             {
                 "attachment_file_ids": [
-                    "028988",
+                    "011170",
                     "028815",
-                    "011170"
+                    "028988"
                 ],
                 "attachments": [
                     ""
@@ -37275,6 +37294,7 @@
                 "file_id": "033280",
                 "file_size": 315,
                 "filename": "HOUSE_OVERSIGHT_033280.txt",
+                "is_interesting": false,
                 "num_lines": 7,
                 "recipients": [
                     "Jeffrey Epstein"
@@ -40567,6 +40587,7 @@
                 "file_id": "EFTA00039878",
                 "file_size": 474,
                 "filename": "EFTA00039878.txt",
+                "is_interesting": false,
                 "num_lines": 18,
                 "recipients": [
                     "Bureau of Prisons",
@@ -40723,6 +40744,7 @@
                 "file_id": "EFTA00039894",
                 "file_size": 738,
                 "filename": "EFTA00039894.txt",
+                "is_interesting": false,
                 "num_lines": 12,
                 "subject": "Issue with Declaration Filing",
                 "timestamp": "2020-08-06T11:42:36",
@@ -41217,6 +41239,23 @@
                     ""
                 ],
                 "author": "Lesley Groff",
+                "file_id": "EFTA00329443",
+                "file_size": 3278,
+                "filename": "EFTA00329443.txt",
+                "num_lines": 206,
+                "recipients": [
+                    "Alisa Bekins"
+                ],
+                "sent_from_device": "Sent from my iPhone",
+                "subject": "Re: Meeting - Feb 4 - 9:30 AM - Peter Thiel dietary restrictions - CONFIDENTIAL",
+                "timestamp": "2016-02-04T00:51:49",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    ""
+                ],
+                "author": "Lesley Groff",
                 "author_uncertain": true,
                 "file_id": "EFTA00334935",
                 "file_size": 653,
@@ -41419,6 +41458,7 @@
                 "file_id": "EFTA00361736",
                 "file_size": 2593,
                 "filename": "EFTA00361736.txt",
+                "is_interesting": false,
                 "num_lines": 46,
                 "recipients": [
                     "Andrew Farkas",
@@ -41454,6 +41494,7 @@
                 "file_id": "EFTA00362148",
                 "file_size": 4202,
                 "filename": "EFTA00362148.txt",
+                "is_interesting": false,
                 "num_lines": 69,
                 "recipients": [
                     "Andrew Farkas",
@@ -41471,6 +41512,7 @@
                 "file_id": "EFTA00362163",
                 "file_size": 6491,
                 "filename": "EFTA00362163.txt",
+                "is_interesting": false,
                 "num_lines": 108,
                 "recipients": [
                     "Andrew Farkas",
@@ -41495,6 +41537,7 @@
                 ],
                 "subject": "Re: 7pm Jeffrey tonight",
                 "timestamp": "2014-09-22T23:19:45",
+                "truncate_to": 1096,
                 "type": "Email"
             },
             {
@@ -41569,7 +41612,7 @@
                 ],
                 "author": "Vincenzo Iozzo",
                 "file_id": "EFTA00369335",
-                "file_size": 4495,
+                "file_size": 3589,
                 "filename": "EFTA00369335.txt",
                 "num_lines": 154,
                 "recipients": [
@@ -41588,6 +41631,7 @@
                 "file_id": "EFTA00371547",
                 "file_size": 1960,
                 "filename": "EFTA00371547.txt",
+                "is_interesting": false,
                 "num_lines": 44,
                 "recipients": [
                     "Austin Hill"
@@ -41642,11 +41686,15 @@
                 "file_size": 6103,
                 "filename": "EFTA00381451.txt",
                 "num_lines": 57,
+                "recipients": [
+                    "Lesley Groff"
+                ],
                 "sent_from_device": "Typos, misspellings courtesy of iPhone.",
                 "subject": "Re: October 29 for frank Heidt",
                 "timestamp": "2013-10-10T19:05:10",
                 "truncate_to": 800,
-                "type": "Email"
+                "type": "Email",
+                "uncertain_recipient": "scheduling epstein"
             },
             {
                 "attachments": [
@@ -41749,6 +41797,7 @@
                 "file_id": "EFTA00405795",
                 "file_size": 730,
                 "filename": "EFTA00405795.txt",
+                "is_interesting": false,
                 "num_lines": 30,
                 "recipients": [
                     "Brock Pierce"
@@ -41765,6 +41814,7 @@
                 "file_id": "EFTA00405824",
                 "file_size": 989,
                 "filename": "EFTA00405824.txt",
+                "is_interesting": false,
                 "num_lines": 44,
                 "recipients": [
                     "Brock Pierce"
@@ -41918,6 +41968,10 @@
                     ""
                 ],
                 "author": "Amir Taaki",
+                "dupe_type": "same",
+                "duplicate_ids": [
+                    "EFTA02187050"
+                ],
                 "file_id": "EFTA00432350",
                 "file_size": 459,
                 "filename": "EFTA00432350.txt",
@@ -41934,6 +41988,10 @@
                     ""
                 ],
                 "author": "Lesley Groff",
+                "dupe_type": "same",
+                "duplicate_ids": [
+                    "EFTA02187120"
+                ],
                 "file_id": "EFTA00432352",
                 "file_size": 553,
                 "filename": "EFTA00432352.txt",
@@ -41953,6 +42011,7 @@
                 "file_id": "EFTA00461202",
                 "file_size": 1537,
                 "filename": "EFTA00461202.txt",
+                "is_interesting": false,
                 "num_lines": 34,
                 "recipients": [
                     "Austin Hill"
@@ -42554,6 +42613,7 @@
                 "file_id": "EFTA00645400",
                 "file_size": 2423,
                 "filename": "EFTA00645400.txt",
+                "is_interesting": false,
                 "num_lines": 56,
                 "recipients": [
                     "Jeffrey Epstein"
@@ -42891,6 +42951,11 @@
                     ""
                 ],
                 "author": "Brock Pierce",
+                "description": "Brock Pierce and Epstein invested in Coinbase which would turn out to be extremely lucrative",
+                "dupe_type": "same",
+                "duplicate_ids": [
+                    "EFTA02371875"
+                ],
                 "file_id": "EFTA00673123",
                 "file_size": 881,
                 "filename": "EFTA00673123.txt",
@@ -43430,6 +43495,7 @@
                 "file_id": "EFTA00709543",
                 "file_size": 2447,
                 "filename": "EFTA00709543.txt",
+                "is_interesting": false,
                 "num_lines": 54,
                 "recipients": [
                     "Jeffrey Epstein"
@@ -43555,6 +43621,9 @@
                 "attachments": [
                     ""
                 ],
+                "author": "Steven Sinofsky",
+                "author_reason": "Sinofsky in previous To: field",
+                "author_uncertain": "Sinofsky in previous To: field",
                 "file_id": "EFTA00721168",
                 "file_size": 17671,
                 "filename": "EFTA00721168.txt",
@@ -44471,6 +44540,10 @@
                     ""
                 ],
                 "author": "Austin Hill",
+                "dupe_type": "same",
+                "duplicate_ids": [
+                    "EFTA01932706"
+                ],
                 "file_id": "EFTA00870717",
                 "file_size": 1034,
                 "filename": "EFTA00870717.txt",
@@ -44640,7 +44713,7 @@
                     ""
                 ],
                 "author": "Jeffrey Epstein",
-                "description": "negotiation of repurchase of half of Epstein's stake in Coinbase",
+                "description": "negotiation of repurchase of part of Epstein's stake in Coinbase",
                 "file_id": "EFTA00900908",
                 "file_size": 13098,
                 "filename": "EFTA00900908.txt",
@@ -44675,17 +44748,16 @@
                     ""
                 ],
                 "author": "Al Seckel",
-                "description": "Al Seckel's response to Epstein's forged email",
                 "file_id": "EFTA00901970",
                 "file_size": 4119,
                 "filename": "EFTA00901970.txt",
-                "is_interesting": true,
                 "num_lines": 58,
                 "recipients": [
                     "Jeffrey Epstein"
                 ],
                 "subject": "Re: thought you should see this, i know you tried.",
                 "timestamp": "2011-01-14T00:33:54",
+                "truncate_to": 3000,
                 "type": "Email"
             },
             {
@@ -45626,9 +45698,11 @@
                     ""
                 ],
                 "author": "Austin Hill",
+                "description": "Epstein offers to cover all costs for Sharia Coin",
                 "file_id": "EFTA00990442",
                 "file_size": 2651,
                 "filename": "EFTA00990442.txt",
+                "is_interesting": true,
                 "num_lines": 54,
                 "recipients": [
                     "Jeffrey Epstein"
@@ -45729,6 +45803,7 @@
                 "file_id": "EFTA00997251",
                 "file_size": 1511,
                 "filename": "EFTA00997251.txt",
+                "is_interesting": false,
                 "num_lines": 36,
                 "recipients": [
                     "Jeffrey Epstein"
@@ -45743,8 +45818,9 @@
                 ],
                 "author": "Jeffrey Epstein",
                 "file_id": "EFTA00997253",
-                "file_size": 2190,
+                "file_size": 2203,
                 "filename": "EFTA00997253.txt",
+                "is_interesting": false,
                 "num_lines": 50,
                 "recipients": [
                     "Brock Pierce"
@@ -45920,6 +45996,7 @@
                     ""
                 ],
                 "author": "Jeffrey Epstein",
+                "description": "Epstein and Brock Pierce discuss what looks like a sham marriage for immigration purposes",
                 "file_id": "EFTA00999392",
                 "file_size": 1565,
                 "filename": "EFTA00999392.txt",
@@ -45938,7 +46015,7 @@
                 "author": "Larry Summers",
                 "description": "Joi Ito and Jeremy Rubin meet Larry Summers to discuss bitcoin",
                 "file_id": "EFTA00999549",
-                "file_size": 2552,
+                "file_size": 2548,
                 "filename": "EFTA00999549.txt",
                 "is_interesting": true,
                 "num_lines": 53,
@@ -45971,6 +46048,7 @@
                     ""
                 ],
                 "author": "Jeffrey Epstein",
+                "description": "Epstein claims he's a fan of Adam Back (who has recently claimed he had nothing to do with Epstein)",
                 "file_id": "EFTA00999897",
                 "file_size": 945,
                 "filename": "EFTA00999897.txt",
@@ -46136,6 +46214,7 @@
                 "file_id": "EFTA01002109",
                 "file_size": 1425,
                 "filename": "EFTA01002109.txt",
+                "is_interesting": false,
                 "num_lines": 36,
                 "recipients": [
                     "Brock Pierce"
@@ -46552,7 +46631,7 @@
                     ""
                 ],
                 "author": "Vincenzo Iozzo",
-                "description": "discussion of LayerOne crypto stuff",
+                "description": "founder of Layer1 is the only guy in crypto who doesn't want to meet Epstein",
                 "file_id": "EFTA01004753",
                 "file_size": 5941,
                 "filename": "EFTA01004753.txt",
@@ -46686,6 +46765,7 @@
                 "file_id": "EFTA01005712",
                 "file_size": 2101,
                 "filename": "EFTA01005712.txt",
+                "is_interesting": false,
                 "num_lines": 46,
                 "recipients": [
                     "Bryan Bishop",
@@ -46703,6 +46783,7 @@
                 "file_id": "EFTA01005715",
                 "file_size": 2201,
                 "filename": "EFTA01005715.txt",
+                "is_interesting": false,
                 "num_lines": 49,
                 "recipients": [
                     "Austin Hill",
@@ -46856,9 +46937,11 @@
                     ""
                 ],
                 "author": "Jeffrey Epstein",
+                "description": "Austin Hill calls Amir Taaki \"a bit crazy'",
                 "file_id": "EFTA01010209",
                 "file_size": 7165,
                 "filename": "EFTA01010209.txt",
+                "is_interesting": false,
                 "num_lines": 165,
                 "recipients": [
                     "Austin Hill"
@@ -46872,6 +46955,8 @@
                     ""
                 ],
                 "author": "Jeffrey Epstein",
+                "dupe_type": "same",
+                "duplicate_of_id": "EFTA02608800",
                 "file_id": "EFTA01010308",
                 "file_size": 8050,
                 "filename": "EFTA01010308.txt",
@@ -46880,7 +46965,7 @@
                     "Austin Hill"
                 ],
                 "subject": "Re:",
-                "timestamp": "2017-09-23T16:05:25",
+                "timestamp": "2017-09-23T16:05:00",
                 "type": "Email"
             },
             {
@@ -47082,6 +47167,7 @@
                 "file_id": "EFTA01024046",
                 "file_size": 4177,
                 "filename": "EFTA01024046.txt",
+                "is_interesting": false,
                 "num_lines": 98,
                 "recipients": [
                     "Austin Hill"
@@ -47869,9 +47955,11 @@
                     ""
                 ],
                 "author": "Vincenzo Iozzo",
+                "description": "Epstein says he knows \"a few\" guys who hold over $50 million in bitcoin",
                 "file_id": "EFTA01060993",
                 "file_size": 2823,
                 "filename": "EFTA01060993.txt",
+                "is_interesting": true,
                 "num_lines": 63,
                 "recipients": [
                     "Jeffrey Epstein"
@@ -47912,6 +48000,7 @@
                 ],
                 "subject": "Re: Coinbase Investor Newsletter I Sept 2016",
                 "timestamp": "2016-11-16T02:25:11",
+                "truncate_to": 440,
                 "type": "Email"
             },
             {
@@ -48367,6 +48456,7 @@
                     ""
                 ],
                 "author": "Joi Ito",
+                "description": "Joi Ito and Epstein name their new fund Kyara",
                 "file_id": "EFTA01752601",
                 "file_size": 397,
                 "filename": "EFTA01752601.txt",
@@ -48409,6 +48499,22 @@
                     "Jeffrey Epstein"
                 ],
                 "timestamp": "2013-07-05T15:46:00",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    ""
+                ],
+                "author": "Brock Pierce",
+                "file_id": "EFTA01762126",
+                "file_size": 1059,
+                "filename": "EFTA01762126.txt",
+                "num_lines": 17,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "subject": "Re:",
+                "timestamp": "2013-02-25T19:00:00",
                 "type": "Email"
             },
             {
@@ -49408,9 +49514,11 @@
                     ""
                 ],
                 "author": "Daphne Wallace",
+                "description": "Austin Hill and Adam Back and some women plan a trip to The Island",
                 "file_id": "EFTA01925969",
                 "file_size": 7148,
                 "filename": "EFTA01925969.txt",
+                "is_interesting": true,
                 "num_lines": 138,
                 "recipients": [
                     "Austin Hill",
@@ -49659,6 +49767,8 @@
                     ""
                 ],
                 "author": "Austin Hill",
+                "dupe_type": "same",
+                "duplicate_of_id": "EFTA00870717",
                 "file_id": "EFTA01932706",
                 "file_size": 800,
                 "filename": "EFTA01932706.txt",
@@ -49767,10 +49877,14 @@
                 "file_size": 1686,
                 "filename": "EFTA01950559.txt",
                 "num_lines": 44,
+                "recipients": [
+                    "Christina Galbraith"
+                ],
                 "sent_from_device": "Sent from my iPhone",
                 "subject": "Re: points to review...",
                 "timestamp": "2013-11-14T00:11:34",
-                "type": "Email"
+                "type": "Email",
+                "uncertain_recipient": "\"Christina\" in thread"
             },
             {
                 "attachments": [
@@ -50017,6 +50131,7 @@
                 "file_id": "EFTA01983108",
                 "file_size": 203,
                 "filename": "EFTA01983108.txt",
+                "is_interesting": false,
                 "num_lines": 5,
                 "recipients": [
                     "Jeffrey Epstein"
@@ -50228,9 +50343,11 @@
                     ""
                 ],
                 "author": "Al Seckel",
+                "description": "Al Seckel introduces Epstein to Brock Pierce",
                 "file_id": "EFTA02035756",
                 "file_size": 1821,
                 "filename": "EFTA02035756.txt",
+                "is_interesting": true,
                 "num_lines": 32,
                 "recipients": [
                     "Jeffrey Epstein"
@@ -50276,7 +50393,7 @@
                     ""
                 ],
                 "file_id": "EFTA02060931",
-                "file_size": 854,
+                "file_size": 862,
                 "filename": "EFTA02060931.txt",
                 "num_lines": 25,
                 "sent_from_device": "Sent from my iPhone",
@@ -50695,6 +50812,7 @@
                 "file_id": "EFTA02092108",
                 "file_size": 1136,
                 "filename": "EFTA02092108.txt",
+                "is_interesting": false,
                 "num_lines": 26,
                 "recipients": [
                     "Brock Pierce"
@@ -50719,6 +50837,22 @@
                 ],
                 "subject": "Re: NY",
                 "timestamp": "2014-09-02T13:47:08",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    ""
+                ],
+                "author": "Talia Parnass",
+                "file_id": "EFTA02098197",
+                "file_size": 4099,
+                "filename": "EFTA02098197.txt",
+                "num_lines": 107,
+                "recipients": [
+                    "Lesley Groff"
+                ],
+                "subject": "Re: RE:",
+                "timestamp": "2014-09-14T13:35:00",
                 "type": "Email"
             },
             {
@@ -50761,8 +50895,6 @@
                     ""
                 ],
                 "author": "Lesley Groff",
-                "author_uncertain": true,
-                "description": "Austin Hill brought a woman named Ellaina Astra to Epstein's house",
                 "file_id": "EFTA02109391",
                 "file_size": 1527,
                 "filename": "EFTA02109391.txt",
@@ -50773,6 +50905,7 @@
                 "sent_from_device": "Sent from my iPhone",
                 "subject": "Re: Jeffrey Epstein",
                 "timestamp": "2014-04-02T21:26:12",
+                "truncate_to": -1,
                 "type": "Email"
             },
             {
@@ -50803,6 +50936,7 @@
                 "file_id": "EFTA02159829",
                 "file_size": 671,
                 "filename": "EFTA02159829.txt",
+                "is_interesting": false,
                 "num_lines": 29,
                 "recipients": [
                     "Brock Pierce"
@@ -50833,6 +50967,7 @@
                 "file_id": "EFTA02160842",
                 "file_size": 735,
                 "filename": "EFTA02160842.txt",
+                "is_interesting": false,
                 "num_lines": 30,
                 "recipients": [
                     "Brock Pierce"
@@ -50866,6 +51001,7 @@
                 "file_id": "EFTA02174702",
                 "file_size": 561,
                 "filename": "EFTA02174702.txt",
+                "is_interesting": false,
                 "num_lines": 15,
                 "recipients": [
                     "Brock Pierce"
@@ -50957,6 +51093,8 @@
                     ""
                 ],
                 "author": "Amir Taaki",
+                "dupe_type": "same",
+                "duplicate_of_id": "EFTA00432350",
                 "file_id": "EFTA02187050",
                 "file_size": 415,
                 "filename": "EFTA02187050.txt",
@@ -50973,6 +51111,8 @@
                     ""
                 ],
                 "author": "Lesley Groff",
+                "dupe_type": "same",
+                "duplicate_of_id": "EFTA00432352",
                 "file_id": "EFTA02187120",
                 "file_size": 541,
                 "filename": "EFTA02187120.txt",
@@ -51008,6 +51148,7 @@
                 "file_id": "EFTA02228570",
                 "file_size": 1495,
                 "filename": "EFTA02228570.txt",
+                "is_interesting": false,
                 "num_lines": 33,
                 "recipients": [
                     "Lesley Groff"
@@ -51024,6 +51165,7 @@
                 "file_id": "EFTA02229342",
                 "file_size": 403,
                 "filename": "EFTA02229342.txt",
+                "is_interesting": false,
                 "num_lines": 13,
                 "recipients": [
                     "Jeffrey Epstein"
@@ -51210,7 +51352,7 @@
                 ],
                 "author": "Lesley Groff",
                 "file_id": "EFTA02245244",
-                "file_size": 551,
+                "file_size": 550,
                 "filename": "EFTA02245244.txt",
                 "num_lines": 15,
                 "recipients": [
@@ -51849,6 +51991,22 @@
                 "attachments": [
                     ""
                 ],
+                "author": "Peter Thiel",
+                "file_id": "EFTA02356637",
+                "file_size": 4888,
+                "filename": "EFTA02356637.txt",
+                "num_lines": 101,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "subject": "RE: Re:",
+                "timestamp": "2017-08-17T17:20:00",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    ""
+                ],
                 "author": "Lesley Groff",
                 "file_id": "EFTA02358856",
                 "file_size": 336,
@@ -51882,8 +52040,9 @@
                     "Blockstream - Series A - Notice of Issuance of New Securities CCP.DOC"
                 ],
                 "author": "Brock Pierce",
+                "description": "Brock Pierce brings Epstein an opportunity to invest in Blockstream, bitcoin developer Adam Back's company",
                 "file_id": "EFTA02361144",
-                "file_size": 4405,
+                "file_size": 3308,
                 "filename": "EFTA02361144.txt",
                 "num_lines": 63,
                 "recipients": [
@@ -51902,6 +52061,7 @@
                 "file_id": "EFTA02365466",
                 "file_size": 911,
                 "filename": "EFTA02365466.txt",
+                "is_interesting": false,
                 "num_lines": 18,
                 "recipients": [
                     "Jeffrey Epstein"
@@ -51947,6 +52107,9 @@
                     ""
                 ],
                 "author": "Brock Pierce",
+                "description": "Brock Pierce and Epstein invested in Coinbase which would turn out to be extremely lucrative",
+                "dupe_type": "same",
+                "duplicate_of_id": "EFTA00673123",
                 "file_id": "EFTA02371875",
                 "file_size": 932,
                 "filename": "EFTA02371875.txt",
@@ -51955,7 +52118,7 @@
                     "Jeffrey Epstein"
                 ],
                 "subject": "Coinbase",
-                "timestamp": "2014-11-14T01:31:00",
+                "timestamp": "2014-11-14T01:30:38",
                 "type": "Email"
             },
             {
@@ -52045,9 +52208,11 @@
                     ""
                 ],
                 "author": "Joi Ito",
+                "description": "Epstein says that he will fund a seat at MIT Media Lab for ZCash founder Madars Virza",
                 "file_id": "EFTA02374960",
                 "file_size": 3812,
                 "filename": "EFTA02374960.txt",
+                "is_interesting": true,
                 "num_lines": 73,
                 "recipients": [
                     "Jeffrey Epstein"
@@ -52438,6 +52603,7 @@
                 "file_id": "EFTA02436105",
                 "file_size": 1592,
                 "filename": "EFTA02436105.txt",
+                "is_interesting": true,
                 "num_lines": 26,
                 "recipients": [
                     "Jeffrey Epstein"
@@ -52497,6 +52663,22 @@
                 ],
                 "subject": "<REDACTED>",
                 "timestamp": "2016-08-03T21:34:00",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    ""
+                ],
+                "author": "Jeffrey Epstein",
+                "file_id": "EFTA02459362",
+                "file_size": 1995,
+                "filename": "EFTA02459362.txt",
+                "num_lines": 34,
+                "recipients": [
+                    "Peter Thiel"
+                ],
+                "subject": "Re:",
+                "timestamp": "2016-06-26T11:14:00",
                 "type": "Email"
             },
             {
@@ -53264,6 +53446,23 @@
                 "attachments": [
                     ""
                 ],
+                "author": "Jeffrey Epstein",
+                "description": "Brock Pierce on marriage and polygamy with people named Crystal and Sue",
+                "file_id": "EFTA02541344",
+                "file_size": 1869,
+                "filename": "EFTA02541344.txt",
+                "num_lines": 43,
+                "recipients": [
+                    "Brock Pierce"
+                ],
+                "subject": "Re: Jan 8-10",
+                "timestamp": "2018-01-09T11:35:00",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    ""
+                ],
                 "author": "Renata Bolotova",
                 "author_reason": "\"sneaky dog\" + \"Sincerely\"",
                 "file_id": "EFTA02545360",
@@ -53580,6 +53779,23 @@
                 "attachments": [
                     ""
                 ],
+                "author": "Jeffrey Epstein",
+                "description": "Epstein asking Brock Pierce for a favour related to someone named 'Sue'",
+                "file_id": "EFTA02592748",
+                "file_size": 1585,
+                "filename": "EFTA02592748.txt",
+                "num_lines": 30,
+                "recipients": [
+                    "Brock Pierce"
+                ],
+                "subject": "Re: Sue",
+                "timestamp": "2014-10-25T10:12:00",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    ""
+                ],
                 "author": "Joi Ito",
                 "file_id": "EFTA02593836",
                 "file_size": 2425,
@@ -53782,6 +53998,7 @@
                     ""
                 ],
                 "author": "Vincenzo Iozzo",
+                "description": "discussion of investing in Layer1, an important crypto business",
                 "file_id": "EFTA02601503",
                 "file_size": 1263,
                 "filename": "EFTA02601503.txt",
@@ -53864,6 +54081,22 @@
                 "attachments": [
                     ""
                 ],
+                "author": "Peter Thiel",
+                "file_id": "EFTA02604166",
+                "file_size": 2100,
+                "filename": "EFTA02604166.txt",
+                "num_lines": 39,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "subject": "RE: Re:",
+                "timestamp": "2018-08-14T07:09:00",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    ""
+                ],
                 "author": "Jeffrey Epstein",
                 "file_id": "EFTA02606117",
                 "file_size": 2192,
@@ -53913,6 +54146,10 @@
                     ""
                 ],
                 "author": "Jeffrey Epstein",
+                "dupe_type": "same",
+                "duplicate_ids": [
+                    "EFTA01010308"
+                ],
                 "file_id": "EFTA02608800",
                 "file_size": 9134,
                 "filename": "EFTA02608800.txt",
@@ -54501,6 +54738,7 @@
                 "file_id": "EFTA02647229",
                 "file_size": 6398,
                 "filename": "EFTA02647229.txt",
+                "is_interesting": false,
                 "num_lines": 135,
                 "recipients": [
                     "Jeffrey Epstein"
@@ -54726,7 +54964,7 @@
                     "Jeffrey Epstein"
                 ],
                 "subject": "Re: Bitcoin",
-                "timestamp": "2011-07-07T22:53:00",
+                "timestamp": "2011-07-07T22:52:40",
                 "type": "Email"
             },
             {
@@ -54798,6 +55036,22 @@
                 ],
                 "subject": "CCP LLC Docs",
                 "timestamp": "2014-12-03T16:50:00",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    ""
+                ],
+                "author": "Peter Thiel",
+                "file_id": "EFTA02713151",
+                "file_size": 8045,
+                "filename": "EFTA02713151.txt",
+                "num_lines": 130,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "subject": "Re: Re:",
+                "timestamp": "2015-06-22T14:27:00",
                 "type": "Email"
             },
             {
@@ -54906,6 +55160,7 @@
                 "file_id": "EFTA02730469",
                 "file_size": 1154,
                 "filename": "EFTA02730469.txt",
+                "is_interesting": false,
                 "num_lines": 38,
                 "subject": "RE: Completed Sections",
                 "timestamp": "2011-03-23T06:54:00",
@@ -54918,6 +55173,7 @@
                 "file_id": "EFTA02730471",
                 "file_size": 1053,
                 "filename": "EFTA02730471.txt",
+                "is_interesting": false,
                 "num_lines": 29,
                 "subject": "FW: Completed Sections",
                 "timestamp": "2011-03-23T06:56:00",
@@ -83618,6 +83874,7 @@
             {
                 "author": "Honeycomb Asset Management (Spotify and Tencent investors)",
                 "category": "crypto",
+                "date": "2018-07-17",
                 "description": "July 2018 report",
                 "file_id": "EFTA00803464",
                 "file_size": 27592,
@@ -84061,12 +84318,10 @@
                 "was_timestamp_extracted": true
             },
             {
-                "category": "money",
-                "description": "list of Epstein's bank accounts",
                 "file_id": "EFTA00811866",
                 "file_size": 17969,
                 "filename": "EFTA00811866.txt",
-                "is_interesting": true,
+                "is_interesting": null,
                 "num_lines": 323,
                 "timestamp": "2020-09-01T00:00:00",
                 "type": "DojFile",
@@ -84779,6 +85034,7 @@
             {
                 "author": "Crypto PR Lab",
                 "category": "crypto",
+                "date": "2019-05-21",
                 "description": "WhatsApp convo with Maria Prusakova",
                 "file_id": "EFTA01612721",
                 "file_size": 6120,
@@ -84850,6 +85106,7 @@
             {
                 "author": "Crypto PR Lab",
                 "category": "crypto",
+                "date": "2019-05-21",
                 "description": "WhatsApp convo with Maria Prusakova",
                 "file_id": "EFTA01613762",
                 "file_size": 5585,
@@ -85517,7 +85774,7 @@
         "Abdoulaye Wade": "Africa, former president of Senegal, father of Karim Wade",
         "Abi Schwinck": "modeling, Jean Luc Brunel's MC2 Model Management (???)",
         "Adam Back": "crypto, co-founder of Blockstream, bitcoin dev, long time Tether defender",
-        "Al Seckel": "publicist, Isabel Maxwell's husband, Mindshift conference, fell off a cliff",
+        "Al Seckel": "publicist, Isabel Maxwell's husband, Mindshift conference, mysterious death",
         "Alain Forget": "journalist, author of \"How To Get Out Of This World ALIVE\"",
         "Alan Dershowitz": "lawyer, Harvard Law School professor",
         "Alan Dlugash": "lawyer, tax partner at Paneth and Shrone",
@@ -85607,6 +85864,7 @@
         "Faith Kates": "modeling, Next Models co-founder",
         "Fawzi Siam": "mideast, sharia auditor in Qatar, friend of Sheikh Jabor Al-Thani",
         "Florence Hutner": "government, New York Office of Chief Medical Examiner",
+        "Francesca Hall": "crypto, assistant to Austin Hill",
         "Fred Haddad": "lawyer, co-founder of Heck's in West Virginia",
         "Ganbat Chuluunkhuu": "lobbyist, corrupt Mongolian politician who was later wanted by Interpol",
         "Gerald Barton": "business, Maryland property developer Landmark Land Company",
@@ -85775,6 +86033,7 @@
         "Sultan Ahmed Bin Sulayem": "mideast, chairman of ports in Dubai, CEO of DP World",
         "Susan Edelman": "journalist, New York Post reporter",
         "Svetlana Pozhidaeva": "Russia, Epstein's Russian assistant who was recommended for a visa by Sergei Belyakov (FSB) and David Blaine",
+        "Talia Parnass": "tech bro, Peter Thiel's assistant",
         "Tancredi Marchiolo": "finance, hedge fund manager",
         "Terje R\u00f8d-Larsen": "Europe, Norwegian diplomat",
         "Terry Kafka": "business, CEO of Impact Outdoor (highway billboards)",
