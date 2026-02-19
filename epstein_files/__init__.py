@@ -52,29 +52,28 @@ def epstein_generate() -> None:
     if args.output_chrono:
         printed_docs = print_curated_chronological(epstein_files)
         timer.log_section_complete('Chronological documents', epstein_files.unique_documents, printed_docs)
-
-    if args.output_doj_files:
-        printed_doj_files = print_doj_files(epstein_files)
-        timer.log_section_complete('DojFile', epstein_files.doj_files, printed_doj_files)
-
-    if args.output_texts:
-        printed_logs = print_text_messages_section(epstein_files)
-        timer.log_section_complete('MessengerLog', epstein_files.imessage_logs, printed_logs)
-
-    if args.output_emails:
-        printed_emails = print_emails_section(epstein_files)
-        timer.log_section_complete('Email', epstein_files.emails, printed_emails)
-    elif args.email_timeline:
-        print_email_timeline(epstein_files)
-        timer.print_at_checkpoint(f"Printed chronological emails table")
-
-    if args.output_other:
-        printed_files = print_other_files_section(epstein_files)
-        timer.log_section_complete('OtherFile', epstein_files.other_files, printed_files)
-
-    if args.output_word_count:
+    elif args.output_word_count:
         write_word_counts_html()
         timer.print_at_checkpoint(f"Finished counting words")
+    else:
+        if args.output_emails:
+            printed_emails = print_emails_section(epstein_files)
+            timer.log_section_complete('Email', epstein_files.emails, printed_emails)
+        elif args.email_timeline:
+            print_email_timeline(epstein_files)
+            timer.print_at_checkpoint(f"Printed chronological emails table")
+
+        if args.output_texts:
+            printed_logs = print_text_messages_section(epstein_files)
+            timer.log_section_complete('MessengerLog', epstein_files.imessage_logs, printed_logs)
+
+        if args.output_other:
+            printed_files = print_other_files_section(epstein_files)
+            timer.log_section_complete('OtherFile', epstein_files.other_files, printed_files)
+
+        if args.output_doj_files:
+            printed_doj_files = print_doj_files(epstein_files)
+            timer.log_section_complete('DojFile', epstein_files.doj_files, printed_doj_files)
 
     write_html(args.build)
     logger.warning(f"Total time: {timer.seconds_since_start_str()}")
