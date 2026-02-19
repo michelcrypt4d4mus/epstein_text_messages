@@ -6,9 +6,9 @@ from typing import Callable, Literal
 from inflection import parameterize
 from rich.text import Text
 
-from epstein_files.output.site.sites import SiteType
+from epstein_files.output.site.sites import GH_PROJECT_URL, SiteType
 from epstein_files.util.env import args
-from epstein_files.util.constant.strings import TEXT_LINK
+from epstein_files.util.constant.strings import SOCIAL_MEDIA_LINK_STYLE, TEXT_LINK
 from epstein_files.util.helpers.file_helper import coerce_file_stem
 from epstein_files.util.helpers.link_helper import SUBSTACK_POST_LINK_STYLE, link_markup, link_text_obj
 from epstein_files.util.helpers.string_helper import remove_question_marks
@@ -66,6 +66,13 @@ EXTERNAL_LINK_MSGS = {
     EPSTEINIFY_URL: 'raw images alt',
     EPSTEIN_WEB_URL: 'biographies',
 }
+
+CRYPTADAMUS_SOCIAL_LINKS = [
+    link_text_obj('https://universeodon.com/@cryptadamist/115572634993386057', '@mastodon', style=SOCIAL_MEDIA_LINK_STYLE),
+    link_text_obj(SUBSTACK_URL, '@substack', style=SOCIAL_MEDIA_LINK_STYLE),
+    link_text_obj('https://x.com/Cryptadamist/status/1990866804630036988', '@twitter', style=SOCIAL_MEDIA_LINK_STYLE),
+    link_text_obj(GH_PROJECT_URL, '@github', style=SOCIAL_MEDIA_LINK_STYLE)
+]
 
 # Misc
 URL_SIGNIFIERS = ['?amp', 'amp?', 'cd=', 'click', 'CMP=', 'contentId', 'ft=', 'gclid', 'htm', 'mp=', 'keywords=', 'Id=', 'module=', 'mpweb', 'nlid=', 'ref=', 'smid=', 'sp=', 'usg=', 'utm']

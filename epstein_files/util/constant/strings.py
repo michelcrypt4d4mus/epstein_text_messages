@@ -25,9 +25,10 @@ ARCHIVE_LINK_COLOR = 'slate_blue3'
 ARCHIVE_LINK_UNDERLINE = f"{ARCHIVE_LINK_COLOR} underline"
 ARCHIVE_ALT_LINK_STYLE = 'medium_purple4 italic'  # "(raw files)" link
 AUX_SITE_LINK_STYLE = 'dark_orange3'
-TEXT_LINK = 'text_link'
 DEFAULT_NAME_STYLE = 'grey23'
+SOCIAL_MEDIA_LINK_STYLE = 'pale_turquoise4'
 SUBHEADER_STYLE = 'grey46'
+TEXT_LINK = 'text_link'
 TIMESTAMP_STYLE = 'turquoise4'
 TIMESTAMP_DIM = f"turquoise4 dim"
 # Highlighter

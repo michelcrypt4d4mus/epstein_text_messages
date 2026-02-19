@@ -14,7 +14,6 @@ from rich.text import Text
 from epstein_files.output.layout_elements.demi_table import build_demi_table
 from epstein_files.output.rich import *
 from epstein_files.output.site.site_config import MOBILE_WARNING
-from epstein_files.output.site.sites import GH_PROJECT_URL
 from epstein_files.util.constant.names import UNKNOWN
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constant.urls import *
@@ -29,7 +28,6 @@ OTHER_PAGE_MSG_STYLE = 'gray78 dim'
 STR_VAL_STYLE = 'cornsilk1 italic'
 STR_VAL_STYLE_ALT = 'light_yellow3 italic'
 SECTION_HEADER_STYLE = 'bold black on color(146)'
-SOCIAL_MEDIA_LINK_STYLE = 'pale_turquoise4'
 
 SITE_GLOSSARY_MSG = f"The following views of the underlying selection of Epstein Files are available:"
 YOU_ARE_HERE = Text('«').append('you are here', style='bold khaki1 blink').append('»')
@@ -189,11 +187,7 @@ def _print_page_title(width: int = TITLE_WIDTH) -> None:
     title = Text('', justify='center').append('The Epstein Files', style='underline bold')
     title_panel = Panel(title, box=box.DOUBLE_EDGE, expand=True, padding=(2, 2), style=TITLE_STYLE, width=width)
     print_centered(vertically_pad(title_panel))
-    _print_social_media_links()
-    console.line()
 
-
-def _print_social_media_links() -> None:
     print_centered_link(
         SUBSTACK_URL,
         "I Made Epstein's Text Messages Great Again (And You Should Read Them)",
@@ -203,20 +197,10 @@ def _print_social_media_links() -> None:
     if not args.mobile:
         print_centered_link(SUBSTACK_URL, SUBSTACK_URL.removeprefix('https://'), style=f'{SUBSTACK_POST_LINK_STYLE} dim')
 
-    social_links = [
-        link_text_obj('https://universeodon.com/@cryptadamist/115572634993386057', '@mastodon', style=SOCIAL_MEDIA_LINK_STYLE),
-        link_text_obj(SUBSTACK_URL, '@substack', style=SOCIAL_MEDIA_LINK_STYLE),
-        link_text_obj('https://x.com/Cryptadamist/status/1990866804630036988', '@twitter', style=SOCIAL_MEDIA_LINK_STYLE),
-        link_text_obj(GH_PROJECT_URL, '@github', style=SOCIAL_MEDIA_LINK_STYLE)
-    ]
-
-    print_centered(join_texts(social_links, join='  /  '))#, encloser='()'))#, encloser='‹›'))
+    print_centered(join_texts(CRYPTADAMUS_SOCIAL_LINKS, join='  /  '))
+    console.line()
 
 
 def _print_starred_header(msg: str, num_stars: int = 7, num_spaces: int = 2, style: str = WARNING_STYLE) -> None:
     """String like '  *** Title Msg ***  '."""
-    stars = '*' * num_stars
-    spaces = ' ' * num_spaces
-    msg = f"{spaces}{stars} {msg} {stars}{spaces}"
-    msg = starred_header(msg, num_stars, num_spaces)
-    print_centered(wrap_in_markup_style(msg, style))
+    print_centered(wrap_in_markup_style(starred_header(msg, num_stars, num_spaces), style))
