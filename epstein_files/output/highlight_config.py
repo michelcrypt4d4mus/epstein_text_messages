@@ -218,7 +218,8 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"BP",
             r"CEO",
             r"Gruterite",
-            r"Island\s*Capital\s*Group(,?\s*LLC)?"
+            r"Island\s*Capital\s*Group(,?\s*LLC)?",
+            r"Johan\s*Eliasch",
             r"((John|Patricia)\s*)?Kluge",
             r"Mar[ck]\s+Rich",
             r"(Mi(chael|ke)\s*)?Ovitz",
