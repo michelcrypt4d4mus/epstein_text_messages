@@ -2,7 +2,7 @@ import json
 import re
 from dataclasses import asdict, dataclass, field
 
-from epstein_files.documents.documents.doc_cfg import EmailCfg
+from epstein_files.documents.documents.doc_cfg import EmailCfg, Metadata
 from epstein_files.documents.emails.constants import FIELDS_PATTERN
 from epstein_files.documents.emails.emailers import BAD_EMAILER_REGEX, TIME_REGEX
 from epstein_files.util.constant.strings import AUTHOR
@@ -69,7 +69,7 @@ class EmailHeader:
         self.num_header_rows = len(self.field_names)
         self.was_initially_empty = self.is_empty
 
-    def as_dict(self, truthy_only: bool = True) -> dict[str, str | None]:
+    def as_dict(self, truthy_only: bool = True) -> Metadata:
         """Remove housekeeping fields that don't actually come from the email."""
         props = {k: v for k, v in asdict(self).items() if k not in NON_HEADER_FIELDS}
         return {k: v for k, v in props.items() if v} if truthy_only else props
