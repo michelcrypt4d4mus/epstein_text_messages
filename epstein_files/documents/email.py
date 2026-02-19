@@ -2,7 +2,7 @@ import json
 import logging
 import re
 from copy import deepcopy
-from dataclasses import asdict, dataclass, field
+from dataclasses import dataclass, field
 from datetime import datetime
 from typing import ClassVar, cast
 
@@ -15,6 +15,7 @@ from rich.text import Text
 
 from epstein_files.documents.communication import Communication
 from epstein_files.documents.document import CLOSE_PROPERTIES_CHAR, INFO_INDENT
+from epstein_files.documents.documents.categories import Uninteresting
 from epstein_files.documents.documents.doc_cfg import DebugDict, EmailCfg, Metadata
 from epstein_files.documents.emails.constants import *
 from epstein_files.documents.emails.email_header import (EMAIL_SIMPLE_HEADER_REGEX,
@@ -22,10 +23,10 @@ from epstein_files.documents.emails.email_header import (EMAIL_SIMPLE_HEADER_REG
 from epstein_files.documents.emails.emailers import extract_emailer_names
 from epstein_files.documents.other_file import OtherFile
 from epstein_files.people.interesting_people import EMAILERS_OF_INTEREST_SET
-from epstein_files.output.rich import DEFAULT_TABLE_KWARGS, build_table, highlighter, join_texts, no_bold, styled_key_value
-from epstein_files.util.constant.strings import REDACTED
+from epstein_files.output.rich import DEFAULT_TABLE_KWARGS, build_table, highlighter, join_texts, styled_key_value
+from epstein_files.util.constant.strings import ARCHIVE_LINK_COLOR, REDACTED, TIMESTAMP_DIM
 from epstein_files.util.constant.urls import URL_SIGNIFIERS
-from epstein_files.util.constants import *
+from epstein_files.util.constants import CONFIGS_BY_ID, DEFAULT_TRUNCATE_TO, NO_TRUNCATE, SHORT_TRUNCATE_TO
 from epstein_files.util.env import args, site_config
 from epstein_files.util.helpers.data_helpers import (AMERICAN_TIME_REGEX, TIMEZONE_INFO, collapse_newlines,
      prefix_keys, remove_timezone, uniquify)
@@ -57,7 +58,7 @@ NUM_WORDS_IN_LAST_QUOTE = 6
 # Junk mail
 JUNK_EMAILERS = [
     contact.name
-    for junk_hg in HIGHLIGHTED_NAMES if junk_hg.label == JUNK
+    for junk_hg in HIGHLIGHTED_NAMES if junk_hg.label == Uninteresting.JUNK
     for contact in junk_hg.contacts
 ]
 
@@ -344,7 +345,12 @@ class Email(Communication):
 
     def _debug_props(self) -> DebugDict:
         props = super()._debug_props()
-        props.update(prefix_keys(self._debug_prefix, self.truthy_props(DEBUG_PROPS)))
+        local_props = self.truthy_props(DEBUG_PROPS)
+
+        if not self.header.is_empty:
+            local_props['header'] = self.header.as_dict()
+
+        props.update(prefix_keys(self._debug_prefix, local_props))
         return props
 
     def _extract_actual_text(self) -> str:

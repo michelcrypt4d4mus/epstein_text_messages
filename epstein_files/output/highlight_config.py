@@ -1122,7 +1122,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         ],
     ),
     HighlightedNames(
-        label=JUNK,
+        label=Uninteresting.JUNK,
         style='gray46',
         contacts=[
             Contact('asmallworld@travel.asmallworld.net'),

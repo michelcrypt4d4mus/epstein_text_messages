@@ -9,6 +9,7 @@ from rich.table import Table
 from rich.text import Text
 
 from epstein_files.documents.document import Document
+from epstein_files.documents.documents.categories import Uninteresting
 from epstein_files.documents.email import TRUNCATE_EMAILS_BY, MAILING_LISTS, JUNK_EMAILERS, Email
 from epstein_files.documents.emails.emailers import CONTACTS_DICT, cleanup_str
 from epstein_files.documents.messenger_log import MessengerLog
@@ -172,8 +173,8 @@ class Person:
             return Text('(emails whose author or recipient could not be determined)', style=ALT_INFO_STYLE)
         elif self.name == JEFFREY_EPSTEIN:
             return Text('(emails sent by Epstein to himself are here)', style=ALT_INFO_STYLE)
-        elif self.category == JUNK:
-            return Text(f"({JUNK} mail)", style='bright_black dim')
+        elif self.category == Uninteresting.JUNK:
+            return Text(f"({Uninteresting.JUNK} mail)", style='bright_black dim')
         elif self.is_uninteresting and (self.info_str or '').startswith(UNINTERESTING_CC_INFO):
             if self.sole_cc:
                 return Text(f"(cc: from {self.sole_cc} only)", style='wheat4 dim')
@@ -323,7 +324,7 @@ class Person:
         if site_config.show_emailer_tables:
             self.print_emails_table()
 
-        if self.category == JUNK:
+        if self.category == Uninteresting.JUNK:
             logger.warning(f"Not printing junk emailer '{self.name}'")  # Junk emailers only get a table
             return self._printable_emails
         elif self.name in SPECIAL_NOTES:

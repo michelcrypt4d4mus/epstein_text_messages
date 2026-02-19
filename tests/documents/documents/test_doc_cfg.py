@@ -52,11 +52,11 @@ def interesting_doc() -> DocCfg:
 
 @pytest.fixture
 def junk_doc_cfg() -> DocCfg:
-    return _oversight_cfg(JUNK)
+    return _oversight_cfg(Uninteresting.JUNK)
 
 @pytest.fixture
 def junk_email_cfg() -> EmailCfg:
-    return EmailCfg(id=RANDOM_ID, category=JUNK, author='who knows')
+    return EmailCfg(id=RANDOM_ID, category=Uninteresting.JUNK, author='who knows')
 
 @pytest.fixture
 def legal_cfg() -> DocCfg:
@@ -86,7 +86,7 @@ def uninteresting_description() -> DocCfg:
 def test_category_txt(blockchain_cap_cfg, empty_house_cfg, junk_doc_cfg, legal_cfg, skype_cfg):
     assert blockchain_cap_cfg.category_txt.style == 'orange1 bold'
     assert empty_house_cfg.category_txt == QUESTION_MARKS_TXT
-    assert junk_doc_cfg.category_txt.plain == JUNK
+    assert junk_doc_cfg.category_txt.plain == Uninteresting.JUNK
     assert skype_cfg.category_txt.plain == 'skype'
     assert skype_cfg.category_txt.style == 'bright_cyan'
     assert legal_cfg.category_txt.style == 'purple'
