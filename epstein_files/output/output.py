@@ -179,6 +179,7 @@ def print_emails_section(epstein_files: EpsteinFiles) -> list[Email]:
     return printed_emails
 
 
+# NOTE: the JSON files from Nov. 2025 are completely uninteresting
 def print_json_files(epstein_files: EpsteinFiles):
     """Print all the `JsonFile` objects to a unified JSON file."""
     if args.build:
@@ -198,16 +199,12 @@ def print_json_files(epstein_files: EpsteinFiles):
 
 def print_json_metadata(epstein_files: EpsteinFiles) -> None:
     """Print all our `DocCfg` and derived info about authorship etc."""
-    json_str = epstein_files.json_metadata()
-
     if args.build:
-        build_path = SiteType.build_path(SiteType.JSON_METADATA)
-
-        with open(build_path, 'wt') as f:
-            f.write(json_str)
-            log_file_write(build_path)
+        with open(args.build, 'wt') as f:
+            f.write(epstein_files.json_metadata())
+            log_file_write(args.build)
     else:
-        console.print_json(json_str, indent=4, sort_keys=True)
+        console.print_json(epstein_files.json_metadata(), indent=4, sort_keys=True)
 
 
 def print_other_files_section(epstein_files: EpsteinFiles) -> list[OtherFile]:
@@ -230,8 +227,7 @@ def print_other_files_section(epstein_files: EpsteinFiles) -> list[OtherFile]:
 
 def print_stats(epstein_files: EpsteinFiles) -> None:
     """Used to generate fixture data for pytest."""
-    console.line(5)
-    console.print(Panel('JSON Stats Dump', expand=True, style='reverse bold'), '\n')
+    console.print('\n\n\n', Panel('JSON Stats Dump', expand=True, style='reverse bold'), '\n')
     print_json(f"MessengerLog Sender Counts", MessengerLog.count_authors(epstein_files.imessage_logs), skip_falsey=True)
     print_json(f"Email Author Counts", epstein_files.email_author_counts(), skip_falsey=True)
     print_json(f"Email Recipient Counts", epstein_files.email_recipient_counts(), skip_falsey=True)
@@ -283,19 +279,19 @@ def show_urls() -> None:
 def write_html(output_path: Path | None) -> None:
     """
     Write all console output to HTML in `output_path` if `output_path` is not `None`.
-    if `args.write_txt` is set colored ANSI `.txt` files will also be written.
+    if `args.write_txt` is set colored ANSI `.txt` files will be written instead.
     """
     if not output_path:
         logger.warning(f"Not writing HTML because args.build={args.build}.")
         return
 
-    console.save_html(str(output_path), clear=False, code_format=CONSOLE_HTML_FORMAT, theme=HTML_TERMINAL_THEME)
-    log_file_write(output_path)
-
     if args.write_txt:
         txt_path = f"{output_path}.txt"
         console.save_text(txt_path)
         log_file_write(txt_path)
+    else:
+        console.save_html(str(output_path), clear=False, code_format=CONSOLE_HTML_FORMAT, theme=HTML_TERMINAL_THEME)
+        log_file_write(output_path)
 
 
 def _print_email_device_signature_info(epstein_files: EpsteinFiles) -> None:

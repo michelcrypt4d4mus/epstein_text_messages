@@ -129,8 +129,10 @@ if is_html_script:
             args._site_type = SiteType.OTHER_FILES_TABLE
         elif args.email_timeline:
             args._site_type = SiteType.CHRONOLOGICAL_EMAILS
-        elif args.mobile:  # must come before CURATED_CHRONOLOGICAL
-            args._site_type = SiteType.MOBILE
+        elif args.json_metadata:
+            args._site_type = SiteType.JSON_METADATA
+        elif args.mobile:
+            args._site_type = SiteType.MOBILE  # NOTE: mobile must come before CURATED_CHRONOLOGICAL!
         elif args.output_chrono:
             args._site_type = SiteType.CURATED_CHRONOLOGICAL
         elif args.output_doj_files:
