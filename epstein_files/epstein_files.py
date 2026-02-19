@@ -293,10 +293,11 @@ class EpsteinFiles:
         if not new_docs:
             logger.warning(f"No new files found, doing nothing.")
             return
-        elif create_configs(new_docs):
-            sys.exit()  # Exit if new configs were created
+        elif (cfgs := create_configs(new_docs)):  # Exit if new configs were created
+            console.print(f"\n{len(cfgs)} config objects created, exiting...", style='bold yellow1')
+            sys.exit()
 
-        self._finalize_new_docs_if_approved(new_docs)
+        self._finalize_data_and_write_to_disk(new_docs)
 
     def reload_doj_files(self) -> None:
         """Reload only the DOJ PDF extracts (keep HOUSE_OVERSIGHT stuff unchanged)."""

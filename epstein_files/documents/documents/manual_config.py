@@ -27,7 +27,14 @@ CFG_FIELDS = [
 
 
 def create_configs(docs: Sequence[Document]) -> Sequence[DocCfg]:
+    """Manually review and create DocCfg objects for new files."""
     cfgs = []
+
+    for doc in docs:
+        doc.print()
+
+    if not Confirm.ask(f"\nManually configure {len(docs)} documents?"):
+        return []
 
     for doc in docs:
         if doc.config:  #all(getattr(doc, f) for f in fields) and all(getattr(cfg, f) for f in CFG_FIELDS):
