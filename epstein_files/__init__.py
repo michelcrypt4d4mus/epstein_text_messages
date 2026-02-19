@@ -51,7 +51,7 @@ def epstein_generate() -> None:
 
     if args.output_chrono:
         printed_docs = print_curated_chronological(epstein_files)
-        timer.log_section_complete('Chronological documents', epstein_files.unique_documents, printed_docs)
+        timer.log_section_complete('Document', epstein_files.unique_documents, printed_docs)
     elif args.output_word_count:
         write_word_counts_html()
         timer.print_at_checkpoint(f"Finished counting words")
