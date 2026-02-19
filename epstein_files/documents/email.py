@@ -179,7 +179,7 @@ class Email(Communication):
     actual_text: str = field(init=False)
     derived_cfg: EmailCfg | None = None
     header: EmailHeader = field(init=False)
-    is_persons_first_email: bool = False  # Only set when printing
+    is_persons_first_email: bool = False
     sent_from_device: str | None = None
     signature_substitution_counts: dict[str, int] = field(default_factory=dict)  # defaultdict breaks asdict :(
     _line_merge_arguments: list[tuple[int] | tuple[int, int]] = field(default_factory=list)
