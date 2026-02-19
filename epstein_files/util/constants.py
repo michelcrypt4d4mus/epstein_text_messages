@@ -1464,6 +1464,9 @@ UNINTERESTING_EMAIL_IDS = [
     # DOJ / USANYS
     'EFTA02730469',
     'EFTA02730471',
+    'EFTA02731662',
+    'EFTA02730481',
+    'EFTA02730483',
     # TODO: These have UNKNOWN recipient so they currently get printed but we should configure it so they don't
     'EFTA00039894',
     'EFTA00039878',
