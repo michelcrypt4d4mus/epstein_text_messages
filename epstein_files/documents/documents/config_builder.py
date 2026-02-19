@@ -39,7 +39,7 @@ def build_cfg_from_text(text: str) -> DocCfg | None:
     elif VI_DAILY_NEWS_REGEX.search(text):
         return _cfg(category=Uninteresting.ARTICLE, author=VI_DAILY_NEWS)
     elif has_line_starting_with(text, [VALAR_GLOBAL_FUND, VALAR_VENTURES.upper()], 2):
-        return valar_cfg()
+        return valar_cfg(text=text)
     elif SOUTHERN_FINANCIAL_REGEX.match(text):
         return _cfg(category=Interesting.MONEY, description="transactions by Epstein's Southern Financial LLC")
     elif DEUTSCHE_SOUTHERN_REGEX.match(text):
@@ -50,8 +50,8 @@ def build_cfg_from_text(text: str) -> DocCfg | None:
         return _cfg(category=Neutral.LEGAL, description=f"legal filing in case {case_match.group(1)}")
     elif len(text) < 2600 and HARD_DRIVE_REGEX.search(text):
         return _cfg(category=Neutral.MISC, description='photo of a hard drive')
-    elif lines[0].lower() == 'valuation report':
-        cfg = _cfg(category=Neutral.FINANCE, description="valuations of Epstein's investments", is_interesting=True)
+    elif lines[0].lower().strip() == 'valuation report':
+        cfg = _cfg(category=Interesting.MONEY, description="valuations of Epstein's investments", is_interesting=True)
 
         try:
             cfg.date = str(parse(lines[1]))
@@ -61,10 +61,11 @@ def build_cfg_from_text(text: str) -> DocCfg | None:
         return cfg
 
 
-def valar_cfg(description: str = '') -> DocCfg:
+def valar_cfg(description: str = '', text: str = '') -> DocCfg:
     return _cfg(
         category=Interesting.CRYPTO,  # TODO: not really crypto?
         author=VALAR_VENTURES,
+        date='2015-06-30' if '6/30/2015' in text else '',
         description=description or f"is a fintech focused {PETER_THIEL} fund Epstein was invested in",
     )
 

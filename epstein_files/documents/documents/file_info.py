@@ -60,7 +60,7 @@ class FileInfo:
         if self.is_doj_file and self.doj_2026_dataset_id:
             return doj_2026_file_url(self.doj_2026_dataset_id, self.url_slug)
         else:
-            return epstein_media_doc_url(self.url_slug)
+            return self.url_for_id(self.url_slug)
 
     @property
     def file_size(self) -> int:
@@ -188,3 +188,8 @@ class FileInfo:
     def __str__(self) -> str:
         lines = [f"{k:>40}: {v}" for k, v in asdict(self).items() if k != 'file_id']
         return '\n'.join(lines)
+
+    @classmethod
+    def url_for_id(cls, url_slug: str) -> str:
+        """Exists to codify the choice of which site to prefer. TODO: this doesn't work for DOJ files..."""
+        return epstein_media_doc_url(url_slug)

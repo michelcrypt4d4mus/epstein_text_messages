@@ -1,7 +1,7 @@
 from rich.terminal_theme import TerminalTheme
 
 from epstein_files.util.env import args
-from epstein_files.output.sites import SiteType
+from epstein_files.output.site.sites import SiteType
 
 
 PAGE_TITLE = '   ∞ Michel de Cryptadamus ∞   '

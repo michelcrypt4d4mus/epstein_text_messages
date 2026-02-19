@@ -24,9 +24,9 @@ from epstein_files.documents.other_file import OtherFile
 from epstein_files.people.interesting_people import EMAILERS_OF_INTEREST_SET
 from epstein_files.output.rich import DEFAULT_TABLE_KWARGS, build_table, highlighter, join_texts, no_bold, styled_key_value
 from epstein_files.util.constant.strings import REDACTED
-from epstein_files.util.constant.urls import URL_SIGNIFIERS, epstein_media_doc_link_markup
+from epstein_files.util.constant.urls import URL_SIGNIFIERS
 from epstein_files.util.constants import *
-from epstein_files.util.env import args
+from epstein_files.util.env import args, site_config
 from epstein_files.util.helpers.data_helpers import (AMERICAN_TIME_REGEX, TIMEZONE_INFO, collapse_newlines,
      prefix_keys, remove_timezone, uniquify)
 from epstein_files.util.helpers.link_helper import link_text_obj
@@ -35,14 +35,14 @@ from epstein_files.util.logging import logger
 
 # Email bod regexes
 BAD_FIRST_LINE_REGEX = re.compile(r'^(>>|Grant_Smith066474"eMailContent.htm|LOVE & KISSES)$')
-BAD_LINE_REGEX = re.compile(r'^(>;?|\d{1,2}|PAGE INTENTIONALLY LEFT BLANK|Classification: External Communication|Hide caption|Importance:?\s*High|[iI,•]|[1i] (_ )?[il]|, [-,]|L\._|_filtered|.*(yiv0232|font-family:|margin-bottom:).*)$')
+BAD_LINE_REGEX = re.compile(r'^(>;?|\d{1,2}|PAGE INTENTIONALLY LEFT BLANK|Classification: External Communication|Hide caption|Importance:?\s*High|[iI,•]|[1i] (_ )?[il]|, [-,]|L\._|_filtered|si.nature.asc|.*(yiv0232|font-family:|margin-bottom:).*)$')
 BAD_SUBJECT_CONTINUATIONS = ['orwarded', 'Hi ', 'Sent ', 'AmLaw', 'Original Message', 'Privileged', 'Sorry', '---']
 FIELDS_COLON_REGEX = re.compile(FIELDS_COLON_PATTERN)
 LINK_LINE_REGEX = re.compile(f"^[>• ]*htt")
 LINK_LINE2_REGEX = re.compile(r"^[-\w.%&=/]{5,}$")
 QUOTED_REPLY_LINE_REGEX = re.compile(r'(\nFrom:(.*)|wrote:)\n', re.IGNORECASE)
 REPLY_TEXT_REGEX = re.compile(rf"^(.*?){REPLY_LINE_PATTERN}", re.DOTALL | re.IGNORECASE | re.MULTILINE)
-XML_PLIST_REGEX = re.compile(r"<\?xml version.*</(plist|xml)>", re.DOTALL)
+XML_PLIST_REGEX = re.compile(r"[<=]\?xml version.*</(plist|xml)>", re.DOTALL)
 
 # Timestamp regexes
 BAD_TIMEZONE_REGEX = re.compile(fr'\((UTC|GMT\+\d\d:\d\d)\)|{REDACTED}')
@@ -76,7 +76,7 @@ OCR_REPAIRS: dict[str | re.Pattern, str] = {
     re.compile(r"^(From|To)(: )?[_1.]{5,}", re.MULTILINE): rf"\1: {REDACTED}",  # Redacted email addresses
     # These 3 must come in this order!
     re.compile(r'([/vkT]|Ai|li|(I|7)v)rote:'): 'wrote:',
-    re.compile(r"([<>.=_HIM][<>.=_HIM14]{5,}[<>.=_HIM]|MOMMINNEMUMMIN) *(wrote:?)?"): rf"{REDACTED} \2",
+    re.compile(r"([<.=_HIM][<>.=_HIM14]{5,}[<>.=_HIM]|MOMMINNEMUMMIN) *(wrote:?)?"): rf"{REDACTED} \2",
     re.compile(r"([,<>_]|AM|PM)\n(>)? ?wrote:?"): r'\1\2 wrote:',
     # Headers
     'I nline-Images:': 'Inline-Images:',
@@ -196,16 +196,6 @@ class Email(Communication):
         return [a.strip() for a in (self.header.attachments or '').split(';')]
 
     @property
-    def border_style(self) -> str:
-        """Color emails from epstein to others with the color for the first recipient."""
-        if self.author == JEFFREY_EPSTEIN and len(self.recipients) > 0:
-            style = get_style_for_name(self.recipients[0])
-        else:
-            style = self.author_style
-
-        return no_bold(style)
-
-    @property
     def config(self) -> EmailCfg | None:
         """Configured timestamp, if any."""
         if self.file_info.is_local_extract_file:
@@ -281,14 +271,13 @@ class Email(Communication):
 
     @property
     def subheader(self) -> Text:
-        txt = Text(f"OCR text of ", SUBHEADER_STYLE).append('fwded article' if self.is_fwded_article else 'email')
-        txt.append(' from ').append(self.author_txt)
+        email_type = 'fwded article' if self.is_fwded_article else 'email'
+        author_txt = self.author_txt
 
         if self.config and self.config.is_attribution_uncertain:
-            txt.append(f" {QUESTION_MARKS}", style=self.author_style)
+            author_txt += Text(f" {QUESTION_MARKS}", style=self.author_style)
 
-        txt.append(' to ').append(self.recipients_txt())
-        return txt.append(highlighter(f" probably sent at {self.timestamp}"))
+        return site_config.email_subheader(email_type, author_txt, self.recipients_txt(), self.timestamp)
 
     @property
     def subject(self) -> str:

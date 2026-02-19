@@ -253,6 +253,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"CCP",
             r"Chin(a|e?se)(?! Daily)",
             r"DPRK",
+            r"Fangzhi",
             r"Global Times",
             r"Guo",
             r"Hong",
@@ -289,6 +290,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(BRYAN_BISHOP, "executive at LedgerX and Polymath fund"),
             Contact(DONALD_NORMAN, f"co-founder of early British crypto exchange Intersango with {AMIR_TAAKI}"),
             Contact(ED_BOYLE, f"Medici Bank", r"Ed\s*Boy(el|le)"),
+            Contact(FRANCESCA_HALL, f"assistant to {AUSTIN_HILL}"),
             Contact(JEFFREY_WERNICK, "former COO of Parler, involved in numerous crypto companies like Bitforex"),
             Contact(JEREMY_RUBIN, "developer/researcher", r"Jeremy\s*Rubin"),
             Contact(
@@ -336,7 +338,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Kathryn\s*Haun",
             r"Kraken",
             r"Kyara(\s*Investments?)?(\s*[IV]+)?",  # crypto vehicle with Joi Ito
-            r"Layer\s+(1|One)",
+            r"Layer\s*(1|One)",
             r"LedgerX",
             r"Libra",
             r"Madars",
@@ -357,6 +359,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Steve\s*Waterhouse",
             r"Tether",
             r"virtual\s*(currenc(ies|y)|money)",
+            r"wash\s*trad(es?|ing)",
             r"Wire\s*ca\n?rd",
             r"Wladimir( van der Laan)?",  # bitcoin dev
             r"ZCash",
@@ -700,10 +703,13 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Chase\s*Bank",
             r"Conrad B",
             r"Credit\s*Suisse",
+            r"DAF",
             r"DB",
             r"Deutsche?\s*(Asset|Bank)",
+            r"donor\s*advised\s*fund",
             r"Electron\s*Capital\s*(Partners)?",
             r"Fenner",
+            r"Fortress(\s*Investment)?\s*Group",
             r"FRBNY",
             r"Goldman(\s*Sachs)",
             r"GRAT",
@@ -981,6 +987,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         patterns=[
             r"BOJ",
             r"(Bank\s+of\s+)?Japan(ese)?",
+            r"Digital\s*Garage",  # Joi Ito Japan co.
             r"jpy?(?! Morgan)",
             r"SG",
             r"Singapore",
@@ -1362,7 +1369,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         label=PUBLICIST,
         style='orange_red1',
         contacts=[
-            Contact(AL_SECKEL, "Isabel Maxwell's husband, Mindshift conference, fell off a cliff"),
+            Contact(AL_SECKEL, "Isabel Maxwell's husband, Mindshift conference, mysterious death"),
             Contact('Barnaby Marsh', "co-founder of philanthropy services company Saint Partners"),
             Contact(CHRISTINA_GALBRAITH, f"{JEFFREY_EPSTEIN} VI Foundation Media/PR, worked with {TYLER_SHEARS}"),
             Contact(IAN_OSBORNE, f"{IAN_OSBORNE} & Partners reputation repairer hired in 2011", fr"{IAN_OSBORNE}|lan Osbome"),
@@ -1561,6 +1568,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Myan?mar",
             r"New\s*Zealand",
             r"Philippines",
+            r"Sam ?sung",
             r"South\s*Korean?",
             r"Tai(pei|wan)",
             r"Thai(land)?",
@@ -1585,6 +1593,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(REID_HOFFMAN, "PayPal mafia member, founder of LinkedIn"),
             Contact('Reuben Kobulnik', THIELS_VALAR),
             Contact(STEVEN_SINOFSKY, "a16z, ex-Microsoft, loves bitcoin", r"Steven Sinofsky?"),
+            Contact('Talia Parnass', f"{PETER_THIEL}'s assistant"),
             Contact(VALAR_VENTURES, f"{PETER_THIEL} affiliated fintech venture fund", r"V[ae]lar\s*(Global\s*Fund|Ventures)?"),
             Contact(VINCENZO_IOZZO, "CEO of the identity-security company SlashID", r"Vincenzo [IL]ozzo"),
             Contact(ZUBAIR_KHAN, f"Tranchulas cybersecurity, InsightsPod founder, Islamabad / Dubai, friend of {MASHA_DROKOVA}"),
@@ -1624,10 +1633,12 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"SpaceX",
             r"Spotify",
             r"Tencent",
+            r"thielcapital",
             r"Tim\s*Ferriss?",
             r"Valar(\s*(Global\s*Fund|Ventures))?",
             r"Vision\s*Fund",
             r"Wearality(\s*Corporation)?",
+            r"WhatsApp",
             r"WikiLeak(ed|s)",
         ],
     ),
@@ -1702,15 +1713,16 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         label='victim',
         style=VICTIM_COLOR,
         contacts=[
-            Contact(PAULA, "ex-girlfriend who works in opera now", r"^Paula( Heil Fisher)?$")
+            Contact(PAULA, "ex-girlfriend who works in opera now", r"^Paula( Heil Fisher)?$"),
         ],
         patterns=[
             r"child\s*pornography",
             r"(David\s*)?Bo[il]es(,?\s*Schiller( & Flexner)?)?",
-            r"Ellaina\s*Astras?",
+            r"Ellaina\s*As?tras?",
             r"(Gloria\s*)?Allred",
             r"(Jane|Tiffany)\s*Doe",
             r"Katie\s*Johnson",
+            r"Midget stripper",
             r"Minor\s*Victim",
             r"pedophile",
             r"Stephanie\s*Clifford",
@@ -1879,9 +1891,13 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         label='quoted_reply_line',
         style='dim',
         patterns=[
-            REPLY_REGEX.pattern, r"^(> )?wrote:$",
+            REPLY_REGEX.pattern,
+            r"^(> )?wrote:$",
             r"CONFIDENTIAL FOR ATTORNEY'S EYES ONLY(\nDO NOT COPY)?",
             r"PRIVILEGED ?- ?ATTORNEY WORK.*(\nCONFIDENTIAL - SUBJECT TO.*)?",
+            r"Managing Partner - Crypto Currency Partners",  # brock pierce
+            r"Please use this email for.*general Media Lab.*",  # Joi Ito
+            r"-Austin\nAustin Hill - B..dder.*(\n.*B92ED3E3)?",
         ],
     ),
     HighlightedText(

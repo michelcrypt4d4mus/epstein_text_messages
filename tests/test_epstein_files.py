@@ -70,7 +70,7 @@ def test_other_files_author_count(epstein_files):
 
 
 def test_other_files_categories(epstein_files):
-    assert len([f for f in epstein_files.other_files if not f.category]) == 2236
+    assert len([f for f in epstein_files.other_files if not f.category]) == 2237
 
 
 ################################################
@@ -92,8 +92,8 @@ def test_email_recipient_counts(epstein_files):
 def test_interesting_emails(epstein_files):
     interesting_email_count = len([e for e in epstein_files.unique_emails if e.is_interesting])
     uninteresting_emails_count = len([e for e in epstein_files.unique_emails if e.is_interesting is False])
-    assert interesting_email_count == 863
-    assert uninteresting_emails_count == 172
+    assert interesting_email_count == 827
+    assert uninteresting_emails_count == 211
 
 
 def test_signature_substitutions(epstein_files):

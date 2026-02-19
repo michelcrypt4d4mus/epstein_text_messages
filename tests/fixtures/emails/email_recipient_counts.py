@@ -17,7 +17,7 @@ EMAIL_RECIPIENT_COUNTS = {
     "Allen West": 1,
     AMANDA_ENS: 1,
     'Amanda Kirby': 1,
-    AMIR_TAAKI: 5,
+    AMIR_TAAKI: 4,
     ANAS_ALRASHEED: 6,
     ANDREW_FARKAS: 7,
     "Andrew Friendly": 1,

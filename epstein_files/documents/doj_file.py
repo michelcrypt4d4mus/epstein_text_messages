@@ -11,7 +11,7 @@ from rich.text import Text
 from epstein_files.documents.documents.doc_cfg import DebugDict
 from epstein_files.documents.emails.constants import DOJ_EMAIL_OCR_REPAIRS, FALLBACK_TIMESTAMP
 from epstein_files.documents.other_file import OtherFile
-from epstein_files.output.left_bar_panel import LeftBarPanel
+from epstein_files.output.layout_elements.left_bar_panel import LeftBarPanel
 from epstein_files.output.rich import RAINBOW, highlighter, wrap_in_markup_style
 from epstein_files.util.logging import logger
 from epstein_files.util.helpers.data_helpers import prefix_keys
@@ -235,10 +235,11 @@ class DojFile(OtherFile):
         return self._border_style
 
     @property
-    def empty_file_msg(self) -> RenderableType:
+    def empty_file_txt(self) -> Text | None:
         """One line of linked text to show if this file doesn't seem to have any OCR text."""
-        link_txt = Text('').append(Text.from_markup(super().external_link_markup))
-        return Padding(link_txt.append(f" is a {SINGLE_IMAGE_NO_TEXT}..."), (0, 0, 0, 1))
+        if self.is_empty or self.is_bad_ocr:
+            link_txt = Text('').append(Text.from_markup(super().external_link_markup))
+            return link_txt.append(f" is a {SINGLE_IMAGE_NO_TEXT}")
 
     @property
     def external_link_markup(self) -> str:

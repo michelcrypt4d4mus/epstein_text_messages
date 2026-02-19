@@ -65,5 +65,5 @@ def local_extract_file_name(file_stem) -> str:
 
 def assert_higher_counts(actual: Mapping[str | None, int], expected: Mapping[str | None, int]):
     for key, count in actual.items():
-        assert key in expected
+        assert key in expected, f"{key} with {count} is in actual results but not in expected"
         assert count >= expected[key], f"Expected {expected[key]} for {key}, found {count}"

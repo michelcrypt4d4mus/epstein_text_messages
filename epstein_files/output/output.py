@@ -18,7 +18,7 @@ from epstein_files.people.interesting_people import EMAILERS_TO_PRINT
 from epstein_files.people.person import Person
 from epstein_files.util.constant.html import CONSOLE_HTML_FORMAT, HTML_TERMINAL_THEME, PAGE_TITLE
 from epstein_files.util.constant.names import *
-from epstein_files.output.sites import EMAILERS_TABLE_PNG_PATH
+from epstein_files.output.site.sites import EMAILERS_TABLE_PNG_PATH
 from epstein_files.util.constant.strings import AUTHOR
 from epstein_files.util.env import args
 from epstein_files.util.helpers.data_helpers import dict_sets_to_lists
@@ -60,19 +60,16 @@ def print_doj_files(epstein_files: EpsteinFiles) -> list[DojFile | Email]:
     last_was_empty = False
 
     for doj_file in epstein_files.doj_files:
-        if isinstance(doj_file, DojFile) and (doj_file.is_empty or doj_file.is_bad_ocr):
-            console.print(doj_file.empty_file_msg, style='dim')
+        if doj_file.suppressed_txt:
+            doj_file.print()
             last_was_empty = True
-            continue
-        elif doj_file.is_duplicate:
-            console.print(doj_file.duplicate_file_txt_padded)
             continue
 
         if last_was_empty:
             console.line()
 
-        console.print(doj_file)
         last_was_empty = False
+        console.print(doj_file)
         printed_doj_files.append(doj_file)
 
     return printed_doj_files

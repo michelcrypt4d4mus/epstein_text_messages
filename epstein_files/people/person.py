@@ -23,7 +23,7 @@ from epstein_files.people.interesting_people import SPECIAL_NOTES
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constant.urls import *
 from epstein_files.util.constants import *
-from epstein_files.util.env import args
+from epstein_files.util.env import args, site_config
 from epstein_files.util.helpers.data_helpers import days_between, flatten, uniquify, without_falsey
 
 ALT_INFO_STYLE = 'medium_purple4'
@@ -318,29 +318,29 @@ class Person:
 
     def print_emails(self) -> list[Email]:
         """Print complete emails to or from a particular 'author'. Returns the Emails that were printed."""
+        last_email_was_suppressed = False
         print_centered(self.info_panel)
 
-        if not args.mobile:
+        if site_config.show_emailer_tables:
             self.print_emails_table()
 
-        if self.name in SPECIAL_NOTES:
+        if self.category == JUNK:
+            logger.warning(f"Not printing junk emailer '{self.name}'")  # Junk emailers only get a table
+            return self._printable_emails
+        elif self.name in SPECIAL_NOTES:
             print_centered(Padding(Panel(SPECIAL_NOTES[self.name], expand=True, padding=(1, 3), style='reverse'), (0, 0, 2, 0)))
 
-        last_printed_email_was_duplicate = False
+        for email in self._printable_emails:
+            if email.suppressed_txt:
+                email.print()
+                last_email_was_suppressed = True
+                continue
 
-        if self.category == JUNK:
-            logger.warning(f"Not printing junk emailer '{self.name}'")
-        else:
-            for email in self._printable_emails:
-                if email.is_duplicate:
-                    console.print(email.duplicate_file_txt_padded)
-                    last_printed_email_was_duplicate = True
-                else:
-                    if last_printed_email_was_duplicate:
-                        console.line()
+            if last_email_was_suppressed:
+                console.line()
 
-                    console.print(email)
-                    last_printed_email_was_duplicate = False
+            last_email_was_suppressed = False
+            email.print()
 
         return self._printable_emails
 
@@ -380,14 +380,21 @@ class Person:
         all_emails = Person.emails_from_people(people)
         email_authors = [p for p in people if p.emails_by and p.name]
         attributed_emails = [email for email in all_emails if email.author]
-        footer = f"(identified {len(email_authors)} authors of {len(attributed_emails):,}" \
-                 f" out of {len(all_emails):,} emails, {len(all_emails) - len(attributed_emails)} still unknown)"
 
         if is_selection:
             title = Text(f"{EMAILER_INFO_TITLE} for the Highlighted Names Only (", style=TABLE_TITLE_STYLE)
             title.append(THE_OTHER_PAGE_TXT).append(" has the rest)")
         else:
             title = f"{EMAILER_INFO_TITLE} in Chronological Order Based on Timestamp of First Email"
+
+        footer = f"(identified {len(email_authors)} authors of {len(attributed_emails):,}" \
+                 f" out of {len(all_emails):,} emails, {len(all_emails) - len(attributed_emails)} still unknown"
+
+        if args.all_emails:
+            footer += ')'
+        else:
+            num_uninteresting = len([p for p in people if p.is_uninteresting])
+            footer += f", {num_uninteresting} uninteresting people not shown, check all emails page for details)"
 
         table = build_table(title, caption=footer)
         table.add_column('First')
@@ -403,6 +410,9 @@ class Person:
         grey_idx = 0
 
         for person in people:
+            if person.is_uninteresting:
+                continue
+
             earliest_email_date = person.earliest_email_date
             is_on_page = False if show_epstein_total else person.name in highlighted_names
             year_months = (earliest_email_date.year * 12) + earliest_email_date.month

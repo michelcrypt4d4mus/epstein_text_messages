@@ -9,7 +9,7 @@ from epstein_files.output.rich import TEXT_LINK, highlighter
 from epstein_files.util.constant.names import (ANTHONY_SCARAMUCCI, JEFFREY_EPSTEIN, STEVE_BANNON,
      UNKNOWN, Name, extract_last_name)
 from epstein_files.util.constant.strings import TIMESTAMP_DIM
-from epstein_files.util.helpers.data_helpers import AMERICAN_DATE_FORMAT, iso_timestamp
+from epstein_files.util.helpers.data_helpers import AMERICAN_DATE_FORMAT
 from epstein_files.util.logging import logger
 
 EPSTEIN_TEXTERS = ['e:', 'e:jeeitunes@gmail.com']
@@ -57,8 +57,10 @@ class TextMessage:
         return datetime.strptime(self.timestamp_str, AMERICAN_DATE_FORMAT)
 
     def timestamp_txt(self) -> Text:
+        from epstein_files.util.env import site_config
+
         try:
-            timestamp_str = iso_timestamp(self.parse_timestamp())
+            timestamp_str = site_config.format_text_msg_time(self.parse_timestamp())
         except Exception as e:
             logger.info(f"Failed to parse timestamp for {self}")
             timestamp_str = self.timestamp_str
