@@ -180,13 +180,18 @@ def test_academia(epstein_files):
     assert speech.config.complete_description == 'speech at first inaugural Cornell Carl Sagan Lecture by Lord Martin Rees'
 
 
-def test_books(epstein_files):
-    book = epstein_files.get_id('010912', required_type=OtherFile)
+
+@pytest.mark.parametrize(
+    "id,description",
+    [
+        pytest.param('010912', "book titled \"Free Growth and Other Surprises\" (draft) by Gordon Getty"),
+        pytest.param('018438', 'book titled "The S&M Feminist" by Clarisse Thorn'),
+    ],
+)
+def test_books(get_other_file, id, description):
+    book = get_other_file(id)
     assert book.config.category == Uninteresting.BOOK
-    assert book.config.complete_description == "book titled \"Free Growth and Other Surprises\" (draft) by Gordon Getty"
-    book = epstein_files.get_id('018438', required_type=OtherFile)
-    assert book.config.category == Uninteresting.BOOK
-    assert book.config.complete_description == 'book titled "The S&M Feminist" by Clarisse Thorn'
+    assert book.config.complete_description == description
 
 
 def test_props_to_copy(get_email):
