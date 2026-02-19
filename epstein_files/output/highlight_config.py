@@ -1272,7 +1272,6 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Hamad\s*bin\s*Jassim",
             r"Hamas",
             r"Hezbollah",
-            r"HBJ",
             r"Hourani",
             r"Houthi",
             r"Imran\s+Khan",
@@ -1295,6 +1294,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Marra[hk]e[cs]h",
             r"MB(N|S|Z)",
             r"Mid(dle)?\s*East(ern)?",
+            r"MJ",
             r"Mohammed\s+bin\s+Salman",
             r"Morocc(an|o)",
             r"Mubarak",
@@ -1812,7 +1812,8 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             )
         ],
         category=MIDEAST,
-        style='spring_green1'
+        style='spring_green1',
+        patterns=[r"HBJ"],
     ),
     HighlightedNames(
         contacts=[Contact(KATHRYN_RUEMMLER, "former Obama legal counsel", r"Kathr?yn? Ruemmler?")],

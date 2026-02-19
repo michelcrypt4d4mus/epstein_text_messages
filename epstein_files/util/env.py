@@ -44,7 +44,7 @@ output.add_argument('--email-timeline', action='store_true', help='print a table
 output.add_argument('--emailers-info', '-ei', action='store_true', help='write a .png of the eeailers info table')
 output.add_argument('--json-files', action='store_true', help='pretty print all the raw JSON data files in the collection and exit')
 output.add_argument('--json-metadata', '-jm', action='store_true', help='dump JSON metadata for all files and exit')
-output.add_argument('--mobile', '-m', action='store_true', help='build a mobile version of the site')
+output.add_argument('--mobile', '-mob', action='store_true', help='build a mobile version of the site')
 output.add_argument('--output-chrono', '-oc', action='store_true', help='output curated files of all types in chronological order')
 output.add_argument('--output-doj-files', '-od', action='store_true', help='generate the DOJ files from 2026-01-30')
 output.add_argument('--output-emails', '-oe', action='store_true', help='generate emails section')
@@ -129,8 +129,10 @@ if is_html_script:
             args._site_type = SiteType.OTHER_FILES_TABLE
         elif args.email_timeline:
             args._site_type = SiteType.CHRONOLOGICAL_EMAILS
-        elif args.mobile:  # must come before CURATED_CHRONOLOGICAL
-            args._site_type = SiteType.MOBILE
+        elif args.json_metadata:
+            args._site_type = SiteType.JSON_METADATA
+        elif args.mobile:
+            args._site_type = SiteType.MOBILE  # NOTE: mobile must come before CURATED_CHRONOLOGICAL!
         elif args.output_chrono:
             args._site_type = SiteType.CURATED_CHRONOLOGICAL
         elif args.output_doj_files:

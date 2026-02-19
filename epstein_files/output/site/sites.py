@@ -1,5 +1,5 @@
 """
-HTML file paths and URLs for files built by epstein_generate.
+HTML file paths and URLs for files built by `epstein_generate`.
 """
 from enum import auto, StrEnum
 from pathlib import Path
@@ -24,6 +24,7 @@ GH_MASTER_URL = f"{GH_PROJECT_URL}/blob/master"
 ATTRIBUTIONS_URL = f'{GH_MASTER_URL}/epstein_files/util/constants.py'
 EXTRACTS_BASE_URL = f'{GH_MASTER_URL}/emails_extracted_from_legal_filings'
 BASE_URL = f"{GH_PAGES_BASE_URL}/{GH_REPO_NAME}"
+TO_FROM = 'to/from'
 
 
 class SiteType(StrEnum):
@@ -86,7 +87,7 @@ HTML_BUILD_FILENAMES = {
     SiteType.CURATED_CHRONOLOGICAL: f"curated_chronological.html",
     SiteType.DOJ_FILES:             f'doj_2026-01-30_non_email_files.html',
     SiteType.GROUPED_EMAILS:        f'emails_grouped_by_counterparty.html',
-    SiteType.JSON_METADATA:         f'file_metadata_{EPSTEIN_FILES_NOV_2025}.json',
+    SiteType.JSON_METADATA:         f'metadata.json',
     SiteType.MOBILE:                f'curated_mobile.html',
     SiteType.OTHER_FILES_TABLE:     f'other_files_table.html',
     SiteType.TEXT_MESSAGES:         f'text_messages_{EPSTEIN_FILES_NOV_2025}.html',
@@ -106,7 +107,29 @@ SITE_DESCRIPTIONS = {
     SiteType.OTHER_FILES_TABLE:     f"other:files that are not emails or texts",
     SiteType.WORD_COUNT:            f"word count:of Epstein's communications",
     SiteType.DOJ_FILES:             f"doj files:raw OCR text {DOJ_2026_TRANCHE}",
-    SiteType.JSON_METADATA:         f"metadata:attribution reasons, categories",
+    SiteType.JSON_METADATA:         f"metadata:author attribution explanations",
+}
+
+
+###########################################
+########  Internal sections links  ########
+###########################################
+SELECTIONS_FROM = 'Selections from '
+HIS_EMAILS = 'His Emails'
+HIS_TEXT_MESSAGES = 'His Text Messages'
+FILEs_THAT_ARE_NEITHER_EMAILS_NOR = 'Files That Are Neither Emails Nor Text Messages'
+
+
+class PageSections(StrEnum):
+    EMAILS = auto()
+    OTHER_FILES = auto()
+    TEXT_MESSAGES = auto()
+
+# Search terms that take you to the desired section via magic URL comment arg
+SECTION_ANCHORS = {
+    PageSections.EMAILS: SELECTIONS_FROM + HIS_EMAILS,
+    PageSections.TEXT_MESSAGES: SELECTIONS_FROM + HIS_TEXT_MESSAGES,
+    PageSections.OTHER_FILES: FILEs_THAT_ARE_NEITHER_EMAILS_NOR,
 }
 
 

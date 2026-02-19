@@ -17,7 +17,6 @@ from epstein_files.util.constant.names import OTHER_NAMES
 from epstein_files.util.env import args
 from epstein_files.util.helpers.data_helpers import ALL_NAMES, flatten, sort_dict
 from epstein_files.util.logging import logger
-from epstein_files.util.timer import Timer
 
 FIRST_AND_LAST_NAMES = flatten([n.split() for n in ALL_NAMES])
 FIRST_AND_LAST_NAMES = [n.lower() for n in FIRST_AND_LAST_NAMES] + OTHER_NAMES
@@ -189,9 +188,7 @@ class WordCount:
         yield f"Showing {len(word_txts):,} words appearing at least {MIN_COUNT_CUTOFF} times (out of {len(self.count):,} words)."
 
 
-def write_word_counts_html() -> None:
-    timer = Timer()
-    epstein_files = EpsteinFiles.get_files(timer)
+def print_word_counts(epstein_files: EpsteinFiles) -> None:
     email_subjects: set[str] = set()
     word_count = WordCount()
     # Remove dupes, junk mail, and fwded articles from emails

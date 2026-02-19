@@ -14,6 +14,7 @@ from rich.text import Text
 from epstein_files.output.layout_elements.demi_table import build_demi_table
 from epstein_files.output.highlight_config import HIGHLIGHTED_NAMES
 from epstein_files.output.rich import *
+from epstein_files.output.site.sites import SECTION_ANCHORS
 from epstein_files.output.site.site_config import MOBILE_WARNING
 from epstein_files.util.constant.names import UNKNOWN
 from epstein_files.util.constant.strings import *
@@ -32,6 +33,7 @@ SECTION_HEADER_STYLE = 'bold black on color(146)'
 
 SITE_GLOSSARY_MSG = f"The following views of the underlying selection of Epstein Files are available:"
 YOU_ARE_HERE = Text('«').append('you are here', style='bold khaki1 blink').append('»')
+SECTION_LINK_MSG = 'jump to a different section of this page'
 SUBTITLE_WIDTH = 110
 TITLE_WIDTH = 50
 
@@ -39,6 +41,11 @@ TITLE_WIDTH = 50
 COLOR_KEYS = [
     Text(highlight_group.label.replace('_', ' '), style=highlight_group.style)
     for highlight_group in sorted(HIGHLIGHTED_NAMES, key=lambda hg: hg.label)
+]
+
+SECTION_LINKS = [
+    link_text_obj(internal_link_url(anchor), section_name, 'indian_red')
+    for section_name, anchor in SECTION_ANCHORS.items()
 ]
 
 
@@ -90,22 +97,22 @@ def print_section_links(style: str = '') -> None:
     print_centered(build_demi_table(SECTION_LINK_MSG, SECTION_LINKS), style=style)
 
 
-def print_section_summary_table(table: Table) -> None:
-    """Precede it with internal section links if it's the curated page."""
-    print_centered(Padding(table, (2, 0, 2, 0)))
-
-
 def print_title_page_top() -> None:
     """Top half of the title page."""
     _print_page_title()
 
     # panel with links to all the sites
     links_txts = [_bulleted_site_link(site_type, link) for site_type, link in SiteType.all_links().items()]
-    max_link_len = max(len(link.plain) for link in links_txts)
-    num_link_indent_spaces = max(2, int((len(SITE_GLOSSARY_MSG) - max_link_len) / 2)) - 2
+
+    if args.mobile:
+        num_link_indent_spaces = 0
+    else:
+        max_link_len = max(len(link.plain) for link in links_txts)
+        num_link_indent_spaces = max(2, int((len(SITE_GLOSSARY_MSG) - max_link_len) / 2)) - 2
+
     sites_txt = Text('').append(SITE_GLOSSARY_MSG, style='wheat4 bold').append('\n\n')
     sites_txt.append(indent_txt(join_texts(links_txts, '\n'), num_link_indent_spaces))
-    print_centered(Panel(sites_txt, border_style='dim', padding=(1, 5)))
+    print_centered(Panel(sites_txt, border_style='dim', padding=(1, site_config.site_glossary_horizontal_padding)))
     console.line()
 
     # warning and internal links
@@ -122,12 +129,9 @@ def print_title_page_bottom(epstein_files: 'EpsteinFiles') -> None:
     console.line()
     print_color_key()
     print_centered(f"(if you think there's an attribution error or can deanonymize an {UNKNOWN} contact {CRYPTADAMUS_TWITTER})", 'grey46')
-    print_centered(parenthesize('note this site is based on the government provided OCR text which is not always the greatest'), 'grey23')
     print_centered(f"(thanks to {link_markup('https://x.com/ImDrinknWyn', '@ImDrinknWyn', 'dodger_blue3')} + others for help attributing redacted emails)")
-    print_centered_link(SiteType.get_url(SiteType.JSON_METADATA), "(explanations of author attributions)", style='magenta')
     _print_external_links()
     console.line()
-    print_subtitle_panel('Files in Chronological Order')
 
 
 def _bulleted_site_link(site_type: SiteType, link: Text) -> Text:
@@ -200,7 +204,7 @@ def _print_page_title(width: int = TITLE_WIDTH) -> None:
     if not args.mobile:
         print_centered_link(SUBSTACK_URL, SUBSTACK_URL.removeprefix('https://'), style=f'{SUBSTACK_POST_LINK_STYLE} dim')
 
-    print_centered(join_texts(CRYPTADAMUS_SOCIAL_LINKS, join='  /  '))
+    print_centered(join_texts(CRYPTADAMUS_SOCIAL_LINKS, join=site_config.social_link_separator))
     console.line()
 
 

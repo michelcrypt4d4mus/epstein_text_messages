@@ -16,7 +16,7 @@ from rich.text import Text
 
 from epstein_files.epstein_files import EpsteinFiles, document_cls
 from epstein_files.documents.document import INFO_PADDING, Document
-from epstein_files.documents.documents.word_count import write_word_counts_html
+from epstein_files.documents.documents.word_count import print_word_counts
 from epstein_files.documents.doj_file import DojFile
 from epstein_files.documents.email import Email
 from epstein_files.documents.messenger_log import MessengerLog
@@ -46,6 +46,9 @@ def epstein_generate() -> None:
     else:
         print_title_page_bottom(epstein_files)
 
+        if args.output_chrono:
+            print_subtitle_panel('Files in Chronological Order')
+
     if args.colors_only:
         exit()
 
@@ -53,8 +56,11 @@ def epstein_generate() -> None:
         printed_docs = print_curated_chronological(epstein_files)
         timer.log_section_complete('Document', epstein_files.unique_documents, printed_docs)
     elif args.output_word_count:
-        write_word_counts_html()
+        print_word_counts(epstein_files)
         timer.print_at_checkpoint(f"Finished counting words")
+    elif args.output_doj_files:
+        printed_doj_files = print_doj_files(epstein_files)
+        timer.log_section_complete('DojFile', epstein_files.doj_files, printed_doj_files)
     else:
         if args.output_emails:
             printed_emails = print_emails_section(epstein_files)
@@ -70,10 +76,6 @@ def epstein_generate() -> None:
         if args.output_other:
             printed_files = print_other_files_section(epstein_files)
             timer.log_section_complete('OtherFile', epstein_files.other_files, printed_files)
-
-        if args.output_doj_files:
-            printed_doj_files = print_doj_files(epstein_files)
-            timer.log_section_complete('DojFile', epstein_files.doj_files, printed_doj_files)
 
     write_html(args.build)
     logger.warning(f"Total time: {timer.seconds_since_start_str()}")
