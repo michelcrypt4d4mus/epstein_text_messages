@@ -225,7 +225,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Colony\s*Capital",
             r"Gruterite",
             r"Island\s*Capital\s*Group(,?\s*LLC)?",
-            r"Johan\s*Eliasch",
+            r"Johann?\s*Eliasc?h",
             r"((John|Patricia)\s*)?Kluge",
             r"Mar[ck]\s+Rich",
             r"Montilla",  # Junkermann

@@ -1425,7 +1425,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00999549', description=f"{JOI_ITO} and {JEREMY_RUBIN} meet {LARRY_SUMMERS} to discuss bitcoin", is_interesting=True),
     EmailCfg(id='EFTA01752601', description=f"{JOI_ITO} and Epstein name their new fund Kyara"),
     EmailCfg(id='EFTA00277089', author=USANYS, recipients=[USANYS], description="tip for the FBI / DOJ that Swedish billionaire Johan Eliasch may be connected to Epstein's crimes", duplicate_ids=['EFTA00151184']),
-    EmailCfg(id='EFTA00773139', description="Epstein calls Swedish billionaire Johan Eliasch \"not the brightest bulb\""),
+    EmailCfg(id='EFTA00773139', description="Epstein calls Swedish billionaire Johan Eliasch \"not the brightest bulb\"", truncate_to=1000),
     EmailCfg(id='EFTA02671523', description=f"Jones is former Google chief technology advocate / CEO of Epstein investment Wearality"),
     EmailCfg(id='EFTA00080250', description=f"{LEON_BLACK} / Rothschild Group {DEUTSCHE_BANK} transactions", is_interesting=True),
     EmailCfg(id='EFTA01013266', description=f"{MARIA_PRUSAKOVA}'s {CRYPTO_PR_LAB} request for payment for Davos", is_interesting=True),
