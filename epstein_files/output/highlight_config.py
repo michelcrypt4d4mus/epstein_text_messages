@@ -205,6 +205,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(NICOLE_JUNKERMANN, f"ex-model, NJF Capital, investor in Revolut, online poker, Carbyne w/{EHUD_BARAK}", r"(Nicole\s*)?Junkermann?"),
             Contact(GORDON_GETTY, "heir to oil tycoon J. Paul Getty"),
             Contact('Philip Kafka', f"president of Prince Concepts (and son of {TERRY_KAFKA}?)"),
+            Contact('Reza Bundy', f"founder of IronPlanet"),
             Contact(ROBERT_LAWRENCE_KUHN, "investment banker, China expert", r"Robert\s*(Lawrence)?\s*Kuhn"),
             Contact(TERRY_KAFKA, "CEO of Impact Outdoor (highway billboards)", r"Terry Kafka?"),
             Contact(TOM_PRITZKER, "chairman of The Pritzker Organization and Hyatt Hotels")

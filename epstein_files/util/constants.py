@@ -1353,6 +1353,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA01915234', description='discussion of crypto regulations', is_interesting=True),
     EmailCfg(id='EFTA01917402', description=f'discussion of Epstein investment in Blockstream funneled through {JOI_ITO}', is_interesting=True),
     EmailCfg(id='EFTA02483194', description=f"discussion of {GANBAT_CHULUUNKHUU}'s arrest", is_interesting=True),
+    EmailCfg(id='EFTA01013360', description='Reza Bundy is the founder of IronPlanet'),
     EmailCfg(id='EFTA00637023', description=f"discussion of getting around laws against laundering money in places like Myanmar and Mongolia"),
     EmailCfg(id='EFTA02601259', description=f"discussion of investments hidden through {JOI_ITO}"),
     EmailCfg(id='EFTA01004753', description=f"founder of Layer1 is the only guy in crypto who doesn't want to meet Epstein"),
