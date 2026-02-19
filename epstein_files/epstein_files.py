@@ -2,17 +2,20 @@ import gzip
 import json
 import pickle
 import re
+import sys
 from collections import defaultdict
 from dataclasses import dataclass, field
 from datetime import datetime
 from pathlib import Path
 from typing import Mapping, Sequence, Type, cast
 
+from rich.prompt import Confirm
 from rich.table import Table
 from yaralyzer.util.helpers.interaction_helper import ask_to_proceed
 
 from epstein_files.documents.document import Document
 from epstein_files.documents.documents.doc_cfg import EMAIL_PROPS_TO_COPY, PROPS_TO_COPY, Metadata
+from epstein_files.documents.documents.manual_config import create_configs
 from epstein_files.documents.documents.search_result import SearchResult
 from epstein_files.documents.doj_file import DojFile
 from epstein_files.documents.email import Email
@@ -285,12 +288,15 @@ class EpsteinFiles:
         current_docs = self._docs_by_id()
         self.file_paths = all_txt_paths()
         new_paths = [p for p in self.file_paths if extract_file_id(p) not in current_docs]
+        new_docs = self._load_file_paths(new_paths)
 
-        if not new_paths:
+        if not new_docs:
             logger.warning(f"No new files found, doing nothing.")
             return
+        elif create_configs(new_docs):
+            sys.exit()  # Exit if new configs were created
 
-        self._finalize_new_docs_if_approved(self._load_file_paths(new_paths))
+        self._finalize_new_docs_if_approved(new_docs)
 
     def reload_doj_files(self) -> None:
         """Reload only the DOJ PDF extracts (keep HOUSE_OVERSIGHT stuff unchanged)."""

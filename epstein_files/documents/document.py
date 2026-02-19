@@ -391,14 +391,18 @@ class Document:
         msg = (msg + separator) if msg else ''
         self.log(f"{msg}First {n} lines:\n\n{self.top_lines(n)}\n", level)
 
-    def print(self) -> None:
+    def print(self, whole_file: bool = False) -> None:
         """Print this object for some suppression message."""
         if self.is_attachment:
-            pass
-        if (skipped_file_txt := self.suppressed_txt):
+            return
+        elif (skipped_file_txt := self.suppressed_txt):
             console.print(Padding(skipped_file_txt, SKIPPED_FILE_MSG_PADDING))
-        else:
-            console.print(self)
+            return
+
+        old_whole_file_arg = args.whole_file
+        args.whole_file = whole_file
+        console.print(self)
+        args.whole_file = old_whole_file_arg
 
     def raw_text(self) -> str:
         """Reload the raw data from the underlying file and return it."""
@@ -443,7 +447,7 @@ class Document:
             for k, v in self.config.props_to_copy.items():
                 setattr(self, k, v)
 
-    def _debug_dict(self) -> DebugDict:
+    def _debug_dict(self, as_txt: bool = False) -> DebugDict | Text:
         """Merge information about this document from config, file info, etc."""
         config_info = self.config.truthy_props if self.config else {}
         file_info = self.file_info.as_dict
@@ -457,7 +461,7 @@ class Document:
         props = self._debug_props()
         props.update(prefix_keys(type(self.config).__name__, config_info))
         props.update(prefix_keys(underscore(type(self.config).__name__), file_info))
-        return props
+        return styled_dict(props) if as_txt else props
 
     def _debug_props(self) -> DebugDict:
         """Collects props of this object only (not the config or locations)."""

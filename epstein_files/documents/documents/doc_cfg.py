@@ -212,6 +212,10 @@ class DocCfg:
         return bool(self.author_uncertain)
 
     @property
+    def is_empty(self) -> bool:
+        return not any(v for v in asdict(self).values())
+
+    @property
     def is_description_a_title(self) -> bool:
         """True if first char is uppercase or a quote."""
         if not (self.author and self.description):

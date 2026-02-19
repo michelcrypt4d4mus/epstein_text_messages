@@ -1,4 +1,5 @@
 # NEXT RELEASE
+* Add manual review/config step to `--load-new`
 
 ### 1.8.2
 * fix `--show-urls` bug
