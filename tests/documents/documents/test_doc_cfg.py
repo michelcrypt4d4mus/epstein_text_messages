@@ -182,16 +182,16 @@ def test_academia(epstein_files):
 
 
 @pytest.mark.parametrize(
-    "id,description",
+    "id,title_author",
     [
-        pytest.param('010912', "book titled \"Free Growth and Other Surprises\" (draft) by Gordon Getty"),
-        pytest.param('018438', 'book titled "The S&M Feminist" by Clarisse Thorn'),
+        pytest.param('010912', '"Free Growth and Other Surprises" (draft) by Gordon Getty'),
+        pytest.param('018438', '"The S&M Feminist" by Clarisse Thorn'),
     ],
 )
-def test_books(get_other_file, id, description):
+def test_books(get_other_file, id, title_author):
     book = get_other_file(id)
     assert book.config.category == Uninteresting.BOOK
-    assert book.config.complete_description == description
+    assert book.config.complete_description == f"book titled {title_author}"
 
 
 def test_props_to_copy(get_email):
