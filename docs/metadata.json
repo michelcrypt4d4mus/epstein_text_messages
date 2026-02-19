@@ -20059,6 +20059,7 @@
                     "DJT recommendation letter - Boccio.pdf"
                 ],
                 "author": "Eric Roth",
+                "comment": "trump rec letter for boccio",
                 "dupe_type": "same",
                 "duplicate_ids": [
                     "033594"
@@ -20075,6 +20076,7 @@
                         "'Jeffrey Epstein' [jeevacation@gmail.com]"
                     ]
                 },
+                "is_interesting": true,
                 "num_lines": 37,
                 "recipients": [
                     "Jeffrey Epstein"
@@ -37119,6 +37121,7 @@
                     "image001.jpg"
                 ],
                 "author": "Jeffrey Epstein",
+                "description": "Epstein gets defensive about what went on during the 2008 financial crisis as portrayed in \"Inside Job\"",
                 "file_id": "031830",
                 "file_size": 8859,
                 "filename": "HOUSE_OVERSIGHT_031830.txt",
@@ -56697,6 +56700,7 @@
                     "DJT recommendation letter - Boccio.pdf"
                 ],
                 "author": "Eric Roth",
+                "comment": "trump rec letter for boccio",
                 "dupe_type": "same",
                 "duplicate_of_id": "029299",
                 "file_id": "033594",
@@ -56711,6 +56715,7 @@
                         "Jeffrey Epstein [jeevacation@gmail.com]"
                     ]
                 },
+                "is_interesting": true,
                 "num_lines": 35,
                 "recipients": [
                     "Jeffrey Epstein"
@@ -58889,6 +58894,31 @@
             },
             {
                 "attachments": [
+                    ""
+                ],
+                "author": "Saida Sapieva",
+                "description": "meeting with Reid Hoffman about bitcoin",
+                "file_id": "EFTA00368659",
+                "file_size": 921,
+                "filename": "EFTA00368659.txt",
+                "header": {
+                    "author": "Saida Sapieva",
+                    "sent_at": "Wed, 04 Jun 2014 19:06:01 +0000",
+                    "subject": "RE: Jeffrey Epstein",
+                    "to": [
+                        "Lesley Groff <MIMIlle"
+                    ]
+                },
+                "is_interesting": true,
+                "num_lines": 26,
+                "recipients": [
+                    "Lesley Groff"
+                ],
+                "timestamp": "2014-06-04T19:06:01",
+                "type": "Email"
+            },
+            {
+                "attachments": [
                     "BITCOIN_TIMING_AND_SIZING.pdf"
                 ],
                 "author": "Ike Groff",
@@ -59598,6 +59628,29 @@
                 "attachments": [
                     ""
                 ],
+                "author": "Karyna Shuliak",
+                "file_id": "EFTA00471560",
+                "file_size": 3501,
+                "filename": "EFTA00471560.txt",
+                "header": {
+                    "author": "Karyna Shuliak",
+                    "sent_at": "Sun, 25 Mar 2018 01:41:13 +0000",
+                    "subject": "Re: Tristar Worldwide New Booking: Passenger Jeffrey Epstein 03/25/2018 17:00",
+                    "to": [
+                        "Lesley Groff"
+                    ]
+                },
+                "num_lines": 74,
+                "recipients": [
+                    "Lesley Groff"
+                ],
+                "timestamp": "2018-03-25T01:41:13",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    ""
+                ],
                 "author": "Joi Ito",
                 "file_id": "EFTA00472867",
                 "file_size": 2657,
@@ -59991,6 +60044,32 @@
             },
             {
                 "attachments": [
+                    "IMG-20161116-WA0013.jpg",
+                    "IMG-20161116-WA0012jpg",
+                    "IMG-20161116-WA0011jpg"
+                ],
+                "author": "Jabor Y",
+                "file_id": "EFTA00631213",
+                "file_size": 317,
+                "filename": "EFTA00631213.txt",
+                "header": {
+                    "attachments": "IMG-20161116-WA0013.jpg; IMG-20161116-WA0012jpg; IMG-20161116-WA0011jpg",
+                    "author": "\"Jabor Y.\" clIMMIII >",
+                    "sent_at": "Wed, 16 Nov 2016 12:18:50 +0000",
+                    "subject": "Fwd: BIT COIN",
+                    "to": [
+                        "Jeffrey Epstein <jeevacation@gmail.com>"
+                    ]
+                },
+                "num_lines": 6,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "timestamp": "2016-11-16T12:18:50",
+                "type": "Email"
+            },
+            {
+                "attachments": [
                     ""
                 ],
                 "author": "Lesley Groff",
@@ -60066,7 +60145,7 @@
                 ],
                 "author": "Andrew Farkas",
                 "file_id": "EFTA00635399",
-                "file_size": 4974,
+                "file_size": 4973,
                 "filename": "EFTA00635399.txt",
                 "header": {
                     "author": "\"Farkas, Andrew L.\"",
@@ -60076,7 +60155,7 @@
                         "Florida Science Foundation <jeevacation@gmail.com>"
                     ]
                 },
-                "num_lines": 57,
+                "num_lines": 56,
                 "recipients": [
                     "Jeffrey Epstein"
                 ],
@@ -60283,6 +60362,29 @@
                     "Jeffrey Epstein"
                 ],
                 "timestamp": "2013-05-14T15:11:07",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    ""
+                ],
+                "author": "Jason Calacanis",
+                "file_id": "EFTA00640616",
+                "file_size": 1714,
+                "filename": "EFTA00640616.txt",
+                "header": {
+                    "author": "Jason Calacanis",
+                    "sent_at": "Sat, 04 Jun 2011 20:43:16 +0000",
+                    "subject": "Re:",
+                    "to": [
+                        "Jeffrey Epstein <jeevacation@gmail.com>"
+                    ]
+                },
+                "num_lines": 31,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "timestamp": "2011-06-04T20:43:16",
                 "type": "Email"
             },
             {
@@ -61807,17 +61909,17 @@
                 ],
                 "author": "Andrew Farkas",
                 "file_id": "EFTA00716532",
-                "file_size": 2207,
+                "file_size": 2217,
                 "filename": "EFTA00716532.txt",
                 "header": {
                     "author": "\"Farkas, Andrew L.\"",
                     "sent_at": "Sat, 08 Nov 2014 14:56:39 +0000",
                     "subject": "Re:",
                     "to": [
-                        "'"
+                        "Jeffrey Epstein"
                     ]
                 },
-                "num_lines": 40,
+                "num_lines": 41,
                 "recipients": [
                     "Jeffrey Epstein"
                 ],
@@ -62844,6 +62946,25 @@
             },
             {
                 "attachments": [
+                    ""
+                ],
+                "author": "Jeffrey Epstein",
+                "comment": "take a picture of your pussy",
+                "file_id": "EFTA00848644",
+                "file_size": 1205,
+                "filename": "EFTA00848644.txt",
+                "header": {
+                    "author": "\"jeffrey E.\" <jeevacation@gmail.com>",
+                    "sent_at": "Sat, 15 Aug 2015 23:05:09 +0000",
+                    "subject": "Re:"
+                },
+                "is_interesting": true,
+                "num_lines": 23,
+                "timestamp": "2015-08-15T23:05:09",
+                "type": "Email"
+            },
+            {
+                "attachments": [
                     "Valar Global_Fund_ILLP_Q2_2015_Financial_Statements.pdf",
                     ""
                 ],
@@ -63400,6 +63521,29 @@
             },
             {
                 "attachments": [
+                    ""
+                ],
+                "author": "Jeffrey Epstein",
+                "file_id": "EFTA00882401",
+                "file_size": 2473,
+                "filename": "EFTA00882401.txt",
+                "header": {
+                    "author": "\"Jeffrey E.\" <jeevacation@gmail.com>",
+                    "sent_at": "Tue, 20 Feb 2018 14:44:55 +0000",
+                    "subject": "Re:",
+                    "to": [
+                        "Madars Virza"
+                    ]
+                },
+                "num_lines": 46,
+                "recipients": [
+                    "Madars Virza"
+                ],
+                "timestamp": "2018-02-20T14:44:55",
+                "type": "Email"
+            },
+            {
+                "attachments": [
                     "Valar_Global_Fund_III_LP_-_Capital_Call_9_(Southem_Trust_Company,inc.).pdf"
                 ],
                 "author": "Richard Kahn",
@@ -63637,6 +63781,25 @@
                 "attachments": [
                     ""
                 ],
+                "author": "Jeffrey Epstein",
+                "file_id": "EFTA00913164",
+                "file_size": 902,
+                "filename": "EFTA00913164.txt",
+                "header": {
+                    "author": "Jeffrey Epstein <jeevacation@gmail.com>",
+                    "sent_at": "Sun, 12 Jun 2011 14:58:47 +0000"
+                },
+                "num_lines": 18,
+                "recipients": [
+                    "Gavin Andresen"
+                ],
+                "timestamp": "2011-06-12T14:58:47",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    ""
+                ],
                 "author": "Larry Summers",
                 "file_id": "EFTA00913754",
                 "file_size": 605,
@@ -63681,6 +63844,29 @@
                     "Larry Summers"
                 ],
                 "timestamp": "2018-01-08T13:35:44",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    ""
+                ],
+                "author": "Jason Calacanis a",
+                "file_id": "EFTA00914512",
+                "file_size": 217,
+                "filename": "EFTA00914512.txt",
+                "header": {
+                    "author": "Jason Calacanis a >",
+                    "sent_at": "Mon, 04 Jul 2011 02:23:36 +0000",
+                    "subject": "Paris",
+                    "to": [
+                        "Jeffrey Epstein <jeevacation@gmail.com>"
+                    ]
+                },
+                "num_lines": 6,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "timestamp": "2011-07-04T02:23:36",
                 "type": "Email"
             },
             {
@@ -64843,6 +65029,29 @@
                     ""
                 ],
                 "author": "Jeffrey Epstein",
+                "file_id": "EFTA00988010",
+                "file_size": 3354,
+                "filename": "EFTA00988010.txt",
+                "header": {
+                    "author": "Jeffrey Epstein <jeevacation@gmail.com>",
+                    "sent_at": "Mon, 14 Apr 2014 01:50:37 +0000",
+                    "subject": "Re:",
+                    "to": [
+                        "\"Farkas, Andrew L.\""
+                    ]
+                },
+                "num_lines": 53,
+                "recipients": [
+                    "Andrew Farkas"
+                ],
+                "timestamp": "2014-04-14T01:50:37",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    ""
+                ],
+                "author": "Jeffrey Epstein",
                 "description": "\"Andy Back\" is probably Blockstream bitcoin dev Adam Back",
                 "dupe_type": "same",
                 "duplicate_ids": [
@@ -65735,6 +65944,27 @@
                     "Jeffrey Epstein"
                 ],
                 "timestamp": "2014-12-02T20:41:17",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    ""
+                ],
+                "author": "Jeffrey Epstein",
+                "comment": "signature",
+                "file_id": "EFTA01002282",
+                "file_size": 3680,
+                "filename": "EFTA01002282.txt",
+                "header": {
+                    "author": "\"Jeffrey E.\" <jeevacation@gmail.com>",
+                    "sent_at": "Wed, 03 Dec 2014 11:12:56 +0000",
+                    "subject": "Re: From twitter"
+                },
+                "num_lines": 67,
+                "recipients": [
+                    "Linda Stone"
+                ],
+                "timestamp": "2014-12-03T11:12:56",
                 "type": "Email"
             },
             {
@@ -66910,6 +67140,29 @@
                 "attachments": [
                     ""
                 ],
+                "author": "Madars Virza",
+                "file_id": "EFTA01014362",
+                "file_size": 2129,
+                "filename": "EFTA01014362.txt",
+                "header": {
+                    "author": "Madars Virza",
+                    "sent_at": "Tue, 04 Dec 2018 20:59:08 +0000",
+                    "subject": "Re: thx",
+                    "to": [
+                        "jeevacation@gmail.com"
+                    ]
+                },
+                "num_lines": 37,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "timestamp": "2018-12-04T20:59:08",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    ""
+                ],
                 "author": "Andrew McCormack",
                 "file_id": "EFTA01016101",
                 "file_size": 5178,
@@ -67870,6 +68123,73 @@
                 "attachments": [
                     ""
                 ],
+                "author": "Alan Dlugash",
+                "description": "meeting about tax implications of ZCash",
+                "file_id": "EFTA01040692",
+                "file_size": 2079,
+                "filename": "EFTA01040692.txt",
+                "header": {
+                    "sent_at": "Wed, 12 Jul 2017 22:45:05 +0000",
+                    "subject": "Re:",
+                    "to": [
+                        "\"Jeffrey E.\" <jeevacation@gmail.com>"
+                    ]
+                },
+                "num_lines": 51,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "sent_from_device": "Sent from my iPhone",
+                "timestamp": "2017-07-12T22:45:05",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    ""
+                ],
+                "author": "Jeffrey Epstein",
+                "file_id": "EFTA01040918",
+                "file_size": 9584,
+                "filename": "EFTA01040918.txt",
+                "header": {
+                    "author": "\"Jeffrey E.\" <jeevacation@gmail.com>",
+                    "sent_at": "Mon, 10 Jul 2017 21:20:51 +0000",
+                    "subject": "Re: Battulga"
+                },
+                "num_lines": 194,
+                "recipients": [
+                    "Ganbat Chuluunkhuu"
+                ],
+                "timestamp": "2017-07-10T21:20:51",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    ""
+                ],
+                "author": "Jeffrey Epstein",
+                "file_id": "EFTA01040963",
+                "file_size": 3168,
+                "filename": "EFTA01040963.txt",
+                "header": {
+                    "author": "\"jeffrey E.\" <jeevacation@gmail.com>",
+                    "sent_at": "Fri, 07 Jul 2017 17:58:21 +0000",
+                    "subject": "Re: Re:",
+                    "to": [
+                        "Alan Dlugash"
+                    ]
+                },
+                "num_lines": 76,
+                "recipients": [
+                    "Alan Dlugash"
+                ],
+                "timestamp": "2017-07-07T17:58:21",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    ""
+                ],
                 "author": "Jeffrey Epstein",
                 "file_id": "EFTA01041013",
                 "file_size": 825,
@@ -67886,6 +68206,49 @@
                     "Joi Ito"
                 ],
                 "timestamp": "2017-07-08T12:02:09",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    ""
+                ],
+                "author": "Jeffrey Epstein",
+                "file_id": "EFTA01041151",
+                "file_size": 7111,
+                "filename": "EFTA01041151.txt",
+                "header": {
+                    "author": "\"jeffrey E.\" <jeevacation@gmail.com>",
+                    "sent_at": "Sun, 09 Jul 2017 16:36:53 +0000",
+                    "subject": "Re: Battulga",
+                    "to": [
+                        "' 15"
+                    ]
+                },
+                "num_lines": 142,
+                "recipients": [
+                    "Ganbat Chuluunkhuu"
+                ],
+                "timestamp": "2017-07-09T16:36:53",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    ""
+                ],
+                "author": "Jeffrey Epstein",
+                "file_id": "EFTA01041159",
+                "file_size": 8298,
+                "filename": "EFTA01041159.txt",
+                "header": {
+                    "author": "\"Jeffrey E.\" <jeevacation@gmail.com>",
+                    "sent_at": "Sun, 09 Jul 2017 17:05:07 +0000",
+                    "subject": "Re: Battulga"
+                },
+                "num_lines": 167,
+                "recipients": [
+                    "Ganbat Chuluunkhuu"
+                ],
+                "timestamp": "2017-07-09T17:05:07",
                 "type": "Email"
             },
             {
@@ -68234,6 +68597,27 @@
                     "Richard Kahn"
                 ],
                 "timestamp": "2017-02-17T19:42:23",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    ""
+                ],
+                "author": "Jeffrey Epstein",
+                "file_id": "EFTA01054971",
+                "file_size": 9803,
+                "filename": "EFTA01054971.txt",
+                "header": {
+                    "author": "\"Jeffrey E.\" <jeevacation@gmail.com>",
+                    "sent_at": "Tue, 07 Feb 2017 16:05:25 +0000",
+                    "subject": "Re: Block chain"
+                },
+                "num_lines": 207,
+                "recipients": [
+                    "Fawzi Siam"
+                ],
+                "timestamp": "2017-02-07T16:05:25",
+                "truncate_to": -1,
                 "type": "Email"
             },
             {
@@ -69086,6 +69470,30 @@
                 "attachments": [
                     ""
                 ],
+                "author": "Larry Summers",
+                "file_id": "EFTA01752774",
+                "file_size": 6229,
+                "filename": "EFTA01752774.txt",
+                "header": {
+                    "author": "Larry Summers",
+                    "sent_at": "Sunday. January 5, 2014 6:01:57 PM",
+                    "subject": "Re: Bit coin",
+                    "to": [
+                        "Jeffrey Epstein leevacation@gmaii.com>"
+                    ]
+                },
+                "num_lines": 72,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "sent_from_device": "Sent from my iPad",
+                "timestamp": "2014-01-05T18:01:57",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    ""
+                ],
                 "author": "Tyler Shears",
                 "file_id": "EFTA01754551",
                 "file_size": 1256,
@@ -69103,6 +69511,29 @@
                     "Jeffrey Epstein"
                 ],
                 "timestamp": "2013-10-03T13:49:41",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    ""
+                ],
+                "author": "Steven Sinofsky",
+                "file_id": "EFTA01756411",
+                "file_size": 378,
+                "filename": "EFTA01756411.txt",
+                "header": {
+                    "author": "Steven Sinofsky <",
+                    "sent_at": "Tuesday, November 12, 2013 9:45 PM",
+                    "subject": "B of A on bit coin",
+                    "to": [
+                        "Jeffrey Epstein"
+                    ]
+                },
+                "num_lines": 6,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "timestamp": "2013-11-12T21:45:00",
                 "type": "Email"
             },
             {
@@ -69309,6 +69740,29 @@
                 ],
                 "sent_from_device": "Sorry for all the typos .Sent from my iPhone",
                 "timestamp": "2012-02-24T00:08:42",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    ""
+                ],
+                "author": "Jeremy Rubin",
+                "file_id": "EFTA01774218",
+                "file_size": 792,
+                "filename": "EFTA01774218.txt",
+                "header": {
+                    "author": "Jeremy Rubin",
+                    "sent_at": "Saturday, April 2, 2016 12:52 AM",
+                    "subject": "re: today",
+                    "to": [
+                        "Jeffrey Epstein"
+                    ]
+                },
+                "num_lines": 14,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "timestamp": "2016-04-02T00:52:00",
                 "type": "Email"
             },
             {
@@ -70319,6 +70773,52 @@
                 "attachments": [
                     ""
                 ],
+                "author": "Jeffrey Epstein",
+                "file_id": "EFTA01908116",
+                "file_size": 1645,
+                "filename": "EFTA01908116.txt",
+                "header": {
+                    "author": "Jeffrey Epstein",
+                    "sent_at": "Tue 1/29/2013 8:12:31 AM",
+                    "subject": "first impression",
+                    "to": [
+                        "whitfield.diffie\u00a9gmail.com"
+                    ]
+                },
+                "num_lines": 26,
+                "recipients": [
+                    "Whitfield Diffie"
+                ],
+                "timestamp": "2013-01-29T08:12:31",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    ""
+                ],
+                "author": "Jeffrey Epstein",
+                "file_id": "EFTA01908481",
+                "file_size": 1954,
+                "filename": "EFTA01908481.txt",
+                "header": {
+                    "author": "Jeffrey Epstein",
+                    "sent_at": "Tue 1/29/2013 12:03:55 PM",
+                    "subject": "Re: first  impression",
+                    "to": [
+                        "Whitfield Diffief"
+                    ]
+                },
+                "num_lines": 34,
+                "recipients": [
+                    "Whitfield Diffie"
+                ],
+                "timestamp": "2013-01-29T12:03:55",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    ""
+                ],
                 "author": "Steven Sinofsky",
                 "file_id": "EFTA01909829",
                 "file_size": 4243,
@@ -70408,6 +70908,29 @@
                     "Joi Ito"
                 ],
                 "timestamp": "2014-07-31T21:10:17",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    ""
+                ],
+                "author": "Jeffrey Epstein",
+                "file_id": "EFTA01916226",
+                "file_size": 2117,
+                "filename": "EFTA01916226.txt",
+                "header": {
+                    "author": "Jeffrey E.",
+                    "sent_at": "Mon 7/21/2014 11:01:15 AM",
+                    "subject": "Re: as i told you",
+                    "to": [
+                        "Peter Thiel"
+                    ]
+                },
+                "num_lines": 43,
+                "recipients": [
+                    "Peter Thiel"
+                ],
+                "timestamp": "2014-07-21T11:01:15",
                 "type": "Email"
             },
             {
@@ -70579,6 +71102,30 @@
                     "Andrew Farkas"
                 ],
                 "timestamp": "2014-08-04T21:58:27",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    ""
+                ],
+                "author": "Linda Stone",
+                "author_reason": "Tupos & Abbrvtns",
+                "file_id": "EFTA01922840",
+                "file_size": 2070,
+                "filename": "EFTA01922840.txt",
+                "header": {
+                    "sent_at": "Fri 6/27/2014 12:01:45 PM",
+                    "subject": "Re:",
+                    "to": [
+                        "jeevacation@gmail.com]"
+                    ]
+                },
+                "num_lines": 45,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "sent_from_device": "Pls excuse tupos & abbrvtns",
+                "timestamp": "2014-06-27T12:01:45",
                 "type": "Email"
             },
             {
@@ -70860,6 +71407,29 @@
                 "attachments": [
                     ""
                 ],
+                "author": "Jeffrey Epstein",
+                "file_id": "EFTA01929742",
+                "file_size": 989,
+                "filename": "EFTA01929742.txt",
+                "header": {
+                    "author": "Jeffrey Epstein",
+                    "sent_at": "Tue 4/8/2014 7:58:08 PM",
+                    "subject": "Re: austin hill",
+                    "to": [
+                        "Steven Sinofsky"
+                    ]
+                },
+                "num_lines": 21,
+                "recipients": [
+                    "Steven Sinofsky"
+                ],
+                "timestamp": "2014-04-08T19:58:08",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    ""
+                ],
                 "author": "Austin Hill",
                 "file_id": "EFTA01929919",
                 "file_size": 556,
@@ -71069,6 +71639,25 @@
                     "Thorbj\u00f8rn Jagland"
                 ],
                 "timestamp": "2014-01-19T22:26:25",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    ""
+                ],
+                "author": "Jeffrey Epstein",
+                "description": "comments on Ariane de Rothschild and bitcoin",
+                "file_id": "EFTA01943067",
+                "file_size": 4158,
+                "filename": "EFTA01943067.txt",
+                "header": {
+                    "author": "Jeffrey Epstein",
+                    "sent_at": "Sun 1/5/2014 12:27:44 PM",
+                    "subject": "Fwd: Bit coin"
+                },
+                "is_interesting": true,
+                "num_lines": 90,
+                "timestamp": "2014-01-05T12:27:44",
                 "type": "Email"
             },
             {
@@ -71670,6 +72259,34 @@
                 "attachments": [
                     ""
                 ],
+                "author": "Jason Calacanis",
+                "description": "Jason Calacanis passes Epstein the names of the bitcoin core developers",
+                "file_id": "EFTA02002675",
+                "file_size": 353,
+                "filename": "EFTA02002675.txt",
+                "header": {
+                    "author": "Jason Calacanis",
+                    "cc": [
+                        "John Brockman"
+                    ],
+                    "sent_at": "Sat 6/11/2011 9:45:39 PM",
+                    "subject": "Re:",
+                    "to": [
+                        "jeevacation\u00a9gmail.cornueeyacation\u00a9gmail.comb Jeffrey Epsteinbeeyacation\u00a9gmail.com]"
+                    ]
+                },
+                "num_lines": 9,
+                "recipients": [
+                    "Jeffrey Epstein",
+                    "John Brockman"
+                ],
+                "timestamp": "2011-06-11T21:45:39",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    ""
+                ],
                 "author": "Lesley Groff",
                 "author_uncertain": true,
                 "dupe_type": "same",
@@ -71880,6 +72497,29 @@
                 ],
                 "sent_from_device": "Sent from my iPhone",
                 "timestamp": "2016-02-03T23:35:01",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    ""
+                ],
+                "description": "Nili Priell Barak installing cameras at Epstein's house",
+                "file_id": "EFTA02062130",
+                "file_size": 1129,
+                "filename": "EFTA02062130.txt",
+                "header": {
+                    "sent_at": "Fri 1/15/2016 9:37:54 PM",
+                    "subject": "Re: alarm",
+                    "to": [
+                        "Nili Priel"
+                    ]
+                },
+                "is_interesting": true,
+                "num_lines": 23,
+                "recipients": [
+                    "Nili Priell Barak"
+                ],
+                "timestamp": "2016-01-15T21:37:54",
                 "type": "Email"
             },
             {
@@ -73070,6 +73710,18 @@
                 "attachments": [
                     ""
                 ],
+                "file_id": "EFTA02232362",
+                "file_size": 1133,
+                "filename": "EFTA02232362.txt",
+                "num_lines": 37,
+                "sent_from_device": "Sent from my iPhone",
+                "timestamp": "2018-01-07T19:15:26",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    ""
+                ],
                 "author": "Yuko Barnaby",
                 "file_id": "EFTA02238824",
                 "file_size": 1356,
@@ -73497,6 +74149,26 @@
                 "attachments": [
                     ""
                 ],
+                "author": "Madars Virza",
+                "file_id": "EFTA02279390",
+                "file_size": 581,
+                "filename": "EFTA02279390.txt",
+                "header": {
+                    "author": "Madars Virza",
+                    "sent_at": "Thur 4/18/2019 5:29:44 PM",
+                    "subject": "Visiting Jeffrey"
+                },
+                "num_lines": 14,
+                "recipients": [
+                    "Lesley Groff"
+                ],
+                "timestamp": "2019-04-18T17:29:44",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    ""
+                ],
                 "author": "Lesley Groff",
                 "file_id": "EFTA02280622",
                 "file_size": 2264,
@@ -73602,6 +74274,29 @@
                     "Madars Virza"
                 ],
                 "timestamp": "2019-04-29T18:53:11",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    ""
+                ],
+                "author": "Lesley Groff",
+                "file_id": "EFTA02284711",
+                "file_size": 7627,
+                "filename": "EFTA02284711.txt",
+                "header": {
+                    "author": "Lesley Groff",
+                    "sent_at": "Tue 4/30/2019 12:52:06 PM",
+                    "subject": "Re: Jeffrey Epstein",
+                    "to": [
+                        "Madars Virza"
+                    ]
+                },
+                "num_lines": 264,
+                "recipients": [
+                    "Madars Virza"
+                ],
+                "timestamp": "2019-04-30T12:52:06",
                 "type": "Email"
             },
             {
@@ -73874,6 +74569,28 @@
                 "attachments": [
                     ""
                 ],
+                "author": "Jason Calacanis",
+                "file_id": "EFTA02334332",
+                "file_size": 366,
+                "filename": "EFTA02334332.txt",
+                "header": {
+                    "author": "JasoniME\u201d",
+                    "sent_at": "Mon 10/28/2002 8:04:00 PM",
+                    "to": [
+                        "G Ma"
+                    ]
+                },
+                "num_lines": 8,
+                "recipients": [
+                    "G Ma"
+                ],
+                "timestamp": "2002-10-28T20:04:00",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    ""
+                ],
                 "author": "Brock Pierce",
                 "file_id": "EFTA02339109",
                 "file_size": 895,
@@ -73914,6 +74631,27 @@
                     "Jeffrey Epstein"
                 ],
                 "timestamp": "2014-10-16T20:20:00",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    ""
+                ],
+                "file_id": "EFTA02345782",
+                "file_size": 2939,
+                "filename": "EFTA02345782.txt",
+                "header": {
+                    "sent_at": "Thursday, January 26, 2017 5:25 AM",
+                    "subject": "RE: Block chain",
+                    "to": [
+                        "jeevacation@gmail.com"
+                    ]
+                },
+                "num_lines": 45,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "timestamp": "2017-01-26T05:25:00",
                 "type": "Email"
             },
             {
@@ -74208,6 +74946,33 @@
                 "attachments": [
                     ""
                 ],
+                "author": "Alan Dlugash",
+                "file_id": "EFTA02367999",
+                "file_size": 2301,
+                "filename": "EFTA02367999.txt",
+                "header": {
+                    "author": "Alan Dlugash",
+                    "cc": [
+                        "Richard Kahn"
+                    ],
+                    "sent_at": "Friday, July 7, 2017 5:47 PM",
+                    "subject": "Re: Re:",
+                    "to": [
+                        "jeffrey E."
+                    ]
+                },
+                "num_lines": 49,
+                "recipients": [
+                    "Jeffrey Epstein",
+                    "Richard Kahn"
+                ],
+                "timestamp": "2017-07-07T17:47:00",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    ""
+                ],
                 "author": "Alireza Ittihadieh",
                 "file_id": "EFTA02369832",
                 "file_size": 3097,
@@ -74454,6 +75219,7 @@
                         "jeevacation@gmail.com"
                     ]
                 },
+                "is_interesting": false,
                 "num_lines": 21,
                 "recipients": [
                     "Jeffrey Epstein"
@@ -74483,6 +75249,28 @@
                     "Jeffrey Epstein"
                 ],
                 "timestamp": "2014-08-22T14:53:00",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    ""
+                ],
+                "file_id": "EFTA02387676",
+                "file_size": 1234,
+                "filename": "EFTA02387676.txt",
+                "header": {
+                    "sent_at": "Friday, July 24, 2015 10:14 PM",
+                    "subject": "Re:",
+                    "to": [
+                        "jeffrey E."
+                    ]
+                },
+                "num_lines": 30,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "sent_from_device": "Sent from my iPhone",
+                "timestamp": "2015-07-24T22:14:00",
                 "type": "Email"
             },
             {
@@ -74587,6 +75375,53 @@
                     "Jeffrey Epstein"
                 ],
                 "timestamp": "2014-12-02T20:26:00",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    ""
+                ],
+                "author": "Joi Ito",
+                "file_id": "EFTA02392905",
+                "file_size": 874,
+                "filename": "EFTA02392905.txt",
+                "header": {
+                    "author": "Joichi Ito",
+                    "sent_at": "Friday, July 7, 2017 11:58 AM",
+                    "subject": "Re:",
+                    "to": [
+                        "Jeffrey Epstein"
+                    ]
+                },
+                "num_lines": 20,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "timestamp": "2017-07-07T11:58:00",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    ""
+                ],
+                "author": "Linda Stone",
+                "author_reason": "\"iPhone word substitution\" in signature, which is traced back to \"Linda, thanks\" in EFTA00961792",
+                "file_id": "EFTA02394792",
+                "file_size": 925,
+                "filename": "EFTA02394792.txt",
+                "header": {
+                    "sent_at": "Wednesday, May 29, 2013 11:09 PM",
+                    "subject": "Bill gross",
+                    "to": [
+                        "Jeffrey Epstein"
+                    ]
+                },
+                "num_lines": 31,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "sent_from_device": "Typos, misspellings courtesy of iPhone word & thought substitution.",
+                "timestamp": "2013-05-29T23:09:00",
                 "type": "Email"
             },
             {
@@ -75021,6 +75856,29 @@
                 "attachments": [
                     ""
                 ],
+                "author": "labor Y.",
+                "file_id": "EFTA02448712",
+                "file_size": 1090,
+                "filename": "EFTA02448712.txt",
+                "header": {
+                    "author": "labor Y.",
+                    "sent_at": "Monday, October 10, 2016 7:14 PM",
+                    "subject": "Re:",
+                    "to": [
+                        "Jeffrey E."
+                    ]
+                },
+                "num_lines": 20,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "timestamp": "2016-10-10T19:14:00",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    ""
+                ],
                 "author": "Renata Bolotova",
                 "author_reason": "\"sneaky\"",
                 "description": "completely redacted email body",
@@ -75208,6 +76066,33 @@
                     "Jeffrey Epstein"
                 ],
                 "timestamp": "2018-04-18T00:46:00",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    ""
+                ],
+                "author": "Madars Virza",
+                "file_id": "EFTA02469106",
+                "file_size": 1923,
+                "filename": "EFTA02469106.txt",
+                "header": {
+                    "author": "Madars Virza",
+                    "cc": [
+                        "jeffrey E."
+                    ],
+                    "sent_at": "Wednesday, April 18, 2018 12:24 PM",
+                    "subject": "Re:",
+                    "to": [
+                        "Erika Kellerhals"
+                    ]
+                },
+                "num_lines": 46,
+                "recipients": [
+                    "Erika Kellerhals",
+                    "Jeffrey Epstein"
+                ],
+                "timestamp": "2018-04-18T12:24:00",
                 "type": "Email"
             },
             {
@@ -75449,6 +76334,53 @@
                     "Jeffrey Epstein"
                 ],
                 "timestamp": "2018-03-24T21:32:00",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    ""
+                ],
+                "author": "Madars Virza",
+                "file_id": "EFTA02493146",
+                "file_size": 849,
+                "filename": "EFTA02493146.txt",
+                "header": {
+                    "author": "Madars Virza",
+                    "sent_at": "Wednesday, March 28, 2018 2:37 AM",
+                    "subject": "What is Bitcoin?",
+                    "to": [
+                        "jeffrey E."
+                    ]
+                },
+                "num_lines": 13,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "timestamp": "2018-03-28T02:37:00",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    ""
+                ],
+                "author": "Jeffrey Epstein",
+                "file_id": "EFTA02493582",
+                "file_size": 1881,
+                "filename": "EFTA02493582.txt",
+                "header": {
+                    "author": "jeffrey E. <jeevacation@gmail.com>",
+                    "sent_at": "Wednesday, March 28, 2018 12:52 PM",
+                    "subject": "Re: What is Bitcoin?",
+                    "to": [
+                        "Madars Virza"
+                    ]
+                },
+                "num_lines": 23,
+                "recipients": [
+                    "Madars Virza"
+                ],
+                "timestamp": "2018-03-28T12:52:00",
+                "truncate_to": 450,
                 "type": "Email"
             },
             {
@@ -76011,6 +76943,29 @@
                 "attachments": [
                     ""
                 ],
+                "author": "Madars Virza",
+                "file_id": "EFTA02525378",
+                "file_size": 2933,
+                "filename": "EFTA02525378.txt",
+                "header": {
+                    "author": "Madars Virza",
+                    "sent_at": "Tuesday, February 20, 2018 3:16 PM",
+                    "subject": "Re:",
+                    "to": [
+                        "Jeffrey E."
+                    ]
+                },
+                "num_lines": 54,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "timestamp": "2018-02-20T15:16:00",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    ""
+                ],
                 "author": "Vincenzo Iozzo",
                 "file_id": "EFTA02529170",
                 "file_size": 5385,
@@ -76166,6 +77121,56 @@
                     "Jeffrey Epstein"
                 ],
                 "timestamp": "2018-01-16T15:04:00",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    ""
+                ],
+                "author": "John Brockman",
+                "file_id": "EFTA02539904",
+                "file_size": 1050,
+                "filename": "EFTA02539904.txt",
+                "header": {
+                    "author": "John Brockman <",
+                    "cc": [
+                        "Lesley Groff"
+                    ],
+                    "sent_at": "Tuesday, June 7,",
+                    "subject": "Bowling for Bitcoins Meet the Trader 05: Gavin Andresen, Clearcoin",
+                    "to": [
+                        "Jeffrey Epstein"
+                    ]
+                },
+                "num_lines": 32,
+                "recipients": [
+                    "Jeffrey Epstein",
+                    "Lesley Groff"
+                ],
+                "sent_from_device": "Sent from my iPhone",
+                "timestamp": "2026-06-07T00:00:00",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    ""
+                ],
+                "author": "Jeffrey Epstein",
+                "file_id": "EFTA02540384",
+                "file_size": 223,
+                "filename": "EFTA02540384.txt",
+                "header": {
+                    "author": "Jeffrey Epstein <jeevacation@gmail.com>",
+                    "sent_at": "Saturday, June 4 2011 8:37 PM",
+                    "to": [
+                        "Jason Calacanis"
+                    ]
+                },
+                "num_lines": 5,
+                "recipients": [
+                    "Jason Calacanis"
+                ],
+                "timestamp": "2011-06-04T20:37:00",
                 "type": "Email"
             },
             {
@@ -76506,6 +77511,30 @@
                 "attachments": [
                     ""
                 ],
+                "author": "Larry Summers",
+                "file_id": "EFTA02578911",
+                "file_size": 794,
+                "filename": "EFTA02578911.txt",
+                "header": {
+                    "author": "Larry Summers",
+                    "sent_at": "Saturday, January 4, 2014 2:07 PM",
+                    "subject": "Bit coin",
+                    "to": [
+                        "Jeffrey Epstein"
+                    ]
+                },
+                "num_lines": 27,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "sent_from_device": "Sent from my iPad",
+                "timestamp": "2014-01-04T14:07:00",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    ""
+                ],
                 "author": "Austin Hill",
                 "file_id": "EFTA02579686",
                 "file_size": 2395,
@@ -76523,6 +77552,30 @@
                     "Jeffrey Epstein"
                 ],
                 "timestamp": "2017-10-17T15:40:00",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    ""
+                ],
+                "author": "Linda Stone",
+                "author_reason": "Tupos & Abbrvtns",
+                "file_id": "EFTA02584858",
+                "file_size": 1070,
+                "filename": "EFTA02584858.txt",
+                "header": {
+                    "sent_at": "Saturday, June 21, 2014 9:46 PM",
+                    "subject": "At a session...",
+                    "to": [
+                        "Jeffrey Epstein"
+                    ]
+                },
+                "num_lines": 31,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "sent_from_device": "i Phone feature: Tupos & Abbrvtns",
+                "timestamp": "2014-06-21T21:46:00",
                 "type": "Email"
             },
             {
@@ -76550,6 +77603,29 @@
                 "attachments": [
                     ""
                 ],
+                "author": "Austin Hill",
+                "file_id": "EFTA02586497",
+                "file_size": 1824,
+                "filename": "EFTA02586497.txt",
+                "header": {
+                    "author": "Austin Hill <",
+                    "sent_at": "Thursday, October 12, 2017 4:46 AM",
+                    "subject": "Re: Haven't forgotten about you",
+                    "to": [
+                        "jeffrey E."
+                    ]
+                },
+                "num_lines": 33,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "timestamp": "2017-10-12T04:46:00",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    ""
+                ],
                 "author": "Kathryn Ruemmler",
                 "description": "Kathy Ruemmler, crypto bro-ette",
                 "file_id": "EFTA02587320",
@@ -76568,6 +77644,30 @@
                     "Jeffrey Epstein"
                 ],
                 "timestamp": "2014-08-21T20:44:00",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    ""
+                ],
+                "author": "Kathryn Ruemmler",
+                "file_id": "EFTA02587435",
+                "file_size": 1132,
+                "filename": "EFTA02587435.txt",
+                "header": {
+                    "author": "Kathy Ruemmler \u2039 >",
+                    "sent_at": "Thursday, August 21, 2014 9:05 PM",
+                    "subject": "Re:",
+                    "to": [
+                        "Jeffrey E."
+                    ]
+                },
+                "num_lines": 25,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "sent_from_device": "Sent from my iPad",
+                "timestamp": "2014-08-21T21:05:00",
                 "type": "Email"
             },
             {
@@ -76631,6 +77731,34 @@
                 "attachments": [
                     ""
                 ],
+                "author": "Hardeep Singh Puri",
+                "file_id": "EFTA02589632",
+                "file_size": 1820,
+                "filename": "EFTA02589632.txt",
+                "header": {
+                    "author": "Hardeep Singh Puri <",
+                    "cc": [
+                        "Jeffrey E."
+                    ],
+                    "sent_at": "Thursday, September 25, 2014 9:58 AM",
+                    "subject": "Re:",
+                    "to": [
+                        "Reid Hoffman"
+                    ]
+                },
+                "num_lines": 38,
+                "recipients": [
+                    "Jeffrey Epstein",
+                    "Reid Hoffman"
+                ],
+                "sent_from_device": "Sent from my iPhone",
+                "timestamp": "2014-09-25T09:58:00",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    ""
+                ],
                 "author": "Jeffrey Epstein",
                 "file_id": "EFTA02590000",
                 "file_size": 2112,
@@ -76648,6 +77776,29 @@
                     "Brock Pierce"
                 ],
                 "timestamp": "2014-09-24T13:21:00",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    ""
+                ],
+                "author": "Reid Hoffman",
+                "file_id": "EFTA02590752",
+                "file_size": 1283,
+                "filename": "EFTA02590752.txt",
+                "header": {
+                    "author": "Reid Hoffman",
+                    "sent_at": "Thursday, September 25, 2014 12:04 AM",
+                    "subject": "Re:",
+                    "to": [
+                        "Jeffrey E."
+                    ]
+                },
+                "num_lines": 20,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "timestamp": "2014-09-25T00:04:00",
                 "type": "Email"
             },
             {
@@ -77501,6 +78652,29 @@
                 "attachments": [
                     ""
                 ],
+                "author": "Madars Virza",
+                "file_id": "EFTA02621622",
+                "file_size": 999,
+                "filename": "EFTA02621622.txt",
+                "header": {
+                    "author": "Madars Virza <",
+                    "sent_at": "Monday, October 1, 2018 10:48 PM",
+                    "subject": "Priest-penitent privilege",
+                    "to": [
+                        "jeffrey E."
+                    ]
+                },
+                "num_lines": 16,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "timestamp": "2018-10-01T22:48:00",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    ""
+                ],
                 "author": "Vincenzo Iozzo",
                 "file_id": "EFTA02621780",
                 "file_size": 2492,
@@ -77981,6 +79155,31 @@
                 "attachments": [
                     ""
                 ],
+                "author": "Jeffrey Epstein",
+                "description": "tax implications of the untraceable 'privacy coin' ZCash",
+                "file_id": "EFTA02645742",
+                "file_size": 3554,
+                "filename": "EFTA02645742.txt",
+                "header": {
+                    "author": "jeffrey E. <jeevacation@gmail.com>",
+                    "sent_at": "Friday, July 7, 2017 5:58 PM",
+                    "subject": "Re: Re:",
+                    "to": [
+                        "Alan Dlugash"
+                    ]
+                },
+                "is_interesting": true,
+                "num_lines": 82,
+                "recipients": [
+                    "Alan Dlugash"
+                ],
+                "timestamp": "2017-07-07T17:58:00",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    ""
+                ],
                 "author": "Ganbat Chuluunkhuu",
                 "file_id": "EFTA02645857",
                 "file_size": 207,
@@ -78271,6 +79470,52 @@
                 ],
                 "sent_from_device": "Sent from my iPhone",
                 "timestamp": "2017-01-03T10:54:00",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    ""
+                ],
+                "author": "Jeffrey Epstein",
+                "file_id": "EFTA02669689",
+                "file_size": 601,
+                "filename": "EFTA02669689.txt",
+                "header": {
+                    "author": "jeffrey E. <jeevacation@gmail.com>",
+                    "sent_at": "Wednesday, November 16, 2016 12:24 PM",
+                    "subject": "Re: BIT COIN",
+                    "to": [
+                        "Jabor Y."
+                    ]
+                },
+                "num_lines": 10,
+                "recipients": [
+                    "Jabor Y"
+                ],
+                "timestamp": "2016-11-16T12:24:00",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    ""
+                ],
+                "author": "labor Y.",
+                "file_id": "EFTA02670538",
+                "file_size": 4546,
+                "filename": "EFTA02670538.txt",
+                "header": {
+                    "author": "labor Y. <",
+                    "sent_at": "Wednesday, November 9, 2016 10:04 AM",
+                    "subject": "Re:",
+                    "to": [
+                        "Jeffrey E."
+                    ]
+                },
+                "num_lines": 79,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "timestamp": "2016-11-09T10:04:00",
                 "type": "Email"
             },
             {
@@ -82579,7 +83824,7 @@
                 "file_id": "015671",
                 "file_size": 5014,
                 "filename": "HOUSE_OVERSIGHT_015671.txt",
-                "is_interesting": true,
+                "is_interesting": null,
                 "num_lines": 50,
                 "timestamp": "2015-06-02T00:00:00",
                 "type": "OtherFile"
@@ -82592,7 +83837,7 @@
                 "file_id": "015672",
                 "file_size": 10602,
                 "filename": "HOUSE_OVERSIGHT_015672.txt",
-                "is_interesting": true,
+                "is_interesting": null,
                 "num_lines": 128,
                 "timestamp": "2015-06-02T00:00:00",
                 "type": "OtherFile"
@@ -83208,13 +84453,16 @@
                 "type": "OtherFile"
             },
             {
-                "author": "linkspirit (French?) and Lawrence Krauss",
                 "category": "skype_log",
                 "file_id": "018224",
                 "file_size": 32487,
                 "filename": "HOUSE_OVERSIGHT_018224.txt",
                 "is_interesting": true,
                 "num_lines": 358,
+                "recipients": [
+                    "linkspirit",
+                    "Lawrence Krauss"
+                ],
                 "timestamp": "2019-06-01T11:54:45.300000",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
@@ -83527,7 +84775,7 @@
                 "file_id": "019448",
                 "file_size": 34440,
                 "filename": "HOUSE_OVERSIGHT_019448.txt",
-                "is_interesting": true,
+                "is_interesting": false,
                 "num_lines": 427,
                 "timestamp": "2012-06-22T23:08:00",
                 "type": "OtherFile",
@@ -84021,7 +85269,7 @@
                 "file_id": "022367",
                 "file_size": 11091,
                 "filename": "HOUSE_OVERSIGHT_022367.txt",
-                "is_interesting": true,
+                "is_interesting": null,
                 "num_lines": 223,
                 "timestamp": "2014-07-01T00:00:00",
                 "type": "OtherFile"
@@ -85426,7 +86674,7 @@
                 "file_id": "026384",
                 "file_size": 15116,
                 "filename": "HOUSE_OVERSIGHT_026384.txt",
-                "is_interesting": null,
+                "is_interesting": false,
                 "num_lines": 226,
                 "timestamp": "2016-06-20T00:00:00",
                 "type": "OtherFile"
@@ -86065,7 +87313,7 @@
                 "file_id": "029102",
                 "file_size": 9139,
                 "filename": "HOUSE_OVERSIGHT_029102.txt",
-                "is_interesting": true,
+                "is_interesting": null,
                 "num_lines": 94,
                 "timestamp": "2016-02-19T00:00:00",
                 "type": "OtherFile",
@@ -86078,7 +87326,7 @@
                 "file_id": "029104",
                 "file_size": 9139,
                 "filename": "HOUSE_OVERSIGHT_029104.txt",
-                "is_interesting": true,
+                "is_interesting": null,
                 "num_lines": 94,
                 "timestamp": "2016-02-19T00:00:00",
                 "type": "OtherFile",
@@ -86171,7 +87419,7 @@
                 "file_id": "029301",
                 "file_size": 2150,
                 "filename": "HOUSE_OVERSIGHT_029301.txt",
-                "is_interesting": true,
+                "is_interesting": false,
                 "num_lines": 25,
                 "timestamp": "2011-08-07T00:00:00",
                 "type": "OtherFile"
@@ -86185,7 +87433,7 @@
                 "file_id": "029302",
                 "file_size": 6170,
                 "filename": "HOUSE_OVERSIGHT_029302.txt",
-                "is_interesting": true,
+                "is_interesting": false,
                 "num_lines": 89,
                 "timestamp": "2011-08-07T00:00:00",
                 "type": "OtherFile"
@@ -86198,7 +87446,7 @@
                 "file_id": "029304",
                 "file_size": 1056,
                 "filename": "HOUSE_OVERSIGHT_029304.txt",
-                "is_interesting": true,
+                "is_interesting": false,
                 "num_lines": 17,
                 "timestamp": "2011-08-07T16:01:33",
                 "type": "OtherFile",
@@ -87397,49 +88645,57 @@
                 "type": "OtherFile"
             },
             {
-                "author": "Lawrence Krauss",
                 "category": "skype_log",
                 "file_id": "032206",
                 "file_size": 2326,
                 "filename": "HOUSE_OVERSIGHT_032206.txt",
-                "is_interesting": false,
+                "is_interesting": true,
                 "num_lines": 41,
+                "recipients": [
+                    "Lawrence Krauss"
+                ],
                 "timestamp": "2017-08-24T19:14:01",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
             {
-                "author": "Lawrence Krauss",
                 "category": "skype_log",
                 "file_id": "032208",
                 "file_size": 216,
                 "filename": "HOUSE_OVERSIGHT_032208.txt",
-                "is_interesting": false,
+                "is_interesting": true,
                 "num_lines": 7,
+                "recipients": [
+                    "Lawrence Krauss"
+                ],
                 "timestamp": "2017-07-11T23:42:34",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
             {
-                "author": "Lawrence Krauss",
                 "category": "skype_log",
                 "file_id": "032209",
                 "file_size": 910,
                 "filename": "HOUSE_OVERSIGHT_032209.txt",
-                "is_interesting": false,
+                "is_interesting": true,
                 "num_lines": 31,
+                "recipients": [
+                    "Lawrence Krauss"
+                ],
                 "timestamp": "2017-07-05T23:01:43",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
             {
-                "author": "linkspirit",
                 "category": "skype_log",
                 "file_id": "032210",
                 "file_size": 1121,
                 "filename": "HOUSE_OVERSIGHT_032210.txt",
                 "is_interesting": true,
                 "num_lines": 46,
+                "recipients": [
+                    "linkspirit"
+                ],
                 "timestamp": "2019-04-05T15:57:08",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
@@ -107356,7 +108612,7 @@
                 "file_id": "EFTA00590685",
                 "file_size": 12933,
                 "filename": "EFTA00590685.txt",
-                "is_interesting": null,
+                "is_interesting": false,
                 "num_lines": 356,
                 "timestamp": "2016-03-23T22:11:58",
                 "type": "DojFile",
@@ -108608,37 +109864,47 @@
                 "was_timestamp_extracted": true
             },
             {
-                "author": "actress Athena Zelcovich, Joscha Bach, and Lawrence Krauss",
                 "category": "skype_log",
                 "file_id": "EFTA01217703",
                 "file_size": 15858,
                 "filename": "EFTA01217703.txt",
                 "is_interesting": null,
                 "num_lines": 552,
+                "recipients": [
+                    "actress Athena Zelcovich",
+                    "Joscha Bach",
+                    "Lawrence Krauss"
+                ],
                 "timestamp": "2014-05-13T22:32:18",
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
             {
-                "author": "actress Athena Zelcovich, Tyler Shears",
                 "category": "skype_log",
                 "file_id": "EFTA01217736",
                 "file_size": 17271,
                 "filename": "EFTA01217736.txt",
                 "is_interesting": null,
                 "num_lines": 579,
+                "recipients": [
+                    "actress Athena Zelcovich",
+                    "Tyler Shears"
+                ],
                 "timestamp": "2014-05-26T19:52:08",
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
             {
-                "author": "Tyler Shears & Hanna Traff at Spotify",
                 "category": "skype_log",
                 "file_id": "EFTA01217787",
                 "file_size": 17008,
                 "filename": "EFTA01217787.txt",
                 "is_interesting": true,
                 "num_lines": 579,
+                "recipients": [
+                    "Tyler Shears",
+                    "Hanna Traff at Spotify"
+                ],
                 "timestamp": "2014-08-22T20:12:59",
                 "type": "DojFile",
                 "was_timestamp_extracted": true
@@ -109731,6 +110997,7 @@
         "Francesca Hall": "crypto, assistant to Austin Hill",
         "Fred Haddad": "lawyer, co-founder of Heck's in West Virginia",
         "Ganbat Chuluunkhuu": "lobbyist, corrupt Mongolian politician who was later wanted by Interpol",
+        "Gavin Andresen": "crypto, core bitcoin developer",
         "Gerald Barton": "business, Maryland property developer Landmark Land Company",
         "Gerald Lefcourt": "lawyer, friend of Alan Dershowitz",
         "Ghislaine Maxwell": "Epstein, Epstein's girlfriend, daughter of the spy Robert Maxwell",
@@ -109758,6 +111025,7 @@
         "James Fitzgerald": "tech bro, Peter Thiel's Valar Ventures",
         "James Hill": "journalist, ABC News",
         "Janusz Banasiak": "employee, Epstein's house manager",
+        "Jason Calacanis": "tech bro, All In Podcast with David Sacks, Uber investor",
         "Jay Lefkowitz": "lawyer, Kirkland & Ellis partner, criminal defense attorney on 2008 case",
         "Jean Huguen": "employee, interior design at Alberto Pinto Cabinet",
         "Jean Luc Brunel": "modeling, MC2 Model Management founder, died by suicide in French jail",
@@ -109917,6 +111185,7 @@
         "Vincenzo Iozzo": "tech bro, CEO of the identity-security company SlashID",
         "Vinit Sahni": "finance, analyst at Deutsche Bank and Goldman Sachs",
         "Vladimir Yudashkin": "modeling, director of the 1 Mother Agency",
+        "Whitfield Diffie": "academia, MIT cryptographer and mathematician",
         "Yuko Barnaby": "academia, MIT Media Lab Assistant to the Director",
         "Zubair Khan": "tech bro, Tranchulas cybersecurity, InsightsPod founder, Islamabad / Dubai, friend of Masha Drokova",
         "linkspirit": "friend, Skype username of someone Epstein communicated with",
