@@ -292,13 +292,12 @@ def _print_section_summary_table(table: Table) -> None:
 
 def _signature_table(keyed_sets: dict[str, set[str]], cols: tuple[str, str], join_char: str = '\n') -> Padding:
     """Build table for who signed emails with 'Sent from my iPhone' etc."""
+    new_dict = dict_sets_to_lists(keyed_sets)
     title = 'Email Signatures Used By Authors' if cols[0] == AUTHOR else 'Authors Seen Using Email Signatures'
     table = build_table(title, header_style="bold reverse", show_lines=True)
 
     for i, col in enumerate(cols):
         table.add_column(col.title() + ('s' if i == 1 else ''))
-
-    new_dict = dict_sets_to_lists(keyed_sets)
 
     for k in sorted(new_dict.keys()):
         table.add_row(highlighter(k or UNKNOWN), highlighter(join_char.join(sorted(new_dict[k]))))
