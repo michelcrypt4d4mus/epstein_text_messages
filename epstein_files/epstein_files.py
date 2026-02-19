@@ -129,10 +129,10 @@ class EpsteinFiles:
                 timer_msg = f"Loaded {len(epstein_files.file_paths):,} documents from '{args.pickle_path}'"
                 timer.print_at_checkpoint(f"{timer_msg} ({file_size_str(args.pickle_path)})")
 
-            if args.reload_doj:
-                epstein_files.reload_doj_files()
-            elif args.load_new:
+            if args.load_new:
                 epstein_files.load_new_files()
+            elif args.reload_doj:
+                epstein_files.reload_doj_files()
 
             return epstein_files
 
@@ -143,12 +143,10 @@ class EpsteinFiles:
 
     def docs_matching(self, pattern: re.Pattern | str, names: list[Name] | None = None) -> list[SearchResult]:
         """Find documents whose text matches `pattern` optionally limited to only docs involving `name`)."""
+        documents = [d for d in self.documents if (not names) or d.author in names]
         results: list[SearchResult] = []
 
-        for doc in self.documents:
-            if names and doc.author not in names:
-                continue
-
+        for doc in documents:
             lines = doc.lines_matching(pattern)
 
             if args.min_line_length:

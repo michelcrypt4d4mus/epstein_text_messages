@@ -139,8 +139,10 @@ def epstein_grep():
                     console.print(Padding(temp_highlighter(line_txt), INFO_PADDING), style='gray37')
 
             console.line()
-            console.print(doc.file_info, style='dim')
-            console.line()
+
+            if args.debug:
+                console.print(doc._debug_txt(), style='dim')
+                console.line()
 
 
 def epstein_show():
