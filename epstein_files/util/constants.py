@@ -765,7 +765,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='027032', duplicate_ids=['028531']),
     EmailCfg(id='026777', duplicate_ids=['028493']),
     EmailCfg(id='029837', duplicate_ids=['029255']),
-    EmailCfg(id='029299', duplicate_ids=['033594']),
+    EmailCfg(id='029299', duplicate_ids=['033594'], is_interesting=True, comment='trump rec letter for boccio'),
     EmailCfg(id='030904', duplicate_ids=['031069']),
     EmailCfg(id='030006', duplicate_ids=['031165']),
     EmailCfg(id='025215', duplicate_ids=['031159']),

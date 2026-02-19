@@ -156,6 +156,7 @@ METADATA_FIELDS = [
 ]
 
 DEBUG_PROPS = METADATA_FIELDS + [
+    'attachment_file_ids',
     'is_note_to_self',
     'is_persons_first_email',
     'is_word_count_worthy',
@@ -710,7 +711,7 @@ class Email(Communication):
         if self.attached_docs:
             attachments_table_title = f" {self.file_info.url_slug} Email Attachments:"
             attachments_table = OtherFile.files_preview_table(self.attached_docs, title=attachments_table_title)
-            yield Padding(attachments_table, (0, 0, 1, 12))
+            yield Padding(attachments_table, (0, 0, 1, site_config.attachment_indent))
 
         if should_rewrite_header:
             self.log_top_lines(self.header.num_header_rows + 4, f'Original header:')

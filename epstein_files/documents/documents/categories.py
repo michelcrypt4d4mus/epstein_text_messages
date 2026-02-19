@@ -16,7 +16,6 @@ class Interesting(StrEnum):
     LETTER = auto()
     MONEY = auto()
     REPUTATION = auto()
-    RESUMÉ = auto()
     SOCIAL = auto()
     TEXT_MSG = auto()
 
@@ -27,6 +26,7 @@ class Neutral(StrEnum):
     LEGAL = auto()
     MISC = auto()
     PRESSER = auto()
+    RESUMÉ = auto()
     SKYPE_LOG = auto()
 
 class Uninteresting(StrEnum):
@@ -71,7 +71,7 @@ CATEGORY_STYLE_MAPPING = {
 
 CATEGORY_STYLES = {
     Interesting.LETTER: 'medium_orchid1',
-    Interesting.RESUMÉ: 'deep_pink4',
+    Neutral.RESUMÉ: 'deep_pink4',
     Interesting.SOCIAL: 'yellow1',
     Neutral.FLIGHT_LOG: 'cyan',
     Neutral.MISC: 'deep_pink3',

@@ -86,7 +86,7 @@ NON_METADATA_FIELDS = [
 CATEGORY_PREAMBLES = {
     Interesting.LETTER: 'letter',
     Interesting.REPUTATION: REPUTATION_MGMT,
-    Interesting.RESUMÉ: 'professional resumé',
+    Neutral.RESUMÉ: 'professional resumé',
     Interesting.TEXT_MSG: 'text message',
     Neutral.FLIGHT_LOG: Neutral.FLIGHT_LOG.replace('_', ' '),
     Neutral.PRESSER: Neutral.PRESSER.replace('_', ' '),
@@ -172,8 +172,8 @@ class DocCfg:
             description = join_truthy(author, description)
         elif self.category == Interesting.REPUTATION or (self.category == Neutral.LEGAL and 'v.' in self.author_str):
             author_separator = ': '
-        elif self.category in [Interesting.RESUMÉ, Category.TWEET]:
-            preamble_separator = 'of' if self.category == Interesting.RESUMÉ else 'by'
+        elif self.category in [Category.RESUMÉ, Category.TWEET]:
+            preamble_separator = 'of' if self.category == Category.RESUMÉ else 'by'
             preamble_separator = preamble_separator.center(3, ' ')
         elif self.category == Neutral.SKYPE_LOG:
             preamble_separator = ' of conversation with '
@@ -244,6 +244,7 @@ class DocCfg:
              -  descriptions with UNINTERESTING_PREFIXES
              -  finance category with any author
         """
+        # import pdb;pdb.set_trace()
         if self.duplicate_of_id:
             return False
         elif self.is_interesting is not None:

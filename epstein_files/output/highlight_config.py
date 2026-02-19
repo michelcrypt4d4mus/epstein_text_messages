@@ -1640,6 +1640,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Softbank",
             r"SpaceX",
             r"Spotify",
+            r"(Steve\s*)Ballmer",
             r"Tencent",
             r"thielcapital",
             r"Tim\s*Ferriss?",
