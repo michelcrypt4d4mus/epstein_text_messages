@@ -74,6 +74,7 @@ EHUD_BARAK = 'Ehud Barak'
 ERIC_ROTH = 'Eric Roth'
 EVA_DUBIN = 'Eva Dubin'
 FAITH_KATES = 'Faith Kates'
+FRANCESCA_HALL = 'Francesca Hall'
 FRED_HADDAD = 'Fred Haddad'
 GERALD_BARTON = 'Gerald Barton'
 GERALD_LEFCOURT = 'Gerald Lefcourt'
@@ -308,9 +309,9 @@ NAMES_TO_NOT_HIGHLIGHT = """
     cameron caroline carolyn chris christian christina cohen
     dan daniel danny darren dave david debbie department donald douglas
     ed edward edwards enforcement enterprise enterprises entourage epstein eric erika etienne
-    faith fisher fitzgerald forget frances fred friendly frost fuller fund
+    faith fisher fitzgerald forget frances francesca fred friendly frost fuller fund
     gates gateway gerald george gold gordon greg
-    haddad hanson harry hay heather henry hill hoffman howard
+    haddad hall hanson harry hay heather henry hill hoffman howard
     ian inc inc. ivan
     jack james jay jean jeff jeffrey jennifer jeremy jessica joel john jon jonathan joseph jr
     kafka kahn karl kate katherine kelly ken kevin krassner

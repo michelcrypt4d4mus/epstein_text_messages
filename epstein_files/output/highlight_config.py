@@ -289,6 +289,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(BRYAN_BISHOP, "executive at LedgerX and Polymath fund"),
             Contact(DONALD_NORMAN, f"co-founder of early British crypto exchange Intersango with {AMIR_TAAKI}"),
             Contact(ED_BOYLE, f"Medici Bank", r"Ed\s*Boy(el|le)"),
+            Contact(FRANCESCA_HALL, f"assistant to {AUSTIN_HILL}"),
             Contact(JEFFREY_WERNICK, "former COO of Parler, involved in numerous crypto companies like Bitforex"),
             Contact(JEREMY_RUBIN, "developer/researcher", r"Jeremy\s*Rubin"),
             Contact(
@@ -357,6 +358,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Steve\s*Waterhouse",
             r"Tether",
             r"virtual\s*(currenc(ies|y)|money)",
+            r"wash\s*trad(es?|ing)",
             r"Wire\s*ca\n?rd",
             r"Wladimir( van der Laan)?",  # bitcoin dev
             r"ZCash",
@@ -704,6 +706,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Deutsche?\s*(Asset|Bank)",
             r"Electron\s*Capital\s*(Partners)?",
             r"Fenner",
+            r"Fortress(\s*Investment)?\s*Group",
             r"FRBNY",
             r"Goldman(\s*Sachs)",
             r"GRAT",
@@ -1363,7 +1366,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         label=PUBLICIST,
         style='orange_red1',
         contacts=[
-            Contact(AL_SECKEL, "Isabel Maxwell's husband, Mindshift conference, fell off a cliff"),
+            Contact(AL_SECKEL, "Isabel Maxwell's husband, Mindshift conference, mysterious death"),
             Contact('Barnaby Marsh', "co-founder of philanthropy services company Saint Partners"),
             Contact(CHRISTINA_GALBRAITH, f"{JEFFREY_EPSTEIN} VI Foundation Media/PR, worked with {TYLER_SHEARS}"),
             Contact(IAN_OSBORNE, f"{IAN_OSBORNE} & Partners reputation repairer hired in 2011", fr"{IAN_OSBORNE}|lan Osbome"),
@@ -1562,6 +1565,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Myan?mar",
             r"New\s*Zealand",
             r"Philippines",
+            r"Sam ?sung",
             r"South\s*Korean?",
             r"Tai(pei|wan)",
             r"Thai(land)?",
@@ -1704,12 +1708,12 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         label='victim',
         style=VICTIM_COLOR,
         contacts=[
-            Contact(PAULA, "ex-girlfriend who works in opera now", r"^Paula( Heil Fisher)?$")
+            Contact(PAULA, "ex-girlfriend who works in opera now", r"^Paula( Heil Fisher)?$"),
         ],
         patterns=[
             r"child\s*pornography",
             r"(David\s*)?Bo[il]es(,?\s*Schiller( & Flexner)?)?",
-            r"Ellaina\s*Astras?",
+            r"Ellaina\s*As?tras?",
             r"(Gloria\s*)?Allred",
             r"(Jane|Tiffany)\s*Doe",
             r"Katie\s*Johnson",
@@ -1887,6 +1891,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"PRIVILEGED ?- ?ATTORNEY WORK.*(\nCONFIDENTIAL - SUBJECT TO.*)?",
             r"Managing Partner - Crypto Currency Partners",  # brock pierce
             r"Please use this email for.*general Media Lab.*",  # Joi Ito
+            r"-Austin\nAustin Hill - B..dder.*(\n.*B92ED3E3)?",
         ],
     ),
     HighlightedText(
