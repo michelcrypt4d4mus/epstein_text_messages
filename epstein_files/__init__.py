@@ -46,6 +46,9 @@ def epstein_generate() -> None:
     else:
         print_title_page_bottom(epstein_files)
 
+        if args.output_chrono:
+            print_subtitle_panel('Files in Chronological Order')
+
     if args.colors_only:
         exit()
 

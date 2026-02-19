@@ -127,7 +127,6 @@ def print_title_page_bottom(epstein_files: 'EpsteinFiles') -> None:
     print_centered_link(SiteType.get_url(SiteType.JSON_METADATA), "(explanations of author attributions)", style='magenta')
     _print_external_links()
     console.line()
-    print_subtitle_panel('Files in Chronological Order')
 
 
 def _bulleted_site_link(site_type: SiteType, link: Text) -> Text:
