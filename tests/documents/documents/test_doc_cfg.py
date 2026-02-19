@@ -1,5 +1,4 @@
 import pytest
-from copy import deepcopy
 
 from epstein_files.documents.documents.categories import Interesting, Neutral, Uninteresting
 from epstein_files.documents.documents.doc_cfg import DocCfg, EmailCfg
