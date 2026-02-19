@@ -299,6 +299,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='029970', author=GWENDOLYN_BECK, author_reason='signed "Longevity & Successful Aging"', truncate_to=400),
     EmailCfg(id='029960', author=GWENDOLYN_BECK, author_reason='signature "Beck Center for Longevity & Aging"', truncate_to=498),
     EmailCfg(id='029959', author=GWENDOLYN_BECK, author_reason='signature "Beck Center for Longevity & Aging"'),
+    EmailCfg(id='029958', author=GWENDOLYN_BECK, author_reason='widely reported'),
     EmailCfg(id='033360', author=HENRY_HOLT, author_reason='in signature'),
     EmailCfg(id='033384', author=JACK_GOLDBERGER, author_uncertain='Might be Paul Prosperi?'),
     EmailCfg(id='026024', author=JEAN_HUGUEN, author_reason='signature'),
@@ -490,6 +491,7 @@ EMAILS_CONFIG = [
         recipients=["George Krassner", "Daniel Dawson", "Danny Goldberg", "Tom", "Kevin Bright", "Walli Leff", "Michael Simmons", "Lee Quarnstrom", "Lanny Swerdlow", "Larry Sloman", "W&K", "Harry Shearer", "Jay Levin"],
         subject="Fwd: Daryl Cagle's Blog",
     ),
+    EmailCfg(id='029962', recipients=[GWENDOLYN_BECK]),
     EmailCfg(id='026426', recipients=[JEAN_HUGUEN], author_reason='Reply'),
     EmailCfg(id='022202', recipients=[JEAN_LUC_BRUNEL], author_reason='Follow up / reply', duplicate_ids=['029975']),
     EmailCfg(id='030347', recipients=[JEFFREY_EPSTEIN]),
@@ -1045,7 +1047,14 @@ EMAILS_CONFIG = [
         description='Barry Silbert became the CEO of Digital Currency Group, the top crypto fund in the U.S.',
         is_interesting=True,
     ),
-    EmailCfg(id='EFTA00381451', author=LINDA_STONE, author_reason='"Typos, misspellings courtesy of iPhone."', truncate_to=800),
+    EmailCfg(
+        id='EFTA00381451',
+        author=LINDA_STONE,
+        author_reason='"Typos, misspellings courtesy of iPhone."',
+        recipients=[LESLEY_GROFF],
+        truncate_to=800,
+        uncertain_recipient='scheduling epstein',
+    ),
     EmailCfg(id='EFTA00706814', author=LINDA_STONE, author_reason=LINDA_STONE_ATTRIBUTION),
     EmailCfg(id='EFTA00703417', author=LINDA_STONE, author_reason=LINDA_STONE_ATTRIBUTION),
     EmailCfg(id='EFTA02354559', author=LINDA_STONE, author_reason=LINDA_STONE_ATTRIBUTION),
@@ -1151,6 +1160,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00858688', author=SERGEY_BELYAKOV),
     EmailCfg(id='EFTA00704085', author=SERGEY_BELYAKOV, author_reason='response to EFTA00835324'),
     EmailCfg(id='EFTA00039663', author=STACEY_RICHMAN, recipients=[USANYS], author_reason='unredacted in EFTA00039662'),
+    EmailCfg(id='EFTA00721168', author=STEVEN_SINOFSKY, author_uncertain='Sinofsky in previous To: field'),
     EmailCfg(
         id='EFTA02731689',
         author=USANYS,
@@ -1225,6 +1235,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA02731587', author=USANYS, recipients=[USANYS], date='2022-01-21 17:28:00', author_uncertain=True),
     EmailCfg(id='EFTA02068282', recipients=[ANDREW_MCCORMACK]),
     EmailCfg(id='EFTA02518357', recipients=[CHRISTINA_GALBRAITH, RICHARD_KAHN], author_reason='"Christina" appears in email'),
+    EmailCfg(id='EFTA01950559', recipients=[CHRISTINA_GALBRAITH], uncertain_recipient='"Christina" in thread'),
     EmailCfg(id='EFTA00915426', recipients=[DONALD_NORMAN], author_reason='"This is Donald"'),
     EmailCfg(id='EFTA00916133', recipients=[DONALD_NORMAN], author_reason='signed "Donald"', duplicate_ids=['EFTA01862243']),
     EmailCfg(id='EFTA02662381', recipients=[FAWZI_SIAM]),
@@ -1334,7 +1345,8 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA02483194', description=f"discussion of {GANBAT_CHULUUNKHUU}'s arrest", is_interesting=True),
     EmailCfg(id='EFTA00637023', description=f"discussion of getting around laws against laundering money in places like Myanmar and Mongolia"),
     EmailCfg(id='EFTA02601259', description=f"discussion of investments hidden through {JOI_ITO}"),
-    EmailCfg(id='EFTA01004753', description=f"discussion of LayerOne crypto stuff"),
+    EmailCfg(id='EFTA01004753', description=f"founder of Layer1 is the only guy in crypto who doesn't want to meet Epstein"),
+    EmailCfg(id='EFTA02601503', description=f"discussion of investing in Layer1, an important crypto business"),
     EmailCfg(id='EFTA00495372', description=f'discussion of Medici Bank, a new successor to Noble Bank as a crypto bank', is_interesting=True),
     EmailCfg(id='EFTA02629771', description=f"discussion of {RENATA_BOLOTOVA}'s employment at IPI", is_interesting=True),
     EmailCfg(id='EFTA00964459', description=f'discussion of sharia compliant crypto token', is_interesting=True),
@@ -1347,6 +1359,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA02592748', description=f"Epstein asking {BROCK_PIERCE} for a favour related to someone named 'Sue'"),
     EmailCfg(id='EFTA00999392', description=f"Epstein and {BROCK_PIERCE} discuss what looks like a sham marriage for immigration purposes"),
     EmailCfg(id='EFTA00990442', description=f"Epstein offers to cover all costs for Sharia Coin", is_interesting=True),
+    EmailCfg(id='EFTA01060993', description=f"Epstein says he knows \"a few\" guys who hold over $50 million in bitcoin", is_interesting=True),
     EmailCfg(id='EFTA01008242', description='Epstein passes on an investment in Radius'),
     EmailCfg(id='EFTA00999897', description=f"Epstein claims he's a fan of {ADAM_BACK} (who has recently claimed he had nothing to do with Epstein)"),
     EmailCfg(id='EFTA01139067', description=f'Epstein tells Farkas he has not invested in {CRYPTO_CURRENCY_PARTNERS_II}', is_interesting=True),
@@ -1437,12 +1450,16 @@ UNINTERESTING_EMAIL_IDS = [
     'EFTA01005712',
     'EFTA01005715',
     'EFTA02228570',
+    # Iozzo
+    '033280',
     # DOJ / USANYS
     'EFTA02730469',
     'EFTA02730471',
     # TODO: These have UNKNOWN recipient so they currently get printed but we should configure it so they don't
     'EFTA00039894',
     'EFTA00039878',
+    # Unknown
+    '029206',
 ]
 
 for id in UNINTERESTING_EMAIL_IDS:

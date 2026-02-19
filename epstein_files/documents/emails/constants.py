@@ -17,10 +17,10 @@ FRENCH_REPLY_PATTERN = r"Le .* a ecrit:"
 GERMAN_REPLY_PATTERN = r"Am \d\d\.\d\d\..*schrieb.*"
 NORWEGAIN_REPLY_PATTERN = r"(Den .* folgende|(fre|lor|son)\. .* skrev .*):"
 REPLY_LINE_IN_A_MSG_PATTERN = r"In a message dated \d+/\d+/\d+.*writes:"
-REPLY_LINE_ENDING_PATTERN = r"[_ \n](AM|PM|[<_]|wrote:?)"
+REPLY_LINE_ENDING_PATTERN = r"[_ \n](AM|PM|[<_]|w?rote:?)"
 REPLY_LINE_ON_NUMERIC_DATE_PATTERN = fr"(?<!M)On \d+/[\d\w]+/\d+[, ].*{REPLY_LINE_ENDING_PATTERN}"
 REPLY_LINE_ON_DATE_PATTERN = fr"On (\d+ )?((Mon|Tues?|Wed(nes)?|Thu(rs)?|Fri|Sat(ur)?|Sun)(day)?|(Jan|Fe(b|vr\.)|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\w*)[, ].*{REPLY_LINE_ENDING_PATTERN}"
-REPLY_LINE_PATTERN = rf"^([> •]*({FRENCH_REPLY_PATTERN}|{GERMAN_REPLY_PATTERN}|{NORWEGAIN_REPLY_PATTERN}|{REPLY_LINE_IN_A_MSG_PATTERN}|{REPLY_LINE_ON_NUMERIC_DATE_PATTERN}|{REPLY_LINE_ON_DATE_PATTERN}|{FORWARDED_LINE_PATTERN}))"
+REPLY_LINE_PATTERN = rf"^([>» •]*({FRENCH_REPLY_PATTERN}|{GERMAN_REPLY_PATTERN}|{NORWEGAIN_REPLY_PATTERN}|{REPLY_LINE_IN_A_MSG_PATTERN}|{REPLY_LINE_ON_NUMERIC_DATE_PATTERN}|{REPLY_LINE_ON_DATE_PATTERN}|{FORWARDED_LINE_PATTERN}))"
 REPLY_REGEX = re.compile(REPLY_LINE_PATTERN, re.IGNORECASE | re.MULTILINE)
 SENT_FROM_REGEX = re.compile(r'^(?:(Please forgive|Sorry for all the) typos.{1,4})?((Envoyé de mon|Sent (from|via)).*(and string|AT&T|Droid|iPad|Phone|Mail|Surface( RT)?|BlackBerry(.*(smartphone|device|Handheld|AT&T|T- ?Mobile))?)\.?)|Co-authored with iPhone auto-correct|Typos,? misspellings courtesy of iPhone(\s*word & thought substitution|Send from my mobile...please excuse typos)?\.?', re.M | re.I)
 
@@ -116,7 +116,7 @@ EMAIL_SIGNATURE_REGEXES = {
     GHISLAINE_MAXWELL: re.compile(r"FACEBOOK\nTWITTER\nG\+\nPINTEREST\nINSTAGRAM\nPLEDGE\nTHE DAILY CATCH"),
     JEANNE_M_CHRISTENSEN: re.compile(r"A?Please consider the environment.*\nThis communication may.*\nWork Product.*\nresponsible.*\nanyone.*\nhereof.*|This communication may contain Confidential.*\nyou are not the addressee.*\nto such person.*\nor delete this.*"),
 
-    JEFFREY_EPSTEIN: re.compile(r"((\*+|please note)\n+)?([>»•]+ )*The info[r=]mation contained i[n=] this communication.{,556}all\s+([>»] )*attachment[s=].( copyright [-=]all rights reserved?)?", re.DOTALL),
+    JEFFREY_EPSTEIN: re.compile(r"(([* 0,]+|please note)\n+)?([>»•]+ )*The info[r=]mation containe[d=] i[n=] th[i=]s communication.{,556}all\s+([>»] )*attachment[s=].( copyright [-=]all rights reserved?)?", re.DOTALL),
 
     JESSICA_CADWELL: re.compile(r"(f.*\n)?Certified Para.*\nFlorida.*\nBURMAN.*\n515.*\nSuite.*\nWest Palm.*(\nTel:.*)?(\nEmail:.*)?", re.IGNORECASE),
     KEN_JENNE: re.compile(r"Ken Jenne\nRothstein.*\n401 E.*\nFort Lauderdale.*", re.IGNORECASE),
