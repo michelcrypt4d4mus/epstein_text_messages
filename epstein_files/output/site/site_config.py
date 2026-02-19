@@ -23,10 +23,11 @@ NOT_ALL_FILES_MSG = 'Not All Epstein Files Are Here!'
 @dataclass
 class MobileConfig:
     abbreviations_width: ClassVar[int | None] = None
-    num_color_key_cols: ClassVar[int] = 6
+    num_color_key_cols: ClassVar[int] = 2
     not_all_files_warning: ClassVar[str] = starred_header(NOT_ALL_FILES_MSG, num_spaces=1, num_stars=1)
     other_files_preview_chars: ClassVar[int] = 300
     show_emailer_tables: ClassVar[bool] = False
+    subtitle_width: int | None = None
     width: ClassVar[int] = 45
 
     @classmethod
@@ -48,7 +49,8 @@ class SiteConfig(MobileConfig):
     num_color_key_cols: ClassVar[int] = 6
     not_all_files_warning: ClassVar[str] = starred_header(NOT_ALL_FILES_MSG, num_spaces=6, num_stars=14)
     other_files_preview_chars: ClassVar[int] = 900
-    show_emailer_tables: ClassVar[bool]
+    show_emailer_tables: ClassVar[bool] = True
+    subtitle_width: int | None = 110
     width: ClassVar[int] = DEFAULT_WIDTH
 
     @classmethod

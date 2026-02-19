@@ -87,6 +87,9 @@ QUESTION_MARKS_REGEX = re.compile(fr' {re.escape(QUESTION_MARKS)}$')
 # Decorative
 LEFT_ARROWS = '⇚ ⇠ ⇷ ⟵ ⇜ ⇽ ⬰ ⬲'
 RIGHT_ARROWS = '↦ ↠ ➔ ➤ ➦ ➱ ➪ ➾'
+# for line_char in '-﹊﹌﹉﹏﹎＿':
+#     console.print((args.width - 4) * line_char + '\n\n', style='dim')
+
 
 # Whitespace
 INDENT = '    '

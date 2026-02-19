@@ -17,15 +17,14 @@ from rich.text import Text
 from rich.theme import Theme
 
 from epstein_files.output.epstein_highlighter import EpsteinHighlighter
-from epstein_files.output.highlight_config import HIGHLIGHT_GROUPS, HIGHLIGHTED_NAMES
+from epstein_files.output.highlight_config import HIGHLIGHT_GROUPS
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constant.urls import *
-from epstein_files.util.env import args
+from epstein_files.util.env import args, site_config
 from epstein_files.util.helpers.data_helpers import json_safe, sort_dict
 from epstein_files.util.helpers.link_helper import link_markup
 from epstein_files.util.logging import logger
 
-SUBTITLE_WIDTH = 110
 NA_TXT = Text(NA, style='dim')
 SKIPPED_FILE_MSG_PADDING = (0, 0, 0, 4)
 SUBTITLE_PADDING = (2, 0, 1, 0)
@@ -174,6 +173,12 @@ def prefix_with(txt: list[str] | list[Text] | Text | str, pfx: str, pfx_style: s
 
 
 def print_centered(obj: RenderableType, style: str = '') -> None:
+    if args.mobile:
+        if isinstance(obj, str):
+            obj = Text.from_markup(obj, justify='center')
+        elif isinstance(obj, Text):
+            obj = Text('', justify='center').append(obj)
+
     console.print(Align.center(obj), highlight=False, style=style)
 
 
@@ -195,7 +200,7 @@ def print_json(label: str, obj: object, skip_falsey: bool = False) -> None:
 
 
 def print_subtitle_panel(msg: str, style: str = 'black on white') -> None:
-    panel = Panel(Text.from_markup(msg, justify='center'), width=SUBTITLE_WIDTH, style=style)
+    panel = Panel(Text.from_markup(msg, justify='center'), width=site_config.subtitle_width, style=style)
     print_centered(Padding(panel, SUBTITLE_PADDING))
 
 

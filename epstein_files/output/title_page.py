@@ -12,6 +12,7 @@ from rich.table import Table
 from rich.text import Text
 
 from epstein_files.output.layout_elements.demi_table import build_demi_table
+from epstein_files.output.highlight_config import HIGHLIGHTED_NAMES
 from epstein_files.output.rich import *
 from epstein_files.output.site.site_config import MOBILE_WARNING
 from epstein_files.util.constant.names import UNKNOWN
@@ -125,6 +126,8 @@ def print_title_page_bottom(epstein_files: 'EpsteinFiles') -> None:
     print_centered(f"(thanks to {link_markup('https://x.com/ImDrinknWyn', '@ImDrinknWyn', 'dodger_blue3')} + others for help attributing redacted emails)")
     print_centered_link(SiteType.get_url(SiteType.JSON_METADATA), "(explanations of author attributions)", style='magenta')
     _print_external_links()
+    console.line()
+    print_subtitle_panel('Files in Chronological Order')
 
 
 def _bulleted_site_link(site_type: SiteType, link: Text) -> Text:
