@@ -337,6 +337,10 @@ class Email(Communication):
         self.actual_text = self._extract_actual_text()
         self.sent_from_device = self._sent_from_device()
 
+        for signature, name  in KNOWN_SIGNATURES.items():
+            if self.has_unknown_participant and signature.lower() in self.text.lower():
+                self.warn(f"Found known signature for {name} in unattributed email.")
+
     def is_from_or_to(self, name: str) -> bool:
         """True if `name` is either the author or one of the recipients."""
         return name in [self.author] + self.recipients

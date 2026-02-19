@@ -339,6 +339,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"(Howard\s+)?Lutnic?k",
             r"ICO",
             r"(Jim\s*)Pallotta",  # Media lab advisory board
+            r"Joyce\s*Kim",
             r"Kathryn\s*Haun",
             r"Kraken",
             r"Kyara(\s*Investments?)?(\s*[IV]+)?",  # crypto vehicle with Joi Ito
@@ -361,12 +362,13 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Silk\s*Road",
             r"SpanCash",
             r"Steve\s*Waterhouse",
+            r"supersecretbitcoinproject",
             r"Tether",
             r"virtual\s*(currenc(ies|y)|money)",
             r"wash\s*trad(es?|ing)",
             r"Wire\s*ca\n?rd",
             r"Wladimir( van der Laan)?",  # bitcoin dev
-            r"ZCash",
+            r"Z\s*Cash",
             r"ZECC?",
             r"ZeroCoin",
             r"(zero\s+knowledge\s+|zk)pro(of|tocols?)",
@@ -906,16 +908,12 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact('Donald Rubin', "Professor of Statistics"),
             Contact('Kelly Friendly', f"longtime aide and spokesperson of {LARRY_SUMMERS}"),
             Contact(
-                name=LARRY_SUMMERS,
+                LARRY_SUMMERS,
                 info="board of Digital Currency Group (DCG), Obama economic advisor",
                 emailer_pattern=r"(La(wrence|rry).{1,5})?Summers?|^LH$|LHS|[Il]hsofficel?",
             ),
             Contact('Leah Reis-Dennis', f"producer for {LISA_NEW}'s Poetry in America"),
-            Contact(
-                name=LISA_NEW,
-                info=f'professor of poetry, wife of {LARRY_SUMMERS}, AKA "Elisa New"',
-                emailer_pattern=r"E?Lisa New?\b",
-            ),
+            Contact(LISA_NEW, f'professor of poetry, wife of {LARRY_SUMMERS}, AKA "Elisa New"', r"E?Lisa New?\b"),
             Contact('Lisa Randall', "theoretical physicist"),
             Contact(MARTIN_NOWAK, "professor of mathematics and biology", r"(Martin.*?)?No[vw]ak|Nowak, Martin"),
             Contact(MOSHE_HOFFMAN, "behavioral and evolutionary economics")
@@ -1594,6 +1592,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(HONGBO_ROBERT_BAO, THIELS_VALAR, r"Hong,? Robert Bao|Hongbo(\s*Robert)?\s*Bao"),
             Contact(IAN_ODONNELL, THIELS_VALAR, r"Ian\s*O'?Donnell|O'?Donnell,\s*Ian"),
             Contact(JAMES_FITZGERALD, THIELS_VALAR, r"James Fitz[g ]eral?d?"),
+            Contact(JASON_CALACANIS, 'All In Podcast with David Sacks, Uber investor', r"Jason\s*(.{12})Calacanis"),
             Contact('LinkedIn', "LinkedIn", r"Linked[Il]n(\s*Updates)?"),
             Contact(PHILIP_ROSEDALE, 'Second Life Founder'),
             Contact(PETER_THIEL, "Paypal mafia member, founder of Palantir, Facebook investor"),

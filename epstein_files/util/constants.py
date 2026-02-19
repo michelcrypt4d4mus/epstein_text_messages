@@ -952,6 +952,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA01030561', author=GANBAT_CHULUUNKHUU, author_reason='signature'),
     EmailCfg(id='EFTA00845330', author=GREG_WYLER, author_reason='"Greg" + Wyler is on other emails with Stern and Epstein at that time'),
     EmailCfg(id='EFTA02640711', author=JABOR_Y, description='Jabor Y / HBJ home address', is_interesting=True),
+    EmailCfg(id='EFTA02334332', author=JASON_CALACANIS),
     EmailCfg(
         id='EFTA00838218',
         author=JULIA_SANTOS,
@@ -1062,6 +1063,8 @@ EMAILS_CONFIG = [
         truncate_to=800,
         uncertain_recipient='scheduling epstein',
     ),
+    EmailCfg(id='EFTA02584858', author=LINDA_STONE, author_reason='Tupos & Abbrvtns'),
+    EmailCfg(id='EFTA02394792', author=LINDA_STONE, author_reason=LINDA_STONE_ATTRIBUTION),
     EmailCfg(id='EFTA00706814', author=LINDA_STONE, author_reason=LINDA_STONE_ATTRIBUTION),
     EmailCfg(id='EFTA00703417', author=LINDA_STONE, author_reason=LINDA_STONE_ATTRIBUTION),
     EmailCfg(id='EFTA02354559', author=LINDA_STONE, author_reason=LINDA_STONE_ATTRIBUTION),
@@ -1270,6 +1273,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA02041142', recipients=[LESLEY_GROFF]),
     EmailCfg(id='EFTA02238824', recipients=[LESLEY_GROFF]),
     EmailCfg(id='EFTA02246341', recipients=[LESLEY_GROFF]),
+    EmailCfg(id='EFTA02279390', recipients=[LESLEY_GROFF]),
     EmailCfg(id='EFTA00840591', recipients=[LESLEY_GROFF]),
     EmailCfg(id='EFTA00369335', recipients=[LESLEY_GROFF]),
     EmailCfg(id='EFTA02227488', recipients=[LESLEY_GROFF]),
@@ -1514,6 +1518,7 @@ UNINTERESTING_EMAIL_IDS = [
     'EFTA00039981',
     'EFTA00104945',
     'EFTA00039893',
+    'EFTA02385456',
     'EFTA02730481',
     'EFTA02730483',
     # TODO: These have UNKNOWN recipient so they currently get printed but we should configure it so they don't

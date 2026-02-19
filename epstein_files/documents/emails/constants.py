@@ -18,7 +18,7 @@ GERMAN_REPLY_PATTERN = r"Am \d\d\.\d\d\..*schrieb.*"
 NORWEGAIN_REPLY_PATTERN = r"(Den .* folgende|(fre|lor|son)\. .* skrev .*):"
 REPLY_LINE_IN_A_MSG_PATTERN = r"In a message dated \d+/\d+/\d+.*writes:"
 REPLY_LINE_ENDING_PATTERN = r"[_ \n](AM|PM|[<_]|w?rote:?)"
-REPLY_LINE_ON_NUMERIC_DATE_PATTERN = fr"(?<!M)On \d+/[\d\w]+/\d+[, ].*{REPLY_LINE_ENDING_PATTERN}"
+REPLY_LINE_ON_NUMERIC_DATE_PATTERN = fr"(?<!M)On \d+[-/][\d\w]+[-/]\d+[, ].*{REPLY_LINE_ENDING_PATTERN}"
 REPLY_LINE_ON_DATE_PATTERN = fr"On (\d+ )?((Mon|Tues?|Wed(nes)?|Thu(rs)?|Fri|Sat(ur)?|Sun)(day)?|(Ja.|Fe(b|vr\.)|Ma.|Ap.|Ma.|Ju.|Ju.|Au.|Se.|Oc.|No.|De.)\w*)[, ].*{REPLY_LINE_ENDING_PATTERN}"
 REPLY_LINE_PATTERN = rf"^([>» •]*({FRENCH_REPLY_PATTERN}|{GERMAN_REPLY_PATTERN}|{NORWEGAIN_REPLY_PATTERN}|{REPLY_LINE_IN_A_MSG_PATTERN}|{REPLY_LINE_ON_NUMERIC_DATE_PATTERN}|{REPLY_LINE_ON_DATE_PATTERN}|{FORWARDED_LINE_PATTERN}))"
 REPLY_REGEX = re.compile(REPLY_LINE_PATTERN, re.IGNORECASE | re.MULTILINE)
@@ -375,4 +375,9 @@ LINE_REPAIR_MERGES = {
 
     # Note DOJ file line adjustments happen *after* DojFile._repair() is called
     'EFTA00039689': [[4]],
+}
+
+KNOWN_SIGNATURES = {
+    'tupos & abbrvtns': LINDA_STONE,
+    'Typos, misspellings courtesy of iPhone': LINDA_STONE,
 }

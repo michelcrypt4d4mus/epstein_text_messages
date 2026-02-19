@@ -211,6 +211,7 @@ HASSAN_JAMEEL = 'Hassan Jameel'
 HONGBO_ROBERT_BAO = 'Hongbo Robert Bao'
 IAN_ODONNELL = "Ian O'Donnell"
 JAMES_FITZGERALD = 'James Fitzgerald'
+JASON_CALACANIS = 'Jason Calacanis'
 JULIA_SANTOS = 'Julia Santos'
 KARYNA_SHULIAK = 'Karyna Shuliak'
 LORENZO_DE_MEDICI = 'Lorenzo de Medici'
