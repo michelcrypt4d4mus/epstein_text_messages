@@ -107,7 +107,7 @@ SITE_DESCRIPTIONS = {
     SiteType.OTHER_FILES_TABLE:     f"other:files that are not emails or texts",
     SiteType.WORD_COUNT:            f"word count:of Epstein's communications",
     SiteType.DOJ_FILES:             f"doj files:raw OCR text {DOJ_2026_TRANCHE}",
-    SiteType.JSON_METADATA:         f"metadata:author attribution explanations",
+    SiteType.JSON_METADATA:         f"metadata:author bios, attribution explanations",
 }
 
 
