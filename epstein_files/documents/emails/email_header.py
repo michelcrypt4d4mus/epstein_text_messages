@@ -59,7 +59,7 @@ class EmailHeader:
 
     @property
     def is_empty(self) -> bool:
-        return not any([v for _k, v in self.as_dict().items()])
+        return not any(v for v in self.as_dict().values())
 
     @property
     def recipients(self) -> list[str]:
@@ -69,9 +69,10 @@ class EmailHeader:
         self.num_header_rows = len(self.field_names)
         self.was_initially_empty = self.is_empty
 
-    def as_dict(self) -> dict[str, str | None]:
+    def as_dict(self, truthy_only: bool = True) -> dict[str, str | None]:
         """Remove housekeeping fields that don't actually come from the email."""
-        return {k: v for k, v in asdict(self).items() if k not in NON_HEADER_FIELDS}
+        props = {k: v for k, v in asdict(self).items() if k not in NON_HEADER_FIELDS}
+        return {k: v for k, v in props.items() if v} if truthy_only else props
 
     def repair_empty_header(self, email_lines: list[str]) -> None:
         num_headers = len(self.field_names)
@@ -138,7 +139,7 @@ class EmailHeader:
         return '\n'.join([f"{k}: {v}" for k, v in header_fields.items()])
 
     def __str__(self) -> str:
-        return json.dumps(self.as_dict(), sort_keys=True, indent=4)
+        return json.dumps(self.as_dict(truthy_only=False), sort_keys=True, indent=4)
 
     @classmethod
     def from_header_lines(cls, header: str) -> 'EmailHeader':

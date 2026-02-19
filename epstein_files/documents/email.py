@@ -152,7 +152,6 @@ METADATA_FIELDS = [
     'is_mailing_list',
     'recipients',
     'sent_from_device',
-    'subject',
 ]
 
 DEBUG_PROPS = METADATA_FIELDS + [
@@ -265,6 +264,9 @@ class Email(Communication):
     def metadata(self) -> Metadata:
         metadata = super().metadata
         metadata.update(self.truthy_props(METADATA_FIELDS))
+
+        if not self.header.is_empty:
+            metadata['header'] = self.header.as_dict()
 
         if self.attached_docs:
             metadata['attachment_file_ids'] = [f.file_id for f in self.attached_docs]
