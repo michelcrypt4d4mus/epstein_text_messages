@@ -4,9 +4,8 @@ Reformat Epstein text message files for readability and count email senders.
 
     Run: 'EPSTEIN_DOCS_DIR=/path/to/TXT epstein_generate'
 """
-import re
+import sys
 from subprocess import check_output
-from sys import exit
 
 from dotenv import load_dotenv
 load_dotenv()
@@ -38,32 +37,8 @@ from epstein_files.util.logging import exit_with_error, logger
 from epstein_files.util.timer import Timer
 
 
-def generate_html() -> None:
-    if args.make_clean or args.show_urls:
-        if args.make_clean:
-            make_clean()
-        if args.show_urls:
-            show_urls()
-
-        exit()
-
-    timer = Timer()
-    epstein_files = EpsteinFiles.get_files(timer)
-
-    if args.emailers_info:
-        print_emailers_info(epstein_files)
-        exit()
-    elif args.json_metadata:
-        print_json_metadata(epstein_files)
-        exit()
-    elif args.json_files:
-        print_json_files(epstein_files)
-        exit()
-    elif args.repair:
-        epstein_files.repair_ids(args.positional_args)
-        timer.print_at_checkpoint(f"Repaired {len(args.positional_args)} documents")
-        exit()
-
+def epstein_generate() -> None:
+    timer, epstein_files = _load_files_and_check_early_exit_args()
     print_title_page_top()
 
     if args.email_timeline or args.output_word_count:
@@ -214,3 +189,26 @@ def epstein_show():
             check_output(['open', str(doc.file_path)])
         if args.open_url:
             check_output(['open', str(doc.external_url)])
+
+
+def _load_files_and_check_early_exit_args() -> tuple[Timer, EpsteinFiles]:
+    if args.make_clean:
+        make_clean()
+    elif args.show_urls:
+        show_urls()
+    else:
+        timer = Timer()
+        epstein_files = EpsteinFiles.get_files(timer)
+
+        if args.emailers_info:
+            print_emailers_info(epstein_files)
+        elif args.json_metadata:
+            print_json_metadata(epstein_files)
+        elif args.json_files:
+            print_json_files(epstein_files)
+        elif args.repair:
+            epstein_files.repair_ids(args.positional_args)
+        else:
+            return timer, epstein_files
+
+    sys.exit()

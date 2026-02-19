@@ -51,7 +51,7 @@ pytest = "^9.0.1"
 
 [tool.poetry.scripts]
 epstein_diff = 'epstein_files:epstein_diff'
-epstein_generate = 'epstein_files:generate_html'
+epstein_generate = 'epstein_files:epstein_generate'
 epstein_grep = 'epstein_files:epstein_grep'
 epstein_show = 'epstein_files:epstein_show'
 
