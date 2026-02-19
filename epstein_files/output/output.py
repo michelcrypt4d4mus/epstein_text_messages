@@ -263,7 +263,7 @@ def show_urls() -> None:
 
 def write_html(output_path: Path | None) -> None:
     """
-    Write all console output to HTML in `output_path` if `output_path` is not `None`.
+    Write all `console` output to HTML in `output_path` (if provided).
     if `args.write_txt` is set colored ANSI `.txt` files will be written instead.
     """
     if not output_path:
@@ -286,7 +286,7 @@ def _print_email_device_signature_info(epstein_files: EpsteinFiles) -> None:
 
 
 def _print_section_summary_table(table: Table) -> None:
-    """Precede it with internal section links if it's the curated page."""
+    """Print file stats table (top of each section has one)."""
     print_centered(Padding(table, (2, 0, 2, 0)))
 
 

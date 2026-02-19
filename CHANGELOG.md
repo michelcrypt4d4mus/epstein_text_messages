@@ -1,7 +1,7 @@
 # NEXT RELEASE
 
 ### 1.8.2
-* fix --show-urls bug
+* fix `--show-urls` bug
 
 ### 1.8.1
 
