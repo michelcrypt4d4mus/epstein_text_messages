@@ -619,6 +619,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Le\s*Pen",
             r"(?<!DOJ )London",
             r"Macron",
+            r"Malta",
             r"Melusine",
             r"MI\s*5",
             r"Monaco",
@@ -818,6 +819,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"(Assistant\s+)?State\s*Attorney",
             r"Attorney General",
             r'Barbara\s*Burns',  # AUSA
+            r"Ben\s*Lawsky",
             r"((Bob|Robert)\s*)?Mueller",
             r"(Byung\s)?Pak",
             r"Case 1:19-cv-03377(-LAP)?",
