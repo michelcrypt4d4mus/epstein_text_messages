@@ -189,10 +189,9 @@ class WordCount:
 
 
 def print_word_counts(epstein_files: EpsteinFiles) -> None:
+    emails = [e for e in epstein_files.unique_emails if e.is_word_count_worthy] # Remove dupes, junk, fwded articles
     email_subjects: set[str] = set()
     word_count = WordCount()
-    # Remove dupes, junk mail, and fwded articles from emails
-    emails = [e for e in epstein_files.unique_emails if e.is_word_count_worthy]
 
     for email in emails:
         if args.names and email.author not in args.names:
