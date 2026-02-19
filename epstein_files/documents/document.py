@@ -505,7 +505,7 @@ class Document:
 
     def _skipped_file_txt(self, reason: str | Text) -> Text:
         txt = Text(f"Skipping ", INFO_STYLE).append(self.external_link_txt)
-        return txt.append(" because it's ").append(reason).append('...')
+        return txt.append(" because it's ").append(reason)
 
     def _write_clean_text(self, output_path: Path) -> None:
         """Write self.text to 'output_path'. Used only for diffing files."""

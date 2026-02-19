@@ -301,6 +301,15 @@ class Email(Communication):
 
         return txt.append(CLOSE_PROPERTIES_CHAR)
 
+    @property
+    def uninteresting_txt(self) -> Text | None:
+        """Text to print for uninteresting files."""
+        if (uninteresting_txt := super().uninteresting_txt):
+            if self.subject:
+                uninteresting_txt.append(f' ("{self.subject}")', style='light_yellow3')
+
+            return uninteresting_txt
+
     def __post_init__(self):
         super().__post_init__()
 
