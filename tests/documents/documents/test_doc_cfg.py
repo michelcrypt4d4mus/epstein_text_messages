@@ -82,6 +82,20 @@ def uninteresting_description() -> DocCfg:
     return _doj_cfg(Neutral.LEGAL, description=CVRA + " law stuff")
 
 
+@pytest.mark.parametrize(
+    "id,category,description",
+    [
+        pytest.param('026731', Uninteresting.ACADEMIA, 'speech at first inaugural Cornell Carl Sagan Lecture by Lord Martin Rees'),
+        pytest.param('010912', Uninteresting.BOOK, 'book titled "Free Growth and Other Surprises" (draft) by Gordon Getty'),
+        pytest.param('018438', Uninteresting.BOOK, 'book titled "The S&M Feminist" by Clarisse Thorn'),
+    ],
+)
+def test_file_descriptions(get_other_file, id, category, description):
+    file = get_other_file(id)
+    assert file.config.category == category
+    assert file.config.complete_description == description
+
+
 def test_category_txt(blockchain_cap_cfg, empty_house_cfg, junk_doc_cfg, legal_cfg, skype_cfg):
     assert blockchain_cap_cfg.category_txt.style == 'orange1 bold'
     assert empty_house_cfg.category_txt == QUESTION_MARKS_TXT
@@ -172,26 +186,7 @@ def test_is_of_interest(
     assert skype_cfg.is_of_interest is None
     assert UN_cfg.is_of_interest is True
     assert uninteresting_description.is_of_interest is False
-
-
-def test_academia(epstein_files):
-    speech = epstein_files.get_id('026731', required_type=OtherFile)
-    assert speech.config.complete_description == 'speech at first inaugural Cornell Carl Sagan Lecture by Lord Martin Rees'
-
-
-
-@pytest.mark.parametrize(
-    "id,title_author",
-    [
-        pytest.param('010912', '"Free Growth and Other Surprises" (draft) by Gordon Getty'),
-        pytest.param('018438', '"The S&M Feminist" by Clarisse Thorn'),
-    ],
-)
-def test_books(get_other_file, id, title_author):
-    book = get_other_file(id)
-    assert book.config.category == Uninteresting.BOOK
-    assert book.config.complete_description == f"book titled {title_author}"
-
+\
 
 def test_props_to_copy(get_email):
     email = get_email('EFTA00039890')
