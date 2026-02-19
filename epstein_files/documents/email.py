@@ -83,7 +83,7 @@ OCR_REPAIRS: dict[str | re.Pattern, str] = {
     'I nline-Images:': 'Inline-Images:',
     re.compile(r"^From "): 'From: ',
     re.compile(r"^(Sent|Subject) (?![Ff]rom|[Vv]ia)", re.MULTILINE): r'\1: ',
-    re.compile(r"^Forwarded Message$", re.IGNORECASE | re.MULTILINE): '--- Forwarded Message ---',
+    re.compile(r"^(Forwarded|Original) Message$", re.IGNORECASE | re.MULTILINE): r"--- \1 Message ---",
     # Names / email addresses
     'Alireza lttihadieh': ALIREZA_ITTIHADIEH,
     'Miroslav Laj6ak': MIROSLAV_LAJCAK,
