@@ -20,10 +20,14 @@ VI_DAILY_NEWS_REGEX = re.compile(r'virgin\s*is[kl][ai]nds\s*daily\s*news', re.IG
 
 LEDGERX_MSG = 'LedgerX was later acquired by FTX for $298 million'
 
-def build_cfg_from_text(text: str) -> DocCfg | None:
+def build_cfg_from_text(doc: 'Document') -> DocCfg | None:
     """Scan the text to see if an author and description can be inferred."""
+    text = doc.text
     lines = text.split('\n')
     cfg = None
+
+    def _cfg(**kwargs) -> DocCfg:
+        return DocCfg(id=doc.file_id, **kwargs)  # TODO: setting id to nothing sucks
 
     if FBI_FILE_REGEX.search(text):
         return _cfg(category=Neutral.LEGAL, author=FBI, description='memorandum or report')
@@ -38,13 +42,13 @@ def build_cfg_from_text(text: str) -> DocCfg | None:
     elif VI_DAILY_NEWS_REGEX.search(text):
         return _cfg(category=Uninteresting.ARTICLE, author=VI_DAILY_NEWS)
     elif has_line_starting_with(text, [VALAR_GLOBAL_FUND, VALAR_VENTURES.upper()], 2):
-        return valar_cfg(text=text)
+        return valar_cfg(doc.file_id, text=text)
     elif SOUTHERN_FINANCIAL_REGEX.match(text):
         return _cfg(category=Interesting.MONEY, description="transactions by Epstein's Southern Financial LLC")
     elif DEUTSCHE_SOUTHERN_REGEX.match(text):
         return _cfg(category=Interesting.MONEY, description=f"{DEUTSCHE_BANK} statement for Epstein's Southern Trust Company")
     elif VALAR_CAPITAL_CALL_REGEX.search(text):
-        return valar_cfg('requesting money previously promised by Epstein to invest in a new opportunity')
+        return valar_cfg(doc.file_id, 'requesting money previously promised by Epstein to invest in a new opportunity')
     elif (case_match := LEGAL_FILING_REGEX.search(text)):
         return _cfg(category=Neutral.LEGAL, description=f"legal filing in case {case_match.group(1)}")
     elif len(text) < 2600 and HARD_DRIVE_REGEX.search(text):
@@ -60,14 +64,11 @@ def build_cfg_from_text(text: str) -> DocCfg | None:
         return cfg
 
 
-def valar_cfg(description: str = '', text: str = '') -> DocCfg:
-    return _cfg(
+def valar_cfg(id: str, description: str = '', text: str = '') -> DocCfg:
+    return DocCfg(
+        id=id,
         category=Interesting.CRYPTO,  # TODO: not really crypto?
         author=VALAR_VENTURES,
         date='2015-06-30' if '6/30/2015' in text else '',
         description=description or f"is a fintech focused {PETER_THIEL} fund Epstein was invested in",
     )
-
-
-def _cfg(**kwargs) -> DocCfg:
-    return DocCfg(id='', **kwargs)  # TODO: setting id='' sucks

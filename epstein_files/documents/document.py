@@ -347,11 +347,7 @@ class Document:
         self.text = self.text or self._load_file()
         self._set_text(text=self.text)
         self._repair()
-
-        if self.config:
-            for k, v in self.config.props_to_copy.items():
-                setattr(self, k, v)
-
+        self._copy_config_props()
         self._extract_author()
         # TODO: Communication subclass sets FALLBACK_TIMESTAMP as default to keep type checking from whining :(
         self.timestamp = self._extract_timestamp() if self.timestamp in [None, FALLBACK_TIMESTAMP] else self.timestamp
@@ -431,6 +427,12 @@ class Document:
     def warn(self, msg: str) -> None:
         """Print a warning message prefixed by info about this `Document`."""
         self.log(msg, level=logging.WARNING)
+
+    def _copy_config_props(self) -> None:
+        """A couple of properties are copied from the config; the rest are lazily retrieved."""
+        if self.config:
+            for k, v in self.config.props_to_copy.items():
+                setattr(self, k, v)
 
     def _debug_dict(self) -> DebugDict:
         """Merge information about this document from config, file info, etc."""
