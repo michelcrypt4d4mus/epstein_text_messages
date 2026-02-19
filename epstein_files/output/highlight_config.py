@@ -1294,6 +1294,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Marra[hk]e[cs]h",
             r"MB(N|S|Z)",
             r"Mid(dle)?\s*East(ern)?",
+            r"MJ",
             r"Mohammed\s+bin\s+Salman",
             r"Morocc(an|o)",
             r"Mubarak",
