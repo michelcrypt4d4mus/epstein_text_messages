@@ -88,7 +88,7 @@ def uninteresting_description() -> DocCfg:
         pytest.param('026731', Uninteresting.ACADEMIA, 'speech at first inaugural Cornell Carl Sagan Lecture by Lord Martin Rees'),
         pytest.param('010912', Uninteresting.BOOK, 'book titled "Free Growth and Other Surprises" (draft) by Gordon Getty'),
         pytest.param('018438', Uninteresting.BOOK, 'book titled "The S&M Feminist" by Clarisse Thorn'),
-    ],
+    ]
 )
 def test_file_descriptions(get_other_file, id, category, description):
     file = get_other_file(id)
@@ -186,7 +186,7 @@ def test_is_of_interest(
     assert skype_cfg.is_of_interest is None
     assert UN_cfg.is_of_interest is True
     assert uninteresting_description.is_of_interest is False
-\
+
 
 def test_props_to_copy(get_email):
     email = get_email('EFTA00039890')
