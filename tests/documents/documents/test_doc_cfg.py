@@ -1,14 +1,15 @@
 import pytest
+from copy import deepcopy
 
 from epstein_files.documents.documents.categories import Interesting, Neutral, Uninteresting
-from epstein_files.documents.documents.doc_cfg import DocCfg, EmailCfg
+from epstein_files.documents.documents.doc_cfg import CommunicationCfg, DocCfg, EmailCfg
 from epstein_files.documents.other_file import OtherFile
 from epstein_files.output.highlight_config import QUESTION_MARKS_TXT
 from epstein_files.util.constant.names import BLOCKCHAIN_CAPITAL, BOFA_MERRILL, JOI_ITO, Name
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constants import CONFIGS_BY_ID
 
-RANDOM_ID = '123456'
+ID = '123456'
 
 
 @pytest.fixture
@@ -55,19 +56,27 @@ def junk_doc_cfg() -> DocCfg:
 
 @pytest.fixture
 def junk_email_cfg() -> EmailCfg:
-    return EmailCfg(id=RANDOM_ID, category=Uninteresting.JUNK, author='who knows')
+    return EmailCfg(id=ID, category=Uninteresting.JUNK, author='who knows')
 
 @pytest.fixture
 def legal_cfg() -> DocCfg:
     return _oversight_cfg(Neutral.LEGAL, author='clinton v. trump', description='case law')
 
 @pytest.fixture
-def skype_author() -> DocCfg:
-    return _oversight_cfg(Neutral.SKYPE_LOG, author='linkspirit')
+def skype_author(skype_cfg) -> CommunicationCfg:
+    cfg = deepcopy(skype_cfg)
+    cfg.author='linkspirit'
+    return cfg
 
 @pytest.fixture
-def skype_cfg() -> DocCfg:
-    return _oversight_cfg(Neutral.SKYPE_LOG)
+def skype_cfg() -> CommunicationCfg:
+    return CommunicationCfg(id=ID, category=Neutral.SKYPE_LOG)
+
+@pytest.fixture
+def skype_recipients(skype_cfg) -> CommunicationCfg:
+    cfg = deepcopy(skype_cfg)
+    cfg.recipients = ['LBJ', 'JFK']
+    return cfg
 
 @pytest.fixture
 def tweet_cfg() -> DocCfg:
@@ -88,6 +97,7 @@ def uninteresting_description() -> DocCfg:
         pytest.param('026731', Uninteresting.ACADEMIA, 'speech at first inaugural Cornell Carl Sagan Lecture by Lord Martin Rees'),
         pytest.param('010912', Uninteresting.BOOK, 'book titled "Free Growth and Other Surprises" (draft) by Gordon Getty'),
         pytest.param('018438', Uninteresting.BOOK, 'book titled "The S&M Feminist" by Clarisse Thorn'),
+        pytest.param('EFTA00006100', Neutral.MISC, ''),
     ]
 )
 def test_file_descriptions(get_other_file, id, category, description):
@@ -117,6 +127,7 @@ def test_complete_description(
     legal_cfg,
     skype_cfg,
     skype_author,
+    skype_recipients,
     tweet_cfg
 ):
     assert attached_doc.complete_description == f"attached to email {junk_email_cfg.id}"
@@ -143,6 +154,10 @@ def test_complete_description(
     assert skype_author.complete_description == f"{skype_log} of conversation with linkspirit"
     skype_author.description = 'something'
     assert skype_author.complete_description == f"{skype_log} of conversation with linkspirit something"
+    # Skype with recipients
+    assert skype_recipients.complete_description == f"{skype_log} of conversation with LBJ, JFK"
+    skype_recipients.author = 'FDR'
+    assert skype_recipients.complete_description == f"{skype_log} of conversation with FDR, LBJ, JFK"
     # Tweet
     assert tweet_cfg.is_interesting is None
     assert tweet_cfg.complete_description == 'Tweet by Klippenstein'
@@ -191,11 +206,6 @@ def test_is_of_interest(
 def test_props_to_copy(get_email):
     email = get_email('EFTA00039890')
     assert email.config.props_to_copy == {'author': 'USANYS'}
-
-
-def test_misc_cfg():
-    misc_cfg = CONFIGS_BY_ID['EFTA00006100']
-    assert not misc_cfg.complete_description
 
 
 def _oversight_cfg(category: str = '', **kwargs) -> DocCfg:

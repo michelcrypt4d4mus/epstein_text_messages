@@ -164,13 +164,17 @@ class DocCfg:
         elif self.category == Neutral.FINANCE and self.is_description_a_title:
             author_separator = ' report: '
         elif self.category in [Interesting.LETTER, Interesting.TEXT_MSG, Neutral.SKYPE_LOG]:
-            if self.category != Neutral.SKYPE_LOG:
-                description = join_truthy(preamble, author, 'from')
-            else:
-                description = join_truthy(preamble, author)
+            recipients = self.recipients_str
 
-            recipients_sep = ' of conversation with ' if self.category == Neutral.SKYPE_LOG else ' to '
-            description = join_truthy(description, self.recipients_str, recipients_sep)
+            if self.category == Neutral.SKYPE_LOG:
+                description = preamble
+                recipients = join_truthy(author, recipients, ', ')
+                recipients_sep = ' of conversation with '
+            else:
+                description = join_truthy(preamble, author, 'from')
+                recipients_sep = ' to '
+
+            description = join_truthy(description, recipients, recipients_sep)
             description = join_truthy(description, self.description)
         elif self.category == Neutral.SKYPE_LOG:
             author = JEFFREY_EPSTEIN if self.recipients_str and not author else author
