@@ -2,7 +2,6 @@ from rich.text import Text
 
 from epstein_files.util.constant.names import *
 from epstein_files.util.constant.strings import PALM_BEACH_CODE_ENFORCEMENT, PALM_BEACH_WATER_COMMITTEE, UN_GENERAL_ASSEMBLY
-from epstein_files.util.helpers.link_helper import SUBSTACK_POST_LINK_STYLE, link_text_obj
 from epstein_files.util.constant.urls import SUBSTACK_INSIGHTS_LINK
 
 # People who are of interest as authors of non-emails
@@ -71,5 +70,5 @@ UNINTERESTING_AUTHORS = [
 
 SPECIAL_NOTES = {
     ZUBAIR_KHAN: Text('', 'bold', justify='center').append(SUBSTACK_INSIGHTS_LINK) + \
-        Text('\n(a post by me about the social media work Zubair Khan was doing for Epstein during the 2016 election)', 'italic'),
+        Text('\n(a post about the social media work Mr. Khan was doing for Epstein during the 2016 election)', 'italic'),
 }

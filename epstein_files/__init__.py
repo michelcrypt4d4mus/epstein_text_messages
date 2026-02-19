@@ -51,8 +51,7 @@ def epstein_generate() -> None:
 
     if args.colors_only:
         exit()
-
-    if args.output_chrono:
+    elif args.output_chrono:
         printed_docs = print_curated_chronological(epstein_files)
         timer.log_section_complete('Document', epstein_files.unique_documents, printed_docs)
     elif args.output_word_count:
@@ -139,8 +138,10 @@ def epstein_grep():
                     console.print(Padding(temp_highlighter(line_txt), INFO_PADDING), style='gray37')
 
             console.line()
-            console.print(doc.file_info, style='dim')
-            console.line()
+
+            if args.debug:
+                console.print(doc._debug_txt(), style='dim')
+                console.line()
 
 
 def epstein_show():

@@ -10,8 +10,6 @@ from epstein_files.util.constant.strings import *
 
 DEFAULT_CATEGORY_STYLE = 'wheat4'
 
-class CategoryEnum(StrEnum):
-    pass
 
 class Interesting(StrEnum):
     CRYPTO = auto()

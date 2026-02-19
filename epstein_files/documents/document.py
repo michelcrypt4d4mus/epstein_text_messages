@@ -347,11 +347,7 @@ class Document:
         self.text = self.text or self._load_file()
         self._set_text(text=self.text)
         self._repair()
-
-        if self.config:
-            for k, v in self.config.props_to_copy.items():
-                setattr(self, k, v)
-
+        self._copy_config_props()
         self._extract_author()
         # TODO: Communication subclass sets FALLBACK_TIMESTAMP as default to keep type checking from whining :(
         self.timestamp = self._extract_timestamp() if self.timestamp in [None, FALLBACK_TIMESTAMP] else self.timestamp
@@ -431,6 +427,12 @@ class Document:
     def warn(self, msg: str) -> None:
         """Print a warning message prefixed by info about this `Document`."""
         self.log(msg, level=logging.WARNING)
+
+    def _copy_config_props(self) -> None:
+        """A couple of properties are copied from the config; the rest are lazily retrieved."""
+        if self.config:
+            for k, v in self.config.props_to_copy.items():
+                setattr(self, k, v)
 
     def _debug_dict(self) -> DebugDict:
         """Merge information about this document from config, file info, etc."""
@@ -569,6 +571,23 @@ class Document:
     def known_author_count(cls, docs: Sequence[Self]) -> int:
         """Number of elements of `docs` that have an author attribution."""
         return len([doc for doc in docs if doc.author])
+
+    @classmethod
+    def print_documents(cls, docs: Sequence[Self]) -> None:
+        """Print a collection of `Document` objects, with appropriate suppression text for dupes etc."""
+        last_doc_was_suppressed = False
+
+        for doc in docs:
+            if doc.suppressed_txt:
+                doc.print()
+                last_doc_was_suppressed = True
+                continue
+
+            if last_doc_was_suppressed:
+                console.line()
+
+            last_doc_was_suppressed = False
+            doc.print()
 
     @staticmethod
     def sort_by_id(docs: Sequence['DocumentType']) -> list['DocumentType']:

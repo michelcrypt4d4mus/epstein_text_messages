@@ -119,11 +119,9 @@ class OtherFile(Document):
     def __post_init__(self):
         super().__post_init__()
 
-        if not self.config and (cfg := build_cfg_from_text(self.text)):
-            if cfg.date:
-                self.timestamp = cfg.timestamp
-
+        if not self.config and (cfg := build_cfg_from_text(self)):
             self.derived_cfg = cfg
+            self._copy_config_props()
 
     def _extract_timestamp(self) -> datetime | None:
         """Return configured timestamp or value extracted by scanning text with datefinder."""

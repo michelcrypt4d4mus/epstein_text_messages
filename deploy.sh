@@ -1,7 +1,9 @@
 #!/usr/bin/env bash
 # Use --pickled arg to use pickled data file, otherwise pickled data will always be overwritten
-# Set ONLY_TEXTS=true to skip build/deploy of full emails site.
-# Set TAG_RELEASE=true to upload the pkl.gz file to the repo
+#
+#   - NO_DOJ=true to skip the DOJ files page build
+#   - ONLY_TEXTS=true to skip build/deploy of full emails site.
+#   - TAG_RELEASE=true to upload the pkl.gz file to the repo
 set -e
 source .env
 
@@ -103,8 +105,13 @@ print_deploy_step "Building JSON metadata page..."
 $GENERATE_CMD --json-metadata
 # print_deploy_step "Building JSON files data..."
 # $GENERATE_CMD --json-files
-print_deploy_step "Building DOJ 2026 files..."
-$GENERATE_CMD --output-doj-files --whole-file
+
+if [ -n "$NO_DOJ" ]; then
+    print_deploy_step "Skipping DOJ files..."
+else
+    print_deploy_step "Building DOJ 2026 files..."
+    $GENERATE_CMD --output-doj-files --whole-file
+fi
 
 # Commit changes
 echo -e ""

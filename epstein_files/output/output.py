@@ -12,13 +12,12 @@ from epstein_files.documents.messenger_log import MessengerLog
 from epstein_files.documents.other_file import FIRST_FEW_LINES, OtherFile
 from epstein_files.epstein_files import EpsteinFiles, count_by_month
 from epstein_files.output.rich import *
-from epstein_files.output.site.sites import FILEs_THAT_ARE_NEITHER_EMAILS_NOR, HIS_EMAILS, HIS_TEXT_MESSAGES, SELECTIONS_FROM
+from epstein_files.output.site.sites import EMAILERS_TABLE_PNG_PATH, FILEs_THAT_ARE_NEITHER_EMAILS_NOR, HIS_EMAILS, HIS_TEXT_MESSAGES, SELECTIONS_FROM
 from epstein_files.output.title_page import print_color_key, print_other_page_link, print_section_header
 from epstein_files.people.interesting_people import EMAILERS_TO_PRINT
 from epstein_files.people.person import Person
 from epstein_files.util.constant.html import CONSOLE_HTML_FORMAT, HTML_TERMINAL_THEME
 from epstein_files.util.constant.names import *
-from epstein_files.output.site.sites import EMAILERS_TABLE_PNG_PATH
 from epstein_files.util.constant.strings import AUTHOR
 from epstein_files.util.env import args
 from epstein_files.util.helpers.data_helpers import dict_sets_to_lists
@@ -54,29 +53,14 @@ def print_curated_chronological(epstein_files: EpsteinFiles) -> list[Document]:
     return printed_docs
 
 
-def print_doj_files(epstein_files: EpsteinFiles) -> list[DojFile | Email]:
+def print_doj_files(epstein_files: EpsteinFiles) -> list[DojFile]:
     """Doesn't print DojFiles that are actually Emails, that's handled in print_emails()."""
-    printed_doj_files: list[DojFile | Email] = []
-    last_was_empty = False
-
-    for doj_file in epstein_files.doj_files:
-        if doj_file.suppressed_txt:
-            doj_file.print()
-            last_was_empty = True
-            continue
-
-        if last_was_empty:
-            console.line()
-
-        last_was_empty = False
-        console.print(doj_file)
-        printed_doj_files.append(doj_file)
-
-    return printed_doj_files
+    Document.print_documents(epstein_files.doj_files)
+    return epstein_files.doj_files
 
 
 def print_email_timeline(epstein_files: EpsteinFiles) -> None:
-    """Print a table of all emails in chronological order."""
+    """Print all emails in chronological order."""
     emails = Document.sort_by_timestamp([e for e in epstein_files.unique_emails if not e.is_mailing_list])
     title = f'Table of All {len(emails):,} Non-Junk Emails in Chronological Order (actual emails below)'
     table = Email.build_emails_table(emails, title=title, show_length=True)

@@ -159,6 +159,8 @@ TEXTS_CONFIG = CONFIRMED_TEXTS_CONFIG + UNCONFIRMED_TEXTS_CONFIG
 ################################################ EMAILS ################################################
 ########################################################################################################
 
+BEN_LAWSKY_NYDFS = 'head of NY Dept of Financial Services Ben Lawsky'
+
 # Atribution reasons
 BOLOTOVA_REASON = 'Same signature style as 029020 ("--" followed by "Sincerely Renata Bolotova")'
 DROKOVA_TIMING_REASON = 'timing, subject (interviews/articles), and sequential ID'
@@ -883,6 +885,7 @@ EMAILS_CONFIG = [
     ),
     EmailCfg(id='025594', truncate_to=720),
     EmailCfg(id='025603', truncate_to=850),
+    EmailCfg(id='030295', truncate_to=4200, description=f"TerraMar Project was {GHISLAINE_MAXWELL} healthy oceans related attempt at reputation rehabilitation"),
     EmailCfg(id='026059', truncate_to=2650, comment='Rothschild'),
     EmailCfg(id='031619', truncate_to=652, comment='Reply to grab em by the pussy story'),
     EmailCfg(id='021096', truncate_to=700, comment='Sinofsky article quote'),
@@ -1333,16 +1336,24 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00673123', description=f"{BROCK_PIERCE} and Epstein invested in Coinbase which would turn out to be extremely lucrative", duplicate_ids=['EFTA02371875']),
     EmailCfg(id='EFTA01051074', description=f'{BROCK_PIERCE} arranging meeting between Bannon and Epstein (in Doha?)'),
     EmailCfg(id='EFTA02361144', description=f'{BROCK_PIERCE} brings Epstein an opportunity to invest in Blockstream, bitcoin developer {ADAM_BACK}\'s company'),
+    EmailCfg(id='EFTA02514539', description=f"{BROCK_PIERCE} has tax problems (hasn't filed a tax return in 5 years)", is_interesting=True),
     EmailCfg(id='EFTA00658457', description=f'{BROCK_PIERCE} says they will not invest in Bitfury'),
     EmailCfg(id='EFTA00998595', description=f'{BROCK_PIERCE} and Epstein discuss structure of crypto investments'),
     EmailCfg(id='EFTA01000882', description=f"{BROCK_PIERCE} asks for Epstein's permission to disclose his name to Coinbase team", is_interesting=True),
     EmailCfg(id='EFTA00689503', description=f"{BROCK_PIERCE} posted a review of the infamous Russian criminal crypto exchange BTC-e to LinkedIn", is_interesting=True),
     EmailCfg(id='EFTA00664424', description=f"{BROCK_PIERCE} suggests {LARRY_SUMMERS} could get involved with Tether and Noble Bank"),
     EmailCfg(id='EFTA02541344', description=f"{BROCK_PIERCE} on marriage and polygamy with people named Crystal and Sue"),
+    EmailCfg(id='efta01002518', description=f"confirmation that Epstein did indeed meet {BEN_LAWSKY_NYDFS} to discuss a 'high yield product'"),
+    EmailCfg(id='EFTA01043393', description=f'did Epstein and {BROCK_PIERCE} have a falling out?', is_interesting=True),
     EmailCfg(id='EFTA00626220', description=f'discussion of a "sidecar fund" with {BROCK_PIERCE} / {CRYPTO_CURRENCY_PARTNERS_II}'),
     EmailCfg(id='EFTA01784901', description=f"discussion of checks {JEREMY_RUBIN} has cashed from Epstein", is_interesting=True),
+    EmailCfg(id='EFTA00357845', description=f"Epstein and {KATHRYN_RUEMMLER} meet with {BEN_LAWSKY_NYDFS} to discuss bitcoin", is_interesting=True),
+    EmailCfg(id='EFTA00987194', description=f"Epstein proposes {BEN_LAWSKY_NYDFS} get rid of sales tax on bitcoin", is_interesting=True),
+    EmailCfg(id='EFTA02591315', description=f"{ANDREW_FARKAS} arranging for Epstein to meet {BEN_LAWSKY_NYDFS}", is_interesting=True),
+    EmailCfg(id='EFTA01915234', description='discussion of crypto regulations', is_interesting=True),
     EmailCfg(id='EFTA01917402', description=f'discussion of Epstein investment in Blockstream funneled through {JOI_ITO}', is_interesting=True),
     EmailCfg(id='EFTA02483194', description=f"discussion of {GANBAT_CHULUUNKHUU}'s arrest", is_interesting=True),
+    EmailCfg(id='EFTA01013360', description='Reza Bundy is the founder of IronPlanet'),
     EmailCfg(id='EFTA00637023', description=f"discussion of getting around laws against laundering money in places like Myanmar and Mongolia"),
     EmailCfg(id='EFTA02601259', description=f"discussion of investments hidden through {JOI_ITO}"),
     EmailCfg(id='EFTA01004753', description=f"founder of Layer1 is the only guy in crypto who doesn't want to meet Epstein"),
@@ -1395,14 +1406,15 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00432350', duplicate_ids=['EFTA02187050']),
     EmailCfg(id='EFTA00432352', duplicate_ids=['EFTA02187120']),
     EmailCfg(id='EFTA00870717', duplicate_ids=['EFTA01932706']),
-
     EmailCfg(id='EFTA00915302', duplicate_ids=['EFTA01860910', 'EFTA01986221', 'EFTA01776411']),
     EmailCfg(id='EFTA01776613', duplicate_ids=['EFTA01860812', 'EFTA00915297']),
     EmailCfg(id='EFTA01061414', truncate_to=440),
+    EmailCfg(id='EFTA00716532', truncate_to=479),
     EmailCfg(id='EFTA01731638', truncate_to=530),
-    EmailCfg(id='EFTA00836570', truncate_to=1600),
-    EmailCfg(id='EFTA00901970', truncate_to=3000),
     EmailCfg(id='EFTA00362171', truncate_to=1096),
+    EmailCfg(id='EFTA00836570', truncate_to=1600),
+    EmailCfg(id='EFTA00681240', truncate_to=2000),
+    EmailCfg(id='EFTA00901970', truncate_to=3000),
     EmailCfg(id='EFTA00869828', truncate_to=TRUNCATED_CHARS),
     EmailCfg(id='EFTA00661348', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA02109391', truncate_to=NO_TRUNCATE),
@@ -1455,6 +1467,9 @@ UNINTERESTING_EMAIL_IDS = [
     # DOJ / USANYS
     'EFTA02730469',
     'EFTA02730471',
+    'EFTA02731662',
+    'EFTA02730481',
+    'EFTA02730483',
     # TODO: These have UNKNOWN recipient so they currently get printed but we should configure it so they don't
     'EFTA00039894',
     'EFTA00039878',
