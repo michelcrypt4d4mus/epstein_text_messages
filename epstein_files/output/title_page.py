@@ -108,11 +108,16 @@ def print_title_page_top() -> None:
 
     # panel with links to all the sites
     links_txts = [_bulleted_site_link(site_type, link) for site_type, link in SiteType.all_links().items()]
-    max_link_len = max(len(link.plain) for link in links_txts)
-    num_link_indent_spaces = max(2, int((len(SITE_GLOSSARY_MSG) - max_link_len) / 2)) - 2
+
+    if args.mobile:
+        num_link_indent_spaces = 0
+    else:
+        max_link_len = max(len(link.plain) for link in links_txts)
+        num_link_indent_spaces = max(2, int((len(SITE_GLOSSARY_MSG) - max_link_len) / 2)) - 2
+
     sites_txt = Text('').append(SITE_GLOSSARY_MSG, style='wheat4 bold').append('\n\n')
     sites_txt.append(indent_txt(join_texts(links_txts, '\n'), num_link_indent_spaces))
-    print_centered(Panel(sites_txt, border_style='dim', padding=(1, 5)))
+    print_centered(Panel(sites_txt, border_style='dim', padding=(1, site_config.site_glossary_horizontal_padding)))
     console.line()
 
     # warning and internal links
