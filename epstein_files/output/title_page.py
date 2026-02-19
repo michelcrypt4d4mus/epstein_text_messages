@@ -97,11 +97,6 @@ def print_section_links(style: str = '') -> None:
     print_centered(build_demi_table(SECTION_LINK_MSG, SECTION_LINKS), style=style)
 
 
-def print_section_summary_table(table: Table) -> None:
-    """Precede it with internal section links if it's the curated page."""
-    print_centered(Padding(table, (2, 0, 2, 0)))
-
-
 def print_title_page_top() -> None:
     """Top half of the title page."""
     _print_page_title()
