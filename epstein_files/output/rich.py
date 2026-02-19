@@ -264,7 +264,7 @@ def styled_key_value(
     elif isinstance(val, datetime):
         val_txt = Text(str(val), style=TIMESTAMP_STYLE)
     elif isinstance(val, dict):
-        val_style = styled_dict(val)
+        val_txt = indent_txt(Text('\n').append(styled_dict(val)), 14)
     else:
         val_txt = None
         val_style = ''
