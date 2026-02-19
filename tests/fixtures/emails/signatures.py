@@ -29,7 +29,7 @@ DEVICE_SIGNATURE_TO_AUTHORS = {
         "Stephen Hanson"
     ],
     'Sent from Surface': [
-        UNKNOWN
+        STEVEN_SINOFSKY
     ],
     'Sent from Surface RT': [
         STEVEN_SINOFSKY,
@@ -426,6 +426,7 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
         "Sent via BlackBerry by AT&T"
     ],
     STEVEN_SINOFSKY: [
+        'Sent from Surface',
         'Sent from Surface RT',
         'Sent from Windows Mail',
     ],
@@ -473,7 +474,7 @@ SIGNATURE_SUBSTITUTION_COUNTS = {
     "David Ingram": 9,
     DEEPAK_CHOPRA: 19,
     EDUARDO_ROBLES: 6,
-    # 'Francesca Hall': 1,
+    'Francesca Hall': 2,
     ERIC_ROTH: 5,
     GHISLAINE_MAXWELL: 13,
     JEANNE_M_CHRISTENSEN: 37,

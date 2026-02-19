@@ -9,7 +9,8 @@ def test_attached_docs(get_email):
 def test_author_and_border_style(get_email):
     email = get_email('033071')
     assert email.author_style == 'blue1'
-    assert email.border_style == 'purple'
+    assert email.border_style == 'blue1'
+    assert email.recipient_style == 'purple'
 
 
 def test_broken_header_repair(get_email):
