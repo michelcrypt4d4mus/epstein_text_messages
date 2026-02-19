@@ -229,14 +229,12 @@ def styled_dict(
     """Turn a dict into a colored representation."""
     key_lengths = [len(k) for k in d.keys()] + [min_indent]
     key_prefixes = list(set([k.split('.')[0] for k in d.keys() if '.' in k]))
-    # import pdb;pdb.set_trace()
     key_pfx_colors = {k: RAINBOW[i] for i, k in enumerate(key_prefixes)}
 
     key_colors = {
         k: key_pfx_colors.get(k.split('.')[0] if '.' in k else k, key_style)
         for k in d.keys()
     }
-
 
     return Text('\n').join([
         styled_key_value(k, v, key_style=key_colors.get(k, key_style), indent=max(key_lengths) + 3, sep=sep)
@@ -265,6 +263,8 @@ def styled_key_value(
         val_txt = bool_txt(val)
     elif isinstance(val, datetime):
         val_txt = Text(str(val), style=TIMESTAMP_STYLE)
+    elif isinstance(val, dict):
+        val_style = styled_dict(val)
     else:
         val_txt = None
         val_style = ''
