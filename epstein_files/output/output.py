@@ -252,7 +252,7 @@ def show_urls() -> None:
     try:
         urls = {
             k: Text('[', 'grey30').append(file_size_str(SiteType.build_path(k), 1), 'cyan').append('] ') + \
-                (v, ARCHIVE_LINK_COLOR)
+                Text(v, ARCHIVE_LINK_COLOR)
             for k, v in SiteType.all_urls().items()
         }
     except FileNotFoundError:
