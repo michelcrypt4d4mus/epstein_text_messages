@@ -84,7 +84,7 @@ class Communication(Document):
 
     def colored_external_links(self) -> Text:
         """Overrides super() method to apply `self.author_style`."""
-        return self.file_info.build_external_links(self.recipient_style, with_alt_links=site_config.with_alt_links)
+        return self.file_info.build_external_links(self.recipient_style, with_alt_links=True)
 
     @classmethod
     def default_category(cls) -> str:
