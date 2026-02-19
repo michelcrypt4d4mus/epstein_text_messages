@@ -843,6 +843,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"(www\.)?FINRA(\.org)?",
             r"Florence Hutner",
             r"FOIA",
+            r"food\s*stamps",
             r"FTC",
             r"Gary\s*Gensler",
             r"(General\s*)?P(a|e)traeus",

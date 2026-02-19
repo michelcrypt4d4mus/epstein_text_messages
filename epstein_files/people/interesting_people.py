@@ -6,6 +6,7 @@ from epstein_files.util.constant.urls import SUBSTACK_INSIGHTS_LINK
 
 # People who are of interest as authors of non-emails
 AUTHORS_OF_INTEREST = [
+    DOJ,
     EDWARD_JAY_EPSTEIN,
     INSIGHTS_POD,
     # NOAM_CHOMSKY,
