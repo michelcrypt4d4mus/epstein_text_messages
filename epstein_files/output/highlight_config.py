@@ -296,7 +296,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(DONALD_NORMAN, f"co-founder of early British crypto exchange Intersango with {AMIR_TAAKI}"),
             Contact(ED_BOYLE, f"Medici Bank", r"Ed\s*Boy(el|le)"),
             Contact(FRANCESCA_HALL, f"assistant to {AUSTIN_HILL}"),
-            Contact(GAVIN_ANDRESEN, 'core bitcoin developer', r"(Gavin )?Andress?en"),
+            Contact(GAVIN_ANDRESEN, 'core bitcoin developer', r"(Gavin )?Andr.ss?en"),
             Contact(JEFFREY_WERNICK, "former COO of Parler, involved in numerous crypto companies like Bitforex"),
             Contact(JEREMY_RUBIN, "developer/researcher", r"Jeremy\s*Rubin"),
             Contact(
@@ -1998,4 +1998,3 @@ def _print_highlighted_names_repr() -> None:
     sys.exit()
 
 #_print_highlighted_names_repr()
-
