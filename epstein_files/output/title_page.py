@@ -14,6 +14,7 @@ from rich.text import Text
 from epstein_files.output.layout_elements.demi_table import build_demi_table
 from epstein_files.output.highlight_config import HIGHLIGHTED_NAMES
 from epstein_files.output.rich import *
+from epstein_files.output.site.sites import SECTION_ANCHORS
 from epstein_files.output.site.site_config import MOBILE_WARNING
 from epstein_files.util.constant.names import UNKNOWN
 from epstein_files.util.constant.strings import *
@@ -32,6 +33,7 @@ SECTION_HEADER_STYLE = 'bold black on color(146)'
 
 SITE_GLOSSARY_MSG = f"The following views of the underlying selection of Epstein Files are available:"
 YOU_ARE_HERE = Text('«').append('you are here', style='bold khaki1 blink').append('»')
+SECTION_LINK_MSG = 'jump to a different section of this page'
 SUBTITLE_WIDTH = 110
 TITLE_WIDTH = 50
 
@@ -39,6 +41,11 @@ TITLE_WIDTH = 50
 COLOR_KEYS = [
     Text(highlight_group.label.replace('_', ' '), style=highlight_group.style)
     for highlight_group in sorted(HIGHLIGHTED_NAMES, key=lambda hg: hg.label)
+]
+
+SECTION_LINKS = [
+    link_text_obj(internal_link_url(anchor), section_name, 'indian_red')
+    for section_name, anchor in SECTION_ANCHORS.items()
 ]
 
 
@@ -199,7 +206,7 @@ def _print_page_title(width: int = TITLE_WIDTH) -> None:
     if not args.mobile:
         print_centered_link(SUBSTACK_URL, SUBSTACK_URL.removeprefix('https://'), style=f'{SUBSTACK_POST_LINK_STYLE} dim')
 
-    print_centered(join_texts(CRYPTADAMUS_SOCIAL_LINKS, join='  /  '))
+    print_centered(join_texts(CRYPTADAMUS_SOCIAL_LINKS, join=site_config.social_link_separator))
     console.line()
 
 

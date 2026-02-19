@@ -1,12 +1,11 @@
 import re
 import urllib.parse
-from enum import auto, StrEnum
 from typing import Callable, Literal
 
 from inflection import parameterize
 from rich.text import Text
 
-from epstein_files.output.site.sites import GH_PROJECT_URL, SiteType
+from epstein_files.output.site.sites import GH_PROJECT_URL, TO_FROM, SiteType
 from epstein_files.util.env import args
 from epstein_files.util.constant.strings import SOCIAL_MEDIA_LINK_STYLE, TEXT_LINK
 from epstein_files.util.helpers.file_helper import coerce_file_stem
@@ -149,7 +148,7 @@ def internal_link_url(search_term: str) -> str:
 
 
 def internal_person_link_url(name: str) -> str:
-    """e.g. https://michelcrypt4d4mus.github.io/epstein_text_messages/all_emails_epstein_files_nov_2025.html#:~:text=to%2Ffrom%20Jack%20Goldberger"""
+    """Use the 'link to search term' magic URL comment to link to a person's emails, e.g. '#:~:text=to%2Ffrom%20Jack%20Gold"""
     return internal_link_url(f"{TO_FROM} {remove_question_marks(name)}")
 
 
@@ -167,29 +166,3 @@ def this_site_url() -> str:
 
 THE_OTHER_PAGE_MARKUP = link_markup(other_site_url(), 'the other page', style='light_slate_grey bold')
 THE_OTHER_PAGE_TXT = Text.from_markup(THE_OTHER_PAGE_MARKUP)
-
-
-#############################
-#  Internal sections links  #
-#############################
-SECTION_LINK_MSG = 'jump to a different section of this page'
-TO_FROM = 'to/from'
-
-
-class PageSections(StrEnum):
-    EMAILS = auto()
-    OTHER_FILES = auto()
-    TEXT_MESSAGES = auto()
-
-
-# Search terms that take you to the desired section
-SECTION_ANCHORS = {
-    PageSections.EMAILS: 'Selections from His Emails',
-    PageSections.TEXT_MESSAGES: 'Selections from His Text Messages',
-    PageSections.OTHER_FILES: 'Selected Files That Are Neither Emails Nor',
-}
-
-SECTION_LINKS = [
-    link_text_obj(internal_link_url(anchor), section_name, 'indian_red')
-    for section_name, anchor in SECTION_ANCHORS.items()
-]

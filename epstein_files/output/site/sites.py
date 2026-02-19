@@ -24,6 +24,7 @@ GH_MASTER_URL = f"{GH_PROJECT_URL}/blob/master"
 ATTRIBUTIONS_URL = f'{GH_MASTER_URL}/epstein_files/util/constants.py'
 EXTRACTS_BASE_URL = f'{GH_MASTER_URL}/emails_extracted_from_legal_filings'
 BASE_URL = f"{GH_PAGES_BASE_URL}/{GH_REPO_NAME}"
+TO_FROM = 'to/from'
 
 
 class SiteType(StrEnum):
@@ -107,6 +108,23 @@ SITE_DESCRIPTIONS = {
     SiteType.WORD_COUNT:            f"word count:of Epstein's communications",
     SiteType.DOJ_FILES:             f"doj files:raw OCR text {DOJ_2026_TRANCHE}",
     SiteType.JSON_METADATA:         f"metadata:attribution reasons, categories",
+}
+
+
+###########################################
+########  Internal sections links  ########
+###########################################
+
+class PageSections(StrEnum):
+    EMAILS = auto()
+    OTHER_FILES = auto()
+    TEXT_MESSAGES = auto()
+
+# Search terms that take you to the desired section
+SECTION_ANCHORS = {
+    PageSections.EMAILS: 'Selections from His Emails',
+    PageSections.TEXT_MESSAGES: 'Selections from His Text Messages',
+    PageSections.OTHER_FILES: 'Selected Files That Are Neither Emails Nor',
 }
 
 

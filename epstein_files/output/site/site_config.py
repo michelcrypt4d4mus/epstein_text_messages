@@ -27,7 +27,8 @@ class MobileConfig:
     not_all_files_warning: ClassVar[str] = starred_header(NOT_ALL_FILES_MSG, num_spaces=1, num_stars=1)
     other_files_preview_chars: ClassVar[int] = 300
     show_emailer_tables: ClassVar[bool] = False
-    subtitle_width: int | None = None
+    social_link_separator: ClassVar[str] = ' '
+    subtitle_width: ClassVar[int | None] = None
     width: ClassVar[int] = 45
 
     @classmethod
@@ -50,7 +51,8 @@ class SiteConfig(MobileConfig):
     not_all_files_warning: ClassVar[str] = starred_header(NOT_ALL_FILES_MSG, num_spaces=6, num_stars=14)
     other_files_preview_chars: ClassVar[int] = 900
     show_emailer_tables: ClassVar[bool] = True
-    subtitle_width: int | None = 110
+    social_link_separator: ClassVar[str] = '  /  '
+    subtitle_width: ClassVar[int | None] = 110
     width: ClassVar[int] = DEFAULT_WIDTH
 
     @classmethod
