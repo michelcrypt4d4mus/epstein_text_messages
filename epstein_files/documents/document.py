@@ -27,7 +27,7 @@ from epstein_files.people.interesting_people import UNINTERESTING_AUTHORS
 from epstein_files.util.constant.names import Name
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constants import CONFIGS_BY_ID, DEFAULT_TRUNCATE_TO
-from epstein_files.util.env import args
+from epstein_files.util.env import args, site_config
 from epstein_files.util.helpers.data_helpers import (collapse_newlines, date_str, patternize, prefix_keys,
      remove_zero_time, without_falsey)
 from epstein_files.util.helpers.link_helper import link_text_obj
@@ -218,10 +218,10 @@ class Document:
         """
         if self.config and self.config.is_of_interest is not None:
             return self.config.is_of_interest
-        elif self.file_info.is_house_oversight_file and not (self.author or self.config):
-            return True
         elif self.author in UNINTERESTING_AUTHORS:
             return False
+        elif self.file_info.is_house_oversight_file and not (self.author or self.config):
+            return True
 
     @property
     def length(self) -> int:
@@ -358,7 +358,7 @@ class Document:
         return cls(coerce_file_path(file_id))
 
     def colored_external_links(self) -> Text:
-        return self.file_info.build_external_links(with_alt_links=True)
+        return self.file_info.build_external_links(with_alt_links=site_config.with_alt_links)
 
     def file_info_panel(self) -> Group:
         """Panel with filename linking to raw file plus any additional info about the file."""

@@ -252,7 +252,6 @@ class DocCfg:
         # Author check  # NOTE: this only applies to configured authors or derived_cfg! so not most emails
         if self.author and self.author in PERSONS_OF_INTEREST:
             return True
-
         # category field checks
         if is_interesting(self.category):
             return True

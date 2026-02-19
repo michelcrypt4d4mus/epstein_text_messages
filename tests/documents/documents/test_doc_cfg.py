@@ -75,6 +75,10 @@ def tweet_cfg() -> DocCfg:
     return _doj_cfg(Uninteresting.TWEET, author='Klippenstein')
 
 @pytest.fixture
+def UN_cfg() -> DocCfg:
+    return CONFIGS_BY_ID['024185']
+
+@pytest.fixture
 def uninteresting_description() -> DocCfg:
     return _doj_cfg(Neutral.LEGAL, description=CVRA + " law stuff")
 
@@ -146,7 +150,8 @@ def test_is_of_interest(
     junk_email_cfg,
     legal_cfg,
     skype_cfg,
-    uninteresting_description
+    uninteresting_description,
+    UN_cfg
 ):
     assert academia_doc.is_of_interest is False
     assert blockchain_cap_cfg.is_of_interest is True
@@ -160,6 +165,7 @@ def test_is_of_interest(
     assert junk_email_cfg.is_of_interest is False
     assert legal_cfg.is_of_interest is None
     assert skype_cfg.is_of_interest is None
+    assert UN_cfg.is_of_interest is True
     assert uninteresting_description.is_of_interest is False
 
 

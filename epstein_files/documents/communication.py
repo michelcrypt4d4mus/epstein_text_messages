@@ -11,6 +11,7 @@ from epstein_files.documents.emails.constants import FALLBACK_TIMESTAMP
 from epstein_files.output.highlight_config import get_style_for_name, styled_name
 from epstein_files.output.rich import no_bold, styled_key_value
 from epstein_files.util.constant.names import UNKNOWN, Name
+from epstein_files.util.env import site_config
 
 TIMESTAMP_SECONDS_REGEX = re.compile(r":\d{2}$")
 
@@ -83,7 +84,7 @@ class Communication(Document):
 
     def colored_external_links(self) -> Text:
         """Overrides super() method to apply `self.author_style`."""
-        return self.file_info.build_external_links(self.recipient_style, with_alt_links=True)
+        return self.file_info.build_external_links(self.recipient_style, with_alt_links=site_config.with_alt_links)
 
     @classmethod
     def default_category(cls) -> str:
