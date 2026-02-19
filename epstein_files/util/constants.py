@@ -2481,10 +2481,10 @@ OTHER_FILES_CRYPTO = [
 ]
 
 OTHER_FILES_SKYPE_LOG = [
-    CommunicationCfg(id='032206', author=LAWRENCE_KRAUSS),
-    CommunicationCfg(id='032208', author=LAWRENCE_KRAUSS),
-    CommunicationCfg(id='032209', author=LAWRENCE_KRAUSS),
-    CommunicationCfg(id='032210', author='linkspirit', is_interesting=True),
+    CommunicationCfg(id='032206', recipients=[LAWRENCE_KRAUSS]),
+    CommunicationCfg(id='032208', recipients=[LAWRENCE_KRAUSS]),
+    CommunicationCfg(id='032209', recipients=[LAWRENCE_KRAUSS]),
+    CommunicationCfg(id='032210', recipients=['linkspirit'], is_interesting=True),
     CommunicationCfg(id='018224', recipients=['linkspirit', LAWRENCE_KRAUSS], is_interesting=True),  # we don't know who linkspirit is yet
     CommunicationCfg(id='EFTA01217787', recipients=[TYLER_SHEARS, 'Hanna Traff at Spotify'], is_interesting=True),
     CommunicationCfg(id='EFTA01217703', recipients=['actress Athena Zelcovich', JOSCHA_BACH, LAWRENCE_KRAUSS]),
