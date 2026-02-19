@@ -445,9 +445,10 @@ class Document:
         if file_info.get('source_url') == file_info.get('external_url', 'blah'):
             file_info.pop('external_url')
 
-        config_info = prefix_keys(type(self.config).__name__, config_info)
-        file_info = prefix_keys(underscore(FileInfo.__name__), file_info)
-        return {**file_info, **config_info, **self._debug_props()}
+        props = self._debug_props()
+        props[type(self.config).__name__] = config_info
+        props[FileInfo.__name__] = file_info
+        return props
 
     def _debug_props(self) -> DebugDict:
         """Collects props of this object only (not the config or locations)."""
