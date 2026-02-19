@@ -227,6 +227,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Michael\s*Klein",
             r"New Leaf Ventures",
             r"Park Partners",
+            r"real\s*estate(\s*developer)?"
             r"SALSS",
             r"Swedish[-\s]*American\s*Life\s*Science\s*Summit",
             r"Trilateral Commission",
