@@ -194,14 +194,6 @@ def print_json(label: str, obj: object, skip_falsey: bool = False) -> None:
     console.line()
 
 
-def print_starred_header(msg: str, num_stars: int = 7, num_spaces: int = 2, style: str = WARNING_STYLE) -> None:
-    """String like '  *** Title Msg ***  '."""
-    stars = '*' * num_stars
-    spaces = ' ' * num_spaces
-    msg = f"{spaces}{stars} {msg} {stars}{spaces}"
-    print_centered(wrap_in_markup_style(msg, style))
-
-
 def print_subtitle_panel(msg: str, style: str = 'black on white') -> None:
     panel = Panel(Text.from_markup(msg, justify='center'), width=SUBTITLE_WIDTH, style=style)
     print_centered(Padding(panel, SUBTITLE_PADDING))

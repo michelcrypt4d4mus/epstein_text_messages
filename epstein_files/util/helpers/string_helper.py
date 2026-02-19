@@ -51,3 +51,10 @@ def quote(s: str, try_single_quote_first: bool = False) -> str:
 
 def remove_question_marks(name: str):
     return QUESTION_MARKS_REGEX.sub('', name).strip()
+
+
+def starred_header(msg: str, num_stars: int = 7, num_spaces: int = 2) -> str:
+    """String like '  *** Title Msg ***  '."""
+    stars = '*' * num_stars
+    spaces = ' ' * num_spaces
+    return f"{spaces}{stars} {msg} {stars}{spaces}"

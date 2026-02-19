@@ -21,6 +21,7 @@ from epstein_files.util.constant.urls import *
 from epstein_files.util.constants import HEADER_ABBREVIATIONS
 from epstein_files.util.env import args, site_config
 from epstein_files.util.helpers.link_helper import SUBSTACK_POST_LINK_STYLE, link_markup, link_text_obj, parenthesize
+from epstein_files.util.helpers.string_helper import starred_header
 from epstein_files.util.logging import logger
 
 DATASET_DESCRIPTION_STYLE = 'gray74'
@@ -75,17 +76,6 @@ def print_other_page_link(epstein_files: 'EpsteinFiles') -> None:
     print_centered(parenthesize(chrono_emails_txt), style=OTHER_PAGE_MSG_STYLE)
 
 
-def print_page_title(width: int = TITLE_WIDTH) -> None:
-    if not args.mobile:
-        print_centered(MOBILE_WARNING, style='dim')
-
-    title = Text('', justify='center').append('The Epstein Files', style='underline bold')
-    title_panel = Panel(title, box=box.DOUBLE_EDGE, expand=True, padding=(2, 2), style=TITLE_STYLE, width=width)
-    print_centered(vertically_pad(title_panel))
-    _print_social_media_links()
-    console.line()
-
-
 def print_section_header(msg: str, style: str = SECTION_HEADER_STYLE, is_centered: bool = False) -> None:
     if args._site_type == SiteType.CURATED:
         console.line(2)
@@ -108,7 +98,7 @@ def print_section_summary_table(table: Table) -> None:
 
 def print_title_page_top() -> None:
     """Top half of the title page."""
-    print_page_title()
+    _print_page_title()
 
     # panel with links to all the sites
     links_txts = [_bulleted_site_link(site_type, link) for site_type, link in SiteType.all_links().items()]
@@ -120,7 +110,7 @@ def print_title_page_top() -> None:
     console.line()
 
     # warning and internal links
-    print_starred_header('Not All Epstein Files Are Here!', num_spaces=9 if args.all_emails else 6, num_stars=14)
+    _print_starred_header(site_config.not_all_files_warning, num_spaces=0, num_stars=0)
     print_centered(f"This dataset includes everything from the {HOUSE_OVERSIGHT_TRANCHE}", style=DATASET_DESCRIPTION_STYLE)
     print_centered(f"as well as a curated selection of the {DOJ_2026_TRANCHE}.", style=DATASET_DESCRIPTION_STYLE)
 
@@ -192,6 +182,17 @@ def _print_external_links() -> None:
         print_centered(_link_with_comment(url, link))
 
 
+def _print_page_title(width: int = TITLE_WIDTH) -> None:
+    if not args.mobile:
+        print_centered(MOBILE_WARNING, style='dim')
+
+    title = Text('', justify='center').append('The Epstein Files', style='underline bold')
+    title_panel = Panel(title, box=box.DOUBLE_EDGE, expand=True, padding=(2, 2), style=TITLE_STYLE, width=width)
+    print_centered(vertically_pad(title_panel))
+    _print_social_media_links()
+    console.line()
+
+
 def _print_social_media_links() -> None:
     print_centered_link(
         SUBSTACK_URL,
@@ -199,7 +200,8 @@ def _print_social_media_links() -> None:
         style=f'{SUBSTACK_POST_LINK_STYLE} bold'
     )
 
-    print_centered_link(SUBSTACK_URL, SUBSTACK_URL.removeprefix('https://'), style=f'{SUBSTACK_POST_LINK_STYLE} dim')
+    if not args.mobile:
+        print_centered_link(SUBSTACK_URL, SUBSTACK_URL.removeprefix('https://'), style=f'{SUBSTACK_POST_LINK_STYLE} dim')
 
     social_links = [
         link_text_obj('https://universeodon.com/@cryptadamist/115572634993386057', '@mastodon', style=SOCIAL_MEDIA_LINK_STYLE),
@@ -209,3 +211,12 @@ def _print_social_media_links() -> None:
     ]
 
     print_centered(join_texts(social_links, join='  /  '))#, encloser='()'))#, encloser='‹›'))
+
+
+def _print_starred_header(msg: str, num_stars: int = 7, num_spaces: int = 2, style: str = WARNING_STYLE) -> None:
+    """String like '  *** Title Msg ***  '."""
+    stars = '*' * num_stars
+    spaces = ' ' * num_spaces
+    msg = f"{spaces}{stars} {msg} {stars}{spaces}"
+    msg = starred_header(msg, num_stars, num_spaces)
+    print_centered(wrap_in_markup_style(msg, style))
