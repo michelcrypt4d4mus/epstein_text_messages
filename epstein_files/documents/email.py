@@ -602,9 +602,9 @@ class Email(Communication):
                 or any([self.is_from_or_to(n) for n in TRUNCATE_EMAILS_FROM_OR_TO]) \
                 or self.is_fwded_article \
                 or includes_truncate_term:
-            num_chars = min(quote_cutoff or MAX_CHARS_TO_PRINT, TRUNCATED_CHARS)
+            num_chars = min(quote_cutoff or DEFAULT_TRUNCATE_TO, SHORT_TRUNCATE_TO)
         else:
-            if quote_cutoff and quote_cutoff < MAX_CHARS_TO_PRINT:
+            if quote_cutoff and quote_cutoff < DEFAULT_TRUNCATE_TO:
                 trimmed_words = self.text[quote_cutoff:].split()
 
                 if '<...snipped' in trimmed_words[:NUM_WORDS_IN_LAST_QUOTE]:
@@ -621,7 +621,7 @@ class Email(Communication):
                     num_chars = quote_cutoff
             else:
                 # TODO: Added some padding to self.length because newlines may be added in prettification but this sucks
-                num_chars = min(self.length + 100, MAX_CHARS_TO_PRINT)
+                num_chars = min(self.length + 100, DEFAULT_TRUNCATE_TO)
 
             # Always print whole email for 1st email for actual people
             if self._is_first_for_user and num_chars < self.length and \

@@ -26,7 +26,7 @@ from epstein_files.output.site.sites import EXTRACTS_BASE_URL
 from epstein_files.people.interesting_people import UNINTERESTING_AUTHORS
 from epstein_files.util.constant.names import Name
 from epstein_files.util.constant.strings import *
-from epstein_files.util.constants import CONFIGS_BY_ID, MAX_CHARS_TO_PRINT
+from epstein_files.util.constants import CONFIGS_BY_ID, DEFAULT_TRUNCATE_TO
 from epstein_files.util.env import args
 from epstein_files.util.helpers.data_helpers import (collapse_newlines, date_str, patternize, prefix_keys,
      remove_zero_time, without_falsey)
@@ -412,7 +412,7 @@ class Document:
 
     def top_lines(self, n: int = 10) -> str:
         """First n lines."""
-        return '\n'.join(self.lines[0:n])[:MAX_CHARS_TO_PRINT]
+        return '\n'.join(self.lines[0:n])[:DEFAULT_TRUNCATE_TO]
 
     def truncation_note(self, truncate_to: int) -> Text:
         """String with link to source URL that will replace the text after the truncation point."""

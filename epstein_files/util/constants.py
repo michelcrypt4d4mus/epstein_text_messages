@@ -10,11 +10,11 @@ from epstein_files.util.constant.names import *
 from epstein_files.util.constant.strings import *
 from epstein_files.util.logging import logger
 
-MAX_CHARS_TO_PRINT = 4000
+DEFAULT_TRUNCATE_TO = 4000
+SHORT_TRUNCATE_TO = int(DEFAULT_TRUNCATE_TO / 3)
 NO_TRUNCATE = -1
 OTHER_FILES_PFX = 'OTHER_FILES_'
 PARTICIPANTS_FIELD = 'Participants: field'
-TRUNCATED_CHARS = int(MAX_CHARS_TO_PRINT / 3)
 VALAR_FUND = f"{PETER_THIEL}'s {VALAR_VENTURES} fund"
 
 HEADER_ABBREVIATIONS = {
@@ -565,7 +565,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='026030', description=IS_IT_ROGER_STONE),
     EmailCfg(id='026033', description=IS_IT_ROGER_STONE),
     EmailCfg(id='026360', description=f"{JOI_ITO} writes to Epstein to thank him for providing funding for the bitcoin core development team"),
-    EmailCfg(id='031011', description='jokes about Chicago corruption', duplicate_ids=['031090'], truncate_to=TRUNCATED_CHARS),
+    EmailCfg(id='031011', description='jokes about Chicago corruption', duplicate_ids=['031090'], truncate_to=SHORT_TRUNCATE_TO),
     EmailCfg(id='023627', description=MICHAEL_WOLFF_EPSTEIN_ARTICLE_DRAFT, is_fwded_article=True, is_interesting=True, truncate_to=16800),
     EmailCfg(id='030745', description="planning a public statement for Ghislaine", truncate_to=NO_TRUNCATE),
     EmailCfg(id='016693', description='signed "MM"'),
@@ -688,10 +688,10 @@ EMAILS_CONFIG = [
     EmailCfg(id='030528', is_fwded_article=True, comment='Vicky Ward article'),
     EmailCfg(id='030460', is_fwded_article=True, comment='Vicky Ward article'),
     EmailCfg(id='020443', is_fwded_article=True, comment='WSJ Deplorables Bannon'),
-    EmailCfg(id='026755', is_fwded_article=True, truncate_to=TRUNCATED_CHARS, comment='Epstein self fwd'),
-    EmailCfg(id='026778', is_fwded_article=True, truncate_to=TRUNCATED_CHARS, comment='Kahn taxes'),
-    EmailCfg(id='033311', is_fwded_article=True, truncate_to=TRUNCATED_CHARS, comment='Kahn taxes'),
-    EmailCfg(id='029433', is_fwded_article=True, truncate_to=TRUNCATED_CHARS, comment='Kahn taxes'),
+    EmailCfg(id='026755', is_fwded_article=True, truncate_to=SHORT_TRUNCATE_TO, comment='Epstein self fwd'),
+    EmailCfg(id='026778', is_fwded_article=True, truncate_to=SHORT_TRUNCATE_TO, comment='Kahn taxes'),
+    EmailCfg(id='033311', is_fwded_article=True, truncate_to=SHORT_TRUNCATE_TO, comment='Kahn taxes'),
+    EmailCfg(id='029433', is_fwded_article=True, truncate_to=SHORT_TRUNCATE_TO, comment='Kahn taxes'),
     EmailCfg(id='031764', is_fwded_article=True, truncate_to=3500, comment='broidy malaysia'),
     EmailCfg(id='032475', date='2017-02-15 13:31:25'),
     EmailCfg(id='030373', date='2018-10-03 01:49:27'),
@@ -812,7 +812,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='030324', fwded_text_after='For Federal Programs'),
     EmailCfg(id='022766', fwded_text_after='--- On Wed, 4/22/15'),
     EmailCfg(id='025606', fwded_text_after='> On May 6,'),
-    EmailCfg(id='024251', fwded_text_after='Debate Schedule', truncate_to=TRUNCATED_CHARS, comment='Kahn taxes'),
+    EmailCfg(id='024251', fwded_text_after='Debate Schedule', truncate_to=SHORT_TRUNCATE_TO, comment='Kahn taxes'),
     EmailCfg(id='022977', fwded_text_after='Top of Form', truncate_to=1800, comment='Krassner with huge attachments field'),
     EmailCfg(id='033420', fwded_text_after='Slowing economy could increase pressure on'),
     EmailCfg(id='019203', fwded_text_after='This end-of-the-year'),
@@ -904,7 +904,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='028757', truncate_to=900, comment='Epstein in an argument with someone'),
     EmailCfg(id='027028', truncate_to=1000, comment='Tom Pritzer penny pritzker'),
     EmailCfg(id='031217', truncate_to=1800, duplicate_ids=['021761'], comment='1st email for dersh, has long article'),
-    EmailCfg(id='018045', truncate_to=TRUNCATED_CHARS, comment='invite'),
+    EmailCfg(id='018045', truncate_to=SHORT_TRUNCATE_TO, comment='invite'),
     EmailCfg(id='028494', truncate_to=NO_TRUNCATE, duplicate_ids=['026234'], comment='in palm beach w/trump people'),
     EmailCfg(id='032643', truncate_to=NO_TRUNCATE, comment='Anas al Rasheed'),
     EmailCfg(id='027059', truncate_to=NO_TRUNCATE, comment='Jean Luc Brunel and Boris Nikolic'),
@@ -1170,7 +1170,7 @@ EMAILS_CONFIG = [
         date='2023-06-09 20:14:00',
         author_uncertain=True,
         recipients=[USANYS],
-        truncate_to=TRUNCATED_CHARS,
+        truncate_to=SHORT_TRUNCATE_TO,
     ),
     EmailCfg(id='EFTA02731755', author=USANYS),
     EmailCfg(id='EFTA00039890', author=USANYS),
@@ -1415,7 +1415,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00836570', truncate_to=1600),
     EmailCfg(id='EFTA00681240', truncate_to=2000),
     EmailCfg(id='EFTA00901970', truncate_to=3000),
-    EmailCfg(id='EFTA00869828', truncate_to=TRUNCATED_CHARS),
+    EmailCfg(id='EFTA00869828', truncate_to=SHORT_TRUNCATE_TO),
     EmailCfg(id='EFTA00661348', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA02109391', truncate_to=NO_TRUNCATE),
 ]
@@ -2374,8 +2374,8 @@ OTHER_FILES_CRYPTO = [
         is_interesting=True,
         truncate_to=2000,
     ),
-    DocCfg(id='EFTA01092555', author=COINBASE, description='certificate of incorporation', date='2013-12-12', truncate_to=TRUNCATED_CHARS),
-    DocCfg(id='EFTA01120975', author=COINBASE, description='Series B stock purchase', date='2013-12-12', truncate_to=MAX_CHARS_TO_PRINT),
+    DocCfg(id='EFTA01092555', author=COINBASE, description='certificate of incorporation', date='2013-12-12', truncate_to=SHORT_TRUNCATE_TO),
+    DocCfg(id='EFTA01120975', author=COINBASE, description='Series B stock purchase', date='2013-12-12', truncate_to=DEFAULT_TRUNCATE_TO),
     DocCfg(id='EFTA01121035', author=COINBASE, description='Series C preferred stock purchase', date='2014-10-24'),
     # CCP (Brock Pierce / Blockchain Capital)
     DocCfg(id='EFTA01089535', author=CRYPTO_CURRENCY_PARTNERS_II, description=f"investor report", date='2014-10-01'),
@@ -2383,7 +2383,7 @@ OTHER_FILES_CRYPTO = [
     DocCfg(id='EFTA01089500', author=CRYPTO_CURRENCY_PARTNERS_II, description=f"investor report", date='2015-01-01'),
     DocCfg(id='EFTA01089526', author=CRYPTO_CURRENCY_PARTNERS_II, description=f"investor report", date='2014-08-01'),
     DocCfg(id='EFTA00621239', author=CRYPTO_CURRENCY_PARTNERS_II, description=f"investor report", date='2014-10-01'),
-    DocCfg(id='EFTA01093509', author=CRYPTO_CURRENCY_PARTNERS_II, description=f"partnership draft", truncate_to=MAX_CHARS_TO_PRINT * 2),
+    DocCfg(id='EFTA01093509', author=CRYPTO_CURRENCY_PARTNERS_II, description=f"partnership draft", truncate_to=DEFAULT_TRUNCATE_TO * 2),
     # Crypto PR Lab
     DocCfg(id='EFTA00295126', author=CRYPTO_PR_LAB, description="accounting statement"),
     DocCfg(id='EFTA01299820', author=CRYPTO_PR_LAB, description="bank transfer", date='2018-12-18'),
@@ -2394,7 +2394,7 @@ OTHER_FILES_CRYPTO = [
     # ZCash
     DocCfg(id='EFTA00811130', author=PERKINS_COIE, description='tax opinion on ZCash tokens'),
     DocCfg(id='EFTA00603348', description=f"Electric Coin Company created the untraceable crypto ZCash funded by {LARRY_SUMMERS}'s DCG"),
-    DocCfg(id='EFTA00803405', description=f"Honeycomb Asset Management fund brochure", truncate_to=MAX_CHARS_TO_PRINT),
+    DocCfg(id='EFTA00803405', description=f"Honeycomb Asset Management fund brochure", truncate_to=DEFAULT_TRUNCATE_TO),
     # Joi Ito / Kyara
     DocCfg(id='EFTA00805860', description=f"{JOI_ITO}'s Neoteny 3 fund investor update / portfolio"),
     DocCfg(id='EFTA01118268', description=f"{JOI_ITO}'s Neoteny 3 fund investor update", date='2015-06-30'),
@@ -2411,11 +2411,11 @@ OTHER_FILES_CRYPTO = [
     DocCfg(id='EFTA01088079', description="someone's thoughts on bitcoin"),
     DocCfg(id='EFTA00128987', description='suspicious activity report (SAR) about Kushner co. crypto payments to suspicious Russian person'),
     # Valar
-    DocCfg(id='EFTA01121910', author=VALAR_VENTURES, description="contract", truncate_to=MAX_CHARS_TO_PRINT),
-    DocCfg(id='EFTA00808277', author=VALAR_VENTURES, description="contract", truncate_to=MAX_CHARS_TO_PRINT),
-    DocCfg(id='EFTA01088484', author=VALAR_VENTURES, description="contract", truncate_to=MAX_CHARS_TO_PRINT),
-    DocCfg(id='EFTA00591691', author=VALAR_VENTURES, description="contract", truncate_to=MAX_CHARS_TO_PRINT),
-    DocCfg(id='EFTA00810362', author=VALAR_VENTURES, description="investor questionnaire", truncate_to=MAX_CHARS_TO_PRINT),
+    DocCfg(id='EFTA01121910', author=VALAR_VENTURES, description="contract", truncate_to=DEFAULT_TRUNCATE_TO),
+    DocCfg(id='EFTA00808277', author=VALAR_VENTURES, description="contract", truncate_to=DEFAULT_TRUNCATE_TO),
+    DocCfg(id='EFTA01088484', author=VALAR_VENTURES, description="contract", truncate_to=DEFAULT_TRUNCATE_TO),
+    DocCfg(id='EFTA00591691', author=VALAR_VENTURES, description="contract", truncate_to=DEFAULT_TRUNCATE_TO),
+    DocCfg(id='EFTA00810362', author=VALAR_VENTURES, description="investor questionnaire", truncate_to=DEFAULT_TRUNCATE_TO),
     DocCfg(id='EFTA00605996', description='Wedbush BUY rating on Digital Currency Group GBTC', is_interesting=False),
 ]
 
