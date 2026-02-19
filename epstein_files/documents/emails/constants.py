@@ -116,7 +116,7 @@ EMAIL_SIGNATURE_REGEXES = {
     FRANCESCA_HALL: re.compile(r"The contents of this e-mail message and.{,600}message and its attachments[.,]? if any", re.DOTALL),
     GHISLAINE_MAXWELL: re.compile(r"FACEBOOK\nTWITTER\nG\+\nPINTEREST\nINSTAGRAM\nPLEDGE\nTHE DAILY CATCH"),
     JEANNE_M_CHRISTENSEN: re.compile(r"[A ]*(Please consider the environment before printing this e-mail.{,5})?This communication may contain Confidential.{,500}(facsimile|mail)\s+or\s+phone. Thank you\.?|Partner\s+WIGDOR.{,12}New York,? NY 10003\s.{,15}com", re.DOTALL),
-    JEFFREY_EPSTEIN: re.compile(r"(([* 0,]+|please .ote.{,6})\n+)?([>»•]+ )*The info.mation containe. i. th.s..ommunicati.{,558}all\s+([>»] )*.ttachm.nt[s=].( copyright [-=]all rights reserved?)?", re.DOTALL),
+    JEFFREY_EPSTEIN: re.compile(r"(([* 0,]+|please .ote.{,6})\n+)?([>»•]+ )*The info.mation containe. i. th.s..ommunicati.{,558}all\s+([>»] )*.ttachm.nt[s=].(\s+copyright\s+.all\s+rights\s+reserved?)?", re.DOTALL),
     JESSICA_CADWELL: re.compile(r"(f.*\n)?Certified Para.*\nFlorida.*\nBURMAN.*\n515.*\nSuite.*\nWest Palm.*(\nTel:.*)?(\nEmail:.*)?", re.IGNORECASE),
     KEN_JENNE: re.compile(r"Ken Jenne\nRothstein.*\n401 E.*\nFort Lauderdale.*", re.IGNORECASE),
     LARRY_SUMMERS: re.compile(r"Please direct all scheduling.*\nFollow me on twitter.*\nwww.larrysummers.*", re.IGNORECASE),

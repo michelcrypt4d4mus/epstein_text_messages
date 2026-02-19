@@ -1920,6 +1920,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Please use this email for.*general Media Lab.*",  # Joi Ito
             r"-Austin\nAustin Hill - B..dder.*(\n.*B92ED3E3)?",
             r"^Please note my new email address?:?.*$", # summers
+            r"^--\w+--\s+conversation-id.*(flags|remote-id\s+\d+)(\s+\d{6,}.*remote-id.*\d+)?",
         ],
     ),
     HighlightedText(
