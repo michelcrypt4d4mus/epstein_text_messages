@@ -885,6 +885,7 @@ EMAILS_CONFIG = [
     ),
     EmailCfg(id='025594', truncate_to=720),
     EmailCfg(id='025603', truncate_to=850),
+    EmailCfg(id='030295', truncate_to=4200, description=f"TerraMar Project was {GHISLAINE_MAXWELL} healthy oceans related attempt at reputation rehabilitation"),
     EmailCfg(id='026059', truncate_to=2650, comment='Rothschild'),
     EmailCfg(id='031619', truncate_to=652, comment='Reply to grab em by the pussy story'),
     EmailCfg(id='021096', truncate_to=700, comment='Sinofsky article quote'),
