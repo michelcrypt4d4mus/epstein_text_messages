@@ -570,6 +570,23 @@ class Document:
         """Number of elements of `docs` that have an author attribution."""
         return len([doc for doc in docs if doc.author])
 
+    @classmethod
+    def print_documents(cls, docs: Sequence[Self]) -> None:
+        """Print a collection of `Document` objects, with appropriate suppression text for dupes etc."""
+        last_doc_was_suppressed = False
+
+        for doc in docs:
+            if doc.suppressed_txt:
+                doc.print()
+                last_doc_was_suppressed = True
+                continue
+
+            if last_doc_was_suppressed:
+                console.line()
+
+            last_doc_was_suppressed = False
+            doc.print()
+
     @staticmethod
     def sort_by_id(docs: Sequence['DocumentType']) -> list['DocumentType']:
         return sorted(docs, key=lambda d: d.file_id)

@@ -16,8 +16,8 @@ from epstein_files.documents.other_file import OtherFile
 from epstein_files.output.highlight_config import (QUESTION_MARKS_TXT, get_highlight_group_for_name,
      get_style_for_name, styled_category, styled_name)
 from epstein_files.output.highlighted_names import HighlightedNames, HighlightedText, ManualHighlight
-from epstein_files.output.rich import (GREY_NUMBERS, TABLE_TITLE_STYLE, build_table,
-     console, join_texts, print_centered)
+from epstein_files.output.rich import (GREY_NUMBERS, TABLE_TITLE_STYLE, build_table, console, join_texts,
+     print_centered, print_special_note)
 from epstein_files.people.contact import Contact
 from epstein_files.people.interesting_people import SPECIAL_NOTES
 from epstein_files.util.constant.strings import *
@@ -318,7 +318,6 @@ class Person:
 
     def print_emails(self) -> list[Email]:
         """Print complete emails to or from a particular 'author'. Returns the Emails that were printed."""
-        last_email_was_suppressed = False
         print_centered(self.info_panel)
 
         if site_config.show_emailer_tables:
@@ -328,20 +327,9 @@ class Person:
             logger.warning(f"Not printing junk emailer '{self.name}'")  # Junk emailers only get a table
             return self._printable_emails
         elif self.name in SPECIAL_NOTES:
-            print_centered(Padding(Panel(SPECIAL_NOTES[self.name], expand=True, padding=(1, 3), style='reverse'), (0, 0, 2, 0)))
+            print_special_note(SPECIAL_NOTES[self.name])
 
-        for email in self._printable_emails:
-            if email.suppressed_txt:
-                email.print()
-                last_email_was_suppressed = True
-                continue
-
-            if last_email_was_suppressed:
-                console.line()
-
-            last_email_was_suppressed = False
-            email.print()
-
+        Document.print_documents(self._printable_emails)
         return self._printable_emails
 
     def print_emails_table(self) -> None:

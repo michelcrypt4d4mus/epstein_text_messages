@@ -199,7 +199,13 @@ def print_json(label: str, obj: object, skip_falsey: bool = False) -> None:
     console.line()
 
 
+def print_special_note(note: str | Text) -> None:
+    """Print an eye catching panel with extra info about a person."""
+    print_centered(Padding(Panel(note, expand=True, padding=(1, 3), style='reverse'), (0, 0, 2, 0)))
+
+
 def print_subtitle_panel(msg: str, style: str = 'black on white') -> None:
+    """A reverse color panel to put at the top of sections."""
     panel = Panel(Text.from_markup(msg, justify='center'), width=site_config.subtitle_width, style=style)
     print_centered(Padding(panel, SUBTITLE_PADDING))
 
