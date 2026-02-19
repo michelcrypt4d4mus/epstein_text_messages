@@ -98,12 +98,12 @@ HTML_BUILD_FILENAMES = {
 # Order matters, it's the order the links are shown in the header
 # Colons are used to break and parenthesize display
 SITE_DESCRIPTIONS = {
-    SiteType.MOBILE:                f"mobile:an attempt at mobile compatibility",
     SiteType.CURATED:               f"curated:by my interests, files grouped by type",
     SiteType.CURATED_CHRONOLOGICAL: f"curated chronological:all types intermingled",
     SiteType.GROUPED_EMAILS:        f"emailers:emails grouped by counterparty",
     SiteType.CHRONOLOGICAL_EMAILS:  f"emails:pure chronological order",
     SiteType.TEXT_MESSAGES:         f"text messages:{HOUSE_OVERSIGHT_TRANCHE}",
+    SiteType.MOBILE:                f"mobile:an attempt at mobile compatibility",
     SiteType.OTHER_FILES_TABLE:     f"other:files that are not emails or texts",
     SiteType.WORD_COUNT:            f"word count:of Epstein's communications",
     SiteType.DOJ_FILES:             f"doj files:raw OCR text {DOJ_2026_TRANCHE}",
