@@ -460,7 +460,7 @@ class Document:
 
         props = self._debug_props()
         props.update(prefix_keys(type(self.config).__name__, config_info))
-        props.update(prefix_keys(underscore(type(self.config).__name__), file_info))
+        props.update(prefix_keys(underscore(FileInfo.__name__), file_info))
         return styled_dict(props) if as_txt else props
 
     def _debug_props(self) -> DebugDict:

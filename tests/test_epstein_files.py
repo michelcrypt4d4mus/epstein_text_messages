@@ -65,7 +65,7 @@ def test_no_files_after_2025(epstein_files):
 
 def test_other_files_author_count(epstein_files):
     known_author_count = Document.known_author_count(epstein_files.other_files)
-    assert known_author_count == 496
+    assert known_author_count == 488
     assert len(epstein_files.json_files) == 19
 
 

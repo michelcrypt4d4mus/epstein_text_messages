@@ -10,7 +10,7 @@ from epstein_files.util.constant.strings import *
 from epstein_files.util.constants import CONFIGS_BY_ID
 
 ID = '123456'
-
+SKYPE_LOG = Neutral.SKYPE_LOG.replace('_', ' ')
 
 @pytest.fixture
 def academia_cfg() -> DocCfg:
@@ -147,17 +147,16 @@ def test_complete_description(
     assert junk_doc_cfg.complete_description == 'junk mail'
     # Legal
     assert legal_cfg.complete_description == f"clinton v. trump: case law"
-    # Skype no author
-    skype_log = Neutral.SKYPE_LOG.replace('_', ' ')
-    assert skype_cfg.complete_description == skype_log
+    # Skype
+    assert skype_cfg.complete_description == SKYPE_LOG
     # Skype with author
-    assert skype_author.complete_description == f"{skype_log} of conversation with linkspirit"
+    assert skype_author.complete_description == f"{SKYPE_LOG} of conversation with linkspirit"
     skype_author.description = 'something'
-    assert skype_author.complete_description == f"{skype_log} of conversation with linkspirit something"
+    assert skype_author.complete_description == f"{SKYPE_LOG} of conversation with linkspirit something"
     # Skype with recipients
-    assert skype_recipients.complete_description == f"{skype_log} of conversation with LBJ, JFK"
+    assert skype_recipients.complete_description == f"{SKYPE_LOG} of conversation with LBJ, JFK"
     skype_recipients.author = 'FDR'
-    assert skype_recipients.complete_description == f"{skype_log} of conversation with FDR, LBJ, JFK"
+    assert skype_recipients.complete_description == f"{SKYPE_LOG} of conversation with FDR, LBJ, JFK"
     # Tweet
     assert tweet_cfg.is_interesting is None
     assert tweet_cfg.complete_description == 'Tweet by Klippenstein'
