@@ -1375,6 +1375,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA01731638', truncate_to=530),
     EmailCfg(id='EFTA00836570', truncate_to=1600),
     EmailCfg(id='EFTA01061414', truncate_to=440),
+    EmailCfg(id='EFTA00362171', truncate_to=1096),
 ]
 
 UNINTERESTING_EMAIL_IDS = [
@@ -1387,11 +1388,17 @@ UNINTERESTING_EMAIL_IDS = [
     'EFTA02160842',
     'EFTA00405824',
     'EFTA00361736',
+    'EFTA02160842',
+    'EFTA00405795',
+    'EFTA00362148',
+    'EFTA00362163',
+    'EFTA00997253',
     'EFTA00997251',
     'EFTA02092108',
     'EFTA00645400',
     'EFTA01002109',
     'EFTA02365466',
+    'EFTA00362163',
     'EFTA00709543',
     # DOJ / USANYS
     'EFTA02730469',
@@ -1403,7 +1410,7 @@ for id in UNINTERESTING_EMAIL_IDS:
         assert not cfg.is_interesting, f"Can't overwrite is_interesting value for {cfg}"
         cfg.is_interesting = False
     else:
-        EMAILS_CONFIG.append(EmailCfg(id='id', is_interesting=False))
+        EMAILS_CONFIG.append(EmailCfg(id=id, is_interesting=False))
 
 
 ################################################################################################

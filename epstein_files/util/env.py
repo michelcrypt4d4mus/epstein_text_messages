@@ -104,7 +104,7 @@ args.output_texts = args.output_texts or args.all_texts
 args.overwrite_pickle = args.overwrite_pickle or (is_env_var_set('OVERWRITE_PICKLE') and not is_env_var_set('PICKLED'))
 args.width = site_config.width if is_html_script else None
 args.any_output_selected = any([is_output_arg(arg) and val for arg, val in vars(args).items()])
-args.suppress_uninteresting = any(arg.startswith('all_') and val for arg, val in vars(args).items())
+args.suppress_uninteresting = not any(arg.startswith('all_') and val for arg, val in vars(args).items())
 args._site_type = SiteType.CURATED
 
 if not (args.any_output_selected or args.email_timeline or args.emailers_info or args.stats):
