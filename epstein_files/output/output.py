@@ -250,7 +250,7 @@ def print_text_messages_section(epstein_files: EpsteinFiles) -> list[MessengerLo
         imessage_logs = [log for log in epstein_files.imessage_logs if (args.all_texts or log.is_interesting)]
 
     if not imessage_logs:
-        logger.warning(f"No MessengerLogs found for {args.names}")
+        logger.warning(f"No MessengerLog found for {args.names}")
         return imessage_logs
 
     print_section_header(('Selections from ' if not args.all_texts else '') + 'His Text Messages')
@@ -280,6 +280,10 @@ def show_urls() -> None:
 
 
 def write_html(output_path: Path | None) -> None:
+    """
+    Write all console output to HTML in `output_path` if `output_path` is not `None`.
+    if `args.write_txt` is set colored ANSI `.txt` files will also be written.
+    """
     if not output_path:
         logger.warning(f"Not writing HTML because args.build={args.build}.")
         return
