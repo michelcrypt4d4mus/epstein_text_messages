@@ -447,7 +447,7 @@ class Document:
             for k, v in self.config.props_to_copy.items():
                 setattr(self, k, v)
 
-    def _debug_dict(self, as_txt: bool = False) -> DebugDict | Text:
+    def _debug_dict(self, as_txt: bool = False, with_prefixes: bool = True) -> DebugDict | Text:
         """Merge information about this document from config, file info, etc."""
         config_info = self.config.truthy_props if self.config else {}
         file_info = self.file_info.as_dict
@@ -458,9 +458,11 @@ class Document:
         if file_info.get('source_url') == file_info.get('external_url', 'blah'):
             file_info.pop('external_url')
 
-        props = self._debug_props()
-        props.update(prefix_keys(type(self.config).__name__, config_info))
-        props.update(prefix_keys(underscore(FileInfo.__name__), file_info))
+        if with_prefixes:
+            config_info = prefix_keys(type(self.config).__name__, config_info)
+            file_info = prefix_keys(underscore(FileInfo.__name__), file_info)
+
+        props = {**config_info, **file_info, **self._debug_props()}
         return styled_dict(props) if as_txt else props
 
     def _debug_props(self) -> DebugDict:
