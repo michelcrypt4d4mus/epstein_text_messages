@@ -382,7 +382,7 @@ class Person:
             footer += ')'
         else:
             num_uninteresting = len([p for p in people if p.is_uninteresting])
-            footer += f", {num_uninteresting} uninteresting people not shown, check all emails page for details)"
+            footer += f". {num_uninteresting} uninteresting people not shown, check all emails page for details)"
 
         table = build_table(title, caption=footer)
         table.add_column('First')
