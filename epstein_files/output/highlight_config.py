@@ -1604,6 +1604,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(ZUBAIR_KHAN, f"Tranchulas cybersecurity, InsightsPod founder, Islamabad / Dubai, friend of {MASHA_DROKOVA}"),
         ],
         patterns=[
+            r"Accel",
             r"AG?I",
             r"Artificial\s*(General\s*)?Intelligence",
             r"Ben\s*Horowitz",
