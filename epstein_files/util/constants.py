@@ -1345,6 +1345,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00699275', description=f"'Fred' is probably Coinbase co-founder Fred Ehrsam"),
     EmailCfg(id='EFTA00830911', description='fundraising email for LedgerX which was later acquired by FTX for $298 million'),
     EmailCfg(id='EFTA00999549', description=f"{JOI_ITO} and {JEREMY_RUBIN} meet {LARRY_SUMMERS} to discuss bitcoin", is_interesting=True),
+    EmailCfg(id='EFTA01752601', description=f"{JOI_ITO} and Epstein name their new fund Kyara"),
     EmailCfg(id='EFTA02671523', description=f"Jones is former Google chief technology advocate / CEO of Epstein investment Wearality"),
     EmailCfg(id='EFTA00104945', description=f"{LEON_BLACK} / Rothschild Group {DEUTSCHE_BANK} transactions", is_interesting=True, truncate_to=700),
     EmailCfg(id='EFTA01013266', description=f"{MARIA_PRUSAKOVA}'s {CRYPTO_PR_LAB} request for payment for Davos", is_interesting=True),
@@ -1379,10 +1380,9 @@ EMAILS_CONFIG = [
 ]
 
 UNINTERESTING_EMAIL_IDS = [
-    '030786',  # Jabor boring
-    # TODO: These have UNKNOWN recipient so they currently get printed but we should configure it so they don't
-    'EFTA00039894',
-    'EFTA00039878',
+    # Jabor
+    '030786',
+    '033011',
     # Brock
     'EFTA02174702',
     'EFTA02160842',
@@ -1403,6 +1403,9 @@ UNINTERESTING_EMAIL_IDS = [
     # DOJ / USANYS
     'EFTA02730469',
     'EFTA02730471',
+    # TODO: These have UNKNOWN recipient so they currently get printed but we should configure it so they don't
+    'EFTA00039894',
+    'EFTA00039878',
 ]
 
 for id in UNINTERESTING_EMAIL_IDS:
