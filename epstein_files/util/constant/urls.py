@@ -177,15 +177,15 @@ TO_FROM = 'to/from'
 
 
 class PageSections(StrEnum):
-    TEXT_MESSAGES = auto()
     EMAILS = auto()
     OTHER_FILES = auto()
+    TEXT_MESSAGES = auto()
 
 
 # Search terms that take you to the desired section
 SECTION_ANCHORS = {
-    PageSections.TEXT_MESSAGES: 'Selections from His Text Messages',
     PageSections.EMAILS: 'Selections from His Emails',
+    PageSections.TEXT_MESSAGES: 'Selections from His Text Messages',
     PageSections.OTHER_FILES: 'Selected Files That Are Neither Emails Nor',
 }
 

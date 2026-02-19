@@ -44,7 +44,7 @@ output.add_argument('--email-timeline', action='store_true', help='print a table
 output.add_argument('--emailers-info', '-ei', action='store_true', help='write a .png of the eeailers info table')
 output.add_argument('--json-files', action='store_true', help='pretty print all the raw JSON data files in the collection and exit')
 output.add_argument('--json-metadata', '-jm', action='store_true', help='dump JSON metadata for all files and exit')
-output.add_argument('--mobile', '-m', action='store_true', help='build a mobile version of the site')
+output.add_argument('--mobile', '-mob', action='store_true', help='build a mobile version of the site')
 output.add_argument('--output-chrono', '-oc', action='store_true', help='output curated files of all types in chronological order')
 output.add_argument('--output-doj-files', '-od', action='store_true', help='generate the DOJ files from 2026-01-30')
 output.add_argument('--output-emails', '-oe', action='store_true', help='generate emails section')
