@@ -1336,6 +1336,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00673123', description=f"{BROCK_PIERCE} and Epstein invested in Coinbase which would turn out to be extremely lucrative", duplicate_ids=['EFTA02371875']),
     EmailCfg(id='EFTA01051074', description=f'{BROCK_PIERCE} arranging meeting between Bannon and Epstein (in Doha?)'),
     EmailCfg(id='EFTA02361144', description=f'{BROCK_PIERCE} brings Epstein an opportunity to invest in Blockstream, bitcoin developer {ADAM_BACK}\'s company'),
+    EmailCfg(id='EFTA02514539', description=f"{BROCK_PIERCE} has tax problems (hasn't filed a tax return in 5 years)", is_interesting=True),
     EmailCfg(id='EFTA00658457', description=f'{BROCK_PIERCE} says they will not invest in Bitfury'),
     EmailCfg(id='EFTA00998595', description=f'{BROCK_PIERCE} and Epstein discuss structure of crypto investments'),
     EmailCfg(id='EFTA01000882', description=f"{BROCK_PIERCE} asks for Epstein's permission to disclose his name to Coinbase team", is_interesting=True),
