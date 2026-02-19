@@ -1,5 +1,5 @@
 """
-HTML file paths and URLs for files built by epstein_generate.
+HTML file paths and URLs for files built by `epstein_generate`.
 """
 from enum import auto, StrEnum
 from pathlib import Path
@@ -87,7 +87,7 @@ HTML_BUILD_FILENAMES = {
     SiteType.CURATED_CHRONOLOGICAL: f"curated_chronological.html",
     SiteType.DOJ_FILES:             f'doj_2026-01-30_non_email_files.html',
     SiteType.GROUPED_EMAILS:        f'emails_grouped_by_counterparty.html',
-    SiteType.JSON_METADATA:         f'file_metadata_{EPSTEIN_FILES_NOV_2025}.json',
+    SiteType.JSON_METADATA:         f'metadata.json',
     SiteType.MOBILE:                f'curated_mobile.html',
     SiteType.OTHER_FILES_TABLE:     f'other_files_table.html',
     SiteType.TEXT_MESSAGES:         f'text_messages_{EPSTEIN_FILES_NOV_2025}.html',
