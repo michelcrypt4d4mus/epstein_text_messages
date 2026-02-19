@@ -399,7 +399,7 @@ class Person:
         grey_idx = 0
 
         for person in people:
-            if person.is_uninteresting:
+            if person.is_uninteresting and not (args.emailers_info or args.all_emails):
                 continue
 
             earliest_email_date = person.earliest_email_date
