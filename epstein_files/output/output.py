@@ -43,7 +43,7 @@ def print_curated_chronological(epstein_files: EpsteinFiles) -> list[Document]:
             continue
         elif other_files_queue:
             other_files_table = OtherFile.files_preview_table(other_files_queue, title=None)
-            console.print(Padding(other_files_table, (0, 0, 1, 2)))
+            console.print(Padding(other_files_table, (0, 0, 1, site_config.other_files_table_indent)))
             printed_docs.extend(other_files_queue)
             other_files_queue = []
 

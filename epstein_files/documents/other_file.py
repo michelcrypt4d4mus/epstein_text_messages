@@ -215,7 +215,10 @@ class OtherFile(Document):
         for i, row in enumerate(_table.rows):
             table.add_row(
                 # Collapse all but last col into one
-                Group(*[_table.columns[col_num]._cells[i] for col_num in range(0, max_col_idx)]),
+                Group(
+                    *[_table.columns[j]._cells[i] for j in range(1, max_col_idx)],
+                    _table.columns[0]._cells[i],
+                ),
                 _table.columns[max_col_idx]._cells[i],
                 style=row.style
             )

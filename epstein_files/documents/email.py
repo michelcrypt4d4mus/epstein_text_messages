@@ -714,7 +714,7 @@ class Email(Communication):
         )
 
         yield self.file_info_panel()
-        yield Padding(email_txt_panel, (0, 0, 1, INFO_INDENT))
+        yield Padding(email_txt_panel, (0, 0, 1, site_config.other_files_table_indent))
 
         if self.attached_docs:
             attachments_table_title = f" {self.file_info.url_slug} Email Attachments:"

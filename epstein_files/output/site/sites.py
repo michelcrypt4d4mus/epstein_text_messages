@@ -120,7 +120,6 @@ HIS_EMAILS = 'His Emails'
 HIS_TEXT_MESSAGES = 'His Text Messages'
 FILEs_THAT_ARE_NEITHER_EMAILS_NOR = 'Files That Are Neither Emails Nor Text Messages'
 
-
 class PageSections(StrEnum):
     EMAILS = auto()
     EMAIL_SIGNATURES = auto()

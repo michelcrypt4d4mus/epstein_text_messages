@@ -146,7 +146,7 @@ class EpsteinFiles:
 
     def docs_matching(self, pattern: re.Pattern | str, names: list[Name] | None = None) -> list[SearchResult]:
         """Find documents whose text matches `pattern` optionally limited to only docs involving `name`)."""
-        documents = [d for d in self.documents if (not names) or d.author in names]
+        documents = [d for d in self.unique_documents if (not names) or d.author in names]
         results: list[SearchResult] = []
 
         for doc in documents:

@@ -28,6 +28,7 @@ class MobileConfig:
     not_all_files_warning: ClassVar[str] = starred_header(NOT_ALL_FILES_MSG, num_spaces=1, num_stars=1)
     num_color_key_cols: ClassVar[int] = 2
     other_files_preview_chars: ClassVar[int] = 300
+    other_files_table_indent: ClassVar[int] = 0
     show_emailer_tables: ClassVar[bool] = False
     site_glossary_horizontal_padding: ClassVar[int] = 2
     social_link_separator: ClassVar[str] = ' '
@@ -40,8 +41,7 @@ class MobileConfig:
 
     @classmethod
     def email_subheader(cls, email_type: str, author: Text, recipients: Text, timestamp: datetime | Text) -> Text:
-        prefix = '' if email_type == 'email' else f"{email_type} "
-        prefix += 'from'
+        prefix = f"{email_type} from"
         timestamp = timestamp if isinstance(timestamp, Text) else Text(' at ').append(str(timestamp), TIMESTAMP_STYLE)
         txt = Text(f"{capitalize_first(prefix)} ", SUBHEADER_STYLE).append(author)
         txt.append(' to ').append(recipients).append(timestamp)
@@ -55,6 +55,7 @@ class SiteConfig(MobileConfig):
     not_all_files_warning: ClassVar[str] = starred_header(NOT_ALL_FILES_MSG, num_spaces=6, num_stars=14)
     num_color_key_cols: ClassVar[int] = 6
     other_files_preview_chars: ClassVar[int] = 900
+    other_files_table_indent: ClassVar[int] = 2
     show_emailer_tables: ClassVar[bool] = True
     site_glossary_horizontal_padding: ClassVar[int] = 5
     social_link_separator: ClassVar[str] = '  /  '

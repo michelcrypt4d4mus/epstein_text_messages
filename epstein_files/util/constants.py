@@ -1475,6 +1475,8 @@ EMAILS_CONFIG = [
 
 # These emails will be suppressed in the curated views
 UNINTERESTING_EMAIL_IDS = [
+    # John Page
+    '016693',
     # Jabor
     '030786',
     '033011',
@@ -2169,7 +2171,7 @@ OTHER_FILES_REPUTATION = [
     DocCfg(id='030426', author=OSBORNE_LLP, description=f"reputation repair proposal (cites Michael Milken)", date='2011-06-14'),
     DocCfg(id='026582', description=f"Epstein's internet search results at start of reputation repair campaign, maybe from {OSBORNE_LLP}"),
     DocCfg(id='030573', description=f"Epstein's unflattering Google search results, maybe screenshot by {AL_SECKEL} or {OSBORNE_LLP}"),
-    DocCfg(id='030875', description=f"Epstein's Wikipedia page"),
+    DocCfg(id='030875', description=f"Epstein's Wikipedia page", date='2014-02-08'),  # Date is based on tyler shears; seckel was 2010
     DocCfg(id='026583', description=f"Google search results for '{JEFFREY_EPSTEIN}' with analysis ({OSBORNE_LLP}?)"),
     DocCfg(id='029350', description=f"Microsoft Bing search results for Epstein with sex offender at top, maybe from {TYLER_SHEARS}?"),
     # DOJ files
