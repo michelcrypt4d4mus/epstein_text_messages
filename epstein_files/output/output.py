@@ -12,7 +12,7 @@ from epstein_files.documents.messenger_log import MessengerLog
 from epstein_files.documents.other_file import FIRST_FEW_LINES, OtherFile
 from epstein_files.epstein_files import EpsteinFiles
 from epstein_files.output.rich import *
-from epstein_files.output.site.sites import EMAILERS_TABLE_PNG_PATH, FILEs_THAT_ARE_NEITHER_EMAILS_NOR, HIS_EMAILS, HIS_TEXT_MESSAGES, SELECTIONS_FROM
+from epstein_files.output.site.sites import AUTHORS_USING_SIGNATURES, EMAILERS_TABLE_PNG_PATH, FILEs_THAT_ARE_NEITHER_EMAILS_NOR, HIS_EMAILS, HIS_TEXT_MESSAGES, SELECTIONS_FROM
 from epstein_files.output.title_page import print_color_key, print_other_page_link, print_section_header
 from epstein_files.people.interesting_people import EMAILERS_TO_PRINT
 from epstein_files.people.person import Person
@@ -293,7 +293,7 @@ def _print_section_summary_table(table: Table) -> None:
 def _signature_table(keyed_sets: dict[str, set[str]], cols: tuple[str, str], join_char: str = '\n') -> Padding:
     """Build table for who signed emails with 'Sent from my iPhone' etc."""
     new_dict = dict_sets_to_lists(keyed_sets)
-    title = 'Email Signatures Used By Authors' if cols[0] == AUTHOR else 'Authors Seen Using Email Signatures'
+    title = 'Email Signatures Used By Authors' if cols[0] == AUTHOR else AUTHORS_USING_SIGNATURES
     table = build_table(title, header_style="bold reverse", show_lines=True)
 
     for i, col in enumerate(cols):
