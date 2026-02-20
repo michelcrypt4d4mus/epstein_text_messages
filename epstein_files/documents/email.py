@@ -646,8 +646,6 @@ class Email(Communication):
             num_chars = args.truncate
         elif self.config and self.config.truncate_to is not None:
             num_chars = len(self.text) if self.config.truncate_to == NO_TRUNCATE else self.config.truncate_to
-        elif self.config and self.config.is_interesting:
-            num_chars = len(self.text)
         elif self.author in TRUNCATE_EMAILS_BY \
                 or any([self.is_from_or_to(n) for n in TRUNCATE_EMAILS_FROM_OR_TO]) \
                 or self.is_fwded_article \

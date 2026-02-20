@@ -29,6 +29,7 @@ EMAIL_PROPS_TO_COPY = ['recipients']
 
 FALSEABLE_PROPS = ['is_interesting']
 MAX_LINE_LENGTH = 135
+NO_TRUNCATE = -1
 SAME = 'same'
 ZUBAIR_AND_ANYA = f"{ZUBAIR_KHAN} and Anya Rasulova"
 
@@ -348,6 +349,7 @@ class DocCfg:
         return props
 
     def __post_init__(self):
+        self.truncate_to = self.truncate_to or (NO_TRUNCATE if self.is_interesting else self.truncate_to)
         self.id = self.id.upper()
         self.set_category(self.category)
 
