@@ -572,13 +572,6 @@ EMAILS_CONFIG = [
     EmailCfg(id='016693', description='signed "MM"'),
     EmailCfg(id='028524', description='Zach Braff op-ed on Woody Allen in NYT', is_fwded_article=True, is_interesting=False),
     EmailCfg(
-        id='033178',
-        author_reason=PRUSAKOVA_BERKELY,
-        author=MARIA_PRUSAKOVA,
-        description='Masha Prusso asks about Zubair Khan, discusses recruiting girls for Epstein',
-        is_interesting=True,
-    ),
-    EmailCfg(
         id='030630',
         author_reason=PRUSAKOVA_BERKELY,
         author=MARIA_PRUSAKOVA,
@@ -1118,11 +1111,6 @@ EMAILS_CONFIG = [
         author=RENATA_BOLOTOVA,
         description='this file has been removed from the DOJ site',
     ),
-    EmailCfg(
-        id='EFTA00927927',
-        description=f"reads like {RENATA_BOLOTOVA} talking about recruiting girls for Epstein",
-        is_interesting=True,
-    ),
     EmailCfg(id='EFTA02025944', author=RENATA_BOLOTOVA, recipients=[JEFFREY_EPSTEIN], date='2012-01-23 06:00:00'),
     EmailCfg(id='EFTA01985762', author=RENATA_BOLOTOVA, recipients=[JEFFREY_EPSTEIN], date='2012-01-24 09:35:00'),
     EmailCfg(id='EFTA00920177', author=RENATA_BOLOTOVA, author_reason='discussion of employment at Institute'),
@@ -1325,7 +1313,6 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA02731713', recipients=[USANYS], uncertain_recipient='true'),
     EmailCfg(id='EFTA02731718', recipients=[USANYS], uncertain_recipient='true'),
     EmailCfg(id='EFTA02637315', is_interesting=True, comment=f"{AZIZA_ALAHMADI} says BTC to fiat is legalized in middle east"),
-    EmailCfg(id='EFTA00848644', is_interesting=True, comment='take a picture of your pussy'),
     EmailCfg(id='EFTA02517037', is_interesting=True, description=f"Epstein wants to talk about Kazakhstan with {LARRY_SUMMERS}"),
     EmailCfg(id='EFTA02559311', is_interesting=True, description=f"Epstein has some connection to the sovereign wealth fund of Kazakhstan"),
     EmailCfg(id='EFTA01943067', is_interesting=True, description=f'comments on {ARIANE_DE_ROTHSCHILD} and bitcoin'),
@@ -2435,6 +2422,34 @@ OTHER_FILES_MISC = [
     DocCfg(id='EFTA02025218', date='2011-09-09'),
 ]
 
+OTHER_FILES_GIRLS = [
+    EmailCfg(id='EFTA00848644', is_interesting=True, comment='"take a picture of your pussy"'),
+    EmailCfg(id='EFTA02557291', comment='Anastasiya possibly recruiting'),
+    CommunicationCfg(
+        id='EFTA01612733',
+        author=MARIA_PRUSAKOVA,
+        author_uncertain=True,
+        comment='WhatsApp',
+        description=f'says being Epstein\'s lawyer would be "way better than supplying ladies", also discusses Medici Bank',
+    ),
+    EmailCfg(
+        id='EFTA00927927',
+        description=f"reads like {RENATA_BOLOTOVA} talking about recruiting girls for Epstein",
+        is_interesting=True,
+    ),
+    EmailCfg(
+        id='033178',
+        author_reason=PRUSAKOVA_BERKELY,
+        author=MARIA_PRUSAKOVA,
+        description='Masha Prusso asks about Zubair Khan, discusses recruiting girls for Epstein',
+        is_interesting=True,
+    ),
+    CommunicationCfg(
+        id='EFTA01616933',
+        description='"now im finding pussy for you" / "no one can beat your pussy network"',
+    ),
+]
+
 OTHER_FILES_PHONE_BILL = [
     phone_bill_cfg('EFTA00007070', 'MetroPCS', '2006'),
     phone_bill_cfg('EFTA00006770', 'MetroPCS', '2006-02-01 to 2006-06-16'),
@@ -2553,11 +2568,6 @@ OTHER_FILES_SKYPE_LOG = [
     CommunicationCfg(id='EFTA01217787', recipients=[TYLER_SHEARS, 'Hanna Traff at Spotify'], is_interesting=True),
     CommunicationCfg(id='EFTA01217703', recipients=['actress Athena Zelcovich', JOSCHA_BACH, LAWRENCE_KRAUSS]),
     CommunicationCfg(id='EFTA01217736', recipients=['actress Athena Zelcovich', TYLER_SHEARS]),
-    CommunicationCfg(
-        id='EFTA01616933',
-        description='"now im finding pussy for you" / "no one can beat your pussy network"',
-        is_interesting=True,
-    ),
 ]
 
 OTHER_FILES_TEXT_MSG = [

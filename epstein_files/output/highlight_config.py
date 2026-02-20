@@ -1507,6 +1507,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         style='red bold',
         contacts=[
             Contact(ALEKSANDRA_KARPOVA, f"{CRYPTO_PR_LAB} co-founder", r"Aleksandra\s*Karpova"),
+            Contact('Anastasiya Siroochenko', '', r"Anastasiya(\s+Siro(chenko)?)?"),
             Contact('Dasha Zhukova', "art collector, daughter of Alexander Zhukov"),
             Contact(JULIA_SANTOS, "possibly a Russian in Paris that was recruiting girls from Ukraine for Epstein"),
             Contact(
@@ -1732,7 +1733,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         ],
     ),
     HighlightedNames(
-        label='victim',
+        label=Interesting.GIRLS,
         style=VICTIM_COLOR,
         contacts=[
             Contact(PAULA, "ex-girlfriend who works in opera now", r"^Paula( Heil Fisher)?$"),
@@ -1752,6 +1753,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Stormy\s*Daniels",
             r"(Virginia\s+((L\.?|Roberts)\s+)?)?Giuffre",
             r"Virginia\s+Roberts",
+            r"way better than supplying you ladies",
         ],
     ),
     HighlightedNames(
