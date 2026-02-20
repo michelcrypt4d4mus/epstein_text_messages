@@ -50,6 +50,7 @@ def _biographical_panel(names: list[str], next_doc: Document) -> Align | None:
         border_style='dim',
         box=box.DOUBLE,
         expand=False,
+        style='on grey23',
         title=Text(f'short bios of people in the next {next_doc._debug_prefix}', 'wheat4 italic'),
         title_align='right',
     )

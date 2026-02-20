@@ -1,5 +1,6 @@
 # NEXT RELEASE
 * Add manual review/config step to `--load-new`
+* Add short bio boxes for people as they are encountered in the chronological view
 
 ### 1.8.2
 * fix `--show-urls` bug
