@@ -7,6 +7,7 @@ from datetime import datetime
 from typing import ClassVar, cast
 
 from dateutil.parser import parse
+from rich import box
 from rich.console import Console, ConsoleOptions, RenderResult
 from rich.padding import Padding
 from rich.panel import Panel
@@ -34,6 +35,8 @@ from epstein_files.util.helpers.link_helper import link_text_obj
 from epstein_files.util.helpers.string_helper import capitalize_first
 from epstein_files.output.highlight_config import HIGHLIGHTED_NAMES, get_style_for_name
 from epstein_files.util.logging import logger
+
+RENDER_BODY_AS_TABLE = True
 
 # Email bod regexes
 BAD_FIRST_LINE_REGEX = re.compile(r'^(>>|Grant_Smith066474"eMailContent.htm|LOVE & KISSES)$')
@@ -725,20 +728,19 @@ class Email(Communication):
 
         if self.config_description_txt and site_config.email_info_in_subtitle:
             max_line_len = max(max_line_len, len(self.config_description_txt.plain))
-            subtitle = Text('', style='on gray7').append(self.config_description_txt)
-            subtitle = Text(' ', 'on gray7').join(subtitle.split(' '))  # split then join makes rich color subtitle correctly
-
-        email_txt_panel = Panel(
-            highlighter(text).append('...\n\n').append(trim_footer_txt) if trim_footer_txt else highlighter(text),
-            border_style=self.border_style,
-            expand=False,
-            padding=(0, 0, 1 if subtitle else 0, 0),
-            subtitle=subtitle,
-            subtitle_align='right',
-        )
+            subtitle_style = 'dim' if RENDER_BODY_AS_TABLE else 'on gray7'
+            subtitle = Text('', style=subtitle_style).append(self.config_description_txt)
+            subtitle = Text(' ', subtitle_style).join(subtitle.split(' '))  # split then join makes rich color subtitle correctly
 
         yield self.file_info_panel()
-        yield Padding(email_txt_panel, (0, 0, 1, site_config.other_files_table_indent))
+        txt = highlighter(text).append('...\n\n').append(trim_footer_txt) if trim_footer_txt else highlighter(text)
+
+        if RENDER_BODY_AS_TABLE:
+            panel = self._text_table(txt, subtitle)
+        else:
+            panel = self._text_panel(txt, subtitle)
+
+        yield Padding(panel, (0, 0, 1, site_config.other_files_table_indent))
 
         if self.attached_docs:
             attachments_table_title = f" {self.file_info.url_slug} Email Attachments:"
@@ -747,6 +749,23 @@ class Email(Communication):
 
         if should_rewrite_header:
             self.log_top_lines(self.header.num_header_rows + 4, f'Original header:')
+
+    def _text_panel(self, text: str | Text, description: Text | None) -> Panel:
+        """Renders the info info text in the panel's bottom border."""
+        return Panel(
+            text,
+            border_style=self.border_style,
+            expand=False,
+            subtitle=description,
+            subtitle_align='right',
+        )
+
+    def _text_table(self, text: str | Text, description: Text | None) -> Table:
+        """Renders the info text as a top row in a table-ish view."""
+        panel = Table(border_style=self.border_style, box=box.ROUNDED, show_header=bool(description))
+        panel.add_column(description or '')
+        panel.add_row(text)
+        return panel
 
     @staticmethod
     def build_emails_table(emails: list['Email'], name: Name = '', title: str = '', show_length: bool = False) -> Table:

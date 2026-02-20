@@ -67,6 +67,9 @@ def print_curated_chronological(epstein_files: EpsteinFiles) -> list[Document]:
         doc.print()
         printed_docs.append(doc)
 
+        # if doc.config_description_txt:
+        #     import pdb;pdb.set_trace()
+
     return printed_docs
 
 
