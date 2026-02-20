@@ -25,6 +25,7 @@ class MobileConfig:
     abbreviations_width: ClassVar[int | None] = None
     attachment_indent: ClassVar[int] = 6
     character_bio_padding: ClassVar[tuple[int, int, int, int]] = (0, 0, 1, 2)
+    email_info_in_subtitle: ClassVar[bool] = False
     info_indent: ClassVar[int] = 1
     max_alt_links: ClassVar[int | None] = 1
     not_all_files_warning: ClassVar[str] = starred_header(NOT_ALL_FILES_MSG, num_spaces=1, num_stars=1)
@@ -58,6 +59,7 @@ class SiteConfig(MobileConfig):
     abbreviations_width: ClassVar[int | None] = 62
     attachment_indent: ClassVar[int] = 12
     character_bio_padding: ClassVar[tuple[int, int, int, int]] = (0, 1, 0, 0)
+    email_info_in_subtitle: ClassVar[bool] = True
     info_indent: ClassVar[int] = 2
     max_alt_links: ClassVar[int | None] = None
     not_all_files_warning: ClassVar[str] = starred_header(NOT_ALL_FILES_MSG, num_spaces=6, num_stars=14)

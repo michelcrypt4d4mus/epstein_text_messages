@@ -348,6 +348,7 @@ class DocCfg:
         return props
 
     def __post_init__(self):
+        self.id = self.id.upper()
         self.set_category(self.category)
 
         if self.author_uncertain and isinstance(self.author_uncertain, str):

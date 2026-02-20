@@ -166,6 +166,13 @@ def epstein_show():
         exit_with_error(str(e))
 
     for doc in docs:
+        if args.open_pdf:
+            check_output(['open', str(doc.file_info.local_pdf_path)])
+        if args.open_txt:
+            check_output(['open', str(doc.file_path)])
+        if args.open_url:
+            check_output(['open', str(doc.file_info.external_url)])
+
         console.print('\n', doc)
 
         if args.raw:
@@ -180,12 +187,6 @@ def epstein_show():
         if args.debug:
             console.print(doc._debug_txt(), style='dim')
 
-        if args.open_pdf:
-            check_output(['open', str(doc.file_info.local_pdf_path)])
-        if args.open_txt:
-            check_output(['open', str(doc.file_path)])
-        if args.open_url:
-            check_output(['open', str(doc.external_url)])
 
 
 def _load_files_and_check_early_exit_args() -> tuple[Timer, EpsteinFiles]:

@@ -41,7 +41,7 @@ class JsonFile(OtherFile):
         return metadata
 
     @property
-    def subheader(self) -> Text | None:
+    def subheader(self) -> Text:
         return Text(DESCRIPTION, style=INFO_STYLE)
 
     def __post_init__(self):

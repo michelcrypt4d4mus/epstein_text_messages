@@ -115,6 +115,7 @@ OCR_REPAIRS: dict[str | re.Pattern, str] = {
     'the-truth-\nabout-the-bitcoin-foundation/ )': 'the-truth-about-the-bitcoin-foundation/ )\n',
     'woody-allen-jeffrey-epsteins-\nsociety-friends-close-ranks/ ---': 'woody-allen-jeffrey-epsteins-society-friends-close_ranks/\n',
     ' https://www.theguardian.com/world/2017/may/29/close-friend-trump-thomas-barrack-\nalleged-tax-evasion-italy-sardinia?CMP=share btn fb': '\nhttps://www.theguardian.com/world/2017/may/29/close-friend-trump-thomas-barrack-alleged-tax-evasion-italy-sardinia?CMP=share_btn_fb',
+    'search-for-secret-putin-\nfortune.html': 'search-for-secret-putin-fortune.html',
     re.compile(r'timestopics/people/t/landon jr thomas/inde\n?x\n?\.\n?h\n?tml'): 'timestopics/people/t/landon_jr_thomas/index.html',
     re.compile(r" http ?://www. ?dailymail. ?co ?.uk/news/article-\d+/Troub ?led-woman-history-drug-\n?us ?e-\n?.*html"): '\nhttp://www.dailymail.co.uk/news/article-3914012/Troubled-woman-history-drug-use-claimed-assaulted-Donald-Trump-Jeffrey-Epstein-sex-party-age-13-FABRICATED-story.html',
     re.compile(r"http.*steve-bannon-trump-tower-\n?interview-\n?trumps-\n?strategist-plots-\n?new-political-movement-948747"): "\nhttp://www.hollywoodreporter.com/news/steve-bannon-trump-tower-interview-trumps-strategist-plots-new-political-movement-948747",
@@ -222,6 +223,14 @@ class Email(Communication):
             return self.derived_cfg
         else:
             return super().config
+
+    @property
+    def info(self) -> list[Text]:
+        """Overloads superclass to avoid returning config_description because that's now in the Panel title."""
+        if site_config.email_info_in_subtitle:
+            return [self.subheader]
+        else:
+            return super().info
 
     @property
     def is_fwded_article(self) -> bool:
@@ -679,7 +688,6 @@ class Email(Communication):
         return num_chars
 
     def __rich_console__(self, console: Console, options: ConsoleOptions) -> RenderResult:
-        logger.debug(f"Printing '{self.filename}'...")
         should_rewrite_header = self.header.was_initially_empty and self.header.num_header_rows > 0
         num_chars = self._truncate_to_length()
         trim_footer_txt = None
@@ -711,13 +719,22 @@ class Email(Communication):
             for line in text.split('\n')
         ]
 
+        max_line_len = max(*[len(line) for line in lines])
         text = join_texts(lines, '\n')
+        subtitle = None
+
+        if self.config_description_txt and site_config.email_info_in_subtitle:
+            max_line_len = max(max_line_len, len(self.config_description_txt.plain))
+            subtitle = Text('', style='on gray7').append(self.config_description_txt)
+            subtitle = Text(' ', 'on gray7').join(subtitle.split(' '))  # split then join makes rich color subtitle correctly
 
         email_txt_panel = Panel(
             highlighter(text).append('...\n\n').append(trim_footer_txt) if trim_footer_txt else highlighter(text),
             border_style=self.border_style,
             expand=False,
-            subtitle=REWRITTEN_HEADER_MSG if should_rewrite_header else None,
+            padding=(0, 0, 1 if subtitle else 0, 0),
+            subtitle=subtitle,
+            subtitle_align='right',
         )
 
         yield self.file_info_panel()

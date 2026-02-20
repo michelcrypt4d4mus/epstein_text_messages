@@ -126,12 +126,13 @@ class Document:
     @property
     def config_description(self) -> str:
         """Add parentheses to `self.config.description`."""
-        return f"({self.config.description})" if self.config and self.config.description else ''
+        return f"{self.config.description}" if self.config and self.config.description else ''
 
     @property
     def config_description_txt(self) -> Text | None:
         """Add parentheses to `self.config.description`."""
-        return highlighter(Text(self.config_description, style=INFO_STYLE)) if self.config_description else None
+        style = 'bright_white italic' if site_config.email_info_in_subtitle else INFO_STYLE
+        return highlighter(Text(self.config_description, style)) if self.config_description else None
 
     @property
     def config_replace_text_with(self) -> str | None:
@@ -517,7 +518,7 @@ class Document:
         self.lines = [line.strip() if self.STRIP_WHITESPACE else line for line in self.text.split('\n')]
 
     def _skipped_file_txt(self, reason: str | Text) -> Text:
-        txt = Text(f"Skipping ", INFO_STYLE).append(self.external_link_txt)
+        txt = Text(f"Skipping ", f"{INFO_STYLE} dim").append(self.external_link_txt)
         return txt.append(" because it's ").append(reason)
 
     def _write_clean_text(self, output_path: Path) -> None:
@@ -602,6 +603,9 @@ class Document:
 
             last_doc_was_suppressed = False
             doc.print()
+
+            # if doc.config_description_txt:
+            #     import pdb;pdb.set_trace()
 
     @staticmethod
     def count_by_month(docs: Sequence['DocumentType']) -> Counter[str | None]:
