@@ -14,7 +14,7 @@ from rich.panel import Panel
 from rich.text import Text
 from rich.table import Table
 
-from epstein_files.documents.documents.doc_cfg import DUPE_TYPE_STRS, DebugDict, EmailCfg, DocCfg, Metadata
+from epstein_files.documents.documents.doc_cfg import DUPE_TYPE_STRS, NO_TRUNCATE, DebugDict, EmailCfg, DocCfg, Metadata
 from epstein_files.documents.documents.file_info import FileInfo
 from epstein_files.documents.documents.search_result import MatchedLine
 from epstein_files.documents.emails.constants import DOJ_EMAIL_OCR_REPAIRS, FALLBACK_TIMESTAMP
@@ -266,14 +266,35 @@ class Document:
         """Returns the string we want to print as the body of the document."""
         style = INFO_STYLE if self.config_replace_text_with and len(self.config_replace_text_with) < 300 else ''
         text = self.config_replace_text_with or self.text
-        trim_footer_txt = None
 
-        if self.config and self.config.truncate_to:
-            txt = highlighter(Text(text[0:self.config.truncate_to], style))
-            trim_footer_txt = self.truncation_note(self.config.truncate_to)
-            return txt.append('...\n\n').append(trim_footer_txt)
-        else:
+        if args.char_nums:
+            idx = args.char_nums
+            new_text = text[:idx]
+
+            while idx < len(text):
+                new_text += f'\n\n ------ {idx} ------ \n\n'
+                end_idx = idx + args.char_nums
+                new_text += text[idx: end_idx]
+                idx = end_idx
+
+            text = new_text
+
+        if args.whole_file or self.config is None or self.config.truncate_to in [None, NO_TRUNCATE]:
             return highlighter(Text(text, style))
+
+        if isinstance(self.config.truncate_to, tuple):
+            char_range = list(self.config.truncate_to)
+        else:
+            char_range = [0, self.config.truncate_to]
+
+        trim_footer_txt = self.truncation_note(char_range[1])
+        txt = highlighter(Text(text[char_range[0]:char_range[1]], style))
+        txt.append('...\n\n').append(trim_footer_txt)
+
+        if char_range[0] > 0:
+            txt = Text('').append(f'[not showing the first {char_range[0]} characters]\n\n...', 'dim').append(txt)
+
+        return txt
 
     @property
     def suppressed_txt(self) -> Text | None:

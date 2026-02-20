@@ -305,7 +305,7 @@ HighlightedNames(
         contacts=[
             Contact(
                 name=ADAM_BACK,
-                info=f"co-founder of {BLOCKSTREAM}, bitcoin dev, long time Tether defender",
+                info=f"co-founder of {BLOCKSTREAM}, bitcoin developer, Tether defender",
                 emailer_pattern=r"Adam Back?",
             ),
             Contact(AMIR_TAAKI, f"bitcoin bro, partner of {DONALD_NORMAN} (and {BROCK_PIERCE}?)", r"Amir Taaki|genjix"),
@@ -321,7 +321,7 @@ HighlightedNames(
             Contact(JEREMY_RUBIN, "developer/researcher", r"Jeremy Rub(in|m)"),
             Contact(
                 name=JOI_ITO,
-                info=f"former head of {MIT_MEDIA_LAB} and MIT Digital Currency Initiative",
+                info=f"head of {MIT_MEDIA_LAB} and MIT Digital Currency Initiative",
                 emailer_pattern=r"ji@media.mit.?edu|(joichi|joi)( Ito)?",
             ),
             Contact(LORENZO_DE_MEDICI, "Medici Bank, possibly Medici heir?", r"Prince Lorenzo|Lorenzo de Medici"),

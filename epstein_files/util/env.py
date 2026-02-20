@@ -69,6 +69,7 @@ scripts.add_argument('--raw', action='store_true', help='show raw contents of fi
 scripts.add_argument('--whole-file', '-wf', action='store_true', help='print whole files')
 
 debug = parser.add_argument_group('DEBUG')
+debug.add_argument('--char-nums', '-cn', nargs="?", default=None, const=1000, type=int, help='inject char nums every N chars')
 debug.add_argument('--colors-only', '-c', action='store_true', help='print header with color key table and links and exit')
 debug.add_argument('--constantize', action='store_true', help='constantize names when printing repr() of objects')
 debug.add_argument('--debug', '-d', action='store_true', help='set debug level to INFO')

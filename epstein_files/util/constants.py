@@ -1637,12 +1637,11 @@ OTHER_FILES_ARTICLE = [
     DocCfg(id='022746', author=MICHAEL_WOLFF, description=MICHAEL_WOLFF_EPSTEIN_ARTICLE_DRAFT),
     DocCfg(id='022844', author=MICHAEL_WOLFF, description=MICHAEL_WOLFF_EPSTEIN_ARTICLE_DRAFT),
     DocCfg(id='022863', author=MICHAEL_WOLFF, description=MICHAEL_WOLFF_EPSTEIN_ARTICLE_DRAFT),
-    DocCfg(id='022894', author=MICHAEL_WOLFF, description=MICHAEL_WOLFF_EPSTEIN_ARTICLE_DRAFT),
+    DocCfg(id='022894', author=MICHAEL_WOLFF, description=MICHAEL_WOLFF_EPSTEIN_ARTICLE_DRAFT, truncate_to=(1, 2500)),
     DocCfg(id='022952', author=MICHAEL_WOLFF, description=MICHAEL_WOLFF_EPSTEIN_ARTICLE_DRAFT),
     DocCfg(id='024229', author=MICHAEL_WOLFF, description=MICHAEL_WOLFF_EPSTEIN_ARTICLE_DRAFT),
     DocCfg(id='031198', author='Morning News USA', description=f"article about identify of Jane Doe in {JANE_DOE_V_EPSTEIN_TRUMP}"),
     DocCfg(id='015462', author='Nautilus Education', description=f'magazine (?) issue'),
-
     DocCfg(id='031972', author=NYT, description=f"article about #MeToo allegations against {LAWRENCE_KRAUSS}", date='2018-03-07'),
     DocCfg(id='032435', author=NYT, description=f'article about Chinese butlers'),
     DocCfg(id='029452', author=NYT, description=f"article about {PETER_THIEL}"),

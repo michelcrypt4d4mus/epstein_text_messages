@@ -645,6 +645,9 @@ class Email(Communication):
         elif args.truncate:
             num_chars = args.truncate
         elif self.config and self.config.truncate_to is not None:
+            if isinstance(self.config.truncate_to, tuple):
+                raise ValueError(f"Emails don't support truncate_to as a tuple")
+
             num_chars = len(self.text) if self.config.truncate_to == NO_TRUNCATE else self.config.truncate_to
         elif self.author in TRUNCATE_EMAILS_BY \
                 or any([self.is_from_or_to(n) for n in TRUNCATE_EMAILS_FROM_OR_TO]) \
