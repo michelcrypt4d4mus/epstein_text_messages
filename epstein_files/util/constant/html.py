@@ -8,7 +8,7 @@ PAGE_TITLE = '   ∞ Michel de Cryptadamus ∞   '
 
 if args.all_emails:
     page_type = 'Emails'
-elif args.email_timeline:
+elif args.all_emails_chrono:
     page_type = 'Chronological Emails'
 else:
     page_type = 'Text Messages'

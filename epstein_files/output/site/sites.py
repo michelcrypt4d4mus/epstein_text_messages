@@ -28,11 +28,11 @@ TO_FROM = 'to/from'
 
 
 class SiteType(StrEnum):
-    CHRONOLOGICAL_EMAILS = auto()
+    EMAILS_CHRONOLOGICAL = auto()
     CURATED = auto()
     CURATED_CHRONOLOGICAL = auto()
     DOJ_FILES = auto()
-    GROUPED_EMAILS = auto()
+    EMAILS = auto()
     #JSON_FILES = auto()
     JSON_METADATA = auto()
     MOBILE = auto()
@@ -82,11 +82,11 @@ class SiteType(StrEnum):
 
 
 HTML_BUILD_FILENAMES = {
-    SiteType.CHRONOLOGICAL_EMAILS:  f'chronological_emails.html',
+    SiteType.EMAILS_CHRONOLOGICAL:  f'chronological_emails.html',
     SiteType.CURATED:               f'index.html',
     SiteType.CURATED_CHRONOLOGICAL: f"curated_chronological.html",
     SiteType.DOJ_FILES:             f'doj_2026-01-30_non_email_files.html',
-    SiteType.GROUPED_EMAILS:        f'emails_grouped_by_counterparty.html',
+    SiteType.EMAILS:        f'emails_grouped_by_counterparty.html',
     SiteType.JSON_METADATA:         f'metadata.json',
     SiteType.MOBILE:                f'curated_mobile.html',
     SiteType.OTHER_FILES_TABLE:     f'other_files_table.html',
@@ -100,8 +100,8 @@ HTML_BUILD_FILENAMES = {
 SITE_DESCRIPTIONS = {
     SiteType.CURATED:               f"curated:by my interests, files grouped by type",
     SiteType.CURATED_CHRONOLOGICAL: f"curated chronological:all types intermingled",
-    SiteType.GROUPED_EMAILS:        f"emailers:emails grouped by counterparty",
-    SiteType.CHRONOLOGICAL_EMAILS:  f"emails:pure chronological order",
+    SiteType.EMAILS:        f"emailers:emails grouped by counterparty",
+    SiteType.EMAILS_CHRONOLOGICAL:  f"emails:pure chronological order",
     SiteType.TEXT_MESSAGES:         f"text messages:{HOUSE_OVERSIGHT_TRANCHE}",
     SiteType.MOBILE:                f"mobile:an attempt at mobile compatibility",
     SiteType.OTHER_FILES_TABLE:     f"other:files that are not emails or texts",
