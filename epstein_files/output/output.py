@@ -46,7 +46,7 @@ def print_curated_chronological(epstein_files: EpsteinFiles) -> list[Document]:
     for doc in epstein_files.unique_documents:
         if not doc.is_interesting:
             continue
-        elif isinstance(doc, OtherFile):
+        elif isinstance(doc, OtherFile) and doc.is_valid_for_table:
             other_files_queue.append(doc)
             continue
         elif other_files_queue:

@@ -175,7 +175,7 @@ SINCERELY_SNEAKY = f'{SNEAKY_DOG} + "Sincerely"'
 # Descriptions
 IS_IT_ROGER_STONE = "is the 'roger' Epstein is trying to meet Roger Stone?"
 KYARA_FUND = f"Epstein crypto fund {KYARA_INVESTMENT}"
-MICHAEL_WOLFF_EPSTEIN_ARTICLE_DRAFT = f"draft of an unpublished article about Epstein by {MICHAEL_WOLFF} written ca. 2014/2015"
+MICHAEL_WOLFF_EPSTEIN_ARTICLE_DRAFT = f"draft of an unpublished article ca. 2014/2015"
 SEC_WHISTLEBLOWER = 'whistleblower emails to SEC'
 VALAR_MEETING = f"meeting with {PETER_THIEL}'s {VALAR_VENTURES} fund"
 
@@ -1637,7 +1637,13 @@ OTHER_FILES_ARTICLE = [
     DocCfg(id='022746', author=MICHAEL_WOLFF, description=MICHAEL_WOLFF_EPSTEIN_ARTICLE_DRAFT),
     DocCfg(id='022844', author=MICHAEL_WOLFF, description=MICHAEL_WOLFF_EPSTEIN_ARTICLE_DRAFT),
     DocCfg(id='022863', author=MICHAEL_WOLFF, description=MICHAEL_WOLFF_EPSTEIN_ARTICLE_DRAFT),
-    DocCfg(id='022894', author=MICHAEL_WOLFF, description=MICHAEL_WOLFF_EPSTEIN_ARTICLE_DRAFT, truncate_to=(13_500, 16_000)),
+    DocCfg(
+        id='022894',
+        author=MICHAEL_WOLFF,
+        description=f"{MICHAEL_WOLFF_EPSTEIN_ARTICLE_DRAFT} claiming Kairat Kelimbetov, {BROCK_PIERCE}, and {LARRY_SUMMERS} " + \
+                     "all visited Epstein around the time Tether was founded",
+        truncate_to=(13_500, 16_000),
+    ),
     DocCfg(id='022952', author=MICHAEL_WOLFF, description=MICHAEL_WOLFF_EPSTEIN_ARTICLE_DRAFT),
     DocCfg(id='024229', author=MICHAEL_WOLFF, description=MICHAEL_WOLFF_EPSTEIN_ARTICLE_DRAFT),
     DocCfg(id='031198', author='Morning News USA', description=f"article about identify of Jane Doe in {JANE_DOE_V_EPSTEIN_TRUMP}"),

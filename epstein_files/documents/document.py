@@ -279,20 +279,16 @@ class Document:
 
             text = new_text
 
-        if args.whole_file or self.config is None or self.config.truncate_to in [None, NO_TRUNCATE]:
+        if self.config is None or self.config.truncate_to in [None, NO_TRUNCATE] or args.whole_file:
             return highlighter(Text(text, style))
 
-        if isinstance(self.config.truncate_to, tuple):
-            char_range = list(self.config.truncate_to)
-        else:
-            char_range = [0, self.config.truncate_to]
-
+        char_range = list(self.config.truncate_to) if self.config.is_excerpt else [0, self.config.truncate_to]
         trim_footer_txt = self.truncation_note(char_range[1])
         txt = highlighter(Text(text[char_range[0]:char_range[1]], style))
         txt.append('...\n\n').append(trim_footer_txt)
 
         if char_range[0] > 0:
-            txt = Text('').append(f'[not showing the first {char_range[0]} characters]\n\n...', 'dim').append(txt)
+            txt = Text('').append(f'<not showing {char_range[0]:,} characters>\n', 'dim italic').append('...').append(txt)
 
         return txt
 

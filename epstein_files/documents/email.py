@@ -639,13 +639,14 @@ class Email(Communication):
         """When printing truncate this email to this length."""
         quote_cutoff = self._idx_of_nth_quoted_reply()  # Trim if there's many quoted replies
         includes_truncate_term = next((term for term in TRUNCATE_TERMS if term in self.text), None)
+        num_chars: int
 
         if args.whole_file:
             num_chars = len(self.text)
         elif args.truncate:
             num_chars = args.truncate
         elif self.config and self.config.truncate_to is not None:
-            if isinstance(self.config.truncate_to, tuple):
+            if self.config.is_excerpt:
                 raise ValueError(f"Emails don't support truncate_to as a tuple")
 
             num_chars = len(self.text) if self.config.truncate_to == NO_TRUNCATE else self.config.truncate_to

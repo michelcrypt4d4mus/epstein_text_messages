@@ -65,7 +65,11 @@ class OtherFile(Document):
     @property
     def config_description(self) -> str:
         """Overloads superclass property."""
-        return self.config.complete_description if self.config else ''
+        if self.config and self.config.complete_description:
+            pfx = "Selection from " if self.config.is_excerpt else ''
+            return f"{pfx}{self.config.complete_description}"
+        else:
+            return ''
 
     @property
     def category_txt(self) -> Text:
@@ -82,6 +86,11 @@ class OtherFile(Document):
             return True
         elif self.author is not None and self.author in PERSONS_OF_INTEREST:
             return True
+
+    @property
+    def is_valid_for_table(self) -> bool:
+        """Return True if this file is OK to put in a table in the curated chronological views."""
+        return not (self.config and self.config.is_excerpt)
 
     @property
     def metadata(self) -> Metadata:

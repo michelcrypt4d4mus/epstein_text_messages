@@ -241,6 +241,10 @@ class DocCfg:
         return is_doj_file(self.id)
 
     @property
+    def is_excerpt(self) -> bool:
+        return isinstance(self.truncate_to, tuple)
+
+    @property
     def is_house_file(self) -> bool:
         return not self.is_doj_file
 
