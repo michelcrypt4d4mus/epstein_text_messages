@@ -47,6 +47,7 @@ HEADER_ABBREVIATIONS = {
     'MJ': "Mohammed Abdul Latif Jameel (chairman of Abdul Latif Jameel)",
     "Mooch": "Anthony 'The Mooch' Scaramucci (Skybridge crypto bro)",
     "NPA": 'non-prosecution agreement',
+    "PA": PRINCE_ANDREW,
     "Terje": TERJE_ROD_LARSEN,
     "VI": f"U.S. {VIRGIN_ISLANDS}",
     "Woody": "Woody Allen",
@@ -1419,6 +1420,8 @@ UNINTERESTING_EMAIL_IDS = [
     'EFTA02365466',
     'EFTA00362163',
     'EFTA00709543',
+    # David Stern
+    'EFTA02507454',
     # Eric Roth
     '033386',
     # Jeremy Rubin
@@ -2410,6 +2413,14 @@ OTHER_FILES_CRYPTO = [
     EmailCfg(id='EFTA01925969', description=f"{AUSTIN_HILL} and {ADAM_BACK} and some women plan a trip to The Island", is_interesting=True),
     EmailCfg(id='EFTA00955063', description=f'{AUSTIN_HILL} discusses crypto funds engaged in fraudulent wash trading', is_interesting=True),
     EmailCfg(id='EFTA01010209', description=f"{AUSTIN_HILL} calls {AMIR_TAAKI} \"a bit crazy\'"),
+    # David Stern
+    EmailCfg(id='EFTA02494305', description=f"planning a crypto exchange in Belarus, {DAVID_STERN}'s \"Chinese guys\" can't do it because of the PRC's crackdown on crypto"),
+    EmailCfg(id='EFTA00886763', description=f"documents are being prepared to license Epstein and {DAVID_STERN}'s crypto exchange in Belarus"),
+    EmailCfg(
+        id='EFTA02494000',
+        description=f'Epstein says a crypto exchange in Belarus could be "very useful", {DAVID_STERN}\'s Chinese guys could have brought "significant volume"',
+        is_interesting=True
+    ),
     # Honeycomb
     DocCfg(id='EFTA00803491', author=HONEYCOMB_FUND, description="deck", is_interesting=True),
     DocCfg(id='EFTA00803459', author=HONEYCOMB_FUND, description="January 2019 report", is_interesting=True),
@@ -2529,7 +2540,6 @@ OTHER_FILES_CRYPTO = [
     DocCfg(id='EFTA01734786', description='LedgerX Series B pitch deck'),
     DocCfg(id='EFTA02725909', description='memo to NYDFS for NYC Bitcoin Exchange, Balaji Srinivisan & Andrew Farkas on board'),
     EmailCfg(id='EFTA01060993', description=f"Epstein says he knows \"a few\" guys who hold over $50 million in bitcoin", is_interesting=True),
-    EmailCfg(id='EFTA02494000', description=f"Epstein and {DAVID_STERN} discussing setting up a crypto exchange in Belarus", is_interesting=True),
     EmailCfg(id='EFTA01915234', description='discussion of crypto regulations', is_interesting=True),
     EmailCfg(id='EFTA00867030', description='discussion of a crypto token based on GDAX (whatever that means)', is_interesting=True),
     EmailCfg(id='EFTA01004753', description=f"founder of Layer1 is the only guy in crypto who doesn't want to meet Epstein (didn't last though)"),
