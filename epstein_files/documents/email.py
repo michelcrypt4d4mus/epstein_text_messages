@@ -31,6 +31,7 @@ from epstein_files.util.env import args, site_config
 from epstein_files.util.helpers.data_helpers import (AMERICAN_TIME_REGEX, TIMEZONE_INFO, collapse_newlines,
      prefix_keys, remove_timezone, uniquify)
 from epstein_files.util.helpers.link_helper import link_text_obj
+from epstein_files.util.helpers.string_helper import capitalize_first
 from epstein_files.output.highlight_config import HIGHLIGHTED_NAMES, get_style_for_name
 from epstein_files.util.logging import logger
 
@@ -610,8 +611,14 @@ class Email(Communication):
     def _sent_from_device(self) -> str | None:
         """Find any 'Sent from my iPhone' style signature line if it exist in the 'actual_text'."""
         if (sent_from_match := SENT_FROM_REGEX.search(self.actual_text)):
-            sent_from = sent_from_match.group(0)
-            return 'S' + sent_from[1:] if sent_from.startswith('sent') else sent_from
+            sent_from = sent_from_match.group(0).strip()
+
+            if sent_from.startswith('Typos, misspellings courtesy of iPhone'):  # special handling for linda stone periods
+                return sent_from.removesuffix('.')
+            elif sent_from.startswith('sent'):
+                return capitalize_first(sent_from)
+            else:
+                return sent_from
 
     def _truncate_to_length(self) -> int:
         """When printing truncate this email to this length."""
