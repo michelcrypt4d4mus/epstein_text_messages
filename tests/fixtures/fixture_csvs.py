@@ -67,7 +67,7 @@ def write_files_csv():
         row.update({k: (getattr(doc.config, k) if doc.config else None) for k in CFG_PROPS})
         rows.append(row)
 
-    with open(FILE_INFO_CSV_PATH, 'wt') as f:
+    with open(FILE_INFO_CSV_PATH, 'w') as f:
         writer = csv.DictWriter(f, COLS)
         writer.writeheader()
         writer.writerows(rows)
