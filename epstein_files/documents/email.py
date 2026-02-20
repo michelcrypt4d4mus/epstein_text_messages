@@ -276,6 +276,10 @@ class Email(Communication):
         return metadata
 
     @property
+    def recipients_str(self) -> str:
+        return ';'.join([str(r) for r in self.recipients])
+
+    @property
     def subheader(self) -> Text:
         email_type = 'fwded article' if self.is_fwded_article else 'email'
         author_txt = self.author_txt

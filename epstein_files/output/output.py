@@ -10,7 +10,7 @@ from epstein_files.documents.doj_file import DojFile
 from epstein_files.documents.email import Email
 from epstein_files.documents.messenger_log import MessengerLog
 from epstein_files.documents.other_file import FIRST_FEW_LINES, OtherFile
-from epstein_files.epstein_files import EpsteinFiles, count_by_month
+from epstein_files.epstein_files import EpsteinFiles
 from epstein_files.output.rich import *
 from epstein_files.output.site.sites import EMAILERS_TABLE_PNG_PATH, FILEs_THAT_ARE_NEITHER_EMAILS_NOR, HIS_EMAILS, HIS_TEXT_MESSAGES, SELECTIONS_FROM
 from epstein_files.output.title_page import print_color_key, print_other_page_link, print_section_header
@@ -219,7 +219,7 @@ def print_stats(epstein_files: EpsteinFiles) -> None:
     print_json("email_author_device_signatures", dict_sets_to_lists(epstein_files.email_authors_to_device_signatures()))
     print_json("email_sent_from_devices", dict_sets_to_lists(epstein_files.email_device_signatures_to_authors()))
     print_json("unknown_recipient_ids", epstein_files.unknown_recipient_ids())
-    print_json("count_by_month", count_by_month(epstein_files.documents))
+    print_json("count_by_month", Document.count_by_month(epstein_files.documents))
     print_json("Interesting OtherFile IDs", sorted([f.file_id for f in epstein_files.interesting_other_files]))
 
 

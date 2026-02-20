@@ -1,5 +1,6 @@
 import logging
 import re
+from collections import Counter
 from dataclasses import asdict, dataclass, field
 from datetime import datetime
 from pathlib import Path
@@ -604,6 +605,10 @@ class Document:
 
             last_doc_was_suppressed = False
             doc.print()
+
+    @staticmethod
+    def count_by_month(docs: Sequence['DocumentType']) -> Counter[str | None]:
+        return Counter([d.timestamp.date().isoformat()[0:7] if d.timestamp else None for d in docs])
 
     @staticmethod
     def sort_by_id(docs: Sequence['DocumentType']) -> list['DocumentType']:
