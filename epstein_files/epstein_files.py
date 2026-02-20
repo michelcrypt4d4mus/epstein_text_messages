@@ -2,17 +2,20 @@ import gzip
 import json
 import pickle
 import re
-from collections import defaultdict
+import sys
+from collections import Counter, defaultdict
 from dataclasses import dataclass, field
 from datetime import datetime
 from pathlib import Path
 from typing import Mapping, Sequence, Type, cast
 
+from rich.prompt import Confirm
 from rich.table import Table
 from yaralyzer.util.helpers.interaction_helper import ask_to_proceed
 
 from epstein_files.documents.document import Document
 from epstein_files.documents.documents.doc_cfg import EMAIL_PROPS_TO_COPY, PROPS_TO_COPY, Metadata
+from epstein_files.documents.documents.manual_config import create_configs
 from epstein_files.documents.documents.search_result import SearchResult
 from epstein_files.documents.doj_file import DojFile
 from epstein_files.documents.email import Email
@@ -20,7 +23,7 @@ from epstein_files.documents.emails.constants import UNINTERESTING_EMAILERS
 from epstein_files.documents.json_file import JsonFile
 from epstein_files.documents.messenger_log import MSG_REGEX, MessengerLog
 from epstein_files.documents.other_file import OtherFile
-from epstein_files.output.highlight_config import HIGHLIGHTED_NAMES
+from epstein_files.output.highlight_config import PEOPLE_BIOS
 from epstein_files.output.rich import console
 from epstein_files.people.person import INVALID_FOR_EPSTEIN_WEB, Person
 from epstein_files.util.constant.strings import *
@@ -126,7 +129,7 @@ class EpsteinFiles:
         if args.pickle_path.exists() and not args.overwrite_pickle:
             with gzip.open(args.pickle_path, 'rb') as file:
                 epstein_files = pickle.load(file)
-                timer_msg = f"Loaded {len(epstein_files.file_paths):,} documents from '{args.pickle_path}'"
+                timer_msg = f"Loaded {len(epstein_files.documents):,} documents from '{args.pickle_path}'"
                 timer.print_at_checkpoint(f"{timer_msg} ({file_size_str(args.pickle_path)})")
 
             if args.load_new:
@@ -143,7 +146,7 @@ class EpsteinFiles:
 
     def docs_matching(self, pattern: re.Pattern | str, names: list[Name] | None = None) -> list[SearchResult]:
         """Find documents whose text matches `pattern` optionally limited to only docs involving `name`)."""
-        documents = [d for d in self.documents if (not names) or d.author in names]
+        documents = [d for d in self.unique_documents if (not names) or d.author in names]
         results: list[SearchResult] = []
 
         for doc in documents:
@@ -258,12 +261,7 @@ class EpsteinFiles:
                 MessengerLog.__name__: _sorted_metadata(self.imessage_logs),
                 OtherFile.__name__: _sorted_metadata(self.non_json_other_files),
             },
-            'people': {
-                contact.name: highlighted_group.info_for(contact.name, include_category=True)
-                for highlighted_group in HIGHLIGHTED_NAMES
-                for contact in highlighted_group.contacts
-                if contact.info
-            }
+            'people': PEOPLE_BIOS,
         }
 
         return json.dumps(metadata, indent=4, sort_keys=True)
@@ -285,12 +283,16 @@ class EpsteinFiles:
         current_docs = self._docs_by_id()
         self.file_paths = all_txt_paths()
         new_paths = [p for p in self.file_paths if extract_file_id(p) not in current_docs]
+        new_docs = self._load_file_paths(new_paths)
 
-        if not new_paths:
+        if not new_docs:
             logger.warning(f"No new files found, doing nothing.")
             return
+        elif (cfgs := create_configs(new_docs)):  # Exit if new configs were created
+            console.print(f"\n{len(cfgs)} config objects created, exiting...", style='bold yellow1')
+            sys.exit()
 
-        self._finalize_new_docs_if_approved(self._load_file_paths(new_paths))
+        self._finalize_data_and_write_to_disk(new_docs)
 
     def reload_doj_files(self) -> None:
         """Reload only the DOJ PDF extracts (keep HOUSE_OVERSIGHT stuff unchanged)."""
@@ -430,18 +432,6 @@ class EpsteinFiles:
 
         self.uninteresting_ccs = sorted(uniquify(self.uninteresting_ccs))
         logger.info(f"Extracted uninteresting_ccs: {self.uninteresting_ccs}")
-
-
-def count_by_month(docs: Sequence[Document]) -> dict[str | None, int]:
-    counts: dict[str | None, int] = defaultdict(int)
-
-    for doc in docs:
-        if doc.timestamp:
-            counts[doc.timestamp.date().isoformat()[0:7]] += 1
-        else:
-            counts[None] += 1
-
-    return counts
 
 
 def document_cls(doc: Document) -> Type[Document]:

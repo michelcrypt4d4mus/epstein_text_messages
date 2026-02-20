@@ -1,5 +1,6 @@
 import logging
 import re
+from collections import Counter
 from dataclasses import asdict, dataclass, field
 from datetime import datetime
 from pathlib import Path
@@ -39,9 +40,6 @@ CHECK_LINK_FOR_DETAILS = 'not shown here, check original PDF for details'
 CLOSE_PROPERTIES_CHAR = ']'
 HOUSE_OVERSIGHT = HOUSE_OVERSIGHT_PREFIX.replace('_', ' ').strip()
 WHITESPACE_REGEX = re.compile(r"\s{2,}|\t|\n", re.MULTILINE)
-
-INFO_INDENT = 2
-INFO_PADDING = (0, 0, 0, INFO_INDENT)
 MIN_DOCUMENT_ID = 10477
 
 FILENAME_MATCH_STYLES = [
@@ -373,7 +371,7 @@ class Document:
         """Panel with filename linking to raw file plus any additional info about the file."""
         links_txt = self.colored_external_links()
         panel = Panel(links_txt, border_style=self.border_style, expand=False)
-        padded_info = [Padding(sentence, INFO_PADDING) for sentence in self.info]
+        padded_info = [Padding(sentence, site_config.info_padding()) for sentence in self.info]
         return Group(*([panel] + padded_info))
 
     def lines_matching(self, _pattern: re.Pattern | str) -> list[MatchedLine]:
@@ -391,14 +389,18 @@ class Document:
         msg = (msg + separator) if msg else ''
         self.log(f"{msg}First {n} lines:\n\n{self.top_lines(n)}\n", level)
 
-    def print(self) -> None:
+    def print(self, whole_file: bool = False) -> None:
         """Print this object for some suppression message."""
         if self.is_attachment:
-            pass
-        if (skipped_file_txt := self.suppressed_txt):
+            return
+        elif (skipped_file_txt := self.suppressed_txt):
             console.print(Padding(skipped_file_txt, SKIPPED_FILE_MSG_PADDING))
-        else:
-            console.print(self)
+            return
+
+        old_whole_file_arg = args.whole_file
+        args.whole_file = whole_file
+        console.print(self)
+        args.whole_file = old_whole_file_arg
 
     def raw_text(self) -> str:
         """Reload the raw data from the underlying file and return it."""
@@ -443,7 +445,7 @@ class Document:
             for k, v in self.config.props_to_copy.items():
                 setattr(self, k, v)
 
-    def _debug_dict(self) -> DebugDict:
+    def _debug_dict(self, as_txt: bool = False, with_prefixes: bool = True) -> DebugDict | Text:
         """Merge information about this document from config, file info, etc."""
         config_info = self.config.truthy_props if self.config else {}
         file_info = self.file_info.as_dict
@@ -454,10 +456,12 @@ class Document:
         if file_info.get('source_url') == file_info.get('external_url', 'blah'):
             file_info.pop('external_url')
 
-        props = self._debug_props()
-        props.update(prefix_keys(type(self.config).__name__, config_info))
-        props.update(prefix_keys(underscore(type(self.config).__name__), file_info))
-        return props
+        if with_prefixes:
+            config_info = prefix_keys(type(self.config).__name__, config_info)
+            file_info = prefix_keys(underscore(FileInfo.__name__), file_info)
+
+        props = {**config_info, **file_info, **self._debug_props()}
+        return styled_dict(props) if as_txt else props
 
     def _debug_props(self) -> DebugDict:
         """Collects props of this object only (not the config or locations)."""
@@ -598,6 +602,10 @@ class Document:
 
             last_doc_was_suppressed = False
             doc.print()
+
+    @staticmethod
+    def count_by_month(docs: Sequence['DocumentType']) -> Counter[str | None]:
+        return Counter([d.timestamp.date().isoformat()[0:7] if d.timestamp else None for d in docs])
 
     @staticmethod
     def sort_by_id(docs: Sequence['DocumentType']) -> list['DocumentType']:

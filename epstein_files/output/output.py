@@ -3,16 +3,20 @@ from os import unlink
 from subprocess import CalledProcessError, check_output
 from typing import cast
 
+from rich import box
 from rich.padding import Padding
+from rich.panel import Panel
 
+from epstein_files.documents.communication import Communication
 from epstein_files.documents.document import Document
 from epstein_files.documents.doj_file import DojFile
 from epstein_files.documents.email import Email
 from epstein_files.documents.messenger_log import MessengerLog
 from epstein_files.documents.other_file import FIRST_FEW_LINES, OtherFile
-from epstein_files.epstein_files import EpsteinFiles, count_by_month
+from epstein_files.epstein_files import EpsteinFiles
+from epstein_files.output.highlight_config import PEOPLE_BIOS, get_style_for_name
 from epstein_files.output.rich import *
-from epstein_files.output.site.sites import EMAILERS_TABLE_PNG_PATH, FILEs_THAT_ARE_NEITHER_EMAILS_NOR, HIS_EMAILS, HIS_TEXT_MESSAGES, SELECTIONS_FROM
+from epstein_files.output.site.sites import AUTHORS_USING_SIGNATURES, EMAILERS_TABLE_PNG_PATH, FILEs_THAT_ARE_NEITHER_EMAILS_NOR, HIS_EMAILS, HIS_TEXT_MESSAGES, SELECTIONS_FROM
 from epstein_files.output.title_page import print_color_key, print_other_page_link, print_section_header
 from epstein_files.people.interesting_people import EMAILERS_TO_PRINT
 from epstein_files.people.person import Person
@@ -26,14 +30,18 @@ from epstein_files.util.logging import logger, exit_with_error
 
 OTHER_INTERESTING_EMAILS_SUBTITLE = 'Other Interesting Emails\n(these emails have been flagged as being of particular interest)'
 DEVICE_SIGNATURE_SUBTITLE = f"Email [italic]Sent from \\[DEVICE][/italic] Signature Breakdown"
+OTHER_FILES_TABLE_MSG = Text("(non emails will appear in tables)", 'gray27 italic')
 DEVICE_SIGNATURE = 'Device Signature'
 DEVICE_SIGNATURE_PADDING = (1, 0)
 PRINT_COLOR_KEY_EVERY_N_EMAILS = 150
 
 
 def print_curated_chronological(epstein_files: EpsteinFiles) -> list[Document]:
-    other_files_queue = []  # Collect other files into tables
+    """Print interesting files of all types in chronological order."""
+    people_encountered = set()
     printed_docs: list[Document] = []
+    has_printed_table_explanation = False
+    other_files_queue = []  # Collects sequential OtherFiles into tables
 
     for doc in epstein_files.unique_documents:
         if not doc.is_interesting:
@@ -42,12 +50,21 @@ def print_curated_chronological(epstein_files: EpsteinFiles) -> list[Document]:
             other_files_queue.append(doc)
             continue
         elif other_files_queue:
-            other_files_table = OtherFile.files_preview_table(other_files_queue, title=None)
-            console.print(Padding(other_files_table, (0, 0, 1, 2)))
+            title = None if has_printed_table_explanation else OTHER_FILES_TABLE_MSG
+            table = OtherFile.files_preview_table(other_files_queue, title=title, title_justify='center')
+            console.print(Padding(table, (0, 0, 1, site_config.other_files_table_indent)))
             printed_docs.extend(other_files_queue)
+            has_printed_table_explanation = True
             other_files_queue = []
 
-        console.print(doc)
+        if isinstance(doc, Communication):
+            new_characters = [p for p in doc.participants if p and p not in people_encountered]
+            people_encountered.update(new_characters)
+
+            if (bio_panel := _biographical_panel(new_characters, doc)):
+                console.print(bio_panel)
+
+        doc.print()
         printed_docs.append(doc)
 
     return printed_docs
@@ -219,7 +236,7 @@ def print_stats(epstein_files: EpsteinFiles) -> None:
     print_json("email_author_device_signatures", dict_sets_to_lists(epstein_files.email_authors_to_device_signatures()))
     print_json("email_sent_from_devices", dict_sets_to_lists(epstein_files.email_device_signatures_to_authors()))
     print_json("unknown_recipient_ids", epstein_files.unknown_recipient_ids())
-    print_json("count_by_month", count_by_month(epstein_files.documents))
+    print_json("count_by_month", Document.count_by_month(epstein_files.documents))
     print_json("Interesting OtherFile IDs", sorted([f.file_id for f in epstein_files.interesting_other_files]))
 
 
@@ -293,7 +310,7 @@ def _print_section_summary_table(table: Table) -> None:
 def _signature_table(keyed_sets: dict[str, set[str]], cols: tuple[str, str], join_char: str = '\n') -> Padding:
     """Build table for who signed emails with 'Sent from my iPhone' etc."""
     new_dict = dict_sets_to_lists(keyed_sets)
-    title = 'Email Signatures Used By Authors' if cols[0] == AUTHOR else 'Authors Seen Using Email Signatures'
+    title = 'Email Signatures Used By Authors' if cols[0] == AUTHOR else AUTHORS_USING_SIGNATURES
     table = build_table(title, header_style="bold reverse", show_lines=True)
 
     for i, col in enumerate(cols):
@@ -318,3 +335,28 @@ def _verify_all_emails_were_printed(epstein_files: EpsteinFiles, already_printed
 
     if not missed_an_email:
         logger.warning(f"All {len(epstein_files.emails):,} emails printed at least once.")
+
+
+def _biographical_panel(names: list[str], next_doc: Document) -> Align | None:
+    """Panel showing biographical info for a list of names."""
+    bios = [
+        Text('', justify='right').append(Text(name, f"{get_style_for_name(name)} bold")).append(
+            f": {PEOPLE_BIOS[name]}", style='dim italic')
+        for name in names if PEOPLE_BIOS.get(name)
+    ]
+
+    if not bios:
+        return None
+
+    panel = Panel(
+        Group(*bios),
+        border_style='dim',
+        box=box.DOUBLE,
+        expand=False,
+        # padding=(0, 2),
+        style='on gray7',
+        title=Text(f"people in next {next_doc._debug_prefix}", 'grey35 italic'),
+        title_align='right',
+    )
+
+    return Align(Padding(panel, site_config.character_bio_padding), 'right')

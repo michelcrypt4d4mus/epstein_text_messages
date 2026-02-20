@@ -2,18 +2,18 @@ import pytest
 from copy import deepcopy
 
 from epstein_files.documents.documents.categories import Interesting, Neutral, Uninteresting
-from epstein_files.documents.documents.doc_cfg import DocCfg, EmailCfg
+from epstein_files.documents.documents.doc_cfg import CommunicationCfg, DocCfg, EmailCfg
 from epstein_files.documents.other_file import OtherFile
 from epstein_files.output.highlight_config import QUESTION_MARKS_TXT
 from epstein_files.util.constant.names import BLOCKCHAIN_CAPITAL, BOFA_MERRILL, JOI_ITO, Name
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constants import CONFIGS_BY_ID
 
-RANDOM_ID = '123456'
-
+ID = '123456'
+SKYPE_LOG = Neutral.SKYPE_LOG.replace('_', ' ')
 
 @pytest.fixture
-def academia_doc() -> DocCfg:
+def academia_cfg() -> DocCfg:
     return _oversight_cfg(Uninteresting.ACADEMIA)
 
 @pytest.fixture
@@ -56,19 +56,27 @@ def junk_doc_cfg() -> DocCfg:
 
 @pytest.fixture
 def junk_email_cfg() -> EmailCfg:
-    return EmailCfg(id=RANDOM_ID, category=Uninteresting.JUNK, author='who knows')
+    return EmailCfg(id=ID, category=Uninteresting.JUNK, author='who knows')
 
 @pytest.fixture
 def legal_cfg() -> DocCfg:
     return _oversight_cfg(Neutral.LEGAL, author='clinton v. trump', description='case law')
 
 @pytest.fixture
-def skype_author() -> DocCfg:
-    return _oversight_cfg(Neutral.SKYPE_LOG, author='linkspirit')
+def skype_author(skype_cfg) -> CommunicationCfg:
+    cfg = deepcopy(skype_cfg)
+    cfg.author='linkspirit'
+    return cfg
 
 @pytest.fixture
-def skype_cfg() -> DocCfg:
-    return _oversight_cfg(Neutral.SKYPE_LOG)
+def skype_cfg() -> CommunicationCfg:
+    return CommunicationCfg(id=ID, category=Neutral.SKYPE_LOG)
+
+@pytest.fixture
+def skype_recipients(skype_cfg) -> CommunicationCfg:
+    cfg = deepcopy(skype_cfg)
+    cfg.recipients = ['LBJ', 'JFK']
+    return cfg
 
 @pytest.fixture
 def tweet_cfg() -> DocCfg:
@@ -81,6 +89,21 @@ def UN_cfg() -> DocCfg:
 @pytest.fixture
 def uninteresting_description() -> DocCfg:
     return _doj_cfg(Neutral.LEGAL, description=CVRA + " law stuff")
+
+
+@pytest.mark.parametrize(
+    "id,category,description",
+    [
+        pytest.param('026731', Uninteresting.ACADEMIA, 'speech at first inaugural Cornell Carl Sagan Lecture by Lord Martin Rees'),
+        pytest.param('010912', Uninteresting.BOOK, 'book titled "Free Growth and Other Surprises" (draft) by Gordon Getty'),
+        pytest.param('018438', Uninteresting.BOOK, 'book titled "The S&M Feminist" by Clarisse Thorn'),
+        pytest.param('EFTA00006100', Neutral.MISC, ''),
+    ]
+)
+def test_file_descriptions(get_other_file, id, category, description):
+    file = get_other_file(id)
+    assert file.config.category == category
+    assert file.config.complete_description == description
 
 
 def test_category_txt(blockchain_cap_cfg, empty_house_cfg, junk_doc_cfg, legal_cfg, skype_cfg):
@@ -104,6 +127,7 @@ def test_complete_description(
     legal_cfg,
     skype_cfg,
     skype_author,
+    skype_recipients,
     tweet_cfg
 ):
     assert attached_doc.complete_description == f"attached to email {junk_email_cfg.id}"
@@ -123,13 +147,16 @@ def test_complete_description(
     assert junk_doc_cfg.complete_description == 'junk mail'
     # Legal
     assert legal_cfg.complete_description == f"clinton v. trump: case law"
-    # Skype no author
-    skype_log = Neutral.SKYPE_LOG.replace('_', ' ')
-    assert skype_cfg.complete_description == skype_log
+    # Skype
+    assert skype_cfg.complete_description == SKYPE_LOG
     # Skype with author
-    assert skype_author.complete_description == f"{skype_log} of conversation with linkspirit"
+    assert skype_author.complete_description == f"{SKYPE_LOG} of conversation with linkspirit"
     skype_author.description = 'something'
-    assert skype_author.complete_description == f"{skype_log} of conversation with linkspirit something"
+    assert skype_author.complete_description == f"{SKYPE_LOG} of conversation with linkspirit something"
+    # Skype with recipients
+    assert skype_recipients.complete_description == f"{SKYPE_LOG} of conversation with LBJ, JFK"
+    skype_recipients.author = 'FDR'
+    assert skype_recipients.complete_description == f"{SKYPE_LOG} of conversation with FDR, LBJ, JFK"
     # Tweet
     assert tweet_cfg.is_interesting is None
     assert tweet_cfg.complete_description == 'Tweet by Klippenstein'
@@ -137,8 +164,14 @@ def test_complete_description(
     assert tweet_cfg.complete_description == 'Tweet by Klippenstein libelous'
 
 
+def test_is_empty(academia_cfg, empty_doj_cfg, empty_house_cfg):
+    assert not academia_cfg.is_empty
+    assert empty_doj_cfg.is_empty
+    assert empty_house_cfg.is_empty
+
+
 def test_is_of_interest(
-    academia_doc,
+    academia_cfg,
     blockchain_cap_cfg,
     empty_doj_cfg,
     empty_house_cfg,
@@ -153,7 +186,7 @@ def test_is_of_interest(
     uninteresting_description,
     UN_cfg
 ):
-    assert academia_doc.is_of_interest is False
+    assert academia_cfg.is_of_interest is False
     assert blockchain_cap_cfg.is_of_interest is True
     assert empty_doj_cfg.is_of_interest is None
     assert empty_house_cfg.is_of_interest is None
@@ -169,28 +202,9 @@ def test_is_of_interest(
     assert uninteresting_description.is_of_interest is False
 
 
-def test_academia(epstein_files):
-    speech = epstein_files.get_id('026731', required_type=OtherFile)
-    assert speech.config.complete_description == 'speech at first inaugural Cornell Carl Sagan Lecture by Lord Martin Rees'
-
-
-def test_books(epstein_files):
-    book = epstein_files.get_id('010912', required_type=OtherFile)
-    assert book.config.category == Uninteresting.BOOK
-    assert book.config.complete_description == "book titled \"Free Growth and Other Surprises\" (draft) by Gordon Getty"
-    book = epstein_files.get_id('018438', required_type=OtherFile)
-    assert book.config.category == Uninteresting.BOOK
-    assert book.config.complete_description == 'book titled "The S&M Feminist" by Clarisse Thorn'
-
-
 def test_props_to_copy(get_email):
     email = get_email('EFTA00039890')
     assert email.config.props_to_copy == {'author': 'USANYS'}
-
-
-def test_misc_cfg():
-    misc_cfg = CONFIGS_BY_ID['EFTA00006100']
-    assert not misc_cfg.complete_description
 
 
 def _oversight_cfg(category: str = '', **kwargs) -> DocCfg:

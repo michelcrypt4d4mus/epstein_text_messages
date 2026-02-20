@@ -44,6 +44,7 @@ def constantize_names(s: str) -> str:
 
 
 def dict_sets_to_lists(d: dict[str, set]) -> dict[str, list]:
+    """Turn the `set` values in the dict into sorted lists."""
     return {k: sorted(list(v)) for k, v in d.items()}
 
 

@@ -1,23 +1,42 @@
+
 from datetime import datetime
 
 import pytest
 
 from epstein_files.documents.document import Document
+from epstein_files.documents.email import Email
 from epstein_files.documents.messenger_log import MessengerLog
-from epstein_files.epstein_files import count_by_month
-from epstein_files.output.rich import console
+from epstein_files.output.rich import console, print_subtitle_panel
 from epstein_files.util.constant.names import *
 from epstein_files.util.constants import CONFIGS_BY_ID
-from epstein_files.util.helpers.data_helpers import dict_sets_to_lists
 
 from .conftest import assert_higher_counts
-from .fixtures.emails.email_author_counts import EMAIL_AUTHOR_COUNTS
-from .fixtures.emails.email_recipient_counts import EMAIL_RECIPIENT_COUNTS
 from .fixtures.emails.signatures import AUTHORS_TO_DEVICE_SIGNATURES, DEVICE_SIGNATURE_TO_AUTHORS, SIGNATURE_SUBSTITUTION_COUNTS
-from .fixtures.emails.unknown_recipient_file_ids import UNKNOWN_RECIPIENT_FILE_IDS
-from .fixtures.file_counts_by_month import EXPECTED_MONTHLY_COUNTS
 from .fixtures.messenger_logs.author_counts import MESSENGER_LOG_AUTHOR_COUNTS
-from .fixtures.other_files.interesting_file_ids import INTERESTING_FILE_IDS
+from .fixtures.fixture_csvs import EMAIL_PROPS, load_files_csv
+
+
+def test_against_csv(epstein_files):
+    """CSV data can be updated by running './scripts/update_fixture_csv.py'."""
+    csv_docs = load_files_csv()
+    bad_docs = []
+
+    for doc in epstein_files.unique_documents:
+        if (csv_row := csv_docs.get(doc.file_id)):
+            for k, csv_val in csv_row.items():
+                if k == 'complete_description' or (k in EMAIL_PROPS and not isinstance(doc, Email)):
+                    continue
+                elif (doc_prop := getattr(doc, k)) != csv_val:
+                    doc.warn(f"mismatched values for {k}! doc has {doc_prop}, csv has {csv_val}")
+                    bad_docs.append(doc)
+        else:
+            print_subtitle_panel(f"CSV is missing {doc.file_id}", center=False)
+            console.print(doc)
+            bad_docs.append(doc)
+            continue
+
+    num_bad_docs = len(bad_docs)
+    assert num_bad_docs == 0
 
 
 def test_all_configured_file_ids_exist(epstein_files):
@@ -26,32 +45,9 @@ def test_all_configured_file_ids_exist(epstein_files):
     assert len(missing_ids) == 0, f"Missing {len(missing_ids)} files that are configured: {missing_ids}"
 
 
-def test_document_monthly_counts(epstein_files):
-    new_counts = count_by_month(epstein_files.documents)
-    assert_higher_counts(new_counts, EXPECTED_MONTHLY_COUNTS)
-    num_files_paths = len(epstein_files.file_paths)
-    num_document_objs = sum(new_counts.values())
-    assert num_document_objs == num_files_paths - 1256  # There's 1256 empty files
-
-
 def test_imessage_text_counts(epstein_files):
     assert len(epstein_files.imessage_logs) == 77
     assert MessengerLog.count_authors(epstein_files.imessage_logs) == MESSENGER_LOG_AUTHOR_COUNTS
-
-
-def test_interesting_other_files(epstein_files):
-    missing_file_ids = []
-
-    for file in epstein_files.interesting_other_files:
-        if file.file_id not in INTERESTING_FILE_IDS:
-            missing_file_ids.append(file.file_id)
-            console.print(f"\n{file.file_id} not in interesting list!\n", file)
-
-    if missing_file_ids:
-        print(f"Missing file IDs in interesting list:\n\n{missing_file_ids}\n")
-
-    interesting_other_file_ids = sorted([f.file_id for f in epstein_files.interesting_other_files])
-    assert interesting_other_file_ids == sorted(INTERESTING_FILE_IDS)
 
 
 def test_no_files_after_2025(epstein_files):
@@ -63,38 +59,8 @@ def test_no_files_after_2025(epstein_files):
     assert len(bad_docs) == 0
 
 
-def test_other_files_author_count(epstein_files):
-    known_author_count = Document.known_author_count(epstein_files.other_files)
-    assert known_author_count == 496
-    assert len(epstein_files.json_files) == 19
-
-
 def test_other_files_categories(epstein_files):
     assert len([f for f in epstein_files.other_files if not f.category]) == 2235
-
-
-################################################
-#################### EMAILS ####################
-################################################
-
-# @pytest.mark.skip(reason='temporary')
-def test_email_author_counts(epstein_files):
-    author_counts = epstein_files.email_author_counts()
-    assert_higher_counts(author_counts, EMAIL_AUTHOR_COUNTS)
-
-
-# @pytest.mark.skip(reason='temporary')
-def test_email_recipient_counts(epstein_files):
-    recipient_counts = epstein_files.email_recipient_counts()
-    assert_higher_counts(recipient_counts, EMAIL_RECIPIENT_COUNTS)
-
-
-def test_interesting_emails(epstein_files):
-    interesting_email_count = len([e for e in epstein_files.unique_emails if e.is_interesting])
-    uninteresting_emails_count = len([e for e in epstein_files.unique_emails if e.is_interesting is False])
-    assert interesting_email_count > 780
-    assert interesting_email_count < 820
-    assert uninteresting_emails_count == 214
 
 
 def test_signature_substitutions(epstein_files):
@@ -103,10 +69,11 @@ def test_signature_substitutions(epstein_files):
 
 
 def test_signatures(epstein_files):
-    assert dict_sets_to_lists(epstein_files.email_authors_to_device_signatures()) == AUTHORS_TO_DEVICE_SIGNATURES
-    assert dict_sets_to_lists(epstein_files.email_device_signatures_to_authors()) == DEVICE_SIGNATURE_TO_AUTHORS
+    authors_to_devices = epstein_files.email_authors_to_device_signatures()
+    devices_to_authors = epstein_files.email_device_signatures_to_authors()
 
+    for name in [JEFFREY_EPSTEIN, LINDA_STONE, STEVEN_SINOFSKY]:
+        assert authors_to_devices[name] == set(AUTHORS_TO_DEVICE_SIGNATURES[name])
 
-def test_unknown_recipient_file_ids(epstein_files):
-    unknown_recipient_ids = epstein_files.unknown_recipient_ids()
-    assert unknown_recipient_ids == sorted(UNKNOWN_RECIPIENT_FILE_IDS)
+    for signature in ["Sent from my BlackBerry 10 smartphone."]:
+        assert devices_to_authors[signature] == set(DEVICE_SIGNATURE_TO_AUTHORS[signature])

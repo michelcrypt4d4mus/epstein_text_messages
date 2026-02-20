@@ -14,7 +14,7 @@ from rich.table import Table
 from rich.text import Text
 
 from epstein_files.documents.communication import Communication
-from epstein_files.documents.document import CLOSE_PROPERTIES_CHAR, INFO_INDENT
+from epstein_files.documents.document import CLOSE_PROPERTIES_CHAR
 from epstein_files.documents.documents.categories import Uninteresting
 from epstein_files.documents.documents.doc_cfg import DebugDict, EmailCfg, Metadata
 from epstein_files.documents.emails.constants import *
@@ -274,6 +274,10 @@ class Email(Communication):
             metadata['attachment_file_ids'] = [f.file_id for f in self.attached_docs]
 
         return metadata
+
+    @property
+    def recipients_str(self) -> str:
+        return ';'.join([str(r) for r in self.recipients])
 
     @property
     def subheader(self) -> Text:
@@ -710,7 +714,7 @@ class Email(Communication):
         )
 
         yield self.file_info_panel()
-        yield Padding(email_txt_panel, (0, 0, 1, INFO_INDENT))
+        yield Padding(email_txt_panel, (0, 0, 1, site_config.other_files_table_indent))
 
         if self.attached_docs:
             attachments_table_title = f" {self.file_info.url_slug} Email Attachments:"

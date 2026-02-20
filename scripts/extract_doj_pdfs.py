@@ -4,6 +4,7 @@
 import re
 
 from pdfalyzer.decorators.pdf_file import PdfFile
+from rich.prompt import Confirm, Prompt
 from yaralyzer.util.helpers.interaction_helper import ask_to_proceed
 from yaralyzer.util.helpers.shell_helper import ShellResult
 
@@ -24,6 +25,9 @@ if not DOJ_TXTS_20260130_DIR.exists():
     ask_to_proceed(f"Dir {DOJ_TXTS_20260130_DIR} doesn't exist, create?")
     DOJ_TXTS_20260130_DIR.mkdir()
 
+
+skipped = 0
+
 for dir in [d for d in DOJ_PDFS_20260130_DIR.glob('*') if d.is_dir()]:
     if (dir_match := DOJ_DATASET_ID_REGEX.search(dir.name)):
         dataset_number = int(dir_match.group(1))
@@ -33,7 +37,6 @@ for dir in [d for d in DOJ_PDFS_20260130_DIR.glob('*') if d.is_dir()]:
         continue
 
     extracted_text_dir = DOJ_TXTS_20260130_DIR.joinpath(dir.name)
-    skipped = 0
 
     if not extracted_text_dir.exists():
         logger.warning(f"Export dir '{extracted_text_dir}' does not exist, creating...")
@@ -48,7 +51,7 @@ for dir in [d for d in DOJ_PDFS_20260130_DIR.glob('*') if d.is_dir()]:
         if txt_file_path.exists():
             logger.info(f"Skipping file that already exists '{pdf_path}' in .txt format...")
 
-            if skipped % 100 == 0:
+            if skipped > 0 and skipped % 100 == 0:
                 logger.warning(f"Skipped {skipped} PDFs that already exist as .txt...")
 
             skipped += 1
@@ -61,5 +64,6 @@ for dir in [d for d in DOJ_PDFS_20260130_DIR.glob('*') if d.is_dir()]:
         result = ShellResult.from_cmd(cmd, verify_success=True)
         logger.debug(result.output_logs(), extra={"highlighter": None})
         console.line()
+
 
 EpsteinFiles.get_files().load_new_files()

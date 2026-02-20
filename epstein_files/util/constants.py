@@ -37,7 +37,7 @@ HEADER_ABBREVIATIONS = {
     'KSA': "Kingdom of Saudi Arabia",
     'Kurz': 'Sebastian Kurz (former Austrian Chancellor)',
     'Kwok': "Chinese criminal Miles Kwok AKA Miles Guo AKA Guo Wengui",
-    'LSJ': "Epstein's private island holding company",
+    'LSJ': "Little St. James (Epstein's island)",
     'Madars': 'Madars Virza (co-founder of privacy crypto ZCash)',
     'Mapp': f'{KENNETH_E_MAPP} (Governor of {VIRGIN_ISLANDS})',
     'Masa': 'Masayoshi Son (Softbank)',
@@ -1076,6 +1076,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA02267133', author=LESLEY_GROFF, recipients=[MARIA_PRUSAKOVA], uncertain_recipient=f"{CRYPTO_PR_LAB} signature", truncate_to=NO_TRUNCATE),  # only uncertain bc it could be other crypto pr lab person
     EmailCfg(id='EFTA02349697', author=MARIA_PRUSAKOVA, author_reason='boyfriend Christian, same as 032374'),
     EmailCfg(id='EFTA00495349', author=MARIA_PRUSAKOVA, author_reason=CRYPTO_PR_LAB, description='Ed Boyle / Medici Bank'),
+    EmailCfg(id='EFTA00773139', author='Reinaldo Avila', description="Epstein calls Swedish billionaire Johan Eliasch \"not the brightest bulb\"", truncate_to=1000),
     EmailCfg(
         id='EFTA02312343',
         description=f"cyrillic about {RENATA_BOLOTOVA}'s visa issues, possibly marriage related?",
@@ -1209,6 +1210,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA02731593', author=USANYS, recipients=['Manhattan DA']),
     EmailCfg(id='EFTA00039419', author=USANYS, recipients=['Manhattan DA']),
     EmailCfg(id='EFTA02731617', author=USANYS, recipients=[SDNY], date='2021-04-28T15:05:41'),
+    EmailCfg(id='EFTA00151184', author=USANYS, recipients=[USANYS]),
     EmailCfg(id='EFTA02731615', author=USANYS, recipients=[USANYS], author_uncertain=True),
     EmailCfg(id='EFTA02731684', author=USANYS, recipients=[USANYS], author_uncertain=True),
     EmailCfg(id='EFTA02731485', author=USANYS, recipients=[USANYS], author_uncertain=True),
@@ -1324,6 +1326,8 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA02731718', recipients=[USANYS], uncertain_recipient='true'),
     EmailCfg(id='EFTA02637315', is_interesting=True, comment=f"{AZIZA_ALAHMADI} says BTC to fiat is legalized in middle east"),
     EmailCfg(id='EFTA00848644', is_interesting=True, comment='take a picture of your pussy'),
+    EmailCfg(id='EFTA02517037', is_interesting=True, description=f"Epstein wants to talk about Kazakhstan with {LARRY_SUMMERS}"),
+    EmailCfg(id='EFTA02559311', is_interesting=True, description=f"Epstein has some connection to the sovereign wealth fund of Kazakhstan"),
     EmailCfg(id='EFTA01943067', is_interesting=True, description=f'comments on {ARIANE_DE_ROTHSCHILD} and bitcoin'),
     EmailCfg(id='EFTA02062130', is_interesting=True, description=f'{NILI_PRIELL_BARAK} installing cameras at Epstein\'s house'),
     EmailCfg(id='EFTA00368659', is_interesting=True, description=f"meeting with {REID_HOFFMAN} about bitcoin"),
@@ -1374,6 +1378,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00664424', description=f"{BROCK_PIERCE} suggests {LARRY_SUMMERS} could get involved with Tether and Noble Bank"),
     EmailCfg(id='EFTA02541344', description=f"{BROCK_PIERCE} on marriage and polygamy with people named Crystal and Sue"),
     EmailCfg(id='EFTA01002518', description=f"confirmation that Epstein did indeed meet {BEN_LAWSKY_NYDFS} to discuss a 'high yield product'"),
+    EmailCfg(id='EFTA02641951', description=f"{DAVID_STERN} recommends ProtonMail for more secure communications"),
     EmailCfg(id='EFTA00626220', description=f'discussion of a "sidecar fund" with {BROCK_PIERCE} / {CRYPTO_CURRENCY_PARTNERS_II}'),
     EmailCfg(id='EFTA01784901', description=f"discussion of checks {JEREMY_RUBIN} has cashed from Epstein", is_interesting=True),
     EmailCfg(
@@ -1382,6 +1387,12 @@ EMAILS_CONFIG = [
         is_interesting=True,
         recipients=[LESLEY_GROFF],
         uncertain_recipient='yes',
+    ),
+    EmailCfg(
+        id='EFTA02634615',
+        description=f"Indyke says Epstein didn't want his name associated with his investment in Carbyne / Reporty",
+        is_interesting=True,
+        truncate_to=4000,
     ),
     EmailCfg(id='EFTA00987194', description=f"Epstein proposes {BEN_LAWSKY_NYDFS} get rid of sales tax on bitcoin", is_interesting=True),
     EmailCfg(id='EFTA02591315', description=f"{ANDREW_FARKAS} arranging for Epstein to meet {BEN_LAWSKY_NYDFS}", is_interesting=True),
@@ -1395,11 +1406,13 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA02601503', description=f"discussion of investing in Layer1, an important crypto business"),
     EmailCfg(id='EFTA00495372', description=f'discussion of Medici Bank, a new successor to Noble Bank as a crypto bank', is_interesting=True),
     EmailCfg(id='EFTA02629771', description=f"discussion of {RENATA_BOLOTOVA}'s employment at IPI", is_interesting=True),
+    EmailCfg(id='EFTA02630431', description=f"Carbyne FKA 'Reporty' is an Israeli company invested in by Epstein, Junkermann, and {EHUD_BARAK}"),
     EmailCfg(id='EFTA00964459', description=f'discussion of sharia compliant crypto token', is_interesting=True),
     EmailCfg(id='EFTA00901772', description=f'Epstein makes a large investment in Coinbase that would earn him most of $100 million', is_interesting=True),
     EmailCfg(id='EFTA01750652', description=f"discussion of using blockchains in the repo markets"),
     EmailCfg(id='EFTA00671263', description="Eagle's View Capital Management September 2017 Performance Update"),
     EmailCfg(id='EFTA00836182', description=f'email to investors in {VALAR_FUND}'),
+    EmailCfg(id='EFTA02573653', description=f'discussion of {PRINCE_ANDREW}\'s Urramoor, "Howard" is probably Howard Lutnick which Urramoor partnered with'),
     EmailCfg(id='EFTA02494000', description=f"Epstein and {DAVID_STERN} discussing setting up a crypto exchange in Belarus", is_interesting=True),
     EmailCfg(id='EFTA00881759', description=f"Epstein and {STEVE_BANNON} discuss collection donations in bitcoin", is_interesting=True),
     EmailCfg(id='EFTA02592748', description=f"Epstein asking {BROCK_PIERCE} for a favour related to someone named 'Sue'"),
@@ -1413,7 +1426,9 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA02002675', description=f"{JASON_CALACANIS} passes Epstein the names of the bitcoin core developers"),
     EmailCfg(id='EFTA00999549', description=f"{JOI_ITO} and {JEREMY_RUBIN} meet {LARRY_SUMMERS} to discuss bitcoin", is_interesting=True),
     EmailCfg(id='EFTA01752601', description=f"{JOI_ITO} and Epstein name their new fund Kyara"),
+    EmailCfg(id='EFTA00277089', author=USANYS, recipients=[USANYS], description="tip for the FBI / DOJ that Swedish billionaire Johan Eliasch may be connected to Epstein's crimes", duplicate_ids=['EFTA00151184']),
     EmailCfg(id='EFTA02671523', description=f"Jones is former Google chief technology advocate / CEO of Epstein investment Wearality"),
+    EmailCfg(id='EFTA00854166', description='"kazak contract will be ready for your review"', is_interesting=True, truncate_to=1100),
     EmailCfg(id='EFTA00080250', description=f"{LEON_BLACK} / Rothschild Group {DEUTSCHE_BANK} transactions", is_interesting=True),
     EmailCfg(id='EFTA01013266', description=f"{MARIA_PRUSAKOVA}'s {CRYPTO_PR_LAB} request for payment for Davos", is_interesting=True),
     EmailCfg(id='EFTA02285514', description=f"Medici Bank and {MARIA_PRUSAKOVA} meeting", is_interesting=True),
@@ -1460,6 +1475,10 @@ EMAILS_CONFIG = [
 
 # These emails will be suppressed in the curated views
 UNINTERESTING_EMAIL_IDS = [
+    # Epstein
+    '030997',
+    # John Page
+    '016693',
     # Jabor
     '030786',
     '033011',
@@ -2154,7 +2173,7 @@ OTHER_FILES_REPUTATION = [
     DocCfg(id='030426', author=OSBORNE_LLP, description=f"reputation repair proposal (cites Michael Milken)", date='2011-06-14'),
     DocCfg(id='026582', description=f"Epstein's internet search results at start of reputation repair campaign, maybe from {OSBORNE_LLP}"),
     DocCfg(id='030573', description=f"Epstein's unflattering Google search results, maybe screenshot by {AL_SECKEL} or {OSBORNE_LLP}"),
-    DocCfg(id='030875', description=f"Epstein's Wikipedia page"),
+    DocCfg(id='030875', description=f"Epstein's Wikipedia page", date='2014-02-08'),  # Date is based on tyler shears; seckel was 2010
     DocCfg(id='026583', description=f"Google search results for '{JEFFREY_EPSTEIN}' with analysis ({OSBORNE_LLP}?)"),
     DocCfg(id='029350', description=f"Microsoft Bing search results for Epstein with sex offender at top, maybe from {TYLER_SHEARS}?"),
     # DOJ files

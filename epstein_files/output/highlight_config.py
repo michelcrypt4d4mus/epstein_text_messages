@@ -1,3 +1,7 @@
+"""
+Configuration of keyword color highlighting which also contains regexes used to identify
+email sendersa and recipients in email headers.
+"""
 import re
 from typing import Sequence
 
@@ -203,7 +207,8 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(BARRY_J_COHEN, emailer_pattern=r"barry\s*((j.?|james)\s*)?cohen?"),
             Contact('David Mitchell', "Mitchell Holdings, New York real estate developer"),
             Contact(GERALD_BARTON, "Maryland property developer Landmark Land Company", r"Gerald.*Barton"),
-            Contact(NICOLE_JUNKERMANN, f"ex-model, NJF Capital, investor in Revolut, online poker, Carbyne w/{EHUD_BARAK}", r"(Nicole\s*)?Junkermann?"),
+            Contact(NICOLE_JUNKERMANN, f"ex-model, NJF Capital / JunkermannGroup, investor in Revolut, online poker, Carbyne w/{EHUD_BARAK}", r"(Nicole\s*)?Junke(nn|rm)ann?"),
+            Contact('Nikolajs Smirnovs', f"{NICOLE_JUNKERMANN}'s NJF Capital / JunkermannGroup", r"Nikolajs\s*(NJF|Smirnovs)"),
             Contact(GORDON_GETTY, "heir to oil tycoon J. Paul Getty"),
             Contact('Philip Kafka', f"president of Prince Concepts (and son of {TERRY_KAFKA}?)"),
             Contact('Reza Bundy', f"founder of IronPlanet"),
@@ -217,16 +222,21 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"((Bill|David)\s*)?Koch(\s*(Bro(s|thers)|Industries))?",
             r"BP",
             r"CEO",
+            r"Colony\s*Capital",
             r"Gruterite",
-            r"Island\s*Capital\s*Group(,?\s*LLC)?"
+            r"Island\s*Capital\s*Group(,?\s*LLC)?",
+            r"Johann?\s*Eliasc?h",
             r"((John|Patricia)\s*)?Kluge",
             r"Mar[ck]\s+Rich",
+            r"Montilla",  # Junkermann
             r"(Mi(chael|ke)\s*)?Ovitz",
+            r"NJF(\s*Capital)?",
             r"(Steve\s+)?Wynn",
             r"(Les(lie)?\s+)?Wexner",
             r"Michael\s*Klein",
             r"New Leaf Ventures",
             r"Park Partners",
+            r"real\s*estate(\s*developer)?"
             r"SALSS",
             r"Swedish[-\s]*American\s*Life\s*Science\s*Summit",
             r"Trilateral Commission",
@@ -256,7 +266,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Ali.?baba",
             r"Beijing",
             r"CCP",
-            r"Chin(a|e?se)(?! Daily)",
+            r"Chin(a|=|e?se)(?! Daily)",
             r"DPRK",
             r"Fangzhi",
             r"Global Times",
@@ -1570,7 +1580,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Cambodian?",
             r"Laos",
             r"Malaysian?",
-            r"Maldives",
+            r"Male?dives",
             r"Myan?mar",
             r"New\s*Zealand",
             r"Philippines",
@@ -1909,7 +1919,8 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Managing Partner - Crypto Currency Partners",  # brock pierce
             r"Please use this email for.*general Media Lab.*",  # Joi Ito
             r"-Austin\nAustin Hill - B..dder.*(\n.*B92ED3E3)?",
-            r"^Please note my new email address?:?.*$", # summers
+            r"^(Please note my new email address?:?.*|Follow me on twitter @[Il]hsummers|www.larrysummers.com)$", # larry summers
+            r"^--\w+--\s+conversation-id.*(flags|remote-id\s+\d+)(\s+\d{6,}.*remote-id.*\d+)?",
         ],
     ),
     HighlightedText(
@@ -1947,6 +1958,13 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
 ]
 
 HIGHLIGHTED_NAMES = [hg for hg in HIGHLIGHT_GROUPS if isinstance(hg, HighlightedNames)]
+
+PEOPLE_BIOS = {
+    contact.name: highlighted_group.info_for(contact.name, include_category=True)
+    for highlighted_group in HIGHLIGHTED_NAMES
+    for contact in highlighted_group.contacts
+    if contact.info
+}
 
 
 def get_highlight_group_for_name(name: str | None) -> HighlightGroup | None:

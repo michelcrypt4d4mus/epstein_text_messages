@@ -127,6 +127,9 @@ def build_highlighter(pattern: str) -> EpsteinHighlighter:
 
 
 def build_table(title: str | Text | None, cols: list[str | dict] | None = None, **kwargs) -> Table:
+    if 'show_footer' not in kwargs:
+        kwargs['show_footer'] = bool(kwargs.get('caption'))
+
     table = Table(title=title, **{**DEFAULT_TABLE_KWARGS, **kwargs})
 
     if cols:
@@ -204,10 +207,18 @@ def print_special_note(note: str | Text) -> None:
     print_centered(Padding(Panel(note, expand=True, padding=(1, 3), style='reverse'), (0, 0, 2, 0)))
 
 
-def print_subtitle_panel(msg: str, style: str = 'black on white') -> None:
+def print_subtitle_panel(msg: str, style: str = 'black on white', center: bool = True) -> None:
     """A reverse color panel to put at the top of sections."""
-    panel = Panel(Text.from_markup(msg, justify='center'), width=site_config.subtitle_width, style=style)
-    print_centered(Padding(panel, SUBTITLE_PADDING))
+    panel = Panel(
+        Text.from_markup(msg, justify='center' if center else 'left'),
+        width=site_config.subtitle_width if center else max(len(msg), 150),
+        style=style if center else ''
+    )
+
+    if center:
+        print_centered(Padding(panel, SUBTITLE_PADDING))
+    else:
+        console.print(panel)
 
 
 def quote_txt(t: Text | str, try_double_quote_first: bool = False, style: str = '') -> Text:
