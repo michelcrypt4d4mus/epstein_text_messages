@@ -1,4 +1,5 @@
 # NEXT RELEASE
+* `--output-doj` is now `--all-doj-files`, `--email-timeline` is now `-all-emails-chrono`
 * Add manual review/config step to `--load-new`
 * Add short bio boxes for people as they are encountered in the chronological view
 
