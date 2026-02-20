@@ -5309,7 +5309,7 @@ EFTA00710226,email,Alan Dlugash,,2017-07-12 22:28:34,Jeffrey Epstein;Richard Kah
 EFTA00712715,email,David Stern,True,2012-09-12 11:28:42,Jeffrey Epstein,,
 EFTA00714098,email,Richard Kahn,,2017-10-10 22:21:49,Jeffrey Epstein,,
 EFTA00714099,email,Richard Kahn,,2017-10-10 22:21:04,Jeffrey Epstein,,
-EFTA00714127,email,Jeremy Rubin,True,2015-10-19 20:47:18,Jeffrey Epstein,,
+EFTA00714127,email,Jeremy Rubin,False,2015-10-19 20:47:18,Jeffrey Epstein,,
 EFTA00716435,email,,True,2014-10-13 20:22:01,Jeffrey Epstein;Joi Ito,,
 EFTA00716532,email,Andrew Farkas,,2014-11-08 14:56:39,Jeffrey Epstein,,
 EFTA00717134,email,Richard Kahn,,2014-02-11 14:22:32,Jeffrey Epstein,,
@@ -5427,7 +5427,7 @@ EFTA00881759,crypto,Jeffrey Epstein,True,2018-02-19 15:47:07,Steve Bannon,,Epste
 EFTA00882401,email,Jeffrey Epstein,True,2018-02-20 14:44:55,Madars Virza,,
 EFTA00885177,email,Richard Kahn,,2018-02-15 13:32:09,Jeffrey Epstein,,
 EFTA00885189,email,Jeffrey Epstein,,2018-02-15 13:47:42,Richard Kahn,,
-EFTA00886763,email,David Stern,True,2018-02-10 03:11:53,Jeffrey Epstein,,
+EFTA00886763,crypto,David Stern,True,2018-02-10 03:11:53,Jeffrey Epstein,,documents are being prepared to license Epstein and David Stern's crypto exchange in Belarus
 EFTA00888467,email,Jeffrey Epstein,True,2010-01-19 12:13:13,,,
 EFTA00895984,email,Richard Kahn,,2018-01-31 19:09:35,Jeffrey Epstein,,
 EFTA00899331,email,Jonathan Farkas,,2018-02-03 22:07:08,Jeffrey Epstein,Sent from my iPhone,
@@ -5561,7 +5561,7 @@ EFTA01005715,email,Bryan Bishop,False,2018-07-20 12:30:07,Austin Hill;Jeffrey Ep
 EFTA01006355,email,Jeffrey Epstein,True,2018-07-25 15:11:20,Renata Bolotova,,
 EFTA01006661,email,Vincenzo Iozzo,True,2018-08-14 16:15:14,Jeffrey Epstein,,
 EFTA01006915,email,Richard Kahn,,2018-08-10 00:02:01,Jeffrey Epstein,,
-EFTA01007544,crypto,Jeffrey Epstein,True,2018-08-23 23:19:07,Jeremy Rubin,,"bitcoin dev Jeremy Rubin describes ""grey area between pump and develop"" when Epstein objects on ethical grounds"
+EFTA01007544,crypto,Jeffrey Epstein,True,2018-08-23 23:19:07,Jeremy Rubin,,"Jeremy Rubin describes ""grey area between pump and develop"" when Epstein objects on ethical grounds"
 EFTA01008228,email,Vincenzo Iozzo,True,2018-08-16 17:07:15,Jeffrey Epstein,Sent from my Iphone,
 EFTA01008230,email,Vincenzo Iozzo,True,2018-08-16 18:06:56,Jeffrey Epstein,,
 EFTA01008242,email,Vincenzo Iozzo,True,2018-08-16 19:35:12,Jeffrey Epstein,Sent from my Iphone,Epstein passes on an investment in Radius
@@ -5767,13 +5767,12 @@ EFTA01767196,email,David Stern,True,2012-07-09 13:17:00,Jeffrey Epstein,,
 EFTA01770220,email,Jeffrey Epstein,,2012-02-29 13:32:00,Boris Nikolic,,
 EFTA01771746,email,Anastasiya,,2011-12-23 15:47:00,Jeffrey Epstein,,
 EFTA01773417,email,Renata Bolotova,True,2012-02-23 23:47:00,Jeffrey Epstein,,Renata Bolotova
-EFTA01774218,email,Jeremy Rubin,True,2016-04-02 00:52:00,Jeffrey Epstein,,
 EFTA01775500,email,David Stern,True,2011-08-05 22:53:00,Jeffrey Epstein,,"David Stern ""PA"" is probably Prince Andrew"
 EFTA01776613,email,Amir Taaki,True,2011-07-07 22:34:00,Jeffrey Epstein,,
 EFTA01776893,email,Donald Norman,,2011-07-10 02:16:00,Jeffrey Epstein,,Donald Norman
 EFTA01781620,email,David Schoen,,2015-05-12 23:48:00,Jeffrey Epstein,Sent from AOL Mobile Mail,David Schoen (???)
 EFTA01781741,crypto,Jeremy Rubin,True,2015-10-21 03:04:00,Jeffrey Epstein;Joi Ito;Madars Virza,,Joi Ito introduces Epstein to Madars Virza and the untraceable private crypto ZCash
-EFTA01784901,email,Jeremy Rubin,True,2016-08-01 13:29:00,Jeffrey Epstein;Richard Kahn,,discussion of checks Jeremy Rubin has cashed from Epstein
+EFTA01784901,email,Jeremy Rubin,True,2016-08-01 13:29:00,Jeffrey Epstein;Richard Kahn,,Jeremy Rubin has cashed multiple checks directly from Epstein
 EFTA01785924,email,Richard Kahn,,2016-11-30 13:44:00,Jeffrey Epstein,,
 EFTA01787633,email,Joi Ito,True,2015-05-14 11:19:00,Jeffrey Epstein,,
 EFTA01788775,email,Andrew Farkas,,2014-12-12 22:52:00,Jeffrey Epstein,,
@@ -6040,8 +6039,8 @@ EFTA02490420,email,Madars Virza,True,2018-03-24 21:32:00,Jeffrey Epstein,,
 EFTA02492794,email,Brock Pierce,True,2015-07-18 15:38:00,Jeffrey Epstein,,
 EFTA02493146,email,Madars Virza,True,2018-03-28 02:37:00,Jeffrey Epstein,,
 EFTA02493582,email,Jeffrey Epstein,True,2018-03-28 12:52:00,Madars Virza,,
-EFTA02494000,crypto,David Stern,True,2018-03-22 10:27:00,Jeffrey Epstein,,Epstein and David Stern discussing setting up a crypto exchange in Belarus
-EFTA02494305,email,David Stern,True,2018-03-22 10:13:00,Jeffrey Epstein,,
+EFTA02494000,crypto,David Stern,True,2018-03-22 10:27:00,Jeffrey Epstein,,"Epstein says a crypto exchange in Belarus could be ""very useful"", David Stern's Chinese guys could have brought ""significant volume"""
+EFTA02494305,crypto,David Stern,True,2018-03-22 10:13:00,Jeffrey Epstein,,"planning a crypto exchange in Belarus, David Stern's ""Chinese guys"" can't do it because of the PRC's crackdown on crypto"
 EFTA02497384,email,Sergey Belyakov,True,2015-07-06 18:39:00,Alisa Bekins;Jeffrey Epstein;Peter Thiel,,
 EFTA02497856,email,David Stern,True,2018-03-23 08:04:00,Jeffrey Epstein,,
 EFTA02501645,email,David Stern,True,2018-07-02 08:36:00,Jeffrey Epstein,,
@@ -6049,7 +6048,7 @@ EFTA02502990,email,Seth Lloyd,True,2015-05-12 16:55:00,Jeffrey Epstein;Joi Ito,,
 EFTA02505439,crypto,Richard Kahn,True,2015-04-13 15:15:00,Jeffrey Epstein,,summary of Kyara Investment shell companies with Joi Ito
 EFTA02505570,email,Richard Kahn,,2015-04-13 15:27:00,Jeffrey Epstein,,
 EFTA02505986,email,Andrew McCormack,,2015-03-30 22:34:00,James Fitzgerald;Jeffrey Epstein,,
-EFTA02507454,email,David Stern,True,2018-03-15 12:24:00,Jeffrey Epstein,,
+EFTA02507454,email,David Stern,False,2018-03-15 12:24:00,Jeffrey Epstein,,
 EFTA02510290,email,Jeffrey Epstein,True,2018-03-05 16:24:00,Brock Pierce,,
 EFTA02511082,email,Vincenzo Iozzo,True,2015-02-09 14:21:00,Jeffrey Epstein;Joi Ito,,
 EFTA02511281,email,Tyler Shears,True,2015-02-26 20:51:00,Jeffrey Epstein;Richard Kahn,,
