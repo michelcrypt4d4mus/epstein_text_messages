@@ -3,14 +3,18 @@ from os import unlink
 from subprocess import CalledProcessError, check_output
 from typing import cast
 
+from rich import box
 from rich.padding import Padding
+from rich.panel import Panel
 
+from epstein_files.documents.communication import Communication
 from epstein_files.documents.document import Document
 from epstein_files.documents.doj_file import DojFile
 from epstein_files.documents.email import Email
 from epstein_files.documents.messenger_log import MessengerLog
 from epstein_files.documents.other_file import FIRST_FEW_LINES, OtherFile
 from epstein_files.epstein_files import EpsteinFiles
+from epstein_files.output.highlight_config import PEOPLE_BIOS, get_style_for_name
 from epstein_files.output.rich import *
 from epstein_files.output.site.sites import AUTHORS_USING_SIGNATURES, EMAILERS_TABLE_PNG_PATH, FILEs_THAT_ARE_NEITHER_EMAILS_NOR, HIS_EMAILS, HIS_TEXT_MESSAGES, SELECTIONS_FROM
 from epstein_files.output.title_page import print_color_key, print_other_page_link, print_section_header
@@ -31,9 +35,32 @@ DEVICE_SIGNATURE_PADDING = (1, 0)
 PRINT_COLOR_KEY_EVERY_N_EMAILS = 150
 
 
+def _biographical_panel(names: list[str], next_doc: Document) -> Align | None:
+    """Panel showing biographical info for a list of names."""
+    bios = [
+        Text('').append(Text(name, f"{get_style_for_name(name)} bold")).append(f": {PEOPLE_BIOS[name]}", style='dim italic')
+        for name in names if PEOPLE_BIOS.get(name)
+    ]
+
+    if not bios:
+        return None
+
+    panel = Panel(
+        Group(*bios),
+        border_style='dim',
+        box=box.DOUBLE,
+        expand=False,
+        title=Text(f'short bios of people in the next {next_doc._debug_prefix}', 'wheat4 italic'),
+        title_align='right',
+    )
+
+    return Align(Padding(panel, site_config.character_bio_padding), 'right')
+
+
 def print_curated_chronological(epstein_files: EpsteinFiles) -> list[Document]:
     other_files_queue = []  # Collect other files into tables
     printed_docs: list[Document] = []
+    people_encountered = set()
 
     for doc in epstein_files.unique_documents:
         if not doc.is_interesting:
@@ -47,7 +74,14 @@ def print_curated_chronological(epstein_files: EpsteinFiles) -> list[Document]:
             printed_docs.extend(other_files_queue)
             other_files_queue = []
 
-        console.print(doc)
+        if isinstance(doc, Communication):
+            new_characters = [p for p in doc.participants if p and p not in people_encountered]
+            people_encountered.update(new_characters)
+
+            if (bio_panel := _biographical_panel(new_characters, doc)):
+                console.print(bio_panel)
+
+        doc.print()
         printed_docs.append(doc)
 
     return printed_docs

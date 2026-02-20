@@ -23,7 +23,7 @@ from epstein_files.documents.emails.constants import UNINTERESTING_EMAILERS
 from epstein_files.documents.json_file import JsonFile
 from epstein_files.documents.messenger_log import MSG_REGEX, MessengerLog
 from epstein_files.documents.other_file import OtherFile
-from epstein_files.output.highlight_config import HIGHLIGHTED_NAMES
+from epstein_files.output.highlight_config import PEOPLE_BIOS
 from epstein_files.output.rich import console
 from epstein_files.people.person import INVALID_FOR_EPSTEIN_WEB, Person
 from epstein_files.util.constant.strings import *
@@ -261,12 +261,7 @@ class EpsteinFiles:
                 MessengerLog.__name__: _sorted_metadata(self.imessage_logs),
                 OtherFile.__name__: _sorted_metadata(self.non_json_other_files),
             },
-            'people': {
-                contact.name: highlighted_group.info_for(contact.name, include_category=True)
-                for highlighted_group in HIGHLIGHTED_NAMES
-                for contact in highlighted_group.contacts
-                if contact.info
-            }
+            'people': PEOPLE_BIOS,
         }
 
         return json.dumps(metadata, indent=4, sort_keys=True)

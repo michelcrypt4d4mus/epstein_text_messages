@@ -1959,6 +1959,13 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
 
 HIGHLIGHTED_NAMES = [hg for hg in HIGHLIGHT_GROUPS if isinstance(hg, HighlightedNames)]
 
+PEOPLE_BIOS = {
+    contact.name: highlighted_group.info_for(contact.name, include_category=True)
+    for highlighted_group in HIGHLIGHTED_NAMES
+    for contact in highlighted_group.contacts
+    if contact.info
+}
+
 
 def get_highlight_group_for_name(name: str | None) -> HighlightGroup | None:
     if not name:
