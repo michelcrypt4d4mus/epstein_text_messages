@@ -545,7 +545,7 @@ class Document:
             title_align='right',
         )
 
-        yield Padding(text_panel, (0, 0, 1, INFO_INDENT))
+        yield Padding(text_panel, (0, 0, 1, site_config.info_indent))
 
     def __str__(self) -> str:
         return self.summary.plain
