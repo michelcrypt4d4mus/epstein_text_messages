@@ -15,7 +15,7 @@ from rich.panel import Panel
 from rich.text import Text
 
 from epstein_files.epstein_files import EpsteinFiles, document_cls
-from epstein_files.documents.document import INFO_PADDING, Document
+from epstein_files.documents.document import Document
 from epstein_files.documents.documents.word_count import print_word_counts
 from epstein_files.documents.doj_file import DojFile
 from epstein_files.documents.email import Email
@@ -29,7 +29,7 @@ from epstein_files.output.rich import (build_highlighter, console, highlighter,
 from epstein_files.output.site.sites import make_clean
 from epstein_files.output.title_page import print_color_key, print_title_page_top, print_title_page_bottom
 from epstein_files.util.constant.strings import HOUSE_OVERSIGHT_NOV_2025_ID_REGEX
-from epstein_files.util.env import args
+from epstein_files.util.env import args, site_config
 from epstein_files.util.helpers.data_helpers import flatten
 from epstein_files.util.helpers.document_helper import diff_files
 from epstein_files.util.helpers.file_helper import extract_file_id
@@ -135,7 +135,7 @@ def epstein_grep():
 
                 for matching_line in lines:
                     line_txt = matching_line.__rich__()
-                    console.print(Padding(temp_highlighter(line_txt), INFO_PADDING), style='gray37')
+                    console.print(Padding(temp_highlighter(line_txt), site_config.info_padding()), style='gray37')
 
             console.line()
 

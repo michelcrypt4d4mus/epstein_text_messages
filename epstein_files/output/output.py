@@ -38,7 +38,7 @@ PRINT_COLOR_KEY_EVERY_N_EMAILS = 150
 def _biographical_panel(names: list[str], next_doc: Document) -> Align | None:
     """Panel showing biographical info for a list of names."""
     bios = [
-        Text('').append(Text(name, f"{get_style_for_name(name)} bold")).append(f": {PEOPLE_BIOS[name]}", style='dim italic')
+        Text('', justify='right').append(Text(name, f"{get_style_for_name(name)} bold")).append(f": {PEOPLE_BIOS[name]}", style='dim italic')
         for name in names if PEOPLE_BIOS.get(name)
     ]
 
@@ -50,8 +50,9 @@ def _biographical_panel(names: list[str], next_doc: Document) -> Align | None:
         border_style='dim',
         box=box.DOUBLE,
         expand=False,
-        style='on grey23',
-        title=Text(f'short bios of people in the next {next_doc._debug_prefix}', 'wheat4 italic'),
+        # padding=(0, 2),
+        style='on gray7',
+        title=Text(f"people in next {next_doc._debug_prefix}", 'grey35 italic'),
         title_align='right',
     )
 

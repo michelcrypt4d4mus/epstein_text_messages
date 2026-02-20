@@ -14,7 +14,7 @@ from rich.table import Table
 from rich.text import Text
 
 from epstein_files.documents.communication import Communication
-from epstein_files.documents.document import CLOSE_PROPERTIES_CHAR, INFO_INDENT
+from epstein_files.documents.document import CLOSE_PROPERTIES_CHAR
 from epstein_files.documents.documents.categories import Uninteresting
 from epstein_files.documents.documents.doc_cfg import DebugDict, EmailCfg, Metadata
 from epstein_files.documents.emails.constants import *

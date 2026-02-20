@@ -40,9 +40,6 @@ CHECK_LINK_FOR_DETAILS = 'not shown here, check original PDF for details'
 CLOSE_PROPERTIES_CHAR = ']'
 HOUSE_OVERSIGHT = HOUSE_OVERSIGHT_PREFIX.replace('_', ' ').strip()
 WHITESPACE_REGEX = re.compile(r"\s{2,}|\t|\n", re.MULTILINE)
-
-INFO_INDENT = 2
-INFO_PADDING = (0, 0, 0, INFO_INDENT)
 MIN_DOCUMENT_ID = 10477
 
 FILENAME_MATCH_STYLES = [
@@ -374,7 +371,7 @@ class Document:
         """Panel with filename linking to raw file plus any additional info about the file."""
         links_txt = self.colored_external_links()
         panel = Panel(links_txt, border_style=self.border_style, expand=False)
-        padded_info = [Padding(sentence, INFO_PADDING) for sentence in self.info]
+        padded_info = [Padding(sentence, site_config.info_padding()) for sentence in self.info]
         return Group(*([panel] + padded_info))
 
     def lines_matching(self, _pattern: re.Pattern | str) -> list[MatchedLine]:

@@ -24,7 +24,8 @@ NOT_ALL_FILES_MSG = 'Not All Epstein Files Are Here!'
 class MobileConfig:
     abbreviations_width: ClassVar[int | None] = None
     attachment_indent: ClassVar[int] = 6
-    character_bio_padding: ClassVar[tuple[int, int, int, int]] = (0, 0, 0, 2)
+    character_bio_padding: ClassVar[tuple[int, int, int, int]] = (0, 0, 1, 2)
+    info_indent: ClassVar[int] = 1
     max_alt_links: ClassVar[int | None] = 1
     not_all_files_warning: ClassVar[str] = starred_header(NOT_ALL_FILES_MSG, num_spaces=1, num_stars=1)
     num_color_key_cols: ClassVar[int] = 2
@@ -41,10 +42,14 @@ class MobileConfig:
         return dt.strftime(r"%-d/%-m/%-y %-H:%M")
 
     @classmethod
+    def info_padding(cls) -> tuple[int, int, int, int]:
+        return (0, 0, 0, cls.info_indent)
+
+    @classmethod
     def email_subheader(cls, email_type: str, author: Text, recipients: Text, timestamp: datetime | Text) -> Text:
-        prefix = f"{email_type} from"
         timestamp = timestamp if isinstance(timestamp, Text) else Text(' at ').append(str(timestamp), TIMESTAMP_STYLE)
-        txt = Text(f"{capitalize_first(prefix)} ", SUBHEADER_STYLE).append(author)
+        prefix = f"{capitalize_first(email_type)} from " if email_type != 'email' else ''
+        txt = Text(f"{prefix} ", SUBHEADER_STYLE).append(author)
         txt.append(' to ').append(recipients).append(timestamp)
         return txt
 
@@ -52,7 +57,8 @@ class MobileConfig:
 class SiteConfig(MobileConfig):
     abbreviations_width: ClassVar[int | None] = 62
     attachment_indent: ClassVar[int] = 12
-    character_bio_padding: ClassVar[tuple[int, int, int, int]] = (0, 4, 0, 0)
+    character_bio_padding: ClassVar[tuple[int, int, int, int]] = (0, 1, 0, 0)
+    info_indent: ClassVar[int] = 2
     max_alt_links: ClassVar[int | None] = None
     not_all_files_warning: ClassVar[str] = starred_header(NOT_ALL_FILES_MSG, num_spaces=6, num_stars=14)
     num_color_key_cols: ClassVar[int] = 6
