@@ -288,7 +288,7 @@ class Document:
         txt.append('...\n\n').append(trim_footer_txt)
 
         if char_range[0] > 0:
-            txt = Text('').append(f'<not showing {char_range[0]:,} characters>\n', 'dim italic').append('...').append(txt)
+            txt = Text('').append(f'<not showing first {char_range[0]:,} characters>\n\n', 'dim italic').append('...').append(txt)
 
         return txt
 

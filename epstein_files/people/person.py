@@ -252,6 +252,10 @@ class Person:
         return self.name in TRUNCATE_EMAILS_BY or self.is_uninteresting
 
     @property
+    def show_with_emails_docs(self) -> list[OtherFile]:
+        return [f for f in self.other_files if (f.config and self.name == f.config.show_with_name)]
+
+    @property
     def sole_cc(self) -> str | None:
         """Return name if this person sent 0 emails and received CC from only one that name."""
         email_authors = uniquify([e.author for e in self.emails_to])
@@ -318,7 +322,10 @@ class Person:
         return link_text_obj(self.external_link(site), link_str or site, style=self.style())
 
     def print_emails(self) -> list[Email]:
-        """Print complete emails to or from a particular 'author'. Returns the Emails that were printed."""
+        """
+        Print complete emails to or from a particular 'author' along with any specially marked docs
+        configured with `show_with_name` of this user. Returns the Emails that were printed.
+        """
         print_centered(self.info_panel)
 
         if site_config.show_emailer_tables:
@@ -330,7 +337,8 @@ class Person:
         elif self.name in SPECIAL_NOTES:
             print_special_note(SPECIAL_NOTES[self.name])
 
-        Document.print_documents(self._printable_emails)
+        docs = self._printable_emails + self.show_with_emails_docs
+        Document.print_documents(Document.sort_by_timestamp(docs))
         return self._printable_emails
 
     def print_emails_table(self) -> None:

@@ -1,6 +1,9 @@
 """
 Custom configurations for various files.
 """
+from itertools import groupby
+
+from epstein_files.documents.documents.config_builder import WOLFF_EPSTEIN_ARTICLE_DRAFT, wolff_draft_cfg
 from epstein_files.documents.documents.categories import CONSTANT_CATEGORIES, Interesting, Neutral
 from epstein_files.documents.documents.doc_cfg import NO_TRUNCATE, CommunicationCfg, DocCfg, EmailCfg, TextCfg, phone_bill_cfg
 from epstein_files.documents.doj_files.full_text import EFTA00009622_TEXT
@@ -175,7 +178,6 @@ SINCERELY_SNEAKY = f'{SNEAKY_DOG} + "Sincerely"'
 # Descriptions
 IS_IT_ROGER_STONE = "is the 'roger' Epstein is trying to meet Roger Stone?"
 KYARA_FUND = f"Epstein crypto fund {KYARA_INVESTMENT}"
-MICHAEL_WOLFF_EPSTEIN_ARTICLE_DRAFT = f"draft of an unpublished article ca. 2014/2015"
 SEC_WHISTLEBLOWER = 'whistleblower emails to SEC'
 VALAR_MEETING = f"meeting with {PETER_THIEL}'s {VALAR_VENTURES} fund"
 
@@ -565,7 +567,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='026030', description=IS_IT_ROGER_STONE),
     EmailCfg(id='026033', description=IS_IT_ROGER_STONE),
     EmailCfg(id='031011', description='jokes about Chicago corruption', duplicate_ids=['031090'], truncate_to=SHORT_TRUNCATE_TO),
-    EmailCfg(id='023627', description=MICHAEL_WOLFF_EPSTEIN_ARTICLE_DRAFT, is_fwded_article=True, is_interesting=True, truncate_to=16800),
+    EmailCfg(id='023627', description=WOLFF_EPSTEIN_ARTICLE_DRAFT, is_fwded_article=True, is_interesting=True, truncate_to=16800),
     EmailCfg(id='030745', description="planning a public statement for Ghislaine", truncate_to=NO_TRUNCATE),
     EmailCfg(id='016693', description='signed "MM"'),
     EmailCfg(id='028524', description='Zach Braff op-ed on Woody Allen in NYT', is_fwded_article=True, is_interesting=False),
@@ -1632,20 +1634,20 @@ OTHER_FILES_ARTICLE = [
     DocCfg(id='031776', author='Law360', description=f"article about Michael Avenatti by Andrew Strickler"),
     DocCfg(id='023102', author='Litigation Daily', description=f"article about {REID_WEINGARTEN}", date='2015-09-04'),
     DocCfg(id='029340', author='MarketWatch', description=f'article about estate taxes, particularly Epstein\'s favoured GRATs'),
-    DocCfg(id='022707', author=MICHAEL_WOLFF, description=MICHAEL_WOLFF_EPSTEIN_ARTICLE_DRAFT),
-    DocCfg(id='022727', author=MICHAEL_WOLFF, description=MICHAEL_WOLFF_EPSTEIN_ARTICLE_DRAFT),
-    DocCfg(id='022746', author=MICHAEL_WOLFF, description=MICHAEL_WOLFF_EPSTEIN_ARTICLE_DRAFT),
-    DocCfg(id='022844', author=MICHAEL_WOLFF, description=MICHAEL_WOLFF_EPSTEIN_ARTICLE_DRAFT),
-    DocCfg(id='022863', author=MICHAEL_WOLFF, description=MICHAEL_WOLFF_EPSTEIN_ARTICLE_DRAFT),
-    DocCfg(
-        id='022894',
-        author=MICHAEL_WOLFF,
-        description=f"{MICHAEL_WOLFF_EPSTEIN_ARTICLE_DRAFT} claiming Kairat Kelimbetov, {BROCK_PIERCE}, and {LARRY_SUMMERS} " + \
-                     "all visited Epstein around the time Tether was founded",
+    # wolff_draft_cfg
+    wolff_draft_cfg('022707'),
+    wolff_draft_cfg('022727'),
+    wolff_draft_cfg('022746'),
+    wolff_draft_cfg('022844'),
+    wolff_draft_cfg('022863'),
+    wolff_draft_cfg('022952'),
+    wolff_draft_cfg('024229'),
+    wolff_draft_cfg(
+        '022894',
+        f"claiming Kelimbetov, {BROCK_PIERCE}, and {LARRY_SUMMERS} all visited Epstein around the time Tether was founded",
+        show_with_name=BROCK_PIERCE,
         truncate_to=(13_500, 16_000),
     ),
-    DocCfg(id='022952', author=MICHAEL_WOLFF, description=MICHAEL_WOLFF_EPSTEIN_ARTICLE_DRAFT),
-    DocCfg(id='024229', author=MICHAEL_WOLFF, description=MICHAEL_WOLFF_EPSTEIN_ARTICLE_DRAFT),
     DocCfg(id='031198', author='Morning News USA', description=f"article about identify of Jane Doe in {JANE_DOE_V_EPSTEIN_TRUMP}"),
     DocCfg(id='015462', author='Nautilus Education', description=f'magazine (?) issue'),
     DocCfg(id='031972', author=NYT, description=f"article about #MeToo allegations against {LAWRENCE_KRAUSS}", date='2018-03-07'),
@@ -2654,6 +2656,10 @@ CONFIGS_BY_ID = {cfg.id: cfg for cfg in ALL_CONFIGS}
 for cfg in ALL_CONFIGS:
     for dupe_cfg in cfg.duplicate_cfgs():
         CONFIGS_BY_ID[dupe_cfg.id] = dupe_cfg
+
+
+# Collect special docs to show with special people
+SHOW_WITH_DOCS = {id: list(cfgs) for id, cfgs in groupby(ALL_CONFIGS, lambda cfg: cfg.show_with_name) if id}
 
 
 def check_no_overlapping_configs():

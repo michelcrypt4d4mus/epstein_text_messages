@@ -274,7 +274,10 @@ class EpsteinFiles:
                 emails=self.emails_for(name),
                 imessage_logs=self.imessage_logs_for(name),
                 is_uninteresting=name in self.uninteresting_emailers,
-                other_files=[f for f in self.other_files if name and name == f.author]
+                other_files=[
+                    f for f in self.other_files
+                    if name and (name == f.author or (f.config and name == f.config.show_with_name))
+                ]
             )
             for name in names
         ]
