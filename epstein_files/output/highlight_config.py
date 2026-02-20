@@ -1585,7 +1585,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"New\s*Zealand",
             r"Philippines",
             r"Sam ?sung",
-            r"South\s*Korean?",
+            r"(?<!North\s)(South\s*)?Korean?",
             r"Tai(pei|wan)",
             r"Thai(land)?",
             r"Vietnam(ese)?",
