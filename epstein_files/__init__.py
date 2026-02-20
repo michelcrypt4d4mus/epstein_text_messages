@@ -41,7 +41,7 @@ def epstein_generate() -> None:
     timer, epstein_files = _load_files_and_check_early_exit_args()
     print_title_page_top()
 
-    if args.email_timeline or args.output_word_count:
+    if args.all_emails_chrono or args.output_word_count:
         print_color_key()
     else:
         print_title_page_bottom(epstein_files)
@@ -57,16 +57,16 @@ def epstein_generate() -> None:
     elif args.output_word_count:
         print_word_counts(epstein_files)
         timer.print_at_checkpoint(f"Finished counting words")
-    elif args.output_doj_files:
+    elif args.all_doj_files:
         printed_doj_files = print_doj_files(epstein_files)
         timer.log_section_complete('DojFile', epstein_files.doj_files, printed_doj_files)
     else:
         if args.output_emails:
             printed_emails = print_emails_section(epstein_files)
             timer.log_section_complete('Email', epstein_files.emails, printed_emails)
-        elif args.email_timeline:
-            print_email_timeline(epstein_files)
-            timer.print_at_checkpoint(f"Printed chronological emails table")
+        elif args.all_emails_chrono:
+            printed_emails = print_email_timeline(epstein_files)
+            timer.log_section_complete('Chronological Email', epstein_files.emails, printed_emails)
 
         if args.output_texts:
             printed_logs = print_text_messages_section(epstein_files)

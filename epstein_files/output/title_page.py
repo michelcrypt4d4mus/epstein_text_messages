@@ -76,7 +76,7 @@ def print_other_page_link(epstein_files: 'EpsteinFiles') -> None:
         txt.append(" unclassifiable files of particular interest")
 
     print_centered(parenthesize(txt), style=OTHER_PAGE_MSG_STYLE)
-    chrono_emails_link = link_text_obj(SiteType.get_url(SiteType.CHRONOLOGICAL_EMAILS), 'a page', style='light_slate_grey bold')
+    chrono_emails_link = link_text_obj(SiteType.get_url(SiteType.EMAILS_CHRONOLOGICAL), 'a page', style='light_slate_grey bold')
     chrono_emails_txt = Text(f"there's also ").append(chrono_emails_link)
     chrono_emails_txt.append(' with all the emails in chronological order')
     print_centered(parenthesize(chrono_emails_txt), style=OTHER_PAGE_MSG_STYLE)

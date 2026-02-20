@@ -35,18 +35,19 @@ parser.add_argument('--name', '-n', action='append', dest='names', help='specify
 parser.add_argument('--overwrite-pickle', '-op', action='store_true', help='re-parse the files and ovewrite cached data')
 parser.add_argument('--pickle-path', '-fp', help='path to load saved data from', default=PICKLED_PATH)
 
+# Any output arg that doesn't start with --all is curated, meaning uninteresting documents will be suppressed
 output = parser.add_argument_group('OUTPUT', 'Options used by epstein_generate.')
+output.add_argument('--all-doj-files', '-ad', action='store_true', help='all the DOJ files from 2026-01-30')
 output.add_argument('--all-emails', '-ae', action='store_true', help='all the emails instead of just the interesting ones')
+output.add_argument('--all-emails-chrono', '-aec', action='store_true', help='all emails in chronological order')
 output.add_argument('--all-other-files', '-ao', action='store_true', help='all the non-email, non-text msg files instead of just the interesting ones')
 output.add_argument('--all-texts', '-at', action='store_true', help='all the text messages instead of just the interesting ones')
 parser.add_argument('--build', '-b', nargs="?", default=None, const=DEFAULT_FILE, help='write output to HTML file')
-output.add_argument('--email-timeline', action='store_true', help='print a table of all emails in chronological order')
 output.add_argument('--emailers-info', '-ei', action='store_true', help='write a .png of the eeailers info table')
 output.add_argument('--json-files', action='store_true', help='pretty print all the raw JSON data files in the collection and exit')
 output.add_argument('--json-metadata', '-jm', action='store_true', help='dump JSON metadata for all files and exit')
 output.add_argument('--mobile', '-mob', action='store_true', help='build a mobile version of the site')
 output.add_argument('--output-chrono', '-oc', action='store_true', help='output curated files of all types in chronological order')
-output.add_argument('--output-doj-files', '-od', action='store_true', help='generate the DOJ files from 2026-01-30')
 output.add_argument('--output-emails', '-oe', action='store_true', help='generate emails section')
 output.add_argument('--output-other', '-oo', action='store_true', help='generate other files section')
 output.add_argument('--output-texts', '-ot', action='store_true', help='generate text messages section')
@@ -107,7 +108,7 @@ args.any_output_selected = any([is_output_arg(arg) and val for arg, val in vars(
 args.suppress_uninteresting = not any(arg.startswith('all_') and val for arg, val in vars(args).items())
 args._site_type = SiteType.CURATED
 
-if not (args.any_output_selected or args.email_timeline or args.emailers_info or args.stats):
+if not (args.any_output_selected or args.all_emails_chrono or args.emailers_info or args.stats):
     if is_html_script:
         logger.warning(f"No output section chosen; outputting default selection of texts, selected emails, and other files...")
 
@@ -116,27 +117,25 @@ if not (args.any_output_selected or args.email_timeline or args.emailers_info or
 if is_html_script:
     if args.positional_args and not args.repair:
         exit_with_error(f"{parser.prog} does not accept positional arguments (receeived {args.positional_args})")
-    elif parser.prog == EPSTEIN_GENERATE and args.any_output_selected and args.email_timeline:
-        exit_with_error(f"--email-timeline option is mutually exlusive with other output options")
 
     # TODO: include the JSON and word count file outputs here
     if args.build == DEFAULT_FILE:
-        if args.all_emails:
-            args._site_type = SiteType.GROUPED_EMAILS
+        if args.all_doj_files:
+            args._site_type = SiteType.DOJ_FILES
+        elif args.all_emails:
+            args._site_type = SiteType.EMAILS
+        elif args.all_emails_chrono:
+            args._site_type = SiteType.EMAILS_CHRONOLOGICAL
         elif args.all_texts:
             args._site_type = SiteType.TEXT_MESSAGES
         elif args.all_other_files:
             args._site_type = SiteType.OTHER_FILES_TABLE
-        elif args.email_timeline:
-            args._site_type = SiteType.CHRONOLOGICAL_EMAILS
         elif args.json_metadata:
             args._site_type = SiteType.JSON_METADATA
         elif args.mobile:
             args._site_type = SiteType.MOBILE  # NOTE: mobile must come before CURATED_CHRONOLOGICAL!
         elif args.output_chrono:
             args._site_type = SiteType.CURATED_CHRONOLOGICAL
-        elif args.output_doj_files:
-            args._site_type = SiteType.DOJ_FILES
         elif args.output_word_count:
             args._site_type = SiteType.WORD_COUNT
 

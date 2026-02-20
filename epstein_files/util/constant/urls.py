@@ -153,7 +153,7 @@ def internal_person_link_url(name: str) -> str:
 
 
 def other_site_type() -> SiteType:
-    return SiteType.CURATED if args._site_type != SiteType.CURATED else SiteType.GROUPED_EMAILS
+    return SiteType.CURATED if args._site_type != SiteType.CURATED else SiteType.EMAILS
 
 
 def other_site_url() -> str:

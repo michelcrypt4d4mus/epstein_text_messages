@@ -334,8 +334,7 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
         'Co-authored with iPhone auto-correct',
         'Pls excuse tupos & abbrvtns',
         'Typos, misspellings courtesy of iPhone',
-        'Typos, misspellings courtesy of iPhone word & thought substitution.',
-        'Typos, misspellings courtesy of iPhone.',
+        'Typos, misspellings courtesy of iPhone word & thought substitution',
         'i Phone feature: Tupos & Abbrvtns',
     ],
     "Lisa New": [

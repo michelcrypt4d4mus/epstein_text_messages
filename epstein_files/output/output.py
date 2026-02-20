@@ -75,11 +75,11 @@ def print_curated_chronological(epstein_files: EpsteinFiles) -> list[Document]:
 
 def print_doj_files(epstein_files: EpsteinFiles) -> list[DojFile]:
     """Doesn't print DojFiles that are actually Emails, that's handled in print_emails()."""
-    Document.print_documents(epstein_files.doj_files)
+    Document.print_documents(Document.without_dupes(epstein_files.doj_files))
     return epstein_files.doj_files
 
 
-def print_email_timeline(epstein_files: EpsteinFiles) -> None:
+def print_email_timeline(epstein_files: EpsteinFiles) -> list[Email]:
     """Print all emails in chronological order."""
     emails = Document.sort_by_timestamp([e for e in epstein_files.unique_emails if not e.is_mailing_list])
     title = f'Table of All {len(emails):,} Non-Junk Emails in Chronological Order (actual emails below)'
@@ -90,6 +90,8 @@ def print_email_timeline(epstein_files: EpsteinFiles) -> None:
 
     for email in emails:
         console.print(email)
+
+    return emails
 
 
 def print_emailers_info(epstein_files: EpsteinFiles) -> None:
