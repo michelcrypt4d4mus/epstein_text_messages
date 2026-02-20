@@ -16,7 +16,7 @@ from epstein_files.documents.messenger_log import MessengerLog
 from epstein_files.documents.other_file import OtherFile
 from epstein_files.output.highlight_config import (QUESTION_MARKS_TXT, get_highlight_group_for_name,
      get_style_for_name, styled_category, styled_name)
-from epstein_files.output.highlighted_names import HighlightedNames, HighlightedText, ManualHighlight
+from epstein_files.output.highlighted_names import HighlightedNames, HighlightPatterns, ManualHighlight
 from epstein_files.output.rich import (GREY_NUMBERS, TABLE_TITLE_STYLE, build_table, console, join_texts,
      print_centered, print_special_note)
 from epstein_files.people.contact import Contact
@@ -117,7 +117,7 @@ class Person:
         return JEFFREY_EPSTEIN in contacts
 
     @property
-    def highlight_group(self) -> HighlightedNames | HighlightedText | ManualHighlight | None:
+    def highlight_group(self) -> HighlightedNames | HighlightPatterns | ManualHighlight | None:
         """Highlight group of any kind that matches this name."""
         if '_highlight_group' not in dir(self):
             self._highlight_group = get_highlight_group_for_name(self.name)

@@ -315,6 +315,7 @@ class EpsteinFiles:
 
     def repair_ids(self, ids: list[str]) -> None:
         """Repair/reload the ids specified and save to disk."""
+        ids = uniquify(ids)
         doc_paths = [d.file_path for d in self.documents if d.file_id in ids]
 
         if len(doc_paths) != len(ids):

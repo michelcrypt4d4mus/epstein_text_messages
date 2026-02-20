@@ -101,6 +101,9 @@ CATEGORY_PREAMBLES = {
 class DocCfg:
     """
     Encapsulates info about files that needs to be manually configured because it cannot be programmatically inferred.
+    Setting the `is_interesting` flag overrides all other considerations when determining a document's
+    interestingness (or lack thereof) and also has the additional side effect of causing the entire file to be
+    printed (it's the equivalent of setting truncate_to=NO_TRUNCATE).
 
     Attributes:
         id (str): ID of file

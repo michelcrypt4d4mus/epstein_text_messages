@@ -29,10 +29,10 @@ from epstein_files.util.constant.strings import ARCHIVE_LINK_COLOR, REDACTED, TI
 from epstein_files.util.constant.urls import URL_SIGNIFIERS
 from epstein_files.util.constants import CONFIGS_BY_ID, DEFAULT_TRUNCATE_TO, NO_TRUNCATE, SHORT_TRUNCATE_TO
 from epstein_files.util.env import args, site_config
-from epstein_files.util.helpers.data_helpers import (AMERICAN_TIME_REGEX, TIMEZONE_INFO, collapse_newlines,
+from epstein_files.util.helpers.data_helpers import (AMERICAN_TIME_REGEX, TIMEZONE_INFO,
      prefix_keys, remove_timezone, uniquify)
 from epstein_files.util.helpers.link_helper import link_text_obj
-from epstein_files.util.helpers.string_helper import capitalize_first
+from epstein_files.util.helpers.string_helper import capitalize_first, collapse_newlines
 from epstein_files.output.highlight_config import HIGHLIGHTED_NAMES, get_style_for_name
 from epstein_files.util.logging import logger
 

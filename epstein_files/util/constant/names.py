@@ -398,6 +398,15 @@ def extract_last_name(name: str) -> str:
         return first_last_names[-1]
 
 
+def name_variations(name: str) -> list[str]:
+    """['Firstname', 'Lastname', 'Lastname, Firstname'."""
+    if ' 'in name:
+        # NOTE:  Order matters
+        return [reversed_name(name), extract_first_name(name), extract_last_name(name)]
+    else:
+        return []
+
+
 def reverse_first_and_last_names(name: Name) -> str:
     """If there's a comma in the name in the style 'Lastname, Firstname', reverse it and remove comma."""
     if name is None or '@' in name:

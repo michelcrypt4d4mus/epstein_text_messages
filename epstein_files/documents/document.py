@@ -29,11 +29,11 @@ from epstein_files.util.constant.names import Name
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constants import CONFIGS_BY_ID, DEFAULT_TRUNCATE_TO
 from epstein_files.util.env import args, site_config
-from epstein_files.util.helpers.data_helpers import (collapse_newlines, date_str, patternize, prefix_keys,
+from epstein_files.util.helpers.data_helpers import (date_str, patternize, prefix_keys,
      remove_zero_time, without_falsey)
 from epstein_files.util.helpers.link_helper import link_text_obj
 from epstein_files.util.helpers.file_helper import coerce_file_path, file_size_to_str
-from epstein_files.util.helpers.string_helper import join_truthy
+from epstein_files.util.helpers.string_helper import collapse_newlines, join_truthy
 from epstein_files.util.logging import DOC_TYPE_STYLES, FILENAME_STYLE, logger
 
 CHECK_LINK_FOR_DETAILS = 'not shown here, check original PDF for details'
@@ -382,7 +382,7 @@ class Document:
 
     def log(self, msg: str, level: int = logging.INFO) -> None:
         """Log a message with with this document's filename as a prefix."""
-        logger.log(level, f"{self.file_id} {msg}")
+        logger.log(level, f"{self._class_name} {self.file_id} {msg}")
 
     def log_top_lines(self, n: int = 10, msg: str = '', level: int = logging.INFO) -> None:
         """Log first 'n' lines of self.text at 'level'. 'msg' can be optionally provided."""

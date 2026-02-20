@@ -14,7 +14,6 @@ from epstein_files.util.logging import logger
 T = TypeVar('T')
 
 ISO_DATE_REGEX = re.compile(r'\d{4}-\d{2}(-\d{2})?')
-MULTINEWLINE_REGEX = re.compile(r"\n{2,}")
 CONSTANT_VAR_REGEX = re.compile(r"^[A-Z_]+$")
 ALL_NAMES = [v for k, v in vars(names).items() if isinstance(v, str) and CONSTANT_VAR_REGEX.match(k)]
 
@@ -24,7 +23,6 @@ PACIFIC_TZ = tz.gettz("America/Los_Angeles")
 TIMEZONE_INFO = {"PDT": PACIFIC_TZ, "PST": PACIFIC_TZ}  # Suppresses annoying warnings from parse() calls
 
 all_elements_same = lambda _list: len(_list) == 0 or all(x == _list[0] for x in _list)
-collapse_newlines = lambda text: MULTINEWLINE_REGEX.sub('\n\n', text)
 date_str = lambda dt: dt.isoformat()[0:10] if dt else None
 escape_double_quotes = lambda text: text.replace('"', r'\"')
 escape_single_quotes = lambda text: text.replace("'", r"\'")

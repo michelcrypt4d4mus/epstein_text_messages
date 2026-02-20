@@ -4,17 +4,19 @@ regex mechanism as well as identify individuals in email headers etc.
 """
 import json
 import re
+from abc import ABC
 from dataclasses import dataclass, field
 
 from epstein_files.people.contact import Contact
 from epstein_files.util.constant.names import Name, constantize_name
 from epstein_files.util.constant.strings import REGEX_STYLE_PREFIX
 from epstein_files.util.helpers.data_helpers import without_falsey
+from epstein_files.util.helpers.string_helper import as_pattern, capture_group_marker
 from epstein_files.util.logging import logger
 
 
 @dataclass(kw_only=True)
-class HighlightGroup:
+class HighlightGroup(ABC):
     """
     Regex and style information for things we want to highlight.
 
@@ -29,26 +31,28 @@ class HighlightGroup:
     style: str
     theme_style_name: str = field(init=False)
     _capture_group_label: str = field(init=False)
-    _match_group_var: str = field(init=False)
+    _capture_group_marker: str = field(init=False)
 
     def __post_init__(self):
         if not self.label:
             raise ValueError(f'Missing label for {self}')
 
         self._capture_group_label = self.label.lower().replace(' ', '_').replace('-', '_')
-        self._match_group_var = fr"?P<{self._capture_group_label}>"
+        self._capture_group_marker = capture_group_marker(self._capture_group_label)
         self.theme_style_name = f"{REGEX_STYLE_PREFIX}.{self._capture_group_label}"
 
 
 @dataclass(kw_only=True)
-class HighlightedText(HighlightGroup):
+class HighlightPatterns(HighlightGroup):
     """
     Color highlighting for things other than people's names (e.g. phone numbers, email headers).
 
     Attributes:
+        flags (re.RegexFlag): flags to use when compiling the patterns to an `re.Pattern`
         patterns (list[str]): regex patterns identifying strings matching this group
     """
     patterns: list[str] = field(default_factory=list)
+    regex_flags: re.RegexFlag = re.IGNORECASE | re.MULTILINE
     _pattern: str = field(init=False)
 
     def __post_init__(self):
@@ -57,24 +61,28 @@ class HighlightedText(HighlightGroup):
         if not self.label:
             raise ValueError(f"No label provided for {repr(self)}")
 
+        self.patterns = [as_pattern(p) for p in self.patterns]
         self._pattern = '|'.join(self.patterns)
+        self.regex = self.compile_patterns(self._pattern)
 
+    def __repr__(self) -> str:
+        return f"{type(self).__name__}(label='{self.label}', pattern='{self._pattern}', style='{self.style}')"
+
+    def compile_patterns(self, pattern: str) -> re.Pattern:
         try:
-            self.regex = re.compile(fr"({self._match_group_var}{self._pattern})", re.IGNORECASE | re.MULTILINE)
-            logger.debug(self._pattern)
+            return re.compile(fr"({self._capture_group_marker}{pattern})", self.regex_flags)
         except Exception as e:
-            logger.error(f"Failed to compile regex for {self.label}, trying each:")
+            logger.error(f"Failed to compile regex '{pattern}'\n\nTrying each piece individually...")
 
             for p in self.patterns:
                 logger.warning(f"Attempting to compile '{p}'...")
                 re.compile(p)
 
-    def __repr__(self) -> str:
-        return f"{type(self).__name__}(label='{self.label}', pattern='{self._pattern}', style='{self.style}')"
+            raise e
 
 
 @dataclass(kw_only=True)
-class HighlightedNames(HighlightedText):
+class HighlightedNames(HighlightPatterns):
     """
     Encapsulates info about people, places, and other strings we want to highlight with RegexHighlighter.
     Constructor must be called with either an 'emailers' arg or a 'pattern' arg (or both).
@@ -88,21 +96,22 @@ class HighlightedNames(HighlightedText):
     category: str = ''
     contacts: list[Contact] = field(default_factory=list)
     contacts_lookup: dict[Name, Contact] = field(default_factory=dict)
+    flags: re.RegexFlag = re.IGNORECASE
     should_match_first_last_name: bool = True  # TODO: this no longer does anything?
 
     def __post_init__(self):
         if not (self.patterns or self.contacts):
-            raise ValueError(f"Must provide either 'emailers' or 'pattern' arg.")
+            raise ValueError(f"Must provide either 'contacts' or 'patterns' arg.")
         elif not self.label:
             if len(self.contacts) == 1 and self.contacts[0].name:
                 self.label = self.contacts[0].name
             else:
                 raise ValueError(f"No label provided for {repr(self)}")
 
-        self.patterns = [p.replace(' ', r"[\s_]+") if '?<!' not in p else p for p in self.patterns]
         super().__post_init__()
-        self._pattern = '|'.join([contact.highlight_pattern for contact in self.contacts] + self.patterns)
-        self.regex = re.compile(fr"\b({self._match_group_var}({self._pattern})s?)\b", re.IGNORECASE)
+        with_contacts_pattern = '|'.join([c.highlight_pattern for c in self.contacts] + self.patterns)
+        self._pattern = fr"\b(({with_contacts_pattern})s?)\b"
+        self.regex = self.compile_patterns(self._pattern)
         self.contacts_lookup = Contact.build_name_lookup(self.contacts)
 
     def category_str(self) -> str:
@@ -162,7 +171,7 @@ class ManualHighlight(HighlightGroup):
     def __post_init__(self):
         super().__post_init__()
 
-        if self._match_group_var not in self.pattern:
+        if self._capture_group_marker not in self.pattern:
             raise ValueError(f"Label '{self.label}' must appear in regex pattern '{self.pattern}'")
 
         self.regex = re.compile(self.pattern, re.MULTILINE)
