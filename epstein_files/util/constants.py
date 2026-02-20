@@ -1028,25 +1028,10 @@ EMAILS_CONFIG = [
         recipients=[LESLEY_GROFF],
     ),
     EmailCfg(
-        id='EFTA02177147',
-        author=LINDA_STONE,
-        author_uncertain='"Hi Linda"',
-        description=f"Epstein planning a symposium \"on Alternative Money or Complementary Currency\" in 2012",
-        is_interesting=True,
-        recipients=[LESLEY_GROFF],
-    ),
-    EmailCfg(
         id='EFTA02730473',
         author='Records Management (Sun Sentinel?)',
         is_interesting=False,
         recipients=['Records Management Division'],
-    ),
-    EmailCfg(
-        id='EFTA01965506',
-        author_reason='"iPhone word substitution" in signature, which is traced back to "Linda, thanks" in EFTA00961792',
-        author=LINDA_STONE,
-        description='Barry Silbert became the CEO of Digital Currency Group, the top crypto fund in the U.S.',
-        is_interesting=True,
     ),
     EmailCfg(
         id='EFTA00381451',
@@ -2565,7 +2550,21 @@ OTHER_FILES_CRYPTO = [
     EmailCfg(id='EFTA02588748', description=f'discussion of crypto food stamps debit cards', is_interesting=True, truncate_to=800),
     EmailCfg(id='EFTA02035756', description=f"{AL_SECKEL} introduces Epstein to {BROCK_PIERCE}", is_interesting=True),
     EmailCfg(id='EFTA02372964', description='an "ICO" or "initial coin offering" was a very popular type of crypto scam at this time'),
-
+    EmailCfg(
+        id='EFTA02177147',
+        author=LINDA_STONE,
+        author_uncertain='"Hi Linda"',
+        description=f"Epstein planning a symposium \"on Alternative Money or Complementary Currency\" in 2012",
+        is_interesting=True,
+        recipients=[LESLEY_GROFF],
+    ),
+    EmailCfg(
+        id='EFTA01965506',
+        author_reason='"iPhone word substitution" in signature, which is traced back to "Linda, thanks" in EFTA00961792',
+        author=LINDA_STONE,
+        description='Barry Silbert became the CEO of Digital Currency Group, a huge US crypto fund w/Larry Summers on the board',
+        is_interesting=True,
+    ),
 ]
 
 OTHER_FILES_SKYPE_LOG = [
