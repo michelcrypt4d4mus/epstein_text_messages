@@ -12243,6 +12243,7 @@
                     ""
                 ],
                 "author": "Jeffrey Epstein",
+                "category": "crypto",
                 "description": "Joi Ito writes to Epstein to thank him for providing funding for the bitcoin core development team",
                 "file_id": "026360",
                 "file_size": 4747,
@@ -50824,6 +50825,7 @@
                 ],
                 "author": "Maria Prusakova",
                 "author_reason": "Epstein paid for Prusakova to go to Berkeley",
+                "category": "girls",
                 "description": "Masha Prusso asks about Zubair Khan, discusses recruiting girls for Epstein",
                 "file_id": "033178",
                 "file_size": 729,
@@ -58721,6 +58723,7 @@
                     ""
                 ],
                 "author": "Kathryn Ruemmler",
+                "category": "crypto",
                 "description": "Epstein and Kathryn Ruemmler meet with head of NY Dept of Financial Services Ben Lawsky to discuss bitcoin",
                 "file_id": "EFTA00357845",
                 "file_size": 1887,
@@ -59815,6 +59818,33 @@
                 "attachments": [
                     ""
                 ],
+                "author": "Lesley Groff",
+                "file_id": "EFTA00474175",
+                "file_size": 3689,
+                "filename": "EFTA00474175.txt",
+                "header": {
+                    "author": "Lesley Groff",
+                    "cc": [
+                        "Bella Klein <"
+                    ],
+                    "sent_at": "Tue, 29 May 2018 19:20:19 +0000",
+                    "subject": "Fwd:",
+                    "to": [
+                        "Arda Beskardes"
+                    ]
+                },
+                "num_lines": 86,
+                "recipients": [
+                    "Arda Beskardes",
+                    "Bella Klein"
+                ],
+                "timestamp": "2018-05-29T19:20:19",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    ""
+                ],
                 "author": "Madars Virza",
                 "file_id": "EFTA00474319",
                 "file_size": 2138,
@@ -59938,6 +59968,7 @@
                 "attachments": [
                     ""
                 ],
+                "category": "crypto",
                 "description": "discussion of Medici Bank, a new successor to Noble Bank as a crypto bank",
                 "file_id": "EFTA00495372",
                 "file_size": 15298,
@@ -59955,6 +59986,29 @@
                     "Jeffrey Epstein"
                 ],
                 "timestamp": "2019-05-19T21:42:55",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    ""
+                ],
+                "author": "Arda Beskardes",
+                "file_id": "EFTA00533755",
+                "file_size": 2347,
+                "filename": "EFTA00533755.txt",
+                "header": {
+                    "author": "arda beskardes",
+                    "sent_at": "Wed, 15 Jun 2016 17:15:30 +0000",
+                    "subject": "Re: Green card",
+                    "to": [
+                        "Karyna Shuliak"
+                    ]
+                },
+                "num_lines": 61,
+                "recipients": [
+                    "Karyna Shuliak"
+                ],
+                "timestamp": "2016-06-15T17:15:30",
                 "type": "Email"
             },
             {
@@ -60156,6 +60210,27 @@
                     "Jeffrey Epstein"
                 ],
                 "timestamp": "2016-11-16T12:18:50",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    ""
+                ],
+                "file_id": "EFTA00631762",
+                "file_size": 2697,
+                "filename": "EFTA00631762.txt",
+                "header": {
+                    "sent_at": "Wed, 21 Jan 2015 22:12:28 +0000",
+                    "subject": "Fwd: Withdrawal of H1B for SLK",
+                    "to": [
+                        "Jeffrey Epstein <jeevacation@gmail.com>"
+                    ]
+                },
+                "num_lines": 51,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "timestamp": "2015-01-21T22:12:28",
                 "type": "Email"
             },
             {
@@ -60570,6 +60645,34 @@
                 "attachments": [
                     ""
                 ],
+                "author": "Anastasiya Siroochenko",
+                "author_reason": "Jmail",
+                "file_id": "EFTA00645449",
+                "file_size": 1438,
+                "filename": "EFTA00645449.txt",
+                "header": {
+                    "author": "JaM=IMIlla",
+                    "cc": [
+                        "\"jeffrey E.\" <jeevacation@gmail.com>"
+                    ],
+                    "sent_at": "Fri, 03 Feb 2017 15:06:57 +0000",
+                    "subject": "Re:",
+                    "to": [
+                        "Arda Beskardes"
+                    ]
+                },
+                "num_lines": 37,
+                "recipients": [
+                    "Arda Beskardes",
+                    "Jeffrey Epstein"
+                ],
+                "timestamp": "2017-02-03T15:06:57",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    ""
+                ],
                 "author": "Joi Ito",
                 "file_id": "EFTA00649516",
                 "file_size": 3569,
@@ -60671,6 +60774,7 @@
                     ""
                 ],
                 "author": "Brock Pierce",
+                "category": "crypto",
                 "description": "Brock Pierce says they will not invest in Bitfury",
                 "file_id": "EFTA00658457",
                 "file_size": 2438,
@@ -60743,6 +60847,7 @@
                     ""
                 ],
                 "author": "Brock Pierce",
+                "category": "crypto",
                 "description": "Brock Pierce suggests Larry Summers could get involved with Tether and Noble Bank",
                 "file_id": "EFTA00664424",
                 "file_size": 920,
@@ -61054,6 +61159,7 @@
                     ""
                 ],
                 "author": "Brock Pierce",
+                "category": "crypto",
                 "description": "Brock Pierce and Epstein invested in Coinbase which would turn out to be extremely lucrative",
                 "dupe_type": "same",
                 "duplicate_ids": [
@@ -61375,6 +61481,7 @@
                     ""
                 ],
                 "author": "LinkedIn",
+                "category": "crypto",
                 "description": "Brock Pierce posted a review of the infamous Russian criminal crypto exchange BTC-e to LinkedIn",
                 "file_id": "EFTA00689503",
                 "file_size": 4074,
@@ -61545,6 +61652,29 @@
                 "attachments": [
                     ""
                 ],
+                "author": "Jon Tomlinson",
+                "file_id": "EFTA00697535",
+                "file_size": 2107,
+                "filename": "EFTA00697535.txt",
+                "header": {
+                    "author": "Jon Tomlinson",
+                    "sent_at": "Wed, 17 May 2017 13:04:42 +0000",
+                    "subject": "Fwd: 2016 tax fo",
+                    "to": [
+                        "\"Jeffrey E.\" <jeevacation@gmail.com>"
+                    ]
+                },
+                "num_lines": 45,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "timestamp": "2017-05-17T13:04:42",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    ""
+                ],
                 "author": "Joi Ito",
                 "file_id": "EFTA00697880",
                 "file_size": 4259,
@@ -61570,6 +61700,7 @@
                     ""
                 ],
                 "author": "Brock Pierce",
+                "category": "crypto",
                 "description": "'Fred' is probably Coinbase co-founder Fred Ehrsam",
                 "file_id": "EFTA00699275",
                 "file_size": 823,
@@ -61756,6 +61887,30 @@
                     "Jeffrey Epstein"
                 ],
                 "timestamp": "2016-01-30T21:02:44",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    ""
+                ],
+                "author": "Sultan Ahmed Bin Sulayem",
+                "file_id": "EFTA00704551",
+                "file_size": 381,
+                "filename": "EFTA00704551.txt",
+                "header": {
+                    "author": "Sultan Bin Sulayem",
+                    "sent_at": "Thu, 03 Aug 2017 17:04:41 +0000",
+                    "subject": "Bitcoin",
+                    "to": [
+                        "Jeffrey Epstein <jeevacation@gmail.com>"
+                    ]
+                },
+                "num_lines": 8,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "sent_from_device": "Sent from my iPhone",
+                "timestamp": "2017-08-03T17:04:41",
                 "type": "Email"
             },
             {
@@ -61976,6 +62131,29 @@
                     "Jeffrey Epstein"
                 ],
                 "timestamp": "2017-10-10T22:21:04",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    ""
+                ],
+                "author": "Jeremy Rubin",
+                "file_id": "EFTA00714127",
+                "file_size": 3075,
+                "filename": "EFTA00714127.txt",
+                "header": {
+                    "author": "Jeremy Rubin",
+                    "sent_at": "Mon, 19 Oct 2015 20:47:18 +0000",
+                    "subject": "Re: BTC Game Theory",
+                    "to": [
+                        "\"Jeffrey E.\" <jeevacation\u00aegmail.com>"
+                    ]
+                },
+                "num_lines": 54,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "timestamp": "2015-10-19T20:47:18",
                 "type": "Email"
             },
             {
@@ -62674,6 +62852,7 @@
                     "ledgerx-deck-2015-11-16.003.pdf"
                 ],
                 "author": "Jeremy Rubin",
+                "category": "crypto",
                 "description": "fundraising email for LedgerX which was later acquired by FTX for $298 million",
                 "file_id": "EFTA00830911",
                 "file_size": 3037,
@@ -63096,7 +63275,8 @@
                     ""
                 ],
                 "author": "Jeffrey Epstein",
-                "comment": "take a picture of your pussy",
+                "category": "girls",
+                "comment": "\"take a picture of your pussy\"",
                 "file_id": "EFTA00848644",
                 "file_size": 1205,
                 "filename": "EFTA00848644.txt",
@@ -63449,6 +63629,7 @@
                 "attachments": [
                     ""
                 ],
+                "category": "crypto",
                 "description": "discussion of a crypto token based on GDAX (whatever that means)",
                 "file_id": "EFTA00867030",
                 "file_size": 453,
@@ -63699,6 +63880,7 @@
                     ""
                 ],
                 "author": "Jeffrey Epstein",
+                "category": "crypto",
                 "description": "Epstein and Steve Bannon discuss collection donations in bitcoin",
                 "file_id": "EFTA00881759",
                 "file_size": 9376,
@@ -64342,6 +64524,7 @@
                     ""
                 ],
                 "author": "Renata Bolotova",
+                "category": "girls",
                 "description": "reads like Renata Bolotova talking about recruiting girls for Epstein",
                 "file_id": "EFTA00927927",
                 "file_size": 1185,
@@ -64557,6 +64740,30 @@
             },
             {
                 "attachments": [
+                    "karyna_i-751_approval_notice.pdf"
+                ],
+                "author": "Arda Beskardes",
+                "file_id": "EFTA00947511",
+                "file_size": 2308,
+                "filename": "EFTA00947511.txt",
+                "header": {
+                    "attachments": "karyna_i-751_approval_notice.pdf",
+                    "author": "arda beskardes <",
+                    "sent_at": "Mon, 27 Nov 2017 22:29:56 +0000",
+                    "subject": "Re: for",
+                    "to": [
+                        "\"Jeffrey E.\" <jeevacation@gmail.com>"
+                    ]
+                },
+                "num_lines": 53,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "timestamp": "2017-11-27T22:29:56",
+                "type": "Email"
+            },
+            {
+                "attachments": [
                     ""
                 ],
                 "author": "Austin Hill",
@@ -64683,6 +64890,7 @@
                     "Alphabit_Digital_Currency_Fund_IM_07092017[1].pdf"
                 ],
                 "author": "Austin Hill",
+                "category": "crypto",
                 "description": "Austin Hill discusses crypto funds engaged in fraudulent wash trading",
                 "file_id": "EFTA00955063",
                 "file_size": 1513,
@@ -64825,6 +65033,7 @@
                     ""
                 ],
                 "author": "Austin Hill",
+                "category": "crypto",
                 "description": "discussion of sharia compliant crypto token",
                 "file_id": "EFTA00964459",
                 "file_size": 2866,
@@ -64892,6 +65101,29 @@
                     "Jeffrey Epstein"
                 ],
                 "timestamp": "2017-10-23T23:53:07",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    ""
+                ],
+                "author": "Jeffrey Epstein",
+                "file_id": "EFTA00972689",
+                "file_size": 1912,
+                "filename": "EFTA00972689.txt",
+                "header": {
+                    "author": "Jeffrey Epstein <jeevacation@gmail.com>",
+                    "sent_at": "Sun, 06 Oct 2013 19:46:00 +0000",
+                    "subject": "Re: who will use bitcoin now?",
+                    "to": [
+                        "Boris Nikolic"
+                    ]
+                },
+                "num_lines": 40,
+                "recipients": [
+                    "Boris Nikolic"
+                ],
+                "timestamp": "2013-10-06T19:46:00",
                 "type": "Email"
             },
             {
@@ -65182,6 +65414,7 @@
                     ""
                 ],
                 "author": "Jeffrey Epstein",
+                "category": "crypto",
                 "description": "Epstein proposes head of NY Dept of Financial Services Ben Lawsky get rid of sales tax on bitcoin",
                 "file_id": "EFTA00987194",
                 "file_size": 879,
@@ -65252,6 +65485,7 @@
                     ""
                 ],
                 "author": "Jeffrey Epstein",
+                "category": "crypto",
                 "description": "\"Andy Back\" is probably Blockstream bitcoin dev Adam Back",
                 "dupe_type": "same",
                 "duplicate_ids": [
@@ -65349,6 +65583,7 @@
                     ""
                 ],
                 "author": "Austin Hill",
+                "category": "crypto",
                 "description": "Epstein offers to cover all costs for Sharia Coin",
                 "file_id": "EFTA00990442",
                 "file_size": 2651,
@@ -65390,6 +65625,28 @@
                     "Richard Kahn"
                 ],
                 "timestamp": "2017-10-11T09:36:19",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    ""
+                ],
+                "author": "Masha Drokova",
+                "file_id": "EFTA00993615",
+                "file_size": 321,
+                "filename": "EFTA00993615.txt",
+                "header": {
+                    "author": "Masha Drokova <",
+                    "sent_at": "Thu, 12 Oct 2017 05:46:36 +0000",
+                    "to": [
+                        "jeevacation@gmail.com"
+                    ]
+                },
+                "num_lines": 6,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "timestamp": "2017-10-12T05:46:36",
                 "type": "Email"
             },
             {
@@ -65689,6 +65946,7 @@
                     ""
                 ],
                 "author": "Brock Pierce",
+                "category": "crypto",
                 "description": "Brock Pierce and Epstein discuss structure of crypto investments",
                 "file_id": "EFTA00998595",
                 "file_size": 6034,
@@ -65782,6 +66040,7 @@
                     ""
                 ],
                 "author": "Jeffrey Epstein",
+                "category": "crypto",
                 "description": "Brock Pierce discussing a possibly sham marriage to someone named Sue for immigration purposes",
                 "file_id": "EFTA00999392",
                 "file_size": 1565,
@@ -65806,6 +66065,7 @@
                     ""
                 ],
                 "author": "Larry Summers",
+                "category": "crypto",
                 "description": "Joi Ito and Jeremy Rubin meet Larry Summers to discuss bitcoin",
                 "file_id": "EFTA00999549",
                 "file_size": 2548,
@@ -65862,6 +66122,7 @@
                     ""
                 ],
                 "author": "Jeffrey Epstein",
+                "category": "crypto",
                 "description": "Epstein claims he's a fan of Adam Back (who has recently claimed he had nothing to do with Epstein)",
                 "file_id": "EFTA00999897",
                 "file_size": 945,
@@ -65909,6 +66170,7 @@
                     ""
                 ],
                 "author": "Brock Pierce",
+                "category": "crypto",
                 "description": "Brock Pierce asks for Epstein's permission to disclose his name to Coinbase team",
                 "file_id": "EFTA01000882",
                 "file_size": 1021,
@@ -66198,6 +66460,7 @@
                     ""
                 ],
                 "author": "Jeffrey Epstein",
+                "category": "crypto",
                 "description": "confirmation that Epstein did indeed meet head of NY Dept of Financial Services Ben Lawsky to discuss a 'high yield product'",
                 "file_id": "EFTA01002518",
                 "file_size": 760,
@@ -66757,7 +67020,8 @@
                     ""
                 ],
                 "author": "Vincenzo Iozzo",
-                "description": "founder of Layer1 is the only guy in crypto who doesn't want to meet Epstein",
+                "category": "crypto",
+                "description": "founder of Layer1 is the only guy in crypto who doesn't want to meet Epstein (didn't last though)",
                 "file_id": "EFTA01004753",
                 "file_size": 5941,
                 "filename": "EFTA01004753.txt",
@@ -67073,6 +67337,7 @@
                     ""
                 ],
                 "author": "Jeffrey Epstein",
+                "category": "crypto",
                 "description": "bitcoin dev Jeremy Rubin describes \"grey area between pump and develop\" when Epstein objects on ethical grounds",
                 "file_id": "EFTA01007544",
                 "file_size": 3905,
@@ -67202,6 +67467,7 @@
                     ""
                 ],
                 "author": "Jeffrey Epstein",
+                "category": "crypto",
                 "description": "Austin Hill calls Amir Taaki \"a bit crazy'",
                 "file_id": "EFTA01010209",
                 "file_size": 7165,
@@ -67214,7 +67480,6 @@
                         "Austin Hill"
                     ]
                 },
-                "is_interesting": false,
                 "num_lines": 165,
                 "recipients": [
                     "Austin Hill"
@@ -67322,6 +67587,7 @@
                     ""
                 ],
                 "author": "Jeffrey Epstein",
+                "category": "crypto",
                 "description": "Crypto PR Lab business plan",
                 "file_id": "EFTA01013922",
                 "file_size": 3090,
@@ -68761,6 +69027,7 @@
                     ""
                 ],
                 "author": "Brock Pierce",
+                "category": "crypto",
                 "description": "Brock Pierce arranging meeting between Bannon and Epstein (in Doha?)",
                 "file_id": "EFTA01051074",
                 "file_size": 2321,
@@ -68920,6 +69187,7 @@
                     ""
                 ],
                 "author": "Vincenzo Iozzo",
+                "category": "crypto",
                 "description": "Epstein says he knows \"a few\" guys who hold over $50 million in bitcoin",
                 "file_id": "EFTA01060993",
                 "file_size": 2823,
@@ -69119,6 +69387,7 @@
                     ""
                 ],
                 "author": "Jeffrey Epstein",
+                "category": "crypto",
                 "description": "Epstein tells Farkas he has not invested in Crypto Currency Partners II",
                 "file_id": "EFTA01139067",
                 "file_size": 2892,
@@ -69233,6 +69502,33 @@
                     "Amanda Kirby"
                 ],
                 "timestamp": "2014-01-08T10:06:35",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    ""
+                ],
+                "author": "Vahe Stepanian",
+                "file_id": "EFTA01388354",
+                "file_size": 1443,
+                "filename": "EFTA01388354.txt",
+                "header": {
+                    "author": "Vahe Stepanian",
+                    "cc": [
+                        "Stewart Oldfield Martin Zeman"
+                    ],
+                    "sent_at": "3/14/2018 5:51:56 PM",
+                    "subject": "DB Bitcoin and Blockchain Event - April 3, 2018",
+                    "to": [
+                        "Paul Barrett"
+                    ]
+                },
+                "num_lines": 37,
+                "recipients": [
+                    "Paul Barrett",
+                    "Stewart Oldfield Martin Zeman"
+                ],
+                "timestamp": "2018-03-14T17:51:56",
                 "type": "Email"
             },
             {
@@ -69574,6 +69870,7 @@
                     ""
                 ],
                 "author": "Joi Ito",
+                "category": "crypto",
                 "description": "Austin Hill is upset that Ito and Epstein seem to have invested in Stellar and Ripple, competing blockchain ecosystems",
                 "file_id": "EFTA01748990",
                 "file_size": 1108,
@@ -69627,6 +69924,7 @@
                     ""
                 ],
                 "author": "Vincenzo Iozzo",
+                "category": "crypto",
                 "description": "discussion of using blockchains in the repo markets",
                 "file_id": "EFTA01750652",
                 "file_size": 3673,
@@ -69697,6 +69995,7 @@
                     ""
                 ],
                 "author": "Joi Ito",
+                "category": "crypto",
                 "description": "Joi Ito and Epstein name their new fund Kyara",
                 "file_id": "EFTA01752601",
                 "file_size": 397,
@@ -70640,6 +70939,27 @@
                 "attachments": [
                     ""
                 ],
+                "file_id": "EFTA01849532",
+                "file_size": 345,
+                "filename": "EFTA01849532.txt",
+                "header": {
+                    "sent_at": "ue 1 3:14:52 PM",
+                    "subject": "Bitcoin",
+                    "to": [
+                        "\" Deevacation\u00a9gmail.comj"
+                    ]
+                },
+                "num_lines": 9,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "timestamp": "2026-02-01T15:14:52",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    ""
+                ],
                 "author": "Jeffrey Epstein",
                 "file_id": "EFTA01851492",
                 "file_size": 1228,
@@ -70806,6 +71126,50 @@
                     "Donald Norman"
                 ],
                 "timestamp": "2011-07-21T23:26:33",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    ""
+                ],
+                "author": "Jeffrey Epstein",
+                "file_id": "EFTA01862563",
+                "file_size": 742,
+                "filename": "EFTA01862563.txt",
+                "header": {
+                    "author": "Jeffrey Epstein",
+                    "sent_at": "Sat 6/11/2011 12:24:09 PM",
+                    "to": [
+                        "John Brockman"
+                    ]
+                },
+                "num_lines": 17,
+                "recipients": [
+                    "John Brockman"
+                ],
+                "timestamp": "2011-06-11T12:24:09",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    ""
+                ],
+                "author": "Jeffrey Epstein",
+                "file_id": "EFTA01866387",
+                "file_size": 842,
+                "filename": "EFTA01866387.txt",
+                "header": {
+                    "author": "Jeffrey Epstein",
+                    "sent_at": "Mon 6/6/2011 11:54:00 AM",
+                    "to": [
+                        "John Brockman"
+                    ]
+                },
+                "num_lines": 17,
+                "recipients": [
+                    "John Brockman"
+                ],
+                "timestamp": "2011-06-06T11:54:00",
                 "type": "Email"
             },
             {
@@ -71095,6 +71459,29 @@
                 "attachments": [
                     ""
                 ],
+                "author": "Nicole Junkermann",
+                "file_id": "EFTA01914104",
+                "file_size": 931,
+                "filename": "EFTA01914104.txt",
+                "header": {
+                    "author": "Nicole Junkermann",
+                    "sent_at": "Sun 7/27/2014 11:25:09 PM",
+                    "subject": "RE:",
+                    "to": [
+                        "Jeffrey Eljeevacation@gmail.com]"
+                    ]
+                },
+                "num_lines": 23,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "timestamp": "2014-07-27T23:25:09",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    ""
+                ],
                 "author": "Peter Thiel",
                 "file_id": "EFTA01914912",
                 "file_size": 1016,
@@ -71119,6 +71506,7 @@
                     ""
                 ],
                 "author": "Andrew Farkas",
+                "category": "crypto",
                 "description": "discussion of crypto regulations",
                 "file_id": "EFTA01915234",
                 "file_size": 4969,
@@ -71144,6 +71532,7 @@
                     ""
                 ],
                 "author": "Jeffrey Epstein",
+                "category": "crypto",
                 "description": "Joi Ito thinks Austin Hill is shady (which he is)",
                 "file_id": "EFTA01915883",
                 "file_size": 1974,
@@ -71240,6 +71629,7 @@
                     ""
                 ],
                 "author": "Austin Hill",
+                "category": "crypto",
                 "description": "discussion of Epstein investment in Blockstream funneled through Joi Ito",
                 "file_id": "EFTA01917402",
                 "file_size": 1504,
@@ -71458,6 +71848,7 @@
                     ""
                 ],
                 "author": "Daphne Wallace",
+                "category": "crypto",
                 "description": "Austin Hill and Adam Back and some women plan a trip to The Island",
                 "file_id": "EFTA01925969",
                 "file_size": 7148,
@@ -71614,6 +72005,7 @@
                     ""
                 ],
                 "author": "Jeffrey Epstein",
+                "category": "crypto",
                 "description": "\"Andy Back\" is probably Blockstream bitcoin dev Adam Back",
                 "dupe_type": "same",
                 "duplicate_of_id": "EFTA00988395",
@@ -72079,6 +72471,29 @@
                 "attachments": [
                     ""
                 ],
+                "author": "Jeffrey Epstein",
+                "file_id": "EFTA01951206",
+                "file_size": 1160,
+                "filename": "EFTA01951206.txt",
+                "header": {
+                    "author": "Jeffrey Epstein",
+                    "sent_at": "Sun 10/6/2013 2:54:53 PM",
+                    "subject": "Re: bitcoin and silk road",
+                    "to": [
+                        "Steven Sinofsky"
+                    ]
+                },
+                "num_lines": 22,
+                "recipients": [
+                    "Steven Sinofsky"
+                ],
+                "timestamp": "2013-10-06T14:54:53",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    ""
+                ],
                 "author": "Tyler Shears",
                 "file_id": "EFTA01951947",
                 "file_size": 529,
@@ -72249,7 +72664,8 @@
                 ],
                 "author": "Linda Stone",
                 "author_reason": "\"iPhone word substitution\" in signature, which is traced back to \"Linda, thanks\" in EFTA00961792",
-                "description": "Barry Silbert became the CEO of Digital Currency Group, the top crypto fund in the U.S.",
+                "category": "crypto",
+                "description": "Barry Silbert became the CEO of Digital Currency Group, a huge US crypto fund w/Larry Summers on the board",
                 "file_id": "EFTA01965506",
                 "file_size": 299,
                 "filename": "EFTA01965506.txt",
@@ -72604,6 +73020,7 @@
                     ""
                 ],
                 "author": "Jason Calacanis",
+                "category": "crypto",
                 "description": "Jason Calacanis passes Epstein the names of the bitcoin core developers",
                 "file_id": "EFTA02002675",
                 "file_size": 353,
@@ -72778,6 +73195,7 @@
                     ""
                 ],
                 "author": "Al Seckel",
+                "category": "crypto",
                 "description": "Al Seckel introduces Epstein to Brock Pierce",
                 "file_id": "EFTA02035756",
                 "file_size": 1821,
@@ -73204,6 +73622,52 @@
                     "Ganbat Chuluunkhuu"
                 ],
                 "timestamp": "2015-10-23T12:36:54",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    ""
+                ],
+                "author": "Jeremy Rubin",
+                "file_id": "EFTA02070001",
+                "file_size": 2311,
+                "filename": "EFTA02070001.txt",
+                "header": {
+                    "author": "Jeremy Rubin",
+                    "cc": [
+                        "Jeremy Rubm[lrubinOmedia.mit.edu]"
+                    ],
+                    "sent_at": "Wed 10/14/2015 7:08:12 PM",
+                    "subject": "Re: Jeffrey Epstein Fri. Oct. 16th"
+                },
+                "num_lines": 58,
+                "recipients": [
+                    "Jeremy Rubin"
+                ],
+                "timestamp": "2015-10-14T19:08:12",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    ""
+                ],
+                "author": ".com on behalf of Neri Oxman",
+                "file_id": "EFTA02070043",
+                "file_size": 2008,
+                "filename": "EFTA02070043.txt",
+                "header": {
+                    "author": ".com on behalf of Neri Oxman",
+                    "cc": [
+                        "Kell Donove"
+                    ],
+                    "sent_at": "Thur 10/15/2015 9:31:32 PM",
+                    "subject": "Re: Jeffrey Epstein Fri. Oct. 16th"
+                },
+                "num_lines": 55,
+                "recipients": [
+                    "Kell Donove"
+                ],
+                "timestamp": "2015-10-15T21:31:32",
                 "type": "Email"
             },
             {
@@ -73762,6 +74226,7 @@
                 "author": "Linda Stone",
                 "author_reason": "\"Hi Linda\"",
                 "author_uncertain": "\"Hi Linda\"",
+                "category": "crypto",
                 "description": "Epstein planning a symposium \"on Alternative Money or Complementary Currency\" in 2012",
                 "file_id": "EFTA02177147",
                 "file_size": 2045,
@@ -75022,6 +75487,86 @@
                 "attachments": [
                     ""
                 ],
+                "author": "dylan love dylanlove@gmail.com",
+                "file_id": "EFTA02342397",
+                "file_size": 346,
+                "filename": "EFTA02342397.txt",
+                "header": {
+                    "author": "Dylan Love <dylanlove@gmail.com>",
+                    "cc": [
+                        "Drokova Masha"
+                    ],
+                    "sent_at": "Tuesday, October 10, 2017 8:35 PM",
+                    "subject": "story's up",
+                    "to": [
+                        "Jeffrey E."
+                    ]
+                },
+                "num_lines": 9,
+                "recipients": [
+                    "Drokova Masha",
+                    "Jeffrey Epstein"
+                ],
+                "timestamp": "2017-10-10T20:35:00",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    ""
+                ],
+                "author": "Joi Ito",
+                "category": "crypto",
+                "description": "China, Reid Hoffman, bitcoin",
+                "file_id": "EFTA02342561",
+                "file_size": 2682,
+                "filename": "EFTA02342561.txt",
+                "header": {
+                    "author": "Joi Ito <ji@media.mit.edu>",
+                    "sent_at": "Friday, April 24, 2015 1:07 PM",
+                    "subject": "Re:",
+                    "to": [
+                        "Jeffrey Epstein"
+                    ]
+                },
+                "is_interesting": true,
+                "num_lines": 65,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "timestamp": "2015-04-24T13:07:00",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    ""
+                ],
+                "author": "Jeremy Rubin",
+                "file_id": "EFTA02343669",
+                "file_size": 1194,
+                "filename": "EFTA02343669.txt",
+                "header": {
+                    "author": "Jeremy Rubin",
+                    "cc": [
+                        "Joi Ito"
+                    ],
+                    "sent_at": "Wednesday, November 4, 2015 12:03 PM",
+                    "subject": "Re:",
+                    "to": [
+                        "Jeffrey E."
+                    ]
+                },
+                "num_lines": 23,
+                "recipients": [
+                    "Jeffrey Epstein",
+                    "Joi Ito"
+                ],
+                "timestamp": "2015-11-04T12:03:00",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    ""
+                ],
                 "file_id": "EFTA02345782",
                 "file_size": 2939,
                 "filename": "EFTA02345782.txt",
@@ -75281,6 +75826,7 @@
                     "Blockstream - Series A - Notice of Issuance of New Securities CCP.DOC"
                 ],
                 "author": "Brock Pierce",
+                "category": "crypto",
                 "description": "Brock Pierce brings Epstein an opportunity to invest in Blockstream, bitcoin developer Adam Back's company",
                 "file_id": "EFTA02361144",
                 "file_size": 3308,
@@ -75405,6 +75951,7 @@
                     ""
                 ],
                 "author": "Brock Pierce",
+                "category": "crypto",
                 "description": "Brock Pierce and Epstein invested in Coinbase which would turn out to be extremely lucrative",
                 "dupe_type": "same",
                 "duplicate_of_id": "EFTA00673123",
@@ -75477,6 +76024,7 @@
                     ""
                 ],
                 "author": "Austin Hill",
+                "category": "crypto",
                 "description": "an \"ICO\" or \"initial coin offering\" was a very popular type of crypto scam at this time",
                 "file_id": "EFTA02372964",
                 "file_size": 2631,
@@ -75547,6 +76095,7 @@
                     ""
                 ],
                 "author": "Joi Ito",
+                "category": "crypto",
                 "description": "Epstein says that he will fund a seat at MIT Media Lab for ZCash founder Madars Virza",
                 "file_id": "EFTA02374960",
                 "file_size": 3812,
@@ -75588,6 +76137,32 @@
                     "Jeffrey Epstein"
                 ],
                 "timestamp": "2017-04-26T16:12:00",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    ""
+                ],
+                "author": "Reid Hoffman",
+                "file_id": "EFTA02378915",
+                "file_size": 1073,
+                "filename": "EFTA02378915.txt",
+                "header": {
+                    "author": "Reid Hoffman",
+                    "sent_at": "Sunday, October 12, 2014 5:56 AM",
+                    "subject": "Re:",
+                    "to": [
+                        "Joi Ito",
+                        "Jeffrey Epstein"
+                    ]
+                },
+                "num_lines": 22,
+                "recipients": [
+                    "Jeffrey Epstein",
+                    "Joi Ito"
+                ],
+                "timestamp": "2014-10-12T05:56:00",
+                "truncate_to": -1,
                 "type": "Email"
             },
             {
@@ -76027,6 +76602,27 @@
                     "Jeffrey Epstein"
                 ],
                 "timestamp": "2017-07-12T11:43:00",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    ""
+                ],
+                "file_id": "EFTA02406818",
+                "file_size": 1905,
+                "filename": "EFTA02406818.txt",
+                "header": {
+                    "sent_at": "Thursday, August 14, 2014 6:02 PM",
+                    "subject": "Re: (No subject)",
+                    "to": [
+                        "Jeffrey E."
+                    ]
+                },
+                "num_lines": 29,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "timestamp": "2014-08-14T18:02:00",
                 "type": "Email"
             },
             {
@@ -76769,6 +77365,29 @@
                 "attachments": [
                     ""
                 ],
+                "author": "Brock Pierce",
+                "file_id": "EFTA02492794",
+                "file_size": 1336,
+                "filename": "EFTA02492794.txt",
+                "header": {
+                    "author": "Brock Pierce",
+                    "sent_at": "Saturday, July 18, 2015 3:38 PM",
+                    "subject": "Re:",
+                    "to": [
+                        "Jeffrey E."
+                    ]
+                },
+                "num_lines": 27,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "timestamp": "2015-07-18T15:38:00",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    ""
+                ],
                 "author": "Madars Virza",
                 "file_id": "EFTA02493146",
                 "file_size": 849,
@@ -76817,6 +77436,7 @@
                     ""
                 ],
                 "author": "David Stern",
+                "category": "crypto",
                 "description": "Epstein and David Stern discussing setting up a crypto exchange in Belarus",
                 "file_id": "EFTA02494000",
                 "file_size": 732,
@@ -76968,6 +77588,7 @@
                     ""
                 ],
                 "author": "Richard Kahn",
+                "category": "crypto",
                 "description": "summary of Kyara Investment shell companies with Joi Ito",
                 "file_id": "EFTA02505439",
                 "file_size": 793,
@@ -77087,6 +77708,33 @@
                 "attachments": [
                     ""
                 ],
+                "author": "Vincenzo Iozzo",
+                "file_id": "EFTA02511082",
+                "file_size": 814,
+                "filename": "EFTA02511082.txt",
+                "header": {
+                    "author": "Vincenzo lozzo <",
+                    "cc": [
+                        "jeffrey E."
+                    ],
+                    "sent_at": "Monday, February 9, 2015 2:21 PM",
+                    "subject": "life in a bitcoin mine",
+                    "to": [
+                        "Joichi Ito"
+                    ]
+                },
+                "num_lines": 27,
+                "recipients": [
+                    "Jeffrey Epstein",
+                    "Joi Ito"
+                ],
+                "timestamp": "2015-02-09T14:21:00",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    ""
+                ],
                 "author": "Tyler Shears",
                 "file_id": "EFTA02511281",
                 "file_size": 802,
@@ -77113,6 +77761,7 @@
                     ""
                 ],
                 "author": "Jeffrey Epstein",
+                "category": "crypto",
                 "description": "Brock Pierce has tax problems (hasn't filed a tax return in 5 years)",
                 "file_id": "EFTA02514539",
                 "file_size": 2128,
@@ -77131,6 +77780,28 @@
                     "Alan Dlugash"
                 ],
                 "timestamp": "2018-03-03T00:04:00",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    ""
+                ],
+                "author": "Jeffrey Epstein",
+                "file_id": "EFTA02515458",
+                "file_size": 914,
+                "filename": "EFTA02515458.txt",
+                "header": {
+                    "author": "jeffrey E. <jeevacation@gmail.com>",
+                    "sent_at": "Monday, October 20, 2014 10:46 AM",
+                    "to": [
+                        "Erika Kellerhals"
+                    ]
+                },
+                "num_lines": 12,
+                "recipients": [
+                    "Erika Kellerhals"
+                ],
+                "timestamp": "2014-10-20T10:46:00",
                 "type": "Email"
             },
             {
@@ -77231,6 +77902,7 @@
                     ""
                 ],
                 "author": "Vincenzo Iozzo",
+                "category": "crypto",
                 "description": "Vincenzo Iozzo explains to Epstein how to deanonymize bitcoin",
                 "file_id": "EFTA02517623",
                 "file_size": 4390,
@@ -77818,6 +78490,31 @@
                 "attachments": [
                     ""
                 ],
+                "author": "Anastasiya Siroochenko",
+                "category": "girls",
+                "description": "possibly recruiting girls",
+                "file_id": "EFTA02557291",
+                "file_size": 1070,
+                "filename": "EFTA02557291.txt",
+                "header": {
+                    "author": "Anastasiya",
+                    "sent_at": "Saturday, July 14, 2012 225 PM",
+                    "subject": "Re:",
+                    "to": [
+                        "Jeff"
+                    ]
+                },
+                "num_lines": 41,
+                "recipients": [
+                    "Jeff"
+                ],
+                "timestamp": "2012-07-14T05:17:00",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    ""
+                ],
                 "author": "Jeffrey Epstein",
                 "description": "Epstein has some connection to the sovereign wealth fund of Kazakhstan",
                 "file_id": "EFTA02559311",
@@ -78076,6 +78773,55 @@
                 "attachments": [
                     ""
                 ],
+                "author": "Joi Ito",
+                "file_id": "EFTA02584619",
+                "file_size": 1169,
+                "filename": "EFTA02584619.txt",
+                "header": {
+                    "author": "Joi Ito =le",
+                    "sent_at": "Saturday, June 16, 2018 7:53 PM",
+                    "subject": "Re: The Bannon NY7 Bitcoin story - I'm sure you've seen it but",
+                    "to": [
+                        "jeffrey E."
+                    ]
+                },
+                "num_lines": 20,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "sent_from_device": "Sent from my iPhone",
+                "timestamp": "2018-06-16T19:53:00",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    ""
+                ],
+                "author": "Vincenzo Iozzo",
+                "category": "crypto",
+                "description": "discussion of decentralized prediction maarkets like Polymarket",
+                "file_id": "EFTA02584771",
+                "file_size": 3791,
+                "filename": "EFTA02584771.txt",
+                "header": {
+                    "author": "Vincenzo lozzo",
+                    "sent_at": "Wednesday, June 25, 2014 7:18 PM",
+                    "subject": "Re: decentralized prediction markets and order books (w/ bitcoin) & meeting",
+                    "to": [
+                        "Jeffrey E."
+                    ]
+                },
+                "num_lines": 83,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "timestamp": "2014-06-25T19:18:00",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    ""
+                ],
                 "author": "Linda Stone",
                 "author_reason": "Tupos & Abbrvtns",
                 "file_id": "EFTA02584858",
@@ -78094,6 +78840,33 @@
                 ],
                 "sent_from_device": "i Phone feature: Tupos & Abbrvtns",
                 "timestamp": "2014-06-21T21:46:00",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    ""
+                ],
+                "author": "Masha Drokova",
+                "file_id": "EFTA02585507",
+                "file_size": 359,
+                "filename": "EFTA02585507.txt",
+                "header": {
+                    "author": "Masha Drokova",
+                    "cc": [
+                        "Jeffrey E."
+                    ],
+                    "sent_at": "Tuesday, October 10, 2017 11:02 PM",
+                    "subject": "Re: story's up",
+                    "to": [
+                        "Dylan Love"
+                    ]
+                },
+                "num_lines": 10,
+                "recipients": [
+                    "Dylan Love",
+                    "Jeffrey Epstein"
+                ],
+                "timestamp": "2017-10-10T23:02:00",
                 "type": "Email"
             },
             {
@@ -78145,6 +78918,7 @@
                     ""
                 ],
                 "author": "Kathryn Ruemmler",
+                "category": "crypto",
                 "description": "Kathy Ruemmler, crypto bro-ette",
                 "file_id": "EFTA02587320",
                 "file_size": 232,
@@ -78192,7 +78966,34 @@
                 "attachments": [
                     ""
                 ],
+                "author": "Jeffrey Epstein",
+                "category": "crypto",
+                "description": "Epstein went to the Treasury Dept of the US to talk about bitcoin",
+                "file_id": "EFTA02588398",
+                "file_size": 5153,
+                "filename": "EFTA02588398.txt",
+                "header": {
+                    "author": "jeffrey E. <jeevacation@gmail.com>",
+                    "sent_at": "Monday, August 25, 2014 2:09 PM",
+                    "subject": "Re:",
+                    "to": [
+                        "Farkas, Andrew L."
+                    ]
+                },
+                "is_interesting": true,
+                "num_lines": 76,
+                "recipients": [
+                    "Andrew Farkas"
+                ],
+                "timestamp": "2014-08-25T14:09:00",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    ""
+                ],
                 "author": "Vincenzo Iozzo",
+                "category": "crypto",
                 "description": "discussion of crypto food stamps debit cards",
                 "file_id": "EFTA02588723",
                 "file_size": 4325,
@@ -78222,6 +79023,7 @@
                     ""
                 ],
                 "author": "Vincenzo Iozzo",
+                "category": "crypto",
                 "description": "discussion of crypto food stamps debit cards",
                 "file_id": "EFTA02588748",
                 "file_size": 4769,
@@ -78326,6 +79128,7 @@
                     ""
                 ],
                 "author": "Andrew Farkas",
+                "category": "crypto",
                 "description": "Andrew Farkas arranging for Epstein to meet head of NY Dept of Financial Services Ben Lawsky",
                 "file_id": "EFTA02591315",
                 "file_size": 4264,
@@ -78605,6 +79408,33 @@
                     ""
                 ],
                 "author": "Jeremy Rubin",
+                "file_id": "EFTA02600680",
+                "file_size": 1052,
+                "filename": "EFTA02600680.txt",
+                "header": {
+                    "author": "Jeremy Rubin",
+                    "cc": [
+                        "Vincenzo lozzo"
+                    ],
+                    "sent_at": "Friday, July 20, 2018 2:33 AM",
+                    "subject": "Re:",
+                    "to": [
+                        "jeffrey E."
+                    ]
+                },
+                "num_lines": 24,
+                "recipients": [
+                    "Jeffrey Epstein",
+                    "Vincenzo Iozzo"
+                ],
+                "timestamp": "2018-07-20T02:33:00",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    ""
+                ],
+                "author": "Jeremy Rubin",
                 "file_id": "EFTA02600944",
                 "file_size": 1138,
                 "filename": "EFTA02600944.txt",
@@ -78659,6 +79489,7 @@
                     ""
                 ],
                 "author": "Austin Hill",
+                "category": "crypto",
                 "description": "discussion of investments hidden through Joi Ito",
                 "file_id": "EFTA02601259",
                 "file_size": 2571,
@@ -78683,6 +79514,7 @@
                     ""
                 ],
                 "author": "Vincenzo Iozzo",
+                "category": "crypto",
                 "description": "discussion of investing in Layer1, an important crypto business",
                 "file_id": "EFTA02601503",
                 "file_size": 1263,
@@ -79792,6 +80624,7 @@
                     ""
                 ],
                 "author": "Jeffrey Epstein",
+                "category": "crypto",
                 "description": "tax implications of the untraceable 'privacy coin' ZCash",
                 "file_id": "EFTA02645742",
                 "file_size": 3554,
@@ -80368,6 +81201,29 @@
                     "Jeffrey Epstein"
                 ],
                 "timestamp": "2015-06-22T14:27:00",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    ""
+                ],
+                "author": "Joi Ito",
+                "file_id": "EFTA02716994",
+                "file_size": 1741,
+                "filename": "EFTA02716994.txt",
+                "header": {
+                    "author": "Joi Ito",
+                    "sent_at": "Tuesday, April 7, 2015 1:10 PM",
+                    "subject": "Re:",
+                    "to": [
+                        "Jeffrey Epstein"
+                    ]
+                },
+                "num_lines": 42,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "timestamp": "2015-04-07T13:10:00",
                 "type": "Email"
             },
             {
@@ -82744,11 +83600,11 @@
             {
                 "author": "Melanie Walker",
                 "author_reason": "says \"it's Melanie\", also https://www.wired.com/story/jeffrey-epstein-claimed-intimate-knowledge-of-donald-trumps-views-in-texts-with-bill-gates-adviser/",
+                "category": "crypto",
                 "comment": "crypto health",
                 "file_id": "027165",
                 "file_size": 22648,
                 "filename": "HOUSE_OVERSIGHT_027165.txt",
-                "is_interesting": true,
                 "num_lines": 702,
                 "num_messages": 93,
                 "timestamp": "2017-02-19T12:59:45",
@@ -110850,10 +111706,15 @@
                 "type": "DojFile"
             },
             {
+                "author": "Maria Prusakova",
+                "author_uncertain": true,
+                "category": "girls",
+                "comment": "WhatsApp",
+                "description": "says being Epstein's lawyer would be \"way better than supplying ladies\", also discusses Medici Bank",
                 "file_id": "EFTA01612733",
                 "file_size": 4368,
                 "filename": "EFTA01612733.txt",
-                "is_interesting": null,
+                "is_interesting": true,
                 "num_lines": 136,
                 "timestamp": "2019-07-10T12:23:17",
                 "type": "DojFile",
@@ -111791,6 +112652,7 @@
         "Nadia Marcinko": "employee, Epstein's pilot",
         "Nancy Dahl": "academia, wife of Lawrence Krauss",
         "Neal Kassell": "academia, professor of neurosurgery at University of Virginia",
+        "Neri Oxman": "academia, MIT, wife of Bill Ackman",
         "Newsmax": "journalist, right wing American news outlet",
         "Nicholas Ribis": "Trump, Hilton CEO, former president of Trump Organization",
         "Nicole Junkermann": "business, ex-model, NJF Capital / JunkermannGroup, investor in Revolut, online poker, Carbyne w/Ehud Barak",
