@@ -1371,6 +1371,7 @@
                     "sent_at": "Wednesday, November 19, 2008 7:54:32 AM",
                     "subject": "Re: Trump house"
                 },
+                "is_interesting": false,
                 "num_lines": 15,
                 "timestamp": "2008-11-19T07:54:32",
                 "type": "Email"
@@ -20048,9 +20049,9 @@
             },
             {
                 "attachment_file_ids": [
-                    "029304",
+                    "029301",
                     "029302",
-                    "029301"
+                    "029304"
                 ],
                 "attachments": [
                     "image001.jpg",
@@ -30567,6 +30568,7 @@
                     "sent_at": "5/29/2009 3:04:08 PM",
                     "subject": "Re: Fw: (no subject)"
                 },
+                "is_interesting": false,
                 "num_lines": 41,
                 "timestamp": "2009-05-29T15:04:08",
                 "type": "Email"
@@ -49530,8 +49532,8 @@
             },
             {
                 "attachment_file_ids": [
-                    "016699",
-                    "010617"
+                    "010617",
+                    "016699"
                 ],
                 "attachments": [
                     ""
@@ -50690,9 +50692,9 @@
             },
             {
                 "attachment_file_ids": [
-                    "028988",
+                    "011170",
                     "028815",
-                    "011170"
+                    "028988"
                 ],
                 "attachments": [
                     ""
@@ -58320,6 +58322,33 @@
                 "attachments": [
                     ""
                 ],
+                "author": "USANYS",
+                "description": "tip for the FBI / DOJ that Swedish billionaire Johan Eliasch may be connected to Epstein's crimes",
+                "dupe_type": "same",
+                "duplicate_of_id": "EFTA00277089",
+                "file_id": "EFTA00151184",
+                "file_size": 961,
+                "filename": "EFTA00151184.txt",
+                "header": {
+                    "author": "'",
+                    "importance": "Normal",
+                    "sent_at": "Mon, 06 Jul 2020 18:55:21 +0000",
+                    "subject": "FW: USA v. Maxwell",
+                    "to": [
+                        "'"
+                    ]
+                },
+                "num_lines": 29,
+                "recipients": [
+                    "USANYS"
+                ],
+                "timestamp": "2020-07-13T19:57:50",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    ""
+                ],
                 "file_id": "EFTA00238496",
                 "file_size": 714,
                 "filename": "EFTA00238496.txt",
@@ -58341,6 +58370,32 @@
                     "Molly Ladd"
                 ],
                 "timestamp": "2017-02-28T19:07:23",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    ""
+                ],
+                "author": "USANYS",
+                "description": "tip for the FBI / DOJ that Swedish billionaire Johan Eliasch may be connected to Epstein's crimes",
+                "dupe_type": "same",
+                "duplicate_ids": [
+                    "EFTA00151184"
+                ],
+                "file_id": "EFTA00277089",
+                "file_size": 1239,
+                "filename": "EFTA00277089.txt",
+                "header": {
+                    "author": "'",
+                    "importance": "Normal",
+                    "sent_at": "Mon, 13 Jul 2020 19:57:50 +0000",
+                    "subject": "FW: USA v. Maxwell"
+                },
+                "num_lines": 36,
+                "recipients": [
+                    "USANYS"
+                ],
+                "timestamp": "2020-07-13T19:57:50",
                 "type": "Email"
             },
             {
@@ -62005,6 +62060,30 @@
                     ""
                 ],
                 "author": "Jeffrey Epstein",
+                "file_id": "EFTA00736392",
+                "file_size": 1094,
+                "filename": "EFTA00736392.txt",
+                "header": {
+                    "author": "Jeevacation",
+                    "sent_at": "Tue, 06 Jul 2010 20:39:47 +0000",
+                    "subject": "Re: Re:",
+                    "to": [
+                        "junkermann"
+                    ]
+                },
+                "num_lines": 28,
+                "recipients": [
+                    "Nicole Junkermann"
+                ],
+                "sent_from_device": "Sent from my iPhone",
+                "timestamp": "2010-07-06T20:39:47",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    ""
+                ],
+                "author": "Jeffrey Epstein",
                 "file_id": "EFTA00747181",
                 "file_size": 12438,
                 "filename": "EFTA00747181.txt",
@@ -62188,6 +62267,32 @@
                     "Jeffrey Epstein"
                 ],
                 "timestamp": "2009-12-25T04:57:49",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    ""
+                ],
+                "author": "Reinaldo Avila",
+                "description": "Epstein calls Swedish billionaire Johan Eliasch \"not the brightest bulb\"",
+                "file_id": "EFTA00773139",
+                "file_size": 7136,
+                "filename": "EFTA00773139.txt",
+                "header": {
+                    "author": "'",
+                    "sent_at": "Thu, 30 Jul 2009 13:53:56 +0000",
+                    "subject": "Re: Hello from Reinaldo Avila (London)",
+                    "to": [
+                        "\"Jeffrey Epstein\" <jeevacation@gmail.com>"
+                    ]
+                },
+                "num_lines": 116,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "sent_from_device": "Sent from my BlackBerry\u00ae wireless device",
+                "timestamp": "2009-07-30T13:53:56",
+                "truncate_to": 1000,
                 "type": "Email"
             },
             {
@@ -63116,6 +63221,33 @@
                     "Jeffrey Epstein"
                 ],
                 "timestamp": "2018-03-24T05:08:30",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    ""
+                ],
+                "author": "Larry Summers",
+                "description": "\"kazak contract will be ready for your review\"",
+                "file_id": "EFTA00854166",
+                "file_size": 3397,
+                "filename": "EFTA00854166.txt",
+                "header": {
+                    "author": "Lany Summers",
+                    "sent_at": "Thu, 18 Jun 2015 11:43:51 +0000",
+                    "subject": "Re:",
+                    "to": [
+                        "jeffrey E. <jeevacation@gmail.com>"
+                    ]
+                },
+                "is_interesting": true,
+                "num_lines": 74,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "sent_from_device": "Sent from my iPhone",
+                "timestamp": "2015-06-18T11:43:51",
+                "truncate_to": 1100,
                 "type": "Email"
             },
             {
@@ -67819,6 +67951,30 @@
                 "attachments": [
                     ""
                 ],
+                "author": "Nicole Junkermann",
+                "file_id": "EFTA01031685",
+                "file_size": 1001,
+                "filename": "EFTA01031685.txt",
+                "header": {
+                    "author": "Nicole Junkermann I Junkermanngroup <",
+                    "sent_at": "Mon, 04 Mar 2019 16:11:02 +0000",
+                    "subject": "Re:",
+                    "to": [
+                        "J <jeevacation@gmail.com>"
+                    ]
+                },
+                "num_lines": 22,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "sent_from_device": "Sent from my iPhone",
+                "timestamp": "2019-03-04T16:11:02",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    ""
+                ],
                 "author": "Richard Kahn",
                 "file_id": "EFTA01032125",
                 "file_size": 6279,
@@ -69126,6 +69282,30 @@
                     "Jeffrey Epstein"
                 ],
                 "timestamp": "2015-08-21T16:31:51",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    ""
+                ],
+                "author": "Larry Summers",
+                "file_id": "EFTA01744769",
+                "file_size": 1957,
+                "filename": "EFTA01744769.txt",
+                "header": {
+                    "author": "Larry Summers",
+                    "sent_at": "Tuesday, September 1, 2016 3:18:38 PM",
+                    "subject": "Re:",
+                    "to": [
+                        "Jeffrey E. leeva on ma .cilirlimn>"
+                    ]
+                },
+                "num_lines": 44,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "sent_from_device": "Sent from my iPhone",
+                "timestamp": "2016-09-01T15:18:38",
                 "type": "Email"
             },
             {
@@ -71108,6 +71288,30 @@
                 "attachments": [
                     ""
                 ],
+                "author": "Larry Summers",
+                "file_id": "EFTA01919974",
+                "file_size": 3896,
+                "filename": "EFTA01919974.txt",
+                "header": {
+                    "author": "Larry Summers",
+                    "sent_at": "Sun 7/6/2014 12:46:21 PM",
+                    "subject": "Re:",
+                    "to": [
+                        "Jeffrey E.[Jeevacation@gmall.comi"
+                    ]
+                },
+                "num_lines": 88,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "sent_from_device": "Sent from my iPad",
+                "timestamp": "2014-07-06T12:46:21",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    ""
+                ],
                 "author": "Linda Stone",
                 "author_reason": "Tupos & Abbrvtns",
                 "file_id": "EFTA01922840",
@@ -71517,6 +71721,22 @@
                     "Jeffrey Epstein"
                 ],
                 "timestamp": "2014-03-21T13:12:54",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    ""
+                ],
+                "author": "Jeffrey Epstein",
+                "file_id": "EFTA01932117",
+                "file_size": 808,
+                "filename": "EFTA01932117.txt",
+                "header": {
+                    "author": "Jeffrey Epstein",
+                    "sent_at": "Fri 3/14/2014 3:08:34 AM"
+                },
+                "num_lines": 17,
+                "timestamp": "2014-03-14T03:08:34",
                 "type": "Email"
             },
             {
@@ -72234,6 +72454,30 @@
                     ""
                 ],
                 "author": "Lesley Groff",
+                "file_id": "EFTA02000094",
+                "file_size": 3199,
+                "filename": "EFTA02000094.txt",
+                "header": {
+                    "author": "Lesley Groff",
+                    "sent_at": "Thur 9/15/2011 3:20:47 PM",
+                    "subject": "Re: Priveleged & Confidential",
+                    "to": [
+                        "jeevacation@gmail.comjjeevacation@gmail.com]",
+                        "Jeffrey Epsteinbeevacation@gmail.com]"
+                    ]
+                },
+                "num_lines": 106,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "timestamp": "2011-09-15T15:20:47",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    ""
+                ],
+                "author": "Lesley Groff",
                 "dupe_type": "same",
                 "duplicate_of_id": "EFTA01852975",
                 "file_id": "EFTA02001764",
@@ -72308,6 +72552,30 @@
                     "Jeffrey Epstein"
                 ],
                 "timestamp": "2012-09-07T18:47:59",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    ""
+                ],
+                "author": "Nina K.",
+                "file_id": "EFTA02005962",
+                "file_size": 4894,
+                "filename": "EFTA02005962.txt",
+                "header": {
+                    "author": "Nina K.",
+                    "sent_at": "Fri 1/6/2012 9:49:33 PM",
+                    "subject": "Re:",
+                    "to": [
+                        "jeevacation\u00a9gmail.conteevacation\u00a9gmail.cont Jeffrey Epsteinbeevacation\u00a9gmail cam]"
+                    ]
+                },
+                "num_lines": 90,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "sent_from_device": "Sent from my iPhone",
+                "timestamp": "2012-01-06T21:49:33",
                 "type": "Email"
             },
             {
@@ -74149,6 +74417,23 @@
                 "attachments": [
                     ""
                 ],
+                "author": "Daphne Wallace",
+                "file_id": "EFTA02272533",
+                "file_size": 1005,
+                "filename": "EFTA02272533.txt",
+                "header": {
+                    "author": "Daphne Wallace",
+                    "sent_at": "Fri 2/1/2019 7:20:00 PM",
+                    "subject": "Re: Introduction."
+                },
+                "num_lines": 28,
+                "timestamp": "2019-02-01T19:20:00",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    ""
+                ],
                 "author": "Madars Virza",
                 "file_id": "EFTA02279390",
                 "file_size": 581,
@@ -74571,18 +74856,18 @@
                 ],
                 "author": "Jason Calacanis",
                 "file_id": "EFTA02334332",
-                "file_size": 366,
+                "file_size": 365,
                 "filename": "EFTA02334332.txt",
                 "header": {
                     "author": "JasoniME\u201d",
                     "sent_at": "Mon 10/28/2002 8:04:00 PM",
                     "to": [
-                        "G Ma"
+                        "GMax"
                     ]
                 },
                 "num_lines": 8,
                 "recipients": [
-                    "G Ma"
+                    "Ghislaine Maxwell"
                 ],
                 "timestamp": "2002-10-28T20:04:00",
                 "type": "Email"
@@ -75642,6 +75927,51 @@
                     "Jeffrey Epstein"
                 ],
                 "timestamp": "2017-07-12T11:43:00",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    ""
+                ],
+                "author": "Nicole Junkermann",
+                "file_id": "EFTA02407708",
+                "file_size": 2606,
+                "filename": "EFTA02407708.txt",
+                "header": {
+                    "author": "junkermann",
+                    "sent_at": "Sat 7/31/2010 4:50:47 PM",
+                    "subject": "Re: Re: Re: Re:",
+                    "to": [
+                        "jeevacation@gmail.comjeevacation@gmail.com]"
+                    ]
+                },
+                "num_lines": 63,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "timestamp": "2010-07-31T16:50:47",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    ""
+                ],
+                "author": "David Stern",
+                "file_id": "EFTA02410642",
+                "file_size": 504,
+                "filename": "EFTA02410642.txt",
+                "header": {
+                    "author": "David Stern",
+                    "sent_at": "Thur 7/1/2010 12:16:52 PM",
+                    "to": [
+                        "Jeffrey Epstein[jeevacation@gmail.com]"
+                    ]
+                },
+                "num_lines": 10,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "timestamp": "2010-07-01T12:16:52",
                 "type": "Email"
             },
             {
@@ -76753,6 +77083,30 @@
                 "attachments": [
                     ""
                 ],
+                "author": "Jeffrey Epstein",
+                "description": "Epstein wants to talk about Kazakhstan with Larry Summers",
+                "file_id": "EFTA02517037",
+                "file_size": 168,
+                "filename": "EFTA02517037.txt",
+                "header": {
+                    "author": "jeffrey E. <jeevacation@gmail.com>",
+                    "sent_at": "Wednesday, October 1, 2014 11:10 AM",
+                    "to": [
+                        "Larry Summers"
+                    ]
+                },
+                "is_interesting": true,
+                "num_lines": 4,
+                "recipients": [
+                    "Larry Summers"
+                ],
+                "timestamp": "2014-10-01T11:10:00",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    ""
+                ],
                 "author": "Steve Bannon",
                 "file_id": "EFTA02517572",
                 "file_size": 2376,
@@ -77035,6 +77389,29 @@
                 "attachments": [
                     ""
                 ],
+                "author": "Nicole Junkermann",
+                "file_id": "EFTA02534406",
+                "file_size": 1615,
+                "filename": "EFTA02534406.txt",
+                "header": {
+                    "author": "Nicole Junkermann Junkermanngroup",
+                    "sent_at": "Monday, January 29, 2018 6:44 PM",
+                    "subject": "RE:",
+                    "to": [
+                        "Jeffrey E."
+                    ]
+                },
+                "num_lines": 23,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "timestamp": "2018-01-29T18:44:00",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    ""
+                ],
                 "author": "Masha Drokova",
                 "file_id": "EFTA02534854",
                 "file_size": 305,
@@ -77129,26 +77506,26 @@
                 ],
                 "author": "John Brockman",
                 "file_id": "EFTA02539904",
-                "file_size": 1050,
+                "file_size": 1055,
                 "filename": "EFTA02539904.txt",
                 "header": {
                     "author": "John Brockman <",
                     "cc": [
                         "Lesley Groff"
                     ],
-                    "sent_at": "Tuesday, June 7,",
+                    "sent_at": "Tuesday, June 7, 2011",
                     "subject": "Bowling for Bitcoins Meet the Trader 05: Gavin Andresen, Clearcoin",
                     "to": [
                         "Jeffrey Epstein"
                     ]
                 },
-                "num_lines": 32,
+                "num_lines": 33,
                 "recipients": [
                     "Jeffrey Epstein",
                     "Lesley Groff"
                 ],
                 "sent_from_device": "Sent from my iPhone",
-                "timestamp": "2026-06-07T00:00:00",
+                "timestamp": "2011-06-07T00:00:00",
                 "type": "Email"
             },
             {
@@ -77342,6 +77719,24 @@
                 "attachments": [
                     ""
                 ],
+                "author": "Jeffrey Epstein",
+                "description": "Epstein has some connection to the sovereign wealth fund of Kazakhstan",
+                "file_id": "EFTA02559311",
+                "file_size": 945,
+                "filename": "EFTA02559311.txt",
+                "header": {
+                    "author": "Jeffrey Epstein <jeevacation@gmail.com>",
+                    "sent_at": "Monday, September 10, 2012 12:18 PM"
+                },
+                "is_interesting": true,
+                "num_lines": 13,
+                "timestamp": "2012-09-10T12:18:00",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    ""
+                ],
                 "author": "Renata Bolotova",
                 "author_reason": "\"sneaky dog\" + \"Sincerely\"",
                 "dupe_type": "same",
@@ -77482,6 +77877,30 @@
                     "Jeffrey Epstein"
                 ],
                 "timestamp": "2013-06-11T18:28:00",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    ""
+                ],
+                "author": "Jeffrey Epstein",
+                "description": "discussion of Prince Andrew's Urramoor, \"Howard\" is probably Howard Lutnick which Urramoor partnered with",
+                "file_id": "EFTA02573653",
+                "file_size": 5388,
+                "filename": "EFTA02573653.txt",
+                "header": {
+                    "author": "Jeffrey Epstein <jeevacation@gmail.com>",
+                    "sent_at": "Friday, August 9, 2013 3:23 PM",
+                    "subject": "Re: HL Loan - CD/SM call note 8.8.13",
+                    "to": [
+                        "David Stern"
+                    ]
+                },
+                "num_lines": 107,
+                "recipients": [
+                    "David Stern"
+                ],
+                "timestamp": "2013-08-09T15:23:00",
                 "type": "Email"
             },
             {
@@ -78856,6 +79275,72 @@
                 "attachments": [
                     ""
                 ],
+                "author": "Nicole Junkermann",
+                "description": "Carbyne FKA 'Reporty' is an Israeli company invested in by Epstein, Junkermann, and Ehud Barak",
+                "file_id": "EFTA02630431",
+                "file_size": 5077,
+                "filename": "EFTA02630431.txt",
+                "header": {
+                    "author": "Nicole Junkermann I Junkermanngroup c >",
+                    "sent_at": "Tuesday, February 19, 2019 3:12 PM",
+                    "subject": "Re:",
+                    "to": [
+                        "Jeffrey Epstein"
+                    ]
+                },
+                "num_lines": 103,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "sent_from_device": "Sent from my iPhone",
+                "timestamp": "2019-02-19T15:12:00",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    ""
+                ],
+                "author": "Jeffrey Epstein",
+                "file_id": "EFTA02630779",
+                "file_size": 3020,
+                "filename": "EFTA02630779.txt",
+                "header": {
+                    "author": "1 <jeevacation@gmail.com>",
+                    "sent_at": "Monday, February 18, 2019 3:56 PM",
+                    "subject": "Re:",
+                    "to": [
+                        "Nicole Junkermann Junkermanngroup"
+                    ]
+                },
+                "num_lines": 48,
+                "recipients": [
+                    "Nicole Junkermann"
+                ],
+                "timestamp": "2019-02-18T15:56:00",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    ""
+                ],
+                "author": "Nicole Junkermann",
+                "file_id": "EFTA02633194",
+                "file_size": 2199,
+                "filename": "EFTA02633194.txt",
+                "header": {
+                    "author": "Nicole Junkermann I Junkermanngroup <",
+                    "sent_at": "Friday, March 1, 2019 9:49 PM",
+                    "subject": "Re:"
+                },
+                "num_lines": 37,
+                "sent_from_device": "Sent from my iPhone",
+                "timestamp": "2019-03-01T21:49:00",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    ""
+                ],
                 "author": "Richard Kahn",
                 "file_id": "EFTA02633233",
                 "file_size": 5236,
@@ -78942,6 +79427,32 @@
                     "Jeffrey Epstein"
                 ],
                 "timestamp": "2019-02-26T23:23:00",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    ""
+                ],
+                "author": "Jeffrey Epstein",
+                "description": "Indyke says Epstein didn't want his name associated with his investment in Carbyne / Reporty",
+                "file_id": "EFTA02634615",
+                "file_size": 10229,
+                "filename": "EFTA02634615.txt",
+                "header": {
+                    "author": "1 <jeevacation@gmail.com>",
+                    "sent_at": "Thursday, March 14, 2019 6:34 PM",
+                    "subject": "Re: Carbyne warrants",
+                    "to": [
+                        "Darren Indyke"
+                    ]
+                },
+                "is_interesting": true,
+                "num_lines": 218,
+                "recipients": [
+                    "Darren Indyke"
+                ],
+                "timestamp": "2019-03-14T18:34:00",
+                "truncate_to": 4000,
                 "type": "Email"
             },
             {
@@ -79060,6 +79571,29 @@
                     "Peter Thiel"
                 ],
                 "timestamp": "2017-07-24T14:33:00",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    ""
+                ],
+                "author": "David Stern",
+                "description": "David Stern recommends ProtonMail for more secure communications",
+                "file_id": "EFTA02641951",
+                "file_size": 715,
+                "filename": "EFTA02641951.txt",
+                "header": {
+                    "author": "David Stern",
+                    "sent_at": "Wednesday, July 26, 2017 8:05 AM",
+                    "to": [
+                        "Jeffrey Epstein"
+                    ]
+                },
+                "num_lines": 26,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "timestamp": "2017-07-26T08:05:00",
                 "type": "Email"
             },
             {
@@ -79617,7 +80151,7 @@
                 "recipients": [
                     "Jeffrey Epstein"
                 ],
-                "timestamp": "2011-07-07T22:53:00",
+                "timestamp": "2011-07-07T22:52:40",
                 "type": "Email"
             },
             {
@@ -88233,6 +88767,7 @@
             },
             {
                 "category": "reputation",
+                "date": "2014-02-08",
                 "description": "Epstein's Wikipedia page",
                 "file_id": "030875",
                 "file_size": 798,
@@ -111104,7 +111639,8 @@
         "Neal Kassell": "academia, professor of neurosurgery at University of Virginia",
         "Newsmax": "journalist, right wing American news outlet",
         "Nicholas Ribis": "Trump, Hilton CEO, former president of Trump Organization",
-        "Nicole Junkermann": "business, ex-model, NJF Capital, investor in Revolut, online poker, Carbyne w/Ehud Barak",
+        "Nicole Junkermann": "business, ex-model, NJF Capital / JunkermannGroup, investor in Revolut, online poker, Carbyne w/Ehud Barak",
+        "Nikolajs Smirnovs": "business, Nicole Junkermann's NJF Capital / JunkermannGroup",
         "Nili Priell Barak": "Israel, wife of Ehud Barak",
         "Noam Chomsky": "academia, professor of linguistics at MIT",
         "Norman D. Rau": "finance, managing director at Morgan Stanley",
