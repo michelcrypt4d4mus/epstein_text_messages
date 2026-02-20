@@ -355,7 +355,7 @@ def _biographical_panel(names: list[str], next_doc: Document) -> Align | None:
         expand=False,
         # padding=(0, 2),
         style='on gray7',
-        title=Text(f"people in next {next_doc._debug_prefix}", 'grey35 italic'),
+        title=Text(f"new people in next {next_doc._debug_prefix}", 'grey35 italic'),
         title_align='right',
     )
 
