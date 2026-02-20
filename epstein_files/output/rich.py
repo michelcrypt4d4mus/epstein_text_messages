@@ -73,7 +73,7 @@ RAINBOW = [
 ]
 
 # Instantiate console object
-CONSOLE_ARGS = {
+CONSOLE_KWARGS = {
     'color_system': '256',
     'highlighter': EpsteinHighlighter(),
     'record': args.build,
@@ -84,10 +84,10 @@ CONSOLE_ARGS = {
 
 if args.suppress_output:
     logger.warning(f"Suppressing terminal output because args.suppress_output={args.suppress_output}...")
-    CONSOLE_ARGS.update({'file': open(devnull, "wt")})
+    CONSOLE_KWARGS.update({'file': open(devnull, "wt")})
 
-console = Console(**CONSOLE_ARGS)
-highlighter = CONSOLE_ARGS['highlighter']
+console = Console(**CONSOLE_KWARGS)
+highlighter = CONSOLE_KWARGS['highlighter']
 no_bold = lambda style: style.replace('bold', '').strip()
 
 
