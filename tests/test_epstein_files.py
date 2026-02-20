@@ -5,7 +5,7 @@ import pytest
 from epstein_files.documents.document import Document
 from epstein_files.documents.messenger_log import MessengerLog
 from epstein_files.epstein_files import count_by_month
-from epstein_files.output.rich import console
+from epstein_files.output.rich import console, print_subtitle_panel
 from epstein_files.util.constant.names import *
 from epstein_files.util.constants import CONFIGS_BY_ID
 from epstein_files.util.helpers.data_helpers import dict_sets_to_lists
@@ -18,6 +18,29 @@ from .fixtures.emails.unknown_recipient_file_ids import UNKNOWN_RECIPIENT_FILE_I
 from .fixtures.file_counts_by_month import EXPECTED_MONTHLY_COUNTS
 from .fixtures.messenger_logs.author_counts import MESSENGER_LOG_AUTHOR_COUNTS
 from .fixtures.other_files.interesting_file_ids import INTERESTING_FILE_IDS
+from .fixtures.fixture_csvs import load_files_csv
+
+
+def test_against_csv(epstein_files):
+    csv_docs = load_files_csv()
+    bad_docs = []
+
+    for doc in epstein_files.unique_documents:
+        if (csv_row := csv_docs.get(doc.file_id)):
+            for k, csv_val in csv_row.items():
+                if k == 'complete_description':
+                    continue
+                elif (doc_prop := getattr(doc, k)) != csv_val:
+                    doc.warn(f"mismatched values for {k}! doc has {doc_prop}, csv has {csv_val}")
+                    bad_docs.append(doc)
+        else:
+            print_subtitle_panel(f"CSV is missing {doc.file_id}", center=False)
+            console.print(doc)
+            bad_docs.append(doc)
+            continue
+
+    num_bad_docs = len(bad_docs)
+    assert num_bad_docs == 0
 
 
 def test_all_configured_file_ids_exist(epstein_files):

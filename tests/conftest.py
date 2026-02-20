@@ -13,6 +13,9 @@ from epstein_files.documents.email import Email
 from epstein_files.epstein_files import EpsteinFiles
 from epstein_files.util.helpers.file_helper import *
 
+FIXTURES_DIR = Path(__file__).parent.joinpath('fixtures', 'generated')
+FILE_INFO_CSV_PATH = FIXTURES_DIR.joinpath('interesting_other_files.csv')
+
 
 @pytest.fixture(scope='session')
 def epstein_files() -> EpsteinFiles:
