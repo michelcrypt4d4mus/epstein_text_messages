@@ -25,6 +25,23 @@ def print_all_timestamps(epstein_files):
     console.print(f"\nFound {i + 1} documents (no_timestamp={no_timestamp}, valid={valid}, fallback={fallbacks})\n")
 
 
+def print_highlight_patterns() -> None:
+    from epstein_files.output.highlight_config import HIGHLIGHTED_NAMES
+    from epstein_files.output.rich import print_json
+
+    json_dict = {
+        hn.label: {
+            'patterns': hn.patterns,
+            'regex.pattern': hn.regex.pattern,
+        }
+        for hn in HIGHLIGHTED_NAMES
+    }
+
+    print_json('patterns', json_dict)
+    import sys
+    sys.exit()
+
+
 def print_file_counts(epstein_files) -> None:
     counts = defaultdict(int)
 

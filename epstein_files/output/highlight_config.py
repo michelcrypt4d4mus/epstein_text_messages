@@ -2024,12 +2024,12 @@ def styled_name(name: str | None, default_style: str = DEFAULT_NAME_STYLE) -> Te
 
 
 def _print_highlighted_names_repr() -> None:
-    for hn in HIGHLIGHT_GROUPS:
-        if isinstance(hn, HighlightedNames):
-            print(indented(repr(hn)) + ',')
-            print(f"pattern: '{hn.regex.pattern}'")
+    for hn in HIGHLIGHTED_NAMES:
+        print(indented(repr(hn)) + ',')
+        print(f"pattern: '{hn.regex.pattern}'")
 
     import sys
     sys.exit()
+
 
 #_print_highlighted_names_repr()
