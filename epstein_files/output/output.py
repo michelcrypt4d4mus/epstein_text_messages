@@ -67,6 +67,9 @@ def print_curated_chronological(epstein_files: EpsteinFiles) -> list[Document]:
         doc.print()
         printed_docs.append(doc)
 
+        # if doc.config_description_txt:
+        #     import pdb;pdb.set_trace()
+
     return printed_docs
 
 
@@ -355,7 +358,7 @@ def _biographical_panel(names: list[str], next_doc: Document) -> Align | None:
         expand=False,
         # padding=(0, 2),
         style='on gray7',
-        title=Text(f"people in next {next_doc._debug_prefix}", 'grey35 italic'),
+        title=Text(f"new people in next {next_doc._debug_prefix}", 'grey35 italic'),
         title_align='right',
     )
 

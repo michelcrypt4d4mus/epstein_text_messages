@@ -368,12 +368,15 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"(Patrick\s*)?Murck",
             r"Ribbit",
             r"(?-i:RIOT)",  # (?-i:) makes it case sensitive
+            r"Ripple",
             r"Ron\s*Rivest",
             r"(Ross\s*)?Ulbricht",
             r"Silk\s*Road",
             r"SpanCash",
+            r"Stellar",
             r"Steve\s*Waterhouse",
             r"supersecretbitcoinproject",
+            r"Tally\s*Capital",
             r"Tether",
             r"virtual\s*(currenc(ies|y)|money)",
             r"wash\s*trad(es?|ing)",
@@ -381,7 +384,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Wladimir( van der Laan)?",  # bitcoin dev
             r"Z\s*Cash",
             r"ZECC?",
-            r"ZeroCoin",
+            r"ZeroC(ash|oin)",
             r"(zero\s+knowledge\s+|zk)pro(of|tocols?)",
         ],
     ),
@@ -1585,7 +1588,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"New\s*Zealand",
             r"Philippines",
             r"Sam ?sung",
-            r"South\s*Korean?",
+            r"(?<!North\s)(South\s*)?Korean?",
             r"Tai(pei|wan)",
             r"Thai(land)?",
             r"Vietnam(ese)?",
@@ -1935,7 +1938,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
     ),
     HighlightedText(
         label='snipped_signature',
-        style='gray19',
+        style='gray11 italic dim',
         patterns=[fr'<\.\.\.(snipped|trimmed).*\.\.\.>|{XML_STRIPPED_MSG}'],
     ),
     HighlightedText(

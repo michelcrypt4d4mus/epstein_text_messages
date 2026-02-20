@@ -32,7 +32,8 @@ GREY_NUMBERS = [58, 39, 39, 35, 30, 27, 23, 23, 19, 19, 15, 15, 15]
 VALID_GREYS = [0, 3, 7, 11, 15, 19, 23, 27, 30, 35, 37, 39, 42, 46, 50, 53, 54, 58, 62, 63, 66, 69, 70, 74, 78, 82, 84, 85, 89, 93]
 
 DATASET_DESCRIPTION_STYLE = 'gray74'
-INFO_STYLE = 'white dim italic'
+# INFO_STYLE = 'light_goldenrod2 italic'
+INFO_STYLE = 'gray50 italic'
 KEY_STYLE = 'dim'
 KEY_STYLE_ALT = 'light_steel_blue3'
 LAST_TIMESTAMP_STYLE = 'wheat4'

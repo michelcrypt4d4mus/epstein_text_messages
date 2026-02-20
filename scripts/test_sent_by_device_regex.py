@@ -38,9 +38,8 @@ for _line in lines:
 
     file_path, line = line.split(':', 1)
     file_path = Path(file_path)
-    signature_match = SENT_FROM_REGEX.search(line)
 
-    if signature_match:
+    if (signature_match := SENT_FROM_REGEX.search(line)):
         signature = signature_match.group(0)
         signatures.add(signature)
         matches += 1
