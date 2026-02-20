@@ -55,6 +55,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(MARK_TRAMO, "professor of neurology at UCLA"),
             Contact('Nancy Dahl', f"wife of {LAWRENCE_KRAUSS}"),
             Contact(NEAL_KASSELL, "professor of neurosurgery at University of Virginia"),
+            Contact('Neri Oxman', f"MIT, wife of Bill Ackman"),
             Contact(NOAM_CHOMSKY, "professor of linguistics at MIT"),
             Contact('Norman Finkelstein', "scholar, well known critic of Israel"),
             Contact(PETER_ATTIA, "longevity medicine"),
@@ -308,7 +309,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(FRANCESCA_HALL, f"assistant to {AUSTIN_HILL}"),
             Contact(GAVIN_ANDRESEN, 'core bitcoin developer', r"(Gavin )?Andr.ss?en"),
             Contact(JEFFREY_WERNICK, "former COO of Parler, involved in numerous crypto companies like Bitforex"),
-            Contact(JEREMY_RUBIN, "developer/researcher", r"Jeremy\s*Rubin"),
+            Contact(JEREMY_RUBIN, "developer/researcher", r"Jeremy\s*Rub(in|m)"),
             Contact(
                 name=JOI_ITO,
                 info=f"former head of {MIT_MEDIA_LAB} and MIT Digital Currency Initiative",
@@ -1157,6 +1158,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Chile",
             r"Colombian?",
             r"Cuban?",
+            r"Ecuador(ian(s)?)?"
             r"el chapo",
             r"El\s*Salvador",
             r"((Enrique )?Pena )?Nieto",

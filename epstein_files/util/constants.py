@@ -1385,6 +1385,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00901970', truncate_to=3000),
     EmailCfg(id='EFTA00869828', truncate_to=SHORT_TRUNCATE_TO),
     EmailCfg(id='EFTA00661348', truncate_to=NO_TRUNCATE),
+    EmailCfg(id='EFTA02378915', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA02109391', truncate_to=NO_TRUNCATE),
 ]
 
@@ -2506,6 +2507,7 @@ OTHER_FILES_CRYPTO = [
     EmailCfg(id='EFTA00881711', description=f"Bannon and Epstein discuss bitcoin and crypto donations", is_interesting=True),
     EmailCfg(id='EFTA00881759', description=f"Epstein and {STEVE_BANNON} discuss collection donations in bitcoin", is_interesting=True),
     # SEC /NYDFS
+    EmailCfg(id='EFTA02588398', description=f"Epstein went to the Treasury Dept of the US to talk about bitcoin", is_interesting=True),
     EmailCfg(id='EFTA00987194', description=f"Epstein proposes {BEN_LAWSKY_NYDFS} get rid of sales tax on bitcoin", is_interesting=True),
     EmailCfg(id='EFTA02591315', description=f"{ANDREW_FARKAS} arranging for Epstein to meet {BEN_LAWSKY_NYDFS}", is_interesting=True),
     EmailCfg(id='EFTA01002518', description=f"confirmation that Epstein did indeed meet {BEN_LAWSKY_NYDFS} to discuss a 'high yield product'"),
