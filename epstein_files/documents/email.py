@@ -88,6 +88,9 @@ OCR_REPAIRS: dict[str | re.Pattern, str] = {
     re.compile(r"^From "): 'From: ',
     re.compile(r"^(Sent|Subject) (?![Ff]rom|[Vv]ia)", re.MULTILINE): r'\1: ',
     re.compile(r"^(Forwarded|Original) Message$", re.IGNORECASE | re.MULTILINE): r"--- \1 Message ---",
+    # Excessive quote chars
+    re.compile(r"wrote:\n[>»]+(\n[>»]+)"): r"wrote:\1",
+    re.compile(r"(^[>»]+\n){2,}", re.MULTILINE): r"\1",
     # Names / email addresses
     'Alireza lttihadieh': ALIREZA_ITTIHADIEH,
     'Miroslav Laj6ak': MIROSLAV_LAJCAK,
