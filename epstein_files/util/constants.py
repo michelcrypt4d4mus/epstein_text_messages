@@ -2484,6 +2484,7 @@ OTHER_FILES_CRYPTO = [
     EmailCfg(id='026360', description=f"{JOI_ITO} writes to Epstein to thank him for providing funding for the bitcoin core development team"),
     EmailCfg(id='EFTA00999549', description=f"{JOI_ITO} and {JEREMY_RUBIN} meet {LARRY_SUMMERS} to discuss bitcoin", is_interesting=True),
     EmailCfg(id='EFTA01752601', description=f"{JOI_ITO} and Epstein name their new fund Kyara"),
+    EmailCfg(id='EFTA02342561', is_interesting=True, description=f"China, {REID_HOFFMAN}, bitcoin"),
     EmailCfg(id='EFTA00473175', truncate_to=1000),
     EmailCfg(id='EFTA02601259', description=f"discussion of investments hidden through {JOI_ITO}"),
     EmailCfg(id='EFTA02505439', description=f'summary of {KYARA_INVESTMENT} shell companies with {JOI_ITO}'),
@@ -2534,6 +2535,7 @@ OTHER_FILES_CRYPTO = [
     EmailCfg(id='EFTA01750652', description=f"discussion of using blockchains in the repo markets"),
     EmailCfg(id='EFTA02002675', description=f"{JASON_CALACANIS} passes Epstein the names of the bitcoin core developers"),
     # Unsorted
+    EmailCfg(id='EFTA02584771', description=f"discussion of decentralized prediction maarkets like Polymarket"),
     EmailCfg(
         id='EFTA01007544',
         description=f'bitcoin dev {JEREMY_RUBIN} describes "grey area between pump and develop" when Epstein objects on ethical grounds',
