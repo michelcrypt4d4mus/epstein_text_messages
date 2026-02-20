@@ -37,6 +37,7 @@ COLS = ROOT_PROPS + EMAIL_PROPS + CFG_PROPS
 
 
 def load_files_csv() -> dict[str, dict[str, bool | datetime | str | None]]:
+    """Read the CSV of file information and coerce appropriate fields for comparison."""
     rows_by_id = {}
 
     with open(FILE_INFO_CSV_PATH, mode ='r') as file:
@@ -53,7 +54,6 @@ def load_files_csv() -> dict[str, dict[str, bool | datetime | str | None]]:
 
             rows_by_id[row.pop('file_id')] = row
 
-    print(rows_by_id)
     return rows_by_id
 
 
@@ -68,7 +68,6 @@ def write_files_csv():
         rows.append(row)
 
     with open(FILE_INFO_CSV_PATH, 'wt') as f:
-        timer.print_at_checkpoint(f'Built {len(rows)} rows')
         writer = csv.DictWriter(f, COLS)
         writer.writeheader()
         writer.writerows(rows)
@@ -76,4 +75,4 @@ def write_files_csv():
     if args.debug:
         print('\n\n' + FILE_INFO_CSV_PATH.read_text())
 
-    logger.warning(f"Wrote {file_size_str(FILE_INFO_CSV_PATH)}to '{FILE_INFO_CSV_PATH}'.")
+    timer.print_at_checkpoint(f"Wrote {file_size_str(FILE_INFO_CSV_PATH)}to '{FILE_INFO_CSV_PATH}'.")
