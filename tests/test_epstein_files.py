@@ -9,7 +9,6 @@ from epstein_files.documents.messenger_log import MessengerLog
 from epstein_files.output.rich import console, print_subtitle_panel
 from epstein_files.util.constant.names import *
 from epstein_files.util.constants import CONFIGS_BY_ID
-from epstein_files.util.helpers.data_helpers import dict_sets_to_lists
 
 from .conftest import assert_higher_counts
 from .fixtures.emails.signatures import AUTHORS_TO_DEVICE_SIGNATURES, DEVICE_SIGNATURE_TO_AUTHORS, SIGNATURE_SUBSTITUTION_COUNTS
