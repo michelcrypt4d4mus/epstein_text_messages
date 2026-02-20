@@ -17167,6 +17167,7 @@
                     ""
                 ],
                 "author": "Joi Ito",
+                "description": "the announcement of a hunt for Putin's illicit money seems to greatly concern Epstein and Joi Ito",
                 "file_id": "028847",
                 "file_size": 1408,
                 "filename": "HOUSE_OVERSIGHT_028847.txt",
@@ -19211,6 +19212,7 @@
                         "Joi Ito"
                     ]
                 },
+                "is_interesting": false,
                 "num_lines": 43,
                 "recipients": [
                     "Joi Ito"
@@ -19526,6 +19528,7 @@
                         "Joi Ito"
                     ]
                 },
+                "is_interesting": false,
                 "num_lines": 19,
                 "recipients": [
                     "Joi Ito"
@@ -20522,6 +20525,7 @@
                         "Jeffrey Epstein [jeevacation@gmail.com]"
                     ]
                 },
+                "is_interesting": false,
                 "num_lines": 7,
                 "recipients": [
                     "Jeffrey Epstein"
@@ -58890,6 +58894,7 @@
                         "Lesley Groff"
                     ]
                 },
+                "is_interesting": false,
                 "num_lines": 133,
                 "recipients": [
                     "Andrew Farkas",
@@ -59136,7 +59141,7 @@
                 "recipients": [
                     "Lesley Groff"
                 ],
-                "sent_from_device": "Typos, misspellings courtesy of iPhone.",
+                "sent_from_device": "Typos, misspellings courtesy of iPhone",
                 "timestamp": "2013-10-10T19:05:10",
                 "truncate_to": 800,
                 "type": "Email",
@@ -59210,7 +59215,7 @@
                 "recipients": [
                     "Lesley Groff"
                 ],
-                "sent_from_device": "Typos, misspellings courtesy of iPhone word & thought substitution.",
+                "sent_from_device": "Typos, misspellings courtesy of iPhone word & thought substitution",
                 "timestamp": "2013-08-25T18:03:55",
                 "type": "Email"
             },
@@ -59235,7 +59240,7 @@
                 "recipients": [
                     "Lesley Groff"
                 ],
-                "sent_from_device": "Typos, misspellings courtesy of iPhone word & thought substitution.",
+                "sent_from_device": "Typos, misspellings courtesy of iPhone word & thought substitution",
                 "timestamp": "2013-01-14T00:57:37",
                 "type": "Email"
             },
@@ -59377,6 +59382,31 @@
                 },
                 "num_lines": 92,
                 "timestamp": "2012-02-16T17:46:29",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    ""
+                ],
+                "author": "Brock Pierce",
+                "file_id": "EFTA00419736",
+                "file_size": 801,
+                "filename": "EFTA00419736.txt",
+                "header": {
+                    "author": "Brock Pierce",
+                    "importance": "normal",
+                    "sent_at": "Wed, 15 Feb 2012 01:02:16 +0000",
+                    "subject": "Re: Jeffrey Epstein",
+                    "to": [
+                        "Lesley Groff"
+                    ]
+                },
+                "num_lines": 28,
+                "recipients": [
+                    "Lesley Groff"
+                ],
+                "sent_from_device": "Sent from my Samsung smartphone on AT&T",
+                "timestamp": "2012-02-15T01:02:16",
                 "type": "Email"
             },
             {
@@ -59734,6 +59764,7 @@
                     ""
                 ],
                 "author": "Lesley Groff",
+                "category": "crypto",
                 "file_id": "EFTA00473175",
                 "file_size": 2428,
                 "filename": "EFTA00473175.txt",
@@ -59753,6 +59784,7 @@
                     "Joi Ito"
                 ],
                 "timestamp": "2018-04-30T13:58:01",
+                "truncate_to": 1000,
                 "type": "Email"
             },
             {
@@ -60024,6 +60056,9 @@
                 "type": "Email"
             },
             {
+                "attachment_file_ids": [
+                    "EFTA01093444"
+                ],
                 "attachments": [
                     "Crypto_Currency_Partners_II_LLC_Subscription_Application.pdf",
                     "Crypto_Currency_Partners_II,_LLC_-_Operating_Agreement.pdf"
@@ -60547,6 +60582,7 @@
                         "Jeffrey Epstein <jeevacation@gmail.com>"
                     ]
                 },
+                "is_interesting": false,
                 "num_lines": 49,
                 "recipients": [
                     "Jeffrey Epstein"
@@ -60917,6 +60953,7 @@
                 ],
                 "sent_from_device": "Sent from my iPhone",
                 "timestamp": "2014-08-14T21:07:00",
+                "truncate_to": 2500,
                 "type": "Email"
             },
             {
@@ -61421,6 +61458,7 @@
                         "Jeffrey Epstein <jeevacation@gmail.com>"
                     ]
                 },
+                "is_interesting": false,
                 "num_lines": 21,
                 "recipients": [
                     "Jeffrey Epstein"
@@ -61429,6 +61467,9 @@
                 "type": "Email"
             },
             {
+                "attachment_file_ids": [
+                    "EFTA01089485"
+                ],
                 "attachments": [
                     "CCP_Investor_Update_September 2014_(1).pdf"
                 ],
@@ -61516,6 +61557,7 @@
                         "Jeffrey Epstein <jeevacation\u00aegmail.com>"
                     ]
                 },
+                "is_interesting": false,
                 "num_lines": 104,
                 "recipients": [
                     "Jeffrey Epstein"
@@ -61614,7 +61656,7 @@
                 "recipients": [
                     "Jeffrey Epstein"
                 ],
-                "sent_from_device": "Typos, misspellings courtesy of iPhone word & thought substitution.",
+                "sent_from_device": "Typos, misspellings courtesy of iPhone word & thought substitution",
                 "timestamp": "2012-11-04T15:24:02",
                 "type": "Email"
             },
@@ -61638,7 +61680,7 @@
                 "recipients": [
                     "Jeffrey Epstein"
                 ],
-                "sent_from_device": "Typos, misspellings courtesy of iPhone word & thought substitution.",
+                "sent_from_device": "Typos, misspellings courtesy of iPhone word & thought substitution",
                 "timestamp": "2013-07-19T13:15:54",
                 "type": "Email"
             },
@@ -61756,7 +61798,7 @@
                 "recipients": [
                     "Jeffrey Epstein"
                 ],
-                "sent_from_device": "Typos, misspellings courtesy of iPhone word & thought substitution.",
+                "sent_from_device": "Typos, misspellings courtesy of iPhone word & thought substitution",
                 "timestamp": "2013-07-14T00:56:19",
                 "type": "Email"
             },
@@ -63624,6 +63666,32 @@
                     "Jeffrey Epstein"
                 ],
                 "timestamp": "2018-02-21T06:21:56",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    ""
+                ],
+                "author": "Jeffrey Epstein",
+                "category": "crypto",
+                "description": "Bannon and Epstein discuss bitcoin and crypto donations",
+                "file_id": "EFTA00881711",
+                "file_size": 8357,
+                "filename": "EFTA00881711.txt",
+                "header": {
+                    "author": "\"Jeffrey E.\" <jeevacation@gmail.com>",
+                    "sent_at": "Mon, 19 Feb 2018 15:19:11 +0000",
+                    "subject": "Re:",
+                    "to": [
+                        "Steve Bannon"
+                    ]
+                },
+                "is_interesting": true,
+                "num_lines": 165,
+                "recipients": [
+                    "Steve Bannon"
+                ],
+                "timestamp": "2018-02-19T15:19:11",
                 "type": "Email"
             },
             {
@@ -67207,7 +67275,6 @@
                     ""
                 ],
                 "author": "Brock Pierce",
-                "description": "Reza Bundy is the founder of IronPlanet",
                 "file_id": "EFTA01013360",
                 "file_size": 160,
                 "filename": "EFTA01013360.txt",
@@ -67231,6 +67298,7 @@
                     ""
                 ],
                 "author": "Jeffrey Epstein",
+                "description": "Reza Bundy is the founder of IronPlanet",
                 "file_id": "EFTA01013413",
                 "file_size": 4569,
                 "filename": "EFTA01013413.txt",
@@ -69506,6 +69574,7 @@
                     ""
                 ],
                 "author": "Joi Ito",
+                "description": "Austin Hill is upset that Ito and Epstein seem to have invested in Stellar and Ripple, competing blockchain ecosystems",
                 "file_id": "EFTA01748990",
                 "file_size": 1108,
                 "filename": "EFTA01748990.txt",
@@ -69520,6 +69589,7 @@
                         "Austin Hill"
                     ]
                 },
+                "is_interesting": true,
                 "num_lines": 22,
                 "recipients": [
                     "Austin Hill",
@@ -70079,6 +70149,8 @@
                     ""
                 ],
                 "author": "Jeremy Rubin",
+                "category": "crypto",
+                "description": "Joi Ito introduces Epstein to Madars Virza and the untraceable private crypto ZCash",
                 "file_id": "EFTA01781741",
                 "file_size": 885,
                 "filename": "EFTA01781741.txt",
@@ -71072,6 +71144,7 @@
                     ""
                 ],
                 "author": "Jeffrey Epstein",
+                "description": "Joi Ito thinks Austin Hill is shady (which he is)",
                 "file_id": "EFTA01915883",
                 "file_size": 1974,
                 "filename": "EFTA01915883.txt",
@@ -71924,6 +71997,33 @@
                     "Jeffrey Epstein"
                 ],
                 "timestamp": "2013-11-13T21:51:07",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    ""
+                ],
+                "author": "Bill Gates",
+                "file_id": "EFTA01946813",
+                "file_size": 1558,
+                "filename": "EFTA01946813.txt",
+                "header": {
+                    "author": "Bill Gates",
+                    "cc": [
+                        "Boris Nikolic (bgC3)"
+                    ],
+                    "sent_at": "Wed 11/13/2013 10:01:51 PM",
+                    "subject": "DAF structure teaming?",
+                    "to": [
+                        "Jeffrey Epsteitevacation mail.com"
+                    ]
+                },
+                "num_lines": 30,
+                "recipients": [
+                    "Boris Nikolic",
+                    "Jeffrey Epstein"
+                ],
+                "timestamp": "2013-11-13T22:01:51",
                 "type": "Email"
             },
             {
@@ -75103,7 +75203,7 @@
                 "recipients": [
                     "Jeffrey Epstein"
                 ],
-                "sent_from_device": "Typos, misspellings courtesy of iPhone word & thought substitution.",
+                "sent_from_device": "Typos, misspellings courtesy of iPhone word & thought substitution",
                 "timestamp": "2013-06-27T20:40:00",
                 "type": "Email"
             },
@@ -75159,7 +75259,7 @@
                 ],
                 "author": "Brock Pierce",
                 "file_id": "EFTA02360165",
-                "file_size": 1127,
+                "file_size": 898,
                 "filename": "EFTA02360165.txt",
                 "header": {
                     "author": "Brock Pierce <",
@@ -75705,7 +75805,7 @@
                 "recipients": [
                     "Jeffrey Epstein"
                 ],
-                "sent_from_device": "Typos, misspellings courtesy of iPhone word & thought substitution.",
+                "sent_from_device": "Typos, misspellings courtesy of iPhone word & thought substitution",
                 "timestamp": "2013-05-29T23:09:00",
                 "type": "Email"
             },
@@ -76140,7 +76240,7 @@
                 ],
                 "author": "David Stern",
                 "author_reason": "Asia Gateway + 'D.' in signature",
-                "description": "why is David Stern's name redacted?",
+                "description": "Bank Leumi would get in trouble for helping Americans avoid taxes a few years after this",
                 "file_id": "EFTA02442672",
                 "file_size": 945,
                 "filename": "EFTA02442672.txt",
@@ -76151,7 +76251,6 @@
                         "Jeffre E tein jeevacation@gmail.com]"
                     ]
                 },
-                "is_interesting": true,
                 "num_lines": 24,
                 "recipients": [
                     "Jeffrey Epstein"
@@ -78094,6 +78193,7 @@
                     ""
                 ],
                 "author": "Vincenzo Iozzo",
+                "description": "discussion of crypto food stamps debit cards",
                 "file_id": "EFTA02588723",
                 "file_size": 4325,
                 "filename": "EFTA02588723.txt",
@@ -78108,6 +78208,7 @@
                         "jeffrey E."
                     ]
                 },
+                "is_interesting": true,
                 "num_lines": 81,
                 "recipients": [
                     "Jeffrey Epstein",
@@ -78289,6 +78390,7 @@
                         "Larry Summers"
                     ]
                 },
+                "is_interesting": false,
                 "num_lines": 50,
                 "recipients": [
                     "Jeffrey Epstein",
@@ -110079,6 +110181,20 @@
                 "type": "DojFile"
             },
             {
+                "attached_to_email_id": "EFTA00693621",
+                "author": "Crypto Currency Partners II",
+                "category": "crypto",
+                "date": "2014-09-01",
+                "description": "investor report",
+                "file_id": "EFTA01089485",
+                "file_size": 7053,
+                "filename": "EFTA01089485.txt",
+                "is_interesting": true,
+                "num_lines": 317,
+                "timestamp": "2014-09-01T00:00:00",
+                "type": "DojFile"
+            },
+            {
                 "author": "Crypto Currency Partners II",
                 "category": "crypto",
                 "date": "2015-01-01",
@@ -110142,6 +110258,19 @@
                 "num_lines": 1030,
                 "timestamp": "2013-12-12T00:00:00",
                 "truncate_to": 1333,
+                "type": "DojFile"
+            },
+            {
+                "attached_to_email_id": "EFTA00626220",
+                "author": "Crypto Currency Partners II",
+                "category": "crypto",
+                "description": "application form",
+                "file_id": "EFTA01093444",
+                "file_size": 74051,
+                "filename": "EFTA01093444.txt",
+                "is_interesting": true,
+                "num_lines": 929,
+                "timestamp": "2014-11-12T00:26:47",
                 "type": "DojFile"
             },
             {
@@ -110622,6 +110751,18 @@
                 "type": "DojFile"
             },
             {
+                "category": "crypto",
+                "description": "Deutsche Bank wire transfer receipt for Epstein's investment in Blockstream",
+                "file_id": "EFTA01401059",
+                "file_size": 4706,
+                "filename": "EFTA01401059.txt",
+                "is_interesting": true,
+                "num_lines": 126,
+                "timestamp": "2014-09-09T00:00:00",
+                "type": "DojFile",
+                "was_timestamp_extracted": true
+            },
+            {
                 "category": "money",
                 "description": "transactions by Epstein's Southern Financial LLC",
                 "file_id": "EFTA01402630",
@@ -110950,6 +111091,19 @@
                 "is_interesting": true,
                 "num_lines": 161,
                 "timestamp": "2016-07-10T16:05:29",
+                "type": "DojFile",
+                "was_timestamp_extracted": true
+            },
+            {
+                "author": "Deutsche Bank",
+                "category": "money",
+                "description": "explanations of all of Epstein's large payments prepared for DOJ",
+                "file_id": "EFTA01681865",
+                "file_size": 81398,
+                "filename": "EFTA01681865.txt",
+                "is_interesting": true,
+                "num_lines": 2225,
+                "timestamp": "2019-09-12T00:00:00",
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
