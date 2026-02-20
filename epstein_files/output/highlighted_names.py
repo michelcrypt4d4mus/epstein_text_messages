@@ -58,7 +58,16 @@ class HighlightedText(HighlightGroup):
             raise ValueError(f"No label provided for {repr(self)}")
 
         self._pattern = '|'.join(self.patterns)
-        self.regex = re.compile(fr"({self._match_group_var}{self._pattern})", re.IGNORECASE | re.MULTILINE)
+
+        try:
+            self.regex = re.compile(fr"({self._match_group_var}{self._pattern})", re.IGNORECASE | re.MULTILINE)
+            logger.debug(self._pattern)
+        except Exception as e:
+            logger.error(f"Failed to compile regex for {self.label}, trying each:")
+
+            for p in self.patterns:
+                logger.warning(f"Attempting to compile '{p}'...")
+                re.compile(p)
 
     def __repr__(self) -> str:
         return f"{type(self).__name__}(label='{self.label}', pattern='{self._pattern}', style='{self.style}')"
@@ -90,6 +99,7 @@ class HighlightedNames(HighlightedText):
             else:
                 raise ValueError(f"No label provided for {repr(self)}")
 
+        self.patterns = [p.replace(' ', r"[\s_]+") if '?<!' not in p else p for p in self.patterns]
         super().__post_init__()
         self._pattern = '|'.join([contact.highlight_pattern for contact in self.contacts] + self.patterns)
         self.regex = re.compile(fr"\b({self._match_group_var}({self._pattern})s?)\b", re.IGNORECASE)
