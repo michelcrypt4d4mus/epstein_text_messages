@@ -73,6 +73,6 @@ def write_files_csv():
         writer.writerows(rows)
 
     if args.debug:
-        print('\n\n' + FILE_INFO_CSV_PATH.read_text())
+        console.print('\n\n' + FILE_INFO_CSV_PATH.read_text())
 
     timer.print_at_checkpoint(f"Wrote {file_size_str(FILE_INFO_CSV_PATH)}to '{FILE_INFO_CSV_PATH}'.")
