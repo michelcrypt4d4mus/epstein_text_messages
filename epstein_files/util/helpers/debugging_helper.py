@@ -4,13 +4,24 @@ from rich.padding import Padding
 from rich.text import Text
 
 from epstein_files.documents.emails.constants import FALLBACK_TIMESTAMP
-from epstein_files.documents.other_file import OtherFile
 from epstein_files.util.helpers.string_helper import quote
 from epstein_files.util.logging import logger
-from epstein_files.output.rich import bool_txt, console, indent_txt, styled_key_value, styled_dict
+
+
+def highlight_config_dict() -> dict:
+    from epstein_files.output.highlight_config import HIGHLIGHTED_NAMES
+
+    return {
+        hn.label: {
+            'patterns': hn.patterns,
+            'regex.pattern': hn.regex.pattern,
+        }
+        for hn in HIGHLIGHTED_NAMES
+    }
 
 
 def print_all_timestamps(epstein_files):
+    from epstein_files.output.rich import console
     fallbacks = valid = 0
 
     for i, doc in enumerate(epstein_files.unique_documents):
@@ -26,23 +37,14 @@ def print_all_timestamps(epstein_files):
 
 
 def print_highlight_patterns() -> None:
-    from epstein_files.output.highlight_config import HIGHLIGHTED_NAMES
     from epstein_files.output.rich import print_json
-
-    json_dict = {
-        hn.label: {
-            'patterns': hn.patterns,
-            'regex.pattern': hn.regex.pattern,
-        }
-        for hn in HIGHLIGHTED_NAMES
-    }
-
-    print_json('patterns', json_dict)
+    print_json('patterns', highlight_config_dict())
     import sys
     sys.exit()
 
 
 def print_file_counts(epstein_files) -> None:
+    from epstein_files.output.rich import console, styled_dict
     counts = defaultdict(int)
 
     for i, doc in enumerate(epstein_files.unique_documents):
@@ -62,6 +64,8 @@ def _verify_filenames(epstein_files):
 
 def print_interesting_doc_panels_and_props(epstein_files, sort_by_category: bool = True):
     """Only prints OtherFile objects."""
+    from epstein_files.documents.other_file import OtherFile
+    from epstein_files.output.rich import console, indent_txt, styled_dict
     num_printed = 0
     num_interesting = 0
 

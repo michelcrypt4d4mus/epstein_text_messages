@@ -36,6 +36,8 @@ from epstein_files.util.helpers.file_helper import extract_file_id
 from epstein_files.util.logging import exit_with_error, logger
 from epstein_files.util.timer import Timer
 
+# from epstein_files.util.helpers.debugging_helper import print_highlight_patterns
+# print_highlight_patterns()
 
 def epstein_generate() -> None:
     timer, epstein_files = _load_files_and_check_early_exit_args()
