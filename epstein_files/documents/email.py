@@ -762,7 +762,12 @@ class Email(Communication):
 
     def _text_table(self, text: str | Text, description: Text | None) -> Table:
         """Renders the info text as a top row in a table-ish view."""
-        panel = Table(border_style=self.border_style, box=box.ROUNDED, show_header=bool(description))
+        panel = Table(
+            border_style=self.border_style,
+            box=box.ROUNDED,
+            header_style='italic',
+            show_header=bool(description)
+        )
         panel.add_column(description or '')
         panel.add_row(text)
         return panel

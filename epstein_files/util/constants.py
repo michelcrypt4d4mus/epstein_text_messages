@@ -1326,7 +1326,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA02541344', description=f"{BROCK_PIERCE} on marriage and polygamy with people named Crystal and Sue"),
     EmailCfg(id='EFTA02641951', description=f"{DAVID_STERN} recommends ProtonMail for more secure communications"),
     EmailCfg(id='EFTA00626220', description=f'discussion of a "sidecar fund" with {BROCK_PIERCE} / {CRYPTO_CURRENCY_PARTNERS_II}'),
-    EmailCfg(id='EFTA01784901', description=f"discussion of checks {JEREMY_RUBIN} has cashed from Epstein", is_interesting=True),
+    EmailCfg(id='EFTA01784901', description=f"{JEREMY_RUBIN} has cashed multiple checks directly from Epstein", is_interesting=True),
     EmailCfg(
         id='EFTA02634615',
         description=f"Indyke says Epstein didn't want his name associated with his investment in Carbyne / Reporty",
@@ -1366,6 +1366,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00039799', duplicate_ids=['EFTA00039806']),
     EmailCfg(id='EFTA01776613', duplicate_ids=['EFTA02691059']),
     EmailCfg(id='EFTA02608800', duplicate_ids=['EFTA01010308']),
+    EmailCfg(id='EFTA00717931', duplicate_ids=['EFTA01774218']),
     EmailCfg(id='EFTA01776411', duplicate_ids=['EFTA02691069']),
     EmailCfg(id='EFTA02390441', duplicate_ids=['EFTA02403336']),
     EmailCfg(id='EFTA00428083', duplicate_ids=['EFTA02183761']),
@@ -1420,6 +1421,8 @@ UNINTERESTING_EMAIL_IDS = [
     'EFTA00709543',
     # Eric Roth
     '033386',
+    # Jeremy Rubin
+    'EFTA00714127',
     # Joi Ito
     '029500',
     '029279',
@@ -2540,7 +2543,7 @@ OTHER_FILES_CRYPTO = [
     EmailCfg(id='EFTA02584771', description=f"discussion of decentralized prediction maarkets like Polymarket"),
     EmailCfg(
         id='EFTA01007544',
-        description=f'bitcoin dev {JEREMY_RUBIN} describes "grey area between pump and develop" when Epstein objects on ethical grounds',
+        description=f'{JEREMY_RUBIN} describes "grey area between pump and develop" when Epstein objects on ethical grounds',
         is_interesting=True,
     ),
     EmailCfg(

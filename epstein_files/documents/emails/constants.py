@@ -134,7 +134,7 @@ EMAIL_SIGNATURE_REGEXES = {
     DARREN_INDYKE: re.compile(r"DARREN K. INDYKE.*?\**\nThe information contained in this communication.*?Darren K.[\n\s]+?[Il]ndyke(, PLLC)? — All rights reserved\.? ?\n\*{50,120}(\n\**)?", re.DOTALL),
     DAVID_FISZEL: re.compile(r"This e-mail and any file.*\nmail and/or any file.*\nmail or any.*\nreceived.*\nmisdirected.*"),
     DAVID_INGRAM: re.compile(r"Thank you in advance.*\nDavid Ingram.*\nCorrespondent\nReuters.*\nThomson.*(\n(Office|Mobile|Reuters.com).*)*"),
-    DAVID_STERN: re.compile(r"This message is confidential. It.{350,420}Asia Gateway.{,50}nor endorsed by it\.?", re.DOTALL),
+    DAVID_STERN: re.compile(r"This message is confidential. It.{300,420}Asia Gateway.{,50}nor endorsed by it\.?", re.DOTALL),
     DEEPAK_CHOPRA: re.compile(fr"({DEEPAK_CHOPRA}( MD)?\n)?2013 Costa Del Mar Road\nCarlsbad, CA 92009(\n(Chopra Foundation|Super Genes: Unlock.*))?(\nJiyo)?(\nChopra Center for Wellbeing)?(\nHome: Where Everyone is Welcome)?"),
     EDUARDO_ROBLES: re.compile(r"(• )?email:.*\n(• )?email:\n(• )?website: www.creativekingdom.com\n(• )?address: 5th Floor Office No:504 Aspect Tower,\nBusiness Bay, Dubai United Arab Emirates."),
     'Erika Kellerhals': re.compile(r"Notice: This communica.ion may contain privileged or other confidential.{,310}delete the copy you recei.ed. Thank you.?", re.DOTALL),
