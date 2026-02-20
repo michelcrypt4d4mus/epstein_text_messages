@@ -332,9 +332,11 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
     ],
     LINDA_STONE: [
         'Co-authored with iPhone auto-correct',
+        'Pls excuse tupos & abbrvtns',
         'Typos, misspellings courtesy of iPhone',
         'Typos, misspellings courtesy of iPhone word & thought substitution.',
         'Typos, misspellings courtesy of iPhone.',
+        'i Phone feature: Tupos & Abbrvtns',
     ],
     "Lisa New": [
         "Sent from my iPhone"
@@ -473,6 +475,7 @@ SIGNATURE_SUBSTITUTION_COUNTS = {
     "David Ingram": 9,
     DEEPAK_CHOPRA: 19,
     EDUARDO_ROBLES: 6,
+    'Erika Kellerhals': 1,
     'Francesca Hall': 2,
     ERIC_ROTH: 5,
     GHISLAINE_MAXWELL: 13,

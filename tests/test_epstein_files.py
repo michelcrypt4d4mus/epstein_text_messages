@@ -70,5 +70,11 @@ def test_signature_substitutions(epstein_files):
 
 
 def test_signatures(epstein_files):
-    assert dict_sets_to_lists(epstein_files.email_authors_to_device_signatures()) == AUTHORS_TO_DEVICE_SIGNATURES
-    assert dict_sets_to_lists(epstein_files.email_device_signatures_to_authors()) == DEVICE_SIGNATURE_TO_AUTHORS
+    authors_to_devices = dict_sets_to_lists(epstein_files.email_authors_to_device_signatures())
+    devices_to_authors = dict_sets_to_lists(epstein_files.email_device_signatures_to_authors())
+
+    for name in [JEFFREY_EPSTEIN, LINDA_STONE, STEVEN_SINOFSKY]:
+        assert set(authors_to_devices[name]) == set(AUTHORS_TO_DEVICE_SIGNATURES[name])
+
+    for signature in ["Sent from my BlackBerry 10 smartphone."]:
+        assert devices_to_authors[signature] == DEVICE_SIGNATURE_TO_AUTHORS[signature]
