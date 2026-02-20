@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# Check that _sent_from_device() yields same and update if need be
 from epstein_files.documents.email import Email
 from epstein_files.util.logging import logger
 from tests.fixtures.fixture_csvs import load_files_csv
@@ -24,4 +25,7 @@ for id, row in load_files_csv().items():
     else:
         console.print(f"{id} matches", style='green')
 
-print(f"Need to fix these ids: {' '.join(doc_ids_to_fix)}")
+if doc_ids_to_fix:
+    console.print(f"Need to fix these ids: {' '.join(doc_ids_to_fix)}", style='bright_red')
+else:
+    console.print(f"All good, nothing to update.", style='green')
