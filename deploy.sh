@@ -3,7 +3,7 @@
 #
 #   - NO_DOJ=true to skip the DOJ files page build
 #   - ONLY_TEXTS=true to skip build/deploy of full emails site.
-#   - TAG_RELEASE=true to upload the pkl.gz file to the repo
+#   - TAG_RELEASE=true to upload the pkl.gz file to the repo and deploy DOJ files site
 set -e
 source .env
 
@@ -107,10 +107,12 @@ $GENERATE_CMD --json-metadata
 # $GENERATE_CMD --json-files
 
 if [ -n "$NO_DOJ" ]; then
-    print_deploy_step "Skipping DOJ files..."
-else
+    print_deploy_step "Skipping DOJ files (NO_DOJ is set)..."
+elif [ -n "$TAG_RELEASE" ]; then
     print_deploy_step "Building DOJ 2026 files..."
     $GENERATE_CMD --output-doj-files --whole-file
+else
+    print_deploy_step "Skipping DOJ files (TAG_RELEASE not set)..."
 fi
 
 # Commit changes
