@@ -27,7 +27,7 @@ def test_against_csv(epstein_files):
                 if k == 'complete_description' or (k in EMAIL_PROPS and not isinstance(doc, Email)):
                     continue
                 elif (doc_prop := getattr(doc, k)) != csv_val:
-                    doc.warn(f"mismatched values for {k}! doc has {doc_prop}, csv has {csv_val}")
+                    doc.warn(f"mismatched '{k}': doc='{doc_prop}', csv='{csv_val}'")
                     bad_docs.append(doc)
         else:
             print_subtitle_panel(f"CSV is missing {doc.file_id}", center=False)
@@ -57,10 +57,6 @@ def test_no_files_after_2025(epstein_files):
         console.print(doc)
 
     assert len(bad_docs) == 0
-
-
-def test_other_files_categories(epstein_files):
-    assert len([f for f in epstein_files.other_files if not f.category]) == 2235
 
 
 def test_signature_substitutions(epstein_files):

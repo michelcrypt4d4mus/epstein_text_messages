@@ -909,6 +909,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='014797_1', has_uninteresting_bccs=True),
 
     # DOJ files
+    EmailCfg(id='EFTA00645449', author=ANASTASIYA_SIROOCHENKO, author_reason='Jmail'),
     EmailCfg(id='EFTA00040142', author=ATT_COURT_APPEARANCE_TEAM, recipients=[USANYS]),
     EmailCfg(id='EFTA02229342', author=AUSTIN_HILL),
     EmailCfg(id='EFTA01040692', author=ALAN_DLUGASH, description='meeting about tax implications of ZCash'),
@@ -2358,7 +2359,7 @@ OTHER_FILES_MISC = [
 
 OTHER_FILES_GIRLS = [
     EmailCfg(id='EFTA00848644', is_interesting=True, comment='"take a picture of your pussy"'),
-    EmailCfg(id='EFTA02557291', comment='Anastasiya possibly recruiting'),
+    EmailCfg(id='EFTA02557291', description='possibly recruiting girls'),
     CommunicationCfg(
         id='EFTA01612733',
         author=MARIA_PRUSAKOVA,

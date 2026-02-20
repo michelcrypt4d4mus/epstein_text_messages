@@ -1507,7 +1507,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         style='red bold',
         contacts=[
             Contact(ALEKSANDRA_KARPOVA, f"{CRYPTO_PR_LAB} co-founder", r"Aleksandra\s*Karpova"),
-            Contact('Anastasiya Siroochenko', '', r"Anastasiya(\s+Siro(chenko)?)?"),
+            Contact(ANASTASIYA_SIROOCHENKO, '', r"Anastasiya(\s+Siro(chenko)?)?"),
             Contact('Dasha Zhukova', "art collector, daughter of Alexander Zhukov"),
             Contact(JULIA_SANTOS, "possibly a Russian in Paris that was recruiting girls from Ukraine for Epstein"),
             Contact(
