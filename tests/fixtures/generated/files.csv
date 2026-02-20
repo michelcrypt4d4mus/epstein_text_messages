@@ -132,7 +132,7 @@ file_id,category,author,is_interesting,timestamp,recipients_str,sent_from_device
 016602,property,Palm Beach Code Enforcement,False,2008-04-17 00:00:00,,,Palm Beach Code Enforcement board minutes
 016636,property,Palm Beach Water Committee,False,2009-02-19 00:00:00,,,"Palm Beach Water Committee Meeting on January 29, 2009"
 016692,email,John Page,True,2009-05-04 17:23:18,,,
-016693,email,John Page,True,2008-11-19 07:54:32,,,"signed ""MM"""
+016693,email,John Page,False,2008-11-19 07:54:32,,,"signed ""MM"""
 016694,property,,False,,,,TSV of Palm Beach property consumption (water?)
 016695,property,,False,,,,Palm Beach property info (?)
 016696,property,,False,,,,TSV of Palm Beach property info (water quality?
@@ -1642,7 +1642,7 @@ file_id,category,author,is_interesting,timestamp,recipients_str,sent_from_device
 030987,email,Michael Wolff,,2019-02-01 16:07:11,Jeffrey Epstein,,
 030989,email,Richard Kahn,,2019-05-29 22:28:52,Jeffrey Epstein,,
 030992,email,Jeffrey Epstein,True,2009-04-14 19:02:11,,,
-030997,email,Jeffrey Epstein,True,2009-05-29 15:04:08,,,Jeffrey Epstein
+030997,email,Jeffrey Epstein,False,2009-05-29 15:04:08,,,Jeffrey Epstein
 030999,email,Jeffrey Epstein,,2009-10-09 16:43:25,Jack Goldberger;Robert D. Critton Jr.,,
 031002,email,Jeffrey Epstein,,2009-10-09 16:52:57,Jack Goldberger,,
 031005,email,Jeffrey Epstein,,2009-10-09 17:19:34,Mortimer Zuckerman,,
@@ -5397,6 +5397,7 @@ EFTA00850130,email,Jeffrey Epstein,True,2015-07-29 10:45:12,Sergey Belyakov,,
 EFTA00851916,email,Madars Virza,True,2018-03-22 22:55:19,Jeffrey Epstein,,
 EFTA00852324,email,Sergey Belyakov,True,2015-07-06 18:39:12,Elena Bolyakina;Jeffrey Epstein;Peter Thiel,,
 EFTA00853240,email,David Stern,True,2018-03-24 05:08:30,Jeffrey Epstein,,
+EFTA00854166,email,Larry Summers,True,2015-06-18 11:43:51,Jeffrey Epstein,Sent from my iPhone,"""kazak contract will be ready for your review"""
 EFTA00855280,email,Jeffrey Epstein,True,2018-03-20 11:56:51,,,
 EFTA00857165,email,Jeffrey Epstein,,2015-05-12 17:02:07,Seth Lloyd,,
 EFTA00858688,email,Sergey Belyakov,True,2015-04-23 03:07:33,Jeffrey Epstein,,Sergey Belyakov
@@ -5724,6 +5725,7 @@ EFTA01731638,email,Jeffrey Epstein,True,2014-12-02 11:03:00,Brock Pierce,,
 EFTA01734786,crypto,,True,2015-10-19 00:00:00,,,LedgerX Series B pitch deck
 EFTA01738841,email,Vincenzo Iozzo,True,2014-05-19 15:15:11,Jeffrey Epstein,,
 EFTA01743904,email,Andrew McCormack,,2015-08-21 16:31:51,Jeffrey Epstein,,
+EFTA01744769,email,Larry Summers,,2016-09-01 15:18:38,Jeffrey Epstein,Sent from my iPhone,
 EFTA01746399,email,Joi Ito,True,2015-04-22 19:02:00,Jeffrey Epstein,,
 EFTA01747752,email,Andrew Farkas,,2014-11-13 21:31:08,Jeffrey Epstein,,
 EFTA01747791,email,Vincenzo Iozzo,True,2015-01-30 15:24:23,Jeffrey Epstein;Joi Ito,,
@@ -5797,6 +5799,7 @@ EFTA01917402,email,Austin Hill,True,2014-07-15 18:05:27,Adam Back;Hammie Hill;Je
 EFTA01917472,email,Joi Ito,True,2014-07-15 18:07:59,Adam Back;Alexander Lourie;Austin Hill;Hammie Hill;Jeffrey Epstein;Jeremy Heckman,,
 EFTA01917873,email,,True,2014-07-10 16:51:26,Jeffrey Epstein;Jennifer Kalin;Karyna Shuliak;Renata Bolotova,Sent from my iPhone,
 EFTA01919440,email,Jeffrey Epstein,,2014-08-04 21:58:27,Andrew Farkas,,
+EFTA01919974,email,Larry Summers,,2014-07-06 12:46:21,Jeffrey Epstein,Sent from my iPad,
 EFTA01922840,email,Linda Stone,,2014-06-27 12:01:45,Jeffrey Epstein,Pls excuse tupos & abbrvtns,Linda Stone
 EFTA01923844,email,Renata Bolotova,True,2014-06-02 23:29:52,Jeffrey Epstein,,Renata Bolotova (???)
 EFTA01925240,email,Renata Bolotova,True,2014-05-02 16:58:04,Jeffrey Epstein,,Renata Bolotova (???)
@@ -5813,6 +5816,7 @@ EFTA01929919,email,Austin Hill,True,2014-03-19 01:15:02,Jeffrey Epstein,,
 EFTA01931212,email,Tyler Shears,True,2014-03-04 16:45:41,Jeffrey Epstein,,
 EFTA01931256,email,Tyler Shears,True,2014-04-04 18:34:22,Jeffrey Epstein;Richard Kahn,,
 EFTA01931339,email,Renata Bolotova,True,2014-03-21 13:12:54,Jeffrey Epstein,,Renata Bolotova (???)
+EFTA01932117,email,Jeffrey Epstein,True,2014-03-14 03:08:34,,,
 EFTA01932159,email,Austin Hill,True,2014-03-20 02:09:51,Jeffrey Epstein,,
 EFTA01932234,email,Tyler Shears,True,2014-03-18 00:08:51,None;Jeffrey Epstein,,
 EFTA01940349,email,Christina Galbraith,True,2014-01-02 21:56:55,Jeffrey Epstein;Tyler Shears,,Christina Galbraith (???)
@@ -5839,8 +5843,10 @@ EFTA01985762,email,Renata Bolotova,True,2012-01-24 09:35:00,Jeffrey Epstein,Sent
 EFTA01987283,email,David Stern,True,2011-02-28 10:04:31,Jeffrey Epstein,,
 EFTA01987876,email,Renata Bolotova,True,2012-02-23 23:47:15,Jeffrey Epstein,,Renata Bolotova (???)
 EFTA01994876,email,Nicole Junkermann,,2011-10-28 13:00:46,Jeffrey Epstein,,
+EFTA02000094,email,Lesley Groff,,2011-09-15 15:20:47,Jeffrey Epstein,,
 EFTA02002675,email,Jason Calacanis,True,2011-06-11 21:45:39,Jeffrey Epstein;John Brockman,,Jason Calacanis passes Epstein the names of the bitcoin core developers
 EFTA02005819,email,Lesley Groff,,2012-09-07 18:47:59,Jeffrey Epstein,,Lesley Groff (???)
+EFTA02005962,email,Nina K.,,2012-01-06 21:49:33,Jeffrey Epstein,Sent from my iPhone,
 EFTA02018218,email,LinkedIn,,2013-04-22 17:05:14,Jeffrey Epstein,,
 EFTA02018237,email,Renata Bolotova,True,2012-03-02 15:34:08,Jeffrey Epstein,,Renata Bolotova (???)
 EFTA02021096,email,Shaher Abdulhak Besher,True,2012-08-06 20:59:19,Jeffrey Epstein,Sent from my iPad,discussion of the murder of Martine Vik Magnussen by Shaher Abdulhak Besher's son Farouk
@@ -5931,7 +5937,7 @@ EFTA02312343,email,Jeffrey Epstein,True,2018-11-13 23:58:00,Karyna Shuliak,,"cyr
 EFTA02318365,email,LSJ,True,2012-12-21 12:17:00,,Sent from my iPhone,
 EFTA02324346,email,Karyna Shuliak,True,2017-09-14 14:32:00,Renata Bolotova,,
 EFTA02328335,email,,True,2017-03-25 17:47:00,None;Jeffrey Epstein;Karyna Shuliak,,
-EFTA02334332,email,Jason Calacanis,True,2002-10-28 20:04:00,G Ma,,Jason Calacanis
+EFTA02334332,email,Jason Calacanis,True,2002-10-28 20:04:00,Ghislaine Maxwell,,Jason Calacanis
 EFTA02339109,email,Brock Pierce,True,2014-10-25 06:04:00,Jeffrey Epstein,,
 EFTA02341793,email,Brock Pierce,True,2014-10-16 20:20:00,Jeffrey Epstein,,
 EFTA02345782,email,,True,2017-01-26 05:25:00,Jeffrey Epstein,,
@@ -6018,6 +6024,7 @@ EFTA02511281,email,Tyler Shears,True,2015-02-26 20:51:00,Jeffrey Epstein;Richard
 EFTA02514539,email,Jeffrey Epstein,True,2018-03-03 00:04:00,Alan Dlugash,,Brock Pierce has tax problems (hasn't filed a tax return in 5 years)
 EFTA02515764,email,Andrew Farkas,,2014-11-06 19:11:00,Jeffrey Epstein,,
 EFTA02516264,email,,True,2018-03-02 22:06:00,Jeffrey Epstein,Sent from my iPhone,
+EFTA02517037,email,Jeffrey Epstein,True,2014-10-01 11:10:00,Larry Summers,,Epstein wants to talk about Kazakhstan with Larry Summers
 EFTA02517572,email,Steve Bannon,True,2018-02-28 14:27:00,Jeffrey Epstein,Sent via BlackBerry by AT&T,
 EFTA02517623,email,Vincenzo Iozzo,True,2014-07-24 09:38:00,Jeffrey Epstein,,Vincenzo Iozzo explains to Epstein how to deanonymize bitcoin
 EFTA02517850,email,Vincenzo Iozzo,True,2014-07-24 11:58:00,Jeffrey Epstein,,
@@ -6042,6 +6049,7 @@ EFTA02541344,email,Jeffrey Epstein,True,2018-01-09 11:35:00,Brock Pierce,,Brock 
 EFTA02545360,email,Renata Bolotova,True,2017-12-17 22:42:00,Jeffrey Epstein,,Renata Bolotova
 EFTA02547678,email,Jeffrey Epstein,True,2017-12-15 19:46:00,Renata Bolotova,,
 EFTA02547825,email,Renata Bolotova,True,2017-12-15 19:37:00,Jeffrey Epstein,,Renata Bolotova
+EFTA02559311,email,Jeffrey Epstein,True,2012-09-10 12:18:00,,,Epstein has some connection to the sovereign wealth fund of Kazakhstan
 EFTA02561760,email,Renata Bolotova,True,2017-11-29 23:16:00,Jeffrey Epstein,,Renata Bolotova
 EFTA02565917,email,,True,2013-02-05 15:39:00,None;Jeffrey Epstein,,
 EFTA02568700,email,Austin Hill,True,2017-11-14 13:19:00,Jeffrey Epstein,,
