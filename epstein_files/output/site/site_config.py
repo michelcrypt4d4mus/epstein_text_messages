@@ -49,7 +49,7 @@ class MobileConfig:
     def email_subheader(cls, email_type: str, author: Text, recipients: Text, timestamp: datetime | Text) -> Text:
         timestamp = timestamp if isinstance(timestamp, Text) else Text(' at ').append(str(timestamp), TIMESTAMP_STYLE)
         prefix = f"{capitalize_first(email_type)} from " if email_type != 'email' else ''
-        txt = Text(f"{prefix} ", SUBHEADER_STYLE).append(author)
+        txt = Text(prefix, SUBHEADER_STYLE).append(author)
         txt.append(' to ').append(recipients).append(timestamp)
         return txt
 

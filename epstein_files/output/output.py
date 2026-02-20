@@ -30,39 +30,18 @@ from epstein_files.util.logging import logger, exit_with_error
 
 OTHER_INTERESTING_EMAILS_SUBTITLE = 'Other Interesting Emails\n(these emails have been flagged as being of particular interest)'
 DEVICE_SIGNATURE_SUBTITLE = f"Email [italic]Sent from \\[DEVICE][/italic] Signature Breakdown"
+OTHER_FILES_TABLE_MSG = Text("(non emails will appear in tables)", 'gray27 italic')
 DEVICE_SIGNATURE = 'Device Signature'
 DEVICE_SIGNATURE_PADDING = (1, 0)
 PRINT_COLOR_KEY_EVERY_N_EMAILS = 150
 
 
-def _biographical_panel(names: list[str], next_doc: Document) -> Align | None:
-    """Panel showing biographical info for a list of names."""
-    bios = [
-        Text('', justify='right').append(Text(name, f"{get_style_for_name(name)} bold")).append(f": {PEOPLE_BIOS[name]}", style='dim italic')
-        for name in names if PEOPLE_BIOS.get(name)
-    ]
-
-    if not bios:
-        return None
-
-    panel = Panel(
-        Group(*bios),
-        border_style='dim',
-        box=box.DOUBLE,
-        expand=False,
-        # padding=(0, 2),
-        style='on gray7',
-        title=Text(f"people in next {next_doc._debug_prefix}", 'grey35 italic'),
-        title_align='right',
-    )
-
-    return Align(Padding(panel, site_config.character_bio_padding), 'right')
-
-
 def print_curated_chronological(epstein_files: EpsteinFiles) -> list[Document]:
-    other_files_queue = []  # Collect other files into tables
-    printed_docs: list[Document] = []
+    """Print interesting files of all types in chronological order."""
     people_encountered = set()
+    printed_docs: list[Document] = []
+    has_printed_table_explanation = False
+    other_files_queue = []  # Collects sequential OtherFiles into tables
 
     for doc in epstein_files.unique_documents:
         if not doc.is_interesting:
@@ -71,9 +50,11 @@ def print_curated_chronological(epstein_files: EpsteinFiles) -> list[Document]:
             other_files_queue.append(doc)
             continue
         elif other_files_queue:
-            other_files_table = OtherFile.files_preview_table(other_files_queue, title=None)
-            console.print(Padding(other_files_table, (0, 0, 1, site_config.other_files_table_indent)))
+            title = None if has_printed_table_explanation else OTHER_FILES_TABLE_MSG
+            table = OtherFile.files_preview_table(other_files_queue, title=title, title_justify='center')
+            console.print(Padding(table, (0, 0, 1, site_config.other_files_table_indent)))
             printed_docs.extend(other_files_queue)
+            has_printed_table_explanation = True
             other_files_queue = []
 
         if isinstance(doc, Communication):
@@ -354,3 +335,28 @@ def _verify_all_emails_were_printed(epstein_files: EpsteinFiles, already_printed
 
     if not missed_an_email:
         logger.warning(f"All {len(epstein_files.emails):,} emails printed at least once.")
+
+
+def _biographical_panel(names: list[str], next_doc: Document) -> Align | None:
+    """Panel showing biographical info for a list of names."""
+    bios = [
+        Text('', justify='right').append(Text(name, f"{get_style_for_name(name)} bold")).append(
+            f": {PEOPLE_BIOS[name]}", style='dim italic')
+        for name in names if PEOPLE_BIOS.get(name)
+    ]
+
+    if not bios:
+        return None
+
+    panel = Panel(
+        Group(*bios),
+        border_style='dim',
+        box=box.DOUBLE,
+        expand=False,
+        # padding=(0, 2),
+        style='on gray7',
+        title=Text(f"people in next {next_doc._debug_prefix}", 'grey35 italic'),
+        title_align='right',
+    )
+
+    return Align(Padding(panel, site_config.character_bio_padding), 'right')

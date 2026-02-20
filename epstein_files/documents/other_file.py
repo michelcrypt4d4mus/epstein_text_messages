@@ -170,10 +170,18 @@ class OtherFile(Document):
             self.log_top_lines(15, msg=timestamps_log_msg, level=logging.DEBUG)
 
     @classmethod
-    def files_preview_table(cls, files: Sequence['OtherFile'], title_pfx: str = '', title: str | None = '') -> Table:
+    def files_preview_table(
+        cls,
+        files: Sequence['OtherFile'],
+        title_pfx: str = '',
+        title: str | Text | None = '',
+        title_justify: str = '',
+        footer: Text | None = None  # TODO: Unused
+    ) -> Table:
         """Build a table of `OtherFile` documents."""
         title = '' if title is None else (title or f'{title_pfx}Other Files Details in Chronological Order')
-        table = build_table(title, show_lines=True, title_justify='left' if title else 'center')
+        title_justify = title_justify or ('left' if title else 'center')
+        table = build_table(title, caption=footer, show_lines=True, title_justify=title_justify)
         table.add_column('File', justify='center', width=FILENAME_LENGTH)
         table.add_column('Info', justify='center')
         table.add_column(FIRST_FEW_LINES, justify='left', style='pale_turquoise4')
@@ -207,7 +215,14 @@ class OtherFile(Document):
     @classmethod
     def _mobilize_table(cls, _table: Table) -> Table:
         """Make a mobile version of the `files_preview_table()`."""
-        table = build_table(_table.title, show_lines=_table.show_lines, title_justify=_table.title_justify)
+        table = build_table(_table.title)
+
+        for k, v in vars(_table).items():
+            if k.startswith('_') or k in ['columns', 'rows']:
+                continue
+
+            setattr(table, k, v)
+
         table.add_column('File', justify='center', width=len('EFTA00424931'))
         table.add_column(FIRST_FEW_LINES, justify='left', style='pale_turquoise4')
         max_col_idx = len(_table.columns) - 1

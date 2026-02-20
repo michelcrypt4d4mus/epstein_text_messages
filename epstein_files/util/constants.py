@@ -329,7 +329,7 @@ EMAILS_CONFIG = [
         recipients=[MIROSLAV_LAJCAK],
     ),
     EmailCfg(id='029582', author=JEFFREY_EPSTEIN, recipients=[RENATA_BOLOTOVA], author_reason=BOLOTOVA_REASON),
-    EmailCfg(id='030997', author=JEFFREY_EPSTEIN, actual_text='call back'),
+    EmailCfg(id='030997', author=JEFFREY_EPSTEIN, actual_text='call back', is_interesting=False),
     EmailCfg(id='028770', author=JEFFREY_EPSTEIN, actual_text='call me now'),
     EmailCfg(id='031826', author=JEFFREY_EPSTEIN, actual_text='I have'),
     EmailCfg(id='030768', author=JEFFREY_EPSTEIN, actual_text='ok'),
