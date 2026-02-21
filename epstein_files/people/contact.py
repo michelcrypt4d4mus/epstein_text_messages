@@ -104,7 +104,3 @@ class Contact:
     @classmethod
     def repr_string(cls, contact_infos: list[Self]) -> str:
         return '[\n' + indented(',\n'.join([repr(contact) for contact in contact_infos]), 4) + '\n],'
-
-
-from epstein_files.people.contact import Contact
-c = Contact('Anas Alrasheed', f"former information minister of Kuwait {'(???)'}", r"anas al rashee[cd]"),

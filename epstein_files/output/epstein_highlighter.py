@@ -12,6 +12,8 @@ from epstein_files.util.env import args
 from epstein_files.util.helpers.data_helpers import sort_dict
 from epstein_files.util.logging import logger
 
+WEAK_DATE_REGEX = re.compile(r"^(\d\d?/|20|http|On ).*")
+
 
 class EpsteinHighlighter(RegexHighlighter):
     """Finds and colors interesting keywords based on the above config."""
@@ -34,10 +36,9 @@ class EpsteinHighlighter(RegexHighlighter):
     def print_highlight_counts(self, console: Console) -> None:
         """Print counts of how many times strings were highlighted."""
         highlight_counts = deepcopy(self.highlight_counts)
-        weak_date_regex = re.compile(r"^(\d\d?/|20|http|On ).*")
 
         for highlighted, count in sort_dict(highlight_counts):
-            if highlighted is None or weak_date_regex.match(highlighted):
+            if highlighted is None or WEAK_DATE_REGEX.match(highlighted):
                 continue
 
             try:
