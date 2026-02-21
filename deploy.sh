@@ -2,6 +2,7 @@
 # Use --pickled arg to use pickled data file, otherwise pickled data will always be overwritten
 #
 #   - NO_DOJ=true to skip the DOJ files page build
+#   - ONLY_MOBILE=true for only mobile sites
 #   - ONLY_TEXTS=true to skip build/deploy of full emails site.
 #   - TAG_RELEASE=true to upload the pkl.gz file to the repo and deploy DOJ files site
 set -e
@@ -10,6 +11,7 @@ source .env
 CURRENT_BRANCH=$(git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/')
 PICKLE_ARG=$([[ $1 == '--pickled' ]] && echo "" || echo "--overwrite-pickle")
 GENERATE_CMD='epstein_generate --build --suppress-output'
+GENERATE_MOBILE_CMD="$GENERATE_CMD --mobile"
 
 if [ -n "$BASH_COLORS_PATH" ]; then
     source "$BASH_COLORS_PATH"
@@ -60,6 +62,7 @@ epstein_generate --make-clean --suppress-output
 print_deploy_step "Building emailer info .png... $PICKLE_ARG"
 $GENERATE_CMD --emailers-info $PICKLE_ARG
 
+
 if [ -n "$TAG_RELEASE" ]; then
     print_deploy_step "Copying 'the_epstein_files.local.pkl.gz' to 'the_epstein_files.pkl.gz'..."
     scripts/validate_pkl.py
@@ -78,11 +81,20 @@ fi
 git checkout gh_pages
 git merge --no-edit master --quiet
 
+
 # Build files
+print_deploy_step "Building mobile page... "
+$GENERATE_MOBILE_CMD
+print_deploy_step "Building mobile curated chronological page..."
+$GENERATE_MOBILE_CMD --output-chrono
+
+if [ -n "$ONLY_MOBILE" ]; then
+    print_deploy_step "ONLY_MOBILE in effect, exiting after building mobile pages..."
+    exit
+fi
+
 print_deploy_step "Building index.html..."
 $GENERATE_CMD
-print_deploy_step "Building mobile page... "
-$GENERATE_CMD --mobile
 print_deploy_step "Building text messages page... "
 $GENERATE_CMD --all-texts
 
@@ -91,8 +103,6 @@ if [ -n "$ONLY_TEXTS" ]; then
 else
     print_deploy_step "Building curated chronological page..."
     $GENERATE_CMD --output-chrono
-    print_deploy_step "Building mobile curated chronological page..."
-    $GENERATE_CMD --output-chrono --mobile
     print_deploy_step "Building all emails page..."
     $GENERATE_CMD --all-emails
     print_deploy_step "Building chronological emails page..."
