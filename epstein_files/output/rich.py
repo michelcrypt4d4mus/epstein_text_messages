@@ -130,9 +130,6 @@ def build_highlighter(pattern: str) -> EpsteinHighlighter:
 
 
 def build_table(title: str | Text | None, cols: list[str | dict] | None = None, **kwargs) -> Table:
-    if 'show_footer' not in kwargs:
-        kwargs['show_footer'] = bool(kwargs.get('caption'))
-
     table = Table(title=title, **{**DEFAULT_TABLE_KWARGS, **kwargs})
 
     if cols:
