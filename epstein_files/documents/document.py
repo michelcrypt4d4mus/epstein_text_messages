@@ -6,9 +6,9 @@ from datetime import datetime
 from pathlib import Path
 from typing import ClassVar, Self, Sequence, TypeVar
 
-from rich.align import Align
+from rich.align import Align, AlignMethod
 from inflection import underscore
-from rich.console import Console, ConsoleOptions, Group, RenderableType, RenderResult
+from rich.console import Console, ConsoleOptions, Group, JustifyMethod, RenderableType, RenderResult
 from rich.markup import escape
 from rich.padding import Padding
 from rich.panel import Panel
@@ -21,6 +21,7 @@ from epstein_files.documents.documents.search_result import MatchedLine
 from epstein_files.documents.emails.constants import DOJ_EMAIL_OCR_REPAIRS, FALLBACK_TIMESTAMP
 from epstein_files.documents.emails.email_header import DETECT_EMAIL_REGEX
 from epstein_files.output.highlight_config import get_style_for_name
+from epstein_files.output.layout_elements.file_display import FileDisplay
 from epstein_files.output.rich import (INFO_STYLE, NA_TXT, SKIPPED_FILE_MSG_PADDING, SYMBOL_STYLE,
      add_cols_to_table, build_table, console, highlighter, styled_key_value, prefix_with, styled_dict,
      wrap_in_markup_style)
@@ -394,12 +395,15 @@ class Document:
     def colored_external_links(self) -> Text:
         return self.file_info.build_external_links(with_alt_links=True)
 
+    @property
+    def file_id_panel(self) -> Panel:
+        links_txt = self.colored_external_links()
+        return Panel(links_txt, border_style=self.border_style, expand=False)
+
     def file_info_panel(self) -> Group:
         """Panel with filename linking to raw file plus any additional info about the file."""
-        links_txt = self.colored_external_links()
-        panel = Panel(links_txt, border_style=self.border_style, expand=False)
         padded_info = [Padding(sentence, site_config.info_padding()) for sentence in self.info]
-        return Group(*([panel] + padded_info))
+        return Group(*([self.file_id_panel] + padded_info))
         elements = [panel] + padded_info
         return Group(*[Align(e, 'right') for e in elements])
 
@@ -558,10 +562,8 @@ class Document:
 
         logger.warning(f"Wrote {self.length} chars of cleaned {self.filename} to {output_path}.")
 
-    def __rich_console__(self, console: Console, options: ConsoleOptions) -> RenderResult:
-        """Default `Document` renderer (Email and MessengerLog override this)."""
-        yield self.file_info_panel()
-
+    def file_display(self, align: JustifyMethod | None = None, indent: int = 0) -> FileDisplay:
+        """Allows for proper right vs. left justify."""
         text_panel = Panel(
             self.prettified_text,
             border_style=self.border_style,
@@ -570,7 +572,17 @@ class Document:
             title_align='right',
         )
 
-        yield Padding(text_panel, (0, 0, 1, site_config.info_indent))
+        return FileDisplay(
+            file_info=self.file_id_panel,
+            body_panel=text_panel,
+            subheaders=self.info,
+            justify=align,
+            indent=indent,
+        )
+
+    def __rich_console__(self, console: Console, options: ConsoleOptions) -> RenderResult:
+        """Default `Document` renderer (Email and MessengerLog override this)."""
+        yield self.file_display()
 
     def __str__(self) -> str:
         return self.summary.plain
@@ -612,14 +624,12 @@ class Document:
         return len([doc for doc in docs if doc.author])
 
     @classmethod
-    def print_documents(cls, docs: Sequence[Self | Padding]) -> None:
+    def print_documents(cls, docs: Sequence[Self | FileDisplay]) -> None:
         """Print a collection of `Document` objects, with appropriate suppression text for dupes etc."""
         last_doc_was_suppressed = False
 
         for doc in docs:
-            is_document = isinstance(doc, cls)
-
-            if is_document and doc.suppressed_txt:
+            if (is_document := isinstance(doc, cls)) and doc.suppressed_txt:
                 doc.print()
                 last_doc_was_suppressed = True
                 continue

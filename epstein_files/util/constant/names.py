@@ -401,8 +401,7 @@ def extract_last_name(name: str) -> str:
 def name_variations(name: str) -> list[str]:
     """['Firstname', 'Lastname', 'Lastname, Firstname'."""
     if ' 'in name:
-        # NOTE:  Order matters
-        return [reversed_name(name), extract_first_name(name), extract_last_name(name)]
+        return [reversed_name(name), extract_first_name(name), extract_last_name(name)]  # NOTE:  Order matters!
     else:
         return []
 
