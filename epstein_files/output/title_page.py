@@ -177,6 +177,9 @@ def _link_with_comment(url: str, comment: str | Text, _link_text: str = '') -> T
 
 
 def _print_abbreviations_table() -> None:
+    if args.is_mobile:
+        return
+
     table = build_table(title="Abbreviations Used Frequently In These Conversations", show_header=False)
     table.add_column("Abbreviation", justify="center", style='bold')
 

@@ -92,13 +92,9 @@ else:
     args = parser.parse_args()
 
 is_html_script = parser.prog in HTML_SCRIPTS
-
-if args.mobile:
-    site_config = MobileConfig
-else:
-    site_config = SiteConfig
-
+site_config = MobileConfig if args.mobile else SiteConfig
 args._site_type = SiteType.CURATED
+
 args.debug = args.deep_debug or args.debug or is_env_var_set('DEBUG')
 args.names = [None if n == 'None' else n.strip() for n in (args.names or [])]
 args.output_emails = args.output_emails or args.all_emails
