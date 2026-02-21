@@ -1413,6 +1413,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA02109391', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA00676383', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA00949376', truncate_to=NO_TRUNCATE),
+    #### MAGIC COMMENT FOR MANUAL CONFIG ####
 ]
 
 # These emails will be suppressed in the curated views
