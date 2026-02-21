@@ -85,7 +85,7 @@ OCR_REPAIRS: dict[str | re.Pattern, str] = {
     # Headers
     'I nline-Images:': 'Inline-Images:',
     re.compile(r"^From "): 'From: ',
-    re.compile(r"^(Sent|Subject) (?![Ff]rom|[Vv]ia)", re.MULTILINE): r'\1: ',
+    re.compile(r"^(Sent|Subject) (?![Ff]rom|using|[Vv]ia)", re.MULTILINE): r'\1: ',
     re.compile(r"^(Forwarded|Original) Message$", re.IGNORECASE | re.MULTILINE): r"--- \1 Message ---",
     # Excessive quote chars
     re.compile(r"wrote:\n[>»]+(\n[>»]+)"): r"wrote:\1",
@@ -306,13 +306,13 @@ class Email(Communication):
 
     @property
     def subheader(self) -> Text:
-        email_type = 'fwded article' if self.is_fwded_article else 'email'
+        prefix = 'fwded article' if self.is_fwded_article else 'email'
         author_txt = self.author_txt
 
         if self.config and self.config.is_attribution_uncertain:
             author_txt += Text(f" {QUESTION_MARKS}", style=self.author_style)
 
-        return site_config.email_subheader(email_type, author_txt, self.recipients_txt(), self.timestamp)
+        return site_config.email_subheader(prefix, author_txt, self.recipients_txt(), self.timestamp)
 
     @property
     def subject(self) -> str:

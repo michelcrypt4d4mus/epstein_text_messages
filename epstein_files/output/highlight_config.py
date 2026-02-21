@@ -30,6 +30,9 @@ QUESTION_MARKS_TXT = Text(QUESTION_MARKS, style='grey50')
 THIELS_VALAR = f"{PETER_THIEL}'s {VALAR_VENTURES}"
 VICTIM_COLOR = 'orchid1'
 
+DATE_PATTERN = r"\d{1,4}[-/]\d{1,2}[-/]\d{2,4}"
+TIME_PATTERN = r"\d{1,2}:\d{2}:\d{2}( [AP]M)?"
+
 debug_console = Console(color_system='256')
 
 
@@ -1957,7 +1960,12 @@ HighlightedNames(
     HighlightPatterns(
         label='timestamp_2',
         style=TIMESTAMP_STYLE,
-        patterns=[r"\d{1,4}[-/]\d{1,2}[-/]\d{2,4} \d{1,2}:\d{2}:\d{2}( [AP]M)?"],
+        patterns=[fr"({DATE_PATTERN} )?{TIME_PATTERN}"],
+    ),
+    HighlightPatterns(
+        label='timestamp_date',
+        style=TIMESTAMP_DIM,
+        patterns=[DATE_PATTERN],
     ),
 
     # Manual regexes

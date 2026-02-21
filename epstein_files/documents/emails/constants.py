@@ -54,6 +54,7 @@ DOJ_EMAIL_OCR_REPAIRS: dict[str | re.Pattern, str] = {
 
 # "Sent from my iPhone" regexes
 DEVICE_PATTERNS = [
+    r"email app",
     r"and string",
     r"AT&T",
     r"Droid",
@@ -70,7 +71,7 @@ SIGNATURE_PATTERNS = [
     r"Typos,? misspellings courtesy of iPhone(\s*word & thought substitution|Send from my mobile...please excuse typos)?"
 ]
 
-DEVICE_PATTERN = r"(Envoyé de mon|Sent (from|via)).*(" + '|'.join(DEVICE_PATTERNS) + r")"
+DEVICE_PATTERN = r"(Envoyé de mon|Sent (from|using|via)).*?(" + '|'.join(DEVICE_PATTERNS) + r")"
 EPSTEIN_TYPO_PREFIX = r"((Please forgive|Sorry for all the) typos.{1,4})"
 SENT_FROM_DEVICE_PATTERN = '|'.join([DEVICE_PATTERN] + SIGNATURE_PATTERNS)
 SENT_FROM_REGEX = re.compile(fr'^{EPSTEIN_TYPO_PREFIX}?({SENT_FROM_DEVICE_PATTERN})\.?', re.M | re.I)
