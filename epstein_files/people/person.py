@@ -9,6 +9,7 @@ from rich.panel import Panel
 from rich.table import Table
 from rich.text import Text
 
+from epstein_files.documents.communication import Communication
 from epstein_files.documents.document import Document
 from epstein_files.documents.documents.categories import Uninteresting
 from epstein_files.documents.email import TRUNCATE_EMAILS_BY, MAILING_LISTS, JUNK_EMAILERS, Email
@@ -75,6 +76,14 @@ class Person:
             return styled_category(self.category)
         elif self.is_a_mystery or self.is_uninteresting:
             return QUESTION_MARKS_TXT
+
+    @property
+    def communications(self) -> Sequence[Communication]:
+        return self.imessage_logs + self.emails
+
+    @property
+    def counterparties(self) -> list[Name]:
+        return list(set().union(*[c.participants for c in self.communications]))
 
     @property
     def email_conversation_length_in_days(self) -> int:

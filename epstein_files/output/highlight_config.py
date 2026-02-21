@@ -313,7 +313,7 @@ HighlightedNames(
             ),
             Contact(AMIR_TAAKI, f"bitcoin bro, partner of {DONALD_NORMAN} (and {BROCK_PIERCE}?)", r"Amir Taaki|genjix"),
             Contact(ANTHONY_SCARAMUCCI, "Skybridge Capital, FTX investor", r"mooch|(Anthony ('The Mooch' )?)?Scaramucci"),
-            Contact(AUSTIN_HILL, f"{BLOCKSTREAM} co-founder with {ADAM_BACK}, Brudder Ventures"),
+            Contact(AUSTIN_HILL, f"{BLOCKSTREAM} co-founder with {ADAM_BACK}, Brudder Ventures", r"Austin\s*(Hill|@blockstream.com)"),
             Contact(BROCK_PIERCE, "Bannon partner, Tether co-founder, friend of Yair Netanyahu, sex crime history"),
             Contact(BRYAN_BISHOP, "executive at LedgerX and Polymath fund"),
             Contact(DONALD_NORMAN, f"co-founder of early British crypto exchange Intersango with {AMIR_TAAKI}"),
@@ -1847,7 +1847,7 @@ HighlightedNames(
             Contact(
                 name=JABOR_Y,
                 info="former Qatari prime minister Hamad bin Jassim AKA \"HBJ\"",
-                emailer_pattern=r"[ji]abor y?",
+                emailer_pattern=r"[jil]abor y?",
             )
         ],
         category=MIDEAST,

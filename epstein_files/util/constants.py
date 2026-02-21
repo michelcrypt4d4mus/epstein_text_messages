@@ -1263,6 +1263,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00368951', recipients=[LESLEY_GROFF], author_reason='can be seen in EFTA00368958'),
     EmailCfg(id='EFTA00313867', recipients=[LESLEY_GROFF], truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA00383027', recipients=[LINDA_STONE]),
+    EmailCfg(id='EFTA02515798', recipients=[LINDA_STONE]),  # response to EFTA02515756
     EmailCfg(id='EFTA01002282', recipients=[LINDA_STONE], comment='signature'),
     EmailCfg(id='EFTA02266524', recipients=[MARIA_PRUSAKOVA], author_reason=CRYPTO_PR_LAB, description='Medici Bank'),
     EmailCfg(id='EFTA02731632', recipients=[OFFICE_OF_THE_DEPUTY_ATTORNEY_GENERAL]),
@@ -1298,6 +1299,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA02731482', recipients=[USANYS], uncertain_recipient='true'),
     EmailCfg(id='EFTA02731713', recipients=[USANYS], uncertain_recipient='true'),
     EmailCfg(id='EFTA02731718', recipients=[USANYS], uncertain_recipient='true'),
+    EmailCfg(id='EFTA02645069', is_interesting=True, description='Epstein says the Mongolians have asked him to create a currency'),
     EmailCfg(id='EFTA02637315', is_interesting=True, comment=f"{AZIZA_ALAHMADI} says BTC to fiat is legalized in middle east"),
     EmailCfg(id='EFTA02517037', is_interesting=True, description=f"Epstein wants to talk about Kazakhstan with {LARRY_SUMMERS}"),
     EmailCfg(id='EFTA02559311', is_interesting=True, description=f"Epstein has some connection to the sovereign wealth fund of Kazakhstan"),
