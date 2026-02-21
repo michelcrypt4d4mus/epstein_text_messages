@@ -292,7 +292,7 @@ HighlightedNames(
             r"Ministry\sof\sState\sSecurity",
             r"Mongolian?",
             r"MSS",
-            r"North Korean?",
+            r"North .?Korean?",
             r"Peking",
             r"PRC",
             r"Pyongyang",
@@ -1204,7 +1204,7 @@ HighlightedNames(
             Contact(MOHAMED_WAHEED_HASSAN, "former president of the Maldives", r"Mohamed Waheed( Hassan)?"),
             Contact(OLIVIER_COLOM, "France", r"Colom, Olivier|Olivier Colom"),
             Contact('Paul Keating', "former prime minister of Australia"),
-            Contact(PUREVSUREN_LUNDEG, "Mongolian ambassador to the UN"),
+            Contact(PUREVSUREN_LUNDEG, "Mongolian ambassador to the UN", r"Purevsuren( Lundeg)?"),
             Contact('Stanley Rosenberg', "former President of the Massachusetts Senate")
         ],
         patterns=[
@@ -1393,7 +1393,8 @@ HighlightedNames(
             Contact(MANUELA_MARTINEZ, "Mega Partners (Brazilian agency)", r"Manuela (- Mega Partners|Martinez)"),
             Contact(MARIANA_IDZKOWSKA, emailer_pattern=r"Mariana [Il]d[źi]kowska?"),
             Contact('Michael Sanka', f"{JEAN_LUC_BRUNEL}'s MC2 Model Management {'(???)'}"),
-            Contact('Vladimir Yudashkin', "director of the 1 Mother Agency")
+            Contact('Vladimir Yudashkin', "director of the 1 Mother Agency"),
+            Contact('Yfke Sturm', 'model from Holland'),
         ],
         patterns=[
             r"\w+@mc2mm.com",
@@ -1944,7 +1945,6 @@ HighlightedNames(
             r"Please use this email for.*general Media Lab.*",  # Joi Ito
             r"-Austin\nAustin Hill - B..dder.*(\n.*B92ED3E3)?",
             r"^(Please note my new email address?:?.*|Follow me on twitter @[Il]hsummers|www.larrysummers.com)$", # larry summers
-            r"^--\w+-- conversation-id.*(flags|remote-id \d+)( \d{6,}.*remote-id.*\d+)?",
         ],
     ),
     HighlightPatterns(
@@ -1999,6 +1999,9 @@ PEOPLE_BIOS = {
 def get_contact(name: str) -> Contact | None:
     if (group := get_highlight_group_for_name(name)) and isinstance(group, HighlightedNames):
         return group.contacts_lookup.get(name)
+
+
+
 
 
 def get_highlight_group_for_name(name: str | None) -> HighlightGroup | None:

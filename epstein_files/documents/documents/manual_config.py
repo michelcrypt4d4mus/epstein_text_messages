@@ -1,8 +1,9 @@
+import sys
 from typing import Mapping, Sequence, Type, cast
 
 from rich.prompt import Confirm, Prompt
 from rich.table import Table
-from yaralyzer.util.helpers.interaction_helper import ask_to_proceed
+from rich.text import Text
 
 from epstein_files.documents.document import Document
 from epstein_files.documents.documents.doc_cfg import DocCfg, EmailCfg
@@ -10,6 +11,8 @@ from epstein_files.documents.doj_file import DojFile
 from epstein_files.documents.email import Email
 from epstein_files.output.rich import console, print_subtitle_panel
 from epstein_files.util.constants import CONFIGS_BY_ID
+
+QUESTION = Text("OK to continue? (", 'honeydew2').append("'c' for manual doc config", 'yellow1').append(')')
 
 FIELDS = [
     'author',
@@ -30,8 +33,11 @@ def create_configs(docs: Sequence[Document]) -> Sequence[DocCfg]:
     """Manually review and create DocCfg objects for new files."""
     console.print(*docs)
     cfgs = []
+    what_to_do = Prompt.ask(QUESTION, choices=['y', 'n', 'c'])
 
-    if not Confirm.ask(f"\nManually configure {len(docs)} documents ('no' means just save as is)?"):
+    if what_to_do == 'n':
+        sys.exit()
+    elif what_to_do == 'y':
         return []
 
     for doc in docs:
