@@ -95,10 +95,10 @@ is_html_script = parser.prog in HTML_SCRIPTS
 
 if args.mobile:
     site_config = MobileConfig
-    args.output_chrono = True
 else:
     site_config = SiteConfig
 
+args._site_type = SiteType.CURATED
 args.debug = args.deep_debug or args.debug or is_env_var_set('DEBUG')
 args.names = [None if n == 'None' else n.strip() for n in (args.names or [])]
 args.output_emails = args.output_emails or args.all_emails
@@ -108,7 +108,6 @@ args.overwrite_pickle = args.overwrite_pickle or (is_env_var_set('OVERWRITE_PICK
 args.width = site_config.width if is_html_script else None
 args.any_output_selected = any([is_output_arg(arg) and val for arg, val in vars(args).items()])
 args.suppress_uninteresting = not (args.names or any(arg.startswith('all_') and val for arg, val in vars(args).items()))
-args._site_type = SiteType.CURATED
 
 if not (args.any_output_selected or args.all_emails_chrono or args.emailers_info or args.stats):
     if is_html_script:
@@ -122,24 +121,28 @@ if is_html_script:
 
     # TODO: include the JSON and word count file outputs here
     if args.build == DEFAULT_FILE:
-        if args.all_doj_files:
-            args._site_type = SiteType.DOJ_FILES
-        elif args.all_emails:
-            args._site_type = SiteType.EMAILS
-        elif args.all_emails_chrono:
-            args._site_type = SiteType.EMAILS_CHRONOLOGICAL
-        elif args.all_texts:
-            args._site_type = SiteType.TEXT_MESSAGES
-        elif args.all_other_files:
-            args._site_type = SiteType.OTHER_FILES_TABLE
-        elif args.json_metadata:
-            args._site_type = SiteType.JSON_METADATA
-        elif args.mobile:
-            args._site_type = SiteType.MOBILE  # NOTE: mobile must come before CURATED_CHRONOLOGICAL!
-        elif args.output_chrono:
-            args._site_type = SiteType.CURATED_CHRONOLOGICAL
-        elif args.output_word_count:
-            args._site_type = SiteType.WORD_COUNT
+        if args.mobile:
+            if args.output_chrono:
+                args._site_type = SiteType.CHRONOLOGICAL_MOBILE
+            else:
+                args._site_type = SiteType.CURATED_MOBILE  # This isn't great; requires args be correct to build
+        else:
+            if args.all_doj_files:
+                args._site_type = SiteType.DOJ_FILES
+            elif args.all_emails:
+                args._site_type = SiteType.EMAILS
+            elif args.all_emails_chrono:
+                args._site_type = SiteType.EMAILS_CHRONOLOGICAL
+            elif args.all_texts:
+                args._site_type = SiteType.TEXT_MESSAGES
+            elif args.all_other_files:
+                args._site_type = SiteType.OTHER_FILES_TABLE
+            elif args.json_metadata:
+                args._site_type = SiteType.JSON_METADATA
+            elif args.output_chrono:
+                args._site_type = SiteType.CHRONOLOGICAL
+            elif args.output_word_count:
+                args._site_type = SiteType.WORD_COUNT
 
         args.build = SiteType.build_path(args._site_type)
 elif parser.prog.startswith('epstein_') and not args.positional_args and not args.names:

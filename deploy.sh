@@ -79,18 +79,20 @@ git checkout gh_pages
 git merge --no-edit master --quiet
 
 # Build files
-print_deploy_step "Building curated index.html..."
+print_deploy_step "Building index.html..."
 $GENERATE_CMD
-print_deploy_step "Building text messages page... "
-$GENERATE_CMD --all-texts
 print_deploy_step "Building mobile page... "
 $GENERATE_CMD --mobile
+print_deploy_step "Building text messages page... "
+$GENERATE_CMD --all-texts
 
 if [ -n "$ONLY_TEXTS" ]; then
     print_deploy_step "Skipping build of emails pages..."
 else
     print_deploy_step "Building curated chronological page..."
     $GENERATE_CMD --output-chrono
+    print_deploy_step "Building mobile curated chronological page..."
+    $GENERATE_CMD --output-chrono --mobile
     print_deploy_step "Building all emails page..."
     $GENERATE_CMD --all-emails
     print_deploy_step "Building chronological emails page..."

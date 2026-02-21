@@ -3,7 +3,6 @@ from rich.terminal_theme import TerminalTheme
 from epstein_files.util.env import args
 from epstein_files.output.site.sites import SiteType
 
-
 PAGE_TITLE = '   ∞ Michel de Cryptadamus ∞   '
 
 if args.all_emails:
@@ -23,7 +22,7 @@ CONSOLE_HTML_FORMAT = """
 
     <script type="text/javascript">
         if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {{
-            window.location.href = """ + f'"{SiteType.get_url(SiteType.MOBILE)}";' + """
+            window.location.href = """ + f'"{SiteType.get_mobile_redirect_url(args._site_type)}";' + """
         }}
     </script>
 

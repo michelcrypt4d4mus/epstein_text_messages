@@ -127,7 +127,6 @@ def print_emailers_info(epstein_files: EpsteinFiles) -> None:
 def print_emails_section(epstein_files: EpsteinFiles) -> list[Email]:
     """Prints emails, returns emails that were printed (may return dupes if printed for both author and recipient)."""
     print_section_header((SELECTIONS_FROM if not args.all_emails else '') + HIS_EMAILS)
-    print_other_page_link(epstein_files)
     all_emailers = sorted(epstein_files.emailers, key=lambda person: person.earliest_email_at)
     all_emails = Person.emails_from_people(all_emailers)
     num_emails_printed_since_last_color_key = 0
@@ -312,7 +311,7 @@ def _print_email_device_signature_info(epstein_files: EpsteinFiles) -> None:
 
 def _print_section_summary_table(table: Table) -> None:
     """Print file stats table (top of each section has one)."""
-    print_centered(Padding(table, (2, 0, 2, 0)))
+    print_centered(Padding(table, (1, 0, 1, 0)))
 
 
 def _signature_table(keyed_sets: dict[str, set[str]], cols: tuple[str, str], join_char: str = '\n') -> Padding:
