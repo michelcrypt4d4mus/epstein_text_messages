@@ -351,9 +351,9 @@ file_id,category,author,is_interesting,timestamp,recipients_str,sent_from_device
 022673,email,Kathryn Ruemmler,False,2015-01-30 17:26:02,Jeffrey Epstein,,
 022684,email,Kathryn Ruemmler,,2015-01-30 19:05:49,Jeffrey Epstein,,
 022695,email,Kathryn Ruemmler,,2015-01-31 02:46:14,Jeffrey Epstein,,
-022707,article,Michael Wolff,True,2014-11-01 00:00:00,,,Michael Wolff draft of an unpublished article ca. 2014/2015
-022727,article,Michael Wolff,True,2014-11-01 00:00:00,,,Michael Wolff draft of an unpublished article ca. 2014/2015
-022746,article,Michael Wolff,True,2014-11-01 00:00:00,,,Michael Wolff draft of an unpublished article ca. 2014/2015
+022707,article,Michael Wolff,True,2014-11-01 00:00:00,,,Michael Wolff draft of an unpublished article ca. 2014
+022727,article,Michael Wolff,True,2014-11-01 00:00:00,,,Michael Wolff draft of an unpublished article ca. 2014
+022746,article,Michael Wolff,True,2014-11-01 00:00:00,,,Michael Wolff draft of an unpublished article ca. 2014
 022766,email,Martin Weinberg,,2015-04-22 19:03:52,Jeffrey Epstein;Kathryn Ruemmler,,
 022770,email,,True,2016-01-19 23:39:00,Jeffrey Epstein,,
 022771,email,,True,2016-01-20 03:46:00,Jeffrey Epstein,,
@@ -380,9 +380,9 @@ file_id,category,author,is_interesting,timestamp,recipients_str,sent_from_device
 022837,email,Jeffrey Epstein,,2015-01-16 19:35:00,Landon Thomas Jr,,
 022839,email,Jeffrey Epstein,,2015-01-16 19:52:31,Landon Thomas Jr,,
 022841,email,Jeffrey Epstein,,2015-01-16 20:12:46,Landon Thomas Jr,,
-022844,article,Michael Wolff,True,2014-11-01 00:00:00,,,Michael Wolff draft of an unpublished article ca. 2014/2015
-022863,article,Michael Wolff,True,2014-11-01 00:00:00,,,Michael Wolff draft of an unpublished article ca. 2014/2015
-022894,article,Michael Wolff,True,2014-11-01 00:00:00,,,"Michael Wolff draft of an unpublished article ca. 2014/2015 claiming Kelimbetov, Brock Pierce, and Larry Summers all visited Epstein around the time Tether was founded"
+022844,article,Michael Wolff,True,2014-11-01 00:00:00,,,Michael Wolff draft of an unpublished article ca. 2014
+022863,article,Michael Wolff,True,2014-11-01 00:00:00,,,Michael Wolff draft of an unpublished article ca. 2014
+022894,article,Michael Wolff,True,2014-11-01 00:00:00,,,"Michael Wolff draft of an unpublished article ca. 2014 claiming Kelimbetov, Brock Pierce, and Larry Summers all visited Epstein around the time Tether was founded"
 022926,email,Jeffrey Epstein,,2015-04-22 19:16:34,Darren Indyke,,
 022931,email,Jeffrey Epstein,,2015-04-22 19:34:00,Alan Dershowitz,,
 022936,email,Jeffrey Epstein,True,2016-01-20 10:21:00,,,
@@ -393,7 +393,7 @@ file_id,category,author,is_interesting,timestamp,recipients_str,sent_from_device
 022945,email,Jeffrey Epstein,,2017-11-07 14:55:20,Landon Thomas Jr,,
 022947,email,Jeffrey Epstein,,2017-11-07 15:10:06,Landon Thomas Jr,,
 022949,email,Jeffrey Epstein,,2017-11-08 13:49:52,Landon Thomas Jr,,
-022952,article,Michael Wolff,True,2014-11-01 00:00:00,,,Michael Wolff draft of an unpublished article ca. 2014/2015
+022952,article,Michael Wolff,True,2014-11-01 00:00:00,,,Michael Wolff draft of an unpublished article ca. 2014
 022970,article,Daily Mail,False,2011-03-13 02:26:00,,,Daily Mail article on Epstein and Prince Andrew
 022977,email,Paul Krassner,,2017-05-05 15:19:21,Jeffrey Epstein,,
 022986,junk,,False,,,,fragment of a screenshot (???)
@@ -470,7 +470,7 @@ file_id,category,author,is_interesting,timestamp,recipients_str,sent_from_device
 023612,email,Kelly Friendly,,2014-01-06 02:40:00,Jeffrey Epstein,,
 023616,email,Kelly Friendly,,2014-01-06 12:29:00,Andrew Friendly;Jeffrey Epstein,Sent from my iPhone,
 023621,email,Kelly Friendly,,2014-01-06 12:40:00,Jeffrey Epstein,,
-023627,email,Jeffrey Epstein,True,2016-10-08 20:05:08,Jeffrey Epstein,,draft of an unpublished article ca. 2014/2015
+023627,email,Jeffrey Epstein,True,2016-10-08 20:05:08,Jeffrey Epstein,,draft of an unpublished article ca. 2014
 023635,email,Landon Thomas Jr,False,2016-11-14 15:32:12,Jeffrey Epstein,,
 023638,article,Paul Krassner,False,2017-01-16 00:00:00,,,Paul Krassner magazine interview
 023644,misc,,False,2016-04-25 00:00:00,,,interview with Mohammed bin Salman
@@ -488,7 +488,7 @@ file_id,category,author,is_interesting,timestamp,recipients_str,sent_from_device
 024185,conference,67th U.N. General Assembly,True,2012-09-21 00:00:00,,,"67th U.N. General Assembly schedule including ""Presidents Private Dinner - Jeffrey Epstine (sic)"""
 024194,finance,JP Morgan,False,2012-10-22 00:00:00,,,"JP Morgan report: ""Eye On The Market"""
 024202,finance,Electron Capital Partners,False,2013-03-08 00:00:00,,,"Electron Capital Partners report: ""Global Utility White Paper"""
-024229,article,Michael Wolff,True,2014-11-01 00:00:00,,,Michael Wolff draft of an unpublished article ca. 2014/2015
+024229,article,Michael Wolff,True,2014-11-01 00:00:00,,,Michael Wolff draft of an unpublished article ca. 2014
 024251,email,Richard Kahn,,2015-07-22 17:29:11,Jeffrey Epstein,,
 024256,crypto,Joi Ito,True,2017-05-20 00:00:00,,,Joi Ito Internet & Society: The Technologies and Politics of Control
 024270,article,Virgin Islands Daily News,False,2017-06-24 00:00:00,,,Virgin Islands Daily News
@@ -5660,6 +5660,7 @@ EFTA01089526,crypto,Crypto Currency Partners II,True,2014-08-01 00:00:00,,,Crypt
 EFTA01089535,crypto,Crypto Currency Partners II,True,2014-10-01 00:00:00,,,Crypto Currency Partners II investor report
 EFTA01092555,crypto,Coinbase,True,2013-12-12 00:00:00,,,Coinbase certificate of incorporation
 EFTA01093444,crypto,Crypto Currency Partners II,True,2014-11-12 00:26:47,,,"Crypto Currency Partners II application form, attached to email EFTA00626220"
+EFTA01093471,crypto,Crypto Currency Partners II,True,2014-11-12 00:26:47,,,"Crypto Currency Partners II operating agreement, attached to email EFTA00626220"
 EFTA01093509,crypto,Crypto Currency Partners II,True,2014-10-20 00:00:00,,,Crypto Currency Partners II partnership draft
 EFTA01107738,misc,,True,2013-08-29 00:00:00,,,creation of Cantor Urramoor Asset Management with Mr. T's (Prince Andrew?) Urramoor and Howard Lutnick's Cantor Fitzgerald
 EFTA01108775,crypto,,True,2014-05-05 00:00:00,,,Epstein crypto fund Kyara Investment I LLC (Physical Graph Corporation) operating agreement
@@ -5721,6 +5722,7 @@ EFTA01613731,crypto,,True,2019-05-17 19:12:12,,,Medici Bank conversation on What
 EFTA01613759,crypto,Crypto PR Lab,True,2019-05-24 00:00:00,,,Crypto PR Lab letter of intent of acquisitionfrom Transform Group
 EFTA01613762,crypto,Crypto PR Lab,True,2019-05-21 00:00:00,,,Crypto PR Lab WhatsApp convo with Maria Prusakova
 EFTA01616597,,,,2011-10-07 11:57:55,,,
+EFTA01616933,girls,,True,,,,"""now im finding pussy for you"" / ""no one can beat your pussy network"""
 EFTA01618339,,,,2015-12-07 22:39:46,,,
 EFTA01618370,,,,2016-02-25 18:41:28,,,
 EFTA01618381,text_msg,Renata Bolotova,True,2016-04-16 19:02:00,,,text messagefromRenata Bolotova (???) iMessage screenshots
