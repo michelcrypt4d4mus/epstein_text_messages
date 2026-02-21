@@ -15,10 +15,10 @@ from epstein_files.output.layout_elements.left_bar_panel import LeftBarPanel
 from epstein_files.output.rich import RAINBOW, highlighter, wrap_in_markup_style
 from epstein_files.util.logging import logger
 from epstein_files.util.helpers.data_helpers import prefix_keys
+from epstein_files.util.helpers.string_helper import strip_pdfalyzer_panels
 
 EMPTY_LENGTH = 15
 BAD_OCR_EMPTY_LENGTH = 150
-IMAGE_PANEL_REGEX = re.compile(r"\n╭─* Page \d+, Image \d+.*?╯\n", re.DOTALL)
 IGNORE_LINE_REGEX = re.compile(r"^(\d+\n?|[\s+❑]{2,})$")
 MIN_VALID_LENGTH = 10
 SINGLE_IMAGE_NO_TEXT = 'no text found in image(s)'
@@ -231,7 +231,7 @@ class DojFile(OtherFile):
         super().__post_init__()
 
         if self.file_id in STRIP_IMAGE_PANEL_IDS:
-            self.strip_image_ocr_panels()
+            self.text = strip_pdfalyzer_panels(self.text)  # Removes the ╭--- Page 5, Image 1 ---- panels from the text.
 
     @property
     def border_style(self) -> str:
@@ -297,15 +297,6 @@ class DojFile(OtherFile):
     def external_links_txt(self, _style: str = '', with_alt_links: bool = True) -> Text:
         """Overrides super() method to apply self.border_style."""
         return self.file_info.build_external_links(self.border_style, with_alt_links=with_alt_links)
-
-    def strip_image_ocr_panels(self) -> None:
-        """Removes the ╭--- Page 5, Image 1 ---- panels from the text."""
-        new_text, num_replaced = IMAGE_PANEL_REGEX.subn('', self.text)
-
-        if num_replaced > 0:
-            self.warn(f"Stripped {num_replaced} image panels.")
-
-        self._set_text(text=new_text)
 
     def _debug_props(self) -> DebugDict:
         props = super()._debug_props()

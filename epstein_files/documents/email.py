@@ -34,7 +34,7 @@ from epstein_files.util.env import args, site_config
 from epstein_files.util.helpers.data_helpers import (AMERICAN_TIME_REGEX, TIMEZONE_INFO,
      prefix_keys, remove_timezone, uniquify)
 from epstein_files.util.helpers.link_helper import link_text_obj
-from epstein_files.util.helpers.string_helper import capitalize_first, collapse_newlines
+from epstein_files.util.helpers.string_helper import capitalize_first, collapse_newlines, strip_pdfalyzer_panels
 from epstein_files.util.logging import logger
 
 # Email bod regexes
@@ -553,7 +553,7 @@ class Email(Communication):
         """Repair particularly janky files. Note that OCR_REPAIRS are applied *after* other line adjustments."""
         # Some DOJ cleanup needs to happen first if this is a DOJ file.
         if self.file_info.is_doj_file:
-            self._set_text(text=self.repair_ocr_text(DOJ_EMAIL_OCR_REPAIRS, self.text))
+            self._set_text(text=self.repair_ocr_text(DOJ_EMAIL_OCR_REPAIRS, strip_pdfalyzer_panels(self.text)))
 
         if BAD_FIRST_LINE_REGEX.match(self.lines[0]):
             self._set_text(lines=self.lines[1:])

@@ -6,8 +6,8 @@ import re
 from inflection import underscore
 
 from epstein_files.util.constant.strings import QUESTION_MARKS_REGEX
-from epstein_files.util.logging import logger
 
+PDFALYZER_IMAGE_PANEL_REGEX = re.compile(r"\n╭─* Page \d+, Image \d+.*?╯\n?", re.DOTALL)
 MULTINEWLINE_REGEX = re.compile(r"\n{2,}")
 MULTISPACE_REGEX = re.compile(" +")
 WHITESPACE_CHAR = r"[-_\s]*"
@@ -17,6 +17,7 @@ capture_group_marker = lambda label: fr"?P<{label}>"
 collapse_newlines = lambda text: MULTINEWLINE_REGEX.sub('\n\n', text)
 collapse_spaces = lambda s: MULTISPACE_REGEX.sub(' ', s)
 iso_timestamp = lambda dt: dt.isoformat().replace('T', ' ')
+strip_pdfalyzer_panels = lambda s: PDFALYZER_IMAGE_PANEL_REGEX.sub('', s)
 
 
 def as_pattern(s: str) -> str:
@@ -65,8 +66,6 @@ def quote(s: str, try_single_quote_first: bool = False) -> str:
 
 def remove_question_marks(name: str):
     return QUESTION_MARKS_REGEX.sub('', name).strip()
-
-
 
 
 def starred_header(msg: str, num_stars: int = 7, num_spaces: int = 2) -> str:
