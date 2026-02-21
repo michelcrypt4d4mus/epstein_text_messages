@@ -23,13 +23,13 @@ Then there's two options as far as the data:
 You need to set the `EPSTEIN_DOCS_DIR` environment variable with the path to the folder of files you just downloaded when running. You can either create a `.env` file modeled on [`.env.example`](./.env.example) (which will set it permanently) or you can run with:
 
 ```bash
-EPSTEIN_DOCS_DIR=/path/to/epstein/ocr_txt_files epstein_generate --help
+EPSTEIN_DOCS_DIR=path/to/source_data/ epstein_generate --help
 ```
 
 To work with the January 2026 DOJ documents you'll also need to set the `EPSTEIN_DOJ_TXTS_20260130_DIR` env var to point at folders full of OCR extracted texts from the raw DOJ PDFs. If you have the PDFs but not the text files there's [a script](scripts/extract_doj_pdfs.py) that can help you take care of that (it launches [pdfalyzer](https://github.com/michelcrypt4d4mus/pdfalyzer) on PDFs it finds in the hierarchy).
 
 ```bash
-EPSTEIN_DOCS_DIR=/path/to/epstein/ocr_txt_files EPSTEIN_DOJ_TXTS_20260130_DIR=/path/to/doj/files epstein_generate --help
+EPSTEIN_DOCS_DIR=path/to/source_data/ EPSTEIN_DOJ_TXTS_20260130_DIR=/path/to/doj/files/ epstein_generate --help
 ```
 
 **NOTE**: In order to get the generated links to the DOJ site and [Jmail](https://jmail.world) to work correctly you will need to sort the PDFs into the same datasets they are found in on the DOJ's website. You should have folders like this:
