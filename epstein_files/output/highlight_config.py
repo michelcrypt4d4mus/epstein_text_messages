@@ -318,6 +318,7 @@ HighlightedNames(
             Contact(BRYAN_BISHOP, "executive at LedgerX and Polymath fund"),
             Contact(DONALD_NORMAN, f"co-founder of early British crypto exchange Intersango with {AMIR_TAAKI}"),
             Contact(ED_BOYLE, f"Medici Bank", r"Ed Boy(el|le)"),
+            Contact('Francesca Hall', 'Assistant/Calendar Queen to The BlockStream team'),
             Contact(FRANCESCA_HALL, f"assistant to {AUSTIN_HILL}"),
             Contact(GAVIN_ANDRESEN, 'core bitcoin developer', r"(Gavin )?Andr.ss?en"),
             Contact(JEFFREY_WERNICK, "former COO of Parler, involved in numerous crypto companies like Bitforex"),
@@ -343,6 +344,7 @@ HighlightedNames(
             r"Bit(Angels|Finex|Fury|Main)",
             r"block\s?(chain|tree)( capital)?",
             r"Blockstream",
+            r"Blythe Masters",
             r"Bradley Rotter",
             r"Brian Forde",
             r"Brock( Pierce)?",
@@ -362,6 +364,7 @@ HighlightedNames(
             r"(Hester )?Peirce",
             r"(Howard )?Lutnic?k",
             r"ICO",
+            r"itBit",
             r"(Jim )Pallotta",  # Media lab advisory board
             r"Joyce Kim",
             r"Kathryn Haun",
@@ -505,6 +508,7 @@ HighlightedNames(
             r"Gratitude America",
             r"(Butterfly|Haze|Southern) (Financial|Trust)( Co(mpany)?)?",
             r"Hyperion( Air)?",
+            r"IPI",
             r"Jeepers( Inc\.?)?",
             r"JEGE( (Inc|LLC))?",
             r"Laurel Inc\.?",
@@ -1395,7 +1399,8 @@ HighlightedNames(
             r"\w+@mc2mm.com",
             r"MC2",
             r"(Nicole )?Junkerman",  # Also a venture fund manager now
-            r"Tigrane",
+            r"noah\s*models(.com)?",
+            r"Tigrane?",
         ],
     ),
     HighlightedNames(

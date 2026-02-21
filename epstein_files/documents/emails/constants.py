@@ -61,6 +61,7 @@ DEVICE_PATTERNS = [
     r"iPad",
     r"Phone",
     r"Mail",
+    r"Samsung Mobile",
     r"Surface(\s+RT)?",
     r"BlackBerry(.*(smartphone|device|Handheld|AT&T|T- ?Mobile))?",
 ]

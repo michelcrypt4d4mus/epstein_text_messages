@@ -33,7 +33,6 @@ ADDITIONAL_CONTACTS = [
     Contact('Coursera'),
     Contact('Danny Goldberg'),
     Contact(ED_BOYLE),
-    Contact('Francesca Hall'),
     Contact('Jeff Pagliuca'),
     Contact(JOHN_PAGE),
     Contact('Kathleen Ruderman'),

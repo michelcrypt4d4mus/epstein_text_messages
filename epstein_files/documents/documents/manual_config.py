@@ -31,7 +31,7 @@ def create_configs(docs: Sequence[Document]) -> Sequence[DocCfg]:
     console.print(*docs)
     cfgs = []
 
-    if not Confirm.ask(f"\nManually configure {len(docs)} documents?"):
+    if not Confirm.ask(f"\nManually configure {len(docs)} documents ('no' means just save as is)?"):
         return []
 
     for doc in docs:
