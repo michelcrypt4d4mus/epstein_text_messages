@@ -184,7 +184,7 @@ class DocCfg:
                 recipients = join_truthy(author, recipients, ', ')
                 recipients_sep = ' of conversation with '
             else:
-                description = join_truthy(preamble, author, 'from')
+                description = join_truthy(preamble, author, ' from ')
                 recipients_sep = ' to '
 
             description = join_truthy(description, recipients, recipients_sep)
