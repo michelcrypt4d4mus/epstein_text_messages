@@ -1983,6 +1983,11 @@ PEOPLE_BIOS = {
 }
 
 
+def get_contact(name: str) -> Contact | None:
+    if (group := get_highlight_group_for_name(name)) and isinstance(group, HighlightedNames):
+        return group.contacts_lookup.get(name)
+
+
 def get_highlight_group_for_name(name: str | None) -> HighlightGroup | None:
     if not name:
         return None

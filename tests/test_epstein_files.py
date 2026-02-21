@@ -45,7 +45,7 @@ def test_against_csv(epstein_files):
             continue
 
     bad_ids = uniquify([doc.file_id for doc in bad_docs])
-    assert len(bad_ids) == 0, f"{len(bad_ids)} docs don't match CSV. IDs:\n\n{' '.join(bad_ids)}"
+    assert len(bad_ids) == 0, f"{len(bad_ids)} docs don't match CSV: {' '.join(bad_ids)}"
 
 
 def test_all_configured_file_ids_exist(epstein_files):

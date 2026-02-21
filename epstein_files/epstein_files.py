@@ -14,7 +14,7 @@ from rich.table import Table
 from yaralyzer.util.helpers.interaction_helper import ask_to_proceed
 
 from epstein_files.documents.document import Document
-from epstein_files.documents.documents.doc_cfg import EMAIL_PROPS_TO_COPY, PROPS_TO_COPY, Metadata
+from epstein_files.documents.documents.doc_cfg import Metadata
 from epstein_files.documents.documents.manual_config import create_configs
 from epstein_files.documents.documents.search_result import SearchResult
 from epstein_files.documents.doj_file import DojFile
@@ -33,6 +33,9 @@ from epstein_files.util.helpers.data_helpers import flatten, json_safe, uniquify
 from epstein_files.util.helpers.file_helper import all_txt_paths, doj_txt_paths, extract_file_id, file_size_str
 from epstein_files.util.timer import Timer
 
+# Lists of properties to copy into duplicate documents (will be preceded with 'extracted_')
+PROPS_TO_COPY = ['author', 'timestamp']
+EMAIL_PROPS_TO_COPY = ['recipients']
 SLOW_FILE_SECONDS = 1.0
 
 
@@ -344,6 +347,7 @@ class EpsteinFiles:
 
             original = self.get_id(doc.duplicate_of_id)
             props_to_copy = (EMAIL_PROPS_TO_COPY + PROPS_TO_COPY) if isinstance(doc, Email) else PROPS_TO_COPY
+            props_to_copy = [f"extracted_{prop}" for prop in props_to_copy]
 
             for field_name in props_to_copy:
                 original_prop = getattr(original, field_name)
@@ -386,7 +390,7 @@ class EpsteinFiles:
             elif file.timestamp and file.timestamp != email.timestamp:
                 file.warn(f"Overwriting '{file.timestamp}' with {email}'s timestamp {email.timestamp}")
 
-            file.timestamp = email.timestamp
+            file.extracted_timestamp = email.timestamp
 
         # Set the is_persons_first_email flag on the earliest Email we have for each person.
         for emailer in self.emailers:

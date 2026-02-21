@@ -90,7 +90,6 @@ class Document:
 
     Attributes:
         file_path (Path): Local path to file
-        author (Name): Writer of the text in the file
         file_info (FileInfo): Manages things having to do with the underlying file (paths, URLs, etc.)
         lines (list[str]): Number of lines in the file after all the cleanup
         text (str): Contents of the file
@@ -99,15 +98,19 @@ class Document:
     file_path: Path
 
     # Optional and/or derived at instantiation time
-    author: Name = None
+    extracted_author: Name = None
+    extracted_timestamp: datetime | None = None
     file_info: FileInfo = field(init=False)
     lines: list[str] = field(default_factory=list)
     text: str = ''
-    timestamp: datetime | None = None
 
     # Class constants
     INCLUDE_DESCRIPTION_IN_SUMMARY_PANEL: ClassVar[bool] = False
     STRIP_WHITESPACE: ClassVar[bool] = True  # Overridden in JsonFile
+
+    @property
+    def author(self) -> Name:
+        return self.config.author if self.config and self.config.author else self.extracted_author
 
     @property
     def border_style(self) -> str:
@@ -332,6 +335,13 @@ class Document:
         return Panel(Group(*sentences), border_style=self._class_style, expand=False)
 
     @property
+    def timestamp(self) -> datetime | None:
+        if self.config and self.config.timestamp:
+            return self.config.timestamp
+        else:
+            return self.extracted_timestamp
+
+    @property
     def timestamp_sort_key(self) -> tuple[datetime, str, int]:
         """Sort by timestamp, file_id, then whether or not it's a duplicate file."""
         if self.duplicate_of_id:
@@ -372,10 +382,8 @@ class Document:
         self.text = self.text or self._load_file()
         self._set_text(text=self.text)
         self._repair()
-        self._copy_config_props()
-        self._extract_author()
-        # TODO: Communication subclass sets FALLBACK_TIMESTAMP as default to keep type checking from whining :(
-        self.timestamp = self._extract_timestamp() if self.timestamp in [None, FALLBACK_TIMESTAMP] else self.timestamp
+        self.extracted_author = None if self.author else self._extract_author()
+        self.extracted_timestamp = None if self.timestamp else self._extract_timestamp()
 
     @classmethod
     def from_file_id(cls, file_id: str | int) -> Self:
@@ -399,7 +407,7 @@ class Document:
 
     def log(self, msg: str, level: int = logging.INFO) -> None:
         """Log a message with with this document's filename as a prefix."""
-        logger.log(level, f"{self._class_name} {self.file_id} {msg}")
+        logger.log(level, f"{self.file_id} {self._class_name} {msg}")
 
     def log_top_lines(self, n: int = 10, msg: str = '', level: int = logging.INFO) -> None:
         """Log first 'n' lines of self.text at 'level'. 'msg' can be optionally provided."""
@@ -457,12 +465,6 @@ class Document:
         """Print a warning message prefixed by info about this `Document`."""
         self.log(msg, level=logging.WARNING)
 
-    def _copy_config_props(self) -> None:
-        """A couple of properties are copied from the config; the rest are lazily retrieved."""
-        if self.config:
-            for k, v in self.config.props_to_copy.items():
-                setattr(self, k, v)
-
     def _debug_dict(self, as_txt: bool = False, with_prefixes: bool = True) -> DebugDict | Text:
         """Merge information about this document from config, file info, etc."""
         config_info = self.config.truthy_props if self.config else {}
@@ -496,7 +498,7 @@ class Document:
         txt_lines = styled_dict(self._debug_dict(), sep=': ')
         return prefix_with(txt_lines, ' ', pfx_style='grey', indent=2)
 
-    def _extract_author(self) -> None:
+    def _extract_author(self) -> Name:
         """Extended in `Email` subclass to pull from  headers."""
         pass
 

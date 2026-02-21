@@ -304,7 +304,7 @@ class Person:
     def _printable_emails(self):
         """For Epstein we only want to print emails he sent to himself."""
         if self.name == JEFFREY_EPSTEIN:
-            return [e for e in self.emails if e.is_note_to_self]
+            return [e for e in self.emails if e.is_note_to_self()]
         else:
             return self.emails
 

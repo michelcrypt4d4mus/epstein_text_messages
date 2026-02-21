@@ -172,7 +172,7 @@ file_id,category,author,is_interesting,timestamp,recipients_str,sent_from_device
 018085,article,The Shimon Post,False,2011-06-07 00:00:00,,,The Shimon Post selection of articles about the mideast
 018119,email,Jeffrey Epstein,,2011-09-22 04:48:35,Sultan Ahmed Bin Sulayem,,
 018197,email,Jeffrey Epstein,False,2013-02-15 16:52:58,Larry Summers,,
-018224,skype_log,,True,2019-06-01 11:54:45.300000,,,"skype log of conversation with linkspirit, Lawrence Krauss"
+018224,skype_log,,True,2019-06-01 11:54:45.300000,,,"skype log of conversation with Lawrence Krauss, linkspirit"
 018232,book,Joshua Cooper Ramo,False,2015-03-11 00:00:00,,,"book titled ""The Seventh Sense: Power, Fortune & Survival in the Age of Networks"" by Joshua Cooper Ramo"
 018438,book,Clarisse Thorn,False,2012-05-14 00:00:00,,,"book titled ""The S&M Feminist"" by Clarisse Thorn"
 018703,arts,Andres Serrano,False,2016-06-20 00:00:00,,,Andres Serrano artist statement about Trump objects
@@ -351,9 +351,9 @@ file_id,category,author,is_interesting,timestamp,recipients_str,sent_from_device
 022673,email,Kathryn Ruemmler,False,2015-01-30 17:26:02,Jeffrey Epstein,,
 022684,email,Kathryn Ruemmler,,2015-01-30 19:05:49,Jeffrey Epstein,,
 022695,email,Kathryn Ruemmler,,2015-01-31 02:46:14,Jeffrey Epstein,,
-022707,article,Michael Wolff,True,2014-02-20 00:00:00,,,Michael Wolff draft of an unpublished article about Epstein by Michael Wolff written ca. 2014/2015
-022727,article,Michael Wolff,True,2014-02-20 00:00:00,,,Michael Wolff draft of an unpublished article about Epstein by Michael Wolff written ca. 2014/2015
-022746,article,Michael Wolff,True,2014-02-20 00:00:00,,,Michael Wolff draft of an unpublished article about Epstein by Michael Wolff written ca. 2014/2015
+022707,article,Michael Wolff,True,2014-11-01 00:00:00,,,Michael Wolff draft of an unpublished article ca. 2014/2015
+022727,article,Michael Wolff,True,2014-11-01 00:00:00,,,Michael Wolff draft of an unpublished article ca. 2014/2015
+022746,article,Michael Wolff,True,2014-11-01 00:00:00,,,Michael Wolff draft of an unpublished article ca. 2014/2015
 022766,email,Martin Weinberg,,2015-04-22 19:03:52,Jeffrey Epstein;Kathryn Ruemmler,,
 022770,email,,True,2016-01-19 23:39:00,Jeffrey Epstein,,
 022771,email,,True,2016-01-20 03:46:00,Jeffrey Epstein,,
@@ -380,9 +380,9 @@ file_id,category,author,is_interesting,timestamp,recipients_str,sent_from_device
 022837,email,Jeffrey Epstein,,2015-01-16 19:35:00,Landon Thomas Jr,,
 022839,email,Jeffrey Epstein,,2015-01-16 19:52:31,Landon Thomas Jr,,
 022841,email,Jeffrey Epstein,,2015-01-16 20:12:46,Landon Thomas Jr,,
-022844,article,Michael Wolff,True,2014-02-20 00:00:00,,,Michael Wolff draft of an unpublished article about Epstein by Michael Wolff written ca. 2014/2015
-022863,article,Michael Wolff,True,2009-02-20 00:00:00,,,Michael Wolff draft of an unpublished article about Epstein by Michael Wolff written ca. 2014/2015
-022894,article,Michael Wolff,True,2009-02-20 00:00:00,,,Michael Wolff draft of an unpublished article about Epstein by Michael Wolff written ca. 2014/2015
+022844,article,Michael Wolff,True,2014-11-01 00:00:00,,,Michael Wolff draft of an unpublished article ca. 2014/2015
+022863,article,Michael Wolff,True,2014-11-01 00:00:00,,,Michael Wolff draft of an unpublished article ca. 2014/2015
+022894,article,Michael Wolff,True,2014-11-01 00:00:00,,,"Michael Wolff draft of an unpublished article ca. 2014/2015 claiming Kelimbetov, Brock Pierce, and Larry Summers all visited Epstein around the time Tether was founded"
 022926,email,Jeffrey Epstein,,2015-04-22 19:16:34,Darren Indyke,,
 022931,email,Jeffrey Epstein,,2015-04-22 19:34:00,Alan Dershowitz,,
 022936,email,Jeffrey Epstein,True,2016-01-20 10:21:00,,,
@@ -393,7 +393,7 @@ file_id,category,author,is_interesting,timestamp,recipients_str,sent_from_device
 022945,email,Jeffrey Epstein,,2017-11-07 14:55:20,Landon Thomas Jr,,
 022947,email,Jeffrey Epstein,,2017-11-07 15:10:06,Landon Thomas Jr,,
 022949,email,Jeffrey Epstein,,2017-11-08 13:49:52,Landon Thomas Jr,,
-022952,article,Michael Wolff,True,2014-02-20 00:00:00,,,Michael Wolff draft of an unpublished article about Epstein by Michael Wolff written ca. 2014/2015
+022952,article,Michael Wolff,True,2014-11-01 00:00:00,,,Michael Wolff draft of an unpublished article ca. 2014/2015
 022970,article,Daily Mail,False,2011-03-13 02:26:00,,,Daily Mail article on Epstein and Prince Andrew
 022977,email,Paul Krassner,,2017-05-05 15:19:21,Jeffrey Epstein,,
 022986,junk,,False,,,,fragment of a screenshot (???)
@@ -470,7 +470,7 @@ file_id,category,author,is_interesting,timestamp,recipients_str,sent_from_device
 023612,email,Kelly Friendly,,2014-01-06 02:40:00,Jeffrey Epstein,,
 023616,email,Kelly Friendly,,2014-01-06 12:29:00,Andrew Friendly;Jeffrey Epstein,Sent from my iPhone,
 023621,email,Kelly Friendly,,2014-01-06 12:40:00,Jeffrey Epstein,,
-023627,email,Jeffrey Epstein,True,2016-10-08 20:05:08,Jeffrey Epstein,,draft of an unpublished article about Epstein by Michael Wolff written ca. 2014/2015
+023627,email,Jeffrey Epstein,True,2016-10-08 20:05:08,Jeffrey Epstein,,draft of an unpublished article ca. 2014/2015
 023635,email,Landon Thomas Jr,False,2016-11-14 15:32:12,Jeffrey Epstein,,
 023638,article,Paul Krassner,False,2017-01-16 00:00:00,,,Paul Krassner magazine interview
 023644,misc,,False,2016-04-25 00:00:00,,,interview with Mohammed bin Salman
@@ -488,7 +488,7 @@ file_id,category,author,is_interesting,timestamp,recipients_str,sent_from_device
 024185,conference,67th U.N. General Assembly,True,2012-09-21 00:00:00,,,"67th U.N. General Assembly schedule including ""Presidents Private Dinner - Jeffrey Epstine (sic)"""
 024194,finance,JP Morgan,False,2012-10-22 00:00:00,,,"JP Morgan report: ""Eye On The Market"""
 024202,finance,Electron Capital Partners,False,2013-03-08 00:00:00,,,"Electron Capital Partners report: ""Global Utility White Paper"""
-024229,article,Michael Wolff,True,2009-02-20 00:00:00,,,Michael Wolff draft of an unpublished article about Epstein by Michael Wolff written ca. 2014/2015
+024229,article,Michael Wolff,True,2014-11-01 00:00:00,,,Michael Wolff draft of an unpublished article ca. 2014/2015
 024251,email,Richard Kahn,,2015-07-22 17:29:11,Jeffrey Epstein,,
 024256,crypto,Joi Ito,True,2017-05-20 00:00:00,,,Joi Ito Internet & Society: The Technologies and Politics of Control
 024270,article,Virgin Islands Daily News,False,2017-06-24 00:00:00,,,Virgin Islands Daily News
@@ -1227,7 +1227,7 @@ file_id,category,author,is_interesting,timestamp,recipients_str,sent_from_device
 029545,email,Tyler Shears,True,2014-02-08 01:32:58,Christina Galbraith;Jeffrey Epstein;Richard Kahn,,
 029549,email,Christina Galbraith,True,2014-02-08 02:07:34,Jeffrey Epstein;Richard Kahn;Tyler Shears,,
 029553,email,Katherine Keating,,2011-10-28 16:33:44,Jeffrey Epstein,,
-029558,email,Katherine Keating,,2011-10-31 08:21:27,Jeffrey Epstein,,
+029558,email,Katherine Keating,,2011-10-31 08:21:27,Jeffrey Epstein;Katherine Keating,,
 029564,junk,,False,2013-07-26 00:00:00,,,joke about Obama
 029565,email,Jeffrey Epstein,,2018-01-04 19:45:38,Robert Trivers,,
 029566,email,Jeffrey Epstein,,2018-11-25 23:40:36,Lisa New,,
@@ -5403,7 +5403,7 @@ EFTA00849560,email,Richard Kahn,,2015-08-03 21:15:27,Jeffrey Epstein,,
 EFTA00849957,email,Madars Virza,True,2018-03-27 23:50:20,Jeffrey Epstein;Steve Bannon,,
 EFTA00850130,email,Jeffrey Epstein,True,2015-07-29 10:45:12,Sergey Belyakov,,
 EFTA00851916,email,Madars Virza,True,2018-03-22 22:55:19,Jeffrey Epstein,,
-EFTA00852324,email,Sergey Belyakov,True,2015-07-06 18:39:12,Elena Bolyakina;Jeffrey Epstein;Peter Thiel,,
+EFTA00852324,email,Sergey Belyakov,True,2015-07-06 18:39:12,Elena Bolyakina;Jeffrey Epstein;Peter Thiel;Sergey Belyakov,,
 EFTA00853240,email,David Stern,True,2018-03-24 05:08:30,Jeffrey Epstein,,
 EFTA00854166,email,Larry Summers,True,2015-06-18 11:43:51,Jeffrey Epstein,Sent from my iPhone,"""kazak contract will be ready for your review"""
 EFTA00855280,email,Jeffrey Epstein,True,2018-03-20 11:56:51,,,
@@ -5467,7 +5467,7 @@ EFTA00960647,email,Jeffrey Epstein,,2013-05-14 15:14:47,Thorbjørn Jagland,,
 EFTA00961214,email,David Stern,True,2013-05-28 10:18:07,Andrew Farkas;Jeffrey Epstein,,
 EFTA00961792,email,Jeffrey Epstein,,2013-05-30 00:19:06,Bill Gross,,
 EFTA00964459,crypto,Austin Hill,True,2017-11-08 11:41:43,Jeffrey Epstein,,discussion of sharia compliant crypto token
-EFTA00968132,email,Eric Doherty,,2017-11-02 04:37:53,Andrew McCormack;Hongbo Robert Bao;James Fitzgerald;PROSPECTIVE INVESTORS;Reuben Kobulnik;Stanley Santos,,
+EFTA00968132,email,Eric Doherty,,2017-11-02 04:37:53,Andrew McCormack;Hongbo Robert Bao;James Fitzgerald;Reuben Kobulnik;Stanley Santos,,
 EFTA00972124,email,Gino Yu,,2017-10-23 23:53:07,Jeffrey Epstein,,
 EFTA00972689,email,Jeffrey Epstein,,2013-10-06 19:46:00,Boris Nikolic,,
 EFTA00974046,email,Jeffrey Epstein,True,2013-10-29 16:26:18,Tyler Shears,,
@@ -5528,7 +5528,7 @@ EFTA01002459,email,Lesley Groff,,2014-11-29 17:22:06,Jeffrey Epstein;Jojo Fontan
 EFTA01002518,crypto,Jeffrey Epstein,True,2014-12-05 18:52:26,Andrew Farkas,,confirmation that Epstein did indeed meet head of NY Dept of Financial Services Ben Lawsky to discuss a 'high yield product'
 EFTA01003336,email,Jeffrey Epstein,True,2014-12-17 22:36:35,Peter Thiel,,
 EFTA01003346,email,Peter Thiel,True,2014-12-18 06:03:49,Jeffrey Epstein,,Peter Thiel tells Epstein to invest in his fund
-EFTA01003348,email,Ian O'Donnell,,2014-12-18 08:04:50,Hongbo Robert Bao;PROSPECTIVE INVESTORS;Reuben Kobulnik,,
+EFTA01003348,email,Ian O'Donnell,,2014-12-18 08:04:50,Hongbo Robert Bao;Reuben Kobulnik,,
 EFTA01003389,email,Nicole Junkermann,,2014-12-18 18:45:30,Jeffrey Epstein,,
 EFTA01004115,email,Vincenzo Iozzo,True,2018-08-02 20:08:52,Jeffrey Epstein,Sent from my Iphone,
 EFTA01004291,email,Richard Kahn,,2018-07-31 15:43:58,Jeffrey Epstein,,
@@ -5684,9 +5684,9 @@ EFTA01193042,crypto,Valar Ventures,True,2015-02-25 00:00:00,,,Valar Ventures req
 EFTA01203276,crypto,Valar Ventures,True,2016-01-05 20:15:00,,,Valar Ventures requesting money previously promised by Epstein to invest in a new opportunity
 EFTA01205265,email,Richard Kahn,,2015-08-03 21:15:27,Jeffrey Epstein,,
 EFTA01205267,crypto,Valar Ventures,True,2015-06-30 00:00:00,,,Valar Ventures is a fintech focused Peter Thiel fund Epstein was invested in
-EFTA01217703,skype_log,,,2014-05-13 22:32:18,,,"skype log of conversation with actress Athena Zelcovich, Joscha Bach, Lawrence Krauss"
-EFTA01217736,skype_log,,,2014-05-26 19:52:08,,,"skype log of conversation with actress Athena Zelcovich, Tyler Shears"
-EFTA01217787,skype_log,,True,2014-08-22 20:12:59,,,"skype log of conversation with Tyler Shears, Hanna Traff at Spotify"
+EFTA01217703,skype_log,,,2014-05-13 22:32:18,,,"skype log of conversation with Joscha Bach, Lawrence Krauss, actress Athena Zelcovich"
+EFTA01217736,skype_log,,,2014-05-26 19:52:08,,,"skype log of conversation with Tyler Shears, actress Athena Zelcovich"
+EFTA01217787,skype_log,,True,2014-08-22 20:12:59,,,"skype log of conversation with Hanna Traff at Spotify, Tyler Shears"
 EFTA01255984,,,,2020-02-20 00:00:00,,,
 EFTA01273102,money,,True,2020-02-02 00:00:00,,,payment from Epstein to Renata Bolotova's father's account at Sberbank
 EFTA01285353,,,,2015-02-28 00:00:00,,,

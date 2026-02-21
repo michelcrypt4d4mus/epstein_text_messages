@@ -23,10 +23,6 @@ DebugDict = dict[str, bool | datetime | str | Path | None]
 DuplicateType = Literal['bounced', 'earlier', 'quoted', 'redacted', 'same']
 Metadata = dict[str, bool | datetime | int | str | None | list[str | None] | dict[str, bool | str]]
 
-# These props are copied into the Document object this configuration is owned by
-PROPS_TO_COPY = ['author', 'timestamp']
-EMAIL_PROPS_TO_COPY = ['recipients']
-
 FALSEABLE_PROPS = ['is_interesting']
 MAX_LINE_LENGTH = 135
 NO_TRUNCATE = -1
@@ -300,11 +296,6 @@ class DocCfg:
         return metadata
 
     @property
-    def props_to_copy(self) -> dict[str, str | datetime]:
-        """These props are copied into the `Document` object (other props are lazily accessed)."""
-        return {k: getattr(self, k) for k in PROPS_TO_COPY if getattr(self, k)}
-
-    @property
     def recipients_str(self) -> str:
         """Overloaded in subclasses that support recipients."""
         return ''
@@ -455,13 +446,6 @@ class CommunicationCfg(DocCfg):
     uncertain_recipient: str | None = None
 
     @property
-    def props_to_copy(self) -> dict[str, str | datetime]:
-        """Overloads superclass to add Communication fields."""
-        props = super().props_to_copy
-        props.update({k: getattr(self, k) for k in EMAIL_PROPS_TO_COPY if getattr(self, k)})
-        return props
-
-    @property
     def recipients_str(self) -> str:
         return ', '.join([r or UNKNOWN for r in self.recipients])
 
@@ -474,7 +458,8 @@ class CommunicationCfg(DocCfg):
             return super().is_of_interest
 
     def __post_init__(self):
-        return super().__post_init__()
+        super().__post_init__()
+        self.recipients = sort_names(self.recipients)
 
     def __repr__(self) -> str:
         return super().__repr__()

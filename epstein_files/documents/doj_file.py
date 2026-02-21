@@ -299,7 +299,10 @@ class DojFile(OtherFile):
     def strip_image_ocr_panels(self) -> None:
         """Removes the ╭--- Page 5, Image 1 ---- panels from the text."""
         new_text, num_replaced = IMAGE_PANEL_REGEX.subn('', self.text)
-        self.warn(f"Stripped {num_replaced} image panels.")
+
+        if num_replaced > 0:
+            self.warn(f"Stripped {num_replaced} image panels.")
+
         self._set_text(text=new_text)
 
     def _debug_props(self) -> DebugDict:

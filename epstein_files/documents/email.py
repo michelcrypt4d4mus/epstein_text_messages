@@ -24,16 +24,17 @@ from epstein_files.documents.emails.email_header import (EMAIL_SIMPLE_HEADER_REG
 from epstein_files.documents.emails.emailers import extract_emailer_names
 from epstein_files.documents.other_file import OtherFile
 from epstein_files.people.interesting_people import EMAILERS_OF_INTEREST_SET
+from epstein_files.output.highlight_config import HIGHLIGHTED_NAMES, get_style_for_name
 from epstein_files.output.rich import DEFAULT_TABLE_KWARGS, build_table, highlighter, join_texts, styled_key_value
-from epstein_files.util.constant.strings import ARCHIVE_LINK_COLOR, REDACTED, TIMESTAMP_DIM
+from epstein_files.util.constant.strings import APPEARS_IN, ARCHIVE_LINK_COLOR, REDACTED, TIMESTAMP_DIM
 from epstein_files.util.constant.urls import URL_SIGNIFIERS
+from epstein_files.util.constant.names import sort_names
 from epstein_files.util.constants import CONFIGS_BY_ID, DEFAULT_TRUNCATE_TO, NO_TRUNCATE, SHORT_TRUNCATE_TO
 from epstein_files.util.env import args, site_config
 from epstein_files.util.helpers.data_helpers import (AMERICAN_TIME_REGEX, TIMEZONE_INFO,
      prefix_keys, remove_timezone, uniquify)
 from epstein_files.util.helpers.link_helper import link_text_obj
 from epstein_files.util.helpers.string_helper import capitalize_first, collapse_newlines
-from epstein_files.output.highlight_config import HIGHLIGHTED_NAMES, get_style_for_name
 from epstein_files.util.logging import logger
 
 RENDER_BODY_AS_TABLE = True
@@ -187,10 +188,10 @@ class Email(Communication):
     attached_docs: list[OtherFile] = field(default_factory=list)
     actual_text: str = field(init=False)
     derived_cfg: EmailCfg | None = None
-    header: EmailHeader = field(init=False)
     is_persons_first_email: bool = False
     sent_from_device: str | None = None
     signature_substitution_counts: dict[str, int] = field(default_factory=dict)  # defaultdict breaks asdict :(
+    _header: EmailHeader | None = None
     _line_merge_arguments: list[tuple[int] | tuple[int, int]] = field(default_factory=list)
 
     # Class variable logging how many headers we prettified while printing, kind of janky
@@ -231,6 +232,11 @@ class Email(Communication):
             return super().config
 
     @property
+    def header(self) -> EmailHeader:
+        self._header = self._header or self._extract_header()
+        return self._header
+
+    @property
     def info(self) -> list[Text]:
         """Overloads superclass to avoid returning config_description because that's now in the Panel title."""
         if site_config.email_info_in_subtitle:
@@ -265,10 +271,6 @@ class Email(Communication):
     @property
     def is_mailing_list(self) -> bool:
         return self.author in MAILING_LISTS or self.is_junk_mail
-
-    @property
-    def is_note_to_self(self) -> bool:
-        return self.recipients == [self.author]
 
     @property
     def is_word_count_worthy(self) -> bool:
@@ -333,26 +335,6 @@ class Email(Communication):
 
     def __post_init__(self):
         super().__post_init__()
-
-        # Recipients could have already been set from the config in superclass
-        if not self.recipients:
-            for recipient in self.header.recipients:
-                self.recipients.extend(extract_emailer_names(recipient))
-
-            # Assume mailing list emails are to Epstein
-            if self.author in BCC_LISTS and (self.is_note_to_self or not self.recipients):
-                self.recipients = [JEFFREY_EPSTEIN]
-
-        self.recipients = uniquify(self.recipients)
-
-        # Remove self CCs but preserve self emails
-        if not (self.is_note_to_self or self.author is None):
-            if self.author in self.recipients:
-                self.log(f"Removing email to self for {self.author}")
-
-            self.recipients = [r for r in self.recipients if r != self.author]
-
-        self.recipients = sorted(list(set(self.recipients)), key=lambda r: r or UNKNOWN)
         self.text = self._prettify_text()
         self.actual_text = self._extract_actual_text()
         self.sent_from_device = self._sent_from_device()
@@ -364,6 +346,9 @@ class Email(Communication):
     def is_from_or_to(self, name: str) -> bool:
         """True if `name` is either the author or one of the recipients."""
         return name in [self.author] + self.recipients
+
+    def is_note_to_self(self, recipients: list[Name] | None = None) -> bool:
+        return (recipients if recipients is not None else self.recipients) == [self.author]
 
     def recipients_txt(self, max_full_names: int = 2) -> Text:
         """Comma separated colored names (last name only if more than `max_full_names` recipients)."""
@@ -425,30 +410,51 @@ class Email(Communication):
 
         return text.strip()
 
-    def _extract_author(self) -> None:
+    def _extract_author(self) -> Name:
         """Overloads superclass method, called at instantiation time."""
-        self._extract_header()
-
-        if not self.author and self.header.author:
+        if self.header.author:
             authors = extract_emailer_names(self.header.author)
-            self.author = authors[0] if (len(authors) > 0 and authors[0]) else None
+            return authors[0] if (len(authors) > 0 and authors[0]) else None
 
-    def _extract_header(self) -> None:
+    def _extract_header(self) -> EmailHeader:
         """Extract an `EmailHeader` from the OCR text."""
         header_match = EMAIL_SIMPLE_HEADER_REGEX.search(self.text)
 
         if header_match:
-            self.header = EmailHeader.from_header_lines(header_match.group(0))
+            header = EmailHeader.from_header_lines(header_match.group(0))
 
             # DOJ file OCR text is broken in a less consistent way than the HOUSE_OVERSIGHT files
-            if self.header.is_empty and not self.file_info.is_doj_file:
-                self.header.repair_empty_header(self.lines)
+            if header.is_empty and not self.file_info.is_doj_file:
+                header.repair_empty_header(self.lines)
         else:
             log_level = logging.INFO if self.config else logging.WARNING
             self.log_top_lines(msg='No email header match found!', level=log_level)
-            self.header = EmailHeader(field_names=[])
+            header = EmailHeader(field_names=[])
 
-        logger.debug(f"{self.file_id} extracted header\n\n{self.header}\n")
+        logger.debug(f"{self.file_id} extracted header\n\n{header}\n")
+        return header
+
+    def _extract_recipients(self) -> list[Name]:
+        # Recipients could have already been set from the config in superclass
+        recipients: list[Name] = []
+
+        for recipient in self.header.recipients:
+            recipients.extend(extract_emailer_names(recipient))
+
+        # Assume mailing list emails are to Epstein
+        if self.author in BCC_LISTS and (self.is_note_to_self(recipients) or not recipients):
+            recipients = [JEFFREY_EPSTEIN]
+
+        recipients = uniquify(recipients)
+
+        # Remove self CCs but preserve self emails
+        if not (self.is_note_to_self(recipients) or self.author is None):
+            if self.author in self.recipients:
+                self.log(f"Removing email to self for {self.author}")
+
+            recipients = [r for r in recipients if r != self.author]
+
+        return sort_names(recipients)
 
     def _extract_timestamp(self) -> datetime:
         """Find the time this email was sent."""
