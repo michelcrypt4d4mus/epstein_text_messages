@@ -1143,7 +1143,6 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00659818', author=RENATA_BOLOTOVA, author_uncertain=SNEAKY_DOG),
     EmailCfg(id='EFTA01757037', author=RENATA_BOLOTOVA, author_uncertain=SNEAKY_DOG),
     EmailCfg(id='EFTA00697443', author=RENATA_BOLOTOVA, author_uncertain=SNEAKY_DOG),
-
     EmailCfg(id='EFTA01961947', author=RENATA_BOLOTOVA, author_uncertain=SNEAKY_DOG, recipients=[JEFFREY_EPSTEIN]),
     EmailCfg(id='EFTA00676720', author=RENATA_BOLOTOVA, author_uncertain=SNEAKY_DOG, duplicate_ids=['EFTA01961947']),
     EmailCfg(id='EFTA00826575', author=RENATA_BOLOTOVA, author_uncertain=SNEAKY_DOG, duplicate_ids=['EFTA02462211']),
@@ -1371,6 +1370,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA02285514', description=f"Medici Bank and {MARIA_PRUSAKOVA} meeting", is_interesting=True),
     EmailCfg(id='EFTA00752383', description=f"Mindshift conference attendee list", is_interesting=True),
     EmailCfg(id='EFTA01145923', description=f"modeling contract"),
+    EmailCfg(id='EFTA00877726', description='Epstein and Stern discuss plans to manage money for wealthy Chinese'),
     EmailCfg(id='EFTA00900908', description="negotiation of repurchase of part of Epstein's stake in Coinbase"),
     EmailCfg(id='EFTA02436105', description="one of Epstein's goals in life was to make a lot of money in virtual currency", is_interesting=True),
     EmailCfg(id='EFTA00754450', description='"PA" is probably Prince Andrew', duplicate_ids=['EFTA02418244']),

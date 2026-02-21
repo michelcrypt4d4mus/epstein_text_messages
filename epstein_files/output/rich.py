@@ -23,6 +23,7 @@ from epstein_files.util.constant.urls import *
 from epstein_files.util.env import args, site_config
 from epstein_files.util.helpers.data_helpers import json_safe, sort_dict
 from epstein_files.util.helpers.link_helper import link_markup
+from epstein_files.util.helpers.rich_helpers import enclose
 from epstein_files.util.logging import logger
 
 NA_TXT = Text(NA, style='dim')
@@ -89,9 +90,6 @@ if args.suppress_output:
 console = Console(**CONSOLE_KWARGS)
 highlighter = CONSOLE_KWARGS['highlighter']
 
-left_indent_padding = lambda num_spaces: (0, 0, 0, num_spaces)
-no_bold = lambda style: style.replace('bold', '').strip()
-
 
 def add_cols_to_table(table: Table, cols: list[str | dict], justify: str = 'center') -> None:
     """Left most col will be left justified, rest are center justified."""
@@ -121,14 +119,6 @@ def bool_txt(b: bool | None, match_width: bool = False) -> Text:
         return txt.append(str(b), style='dim italic')
 
 
-def build_highlighter(pattern: str) -> EpsteinHighlighter:
-    class TempHighlighter(EpsteinHighlighter):
-        """rich.highlighter that finds and colors interesting keywords based on the above config."""
-        highlights = EpsteinHighlighter.highlights + [re.compile(fr"(?P<trump>{pattern})", re.IGNORECASE)]
-
-    return TempHighlighter()
-
-
 def build_table(
     title: str | Text | None,
     cols: list[str | dict] | None = None,
@@ -148,17 +138,6 @@ def build_table(
         add_cols_to_table(table, cols)
 
     return table
-
-
-def enclose(txt: str | Text, encloser: str = '', encloser_style: str = 'wheat4') -> Text:
-    """Surround with something."""
-    if not encloser:
-        return Text('').append(txt)
-    elif len(encloser) != 2:
-        raise ValueError(f"'encloser' arg is '{encloser}' which is not 2 characters long")
-
-    enclose_start, enclose_end = (encloser[0], encloser[1])
-    return Text('').append(enclose_start, encloser_style).append(txt).append(enclose_end, encloser_style)
 
 
 def indent_txt(txt: str | Text, spaces: int = 4, prefix: str = '') -> Text:
@@ -326,8 +305,12 @@ def styled_key_value(
     return txt
 
 
-def vertically_pad(obj: RenderableType, amount: int = 1) -> Padding:
-    return Padding(obj, (amount, 0, amount, 0))
+def temp_highlighter(pattern: str) -> EpsteinHighlighter:
+    """Temporary highlighter that adds `pattern` to the usual highlight regexes."""
+    class TempHighlighter(EpsteinHighlighter):
+        highlights = EpsteinHighlighter.highlights + [re.compile(fr"(?P<trump>{pattern})", re.IGNORECASE)]
+
+    return TempHighlighter()
 
 
 def wrap_in_markup_style(msg: str, style: str | None = None) -> str:

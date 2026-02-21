@@ -24,7 +24,7 @@ from epstein_files.documents.other_file import OtherFile
 from epstein_files.output.output import (print_curated_chronological, print_doj_files, print_emails_section,
      print_json_files, print_stats, print_other_files_section, print_text_messages_section, print_email_timeline,
      print_emailers_info, print_json_metadata, show_urls, write_html)
-from epstein_files.output.rich import (build_highlighter, console, highlighter,
+from epstein_files.output.rich import (temp_highlighter, console, highlighter,
      print_json, print_subtitle_panel)
 from epstein_files.output.site.sites import make_clean
 from epstein_files.output.title_page import print_color_key, print_title_page_top, print_title_page_bottom
@@ -98,7 +98,7 @@ def epstein_grep():
         return
 
     for search_term in args.positional_args:
-        temp_highlighter = build_highlighter(search_term)
+        temp_highlighter = temp_highlighter(search_term)
         search_results = epstein_files.docs_matching(search_term, args.names)
         print_subtitle_panel(f"Found {len(search_results)} documents matching '{search_term}'")
         last_document = None

@@ -22,6 +22,7 @@ from epstein_files.util.constant.urls import *
 from epstein_files.util.constants import HEADER_ABBREVIATIONS
 from epstein_files.util.env import args, site_config
 from epstein_files.util.helpers.link_helper import SUBSTACK_POST_LINK_STYLE, link_markup, link_text_obj, parenthesize
+from epstein_files.util.helpers.rich_helpers import vertically_pad
 from epstein_files.util.helpers.string_helper import starred_header
 from epstein_files.util.logging import logger
 
@@ -165,19 +166,6 @@ def _bulleted_site_link(site_type: SiteType, link: Text) -> Text:
     return Text('➱ ').append(link).append(' ').append(you_are_here)
 
 
-def _link_with_comment(url: str, comment: str | Text, _link_text: str = '') -> Text:
-    link_text = _link_text if _link_text else (JMAIL if url == JMAIL_URL else '')
-
-    if isinstance(comment, Text):
-        comment = comment
-        link_style = 'navajo_white3 bold'
-    else:
-        comment = enclose(Text(comment, 'color(195) dim italic'), '()', 'gray27')
-        link_style = EXTERNAL_STYLE
-
-    return link_text_obj(url, link_text=link_text, style=link_style).append(' ').append(comment)
-
-
 def _print_abbreviations_table() -> None:
     if args.mobile:
         return
@@ -201,14 +189,9 @@ def _print_abbreviations_table() -> None:
 def _print_external_links() -> None:
     console.line()
     print_centered(Text('External Links', style=TABLE_TITLE_STYLE))
-    doj_search_link = join_texts([link_text_obj(DOJ_SEARCH_URL, 'search', style=ARCHIVE_ALT_LINK_STYLE)], encloser='()')
-    print_centered(_link_with_comment(DOJ_2026_URL, doj_search_link, 'DOJ Epstein Files Transparency Act Disclosures'))
-    raw_docs_link = link_text_obj(OVERSIGHT_DRIVE_URL, 'raw files', style=ARCHIVE_ALT_LINK_STYLE)
-    raw_docs_link = join_texts([raw_docs_link], encloser='()')
-    print_centered(_link_with_comment(OVERSIGHT_REPUBS_PRESSER_URL, raw_docs_link, '2025 Oversight Committee Press Release'))
 
-    for url, link in EXTERNAL_LINK_MSGS.items():
-        print_centered(_link_with_comment(url, link))
+    for link in EXTERNAL_LINKS:
+        print_centered(link.link_with_comment)
 
 
 def _print_page_title(width: int = TITLE_WIDTH) -> None:
