@@ -311,7 +311,7 @@ WAPO = 'WaPo'
 NAMES_TO_NOT_HIGHLIGHT = """
     adam al alain alan alison alfredo allen alex alexander amanda andres andrew ann anthony asia audrey
     back bard barrett barry bennet bernard bill black bob boris boyle brad brenner bruce
-    cameron caroline carolyn chris christian christina cohen
+    cameron caroline carolyn chris christian christina christopher cohen
     dan daniel danny darren dave david debbie department donald douglas
     ed edward edwards enforcement enterprise enterprises entourage epstein eric erika etienne
     faith fisher fitzgerald forget frances francesca fred friendly frost fuller fund
@@ -398,9 +398,17 @@ def extract_last_name(name: str) -> str:
         return first_last_names[-1]
 
 
-def reverse_first_and_last_names(name: Name) -> str:
+def name_variations(name: str) -> list[str]:
+    """['Firstname', 'Lastname', 'Lastname, Firstname'."""
+    if ' 'in name:
+        return [reversed_name(name), extract_first_name(name), extract_last_name(name)]  # NOTE:  Order matters!
+    else:
+        return []
+
+
+def reverse_first_and_last_names(name: str) -> str:
     """If there's a comma in the name in the style 'Lastname, Firstname', reverse it and remove comma."""
-    if name is None or '@' in name:
+    if '@' in name:
         return name.lower()
 
     if ', ' in name:
@@ -416,3 +424,7 @@ def reversed_name(name: str) -> str:
         return name
 
     return f"{extract_last_name(name)}, {extract_first_name(name)}"
+
+
+def sort_names(names: list[Name]) -> list[Name]:
+    return sorted(names, key=lambda name: name or UNKNOWN)

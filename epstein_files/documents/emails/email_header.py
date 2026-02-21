@@ -57,6 +57,10 @@ class EmailHeader:
     to: list[str] | None = None
     reply_to: str | None = None
 
+    def __post_init__(self):
+        self.num_header_rows = len(self.field_names)
+        self.was_initially_empty = self.is_empty
+
     @property
     def is_empty(self) -> bool:
         return not any(v for v in self.as_dict().values())
@@ -64,10 +68,6 @@ class EmailHeader:
     @property
     def recipients(self) -> list[str]:
         return (self.to or []) + (self.cc or []) + (self.bcc or [])
-
-    def __post_init__(self):
-        self.num_header_rows = len(self.field_names)
-        self.was_initially_empty = self.is_empty
 
     def as_dict(self, truthy_only: bool = True) -> Metadata:
         """Remove housekeeping fields that don't actually come from the email."""

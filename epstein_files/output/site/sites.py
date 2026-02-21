@@ -24,18 +24,21 @@ GH_MASTER_URL = f"{GH_PROJECT_URL}/blob/master"
 ATTRIBUTIONS_URL = f'{GH_MASTER_URL}/epstein_files/util/constants.py'
 EXTRACTS_BASE_URL = f'{GH_MASTER_URL}/emails_extracted_from_legal_filings'
 BASE_URL = f"{GH_PAGES_BASE_URL}/{GH_REPO_NAME}"
+
 TO_FROM = 'to/from'
+MOBILE_SUFFIX = '_mobile'
 
 
 class SiteType(StrEnum):
-    EMAILS_CHRONOLOGICAL = auto()
     CURATED = auto()
-    CURATED_CHRONOLOGICAL = auto()
+    CURATED_MOBILE = auto()
+    CHRONOLOGICAL = auto()
+    CHRONOLOGICAL_MOBILE = auto()
     DOJ_FILES = auto()
     EMAILS = auto()
+    EMAILS_CHRONOLOGICAL = auto()
     #JSON_FILES = auto()
     JSON_METADATA = auto()
-    MOBILE = auto()
     OTHER_FILES_TABLE = auto()
     TEXT_MESSAGES = auto()
     WORD_COUNT = auto()
@@ -46,15 +49,33 @@ class SiteType(StrEnum):
 
     @classmethod
     def all_links(cls) -> dict['SiteType', Text]:
-        return {site_type: SiteType.link_txt(site_type) for site_type in SITE_DESCRIPTIONS.keys()}
+        """Use SITE_DESCRIPTIONS dict because it's sorted the way we want in the directory."""
+        return {site_type: SiteType.link_txt(site_type) for site_type in SITE_DESCRIPTIONS}
 
     @classmethod
-    def build_path(cls, site_type: Self) -> Path:
+    def directory_links(cls) -> dict['SiteType', Text]:
+        """Everything but mobile."""
+        return {k: v for k, v in cls.all_links().items() if not cls.is_mobile(k)}
+
+    @classmethod
+    def build_path(cls, site_type: 'SiteType') -> Path:
         return HTML_DIR.joinpath(HTML_BUILD_FILENAMES[site_type])
 
     @classmethod
-    def get_url(cls, site_type: Self) -> str:
+    def get_url(cls, site_type: 'SiteType') -> str:
         return f"{BASE_URL}/{cls.build_path(site_type).name}"
+
+    @classmethod
+    def get_mobile_redirect_url(cls, site_type: Self) -> str:
+        """Mobile defaults to chronological."""
+        if SiteType.is_mobile(site_type):
+            return cls.get_url(site_type)
+        elif site_type == cls.CHRONOLOGICAL:
+            redirect_type = cls.CHRONOLOGICAL_MOBILE
+        else:
+            redirect_type = cls.CURATED_MOBILE
+
+        return cls.get_url(redirect_type)
 
     @classmethod
     def link_txt(cls, site_type: Self) -> Text:
@@ -73,8 +94,17 @@ class SiteType(StrEnum):
 
         style_mod = '' if cls._is_lesser_site(site_type) else 'bold'
         link = link_text_obj(SiteType.get_url(site_type), escape(description), f"{style} {style_mod}")
-        link.append(extra_info)
-        return link
+        return link.append(extra_info)
+
+    @classmethod
+    def mobile_compatible_types(cls) -> list['SiteType']:
+        """Site types that have a valid mobile equivalent."""
+        mobile_site_types = [site for site in cls if cls.is_mobile(site)]
+        return [site.removesuffix(MOBILE_SUFFIX) for site in mobile_site_types]
+
+    @classmethod
+    def is_mobile(cls, site_type: 'SiteType') -> bool:
+        return site_type.endswith(MOBILE_SUFFIX)
 
     @classmethod
     def _is_lesser_site(cls, site_type: Self) -> bool:
@@ -84,11 +114,12 @@ class SiteType(StrEnum):
 HTML_BUILD_FILENAMES = {
     SiteType.EMAILS_CHRONOLOGICAL:  f'chronological_emails.html',
     SiteType.CURATED:               f'index.html',
-    SiteType.CURATED_CHRONOLOGICAL: f"curated_chronological.html",
+    SiteType.CURATED_MOBILE:        f'curated_mobile.html',
+    SiteType.CHRONOLOGICAL:         f"curated_chronological.html",
+    SiteType.CHRONOLOGICAL_MOBILE:  f"mobile_chronological.html",
     SiteType.DOJ_FILES:             f'doj_2026-01-30_non_email_files.html',
-    SiteType.EMAILS:        f'emails_grouped_by_counterparty.html',
+    SiteType.EMAILS:                f'emails_grouped_by_counterparty.html',
     SiteType.JSON_METADATA:         f'metadata.json',
-    SiteType.MOBILE:                f'curated_mobile.html',
     SiteType.OTHER_FILES_TABLE:     f'other_files_table.html',
     SiteType.TEXT_MESSAGES:         f'text_messages_{EPSTEIN_FILES_NOV_2025}.html',
     SiteType.WORD_COUNT:            f'communication_word_count.html',
@@ -99,11 +130,12 @@ HTML_BUILD_FILENAMES = {
 # Colons are used to break and parenthesize display
 SITE_DESCRIPTIONS = {
     SiteType.CURATED:               f"curated:by my interests, files grouped by type",
-    SiteType.CURATED_CHRONOLOGICAL: f"curated chronological:all types intermingled",
-    SiteType.EMAILS:        f"emailers:emails grouped by counterparty",
+    SiteType.CHRONOLOGICAL:         f"curated chronological:all types intermingled",
+    SiteType.EMAILS:                f"emailers:emails grouped by counterparty",
     SiteType.EMAILS_CHRONOLOGICAL:  f"emails:pure chronological order",
     SiteType.TEXT_MESSAGES:         f"text messages:{HOUSE_OVERSIGHT_TRANCHE}",
-    SiteType.MOBILE:                f"mobile:an attempt at mobile compatibility",
+    SiteType.CURATED_MOBILE:        f"mobile:an attempt at mobile compatibility",
+    SiteType.CHRONOLOGICAL_MOBILE:  f"chrono mobile:another attempt at mobile compatibility",
     SiteType.OTHER_FILES_TABLE:     f"other:files that are not emails or texts",
     SiteType.WORD_COUNT:            f"word count:of Epstein's communications",
     SiteType.DOJ_FILES:             f"doj files:raw OCR text {DOJ_2026_TRANCHE}",

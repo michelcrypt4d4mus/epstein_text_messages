@@ -58,6 +58,12 @@ class OtherFile(Document):
     MAX_TIMESTAMP: ClassVar[datetime] = datetime(2022, 12, 31) # Overloaded in DojFile
     num_synthetic_cfgs_created: ClassVar[int] = 0
 
+    def __post_init__(self):
+        super().__post_init__()
+
+        if not self.config and (cfg := build_cfg_from_text(self)):
+            self.derived_cfg = cfg
+
     @property
     def config(self) -> DocCfg | None:
         return super().config or self.derived_cfg
@@ -65,7 +71,11 @@ class OtherFile(Document):
     @property
     def config_description(self) -> str:
         """Overloads superclass property."""
-        return self.config.complete_description if self.config else ''
+        if self.config and self.config.complete_description:
+            pfx = 'Excerpt of ' if self.config.is_excerpt else ''
+            return f"{pfx}{self.config.complete_description}"
+        else:
+            return ''
 
     @property
     def category_txt(self) -> Text:
@@ -82,6 +92,11 @@ class OtherFile(Document):
             return True
         elif self.author is not None and self.author in PERSONS_OF_INTEREST:
             return True
+
+    @property
+    def is_valid_for_table(self) -> bool:
+        """Return True if this file is OK to put in a table in the curated chronological views."""
+        return not (self.config and self.config.is_excerpt)
 
     @property
     def metadata(self) -> Metadata:
@@ -115,13 +130,6 @@ class OtherFile(Document):
     def summary(self) -> Text:
         """One line summary mostly for logging."""
         return super().summary.append(CLOSE_PROPERTIES_CHAR)
-
-    def __post_init__(self):
-        super().__post_init__()
-
-        if not self.config and (cfg := build_cfg_from_text(self)):
-            self.derived_cfg = cfg
-            self._copy_config_props()
 
     def _extract_timestamp(self) -> datetime | None:
         """Return configured timestamp or value extracted by scanning text with datefinder."""

@@ -34,6 +34,10 @@ class MessengerLog(Communication):
     messages: list[TextMessage] = field(default_factory=list)
     phone_number: str | None = None
 
+    def __post_init__(self):
+        super().__post_init__()
+        self.messages = [self._build_message(match) for match in MSG_REGEX.finditer(self.text)]
+
     @property
     def is_interesting(self) -> bool | None:
         """Junk emails are not interesting."""
@@ -69,11 +73,6 @@ class MessengerLog(Communication):
 
         return txt.append(')')
 
-    def __post_init__(self):
-        super().__post_init__()
-        self.messages = [self._build_message(match) for match in MSG_REGEX.finditer(self.text)]
-        self.recipients = [JEFFREY_EPSTEIN]  # Epstein is always the counterparty for these files
-
     def first_message_at(self, name: Name) -> datetime:
         return self.messages_by(name)[0].parse_timestamp()
 
@@ -101,6 +100,9 @@ class MessengerLog(Communication):
             text=match.group(4).strip(),
             timestamp_str=match.group(2).strip(),
         )
+
+    def _extract_recipients(self) -> list[Name]:
+        return [JEFFREY_EPSTEIN]
 
     def _extract_timestamp(self) -> datetime:
         for match in MSG_REGEX.finditer(self.text):

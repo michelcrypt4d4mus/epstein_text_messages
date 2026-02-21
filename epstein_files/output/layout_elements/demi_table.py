@@ -5,6 +5,10 @@ from rich.table import Table
 from rich.text import Text
 from typing import Sequence
 
+from epstein_files.util.env import args
+
+LINES_WIDTH = 53
+
 
 def build_demi_table(left_col_msg: str, right_col_list: Sequence[str | Text]) -> Group:
     """Table with only one cell on left and only top, bottom, and middle lines."""
@@ -18,7 +22,8 @@ def build_demi_table(left_col_msg: str, right_col_list: Sequence[str | Text]) ->
         inner_list.add_row(element)
 
     container.add_row(left_col_msg, inner_list)
-    top_bottom_border = Text('-' * 50, style='grey15')
+    line_width = min(args.width or LINES_WIDTH, LINES_WIDTH) - 3
+    top_bottom_border = Text('-' * line_width, style='grey15')
 
     pieces = [
         top_bottom_border,

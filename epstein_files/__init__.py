@@ -79,9 +79,6 @@ def epstein_generate() -> None:
     write_html(args.build)
     logger.warning(f"Total time: {timer.seconds_since_start_str()}")
 
-    if args.debug:
-        highlighter.print_highlight_counts(console)
-
     if args.stats:
         print_stats(epstein_files)  # Used for building pytest checks
 
@@ -187,6 +184,8 @@ def epstein_show():
         if args.debug:
             console.print(doc._debug_txt(), style='dim')
 
+    if args.stats:
+        print_json("Highlight counts", highlighter.highlight_counts)
 
 
 def _load_files_and_check_early_exit_args() -> tuple[Timer, EpsteinFiles]:

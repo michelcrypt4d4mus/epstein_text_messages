@@ -16,7 +16,8 @@ from epstein_files.documents.other_file import FIRST_FEW_LINES, OtherFile
 from epstein_files.epstein_files import EpsteinFiles
 from epstein_files.output.highlight_config import PEOPLE_BIOS, get_style_for_name
 from epstein_files.output.rich import *
-from epstein_files.output.site.sites import AUTHORS_USING_SIGNATURES, EMAILERS_TABLE_PNG_PATH, FILEs_THAT_ARE_NEITHER_EMAILS_NOR, HIS_EMAILS, HIS_TEXT_MESSAGES, SELECTIONS_FROM
+from epstein_files.output.site.sites import (AUTHORS_USING_SIGNATURES, EMAILERS_TABLE_PNG_PATH,
+     FILEs_THAT_ARE_NEITHER_EMAILS_NOR, HIS_EMAILS, HIS_TEXT_MESSAGES, SELECTIONS_FROM)
 from epstein_files.output.title_page import print_color_key, print_other_page_link, print_section_header
 from epstein_files.people.interesting_people import EMAILERS_TO_PRINT
 from epstein_files.people.person import Person
@@ -46,7 +47,7 @@ def print_curated_chronological(epstein_files: EpsteinFiles) -> list[Document]:
     for doc in epstein_files.unique_documents:
         if not doc.is_interesting:
             continue
-        elif isinstance(doc, OtherFile):
+        elif isinstance(doc, OtherFile) and doc.is_valid_for_table:
             other_files_queue.append(doc)
             continue
         elif other_files_queue:
@@ -126,7 +127,6 @@ def print_emailers_info(epstein_files: EpsteinFiles) -> None:
 def print_emails_section(epstein_files: EpsteinFiles) -> list[Email]:
     """Prints emails, returns emails that were printed (may return dupes if printed for both author and recipient)."""
     print_section_header((SELECTIONS_FROM if not args.all_emails else '') + HIS_EMAILS)
-    print_other_page_link(epstein_files)
     all_emailers = sorted(epstein_files.emailers, key=lambda person: person.earliest_email_at)
     all_emails = Person.emails_from_people(all_emailers)
     num_emails_printed_since_last_color_key = 0
@@ -243,6 +243,8 @@ def print_stats(epstein_files: EpsteinFiles) -> None:
     print_json("unknown_recipient_ids", epstein_files.unknown_recipient_ids())
     print_json("count_by_month", Document.count_by_month(epstein_files.documents))
     print_json("Interesting OtherFile IDs", sorted([f.file_id for f in epstein_files.interesting_other_files]))
+    print_json(f"Highlight Counts", highlighter.highlight_counts)
+    highlighter.print_highlight_counts(console)
 
 
 def print_text_messages_section(epstein_files: EpsteinFiles) -> list[MessengerLog]:
@@ -309,7 +311,7 @@ def _print_email_device_signature_info(epstein_files: EpsteinFiles) -> None:
 
 def _print_section_summary_table(table: Table) -> None:
     """Print file stats table (top of each section has one)."""
-    print_centered(Padding(table, (2, 0, 2, 0)))
+    print_centered(Padding(table, (1, 0, 1, 0)))
 
 
 def _signature_table(keyed_sets: dict[str, set[str]], cols: tuple[str, str], join_char: str = '\n') -> Padding:

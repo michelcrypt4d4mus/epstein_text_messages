@@ -24,8 +24,11 @@ class Communication(Document):
     Attributes:
         recipients (list[Name]): People to whom this email was sent.
     """
-    recipients: list[Name] = field(default_factory=list)
-    timestamp: datetime = FALLBACK_TIMESTAMP  # TODO this default sucks (though it never happens)
+    extracted_recipients: list[Name] = field(default_factory=list)
+
+    def __post_init__(self):
+        super().__post_init__()
+        self.extracted_recipients = [] if self.config and self.config.recipients else self._extract_recipients()
 
     @property
     def author_or_unknown(self) -> str:
@@ -72,6 +75,13 @@ class Communication(Document):
         return set([self.author] + (self.recipients or [None]))
 
     @property
+    def recipients(self) -> list[Name]:
+        if self.config and self.config.recipients:
+            return self.config.recipients
+        else:
+            return self.extracted_recipients
+
+    @property
     def recipient_style(self) -> str:
         return get_style_for_name((self.recipients or [self.author])[0])
 
@@ -93,6 +103,10 @@ class Communication(Document):
     def colored_external_links(self) -> Text:
         """Overrides super() method to apply `self.author_style`."""
         return self.file_info.build_external_links(self.recipient_style, with_alt_links=True)
+
+    def _extract_recipients(self) -> list[Name]:
+        """Overload in subclasses"""
+        return []
 
     @classmethod
     def default_category(cls) -> str:

@@ -14,7 +14,7 @@ from rich.table import Table
 from yaralyzer.util.helpers.interaction_helper import ask_to_proceed
 
 from epstein_files.documents.document import Document
-from epstein_files.documents.documents.doc_cfg import EMAIL_PROPS_TO_COPY, PROPS_TO_COPY, Metadata
+from epstein_files.documents.documents.doc_cfg import Metadata
 from epstein_files.documents.documents.manual_config import create_configs
 from epstein_files.documents.documents.search_result import SearchResult
 from epstein_files.documents.doj_file import DojFile
@@ -33,6 +33,9 @@ from epstein_files.util.helpers.data_helpers import flatten, json_safe, uniquify
 from epstein_files.util.helpers.file_helper import all_txt_paths, doj_txt_paths, extract_file_id, file_size_str
 from epstein_files.util.timer import Timer
 
+# Lists of properties to copy into duplicate documents (will be preceded with 'extracted_')
+PROPS_TO_COPY = ['author', 'timestamp']
+EMAIL_PROPS_TO_COPY = ['recipients']
 SLOW_FILE_SECONDS = 1.0
 
 
@@ -54,6 +57,35 @@ class EpsteinFiles:
     timer: Timer = field(default_factory=lambda: Timer())
     uninteresting_ccs: list[Name] = field(default_factory=list)
     _empty_file_ids: set[str] = field(default_factory=set)
+
+    def __post_init__(self):
+        """Iterate through files and build appropriate objects."""
+        self.file_paths = sorted(all_txt_paths(), reverse=True)
+        self.documents = self._load_file_paths(self.file_paths)
+        self._finalize_data_and_write_to_disk()
+
+    @classmethod
+    def get_files(cls, timer: Timer | None = None) -> 'EpsteinFiles':
+        """Alternate constructor that reads/writes a pickled version of the data ('timer' arg is for logging)."""
+        timer = timer or Timer()
+
+        if args.pickle_path.exists() and not args.overwrite_pickle:
+            with gzip.open(args.pickle_path, 'rb') as file:
+                epstein_files = pickle.load(file)
+                timer_msg = f"Loaded {len(epstein_files.documents):,} documents from '{args.pickle_path}'"
+                timer.print_at_checkpoint(f"{timer_msg} ({file_size_str(args.pickle_path)})")
+
+            if args.load_new:
+                epstein_files.load_new_files()
+            elif args.reload_doj:
+                epstein_files.reload_doj_files()
+
+            return epstein_files
+
+        logger.warning(f"Building new cache file, this will take a few minutes...")
+        epstein_files = EpsteinFiles()
+        timer.print_at_checkpoint(f'Processed {len(epstein_files.file_paths):,} files, {OtherFile.num_synthetic_cfgs_created} synthetic configs')
+        return epstein_files
 
     @property
     def all_doj_files(self) -> Sequence[DojFile | Email]:
@@ -114,35 +146,6 @@ class EpsteinFiles:
     def unique_emails(self) -> list[Email]:
         """All `Email` objects except for duplicates."""
         return Document.without_dupes(self.emails)
-
-    def __post_init__(self):
-        """Iterate through files and build appropriate objects."""
-        self.file_paths = sorted(all_txt_paths(), reverse=True)
-        self.documents = self._load_file_paths(self.file_paths)
-        self._finalize_data_and_write_to_disk()
-
-    @classmethod
-    def get_files(cls, timer: Timer | None = None) -> 'EpsteinFiles':
-        """Alternate constructor that reads/writes a pickled version of the data ('timer' arg is for logging)."""
-        timer = timer or Timer()
-
-        if args.pickle_path.exists() and not args.overwrite_pickle:
-            with gzip.open(args.pickle_path, 'rb') as file:
-                epstein_files = pickle.load(file)
-                timer_msg = f"Loaded {len(epstein_files.documents):,} documents from '{args.pickle_path}'"
-                timer.print_at_checkpoint(f"{timer_msg} ({file_size_str(args.pickle_path)})")
-
-            if args.load_new:
-                epstein_files.load_new_files()
-            elif args.reload_doj:
-                epstein_files.reload_doj_files()
-
-            return epstein_files
-
-        logger.warning(f"Building new cache file, this will take a few minutes...")
-        epstein_files = EpsteinFiles()
-        timer.print_at_checkpoint(f'Processed {len(epstein_files.file_paths):,} files, {OtherFile.num_synthetic_cfgs_created} synthetic configs')
-        return epstein_files
 
     def docs_matching(self, pattern: re.Pattern | str, names: list[Name] | None = None) -> list[SearchResult]:
         """Find documents whose text matches `pattern` optionally limited to only docs involving `name`)."""
@@ -274,7 +277,10 @@ class EpsteinFiles:
                 emails=self.emails_for(name),
                 imessage_logs=self.imessage_logs_for(name),
                 is_uninteresting=name in self.uninteresting_emailers,
-                other_files=[f for f in self.other_files if name and name == f.author]
+                other_files=[
+                    f for f in self.other_files
+                    if name and (name == f.author or (f.config and name == f.config.show_with_name))
+                ]
             )
             for name in names
         ]
@@ -315,6 +321,7 @@ class EpsteinFiles:
 
     def repair_ids(self, ids: list[str]) -> None:
         """Repair/reload the ids specified and save to disk."""
+        ids = uniquify(ids)
         doc_paths = [d.file_path for d in self.documents if d.file_id in ids]
 
         if len(doc_paths) != len(ids):
@@ -340,6 +347,7 @@ class EpsteinFiles:
 
             original = self.get_id(doc.duplicate_of_id)
             props_to_copy = (EMAIL_PROPS_TO_COPY + PROPS_TO_COPY) if isinstance(doc, Email) else PROPS_TO_COPY
+            props_to_copy = [f"extracted_{prop}" for prop in props_to_copy]
 
             for field_name in props_to_copy:
                 original_prop = getattr(original, field_name)
@@ -382,7 +390,7 @@ class EpsteinFiles:
             elif file.timestamp and file.timestamp != email.timestamp:
                 file.warn(f"Overwriting '{file.timestamp}' with {email}'s timestamp {email.timestamp}")
 
-            file.timestamp = email.timestamp
+            file.extracted_timestamp = email.timestamp
 
         # Set the is_persons_first_email flag on the earliest Email we have for each person.
         for emailer in self.emailers:

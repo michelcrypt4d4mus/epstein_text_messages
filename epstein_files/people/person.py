@@ -2,6 +2,7 @@ from dataclasses import dataclass, field
 from datetime import datetime, date
 from typing import Sequence
 
+from rich.align import Align
 from rich.console import Group, RenderableType
 from rich.padding import Padding
 from rich.panel import Panel
@@ -16,9 +17,10 @@ from epstein_files.documents.messenger_log import MessengerLog
 from epstein_files.documents.other_file import OtherFile
 from epstein_files.output.highlight_config import (QUESTION_MARKS_TXT, get_highlight_group_for_name,
      get_style_for_name, styled_category, styled_name)
-from epstein_files.output.highlighted_names import HighlightedNames, HighlightedText, ManualHighlight
+from epstein_files.output.highlighted_names import HighlightedNames, HighlightPatterns, ManualHighlight
+from epstein_files.output.layout_elements.file_display import FileDisplay
 from epstein_files.output.rich import (GREY_NUMBERS, TABLE_TITLE_STYLE, build_table, console, join_texts,
-     print_centered, print_special_note)
+     left_indent, print_centered, print_special_note)
 from epstein_files.people.contact import Contact
 from epstein_files.people.interesting_people import SPECIAL_NOTES
 from epstein_files.util.constant.strings import *
@@ -117,7 +119,7 @@ class Person:
         return JEFFREY_EPSTEIN in contacts
 
     @property
-    def highlight_group(self) -> HighlightedNames | HighlightedText | ManualHighlight | None:
+    def highlight_group(self) -> HighlightedNames | HighlightPatterns | ManualHighlight | None:
         """Highlight group of any kind that matches this name."""
         if '_highlight_group' not in dir(self):
             self._highlight_group = get_highlight_group_for_name(self.name)
@@ -252,6 +254,10 @@ class Person:
         return self.name in TRUNCATE_EMAILS_BY or self.is_uninteresting
 
     @property
+    def show_with_emails_docs(self) -> list[OtherFile]:
+        return [f for f in self.other_files if (f.config and self.name == f.config.show_with_name)]
+
+    @property
     def sole_cc(self) -> str | None:
         """Return name if this person sent 0 emails and received CC from only one that name."""
         email_authors = uniquify([e.author for e in self.emails_to])
@@ -300,7 +306,7 @@ class Person:
     def _printable_emails(self):
         """For Epstein we only want to print emails he sent to himself."""
         if self.name == JEFFREY_EPSTEIN:
-            return [e for e in self.emails if e.is_note_to_self]
+            return [e for e in self.emails if e.is_note_to_self()]
         else:
             return self.emails
 
@@ -318,7 +324,10 @@ class Person:
         return link_text_obj(self.external_link(site), link_str or site, style=self.style())
 
     def print_emails(self) -> list[Email]:
-        """Print complete emails to or from a particular 'author'. Returns the Emails that were printed."""
+        """
+        Print complete emails to or from a particular 'author' along with any specially marked docs
+        configured with `show_with_name` of this user. Returns the Emails that were printed.
+        """
         print_centered(self.info_panel)
 
         if site_config.show_emailer_tables:
@@ -330,7 +339,14 @@ class Person:
         elif self.name in SPECIAL_NOTES:
             print_special_note(SPECIAL_NOTES[self.name])
 
-        Document.print_documents(self._printable_emails)
+        docs = Document.sort_by_timestamp(self._printable_emails + self.show_with_emails_docs)
+
+        docs = [
+            d.file_display(align='right', indent=site_config.show_with_indent) if isinstance(d, OtherFile) else d
+            for d in docs
+        ]
+
+        Document.print_documents(docs)
         return self._printable_emails
 
     def print_emails_table(self) -> None:

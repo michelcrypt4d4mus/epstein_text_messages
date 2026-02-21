@@ -5,6 +5,7 @@ from dataclasses import dataclass
 from datetime import datetime
 from typing import ClassVar
 
+from rich.padding import PaddingDimensions
 from rich.text import Text
 
 from epstein_files.util.constant.strings import SUBHEADER_STYLE, TIMESTAMP_STYLE
@@ -32,6 +33,8 @@ class MobileConfig:
     num_color_key_cols: ClassVar[int] = 2
     other_files_preview_chars: ClassVar[int] = 300
     other_files_table_indent: ClassVar[int] = 0
+    section_header_padding: ClassVar[PaddingDimensions] = (2, 1, 1, 1)
+    show_with_indent: ClassVar[int] = 0
     show_emailer_tables: ClassVar[bool] = False
     site_glossary_horizontal_padding: ClassVar[int] = 2
     social_link_separator: ClassVar[str] = ' '
@@ -48,9 +51,9 @@ class MobileConfig:
 
     @classmethod
     def email_subheader(cls, email_type: str, author: Text, recipients: Text, timestamp: datetime | Text) -> Text:
-        timestamp = timestamp if isinstance(timestamp, Text) else Text(' at ').append(str(timestamp), TIMESTAMP_STYLE)
         prefix = f"{capitalize_first(email_type)} from " if email_type != 'email' else ''
         txt = Text(prefix, SUBHEADER_STYLE).append(author)
+        timestamp = timestamp if isinstance(timestamp, Text) else Text(' at ').append(str(timestamp), TIMESTAMP_STYLE)
         txt.append(' to ').append(recipients).append(timestamp)
         return txt
 
@@ -66,7 +69,9 @@ class SiteConfig(MobileConfig):
     num_color_key_cols: ClassVar[int] = 6
     other_files_preview_chars: ClassVar[int] = 900
     other_files_table_indent: ClassVar[int] = 2
+    section_header_padding: ClassVar[PaddingDimensions] = (2, 25, 1, 25)
     show_emailer_tables: ClassVar[bool] = True
+    show_with_indent: ClassVar[int] = 30
     site_glossary_horizontal_padding: ClassVar[int] = 5
     social_link_separator: ClassVar[str] = '  /  '
     subtitle_width: ClassVar[int | None] = 110

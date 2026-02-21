@@ -25,8 +25,9 @@ ARCHIVE_LINK_UNDERLINE = f"{ARCHIVE_LINK_COLOR} underline"
 ARCHIVE_ALT_LINK_STYLE = 'medium_purple4 italic'  # "(raw files)" link
 AUX_SITE_LINK_STYLE = 'dark_orange3'
 DEFAULT_NAME_STYLE = 'grey23'
+EXCERPT_STYLE = 'italic cornsilk1'
 SOCIAL_MEDIA_LINK_STYLE = 'pale_turquoise4'
-SUBHEADER_STYLE = 'dim gray27'
+SUBHEADER_STYLE = 'dim gray54 italic'
 TEXT_LINK = 'text_link'
 TIMESTAMP_STYLE = 'turquoise4'
 TIMESTAMP_DIM = f"turquoise4 dim"
@@ -86,9 +87,7 @@ QUESTION_MARKS_REGEX = re.compile(fr' {re.escape(QUESTION_MARKS)}$')
 # Decorative
 LEFT_ARROWS = '⇚ ⇠ ⇷ ⟵ ⇜ ⇽ ⬰ ⬲'
 RIGHT_ARROWS = '↦ ↠ ➔ ➤ ➦ ➱ ➪ ➾'
-# for line_char in '-﹊﹌﹉﹏﹎＿':
-#     console.print((args.width - 4) * line_char + '\n\n', style='dim')
-
+LINES = '-﹊﹌﹉﹏﹎＿'
 
 # Whitespace
 INDENT = '    '

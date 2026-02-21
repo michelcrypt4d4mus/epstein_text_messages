@@ -3,7 +3,7 @@ from dateutil.parser import parse
 from epstein_files.documents.documents.categories import Category, Interesting, Neutral, Uninteresting
 from epstein_files.documents.documents.doc_cfg import DocCfg
 from epstein_files.util.constant.names import *
-from epstein_files.util.helpers.string_helper import has_line_starting_with
+from epstein_files.util.helpers.string_helper import has_line_starting_with, join_truthy
 from epstein_files.util.logging import logger
 
 # Inferred category config regexes
@@ -19,6 +19,8 @@ VALAR_CAPITAL_CALL_REGEX = re.compile(r"^Val[ao]r.{,190} Capital Call", re.MULTI
 VI_DAILY_NEWS_REGEX = re.compile(r'virgin\s*is[kl][ai]nds\s*daily\s*news', re.IGNORECASE)
 
 LEDGERX_MSG = 'LedgerX was later acquired by FTX for $298 million'
+WOLFF_EPSTEIN_ARTICLE_DRAFT = f"draft of an unpublished article ca. 2014"
+
 
 def build_cfg_from_text(doc: 'Document') -> DocCfg | None:
     """Scan the text to see if author, description, category, etc. can be derived from the contents."""
@@ -71,4 +73,14 @@ def valar_cfg(id: str, description: str = '', text: str = '') -> DocCfg:
         author=VALAR_VENTURES,
         date='2015-06-30' if '6/30/2015' in text else '',
         description=description or f"is a fintech focused {PETER_THIEL} fund Epstein was invested in",
+    )
+
+
+def wolff_draft_cfg(id: str, suffix: str = '', **kwargs) -> DocCfg:
+    return DocCfg(
+        id=id,
+        author=MICHAEL_WOLFF,
+        date='2014-11-01',  # Very approximate
+        description=join_truthy(WOLFF_EPSTEIN_ARTICLE_DRAFT, suffix),
+        **kwargs
     )

@@ -7,8 +7,23 @@ from inflection import underscore
 
 from epstein_files.util.constant.strings import QUESTION_MARKS_REGEX
 
+PDFALYZER_IMAGE_PANEL_REGEX = re.compile(r"\n╭─* Page \d+, Image \d+.*?╯\n?", re.DOTALL)
+MULTINEWLINE_REGEX = re.compile(r"\n{2,}")
+MULTISPACE_REGEX = re.compile(" +")
+WHITESPACE_CHAR = r"[-_\s]*"
+
 capitalize_first = lambda s: s[0].upper() + s[1:]
+capture_group_marker = lambda label: fr"?P<{label}>"
+collapse_newlines = lambda text: MULTINEWLINE_REGEX.sub('\n\n', text)
+collapse_spaces = lambda s: MULTISPACE_REGEX.sub(' ', s)
 iso_timestamp = lambda dt: dt.isoformat().replace('T', ' ')
+strip_pdfalyzer_panels = lambda s: PDFALYZER_IMAGE_PANEL_REGEX.sub('', s)
+
+
+def as_pattern(s: str) -> str:
+    """Replace spaces with regex pattern for whitespace."""
+    s = collapse_spaces(s)
+    return s if '?<!' in s else s.replace(' ', WHITESPACE_CHAR)
 
 
 def constantize(s: str) -> str:

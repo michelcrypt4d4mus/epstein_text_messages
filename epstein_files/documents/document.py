@@ -6,20 +6,22 @@ from datetime import datetime
 from pathlib import Path
 from typing import ClassVar, Self, Sequence, TypeVar
 
+from rich.align import Align, AlignMethod
 from inflection import underscore
-from rich.console import Console, ConsoleOptions, Group, RenderResult
+from rich.console import Console, ConsoleOptions, Group, JustifyMethod, RenderableType, RenderResult
 from rich.markup import escape
 from rich.padding import Padding
 from rich.panel import Panel
 from rich.text import Text
 from rich.table import Table
 
-from epstein_files.documents.documents.doc_cfg import DUPE_TYPE_STRS, DebugDict, EmailCfg, DocCfg, Metadata
+from epstein_files.documents.documents.doc_cfg import DUPE_TYPE_STRS, NO_TRUNCATE, DebugDict, EmailCfg, DocCfg, Metadata
 from epstein_files.documents.documents.file_info import FileInfo
 from epstein_files.documents.documents.search_result import MatchedLine
 from epstein_files.documents.emails.constants import DOJ_EMAIL_OCR_REPAIRS, FALLBACK_TIMESTAMP
 from epstein_files.documents.emails.email_header import DETECT_EMAIL_REGEX
 from epstein_files.output.highlight_config import get_style_for_name
+from epstein_files.output.layout_elements.file_display import FileDisplay
 from epstein_files.output.rich import (INFO_STYLE, NA_TXT, SKIPPED_FILE_MSG_PADDING, SYMBOL_STYLE,
      add_cols_to_table, build_table, console, highlighter, styled_key_value, prefix_with, styled_dict,
      wrap_in_markup_style)
@@ -29,11 +31,11 @@ from epstein_files.util.constant.names import Name
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constants import CONFIGS_BY_ID, DEFAULT_TRUNCATE_TO
 from epstein_files.util.env import args, site_config
-from epstein_files.util.helpers.data_helpers import (collapse_newlines, date_str, patternize, prefix_keys,
+from epstein_files.util.helpers.data_helpers import (date_str, patternize, prefix_keys,
      remove_zero_time, without_falsey)
 from epstein_files.util.helpers.link_helper import link_text_obj
 from epstein_files.util.helpers.file_helper import coerce_file_path, file_size_to_str
-from epstein_files.util.helpers.string_helper import join_truthy
+from epstein_files.util.helpers.string_helper import collapse_newlines, join_truthy
 from epstein_files.util.logging import DOC_TYPE_STYLES, FILENAME_STYLE, logger
 
 CHECK_LINK_FOR_DETAILS = 'not shown here, check original PDF for details'
@@ -90,24 +92,42 @@ class Document:
 
     Attributes:
         file_path (Path): Local path to file
-        author (Name): Writer of the text in the file
         file_info (FileInfo): Manages things having to do with the underlying file (paths, URLs, etc.)
         lines (list[str]): Number of lines in the file after all the cleanup
         text (str): Contents of the file
         timestamp (datetime, optional): When the file was originally created
     """
-    file_path: Path
-
-    # Optional and/or derived at instantiation time
-    author: Name = None
-    file_info: FileInfo = field(init=False)
-    lines: list[str] = field(default_factory=list)
-    text: str = ''
-    timestamp: datetime | None = None
-
     # Class constants
     INCLUDE_DESCRIPTION_IN_SUMMARY_PANEL: ClassVar[bool] = False
     STRIP_WHITESPACE: ClassVar[bool] = True  # Overridden in JsonFile
+
+    file_path: Path
+    # Derived at instantiation time
+    extracted_author: Name = None
+    extracted_timestamp: datetime | None = None
+    file_info: FileInfo = field(init=False)
+    lines: list[str] = field(default_factory=list)
+    text: str = ''
+
+    def __post_init__(self):
+        if not self.file_path.exists():
+            raise FileNotFoundError(f"File '{self.file_path}' does not exist!")
+
+        self.file_info = FileInfo(self.file_path)
+        self.text = self.text or self._load_file()
+        self._set_text(text=self.text)
+        self._repair()
+        self.extracted_author = None if self.author else self._extract_author()
+        self.extracted_timestamp = None if self.timestamp else self._extract_timestamp()
+
+    @classmethod
+    def from_file_id(cls, file_id: str | int) -> Self:
+        """Alternate constructor that finds the file path automatically and builds a `Document`."""
+        return cls(coerce_file_path(file_id))
+
+    @property
+    def author(self) -> Name:
+        return self.config.author if self.config and self.config.author else self.extracted_author
 
     @property
     def border_style(self) -> str:
@@ -266,14 +286,38 @@ class Document:
         """Returns the string we want to print as the body of the document."""
         style = INFO_STYLE if self.config_replace_text_with and len(self.config_replace_text_with) < 300 else ''
         text = self.config_replace_text_with or self.text
-        trim_footer_txt = None
 
-        if self.config and self.config.truncate_to:
-            txt = highlighter(Text(text[0:self.config.truncate_to], style))
-            trim_footer_txt = self.truncation_note(self.config.truncate_to)
-            return txt.append('...\n\n').append(trim_footer_txt)
-        else:
+        if args.char_nums:
+            idx = args.char_nums
+            new_text = text[:idx]
+
+            while idx < len(text):
+                new_text += f'\n\n ------ {idx} ------ \n\n'
+                end_idx = idx + args.char_nums
+                new_text += text[idx: end_idx]
+                idx = end_idx
+
+            text = new_text
+
+        if self.config is None or self.config.truncate_to in [None, NO_TRUNCATE] or args.whole_file:
             return highlighter(Text(text, style))
+
+        char_range = list(self.config.truncate_to) if self.config.is_excerpt else [0, self.config.truncate_to]
+        trim_footer_txt = self.truncation_note(char_range[1])
+        chars = text[char_range[0]:char_range[1]]
+
+        if char_range[0] > 0:
+            # Add paragraph separators if very long lines
+            if max(len(line) for line in  chars.split('\n')) > 120:
+                chars = chars.replace('\n', '\n\n')
+
+            _txt = Text('', style=EXCERPT_STYLE)
+            _txt.append(f'<...trimmed first {char_range[0]:,} characters...>\n\n', 'dim')
+            txt = _txt.append('...').append(highlighter(Text(chars, style)))
+        else:
+            txt = highlighter(Text(chars, style))
+
+        return txt.append('...\n\n').append(trim_footer_txt)
 
     @property
     def suppressed_txt(self) -> Text | None:
@@ -315,6 +359,13 @@ class Document:
         return Panel(Group(*sentences), border_style=self._class_style, expand=False)
 
     @property
+    def timestamp(self) -> datetime | None:
+        if self.config and self.config.timestamp:
+            return self.config.timestamp
+        else:
+            return self.extracted_timestamp
+
+    @property
     def timestamp_sort_key(self) -> tuple[datetime, str, int]:
         """Sort by timestamp, file_id, then whether or not it's a duplicate file."""
         if self.duplicate_of_id:
@@ -347,33 +398,20 @@ class Document:
     def _debug_prefix(self) -> str:
         return underscore(self._class_name).lower()
 
-    def __post_init__(self):
-        if not self.file_path.exists():
-            raise FileNotFoundError(f"File '{self.file_path}' does not exist!")
-
-        self.file_info = FileInfo(self.file_path)
-        self.text = self.text or self._load_file()
-        self._set_text(text=self.text)
-        self._repair()
-        self._copy_config_props()
-        self._extract_author()
-        # TODO: Communication subclass sets FALLBACK_TIMESTAMP as default to keep type checking from whining :(
-        self.timestamp = self._extract_timestamp() if self.timestamp in [None, FALLBACK_TIMESTAMP] else self.timestamp
-
-    @classmethod
-    def from_file_id(cls, file_id: str | int) -> Self:
-        """Alternate constructor that finds the file path automatically and builds a `Document`."""
-        return cls(coerce_file_path(file_id))
-
     def colored_external_links(self) -> Text:
         return self.file_info.build_external_links(with_alt_links=True)
 
+    @property
+    def file_id_panel(self) -> Panel:
+        links_txt = self.colored_external_links()
+        return Panel(links_txt, border_style=self.border_style, expand=False)
+
     def file_info_panel(self) -> Group:
         """Panel with filename linking to raw file plus any additional info about the file."""
-        links_txt = self.colored_external_links()
-        panel = Panel(links_txt, border_style=self.border_style, expand=False)
         padded_info = [Padding(sentence, site_config.info_padding()) for sentence in self.info]
-        return Group(*([panel] + padded_info))
+        return Group(*([self.file_id_panel] + padded_info))
+        elements = [panel] + padded_info
+        return Group(*[Align(e, 'right') for e in elements])
 
     def lines_matching(self, _pattern: re.Pattern | str) -> list[MatchedLine]:
         """Find lines in this file matching a regex pattern."""
@@ -382,7 +420,7 @@ class Document:
 
     def log(self, msg: str, level: int = logging.INFO) -> None:
         """Log a message with with this document's filename as a prefix."""
-        logger.log(level, f"{self.file_id} {msg}")
+        logger.log(level, f"{self.file_id} {self._class_name} {msg}")
 
     def log_top_lines(self, n: int = 10, msg: str = '', level: int = logging.INFO) -> None:
         """Log first 'n' lines of self.text at 'level'. 'msg' can be optionally provided."""
@@ -393,11 +431,13 @@ class Document:
     def print(self, whole_file: bool = False) -> None:
         """Print this object for some suppression message."""
         if self.is_attachment:
+            self.warn(f"is an attachment and self.print() was calleed")
             return
         elif (skipped_file_txt := self.suppressed_txt):
             console.print(Padding(skipped_file_txt, SKIPPED_FILE_MSG_PADDING))
             return
 
+        # TODO: this approach to forcing whole_file sucks
         old_whole_file_arg = args.whole_file
         args.whole_file = whole_file
         console.print(self)
@@ -440,12 +480,6 @@ class Document:
         """Print a warning message prefixed by info about this `Document`."""
         self.log(msg, level=logging.WARNING)
 
-    def _copy_config_props(self) -> None:
-        """A couple of properties are copied from the config; the rest are lazily retrieved."""
-        if self.config:
-            for k, v in self.config.props_to_copy.items():
-                setattr(self, k, v)
-
     def _debug_dict(self, as_txt: bool = False, with_prefixes: bool = True) -> DebugDict | Text:
         """Merge information about this document from config, file info, etc."""
         config_info = self.config.truthy_props if self.config else {}
@@ -479,7 +513,7 @@ class Document:
         txt_lines = styled_dict(self._debug_dict(), sep=': ')
         return prefix_with(txt_lines, ' ', pfx_style='grey', indent=2)
 
-    def _extract_author(self) -> None:
+    def _extract_author(self) -> Name:
         """Extended in `Email` subclass to pull from  headers."""
         pass
 
@@ -534,10 +568,8 @@ class Document:
 
         logger.warning(f"Wrote {self.length} chars of cleaned {self.filename} to {output_path}.")
 
-    def __rich_console__(self, console: Console, options: ConsoleOptions) -> RenderResult:
-        """Default `Document` renderer (Email and MessengerLog override this)."""
-        yield self.file_info_panel()
-
+    def file_display(self, align: JustifyMethod | None = None, indent: int = 0) -> FileDisplay:
+        """Allows for proper right vs. left justify."""
         text_panel = Panel(
             self.prettified_text,
             border_style=self.border_style,
@@ -546,7 +578,17 @@ class Document:
             title_align='right',
         )
 
-        yield Padding(text_panel, (0, 0, 1, site_config.info_indent))
+        return FileDisplay(
+            file_info=self.file_id_panel,
+            body_panel=text_panel,
+            subheaders=self.info,
+            justify=align,
+            indent=indent,
+        )
+
+    def __rich_console__(self, console: Console, options: ConsoleOptions) -> RenderResult:
+        """Default `Document` renderer (Email and MessengerLog override this)."""
+        yield self.file_display()
 
     def __str__(self) -> str:
         return self.summary.plain
@@ -588,12 +630,12 @@ class Document:
         return len([doc for doc in docs if doc.author])
 
     @classmethod
-    def print_documents(cls, docs: Sequence[Self]) -> None:
+    def print_documents(cls, docs: Sequence[Self | FileDisplay]) -> None:
         """Print a collection of `Document` objects, with appropriate suppression text for dupes etc."""
         last_doc_was_suppressed = False
 
         for doc in docs:
-            if doc.suppressed_txt:
+            if (is_document := isinstance(doc, cls)) and doc.suppressed_txt:
                 doc.print()
                 last_doc_was_suppressed = True
                 continue
@@ -602,7 +644,7 @@ class Document:
                 console.line()
 
             last_doc_was_suppressed = False
-            doc.print()
+            doc.print() if is_document else console.print(doc)
 
             # if doc.config_description_txt:
             #     import pdb;pdb.set_trace()

@@ -26,6 +26,10 @@ class JsonFile(OtherFile):
     INCLUDE_DESCRIPTION_IN_SUMMARY_PANEL: ClassVar[bool] = False
     STRIP_WHITESPACE: ClassVar[bool] = False
 
+    def __post_init__(self):
+        super().__post_init__()
+        self._set_text(text=self.json_str())
+
     @property
     def category(self) -> str:
         return JSON
@@ -43,10 +47,6 @@ class JsonFile(OtherFile):
     @property
     def subheader(self) -> Text:
         return Text(DESCRIPTION, style=INFO_STYLE)
-
-    def __post_init__(self):
-        super().__post_init__()
-        self._set_text(text=self.json_str())
 
     def json_data(self) -> object:
         with open(self.file_path, encoding='utf-8-sig') as f:

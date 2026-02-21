@@ -24,19 +24,18 @@ from epstein_files.documents.emails.email_header import (EMAIL_SIMPLE_HEADER_REG
 from epstein_files.documents.emails.emailers import extract_emailer_names
 from epstein_files.documents.other_file import OtherFile
 from epstein_files.people.interesting_people import EMAILERS_OF_INTEREST_SET
+from epstein_files.output.highlight_config import HIGHLIGHTED_NAMES, get_style_for_name
 from epstein_files.output.rich import DEFAULT_TABLE_KWARGS, build_table, highlighter, join_texts, styled_key_value
-from epstein_files.util.constant.strings import ARCHIVE_LINK_COLOR, REDACTED, TIMESTAMP_DIM
+from epstein_files.util.constant.strings import APPEARS_IN, ARCHIVE_LINK_COLOR, REDACTED, TIMESTAMP_DIM
 from epstein_files.util.constant.urls import URL_SIGNIFIERS
+from epstein_files.util.constant.names import sort_names
 from epstein_files.util.constants import CONFIGS_BY_ID, DEFAULT_TRUNCATE_TO, NO_TRUNCATE, SHORT_TRUNCATE_TO
 from epstein_files.util.env import args, site_config
-from epstein_files.util.helpers.data_helpers import (AMERICAN_TIME_REGEX, TIMEZONE_INFO, collapse_newlines,
+from epstein_files.util.helpers.data_helpers import (AMERICAN_TIME_REGEX, TIMEZONE_INFO,
      prefix_keys, remove_timezone, uniquify)
 from epstein_files.util.helpers.link_helper import link_text_obj
-from epstein_files.util.helpers.string_helper import capitalize_first
-from epstein_files.output.highlight_config import HIGHLIGHTED_NAMES, get_style_for_name
+from epstein_files.util.helpers.string_helper import capitalize_first, collapse_newlines, strip_pdfalyzer_panels
 from epstein_files.util.logging import logger
-
-RENDER_BODY_AS_TABLE = True
 
 # Email bod regexes
 BAD_FIRST_LINE_REGEX = re.compile(r'^(>>|Grant_Smith066474"eMailContent.htm|LOVE & KISSES)$')
@@ -86,8 +85,11 @@ OCR_REPAIRS: dict[str | re.Pattern, str] = {
     # Headers
     'I nline-Images:': 'Inline-Images:',
     re.compile(r"^From "): 'From: ',
-    re.compile(r"^(Sent|Subject) (?![Ff]rom|[Vv]ia)", re.MULTILINE): r'\1: ',
+    re.compile(r"^(Sent|Subject) (?![Ff]rom|using|[Vv]ia)", re.MULTILINE): r'\1: ',
     re.compile(r"^(Forwarded|Original) Message$", re.IGNORECASE | re.MULTILINE): r"--- \1 Message ---",
+    # Excessive quote chars
+    re.compile(r"wrote:\n[>»]+(\n[>»]+)"): r"wrote:\1",
+    re.compile(r"(^[>»]+\n){2,}", re.MULTILINE): r"\1",
     # Names / email addresses
     'Alireza lttihadieh': ALIREZA_ITTIHADIEH,
     'Miroslav Laj6ak': MIROSLAV_LAJCAK,
@@ -162,7 +164,6 @@ METADATA_FIELDS = [
 
 DEBUG_PROPS = METADATA_FIELDS + [
     'attachment_file_ids',
-    'is_note_to_self',
     'is_persons_first_email',
     'is_word_count_worthy',
 ]
@@ -184,14 +185,24 @@ class Email(Communication):
     attached_docs: list[OtherFile] = field(default_factory=list)
     actual_text: str = field(init=False)
     derived_cfg: EmailCfg | None = None
-    header: EmailHeader = field(init=False)
     is_persons_first_email: bool = False
     sent_from_device: str | None = None
     signature_substitution_counts: dict[str, int] = field(default_factory=dict)  # defaultdict breaks asdict :(
+    _header: EmailHeader | None = None
     _line_merge_arguments: list[tuple[int] | tuple[int, int]] = field(default_factory=list)
 
     # Class variable logging how many headers we prettified while printing, kind of janky
     rewritten_header_ids: ClassVar[set[str]] = set([])
+
+    def __post_init__(self):
+        super().__post_init__()
+        self.text = self._prettify_text()
+        self.actual_text = self._extract_actual_text()
+        self.sent_from_device = self._sent_from_device()
+
+        for signature, name  in KNOWN_SIGNATURES.items():
+            if self.has_unknown_participant and signature.lower() in self.text.lower():
+                self.warn(f"Found known signature for {name} in unattributed email.")
 
     @property
     def attachment_file_ids(self) -> list[str]:
@@ -226,6 +237,11 @@ class Email(Communication):
             return self.derived_cfg
         else:
             return super().config
+
+    @property
+    def header(self) -> EmailHeader:
+        self._header = self._header or self._extract_header()
+        return self._header
 
     @property
     def info(self) -> list[Text]:
@@ -264,10 +280,6 @@ class Email(Communication):
         return self.author in MAILING_LISTS or self.is_junk_mail
 
     @property
-    def is_note_to_self(self) -> bool:
-        return self.recipients == [self.author]
-
-    @property
     def is_word_count_worthy(self) -> bool:
         """True if this file should be included in word counts."""
         if self.is_fwded_article:
@@ -294,13 +306,13 @@ class Email(Communication):
 
     @property
     def subheader(self) -> Text:
-        email_type = 'fwded article' if self.is_fwded_article else 'email'
+        prefix = 'fwded article' if self.is_fwded_article else 'email'
         author_txt = self.author_txt
 
         if self.config and self.config.is_attribution_uncertain:
             author_txt += Text(f" {QUESTION_MARKS}", style=self.author_style)
 
-        return site_config.email_subheader(email_type, author_txt, self.recipients_txt(), self.timestamp)
+        return site_config.email_subheader(prefix, author_txt, self.recipients_txt(), self.timestamp)
 
     @property
     def subject(self) -> str:
@@ -328,39 +340,12 @@ class Email(Communication):
 
             return uninteresting_txt
 
-    def __post_init__(self):
-        super().__post_init__()
-
-        # Recipients could have already been set from the config in superclass
-        if not self.recipients:
-            for recipient in self.header.recipients:
-                self.recipients.extend(extract_emailer_names(recipient))
-
-            # Assume mailing list emails are to Epstein
-            if self.author in BCC_LISTS and (self.is_note_to_self or not self.recipients):
-                self.recipients = [JEFFREY_EPSTEIN]
-
-        self.recipients = uniquify(self.recipients)
-
-        # Remove self CCs but preserve self emails
-        if not (self.is_note_to_self or self.author is None):
-            if self.author in self.recipients:
-                self.log(f"Removing email to self for {self.author}")
-
-            self.recipients = [r for r in self.recipients if r != self.author]
-
-        self.recipients = sorted(list(set(self.recipients)), key=lambda r: r or UNKNOWN)
-        self.text = self._prettify_text()
-        self.actual_text = self._extract_actual_text()
-        self.sent_from_device = self._sent_from_device()
-
-        for signature, name  in KNOWN_SIGNATURES.items():
-            if self.has_unknown_participant and signature.lower() in self.text.lower():
-                self.warn(f"Found known signature for {name} in unattributed email.")
-
     def is_from_or_to(self, name: str) -> bool:
         """True if `name` is either the author or one of the recipients."""
         return name in [self.author] + self.recipients
+
+    def is_note_to_self(self, recipients: list[Name] | None = None) -> bool:
+        return (recipients if recipients is not None else self.recipients) == [self.author]
 
     def recipients_txt(self, max_full_names: int = 2) -> Text:
         """Comma separated colored names (last name only if more than `max_full_names` recipients)."""
@@ -380,6 +365,8 @@ class Email(Communication):
 
         if not self.header.is_empty:
             local_props['header'] = self.header.as_dict()
+        if self.is_note_to_self():
+            local_props['is_note_to_self'] = self.is_note_to_self()
 
         props.update(prefix_keys(self._debug_prefix, local_props))
         return props
@@ -422,30 +409,51 @@ class Email(Communication):
 
         return text.strip()
 
-    def _extract_author(self) -> None:
+    def _extract_author(self) -> Name:
         """Overloads superclass method, called at instantiation time."""
-        self._extract_header()
-
-        if not self.author and self.header.author:
+        if self.header.author:
             authors = extract_emailer_names(self.header.author)
-            self.author = authors[0] if (len(authors) > 0 and authors[0]) else None
+            return authors[0] if (len(authors) > 0 and authors[0]) else None
 
-    def _extract_header(self) -> None:
+    def _extract_header(self) -> EmailHeader:
         """Extract an `EmailHeader` from the OCR text."""
         header_match = EMAIL_SIMPLE_HEADER_REGEX.search(self.text)
 
         if header_match:
-            self.header = EmailHeader.from_header_lines(header_match.group(0))
+            header = EmailHeader.from_header_lines(header_match.group(0))
 
             # DOJ file OCR text is broken in a less consistent way than the HOUSE_OVERSIGHT files
-            if self.header.is_empty and not self.file_info.is_doj_file:
-                self.header.repair_empty_header(self.lines)
+            if header.is_empty and not self.file_info.is_doj_file:
+                header.repair_empty_header(self.lines)
         else:
             log_level = logging.INFO if self.config else logging.WARNING
             self.log_top_lines(msg='No email header match found!', level=log_level)
-            self.header = EmailHeader(field_names=[])
+            header = EmailHeader(field_names=[])
 
-        logger.debug(f"{self.file_id} extracted header\n\n{self.header}\n")
+        logger.debug(f"{self.file_id} extracted header\n\n{header}\n")
+        return header
+
+    def _extract_recipients(self) -> list[Name]:
+        # Recipients could have already been set from the config in superclass
+        recipients: list[Name] = []
+
+        for recipient in self.header.recipients:
+            recipients.extend(extract_emailer_names(recipient))
+
+        # Assume mailing list emails are to Epstein
+        if self.author in BCC_LISTS and (self.is_note_to_self(recipients) or not recipients):
+            recipients = [JEFFREY_EPSTEIN]
+
+        recipients = uniquify(recipients)
+
+        # Remove self CCs but preserve self emails
+        if not (self.is_note_to_self(recipients) or self.author is None):
+            if self.author in self.recipients:
+                self.log(f"Removing email to self for {self.author}")
+
+            recipients = [r for r in recipients if r != self.author]
+
+        return sort_names(recipients)
 
     def _extract_timestamp(self) -> datetime:
         """Find the time this email was sent."""
@@ -545,7 +553,7 @@ class Email(Communication):
         """Repair particularly janky files. Note that OCR_REPAIRS are applied *after* other line adjustments."""
         # Some DOJ cleanup needs to happen first if this is a DOJ file.
         if self.file_info.is_doj_file:
-            self._set_text(text=self.repair_ocr_text(DOJ_EMAIL_OCR_REPAIRS, self.text))
+            self._set_text(text=self.repair_ocr_text(DOJ_EMAIL_OCR_REPAIRS, strip_pdfalyzer_panels(self.text)))
 
         if BAD_FIRST_LINE_REGEX.match(self.lines[0]):
             self._set_text(lines=self.lines[1:])
@@ -636,15 +644,17 @@ class Email(Communication):
         """When printing truncate this email to this length."""
         quote_cutoff = self._idx_of_nth_quoted_reply()  # Trim if there's many quoted replies
         includes_truncate_term = next((term for term in TRUNCATE_TERMS if term in self.text), None)
+        num_chars: int
 
         if args.whole_file:
             num_chars = len(self.text)
         elif args.truncate:
             num_chars = args.truncate
         elif self.config and self.config.truncate_to is not None:
+            if self.config.is_excerpt:
+                raise ValueError(f"Emails don't support truncate_to as a tuple")
+
             num_chars = len(self.text) if self.config.truncate_to == NO_TRUNCATE else self.config.truncate_to
-        elif self.config and self.config.is_interesting:
-            num_chars = len(self.text)
         elif self.author in TRUNCATE_EMAILS_BY \
                 or any([self.is_from_or_to(n) for n in TRUNCATE_EMAILS_FROM_OR_TO]) \
                 or self.is_fwded_article \
@@ -728,19 +738,18 @@ class Email(Communication):
 
         if self.config_description_txt and site_config.email_info_in_subtitle:
             max_line_len = max(max_line_len, len(self.config_description_txt.plain))
-            subtitle_style = 'dim' if RENDER_BODY_AS_TABLE else 'on gray7'
-            subtitle = Text('', style=subtitle_style).append(self.config_description_txt)
-            subtitle = Text(' ', subtitle_style).join(subtitle.split(' '))  # split then join makes rich color subtitle correctly
+            subtitle = Text('').append(self.config_description_txt)
+            subtitle.justify = 'right'
 
-        yield self.file_info_panel()
         txt = highlighter(text).append('...\n\n').append(trim_footer_txt) if trim_footer_txt else highlighter(text)
 
-        if RENDER_BODY_AS_TABLE:
-            panel = self._text_table(txt, subtitle)
+        if args.panelize_emails:
+            body = self._body_as_panel(txt, subtitle)
         else:
-            panel = self._text_panel(txt, subtitle)
+            body = self._body_as_table(txt, subtitle)
 
-        yield Padding(panel, (0, 0, 1, site_config.other_files_table_indent))
+        yield self.file_info_panel()
+        yield Padding(body, (0, 0, 1, site_config.other_files_table_indent))
 
         if self.attached_docs:
             attachments_table_title = f" {self.file_info.url_slug} Email Attachments:"
@@ -750,19 +759,25 @@ class Email(Communication):
         if should_rewrite_header:
             self.log_top_lines(self.header.num_header_rows + 4, f'Original header:')
 
-    def _text_panel(self, text: str | Text, description: Text | None) -> Panel:
+    def _body_as_panel(self, text: str | Text, description: Text | None) -> Panel:
         """Renders the info info text in the panel's bottom border."""
         return Panel(
             text,
             border_style=self.border_style,
             expand=False,
-            subtitle=description,
-            subtitle_align='right',
+            title=Text(' ').join(description.split(' ')) if description else None,  # split then join makes rich color subtitle correctly
+            title_align='right',
         )
 
-    def _text_table(self, text: str | Text, description: Text | None) -> Table:
+    def _body_as_table(self, text: str | Text, description: Text | None) -> Table:
         """Renders the info text as a top row in a table-ish view."""
-        panel = Table(border_style=self.border_style, box=box.ROUNDED, show_header=bool(description))
+        panel = Table(
+            border_style=self.border_style,
+            box=box.ROUNDED,
+            header_style='on gray11',
+            show_header=bool(description)
+        )
+
         panel.add_column(description or '')
         panel.add_row(text)
         return panel

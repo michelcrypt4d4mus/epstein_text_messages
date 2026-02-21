@@ -9,11 +9,12 @@ from epstein_files.documents.messenger_log import MessengerLog
 from epstein_files.output.rich import console, print_subtitle_panel
 from epstein_files.util.constant.names import *
 from epstein_files.util.constants import CONFIGS_BY_ID
+from epstein_files.util.helpers.data_helpers import uniquify
 
 from .conftest import assert_higher_counts
 from .fixtures.emails.signatures import AUTHORS_TO_DEVICE_SIGNATURES, DEVICE_SIGNATURE_TO_AUTHORS, SIGNATURE_SUBSTITUTION_COUNTS
 from .fixtures.messenger_logs.author_counts import MESSENGER_LOG_AUTHOR_COUNTS
-from .fixtures.fixture_csvs import EMAIL_PROPS, load_files_csv
+from .fixtures.fixture_csvs import CFG_PROPS, EMAIL_PROPS, load_files_csv
 
 
 def test_against_csv(epstein_files):
@@ -24,19 +25,34 @@ def test_against_csv(epstein_files):
     for doc in epstein_files.unique_documents:
         if (csv_row := csv_docs.get(doc.file_id)):
             for k, csv_val in csv_row.items():
-                if k == 'complete_description' or (k in EMAIL_PROPS and not isinstance(doc, Email)):
+                if k in EMAIL_PROPS and not isinstance(doc, Email):
                     continue
-                elif (doc_prop := getattr(doc, k)) != csv_val:
-                    doc.warn(f"mismatched '{k}': doc='{doc_prop}', csv='{csv_val}'")
+                elif k in CFG_PROPS:
+                    doc_val = getattr(doc.config, k) if doc.config else ''
+                else:
+                    doc_val = getattr(doc, k)
+
+                    if doc_val == csv_val:
+                        continue
+
                     bad_docs.append(doc)
+                    reloaded_prop = getattr(doc.reload(), k)
+                    mismatched_prop_str = f"mismatched '{k}'"
+                    values_str = f"doc='{doc_val}', csv='{csv_val}'"
+
+                    if reloaded_prop == csv_val:
+                        values_str += f", reloaded='{reloaded_prop}'"
+                        doc.warn(f"{mismatched_prop_str} in gzip but reloaded is OK: {values_str}")
+                    else:
+                        doc.warn(f"{mismatched_prop_str}: {values_str}")
         else:
             print_subtitle_panel(f"CSV is missing {doc.file_id}", center=False)
             console.print(doc)
             bad_docs.append(doc)
             continue
 
-    num_bad_docs = len(bad_docs)
-    assert num_bad_docs == 0
+    bad_ids = uniquify([doc.file_id for doc in bad_docs])
+    assert len(bad_ids) == 0, f"{len(bad_ids)} docs don't match CSV: {' '.join(bad_ids)}"
 
 
 def test_all_configured_file_ids_exist(epstein_files):

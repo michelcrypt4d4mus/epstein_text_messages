@@ -9,8 +9,8 @@ from epstein_files.output.rich import join_texts, no_bold, prefix_with, styled_d
 from epstein_files.util.constant.strings import ALT_LINK_STYLE, ARCHIVE_LINK_COLOR, DOJ_DATASET_ID_REGEX
 from epstein_files.util.constant.urls import *
 from epstein_files.util.env import DOJ_PDFS_20260130_DIR, site_config
-from epstein_files.util.helpers.file_helper import (coerce_file_stem, coerce_url_slug, extract_file_id, extract_efta_id,
-     file_size, file_size_to_str, is_doj_file, is_house_oversight_file, is_local_extract_file)
+from epstein_files.util.helpers.file_helper import (coerce_file_stem, coerce_url_slug, extract_file_id,
+     extract_efta_id, file_size, file_size_to_str, is_doj_file, is_house_oversight_file, is_local_extract_file)
 from epstein_files.util.helpers.link_helper import link_text_obj, parenthesize
 from epstein_files.util.logging import logger
 
@@ -34,6 +34,17 @@ class FileInfo:
     local_path: Path
     doj_2026_dataset_id: int | None = None
     file_id: str = field(init=False)
+
+    def __post_init__(self):
+        self.file_id = extract_file_id(self.local_path)
+
+        # Extract the DOJ dataset ID from the path
+        if self.is_doj_file:
+            if (data_set_match := DOJ_DATASET_ID_REGEX.search(str(self.local_path))):
+                self.doj_2026_dataset_id = int(data_set_match.group(1))
+                logger.info(f"Extracted data set ID {self.doj_2026_dataset_id} for {self.url_slug}")
+            else:
+                self.warn(f"Couldn't find a data set ID in path '{self.local_path}'! Cannot create valid links.")
 
     @property
     def as_dict(self) -> Mapping[str, str | Path]:
@@ -114,17 +125,6 @@ class FileInfo:
         urls = {k: str(v) for k, v in self._props_with_suffix('url').items() if v}
         urls = {k: (v if v.startswith('http') else f"https://{v}") for k, v in urls.items()}
         return urls
-
-    def __post_init__(self):
-        self.file_id = extract_file_id(self.local_path)
-
-        # Extract the DOJ dataset ID from the path
-        if self.is_doj_file:
-            if (data_set_match := DOJ_DATASET_ID_REGEX.search(str(self.local_path))):
-                self.doj_2026_dataset_id = int(data_set_match.group(1))
-                logger.info(f"Extracted data set ID {self.doj_2026_dataset_id} for {self.url_slug}")
-            else:
-                self.warn(f"Couldn't find a data set ID in path '{self.local_path}'! Cannot create valid links.")
 
     def epsteinify_link(self, style: str = ARCHIVE_LINK_COLOR, link_txt: str = '') -> Text:
         return self._build_link(epsteinify_doc_url, style, link_txt)

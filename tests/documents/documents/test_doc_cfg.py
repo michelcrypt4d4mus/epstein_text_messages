@@ -202,11 +202,6 @@ def test_is_of_interest(
     assert uninteresting_description.is_of_interest is False
 
 
-def test_props_to_copy(get_email):
-    email = get_email('EFTA00039890')
-    assert email.config.props_to_copy == {'author': 'USANYS'}
-
-
 def _oversight_cfg(category: str = '', **kwargs) -> DocCfg:
     return _doc_cfg('123456', category=category, **kwargs)
 

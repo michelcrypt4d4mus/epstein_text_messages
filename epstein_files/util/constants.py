@@ -1,8 +1,11 @@
 """
 Custom configurations for various files.
 """
+from itertools import groupby
+
+from epstein_files.documents.documents.config_builder import WOLFF_EPSTEIN_ARTICLE_DRAFT, wolff_draft_cfg
 from epstein_files.documents.documents.categories import CONSTANT_CATEGORIES, Interesting, Neutral
-from epstein_files.documents.documents.doc_cfg import CommunicationCfg, DocCfg, EmailCfg, TextCfg, phone_bill_cfg
+from epstein_files.documents.documents.doc_cfg import NO_TRUNCATE, CommunicationCfg, DocCfg, EmailCfg, TextCfg, phone_bill_cfg
 from epstein_files.documents.doj_files.full_text import EFTA00009622_TEXT
 from epstein_files.documents.emails.constants import FLIGHT_IN_2012_PEOPLE, IRAN_DEAL_RECIPIENTS, TRIVERS_CCS
 from epstein_files.util.helpers.string_helper import join_truthy, quote
@@ -12,7 +15,6 @@ from epstein_files.util.logging import logger
 
 DEFAULT_TRUNCATE_TO = 4000
 SHORT_TRUNCATE_TO = int(DEFAULT_TRUNCATE_TO / 3)
-NO_TRUNCATE = -1
 OTHER_FILES_PFX = 'OTHER_FILES_'
 PARTICIPANTS_FIELD = 'Participants: field'
 VALAR_FUND = f"{PETER_THIEL}'s {VALAR_VENTURES} fund"
@@ -47,6 +49,7 @@ HEADER_ABBREVIATIONS = {
     'MJ': "Mohammed Abdul Latif Jameel (chairman of Abdul Latif Jameel)",
     "Mooch": "Anthony 'The Mooch' Scaramucci (Skybridge crypto bro)",
     "NPA": 'non-prosecution agreement',
+    "PA": PRINCE_ANDREW,
     "Terje": TERJE_ROD_LARSEN,
     "VI": f"U.S. {VIRGIN_ISLANDS}",
     "Woody": "Woody Allen",
@@ -175,7 +178,6 @@ SINCERELY_SNEAKY = f'{SNEAKY_DOG} + "Sincerely"'
 # Descriptions
 IS_IT_ROGER_STONE = "is the 'roger' Epstein is trying to meet Roger Stone?"
 KYARA_FUND = f"Epstein crypto fund {KYARA_INVESTMENT}"
-MICHAEL_WOLFF_EPSTEIN_ARTICLE_DRAFT = f"draft of an unpublished article about Epstein by {MICHAEL_WOLFF} written ca. 2014/2015"
 SEC_WHISTLEBLOWER = 'whistleblower emails to SEC'
 VALAR_MEETING = f"meeting with {PETER_THIEL}'s {VALAR_VENTURES} fund"
 
@@ -565,7 +567,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='026030', description=IS_IT_ROGER_STONE),
     EmailCfg(id='026033', description=IS_IT_ROGER_STONE),
     EmailCfg(id='031011', description='jokes about Chicago corruption', duplicate_ids=['031090'], truncate_to=SHORT_TRUNCATE_TO),
-    EmailCfg(id='023627', description=MICHAEL_WOLFF_EPSTEIN_ARTICLE_DRAFT, is_fwded_article=True, is_interesting=True, truncate_to=16800),
+    EmailCfg(id='023627', description=WOLFF_EPSTEIN_ARTICLE_DRAFT, is_fwded_article=True, is_interesting=True, truncate_to=16800),
     EmailCfg(id='030745', description="planning a public statement for Ghislaine", truncate_to=NO_TRUNCATE),
     EmailCfg(id='016693', description='signed "MM"'),
     EmailCfg(id='028524', description='Zach Braff op-ed on Woody Allen in NYT', is_fwded_article=True, is_interesting=False),
@@ -1326,7 +1328,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA02541344', description=f"{BROCK_PIERCE} on marriage and polygamy with people named Crystal and Sue"),
     EmailCfg(id='EFTA02641951', description=f"{DAVID_STERN} recommends ProtonMail for more secure communications"),
     EmailCfg(id='EFTA00626220', description=f'discussion of a "sidecar fund" with {BROCK_PIERCE} / {CRYPTO_CURRENCY_PARTNERS_II}'),
-    EmailCfg(id='EFTA01784901', description=f"discussion of checks {JEREMY_RUBIN} has cashed from Epstein", is_interesting=True),
+    EmailCfg(id='EFTA01784901', description=f"{JEREMY_RUBIN} has cashed multiple checks directly from Epstein", is_interesting=True),
     EmailCfg(
         id='EFTA02634615',
         description=f"Indyke says Epstein didn't want his name associated with his investment in Carbyne / Reporty",
@@ -1366,6 +1368,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00039799', duplicate_ids=['EFTA00039806']),
     EmailCfg(id='EFTA01776613', duplicate_ids=['EFTA02691059']),
     EmailCfg(id='EFTA02608800', duplicate_ids=['EFTA01010308']),
+    EmailCfg(id='EFTA00717931', duplicate_ids=['EFTA01774218']),
     EmailCfg(id='EFTA01776411', duplicate_ids=['EFTA02691069']),
     EmailCfg(id='EFTA02390441', duplicate_ids=['EFTA02403336']),
     EmailCfg(id='EFTA00428083', duplicate_ids=['EFTA02183761']),
@@ -1418,8 +1421,12 @@ UNINTERESTING_EMAIL_IDS = [
     'EFTA02365466',
     'EFTA00362163',
     'EFTA00709543',
+    # David Stern
+    'EFTA02507454',
     # Eric Roth
     '033386',
+    # Jeremy Rubin
+    'EFTA00714127',
     # Joi Ito
     '029500',
     '029279',
@@ -1627,17 +1634,22 @@ OTHER_FILES_ARTICLE = [
     DocCfg(id='031776', author='Law360', description=f"article about Michael Avenatti by Andrew Strickler"),
     DocCfg(id='023102', author='Litigation Daily', description=f"article about {REID_WEINGARTEN}", date='2015-09-04'),
     DocCfg(id='029340', author='MarketWatch', description=f'article about estate taxes, particularly Epstein\'s favoured GRATs'),
-    DocCfg(id='022707', author=MICHAEL_WOLFF, description=MICHAEL_WOLFF_EPSTEIN_ARTICLE_DRAFT),
-    DocCfg(id='022727', author=MICHAEL_WOLFF, description=MICHAEL_WOLFF_EPSTEIN_ARTICLE_DRAFT),
-    DocCfg(id='022746', author=MICHAEL_WOLFF, description=MICHAEL_WOLFF_EPSTEIN_ARTICLE_DRAFT),
-    DocCfg(id='022844', author=MICHAEL_WOLFF, description=MICHAEL_WOLFF_EPSTEIN_ARTICLE_DRAFT),
-    DocCfg(id='022863', author=MICHAEL_WOLFF, description=MICHAEL_WOLFF_EPSTEIN_ARTICLE_DRAFT),
-    DocCfg(id='022894', author=MICHAEL_WOLFF, description=MICHAEL_WOLFF_EPSTEIN_ARTICLE_DRAFT),
-    DocCfg(id='022952', author=MICHAEL_WOLFF, description=MICHAEL_WOLFF_EPSTEIN_ARTICLE_DRAFT),
-    DocCfg(id='024229', author=MICHAEL_WOLFF, description=MICHAEL_WOLFF_EPSTEIN_ARTICLE_DRAFT),
+    # wolff_draft_cfg
+    wolff_draft_cfg('022707'),
+    wolff_draft_cfg('022727'),
+    wolff_draft_cfg('022746'),
+    wolff_draft_cfg('022844'),
+    wolff_draft_cfg('022863'),
+    wolff_draft_cfg('022952'),
+    wolff_draft_cfg('024229'),
+    wolff_draft_cfg(
+        '022894',
+        f"claiming Kelimbetov, {BROCK_PIERCE}, and {LARRY_SUMMERS} all visited Epstein around the time Tether was founded",
+        show_with_name=BROCK_PIERCE,
+        truncate_to=(13_500, 16_000),
+    ),
     DocCfg(id='031198', author='Morning News USA', description=f"article about identify of Jane Doe in {JANE_DOE_V_EPSTEIN_TRUMP}"),
     DocCfg(id='015462', author='Nautilus Education', description=f'magazine (?) issue'),
-
     DocCfg(id='031972', author=NYT, description=f"article about #MeToo allegations against {LAWRENCE_KRAUSS}", date='2018-03-07'),
     DocCfg(id='032435', author=NYT, description=f'article about Chinese butlers'),
     DocCfg(id='029452', author=NYT, description=f"article about {PETER_THIEL}"),
@@ -2407,6 +2419,14 @@ OTHER_FILES_CRYPTO = [
     EmailCfg(id='EFTA01925969', description=f"{AUSTIN_HILL} and {ADAM_BACK} and some women plan a trip to The Island", is_interesting=True),
     EmailCfg(id='EFTA00955063', description=f'{AUSTIN_HILL} discusses crypto funds engaged in fraudulent wash trading', is_interesting=True),
     EmailCfg(id='EFTA01010209', description=f"{AUSTIN_HILL} calls {AMIR_TAAKI} \"a bit crazy\'"),
+    # David Stern
+    EmailCfg(id='EFTA02494305', description=f"planning a crypto exchange in Belarus, {DAVID_STERN}'s \"Chinese guys\" can't do it because of the PRC's crackdown on crypto"),
+    EmailCfg(id='EFTA00886763', description=f"documents are being prepared to license Epstein and {DAVID_STERN}'s crypto exchange in Belarus"),
+    EmailCfg(
+        id='EFTA02494000',
+        description=f'Epstein says a crypto exchange in Belarus could be "very useful", {DAVID_STERN}\'s Chinese guys could have brought "significant volume"',
+        is_interesting=True
+    ),
     # Honeycomb
     DocCfg(id='EFTA00803491', author=HONEYCOMB_FUND, description="deck", is_interesting=True),
     DocCfg(id='EFTA00803459', author=HONEYCOMB_FUND, description="January 2019 report", is_interesting=True),
@@ -2526,7 +2546,6 @@ OTHER_FILES_CRYPTO = [
     DocCfg(id='EFTA01734786', description='LedgerX Series B pitch deck'),
     DocCfg(id='EFTA02725909', description='memo to NYDFS for NYC Bitcoin Exchange, Balaji Srinivisan & Andrew Farkas on board'),
     EmailCfg(id='EFTA01060993', description=f"Epstein says he knows \"a few\" guys who hold over $50 million in bitcoin", is_interesting=True),
-    EmailCfg(id='EFTA02494000', description=f"Epstein and {DAVID_STERN} discussing setting up a crypto exchange in Belarus", is_interesting=True),
     EmailCfg(id='EFTA01915234', description='discussion of crypto regulations', is_interesting=True),
     EmailCfg(id='EFTA00867030', description='discussion of a crypto token based on GDAX (whatever that means)', is_interesting=True),
     EmailCfg(id='EFTA01004753', description=f"founder of Layer1 is the only guy in crypto who doesn't want to meet Epstein (didn't last though)"),
@@ -2540,7 +2559,7 @@ OTHER_FILES_CRYPTO = [
     EmailCfg(id='EFTA02584771', description=f"discussion of decentralized prediction maarkets like Polymarket"),
     EmailCfg(
         id='EFTA01007544',
-        description=f'bitcoin dev {JEREMY_RUBIN} describes "grey area between pump and develop" when Epstein objects on ethical grounds',
+        description=f'{JEREMY_RUBIN} describes "grey area between pump and develop" when Epstein objects on ethical grounds',
         is_interesting=True,
     ),
     EmailCfg(
@@ -2637,6 +2656,10 @@ CONFIGS_BY_ID = {cfg.id: cfg for cfg in ALL_CONFIGS}
 for cfg in ALL_CONFIGS:
     for dupe_cfg in cfg.duplicate_cfgs():
         CONFIGS_BY_ID[dupe_cfg.id] = dupe_cfg
+
+
+# Collect special docs to show with special people
+SHOW_WITH_DOCS = {id: list(cfgs) for id, cfgs in groupby(ALL_CONFIGS, lambda cfg: cfg.show_with_name) if id}
 
 
 def check_no_overlapping_configs():
