@@ -13,13 +13,6 @@ OFFICIAL_LINK_STYLE = 'navajo_white3 bold'
 SUBSTACK_POST_LINK_STYLE = 'bright_cyan'
 
 
-
-    # doj_search_link = join_texts([link_text_obj(DOJ_SEARCH_URL, 'search', style=ARCHIVE_ALT_LINK_STYLE)], encloser='()')
-    # print_centered(_link_with_comment(DOJ_2026_URL, doj_search_link, 'DOJ Epstein Files Transparency Act Disclosures'))
-    # raw_docs_link = link_text_obj(OVERSIGHT_DRIVE_URL, 'raw files', style=ARCHIVE_ALT_LINK_STYLE)
-    # raw_docs_link = join_texts([raw_docs_link], encloser='()')
-    # print_centered(_link_with_comment(OVERSIGHT_REPUBS_PRESSER_URL, raw_docs_link, '2025 Oversight Committee Press Release'))
-
 @dataclass
 class ExternalLink:
     url: str

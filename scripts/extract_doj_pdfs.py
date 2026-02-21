@@ -11,7 +11,7 @@ from yaralyzer.util.helpers.shell_helper import ShellResult
 from epstein_files.epstein_files import EpsteinFiles
 from epstein_files.documents.document import DOJ_DATASET_ID_REGEX
 from epstein_files.output.rich import console
-from epstein_files.util.env import DOJ_PDFS_20260130_DIR, DOJ_TXTS_20260130_DIR, DOJ_PDFS_20260130_DIR_ENV_VAR
+from epstein_files.util.env import DOJ_PDFS_20260130_DIR, DOJ_TXTS_20260130_DIR, DOJ_PDFS_20260130_DIR_ENV_VAR, args
 from epstein_files.util.logging import logger
 
 assert DOJ_PDFS_20260130_DIR is not None, f"{DOJ_PDFS_20260130_DIR_ENV_VAR} env var is not set!"
@@ -66,4 +66,5 @@ for dir in [d for d in DOJ_PDFS_20260130_DIR.glob('*') if d.is_dir()]:
         console.line()
 
 
+args.constantize = True
 EpsteinFiles.get_files().load_new_files()

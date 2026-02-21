@@ -440,7 +440,7 @@ class Email(Communication):
         return header
 
     def _extract_recipients(self) -> list[Name]:
-        """Scan the To:, BCC: and CC: fields for known emailers."""
+        """Scan the To:, BCC: and CC: fields for known names, falling back to raw strings if no names identified."""
         recipients = flatten([extract_emailer_names(r) for r in self.header.recipients])
         recipients = uniquify(recipients)
 
