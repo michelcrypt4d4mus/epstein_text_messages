@@ -144,7 +144,7 @@ def external_doc_link_txt(site: ExternalSite, filename_or_id: int | str, style: 
 
 def internal_link_url(search_term: str) -> str:
     """Hack a local link with the `#:~text=` url comment."""
-    f"{this_site_url()}#:~:text={urllib.parse.quote(search_term)}"
+    return f"{this_site_url()}#:~:text={urllib.parse.quote(search_term)}"
 
 
 def internal_person_link_url(name: str) -> str:
