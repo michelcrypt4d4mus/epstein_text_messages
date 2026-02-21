@@ -473,6 +473,7 @@ SIGNATURE_SUBSTITUTION_COUNTS = {
     DARREN_INDYKE: 47,
     DAVID_FISZEL: 2,
     "David Ingram": 9,
+    DAVID_STERN: 2,
     DEEPAK_CHOPRA: 19,
     EDUARDO_ROBLES: 6,
     'Erika Kellerhals': 1,

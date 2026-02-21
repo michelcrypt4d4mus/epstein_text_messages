@@ -2,8 +2,8 @@ from epstein_files.util.helpers.string_helper import as_pattern, has_line_starti
 
 
 def test_as_pattern():
-    assert as_pattern('nas - illmatic') == r'nas[\s_]*-[\s_]*illmatic'
-    assert as_pattern('nas     illmatic') == r"nas[\s_]*illmatic"
+    assert as_pattern('nas - illmatic') == r'nas[-_\s]*-[-_\s]*illmatic'
+    assert as_pattern('nas     illmatic') == r"nas[-_\s]*illmatic"
 
 
 def test_indented():

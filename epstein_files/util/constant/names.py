@@ -311,7 +311,7 @@ WAPO = 'WaPo'
 NAMES_TO_NOT_HIGHLIGHT = """
     adam al alain alan alison alfredo allen alex alexander amanda andres andrew ann anthony asia audrey
     back bard barrett barry bennet bernard bill black bob boris boyle brad brenner bruce
-    cameron caroline carolyn chris christian christina cohen
+    cameron caroline carolyn chris christian christina christopher cohen
     dan daniel danny darren dave david debbie department donald douglas
     ed edward edwards enforcement enterprise enterprises entourage epstein eric erika etienne
     faith fisher fitzgerald forget frances francesca fred friendly frost fuller fund

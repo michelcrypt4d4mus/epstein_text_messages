@@ -164,7 +164,6 @@ METADATA_FIELDS = [
 
 DEBUG_PROPS = METADATA_FIELDS + [
     'attachment_file_ids',
-    'is_note_to_self',
     'is_persons_first_email',
     'is_word_count_worthy',
 ]
@@ -366,6 +365,8 @@ class Email(Communication):
 
         if not self.header.is_empty:
             local_props['header'] = self.header.as_dict()
+        if self.is_note_to_self():
+            local_props['is_note_to_self'] = self.is_note_to_self()
 
         props.update(prefix_keys(self._debug_prefix, local_props))
         return props

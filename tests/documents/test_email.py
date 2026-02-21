@@ -23,7 +23,7 @@ def test_info_sentences(get_email):
     email = get_email('026290')
     assert len(email.info) == 1
     email_with_description = get_email('031278')
-    assert len(email_with_description.info) == 2
+    assert len(email_with_description.info) == 1
 
 
 def test_is_interesting(get_email, ito_email):

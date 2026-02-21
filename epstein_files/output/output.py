@@ -244,6 +244,8 @@ def print_stats(epstein_files: EpsteinFiles) -> None:
     print_json("unknown_recipient_ids", epstein_files.unknown_recipient_ids())
     print_json("count_by_month", Document.count_by_month(epstein_files.documents))
     print_json("Interesting OtherFile IDs", sorted([f.file_id for f in epstein_files.interesting_other_files]))
+    print_json(f"Highlight Counts", highlighter.highlight_counts)
+    highlighter.print_highlight_counts(console)
 
 
 def print_text_messages_section(epstein_files: EpsteinFiles) -> list[MessengerLog]:

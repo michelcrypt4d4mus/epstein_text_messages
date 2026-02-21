@@ -819,7 +819,7 @@ HighlightedNames(
             ),
             Contact(AUDREY_STRAUSS, "USA Attorney", r"Audrey Strauss|Strauss, Audrey"),
             Contact(BUREAU_OF_PRISONS, "American law enforcement", r"bop\.gov"),
-            Contact(CHRISTOPHER_DILORIO, "self described whistleblower", r"Chris Di[lI]o[nr](io)?"),
+            Contact(CHRISTOPHER_DILORIO, "self described whistleblower", r"Chris(topher )? Di[lI]o[nr](io)?"),
             Contact(
                 name=DANNY_FROST,
                 info="Director of Communications at Manhattan D.A.",

@@ -26,9 +26,10 @@ class EpsteinHighlighter(RegexHighlighter):
         for re_highlight in self.highlights:
             highlight_regex(re_highlight, style_prefix=self.base_style)
 
-            if args.debug and isinstance(re_highlight, re.Pattern):
+            if args.stats and isinstance(re_highlight, re.Pattern):
                 for match in re_highlight.finditer(text.plain):
-                    type(self).highlight_counts[(match.group(1) or 'None').replace('\n', ' ').strip()] += 1
+                    matched_str = (match.group(1) or 'None').replace('\n', ' ').strip().lower()
+                    type(self).highlight_counts[matched_str] += 1
 
     def print_highlight_counts(self, console: Console) -> None:
         """Print counts of how many times strings were highlighted."""
