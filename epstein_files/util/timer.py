@@ -18,11 +18,11 @@ class Timer:
         if num_skipped == 0:
             prefix = 'all '
         elif num_skipped < 0:
-            suffix = f"(at least {-1 * num_skipped} {label}s printed more than once)"
+            suffix = f"(at least {-1 * num_skipped:,} {label}s printed more than once)"
         else:
-            suffix = f"(skipped {num_skipped})"
+            suffix = f"(skipped {num_skipped:,})"
 
-        self.print_at_checkpoint(f"Printed {prefix}{len(printed_docs)} {label}s {suffix}".strip())
+        self.print_at_checkpoint(f"Printed {prefix}{len(printed_docs):,} {label}s {suffix}".strip())
 
     def print_at_checkpoint(self, msg: str) -> None:
         logger.warning(f"{msg} in {self.seconds_since_checkpoint_str()}...")
