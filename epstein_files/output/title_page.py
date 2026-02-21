@@ -123,7 +123,9 @@ def _site_directory() -> Panel:
 
     sites_txt = Text('').append(SITE_GLOSSARY_MSG, style=f'{DIRECTORY_STYLE} bold').append('\n\n')
     sites_txt.append(indent_txt(join_texts(links_txts, '\n'), num_link_indent_spaces))
-    sites_txt.append("\n\nNot all views are available on mobile.", DIRECTORY_STYLE)
+
+    if args.mobile:
+        sites_txt.append("\n\nNot all views are available on mobile.", DIRECTORY_STYLE)
 
     return Panel(
         sites_txt,
