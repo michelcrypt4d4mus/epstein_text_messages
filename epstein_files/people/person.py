@@ -447,6 +447,16 @@ class Person:
                 style='' if show_epstein_total or is_on_page else 'dim',
             )
 
+        if args.mobile:
+            new_table = build_table(table.title, copy_props_from=table)
+            new_table.add_column(table.columns[1].header)
+            new_table.add_column(table.columns[2].header)
+
+            for i, row in enumerate(table.rows):
+                new_table.add_row(table.columns[1]._cells[i], table.columns[2]._cells[i])
+
+            return new_table
+
         return table
 
     @staticmethod

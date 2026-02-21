@@ -144,7 +144,11 @@ def external_doc_link_txt(site: ExternalSite, filename_or_id: int | str, style: 
 
 def internal_link_url(search_term: str) -> str:
     """Hack a local link with the `#:~text=` url comment."""
-    return f"{this_site_url()}#:~:text={urllib.parse.quote(search_term)}"
+    # TODO: trying out removing the search URLs because iPhone simulator doesn't like the table
+    if args.mobile:
+        return this_site_url()
+    else:
+        return f"{this_site_url()}#:~:text={urllib.parse.quote(search_term)}"
 
 
 def internal_person_link_url(name: str) -> str:
