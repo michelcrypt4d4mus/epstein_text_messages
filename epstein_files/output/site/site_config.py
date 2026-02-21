@@ -39,7 +39,7 @@ class MobileConfig:
     site_glossary_horizontal_padding: ClassVar[int] = 2
     social_link_separator: ClassVar[str] = ' '
     subtitle_width: ClassVar[int | None] = None
-    width: ClassVar[int] = 45
+    width: ClassVar[int] = 52
 
     @classmethod
     def format_text_msg_time(cls, dt: datetime) -> str:
