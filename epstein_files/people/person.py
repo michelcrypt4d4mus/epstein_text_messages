@@ -415,8 +415,8 @@ class Person:
         grey_idx = 0
 
         # TODO: iPhone simulator seems to barf on the big table
-        if args.mobile:
-            people = highlighted[0:3]
+        # if args.mobile:
+        #     people = highlighted[0:3]
 
         for person in people:
             if person.is_uninteresting and not (args.emailers_info or args.all_emails):
