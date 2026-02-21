@@ -223,14 +223,7 @@ class OtherFile(Document):
     @classmethod
     def _mobilize_table(cls, _table: Table) -> Table:
         """Make a mobile version of the `files_preview_table()`."""
-        table = build_table(_table.title)
-
-        for k, v in vars(_table).items():
-            if k.startswith('_') or k in ['columns', 'rows']:
-                continue
-
-            setattr(table, k, v)
-
+        table = build_table(_table.title, copy_props_from=_table)
         table.add_column('File', justify='center', width=len('EFTA00424931'))
         table.add_column(FIRST_FEW_LINES, justify='left', style='pale_turquoise4')
         max_col_idx = len(_table.columns) - 1

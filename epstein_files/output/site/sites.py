@@ -73,7 +73,8 @@ class SiteType(StrEnum):
         elif site_type == cls.CHRONOLOGICAL:
             redirect_type = cls.CHRONOLOGICAL_MOBILE
         else:
-            redirect_type = cls.CURATED_MOBILE
+            redirect_type = cls.CHRONOLOGICAL_MOBILE  # TODO: the curated site is breaking iPhone simulator so no redirect for now
+            # redirect_type = cls.CURATED_MOBILE  #
 
         return cls.get_url(redirect_type)
 

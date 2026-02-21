@@ -129,8 +129,20 @@ def build_highlighter(pattern: str) -> EpsteinHighlighter:
     return TempHighlighter()
 
 
-def build_table(title: str | Text | None, cols: list[str | dict] | None = None, **kwargs) -> Table:
+def build_table(
+    title: str | Text | None,
+    cols: list[str | dict] | None = None,
+    copy_props_from: Table | None = None,
+    **kwargs
+) -> Table:
     table = Table(title=title, **{**DEFAULT_TABLE_KWARGS, **kwargs})
+
+    if copy_props_from:
+        for k, v in vars(copy_props_from).items():
+            if k.startswith('_') or k in ['columns', 'rows']:
+                continue
+
+            setattr(table, k, v)
 
     if cols:
         add_cols_to_table(table, cols)
