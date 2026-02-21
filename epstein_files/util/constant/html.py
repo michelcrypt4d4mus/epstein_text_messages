@@ -12,6 +12,17 @@ elif args.all_emails_chrono:
 else:
     page_type = 'Text Messages'
 
+if args.mobile:
+    JS_REDIRECT = ''
+else:
+    JS_REDIRECT = """
+        <script type="text/javascript">
+            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {{
+                window.location.href = """ + f'"{SiteType.get_mobile_redirect_url(args._site_type)}";' + """
+            }}
+        </script>
+    """
+
 
 CONSOLE_HTML_FORMAT = """
 <!DOCTYPE html>
@@ -20,11 +31,7 @@ CONSOLE_HTML_FORMAT = """
     <meta charset="UTF-8">
     <link rel="icon" type="image/x-icon" href="https://media.universeodon.com/accounts/avatars/109/363/179/904/598/380/original/eecdc2393e75e8bf.jpg" />
 
-    <script type="text/javascript">
-        if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {{
-            window.location.href = """ + f'"{SiteType.get_mobile_redirect_url(args._site_type)}";' + """
-        }}
-    </script>
+    """ + JS_REDIRECT + """
 
     <style>
         {stylesheet}
