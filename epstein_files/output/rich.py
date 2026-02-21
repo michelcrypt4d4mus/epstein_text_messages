@@ -88,6 +88,8 @@ if args.suppress_output:
 
 console = Console(**CONSOLE_KWARGS)
 highlighter = CONSOLE_KWARGS['highlighter']
+
+left_indent_padding = lambda num_spaces: (0, 0, 0, num_spaces)
 no_bold = lambda style: style.replace('bold', '').strip()
 
 
@@ -163,6 +165,10 @@ def join_texts(txts: Sequence[str | Text], join: str = ' ', encloser: str = '', 
         txt.append(join if i >= 1 else '').append(enclose(_txt, encloser, encloser_style))
 
     return txt
+
+
+def left_indent(obj: RenderableType, num_spaces: int) -> Padding:
+    return Padding(obj, left_indent_padding(num_spaces))
 
 
 def prefix_with(txt: list[str] | list[Text] | Text | str, pfx: str, pfx_style: str = '', indent: str | int = '') -> Text:

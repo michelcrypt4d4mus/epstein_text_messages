@@ -6,8 +6,9 @@ from datetime import datetime
 from pathlib import Path
 from typing import ClassVar, Self, Sequence, TypeVar
 
+from rich.align import Align
 from inflection import underscore
-from rich.console import Console, ConsoleOptions, Group, RenderResult
+from rich.console import Console, ConsoleOptions, Group, RenderableType, RenderResult
 from rich.markup import escape
 from rich.padding import Padding
 from rich.panel import Panel
@@ -399,6 +400,8 @@ class Document:
         panel = Panel(links_txt, border_style=self.border_style, expand=False)
         padded_info = [Padding(sentence, site_config.info_padding()) for sentence in self.info]
         return Group(*([panel] + padded_info))
+        elements = [panel] + padded_info
+        return Group(*[Align(e, 'right') for e in elements])
 
     def lines_matching(self, _pattern: re.Pattern | str) -> list[MatchedLine]:
         """Find lines in this file matching a regex pattern."""
@@ -418,11 +421,13 @@ class Document:
     def print(self, whole_file: bool = False) -> None:
         """Print this object for some suppression message."""
         if self.is_attachment:
+            self.warn(f"is an attachment and self.print() was calleed")
             return
         elif (skipped_file_txt := self.suppressed_txt):
             console.print(Padding(skipped_file_txt, SKIPPED_FILE_MSG_PADDING))
             return
 
+        # TODO: this approach to forcing whole_file sucks
         old_whole_file_arg = args.whole_file
         args.whole_file = whole_file
         console.print(self)
@@ -607,12 +612,14 @@ class Document:
         return len([doc for doc in docs if doc.author])
 
     @classmethod
-    def print_documents(cls, docs: Sequence[Self]) -> None:
+    def print_documents(cls, docs: Sequence[Self | Padding]) -> None:
         """Print a collection of `Document` objects, with appropriate suppression text for dupes etc."""
         last_doc_was_suppressed = False
 
         for doc in docs:
-            if doc.suppressed_txt:
+            is_document = not isinstance(doc, Padding)
+
+            if is_document and doc.suppressed_txt:
                 doc.print()
                 last_doc_was_suppressed = True
                 continue
@@ -621,7 +628,7 @@ class Document:
                 console.line()
 
             last_doc_was_suppressed = False
-            doc.print()
+            doc.print() if is_document else console.print(doc)
 
             # if doc.config_description_txt:
             #     import pdb;pdb.set_trace()

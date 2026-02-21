@@ -2,6 +2,7 @@ from dataclasses import dataclass, field
 from datetime import datetime, date
 from typing import Sequence
 
+from rich.align import Align
 from rich.console import Group, RenderableType
 from rich.padding import Padding
 from rich.panel import Panel
@@ -18,7 +19,7 @@ from epstein_files.output.highlight_config import (QUESTION_MARKS_TXT, get_highl
      get_style_for_name, styled_category, styled_name)
 from epstein_files.output.highlighted_names import HighlightedNames, HighlightPatterns, ManualHighlight
 from epstein_files.output.rich import (GREY_NUMBERS, TABLE_TITLE_STYLE, build_table, console, join_texts,
-     print_centered, print_special_note)
+     left_indent, print_centered, print_special_note)
 from epstein_files.people.contact import Contact
 from epstein_files.people.interesting_people import SPECIAL_NOTES
 from epstein_files.util.constant.strings import *
@@ -337,8 +338,9 @@ class Person:
         elif self.name in SPECIAL_NOTES:
             print_special_note(SPECIAL_NOTES[self.name])
 
-        docs = self._printable_emails + self.show_with_emails_docs
-        Document.print_documents(Document.sort_by_timestamp(docs))
+        docs = Document.sort_by_timestamp(self._printable_emails + self.show_with_emails_docs)
+        docs = [left_indent(Align(d, 'right'), site_config.show_with_indent) if isinstance(d, OtherFile) else d for d in docs]
+        Document.print_documents(docs)
         return self._printable_emails
 
     def print_emails_table(self) -> None:

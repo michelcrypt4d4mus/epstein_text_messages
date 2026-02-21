@@ -32,6 +32,7 @@ class MobileConfig:
     num_color_key_cols: ClassVar[int] = 2
     other_files_preview_chars: ClassVar[int] = 300
     other_files_table_indent: ClassVar[int] = 0
+    show_with_file_indent: ClassVar[int] = 0
     show_emailer_tables: ClassVar[bool] = False
     site_glossary_horizontal_padding: ClassVar[int] = 2
     social_link_separator: ClassVar[str] = ' '
@@ -67,6 +68,7 @@ class SiteConfig(MobileConfig):
     other_files_preview_chars: ClassVar[int] = 900
     other_files_table_indent: ClassVar[int] = 2
     show_emailer_tables: ClassVar[bool] = True
+    show_with_indent: ClassVar[int] = 20
     site_glossary_horizontal_padding: ClassVar[int] = 5
     social_link_separator: ClassVar[str] = '  /  '
     subtitle_width: ClassVar[int | None] = 110

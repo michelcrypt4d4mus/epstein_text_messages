@@ -19,7 +19,7 @@ VALAR_CAPITAL_CALL_REGEX = re.compile(r"^Val[ao]r.{,190} Capital Call", re.MULTI
 VI_DAILY_NEWS_REGEX = re.compile(r'virgin\s*is[kl][ai]nds\s*daily\s*news', re.IGNORECASE)
 
 LEDGERX_MSG = 'LedgerX was later acquired by FTX for $298 million'
-WOLFF_EPSTEIN_ARTICLE_DRAFT = f"draft of an unpublished article ca. 2014/2015"
+WOLFF_EPSTEIN_ARTICLE_DRAFT = f"draft of an unpublished article ca. 2014"
 
 
 def build_cfg_from_text(doc: 'Document') -> DocCfg | None:
