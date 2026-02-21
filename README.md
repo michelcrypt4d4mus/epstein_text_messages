@@ -98,7 +98,7 @@ from epstein_files.epstein_files import EpsteinFiles
 epstein_files = EpsteinFiles.get_files()
 
 # All files
-for document in epstein_files.documents():
+for document in epstein_files.documents:
     do_stuff(document)
 
 # Emails
@@ -108,10 +108,6 @@ for email in epstein_files.emails:
 # iMessage Logs
 for imessage_log in epstein_files.imessage_logs:
     do_stuff(imessage_log)
-
-# JSON files
-for json_file in epstein_files.json_files:
-    do_stuff(json_file)
 
 # Other Files
 for file in epstein_files.other_files:
