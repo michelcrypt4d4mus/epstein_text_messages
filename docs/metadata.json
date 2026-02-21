@@ -1553,6 +1553,7 @@
                     "Steve Bannon"
                 ],
                 "timestamp": "2019-04-23T09:55:44",
+                "truncate_to": -1,
                 "type": "Email"
             },
             {
@@ -4141,6 +4142,7 @@
                     "Jeffrey Epstein"
                 ],
                 "timestamp": "2016-11-22T17:55:37",
+                "truncate_to": -1,
                 "type": "Email"
             },
             {
@@ -6411,7 +6413,7 @@
                     ]
                 },
                 "is_interesting": true,
-                "num_lines": 121,
+                "num_lines": 116,
                 "recipients": [
                     "Jeffrey Epstein"
                 ],
@@ -6598,7 +6600,7 @@
                     ""
                 ],
                 "author": "Jeffrey Epstein",
-                "description": "draft of an unpublished article about Epstein by Michael Wolff written ca. 2014/2015",
+                "description": "draft of an unpublished article ca. 2014",
                 "file_id": "023627",
                 "file_size": 35414,
                 "filename": "HOUSE_OVERSIGHT_023627.txt",
@@ -7753,6 +7755,7 @@
                     "Jeffrey Epstein"
                 ],
                 "timestamp": "2011-12-16T18:41:00",
+                "truncate_to": -1,
                 "type": "Email"
             },
             {
@@ -8434,7 +8437,7 @@
                         "Jeffrey Epstein <jeevacation@gmail.com>"
                     ]
                 },
-                "num_lines": 76,
+                "num_lines": 72,
                 "recipients": [
                     "Jeffrey Epstein"
                 ],
@@ -8506,7 +8509,7 @@
                         "Jeffrey Epstein <jeevacation@gmail.com>"
                     ]
                 },
-                "num_lines": 152,
+                "num_lines": 150,
                 "recipients": [
                     "Jeffrey Epstein"
                 ],
@@ -8813,6 +8816,7 @@
                     "Richard Kahn"
                 ],
                 "timestamp": "2014-07-16T17:56:14",
+                "truncate_to": -1,
                 "type": "Email"
             },
             {
@@ -9297,7 +9301,7 @@
                         "Terry Kafk"
                     ]
                 },
-                "num_lines": 311,
+                "num_lines": 295,
                 "recipients": [
                     "Jeffrey Epstein",
                     "Terry Kafka"
@@ -9322,7 +9326,7 @@
                         "'Philip Kafka'"
                     ]
                 },
-                "num_lines": 334,
+                "num_lines": 324,
                 "recipients": [
                     "Jeffrey Epstein",
                     "Philip Kafka"
@@ -9673,6 +9677,7 @@
                     "Jeffrey Epstein"
                 ],
                 "timestamp": "2016-11-04T13:07:21",
+                "truncate_to": -1,
                 "type": "Email"
             },
             {
@@ -9815,6 +9820,7 @@
                 ],
                 "sent_from_device": "Sent from my iPad",
                 "timestamp": "2016-11-29T12:13:41",
+                "truncate_to": -1,
                 "type": "Email"
             },
             {
@@ -11390,6 +11396,7 @@
                 ],
                 "sent_from_device": "Sent via BlackBerry by AT&T",
                 "timestamp": "2018-02-24T13:23:41",
+                "truncate_to": -1,
                 "type": "Email"
             },
             {
@@ -11416,6 +11423,7 @@
                 ],
                 "sent_from_device": "Sent via BlackBerry by AT&T",
                 "timestamp": "2018-02-24T13:26:54",
+                "truncate_to": -1,
                 "type": "Email"
             },
             {
@@ -12882,6 +12890,7 @@
                     "Boris Nikolic"
                 ],
                 "timestamp": "2017-07-25T22:03:41",
+                "truncate_to": -1,
                 "type": "Email"
             },
             {
@@ -13287,6 +13296,7 @@
                     "Kathryn Ruemmler"
                 ],
                 "timestamp": "2018-08-23T15:16:47",
+                "truncate_to": -1,
                 "type": "Email"
             },
             {
@@ -13539,6 +13549,7 @@
                     "Jeffrey Epstein"
                 ],
                 "timestamp": "2012-03-19T17:59:00",
+                "truncate_to": -1,
                 "type": "Email"
             },
             {
@@ -17016,6 +17027,7 @@
                     "Jeffrey Epstein"
                 ],
                 "timestamp": "2012-03-19T17:59:00",
+                "truncate_to": -1,
                 "type": "Email"
             },
             {
@@ -17155,7 +17167,7 @@
                         "Jeffrey Epstein [jeevacation@gmail.com]"
                     ]
                 },
-                "num_lines": 9,
+                "num_lines": 8,
                 "recipients": [
                     "Jeffrey Epstein"
                 ],
@@ -17180,7 +17192,7 @@
                         "Jeffrey Epstein [jeevacation@gmail.com]"
                     ]
                 },
-                "num_lines": 27,
+                "num_lines": 26,
                 "recipients": [
                     "Jeffrey Epstein"
                 ],
@@ -17210,7 +17222,7 @@
                         "Epstein Jeffrey [jeevacation@gmail.com]"
                     ]
                 },
-                "num_lines": 29,
+                "num_lines": 28,
                 "recipients": [
                     "Jeffrey Epstein"
                 ],
@@ -17228,7 +17240,7 @@
                 "file_id": "028849",
                 "file_size": 1333,
                 "filename": "HOUSE_OVERSIGHT_028849.txt",
-                "num_lines": 27,
+                "num_lines": 26,
                 "recipients": [
                     "Jeffrey Epstein"
                 ],
@@ -17257,7 +17269,7 @@
                         "Epstein Jeffrey [jeevacation@gmail.com]"
                     ]
                 },
-                "num_lines": 29,
+                "num_lines": 28,
                 "recipients": [
                     "Jeffrey Epstein"
                 ],
@@ -17275,7 +17287,7 @@
                 "file_id": "028851",
                 "file_size": 1343,
                 "filename": "HOUSE_OVERSIGHT_028851.txt",
-                "num_lines": 26,
+                "num_lines": 25,
                 "recipients": [
                     "Jeffrey Epstein"
                 ],
@@ -18714,6 +18726,7 @@
                     "Jeffrey Epstein"
                 ],
                 "timestamp": "2017-07-25T12:57:37",
+                "truncate_to": -1,
                 "type": "Email"
             },
             {
@@ -19214,7 +19227,7 @@
                     ]
                 },
                 "is_interesting": false,
-                "num_lines": 43,
+                "num_lines": 42,
                 "recipients": [
                     "Joi Ito"
                 ],
@@ -20087,6 +20100,7 @@
                     "Jeffrey Epstein"
                 ],
                 "timestamp": "2011-08-07T16:01:33",
+                "truncate_to": -1,
                 "type": "Email"
             },
             {
@@ -20806,6 +20820,7 @@
                     "Richard Kahn"
                 ],
                 "timestamp": "2014-02-08T01:32:58",
+                "truncate_to": -1,
                 "type": "Email"
             },
             {
@@ -20880,7 +20895,8 @@
                 },
                 "num_lines": 211,
                 "recipients": [
-                    "Jeffrey Epstein"
+                    "Jeffrey Epstein",
+                    "Katherine Keating"
                 ],
                 "timestamp": "2011-10-31T08:21:27",
                 "type": "Email"
@@ -21321,6 +21337,7 @@
                     "Jeffrey Epstein"
                 ],
                 "timestamp": "2019-03-04T16:08:40",
+                "truncate_to": -1,
                 "type": "Email"
             },
             {
@@ -21537,6 +21554,7 @@
                     "Reid Weingarten"
                 ],
                 "timestamp": "2012-10-24T16:58:47",
+                "truncate_to": -1,
                 "type": "Email"
             },
             {
@@ -23782,6 +23800,7 @@
                     "Jeffrey Epstein"
                 ],
                 "timestamp": "2011-03-11T00:54:00",
+                "truncate_to": -1,
                 "type": "Email"
             },
             {
@@ -23929,6 +23948,7 @@
                     "Jeffrey Epstein"
                 ],
                 "timestamp": "2016-07-17T13:35:22",
+                "truncate_to": -1,
                 "type": "Email"
             },
             {
@@ -27080,6 +27100,7 @@
                     "Jeffrey Epstein"
                 ],
                 "timestamp": "2016-07-08T20:10:26",
+                "truncate_to": -1,
                 "type": "Email"
             },
             {
@@ -28007,6 +28028,7 @@
                     "Jeffrey Epstein"
                 ],
                 "timestamp": "2018-03-16T11:19:55",
+                "truncate_to": -1,
                 "type": "Email"
             },
             {
@@ -28217,6 +28239,7 @@
                     "Jeffrey Epstein"
                 ],
                 "timestamp": "2018-07-12T11:02:32",
+                "truncate_to": -1,
                 "type": "Email"
             },
             {
@@ -28242,6 +28265,7 @@
                     "Jeffrey Epstein"
                 ],
                 "timestamp": "2018-07-12T11:03:10",
+                "truncate_to": -1,
                 "type": "Email"
             },
             {
@@ -28955,6 +28979,7 @@
                     "Steve Bannon"
                 ],
                 "timestamp": "2018-02-26T05:01:50",
+                "truncate_to": -1,
                 "type": "Email"
             },
             {
@@ -30887,6 +30912,7 @@
                 ],
                 "sent_from_device": "Sorry for all the typos .Sent from my iPhone",
                 "timestamp": "2011-05-16T20:28:27",
+                "truncate_to": -1,
                 "type": "Email"
             },
             {
@@ -31672,6 +31698,7 @@
                     "Jeffrey Epstein"
                 ],
                 "timestamp": "2011-11-10T14:46:50",
+                "truncate_to": -1,
                 "type": "Email"
             },
             {
@@ -32699,6 +32726,7 @@
                     "Richard Kahn"
                 ],
                 "timestamp": "2017-11-21T13:44:04",
+                "truncate_to": -1,
                 "type": "Email"
             },
             {
@@ -32746,6 +32774,7 @@
                     "Jeffrey Epstein"
                 ],
                 "timestamp": "2011-04-02T19:09:39",
+                "truncate_to": -1,
                 "type": "Email"
             },
             {
@@ -33718,6 +33747,7 @@
                 ],
                 "sent_from_device": "Sent from my iPhone",
                 "timestamp": "2015-12-08T21:50:13",
+                "truncate_to": -1,
                 "type": "Email"
             },
             {
@@ -34898,6 +34928,7 @@
                     "Landon Thomas Jr"
                 ],
                 "timestamp": "2015-12-08T21:51:09",
+                "truncate_to": -1,
                 "type": "Email"
             },
             {
@@ -35504,6 +35535,7 @@
                     "Larry Summers"
                 ],
                 "timestamp": "2017-02-08T09:53:21",
+                "truncate_to": -1,
                 "type": "Email"
             },
             {
@@ -37360,7 +37392,7 @@
                         "Jeffrey Epstein [jeevacation@gmail.com]"
                     ]
                 },
-                "num_lines": 104,
+                "num_lines": 95,
                 "recipients": [
                     "Jeffrey Epstein"
                 ],
@@ -38458,6 +38490,7 @@
                     "Jeffrey Epstein"
                 ],
                 "timestamp": "2015-12-16T16:26:32",
+                "truncate_to": -1,
                 "type": "Email"
             },
             {
@@ -39298,6 +39331,7 @@
                     "Jeffrey Epstein"
                 ],
                 "timestamp": "2016-10-29T13:40:09",
+                "truncate_to": -1,
                 "type": "Email"
             },
             {
@@ -39748,6 +39782,7 @@
                     "Jeffrey Epstein"
                 ],
                 "timestamp": "2016-10-29T13:40:09",
+                "truncate_to": -1,
                 "type": "Email"
             },
             {
@@ -39828,6 +39863,7 @@
                     "Jeffrey Epstein"
                 ],
                 "timestamp": "2016-11-04T13:07:21",
+                "truncate_to": -1,
                 "type": "Email"
             },
             {
@@ -40298,6 +40334,7 @@
                     "Jeffrey Epstein"
                 ],
                 "timestamp": "2016-11-11T05:13:57",
+                "truncate_to": -1,
                 "type": "Email"
             },
             {
@@ -40533,6 +40570,7 @@
                     "Jeffrey Epstein"
                 ],
                 "timestamp": "2016-11-16T18:48:02",
+                "truncate_to": -1,
                 "type": "Email"
             },
             {
@@ -46315,6 +46353,7 @@
                     "Reid Weingarten"
                 ],
                 "timestamp": "2014-07-02T14:42:24",
+                "truncate_to": -1,
                 "type": "Email"
             },
             {
@@ -47119,6 +47158,7 @@
                     "David Blaine"
                 ],
                 "timestamp": "2016-11-10T22:08:36",
+                "truncate_to": -1,
                 "type": "Email"
             },
             {
@@ -47648,6 +47688,7 @@
                     "Jabor Y"
                 ],
                 "timestamp": "2016-12-17T20:30:26",
+                "truncate_to": -1,
                 "type": "Email"
             },
             {
@@ -50723,6 +50764,7 @@
                     "Jeffrey Epstein"
                 ],
                 "timestamp": "2016-09-27T21:46:03",
+                "truncate_to": -1,
                 "type": "Email"
             },
             {
@@ -50843,6 +50885,7 @@
                     "Jeffrey Epstein"
                 ],
                 "timestamp": "2016-10-19T18:25:58",
+                "truncate_to": -1,
                 "type": "Email"
             },
             {
@@ -54460,6 +54503,7 @@
                     "Jeffrey Epstein"
                 ],
                 "timestamp": "2018-05-04T04:40:15",
+                "truncate_to": -1,
                 "type": "Email"
             },
             {
@@ -55379,6 +55423,7 @@
                 ],
                 "sent_from_device": "Sent from my iPhone",
                 "timestamp": "2019-04-13T22:40:00",
+                "truncate_to": -1,
                 "type": "Email"
             },
             {
@@ -56729,6 +56774,7 @@
                     "Jeffrey Epstein"
                 ],
                 "timestamp": "2011-08-07T16:01:33",
+                "truncate_to": -1,
                 "type": "Email"
             },
             {
@@ -56891,6 +56937,7 @@
                     "USANYS"
                 ],
                 "timestamp": "2019-07-29T10:02:00",
+                "truncate_to": -1,
                 "type": "Email"
             },
             {
@@ -58261,6 +58308,7 @@
                     "Vijay Dewan"
                 ],
                 "timestamp": "2019-08-13T01:13:39",
+                "truncate_to": -1,
                 "type": "Email"
             },
             {
@@ -58465,7 +58513,7 @@
                         "Alisa Bekins"
                     ]
                 },
-                "num_lines": 206,
+                "num_lines": 191,
                 "recipients": [
                     "Alisa Bekins"
                 ],
@@ -58716,6 +58764,7 @@
                     "Nicole Junkermann"
                 ],
                 "timestamp": "2014-12-03T17:09:01",
+                "truncate_to": -1,
                 "type": "Email"
             },
             {
@@ -58740,6 +58789,7 @@
                 ],
                 "sent_from_device": "Sent from my iPad",
                 "timestamp": "2014-11-28T19:55:27",
+                "truncate_to": -1,
                 "type": "Email",
                 "uncertain_recipient": "yes"
             },
@@ -58978,6 +59028,7 @@
                     "Lesley Groff"
                 ],
                 "timestamp": "2014-06-04T19:06:01",
+                "truncate_to": -1,
                 "type": "Email"
             },
             {
@@ -59042,7 +59093,7 @@
                     "sent_at": "Sun, 18 May 2014 13:29:54 +0000",
                     "subject": "Re: Vincenzo"
                 },
-                "num_lines": 100,
+                "num_lines": 98,
                 "recipients": [
                     "Lesley Groff"
                 ],
@@ -59140,7 +59191,7 @@
                     "sent_at": "Thu, 10 Oct 2013 19:05:10 +0000",
                     "subject": "Re: October 29 for frank Heidt"
                 },
-                "num_lines": 57,
+                "num_lines": 55,
                 "recipients": [
                     "Lesley Groff"
                 ],
@@ -59174,6 +59225,7 @@
                     "Linda Stone"
                 ],
                 "timestamp": "2013-09-24T15:21:42",
+                "truncate_to": -1,
                 "type": "Email"
             },
             {
@@ -59192,7 +59244,7 @@
                         "c=a>"
                     ]
                 },
-                "num_lines": 29,
+                "num_lines": 22,
                 "recipients": [
                     "Linda Stone"
                 ],
@@ -59214,12 +59266,13 @@
                     "subject": "Re: Quick change"
                 },
                 "is_interesting": true,
-                "num_lines": 141,
+                "num_lines": 136,
                 "recipients": [
                     "Lesley Groff"
                 ],
                 "sent_from_device": "Typos, misspellings courtesy of iPhone word & thought substitution",
                 "timestamp": "2013-08-25T18:03:55",
+                "truncate_to": -1,
                 "type": "Email"
             },
             {
@@ -59239,7 +59292,7 @@
                         "Lesley Groff cza>"
                     ]
                 },
-                "num_lines": 47,
+                "num_lines": 43,
                 "recipients": [
                     "Lesley Groff"
                 ],
@@ -59291,7 +59344,7 @@
                     ]
                 },
                 "is_interesting": false,
-                "num_lines": 30,
+                "num_lines": 25,
                 "recipients": [
                     "Brock Pierce"
                 ],
@@ -59315,7 +59368,7 @@
                     ]
                 },
                 "is_interesting": false,
-                "num_lines": 44,
+                "num_lines": 34,
                 "recipients": [
                     "Brock Pierce"
                 ],
@@ -59404,7 +59457,7 @@
                         "Lesley Groff"
                     ]
                 },
-                "num_lines": 28,
+                "num_lines": 25,
                 "recipients": [
                     "Lesley Groff"
                 ],
@@ -59435,7 +59488,7 @@
                         "Brock Pierce"
                     ]
                 },
-                "num_lines": 33,
+                "num_lines": 29,
                 "recipients": [
                     "Brock Pierce"
                 ],
@@ -59488,7 +59541,7 @@
                         "Brock Pierce"
                     ]
                 },
-                "num_lines": 96,
+                "num_lines": 83,
                 "recipients": [
                     "Brock Pierce"
                 ],
@@ -59705,7 +59758,7 @@
                         "Masha Drokova \u2022,t >"
                     ]
                 },
-                "num_lines": 168,
+                "num_lines": 143,
                 "recipients": [
                     "Masha Drokova"
                 ],
@@ -59754,7 +59807,7 @@
                         "Lesley Groff <MIMIlle"
                     ]
                 },
-                "num_lines": 70,
+                "num_lines": 60,
                 "recipients": [
                     "Lesley Groff",
                     "Yuko Barnaby"
@@ -59986,6 +60039,7 @@
                     "Jeffrey Epstein"
                 ],
                 "timestamp": "2019-05-19T21:42:55",
+                "truncate_to": -1,
                 "type": "Email"
             },
             {
@@ -60111,7 +60165,8 @@
             },
             {
                 "attachment_file_ids": [
-                    "EFTA01093444"
+                    "EFTA01093444",
+                    "EFTA01093471"
                 ],
                 "attachments": [
                     "Crypto_Currency_Partners_II_LLC_Subscription_Application.pdf",
@@ -60715,7 +60770,7 @@
                         "\"Jeffrey Epstein\" <jeevacation@gmail.com>"
                     ]
                 },
-                "num_lines": 172,
+                "num_lines": 169,
                 "recipients": [
                     "Jeffrey Epstein"
                 ],
@@ -61500,6 +61555,7 @@
                     "Jeffrey Epstein"
                 ],
                 "timestamp": "2013-10-07T17:31:09",
+                "truncate_to": -1,
                 "type": "Email"
             },
             {
@@ -61646,6 +61702,7 @@
                     "Jeffrey Epstein"
                 ],
                 "timestamp": "2017-06-05T19:12:28",
+                "truncate_to": -1,
                 "type": "Email"
             },
             {
@@ -61688,7 +61745,7 @@
                     ]
                 },
                 "is_interesting": false,
-                "num_lines": 104,
+                "num_lines": 101,
                 "recipients": [
                     "Jeffrey Epstein"
                 ],
@@ -62149,6 +62206,7 @@
                         "\"Jeffrey E.\" <jeevacation\u00aegmail.com>"
                     ]
                 },
+                "is_interesting": false,
                 "num_lines": 54,
                 "recipients": [
                     "Jeffrey Epstein"
@@ -62230,6 +62288,10 @@
                     ""
                 ],
                 "author": "Jeremy Rubin",
+                "dupe_type": "same",
+                "duplicate_ids": [
+                    "EFTA01774218"
+                ],
                 "file_id": "EFTA00717931",
                 "file_size": 682,
                 "filename": "EFTA00717931.txt",
@@ -62341,6 +62403,7 @@
                     "Sultan Ahmed Bin Sulayem"
                 ],
                 "timestamp": "2009-04-24T15:36:38",
+                "truncate_to": -1,
                 "type": "Email"
             },
             {
@@ -62366,6 +62429,7 @@
                     "Jeffrey Epstein"
                 ],
                 "timestamp": "2010-11-04T03:59:22",
+                "truncate_to": -1,
                 "type": "Email"
             },
             {
@@ -62837,7 +62901,7 @@
                         "Jeremy Rubin"
                     ]
                 },
-                "num_lines": 161,
+                "num_lines": 159,
                 "recipients": [
                     "Jeremy Rubin"
                 ],
@@ -63127,14 +63191,16 @@
             {
                 "attachments": [
                     "Sub_Book_-_Madison_Avenue_Opportunities_LLC_(final).pdf",
-                    "PPM_-"
+                    "PPM_-MadisonAvenue_OpportunitiesiOctober 2017).pdf",
+                    "TEMPLATE Comfort Letter for Joint Account wiring into an Individual Inve....doex",
+                    "_ _ _ _ _ Digtal_assets_fund_fact_sheet_(20 I 7-01-12).pdf"
                 ],
                 "author": "David Stern",
                 "file_id": "EFTA00843178",
-                "file_size": 2555,
+                "file_size": 2552,
                 "filename": "EFTA00843178.txt",
                 "header": {
-                    "attachments": "Sub_Book_-_Madison_Avenue_Opportunities_LLC_(final).pdf; PPM_-",
+                    "attachments": "Sub_Book_-_Madison_Avenue_Opportunities_LLC_(final).pdf; PPM_-MadisonAvenue_OpportunitiesiOctober 2017).pdf; TEMPLATE Comfort Letter for Joint Account wiring into an Individual Inve....doex; _ _ _ _ _ Digtal_assets_fund_fact_sheet_(20 I 7-01-12).pdf",
                     "author": "David Stern <I",
                     "sent_at": "Tue, 03 Apr 2018 13:53:02 +0000",
                     "subject": "Fwd: DGTLX Friends & Family Round - Updated Fact Sheet",
@@ -63142,7 +63208,7 @@
                         "Jeffrey Epstein <jeevacationggmail.com>"
                     ]
                 },
-                "num_lines": 44,
+                "num_lines": 41,
                 "recipients": [
                     "Jeffrey Epstein"
                 ],
@@ -63202,7 +63268,7 @@
                 "author": "Greg Wyler",
                 "author_reason": "\"Greg\" + Wyler is on other emails with Stern and Epstein at that time",
                 "file_id": "EFTA00845330",
-                "file_size": 1344,
+                "file_size": 1324,
                 "filename": "EFTA00845330.txt",
                 "header": {
                     "author": "Greg",
@@ -63215,7 +63281,7 @@
                         "David Stern <EIMINI=>"
                     ]
                 },
-                "num_lines": 38,
+                "num_lines": 30,
                 "recipients": [
                     "David Stern",
                     "Jeffrey Epstein"
@@ -63288,6 +63354,7 @@
                 "is_interesting": true,
                 "num_lines": 23,
                 "timestamp": "2015-08-15T23:05:09",
+                "truncate_to": -1,
                 "type": "Email"
             },
             {
@@ -63416,7 +63483,8 @@
                 "recipients": [
                     "Elena Bolyakina",
                     "Jeffrey Epstein",
-                    "Peter Thiel"
+                    "Peter Thiel",
+                    "Sergey Belyakov"
                 ],
                 "timestamp": "2015-07-06T18:39:12",
                 "type": "Email"
@@ -63646,6 +63714,7 @@
                     "Jeffrey Epstein"
                 ],
                 "timestamp": "2018-03-08T12:42:24",
+                "truncate_to": -1,
                 "type": "Email"
             },
             {
@@ -63873,6 +63942,7 @@
                     "Steve Bannon"
                 ],
                 "timestamp": "2018-02-19T15:19:11",
+                "truncate_to": -1,
                 "type": "Email"
             },
             {
@@ -63899,6 +63969,7 @@
                     "Steve Bannon"
                 ],
                 "timestamp": "2018-02-19T15:47:07",
+                "truncate_to": -1,
                 "type": "Email"
             },
             {
@@ -63976,6 +64047,8 @@
                     ""
                 ],
                 "author": "David Stern",
+                "category": "crypto",
+                "description": "documents are being prepared to license Epstein and David Stern's crypto exchange in Belarus",
                 "file_id": "EFTA00886763",
                 "file_size": 1064,
                 "filename": "EFTA00886763.txt",
@@ -64107,6 +64180,7 @@
                     "Jeffrey Epstein"
                 ],
                 "timestamp": "2018-01-30T23:07:53",
+                "truncate_to": -1,
                 "type": "Email"
             },
             {
@@ -64419,7 +64493,7 @@
                         "IIMIMM"
                     ]
                 },
-                "num_lines": 184,
+                "num_lines": 179,
                 "recipients": [
                     "Donald Norman"
                 ],
@@ -64517,6 +64591,7 @@
                     "Jeffrey Epstein"
                 ],
                 "timestamp": "2011-12-17T06:23:19",
+                "truncate_to": -1,
                 "type": "Email"
             },
             {
@@ -64543,6 +64618,7 @@
                     "Jeffrey Epstein"
                 ],
                 "timestamp": "2012-01-28T18:07:00",
+                "truncate_to": -1,
                 "type": "Email"
             },
             {
@@ -64910,6 +64986,7 @@
                     "Jeffrey Epstein"
                 ],
                 "timestamp": "2017-11-16T08:36:50",
+                "truncate_to": -1,
                 "type": "Email"
             },
             {
@@ -65052,30 +65129,43 @@
                     "Jeffrey Epstein"
                 ],
                 "timestamp": "2017-11-08T11:41:43",
+                "truncate_to": -1,
                 "type": "Email"
             },
             {
                 "attachments": [
-                    ""
+                    "LPA - Valar IV.DOCX",
+                    "Redline_-_LPA_-_Valar_IV.pdf",
+                    "Valar_Global_Fund_IV_LP_-Subscription_Agreement.pdf",
+                    "Indication_of Interest.pdf"
                 ],
                 "author": "Eric Doherty",
                 "file_id": "EFTA00968132",
-                "file_size": 2573,
+                "file_size": 2572,
                 "filename": "EFTA00968132.txt",
                 "header": {
+                    "attachments": "LPA - Valar IV.DOCX; Redline_-_LPA_-_Valar_IV.pdf; Valar_Global_Fund_IV_LP_-Subscription_Agreement.pdf; Indication_of Interest.pdf",
                     "author": "\"Doherty, Eric\" <",
                     "cc": [
-                        "James Fitzgerald , Andrew McCormack , Reuben"
+                        "James Fitzgerald",
+                        "Andrew McCormack",
+                        "Reuben Kobulnik",
+                        "\"Bao, Hongbo Robert\"",
+                        "\"Santos, Stanley\""
                     ],
+                    "sent_at": "Thu, 02 Nov 2017 04:37:53 +0000",
+                    "subject": "Valar Global Fund IV LP - Draft Subscription Documents **Action Required**",
                     "to": [
                         "PROSPECTIVE INVESTORS"
                     ]
                 },
-                "num_lines": 39,
+                "num_lines": 36,
                 "recipients": [
                     "Andrew McCormack",
+                    "Hongbo Robert Bao",
                     "James Fitzgerald",
-                    "PROSPECTIVE INVESTORS"
+                    "Reuben Kobulnik",
+                    "Stanley Santos"
                 ],
                 "timestamp": "2017-11-02T04:37:53",
                 "type": "Email"
@@ -65432,6 +65522,7 @@
                     "Andrew Farkas"
                 ],
                 "timestamp": "2014-04-18T11:50:34",
+                "truncate_to": -1,
                 "type": "Email"
             },
             {
@@ -65602,6 +65693,7 @@
                     "Jeffrey Epstein"
                 ],
                 "timestamp": "2017-10-12T12:58:03",
+                "truncate_to": -1,
                 "type": "Email"
             },
             {
@@ -65982,7 +66074,7 @@
                         "Vincenzo Iozzo"
                     ]
                 },
-                "num_lines": 253,
+                "num_lines": 238,
                 "recipients": [
                     "Vincenzo Iozzo"
                 ],
@@ -66092,6 +66184,7 @@
                 ],
                 "sent_from_device": "Sent from my iPad",
                 "timestamp": "2014-11-02T23:38:07",
+                "truncate_to": -1,
                 "type": "Email"
             },
             {
@@ -66189,6 +66282,7 @@
                     "Jeffrey Epstein"
                 ],
                 "timestamp": "2014-11-17T19:12:09",
+                "truncate_to": -1,
                 "type": "Email"
             },
             {
@@ -66524,6 +66618,7 @@
                     "Jeffrey Epstein"
                 ],
                 "timestamp": "2014-12-18T06:03:49",
+                "truncate_to": -1,
                 "type": "Email"
             },
             {
@@ -66553,7 +66648,6 @@
                 "num_lines": 34,
                 "recipients": [
                     "Hongbo Robert Bao",
-                    "PROSPECTIVE INVESTORS",
                     "Reuben Kobulnik"
                 ],
                 "timestamp": "2014-12-18T08:04:50",
@@ -67338,7 +67432,7 @@
                 ],
                 "author": "Jeffrey Epstein",
                 "category": "crypto",
-                "description": "bitcoin dev Jeremy Rubin describes \"grey area between pump and develop\" when Epstein objects on ethical grounds",
+                "description": "Jeremy Rubin describes \"grey area between pump and develop\" when Epstein objects on ethical grounds",
                 "file_id": "EFTA01007544",
                 "file_size": 3905,
                 "filename": "EFTA01007544.txt",
@@ -67356,6 +67450,7 @@
                     "Jeremy Rubin"
                 ],
                 "timestamp": "2018-08-23T23:19:07",
+                "truncate_to": -1,
                 "type": "Email"
             },
             {
@@ -67533,6 +67628,7 @@
                     "Jeffrey Epstein"
                 ],
                 "timestamp": "2018-12-17T22:41:26",
+                "truncate_to": -1,
                 "type": "Email"
             },
             {
@@ -67600,6 +67696,7 @@
                 "is_interesting": true,
                 "num_lines": 69,
                 "timestamp": "2018-12-11T00:00:18",
+                "truncate_to": -1,
                 "type": "Email"
             },
             {
@@ -68780,7 +68877,7 @@
                         "James Fitzgerald <1"
                     ]
                 },
-                "num_lines": 144,
+                "num_lines": 138,
                 "recipients": [
                     "James Fitzgerald"
                 ],
@@ -68803,7 +68900,7 @@
                         "James Fitzgerald"
                     ]
                 },
-                "num_lines": 194,
+                "num_lines": 181,
                 "recipients": [
                     "James Fitzgerald"
                 ],
@@ -68830,6 +68927,7 @@
                     "Andrew Farkas"
                 ],
                 "timestamp": "2017-06-12T14:50:17",
+                "truncate_to": -1,
                 "type": "Email"
             },
             {
@@ -68897,7 +68995,7 @@
                         "\"Jeffrey E.\" <jeevacation@gmail.com>"
                     ]
                 },
-                "num_lines": 104,
+                "num_lines": 99,
                 "recipients": [
                     "Andrew McCormack",
                     "Jeffrey Epstein"
@@ -69207,6 +69305,7 @@
                 ],
                 "sent_from_device": "Sent from my Iphone",
                 "timestamp": "2018-05-12T02:46:31",
+                "truncate_to": -1,
                 "type": "Email"
             },
             {
@@ -69407,6 +69506,7 @@
                     "Andrew Farkas"
                 ],
                 "timestamp": "2014-11-07T15:33:30",
+                "truncate_to": -1,
                 "type": "Email"
             },
             {
@@ -69894,6 +69994,7 @@
                     "Reid Hoffman"
                 ],
                 "timestamp": "2014-08-02T14:01:48",
+                "truncate_to": -1,
                 "type": "Email"
             },
             {
@@ -70231,7 +70332,7 @@
                 "attachments": [
                     ""
                 ],
-                "author": "Anastasiya",
+                "author": "Anastasiya Siroochenko",
                 "file_id": "EFTA01771746",
                 "file_size": 1352,
                 "filename": "EFTA01771746.txt",
@@ -70296,6 +70397,8 @@
                     ""
                 ],
                 "author": "Jeremy Rubin",
+                "dupe_type": "same",
+                "duplicate_of_id": "EFTA00717931",
                 "file_id": "EFTA01774218",
                 "file_size": 792,
                 "filename": "EFTA01774218.txt",
@@ -70311,7 +70414,7 @@
                 "recipients": [
                     "Jeffrey Epstein"
                 ],
-                "timestamp": "2016-04-02T00:52:00",
+                "timestamp": "2016-04-02T00:51:58",
                 "type": "Email"
             },
             {
@@ -70479,9 +70582,9 @@
                     ""
                 ],
                 "author": "Jeremy Rubin",
-                "description": "discussion of checks Jeremy Rubin has cashed from Epstein",
+                "description": "Jeremy Rubin has cashed multiple checks directly from Epstein",
                 "file_id": "EFTA01784901",
-                "file_size": 3469,
+                "file_size": 3020,
                 "filename": "EFTA01784901.txt",
                 "header": {
                     "author": "Jeremy Rubin MEM",
@@ -70495,12 +70598,13 @@
                     ]
                 },
                 "is_interesting": true,
-                "num_lines": 101,
+                "num_lines": 73,
                 "recipients": [
                     "Jeffrey Epstein",
                     "Richard Kahn"
                 ],
                 "timestamp": "2016-08-01T13:29:00",
+                "truncate_to": -1,
                 "type": "Email"
             },
             {
@@ -70843,6 +70947,7 @@
                     "Al Seckel"
                 ],
                 "timestamp": "2011-01-12T08:41:08",
+                "truncate_to": -1,
                 "type": "Email"
             },
             {
@@ -70940,20 +71045,20 @@
                     ""
                 ],
                 "file_id": "EFTA01849532",
-                "file_size": 345,
+                "file_size": 340,
                 "filename": "EFTA01849532.txt",
                 "header": {
-                    "sent_at": "ue 1 3:14:52 PM",
+                    "sent_at": "Tue 12/31/2011 3:14:52",
                     "subject": "Bitcoin",
                     "to": [
-                        "\" Deevacation\u00a9gmail.comj"
+                        "\"jeevacation@gmail.comj"
                     ]
                 },
-                "num_lines": 9,
+                "num_lines": 8,
                 "recipients": [
                     "Jeffrey Epstein"
                 ],
-                "timestamp": "2026-02-01T15:14:52",
+                "timestamp": "2011-12-31T03:14:52",
                 "type": "Email"
             },
             {
@@ -71099,7 +71204,7 @@
                         "Jeffre E stein jeevacation@gmail.com]"
                     ]
                 },
-                "num_lines": 173,
+                "num_lines": 172,
                 "recipients": [
                     "Jeffrey Epstein"
                 ],
@@ -71121,7 +71226,7 @@
                     "sent_at": "Thur 7/21/2011 11:26:33 PM",
                     "subject": "Re: Bitcoin"
                 },
-                "num_lines": 185,
+                "num_lines": 182,
                 "recipients": [
                     "Donald Norman"
                 ],
@@ -71525,6 +71630,7 @@
                     "Jeffrey Epstein"
                 ],
                 "timestamp": "2014-07-21T23:49:36",
+                "truncate_to": -1,
                 "type": "Email"
             },
             {
@@ -71656,6 +71762,7 @@
                     "Joi Ito"
                 ],
                 "timestamp": "2014-07-15T18:05:27",
+                "truncate_to": -1,
                 "type": "Email"
             },
             {
@@ -71875,6 +71982,7 @@
                     "Jeffrey Epstein"
                 ],
                 "timestamp": "2014-04-16T13:34:42",
+                "truncate_to": -1,
                 "type": "Email"
             },
             {
@@ -72343,6 +72451,7 @@
                 "is_interesting": true,
                 "num_lines": 90,
                 "timestamp": "2014-01-05T12:27:44",
+                "truncate_to": -1,
                 "type": "Email"
             },
             {
@@ -72683,6 +72792,7 @@
                 ],
                 "sent_from_device": "Typos, misspellings courtesy of iPhone",
                 "timestamp": "2013-06-28T00:57:10",
+                "truncate_to": -1,
                 "type": "Email"
             },
             {
@@ -73172,6 +73282,7 @@
                 ],
                 "sent_from_device": "Sent from my iPad",
                 "timestamp": "2012-08-06T20:59:19",
+                "truncate_to": -1,
                 "type": "Email"
             },
             {
@@ -73215,6 +73326,7 @@
                     "Jeffrey Epstein"
                 ],
                 "timestamp": "2010-12-24T14:12:50",
+                "truncate_to": -1,
                 "type": "Email"
             },
             {
@@ -73306,6 +73418,7 @@
                     "Nili Priell Barak"
                 ],
                 "timestamp": "2016-01-15T21:37:54",
+                "truncate_to": -1,
                 "type": "Email"
             },
             {
@@ -73383,6 +73496,7 @@
                     "James Fitzgerald"
                 ],
                 "timestamp": "2015-11-18T15:31:06",
+                "truncate_to": -1,
                 "type": "Email"
             },
             {
@@ -73455,6 +73569,7 @@
                 ],
                 "sent_from_device": "Sent from my iPhone",
                 "timestamp": "2015-11-16T19:17:13",
+                "truncate_to": -1,
                 "type": "Email"
             },
             {
@@ -73554,6 +73669,7 @@
                     "James Fitzgerald"
                 ],
                 "timestamp": "2015-11-16T20:46:49",
+                "truncate_to": -1,
                 "type": "Email"
             },
             {
@@ -73640,7 +73756,7 @@
                     "sent_at": "Wed 10/14/2015 7:08:12 PM",
                     "subject": "Re: Jeffrey Epstein Fri. Oct. 16th"
                 },
-                "num_lines": 58,
+                "num_lines": 57,
                 "recipients": [
                     "Jeremy Rubin"
                 ],
@@ -73651,20 +73767,26 @@
                 "attachments": [
                     ""
                 ],
-                "author": ".com on behalf of Neri Oxman",
+                "author": "Neri Oxman",
                 "file_id": "EFTA02070043",
                 "file_size": 2008,
                 "filename": "EFTA02070043.txt",
                 "header": {
-                    "author": ".com on behalf of Neri Oxman",
+                    "author": "Neri Oxman",
                     "cc": [
                         "Kell Donove"
                     ],
                     "sent_at": "Thur 10/15/2015 9:31:32 PM",
-                    "subject": "Re: Jeffrey Epstein Fri. Oct. 16th"
+                    "subject": "Re: Jeffrey Epstein Fri. Oct. 16th",
+                    "to": [
+                        "Joi Ito",
+                        "Jeffrey Epstein"
+                    ]
                 },
                 "num_lines": 55,
                 "recipients": [
+                    "Jeffrey Epstein",
+                    "Joi Ito",
                     "Kell Donove"
                 ],
                 "timestamp": "2015-10-15T21:31:32",
@@ -73686,7 +73808,7 @@
                         "Vincenzo lozzo"
                     ]
                 },
-                "num_lines": 29,
+                "num_lines": 27,
                 "recipients": [
                     "Vincenzo Iozzo"
                 ],
@@ -73764,6 +73886,7 @@
                     "Nicole Junkermann"
                 ],
                 "timestamp": "2014-12-03T17:09:01",
+                "truncate_to": -1,
                 "type": "Email"
             },
             {
@@ -73822,6 +73945,7 @@
                     "Jeffrey Epstein"
                 ],
                 "timestamp": "2014-12-03T17:09:39",
+                "truncate_to": -1,
                 "type": "Email"
             },
             {
@@ -74099,7 +74223,7 @@
                     ]
                 },
                 "is_interesting": false,
-                "num_lines": 29,
+                "num_lines": 23,
                 "recipients": [
                     "Brock Pierce"
                 ],
@@ -74141,7 +74265,7 @@
                     ]
                 },
                 "is_interesting": false,
-                "num_lines": 30,
+                "num_lines": 25,
                 "recipients": [
                     "Brock Pierce"
                 ],
@@ -74211,7 +74335,7 @@
                     "sent_at": "Wed 2/15/2012 12:43:43 PM",
                     "subject": "Re: Jeffrey Epstein"
                 },
-                "num_lines": 34,
+                "num_lines": 31,
                 "recipients": [
                     "Brock Pierce"
                 ],
@@ -74241,6 +74365,7 @@
                     "Lesley Groff"
                 ],
                 "timestamp": "2012-01-10T18:25:23",
+                "truncate_to": -1,
                 "type": "Email"
             },
             {
@@ -74261,7 +74386,7 @@
                         "Brock Pierce"
                     ]
                 },
-                "num_lines": 38,
+                "num_lines": 31,
                 "recipients": [
                     "Brock Pierce"
                 ],
@@ -74544,7 +74669,7 @@
                     ""
                 ],
                 "file_id": "EFTA02232362",
-                "file_size": 1133,
+                "file_size": 1131,
                 "filename": "EFTA02232362.txt",
                 "num_lines": 37,
                 "sent_from_device": "Sent from my iPhone",
@@ -75166,6 +75291,7 @@
                 "is_interesting": true,
                 "num_lines": 6,
                 "timestamp": "2019-05-16T18:31:13",
+                "truncate_to": -1,
                 "type": "Email"
             },
             {
@@ -75322,6 +75448,7 @@
                     "Karyna Shuliak"
                 ],
                 "timestamp": "2018-11-13T23:58:00",
+                "truncate_to": -1,
                 "type": "Email"
             },
             {
@@ -75534,6 +75661,7 @@
                     "Jeffrey Epstein"
                 ],
                 "timestamp": "2015-04-24T13:07:00",
+                "truncate_to": -1,
                 "type": "Email"
             },
             {
@@ -75707,7 +75835,7 @@
                     ""
                 ],
                 "file_id": "EFTA02354194",
-                "file_size": 1370,
+                "file_size": 1074,
                 "filename": "EFTA02354194.txt",
                 "header": {
                     "cc": [
@@ -75719,7 +75847,7 @@
                         "jeffrey E."
                     ]
                 },
-                "num_lines": 30,
+                "num_lines": 24,
                 "recipients": [
                     "Jeffrey Epstein",
                     "Jeremy Rubin"
@@ -75814,7 +75942,7 @@
                         "Jeffrey Epstein"
                     ]
                 },
-                "num_lines": 22,
+                "num_lines": 19,
                 "recipients": [
                     "Jeffrey Epstein"
                 ],
@@ -76114,6 +76242,7 @@
                     "Jeffrey Epstein"
                 ],
                 "timestamp": "2017-07-01T10:14:00",
+                "truncate_to": -1,
                 "type": "Email"
             },
             {
@@ -76828,6 +76957,7 @@
                     "Jeffrey Epstein"
                 ],
                 "timestamp": "2009-11-25T21:54:51",
+                "truncate_to": -1,
                 "type": "Email"
             },
             {
@@ -77231,7 +77361,7 @@
                         "Greg Wyler"
                     ]
                 },
-                "num_lines": 109,
+                "num_lines": 107,
                 "recipients": [
                     "Greg Wyler",
                     "Jeffrey Epstein"
@@ -77263,6 +77393,7 @@
                 ],
                 "sent_from_device": "Sent from my iPhone",
                 "timestamp": "2015-11-02T09:28:00",
+                "truncate_to": -1,
                 "type": "Email"
             },
             {
@@ -77437,9 +77568,9 @@
                 ],
                 "author": "David Stern",
                 "category": "crypto",
-                "description": "Epstein and David Stern discussing setting up a crypto exchange in Belarus",
+                "description": "Epstein says a crypto exchange in Belarus could be \"very useful\", David Stern's Chinese guys could have brought \"significant volume\"",
                 "file_id": "EFTA02494000",
-                "file_size": 732,
+                "file_size": 665,
                 "filename": "EFTA02494000.txt",
                 "header": {
                     "author": "David Stern",
@@ -77455,6 +77586,7 @@
                     "Jeffrey Epstein"
                 ],
                 "timestamp": "2018-03-22T10:27:00",
+                "truncate_to": -1,
                 "type": "Email"
             },
             {
@@ -77462,6 +77594,8 @@
                     ""
                 ],
                 "author": "David Stern",
+                "category": "crypto",
+                "description": "planning a crypto exchange in Belarus, David Stern's \"Chinese guys\" can't do it because of the PRC's crackdown on crypto",
                 "file_id": "EFTA02494305",
                 "file_size": 896,
                 "filename": "EFTA02494305.txt",
@@ -77517,7 +77651,7 @@
                 ],
                 "author": "David Stern",
                 "file_id": "EFTA02497856",
-                "file_size": 2871,
+                "file_size": 2859,
                 "filename": "EFTA02497856.txt",
                 "header": {
                     "author": "David Stern",
@@ -77527,7 +77661,7 @@
                         "Jeffrey Epstein"
                     ]
                 },
-                "num_lines": 46,
+                "num_lines": 45,
                 "recipients": [
                     "Jeffrey Epstein"
                 ],
@@ -77674,6 +77808,7 @@
                         "Jeffrey Epstein"
                     ]
                 },
+                "is_interesting": false,
                 "num_lines": 29,
                 "recipients": [
                     "Jeffrey Epstein"
@@ -77780,6 +77915,7 @@
                     "Alan Dlugash"
                 ],
                 "timestamp": "2018-03-03T00:04:00",
+                "truncate_to": -1,
                 "type": "Email"
             },
             {
@@ -77871,6 +78007,7 @@
                     "Larry Summers"
                 ],
                 "timestamp": "2014-10-01T11:10:00",
+                "truncate_to": -1,
                 "type": "Email"
             },
             {
@@ -77921,6 +78058,7 @@
                     "Jeffrey Epstein"
                 ],
                 "timestamp": "2014-07-24T09:38:00",
+                "truncate_to": -1,
                 "type": "Email"
             },
             {
@@ -77939,7 +78077,7 @@
                         "jeffrey E."
                     ]
                 },
-                "num_lines": 115,
+                "num_lines": 114,
                 "recipients": [
                     "Jeffrey Epstein"
                 ],
@@ -78527,6 +78665,7 @@
                 "is_interesting": true,
                 "num_lines": 13,
                 "timestamp": "2012-09-10T12:18:00",
+                "truncate_to": -1,
                 "type": "Email"
             },
             {
@@ -78936,6 +79075,7 @@
                     "Jeffrey Epstein"
                 ],
                 "timestamp": "2014-08-21T20:44:00",
+                "truncate_to": -1,
                 "type": "Email"
             },
             {
@@ -78986,6 +79126,7 @@
                     "Andrew Farkas"
                 ],
                 "timestamp": "2014-08-25T14:09:00",
+                "truncate_to": -1,
                 "type": "Email"
             },
             {
@@ -79016,6 +79157,7 @@
                     "Joi Ito"
                 ],
                 "timestamp": "2014-08-23T11:07:00",
+                "truncate_to": -1,
                 "type": "Email"
             },
             {
@@ -79147,6 +79289,7 @@
                     "Jeffrey Epstein"
                 ],
                 "timestamp": "2014-10-03T20:19:00",
+                "truncate_to": -1,
                 "type": "Email"
             },
             {
@@ -80157,6 +80300,7 @@
                 ],
                 "sent_from_device": "Sent from my iPhone",
                 "timestamp": "2019-02-11T18:20:00",
+                "truncate_to": -1,
                 "type": "Email"
             },
             {
@@ -80413,6 +80557,7 @@
                 ],
                 "sent_from_device": "Sent from my iPhone",
                 "timestamp": "2019-03-28T08:05:00",
+                "truncate_to": -1,
                 "type": "Email"
             },
             {
@@ -80483,6 +80628,7 @@
                     "Jeffrey Epstein"
                 ],
                 "timestamp": "2018-01-22T14:18:00",
+                "truncate_to": -1,
                 "type": "Email"
             },
             {
@@ -80643,6 +80789,7 @@
                     "Alan Dlugash"
                 ],
                 "timestamp": "2017-07-07T17:58:00",
+                "truncate_to": -1,
                 "type": "Email"
             },
             {
@@ -81100,7 +81247,7 @@
                 "file_id": "EFTA02691296",
                 "file_size": 7586,
                 "filename": "EFTA02691296.txt",
-                "num_lines": 175,
+                "num_lines": 172,
                 "recipients": [
                     "Jeffrey Epstein"
                 ],
@@ -81321,7 +81468,7 @@
                         "Jeffrey Epsteinueevacation@gmail.com]"
                     ]
                 },
-                "num_lines": 1076,
+                "num_lines": 849,
                 "recipients": [
                     "Jeffrey Epstein"
                 ],
@@ -83228,7 +83375,7 @@
                 "filename": "HOUSE_OVERSIGHT_028375.txt",
                 "is_interesting": false,
                 "num_lines": 1690,
-                "timestamp": "2018-12-19T00:00:00",
+                "timestamp": "2018-12-20T00:00:00",
                 "type": "JsonFile",
                 "was_timestamp_extracted": true
             },
@@ -83360,7 +83507,7 @@
                 "filename": "HOUSE_OVERSIGHT_031178.txt",
                 "is_interesting": false,
                 "num_lines": 881,
-                "timestamp": "2019-02-19T00:00:00",
+                "timestamp": "2019-02-20T00:00:00",
                 "type": "JsonFile",
                 "was_timestamp_extracted": true
             },
@@ -83411,6 +83558,7 @@
                 "num_lines": 182,
                 "num_messages": 24,
                 "timestamp": "2018-06-22T06:32:55",
+                "truncate_to": -1,
                 "type": "MessengerLog"
             },
             {
@@ -83426,6 +83574,7 @@
                 "num_messages": 159,
                 "phone_number": "+13109906526",
                 "timestamp": "2018-09-07T04:11:13",
+                "truncate_to": -1,
                 "type": "MessengerLog"
             },
             {
@@ -83539,6 +83688,7 @@
                 "num_lines": 1007,
                 "num_messages": 136,
                 "timestamp": "2018-08-17T08:53:05",
+                "truncate_to": -1,
                 "type": "MessengerLog"
             },
             {
@@ -83740,6 +83890,7 @@
                 "num_lines": 541,
                 "num_messages": 73,
                 "timestamp": "2018-04-03T10:52:31",
+                "truncate_to": -1,
                 "type": "MessengerLog"
             },
             {
@@ -83752,6 +83903,7 @@
                 "num_lines": 80,
                 "num_messages": 10,
                 "timestamp": "2018-04-10T04:09:05",
+                "truncate_to": -1,
                 "type": "MessengerLog"
             },
             {
@@ -83764,6 +83916,7 @@
                 "num_lines": 111,
                 "num_messages": 13,
                 "timestamp": "2018-06-09T14:38:08",
+                "truncate_to": -1,
                 "type": "MessengerLog"
             },
             {
@@ -83938,6 +84091,7 @@
                 "num_lines": 254,
                 "num_messages": 34,
                 "timestamp": "2018-10-08T23:07:32",
+                "truncate_to": -1,
                 "type": "MessengerLog"
             },
             {
@@ -83972,6 +84126,7 @@
                 "num_lines": 2082,
                 "num_messages": 284,
                 "timestamp": "2018-11-11T18:24:28",
+                "truncate_to": -1,
                 "type": "MessengerLog"
             },
             {
@@ -84233,6 +84388,7 @@
                 "num_lines": 338,
                 "num_messages": 44,
                 "timestamp": "2018-12-05T04:09:01",
+                "truncate_to": -1,
                 "type": "MessengerLog"
             },
             {
@@ -84358,6 +84514,7 @@
                 "is_interesting": true,
                 "num_lines": 9890,
                 "timestamp": "2017-01-20T00:00:00",
+                "truncate_to": -1,
                 "type": "OtherFile"
             },
             {
@@ -84493,7 +84650,7 @@
                 "filename": "HOUSE_OVERSIGHT_011284.txt",
                 "is_interesting": false,
                 "num_lines": 727,
-                "timestamp": "2017-02-19T00:00:00",
+                "timestamp": "2017-02-20T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -84563,7 +84720,7 @@
                 "filename": "HOUSE_OVERSIGHT_012048.txt",
                 "is_interesting": false,
                 "num_lines": 2693,
-                "timestamp": "2019-03-19T00:00:00",
+                "timestamp": "2019-03-20T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -84737,7 +84894,7 @@
                 "filename": "HOUSE_OVERSIGHT_013268.txt",
                 "is_interesting": false,
                 "num_lines": 139,
-                "timestamp": "2014-01-19T00:00:00",
+                "timestamp": "2014-01-20T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -84892,7 +85049,7 @@
                 "filename": "HOUSE_OVERSIGHT_013796.txt",
                 "is_interesting": false,
                 "num_lines": 8095,
-                "timestamp": "2009-02-19T00:00:00",
+                "timestamp": "2009-02-20T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -84905,7 +85062,7 @@
                 "filename": "HOUSE_OVERSIGHT_014037.txt",
                 "is_interesting": null,
                 "num_lines": 1911,
-                "timestamp": "2014-07-19T00:00:00",
+                "timestamp": "2014-07-20T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -85092,7 +85249,7 @@
                 "filename": "HOUSE_OVERSIGHT_014697.txt",
                 "is_interesting": false,
                 "num_lines": 725,
-                "timestamp": "2017-02-19T00:00:00",
+                "timestamp": "2017-02-20T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -85239,7 +85396,7 @@
                 "filename": "HOUSE_OVERSIGHT_015032.txt",
                 "is_interesting": false,
                 "num_lines": 1918,
-                "timestamp": "2017-07-19T00:00:00",
+                "timestamp": "2017-07-20T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -85252,7 +85409,7 @@
                 "filename": "HOUSE_OVERSIGHT_015462.txt",
                 "is_interesting": false,
                 "num_lines": 1810,
-                "timestamp": "2013-10-19T00:00:00",
+                "timestamp": "2013-10-20T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -85265,7 +85422,7 @@
                 "filename": "HOUSE_OVERSIGHT_015501.txt",
                 "is_interesting": false,
                 "num_lines": 1214,
-                "timestamp": "2016-02-19T00:00:00",
+                "timestamp": "2016-02-20T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -85575,7 +85732,7 @@
                 "filename": "HOUSE_OVERSIGHT_016636.txt",
                 "is_interesting": false,
                 "num_lines": 1535,
-                "timestamp": "2009-02-19T00:00:00",
+                "timestamp": "2009-02-20T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -85640,6 +85797,7 @@
                 "is_interesting": true,
                 "num_lines": 8319,
                 "timestamp": "2017-01-20T00:00:00",
+                "truncate_to": -1,
                 "type": "OtherFile"
             },
             {
@@ -85732,7 +85890,7 @@
                 "filename": "HOUSE_OVERSIGHT_017526.txt",
                 "is_interesting": false,
                 "num_lines": 4127,
-                "timestamp": "2012-06-19T00:00:00",
+                "timestamp": "2012-06-20T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -85952,10 +86110,11 @@
                 "is_interesting": true,
                 "num_lines": 358,
                 "recipients": [
-                    "linkspirit",
-                    "Lawrence Krauss"
+                    "Lawrence Krauss",
+                    "linkspirit"
                 ],
                 "timestamp": "2019-06-01T11:54:45.300000",
+                "truncate_to": -1,
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -85994,7 +86153,7 @@
                 "filename": "HOUSE_OVERSIGHT_018703.txt",
                 "is_interesting": false,
                 "num_lines": 124,
-                "timestamp": "2016-06-19T00:00:00",
+                "timestamp": "2016-06-20T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -86018,7 +86177,7 @@
                 "filename": "HOUSE_OVERSIGHT_018743.txt",
                 "is_interesting": false,
                 "num_lines": 1855,
-                "timestamp": "2018-02-19T00:00:00",
+                "timestamp": "2018-02-20T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -86325,7 +86484,7 @@
                 "filename": "HOUSE_OVERSIGHT_019477.txt",
                 "is_interesting": true,
                 "num_lines": 11950,
-                "timestamp": "2017-02-19T00:00:00",
+                "timestamp": "2017-02-20T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -86356,6 +86515,7 @@
                 "is_interesting": true,
                 "num_lines": 875,
                 "timestamp": "2017-11-08T00:00:00",
+                "truncate_to": -1,
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -86396,7 +86556,7 @@
                 "filename": "HOUSE_OVERSIGHT_020153.txt",
                 "is_interesting": true,
                 "num_lines": 2848,
-                "timestamp": "2016-02-19T00:00:00",
+                "timestamp": "2016-02-20T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -86409,7 +86569,7 @@
                 "filename": "HOUSE_OVERSIGHT_020447.txt",
                 "is_interesting": null,
                 "num_lines": 7325,
-                "timestamp": "2019-02-19T00:00:00",
+                "timestamp": "2019-02-20T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -86448,7 +86608,7 @@
                 "filename": "HOUSE_OVERSIGHT_021092.txt",
                 "is_interesting": false,
                 "num_lines": 77,
-                "timestamp": "2001-02-19T00:00:00",
+                "timestamp": "2001-02-20T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -86460,7 +86620,7 @@
                 "filename": "HOUSE_OVERSIGHT_021093.txt",
                 "is_interesting": false,
                 "num_lines": 96,
-                "timestamp": "2003-02-19T00:00:00",
+                "timestamp": "2003-02-20T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -86499,7 +86659,7 @@
                 "filename": "HOUSE_OVERSIGHT_021145.txt",
                 "is_interesting": false,
                 "num_lines": 6213,
-                "timestamp": "2008-02-19T00:00:00",
+                "timestamp": "2008-02-20T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -86550,7 +86710,7 @@
                 "filename": "HOUSE_OVERSIGHT_021718.txt",
                 "is_interesting": false,
                 "num_lines": 1754,
-                "timestamp": "2016-02-19T00:00:00",
+                "timestamp": "2016-02-20T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -86577,7 +86737,7 @@
                 "filename": "HOUSE_OVERSIGHT_021824.txt",
                 "is_interesting": null,
                 "num_lines": 6853,
-                "timestamp": "2015-10-19T00:00:00",
+                "timestamp": "2015-10-20T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -86652,7 +86812,7 @@
                 "filename": "HOUSE_OVERSIGHT_022212.txt",
                 "is_interesting": false,
                 "num_lines": 107,
-                "timestamp": "2020-02-19T00:00:00",
+                "timestamp": "2020-02-20T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -86675,7 +86835,7 @@
                 "filename": "HOUSE_OVERSIGHT_022237.txt",
                 "is_interesting": null,
                 "num_lines": 266,
-                "timestamp": "2014-12-19T00:00:00",
+                "timestamp": "2014-12-20T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -86799,7 +86959,7 @@
                 "filename": "HOUSE_OVERSIGHT_022407.txt",
                 "is_interesting": true,
                 "num_lines": 79,
-                "timestamp": "2018-02-19T00:00:00",
+                "timestamp": "2018-02-20T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -86812,7 +86972,7 @@
                 "filename": "HOUSE_OVERSIGHT_022417.txt",
                 "is_interesting": false,
                 "num_lines": 1118,
-                "timestamp": "2017-02-19T00:00:00",
+                "timestamp": "2017-02-20T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -86856,41 +87016,41 @@
             {
                 "author": "Michael Wolff",
                 "category": "article",
-                "description": "draft of an unpublished article about Epstein by Michael Wolff written ca. 2014/2015",
+                "date": "2014-11-01",
+                "description": "draft of an unpublished article ca. 2014",
                 "file_id": "022707",
                 "file_size": 49697,
                 "filename": "HOUSE_OVERSIGHT_022707.txt",
                 "is_interesting": true,
                 "num_lines": 146,
-                "timestamp": "2014-02-19T00:00:00",
-                "type": "OtherFile",
-                "was_timestamp_extracted": true
+                "timestamp": "2014-11-01T00:00:00",
+                "type": "OtherFile"
             },
             {
                 "author": "Michael Wolff",
                 "category": "article",
-                "description": "draft of an unpublished article about Epstein by Michael Wolff written ca. 2014/2015",
+                "date": "2014-11-01",
+                "description": "draft of an unpublished article ca. 2014",
                 "file_id": "022727",
                 "file_size": 49697,
                 "filename": "HOUSE_OVERSIGHT_022727.txt",
                 "is_interesting": true,
                 "num_lines": 146,
-                "timestamp": "2014-02-19T00:00:00",
-                "type": "OtherFile",
-                "was_timestamp_extracted": true
+                "timestamp": "2014-11-01T00:00:00",
+                "type": "OtherFile"
             },
             {
                 "author": "Michael Wolff",
                 "category": "article",
-                "description": "draft of an unpublished article about Epstein by Michael Wolff written ca. 2014/2015",
+                "date": "2014-11-01",
+                "description": "draft of an unpublished article ca. 2014",
                 "file_id": "022746",
                 "file_size": 52975,
                 "filename": "HOUSE_OVERSIGHT_022746.txt",
                 "is_interesting": true,
                 "num_lines": 149,
-                "timestamp": "2014-02-19T00:00:00",
-                "type": "OtherFile",
-                "was_timestamp_extracted": true
+                "timestamp": "2014-11-01T00:00:00",
+                "type": "OtherFile"
             },
             {
                 "category": "flight_log",
@@ -86928,54 +87088,59 @@
             {
                 "author": "Michael Wolff",
                 "category": "article",
-                "description": "draft of an unpublished article about Epstein by Michael Wolff written ca. 2014/2015",
+                "date": "2014-11-01",
+                "description": "draft of an unpublished article ca. 2014",
                 "file_id": "022844",
                 "file_size": 52750,
                 "filename": "HOUSE_OVERSIGHT_022844.txt",
                 "is_interesting": true,
                 "num_lines": 149,
-                "timestamp": "2014-02-19T00:00:00",
-                "type": "OtherFile",
-                "was_timestamp_extracted": true
+                "timestamp": "2014-11-01T00:00:00",
+                "type": "OtherFile"
             },
             {
                 "author": "Michael Wolff",
                 "category": "article",
-                "description": "draft of an unpublished article about Epstein by Michael Wolff written ca. 2014/2015",
+                "date": "2014-11-01",
+                "description": "draft of an unpublished article ca. 2014",
                 "file_id": "022863",
                 "file_size": 46058,
                 "filename": "HOUSE_OVERSIGHT_022863.txt",
                 "is_interesting": true,
                 "num_lines": 109,
-                "timestamp": "2009-02-19T00:00:00",
-                "type": "OtherFile",
-                "was_timestamp_extracted": true
+                "timestamp": "2014-11-01T00:00:00",
+                "type": "OtherFile"
             },
             {
                 "author": "Michael Wolff",
                 "category": "article",
-                "description": "draft of an unpublished article about Epstein by Michael Wolff written ca. 2014/2015",
+                "date": "2014-11-01",
+                "description": "draft of an unpublished article ca. 2014 claiming Kelimbetov, Brock Pierce, and Larry Summers all visited Epstein around the time Tether was founded",
                 "file_id": "022894",
                 "file_size": 47112,
                 "filename": "HOUSE_OVERSIGHT_022894.txt",
                 "is_interesting": true,
                 "num_lines": 99,
-                "timestamp": "2009-02-19T00:00:00",
-                "type": "OtherFile",
-                "was_timestamp_extracted": true
+                "show_with_name": "Brock Pierce",
+                "timestamp": "2014-11-01T00:00:00",
+                "truncate_to": [
+                    13500,
+                    16000
+                ],
+                "type": "OtherFile"
             },
             {
                 "author": "Michael Wolff",
                 "category": "article",
-                "description": "draft of an unpublished article about Epstein by Michael Wolff written ca. 2014/2015",
+                "date": "2014-11-01",
+                "description": "draft of an unpublished article ca. 2014",
                 "file_id": "022952",
                 "file_size": 47635,
                 "filename": "HOUSE_OVERSIGHT_022952.txt",
                 "is_interesting": true,
                 "num_lines": 140,
-                "timestamp": "2014-02-19T00:00:00",
-                "type": "OtherFile",
-                "was_timestamp_extracted": true
+                "timestamp": "2014-11-01T00:00:00",
+                "type": "OtherFile"
             },
             {
                 "author": "Daily Mail",
@@ -87274,7 +87439,7 @@
                 "filename": "HOUSE_OVERSIGHT_023435.txt",
                 "is_interesting": false,
                 "num_lines": 107,
-                "timestamp": "2016-02-19T00:00:00",
+                "timestamp": "2016-02-20T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -87476,7 +87641,7 @@
                 "filename": "HOUSE_OVERSIGHT_023720.txt",
                 "is_interesting": false,
                 "num_lines": 280,
-                "timestamp": "2012-02-19T00:00:00",
+                "timestamp": "2012-02-20T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -87489,7 +87654,7 @@
                 "filename": "HOUSE_OVERSIGHT_023731.txt",
                 "is_interesting": false,
                 "num_lines": 8219,
-                "timestamp": "2011-02-19T00:00:00",
+                "timestamp": "2011-02-20T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -87501,7 +87666,7 @@
                 "filename": "HOUSE_OVERSIGHT_024003.txt",
                 "is_interesting": true,
                 "num_lines": 5090,
-                "timestamp": "2020-02-19T00:00:00",
+                "timestamp": "2020-02-20T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -87513,7 +87678,7 @@
                 "filename": "HOUSE_OVERSIGHT_024117.txt",
                 "is_interesting": true,
                 "num_lines": 751,
-                "timestamp": "2012-07-19T00:00:00",
+                "timestamp": "2012-07-20T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -87567,6 +87732,7 @@
                 "is_interesting": true,
                 "num_lines": 655,
                 "timestamp": "2012-09-21T00:00:00",
+                "truncate_to": -1,
                 "type": "OtherFile"
             },
             {
@@ -87598,15 +87764,15 @@
             {
                 "author": "Michael Wolff",
                 "category": "article",
-                "description": "draft of an unpublished article about Epstein by Michael Wolff written ca. 2014/2015",
+                "date": "2014-11-01",
+                "description": "draft of an unpublished article ca. 2014",
                 "file_id": "024229",
                 "file_size": 32437,
                 "filename": "HOUSE_OVERSIGHT_024229.txt",
                 "is_interesting": true,
                 "num_lines": 79,
-                "timestamp": "2009-02-19T00:00:00",
-                "type": "OtherFile",
-                "was_timestamp_extracted": true
+                "timestamp": "2014-11-01T00:00:00",
+                "type": "OtherFile"
             },
             {
                 "author": "Joi Ito",
@@ -87617,7 +87783,7 @@
                 "filename": "HOUSE_OVERSIGHT_024256.txt",
                 "is_interesting": true,
                 "num_lines": 498,
-                "timestamp": "2017-05-19T00:00:00",
+                "timestamp": "2017-05-20T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -87680,7 +87846,7 @@
                 "filename": "HOUSE_OVERSIGHT_024374.txt",
                 "is_interesting": false,
                 "num_lines": 83,
-                "timestamp": "2019-02-19T00:00:00",
+                "timestamp": "2019-02-20T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -87718,7 +87884,8 @@
                 "filename": "HOUSE_OVERSIGHT_024631.txt",
                 "is_interesting": true,
                 "num_lines": 6977,
-                "timestamp": "2019-02-19T00:00:00",
+                "timestamp": "2019-02-20T00:00:00",
+                "truncate_to": -1,
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -87732,6 +87899,7 @@
                 "is_interesting": true,
                 "num_lines": 5317,
                 "timestamp": "2019-02-25T00:00:00",
+                "truncate_to": -1,
                 "type": "OtherFile"
             },
             {
@@ -87781,7 +87949,7 @@
                 "filename": "HOUSE_OVERSIGHT_025104.txt",
                 "is_interesting": false,
                 "num_lines": 365,
-                "timestamp": "2020-02-19T00:00:00",
+                "timestamp": "2020-02-20T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -87822,6 +87990,7 @@
                 "is_interesting": true,
                 "num_lines": 663,
                 "timestamp": "2016-10-23T00:00:00",
+                "truncate_to": -1,
                 "type": "OtherFile"
             },
             {
@@ -87917,7 +88086,7 @@
                 "filename": "HOUSE_OVERSIGHT_025292.txt",
                 "is_interesting": false,
                 "num_lines": 80,
-                "timestamp": "2016-02-19T00:00:00",
+                "timestamp": "2016-02-20T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -87974,7 +88143,7 @@
                 "filename": "HOUSE_OVERSIGHT_025540.txt",
                 "is_interesting": null,
                 "num_lines": 36,
-                "timestamp": "2009-07-19T00:00:00",
+                "timestamp": "2009-07-20T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -88062,6 +88231,7 @@
                 "is_interesting": true,
                 "num_lines": 295,
                 "timestamp": "2013-05-29T00:00:00",
+                "truncate_to": -1,
                 "type": "OtherFile"
             },
             {
@@ -88073,7 +88243,7 @@
                 "filename": "HOUSE_OVERSIGHT_025849.txt",
                 "is_interesting": false,
                 "num_lines": 603,
-                "timestamp": "2014-02-19T00:00:00",
+                "timestamp": "2014-02-20T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -88140,7 +88310,7 @@
                 "recipients": [
                     "George"
                 ],
-                "timestamp": "2020-02-19T00:00:00",
+                "timestamp": "2020-02-20T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -88205,7 +88375,7 @@
                 "filename": "HOUSE_OVERSIGHT_026543.txt",
                 "is_interesting": false,
                 "num_lines": 143,
-                "timestamp": "2020-02-19T00:00:00",
+                "timestamp": "2020-02-20T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -88267,6 +88437,7 @@
                 "is_interesting": true,
                 "num_lines": 574,
                 "timestamp": "2009-07-01T00:00:00",
+                "truncate_to": -1,
                 "type": "OtherFile"
             },
             {
@@ -88366,7 +88537,7 @@
                 "filename": "HOUSE_OVERSIGHT_026731.txt",
                 "is_interesting": false,
                 "num_lines": 250,
-                "timestamp": "2020-02-19T00:00:00",
+                "timestamp": "2020-02-20T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -88432,7 +88603,7 @@
                 "filename": "HOUSE_OVERSIGHT_026794.txt",
                 "is_interesting": false,
                 "num_lines": 673,
-                "timestamp": "2020-02-19T00:00:00",
+                "timestamp": "2020-02-20T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -88445,7 +88616,7 @@
                 "filename": "HOUSE_OVERSIGHT_026825.txt",
                 "is_interesting": false,
                 "num_lines": 81,
-                "timestamp": "2015-02-19T00:00:00",
+                "timestamp": "2015-02-20T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -88641,7 +88812,7 @@
                 "filename": "HOUSE_OVERSIGHT_027071.txt",
                 "is_interesting": null,
                 "num_lines": 120,
-                "timestamp": "2015-02-19T00:00:00",
+                "timestamp": "2015-02-20T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -88807,7 +88978,7 @@
                 "filename": "HOUSE_OVERSIGHT_029102.txt",
                 "is_interesting": null,
                 "num_lines": 94,
-                "timestamp": "2016-02-19T00:00:00",
+                "timestamp": "2016-02-20T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -88820,7 +88991,7 @@
                 "filename": "HOUSE_OVERSIGHT_029104.txt",
                 "is_interesting": null,
                 "num_lines": 94,
-                "timestamp": "2016-02-19T00:00:00",
+                "timestamp": "2016-02-20T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -88990,7 +89161,7 @@
                 "filename": "HOUSE_OVERSIGHT_029328.txt",
                 "is_interesting": false,
                 "num_lines": 230,
-                "timestamp": "2011-02-19T00:00:00",
+                "timestamp": "2011-02-20T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -89003,7 +89174,7 @@
                 "filename": "HOUSE_OVERSIGHT_029340.txt",
                 "is_interesting": false,
                 "num_lines": 59,
-                "timestamp": "2014-02-19T00:00:00",
+                "timestamp": "2014-02-20T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -89167,6 +89338,7 @@
                 "is_interesting": true,
                 "num_lines": 55,
                 "timestamp": "2017-06-19T00:00:00",
+                "truncate_to": -1,
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -89191,7 +89363,7 @@
                 "filename": "HOUSE_OVERSIGHT_029448.txt",
                 "is_interesting": true,
                 "num_lines": 25,
-                "timestamp": "2016-02-19T00:00:00",
+                "timestamp": "2016-02-20T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -89680,7 +89852,7 @@
                 "filename": "HOUSE_OVERSIGHT_030825.txt",
                 "is_interesting": false,
                 "num_lines": 15,
-                "timestamp": "2013-06-19T00:00:00",
+                "timestamp": "2013-06-20T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -89706,7 +89878,7 @@
                 "filename": "HOUSE_OVERSIGHT_030840.txt",
                 "is_interesting": false,
                 "num_lines": 332,
-                "timestamp": "2014-02-19T00:00:00",
+                "timestamp": "2014-02-20T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -89732,9 +89904,8 @@
                 "filename": "HOUSE_OVERSIGHT_030875.txt",
                 "is_interesting": true,
                 "num_lines": 22,
-                "timestamp": "2004-02-19T00:00:00",
-                "type": "OtherFile",
-                "was_timestamp_extracted": true
+                "timestamp": "2014-02-08T00:00:00",
+                "type": "OtherFile"
             },
             {
                 "author": "Ed Krassenstein",
@@ -89851,7 +90022,7 @@
                 "filename": "HOUSE_OVERSIGHT_031354.txt",
                 "is_interesting": false,
                 "num_lines": 182,
-                "timestamp": "2012-02-19T00:00:00",
+                "timestamp": "2012-02-20T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -89864,7 +90035,7 @@
                 "filename": "HOUSE_OVERSIGHT_031359.txt",
                 "is_interesting": false,
                 "num_lines": 794,
-                "timestamp": "2012-05-19T00:00:00",
+                "timestamp": "2012-05-20T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -89920,7 +90091,7 @@
                 "filename": "HOUSE_OVERSIGHT_031447.txt",
                 "is_interesting": null,
                 "num_lines": 97,
-                "timestamp": "2015-10-19T00:00:00",
+                "timestamp": "2015-10-20T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -89932,7 +90103,7 @@
                 "filename": "HOUSE_OVERSIGHT_031533.txt",
                 "is_interesting": false,
                 "num_lines": 67,
-                "timestamp": "2016-05-19T00:00:00",
+                "timestamp": "2016-05-20T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -90043,7 +90214,7 @@
                 "filename": "HOUSE_OVERSIGHT_031794.txt",
                 "is_interesting": false,
                 "num_lines": 24,
-                "timestamp": "2008-02-19T00:00:00",
+                "timestamp": "2008-02-20T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -90190,6 +90361,7 @@
                     "linkspirit"
                 ],
                 "timestamp": "2019-04-05T15:57:08",
+                "truncate_to": -1,
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -90333,7 +90505,8 @@
                 "filename": "HOUSE_OVERSIGHT_033220.txt",
                 "is_interesting": true,
                 "num_lines": 212,
-                "timestamp": "2018-02-19T00:00:00",
+                "timestamp": "2018-02-20T00:00:00",
+                "truncate_to": -1,
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -90399,6 +90572,7 @@
                 "is_interesting": true,
                 "num_lines": 25,
                 "timestamp": "2000-06-07T00:00:00",
+                "truncate_to": -1,
                 "type": "OtherFile"
             },
             {
@@ -92951,7 +93125,7 @@
                 "filename": "EFTA00000535.txt",
                 "is_interesting": null,
                 "num_lines": 24,
-                "timestamp": "2019-02-19T00:00:00",
+                "timestamp": "2019-02-20T00:00:00",
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
@@ -94387,7 +94561,7 @@
                 "filename": "EFTA00000837.txt",
                 "is_interesting": null,
                 "num_lines": 15,
-                "timestamp": "2019-02-19T00:00:00",
+                "timestamp": "2019-02-20T00:00:00",
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
@@ -99873,7 +100047,7 @@
                 "filename": "EFTA00001911.txt",
                 "is_interesting": null,
                 "num_lines": 40,
-                "timestamp": "2012-02-19T00:00:00",
+                "timestamp": "2012-02-20T00:00:00",
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
@@ -100737,7 +100911,7 @@
                 "filename": "EFTA00002061.txt",
                 "is_interesting": null,
                 "num_lines": 14,
-                "timestamp": "2019-02-19T00:00:00",
+                "timestamp": "2019-02-20T00:00:00",
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
@@ -101293,7 +101467,7 @@
                 "filename": "EFTA00002172.txt",
                 "is_interesting": null,
                 "num_lines": 58,
-                "timestamp": "2010-01-19T00:00:00",
+                "timestamp": "2010-01-20T00:00:00",
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
@@ -101319,7 +101493,7 @@
                 "filename": "EFTA00002178.txt",
                 "is_interesting": null,
                 "num_lines": 21,
-                "timestamp": "2019-02-19T00:00:00",
+                "timestamp": "2019-02-20T00:00:00",
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
@@ -106025,7 +106199,7 @@
                 "filename": "EFTA00003116.txt",
                 "is_interesting": null,
                 "num_lines": 55,
-                "timestamp": "2016-01-19T00:00:00",
+                "timestamp": "2016-01-20T00:00:00",
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
@@ -106658,6 +106832,7 @@
                 "is_interesting": true,
                 "num_lines": 1224,
                 "timestamp": "2024-05-02T00:00:00",
+                "truncate_to": -1,
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
@@ -106749,7 +106924,7 @@
                 "filename": "EFTA00005091.txt",
                 "is_interesting": null,
                 "num_lines": 1389,
-                "timestamp": "2024-02-19T00:00:00",
+                "timestamp": "2024-02-20T00:00:00",
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
@@ -106773,7 +106948,7 @@
                 "filename": "EFTA00005284.txt",
                 "is_interesting": null,
                 "num_lines": 1230,
-                "timestamp": "2024-02-19T00:00:00",
+                "timestamp": "2024-02-20T00:00:00",
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
@@ -107215,7 +107390,7 @@
                 "filename": "EFTA00006055.txt",
                 "is_interesting": null,
                 "num_lines": 742,
-                "timestamp": "2015-05-19T00:00:00",
+                "timestamp": "2015-05-20T00:00:00",
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
@@ -107235,7 +107410,7 @@
                 "filename": "EFTA00006069.txt",
                 "is_interesting": null,
                 "num_lines": 243,
-                "timestamp": "2005-02-19T00:00:00",
+                "timestamp": "2005-02-20T00:00:00",
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
@@ -107255,7 +107430,7 @@
                 "filename": "EFTA00006085.txt",
                 "is_interesting": null,
                 "num_lines": 384,
-                "timestamp": "2007-02-19T00:00:00",
+                "timestamp": "2007-02-20T00:00:00",
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
@@ -107286,7 +107461,7 @@
                 "filename": "EFTA00006100.txt",
                 "is_interesting": null,
                 "num_lines": 450,
-                "timestamp": "2006-03-19T14:36:47",
+                "timestamp": "2006-03-20T14:36:47",
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
@@ -107514,7 +107689,7 @@
                 "filename": "EFTA00007087.txt",
                 "is_interesting": null,
                 "num_lines": 61,
-                "timestamp": "2007-08-19T00:00:00",
+                "timestamp": "2007-08-20T00:00:00",
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
@@ -107536,7 +107711,7 @@
                 "filename": "EFTA00007097.txt",
                 "is_interesting": null,
                 "num_lines": 1850,
-                "timestamp": "2009-05-19T00:00:00",
+                "timestamp": "2009-05-20T00:00:00",
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
@@ -108120,7 +108295,7 @@
                 "filename": "EFTA00007824.txt",
                 "is_interesting": null,
                 "num_lines": 1357,
-                "timestamp": "2022-02-19T00:00:00",
+                "timestamp": "2022-02-20T00:00:00",
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
@@ -109539,6 +109714,7 @@
                 "is_interesting": true,
                 "num_lines": 417,
                 "timestamp": "2006-07-19T00:00:00",
+                "truncate_to": -1,
                 "type": "DojFile"
             },
             {
@@ -109604,7 +109780,8 @@
                 "filename": "EFTA00039025.txt",
                 "is_interesting": true,
                 "num_lines": 4486,
-                "timestamp": "2021-12-19T00:00:00",
+                "timestamp": "2021-12-20T00:00:00",
+                "truncate_to": -1,
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
@@ -109724,7 +109901,7 @@
                 "filename": "EFTA00039367.txt",
                 "is_interesting": null,
                 "num_lines": 619,
-                "timestamp": "2019-12-19T00:00:00",
+                "timestamp": "2019-12-20T00:00:00",
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
@@ -109756,7 +109933,7 @@
                 "filename": "EFTA00039421.txt",
                 "is_interesting": null,
                 "num_lines": 6506,
-                "timestamp": "2021-02-19T00:00:00",
+                "timestamp": "2021-02-20T00:00:00",
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
@@ -109892,7 +110069,7 @@
                 "filename": "EFTA00040006.txt",
                 "is_interesting": null,
                 "num_lines": 2345,
-                "timestamp": "2024-02-19T00:00:00",
+                "timestamp": "2024-02-20T00:00:00",
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
@@ -110133,7 +110310,7 @@
                 "filename": "EFTA00591691.txt",
                 "is_interesting": true,
                 "num_lines": 2525,
-                "timestamp": "2016-02-19T00:00:00",
+                "timestamp": "2016-02-20T00:00:00",
                 "truncate_to": 4000,
                 "type": "DojFile",
                 "was_timestamp_extracted": true
@@ -110213,6 +110390,7 @@
                 "is_interesting": true,
                 "num_lines": 468,
                 "timestamp": "2017-07-31T00:00:00",
+                "truncate_to": -1,
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
@@ -110237,7 +110415,8 @@
                 "filename": "EFTA00603445.txt",
                 "is_interesting": true,
                 "num_lines": 220,
-                "timestamp": "2020-02-19T00:00:00",
+                "timestamp": "2020-02-20T00:00:00",
+                "truncate_to": -1,
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
@@ -110387,6 +110566,7 @@
                 "is_interesting": true,
                 "num_lines": 275,
                 "timestamp": "2017-05-31T00:00:00",
+                "truncate_to": -1,
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
@@ -110422,7 +110602,7 @@
                 "filename": "EFTA00785160.txt",
                 "is_interesting": null,
                 "num_lines": 591,
-                "timestamp": "2019-05-19T23:12:55",
+                "timestamp": "2019-05-20T23:12:55",
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
@@ -110462,7 +110642,7 @@
                 "filename": "EFTA00803405.txt",
                 "is_interesting": true,
                 "num_lines": 1305,
-                "timestamp": "2018-03-19T00:00:00",
+                "timestamp": "2018-03-20T00:00:00",
                 "truncate_to": 4000,
                 "type": "DojFile",
                 "was_timestamp_extracted": true
@@ -110476,7 +110656,8 @@
                 "filename": "EFTA00803459.txt",
                 "is_interesting": true,
                 "num_lines": 225,
-                "timestamp": "2019-02-19T00:00:00",
+                "timestamp": "2019-02-20T00:00:00",
+                "truncate_to": -1,
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
@@ -110491,6 +110672,7 @@
                 "is_interesting": true,
                 "num_lines": 432,
                 "timestamp": "2018-07-17T00:00:00",
+                "truncate_to": -1,
                 "type": "DojFile"
             },
             {
@@ -110503,6 +110685,7 @@
                 "is_interesting": true,
                 "num_lines": 756,
                 "timestamp": "2019-02-28T00:00:00",
+                "truncate_to": -1,
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
@@ -110514,7 +110697,7 @@
                 "filename": "EFTA00805569.txt",
                 "is_interesting": true,
                 "num_lines": 1239,
-                "timestamp": "2019-05-19T00:00:00",
+                "timestamp": "2019-05-20T00:00:00",
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
@@ -110553,7 +110736,7 @@
                 "filename": "EFTA00810239.txt",
                 "is_interesting": true,
                 "num_lines": 768,
-                "timestamp": "2018-01-19T00:00:00",
+                "timestamp": "2018-01-20T00:00:00",
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
@@ -110716,7 +110899,7 @@
                 "filename": "EFTA00810362.txt",
                 "is_interesting": true,
                 "num_lines": 1600,
-                "timestamp": "2015-02-19T00:00:00",
+                "timestamp": "2015-02-20T00:00:00",
                 "truncate_to": 4000,
                 "type": "DojFile",
                 "was_timestamp_extracted": true
@@ -110743,7 +110926,7 @@
                 "filename": "EFTA00810474.txt",
                 "is_interesting": true,
                 "num_lines": 885,
-                "timestamp": "2020-02-19T00:00:00",
+                "timestamp": "2020-02-20T00:00:00",
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
@@ -110753,7 +110936,7 @@
                 "filename": "EFTA00810509.txt",
                 "is_interesting": null,
                 "num_lines": 36,
-                "timestamp": "2018-04-19T00:00:00",
+                "timestamp": "2018-04-20T00:00:00",
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
@@ -110766,7 +110949,7 @@
                 "filename": "EFTA00810510.txt",
                 "is_interesting": true,
                 "num_lines": 1206,
-                "timestamp": "2019-02-19T00:00:00",
+                "timestamp": "2019-02-20T00:00:00",
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
@@ -110793,6 +110976,7 @@
                 "is_interesting": true,
                 "num_lines": 277,
                 "timestamp": "2017-03-31T00:00:00",
+                "truncate_to": -1,
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
@@ -110819,6 +111003,7 @@
                 "is_interesting": true,
                 "num_lines": 275,
                 "timestamp": "2017-05-31T00:00:00",
+                "truncate_to": -1,
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
@@ -110832,6 +111017,7 @@
                 "is_interesting": true,
                 "num_lines": 273,
                 "timestamp": "2017-06-30T00:00:00",
+                "truncate_to": -1,
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
@@ -110845,6 +111031,7 @@
                 "is_interesting": true,
                 "num_lines": 468,
                 "timestamp": "2017-07-31T00:00:00",
+                "truncate_to": -1,
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
@@ -110871,6 +111058,7 @@
                 "is_interesting": true,
                 "num_lines": 364,
                 "timestamp": "2017-12-31T00:00:00",
+                "truncate_to": -1,
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
@@ -110896,6 +111084,7 @@
                 "is_interesting": true,
                 "num_lines": 379,
                 "timestamp": "2018-04-30T00:00:00",
+                "truncate_to": -1,
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
@@ -110935,6 +111124,7 @@
                 "is_interesting": true,
                 "num_lines": 323,
                 "timestamp": "2018-08-31T00:00:00",
+                "truncate_to": -1,
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
@@ -110993,7 +111183,7 @@
                 "filename": "EFTA01087311.txt",
                 "is_interesting": true,
                 "num_lines": 116,
-                "timestamp": "2015-12-19T00:00:00",
+                "timestamp": "2015-12-20T00:00:00",
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
@@ -111005,7 +111195,7 @@
                 "filename": "EFTA01088079.txt",
                 "is_interesting": true,
                 "num_lines": 288,
-                "timestamp": "2011-02-19T00:00:00",
+                "timestamp": "2011-02-20T00:00:00",
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
@@ -111018,7 +111208,7 @@
                 "filename": "EFTA01088484.txt",
                 "is_interesting": true,
                 "num_lines": 2604,
-                "timestamp": "2016-02-19T00:00:00",
+                "timestamp": "2016-02-20T00:00:00",
                 "truncate_to": 4000,
                 "type": "DojFile",
                 "was_timestamp_extracted": true
@@ -111130,6 +111320,20 @@
                 "type": "DojFile"
             },
             {
+                "attached_to_email_id": "EFTA00626220",
+                "author": "Crypto Currency Partners II",
+                "category": "crypto",
+                "description": "operating agreement",
+                "file_id": "EFTA01093471",
+                "file_size": 119313,
+                "filename": "EFTA01093471.txt",
+                "is_interesting": true,
+                "num_lines": 1721,
+                "timestamp": "2014-11-12T00:26:47",
+                "type": "DojFile",
+                "was_timestamp_extracted": true
+            },
+            {
                 "author": "Crypto Currency Partners II",
                 "category": "crypto",
                 "description": "partnership draft",
@@ -111138,7 +111342,7 @@
                 "filename": "EFTA01093509.txt",
                 "is_interesting": true,
                 "num_lines": 1830,
-                "timestamp": "2014-10-19T00:00:00",
+                "timestamp": "2014-10-20T00:00:00",
                 "truncate_to": 8000,
                 "type": "DojFile",
                 "was_timestamp_extracted": true
@@ -111152,6 +111356,7 @@
                 "is_interesting": true,
                 "num_lines": 60,
                 "timestamp": "2013-08-29T00:00:00",
+                "truncate_to": -1,
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
@@ -111175,7 +111380,7 @@
                 "filename": "EFTA01110414.txt",
                 "is_interesting": true,
                 "num_lines": 356,
-                "timestamp": "2016-03-19T00:00:00",
+                "timestamp": "2016-03-20T00:00:00",
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
@@ -111201,6 +111406,7 @@
                 "is_interesting": true,
                 "num_lines": 237,
                 "timestamp": "2014-10-31T00:00:00",
+                "truncate_to": -1,
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
@@ -111226,6 +111432,7 @@
                 "is_interesting": true,
                 "num_lines": 264,
                 "timestamp": "2015-10-31T00:00:00",
+                "truncate_to": -1,
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
@@ -111303,7 +111510,7 @@
                 "filename": "EFTA01126582.txt",
                 "is_interesting": null,
                 "num_lines": 159,
-                "timestamp": "2014-04-19T00:00:00",
+                "timestamp": "2014-04-20T00:00:00",
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
@@ -111315,7 +111522,8 @@
                 "filename": "EFTA01141453.txt",
                 "is_interesting": true,
                 "num_lines": 290,
-                "timestamp": "2013-11-19T00:00:00",
+                "timestamp": "2013-11-20T00:00:00",
+                "truncate_to": -1,
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
@@ -111328,7 +111536,7 @@
                 "filename": "EFTA01158019.txt",
                 "is_interesting": true,
                 "num_lines": 38,
-                "timestamp": "2015-10-19T00:00:00",
+                "timestamp": "2015-10-20T00:00:00",
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
@@ -111391,9 +111599,9 @@
                 "is_interesting": null,
                 "num_lines": 552,
                 "recipients": [
-                    "actress Athena Zelcovich",
                     "Joscha Bach",
-                    "Lawrence Krauss"
+                    "Lawrence Krauss",
+                    "actress Athena Zelcovich"
                 ],
                 "timestamp": "2014-05-13T22:32:18",
                 "type": "DojFile",
@@ -111407,8 +111615,8 @@
                 "is_interesting": null,
                 "num_lines": 579,
                 "recipients": [
-                    "actress Athena Zelcovich",
-                    "Tyler Shears"
+                    "Tyler Shears",
+                    "actress Athena Zelcovich"
                 ],
                 "timestamp": "2014-05-26T19:52:08",
                 "type": "DojFile",
@@ -111422,10 +111630,11 @@
                 "is_interesting": true,
                 "num_lines": 579,
                 "recipients": [
-                    "Tyler Shears",
-                    "Hanna Traff at Spotify"
+                    "Hanna Traff at Spotify",
+                    "Tyler Shears"
                 ],
                 "timestamp": "2014-08-22T20:12:59",
+                "truncate_to": -1,
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
@@ -111435,7 +111644,7 @@
                 "filename": "EFTA01255984.txt",
                 "is_interesting": null,
                 "num_lines": 95,
-                "timestamp": "2020-02-19T00:00:00",
+                "timestamp": "2020-02-20T00:00:00",
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
@@ -111792,6 +112001,16 @@
                 "was_timestamp_extracted": true
             },
             {
+                "category": "girls",
+                "description": "\"now im finding pussy for you\" / \"no one can beat your pussy network\"",
+                "file_id": "EFTA01616933",
+                "file_size": 3585,
+                "filename": "EFTA01616933.txt",
+                "is_interesting": true,
+                "num_lines": 141,
+                "type": "DojFile"
+            },
+            {
                 "file_id": "EFTA01618339",
                 "file_size": 2092,
                 "filename": "EFTA01618339.txt",
@@ -111937,6 +112156,7 @@
                 "is_interesting": true,
                 "num_lines": 223,
                 "timestamp": "2017-11-19T02:45:36",
+                "truncate_to": -1,
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
@@ -111965,6 +112185,7 @@
                 "is_interesting": true,
                 "num_lines": 2225,
                 "timestamp": "2019-09-12T00:00:00",
+                "truncate_to": -1,
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
@@ -111976,7 +112197,7 @@
                 "filename": "EFTA01734786.txt",
                 "is_interesting": true,
                 "num_lines": 333,
-                "timestamp": "2015-10-19T00:00:00",
+                "timestamp": "2015-10-20T00:00:00",
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
@@ -111990,6 +112211,7 @@
                 "is_interesting": true,
                 "num_lines": 54,
                 "timestamp": "2014-05-20T14:49:00",
+                "truncate_to": -1,
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
@@ -112012,7 +112234,7 @@
                 "filename": "EFTA02725909.txt",
                 "is_interesting": true,
                 "num_lines": 214,
-                "timestamp": "2009-02-19T00:00:00",
+                "timestamp": "2009-02-20T00:00:00",
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
@@ -112022,7 +112244,7 @@
                 "filename": "EFTA02730267.txt",
                 "is_interesting": null,
                 "num_lines": 147,
-                "timestamp": "2022-02-19T00:00:00",
+                "timestamp": "2022-02-20T00:00:00",
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
@@ -112032,7 +112254,7 @@
                 "filename": "EFTA02730271.txt",
                 "is_interesting": null,
                 "num_lines": 102,
-                "timestamp": "2022-02-19T00:00:00",
+                "timestamp": "2022-02-20T00:00:00",
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
@@ -112054,7 +112276,7 @@
                 "filename": "EFTA02730477.txt",
                 "is_interesting": null,
                 "num_lines": 120,
-                "timestamp": "2022-02-19T00:00:00",
+                "timestamp": "2022-02-20T00:00:00",
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
@@ -112066,7 +112288,7 @@
                 "filename": "EFTA02730486.txt",
                 "is_interesting": null,
                 "num_lines": 5818,
-                "timestamp": "2024-11-19T00:00:00",
+                "timestamp": "2024-11-20T00:00:00",
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
@@ -112076,7 +112298,7 @@
                 "filename": "EFTA02730741.txt",
                 "is_interesting": null,
                 "num_lines": 5787,
-                "timestamp": "2024-11-19T00:00:00",
+                "timestamp": "2024-11-20T00:00:00",
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
@@ -112154,7 +112376,7 @@
                 "filename": "EFTA02731168.txt",
                 "is_interesting": null,
                 "num_lines": 689,
-                "timestamp": "2020-04-19T00:00:00",
+                "timestamp": "2020-04-20T00:00:00",
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
@@ -112208,7 +112430,7 @@
                 "filename": "EFTA02731341.txt",
                 "is_interesting": null,
                 "num_lines": 472,
-                "timestamp": "2003-02-19T00:00:00",
+                "timestamp": "2003-02-20T00:00:00",
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
@@ -112218,7 +112440,7 @@
                 "filename": "EFTA02731361.txt",
                 "is_interesting": null,
                 "num_lines": 573,
-                "timestamp": "2003-09-19T00:00:00",
+                "timestamp": "2003-09-20T00:00:00",
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
@@ -112349,7 +112571,7 @@
                 "filename": "EFTA02731529.txt",
                 "is_interesting": null,
                 "num_lines": 66,
-                "timestamp": "2017-02-19T00:00:00",
+                "timestamp": "2017-02-20T00:00:00",
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
@@ -112359,7 +112581,7 @@
                 "filename": "EFTA02731556.txt",
                 "is_interesting": null,
                 "num_lines": 63,
-                "timestamp": "2013-04-19T00:00:00",
+                "timestamp": "2013-04-20T00:00:00",
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
@@ -112453,7 +112675,7 @@
         "AT&T Court Appearance Team": "business, AT&T",
         "Abdoulaye Wade": "Africa, former president of Senegal, father of Karim Wade",
         "Abi Schwinck": "modeling, Jean Luc Brunel's MC2 Model Management (???)",
-        "Adam Back": "crypto, co-founder of Blockstream, bitcoin dev, long time Tether defender",
+        "Adam Back": "crypto, co-founder of Blockstream, bitcoin developer, Tether defender",
         "Al Seckel": "publicist, Isabel Maxwell's husband, Mindshift conference, mysterious death",
         "Alain Forget": "journalist, author of \"How To Get Out Of This World ALIVE\"",
         "Alan Dershowitz": "lawyer, Harvard Law School professor",
@@ -112590,7 +112812,7 @@
         "John Allessi": "employee, Epstein's houseman",
         "John Brockman": "journalist, literary agent and author specializing in scientific literature",
         "Johnny el Hachem": "Rothschild, Edmond de Rothschild Private Equity",
-        "Joi Ito": "crypto, former head of MIT Media Lab and MIT Digital Currency Initiative",
+        "Joi Ito": "crypto, head of MIT Media Lab and MIT Digital Currency Initiative",
         "Jojo Fontanilla": "employee, Filipino housekeeper",
         "Jonathan Farkas": "friend, heir to the Alexander's department store fortune",
         "Joscha Bach": "academia, cognitive science / AI research",
