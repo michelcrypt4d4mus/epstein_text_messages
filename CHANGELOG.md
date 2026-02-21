@@ -1,8 +1,10 @@
 # NEXT RELEASE
+
+### 1.8.3
 * `--output-doj` is now `--all-doj-files`, `--email-timeline` is now `--all-emails-chrono`
+* Add short bio boxes for people as they are encountered in the chronological view
 * Add manual review/config step to `--load-new`
 * `--char-nums` arg
-* Add short bio boxes for people as they are encountered in the chronological view
 
 ### 1.8.2
 * fix `--show-urls` bug
