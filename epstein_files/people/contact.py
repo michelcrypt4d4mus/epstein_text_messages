@@ -3,7 +3,7 @@ from dataclasses import dataclass, field, fields
 from typing import Self
 
 from epstein_files.util.constant.names import (NAMES_TO_NOT_HIGHLIGHT, SIMPLE_NAME_REGEX, Name,
-     constantize_name, extract_first_name, extract_last_name, name_variations, reversed_name)
+     constantize_name, name_variations)
 from epstein_files.util.constant.strings import INDENT_NEWLINE, INDENTED_JOIN
 from epstein_files.util.helpers.data_helpers import constantize_names
 from epstein_files.util.helpers.string_helper import as_pattern, indented, quote, remove_question_marks
