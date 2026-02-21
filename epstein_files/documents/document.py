@@ -289,13 +289,20 @@ class Document:
 
         char_range = list(self.config.truncate_to) if self.config.is_excerpt else [0, self.config.truncate_to]
         trim_footer_txt = self.truncation_note(char_range[1])
-        txt = highlighter(Text(text[char_range[0]:char_range[1]], style))
-        txt.append('...\n\n').append(trim_footer_txt)
+        chars = text[char_range[0]:char_range[1]]
 
         if char_range[0] > 0:
-            txt = Text('').append(f'<not showing first {char_range[0]:,} characters>\n\n', 'dim italic').append('...').append(txt)
+            # Add paragraph separators if very long lines
+            if max(len(line) for line in  chars.split('\n')) > 120:
+                chars = chars.replace('\n', '\n\n')
 
-        return txt
+            _txt = Text('', style=EXCERPT_STYLE)
+            _txt.append(f'<...trimmed first {char_range[0]:,} characters...>\n\n', 'dim')
+            txt = _txt.append('...').append(highlighter(Text(chars, style)))
+        else:
+            txt = highlighter(Text(chars, style))
+
+        return txt.append('...\n\n').append(trim_footer_txt)
 
     @property
     def suppressed_txt(self) -> Text | None:

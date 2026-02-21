@@ -66,7 +66,7 @@ class OtherFile(Document):
     def config_description(self) -> str:
         """Overloads superclass property."""
         if self.config and self.config.complete_description:
-            pfx = "Selection from " if self.config.is_excerpt else ''
+            pfx = 'Excerpt of ' if self.config.is_excerpt else ''
             return f"{pfx}{self.config.complete_description}"
         else:
             return ''

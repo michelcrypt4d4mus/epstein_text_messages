@@ -25,6 +25,7 @@ ARCHIVE_LINK_UNDERLINE = f"{ARCHIVE_LINK_COLOR} underline"
 ARCHIVE_ALT_LINK_STYLE = 'medium_purple4 italic'  # "(raw files)" link
 AUX_SITE_LINK_STYLE = 'dark_orange3'
 DEFAULT_NAME_STYLE = 'grey23'
+EXCERPT_STYLE = 'italic cornsilk1'
 SOCIAL_MEDIA_LINK_STYLE = 'pale_turquoise4'
 SUBHEADER_STYLE = 'dim gray27'
 TEXT_LINK = 'text_link'
