@@ -37,8 +37,6 @@ from epstein_files.util.helpers.link_helper import link_text_obj
 from epstein_files.util.helpers.string_helper import capitalize_first, collapse_newlines
 from epstein_files.util.logging import logger
 
-RENDER_BODY_AS_TABLE = True
-
 # Email bod regexes
 BAD_FIRST_LINE_REGEX = re.compile(r'^(>>|Grant_Smith066474"eMailContent.htm|LOVE & KISSES)$')
 BAD_LINE_REGEX = re.compile(r'^(>;?|\d{1,2}|PAGE INTENTIONALLY LEFT BLANK|Classification: External Communication|Hide caption|Importance:?\s*High|[iI,•]|[1i] (_ )?[il]|, [-,]|L\._|_filtered|si.nature.asc|.*(yiv0232|font-family:|margin-bottom:).*)$')
@@ -739,19 +737,18 @@ class Email(Communication):
 
         if self.config_description_txt and site_config.email_info_in_subtitle:
             max_line_len = max(max_line_len, len(self.config_description_txt.plain))
-            subtitle_style = 'dim' if RENDER_BODY_AS_TABLE else 'on gray7'
-            subtitle = Text('', style=subtitle_style).append(self.config_description_txt)
-            subtitle = Text(' ', subtitle_style).join(subtitle.split(' '))  # split then join makes rich color subtitle correctly
+            subtitle = Text('').append(self.config_description_txt)
+            subtitle.justify = 'right'
 
-        yield self.file_info_panel()
         txt = highlighter(text).append('...\n\n').append(trim_footer_txt) if trim_footer_txt else highlighter(text)
 
-        if RENDER_BODY_AS_TABLE:
-            panel = self._text_table(txt, subtitle)
+        if args.panelize_emails:
+            body = self._body_as_panel(txt, subtitle)
         else:
-            panel = self._text_panel(txt, subtitle)
+            body = self._body_as_table(txt, subtitle)
 
-        yield Padding(panel, (0, 0, 1, site_config.other_files_table_indent))
+        yield self.file_info_panel()
+        yield Padding(body, (0, 0, 1, site_config.other_files_table_indent))
 
         if self.attached_docs:
             attachments_table_title = f" {self.file_info.url_slug} Email Attachments:"
@@ -761,24 +758,25 @@ class Email(Communication):
         if should_rewrite_header:
             self.log_top_lines(self.header.num_header_rows + 4, f'Original header:')
 
-    def _text_panel(self, text: str | Text, description: Text | None) -> Panel:
+    def _body_as_panel(self, text: str | Text, description: Text | None) -> Panel:
         """Renders the info info text in the panel's bottom border."""
         return Panel(
             text,
             border_style=self.border_style,
             expand=False,
-            subtitle=description,
-            subtitle_align='right',
+            title=Text(' ').join(description.split(' ')) if description else None,  # split then join makes rich color subtitle correctly
+            title_align='right',
         )
 
-    def _text_table(self, text: str | Text, description: Text | None) -> Table:
+    def _body_as_table(self, text: str | Text, description: Text | None) -> Table:
         """Renders the info text as a top row in a table-ish view."""
         panel = Table(
             border_style=self.border_style,
             box=box.ROUNDED,
-            header_style='italic',
+            header_style='on gray11',
             show_header=bool(description)
         )
+
         panel.add_column(description or '')
         panel.add_row(text)
         return panel
