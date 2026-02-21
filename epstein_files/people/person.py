@@ -85,7 +85,7 @@ class Person:
     def counterparties(self) -> list[Name]:
         """All text and email counterparties for this person."""
         all_counterparties = flatten([c.participants for c in self.communications])
-        return [c for c in all_counterparties if c != self.name]
+        return sort_names([c for c in all_counterparties if c != self.name])
 
     @property
     def email_conversation_length_in_days(self) -> int:

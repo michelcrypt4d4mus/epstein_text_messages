@@ -239,13 +239,13 @@ def print_stats(epstein_files: EpsteinFiles) -> None:
     print_json(f"Email Author Counts", epstein_files.email_author_counts(), skip_falsey=True)
     print_json(f"Email Recipient Counts", epstein_files.email_recipient_counts(), skip_falsey=True)
     print_json("Email signature_substitution_countss", epstein_files.email_signature_substitution_counts(), skip_falsey=True)
-    print_json("email_author_device_signatures", dict_sets_to_lists(epstein_files.email_authors_to_device_signatures()))
-    print_json("email_sent_from_devices", dict_sets_to_lists(epstein_files.email_device_signatures_to_authors()))
-    print_json("unknown_recipient_ids", epstein_files.unknown_recipient_ids())
-    print_json("count_by_month", Document.count_by_month(epstein_files.documents))
+    print_json("Email author device signatures", dict_sets_to_lists(epstein_files.email_authors_to_device_signatures()))
+    print_json("Email authors by device", dict_sets_to_lists(epstein_files.email_device_signatures_to_authors()))
+    print_json("Unknown Recipient IDs", epstein_files.unknown_recipient_ids())
+    print_json("All documents count by month", Document.count_by_month(epstein_files.documents))
     print_json("Interesting OtherFile IDs", sorted([f.file_id for f in epstein_files.interesting_other_files]))
     print_json(f"Highlight Counts", highlighter.highlight_counts)
-    print_json(f"Counterparties", epstein_files.counterparties)
+    print_json(f"Counterparties", epstein_files.counterparties_dict)
     highlighter.print_highlight_counts(console)
 
 

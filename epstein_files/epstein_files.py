@@ -29,7 +29,7 @@ from epstein_files.people.person import INVALID_FOR_EPSTEIN_WEB, Person
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constants import *
 from epstein_files.util.env import args, logger
-from epstein_files.util.helpers.data_helpers import flatten, json_safe, uniquify
+from epstein_files.util.helpers.data_helpers import flatten, json_safe, sort_dict_by_keys, uniquify
 from epstein_files.util.helpers.file_helper import all_txt_paths, doj_txt_paths, extract_file_id, file_size_str
 from epstein_files.util.timer import Timer
 
@@ -108,8 +108,8 @@ class EpsteinFiles:
         return self.person_objs(all_names)
 
     @property
-    def counterparties(self) -> dict[Name, list[Name]]:
-        return {p.name: sort_names(p.counterparties) for p in self.emailers}
+    def counterparties_dict(self) -> dict[Name, list[Name]]:
+        return sort_dict_by_keys({p.name: p.counterparties for p in self.emailers})
 
     @property
     def imessage_logs(self) -> list[MessengerLog]:
