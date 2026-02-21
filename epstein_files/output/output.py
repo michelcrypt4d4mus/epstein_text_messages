@@ -43,7 +43,7 @@ def print_curated_chronological(epstein_files: EpsteinFiles) -> list[Document]:
     printed_docs: list[Document] = []
     has_printed_table_explanation = False
     other_files_queue = []  # Collects sequential OtherFiles into tables
-    documents = epstein_files.unique_documents[:200] if args.is_mobile else epstein_files.unique_documents
+    documents = epstein_files.unique_documents[:200] if args.mobile else epstein_files.unique_documents
 
     for doc in documents:
         if not doc.is_interesting:
