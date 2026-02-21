@@ -195,6 +195,16 @@ class Email(Communication):
     # Class variable logging how many headers we prettified while printing, kind of janky
     rewritten_header_ids: ClassVar[set[str]] = set([])
 
+    def __post_init__(self):
+        super().__post_init__()
+        self.text = self._prettify_text()
+        self.actual_text = self._extract_actual_text()
+        self.sent_from_device = self._sent_from_device()
+
+        for signature, name  in KNOWN_SIGNATURES.items():
+            if self.has_unknown_participant and signature.lower() in self.text.lower():
+                self.warn(f"Found known signature for {name} in unattributed email.")
+
     @property
     def attachment_file_ids(self) -> list[str]:
         """Strings in the Attachments: field in the header, split by semicolon."""
@@ -330,16 +340,6 @@ class Email(Communication):
                 uninteresting_txt.append(f' ("{self.subject}")', style='light_yellow3')
 
             return uninteresting_txt
-
-    def __post_init__(self):
-        super().__post_init__()
-        self.text = self._prettify_text()
-        self.actual_text = self._extract_actual_text()
-        self.sent_from_device = self._sent_from_device()
-
-        for signature, name  in KNOWN_SIGNATURES.items():
-            if self.has_unknown_participant and signature.lower() in self.text.lower():
-                self.warn(f"Found known signature for {name} in unattributed email.")
 
     def is_from_or_to(self, name: str) -> bool:
         """True if `name` is either the author or one of the recipients."""

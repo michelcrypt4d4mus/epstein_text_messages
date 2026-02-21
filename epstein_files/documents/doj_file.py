@@ -218,12 +218,20 @@ DEBUG_PROPS = [
 
 @dataclass
 class DojFile(OtherFile):
-    """Class for the files released by DOJ on 2026-01-30 with `EFTA000` prefix."""
+    """
+    Class for the files released by DOJ on 2026-01-30 with `EFTA000` prefix.
+    """
     _border_style: str | None = None
 
     # Class constants and variables
     MAX_TIMESTAMP: ClassVar[datetime] = datetime(2025, 1, 29)  # Cutoff for _extract_timestamp(), Overloads superclass
     border_style_rainbow_idx: ClassVar[int] = 0  # ClassVar to help change color as we print, no impact beyond fancier output
+
+    def __post_init__(self):
+        super().__post_init__()
+
+        if self.file_id in STRIP_IMAGE_PANEL_IDS:
+            self.strip_image_ocr_panels()
 
     @property
     def border_style(self) -> str:
@@ -285,12 +293,6 @@ class DojFile(OtherFile):
         sort_timestamp = self.timestamp or FALLBACK_TIMESTAMP
         sort_timestamp = FALLBACK_TIMESTAMP if sort_timestamp.year <= 2001 else sort_timestamp
         return (sort_timestamp, self.file_id, dupe_idx)
-
-    def __post_init__(self):
-        super().__post_init__()
-
-        if self.file_id in STRIP_IMAGE_PANEL_IDS:
-            self.strip_image_ocr_panels()
 
     def external_links_txt(self, _style: str = '', with_alt_links: bool = True) -> Text:
         """Overrides super() method to apply self.border_style."""

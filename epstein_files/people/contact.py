@@ -27,6 +27,9 @@ class Contact:
     is_junk: bool = False  # TODO: this sucks
     # jmail_url: str
 
+    def __post_init__(self):
+        self.emailer_regex = re.compile(self.pattern, re.IGNORECASE)
+
     @property
     def highlight_pattern(self) -> str:
         """
@@ -55,9 +58,6 @@ class Contact:
                 pattern = self.name + '?'
 
         return as_pattern(pattern)
-
-    def __post_init__(self):
-        self.emailer_regex = re.compile(self.pattern, re.IGNORECASE)
 
     @property
     def _props_strs(self) -> list[str]:

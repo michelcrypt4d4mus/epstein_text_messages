@@ -97,18 +97,33 @@ class Document:
         text (str): Contents of the file
         timestamp (datetime, optional): When the file was originally created
     """
-    file_path: Path
+    # Class constants
+    INCLUDE_DESCRIPTION_IN_SUMMARY_PANEL: ClassVar[bool] = False
+    STRIP_WHITESPACE: ClassVar[bool] = True  # Overridden in JsonFile
 
-    # Optional and/or derived at instantiation time
+    file_path: Path
+    # Derived at instantiation time
     extracted_author: Name = None
     extracted_timestamp: datetime | None = None
     file_info: FileInfo = field(init=False)
     lines: list[str] = field(default_factory=list)
     text: str = ''
 
-    # Class constants
-    INCLUDE_DESCRIPTION_IN_SUMMARY_PANEL: ClassVar[bool] = False
-    STRIP_WHITESPACE: ClassVar[bool] = True  # Overridden in JsonFile
+    def __post_init__(self):
+        if not self.file_path.exists():
+            raise FileNotFoundError(f"File '{self.file_path}' does not exist!")
+
+        self.file_info = FileInfo(self.file_path)
+        self.text = self.text or self._load_file()
+        self._set_text(text=self.text)
+        self._repair()
+        self.extracted_author = None if self.author else self._extract_author()
+        self.extracted_timestamp = None if self.timestamp else self._extract_timestamp()
+
+    @classmethod
+    def from_file_id(cls, file_id: str | int) -> Self:
+        """Alternate constructor that finds the file path automatically and builds a `Document`."""
+        return cls(coerce_file_path(file_id))
 
     @property
     def author(self) -> Name:
@@ -382,22 +397,6 @@ class Document:
     @property
     def _debug_prefix(self) -> str:
         return underscore(self._class_name).lower()
-
-    def __post_init__(self):
-        if not self.file_path.exists():
-            raise FileNotFoundError(f"File '{self.file_path}' does not exist!")
-
-        self.file_info = FileInfo(self.file_path)
-        self.text = self.text or self._load_file()
-        self._set_text(text=self.text)
-        self._repair()
-        self.extracted_author = None if self.author else self._extract_author()
-        self.extracted_timestamp = None if self.timestamp else self._extract_timestamp()
-
-    @classmethod
-    def from_file_id(cls, file_id: str | int) -> Self:
-        """Alternate constructor that finds the file path automatically and builds a `Document`."""
-        return cls(coerce_file_path(file_id))
 
     def colored_external_links(self) -> Text:
         return self.file_info.build_external_links(with_alt_links=True)

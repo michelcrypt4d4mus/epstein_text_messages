@@ -58,6 +58,12 @@ class OtherFile(Document):
     MAX_TIMESTAMP: ClassVar[datetime] = datetime(2022, 12, 31) # Overloaded in DojFile
     num_synthetic_cfgs_created: ClassVar[int] = 0
 
+    def __post_init__(self):
+        super().__post_init__()
+
+        if not self.config and (cfg := build_cfg_from_text(self)):
+            self.derived_cfg = cfg
+
     @property
     def config(self) -> DocCfg | None:
         return super().config or self.derived_cfg
@@ -124,12 +130,6 @@ class OtherFile(Document):
     def summary(self) -> Text:
         """One line summary mostly for logging."""
         return super().summary.append(CLOSE_PROPERTIES_CHAR)
-
-    def __post_init__(self):
-        super().__post_init__()
-
-        if not self.config and (cfg := build_cfg_from_text(self)):
-            self.derived_cfg = cfg
 
     def _extract_timestamp(self) -> datetime | None:
         """Return configured timestamp or value extracted by scanning text with datefinder."""

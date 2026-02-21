@@ -136,6 +136,17 @@ class DocCfg:
     show_with_name: str = ''
     truncate_to: int | tuple[int, int] | None = None
 
+    def __post_init__(self):
+        self.truncate_to = self.truncate_to or (NO_TRUNCATE if self.is_interesting else self.truncate_to)
+        self.id = self.id.upper()
+        self.set_category(self.category)
+
+        if self.author_uncertain and isinstance(self.author_uncertain, str):
+            self.author_reason = self.author_uncertain  # Copy field
+
+        if self.duplicate_of_id or self.duplicate_ids:
+            self.dupe_type = self.dupe_type or SAME
+
     @property
     def author_str(self) -> str:
         return self.author or ''
@@ -347,17 +358,6 @@ class DocCfg:
             props.pop('dupe_type')
 
         return props
-
-    def __post_init__(self):
-        self.truncate_to = self.truncate_to or (NO_TRUNCATE if self.is_interesting else self.truncate_to)
-        self.id = self.id.upper()
-        self.set_category(self.category)
-
-        if self.author_uncertain and isinstance(self.author_uncertain, str):
-            self.author_reason = self.author_uncertain  # Copy field
-
-        if self.duplicate_of_id or self.duplicate_ids:
-            self.dupe_type = self.dupe_type or SAME
 
     def duplicate_cfgs(self) -> Generator[Self, None, None]:
         """Create synthetic `DocCfg` objects that set the 'duplicate_of_id' field to point back to this object."""

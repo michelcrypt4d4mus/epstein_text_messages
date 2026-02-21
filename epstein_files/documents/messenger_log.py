@@ -34,6 +34,10 @@ class MessengerLog(Communication):
     messages: list[TextMessage] = field(default_factory=list)
     phone_number: str | None = None
 
+    def __post_init__(self):
+        super().__post_init__()
+        self.messages = [self._build_message(match) for match in MSG_REGEX.finditer(self.text)]
+
     @property
     def is_interesting(self) -> bool | None:
         """Junk emails are not interesting."""
@@ -68,10 +72,6 @@ class MessengerLog(Communication):
             txt.append(highlighter(f" using the phone number {self.phone_number}"))
 
         return txt.append(')')
-
-    def __post_init__(self):
-        super().__post_init__()
-        self.messages = [self._build_message(match) for match in MSG_REGEX.finditer(self.text)]
 
     def first_message_at(self, name: Name) -> datetime:
         return self.messages_by(name)[0].parse_timestamp()

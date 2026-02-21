@@ -58,6 +58,35 @@ class EpsteinFiles:
     uninteresting_ccs: list[Name] = field(default_factory=list)
     _empty_file_ids: set[str] = field(default_factory=set)
 
+    def __post_init__(self):
+        """Iterate through files and build appropriate objects."""
+        self.file_paths = sorted(all_txt_paths(), reverse=True)
+        self.documents = self._load_file_paths(self.file_paths)
+        self._finalize_data_and_write_to_disk()
+
+    @classmethod
+    def get_files(cls, timer: Timer | None = None) -> 'EpsteinFiles':
+        """Alternate constructor that reads/writes a pickled version of the data ('timer' arg is for logging)."""
+        timer = timer or Timer()
+
+        if args.pickle_path.exists() and not args.overwrite_pickle:
+            with gzip.open(args.pickle_path, 'rb') as file:
+                epstein_files = pickle.load(file)
+                timer_msg = f"Loaded {len(epstein_files.documents):,} documents from '{args.pickle_path}'"
+                timer.print_at_checkpoint(f"{timer_msg} ({file_size_str(args.pickle_path)})")
+
+            if args.load_new:
+                epstein_files.load_new_files()
+            elif args.reload_doj:
+                epstein_files.reload_doj_files()
+
+            return epstein_files
+
+        logger.warning(f"Building new cache file, this will take a few minutes...")
+        epstein_files = EpsteinFiles()
+        timer.print_at_checkpoint(f'Processed {len(epstein_files.file_paths):,} files, {OtherFile.num_synthetic_cfgs_created} synthetic configs')
+        return epstein_files
+
     @property
     def all_doj_files(self) -> Sequence[DojFile | Email]:
         """All files with the filename EFTAXXXXXX, including those that were turned into `Email` objs."""
@@ -117,35 +146,6 @@ class EpsteinFiles:
     def unique_emails(self) -> list[Email]:
         """All `Email` objects except for duplicates."""
         return Document.without_dupes(self.emails)
-
-    def __post_init__(self):
-        """Iterate through files and build appropriate objects."""
-        self.file_paths = sorted(all_txt_paths(), reverse=True)
-        self.documents = self._load_file_paths(self.file_paths)
-        self._finalize_data_and_write_to_disk()
-
-    @classmethod
-    def get_files(cls, timer: Timer | None = None) -> 'EpsteinFiles':
-        """Alternate constructor that reads/writes a pickled version of the data ('timer' arg is for logging)."""
-        timer = timer or Timer()
-
-        if args.pickle_path.exists() and not args.overwrite_pickle:
-            with gzip.open(args.pickle_path, 'rb') as file:
-                epstein_files = pickle.load(file)
-                timer_msg = f"Loaded {len(epstein_files.documents):,} documents from '{args.pickle_path}'"
-                timer.print_at_checkpoint(f"{timer_msg} ({file_size_str(args.pickle_path)})")
-
-            if args.load_new:
-                epstein_files.load_new_files()
-            elif args.reload_doj:
-                epstein_files.reload_doj_files()
-
-            return epstein_files
-
-        logger.warning(f"Building new cache file, this will take a few minutes...")
-        epstein_files = EpsteinFiles()
-        timer.print_at_checkpoint(f'Processed {len(epstein_files.file_paths):,} files, {OtherFile.num_synthetic_cfgs_created} synthetic configs')
-        return epstein_files
 
     def docs_matching(self, pattern: re.Pattern | str, names: list[Name] | None = None) -> list[SearchResult]:
         """Find documents whose text matches `pattern` optionally limited to only docs involving `name`)."""
