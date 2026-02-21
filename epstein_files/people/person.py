@@ -339,7 +339,7 @@ class Person:
             print_special_note(SPECIAL_NOTES[self.name])
 
         docs = Document.sort_by_timestamp(self._printable_emails + self.show_with_emails_docs)
-        docs = [left_indent(Align(d, 'right'), site_config.show_with_indent) if isinstance(d, OtherFile) else d for d in docs]
+        docs = [Align(d, 'right') if isinstance(d, OtherFile) else d for d in docs]
         Document.print_documents(docs)
         return self._printable_emails
 

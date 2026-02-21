@@ -32,7 +32,10 @@ EMAIL_PROPS = [
     'sent_from_device',
 ]
 
-CFG_PROPS = ['complete_description']
+CFG_PROPS = [
+    'complete_description'
+]
+
 COLS = ROOT_PROPS + EMAIL_PROPS + CFG_PROPS
 
 

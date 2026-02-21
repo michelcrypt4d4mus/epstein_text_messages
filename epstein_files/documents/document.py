@@ -617,7 +617,7 @@ class Document:
         last_doc_was_suppressed = False
 
         for doc in docs:
-            is_document = not isinstance(doc, Padding)
+            is_document = isinstance(doc, cls)
 
             if is_document and doc.suppressed_txt:
                 doc.print()

@@ -14,7 +14,7 @@ from epstein_files.util.helpers.data_helpers import uniquify
 from .conftest import assert_higher_counts
 from .fixtures.emails.signatures import AUTHORS_TO_DEVICE_SIGNATURES, DEVICE_SIGNATURE_TO_AUTHORS, SIGNATURE_SUBSTITUTION_COUNTS
 from .fixtures.messenger_logs.author_counts import MESSENGER_LOG_AUTHOR_COUNTS
-from .fixtures.fixture_csvs import EMAIL_PROPS, load_files_csv
+from .fixtures.fixture_csvs import CFG_PROPS, EMAIL_PROPS, load_files_csv
 
 
 def test_against_csv(epstein_files):
@@ -25,13 +25,20 @@ def test_against_csv(epstein_files):
     for doc in epstein_files.unique_documents:
         if (csv_row := csv_docs.get(doc.file_id)):
             for k, csv_val in csv_row.items():
-                if k == 'complete_description' or (k in EMAIL_PROPS and not isinstance(doc, Email)):
+                if k in EMAIL_PROPS and not isinstance(doc, Email):
                     continue
-                elif (doc_prop := getattr(doc, k)) != csv_val:
+                elif k in CFG_PROPS:
+                    doc_val = getattr(doc.config, k) if doc.config else ''
+                else:
+                    doc_val = getattr(doc, k)
+
+                    if doc_val == csv_val:
+                        continue
+
                     bad_docs.append(doc)
                     reloaded_prop = getattr(doc.reload(), k)
                     mismatched_prop_str = f"mismatched '{k}'"
-                    values_str = f"doc='{doc_prop}', csv='{csv_val}'"
+                    values_str = f"doc='{doc_val}', csv='{csv_val}'"
 
                     if reloaded_prop == csv_val:
                         values_str += f", reloaded='{reloaded_prop}'"
