@@ -207,9 +207,7 @@ def _print_external_links() -> None:
 
 
 def _print_page_title(width: int = TITLE_WIDTH) -> None:
-    if not args.mobile:
-        print_centered(MOBILE_WARNING, style='dim')
-
+    print_centered(MOBILE_WARNING, style='dim')
     title = Text('', justify='center').append('The Epstein Files', style='underline bold')
     title_panel = Panel(title, box=box.DOUBLE_EDGE, expand=True, padding=(2, 2), style=TITLE_STYLE, width=width)
     print_centered(vertically_pad(title_panel))
