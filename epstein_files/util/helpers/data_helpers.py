@@ -5,7 +5,7 @@ import itertools
 import re
 from datetime import datetime, timezone
 from dateutil import tz
-from typing import TypeVar
+from typing import Sequence, TypeVar
 
 from epstein_files.util.constant import names
 from epstein_files.util.env import args
@@ -46,8 +46,13 @@ def dict_sets_to_lists(d: dict[str, set]) -> dict[str, list]:
     return {k: sorted(list(v)) for k, v in d.items()}
 
 
-def flatten(_list: list[list[T]]) -> list[T]:
-    return list(itertools.chain.from_iterable(_list))
+def flatten(_list: Sequence[list[T] | set[T]]) -> list[T]:
+    if not _list:
+        return []
+    elif all(isinstance(element, set) for element in _list):
+        return list(set().union(*_list))
+    else:
+        return list(itertools.chain.from_iterable(_list))
 
 
 def json_safe(d: dict) -> dict:

@@ -78,11 +78,14 @@ class Person:
 
     @property
     def communications(self) -> Sequence[Communication]:
+        """This person's `MessengerLog` and `Email` object."""
         return self.imessage_logs + self.emails
 
     @property
     def counterparties(self) -> list[Name]:
-        return list(set().union(*[c.participants for c in self.communications]))
+        """All text and email counterparties for this person."""
+        all_counterparties = flatten([c.participants for c in self.communications])
+        return [c for c in all_counterparties if c != self.name]
 
     @property
     def email_conversation_length_in_days(self) -> int:

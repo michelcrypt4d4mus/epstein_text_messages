@@ -104,9 +104,12 @@ class EpsteinFiles:
     @property
     def emailers(self) -> list[Person]:
         """All the people who sent or received an email."""
-        authors = [email.author for email in self.emails]
-        recipients = flatten([email.recipients for email in self.emails])
-        return self.person_objs(uniquify(authors + recipients))
+        all_names = flatten([e.participants for e in self.emails])
+        return self.person_objs(all_names)
+
+    @property
+    def counterparties(self) -> dict[Name, list[Name]]:
+        return {p.name: sort_names(p.counterparties) for p in self.emailers}
 
     @property
     def imessage_logs(self) -> list[MessengerLog]:

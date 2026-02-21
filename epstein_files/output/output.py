@@ -245,6 +245,7 @@ def print_stats(epstein_files: EpsteinFiles) -> None:
     print_json("count_by_month", Document.count_by_month(epstein_files.documents))
     print_json("Interesting OtherFile IDs", sorted([f.file_id for f in epstein_files.interesting_other_files]))
     print_json(f"Highlight Counts", highlighter.highlight_counts)
+    print_json(f"Counterparties", epstein_files.counterparties)
     highlighter.print_highlight_counts(console)
 
 
