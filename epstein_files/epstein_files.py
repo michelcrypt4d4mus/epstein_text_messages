@@ -3,13 +3,12 @@ import json
 import pickle
 import re
 import sys
-from collections import Counter, defaultdict
+from collections import defaultdict
 from dataclasses import dataclass, field
 from datetime import datetime
 from pathlib import Path
 from typing import Mapping, Sequence, Type, cast
 
-from rich.prompt import Confirm
 from rich.table import Table
 from yaralyzer.util.helpers.interaction_helper import ask_to_proceed
 
@@ -90,7 +89,7 @@ class EpsteinFiles:
     @property
     def all_doj_files(self) -> Sequence[DojFile | Email]:
         """All files with the filename EFTAXXXXXX, including those that were turned into `Email` objs."""
-        return [doc for doc in self.documents if doc.file_info.is_doj_file]
+        return [d for d in self.documents if d.file_info.is_doj_file]
 
     @property
     def doj_files(self) -> list[DojFile]:
@@ -323,7 +322,7 @@ class EpsteinFiles:
         return table
 
     def repair_ids(self, ids: list[str]) -> None:
-        """Repair/reload the ids specified and save to disk."""
+        """Repair/reload the ids specified as positional arguments and save updated pickle file to disk."""
         ids = uniquify(ids)
         doc_paths = [d.file_path for d in self.documents if d.file_id in ids]
 
