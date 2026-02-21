@@ -218,6 +218,7 @@ social_media_post_with_url.txt
 /source_data/**/*
 LICENSE
 the_epstein_files.local.pkl.gz
+the_epstein_files.local.pkl.gz.bak
 .urls.env
 .DS_Store
 .env.bak
