@@ -429,6 +429,7 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
         'Sent from Surface',
         'Sent from Surface RT',
         'Sent from Windows Mail',
+        'Sent using Acompli email app',
     ],
     "Sultan Ahmed Bin Sulayem": [
         "Sent from my iPhone"
