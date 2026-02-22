@@ -132,7 +132,7 @@ UNCONFIRMED_TEXTS_CONFIG = [
     TextCfg(id='027365', author=STEVE_BANNON, author_uncertain='AI says Trump and New York Times coverage'),
     TextCfg(id='027406', author=STEVE_BANNON, author_uncertain='AI says Trump and New York Times coverage'),
     TextCfg(id='027655', author=STEVE_BANNON, author_uncertain='AI says Trump and New York Times coverage'),
-    TextCfg(id='027722', author=STEVE_BANNON, duplicate_ids=['027722'], author_uncertain='AI says Trump and New York Times coverage'),
+    TextCfg(id='027722', author=STEVE_BANNON, duplicate_ids=['027720'], author_uncertain='AI says Trump and New York Times coverage'),
     TextCfg(id='027735', author=STEVE_BANNON, author_uncertain='AI says Trump and New York Times coverage'),
     TextCfg(id='027794', author=STEVE_BANNON, author_uncertain='AI says Trump and New York Times coverage'),
     TextCfg(id='025368', author=STEVE_BANNON, author_uncertain='AI', is_interesting=True, comment='obama slander'),
