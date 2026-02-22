@@ -16,7 +16,7 @@ from epstein_files.util.helpers.string_helper import indented
 from epstein_files.util.logging import logger
 
 ALL = 'a'
-QUESTION = Text("OK to continue? (", 'honeydew2').append(f"list of IDs to manually config, '{ALL}' for all", 'yellow1').append(')')
+QUESTION = Text("OK to save these new docs? (", 'honeydew2').append(f"list of IDs to manually config, '{ALL}' for all", 'yellow1').append(')')
 MAGIC_COMMENT = '#### MAGIC COMMENT FOR MANUAL CONFIG ####'
 CONSTANTS_PY_PATH = Path(__file__).parent.parent.parent.joinpath('util', 'constants.py')
 
