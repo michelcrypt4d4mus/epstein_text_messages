@@ -140,6 +140,13 @@ def epstein_grep():
                 console.print(doc._debug_txt(), style='dim')
                 console.line()
 
+        matched_ids = [result.document.file_id for result in search_results]
+        txt = Text("\n\n'").append(search_term, style='bright_red').append("'").append(' matched IDs: ')
+        console.print(txt.append(' '.join(matched_ids), style='cyan'))
+
+        if args.repair:
+            epstein_files.repair_ids(matched_ids)
+
 
 def epstein_show():
     """Show the color highlighted file. If --raw arg is passed, show the raw text of the file as well."""
