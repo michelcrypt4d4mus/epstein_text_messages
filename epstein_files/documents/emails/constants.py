@@ -12,7 +12,7 @@ FALLBACK_TIMESTAMP = parse("1/1/2051 12:01:01 AM")
 XML_STRIPPED_MSG = '<...removed Apple XML plist...>'
 
 # Reply line regexes
-FORWARDED_LINE_PATTERN = r"-+ *(Forwarded|Original)\s*Message *-*|Begin forwarded message:?"
+FORWARDED_LINE_PATTERN = r"-+ *((Forwarded|Original)\s*Message|Message d'?origine) *-*|Begin forwarded message:?"
 FRENCH_REPLY_PATTERN = r"Le .* a ecrit:"
 GERMAN_REPLY_PATTERN = r"Am \d\d\.\d\d\..*schrieb.*"
 NORWEGAIN_REPLY_PATTERN = r"(Den .* folgende|(fre|lor|son)\. .* skrev .*):"

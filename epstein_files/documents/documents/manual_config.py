@@ -78,13 +78,16 @@ def create_configs(docs: Sequence[Document]) -> Sequence[DocCfg]:
             continue
 
         for prop in doc_props:
-            doc_val = getattr(doc, prop)
-
-            if not doc_val or isinstance(doc_val, list):
+            if not (doc_val := getattr(doc, prop)):
                 _ask_for_value(cfg, prop, doc, doc_val)
 
+                if prop == 'author':
+                    _ask_for_value(cfg, 'author_uncertain', doc, doc_val)
+                elif prop == 'recipients':
+                    _ask_for_value(cfg, 'uncertain_recipient', doc, doc_val)
+
         for prop in CFG_PROPS:
-            if not getattr(cfg, prop):
+            if not (doc_val := getattr(cfg, prop)):
                 _ask_for_value(cfg, prop, doc, doc_val)
 
         cfgs.append(cfg)
@@ -94,15 +97,16 @@ def create_configs(docs: Sequence[Document]) -> Sequence[DocCfg]:
 
 
 def _ask_for_value(cfg: DocCfg, prop: str, doc: Document, doc_val: list[str] | str) -> None:
-    question = Text('').append(prop, style='cyan').append('? ')
+    """Ask for a value for `prop`. If provided use `setattr` to set it on to the `cfg`."""
+    question = Text('').append(prop, style='cyan').append('?')
     is_list_prop = isinstance(doc_val, list)
     is_bool_prop = prop.startswith('is_')
     is_truncate_prop = prop == 'truncate_to'
 
     if is_list_prop:
-        question.append('(comma separated) ', style='yellow1 dim')
+        question.append(' (semicolon separated)', style='dim')
     elif is_bool_prop:
-        question.append('[y/n/None] ', style='magenta')
+        question.append(' [y/n/None]', style='magenta')
 
     if is_bool_prop:
         value = _ask_for_optional_bool(question)
@@ -110,11 +114,13 @@ def _ask_for_value(cfg: DocCfg, prop: str, doc: Document, doc_val: list[str] | s
         value = Prompt.ask(question).strip()
 
         if not value:
-            return None
+            return
         elif isinstance(doc_val, list):
-            value = [value]
+            value = [name.strip() for name in value.split(';')]
         elif is_truncate_prop:
             value = int(value)
+        elif value == 'True':
+            value = True
 
     setattr(cfg, prop, value)
 

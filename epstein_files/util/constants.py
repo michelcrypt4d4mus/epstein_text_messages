@@ -1253,6 +1253,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA02624738', recipients=[JEFFREY_EPSTEIN]),
     EmailCfg(id='EFTA02629770', recipients=[JEFFREY_EPSTEIN]),
     EmailCfg(id='EFTA00705664', recipients=[JEFFREY_EPSTEIN]),
+    EmailCfg(id='EFTA01763770', recipients=[JEFFREY_EPSTEIN, JEAN_LUC_BRUNEL]),
     EmailCfg(id='EFTA00716532', recipients=[JEFFREY_EPSTEIN], truncate_to=479),
     EmailCfg(id='EFTA02328335', recipients=[JEFFREY_EPSTEIN, KARYNA_SHULIAK, None]),
     EmailCfg(id='EFTA02622513', recipients=[JULIA_SANTOS], author_reason='https://x.com/FlippersUpNow/status/2021662725412110565'),
@@ -1274,7 +1275,6 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00368951', recipients=[LESLEY_GROFF], author_reason='can be seen in EFTA00368958'),
     EmailCfg(id='EFTA00313867', recipients=[LESLEY_GROFF], truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA00383027', recipients=[LINDA_STONE]),
-    EmailCfg(id='EFTA02515798', recipients=[LINDA_STONE]),  # response to EFTA02515756
     EmailCfg(id='EFTA01002282', recipients=[LINDA_STONE], comment='signature'),
     EmailCfg(id='EFTA02266524', recipients=[MARIA_PRUSAKOVA], author_reason=CRYPTO_PR_LAB, description='Medici Bank'),
     EmailCfg(id='EFTA02731632', recipients=[OFFICE_OF_THE_DEPUTY_ATTORNEY_GENERAL]),
@@ -1312,7 +1312,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA02731713', recipients=[USANYS], uncertain_recipient='true'),
     EmailCfg(id='EFTA02731718', recipients=[USANYS], uncertain_recipient='true'),
     EmailCfg(id='EFTA02645069', is_interesting=True, description='Epstein says the Mongolians have asked him to create a currency'),
-    EmailCfg(id='EFTA02637315', is_interesting=True, comment=f"{AZIZA_ALAHMADI} says BTC to fiat is legalized in middle east"),
+    EmailCfg(id='EFTA02637315', is_interesting=True, description=f"{AZIZA_ALAHMADI} says BTC to fiat is legalized in middle east"),
     EmailCfg(id='EFTA02517037', is_interesting=True, description=f"Epstein wants to talk about Kazakhstan with {LARRY_SUMMERS}"),
     EmailCfg(id='EFTA02559311', is_interesting=True, description=f"Epstein has some connection to the sovereign wealth fund of Kazakhstan"),
     EmailCfg(id='EFTA01943067', is_interesting=True, description=f'comments on {ARIANE_DE_ROTHSCHILD} and bitcoin'),
@@ -1355,6 +1355,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA02483194', description=f"discussion of {GANBAT_CHULUUNKHUU}'s arrest", is_interesting=True),
     EmailCfg(id='EFTA02629771', description=f"discussion of {RENATA_BOLOTOVA}'s employment at IPI", is_interesting=True),
     EmailCfg(id='EFTA00637023', description=f"discussion of getting around laws against laundering money in places like Myanmar and Mongolia"),
+    EmailCfg(id='EFTA02396341', description='the Sharia Coin gambit', is_interesting=True),
     EmailCfg(id='EFTA02630431', description=f"Carbyne FKA 'Reporty' is an Israeli company invested in by Epstein, Junkermann, and {EHUD_BARAK}"),
     EmailCfg(id='EFTA00901772', description=f'Epstein makes a large investment in Coinbase that would earn him most of $100 million', is_interesting=True),
     EmailCfg(id='EFTA00671263', description="Eagle's View Capital Management September 2017 Performance Update"),
@@ -1414,7 +1415,8 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00676383', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA00949376', truncate_to=NO_TRUNCATE),
     #### MAGIC COMMENT FOR MANUAL CONFIG ####
-        EmailCfg(id='EFTA00953261', author=LARRY_SUMMERS, recipients=[JEFFREY_EPSTEIN]),
+    EmailCfg(id='EFTA02641374', is_interesting=true),
+    EmailCfg(id='EFTA00953261', author=LARRY_SUMMERS, recipients=[JEFFREY_EPSTEIN]),
 ]
 
 # These emails will be suppressed in the curated views
@@ -1463,6 +1465,7 @@ UNINTERESTING_EMAIL_IDS = [
     '029587',
     '029237',
     '029499',
+    'EFTA02363524',  # visible in EFTA00676383
     'EFTA00649516',
     'EFTA02593836',
     'EFTA00697880',
@@ -2444,6 +2447,8 @@ OTHER_FILES_CRYPTO = [
     EmailCfg(id='EFTA01925969', description=f"{AUSTIN_HILL} and {ADAM_BACK} and some women plan a trip to The Island", is_interesting=True),
     EmailCfg(id='EFTA00955063', description=f'{AUSTIN_HILL} discusses crypto funds engaged in fraudulent wash trading', is_interesting=True),
     EmailCfg(id='EFTA01010209', description=f"{AUSTIN_HILL} calls {AMIR_TAAKI} \"a bit crazy\'"),
+    EmailCfg(id='EFTA01788532', description=f"{AUSTIN_HILL} asking about Jeffrey Katzenberg's contact info"),
+    EmailCfg(id='EFTA02515798', recipients=[LINDA_STONE], description='Epstein confirms he invested in Blockstream'),  # response to EFTA02515756
     # David Stern
     EmailCfg(id='EFTA02494305', description=f"planning a crypto exchange in Belarus, {DAVID_STERN}'s \"Chinese guys\" can't do it because of the PRC's crackdown on crypto"),
     EmailCfg(id='EFTA00886763', description=f"documents are being prepared to license Epstein and {DAVID_STERN}'s crypto exchange in Belarus"),
