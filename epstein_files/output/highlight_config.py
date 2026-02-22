@@ -10,7 +10,7 @@ from rich.text import Text
 
 from epstein_files.documents.documents.categories import (CATEGORY_STYLES, CATEGORY_STYLE_MAPPING,
      DEFAULT_CATEGORY_STYLE, Interesting, Neutral, Uninteresting)
-from epstein_files.documents.emails.constants import REPLY_REGEX, SENT_FROM_REGEX, XML_STRIPPED_MSG
+from epstein_files.documents.emails.constants import QUOTE_INDENT_CHAR_GROUP, REPLY_REGEX, SENT_FROM_REGEX, XML_STRIPPED_MSG
 from epstein_files.output.highlighted_names import HighlightGroup, HighlightedNames, HighlightPatterns, ManualHighlight
 from epstein_files.people.contact import Contact
 from epstein_files.util.constant.names import *
@@ -395,6 +395,7 @@ HighlightedNames(
             r"Silk Road",
             r"SpanCash",
             r"Stellar",
+            r"Stephens Investment Management",
             r"Steve Waterhouse",
             r"supersecretbitcoinproject",
             r"Tally Capital",
@@ -653,6 +654,7 @@ HighlightedNames(
             r"Ibiza",
             r"Ital(ian|y)",
             r"Jacques",
+            r"(Justin )?Trudeau",
             r"(Kamila )?Bobinska",
             r"Kiev",
             r"Latvian?",
@@ -777,6 +779,7 @@ HighlightedNames(
             r"Morgan Stanley",
             r"OpenGate Capital(, LLC)?",
             r"(Peter L. )?Scher",
+            r"philanthrop(i(es|st)|y)",
             r"(Ray )?Dalio",
             r"(Richard )?LeFrak",
             r"Rockefeller(?! University)( Foundation)?",
@@ -1556,8 +1559,9 @@ HighlightedNames(
             ),
             Contact(
                 name=SERGEY_BELYAKOV,
-                info="graduate of Russia's FSB academy",
                 emailer_pattern=r"Sergey Belyako|Беляков Сергей|Cepre(ct|il) [6BES][\w.]+|6(er|of)no\w+ [CE]\w+",
+                info="graduate of Russia's FSB academy (AKA \"a spy\"), head of the St. Petersburg Economic Forum Foundation",
+                link_to_bio='https://dossier.center/jeffreyepsteinrusconnect-en/',
             ),
             Contact(SVETLANA_POZHIDAEVA, f"Epstein's Russian assistant who was recommended for a visa by Sergei Belyakov (FSB) and {DAVID_BLAINE}")
         ],
@@ -1779,6 +1783,7 @@ HighlightedNames(
             r"Minor Victim",
             r"pa?edophile",
             r"pussy",
+            r"sex traffick(ers?|ing)",
             r"Stephanie Clifford",
             r"Stormy Daniels",
             r"(Virginia ((L\.?|Roberts) )?)?Giuffre",
@@ -1965,7 +1970,7 @@ HighlightedNames(
     HighlightPatterns(
         label='sent_from',
         style='light_cyan3 italic dim',
-        patterns=[SENT_FROM_REGEX.pattern],
+        patterns=[fr"{QUOTE_INDENT_CHAR_GROUP}*{SENT_FROM_REGEX.pattern}"],
     ),
     HighlightPatterns(
         label='snipped_signature',

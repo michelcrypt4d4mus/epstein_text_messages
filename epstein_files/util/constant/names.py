@@ -319,7 +319,7 @@ NAMES_TO_NOT_HIGHLIGHT = """
     gates gateway gerald george gold gordon greg
     haddad hall hanson harry hay heather henry hill hoffman howard
     ian inc inc. ivan
-    jack james jay jean jeff jeffrey jennifer jeremy jessica joel john jon jonathan joseph jr
+    jack james jay jean jeff jeffrey jennifer jeremy jessica joel john jon jonathan joseph jr justin
     kafka kahn karl kate katherine kelly ken kevin krassner
     larry larsen laurie lawrence leon lesley linda link lisa
     management mann marc marie mark martin matthew melanie michael mike miller mitchell miles morris moskowitz

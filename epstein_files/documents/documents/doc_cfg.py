@@ -140,6 +140,9 @@ class DocCfg:
     truncate_to: int | tuple[int, int] | None = None
 
     def __post_init__(self):
+        if self.id in self.duplicate_ids:
+            raise ValueError(f"{self.id} is a duplicate of itself!")
+
         self.truncate_to = self.truncate_to or (NO_TRUNCATE if self.is_interesting else self.truncate_to)
         self.id = self.id.upper()
         self.set_category(self.category)

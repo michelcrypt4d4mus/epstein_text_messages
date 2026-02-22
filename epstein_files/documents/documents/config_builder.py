@@ -1,7 +1,7 @@
 from dateutil.parser import parse
 
 from epstein_files.documents.documents.categories import Category, Interesting, Neutral, Uninteresting
-from epstein_files.documents.documents.doc_cfg import DocCfg
+from epstein_files.documents.documents.doc_cfg import CommunicationCfg, DocCfg
 from epstein_files.util.constant.names import *
 from epstein_files.util.helpers.string_helper import has_line_starting_with, join_truthy
 from epstein_files.util.logging import logger
@@ -80,7 +80,17 @@ def wolff_draft_cfg(id: str, suffix: str = '', **kwargs) -> DocCfg:
     return DocCfg(
         id=id,
         author=MICHAEL_WOLFF,
-        date='2014-11-01',  # Very approximate
+        date='2014-08-31' if 'show_with_name' in kwargs else '2014-09-01',  # Very approximate, make excerpt show first
         description=join_truthy(WOLFF_EPSTEIN_ARTICLE_DRAFT, suffix),
         **kwargs
+    )
+
+
+def blaine_letter(id: str, date: str, suffix: str = '') -> CommunicationCfg:
+    return CommunicationCfg(
+        id=id,
+        date=date,
+        description=join_truthy(f"recommending genius visa for a Epstein's assistant {SVETLANA_POZHIDAEVA}", suffix),
+        is_interesting=True,
+        recipients=['Immigration'],
     )

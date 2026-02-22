@@ -10,6 +10,7 @@ from epstein_files.util.constant.strings import REDACTED
 
 FALLBACK_TIMESTAMP = parse("1/1/2051 12:01:01 AM")
 XML_STRIPPED_MSG = '<...removed Apple XML plist...>'
+QUOTE_INDENT_CHAR_GROUP = '[>»• ]'
 
 # Reply line regexes
 FORWARDED_LINE_PATTERN = r"-+ *((Forwarded|Original)\s*Message|Message d'?origine) *-*|Begin forwarded message:?"
@@ -20,7 +21,7 @@ REPLY_LINE_IN_A_MSG_PATTERN = r"In a message dated \d+/\d+/\d+.*writes:"
 REPLY_LINE_ENDING_PATTERN = r"[_ \n](AM|PM|[<_]|w?rote:?)"
 REPLY_LINE_ON_NUMERIC_DATE_PATTERN = fr"(?<!M)On \d+[-/][\d\w]+[-/]\d+[, ].*{REPLY_LINE_ENDING_PATTERN}"
 REPLY_LINE_ON_DATE_PATTERN = fr"On (\d+ )?((Mon|Tues?|Wed(nes)?|Thu(rs)?|Fri|Sat(ur)?|Sun)(day)?|(Ja.|Fe(b|vr\.)|Ma.|Ap.|Ma.|Ju.|Ju.|Au.|Se.|Oc.|No.|De.)\w*)[, ].*{REPLY_LINE_ENDING_PATTERN}"
-REPLY_LINE_PATTERN = rf"^([>» •]*({FRENCH_REPLY_PATTERN}|{GERMAN_REPLY_PATTERN}|{NORWEGAIN_REPLY_PATTERN}|{REPLY_LINE_IN_A_MSG_PATTERN}|{REPLY_LINE_ON_NUMERIC_DATE_PATTERN}|{REPLY_LINE_ON_DATE_PATTERN}|{FORWARDED_LINE_PATTERN}))"
+REPLY_LINE_PATTERN = rf"^({QUOTE_INDENT_CHAR_GROUP}*({FRENCH_REPLY_PATTERN}|{GERMAN_REPLY_PATTERN}|{NORWEGAIN_REPLY_PATTERN}|{REPLY_LINE_IN_A_MSG_PATTERN}|{REPLY_LINE_ON_NUMERIC_DATE_PATTERN}|{REPLY_LINE_ON_DATE_PATTERN}|{FORWARDED_LINE_PATTERN}))"
 REPLY_REGEX = re.compile(REPLY_LINE_PATTERN, re.IGNORECASE | re.MULTILINE)
 FORWARDED_TOO_MUCH_SPACE_REGEX = re.compile(fr"^({FORWARDED_LINE_PATTERN})\n\n", re.MULTILINE | re.IGNORECASE)
 
@@ -76,7 +77,7 @@ SIGNATURE_PATTERNS = [
 DEVICE_PATTERN = r"(Envoyé de mon|Sent (from|using|via)).*(" + '|'.join(DEVICE_PATTERNS) + r")"
 EPSTEIN_TYPO_PREFIX = r"((Please forgive|Sorry for all the) typos.{1,4})"
 SENT_FROM_DEVICE_PATTERN = '|'.join([DEVICE_PATTERN] + SIGNATURE_PATTERNS)
-SENT_FROM_REGEX = re.compile(fr'^{EPSTEIN_TYPO_PREFIX}?({SENT_FROM_DEVICE_PATTERN})\.?', re.M | re.I)
+SENT_FROM_REGEX = re.compile(fr'^{QUOTE_INDENT_CHAR_GROUP}*{EPSTEIN_TYPO_PREFIX}?({SENT_FROM_DEVICE_PATTERN})\.?', re.M | re.I)
 
 # Misc
 MAILING_LISTS = [
@@ -132,6 +133,7 @@ EMAIL_SIGNATURE_REGEXES = {
     ARIANE_DE_ROTHSCHILD: re.compile(r"Ensemble.*\nCe.*\ndestinataires.*\nremercions.*\nautorisee.*\nd.*\nLe.*\ncontenues.*\nEdmond.*\nRoth.*\nlo.*\nRoth.*\ninfo.*\nFranc.*\n.2.*", re.I),
     BARBRO_C_EHNBOM: re.compile(r"Barbro C.? Ehn.*\nChairman, Swedish-American.*\n((Office|Cell|Sweden):.*\n)*(360.*\nNew York.*)?"),
     BRAD_KARP: re.compile(r"This message is intended only for the use of the Addressee and may contain information.*\nnot the intended recipient, you are hereby notified.*\nreceived this communication in error.*"),
+    'Bradford Stephens': re.compile(r'^One Ferry Building,? Suite .{,5}\nSan.*\n(o.*\n)?www.*', re.MULTILINE | re.IGNORECASE),
     BROCK_PIERCE: re.compile(r"[>» ]*Best regards,\n[>» ]*Brock( Pierce)?|IMPORTANT NOTICE: This.*\n(individual.*\nthat is.*\nlaw.*\nemployee.*\nrecipient.*|may contain info.*\nreader of this.*)|(Mobile?:?.*\n)?(Skype:.*\n)?E:?.*\n(W:.*\n)?(Follow me.*\n)?Co-invest.*(\nLinked.*)?"),
     DANIEL_SIAD: re.compile(r"Confidentiality Notice: The information contained in this electronic message is PRIVILEGED and confidential information intended only for the use of the individual entity or entities named as recipient or recipients. If the reader is not the intended recipient, be hereby notified that any dissemination, distribution or copy of this communication is strictly prohibited. If you have received this communication in error, please notify me immediately by electronic mail or by telephone and permanently delete this message from your computer system. Thank you.".replace(' ', r'\s*'), re.IGNORECASE),
     DANNY_FROST: re.compile(r"Danny Frost\nDirector.*\nManhattan District.*\n212.*", re.IGNORECASE),
