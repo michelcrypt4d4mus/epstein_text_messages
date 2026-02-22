@@ -4,7 +4,7 @@ Custom configurations for various files.
 from itertools import groupby
 
 from epstein_files.documents.documents.config_builder import (WOLFF_EPSTEIN_ARTICLE_DRAFT, blaine_letter,
-     letter, starr_letter, wolff_draft_cfg)
+     letter, starr_letter, whistleblower_cfg, wolff_draft_cfg)
 from epstein_files.documents.documents.categories import CONSTANT_CATEGORIES, Interesting, Neutral
 from epstein_files.documents.documents.doc_cfg import NO_TRUNCATE, CommunicationCfg, DocCfg, EmailCfg, TextCfg, phone_bill_cfg
 from epstein_files.documents.doj_files.full_text import EFTA00009622_TEXT
@@ -1396,8 +1396,8 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00758140', description="possibly about Sarah Ferguson?"),
     EmailCfg(id='EFTA02434682', description=f"Epstein and {JEAN_LUC_BRUNEL} courting a finance bro with women", is_interesting=True),
     EmailCfg(id='EFTA01013413', description='Reza Bundy is the founder of IronPlanet'),
-    EmailCfg(id='EFTA00039689', description=f"{SEC_WHISTLEBLOWER} re: Signature Bank, Hapoalim, Bioptix/RIOT, Barry Honig, etc.", truncate_to=NO_TRUNCATE),
-    EmailCfg(id='EFTA00093702', description=f"{SEC_WHISTLEBLOWER}, rest is visible in EFTA00039689", truncate_to=102_000),
+    EmailCfg(id='EFTA00039689', description=f"{SEC_WHISTLEBLOWER} re: Signature Bank, Hapoalim, Bioptix/RIOT, Barry Honig, etc."),
+    EmailCfg(id='EFTA00093702', description=f"{SEC_WHISTLEBLOWER}", comment="rest is visible in EFTA00039689 after 102_000 chars"),
     EmailCfg(id='EFTA00875181', duplicate_ids=['EFTA01901268']),
     EmailCfg(id='EFTA01852975', duplicate_ids=['EFTA02001764']),
     EmailCfg(id='EFTA00563586', duplicate_ids=['EFTA02323722']),
@@ -2597,6 +2597,21 @@ OTHER_FILES_JUNK = [
     DocCfg(id='EFTA02731726'),
     DocCfg(id='EFTA02731728'),
 ]
+
+RIOT_BLOCKCHAIN_DESCRIPTION = 'RIOT Blockchain (FKA "Bioptix") is a sketchy bitcoin miner in Texas'
+
+WHISTLEBLOWER_IDS = {
+    'EFTA00093702_37': '',
+    'EFTA00093702_13': '',
+    'EFTA00093702_21': RIOT_BLOCKCHAIN_DESCRIPTION,
+    'EFTA00093702_30': RIOT_BLOCKCHAIN_DESCRIPTION,
+    'EFTA00093702_29': RIOT_BLOCKCHAIN_DESCRIPTION,
+    'EFTA00093702_28': RIOT_BLOCKCHAIN_DESCRIPTION,
+    'EFTA00093702_27': RIOT_BLOCKCHAIN_DESCRIPTION,
+    'EFTA00093702_26': RIOT_BLOCKCHAIN_DESCRIPTION,
+}
+
+OTHER_FILES_CRYPTO.extend([whistleblower_cfg(id, desc) for id, desc in WHISTLEBLOWER_IDS.items()])
 
 # These emails will be suppressed in the curated views
 UNINTERESTING_EMAIL_IDS = [

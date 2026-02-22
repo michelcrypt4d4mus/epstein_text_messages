@@ -432,7 +432,7 @@ class Document:
 
         # TODO: this approach to forcing whole_file sucks
         old_whole_file_arg = args.whole_file
-        args.whole_file = whole_file
+        args.whole_file = args.whole_file or whole_file
         console.print(self)
         args.whole_file = old_whole_file_arg
 

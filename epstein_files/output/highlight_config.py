@@ -895,7 +895,7 @@ HighlightedNames(
             r"FOIA",
             r"food stamps",
             r"FTC",
-            r"Gary Gensler",
+            r"(Gary )?Gensler",
             r"(General )?P(a|e)traeus",
             r"Geoff Ling",
             r"Homeland Security",
@@ -2000,7 +2000,7 @@ HighlightedNames(
         style=TIMESTAMP_STYLE,
         patterns=[
             fr"({DATE_PATTERN} )?{TIME_PATTERN}",
-            DATE_PATTERN,
+            fr"\b{DATE_PATTERN}\b",
         ],
     ),
 
@@ -2030,9 +2030,6 @@ PEOPLE_BIOS = {
 def get_contact(name: str) -> Contact | None:
     if (group := get_highlight_group_for_name(name)) and isinstance(group, HighlightedNames):
         return group.contacts_lookup.get(name)
-
-
-
 
 
 def get_highlight_group_for_name(name: str | None) -> HighlightGroup | None:

@@ -1,7 +1,7 @@
 from dateutil.parser import parse
 
 from epstein_files.documents.documents.categories import Category, Interesting, Neutral, Uninteresting
-from epstein_files.documents.documents.doc_cfg import CommunicationCfg, DocCfg, DuplicateType
+from epstein_files.documents.documents.doc_cfg import CommunicationCfg, DocCfg, DuplicateType, EmailCfg
 from epstein_files.util.constant.names import *
 from epstein_files.util.helpers.string_helper import has_line_starting_with, join_truthy
 from epstein_files.util.logging import logger
@@ -116,6 +116,14 @@ def valar_cfg(id: str, description: str = '', text: str = '') -> DocCfg:
         author=VALAR_VENTURES,
         date='2015-06-30' if '6/30/2015' in text else '',
         description=description or f"is a fintech focused {PETER_THIEL} fund Epstein was invested in",
+    )
+
+
+def whistleblower_cfg(id, description: str = '') -> EmailCfg:
+    return EmailCfg(
+        id=id,
+        description=join_truthy('SEC whistleblower email', description, ', '),
+        is_interesting=True,
     )
 
 
