@@ -461,7 +461,7 @@ class DocCfg:
                 existing_cfgs.append(cls(id=id, **{prop: val}))
                 created += 1
 
-        logger.warning(f"Created {created} {cls.__name__} with {prop}={val}, updated {updated} existing.")
+        logger.info(f"Created {created} {cls.__name__} with {prop}={val}, updated {updated} existing.")
 
 
 @dataclass(kw_only=True)

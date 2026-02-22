@@ -73,8 +73,9 @@ def create_configs(docs: Sequence[Document]) -> Sequence[DocCfg]:
             doc_props = DOC_PROPS
 
         console.print(doc._debug_dict(True), '\n')
+        logger.warning(f"Updating doc_props: {doc_props}")
 
-        if what_to_do == ALL and not Confirm.ask(f"Add config for this file?"):
+        if what_to_do == ALL and len(docs) > 1 and not Confirm.ask(f"Add config for this file?"):
             continue
 
         for prop in doc_props:
@@ -100,8 +101,8 @@ def create_configs(docs: Sequence[Document]) -> Sequence[DocCfg]:
 def _ask_for_value(cfg: DocCfg, prop: str, doc: Document, doc_val: list[str] | str) -> None:
     """Ask for a value for `prop`. If provided use `setattr` to set it on to the `cfg`."""
     question = Text('').append(prop, style='cyan').append('?')
-    is_list_prop = isinstance(doc_val, list)
     is_bool_prop = prop.startswith('is_')
+    is_list_prop = isinstance(doc_val, list)
     is_truncate_prop = prop == 'truncate_to'
 
     if is_list_prop:
