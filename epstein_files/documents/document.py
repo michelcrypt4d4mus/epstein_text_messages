@@ -281,6 +281,7 @@ class Document:
         prefix = '' if self.config and self.config.timestamp else 'inferred '
         return f"{prefix}timestamp: {remove_zero_time(self.timestamp)}"
 
+    # TODO: this name too close to Email method called _prettify_text()
     @property
     def prettified_text(self) -> Text:
         """Returns the string we want to print as the body of the document."""
@@ -288,16 +289,7 @@ class Document:
         text = self.config_replace_text_with or self.text
 
         if args.char_nums:
-            idx = args.char_nums
-            new_text = text[:idx]
-
-            while idx < len(text):
-                new_text += f'\n\n ------ {idx} ------ \n\n'
-                end_idx = idx + args.char_nums
-                new_text += text[idx: end_idx]
-                idx = end_idx
-
-            text = new_text
+            text = self._inject_line_numbers(text, args.char_nums)
 
         if self.config is None or self.config.truncate_to in [None, NO_TRUNCATE] or args.whole_file:
             return highlighter(Text(text, style))
@@ -520,6 +512,19 @@ class Document:
     def _extract_timestamp(self) -> datetime | None:
         """Should be implemented in subclasses."""
         pass
+
+    def _inject_line_numbers(self, text: str, interval: int) -> str:
+        """Inject character numbers markers into `text`. For debugging only."""
+        idx = interval
+        new_text = text[:idx]
+
+        while idx < len(text):
+            new_text += f'\n\n ------ {idx} ------ \n\n'
+            end_idx = idx + interval
+            new_text += text[idx:end_idx]
+            idx = end_idx
+
+        return new_text
 
     def _load_file(self) -> str:
         """Remove BOM and HOUSE OVERSIGHT lines, strip whitespace."""

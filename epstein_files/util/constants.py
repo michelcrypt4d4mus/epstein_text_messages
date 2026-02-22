@@ -1543,6 +1543,8 @@ UNINTERESTING_EMAIL_IDS = [
 
 NOT_CHRONOLOGICAL_VIEW_IDS = [
     '022247',
+    '030095',
+    '022234',
 ]
 
 EmailCfg.create_or_set_prop(UNINTERESTING_EMAIL_IDS, EMAILS_CONFIG, 'is_interesting', False)

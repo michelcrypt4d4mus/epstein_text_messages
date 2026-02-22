@@ -729,6 +729,9 @@ class Email(Communication):
             text = _add_line_breaks(text)
             self.rewritten_header_ids.add(self.file_id)
 
+        if args.char_nums:
+            text = self._inject_line_numbers(text, args.char_nums)
+
         lines = [
             Text.from_markup(f"[link={line}]{line}[/link]") if line.startswith('http') else Text(line)
             for line in text.split('\n')
