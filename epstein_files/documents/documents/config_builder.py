@@ -1,7 +1,7 @@
 from dateutil.parser import parse
 
 from epstein_files.documents.documents.categories import Category, Interesting, Neutral, Uninteresting
-from epstein_files.documents.documents.doc_cfg import CommunicationCfg, DocCfg
+from epstein_files.documents.documents.doc_cfg import CommunicationCfg, DocCfg, DuplicateType
 from epstein_files.util.constant.names import *
 from epstein_files.util.helpers.string_helper import has_line_starting_with, join_truthy
 from epstein_files.util.logging import logger
@@ -93,4 +93,17 @@ def blaine_letter(id: str, date: str, suffix: str = '') -> CommunicationCfg:
         description=join_truthy(f"recommending genius visa for a Epstein's assistant {SVETLANA_POZHIDAEVA}", suffix),
         is_interesting=True,
         recipients=['Immigration'],
+    )
+
+
+def starr_letter(id: str, date: str, duplicate_ids: list[str], dupe_type: DuplicateType = 'same') -> CommunicationCfg:
+    return CommunicationCfg(
+        id=id,
+        author=KEN_STARR,
+        category=Category.LETTER,
+        date=date,
+        description="requesting lenient treatment for Epstein",
+        duplicate_ids=duplicate_ids,
+        dupe_type=dupe_type,
+        recipients=['Judge Mark Filip'],
     )

@@ -3,7 +3,7 @@ Custom configurations for various files.
 """
 from itertools import groupby
 
-from epstein_files.documents.documents.config_builder import WOLFF_EPSTEIN_ARTICLE_DRAFT, blaine_letter, wolff_draft_cfg
+from epstein_files.documents.documents.config_builder import WOLFF_EPSTEIN_ARTICLE_DRAFT, blaine_letter, starr_letter, wolff_draft_cfg
 from epstein_files.documents.documents.categories import CONSTANT_CATEGORIES, Interesting, Neutral
 from epstein_files.documents.documents.doc_cfg import NO_TRUNCATE, CommunicationCfg, DocCfg, EmailCfg, TextCfg, phone_bill_cfg
 from epstein_files.documents.doj_files.full_text import EFTA00009622_TEXT
@@ -1781,10 +1781,10 @@ OTHER_FILES_LEGAL = [
     DocCfg(id='017830', author=JASTA_SAUDI_LAWSUIT, description=f"legal text and court documents"),
     DocCfg(id='017904', author=JASTA_SAUDI_LAWSUIT, description=f"Westlaw search results", date='2019-01-01'),
     DocCfg(id='014037', author='Journal of Criminal Law and Criminology', description=f"article on {CVRA}"),
-    DocCfg(id='025353', author=KEN_STARR, description=KEN_STARR_LETTER, date='2008-05-19', duplicate_ids=['010723', '019224'], dupe_type='redacted'),
-    DocCfg(id='025704', author=KEN_STARR, description=KEN_STARR_LETTER, date='2008-05-27', duplicate_ids=['010732', '019221'], dupe_type='redacted'),
-    DocCfg(id='012130', author=KEN_STARR, description=KEN_STARR_LETTER, date='2008-06-19', duplicate_ids=['012135']),
-    DocCfg(id='031447', author=MARTIN_WEINBERG, description=f"letter from to Melanie Ann Pustay & Sean O'Neill re: Epstein FOIA request"),
+    starr_letter('025353', '2008-05-19', ['010723', '019224'], 'redacted'),
+    starr_letter('025704', '2008-05-27', ['010732', '019221'], 'redacted'),
+    starr_letter('012130', '2008-06-19', ['012135']),
+    CommunicationCfg(id='031447', author=MARTIN_WEINBERG, recipients=['Melanie Ann Pustay', "Sean O'Neill"], description=f"re: Epstein FOIA request"),
     DocCfg(
         id='028965',
         author=MARTIN_WEINBERG,
