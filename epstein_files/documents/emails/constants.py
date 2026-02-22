@@ -61,7 +61,7 @@ DEVICE_PATTERNS = [
     r"Droid",
     r"iPad",
     r"Phone",
-    r"Mail(\w+for\s+(\w+))",
+    r"Mail(\w+for\s+(\w+))?(\s+App)?",
     r"Samsung Mobile",
     r"Surface(\s+RT)?",
     r"BlackBerry(.*(smartphone|device|Handheld|AT&T|T- ?Mobile))?",
@@ -73,7 +73,7 @@ SIGNATURE_PATTERNS = [
     r"Typos,? misspellings courtesy of iPhone(\s*word & thought substitution|Send from my mobile...please excuse typos)?"
 ]
 
-DEVICE_PATTERN = r"(Envoyé de mon|Sent (from|using|via)).*?(" + '|'.join(DEVICE_PATTERNS) + r")"
+DEVICE_PATTERN = r"(Envoyé de mon|Sent (from|using|via)).*(" + '|'.join(DEVICE_PATTERNS) + r")"
 EPSTEIN_TYPO_PREFIX = r"((Please forgive|Sorry for all the) typos.{1,4})"
 SENT_FROM_DEVICE_PATTERN = '|'.join([DEVICE_PATTERN] + SIGNATURE_PATTERNS)
 SENT_FROM_REGEX = re.compile(fr'^{EPSTEIN_TYPO_PREFIX}?({SENT_FROM_DEVICE_PATTERN})\.?', re.M | re.I)

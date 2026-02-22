@@ -869,7 +869,7 @@ EMAILS_CONFIG = [
         truncate_to=4500,
     ),
     EmailCfg(id='033453', is_interesting=True, description='possibly an email from one of the women who sued Trump?'),
-    EmailCfg(id='029342', is_interesting=True, truncate_to=2000, comment='Hakeem Jeffries'),
+    EmailCfg(id='029342', truncate_to=2000, comment='Hakeem Jeffries'),
     EmailCfg(id='026036', is_interesting=True, truncate_to=6000, comment='Gino Yu blockchain mention'),
     EmailCfg(
         id='032319',
@@ -1070,8 +1070,8 @@ EMAILS_CONFIG = [
     EmailCfg(
         id='EFTA00708783',
         author=RENATA_BOLOTOVA,
-        duplicate_ids=['EFTA02696436', 'EFTA02550142', 'EFTA02397691'],
         author_uncertain=SNEAKY_DOG,
+        duplicate_ids=['EFTA02696436', 'EFTA02550142', 'EFTA02397691', 'EFTA01840867'],
     ),
     EmailCfg(
         id='EFTA02018237',
@@ -1109,7 +1109,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00920177', author=RENATA_BOLOTOVA, author_reason='discussion of employment at Institute'),
     EmailCfg(id='EFTA00920010', author=RENATA_BOLOTOVA, author_reason='renbolotova@gmail in body'),
     EmailCfg(id='EFTA02455567', author=RENATA_BOLOTOVA, author_reason='"sneaky"', description='completely redacted email body'),
-    EmailCfg(id='EFTA01773417', author=RENATA_BOLOTOVA, author_reason=SINCERELY_SNEAKY),
+    EmailCfg(id='EFTA01773417', author=RENATA_BOLOTOVA, author_reason=SINCERELY_SNEAKY, duplicate_ids=['EFTA01987876']),
     EmailCfg(id='EFTA00935516', author=RENATA_BOLOTOVA, author_reason=SINCERELY_SNEAKY),
     EmailCfg(id='EFTA02545360', author=RENATA_BOLOTOVA, author_reason=SINCERELY_SNEAKY),
     EmailCfg(id='EFTA02547825', author=RENATA_BOLOTOVA, author_reason=SINCERELY_SNEAKY),
@@ -1130,7 +1130,6 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00686861', author=RENATA_BOLOTOVA, author_uncertain=SNEAKY_DOG),
     EmailCfg(id='EFTA00870433', author=RENATA_BOLOTOVA, author_uncertain=SNEAKY_DOG),
     EmailCfg(id='EFTA01035614', author=RENATA_BOLOTOVA, author_uncertain=SNEAKY_DOG),
-    EmailCfg(id='EFTA01840867', author=RENATA_BOLOTOVA, author_uncertain=SNEAKY_DOG),
     EmailCfg(id='EFTA01748575', author=RENATA_BOLOTOVA, author_uncertain=SNEAKY_DOG),
     EmailCfg(id='EFTA01903041', author=RENATA_BOLOTOVA, author_uncertain=SNEAKY_DOG),
     EmailCfg(id='EFTA01954115', author=RENATA_BOLOTOVA, author_uncertain=SNEAKY_DOG),
@@ -1290,14 +1289,13 @@ EMAILS_CONFIG = [
         is_interesting=True,
     ),
     EmailCfg(id='EFTA01039112', recipients=[RENATA_BOLOTOVA], uncertain_recipient=SNEAKY_DOG),
-    EmailCfg(id='EFTA01843319', recipients=[RENATA_BOLOTOVA], uncertain_recipient=SNEAKY_DOG),
     EmailCfg(id='EFTA01006355', recipients=[RENATA_BOLOTOVA], uncertain_recipient=SNEAKY_DOG),
     EmailCfg(id='EFTA02547678', recipients=[RENATA_BOLOTOVA], uncertain_recipient=SNEAKY_DOG),
     EmailCfg(id='EFTA02626300', recipients=[RENATA_BOLOTOVA], uncertain_recipient=SNEAKY_DOG),
     EmailCfg(id='EFTA00935996', recipients=[RENATA_BOLOTOVA], uncertain_recipient=SNEAKY_DOG),
     EmailCfg(id='EFTA01846434', recipients=[RENATA_BOLOTOVA], uncertain_recipient=SNEAKY_DOG),
     EmailCfg(id='EFTA00977447', recipients=[RENATA_BOLOTOVA], uncertain_recipient=SNEAKY_DOG, duplicate_ids=['EFTA02577917', 'EFTA01946045']),
-    EmailCfg(id='EFTA00929871', recipients=[RENATA_BOLOTOVA], uncertain_recipient=SNEAKY_DOG, duplicate_ids=['EFTA01773449', 'EFTA02550388']),
+    EmailCfg(id='EFTA01843319', recipients=[RENATA_BOLOTOVA], uncertain_recipient=SNEAKY_DOG, duplicate_ids=['EFTA00929871', 'EFTA01773449', 'EFTA02550388']),
     EmailCfg(id='EFTA00850130', recipients=[SERGEY_BELYAKOV]),
     EmailCfg(id='EFTA00835324', recipients=[SERGEY_BELYAKOV], description='assessment of Mycelium bitcoin wallet'),
     EmailCfg(id='EFTA00852324', recipients=[SERGEY_BELYAKOV, JEFFREY_EPSTEIN, 'Elena Bolyakina', PETER_THIEL]),
@@ -1406,6 +1404,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00915298', truncate_to=300),
     EmailCfg(id='EFTA00915300', truncate_to=250),
     EmailCfg(id='EFTA02592748', truncate_to=300),
+    EmailCfg(id='EFTA01890312', truncate_to=400),
     EmailCfg(id='EFTA01061414', truncate_to=440),
     EmailCfg(id='EFTA02493582', truncate_to=450),
     EmailCfg(id='EFTA01731638', truncate_to=530),
@@ -1833,7 +1832,7 @@ OTHER_FILES_CONFERENCE = [
     DocCfg(id='019300', author=SVETLANA_POZHIDAEVA, description=f'{WOMEN_EMPOWERMENT} f. {KATHRYN_RUEMMLER}', date='2019-04-05'),
     DocCfg(id='022267', author=SVETLANA_POZHIDAEVA, description=f'{WOMEN_EMPOWERMENT} founder essay about growing the seminar business'),
     DocCfg(id='022407', author=SVETLANA_POZHIDAEVA, description=f'{WOMEN_EMPOWERMENT} seminar pitch deck'),
-    DocCfg(id='017524', author=SWEDISH_LIFE_SCIENCES_SUMMIT, description=f"2012 program", date='2012-08-18', attached_to_email_id='031226'),
+    DocCfg(id='017524', author=SWEDISH_LIFE_SCIENCES_SUMMIT, description=f"2012 program", date='2012-08-18', attached_to_email_id='017523'),
     DocCfg(id='026747', author=SWEDISH_LIFE_SCIENCES_SUMMIT, description=f"2017 program", date='2017-08-23', attached_to_email_id='031215'),
     DocCfg(id='014951', author='TED Talks', description=f"2017 program", date='2017-04-20'),
     DocCfg(
@@ -2614,6 +2613,8 @@ UNINTERESTING_EMAIL_IDS = [
     'EFTA01005712',
     'EFTA01005715',
     'EFTA02228570',
+    # bolotova
+    'EFTA01903041',
     # Iozzo
     '033280',
     # Lesley?
@@ -2666,6 +2667,7 @@ UNINTERESTING_EMAIL_IDS = [
     '029446',
     '019873',
     '030823',  # "little hodiaki"
+    '027009',
 ]
 
 # Not uninteresting enough to be permanently marked as such but not good enough for --output-chrono
@@ -2681,6 +2683,12 @@ NOT_CHRONOLOGICAL_VIEW_IDS = [
     '026584',
     '011908_6',
     '029973',
+    '031038',
+    '028760',
+    '029976',
+    '026320',
+    '031169',
+    # '024185', # UN
 ]
 
 # Build OtherFile / DojFile config list by combining OTHER_FILES_[BLAH] variables

@@ -25,14 +25,12 @@ from epstein_files.util.logging import logger
 from epstein_files.output.rich import bool_txt, console, highlighter, styled_key_value, print_subtitle_panel
 
 
-for person in epstein_files.emailers:
-    if person.name is None:
-        continue
+for cfg in [c for c in CONFIGS_BY_ID.values() if isinstance(c, EmailCfg)]:
+    if cfg.attached_to_email_id:
+        email = epstein_files.get_id(cfg.id)
+        if email.is_duplicate:
+            logger.error(f"{cfg.id} is attached to a duplicate email {email.file_id}")
 
-    txt = Text('').append(person.name, 'cyan').append(': ')
-    txt.append(highlighter(', '.join([str(c) for c in person.counterparties])))
-    console.print(txt)
-    console.line()
 
 # print_file_counts(epstein_files)
 # print_all_timestamps(epstein_files)

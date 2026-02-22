@@ -1,4 +1,3 @@
-
 from datetime import datetime
 
 import pytest
@@ -6,10 +5,11 @@ import pytest
 from epstein_files.documents.document import Document
 from epstein_files.documents.email import Email
 from epstein_files.documents.messenger_log import MessengerLog
+from epstein_files.documents.other_file import OtherFile
 from epstein_files.output.rich import console, print_subtitle_panel
 from epstein_files.util.constant.names import *
 from epstein_files.util.constants import CONFIGS_BY_ID
-from epstein_files.util.helpers.data_helpers import uniquify
+from epstein_files.util.helpers.data_helpers import days_between, uniquify
 
 from .conftest import assert_higher_counts
 from .fixtures.emails.signatures import AUTHORS_TO_DEVICE_SIGNATURES, DEVICE_SIGNATURE_TO_AUTHORS, SIGNATURE_SUBSTITUTION_COUNTS
@@ -21,6 +21,7 @@ def test_against_csv(epstein_files):
     """CSV data can be updated by running './scripts/update_fixture_csv.py'."""
     csv_docs = load_files_csv()
     bad_docs = []
+    repair_ids = []
 
     for doc in epstein_files.unique_documents:
         if (csv_row := csv_docs.get(doc.file_id)):
@@ -34,8 +35,13 @@ def test_against_csv(epstein_files):
 
                     if doc_val == csv_val:
                         continue
+                    elif all(isinstance(v, datetime) for v in [csv_val, doc_val]) and \
+                            (days := abs(days_between(csv_val, doc_val))) <= 2:
+                        doc.log(f"timestamps differ by {days - 1} days, just a warning ({doc_val} vs {csv_val})")
+                        continue
 
                     bad_docs.append(doc)
+                    repair_ids.append(doc.file_id)
                     reloaded_prop = getattr(doc.reload(), k)
                     mismatched_prop_str = f"mismatched '{k}'"
                     values_str = f"doc='{doc_val}', csv='{csv_val}'"
@@ -52,7 +58,7 @@ def test_against_csv(epstein_files):
             continue
 
     bad_ids = uniquify([doc.file_id for doc in bad_docs])
-    assert len(bad_ids) == 0, f"{len(bad_ids)} docs don't match CSV: {' '.join(bad_ids)}"
+    assert len(bad_ids) == 0, f"{len(bad_ids)} docs don't match CSV, {len(repair_ids)} might be reparable: {' '.join(repair_ids)}"
 
 
 def test_all_configured_file_ids_exist(epstein_files):

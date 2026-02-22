@@ -290,6 +290,7 @@ HighlightedNames(
             r"Kong",
             r"Jack Ma",
             r"Kwok",
+            r"(Madam )?Fu Ying",
             r"Ministry\sof\sState\sSecurity",
             r"Mongolian?",
             r"MSS",
@@ -398,7 +399,7 @@ HighlightedNames(
             r"supersecretbitcoinproject",
             r"Tally Capital",
             r"Tether",
-            r"virtual (currenc(ies|y)|money)",
+            r"(transparent|virtual) (currenc(ies|y)|money)",
             r"wash trad(es?|ing)",
             r"Wire ca\n?rd",
             r"Wladimir( van der Laan)?",  # bitcoin dev
@@ -1576,7 +1577,7 @@ HighlightedNames(
             r"(Anastasia )?Kuznetsova",
             r"Lavrov",
             r"Lukoil",
-            r'(Semion )?Mogilevich',
+            r"Minsk",
             r"Moscow",
             r"Nic(k|holas) Kovarsky",  # Friend of Belyakov
             r"(Natalia )?Veselnitskaya",
@@ -1592,6 +1593,7 @@ HighlightedNames(
             r'Svet',
             r"Russ?ian?",
             r"Sberbank",
+            r'(Semion )?Mogilevich',
             r"Soviet( Union)?",
             r"USSR",
             r"Vlad(imir)?(?! Yudash)",
