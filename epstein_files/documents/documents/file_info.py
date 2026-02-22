@@ -80,7 +80,11 @@ class FileInfo:
         try:
             return file_size(self.local_path)
         except FileNotFoundError as e:
-            self.warn(str(e))
+            if self.has_file:
+                self.warn(str(e))
+            else:
+                self.log(f"no underlying file (but expected): {e}")
+
             return -1
 
     @property
@@ -94,6 +98,11 @@ class FileInfo:
     @property
     def filename(self) -> str:
         return self.local_path.name
+
+    @property
+    def has_file(self) -> bool:
+        """Returns false for derivations of massive Dilorio emails."""
+        return not (self.is_doj_file and self.is_local_extract_file)
 
     @property
     def is_doj_file(self) -> bool:
