@@ -524,7 +524,6 @@ class Email(Communication):
         # Insert line breaks now unless header is broken, in which case we'll do it later after fixing header
         text = self.text if self.header.was_initially_empty else _add_line_breaks(self.text)
         text = REPLY_REGEX.sub(r'\n\1', text)  # Newlines between quoted replies
-        text = FORWARDED_TOO_MUCH_SPACE_REGEX.sub(r'\1\n', text)
 
         for name, signature_regex in EMAIL_SIGNATURE_REGEXES.items():
             signature_replacement = f'<...snipped {name.lower()} email signature...>'
@@ -628,7 +627,7 @@ class Email(Communication):
             new_lines.append(line)
             i += 1
 
-        logger.debug(f"----after line repair---\n" + '\n'.join(new_lines[0:20]) + "\n---")
+        # logger.debug(f"----after line repair---\n" + '\n'.join(new_lines[0:20]) + "\n---")
         return '\n'.join(lines)
 
     def _sent_from_device(self) -> str | None:
@@ -644,7 +643,7 @@ class Email(Communication):
                 return sent_from
 
     def _truncate_to_length(self) -> int:
-        """When printing truncate this email to this length."""
+        """Decide how many chars we should limit the dislpay of this email to."""
         quote_cutoff = self._idx_of_nth_quoted_reply()  # Trim if there's many quoted replies
         includes_truncate_term = next((term for term in TRUNCATE_TERMS if term in self.text), None)
         num_chars: int
@@ -832,7 +831,8 @@ class Email(Communication):
 
 
 def _add_line_breaks(email_text: str) -> str:
-    return EMAIL_SIMPLE_HEADER_LINE_BREAK_REGEX.sub(r'\n\1\n', email_text).strip()
+    text = EMAIL_SIMPLE_HEADER_LINE_BREAK_REGEX.sub(r'\n\1\n', email_text).strip()
+    return FORWARDED_TOO_MUCH_SPACE_REGEX.sub(r'\1\n', text)
 
 
 def _parse_timestamp(timestamp_str: str) -> None | datetime:

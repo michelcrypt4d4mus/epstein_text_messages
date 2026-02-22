@@ -1541,12 +1541,12 @@ UNINTERESTING_EMAIL_IDS = [
     '019873',
 ]
 
-for id in UNINTERESTING_EMAIL_IDS:
-    if (cfg := next((c for c in EMAILS_CONFIG if c.id == id), None)):
-        assert not cfg.is_interesting, f"Can't overwrite is_interesting value for {cfg}"
-        cfg.is_interesting = False
-    else:
-        EMAILS_CONFIG.append(EmailCfg(id=id, is_interesting=False))
+NOT_CHRONOLOGICAL_VIEW_IDS = [
+    '022247',
+]
+
+EmailCfg.create_or_set_prop(UNINTERESTING_EMAIL_IDS, EMAILS_CONFIG, 'is_interesting', False)
+EmailCfg.create_or_set_prop(NOT_CHRONOLOGICAL_VIEW_IDS, EMAILS_CONFIG, 'is_in_chrono', False)
 
 
 ################################################################################################
