@@ -405,9 +405,6 @@ LINE_REPAIR_MERGES = {
     '033575': [[2, 4]],
     '033576': [[3]],
     '033583': [[2]],
-
-    # Note DOJ file line adjustments happen *after* DojFile._repair() is called
-    'EFTA00039689': [[4]],
 }
 
 KNOWN_SIGNATURES = {
