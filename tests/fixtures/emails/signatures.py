@@ -463,6 +463,7 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
 
 SIGNATURE_SUBSTITUTION_COUNTS = {
     "(unknown)": 2,
+    'Andrew Nikou': 2,
     ARDA_BESKARDES: 9,
     BARBRO_C_EHNBOM: 5,
     BRAD_KARP: 5,
