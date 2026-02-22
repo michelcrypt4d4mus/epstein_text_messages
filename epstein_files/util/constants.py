@@ -1523,6 +1523,7 @@ UNINTERESTING_EMAIL_IDS = [
     'EFTA00039894',
     'EFTA00039878',
     # Unknown
+    '030992',
     '032213',
     '029206',
     '031822',

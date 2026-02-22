@@ -524,6 +524,7 @@ class Email(Communication):
         # Insert line breaks now unless header is broken, in which case we'll do it later after fixing header
         text = self.text if self.header.was_initially_empty else _add_line_breaks(self.text)
         text = REPLY_REGEX.sub(r'\n\1', text)  # Newlines between quoted replies
+        text = FORWARDED_TOO_MUCH_SPACE_REGEX.sub(r'\1\n', text)
 
         for name, signature_regex in EMAIL_SIGNATURE_REGEXES.items():
             signature_replacement = f'<...snipped {name.lower()} email signature...>'
