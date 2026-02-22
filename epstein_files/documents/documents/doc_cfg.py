@@ -372,10 +372,15 @@ class DocCfg:
 
     def set_category(self, category: str) -> None:
         """Update the title if we changed to a category that allows titling (books, academia, finance)."""
-        self.category = category.lower()
+        self.category = category.lower().strip()
 
-        if category and not is_category(self.category):
+        if not self.category:
+            return
+        elif not is_category(self.category):
             logger.warning(f"'{self.category}' does not appear to be a valid category")
+
+        if self.category == Category.FLIGHT_LOG and not self.replace_text_with:
+            self.replace_text_with ='flight log'
 
         self.description = quote(self.description) if self.is_description_a_title else self.description
 
