@@ -66,6 +66,41 @@ def build_cfg_from_text(doc: 'Document') -> DocCfg | None:
         return cfg
 
 
+def blaine_letter(id: str, date: str, suffix: str = '') -> CommunicationCfg:
+    return letter(
+        id,
+        DAVID_BLAINE,
+        date=date,
+        description=join_truthy(f"recommending genius visa for a Epstein's assistant {SVETLANA_POZHIDAEVA}", suffix),
+        is_interesting=True,
+        recipients=['Immigration'],
+    )
+
+
+def letter(id: str, author: str, recipients: list[Name], description: str, date: str = '', **kwargs) -> CommunicationCfg:
+    return CommunicationCfg(
+        id=id,
+        author=author,
+        category=Category.LETTER,
+        date=date,
+        description=description,
+        recipients=recipients,
+        **kwargs
+    )
+
+
+def starr_letter(id: str, date: str, duplicate_ids: list[str], dupe_type: DuplicateType = 'same') -> CommunicationCfg:
+    return letter(
+        id=id,
+        author=KEN_STARR,
+        date=date,
+        description="requesting lenient treatment for Epstein",
+        duplicate_ids=duplicate_ids,
+        dupe_type=dupe_type,
+        recipients=['Judge Mark Filip'],
+    )
+
+
 def valar_cfg(id: str, description: str = '', text: str = '') -> DocCfg:
     return DocCfg(
         id=id,
@@ -83,27 +118,4 @@ def wolff_draft_cfg(id: str, suffix: str = '', **kwargs) -> DocCfg:
         date='2014-08-31' if 'show_with_name' in kwargs else '2014-09-01',  # Very approximate, make excerpt show first
         description=join_truthy(WOLFF_EPSTEIN_ARTICLE_DRAFT, suffix),
         **kwargs
-    )
-
-
-def blaine_letter(id: str, date: str, suffix: str = '') -> CommunicationCfg:
-    return CommunicationCfg(
-        id=id,
-        date=date,
-        description=join_truthy(f"recommending genius visa for a Epstein's assistant {SVETLANA_POZHIDAEVA}", suffix),
-        is_interesting=True,
-        recipients=['Immigration'],
-    )
-
-
-def starr_letter(id: str, date: str, duplicate_ids: list[str], dupe_type: DuplicateType = 'same') -> CommunicationCfg:
-    return CommunicationCfg(
-        id=id,
-        author=KEN_STARR,
-        category=Category.LETTER,
-        date=date,
-        description="requesting lenient treatment for Epstein",
-        duplicate_ids=duplicate_ids,
-        dupe_type=dupe_type,
-        recipients=['Judge Mark Filip'],
     )

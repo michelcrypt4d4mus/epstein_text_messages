@@ -3,7 +3,8 @@ Custom configurations for various files.
 """
 from itertools import groupby
 
-from epstein_files.documents.documents.config_builder import WOLFF_EPSTEIN_ARTICLE_DRAFT, blaine_letter, starr_letter, wolff_draft_cfg
+from epstein_files.documents.documents.config_builder import (WOLFF_EPSTEIN_ARTICLE_DRAFT, blaine_letter,
+     letter, starr_letter, wolff_draft_cfg)
 from epstein_files.documents.documents.categories import CONSTANT_CATEGORIES, Interesting, Neutral
 from epstein_files.documents.documents.doc_cfg import NO_TRUNCATE, CommunicationCfg, DocCfg, EmailCfg, TextCfg, phone_bill_cfg
 from epstein_files.documents.doj_files.full_text import EFTA00009622_TEXT
@@ -1784,12 +1785,18 @@ OTHER_FILES_LEGAL = [
     starr_letter('025353', '2008-05-19', ['010723', '019224'], 'redacted'),
     starr_letter('025704', '2008-05-27', ['010732', '019221'], 'redacted'),
     starr_letter('012130', '2008-06-19', ['012135']),
-    CommunicationCfg(id='031447', author=MARTIN_WEINBERG, recipients=['Melanie Ann Pustay', "Sean O'Neill"], description=f"re: Epstein FOIA request"),
-    DocCfg(
+    letter(
+        id='031447',
+        author=MARTIN_WEINBERG,
+        recipients=['Melanie Ann Pustay', "Sean O'Neill"],
+        description=f"re: Epstein FOIA request"
+    ),
+    letter(
         id='028965',
         author=MARTIN_WEINBERG,
-        description=f"letter from to ABC / Good Morning America threatening libel lawsuit",
-        duplicate_ids=['028928']
+        description=f"threatening libel lawsuit",
+        duplicate_ids=['028928'],
+        recipients=['ABC / Good Morning America'],
     ),
     DocCfg(
         id='026793',
