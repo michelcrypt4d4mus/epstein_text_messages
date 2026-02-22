@@ -13,7 +13,7 @@ XML_STRIPPED_MSG = '<...removed Apple XML plist...>'
 QUOTE_INDENT_CHAR_GROUP = '[>»• ]'
 
 # Reply line regexes
-FORWARDED_LINE_PATTERN = r"-+ *((Forwarded|Original)\s*Message|Message d'?origine) *-*|Begin forwarded message:?"
+FORWARDED_LINE_PATTERN = r"[- ]*((Forwarded|Original)\s*[Mm]essage:?|Message d'?origine)[- ]*|Begin [Ff]orwarded [Mm]essage:?"
 FRENCH_REPLY_PATTERN = r"Le .* a ecrit:"
 GERMAN_REPLY_PATTERN = r"Am \d\d\.\d\d\..*schrieb.*"
 NORWEGAIN_REPLY_PATTERN = r"(Den .* folgende|(fre|lor|son)\. .* skrev .*):"
@@ -148,7 +148,7 @@ EMAIL_SIGNATURE_REGEXES = {
     FRANCESCA_HALL: re.compile(r"The contents of this e-mail message and.{,600}message and its attachments[.,]? if any", re.DOTALL),
     GHISLAINE_MAXWELL: re.compile(r"FACEBOOK\nTWITTER\nG\+\nPINTEREST\nINSTAGRAM\nPLEDGE\nTHE DAILY CATCH"),
     JEANNE_M_CHRISTENSEN: re.compile(r"[A ]*(Please consider the environment before printing this e-mail.{,5})?This communication may contain Confidential.{,500}(facsimile|mail)\s+or\s+phone. Thank you\.?|Partner\s+WIGDOR.{,12}New York,? NY 10003\s.{,15}com", re.DOTALL),
-    JEFFREY_EPSTEIN: re.compile(r"(([* =0,]+|please .ote.{,6})\s+)?([>»•]+ )*The info.ma[t=]ion conta[i=]ne. i. t..s..ommunicati.{,600}all\s+([>»] )*.t.achm..t..(\s+copyright\s+.all\s+rights\s+reserved?)?", re.DOTALL),
+    JEFFREY_EPSTEIN: re.compile(r"(([* =0,]+|please .ote.{,6})\s+)?([>»•]+ )*The info.ma[t=]ion conta[i=]ne. i. t..s..ommunic.ti.{,600}all\s+([>»] )*.t.a.hm..t..(\s+copyright\s+.all\s+rights\s+reserved?)?", re.DOTALL),
     JESSICA_CADWELL: re.compile(r"(f.*\n)?Certified Para.*\nFlorida.*\nBURMAN.*\n515.*\nSuite.*\nWest Palm.*(\nTel:.*)?(\nEmail:.*)?", re.IGNORECASE),
     KEN_JENNE: re.compile(r"Ken Jenne\nRothstein.*\n401 E.*\nFort Lauderdale.*", re.IGNORECASE),
     LARRY_SUMMERS: re.compile(r"Please direc. all scheduling.{,150}\nwww.larrysummer..\w{3,5}(<.{,6}[>»])?(\s*<http.{,30}/?[>»])?", re.IGNORECASE | re.DOTALL),
@@ -161,7 +161,7 @@ EMAIL_SIGNATURE_REGEXES = {
     PETER_MANDELSON: re.compile(r'Disclaimer This email and any attachments to it may be.*?with[ \n]+number(.*?EC4V[ \n]+6BJ)?', re.DOTALL | re.IGNORECASE),
     PAUL_BARRETT: re.compile(r"Paul Barrett[\n\s]+Alpha Group Capital LLC[\n\s]+(142 W 57th Street, 11th Floor, New York, NY 10019?[\n\s]+)?(al?[\n\s]*)?ALPHA GROUP[\n\s]+CAPITAL"),
     PETER_ATTIA: re.compile(r"The information contained in this transmission may contain.*\n(laws|patient).*\n(distribution|named).*\n(distribution.*\nplease.*|copies.*)"),
-    RICHARD_KAHN: re.compile(fr'Richard Kahn\s+HBRK Associates Inc.?\s+((301|575) .*\s+)?Ne.*(\n(Tel?|Phone|Fa.{{,5}}|[Ce]el*|{REDACTED}))*', re.IGNORECASE),
+    RICHARD_KAHN: re.compile(fr'Richard Kahn\s+HBRK Associates Inc.?\s+((301|575) .*\s+)?Ne.*(\n(Tel?|Phone|Fa.{{,5}}|[Ce]el*|{REDACTED})( [-.\d]{{,13}}))*', re.IGNORECASE),
     ROSS_GOW: re.compile(r"Ross Gow\nManaging Partner\nACUITY Reputation Limited\n23 Berkeley Square\nLondon.*\nMobile.*\nTel"),
     STEPHEN_HANSON: re.compile(r"(> )?Confidentiality Notice: This e-mail transmission.*\n(which it is addressed )?and may contain.*\n(applicable law. If you are not the intended )?recipient you are hereby.*\n(information contained in or attached to this transmission is )?STRICTLY PROHIBITED.*"),
     STEVEN_PFEIFFER: re.compile(r"Steven\nSteven .*\nAssociate.*\nIndependent Filmmaker Project\nMade in NY.*\n30 .*\nBrooklyn.*\n(p:.*\n)?www\.ifp.*", re.IGNORECASE),
@@ -405,9 +405,6 @@ LINE_REPAIR_MERGES = {
     '033575': [[2, 4]],
     '033576': [[3]],
     '033583': [[2]],
-
-    # Note DOJ file line adjustments happen *after* DojFile._repair() is called
-    'EFTA00039689': [[4]],
 }
 
 KNOWN_SIGNATURES = {

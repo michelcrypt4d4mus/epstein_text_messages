@@ -2,6 +2,8 @@
 String manipulation.
 """
 import re
+from datetime import datetime
+from typing import Any
 
 from inflection import underscore
 
@@ -51,6 +53,13 @@ def join_truthy(prefix: str | None, suffix: str | None, sep: str = '') -> str:
     sep = sep or (' ' if prefix and suffix else '')
     parts = [p.strip() for p in [prefix, suffix] if p and p.strip()]
     return sep.join(parts)
+
+
+def prop_str(prop: Any) -> Any:
+    if isinstance(prop, (datetime, str)):
+        return quote(str(prop))
+    else:
+        return str(prop)
 
 
 def quote(s: str, try_single_quote_first: bool = False) -> str:

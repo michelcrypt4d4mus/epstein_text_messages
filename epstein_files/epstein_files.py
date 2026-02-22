@@ -19,6 +19,7 @@ from epstein_files.documents.documents.search_result import SearchResult
 from epstein_files.documents.doj_file import DojFile
 from epstein_files.documents.email import Email
 from epstein_files.documents.emails.constants import UNINTERESTING_EMAILERS
+from epstein_files.documents.emails.util import split_up_dilorio
 from epstein_files.documents.json_file import JsonFile
 from epstein_files.documents.messenger_log import MSG_REGEX, MessengerLog
 from epstein_files.documents.other_file import OtherFile
@@ -43,16 +44,14 @@ class EpsteinFiles:
     """
     Attributes:
         file_paths (list[Path]): paths to Epstein related text documents
-        emails (list[Email]): all `Email` objects
-        imessage_logs (list[MessengerLog]): all `MessengerLog` objects
-        other_files (list[OtherFile]): all `OtherFile` objects
+        documents (list[Document]): all parsed Documents except the emails with was_split_up flag
         timer (Timer): for logging only
         uninteresting_ccs (list[Name]): names of tangential people who were just CCed once or similar
     """
     file_paths: list[Path] = field(init=False)
 
     # Derived fields
-    documents: list[Document] = field(default_factory=list)
+    _documents: list[Document] = field(default_factory=list)
     timer: Timer = field(default_factory=lambda: Timer())
     uninteresting_ccs: list[Name] = field(default_factory=list)
     _empty_file_ids: set[str] = field(default_factory=set)
@@ -60,7 +59,8 @@ class EpsteinFiles:
     def __post_init__(self):
         """Iterate through files and build appropriate objects."""
         self.file_paths = sorted(all_txt_paths(), reverse=True)
-        self.documents = self._load_file_paths(self.file_paths)
+        self._documents = self._load_file_paths(self.file_paths)
+        self._documents += split_up_dilorio(self.emails_by(CHRISTOPHER_DILORIO))
         self._finalize_data_and_write_to_disk()
 
     @classmethod
@@ -90,6 +90,10 @@ class EpsteinFiles:
     def all_doj_files(self) -> Sequence[DojFile | Email]:
         """All files with the filename EFTAXXXXXX, including those that were turned into `Email` objs."""
         return [d for d in self.documents if d.file_info.is_doj_file]
+
+    @property
+    def documents(self) -> Sequence[Document]:
+        return [d for d in self._documents if not (isinstance(d, Email) and d._was_split_up)]
 
     @property
     def doj_files(self) -> list[DojFile]:
@@ -236,7 +240,7 @@ class EpsteinFiles:
 
     def get_ids(self, file_ids: list[str], rebuild: bool = False) -> Sequence[Document]:
         """Get `Document` objects for `file_ids`. If `rebuild` is True then rebuild `Document` from .txt file."""
-        docs = [d for d in self.documents if d.file_id in file_ids]
+        docs = [d for d in self._documents if d.file_id in file_ids]
 
         if len(docs) != len(file_ids):
             logger.warning(f"{len(file_ids)} file IDs provided but only {len(docs)} documents found!")
@@ -288,10 +292,8 @@ class EpsteinFiles:
         ]
 
     def load_new_files(self) -> None:
-        current_docs = self._docs_by_id()
-        self.file_paths = all_txt_paths()
-        new_paths = [p for p in self.file_paths if extract_file_id(p) not in current_docs]
-        new_docs = self._load_file_paths(new_paths)
+        """Load any new files detected in the hierarchy."""
+        new_docs = self._load_file_paths(self._new_files())
 
         if not new_docs:
             logger.warning(f"No new files found, doing nothing.")
@@ -322,13 +324,24 @@ class EpsteinFiles:
         return table
 
     def repair_ids(self, ids: list[str]) -> None:
-        """Repair/reload the ids specified as positional arguments and save updated pickle file to disk."""
+        """Reload the `ids` and save updated pickle file (also loads new files)."""
         ids = uniquify(ids)
-        doc_paths = [d.file_path for d in self.documents if d.file_id in ids]
 
-        if len(doc_paths) != len(ids):
-            raise RuntimeError(f"{len(ids)} specified but only {len(doc_paths)} Document objects found!")
+        if ids == ['EMAIL']:
+            doc_paths = [d.file_path for d in self.emails]
+            msg = f"Repairing all {len(doc_paths)} emails..."
+        else:
+            doc_paths = [d.file_path for d in self._documents if d.file_id in ids]
+            msg = f"Repairing {len(ids)} file IDs"
 
+            if len(doc_paths) != len(ids):
+                raise RuntimeError(f"{len(ids)} specified but only {len(doc_paths)} Document objects found!")
+
+        if (new_paths := self._new_files()):
+            msg +=  f" (also loading {len(new_paths)} new files)"
+            doc_paths += new_paths
+
+        logger.warning(msg)
         self._finalize_new_docs_if_approved(self._load_file_paths(doc_paths))
 
     def save_to_disk(self) -> None:
@@ -360,23 +373,25 @@ class EpsteinFiles:
                     setattr(doc, field_name, original_prop)
 
     def _docs_by_id(self) -> Mapping[str, Document]:
-        return {doc.file_id: doc for doc in self.documents}
+        return {doc.file_id: doc for doc in self._documents}
 
     def _finalize_data_and_write_to_disk(self, new_docs: list[Document] | None = None) -> None:
         """Handle computation of fields related to uninterestingness, relationships between documents, etc."""
         new_docs = new_docs or []
+        # dilorio_files = [e.reload() for e in self._documents if e.author == CHRISTOPHER_DILORIO and e.file_info.has_file]
+        # new_docs += dilorio_files + split_up_dilorio(dilorio_files)
 
         if new_docs:
-            old_num_docs = len(self.documents)
+            old_num_docs = len(self._documents)
             new_doc_ids = [d.file_info.file_id for d in new_docs]
-            self.documents = [d for d in self.documents if d.file_info.file_id not in new_doc_ids]  # Remove existing
-            logger.warning(f"Adding {len(new_docs)} Documents (replacing {old_num_docs - len(self.documents)} existing)")
-            self.documents += new_docs
+            self._documents = [d for d in self._documents if d.file_info.file_id not in new_doc_ids]  # Remove existing
+            logger.warning(f"Adding {len(new_docs)} Documents (replacing {old_num_docs - len(self._documents)} existing)")
+            self._documents += new_docs
 
         self._set_uninteresting_ccs()
         self._copy_duplicate_doc_properties()
         self._find_email_attachments_and_set_is_first_for_user()
-        self.documents = Document.sort_by_timestamp(self.documents)
+        self._documents = Document.sort_by_timestamp(self._documents)
         self.save_to_disk()
 
     def _find_email_attachments_and_set_is_first_for_user(self) -> None:
@@ -409,7 +424,11 @@ class EpsteinFiles:
 
     def _finalize_new_docs_if_approved(self, new_docs: list[Document]) -> None:
         """Same as _finalize_data_and_write_to_disk() but prints new docs and asks for permission."""
-        console.print(*new_docs)
+        if len(new_docs) < 100:
+            console.print(*new_docs)
+        else:
+            logger.warning(f"Not showing the {len(new_docs)} repaired documents...")
+
         logger.warning(f"Finalizing {len(new_docs)} files: {[d.file_id for d in new_docs]}")
         ask_to_proceed("Looks good?")
         self._finalize_data_and_write_to_disk(new_docs)
@@ -437,6 +456,16 @@ class EpsteinFiles:
                 doc_timer.print_at_checkpoint(f"Slow file: {docs[-1]} processed")
 
         return docs
+
+    def _new_files(self) -> list[Path]:
+        """Find any files that don't exist in the collection. Has side effect of setting `self.file_paths`."""
+        self.file_paths = sorted(all_txt_paths(), reverse=True)
+        current_doc_ids = [id for id in self._docs_by_id().keys()] + list(self._empty_file_ids)
+
+        return [
+            p for p in self.file_paths
+            if extract_file_id(p) not in current_doc_ids
+        ]
 
     def _set_uninteresting_ccs(self) -> None:
         """Extract the recipients of emails configured has having uninteresting CCs or BCCs."""

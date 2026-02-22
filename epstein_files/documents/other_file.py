@@ -145,6 +145,7 @@ class OtherFile(Document):
                 # TODO: datefinder.find_dates() cannot find 08/29/2019 style e.g. in EFTA00005783 :(
                 for timestamp in datefinder.find_dates(self.text, strict=False):
                     timestamp = remove_timezone(timestamp)
+                    logger.debug(f"Found timestamp: '{timestamp}'")
 
                     if MIN_TIMESTAMP < timestamp < self.MAX_TIMESTAMP:
                         timestamps.append(timestamp)

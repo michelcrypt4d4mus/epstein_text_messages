@@ -292,7 +292,6 @@ HighlightedNames(
             r"Kwok",
             r"(Madam )?Fu Ying",
             r"Ministry\sof\sState\sSecurity",
-            r"Mongolian?",
             r"MSS",
             r"North .?Korean?",
             r"Peking",
@@ -333,7 +332,8 @@ HighlightedNames(
                 emailer_pattern=r"ji@media.mit.?edu|(joichi|joi)( Ito)?",
             ),
             Contact(LORENZO_DE_MEDICI, "Medici Bank, possibly Medici heir?", r"Prince Lorenzo|Lorenzo de Medici"),
-            Contact(MADARS_VIRZA, f"ZCash lead dev, {MIT_MEDIA_LAB}")
+            Contact(MADARS_VIRZA, f"ZCash lead dev, {MIT_MEDIA_LAB}"),
+            Contact('Suhas Daftuar', 'Chaincode Labs'),
         ],
         patterns=[
             r"adreeson", r"(Marc\s*)?(?<!Gavin )Andreess?en",
@@ -355,6 +355,7 @@ HighlightedNames(
             r"Brian Forde",
             r"Brock( Pierce)?",
             r"Brudder( Ventures)?",
+            r"Chaincode",
             r"Coinbase",
             r"coins?( Center)?",
             r"Complementary Currency",
@@ -690,7 +691,7 @@ HighlightedNames(
             r"(Tony\s)?Blair",
             r"United Kingdom",
             r"U\.K\.",
-            r"Ukrain(e|ian)",
+            r"Ukrai?n(e|ian)",
             r"Vatican",
             r"Venice",
             r"(Vi(c|k)tor )?Orbah?n",
@@ -872,6 +873,7 @@ HighlightedNames(
             r"(Ben )?Lawsky",
             r"((Bob|Robert) )?Mueller",
             r"(Byung\s)?Pak",
+            r"capital controls",
             r"Case 1:19-cv-03377(-LAP)?",
             r"(CENT|NORTH|SOUTH)COM",
             r"CFTC?",
@@ -893,7 +895,7 @@ HighlightedNames(
             r"FOIA",
             r"food stamps",
             r"FTC",
-            r"Gary Gensler",
+            r"(Gary )?Gensler",
             r"(General )?P(a|e)traeus",
             r"Geoff Ling",
             r"Homeland Security",
@@ -1079,7 +1081,7 @@ HighlightedNames(
             r"ABC( News)?",
             r"Alexandra Wolfe|Wolfe, Alexandra",
             r"AlterNet",
-            r"Arianna( Huffington)?",
+            r"Arianna( Huffington)?(?! Simpson)",
             r"(Arthur )?Kretchmer",
             r'Associated Press',
             r"Axios",
@@ -1203,21 +1205,13 @@ HighlightedNames(
     ),
     HighlightedNames(
         label=LOBBYIST,
-        style='light_coral',
+        style='light_coral',  # TODO: this shouldn't be same as Mongolia
         contacts=[
             Contact(BOB_CROWE, "partner at Nelson Mullins", r"[BR]ob Crowe"),
-            Contact(
-                name=GANBAT_CHULUUNKHUU,
-                info="corrupt Mongolian politician who was later wanted by Interpol",
-                emailer_pattern=r"Ganbat(@| Ch(uluunkhuu)?)?",
-            ),
             Contact('Joshua Cooper Ramo', "co-CEO of Henry Kissinger Associates"),
             Contact(KATHERINE_KEATING, "daughter of former Australian prime minister"),
-            Contact('Khaltmaagiin Battulga', "former president of Mongolia"),
-            Contact(MOHAMED_WAHEED_HASSAN, "former president of the Maldives", r"Mohamed Waheed( Hassan)?"),
             Contact(OLIVIER_COLOM, "France", r"Colom, Olivier|Olivier Colom"),
             Contact('Paul Keating', "former prime minister of Australia"),
-            Contact(PUREVSUREN_LUNDEG, "Mongolian ambassador to the UN", r"Purevsuren( Lundeg)?"),
             Contact('Stanley Rosenberg', "former President of the Massachusetts Senate")
         ],
         patterns=[
@@ -1227,6 +1221,24 @@ HighlightedNames(
             r"Stanley Rosenberg",
             r"Vinoda Basnayake",
         ],
+    ),
+    HighlightedNames(
+        label='Mongolia',
+        style='light_coral',
+        contacts=[
+            Contact(
+                name=GANBAT_CHULUUNKHUU,
+                info="corrupt Mongolian politician who was later wanted by Interpol",
+                emailer_pattern=r"Ganbat(@| Ch(uluunkhuu)?)?",
+            ),
+            Contact('Khaltmaagiin Battulga', "former president of Mongolia"),
+            Contact(PUREVSUREN_LUNDEG, "Mongolian ambassador to the UN", r"Purevsuren( Lundeg)?"),
+        ],
+        patterns=[
+            r"Elbekdorj",
+            r"Enkhbajar",
+            r"Mongolian?",
+        ]
     ),
     HighlightedNames(
         label='locations',
@@ -1612,6 +1624,9 @@ HighlightedNames(
     HighlightedNames(
         label='Southeast Asia',
         style='light_salmon3 bold',
+        contacts=[
+            Contact(MOHAMED_WAHEED_HASSAN, "former president of the Maldives", r"Mohamed Waheed( Hassan)?"),
+        ],
         patterns=[
             r"Australian?(?! Ave)",
             r"Bangkok",
@@ -1660,7 +1675,7 @@ HighlightedNames(
             r"Artificial (General )?Intelligence",
             r"Ben Horowitz",
             r"Chamath", r"Palihapitiya",
-            r"cyber security",
+            r"cyber( security)?",
             r"Danny Hillis",
             r"deep learning",
             r"Drew Houston",
@@ -1985,7 +2000,7 @@ HighlightedNames(
         style=TIMESTAMP_STYLE,
         patterns=[
             fr"({DATE_PATTERN} )?{TIME_PATTERN}",
-            DATE_PATTERN,
+            fr"\b{DATE_PATTERN}\b",
         ],
     ),
 
@@ -2015,9 +2030,6 @@ PEOPLE_BIOS = {
 def get_contact(name: str) -> Contact | None:
     if (group := get_highlight_group_for_name(name)) and isinstance(group, HighlightedNames):
         return group.contacts_lookup.get(name)
-
-
-
 
 
 def get_highlight_group_for_name(name: str | None) -> HighlightGroup | None:

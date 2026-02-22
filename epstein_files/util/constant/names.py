@@ -324,7 +324,7 @@ NAMES_TO_NOT_HIGHLIGHT = """
     kafka kahn karl kate katherine kelly ken kevin krassner
     larry larsen laurie lawrence leon lesley linda link lisa
     management mann marc marie mark martin matthew melanie michael mike miller mitchell miles morris moskowitz
-    nancy nathan neal new nicole norman ny
+    nancy nathan neal new nicholas nicole norman ny
     owen
     paul paula pen peter philip pierce plus police prince
     randall rangel reid richard robert rodriguez roger rosenberg ross roth roy rubenstein rubin

@@ -429,6 +429,7 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
         'Sent from Surface',
         'Sent from Surface RT',
         'Sent from Windows Mail',
+        'Sent using Acompli email app',
     ],
     "Sultan Ahmed Bin Sulayem": [
         "Sent from my iPhone"
@@ -463,10 +464,12 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
 
 SIGNATURE_SUBSTITUTION_COUNTS = {
     "(unknown)": 2,
+    'Andrew Nikou': 2,
     ARDA_BESKARDES: 9,
+    ARIANE_DE_ROTHSCHILD: 4,
     BARBRO_C_EHNBOM: 5,
     BRAD_KARP: 5,
-    ARIANE_DE_ROTHSCHILD: 4,
+    'Bradford Stephens': 9,
     BROCK_PIERCE: 117,
     DANIEL_SIAD: 5,
     "Danny Frost": 8,

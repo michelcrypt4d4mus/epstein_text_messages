@@ -1,4 +1,7 @@
 # NEXT RELEASE
+* Split up the massive Dilorio whistleblower emails
+
+### 1.8.4
 
 ### 1.8.3
 * `--output-doj` is now `--all-doj-files`, `--email-timeline` is now `--all-emails-chrono`

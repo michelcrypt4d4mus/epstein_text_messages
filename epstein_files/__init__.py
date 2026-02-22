@@ -16,6 +16,7 @@ from rich.text import Text
 
 from epstein_files.epstein_files import EpsteinFiles, document_cls
 from epstein_files.documents.document import Document
+from epstein_files.documents.documents.doc_cfg import EmailCfg
 from epstein_files.documents.documents.word_count import print_word_counts
 from epstein_files.documents.doj_file import DojFile
 from epstein_files.documents.email import Email
@@ -29,10 +30,11 @@ from epstein_files.output.rich import (temp_highlighter, console, highlighter,
 from epstein_files.output.site.sites import make_clean
 from epstein_files.output.title_page import print_color_key, print_title_page_top, print_title_page_bottom
 from epstein_files.util.constant.strings import HOUSE_OVERSIGHT_NOV_2025_ID_REGEX
+from epstein_files.util.constants import ALL_CONFIGS, CONFIGS_BY_ID
 from epstein_files.util.env import args, site_config
-from epstein_files.util.helpers.data_helpers import flatten
+from epstein_files.util.helpers.data_helpers import flatten, uniquify
 from epstein_files.util.helpers.document_helper import diff_files
-from epstein_files.util.helpers.file_helper import extract_file_id
+from epstein_files.util.helpers.file_helper import extract_file_id, is_local_extract_file
 from epstein_files.util.logging import exit_with_error, logger
 from epstein_files.util.timer import Timer
 
@@ -140,9 +142,17 @@ def epstein_grep():
                 console.print(doc._debug_txt(), style='dim')
                 console.line()
 
+        matched_ids = [result.document.file_id for result in search_results]
+        txt = Text("\n\n'").append(search_term, style='bright_red').append("'").append(' matched IDs: ')
+        console.print(txt.append(' '.join(matched_ids), style='cyan'))
+
+        if args.repair:
+            epstein_files.repair_ids(matched_ids)
+
 
 def epstein_show():
     """Show the color highlighted file. If --raw arg is passed, show the raw text of the file as well."""
+    ids_with_attachments = set([c.attached_to_email_id for c in ALL_CONFIGS if isinstance(c, EmailCfg)])
     raw_docs: list[Document] = []
     console.line()
 
@@ -150,19 +160,28 @@ def epstein_show():
         if args.names:
             people = EpsteinFiles.get_files().person_objs(args.names)
             raw_docs = [doc for doc in flatten([p.emails for p in people])]
-            existing_docs = []
         else:
             ids = [extract_file_id(arg.upper().strip().strip('_')) for arg in args.positional_args]
-            raw_docs = [Document.from_file_id(id) for id in ids]
-            existing_docs =  EpsteinFiles.get_files().get_ids(ids)
+            with_attachment_ids = list(set(ids).intersection(ids_with_attachments))
+            local_extract_ids = [id for id in ids if is_local_extract_file(id)]
+            raw_docs = [Document.from_file_id(id) for id in ids if not is_local_extract_file(id)]
+
+            if local_extract_ids:
+                raw_docs += EpsteinFiles.get_files().get_ids(local_extract_ids)
 
             # show the attachments bc reloaded obj won't have them
-            for doc in [d for d in existing_docs if isinstance(d, Email) and d.attached_docs]:
+            for id in with_attachment_ids:
+                existing_doc = EpsteinFiles.get_files().get_id(id)
                 logger.warning(f"Showing the attachments now because reloaded Email won't have them:")
-                console.print(doc)
+                console.print(existing_doc)
 
-        # Rebuild the Document objs so we can see result of latest processing
-        docs = Document.sort_by_timestamp([document_cls(doc)(doc.file_path) for doc in raw_docs])
+        if any(doc.file_info.has_file for doc in raw_docs):
+            # Rebuild the Document objs so we can see result of latest processing
+            docs = Document.sort_by_timestamp([document_cls(doc)(doc.file_path) for doc in raw_docs])
+        else:
+            logger.warning(f"Not reloading derived documents")
+            docs = raw_docs
+
         logger.info(f"Found file IDs {ids} with types: {[doc._class_name for doc in docs]}")
     except FileNotFoundError as e:
         exit_with_error(str(e))
@@ -171,10 +190,10 @@ def epstein_show():
         exit_with_error(str(e))
 
     for doc in docs:
-        if args.open_pdf:
-            check_output(['open', str(doc.file_info.local_pdf_path)])
+        if args.open_pdf and doc.file_info.is_doj_file:
+            doc.file_info.open_pdf()
         if args.open_txt:
-            check_output(['open', str(doc.file_path)])
+            doc.file_info.open()
         if args.open_url:
             check_output(['open', str(doc.file_info.external_url)])
 

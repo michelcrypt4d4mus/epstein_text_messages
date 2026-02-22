@@ -110,10 +110,11 @@ class Document:
     text: str = ''
 
     def __post_init__(self):
-        if not self.file_path.exists():
+        self.file_info = FileInfo(self.file_path)
+
+        if self.file_info.has_file and not self.file_path.exists():
             raise FileNotFoundError(f"File '{self.file_path}' does not exist!")
 
-        self.file_info = FileInfo(self.file_path)
         self.text = self.text or self._load_file()
         self._set_text(text=self.text)
         self._repair()
@@ -431,7 +432,7 @@ class Document:
 
         # TODO: this approach to forcing whole_file sucks
         old_whole_file_arg = args.whole_file
-        args.whole_file = whole_file
+        args.whole_file = args.whole_file or whole_file
         console.print(self)
         args.whole_file = old_whole_file_arg
 

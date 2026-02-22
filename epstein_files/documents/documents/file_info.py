@@ -1,6 +1,7 @@
 import logging
 from dataclasses import asdict, dataclass, field
 from pathlib import Path
+from subprocess import check_output
 from typing import Mapping
 
 from rich.text import Text
@@ -79,7 +80,11 @@ class FileInfo:
         try:
             return file_size(self.local_path)
         except FileNotFoundError as e:
-            self.warn(str(e))
+            if self.has_file:
+                self.warn(str(e))
+            else:
+                self.log(f"no underlying file (but expected): {e}")
+
             return -1
 
     @property
@@ -93,6 +98,11 @@ class FileInfo:
     @property
     def filename(self) -> str:
         return self.local_path.name
+
+    @property
+    def has_file(self) -> bool:
+        """Returns false for derivations of massive Dilorio emails."""
+        return not (self.is_doj_file and self.is_local_extract_file)
 
     @property
     def is_doj_file(self) -> bool:
@@ -171,6 +181,15 @@ class FileInfo:
     def log(self, msg: str, level: int = logging.INFO):
         """Log a message with with this document's filename as a prefix."""
         logger.log(level, f"{self.file_stem} {msg}")
+
+    def open(self) -> None:
+        check_output(['open', str(self.local_path)])
+
+    def open_pdf(self) -> None:
+        if not self.is_doj_file:
+            raise RuntimeError(f"No PDF for House oversight file!")
+
+        check_output(['open', str(self.local_pdf_path)])
 
     def warn(self, msg: str) -> None:
         """Print a warning message prefixed by info about this `file_id`."""
