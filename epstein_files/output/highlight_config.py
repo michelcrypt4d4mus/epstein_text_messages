@@ -1080,7 +1080,7 @@ HighlightedNames(
             r"ABC( News)?",
             r"Alexandra Wolfe|Wolfe, Alexandra",
             r"AlterNet",
-            r"Arianna( Huffington)?",
+            r"Arianna( Huffington)?(?! Simpson)",
             r"(Arthur )?Kretchmer",
             r'Associated Press',
             r"Axios",
