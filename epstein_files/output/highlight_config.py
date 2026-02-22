@@ -333,7 +333,8 @@ HighlightedNames(
                 emailer_pattern=r"ji@media.mit.?edu|(joichi|joi)( Ito)?",
             ),
             Contact(LORENZO_DE_MEDICI, "Medici Bank, possibly Medici heir?", r"Prince Lorenzo|Lorenzo de Medici"),
-            Contact(MADARS_VIRZA, f"ZCash lead dev, {MIT_MEDIA_LAB}")
+            Contact(MADARS_VIRZA, f"ZCash lead dev, {MIT_MEDIA_LAB}"),
+            Contact('Suhas Daftuar', 'Chaincode Labs'),
         ],
         patterns=[
             r"adreeson", r"(Marc\s*)?(?<!Gavin )Andreess?en",
