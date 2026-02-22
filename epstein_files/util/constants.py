@@ -2517,6 +2517,12 @@ OTHER_FILES_CRYPTO = [
         description='Barry Silbert became the CEO of Digital Currency Group, a huge US crypto fund w/Larry Summers on the board',
         is_interesting=True,
     ),
+    DocCfg(
+        id='EFTA01249210',
+        description="FBI report on tip linking American commerce secretary and Tether asset custodian Howard Lutnick to Ponzi schemes and Russian money",
+        is_interesting=True,
+        show_with_name=BROCK_PIERCE,
+    )
 ]
 
 OTHER_FILES_SKYPE_LOG = [
