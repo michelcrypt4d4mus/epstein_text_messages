@@ -325,7 +325,8 @@ class DocCfg:
     @property
     def timestamp(self) -> datetime | None:
         if self.date:
-            return parse(f'{self.date} 00:00:00 UTC' if len(self.date) == 10 else self.date)
+            return parse(self.date)
+            #return parse(f'{self.date} 00:00:00 UTC' if len(self.date) == 10 else self.date)
 
     @property
     def truthy_props(self) -> dict[str, bool | str | None]:

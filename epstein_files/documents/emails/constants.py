@@ -13,7 +13,7 @@ XML_STRIPPED_MSG = '<...removed Apple XML plist...>'
 QUOTE_INDENT_CHAR_GROUP = '[>»• ]'
 
 # Reply line regexes
-FORWARDED_LINE_PATTERN = r"-+ *((Forwarded|Original)\s*Message|Message d'?origine) *-*|Begin forwarded message:?"
+FORWARDED_LINE_PATTERN = r"[- ]*((Forwarded|Original)\s*[Mm]essage:?|Message d'?origine)[- ]*|Begin [Ff]orwarded [Mm]essage:?"
 FRENCH_REPLY_PATTERN = r"Le .* a ecrit:"
 GERMAN_REPLY_PATTERN = r"Am \d\d\.\d\d\..*schrieb.*"
 NORWEGAIN_REPLY_PATTERN = r"(Den .* folgende|(fre|lor|son)\. .* skrev .*):"

@@ -587,19 +587,19 @@ EMAILS_CONFIG = [
     EmailCfg(id='028524', description='Zach Braff op-ed on Woody Allen in NYT', is_fwded_article=True, is_interesting=False),
     EmailCfg(
         id='030630',
-        author_reason=PRUSAKOVA_BERKELY,
         author=MARIA_PRUSAKOVA,
-        description='Masha Prusso asks about Zubair Khan',
+        author_reason=PRUSAKOVA_BERKELY,
+        description=f'Masha Prusso / {MARIA_PRUSAKOVA} asks about Zubair Khan',
         is_interesting=True,
     ),
     EmailCfg(
         id='032374',
-        author_reason=PRUSAKOVA_BERKELY,
         author=MARIA_PRUSAKOVA,
-        description='Masha Prusso asks about Zubair Khan',
+        author_reason=PRUSAKOVA_BERKELY,
+        comment='boyfriend Christian mentioned',
         is_interesting=True,
     ),
-    EmailCfg(id='032375', author_reason=PRUSAKOVA_BERKELY, author=MARIA_PRUSAKOVA, truncate_to=NO_TRUNCATE),
+    EmailCfg(id='032375', author_reason=PRUSAKOVA_BERKELY, author=MARIA_PRUSAKOVA, truncate_to=295),
     EmailCfg(id='031428', duplicate_ids=['031388'], is_fwded_article=True),
     EmailCfg(id='033528', duplicate_ids=['033517'], is_fwded_article=True),
     EmailCfg(id='030238', duplicate_ids=['031130'], is_fwded_article=True),
@@ -1072,7 +1072,6 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00701326', author=LINDA_STONE, author_uncertain='"Stone"'),
     EmailCfg(id='EFTA00397956', author=LINDA_STONE, author_reason='unique email signature'),
     EmailCfg(id='EFTA02267133', author=LESLEY_GROFF, recipients=[MARIA_PRUSAKOVA], uncertain_recipient=f"{CRYPTO_PR_LAB} signature", truncate_to=NO_TRUNCATE),  # only uncertain bc it could be other crypto pr lab person
-    EmailCfg(id='EFTA02349697', author=MARIA_PRUSAKOVA, author_reason='boyfriend Christian, same as 032374'),
     EmailCfg(id='EFTA00495349', author=MARIA_PRUSAKOVA, author_reason=CRYPTO_PR_LAB, description='Ed Boyle / Medici Bank'),
     EmailCfg(id='EFTA00773139', author='Reinaldo Avila', description="Epstein calls Swedish billionaire Johan Eliasch \"not the brightest bulb\"", truncate_to=1000),
     EmailCfg(
@@ -2427,6 +2426,12 @@ OTHER_FILES_CRYPTO = [
     DocCfg(id='EFTA01613759', author=CRYPTO_PR_LAB, description="letter of intent of acquisitionfrom Transform Group"),
     DocCfg(id='EFTA01613762', author=CRYPTO_PR_LAB, description=f"WhatsApp convo with {MARIA_PRUSAKOVA}", date='2019-05-21'),
     DocCfg(id='EFTA01612721', author=CRYPTO_PR_LAB, description=f"WhatsApp convo with {MARIA_PRUSAKOVA}", date='2019-05-21'),
+    EmailCfg(
+        id='EFTA02349697',
+        author=MARIA_PRUSAKOVA,
+        author_reason='boyfriend Christian, same as 032374',
+        description=f'{MARIA_PRUSAKOVA} says she is starting a crypto company with {ZUBAIR_KHAN}',
+    ),
     # ZCash
     DocCfg(id='EFTA00811130', author=PERKINS_COIE, description='tax opinion on ZCash tokens'),
     DocCfg(id='EFTA00603348', description=f"Electric Coin Company created the untraceable crypto ZCash funded by {LARRY_SUMMERS}'s DCG"),
