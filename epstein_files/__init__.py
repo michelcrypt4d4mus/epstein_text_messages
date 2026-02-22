@@ -98,7 +98,7 @@ def epstein_grep():
         return
 
     for search_term in args.positional_args:
-        temp_highlighter = temp_highlighter(search_term)
+        tmp_highlight = temp_highlighter(search_term)
         search_results = epstein_files.docs_matching(search_term, args.names)
         print_subtitle_panel(f"Found {len(search_results)} documents matching '{search_term}'")
         last_document = None
@@ -132,7 +132,7 @@ def epstein_grep():
 
                 for matching_line in lines:
                     line_txt = matching_line.__rich__()
-                    console.print(Padding(temp_highlighter(line_txt), site_config.info_padding()), style='gray37')
+                    console.print(Padding(tmp_highlight(line_txt), site_config.info_padding()), style='gray37')
 
             console.line()
 

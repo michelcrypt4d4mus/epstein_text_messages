@@ -837,9 +837,6 @@ EMAILS_CONFIG = [
     EmailCfg(id='022396', is_interesting=True, comment='Ukraine friend'),
     EmailCfg(id='026505', is_interesting=True, comment='I know how dirty trump is'),
     EmailCfg(id='029679', is_interesting=True, comment="Trump's driver was the bag man"),
-    EmailCfg(id='026258', is_interesting=True, comment='Bannon cripto coin issues'),
-    EmailCfg(id='026260', is_interesting=True, comment='Bannon cripto coin issues'),
-    EmailCfg(id='032359', is_interesting=True, comment='Jabor e-currency'),
     EmailCfg(id='031451', is_interesting=True, comment='"would you like photso of donald and girls in bikinis in my kitchen."'),
     EmailCfg(id='031596', is_interesting=True, comment='"would you like photso of donald and girls in bikinis in my kitchen."'),
     EmailCfg(id='031601', is_interesting=True, comment='Old gf i gave to donald', truncate_to=2000),
@@ -847,7 +844,6 @@ EMAILS_CONFIG = [
     EmailCfg(id='030714', is_interesting=True, comment='Bannon, Russian Dugan shout out'),
     EmailCfg(id='031659', is_interesting=True, comment='"i have met some very bad people „ none as bad as trump"'),
     EmailCfg(id='030245', is_interesting=True, comment='Epstein rationalizes his behavior in an open letter to the world'),
-    EmailCfg(id='030781', is_interesting=True, comment='Bannon email about crypto coin issues'),
     EmailCfg(id='032906', is_interesting=True, comment='David Blaine email'),
     EmailCfg(id='029609', is_interesting=True, comment='Joi Ito'),
     EmailCfg(id='025233', is_interesting=True, comment='Reputation.com discussion'),
@@ -2445,9 +2441,14 @@ OTHER_FILES_CRYPTO = [
     DocCfg(id='EFTA00810362', author=VALAR_VENTURES, description="investor questionnaire", truncate_to=DEFAULT_TRUNCATE_TO),
     DocCfg(id='EFTA00605996', description='Wedbush BUY rating on Digital Currency Group GBTC', is_interesting=False),
     # Bannon
+    EmailCfg(id='026260', comment='Bannon cripto coin issues'),
+    EmailCfg(id='026258', description='Bannon suggests Jeffrey Wernick, CEO of Parler and man affiliated with many shady crypto businesses, can help'),
+    EmailCfg(id='030781', description="Esptein says the crypto coin issues they're having are 'US based'"),
+    EmailCfg(id='026255', description='Epstein requests help with "coin issues" and "prohibitions foreign donor" (sic)', is_interesting=True),
+    EmailCfg(id='EFTA02517572', description=f'Bannon says that they need to stop EU regulation of crypto scams "dead in its tracks"', is_interesting=True),
     EmailCfg(id='EFTA00881711', description=f"Bannon and Epstein discuss bitcoin and crypto donations", is_interesting=True),
     EmailCfg(id='EFTA00881759', description=f"Epstein and {STEVE_BANNON} discuss collection donations in bitcoin", is_interesting=True),
-    # SEC /NYDFS
+    # SEC / NYDFS
     EmailCfg(id='EFTA02588398', description=f"Epstein went to the Treasury Dept of the US to talk about bitcoin", is_interesting=True),
     EmailCfg(id='EFTA00987194', description=f"Epstein proposes {BEN_LAWSKY_NYDFS} get rid of sales tax on bitcoin", is_interesting=True),
     EmailCfg(id='EFTA02591315', description=f"{ANDREW_FARKAS} arranging for Epstein to meet {BEN_LAWSKY_NYDFS}", is_interesting=True, truncate_to=1900),
@@ -2477,6 +2478,7 @@ OTHER_FILES_CRYPTO = [
     EmailCfg(id='EFTA01750652', description=f"discussion of using blockchains in the repo markets"),
     EmailCfg(id='EFTA02002675', description=f"{JASON_CALACANIS} passes Epstein the names of the bitcoin core developers"),
     # Unsorted
+    EmailCfg(id='032359', description='HBJ brings up "e-currency" (Sharia Coin, probably)'),
     EmailCfg(id='EFTA00993615', description=f"{MASHA_DROKOVA} explains the price of bitcoin can be manipulated if Epstein makes public comments"),
     EmailCfg(id='EFTA02584771', description=f"discussion of decentralized prediction maarkets like Polymarket"),
     EmailCfg(
@@ -2566,6 +2568,8 @@ UNINTERESTING_EMAIL_IDS = [
     # Jabor
     '030786',
     '033011',
+    # Bannon
+    'EFTA02517956',
     # Brock
     'EFTA02174702',
     'EFTA02160842',
@@ -2624,6 +2628,8 @@ UNINTERESTING_EMAIL_IDS = [
     # bolotova
     'EFTA01903041',
     'EFTA01969322',
+    # Wolff
+    '021120',
     # Iozzo
     '033280',
     # Lesley?
@@ -2711,6 +2717,9 @@ NOT_CHRONOLOGICAL_VIEW_IDS = [
     '030874',
     'EFTA02396796',
     '031320',
+    '026254',
+    '026473',
+    '026474',
     # '024185', # UN
 ]
 
