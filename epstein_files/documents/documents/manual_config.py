@@ -94,31 +94,42 @@ def create_configs(docs: Sequence[Document]) -> Sequence[DocCfg]:
 
 
 def _ask_for_value(cfg: DocCfg, prop: str, doc: Document, doc_val: list[str] | str) -> None:
-    if prop.startswith('is_'):
-        value = _ask_for_optional_bool(prop)
+    question = Text('').append(prop, style='cyan').append('? ')
+    is_list_prop = isinstance(doc_val, list)
+    is_bool_prop = prop.startswith('is_')
+    is_truncate_prop = prop == 'truncate_to'
+
+    if is_list_prop:
+        question.append('(comma separated) ', style='yellow1 dim')
+    elif is_bool_prop:
+        question.append('[y/n/None] ', style='magenta')
+
+    if is_bool_prop:
+        value = _ask_for_optional_bool(question)
     else:
-        value = Prompt.ask(f"{prop}?")
+        value = Prompt.ask(question).strip()
 
         if not value:
             return None
         elif isinstance(doc_val, list):
             value = [value]
-        elif prop == 'truncate_to':
+        elif is_truncate_prop:
             value = int(value)
 
     setattr(cfg, prop, value)
 
-    if prop == 'truncate_to':
+    # Keep asking until a good value is found
+    if is_truncate_prop:
         CONFIGS_BY_ID[doc.file_id] = cfg
         doc.print()
 
         if not Confirm.ask("looks good?"):
             doc.print(whole_file=True)
-            _ask_for_value(cfg, prop, doc, doc_val)
+            return _ask_for_value(cfg, prop, doc, doc_val)
 
 
-def _ask_for_optional_bool(prop: str) -> bool | None:
-    value = Prompt.ask(Text(f"{prop}? ").append('[y/n/None]', style='magenta')).strip()
+def _ask_for_optional_bool(question: Text) -> bool | None:
+    value = Prompt.ask(question).strip()
 
     if not value:
         return None
@@ -127,8 +138,8 @@ def _ask_for_optional_bool(prop: str) -> bool | None:
     elif value.lower() in ['f', 'n']:
         return False
     else:
-        logger.warning(f"'{value}' is not a valid response.")
-        return _ask_for_optional_bool(prop)
+        logger.warning(f"'{value}' is not a valid boolean value.")
+        return _ask_for_optional_bool(question)
 
 
 def _insert_configs(cfgs: list[DocCfg]) -> None:
