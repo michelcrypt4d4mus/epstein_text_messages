@@ -17,24 +17,34 @@ FIXTURES_DIR = Path(__file__).parent.joinpath('fixtures', 'generated')
 FILE_INFO_CSV_PATH = FIXTURES_DIR.joinpath('files.csv')
 
 
+@pytest.fixture
+def doj_file_id() -> str:
+    return 'EFTA00039689'
+
+
+@pytest.fixture
+def doj_filename(doj_file_id) -> str:
+    return f"{doj_file_id}.txt"
+
+
 @pytest.fixture(scope='session')
 def epstein_files() -> EpsteinFiles:
     return EpsteinFiles.get_files()
 
 
 @pytest.fixture
-def file_id() -> int:
+def house_file_id() -> int:
     return 12345
 
 
 @pytest.fixture
-def file_stem(file_id) -> str:
-    return file_stem_for_id(file_id)
+def house_file_stem(house_file_id) -> str:
+    return file_stem_for_id(house_file_id)
 
 
 @pytest.fixture
-def file_name(file_stem) -> str:
-    return f"{file_stem}.txt"
+def house_filename(house_file_stem) -> str:
+    return f"{house_file_stem}.txt"
 
 
 @pytest.fixture
@@ -62,8 +72,8 @@ def get_other_file(epstein_files) -> Callable[[str], OtherFile]:
 
 
 @pytest.fixture
-def local_extract_file_name(file_stem) -> str:
-    return f"{file_stem}_1.txt"
+def local_extract_file_name(house_file_stem) -> str:
+    return f"{house_file_stem}_1.txt"
 
 
 def assert_higher_counts(actual: Mapping[str | None, int], expected: Mapping[str | None, int]):

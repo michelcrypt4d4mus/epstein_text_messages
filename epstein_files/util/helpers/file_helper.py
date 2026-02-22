@@ -1,14 +1,15 @@
 import re
 from pathlib import Path
 
-from epstein_files.util.constant.strings import (DOJ_FILE_STEM_REGEX, EFTA_PREFIX,
+from epstein_files.util.constant.strings import (DOJ_FILE_STEM_REGEX, DOJ_FILE_NAME_REGEX, EFTA_PREFIX,
      HOUSE_OVERSIGHT_NOV_2025_FILE_NAME_REGEX, HOUSE_OVERSIGHT_NOV_2025_FILE_STEM_REGEX,
      HOUSE_OVERSIGHT_PREFIX, LOCAL_EXTRACT_REGEX)
 from epstein_files.util.env import DOCS_DIR, DOJ_TXTS_20260130_DIR
 from epstein_files.util.logging import logger
 
 EXTRACTED_EMAILS_DIR = Path('emails_extracted_from_legal_filings')
-FILE_ID_REGEX = re.compile(fr".*{HOUSE_OVERSIGHT_NOV_2025_FILE_NAME_REGEX.pattern}")
+DOJ_FILE_ID_REGEX = re.compile(fr".*{DOJ_FILE_NAME_REGEX.pattern}")
+HOUSE_FILE_ID_REGEX = re.compile(fr".*{HOUSE_OVERSIGHT_NOV_2025_FILE_NAME_REGEX.pattern}")
 FILENAME_LENGTH = len(HOUSE_OVERSIGHT_PREFIX) + 6
 KB = 1024
 MB = KB * KB
@@ -85,7 +86,7 @@ def extract_file_id(filename_or_id: int | str | Path) -> str:
 
     if len(filename_str) == 8 and filename_str.startswith('00'):
         return f"{HOUSE_OVERSIGHT_PREFIX}{filename_or_id}"
-    elif (file_match := FILE_ID_REGEX.match(filename_str.upper())):
+    elif (file_match := HOUSE_FILE_ID_REGEX.match(filename_str.upper())):
         return file_match.group(1)
     else:
         raise RuntimeError(f"Failed to extract file ID from '{filename_or_id}' (type: {type(filename_or_id).__name__}!")
@@ -136,10 +137,10 @@ def is_house_oversight_file(file: str | Path) -> bool:
     return bool(HOUSE_OVERSIGHT_NOV_2025_FILE_STEM_REGEX.search(str(file)))
 
 
-def is_local_extract_file(filename) -> bool:
+def is_local_extract_file(filename: str | Path) -> bool:
     """Return True if `filename` is of form 'HOUSE_OVERSIGHT_029835_1.txt'."""
-    file_match = FILE_ID_REGEX.match(str(filename))
-    return True if file_match and file_match.group(2) else False
+    match = HOUSE_FILE_ID_REGEX.match(str(filename)) or DOJ_FILE_ID_REGEX.match(str(filename))
+    return True if match and match.group(2) else False
 
 
 def log_file_write(file_path: str | Path) -> None:
