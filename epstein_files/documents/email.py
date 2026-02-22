@@ -754,10 +754,11 @@ class Email(Communication):
             body = self._body_as_table(txt, subtitle)
 
         yield self.file_info_panel()
-        yield Padding(body, (0, 0, 1, site_config.other_files_table_indent))
+        body_bottom_padding = 0 if self.attached_docs else 1
+        yield Padding(body, (0, 0, body_bottom_padding, site_config.other_files_table_indent))
 
         if self.attached_docs:
-            attachments_table_title = f" {self.file_info.url_slug} Email Attachments:"
+            attachments_table_title = f"| Email Attachments for {self.file_info.url_slug}:" # ╏┇┣
             attachments_table = OtherFile.files_preview_table(self.attached_docs, title=attachments_table_title)
             yield Padding(attachments_table, (0, 0, 1, site_config.attachment_indent))
 

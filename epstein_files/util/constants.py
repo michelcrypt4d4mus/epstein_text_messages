@@ -553,7 +553,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='032946', description='discussion of obtaining a Moroccan visa for an unnamed woman', is_interesting=True),
     EmailCfg(id='031320', description='discussion of routing Gratitude foundation money through Peggy Siegal', is_interesting=True),
     EmailCfg(id='031152', description='discussion of notoriously corrupt Kazakh politician Rakhat Aliyev', is_interesting=True),
-    EmailCfg(id='022219', description="discussion of attempts to clean up Epstein's Google search results", truncate_to=2404),
+    EmailCfg(id='022219', description=f"{AL_SECKEL} and Epstein fight about the bill for reputation management services", truncate_to=2404),
     EmailCfg(id='032671', description='connections to Fusion GPS who produced the Steele Dossier on Trump'),
     EmailCfg(id='033052', description='connections to Fusion GPS who produced the Steele Dossier on Trump'),
     EmailCfg(id='031472', description="discussion of publishing an audio recording related to the coup in Turkey"),
@@ -853,7 +853,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='025233', is_interesting=True, comment='Reputation.com discussion'),
     EmailCfg(id='017827', is_interesting=True, comment='Bannon / Peggy Siegal email about netflix doc on Epstein'),
     EmailCfg(id='030222', is_interesting=True, comment='Ross Gow / Ghislaine correspondence'),
-    EmailCfg(id='031326', is_interesting=True, comment='"dog that hasn\'t barked is trump"'),
+    EmailCfg(id='031326', is_interesting=True, description='the "dog that hasn\'t barked is trump"'),
     EmailCfg(id='029545', is_interesting=True, comment='Tyler Shears reputation'),
     EmailCfg(id='025812', is_interesting=True, comment='Tyler Shears reputation'),
     EmailCfg(id='033171', is_interesting=True, comment='Zubair'),
@@ -1355,6 +1355,7 @@ EMAILS_CONFIG = [
         is_interesting=True,
         truncate_to=4000,
     ),
+    EmailCfg(id='EFTA02540384', description='Epstein asking an intro to the bitcoin team he would go on to fund', is_interesting=True),
     EmailCfg(id='EFTA01769169', description='Epstein tells Jean Luc Brunel he can spend up to $25 million', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA02483194', description=f"discussion of {GANBAT_CHULUUNKHUU}'s arrest", is_interesting=True),
     EmailCfg(id='EFTA02629771', description=f"discussion of {RENATA_BOLOTOVA}'s employment at IPI", is_interesting=True),
@@ -1402,6 +1403,8 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00870717', duplicate_ids=['EFTA01932706']),
     EmailCfg(id='EFTA00915302', duplicate_ids=['EFTA01860910', 'EFTA01986221', 'EFTA01776411']),
     EmailCfg(id='EFTA01776613', duplicate_ids=['EFTA01860812', 'EFTA00915297']),
+    EmailCfg(id='EFTA00915298', truncate_to=300),
+    EmailCfg(id='EFTA00915300', truncate_to=250),
     EmailCfg(id='EFTA02592748', truncate_to=300),
     EmailCfg(id='EFTA01061414', truncate_to=440),
     EmailCfg(id='EFTA02493582', truncate_to=450),
@@ -2664,13 +2667,19 @@ UNINTERESTING_EMAIL_IDS = [
     '019873',
 ]
 
+# Not uninteresting enough to be permanently marked as such but not good enough for --output-chrono
 NOT_CHRONOLOGICAL_VIEW_IDS = [
     '022247',
     '030095',
     '022234',
     '030470',
     '030222',
+    # '031826',
+    '031830',
+    '031986',
     '026584',
+    '011908_6',
+    '029973',
 ]
 
 # Build OtherFile / DojFile config list by combining OTHER_FILES_[BLAH] variables

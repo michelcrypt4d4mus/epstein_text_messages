@@ -150,9 +150,16 @@ def epstein_show():
         if args.names:
             people = EpsteinFiles.get_files().person_objs(args.names)
             raw_docs = [doc for doc in flatten([p.emails for p in people])]
+            existing_docs = []
         else:
             ids = [extract_file_id(arg.upper().strip().strip('_')) for arg in args.positional_args]
             raw_docs = [Document.from_file_id(id) for id in ids]
+            existing_docs = EpsteinFiles.get_files().get_ids(ids)
+
+            # show the attachments bc reloaded obj won't have them
+            for doc in [d for d in existing_docs if isinstance(d, Email) and d.attached_docs]:
+                logger.warning(f"Showing the attachments now because reloaded Email won't have them:")
+                console.print(doc)
 
         # Rebuild the Document objs so we can see result of latest processing
         docs = Document.sort_by_timestamp([document_cls(doc)(doc.file_path) for doc in raw_docs])

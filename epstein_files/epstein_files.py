@@ -380,11 +380,17 @@ class EpsteinFiles:
         self.save_to_disk()
 
     def _find_email_attachments_and_set_is_first_for_user(self) -> None:
+        email_attachments = [f for f in self.other_files if f.config and f.config.attached_to_email_id]
+
         for email in self.emails:
             email.attached_docs = []  # Remove all attachments before re-finding them if it's a repair
 
-        for file in [f for f in self.other_files if f.config and f.config.attached_to_email_id]:
+        for file in email_attachments:
             email: Email = self.get_id(file.config.attached_to_email_id, required_type=Email)
+
+            if email.is_duplicate:
+                raise ValueError(f"Cannot attach {file.file_id} to duplicate email {email}")
+
             email.attached_docs.append(file)
 
             if file.config.timestamp:  # Don't overwrite configured timestamps (think of a book or article attachment)
