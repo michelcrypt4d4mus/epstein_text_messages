@@ -32,11 +32,23 @@ DILORIO_SPLIT = '\nFrom: Chris'
 dilorio = epstein_files.person_objs([CHRISTOPHER_DILORIO])[0]
 uniquify([e.timestamp for e in dilorio.emails])
 sub_emails = []
+skipped = []
 
 for big_email in dilorio.emails:
     big_email = big_email.reload()
-    texts = [f"{DILORIO_SPLIT.strip()}{text}".strip() for text in big_email.text.split(DILORIO_SPLIT)]
-    logger.warning(f"Parsing {big_email} into {len(texts)} sub emails...")
+
+    texts = [
+        (f"{DILORIO_SPLIT}{t}" if i > 0 else t).strip()
+        for i, t in enumerate(big_email.text.split(DILORIO_SPLIT))
+    ]
+
+    if len(texts) == 1:
+        logger.warning(f"No sub emails to create...")
+        import pdb;pdb.set_trace()
+        continue
+    else:
+        logger.warning(f"Parsing {big_email} into {len(texts)} sub emails...")
+        big_email._was_split_up = True
 
     for i, text in enumerate(texts, 1):
         console.line()
@@ -45,11 +57,14 @@ for big_email in dilorio.emails:
         new_file_stem = big_email.file_info.file_stem + f'_{i}.txt'
         email = Email(big_email.file_path.parent.joinpath(new_file_stem), text=text)
         email.extracted_author = CHRISTOPHER_DILORIO
-        print_subtitle_panel(f"Email object for #{new_file_stem} ({len(text)} chars) Raw")
+        print_subtitle_panel(f"Email object for #{new_file_stem} ({len(text)} chars)")
         console.print(email)
 
-        if not email.actual_text:
+        if not email.actual_text or email.lines[-1].startswith('Subject:'):
+            print(f"length of actual_text: {email.actual_text}\n{email.actual_text}")
             email.warn(f"skipping empty email...")
+            import pdb;pdb.set_trace()
+            continue
 
         sub_emails.append(email)
 

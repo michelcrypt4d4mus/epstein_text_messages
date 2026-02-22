@@ -201,6 +201,7 @@ class Email(Communication):
     signature_substitution_counts: dict[str, int] = field(default_factory=dict)  # defaultdict breaks asdict :(
     _header: EmailHeader | None = None
     _line_merge_arguments: list[tuple[int] | tuple[int, int]] = field(default_factory=list)
+    _was_split_up: bool = False
 
     # Class variable logging how many headers we prettified while printing, kind of janky
     rewritten_header_ids: ClassVar[set[str]] = set([])
