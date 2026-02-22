@@ -274,11 +274,14 @@ class DocCfg:
             [+] INTERESTING_AUTHORS
             [+] having no author/description *if* HOUSE_OVERSIGHT
              -  duplicates
+             -  known email attachments
              -  is_uninteresting
              -  descriptions with UNINTERESTING_PREFIXES
              -  finance category with any author
         """
         if self.duplicate_of_id:
+            return False
+        elif self.attached_to_email_id:
             return False
         elif args.output_chrono and self.is_in_chrono is not None:
             return self.is_in_chrono
