@@ -322,11 +322,16 @@ class EpsteinFiles:
     def repair_ids(self, ids: list[str]) -> None:
         """Reload the `ids` and save updated pickle file (also loads new files)."""
         ids = uniquify(ids)
-        doc_paths = [d.file_path for d in self.documents if d.file_id in ids]
-        msg = f"Repairing {len(ids)} file IDs"
 
-        if len(doc_paths) != len(ids):
-            raise RuntimeError(f"{len(ids)} specified but only {len(doc_paths)} Document objects found!")
+        if ids == ['EMAIL']:
+            doc_paths = [d.file_path for d in self.emails]
+            msg = f"Repairing all {len(doc_paths)} emails..."
+        else:
+            doc_paths = [d.file_path for d in self.documents if d.file_id in ids]
+            msg = f"Repairing {len(ids)} file IDs"
+
+            if len(doc_paths) != len(ids):
+                raise RuntimeError(f"{len(ids)} specified but only {len(doc_paths)} Document objects found!")
 
         if (new_paths := self._new_files()):
             msg +=  f" (also loading {len(new_paths)} new files)"
@@ -413,7 +418,11 @@ class EpsteinFiles:
 
     def _finalize_new_docs_if_approved(self, new_docs: list[Document]) -> None:
         """Same as _finalize_data_and_write_to_disk() but prints new docs and asks for permission."""
-        console.print(*new_docs)
+        if len(new_docs) < 100:
+            console.print(*new_docs)
+        else:
+            logger.warning(f"Not showing the {len(new_docs)} repaired documents...")
+
         logger.warning(f"Finalizing {len(new_docs)} files: {[d.file_id for d in new_docs]}")
         ask_to_proceed("Looks good?")
         self._finalize_data_and_write_to_disk(new_docs)
