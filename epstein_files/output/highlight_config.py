@@ -1965,12 +1965,10 @@ HighlightedNames(
     HighlightPatterns(
         label='timestamp_2',
         style=TIMESTAMP_STYLE,
-        patterns=[fr"({DATE_PATTERN} )?{TIME_PATTERN}"],
-    ),
-    HighlightPatterns(
-        label='timestamp_date',
-        style=TIMESTAMP_DIM,
-        patterns=[DATE_PATTERN],
+        patterns=[
+            fr"({DATE_PATTERN} )?{TIME_PATTERN}",
+            DATE_PATTERN,
+        ],
     ),
 
     # Manual regexes
