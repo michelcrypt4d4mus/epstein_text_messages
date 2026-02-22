@@ -39,7 +39,7 @@ def create_configs(docs: Sequence[Document]) -> Sequence[DocCfg]:
     """Manually review and create `DocCfg` objects for new files."""
     console.print(*docs)
     cfgs = []
-    what_to_do = Prompt.ask(QUESTION.append(f" [y/n/c/IDs]", style='magenta'))
+    what_to_do = Prompt.ask(QUESTION.append(f" [y/n/{ALL}/IDs]", style='magenta'))
 
     if what_to_do == 'n':
         sys.exit()

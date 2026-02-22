@@ -1105,7 +1105,7 @@ EMAILS_CONFIG = [
     ),
     EmailCfg(id='EFTA02025944', author=RENATA_BOLOTOVA, recipients=[JEFFREY_EPSTEIN], date='2012-01-23 06:00:00'),
     EmailCfg(id='EFTA01985762', author=RENATA_BOLOTOVA, recipients=[JEFFREY_EPSTEIN], date='2012-01-24 09:35:00'),
-    EmailCfg(id='EFTA00711422', author=RENATA_BOLOTOVA, author_reason=f"Bolotova went on to work on water projects at IPI"),
+    EmailCfg(id='EFTA00711422', author=RENATA_BOLOTOVA, author_reason="Bolotova went on to work on water projects at IPI", author_uncertain=True),
     EmailCfg(id='EFTA00920177', author=RENATA_BOLOTOVA, author_reason='discussion of employment at Institute'),
     EmailCfg(id='EFTA00920010', author=RENATA_BOLOTOVA, author_reason='renbolotova@gmail in body'),
     EmailCfg(id='EFTA02455567', author=RENATA_BOLOTOVA, author_reason='"sneaky"', description='completely redacted email body'),
