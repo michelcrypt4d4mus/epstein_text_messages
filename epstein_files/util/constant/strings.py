@@ -37,6 +37,7 @@ REGEX_STYLE_PREFIX = 'regex'
 # Misc
 APPEARS_IN = 'appears in'
 AUTHOR = 'author'
+CHRONOLOGICAL = 'chronological'
 DEFAULT = 'default'
 EMAIL = 'email'
 JSON = 'json'

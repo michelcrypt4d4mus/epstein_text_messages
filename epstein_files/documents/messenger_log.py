@@ -59,7 +59,7 @@ class MessengerLog(Communication):
     @property
     def subheader(self) -> Text | None:
         num_days_str = days_between_str(self.timestamp, self.messages[-1].parse_timestamp())
-        txt = Text(f"(Covers {num_days_str} starting ", style='dim')
+        txt = Text(f"(iMessage log covers {num_days_str} starting ", style='dim')
         txt.append(self.date_str, style=TIMESTAMP_STYLE).append(' ')
 
         if not self.author:

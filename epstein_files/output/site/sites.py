@@ -8,7 +8,7 @@ from typing import Self
 from rich.markup import escape
 from rich.text import Text
 
-from epstein_files.util.constant.strings import (AUX_SITE_LINK_STYLE, DOJ_2026_TRANCHE,
+from epstein_files.util.constant.strings import (AUX_SITE_LINK_STYLE, CHRONOLOGICAL, DOJ_2026_TRANCHE,
      EPSTEIN_FILES_NOV_2025, HOUSE_OVERSIGHT_TRANCHE)
 from epstein_files.util.helpers.link_helper import link_text_obj, parenthesize
 from epstein_files.util.logging import logger
@@ -32,8 +32,8 @@ MOBILE_SUFFIX = '_mobile'
 class SiteType(StrEnum):
     CURATED = auto()
     CURATED_MOBILE = auto()
-    CHRONOLOGICAL = auto()
-    CHRONOLOGICAL_MOBILE = auto()
+    CHRONOLOGICAL = CHRONOLOGICAL
+    CHRONOLOGICAL_MOBILE = f"{CHRONOLOGICAL}_mobile"
     DOJ_FILES = auto()
     EMAILS = auto()
     EMAILS_CHRONOLOGICAL = auto()
@@ -77,6 +77,10 @@ class SiteType(StrEnum):
             # redirect_type = cls.CURATED_MOBILE  #
 
         return cls.get_url(redirect_type)
+
+    @classmethod
+    def is_chronoligical(cls, site_type: Self) -> bool:
+        return site_type.startswith(CHRONOLOGICAL)
 
     @classmethod
     def link_txt(cls, site_type: Self) -> Text:

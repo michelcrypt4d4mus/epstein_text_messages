@@ -10,7 +10,7 @@ from rich.text import Text
 
 from epstein_files.documents.documents.categories import (CATEGORY_STYLES, CATEGORY_STYLE_MAPPING,
      DEFAULT_CATEGORY_STYLE, Interesting, Neutral, Uninteresting)
-from epstein_files.documents.emails.constants import REPLY_REGEX, SENT_FROM_REGEX, XML_STRIPPED_MSG
+from epstein_files.documents.emails.constants import QUOTE_INDENT_CHAR_GROUP, REPLY_REGEX, SENT_FROM_REGEX, XML_STRIPPED_MSG
 from epstein_files.output.highlighted_names import HighlightGroup, HighlightedNames, HighlightPatterns, ManualHighlight
 from epstein_files.people.contact import Contact
 from epstein_files.util.constant.names import *
@@ -276,10 +276,11 @@ HighlightedNames(
             r"Beijing",
             r"CCP",
             r"Chin(a|=|e?se)(?! Daily)",
+            r'CNOOC',
             r"CNY",
             r"DPRK",
             r"Evergrande",
-            r"Fangzhi",
+            r"Fang Zhi",
             r"Global Times",
             r"Guo",
             r"HK",
@@ -289,6 +290,7 @@ HighlightedNames(
             r"Kong",
             r"Jack Ma",
             r"Kwok",
+            r"(Madam )?Fu Ying",
             r"Ministry\sof\sState\sSecurity",
             r"Mongolian?",
             r"MSS",
@@ -298,8 +300,9 @@ HighlightedNames(
             r"Pyongyang",
             r"RMB",
             r"SCMP",
-            r"Xi(aomi)?",
-            r"Jinping",
+            r"Shang?hai",
+            r"V-?Nee",
+            r"Xi(aomi)?", r"Jinping",
         ],
     ),
     HighlightedNames(
@@ -312,7 +315,8 @@ HighlightedNames(
                 emailer_pattern=r"Adam Back?",
             ),
             Contact(AMIR_TAAKI, f"bitcoin bro, partner of {DONALD_NORMAN} (and {BROCK_PIERCE}?)", r"Amir Taaki|genjix"),
-            Contact(ANTHONY_SCARAMUCCI, "Skybridge Capital, FTX investor", r"mooch|(Anthony ('The Mooch' )?)?Scaramucci"),
+            Contact(ANTHONY_SCARAMUCCI, "Skybridge Capital, FTX investor, Trump spokesman for two weeks", r"mooch|(Anthony ('The Mooch' )?)?Scaramucci"),
+            Contact(ARIANNA_SIMPSON, f"a16z partner involved in the Axie Infinity debacle, Autonomous Partners"),
             Contact(AUSTIN_HILL, f"{BLOCKSTREAM} co-founder with {ADAM_BACK}, Brudder Ventures", r"Austin\s*(Hill|@blockstream.com)"),
             Contact(BROCK_PIERCE, "Bannon partner, Tether co-founder, friend of Yair Netanyahu, sex crime history"),
             Contact(BRYAN_BISHOP, "executive at LedgerX and Polymath fund"),
@@ -334,6 +338,7 @@ HighlightedNames(
         patterns=[
             r"adreeson", r"(Marc\s*)?(?<!Gavin )Andreess?en",
             r"Alphabit",
+            r"Alternative Money",
             r"((Andy|Adam) )Back",
             r"Balaji( Srinivisan)?",
             r"Barry Silbert",
@@ -341,16 +346,18 @@ HighlightedNames(
             r"(Brad(ford)?|Bart) Stephens",  # co-founder, Blockchain Capital
             r"Bioptix",  # Now RIOT Blockchain
             r"bit[o\s]?coin( Foundation)?",
-            r"Bit(Angels|Finex|Fury|Main)",
+            r"Bit(Angels|Finex|Fury|Go|Main)",
             r"block\s?(chain|tree)( capital)?",
             r"Blockstream",
             r"Blythe Masters",
+            r"Brac",  # Brock? EFTA01792443
             r"Bradley Rotter",
             r"Brian Forde",
             r"Brock( Pierce)?",
             r"Brudder( Ventures)?",
             r"Coinbase",
             r"coins?( Center)?",
+            r"Complementary Currency",
             r"Cory Fields",  # bitcoin dev
             r"cr[iy]?pto (coins?|currenc(y|ies)|PR Lab)?( Partners( II)?)?",
             r"crypto(prlab)?",
@@ -390,11 +397,12 @@ HighlightedNames(
             r"Silk Road",
             r"SpanCash",
             r"Stellar",
+            r"Stephens Investment Management",
             r"Steve Waterhouse",
             r"supersecretbitcoinproject",
             r"Tally Capital",
             r"Tether",
-            r"virtual (currenc(ies|y)|money)",
+            r"(transparent|virtual) (currenc(ies|y)|money)",
             r"wash trad(es?|ing)",
             r"Wire ca\n?rd",
             r"Wladimir( van der Laan)?",  # bitcoin dev
@@ -648,6 +656,7 @@ HighlightedNames(
             r"Ibiza",
             r"Ital(ian|y)",
             r"Jacques",
+            r"(Justin )?Trudeau",
             r"(Kamila )?Bobinska",
             r"Kiev",
             r"Latvian?",
@@ -728,6 +737,7 @@ HighlightedNames(
             r"AIG",
             r"alterna[tv]i[tv]e finance",
             r"((anti.?)?money )?launder(s?|ers?|ing)?( money)?",
+            r"Andrew Nikou",
             r"Apollo",
             r"Ari Glass",
             r"Bank( of Scotland)?",
@@ -738,6 +748,7 @@ HighlightedNames(
             r"Boothbay(\sFund\sManagement)?",
             r"Cantor( (Fitzgerald|Opportunities))?",
             r"Chase Bank",
+            r"Cheetah Investment( Management)?",
             r"Conrad B",
             r"Credit Suisse",
             r"DAF",
@@ -768,7 +779,9 @@ HighlightedNames(
             r"Mizrahi Bank",
             r"MLPF&S",
             r"Morgan Stanley",
+            r"OpenGate Capital(, LLC)?",
             r"(Peter L. )?Scher",
+            r"philanthrop(i(es|st)|y)",
             r"(Ray )?Dalio",
             r"(Richard )?LeFrak",
             r"Rockefeller(?! University)( Foundation)?",
@@ -1548,8 +1561,9 @@ HighlightedNames(
             ),
             Contact(
                 name=SERGEY_BELYAKOV,
-                info="graduate of Russia's FSB academy",
                 emailer_pattern=r"Sergey Belyako|Беляков Сергей|Cepre(ct|il) [6BES][\w.]+|6(er|of)no\w+ [CE]\w+",
+                info="graduate of Russia's FSB academy (AKA \"a spy\"), head of the St. Petersburg Economic Forum Foundation",
+                link_to_bio='https://dossier.center/jeffreyepsteinrusconnect-en/',
             ),
             Contact(SVETLANA_POZHIDAEVA, f"Epstein's Russian assistant who was recommended for a visa by Sergei Belyakov (FSB) and {DAVID_BLAINE}")
         ],
@@ -1569,7 +1583,7 @@ HighlightedNames(
             r"(Anastasia )?Kuznetsova",
             r"Lavrov",
             r"Lukoil",
-            r'(Semion )?Mogilevich',
+            r"Minsk",
             r"Moscow",
             r"Nic(k|holas) Kovarsky",  # Friend of Belyakov
             r"(Natalia )?Veselnitskaya",
@@ -1585,6 +1599,7 @@ HighlightedNames(
             r'Svet',
             r"Russ?ian?",
             r"Sberbank",
+            r'(Semion )?Mogilevich',
             r"Soviet( Union)?",
             r"USSR",
             r"Vlad(imir)?(?! Yudash)",
@@ -1705,6 +1720,7 @@ HighlightedNames(
             r"Donald J. Tramp",
             r"(Donald\s+(J\.\s+)?)?Trump(ism| (Org(anization)?|Properties)( LLC)?)?",
             r"Don(ald| Jr)(?! (B|Norman|Rubin))",
+            r"(Hope )?Hicks",
             r"(Howard )?Lutnic?k",
             r"Ivank?a",
             r"Jared", r"(?<!Tony )Kushner",
@@ -1763,12 +1779,14 @@ HighlightedNames(
             r"(David )?Bo[il]es(,? Schiller( & Flexner)?)?",
             r"Ellaina As?tras?",
             r"(Gloria )?Allred",
+            r"gyneconomist",
             r"(Jane|Tiffany) Doe",
             r"Katie Johnson",
             r"Midget stripper",
             r"Minor Victim",
             r"pa?edophile",
             r"pussy",
+            r"sex traffick(ers?|ing)",
             r"Stephanie Clifford",
             r"Stormy Daniels",
             r"(Virginia ((L\.?|Roberts) )?)?Giuffre",
@@ -1955,22 +1973,20 @@ HighlightedNames(
     HighlightPatterns(
         label='sent_from',
         style='light_cyan3 italic dim',
-        patterns=[SENT_FROM_REGEX.pattern],
+        patterns=[fr"{QUOTE_INDENT_CHAR_GROUP}*{SENT_FROM_REGEX.pattern}"],
     ),
     HighlightPatterns(
         label='snipped_signature',
-        style='gray11 italic dim',
+        style='gray35 italic dim',
         patterns=[fr'<\.\.\.(snipped|trimmed).*\.\.\.>|{XML_STRIPPED_MSG}'],
     ),
     HighlightPatterns(
         label='timestamp_2',
         style=TIMESTAMP_STYLE,
-        patterns=[fr"({DATE_PATTERN} )?{TIME_PATTERN}"],
-    ),
-    HighlightPatterns(
-        label='timestamp_date',
-        style=TIMESTAMP_DIM,
-        patterns=[DATE_PATTERN],
+        patterns=[
+            fr"({DATE_PATTERN} )?{TIME_PATTERN}",
+            DATE_PATTERN,
+        ],
     ),
 
     # Manual regexes

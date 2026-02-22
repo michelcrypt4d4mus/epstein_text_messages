@@ -102,20 +102,24 @@ args.output_other = args.output_other or args.all_other_files or args.uninterest
 args.output_texts = args.output_texts or args.all_texts
 args.overwrite_pickle = args.overwrite_pickle or (is_env_var_set('OVERWRITE_PICKLE') and not is_env_var_set('PICKLED'))
 args.width = site_config.width if is_html_script else None
-args.any_output_selected = any([is_output_arg(arg) and val for arg, val in vars(args).items()])
-args.suppress_uninteresting = not (args.names or any(arg.startswith('all_') and val for arg, val in vars(args).items()))
 
-if not (args.any_output_selected or args.all_emails_chrono or args.emailers_info or args.stats):
+truthy_args = {k: v for k, v in vars(args).items() if v}
+any_output_selected = any(is_output_arg(k) for k in truthy_args.keys())
+args._suppress_uninteresting = not (args.names or any(k.startswith('all_') for k in truthy_args.keys()))
+
+if not (any_output_selected or args.all_emails_chrono or args.emailers_info or args.stats):
     if is_html_script:
         logger.warning(f"No output section chosen; outputting default selection of texts, selected emails, and other files...")
 
     args.output_emails = args.output_other = args.output_texts = True
 
 if is_html_script:
-    if args.positional_args and not args.repair:
+    if args.repair:
+        if not args.positional_args:
+            exit_with_error(f"--repair requires positional args")
+    elif args.positional_args:
         exit_with_error(f"{parser.prog} does not accept positional arguments (receeived {args.positional_args})")
 
-    # TODO: include the JSON and word count file outputs here
     if args.build == DEFAULT_FILE:
         if args.mobile:
             if args.output_chrono:
@@ -153,8 +157,6 @@ if args.names:
 
 if args.truncate and args.whole_file:
     exit_with_error(f"--whole-file and --truncate are incompatible")
-elif args.repair and not args.positional_args:
-    exit_with_error(f"--repair requires positional args")
 
 if args.open_both:
     args.open_pdf = True

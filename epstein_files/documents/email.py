@@ -90,10 +90,10 @@ OCR_REPAIRS: dict[str | re.Pattern, str] = {
     # Excessive quote chars
     re.compile(r"wrote:\n[>»]+(\n[>»]+)"): r"wrote:\1",
     re.compile(r"(^[>»]+\n){2,}", re.MULTILINE): r"\1",
-    re.compile(r"\nwrote:"): ' wrote:',
+    re.compile(r"\n[<>I ]*wrote:"): ' wrote:',
     # HTML garbage
     re.compile(r"\n<mailt.:?(.{,25})[»>]\s*wrote"): r'\1 wrote',
-    re.compile(r"^--\w+-- conversation-id.*(flags|remote-id \d+)(\s*\d{6,}.*remote-id.*\d+)?", re.MULTILINE): '',
+    re.compile(r"^--\w+-- (conversation-id|date-last-viewed).*(flags|remote-id\s\d+)(\s*\d{6,}.*remote-id.*\d+)?", re.MULTILINE): '',
     re.compile(r"<mailto:([-\w=.@]+)[»>]"): r'\1',
     # Names / email addresses
     'Alireza lttihadieh': ALIREZA_ITTIHADIEH,
@@ -627,7 +627,7 @@ class Email(Communication):
             new_lines.append(line)
             i += 1
 
-        logger.debug(f"----after line repair---\n" + '\n'.join(new_lines[0:20]) + "\n---")
+        # logger.debug(f"----after line repair---\n" + '\n'.join(new_lines[0:20]) + "\n---")
         return '\n'.join(lines)
 
     def _sent_from_device(self) -> str | None:
@@ -643,7 +643,7 @@ class Email(Communication):
                 return sent_from
 
     def _truncate_to_length(self) -> int:
-        """When printing truncate this email to this length."""
+        """Decide how many chars we should limit the dislpay of this email to."""
         quote_cutoff = self._idx_of_nth_quoted_reply()  # Trim if there's many quoted replies
         includes_truncate_term = next((term for term in TRUNCATE_TERMS if term in self.text), None)
         num_chars: int
@@ -729,6 +729,9 @@ class Email(Communication):
             text = _add_line_breaks(text)
             self.rewritten_header_ids.add(self.file_id)
 
+        if args.char_nums:
+            text = self._inject_line_numbers(text, args.char_nums)
+
         lines = [
             Text.from_markup(f"[link={line}]{line}[/link]") if line.startswith('http') else Text(line)
             for line in text.split('\n')
@@ -751,10 +754,11 @@ class Email(Communication):
             body = self._body_as_table(txt, subtitle)
 
         yield self.file_info_panel()
-        yield Padding(body, (0, 0, 1, site_config.other_files_table_indent))
+        body_bottom_padding = 0 if self.attached_docs else 1
+        yield Padding(body, (0, 0, body_bottom_padding, site_config.other_files_table_indent))
 
         if self.attached_docs:
-            attachments_table_title = f" {self.file_info.url_slug} Email Attachments:"
+            attachments_table_title = f"| Email Attachments for {self.file_info.url_slug}:" # ╏┇┣
             attachments_table = OtherFile.files_preview_table(self.attached_docs, title=attachments_table_title)
             yield Padding(attachments_table, (0, 0, 1, site_config.attachment_indent))
 
@@ -831,7 +835,8 @@ class Email(Communication):
 
 
 def _add_line_breaks(email_text: str) -> str:
-    return EMAIL_SIMPLE_HEADER_LINE_BREAK_REGEX.sub(r'\n\1\n', email_text).strip()
+    text = EMAIL_SIMPLE_HEADER_LINE_BREAK_REGEX.sub(r'\n\1\n', email_text).strip()
+    return FORWARDED_TOO_MUCH_SPACE_REGEX.sub(r'\1\n', text)
 
 
 def _parse_timestamp(timestamp_str: str) -> None | datetime:

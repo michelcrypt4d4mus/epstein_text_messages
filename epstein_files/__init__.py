@@ -98,7 +98,7 @@ def epstein_grep():
         return
 
     for search_term in args.positional_args:
-        temp_highlighter = temp_highlighter(search_term)
+        tmp_highlight = temp_highlighter(search_term)
         search_results = epstein_files.docs_matching(search_term, args.names)
         print_subtitle_panel(f"Found {len(search_results)} documents matching '{search_term}'")
         last_document = None
@@ -132,7 +132,7 @@ def epstein_grep():
 
                 for matching_line in lines:
                     line_txt = matching_line.__rich__()
-                    console.print(Padding(temp_highlighter(line_txt), site_config.info_padding()), style='gray37')
+                    console.print(Padding(tmp_highlight(line_txt), site_config.info_padding()), style='gray37')
 
             console.line()
 
@@ -150,9 +150,16 @@ def epstein_show():
         if args.names:
             people = EpsteinFiles.get_files().person_objs(args.names)
             raw_docs = [doc for doc in flatten([p.emails for p in people])]
+            existing_docs = []
         else:
             ids = [extract_file_id(arg.upper().strip().strip('_')) for arg in args.positional_args]
             raw_docs = [Document.from_file_id(id) for id in ids]
+            existing_docs =  EpsteinFiles.get_files().get_ids(ids)
+
+            # show the attachments bc reloaded obj won't have them
+            for doc in [d for d in existing_docs if isinstance(d, Email) and d.attached_docs]:
+                logger.warning(f"Showing the attachments now because reloaded Email won't have them:")
+                console.print(doc)
 
         # Rebuild the Document objs so we can see result of latest processing
         docs = Document.sort_by_timestamp([document_cls(doc)(doc.file_path) for doc in raw_docs])

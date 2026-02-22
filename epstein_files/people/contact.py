@@ -25,6 +25,7 @@ class Contact:
     emailer_pattern: str = ''
     emailer_regex: re.Pattern = field(init=False)
     is_junk: bool = False  # TODO: this sucks
+    link_to_bio: str = ''
     # jmail_url: str
 
     def __post_init__(self):

@@ -239,8 +239,8 @@ class Document:
         Checking of `TEXTERS_OF_INTEREST` etc. is left to the relevant subclass in cases where this
         function returns None.
         """
-        if self.config and self.config.is_of_interest is not None:
-            return self.config.is_of_interest
+        if self.config and (is_of_interest := self.config.is_of_interest) is not None:
+            return is_of_interest
         elif self.is_attachment:
             return False
         elif self.author in UNINTERESTING_AUTHORS:
@@ -281,6 +281,7 @@ class Document:
         prefix = '' if self.config and self.config.timestamp else 'inferred '
         return f"{prefix}timestamp: {remove_zero_time(self.timestamp)}"
 
+    # TODO: this name too close to Email method called _prettify_text()
     @property
     def prettified_text(self) -> Text:
         """Returns the string we want to print as the body of the document."""
@@ -288,16 +289,7 @@ class Document:
         text = self.config_replace_text_with or self.text
 
         if args.char_nums:
-            idx = args.char_nums
-            new_text = text[:idx]
-
-            while idx < len(text):
-                new_text += f'\n\n ------ {idx} ------ \n\n'
-                end_idx = idx + args.char_nums
-                new_text += text[idx: end_idx]
-                idx = end_idx
-
-            text = new_text
+            text = self._inject_line_numbers(text, args.char_nums)
 
         if self.config is None or self.config.truncate_to in [None, NO_TRUNCATE] or args.whole_file:
             return highlighter(Text(text, style))
@@ -383,7 +375,7 @@ class Document:
         if self.config:
             if self.config.attached_to_email_id:
                 return self._skipped_file_txt(f"attached to {self.config.attached_to_email_id}")
-            elif args.suppress_uninteresting and self.config.is_interesting is False:
+            elif args._suppress_uninteresting and self.config.is_interesting is False:
                 return self._skipped_file_txt("uninteresting")
 
     @property
@@ -520,6 +512,19 @@ class Document:
     def _extract_timestamp(self) -> datetime | None:
         """Should be implemented in subclasses."""
         pass
+
+    def _inject_line_numbers(self, text: str, interval: int) -> str:
+        """Inject character numbers markers into `text`. For debugging only."""
+        idx = interval
+        new_text = text[:idx]
+
+        while idx < len(text):
+            new_text += f'\n\n ------ {idx} ------ \n\n'
+            end_idx = idx + interval
+            new_text += text[idx:end_idx]
+            idx = end_idx
+
+        return new_text
 
     def _load_file(self) -> str:
         """Remove BOM and HOUSE OVERSIGHT lines, strip whitespace."""
