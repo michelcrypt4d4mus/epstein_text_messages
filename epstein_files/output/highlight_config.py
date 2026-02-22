@@ -691,7 +691,7 @@ HighlightedNames(
             r"(Tony\s)?Blair",
             r"United Kingdom",
             r"U\.K\.",
-            r"Ukrain(e|ian)",
+            r"Ukrai?n(e|ian)",
             r"Vatican",
             r"Venice",
             r"(Vi(c|k)tor )?Orbah?n",

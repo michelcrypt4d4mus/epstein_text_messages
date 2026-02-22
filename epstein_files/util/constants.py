@@ -458,12 +458,17 @@ EMAILS_CONFIG = [
         subject='FW: Privileged and Confidential - Fwd: JAMES PATTERSON NEW BOOK TELLING FEDS COVER UP OF BILLIONAIRE JEFF EPSTEIN CHILD RAPES RELEASE DATE OCT 10 2016 STEVEN HOFFENBERG IS ON THE BOOK WRITING TEAM !!!!',
     ),
     EmailCfg(
+        id='022396',
+        author=SVETLANA_POZHIDAEVA,
+        author_uncertain='https://x.com/FlippersUpNow/status/2022438575699018094',
+    ),
+    EmailCfg(
         id='026620',
         author=TERRY_KAFKA,
-        recipients=[JEFFREY_EPSTEIN, MARK_EPSTEIN, MICHAEL_BUCHHOLTZ] + IRAN_DEAL_RECIPIENTS,
         author_reason='ends with "Respectfully, terry"',
         duplicate_ids=['028482'],
         fwded_text_after='From: Mike Cohen',
+        recipients=[JEFFREY_EPSTEIN, MARK_EPSTEIN, MICHAEL_BUCHHOLTZ] + IRAN_DEAL_RECIPIENTS,
         subject='Fw: The Iran Nuclear Deal',
     ),
     EmailCfg(id='029992', author=TERRY_KAFKA, author_reason='Quoted reply'),
