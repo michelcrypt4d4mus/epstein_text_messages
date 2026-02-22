@@ -1965,7 +1965,7 @@ HighlightedNames(
     ),
     HighlightPatterns(
         label='snipped_signature',
-        style='gray11 italic dim',
+        style='gray35 italic dim',
         patterns=[fr'<\.\.\.(snipped|trimmed).*\.\.\.>|{XML_STRIPPED_MSG}'],
     ),
     HighlightPatterns(
