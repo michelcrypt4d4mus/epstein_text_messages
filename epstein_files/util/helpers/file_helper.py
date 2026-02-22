@@ -34,7 +34,7 @@ def coerce_file_path(filename_or_id: int | str) -> Path:
             if txt_file.name == filename:
                 return txt_file
 
-        raise RuntimeError(f"'{filename_or_id}' looks like DOJ file but no file named {filename} in '{DOJ_TXTS_20260130_DIR}'")
+        raise FileNotFoundError(f"'{filename_or_id}' looks like a DOJ file ID but no file named {filename} in '{DOJ_TXTS_20260130_DIR}'!")
     else:
         return DOCS_DIR.joinpath(filename)
 

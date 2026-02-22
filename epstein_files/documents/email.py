@@ -31,7 +31,7 @@ from epstein_files.util.constant.urls import URL_SIGNIFIERS
 from epstein_files.util.constant.names import sort_names
 from epstein_files.util.constants import CONFIGS_BY_ID, DEFAULT_TRUNCATE_TO, NO_TRUNCATE, SHORT_TRUNCATE_TO
 from epstein_files.util.env import args, site_config
-from epstein_files.util.helpers.data_helpers import (AMERICAN_TIME_REGEX, TIMEZONE_INFO,
+from epstein_files.util.helpers.data_helpers import (AMERICAN_TIME_REGEX, TIMEZONE_INFO, flatten,
      prefix_keys, remove_timezone, uniquify)
 from epstein_files.util.helpers.link_helper import link_text_obj
 from epstein_files.util.helpers.string_helper import capitalize_first, collapse_newlines, strip_pdfalyzer_panels
@@ -86,10 +86,15 @@ OCR_REPAIRS: dict[str | re.Pattern, str] = {
     'I nline-Images:': 'Inline-Images:',
     re.compile(r"^From "): 'From: ',
     re.compile(r"^(Sent|Subject) (?![Ff]rom|using|[Vv]ia)", re.MULTILINE): r'\1: ',
-    re.compile(r"^(Forwarded|Original) Message$", re.IGNORECASE | re.MULTILINE): r"--- \1 Message ---",
+    re.compile(r"^(Forwarded|Original) Message$", re.IGNORECASE | re.MULTILINE): r"--- \1 Message ---",  # Make forward lines match our highlight
     # Excessive quote chars
     re.compile(r"wrote:\n[>»]+(\n[>»]+)"): r"wrote:\1",
     re.compile(r"(^[>»]+\n){2,}", re.MULTILINE): r"\1",
+    re.compile(r"\nwrote:"): ' wrote:',
+    # HTML garbage
+    re.compile(r"\n<mailt.:?(.{,25})[»>]\s*wrote"): r'\1 wrote',
+    re.compile(r"^--\w+-- conversation-id.*(flags|remote-id \d+)(\s*\d{6,}.*remote-id.*\d+)?", re.MULTILINE): '',
+    re.compile(r"<mailto:([-\w=.@]+)[»>]"): r'\1',
     # Names / email addresses
     'Alireza lttihadieh': ALIREZA_ITTIHADIEH,
     'Miroslav Laj6ak': MIROSLAV_LAJCAK,
@@ -106,6 +111,7 @@ OCR_REPAIRS: dict[str | re.Pattern, str] = {
     'Envoy& de': 'Envoyé de',
     'from Samsung Mob.le': 'from Samsung Mobile',
     'gJeremyRubin': '@JeremyRubin',
+    'Mail for i Phone': 'Mail for iPhone',
     'Sent from Mabfl': 'Sent from Mobile',  # NADIA_MARCINKO signature bad OCR
     'twitter glhsummers': 'twitter @lhsummers',
     re.compile(r"from my ['!()][Pp]hone"): 'from my iPhone',  # TODO: this changes the casing
@@ -434,17 +440,13 @@ class Email(Communication):
         return header
 
     def _extract_recipients(self) -> list[Name]:
-        # Recipients could have already been set from the config in superclass
-        recipients: list[Name] = []
-
-        for recipient in self.header.recipients:
-            recipients.extend(extract_emailer_names(recipient))
+        """Scan the To:, BCC: and CC: fields for known names, falling back to raw strings if no names identified."""
+        recipients = flatten([extract_emailer_names(r) for r in self.header.recipients])
+        recipients = uniquify(recipients)
 
         # Assume mailing list emails are to Epstein
         if self.author in BCC_LISTS and (self.is_note_to_self(recipients) or not recipients):
-            recipients = [JEFFREY_EPSTEIN]
-
-        recipients = uniquify(recipients)
+            recipients: list[Name] = [JEFFREY_EPSTEIN]
 
         # Remove self CCs but preserve self emails
         if not (self.is_note_to_self(recipients) or self.author is None):

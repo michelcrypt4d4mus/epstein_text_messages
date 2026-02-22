@@ -25,7 +25,16 @@ from epstein_files.util.logging import logger
 from epstein_files.output.rich import bool_txt, console, highlighter, styled_key_value, print_subtitle_panel
 
 
-print_file_counts(epstein_files)
+for person in epstein_files.emailers:
+    if person.name is None:
+        continue
+
+    txt = Text('').append(person.name, 'cyan').append(': ')
+    txt.append(highlighter(', '.join([str(c) for c in person.counterparties])))
+    console.print(txt)
+    console.line()
+
+# print_file_counts(epstein_files)
 # print_all_timestamps(epstein_files)
 sys.exit()
 

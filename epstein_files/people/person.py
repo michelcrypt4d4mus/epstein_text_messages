@@ -9,6 +9,7 @@ from rich.panel import Panel
 from rich.table import Table
 from rich.text import Text
 
+from epstein_files.documents.communication import Communication
 from epstein_files.documents.document import Document
 from epstein_files.documents.documents.categories import Uninteresting
 from epstein_files.documents.email import TRUNCATE_EMAILS_BY, MAILING_LISTS, JUNK_EMAILERS, Email
@@ -18,9 +19,8 @@ from epstein_files.documents.other_file import OtherFile
 from epstein_files.output.highlight_config import (QUESTION_MARKS_TXT, get_highlight_group_for_name,
      get_style_for_name, styled_category, styled_name)
 from epstein_files.output.highlighted_names import HighlightedNames, HighlightPatterns, ManualHighlight
-from epstein_files.output.layout_elements.file_display import FileDisplay
 from epstein_files.output.rich import (GREY_NUMBERS, TABLE_TITLE_STYLE, build_table, console, join_texts,
-     left_indent, print_centered, print_special_note)
+     print_centered, print_special_note)
 from epstein_files.people.contact import Contact
 from epstein_files.people.interesting_people import SPECIAL_NOTES
 from epstein_files.util.constant.strings import *
@@ -75,6 +75,17 @@ class Person:
             return styled_category(self.category)
         elif self.is_a_mystery or self.is_uninteresting:
             return QUESTION_MARKS_TXT
+
+    @property
+    def communications(self) -> Sequence[Communication]:
+        """This person's `MessengerLog` and `Email` object."""
+        return self.imessage_logs + self.emails
+
+    @property
+    def counterparties(self) -> list[Name]:
+        """All text and email counterparties for this person."""
+        all_counterparties = flatten([c.participants for c in self.communications])
+        return sort_names([c for c in all_counterparties if c != self.name])
 
     @property
     def email_conversation_length_in_days(self) -> int:

@@ -46,6 +46,12 @@ any_uncommitted_changes() {
     fi
 }
 
+commit_gh_pages_changes() {
+    echo -e ""
+    git commit -am"Update HTML"
+    git push origin gh_pages --quiet
+}
+
 # Preparation (check branch, clean build artifacts, etc.)
 if [[ $CURRENT_BRANCH != "master" ]]; then
     clr_red "ERROR: Current branch is not master: ($CURRENT_BRANCH)"
@@ -89,6 +95,7 @@ print_deploy_step "Building mobile curated chronological page..."
 $GENERATE_MOBILE_CMD --output-chrono
 
 if [ -n "$ONLY_MOBILE" ]; then
+    commit_gh_pages_changes
     print_deploy_step "ONLY_MOBILE in effect, exiting after building mobile pages..."
     exit
 fi
@@ -128,10 +135,7 @@ else
 fi
 
 # Commit changes
-echo -e ""
-git commit -am"Update HTML"
-git push origin gh_pages --quiet
-
+commit_gh_pages_changes
 print_deploy_step "Deployed URLs:"
 epstein_generate --show-urls
 

@@ -5,7 +5,7 @@ import itertools
 import re
 from datetime import datetime, timezone
 from dateutil import tz
-from typing import TypeVar
+from typing import Any, Sequence, TypeVar
 
 from epstein_files.util.constant import names
 from epstein_files.util.env import args
@@ -24,6 +24,7 @@ TIMEZONE_INFO = {"PDT": PACIFIC_TZ, "PST": PACIFIC_TZ}  # Suppresses annoying wa
 
 all_elements_same = lambda _list: len(_list) == 0 or all(x == _list[0] for x in _list)
 date_str = lambda dt: dt.isoformat()[0:10] if dt else None
+dict_key_list = lambda d: [k for k in d.keys()]
 escape_double_quotes = lambda text: text.replace('"', r'\"')
 escape_single_quotes = lambda text: text.replace("'", r"\'")
 days_between = lambda dt1, dt2: (dt2 - dt1).days + 1
@@ -46,8 +47,13 @@ def dict_sets_to_lists(d: dict[str, set]) -> dict[str, list]:
     return {k: sorted(list(v)) for k, v in d.items()}
 
 
-def flatten(_list: list[list[T]]) -> list[T]:
-    return list(itertools.chain.from_iterable(_list))
+def flatten(_list: Sequence[list[T] | set[T]]) -> list[T]:
+    if not _list:
+        return []
+    elif all(isinstance(element, set) for element in _list):
+        return list(set().union(*_list))
+    else:
+        return list(itertools.chain.from_iterable(_list))
 
 
 def json_safe(d: dict) -> dict:
@@ -104,6 +110,10 @@ def sort_dict(d: dict[str | None, int] | dict[str, int]) -> list[tuple[str | Non
     except TypeError as e:
         alpha_key = lambda kv: kv[0] or ''
         return sorted(d.items(), key=lambda kv: f"Z{alpha_key(kv)}" if '.' in (kv[0] or '') else alpha_key(kv))
+
+
+def sort_dict_by_keys(d: dict[names.Name, T]) -> dict[names.Name, T]:
+    return {k: d[k] for k in names.sort_names(dict_key_list(d))}
 
 
 def uniquify(_list: list[T]) -> list[T]:

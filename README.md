@@ -15,23 +15,45 @@ Then there's two options as far as the data:
 1. To work with the data set included in this repo copy the pickled data file into place: `cp ./the_epstein_files.pkl.gz ./the_epstein_files.local.pkl.gz`
 1. To parse your own files:
    1. Requires you have a local copy of the OCR text files from the House Oversight document release in a directory `/path/to/epstein/ocr_txt_files`. You can download those OCR text files from [the Congressional Google Drive folder](https://drive.google.com/drive/folders/1ldncvdqIf6miiskDp_EDuGSDAaI_fJx8) (make sure you grab both the `001/` and `002/` folders).
-   1. (Optional) If you want to work with the documents released by DOJ on January 30th 2026 you'll need to also download the PDF collections from [the DOJ site](https://www.justice.gov/epstein/doj-disclosures) (they're in the "Epstein Files Transparency Act" section) and OCR them or find another way to get the OCR text.
+   1. (Optional) If you want to work with the documents released by DOJ on January 30th 2026 you'll need to also download some of the PDF files from [the DOJ site](https://www.justice.gov/epstein/doj-disclosures) (they're in the "Epstein Files Transparency Act" section). You don't need them all, just the ones you want to look at and make ASCII art with. But you will need to get the OCR text out o them somehow. I use [pdfalyzer](https://github.com/michelcrypt4d4mus/pdfalyzer).
+   **IMPORTANT** if
 
 
 #### Command Line Tools
 You need to set the `EPSTEIN_DOCS_DIR` environment variable with the path to the folder of files you just downloaded when running. You can either create a `.env` file modeled on [`.env.example`](./.env.example) (which will set it permanently) or you can run with:
 
 ```bash
-EPSTEIN_DOCS_DIR=/path/to/epstein/ocr_txt_files epstein_generate --help
+EPSTEIN_DOCS_DIR=path/to/source_data/ epstein_generate --help
 ```
 
-To work with the January 2026 DOJ documents you'll also need to set the `EPSTEIN_DOJ_TXTS_20260130_DIR` env var to point at folders full of OCR extracted texts from the raw DOJ PDFs. If you have the PDFs but not the text files there's [a script](scripts/extract_doj_pdfs.py) that can help you take care of that.
+To work with the January 2026 DOJ documents you'll also need to set the `EPSTEIN_DOJ_TXTS_20260130_DIR` env var to point at folders full of OCR extracted texts from the raw DOJ PDFs. If you have the PDFs but not the text files there's [a script](scripts/extract_doj_pdfs.py) that can help you take care of that (it launches [pdfalyzer](https://github.com/michelcrypt4d4mus/pdfalyzer) on PDFs it finds in the hierarchy).
 
 ```bash
-EPSTEIN_DOCS_DIR=/path/to/epstein/ocr_txt_files EPSTEIN_DOJ_TXTS_20260130_DIR=/path/to/doj/files epstein_generate --help
+EPSTEIN_DOCS_DIR=path/to/source_data/ EPSTEIN_DOJ_TXTS_20260130_DIR=/path/to/doj/files/ epstein_generate --help
 ```
 
+**NOTE**: In order to get the generated links to the DOJ site and [Jmail](https://jmail.world) to work correctly you will need to sort the PDFs into the same datasets they are found in on the DOJ's website. You should have folders like this:
 
+```
+└── source_data/
+    ├── DataSet 1
+    ├── DataSet 2
+    ├── DataSet 3
+    ├── DataSet 4
+    ├── DataSet 5
+    ├── DataSet 6
+    ├── DataSet 7
+    ├── DataSet 8
+    ├── DataSet 9
+    ├── DataSet 10
+    ├── DataSet 11
+    └── DataSet 12
+```
+
+Within the `DataSet N` folders the PDFs can be sorted however you want (the folders will be recursively scanned for the pattern `**/*.pdf`).
+
+
+## Doing Things
 All the tools that come with the package require `EPSTEIN_DOCS_DIR` to be set. These are the available tools:
 
 ```bash
@@ -76,7 +98,7 @@ from epstein_files.epstein_files import EpsteinFiles
 epstein_files = EpsteinFiles.get_files()
 
 # All files
-for document in epstein_files.documents():
+for document in epstein_files.documents:
     do_stuff(document)
 
 # Emails
@@ -86,10 +108,6 @@ for email in epstein_files.emails:
 # iMessage Logs
 for imessage_log in epstein_files.imessage_logs:
     do_stuff(imessage_log)
-
-# JSON files
-for json_file in epstein_files.json_files:
-    do_stuff(json_file)
 
 # Other Files
 for file in epstein_files.other_files:

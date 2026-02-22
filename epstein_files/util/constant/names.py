@@ -1,4 +1,5 @@
 import re
+from typing import Sequence
 
 from epstein_files.util.constant.strings import PALM_BEACH, QUESTION_MARKS, VIRGIN_ISLANDS
 from epstein_files.util.helpers.string_helper import remove_question_marks
@@ -426,5 +427,5 @@ def reversed_name(name: str) -> str:
     return f"{extract_last_name(name)}, {extract_first_name(name)}"
 
 
-def sort_names(names: list[Name]) -> list[Name]:
+def sort_names(names: Sequence[Name]) -> list[Name]:
     return sorted(names, key=lambda name: name or UNKNOWN)

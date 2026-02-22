@@ -3,13 +3,12 @@ import json
 import pickle
 import re
 import sys
-from collections import Counter, defaultdict
+from collections import defaultdict
 from dataclasses import dataclass, field
 from datetime import datetime
 from pathlib import Path
 from typing import Mapping, Sequence, Type, cast
 
-from rich.prompt import Confirm
 from rich.table import Table
 from yaralyzer.util.helpers.interaction_helper import ask_to_proceed
 
@@ -29,7 +28,7 @@ from epstein_files.people.person import INVALID_FOR_EPSTEIN_WEB, Person
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constants import *
 from epstein_files.util.env import args, logger
-from epstein_files.util.helpers.data_helpers import flatten, json_safe, uniquify
+from epstein_files.util.helpers.data_helpers import flatten, json_safe, sort_dict_by_keys, uniquify
 from epstein_files.util.helpers.file_helper import all_txt_paths, doj_txt_paths, extract_file_id, file_size_str
 from epstein_files.util.timer import Timer
 
@@ -90,7 +89,7 @@ class EpsteinFiles:
     @property
     def all_doj_files(self) -> Sequence[DojFile | Email]:
         """All files with the filename EFTAXXXXXX, including those that were turned into `Email` objs."""
-        return [doc for doc in self.documents if doc.file_info.is_doj_file]
+        return [d for d in self.documents if d.file_info.is_doj_file]
 
     @property
     def doj_files(self) -> list[DojFile]:
@@ -104,9 +103,12 @@ class EpsteinFiles:
     @property
     def emailers(self) -> list[Person]:
         """All the people who sent or received an email."""
-        authors = [email.author for email in self.emails]
-        recipients = flatten([email.recipients for email in self.emails])
-        return self.person_objs(uniquify(authors + recipients))
+        all_names = flatten([e.participants for e in self.emails])
+        return self.person_objs(all_names)
+
+    @property
+    def counterparties_dict(self) -> dict[Name, list[Name]]:
+        return sort_dict_by_keys({p.name: p.counterparties for p in self.emailers})
 
     @property
     def imessage_logs(self) -> list[MessengerLog]:
@@ -320,7 +322,7 @@ class EpsteinFiles:
         return table
 
     def repair_ids(self, ids: list[str]) -> None:
-        """Repair/reload the ids specified and save to disk."""
+        """Repair/reload the ids specified as positional arguments and save updated pickle file to disk."""
         ids = uniquify(ids)
         doc_paths = [d.file_path for d in self.documents if d.file_id in ids]
 

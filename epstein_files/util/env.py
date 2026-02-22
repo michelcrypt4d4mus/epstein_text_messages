@@ -160,6 +160,9 @@ if args.open_both:
     args.open_pdf = True
     args.open_txt = True
 
+if args.repair or args.load_new:
+    args.constantize = True
+
 # Log level args
 if args.deep_debug:
     set_log_level(logging.DEBUG)

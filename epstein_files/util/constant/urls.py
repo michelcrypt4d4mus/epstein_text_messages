@@ -9,7 +9,7 @@ from epstein_files.output.site.sites import GH_PROJECT_URL, TO_FROM, SiteType
 from epstein_files.util.env import args
 from epstein_files.util.constant.strings import SOCIAL_MEDIA_LINK_STYLE, TEXT_LINK
 from epstein_files.util.helpers.file_helper import coerce_file_stem
-from epstein_files.util.helpers.link_helper import SUBSTACK_POST_LINK_STYLE, link_markup, link_text_obj
+from epstein_files.util.helpers.link_helper import SUBSTACK_POST_LINK_STYLE, ExternalLink, link_markup, link_text_obj
 from epstein_files.util.helpers.string_helper import remove_question_marks
 
 # External site names
@@ -20,8 +20,6 @@ EPSTEINIFY = 'epsteinify'
 JMAIL = 'Jmail'
 ROLLCALL = 'RollCall'
 TWITTER = 'search X'
-
-EXTERNAL_STYLE = 'light_slate_grey bold'
 
 # External URLs
 COFFEEZILLA_ARCHIVE_URL = 'https://journaliststudio.google.com/pinpoint/search?collection=061ce61c9e70bdfd'
@@ -58,13 +56,29 @@ DOC_LINK_BASE_URLS: dict[ExternalSite, str] = {
     ROLLCALL: f'https://rollcall.com/factbase/epstein/file?id=',
 }
 
-EXTERNAL_LINK_MSGS = {
-    JMAIL_URL: 'read His Emails via Gmail interface',
-    EPSTEIN_DOCS_URL: 'searchable archive',
-    EPSTEIN_MEDIA_URL: 'raw document images',
-    EPSTEINIFY_URL: 'raw images alt',
-    EPSTEIN_WEB_URL: 'biographies',
-}
+OFFICIAL_LINKS = [
+    ExternalLink.official_link(
+        DOJ_2026_URL,
+        comment='search',
+        comment_url=DOJ_SEARCH_URL,
+        link_text='DOJ Epstein Files Transparency Act Disclosures'
+    ),
+    ExternalLink.official_link(
+        OVERSIGHT_REPUBS_PRESSER_URL,
+        comment='raw files',
+        comment_url=OVERSIGHT_DRIVE_URL,
+        link_text='2025 Oversight Committee Press Release',
+    )
+]
+
+EXTERNAL_LINKS = OFFICIAL_LINKS + [
+    ExternalLink(JMAIL_URL, 'read His Emails via Gmail interface'),
+    ExternalLink(EPSTEIN_DOCS_URL, 'searchable archive'),
+    ExternalLink(EPSTEIN_MEDIA_URL, 'raw document images'),
+    ExternalLink(EPSTEINIFY_URL, 'raw images alt'),
+    ExternalLink(EPSTEIN_WEB_URL, 'biographies'),
+    ExternalLink('https://bitcoinprotocol.org/epstein-bitcoin-emails', link_text='epstein bitcoin emails'),
+]
 
 CRYPTADAMUS_SOCIAL_LINKS = [
     link_text_obj('https://universeodon.com/@cryptadamist/115572634993386057', '@mastodon', style=SOCIAL_MEDIA_LINK_STYLE),

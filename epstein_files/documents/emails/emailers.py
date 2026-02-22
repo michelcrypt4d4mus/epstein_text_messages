@@ -33,9 +33,9 @@ ADDITIONAL_CONTACTS = [
     Contact('Coursera'),
     Contact('Danny Goldberg'),
     Contact(ED_BOYLE),
-    Contact('Francesca Hall'),
     Contact('Jeff Pagliuca'),
     Contact(JOHN_PAGE),
+    Contact('Julie Shample'),
     Contact('Kathleen Ruderman'),
     Contact('Kevin Bright'),
     Contact('Larry Cohen'),
@@ -46,6 +46,7 @@ ADDITIONAL_CONTACTS = [
     Contact('Nancy Portland'),
     Contact('Oliver Goodenough'),
     Contact('Peter Green'),
+    Contact('Sarah Mapes'),
     Contact('Steven Victor MD'),
 ]
 

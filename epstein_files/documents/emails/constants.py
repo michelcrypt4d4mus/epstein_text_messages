@@ -12,7 +12,7 @@ FALLBACK_TIMESTAMP = parse("1/1/2051 12:01:01 AM")
 XML_STRIPPED_MSG = '<...removed Apple XML plist...>'
 
 # Reply line regexes
-FORWARDED_LINE_PATTERN = r"-+ ?(Forwarded|Original)\s*Message ?-*|Begin forwarded message:?"
+FORWARDED_LINE_PATTERN = r"-+ *((Forwarded|Original)\s*Message|Message d'?origine) *-*|Begin forwarded message:?"
 FRENCH_REPLY_PATTERN = r"Le .* a ecrit:"
 GERMAN_REPLY_PATTERN = r"Am \d\d\.\d\d\..*schrieb.*"
 NORWEGAIN_REPLY_PATTERN = r"(Den .* folgende|(fre|lor|son)\. .* skrev .*):"
@@ -60,7 +60,8 @@ DEVICE_PATTERNS = [
     r"Droid",
     r"iPad",
     r"Phone",
-    r"Mail",
+    r"Mail(\w+for\s+(\w+))",
+    r"Samsung Mobile",
     r"Surface(\s+RT)?",
     r"BlackBerry(.*(smartphone|device|Handheld|AT&T|T- ?Mobile))?",
 ]
@@ -146,7 +147,7 @@ EMAIL_SIGNATURE_REGEXES = {
     JEFFREY_EPSTEIN: re.compile(r"(([* =0,]+|please .ote.{,6})\s+)?([>»•]+ )*The info.ma[t=]ion conta[i=]ne. i. t..s..ommunicati.{,558}all\s+([>»] )*.t.achm..t..(\s+copyright\s+.all\s+rights\s+reserved?)?", re.DOTALL),
     JESSICA_CADWELL: re.compile(r"(f.*\n)?Certified Para.*\nFlorida.*\nBURMAN.*\n515.*\nSuite.*\nWest Palm.*(\nTel:.*)?(\nEmail:.*)?", re.IGNORECASE),
     KEN_JENNE: re.compile(r"Ken Jenne\nRothstein.*\n401 E.*\nFort Lauderdale.*", re.IGNORECASE),
-    LARRY_SUMMERS: re.compile(r"Please direct all scheduling.*\nFollow me on twitter.*\nwww.larrysummers.*", re.IGNORECASE),
+    LARRY_SUMMERS: re.compile(r"Please direc. all scheduling.{,150}\nwww.larrysummer..\w{3,5}(<.{,6}[>»])?(\s*<http.{,30}/?[>»])?", re.IGNORECASE | re.DOTALL),
     LAWRENCE_KRAUSS: re.compile(r"Lawrence (M. )?Krauss\n(Director.*\n)?(Co-director.*\n)?Foundation.*\nSchool.*\n(Co-director.*\n)?(and Director.*\n)?Arizona.*(\nResearch.*\nOri.*\n(krauss.*\n)?origins.*)?", re.IGNORECASE),
     LEON_BLACK: re.compile(r"This email and any files transmitted with it are confidential and intended solely.*\n(they|whom).*\ndissemination.*\nother.*\nand delete.*"),
     LISA_NEW: re.compile(r"Elisa New\nPowell M. Cabot.*\n(Director.*\n)?Harvard.*\n148.*\n([1I] )?12.*\nCambridge.*\n([1I] )?02138"),

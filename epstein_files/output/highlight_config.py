@@ -292,7 +292,7 @@ HighlightedNames(
             r"Ministry\sof\sState\sSecurity",
             r"Mongolian?",
             r"MSS",
-            r"North Korean?",
+            r"North .?Korean?",
             r"Peking",
             r"PRC",
             r"Pyongyang",
@@ -313,11 +313,12 @@ HighlightedNames(
             ),
             Contact(AMIR_TAAKI, f"bitcoin bro, partner of {DONALD_NORMAN} (and {BROCK_PIERCE}?)", r"Amir Taaki|genjix"),
             Contact(ANTHONY_SCARAMUCCI, "Skybridge Capital, FTX investor", r"mooch|(Anthony ('The Mooch' )?)?Scaramucci"),
-            Contact(AUSTIN_HILL, f"{BLOCKSTREAM} co-founder with {ADAM_BACK}, Brudder Ventures"),
+            Contact(AUSTIN_HILL, f"{BLOCKSTREAM} co-founder with {ADAM_BACK}, Brudder Ventures", r"Austin\s*(Hill|@blockstream.com)"),
             Contact(BROCK_PIERCE, "Bannon partner, Tether co-founder, friend of Yair Netanyahu, sex crime history"),
             Contact(BRYAN_BISHOP, "executive at LedgerX and Polymath fund"),
             Contact(DONALD_NORMAN, f"co-founder of early British crypto exchange Intersango with {AMIR_TAAKI}"),
             Contact(ED_BOYLE, f"Medici Bank", r"Ed Boy(el|le)"),
+            Contact('Francesca Hall', 'Assistant/Calendar Queen to The BlockStream team'),
             Contact(FRANCESCA_HALL, f"assistant to {AUSTIN_HILL}"),
             Contact(GAVIN_ANDRESEN, 'core bitcoin developer', r"(Gavin )?Andr.ss?en"),
             Contact(JEFFREY_WERNICK, "former COO of Parler, involved in numerous crypto companies like Bitforex"),
@@ -343,6 +344,7 @@ HighlightedNames(
             r"Bit(Angels|Finex|Fury|Main)",
             r"block\s?(chain|tree)( capital)?",
             r"Blockstream",
+            r"Blythe Masters",
             r"Bradley Rotter",
             r"Brian Forde",
             r"Brock( Pierce)?",
@@ -362,6 +364,7 @@ HighlightedNames(
             r"(Hester )?Peirce",
             r"(Howard )?Lutnic?k",
             r"ICO",
+            r"itBit",
             r"(Jim )Pallotta",  # Media lab advisory board
             r"Joyce Kim",
             r"Kathryn Haun",
@@ -505,6 +508,7 @@ HighlightedNames(
             r"Gratitude America",
             r"(Butterfly|Haze|Southern) (Financial|Trust)( Co(mpany)?)?",
             r"Hyperion( Air)?",
+            r"IPI",
             r"Jeepers( Inc\.?)?",
             r"JEGE( (Inc|LLC))?",
             r"Laurel Inc\.?",
@@ -1200,7 +1204,7 @@ HighlightedNames(
             Contact(MOHAMED_WAHEED_HASSAN, "former president of the Maldives", r"Mohamed Waheed( Hassan)?"),
             Contact(OLIVIER_COLOM, "France", r"Colom, Olivier|Olivier Colom"),
             Contact('Paul Keating', "former prime minister of Australia"),
-            Contact(PUREVSUREN_LUNDEG, "Mongolian ambassador to the UN"),
+            Contact(PUREVSUREN_LUNDEG, "Mongolian ambassador to the UN", r"Purevsuren( Lundeg)?"),
             Contact('Stanley Rosenberg', "former President of the Massachusetts Senate")
         ],
         patterns=[
@@ -1389,13 +1393,15 @@ HighlightedNames(
             Contact(MANUELA_MARTINEZ, "Mega Partners (Brazilian agency)", r"Manuela (- Mega Partners|Martinez)"),
             Contact(MARIANA_IDZKOWSKA, emailer_pattern=r"Mariana [Il]d[źi]kowska?"),
             Contact('Michael Sanka', f"{JEAN_LUC_BRUNEL}'s MC2 Model Management {'(???)'}"),
-            Contact('Vladimir Yudashkin', "director of the 1 Mother Agency")
+            Contact('Vladimir Yudashkin', "director of the 1 Mother Agency"),
+            Contact('Yfke Sturm', 'model from Holland'),
         ],
         patterns=[
             r"\w+@mc2mm.com",
             r"MC2",
             r"(Nicole )?Junkerman",  # Also a venture fund manager now
-            r"Tigrane",
+            r"noah\s*models(.com)?",
+            r"Tigrane?",
         ],
     ),
     HighlightedNames(
@@ -1847,7 +1853,7 @@ HighlightedNames(
             Contact(
                 name=JABOR_Y,
                 info="former Qatari prime minister Hamad bin Jassim AKA \"HBJ\"",
-                emailer_pattern=r"[ji]abor y?",
+                emailer_pattern=r"[jil]abor y?",
             )
         ],
         category=MIDEAST,
@@ -1939,7 +1945,6 @@ HighlightedNames(
             r"Please use this email for.*general Media Lab.*",  # Joi Ito
             r"-Austin\nAustin Hill - B..dder.*(\n.*B92ED3E3)?",
             r"^(Please note my new email address?:?.*|Follow me on twitter @[Il]hsummers|www.larrysummers.com)$", # larry summers
-            r"^--\w+-- conversation-id.*(flags|remote-id \d+)( \d{6,}.*remote-id.*\d+)?",
         ],
     ),
     HighlightPatterns(
@@ -1994,6 +1999,9 @@ PEOPLE_BIOS = {
 def get_contact(name: str) -> Contact | None:
     if (group := get_highlight_group_for_name(name)) and isinstance(group, HighlightedNames):
         return group.contacts_lookup.get(name)
+
+
+
 
 
 def get_highlight_group_for_name(name: str | None) -> HighlightGroup | None:
