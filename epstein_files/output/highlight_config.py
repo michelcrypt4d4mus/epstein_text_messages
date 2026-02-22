@@ -335,6 +335,7 @@ HighlightedNames(
         patterns=[
             r"adreeson", r"(Marc\s*)?(?<!Gavin )Andreess?en",
             r"Alphabit",
+            r"Alternative Money",
             r"((Andy|Adam) )Back",
             r"Balaji( Srinivisan)?",
             r"Barry Silbert",
@@ -353,6 +354,7 @@ HighlightedNames(
             r"Brudder( Ventures)?",
             r"Coinbase",
             r"coins?( Center)?",
+            r"Complementary Currency",
             r"Cory Fields",  # bitcoin dev
             r"cr[iy]?pto (coins?|currenc(y|ies)|PR Lab)?( Partners( II)?)?",
             r"crypto(prlab)?",

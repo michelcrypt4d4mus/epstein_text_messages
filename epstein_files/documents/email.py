@@ -90,7 +90,7 @@ OCR_REPAIRS: dict[str | re.Pattern, str] = {
     # Excessive quote chars
     re.compile(r"wrote:\n[>»]+(\n[>»]+)"): r"wrote:\1",
     re.compile(r"(^[>»]+\n){2,}", re.MULTILINE): r"\1",
-    re.compile(r"\nwrote:"): ' wrote:',
+    re.compile(r"\n[<>I ]*wrote:"): ' wrote:',
     # HTML garbage
     re.compile(r"\n<mailt.:?(.{,25})[»>]\s*wrote"): r'\1 wrote',
     re.compile(r"^--\w+-- conversation-id.*(flags|remote-id \d+)(\s*\d{6,}.*remote-id.*\d+)?", re.MULTILINE): '',

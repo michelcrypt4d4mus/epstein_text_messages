@@ -2665,6 +2665,7 @@ UNINTERESTING_EMAIL_IDS = [
     '033486',
     '029446',
     '019873',
+    '030823',  # "little hodiaki"
 ]
 
 # Not uninteresting enough to be permanently marked as such but not good enough for --output-chrono
