@@ -945,6 +945,11 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA02645857', author=GANBAT_CHULUUNKHUU),
     EmailCfg(id='EFTA02406725', author=GANBAT_CHULUUNKHUU),
     EmailCfg(id='EFTA01030561', author=GANBAT_CHULUUNKHUU, author_reason='signature'),
+    EmailCfg(
+        id='EFTA01041008',
+        author=GANBAT_CHULUUNKHUU,
+        description=f"Esptein wants \"a job re water /energy\" for someone ({RENATA_BOLOTOVA} {QUESTION_MARKS})",
+    ),
     EmailCfg(id='EFTA00845330', author=GREG_WYLER, author_reason='"Greg" + Wyler is on other emails with Stern and Epstein at that time'),
     EmailCfg(id='EFTA02640711', author=JABOR_Y, description='Jabor Y / HBJ home address', is_interesting=True),
     EmailCfg(id='EFTA02334332', author=JASON_CALACANIS),
@@ -1284,7 +1289,7 @@ EMAILS_CONFIG = [
         description='discussion of a symposium on deception and alternative finance',
         is_interesting=True,
     ),
-    EmailCfg(id='efta01039112', recipients=[RENATA_BOLOTOVA], uncertain_recipient=SNEAKY_DOG),
+    EmailCfg(id='EFTA01039112', recipients=[RENATA_BOLOTOVA], uncertain_recipient=SNEAKY_DOG),
     EmailCfg(id='EFTA01843319', recipients=[RENATA_BOLOTOVA], uncertain_recipient=SNEAKY_DOG),
     EmailCfg(id='EFTA01006355', recipients=[RENATA_BOLOTOVA], uncertain_recipient=SNEAKY_DOG),
     EmailCfg(id='EFTA02547678', recipients=[RENATA_BOLOTOVA], uncertain_recipient=SNEAKY_DOG),
@@ -1329,7 +1334,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00040145', date='2021-11-09 17:24:30'),
     EmailCfg(id='EFTA02730485', date='2021-12-03 00:00:00'),
     EmailCfg(id='EFTA00901970', description=f"{AL_SECKEL}'s response to Epstein's forged email", is_interesting=True),
-    EmailCfg(id='efta00992595', description=f"{ARIANE_DE_ROTHSCHILD} mentions her visit to Mongolia"),
+    EmailCfg(id='EFTA00992595', description=f"{ARIANE_DE_ROTHSCHILD} mentions her visit to Mongolia"),
     EmailCfg(
         id='EFTA02021096',
         description=f"discussion of the murder of Martine Vik Magnussen by {SHAHER_ABDULHAK_BESHER}'s son Farouk",
@@ -1350,7 +1355,6 @@ EMAILS_CONFIG = [
         is_interesting=True,
         truncate_to=4000,
     ),
-    EmailCfg(id='efta01041008', description=f"Esptein wants \"a job re water /energy\" for someone ({RENATA_BOLOTOVA} {QUESTION_MARKS})"),
     EmailCfg(id='EFTA01769169', description='Epstein tells Jean Luc Brunel he can spend up to $25 million', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA02483194', description=f"discussion of {GANBAT_CHULUUNKHUU}'s arrest", is_interesting=True),
     EmailCfg(id='EFTA02629771', description=f"discussion of {RENATA_BOLOTOVA}'s employment at IPI", is_interesting=True),
@@ -1415,7 +1419,8 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00676383', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA00949376', truncate_to=NO_TRUNCATE),
     #### MAGIC COMMENT FOR MANUAL CONFIG ####
-    EmailCfg(id='EFTA02641374', is_interesting=true),
+    EmailCfg(id='EFTA02641374', is_interesting=True),
+    # EmailCfg(id='EFTA02641374', is_interesting=True),
     EmailCfg(id='EFTA00953261', author=LARRY_SUMMERS, recipients=[JEFFREY_EPSTEIN]),
 ]
 

@@ -53,7 +53,7 @@ def create_configs(docs: Sequence[Document]) -> Sequence[DocCfg]:
 
     for doc in docs:
         if doc.config:  #all(getattr(doc, f) for f in fields) and all(getattr(cfg, f) for f in CFG_FIELDS):
-            doc.warn(f"already has a config...")
+            doc.warn(f"already has a config, skipping!")
             continue
 
         console.line()
@@ -91,6 +91,7 @@ def create_configs(docs: Sequence[Document]) -> Sequence[DocCfg]:
                 _ask_for_value(cfg, prop, doc, doc_val)
 
         cfgs.append(cfg)
+
 
     _insert_configs(cfgs)
     return cfgs
