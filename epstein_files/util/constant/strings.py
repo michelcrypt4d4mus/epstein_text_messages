@@ -94,3 +94,6 @@ LINES = '-﹊﹌﹉﹏﹎＿'
 INDENT = '    '
 INDENT_NEWLINE = f'\n{INDENT}'
 INDENTED_JOIN = f',{INDENT_NEWLINE}'
+
+WEEKDAYS = 'Sunday Monday Tuesday Wednesday Thursday Friday Saturday'.split()
+MONTHS = 'January February March April May June July August September October November December'.split()

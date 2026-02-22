@@ -92,6 +92,7 @@ OCR_REPAIRS: dict[str | re.Pattern, str] = {
     re.compile(r"(^[>»]+\n){2,}", re.MULTILINE): r"\1",
     re.compile(r"\n[<>I ]*wrote:"): ' wrote:',
     # HTML garbage
+    re.compile(r'^O= '): 'On ',
     re.compile(r"=/?u>"): '',
     re.compile(r'(^|\s)[<=][AC]\d+[=>]?'): r'\1',
     re.compile(r'[<=]=?/?(br|div)( class="\w+")?>'): '',
@@ -134,18 +135,18 @@ OCR_REPAIRS: dict[str | re.Pattern, str] = {
     re.compile(r" http ?://www. ?dailymail. ?co ?.uk/news/article-\d+/Troub ?led-woman-history-drug-\n?us ?e-\n?.*html"): '\nhttp://www.dailymail.co.uk/news/article-3914012/Troubled-woman-history-drug-use-claimed-assaulted-Donald-Trump-Jeffrey-Epstein-sex-party-age-13-FABRICATED-story.html',
     re.compile(r"http.*steve-bannon-trump-tower-\n?interview-\n?trumps-\n?strategist-plots-\n?new-political-movement-948747"): "\nhttp://www.hollywoodreporter.com/news/steve-bannon-trump-tower-interview-trumps-strategist-plots-new-political-movement-948747",
     # Subject lines
-    "Arrested in\nInauguration Day Riot": "Arrested in Inauguration Day Riot",
-    "as Putin Mayhem Tests President's Grip\non GOP": "as Putin Mayhem Tests President's Grip on GOP",
-    "avoids testimony from alleged\nvictims": "avoids testimony from alleged victims",
-    "It's a first, but the buyer's\nanonymous": "It's a first, but the buyer's anonymous",
-    "but\nwatchdogs say probe is tainted": "watchdogs say probe is tainted",
-    "Christmas comes\nearly for most of macro": "Christmas comes early for most of macro",            # 023717
-    "but majority still made good\nmoney because": "but majority still made good money because",      # 023717
-    "COVER UP SEX ABUSE CRIMES\nBY THE WHITE HOUSE": "COVER UP SEX ABUSE CRIMES BY THE WHITE HOUSE",
-    'Priebus, used\nprivate email accounts for': 'Priebus, used private email accounts for',
-    "War on the Investigations\nEncircling Him": "War on the Investigations Encircling Him",
-    "Subject; RE": "Subject: RE",
-    "straining relations between UK and\nAmerica": "straining relations between UK and America",
+    r"Arrested in\nInauguration Day Riot": "Arrested in Inauguration Day Riot",
+    r"avoids testimony from alleged\nvictims": "avoids testimony from alleged victims",
+    r"It's a first, but the buyer's\nanonymous": "It's a first, but the buyer's anonymous",
+    r"but\nwatchdogs say probe is tainted": "watchdogs say probe is tainted",
+    r"Christmas comes\nearly for most of macro": "Christmas comes early for most of macro",            # 023717
+    r"but majority still made good\nmoney because": "but majority still made good money because",      # 023717
+    r"COVER UP SEX ABUSE CRIMES\nBY THE WHITE HOUSE": "COVER UP SEX ABUSE CRIMES BY THE WHITE HOUSE",
+    r'Priebus, used\nprivate email accounts for': 'Priebus, used private email accounts for',
+    r"War on the Investigations\nEncircling Him": "War on the Investigations Encircling Him",
+    r"Subject; RE": "Subject: RE",
+    r"straining relations between UK and\nAmerica": "straining relations between UK and America",
+    re.compile(r"as Putin Mayhem\sTests\sPresident's\sGrip\son\sGOP"): "as Putin Mayhem Tests President's Grip on GOP",
     re.compile(r"deadline re Mr Bradley Edwards vs Mr\s*Jeffrey Epstein", re.I): "deadline re Mr Bradley Edwards vs Mr Jeffrey Epstein",
     re.compile(r"Following Plea That Implicated Trump -\s*https://www.npr.org/676040070", re.I): "Following Plea That Implicated Trump - https://www.npr.org/676040070",
     re.compile(r"for Attorney General -\s+Wikisource, the"): r"for Attorney General - Wikisource, the",
