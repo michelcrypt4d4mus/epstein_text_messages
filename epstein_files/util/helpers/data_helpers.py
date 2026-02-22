@@ -95,7 +95,7 @@ def prefix_keys(prefix: str, _dict: dict[str, T], sep='.') -> dict[str, T]:
 
 def remove_timezone(timestamp: datetime) -> datetime:
     if timestamp.tzinfo:
-        timestamp = timestamp.astimezone(timezone.utc).replace(tzinfo=None)
+        timestamp = timestamp.astimezone(timezone.utc).replace(tzinfo=timezone.utc)
         logger.debug(f"    -> Converted to UTC: {timestamp}")
 
     return timestamp
