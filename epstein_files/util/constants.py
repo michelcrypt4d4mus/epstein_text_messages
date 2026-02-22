@@ -1424,132 +1424,6 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00953261', author=LARRY_SUMMERS, recipients=[JEFFREY_EPSTEIN]),
 ]
 
-# These emails will be suppressed in the curated views
-UNINTERESTING_EMAIL_IDS = [
-    # Epstein
-    '030997',
-    # John Page
-    '016693',
-    # Jabor
-    '030786',
-    '033011',
-    # Brock
-    'EFTA02174702',
-    'EFTA02160842',
-    'EFTA00371547',
-    'EFTA00405824',
-    'EFTA00361736',
-    'EFTA02160842',
-    'EFTA00405795',
-    'EFTA00362148',
-    'EFTA00362163',
-    'EFTA00997253',
-    'EFTA00997251',
-    'EFTA00362171',
-    'EFTA00693620',
-    'EFTA02092108',
-    'EFTA00645400',
-    'EFTA01002109',
-    'EFTA02365466',
-    'EFTA00362163',
-    'EFTA00709543',
-    # David Stern
-    'EFTA02507454',
-    # Eric Roth
-    '033386',
-    # Jeremy Rubin
-    'EFTA00714127',
-    # Joi Ito
-    '029500',
-    '029279',
-    '029088',
-    '029204',
-    '029094',
-    '029096',
-    '029429',
-    '029587',
-    '029237',
-    '029499',
-    'EFTA02363524',  # visible in EFTA00676383
-    'EFTA00649516',
-    'EFTA02593836',
-    'EFTA00697880',
-    'EFTA02647229',
-    'EFTA02238841',
-    # Krassner
-    '033345',
-    # Amir Taaki
-    'EFTA01983108',
-    # austin hill
-    'EFTA01024046',
-    'EFTA01010209',
-    'EFTA00461202',
-    'EFTA02229342',
-    'EFTA01005712',
-    'EFTA01005715',
-    'EFTA02228570',
-    # Iozzo
-    '033280',
-    # Lesley?
-    'EFTA02229402',
-    'EFTA02229659',
-    # DOJ / USANYS
-    'EFTA00039799',
-    'EFTA02730469',
-    'EFTA02730471',
-    'EFTA02731662',
-    'EFTA02731648',
-    'EFTA02731473',
-    'EFTA02731735',
-    'EFTA02731734',
-    'EFTA02731628',
-    'EFTA00040144',
-    'EFTA00040105',
-    'EFTA00040118',
-    'EFTA00040124',
-    'EFTA00040141',
-    'EFTA02730485',
-    'EFTA02731526',
-    'EFTA00039802',
-    'EFTA00039867',
-    'EFTA00039995',
-    'EFTA00039981',
-    'EFTA00104945',
-    'EFTA00039893',
-    'EFTA02385456',
-    'EFTA02730481',
-    'EFTA02730483',
-    # TODO: These have UNKNOWN recipient so they currently get printed but we should configure it so they don't
-    'EFTA00039894',
-    'EFTA00039878',
-    # Unknown
-    '030992',
-    '032213',
-    '029206',
-    '031822',
-    '030768',
-    '026659',
-    '032951',
-    '023062',
-    '030324',
-    '031990',
-    '024930',
-    '029982',
-    '022187',
-    '033486',
-    '029446',
-    '019873',
-]
-
-NOT_CHRONOLOGICAL_VIEW_IDS = [
-    '022247',
-    '030095',
-    '022234',
-]
-
-EmailCfg.create_or_set_prop(UNINTERESTING_EMAIL_IDS, EMAILS_CONFIG, 'is_interesting', False)
-EmailCfg.create_or_set_prop(NOT_CHRONOLOGICAL_VIEW_IDS, EMAILS_CONFIG, 'is_in_chrono', False)
-
 
 ################################################################################################
 ####################################### OTHER FILES ############################################
@@ -2673,6 +2547,132 @@ OTHER_FILES_JUNK = [
     DocCfg(id='EFTA02731728'),
 ]
 
+# These emails will be suppressed in the curated views
+UNINTERESTING_EMAIL_IDS = [
+    # Epstein
+    '030997',
+    # John Page
+    '016693',
+    # Jabor
+    '030786',
+    '033011',
+    # Brock
+    'EFTA02174702',
+    'EFTA02160842',
+    'EFTA00371547',
+    'EFTA00405824',
+    'EFTA00361736',
+    'EFTA02160842',
+    'EFTA00405795',
+    'EFTA00362148',
+    'EFTA00362163',
+    'EFTA00997253',
+    'EFTA00997251',
+    'EFTA00362171',
+    'EFTA00693620',
+    'EFTA02092108',
+    'EFTA00645400',
+    'EFTA01002109',
+    'EFTA02365466',
+    'EFTA00362163',
+    'EFTA00709543',
+    # David Stern
+    'EFTA02507454',
+    # Eric Roth
+    '033386',
+    # Jeremy Rubin
+    'EFTA00714127',
+    # Joi Ito
+    '029500',
+    '029279',
+    '029088',
+    '029204',
+    '029094',
+    '029096',
+    '029429',
+    '029587',
+    '029237',
+    '029499',
+    'EFTA02363524',  # visible in EFTA00676383
+    'EFTA00649516',
+    'EFTA02593836',
+    'EFTA00697880',
+    'EFTA02647229',
+    'EFTA02238841',
+    # Krassner
+    '033345',
+    # Amir Taaki
+    'EFTA01983108',
+    # austin hill
+    'EFTA01024046',
+    'EFTA01010209',
+    'EFTA00461202',
+    'EFTA02229342',
+    'EFTA01005712',
+    'EFTA01005715',
+    'EFTA02228570',
+    # Iozzo
+    '033280',
+    # Lesley?
+    'EFTA02229402',
+    'EFTA02229659',
+    # DOJ / USANYS
+    'EFTA00039799',
+    'EFTA02730469',
+    'EFTA02730471',
+    'EFTA02731662',
+    'EFTA02731648',
+    'EFTA02731473',
+    'EFTA02731735',
+    'EFTA02731734',
+    'EFTA02731628',
+    'EFTA00040144',
+    'EFTA00040105',
+    'EFTA00040118',
+    'EFTA00040124',
+    'EFTA00040141',
+    'EFTA02730485',
+    'EFTA02731526',
+    'EFTA00039802',
+    'EFTA00039867',
+    'EFTA00039995',
+    'EFTA00039981',
+    'EFTA00104945',
+    'EFTA00039893',
+    'EFTA02385456',
+    'EFTA02730481',
+    'EFTA02730483',
+    # TODO: These have UNKNOWN recipient so they currently get printed but we should configure it so they don't
+    'EFTA00039894',
+    'EFTA00039878',
+    # Unknown
+    '030992',
+    '032213',
+    '029206',
+    '031822',
+    '030768',
+    '026659',
+    '032951',
+    '023062',
+    '030324',
+    '031990',
+    '024930',
+    '029982',
+    '022187',
+    '033486',
+    '029446',
+    '019873',
+]
+
+NOT_CHRONOLOGICAL_VIEW_IDS = [
+    '022247',
+    '030095',
+    '022234',
+    '030470',
+    '030222',
+    '026584',
+]
+
 # Build OtherFile / DojFile config list by combining OTHER_FILES_[BLAH] variables
 ALL_OTHER_FILES_CONFIGS: list[DocCfg] = []
 
@@ -2688,6 +2688,8 @@ for category in CONSTANT_CATEGORIES:
         ALL_OTHER_FILES_CONFIGS.append(cfg)
 
 ALL_CONFIGS = EMAILS_CONFIG + ALL_OTHER_FILES_CONFIGS + TEXTS_CONFIG
+EmailCfg.create_or_set_prop(UNINTERESTING_EMAIL_IDS, ALL_CONFIGS, 'is_interesting', False)
+EmailCfg.create_or_set_prop(NOT_CHRONOLOGICAL_VIEW_IDS, ALL_CONFIGS, 'is_in_chrono', False)
 CONFIGS_BY_ID = {cfg.id: cfg for cfg in ALL_CONFIGS}
 
 # Add synthetic Cfg objects for duplicate docs with same props as the DocCfg they are a duplicate of

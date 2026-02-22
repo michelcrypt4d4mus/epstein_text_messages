@@ -239,8 +239,8 @@ class Document:
         Checking of `TEXTERS_OF_INTEREST` etc. is left to the relevant subclass in cases where this
         function returns None.
         """
-        if self.config and self.config.is_of_interest is not None:
-            return self.config.is_of_interest
+        if self.config and (is_of_interest := self.config.is_of_interest) is not None:
+            return is_of_interest
         elif self.is_attachment:
             return False
         elif self.author in UNINTERESTING_AUTHORS:
@@ -375,7 +375,7 @@ class Document:
         if self.config:
             if self.config.attached_to_email_id:
                 return self._skipped_file_txt(f"attached to {self.config.attached_to_email_id}")
-            elif args.suppress_uninteresting and self.config.is_interesting is False:
+            elif args._suppress_uninteresting and self.config.is_interesting is False:
                 return self._skipped_file_txt("uninteresting")
 
     @property

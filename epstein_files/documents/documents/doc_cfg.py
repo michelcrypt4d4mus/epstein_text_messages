@@ -4,7 +4,7 @@ from copy import deepcopy
 from dataclasses import asdict, dataclass, field, fields
 from datetime import datetime
 from pathlib import Path
-from typing import Any, Generator, Literal, Self
+from typing import Any, Generator, Literal, Self, Sequence
 
 from dateutil.parser import parse
 from rich.text import Text
@@ -440,7 +440,7 @@ class DocCfg:
             return repr_str
 
     @classmethod
-    def create_or_set_prop(cls, ids: list[str], existing_cfgs: list[Self], prop: str, val: Any) -> None:
+    def create_or_set_prop(cls, ids: list[str], existing_cfgs: Sequence['DocCfg'], prop: str, val: Any) -> None:
         """If a record exists in `existing_cfgs` update it, otherwise create new and append."""
         cfg_dict = {cfg.id: cfg for cfg in existing_cfgs}
         created = updated = 0

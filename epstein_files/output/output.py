@@ -38,7 +38,7 @@ PRINT_COLOR_KEY_EVERY_N_EMAILS = 150
 
 
 def print_curated_chronological(epstein_files: EpsteinFiles) -> list[Document]:
-    """Print interesting files of all types in chronological order."""
+    """Print only interesting files of all types in chronological order."""
     people_encountered = set()
     printed_docs: list[Document] = []
     has_printed_table_explanation = False
