@@ -288,10 +288,8 @@ class EpsteinFiles:
         ]
 
     def load_new_files(self) -> None:
-        current_docs = self._docs_by_id()
-        self.file_paths = all_txt_paths()
-        new_paths = [p for p in self.file_paths if extract_file_id(p) not in current_docs]
-        new_docs = self._load_file_paths(new_paths)
+        """Load any new files detected in the hierarchy."""
+        new_docs = self._load_file_paths(self._new_files())
 
         if not new_docs:
             logger.warning(f"No new files found, doing nothing.")
@@ -322,13 +320,19 @@ class EpsteinFiles:
         return table
 
     def repair_ids(self, ids: list[str]) -> None:
-        """Repair/reload the ids specified as positional arguments and save updated pickle file to disk."""
+        """Reload the `ids` and save updated pickle file (also loads new files)."""
         ids = uniquify(ids)
         doc_paths = [d.file_path for d in self.documents if d.file_id in ids]
+        msg = f"Repairing {len(ids)} file IDs"
 
         if len(doc_paths) != len(ids):
             raise RuntimeError(f"{len(ids)} specified but only {len(doc_paths)} Document objects found!")
 
+        if (new_paths := self._new_files()):
+            msg +=  f" (also loading {len(new_paths)} new files)"
+            doc_paths += new_paths
+
+        logger.warning(msg)
         self._finalize_new_docs_if_approved(self._load_file_paths(doc_paths))
 
     def save_to_disk(self) -> None:
@@ -437,6 +441,16 @@ class EpsteinFiles:
                 doc_timer.print_at_checkpoint(f"Slow file: {docs[-1]} processed")
 
         return docs
+
+    def _new_files(self) -> list[Path]:
+        """Find any files that don't exist in the collection. Has side effect of setting `self.file_paths`."""
+        self.file_paths = sorted(all_txt_paths(), reverse=True)
+        current_doc_ids = [id for id in self._docs_by_id().keys()] + list(self._empty_file_ids)
+
+        return [
+            p for p in self.file_paths
+            if extract_file_id(p) not in current_doc_ids
+        ]
 
     def _set_uninteresting_ccs(self) -> None:
         """Extract the recipients of emails configured has having uninteresting CCs or BCCs."""

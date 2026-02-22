@@ -356,6 +356,7 @@ HighlightedNames(
             r"Brian Forde",
             r"Brock( Pierce)?",
             r"Brudder( Ventures)?",
+            r"Chaincode",
             r"Coinbase",
             r"coins?( Center)?",
             r"Complementary Currency",

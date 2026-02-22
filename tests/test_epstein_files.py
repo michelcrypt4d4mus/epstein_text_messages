@@ -14,7 +14,7 @@ from epstein_files.util.helpers.string_helper import prop_str
 
 from .conftest import assert_higher_counts
 from .fixtures.emails.signatures import AUTHORS_TO_DEVICE_SIGNATURES, DEVICE_SIGNATURE_TO_AUTHORS, SIGNATURE_SUBSTITUTION_COUNTS
-from .fixtures.messenger_logs.author_counts import MESSENGER_LOG_AUTHOR_COUNTS
+from .fixtures.messenger_logs.author_counts import IMESSAGE_LOG_IDS, MESSENGER_LOG_AUTHOR_COUNTS
 from .fixtures.fixture_csvs import CFG_PROPS, EMAIL_PROPS, load_files_csv
 
 
@@ -69,9 +69,9 @@ def test_all_configured_file_ids_exist(epstein_files):
 
 
 def test_imessage_text_counts(epstein_files):
+    immesage_log_ids = sorted([doc.file_id for doc in epstein_files.imessage_logs])
+    assert immesage_log_ids == IMESSAGE_LOG_IDS
     assert MessengerLog.count_authors(epstein_files.imessage_logs) == MESSENGER_LOG_AUTHOR_COUNTS
-    num_logs = len(epstein_files.imessage_logs)
-    assert num_logs == 77
 
 
 def test_no_files_after_2025(epstein_files):

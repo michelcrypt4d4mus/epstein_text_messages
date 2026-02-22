@@ -152,10 +152,17 @@ UNCONFIRMED_TEXTS_CONFIG = [
     TextCfg(id='027275', is_interesting=True, comment='"Crypto- Kerry- Qatar -sessions"')
 ]
 
+# Necessary because some of these will be marked uninteresting, which overrides the config
+UNKNOWN_TXT_MSG_LOGS = [
+    TextCfg(id='025423'),
+    TextCfg(id='025426'),
+    TextCfg(id='027583'),
+]
+
 for cfg in UNCONFIRMED_TEXTS_CONFIG:
     cfg.author_uncertain = cfg.author_uncertain or True
 
-TEXTS_CONFIG = CONFIRMED_TEXTS_CONFIG + UNCONFIRMED_TEXTS_CONFIG
+TEXTS_CONFIG = CONFIRMED_TEXTS_CONFIG + UNCONFIRMED_TEXTS_CONFIG + UNKNOWN_TXT_MSG_LOGS
 
 
 ########################################################################################################
