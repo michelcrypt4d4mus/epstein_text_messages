@@ -769,7 +769,7 @@ HighlightedNames(
             r"Mizrahi Bank",
             r"MLPF&S",
             r"Morgan Stanley",
-            r"OpenGate Capital",
+            r"OpenGate Capital(, LLC)?",
             r"(Peter L. )?Scher",
             r"(Ray )?Dalio",
             r"(Richard )?LeFrak",
