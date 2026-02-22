@@ -292,7 +292,6 @@ HighlightedNames(
             r"Kwok",
             r"(Madam )?Fu Ying",
             r"Ministry\sof\sState\sSecurity",
-            r"Mongolian?",
             r"MSS",
             r"North .?Korean?",
             r"Peking",
@@ -1206,21 +1205,13 @@ HighlightedNames(
     ),
     HighlightedNames(
         label=LOBBYIST,
-        style='light_coral',
+        style='light_coral',  # TODO: this shouldn't be same as Mongolia
         contacts=[
             Contact(BOB_CROWE, "partner at Nelson Mullins", r"[BR]ob Crowe"),
-            Contact(
-                name=GANBAT_CHULUUNKHUU,
-                info="corrupt Mongolian politician who was later wanted by Interpol",
-                emailer_pattern=r"Ganbat(@| Ch(uluunkhuu)?)?",
-            ),
             Contact('Joshua Cooper Ramo', "co-CEO of Henry Kissinger Associates"),
             Contact(KATHERINE_KEATING, "daughter of former Australian prime minister"),
-            Contact('Khaltmaagiin Battulga', "former president of Mongolia"),
-            Contact(MOHAMED_WAHEED_HASSAN, "former president of the Maldives", r"Mohamed Waheed( Hassan)?"),
             Contact(OLIVIER_COLOM, "France", r"Colom, Olivier|Olivier Colom"),
             Contact('Paul Keating', "former prime minister of Australia"),
-            Contact(PUREVSUREN_LUNDEG, "Mongolian ambassador to the UN", r"Purevsuren( Lundeg)?"),
             Contact('Stanley Rosenberg', "former President of the Massachusetts Senate")
         ],
         patterns=[
@@ -1230,6 +1221,24 @@ HighlightedNames(
             r"Stanley Rosenberg",
             r"Vinoda Basnayake",
         ],
+    ),
+    HighlightedNames(
+        label='Mongolia',
+        style='light_coral',
+        contacts=[
+            Contact(
+                name=GANBAT_CHULUUNKHUU,
+                info="corrupt Mongolian politician who was later wanted by Interpol",
+                emailer_pattern=r"Ganbat(@| Ch(uluunkhuu)?)?",
+            ),
+            Contact('Khaltmaagiin Battulga', "former president of Mongolia"),
+            Contact(PUREVSUREN_LUNDEG, "Mongolian ambassador to the UN", r"Purevsuren( Lundeg)?"),
+        ],
+        patterns=[
+            r"Elbekdorj",
+            r"Enkhbajar",
+            r"Mongolian?",
+        ]
     ),
     HighlightedNames(
         label='locations',
@@ -1615,6 +1624,9 @@ HighlightedNames(
     HighlightedNames(
         label='Southeast Asia',
         style='light_salmon3 bold',
+        contacts=[
+            Contact(MOHAMED_WAHEED_HASSAN, "former president of the Maldives", r"Mohamed Waheed( Hassan)?"),
+        ],
         patterns=[
             r"Australian?(?! Ave)",
             r"Bangkok",
