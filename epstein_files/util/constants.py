@@ -116,7 +116,6 @@ UNCONFIRMED_TEXTS_CONFIG = [
     TextCfg(id='027549', author=STEVE_BANNON),
     TextCfg(id='027764', author=STEVE_BANNON),
     TextCfg(id='027585', author=STEVE_BANNON, author_uncertain='references Tokyo trip'),
-    TextCfg(id='027720', author=STEVE_BANNON, author_uncertain='first 3 lines of 027722'),
     TextCfg(id='027434', author=STEVE_BANNON, author_uncertain='references Maher appearance'),
     TextCfg(id='027428', author=STEVE_BANNON, author_uncertain='references HBJ meeting on 9/28 from other Bannon/Epstein convo'),
     TextCfg(id='027374', author=STEVE_BANNON, author_uncertain='AI says China strategy and geopolitics'),
@@ -133,7 +132,7 @@ UNCONFIRMED_TEXTS_CONFIG = [
     TextCfg(id='027365', author=STEVE_BANNON, author_uncertain='AI says Trump and New York Times coverage'),
     TextCfg(id='027406', author=STEVE_BANNON, author_uncertain='AI says Trump and New York Times coverage'),
     TextCfg(id='027655', author=STEVE_BANNON, author_uncertain='AI says Trump and New York Times coverage'),
-    TextCfg(id='027722', author=STEVE_BANNON, author_uncertain='AI says Trump and New York Times coverage'),
+    TextCfg(id='027722', author=STEVE_BANNON, duplicate_ids=['027722'], author_uncertain='AI says Trump and New York Times coverage'),
     TextCfg(id='027735', author=STEVE_BANNON, author_uncertain='AI says Trump and New York Times coverage'),
     TextCfg(id='027794', author=STEVE_BANNON, author_uncertain='AI says Trump and New York Times coverage'),
     TextCfg(id='025368', author=STEVE_BANNON, author_uncertain='AI', is_interesting=True, comment='obama slander'),
@@ -675,6 +674,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='026551', is_fwded_article=True, comment='Sultan bin Sulayem "Ayatollah between the sheets"'),
     EmailCfg(id='031768', is_fwded_article=True, comment="Sultan bin Sulayem 'Horseface'"),
     EmailCfg(id='026829', is_fwded_article=True, comment='taxes'),
+    EmailCfg(id='026273', is_fwded_article=True),
     EmailCfg(id='029901', is_fwded_article=True, comment='THE EDGE question'),
     EmailCfg(id='026924', is_fwded_article=True, comment='The Onion'),
     EmailCfg(id='031705', is_fwded_article=True, comment='Thomas Friedman why not in vegas?'),
@@ -841,7 +841,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='031596', is_interesting=True, comment='"would you like photso of donald and girls in bikinis in my kitchen."'),
     EmailCfg(id='031601', is_interesting=True, comment='Old gf i gave to donald', truncate_to=2000),
     EmailCfg(id='030725', is_interesting=True, comment='David Stern in Moscow'),
-    EmailCfg(id='030714', is_interesting=True, comment='Bannon, Russian Dugan shout out'),
+    EmailCfg(id='030714', is_interesting=True, description='Bannon gets a shout out from Russian nationalist Alexander Dugan'),
     EmailCfg(id='031659', is_interesting=True, comment='"i have met some very bad people „ none as bad as trump"'),
     EmailCfg(id='030245', is_interesting=True, comment='Epstein rationalizes his behavior in an open letter to the world'),
     EmailCfg(id='032906', is_interesting=True, comment='David Blaine email'),
@@ -874,6 +874,7 @@ EMAILS_CONFIG = [
         is_interesting=True,
         comment='Zubair',
     ),
+    EmailCfg(id='EFTA00847613', truncate_to=320),
     EmailCfg(id='025594', truncate_to=720),
     EmailCfg(id='025603', truncate_to=850),
     EmailCfg(id='030295', truncate_to=4200, description=f"TerraMar Project was {GHISLAINE_MAXWELL} healthy oceans related attempt at reputation rehabilitation"),
@@ -1398,6 +1399,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00870717', duplicate_ids=['EFTA01932706']),
     EmailCfg(id='EFTA00915302', duplicate_ids=['EFTA01860910', 'EFTA01986221', 'EFTA01776411']),
     EmailCfg(id='EFTA01776613', duplicate_ids=['EFTA01860812', 'EFTA00915297']),
+    EmailCfg(id='030727', truncate_to=400),
     EmailCfg(id='EFTA00982094', truncate_to=250),
     EmailCfg(id='EFTA00915298', truncate_to=300),
     EmailCfg(id='EFTA00915300', truncate_to=250),
@@ -2323,6 +2325,7 @@ OTHER_FILES_CRYPTO = [
     ),
 
     # Blockstream
+    EmailCfg(id='EFTA02529170', description=f"Blockstream set up a special company to invest in an Asian ride hailing service"),
     EmailCfg(id='EFTA01917402', description=f'discussion of Epstein investment in Blockstream funneled through {JOI_ITO}', is_interesting=True),
     EmailCfg(id='EFTA00999897', description=f"Epstein claims he's a fan of {ADAM_BACK} (who has recently claimed he had nothing to do with Epstein)"),
     EmailCfg(id='EFTA01915883', description=f"{JOI_ITO} thinks {AUSTIN_HILL} is shady (which he is)"),
@@ -2441,11 +2444,13 @@ OTHER_FILES_CRYPTO = [
     DocCfg(id='EFTA00810362', author=VALAR_VENTURES, description="investor questionnaire", truncate_to=DEFAULT_TRUNCATE_TO),
     DocCfg(id='EFTA00605996', description='Wedbush BUY rating on Digital Currency Group GBTC', is_interesting=False),
     # Bannon
+    EmailCfg(id='030711', description='Epstein says "we can discuss michael and his coins", unclear what that means'),
     EmailCfg(id='026260', comment='Bannon cripto coin issues'),
     EmailCfg(id='026258', description='Bannon suggests Jeffrey Wernick, CEO of Parler and man affiliated with many shady crypto businesses, can help'),
     EmailCfg(id='030781', description="Esptein says the crypto coin issues they're having are 'US based'"),
     EmailCfg(id='026255', description='Epstein requests help with "coin issues" and "prohibitions foreign donor" (sic)', is_interesting=True),
-    EmailCfg(id='EFTA02517572', description=f'Bannon says that they need to stop EU regulation of crypto scams "dead in its tracks"', is_interesting=True),
+    EmailCfg(id='EFTA00874793', description=f'Bannon says that they need to stop EU regulation of crypto scams "dead in its tracks"', is_interesting=True),
+    EmailCfg(id='EFTA02517572', description=f'Bannon says that they need to stop EU regulation of crypto scams "dead in its tracks"'),
     EmailCfg(id='EFTA00881711', description=f"Bannon and Epstein discuss bitcoin and crypto donations", is_interesting=True),
     EmailCfg(id='EFTA00881759', description=f"Epstein and {STEVE_BANNON} discuss collection donations in bitcoin", is_interesting=True),
     # SEC / NYDFS
@@ -2570,6 +2575,10 @@ UNINTERESTING_EMAIL_IDS = [
     '033011',
     # Bannon
     'EFTA02517956',
+    '03071',
+    '030954',
+    '030956',
+    '027585',  # texts
     # Brock
     'EFTA02174702',
     'EFTA02160842',
@@ -2592,6 +2601,8 @@ UNINTERESTING_EMAIL_IDS = [
     'EFTA00709543',
     # David Stern
     'EFTA02507454',
+    'EFTA02478704',
+    '030724',
     # Eric Roth
     '033386',
     # Jeremy Rubin
@@ -2617,6 +2628,8 @@ UNINTERESTING_EMAIL_IDS = [
     '033345',
     # Amir Taaki
     'EFTA01983108',
+    # Ganbat
+    'EFTA02469375',
     # austin hill
     'EFTA01024046',
     'EFTA01010209',
@@ -2628,6 +2641,7 @@ UNINTERESTING_EMAIL_IDS = [
     # bolotova
     'EFTA01903041',
     'EFTA01969322',
+    'EFTA01035614',
     # Wolff
     '021120',
     # Iozzo
@@ -2683,6 +2697,7 @@ UNINTERESTING_EMAIL_IDS = [
     '019873',
     '030823',  # "little hodiaki"
     '027009',
+    '026273',
 ]
 
 # Not uninteresting enough to be permanently marked as such but not good enough for --output-chrono
@@ -2720,6 +2735,23 @@ NOT_CHRONOLOGICAL_VIEW_IDS = [
     '026254',
     '026473',
     '026474',
+    '025517',
+    '025520',
+    '030710',
+    '030721',
+    '030785',
+    '029497',
+    'EFTA02465832',
+    '030444',
+    '030788',
+    '020815',
+    '021106',
+    '027044',
+    '025429',
+    '027583',
+    '025426',
+    '025423',
+    '027707',
     # '024185', # UN
 ]
 

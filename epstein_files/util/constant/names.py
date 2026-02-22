@@ -198,6 +198,7 @@ ALISON_J_NATHAN = 'Alison J. Nathan'
 AMIR_TAAKI = 'Amir Taaki'
 ANDREW_FARKAS = 'Andrew Farkas'
 ANDREW_MCCORMACK = 'Andrew McCormack'
+ARIANNA_SIMPSON = 'Arianna Simpson'
 AUDREY_STRAUSS = 'Audrey Strauss'
 AUSTIN_HILL = 'Austin Hill'
 BOBBI_C_STERNHEIM = 'Bobbi C. Sternheim'
@@ -325,7 +326,7 @@ NAMES_TO_NOT_HIGHLIGHT = """
     management mann marc marie mark martin matthew melanie michael mike miller mitchell miles morris moskowitz
     nancy nathan neal new nicole norman ny
     owen
-    paul paula pen peter philip pierce police prince
+    paul paula pen peter philip pierce plus police prince
     randall rangel reid richard robert rodriguez roger rosenberg ross roth roy rubenstein rubin
     santos scott sean service services skip smith stacey stanley stern stephen steve steven stone story susan
     team terry the thomas tim tom tony trust tyler
