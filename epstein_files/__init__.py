@@ -178,10 +178,10 @@ def epstein_show():
         exit_with_error(str(e))
 
     for doc in docs:
-        if args.open_pdf:
-            check_output(['open', str(doc.file_info.local_pdf_path)])
+        if args.open_pdf and doc.file_info.is_doj_file:
+            doc.file_info.open_pdf()
         if args.open_txt:
-            check_output(['open', str(doc.file_path)])
+            doc.file_info.open()
         if args.open_url:
             check_output(['open', str(doc.file_info.external_url)])
 

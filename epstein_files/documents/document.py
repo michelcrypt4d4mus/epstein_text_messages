@@ -110,10 +110,11 @@ class Document:
     text: str = ''
 
     def __post_init__(self):
-        if not self.file_path.exists():
+        self.file_info = FileInfo(self.file_path)
+
+        if not self.file_path.exists() and not self.file_info.is_local_extract_file and not self.file_info.is_doj_file:
             raise FileNotFoundError(f"File '{self.file_path}' does not exist!")
 
-        self.file_info = FileInfo(self.file_path)
         self.text = self.text or self._load_file()
         self._set_text(text=self.text)
         self._repair()

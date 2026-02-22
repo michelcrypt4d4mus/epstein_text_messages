@@ -1,6 +1,7 @@
 import logging
 from dataclasses import asdict, dataclass, field
 from pathlib import Path
+from subprocess import check_output
 from typing import Mapping
 
 from rich.text import Text
@@ -171,6 +172,15 @@ class FileInfo:
     def log(self, msg: str, level: int = logging.INFO):
         """Log a message with with this document's filename as a prefix."""
         logger.log(level, f"{self.file_stem} {msg}")
+
+    def open(self) -> None:
+        check_output(['open', str(self.local_path)])
+
+    def open_pdf(self) -> None:
+        if not self.is_doj_file:
+            raise RuntimeError(f"No PDF for House oversight file!")
+
+        check_output(['open', str(self.local_pdf_path)])
 
     def warn(self, msg: str) -> None:
         """Print a warning message prefixed by info about this `file_id`."""
