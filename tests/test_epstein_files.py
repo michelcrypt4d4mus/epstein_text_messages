@@ -10,6 +10,7 @@ from epstein_files.output.rich import console, print_subtitle_panel
 from epstein_files.util.constant.names import *
 from epstein_files.util.constants import CONFIGS_BY_ID
 from epstein_files.util.helpers.data_helpers import days_between, uniquify
+from epstein_files.util.helpers.string_helper import prop_str
 
 from .conftest import assert_higher_counts
 from .fixtures.emails.signatures import AUTHORS_TO_DEVICE_SIGNATURES, DEVICE_SIGNATURE_TO_AUTHORS, SIGNATURE_SUBSTITUTION_COUNTS
@@ -44,13 +45,13 @@ def test_against_csv(epstein_files):
                     repair_ids.append(doc.file_id)
                     reloaded_prop = getattr(doc.reload(), k)
                     mismatched_prop_str = f"mismatched '{k}'"
-                    values_str = f"doc='{doc_val}', csv='{csv_val}'"
+                    values_str = f"doc={prop_str(doc_val)}', csv={prop_str(csv_val)}"
 
                     if reloaded_prop == csv_val:
                         values_str += f", reloaded='{reloaded_prop}'"
-                        doc.warn(f"{mismatched_prop_str} in gzip but reloaded is OK: {values_str}")
+                        doc.warn(f"{mismatched_prop_str} in gzip but reloaded is OK ({values_str})")
                     else:
-                        doc.warn(f"{mismatched_prop_str}: {values_str}")
+                        doc.warn(f"{mismatched_prop_str} ({values_str})")
         else:
             print_subtitle_panel(f"CSV is missing {doc.file_id}", center=False)
             console.print(doc)
@@ -68,8 +69,9 @@ def test_all_configured_file_ids_exist(epstein_files):
 
 
 def test_imessage_text_counts(epstein_files):
-    assert len(epstein_files.imessage_logs) == 77
     assert MessengerLog.count_authors(epstein_files.imessage_logs) == MESSENGER_LOG_AUTHOR_COUNTS
+    num_logs = len(epstein_files.imessage_logs)
+    assert num_logs == 77
 
 
 def test_no_files_after_2025(epstein_files):

@@ -21,6 +21,11 @@ VI_DAILY_NEWS_REGEX = re.compile(r'virgin\s*is[kl][ai]nds\s*daily\s*news', re.IG
 LEDGERX_MSG = 'LedgerX was later acquired by FTX for $298 million'
 WOLFF_EPSTEIN_ARTICLE_DRAFT = f"draft of an unpublished article ca. 2014"
 
+DUPLICATES = {
+    'EFTA00811539': ['EFTA00599617'],
+    'EFTA00591792': ['EFTA00810358'],
+}
+
 
 def build_cfg_from_text(doc: 'Document') -> DocCfg | None:
     """Scan the text to see if author, description, category, etc. can be derived from the contents."""
@@ -32,29 +37,29 @@ def build_cfg_from_text(doc: 'Document') -> DocCfg | None:
         return DocCfg(id=doc.file_id, **kwargs)  # TODO: setting id to nothing sucks
 
     if FBI_FILE_REGEX.search(text):
-        return _cfg(category=Neutral.LEGAL, author=FBI, description='memorandum or report')
+        cfg = _cfg(category=Neutral.LEGAL, author=FBI, description='memorandum or report')
     elif EVIDENCE_REGEX.search(text):
-        return _cfg(category=Neutral.LEGAL, description='photos of collected evidence')
+        cfg = _cfg(category=Neutral.LEGAL, description='photos of collected evidence')
     elif 'LedgerX' in text[0:500]:
-        return _cfg(category=Interesting.CRYPTO, description=LEDGERX_MSG)
+        cfg = _cfg(category=Interesting.CRYPTO, description=LEDGERX_MSG)
     elif LSJE_FORM_REGEX.search(text):
-        return _cfg(category=Neutral.BUSINESS, description="emergency contact form for employee of Epstein's LSJE")
+        cfg = _cfg(category=Neutral.BUSINESS, description="emergency contact form for employee of Epstein's LSJE")
     elif SUBPOENA_REGEX.search(text):
-        return _cfg(category=Neutral.LEGAL, description='grand jury subpoena or response')
+        cfg = _cfg(category=Neutral.LEGAL, description='grand jury subpoena or response')
     elif VI_DAILY_NEWS_REGEX.search(text):
-        return _cfg(category=Uninteresting.ARTICLE, author=VI_DAILY_NEWS)
+        cfg = _cfg(category=Uninteresting.ARTICLE, author=VI_DAILY_NEWS)
     elif has_line_starting_with(text, [VALAR_GLOBAL_FUND, VALAR_VENTURES.upper()], 2):
-        return valar_cfg(doc.file_id, text=text)
+        cfg = valar_cfg(doc.file_id, text=text)
     elif SOUTHERN_FINANCIAL_REGEX.match(text):
-        return _cfg(category=Interesting.MONEY, description="transactions by Epstein's Southern Financial LLC")
+        cfg = _cfg(category=Interesting.MONEY, description="transactions by Epstein's Southern Financial LLC")
     elif DEUTSCHE_SOUTHERN_REGEX.match(text):
-        return _cfg(category=Interesting.MONEY, description=f"{DEUTSCHE_BANK} statement for Epstein's Southern Trust Company")
+        cfg = _cfg(category=Interesting.MONEY, description=f"{DEUTSCHE_BANK} statement for Epstein's Southern Trust Company")
     elif VALAR_CAPITAL_CALL_REGEX.search(text):
-        return valar_cfg(doc.file_id, 'requesting money previously promised by Epstein to invest in a new opportunity')
+        cfg = valar_cfg(doc.file_id, 'requesting money previously promised by Epstein to invest in a new opportunity')
     elif (case_match := LEGAL_FILING_REGEX.search(text)):
-        return _cfg(category=Neutral.LEGAL, description=f"legal filing in case {case_match.group(1)}")
+        cfg = _cfg(category=Neutral.LEGAL, description=f"legal filing in case {case_match.group(1)}")
     elif len(text) < 2600 and HARD_DRIVE_REGEX.search(text):
-        return _cfg(category=Neutral.MISC, description='photo of a hard drive')
+        cfg = _cfg(category=Neutral.MISC, description='photo of a hard drive')
     elif lines[0].lower().strip() == 'valuation report':
         cfg = _cfg(category=Interesting.MONEY, description="valuations of Epstein's investments", is_interesting=True)
 
@@ -63,7 +68,10 @@ def build_cfg_from_text(doc: 'Document') -> DocCfg | None:
         except Exception as e:
             logger.warning(f"Failed to parse valuation report date for derived DocCfg from {lines[0:2]}")
 
-        return cfg
+    if cfg:
+        cfg.duplicate_ids = DUPLICATES.get(cfg.id, [])
+
+    return cfg
 
 
 def blaine_letter(id: str, date: str, suffix: str = '') -> CommunicationCfg:
