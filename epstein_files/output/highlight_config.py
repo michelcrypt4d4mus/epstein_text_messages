@@ -1995,7 +1995,7 @@ HighlightedNames(
      HighlightPatterns(
         label='header_field',
         style='plum4',
-        patterns=[r'^[>•\s]{,4}(Date\s?|From|Sent|To|C[cC]|Importance|Reply[-\s]?To|Subject|Bee|B[cC]{2}|Attach(ed|ments)|Flag|Classification|[Il]nline-[Il]mages|((A|Debut du message transfer[&e]|De(stinataire)?|Envoye|Expe(cl|d)iteur|Objet|Q|Sujet)\s?)):|^on behalf of'],
+        patterns=[r'^[>•\s]{,4}(Date\s?|From|Sent|To|C[cC]|Importance|Reply[-\s]?To|Subject|Bee|B[cC]{2}|Attach(ed|ments)|Flag|Classification|[Il]nline-[Il]mages|((A|Debut du message transfer[&e]|De(stinataire)?|Envoy[ée]|Expe(cl|d)iteur|Objet|Q|Sujet)\s?)):|^on behalf of'],
     ),
     HighlightPatterns(
         label='http_links',

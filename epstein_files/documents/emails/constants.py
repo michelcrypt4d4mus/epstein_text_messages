@@ -42,15 +42,18 @@ REPLY_REGEX = re.compile(REPLY_LINE_PATTERN, re.IGNORECASE | re.MULTILINE)
 FORWARDED_TOO_MUCH_SPACE_REGEX = re.compile(fr"^({FORWARDED_LINE_PATTERN})\n\n", re.MULTILINE | re.IGNORECASE)
 
 # Header fields
-FIELD_PATTERNS = [
+COMMON_FIELD_NAMES = [
     'Date',
     'From',
     'Sent',
+    'Subject',
+]
+
+FIELD_PATTERNS = COMMON_FIELD_NAMES + [
     'To',
     r"C[cC]",
     r"B[cC][cC]",
     'Importance',
-    'Subject',
     'Attachments',
     'Attached',
     'Classification',
@@ -61,6 +64,7 @@ FIELD_PATTERNS = [
 
 FIELDS_PATTERN = '|'.join(FIELD_PATTERNS)
 FIELDS_COLON_PATTERN = fr"^({FIELDS_PATTERN}):"
+FIELDS_COLON_REGEX = re.compile(FIELDS_COLON_PATTERN)
 
 # DojFile specific repairs must be applied before checking doc.is_email
 DOJ_EMAIL_OCR_REPAIRS: dict[str | re.Pattern, str] = {

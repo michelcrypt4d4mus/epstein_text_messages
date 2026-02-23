@@ -1482,7 +1482,7 @@ EMAILS_CONFIG = [
     EmailCfg(
         id='EFTA02010589',
         date='2012-01-31 9:16 PM',
-        description='raunchy email',
+        description='raunchy email mentioning "Sasah Grey guy" (Grey is a famous porn star)',
         is_interesting=True,
         recipients=[JEFFREY_EPSTEIN],
     ),

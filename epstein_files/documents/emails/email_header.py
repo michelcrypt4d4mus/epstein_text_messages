@@ -11,7 +11,6 @@ from epstein_files.util.constants import CONFIGS_BY_ID
 from epstein_files.util.helpers.string_helper import indented
 from epstein_files.util.logging import logger
 
-FIELD_NAMES = ['Date', 'From', 'Sent', 'Subject']
 ON_BEHALF_OF = 'on behalf of'
 TO_FIELDS = ['bcc', 'cc', 'to']
 EMAILER_FIELDS = [AUTHOR] + TO_FIELDS
