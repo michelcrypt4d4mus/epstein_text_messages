@@ -30,7 +30,6 @@ CONSOLE_HTML_FORMAT = """
 <head>
     <meta charset="UTF-8">
     <link rel="icon" type="image/x-icon" href="https://media.universeodon.com/accounts/avatars/109/363/179/904/598/380/original/eecdc2393e75e8bf.jpg" />
-
     """ + JS_REDIRECT + """
 
     <style>
@@ -44,8 +43,10 @@ CONSOLE_HTML_FORMAT = """
 </head>
 
 <body>
-    <pre style="font-family: Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace; white-space: pre-wrap; overflow-wrap: break-word;">
-        <code style="font-family: inherit; white-space: pre-wrap; overflow-wrap: break-word;">{code}</code>
+    <pre style="font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
+        <code style="font-family:inherit">
+            {code}
+        </code>
     </pre>
 </body>
 </html>

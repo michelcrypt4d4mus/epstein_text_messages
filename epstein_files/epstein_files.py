@@ -129,6 +129,11 @@ class EpsteinFiles:
         return [f for f in self.other_files if f.is_interesting]
 
     @property
+    def local_extracts(self) -> Sequence[Document]:
+        """Returns documents that are locally derived from source files."""
+        return [d for d in self.documents if d.file_info.is_local_extract_file]
+
+    @property
     def non_json_other_files(self) -> list[OtherFile]:
         return [doc for doc in self.other_files if not isinstance(doc, JsonFile)]
 

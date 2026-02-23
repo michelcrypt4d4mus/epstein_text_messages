@@ -326,7 +326,7 @@ file_id,category,author,is_interesting,timestamp,recipients_str,sent_from_device
 022361,finance,Deutsche Bank Wealth Management Tax Topics,False,2013-05-01 00:00:00,,,"Deutsche Bank Wealth Management Tax Topics, attached to email 022359"
 022367,resumé,Jack J. Grynberg,,2014-07-01 00:00:00,,,professional resumé of Jack J. Grynberg professional resumé
 022372,finance,Ernst & Young,False,2016-11-09 00:00:00,,,Ernst & Young 2016 election report
-022396,email,,True,2016-11-22 17:55:37,Jeffrey Epstein,,
+022396,email,Svetlana Pozhidaeva,True,2016-11-22 17:55:37,Jeffrey Epstein,,Svetlana Pozhidaeva (???)
 022397,email,Paul Krassner,,2017-03-22 14:35:34,Jeffrey Epstein,,
 022405,academia,Noam Chomsky,False,,,,letter attesting to Epstein's good character by Noam Chomsky
 022407,conference,Svetlana Pozhidaeva,True,2018-02-22 00:00:00,,,Svetlana Pozhidaeva Women Empowerment (WE) conference seminar pitch deck
@@ -662,7 +662,7 @@ file_id,category,author,is_interesting,timestamp,recipients_str,sent_from_device
 026030,email,Michael Wolff,,2016-11-29 13:19:56,Jeffrey Epstein,,is the 'roger' Epstein is trying to meet Roger Stone?
 026033,email,Michael Wolff,,2016-11-29 13:29:58,Jeffrey Epstein,,is the 'roger' Epstein is trying to meet Roger Stone?
 026036,email,Gino Yu,True,2016-12-17 02:43:49,Jeffrey Epstein,,
-026041,email,Gino Yu,,2016-12-17 12:35:06,Jeffrey Epstein,,
+026041,email,Gino Yu,True,2016-12-17 12:35:06,Jeffrey Epstein,,
 026047,email,Reid Weingarten,,2016-12-20 17:06:06,Jeffrey Epstein,,
 026049,email,Lawrence Krauss,False,2016-12-24 19:37:57,Jeffrey Epstein,,
 026053,email,Boris Nikolic,,2016-12-26 01:19:46,Jeffrey Epstein,Sent from my Windows Phone,
@@ -1535,7 +1535,7 @@ file_id,category,author,is_interesting,timestamp,recipients_str,sent_from_device
 030723,email,Michael Wolff,,2018-07-12 07:55:54,Jeffrey Epstein,,
 030724,email,David Stern,False,2018-07-12 10:51:21,Jeffrey Epstein,,
 030725,email,David Stern,True,2018-07-12 11:02:32,Jeffrey Epstein,,
-030727,email,David Stern,True,2018-07-12 11:03:10,Jeffrey Epstein,,
+030727,email,David Stern,True,2018-07-12 11:03:10,Jeffrey Epstein,,"Epstein requesting help for Russia, discussion of unknown dead Chinese shareholder"
 030729,email,David Stern,True,2018-07-12 11:08:45,Jeffrey Epstein,,
 030731,email,Steve Bannon,True,2018-07-20 10:16:04,Jeffrey Epstein,,
 030732,email,Michael Wolff,,2018-07-20 14:11:44,Jeffrey Epstein,,
@@ -2536,7 +2536,7 @@ file_id,category,author,is_interesting,timestamp,recipients_str,sent_from_device
 033231,article,Business Standard,False,2017-03-30 00:00:00,,,Business Standard article about Trump's visit with India's Modi
 033232,email,Lawrance Visoski,,2017-04-16 12:24:32,Jeffrey Epstein,Sent from my iPad,
 033233,email,Thorbjørn Jagland,,2017-04-16 15:04:37,Jeffrey Epstein,,
-033234,email,Gino Yu,,2017-04-24 08:32:33,Jeffrey Epstein,Sent from my iPhone,
+033234,email,Gino Yu,True,2017-04-24 08:32:33,Jeffrey Epstein,Sent from my iPhone,
 033235,email,Richard Kahn,,2017-05-09 21:22:35,Jeffrey Epstein,,
 033236,tweet,,False,2017-05-20 00:00:00,,,Tweet selection about Ivanka Trump in Arabic
 033238,email,Martin Weinberg,,2017-05-25 13:02:58,Jeffrey Epstein,,
@@ -5042,8 +5042,10 @@ EFTA00039421,,,,2021-02-22 00:00:00,,,
 EFTA00039660,email,DOJ Chief Psychologist,True,2019-07-29 10:02:00,USANYS,,DOJ Chief Psychologist report on Epstein's psychological state in jail
 EFTA00039662,email,USANYS,,2019-10-28 19:12:27,Stacey Richman,,USANYS
 EFTA00039663,email,Stacey Richman,,2019-10-28 22:19:07,USANYS,Sent from my iPhone,Stacey Richman
-EFTA00039665,email,Christopher Dilorio,True,2021-05-21 03:14:00,,,
-EFTA00039689,email,Christopher Dilorio,True,2021-05-28 14:58:07,,,"whistleblower emails to SEC re: Signature Bank, Hapoalim, Bioptix/RIOT, Barry Honig, etc."
+EFTA00039665_1,email,Christopher Dilorio,,2021-05-21 03:14:00,SEC,,
+EFTA00039665_2,email,Christopher Dilorio,,2020-09-08 15:56:00,SEC,,
+EFTA00039665_3,email,Christopher Dilorio,,2020-09-05 07:08:00,SEC,,
+EFTA00039689_1,email,Christopher Dilorio,,2021-05-28 14:58:07,SEC,,"appears in whistleblower emails to SEC re: Signature Bank, Hapoalim, Bioptix/RIOT, Barry Honig, etc."
 EFTA00039790,email,USANYS,,2021-04-16 22:09:33,USANYS,,
 EFTA00039791,legal,,,2021-04-23 14:30:00,,,legal filing in case 1:20-cr-00330-AJN
 EFTA00039794,email,Jack Scarola,,2021-04-19 16:33:18,Michael Danchuk;USANYS,,
@@ -5059,13 +5061,23 @@ EFTA00039817,legal,,,2021-04-23 14:30:00,,,legal filing in case 1:20-cr-00330-AJ
 EFTA00039820,email,USANYS,,2021-04-22 21:47:47,USANYS,,USANYS (???)
 EFTA00039825,email,USANYS,,2021-04-23 15:41:04,Alison J. Nathan,,USANYS
 EFTA00039826,,,,2021-04-21 00:00:00,,,
-EFTA00039828,email,Christopher Dilorio,True,2020-11-09 13:08:35,,,
+EFTA00039828_1,email,Christopher Dilorio,,2020-11-09 13:08:35,SEC,,
+EFTA00039828_10,email,Christopher Dilorio,,2020-12-22 08:23:00,SEC,,
+EFTA00039828_2,email,Christopher Dilorio,,2020-11-06 07:09:00,SEC,,
+EFTA00039828_23,email,Christopher Dilorio,,2020-04-26 09:36:00,SEC,,
+EFTA00039828_3,email,Christopher Dilorio,,2020-10-14 09:00:00,SEC,,
+EFTA00039828_4,email,Christopher Dilorio,,2020-09-17 17:56:00,SEC,,
+EFTA00039828_5,email,Christopher Dilorio,,2020-09-17 09:17:00,SEC,,
+EFTA00039828_6,email,Christopher Dilorio,,2020-09-16 15:01:00,SEC,,
+EFTA00039828_7,email,Christopher Dilorio,,2020-09-16 09:20:00,SEC,,
+EFTA00039828_8,email,Christopher Dilorio,,2020-09-14 09:22:00,SEC,,
+EFTA00039828_9,email,Christopher Dilorio,,2020-09-14 06:02:00,SEC,,
 EFTA00039867,email,,False,2020-11-12 15:06:42,,,
 EFTA00039868,email,USANYS,,2020-11-12 18:59:52,USANYS,,USANYS (???)
 EFTA00039872,email,USANYS,,2020-11-16 17:35:53,USANYS,,USANYS (???)
 EFTA00039875,email,USANYS,,2020-11-16 18:06:58,Bobbi C. Sternheim,,
 EFTA00039878,email,,False,2020-11-17 13:59:24,Bureau of Prisons;USAHUB-USAJournal111;USANYS,,
-EFTA00039879,email,USANYS,True,2020-11-18 14:25:39,,,USANYS
+EFTA00039879,email,USANYS,,2020-11-18 14:25:39,USANYS,,USANYS
 EFTA00039880,,,,,,,
 EFTA00039881,,,,,,,
 EFTA00039882,,,,,,,
@@ -5120,7 +5132,78 @@ EFTA00040145,email,USANYS,,2021-11-09 17:24:30,USANYS,,
 EFTA00040146,email,USANYS,,2021-05-25 17:19:23,FBI;NY FBI,,
 EFTA00080250,email,Justin Alfano,True,2019-08-13 01:13:39,None;Andrew Stemmer;Erika Engelson;Vijay Dewan,,Leon Black / Rothschild Group Deutsche Bank transactions
 EFTA00080260,,,,2019-08-06 00:00:00,,,
-EFTA00093702,email,Christopher Dilorio,True,2021-09-08 12:37:16,,,"whistleblower emails to SEC, rest is visible in EFTA00039689"
+EFTA00093702_1,email,Christopher Dilorio,,2021-09-08 12:37:16,SEC,,"appears in whistleblower emails to SEC, rest is visible in EFTA00039689"
+EFTA00093702_10,email,Christopher Dilorio,,2021-08-02 08:41:00,SEC,,appears in whistleblower emails to SEC
+EFTA00093702_11,email,Christopher Dilorio,,2021-07-31 13:02:00,SEC,,appears in whistleblower emails to SEC
+EFTA00093702_12,email,Christopher Dilorio,,2021-07-23 06:45:00,SEC,,appears in whistleblower emails to SEC
+EFTA00093702_13,crypto,Christopher Dilorio,True,2021-07-20 08:36:00,SEC,,appears in SEC whistleblower email
+EFTA00093702_14,email,Christopher Dilorio,,2021-07-18 10:24:00,SEC,,appears in whistleblower emails to SEC
+EFTA00093702_15,email,Christopher Dilorio,,2021-07-17 13:12:00,SEC,,appears in whistleblower emails to SEC
+EFTA00093702_16,email,Christopher Dilorio,,2021-07-17 08:19:00,SEC,,appears in whistleblower emails to SEC
+EFTA00093702_17,email,Christopher Dilorio,,2021-07-16 15:37:00,SEC,,appears in whistleblower emails to SEC
+EFTA00093702_18,email,Christopher Dilorio,,2021-07-10 08:08:00,SEC,,appears in whistleblower emails to SEC
+EFTA00093702_19,email,Christopher Dilorio,,2021-07-09 05:50:00,SEC,,appears in whistleblower emails to SEC
+EFTA00093702_2,email,Christopher Dilorio,,2021-08-31 10:24:00,SEC,,"appears in whistleblower emails to SEC, rest is visible in EFTA00039689"
+EFTA00093702_20,email,Christopher Dilorio,,2021-06-22 05:31:00,SEC,,appears in whistleblower emails to SEC
+EFTA00093702_21,crypto,Christopher Dilorio,True,2021-06-11 05:59:00,SEC,,"appears in SEC whistleblower email, RIOT Blockchain (FKA ""Bioptix"") is a sketchy bitcoin miner in Texas"
+EFTA00093702_22,email,Christopher Dilorio,,2021-06-01 06:31:00,SEC,,appears in whistleblower emails to SEC
+EFTA00093702_23,email,Christopher Dilorio,,2021-05-28 08:58:00,SEC,,appears in whistleblower emails to SEC
+EFTA00093702_24,email,Christopher Dilorio,,2021-05-28 07:25:00,SEC,,appears in whistleblower emails to SEC
+EFTA00093702_25,email,Christopher Dilorio,,2021-05-27 05:49:00,SEC,,appears in whistleblower emails to SEC
+EFTA00093702_26,crypto,Christopher Dilorio,True,2021-05-24 05:47:00,SEC,,"appears in SEC whistleblower email, RIOT Blockchain (FKA ""Bioptix"") is a sketchy bitcoin miner in Texas"
+EFTA00093702_27,crypto,Christopher Dilorio,True,2021-05-18 06:07:00,SEC,,"appears in SEC whistleblower email, RIOT Blockchain (FKA ""Bioptix"") is a sketchy bitcoin miner in Texas"
+EFTA00093702_28,crypto,Christopher Dilorio,True,2021-05-17 05:28:00,SEC,,"appears in SEC whistleblower email, RIOT Blockchain (FKA ""Bioptix"") is a sketchy bitcoin miner in Texas"
+EFTA00093702_29,crypto,Christopher Dilorio,True,2021-05-14 06:34:00,SEC,,"appears in SEC whistleblower email, RIOT Blockchain (FKA ""Bioptix"") is a sketchy bitcoin miner in Texas"
+EFTA00093702_3,email,Christopher Dilorio,,2021-08-30 05:28:00,SEC,,"appears in whistleblower emails to SEC, rest is visible in EFTA00039689"
+EFTA00093702_30,crypto,Christopher Dilorio,True,2021-05-13 09:49:00,SEC,,"appears in SEC whistleblower email, RIOT Blockchain (FKA ""Bioptix"") is a sketchy bitcoin miner in Texas"
+EFTA00093702_31,email,Christopher Dilorio,,2021-05-09 17:06:00,SEC,,appears in whistleblower emails to SEC
+EFTA00093702_32,email,Christopher Dilorio,,2021-05-07 16:01:00,SEC,,appears in whistleblower emails to SEC
+EFTA00093702_33,email,Christopher Dilorio,,2021-05-07 06:28:00,SEC,,appears in whistleblower emails to SEC
+EFTA00093702_34,email,Christopher Dilorio,,2021-05-04 19:15:00,SEC,,appears in whistleblower emails to SEC
+EFTA00093702_35,email,Christopher Dilorio,,2021-05-03 14:03:00,SEC,,appears in whistleblower emails to SEC
+EFTA00093702_36,email,Christopher Dilorio,,2021-04-22 05:57:00,SEC,,appears in whistleblower emails to SEC
+EFTA00093702_37,crypto,Christopher Dilorio,True,2021-04-22 05:44:00,SEC,,appears in SEC whistleblower email
+EFTA00093702_38,email,Christopher Dilorio,,2021-04-20 11:39:00,SEC,,appears in whistleblower emails to SEC
+EFTA00093702_39,email,Christopher Dilorio,,2021-04-19 16:10:00,SEC,,appears in whistleblower emails to SEC
+EFTA00093702_4,email,Christopher Dilorio,,2021-08-29 10:17:00,SEC,,"appears in whistleblower emails to SEC, rest is visible in EFTA00039689"
+EFTA00093702_40,email,Christopher Dilorio,,2021-04-17 10:31:00,SEC,,appears in whistleblower emails to SEC
+EFTA00093702_41,email,Christopher Dilorio,,2021-04-05 05:29:00,SEC,,appears in whistleblower emails to SEC
+EFTA00093702_42,email,Christopher Dilorio,,2020-09-23 19:18:00,SEC,,appears in whistleblower emails to SEC
+EFTA00093702_43,email,Christopher Dilorio,,2020-09-16 06:25:00,SEC,,appears in whistleblower emails to SEC
+EFTA00093702_44,email,Christopher Dilorio,,2020-09-01 07:40:00,SEC,,appears in whistleblower emails to SEC
+EFTA00093702_45,email,Christopher Dilorio,,2020-08-20 12:04:00,SEC,,appears in whistleblower emails to SEC
+EFTA00093702_46,email,Christopher Dilorio,,2020-08-19 06:53:00,SEC,,appears in whistleblower emails to SEC
+EFTA00093702_47,email,Christopher Dilorio,,2020-08-18 18:37:00,SEC,,appears in whistleblower emails to SEC
+EFTA00093702_48,email,Christopher Dilorio,,2020-08-11 06:53:00,SEC,,appears in whistleblower emails to SEC
+EFTA00093702_49,email,Christopher Dilorio,,2020-08-10 08:32:00,SEC,,appears in whistleblower emails to SEC
+EFTA00093702_5,email,Christopher Dilorio,,2021-08-24 05:26:00,SEC,,"appears in whistleblower emails to SEC, rest is visible in EFTA00039689"
+EFTA00093702_50,email,Christopher Dilorio,,2020-08-07 06:20:00,SEC,,appears in whistleblower emails to SEC
+EFTA00093702_51,email,Christopher Dilorio,,2020-07-30 09:31:00,SEC,,appears in whistleblower emails to SEC
+EFTA00093702_52,email,Christopher Dilorio,,2020-07-30 06:33:00,SEC,,appears in whistleblower emails to SEC
+EFTA00093702_53,email,Christopher Dilorio,,2020-07-28 07:48:00,SEC,,appears in whistleblower emails to SEC
+EFTA00093702_54,email,Christopher Dilorio,,2020-07-23 05:59:00,SEC,,appears in whistleblower emails to SEC
+EFTA00093702_55,email,Christopher Dilorio,,2020-07-22 08:44:00,SEC,,appears in whistleblower emails to SEC
+EFTA00093702_56,email,Christopher Dilorio,,2020-07-14 15:31:00,SEC,,appears in whistleblower emails to SEC
+EFTA00093702_57,email,Christopher Dilorio,,2020-07-14 12:34:00,SEC,,appears in whistleblower emails to SEC
+EFTA00093702_58,email,Christopher Dilorio,,2020-07-13 10:50:00,SEC,,appears in whistleblower emails to SEC
+EFTA00093702_59,email,Christopher Dilorio,,2020-07-08 09:35:00,SEC,,appears in whistleblower emails to SEC
+EFTA00093702_6,email,Christopher Dilorio,,2021-08-23 08:42:00,SEC,,"appears in whistleblower emails to SEC, rest is visible in EFTA00039689"
+EFTA00093702_60,email,Christopher Dilorio,,2020-07-07 06:09:00,SEC,,appears in whistleblower emails to SEC
+EFTA00093702_61,email,Christopher Dilorio,,2020-06-30 13:01:00,SEC,,appears in whistleblower emails to SEC
+EFTA00093702_62,email,Christopher Dilorio,,2020-06-30 07:36:00,SEC,,appears in whistleblower emails to SEC
+EFTA00093702_63,email,Christopher Dilorio,,2020-06-23 16:11:00,SEC,,appears in whistleblower emails to SEC
+EFTA00093702_64,email,Christopher Dilorio,,2020-06-23 09:48:00,SEC,,appears in whistleblower emails to SEC
+EFTA00093702_65,email,Christopher Dilorio,,2020-06-10 14:30:00,SEC,,appears in whistleblower emails to SEC
+EFTA00093702_66,email,Christopher Dilorio,,2020-05-18 10:36:00,SEC,,appears in whistleblower emails to SEC
+EFTA00093702_67,email,Christopher Dilorio,,2020-05-12 08:54:00,SEC,,appears in whistleblower emails to SEC
+EFTA00093702_69,email,Christopher Dilorio,,2020-04-29 08:03:00,SEC,,appears in whistleblower emails to SEC
+EFTA00093702_7,email,Christopher Dilorio,,2021-08-22 14:11:00,SEC,,"appears in whistleblower emails to SEC, rest is visible in EFTA00039689"
+EFTA00093702_70,email,Christopher Dilorio,,2020-04-29 07:56:00,SEC,,appears in whistleblower emails to SEC
+EFTA00093702_71,email,Christopher Dilorio,,2020-04-28 07:24:00,SEC,,appears in whistleblower emails to SEC
+EFTA00093702_72,email,Christopher Dilorio,,2020-04-28 06:43:00,SEC,,appears in whistleblower emails to SEC
+EFTA00093702_74,email,Christopher Dilorio,,2020-04-24 08:18:00,SEC,,appears in whistleblower emails to SEC
+EFTA00093702_8,email,Christopher Dilorio,,2021-08-17 05:54:00,SEC,,"appears in whistleblower emails to SEC, rest is visible in EFTA00039689"
+EFTA00093702_9,email,Christopher Dilorio,,2021-08-16 20:55:00,SEC,,"appears in whistleblower emails to SEC, rest is visible in EFTA00039689"
 EFTA00103908,,,,2019-08-27 10:30:00,,,
 EFTA00104945,email,,False,2019-08-13 01:18:13,Andrew Stemmer;Erika Engelson;Justin Alfano;Vijay Dewan,,
 EFTA00128987,crypto,,True,2019-07-24 00:00:00,,,suspicious activity report (SAR) about Kushner co. crypto payments to suspicious Russian person
@@ -5189,6 +5272,7 @@ EFTA00473175,crypto,Lesley Groff,True,2018-04-30 13:58:01,Joi Ito,,
 EFTA00474142,email,Lesley Groff,True,2018-06-04 12:25:19,Jeremy Rubin,Sent from my iPhone,
 EFTA00474175,email,Lesley Groff,,2018-05-29 19:20:19,Arda Beskardes;Bella Klein,,
 EFTA00474319,email,Madars Virza,True,2018-06-03 14:58:20,Lesley Groff,,
+EFTA00482121,email,Masha Drokova,True,2018-09-25 15:12:32,,,
 EFTA00488431,email,Lesley Groff,True,2019-01-10 15:37:21,Ganbat Chuluunkhuu,,
 EFTA00494141,email,Lesley Groff,True,2019-04-29 18:53:11,Madars Virza,,
 EFTA00494858,email,Lesley Groff,,2019-05-16 17:00:05,Jeffrey Epstein,Sent from my iPhone,Lesley Groff (???)
@@ -5258,6 +5342,7 @@ EFTA00657903,email,Sergey Belyakov,True,2016-02-11 21:52:20,Jeffrey Epstein,,
 EFTA00658457,crypto,Brock Pierce,True,2015-02-13 20:31:33,Jeffrey Epstein,,Brock Pierce says they will not invest in Bitfury
 EFTA00659818,email,Renata Bolotova,True,2013-12-05 22:28:51,Jeffrey Epstein,,Renata Bolotova (???)
 EFTA00661348,email,Steven Sinofsky,True,2014-12-01 22:39:02,Jeffrey Epstein,Sent using Acompli email app,
+EFTA00662373,email,Masha Drokova,True,2017-11-06 23:14:00,Jeffrey Epstein,,"Masha Drokova ""She is interesting. Great looks"""
 EFTA00664424,crypto,Brock Pierce,True,2014-10-28 16:34:33,Jeffrey Epstein,,Brock Pierce suggests Larry Summers could get involved with Tether and Noble Bank
 EFTA00664899,email,Austin Hill,True,2017-09-12 21:29:41,Jeffrey Epstein,,
 EFTA00665479,email,Austin Hill,True,2017-09-21 06:37:52,Jeffrey Epstein,,
@@ -5437,6 +5522,7 @@ EFTA00874793,crypto,Steve Bannon,True,2018-02-28 13:26:56,Jeffrey Epstein,,"Bann
 EFTA00875181,email,Brock Pierce,True,2013-02-27 04:45:51,Jeffrey Epstein,,
 EFTA00877487,email,Masha Drokova,True,2018-02-21 06:21:56,Jeffrey Epstein,,
 EFTA00877726,email,David Stern,True,2011-11-21 11:25:01,Jeffrey Epstein,,Epstein and Stern discuss plans to manage money for wealthy Chinese
+EFTA00880881,email,Masha Drokova,True,2018-02-17 00:45:37,Jeffrey Epstein;Jonathan Halata,,
 EFTA00881711,crypto,Jeffrey Epstein,True,2018-02-19 15:19:11,Steve Bannon,,Bannon and Epstein discuss bitcoin and crypto donations
 EFTA00881759,crypto,Jeffrey Epstein,True,2018-02-19 15:47:07,Steve Bannon,,Epstein and Steve Bannon discuss collection donations in bitcoin
 EFTA00882401,email,Jeffrey Epstein,True,2018-02-20 14:44:55,Madars Virza,,
@@ -5448,7 +5534,7 @@ EFTA00895984,email,Richard Kahn,,2018-01-31 19:09:35,Jeffrey Epstein,,
 EFTA00899331,email,Jonathan Farkas,,2018-02-03 22:07:08,Jeffrey Epstein,Sent from my iPhone,
 EFTA00900908,email,Jeffrey Epstein,,2018-01-30 00:14:14,Richard Kahn,,negotiation of repurchase of part of Epstein's stake in Coinbase
 EFTA00901772,email,Richard Kahn,True,2018-01-30 23:07:53,Jeffrey Epstein,,Epstein makes a large investment in Coinbase that would earn him most of $100 million
-EFTA00901970,email,Al Seckel,True,2011-01-14 00:33:54,Jeffrey Epstein,,
+EFTA00901970,email,Al Seckel,True,2011-01-14 00:33:54,Jeffrey Epstein,,Al Seckel's response to Epstein's forged email
 EFTA00912012,email,Renata Bolotova,True,2018-01-11 15:21:57,Jeffrey Epstein,,Renata Bolotova this file has been removed from the DOJ site
 EFTA00913164,email,Jeffrey Epstein,,2011-06-12 14:58:47,Gavin Andresen,,
 EFTA00913754,email,Larry Summers,,2018-01-08 12:57:14,Jeffrey Epstein,Sent from my iPad,
@@ -5485,7 +5571,7 @@ EFTA00961214,email,David Stern,True,2013-05-28 10:18:07,Andrew Farkas;Jeffrey Ep
 EFTA00961792,email,Jeffrey Epstein,,2013-05-30 00:19:06,Bill Gross,,
 EFTA00964459,crypto,Austin Hill,True,2017-11-08 11:41:43,Jeffrey Epstein,,discussion of sharia compliant crypto token
 EFTA00968132,email,Eric Doherty,,2017-11-02 04:37:53,Andrew McCormack;Hongbo Robert Bao;James Fitzgerald;Reuben Kobulnik;Stanley Santos,,
-EFTA00972124,email,Gino Yu,,2017-10-23 23:53:07,Jeffrey Epstein,,
+EFTA00972124,email,Gino Yu,True,2017-10-23 23:53:07,Jeffrey Epstein,,
 EFTA00972689,email,Jeffrey Epstein,,2013-10-06 19:46:00,Boris Nikolic,,
 EFTA00974046,email,Jeffrey Epstein,True,2013-10-29 16:26:18,Tyler Shears,,
 EFTA00974152,email,Andrew McCormack,,2017-10-25 14:37:51,Jeffrey Epstein,,
@@ -5516,6 +5602,7 @@ EFTA00995559,email,Renata Bolotova,True,2014-08-17 00:16:27,Jeffrey Epstein,,Ren
 EFTA00995592,email,Vincenzo Iozzo,True,2014-08-17 14:09:58,Jeffrey Epstein,Sent from my Iphone,
 EFTA00997251,email,Brock Pierce,False,2014-09-24 13:16:48,Jeffrey Epstein,,
 EFTA00997253,email,Jeffrey Epstein,False,2014-09-24 13:18:43,Brock Pierce,,
+EFTA00997627,email,Jeffrey Epstein,True,2014-09-26 07:36:20,Maria Prusakova,,"""you will be introduced to more gorgeous Alicas.. Just let me know what kind of girl"""
 EFTA00997801,email,Brock Pierce,True,2014-09-28 01:04:50,Jeffrey Epstein,,
 EFTA00997803,email,Brock Pierce,True,2014-09-28 01:06:35,Jeffrey Epstein,,
 EFTA00998205,email,Jeffrey Epstein,True,2014-10-02 17:32:25,Brock Pierce,,
@@ -5630,6 +5717,7 @@ EFTA01033427,email,Nicole Junkermann,,2019-04-07 19:53:07,Jeffrey Epstein,,
 EFTA01034779,email,Richard Kahn,,2019-03-29 12:16:06,Jeffrey Epstein,,
 EFTA01035614,email,Renata Bolotova,False,2019-03-18 19:05:59,Jeffrey Epstein,,Renata Bolotova (???)
 EFTA01037048,email,Andrew McCormack,,2017-08-24 19:24:14,Jeffrey Epstein,,
+EFTA01039112,email,Jeffrey Epstein,True,2017-07-28 20:48:01,Renata Bolotova,,
 EFTA01039626,email,Jeffrey Epstein,,2017-07-25 14:18:18,Jeffrey Epstein,,
 EFTA01039680,email,Peter Thiel,True,2017-07-25 23:46:16,Jeffrey Epstein,,
 EFTA01040437,email,Jeffrey Epstein,,2018-07-06 17:33:01,BS Stern,,
@@ -5934,7 +6022,7 @@ EFTA02098197,email,Talia Parnass,,2014-09-14 13:35:00,Lesley Groff,,
 EFTA02100999,email,Lesley Groff,,2014-07-31 14:43:24,Francesca Hall,,Lesley Groff (???)
 EFTA02102384,email,Lesley Groff,True,2014-07-10 16:09:52,Brock Pierce,Sent from my iPhone,Lesley Groff
 EFTA02104454,email,Lesley Groff,True,2014-06-02 11:36:52,Brock Pierce,,Lesley Groff (???)
-EFTA02109391,email,,True,2014-04-02 21:26:12,Austin Hill,Sent from my iPhone,
+EFTA02109391,email,Lesley Groff,True,2014-04-02 21:26:12,Austin Hill,Sent from my iPhone,Lesley Groff Austin Hill brought a woman named Ellaina Astra to Epstein's house
 EFTA02113506,email,Lesley Groff,True,2014-03-02 19:05:49,Tyler Shears,Sent from my iPhone,Lesley Groff (???)
 EFTA02117367,email,Lesley Groff,,2014-01-11 19:53:35,Julie Shample;Sarah Mapes,,
 EFTA02160715,email,Lesley Groff,True,2012-09-07 22:23:50,,Sent from my iPhone,
@@ -5942,6 +6030,8 @@ EFTA02160842,email,Lesley Groff,False,2012-09-07 18:49:27,Brock Pierce,,
 EFTA02172966,email,Lesley Groff,,2012-03-12 15:06:45,Steven Victor MD,,
 EFTA02174702,email,Lesley Groff,False,2012-02-15 00:53:56,Brock Pierce,Sent from my iPhone,Lesley Groff (???)
 EFTA02177147,crypto,Linda Stone,True,2012-01-10 18:25:23,Lesley Groff,,"Linda Stone (???) Epstein planning a symposium ""on Alternative Money or Complementary Currency"" in 2012"
+EFTA02225790,email,Lesley Groff,True,2017-10-03 17:44:40,Masha Drokova,Sent from my iPhone,Lesley Groff (???)
+EFTA02225815,email,Lesley Groff,True,2017-10-05 17:32:56,Bryan Johnson;Masha Drokova,,Lesley Groff (???)
 EFTA02227488,email,Austin Hill,True,2017-10-23 11:17:36,Lesley Groff,,
 EFTA02228570,email,Austin Hill,False,2017-11-08 12:51:09,Lesley Groff,,
 EFTA02229342,email,Austin Hill,False,2017-10-31 14:29:26,Jeffrey Epstein,,Austin Hill
@@ -5952,6 +6042,8 @@ EFTA02229858,email,Lesley Groff,True,2017-11-10 19:44:26,,,Lesley Groff (???)
 EFTA02230132,email,Richard Kahn,,2017-11-10 13:33:42,Jeffrey Epstein,,
 EFTA02230163,email,Richard Kahn,,2017-11-10 14:09:39,Lesley Groff,,
 EFTA02232362,email,Lesley Groff,,2018-01-07 19:15:26,Jeffrey Epstein,Sent from my iPhone,
+EFTA02233254,email,Lesley Groff,,2017-12-29 16:24:51,Bella Klein,,
+EFTA02234448,email,Jeffrey Epstein,,2018-01-14 22:04:10,Lesley Groff,,
 EFTA02238824,email,Yuko Barnaby,,2018-02-17 00:36:54,Lesley Groff,Sent from my iPhone,
 EFTA02238841,email,,False,2018-02-17 00:42:59,Yuko Barnaby,,
 EFTA02238872,email,Yuko Barnaby,,2018-02-17 01:18:27,Lesley Groff,,
@@ -5965,6 +6057,7 @@ EFTA02246744,email,Lesley Groff,True,2018-05-29 19:30:16,Joi Ito,,Lesley Groff
 EFTA02246802,email,,True,2018-05-31 19:37:29,Jeffrey Epstein,,
 EFTA02246900,email,Lesley Groff,True,2018-06-04 12:03:39,Jeremy Rubin,Sent from my iPhone,Lesley Groff
 EFTA02253705,email,Bella Klein,,2018-08-31 18:05:04,Merwin Dela Cruz,,
+EFTA02256631,email,Masha Drokova,True,2018-09-07 10:36:14,,Sent via Superhuman iOS,
 EFTA02264621,email,Lesley Groff,True,2018-12-04 17:53:33,Madars Virza,,
 EFTA02266524,email,Lesley Groff,True,2018-12-09 20:01:40,Maria Prusakova,,Medici Bank
 EFTA02267133,email,Lesley Groff,True,2018-12-09 23:44:34,Maria Prusakova,,Lesley Groff
@@ -6133,6 +6226,7 @@ EFTA02570707,email,,True,2013-06-11 18:28:00,Jeffrey Epstein,,
 EFTA02573653,email,Jeffrey Epstein,True,2013-08-09 15:23:00,David Stern,,"discussion of Prince Andrew's Urramoor, ""Howard"" is probably Howard Lutnick which Urramoor partnered with"
 EFTA02578911,email,Larry Summers,,2014-01-04 14:07:00,Jeffrey Epstein,Sent from my iPad,
 EFTA02579686,email,Austin Hill,True,2017-10-17 15:40:00,Jeffrey Epstein,,
+EFTA02581361,email,Gino Yu,True,2017-11-25 00:39:00,Jeffrey Epstein,,Epstein funded a conference in Cuba that Gino Yu put together with $100k
 EFTA02584619,email,Joi Ito,True,2018-06-16 19:53:00,Jeffrey Epstein,Sent from my iPhone,
 EFTA02584771,crypto,Vincenzo Iozzo,True,2014-06-25 19:18:00,Jeffrey Epstein,,discussion of decentralized prediction maarkets like Polymarket
 EFTA02584858,email,Linda Stone,,2014-06-21 21:46:00,Jeffrey Epstein,i Phone feature: Tupos & Abbrvtns,Linda Stone
@@ -6148,7 +6242,7 @@ EFTA02589632,email,Hardeep Singh Puri,,2014-09-25 09:58:00,Jeffrey Epstein;Reid 
 EFTA02590000,email,Jeffrey Epstein,True,2014-09-24 13:21:00,Brock Pierce,,
 EFTA02590752,email,Reid Hoffman,,2014-09-25 00:04:00,Jeffrey Epstein,,
 EFTA02591315,crypto,Andrew Farkas,True,2014-10-03 20:19:00,Jeffrey Epstein,,Andrew Farkas arranging for Epstein to meet head of NY Dept of Financial Services Ben Lawsky
-EFTA02592748,email,Jeffrey Epstein,True,2014-10-25 10:12:00,Brock Pierce,,
+EFTA02592748,email,Jeffrey Epstein,True,2014-10-25 10:12:00,Brock Pierce,,Epstein asking Brock Pierce for a favour related to someone named 'Sue'
 EFTA02593836,email,Joi Ito,False,2014-11-02 19:56:00,Jeffrey Epstein;Larry Summers;Reid Hoffman,,
 EFTA02596743,email,Jeffrey Epstein,,2014-12-02 11:04:00,Reid Hoffman,,
 EFTA02596951,email,Lesley Groff,,2014-11-30 21:39:00,Jeffrey Epstein;Jojo Fontanilla;Lyn Fontanilla,,
@@ -6172,6 +6266,7 @@ EFTA02606117,email,Jeffrey Epstein,,2018-06-11 18:21:00,Richard Kahn,,
 EFTA02607982,email,Jeffrey Epstein,True,2019-01-01 18:54:00,Ganbat Chuluunkhuu,,
 EFTA02608112,email,Jeffrey Epstein,,2018-06-11 18:58:00,Richard Kahn,,
 EFTA02608800,email,Jeffrey Epstein,True,2017-09-23 16:05:00,Austin Hill,,
+EFTA02609062,email,Masha Drokova,True,2018-12-24 22:08:00,Jeffrey Epstein,,Masha Drokova is assembling a team
 EFTA02610126,email,Jeffrey Epstein,True,2018-12-21 19:07:00,Madars Virza,,
 EFTA02610641,email,Richard Kahn,,2018-12-18 13:37:00,Jeffrey Epstein,,
 EFTA02611134,email,Renata Bolotova,True,2018-12-11 18:42:00,Jeffrey Epstein,,Renata Bolotova (???)
@@ -6189,6 +6284,8 @@ EFTA02622513,email,Jeffrey Epstein,True,2018-09-21 11:34:00,Julia Santos,,
 EFTA02622931,email,Richard Kahn,,2018-09-20 09:35:00,Jeffrey Epstein,,
 EFTA02624738,email,Vincenzo Iozzo,True,2018-09-06 02:44:00,Jeffrey Epstein,,
 EFTA02626300,email,Jeffrey Epstein,True,2019-01-20 19:01:00,Renata Bolotova,,
+EFTA02626427,email,Jeffrey Epstein,True,2019-01-20 18:30:00,Masha Drokova,,
+EFTA02628058,email,Masha Drokova,True,2019-01-27 13:55:00,Jeffrey Epstein,,
 EFTA02629770,email,Andrew McCormack,,2019-02-14 14:22:00,Jeffrey Epstein,,
 EFTA02629771,email,Terje Rød-Larsen,True,2019-02-11 18:20:00,Jeffrey Epstein,Sent from my iPhone,discussion of Renata Bolotova's employment at IPI
 EFTA02630287,email,Richard Kahn,,2019-02-14 13:38:00,Jeffrey Epstein,,
@@ -6307,7 +6404,7 @@ EFTA02731552,email,FBI,,2021-05-26 16:12:00,USANYS,,FBI
 EFTA02731556,,,,2013-04-22 00:00:00,,,
 EFTA02731576,,,,2010-10-15 06:00:00,,,
 EFTA02731577,email,USANYS,,2024-10-16 00:00:00,USANYS,,
-EFTA02731578,email,,True,2021-05-28 10:00:00,,,
+EFTA02731578,email,USANYS,True,2021-05-28 10:00:00,,,USANYS
 EFTA02731582,email,FBI,,2023-07-03 17:24:39,USANYS,,
 EFTA02731583,email,USANYS,,2022-01-21 17:28:00,USANYS,,USANYS (???)
 EFTA02731587,email,USANYS,,2022-01-21 17:28:00,USANYS,,USANYS (???)

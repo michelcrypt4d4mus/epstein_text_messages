@@ -19,12 +19,17 @@ FILE_INFO_CSV_PATH = FIXTURES_DIR.joinpath('files.csv')
 
 @pytest.fixture
 def doj_file_id() -> str:
-    return 'EFTA00039689'
+    return 'EFTA02725909'  # memo to NYDFS for NYC bitcoin exchange
 
 
 @pytest.fixture
 def doj_filename(doj_file_id) -> str:
     return f"{doj_file_id}.txt"
+
+
+@pytest.fixture
+def doj_local_file_id(doj_file_id) -> str:
+    return doj_file_id + '_28'
 
 
 @pytest.fixture(scope='session')
@@ -33,8 +38,13 @@ def epstein_files() -> EpsteinFiles:
 
 
 @pytest.fixture
-def house_file_id() -> int:
+def house_file_id_int() -> int:
     return 12345
+
+
+@pytest.fixture
+def house_file_id(house_file_id_int) -> str:
+    return f"0{house_file_id_int}"
 
 
 @pytest.fixture
@@ -72,8 +82,13 @@ def get_other_file(epstein_files) -> Callable[[str], OtherFile]:
 
 
 @pytest.fixture
-def local_extract_file_name(house_file_stem) -> str:
-    return f"{house_file_stem}_1.txt"
+def house_extract_file_id(house_file_id) -> str:
+    return f"{house_file_id}_1"
+
+
+@pytest.fixture
+def house_extract_filename(house_extract_file_id) -> str:
+    return f"{HOUSE_OVERSIGHT_PREFIX}{house_extract_file_id}.txt"
 
 
 def assert_higher_counts(actual: Mapping[str | None, int], expected: Mapping[str | None, int]):

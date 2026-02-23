@@ -2,26 +2,41 @@
 Constants used in the parsing and presentation of emails.
 """
 import re
+from copy import copy
 
 from dateutil.parser import parse
 
 from epstein_files.util.constant.names import *
-from epstein_files.util.constant.strings import REDACTED
+from epstein_files.util.constant.strings import MONTHS, WEEKDAYS, REDACTED
 
 FALLBACK_TIMESTAMP = parse("1/1/2051 12:01:01 AM")
 XML_STRIPPED_MSG = '<...removed Apple XML plist...>'
 QUOTE_INDENT_CHAR_GROUP = '[>»• ]'
 
 # Reply line regexes
+or_equal_sign_char_group = lambda s: f"[{s}=]"  # DataSet 11 has a lot of random '=' replacing characters
+
+ON_TIME_REPLY_PATTERNS = [
+    *[''.join(or_equal_sign_char_group(chr) for chr in month[:2]) for month in MONTHS],
+    *[''.join(or_equal_sign_char_group(chr) for chr in day[:3]) for day in WEEKDAYS]
+]
+
 FORWARDED_LINE_PATTERN = r"[- ]*((Forwarded|Original)\s*[Mm]essage:?|Message d'?origine)[- ]*|Begin [Ff]orwarded [Mm]essage:?"
-FRENCH_REPLY_PATTERN = r"Le .* a ecrit:"
-GERMAN_REPLY_PATTERN = r"Am \d\d\.\d\d\..*schrieb.*"
-NORWEGAIN_REPLY_PATTERN = r"(Den .* folgende|(fre|lor|son)\. .* skrev .*):"
-REPLY_LINE_IN_A_MSG_PATTERN = r"In a message dated \d+/\d+/\d+.*writes:"
 REPLY_LINE_ENDING_PATTERN = r"[_ \n](AM|PM|[<_]|w?rote:?)"
-REPLY_LINE_ON_NUMERIC_DATE_PATTERN = fr"(?<!M)On \d+[-/][\d\w]+[-/]\d+[, ].*{REPLY_LINE_ENDING_PATTERN}"
-REPLY_LINE_ON_DATE_PATTERN = fr"On (\d+ )?((Mon|Tues?|Wed(nes)?|Thu(rs)?|Fri|Sat(ur)?|Sun)(day)?|(Ja.|Fe(b|vr\.)|Ma.|Ap.|Ma.|Ju.|Ju.|Au.|Se.|Oc.|No.|De.)\w*)[, ].*{REPLY_LINE_ENDING_PATTERN}"
-REPLY_LINE_PATTERN = rf"^({QUOTE_INDENT_CHAR_GROUP}*({FRENCH_REPLY_PATTERN}|{GERMAN_REPLY_PATTERN}|{NORWEGAIN_REPLY_PATTERN}|{REPLY_LINE_IN_A_MSG_PATTERN}|{REPLY_LINE_ON_NUMERIC_DATE_PATTERN}|{REPLY_LINE_ON_DATE_PATTERN}|{FORWARDED_LINE_PATTERN}))"
+REPLY_NUMERIC_DATE_PATTERN = fr"\d+[-/][\d\w]+[-/]\d+"
+REPLY_ON_DAY_MONTH_PATTERN = fr"(\d+ )?(({'|'.join(ON_TIME_REPLY_PATTERNS)})\w*)"
+REPLY_ON_DATE_PATTERN = '|'.join([REPLY_NUMERIC_DATE_PATTERN, REPLY_ON_DAY_MONTH_PATTERN])
+
+REPLY_PATTERNS = [
+    fr"(?<!M)On ({REPLY_ON_DATE_PATTERN})[., ].*{REPLY_LINE_ENDING_PATTERN}",
+    FORWARDED_LINE_PATTERN,
+    r"In a message dated \d+/\d+/\d+.*writes:",
+    r"Le .* a ecrit:",                                  # French
+    r"Am \d\d\.\d\d\..*schrieb.*",                      # German
+    r"(Den .* folgende|(fre|lor|son)\. .* skrev .*):",  # Norwegian
+]
+
+REPLY_LINE_PATTERN = fr"^({QUOTE_INDENT_CHAR_GROUP}*({'|'.join(REPLY_PATTERNS)}))"
 REPLY_REGEX = re.compile(REPLY_LINE_PATTERN, re.IGNORECASE | re.MULTILINE)
 FORWARDED_TOO_MUCH_SPACE_REGEX = re.compile(fr"^({FORWARDED_LINE_PATTERN})\n\n", re.MULTILINE | re.IGNORECASE)
 
@@ -60,6 +75,7 @@ DEVICE_PATTERNS = [
     r"and string",
     r"AT&T",
     r"Droid",
+    r"iOS",
     r"iPad",
     r"Phone",
     r"Mail(\w+for\s+(\w+))?(\s+App)?",

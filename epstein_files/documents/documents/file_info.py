@@ -21,7 +21,8 @@ FILE_PROPS = [
     'file_size',
     'filename',
     'is_doj_file',
-    'is_local_extract_file'
+    'is_local_extract_file',
+    'url_slug',
 ]
 
 

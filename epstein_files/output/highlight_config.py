@@ -230,8 +230,8 @@ HighlightedNames(
             r"(Barry )?Honig",
             r"((Bill|David) )?Koch( (Bro(s|thers)|Industries))?",
             r"BP",
-            r"CEO",
             r"Colony Capital",
+            r"(General|Limited) Partner",
             r"Gruterite",
             r"Island Capital Group(,? LLC)?",
             r"Johann? Eliasc?h",
@@ -245,7 +245,8 @@ HighlightedNames(
             r"Michael Klein",
             r"New Leaf Ventures",
             r"Park Partners",
-            r"real estate( developer)?"
+            r"real estate( developer)?",
+            r"Robin\s?hood",
             r"SALSS",
             r"Swedish American Life Science Summit",
             r"Trilateral Commission",
@@ -269,7 +270,7 @@ HighlightedNames(
         label='China',
         style='bright_red',
         contacts=[
-            Contact("Gino Yu", f"professor / game designer in Hong Kong, worked with {MASHA_DROKOVA} on PR for Epstein (?)"),
+            Contact(GINO_YU, f"professor / game designer in Hong Kong, friend of {MASHA_DROKOVA}, worked on PR for Epstein"),
         ],
         patterns=[
             r"Ali.?baba",
@@ -305,6 +306,17 @@ HighlightedNames(
         ],
     ),
     HighlightedNames(
+        label=JOI_ITO,
+        style='gold1 bold',
+        contacts=[
+            Contact(
+                name=JOI_ITO,
+                info=f"head of {MIT_MEDIA_LAB} and MIT Digital Currency Initiative, co-founded VC funds with Epstein",
+                emailer_pattern=r"ji@media.mit.?edu|(joichi|joi)( Ito)?",
+            ),
+        ]
+    ),
+    HighlightedNames(
         label=Interesting.CRYPTO,
         style='orange1 bold',
         contacts=[
@@ -326,11 +338,6 @@ HighlightedNames(
             Contact(GAVIN_ANDRESEN, 'core bitcoin developer', r"(Gavin )?Andr.ss?en"),
             Contact(JEFFREY_WERNICK, "former COO of Parler, involved in numerous crypto companies like Bitforex"),
             Contact(JEREMY_RUBIN, "developer/researcher", r"Jeremy Rub(in|m)"),
-            Contact(
-                name=JOI_ITO,
-                info=f"head of {MIT_MEDIA_LAB} and MIT Digital Currency Initiative",
-                emailer_pattern=r"ji@media.mit.?edu|(joichi|joi)( Ito)?",
-            ),
             Contact(LORENZO_DE_MEDICI, "Medici Bank, possibly Medici heir?", r"Prince Lorenzo|Lorenzo de Medici"),
             Contact(MADARS_VIRZA, f"ZCash lead dev, {MIT_MEDIA_LAB}"),
             Contact('Suhas Daftuar', 'Chaincode Labs'),
@@ -359,8 +366,9 @@ HighlightedNames(
             r"Coinbase",
             r"coins?( Center)?",
             r"Complementary Currency",
+            r"Coinmint",
             r"Cory Fields",  # bitcoin dev
-            r"cr[iy]?pto (coins?|currenc(y|ies)|PR Lab)?( Partners( II)?)?",
+            r"cr[iy]?pto (coins?|currenc(y|ies)|mining|PR Lab)?( Partners( II)?)?",
             r"crypto(prlab)?",
             r"(Dan )?Morehead",
             r"Digital (Assets?|Currenc(ies|y)( Initiative)?)",
@@ -388,10 +396,11 @@ HighlightedNames(
             r"Mercantile Global Holdings",
             r"Mi(chael|ke) Novogratz",
             r"Noble (Bank|Markets)",  # Crypto bank with Tether ties
+            r"Northern Data",
             r"Pantera",
             r"(Patrick )?Murck",
             r"Ribbit",
-            r"(?-i:RIOT)",  # (?-i:) makes it case sensitive
+            r"(?-i:R)IOT( Blockchain)?",  # (?-i:) makes it case sensitive
             r"Ripple",
             r"Ron Rivest",
             r"(Ross )?Ulbricht",
@@ -701,6 +710,15 @@ HighlightedNames(
         ],
     ),
     HighlightedNames(
+        label='financial',
+        style='dark_sea_green2',
+        patterns=[
+            r"((anti.?)?money )?launder(s?|ers?|ing)?( money)?",
+            r"C[EF]O",
+            r"(co-?)?founder",
+        ]
+    ),
+    HighlightedNames(
         label=Neutral.FINANCE,
         style='green',
         contacts=[
@@ -737,7 +755,6 @@ HighlightedNames(
             r"Ace Greenberg",
             r"AIG",
             r"alterna[tv]i[tv]e finance",
-            r"((anti.?)?money )?launder(s?|ers?|ing)?( money)?",
             r"Andrew Nikou",
             r"Apollo",
             r"Ari Glass",
@@ -773,6 +790,7 @@ HighlightedNames(
             r"Joon Yun",
             r"JPMC?",
             r"j\.?p\.? morgan(\.?com| Chase)?",
+            r"Lehman Brothers",
             r"Madoff",
             r"Merrill( Lynch)?",
             r"(Michael )?Cembalest",
@@ -786,6 +804,7 @@ HighlightedNames(
             r"(Ray )?Dalio",
             r"(Richard )?LeFrak",
             r"Rockefeller(?! University)( Foundation)?",
+            r"Scott Shay",
             r"SBNY",
             r"Serageldin",
             r"Signature Bank",
@@ -862,7 +881,7 @@ HighlightedNames(
             Contact('USMS', "United States Marshal Service")
         ],
         patterns=[
-            r"AG",
+            r"(?<!Data\s)AG",
             r"(Alicia )?Valle",
             r'Alice Fisher|Fisher, Alice',
             r"AML",
@@ -907,9 +926,10 @@ HighlightedNames(
             r"(Judge )?(Kenneth )?(A\.? )?Marra",
             r"(Justice|Treasury) Dep(t|artment)",
             r"(Kirk )?Blouin",
+            r"(Kurt )?(L\.? )?Gottschall",
             r"KYC",
             r"(Lann?a )?Belohlavek",
-            r"MDC"
+            r"MDC",
             r"Metropolitan Detention Center",
             r"(Michael )?Reiter",
             r"NIH",
@@ -930,7 +950,7 @@ HighlightedNames(
             r"(?-i:SEC)",
             r"sec.gov",
             r"Secret Service",
-            r"Securities and Exchange Commission",
+            r"Securities (&|and) Exchange Commission",
             r"Southern District( of (Florida|New York))?",
             r"State Dep(artmen)?t",
             r"Strzok",
@@ -1109,6 +1129,7 @@ HighlightedNames(
             r"Fox News(\.com)?",
             r"FrontPage Magazine",
             r"FT",
+            r"Futurism",
             r"(George )?Stephanopoulus",
             r"Ger(ald|ry) Baker",
             r"Globe and Mail",
@@ -1119,6 +1140,7 @@ HighlightedNames(
             r"Ingram, David",
             r"James Hill",
             r"(James )?Patterson",
+            r"Jeff Tollefson",
             r"Jesse Kornbluth",
             r"John Connolly",
             r"Jonathan Karl",
@@ -1189,7 +1211,7 @@ HighlightedNames(
             r"Chile",
             r"Colombian?",
             r"Cuban?",
-            r"Ecuador(ian(s)?)?"
+            r"Ecuador(ian(s)?)?",
             r"el chapo",
             r"El Salvador",
             r"((Enrique )?Pena )?Nieto",
@@ -1363,7 +1385,7 @@ HighlightedNames(
             r"Muslim( Brotherhood)?",
             r"Nayaf",
             r"Nazarbayev",
-            r"Pakistani?",
+            r"Pak[ai]stani?",
             r"Omar",
             r"(Osama )?Bin Laden",
             r"Osama(?! al)",
@@ -1493,7 +1515,7 @@ HighlightedNames(
             r"(George )?Nader",
             r"GOP",
             r"((Chair|Jay|Joseph) )?Clayton",  # SEC chair, now SDNY
-            r"((Bill|William) )?Hinman"
+            r"((Bill|William) )?Hinman",
             r"Jeff(rey)? Sessions",
             r"(John (R.? )?)?Bolton",
             r"Kasich",
@@ -1585,8 +1607,8 @@ HighlightedNames(
             r"Chernobyl",
             r"Crimea",
             r"Day One Ventures",
-            r"(Dmitry\s)?(Kiselyov|(Lana )?Pozhidaeva|Medvedev|Rybolo(o?l?ev|vlev))",
-            r"Dmitry",
+            r"(Dmitry )?(Kiselyov|(Lana )?Pozhidaeva|Medvedev|Rybolo(o?l?ev|vlev))",
+            r"Di?mitry( Akhanov)?",
             r"FSB",
             r"GRU",
             r"KGB",
@@ -1607,18 +1629,21 @@ HighlightedNames(
             r"Rosneft",
             r"RT",
             r"Ruben Vardanyan",
+            r"Rusnano( USA)?(,? Inc\.?)?",
             r"St.? Petersburg",
             r'Svet',
             r"Russ?ian?",
             r"Sberbank",
+            r"Serguei Beloussov",
             r'(Semion )?Mogilevich',
             r"Soviet( Union)?",
             r"USSR",
+            r"(Vitaly )?Churkin",
             r"Vlad(imir)?(?! Yudash)",
             r"(Vladimir )?Putin",
             r"Women Empowerment",
             r"Xitrans",
-            r"(Vitaly )?Churkin",
+            r"Yury Molodtsov",
         ],
     ),
     HighlightedNames(

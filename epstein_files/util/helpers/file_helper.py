@@ -3,7 +3,7 @@ from pathlib import Path
 
 from epstein_files.util.constant.strings import (DOJ_FILE_STEM_REGEX, DOJ_FILE_NAME_REGEX, EFTA_PREFIX,
      HOUSE_OVERSIGHT_NOV_2025_FILE_NAME_REGEX, HOUSE_OVERSIGHT_NOV_2025_FILE_STEM_REGEX,
-     HOUSE_OVERSIGHT_PREFIX, LOCAL_EXTRACT_REGEX)
+     HOUSE_OVERSIGHT_NOV_2025_ID_REGEX, HOUSE_OVERSIGHT_PREFIX, LOCAL_EXTRACT_REGEX)
 from epstein_files.util.env import DOCS_DIR, DOJ_TXTS_20260130_DIR
 from epstein_files.util.logging import logger
 
@@ -45,7 +45,10 @@ def coerce_file_stem(filename_or_id: int | str | Path) -> str:
     if isinstance(filename_or_id, str) and is_doj_file(filename_or_id):
         return Path(filename_or_id).stem
     elif isinstance(filename_or_id, Path):
-        filename_or_id = filename_or_id.stem
+        return filename_or_id.stem
+
+    # print(f"\n\n, filename_or_id={filename_or_id} ({type(filename_or_id)})")
+    # import pdb;pdb.set_trace()
 
     if isinstance(filename_or_id, str) and filename_or_id.startswith(HOUSE_OVERSIGHT_PREFIX):
         file_id = extract_file_id(filename_or_id)
@@ -84,11 +87,10 @@ def extract_file_id(filename_or_id: int | str | Path) -> str:
 
     filename_str = str(filename_or_id)
 
-    if len(filename_str) == 8 and filename_str.startswith('00'):
-        return f"{HOUSE_OVERSIGHT_PREFIX}{filename_or_id}"
-    elif (file_match := HOUSE_FILE_ID_REGEX.match(filename_str.upper())):
+    if (file_match := HOUSE_OVERSIGHT_NOV_2025_ID_REGEX.search(filename_str.upper())):
         return file_match.group(1)
     else:
+        logger.error(f"filename_str='{filename_str}', HOUSE_FILE_ID_REGEX='{HOUSE_FILE_ID_REGEX.pattern}'")
         raise RuntimeError(f"Failed to extract file ID from '{filename_or_id}' (type: {type(filename_or_id).__name__}!")
 
 
@@ -139,7 +141,7 @@ def is_house_oversight_file(file: str | Path) -> bool:
 
 def is_local_extract_file(filename: str | Path) -> bool:
     """Return True if `filename` is of form 'HOUSE_OVERSIGHT_029835_1.txt'."""
-    match = HOUSE_FILE_ID_REGEX.match(str(filename)) or DOJ_FILE_ID_REGEX.match(str(filename))
+    match = HOUSE_FILE_ID_REGEX.search(str(filename)) or DOJ_FILE_ID_REGEX.search(str(filename))
     return True if match and match.group(2) else False
 
 

@@ -34,7 +34,7 @@ from epstein_files.util.env import args, site_config
 from epstein_files.util.helpers.data_helpers import (AMERICAN_TIME_REGEX, TIMEZONE_INFO, flatten,
      prefix_keys, remove_timezone, uniquify)
 from epstein_files.util.helpers.link_helper import link_text_obj
-from epstein_files.util.helpers.string_helper import capitalize_first, collapse_newlines, strip_pdfalyzer_panels
+from epstein_files.util.helpers.string_helper import capitalize_first, collapse_newlines, is_bool_prop, strip_pdfalyzer_panels
 from epstein_files.util.logging import logger
 
 # Email bod regexes
@@ -57,6 +57,14 @@ TIMESTAMP_LINE_REGEX = re.compile(r"\d+:\d+")
 MAX_NUM_HEADER_LINES = 14
 MAX_QUOTED_REPLIES = 1
 NUM_WORDS_IN_LAST_QUOTE = 6
+
+# TODO: Copy replace_text_with?
+DERIVED_CFG_PROPS_TO_COPY = [
+    'author_uncertain',
+    'category',
+    'is_in_chrono',
+    'is_interesting',
+]
 
 # Junk mail
 JUNK_EMAILERS = [
@@ -86,13 +94,14 @@ OCR_REPAIRS: dict[str | re.Pattern, str] = {
     'I nline-Images:': 'Inline-Images:',
     re.compile(r"^From "): 'From: ',
     re.compile(r"^(Sent|Subject) (?![Ff]rom|using|[Vv]ia)", re.MULTILINE): r'\1: ',
+    re.compile(r"^Subject[.•]{,2} ", re.MULTILINE): 'Subject: ',
     re.compile(r"^(Forwarded|Original) Message$", re.IGNORECASE | re.MULTILINE): r"--- \1 Message ---",  # Make forward lines match our highlight
     # Excessive quote chars
     re.compile(r"wrote:\n[>»]+(\n[>»]+)"): r"wrote:\1",
     re.compile(r"(^[>»]+\n){2,}", re.MULTILINE): r"\1",
     re.compile(r"\n[<>I ]*wrote:"): ' wrote:',
     # HTML garbage
-    r'&nbs=;': '',
+    r'&[=n]bs[=p];|<=span>|=C\d+\b': '',
     re.compile(r'^O= ', re.MULTILINE): 'On ',
     re.compile(r"<?=/?[bru]>"): '',
     re.compile(r'(^|\s)[<=][AC]\d+[=>]?', re.MULTILINE): r'\1',
@@ -105,6 +114,7 @@ OCR_REPAIRS: dict[str | re.Pattern, str] = {
     'Miroslav Laj6ak': MIROSLAV_LAJCAK,
     'Ross G°w': ROSS_GOW,
     'Torn Pritzker': TOM_PRITZKER,
+    re.compile(r"( [AP]M,)\s+wrote:$", re.MULTILINE): r'\1 <REDACTED> wrote:',
     re.compile(r' Banno(r]?|\b)'): ' Bannon',
     re.compile(r"\bBamaby\b"): 'Barnaby',
     re.compile(r'gmax ?[1l] ?[@g]ellmax.c ?om'): 'gmax1@ellmax.com',
@@ -230,23 +240,27 @@ class Email(Communication):
     def config(self) -> EmailCfg | None:
         """Configured timestamp, if any."""
         if self.file_info.is_local_extract_file:
+            this_file_cfg = cast(EmailCfg, CONFIGS_BY_ID.get(self.file_info.file_id))
+
+            # Merge config for file this was extracted from into self.derived_cfg
             if not self.derived_cfg and (extracted_from_cfg := CONFIGS_BY_ID.get(self.file_info.url_slug)):
-                # Copy info from original config for file this document was extracted from.
-                if (my_cfg := CONFIGS_BY_ID.get(self.file_id)):
-                    self.derived_cfg = cast(EmailCfg, deepcopy(my_cfg))
-                else:
-                    self.derived_cfg = EmailCfg(id=self.file_id)  # Create new EmailCfg
+                self.derived_cfg = this_file_cfg or EmailCfg(id=self.file_id)
 
                 if (extracted_from_description := extracted_from_cfg.complete_description):
                     self.derived_cfg.description = f"{APPEARS_IN} {extracted_from_description}"
 
-                # TODO: Copy replace_text_with?
-                self.derived_cfg.author_uncertain = self.derived_cfg.author_uncertain or extracted_from_cfg.author_uncertain
-                self.derived_cfg.category = self.derived_cfg.category or extracted_from_cfg.category
-                self.derived_cfg.is_interesting = self.derived_cfg.is_interesting or extracted_from_cfg.is_interesting
+                for prop in DERIVED_CFG_PROPS_TO_COPY:
+                    derived_cfg_val = getattr(self.derived_cfg, prop)
+
+                    if is_bool_prop(prop) and derived_cfg_val is not None:
+                        continue  # Don't overwrite booleans
+
+                    extracted_cfg_val = getattr(extracted_from_cfg, prop)
+                    setattr(self.derived_cfg, prop, derived_cfg_val or extracted_cfg_val)
+
                 self.log(f"Constructed synthetic config: {self.derived_cfg}")
 
-            return self.derived_cfg
+            return self.derived_cfg or this_file_cfg
         else:
             return super().config
 

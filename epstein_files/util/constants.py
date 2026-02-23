@@ -389,6 +389,12 @@ EMAILS_CONFIG = [
     EmailCfg(id='033309', author=LINDA_STONE, author_reason='"Co-authored with iPhone autocorrect"'),
     EmailCfg(id='017581', author='Lisa Randall', author_reason='reply header'),
     EmailCfg(id='033246', author=MARIA_PRUSAKOVA, author_reason='Kind regards/Cordialement in signature'),
+    EmailCfg(
+        id='EFTA00997627',
+        description='"you will be introduced to more gorgeous Alicas.. Just let me know what kind of girl"',
+        recipients=[MARIA_PRUSAKOVA],
+        uncertain_recipient='Kind regards/Cordialement in signature',
+    ),
     EmailCfg(id='026609', author='Mark Green', author_reason='Actually a fwd, Mark Green is in signature'),
     EmailCfg(id='030472', author=MARTIN_WEINBERG, author_uncertain='Maybe. in reply'),
     EmailCfg(id='032563', author=MASHA_DROKOVA, author_reason='replied to in 033014'),
@@ -469,6 +475,8 @@ EMAILS_CONFIG = [
         id='022396',
         author=SVETLANA_POZHIDAEVA,
         author_uncertain='https://x.com/FlippersUpNow/status/2022438575699018094',
+        comment='Ukraine friend',
+        is_interesting=True,
     ),
     EmailCfg(
         id='026620',
@@ -581,6 +589,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='026030', description=IS_IT_ROGER_STONE),
     EmailCfg(id='026033', description=IS_IT_ROGER_STONE),
     EmailCfg(id='031011', description='jokes about Chicago corruption', duplicate_ids=['031090'], truncate_to=SHORT_TRUNCATE_TO),
+    EmailCfg(id='EFTA02609062', description=f"{MASHA_DROKOVA} is assembling a team", is_interesting=True),
     EmailCfg(id='023627', description=WOLFF_EPSTEIN_ARTICLE_DRAFT, is_fwded_article=True, is_interesting=True, truncate_to=16800),
     EmailCfg(id='030745', description="planning a public statement for Ghislaine", truncate_to=NO_TRUNCATE),
     EmailCfg(id='016693', description='signed "MM"'),
@@ -839,7 +848,8 @@ EMAILS_CONFIG = [
     EmailCfg(
         id='030727',
         description='Epstein requesting help for Russia, discussion of unknown dead Chinese shareholder',
-        is_interesting=True
+        is_interesting=True,
+        truncate_to=400,
     ),
     EmailCfg(id='028847', description=f"the announcement of a hunt for Putin's illicit money seems to greatly concern Epstein and {JOI_ITO}"),
     EmailCfg(id='033377', description="Epstein says he knows Russian oligarch Oleg Deripaska", is_interesting=True),
@@ -849,7 +859,6 @@ EMAILS_CONFIG = [
     EmailCfg(id='029098', description=f"{MASHA_DROKOVA}'s skype contact is in Moscow", is_interesting=True),
     EmailCfg(id='020143', description=f"{STEVEN_SINOFSKY} has heard a sad story about women in tech from {MASHA_DROKOVA}", truncate_to=1000),
     EmailCfg(id='028784', is_interesting=True, duplicate_ids=['026549'], comment='seminars: Money / Power'),
-    EmailCfg(id='022396', is_interesting=True, comment='Ukraine friend'),
     EmailCfg(id='026505', is_interesting=True, comment='I know how dirty trump is'),
     EmailCfg(id='029679', is_interesting=True, comment="Trump's driver was the bag man"),
     EmailCfg(id='031451', is_interesting=True, comment='"would you like photso of donald and girls in bikinis in my kitchen."'),
@@ -992,8 +1001,9 @@ EMAILS_CONFIG = [
     EmailCfg(
         id='EFTA02109391',
         author=LESLEY_GROFF,
+        author_reason='"assistant to Jeffrey Epstein"',
         description=f"{AUSTIN_HILL} brought a woman named Ellaina Astra to Epstein's house",
-        author_uncertain=True,
+        truncate_to=NO_TRUNCATE,
     ),
     EmailCfg(id='EFTA02065181', author=LESLEY_GROFF),
     EmailCfg(id='EFTA02062308', author=LESLEY_GROFF),
@@ -1002,7 +1012,6 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA02246744', author=LESLEY_GROFF),
     EmailCfg(id='EFTA02102384', author=LESLEY_GROFF),
     EmailCfg(id='EFTA02100999', author=LESLEY_GROFF, author_uncertain=True),
-    EmailCfg(id='EFTA02109391', author=LESLEY_GROFF, author_reason='"assistant to Jeffrey Epstein"'),
     EmailCfg(id='EFTA01731288', author=LESLEY_GROFF, author_reason='signature'),
     EmailCfg(id='EFTA02104454', author=LESLEY_GROFF, author_uncertain='Epstein scheduling'),
     EmailCfg(id='EFTA02067245', author=LESLEY_GROFF, description=VALAR_MEETING, is_interesting=True, author_uncertain=True),
@@ -1192,8 +1201,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00039813', author=USANYS),
     EmailCfg(id='EFTA00039815', author=USANYS),
     EmailCfg(id='EFTA00039825', author=USANYS),
-    EmailCfg(id='EFTA00039879', author=USANYS),
-    EmailCfg(id='EFTA02731578', author=USANYS),
+    EmailCfg(id='EFTA02731578', author=USANYS, date='2021-05-28 10:00:00'),
     EmailCfg(id='EFTA00039983', author=USANYS, author_uncertain=True),
     EmailCfg(id='EFTA00039886', author=USANYS, author_uncertain=True),
     EmailCfg(id='EFTA02731651', author=USANYS, author_uncertain=True),
@@ -1240,6 +1248,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA02731484', author=USANYS, recipients=[USANYS], author_uncertain=True),
     EmailCfg(id='EFTA02731757', author=USANYS, recipients=[USANYS], author_uncertain=True),
     EmailCfg(id='EFTA02731623', author=USANYS, recipients=[USANYS], author_uncertain=True),
+    EmailCfg(id='EFTA00039879', author=USANYS, recipients=[USANYS], uncertain_recipient='True'),
     EmailCfg(id='EFTA02731488', author=USANYS, recipients=[USANYS], author_uncertain=True, is_interesting=True),
     EmailCfg(id='EFTA02731733', author=USANYS, recipients=[USANYS], date='2021-05-17 17:29:00', author_uncertain=True),
     EmailCfg(id='EFTA02731754', author=USANYS, recipients=[USANYS], date='2024-03-06T23:24:00', author_uncertain=True),
@@ -1337,14 +1346,12 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA02730481', date='2023-07-07T11:01:00'),  # TODO: actually reply timestamp
     EmailCfg(id='EFTA02731577', date='2024-10-16T00:00:00'),  # TODO: actually reply timestamp
     EmailCfg(id='EFTA02730468', date='2019-07-11T08:25:00'),  # TODO: This is just wrong
-    EmailCfg(id='EFTA00039665', date='2021-05-21 03:14:00'),  # Slow file
     # Generated basd on OtherFile.extract_timestamp()
     EmailCfg(id='EFTA02731783', date='2022-01-21 17:28:00'),
-    EmailCfg(id='EFTA02731578', date='2021-05-28 10:00:00'),
     EmailCfg(id='EFTA00039888', date='2019-05-14 16:49:00'),
     EmailCfg(id='EFTA00040145', date='2021-11-09 17:24:30'),
     EmailCfg(id='EFTA02730485', date='2021-12-03 00:00:00'),
-    EmailCfg(id='EFTA00901970', description=f"{AL_SECKEL}'s response to Epstein's forged email", is_interesting=True),
+    EmailCfg(id='EFTA00901970', description=f"{AL_SECKEL}'s response to Epstein's forged email", is_interesting=True, truncate_to=3000),
     EmailCfg(id='EFTA00992595', description=f"{ARIANE_DE_ROTHSCHILD} mentions her visit to Mongolia"),
     EmailCfg(
         id='EFTA02021096',
@@ -1378,7 +1385,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00671263', description="Eagle's View Capital Management September 2017 Performance Update"),
     EmailCfg(id='EFTA00836182', description=f'email to investors in {VALAR_FUND}'),
     EmailCfg(id='EFTA02573653', description=f'discussion of {PRINCE_ANDREW}\'s Urramoor, "Howard" is probably Howard Lutnick which Urramoor partnered with'),
-    EmailCfg(id='EFTA02592748', description=f"Epstein asking {BROCK_PIERCE} for a favour related to someone named 'Sue'"),
+    EmailCfg(id='EFTA02592748', description=f"Epstein asking {BROCK_PIERCE} for a favour related to someone named 'Sue'", truncate_to=300),
     EmailCfg(id='EFTA01008242', description='Epstein passes on an investment in Radius'),
     EmailCfg(id='EFTA02513560', description=f"{JEAN_LUC_BRUNEL} doesn't want to speak on the phone", truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA02671523', description=f"Jones is former Google chief technology advocate / CEO of Epstein investment Wearality"),
@@ -1396,15 +1403,14 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00758140', description="possibly about Sarah Ferguson?"),
     EmailCfg(id='EFTA02434682', description=f"Epstein and {JEAN_LUC_BRUNEL} courting a finance bro with women", is_interesting=True),
     EmailCfg(id='EFTA01013413', description='Reza Bundy is the founder of IronPlanet'),
-    EmailCfg(id='EFTA00039689', description=f"{SEC_WHISTLEBLOWER} re: Signature Bank, Hapoalim, Bioptix/RIOT, Barry Honig, etc."),
-    EmailCfg(id='EFTA00093702', description=f"{SEC_WHISTLEBLOWER}", comment="rest is visible in EFTA00039689 after 102_000 chars"),
+    # EmailCfg(id='EFTA00039689', description=f"{SEC_WHISTLEBLOWER} re: Signature Bank, Hapoalim, Bioptix/RIOT, Barry Honig, etc."),
+    # EmailCfg(id='EFTA00093702', description=f"{SEC_WHISTLEBLOWER}", comment="rest is visible in EFTA00039689 after 102_000 chars"),
     EmailCfg(id='EFTA00875181', duplicate_ids=['EFTA01901268']),
     EmailCfg(id='EFTA01852975', duplicate_ids=['EFTA02001764']),
     EmailCfg(id='EFTA00563586', duplicate_ids=['EFTA02323722']),
     EmailCfg(id='EFTA00039802', duplicate_ids=['EFTA00039809']),
     EmailCfg(id='EFTA01002234', duplicate_ids=['EFTA02597754']),
     EmailCfg(id='EFTA00039799', duplicate_ids=['EFTA00039806']),
-    EmailCfg(id='EFTA01776613', duplicate_ids=['EFTA02691059']),
     EmailCfg(id='EFTA02608800', duplicate_ids=['EFTA01010308']),
     EmailCfg(id='EFTA00717931', duplicate_ids=['EFTA01774218']),
     EmailCfg(id='EFTA01776411', duplicate_ids=['EFTA02691069']),
@@ -1414,13 +1420,11 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00432352', duplicate_ids=['EFTA02187120']),
     EmailCfg(id='EFTA00870717', duplicate_ids=['EFTA01932706']),
     EmailCfg(id='EFTA00915302', duplicate_ids=['EFTA01860910', 'EFTA01986221', 'EFTA01776411']),
-    EmailCfg(id='EFTA01776613', duplicate_ids=['EFTA01860812', 'EFTA00915297']),
-    EmailCfg(id='030727', truncate_to=400),
+    EmailCfg(id='EFTA01776613', duplicate_ids=['EFTA01860812', 'EFTA00915297', 'EFTA02691059']),
     EmailCfg(id='019321', truncate_to=700),
     EmailCfg(id='EFTA00982094', truncate_to=250),
     EmailCfg(id='EFTA00915298', truncate_to=300),
     EmailCfg(id='EFTA00915300', truncate_to=250),
-    EmailCfg(id='EFTA02592748', truncate_to=300),
     EmailCfg(id='EFTA00982864', truncate_to=350),
     EmailCfg(id='EFTA01890312', truncate_to=400),
     EmailCfg(id='EFTA00982451', truncate_to=400),
@@ -1430,18 +1434,33 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00982818', truncate_to=500),
     EmailCfg(id='EFTA01731638', truncate_to=530),
     EmailCfg(id='EFTA00362171', truncate_to=1096),
+    EmailCfg(id='EFTA00888467', truncate_to=1400),
     EmailCfg(id='EFTA00836570', truncate_to=1600),
     EmailCfg(id='EFTA00681240', truncate_to=2000),
     EmailCfg(id='EFTA00669647', truncate_to=2500),
     EmailCfg(id='EFTA02374977', truncate_to=2500),
-    EmailCfg(id='EFTA00901970', truncate_to=3000),
     EmailCfg(id='EFTA00869828', truncate_to=SHORT_TRUNCATE_TO),
+    EmailCfg(id='EFTA02256631', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA00661348', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA02378915', truncate_to=NO_TRUNCATE),
-    EmailCfg(id='EFTA02109391', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA00676383', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA00949376', truncate_to=NO_TRUNCATE),
     #### MAGIC COMMENT FOR MANUAL CONFIG ####
+    EmailCfg(id='EFTA02628058', is_synthetic=False, truncate_to=NO_TRUNCATE),
+    EmailCfg(id='EFTA02626427', is_synthetic=False, truncate_to=NO_TRUNCATE),
+    EmailCfg(
+        id='EFTA02581361',
+        description='Epstein funded a conference in Cuba that Gino Yu put together with $100k',
+        is_interesting=True,
+        is_synthetic=False,
+        truncate_to=NO_TRUNCATE,
+    ),
+
+    EmailCfg(id='EFTA02225815', author=LESLEY_GROFF, author_uncertain=True, is_synthetic=False, truncate_to=NO_TRUNCATE),
+
+    EmailCfg(id='EFTA00662373', author=MASHA_DROKOVA, author_reason='"Best, Masha"', description='"She is interesting. Great looks"'),
+    EmailCfg(id='EFTA02234448', recipients=[LESLEY_GROFF]),
+    EmailCfg(id='EFTA02225790', author=LESLEY_GROFF, recipients=[MASHA_DROKOVA], author_uncertain=True, truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA02641374', is_interesting=True),
     # EmailCfg(id='EFTA02641374', is_interesting=True),
     EmailCfg(id='EFTA00953261', author=LARRY_SUMMERS, recipients=[JEFFREY_EPSTEIN]),
@@ -2604,7 +2623,7 @@ WHISTLEBLOWER_IDS = {
     'EFTA00093702_37': '',
     'EFTA00093702_13': '',
     'EFTA00093702_21': RIOT_BLOCKCHAIN_DESCRIPTION,
-    'EFTA00093702_30': RIOT_BLOCKCHAIN_DESCRIPTION,
+    'EFTA00093702_30': f"Signature Bank failed in 2023, {RIOT_BLOCKCHAIN_DESCRIPTION}",
     'EFTA00093702_29': RIOT_BLOCKCHAIN_DESCRIPTION,
     'EFTA00093702_28': RIOT_BLOCKCHAIN_DESCRIPTION,
     'EFTA00093702_27': RIOT_BLOCKCHAIN_DESCRIPTION,
@@ -2641,7 +2660,6 @@ UNINTERESTING_EMAIL_IDS = [
     '030958',
     # Brock
     'EFTA02174702',
-    'EFTA02160842',
     'EFTA00371547',
     'EFTA00405824',
     'EFTA00361736',
@@ -2657,7 +2675,6 @@ UNINTERESTING_EMAIL_IDS = [
     'EFTA00645400',
     'EFTA01002109',
     'EFTA02365466',
-    'EFTA00362163',
     'EFTA00709543',
     # David Stern
     'EFTA02507454',
@@ -2762,6 +2779,7 @@ UNINTERESTING_EMAIL_IDS = [
 
 # Not uninteresting enough to be permanently marked as such but not good enough for --output-chrono
 NOT_CHRONOLOGICAL_VIEW_IDS = [
+    '016692',
     '022247',
     '030095',
     '022234',
@@ -2858,7 +2876,7 @@ SHOW_WITH_DOCS = {id: list(cfgs) for id, cfgs in groupby(ALL_CONFIGS, lambda cfg
 def check_no_overlapping_configs():
     encountered_file_ids = set()
 
-    for cfg in CONFIGS_BY_ID.values():
+    for cfg in ALL_CONFIGS:
         if cfg.duplicate_of_id:
             assert cfg.duplicate_of_id != cfg.id, f"Bad config! {cfg}"
 
