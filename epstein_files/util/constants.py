@@ -1094,8 +1094,6 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA01802168', author=LINDA_STONE, author_uncertain='"Stone"'),
     EmailCfg(id='EFTA00701326', author=LINDA_STONE, author_uncertain='"Stone"'),
     EmailCfg(id='EFTA00397956', author=LINDA_STONE, author_reason='unique email signature'),
-    EmailCfg(id='EFTA02267133', author=LESLEY_GROFF, recipients=[MARIA_PRUSAKOVA], uncertain_recipient=f"{CRYPTO_PR_LAB} signature", truncate_to=NO_TRUNCATE),  # only uncertain bc it could be other crypto pr lab person
-    EmailCfg(id='EFTA00495349', author=MARIA_PRUSAKOVA, author_reason=CRYPTO_PR_LAB, description='Ed Boyle / Medici Bank'),
     EmailCfg(id='EFTA00773139', author='Reinaldo Avila', description="Epstein calls Swedish billionaire Johan Eliasch \"not the brightest bulb\"", truncate_to=1000),
     EmailCfg(
         id='EFTA02312343',
@@ -2460,11 +2458,19 @@ OTHER_FILES_CRYPTO = [
     DocCfg(id='EFTA01613759', author=CRYPTO_PR_LAB, description="letter of intent of acquisitionfrom Transform Group"),
     DocCfg(id='EFTA01613762', author=CRYPTO_PR_LAB, description=f"WhatsApp convo with {MARIA_PRUSAKOVA}", date='2019-05-21'),
     DocCfg(id='EFTA01612721', author=CRYPTO_PR_LAB, description=f"WhatsApp convo with {MARIA_PRUSAKOVA}", date='2019-05-21'),
+    EmailCfg(id='EFTA00495349', author=MARIA_PRUSAKOVA, author_reason=CRYPTO_PR_LAB, description='Ed Boyle / Medici Bank'),
     EmailCfg(
         id='EFTA02349697',
         author=MARIA_PRUSAKOVA,
         author_reason='boyfriend Christian, same as 032374',
         description=f'{MARIA_PRUSAKOVA} says she is starting a crypto company with {ZUBAIR_KHAN}',
+    ),
+    EmailCfg(
+        id='EFTA02267133',
+        author=LESLEY_GROFF,
+        recipients=[MARIA_PRUSAKOVA],
+        uncertain_recipient=f"{CRYPTO_PR_LAB} signature, could be Prusakova's partner",
+        truncate_to=NO_TRUNCATE
     ),
     # ZCash
     DocCfg(id='EFTA00811130', author=PERKINS_COIE, description='tax opinion on ZCash tokens'),
