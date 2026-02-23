@@ -248,11 +248,13 @@ class Email(Communication):
                     self.derived_cfg.description = f"{APPEARS_IN} {extracted_from_description}"
 
                 for prop in DERIVED_CFG_PROPS_TO_COPY:
-                    if prop.startswith('is_') and (derived_cfg_val := getattr(self.derived_cfg, prop)) is not None:
+                    derived_cfg_val = getattr(self.derived_cfg, prop)
+
+                    if prop.startswith('is_') and derived_cfg_val is not None:
                         continue  # Don't overwrite booleans
 
                     extracted_cfg_val = getattr(extracted_from_cfg, prop)
-                    setattr(derived_cfg_val, prop, derived_cfg_val or extracted_cfg_val)
+                    setattr(self.derived_cfg, prop, derived_cfg_val or extracted_cfg_val)
 
                 self.log(f"Constructed synthetic config: {self.derived_cfg}")
 
