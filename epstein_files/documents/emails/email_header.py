@@ -62,7 +62,10 @@ class EmailHeader:
 
     @property
     def all_attachments(self) -> list[str]:
-        return join_truthy(self.attachments, self.inline_images, ';').split(';')
+        if self.attachments or self.inline_images:
+            return join_truthy(self.attachments, self.inline_images, ';').split(';')
+        else:
+            return []
 
     @property
     def is_empty(self) -> bool:
