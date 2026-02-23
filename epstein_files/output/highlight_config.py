@@ -1586,23 +1586,24 @@ HighlightedNames(
             Contact('Dasha Zhukova', "art collector, daughter of Alexander Zhukov"),
             Contact(JULIA_SANTOS, "possibly a Russian in Paris that was recruiting girls from Ukraine for Epstein"),
             Contact(
-                name=KARYNA_SHULIAK,
+                KARYNA_SHULIAK,
                 info="Epstein's final girlfriend to whom he tried to leave $50-100 million and the island",
                 emailer_pattern=r"Karyna Shuliak?",
             ),
+            Contact('Kira Dikhtyar', emailer_pattern=r"Kira (D|Kira)"),
             Contact(
-                name='Maria Prusakova',
+                MARIA_PRUSAKOVA,
                 info=f"AKA Masha Prusso, former Olympic snowboarder, {CRYPTO_PR_LAB} co-founder, \"found ladies\" for Epstein",
                 emailer_pattern=r"Ma(sha|riy?a) (Prus(kova|so))",
             ),
             Contact(MASHA_DROKOVA, "silicon valley VC, former Putin Youth member"),
             Contact(
-                name=RENATA_BOLOTOVA,
+                RENATA_BOLOTOVA,
                 info="former model, fund manager at New York State Insurance Fund, Рената Болотова",
                 emailer_pattern=r"Renata Bolotova|Rena B|Renata Bo\w+|renbolotova",
             ),
             Contact(
-                name=SERGEY_BELYAKOV,
+                SERGEY_BELYAKOV,
                 emailer_pattern=r"Sergey Belyako|Беляков Сергей|Cepre(ct|il) [6BES][\w.]+|6(er|of)no\w+ [CE]\w+",
                 info="graduate of Russia's FSB academy (AKA \"a spy\"), head of the St. Petersburg Economic Forum Foundation",
                 link_to_bio='https://dossier.center/jeffreyepsteinrusconnect-en/',
