@@ -1465,6 +1465,16 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA02628058', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA02626427', truncate_to=NO_TRUNCATE),
     #### MAGIC COMMENT FOR MANUAL CONFIG ####
+    EmailCfg(id='EFTA01063008', author=OLGA_PONOMAR_BECKER, author_reason='Jmail'),
+    EmailCfg(
+        id='EFTA01003115',
+        author=MASHA_DROKOVA,
+        author_reason='"masha" in quoted',
+        description='"Dylan" is probably Dylan Love who wrote a story about Epstein and wanted to quote him about using crypto to fix corruption',
+        truncate_to=NO_TRUNCATE,
+    ),
+    EmailCfg(id='EFTA00681554', recipients=[OLGA_PONOMAR_BECKER]),
+    EmailCfg(id='EFTA02669915', recipients=[OLGA_PONOMAR_BECKER]),
     EmailCfg(
         id='EFTA02581361',
         description='Epstein funded a conference in Cuba that Gino Yu put together with $100k',
@@ -2460,6 +2470,7 @@ OTHER_FILES_CRYPTO = [
     DocCfg(id='EFTA01613759', author=CRYPTO_PR_LAB, description="letter of intent of acquisitionfrom Transform Group"),
     DocCfg(id='EFTA01613762', author=CRYPTO_PR_LAB, description=f"WhatsApp convo with {MARIA_PRUSAKOVA}", date='2019-05-21'),
     DocCfg(id='EFTA01612721', author=CRYPTO_PR_LAB, description=f"WhatsApp convo with {MARIA_PRUSAKOVA}", date='2019-05-21'),
+    EmailCfg(id='033255', description=f"{MASHA_DROKOVA}'s friend Dylan Love suggests he could quote Epstein explaining \"proper implementation of crypto might solve financial corruption issues\""),
     EmailCfg(id='EFTA01013266', description=f"{MARIA_PRUSAKOVA}'s {CRYPTO_PR_LAB} request for payment for Davos", is_interesting=True),
     EmailCfg(id='EFTA02285514', description=f"Medici Bank and {MARIA_PRUSAKOVA} meeting", is_interesting=True),
     EmailCfg(id='EFTA01013922', description=f"{CRYPTO_PR_LAB} business plan", is_interesting=True),

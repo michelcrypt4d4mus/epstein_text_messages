@@ -1076,6 +1076,7 @@ HighlightedNames(
         contacts=[
             Contact('Alain Forget', "author of \"How To Get Out Of This World ALIVE\""),
             Contact('Alex Yablon', "New York Magazine fact checker (?)"),
+            Contact('Dylan Love', f'The Next Web and Business Insider, close with {MASHA_DROKOVA}'),
             Contact(
                 name=EDWARD_JAY_EPSTEIN,
                 info="no relation, wrote books about spies",
