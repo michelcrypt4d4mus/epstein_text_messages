@@ -238,6 +238,7 @@ HighlightedNames(
             r"Johann? Eliasc?h",
             r"((John|Patricia) )?Kluge",
             r"Mar[ck] Rich",
+            r"McKinsey",
             r"Montilla",  # Junkermann
             r"(Mi(chael|ke) )?Ovitz",
             r"NJF( Capital)?",
@@ -1261,9 +1262,11 @@ HighlightedNames(
             Contact(PUREVSUREN_LUNDEG, "Mongolian ambassador to the UN", r"Purevsuren( Lundeg)?"),
         ],
         patterns=[
-            r"(President )?Elbe[gk]dorj",
+            r"Batzaya",
             r"Enkhbajar",
             r"Mongolian?",
+            r"(President )?Elbe[gk]dorj",
+            r"Ulaan Ba?atar",
         ]
     ),
     HighlightedNames(
