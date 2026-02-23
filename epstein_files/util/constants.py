@@ -1466,13 +1466,6 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA02626427', truncate_to=NO_TRUNCATE),
     #### MAGIC COMMENT FOR MANUAL CONFIG ####
     EmailCfg(id='EFTA01063008', author=OLGA_PONOMAR_BECKER, author_reason='Jmail'),
-    EmailCfg(
-        id='EFTA01003115',
-        author=MASHA_DROKOVA,
-        author_reason='"masha" in quoted',
-        description='"Dylan" is probably Dylan Love who wrote a story about Epstein and wanted to quote him about using crypto to fix corruption',
-        truncate_to=NO_TRUNCATE,
-    ),
     EmailCfg(id='EFTA00681554', recipients=[OLGA_PONOMAR_BECKER]),
     EmailCfg(id='EFTA02669915', recipients=[OLGA_PONOMAR_BECKER]),
     EmailCfg(
@@ -1486,6 +1479,14 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA02641374', is_interesting=True),
     # EmailCfg(id='EFTA02641374', is_interesting=True),
     EmailCfg(id='EFTA00953261', author=LARRY_SUMMERS, recipients=[JEFFREY_EPSTEIN]),
+    EmailCfg(
+        id='EFTA02010589',
+        date='2012-01-31 9:16 PM',
+        description='raunchy email',
+        is_interesting=True,
+        recipients=[JEFFREY_EPSTEIN],
+    ),
+    EmailCfg(id='EFTA00664619', author=SUE, author_reason='"Dear Sue"'),
 ]
 
 
@@ -2519,6 +2520,14 @@ OTHER_FILES_CRYPTO = [
     EmailCfg(id='EFTA00495372', description=f'discussion of Medici Bank, a new successor to Noble Bank as a crypto bank', is_interesting=True),
     # Kushner
     DocCfg(id='EFTA00128987', description='suspicious activity report (SAR) about Kushner co. crypto payments to suspicious Russian person'),
+    # Masha Drokova
+    EmailCfg(
+        id='EFTA01003115',
+        author=MASHA_DROKOVA,
+        author_reason='"masha" in quoted',
+        description='"Dylan" is probably Dylan Love who wrote a story about Epstein and bitcoin arranged by Masha Drokova',
+        truncate_to=NO_TRUNCATE,
+    ),
     # Valar
     DocCfg(id='EFTA01121910', author=VALAR_VENTURES, description="contract", truncate_to=DEFAULT_TRUNCATE_TO),
     DocCfg(id='EFTA00808277', author=VALAR_VENTURES, description="contract", truncate_to=DEFAULT_TRUNCATE_TO),
@@ -2639,6 +2648,11 @@ OTHER_FILES_TEXT_MSG = [
     CommunicationCfg(id='EFTA01611042', author=ED_BOYLE, recipients=[None, MARIA_PRUSAKOVA]),
     DocCfg(id='EFTA01611898', description=f"screenshot of recent contacts in an iPhone"),
     CommunicationCfg(id='EFTA02731525', author=LEON_BLACK, author_uncertain=True),
+    CommunicationCfg(
+        id='EFTA01612665',
+        description='sender is "stressed about finding girls", Epstein gives advice on how to find them',
+        is_interesting=True
+    ),
 ]
 
 OTHER_FILES_JUNK = [

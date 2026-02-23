@@ -1598,6 +1598,7 @@ HighlightedNames(
                 emailer_pattern=r"Ma(sha|riy?a) (Prus(kova|so))",
             ),
             Contact(MASHA_DROKOVA, "silicon valley VC, former Putin Youth member"),
+            Contact(OLGA_PONOMAR_BECKER),
             Contact(
                 RENATA_BOLOTOVA,
                 info="former model, fund manager at New York State Insurance Fund, Рената Болотова",
