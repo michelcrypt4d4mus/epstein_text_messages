@@ -326,7 +326,7 @@ file_id,category,author,is_interesting,timestamp,recipients_str,sent_from_device
 022361,finance,Deutsche Bank Wealth Management Tax Topics,False,2013-05-01 00:00:00,,,"Deutsche Bank Wealth Management Tax Topics, attached to email 022359"
 022367,resumé,Jack J. Grynberg,,2014-07-01 00:00:00,,,professional resumé of Jack J. Grynberg professional resumé
 022372,finance,Ernst & Young,False,2016-11-09 00:00:00,,,Ernst & Young 2016 election report
-022396,email,,True,2016-11-22 17:55:37,Jeffrey Epstein,,
+022396,email,Svetlana Pozhidaeva,True,2016-11-22 17:55:37,Jeffrey Epstein,,Svetlana Pozhidaeva (???)
 022397,email,Paul Krassner,,2017-03-22 14:35:34,Jeffrey Epstein,,
 022405,academia,Noam Chomsky,False,,,,letter attesting to Epstein's good character by Noam Chomsky
 022407,conference,Svetlana Pozhidaeva,True,2018-02-22 00:00:00,,,Svetlana Pozhidaeva Women Empowerment (WE) conference seminar pitch deck
@@ -1535,7 +1535,7 @@ file_id,category,author,is_interesting,timestamp,recipients_str,sent_from_device
 030723,email,Michael Wolff,,2018-07-12 07:55:54,Jeffrey Epstein,,
 030724,email,David Stern,False,2018-07-12 10:51:21,Jeffrey Epstein,,
 030725,email,David Stern,True,2018-07-12 11:02:32,Jeffrey Epstein,,
-030727,email,David Stern,True,2018-07-12 11:03:10,Jeffrey Epstein,,
+030727,email,David Stern,True,2018-07-12 11:03:10,Jeffrey Epstein,,"Epstein requesting help for Russia, discussion of unknown dead Chinese shareholder"
 030729,email,David Stern,True,2018-07-12 11:08:45,Jeffrey Epstein,,
 030731,email,Steve Bannon,True,2018-07-20 10:16:04,Jeffrey Epstein,,
 030732,email,Michael Wolff,,2018-07-20 14:11:44,Jeffrey Epstein,,
@@ -5077,7 +5077,7 @@ EFTA00039868,email,USANYS,,2020-11-12 18:59:52,USANYS,,USANYS (???)
 EFTA00039872,email,USANYS,,2020-11-16 17:35:53,USANYS,,USANYS (???)
 EFTA00039875,email,USANYS,,2020-11-16 18:06:58,Bobbi C. Sternheim,,
 EFTA00039878,email,,False,2020-11-17 13:59:24,Bureau of Prisons;USAHUB-USAJournal111;USANYS,,
-EFTA00039879,email,USANYS,True,2020-11-18 14:25:39,,,USANYS
+EFTA00039879,email,USANYS,,2020-11-18 14:25:39,USANYS,,USANYS
 EFTA00039880,,,,,,,
 EFTA00039881,,,,,,,
 EFTA00039882,,,,,,,
@@ -5531,7 +5531,7 @@ EFTA00895984,email,Richard Kahn,,2018-01-31 19:09:35,Jeffrey Epstein,,
 EFTA00899331,email,Jonathan Farkas,,2018-02-03 22:07:08,Jeffrey Epstein,Sent from my iPhone,
 EFTA00900908,email,Jeffrey Epstein,,2018-01-30 00:14:14,Richard Kahn,,negotiation of repurchase of part of Epstein's stake in Coinbase
 EFTA00901772,email,Richard Kahn,True,2018-01-30 23:07:53,Jeffrey Epstein,,Epstein makes a large investment in Coinbase that would earn him most of $100 million
-EFTA00901970,email,Al Seckel,True,2011-01-14 00:33:54,Jeffrey Epstein,,
+EFTA00901970,email,Al Seckel,True,2011-01-14 00:33:54,Jeffrey Epstein,,Al Seckel's response to Epstein's forged email
 EFTA00912012,email,Renata Bolotova,True,2018-01-11 15:21:57,Jeffrey Epstein,,Renata Bolotova this file has been removed from the DOJ site
 EFTA00913164,email,Jeffrey Epstein,,2011-06-12 14:58:47,Gavin Andresen,,
 EFTA00913754,email,Larry Summers,,2018-01-08 12:57:14,Jeffrey Epstein,Sent from my iPad,
@@ -6018,7 +6018,7 @@ EFTA02098197,email,Talia Parnass,,2014-09-14 13:35:00,Lesley Groff,,
 EFTA02100999,email,Lesley Groff,,2014-07-31 14:43:24,Francesca Hall,,Lesley Groff (???)
 EFTA02102384,email,Lesley Groff,True,2014-07-10 16:09:52,Brock Pierce,Sent from my iPhone,Lesley Groff
 EFTA02104454,email,Lesley Groff,True,2014-06-02 11:36:52,Brock Pierce,,Lesley Groff (???)
-EFTA02109391,email,,True,2014-04-02 21:26:12,Austin Hill,Sent from my iPhone,
+EFTA02109391,email,Lesley Groff,True,2014-04-02 21:26:12,Austin Hill,Sent from my iPhone,Lesley Groff Austin Hill brought a woman named Ellaina Astra to Epstein's house
 EFTA02113506,email,Lesley Groff,True,2014-03-02 19:05:49,Tyler Shears,Sent from my iPhone,Lesley Groff (???)
 EFTA02117367,email,Lesley Groff,,2014-01-11 19:53:35,Julie Shample;Sarah Mapes,,
 EFTA02160715,email,Lesley Groff,True,2012-09-07 22:23:50,,Sent from my iPhone,
@@ -6233,7 +6233,7 @@ EFTA02589632,email,Hardeep Singh Puri,,2014-09-25 09:58:00,Jeffrey Epstein;Reid 
 EFTA02590000,email,Jeffrey Epstein,True,2014-09-24 13:21:00,Brock Pierce,,
 EFTA02590752,email,Reid Hoffman,,2014-09-25 00:04:00,Jeffrey Epstein,,
 EFTA02591315,crypto,Andrew Farkas,True,2014-10-03 20:19:00,Jeffrey Epstein,,Andrew Farkas arranging for Epstein to meet head of NY Dept of Financial Services Ben Lawsky
-EFTA02592748,email,Jeffrey Epstein,True,2014-10-25 10:12:00,Brock Pierce,,
+EFTA02592748,email,Jeffrey Epstein,True,2014-10-25 10:12:00,Brock Pierce,,Epstein asking Brock Pierce for a favour related to someone named 'Sue'
 EFTA02593836,email,Joi Ito,False,2014-11-02 19:56:00,Jeffrey Epstein;Larry Summers;Reid Hoffman,,
 EFTA02596743,email,Jeffrey Epstein,,2014-12-02 11:04:00,Reid Hoffman,,
 EFTA02596951,email,Lesley Groff,,2014-11-30 21:39:00,Jeffrey Epstein;Jojo Fontanilla;Lyn Fontanilla,,
@@ -6393,7 +6393,7 @@ EFTA02731552,email,FBI,,2021-05-26 16:12:00,USANYS,,FBI
 EFTA02731556,,,,2013-04-22 00:00:00,,,
 EFTA02731576,,,,2010-10-15 06:00:00,,,
 EFTA02731577,email,USANYS,,2024-10-16 00:00:00,USANYS,,
-EFTA02731578,email,,True,2021-05-28 10:00:00,,,
+EFTA02731578,email,USANYS,True,2021-05-28 10:00:00,,,USANYS
 EFTA02731582,email,FBI,,2023-07-03 17:24:39,USANYS,,
 EFTA02731583,email,USANYS,,2022-01-21 17:28:00,USANYS,,USANYS (???)
 EFTA02731587,email,USANYS,,2022-01-21 17:28:00,USANYS,,USANYS (???)
