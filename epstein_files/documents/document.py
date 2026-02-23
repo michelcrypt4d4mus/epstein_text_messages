@@ -202,6 +202,12 @@ class Document:
         return self.file_info.file_id
 
     @property
+    def file_id_panel(self) -> Panel:
+        """The header panel printed before the body and subheaders with links and file ID etc."""
+        links_txt = self.colored_external_links()
+        return Panel(links_txt, border_style=self.border_style, expand=False)
+
+    @property
     def filename(self) -> str:
         return self.file_info.filename
 
@@ -393,11 +399,6 @@ class Document:
 
     def colored_external_links(self) -> Text:
         return self.file_info.build_external_links(with_alt_links=True)
-
-    @property
-    def file_id_panel(self) -> Panel:
-        links_txt = self.colored_external_links()
-        return Panel(links_txt, border_style=self.border_style, expand=False)
 
     def file_info_panel(self) -> Group:
         """Panel with filename linking to raw file plus any additional info about the file."""
