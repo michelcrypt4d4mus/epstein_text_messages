@@ -17,14 +17,13 @@ from epstein_files.util.constant.strings import *
 from epstein_files.util.env import args
 from epstein_files.util.helpers.data_helpers import without_falsey
 from epstein_files.util.helpers.file_helper import is_doj_file
-from epstein_files.util.helpers.string_helper import join_truthy, quote
+from epstein_files.util.helpers.string_helper import is_bool_prop, join_truthy, quote
 from epstein_files.util.logging import logger
 
 DebugDict = dict[str, bool | datetime | str | Path | None]
 DuplicateType = Literal['bounced', 'earlier', 'quoted', 'redacted', 'same']
 Metadata = dict[str, bool | datetime | int | str | None | list[str | None] | dict[str, bool | str]]
 
-FALSEABLE_PROPS = ['is_interesting']
 MAX_LINE_LENGTH = 135
 NO_TRUNCATE = -1
 SAME = 'same'
@@ -330,7 +329,7 @@ class DocCfg:
 
     @property
     def truthy_props(self) -> dict[str, bool | str | None]:
-        props = {k: v for k, v in asdict(self).items() if v or (k in FALSEABLE_PROPS and v is False)}
+        props = {k: v for k, v in asdict(self).items() if v or (is_bool_prop(k) and v is False)}
 
         if self.is_of_interest is not None:
             if self.is_of_interest == props.get('is_interesting'):
@@ -403,9 +402,9 @@ class DocCfg:
         for _field in sorted(fields(self), key=lambda f: FIELD_SORT_KEY.get(f.name, f.name)):
             value = getattr(self, _field.name)
 
-            if _field.name in ['actual_text', 'is_fwded_article', 'is_interesting']:  # fields can be False or None or ''
+            if _field.name in ['actual_text'] or is_bool_prop(_field.name):  # fields can be False or None or ''
                 if value is not None:
-                    add_prop(_field, json.dumps(value))
+                    add_prop(_field, str(value))
             elif not value or (_field.name == 'dupe_type' and value == 'same'):
                 continue
             elif _field.name == AUTHOR:
@@ -413,6 +412,8 @@ class DocCfg:
             elif _field.name == 'recipients':
                 recipients_str = str([constantize_name(r) if (args.constantize and r) else r for r in value])
                 add_prop(_field, recipients_str.replace("'", '') if args.constantize else recipients_str)
+            elif _field.name == 'truncate_to' and value == NO_TRUNCATE:
+                add_prop(_field, 'NO_TRUNCATE')
             elif isinstance(value, str):
                 if "'" in value:
                     value = '"' + value.replace('"', r'\"') + '"'

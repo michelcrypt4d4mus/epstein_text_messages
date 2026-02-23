@@ -34,7 +34,7 @@ from epstein_files.util.env import args, site_config
 from epstein_files.util.helpers.data_helpers import (AMERICAN_TIME_REGEX, TIMEZONE_INFO, flatten,
      prefix_keys, remove_timezone, uniquify)
 from epstein_files.util.helpers.link_helper import link_text_obj
-from epstein_files.util.helpers.string_helper import capitalize_first, collapse_newlines, strip_pdfalyzer_panels
+from epstein_files.util.helpers.string_helper import capitalize_first, collapse_newlines, is_bool_prop, strip_pdfalyzer_panels
 from epstein_files.util.logging import logger
 
 # Email bod regexes
@@ -94,7 +94,7 @@ OCR_REPAIRS: dict[str | re.Pattern, str] = {
     'I nline-Images:': 'Inline-Images:',
     re.compile(r"^From "): 'From: ',
     re.compile(r"^(Sent|Subject) (?![Ff]rom|using|[Vv]ia)", re.MULTILINE): r'\1: ',
-    re.compile(r"^Subject[.•] ", re.MULTILINE): 'Subject: ',
+    re.compile(r"^Subject[.•]{,2} ", re.MULTILINE): 'Subject: ',
     re.compile(r"^(Forwarded|Original) Message$", re.IGNORECASE | re.MULTILINE): r"--- \1 Message ---",  # Make forward lines match our highlight
     # Excessive quote chars
     re.compile(r"wrote:\n[>»]+(\n[>»]+)"): r"wrote:\1",
@@ -251,7 +251,7 @@ class Email(Communication):
                 for prop in DERIVED_CFG_PROPS_TO_COPY:
                     derived_cfg_val = getattr(self.derived_cfg, prop)
 
-                    if prop.startswith('is_') and derived_cfg_val is not None:
+                    if is_bool_prop(prop) and derived_cfg_val is not None:
                         continue  # Don't overwrite booleans
 
                     extracted_cfg_val = getattr(extracted_from_cfg, prop)

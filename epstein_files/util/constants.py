@@ -1446,9 +1446,11 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00676383', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA00949376', truncate_to=NO_TRUNCATE),
     #### MAGIC COMMENT FOR MANUAL CONFIG ####
+    EmailCfg(id='EFTA02225815', author=LESLEY_GROFF, author_uncertain=True, is_synthetic=False, truncate_to=NO_TRUNCATE),
+
     EmailCfg(id='EFTA00662373', author=MASHA_DROKOVA, author_reason='"Best, Masha"', description='"She is interesting. Great looks"'),
     EmailCfg(id='EFTA02234448', recipients=[LESLEY_GROFF]),
-    EmailCfg(id='EFTA02225790', author=LESLEY_GROFF, recipients=[MASHA_DROKOVA], author_uncertain=True),
+    EmailCfg(id='EFTA02225790', author=LESLEY_GROFF, recipients=[MASHA_DROKOVA], author_uncertain=True, truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA02641374', is_interesting=True),
     # EmailCfg(id='EFTA02641374', is_interesting=True),
     EmailCfg(id='EFTA00953261', author=LARRY_SUMMERS, recipients=[JEFFREY_EPSTEIN]),

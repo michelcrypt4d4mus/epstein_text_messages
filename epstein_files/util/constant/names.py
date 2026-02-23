@@ -312,7 +312,7 @@ WAPO = 'WaPo'
 # First and last names that should be made part of a highlighting regex for emailers
 NAMES_TO_NOT_HIGHLIGHT = """
     adam al alain alan alison alfredo allen alex alexander amanda andres andrew ann anthony asia audrey
-    back bard barrett barry bennet bernard bill black bob boris boyle brad brenner bruce
+    back bard barrett barry bennet bernard bill black bob boris boyle brad brenner bruce bryan
     cameron caroline carolyn chris christian christina christopher cohen
     dan daniel danny darren dave david debbie department donald douglas
     ed edward edwards elisa enforcement enterprise enterprises entourage epstein eric erika etienne

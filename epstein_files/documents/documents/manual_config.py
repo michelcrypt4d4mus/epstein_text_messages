@@ -12,7 +12,7 @@ from epstein_files.documents.doj_file import DojFile
 from epstein_files.documents.email import Email
 from epstein_files.output.rich import console, print_subtitle_panel
 from epstein_files.util.constants import CONFIGS_BY_ID
-from epstein_files.util.helpers.string_helper import indented
+from epstein_files.util.helpers.string_helper import indented, is_bool_prop
 from epstein_files.util.logging import logger
 
 ALL = 'a'
@@ -104,16 +104,15 @@ def create_configs(docs: Sequence[Document]) -> Sequence[DocCfg]:
 def _ask_for_value(cfg: DocCfg, prop: str, doc: Document, doc_val: list[str] | str) -> None:
     """Ask for a value for `prop`. If provided use `setattr` to set it on to the `cfg`."""
     question = Text('').append(prop, style='cyan').append('?')
-    is_bool_prop = prop.startswith('is_')
     is_list_prop = isinstance(doc_val, list)
     is_truncate_prop = prop == 'truncate_to'
 
     if is_list_prop:
         question.append(' (semicolon separated)', style='dim')
-    elif is_bool_prop:
+    elif is_bool_prop(prop):
         question.append(' [y/n/None]', style='magenta')
 
-    if is_bool_prop:
+    if is_bool_prop(prop):
         value = _ask_for_optional_bool(question)
     else:
         value = Prompt.ask(question).strip()
