@@ -25,7 +25,7 @@ def print_all_timestamps(epstein_files):
     fallbacks = valid = 0
 
     for i, doc in enumerate(epstein_files.unique_documents):
-        console.print(doc.summary)
+        console.print(doc._summary)
 
         if doc.timestamp == FALLBACK_TIMESTAMP:
             fallbacks += 1
@@ -90,7 +90,7 @@ def print_interesting_doc_panels_and_props(epstein_files, sort_by_category: bool
         else:
             props = {'doc.is_interesting': doc.is_interesting}
 
-        # console.print(doc.summary_panel)
+        # console.print(doc._summary_panel)
         console.print(doc.file_info_panel())
         from epstein_files.util.env import args
 

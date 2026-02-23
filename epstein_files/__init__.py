@@ -130,7 +130,7 @@ def epstein_grep():
             elif args.whole_file:
                 console.print(doc)
             else:
-                console.print(doc.summary_panel)
+                console.print(doc._summary_panel)
 
                 for matching_line in lines:
                     line_txt = matching_line.__rich__()
@@ -204,11 +204,11 @@ def epstein_show():
 
         if args.raw:
             console.line()
-            console.print(Panel(Text("RAW: ").append(doc.summary), expand=False, style=doc.border_style))
+            console.print(Panel(Text("RAW: ").append(doc._summary), expand=False, style=doc.border_style))
             console.print(escape(doc.raw_text()), '\n')
 
             if isinstance(doc, Email):
-                console.print(Panel(Text("actual_text: ").append(doc.summary), expand=False, style=doc.border_style))
+                console.print(Panel(Text("actual_text: ").append(doc._summary), expand=False, style=doc.border_style))
                 console.print(escape(doc._extract_actual_text()), '\n')
 
         if args.debug:

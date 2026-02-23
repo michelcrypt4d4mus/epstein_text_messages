@@ -349,9 +349,9 @@ class Email(Communication):
             return self.header.subject or ''
 
     @property
-    def summary(self) -> Text:
+    def _summary(self) -> Text:
         """One line summary mostly for logging."""
-        txt = self.summary_with_author
+        txt = self._summary_with_author
 
         if len(self.recipients) > 0:
             txt.append(', ').append(styled_key_value('recipients', self.recipients_txt()))

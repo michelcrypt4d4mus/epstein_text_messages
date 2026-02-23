@@ -25,7 +25,7 @@ for doc in epstein_files.unique_documents:
         if filter_for is not None and doc.is_interesting != filter_for:
             continue
 
-        txt = bool_txt(doc.is_interesting, match_width=True).append(': ').append(doc.summary)
+        txt = bool_txt(doc.is_interesting, match_width=True).append(': ').append(doc._summary)
 
         if doc.config_description_txt:
             txt.append(' ').append(doc.config_description_txt)

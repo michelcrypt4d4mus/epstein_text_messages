@@ -127,9 +127,9 @@ class OtherFile(Document):
         return txt
 
     @property
-    def summary(self) -> Text:
+    def _summary(self) -> Text:
         """One line summary mostly for logging."""
-        return super().summary.append(CLOSE_PROPERTIES_CHAR)
+        return super()._summary.append(CLOSE_PROPERTIES_CHAR)
 
     def _extract_timestamp(self) -> datetime | None:
         """Return configured timestamp or value extracted by scanning text with datefinder."""

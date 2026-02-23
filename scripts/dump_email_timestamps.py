@@ -173,7 +173,7 @@ for email in sorted(epstein_files.emails, key=lambda e: -len(e.actual_text)):
     if len(email.actual_text) > 100:
         max_sizes[email.file_id] = len(email.actual_text)
         console.line(2)
-        console.print(Panel(email.summary, expand=False, style=email.border_style))
+        console.print(Panel(email._summary, expand=False, style=email.border_style))
         console.print(escape(email._extract_actual_text()))
 
 console.line(2)
@@ -185,7 +185,7 @@ for i, id_count in enumerate(sort_dict(max_sizes)):
     id = id_count[0]
     count = id_count[1]
     email = epstein_files.get_ids([id])[0]
-    console.print(f"{count:6d}: {email.summary.plain}")
+    console.print(f"{count:6d}: {email._summary.plain}")
 
 
 console.line(2)

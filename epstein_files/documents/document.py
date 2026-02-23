@@ -323,35 +323,6 @@ class Document:
         return None
 
     @property
-    def summary(self) -> Text:
-        """Summary of this file for logging. Subclasses should extend with a method that closes the open '['."""
-        txt = Text('').append(self._class_name, style=self._class_style)
-        txt.append(f" {self.file_id}", style=FILENAME_STYLE)
-
-        if self.timestamp:
-            timestamp_str = remove_zero_time(self.timestamp).replace('T', ' ')
-            txt.append(' (', style=SYMBOL_STYLE)
-            txt.append(f"{timestamp_str}", style=TIMESTAMP_DIM).append(')', style=SYMBOL_STYLE)
-
-        txt.append(' [').append(styled_key_value('size', Text(str(self.length), style='aquamarine1')))
-        txt.append(", ").append(styled_key_value('lines', self.num_lines))
-
-        if self.config and self.config.duplicate_of_id:
-            txt.append(", ").append(styled_key_value('dupe_of', Text(self.config.duplicate_of_id, style='cyan dim')))
-
-        return txt
-
-    @property
-    def summary_panel(self) -> Panel:
-        """Panelized description() with info_txt(). Used in search results not in production HTML."""
-        sentences = [self.summary]
-
-        if self.INCLUDE_DESCRIPTION_IN_SUMMARY_PANEL:
-            sentences += [Text('', style='italic').append(h) for h in self.info]
-
-        return Panel(Group(*sentences), border_style=self._class_style, expand=False)
-
-    @property
     def timestamp(self) -> datetime | None:
         if self.config and self.config.timestamp:
             return self.config.timestamp
@@ -390,6 +361,35 @@ class Document:
     @property
     def _debug_prefix(self) -> str:
         return underscore(self._class_name).lower()
+
+    @property
+    def _summary(self) -> Text:
+        """Summary of this file for logging. Subclasses should extend with a method that closes the open '['."""
+        txt = Text('').append(self._class_name, style=self._class_style)
+        txt.append(f" {self.file_id}", style=FILENAME_STYLE)
+
+        if self.timestamp:
+            timestamp_str = remove_zero_time(self.timestamp).replace('T', ' ')
+            txt.append(' (', style=SYMBOL_STYLE)
+            txt.append(f"{timestamp_str}", style=TIMESTAMP_DIM).append(')', style=SYMBOL_STYLE)
+
+        txt.append(' [').append(styled_key_value('size', Text(str(self.length), style='aquamarine1')))
+        txt.append(", ").append(styled_key_value('lines', self.num_lines))
+
+        if self.config and self.config.duplicate_of_id:
+            txt.append(", ").append(styled_key_value('dupe_of', Text(self.config.duplicate_of_id, style='cyan dim')))
+
+        return txt
+
+    @property
+    def _summary_panel(self) -> Panel:
+        """Panelized description() with info_txt(). Used in search results not in production HTML."""
+        sentences = [self._summary]
+
+        if self.INCLUDE_DESCRIPTION_IN_SUMMARY_PANEL:
+            sentences += [Text('', style='italic').append(h) for h in self.info]
+
+        return Panel(Group(*sentences), border_style=self._class_style, expand=False)
 
     def colored_external_links(self) -> Text:
         return self.file_info.build_external_links(with_alt_links=True)
@@ -597,7 +597,7 @@ class Document:
         yield self.file_display()
 
     def __str__(self) -> str:
-        return self.summary.plain
+        return self._summary.plain
 
     @classmethod
     def default_category(cls) -> str:
