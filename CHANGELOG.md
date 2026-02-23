@@ -2,7 +2,7 @@
 
 ### 1.8.5
 * Split up the massive Dilorio whistleblower emails
-* give up on attempts at line wrapping in `CONSOLE_HTML_FORMAT`
+* Give up on attempts at line wrapping in `CONSOLE_HTML_FORMAT`
 
 ### 1.8.4
 
