@@ -133,7 +133,7 @@ class DocCfg:
     duplicate_of_id: str | None = None
     is_interesting: bool | None = None  # NOTE: if True emails will not be truncated!
     is_in_chrono: bool | None = None
-    is_synthetic: bool = False
+    is_synthetic: bool | None = None
     replace_text_with: str = ''
     show_with_name: str = ''
     truncate_to: int | tuple[int, int] | None = None
