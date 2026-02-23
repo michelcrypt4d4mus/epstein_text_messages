@@ -21,7 +21,7 @@ ON_TIME_REPLY_PATTERNS = [
     *[''.join(or_equal_sign_char_group(chr) for chr in day[:3]) for day in WEEKDAYS]
 ]
 
-FORWARDED_LINE_PATTERN = r"[- ]*((Forwarded|Original)\s*[Mm]essage:?|Message d'?origine)[- ]*|Begin [Ff]orwarded [Mm]essage:?"
+FORWARDED_LINE_PATTERN = r"[- ]*((Forwarded|Original)\s*[Mm]essa.e:?|Message d'?origine)[- ]*|Begin [Ff]orwarded [Mm]essage:?"
 REPLY_LINE_ENDING_PATTERN = r"[_ \n](AM|PM|[<_]|w?rote:?)"
 REPLY_NUMERIC_DATE_PATTERN = fr"\d+[-/][\d\w]+[-/]\d+"
 REPLY_ON_DAY_MONTH_PATTERN = fr"(\d+ )?(({'|'.join(ON_TIME_REPLY_PATTERNS)})\w*)"
