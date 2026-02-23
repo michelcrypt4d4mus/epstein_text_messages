@@ -133,7 +133,7 @@ class DocCfg:
     duplicate_of_id: str | None = None
     is_interesting: bool | None = None  # NOTE: if True emails will not be truncated!
     is_in_chrono: bool | None = None
-    is_synthetic: bool = False
+    is_synthetic: bool | None = None
     replace_text_with: str = ''
     show_with_name: str = ''
     truncate_to: int | tuple[int, int] | None = None
@@ -290,7 +290,7 @@ class DocCfg:
         elif self.is_interesting is not None:
             return self.is_interesting
 
-        # Author check  # NOTE: this only applies to configured authors or derived_cfg! so not most emails
+        # Author check  # NOTE: this only applies to configured authors or derived_cfg! so other files but not most emails
         if self.author and self.author in PERSONS_OF_INTEREST:
             return True
         # category field checks

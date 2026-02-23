@@ -19,7 +19,6 @@ TIME_REGEX = re.compile(r'^((\d{1,2}/\d{1,2}/\d{2,4}|Thursday|Monday|Tuesday|Wed
 ADDITIONAL_CONTACTS = [
     # Custom regex
     Contact('BS Stern', emailer_pattern=r"BS Ste(m|rn)"),
-    Contact('Daphne Wallace', emailer_pattern=r"Da.hne Wallace"),
     Contact(INTELLIGENCE_SQUARED, emailer_pattern=r"intelligence\s*squared"),
     Contact('Matthew Schafer', emailer_pattern=r"matthew\.?schafer?"),
     Contact(MICHAEL_BUCHHOLTZ, emailer_pattern=r"Michael.*Buchholtz"),

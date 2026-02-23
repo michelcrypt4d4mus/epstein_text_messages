@@ -1,5 +1,8 @@
 # NEXT RELEASE
+
+### 1.8.5
 * Split up the massive Dilorio whistleblower emails
+* Give up on attempts at line wrapping in `CONSOLE_HTML_FORMAT`
 
 ### 1.8.4
 

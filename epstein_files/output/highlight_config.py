@@ -98,6 +98,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"(Ste(ph|v)en )?Hawking",
             r"(Steven? )?Pinker",
             r"Texas A&M",
+            r"(?-i:TED)",
             r"Tulane",
             r"UCLA",
         ],
@@ -237,6 +238,7 @@ HighlightedNames(
             r"Johann? Eliasc?h",
             r"((John|Patricia) )?Kluge",
             r"Mar[ck] Rich",
+            r"McKinsey",
             r"Montilla",  # Junkermann
             r"(Mi(chael|ke) )?Ovitz",
             r"NJF( Capital)?",
@@ -412,7 +414,7 @@ HighlightedNames(
             r"supersecretbitcoinproject",
             r"Tally Capital",
             r"Tether",
-            r"(transparent|virtual) (currenc(ies|y)|money)",
+            r"(transparent|virtual) (currenc(ies|y)|goods?|money)",
             r"wash trad(es?|ing)",
             r"Wire ca\n?rd",
             r"Wladimir( van der Laan)?",  # bitcoin dev
@@ -439,7 +441,7 @@ HighlightedNames(
         patterns=[
             r"(Al )?Franken",
             r"Al Gore",
-            r"(Barac?k )?Obama",
+            r"((Barac?k|President) )?Obama",
             r"((Bill|Hillart?y) )?Clinton",
             r"((Chuck|Charles) )?S(ch|hc)umer",
             r"Debbie Wasserman Schultz",
@@ -485,6 +487,7 @@ HighlightedNames(
             Contact('Alfredo Rodriguez', "Epstein's butler, stole the journal"),
             Contact('Bella Klein', "Epstein's accountant"),
             Contact('Bernard Kruger', "Epstein's doctor"),
+            Contact(DAPHNE_WALLACE, "logistics and schedule coordination", r"Da.hne Wallace"),
             Contact(EDUARDO_ROBLES, "home builder at Creative Kingdom Dubai", r"Ed(uardo)? Robles"),
             Contact(ERIC_ROTH, "jet decorator at International Jet"),
             Contact(GWENDOLYN_BECK, "Epstein fund manager in the 90s"),
@@ -544,7 +547,7 @@ HighlightedNames(
         label=LAWYER,  # Epstein's lawyers
         style='purple',
         contacts=[
-            Contact(ALAN_DLUGASH, 'tax partner at Paneth and Shrone', r"Alan J.? Dlugash"),
+            Contact(ALAN_DLUGASH, 'tax partner at Paneth and Shrone', r"Alan (J.? )?Dlugash"),
             Contact('Alan S Halperin', "partner at Paul, Weiss"),
             Contact(ALAN_DERSHOWITZ, f"{HARVARD} Law School professor", r"(alan.{1,7})?dershowi(lz?|t?z)|AlanDersh"),
             Contact(ARDA_BESKARDES, "NYC immigration attorney allegedly involved in sex-trafficking operations"),
@@ -663,6 +666,7 @@ HighlightedNames(
             r"Germany?",
             r"Gillard",
             r"Gree(ce|k)",
+            r"Hollande",
             r"Ibiza",
             r"Ital(ian|y)",
             r"Jacques",
@@ -677,6 +681,7 @@ HighlightedNames(
             r"Malta",
             r"Melusine",
             r"MI 5",
+            r"Milano?",
             r"Monaco",
             r"Munich",
             r"NATO",
@@ -1227,7 +1232,7 @@ HighlightedNames(
     ),
     HighlightedNames(
         label=LOBBYIST,
-        style='light_coral',  # TODO: this shouldn't be same as Mongolia
+        style='dark_khaki',
         contacts=[
             Contact(BOB_CROWE, "partner at Nelson Mullins", r"[BR]ob Crowe"),
             Contact('Joshua Cooper Ramo', "co-CEO of Henry Kissinger Associates"),
@@ -1257,9 +1262,11 @@ HighlightedNames(
             Contact(PUREVSUREN_LUNDEG, "Mongolian ambassador to the UN", r"Purevsuren( Lundeg)?"),
         ],
         patterns=[
-            r"Elbekdorj",
+            r"Batzaya",
             r"Enkhbajar",
             r"Mongolian?",
+            r"(President )?Elbe[gk]dorj",
+            r"Ulaan Ba?atar",
         ]
     ),
     HighlightedNames(
@@ -1355,6 +1362,7 @@ HighlightedNames(
             r"(Hamid )?Karzai",
             r"Hamad bin Jassim",
             r"Hamas",
+            r"Hassan (Mohammed )?(Abdul )?(.atif )?Jameel",
             r"Hezbollah",
             r"Hourani",
             r"Houthi",

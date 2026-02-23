@@ -21,14 +21,14 @@ ON_TIME_REPLY_PATTERNS = [
     *[''.join(or_equal_sign_char_group(chr) for chr in day[:3]) for day in WEEKDAYS]
 ]
 
-FORWARDED_LINE_PATTERN = r"[- ]*((Forwarded|Original)\s*[Mm]essage:?|Message d'?origine)[- ]*|Begin [Ff]orwarded [Mm]essage:?"
+FORWARDED_LINE_PATTERN = r"[- ]*((Forwarded|Original)\s*[Mm]essa.e:?|Message d'?origine)[- ]*|Begin [Ff]orwarded [Mm]essage:?"
 REPLY_LINE_ENDING_PATTERN = r"[_ \n](AM|PM|[<_]|w?rote:?)"
 REPLY_NUMERIC_DATE_PATTERN = fr"\d+[-/][\d\w]+[-/]\d+"
 REPLY_ON_DAY_MONTH_PATTERN = fr"(\d+ )?(({'|'.join(ON_TIME_REPLY_PATTERNS)})\w*)"
 REPLY_ON_DATE_PATTERN = '|'.join([REPLY_NUMERIC_DATE_PATTERN, REPLY_ON_DAY_MONTH_PATTERN])
 
 REPLY_PATTERNS = [
-    fr"(?<!M)On ({REPLY_ON_DATE_PATTERN})[., ].*{REPLY_LINE_ENDING_PATTERN}",
+    fr"(?<!M)On ({REPLY_ON_DATE_PATTERN})[=., ].*{REPLY_LINE_ENDING_PATTERN}",
     FORWARDED_LINE_PATTERN,
     r"In a message dated \d+/\d+/\d+.*writes:",
     r"Le .* a ecrit:",                                  # French
@@ -36,6 +36,7 @@ REPLY_PATTERNS = [
     r"(Den .* folgende|(fre|lor|son)\. .* skrev .*):",  # Norwegian
 ]
 
+# print(fr"(?<!M)On ({REPLY_ON_DATE_PATTERN})[., ].*{REPLY_LINE_ENDING_PATTERN}")
 REPLY_LINE_PATTERN = fr"^({QUOTE_INDENT_CHAR_GROUP}*({'|'.join(REPLY_PATTERNS)}))"
 REPLY_REGEX = re.compile(REPLY_LINE_PATTERN, re.IGNORECASE | re.MULTILINE)
 FORWARDED_TOO_MUCH_SPACE_REGEX = re.compile(fr"^({FORWARDED_LINE_PATTERN})\n\n", re.MULTILINE | re.IGNORECASE)
@@ -144,6 +145,8 @@ TRUNCATE_EMAILS_FROM = TRUNCATE_EMAILS_FROM_OR_TO + [
 ]
 
 EMAIL_SIGNATURE_REGEXES = {
+    ALAN_DLUGASH: re.compile(r"Alan J\.? Dlugash LLC\n(767.*\n)?New York.*(\n(Tel|Cel|Fa[lx]|P:).*)*"),
+    ANDREW_FARKAS: re.compile(r"This message, and any attachments hereto.{,1000}considered a legally binding", re.DOTALL),
     'Andrew Nikou': re.compile(r'1999 Avenue of the Stars.{,105}genuinely required\.', re.DOTALL),
     ARDA_BESKARDES: re.compile(r"Attorne.-at-Law\s+.{,200}Admitted to practice.{,300}relying\s+on\s+this\s+message.?", re.DOTALL),
     ARIANE_DE_ROTHSCHILD: re.compile(r"Ensemble.*\nCe.*\ndestinataires.*\nremercions.*\nautorisee.*\nd.*\nLe.*\ncontenues.*\nEdmond.*\nRoth.*\nlo.*\nRoth.*\ninfo.*\nFranc.*\n.2.*", re.I),
@@ -163,11 +166,11 @@ EMAIL_SIGNATURE_REGEXES = {
     ERIC_ROTH: re.compile(r"2221 Smithtown Avenue\nLong Island.*\nRonkonkoma.*\n(.1. )?Phone\nFax\nCell\ne-mail"),
     FRANCESCA_HALL: re.compile(r"The contents of this e-mail message and.{,600}message and its attachments[.,]? if any", re.DOTALL),
     GHISLAINE_MAXWELL: re.compile(r"FACEBOOK\nTWITTER\nG\+\nPINTEREST\nINSTAGRAM\nPLEDGE\nTHE DAILY CATCH"),
-    JEANNE_M_CHRISTENSEN: re.compile(r"[A ]*(Please consider the environment before printing this e-mail.{,5})?This communication may contain Confidential.{,500}(facsimile|mail)\s+or\s+phone. Thank you\.?|Partner\s+WIGDOR.{,12}New York,? NY 10003\s.{,15}com", re.DOTALL),
-    JEFFREY_EPSTEIN: re.compile(r"(([* =0,]+|please .ote.{,6})\s+)?([>»•]+ )*The info.ma[t=]ion conta[i=]ne. i. t..s..ommunic.ti.{,600}all\s+([>»] )*.t.a.hm..t..(\s+copyright\s+.all\s+rights\s+reserved?)?", re.DOTALL),
+    JEANNE_M_CHRISTENSEN: re.compile(r"[A ]*(Please consider the environment before printing this e-mail.{,5})?This communication may contain Confidential.{,500}(facsimile|mail)\s+or\s+phone. Thank you\.?|Partner\s+WIGDOR.{,12}(85 Fifth Avenue|New York).{,20}\s+(T:.{,6}\n)?.{,15}com", re.DOTALL),
+    JEFFREY_EPSTEIN: re.compile(r"(([* =0,]+|please .ote.{,6})\s+)?([>»•]+ )*The info.ma[t=][i=]on co[n=]ta[i=]ne. i. t..s..ommunic.ti.{,600}all\s+([>»] )*.t.a.hm..t..(\s+copyright\s+.all\s+rights\s+reserved?)?", re.DOTALL),
     JESSICA_CADWELL: re.compile(r"(f.*\n)?Certified Para.*\nFlorida.*\nBURMAN.*\n515.*\nSuite.*\nWest Palm.*(\nTel:.*)?(\nEmail:.*)?", re.IGNORECASE),
     KEN_JENNE: re.compile(r"Ken Jenne\nRothstein.*\n401 E.*\nFort Lauderdale.*", re.IGNORECASE),
-    LARRY_SUMMERS: re.compile(r"Please direc. all scheduling.{,150}\nwww.larrysummer..\w{3,5}(<.{,6}[>»])?(\s*<http.{,30}/?[>»])?", re.IGNORECASE | re.DOTALL),
+    LARRY_SUMMERS: re.compile(r"Please direc. all scheduling.{,150}\nwww.la(n|rr)ysummer..\w{3,5}(<.{,6}[>»])?(\s*<http.{,30}/?[>»])?", re.IGNORECASE | re.DOTALL),
     LAWRENCE_KRAUSS: re.compile(r"Lawrence (M. )?Krauss\n(Director.*\n)?(Co-director.*\n)?Foundation.*\nSchool.*\n(Co-director.*\n)?(and Director.*\n)?Arizona.*(\nResearch.*\nOri.*\n(krauss.*\n)?origins.*)?", re.IGNORECASE),
     LEON_BLACK: re.compile(r"This email and any files transmitted with it are confidential and intended solely.*\n(they|whom).*\ndissemination.*\nother.*\nand delete.*"),
     LISA_NEW: re.compile(r"Elisa New\nPowell M. Cabot.*\n(Director.*\n)?Harvard.*\n148.*\n([1I] )?12.*\nCambridge.*\n([1I] )?02138"),
@@ -177,7 +180,7 @@ EMAIL_SIGNATURE_REGEXES = {
     PETER_MANDELSON: re.compile(r'Disclaimer This email and any attachments to it may be.*?with[ \n]+number(.*?EC4V[ \n]+6BJ)?', re.DOTALL | re.IGNORECASE),
     PAUL_BARRETT: re.compile(r"Paul Barrett[\n\s]+Alpha Group Capital LLC[\n\s]+(142 W 57th Street, 11th Floor, New York, NY 10019?[\n\s]+)?(al?[\n\s]*)?ALPHA GROUP[\n\s]+CAPITAL"),
     PETER_ATTIA: re.compile(r"The information contained in this transmission may contain.*\n(laws|patient).*\n(distribution|named).*\n(distribution.*\nplease.*|copies.*)"),
-    RICHARD_KAHN: re.compile(fr'Richard Kahn\s+HBRK Associates Inc.?\s+((301|575) .*\s+)?Ne.*(\n(Tel?|Phone|Fa.{{,5}}|[Ce]el*|{REDACTED})( [-.\d]{{,13}}))*', re.IGNORECASE),
+    RICHARD_KAHN: re.compile(fr'Richard Kahn\s+HBRK Associates Inc.?\s+((301|575) .*\s+)?Ne.*(\n(Tel?|Phone|Fa.{{,5}}|[Ce]el*|{REDACTED})( [-.\d]{{,13}})?)*', re.IGNORECASE),
     ROSS_GOW: re.compile(r"Ross Gow\nManaging Partner\nACUITY Reputation Limited\n23 Berkeley Square\nLondon.*\nMobile.*\nTel"),
     STEPHEN_HANSON: re.compile(r"(> )?Confidentiality Notice: This e-mail transmission.*\n(which it is addressed )?and may contain.*\n(applicable law. If you are not the intended )?recipient you are hereby.*\n(information contained in or attached to this transmission is )?STRICTLY PROHIBITED.*"),
     STEVEN_PFEIFFER: re.compile(r"Steven\nSteven .*\nAssociate.*\nIndependent Filmmaker Project\nMade in NY.*\n30 .*\nBrooklyn.*\n(p:.*\n)?www\.ifp.*", re.IGNORECASE),

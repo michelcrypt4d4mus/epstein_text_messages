@@ -228,6 +228,7 @@ class EpsteinFiles:
     def emails_for(self, name: Name) -> list[Email]:
         """All emails to or from a given 'name' sorted chronologically (including dupes)."""
         emails = self.emails_by(name) + self.emails_to(name)
+        emails += [e for e in self.emails if (e.config and name == e.config.show_with_name)]
 
         if len(emails) == 0:
             logger.warning(f"No emails found for '{name}'")

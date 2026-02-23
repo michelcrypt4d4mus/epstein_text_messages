@@ -206,6 +206,7 @@ BOBBI_C_STERNHEIM = 'Bobbi C. Sternheim'
 BROCK_PIERCE = 'Brock Pierce'
 CHRISTIAN_EVERDELL = 'Christian Everdell'
 CHRISTOPHER_DILORIO = 'Christopher Dilorio'
+DAPHNE_WALLACE = 'Daphne Wallace'
 DOUGLAS_WIGDOR = 'Douglas Wigdor'
 ED_BOYLE = 'Ed Boyle'
 ELON_MUSK = 'Elon Musk'
@@ -319,7 +320,7 @@ NAMES_TO_NOT_HIGHLIGHT = """
     ed edward edwards elisa enforcement enterprise enterprises entourage epstein eric erika etienne
     faith fisher fitzgerald forget frances francesca fred friendly frost fuller fund
     gates gateway general gerald george gold gordon greg
-    haddad hall hanson harry hay heather henry hill hoffman howard
+    haddad hall hanson harry hassan hay heather henry hill hoffman howard
     ian inc inc. ivan
     jack james jay jean jeff jeffrey jennifer jeremy jessica joel john jon jonathan joseph jr julia justin
     kafka kahn karl kate katherine kelly ken kevin krassner

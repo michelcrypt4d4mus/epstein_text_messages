@@ -296,6 +296,7 @@ EMAILS_CONFIG = [
         description="Bank Leumi would get in trouble for helping Americans avoid taxes a few years after this",
     ),
     EmailCfg(id='EFTA01775500', author=DAVID_STERN, author_reason='in quoted reply', description=f'"PA" is probably {PRINCE_ANDREW}'),
+    EmailCfg(id='EFTA02570707', author=DAVID_STERN, author_uncertain='in quoted reply', truncate_to=NO_TRUNCATE),
     EmailCfg(id='031460', author=EDWARD_JAY_EPSTEIN, author_reason='quoted reply has edwardjayepstein.com', is_fwded_article=True),
     EmailCfg(
         id='030475',
@@ -318,7 +319,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='031624', author=JEFFREY_EPSTEIN),
     EmailCfg(id='018726', author=JEFFREY_EPSTEIN, date='2018-06-08 08:36:00'),
     EmailCfg(id='032283', author=JEFFREY_EPSTEIN, date='2016-09-14 08:04:00'),
-    EmailCfg(id='026943', author=JEFFREY_EPSTEIN, date='2019-05-22 05:47:00'),
+    EmailCfg(id='026943', author=JEFFREY_EPSTEIN, recipients=[RICHARD_KAHN], date='2019-05-22 05:47:00'),
     EmailCfg(
         id='023208',
         author=JEFFREY_EPSTEIN,
@@ -339,7 +340,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='029582', author=JEFFREY_EPSTEIN, recipients=[RENATA_BOLOTOVA], author_reason=BOLOTOVA_REASON),
     EmailCfg(id='030997', author=JEFFREY_EPSTEIN, actual_text='call back'),
     EmailCfg(id='028770', author=JEFFREY_EPSTEIN, actual_text='call me now'),
-    EmailCfg(id='031826', author=JEFFREY_EPSTEIN, actual_text='I have'),
+    EmailCfg(id='031826', author=JEFFREY_EPSTEIN, actual_text='I have', truncate_to=350),
     EmailCfg(id='030768', author=JEFFREY_EPSTEIN, actual_text='ok'),
     EmailCfg(id='022938', author=JEFFREY_EPSTEIN, actual_text='what do you suggest?'),
     EmailCfg(
@@ -579,7 +580,11 @@ EMAILS_CONFIG = [
     EmailCfg(id='032671', description='connections to Fusion GPS who produced the Steele Dossier on Trump'),
     EmailCfg(id='033052', description='connections to Fusion GPS who produced the Steele Dossier on Trump'),
     EmailCfg(id='031472', description="discussion of publishing an audio recording related to the coup in Turkey"),
-    EmailCfg(id='031830', description='Epstein gets defensive about what went on during the 2008 financial crisis as portrayed in "Inside Job"'),
+    EmailCfg(
+        id='031830',
+        description='Epstein gets defensive about the 2008 financial crisis as portrayed in "Inside Job"',
+        truncate_to=350,
+    ),
     EmailCfg(id='031333', description='Fort Knox conspiracy theory, looks like a Russian disinfo article', is_fwded_article=True),
     EmailCfg(id='031335', description='Fort Knox conspiracy theory, looks like a Russian disinfo article', is_fwded_article=True),
     EmailCfg(id='030648', description=IS_IT_ROGER_STONE),
@@ -706,7 +711,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='030528', is_fwded_article=True, comment='Vicky Ward article'),
     EmailCfg(id='030460', is_fwded_article=True, comment='Vicky Ward article'),
     EmailCfg(id='020443', is_fwded_article=True, comment='WSJ Deplorables Bannon'),
-    EmailCfg(id='026755', is_fwded_article=True, truncate_to=SHORT_TRUNCATE_TO, comment='Epstein self fwd'),
+    EmailCfg(id='026755', is_fwded_article=True, truncate_to=SHORT_TRUNCATE_TO, comment='Epstein self fwd', is_interesting=False),
     EmailCfg(id='026778', is_fwded_article=True, truncate_to=SHORT_TRUNCATE_TO, comment='Kahn taxes'),
     EmailCfg(id='033311', is_fwded_article=True, truncate_to=SHORT_TRUNCATE_TO, comment='Kahn taxes'),
     EmailCfg(id='029433', is_fwded_article=True, truncate_to=SHORT_TRUNCATE_TO, comment='Kahn taxes'),
@@ -1005,6 +1010,15 @@ EMAILS_CONFIG = [
         description=f"{AUSTIN_HILL} brought a woman named Ellaina Astra to Epstein's house",
         truncate_to=NO_TRUNCATE,
     ),
+    EmailCfg(id='EFTA02225815', author=LESLEY_GROFF, author_uncertain=True, truncate_to=NO_TRUNCATE),
+    EmailCfg(id='EFTA02225790', author=LESLEY_GROFF, recipients=[MASHA_DROKOVA], author_uncertain=True, truncate_to=NO_TRUNCATE),
+    EmailCfg(
+        id='EFTA00675596',
+        author=LESLEY_GROFF,
+        author_uncertain='epstein scheduling',
+        description=f"the president of Mongolia plans to vist Epstein",
+        is_interesting=True
+    ),
     EmailCfg(id='EFTA02065181', author=LESLEY_GROFF),
     EmailCfg(id='EFTA02062308', author=LESLEY_GROFF),
     EmailCfg(id='EFTA02246900', author=LESLEY_GROFF),
@@ -1029,7 +1043,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00357379', author=LESLEY_GROFF, author_uncertain=True),
     EmailCfg(id='EFTA00357957', author=LESLEY_GROFF, author_uncertain=True),
     EmailCfg(id='EFTA02229858', author=LESLEY_GROFF, author_uncertain=True),
-    EmailCfg(id='EFTA00428084', author=LESLEY_GROFF, author_uncertain=True),
+    EmailCfg(id='EFTA00428084', author=LESLEY_GROFF, author_uncertain=True, recipients=[JEFFREY_EPSTEIN], uncertain_recipient='meeting'),
     EmailCfg(id='EFTA02174702', author=LESLEY_GROFF, author_uncertain=True),
     EmailCfg(id='EFTA02068381', author=LESLEY_GROFF, author_uncertain=True),
     EmailCfg(id='EFTA02067282', author=LESLEY_GROFF, author_uncertain=True),
@@ -1043,7 +1057,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00424931', author=LESLEY_GROFF, author_uncertain=True, duplicate_ids=['EFTA02181004']),
     EmailCfg(id='EFTA02005819', author=LESLEY_GROFF, author_uncertain=True, duplicate_ids=['EFTA01890165']),
     EmailCfg(id='EFTA00357509', author=LESLEY_GROFF, author_uncertain=True, duplicate_ids=['EFTA02089323']),
-    EmailCfg(id='EFTA00697417', author=LESLEY_GROFF, author_uncertain=True, is_interesting=True),
+    EmailCfg(id='EFTA00697417', author=LESLEY_GROFF, author_uncertain=True, is_interesting=True, show_with_name=GANBAT_CHULUUNKHUU),
     EmailCfg(id='EFTA02069175', author=LESLEY_GROFF, recipients=[GANBAT_CHULUUNKHUU], author_uncertain=True),
     EmailCfg(id='EFTA02271414', author=LESLEY_GROFF, recipients=[GANBAT_CHULUUNKHUU], author_uncertain=True),
     EmailCfg(id='EFTA02113506', author=LESLEY_GROFF, recipients=[TYLER_SHEARS], author_uncertain=True),
@@ -1080,8 +1094,6 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA01802168', author=LINDA_STONE, author_uncertain='"Stone"'),
     EmailCfg(id='EFTA00701326', author=LINDA_STONE, author_uncertain='"Stone"'),
     EmailCfg(id='EFTA00397956', author=LINDA_STONE, author_reason='unique email signature'),
-    EmailCfg(id='EFTA02267133', author=LESLEY_GROFF, recipients=[MARIA_PRUSAKOVA], uncertain_recipient=f"{CRYPTO_PR_LAB} signature", truncate_to=NO_TRUNCATE),  # only uncertain bc it could be other crypto pr lab person
-    EmailCfg(id='EFTA00495349', author=MARIA_PRUSAKOVA, author_reason=CRYPTO_PR_LAB, description='Ed Boyle / Medici Bank'),
     EmailCfg(id='EFTA00773139', author='Reinaldo Avila', description="Epstein calls Swedish billionaire Johan Eliasch \"not the brightest bulb\"", truncate_to=1000),
     EmailCfg(
         id='EFTA02312343',
@@ -1279,6 +1291,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA02624738', recipients=[JEFFREY_EPSTEIN]),
     EmailCfg(id='EFTA02629770', recipients=[JEFFREY_EPSTEIN]),
     EmailCfg(id='EFTA00705664', recipients=[JEFFREY_EPSTEIN]),
+    EmailCfg(id='EFTA02160715', recipients=[JEFFREY_EPSTEIN], uncertain_recipient='looks like lesley'),
     EmailCfg(id='EFTA01763770', recipients=[JEFFREY_EPSTEIN, JEAN_LUC_BRUNEL]),
     EmailCfg(id='EFTA00716532', recipients=[JEFFREY_EPSTEIN], truncate_to=479),
     EmailCfg(id='EFTA02328335', recipients=[JEFFREY_EPSTEIN, KARYNA_SHULIAK, None]),
@@ -1298,6 +1311,8 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00840591', recipients=[LESLEY_GROFF]),
     EmailCfg(id='EFTA00369335', recipients=[LESLEY_GROFF]),
     EmailCfg(id='EFTA02227488', recipients=[LESLEY_GROFF]),
+    EmailCfg(id='EFTA02256631', recipients=[LESLEY_GROFF], truncate_to=NO_TRUNCATE),
+    EmailCfg(id='EFTA00482121', recipients=[LESLEY_GROFF]),
     EmailCfg(id='EFTA00368951', recipients=[LESLEY_GROFF], author_reason='can be seen in EFTA00368958'),
     EmailCfg(id='EFTA00313867', recipients=[LESLEY_GROFF], truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA00383027', recipients=[LINDA_STONE]),
@@ -1319,7 +1334,6 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00977447', recipients=[RENATA_BOLOTOVA], uncertain_recipient=SNEAKY_DOG, duplicate_ids=['EFTA02577917', 'EFTA01946045']),
     EmailCfg(id='EFTA01843319', recipients=[RENATA_BOLOTOVA], uncertain_recipient=SNEAKY_DOG, duplicate_ids=['EFTA00929871', 'EFTA01773449', 'EFTA02550388']),
     EmailCfg(id='EFTA00850130', recipients=[SERGEY_BELYAKOV]),
-    EmailCfg(id='EFTA00835324', recipients=[SERGEY_BELYAKOV], description='assessment of Mycelium bitcoin wallet'),
     EmailCfg(id='EFTA00852324', recipients=[SERGEY_BELYAKOV, JEFFREY_EPSTEIN, 'Elena Bolyakina', PETER_THIEL]),
     EmailCfg(id='EFTA00857165', recipients=['Seth Lloyd'], author_reason='quoted reply line'),
     EmailCfg(id='EFTA00749241', recipients=[SULTAN_BIN_SULAYEM], author_reason='widely reported', is_interesting=True),
@@ -1340,12 +1354,10 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA02637315', is_interesting=True, description=f"{AZIZA_ALAHMADI} says BTC to fiat is legalized in middle east"),
     EmailCfg(id='EFTA02517037', is_interesting=True, description=f"Epstein wants to talk about Kazakhstan with {LARRY_SUMMERS}"),
     EmailCfg(id='EFTA02559311', is_interesting=True, description=f"Epstein has some connection to the sovereign wealth fund of Kazakhstan"),
-    EmailCfg(id='EFTA01943067', is_interesting=True, description=f'comments on {ARIANE_DE_ROTHSCHILD} and bitcoin'),
     EmailCfg(id='EFTA02062130', is_interesting=True, description=f'{NILI_PRIELL_BARAK} installing cameras at Epstein\'s house'),
-    EmailCfg(id='EFTA00368659', is_interesting=True, description=f"meeting with {REID_HOFFMAN} about bitcoin"),
     EmailCfg(id='EFTA02730481', date='2023-07-07T11:01:00'),  # TODO: actually reply timestamp
     EmailCfg(id='EFTA02731577', date='2024-10-16T00:00:00'),  # TODO: actually reply timestamp
-    EmailCfg(id='EFTA02730468', date='2019-07-11T08:25:00'),  # TODO: This is just wrong
+    EmailCfg(id='EFTA02730468', author=USANYS, recipients=[USANYS], date='2019-07-11T08:25:00'),  # TODO: This is just wrong
     # Generated basd on OtherFile.extract_timestamp()
     EmailCfg(id='EFTA02731783', date='2022-01-21 17:28:00'),
     EmailCfg(id='EFTA00039888', date='2019-05-14 16:49:00'),
@@ -1376,7 +1388,12 @@ EMAILS_CONFIG = [
     ),
     EmailCfg(id='EFTA02540384', description='Epstein asking an intro to the bitcoin team he would go on to fund', is_interesting=True),
     EmailCfg(id='EFTA01769169', description='Epstein tells Jean Luc Brunel he can spend up to $25 million', truncate_to=NO_TRUNCATE),
-    EmailCfg(id='EFTA02483194', description=f"discussion of {GANBAT_CHULUUNKHUU}'s arrest", is_interesting=True),
+    EmailCfg(
+        id='EFTA02483194',
+        description=f"fwded email from {GANBAT_CHULUUNKHUU} explaining why he's now wanted by Interpol",
+        is_interesting=True,
+        show_with_name=GANBAT_CHULUUNKHUU
+    ),
     EmailCfg(id='EFTA02629771', description=f"discussion of {RENATA_BOLOTOVA}'s employment at IPI", is_interesting=True),
     EmailCfg(id='EFTA00637023', description=f"discussion of getting around laws against laundering money in places like Myanmar and Mongolia"),
     EmailCfg(id='EFTA02396341', description='the Sharia Coin gambit', is_interesting=True),
@@ -1391,9 +1408,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA02671523', description=f"Jones is former Google chief technology advocate / CEO of Epstein investment Wearality"),
     EmailCfg(id='EFTA00854166', description='"kazak contract will be ready for your review"', is_interesting=True, truncate_to=1100),
     EmailCfg(id='EFTA00080250', description=f"{LEON_BLACK} / Rothschild Group {DEUTSCHE_BANK} transactions", is_interesting=True),
-    EmailCfg(id='EFTA01013266', description=f"{MARIA_PRUSAKOVA}'s {CRYPTO_PR_LAB} request for payment for Davos", is_interesting=True),
-    EmailCfg(id='EFTA02285514', description=f"Medici Bank and {MARIA_PRUSAKOVA} meeting", is_interesting=True),
-    EmailCfg(id='EFTA00752383', description=f"Mindshift conference attendee list", is_interesting=True),
+    EmailCfg(id='EFTA02565917', description='Hassan Mohammed Abdul Latif Jameel is a Saudi businessman and philanthropist'),
     EmailCfg(id='EFTA01145923', description=f"modeling contract"),
     EmailCfg(id='EFTA00877726', description='Epstein and Stern discuss plans to manage money for wealthy Chinese'),
     EmailCfg(id='EFTA00900908', description="negotiation of repurchase of part of Epstein's stake in Coinbase"),
@@ -1403,6 +1418,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00758140', description="possibly about Sarah Ferguson?"),
     EmailCfg(id='EFTA02434682', description=f"Epstein and {JEAN_LUC_BRUNEL} courting a finance bro with women", is_interesting=True),
     EmailCfg(id='EFTA01013413', description='Reza Bundy is the founder of IronPlanet'),
+    EmailCfg(id='EFTA02633194', description=f'Why is {NICOLE_JUNKERMANN} quoting an appraisal by "FSB (Russians)"?', is_interesting=True),
     # EmailCfg(id='EFTA00039689', description=f"{SEC_WHISTLEBLOWER} re: Signature Bank, Hapoalim, Bioptix/RIOT, Barry Honig, etc."),
     # EmailCfg(id='EFTA00093702', description=f"{SEC_WHISTLEBLOWER}", comment="rest is visible in EFTA00039689 after 102_000 chars"),
     EmailCfg(id='EFTA00875181', duplicate_ids=['EFTA01901268']),
@@ -1422,6 +1438,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00915302', duplicate_ids=['EFTA01860910', 'EFTA01986221', 'EFTA01776411']),
     EmailCfg(id='EFTA01776613', duplicate_ids=['EFTA01860812', 'EFTA00915297', 'EFTA02691059']),
     EmailCfg(id='019321', truncate_to=700),
+    EmailCfg(id='022247', truncate_to=2000),
     EmailCfg(id='EFTA00982094', truncate_to=250),
     EmailCfg(id='EFTA00915298', truncate_to=300),
     EmailCfg(id='EFTA00915300', truncate_to=250),
@@ -1440,27 +1457,22 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00669647', truncate_to=2500),
     EmailCfg(id='EFTA02374977', truncate_to=2500),
     EmailCfg(id='EFTA00869828', truncate_to=SHORT_TRUNCATE_TO),
-    EmailCfg(id='EFTA02256631', truncate_to=NO_TRUNCATE),
+    EmailCfg(id='EFTA01903448', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA00661348', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA02378915', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA00676383', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA00949376', truncate_to=NO_TRUNCATE),
+    EmailCfg(id='EFTA02628058', truncate_to=NO_TRUNCATE),
+    EmailCfg(id='EFTA02626427', truncate_to=NO_TRUNCATE),
     #### MAGIC COMMENT FOR MANUAL CONFIG ####
-    EmailCfg(id='EFTA02628058', is_synthetic=False, truncate_to=NO_TRUNCATE),
-    EmailCfg(id='EFTA02626427', is_synthetic=False, truncate_to=NO_TRUNCATE),
     EmailCfg(
         id='EFTA02581361',
         description='Epstein funded a conference in Cuba that Gino Yu put together with $100k',
         is_interesting=True,
-        is_synthetic=False,
         truncate_to=NO_TRUNCATE,
     ),
-
-    EmailCfg(id='EFTA02225815', author=LESLEY_GROFF, author_uncertain=True, is_synthetic=False, truncate_to=NO_TRUNCATE),
-
     EmailCfg(id='EFTA00662373', author=MASHA_DROKOVA, author_reason='"Best, Masha"', description='"She is interesting. Great looks"'),
     EmailCfg(id='EFTA02234448', recipients=[LESLEY_GROFF]),
-    EmailCfg(id='EFTA02225790', author=LESLEY_GROFF, recipients=[MASHA_DROKOVA], author_uncertain=True, truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA02641374', is_interesting=True),
     # EmailCfg(id='EFTA02641374', is_interesting=True),
     EmailCfg(id='EFTA00953261', author=LARRY_SUMMERS, recipients=[JEFFREY_EPSTEIN]),
@@ -2429,6 +2441,7 @@ OTHER_FILES_CRYPTO = [
     DocCfg(id='EFTA01093509', author=CRYPTO_CURRENCY_PARTNERS_II, description=f"partnership draft", truncate_to=DEFAULT_TRUNCATE_TO * 2),
     DocCfg(id='EFTA01093444', author=CRYPTO_CURRENCY_PARTNERS_II, description='application form', attached_to_email_id='EFTA00626220'),#EFTA02708994
     DocCfg(id='EFTA01093471', author=CRYPTO_CURRENCY_PARTNERS_II, description='operating agreement', attached_to_email_id='EFTA00626220'),
+    EmailCfg(id='EFTA00752383', description=f"Mindshift conference attendee list", is_interesting=True),
     EmailCfg(id='EFTA01139067', description=f'Epstein tells Farkas he has not invested in {CRYPTO_CURRENCY_PARTNERS_II}', is_interesting=True),
     EmailCfg(id='EFTA00673123', description=f"{BROCK_PIERCE} and Epstein invested in Coinbase which would turn out to be extremely lucrative", duplicate_ids=['EFTA02371875']),
     EmailCfg(id='EFTA01051074', description=f'{BROCK_PIERCE} arranging meeting between Bannon and Epstein (in Doha?)'),
@@ -2447,11 +2460,22 @@ OTHER_FILES_CRYPTO = [
     DocCfg(id='EFTA01613759', author=CRYPTO_PR_LAB, description="letter of intent of acquisitionfrom Transform Group"),
     DocCfg(id='EFTA01613762', author=CRYPTO_PR_LAB, description=f"WhatsApp convo with {MARIA_PRUSAKOVA}", date='2019-05-21'),
     DocCfg(id='EFTA01612721', author=CRYPTO_PR_LAB, description=f"WhatsApp convo with {MARIA_PRUSAKOVA}", date='2019-05-21'),
+    EmailCfg(id='EFTA01013266', description=f"{MARIA_PRUSAKOVA}'s {CRYPTO_PR_LAB} request for payment for Davos", is_interesting=True),
+    EmailCfg(id='EFTA02285514', description=f"Medici Bank and {MARIA_PRUSAKOVA} meeting", is_interesting=True),
+    EmailCfg(id='EFTA01013922', description=f"{CRYPTO_PR_LAB} business plan", is_interesting=True),
+    EmailCfg(id='EFTA00495349', author=MARIA_PRUSAKOVA, author_reason=CRYPTO_PR_LAB, description='Ed Boyle / Medici Bank'),
     EmailCfg(
         id='EFTA02349697',
         author=MARIA_PRUSAKOVA,
         author_reason='boyfriend Christian, same as 032374',
         description=f'{MARIA_PRUSAKOVA} says she is starting a crypto company with {ZUBAIR_KHAN}',
+    ),
+    EmailCfg(
+        id='EFTA02267133',
+        author=LESLEY_GROFF,
+        recipients=[MARIA_PRUSAKOVA],
+        uncertain_recipient=f"{CRYPTO_PR_LAB} signature, could be Prusakova's partner",
+        truncate_to=NO_TRUNCATE
     ),
     # ZCash
     DocCfg(id='EFTA00811130', author=PERKINS_COIE, description='tax opinion on ZCash tokens'),
@@ -2459,6 +2483,8 @@ OTHER_FILES_CRYPTO = [
     DocCfg(id='EFTA00803405', description=f"Honeycomb Asset Management fund brochure", truncate_to=DEFAULT_TRUNCATE_TO),
     EmailCfg(id='EFTA01781741', description=f'{JOI_ITO} introduces Epstein to {MADARS_VIRZA} and the untraceable private crypto ZCash'),
     EmailCfg(id='EFTA02645742', description=f"tax implications of the untraceable 'privacy coin' ZCash", is_interesting=True),
+    EmailCfg(id='EFTA02282357', author=DAPHNE_WALLACE, author_uncertain='could be Lesley'),
+    EmailCfg(id='EFTA02283028', author=DAPHNE_WALLACE, author_uncertain='could be Lesley'),
     # Joi Ito / Kyara
     DocCfg(id='024256', author=JOI_ITO, description=f"Internet & Society: The Technologies and Politics of Control"),
     DocCfg(id='EFTA00805860', description=f"{JOI_ITO}'s Neoteny 3 fund investor update / portfolio"),
@@ -2521,7 +2547,7 @@ OTHER_FILES_CRYPTO = [
     DocCfg(id='EFTA02725909', description='memo to NYDFS for NYC Bitcoin Exchange, Balaji Srinivisan & Andrew Farkas on board'),
     EmailCfg(id='EFTA01060993', description=f"Epstein says he knows \"a few\" guys who hold over $50 million in bitcoin", is_interesting=True),
     EmailCfg(id='EFTA01915234', description='discussion of crypto regulations', is_interesting=True),
-    EmailCfg(id='EFTA00867030', description='discussion of a crypto token based on GDAX (whatever that means)', is_interesting=True),
+    EmailCfg(id='EFTA00867030', author='Kathy', description='discussion of a crypto token based on GDAX (whatever that means)', is_interesting=True),
     EmailCfg(id='EFTA01004753', description=f"founder of Layer1 is the only guy in crypto who doesn't want to meet Epstein (didn't last though)"),
     EmailCfg(id='EFTA02601503', description=f"discussion of investing in Layer1, an important crypto business"),
     EmailCfg(id='EFTA02517623', description=f"{VINCENZO_IOZZO} explains to Epstein how to deanonymize bitcoin", is_interesting=True),
@@ -2543,7 +2569,10 @@ OTHER_FILES_CRYPTO = [
         description=f"{AUSTIN_HILL} is upset that Ito and Epstein seem to have invested in Stellar and Ripple, competing blockchain ecosystems",
         is_interesting=True,
     ),
-    EmailCfg(id='EFTA01013922', description=f"{CRYPTO_PR_LAB} business plan", is_interesting=True),
+    EmailCfg(id='EFTA01943067', is_interesting=True, description=f'comments on {ARIANE_DE_ROTHSCHILD} and bitcoin'),
+    EmailCfg(id='EFTA00835324', recipients=[SERGEY_BELYAKOV], description='assessment of Mycelium bitcoin wallet'),
+    EmailCfg(id='EFTA00368659', is_interesting=True, description=f"meeting with {REID_HOFFMAN} about bitcoin"),
+    EmailCfg(id='EFTA01039626'),
     EmailCfg(id='EFTA02374960', description=f"Epstein says that he will fund a seat at MIT Media Lab for ZCash founder {MADARS_VIRZA}", is_interesting=True),
     EmailCfg(id='EFTA02588723', description=f'discussion of crypto food stamps debit cards', is_interesting=True),
     EmailCfg(id='EFTA02588748', description=f'discussion of crypto food stamps debit cards', is_interesting=True, truncate_to=800),
@@ -2632,10 +2661,17 @@ WHISTLEBLOWER_IDS = {
 
 OTHER_FILES_CRYPTO.extend([whistleblower_cfg(id, desc) for id, desc in WHISTLEBLOWER_IDS.items()])
 
+INTERESTING_EMAIL_IDS = [
+    'EFTA02516264',
+]
+
 # These emails will be suppressed in the curated views
 UNINTERESTING_EMAIL_IDS = [
+    # Alan Dlugash
+    'EFTA02367999',
     # Epstein
     '030997',
+    '033428',
     # John Page
     '016693',
     # Jabor
@@ -2740,6 +2776,7 @@ UNINTERESTING_EMAIL_IDS = [
     'EFTA00040105',
     'EFTA00040118',
     'EFTA00040124',
+    'EFTA02730468',
     'EFTA00040141',
     'EFTA02730485',
     'EFTA02731526',
@@ -2760,6 +2797,7 @@ UNINTERESTING_EMAIL_IDS = [
     '032213',
     '029206',
     '031822',
+    '031705',
     '030768',
     '026659',
     '032951',
@@ -2859,6 +2897,7 @@ for category in CONSTANT_CATEGORIES:
         ALL_OTHER_FILES_CONFIGS.append(cfg)
 
 ALL_CONFIGS = EMAILS_CONFIG + ALL_OTHER_FILES_CONFIGS + TEXTS_CONFIG
+EmailCfg.create_or_set_prop(INTERESTING_EMAIL_IDS, ALL_CONFIGS, 'is_interesting', True)
 EmailCfg.create_or_set_prop(UNINTERESTING_EMAIL_IDS, ALL_CONFIGS, 'is_interesting', False)
 EmailCfg.create_or_set_prop(NOT_CHRONOLOGICAL_VIEW_IDS, ALL_CONFIGS, 'is_in_chrono', False)
 CONFIGS_BY_ID = {cfg.id: cfg for cfg in ALL_CONFIGS}
