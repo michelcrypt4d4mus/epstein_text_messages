@@ -1590,7 +1590,7 @@ HighlightedNames(
                 info="Epstein's final girlfriend to whom he tried to leave $50-100 million and the island",
                 emailer_pattern=r"Karyna Shuliak?",
             ),
-            Contact('Kira Dikhtyar', emailer_pattern=r"Kira (D|Kira)"),
+            Contact('Kira Dikhtyar', emailer_pattern=r"Kira (D|Kira)", link_to_bio='https://x.com/FlippersUpNow/status/2020490996287443071'),
             Contact(
                 MARIA_PRUSAKOVA,
                 info=f"AKA Masha Prusso, former Olympic snowboarder, {CRYPTO_PR_LAB} co-founder, \"found ladies\" for Epstein",
