@@ -993,8 +993,9 @@ EMAILS_CONFIG = [
     EmailCfg(
         id='EFTA02109391',
         author=LESLEY_GROFF,
+        author_reason='"assistant to Jeffrey Epstein"',
         description=f"{AUSTIN_HILL} brought a woman named Ellaina Astra to Epstein's house",
-        author_uncertain=True,
+        truncate_to=NO_TRUNCATE,
     ),
     EmailCfg(id='EFTA02065181', author=LESLEY_GROFF),
     EmailCfg(id='EFTA02062308', author=LESLEY_GROFF),
@@ -1003,7 +1004,6 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA02246744', author=LESLEY_GROFF),
     EmailCfg(id='EFTA02102384', author=LESLEY_GROFF),
     EmailCfg(id='EFTA02100999', author=LESLEY_GROFF, author_uncertain=True),
-    EmailCfg(id='EFTA02109391', author=LESLEY_GROFF, author_reason='"assistant to Jeffrey Epstein"'),
     EmailCfg(id='EFTA01731288', author=LESLEY_GROFF, author_reason='signature'),
     EmailCfg(id='EFTA02104454', author=LESLEY_GROFF, author_uncertain='Epstein scheduling'),
     EmailCfg(id='EFTA02067245', author=LESLEY_GROFF, description=VALAR_MEETING, is_interesting=True, author_uncertain=True),
@@ -1440,7 +1440,6 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA02256631', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA00661348', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA02378915', truncate_to=NO_TRUNCATE),
-    EmailCfg(id='EFTA02109391', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA00676383', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA00949376', truncate_to=NO_TRUNCATE),
     #### MAGIC COMMENT FOR MANUAL CONFIG ####
