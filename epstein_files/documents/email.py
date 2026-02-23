@@ -20,7 +20,7 @@ from epstein_files.documents.documents.categories import Uninteresting
 from epstein_files.documents.documents.doc_cfg import DebugDict, EmailCfg, Metadata
 from epstein_files.documents.emails.constants import *
 from epstein_files.documents.emails.email_header import (EMAIL_SIMPLE_HEADER_REGEX,
-     EMAIL_SIMPLE_HEADER_LINE_BREAK_REGEX, FIELD_NAMES, EmailHeader)
+     EMAIL_SIMPLE_HEADER_LINE_BREAK_REGEX, EmailHeader)
 from epstein_files.documents.emails.emailers import extract_emailer_names
 from epstein_files.documents.other_file import OtherFile
 from epstein_files.people.interesting_people import EMAILERS_OF_INTEREST_SET
@@ -76,7 +76,8 @@ BCC_LISTS = JUNK_EMAILERS + MAILING_LISTS
 TRUNCATE_EMAILS_BY = BCC_LISTS + TRUNCATE_EMAILS_FROM
 REWRITTEN_HEADER_MSG = "(janky OCR header fields were prettified, check source if something seems off)"
 
-REPLY_SPLITTERS = [f"{field}:" for field in FIELD_NAMES] + [
+# TODO: add other forward patterns
+REPLY_SPLITTERS = [f"{field}:" for field in COMMON_HEADER_FIELDS] + [
     '********************************',
     'Begin forwarded message',
 ]
@@ -639,7 +640,7 @@ class Email(Communication):
                 if len(next_line) <= 1 or any([cont in next_line for cont in BAD_SUBJECT_CONTINUATIONS]):
                     pass
                 elif (subject.endswith(next_line) and next_line != subject) \
-                        or (FIELDS_COLON_REGEX.search(next_next) and not FIELDS_COLON_REGEX.search(next_line)):
+                        or (HEADER_FIELD_COLON_REGEX.search(next_next) and not HEADER_FIELD_COLON_REGEX.search(next_line)):
                     self.log(f"Fixing broken subject line\n  line: '{line}'\n    next: '{next_line}'\n    next: '{next_next}'\nsubject='{subject}'\n")
                     line += f" {next_line}"
                     i += 1
