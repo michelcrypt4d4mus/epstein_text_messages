@@ -400,13 +400,6 @@ class Document:
     def colored_external_links(self) -> Text:
         return self.file_info.build_external_links(with_alt_links=True)
 
-    def file_info_panel(self) -> Group:
-        """Panel with filename linking to raw file plus any additional info about the file."""
-        padded_info = [Padding(sentence, site_config.info_padding()) for sentence in self.info]
-        return Group(*([self.file_id_panel] + padded_info))
-        elements = [panel] + padded_info
-        return Group(*[Align(e, 'right') for e in elements])
-
     def lines_matching(self, _pattern: re.Pattern | str) -> list[MatchedLine]:
         """Find lines in this file matching a regex pattern."""
         pattern = patternize(_pattern)
@@ -455,6 +448,13 @@ class Document:
                 text = text.replace(k, v)
 
         return text
+
+    def rich_header(self) -> Group:
+        """Panel + subheaders with filename linking to raw file plus any additional info about the file."""
+        padded_info = [Padding(sentence, site_config.info_padding()) for sentence in self.info]
+        return Group(*([self.file_id_panel] + padded_info))
+        elements = [panel] + padded_info
+        return Group(*[Align(e, 'right') for e in elements])
 
     def top_lines(self, n: int = 10) -> str:
         """First n lines."""

@@ -776,7 +776,7 @@ class Email(Communication):
         else:
             body = self._body_as_table(txt, subtitle)
 
-        yield self.file_info_panel()
+        yield self.rich_header()
         body_bottom_padding = 0 if self.attached_docs else 1
         yield Padding(body, (0, 0, body_bottom_padding, site_config.other_files_table_indent))
 

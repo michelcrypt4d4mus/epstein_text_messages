@@ -305,7 +305,7 @@ class DojFile(OtherFile):
 
     def _left_bar_panel(self) -> RenderResult:
         """Alternate way of displaying DOJ files with a single color bar down the left side."""
-        yield (info_panel := self.file_info_panel())
+        yield (info_panel := self.rich_header())
         border_style = info_panel.renderables[0].border_style
         panel_args = [self.prettified_text, border_style]
 

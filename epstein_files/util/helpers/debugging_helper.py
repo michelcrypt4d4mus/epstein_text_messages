@@ -91,7 +91,7 @@ def print_interesting_doc_panels_and_props(epstein_files, sort_by_category: bool
             props = {'doc.is_interesting': doc.is_interesting}
 
         # console.print(doc._summary_panel)
-        console.print(doc.file_info_panel())
+        console.print(doc.rich_header())
         from epstein_files.util.env import args
 
         if args.debug:

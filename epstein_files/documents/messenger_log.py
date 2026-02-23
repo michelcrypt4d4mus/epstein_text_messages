@@ -116,7 +116,7 @@ class MessengerLog(Communication):
         raise RuntimeError(f"{self}: No timestamp found!")
 
     def __rich_console__(self, console: Console, options: ConsoleOptions) -> RenderResult:
-        yield self.file_info_panel()
+        yield self.rich_header()
         yield NewLine()
 
         for message in self.messages:
