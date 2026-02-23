@@ -389,6 +389,12 @@ EMAILS_CONFIG = [
     EmailCfg(id='033309', author=LINDA_STONE, author_reason='"Co-authored with iPhone autocorrect"'),
     EmailCfg(id='017581', author='Lisa Randall', author_reason='reply header'),
     EmailCfg(id='033246', author=MARIA_PRUSAKOVA, author_reason='Kind regards/Cordialement in signature'),
+    EmailCfg(
+        id='EFTA00997627',
+        author=MARIA_PRUSAKOVA,
+        author_reason='Kind regards/Cordialement in signature',
+        description='"you will be introduced to more gorgeous Alicas.. Just let me know what kind of girl"',
+    ),
     EmailCfg(id='026609', author='Mark Green', author_reason='Actually a fwd, Mark Green is in signature'),
     EmailCfg(id='030472', author=MARTIN_WEINBERG, author_uncertain='Maybe. in reply'),
     EmailCfg(id='032563', author=MASHA_DROKOVA, author_reason='replied to in 033014'),
