@@ -1332,7 +1332,6 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00977447', recipients=[RENATA_BOLOTOVA], uncertain_recipient=SNEAKY_DOG, duplicate_ids=['EFTA02577917', 'EFTA01946045']),
     EmailCfg(id='EFTA01843319', recipients=[RENATA_BOLOTOVA], uncertain_recipient=SNEAKY_DOG, duplicate_ids=['EFTA00929871', 'EFTA01773449', 'EFTA02550388']),
     EmailCfg(id='EFTA00850130', recipients=[SERGEY_BELYAKOV]),
-    EmailCfg(id='EFTA00835324', recipients=[SERGEY_BELYAKOV], description='assessment of Mycelium bitcoin wallet'),
     EmailCfg(id='EFTA00852324', recipients=[SERGEY_BELYAKOV, JEFFREY_EPSTEIN, 'Elena Bolyakina', PETER_THIEL]),
     EmailCfg(id='EFTA00857165', recipients=['Seth Lloyd'], author_reason='quoted reply line'),
     EmailCfg(id='EFTA00749241', recipients=[SULTAN_BIN_SULAYEM], author_reason='widely reported', is_interesting=True),
@@ -1353,9 +1352,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA02637315', is_interesting=True, description=f"{AZIZA_ALAHMADI} says BTC to fiat is legalized in middle east"),
     EmailCfg(id='EFTA02517037', is_interesting=True, description=f"Epstein wants to talk about Kazakhstan with {LARRY_SUMMERS}"),
     EmailCfg(id='EFTA02559311', is_interesting=True, description=f"Epstein has some connection to the sovereign wealth fund of Kazakhstan"),
-    EmailCfg(id='EFTA01943067', is_interesting=True, description=f'comments on {ARIANE_DE_ROTHSCHILD} and bitcoin'),
     EmailCfg(id='EFTA02062130', is_interesting=True, description=f'{NILI_PRIELL_BARAK} installing cameras at Epstein\'s house'),
-    EmailCfg(id='EFTA00368659', is_interesting=True, description=f"meeting with {REID_HOFFMAN} about bitcoin"),
     EmailCfg(id='EFTA02730481', date='2023-07-07T11:01:00'),  # TODO: actually reply timestamp
     EmailCfg(id='EFTA02731577', date='2024-10-16T00:00:00'),  # TODO: actually reply timestamp
     EmailCfg(id='EFTA02730468', date='2019-07-11T08:25:00'),  # TODO: This is just wrong
@@ -2458,6 +2455,7 @@ OTHER_FILES_CRYPTO = [
     DocCfg(id='EFTA01613759', author=CRYPTO_PR_LAB, description="letter of intent of acquisitionfrom Transform Group"),
     DocCfg(id='EFTA01613762', author=CRYPTO_PR_LAB, description=f"WhatsApp convo with {MARIA_PRUSAKOVA}", date='2019-05-21'),
     DocCfg(id='EFTA01612721', author=CRYPTO_PR_LAB, description=f"WhatsApp convo with {MARIA_PRUSAKOVA}", date='2019-05-21'),
+    EmailCfg(id='EFTA01013922', description=f"{CRYPTO_PR_LAB} business plan", is_interesting=True),
     EmailCfg(id='EFTA00495349', author=MARIA_PRUSAKOVA, author_reason=CRYPTO_PR_LAB, description='Ed Boyle / Medici Bank'),
     EmailCfg(
         id='EFTA02349697',
@@ -2562,7 +2560,9 @@ OTHER_FILES_CRYPTO = [
         description=f"{AUSTIN_HILL} is upset that Ito and Epstein seem to have invested in Stellar and Ripple, competing blockchain ecosystems",
         is_interesting=True,
     ),
-    EmailCfg(id='EFTA01013922', description=f"{CRYPTO_PR_LAB} business plan", is_interesting=True),
+    EmailCfg(id='EFTA01943067', is_interesting=True, description=f'comments on {ARIANE_DE_ROTHSCHILD} and bitcoin'),
+    EmailCfg(id='EFTA00835324', recipients=[SERGEY_BELYAKOV], description='assessment of Mycelium bitcoin wallet'),
+    EmailCfg(id='EFTA00368659', is_interesting=True, description=f"meeting with {REID_HOFFMAN} about bitcoin"),
     EmailCfg(id='EFTA02374960', description=f"Epstein says that he will fund a seat at MIT Media Lab for ZCash founder {MADARS_VIRZA}", is_interesting=True),
     EmailCfg(id='EFTA02588723', description=f'discussion of crypto food stamps debit cards', is_interesting=True),
     EmailCfg(id='EFTA02588748', description=f'discussion of crypto food stamps debit cards', is_interesting=True, truncate_to=800),
