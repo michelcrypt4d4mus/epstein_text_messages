@@ -82,6 +82,7 @@ FRED_HADDAD = 'Fred Haddad'
 GERALD_BARTON = 'Gerald Barton'
 GERALD_LEFCOURT = 'Gerald Lefcourt'
 GHISLAINE_MAXWELL = 'Ghislaine Maxwell'
+GINO_YU = 'Gino Yu'
 GLENN_DUBIN = 'Glenn Dubin'
 GORDON_GETTY = 'Gordon Getty'
 GWENDOLYN_BECK = 'Gwendolyn Beck'         # https://www.lbc.co.uk/article/who-gwendolyn-beck-epstein-andrew-5HjdN66_2/

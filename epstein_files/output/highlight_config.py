@@ -270,7 +270,7 @@ HighlightedNames(
         label='China',
         style='bright_red',
         contacts=[
-            Contact("Gino Yu", f"professor / game designer in Hong Kong, worked with {MASHA_DROKOVA} on PR for Epstein (?)"),
+            Contact(GINO_YU, f"professor / game designer in Hong Kong, friend of {MASHA_DROKOVA}, worked on PR for Epstein"),
         ],
         patterns=[
             r"Ali.?baba",
