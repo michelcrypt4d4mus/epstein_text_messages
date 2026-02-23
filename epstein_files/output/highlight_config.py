@@ -440,7 +440,7 @@ HighlightedNames(
         patterns=[
             r"(Al )?Franken",
             r"Al Gore",
-            r"(Barac?k )?Obama",
+            r"((Barac?k|President) )?Obama",
             r"((Bill|Hillart?y) )?Clinton",
             r"((Chuck|Charles) )?S(ch|hc)umer",
             r"Debbie Wasserman Schultz",
@@ -1356,6 +1356,7 @@ HighlightedNames(
             r"(Hamid )?Karzai",
             r"Hamad bin Jassim",
             r"Hamas",
+            r"Hassan (Mohammed )?(Abdul )?(.atif )?Jameel",
             r"Hezbollah",
             r"Hourani",
             r"Houthi",
