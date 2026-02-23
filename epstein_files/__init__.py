@@ -166,14 +166,17 @@ def epstein_show():
             local_extract_ids = [id for id in ids if is_local_extract_file(id)]
             raw_docs = [Document.from_file_id(id) for id in ids if not is_local_extract_file(id)]
 
-            if local_extract_ids:
-                raw_docs += EpsteinFiles.get_files().get_ids(local_extract_ids)
+            if local_extract_ids or with_attachment_ids:
+                epstein_files = EpsteinFiles.get_files()
 
-            # show the attachments bc reloaded obj won't have them
-            for id in with_attachment_ids:
-                existing_doc = EpsteinFiles.get_files().get_id(id)
-                logger.warning(f"Showing the attachments now because reloaded Email won't have them:")
-                console.print(existing_doc)
+                if local_extract_ids:
+                    raw_docs += epstein_files.get_ids(local_extract_ids)
+
+                # show the attachments bc reloaded obj won't have them
+                for id in with_attachment_ids:
+                    existing_doc = epstein_files.get_id(id)
+                    logger.warning(f"Showing the attachments now because reloaded Email won't have them:")
+                    console.print(existing_doc)
 
         if any(doc.file_info.has_file for doc in raw_docs):
             # Rebuild the Document objs so we can see result of latest processing
