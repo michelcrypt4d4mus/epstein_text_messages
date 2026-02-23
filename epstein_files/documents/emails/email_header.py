@@ -8,7 +8,7 @@ from epstein_files.documents.emails.emailers import BAD_EMAILER_REGEX, TIME_REGE
 from epstein_files.util.constant.strings import AUTHOR
 from epstein_files.util.constant.names import UNKNOWN
 from epstein_files.util.constants import CONFIGS_BY_ID
-from epstein_files.util.helpers.string_helper import indented
+from epstein_files.util.helpers.string_helper import indented, join_truthy
 from epstein_files.util.logging import logger
 
 ON_BEHALF_OF = 'on behalf of'
@@ -59,6 +59,10 @@ class EmailHeader:
     def __post_init__(self):
         self.num_header_rows = len(self.field_names)
         self.was_initially_empty = self.is_empty
+
+    @property
+    def all_attachments(self) -> list[str]:
+        return join_truthy(self.attachments, self.inline_images, ';').split(';')
 
     @property
     def is_empty(self) -> bool:

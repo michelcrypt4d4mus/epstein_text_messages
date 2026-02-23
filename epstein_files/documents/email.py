@@ -234,8 +234,8 @@ class Email(Communication):
 
     @property
     def attachments(self) -> list[str]:
-        """Strings in the Attachments: field in the header, split by semicolon."""
-        return [a.strip() for a in (self.header.attachments or '').split(';')]
+        """Strings in the Attachments: and Inline-Images: fields in the header, split by semicolon."""
+        return self.header.all_attachments
 
     @property
     def config(self) -> EmailCfg | None:
