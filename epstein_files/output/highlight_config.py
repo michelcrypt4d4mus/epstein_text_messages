@@ -1634,6 +1634,7 @@ HighlightedNames(
             r'Svet',
             r"Russ?ian?",
             r"Sberbank",
+            r"Serguei Beloussov",
             r'(Semion )?Mogilevich',
             r"Soviet( Union)?",
             r"USSR",

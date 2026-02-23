@@ -1446,6 +1446,16 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00676383', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA00949376', truncate_to=NO_TRUNCATE),
     #### MAGIC COMMENT FOR MANUAL CONFIG ####
+    EmailCfg(id='EFTA02628058', is_synthetic=False, truncate_to=NO_TRUNCATE),
+    EmailCfg(id='EFTA02626427', is_synthetic=False, truncate_to=NO_TRUNCATE),
+    EmailCfg(
+        id='EFTA02581361',
+        description='Epstein funded a conference in Cuba that Gino Yu put together with $100k',
+        is_interesting=True,
+        is_synthetic=False,
+        truncate_to=NO_TRUNCATE,
+    ),
+
     EmailCfg(id='EFTA02225815', author=LESLEY_GROFF, author_uncertain=True, is_synthetic=False, truncate_to=NO_TRUNCATE),
 
     EmailCfg(id='EFTA00662373', author=MASHA_DROKOVA, author_reason='"Best, Masha"', description='"She is interesting. Great looks"'),

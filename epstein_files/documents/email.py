@@ -101,7 +101,7 @@ OCR_REPAIRS: dict[str | re.Pattern, str] = {
     re.compile(r"(^[>»]+\n){2,}", re.MULTILINE): r"\1",
     re.compile(r"\n[<>I ]*wrote:"): ' wrote:',
     # HTML garbage
-    r'&[=n]bs[=p];|<=span>': '',
+    r'&[=n]bs[=p];|<=span>|=C\d+\b': '',
     re.compile(r'^O= ', re.MULTILINE): 'On ',
     re.compile(r"<?=/?[bru]>"): '',
     re.compile(r'(^|\s)[<=][AC]\d+[=>]?', re.MULTILINE): r'\1',
