@@ -230,7 +230,7 @@ HighlightedNames(
             r"(Barry )?Honig",
             r"((Bill|David) )?Koch( (Bro(s|thers)|Industries))?",
             r"BP",
-            r"CEO",
+            r"C[EF]O",
             r"(co-?)?founder",
             r"Colony Capital",
             r"(General|Limited) Partner",
@@ -356,7 +356,7 @@ HighlightedNames(
             r"Bioptix",  # Now RIOT Blockchain
             r"bit[o\s]?coin( Foundation)?",
             r"Bit(Angels|Finex|Fury|Go|Main)",
-            r"block\s?(chain|tree)( capital)?",
+            r"(Riot )?block\s?(chain|tree)( capital)?",
             r"Blockstream",
             r"Blythe Masters",
             r"Brac",  # Brock? EFTA01792443
@@ -1617,7 +1617,7 @@ HighlightedNames(
             r"Rosneft",
             r"RT",
             r"Ruben Vardanyan",
-            r"Rusnano",
+            r"Rusnano( USA)?(,? Inc\.?)?",
             r"St.? Petersburg",
             r'Svet',
             r"Russ?ian?",
