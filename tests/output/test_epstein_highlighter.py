@@ -134,7 +134,7 @@ HIGHLIGHT_COUNTS = {
     "money laundering": 65,
     "money-laundering": 2,
     "msft": 1,
-    "none": 43, # WTF?
+    "none": 52, # TODO: stop highlighting 'None'
     "obama": 1,
     "pa": 3,
     "peirce": 1,

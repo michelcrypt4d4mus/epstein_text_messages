@@ -1338,7 +1338,6 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA02730481', date='2023-07-07T11:01:00'),  # TODO: actually reply timestamp
     EmailCfg(id='EFTA02731577', date='2024-10-16T00:00:00'),  # TODO: actually reply timestamp
     EmailCfg(id='EFTA02730468', date='2019-07-11T08:25:00'),  # TODO: This is just wrong
-    EmailCfg(id='EFTA00039665', date='2021-05-21 03:14:00'),  # Slow file
     # Generated basd on OtherFile.extract_timestamp()
     EmailCfg(id='EFTA02731783', date='2022-01-21 17:28:00'),
     EmailCfg(id='EFTA02731578', date='2021-05-28 10:00:00'),
@@ -1397,8 +1396,8 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00758140', description="possibly about Sarah Ferguson?"),
     EmailCfg(id='EFTA02434682', description=f"Epstein and {JEAN_LUC_BRUNEL} courting a finance bro with women", is_interesting=True),
     EmailCfg(id='EFTA01013413', description='Reza Bundy is the founder of IronPlanet'),
-    EmailCfg(id='EFTA00039689', description=f"{SEC_WHISTLEBLOWER} re: Signature Bank, Hapoalim, Bioptix/RIOT, Barry Honig, etc."),
-    EmailCfg(id='EFTA00093702', description=f"{SEC_WHISTLEBLOWER}", comment="rest is visible in EFTA00039689 after 102_000 chars"),
+    # EmailCfg(id='EFTA00039689', description=f"{SEC_WHISTLEBLOWER} re: Signature Bank, Hapoalim, Bioptix/RIOT, Barry Honig, etc."),
+    # EmailCfg(id='EFTA00093702', description=f"{SEC_WHISTLEBLOWER}", comment="rest is visible in EFTA00039689 after 102_000 chars"),
     EmailCfg(id='EFTA00875181', duplicate_ids=['EFTA01901268']),
     EmailCfg(id='EFTA01852975', duplicate_ids=['EFTA02001764']),
     EmailCfg(id='EFTA00563586', duplicate_ids=['EFTA02323722']),

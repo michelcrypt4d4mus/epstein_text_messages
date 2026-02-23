@@ -19,7 +19,7 @@ FILE_INFO_CSV_PATH = FIXTURES_DIR.joinpath('files.csv')
 
 @pytest.fixture
 def doj_file_id() -> str:
-    return 'EFTA00039689'
+    return 'EFTA02725909'  # memo to NYDFS for NYC bitcoin exchange
 
 
 @pytest.fixture
