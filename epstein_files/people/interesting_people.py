@@ -11,7 +11,6 @@ AUTHORS_OF_INTEREST = [
     INSIGHTS_POD,
     # NOAM_CHOMSKY,
     MICHAEL_WOLFF,
-    SVETLANA_POZHIDAEVA,
 ]
 
 # List of people whose files to print in curated site. Order matters.
@@ -45,6 +44,7 @@ EMAILERS_OF_INTEREST = [
     GINO_YU,
     ANDREW_FARKAS,
     ARIANNA_SIMPSON,
+    SVETLANA_POZHIDAEVA,
     MOHAMED_WAHEED_HASSAN,
     JENNIFER_JACQUET,
     ZUBAIR_KHAN,
