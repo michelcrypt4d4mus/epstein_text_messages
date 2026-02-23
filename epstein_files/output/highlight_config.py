@@ -545,7 +545,7 @@ HighlightedNames(
         label=LAWYER,  # Epstein's lawyers
         style='purple',
         contacts=[
-            Contact(ALAN_DLUGASH, 'tax partner at Paneth and Shrone', r"Alan J.? Dlugash"),
+            Contact(ALAN_DLUGASH, 'tax partner at Paneth and Shrone', r"Alan (J.? )?Dlugash"),
             Contact('Alan S Halperin', "partner at Paul, Weiss"),
             Contact(ALAN_DERSHOWITZ, f"{HARVARD} Law School professor", r"(alan.{1,7})?dershowi(lz?|t?z)|AlanDersh"),
             Contact(ARDA_BESKARDES, "NYC immigration attorney allegedly involved in sex-trafficking operations"),

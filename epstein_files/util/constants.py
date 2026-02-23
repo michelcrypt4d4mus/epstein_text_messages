@@ -2534,7 +2534,7 @@ OTHER_FILES_CRYPTO = [
     DocCfg(id='EFTA02725909', description='memo to NYDFS for NYC Bitcoin Exchange, Balaji Srinivisan & Andrew Farkas on board'),
     EmailCfg(id='EFTA01060993', description=f"Epstein says he knows \"a few\" guys who hold over $50 million in bitcoin", is_interesting=True),
     EmailCfg(id='EFTA01915234', description='discussion of crypto regulations', is_interesting=True),
-    EmailCfg(id='EFTA00867030', description='discussion of a crypto token based on GDAX (whatever that means)', is_interesting=True),
+    EmailCfg(id='EFTA00867030', author='Kathy', description='discussion of a crypto token based on GDAX (whatever that means)', is_interesting=True),
     EmailCfg(id='EFTA01004753', description=f"founder of Layer1 is the only guy in crypto who doesn't want to meet Epstein (didn't last though)"),
     EmailCfg(id='EFTA02601503', description=f"discussion of investing in Layer1, an important crypto business"),
     EmailCfg(id='EFTA02517623', description=f"{VINCENZO_IOZZO} explains to Epstein how to deanonymize bitcoin", is_interesting=True),
@@ -2644,6 +2644,10 @@ WHISTLEBLOWER_IDS = {
 }
 
 OTHER_FILES_CRYPTO.extend([whistleblower_cfg(id, desc) for id, desc in WHISTLEBLOWER_IDS.items()])
+
+INTERESTING_EMAIL_IDS = [
+    'EFTA02516264',
+]
 
 # These emails will be suppressed in the curated views
 UNINTERESTING_EMAIL_IDS = [
@@ -2873,6 +2877,7 @@ for category in CONSTANT_CATEGORIES:
         ALL_OTHER_FILES_CONFIGS.append(cfg)
 
 ALL_CONFIGS = EMAILS_CONFIG + ALL_OTHER_FILES_CONFIGS + TEXTS_CONFIG
+EmailCfg.create_or_set_prop(INTERESTING_EMAIL_IDS, ALL_CONFIGS, 'is_interesting', True)
 EmailCfg.create_or_set_prop(UNINTERESTING_EMAIL_IDS, ALL_CONFIGS, 'is_interesting', False)
 EmailCfg.create_or_set_prop(NOT_CHRONOLOGICAL_VIEW_IDS, ALL_CONFIGS, 'is_in_chrono', False)
 CONFIGS_BY_ID = {cfg.id: cfg for cfg in ALL_CONFIGS}

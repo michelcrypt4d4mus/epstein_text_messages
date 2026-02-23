@@ -101,7 +101,7 @@ OCR_REPAIRS: dict[str | re.Pattern, str] = {
     re.compile(r"(^[>»]+\n){2,}", re.MULTILINE): r"\1",
     re.compile(r"\n[<>I ]*wrote:"): ' wrote:',
     # HTML garbage
-    r'&[=n]bs[=p];|<=span>|=C\d+\b': '',
+    re.compile(r'=/?(cl|d)iv>|&[=n]bs[=p];|<=span>|=C\d+\b'): '',
     re.compile(r'^O= ', re.MULTILINE): 'On ',
     re.compile(r"<?=/?[bru]>"): '',
     re.compile(r'(^|\s)[<=][AC]\d+[=>]?', re.MULTILINE): r'\1',
@@ -142,7 +142,7 @@ OCR_REPAIRS: dict[str | re.Pattern, str] = {
     ' https://www.theguardian.com/world/2017/may/29/close-friend-trump-thomas-barrack-\nalleged-tax-evasion-italy-sardinia?CMP=share btn fb': '\nhttps://www.theguardian.com/world/2017/may/29/close-friend-trump-thomas-barrack-alleged-tax-evasion-italy-sardinia?CMP=share_btn_fb',
     'search-for-secret-putin-\nfortune.html': 'search-for-secret-putin-fortune.html',
     re.compile(r"[h=][t=][t=][p=]://"): 'http://',
-    re.compile(r"([h=][t=][t=][p=][s=]|Imps )://"): 'https://',
+    re.compile(r"([h=][t=][t=][op=][s=]|Imps )://"): 'https://',
     re.compile(r'timestopics/people/t/landon jr thomas/inde\n?x\n?\.\n?h\n?tml'): 'timestopics/people/t/landon_jr_thomas/index.html',
     re.compile(r" http ?://www. ?dailymail. ?co ?.uk/news/article-\d+/Troub ?led-woman-history-drug-\n?us ?e-\n?.*html"): '\nhttp://www.dailymail.co.uk/news/article-3914012/Troubled-woman-history-drug-use-claimed-assaulted-Donald-Trump-Jeffrey-Epstein-sex-party-age-13-FABRICATED-story.html',
     re.compile(r"http.*steve-bannon-trump-tower-\n?interview-\n?trumps-\n?strategist-plots-\n?new-political-movement-948747"): "\nhttp://www.hollywoodreporter.com/news/steve-bannon-trump-tower-interview-trumps-strategist-plots-new-political-movement-948747",
@@ -648,7 +648,7 @@ class Email(Communication):
             new_lines.append(line)
             i += 1
 
-        # logger.debug(f"----after line repair---\n" + '\n'.join(new_lines[0:20]) + "\n---")
+        logger.debug(f"----after line repair---\n" + '\n'.join(new_lines[0:20]) + "\n---")
         return '\n'.join(lines)
 
     def _sent_from_device(self) -> str | None:
