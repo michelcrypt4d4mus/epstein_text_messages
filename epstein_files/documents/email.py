@@ -219,7 +219,7 @@ class Email(Communication):
 
     def __post_init__(self):
         super().__post_init__()
-        self.text = self._prettify_text()
+        self.text = self._strip_unwanted_text()
         self.actual_text = self._extract_actual_text()
         self.sent_from_device = self._sent_from_device()
 
@@ -540,7 +540,8 @@ class Email(Communication):
 
         self._set_text(lines=lines)
 
-    def _prettify_text(self) -> str:
+    # TODO: why isn't this done in self._repair()?
+    def _strip_unwanted_text(self) -> str:
         """Add newlines before quoted replies and snip signatures."""
         # Insert line breaks now unless header is broken, in which case we'll do it later after fixing header
         text = self.text if self.header.was_initially_empty else _add_line_breaks(self.text)
@@ -723,7 +724,9 @@ class Email(Communication):
         self.log(f"Truncate determination: {log_args_str}")
         return num_chars
 
-    def __rich_console__(self, console: Console, options: ConsoleOptions) -> RenderResult:
+
+    @property
+    def prettified_text(self) -> Text:
         should_rewrite_header = self.header.was_initially_empty and self.header.num_header_rows > 0
         num_chars = self._truncate_to_length()
         trim_footer_txt = None
@@ -760,21 +763,28 @@ class Email(Communication):
             for line in text.split('\n')
         ]
 
-        max_line_len = max(*[len(line) for line in lines])
         text = join_texts(lines, '\n')
-        subtitle = None
+        txt = highlighter(text)
+
+        if trim_footer_txt:
+            txt.append('...\n\n').append(trim_footer_txt)
+
+        return txt
+
+    def __rich_console__(self, console: Console, options: ConsoleOptions) -> RenderResult:
+        prettified_txt = self.prettified_text
+        max_line_len = max(*[len(line) for line in prettified_txt.split('\n')])
+        panel_subtitle = None
 
         if self.config_description_txt and site_config.email_info_in_subtitle:
             max_line_len = max(max_line_len, len(self.config_description_txt.plain))
-            subtitle = Text('').append(self.config_description_txt)
-            subtitle.justify = 'right'
-
-        txt = highlighter(text).append('...\n\n').append(trim_footer_txt) if trim_footer_txt else highlighter(text)
+            panel_subtitle = Text('').append(self.config_description_txt)
+            panel_subtitle.justify = 'right'
 
         if args.panelize_emails:
-            body = self._body_as_panel(txt, subtitle)
+            body = self._body_as_panel(prettified_txt, panel_subtitle)
         else:
-            body = self._body_as_table(txt, subtitle)
+            body = self._body_as_table(prettified_txt, panel_subtitle)
 
         yield self.rich_header()
         body_bottom_padding = 0 if self.attached_docs else 1
@@ -784,9 +794,6 @@ class Email(Communication):
             attachments_table_title = f"| Email Attachments for {self.file_info.url_slug}:" # ╏┇┣
             attachments_table = OtherFile.files_preview_table(self.attached_docs, title=attachments_table_title)
             yield Padding(attachments_table, (0, 0, 1, site_config.attachment_indent))
-
-        if should_rewrite_header:
-            self.log_top_lines(self.header.num_header_rows + 4, f'Original header:')
 
     def _body_as_panel(self, text: str | Text, description: Text | None) -> Panel:
         """Renders the info info text in the panel's bottom border."""
