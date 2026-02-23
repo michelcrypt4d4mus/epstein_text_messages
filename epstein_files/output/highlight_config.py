@@ -664,6 +664,7 @@ HighlightedNames(
             r"Germany?",
             r"Gillard",
             r"Gree(ce|k)",
+            r"Hollande",
             r"Ibiza",
             r"Ital(ian|y)",
             r"Jacques",
@@ -1228,7 +1229,7 @@ HighlightedNames(
     ),
     HighlightedNames(
         label=LOBBYIST,
-        style='light_coral',  # TODO: this shouldn't be same as Mongolia
+        style='dark_khaki',
         contacts=[
             Contact(BOB_CROWE, "partner at Nelson Mullins", r"[BR]ob Crowe"),
             Contact('Joshua Cooper Ramo', "co-CEO of Henry Kissinger Associates"),
@@ -1258,7 +1259,7 @@ HighlightedNames(
             Contact(PUREVSUREN_LUNDEG, "Mongolian ambassador to the UN", r"Purevsuren( Lundeg)?"),
         ],
         patterns=[
-            r"Elbekdorj",
+            r"(President )?Elbe[gk]dorj",
             r"Enkhbajar",
             r"Mongolian?",
         ]
