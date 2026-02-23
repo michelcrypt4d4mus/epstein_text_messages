@@ -247,7 +247,7 @@ HighlightedNames(
             r"Michael Klein",
             r"New Leaf Ventures",
             r"Park Partners",
-            r"real estate( developer)?"
+            r"real estate( developer)?",
             r"Robin\s?hood",
             r"SALSS",
             r"Swedish American Life Science Summit",
