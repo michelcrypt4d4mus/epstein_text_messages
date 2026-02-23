@@ -733,6 +733,8 @@ class Email(Communication):
             text = text[0:num_chars]
             trim_footer_txt = self.truncation_note(num_chars)
 
+        text = collapse_newlines(text)
+
         # Rewrite broken headers where the values are on separate lines from the field names
         if should_rewrite_header:
             configured_actual_text = self.config.actual_text if self.config and self.config.actual_text else None

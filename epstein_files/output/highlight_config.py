@@ -412,7 +412,7 @@ HighlightedNames(
             r"supersecretbitcoinproject",
             r"Tally Capital",
             r"Tether",
-            r"(transparent|virtual) (currenc(ies|y)|money)",
+            r"(transparent|virtual) (currenc(ies|y)|goods?|money)",
             r"wash trad(es?|ing)",
             r"Wire ca\n?rd",
             r"Wladimir( van der Laan)?",  # bitcoin dev
