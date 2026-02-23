@@ -27,6 +27,11 @@ def doj_filename(doj_file_id) -> str:
     return f"{doj_file_id}.txt"
 
 
+@pytest.fixture
+def doj_local_file_id(doj_file_id) -> str:
+    return doj_file_id + '_28'
+
+
 @pytest.fixture(scope='session')
 def epstein_files() -> EpsteinFiles:
     return EpsteinFiles.get_files()

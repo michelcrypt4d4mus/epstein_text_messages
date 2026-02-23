@@ -360,7 +360,7 @@ HighlightedNames(
             r"coins?( Center)?",
             r"Complementary Currency",
             r"Cory Fields",  # bitcoin dev
-            r"cr[iy]?pto (coins?|currenc(y|ies)|PR Lab)?( Partners( II)?)?",
+            r"cr[iy]?pto (coins?|currenc(y|ies)|mining|PR Lab)?( Partners( II)?)?",
             r"crypto(prlab)?",
             r"(Dan )?Morehead",
             r"Digital (Assets?|Currenc(ies|y)( Initiative)?)",

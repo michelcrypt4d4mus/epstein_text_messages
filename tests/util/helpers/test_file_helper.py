@@ -18,3 +18,9 @@ def test_coerce_file_stem(house_file_id, house_file_stem, house_filename, local_
     assert coerce_file_stem(house_file_stem) == house_file_stem
     assert coerce_file_stem(house_filename) == house_file_stem
     assert coerce_file_stem(local_extract_file_name) == 'HOUSE_OVERSIGHT_012345_1'
+
+
+def test_coerce_url_slug(doj_file_id, doj_filename, doj_local_file_id, house_filename, local_extract_file_name):
+    assert coerce_url_slug(doj_file_id) == doj_file_id
+    assert coerce_url_slug(doj_filename) == doj_file_id
+    assert coerce_url_slug(doj_local_file_id) == doj_file_id
