@@ -1430,6 +1430,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00982818', truncate_to=500),
     EmailCfg(id='EFTA01731638', truncate_to=530),
     EmailCfg(id='EFTA00362171', truncate_to=1096),
+    EmailCfg(id='EFTA00888467', truncate_to=1400),
     EmailCfg(id='EFTA00836570', truncate_to=1600),
     EmailCfg(id='EFTA00681240', truncate_to=2000),
     EmailCfg(id='EFTA00669647', truncate_to=2500),
@@ -2762,6 +2763,7 @@ UNINTERESTING_EMAIL_IDS = [
 
 # Not uninteresting enough to be permanently marked as such but not good enough for --output-chrono
 NOT_CHRONOLOGICAL_VIEW_IDS = [
+    '016692',
     '022247',
     '030095',
     '022234',
