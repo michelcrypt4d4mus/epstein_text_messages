@@ -22,15 +22,10 @@ from epstein_files.util.helpers.data_helpers import *
 from epstein_files.util.helpers.debugging_helper import print_all_timestamps, print_file_counts
 from epstein_files.util.helpers.string_helper import quote
 from epstein_files.util.logging import logger
-from epstein_files.output.rich import bool_txt, console, highlighter, styled_key_value, print_subtitle_panel
+from epstein_files.output.rich import bool_txt, console, highlighter, print_json, print_subtitle_panel
 
-
-for cfg in [c for c in CONFIGS_BY_ID.values() if isinstance(c, EmailCfg)]:
-    if cfg.attached_to_email_id:
-        email = epstein_files.get_id(cfg.id)
-        if email.is_duplicate:
-            logger.error(f"{cfg.id} is attached to a duplicate email {email.file_id}")
-
+local_ids = [doc.file_id for doc in epstein_files.local_extracts]
+print_json('local ids', local_ids)
 
 # print_file_counts(epstein_files)
 # print_all_timestamps(epstein_files)

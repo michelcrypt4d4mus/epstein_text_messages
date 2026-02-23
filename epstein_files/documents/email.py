@@ -58,6 +58,14 @@ MAX_NUM_HEADER_LINES = 14
 MAX_QUOTED_REPLIES = 1
 NUM_WORDS_IN_LAST_QUOTE = 6
 
+# TODO: Copy replace_text_with?
+DERIVED_CFG_PROPS_TO_COPY = [
+    'author_uncertain',
+    'category',
+    'is_in_chrono',
+    'is_interesting',
+]
+
 # Junk mail
 JUNK_EMAILERS = [
     contact.name
@@ -230,23 +238,25 @@ class Email(Communication):
     def config(self) -> EmailCfg | None:
         """Configured timestamp, if any."""
         if self.file_info.is_local_extract_file:
+            this_file_cfg = cast(EmailCfg, CONFIGS_BY_ID.get(self.file_info.file_id))
+
+            # Merge config for file this was extracted from into self.derived_cfg
             if not self.derived_cfg and (extracted_from_cfg := CONFIGS_BY_ID.get(self.file_info.url_slug)):
-                # Copy info from original config for file this document was extracted from.
-                if (my_cfg := CONFIGS_BY_ID.get(self.file_id)):
-                    self.derived_cfg = cast(EmailCfg, deepcopy(my_cfg))
-                else:
-                    self.derived_cfg = EmailCfg(id=self.file_id)  # Create new EmailCfg
+                self.derived_cfg = this_file_cfg or EmailCfg(id=self.file_id)
 
                 if (extracted_from_description := extracted_from_cfg.complete_description):
                     self.derived_cfg.description = f"{APPEARS_IN} {extracted_from_description}"
 
-                # TODO: Copy replace_text_with?
-                self.derived_cfg.author_uncertain = self.derived_cfg.author_uncertain or extracted_from_cfg.author_uncertain
-                self.derived_cfg.category = self.derived_cfg.category or extracted_from_cfg.category
-                self.derived_cfg.is_interesting = self.derived_cfg.is_interesting or extracted_from_cfg.is_interesting
+                for prop in DERIVED_CFG_PROPS_TO_COPY:
+                    if prop.startswith('is_') and (derived_cfg_val := getattr(self.derived_cfg, prop)) is not None:
+                        continue  # Don't overwrite booleans
+
+                    extracted_cfg_val = getattr(extracted_from_cfg, prop)
+                    setattr(derived_cfg_val, prop, derived_cfg_val or extracted_cfg_val)
+
                 self.log(f"Constructed synthetic config: {self.derived_cfg}")
 
-            return self.derived_cfg
+            return self.derived_cfg or this_file_cfg
         else:
             return super().config
 

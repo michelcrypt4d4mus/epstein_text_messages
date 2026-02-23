@@ -38,8 +38,13 @@ def epstein_files() -> EpsteinFiles:
 
 
 @pytest.fixture
-def house_file_id() -> int:
+def house_file_id_int() -> int:
     return 12345
+
+
+@pytest.fixture
+def house_file_id(house_file_id_int) -> str:
+    return f"0{house_file_id_int}"
 
 
 @pytest.fixture
@@ -77,8 +82,13 @@ def get_other_file(epstein_files) -> Callable[[str], OtherFile]:
 
 
 @pytest.fixture
-def local_extract_file_name(house_file_stem) -> str:
-    return f"{house_file_stem}_1.txt"
+def house_extract_file_id(house_file_id) -> str:
+    return f"{house_file_id}_1"
+
+
+@pytest.fixture
+def house_extract_filename(house_extract_file_id) -> str:
+    return f"{HOUSE_OVERSIGHT_PREFIX}{house_extract_file_id}.txt"
 
 
 def assert_higher_counts(actual: Mapping[str | None, int], expected: Mapping[str | None, int]):
