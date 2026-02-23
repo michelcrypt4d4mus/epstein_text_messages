@@ -36,7 +36,7 @@ REPLY_PATTERNS = [
     r"(Den .* folgende|(fre|lor|son)\. .* skrev .*):",  # Norwegian
 ]
 
-print(fr"(?<!M)On ({REPLY_ON_DATE_PATTERN})[., ].*{REPLY_LINE_ENDING_PATTERN}")
+# print(fr"(?<!M)On ({REPLY_ON_DATE_PATTERN})[., ].*{REPLY_LINE_ENDING_PATTERN}")
 REPLY_LINE_PATTERN = fr"^({QUOTE_INDENT_CHAR_GROUP}*({'|'.join(REPLY_PATTERNS)}))"
 REPLY_REGEX = re.compile(REPLY_LINE_PATTERN, re.IGNORECASE | re.MULTILINE)
 FORWARDED_TOO_MUCH_SPACE_REGEX = re.compile(fr"^({FORWARDED_LINE_PATTERN})\n\n", re.MULTILINE | re.IGNORECASE)
@@ -145,6 +145,7 @@ TRUNCATE_EMAILS_FROM = TRUNCATE_EMAILS_FROM_OR_TO + [
 ]
 
 EMAIL_SIGNATURE_REGEXES = {
+    ALAN_DLUGASH: re.compile(r"Alan J\.? Dlugash LLC\n(767.*\n)?New York.*(\n(Tel|Cel|Fa[lx]|P:).*)*"),
     ANDREW_FARKAS: re.compile(r"This message, and any attachments hereto.{,1000}considered a legally binding", re.DOTALL),
     'Andrew Nikou': re.compile(r'1999 Avenue of the Stars.{,105}genuinely required\.', re.DOTALL),
     ARDA_BESKARDES: re.compile(r"Attorne.-at-Law\s+.{,200}Admitted to practice.{,300}relying\s+on\s+this\s+message.?", re.DOTALL),
@@ -166,7 +167,7 @@ EMAIL_SIGNATURE_REGEXES = {
     FRANCESCA_HALL: re.compile(r"The contents of this e-mail message and.{,600}message and its attachments[.,]? if any", re.DOTALL),
     GHISLAINE_MAXWELL: re.compile(r"FACEBOOK\nTWITTER\nG\+\nPINTEREST\nINSTAGRAM\nPLEDGE\nTHE DAILY CATCH"),
     JEANNE_M_CHRISTENSEN: re.compile(r"[A ]*(Please consider the environment before printing this e-mail.{,5})?This communication may contain Confidential.{,500}(facsimile|mail)\s+or\s+phone. Thank you\.?|Partner\s+WIGDOR.{,12}(85 Fifth Avenue|New York).{,20}\s+(T:.{,6}\n)?.{,15}com", re.DOTALL),
-    JEFFREY_EPSTEIN: re.compile(r"(([* =0,]+|please .ote.{,6})\s+)?([>»•]+ )*The info.ma[t=][i=]on conta[i=]ne. i. t..s..ommunic.ti.{,600}all\s+([>»] )*.t.a.hm..t..(\s+copyright\s+.all\s+rights\s+reserved?)?", re.DOTALL),
+    JEFFREY_EPSTEIN: re.compile(r"(([* =0,]+|please .ote.{,6})\s+)?([>»•]+ )*The info.ma[t=][i=]on co[n=]ta[i=]ne. i. t..s..ommunic.ti.{,600}all\s+([>»] )*.t.a.hm..t..(\s+copyright\s+.all\s+rights\s+reserved?)?", re.DOTALL),
     JESSICA_CADWELL: re.compile(r"(f.*\n)?Certified Para.*\nFlorida.*\nBURMAN.*\n515.*\nSuite.*\nWest Palm.*(\nTel:.*)?(\nEmail:.*)?", re.IGNORECASE),
     KEN_JENNE: re.compile(r"Ken Jenne\nRothstein.*\n401 E.*\nFort Lauderdale.*", re.IGNORECASE),
     LARRY_SUMMERS: re.compile(r"Please direc. all scheduling.{,150}\nwww.la(n|rr)ysummer..\w{3,5}(<.{,6}[>»])?(\s*<http.{,30}/?[>»])?", re.IGNORECASE | re.DOTALL),

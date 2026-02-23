@@ -1057,7 +1057,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00424931', author=LESLEY_GROFF, author_uncertain=True, duplicate_ids=['EFTA02181004']),
     EmailCfg(id='EFTA02005819', author=LESLEY_GROFF, author_uncertain=True, duplicate_ids=['EFTA01890165']),
     EmailCfg(id='EFTA00357509', author=LESLEY_GROFF, author_uncertain=True, duplicate_ids=['EFTA02089323']),
-    EmailCfg(id='EFTA00697417', author=LESLEY_GROFF, author_uncertain=True, is_interesting=True),
+    EmailCfg(id='EFTA00697417', author=LESLEY_GROFF, author_uncertain=True, is_interesting=True, show_with_name=GANBAT_CHULUUNKHUU),
     EmailCfg(id='EFTA02069175', author=LESLEY_GROFF, recipients=[GANBAT_CHULUUNKHUU], author_uncertain=True),
     EmailCfg(id='EFTA02271414', author=LESLEY_GROFF, recipients=[GANBAT_CHULUUNKHUU], author_uncertain=True),
     EmailCfg(id='EFTA02113506', author=LESLEY_GROFF, recipients=[TYLER_SHEARS], author_uncertain=True),
@@ -2667,6 +2667,8 @@ INTERESTING_EMAIL_IDS = [
 
 # These emails will be suppressed in the curated views
 UNINTERESTING_EMAIL_IDS = [
+    # Alan Dlugash
+    'EFTA02367999',
     # Epstein
     '030997',
     '033428',
