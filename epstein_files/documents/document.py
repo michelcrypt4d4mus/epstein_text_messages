@@ -604,7 +604,7 @@ class Document:
         return ''
 
     @classmethod
-    def file_info_table(cls, title: str, first_col_name: str) -> Table:
+    def files_summary_table(cls, title: str, first_col_name: str) -> Table:
         """Empty table with appropriate cols for summarizing groups of files."""
         table = build_table(title)
         cols = [{'name': first_col_name, 'min_width': 14}] + SUMMARY_TABLE_COLS
@@ -612,7 +612,7 @@ class Document:
         return table
 
     @classmethod
-    def files_info(cls, files: Sequence[Self], is_author_na: bool = False) -> dict[str, str | Text]:
+    def files_summary(cls, files: Sequence[Self], is_author_na: bool = False) -> dict[str, str | Text]:
         """Summary info about a group of files."""
         file_count = len(files)
         author_count = cls.known_author_count(files)
@@ -626,9 +626,9 @@ class Document:
         }
 
     @classmethod
-    def files_info_row(cls, files: Sequence[Self], author_na: bool = False) -> Sequence[str | Text]:
+    def file_summary_row(cls, files: Sequence[Self], author_na: bool = False) -> Sequence[str | Text]:
         """Turn the values in the `cls.files_info()` dict into a list so they can be used as a table row."""
-        return [v for v in cls.files_info(files, author_na).values()]
+        return [v for v in cls.files_summary(files, author_na).values()]
 
     @classmethod
     def known_author_count(cls, docs: Sequence[Self]) -> int:

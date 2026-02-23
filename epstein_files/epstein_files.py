@@ -322,11 +322,11 @@ class EpsteinFiles:
 
     def overview_table(self) -> Table:
         """Table showing file counts by type."""
-        table = Document.file_info_table('Files Overview', 'File Type')
-        table.add_row('Emails', *Document.files_info_row(self.emails))
-        table.add_row('iMessage Logs', *Document.files_info_row(self.imessage_logs))
-        table.add_row('JSON Data', *Document.files_info_row(self.json_files, True))
-        table.add_row('Other', *Document.files_info_row(self.non_json_other_files))
+        table = Document.files_summary_table('Files Overview', 'File Type')
+        table.add_row('Emails', *Document.file_summary_row(self.emails))
+        table.add_row('iMessage Logs', *Document.file_summary_row(self.imessage_logs))
+        table.add_row('JSON Data', *Document.file_summary_row(self.json_files, True))
+        table.add_row('Other', *Document.file_summary_row(self.non_json_other_files))
         return table
 
     def repair_ids(self, ids: list[str]) -> None:
