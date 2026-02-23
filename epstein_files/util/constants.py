@@ -339,7 +339,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='029582', author=JEFFREY_EPSTEIN, recipients=[RENATA_BOLOTOVA], author_reason=BOLOTOVA_REASON),
     EmailCfg(id='030997', author=JEFFREY_EPSTEIN, actual_text='call back'),
     EmailCfg(id='028770', author=JEFFREY_EPSTEIN, actual_text='call me now'),
-    EmailCfg(id='031826', author=JEFFREY_EPSTEIN, actual_text='I have'),
+    EmailCfg(id='031826', author=JEFFREY_EPSTEIN, actual_text='I have', truncate_to=350),
     EmailCfg(id='030768', author=JEFFREY_EPSTEIN, actual_text='ok'),
     EmailCfg(id='022938', author=JEFFREY_EPSTEIN, actual_text='what do you suggest?'),
     EmailCfg(
@@ -579,7 +579,11 @@ EMAILS_CONFIG = [
     EmailCfg(id='032671', description='connections to Fusion GPS who produced the Steele Dossier on Trump'),
     EmailCfg(id='033052', description='connections to Fusion GPS who produced the Steele Dossier on Trump'),
     EmailCfg(id='031472', description="discussion of publishing an audio recording related to the coup in Turkey"),
-    EmailCfg(id='031830', description='Epstein gets defensive about what went on during the 2008 financial crisis as portrayed in "Inside Job"'),
+    EmailCfg(
+        id='031830',
+        description='Epstein gets defensive about the 2008 financial crisis as portrayed in "Inside Job"',
+        truncate_to=350,
+    ),
     EmailCfg(id='031333', description='Fort Knox conspiracy theory, looks like a Russian disinfo article', is_fwded_article=True),
     EmailCfg(id='031335', description='Fort Knox conspiracy theory, looks like a Russian disinfo article', is_fwded_article=True),
     EmailCfg(id='030648', description=IS_IT_ROGER_STONE),
@@ -1455,9 +1459,7 @@ EMAILS_CONFIG = [
         is_synthetic=False,
         truncate_to=NO_TRUNCATE,
     ),
-
     EmailCfg(id='EFTA02225815', author=LESLEY_GROFF, author_uncertain=True, is_synthetic=False, truncate_to=NO_TRUNCATE),
-
     EmailCfg(id='EFTA00662373', author=MASHA_DROKOVA, author_reason='"Best, Masha"', description='"She is interesting. Great looks"'),
     EmailCfg(id='EFTA02234448', recipients=[LESLEY_GROFF]),
     EmailCfg(id='EFTA02225790', author=LESLEY_GROFF, recipients=[MASHA_DROKOVA], author_uncertain=True, truncate_to=NO_TRUNCATE),
