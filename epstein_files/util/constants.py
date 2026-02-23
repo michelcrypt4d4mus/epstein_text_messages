@@ -1388,7 +1388,12 @@ EMAILS_CONFIG = [
     ),
     EmailCfg(id='EFTA02540384', description='Epstein asking an intro to the bitcoin team he would go on to fund', is_interesting=True),
     EmailCfg(id='EFTA01769169', description='Epstein tells Jean Luc Brunel he can spend up to $25 million', truncate_to=NO_TRUNCATE),
-    EmailCfg(id='EFTA02483194', description=f"email from {GANBAT_CHULUUNKHUU} explaining why he's now wanted by Interpol", is_interesting=True),
+    EmailCfg(
+        id='EFTA02483194',
+        description=f"fwded email from {GANBAT_CHULUUNKHUU} explaining why he's now wanted by Interpol",
+        is_interesting=True,
+        show_with_name=GANBAT_CHULUUNKHUU
+    ),
     EmailCfg(id='EFTA02629771', description=f"discussion of {RENATA_BOLOTOVA}'s employment at IPI", is_interesting=True),
     EmailCfg(id='EFTA00637023', description=f"discussion of getting around laws against laundering money in places like Myanmar and Mongolia"),
     EmailCfg(id='EFTA02396341', description='the Sharia Coin gambit', is_interesting=True),
