@@ -662,7 +662,7 @@ file_id,category,author,is_interesting,timestamp,recipients_str,sent_from_device
 026030,email,Michael Wolff,,2016-11-29 13:19:56,Jeffrey Epstein,,is the 'roger' Epstein is trying to meet Roger Stone?
 026033,email,Michael Wolff,,2016-11-29 13:29:58,Jeffrey Epstein,,is the 'roger' Epstein is trying to meet Roger Stone?
 026036,email,Gino Yu,True,2016-12-17 02:43:49,Jeffrey Epstein,,
-026041,email,Gino Yu,,2016-12-17 12:35:06,Jeffrey Epstein,,
+026041,email,Gino Yu,True,2016-12-17 12:35:06,Jeffrey Epstein,,
 026047,email,Reid Weingarten,,2016-12-20 17:06:06,Jeffrey Epstein,,
 026049,email,Lawrence Krauss,False,2016-12-24 19:37:57,Jeffrey Epstein,,
 026053,email,Boris Nikolic,,2016-12-26 01:19:46,Jeffrey Epstein,Sent from my Windows Phone,
@@ -2536,7 +2536,7 @@ file_id,category,author,is_interesting,timestamp,recipients_str,sent_from_device
 033231,article,Business Standard,False,2017-03-30 00:00:00,,,Business Standard article about Trump's visit with India's Modi
 033232,email,Lawrance Visoski,,2017-04-16 12:24:32,Jeffrey Epstein,Sent from my iPad,
 033233,email,Thorbjørn Jagland,,2017-04-16 15:04:37,Jeffrey Epstein,,
-033234,email,Gino Yu,,2017-04-24 08:32:33,Jeffrey Epstein,Sent from my iPhone,
+033234,email,Gino Yu,True,2017-04-24 08:32:33,Jeffrey Epstein,Sent from my iPhone,
 033235,email,Richard Kahn,,2017-05-09 21:22:35,Jeffrey Epstein,,
 033236,tweet,,False,2017-05-20 00:00:00,,,Tweet selection about Ivanka Trump in Arabic
 033238,email,Martin Weinberg,,2017-05-25 13:02:58,Jeffrey Epstein,,
@@ -5272,6 +5272,7 @@ EFTA00473175,crypto,Lesley Groff,True,2018-04-30 13:58:01,Joi Ito,,
 EFTA00474142,email,Lesley Groff,True,2018-06-04 12:25:19,Jeremy Rubin,Sent from my iPhone,
 EFTA00474175,email,Lesley Groff,,2018-05-29 19:20:19,Arda Beskardes;Bella Klein,,
 EFTA00474319,email,Madars Virza,True,2018-06-03 14:58:20,Lesley Groff,,
+EFTA00482121,email,Masha Drokova,True,2018-09-25 15:12:32,,,
 EFTA00488431,email,Lesley Groff,True,2019-01-10 15:37:21,Ganbat Chuluunkhuu,,
 EFTA00494141,email,Lesley Groff,True,2019-04-29 18:53:11,Madars Virza,,
 EFTA00494858,email,Lesley Groff,,2019-05-16 17:00:05,Jeffrey Epstein,Sent from my iPhone,Lesley Groff (???)
@@ -5341,6 +5342,7 @@ EFTA00657903,email,Sergey Belyakov,True,2016-02-11 21:52:20,Jeffrey Epstein,,
 EFTA00658457,crypto,Brock Pierce,True,2015-02-13 20:31:33,Jeffrey Epstein,,Brock Pierce says they will not invest in Bitfury
 EFTA00659818,email,Renata Bolotova,True,2013-12-05 22:28:51,Jeffrey Epstein,,Renata Bolotova (???)
 EFTA00661348,email,Steven Sinofsky,True,2014-12-01 22:39:02,Jeffrey Epstein,Sent using Acompli email app,
+EFTA00662373,email,Masha Drokova,True,2017-11-06 23:14:00,Jeffrey Epstein,,"Masha Drokova ""She is interesting. Great looks"""
 EFTA00664424,crypto,Brock Pierce,True,2014-10-28 16:34:33,Jeffrey Epstein,,Brock Pierce suggests Larry Summers could get involved with Tether and Noble Bank
 EFTA00664899,email,Austin Hill,True,2017-09-12 21:29:41,Jeffrey Epstein,,
 EFTA00665479,email,Austin Hill,True,2017-09-21 06:37:52,Jeffrey Epstein,,
@@ -5520,6 +5522,7 @@ EFTA00874793,crypto,Steve Bannon,True,2018-02-28 13:26:56,Jeffrey Epstein,,"Bann
 EFTA00875181,email,Brock Pierce,True,2013-02-27 04:45:51,Jeffrey Epstein,,
 EFTA00877487,email,Masha Drokova,True,2018-02-21 06:21:56,Jeffrey Epstein,,
 EFTA00877726,email,David Stern,True,2011-11-21 11:25:01,Jeffrey Epstein,,Epstein and Stern discuss plans to manage money for wealthy Chinese
+EFTA00880881,email,Masha Drokova,True,2018-02-17 00:45:37,Jeffrey Epstein;Jonathan Halata,,
 EFTA00881711,crypto,Jeffrey Epstein,True,2018-02-19 15:19:11,Steve Bannon,,Bannon and Epstein discuss bitcoin and crypto donations
 EFTA00881759,crypto,Jeffrey Epstein,True,2018-02-19 15:47:07,Steve Bannon,,Epstein and Steve Bannon discuss collection donations in bitcoin
 EFTA00882401,email,Jeffrey Epstein,True,2018-02-20 14:44:55,Madars Virza,,
@@ -5568,7 +5571,7 @@ EFTA00961214,email,David Stern,True,2013-05-28 10:18:07,Andrew Farkas;Jeffrey Ep
 EFTA00961792,email,Jeffrey Epstein,,2013-05-30 00:19:06,Bill Gross,,
 EFTA00964459,crypto,Austin Hill,True,2017-11-08 11:41:43,Jeffrey Epstein,,discussion of sharia compliant crypto token
 EFTA00968132,email,Eric Doherty,,2017-11-02 04:37:53,Andrew McCormack;Hongbo Robert Bao;James Fitzgerald;Reuben Kobulnik;Stanley Santos,,
-EFTA00972124,email,Gino Yu,,2017-10-23 23:53:07,Jeffrey Epstein,,
+EFTA00972124,email,Gino Yu,True,2017-10-23 23:53:07,Jeffrey Epstein,,
 EFTA00972689,email,Jeffrey Epstein,,2013-10-06 19:46:00,Boris Nikolic,,
 EFTA00974046,email,Jeffrey Epstein,True,2013-10-29 16:26:18,Tyler Shears,,
 EFTA00974152,email,Andrew McCormack,,2017-10-25 14:37:51,Jeffrey Epstein,,
@@ -5599,6 +5602,7 @@ EFTA00995559,email,Renata Bolotova,True,2014-08-17 00:16:27,Jeffrey Epstein,,Ren
 EFTA00995592,email,Vincenzo Iozzo,True,2014-08-17 14:09:58,Jeffrey Epstein,Sent from my Iphone,
 EFTA00997251,email,Brock Pierce,False,2014-09-24 13:16:48,Jeffrey Epstein,,
 EFTA00997253,email,Jeffrey Epstein,False,2014-09-24 13:18:43,Brock Pierce,,
+EFTA00997627,email,Jeffrey Epstein,True,2014-09-26 07:36:20,Maria Prusakova,,"""you will be introduced to more gorgeous Alicas.. Just let me know what kind of girl"""
 EFTA00997801,email,Brock Pierce,True,2014-09-28 01:04:50,Jeffrey Epstein,,
 EFTA00997803,email,Brock Pierce,True,2014-09-28 01:06:35,Jeffrey Epstein,,
 EFTA00998205,email,Jeffrey Epstein,True,2014-10-02 17:32:25,Brock Pierce,,
@@ -6026,6 +6030,8 @@ EFTA02160842,email,Lesley Groff,False,2012-09-07 18:49:27,Brock Pierce,,
 EFTA02172966,email,Lesley Groff,,2012-03-12 15:06:45,Steven Victor MD,,
 EFTA02174702,email,Lesley Groff,False,2012-02-15 00:53:56,Brock Pierce,Sent from my iPhone,Lesley Groff (???)
 EFTA02177147,crypto,Linda Stone,True,2012-01-10 18:25:23,Lesley Groff,,"Linda Stone (???) Epstein planning a symposium ""on Alternative Money or Complementary Currency"" in 2012"
+EFTA02225790,email,Lesley Groff,True,2017-10-03 17:44:40,Masha Drokova,Sent from my iPhone,Lesley Groff (???)
+EFTA02225815,email,Lesley Groff,True,2017-10-05 17:32:56,Bryan Johnson;Masha Drokova,,Lesley Groff (???)
 EFTA02227488,email,Austin Hill,True,2017-10-23 11:17:36,Lesley Groff,,
 EFTA02228570,email,Austin Hill,False,2017-11-08 12:51:09,Lesley Groff,,
 EFTA02229342,email,Austin Hill,False,2017-10-31 14:29:26,Jeffrey Epstein,,Austin Hill
@@ -6036,6 +6042,8 @@ EFTA02229858,email,Lesley Groff,True,2017-11-10 19:44:26,,,Lesley Groff (???)
 EFTA02230132,email,Richard Kahn,,2017-11-10 13:33:42,Jeffrey Epstein,,
 EFTA02230163,email,Richard Kahn,,2017-11-10 14:09:39,Lesley Groff,,
 EFTA02232362,email,Lesley Groff,,2018-01-07 19:15:26,Jeffrey Epstein,Sent from my iPhone,
+EFTA02233254,email,Lesley Groff,,2017-12-29 16:24:51,Bella Klein,,
+EFTA02234448,email,Jeffrey Epstein,,2018-01-14 22:04:10,Lesley Groff,,
 EFTA02238824,email,Yuko Barnaby,,2018-02-17 00:36:54,Lesley Groff,Sent from my iPhone,
 EFTA02238841,email,,False,2018-02-17 00:42:59,Yuko Barnaby,,
 EFTA02238872,email,Yuko Barnaby,,2018-02-17 01:18:27,Lesley Groff,,
@@ -6218,6 +6226,7 @@ EFTA02570707,email,,True,2013-06-11 18:28:00,Jeffrey Epstein,,
 EFTA02573653,email,Jeffrey Epstein,True,2013-08-09 15:23:00,David Stern,,"discussion of Prince Andrew's Urramoor, ""Howard"" is probably Howard Lutnick which Urramoor partnered with"
 EFTA02578911,email,Larry Summers,,2014-01-04 14:07:00,Jeffrey Epstein,Sent from my iPad,
 EFTA02579686,email,Austin Hill,True,2017-10-17 15:40:00,Jeffrey Epstein,,
+EFTA02581361,email,Gino Yu,True,2017-11-25 00:39:00,Jeffrey Epstein,,Epstein funded a conference in Cuba that Gino Yu put together with $100k
 EFTA02584619,email,Joi Ito,True,2018-06-16 19:53:00,Jeffrey Epstein,Sent from my iPhone,
 EFTA02584771,crypto,Vincenzo Iozzo,True,2014-06-25 19:18:00,Jeffrey Epstein,,discussion of decentralized prediction maarkets like Polymarket
 EFTA02584858,email,Linda Stone,,2014-06-21 21:46:00,Jeffrey Epstein,i Phone feature: Tupos & Abbrvtns,Linda Stone
@@ -6275,6 +6284,8 @@ EFTA02622513,email,Jeffrey Epstein,True,2018-09-21 11:34:00,Julia Santos,,
 EFTA02622931,email,Richard Kahn,,2018-09-20 09:35:00,Jeffrey Epstein,,
 EFTA02624738,email,Vincenzo Iozzo,True,2018-09-06 02:44:00,Jeffrey Epstein,,
 EFTA02626300,email,Jeffrey Epstein,True,2019-01-20 19:01:00,Renata Bolotova,,
+EFTA02626427,email,Jeffrey Epstein,True,2019-01-20 18:30:00,Masha Drokova,,
+EFTA02628058,email,Masha Drokova,True,2019-01-27 13:55:00,Jeffrey Epstein,,
 EFTA02629770,email,Andrew McCormack,,2019-02-14 14:22:00,Jeffrey Epstein,,
 EFTA02629771,email,Terje Rød-Larsen,True,2019-02-11 18:20:00,Jeffrey Epstein,Sent from my iPhone,discussion of Renata Bolotova's employment at IPI
 EFTA02630287,email,Richard Kahn,,2019-02-14 13:38:00,Jeffrey Epstein,,
