@@ -114,6 +114,7 @@ OCR_REPAIRS: dict[str | re.Pattern, str] = {
     'Miroslav Laj6ak': MIROSLAV_LAJCAK,
     'Ross G°w': ROSS_GOW,
     'Torn Pritzker': TOM_PRITZKER,
+    re.compile(r"( [AP]M,)\s+wrote:$", re.MULTILINE): r'\1 <REDACTED> wrote:',
     re.compile(r' Banno(r]?|\b)'): ' Bannon',
     re.compile(r"\bBamaby\b"): 'Barnaby',
     re.compile(r'gmax ?[1l] ?[@g]ellmax.c ?om'): 'gmax1@ellmax.com',
