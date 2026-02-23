@@ -66,6 +66,24 @@ FIELDS_PATTERN = '|'.join(FIELD_PATTERNS)
 FIELDS_COLON_PATTERN = fr"^({FIELDS_PATTERN}):"
 FIELDS_COLON_REGEX = re.compile(FIELDS_COLON_PATTERN)
 
+FRENCH_HEADER_PATTERNS = [
+    'A',
+    r'Debut du message transfer[&e]',
+    r'De(stinataire)?',
+    r'Envoy[ée]',
+    r'Expe(cl|d)iteur',
+    r'Object',
+    r'Q',
+    r'Sujet',
+]
+
+GERMAN_HEADER_PATTERNS = [
+    'Betreff',
+    'Gesendet',
+    'An',
+    'Von',
+]
+
 # DojFile specific repairs must be applied before checking doc.is_email
 DOJ_EMAIL_OCR_REPAIRS: dict[str | re.Pattern, str] = {
     re.compile(r"^Sent (Sun|Mon|Tue|Wed|Thu|Fri|Sat)", re.MULTILINE): r"Sent: \1",
