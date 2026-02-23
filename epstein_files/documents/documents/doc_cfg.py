@@ -479,6 +479,14 @@ class CommunicationCfg(DocCfg):
     recipients: list[Name] = field(default_factory=list)
     uncertain_recipient: str | None = None
 
+    def __post_init__(self):
+        super().__post_init__()
+
+        if not isinstance(self.recipients, list):
+            raise ValueError(f"{self.id} recipients is not a list: {self.recipients}")
+
+        self.recipients = sort_names(self.recipients)
+
     @property
     def recipients_str(self) -> str:
         return ', '.join([r or UNKNOWN for r in self.recipients])
@@ -490,10 +498,6 @@ class CommunicationCfg(DocCfg):
             return False
         else:
             return super().is_of_interest
-
-    def __post_init__(self):
-        super().__post_init__()
-        self.recipients = sort_names(self.recipients)
 
     def __repr__(self) -> str:
         return super().__repr__()

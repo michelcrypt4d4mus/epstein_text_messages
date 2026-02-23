@@ -83,7 +83,10 @@ def create_configs(docs: Sequence[Document]) -> Sequence[DocCfg]:
                 _ask_for_value(cfg, prop, doc, doc_val)
 
                 if prop == 'author':
-                    _ask_for_value(cfg, 'author_uncertain', doc, doc_val)
+                    _ask_for_value(cfg, 'author_reason', doc, doc_val)
+
+                    if not cfg.author_reason:
+                        _ask_for_value(cfg, 'author_uncertain', doc, doc_val)
                 elif prop == 'recipients':
                     _ask_for_value(cfg, 'uncertain_recipient', doc, doc_val)
 
@@ -163,7 +166,7 @@ def _insert_configs(cfgs: list[DocCfg]) -> None:
         f.writelines([
             before,
             MAGIC_COMMENT + '\n',
-            *[repr(cfg) + ',' for cfg in cfgs],
+            *[repr(cfg) + ',\n' for cfg in cfgs],
             after
         ])
 

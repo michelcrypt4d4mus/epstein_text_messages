@@ -391,9 +391,9 @@ EMAILS_CONFIG = [
     EmailCfg(id='033246', author=MARIA_PRUSAKOVA, author_reason='Kind regards/Cordialement in signature'),
     EmailCfg(
         id='EFTA00997627',
-        author=MARIA_PRUSAKOVA,
-        author_reason='Kind regards/Cordialement in signature',
         description='"you will be introduced to more gorgeous Alicas.. Just let me know what kind of girl"',
+        recipients=[MARIA_PRUSAKOVA],
+        uncertain_recipient='Kind regards/Cordialement in signature',
     ),
     EmailCfg(id='026609', author='Mark Green', author_reason='Actually a fwd, Mark Green is in signature'),
     EmailCfg(id='030472', author=MARTIN_WEINBERG, author_uncertain='Maybe. in reply'),
@@ -1446,6 +1446,9 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00676383', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA00949376', truncate_to=NO_TRUNCATE),
     #### MAGIC COMMENT FOR MANUAL CONFIG ####
+    EmailCfg(id='EFTA00662373', author=MASHA_DROKOVA, author_reason='"Best, Masha"', description='"She is interesting. Great looks"'),
+    EmailCfg(id='EFTA02234448', recipients=[LESLEY_GROFF]),
+    EmailCfg(id='EFTA02225790', author=LESLEY_GROFF, recipients=[MASHA_DROKOVA], author_uncertain=True),
     EmailCfg(id='EFTA02641374', is_interesting=True),
     # EmailCfg(id='EFTA02641374', is_interesting=True),
     EmailCfg(id='EFTA00953261', author=LARRY_SUMMERS, recipients=[JEFFREY_EPSTEIN]),
