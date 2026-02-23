@@ -313,7 +313,7 @@ HighlightedNames(
         contacts=[
             Contact(
                 name=JOI_ITO,
-                info=f"head of {MIT_MEDIA_LAB} and MIT Digital Currency Initiative",
+                info=f"head of {MIT_MEDIA_LAB} and MIT Digital Currency Initiative, co-founded VC funds with Epstein",
                 emailer_pattern=r"ji@media.mit.?edu|(joichi|joi)( Ito)?",
             ),
         ]
