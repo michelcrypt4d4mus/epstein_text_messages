@@ -354,7 +354,7 @@ HighlightedNames(
             r"Bioptix",  # Now RIOT Blockchain
             r"bit[o\s]?coin( Foundation)?",
             r"Bit(Angels|Finex|Fury|Go|Main)",
-            r"(Riot )?block\s?(chain|tree)( capital)?",
+            r"block\s?(chain|tree)( capital)?",
             r"Blockstream",
             r"Blythe Masters",
             r"Brac",  # Brock? EFTA01792443
@@ -396,10 +396,11 @@ HighlightedNames(
             r"Mercantile Global Holdings",
             r"Mi(chael|ke) Novogratz",
             r"Noble (Bank|Markets)",  # Crypto bank with Tether ties
+            r"Northern Data",
             r"Pantera",
             r"(Patrick )?Murck",
             r"Ribbit",
-            r"(?-i:RIOT)",  # (?-i:) makes it case sensitive
+            r"(?-i:R)IOT( Blockchain)?",  # (?-i:) makes it case sensitive
             r"Ripple",
             r"Ron Rivest",
             r"(Ross )?Ulbricht",
@@ -879,7 +880,7 @@ HighlightedNames(
             Contact('USMS', "United States Marshal Service")
         ],
         patterns=[
-            r"AG",
+            r"(?<!Data\s)AG",
             r"(Alicia )?Valle",
             r'Alice Fisher|Fisher, Alice',
             r"AML",
@@ -924,9 +925,10 @@ HighlightedNames(
             r"(Judge )?(Kenneth )?(A\.? )?Marra",
             r"(Justice|Treasury) Dep(t|artment)",
             r"(Kirk )?Blouin",
+            r"(Kurt )?(L\.? )?Gottschall",
             r"KYC",
             r"(Lann?a )?Belohlavek",
-            r"MDC"
+            r"MDC",
             r"Metropolitan Detention Center",
             r"(Michael )?Reiter",
             r"NIH",
@@ -1206,7 +1208,7 @@ HighlightedNames(
             r"Chile",
             r"Colombian?",
             r"Cuban?",
-            r"Ecuador(ian(s)?)?"
+            r"Ecuador(ian(s)?)?",
             r"el chapo",
             r"El Salvador",
             r"((Enrique )?Pena )?Nieto",
@@ -1510,7 +1512,7 @@ HighlightedNames(
             r"(George )?Nader",
             r"GOP",
             r"((Chair|Jay|Joseph) )?Clayton",  # SEC chair, now SDNY
-            r"((Bill|William) )?Hinman"
+            r"((Bill|William) )?Hinman",
             r"Jeff(rey)? Sessions",
             r"(John (R.? )?)?Bolton",
             r"Kasich",
