@@ -60,6 +60,7 @@ DEVICE_PATTERNS = [
     r"and string",
     r"AT&T",
     r"Droid",
+    r"iOS",
     r"iPad",
     r"Phone",
     r"Mail(\w+for\s+(\w+))?(\s+App)?",

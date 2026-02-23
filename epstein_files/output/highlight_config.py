@@ -231,7 +231,9 @@ HighlightedNames(
             r"((Bill|David) )?Koch( (Bro(s|thers)|Industries))?",
             r"BP",
             r"CEO",
+            r"(co-?)?founder",
             r"Colony Capital",
+            r"(General|Limited) Partner",
             r"Gruterite",
             r"Island Capital Group(,? LLC)?",
             r"Johann? Eliasc?h",
@@ -246,6 +248,7 @@ HighlightedNames(
             r"New Leaf Ventures",
             r"Park Partners",
             r"real estate( developer)?"
+            r"Robin\s?hood",
             r"SALSS",
             r"Swedish American Life Science Summit",
             r"Trilateral Commission",

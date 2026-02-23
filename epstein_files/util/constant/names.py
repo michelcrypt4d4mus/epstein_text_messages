@@ -315,15 +315,15 @@ NAMES_TO_NOT_HIGHLIGHT = """
     back bard barrett barry bennet bernard bill black bob boris boyle brad brenner bruce
     cameron caroline carolyn chris christian christina christopher cohen
     dan daniel danny darren dave david debbie department donald douglas
-    ed edward edwards enforcement enterprise enterprises entourage epstein eric erika etienne
+    ed edward edwards elisa enforcement enterprise enterprises entourage epstein eric erika etienne
     faith fisher fitzgerald forget frances francesca fred friendly frost fuller fund
-    gates gateway gerald george gold gordon greg
+    gates gateway general gerald george gold gordon greg
     haddad hall hanson harry hay heather henry hill hoffman howard
     ian inc inc. ivan
-    jack james jay jean jeff jeffrey jennifer jeremy jessica joel john jon jonathan joseph jr justin
+    jack james jay jean jeff jeffrey jennifer jeremy jessica joel john jon jonathan joseph jr julia justin
     kafka kahn karl kate katherine kelly ken kevin krassner
     larry larsen laurie lawrence leon lesley linda link lisa
-    management mann marc marie mark martin matthew melanie michael mike miller mitchell miles morris moskowitz
+    management mann marc maria marie mark martin matthew melanie michael mike miller mitchell miles morris moskowitz
     nancy nathan neal new nicholas nicole norman ny
     owen
     paul paula pen peter philip pierce plus police prince

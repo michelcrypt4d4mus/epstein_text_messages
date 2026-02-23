@@ -581,6 +581,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='026030', description=IS_IT_ROGER_STONE),
     EmailCfg(id='026033', description=IS_IT_ROGER_STONE),
     EmailCfg(id='031011', description='jokes about Chicago corruption', duplicate_ids=['031090'], truncate_to=SHORT_TRUNCATE_TO),
+    EmailCfg(id='EFTA02609062', description=f"{MASHA_DROKOVA} is assembling a team"),
     EmailCfg(id='023627', description=WOLFF_EPSTEIN_ARTICLE_DRAFT, is_fwded_article=True, is_interesting=True, truncate_to=16800),
     EmailCfg(id='030745', description="planning a public statement for Ghislaine", truncate_to=NO_TRUNCATE),
     EmailCfg(id='016693', description='signed "MM"'),
