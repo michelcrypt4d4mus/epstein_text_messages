@@ -230,8 +230,6 @@ HighlightedNames(
             r"(Barry )?Honig",
             r"((Bill|David) )?Koch( (Bro(s|thers)|Industries))?",
             r"BP",
-            r"C[EF]O",
-            r"(co-?)?founder",
             r"Colony Capital",
             r"(General|Limited) Partner",
             r"Gruterite",
@@ -368,6 +366,7 @@ HighlightedNames(
             r"Coinbase",
             r"coins?( Center)?",
             r"Complementary Currency",
+            r"Coinmint",
             r"Cory Fields",  # bitcoin dev
             r"cr[iy]?pto (coins?|currenc(y|ies)|mining|PR Lab)?( Partners( II)?)?",
             r"crypto(prlab)?",
@@ -710,6 +709,15 @@ HighlightedNames(
         ],
     ),
     HighlightedNames(
+        label='financial',
+        style='dark_sea_green2',
+        patterns=[
+            r"((anti.?)?money )?launder(s?|ers?|ing)?( money)?",
+            r"C[EF]O",
+            r"(co-?)?founder",
+        ]
+    ),
+    HighlightedNames(
         label=Neutral.FINANCE,
         style='green',
         contacts=[
@@ -746,7 +754,6 @@ HighlightedNames(
             r"Ace Greenberg",
             r"AIG",
             r"alterna[tv]i[tv]e finance",
-            r"((anti.?)?money )?launder(s?|ers?|ing)?( money)?",
             r"Andrew Nikou",
             r"Apollo",
             r"Ari Glass",
@@ -1373,7 +1380,7 @@ HighlightedNames(
             r"Muslim( Brotherhood)?",
             r"Nayaf",
             r"Nazarbayev",
-            r"Pakistani?",
+            r"Pak[ai]stani?",
             r"Omar",
             r"(Osama )?Bin Laden",
             r"Osama(?! al)",
