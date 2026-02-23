@@ -308,6 +308,17 @@ HighlightedNames(
         ],
     ),
     HighlightedNames(
+        label=JOI_ITO,
+        style='gold1 bold',
+        contacts=[
+            Contact(
+                name=JOI_ITO,
+                info=f"head of {MIT_MEDIA_LAB} and MIT Digital Currency Initiative",
+                emailer_pattern=r"ji@media.mit.?edu|(joichi|joi)( Ito)?",
+            ),
+        ]
+    ),
+    HighlightedNames(
         label=Interesting.CRYPTO,
         style='orange1 bold',
         contacts=[
@@ -329,11 +340,6 @@ HighlightedNames(
             Contact(GAVIN_ANDRESEN, 'core bitcoin developer', r"(Gavin )?Andr.ss?en"),
             Contact(JEFFREY_WERNICK, "former COO of Parler, involved in numerous crypto companies like Bitforex"),
             Contact(JEREMY_RUBIN, "developer/researcher", r"Jeremy Rub(in|m)"),
-            Contact(
-                name=JOI_ITO,
-                info=f"head of {MIT_MEDIA_LAB} and MIT Digital Currency Initiative",
-                emailer_pattern=r"ji@media.mit.?edu|(joichi|joi)( Ito)?",
-            ),
             Contact(LORENZO_DE_MEDICI, "Medici Bank, possibly Medici heir?", r"Prince Lorenzo|Lorenzo de Medici"),
             Contact(MADARS_VIRZA, f"ZCash lead dev, {MIT_MEDIA_LAB}"),
             Contact('Suhas Daftuar', 'Chaincode Labs'),
