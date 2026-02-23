@@ -328,6 +328,53 @@ class Email(Communication):
         return metadata
 
     @property
+    def prettified_text(self) -> Text:
+        """Cleaned up text ready for printing."""
+        should_rewrite_header = self.header.was_initially_empty and self.header.num_header_rows > 0
+        num_chars = self._truncate_to_length()
+        trim_footer_txt = None
+        text = self.text
+
+        # Truncate long emails but leave a note explaining what happened w/link to source document
+        if len(text) > num_chars:
+            text = text[0:num_chars]
+            trim_footer_txt = self.truncation_note(num_chars)
+
+        text = collapse_newlines(text)
+
+        # Rewrite broken headers where the values are on separate lines from the field names
+        if should_rewrite_header:
+            configured_actual_text = self.config.actual_text if self.config and self.config.actual_text else None
+            num_lines_to_skip = self.header.num_header_rows
+            lines = []
+
+            # Emails w/configured 'actual_text' are particularly broken; need to shuffle some lines
+            if configured_actual_text is not None:
+                num_lines_to_skip += 1
+                lines += [cast(str, configured_actual_text), '\n']
+
+            lines += text.split('\n')[num_lines_to_skip:]
+            text = self.header.rewrite_header() + '\n' + '\n'.join(lines)
+            text = _add_line_breaks(text)
+            self.rewritten_header_ids.add(self.file_id)
+
+        if args.char_nums:
+            text = self._inject_line_numbers(text, args.char_nums)
+
+        lines = [
+            Text.from_markup(f"[link={line}]{line}[/link]") if line.startswith('http') else Text(line)
+            for line in text.split('\n')
+        ]
+
+        text = join_texts(lines, '\n')
+        txt = highlighter(text)
+
+        if trim_footer_txt:
+            txt.append('...\n\n').append(trim_footer_txt)
+
+        return txt
+
+    @property
     def recipients_str(self) -> str:
         return ';'.join([str(r) for r in self.recipients])
 
@@ -723,53 +770,6 @@ class Email(Communication):
         log_args_str = ', '.join([f"{k}={v}" for k, v in log_args.items() if v])
         self.log(f"Truncate determination: {log_args_str}")
         return num_chars
-
-
-    @property
-    def prettified_text(self) -> Text:
-        should_rewrite_header = self.header.was_initially_empty and self.header.num_header_rows > 0
-        num_chars = self._truncate_to_length()
-        trim_footer_txt = None
-        text = self.text
-
-        # Truncate long emails but leave a note explaining what happened w/link to source document
-        if len(text) > num_chars:
-            text = text[0:num_chars]
-            trim_footer_txt = self.truncation_note(num_chars)
-
-        text = collapse_newlines(text)
-
-        # Rewrite broken headers where the values are on separate lines from the field names
-        if should_rewrite_header:
-            configured_actual_text = self.config.actual_text if self.config and self.config.actual_text else None
-            num_lines_to_skip = self.header.num_header_rows
-            lines = []
-
-            # Emails w/configured 'actual_text' are particularly broken; need to shuffle some lines
-            if configured_actual_text is not None:
-                num_lines_to_skip += 1
-                lines += [cast(str, configured_actual_text), '\n']
-
-            lines += text.split('\n')[num_lines_to_skip:]
-            text = self.header.rewrite_header() + '\n' + '\n'.join(lines)
-            text = _add_line_breaks(text)
-            self.rewritten_header_ids.add(self.file_id)
-
-        if args.char_nums:
-            text = self._inject_line_numbers(text, args.char_nums)
-
-        lines = [
-            Text.from_markup(f"[link={line}]{line}[/link]") if line.startswith('http') else Text(line)
-            for line in text.split('\n')
-        ]
-
-        text = join_texts(lines, '\n')
-        txt = highlighter(text)
-
-        if trim_footer_txt:
-            txt.append('...\n\n').append(trim_footer_txt)
-
-        return txt
 
     def __rich_console__(self, console: Console, options: ConsoleOptions) -> RenderResult:
         prettified_txt = self.prettified_text
