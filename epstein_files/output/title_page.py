@@ -190,7 +190,7 @@ def _print_external_links() -> None:
     console.line()
     print_centered(Text('External Links', style=TABLE_TITLE_STYLE))
 
-    for link in EXTERNAL_LINKS:
+    for link in sorted(EXTERNAL_LINKS, key=lambda link: -len(link.link_with_comment)):
         print_centered(link.link_with_comment)
 
 

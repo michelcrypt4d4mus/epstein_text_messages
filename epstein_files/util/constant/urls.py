@@ -72,12 +72,12 @@ OFFICIAL_LINKS = [
 ]
 
 EXTERNAL_LINKS = OFFICIAL_LINKS + [
+    ExternalLink(EPSTEIN_WEB_URL, 'biographies'),
     ExternalLink(JMAIL_URL, 'read His Emails via Gmail interface'),
     ExternalLink('https://tommycarstensen.com/epstein/index.html', 'metadata', link_text='Tommy Carstensen Epstein Archive'),
     ExternalLink(EPSTEIN_DOCS_URL, 'searchable archive'),
     ExternalLink(EPSTEIN_MEDIA_URL, 'raw document images'),
     ExternalLink(EPSTEINIFY_URL, 'raw images alt'),
-    ExternalLink(EPSTEIN_WEB_URL, 'biographies'),
     ExternalLink('https://bitcoinprotocol.org/epstein-bitcoin-emails', link_text='epstein bitcoin emails'),
 ]
 
