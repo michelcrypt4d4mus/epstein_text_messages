@@ -7,7 +7,7 @@ from rich.console import Console
 from rich.style import Style
 from rich.text import Text
 
-from epstein_files.output.rich import CONSOLE_KWARGS as DEFAULT_CONSOLE_KWARGS
+from epstein_files.output.rich import CONSOLE_KWARGS
 from epstein_files.util.helpers.data_helpers import sort_dict_by_keys
 from epstein_files.util.helpers.file_helper import log_file_write
 from epstein_files.util.logging import logger
@@ -18,11 +18,15 @@ SideProp = Literal['margin', 'padding']
 
 CODE_TEMPLATE = '{code}'
 SPLITTER = '-# JUNK #-'
-CONSOLE_KWARGS = deepcopy(DEFAULT_CONSOLE_KWARGS)
-
 HORIZONTAL_SIDES: list[Side] = ['left', 'right']
 VERTICAL_SIDES: list[Side] = ['top', 'bottom']
 ALL_SIDES: list[Side] = VERTICAL_SIDES + HORIZONTAL_SIDES
+HTML_CONSOLE_kWARGS = deepcopy(CONSOLE_KWARGS)
+
+HTML_CONSOLE_kWARGS.update({
+    'file': open(devnull, "wt"),
+    'record': True,
+})
 
 PRE_TAG_CSS = {
     'font-family': "Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace",
@@ -31,6 +35,9 @@ PRE_TAG_CSS = {
 CODE_TAG_CSS = {
     'font-family': 'inherit',
 }
+
+html_console = Console(**HTML_CONSOLE_kWARGS)
+
 
 def code_console_template() -> str:
     return styled_tag('code', CODE_TEMPLATE, CODE_TAG_CSS)
