@@ -84,12 +84,13 @@ NON_METADATA_FIELDS = [
 
 # Categories where we want to include the category name at start of the description string
 CATEGORY_PREAMBLES = {
+    Interesting.DEPOSITION: 'deposition of',
     Interesting.LETTER: 'letter',
     Interesting.REPUTATION: REPUTATION_MGMT,
-    Neutral.RESUMÉ: 'professional resumé',
     Interesting.TEXT_MSG: 'text message',
     Neutral.FLIGHT_LOG: Neutral.FLIGHT_LOG.replace('_', ' '),
     Neutral.PRESSER: Neutral.PRESSER.replace('_', ' '),
+    Neutral.RESUMÉ: 'professional resumé',
     Neutral.SKYPE_LOG: Neutral.SKYPE_LOG.replace('_', ' '),
     Uninteresting.BOOK: 'book titled',
     Uninteresting.TWEET: Uninteresting.TWEET.title(),
@@ -115,6 +116,7 @@ class DocCfg:
         author_reason (str, optional): Optional explanation of why we are sure this email can be attributed to this author
         author_uncertain(str | bool, optional): Like setting `author_reason` but `is_attribution_uncertain` will be False
         category (str, optional): Type of file
+        comment (str, optional): Info about this file not worth being in the description
         date (str, optional): Parsed to a datetime by timestamp() if it exists
         dupe_type (DuplicateType | None): The type of duplicate this file is or its 'duplicate_ids' are
         duplicate_ids (list[str]): IDs of *other* documents that are dupes of this document

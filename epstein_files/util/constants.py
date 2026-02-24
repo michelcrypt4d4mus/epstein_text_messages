@@ -1729,6 +1729,10 @@ OTHER_FILES_ARTICLE = [
     DocCfg(id='031794', description=f"very short French magazine clipping"),
 ]
 
+OTHER_FILES_DEPOSITION = [
+    DocCfg(id='EFTA00159483', author=LAWRANCE_VISOSKI),
+]
+
 OTHER_FILES_LEGAL = [
     DocCfg(id='017789', author=ALAN_DERSHOWITZ, description=f'letter to {HARVARD} Crimson complaining he was defamed'),
     DocCfg(id='011908', author=BRUNEL_V_EPSTEIN, description=f"court filing"),

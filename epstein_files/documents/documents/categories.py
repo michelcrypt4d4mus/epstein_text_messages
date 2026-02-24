@@ -13,6 +13,7 @@ DEFAULT_CATEGORY_STYLE = 'wheat4'
 
 class Interesting(StrEnum):
     CRYPTO = auto()
+    DEPOSITION = auto()
     GIRLS = auto()
     LETTER = auto()
     MONEY = auto()
@@ -57,6 +58,7 @@ class Category(StrEnum):
 
 # These categories map to highlighted group labels for the purposes of coloring
 CATEGORY_STYLE_MAPPING = {
+    Interesting.DEPOSITION: LAWYER,
     Interesting.GIRLS: 'victim',
     Interesting.MONEY: Neutral.FINANCE,
     Interesting.REPUTATION: PUBLICIST,
