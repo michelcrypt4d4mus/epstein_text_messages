@@ -2021,7 +2021,12 @@ OTHER_FILES_MONEY = [
     ),
     DocCfg(id='024003', description=f"New Leaf Ventures ($375 million biotech fund) private placement memorandum"),
     # DOJ files
-    # DocCfg(id='EFTA01359553', description='Southern Financial LLC wire transfers'), # now inferred
+    DocCfg(id='EFTA00016884', description="Epstein's last will and testament"),
+    DocCfg(id='EFTA01266380', description="Epstein's 2014 Trust with bequests"),
+    DocCfg(id='EFTA01282282', description=f"Epstein Butterfly Trust (sole beneficiary {KARYNA_SHULIAK})"),
+    DocCfg(id='EFTA00099424', description=f"Epstein 2017 Trust (Eva Andersson Dubin, {DARREN_INDYKE}, {RICHARD_KAHN})"),
+    DocCfg(id='EFTA01266457', description=f"Epstein 2018 Trust ({KATHRYN_RUEMMLER}, {DARREN_INDYKE}, {RICHARD_KAHN})"),
+    DocCfg(id='EFTA01266204', description=f"Epstein The 1953 Trust ({DARREN_INDYKE}, {RICHARD_KAHN})", date='2019-08-08'),
     DocCfg(id='EFTA01681865', author=DEUTSCHE_BANK, description=f"explanations of all of Epstein's large payments prepared for DOJ", is_interesting=True),
     DocCfg(id='EFTA01285411', description=f"bank statement for Epstein's {SOUTHERN_TRUST_COMPANY} showing $82 million balance"),
     DocCfg(id='EFTA01087311', description=f'{LEON_BLACK} Family Partners cash projections'),

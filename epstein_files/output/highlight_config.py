@@ -247,7 +247,6 @@ HighlightedNames(
             r"Michael Klein",
             r"New Leaf Ventures",
             r"Park Partners",
-            r"real estate( developer)?",
             r"Robin\s?hood",
             r"SALSS",
             r"Swedish American Life Science Summit",
@@ -498,7 +497,7 @@ HighlightedNames(
             Contact(JEAN_HUGUEN, "interior design at Alberto Pinto Cabinet", r"Jean[\s.]Huguen"),
             Contact(JOJO_FONTANILLA, "Filipino housekeeper", r"Jo.. Fontanilla"),
             Contact(LAWRANCE_VISOSKI, "Epstein's pilot", r"La(rry|wrance) Visoski?|Lvjet"),
-            Contact(LESLEY_GROFF, "Epstein's assistant", r"Lesley Gro(ff)?"),
+            Contact(LESLEY_GROFF, "Epstein's assistant", r"Lesley (K(\.|atherine)? )?Gro(ff)?"),
             Contact('Linda Pinto', "interior design at Alberto Pinto Cabinet"),
             Contact(LYN_FONTANILLA, "Filipino housekeeper", r"L.nn? Fontanilla"),
             Contact(MERWIN_DELA_CRUZ, "housekeeper"),
@@ -539,6 +538,7 @@ HighlightedNames(
             r"Neptune LLC",
             r"NES LLC",
             r"Plan D",
+            r"SCI JEP",
             r"Southern Country International",
             r"Thomas World Air",
             r"Zorro( (Management|Ranch))?",
@@ -612,7 +612,7 @@ HighlightedNames(
             Contact(
                 name=DARREN_INDYKE,
                 info="Epstein estate executor",
-                emailer_pattern=r"darren$|Darren (K\.? )?[il]n[dq]_?yke?|dkiesq",
+                emailer_pattern=r"darren$|Darren (K(\.|eith)? )?[il]n[dq]_?yke?|dkiesq",
             ),
             Contact(RICHARD_KAHN, "Epstein estate executor", r"rich(ard)? kahn?")
         ],
@@ -720,8 +720,12 @@ HighlightedNames(
         style='dark_sea_green2',
         patterns=[
             r"((anti.?)?money )?launder(s?|ers?|ing)?( money)?",
+            r"(?<!(ature|Chase|zrahi|tsche)\s)bank(?!\s+of)"
             r"C[EF]O",
             r"(co-?)?founder",
+            r"real estate( developer)?",
+            r"Trust(ee| Estate)",
+            r"tax(e[ds])?",
         ]
     ),
     HighlightedNames(
@@ -737,7 +741,7 @@ HighlightedNames(
                 info="CIO Honeycomb Asset Management, Epstein invested in Spotify through him",
                 emailer_pattern=r"David Fis?zel",
             ),
-            Contact(JES_STALEY, "former CEO of Barclays"),
+            Contact(JES_STALEY, "former CEO of Barclays", emailer_pattern=r"[J!](ames|es) (E\.? )Staley"),
             Contact(JIDE_ZEITLIN, f"former partner at {GOLDMAN_SACHS}, allegations of sexual misconduct"),
             Contact('Laurie Cameron', "currency trading"),
             Contact(
@@ -764,7 +768,7 @@ HighlightedNames(
             r"Andrew Nikou",
             r"Apollo",
             r"Ari Glass",
-            r"Bank( of Scotland)?",
+            r"Bank of Scotland",
             r"Bear Stearns",
             r"(Bernie )?Madoff",
             r"Black(rock|stone)",
@@ -1931,7 +1935,7 @@ HighlightedNames(
         patterns=[r"HBJ"],
     ),
     HighlightedNames(
-        contacts=[Contact(KATHRYN_RUEMMLER, "former Obama legal counsel", r"Kathr?yn? Ruemmler?")],
+        contacts=[Contact(KATHRYN_RUEMMLER, "former Obama legal counsel", r"Kathr?yn? (H\.? )?Ruemmler?")],
         style='magenta2',
         category=FRIEND
     ),
