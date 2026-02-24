@@ -281,12 +281,13 @@ class Email(Communication):
     @property
     def is_fwded_article(self) -> bool:
         """True if this email is just a forward of an article from WSJ or whatever."""
-        if self.config is None:
-            return False
-        elif self.config.fwded_text_after:
-            return self.config.is_fwded_article is not False
-        else:
-            return bool(self.config.is_fwded_article)
+        if self.config:
+            if self.config.is_fwded_article is not None:
+                return self.config.is_fwded_article
+            elif self.config.fwded_text_after:
+                return True
+
+        return False
 
     @property
     def is_interesting(self) -> bool | None:
@@ -416,7 +417,7 @@ class Email(Communication):
 
     def is_from_or_to(self, name: str) -> bool:
         """True if `name` is either the author or one of the recipients."""
-        return name in [self.author] + self.recipients
+        return name in self.participants
 
     def is_note_to_self(self, recipients: list[Name] | None = None) -> bool:
         return (recipients if recipients is not None else self.recipients) == [self.author]
@@ -721,14 +722,13 @@ class Email(Communication):
             num_chars = len(self.text)
         elif args.truncate:
             num_chars = args.truncate
-        elif self.config and self.config.truncate_to is not None:
+        elif self.config and (truncate_at := self.config.truncate_at):
             if self.config.is_excerpt:
                 raise ValueError(f"Emails don't support truncate_to as a tuple")
 
-            num_chars = len(self.text) if self.config.truncate_to == NO_TRUNCATE else self.config.truncate_to
+            num_chars = len(self.text) if truncate_at == NO_TRUNCATE else truncate_at
         elif self.author in TRUNCATE_EMAILS_BY \
                 or any([self.is_from_or_to(n) for n in TRUNCATE_EMAILS_FROM_OR_TO]) \
-                or self.is_fwded_article \
                 or includes_truncate_term:
             num_chars = min(quote_cutoff or DEFAULT_TRUNCATE_TO, SHORT_TRUNCATE_TO)
         else:

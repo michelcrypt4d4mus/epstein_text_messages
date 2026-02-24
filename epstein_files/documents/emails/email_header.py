@@ -63,7 +63,8 @@ class EmailHeader:
     @property
     def all_attachments(self) -> list[str]:
         if self.attachments or self.inline_images:
-            return join_truthy(self.attachments, self.inline_images, ';').split(';')
+            attachments_str = join_truthy(self.attachments, self.inline_images, ';')
+            return [a.strip() for a in attachments_str.split(';')]
         else:
             return []
 
