@@ -1099,7 +1099,7 @@ HighlightedNames(
                 emailer_pattern=r"Michael Wol(f[ef]e?|i)|Wolff",
             ),
             Contact('Newsmax', "right wing American news outlet", r"Newsmax(\.com)?"),
-            Contact(PAUL_KRASSNER, "60s counterculture guy", r"Pa\s?ul Krassner"),
+            Contact(PAUL_KRASSNER, "60s counterculture guy, Merry Prankster", r"Pa\s?ul Krassner"),
             Contact('Peter Aldhous', "Buzzfeed science reporter"),
             Contact('Susan Edelman', "New York Post reporter"),
             Contact('Tim Zagat', "Zagat restaurant guide CEO")

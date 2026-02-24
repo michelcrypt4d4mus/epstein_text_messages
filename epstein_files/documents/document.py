@@ -287,7 +287,6 @@ class Document:
         prefix = '' if self.config and self.config.timestamp else 'inferred '
         return f"{prefix}timestamp: {remove_zero_time(self.timestamp)}"
 
-    # TODO: this name too close to Email method called _prettify_text()
     @property
     def prettified_text(self) -> Text:
         """Returns the string we want to print as the body of the document."""
@@ -297,10 +296,10 @@ class Document:
         if args.char_nums:
             text = self._inject_line_numbers(text, args.char_nums)
 
-        if self.config is None or self.config.truncate_to in [None, NO_TRUNCATE] or args.whole_file:
+        if self.config is None or self.config.truncate_at in [None, NO_TRUNCATE] or args.whole_file:
             return highlighter(Text(text, style))
 
-        char_range = list(self.config.truncate_to) if self.config.is_excerpt else [0, self.config.truncate_to]
+        char_range = list(self.config.truncate_at) if self.config.is_excerpt else [0, self.config.truncate_at]
         trim_footer_txt = self.truncation_note(char_range[1])
         chars = text[char_range[0]:char_range[1]]
 
