@@ -11,6 +11,7 @@ from rich.text import Text
 from epstein_files.output.html.elements import *
 from epstein_files.output.rich import CONSOLE_KWARGS as DEFAULT_CONSOLE_KWARGS
 from epstein_files.util.constant.html import HTML_TERMINAL_THEME
+from epstein_files.util.helpers.data_helpers import listify
 from epstein_files.util.helpers.file_helper import log_file_write
 from epstein_files.util.logging import logger
 
@@ -88,29 +89,21 @@ def rich_to_html(obj: RenderableType) -> str:
     return html_text.split(SPLITTER)[0]  # Strip cruft we need to have templated to get export_html() to work
 
 
-# def table_to_html(table: Table) -> str:
-#     rows = [
-#         [table.columns[j]._cells[i] for j in range(0, len(table.columns))]
-#         for i, row in enumerate(table.rows)
-#     ]
+def table_to_html(table: Table) -> str:
+    rows = [
+        [
+            styled_tag('td', rich_to_html(table.columns[j]._cells[i]))
+            for j in range(0, len(table.columns))
+        ]
+        for i, row in enumerate(table.rows)
+    ]
+
+    html_rows = [styled_tag('tr', ' '.join(row)) for row in rows]
+    return styled_tag('table', '\n'.join(html_rows))
 
 
-
-
-#         table.add_row(
-#             # Collapse all but last col into one
-#             Group(
-#                 *[_table.columns[j]._cells[i] for j in range(1, max_col_idx)],
-#                 _table.columns[0]._cells[i],
-#             ),
-#             _table.columns[max_col_idx]._cells[i],
-#             style=row.style
-#         )
-
-
-
-def write_html(divs: list[str], output_path: Path = Path.cwd().joinpath('html_test.html')) -> Path:
-    body = '\n\n'.join(divs)
+def write_html(divs: list[str] | str, output_path: Path = Path.cwd().joinpath('html_test.html')) -> Path:
+    body = '\n\n'.join(listify(divs))
 
     html = HTML_TEMPLATE.format(
         body=body,

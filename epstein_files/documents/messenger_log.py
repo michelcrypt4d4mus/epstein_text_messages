@@ -26,6 +26,7 @@ MSG_REGEX = re.compile(r'Sender:(.*?)\nTime:(.*? (AM|PM)).*?Message:(.*?)\s*?((?
 REDACTED_AUTHOR_REGEX = re.compile(r"^([-+•_1MENO.=F]+|[4Ide])$")
 
 
+# TODO: screenshot messenger log: EFTA01612665
 @dataclass
 class MessengerLog(Communication):
     """

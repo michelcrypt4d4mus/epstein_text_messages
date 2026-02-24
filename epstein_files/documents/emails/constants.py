@@ -53,6 +53,7 @@ HEADER_FIELDS_PATTERNS = COMMON_HEADER_FIELDS + [
     'To',
     r"C[cC]",
     r"B[cC][cC]",
+    "Bee",
     'Importance',
     'Attachments',
     'Attached',
@@ -74,7 +75,7 @@ FRENCH_HEADER_PATTERNS = [
     r'Expe(cl|d)iteur',
     r'Object',
     r'Q',
-    r'Sujet',
+    r'Sujet\s?',
 ]
 
 GERMAN_HEADER_PATTERNS = [
@@ -82,6 +83,11 @@ GERMAN_HEADER_PATTERNS = [
     'Gesendet',
     'An',
     'Von',
+]
+
+# TODO; parse [Il]nline-[Il]mages etc.
+ALL_HEADER_PATTERNS = HEADER_FIELDS_PATTERNS + FRENCH_HEADER_PATTERNS + GERMAN_HEADER_PATTERNS + [
+    r"[Il]nline-[Il]mages",
 ]
 
 # DojFile specific repairs must be applied before checking doc.is_email

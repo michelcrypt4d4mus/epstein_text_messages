@@ -10,7 +10,7 @@ from rich.text import Text
 
 from epstein_files.documents.documents.categories import (CATEGORY_STYLES, CATEGORY_STYLE_MAPPING,
      DEFAULT_CATEGORY_STYLE, Interesting, Neutral, Uninteresting)
-from epstein_files.documents.emails.constants import QUOTE_INDENT_CHAR_GROUP, REPLY_REGEX, SENT_FROM_REGEX, XML_STRIPPED_MSG
+from epstein_files.documents.emails.constants import ALL_HEADER_PATTERNS, QUOTE_INDENT_CHAR_GROUP, REPLY_REGEX, SENT_FROM_REGEX, XML_STRIPPED_MSG
 from epstein_files.output.highlighted_names import HighlightGroup, HighlightedNames, HighlightPatterns, ManualHighlight
 from epstein_files.people.contact import Contact
 from epstein_files.util.constant.names import *
@@ -1995,7 +1995,7 @@ HighlightedNames(
      HighlightPatterns(
         label='header_field',
         style='plum4',
-        patterns=[r'^[>•\s]{,4}(Date\s?|From|Sent|To|C[cC]|Importance|Reply[-\s]?To|Subject|Bee|B[cC]{2}|Attach(ed|ments)|Flag|Classification|[Il]nline-[Il]mages|((A|Debut du message transfer[&e]|De(stinataire)?|Envoy[ée]|Expe(cl|d)iteur|Objet|Q|Sujet)\s?)):|^on behalf of'],
+        patterns=[fr"^[>•\s]{{,4}}({'|'.join(ALL_HEADER_PATTERNS)}):|^on behalf of"],
     ),
     HighlightPatterns(
         label='http_links',

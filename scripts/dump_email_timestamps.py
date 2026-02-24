@@ -16,7 +16,8 @@ from epstein_files.documents.email import Email, UNINTERESTING_EMAILERS
 from epstein_files.documents.other_file import OtherFile
 from epstein_files.output.highlight_config import HIGHLIGHT_GROUPS, get_style_for_name
 from epstein_files.output.highlighted_names import HighlightedNames
-from epstein_files.output.html.builder import write_html
+from epstein_files.output.html.builder import table_to_html, write_html
+from epstein_files.people.person import Person
 from epstein_files.util.constant.names import *
 from epstein_files.util.constants import CONFIGS_BY_ID, EmailCfg
 from epstein_files.util.helpers.data_helpers import *
@@ -27,12 +28,16 @@ from epstein_files.util.logging import logger
 from epstein_files.output.rich import bool_txt, console, highlighter, print_json, print_subtitle_panel
 
 
-divs = [
-    doc.file_display().to_html()
-    for doc in [d for d in epstein_files.emails if 1000 < d.length < 6000][:9]
-]
+all_emailers = sorted(epstein_files.emailers, key=lambda person: person.sort_key)
+table = Person.emailer_info_table(all_emailers, show_epstein_total=True)
+open_file_or_url(write_html(table_to_html(table)))
 
-open_file_or_url(write_html(divs))
+# divs = [
+#     doc.file_display().to_html()
+#     for doc in [d for d in epstein_files.emails if 1000 < d.length < 6000][:9]
+# ]
+
+# open_file_or_url(write_html(divs))
 
 # print_file_counts(epstein_files)
 # print_all_timestamps(epstein_files)
