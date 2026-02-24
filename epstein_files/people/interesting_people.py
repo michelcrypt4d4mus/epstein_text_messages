@@ -8,6 +8,7 @@ from epstein_files.util.constant.urls import SUBSTACK_INSIGHTS_LINK
 AUTHORS_OF_INTEREST = [
     DOJ,
     EDWARD_JAY_EPSTEIN,
+    FBI,
     INSIGHTS_POD,
     # NOAM_CHOMSKY,
     MICHAEL_WOLFF,

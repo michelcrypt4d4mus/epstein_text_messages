@@ -2022,6 +2022,11 @@ OTHER_FILES_MONEY = [
     ),
     DocCfg(id='024003', description=f"New Leaf Ventures ($375 million biotech fund) private placement memorandum"),
     # DOJ files
+    DocCfg(
+        id='EFTA00173953',
+        author='Organized Crime Drug Enforcement Task Force',
+        description='report on DEA investigations into Epstein related drug money laundering',
+    ),
     DocCfg(id='EFTA00016884', description="Epstein's last will and testament"),
     DocCfg(id='EFTA01266380', description="Epstein's 2014 Trust with bequests"),
     DocCfg(id='EFTA01282282', description=f"Epstein Butterfly Trust (sole beneficiary {KARYNA_SHULIAK})"),
