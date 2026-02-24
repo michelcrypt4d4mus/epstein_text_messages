@@ -1,7 +1,6 @@
 import logging
 from dataclasses import asdict, dataclass, field
 from pathlib import Path
-from subprocess import check_output
 from typing import Mapping
 
 from rich.text import Text
@@ -11,7 +10,8 @@ from epstein_files.util.constant.strings import ALT_LINK_STYLE, ARCHIVE_LINK_COL
 from epstein_files.util.constant.urls import *
 from epstein_files.util.env import DOJ_PDFS_20260130_DIR, site_config
 from epstein_files.util.helpers.file_helper import (coerce_file_stem, coerce_url_slug, extract_file_id,
-     extract_efta_id, file_size, file_size_to_str, is_doj_file, is_house_oversight_file, is_local_extract_file)
+     extract_efta_id, file_size, file_size_to_str, is_doj_file, is_house_oversight_file, is_local_extract_file,
+     open_file_or_url)
 from epstein_files.util.helpers.link_helper import link_text_obj, parenthesize
 from epstein_files.util.helpers.rich_helpers import no_bold
 from epstein_files.util.logging import logger
@@ -184,13 +184,13 @@ class FileInfo:
         logger.log(level, f"{self.file_stem} {msg}")
 
     def open(self) -> None:
-        check_output(['open', str(self.local_path)])
+        open_file_or_url(self.local_path)
 
     def open_pdf(self) -> None:
-        if not self.is_doj_file:
-            raise RuntimeError(f"No PDF for House oversight file!")
-
-        check_output(['open', str(self.local_pdf_path)])
+        if self.local_pdf_path:
+            open_file_or_url(self.local_pdf_path)
+        else:
+            raise RuntimeError(f"No PDF for {self.file_stem}!")
 
     def warn(self, msg: str) -> None:
         """Print a warning message prefixed by info about this `file_id`."""

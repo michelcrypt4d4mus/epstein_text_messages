@@ -127,9 +127,9 @@ class OtherFile(Document):
         return txt
 
     @property
-    def summary(self) -> Text:
+    def _summary(self) -> Text:
         """One line summary mostly for logging."""
-        return super().summary.append(CLOSE_PROPERTIES_CHAR)
+        return super()._summary.append(CLOSE_PROPERTIES_CHAR)
 
     def _extract_timestamp(self) -> datetime | None:
         """Return configured timestamp or value extracted by scanning text with datefinder."""
@@ -247,11 +247,11 @@ class OtherFile(Document):
         """Table showing file count by category."""
         categories = uniquify([f.category for f in files])
         categories = sorted(categories, key=lambda c: -len([f for f in files if f.category == c]))
-        table = cls.file_info_table(f'{title_pfx}Other Files Summary', 'Category')
+        table = cls.files_summary_table(f'{title_pfx}Other Files Summary', 'Category')
 
         for category in categories:
             category_files = [f for f in files if f.category == category]
-            table.add_row(styled_category(category), *cls.files_info_row(category_files))
+            table.add_row(styled_category(category), *cls.file_summary_row(category_files))
 
         table.columns = table.columns[:-2] + [table.columns[-1]]  # Removee unknown author col
         return table

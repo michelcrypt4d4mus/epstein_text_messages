@@ -43,11 +43,7 @@ CONSOLE_HTML_FORMAT = """
 </head>
 
 <body>
-    <pre style="font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
-        <code style="font-family:inherit">
-            {code}
-        </code>
-    </pre>
+    <pre style="font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><code style="font-family:inherit">{code}</code></pre>
 </body>
 </html>
 """

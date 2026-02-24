@@ -3,21 +3,20 @@ import re
 from dataclasses import asdict, dataclass, field
 
 from epstein_files.documents.documents.doc_cfg import EmailCfg, Metadata
-from epstein_files.documents.emails.constants import FIELDS_PATTERN
+from epstein_files.documents.emails.constants import HEADER_FIELDS_PATTERN
 from epstein_files.documents.emails.emailers import BAD_EMAILER_REGEX, TIME_REGEX
 from epstein_files.util.constant.strings import AUTHOR
 from epstein_files.util.constant.names import UNKNOWN
 from epstein_files.util.constants import CONFIGS_BY_ID
-from epstein_files.util.helpers.string_helper import indented
+from epstein_files.util.helpers.string_helper import indented, join_truthy
 from epstein_files.util.logging import logger
 
-FIELD_NAMES = ['Date', 'From', 'Sent', 'Subject']
 ON_BEHALF_OF = 'on behalf of'
 TO_FIELDS = ['bcc', 'cc', 'to']
 EMAILER_FIELDS = [AUTHOR] + TO_FIELDS
 
 DETECT_EMAIL_REGEX = re.compile(r'^(.*\n){0,2}(From|Subject):')  # IDed 140 emails out of 3777 DOJ files with just 'From:' match
-HEADER_REGEX_STR = fr"(((?:(?:{FIELDS_PATTERN}|Bee):|on behalf of ?)(?! +(by |from my|via )).*\n){{3,}})"
+HEADER_REGEX_STR = fr"(((?:(?:{HEADER_FIELDS_PATTERN}):|on behalf of ?)(?! +(by |from my|via )).*\n){{3,}})"
 EMAIL_SIMPLE_HEADER_REGEX = re.compile(rf'^{HEADER_REGEX_STR}')
 EMAIL_SIMPLE_HEADER_LINE_BREAK_REGEX = re.compile(HEADER_REGEX_STR)
 EMAIL_PRE_FORWARD_REGEX = re.compile(r"(.{3,2000}?)" + HEADER_REGEX_STR, re.DOTALL)  # Match up to the next email header section
@@ -60,6 +59,58 @@ class EmailHeader:
     def __post_init__(self):
         self.num_header_rows = len(self.field_names)
         self.was_initially_empty = self.is_empty
+
+    @classmethod
+    def from_header_lines(cls, header: str) -> 'EmailHeader':
+        """Alternate constructor to build from raw header text."""
+        kw_args = {}
+        field_names = []
+        should_log_header = False
+
+        for line in [l.strip() for l in header.strip().split('\n')]:
+            if line.lower().startswith(ON_BEHALF_OF):
+                author = line.removeprefix(ON_BEHALF_OF).strip()
+
+                if len(author) > 0:
+                    kw_args[AUTHOR] = author
+
+                continue
+
+            #logger.debug(f"extracting header line: '{line}'")
+            key, value = [element.strip() for element in line.split(':', 1)]
+            value = value.rstrip('_')
+            key = AUTHOR if key == 'From' else ('sent_at' if key in ['Date', 'Sent'] else key.lower().replace('-', '_'))
+            key = 'bcc' if key == 'bee' else key
+
+            if kw_args.get(key):
+                logger.debug(f'Already have value "{kw_args[key]}" at key "{key}", not overwriting with "{value}"')
+                should_log_header = True
+                continue
+
+            field_names.append(key)
+
+            if key == 'reply_to':
+                logger.warning(f"Found value for Reply-To field: '{value}'")
+
+            if key in TO_FIELDS:
+                recipients = [element.strip() for element in value.split(';')]
+                recipients = [r for r in recipients if len(r) > 0]
+                kw_args[key] = None if len(value) == 0 else [r if len(r) > 0 else UNKNOWN for r in recipients]
+            else:
+                kw_args[key.lower()] = None if len(value) == 0 else value
+
+        if should_log_header:
+            logger.debug(f"Header being parsed was this:\n\n{header}\n")
+
+        return cls(field_names=field_names, header_chars=header, **kw_args)
+
+    @property
+    def all_attachments(self) -> list[str]:
+        if self.attachments or self.inline_images:
+            attachments_str = join_truthy(self.attachments, self.inline_images, ';')
+            return [a.strip() for a in attachments_str.split(';')]
+        else:
+            return []
 
     @property
     def is_empty(self) -> bool:
@@ -140,46 +191,3 @@ class EmailHeader:
 
     def __str__(self) -> str:
         return json.dumps(self.as_dict(truthy_only=False), sort_keys=True, indent=4)
-
-    @classmethod
-    def from_header_lines(cls, header: str) -> 'EmailHeader':
-        kw_args = {}
-        field_names = []
-        should_log_header = False
-
-        for line in [l.strip() for l in header.strip().split('\n')]:
-            if line.lower().startswith(ON_BEHALF_OF):
-                author = line.removeprefix(ON_BEHALF_OF).strip()
-
-                if len(author) > 0:
-                    kw_args[AUTHOR] = author
-
-                continue
-
-            #logger.debug(f"extracting header line: '{line}'")
-            key, value = [element.strip() for element in line.split(':', 1)]
-            value = value.rstrip('_')
-            key = AUTHOR if key == 'From' else ('sent_at' if key in ['Date', 'Sent'] else key.lower().replace('-', '_'))
-            key = 'bcc' if key == 'bee' else key
-
-            if kw_args.get(key):
-                logger.debug(f'Already have value "{kw_args[key]}" at key "{key}", not overwriting with "{value}"')
-                should_log_header = True
-                continue
-
-            field_names.append(key)
-
-            if key == 'reply_to':
-                logger.warning(f"Found value for Reply-To field: '{value}'")
-
-            if key in TO_FIELDS:
-                recipients = [element.strip() for element in value.split(';')]
-                recipients = [r for r in recipients if len(r) > 0]
-                kw_args[key] = None if len(value) == 0 else [r if len(r) > 0 else UNKNOWN for r in recipients]
-            else:
-                kw_args[key.lower()] = None if len(value) == 0 else value
-
-        if should_log_header:
-            logger.debug(f"Header being parsed was this:\n\n{header}\n")
-
-        return cls(field_names=field_names, header_chars=header, **kw_args)

@@ -21,7 +21,7 @@ from epstein_files.documents.documents.search_result import MatchedLine
 from epstein_files.documents.emails.constants import DOJ_EMAIL_OCR_REPAIRS, FALLBACK_TIMESTAMP
 from epstein_files.documents.emails.email_header import DETECT_EMAIL_REGEX
 from epstein_files.output.highlight_config import get_style_for_name
-from epstein_files.output.layout_elements.file_display import FileDisplay
+from epstein_files.output.layout_elements.file_display import BasePanel, FileDisplay
 from epstein_files.output.rich import (INFO_STYLE, NA_TXT, SKIPPED_FILE_MSG_PADDING, SYMBOL_STYLE,
      add_cols_to_table, build_table, console, highlighter, styled_key_value, prefix_with, styled_dict,
      wrap_in_markup_style)
@@ -202,6 +202,11 @@ class Document:
         return self.file_info.file_id
 
     @property
+    def file_id_panel(self) -> BasePanel:
+        """The header panel printed before the body and subheaders with links and file ID etc."""
+        return BasePanel(border_style=self.border_style, text=self.colored_external_links())
+
+    @property
     def filename(self) -> str:
         return self.file_info.filename
 
@@ -282,7 +287,6 @@ class Document:
         prefix = '' if self.config and self.config.timestamp else 'inferred '
         return f"{prefix}timestamp: {remove_zero_time(self.timestamp)}"
 
-    # TODO: this name too close to Email method called _prettify_text()
     @property
     def prettified_text(self) -> Text:
         """Returns the string we want to print as the body of the document."""
@@ -292,10 +296,10 @@ class Document:
         if args.char_nums:
             text = self._inject_line_numbers(text, args.char_nums)
 
-        if self.config is None or self.config.truncate_to in [None, NO_TRUNCATE] or args.whole_file:
+        if self.config is None or self.config.truncate_at in [None, NO_TRUNCATE] or args.whole_file:
             return highlighter(Text(text, style))
 
-        char_range = list(self.config.truncate_to) if self.config.is_excerpt else [0, self.config.truncate_to]
+        char_range = list(self.config.truncate_at) if self.config.is_excerpt else [0, self.config.truncate_at]
         trim_footer_txt = self.truncation_note(char_range[1])
         chars = text[char_range[0]:char_range[1]]
 
@@ -321,35 +325,6 @@ class Document:
     def subheader(self) -> Text | None:
         """Secondary info about this file (description, recipients, etc). Overload in subclasses."""
         return None
-
-    @property
-    def summary(self) -> Text:
-        """Summary of this file for logging. Subclasses should extend with a method that closes the open '['."""
-        txt = Text('').append(self._class_name, style=self._class_style)
-        txt.append(f" {self.file_id}", style=FILENAME_STYLE)
-
-        if self.timestamp:
-            timestamp_str = remove_zero_time(self.timestamp).replace('T', ' ')
-            txt.append(' (', style=SYMBOL_STYLE)
-            txt.append(f"{timestamp_str}", style=TIMESTAMP_DIM).append(')', style=SYMBOL_STYLE)
-
-        txt.append(' [').append(styled_key_value('size', Text(str(self.length), style='aquamarine1')))
-        txt.append(", ").append(styled_key_value('lines', self.num_lines))
-
-        if self.config and self.config.duplicate_of_id:
-            txt.append(", ").append(styled_key_value('dupe_of', Text(self.config.duplicate_of_id, style='cyan dim')))
-
-        return txt
-
-    @property
-    def summary_panel(self) -> Panel:
-        """Panelized description() with info_txt(). Used in search results not in production HTML."""
-        sentences = [self.summary]
-
-        if self.INCLUDE_DESCRIPTION_IN_SUMMARY_PANEL:
-            sentences += [Text('', style='italic').append(h) for h in self.info]
-
-        return Panel(Group(*sentences), border_style=self._class_style, expand=False)
 
     @property
     def timestamp(self) -> datetime | None:
@@ -391,20 +366,37 @@ class Document:
     def _debug_prefix(self) -> str:
         return underscore(self._class_name).lower()
 
-    def colored_external_links(self) -> Text:
-        return self.file_info.build_external_links(with_alt_links=True)
+    @property
+    def _summary(self) -> Text:
+        """Summary of this file for logging. Subclasses should extend with a method that closes the open '['."""
+        txt = Text('').append(self._class_name, style=self._class_style)
+        txt.append(f" {self.file_id}", style=FILENAME_STYLE)
+
+        if self.timestamp:
+            timestamp_str = remove_zero_time(self.timestamp).replace('T', ' ')
+            txt.append(' (', style=SYMBOL_STYLE)
+            txt.append(f"{timestamp_str}", style=TIMESTAMP_DIM).append(')', style=SYMBOL_STYLE)
+
+        txt.append(' [').append(styled_key_value('size', Text(str(self.length), style='aquamarine1')))
+        txt.append(", ").append(styled_key_value('lines', self.num_lines))
+
+        if self.config and self.config.duplicate_of_id:
+            txt.append(", ").append(styled_key_value('dupe_of', Text(self.config.duplicate_of_id, style='cyan dim')))
+
+        return txt
 
     @property
-    def file_id_panel(self) -> Panel:
-        links_txt = self.colored_external_links()
-        return Panel(links_txt, border_style=self.border_style, expand=False)
+    def _summary_panel(self) -> Panel:
+        """Panelized description() with info_txt(). Used in search results not in production HTML."""
+        sentences = [self._summary]
 
-    def file_info_panel(self) -> Group:
-        """Panel with filename linking to raw file plus any additional info about the file."""
-        padded_info = [Padding(sentence, site_config.info_padding()) for sentence in self.info]
-        return Group(*([self.file_id_panel] + padded_info))
-        elements = [panel] + padded_info
-        return Group(*[Align(e, 'right') for e in elements])
+        if self.INCLUDE_DESCRIPTION_IN_SUMMARY_PANEL:
+            sentences += [Text('', style='italic').append(h) for h in self.info]
+
+        return Panel(Group(*sentences), border_style=self._class_style, expand=False)
+
+    def colored_external_links(self) -> Text:
+        return self.file_info.build_external_links(with_alt_links=True)
 
     def lines_matching(self, _pattern: re.Pattern | str) -> list[MatchedLine]:
         """Find lines in this file matching a regex pattern."""
@@ -454,6 +446,13 @@ class Document:
                 text = text.replace(k, v)
 
         return text
+
+    def rich_header(self) -> Group:
+        """Panel + subheaders with filename linking to raw file plus any additional info about the file."""
+        padded_info = [Padding(sentence, site_config.info_padding()) for sentence in self.info]
+        return Group(*([self.file_id_panel] + padded_info))
+        elements = [panel] + padded_info
+        return Group(*[Align(e, 'right') for e in elements])
 
     def top_lines(self, n: int = 10) -> str:
         """First n lines."""
@@ -576,17 +575,15 @@ class Document:
 
     def file_display(self, align: JustifyMethod | None = None, indent: int = 0) -> FileDisplay:
         """Allows for proper right vs. left justify."""
-        text_panel = Panel(
-            self.prettified_text,
+        body = BasePanel(
             border_style=self.border_style,
-            expand=False,
+            text=self.prettified_text,
             title=Text(f"({self.panel_title_timestamp})", style='dim') if self.panel_title_timestamp else None,
-            title_align='right',
         )
 
         return FileDisplay(
+            body_panel=body,
             file_info=self.file_id_panel,
-            body_panel=text_panel,
             subheaders=self.info,
             justify=align,
             indent=indent,
@@ -597,14 +594,14 @@ class Document:
         yield self.file_display()
 
     def __str__(self) -> str:
-        return self.summary.plain
+        return self._summary.plain
 
     @classmethod
     def default_category(cls) -> str:
         return ''
 
     @classmethod
-    def file_info_table(cls, title: str, first_col_name: str) -> Table:
+    def files_summary_table(cls, title: str, first_col_name: str) -> Table:
         """Empty table with appropriate cols for summarizing groups of files."""
         table = build_table(title)
         cols = [{'name': first_col_name, 'min_width': 14}] + SUMMARY_TABLE_COLS
@@ -612,11 +609,12 @@ class Document:
         return table
 
     @classmethod
-    def files_info(cls, files: Sequence[Self], is_author_na: bool = False) -> dict[str, str | Text]:
+    def files_summary(cls, files: Sequence[Self], is_author_na: bool = False) -> dict[str, str | Text]:
         """Summary info about a group of files."""
         file_count = len(files)
         author_count = cls.known_author_count(files)
 
+        # NOTE: Order matters!
         return {
             'count': str(file_count),
             'author_count': NA_TXT if is_author_na else str(author_count),
@@ -626,9 +624,9 @@ class Document:
         }
 
     @classmethod
-    def files_info_row(cls, files: Sequence[Self], author_na: bool = False) -> Sequence[str | Text]:
+    def file_summary_row(cls, files: Sequence[Self], author_na: bool = False) -> Sequence[str | Text]:
         """Turn the values in the `cls.files_info()` dict into a list so they can be used as a table row."""
-        return [v for v in cls.files_info(files, author_na).values()]
+        return [v for v in cls.files_summary(files, author_na).values()]
 
     @classmethod
     def known_author_count(cls, docs: Sequence[Self]) -> int:

@@ -55,6 +55,7 @@ class EpsteinFiles:
     timer: Timer = field(default_factory=lambda: Timer())
     uninteresting_ccs: list[Name] = field(default_factory=list)
     _empty_file_ids: set[str] = field(default_factory=set)
+    _emailers: list[Person] = field(default_factory=list)
 
     def __post_init__(self):
         """Iterate through files and build appropriate objects."""
@@ -107,8 +108,7 @@ class EpsteinFiles:
     @property
     def emailers(self) -> list[Person]:
         """All the people who sent or received an email."""
-        all_names = flatten([e.participants for e in self.emails])
-        return self.person_objs(all_names)
+        return self._emailers
 
     @property
     def counterparties_dict(self) -> dict[Name, list[Name]]:
@@ -322,11 +322,11 @@ class EpsteinFiles:
 
     def overview_table(self) -> Table:
         """Table showing file counts by type."""
-        table = Document.file_info_table('Files Overview', 'File Type')
-        table.add_row('Emails', *Document.files_info_row(self.emails))
-        table.add_row('iMessage Logs', *Document.files_info_row(self.imessage_logs))
-        table.add_row('JSON Data', *Document.files_info_row(self.json_files, True))
-        table.add_row('Other', *Document.files_info_row(self.non_json_other_files))
+        table = Document.files_summary_table('Files Overview', 'File Type')
+        table.add_row('Emails', *Document.file_summary_row(self.emails))
+        table.add_row('iMessage Logs', *Document.file_summary_row(self.imessage_logs))
+        table.add_row('JSON Data', *Document.file_summary_row(self.json_files, True))
+        table.add_row('Other', *Document.file_summary_row(self.non_json_other_files))
         return table
 
     def repair_ids(self, ids: list[str]) -> None:
@@ -396,6 +396,7 @@ class EpsteinFiles:
 
         self._set_uninteresting_ccs()
         self._copy_duplicate_doc_properties()
+        self._emailers = self.person_objs(flatten([e.participants for e in self.emails]))
         self._find_email_attachments_and_set_is_first_for_user()
         self._documents = Document.sort_by_timestamp(self._documents)
         self.save_to_disk()

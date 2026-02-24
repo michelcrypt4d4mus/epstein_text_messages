@@ -72,12 +72,14 @@ OFFICIAL_LINKS = [
 ]
 
 EXTERNAL_LINKS = OFFICIAL_LINKS + [
-    ExternalLink(JMAIL_URL, 'read His Emails via Gmail interface'),
-    ExternalLink(EPSTEIN_DOCS_URL, 'searchable archive'),
+    ExternalLink(EPSTEIN_WEB_URL, 'biographies', link_text='EpsteinWeb'),
+    ExternalLink(JMAIL_URL, 'read His Emails via Gmail interface', link_text='Jmail'),
+    ExternalLink('https://tommycarstensen.com/epstein/index.html', 'metadata', link_text='Carstensen Epstein Archive'),
+    ExternalLink(EPSTEIN_DOCS_URL, 'old docs', link_text='epstein-docs'),
     ExternalLink(EPSTEIN_MEDIA_URL, 'raw document images'),
-    ExternalLink(EPSTEINIFY_URL, 'raw images alt'),
-    ExternalLink(EPSTEIN_WEB_URL, 'biographies'),
-    ExternalLink('https://bitcoinprotocol.org/epstein-bitcoin-emails', link_text='epstein bitcoin emails'),
+    ExternalLink(EPSTEINIFY_URL, 'raw images alt', link_text='Epsteinify'),
+    ExternalLink('https://bitcoinprotocol.org/epstein-bitcoin-emails', 'crypto', link_text='Epstein Bitcoin Emails'),
+    ExternalLink('https://efta-search.vercel.app', 'search w/filters', link_text='EFTASearch'),
 ]
 
 CRYPTADAMUS_SOCIAL_LINKS = [

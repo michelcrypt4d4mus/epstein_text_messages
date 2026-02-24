@@ -200,7 +200,7 @@ def print_json_files(epstein_files: EpsteinFiles):
     else:
         for json_file in epstein_files.json_files:
             console.line(2)
-            console.print(json_file.summary_panel)
+            console.print(json_file._summary_panel)
             console.print_json(json_file.json_str(), indent=4, sort_keys=False)
 
 
@@ -339,7 +339,7 @@ def _verify_all_emails_were_printed(epstein_files: EpsteinFiles, already_printed
 
     for email in epstein_files.unique_emails:
         if email.file_id not in email_ids_that_were_printed:
-            logger.error(f"Failed to print {email.summary}")
+            logger.error(f"Failed to print {email._summary}")
             missed_an_email = True
 
     if not missed_an_email:

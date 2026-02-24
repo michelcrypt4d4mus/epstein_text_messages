@@ -26,6 +26,7 @@ MSG_REGEX = re.compile(r'Sender:(.*?)\nTime:(.*? (AM|PM)).*?Message:(.*?)\s*?((?
 REDACTED_AUTHOR_REGEX = re.compile(r"^([-+•_1MENO.=F]+|[4Ide])$")
 
 
+# TODO: screenshot messenger log: EFTA01612665
 @dataclass
 class MessengerLog(Communication):
     """
@@ -89,7 +90,7 @@ class MessengerLog(Communication):
         is_phone_number = author_str.startswith('+')
 
         if is_phone_number:
-            logger.info(f"{self.summary} Found phone number: {author_str}")
+            logger.info(f"{self._summary} Found phone number: {author_str}")
             self.phone_number = author_str
 
         # If the Sender: is redacted or if it's an unredacted phone number that means it's from self.author
@@ -116,7 +117,7 @@ class MessengerLog(Communication):
         raise RuntimeError(f"{self}: No timestamp found!")
 
     def __rich_console__(self, console: Console, options: ConsoleOptions) -> RenderResult:
-        yield self.file_info_panel()
+        yield self.rich_header()
         yield NewLine()
 
         for message in self.messages:

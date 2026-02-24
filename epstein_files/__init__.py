@@ -130,7 +130,7 @@ def epstein_grep():
             elif args.whole_file:
                 console.print(doc)
             else:
-                console.print(doc.summary_panel)
+                console.print(doc._summary_panel)
 
                 for matching_line in lines:
                     line_txt = matching_line.__rich__()
@@ -166,14 +166,17 @@ def epstein_show():
             local_extract_ids = [id for id in ids if is_local_extract_file(id)]
             raw_docs = [Document.from_file_id(id) for id in ids if not is_local_extract_file(id)]
 
-            if local_extract_ids:
-                raw_docs += EpsteinFiles.get_files().get_ids(local_extract_ids)
+            if local_extract_ids or with_attachment_ids:
+                epstein_files = EpsteinFiles.get_files()
 
-            # show the attachments bc reloaded obj won't have them
-            for id in with_attachment_ids:
-                existing_doc = EpsteinFiles.get_files().get_id(id)
-                logger.warning(f"Showing the attachments now because reloaded Email won't have them:")
-                console.print(existing_doc)
+                if local_extract_ids:
+                    raw_docs += epstein_files.get_ids(local_extract_ids)
+
+                # show the attachments bc reloaded obj won't have them
+                for id in with_attachment_ids:
+                    existing_doc = epstein_files.get_id(id)
+                    logger.warning(f"Showing the attachments now because reloaded Email won't have them:")
+                    console.print(existing_doc)
 
         if any(doc.file_info.has_file for doc in raw_docs):
             # Rebuild the Document objs so we can see result of latest processing
@@ -201,11 +204,11 @@ def epstein_show():
 
         if args.raw:
             console.line()
-            console.print(Panel(Text("RAW: ").append(doc.summary), expand=False, style=doc.border_style))
+            console.print(Panel(Text("RAW: ").append(doc._summary), expand=False, style=doc.border_style))
             console.print(escape(doc.raw_text()), '\n')
 
             if isinstance(doc, Email):
-                console.print(Panel(Text("actual_text: ").append(doc.summary), expand=False, style=doc.border_style))
+                console.print(Panel(Text("actual_text: ").append(doc._summary), expand=False, style=doc.border_style))
                 console.print(escape(doc._extract_actual_text()), '\n')
 
         if args.debug:

@@ -136,8 +136,8 @@ HTML_BUILD_FILENAMES = {
 SITE_DESCRIPTIONS = {
     SiteType.CURATED:               f"curated:by my interests, files grouped by type",
     SiteType.CHRONOLOGICAL:         f"curated chronological:all types intermingled",
-    SiteType.EMAILS:                f"emailers:ALL emails grouped by counterparty",
-    SiteType.EMAILS_CHRONOLOGICAL:  f"emails:ALL emails chronological order",
+    SiteType.EMAILS:                f"emailers:all emails grouped by counterparty",
+    SiteType.EMAILS_CHRONOLOGICAL:  f"emails chronological:all emails chronological order",
     SiteType.TEXT_MESSAGES:         f"text messages:{HOUSE_OVERSIGHT_TRANCHE}",
     SiteType.CURATED_MOBILE:        f"mobile:an attempt at mobile compatibility",
     SiteType.CHRONOLOGICAL_MOBILE:  f"chrono mobile:another attempt at mobile compatibility",

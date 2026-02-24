@@ -85,19 +85,19 @@ class Communication(Document):
         return get_style_for_name((self.recipients or [self.author])[0])
 
     @property
-    def summary(self) -> Text:
-        """One line summary mostly for logging."""
-        return self.summary_with_author.append(CLOSE_PROPERTIES_CHAR)
-
-    @property
-    def summary_with_author(self) -> Text:
-        """Append author information to `super().summary`, bracket is left open."""
-        author_str = styled_key_value('author', Text(f"'{self.author_or_unknown}'", style=self.author_style))
-        return super().summary.append(', ').append(author_str)
-
-    @property
     def timestamp_without_seconds(self) -> str:
         return TIMESTAMP_SECONDS_REGEX.sub('', str(self.timestamp))
+
+    @property
+    def _summary(self) -> Text:
+        """One line summary mostly for logging."""
+        return self._summary_with_author.append(CLOSE_PROPERTIES_CHAR)
+
+    @property
+    def _summary_with_author(self) -> Text:
+        """Append author information to `super().summary`, bracket is left open."""
+        author_str = styled_key_value('author', Text(f"'{self.author_or_unknown}'", style=self.author_style))
+        return super()._summary.append(', ').append(author_str)
 
     def colored_external_links(self) -> Text:
         """Overrides super() method to apply `self.author_style`."""

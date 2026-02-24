@@ -140,11 +140,11 @@ def print_title_page_bottom(epstein_files: 'EpsteinFiles') -> None:
     console.line()
     _print_abbreviations_table()
     print_centered(epstein_files.overview_table())
+    _print_external_links()
     console.line()
     print_color_key()
     print_centered(f"(if you think there's an attribution error or can deanonymize an {UNKNOWN} contact {CRYPTADAMUS_TWITTER})", 'grey46')
     print_centered(f"(thanks to {link_markup('https://x.com/ImDrinknWyn', '@ImDrinknWyn', 'dodger_blue3')} + others for help attributing redacted emails)")
-    _print_external_links()
     console.line()
 
 
@@ -190,7 +190,7 @@ def _print_external_links() -> None:
     console.line()
     print_centered(Text('External Links', style=TABLE_TITLE_STYLE))
 
-    for link in EXTERNAL_LINKS:
+    for link in sorted(EXTERNAL_LINKS, key=lambda link: -len(link.link_with_comment)):
         print_centered(link.link_with_comment)
 
 

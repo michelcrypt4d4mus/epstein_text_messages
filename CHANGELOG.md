@@ -1,4 +1,6 @@
 # NEXT RELEASE
+* Cache `EpsteinFiles._emailers`
+* HTML output
 
 ### 1.8.5
 * Split up the massive Dilorio whistleblower emails

@@ -1,5 +1,6 @@
 import re
 from pathlib import Path
+from subprocess import check_output
 
 from epstein_files.util.constant.strings import (DOJ_FILE_STEM_REGEX, DOJ_FILE_NAME_REGEX, EFTA_PREFIX,
      HOUSE_OVERSIGHT_NOV_2025_FILE_NAME_REGEX, HOUSE_OVERSIGHT_NOV_2025_FILE_STEM_REGEX,
@@ -147,3 +148,7 @@ def is_local_extract_file(filename: str | Path) -> bool:
 
 def log_file_write(file_path: str | Path) -> None:
     logger.warning(f"Wrote {file_size_str(file_path)} to '{file_path}'")
+
+
+def open_file_or_url(thing_to_open: str | Path) -> None:
+    check_output(['open', str(thing_to_open)])

@@ -7,6 +7,7 @@ from epstein_files.util.constant.names import (NAMES_TO_NOT_HIGHLIGHT, SIMPLE_NA
 from epstein_files.util.constant.strings import INDENT_NEWLINE, INDENTED_JOIN
 from epstein_files.util.helpers.data_helpers import constantize_names
 from epstein_files.util.helpers.string_helper import as_pattern, indented, quote, remove_question_marks
+from epstein_files.util.logging import logger
 
 MIN_LEN_FOR_OPTIONAL_LAST_CHAR = 5
 
@@ -29,7 +30,11 @@ class Contact:
     # jmail_url: str
 
     def __post_init__(self):
-        self.emailer_regex = re.compile(self.pattern, re.IGNORECASE)
+        try:
+            self.emailer_regex = re.compile(self.pattern, re.IGNORECASE)
+        except re.error as e:
+            logger.fatal(f"failed to compile emailer_regex for {self.name}: {e}")
+            raise e
 
     @property
     def highlight_pattern(self) -> str:

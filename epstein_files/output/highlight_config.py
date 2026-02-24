@@ -10,7 +10,7 @@ from rich.text import Text
 
 from epstein_files.documents.documents.categories import (CATEGORY_STYLES, CATEGORY_STYLE_MAPPING,
      DEFAULT_CATEGORY_STYLE, Interesting, Neutral, Uninteresting)
-from epstein_files.documents.emails.constants import QUOTE_INDENT_CHAR_GROUP, REPLY_REGEX, SENT_FROM_REGEX, XML_STRIPPED_MSG
+from epstein_files.documents.emails.constants import ALL_HEADER_PATTERNS, QUOTE_INDENT_CHAR_GROUP, REPLY_REGEX, SENT_FROM_REGEX, XML_STRIPPED_MSG
 from epstein_files.output.highlighted_names import HighlightGroup, HighlightedNames, HighlightPatterns, ManualHighlight
 from epstein_files.people.contact import Contact
 from epstein_files.util.constant.names import *
@@ -247,7 +247,6 @@ HighlightedNames(
             r"Michael Klein",
             r"New Leaf Ventures",
             r"Park Partners",
-            r"real estate( developer)?",
             r"Robin\s?hood",
             r"SALSS",
             r"Swedish American Life Science Summit",
@@ -401,6 +400,7 @@ HighlightedNames(
             r"Northern Data",
             r"Pantera",
             r"(Patrick )?Murck",
+            r"Playsino",
             r"Ribbit",
             r"(?-i:R)IOT( Blockchain)?",  # (?-i:) makes it case sensitive
             r"Ripple",
@@ -497,7 +497,7 @@ HighlightedNames(
             Contact(JEAN_HUGUEN, "interior design at Alberto Pinto Cabinet", r"Jean[\s.]Huguen"),
             Contact(JOJO_FONTANILLA, "Filipino housekeeper", r"Jo.. Fontanilla"),
             Contact(LAWRANCE_VISOSKI, "Epstein's pilot", r"La(rry|wrance) Visoski?|Lvjet"),
-            Contact(LESLEY_GROFF, "Epstein's assistant", r"Lesley Gro(ff)?"),
+            Contact(LESLEY_GROFF, "Epstein's assistant", r"Lesley (K(\.|atherine)? )?Gro(ff)?"),
             Contact('Linda Pinto', "interior design at Alberto Pinto Cabinet"),
             Contact(LYN_FONTANILLA, "Filipino housekeeper", r"L.nn? Fontanilla"),
             Contact(MERWIN_DELA_CRUZ, "housekeeper"),
@@ -538,6 +538,7 @@ HighlightedNames(
             r"Neptune LLC",
             r"NES LLC",
             r"Plan D",
+            r"SCI JEP",
             r"Southern Country International",
             r"Thomas World Air",
             r"Zorro( (Management|Ranch))?",
@@ -611,7 +612,7 @@ HighlightedNames(
             Contact(
                 name=DARREN_INDYKE,
                 info="Epstein estate executor",
-                emailer_pattern=r"darren$|Darren (K\.? )?[il]n[dq]_?yke?|dkiesq",
+                emailer_pattern=r"darren$|Darren (K(\.|eith)? )?[il]n[dq]_?yke?|dkiesq",
             ),
             Contact(RICHARD_KAHN, "Epstein estate executor", r"rich(ard)? kahn?")
         ],
@@ -719,8 +720,12 @@ HighlightedNames(
         style='dark_sea_green2',
         patterns=[
             r"((anti.?)?money )?launder(s?|ers?|ing)?( money)?",
+            r"(?<!(ature|Chase|zrahi|tsche)\s)bank(?!\s+of)"
             r"C[EF]O",
             r"(co-?)?founder",
+            r"real estate( developer)?",
+            r"Trust(ee| Estate)",
+            r"tax(e[ds])?",
         ]
     ),
     HighlightedNames(
@@ -736,7 +741,7 @@ HighlightedNames(
                 info="CIO Honeycomb Asset Management, Epstein invested in Spotify through him",
                 emailer_pattern=r"David Fis?zel",
             ),
-            Contact(JES_STALEY, "former CEO of Barclays"),
+            Contact(JES_STALEY, "former CEO of Barclays", emailer_pattern=r"[J!](ames|es) (E\.? )Staley"),
             Contact(JIDE_ZEITLIN, f"former partner at {GOLDMAN_SACHS}, allegations of sexual misconduct"),
             Contact('Laurie Cameron', "currency trading"),
             Contact(
@@ -763,7 +768,7 @@ HighlightedNames(
             r"Andrew Nikou",
             r"Apollo",
             r"Ari Glass",
-            r"Bank( of Scotland)?",
+            r"Bank of Scotland",
             r"Bear Stearns",
             r"(Bernie )?Madoff",
             r"Black(rock|stone)",
@@ -1076,6 +1081,7 @@ HighlightedNames(
         contacts=[
             Contact('Alain Forget', "author of \"How To Get Out Of This World ALIVE\""),
             Contact('Alex Yablon', "New York Magazine fact checker (?)"),
+            Contact('Dylan Love', f'The Next Web and Business Insider, close with {MASHA_DROKOVA}'),
             Contact(
                 name=EDWARD_JAY_EPSTEIN,
                 info="no relation, wrote books about spies",
@@ -1097,7 +1103,7 @@ HighlightedNames(
                 emailer_pattern=r"Michael Wol(f[ef]e?|i)|Wolff",
             ),
             Contact('Newsmax', "right wing American news outlet", r"Newsmax(\.com)?"),
-            Contact(PAUL_KRASSNER, "60s counterculture guy", r"Pa\s?ul Krassner"),
+            Contact(PAUL_KRASSNER, "60s counterculture guy, Merry Prankster", r"Pa\s?ul Krassner"),
             Contact('Peter Aldhous', "Buzzfeed science reporter"),
             Contact('Susan Edelman', "New York Post reporter"),
             Contact('Tim Zagat', "Zagat restaurant guide CEO")
@@ -1586,23 +1592,25 @@ HighlightedNames(
             Contact('Dasha Zhukova', "art collector, daughter of Alexander Zhukov"),
             Contact(JULIA_SANTOS, "possibly a Russian in Paris that was recruiting girls from Ukraine for Epstein"),
             Contact(
-                name=KARYNA_SHULIAK,
+                KARYNA_SHULIAK,
                 info="Epstein's final girlfriend to whom he tried to leave $50-100 million and the island",
                 emailer_pattern=r"Karyna Shuliak?",
             ),
+            Contact('Kira Dikhtyar', emailer_pattern=r"Kira (D|Kira)", link_to_bio='https://x.com/FlippersUpNow/status/2020490996287443071'),
             Contact(
-                name='Maria Prusakova',
+                MARIA_PRUSAKOVA,
                 info=f"AKA Masha Prusso, former Olympic snowboarder, {CRYPTO_PR_LAB} co-founder, \"found ladies\" for Epstein",
                 emailer_pattern=r"Ma(sha|riy?a) (Prus(kova|so))",
             ),
             Contact(MASHA_DROKOVA, "silicon valley VC, former Putin Youth member"),
+            Contact(OLGA_PONOMAR_BECKER),
             Contact(
-                name=RENATA_BOLOTOVA,
+                RENATA_BOLOTOVA,
                 info="former model, fund manager at New York State Insurance Fund, Рената Болотова",
                 emailer_pattern=r"Renata Bolotova|Rena B|Renata Bo\w+|renbolotova",
             ),
             Contact(
-                name=SERGEY_BELYAKOV,
+                SERGEY_BELYAKOV,
                 emailer_pattern=r"Sergey Belyako|Беляков Сергей|Cepre(ct|il) [6BES][\w.]+|6(er|of)no\w+ [CE]\w+",
                 info="graduate of Russia's FSB academy (AKA \"a spy\"), head of the St. Petersburg Economic Forum Foundation",
                 link_to_bio='https://dossier.center/jeffreyepsteinrusconnect-en/',
@@ -1927,7 +1935,7 @@ HighlightedNames(
         patterns=[r"HBJ"],
     ),
     HighlightedNames(
-        contacts=[Contact(KATHRYN_RUEMMLER, "former Obama legal counsel", r"Kathr?yn? Ruemmler?")],
+        contacts=[Contact(KATHRYN_RUEMMLER, "former Obama legal counsel", r"Kathr?yn? (H\.? )?Ruemmler?")],
         style='magenta2',
         category=FRIEND
     ),
@@ -1992,7 +2000,7 @@ HighlightedNames(
      HighlightPatterns(
         label='header_field',
         style='plum4',
-        patterns=[r'^[>•\s]{,4}(Date\s?|From|Sent|To|C[cC]|Importance|Reply[-\s]?To|Subject|Bee|B[cC]{2}|Attach(ed|ments)|Flag|Classification|[Il]nline-[Il]mages|((A|Debut du message transfer[&e]|De(stinataire)?|Envoye|Expe(cl|d)iteur|Objet|Q|Sujet)\s?)):|^on behalf of'],
+        patterns=[fr"^[>•\s]{{,4}}({'|'.join(ALL_HEADER_PATTERNS)}):|^on behalf of"],
     ),
     HighlightPatterns(
         label='http_links',

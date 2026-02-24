@@ -42,15 +42,19 @@ REPLY_REGEX = re.compile(REPLY_LINE_PATTERN, re.IGNORECASE | re.MULTILINE)
 FORWARDED_TOO_MUCH_SPACE_REGEX = re.compile(fr"^({FORWARDED_LINE_PATTERN})\n\n", re.MULTILINE | re.IGNORECASE)
 
 # Header fields
-FIELD_PATTERNS = [
+COMMON_HEADER_FIELDS = [
     'Date',
     'From',
     'Sent',
+    'Subject',
+]
+
+HEADER_FIELDS_PATTERNS = COMMON_HEADER_FIELDS + [
     'To',
     r"C[cC]",
     r"B[cC][cC]",
+    "Bee",
     'Importance',
-    'Subject',
     'Attachments',
     'Attached',
     'Classification',
@@ -59,13 +63,37 @@ FIELD_PATTERNS = [
     'Inline-Images'
 ]
 
-FIELDS_PATTERN = '|'.join(FIELD_PATTERNS)
-FIELDS_COLON_PATTERN = fr"^({FIELDS_PATTERN}):"
+HEADER_FIELDS_PATTERN = '|'.join(HEADER_FIELDS_PATTERNS)
+HEADER_FIELD_COLON_PATTERN = fr"^({HEADER_FIELDS_PATTERN}):"
+HEADER_FIELD_COLON_REGEX = re.compile(HEADER_FIELD_COLON_PATTERN)
+
+FRENCH_HEADER_PATTERNS = [
+    'A',
+    r'Debut du message transfer[&e]',
+    r'De(stinataire)?',
+    r'Envoy[ée]',
+    r'Expe(cl|d)iteur',
+    r'Object',
+    r'Q',
+    r'Sujet\s?',
+]
+
+GERMAN_HEADER_PATTERNS = [
+    'Betreff',
+    'Gesendet',
+    'An',
+    'Von',
+]
+
+# TODO; parse [Il]nline-[Il]mages etc.
+ALL_HEADER_PATTERNS = HEADER_FIELDS_PATTERNS + FRENCH_HEADER_PATTERNS + GERMAN_HEADER_PATTERNS + [
+    r"[Il]nline-[Il]mages",
+]
 
 # DojFile specific repairs must be applied before checking doc.is_email
 DOJ_EMAIL_OCR_REPAIRS: dict[str | re.Pattern, str] = {
     re.compile(r"^Sent (Sun|Mon|Tue|Wed|Thu|Fri|Sat)", re.MULTILINE): r"Sent: \1",
-    re.compile(fr"({FIELDS_COLON_PATTERN}.*\n)\nSubject:", re.MULTILINE): r'\1Subject:',
+    re.compile(fr"({HEADER_FIELD_COLON_PATTERN}.*\n)\nSubject:", re.MULTILINE): r'\1Subject:',
     re.compile(r"^Subject[•]", re.MULTILINE): 'Subject:',
     re.compile(r"^Fran:", re.MULTILINE): 'From:',
 }

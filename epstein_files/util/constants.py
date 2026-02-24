@@ -6,7 +6,8 @@ from itertools import groupby
 from epstein_files.documents.documents.config_builder import (WOLFF_EPSTEIN_ARTICLE_DRAFT, blaine_letter,
      letter, starr_letter, whistleblower_cfg, wolff_draft_cfg)
 from epstein_files.documents.documents.categories import CONSTANT_CATEGORIES, Interesting, Neutral
-from epstein_files.documents.documents.doc_cfg import NO_TRUNCATE, CommunicationCfg, DocCfg, EmailCfg, TextCfg, phone_bill_cfg
+from epstein_files.documents.documents.doc_cfg import (DEFAULT_TRUNCATE_TO, SHORT_TRUNCATE_TO, NO_TRUNCATE,
+     CommunicationCfg, DocCfg, EmailCfg, TextCfg, phone_bill_cfg)
 from epstein_files.documents.doj_files.full_text import EFTA00009622_TEXT
 from epstein_files.documents.emails.constants import FLIGHT_IN_2012_PEOPLE, IRAN_DEAL_RECIPIENTS, TRIVERS_CCS
 from epstein_files.util.helpers.string_helper import join_truthy, quote
@@ -14,8 +15,6 @@ from epstein_files.util.constant.names import *
 from epstein_files.util.constant.strings import *
 from epstein_files.util.logging import logger
 
-DEFAULT_TRUNCATE_TO = 4000
-SHORT_TRUNCATE_TO = int(DEFAULT_TRUNCATE_TO / 3)
 OTHER_FILES_PFX = 'OTHER_FILES_'
 PARTICIPANTS_FIELD = 'Participants: field'
 VALAR_FUND = f"{PETER_THIEL}'s {VALAR_VENTURES} fund"
@@ -1465,6 +1464,9 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA02628058', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA02626427', truncate_to=NO_TRUNCATE),
     #### MAGIC COMMENT FOR MANUAL CONFIG ####
+    EmailCfg(id='EFTA01063008', author=OLGA_PONOMAR_BECKER, author_reason='Jmail'),
+    EmailCfg(id='EFTA00681554', recipients=[OLGA_PONOMAR_BECKER]),
+    EmailCfg(id='EFTA02669915', recipients=[OLGA_PONOMAR_BECKER]),
     EmailCfg(
         id='EFTA02581361',
         description='Epstein funded a conference in Cuba that Gino Yu put together with $100k',
@@ -1476,6 +1478,14 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA02641374', is_interesting=True),
     # EmailCfg(id='EFTA02641374', is_interesting=True),
     EmailCfg(id='EFTA00953261', author=LARRY_SUMMERS, recipients=[JEFFREY_EPSTEIN]),
+    EmailCfg(
+        id='EFTA02010589',
+        date='2012-01-31 9:16 PM',
+        description='raunchy email mentioning "Sasah Grey guy" (Grey is a famous porn star)',
+        is_interesting=True,
+        recipients=[JEFFREY_EPSTEIN],
+    ),
+    EmailCfg(id='EFTA00664619', author=SUE, author_reason='"Dear Sue"'),
 ]
 
 
@@ -2011,7 +2021,12 @@ OTHER_FILES_MONEY = [
     ),
     DocCfg(id='024003', description=f"New Leaf Ventures ($375 million biotech fund) private placement memorandum"),
     # DOJ files
-    # DocCfg(id='EFTA01359553', description='Southern Financial LLC wire transfers'), # now inferred
+    DocCfg(id='EFTA00016884', description="Epstein's last will and testament"),
+    DocCfg(id='EFTA01266380', description="Epstein's 2014 Trust with bequests"),
+    DocCfg(id='EFTA01282282', description=f"Epstein Butterfly Trust (sole beneficiary {KARYNA_SHULIAK})"),
+    DocCfg(id='EFTA00099424', description=f"Epstein 2017 Trust (Eva Andersson Dubin, {DARREN_INDYKE}, {RICHARD_KAHN})"),
+    DocCfg(id='EFTA01266457', description=f"Epstein 2018 Trust ({KATHRYN_RUEMMLER}, {DARREN_INDYKE}, {RICHARD_KAHN})"),
+    DocCfg(id='EFTA01266204', description=f"Epstein The 1953 Trust ({DARREN_INDYKE}, {RICHARD_KAHN})", date='2019-08-08'),
     DocCfg(id='EFTA01681865', author=DEUTSCHE_BANK, description=f"explanations of all of Epstein's large payments prepared for DOJ", is_interesting=True),
     DocCfg(id='EFTA01285411', description=f"bank statement for Epstein's {SOUTHERN_TRUST_COMPANY} showing $82 million balance"),
     DocCfg(id='EFTA01087311', description=f'{LEON_BLACK} Family Partners cash projections'),
@@ -2460,6 +2475,7 @@ OTHER_FILES_CRYPTO = [
     DocCfg(id='EFTA01613759', author=CRYPTO_PR_LAB, description="letter of intent of acquisitionfrom Transform Group"),
     DocCfg(id='EFTA01613762', author=CRYPTO_PR_LAB, description=f"WhatsApp convo with {MARIA_PRUSAKOVA}", date='2019-05-21'),
     DocCfg(id='EFTA01612721', author=CRYPTO_PR_LAB, description=f"WhatsApp convo with {MARIA_PRUSAKOVA}", date='2019-05-21'),
+    EmailCfg(id='033255', description=f"{MASHA_DROKOVA}'s friend Dylan Love suggests he could quote Epstein explaining \"proper implementation of crypto might solve financial corruption issues\""),
     EmailCfg(id='EFTA01013266', description=f"{MARIA_PRUSAKOVA}'s {CRYPTO_PR_LAB} request for payment for Davos", is_interesting=True),
     EmailCfg(id='EFTA02285514', description=f"Medici Bank and {MARIA_PRUSAKOVA} meeting", is_interesting=True),
     EmailCfg(id='EFTA01013922', description=f"{CRYPTO_PR_LAB} business plan", is_interesting=True),
@@ -2508,6 +2524,14 @@ OTHER_FILES_CRYPTO = [
     EmailCfg(id='EFTA00495372', description=f'discussion of Medici Bank, a new successor to Noble Bank as a crypto bank', is_interesting=True),
     # Kushner
     DocCfg(id='EFTA00128987', description='suspicious activity report (SAR) about Kushner co. crypto payments to suspicious Russian person'),
+    # Masha Drokova
+    EmailCfg(
+        id='EFTA01003115',
+        author=MASHA_DROKOVA,
+        author_reason='"masha" in quoted',
+        description='"Dylan" is probably Dylan Love who wrote a story about Epstein and bitcoin arranged by Masha Drokova',
+        truncate_to=NO_TRUNCATE,
+    ),
     # Valar
     DocCfg(id='EFTA01121910', author=VALAR_VENTURES, description="contract", truncate_to=DEFAULT_TRUNCATE_TO),
     DocCfg(id='EFTA00808277', author=VALAR_VENTURES, description="contract", truncate_to=DEFAULT_TRUNCATE_TO),
@@ -2628,6 +2652,11 @@ OTHER_FILES_TEXT_MSG = [
     CommunicationCfg(id='EFTA01611042', author=ED_BOYLE, recipients=[None, MARIA_PRUSAKOVA]),
     DocCfg(id='EFTA01611898', description=f"screenshot of recent contacts in an iPhone"),
     CommunicationCfg(id='EFTA02731525', author=LEON_BLACK, author_uncertain=True),
+    CommunicationCfg(
+        id='EFTA01612665',
+        description='sender is "stressed about finding girls", Epstein gives advice on how to find them',
+        is_interesting=True
+    ),
 ]
 
 OTHER_FILES_JUNK = [

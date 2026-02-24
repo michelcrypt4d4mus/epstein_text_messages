@@ -24,9 +24,12 @@ DebugDict = dict[str, bool | datetime | str | Path | None]
 DuplicateType = Literal['bounced', 'earlier', 'quoted', 'redacted', 'same']
 Metadata = dict[str, bool | datetime | int | str | None | list[str | None] | dict[str, bool | str]]
 
-MAX_LINE_LENGTH = 135
+DEFAULT_TRUNCATE_TO = 4000
+SHORT_TRUNCATE_TO = int(DEFAULT_TRUNCATE_TO / 3)
 NO_TRUNCATE = -1
 SAME = 'same'
+
+MAX_REPR_LINE_LENGTH = 135
 ZUBAIR_AND_ANYA = f"{ZUBAIR_KHAN} and Anya Rasulova"
 
 # Authors of financial report pablum
@@ -92,6 +95,10 @@ CATEGORY_PREAMBLES = {
     Uninteresting.TWEET: Uninteresting.TWEET.title(),
 }
 
+SHORT_TRUNCATE_CATEGORIES = [
+    Uninteresting.ARTICLE,
+]
+
 
 @dataclass(kw_only=True)
 class DocCfg:
@@ -137,6 +144,14 @@ class DocCfg:
     replace_text_with: str = ''
     show_with_name: str = ''
     truncate_to: int | tuple[int, int] | None = None
+
+    @property
+    def truncate_at(self) -> int | tuple[int, int] | None:
+        """The number of chars to show when printing this document."""
+        if self.truncate_to:
+            return self.truncate_to
+        elif self.category in SHORT_TRUNCATE_CATEGORIES:
+            return SHORT_TRUNCATE_TO
 
     def __post_init__(self):
         if self.id in self.duplicate_ids:
@@ -434,7 +449,8 @@ class DocCfg:
         type_str = f"{type(self).__name__}("
         single_line_repr = type_str + ', '.join(props) + f')'
 
-        if len(single_line_repr) < MAX_LINE_LENGTH or (self.comment and 'is_fwded_article' in dir(self) and getattr(self, 'is_fwded_article')):
+        if len(single_line_repr) < MAX_REPR_LINE_LENGTH or \
+                (self.comment and 'is_fwded_article' in dir(self) and getattr(self, 'is_fwded_article')):
             repr_str = single_line_repr
         else:
             repr_str = f"{type_str}{INDENT_NEWLINE}" + INDENTED_JOIN.join(props)
@@ -519,6 +535,13 @@ class EmailCfg(CommunicationCfg):
     has_uninteresting_ccs: bool = False
     has_uninteresting_bccs: bool = False
     subject: str | None = None
+
+    @property
+    def truncate_at(self) -> int | tuple[int, int] | None:
+        if super().truncate_at:
+            return super().truncate_at
+        elif self.is_fwded_article or self.fwded_text_after:
+            return SHORT_TRUNCATE_TO
 
     # This is necessary because for some dumb reason @dataclass(repr=False) doesn't cut it
     def __repr__(self) -> str:

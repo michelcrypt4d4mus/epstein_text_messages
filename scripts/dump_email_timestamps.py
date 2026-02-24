@@ -16,16 +16,28 @@ from epstein_files.documents.email import Email, UNINTERESTING_EMAILERS
 from epstein_files.documents.other_file import OtherFile
 from epstein_files.output.highlight_config import HIGHLIGHT_GROUPS, get_style_for_name
 from epstein_files.output.highlighted_names import HighlightedNames
+from epstein_files.output.html.builder import table_to_html, write_html
+from epstein_files.people.person import Person
 from epstein_files.util.constant.names import *
 from epstein_files.util.constants import CONFIGS_BY_ID, EmailCfg
 from epstein_files.util.helpers.data_helpers import *
 from epstein_files.util.helpers.debugging_helper import print_all_timestamps, print_file_counts
+from epstein_files.util.helpers.file_helper import open_file_or_url
 from epstein_files.util.helpers.string_helper import quote
 from epstein_files.util.logging import logger
 from epstein_files.output.rich import bool_txt, console, highlighter, print_json, print_subtitle_panel
 
-local_ids = [doc.file_id for doc in epstein_files.local_extracts]
-print_json('local ids', local_ids)
+
+all_emailers = sorted(epstein_files.emailers, key=lambda person: person.sort_key)
+table = Person.emailer_info_table(all_emailers, show_epstein_total=True)
+open_file_or_url(write_html(table_to_html(table)))
+
+# divs = [
+#     doc.file_display().to_html()
+#     for doc in [d for d in epstein_files.emails if 1000 < d.length < 6000][:9]
+# ]
+
+# open_file_or_url(write_html(divs))
 
 # print_file_counts(epstein_files)
 # print_all_timestamps(epstein_files)
@@ -173,7 +185,7 @@ for email in sorted(epstein_files.emails, key=lambda e: -len(e.actual_text)):
     if len(email.actual_text) > 100:
         max_sizes[email.file_id] = len(email.actual_text)
         console.line(2)
-        console.print(Panel(email.summary, expand=False, style=email.border_style))
+        console.print(Panel(email._summary, expand=False, style=email.border_style))
         console.print(escape(email._extract_actual_text()))
 
 console.line(2)
@@ -185,7 +197,7 @@ for i, id_count in enumerate(sort_dict(max_sizes)):
     id = id_count[0]
     count = id_count[1]
     email = epstein_files.get_ids([id])[0]
-    console.print(f"{count:6d}: {email.summary.plain}")
+    console.print(f"{count:6d}: {email._summary.plain}")
 
 
 console.line(2)

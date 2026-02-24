@@ -41,7 +41,8 @@ def create_configs(docs: Sequence[Document]) -> Sequence[DocCfg]:
     cfgs = []
     what_to_do = Prompt.ask(QUESTION.append(f" [y/n/{ALL}/IDs]", style='magenta'))
 
-    if what_to_do == 'n':
+    if (what_to_do or 'n') == 'n':
+        logger.warning(f"Exiting...")
         sys.exit()
     elif what_to_do == 'y':
         return []

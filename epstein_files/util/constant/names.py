@@ -224,11 +224,13 @@ KARYNA_SHULIAK = 'Karyna Shuliak'
 LORENZO_DE_MEDICI = 'Lorenzo de Medici'
 MADARS_VIRZA = 'Madars Virza'
 NICOLE_JUNKERMANN = 'Nicole Junkermann'
+OLGA_PONOMAR_BECKER = 'Olga Ponomar-Becker'
 PERKINS_COIE = 'Perkins Coie'
 PHILIP_ROSEDALE = 'Philip Rosedale'
 SETH_LLOYD = 'Seth Lloyd'
 STACEY_RICHMAN = 'Stacey Richman'
 STORY_COWLES = 'Story Cowles'
+SUE = 'Sue'
 TANCREDI_MARCHIOLO = 'Tancredi Marchiolo'
 YUKO_BARNABY = 'Yuko Barnaby'
 WHITFIELD_DIFFIE = 'Whitfield Diffie'
@@ -316,7 +318,7 @@ NAMES_TO_NOT_HIGHLIGHT = """
     adam al alain alan alison alfredo allen alex alexander amanda andres andrew ann anthony asia audrey
     back bard barrett barry bennet bernard bill black bob boris boyle brad brenner bruce bryan
     cameron caroline carolyn chris christian christina christopher cohen
-    dan daniel danny darren dave david debbie department donald douglas
+    dan daniel danny darren dave david debbie department donald douglas dylan
     ed edward edwards elisa enforcement enterprise enterprises entourage epstein eric erika etienne
     faith fisher fitzgerald forget frances francesca fred friendly frost fuller fund
     gates gateway general gerald george gold gordon greg
@@ -324,7 +326,7 @@ NAMES_TO_NOT_HIGHLIGHT = """
     ian inc inc. ivan
     jack james jay jean jeff jeffrey jennifer jeremy jessica joel john jon jonathan joseph jr julia justin
     kafka kahn karl kate katherine kelly ken kevin krassner
-    larry larsen laurie lawrence leon lesley linda link lisa
+    larry larsen laurie lawrence leon lesley linda link lisa love
     management mann marc maria marie mark martin matthew melanie michael mike miller mitchell miles morris moskowitz
     nancy nathan neal new nicholas nicole norman ny
     owen

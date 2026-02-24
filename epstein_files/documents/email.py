@@ -20,7 +20,7 @@ from epstein_files.documents.documents.categories import Uninteresting
 from epstein_files.documents.documents.doc_cfg import DebugDict, EmailCfg, Metadata
 from epstein_files.documents.emails.constants import *
 from epstein_files.documents.emails.email_header import (EMAIL_SIMPLE_HEADER_REGEX,
-     EMAIL_SIMPLE_HEADER_LINE_BREAK_REGEX, FIELD_NAMES, EmailHeader)
+     EMAIL_SIMPLE_HEADER_LINE_BREAK_REGEX, EmailHeader)
 from epstein_files.documents.emails.emailers import extract_emailer_names
 from epstein_files.documents.other_file import OtherFile
 from epstein_files.people.interesting_people import EMAILERS_OF_INTEREST_SET
@@ -41,7 +41,6 @@ from epstein_files.util.logging import logger
 BAD_FIRST_LINE_REGEX = re.compile(r'^(>>|Grant_Smith066474"eMailContent.htm|LOVE & KISSES)$')
 BAD_LINE_REGEX = re.compile(r'^(>;?|\d{1,2}|PAGE INTENTIONALLY LEFT BLANK|Classification: External Communication|Hide caption|Importance:?\s*High|[iI,•]|[1i] (_ )?[il]|, [-,]|L\._|_filtered|si.nature.asc|.*(yiv0232|font-family:|margin-bottom:).*)$')
 BAD_SUBJECT_CONTINUATIONS = ['orwarded', 'Hi ', 'Sent ', 'AmLaw', 'Original Message', 'Privileged', 'Sorry', '---']
-FIELDS_COLON_REGEX = re.compile(FIELDS_COLON_PATTERN)
 LINK_LINE_REGEX = re.compile(f"^[>• ]*htt")
 LINK_LINE2_REGEX = re.compile(r"^[-\w.%&=/]{5,}$")
 QUOTED_REPLY_LINE_REGEX = re.compile(r'(\nFrom:(.*)|wrote:)\n', re.IGNORECASE)
@@ -77,7 +76,8 @@ BCC_LISTS = JUNK_EMAILERS + MAILING_LISTS
 TRUNCATE_EMAILS_BY = BCC_LISTS + TRUNCATE_EMAILS_FROM
 REWRITTEN_HEADER_MSG = "(janky OCR header fields were prettified, check source if something seems off)"
 
-REPLY_SPLITTERS = [f"{field}:" for field in FIELD_NAMES] + [
+# TODO: add other forward patterns
+REPLY_SPLITTERS = [f"{field}:" for field in COMMON_HEADER_FIELDS] + [
     '********************************',
     'Begin forwarded message',
 ]
@@ -219,7 +219,7 @@ class Email(Communication):
 
     def __post_init__(self):
         super().__post_init__()
-        self.text = self._prettify_text()
+        self.text = self._strip_unwanted_text()
         self.actual_text = self._extract_actual_text()
         self.sent_from_device = self._sent_from_device()
 
@@ -234,8 +234,8 @@ class Email(Communication):
 
     @property
     def attachments(self) -> list[str]:
-        """Strings in the Attachments: field in the header, split by semicolon."""
-        return [a.strip() for a in (self.header.attachments or '').split(';')]
+        """Strings in the Attachments: and Inline-Images: fields in the header, split by semicolon."""
+        return self.header.all_attachments
 
     @property
     def config(self) -> EmailCfg | None:
@@ -281,12 +281,13 @@ class Email(Communication):
     @property
     def is_fwded_article(self) -> bool:
         """True if this email is just a forward of an article from WSJ or whatever."""
-        if self.config is None:
-            return False
-        elif self.config.fwded_text_after:
-            return self.config.is_fwded_article is not False
-        else:
-            return bool(self.config.is_fwded_article)
+        if self.config:
+            if self.config.is_fwded_article is not None:
+                return self.config.is_fwded_article
+            elif self.config.fwded_text_after:
+                return True
+
+        return False
 
     @property
     def is_interesting(self) -> bool | None:
@@ -328,6 +329,53 @@ class Email(Communication):
         return metadata
 
     @property
+    def prettified_text(self) -> Text:
+        """Cleaned up text ready for printing."""
+        should_rewrite_header = self.header.was_initially_empty and self.header.num_header_rows > 0
+        num_chars = self._truncate_to_length()
+        trim_footer_txt = None
+        text = self.text
+
+        # Truncate long emails but leave a note explaining what happened w/link to source document
+        if len(text) > num_chars:
+            text = text[0:num_chars]
+            trim_footer_txt = self.truncation_note(num_chars)
+
+        text = collapse_newlines(text)
+
+        # Rewrite broken headers where the values are on separate lines from the field names
+        if should_rewrite_header:
+            configured_actual_text = self.config.actual_text if self.config and self.config.actual_text else None
+            num_lines_to_skip = self.header.num_header_rows
+            lines = []
+
+            # Emails w/configured 'actual_text' are particularly broken; need to shuffle some lines
+            if configured_actual_text is not None:
+                num_lines_to_skip += 1
+                lines += [cast(str, configured_actual_text), '\n']
+
+            lines += text.split('\n')[num_lines_to_skip:]
+            text = self.header.rewrite_header() + '\n' + '\n'.join(lines)
+            text = _add_line_breaks(text)
+            self.rewritten_header_ids.add(self.file_id)
+
+        if args.char_nums:
+            text = self._inject_line_numbers(text, args.char_nums)
+
+        lines = [
+            Text.from_markup(f"[link={line}]{line}[/link]") if line.startswith('http') else Text(line)
+            for line in text.split('\n')
+        ]
+
+        text = join_texts(lines, '\n')
+        txt = highlighter(text)
+
+        if trim_footer_txt:
+            txt.append('...\n\n').append(trim_footer_txt)
+
+        return txt
+
+    @property
     def recipients_str(self) -> str:
         return ';'.join([str(r) for r in self.recipients])
 
@@ -349,9 +397,9 @@ class Email(Communication):
             return self.header.subject or ''
 
     @property
-    def summary(self) -> Text:
+    def _summary(self) -> Text:
         """One line summary mostly for logging."""
-        txt = self.summary_with_author
+        txt = self._summary_with_author
 
         if len(self.recipients) > 0:
             txt.append(', ').append(styled_key_value('recipients', self.recipients_txt()))
@@ -369,7 +417,7 @@ class Email(Communication):
 
     def is_from_or_to(self, name: str) -> bool:
         """True if `name` is either the author or one of the recipients."""
-        return name in [self.author] + self.recipients
+        return name in self.participants
 
     def is_note_to_self(self, recipients: list[Name] | None = None) -> bool:
         return (recipients if recipients is not None else self.recipients) == [self.author]
@@ -540,7 +588,8 @@ class Email(Communication):
 
         self._set_text(lines=lines)
 
-    def _prettify_text(self) -> str:
+    # TODO: why isn't this done in self._repair()?
+    def _strip_unwanted_text(self) -> str:
         """Add newlines before quoted replies and snip signatures."""
         # Insert line breaks now unless header is broken, in which case we'll do it later after fixing header
         text = self.text if self.header.was_initially_empty else _add_line_breaks(self.text)
@@ -640,7 +689,7 @@ class Email(Communication):
                 if len(next_line) <= 1 or any([cont in next_line for cont in BAD_SUBJECT_CONTINUATIONS]):
                     pass
                 elif (subject.endswith(next_line) and next_line != subject) \
-                        or (FIELDS_COLON_REGEX.search(next_next) and not FIELDS_COLON_REGEX.search(next_line)):
+                        or (HEADER_FIELD_COLON_REGEX.search(next_next) and not HEADER_FIELD_COLON_REGEX.search(next_line)):
                     self.log(f"Fixing broken subject line\n  line: '{line}'\n    next: '{next_line}'\n    next: '{next_next}'\nsubject='{subject}'\n")
                     line += f" {next_line}"
                     i += 1
@@ -673,14 +722,13 @@ class Email(Communication):
             num_chars = len(self.text)
         elif args.truncate:
             num_chars = args.truncate
-        elif self.config and self.config.truncate_to is not None:
+        elif self.config and (truncate_at := self.config.truncate_at):
             if self.config.is_excerpt:
                 raise ValueError(f"Emails don't support truncate_to as a tuple")
 
-            num_chars = len(self.text) if self.config.truncate_to == NO_TRUNCATE else self.config.truncate_to
+            num_chars = len(self.text) if truncate_at == NO_TRUNCATE else truncate_at
         elif self.author in TRUNCATE_EMAILS_BY \
                 or any([self.is_from_or_to(n) for n in TRUNCATE_EMAILS_FROM_OR_TO]) \
-                or self.is_fwded_article \
                 or includes_truncate_term:
             num_chars = min(quote_cutoff or DEFAULT_TRUNCATE_TO, SHORT_TRUNCATE_TO)
         else:
@@ -724,59 +772,21 @@ class Email(Communication):
         return num_chars
 
     def __rich_console__(self, console: Console, options: ConsoleOptions) -> RenderResult:
-        should_rewrite_header = self.header.was_initially_empty and self.header.num_header_rows > 0
-        num_chars = self._truncate_to_length()
-        trim_footer_txt = None
-        text = self.text
-
-        # Truncate long emails but leave a note explaining what happened w/link to source document
-        if len(text) > num_chars:
-            text = text[0:num_chars]
-            trim_footer_txt = self.truncation_note(num_chars)
-
-        text = collapse_newlines(text)
-
-        # Rewrite broken headers where the values are on separate lines from the field names
-        if should_rewrite_header:
-            configured_actual_text = self.config.actual_text if self.config and self.config.actual_text else None
-            num_lines_to_skip = self.header.num_header_rows
-            lines = []
-
-            # Emails w/configured 'actual_text' are particularly broken; need to shuffle some lines
-            if configured_actual_text is not None:
-                num_lines_to_skip += 1
-                lines += [cast(str, configured_actual_text), '\n']
-
-            lines += text.split('\n')[num_lines_to_skip:]
-            text = self.header.rewrite_header() + '\n' + '\n'.join(lines)
-            text = _add_line_breaks(text)
-            self.rewritten_header_ids.add(self.file_id)
-
-        if args.char_nums:
-            text = self._inject_line_numbers(text, args.char_nums)
-
-        lines = [
-            Text.from_markup(f"[link={line}]{line}[/link]") if line.startswith('http') else Text(line)
-            for line in text.split('\n')
-        ]
-
-        max_line_len = max(*[len(line) for line in lines])
-        text = join_texts(lines, '\n')
-        subtitle = None
+        prettified_txt = self.prettified_text
+        max_line_len = max(*[len(line) for line in prettified_txt.split('\n')])
+        panel_subtitle = None
 
         if self.config_description_txt and site_config.email_info_in_subtitle:
             max_line_len = max(max_line_len, len(self.config_description_txt.plain))
-            subtitle = Text('').append(self.config_description_txt)
-            subtitle.justify = 'right'
-
-        txt = highlighter(text).append('...\n\n').append(trim_footer_txt) if trim_footer_txt else highlighter(text)
+            panel_subtitle = Text('').append(self.config_description_txt)
+            panel_subtitle.justify = 'right'
 
         if args.panelize_emails:
-            body = self._body_as_panel(txt, subtitle)
+            body = self._body_as_panel(prettified_txt, panel_subtitle)
         else:
-            body = self._body_as_table(txt, subtitle)
+            body = self._body_as_table(prettified_txt, panel_subtitle)
 
-        yield self.file_info_panel()
+        yield self.rich_header()
         body_bottom_padding = 0 if self.attached_docs else 1
         yield Padding(body, (0, 0, body_bottom_padding, site_config.other_files_table_indent))
 
@@ -784,9 +794,6 @@ class Email(Communication):
             attachments_table_title = f"| Email Attachments for {self.file_info.url_slug}:" # ╏┇┣
             attachments_table = OtherFile.files_preview_table(self.attached_docs, title=attachments_table_title)
             yield Padding(attachments_table, (0, 0, 1, site_config.attachment_indent))
-
-        if should_rewrite_header:
-            self.log_top_lines(self.header.num_header_rows + 4, f'Original header:')
 
     def _body_as_panel(self, text: str | Text, description: Text | None) -> Panel:
         """Renders the info info text in the panel's bottom border."""
