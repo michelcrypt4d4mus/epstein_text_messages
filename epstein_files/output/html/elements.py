@@ -1,4 +1,4 @@
-from copy import deepcopy
+from copy import copy, deepcopy
 from os import devnull
 from pathlib import Path
 from typing import Literal, Mapping
@@ -21,7 +21,7 @@ SPLITTER = '-# JUNK #-'
 HORIZONTAL_SIDES: list[Side] = ['left', 'right']
 VERTICAL_SIDES: list[Side] = ['top', 'bottom']
 ALL_SIDES: list[Side] = VERTICAL_SIDES + HORIZONTAL_SIDES
-HTML_CONSOLE_kWARGS = deepcopy(CONSOLE_KWARGS)
+HTML_CONSOLE_kWARGS = copy(CONSOLE_KWARGS)
 
 HTML_CONSOLE_kWARGS.update({
     'file': open(devnull, "wt"),
