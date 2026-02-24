@@ -81,8 +81,8 @@ def print_doj_files(epstein_files: EpsteinFiles) -> list[DojFile]:
     return epstein_files.doj_files
 
 
-def print_email_timeline(epstein_files: EpsteinFiles) -> list[Email]:
-    """Print all emails in chronological order."""
+def print_all_emails_chronological(epstein_files: EpsteinFiles) -> list[Email]:
+    """Print all non-mailing list emails in chronological order."""
     emails = Document.sort_by_timestamp([e for e in epstein_files.unique_emails if not e.is_mailing_list])
     title = f'Table of All {len(emails):,} Non-Junk Emails in Chronological Order (actual emails below)'
     table = Email.build_emails_table(emails, title=title, show_length=True)

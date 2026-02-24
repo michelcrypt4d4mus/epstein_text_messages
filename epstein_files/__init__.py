@@ -23,7 +23,7 @@ from epstein_files.documents.email import Email
 from epstein_files.documents.messenger_log import MessengerLog
 from epstein_files.documents.other_file import OtherFile
 from epstein_files.output.output import (print_curated_chronological, print_doj_files, print_emails_section,
-     print_json_files, print_stats, print_other_files_section, print_text_messages_section, print_email_timeline,
+     print_json_files, print_stats, print_other_files_section, print_text_messages_section, print_all_emails_chronological,
      print_emailers_info, print_json_metadata, show_urls, write_html)
 from epstein_files.output.rich import (temp_highlighter, console, highlighter,
      print_json, print_subtitle_panel)
@@ -65,7 +65,7 @@ def epstein_generate() -> None:
             printed_emails = print_emails_section(epstein_files)
             timer.log_section_complete('Email', epstein_files.emails, printed_emails)
         elif args.all_emails_chrono:
-            printed_emails = print_email_timeline(epstein_files)
+            printed_emails = print_all_emails_chronological(epstein_files)
             timer.log_section_complete('Chronological Email', epstein_files.emails, printed_emails)
 
         if args.output_texts:
