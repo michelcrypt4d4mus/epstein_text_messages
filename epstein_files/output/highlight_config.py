@@ -721,7 +721,7 @@ HighlightedNames(
         style='dark_sea_green2',
         patterns=[
             r"((anti.?)?money )?launder(s?|ers?|ing)?( money)?",
-            r"(?<!(ature|Chase|zrahi|tsche)\s)bank(?!\s+of)"
+            r"(?<!(ature|Chase|zrahi|tsche)\s)bank(?!\s+(of|secrecy))",
             r"C[EF]O",
             r"(co-?)?founder",
             r"real estate( developer)?",
@@ -899,9 +899,11 @@ HighlightedNames(
             r"(Andrew )?(McCabe|Natsios)",
             r"(Assistant )?State Attorney",
             r"Attorney General",
+            r"Bank Secrecy Act",
             r'Barbara Burns',  # AUSA
             r"(Ben )?Lawsky",
             r"((Bob|Robert) )?Mueller",
+            r"BSA",
             r"(Byung\s)?Pak",
             r"capital controls",
             r"Case 1:19-cv-03377(-LAP)?",
@@ -920,6 +922,7 @@ HighlightedNames(
             r"FDLE",
             r"Federal Bureau of Investigation",
             r"FinCEN",
+            r"(Director (of )?)?Financial Crimes Enforcement Network",
             r"(www\.)?FINRA(\.org)?",
             r"Florence Hutner",
             r"FOIA",
@@ -956,6 +959,7 @@ HighlightedNames(
             r"POTUS",
             r"(Preet )?Bharara",
             r"Public Corruption Unit",
+            r"SAR",
             r"SCOTUS",
             r"SD(FL|NY)",
             r"(?-i:SEC)",
