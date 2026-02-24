@@ -5020,6 +5020,7 @@ EFTA00009632,,,,2008-05-08 00:00:00,,,
 EFTA00009654,,,,2021-11-24 00:00:00,,,
 EFTA00009658,legal,,,2019-07-25 00:00:00,,,legal filing in case 1:19-cr-00490-RMB
 EFTA00009664,legal,,,2020-07-30 00:00:00,,,legal filing in case 1:20-cr-00330-AJN
+EFTA00016884,money,,True,2014-11-24 00:00:00,,,Epstein's last will and testament
 EFTA00027019,,,,2019-08-06 00:00:00,,,
 EFTA00039025,misc,Bureau of Prisons,True,2021-12-23 00:00:00,,,Bureau of Prisons report on death of Jeffrey Epstein
 EFTA00039153,,,,2021-05-25 11:00:00,,,
@@ -5204,6 +5205,7 @@ EFTA00093702_72,email,Christopher Dilorio,,2020-04-28 06:43:00,SEC,,
 EFTA00093702_74,email,Christopher Dilorio,,2020-04-24 08:18:00,SEC,,
 EFTA00093702_8,email,Christopher Dilorio,,2021-08-17 05:54:00,SEC,,
 EFTA00093702_9,email,Christopher Dilorio,,2021-08-16 20:55:00,SEC,,
+EFTA00099424,money,,True,2017-07-08 23:00:00,,,"Epstein 2017 Trust (Eva Andersson Dubin, Darren Indyke, Richard Kahn)"
 EFTA00103908,,,,2019-08-27 10:30:00,,,
 EFTA00104945,email,,False,2019-08-13 01:18:13,Andrew Stemmer;Erika Engelson;Justin Alfano;Vijay Dewan,,
 EFTA00128987,crypto,,True,2019-07-24 00:00:00,,,suspicious activity report (SAR) about Kushner co. crypto payments to suspicious Russian person
@@ -5808,7 +5810,11 @@ EFTA01217736,skype_log,,,2014-05-26 19:52:08,,,"skype log of conversation with T
 EFTA01217787,skype_log,,True,2014-08-22 20:12:59,,,"skype log of conversation with Hanna Traff at Spotify, Tyler Shears"
 EFTA01249210,crypto,,True,2021-04-23 13:26:00,,,FBI report on tip linking American commerce secretary and Tether asset custodian Howard Lutnick to Ponzi schemes and Russian money
 EFTA01255984,,,,2020-02-23 00:00:00,,,
+EFTA01266204,money,,True,2019-08-08 00:00:00,,,"Epstein The 1953 Trust (Darren Indyke, Richard Kahn)"
+EFTA01266380,money,,True,2020-02-03 00:00:00,,,Epstein's 2014 Trust with bequests
+EFTA01266457,money,,True,2018-05-24 00:00:00,,,"Epstein 2018 Trust (Kathryn Ruemmler, Darren Indyke, Richard Kahn)"
 EFTA01273102,money,,True,2020-02-02 00:00:00,,,payment from Epstein to Renata Bolotova's father's account at Sberbank
+EFTA01282282,money,,True,,,,Epstein Butterfly Trust (sole beneficiary Karyna Shuliak)
 EFTA01285353,,,,2015-02-28 00:00:00,,,
 EFTA01285411,money,,True,2015-03-31 00:00:00,,,bank statement for Epstein's Southern Trust Company showing $82 million balance
 EFTA01285647,money,,True,2015-07-31 00:00:00,,,Deutsche Bank statement for Epstein's Southern Trust Company
