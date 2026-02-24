@@ -1456,6 +1456,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00669647', truncate_to=2500),
     EmailCfg(id='EFTA02374977', truncate_to=2500),
     EmailCfg(id='EFTA00869828', truncate_to=SHORT_TRUNCATE_TO),
+    EmailCfg(id='EFTA01010114', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA01903448', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA00661348', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA02378915', truncate_to=NO_TRUNCATE),
@@ -2538,6 +2539,8 @@ OTHER_FILES_CRYPTO = [
         description='"Dylan" is probably Dylan Love who wrote a story about Epstein and bitcoin arranged by Masha Drokova',
         truncate_to=NO_TRUNCATE,
     ),
+    EmailCfg(id='EFTA01010171'),
+    EmailCfg(id='EFTA01010128'),
     # Valar
     DocCfg(id='EFTA01121910', author=VALAR_VENTURES, description="contract", truncate_to=DEFAULT_TRUNCATE_TO),
     DocCfg(id='EFTA00808277', author=VALAR_VENTURES, description="contract", truncate_to=DEFAULT_TRUNCATE_TO),
