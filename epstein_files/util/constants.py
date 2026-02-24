@@ -4,7 +4,7 @@ Custom configurations for various files.
 from itertools import groupby
 
 from epstein_files.documents.documents.config_builder import (WOLFF_EPSTEIN_ARTICLE_DRAFT, blaine_letter,
-     letter, starr_letter, whistleblower_cfg, wolff_draft_cfg)
+     fbi_report, letter, starr_letter, whistleblower_cfg, wolff_draft_cfg)
 from epstein_files.documents.documents.categories import CONSTANT_CATEGORIES, Interesting, Neutral
 from epstein_files.documents.documents.doc_cfg import (DEFAULT_TRUNCATE_TO, SHORT_TRUNCATE_TO, NO_TRUNCATE,
      CommunicationCfg, DocCfg, EmailCfg, TextCfg, phone_bill_cfg)
@@ -1766,10 +1766,11 @@ OTHER_FILES_LEGAL = [
     DocCfg(id='017488', author=EPSTEIN_V_ROTHSTEIN_EDWARDS, description=f"Deposition of Scott Rothstein", date='2012-06-22'),
     DocCfg(id='029315', author=EPSTEIN_V_ROTHSTEIN_EDWARDS, description=f"Plaintiff Motion for Summary Judgment by {JACK_SCAROLA}", date='2013-09-13'),
     DocCfg(id='013304', author=EPSTEIN_V_ROTHSTEIN_EDWARDS, description=f"Plaintiff Response to Epstein's Motion for Summary Judgment", date='2014-04-17'),
-    DocCfg(id='019352', author=FBI, description=FBI_REPORT,),
-    DocCfg(id='021434', author=FBI, description=FBI_REPORT,),
-    DocCfg(id='018872', author=FBI, description=FBI_SEIZED_PROPERTY,),
-    DocCfg(id='021569', author=FBI, description=FBI_SEIZED_PROPERTY,),
+    fbi_report('019352', FBI_REPORT),
+    fbi_report('021434', FBI_REPORT),
+    fbi_report('018872', FBI_REPORT),
+    fbi_report('021569', FBI_REPORT),
+    fbi_report('EFTA01688746', FBI_REPORT),
     DocCfg(id='017792', author=GIUFFRE_V_DERSHOWITZ, description=f"article about {ALAN_DERSHOWITZ}'s appearance on Wolf Blitzer"),
     DocCfg(id='017767', author=GIUFFRE_V_DERSHOWITZ, description=f"article about {ALAN_DERSHOWITZ} working with {JEFFREY_EPSTEIN}"),
     DocCfg(id='017796', author=GIUFFRE_V_DERSHOWITZ, description=f"article about {ALAN_DERSHOWITZ}"),

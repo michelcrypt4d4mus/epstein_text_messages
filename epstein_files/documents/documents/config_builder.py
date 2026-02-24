@@ -37,7 +37,7 @@ def build_cfg_from_text(doc: 'Document') -> DocCfg | None:
         return DocCfg(id=doc.file_id, **kwargs)  # TODO: setting id to nothing sucks
 
     if FBI_FILE_REGEX.search(text):
-        cfg = _cfg(category=Neutral.LEGAL, author=FBI, description='memorandum or report')
+        cfg = fbi_report(doc.file_id, 'memorandum or report')
     elif EVIDENCE_REGEX.search(text):
         cfg = _cfg(category=Neutral.LEGAL, description='photos of collected evidence')
     elif 'LedgerX' in text[0:500]:
@@ -83,6 +83,10 @@ def blaine_letter(id: str, date: str, suffix: str = '') -> CommunicationCfg:
         is_interesting=True,
         recipients=['Immigration'],
     )
+
+
+def fbi_report(id: str, description: str, **kwargs) -> DocCfg:
+    return DocCfg(id=id, author=FBI, category=Neutral.LEGAL, description=description, **kwargs)
 
 
 def letter(id: str, author: str, recipients: list[Name], description: str, date: str = '', **kwargs) -> CommunicationCfg:
