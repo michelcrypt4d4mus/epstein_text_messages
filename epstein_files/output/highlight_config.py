@@ -401,6 +401,7 @@ HighlightedNames(
             r"Northern Data",
             r"Pantera",
             r"(Patrick )?Murck",
+            r"Playsino",
             r"Ribbit",
             r"(?-i:R)IOT( Blockchain)?",  # (?-i:) makes it case sensitive
             r"Ripple",
