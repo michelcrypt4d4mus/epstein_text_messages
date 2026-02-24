@@ -21,7 +21,7 @@ from epstein_files.documents.documents.search_result import MatchedLine
 from epstein_files.documents.emails.constants import DOJ_EMAIL_OCR_REPAIRS, FALLBACK_TIMESTAMP
 from epstein_files.documents.emails.email_header import DETECT_EMAIL_REGEX
 from epstein_files.output.highlight_config import get_style_for_name
-from epstein_files.output.layout_elements.file_display import FileDisplay
+from epstein_files.output.layout_elements.file_display import BasePanel, FileDisplay
 from epstein_files.output.rich import (INFO_STYLE, NA_TXT, SKIPPED_FILE_MSG_PADDING, SYMBOL_STYLE,
      add_cols_to_table, build_table, console, highlighter, styled_key_value, prefix_with, styled_dict,
      wrap_in_markup_style)
@@ -202,10 +202,9 @@ class Document:
         return self.file_info.file_id
 
     @property
-    def file_id_panel(self) -> Panel:
+    def file_id_panel(self) -> BasePanel:
         """The header panel printed before the body and subheaders with links and file ID etc."""
-        links_txt = self.colored_external_links()
-        return Panel(links_txt, border_style=self.border_style, expand=False)
+        return BasePanel(border_style=self.border_style, text=self.colored_external_links())
 
     @property
     def filename(self) -> str:
@@ -577,17 +576,15 @@ class Document:
 
     def file_display(self, align: JustifyMethod | None = None, indent: int = 0) -> FileDisplay:
         """Allows for proper right vs. left justify."""
-        text_panel = Panel(
-            self.prettified_text,
+        body = BasePanel(
             border_style=self.border_style,
-            expand=False,
+            text=self.prettified_text,
             title=Text(f"({self.panel_title_timestamp})", style='dim') if self.panel_title_timestamp else None,
-            title_align='right',
         )
 
         return FileDisplay(
+            body_panel=body,
             file_info=self.file_id_panel,
-            body_panel=text_panel,
             subheaders=self.info,
             justify=align,
             indent=indent,
@@ -618,6 +615,7 @@ class Document:
         file_count = len(files)
         author_count = cls.known_author_count(files)
 
+        # NOTE: Order matters!
         return {
             'count': str(file_count),
             'author_count': NA_TXT if is_author_na else str(author_count),

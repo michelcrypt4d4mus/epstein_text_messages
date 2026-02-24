@@ -5,7 +5,7 @@ import itertools
 import re
 from datetime import datetime, timezone
 from dateutil import tz
-from typing import Any, Sequence, TypeVar
+from typing import Any, Mapping, Sequence, TypeVar
 
 from epstein_files.util.constant import names
 from epstein_files.util.env import args
@@ -111,7 +111,7 @@ def sort_dict(d: dict[str | None, int] | dict[str, int]) -> list[tuple[str | Non
         return sorted(d.items(), key=lambda kv: f"Z{alpha_key(kv)}" if '.' in (kv[0] or '') else alpha_key(kv))
 
 
-def sort_dict_by_keys(d: dict[names.Name, T]) -> dict[names.Name, T]:
+def sort_dict_by_keys(d: Mapping[names.Name, T]) -> dict[names.Name, T]:
     return {k: d[k] for k in names.sort_names(dict_key_list(d))}
 
 

@@ -16,16 +16,23 @@ from epstein_files.documents.email import Email, UNINTERESTING_EMAILERS
 from epstein_files.documents.other_file import OtherFile
 from epstein_files.output.highlight_config import HIGHLIGHT_GROUPS, get_style_for_name
 from epstein_files.output.highlighted_names import HighlightedNames
+from epstein_files.output.html.builder import write_html
 from epstein_files.util.constant.names import *
 from epstein_files.util.constants import CONFIGS_BY_ID, EmailCfg
 from epstein_files.util.helpers.data_helpers import *
 from epstein_files.util.helpers.debugging_helper import print_all_timestamps, print_file_counts
+from epstein_files.util.helpers.file_helper import open_file_or_url
 from epstein_files.util.helpers.string_helper import quote
 from epstein_files.util.logging import logger
 from epstein_files.output.rich import bool_txt, console, highlighter, print_json, print_subtitle_panel
 
-local_ids = [doc.file_id for doc in epstein_files.local_extracts]
-print_json('local ids', local_ids)
+
+divs = [
+    doc.file_display().to_html()
+    for doc in [d for d in epstein_files.emails if 1000 < d.length < 6000][:9]
+]
+
+open_file_or_url(write_html(divs))
 
 # print_file_counts(epstein_files)
 # print_all_timestamps(epstein_files)
