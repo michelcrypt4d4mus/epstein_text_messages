@@ -1731,6 +1731,9 @@ OTHER_FILES_ARTICLE = [
 
 OTHER_FILES_DEPOSITION = [
     DocCfg(id='EFTA00159483', author=LAWRANCE_VISOSKI),
+    DocCfg(id='021824', author=PAUL_G_CASSELL, description=f"from {EDWARDS_V_DERSHOWITZ}"),
+    DocCfg(id='013463', author='Scott Rothstein', description=f"from {JANE_DOE_V_EPSTEIN_TRUMP}", date='2010-03-23'),
+    DocCfg(id='017488', author='Scott Rothstein', description=f"from {EPSTEIN_V_ROTHSTEIN_EDWARDS}", date='2012-06-22'),
 ]
 
 OTHER_FILES_LEGAL = [
@@ -1740,7 +1743,7 @@ OTHER_FILES_LEGAL = [
     DocCfg(id='017635', author=DAVID_SCHOEN, description=LEXIS_NEXIS_CVRA_SEARCH, date='2019-02-28'),
     DocCfg(id='016509', author=DAVID_SCHOEN, description=LEXIS_NEXIS_CVRA_SEARCH, date='2019-02-28'),
     DocCfg(id='017714', author=DAVID_SCHOEN, description=LEXIS_NEXIS_CVRA_SEARCH, date='2019-02-28'),
-    DocCfg(id='021824', author=EDWARDS_V_DERSHOWITZ, description=f"deposition of {PAUL_G_CASSELL}"),
+
     DocCfg(
         id='010757',
         author=EDWARDS_V_DERSHOWITZ,
@@ -1768,7 +1771,6 @@ OTHER_FILES_LEGAL = [
     DocCfg(id='010566', author=EPSTEIN_V_ROTHSTEIN_EDWARDS, description=f"Statement of Undisputed Facts", date='2010-11-04'),
     DocCfg(id='012707', author=EPSTEIN_V_ROTHSTEIN_EDWARDS, description=f"Master Contact List - Privilege Log", date='2011-03-22'),
     DocCfg(id='012103', author=EPSTEIN_V_ROTHSTEIN_EDWARDS, description=f"Telephone Interview with {VIRGINIA_GIUFFRE}", date='2011-05-17'),
-    DocCfg(id='017488', author=EPSTEIN_V_ROTHSTEIN_EDWARDS, description=f"Deposition of Scott Rothstein", date='2012-06-22'),
     DocCfg(id='029315', author=EPSTEIN_V_ROTHSTEIN_EDWARDS, description=f"Plaintiff Motion for Summary Judgment by {JACK_SCAROLA}", date='2013-09-13'),
     DocCfg(id='013304', author=EPSTEIN_V_ROTHSTEIN_EDWARDS, description=f"Plaintiff Response to Epstein's Motion for Summary Judgment", date='2014-04-17'),
     fbi_report('019352', FBI_REPORT),
@@ -1831,7 +1833,6 @@ OTHER_FILES_LEGAL = [
     DocCfg(id='029398', author=JANE_DOE_V_EPSTEIN_TRUMP, description=f'article in Law.com'),
     DocCfg(id='026854', author=JANE_DOE_V_EPSTEIN_TRUMP, description=f"Civil Docket"),
     DocCfg(id='026384', author=JANE_DOE_V_EPSTEIN_TRUMP, description=f"Complaint for rape and sexual abuse", date='2016-06-20', attached_to_email_id='029837'),
-    DocCfg(id='013463', author=JANE_DOE_V_EPSTEIN_TRUMP, description=f'Deposition of Scott Rothstein', date='2010-03-23'),
     DocCfg(id='029257', author=JANE_DOE_V_EPSTEIN_TRUMP, description=f'allegations and identity of plaintiff Katie Johnson', date='2016-04-26'),
     DocCfg(id='032321', author=JANE_DOE_V_EPSTEIN_TRUMP, description=f"Notice of Initial Conference", date='2016-10-04'),
     DocCfg(id='010735', author=JANE_DOE_V_USA, description=f"Dershowitz Reply in Support of Motion for Limited Intervention", date='2015-02-02'),
