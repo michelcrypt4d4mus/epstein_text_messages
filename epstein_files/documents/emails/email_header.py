@@ -60,6 +60,50 @@ class EmailHeader:
         self.num_header_rows = len(self.field_names)
         self.was_initially_empty = self.is_empty
 
+    @classmethod
+    def from_header_lines(cls, header: str) -> 'EmailHeader':
+        """Alternate constructor to build from raw header text."""
+        kw_args = {}
+        field_names = []
+        should_log_header = False
+
+        for line in [l.strip() for l in header.strip().split('\n')]:
+            if line.lower().startswith(ON_BEHALF_OF):
+                author = line.removeprefix(ON_BEHALF_OF).strip()
+
+                if len(author) > 0:
+                    kw_args[AUTHOR] = author
+
+                continue
+
+            #logger.debug(f"extracting header line: '{line}'")
+            key, value = [element.strip() for element in line.split(':', 1)]
+            value = value.rstrip('_')
+            key = AUTHOR if key == 'From' else ('sent_at' if key in ['Date', 'Sent'] else key.lower().replace('-', '_'))
+            key = 'bcc' if key == 'bee' else key
+
+            if kw_args.get(key):
+                logger.debug(f'Already have value "{kw_args[key]}" at key "{key}", not overwriting with "{value}"')
+                should_log_header = True
+                continue
+
+            field_names.append(key)
+
+            if key == 'reply_to':
+                logger.warning(f"Found value for Reply-To field: '{value}'")
+
+            if key in TO_FIELDS:
+                recipients = [element.strip() for element in value.split(';')]
+                recipients = [r for r in recipients if len(r) > 0]
+                kw_args[key] = None if len(value) == 0 else [r if len(r) > 0 else UNKNOWN for r in recipients]
+            else:
+                kw_args[key.lower()] = None if len(value) == 0 else value
+
+        if should_log_header:
+            logger.debug(f"Header being parsed was this:\n\n{header}\n")
+
+        return cls(field_names=field_names, header_chars=header, **kw_args)
+
     @property
     def all_attachments(self) -> list[str]:
         if self.attachments or self.inline_images:
@@ -147,46 +191,3 @@ class EmailHeader:
 
     def __str__(self) -> str:
         return json.dumps(self.as_dict(truthy_only=False), sort_keys=True, indent=4)
-
-    @classmethod
-    def from_header_lines(cls, header: str) -> 'EmailHeader':
-        kw_args = {}
-        field_names = []
-        should_log_header = False
-
-        for line in [l.strip() for l in header.strip().split('\n')]:
-            if line.lower().startswith(ON_BEHALF_OF):
-                author = line.removeprefix(ON_BEHALF_OF).strip()
-
-                if len(author) > 0:
-                    kw_args[AUTHOR] = author
-
-                continue
-
-            #logger.debug(f"extracting header line: '{line}'")
-            key, value = [element.strip() for element in line.split(':', 1)]
-            value = value.rstrip('_')
-            key = AUTHOR if key == 'From' else ('sent_at' if key in ['Date', 'Sent'] else key.lower().replace('-', '_'))
-            key = 'bcc' if key == 'bee' else key
-
-            if kw_args.get(key):
-                logger.debug(f'Already have value "{kw_args[key]}" at key "{key}", not overwriting with "{value}"')
-                should_log_header = True
-                continue
-
-            field_names.append(key)
-
-            if key == 'reply_to':
-                logger.warning(f"Found value for Reply-To field: '{value}'")
-
-            if key in TO_FIELDS:
-                recipients = [element.strip() for element in value.split(';')]
-                recipients = [r for r in recipients if len(r) > 0]
-                kw_args[key] = None if len(value) == 0 else [r if len(r) > 0 else UNKNOWN for r in recipients]
-            else:
-                kw_args[key.lower()] = None if len(value) == 0 else value
-
-        if should_log_header:
-            logger.debug(f"Header being parsed was this:\n\n{header}\n")
-
-        return cls(field_names=field_names, header_chars=header, **kw_args)
