@@ -113,6 +113,10 @@ if not (any_output_selected or args.all_emails_chrono or args.emailers_info or a
 
     args.output_emails = args.output_other = args.output_texts = True
 
+if args.output_chrono and not args.build:
+    logger.warning(f"--output-chrono requires --build to export new HTML, setting...")
+    args.build = DEFAULT_FILE
+
 if is_html_script:
     if args.repair:
         if not args.positional_args:
