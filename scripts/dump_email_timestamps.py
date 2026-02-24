@@ -122,7 +122,7 @@ def print_partial_names_used_in_regexes():
             for partial_name in [n.lower() for n in [extract_first_name(name), extract_last_name(name)]]:
                 partial_name_counts[partial_name] += 1
 
-                if partial_name not in NAMES_TO_NOT_HIGHLIGHT:
+                if partial_name not in NAMES_TO_NOT_PARTIALLY_MATCH:
                     names.append(partial_name)
                     print(f"name='{name}', partial_name='{partial_name}'")
 

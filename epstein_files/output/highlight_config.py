@@ -1300,6 +1300,7 @@ HighlightedNames(
             r"Jersey City",
             r"Los Angeles",
             r"Loudoun County?",
+            r"Manhattan(?!\s+DA)",
             r"Martha's Vineyard",
             r"Miami(?!\s?Herald)",
             r"Nantucket",

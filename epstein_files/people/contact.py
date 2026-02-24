@@ -2,7 +2,7 @@ import re
 from dataclasses import dataclass, field, fields
 from typing import Self
 
-from epstein_files.util.constant.names import (NAMES_TO_NOT_HIGHLIGHT, SIMPLE_NAME_REGEX, Name,
+from epstein_files.util.constant.names import (NAMES_TO_NOT_PARTIALLY_MATCH, SIMPLE_NAME_REGEX, Name,
      constantize_name, name_variations)
 from epstein_files.util.constant.strings import INDENT_NEWLINE, INDENTED_JOIN
 from epstein_files.util.helpers.data_helpers import constantize_names
@@ -48,7 +48,7 @@ class Contact:
         name_patterns = [self.pattern]
 
         for partial_name in name_variations(self.name):
-            if partial_name.lower() not in NAMES_TO_NOT_HIGHLIGHT and SIMPLE_NAME_REGEX.match(partial_name):
+            if partial_name.lower() not in NAMES_TO_NOT_PARTIALLY_MATCH and SIMPLE_NAME_REGEX.match(partial_name):
                 name_patterns.append(as_pattern(partial_name))
 
         return '|'.join(name_patterns)

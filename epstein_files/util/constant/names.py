@@ -314,7 +314,7 @@ WAPO = 'WaPo'
 
 
 # First and last names that should be made part of a highlighting regex for emailers
-NAMES_TO_NOT_HIGHLIGHT = """
+NAMES_TO_NOT_PARTIALLY_MATCH = """
     adam al alain alan alison alfredo allen alex alexander amanda andres andrew ann anthony asia audrey
     back bard barrett barry bennet bernard bill black bob boris boyle brad brenner bruce bryan
     cameron caroline carolyn chris christian christina christopher cohen
@@ -327,7 +327,7 @@ NAMES_TO_NOT_HIGHLIGHT = """
     jack james jay jean jeff jeffrey jennifer jeremy jessica joel john jon jonathan joseph jr julia justin
     kafka kahn karl kate katherine kelly ken kevin krassner
     larry larsen laurie lawrence leon lesley linda link lisa love
-    management mann marc maria marie mark martin matthew melanie michael mike miller mitchell miles morris moskowitz
+    management manhattan mann marc maria marie mark martin matthew melanie michael mike miller mitchell miles morris moskowitz
     nancy nathan neal new nicholas nicole norman ny
     owen
     paul paula pen peter philip pierce plus police prince
@@ -340,7 +340,7 @@ NAMES_TO_NOT_HIGHLIGHT = """
 """.strip().split()
 
 # Names to color white in the word counts
-OTHER_NAMES = NAMES_TO_NOT_HIGHLIGHT + """
+OTHER_NAMES = NAMES_TO_NOT_PARTIALLY_MATCH + """
     aaron albert alberto alec alexandra alice anderson andre ann anna anne ariana arthur
     baldwin barack barrett ben benjamin berger bert binant bob bonner boyden bradley brady branson bright bruno bryant burton
     chapman charles charlie christopher clint cohen colin collins conway
