@@ -52,7 +52,7 @@ def epstein_generate() -> None:
             print_subtitle_panel('Files in Chronological Order')
 
     if args.colors_only:
-        exit()
+        pass
     elif args.output_chrono:
         printed_docs = print_curated_chronological(epstein_files)
         timer.log_section_complete('Document', epstein_files.unique_documents, printed_docs)

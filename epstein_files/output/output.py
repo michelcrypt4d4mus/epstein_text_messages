@@ -295,13 +295,24 @@ def write_html(output_path: Path | None) -> None:
     if not output_path:
         logger.warning(f"Not writing HTML because args.build={args.build}.")
         return
+    elif args.colors_only:
+        kwargs = {'inline_styles': True}
+    else:
+        kwargs = {}
 
     if args.write_txt:
         txt_path = f"{output_path}.txt"
         console.save_text(txt_path)
         log_file_write(txt_path)
     else:
-        console.save_html(str(output_path), clear=False, code_format=CONSOLE_HTML_FORMAT, theme=HTML_TERMINAL_THEME)
+        console.save_html(
+            str(output_path),
+            clear=False,
+            code_format=CONSOLE_HTML_FORMAT,
+            theme=HTML_TERMINAL_THEME,
+            **kwargs
+        )
+
         log_file_write(output_path)
 
 

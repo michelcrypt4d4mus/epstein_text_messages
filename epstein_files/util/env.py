@@ -144,7 +144,10 @@ if is_html_script:
             elif args.output_word_count:
                 args._site_type = SiteType.WORD_COUNT
 
-        args.build = SiteType.build_path(args._site_type)
+        if args.colors_only:
+            args.build = HTML_DIR.joinpath('colors_only.html')
+        else:
+            args.build = SiteType.build_path(args._site_type)
 elif parser.prog.startswith('epstein_') and not args.positional_args and not args.names:
     exit_with_error(f"{parser.prog} requires positional arguments but got none!")
 
