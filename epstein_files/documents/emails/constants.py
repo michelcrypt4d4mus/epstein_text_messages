@@ -30,6 +30,7 @@ REPLY_ON_DATE_PATTERN = '|'.join([REPLY_NUMERIC_DATE_PATTERN, REPLY_ON_DAY_MONTH
 REPLY_PATTERNS = [
     fr"(?<!M)On ({REPLY_ON_DATE_PATTERN})[=., ].*{REPLY_LINE_ENDING_PATTERN}",
     FORWARDED_LINE_PATTERN,
+    r"At \d{2}:\d{2} [AP]M.*wrote:",
     r"In a message dated \d+/\d+/\d+.*writes:",
     r"Le .* a [eo](cr|m)it ?:?",                               # French
     r"Am \d\d\.\d\d\..*schrieb.*",                      # German

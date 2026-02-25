@@ -1318,6 +1318,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00383027', recipients=[LINDA_STONE]),
     EmailCfg(id='EFTA01002282', recipients=[LINDA_STONE], comment='signature'),
     EmailCfg(id='EFTA02266524', recipients=[MARIA_PRUSAKOVA], author_reason=CRYPTO_PR_LAB, description='Medici Bank'),
+    EmailCfg(id='EFTA00579769', recipients=['Melania'], is_interesting=True),
     EmailCfg(id='EFTA02731632', recipients=[OFFICE_OF_THE_DEPUTY_ATTORNEY_GENERAL]),
     EmailCfg(
         id='EFTA00926593',
@@ -2674,7 +2675,11 @@ OTHER_FILES_CRYPTO = [
         is_interesting=True,
     ),
     DocCfg(id='EFTA01388197', author=DEUTSCHE_BANK, description='bitcoin and blockchain symposium', date='2018-04-03', attached_to_email_id='EFTA01388354'),
-    EmailCfg(id='EFTA02603577', description='meeting with Mercantile Global Holdings Bo Collins, who would testify in the trial of Miles Guo'),
+    EmailCfg(
+        id='EFTA02603577',
+        description='meeting with Mercantile Global Holdings Bo Collins, who would testify in the trial of Miles Guo',
+        is_interesting=True
+    ),
     EmailCfg(id='EFTA01388354', description=f"invitation to {DEUTSCHE_BANK} blockchain event with Mike Novogratz"),
     EmailCfg(id='EFTA01434500', description=f"everyone assumes Epstein's banker {PAUL_BARRETT} will want to know about the blockchain event"),
     EmailCfg(id='EFTA00993615', description=f"{MASHA_DROKOVA} explains the price of bitcoin can be manipulated if Epstein makes public comments"),
