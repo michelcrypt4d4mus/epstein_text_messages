@@ -884,7 +884,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='033171', is_interesting=True, comment='Zubair'),
     EmailCfg(
         id='026028',
-        description=f"Epstein introduces {LARRY_SUMMERS} to possibly corrupt Senegalese official {KARIM_WADE}",
+        description=f"Epstein introduces {LARRY_SUMMERS} to allegedly corrupt Senegalese official {KARIM_WADE}",
         is_interesting=True,
     ),
     EmailCfg(
@@ -2589,7 +2589,7 @@ OTHER_FILES_CRYPTO = [
         truncate_to=(77_000, 77_300),
     ),
     EmailCfg(id='EFTA00474452', description=f"{HOWARD_LUTNICK} and {JEFFREY_EPSTEIN}, NIMBYs"),
-    EmailCfg(id='EFTA00873541', description=f"Epstein says his neighbor {HOWARD_LUTNICK} is smart", show_with_name=HOWARD_LUTNICK),
+    EmailCfg(id='EFTA00873541', description=f"Epstein says his neighbor {HOWARD_LUTNICK} (recently seen with {PRINCE_ANDREW}) is smart", show_with_name=HOWARD_LUTNICK),
     EmailCfg(id='EFTA02374900', description=f'article about {HOWARD_LUTNICK} real estate purchase'),
     EmailCfg(id='EFTA00443752', description=f"invitation from {HOWARD_LUTNICK}"),
     EmailCfg(id='EFTA00462693', description=f"Epstein gets a table for 10 at the dinner honouring {HOWARD_LUTNICK}"),

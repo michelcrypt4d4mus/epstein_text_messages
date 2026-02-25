@@ -126,6 +126,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Johannesburg",
             r"Kenyan?",
             r"Kinshasa",
+            r"Madagascar",
             r"Mobutu Seko",
             r"Nigerian?",
             r"Okey Enelamah",
@@ -248,6 +249,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Jeanne Houweling",  # CEO of Adfin, company lutnick and epstein invested in
             r"Johann? Eliasc?h",
             r"((John|Patricia) )?Kluge",
+            r"LNG",
             r"Mar[ck] Rich",
             r"McKinsey",
             r"Montilla",  # Junkermann
