@@ -69,7 +69,7 @@ HEADER_FIELD_COLON_REGEX = re.compile(HEADER_FIELD_COLON_PATTERN)
 
 FRENCH_HEADER_PATTERNS = [
     r"[AÀ]",
-    r'Debut du message transfer[&e]',
+    r'Debut du message transfer[&es]',
     r'De(stinataire)?',
     r'Envoy[ée]',
     r'Expe(cl|d)iteur',
