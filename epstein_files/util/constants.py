@@ -1406,7 +1406,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA02573653', description=f'discussion of {PRINCE_ANDREW}\'s Urramoor, "Howard" is probably Howard Lutnick which Urramoor partnered with'),
     EmailCfg(id='EFTA02592748', description=f"Epstein asking {BROCK_PIERCE} for a favour related to someone named 'Sue'", truncate_to=300),
     EmailCfg(id='EFTA01008242', description='Epstein passes on an investment in Radius'),
-    EmailCfg(id='EFTA00630134', description=f'Epstein recommending Signal encrypted messenger to Senegalese politician {KARIM_WADE}', is_interesting=True),
+    EmailCfg(id='EFTA00630134', description=f'Epstein recommends Signal encrypted messenger to allegedly corrupt Senegalese politician {KARIM_WADE}', is_interesting=True),
     EmailCfg(id='EFTA02513560', description=f"{JEAN_LUC_BRUNEL} doesn't want to speak on the phone", truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA02671523', description=f"Jones is former Google chief technology advocate / CEO of Epstein investment Wearality"),
     EmailCfg(id='EFTA00854166', description='"kazak contract will be ready for your review"', is_interesting=True, truncate_to=1100),
@@ -2670,10 +2670,11 @@ OTHER_FILES_CRYPTO = [
     # Unsorted
     DocCfg(
         id='EFTA01030070',
-        description="a plan inspired by Epstein to set up crypto trading operations around the world, offering stablecoins to people who can't get bank accounts",
+        description="Mercantile Global Holdings' Bo Collins inspired by Epstein to set up crypto trading around the world offering stablecoins to people who can't get bank accounts",
         is_interesting=True,
     ),
     DocCfg(id='EFTA01388197', author=DEUTSCHE_BANK, description='bitcoin and blockchain symposium', date='2018-04-03', attached_to_email_id='EFTA01388354'),
+    EmailCfg(id='EFTA02603577', description='meeting with Mercantile Global Holdings Bo Collins, who would testify in the trial of Miles Guo'),
     EmailCfg(id='EFTA01388354', description=f"invitation to {DEUTSCHE_BANK} blockchain event with Mike Novogratz"),
     EmailCfg(id='EFTA01434500', description=f"everyone assumes Epstein's banker {PAUL_BARRETT} will want to know about the blockchain event"),
     EmailCfg(id='EFTA00993615', description=f"{MASHA_DROKOVA} explains the price of bitcoin can be manipulated if Epstein makes public comments"),

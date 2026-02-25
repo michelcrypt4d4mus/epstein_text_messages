@@ -111,7 +111,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         contacts=[
             Contact('Abdoulaye Wade', f"former president of Senegal, father of {KARIM_WADE}"),
             Contact('Ivan Glasenberg', "South African former CEO of Glencore, one of the world's largest commodity trading and mining companies"),
-            Contact(KARIM_WADE, 'son of the president of Senegal, facing arrest for corruption, email handle is "Afri zp"', r"Afri [xz]p"),
+            Contact(KARIM_WADE, 'son of the president of Senegal, facing arrest for corruption, email handle is "Afri zp"', r"Afri [xz]p?"),
             Contact('Miles Alexander', "Operations Manager Michaelhouse Balgowan KwaZulu-Natal South Africa"),
             Contact('Macky Sall', "prime minister of Senegal, defeated Abdoulaye Wade")
         ],
@@ -375,6 +375,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"block\s?(chain|tree)( capital)?",
             r"Blockstream",
             r"Blythe Masters",
+            r"(Bo|James) (Robert )?Collins",
             r"Brac",  # Brock? EFTA01792443
             r"(Brad(ford)?|Bart) Stephens",  # co-founder, Blockchain Capital
             r"Bradley Rotter",
@@ -1447,6 +1448,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"MJ",
             r"Mohammed bin Salman",
             r"Morocc(an|o)",
+            r"Mosque",
             r"Mubarak",
             r"Muslim( Brotherhood)?",
             r"Nayaf",
