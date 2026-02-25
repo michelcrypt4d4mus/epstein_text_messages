@@ -208,7 +208,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"MSFT",
         ],
     ),
-HighlightedNames(
+    HighlightedNames(
         label=BUSINESS,
         style='spring_green4',
         contacts=[
@@ -218,7 +218,12 @@ HighlightedNames(
             Contact(BARRY_J_COHEN, emailer_pattern=r"barry ((j.?|james) )?cohen?"),
             Contact('David Mitchell', "Mitchell Holdings, New York real estate developer"),
             Contact(GERALD_BARTON, "Maryland property developer Landmark Land Company", r"Gerald.*Barton"),
-            Contact(NICOLE_JUNKERMANN, f"ex-model, NJF Capital / JunkermannGroup, investor in Revolut, online poker, Carbyne w/{EHUD_BARAK}", r"(Nicole )?Junke(nn|rm)ann?"),
+            Contact(MARC_LEON, "Epstein's realtor in Morocco, Luxury Properties Sari", r"Marc[.\s]+(Kensington|Leon)|Kensington2"),
+            Contact(
+                NICOLE_JUNKERMANN,
+                f"ex-model, NJF Capital / JunkermannGroup, investor in Revolut, online poker, Carbyne w/{EHUD_BARAK}",
+                r"(Nicole )?Junke(nn|rm)ann?"
+            ),
             Contact('Nikolajs Smirnovs', f"{NICOLE_JUNKERMANN}'s NJF Capital / JunkermannGroup", r"Nikolajs (NJF|Smirnovs)"),
             Contact(GORDON_GETTY, "heir to oil tycoon J. Paul Getty"),
             Contact('Philip Kafka', f"president of Prince Concepts (and son of {TERRY_KAFKA}?)"),
@@ -525,7 +530,10 @@ HighlightedNames(
         ],
         patterns=[
             r"(2017 )?Caterpillar Trust",
+            r"Coatue",
+            r"C\.?O\.?U\.?Q\.?( Foundation)?",  # Epstein charity account
             r"Enhanced Education",
+            r"Financial Trust Co(\.|mpany)",
             r"FT Real Estate",
             r"Gratitude America",
             r"(Butterfly|Haze|Southern) (Financial|Trust)( Co(mpany)?)?",
@@ -541,6 +549,7 @@ HighlightedNames(
             r"Plan D",
             r"SCI JEP",
             r"Southern Country International",
+            r"(The )?Sweater Trust",
             r"Thomas World Air",
             r"Zorro( (Management|Ranch))?",
         ],
@@ -736,7 +745,7 @@ HighlightedNames(
         style='green',
         contacts=[
             Contact(AMANDA_ENS, "Citigroup", r"ens, amanda?|Amanda.Ens"),
-            Contact(BRAD_WECHSLER, f"head of {LEON_BLACK}'s personal investment vehicle according to FT"),
+            Contact(BRAD_WECHSLER, f"IMAX chairman, head of {LEON_BLACK}'s personal investment vehicle according to FT"),
             Contact(CECILIA_STEEN),
             Contact(DANIEL_SABBA, f"{UBS} Investment Bank"),
             Contact(
@@ -752,7 +761,6 @@ HighlightedNames(
                 info="Apollo CEO who paid Epstein tens of millions for tax advice",
                 emailer_pattern=r"Leon\s*Black?|(?<!Marc )Leon(?! (Botstein|Jaworski|Wieseltier))",
             ),
-            Contact(MARC_LEON, "Luxury Properties Sari Morrocco", r"Marc[.\s]+(Kensington|Leon)|Kensington2"),
             Contact(MELANIE_SPINELLA, f"representative of {LEON_BLACK}", r"M?elanie Spine[Il]{2}a"),
             Contact(MORTIMER_ZUCKERMAN, "business partner of Epstein, newspaper publisher"),
             Contact(NORMAN_D_RAU, "managing director at Morgan Stanley"),
@@ -801,8 +809,9 @@ HighlightedNames(
             r"(Jerome )?Powell(?! M\. Cabot)",
             r"(Jimmy )?Cayne",
             r"Joon Yun",
-            r"JPMC?",
             r"j\.?p\.? morgan(\.?com| Chase)?",
+            r"JPMC?",
+            r"Julius Baer",  # Bank not a person
             r"Lehman Brothers",
             r"Madoff",
             r"Merrill( Lynch)?",
@@ -1067,6 +1076,7 @@ HighlightedNames(
             r"(The )?Shimon Post",
             r"Yitzhak", r"Rabin",
             r"YIVO",
+            r"Yoni Koren",
             r"zionist",
         ],
     ),
@@ -1221,6 +1231,9 @@ HighlightedNames(
     HighlightedNames(
         label='Latin America',
         style='yellow',
+        contacts=[
+            Contact('Reinaldo Avila Da Silva', "Peter Mandelson's Brazilian partner", r"Reinaldo Avila"),
+        ],
         patterns=[
             r"Argentin(a|ian)",
             r"Bolsonar[aio]",
@@ -1251,7 +1264,7 @@ HighlightedNames(
             Contact(BOB_CROWE, "partner at Nelson Mullins", r"[BR]ob Crowe"),
             Contact('Joshua Cooper Ramo', "co-CEO of Henry Kissinger Associates"),
             Contact(KATHERINE_KEATING, "daughter of former Australian prime minister"),
-            Contact(OLIVIER_COLOM, "France", r"Colom, Olivier?|Olivier Colom"),
+            Contact(OLIVIER_COLOM, "Epstein's banker at Edmond de Rothschild (Suisse) SA Bank", r"Colom, Olivier?|Olivier Colom"),
             Contact('Paul Keating', "former prime minister of Australia"),
             Contact('Stanley Rosenberg', "former President of the Massachusetts Senate")
         ],
