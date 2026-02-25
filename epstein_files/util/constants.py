@@ -183,6 +183,7 @@ SINCERELY_SNEAKY = f'{SNEAKY_DOG} + "Sincerely"'
 
 # Descriptions
 IS_IT_ROGER_STONE = "is the 'roger' Epstein is trying to meet Roger Stone?"
+ALLEGED_KARIM_WADE = f"allegedly corrupt Senegalese politician {KARIM_WADE}"
 KYARA_FUND = f"Epstein crypto fund {KYARA_INVESTMENT}"
 SEC_WHISTLEBLOWER = 'whistleblower emails to SEC'
 VALAR_MEETING = f"meeting with {PETER_THIEL}'s {VALAR_VENTURES} fund"
@@ -882,11 +883,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='029545', is_interesting=True, comment='Tyler Shears reputation'),
     EmailCfg(id='025812', is_interesting=True, comment='Tyler Shears reputation'),
     EmailCfg(id='033171', is_interesting=True, comment='Zubair'),
-    EmailCfg(
-        id='026028',
-        description=f"Epstein introduces {LARRY_SUMMERS} to allegedly corrupt Senegalese official {KARIM_WADE}",
-        is_interesting=True,
-    ),
+    EmailCfg(id='026028', is_interesting=True, description=f"Epstein introduces {LARRY_SUMMERS} to {ALLEGED_KARIM_WADE}"),
     EmailCfg(
         id='029914',
         description='Epstein and Lord Mandelson discuss Russian investments',
@@ -1407,7 +1404,8 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA02573653', description=f'discussion of {PRINCE_ANDREW}\'s Urramoor, "Howard" is probably Howard Lutnick which Urramoor partnered with'),
     EmailCfg(id='EFTA02592748', description=f"Epstein asking {BROCK_PIERCE} for a favour related to someone named 'Sue'", truncate_to=300),
     EmailCfg(id='EFTA01008242', description='Epstein passes on an investment in Radius'),
-    EmailCfg(id='EFTA00630134', description=f'Epstein recommends Signal encrypted messenger to allegedly corrupt Senegalese politician {KARIM_WADE}', is_interesting=True),
+    EmailCfg(id='EFTA00630134', description=f'Epstein recommends Signal encrypted messenger to {ALLEGED_KARIM_WADE}', is_interesting=True),
+    EmailCfg(id='EFTA01767036', description=f'"Karim" is probably {ALLEGED_KARIM_WADE}'),
     EmailCfg(id='EFTA02513560', description=f"{JEAN_LUC_BRUNEL} doesn't want to speak on the phone", truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA02671523', description=f"Jones is former Google chief technology advocate / CEO of Epstein investment Wearality"),
     EmailCfg(id='EFTA00854166', description='"kazak contract will be ready for your review"', is_interesting=True, truncate_to=1100),
