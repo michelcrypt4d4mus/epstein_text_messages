@@ -216,6 +216,7 @@ GAVIN_ANDRESEN = 'Gavin Andresen'
 GREG_WYLER = 'Greg Wyler'
 HASSAN_JAMEEL = 'Hassan Jameel'
 HONGBO_ROBERT_BAO = 'Hongbo Robert Bao'
+HOWARD_LUTNICK = 'Howard Lutnick'
 IAN_ODONNELL = "Ian O'Donnell"
 JAMES_FITZGERALD = 'James Fitzgerald'
 JASON_CALACANIS = 'Jason Calacanis'
@@ -321,7 +322,7 @@ NAMES_TO_NOT_PARTIALLY_MATCH = """
     dan daniel danny darren dave david debbie department donald douglas dylan
     ed edward edwards elisa enforcement enterprise enterprises entourage epstein eric erika etienne
     faith fisher fitzgerald forget frances francesca fred friendly frost fuller fund
-    gates gateway general gerald george gold gordon greg
+    gates gateway general gerald george gilbert gold gordon greg
     haddad hall hanson harry hassan hay heather henry hill hoffman howard
     ian inc inc. ivan
     jack james jay jean jeff jeffrey jennifer jeremy jessica joel john jon jonathan joseph jr julia justin

@@ -1890,6 +1890,13 @@ OTHER_FILES_LEGAL = [
     DocCfg(id='022277', description=f"text of National Labour Relations Board (NLRB) law", is_interesting=False),
 
     # DOJ files
+    DocCfg(
+        id='EFTA00164939',
+        author=DOJ,
+        date='2025-09-01',   # TODO: approximate
+        description='Powerpoint summary of Child Sex Trafficking Task Force Epstein investigation',
+        is_interesting=True,
+    ),
     DocCfg(id='EFTA00020506', author=FBI, description='"chauffeur also told Epstein \'I have something on you, remember what I buried!\'"'),
     DocCfg(id='EFTA02731200', author=DOJ, description=f"memo about potential prosecutation of Epstein's assistant"),
     DocCfg(id='EFTA02731082', author=DOJ, description="memo about investigation into Epstein's co-conspirators"),
@@ -2357,6 +2364,7 @@ OTHER_FILES_MISC = [
 ]
 
 OTHER_FILES_GIRLS = [
+    DocCfg(id='EFTA00306033', author=SERGEY_BELYAKOV, description='Epstein Russian visa', is_shown_full_panel=True),
     EmailCfg(id='EFTA00848644', is_interesting=True, comment='"take a picture of your pussy"'),
     EmailCfg(id='EFTA02557291', description='possibly recruiting girls'),
     EmailCfg(id='EFTA01022353', description='George Models in Odessa, "She said she was 14-15 yo"', is_interesting=True),
@@ -2641,12 +2649,36 @@ OTHER_FILES_CRYPTO = [
         description='Barry Silbert became the CEO of Digital Currency Group, a huge US crypto fund w/Larry Summers on the board',
         is_interesting=True,
     ),
+    # Howard Lutnick
+    DocCfg(
+        id='EFTA00289560',
+        date='2012-12-28',
+        description=f'{HOWARD_LUTNICK} and Epstein business deal for Adfin Solutions, Inc. (Southern Trust is Epstein)',
+        truncate_to=(160_000, 162_000),
+    ),
     DocCfg(
         id='EFTA01249210',
-        description="FBI report on tip linking American commerce secretary and Tether asset custodian Howard Lutnick to Ponzi schemes and Russian money",
+        author=FBI,
+        description="tip linking American commerce secretary and Tether asset custodian Howard Lutnick to Ponzi schemes and Russian money",
         is_interesting=True,
         show_with_name=BROCK_PIERCE,
     ),
+    DocCfg(id='EFTA00434306', description='calendar reminder for call with Howard Lutnick', date='2011-04-26'),
+    DocCfg(id='EFTA00020515', author=FBI, description='tip about Howard Lutnick and financial irregularities', is_interesting=True),
+    DocCfg(
+        id='EFTA01249207',
+        author=FBI,
+        description="tip linking American commerce secretary and Tether asset custodian Howard Lutnick to Ponzi schemes and Russian money",
+        is_shown_full_panel=True,
+        show_with_name=BROCK_PIERCE,
+    ),
+    EmailCfg(id='EFTA00685520', description=f'call with {HOWARD_LUTNICK}'),
+    EmailCfg(id='EFTA00436468', description=f'call with {HOWARD_LUTNICK} after he goes overseas'),
+    EmailCfg(id='EFTA00398719', description=f'{HOWARD_LUTNICK} visit to the island', truncate_to=2500),
+    EmailCfg(id='EFTA00401065', description=f'{HOWARD_LUTNICK} visit to the island', truncate_to=NO_TRUNCATE),
+    EmailCfg(id='EFTA00398853', description=f'{HOWARD_LUTNICK} visit to the island', truncate_to=NO_TRUNCATE),
+    EmailCfg(id='EFTA00873540', description=f'{HOWARD_LUTNICK} and {PRINCE_ANDREW}'),
+    EmailCfg(id='EFTA00957552', description=f'thank you note for a $50,000 donation in honor of Tether banker {HOWARD_LUTNICK}'),
 ]
 
 OTHER_FILES_SKYPE_LOG = [

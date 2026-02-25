@@ -214,9 +214,9 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         contacts=[
             Contact(ALIREZA_ITTIHADIEH, "CEO Freestream Aircraft Limited", r"Alireza.[Il]ttihadieh"),
             Contact('AT&T Court Appearance Team', "AT&T"),
-            Contact(BARBRO_C_EHNBOM, "Swedish pharmaceuticals, SALSS", r"behnbom@aol.com|(Barbro\s.*)?Ehnbom"),
+            Contact(BARBRO_C_EHNBOM, "Swedish pharmaceuticals, SALSS", r"behnbom@aol.com|(Barbro\s.*)?Ehnbom|Barbro"),
             Contact(BARRY_J_COHEN, emailer_pattern=r"barry ((j.?|james) )?cohen?"),
-            Contact('David Mitchell', "Mitchell Holdings, New York real estate developer"),
+            Contact('David Mitchell', "Mitchell Holdings, New York real estate developer", r"David( J\.?)? Mitchell"),
             Contact(GERALD_BARTON, "Maryland property developer Landmark Land Company", r"Gerald.*Barton"),
             Contact(MARC_LEON, "Epstein's realtor in Morocco, Luxury Properties Sari", r"Marc[.\s]+(Kensington|Leon)|Kensington2"),
             Contact(
@@ -241,6 +241,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"(General|Limited) Partner",
             r"Gruterite",
             r"Island Capital Group(,? LLC)?",
+            r"Jeanne Houweling",  # CEO of Adfin, company lutnick and epstein invested in
             r"Johann? Eliasc?h",
             r"((John|Patricia) )?Kluge",
             r"Mar[ck] Rich",
@@ -253,6 +254,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Michael Klein",
             r"New Leaf Ventures",
             r"Park Partners",
+            r"Ponz[il] scheme",
             r"Paypal",
             r"Robin\s?hood",
             r"SALSS",
@@ -386,7 +388,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"FTX",
             r"GogoCoin",
             r"(Hester )?Peirce",
-            r"(Howard )?Lutnic?k",
+            r"(How.rd (W\.? )?)?Lutnic?k",
             r"ICO",
             r"itBit",
             r"(Jim )Pallotta",  # Media lab advisory board
@@ -736,9 +738,11 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         label='financial',
         style='dark_sea_green2',
         patterns=[
+            r"\$[\d,.]+(\smillion|thousand)?",
             r"((anti.?)?money )?launder(s?|ers?|ing)?( money)?",
             r"(?<!(ature|Chase|zrahi|tsche)\s)bank(?!\s+(of|secrecy))",
             r"C[EF]O",
+            r"Chief (Executive|Financ(e|ial)) Officer",
             r"(co-?)?founder",
             r"real estate( developer)?",
             r"stock market",
@@ -761,6 +765,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             ),
             Contact(JES_STALEY, "former CEO of Barclays", emailer_pattern=r"[J!](ames|es) (E\.? )Staley"),
             Contact(JIDE_ZEITLIN, f"former partner at {GOLDMAN_SACHS}, allegations of sexual misconduct"),
+            Contact('John Paulson', f"hedge fund guy"),
             Contact('Laurie Cameron', "currency trading"),
             Contact(
                 name=LEON_BLACK,
@@ -788,6 +793,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Bank of Scotland",
             r"Bear Stearns",
             r"(Bernie )?Madoff",
+            r"BGC",
             r"Black(rock|stone)",
             r"B of A",
             r"Booth\s*bay(\sFund\sManagement)?",
@@ -858,7 +864,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 emailer_pattern=r"Andrew (L\.? )?Farkas|Farkas, Andrew( L\.?)?",
             ),
             Contact(DANGENE_AND_JENNIE_ENTERPRISE, "founders of the members-only CORE club"),
-            Contact(DAVID_STERN, f"emailed Epstein from Moscow, knows chairman of {DEUTSCHE_BANK} (?)", r"David Ste(m|rn?)"),
+            Contact(DAVID_STERN, f"emailed Epstein from Moscow, knows chairman of {DEUTSCHE_BANK} (?)", r"David Ste(m|rn?)|ds@witangroup"),
             Contact(
                 name=JONATHAN_FARKAS,
                 info="heir to the Alexander's department store fortune",
@@ -1462,7 +1468,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         style='pale_violet_red1',
         contacts=[
             Contact('Abi Schwinck', f"{JEAN_LUC_BRUNEL}'s MC2 Model Management {'(???)'}"),
-            Contact(DANIEL_SIAD),
+            Contact(DANIEL_SIAD, 'model scout funded by Epstein'),
             Contact(FAITH_KATES, "Next Models co-founder", r"faith kates?"),
             Contact('Gianni Serazzi', "fashion consultant?"),
             Contact(
@@ -1623,6 +1629,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(ALEKSANDRA_KARPOVA, f"{CRYPTO_PR_LAB} co-founder", r"Aleksandra Karpova"),
             Contact(ANASTASIYA_SIROOCHENKO, '', r"Anastasiya( Siro(chenko)?)?"),
             Contact('Dasha Zhukova', "art collector, daughter of Alexander Zhukov"),
+            Contact(HOWARD_LUTNICK, "Tether's banker, Cantor Fitzgerald, US Commerce Secretary under Trump", r"Lutnick(,? Howard)|Howard( William)? Lutnick"),
             Contact(JULIA_SANTOS, "possibly a Russian in Paris that was recruiting girls from Ukraine for Epstein"),
             Contact(
                 KARYNA_SHULIAK,
@@ -1636,6 +1643,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 emailer_pattern=r"Ma(sha|riy?a) (Prus(kova|so))",
             ),
             Contact(MASHA_DROKOVA, "silicon valley VC, former Putin Youth member"),
+            Contact('Matthew Gilbert', 'assistant to Howard Lutnick'),
             Contact(OLGA_PONOMAR_BECKER),
             Contact(
                 RENATA_BOLOTOVA,
@@ -1875,7 +1883,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Minor Victim",
             r"pa?edophile",
             r"pussy",
-            r"sex traffi?c?k(ers?|ing)",
+            r"(child )?sex traffi?c?k(ers?|ing)",
             r"Stephanie Clifford",
             r"Stormy Daniels",
             r"(Virginia ((L\.?|Roberts) )?)?Giuffre",
@@ -2010,11 +2018,18 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         category=MIDEAST
     ),
 
-    # HighlightedText not HighlightedNames bc of word boundary (\b) issue with '#'
+    # HighlightedText not HighlightedNames bc of word boundary (\b) issue with '#', '(', etc.
     HighlightPatterns(
         label='metoo',
         style=VICTIM_COLOR,
         patterns=[r"#metoo"]
+    ),
+    HighlightPatterns(
+        label='financial',
+        style='dark_sea_green2',
+        patterns=[
+            r"\$[\d,.]+(\smillion|thousand)?",
+        ]
     ),
     HighlightPatterns(
         label='unknown',
@@ -2034,7 +2049,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
      HighlightPatterns(
         label='header_field',
         style='plum4',
-        patterns=[fr"^([>•\s]{{,4}}({'|'.join(ALL_HEADER_PATTERNS)}):|on behalf of)"],
+        patterns=[fr"^([>»•\s]{{,4}}({'|'.join(ALL_HEADER_PATTERNS)}):|on behalf of)"],
     ),
     HighlightPatterns(
         label='http_links',

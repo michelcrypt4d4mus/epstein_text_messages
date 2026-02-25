@@ -1,4 +1,5 @@
 # NEXT RELEASE
+* `DocCfg.is_shown_full_panel` param
 
 ### 1.8.6
 * Cache `EpsteinFiles._emailers`
