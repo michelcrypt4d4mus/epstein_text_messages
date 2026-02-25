@@ -18040,9 +18040,9 @@
             },
             {
                 "attachment_file_ids": [
-                    "029304",
+                    "029301",
                     "029302",
-                    "029301"
+                    "029304"
                 ],
                 "attachments": [
                     "image001.jpg",
@@ -44189,8 +44189,8 @@
             },
             {
                 "attachment_file_ids": [
-                    "016699",
-                    "010617"
+                    "010617",
+                    "016699"
                 ],
                 "author": "Jeffrey Epstein",
                 "file_id": "033091",
@@ -45208,9 +45208,9 @@
             },
             {
                 "attachment_file_ids": [
-                    "028988",
+                    "011170",
                     "028815",
-                    "011170"
+                    "028988"
                 ],
                 "author": "Zubair Khan",
                 "comment": "Zubair",
@@ -55577,8 +55577,8 @@
             },
             {
                 "attachment_file_ids": [
-                    "EFTA01093471",
-                    "EFTA01093444"
+                    "EFTA01093444",
+                    "EFTA01093471"
                 ],
                 "attachments": [
                     "Crypto_Currency_Partners_II_LLC_Subscription_Application.pdf",
@@ -62857,6 +62857,83 @@
                 "type": "Email"
             },
             {
+                "author": "Masha Drokova",
+                "file_id": "EFTA01010055",
+                "file_size": 1584,
+                "filename": "EFTA01010055.txt",
+                "header": {
+                    "author": "Masha Drokova <",
+                    "sent_at": "Sat, 29 Dec 2018 06:29:24 +0000",
+                    "subject": "Re:",
+                    "to": [
+                        "J <jeevacation@gmail.com>"
+                    ]
+                },
+                "num_lines": 29,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "timestamp": "2018-12-29T06:29:24",
+                "type": "Email"
+            },
+            {
+                "author": "Jeffrey Epstein",
+                "file_id": "EFTA01010114",
+                "file_size": 2915,
+                "filename": "EFTA01010114.txt",
+                "header": {
+                    "author": "J <jeevacation@gmail.com>",
+                    "sent_at": "Fri, 28 Dec 2018 22:06:48 +0000",
+                    "subject": "Re:"
+                },
+                "num_lines": 59,
+                "timestamp": "2018-12-28T22:06:48",
+                "truncate_to": -1,
+                "type": "Email"
+            },
+            {
+                "author": "Jeffrey Epstein",
+                "category": "crypto",
+                "file_id": "EFTA01010128",
+                "file_size": 1272,
+                "filename": "EFTA01010128.txt",
+                "header": {
+                    "author": "J <jeevacation@gmail.com>",
+                    "sent_at": "Fri, 28 Dec 2018 21:41:35 +0000",
+                    "subject": "Re:",
+                    "to": [
+                        "Masha Drokova"
+                    ]
+                },
+                "num_lines": 25,
+                "recipients": [
+                    "Masha Drokova"
+                ],
+                "timestamp": "2018-12-28T21:41:35",
+                "type": "Email"
+            },
+            {
+                "author": "Masha Drokova",
+                "category": "crypto",
+                "file_id": "EFTA01010171",
+                "file_size": 432,
+                "filename": "EFTA01010171.txt",
+                "header": {
+                    "author": "\"Masha Drokova\"",
+                    "sent_at": "Fri, 28 Dec 2018 19:18:50 +0000",
+                    "to": [
+                        "\"Jeffrey epstein\" <jeevacation\u00aegmail.com>"
+                    ]
+                },
+                "num_lines": 9,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "sent_from_device": "Sent via Superhuman iOS",
+                "timestamp": "2018-12-28T19:18:50",
+                "type": "Email"
+            },
+            {
                 "author": "Jeffrey Epstein",
                 "category": "crypto",
                 "description": "Austin Hill calls Amir Taaki \"a bit crazy'",
@@ -65175,7 +65252,7 @@
                 "category": "crypto",
                 "description": "discussion of using blockchains in the repo markets",
                 "file_id": "EFTA01750652",
-                "file_size": 3673,
+                "file_size": 3583,
                 "filename": "EFTA01750652.txt",
                 "header": {
                     "author": "Vincenzo lozzo",
@@ -65185,11 +65262,13 @@
                         "\"jeffrey E.\" <jeevacation@gmail.com>"
                     ]
                 },
+                "is_interesting": true,
                 "num_lines": 87,
                 "recipients": [
                     "Jeffrey Epstein"
                 ],
                 "timestamp": "2014-09-02T05:45:00",
+                "truncate_to": -1,
                 "type": "Email"
             },
             {
@@ -74502,6 +74581,19 @@
                 "type": "Email"
             },
             {
+                "file_id": "EFTA02607472",
+                "file_size": 2383,
+                "filename": "EFTA02607472.txt",
+                "header": {
+                    "sent_at": "Friday, December 28, 2018 10:05 PM",
+                    "subject": "Re:"
+                },
+                "num_lines": 38,
+                "sent_from_device": "Sent from my iPhone",
+                "timestamp": "2018-12-28T22:05:00",
+                "type": "Email"
+            },
+            {
                 "author": "Jeffrey Epstein",
                 "file_id": "EFTA02607982",
                 "file_size": 490,
@@ -75915,7 +76007,7 @@
                 "recipients": [
                     "Jeffrey Epstein"
                 ],
-                "timestamp": "2011-07-07T22:53:00",
+                "timestamp": "2011-07-07T22:52:40",
                 "type": "Email"
             },
             {
@@ -79186,7 +79278,7 @@
                 "file_id": "011472",
                 "file_size": 1108276,
                 "filename": "HOUSE_OVERSIGHT_011472.txt",
-                "is_interesting": true,
+                "is_interesting": false,
                 "num_lines": 15224,
                 "timestamp": "2006-07-12T00:00:00",
                 "type": "OtherFile"
@@ -79500,14 +79592,14 @@
                 "type": "OtherFile"
             },
             {
-                "author": "Jane Doe v. Donald Trump and Jeffrey Epstein",
-                "category": "legal",
+                "author": "Scott Rothstein",
+                "category": "deposition",
                 "date": "2010-03-23",
-                "description": "Deposition of Scott Rothstein",
+                "description": "from Jane Doe v. Donald Trump and Jeffrey Epstein",
                 "file_id": "013463",
                 "file_size": 47187,
                 "filename": "HOUSE_OVERSIGHT_013463.txt",
-                "is_interesting": null,
+                "is_interesting": true,
                 "num_lines": 633,
                 "timestamp": "2010-03-23T00:00:00",
                 "type": "OtherFile"
@@ -80354,14 +80446,14 @@
                 "type": "OtherFile"
             },
             {
-                "author": "Epstein v. Scott Rothstein, Brad Edwards, & L.M.",
-                "category": "legal",
+                "author": "Scott Rothstein",
+                "category": "deposition",
                 "date": "2012-06-22",
-                "description": "Deposition of Scott Rothstein",
+                "description": "from Epstein v. Scott Rothstein, Brad Edwards, & L.M.",
                 "file_id": "017488",
                 "file_size": 147508,
                 "filename": "HOUSE_OVERSIGHT_017488.txt",
-                "is_interesting": null,
+                "is_interesting": true,
                 "num_lines": 4376,
                 "timestamp": "2012-06-22T00:00:00",
                 "type": "OtherFile"
@@ -80708,11 +80800,11 @@
             {
                 "author": "FBI",
                 "category": "legal",
-                "description": "seized property inventory (redacted)",
+                "description": "report on Epstein investigation (redacted)",
                 "file_id": "018872",
                 "file_size": 493561,
                 "filename": "HOUSE_OVERSIGHT_018872.txt",
-                "is_interesting": null,
+                "is_interesting": true,
                 "num_lines": 11058,
                 "timestamp": "2006-10-07T11:45:00",
                 "type": "OtherFile",
@@ -80869,7 +80961,7 @@
                 "file_id": "019352",
                 "file_size": 91810,
                 "filename": "HOUSE_OVERSIGHT_019352.txt",
-                "is_interesting": null,
+                "is_interesting": true,
                 "num_lines": 3017,
                 "timestamp": "2007-05-01T00:00:00",
                 "type": "OtherFile",
@@ -81193,7 +81285,7 @@
                 "file_id": "021434",
                 "file_size": 167195,
                 "filename": "HOUSE_OVERSIGHT_021434.txt",
-                "is_interesting": null,
+                "is_interesting": true,
                 "num_lines": 5512,
                 "timestamp": "2009-08-08T00:00:00",
                 "type": "OtherFile",
@@ -81202,11 +81294,11 @@
             {
                 "author": "FBI",
                 "category": "legal",
-                "description": "seized property inventory (redacted)",
+                "description": "report on Epstein investigation (redacted)",
                 "file_id": "021569",
                 "file_size": 375877,
                 "filename": "HOUSE_OVERSIGHT_021569.txt",
-                "is_interesting": null,
+                "is_interesting": true,
                 "num_lines": 11736,
                 "timestamp": "2014-03-01T00:00:00",
                 "type": "OtherFile",
@@ -81239,13 +81331,13 @@
                 "was_timestamp_extracted": true
             },
             {
-                "author": "Brad Edwards & Paul G. Cassell v. Alan Dershowitz",
-                "category": "legal",
-                "description": "deposition of Paul G. Cassell",
+                "author": "Paul G. Cassell",
+                "category": "deposition",
+                "description": "from Brad Edwards & Paul G. Cassell v. Alan Dershowitz",
                 "file_id": "021824",
                 "file_size": 152162,
                 "filename": "HOUSE_OVERSIGHT_021824.txt",
-                "is_interesting": null,
+                "is_interesting": true,
                 "num_lines": 6853,
                 "timestamp": "2015-10-24T00:00:00",
                 "type": "OtherFile",
@@ -83625,9 +83717,9 @@
             },
             {
                 "attached_to_email_id": "029299",
-                "author": "Donald Trump",
+                "author": "Michael J. Boccio",
                 "category": "resum\u00e9",
-                "description": "recommendation letter for recently departed Trump Organization lawyer Michael J. Boccio",
+                "description": "recommendation letter by Donald Trump",
                 "file_id": "029304",
                 "file_size": 1056,
                 "filename": "HOUSE_OVERSIGHT_029304.txt",
@@ -101612,7 +101704,7 @@
                 "file_id": "EFTA00005705",
                 "file_size": 681,
                 "filename": "EFTA00005705.txt",
-                "is_interesting": null,
+                "is_interesting": true,
                 "num_lines": 24,
                 "timestamp": "2010-12-10T00:00:00",
                 "type": "DojFile",
@@ -101655,7 +101747,7 @@
                 "file_id": "EFTA00005716",
                 "file_size": 687,
                 "filename": "EFTA00005716.txt",
-                "is_interesting": null,
+                "is_interesting": true,
                 "num_lines": 15,
                 "timestamp": "2010-11-26T00:00:00",
                 "type": "DojFile",
@@ -101668,7 +101760,7 @@
                 "file_id": "EFTA00005717",
                 "file_size": 711,
                 "filename": "EFTA00005717.txt",
-                "is_interesting": null,
+                "is_interesting": true,
                 "num_lines": 15,
                 "timestamp": "2010-11-26T00:00:00",
                 "type": "DojFile",
@@ -104759,6 +104851,31 @@
                 "was_timestamp_extracted": true
             },
             {
+                "author": "Lawrance Visoski",
+                "category": "deposition",
+                "file_id": "EFTA00159483",
+                "file_size": 255203,
+                "filename": "EFTA00159483.txt",
+                "is_interesting": true,
+                "num_lines": 6801,
+                "timestamp": "2009-10-15T00:00:00",
+                "type": "DojFile",
+                "was_timestamp_extracted": true
+            },
+            {
+                "author": "Organized Crime Drug Enforcement Task Force",
+                "category": "money",
+                "description": "report on DEA investigations into Epstein related drug money laundering",
+                "file_id": "EFTA00173953",
+                "file_size": 94310,
+                "filename": "EFTA00173953.txt",
+                "is_interesting": true,
+                "num_lines": 1759,
+                "timestamp": "2020-03-06T15:00:00",
+                "type": "DojFile",
+                "was_timestamp_extracted": true
+            },
+            {
                 "category": "money",
                 "description": "wire transfer to Signature Bank account",
                 "file_id": "EFTA00238499",
@@ -106820,6 +106937,19 @@
                 "was_timestamp_extracted": true
             },
             {
+                "author": "FBI",
+                "category": "legal",
+                "description": "report on Epstein investigation (redacted)",
+                "file_id": "EFTA01688746",
+                "file_size": 90649,
+                "filename": "EFTA01688746.txt",
+                "is_interesting": true,
+                "num_lines": 2547,
+                "timestamp": "2018-01-01T00:00:00",
+                "type": "DojFile",
+                "was_timestamp_extracted": true
+            },
+            {
                 "category": "crypto",
                 "description": "LedgerX Series B pitch deck",
                 "file_id": "EFTA01734786",
@@ -107501,7 +107631,7 @@
         "Miles Alexander": "Africa, Operations Manager Michaelhouse Balgowan KwaZulu-Natal South Africa",
         "Miroslav Laj\u010d\u00e1k": "Europe, Russia-friendly Slovakian politician, friend of Steve Bannon",
         "Mitchell Bard": "Israel, director of the American-Israeli Cooperative Enterprise (AICE)",
-        "Mohamed Waheed Hassan": "Southeast Asia, former president of the Maldives",
+        "Mohamed Waheed Hassan": "SE Asia, former president of the Maldives",
         "Mortimer Zuckerman": "finance, business partner of Epstein, newspaper publisher",
         "Moshe Hoffman": "Harvard, behavioral and evolutionary economics",
         "NY FBI": "government, American law enforcement",
