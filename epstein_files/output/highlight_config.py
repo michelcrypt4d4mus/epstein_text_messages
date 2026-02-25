@@ -1329,7 +1329,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Charlottesville",
             r"Colorado",
             r"Connecticut",
-            r"Florida",
+            r"(?<!District\sof\s)Florida",
             r"Jersey City",
             r"Los Angeles",
             r"Loudoun County?",
