@@ -174,7 +174,7 @@ def one_row_table_html(table: Table, css_props: CssProps = None) -> str:
 
         header_div = div_class(
             rich_to_html(Text('', style=col.header_style or '').append(col.header)),
-            'header_info',
+            'document_panel_header',
             {'text-align': col.header.justify, **{**header_props, **border_props}}
         )
     else:
@@ -182,7 +182,7 @@ def one_row_table_html(table: Table, css_props: CssProps = None) -> str:
 
     body_div = div_class(
         rich_to_html(Text('', style=col.style).append(col._cells[0])),
-        'no_expand body_text_container',
+        'no_expand document_body_container',
         PANEL_BASE_PROPS
     )
 

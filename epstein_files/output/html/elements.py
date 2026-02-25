@@ -13,7 +13,6 @@ from rich.text import Text
 from epstein_files.output.rich import CONSOLE_KWARGS
 from epstein_files.util.constant.html import FONT_FAMILY, HTML_TERMINAL_THEME
 from epstein_files.util.helpers.data_helpers import sort_dict_by_keys
-from epstein_files.util.helpers.file_helper import log_file_write
 from epstein_files.util.helpers.string_helper import quote
 from epstein_files.util.logging import logger
 
