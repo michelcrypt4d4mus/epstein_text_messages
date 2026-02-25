@@ -9,6 +9,7 @@ from rich.table import Table
 from rich.text import Text
 from rich.panel import Panel
 
+from epstein_files.output.html.elements import HtmlStyle
 from epstein_files.output.html.builder import (PANEL_BASE_PROPS, VERTICAL_MARGIN, border_css_props, rich_to_html,
      one_row_table_html, text_to_list, text_to_div, vertical_margin_props)
 from epstein_files.output.html.elements import div_tag, to_em, side_props
@@ -74,6 +75,7 @@ class BasePanel:
 @dataclass(kw_only=True)
 class FileDisplay:
     """Allows for proper right vs. left justify of a Document display."""
+    background_color: str = ''
     body_panel: BasePanel | Table
     file_info: BasePanel
     indent: int = 0
@@ -156,6 +158,10 @@ class FileDisplay:
 
         inner_html = '\n'.join(elements)
         div_props = {**DOC_DIV_CSS_PROPS, 'margin-bottom': self.margin_bottom}
+
+        if self.background_color:
+            div_props.update(HtmlStyle(f"on {self.background_color}").to_css)
+
         return div_tag(inner_html, div_props)
 
     def __rich_console__(self, console: Console, options: ConsoleOptions) -> RenderResult:

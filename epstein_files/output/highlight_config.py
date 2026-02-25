@@ -870,7 +870,7 @@ HighlightedNames(
                 emailer_pattern=r"Villafana, Ann Marie|(A(\.|nn) Marie )?Villafa(c|n|ri)a",
             ),
             Contact(AUDREY_STRAUSS, "USA Attorney", r"Audrey Strauss|Strauss, Audrey"),
-            Contact(BUREAU_OF_PRISONS, "American law enforcement", r"bop\.gov"),
+            Contact(BUREAU_OF_PRISONS, "American law enforcement", r"bop\.gov|(Federal )?Bureau of Prisons"),
             Contact(CHRISTOPHER_DILORIO, "self described whistleblower", r"Chris(topher )? Di[lI]o[nr](io)?"),
             Contact(
                 name=DANNY_FROST,

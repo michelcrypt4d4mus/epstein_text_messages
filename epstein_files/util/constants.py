@@ -2309,6 +2309,7 @@ OTHER_FILES_MISC = [
     DocCfg(id='029448', description=f"weird short essay titled 'President Obama and Self-Deception'"),
 
     # DOJ files
+    DocCfg(id='EFTA00034357', author=BUREAU_OF_PRISONS, description=f"internal message about discovery of Epstein's body", background_color='red'),
     DocCfg(id='EFTA00039025', author=BUREAU_OF_PRISONS, description=f"report on death of Jeffrey Epstein", is_interesting=True),
     DocCfg(id='EFTA00039227', author=BUREAU_OF_PRISONS, replace_text_with='Inmate Discipline Program Statement'),
     DocCfg(id='EFTA00039295', author=BUREAU_OF_PRISONS, replace_text_with='Inmate Telephone Privileges Program Statement'),
