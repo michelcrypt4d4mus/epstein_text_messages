@@ -1364,6 +1364,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA02730485', date='2021-12-03 00:00:00'),
     EmailCfg(id='EFTA00901970', description=f"{AL_SECKEL}'s response to Epstein's forged email", is_interesting=True, truncate_to=3000),
     EmailCfg(id='EFTA00992595', description=f"{ARIANE_DE_ROTHSCHILD} mentions her visit to Mongolia"),
+    EmailCfg(id='EFTA00888467', description='a very strange conversation about "Peter" and "mj"', is_interesting=True),
     EmailCfg(
         id='EFTA02021096',
         description=f"discussion of the murder of Martine Vik Magnussen by {SHAHER_ABDULHAK_BESHER}'s son Farouk",
@@ -1452,7 +1453,6 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00982818', truncate_to=500),
     EmailCfg(id='EFTA01731638', truncate_to=530),
     EmailCfg(id='EFTA00362171', truncate_to=1096),
-    EmailCfg(id='EFTA00888467', truncate_to=1400),
     EmailCfg(id='EFTA00836570', truncate_to=1600),
     EmailCfg(id='EFTA00681240', truncate_to=2000),
     EmailCfg(id='EFTA00669647', truncate_to=2500),
