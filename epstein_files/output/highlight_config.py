@@ -287,6 +287,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         label='China',
         style='bright_red',
         contacts=[
+            Contact('Desmond Shum', f'Hong Kong financier, friend of {PETER_MANDELSON}'),
             Contact(GINO_YU, f"professor / game designer in Hong Kong, friend of {MASHA_DROKOVA}, worked on PR for Epstein"),
         ],
         patterns=[

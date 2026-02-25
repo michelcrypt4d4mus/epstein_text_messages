@@ -166,6 +166,8 @@ if args.names:
 
 if args.truncate and args.whole_file:
     exit_with_error(f"--whole-file and --truncate are incompatible")
+elif args.char_nums and not args.truncate:
+    args.whole_file = True
 
 if args.open_both:
     args.open_pdf = True

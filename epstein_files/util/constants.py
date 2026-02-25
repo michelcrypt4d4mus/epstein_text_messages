@@ -1468,16 +1468,9 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA02628058', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA02626427', truncate_to=NO_TRUNCATE),
     #### MAGIC COMMENT FOR MANUAL CONFIG ####
-    EmailCfg(
-        id='EFTA00820371',
-        description='bank digital currencies article',
-        is_interesting=True,
-        is_shown_full_panel=False,
-        truncate_to=NO_TRUNCATE,
-    ),
-
+    EmailCfg(id='EFTA02606529', truncate_to=1500),
+    EmailCfg(id='EFTA00745622', recipients=[PETER_MANDELSON], truncate_to=520),
     EmailCfg(id='EFTA01930285', description='"many opportunities"', is_interesting=True),
-
     EmailCfg(id='EFTA01063008', author=OLGA_PONOMAR_BECKER, author_reason='Jmail'),
     EmailCfg(id='EFTA00681554', recipients=[OLGA_PONOMAR_BECKER]),
     EmailCfg(id='EFTA02669915', recipients=[OLGA_PONOMAR_BECKER]),
@@ -2636,6 +2629,8 @@ OTHER_FILES_CRYPTO = [
     EmailCfg(id='EFTA00830911', description='fundraising email for LedgerX which was later acquired by FTX for $298 million'),
     EmailCfg(id='EFTA01750652', description=f"discussion of using blockchains in the repo markets", is_interesting=True),
     EmailCfg(id='EFTA02002675', description=f"{JASON_CALACANIS} passes Epstein the names of the bitcoin core developers"),
+    # Reid Hoffman
+    EmailCfg(id='EFTA00820371', description='bank digital currencies article', is_interesting=True),
     # SEC / NYDFS
     EmailCfg(id='EFTA02588398', description=f"Epstein went to the Treasury Dept of the US to talk about bitcoin", is_interesting=True),
     EmailCfg(id='EFTA00987194', description=f"Epstein proposes {BEN_LAWSKY_NYDFS} get rid of sales tax on bitcoin", is_interesting=True),
