@@ -2630,8 +2630,8 @@ OTHER_FILES_CRYPTO = [
     ),
     EmailCfg(
         id='EFTA01965506',
-        author_reason='"iPhone word substitution" in signature, which is traced back to "Linda, thanks" in EFTA00961792',
         author=LINDA_STONE,
+        author_reason='"iPhone word substitution" in signature, which is traced back to "Linda, thanks" in EFTA00961792',
         description='Barry Silbert became the CEO of Digital Currency Group, a huge US crypto fund w/Larry Summers on the board',
         is_interesting=True,
     ),
@@ -2655,20 +2655,20 @@ OTHER_FILES_SKYPE_LOG = [
 ]
 
 OTHER_FILES_TEXT_MSG = [
+    DocCfg(id='033434', description=f"{SCREENSHOT} iMessage chat labeled 'Edwards'"),
+    DocCfg(
+        id='EFTA01620764',
+        author=MELANIE_WALKER,
+        author_uncertain=True,
+        description=f'conversation about Bill Gates being drunk all the time',
+        is_interesting=True,
+    ),
     DocCfg(id='EFTA01618381', author=RENATA_BOLOTOVA, description=f'iMessage screenshots', author_uncertain='sneaky'),
     DocCfg(id='EFTA01622387', author=RENATA_BOLOTOVA, description=f'iMessage screenshots', author_uncertain='sneaky'),
     DocCfg(id='EFTA01618494', author=RENATA_BOLOTOVA, description=f'iMessage screenshots', author_uncertain='sneaky'),
     DocCfg(id='EFTA01618400', author=RENATA_BOLOTOVA, description=f'iMessage screenshots', author_uncertain='sneaky'),
-    DocCfg(
-        id='EFTA01620764',
-        author=MELANIE_WALKER,
-        description=f'conversation about Bill Gates being drunk all the time',
-        author_uncertain=True,
-        is_interesting=True,
-    ),
-    DocCfg(id='033434', description=f"{SCREENSHOT} iMessage chat labeled 'Edwards'"),
-    CommunicationCfg(id='EFTA01611042', author=ED_BOYLE, recipients=[None, MARIA_PRUSAKOVA]),
     DocCfg(id='EFTA01611898', description=f"screenshot of recent contacts in an iPhone"),
+    CommunicationCfg(id='EFTA01611042', author=ED_BOYLE, recipients=[None, MARIA_PRUSAKOVA]),
     CommunicationCfg(id='EFTA02731525', author=LEON_BLACK, author_uncertain=True),
     CommunicationCfg(
         id='EFTA01612665',
