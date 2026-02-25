@@ -2670,7 +2670,7 @@ OTHER_FILES_CRYPTO = [
         is_interesting=True,
     ),
     DocCfg(id='EFTA01388197', author=DEUTSCHE_BANK, description='bitcoin and blockchain symposium', date='2018-04-03'),
-    EmailCfg(id='EFTA01434500', description=f"everyone assumes Epstein's banker will want to know about the blockchain symposium"),
+    EmailCfg(id='EFTA01434500', description=f"everyone assumes Epstein's banker {PAUL_BARRETT} will want to know about the blockchain event"),
     EmailCfg(id='EFTA00993615', description=f"{MASHA_DROKOVA} explains the price of bitcoin can be manipulated if Epstein makes public comments"),
     EmailCfg(id='EFTA02584771', description=f"discussion of decentralized prediction maarkets like Polymarket"),
     EmailCfg(
