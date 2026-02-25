@@ -134,7 +134,7 @@ else
     print_deploy_step "Skipping DOJ files (TAG_RELEASE not set)..."
 fi
 
-# cp docs/chrono_real_html.html docs/index.html
+cp docs/chrono_real_html.html docs/index.html
 
 # Commit changes
 commit_gh_pages_changes
