@@ -346,6 +346,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact('Francesca Hall', 'Assistant/Calendar Queen to The BlockStream team'),
             Contact(FRANCESCA_HALL, f"assistant to {AUSTIN_HILL}"),
             Contact(GAVIN_ANDRESEN, 'core bitcoin developer', r"(Gavin )?Andr.ss?en"),
+            Contact(HOWARD_LUTNICK, "Tether's banker, Cantor Fitzgerald, US Commerce Secretary under Trump", r"Lutnick(,? Howard)|Howard( William)? Lutnick"),
             Contact(JEFFREY_WERNICK, "former COO of Parler, involved in numerous crypto companies like Bitforex"),
             Contact(JEREMY_RUBIN, "developer/researcher", r"Jeremy Rub(in|m)"),
             Contact(LORENZO_DE_MEDICI, "Medici Bank, possibly Medici heir?", r"Prince Lorenzo|Lorenzo de Medici"),
@@ -798,6 +799,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"B of A",
             r"Booth\s*bay(\sFund\sManagement)?",
             r"Cantor( (Fitzgerald|Opportunities))?",
+            r"CF(G)",
             r"Charles Schwab",
             r"Chase Bank",
             r"Cheetah Investment( Management)?",
@@ -1629,7 +1631,6 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(ALEKSANDRA_KARPOVA, f"{CRYPTO_PR_LAB} co-founder", r"Aleksandra Karpova"),
             Contact(ANASTASIYA_SIROOCHENKO, '', r"Anastasiya( Siro(chenko)?)?"),
             Contact('Dasha Zhukova', "art collector, daughter of Alexander Zhukov"),
-            Contact(HOWARD_LUTNICK, "Tether's banker, Cantor Fitzgerald, US Commerce Secretary under Trump", r"Lutnick(,? Howard)|Howard( William)? Lutnick"),
             Contact(JULIA_SANTOS, "possibly a Russian in Paris that was recruiting girls from Ukraine for Epstein"),
             Contact(
                 KARYNA_SHULIAK,
