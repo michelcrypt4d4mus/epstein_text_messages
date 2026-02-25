@@ -95,6 +95,7 @@ OCR_REPAIRS: dict[str | re.Pattern, str] = {
     re.compile(r"([,<>_]|AM|PM)\n(>)? ?wrote:?"): r'\1\2 wrote:',
     # Headers
     'I nline-Images:': 'Inline-Images:',
+    re.compile(r"^((?:B?cc|To):.*)\n(>?;.*)", re.IGNORECASE | re.MULTILINE): r'\1 \2',
     re.compile(r"^From "): 'From: ',
     re.compile(r"^(Sent|Subject) (?![Ff]rom|using|[Vv]ia)", re.MULTILINE): r'\1: ',
     re.compile(r"^Subject[.•]{,2} ", re.MULTILINE): 'Subject: ',
@@ -686,6 +687,7 @@ class Email(Communication):
             self.log_top_lines(12, 'Result of modifications')
 
         repaired_text = self._repair_links_and_quoted_subjects(self.repair_ocr_text(OCR_REPAIRS, self.text))
+        # logger.debug(f"repaired_text\n---\n{self.text}\n---")
         self._set_text(text=repaired_text)
 
     def _repair_links_and_quoted_subjects(self, text: str) -> str:
@@ -729,7 +731,7 @@ class Email(Communication):
             i += 1
 
         logger.debug(f"----after line repair---\n" + '\n'.join(new_lines[0:20]) + "\n---")
-        return '\n'.join(lines)
+        return '\n'.join(new_lines)
 
     def _sent_from_device(self) -> str | None:
         """Find any 'Sent from my iPhone' style signature line if it exist in the 'actual_text'."""

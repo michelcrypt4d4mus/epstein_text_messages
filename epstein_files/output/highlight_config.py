@@ -28,6 +28,8 @@ EPSTEIN_ESTATE_EXECUTOR = f"Epstein {ESTATE_EXECUTOR}"
 MC2_MODEL_MANAGEMENT = f"{JEAN_LUC_BRUNEL}'s MC2 Model Management"
 QUESTION_MARKS_TXT = Text(QUESTION_MARKS, style='grey50')
 THIELS_VALAR = f"{PETER_THIEL}'s {VALAR_VENTURES}"
+
+FINANCIAL_COLOR = 'dark_sea_green2'
 VICTIM_COLOR = 'orchid1'
 
 DATE_PATTERN = r"\d{1,4}[-/]\d{1,2}[-/]\d{2,4}"
@@ -213,6 +215,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         style='spring_green4',
         contacts=[
             Contact(ALIREZA_ITTIHADIEH, "CEO Freestream Aircraft Limited", r"Alireza.[Il]ttihadieh"),
+            Contact('André Balazs', 'hotelier, CEO of André Balazs Properties', r"Andre Bala(sz|zs)"),
             Contact('AT&T Court Appearance Team', "AT&T"),
             Contact(BARBRO_C_EHNBOM, "Swedish pharmaceuticals, SALSS", r"behnbom@aol.com|(Barbro\s.*)?Ehnbom|Barbro"),
             Contact(BARRY_J_COHEN, emailer_pattern=r"barry ((j.?|james) )?cohen?"),
@@ -343,14 +346,14 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(BRYAN_BISHOP, "executive at LedgerX and Polymath fund"),
             Contact(DONALD_NORMAN, f"co-founder of early British crypto exchange Intersango with {AMIR_TAAKI}"),
             Contact(ED_BOYLE, f"Medici Bank", r"Ed Boy(el|le)"),
-            Contact('Francesca Hall', 'Assistant/Calendar Queen to The BlockStream team'),
-            Contact(FRANCESCA_HALL, f"assistant to {AUSTIN_HILL}"),
+            Contact(FRANCESCA_HALL, f"'Assistant/Calendar Queen to The BlockStream team' / {AUSTIN_HILL}"),
             Contact(GAVIN_ANDRESEN, 'core bitcoin developer', r"(Gavin )?Andr.ss?en"),
             Contact(HOWARD_LUTNICK, "Tether's banker, Cantor Fitzgerald, US Commerce Secretary under Trump", r"Lutnick(,? Howard)|Howard( William)? Lutnick"),
             Contact(JEFFREY_WERNICK, "former COO of Parler, involved in numerous crypto companies like Bitforex"),
             Contact(JEREMY_RUBIN, "developer/researcher", r"Jeremy Rub(in|m)"),
             Contact(LORENZO_DE_MEDICI, "Medici Bank, possibly Medici heir?", r"Prince Lorenzo|Lorenzo de Medici"),
             Contact(MADARS_VIRZA, f"ZCash lead dev, {MIT_MEDIA_LAB}"),
+            Contact('Matthew Gilbert', 'assistant to Howard Lutnick'),
             Contact('Suhas Daftuar', 'Chaincode Labs'),
         ],
         patterns=[
@@ -374,7 +377,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Brian Forde",
             r"Brock( Pierce)?",
             r"Brudder( Ventures)?",
-            r"Cantor( (Fitzgerald|Opportunities|Ventures?))?",
+            r"Cantor(,? (Fitzgerald|Opportunities|Ventures?))?",
             r"CF(G)",
             r"Chaincode",
             r"Coinbase",
@@ -383,13 +386,14 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Coinmint",
             r"Cory Fields",  # bitcoin dev
             r"cr[iy]?pto (coins?|currenc(y|ies)|mining|PR Lab)?( Partners( II)?)?",
-            r"crypto(prlab)?",
+            r"crypto(graph(ic|y)|prlab)?",
             r"(Dan )?Morehead",
             r"Digital (Assets?|Currenc(ies|y)( Initiative)?)",
             r"e-?(currency|gold)",
             r"Erik Svenson",  # Blockstream
             r"Fred Ehrsam",
             r"FTX",
+            r"(?-i:G)alaxy",
             r"GogoCoin",
             r"(Hester )?Peirce",
             r"(How.rd (W\.? )?)?Lutnic?k",
@@ -421,6 +425,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"(Ross )?Ulbricht",
             r"Silk Road",
             r"SpanCash",
+            r"stable coins",
             r"Stellar",
             r"Stephens Investment Management",
             r"Steve Waterhouse",
@@ -449,7 +454,9 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         label='Democrat',
         style='sky_blue1',
         contacts=[
-            Contact(PAUL_PROSPERI, "friend of Bill Clinton")
+            Contact(PAUL_PROSPERI, "friend of Bill Clinton"),
+            Contact('Bill Richardson', 'governor of New Mexico', r"(Governor )?(Bill )?Richardson"),
+            Contact('Janis Hartley', f'assistant to Governor Bill Richardson {QUESTION_MARKS}'),
         ],
         patterns=[
             r"(Al )?Franken",
@@ -522,13 +529,14 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Adriana Ross",
             r"Merwin",
             r"(Sarah )?Kellen", r"Vickers",  # Married name is Metiers
+            r"Rich Barnett",
         ],
     ),
     HighlightedNames(
         label='Epstein',
         style='blue1',
         contacts=[
-            Contact(ASIA_GATEWAY, f"corporate vehicle set up by Epstein and {DAVID_STERN}"),
+            Contact(ASIA_GATEWAY, f"corporate vehicle set up by Epstein and {DAVID_STERN}", r"Asia\s*Gateway(\s*L(imited|td))"),
             Contact(
                 name=JEFFREY_EPSTEIN,
                 emailer_pattern=r"[djl]\s?ee[vy]acation[©@]?g?(mail.com)?|Epstine|\bJEE?\b|Jeff(rey)? (Edward )?E((sp|ps)tein?)?( VI Foundation)?|jeeproject@yahoo.com|J Jep|Jeffery Edwards|(?<!(ark L.|rd Jay|Edward) )Epstein|Jeffrey Epst.*comj?",
@@ -558,6 +566,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"SCI JEP",
             r"Southern Country International",
             r"(The )?Sweater Trust",
+            r"(?-i:The Prof)",
             r"Thomas World Air",
             r"Zorro( (Management|Ranch))?",
         ],
@@ -740,9 +749,8 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
     ),
     HighlightedNames(
         label='financial',
-        style='dark_sea_green2',
+        style=FINANCIAL_COLOR,
         patterns=[
-            r"\$[\d,.]+(\smillion|thousand)?",
             r"((anti.?)?money )?launder(s?|ers?|ing)?( money)?",
             r"(?<!(ature|Chase|zrahi|tsche)\s)bank(?!\s+(of|secrecy))",
             r"C[EF]O",
@@ -808,7 +816,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"DAF",
             r"DB(?!\s+Zw)",
             r"D\.?B\.? Zwirn",
-            r"Deutsche? (Asset|Bank)",
+            r"Deutsche? (Asset|(Post)?Bank)",
             r"donor advised fund",
             r"Electron Capital (Partners)?",
             r"Fenner",
@@ -978,6 +986,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"NPA",
             r"NS(A|C)",
             r"NYDFS",
+            r"NYPD",
             r"OCC",
             r"ODAG",
             r"OFAC",
@@ -1329,7 +1338,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Charlottesville",
             r"Colorado",
             r"Connecticut",
-            r"Florida",
+            r"(?<!District\sof\s)Florida",
             r"Jersey City",
             r"Los Angeles",
             r"Loudoun County?",
@@ -1644,7 +1653,6 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 emailer_pattern=r"Ma(sha|riy?a) (Prus(kova|so))",
             ),
             Contact(MASHA_DROKOVA, "silicon valley VC, former Putin Youth member"),
-            Contact('Matthew Gilbert', 'assistant to Howard Lutnick'),
             Contact(OLGA_PONOMAR_BECKER),
             Contact(
                 RENATA_BOLOTOVA,
@@ -1674,6 +1682,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Kremlin",
             r"(Anastasia )?Kuznetsova",
             r"Lavrov",
+            r"(Len )?Blavatnik",
             r"Lukoil",
             r"Minsk",
             r"Moscow",
@@ -1715,11 +1724,13 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Bangkok",
             r"Burm(a|ese)",
             r"Cambodian?",
+            r"Indonesian?",
             r"Laos",
             r"Malaysian?",
             r"Male?dives",
             r"Myan?mar",
             r"New Zealand",
+            r"Pacific Rim",
             r"Philippines",
             r"Sam\s?sung",
             r"(?<!North\s)(South\s*)?Korean?",
@@ -1778,6 +1789,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Najeev",
             r"Nathan Myhrvold",
             r"Palantir",
+            r"Paul Allen",
             r"(Peter\s)?Th(ie|ei)l",
             r"Pierre Omidyar",
             r"Second Life",
@@ -1887,6 +1899,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"(child )?sex traffi?c?k(ers?|ing)",
             r"Stephanie Clifford",
             r"Stormy Daniels",
+            r"strange women",
             r"(Virginia ((L\.?|Roberts) )?)?Giuffre",
             r"Virginia Roberts",
             r"way better than supplying you ladies",
@@ -2027,9 +2040,9 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
     ),
     HighlightPatterns(
         label='financial',
-        style='dark_sea_green2',
+        style=FINANCIAL_COLOR,
         patterns=[
-            r"\$[\d,.]+(\smillion|thousand)?",
+            r"\$[\d,.]+(\s?(m(illion)?|thousand))?",
         ]
     ),
     HighlightPatterns(

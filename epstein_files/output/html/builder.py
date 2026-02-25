@@ -16,7 +16,7 @@ from epstein_files.util.logging import logger
 
 CSS = Path(__file__).parent.joinpath('page.css').read_text()
 BOX_BORDER_RADIUS = 4
-BOX_BORDER_WIDTH = 1
+BOX_BORDER_WIDTH = 2
 BORDER_HORIZONTAL_PADDING = to_em(1)
 BORDER_VERTICAL_PADDING = to_em(0.5)
 VERTICAL_MARGIN = to_em(1.5)  # Between elements
@@ -170,12 +170,17 @@ def one_row_table_html(table: Table, css_props: CssProps = None) -> str:
     col = table.columns[0]
 
     if table.show_header:
-        header_props = HtmlStyle(table.header_style).to_css if table.header_style else {}
+        header_props = {
+            'border-bottom-color': HtmlStyle(table.border_style).hex,
+            **(HtmlStyle(table.header_style).to_css if table.header_style else {})
+        }
+
+        logger.warning(f"header_props: {header_props}\n  border_props: {border_props}\n")
 
         header_div = div_class(
             rich_to_html(Text('', style=col.header_style or '').append(col.header)),
             'document_panel_header',
-            {'text-align': col.header.justify, **{**header_props, **border_props}}
+            {'text-align': col.header.justify, **{**header_props}}
         )
     else:
         header_div = ''

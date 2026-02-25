@@ -239,6 +239,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='026069', author=ARIANE_DE_ROTHSCHILD, author_reason='signature'),
     EmailCfg(id='030741', author=ARIANE_DE_ROTHSCHILD, author_reason='signature'),
     EmailCfg(id='026018', author=ARIANE_DE_ROTHSCHILD, author_reason='signature'),
+    EmailCfg(id='EFTA01744418', author=ARIANE_DE_ROTHSCHILD, author_reason='signature'),
     EmailCfg(
         id='029504',
         author='Audrey/Aubrey Raimbault (???)',
@@ -1364,6 +1365,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA02730485', date='2021-12-03 00:00:00'),
     EmailCfg(id='EFTA00901970', description=f"{AL_SECKEL}'s response to Epstein's forged email", is_interesting=True, truncate_to=3000),
     EmailCfg(id='EFTA00992595', description=f"{ARIANE_DE_ROTHSCHILD} mentions her visit to Mongolia"),
+    EmailCfg(id='EFTA00888467', description='a very strange conversation about "Peter" and "mj"', is_interesting=True),
     EmailCfg(
         id='EFTA02021096',
         description=f"discussion of the murder of Martine Vik Magnussen by {SHAHER_ABDULHAK_BESHER}'s son Farouk",
@@ -1452,7 +1454,6 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00982818', truncate_to=500),
     EmailCfg(id='EFTA01731638', truncate_to=530),
     EmailCfg(id='EFTA00362171', truncate_to=1096),
-    EmailCfg(id='EFTA00888467', truncate_to=1400),
     EmailCfg(id='EFTA00836570', truncate_to=1600),
     EmailCfg(id='EFTA00681240', truncate_to=2000),
     EmailCfg(id='EFTA00669647', truncate_to=2500),
@@ -2030,6 +2031,9 @@ OTHER_FILES_FINANCE = [
         description=f"Rockefeller Partners with Gregory J. Fleming to Create Independent Financial Services Firm and other articles",
         is_interesting=False,
     ),
+
+    # DOJ
+    DocCfg(id='EFTA01078403', author='Red Dot Trade Finance', description='investment adviser uniform application', date='2014-05-14'),
 ]
 
 # Epstein money. This category makes is_interesting = True
@@ -2322,7 +2326,13 @@ OTHER_FILES_MISC = [
     DocCfg(id='029448', description=f"weird short essay titled 'President Obama and Self-Deception'"),
 
     # DOJ files
-    DocCfg(id='EFTA00034357', author=BUREAU_OF_PRISONS, description=f"internal message about discovery of Epstein's body", background_color='red'),
+    DocCfg(
+        id='EFTA00034357',
+        author=BUREAU_OF_PRISONS,
+        date='2019-08-10',
+        description=f"internal message about discovery of Epstein's body",
+        background_color='red'
+    ),
     DocCfg(id='EFTA00039025', author=BUREAU_OF_PRISONS, description=f"report on death of Jeffrey Epstein", is_interesting=True),
     DocCfg(id='EFTA00039227', author=BUREAU_OF_PRISONS, replace_text_with='Inmate Discipline Program Statement'),
     DocCfg(id='EFTA00039295', author=BUREAU_OF_PRISONS, replace_text_with='Inmate Telephone Privileges Program Statement'),
@@ -2547,6 +2557,46 @@ OTHER_FILES_CRYPTO = [
     EmailCfg(id='EFTA02505439', description=f'summary of {KYARA_INVESTMENT} shell companies with {JOI_ITO}'),
     # Kushner
     DocCfg(id='EFTA00128987', description='suspicious activity report (SAR) about Kushner co. crypto payments to suspicious Russian person'),
+    # Howard Lutnick
+    DocCfg(
+        id='EFTA00289560',
+        date='2012-12-28',
+        description=f'{HOWARD_LUTNICK} and Epstein business deal for Adfin Solutions, Inc. (Southern Trust is Epstein)',
+        truncate_to=(160_000, 162_000),
+    ),
+    DocCfg(
+        id='EFTA01249210',
+        author=FBI,
+        description="tip linking American commerce secretary and Tether asset custodian Howard Lutnick to Ponzi schemes and Russian money",
+        is_interesting=True,
+        show_with_name=BROCK_PIERCE,
+    ),
+    DocCfg(id='EFTA01733746', date='2011-05-18', description=f'schedule showing "drinks" with {HOWARD_LUTNICK}', is_shown_full_panel=True),
+    DocCfg(id='EFTA00434306', description='calendar reminder for call with Howard Lutnick', date='2011-04-26'),
+    DocCfg(id='EFTA00020515', author=FBI, description='tip about Howard Lutnick and financial irregularities', is_interesting=True),
+    DocCfg(
+        id='EFTA01249207',
+        author=FBI,
+        description="tip linking American commerce secretary and Tether asset custodian Howard Lutnick to Ponzi schemes and Russian money",
+        is_shown_full_panel=True,
+        show_with_name=BROCK_PIERCE,
+    ),
+    DocCfg(
+        id='EFTA01684300',
+        author=FBI,
+        description=f'evidence list w/tip about {HOWARD_LUTNICK}, Cantor Fitzgerald, and BGC from an employee who had already blown the whistle successfully',
+        truncate_to=(77_000, 77_300),
+    ),
+    EmailCfg(id='EFTA02374900', description=f'article about {HOWARD_LUTNICK} real estate purchase'),
+    EmailCfg(id='EFTA00443752', description=f"invitation from {HOWARD_LUTNICK}"),
+    EmailCfg(id='EFTA00462693', description=f"Epstein gets a table for 10 at the dinner honouring {HOWARD_LUTNICK}"),
+    EmailCfg(id='EFTA00685520', description=f'call with {HOWARD_LUTNICK}'),
+    EmailCfg(id='EFTA00436468', description=f'call with {HOWARD_LUTNICK} after he goes overseas', truncate_to=NO_TRUNCATE),
+    EmailCfg(id='EFTA00398719', description=f'{HOWARD_LUTNICK} visit to the island', truncate_to=2500),
+    EmailCfg(id='EFTA00401065', description=f'{HOWARD_LUTNICK} visit to the island', truncate_to=NO_TRUNCATE),
+    EmailCfg(id='EFTA00398853', description=f'{HOWARD_LUTNICK} visit to the island', truncate_to=NO_TRUNCATE),
+    EmailCfg(id='EFTA00873540', description=f'{HOWARD_LUTNICK} and {PRINCE_ANDREW}'),
+    EmailCfg(id='EFTA00957552', description=f'thank you note for a $50,000 donation in honor of Tether banker {HOWARD_LUTNICK}'),
     # Masha Drokova
     EmailCfg(
         id='EFTA01003115',
@@ -2587,6 +2637,7 @@ OTHER_FILES_CRYPTO = [
     # Sharia coin
     EmailCfg(id='EFTA00964459', description=f'discussion of sharia compliant crypto token', is_interesting=True),
     EmailCfg(id='EFTA00990442', description=f"Epstein offers to cover all costs for Sharia Coin", is_interesting=True),
+    EmailCfg(id='032359', description='HBJ brings up "e-currency" (Sharia Coin, probably)'),
     # Valar
     DocCfg(id='EFTA00605996', description='Wedbush BUY rating on Digital Currency Group GBTC', is_interesting=False),
     DocCfg(id='EFTA01121910', author=VALAR_VENTURES, description="contract", truncate_to=DEFAULT_TRUNCATE_TO),
@@ -2611,8 +2662,15 @@ OTHER_FILES_CRYPTO = [
     EmailCfg(id='EFTA02645742', description=f"tax implications of the untraceable 'privacy coin' ZCash", is_interesting=True),
     EmailCfg(id='EFTA02282357', author=DAPHNE_WALLACE, author_uncertain='could be Lesley'),
     EmailCfg(id='EFTA02283028', author=DAPHNE_WALLACE, author_uncertain='could be Lesley'),
+    EmailCfg(id='EFTA02374960', description=f"Epstein says that he will fund a seat at MIT Media Lab for ZCash founder {MADARS_VIRZA}", is_interesting=True),
     # Unsorted
-    EmailCfg(id='032359', description='HBJ brings up "e-currency" (Sharia Coin, probably)'),
+    DocCfg(
+        id='EFTA01030070',
+        description="a plan inspired by Epstein to set up crypto trading operations around the world, offering stablecoins to people who can't get bank accounts",
+        is_interesting=True,
+    ),
+    DocCfg(id='EFTA01388197', author=DEUTSCHE_BANK, description='bitcoin and blockchain symposium', date='2018-04-03'),
+    EmailCfg(id='EFTA01434500', description=f"everyone assumes Epstein's banker {PAUL_BARRETT} will want to know about the blockchain event"),
     EmailCfg(id='EFTA00993615', description=f"{MASHA_DROKOVA} explains the price of bitcoin can be manipulated if Epstein makes public comments"),
     EmailCfg(id='EFTA02584771', description=f"discussion of decentralized prediction maarkets like Polymarket"),
     EmailCfg(
@@ -2629,7 +2687,6 @@ OTHER_FILES_CRYPTO = [
     EmailCfg(id='EFTA00835324', recipients=[SERGEY_BELYAKOV], description='assessment of Mycelium bitcoin wallet'),
     EmailCfg(id='EFTA00368659', is_interesting=True, description=f"meeting with {REID_HOFFMAN} about bitcoin"),
     EmailCfg(id='EFTA01039626'),
-    EmailCfg(id='EFTA02374960', description=f"Epstein says that he will fund a seat at MIT Media Lab for ZCash founder {MADARS_VIRZA}", is_interesting=True),
     EmailCfg(id='EFTA02588723', description=f'discussion of crypto food stamps debit cards', is_interesting=True),
     EmailCfg(id='EFTA02588748', description=f'discussion of crypto food stamps debit cards', is_interesting=True, truncate_to=800),
     EmailCfg(id='EFTA02035756', description=f"{AL_SECKEL} introduces Epstein to {BROCK_PIERCE}", is_interesting=True),
@@ -2649,44 +2706,6 @@ OTHER_FILES_CRYPTO = [
         description='Barry Silbert became the CEO of Digital Currency Group, a huge US crypto fund w/Larry Summers on the board',
         is_interesting=True,
     ),
-    # Howard Lutnick
-    DocCfg(
-        id='EFTA00289560',
-        date='2012-12-28',
-        description=f'{HOWARD_LUTNICK} and Epstein business deal for Adfin Solutions, Inc. (Southern Trust is Epstein)',
-        truncate_to=(160_000, 162_000),
-    ),
-    DocCfg(
-        id='EFTA01249210',
-        author=FBI,
-        description="tip linking American commerce secretary and Tether asset custodian Howard Lutnick to Ponzi schemes and Russian money",
-        is_interesting=True,
-        show_with_name=BROCK_PIERCE,
-    ),
-    DocCfg(id='EFTA01733746', date='2011-05-18', description=f'schedule showing "drinks" with {HOWARD_LUTNICK}', is_shown_full_panel=True),
-    DocCfg(id='EFTA00434306', description='calendar reminder for call with Howard Lutnick', date='2011-04-26'),
-    DocCfg(id='EFTA00020515', author=FBI, description='tip about Howard Lutnick and financial irregularities', is_interesting=True),
-    DocCfg(
-        id='EFTA01249207',
-        author=FBI,
-        description="tip linking American commerce secretary and Tether asset custodian Howard Lutnick to Ponzi schemes and Russian money",
-        is_shown_full_panel=True,
-        show_with_name=BROCK_PIERCE,
-    ),
-    DocCfg(
-        id='EFTA01684300',
-        author=FBI,
-        description=f'evidence list w/tip about {HOWARD_LUTNICK}, Cantor Fitzgerald, and BGC from an employee who had already blown the whistle successfully',
-        truncate_to=(77_000, 77_300),
-    ),
-    EmailCfg(id='EFTA00462693', description=f"Epstein gets a table for 10 at the dinner honouring {HOWARD_LUTNICK}"),
-    EmailCfg(id='EFTA00685520', description=f'call with {HOWARD_LUTNICK}'),
-    EmailCfg(id='EFTA00436468', description=f'call with {HOWARD_LUTNICK} after he goes overseas', truncate_to=NO_TRUNCATE),
-    EmailCfg(id='EFTA00398719', description=f'{HOWARD_LUTNICK} visit to the island', truncate_to=2500),
-    EmailCfg(id='EFTA00401065', description=f'{HOWARD_LUTNICK} visit to the island', truncate_to=NO_TRUNCATE),
-    EmailCfg(id='EFTA00398853', description=f'{HOWARD_LUTNICK} visit to the island', truncate_to=NO_TRUNCATE),
-    EmailCfg(id='EFTA00873540', description=f'{HOWARD_LUTNICK} and {PRINCE_ANDREW}'),
-    EmailCfg(id='EFTA00957552', description=f'thank you note for a $50,000 donation in honor of Tether banker {HOWARD_LUTNICK}'),
 ]
 
 OTHER_FILES_SKYPE_LOG = [
@@ -2910,6 +2929,7 @@ UNINTERESTING_EMAIL_IDS = [
 
 # Not uninteresting enough to be permanently marked as such but not good enough for --output-chrono
 NOT_CHRONOLOGICAL_VIEW_IDS = [
+    '024432',
     '016692',
     '022247',
     '030095',
