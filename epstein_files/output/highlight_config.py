@@ -525,7 +525,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(ASIA_GATEWAY, f"corporate vehicle set up by Epstein and {DAVID_STERN}"),
             Contact(
                 name=JEFFREY_EPSTEIN,
-                emailer_pattern=r"[djl]\s?ee[vy]acation[©@]?g?(mail.com)?|Epstine|\bJEE?\b|Jeff(rey)? (Edward )?E((sp|ps)tein?)?( VI Foundation)?|jeeproject@yahoo.com|J Jep|Jeffery Edwards|(?<!(ark L.|rd Jay|Edward) )Epstein",
+                emailer_pattern=r"[djl]\s?ee[vy]acation[©@]?g?(mail.com)?|Epstine|\bJEE?\b|Jeff(rey)? (Edward )?E((sp|ps)tein?)?( VI Foundation)?|jeeproject@yahoo.com|J Jep|Jeffery Edwards|(?<!(ark L.|rd Jay|Edward) )Epstein|Jeffrey Epst.*comj?",
             ),
             Contact(MARK_EPSTEIN, "brother of Jeffrey", r"Mark (L\. )?(Epstein|Lloyd)")
         ],

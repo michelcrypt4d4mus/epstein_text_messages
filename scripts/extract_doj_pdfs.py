@@ -13,13 +13,14 @@ from yaralyzer.util.helpers.shell_helper import ShellResult
 from epstein_files.epstein_files import EpsteinFiles
 from epstein_files.documents.document import DOJ_DATASET_ID_REGEX
 from epstein_files.output.rich import console
+from epstein_files.util.constant.strings import DOJ_FILE_NAME_REGEX
 from epstein_files.util.env import DOJ_PDFS_20260130_DIR, DOJ_TXTS_20260130_DIR, DOJ_PDFS_20260130_DIR_ENV_VAR, args
 from epstein_files.util.logging import logger
 
 assert DOJ_PDFS_20260130_DIR is not None, f"{DOJ_PDFS_20260130_DIR_ENV_VAR} env var is not set!"
 assert DOJ_TXTS_20260130_DIR is not None
 
-JMAIL_FILENAME_REGEX = re.compile(r"vol(\d+)-(efta\d+)-pdf.pdf")
+JMAIL_FILENAME_REGEX = re.compile(r"vol(\d+)-(?:official-doj-latest-)?(efta\d+)(-pdf)?.pdf")
 BAD_FILENAME_REGEX = re.compile(r".*/EFTA\d+-\d\.pdf")
 EXTRACT_ARGS = ['extract_pdf_text', '--no-page-number-panels', '--panelize-image-text']
 
@@ -27,7 +28,6 @@ EXTRACT_ARGS = ['extract_pdf_text', '--no-page-number-panels', '--panelize-image
 if not DOJ_TXTS_20260130_DIR.exists():
     ask_to_proceed(f"Dir {DOJ_TXTS_20260130_DIR} doesn't exist, create?")
     DOJ_TXTS_20260130_DIR.mkdir()
-
 
 skipped = 0
 
@@ -51,7 +51,7 @@ for dir in [d for d in DOJ_PDFS_20260130_DIR.glob('*') if d.is_dir()]:
             logger.warning(f"Found Jmail PDF '{pdf_path}'\n      moving to '{new_pdf_path}'")
             shutil.move(pdf_path, new_pdf_path)
             pdf_path = new_pdf_path
-        elif BAD_FILENAME_REGEX.match(str(pdf_path)):
+        elif not DOJ_FILE_NAME_REGEX.match(pdf_path.name):
             raise RuntimeError(f"Bad filename '{pdf_path}'!")
 
         txt_file_path = extracted_text_dir.joinpath(pdf_path.stem + '.txt')
