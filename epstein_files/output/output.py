@@ -37,7 +37,9 @@ OTHER_FILES_TABLE_MSG = Text("(non emails will appear in tables)", 'gray27 itali
 DEVICE_SIGNATURE = 'Device Signature'
 DEVICE_SIGNATURE_PADDING = (1, 0)
 PRINT_COLOR_KEY_EVERY_N_EMAILS = 150
-HTML_CHRONO_PATH = HTML_DIR.joinpath('chrono_real_html.html')
+HTML_CHRONO_BASENAME = 'chrono_real_html'
+HTML_CHRONO_PATH = HTML_DIR.joinpath(f'{HTML_CHRONO_BASENAME}.html')
+HTML_CHRONO_MOBILE_PATH = HTML_DIR.joinpath(f'{HTML_CHRONO_BASENAME}_mobile.html')
 
 
 def print_curated_chronological(epstein_files: EpsteinFiles) -> list[Document]:
@@ -75,8 +77,12 @@ def print_curated_chronological(epstein_files: EpsteinFiles) -> list[Document]:
 
         # if doc.config_description_txt:
         #     import pdb;pdb.set_trace()
+    if args.mobile:
+        real_html_path = HTML_CHRONO_MOBILE_PATH
+    else:
+        real_html_path = HTML_CHRONO_PATH
 
-    write_templated_html(html_elements, HTML_CHRONO_PATH)
+    write_templated_html(html_elements, real_html_path)
     return printed_docs
 
 
