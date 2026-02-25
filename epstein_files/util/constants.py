@@ -2398,7 +2398,6 @@ OTHER_FILES_PHONE_BILL = [
 # This category is automatically 'interesting', see OtherFile class
 OTHER_FILES_CRYPTO = [
     DocCfg(id='031743', description=f'a few pages describing the internet as a "New Nation State" (Network State?)'),
-    DocCfg(id='024271', description=f"{BLOCKCHAIN_CAPITAL} and {BROCK_PIERCE} pitch deck", date='2015-10-01'),
     DocCfg(
         id='025663',
         author=GOLDMAN_INVESTMENT_MGMT,
@@ -2436,6 +2435,7 @@ OTHER_FILES_CRYPTO = [
     EmailCfg(id='EFTA01788532', description=f"{AUSTIN_HILL} asking about Jeffrey Katzenberg's contact info"),
     EmailCfg(id='EFTA02515798', recipients=[LINDA_STONE], description='Epstein confirms he invested in Blockstream'),  # response to EFTA02515756
     # Blockchain Capital / Brock Pierce / Crypto Currency Partners
+    DocCfg(id='024271', author=BLOCKCHAIN_CAPITAL, description="pitch deck", date='2015-10-01'),
     DocCfg(id='EFTA01088644', author=BLOCKCHAIN_CAPITAL, description="pitch deck", date='2015-10-01'),
     DocCfg(id='EFTA00604942', author=BLOCKCHAIN_CAPITAL, description="Investor Update", date='2015-10-01'),
     DocCfg(id='EFTA01089535', author=CRYPTO_CURRENCY_PARTNERS_II, description=f"investor report", date='2014-10-01'),
