@@ -16,8 +16,9 @@ from epstein_files.documents.email import Email, UNINTERESTING_EMAILERS
 from epstein_files.documents.other_file import OtherFile
 from epstein_files.output.highlight_config import HIGHLIGHT_GROUPS, get_style_for_name
 from epstein_files.output.highlighted_names import HighlightedNames
-from epstein_files.output.html.builder import table_to_html, write_html
+from epstein_files.output.html.builder import table_to_html, write_templated_html
 from epstein_files.people.person import Person
+from epstein_files.util.constant.html import CUSTOM_HTML_TEMPLATE, RICH_HTML_TEMPLATE
 from epstein_files.util.constant.names import *
 from epstein_files.util.constants import CONFIGS_BY_ID, EmailCfg
 from epstein_files.util.helpers.data_helpers import *
@@ -28,52 +29,18 @@ from epstein_files.util.logging import logger
 from epstein_files.output.rich import bool_txt, console, highlighter, print_json, print_subtitle_panel
 
 
-all_emailers = sorted(epstein_files.emailers, key=lambda person: person.sort_key)
-table = Person.emailer_info_table(all_emailers, show_epstein_total=True)
-open_file_or_url(write_html(table_to_html(table)))
+print_subtitle_panel('Rich HTML Template')
+print(RICH_HTML_TEMPLATE)
+print('\n')
+print_subtitle_panel('CUSTOM HTML TEMPLATE')
+print(CUSTOM_HTML_TEMPLATE)
 
-# divs = [
-#     doc.file_display().to_html()
-#     for doc in [d for d in epstein_files.emails if 1000 < d.length < 6000][:9]
-# ]
+# # Show biggest files
+# for i, doc in enumerate(sorted(epstein_files.doj_files, key=lambda f: -f.length)):
+#     console.print(f"{doc.file_id}: {doc.file_info.file_size_str} ({doc.length:,} bytes)")
 
-# open_file_or_url(write_html(divs))
-
-# print_file_counts(epstein_files)
-# print_all_timestamps(epstein_files)
-sys.exit()
-
-# Look for possible email files in the DOJ files
-with open('timestamps_cfg.txt', 'wt') as f:
-    emails = []
-
-    for i, doc in enumerate(sorted(epstein_files.doj_files, key=lambda f: -f.length)):
-        cls = document_cls(doc)
-
-        if cls == Email:
-            try:
-                email = Email(doc.file_path)
-                console.print(email)
-                emails.append(email)
-            except Exception as e:
-                logger.error(f"Failed to turn {doc} into an email ({e})")
-
-                if doc.timestamp:
-                    f.write(f"    EmailCfg(id='{doc.file_id}', date='{doc.timestamp}'),\n")
-                    logger.warning(f"Wrote EmailCfg line with timestamp {doc.timestamp}...")
-        else:
-            logger.warning(f"{doc.file_id}: {doc.file_info.file_size_str} ({doc.length:,} bytes) is not an Email...")
-
-console.print(f"Found {len(emails)} emails out of {len(epstein_files.doj_files)} DOJ files.")
-sys.exit()
-
-
-# Show biggest files
-for i, doc in enumerate(sorted(epstein_files.doj_files, key=lambda f: -f.length)):
-    console.print(f"{doc.file_id}: {doc.file_info.file_size_str} ({doc.length:,} bytes)")
-
-    if i > 2000:
-        break
+#     if i > 2000:
+#         break
 
 
 sys.exit()

@@ -15,13 +15,15 @@ from epstein_files.documents.messenger_log import MessengerLog
 from epstein_files.documents.other_file import FIRST_FEW_LINES, OtherFile
 from epstein_files.epstein_files import EpsteinFiles
 from epstein_files.output.highlight_config import PEOPLE_BIOS, get_style_for_name
+from epstein_files.output.html.builder import buffer_as_html, rich_to_html, write_templated_html
+from epstein_files.output.html.elements import div_class
 from epstein_files.output.rich import *
 from epstein_files.output.site.sites import (AUTHORS_USING_SIGNATURES, EMAILERS_TABLE_PNG_PATH,
-     FILEs_THAT_ARE_NEITHER_EMAILS_NOR, HIS_EMAILS, HIS_TEXT_MESSAGES, SELECTIONS_FROM)
+     FILEs_THAT_ARE_NEITHER_EMAILS_NOR, HIS_EMAILS, HIS_TEXT_MESSAGES, HTML_DIR, SELECTIONS_FROM)
 from epstein_files.output.title_page import print_color_key, print_other_page_link, print_section_header
 from epstein_files.people.interesting_people import EMAILERS_TO_PRINT
 from epstein_files.people.person import Person
-from epstein_files.util.constant.html import CONSOLE_HTML_FORMAT, HTML_TERMINAL_THEME
+from epstein_files.util.constant.html import HTML_TERMINAL_THEME, RICH_HTML_TEMPLATE
 from epstein_files.util.constant.names import *
 from epstein_files.util.constant.strings import AUTHOR
 from epstein_files.util.env import args
@@ -35,15 +37,15 @@ OTHER_FILES_TABLE_MSG = Text("(non emails will appear in tables)", 'gray27 itali
 DEVICE_SIGNATURE = 'Device Signature'
 DEVICE_SIGNATURE_PADDING = (1, 0)
 PRINT_COLOR_KEY_EVERY_N_EMAILS = 150
+HTML_CHRONO_PATH = HTML_DIR.joinpath('chrono_real_html.html')
 
 
 def print_curated_chronological(epstein_files: EpsteinFiles) -> list[Document]:
     """Print only interesting files of all types in chronological order."""
-    people_encountered = set()
+    html_elements = [html_so_far()]  # Print the title page to html as is
     printed_docs: list[Document] = []
-    has_printed_table_explanation = False
+    people_encountered = set()
     other_files_queue = []  # Collects sequential OtherFiles into tables
-    # documents = epstein_files.unique_documents[:200] if args.mobile else epstein_files.unique_documents
 
     for doc in epstein_files.unique_documents:
         if not doc.is_interesting:
@@ -52,11 +54,11 @@ def print_curated_chronological(epstein_files: EpsteinFiles) -> list[Document]:
             other_files_queue.append(doc)
             continue
         elif other_files_queue:
-            title = None if has_printed_table_explanation else OTHER_FILES_TABLE_MSG
+            title = None if any(isinstance(d, OtherFile) for d in printed_docs) else OTHER_FILES_TABLE_MSG
             table = OtherFile.files_preview_table(other_files_queue, title=title, title_justify='center')
             console.print(Padding(table, (0, 0, 1, site_config.other_files_table_indent)))
+            html_elements.append(OtherFile.files_preview_table_to_html(table))
             printed_docs.extend(other_files_queue)
-            has_printed_table_explanation = True
             other_files_queue = []
 
         if isinstance(doc, Communication):
@@ -64,14 +66,17 @@ def print_curated_chronological(epstein_files: EpsteinFiles) -> list[Document]:
             people_encountered.update(new_characters)
 
             if (bio_panel := _biographical_panel(new_characters, doc)):
-                console.print(bio_panel)
+                console.print(_align_biographical_panel(bio_panel))
+                html_elements.append(div_class(rich_to_html(bio_panel, minimize_width=True), 'person_bio_panel'))
 
         doc.print()
         printed_docs.append(doc)
+        html_elements.append(doc.to_html())
 
         # if doc.config_description_txt:
         #     import pdb;pdb.set_trace()
 
+    write_templated_html(html_elements, HTML_CHRONO_PATH)
     return printed_docs
 
 
@@ -287,7 +292,7 @@ def show_urls() -> None:
     console.print(Padding(styled_dict(urls), (1)))
 
 
-def write_html(output_path: Path | None) -> None:
+def write_html(output_path: Path | None, **kwargs) -> None:
     """
     Write all `console` output to HTML in `output_path` (if provided).
     if `args.write_txt` is set colored ANSI `.txt` files will be written instead.
@@ -295,10 +300,6 @@ def write_html(output_path: Path | None) -> None:
     if not output_path:
         logger.warning(f"Not writing HTML because args.build={args.build}.")
         return
-    elif args.colors_only:
-        kwargs = {'inline_styles': True}
-    else:
-        kwargs = {}
 
     if args.write_txt:
         txt_path = f"{output_path}.txt"
@@ -308,7 +309,7 @@ def write_html(output_path: Path | None) -> None:
         console.save_html(
             str(output_path),
             clear=False,
-            code_format=CONSOLE_HTML_FORMAT,
+            code_format=str(RICH_HTML_TEMPLATE),
             theme=HTML_TERMINAL_THEME,
             **kwargs
         )
@@ -357,7 +358,11 @@ def _verify_all_emails_were_printed(epstein_files: EpsteinFiles, already_printed
         logger.warning(f"All {len(epstein_files.emails):,} emails printed at least once.")
 
 
-def _biographical_panel(names: list[str], next_doc: Document) -> Align | None:
+def _align_biographical_panel(panel: Panel) -> Align | None:
+    return Align(Padding(panel, site_config.character_bio_padding), 'right')
+
+
+def _biographical_panel(names: list[str], next_doc: Document) -> Panel | None:
     """Panel showing biographical info for a list of names."""
     bios = [
         Text('', justify='right').append(Text(name, f"{get_style_for_name(name)} bold")).append(
@@ -368,15 +373,17 @@ def _biographical_panel(names: list[str], next_doc: Document) -> Align | None:
     if not bios:
         return None
 
-    panel = Panel(
+    return Panel(
         Group(*bios),
         border_style='dim',
         box=box.DOUBLE,
         expand=False,
         # padding=(0, 2),
         style='on gray7',
-        title=Text(f"new people in next {next_doc._debug_prefix}", 'grey35 italic'),
+        title=Text(f"new people in next {next_doc._debug_prefix}", 'grey70 italic'),
         title_align='right',
     )
 
-    return Align(Padding(panel, site_config.character_bio_padding), 'right')
+
+def html_so_far() -> str:
+    return buffer_as_html(console, False)

@@ -106,6 +106,10 @@ class EpsteinFiles:
         return [d for d in self.documents if isinstance(d, Email)]
 
     @property
+    def emails_with_attachments(self) -> list[Email]:
+        return [e for e in self.emails if e.attached_docs]
+
+    @property
     def emailers(self) -> list[Person]:
         """All the people who sent or received an email."""
         return self._emailers
@@ -151,7 +155,7 @@ class EpsteinFiles:
 
     @property
     def unique_documents(self) -> Sequence[Document]:
-        return Document.without_dupes(self.documents)
+        return [d for d in Document.without_dupes(self.documents) if not d.is_attachment]
 
     @property
     def unique_emails(self) -> list[Email]:

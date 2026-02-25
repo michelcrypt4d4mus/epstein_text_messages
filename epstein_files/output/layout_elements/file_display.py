@@ -5,55 +5,65 @@ from typing import Literal
 from rich.align import Align
 from rich.console import Console, ConsoleOptions, RenderResult, RenderableType
 from rich.padding import Padding
+from rich.table import Table
 from rich.text import Text
 from rich.panel import Panel
 
-from epstein_files.output.html.builder import PANEL_BASE_PROPS, border_css_props, in_padded_div, rich_to_html
-from epstein_files.output.html.elements import CssUnit, div_tag, horizontal_margin_props, to_em, side_props
-from epstein_files.output.rich import print_json
+from epstein_files.output.html.builder import (PANEL_BASE_PROPS, VERTICAL_MARGIN, border_css_props, rich_to_html,
+     one_row_table_html, text_to_list, text_to_div, vertical_margin_props)
+from epstein_files.output.html.elements import div_tag, to_em, side_props
+from epstein_files.output.rich import join_texts
 from epstein_files.util.env import site_config
 
 JustifyMethod = Literal['center', 'left', 'right']
 
 BOTTOM_PADDING = 1
-VERTICAL_MARGIN = '10px'
+SUBHEADER_VERTICAL_PADDING = to_em(0.3)
 
 DOC_DIV_CSS_PROPS = {
     'display': 'flex',
     'flex-direction': 'column',
-    'margin-top': VERTICAL_MARGIN,
-    'margin-bottom': VERTICAL_MARGIN,
 }
 
 
 @dataclass(kw_only=True)
 class BasePanel:
     border_style: str
-    text: Text
+    text: Text | list[Text]
     title: Text | None = None
     title_justify: JustifyMethod = 'right'
+
+    @property
+    def is_list(self) -> bool:
+        return isinstance(self.text, list)
 
     def to_div(self, indents: tuple[int, int] | None = None) -> str:
         """Create an HTML <div> string for this panel."""
         indents = indents or (0, 0)
+        div_props = dict(PANEL_BASE_PROPS)
 
-        props = {
-            **border_css_props(self.border_style),
-            **PANEL_BASE_PROPS,
-        }
+        if self.is_list:
+            html = text_to_list(self.text, class_name='no_bullets')
+            div_props = {'word-wrap': 'break-word'}
+        else:
+            html = rich_to_html(self.text)
 
-        if indents[0]:
-            props.update(side_props('margin', ['left'], to_em(indents[0])))
-        if indents[1]:
-            props.update(side_props('margin', ['right'], to_em(indents[1])))
+            div_props = {
+                **PANEL_BASE_PROPS,
+                **border_css_props(self.border_style),
+            }
 
-        # print(f"indents: {indents}")
-        print_json('div props', props)
-        return div_tag(rich_to_html(self.text), props)
+            if indents[0]:
+                div_props.update(side_props('margin', ['left'], to_em(indents[0])))
+
+            if indents[1]:
+                div_props.update(side_props('margin', ['right'], to_em(indents[1])))
+
+        return div_tag(html, div_props)
 
     def __rich__(self) -> Panel:
         return Panel(
-            self.text,
+            join_texts(self.text, '\n') if self.is_list else self.text,
             border_style=self.border_style,
             expand=False,
             title=self.title,
@@ -64,16 +74,33 @@ class BasePanel:
 @dataclass(kw_only=True)
 class FileDisplay:
     """Allows for proper right vs. left justify of a Document display."""
-    body_panel: BasePanel
+    body_panel: BasePanel | Table
     file_info: BasePanel
     indent: int = 0
     justify: JustifyMethod | None = None
+    margin_bottom: str = VERTICAL_MARGIN
     subheaders: list[Text] = field(default_factory=list)
 
     @property
-    def horizontal_padding(self) -> tuple[int, int]:
+    def horizontal_body_margin(self) -> tuple[int, int]:
         """(left, right)"""
-        return (self.padding[3], self.padding[1])
+        return (self.margin[3], self.margin[1])
+
+    @property
+    def horizontal_body_margin_css_props(self) -> dict[str, str]:
+        """(left, right)"""
+        props = {}
+
+        if self.horizontal_body_margin[0]:
+            props.update(side_props('margin', ['left'], to_em(self.horizontal_body_margin[0])))
+        if self.horizontal_body_margin[1]:
+            props.update(side_props('margin', ['right'], to_em(self.horizontal_body_margin[1])))
+
+        return props
+
+    @property
+    def is_table(self) -> bool:
+        return isinstance(self.body_panel, Table)
 
     @property
     def justified_subheaders(self) -> list[Text]:
@@ -87,7 +114,7 @@ class FileDisplay:
         return subheaders
 
     @property
-    def padding(self) -> tuple[int, int, int, int]:
+    def margin(self) -> tuple[int, int, int, int]:
         padding = [0, 0, 0, 0]
 
         # Set subtle indent
@@ -102,8 +129,13 @@ class FileDisplay:
 
     @property
     def subheader_div(self) -> str:
+        css_props = {
+            **self.horizontal_body_margin_css_props,
+            **vertical_margin_props(SUBHEADER_VERTICAL_PADDING),
+        }
+
         if self.subheaders:
-            return in_padded_div(Text('\n').join(self.subheaders))
+            return text_to_div(Text('\n').join(self.subheaders), css_props)
         else:
             return ''
 
@@ -111,23 +143,29 @@ class FileDisplay:
         return Align(element, self.justify) if self.justify else element
 
     def to_html(self) -> str:
+        if self.is_table:
+            body_html = one_row_table_html(self.body_panel, self.horizontal_body_margin_css_props)
+        else:
+            body_html = self.body_panel.to_div((1, 1))
+
         elements = [
             self.file_info.to_div(),
             self.subheader_div,
-            self.body_panel.to_div((1, 1)),
+            body_html
         ]
 
         inner_html = '\n'.join(elements)
-        return div_tag(inner_html, DOC_DIV_CSS_PROPS)
+        div_props = {**DOC_DIV_CSS_PROPS, 'margin-bottom': self.margin_bottom}
+        return div_tag(inner_html, div_props)
 
     def __rich_console__(self, console: Console, options: ConsoleOptions) -> RenderResult:
         """Default `Document` renderer (Email and MessengerLog override this)."""
         # Set justify on the Text in the body panel
-        if self.justify:
+        if self.justify and not self.is_table and isinstance(self.body_panel.text, Text):
             self.body_panel.text.justify = self.justify
 
         indented_elemeents = [*self.justified_subheaders, self.body_panel]
-        indented_elemeents = [Padding(e, self.padding) for e in indented_elemeents]
+        indented_elemeents = [Padding(e, self.margin) for e in indented_elemeents]
         indented_elemeents[-1].bottom = BOTTOM_PADDING
         elements = [self.file_info] + indented_elemeents
 

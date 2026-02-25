@@ -150,7 +150,7 @@ def epstein_grep():
 
 def epstein_show():
     """Show the color highlighted file. If --raw arg is passed, show the raw text of the file as well."""
-    ids_with_attachments = set([c.attached_to_email_id for c in ALL_CONFIGS if isinstance(c, EmailCfg)])
+    ids_with_attachments = set([c.attached_to_email_id for c in ALL_CONFIGS])
     raw_docs: list[Document] = []
     console.line()
 

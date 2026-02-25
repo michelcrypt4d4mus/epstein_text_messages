@@ -950,6 +950,7 @@ HighlightedNames(
             r"NIH",
             r"NPA",
             r"NS(A|C)",
+            r"NYDFS",
             r"OCC",
             r"ODAG",
             r"OFAC",
@@ -1670,7 +1671,7 @@ HighlightedNames(
         ],
     ),
     HighlightedNames(
-        label='Southeast Asia',
+        label='SE Asia',
         style='light_salmon3 bold',
         contacts=[
             Contact(MOHAMED_WAHEED_HASSAN, "former president of the Maldives", r"Mohamed Waheed( Hassan)?"),

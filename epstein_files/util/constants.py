@@ -1547,7 +1547,7 @@ OTHER_FILES_BOOK = [
     DocCfg(id='018438', author='Clarisse Thorn', description=f'The S&M Feminist', date='2012-05-14'),
     DocCfg(id='019477', author=EDWARD_JAY_EPSTEIN, description=f'How America Lost Its Secrets: Edward Snowden, the Man, and the Theft'),
     DocCfg(id='020153', author=EDWARD_JAY_EPSTEIN, description=f'The Snowden Affair: A Spy Story In Six Parts'),
-    DocCfg(id='011472', author=EHUD_BARAK, description=f'"Night Flight" (draft)', date='2006-07-12', duplicate_ids=['027849']),  # date from _extract_timestamp()
+    DocCfg(id='011472', author=EHUD_BARAK, description=f'"Night Flight" (draft)', date='2006-07-12', duplicate_ids=['027849'], is_interesting=False),  # date from _extract_timestamp()
     DocCfg(id='010912', author=GORDON_GETTY, description=f'"Free Growth and Other Surprises" (draft)', date='2018-10-18'),
     DocCfg(id='010477', author=JAMES_PATTERSON, description=PATTERSON_BOOK_SCANS, date='2016-10-10'),
     DocCfg(id='010486', author=JAMES_PATTERSON, description=PATTERSON_BOOK_SCANS, date='2016-10-10'),
@@ -2217,8 +2217,8 @@ OTHER_FILES_RESUMÉ = [
     DocCfg(
         id='029304',
         attached_to_email_id='029299',
-        author=DONALD_TRUMP,
-        description=f"recommendation letter for recently departed {TRUMP_ORG} lawyer {MICHAEL_J_BOCCIO}",
+        author=MICHAEL_J_BOCCIO,
+        description=f"recommendation letter by {DONALD_TRUMP}",
     ),
     DocCfg(id='022367', author='Jack J. Grynberg', description=RESUME_OF, date='2014-07-01'),
     DocCfg(
@@ -2591,7 +2591,7 @@ OTHER_FILES_CRYPTO = [
     EmailCfg(id='EFTA02517623', description=f"{VINCENZO_IOZZO} explains to Epstein how to deanonymize bitcoin", is_interesting=True),
     EmailCfg(id='EFTA00699275', description=f"'Fred' is probably Coinbase co-founder Fred Ehrsam"),
     EmailCfg(id='EFTA00830911', description='fundraising email for LedgerX which was later acquired by FTX for $298 million'),
-    EmailCfg(id='EFTA01750652', description=f"discussion of using blockchains in the repo markets"),
+    EmailCfg(id='EFTA01750652', description=f"discussion of using blockchains in the repo markets", is_interesting=True),
     EmailCfg(id='EFTA02002675', description=f"{JASON_CALACANIS} passes Epstein the names of the bitcoin core developers"),
     # Unsorted
     EmailCfg(id='032359', description='HBJ brings up "e-currency" (Sharia Coin, probably)'),

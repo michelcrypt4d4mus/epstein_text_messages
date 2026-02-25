@@ -15,6 +15,7 @@ from epstein_files.util.logging import logger
 
 HTML_DIR = Path('docs')
 EMAILERS_TABLE_PNG_PATH = HTML_DIR.joinpath('emailers_info_table.png')
+SAMPLE_HTML_PATH = HTML_DIR.joinpath('sample.html')
 
 # Github URLs
 GH_REPO_NAME = 'epstein_text_messages'

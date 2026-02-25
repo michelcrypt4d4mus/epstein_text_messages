@@ -22,6 +22,7 @@ from epstein_files.documents.emails.constants import DOJ_EMAIL_OCR_REPAIRS, FALL
 from epstein_files.documents.emails.email_header import DETECT_EMAIL_REGEX
 from epstein_files.output.highlight_config import get_style_for_name
 from epstein_files.output.layout_elements.file_display import BasePanel, FileDisplay
+from epstein_files.output.html.builder import VERTICAL_MARGIN
 from epstein_files.output.rich import (INFO_STYLE, NA_TXT, SKIPPED_FILE_MSG_PADDING, SYMBOL_STYLE,
      add_cols_to_table, build_table, console, highlighter, styled_key_value, prefix_with, styled_dict,
      wrap_in_markup_style)
@@ -211,6 +212,11 @@ class Document:
         return self.file_info.filename
 
     @property
+    def html_margin_bottom(self) -> str:
+        """Overloaded in `Email` for case of emails with attachments."""
+        return VERTICAL_MARGIN
+
+    @property
     def info(self) -> list[Text]:
         """0 to 2 sentences containing the info_txt() as well as any configured description."""
         return without_falsey([self.subheader, self.config_description_txt])
@@ -398,6 +404,23 @@ class Document:
     def colored_external_links(self) -> Text:
         return self.file_info.build_external_links(with_alt_links=True)
 
+    def file_display(self, align: JustifyMethod | None = None, indent: int = 0) -> FileDisplay:
+        """Allows for proper right vs. left justify."""
+        body = BasePanel(
+            border_style=self.border_style,
+            text=self.prettified_text,
+            title=Text(f"({self.panel_title_timestamp})", style='dim') if self.panel_title_timestamp else None,
+        )
+
+        return FileDisplay(
+            body_panel=body,
+            file_info=self.file_id_panel,
+            indent=indent,
+            justify=align,
+            margin_bottom=self.html_margin_bottom,
+            subheaders=self.info,
+        )
+
     def lines_matching(self, _pattern: re.Pattern | str) -> list[MatchedLine]:
         """Find lines in this file matching a regex pattern."""
         pattern = patternize(_pattern)
@@ -457,6 +480,9 @@ class Document:
     def top_lines(self, n: int = 10) -> str:
         """First n lines."""
         return '\n'.join(self.lines[0:n])[:DEFAULT_TRUNCATE_TO]
+
+    def to_html(self) -> str:
+        return self.file_display().to_html()
 
     def truncation_note(self, truncate_to: int) -> Text:
         """String with link to source URL that will replace the text after the truncation point."""
@@ -572,22 +598,6 @@ class Document:
             f.write(self.text)
 
         logger.warning(f"Wrote {self.length} chars of cleaned {self.filename} to {output_path}.")
-
-    def file_display(self, align: JustifyMethod | None = None, indent: int = 0) -> FileDisplay:
-        """Allows for proper right vs. left justify."""
-        body = BasePanel(
-            border_style=self.border_style,
-            text=self.prettified_text,
-            title=Text(f"({self.panel_title_timestamp})", style='dim') if self.panel_title_timestamp else None,
-        )
-
-        return FileDisplay(
-            body_panel=body,
-            file_info=self.file_id_panel,
-            subheaders=self.info,
-            justify=align,
-            indent=indent,
-        )
 
     def __rich_console__(self, console: Console, options: ConsoleOptions) -> RenderResult:
         """Default `Document` renderer (Email and MessengerLog override this)."""

@@ -181,7 +181,7 @@ def print_centered(obj: RenderableType, style: str = '') -> None:
 
 
 def print_centered_link(url: str, link_text: str, style: str | None = None) -> None:
-    print_centered(link_markup(url, link_text, style or ARCHIVE_LINK_COLOR))
+    print_centered(link_text_obj(url, link_text, style or ARCHIVE_LINK_COLOR))
 
 
 def print_json(label: str, obj: object, skip_falsey: bool = False) -> None:

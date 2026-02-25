@@ -64,7 +64,7 @@ class SiteConfig(MobileConfig):
     attachment_indent: ClassVar[int] = 12
     character_bio_padding: ClassVar[tuple[int, int, int, int]] = (0, 1, 0, 0)
     email_info_in_subtitle: ClassVar[bool] = True
-    info_indent: ClassVar[int] = 2
+    info_indent: ClassVar[int] = 1
     max_alt_links: ClassVar[int | None] = None
     not_all_files_warning: ClassVar[str] = starred_header(NOT_ALL_FILES_MSG, num_spaces=6, num_stars=14)
     num_color_key_cols: ClassVar[int] = 6
