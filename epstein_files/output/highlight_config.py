@@ -361,7 +361,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Balaji( Srinivisan)?",
             r"Barry Silbert",
             r"Ben Forman",
-            r"(Brad(ford)?|Bart) Stephens",  # co-founder, Blockchain Capital
+            r"BGC",
             r"Bioptix",  # Now RIOT Blockchain
             r"bit[o\s]?coin( Foundation)?",
             r"Bit(Angels|Finex|Fury|Go|Main)",
@@ -369,10 +369,13 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Blockstream",
             r"Blythe Masters",
             r"Brac",  # Brock? EFTA01792443
+            r"(Brad(ford)?|Bart) Stephens",  # co-founder, Blockchain Capital
             r"Bradley Rotter",
             r"Brian Forde",
             r"Brock( Pierce)?",
             r"Brudder( Ventures)?",
+            r"Cantor( (Fitzgerald|Opportunities|Ventures?))?",
+            r"CF(G)",
             r"Chaincode",
             r"Coinbase",
             r"coins?( Center)?",
@@ -794,12 +797,9 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Bank of Scotland",
             r"Bear Stearns",
             r"(Bernie )?Madoff",
-            r"BGC",
             r"Black(rock|stone)",
             r"B of A",
             r"Booth\s*bay(\sFund\sManagement)?",
-            r"Cantor( (Fitzgerald|Opportunities))?",
-            r"CF(G)",
             r"Charles Schwab",
             r"Chase Bank",
             r"Cheetah Investment( Management)?",
