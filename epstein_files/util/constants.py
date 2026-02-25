@@ -2566,6 +2566,7 @@ OTHER_FILES_CRYPTO = [
         description=f'evidence list w/tip about {HOWARD_LUTNICK}, Cantor Fitzgerald, and BGC from an employee who had already blown the whistle successfully',
         truncate_to=(77_000, 77_300),
     ),
+    EmailCfg(id='EFTA00443752', description=f"invitation from {HOWARD_LUTNICK}"),
     EmailCfg(id='EFTA00462693', description=f"Epstein gets a table for 10 at the dinner honouring {HOWARD_LUTNICK}"),
     EmailCfg(id='EFTA00685520', description=f'call with {HOWARD_LUTNICK}'),
     EmailCfg(id='EFTA00436468', description=f'call with {HOWARD_LUTNICK} after he goes overseas', truncate_to=NO_TRUNCATE),

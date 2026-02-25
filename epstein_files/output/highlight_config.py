@@ -215,6 +215,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         style='spring_green4',
         contacts=[
             Contact(ALIREZA_ITTIHADIEH, "CEO Freestream Aircraft Limited", r"Alireza.[Il]ttihadieh"),
+            Contact('André Balazs', 'hotelier, CEO of André Balazs Properties', r"Andre Balasz"),
             Contact('AT&T Court Appearance Team', "AT&T"),
             Contact(BARBRO_C_EHNBOM, "Swedish pharmaceuticals, SALSS", r"behnbom@aol.com|(Barbro\s.*)?Ehnbom|Barbro"),
             Contact(BARRY_J_COHEN, emailer_pattern=r"barry ((j.?|james) )?cohen?"),
@@ -451,7 +452,8 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         label='Democrat',
         style='sky_blue1',
         contacts=[
-            Contact(PAUL_PROSPERI, "friend of Bill Clinton")
+            Contact(PAUL_PROSPERI, "friend of Bill Clinton"),
+            Contact('Bill Richardson', 'governor of New Mexico', r"(Governor )?(Bill )?Richardson"),
         ],
         patterns=[
             r"(Al )?Franken",
