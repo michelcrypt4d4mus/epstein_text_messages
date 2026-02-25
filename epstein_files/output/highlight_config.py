@@ -28,6 +28,8 @@ EPSTEIN_ESTATE_EXECUTOR = f"Epstein {ESTATE_EXECUTOR}"
 MC2_MODEL_MANAGEMENT = f"{JEAN_LUC_BRUNEL}'s MC2 Model Management"
 QUESTION_MARKS_TXT = Text(QUESTION_MARKS, style='grey50')
 THIELS_VALAR = f"{PETER_THIEL}'s {VALAR_VENTURES}"
+
+FINANCIAL_COLOR = 'dark_sea_green2'
 VICTIM_COLOR = 'orchid1'
 
 DATE_PATTERN = r"\d{1,4}[-/]\d{1,2}[-/]\d{2,4}"
@@ -528,7 +530,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         label='Epstein',
         style='blue1',
         contacts=[
-            Contact(ASIA_GATEWAY, f"corporate vehicle set up by Epstein and {DAVID_STERN}"),
+            Contact(ASIA_GATEWAY, f"corporate vehicle set up by Epstein and {DAVID_STERN}", r"Asia\s*Gateway(\s*L(imited|td))"),
             Contact(
                 name=JEFFREY_EPSTEIN,
                 emailer_pattern=r"[djl]\s?ee[vy]acation[©@]?g?(mail.com)?|Epstine|\bJEE?\b|Jeff(rey)? (Edward )?E((sp|ps)tein?)?( VI Foundation)?|jeeproject@yahoo.com|J Jep|Jeffery Edwards|(?<!(ark L.|rd Jay|Edward) )Epstein|Jeffrey Epst.*comj?",
@@ -740,9 +742,8 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
     ),
     HighlightedNames(
         label='financial',
-        style='dark_sea_green2',
+        style=FINANCIAL_COLOR,
         patterns=[
-            r"\$[\d,.]+(\smillion|thousand)?",
             r"((anti.?)?money )?launder(s?|ers?|ing)?( money)?",
             r"(?<!(ature|Chase|zrahi|tsche)\s)bank(?!\s+(of|secrecy))",
             r"C[EF]O",
@@ -2027,9 +2028,9 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
     ),
     HighlightPatterns(
         label='financial',
-        style='dark_sea_green2',
+        style=FINANCIAL_COLOR,
         patterns=[
-            r"\$[\d,.]+(\smillion|thousand)?",
+            r"\$[\d,.]+(\s?(m(illion)?|thousand))?",
         ]
     ),
     HighlightPatterns(
