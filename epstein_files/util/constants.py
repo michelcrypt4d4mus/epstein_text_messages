@@ -1427,6 +1427,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA01002234', duplicate_ids=['EFTA02597754']),
     EmailCfg(id='EFTA00039799', duplicate_ids=['EFTA00039806']),
     EmailCfg(id='EFTA02608800', duplicate_ids=['EFTA01010308']),
+    EmailCfg(id='EFTA00870649', duplicate_ids=['EFTA01932408']),
     EmailCfg(id='EFTA00717931', duplicate_ids=['EFTA01774218']),
     EmailCfg(id='EFTA01776411', duplicate_ids=['EFTA02691069']),
     EmailCfg(id='EFTA02390441', duplicate_ids=['EFTA02403336']),
@@ -1465,6 +1466,8 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA02628058', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA02626427', truncate_to=NO_TRUNCATE),
     #### MAGIC COMMENT FOR MANUAL CONFIG ####
+    EmailCfg(id='EFTA01930285', description='"many opportunities"', is_interesting=True),
+
     EmailCfg(id='EFTA01063008', author=OLGA_PONOMAR_BECKER, author_reason='Jmail'),
     EmailCfg(id='EFTA00681554', recipients=[OLGA_PONOMAR_BECKER]),
     EmailCfg(id='EFTA02669915', recipients=[OLGA_PONOMAR_BECKER]),

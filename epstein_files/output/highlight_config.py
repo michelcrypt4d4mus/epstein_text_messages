@@ -41,7 +41,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
     ManualHighlight(
         label='email_subject',
         style='light_yellow3',
-        pattern=r"^(> )?(Classification|Flag|Subject|Sujet\s?): (?P<email_subject>.*)",
+        pattern=r"^(> )?(Classification|Flag|Objet\s?|Subject|Sujet\s?): (?P<email_subject>.*)",
     ),
     HighlightedNames(
         label=Uninteresting.ACADEMIA,
@@ -691,6 +691,7 @@ HighlightedNames(
             r"Nigel( Farage)?",
             r"(Northern )?Ireland",
             r"Norw(ay|egian)",
+            r"Odessa",
             r"Oslo",
             r"Paris",
             r"Polish",
@@ -1250,7 +1251,7 @@ HighlightedNames(
             Contact(BOB_CROWE, "partner at Nelson Mullins", r"[BR]ob Crowe"),
             Contact('Joshua Cooper Ramo', "co-CEO of Henry Kissinger Associates"),
             Contact(KATHERINE_KEATING, "daughter of former Australian prime minister"),
-            Contact(OLIVIER_COLOM, "France", r"Colom, Olivier|Olivier Colom"),
+            Contact(OLIVIER_COLOM, "France", r"Colom, Olivier?|Olivier Colom"),
             Contact('Paul Keating', "former prime minister of Australia"),
             Contact('Stanley Rosenberg', "former President of the Massachusetts Senate")
         ],
@@ -1457,13 +1458,13 @@ HighlightedNames(
                 info=f"president of {JEAN_LUC_BRUNEL}'s MC2 Model Management USA",
                 emailer_pattern=r"jeff@mc2mm.com|Jeff Fuller",
             ),
-            Contact('lorraine@mc2mm.com', f"{JEAN_LUC_BRUNEL}'s MC2 Model Management"),
-            Contact('pink@mc2mm.com', f"{JEAN_LUC_BRUNEL}'s MC2 Model Management", r"^Pink$|pink@mc2mm\.com"),
             Contact(MANUELA_MARTINEZ, "Mega Partners (Brazilian agency)", r"Manuela (- Mega Partners|Martinez)"),
             Contact(MARIANA_IDZKOWSKA, emailer_pattern=r"Mariana [Il]d[źi]kowska?"),
             Contact('Michael Sanka', f"{JEAN_LUC_BRUNEL}'s MC2 Model Management {'(???)'}"),
             Contact('Vladimir Yudashkin', "director of the 1 Mother Agency"),
             Contact('Yfke Sturm', 'model from Holland'),
+            Contact('lorraine@mc2mm.com', f"{JEAN_LUC_BRUNEL}'s MC2 Model Management"),
+            Contact('pink@mc2mm.com', f"{JEAN_LUC_BRUNEL}'s MC2 Model Management", r"^Pink$|pink@mc2mm\.com"),
         ],
         patterns=[
             r"\w+@mc2mm.com",
@@ -1582,8 +1583,9 @@ HighlightedNames(
             Contact(
                 name=ARIANE_DE_ROTHSCHILD,
                 info="heiress",
-                emailer_pattern=r"AdeR|((Ariane|Edmond) (de )?)?Rothsh?ch?ild|Ariane(?! Dwyer)",
+                emailer_pattern=r"AdeR|(A\. (de )?)?Rothsh?ch?il[cd]|Ariane(?! Dwyer)",
             ),
+            Contact('Edmond Rothschild', emailer_pattern=r"Edmond (de )?Rothsh?ch?il[cd]"),
             Contact(
                 name=JOHNNY_EL_HACHEM,
                 info="Edmond de Rothschild Private Equity",
@@ -2010,7 +2012,7 @@ HighlightedNames(
      HighlightPatterns(
         label='header_field',
         style='plum4',
-        patterns=[fr"^[>•\s]{{,4}}({'|'.join(ALL_HEADER_PATTERNS)}):|^on behalf of"],
+        patterns=[fr"^([>•\s]{{,4}}({'|'.join(ALL_HEADER_PATTERNS)}):|on behalf of)"],
     ),
     HighlightPatterns(
         label='http_links',
@@ -2064,7 +2066,7 @@ HighlightedNames(
     ManualHighlight(
         label='email_timestamp',
         style=TIMESTAMP_STYLE,
-        pattern=r"^(> )?(Date|Sent): (?P<email_timestamp>.*)",
+        pattern=r"^(> )?(Date|Envoy[eé] ?|Sent): (?P<email_timestamp>.*)",
     ),
 ]
 
