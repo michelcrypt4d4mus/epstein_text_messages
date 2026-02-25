@@ -1889,6 +1889,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"(child )?sex traffi?c?k(ers?|ing)",
             r"Stephanie Clifford",
             r"Stormy Daniels",
+            r"strange women",
             r"(Virginia ((L\.?|Roberts) )?)?Giuffre",
             r"Virginia Roberts",
             r"way better than supplying you ladies",

@@ -171,7 +171,7 @@ def one_row_table_html(table: Table, css_props: CssProps = None) -> str:
 
     if table.show_header:
         header_props = {
-            'border-bottom-color': border_props.get('border-color', ''),
+            'border-bottom-color': HtmlStyle(table.border_style).hex,
             **(HtmlStyle(table.header_style).to_css if table.header_style else {})
         }
 
@@ -180,7 +180,7 @@ def one_row_table_html(table: Table, css_props: CssProps = None) -> str:
         header_div = div_class(
             rich_to_html(Text('', style=col.header_style or '').append(col.header)),
             'document_panel_header',
-            {'text-align': col.header.justify, **{**header_props, **border_props}}
+            {'text-align': col.header.justify, **{**header_props}}
         )
     else:
         header_div = ''
