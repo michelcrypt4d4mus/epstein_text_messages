@@ -413,6 +413,7 @@ class Document:
         )
 
         return FileDisplay(
+            background_color=self.config.background_color if self.config else '',
             body_panel=body,
             file_info=self.file_id_panel,
             indent=indent,

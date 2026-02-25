@@ -68,15 +68,17 @@ HEADER_FIELD_COLON_PATTERN = fr"^({HEADER_FIELDS_PATTERN}):"
 HEADER_FIELD_COLON_REGEX = re.compile(HEADER_FIELD_COLON_PATTERN)
 
 FRENCH_HEADER_PATTERNS = [
-    'A',
+    r"[AÀ]",
     r'Debut du message transfer[&e]',
     r'De(stinataire)?',
     r'Envoy[ée]',
     r'Expe(cl|d)iteur',
-    r'Object',
+    r'Objec?t',
     r'Q',
-    r'Sujet\s?',
+    r'Sujet',
 ]
+
+FRENCH_HEADER_PATTERNS = [h + ' ?' for h in FRENCH_HEADER_PATTERNS]
 
 GERMAN_HEADER_PATTERNS = [
     'Betreff',
@@ -177,7 +179,7 @@ EMAIL_SIGNATURE_REGEXES = {
     ANDREW_FARKAS: re.compile(r"This message, and any attachments hereto.{,1000}considered a legally binding", re.DOTALL),
     'Andrew Nikou': re.compile(r'1999 Avenue of the Stars.{,105}genuinely required\.', re.DOTALL),
     ARDA_BESKARDES: re.compile(r"Attorne.-at-Law\s+.{,200}Admitted to practice.{,300}relying\s+on\s+this\s+message.?", re.DOTALL),
-    ARIANE_DE_ROTHSCHILD: re.compile(r"Ensemble.*\nCe.*\ndestinataires.*\nremercions.*\nautorisee.*\nd.*\nLe.*\ncontenues.*\nEdmond.*\nRoth.*\nlo.*\nRoth.*\ninfo.*\nFranc.*\n.2.*", re.I),
+    ARIANE_DE_ROTHSCHILD: re.compile(r"Ensemble adoptons des gestes responsables : .{,1300}Espanol I Chinese$", re.DOTALL | re.MULTILINE),
     BARBRO_C_EHNBOM: re.compile(r"Barbro C.? Ehn.*\nChairman, Swedish-American.*\n((Office|Cell|Sweden):.*\n)*(360.*\nNew York.*)?"),
     BRAD_KARP: re.compile(r"This message is intended only for the use of the Addressee and may contain information.*\nnot the intended recipient, you are hereby notified.*\nreceived this communication in error.*"),
     'Bradford Stephens': re.compile(r'^One Ferry Building,? Suite .{,5}\nSan.*\n(o.*\n)?www.*', re.MULTILINE | re.IGNORECASE),

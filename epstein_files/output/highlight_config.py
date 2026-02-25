@@ -41,7 +41,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
     ManualHighlight(
         label='email_subject',
         style='light_yellow3',
-        pattern=r"^(> )?(Classification|Flag|Subject|Sujet\s?): (?P<email_subject>.*)",
+        pattern=r"^(> )?(Classification|Flag|Objet\s?|Subject|Sujet\s?): (?P<email_subject>.*)",
     ),
     HighlightedNames(
         label=Uninteresting.ACADEMIA,
@@ -208,17 +208,22 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"MSFT",
         ],
     ),
-HighlightedNames(
+    HighlightedNames(
         label=BUSINESS,
         style='spring_green4',
         contacts=[
             Contact(ALIREZA_ITTIHADIEH, "CEO Freestream Aircraft Limited", r"Alireza.[Il]ttihadieh"),
             Contact('AT&T Court Appearance Team', "AT&T"),
-            Contact(BARBRO_C_EHNBOM, "Swedish pharmaceuticals, SALSS", r"behnbom@aol.com|(Barbro\s.*)?Ehnbom"),
+            Contact(BARBRO_C_EHNBOM, "Swedish pharmaceuticals, SALSS", r"behnbom@aol.com|(Barbro\s.*)?Ehnbom|Barbro"),
             Contact(BARRY_J_COHEN, emailer_pattern=r"barry ((j.?|james) )?cohen?"),
-            Contact('David Mitchell', "Mitchell Holdings, New York real estate developer"),
+            Contact('David Mitchell', "Mitchell Holdings, New York real estate developer", r"David( J\.?)? Mitchell"),
             Contact(GERALD_BARTON, "Maryland property developer Landmark Land Company", r"Gerald.*Barton"),
-            Contact(NICOLE_JUNKERMANN, f"ex-model, NJF Capital / JunkermannGroup, investor in Revolut, online poker, Carbyne w/{EHUD_BARAK}", r"(Nicole )?Junke(nn|rm)ann?"),
+            Contact(MARC_LEON, "Epstein's realtor in Morocco, Luxury Properties Sari", r"Marc[.\s]+(Kensington|Leon)|Kensington2"),
+            Contact(
+                NICOLE_JUNKERMANN,
+                f"ex-model, NJF Capital / JunkermannGroup, investor in Revolut, online poker, Carbyne w/{EHUD_BARAK}",
+                r"(Nicole )?Junke(nn|rm)ann?"
+            ),
             Contact('Nikolajs Smirnovs', f"{NICOLE_JUNKERMANN}'s NJF Capital / JunkermannGroup", r"Nikolajs (NJF|Smirnovs)"),
             Contact(GORDON_GETTY, "heir to oil tycoon J. Paul Getty"),
             Contact('Philip Kafka', f"president of Prince Concepts (and son of {TERRY_KAFKA}?)"),
@@ -236,6 +241,7 @@ HighlightedNames(
             r"(General|Limited) Partner",
             r"Gruterite",
             r"Island Capital Group(,? LLC)?",
+            r"Jeanne Houweling",  # CEO of Adfin, company lutnick and epstein invested in
             r"Johann? Eliasc?h",
             r"((John|Patricia) )?Kluge",
             r"Mar[ck] Rich",
@@ -248,6 +254,8 @@ HighlightedNames(
             r"Michael Klein",
             r"New Leaf Ventures",
             r"Park Partners",
+            r"Ponz[il] scheme",
+            r"Paypal",
             r"Robin\s?hood",
             r"SALSS",
             r"Swedish American Life Science Summit",
@@ -338,6 +346,7 @@ HighlightedNames(
             Contact('Francesca Hall', 'Assistant/Calendar Queen to The BlockStream team'),
             Contact(FRANCESCA_HALL, f"assistant to {AUSTIN_HILL}"),
             Contact(GAVIN_ANDRESEN, 'core bitcoin developer', r"(Gavin )?Andr.ss?en"),
+            Contact(HOWARD_LUTNICK, "Tether's banker, Cantor Fitzgerald, US Commerce Secretary under Trump", r"Lutnick(,? Howard)|Howard( William)? Lutnick"),
             Contact(JEFFREY_WERNICK, "former COO of Parler, involved in numerous crypto companies like Bitforex"),
             Contact(JEREMY_RUBIN, "developer/researcher", r"Jeremy Rub(in|m)"),
             Contact(LORENZO_DE_MEDICI, "Medici Bank, possibly Medici heir?", r"Prince Lorenzo|Lorenzo de Medici"),
@@ -352,7 +361,7 @@ HighlightedNames(
             r"Balaji( Srinivisan)?",
             r"Barry Silbert",
             r"Ben Forman",
-            r"(Brad(ford)?|Bart) Stephens",  # co-founder, Blockchain Capital
+            r"BGC",
             r"Bioptix",  # Now RIOT Blockchain
             r"bit[o\s]?coin( Foundation)?",
             r"Bit(Angels|Finex|Fury|Go|Main)",
@@ -360,10 +369,13 @@ HighlightedNames(
             r"Blockstream",
             r"Blythe Masters",
             r"Brac",  # Brock? EFTA01792443
+            r"(Brad(ford)?|Bart) Stephens",  # co-founder, Blockchain Capital
             r"Bradley Rotter",
             r"Brian Forde",
             r"Brock( Pierce)?",
             r"Brudder( Ventures)?",
+            r"Cantor( (Fitzgerald|Opportunities|Ventures?))?",
+            r"CF(G)",
             r"Chaincode",
             r"Coinbase",
             r"coins?( Center)?",
@@ -380,7 +392,7 @@ HighlightedNames(
             r"FTX",
             r"GogoCoin",
             r"(Hester )?Peirce",
-            r"(Howard )?Lutnic?k",
+            r"(How.rd (W\.? )?)?Lutnic?k",
             r"ICO",
             r"itBit",
             r"(Jim )Pallotta",  # Media lab advisory board
@@ -519,21 +531,25 @@ HighlightedNames(
             Contact(ASIA_GATEWAY, f"corporate vehicle set up by Epstein and {DAVID_STERN}"),
             Contact(
                 name=JEFFREY_EPSTEIN,
-                emailer_pattern=r"[djl]\s?ee[vy]acation[©@]?g?(mail.com)?|Epstine|\bJEE?\b|Jeff(rey)? (Edward )?E((sp|ps)tein?)?( VI Foundation)?|jeeproject@yahoo.com|J Jep|Jeffery Edwards|(?<!(ark L.|rd Jay|Edward) )Epstein",
+                emailer_pattern=r"[djl]\s?ee[vy]acation[©@]?g?(mail.com)?|Epstine|\bJEE?\b|Jeff(rey)? (Edward )?E((sp|ps)tein?)?( VI Foundation)?|jeeproject@yahoo.com|J Jep|Jeffery Edwards|(?<!(ark L.|rd Jay|Edward) )Epstein|Jeffrey Epst.*comj?",
             ),
             Contact(MARK_EPSTEIN, "brother of Jeffrey", r"Mark (L\. )?(Epstein|Lloyd)")
         ],
         patterns=[
             r"(2017 )?Caterpillar Trust",
+            r"Coatue",
+            r"C\.?O\.?U\.?Q\.?( Foundation)?",  # Epstein charity account
             r"Enhanced Education",
+            r"Financial Trust Co(\.|mpany)",
             r"FT Real Estate",
             r"Gratitude America",
             r"(Butterfly|Haze|Southern) (Financial|Trust)( Co(mpany)?)?",
             r"Hyperion( Air)?",
             r"IPI",
+            r"Island Grounds( Inc\.?)",
             r"Jeepers( Inc\.?)?",
             r"JEGE( (Inc|LLC))?",
-            r"Laurel Inc\.?",
+            r"Laurel,? Inc\.?",
             r"LSJE?(,? LLC)?",  # Virgin Islands corporation
             r"Nautilus",
             r"Neptune LLC",
@@ -541,6 +557,7 @@ HighlightedNames(
             r"Plan D",
             r"SCI JEP",
             r"Southern Country International",
+            r"(The )?Sweater Trust",
             r"Thomas World Air",
             r"Zorro( (Management|Ranch))?",
         ],
@@ -617,6 +634,9 @@ HighlightedNames(
             ),
             Contact(RICHARD_KAHN, "Epstein estate executor", r"rich(ard)? kahn?")
         ],
+        patterns=[
+            r"HBRK( (Associates,? )?Inc)?"
+        ]
     ),
     HighlightedNames(
         label='Europe',
@@ -676,6 +696,7 @@ HighlightedNames(
             r"(Kamila )?Bobinska",
             r"Kiev",
             r"Latvian?",
+            r"Liechtenstein",
             r"Lithuanian?",
             r"Le Pen",
             r"(?<!DOJ )London",
@@ -691,6 +712,7 @@ HighlightedNames(
             r"Nigel( Farage)?",
             r"(Northern )?Ireland",
             r"Norw(ay|egian)",
+            r"Odessa",
             r"Oslo",
             r"Paris",
             r"Polish",
@@ -720,9 +742,11 @@ HighlightedNames(
         label='financial',
         style='dark_sea_green2',
         patterns=[
+            r"\$[\d,.]+(\smillion|thousand)?",
             r"((anti.?)?money )?launder(s?|ers?|ing)?( money)?",
             r"(?<!(ature|Chase|zrahi|tsche)\s)bank(?!\s+(of|secrecy))",
             r"C[EF]O",
+            r"Chief (Executive|Financ(e|ial)) Officer",
             r"(co-?)?founder",
             r"real estate( developer)?",
             r"stock market",
@@ -735,7 +759,7 @@ HighlightedNames(
         style='green',
         contacts=[
             Contact(AMANDA_ENS, "Citigroup", r"ens, amanda?|Amanda.Ens"),
-            Contact(BRAD_WECHSLER, f"head of {LEON_BLACK}'s personal investment vehicle according to FT"),
+            Contact(BRAD_WECHSLER, f"IMAX chairman, head of {LEON_BLACK}'s personal investment vehicle according to FT"),
             Contact(CECILIA_STEEN),
             Contact(DANIEL_SABBA, f"{UBS} Investment Bank"),
             Contact(
@@ -745,18 +769,18 @@ HighlightedNames(
             ),
             Contact(JES_STALEY, "former CEO of Barclays", emailer_pattern=r"[J!](ames|es) (E\.? )Staley"),
             Contact(JIDE_ZEITLIN, f"former partner at {GOLDMAN_SACHS}, allegations of sexual misconduct"),
+            Contact('John Paulson', f"hedge fund guy"),
             Contact('Laurie Cameron', "currency trading"),
             Contact(
                 name=LEON_BLACK,
                 info="Apollo CEO who paid Epstein tens of millions for tax advice",
                 emailer_pattern=r"Leon\s*Black?|(?<!Marc )Leon(?! (Botstein|Jaworski|Wieseltier))",
             ),
-            Contact(MARC_LEON, "Luxury Properties Sari Morrocco", r"Marc[.\s]+(Kensington|Leon)|Kensington2"),
             Contact(MELANIE_SPINELLA, f"representative of {LEON_BLACK}", r"M?elanie Spine[Il]{2}a"),
             Contact(MORTIMER_ZUCKERMAN, "business partner of Epstein, newspaper publisher"),
             Contact(NORMAN_D_RAU, "managing director at Morgan Stanley"),
-            Contact(PAUL_BARRETT, emailer_pattern=r"Paul Barre(d|tt)"),
-            Contact(PAUL_MORRIS, f"{DEUTSCHE_BANK}", r"morris, paul|Paul Morris"),
+            Contact(PAUL_BARRETT, r"Alpha Group Capital", r"Paul Barre(d|tt)|Barrett,? Paul( S)?"),
+            Contact(PAUL_MORRIS, f"Epstein's primary private banker at JP Morgan then {DEUTSCHE_BANK}", r"morris, paul|Paul Morris"),
             Contact('Skip Rimer', "Milken Institute (Michael Milken)"),
             Contact('Steven Elkman', f"{DEUTSCHE_BANK}"),
             Contact(TANCREDI_MARCHIOLO, "hedge fund manager"),
@@ -775,18 +799,20 @@ HighlightedNames(
             r"(Bernie )?Madoff",
             r"Black(rock|stone)",
             r"B of A",
-            r"Boothbay(\sFund\sManagement)?",
-            r"Cantor( (Fitzgerald|Opportunities))?",
+            r"Booth\s*bay(\sFund\sManagement)?",
+            r"Charles Schwab",
             r"Chase Bank",
             r"Cheetah Investment( Management)?",
             r"Conrad B",
             r"Credit Suisse",
             r"DAF",
-            r"DB",
+            r"DB(?!\s+Zw)",
+            r"D\.?B\.? Zwirn",
             r"Deutsche? (Asset|Bank)",
             r"donor advised fund",
             r"Electron Capital (Partners)?",
             r"Fenner",
+            r"First Bank of Puerto Rico",
             r"Fortress( Investment)? Group",
             r"FRBNY",
             r"Goldman( Sachs)",
@@ -800,8 +826,9 @@ HighlightedNames(
             r"(Jerome )?Powell(?! M\. Cabot)",
             r"(Jimmy )?Cayne",
             r"Joon Yun",
-            r"JPMC?",
             r"j\.?p\.? morgan(\.?com| Chase)?",
+            r"JPMC?",
+            r"Julius Baer",  # Bank not a person
             r"Lehman Brothers",
             r"Madoff",
             r"Merrill( Lynch)?",
@@ -839,7 +866,7 @@ HighlightedNames(
                 emailer_pattern=r"Andrew (L\.? )?Farkas|Farkas, Andrew( L\.?)?",
             ),
             Contact(DANGENE_AND_JENNIE_ENTERPRISE, "founders of the members-only CORE club"),
-            Contact(DAVID_STERN, f"emailed Epstein from Moscow, knows chairman of {DEUTSCHE_BANK} (?)", r"David Ste(m|rn?)"),
+            Contact(DAVID_STERN, f"emailed Epstein from Moscow, knows chairman of {DEUTSCHE_BANK} (?)", r"David Ste(m|rn?)|ds@witangroup"),
             Contact(
                 name=JONATHAN_FARKAS,
                 info="heir to the Alexander's department store fortune",
@@ -870,7 +897,7 @@ HighlightedNames(
                 emailer_pattern=r"Villafana, Ann Marie|(A(\.|nn) Marie )?Villafa(c|n|ri)a",
             ),
             Contact(AUDREY_STRAUSS, "USA Attorney", r"Audrey Strauss|Strauss, Audrey"),
-            Contact(BUREAU_OF_PRISONS, "American law enforcement", r"bop\.gov"),
+            Contact(BUREAU_OF_PRISONS, "American law enforcement", r"bop\.gov|(Federal )?Bureau of Prisons"),
             Contact(CHRISTOPHER_DILORIO, "self described whistleblower", r"Chris(topher )? Di[lI]o[nr](io)?"),
             Contact(
                 name=DANNY_FROST,
@@ -1066,6 +1093,7 @@ HighlightedNames(
             r"(The )?Shimon Post",
             r"Yitzhak", r"Rabin",
             r"YIVO",
+            r"Yoni Koren",
             r"zionist",
         ],
     ),
@@ -1220,6 +1248,9 @@ HighlightedNames(
     HighlightedNames(
         label='Latin America',
         style='yellow',
+        contacts=[
+            Contact('Reinaldo Avila Da Silva', "Peter Mandelson's Brazilian partner", r"Reinaldo Avila"),
+        ],
         patterns=[
             r"Argentin(a|ian)",
             r"Bolsonar[aio]",
@@ -1250,7 +1281,7 @@ HighlightedNames(
             Contact(BOB_CROWE, "partner at Nelson Mullins", r"[BR]ob Crowe"),
             Contact('Joshua Cooper Ramo', "co-CEO of Henry Kissinger Associates"),
             Contact(KATHERINE_KEATING, "daughter of former Australian prime minister"),
-            Contact(OLIVIER_COLOM, "France", r"Colom, Olivier|Olivier Colom"),
+            Contact(OLIVIER_COLOM, "Epstein's banker at Edmond de Rothschild (Suisse) SA Bank", r"Colom, Olivier?|Olivier Colom"),
             Contact('Paul Keating', "former prime minister of Australia"),
             Contact('Stanley Rosenberg', "former President of the Massachusetts Senate")
         ],
@@ -1439,7 +1470,7 @@ HighlightedNames(
         style='pale_violet_red1',
         contacts=[
             Contact('Abi Schwinck', f"{JEAN_LUC_BRUNEL}'s MC2 Model Management {'(???)'}"),
-            Contact(DANIEL_SIAD),
+            Contact(DANIEL_SIAD, 'model scout funded by Epstein'),
             Contact(FAITH_KATES, "Next Models co-founder", r"faith kates?"),
             Contact('Gianni Serazzi', "fashion consultant?"),
             Contact(
@@ -1457,16 +1488,17 @@ HighlightedNames(
                 info=f"president of {JEAN_LUC_BRUNEL}'s MC2 Model Management USA",
                 emailer_pattern=r"jeff@mc2mm.com|Jeff Fuller",
             ),
-            Contact('lorraine@mc2mm.com', f"{JEAN_LUC_BRUNEL}'s MC2 Model Management"),
-            Contact('pink@mc2mm.com', f"{JEAN_LUC_BRUNEL}'s MC2 Model Management", r"^Pink$|pink@mc2mm\.com"),
             Contact(MANUELA_MARTINEZ, "Mega Partners (Brazilian agency)", r"Manuela (- Mega Partners|Martinez)"),
             Contact(MARIANA_IDZKOWSKA, emailer_pattern=r"Mariana [Il]d[źi]kowska?"),
             Contact('Michael Sanka', f"{JEAN_LUC_BRUNEL}'s MC2 Model Management {'(???)'}"),
             Contact('Vladimir Yudashkin', "director of the 1 Mother Agency"),
             Contact('Yfke Sturm', 'model from Holland'),
+            Contact('lorraine@mc2mm.com', f"{JEAN_LUC_BRUNEL}'s MC2 Model Management"),
+            Contact('pink@mc2mm.com', f"{JEAN_LUC_BRUNEL}'s MC2 Model Management", r"^Pink$|pink@mc2mm\.com"),
         ],
         patterns=[
             r"\w+@mc2mm.com",
+            r"George Models",
             r"MC2",
             r"(Nicole )?Junkerman",  # Also a venture fund manager now
             r"noah\s*models(.com)?",
@@ -1581,8 +1613,9 @@ HighlightedNames(
             Contact(
                 name=ARIANE_DE_ROTHSCHILD,
                 info="heiress",
-                emailer_pattern=r"AdeR|((Ariane|Edmond) (de )?)?Rothsh?ch?ild|Ariane(?! Dwyer)",
+                emailer_pattern=r"AdeR|(A\. (de )?)?Rothsh?ch?il[cd]|Ariane(?! Dwyer)",
             ),
+            Contact('Edmond Rothschild', emailer_pattern=r"Edmond (de )?Rothsh?ch?il[cd]"),
             Contact(
                 name=JOHNNY_EL_HACHEM,
                 info="Edmond de Rothschild Private Equity",
@@ -1611,6 +1644,7 @@ HighlightedNames(
                 emailer_pattern=r"Ma(sha|riy?a) (Prus(kova|so))",
             ),
             Contact(MASHA_DROKOVA, "silicon valley VC, former Putin Youth member"),
+            Contact('Matthew Gilbert', 'assistant to Howard Lutnick'),
             Contact(OLGA_PONOMAR_BECKER),
             Contact(
                 RENATA_BOLOTOVA,
@@ -1823,7 +1857,7 @@ HighlightedNames(
             r"(John )deJongh( Jr\.?)",
             r"(Kenneth E\. )?Mapp",
             r"PBI",
-            r"Puerto Ric(an|o)",
+            r"(?<!Bank\sof\s)Puerto Ric(an|o)",
             r"San Juan",
             r"S(ain)?t.? Thomas",
             r"USVI",
@@ -1850,7 +1884,7 @@ HighlightedNames(
             r"Minor Victim",
             r"pa?edophile",
             r"pussy",
-            r"sex traffi?c?k(ers?|ing)",
+            r"(child )?sex traffi?c?k(ers?|ing)",
             r"Stephanie Clifford",
             r"Stormy Daniels",
             r"(Virginia ((L\.?|Roberts) )?)?Giuffre",
@@ -1985,11 +2019,18 @@ HighlightedNames(
         category=MIDEAST
     ),
 
-    # HighlightedText not HighlightedNames bc of word boundary (\b) issue with '#'
+    # HighlightedText not HighlightedNames bc of word boundary (\b) issue with '#', '(', etc.
     HighlightPatterns(
         label='metoo',
         style=VICTIM_COLOR,
         patterns=[r"#metoo"]
+    ),
+    HighlightPatterns(
+        label='financial',
+        style='dark_sea_green2',
+        patterns=[
+            r"\$[\d,.]+(\smillion|thousand)?",
+        ]
     ),
     HighlightPatterns(
         label='unknown',
@@ -2009,7 +2050,7 @@ HighlightedNames(
      HighlightPatterns(
         label='header_field',
         style='plum4',
-        patterns=[fr"^[>•\s]{{,4}}({'|'.join(ALL_HEADER_PATTERNS)}):|^on behalf of"],
+        patterns=[fr"^([>»•\s]{{,4}}({'|'.join(ALL_HEADER_PATTERNS)}):|on behalf of)"],
     ),
     HighlightPatterns(
         label='http_links',
@@ -2063,7 +2104,7 @@ HighlightedNames(
     ManualHighlight(
         label='email_timestamp',
         style=TIMESTAMP_STYLE,
-        pattern=r"^(> )?(Date|Sent): (?P<email_timestamp>.*)",
+        pattern=r"^(> )?(Date|Envoy[eé] ?|Sent): (?P<email_timestamp>.*)",
     ),
 ]
 

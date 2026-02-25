@@ -1378,6 +1378,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA02541344', description=f"{BROCK_PIERCE} on marriage and polygamy with people named Crystal and Sue"),
     EmailCfg(id='EFTA02641951', description=f"{DAVID_STERN} recommends ProtonMail for more secure communications"),
     EmailCfg(id='EFTA00626220', description=f'discussion of a "sidecar fund" with {BROCK_PIERCE} / {CRYPTO_CURRENCY_PARTNERS_II}'),
+    EmailCfg(id='EFTA00652799', description=f'Epstein calls Ari Glass "a bit sketchy" despite investing ~$50 million in his fund Boothbay'),
     EmailCfg(id='EFTA01784901', description=f"{JEREMY_RUBIN} has cashed multiple checks directly from Epstein", is_interesting=True),
     EmailCfg(
         id='EFTA02634615',
@@ -1427,6 +1428,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA01002234', duplicate_ids=['EFTA02597754']),
     EmailCfg(id='EFTA00039799', duplicate_ids=['EFTA00039806']),
     EmailCfg(id='EFTA02608800', duplicate_ids=['EFTA01010308']),
+    EmailCfg(id='EFTA00870649', duplicate_ids=['EFTA01932408']),
     EmailCfg(id='EFTA00717931', duplicate_ids=['EFTA01774218']),
     EmailCfg(id='EFTA01776411', duplicate_ids=['EFTA02691069']),
     EmailCfg(id='EFTA02390441', duplicate_ids=['EFTA02403336']),
@@ -1465,6 +1467,8 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA02628058', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA02626427', truncate_to=NO_TRUNCATE),
     #### MAGIC COMMENT FOR MANUAL CONFIG ####
+    EmailCfg(id='EFTA01930285', description='"many opportunities"', is_interesting=True),
+
     EmailCfg(id='EFTA01063008', author=OLGA_PONOMAR_BECKER, author_reason='Jmail'),
     EmailCfg(id='EFTA00681554', recipients=[OLGA_PONOMAR_BECKER]),
     EmailCfg(id='EFTA02669915', recipients=[OLGA_PONOMAR_BECKER]),
@@ -1886,12 +1890,22 @@ OTHER_FILES_LEGAL = [
     DocCfg(id='022277', description=f"text of National Labour Relations Board (NLRB) law", is_interesting=False),
 
     # DOJ files
+    DocCfg(
+        id='EFTA00164939',
+        author=DOJ,
+        date='2025-09-01',   # TODO: approximate
+        description='Powerpoint summary of Child Sex Trafficking Task Force Epstein investigation',
+        is_interesting=True,
+    ),
+    DocCfg(id='EFTA00020506', author=FBI, description='"chauffeur also told Epstein \'I have something on you, remember what I buried!\'"'),
     DocCfg(id='EFTA02731200', author=DOJ, description=f"memo about potential prosecutation of Epstein's assistant"),
     DocCfg(id='EFTA02731082', author=DOJ, description="memo about investigation into Epstein's co-conspirators"),
-    DocCfg(id='EFTA00005569', author=PALM_BEACH_POLICE, replace_text_with='photo lineup featuring Epstein', date='2005-03-17'),
+    DocCfg(id='EFTA00084614', author=PALM_BEACH_POLICE, description='incident report detailing the investigation into Jeffrey Epstein'),
     DocCfg(id='EFTA00007893', author=PALM_BEACH_POLICE, description=f"receipts, notes, bank statements of {GHISLAINE_MAXWELL}"),
+    DocCfg(id='EFTA00005569', author=PALM_BEACH_POLICE, replace_text_with='photo lineup featuring Epstein', date='2005-03-17'),
     DocCfg(id='EFTA02730274', description='evidence inventory that appears to have since been deleted from the DOJ website'),
     DocCfg(id='EFTA00001884', description='photo of letter from Virgin Islands DOJ to Epstein', date='2019-03-14'),
+    DocCfg(id='EFTA00074744', description="USVI court filing about Epstein will and estate"),
     DocCfg(id='EFTA00007157', description='victim list and police log'),
     DocCfg(id='EFTA00005586', replace_text_with='completely redacted 69 pages labeled "Grand Jury - NY"'),
 ]
@@ -1957,7 +1971,7 @@ OTHER_FILES_FINANCE = [
     DocCfg(id='023575', author=BOFA_MERRILL, description=f"Global Equity Volatility Insights", date='2017-06-01'),
     DocCfg(id='014518', author=BOFA_WEALTH_MGMT, description=f'tax alert', date='2016-05-02'),
     DocCfg(id='029438', author=BOFA_WEALTH_MGMT, description=f'tax report', date='2018-01-02'),
-    DocCfg(id='026668', author="Boothbay Fund Management", description=f"2016-Q4 earnings report signed by Ari Glass"),
+    DocCfg(id='026668', author="Boothbay Fund Management", description=f"2016-Q4 earnings report signed by Ari Glass", is_interesting=True),
     DocCfg(id='024302', author='Carvana', description=f"form 14A SEC filing proxy statement", date='2019-04-23'),
     DocCfg(id='029305', author='CCH Tax', description=f"Briefing on end of Defense of Marriage Act", date='2013-06-27'),
     DocCfg(id='026794', author=DEUTSCHE_BANK, description=f"Global Political and Regulatory Risk in 2015/2016"),
@@ -2046,6 +2060,7 @@ OTHER_FILES_MONEY = [
     DocCfg(id='EFTA01273102', description=f"payment from Epstein to {RENATA_BOLOTOVA}'s father's account at Sberbank"),
     DocCfg(id='EFTA00238499', description='wire transfer to Signature Bank account'),
     DocCfg(id='EFTA00000476', replace_text_with='photo of JEFFREY EPSTEIN CASH DISBURSEMENTS for the month 2006-09', date='2006-09-01'),
+    EmailCfg(id='EFTA00037187', is_interesting=True),
 ]
 
 
@@ -2307,6 +2322,7 @@ OTHER_FILES_MISC = [
     DocCfg(id='029448', description=f"weird short essay titled 'President Obama and Self-Deception'"),
 
     # DOJ files
+    DocCfg(id='EFTA00034357', author=BUREAU_OF_PRISONS, description=f"internal message about discovery of Epstein's body", background_color='red'),
     DocCfg(id='EFTA00039025', author=BUREAU_OF_PRISONS, description=f"report on death of Jeffrey Epstein", is_interesting=True),
     DocCfg(id='EFTA00039227', author=BUREAU_OF_PRISONS, replace_text_with='Inmate Discipline Program Statement'),
     DocCfg(id='EFTA00039295', author=BUREAU_OF_PRISONS, replace_text_with='Inmate Telephone Privileges Program Statement'),
@@ -2348,8 +2364,10 @@ OTHER_FILES_MISC = [
 ]
 
 OTHER_FILES_GIRLS = [
+    DocCfg(id='EFTA00306033', author=SERGEY_BELYAKOV, description='Epstein Russian visa', is_shown_full_panel=True),
     EmailCfg(id='EFTA00848644', is_interesting=True, comment='"take a picture of your pussy"'),
     EmailCfg(id='EFTA02557291', description='possibly recruiting girls'),
+    EmailCfg(id='EFTA01022353', description='George Models in Odessa, "She said she was 14-15 yo"', is_interesting=True),
     CommunicationCfg(
         id='EFTA01612733',
         author=MARIA_PRUSAKOVA,
@@ -2394,7 +2412,6 @@ OTHER_FILES_PHONE_BILL = [
 # This category is automatically 'interesting', see OtherFile class
 OTHER_FILES_CRYPTO = [
     DocCfg(id='031743', description=f'a few pages describing the internet as a "New Nation State" (Network State?)'),
-    DocCfg(id='024271', description=f"{BLOCKCHAIN_CAPITAL} and {BROCK_PIERCE} pitch deck", date='2015-10-01'),
     DocCfg(
         id='025663',
         author=GOLDMAN_INVESTMENT_MGMT,
@@ -2403,7 +2420,19 @@ OTHER_FILES_CRYPTO = [
         duplicate_ids=['EFTA00793120'],
     ),
 
+    # Bannon
+    EmailCfg(id='030711', description='Epstein says "we can discuss michael and his coins", unclear what that means'),
+    EmailCfg(id='026260', comment='Bannon cripto coin issues'),
+    EmailCfg(id='026258', description='Bannon suggests Jeffrey Wernick, CEO of Parler and man affiliated with many shady crypto businesses, can help'),
+    EmailCfg(id='030781', description="Esptein says the crypto coin issues they're having are 'US based'"),
+    EmailCfg(id='026255', description='Epstein requests help with "coin issues" and "prohibitions foreign donor" (sic)', is_interesting=True),
+    EmailCfg(id='EFTA01020383', description='Epstein emails Bannon a quote about the use of crypto to evade capital controls'),
+    EmailCfg(id='EFTA00874793', description=f'Bannon says that they need to stop EU regulation of crypto scams "dead in its tracks"', is_interesting=True),
+    EmailCfg(id='EFTA02517572', description=f'Bannon says that they need to stop EU regulation of crypto scams "dead in its tracks"'),
+    EmailCfg(id='EFTA00881711', description=f"Bannon and Epstein discuss bitcoin and crypto donations", is_interesting=True),
+    EmailCfg(id='EFTA00881759', description=f"Epstein and {STEVE_BANNON} discuss collection donations in bitcoin", is_interesting=True),
     # Blockstream
+    DocCfg(id='EFTA00797613', description='Alphabit crypto fund pitch deck', attached_to_email_id='EFTA00955063'),
     EmailCfg(id='EFTA02529170', description=f"Blockstream set up a special company to invest in an Asian ride hailing service"),
     EmailCfg(id='EFTA01917402', description=f'discussion of Epstein investment in Blockstream funneled through {JOI_ITO}', is_interesting=True),
     EmailCfg(id='EFTA00999897', description=f"Epstein claims he's a fan of {ADAM_BACK} (who has recently claimed he had nothing to do with Epstein)"),
@@ -2415,58 +2444,22 @@ OTHER_FILES_CRYPTO = [
         description=f'{AUSTIN_HILL} explains that some crypto funds are engaged in fraudulent wash trading (the attached Excel sheet listing those funds has not been found)',
         is_interesting=True,
     ),
+    EmailCfg(id='EFTA00929418', description=f"Epstein forwards information from {AUSTIN_HILL} about fraudulent crypto trading operations to {PAUL_BARRETT}"),
     EmailCfg(id='EFTA01010209', description=f"{AUSTIN_HILL} calls {AMIR_TAAKI} \"a bit crazy\'"),
     EmailCfg(id='EFTA01788532', description=f"{AUSTIN_HILL} asking about Jeffrey Katzenberg's contact info"),
     EmailCfg(id='EFTA02515798', recipients=[LINDA_STONE], description='Epstein confirms he invested in Blockstream'),  # response to EFTA02515756
-    # David Stern
-    EmailCfg(id='EFTA02494305', description=f"planning a crypto exchange in Belarus, {DAVID_STERN}'s \"Chinese guys\" can't do it because of the PRC's crackdown on crypto"),
-    EmailCfg(id='EFTA00886763', description=f"documents are being prepared to license Epstein and {DAVID_STERN}'s crypto exchange in Belarus"),
-    EmailCfg(
-        id='EFTA02494000',
-        description=f'Epstein says a crypto exchange in Belarus could be "very useful", {DAVID_STERN}\'s Chinese guys could have brought "significant volume"',
-        is_interesting=True
-    ),
-    # Honeycomb
-    DocCfg(id='EFTA00803491', author=HONEYCOMB_FUND, description="deck", is_interesting=True),
-    DocCfg(id='EFTA00803459', author=HONEYCOMB_FUND, description="January 2019 report", is_interesting=True),
-    DocCfg(id='EFTA00603445', author=HONEYCOMB_FUND, description="July 2017 report", is_interesting=True),
-    DocCfg(id='EFTA00803464', author=HONEYCOMB_FUND, description="July 2018 report", date='2018-07-17', is_interesting=True),
-    # Valar
-    DocCfg(id='EFTA00810239', author=VALAR_FUND, description='pitch deck'),
-    DocCfg(id='EFTA00591045', author=VALAR_FUND, description='brochure'),
-    DocCfg(id='EFTA00810510', author=VALAR_FUND, description='Fall 2016 Update'),
-    DocCfg(id='EFTA00810474', author=VALAR_FUND, description='Fall 2018 Update'),
-    DocCfg(
-        id='EFTA01612888',
-        author='Kevin Peterson, Bammohan Deeduvanu, Pradip Kanjamala, and Kelly Boles',
-        description='A Blockchain-Based Approach to Health Information Exchange Networks',
-    ),
-    DocCfg(id='EFTA00797613', description='Alphabit crypto fund pitch deck', attached_to_email_id='EFTA00955063'),
-    DocCfg(id='EFTA00811666', description='asset valuations of Epstein\'s holdings, includes "Coinbase via grat"', date='2018-01-31'),
-    # Coinbase
-    DocCfg(
-        id='EFTA01082451',
-        author=BLOCKCHAIN_CAPITAL,
-        date='2014-11-10',
-        description=f'/ {COINBASE} nondisclosure agreement possibly regarding Epstein investment',
-        is_interesting=True,
-        truncate_to=2000,
-    ),
-    DocCfg(id='EFTA01401059', description=f"{DEUTSCHE_BANK} wire transfer receipt for Epstein's investment in {BLOCKSTREAM}"),
-    DocCfg(id='EFTA01092555', author=COINBASE, description='certificate of incorporation', date='2013-12-12', truncate_to=SHORT_TRUNCATE_TO),
-    DocCfg(id='EFTA01120975', author=COINBASE, description='Series B stock purchase', date='2013-12-12', truncate_to=DEFAULT_TRUNCATE_TO),
-    DocCfg(id='EFTA01121035', author=COINBASE, description='Series C preferred stock purchase', date='2014-10-24'),
-    # CCP (Brock Pierce / Blockchain Capital)
+    # Blockchain Capital / Brock Pierce / Crypto Currency Partners
+    DocCfg(id='024271', author=BLOCKCHAIN_CAPITAL, description="pitch deck", date='2015-10-01'),
     DocCfg(id='EFTA01088644', author=BLOCKCHAIN_CAPITAL, description="pitch deck", date='2015-10-01'),
     DocCfg(id='EFTA00604942', author=BLOCKCHAIN_CAPITAL, description="Investor Update", date='2015-10-01'),
     DocCfg(id='EFTA01089535', author=CRYPTO_CURRENCY_PARTNERS_II, description=f"investor report", date='2014-10-01'),
     DocCfg(id='EFTA01089506', author=CRYPTO_CURRENCY_PARTNERS_II, description=f"investor report", date='2014-11-01'),
     DocCfg(id='EFTA01089500', author=CRYPTO_CURRENCY_PARTNERS_II, description=f"investor report", date='2015-01-01'),
-    DocCfg(id='EFTA01089526', author=CRYPTO_CURRENCY_PARTNERS_II, description=f"investor report", date='2014-08-01', attached_to_email_id='EFTA00997803'),
     DocCfg(id='EFTA00621239', author=CRYPTO_CURRENCY_PARTNERS_II, description=f"investor report", date='2014-10-01'),
+    DocCfg(id='EFTA01089526', author=CRYPTO_CURRENCY_PARTNERS_II, description=f"investor report", date='2014-08-01', attached_to_email_id='EFTA00997803'),
     DocCfg(id='EFTA01089485', author=CRYPTO_CURRENCY_PARTNERS_II, description=f"investor report", date='2014-09-01', attached_to_email_id='EFTA00693621'),
     DocCfg(id='EFTA01093509', author=CRYPTO_CURRENCY_PARTNERS_II, description=f"partnership draft", truncate_to=DEFAULT_TRUNCATE_TO * 2),
-    DocCfg(id='EFTA01093444', author=CRYPTO_CURRENCY_PARTNERS_II, description='application form', attached_to_email_id='EFTA00626220'),#EFTA02708994
+    DocCfg(id='EFTA01093444', author=CRYPTO_CURRENCY_PARTNERS_II, description='application form', attached_to_email_id='EFTA00626220'),  #EFTA02708994
     DocCfg(id='EFTA01093471', author=CRYPTO_CURRENCY_PARTNERS_II, description='operating agreement', attached_to_email_id='EFTA00626220'),
     EmailCfg(id='EFTA00752383', description=f"Mindshift conference attendee list", is_interesting=True),
     EmailCfg(id='EFTA01139067', description=f'Epstein tells Farkas he has not invested in {CRYPTO_CURRENCY_PARTNERS_II}', is_interesting=True),
@@ -2480,6 +2473,19 @@ OTHER_FILES_CRYPTO = [
     EmailCfg(id='EFTA01000882', description=f"{BROCK_PIERCE} asks for Epstein's permission to disclose his name to Coinbase team", is_interesting=True),
     EmailCfg(id='EFTA00689503', description=f"{BROCK_PIERCE} posted a review of the infamous Russian criminal crypto exchange BTC-e to LinkedIn", is_interesting=True),
     EmailCfg(id='EFTA00664424', description=f"{BROCK_PIERCE} suggests {LARRY_SUMMERS} could get involved with Tether and Noble Bank"),
+    # Coinbase
+    DocCfg(
+        id='EFTA01082451',
+        author=BLOCKCHAIN_CAPITAL,
+        date='2014-11-10',
+        description=f'/ {COINBASE} nondisclosure agreement possibly regarding Epstein investment',
+        is_interesting=True,
+        truncate_to=2000,
+    ),
+    DocCfg(id='EFTA01401059', description=f"{DEUTSCHE_BANK} wire transfer receipt for Epstein's investment in {BLOCKSTREAM}"),
+    DocCfg(id='EFTA01092555', author=COINBASE, description='certificate of incorporation', date='2013-12-12', truncate_to=SHORT_TRUNCATE_TO),
+    DocCfg(id='EFTA01120975', author=COINBASE, description='Series B stock purchase', date='2013-12-12', truncate_to=DEFAULT_TRUNCATE_TO),
+    DocCfg(id='EFTA01121035', author=COINBASE, description='Series C preferred stock purchase', date='2014-10-24'),
     # Crypto PR Lab
     DocCfg(id='EFTA00295126', author=CRYPTO_PR_LAB, description="accounting statement"),
     DocCfg(id='EFTA01299820', author=CRYPTO_PR_LAB, description="bank transfer", date='2018-12-18'),
@@ -2505,14 +2511,24 @@ OTHER_FILES_CRYPTO = [
         uncertain_recipient=f"{CRYPTO_PR_LAB} signature, could be Prusakova's partner",
         truncate_to=NO_TRUNCATE
     ),
-    # ZCash
-    DocCfg(id='EFTA00811130', author=PERKINS_COIE, description='tax opinion on ZCash tokens'),
-    DocCfg(id='EFTA00603348', description=f"Electric Coin Company created the untraceable crypto ZCash funded by {LARRY_SUMMERS}'s DCG"),
-    DocCfg(id='EFTA00803405', description=f"Honeycomb Asset Management fund brochure", truncate_to=DEFAULT_TRUNCATE_TO),
-    EmailCfg(id='EFTA01781741', description=f'{JOI_ITO} introduces Epstein to {MADARS_VIRZA} and the untraceable private crypto ZCash'),
-    EmailCfg(id='EFTA02645742', description=f"tax implications of the untraceable 'privacy coin' ZCash", is_interesting=True),
-    EmailCfg(id='EFTA02282357', author=DAPHNE_WALLACE, author_uncertain='could be Lesley'),
-    EmailCfg(id='EFTA02283028', author=DAPHNE_WALLACE, author_uncertain='could be Lesley'),
+    # Crypto PR Lab / Medici Bank
+    DocCfg(id='EFTA01613731', description='Medici Bank conversation on Whatsapp'),
+    DocCfg(id='EFTA00805569', description='Mercantile Global Holdings, San Juan Mercantile Bank & Trust, Noble Bank + Signature Bank + BitGo'),
+    DocCfg(id='EFTA01088079', description="someone's thoughts on bitcoin"),
+    EmailCfg(id='EFTA00495372', description=f'discussion of Medici Bank, a new successor to Noble Bank as a crypto bank', is_interesting=True),
+    # David Stern
+    EmailCfg(id='EFTA02494305', description=f"planning a crypto exchange in Belarus, {DAVID_STERN}'s \"Chinese guys\" can't do it because of the PRC's crackdown on crypto"),
+    EmailCfg(id='EFTA00886763', description=f"documents are being prepared to license Epstein and {DAVID_STERN}'s crypto exchange in Belarus"),
+    EmailCfg(
+        id='EFTA02494000',
+        description=f'Epstein says a crypto exchange in Belarus could be "very useful", {DAVID_STERN}\'s Chinese guys could have brought "significant volume"',
+        is_interesting=True
+    ),
+    # Honeycomb
+    DocCfg(id='EFTA00803491', author=HONEYCOMB_FUND, description="deck", is_interesting=True),
+    DocCfg(id='EFTA00803459', author=HONEYCOMB_FUND, description="January 2019 report", is_interesting=True),
+    DocCfg(id='EFTA00603445', author=HONEYCOMB_FUND, description="July 2017 report", is_interesting=True),
+    DocCfg(id='EFTA00803464', author=HONEYCOMB_FUND, description="July 2018 report", date='2018-07-17', is_interesting=True),
     # Joi Ito / Kyara
     DocCfg(id='024256', author=JOI_ITO, description=f"Internet & Society: The Technologies and Politics of Control"),
     DocCfg(id='EFTA00805860', description=f"{JOI_ITO}'s Neoteny 3 fund investor update / portfolio"),
@@ -2529,11 +2545,6 @@ OTHER_FILES_CRYPTO = [
     EmailCfg(id='EFTA00473175', truncate_to=1000),
     EmailCfg(id='EFTA02601259', description=f"discussion of investments hidden through {JOI_ITO}"),
     EmailCfg(id='EFTA02505439', description=f'summary of {KYARA_INVESTMENT} shell companies with {JOI_ITO}'),
-    # Medici / Noble
-    DocCfg(id='EFTA01613731', description='Medici Bank conversation on Whatsapp'),
-    DocCfg(id='EFTA00805569', description='Mercantile Global Holdings, San Juan Mercantile Bank & Trust, Noble Bank + Signature Bank + BitGo'),
-    DocCfg(id='EFTA01088079', description="someone's thoughts on bitcoin"),
-    EmailCfg(id='EFTA00495372', description=f'discussion of Medici Bank, a new successor to Noble Bank as a crypto bank', is_interesting=True),
     # Kushner
     DocCfg(id='EFTA00128987', description='suspicious activity report (SAR) about Kushner co. crypto payments to suspicious Russian person'),
     # Masha Drokova
@@ -2546,24 +2557,20 @@ OTHER_FILES_CRYPTO = [
     ),
     EmailCfg(id='EFTA01010171'),
     EmailCfg(id='EFTA01010128'),
-    # Valar
-    DocCfg(id='EFTA01121910', author=VALAR_VENTURES, description="contract", truncate_to=DEFAULT_TRUNCATE_TO),
-    DocCfg(id='EFTA00808277', author=VALAR_VENTURES, description="contract", truncate_to=DEFAULT_TRUNCATE_TO),
-    DocCfg(id='EFTA01088484', author=VALAR_VENTURES, description="contract", truncate_to=DEFAULT_TRUNCATE_TO),
-    DocCfg(id='EFTA00591691', author=VALAR_VENTURES, description="contract", truncate_to=DEFAULT_TRUNCATE_TO),
-    DocCfg(id='EFTA00810362', author=VALAR_VENTURES, description="investor questionnaire", truncate_to=DEFAULT_TRUNCATE_TO),
-    DocCfg(id='EFTA00605996', description='Wedbush BUY rating on Digital Currency Group GBTC', is_interesting=False),
-    # Bannon
-    EmailCfg(id='030711', description='Epstein says "we can discuss michael and his coins", unclear what that means'),
-    EmailCfg(id='026260', comment='Bannon cripto coin issues'),
-    EmailCfg(id='026258', description='Bannon suggests Jeffrey Wernick, CEO of Parler and man affiliated with many shady crypto businesses, can help'),
-    EmailCfg(id='030781', description="Esptein says the crypto coin issues they're having are 'US based'"),
-    EmailCfg(id='026255', description='Epstein requests help with "coin issues" and "prohibitions foreign donor" (sic)', is_interesting=True),
-    EmailCfg(id='EFTA01020383', description='Epstein emails Bannon a quote about the use of crypto to evade capital controls'),
-    EmailCfg(id='EFTA00874793', description=f'Bannon says that they need to stop EU regulation of crypto scams "dead in its tracks"', is_interesting=True),
-    EmailCfg(id='EFTA02517572', description=f'Bannon says that they need to stop EU regulation of crypto scams "dead in its tracks"'),
-    EmailCfg(id='EFTA00881711', description=f"Bannon and Epstein discuss bitcoin and crypto donations", is_interesting=True),
-    EmailCfg(id='EFTA00881759', description=f"Epstein and {STEVE_BANNON} discuss collection donations in bitcoin", is_interesting=True),
+    # Misc
+    DocCfg(id='EFTA01734786', description='LedgerX Series B pitch deck'),
+    DocCfg(id='EFTA02725909', description='memo to NYDFS for NYC Bitcoin Exchange, Balaji Srinivisan & Andrew Farkas on board'),
+    DocCfg(id='EFTA00811666', description='asset valuations of Epstein\'s holdings, includes "Coinbase via grat"', date='2018-01-31'),
+    EmailCfg(id='EFTA01060993', description=f"Epstein says he knows \"a few\" guys who hold over $50 million in bitcoin", is_interesting=True),
+    EmailCfg(id='EFTA01915234', description='discussion of crypto regulations', is_interesting=True),
+    EmailCfg(id='EFTA00867030', author='Kathy', description='discussion of a crypto token based on GDAX (whatever that means)', is_interesting=True),
+    EmailCfg(id='EFTA01004753', description=f"founder of Layer1 is the only guy in crypto who doesn't want to meet Epstein (didn't last though)"),
+    EmailCfg(id='EFTA02601503', description=f"discussion of investing in Layer1, an important crypto business"),
+    EmailCfg(id='EFTA02517623', description=f"{VINCENZO_IOZZO} explains to Epstein how to deanonymize bitcoin", is_interesting=True),
+    EmailCfg(id='EFTA00699275', description=f"'Fred' is probably Coinbase co-founder Fred Ehrsam"),
+    EmailCfg(id='EFTA00830911', description='fundraising email for LedgerX which was later acquired by FTX for $298 million'),
+    EmailCfg(id='EFTA01750652', description=f"discussion of using blockchains in the repo markets", is_interesting=True),
+    EmailCfg(id='EFTA02002675', description=f"{JASON_CALACANIS} passes Epstein the names of the bitcoin core developers"),
     # SEC / NYDFS
     EmailCfg(id='EFTA02588398', description=f"Epstein went to the Treasury Dept of the US to talk about bitcoin", is_interesting=True),
     EmailCfg(id='EFTA00987194', description=f"Epstein proposes {BEN_LAWSKY_NYDFS} get rid of sales tax on bitcoin", is_interesting=True),
@@ -2580,19 +2587,30 @@ OTHER_FILES_CRYPTO = [
     # Sharia coin
     EmailCfg(id='EFTA00964459', description=f'discussion of sharia compliant crypto token', is_interesting=True),
     EmailCfg(id='EFTA00990442', description=f"Epstein offers to cover all costs for Sharia Coin", is_interesting=True),
-    # Misc
-    DocCfg(id='EFTA01734786', description='LedgerX Series B pitch deck'),
-    DocCfg(id='EFTA02725909', description='memo to NYDFS for NYC Bitcoin Exchange, Balaji Srinivisan & Andrew Farkas on board'),
-    EmailCfg(id='EFTA01060993', description=f"Epstein says he knows \"a few\" guys who hold over $50 million in bitcoin", is_interesting=True),
-    EmailCfg(id='EFTA01915234', description='discussion of crypto regulations', is_interesting=True),
-    EmailCfg(id='EFTA00867030', author='Kathy', description='discussion of a crypto token based on GDAX (whatever that means)', is_interesting=True),
-    EmailCfg(id='EFTA01004753', description=f"founder of Layer1 is the only guy in crypto who doesn't want to meet Epstein (didn't last though)"),
-    EmailCfg(id='EFTA02601503', description=f"discussion of investing in Layer1, an important crypto business"),
-    EmailCfg(id='EFTA02517623', description=f"{VINCENZO_IOZZO} explains to Epstein how to deanonymize bitcoin", is_interesting=True),
-    EmailCfg(id='EFTA00699275', description=f"'Fred' is probably Coinbase co-founder Fred Ehrsam"),
-    EmailCfg(id='EFTA00830911', description='fundraising email for LedgerX which was later acquired by FTX for $298 million'),
-    EmailCfg(id='EFTA01750652', description=f"discussion of using blockchains in the repo markets", is_interesting=True),
-    EmailCfg(id='EFTA02002675', description=f"{JASON_CALACANIS} passes Epstein the names of the bitcoin core developers"),
+    # Valar
+    DocCfg(id='EFTA00605996', description='Wedbush BUY rating on Digital Currency Group GBTC', is_interesting=False),
+    DocCfg(id='EFTA01121910', author=VALAR_VENTURES, description="contract", truncate_to=DEFAULT_TRUNCATE_TO),
+    DocCfg(id='EFTA00808277', author=VALAR_VENTURES, description="contract", truncate_to=DEFAULT_TRUNCATE_TO),
+    DocCfg(id='EFTA01088484', author=VALAR_VENTURES, description="contract", truncate_to=DEFAULT_TRUNCATE_TO),
+    DocCfg(id='EFTA00591691', author=VALAR_VENTURES, description="contract", truncate_to=DEFAULT_TRUNCATE_TO),
+    DocCfg(id='EFTA00810362', author=VALAR_VENTURES, description="investor questionnaire", truncate_to=DEFAULT_TRUNCATE_TO),
+    DocCfg(id='EFTA00810239', author=VALAR_FUND, description='pitch deck'),
+    DocCfg(id='EFTA00591045', author=VALAR_FUND, description='brochure'),
+    DocCfg(id='EFTA00810510', author=VALAR_FUND, description='Fall 2016 Update'),
+    DocCfg(id='EFTA00810474', author=VALAR_FUND, description='Fall 2018 Update'),
+    DocCfg(
+        id='EFTA01612888',
+        author='Kevin Peterson, Bammohan Deeduvanu, Pradip Kanjamala, and Kelly Boles',
+        description='A Blockchain-Based Approach to Health Information Exchange Networks',
+    ),
+    # ZCash
+    DocCfg(id='EFTA00811130', author=PERKINS_COIE, description='tax opinion on ZCash tokens'),
+    DocCfg(id='EFTA00603348', description=f"Electric Coin Company created the untraceable crypto ZCash funded by {LARRY_SUMMERS}'s DCG"),
+    DocCfg(id='EFTA00803405', description=f"Honeycomb Asset Management fund brochure", truncate_to=DEFAULT_TRUNCATE_TO),
+    EmailCfg(id='EFTA01781741', description=f'{JOI_ITO} introduces Epstein to {MADARS_VIRZA} and the untraceable private crypto ZCash'),
+    EmailCfg(id='EFTA02645742', description=f"tax implications of the untraceable 'privacy coin' ZCash", is_interesting=True),
+    EmailCfg(id='EFTA02282357', author=DAPHNE_WALLACE, author_uncertain='could be Lesley'),
+    EmailCfg(id='EFTA02283028', author=DAPHNE_WALLACE, author_uncertain='could be Lesley'),
     # Unsorted
     EmailCfg(id='032359', description='HBJ brings up "e-currency" (Sharia Coin, probably)'),
     EmailCfg(id='EFTA00993615', description=f"{MASHA_DROKOVA} explains the price of bitcoin can be manipulated if Epstein makes public comments"),
@@ -2626,17 +2644,49 @@ OTHER_FILES_CRYPTO = [
     ),
     EmailCfg(
         id='EFTA01965506',
-        author_reason='"iPhone word substitution" in signature, which is traced back to "Linda, thanks" in EFTA00961792',
         author=LINDA_STONE,
+        author_reason='"iPhone word substitution" in signature, which is traced back to "Linda, thanks" in EFTA00961792',
         description='Barry Silbert became the CEO of Digital Currency Group, a huge US crypto fund w/Larry Summers on the board',
         is_interesting=True,
     ),
+    # Howard Lutnick
+    DocCfg(
+        id='EFTA00289560',
+        date='2012-12-28',
+        description=f'{HOWARD_LUTNICK} and Epstein business deal for Adfin Solutions, Inc. (Southern Trust is Epstein)',
+        truncate_to=(160_000, 162_000),
+    ),
     DocCfg(
         id='EFTA01249210',
-        description="FBI report on tip linking American commerce secretary and Tether asset custodian Howard Lutnick to Ponzi schemes and Russian money",
+        author=FBI,
+        description="tip linking American commerce secretary and Tether asset custodian Howard Lutnick to Ponzi schemes and Russian money",
         is_interesting=True,
         show_with_name=BROCK_PIERCE,
-    )
+    ),
+    DocCfg(id='EFTA01733746', date='2011-05-18', description=f'schedule showing "drinks" with {HOWARD_LUTNICK}', is_shown_full_panel=True),
+    DocCfg(id='EFTA00434306', description='calendar reminder for call with Howard Lutnick', date='2011-04-26'),
+    DocCfg(id='EFTA00020515', author=FBI, description='tip about Howard Lutnick and financial irregularities', is_interesting=True),
+    DocCfg(
+        id='EFTA01249207',
+        author=FBI,
+        description="tip linking American commerce secretary and Tether asset custodian Howard Lutnick to Ponzi schemes and Russian money",
+        is_shown_full_panel=True,
+        show_with_name=BROCK_PIERCE,
+    ),
+    DocCfg(
+        id='EFTA01684300',
+        author=FBI,
+        description=f'evidence list w/tip about {HOWARD_LUTNICK}, Cantor Fitzgerald, and BGC from an employee who had already blown the whistle successfully',
+        truncate_to=(77_000, 77_300),
+    ),
+    EmailCfg(id='EFTA00462693', description=f"Epstein gets a table for 10 at the dinner honouring {HOWARD_LUTNICK}"),
+    EmailCfg(id='EFTA00685520', description=f'call with {HOWARD_LUTNICK}'),
+    EmailCfg(id='EFTA00436468', description=f'call with {HOWARD_LUTNICK} after he goes overseas', truncate_to=NO_TRUNCATE),
+    EmailCfg(id='EFTA00398719', description=f'{HOWARD_LUTNICK} visit to the island', truncate_to=2500),
+    EmailCfg(id='EFTA00401065', description=f'{HOWARD_LUTNICK} visit to the island', truncate_to=NO_TRUNCATE),
+    EmailCfg(id='EFTA00398853', description=f'{HOWARD_LUTNICK} visit to the island', truncate_to=NO_TRUNCATE),
+    EmailCfg(id='EFTA00873540', description=f'{HOWARD_LUTNICK} and {PRINCE_ANDREW}'),
+    EmailCfg(id='EFTA00957552', description=f'thank you note for a $50,000 donation in honor of Tether banker {HOWARD_LUTNICK}'),
 ]
 
 OTHER_FILES_SKYPE_LOG = [
@@ -2651,20 +2701,20 @@ OTHER_FILES_SKYPE_LOG = [
 ]
 
 OTHER_FILES_TEXT_MSG = [
+    DocCfg(id='033434', description=f"{SCREENSHOT} iMessage chat labeled 'Edwards'"),
+    DocCfg(
+        id='EFTA01620764',
+        author=MELANIE_WALKER,
+        author_uncertain=True,
+        description=f'conversation about Bill Gates being drunk all the time',
+        is_interesting=True,
+    ),
     DocCfg(id='EFTA01618381', author=RENATA_BOLOTOVA, description=f'iMessage screenshots', author_uncertain='sneaky'),
     DocCfg(id='EFTA01622387', author=RENATA_BOLOTOVA, description=f'iMessage screenshots', author_uncertain='sneaky'),
     DocCfg(id='EFTA01618494', author=RENATA_BOLOTOVA, description=f'iMessage screenshots', author_uncertain='sneaky'),
     DocCfg(id='EFTA01618400', author=RENATA_BOLOTOVA, description=f'iMessage screenshots', author_uncertain='sneaky'),
-    DocCfg(
-        id='EFTA01620764',
-        author=MELANIE_WALKER,
-        description=f'conversation about Bill Gates being drunk all the time',
-        author_uncertain=True,
-        is_interesting=True,
-    ),
-    DocCfg(id='033434', description=f"{SCREENSHOT} iMessage chat labeled 'Edwards'"),
-    CommunicationCfg(id='EFTA01611042', author=ED_BOYLE, recipients=[None, MARIA_PRUSAKOVA]),
     DocCfg(id='EFTA01611898', description=f"screenshot of recent contacts in an iPhone"),
+    CommunicationCfg(id='EFTA01611042', author=ED_BOYLE, recipients=[None, MARIA_PRUSAKOVA]),
     CommunicationCfg(id='EFTA02731525', author=LEON_BLACK, author_uncertain=True),
     CommunicationCfg(
         id='EFTA01612665',

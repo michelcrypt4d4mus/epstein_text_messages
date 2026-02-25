@@ -16,6 +16,7 @@ AUTHORS_OF_INTEREST = [
 
 # List of people whose files to print in curated site. Order matters.
 EMAILERS_OF_INTEREST = [
+    HOWARD_LUTNICK,
     BROCK_PIERCE,
     JABOR_Y,
     JOI_ITO,

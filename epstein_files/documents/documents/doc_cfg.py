@@ -133,6 +133,7 @@ class DocCfg:
     author: Name = None
     author_reason: str = ''
     author_uncertain: bool | str = ''
+    background_color: str = ''
     category: str = ''
     comment: str = ''
     date: str = ''
@@ -144,16 +145,9 @@ class DocCfg:
     is_in_chrono: bool | None = None
     is_synthetic: bool | None = None
     replace_text_with: str = ''
+    is_shown_full_panel: bool = False
     show_with_name: str = ''
     truncate_to: int | tuple[int, int] | None = None
-
-    @property
-    def truncate_at(self) -> int | tuple[int, int] | None:
-        """The number of chars to show when printing this document."""
-        if self.truncate_to:
-            return self.truncate_to
-        elif self.category in SHORT_TRUNCATE_CATEGORIES:
-            return SHORT_TRUNCATE_TO
 
     def __post_init__(self):
         if self.id in self.duplicate_ids:
@@ -162,6 +156,9 @@ class DocCfg:
         self.truncate_to = self.truncate_to or (NO_TRUNCATE if self.is_interesting else self.truncate_to)
         self.id = self.id.upper()
         self.set_category(self.category)
+
+        if self.background_color or self.is_shown_full_panel:
+            self.is_interesting = True
 
         if self.author_uncertain and isinstance(self.author_uncertain, str):
             self.author_reason = self.author_uncertain  # Copy field
@@ -343,6 +340,14 @@ class DocCfg:
         if self.date:
             return parse(self.date)
             #return parse(f'{self.date} 00:00:00 UTC' if len(self.date) == 10 else self.date)
+
+    @property
+    def truncate_at(self) -> int | tuple[int, int] | None:
+        """The number of chars to show when printing this document."""
+        if self.truncate_to:
+            return self.truncate_to
+        elif self.category in SHORT_TRUNCATE_CATEGORIES:
+            return SHORT_TRUNCATE_TO
 
     @property
     def truthy_props(self) -> dict[str, bool | str | None]:

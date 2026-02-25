@@ -34,7 +34,7 @@ doc_sets_to_sample = [
 
 emails_with_attachments_ids = [e.file_id for e in epstein_files.emails_with_attachments]
 print(f"Found {len(emails_with_attachments_ids)} emails with attachments: {emails_with_attachments_ids}")
-sample_docs = flatten([docs[:SAMPLE_SIZE] for docs in doc_sets_to_sample])
+sample_docs = [epstein_files.get_id('EFTA00034357')] + flatten([docs[:SAMPLE_SIZE] for docs in doc_sets_to_sample])
 htmls = [doc.to_html() for doc in sample_docs]
 
 other_files = [o for o in sample_docs if isinstance(o, OtherFile)]
