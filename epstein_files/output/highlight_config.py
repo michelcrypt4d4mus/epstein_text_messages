@@ -109,9 +109,9 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         label='Africa',
         style='light_pink4',
         contacts=[
-            Contact('Abdoulaye Wade', "former president of Senegal, father of Karim Wade"),
+            Contact('Abdoulaye Wade', f"former president of Senegal, father of {KARIM_WADE}"),
             Contact('Ivan Glasenberg', "South African former CEO of Glencore, one of the world's largest commodity trading and mining companies"),
-            Contact('Karim Wade', 'son of the president of Senegal, facing arrest for corruption, email handle is "Afri zp"'),
+            Contact(KARIM_WADE, 'son of the president of Senegal, facing arrest for corruption, email handle is "Afri zp"', r"Afri [xz]p"),
             Contact('Miles Alexander', "Operations Manager Michaelhouse Balgowan KwaZulu-Natal South Africa"),
             Contact('Macky Sall', "prime minister of Senegal, defeated Abdoulaye Wade")
         ],

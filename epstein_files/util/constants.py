@@ -884,7 +884,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='033171', is_interesting=True, comment='Zubair'),
     EmailCfg(
         id='026028',
-        description=f"Epstein introduces {LARRY_SUMMERS} to possibly corrupt Senegalese official Karim Wade",
+        description=f"Epstein introduces {LARRY_SUMMERS} to possibly corrupt Senegalese official {KARIM_WADE}",
         is_interesting=True,
     ),
     EmailCfg(
@@ -1406,6 +1406,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA02573653', description=f'discussion of {PRINCE_ANDREW}\'s Urramoor, "Howard" is probably Howard Lutnick which Urramoor partnered with'),
     EmailCfg(id='EFTA02592748', description=f"Epstein asking {BROCK_PIERCE} for a favour related to someone named 'Sue'", truncate_to=300),
     EmailCfg(id='EFTA01008242', description='Epstein passes on an investment in Radius'),
+    EmailCfg(id='EFTA00630134', description=f'Epstein recommending Signal encrypted messenger to Senegalese politician {KARIM_WADE}', is_interesting=True),
     EmailCfg(id='EFTA02513560', description=f"{JEAN_LUC_BRUNEL} doesn't want to speak on the phone", truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA02671523', description=f"Jones is former Google chief technology advocate / CEO of Epstein investment Wearality"),
     EmailCfg(id='EFTA00854166', description='"kazak contract will be ready for your review"', is_interesting=True, truncate_to=1100),
@@ -2587,7 +2588,8 @@ OTHER_FILES_CRYPTO = [
         description=f'evidence list w/tip about {HOWARD_LUTNICK}, Cantor Fitzgerald, and BGC from an employee who had already blown the whistle successfully',
         truncate_to=(77_000, 77_300),
     ),
-    EmailCfg(id='EFTA00873541', description=f"Epstein says his neighbor {HOWARD_LUTNICK} is smart"),
+    EmailCfg(id='EFTA00474452', description=f"{HOWARD_LUTNICK} and {JEFFREY_EPSTEIN}, NIMBYs"),
+    EmailCfg(id='EFTA00873541', description=f"Epstein says his neighbor {HOWARD_LUTNICK} is smart", show_with_name=HOWARD_LUTNICK),
     EmailCfg(id='EFTA02374900', description=f'article about {HOWARD_LUTNICK} real estate purchase'),
     EmailCfg(id='EFTA00443752', description=f"invitation from {HOWARD_LUTNICK}"),
     EmailCfg(id='EFTA00462693', description=f"Epstein gets a table for 10 at the dinner honouring {HOWARD_LUTNICK}"),

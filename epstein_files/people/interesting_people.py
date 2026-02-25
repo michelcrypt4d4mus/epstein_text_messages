@@ -54,6 +54,7 @@ EMAILERS_OF_INTEREST = [
     FAWZI_SIAM,
     ROSS_GOW,
     DAVID_BLAINE,
+    KARIM_WADE,
     PETER_THIEL,
     None,
 ]
