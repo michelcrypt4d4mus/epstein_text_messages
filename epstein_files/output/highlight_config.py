@@ -725,6 +725,7 @@ HighlightedNames(
             r"C[EF]O",
             r"(co-?)?founder",
             r"real estate( developer)?",
+            r"stock market",
             r"Trust(ee| Estate)",
             r"tax(e[ds])?",
         ]
