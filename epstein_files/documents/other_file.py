@@ -18,12 +18,14 @@ from epstein_files.documents.documents.config_builder import build_cfg_from_text
 from epstein_files.documents.documents.doc_cfg import DocCfg, Metadata
 from epstein_files.documents.documents.file_info import FileInfo
 from epstein_files.output.highlight_config import QUESTION_MARKS_TXT, styled_category
-from epstein_files.output.rich import build_table, highlighter
+from epstein_files.output.html.builder import table_to_html
+from epstein_files.output.rich import build_table, console, highlighter
 from epstein_files.people.interesting_people import PERSONS_OF_INTEREST
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constants import *
 from epstein_files.util.helpers.data_helpers import days_between, remove_timezone, uniquify
 from epstein_files.util.helpers.file_helper import FILENAME_LENGTH
+from epstein_files.util.helpers.string_helper import DATE_LENGTH
 from epstein_files.util.env import args, site_config
 from epstein_files.util.logging import logger
 
@@ -34,6 +36,8 @@ MIN_TIMESTAMP = datetime(2000, 1, 1)
 LOG_INDENT = '\n         '
 TIMESTAMP_LOG_INDENT = f'{LOG_INDENT}    '
 VAST_HOUSE = 'vast house'  # Michael Wolff article draft about Epstein indicator
+# There's 3 spaces (2 for padding, one for divider) between each col and then 2 on each side + 1 indent
+PREVIEW_COL_WIDTH = console.width - FILENAME_LENGTH - DATE_LENGTH - (3 * 2) - 6
 
 SKIP_TIMESTAMP_EXTRACT = [
     PALM_BEACH_TSV,
@@ -192,8 +196,8 @@ class OtherFile(Document):
         title_justify = title_justify or ('left' if title else 'center')
         table = build_table(title, caption=footer, show_lines=True, title_justify=title_justify)
         table.add_column('File', justify='center', width=FILENAME_LENGTH)
-        table.add_column('Info', justify='center')
-        table.add_column(FIRST_FEW_LINES, justify='left', style='pale_turquoise4')
+        table.add_column('Info', justify='center', width=DATE_LENGTH)
+        table.add_column(FIRST_FEW_LINES, justify='left', style='pale_turquoise4', width=PREVIEW_COL_WIDTH)
 
         for file in files:
             # call superclass method to avoid border_style rainbow
@@ -220,6 +224,22 @@ class OtherFile(Document):
             )
 
         return cls._mobilize_table(table) if args.mobile else table
+
+    @classmethod
+    def files_preview_table_html(
+        cls,
+        files: Sequence['OtherFile'],
+        title_pfx: str = '',
+        title: str | Text | None = '',
+        title_justify: str = '',
+        footer: Text | None = None  # TODO: Unused
+    ) -> str:
+        table = cls.files_preview_table(files, title_pfx, title, title_justify, footer)
+        return cls.files_preview_table_to_html(table)
+
+    @classmethod
+    def files_preview_table_to_html(cls, table: Table) -> str:
+        return table_to_html(table, with_horizontal_lines=True)
 
     @classmethod
     def _mobilize_table(cls, _table: Table) -> Table:

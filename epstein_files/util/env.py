@@ -91,7 +91,7 @@ if environ.get('INVOKED_BY_PYTEST'):
 else:
     args = parser.parse_args()
 
-is_html_script = parser.prog in HTML_SCRIPTS
+is_html_script = parser.prog in HTML_SCRIPTS or 'html' in parser.prog
 site_config = MobileConfig if args.mobile else SiteConfig
 args._site_type = SiteType.CURATED
 
@@ -112,6 +112,10 @@ if not (any_output_selected or args.all_emails_chrono or args.emailers_info or a
         logger.warning(f"No output section chosen; outputting default selection of texts, selected emails, and other files...")
 
     args.output_emails = args.output_other = args.output_texts = True
+
+if args.output_chrono and not args.build:
+    logger.warning(f"--output-chrono requires --build to export new HTML, setting...")
+    args.build = DEFAULT_FILE
 
 if is_html_script:
     if args.repair:
@@ -144,7 +148,12 @@ if is_html_script:
             elif args.output_word_count:
                 args._site_type = SiteType.WORD_COUNT
 
-        args.build = SiteType.build_path(args._site_type)
+        if args.colors_only:
+            args.build = HTML_DIR.joinpath('colors_only.html')
+        else:
+            args.build = SiteType.build_path(args._site_type)
+    elif 'sample_html' in parser.prog:
+        args.build = SAMPLE_HTML_PATH
 elif parser.prog.startswith('epstein_') and not args.positional_args and not args.names:
     exit_with_error(f"{parser.prog} requires positional arguments but got none!")
 

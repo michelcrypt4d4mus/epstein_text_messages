@@ -15,6 +15,7 @@ from epstein_files.util.logging import logger
 
 HTML_DIR = Path('docs')
 EMAILERS_TABLE_PNG_PATH = HTML_DIR.joinpath('emailers_info_table.png')
+SAMPLE_HTML_PATH = HTML_DIR.joinpath('sample.html')
 
 # Github URLs
 GH_REPO_NAME = 'epstein_text_messages'
@@ -70,11 +71,10 @@ class SiteType(StrEnum):
         """Mobile defaults to chronological."""
         if SiteType.is_mobile(site_type):
             return cls.get_url(site_type)
-        elif site_type == cls.CHRONOLOGICAL:
-            redirect_type = cls.CHRONOLOGICAL_MOBILE
+        elif site_type == cls.CURATED:
+            redirect_type = cls.CURATED_MOBILE
         else:
             redirect_type = cls.CHRONOLOGICAL_MOBILE  # TODO: the curated site is breaking iPhone simulator so no redirect for now
-            # redirect_type = cls.CURATED_MOBILE  #
 
         return cls.get_url(redirect_type)
 
@@ -116,11 +116,13 @@ class SiteType(StrEnum):
         return site_type in [cls.DOJ_FILES, cls.JSON_METADATA]  #+ [cls.JSON_FILES]
 
 
+# TODO: purge repo of old files for space:
+#  - curated_chronological.html
 HTML_BUILD_FILENAMES = {
     SiteType.EMAILS_CHRONOLOGICAL:  f'chronological_emails.html',
-    SiteType.CURATED:               f'index.html',
+    SiteType.CURATED:               f'curated.html',
     SiteType.CURATED_MOBILE:        f'curated_mobile.html',
-    SiteType.CHRONOLOGICAL:         f"curated_chronological.html",
+    SiteType.CHRONOLOGICAL:         f"index.html",
     SiteType.CHRONOLOGICAL_MOBILE:  f"mobile_chronological.html",
     SiteType.DOJ_FILES:             f'doj_2026-01-30_non_email_files.html',
     SiteType.EMAILS:                f'emails_grouped_by_counterparty.html',

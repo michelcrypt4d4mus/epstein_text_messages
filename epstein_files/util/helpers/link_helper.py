@@ -62,7 +62,7 @@ def link_markup(
 ) -> str:
     link_text = link_text or url.removeprefix('https://')
     style = ((style or '') + (' underline' if underline else '')).strip()
-    return (f"[{style}][link={url}]{link_text}[/link][/{style}]")
+    return f"[link={url}][{style}]{link_text}[/{style}][/link]"
 
 
 def link_text_obj(url: str, link_text: str = '', style: str = ARCHIVE_LINK_COLOR) -> Text:

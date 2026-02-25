@@ -1,0 +1,104 @@
+div.container {
+    display: flex;
+    flex-direction: column;
+    padding-top: 1.5em;
+}
+
+/* div .is-sticky {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+} */
+
+a {
+    color: inherit;
+    text-decoration-color: inherit;
+}
+
+div .table {
+    border: 1px solid dimgray;
+    display: table;
+    /* table-layout: fixed; */
+    /* max-width: 60%;
+    overflow:hidden; */
+    /* width: 90%; */
+}
+
+/* this is really more of a cell than a column */
+div .column {
+    border-left: 1px solid dimgray;
+    border-right: 1px solid dimgray;
+    display: table-cell;
+    padding-top: 2px;
+    padding-bottom: 0px;
+    padding-left: 1em;
+    padding-right: 1em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+    /* background-color: #fefefe; */
+}
+
+div .columnheader {
+    border-bottom: 1px solid dimgray;
+    padding-bottom: 5px;
+    padding-top: 5px;
+}
+
+div .row {
+    display: table-row;
+}
+
+div .header_info {
+    border-bottom: 2px solid dimgray;
+    padding-bottom: 5px;
+    padding-left: 1em;
+    padding-right: 1em;
+    padding-top: 5px;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0px;
+}
+
+div .table_container {
+    /* position: relative; */
+    /* max-width: 60%; */
+    width: 99%;
+}
+
+div .body_text_container {
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    padding-left: 1em;
+    padding-right: 1em;
+}
+
+div .no_expand {
+    display: inline-block;
+    width: fit-content;
+}
+
+div .person_bio_panel {
+    margin-bottom: 6px;
+    margin-left: auto;
+    margin-right: 0;
+}
+
+pre {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    font-family: Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace;
+}
+
+li {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    font-family: Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace;
+}
+
+ul.no_bullets {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    /* margin-left: -4em; */
+}

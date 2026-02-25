@@ -11,6 +11,7 @@ from rich.text import Text
 from epstein_files.documents.communication import Communication
 from epstein_files.documents.documents.doc_cfg import Metadata
 from epstein_files.documents.imessage.text_message import TextMessage
+from epstein_files.output.layout_elements.file_display import BasePanel, FileDisplay
 from epstein_files.output.highlight_config import styled_name
 from epstein_files.output.rich import LAST_TIMESTAMP_STYLE, build_table, highlighter
 from epstein_files.people.interesting_people import PERSONS_OF_INTEREST
@@ -73,6 +74,20 @@ class MessengerLog(Communication):
             txt.append(highlighter(f" using the phone number {self.phone_number}"))
 
         return txt.append(')')
+
+    def file_display(self, indent: int = 0) -> FileDisplay:
+        """Allows for proper right vs. left justify."""
+        body = BasePanel(
+            border_style=self.border_style,
+            text=[msg.__rich__() for msg in self.messages],
+        )
+
+        return FileDisplay(
+            body_panel=body,
+            file_info=self.file_id_panel,
+            subheaders=self.info,
+            indent=indent,
+        )
 
     def first_message_at(self, name: Name) -> datetime:
         return self.messages_by(name)[0].parse_timestamp()

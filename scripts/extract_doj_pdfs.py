@@ -2,6 +2,8 @@
 # Extract PDFs from the DOJ 2026-01-30 dump.
 # Requires the EPSTEIN_DOJ_PDFS_20260130_DIR env var to be set.
 import re
+import shutil
+import sys
 
 from pdfalyzer.decorators.pdf_file import PdfFile
 from rich.prompt import Confirm, Prompt
@@ -17,6 +19,7 @@ from epstein_files.util.logging import logger
 assert DOJ_PDFS_20260130_DIR is not None, f"{DOJ_PDFS_20260130_DIR_ENV_VAR} env var is not set!"
 assert DOJ_TXTS_20260130_DIR is not None
 
+JMAIL_FILENAME_REGEX = re.compile(r"vol(\d+)-(efta\d+)-pdf.pdf")
 BAD_FILENAME_REGEX = re.compile(r".*/EFTA\d+-\d\.pdf")
 EXTRACT_ARGS = ['extract_pdf_text', '--no-page-number-panels', '--panelize-image-text']
 
@@ -43,7 +46,12 @@ for dir in [d for d in DOJ_PDFS_20260130_DIR.glob('*') if d.is_dir()]:
         extracted_text_dir.mkdir()
 
     for pdf_path in dir.glob('**/*.pdf'):
-        if BAD_FILENAME_REGEX.match(str(pdf_path)):
+        if (jmail_match := JMAIL_FILENAME_REGEX.match(pdf_path.name)):
+            new_pdf_path = pdf_path.parent.joinpath(jmail_match.group(2).upper() + '.pdf')
+            logger.warning(f"Found Jmail PDF '{pdf_path}'\n      moving to '{new_pdf_path}'")
+            shutil.move(pdf_path, new_pdf_path)
+            pdf_path = new_pdf_path
+        elif BAD_FILENAME_REGEX.match(str(pdf_path)):
             raise RuntimeError(f"Bad filename '{pdf_path}'!")
 
         txt_file_path = extracted_text_dir.joinpath(pdf_path.stem + '.txt')
@@ -51,7 +59,7 @@ for dir in [d for d in DOJ_PDFS_20260130_DIR.glob('*') if d.is_dir()]:
         if txt_file_path.exists():
             logger.info(f"Skipping file that already exists '{pdf_path}' in .txt format...")
 
-            if skipped > 0 and skipped % 100 == 0:
+            if skipped > 0 and skipped % 500 == 0:
                 logger.warning(f"Skipped {skipped} PDFs that already exist as .txt...")
 
             skipped += 1

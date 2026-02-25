@@ -25,6 +25,9 @@ from epstein_files.documents.emails.emailers import extract_emailer_names
 from epstein_files.documents.other_file import OtherFile
 from epstein_files.people.interesting_people import EMAILERS_OF_INTEREST_SET
 from epstein_files.output.highlight_config import HIGHLIGHTED_NAMES, get_style_for_name
+from epstein_files.output.html.builder import table_to_html
+from epstein_files.output.html.elements import to_em
+from epstein_files.output.layout_elements.file_display import FileDisplay, JustifyMethod
 from epstein_files.output.rich import DEFAULT_TABLE_KWARGS, build_table, highlighter, join_texts, styled_key_value
 from epstein_files.util.constant.strings import APPEARS_IN, ARCHIVE_LINK_COLOR, REDACTED, TIMESTAMP_DIM
 from epstein_files.util.constant.urls import URL_SIGNIFIERS
@@ -271,6 +274,14 @@ class Email(Communication):
         return self._header
 
     @property
+    def html_margin_bottom(self) -> str:
+        """Overloaded in `Email` for case of emails with attachments."""
+        if self.attached_docs:
+            return '5px'
+        else:
+            return super().html_margin_bottom
+
+    @property
     def info(self) -> list[Text]:
         """Overloads superclass to avoid returning config_description because that's now in the Panel title."""
         if site_config.email_info_in_subtitle:
@@ -415,6 +426,17 @@ class Email(Communication):
 
             return uninteresting_txt
 
+    def file_display(self, align: JustifyMethod | None = None, indent: int = 0) -> FileDisplay:
+        """Allows for proper right vs. left justify."""
+        return FileDisplay(
+            body_panel=self._body_as_table(self.prettified_text, self.config_description_txt),
+            file_info=self.file_id_panel,
+            indent=indent,
+            justify=align,
+            margin_bottom=self.html_margin_bottom,
+            subheaders=self.info,
+        )
+
     def is_from_or_to(self, name: str) -> bool:
         """True if `name` is either the author or one of the recipients."""
         return name in self.participants
@@ -433,6 +455,15 @@ class Email(Communication):
         ]
 
         return join_texts(names, join=', ')
+
+    def to_html(self) -> str:
+        html = super().to_html()
+
+        if (attachments_table := self._attached_docs_table):
+            indent_props = {'margin-left': to_em(site_config.attachment_indent)}
+            html += table_to_html(attachments_table, True, indent_props)
+
+        return html
 
     def _debug_props(self) -> DebugDict:
         props = super()._debug_props()
@@ -790,12 +821,16 @@ class Email(Communication):
         body_bottom_padding = 0 if self.attached_docs else 1
         yield Padding(body, (0, 0, body_bottom_padding, site_config.other_files_table_indent))
 
-        if self.attached_docs:
-            attachments_table_title = f"| Email Attachments for {self.file_info.url_slug}:" # ╏┇┣
-            attachments_table = OtherFile.files_preview_table(self.attached_docs, title=attachments_table_title)
+        if (attachments_table := self._attached_docs_table):
             yield Padding(attachments_table, (0, 0, 1, site_config.attachment_indent))
 
-    def _body_as_panel(self, text: str | Text, description: Text | None) -> Panel:
+    @property
+    def _attached_docs_table(self) -> Table | None:
+        if self.attached_docs:
+            attachments_table_title = f"| Email Attachments for {self.file_info.url_slug}:" # ╏┇┣
+            return OtherFile.files_preview_table(self.attached_docs, title=attachments_table_title)
+
+    def _body_as_panel(self, text: str | Text, description: Text | None = None) -> Panel:
         """Renders the info info text in the panel's bottom border."""
         return Panel(
             text,
@@ -805,7 +840,7 @@ class Email(Communication):
             title_align='right',
         )
 
-    def _body_as_table(self, text: str | Text, description: Text | None) -> Table:
+    def _body_as_table(self, text: str | Text, description: Text | None = None) -> Table:
         """Renders the info text as a top row in a table-ish view."""
         panel = Table(
             border_style=self.border_style,
@@ -813,6 +848,9 @@ class Email(Communication):
             header_style='on gray11',
             show_header=bool(description)
         )
+
+        if description and site_config.email_info_in_subtitle:
+            description = Text('', justify='right').append(description)
 
         panel.add_column(description or '')
         panel.add_row(text)

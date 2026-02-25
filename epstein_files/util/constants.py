@@ -4,7 +4,7 @@ Custom configurations for various files.
 from itertools import groupby
 
 from epstein_files.documents.documents.config_builder import (WOLFF_EPSTEIN_ARTICLE_DRAFT, blaine_letter,
-     letter, starr_letter, whistleblower_cfg, wolff_draft_cfg)
+     fbi_report, letter, starr_letter, whistleblower_cfg, wolff_draft_cfg)
 from epstein_files.documents.documents.categories import CONSTANT_CATEGORIES, Interesting, Neutral
 from epstein_files.documents.documents.doc_cfg import (DEFAULT_TRUNCATE_TO, SHORT_TRUNCATE_TO, NO_TRUNCATE,
      CommunicationCfg, DocCfg, EmailCfg, TextCfg, phone_bill_cfg)
@@ -1456,6 +1456,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00669647', truncate_to=2500),
     EmailCfg(id='EFTA02374977', truncate_to=2500),
     EmailCfg(id='EFTA00869828', truncate_to=SHORT_TRUNCATE_TO),
+    EmailCfg(id='EFTA01010114', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA01903448', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA00661348', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA02378915', truncate_to=NO_TRUNCATE),
@@ -1546,7 +1547,7 @@ OTHER_FILES_BOOK = [
     DocCfg(id='018438', author='Clarisse Thorn', description=f'The S&M Feminist', date='2012-05-14'),
     DocCfg(id='019477', author=EDWARD_JAY_EPSTEIN, description=f'How America Lost Its Secrets: Edward Snowden, the Man, and the Theft'),
     DocCfg(id='020153', author=EDWARD_JAY_EPSTEIN, description=f'The Snowden Affair: A Spy Story In Six Parts'),
-    DocCfg(id='011472', author=EHUD_BARAK, description=f'"Night Flight" (draft)', date='2006-07-12', duplicate_ids=['027849']),  # date from _extract_timestamp()
+    DocCfg(id='011472', author=EHUD_BARAK, description=f'"Night Flight" (draft)', date='2006-07-12', duplicate_ids=['027849'], is_interesting=False),  # date from _extract_timestamp()
     DocCfg(id='010912', author=GORDON_GETTY, description=f'"Free Growth and Other Surprises" (draft)', date='2018-10-18'),
     DocCfg(id='010477', author=JAMES_PATTERSON, description=PATTERSON_BOOK_SCANS, date='2016-10-10'),
     DocCfg(id='010486', author=JAMES_PATTERSON, description=PATTERSON_BOOK_SCANS, date='2016-10-10'),
@@ -1728,6 +1729,13 @@ OTHER_FILES_ARTICLE = [
     DocCfg(id='031794', description=f"very short French magazine clipping"),
 ]
 
+OTHER_FILES_DEPOSITION = [
+    DocCfg(id='EFTA00159483', author=LAWRANCE_VISOSKI),
+    DocCfg(id='021824', author=PAUL_G_CASSELL, description=f"from {EDWARDS_V_DERSHOWITZ}"),
+    DocCfg(id='013463', author='Scott Rothstein', description=f"from {JANE_DOE_V_EPSTEIN_TRUMP}", date='2010-03-23'),
+    DocCfg(id='017488', author='Scott Rothstein', description=f"from {EPSTEIN_V_ROTHSTEIN_EDWARDS}", date='2012-06-22'),
+]
+
 OTHER_FILES_LEGAL = [
     DocCfg(id='017789', author=ALAN_DERSHOWITZ, description=f'letter to {HARVARD} Crimson complaining he was defamed'),
     DocCfg(id='011908', author=BRUNEL_V_EPSTEIN, description=f"court filing"),
@@ -1735,7 +1743,7 @@ OTHER_FILES_LEGAL = [
     DocCfg(id='017635', author=DAVID_SCHOEN, description=LEXIS_NEXIS_CVRA_SEARCH, date='2019-02-28'),
     DocCfg(id='016509', author=DAVID_SCHOEN, description=LEXIS_NEXIS_CVRA_SEARCH, date='2019-02-28'),
     DocCfg(id='017714', author=DAVID_SCHOEN, description=LEXIS_NEXIS_CVRA_SEARCH, date='2019-02-28'),
-    DocCfg(id='021824', author=EDWARDS_V_DERSHOWITZ, description=f"deposition of {PAUL_G_CASSELL}"),
+
     DocCfg(
         id='010757',
         author=EDWARDS_V_DERSHOWITZ,
@@ -1763,13 +1771,13 @@ OTHER_FILES_LEGAL = [
     DocCfg(id='010566', author=EPSTEIN_V_ROTHSTEIN_EDWARDS, description=f"Statement of Undisputed Facts", date='2010-11-04'),
     DocCfg(id='012707', author=EPSTEIN_V_ROTHSTEIN_EDWARDS, description=f"Master Contact List - Privilege Log", date='2011-03-22'),
     DocCfg(id='012103', author=EPSTEIN_V_ROTHSTEIN_EDWARDS, description=f"Telephone Interview with {VIRGINIA_GIUFFRE}", date='2011-05-17'),
-    DocCfg(id='017488', author=EPSTEIN_V_ROTHSTEIN_EDWARDS, description=f"Deposition of Scott Rothstein", date='2012-06-22'),
     DocCfg(id='029315', author=EPSTEIN_V_ROTHSTEIN_EDWARDS, description=f"Plaintiff Motion for Summary Judgment by {JACK_SCAROLA}", date='2013-09-13'),
     DocCfg(id='013304', author=EPSTEIN_V_ROTHSTEIN_EDWARDS, description=f"Plaintiff Response to Epstein's Motion for Summary Judgment", date='2014-04-17'),
-    DocCfg(id='019352', author=FBI, description=FBI_REPORT,),
-    DocCfg(id='021434', author=FBI, description=FBI_REPORT,),
-    DocCfg(id='018872', author=FBI, description=FBI_SEIZED_PROPERTY,),
-    DocCfg(id='021569', author=FBI, description=FBI_SEIZED_PROPERTY,),
+    fbi_report('019352', FBI_REPORT),
+    fbi_report('021434', FBI_REPORT),
+    fbi_report('018872', FBI_REPORT),
+    fbi_report('021569', FBI_REPORT),
+    fbi_report('EFTA01688746', FBI_REPORT),
     DocCfg(id='017792', author=GIUFFRE_V_DERSHOWITZ, description=f"article about {ALAN_DERSHOWITZ}'s appearance on Wolf Blitzer"),
     DocCfg(id='017767', author=GIUFFRE_V_DERSHOWITZ, description=f"article about {ALAN_DERSHOWITZ} working with {JEFFREY_EPSTEIN}"),
     DocCfg(id='017796', author=GIUFFRE_V_DERSHOWITZ, description=f"article about {ALAN_DERSHOWITZ}"),
@@ -1825,7 +1833,6 @@ OTHER_FILES_LEGAL = [
     DocCfg(id='029398', author=JANE_DOE_V_EPSTEIN_TRUMP, description=f'article in Law.com'),
     DocCfg(id='026854', author=JANE_DOE_V_EPSTEIN_TRUMP, description=f"Civil Docket"),
     DocCfg(id='026384', author=JANE_DOE_V_EPSTEIN_TRUMP, description=f"Complaint for rape and sexual abuse", date='2016-06-20', attached_to_email_id='029837'),
-    DocCfg(id='013463', author=JANE_DOE_V_EPSTEIN_TRUMP, description=f'Deposition of Scott Rothstein', date='2010-03-23'),
     DocCfg(id='029257', author=JANE_DOE_V_EPSTEIN_TRUMP, description=f'allegations and identity of plaintiff Katie Johnson', date='2016-04-26'),
     DocCfg(id='032321', author=JANE_DOE_V_EPSTEIN_TRUMP, description=f"Notice of Initial Conference", date='2016-10-04'),
     DocCfg(id='010735', author=JANE_DOE_V_USA, description=f"Dershowitz Reply in Support of Motion for Limited Intervention", date='2015-02-02'),
@@ -2021,6 +2028,11 @@ OTHER_FILES_MONEY = [
     ),
     DocCfg(id='024003', description=f"New Leaf Ventures ($375 million biotech fund) private placement memorandum"),
     # DOJ files
+    DocCfg(
+        id='EFTA00173953',
+        author='Organized Crime Drug Enforcement Task Force',
+        description='report on DEA investigations into Epstein related drug money laundering',
+    ),
     DocCfg(id='EFTA00016884', description="Epstein's last will and testament"),
     DocCfg(id='EFTA01266380', description="Epstein's 2014 Trust with bequests"),
     DocCfg(id='EFTA01282282', description=f"Epstein Butterfly Trust (sole beneficiary {KARYNA_SHULIAK})"),
@@ -2205,8 +2217,8 @@ OTHER_FILES_RESUMÉ = [
     DocCfg(
         id='029304',
         attached_to_email_id='029299',
-        author=DONALD_TRUMP,
-        description=f"recommendation letter for recently departed {TRUMP_ORG} lawyer {MICHAEL_J_BOCCIO}",
+        author=MICHAEL_J_BOCCIO,
+        description=f"recommendation letter by {DONALD_TRUMP}",
     ),
     DocCfg(id='022367', author='Jack J. Grynberg', description=RESUME_OF, date='2014-07-01'),
     DocCfg(
@@ -2532,6 +2544,8 @@ OTHER_FILES_CRYPTO = [
         description='"Dylan" is probably Dylan Love who wrote a story about Epstein and bitcoin arranged by Masha Drokova',
         truncate_to=NO_TRUNCATE,
     ),
+    EmailCfg(id='EFTA01010171'),
+    EmailCfg(id='EFTA01010128'),
     # Valar
     DocCfg(id='EFTA01121910', author=VALAR_VENTURES, description="contract", truncate_to=DEFAULT_TRUNCATE_TO),
     DocCfg(id='EFTA00808277', author=VALAR_VENTURES, description="contract", truncate_to=DEFAULT_TRUNCATE_TO),
@@ -2577,7 +2591,7 @@ OTHER_FILES_CRYPTO = [
     EmailCfg(id='EFTA02517623', description=f"{VINCENZO_IOZZO} explains to Epstein how to deanonymize bitcoin", is_interesting=True),
     EmailCfg(id='EFTA00699275', description=f"'Fred' is probably Coinbase co-founder Fred Ehrsam"),
     EmailCfg(id='EFTA00830911', description='fundraising email for LedgerX which was later acquired by FTX for $298 million'),
-    EmailCfg(id='EFTA01750652', description=f"discussion of using blockchains in the repo markets"),
+    EmailCfg(id='EFTA01750652', description=f"discussion of using blockchains in the repo markets", is_interesting=True),
     EmailCfg(id='EFTA02002675', description=f"{JASON_CALACANIS} passes Epstein the names of the bitcoin core developers"),
     # Unsorted
     EmailCfg(id='032359', description='HBJ brings up "e-currency" (Sharia Coin, probably)'),

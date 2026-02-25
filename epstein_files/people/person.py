@@ -31,6 +31,8 @@ from epstein_files.util.helpers.data_helpers import days_between, flatten, uniqu
 
 ALT_INFO_STYLE = 'medium_purple4'
 CC = 'cc:'
+MAX_NAME_COL_WIDTH = 24
+MAX_INFO_COL_WIDTH = len("Epstein's Russian assistant who was recommended for a visa by Sergei Belyakov")
 MIN_AUTHOR_PANEL_WIDTH = 80
 EMAILER_INFO_TITLE = 'Email Conversations Will Appear'
 UNINTERESTING_CC_INFO = "cc: or bcc: recipient only"
@@ -414,13 +416,13 @@ class Person:
 
         table = build_table(title, caption=footer)
         table.add_column('First')
-        table.add_column('Name', max_width=24, no_wrap=True)
+        table.add_column('Name', max_width=MAX_NAME_COL_WIDTH, no_wrap=True)
         table.add_column('Category', justify='left', style='dim italic')
         table.add_column('Num', justify='right', style='white')
         table.add_column('Sent', justify='right', style='wheat4')
         table.add_column('Recv', justify='right', style='wheat4')
         table.add_column('Days', justify='right', style=TIMESTAMP_DIM)
-        table.add_column('Info', style='white italic')
+        table.add_column('Info', style='white italic', max_width=MAX_INFO_COL_WIDTH)
         current_year = 1990
         current_year_month = current_year * 12
         grey_idx = 0

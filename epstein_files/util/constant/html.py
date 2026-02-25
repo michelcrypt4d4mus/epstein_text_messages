@@ -1,52 +1,70 @@
+from dataclasses import dataclass
 from rich.terminal_theme import TerminalTheme
 
-from epstein_files.util.env import args
 from epstein_files.output.site.sites import SiteType
+from epstein_files.util.env import args
+from epstein_files.util.helpers.string_helper import indented
 
 PAGE_TITLE = '   ∞ Michel de Cryptadamus ∞   '
+FONT_FAMILY = "Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"
 
-if args.all_emails:
-    page_type = 'Emails'
-elif args.all_emails_chrono:
-    page_type = 'Chronological Emails'
-else:
-    page_type = 'Text Messages'
-
-if args.mobile:
-    JS_REDIRECT = ''
-else:
-    JS_REDIRECT = """
-        <script type="text/javascript">
-            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {{
-                window.location.href = """ + f'"{SiteType.get_mobile_redirect_url(args._site_type)}";' + """
-            }}
-        </script>
-    """
+STYLE_TEMPLATE = """{stylesheet}
+body {{
+    background-color: {background};
+    color: {foreground};
+}}"""
 
 
-CONSOLE_HTML_FORMAT = """
-<!DOCTYPE html>
+@dataclass
+class HtmlTemplate:
+    body: str
+
+    def __str__(self) -> str:
+        return f"""<!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
+    <title>Epstein {self.page_type()}</title>
     <link rel="icon" type="image/x-icon" href="https://media.universeodon.com/accounts/avatars/109/363/179/904/598/380/original/eecdc2393e75e8bf.jpg" />
-    """ + JS_REDIRECT + """
+    <meta charset="UTF-8">
+    {self.js_redirect()}
 
     <style>
-        {stylesheet}
-        body {{
-            background-color: {background};
-            color: {foreground};
-        }}
+        {STYLE_TEMPLATE}
     </style>
-""" + f"<title>Epstein {page_type}</title>" + """
 </head>
 
 <body>
-    <pre style="font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><code style="font-family:inherit">{code}</code></pre>
+    {self.body}
 </body>
-</html>
-"""
+</html>"""
+
+    def js_redirect(self) -> str:
+        if args.mobile:
+            return ''
+        else:
+            return """
+    <script type="text/javascript">
+        if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {{
+            window.location.href = """ + f'"{SiteType.get_mobile_redirect_url(args._site_type)}";' + """
+        }}
+    </script>"""
+
+    def page_type(self) -> str:
+        # TODO: this should be integrated with sites config
+        if args.all_emails:
+            return 'Emails'
+        elif args.all_emails_chrono:
+            return 'Chronological Emails'
+        else:
+            return 'Curated'
+
+
+RICH_HTML_TEMPLATE = HtmlTemplate(
+    f"""<pre style="font-family:{FONT_FAMILY}"><code style="font-family:inherit">{{code}}</code></pre>""",
+)
+
+CUSTOM_HTML_TEMPLATE = HtmlTemplate("""<div class="container">\n        {code}\n    </div>""")
+
 
 # Swap black for white
 HTML_TERMINAL_THEME = TerminalTheme(
