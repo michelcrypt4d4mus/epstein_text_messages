@@ -624,8 +624,11 @@ class Email(Communication):
     def _strip_unwanted_text(self) -> str:
         """Add newlines before quoted replies and snip signatures."""
         # Insert line breaks now unless header is broken, in which case we'll do it later after fixing header
+        # self.(f"text before _add_line_breaks:\n\n{self.text}\n---")
         text = self.text if self.header.was_initially_empty else _add_line_breaks(self.text)
         text = REPLY_REGEX.sub(r'\n\1', text)  # Newlines between quoted replies
+        text = FORWARDED_TOO_MUCH_SPACE_REGEX.sub(r'\1\n', text)
+        # self.warn(f"text after _add_line_breaks:\n\n{text}\n---")
 
         for name, signature_regex in EMAIL_SIGNATURE_REGEXES.items():
             signature_replacement = f'<...snipped {name.lower()} email signature...>'
@@ -906,6 +909,7 @@ class Email(Communication):
 
 def _add_line_breaks(email_text: str) -> str:
     text = EMAIL_SIMPLE_HEADER_LINE_BREAK_REGEX.sub(r'\n\1\n', email_text).strip()
+    logger.debug(f"text in _add_line_breaks()\n---\n{text}\n---")
     return FORWARDED_TOO_MUCH_SPACE_REGEX.sub(r'\1\n', text)
 
 

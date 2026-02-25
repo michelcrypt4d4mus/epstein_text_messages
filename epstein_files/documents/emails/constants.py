@@ -22,6 +22,8 @@ ON_TIME_REPLY_PATTERNS = [
 ]
 
 FORWARDED_LINE_PATTERN = r"[- ]*((Forwarded|Original)\s*[Mm]essa.e:?|Message d'?origine)[- ]*|Begin [Ff]orwarded [Mm]essage:?"
+FORWARDED_TOO_MUCH_SPACE_REGEX = re.compile(fr"^({FORWARDED_LINE_PATTERN})\n\n", re.MULTILINE | re.IGNORECASE)
+print(FORWARDED_TOO_MUCH_SPACE_REGEX.pattern)
 REPLY_LINE_ENDING_PATTERN = r"[_ \n]((?-i:[AP]M)|[<_]|w?rote:?)"
 REPLY_NUMERIC_DATE_PATTERN = fr"\d+[-/][\d\w]+[-/]\d+"
 REPLY_ON_DAY_MONTH_PATTERN = fr"(\d+ )?(({'|'.join(ON_TIME_REPLY_PATTERNS)})\w*)"
@@ -40,7 +42,6 @@ REPLY_PATTERNS = [
 # print(fr"(?<!M)On ({REPLY_ON_DATE_PATTERN})[., ].*{REPLY_LINE_ENDING_PATTERN}")
 REPLY_LINE_PATTERN = fr"^({QUOTE_INDENT_CHAR_GROUP}*({'|'.join(REPLY_PATTERNS)}))"
 REPLY_REGEX = re.compile(REPLY_LINE_PATTERN, re.IGNORECASE | re.MULTILINE)
-FORWARDED_TOO_MUCH_SPACE_REGEX = re.compile(fr"^({FORWARDED_LINE_PATTERN})\n\n", re.MULTILINE | re.IGNORECASE)
 
 # Header fields
 COMMON_HEADER_FIELDS = [
