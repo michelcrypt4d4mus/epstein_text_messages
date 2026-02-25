@@ -1,6 +1,8 @@
 # NEXT RELEASE
+
+### 1.8.6
 * Cache `EpsteinFiles._emailers`
-* HTML output
+* custom HTML output for chronological all files page which is now `index.html`
 
 ### 1.8.5
 * Split up the massive Dilorio whistleblower emails
