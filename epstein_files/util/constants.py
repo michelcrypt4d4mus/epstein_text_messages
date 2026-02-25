@@ -1468,6 +1468,14 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA02628058', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA02626427', truncate_to=NO_TRUNCATE),
     #### MAGIC COMMENT FOR MANUAL CONFIG ####
+    EmailCfg(
+        id='EFTA00820371',
+        description='bank digital currencies article',
+        is_interesting=True,
+        is_shown_full_panel=False,
+        truncate_to=NO_TRUNCATE,
+    ),
+
     EmailCfg(id='EFTA01930285', description='"many opportunities"', is_interesting=True),
 
     EmailCfg(id='EFTA01063008', author=OLGA_PONOMAR_BECKER, author_reason='Jmail'),
@@ -2587,8 +2595,13 @@ OTHER_FILES_CRYPTO = [
         description=f'evidence list w/tip about {HOWARD_LUTNICK}, Cantor Fitzgerald, and BGC from an employee who had already blown the whistle successfully',
         truncate_to=(77_000, 77_300),
     ),
+    EmailCfg(id='EFTA01778423', show_with_name=HOWARD_LUTNICK),
     EmailCfg(id='EFTA00474452', description=f"{HOWARD_LUTNICK} and {JEFFREY_EPSTEIN}, NIMBYs"),
-    EmailCfg(id='EFTA00873541', description=f"Epstein says his neighbor {HOWARD_LUTNICK} (recently seen with {PRINCE_ANDREW}) is smart", show_with_name=HOWARD_LUTNICK),
+    EmailCfg(
+        id='EFTA00873541',
+        description=f"Epstein says his neighbor {HOWARD_LUTNICK} (recently seen with {PRINCE_ANDREW}) is smart",
+        show_with_name=HOWARD_LUTNICK,
+    ),
     EmailCfg(id='EFTA02374900', description=f'article about {HOWARD_LUTNICK} real estate purchase'),
     EmailCfg(id='EFTA00443752', description=f"invitation from {HOWARD_LUTNICK}"),
     EmailCfg(id='EFTA00462693', description=f"Epstein gets a table for 10 at the dinner honouring {HOWARD_LUTNICK}"),

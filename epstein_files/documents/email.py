@@ -48,7 +48,7 @@ LINK_LINE_REGEX = re.compile(f"^[>• ]*htt")
 LINK_LINE2_REGEX = re.compile(r"^[-\w.%&=/]{5,}$")
 QUOTED_REPLY_LINE_REGEX = re.compile(r'(\nFrom:(.*)|wrote:)\n', re.IGNORECASE)
 REPLY_TEXT_REGEX = re.compile(rf"^(.*?){REPLY_LINE_PATTERN}", re.DOTALL | re.IGNORECASE | re.MULTILINE)
-XML_PLIST_REGEX = re.compile(r"[<=]\?xml version.*</(plist|xml)>", re.DOTALL)
+XML_PLIST_REGEX = re.compile(r"[<=]?\?xml version.*</(plist|xml)>", re.DOTALL)
 
 # Timestamp regexes
 BAD_TIMEZONE_REGEX = re.compile(fr'\((UTC|GMT\+\d\d:\d\d)\)|{REDACTED}')
@@ -97,7 +97,7 @@ OCR_REPAIRS: dict[str | re.Pattern, str] = {
     'I nline-Images:': 'Inline-Images:',
     re.compile(r"^((?:B?cc|To):.*)\n(>?;.*)", re.IGNORECASE | re.MULTILINE): r'\1 \2',
     re.compile(r"^From "): 'From: ',
-    re.compile(r"^(Sent|Subject) (?![Ff]rom|using|[Vv]ia)", re.MULTILINE): r'\1: ',
+    re.compile(r"^(Sent|Subject) (?![Ff]rom|using|[Vv]ia|with)", re.MULTILINE): r'\1: ',
     re.compile(r"^Subject[.•]{,2} ", re.MULTILINE): 'Subject: ',
     re.compile(r"^(Forwarded|Original) Message$", re.IGNORECASE | re.MULTILINE): r"--- \1 Message ---",  # Make forward lines match our highlight
     # Excessive quote chars

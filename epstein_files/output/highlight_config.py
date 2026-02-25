@@ -353,7 +353,11 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(ED_BOYLE, f"Medici Bank", r"Ed Boy(el|le)"),
             Contact(FRANCESCA_HALL, f"'Assistant/Calendar Queen to The BlockStream team' / {AUSTIN_HILL}"),
             Contact(GAVIN_ANDRESEN, 'core bitcoin developer', r"(Gavin )?Andr.ss?en"),
-            Contact(HOWARD_LUTNICK, "Tether's banker, Cantor Fitzgerald, US Commerce Secretary under Trump", r"Lutnick(,? Howard)|Howard( William)? Lutnick"),
+            Contact(
+                name=HOWARD_LUTNICK,
+                info="Tether's banker, Cantor Fitzgerald, US Commerce Secretary under Trump",
+                emailer_pattern=r"Lutnick(,? Howard)|Howard( William)? Lutnick|HWL"
+            ),
             Contact(JEFFREY_WERNICK, "former COO of Parler, involved in numerous crypto companies like Bitforex"),
             Contact(JEREMY_RUBIN, "developer/researcher", r"Jeremy Rub(in|m)"),
             Contact(LORENZO_DE_MEDICI, "Medici Bank, possibly Medici heir?", r"Prince Lorenzo|Lorenzo de Medici"),
