@@ -1833,7 +1833,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"(Donald\s+(J\.\s+)?)?Trump(ism| (Org(anization)?|Properties)( LLC)?)?",
             r"Don(ald| Jr)(?! (B|Norman|Rubin))",
             r"(Hope )?Hicks",
-            r"(Howard )?Lutnic?k",
+            # r"(Howard )?Lutnic?k",
             r"Ivank?a",
             r"Jared", r"(?<!Tony )Kushner",
             r"(Madeleine )?Westerhout",
