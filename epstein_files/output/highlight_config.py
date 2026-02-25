@@ -979,6 +979,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"NPA",
             r"NS(A|C)",
             r"NYDFS",
+            r"NYPD",
             r"OCC",
             r"ODAG",
             r"OFAC",
