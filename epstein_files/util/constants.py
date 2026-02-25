@@ -2353,6 +2353,7 @@ OTHER_FILES_MISC = [
 OTHER_FILES_GIRLS = [
     EmailCfg(id='EFTA00848644', is_interesting=True, comment='"take a picture of your pussy"'),
     EmailCfg(id='EFTA02557291', description='possibly recruiting girls'),
+    EmailCfg(id='EFTA01022353', description='George Models in Odessa, "She said she was 14-15 yo"', is_interesting=True),
     CommunicationCfg(
         id='EFTA01612733',
         author=MARIA_PRUSAKOVA,

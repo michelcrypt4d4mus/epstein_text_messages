@@ -1467,6 +1467,7 @@ HighlightedNames(
         ],
         patterns=[
             r"\w+@mc2mm.com",
+            r"George Models",
             r"MC2",
             r"(Nicole )?Junkerman",  # Also a venture fund manager now
             r"noah\s*models(.com)?",
