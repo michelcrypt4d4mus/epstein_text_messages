@@ -215,7 +215,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         style='spring_green4',
         contacts=[
             Contact(ALIREZA_ITTIHADIEH, "CEO Freestream Aircraft Limited", r"Alireza.[Il]ttihadieh"),
-            Contact('André Balazs', 'hotelier, CEO of André Balazs Properties', r"Andre Balasz"),
+            Contact('André Balazs', 'hotelier, CEO of André Balazs Properties', r"Andre Bala(sz|zs)"),
             Contact('AT&T Court Appearance Team', "AT&T"),
             Contact(BARBRO_C_EHNBOM, "Swedish pharmaceuticals, SALSS", r"behnbom@aol.com|(Barbro\s.*)?Ehnbom|Barbro"),
             Contact(BARRY_J_COHEN, emailer_pattern=r"barry ((j.?|james) )?cohen?"),
@@ -346,14 +346,14 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(BRYAN_BISHOP, "executive at LedgerX and Polymath fund"),
             Contact(DONALD_NORMAN, f"co-founder of early British crypto exchange Intersango with {AMIR_TAAKI}"),
             Contact(ED_BOYLE, f"Medici Bank", r"Ed Boy(el|le)"),
-            Contact('Francesca Hall', 'Assistant/Calendar Queen to The BlockStream team'),
-            Contact(FRANCESCA_HALL, f"assistant to {AUSTIN_HILL}"),
+            Contact(FRANCESCA_HALL, f"'Assistant/Calendar Queen to The BlockStream team' / {AUSTIN_HILL}"),
             Contact(GAVIN_ANDRESEN, 'core bitcoin developer', r"(Gavin )?Andr.ss?en"),
             Contact(HOWARD_LUTNICK, "Tether's banker, Cantor Fitzgerald, US Commerce Secretary under Trump", r"Lutnick(,? Howard)|Howard( William)? Lutnick"),
             Contact(JEFFREY_WERNICK, "former COO of Parler, involved in numerous crypto companies like Bitforex"),
             Contact(JEREMY_RUBIN, "developer/researcher", r"Jeremy Rub(in|m)"),
             Contact(LORENZO_DE_MEDICI, "Medici Bank, possibly Medici heir?", r"Prince Lorenzo|Lorenzo de Medici"),
             Contact(MADARS_VIRZA, f"ZCash lead dev, {MIT_MEDIA_LAB}"),
+            Contact('Matthew Gilbert', 'assistant to Howard Lutnick'),
             Contact('Suhas Daftuar', 'Chaincode Labs'),
         ],
         patterns=[
@@ -377,7 +377,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Brian Forde",
             r"Brock( Pierce)?",
             r"Brudder( Ventures)?",
-            r"Cantor( (Fitzgerald|Opportunities|Ventures?))?",
+            r"Cantor(,? (Fitzgerald|Opportunities|Ventures?))?",
             r"CF(G)",
             r"Chaincode",
             r"Coinbase",
@@ -456,6 +456,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         contacts=[
             Contact(PAUL_PROSPERI, "friend of Bill Clinton"),
             Contact('Bill Richardson', 'governor of New Mexico', r"(Governor )?(Bill )?Richardson"),
+            Contact('Janis Hartley', f'assistant to Governor Bill Richardson {QUESTION_MARKS}'),
         ],
         patterns=[
             r"(Al )?Franken",
@@ -528,6 +529,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Adriana Ross",
             r"Merwin",
             r"(Sarah )?Kellen", r"Vickers",  # Married name is Metiers
+            r"Rich Barnett",
         ],
     ),
     HighlightedNames(
@@ -814,7 +816,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"DAF",
             r"DB(?!\s+Zw)",
             r"D\.?B\.? Zwirn",
-            r"Deutsche? (Asset|Bank)",
+            r"Deutsche? (Asset|(Post)?Bank)",
             r"donor advised fund",
             r"Electron Capital (Partners)?",
             r"Fenner",
@@ -1651,7 +1653,6 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 emailer_pattern=r"Ma(sha|riy?a) (Prus(kova|so))",
             ),
             Contact(MASHA_DROKOVA, "silicon valley VC, former Putin Youth member"),
-            Contact('Matthew Gilbert', 'assistant to Howard Lutnick'),
             Contact(OLGA_PONOMAR_BECKER),
             Contact(
                 RENATA_BOLOTOVA,
@@ -1681,6 +1682,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Kremlin",
             r"(Anastasia )?Kuznetsova",
             r"Lavrov",
+            r"(Len )?Blavatnik",
             r"Lukoil",
             r"Minsk",
             r"Moscow",
@@ -1787,6 +1789,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Najeev",
             r"Nathan Myhrvold",
             r"Palantir",
+            r"Paul Allen",
             r"(Peter\s)?Th(ie|ei)l",
             r"Pierre Omidyar",
             r"Second Life",
