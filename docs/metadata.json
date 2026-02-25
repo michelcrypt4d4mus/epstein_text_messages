@@ -50639,6 +50639,50 @@
                 "type": "Email"
             },
             {
+                "author": "USANYS",
+                "file_id": "EFTA00031006",
+                "file_size": 615,
+                "filename": "EFTA00031006.txt",
+                "header": {
+                    "author": "\"Berman, Geoffrey (USANYS)\"",
+                    "sent_at": "Fri, 16 Aug 2019 19:36:47 +0000",
+                    "subject": "Fwd: Epstein OCME",
+                    "to": [
+                        "' . (ODAG)\""
+                    ]
+                },
+                "num_lines": 16,
+                "recipients": [
+                    "Office of the Deputy Attorney General"
+                ],
+                "timestamp": "2019-08-16T19:36:47",
+                "type": "Email"
+            },
+            {
+                "author": "FBI",
+                "category": "money",
+                "file_id": "EFTA00037187",
+                "file_size": 3144,
+                "filename": "EFTA00037187.txt",
+                "header": {
+                    "author": "'\u2022. (NY) (FBI)\" <",
+                    "importance": "Normal",
+                    "sent_at": "Tue, 04 Aug 2020 18:29:32 +0000",
+                    "subject": "RE: Epstein case",
+                    "to": [
+                        "' (NY) (FBI)\""
+                    ]
+                },
+                "is_interesting": true,
+                "num_lines": 58,
+                "recipients": [
+                    "NY FBI"
+                ],
+                "timestamp": "2020-08-04T18:29:32",
+                "truncate_to": -1,
+                "type": "Email"
+            },
+            {
                 "author": "Bureau of Prisons",
                 "file_id": "EFTA00039357",
                 "file_size": 10201,
@@ -53963,6 +54007,46 @@
                 "type": "Email"
             },
             {
+                "attachments": [
+                    "Charles_Schwab_SRAfile_07162019_HBRK_Associates_31000150416250_transcriptpdf",
+                    "HBRK Associates_FinCEN_ListAlsx",
+                    "Firsticank_Puerto_Rico_Laurel_Inc_SAR_filed_07192019_31000150840679_transcriptpd"
+                ],
+                "file_id": "EFTA00151544",
+                "file_size": 1747,
+                "filename": "EFTA00151544.txt",
+                "header": {
+                    "attachments": "Charles_Schwab_SRAfile_07162019_HBRK_Associates_31000150416250_transcriptpdf; HBRK Associates_FinCEN_ListAlsx; Firsticank_Puerto_Rico_Laurel_Inc_SAR_filed_07192019_31000150840679_transcriptpd",
+                    "author": "<REDACTED>",
+                    "importance": "Normal",
+                    "sent_at": "Tue, 30 Jul 2019 15:30:26 +0000",
+                    "subject": "Epstein - Charles Schwab - SARs"
+                },
+                "num_lines": 24,
+                "timestamp": "2019-07-30T15:30:26",
+                "type": "Email"
+            },
+            {
+                "file_id": "EFTA00173883",
+                "file_size": 1746,
+                "filename": "EFTA00173883.txt",
+                "header": {
+                    "author": "'",
+                    "cc": [
+                        "'"
+                    ],
+                    "classification": "UNCLASSIFIED",
+                    "sent_at": "Thu, 30 Jan 2025 17:15:29 +0000",
+                    "subject": "Expedite ARMS Reach - Howard William Lutnick --- UNCLASSIFIED",
+                    "to": [
+                        "'"
+                    ]
+                },
+                "num_lines": 27,
+                "timestamp": "2025-01-30T17:15:29",
+                "type": "Email"
+            },
+            {
                 "file_id": "EFTA00238496",
                 "file_size": 714,
                 "filename": "EFTA00238496.txt",
@@ -54787,6 +54871,123 @@
                 "type": "Email"
             },
             {
+                "author": "Matthew Gilbert",
+                "category": "crypto",
+                "description": "Howard Lutnick visit to the island",
+                "file_id": "EFTA00398719",
+                "file_size": 3674,
+                "filename": "EFTA00398719.txt",
+                "header": {
+                    "author": "\"Gilbert, Matthew\"",
+                    "cc": [
+                        "karen",
+                        "Lesley Groff"
+                    ],
+                    "sent_at": "Thu, 20 Dec 2012 18:47:16 +0000",
+                    "subject": "RE: Jeffrey Epstein",
+                    "to": [
+                        "\"Austin, Candace\""
+                    ]
+                },
+                "num_lines": 89,
+                "recipients": [
+                    "Candace Austin",
+                    "Lesley Groff",
+                    "karen"
+                ],
+                "timestamp": "2012-12-20T18:47:16",
+                "truncate_to": 2500,
+                "type": "Email"
+            },
+            {
+                "author": "Lesley Groff",
+                "file_id": "EFTA00398724",
+                "file_size": 2255,
+                "filename": "EFTA00398724.txt",
+                "header": {
+                    "author": "Lesley Groff <I",
+                    "cc": [
+                        "\"Austin, Candace\" <I  \"Lutnick, Allison\""
+                    ],
+                    "sent_at": "Thu, 20 Dec 2012 23:45:38 +0000",
+                    "subject": "Re: Sunday",
+                    "to": [
+                        "\"Lutnick, Howard\""
+                    ]
+                },
+                "num_lines": 39,
+                "recipients": [
+                    "Candace I  Lutnick Austin",
+                    "Howard Lutnick"
+                ],
+                "sent_from_device": "Sent from my iPhone",
+                "timestamp": "2012-12-20T23:45:38",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    "TopTenDB.pdf"
+                ],
+                "author": "Lesley Groff",
+                "file_id": "EFTA00398744",
+                "file_size": 1072,
+                "filename": "EFTA00398744.txt",
+                "header": {
+                    "attachments": "TopTenDB.pdf",
+                    "author": "Lesley Groff",
+                    "cc": [
+                        "Matthew Menchel"
+                    ],
+                    "sent_at": "Mon, 24 Dec 2012 13:18:20 +0000",
+                    "subject": "Jeffrey Epstein with attachment",
+                    "to": [
+                        "\"Matthew Lutnick, Howard\""
+                    ]
+                },
+                "num_lines": 26,
+                "recipients": [
+                    "Howard Lutnick",
+                    "Matthew Menchel"
+                ],
+                "sent_from_device": "Sent from my iPhone",
+                "timestamp": "2012-12-24T13:18:20",
+                "type": "Email"
+            },
+            {
+                "author": "Lesley Groff",
+                "category": "crypto",
+                "description": "Howard Lutnick visit to the island",
+                "file_id": "EFTA00398853",
+                "file_size": 2778,
+                "filename": "EFTA00398853.txt",
+                "header": {
+                    "author": "Lesley Groff <a",
+                    "sent_at": "Thu, 20 Dec 2012 14:40:41 +0000",
+                    "subject": "Fwd: Sunday"
+                },
+                "num_lines": 50,
+                "timestamp": "2012-12-20T14:40:41",
+                "truncate_to": -1,
+                "type": "Email"
+            },
+            {
+                "author": "Lesley Groff",
+                "category": "crypto",
+                "description": "Howard Lutnick visit to the island",
+                "file_id": "EFTA00401065",
+                "file_size": 1911,
+                "filename": "EFTA00401065.txt",
+                "header": {
+                    "author": "Lesley Groff < Pl\u2022",
+                    "sent_at": "Tue, 20 Nov 2012 18:18:17 +0000",
+                    "subject": "Re: Jeffrey Epstein"
+                },
+                "num_lines": 38,
+                "timestamp": "2012-11-20T18:18:17",
+                "truncate_to": -1,
+                "type": "Email"
+            },
+            {
                 "author": "Lesley Groff",
                 "file_id": "EFTA00405784",
                 "file_size": 766,
@@ -55098,6 +55299,47 @@
             },
             {
                 "author": "Lesley Groff",
+                "file_id": "EFTA00436142",
+                "file_size": 190,
+                "filename": "EFTA00436142.txt",
+                "header": {
+                    "author": "Lesley Groff <REDACTED> >",
+                    "sent_at": "Mon, 04 Apr 2011 19:43:54 -0000",
+                    "subject": "Howard Lutnick",
+                    "to": [
+                        "Jeffrey Epstein <jeevacation@gmail.com>"
+                    ]
+                },
+                "num_lines": 5,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "timestamp": "2011-04-04T19:43:54",
+                "type": "Email"
+            },
+            {
+                "category": "crypto",
+                "description": "call with Howard Lutnick after he goes overseas",
+                "file_id": "EFTA00436468",
+                "file_size": 1145,
+                "filename": "EFTA00436468.txt",
+                "header": {
+                    "sent_at": "Thu, 24 Mar 2011 17:08:20 +0000",
+                    "subject": "Re: Howard Lutnick",
+                    "to": [
+                        "Jeffrey Epstein <jeevacation@gmail.com>"
+                    ]
+                },
+                "num_lines": 24,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "timestamp": "2011-03-24T17:08:20",
+                "truncate_to": -1,
+                "type": "Email"
+            },
+            {
+                "author": "Lesley Groff",
                 "file_id": "EFTA00461202",
                 "file_size": 1537,
                 "filename": "EFTA00461202.txt",
@@ -55157,6 +55399,48 @@
                     "Lesley Groff"
                 ],
                 "timestamp": "2017-11-08T23:48:57",
+                "type": "Email"
+            },
+            {
+                "author": "Jeffrey Epstein",
+                "category": "crypto",
+                "description": "Epstein gets a table for 10 at the dinner honouring Howard Lutnick",
+                "file_id": "EFTA00462693",
+                "file_size": 3973,
+                "filename": "EFTA00462693.txt",
+                "header": {
+                    "author": "\"jeffrey E.\" <jeevacation@gmail.com>",
+                    "sent_at": "Thu, 09 Nov 2017 17:33:59 +0000",
+                    "subject": "Re: Donation to Howard Lutnick Event-do you want the table for 10?",
+                    "to": [
+                        "Lesley Groff"
+                    ]
+                },
+                "num_lines": 69,
+                "recipients": [
+                    "Lesley Groff"
+                ],
+                "timestamp": "2017-11-09T17:33:59",
+                "type": "Email"
+            },
+            {
+                "author": "Lesley Groff",
+                "file_id": "EFTA00464411",
+                "file_size": 2894,
+                "filename": "EFTA00464411.txt",
+                "header": {
+                    "author": "Lesley Groff",
+                    "sent_at": "Fri, 17 Nov 2017 20:22:26 +0000",
+                    "subject": "Re: Jeffrey Epstein-UJA Wall Street Dinner Donation",
+                    "to": [
+                        "Rich Kahn"
+                    ]
+                },
+                "num_lines": 76,
+                "recipients": [
+                    "Richard Kahn"
+                ],
+                "timestamp": "2017-11-17T20:22:26",
                 "type": "Email"
             },
             {
@@ -56170,6 +56454,27 @@
                 "type": "Email"
             },
             {
+                "author": "Paul Barrett",
+                "description": "Epstein calls Ari Glass \"a bit sketchy\" despite investing ~$50 million in his fund Boothbay",
+                "file_id": "EFTA00652799",
+                "file_size": 1401,
+                "filename": "EFTA00652799.txt",
+                "header": {
+                    "author": "\"Barrett, Paul S\" <",
+                    "sent_at": "Mon, 04 Mar 2013 17:39:59 +0000",
+                    "subject": "RE:",
+                    "to": [
+                        "Jeffrey Epstein"
+                    ]
+                },
+                "num_lines": 30,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "timestamp": "2013-03-04T17:39:59",
+                "type": "Email"
+            },
+            {
                 "author": "Jeremy Rubin",
                 "file_id": "EFTA00655658",
                 "file_size": 1021,
@@ -57023,6 +57328,27 @@
                     "Olga Ponomar-Becker"
                 ],
                 "timestamp": "2017-06-15T18:46:44",
+                "type": "Email"
+            },
+            {
+                "category": "crypto",
+                "description": "call with Howard Lutnick",
+                "file_id": "EFTA00685520",
+                "file_size": 636,
+                "filename": "EFTA00685520.txt",
+                "header": {
+                    "importance": "Normal",
+                    "sent_at": "Wed, 13 Apr 2011 11:41:28 +0000",
+                    "subject": "Fw: Call List",
+                    "to": [
+                        "\"Jeffrey Epstein\" <jeevacation@gmail.com>"
+                    ]
+                },
+                "num_lines": 21,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "timestamp": "2011-04-13T11:41:28",
                 "type": "Email"
             },
             {
@@ -59231,6 +59557,71 @@
                 "type": "Email"
             },
             {
+                "author": "Ariane de Rothschild",
+                "dupe_type": "same",
+                "duplicate_ids": [
+                    "EFTA01932408"
+                ],
+                "file_id": "EFTA00870649",
+                "file_size": 1267,
+                "filename": "EFTA00870649.txt",
+                "header": {
+                    "author": "\"A. de Rothschild\" <1",
+                    "sent_at": "Tue, 18 Mar 2014 20:55:03 +0000",
+                    "subject": "Re:",
+                    "to": [
+                        "Jeffrey Epstein <jeevacation@gmail.com>"
+                    ]
+                },
+                "num_lines": 24,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "sent_from_device": "Sent from my iPhone",
+                "timestamp": "2014-03-18T20:55:03",
+                "type": "Email"
+            },
+            {
+                "author": "Jeffrey Epstein",
+                "file_id": "EFTA00870659",
+                "file_size": 3094,
+                "filename": "EFTA00870659.txt",
+                "header": {
+                    "author": "Jeffrey Epstein <jeevacation\u00aegmail.com>",
+                    "sent_at": "Tue, 18 Mar 2014 22:16:50 +0000",
+                    "subject": "Re:",
+                    "to": [
+                        "\"COLOM, Olivier\""
+                    ]
+                },
+                "num_lines": 57,
+                "recipients": [
+                    "Olivier Colom"
+                ],
+                "timestamp": "2014-03-18T22:16:50",
+                "type": "Email"
+            },
+            {
+                "author": "Olivier Colom",
+                "file_id": "EFTA00870687",
+                "file_size": 5048,
+                "filename": "EFTA00870687.txt",
+                "header": {
+                    "author": "\"COLOM, Olivier\"",
+                    "sent_at": "Wed, 19 Mar 2014 07:17:40 +0000",
+                    "subject": "Re:",
+                    "to": [
+                        "\"'jeevacation@gmail.com\"' <jeevacation@gmail.com>"
+                    ]
+                },
+                "num_lines": 89,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "timestamp": "2014-03-19T07:17:40",
+                "type": "Email"
+            },
+            {
                 "author": "Austin Hill",
                 "dupe_type": "same",
                 "duplicate_ids": [
@@ -59252,6 +59643,28 @@
                     "Jeffrey Epstein"
                 ],
                 "timestamp": "2014-03-19T18:17:55",
+                "type": "Email"
+            },
+            {
+                "author": "David Stern",
+                "category": "crypto",
+                "description": "Howard Lutnick and Prince Andrew",
+                "file_id": "EFTA00873540",
+                "file_size": 205,
+                "filename": "EFTA00873540.txt",
+                "header": {
+                    "author": "ds@witangroup.com",
+                    "importance": "Normal",
+                    "sent_at": "Wed, 10 Jul 2013 16:12:17 +0000",
+                    "to": [
+                        "\"Jeffrey Epstein\" <jeevacation@gmail.com>"
+                    ]
+                },
+                "num_lines": 5,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "timestamp": "2013-07-10T16:12:17",
                 "type": "Email"
             },
             {
@@ -60104,8 +60517,10 @@
                     ""
                 ],
                 "author": "Jeffrey Epstein",
+                "category": "crypto",
+                "description": "Epstein forwards information from Austin Hill about fraudulent crypto trading operations to Paul Barrett",
                 "file_id": "EFTA00929418",
-                "file_size": 3040,
+                "file_size": 3038,
                 "filename": "EFTA00929418.txt",
                 "header": {
                     "attachments": "Copy_of Ctyptocurrency_Hedge_Funds_-_Highlighted_My_favorites_in_Green n .xlsz;",
@@ -60472,6 +60887,28 @@
                     "Jeffrey Epstein"
                 ],
                 "timestamp": "2013-03-06T04:39:10",
+                "type": "Email"
+            },
+            {
+                "author": "David Rattner",
+                "category": "crypto",
+                "description": "thank you note for a $50,000 donation in honor of Tether banker Howard Lutnick",
+                "file_id": "EFTA00957552",
+                "file_size": 1227,
+                "filename": "EFTA00957552.txt",
+                "header": {
+                    "author": "\"Rattner, David\" <",
+                    "sent_at": "Tue, 14 Nov 2017 01:33:03 +0000",
+                    "subject": "RE:",
+                    "to": [
+                        "jeffrey E. <jeevacation@gmail.com>"
+                    ]
+                },
+                "num_lines": 26,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "timestamp": "2017-11-14T01:33:03",
                 "type": "Email"
             },
             {
@@ -62071,6 +62508,26 @@
                 "type": "Email"
             },
             {
+                "author": "Bella Klein",
+                "file_id": "EFTA01004262",
+                "file_size": 1090,
+                "filename": "EFTA01004262.txt",
+                "header": {
+                    "author": "Bella Klein \u2022",
+                    "sent_at": "Tue, 31 Jul 2018 13:17:12 +0000",
+                    "subject": "Re:",
+                    "to": [
+                        "Jeffrey Epstein <jeevacation@gmail.com>"
+                    ]
+                },
+                "num_lines": 24,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "timestamp": "2018-07-31T13:17:12",
+                "type": "Email"
+            },
+            {
                 "attachments": [
                     "doc03418320180731095105.pdf",
                     "doc03418220180731095053.pdf"
@@ -63295,6 +63752,32 @@
                     "Madars Virza"
                 ],
                 "timestamp": "2018-10-01T20:53:46",
+                "type": "Email"
+            },
+            {
+                "attachments": [
+                    "2ba9f82f-2be8-48bb-a4dd-a76488388caf.JPG"
+                ],
+                "category": "girls",
+                "description": "George Models in Odessa, \"She said she was 14-15 yo\"",
+                "file_id": "EFTA01022353",
+                "file_size": 3723,
+                "filename": "EFTA01022353.txt",
+                "header": {
+                    "inline_images": "2ba9f82f-2be8-48bb-a4dd-a76488388caf.JPG",
+                    "sent_at": "Fri, 21 Sep 2018 11:37:55 +0000",
+                    "subject": "Re:",
+                    "to": [
+                        "\"Jeffrey E.\" <jeevacation@gmail.com>"
+                    ]
+                },
+                "is_interesting": true,
+                "num_lines": 78,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "timestamp": "2018-09-21T11:37:55",
+                "truncate_to": -1,
                 "type": "Email"
             },
             {
@@ -65436,6 +65919,25 @@
                 "type": "Email"
             },
             {
+                "author": "David Mitchell",
+                "file_id": "EFTA01761627",
+                "file_size": 911,
+                "filename": "EFTA01761627.txt",
+                "header": {
+                    "author": "David Mitchell <",
+                    "sent_at": "Saturday, May 4, 2013 4:48 PM",
+                    "to": [
+                        "Jeffrey Epstein"
+                    ]
+                },
+                "num_lines": 32,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "timestamp": "2013-05-04T16:48:00",
+                "type": "Email"
+            },
+            {
                 "author": "Brock Pierce",
                 "file_id": "EFTA01762126",
                 "file_size": 1059,
@@ -65772,6 +66274,24 @@
                     "Jeffrey Epstein"
                 ],
                 "timestamp": "2011-07-10T02:16:00",
+                "type": "Email"
+            },
+            {
+                "file_id": "EFTA01778423",
+                "file_size": 864,
+                "filename": "EFTA01778423.txt",
+                "header": {
+                    "sent_at": "Thursday, March 24, 2011 5:06 PM",
+                    "subject": "Howard Lutnick",
+                    "to": [
+                        "Jefffrey Epstein"
+                    ]
+                },
+                "num_lines": 26,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "timestamp": "2011-03-24T17:06:00",
                 "type": "Email"
             },
             {
@@ -67365,6 +67885,30 @@
                 "type": "Email"
             },
             {
+                "author": "Jeffrey Epstein",
+                "description": "\"many opportunities\"",
+                "file_id": "EFTA01930285",
+                "file_size": 862,
+                "filename": "EFTA01930285.txt",
+                "header": {
+                    "author": "Jeffrey Epstein",
+                    "sent_at": "Tue 3/18/2014 3:40:07 PM",
+                    "to": [
+                        "A. de Rothschilc ]",
+                        "COLOM, Olivie"
+                    ]
+                },
+                "is_interesting": true,
+                "num_lines": 18,
+                "recipients": [
+                    "Ariane de Rothschild",
+                    "Olivier Colom"
+                ],
+                "timestamp": "2014-03-18T15:40:07",
+                "truncate_to": -1,
+                "type": "Email"
+            },
+            {
                 "author": "Tyler Shears",
                 "file_id": "EFTA01931212",
                 "file_size": 573,
@@ -67481,6 +68025,29 @@
                     "Jeffrey Epstein"
                 ],
                 "timestamp": "2014-03-18T00:08:51",
+                "type": "Email"
+            },
+            {
+                "author": "Ariane de Rothschild",
+                "dupe_type": "same",
+                "duplicate_of_id": "EFTA00870649",
+                "file_id": "EFTA01932408",
+                "file_size": 1266,
+                "filename": "EFTA01932408.txt",
+                "header": {
+                    "author": "A. de Rothschild",
+                    "sent_at": "Tue 3/18/2014 8:55:03 PM",
+                    "subject": "Re:",
+                    "to": [
+                        "Jeffrey Epsteitevacation@gmail.comj"
+                    ]
+                },
+                "num_lines": 24,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "sent_from_device": "Sent from my iPhone",
+                "timestamp": "2014-03-18T20:55:03",
                 "type": "Email"
             },
             {
@@ -69398,6 +69965,18 @@
                 "type": "Email"
             },
             {
+                "file_id": "EFTA02191245",
+                "file_size": 234,
+                "filename": "EFTA02191245.txt",
+                "header": {
+                    "sent_at": "ue 4/5/2811 1.",
+                    "subject": "Alarm - JE to call Howard Lutnick today. Call Mathew to organize: OPPOIRIPM"
+                },
+                "num_lines": 5,
+                "timestamp": "2011-04-04T08:00:00",
+                "type": "Email"
+            },
+            {
                 "author": "Lesley Groff",
                 "author_uncertain": true,
                 "file_id": "EFTA02225790",
@@ -70835,6 +71414,26 @@
                     "Jeffrey Epstein"
                 ],
                 "timestamp": "2015-01-22T22:17:00",
+                "type": "Email"
+            },
+            {
+                "author": "Lesley Groff",
+                "file_id": "EFTA02360594",
+                "file_size": 811,
+                "filename": "EFTA02360594.txt",
+                "header": {
+                    "author": "Lesley Groff <",
+                    "sent_at": "Tuesday, April 5, 2011 1:58 PM",
+                    "subject": "reminder Howard Lutnick",
+                    "to": [
+                        "Jeff-key Epstein"
+                    ]
+                },
+                "num_lines": 27,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "timestamp": "2011-04-05T13:58:00",
                 "type": "Email"
             },
             {
@@ -82402,9 +83001,10 @@
                 "was_timestamp_extracted": true
             },
             {
+                "author": "Blockchain Capital",
                 "category": "crypto",
                 "date": "2015-10-01",
-                "description": "Blockchain Capital and Brock Pierce pitch deck",
+                "description": "pitch deck",
                 "file_id": "024271",
                 "file_size": 12220,
                 "filename": "HOUSE_OVERSIGHT_024271.txt",
@@ -83105,9 +83705,10 @@
                 "file_id": "026668",
                 "file_size": 13429,
                 "filename": "HOUSE_OVERSIGHT_026668.txt",
-                "is_interesting": false,
+                "is_interesting": true,
                 "num_lines": 160,
                 "timestamp": "2017-02-16T00:00:00",
+                "truncate_to": -1,
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -104392,12 +104993,48 @@
                 "was_timestamp_extracted": true
             },
             {
+                "author": "FBI",
+                "category": "crypto",
+                "description": "tip about Howard Lutnick and financial irregularities",
+                "file_id": "EFTA00020515",
+                "file_size": 1436,
+                "filename": "EFTA00020515.txt",
+                "is_interesting": true,
+                "num_lines": 36,
+                "timestamp": "2020-10-19T16:11:00",
+                "truncate_to": -1,
+                "type": "DojFile",
+                "was_timestamp_extracted": true
+            },
+            {
                 "file_id": "EFTA00027019",
                 "file_size": 19181,
                 "filename": "EFTA00027019.txt",
                 "is_interesting": null,
                 "num_lines": 310,
                 "timestamp": "2019-08-06T00:00:00",
+                "type": "DojFile",
+                "was_timestamp_extracted": true
+            },
+            {
+                "author": "Bureau of Prisons",
+                "background_color": "red",
+                "category": "misc",
+                "description": "internal message about discovery of Epstein's body",
+                "file_id": "EFTA00034357",
+                "file_size": 605,
+                "filename": "EFTA00034357.txt",
+                "is_interesting": true,
+                "num_lines": 13,
+                "type": "DojFile"
+            },
+            {
+                "file_id": "EFTA00036062",
+                "file_size": 1704,
+                "filename": "EFTA00036062.txt",
+                "is_interesting": null,
+                "num_lines": 26,
+                "timestamp": "2019-07-29T00:00:00",
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
@@ -104807,12 +105444,37 @@
                 "was_timestamp_extracted": true
             },
             {
+                "category": "legal",
+                "description": "USVI court filing about Epstein will and estate",
+                "file_id": "EFTA00074744",
+                "file_size": 179708,
+                "filename": "EFTA00074744.txt",
+                "is_interesting": null,
+                "num_lines": 2769,
+                "timestamp": "2021-02-24T00:00:00",
+                "type": "DojFile",
+                "was_timestamp_extracted": true
+            },
+            {
                 "file_id": "EFTA00080260",
                 "file_size": 19095,
                 "filename": "EFTA00080260.txt",
                 "is_interesting": null,
                 "num_lines": 337,
                 "timestamp": "2019-08-06T00:00:00",
+                "type": "DojFile",
+                "was_timestamp_extracted": true
+            },
+            {
+                "author": "Palm Beach Police",
+                "category": "legal",
+                "description": "incident report detailing the investigation into Jeffrey Epstein",
+                "file_id": "EFTA00084614",
+                "file_size": 210062,
+                "filename": "EFTA00084614.txt",
+                "is_interesting": null,
+                "num_lines": 5311,
+                "timestamp": "2006-07-13T00:00:00",
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
@@ -104863,6 +105525,20 @@
                 "was_timestamp_extracted": true
             },
             {
+                "author": "DOJ",
+                "category": "legal",
+                "date": "2025-09-01",
+                "description": "Powerpoint summary of Child Sex Trafficking Task Force Epstein investigation",
+                "file_id": "EFTA00164939",
+                "file_size": 14719,
+                "filename": "EFTA00164939.txt",
+                "is_interesting": true,
+                "num_lines": 317,
+                "timestamp": "2025-09-01T00:00:00",
+                "truncate_to": -1,
+                "type": "DojFile"
+            },
+            {
                 "author": "Organized Crime Drug Enforcement Task Force",
                 "category": "money",
                 "description": "report on DEA investigations into Epstein related drug money laundering",
@@ -104886,6 +105562,22 @@
                 "type": "DojFile"
             },
             {
+                "category": "crypto",
+                "date": "2012-12-28",
+                "description": "Howard Lutnick and Epstein business deal for Adfin Solutions, Inc. (Southern Trust is Epstein)",
+                "file_id": "EFTA00289560",
+                "file_size": 231400,
+                "filename": "EFTA00289560.txt",
+                "is_interesting": true,
+                "num_lines": 3258,
+                "timestamp": "2012-12-28T00:00:00",
+                "truncate_to": [
+                    160000,
+                    162000
+                ],
+                "type": "DojFile"
+            },
+            {
                 "author": "Crypto PR Lab",
                 "category": "crypto",
                 "description": "accounting statement",
@@ -104895,6 +105587,20 @@
                 "is_interesting": true,
                 "num_lines": 20,
                 "timestamp": "2018-11-27T19:30:00",
+                "type": "DojFile",
+                "was_timestamp_extracted": true
+            },
+            {
+                "author": "Sergey Belyakov",
+                "category": "girls",
+                "description": "Epstein Russian visa",
+                "file_id": "EFTA00306033",
+                "file_size": 1145,
+                "filename": "EFTA00306033.txt",
+                "is_interesting": true,
+                "is_shown_full_panel": true,
+                "num_lines": 21,
+                "timestamp": "2018-05-31T00:00:00",
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
@@ -104910,6 +105616,18 @@
                 "timestamp": "2018-11-27T19:31:00",
                 "type": "DojFile",
                 "was_timestamp_extracted": true
+            },
+            {
+                "category": "crypto",
+                "date": "2011-04-26",
+                "description": "calendar reminder for call with Howard Lutnick",
+                "file_id": "EFTA00434306",
+                "file_size": 527,
+                "filename": "EFTA00434306.txt",
+                "is_interesting": true,
+                "num_lines": 15,
+                "timestamp": "2011-04-26T00:00:00",
+                "type": "DojFile"
             },
             {
                 "file_id": "EFTA00507626",
@@ -106313,8 +107031,24 @@
                 "was_timestamp_extracted": true
             },
             {
+                "author": "FBI",
                 "category": "crypto",
-                "description": "FBI report on tip linking American commerce secretary and Tether asset custodian Howard Lutnick to Ponzi schemes and Russian money",
+                "description": "tip linking American commerce secretary and Tether asset custodian Howard Lutnick to Ponzi schemes and Russian money",
+                "file_id": "EFTA01249207",
+                "file_size": 6994,
+                "filename": "EFTA01249207.txt",
+                "is_interesting": true,
+                "is_shown_full_panel": true,
+                "num_lines": 121,
+                "show_with_name": "Brock Pierce",
+                "timestamp": "2021-03-17T00:00:00",
+                "type": "DojFile",
+                "was_timestamp_extracted": true
+            },
+            {
+                "author": "FBI",
+                "category": "crypto",
+                "description": "tip linking American commerce secretary and Tether asset custodian Howard Lutnick to Ponzi schemes and Russian money",
                 "file_id": "EFTA01249210",
                 "file_size": 5018,
                 "filename": "EFTA01249210.txt",
@@ -106938,6 +107672,23 @@
             },
             {
                 "author": "FBI",
+                "category": "crypto",
+                "description": "evidence list w/tip about Howard Lutnick, Cantor Fitzgerald, and BGC from an employee who had already blown the whistle successfully",
+                "file_id": "EFTA01684300",
+                "file_size": 83199,
+                "filename": "EFTA01684300.txt",
+                "is_interesting": true,
+                "num_lines": 2588,
+                "timestamp": "2024-08-01T00:00:00",
+                "truncate_to": [
+                    77000,
+                    77300
+                ],
+                "type": "DojFile",
+                "was_timestamp_extracted": true
+            },
+            {
+                "author": "FBI",
                 "category": "legal",
                 "description": "report on Epstein investigation (redacted)",
                 "file_id": "EFTA01688746",
@@ -106948,6 +107699,19 @@
                 "timestamp": "2018-01-01T00:00:00",
                 "type": "DojFile",
                 "was_timestamp_extracted": true
+            },
+            {
+                "category": "crypto",
+                "date": "2011-05-18",
+                "description": "schedule showing \"drinks\" with Howard Lutnick",
+                "file_id": "EFTA01733746",
+                "file_size": 1612,
+                "filename": "EFTA01733746.txt",
+                "is_interesting": true,
+                "is_shown_full_panel": true,
+                "num_lines": 44,
+                "timestamp": "2011-05-18T00:00:00",
+                "type": "DojFile"
             },
             {
                 "category": "crypto",
@@ -107479,7 +108243,7 @@
         "Boris Nikolic": "tech bro, biotech VC partner of Bill Gates, Epstein estate executor",
         "Brad Edwards": "victim lawyer, Rothstein Rosenfeldt Adler (Rothstein was Roger Stone's partner)",
         "Brad Karp": "lawyer, head of the law firm Paul Weiss",
-        "Brad Wechsler": "finance, head of Leon Black's personal investment vehicle according to FT",
+        "Brad Wechsler": "finance, IMAX chairman, head of Leon Black's personal investment vehicle according to FT",
         "Brock Pierce": "crypto, Bannon partner, Tether co-founder, friend of Yair Netanyahu, sex crime history",
         "Bruce Moskowitz": "Trump, 'Trump's health guy' according to Epstein",
         "Bryan Bishop": "crypto, executive at LedgerX and Polymath fund",
@@ -107497,6 +108261,7 @@
         "Dangene and Jennie Enterprise": "friend, founders of the members-only CORE club",
         "Daniel Kahneman": "academia, Nobel economic sciences laureate and cognitivie psychologist (?)",
         "Daniel Sabba": "finance, UBS Investment Bank",
+        "Daniel Siad": "modeling, model scout funded by Epstein",
         "Danny Frost": "government, Director of Communications at Manhattan D.A.",
         "Daphne Wallace": "employee, logistics and schedule coordination",
         "Darren Indyke": "lawyer, Epstein estate executor",
@@ -107548,6 +108313,7 @@
         "Heather Mann": "modeling, South African former model, ex-girlfriend of Prince Andrew (?)",
         "Henry Holt": "journalist, Michael Wolff's book publisher (company not a person)",
         "Hongbo Robert Bao": "tech bro, Peter Thiel's Valar Ventures",
+        "Howard Lutnick": "crypto, Tether's banker, Cantor Fitzgerald, US Commerce Secretary under Trump",
         "Howard Rubenstein": "lawyer, Epstein's former spokesman",
         "Ian O'Donnell": "tech bro, Peter Thiel's Valar Ventures",
         "Ian Osborne": "publicist, Ian Osborne & Partners reputation repairer hired in 2011",
@@ -107575,6 +108341,7 @@
         "Jide Zeitlin": "finance, former partner at Goldman Sachs, allegations of sexual misconduct",
         "John Allessi": "employee, Epstein's houseman",
         "John Brockman": "journalist, literary agent and author specializing in scientific literature",
+        "John Paulson": "finance, hedge fund guy",
         "Johnny el Hachem": "Rothschild, Edmond de Rothschild Private Equity",
         "Joi Ito": "head of MIT Media Lab and MIT Digital Currency Initiative, co-founded VC funds with Epstein",
         "Jojo Fontanilla": "employee, Filipino housekeeper",
@@ -107613,13 +108380,14 @@
         "Madars Virza": "crypto, ZCash lead dev, MIT Media Lab",
         "Manhattan DA": "government, American law enforcement",
         "Manuela Martinez": "modeling, Mega Partners (Brazilian agency)",
-        "Marc Leon": "finance, Luxury Properties Sari Morrocco",
+        "Marc Leon": "business, Epstein's realtor in Morocco, Luxury Properties Sari",
         "Maria Prusakova": "Russia, AKA Masha Prusso, former Olympic snowboarder, Crypto PR Lab co-founder, \"found ladies\" for Epstein",
         "Mark Epstein": "Epstein, brother of Jeffrey",
         "Mark Tramo": "academia, professor of neurology at UCLA",
         "Martin Nowak": "Harvard, professor of mathematics and biology",
         "Martin Weinberg": "lawyer, criminal defense attorney",
         "Masha Drokova": "Russia, silicon valley VC, former Putin Youth member",
+        "Matthew Gilbert": "Russia, assistant to Howard Lutnick",
         "Matthew Hiltzik": "publicist, crisis PR at Hiltzik Strategies",
         "Melanie Spinella": "finance, representative of Leon Black",
         "Melanie Walker": "friend, doctor, friend of Bill Gates",
@@ -107648,11 +108416,12 @@
         "Norman D. Rau": "finance, managing director at Morgan Stanley",
         "Norman Finkelstein": "academia, scholar, well known critic of Israel",
         "Office of the Deputy Attorney General": "government, American law enforcement",
-        "Olivier Colom": "lobbyist, France",
+        "Olivier Colom": "lobbyist, Epstein's banker at Edmond de Rothschild (Suisse) SA Bank",
         "Owen Blicksilver": "publicist, OBPR, Inc.",
+        "Paul Barrett": "finance, Alpha Group Capital",
         "Paul Keating": "lobbyist, former prime minister of Australia",
         "Paul Krassner": "journalist, 60s counterculture guy, Merry Prankster",
-        "Paul Morris": "finance, Deutsche Bank",
+        "Paul Morris": "finance, Epstein's primary private banker at JP Morgan then Deutsche Bank",
         "Paul Prosperi": "Democrat, friend of Bill Clinton",
         "Paula Heil Fisher (???)": "friend, Epstein's ex-girlfriend who is now in the opera world",
         "Paula Speer": "government, court reporter",
@@ -107670,6 +108439,7 @@
         "Raafat Alsabbagh": "mideast, Saudi royal advisor",
         "Reid Hoffman": "tech bro, PayPal mafia member, founder of LinkedIn",
         "Reid Weingarten": "lawyer, Steptoe LLP partner",
+        "Reinaldo Avila Da Silva": "Latin America, Peter Mandelson's Brazilian partner",
         "Renata Bolotova": "Russia, former model, fund manager at New York State Insurance Fund, \u0420\u0435\u043d\u0430\u0442\u0430 \u0411\u043e\u043b\u043e\u0442\u043e\u0432\u0430",
         "Reuben Kobulnik": "tech bro, Peter Thiel's Valar Ventures",
         "Reza Bundy": "business, founder of IronPlanet",
