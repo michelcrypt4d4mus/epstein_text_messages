@@ -379,7 +379,12 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             ),
             Contact(JEFFREY_WERNICK, "former COO of Parler, involved in numerous crypto companies like Bitforex"),
             Contact(JEREMY_RUBIN, "developer/researcher", r"Jeremy Rub(in|m)"),
-            Contact('Kyara Investment', f"an Epstein fund, usually created with {JOI_ITO}", r"Kyara( Investments?)?( [IV]+)?"),
+            Contact(
+                KYARA_INVESTMENT,
+                f"an Epstein fund, usually created with {JOI_ITO}",
+                r"Kyara( Investments?)?( [IV]+)?",
+                is_organization=True
+            ),
             Contact(LORENZO_DE_MEDICI, "Medici Bank, possibly Medici heir?", r"Prince Lorenzo|Lorenzo de Medici"),
             Contact(MADARS_VIRZA, f"ZCash lead dev, {MIT_MEDIA_LAB}"),
             Contact('Matthew Gilbert', 'assistant to Howard Lutnick'),
