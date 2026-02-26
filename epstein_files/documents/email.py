@@ -909,7 +909,6 @@ class Email(Communication):
 
 
 def _add_line_breaks(email_text: str) -> str:
-    logger.debug(f"text before EMAIL_SIMPLE_HEADER_LINE_BREAK_REGEX _add_line_breaks()\n---\n{text}\n---")
     text = EMAIL_SIMPLE_HEADER_LINE_BREAK_REGEX.sub(r'\n\1\n', email_text).strip()
     logger.debug(f"text after EMAIL_SIMPLE_HEADER_LINE_BREAK_REGEX _add_line_breaks()\n---\n{text}\n---")
     return FORWARDED_TOO_MUCH_SPACE_REGEX.sub(r'\1\n', text)
