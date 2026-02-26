@@ -348,7 +348,7 @@ NAMES_TO_NOT_PARTIALLY_MATCH = """
 OTHER_NAMES = NAMES_TO_NOT_PARTIALLY_MATCH + """
     aaron albert alberto alec alexandra alice anderson andre ann anna anne ariana arthur
     baldwin barack barrett ben benjamin berger bert binant bob bonner boyden bradley brady branson bright bruno bryant burton
-    chapman charles charlie christopher clint cohen colin collins conway
+    capital chapman charles charlie christopher clint cohen colin collins conway
     davis dean debbie debra deborah dennis diana diane diaz dickinson dixon dominique don dylan
     edmond elizabeth emily entwistle erik evelyn
     ferguson flachsbart francis franco frank
@@ -361,7 +361,7 @@ OTHER_NAMES = NAMES_TO_NOT_PARTIALLY_MATCH + """
     marcus marianne matt matthew melissa michele michelle moore moscowitz
     nancy nussbaum
     paulson philippe
-    rafael ray richard richardson rob robert robin ron rubin rudolph ryan
+    rafael ray richard richardson rob robert robin ron ross rubin rudolph ryan
     sara sarah seligman serge sergey silverman sloman smith snowden sorkin steele stevie stewart
     ted theresa thompson tiffany timothy
     valeria
