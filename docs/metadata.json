@@ -3283,6 +3283,7 @@
             },
             {
                 "author": "Al Seckel",
+                "description": "Al Seckel and Epstein fight about the bill for reputation management services",
                 "file_id": "022203",
                 "file_size": 4935,
                 "filename": "HOUSE_OVERSIGHT_022203.txt",
@@ -29378,7 +29379,7 @@
             },
             {
                 "author": "Ghislaine Maxwell",
-                "description": "the \"dog that hasn't barked is trump\"",
+                "description": "\"that dog that hasn't barked is trump\"",
                 "file_id": "031326",
                 "file_size": 1132,
                 "filename": "HOUSE_OVERSIGHT_031326.txt",
@@ -51847,6 +51848,7 @@
                     "Interview of Corrections Offices - DRAFT.pdf"
                 ],
                 "author": "FBI",
+                "category": "government",
                 "file_id": "EFTA00039971",
                 "file_size": 221,
                 "filename": "EFTA00039971.txt",
@@ -55948,6 +55950,7 @@
             },
             {
                 "author": "Ghislaine Maxwell",
+                "date": "2002-10-23 15:49:00",
                 "file_id": "EFTA00579769",
                 "file_size": 687,
                 "filename": "EFTA00579769.txt",
@@ -55961,8 +55964,8 @@
                 "recipients": [
                     "Melania"
                 ],
-                "timestamp": "4501-01-01T05:00:00",
-                "truncate_to": -1,
+                "timestamp": "2002-10-23T15:49:00",
+                "truncate_to": 587,
                 "type": "Email"
             },
             {
@@ -59437,6 +59440,9 @@
                 },
                 "is_interesting": true,
                 "num_lines": 23,
+                "recipients": [
+                    "unknown girl"
+                ],
                 "timestamp": "2015-08-15T23:05:09",
                 "truncate_to": -1,
                 "type": "Email"
@@ -60290,6 +60296,7 @@
             },
             {
                 "author": "Jeffrey Epstein",
+                "category": "girls",
                 "description": "a very strange conversation about \"Peter\" and \"mj\"",
                 "file_id": "EFTA00888467",
                 "file_size": 3279,
@@ -60301,8 +60308,11 @@
                 },
                 "is_interesting": true,
                 "num_lines": 62,
+                "recipients": [
+                    "unknown girl"
+                ],
                 "timestamp": "2010-01-19T12:13:13",
-                "truncate_to": -1,
+                "truncate_to": 1600,
                 "type": "Email"
             },
             {
@@ -60351,6 +60361,7 @@
             },
             {
                 "author": "Jeffrey Epstein",
+                "category": "girls",
                 "file_id": "EFTA00897668",
                 "file_size": 2097,
                 "filename": "EFTA00897668.txt",
@@ -60360,6 +60371,9 @@
                     "subject": "Re: (6e3 TeMbi)"
                 },
                 "num_lines": 43,
+                "recipients": [
+                    "unknown girl"
+                ],
                 "timestamp": "2010-10-28T14:53:54",
                 "type": "Email"
             },
@@ -64498,6 +64512,37 @@
                 "type": "Email"
             },
             {
+                "attachments": [
+                    "NR_First_Look.pdf",
+                    "ATT00001.htm",
+                    "Signed_MOU_Schouten-MGH_signed_by_Schouten_24_Sep_18_(4).pdf",
+                    "ATT00002.htm"
+                ],
+                "author": "Nicholas Ribis",
+                "category": "crypto",
+                "description": "Bo Collins inspired by Epstein to set up Mercantile Global Holdings crypto trading offering stablecoins to people who can't get bank accounts",
+                "file_id": "EFTA01030070",
+                "file_size": 7650,
+                "filename": "EFTA01030070.txt",
+                "header": {
+                    "attachments": "NR_First_Look.pdf; ATT00001.htm; Signed_MOU_Schouten-MGH_signed_by_Schouten_24_Sep_18_(4).pdf; ATT00002.htm",
+                    "author": "Nicholas Ribis",
+                    "sent_at": "Sun, 17 Feb 2019 12:20:59 +0000",
+                    "to": [
+                        "Jeffrey Epstein <JEEvacation@gmail.com>"
+                    ]
+                },
+                "is_interesting": true,
+                "num_lines": 110,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "sent_from_device": "Sent from my iPhone",
+                "timestamp": "2019-02-17T12:20:59",
+                "truncate_to": -1,
+                "type": "Email"
+            },
+            {
                 "author": "Richard Kahn",
                 "file_id": "EFTA01030418",
                 "file_size": 7975,
@@ -66742,7 +66787,7 @@
             },
             {
                 "file_id": "EFTA01772677",
-                "file_size": 2015,
+                "file_size": 2064,
                 "filename": "EFTA01772677.txt",
                 "header": {
                     "sent_at": "Thursday, October 13, 2011 10:25 PM",
@@ -66751,7 +66796,7 @@
                         "Jeffrey Epstein"
                     ]
                 },
-                "num_lines": 40,
+                "num_lines": 39,
                 "recipients": [
                     "Jeffrey Epstein"
                 ],
@@ -67472,6 +67517,7 @@
                     "Renata Bolotova"
                 ],
                 "timestamp": "2012-01-23T11:44:35",
+                "truncate_to": 1220,
                 "type": "Email",
                 "uncertain_recipient": "\"sneaky dog\""
             },
@@ -67541,8 +67587,9 @@
             },
             {
                 "author": "Jeffrey psten",
+                "description": "Karim Wade asks if Epstein is free to meet the president (of Senegal?)",
                 "file_id": "EFTA01854384",
-                "file_size": 2020,
+                "file_size": 2075,
                 "filename": "EFTA01854384.txt",
                 "header": {
                     "author": "Jeffrey psten",
@@ -67552,11 +67599,12 @@
                         "afri x"
                     ]
                 },
-                "num_lines": 47,
+                "num_lines": 45,
                 "recipients": [
                     "Karim Wade"
                 ],
                 "timestamp": "2011-08-31T22:38:16",
+                "truncate_to": -1,
                 "type": "Email"
             },
             {
@@ -69554,12 +69602,12 @@
             },
             {
                 "date": "2012-01-31 9:16 PM",
-                "description": "raunchy email mentioning \"Sasah Grey guy\" (Grey is a famous porn star)",
+                "description": "raunchy email mentioning \"Sasha Grey guy\" (Grey is a famous porn star), note Boris Nikolic name in SMTP info at end",
                 "file_id": "EFTA02010589",
-                "file_size": 7501,
+                "file_size": 7510,
                 "filename": "EFTA02010589.txt",
                 "is_interesting": true,
-                "num_lines": 169,
+                "num_lines": 162,
                 "recipients": [
                     "Jeffrey Epstein"
                 ],
@@ -69654,7 +69702,7 @@
             {
                 "author": "Al Seckel",
                 "category": "crypto",
-                "description": "Al Seckel introduces Epstein to Brock Pierce",
+                "description": "Al Seckel introduces Epstein to Bannon business partner Brock Pierce of Tether/Blockchain Capital",
                 "file_id": "EFTA02035756",
                 "file_size": 1821,
                 "filename": "EFTA02035756.txt",
@@ -73202,6 +73250,8 @@
                 "type": "Email"
             },
             {
+                "author": "unknown girl",
+                "category": "girls",
                 "file_id": "EFTA02431535",
                 "file_size": 475,
                 "filename": "EFTA02431535.txt",
@@ -74757,7 +74807,7 @@
             },
             {
                 "author": "Jeffrey Epstein",
-                "description": "Epstein asking an intro to the bitcoin team he would go on to fund",
+                "description": "Epstein asks for an intro to the bitcoin team he would go on to fund",
                 "file_id": "EFTA02540384",
                 "file_size": 223,
                 "filename": "EFTA02540384.txt",
@@ -77918,6 +77968,7 @@
             },
             {
                 "author": "FBI",
+                "category": "government",
                 "date": "2023-07-11T08:25:00",
                 "file_id": "EFTA02730483",
                 "file_size": 1673,
@@ -78360,6 +78411,7 @@
                     "LI Inter/MN of at"
                 ],
                 "author": "FBI",
+                "category": "government",
                 "date": "2021-05-26 16:12:00",
                 "file_id": "EFTA02731552",
                 "file_size": 3864,
@@ -81191,7 +81243,7 @@
                 "file_id": "013463",
                 "file_size": 47187,
                 "filename": "HOUSE_OVERSIGHT_013463.txt",
-                "is_interesting": true,
+                "is_interesting": null,
                 "num_lines": 633,
                 "timestamp": "2010-03-23T00:00:00",
                 "type": "OtherFile"
@@ -82045,7 +82097,7 @@
                 "file_id": "017488",
                 "file_size": 147508,
                 "filename": "HOUSE_OVERSIGHT_017488.txt",
-                "is_interesting": true,
+                "is_interesting": null,
                 "num_lines": 4376,
                 "timestamp": "2012-06-22T00:00:00",
                 "type": "OtherFile"
@@ -82391,8 +82443,8 @@
             },
             {
                 "author": "FBI",
-                "category": "legal",
-                "description": "report on Epstein investigation (redacted)",
+                "category": "government",
+                "description": "report on Epstein investigation",
                 "file_id": "018872",
                 "file_size": 493561,
                 "filename": "HOUSE_OVERSIGHT_018872.txt",
@@ -82548,8 +82600,8 @@
             },
             {
                 "author": "FBI",
-                "category": "legal",
-                "description": "report on Epstein investigation (redacted)",
+                "category": "government",
+                "description": "report on Epstein investigation",
                 "file_id": "019352",
                 "file_size": 91810,
                 "filename": "HOUSE_OVERSIGHT_019352.txt",
@@ -82872,8 +82924,8 @@
             },
             {
                 "author": "FBI",
-                "category": "legal",
-                "description": "report on Epstein investigation (redacted)",
+                "category": "government",
+                "description": "report on Epstein investigation",
                 "file_id": "021434",
                 "file_size": 167195,
                 "filename": "HOUSE_OVERSIGHT_021434.txt",
@@ -82885,8 +82937,8 @@
             },
             {
                 "author": "FBI",
-                "category": "legal",
-                "description": "report on Epstein investigation (redacted)",
+                "category": "government",
+                "description": "report on Epstein investigation",
                 "file_id": "021569",
                 "file_size": 375877,
                 "filename": "HOUSE_OVERSIGHT_021569.txt",
@@ -82929,7 +82981,7 @@
                 "file_id": "021824",
                 "file_size": 152162,
                 "filename": "HOUSE_OVERSIGHT_021824.txt",
-                "is_interesting": true,
+                "is_interesting": null,
                 "num_lines": 6853,
                 "timestamp": "2015-10-25T00:00:00",
                 "type": "OtherFile",
@@ -96094,7 +96146,7 @@
                 "type": "DojFile"
             },
             {
-                "category": "legal",
+                "category": "government",
                 "date": "2019-03-14",
                 "description": "photo of letter from Virgin Islands DOJ to Epstein",
                 "file_id": "EFTA00001884",
@@ -103262,7 +103314,7 @@
             },
             {
                 "author": "Palm Beach Police",
-                "category": "legal",
+                "category": "government",
                 "date": "2005-03-17",
                 "file_id": "EFTA00005569",
                 "file_size": 6605,
@@ -103928,7 +103980,7 @@
                 "was_timestamp_extracted": true
             },
             {
-                "category": "legal",
+                "category": "government",
                 "description": "victim list and police log",
                 "file_id": "EFTA00007157",
                 "file_size": 245115,
@@ -104569,7 +104621,7 @@
             },
             {
                 "author": "Palm Beach Police",
-                "category": "legal",
+                "category": "government",
                 "description": "receipts, notes, bank statements of Ghislaine Maxwell",
                 "file_id": "EFTA00007893",
                 "file_size": 109941,
@@ -105987,6 +106039,19 @@
             },
             {
                 "author": "FBI",
+                "category": "government",
+                "description": "\"chauffeur also told Epstein 'I have something on you, remember what I buried!'\"",
+                "file_id": "EFTA00020506",
+                "file_size": 2160,
+                "filename": "EFTA00020506.txt",
+                "is_interesting": true,
+                "num_lines": 46,
+                "timestamp": "2020-09-14T16:12:00",
+                "type": "DojFile",
+                "was_timestamp_extracted": true
+            },
+            {
+                "author": "FBI",
                 "category": "crypto",
                 "description": "tip about Howard Lutnick and financial irregularities",
                 "file_id": "EFTA00020515",
@@ -106439,7 +106504,7 @@
                 "was_timestamp_extracted": true
             },
             {
-                "category": "legal",
+                "category": "government",
                 "description": "USVI court filing about Epstein will and estate",
                 "file_id": "EFTA00074744",
                 "file_size": 179708,
@@ -106462,7 +106527,7 @@
             },
             {
                 "author": "Palm Beach Police",
-                "category": "legal",
+                "category": "government",
                 "description": "incident report detailing the investigation into Jeffrey Epstein",
                 "file_id": "EFTA00084614",
                 "file_size": 210062,
@@ -106516,12 +106581,13 @@
                 "is_interesting": true,
                 "num_lines": 6801,
                 "timestamp": "2009-10-15T00:00:00",
+                "truncate_to": -1,
                 "type": "DojFile",
                 "was_timestamp_extracted": true
             },
             {
                 "author": "DOJ",
-                "category": "legal",
+                "category": "government",
                 "date": "2025-09-01",
                 "description": "Powerpoint summary of Child Sex Trafficking Task Force Epstein investigation",
                 "file_id": "EFTA00164939",
@@ -106593,8 +106659,8 @@
                 "file_size": 1145,
                 "filename": "EFTA00306033.txt",
                 "is_interesting": true,
-                "is_shown_full_panel": true,
                 "num_lines": 21,
+                "show_full_panel": true,
                 "timestamp": "2018-05-31T00:00:00",
                 "type": "DojFile",
                 "was_timestamp_extracted": true
@@ -107538,19 +107604,6 @@
                 "was_timestamp_extracted": true
             },
             {
-                "category": "crypto",
-                "description": "Mercantile Global Holdings' Bo Collins inspired by Epstein to set up crypto trading around the world offering stablecoins to people who can't get bank accounts",
-                "file_id": "EFTA01030070",
-                "file_size": 7557,
-                "filename": "EFTA01030070.txt",
-                "is_interesting": true,
-                "num_lines": 108,
-                "timestamp": "2004-02-25T00:00:00",
-                "truncate_to": -1,
-                "type": "DojFile",
-                "was_timestamp_extracted": true
-            },
-            {
                 "file_id": "EFTA01063740",
                 "file_size": 27263,
                 "filename": "EFTA01063740.txt",
@@ -108059,8 +108112,8 @@
                 "file_size": 6994,
                 "filename": "EFTA01249207.txt",
                 "is_interesting": true,
-                "is_shown_full_panel": true,
                 "num_lines": 121,
+                "show_full_panel": true,
                 "show_with_name": "Brock Pierce",
                 "timestamp": "2021-03-17T00:00:00",
                 "type": "DojFile",
@@ -108745,8 +108798,8 @@
             },
             {
                 "author": "FBI",
-                "category": "legal",
-                "description": "report on Epstein investigation (redacted)",
+                "category": "government",
+                "description": "report on Epstein investigation",
                 "file_id": "EFTA01688746",
                 "file_size": 90649,
                 "filename": "EFTA01688746.txt",
@@ -108764,9 +108817,10 @@
                 "file_size": 1612,
                 "filename": "EFTA01733746.txt",
                 "is_interesting": true,
-                "is_shown_full_panel": true,
                 "num_lines": 44,
+                "show_full_panel": true,
                 "timestamp": "2011-05-18T00:00:00",
+                "truncate_to": 700,
                 "type": "DojFile"
             },
             {
@@ -108840,7 +108894,7 @@
                 "was_timestamp_extracted": true
             },
             {
-                "category": "legal",
+                "category": "government",
                 "description": "evidence inventory that appears to have since been deleted from the DOJ website",
                 "file_id": "EFTA02730274",
                 "file_size": 363807,
@@ -108940,7 +108994,7 @@
             },
             {
                 "author": "DOJ",
-                "category": "legal",
+                "category": "government",
                 "description": "memo about investigation into Epstein's co-conspirators",
                 "file_id": "EFTA02731082",
                 "file_size": 193026,
@@ -108963,7 +109017,7 @@
             },
             {
                 "author": "DOJ",
-                "category": "legal",
+                "category": "government",
                 "description": "memo about potential prosecutation of Epstein's assistant",
                 "file_id": "EFTA02731200",
                 "file_size": 32260,
@@ -109379,6 +109433,7 @@
         "Ike Groff": "employee, brother of Lesley Groff?",
         "Ivan Glasenberg": "Africa, South African former CEO of Glencore, one of the world's largest commodity trading and mining companies",
         "Jabor Y": "mideast, former Qatari prime minister Hamad bin Jassim AKA \"HBJ\"",
+        "Jack Dorsey": "tech bro, co-founder of Twitter and Block (FKA Square)",
         "Jack Goldberger": "lawyer, criminal defense attorney on 2008 case",
         "Jack Lang": "Europe, former French Minister of National Education",
         "Jack Scarola": "victim lawyer, Searcy Denney Scarola Barnhart & Shipley",
