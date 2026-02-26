@@ -1451,6 +1451,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA01917472', truncate_to=400),
     EmailCfg(id='EFTA01061414', truncate_to=440),
     EmailCfg(id='EFTA02493582', truncate_to=450),
+    EmailCfg(id='EFTA00675069', truncate_to=478),
     EmailCfg(id='EFTA00982818', truncate_to=500),
     EmailCfg(id='EFTA01731638', truncate_to=530),
     EmailCfg(id='EFTA00362171', truncate_to=1096),
@@ -2732,6 +2733,7 @@ OTHER_FILES_SKYPE_LOG = [
     CommunicationCfg(id='032209', recipients=[LAWRENCE_KRAUSS]),
     CommunicationCfg(id='032210', recipients=['linkspirit'], is_interesting=True),
     CommunicationCfg(id='018224', recipients=['linkspirit', LAWRENCE_KRAUSS], is_interesting=True),  # we don't know who linkspirit is yet
+    CommunicationCfg(id='EFTA01617727'),
     CommunicationCfg(id='EFTA01217787', recipients=[TYLER_SHEARS, 'Hanna Traff at Spotify'], is_interesting=True),
     CommunicationCfg(id='EFTA01217703', recipients=['actress Athena Zelcovich', JOSCHA_BACH, LAWRENCE_KRAUSS]),
     CommunicationCfg(id='EFTA01217736', recipients=['actress Athena Zelcovich', TYLER_SHEARS]),

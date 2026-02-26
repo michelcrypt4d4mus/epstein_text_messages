@@ -1896,6 +1896,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         style=VICTIM_COLOR,
         contacts=[
             Contact(PAULA, "ex-girlfriend who works in opera now", r"^Paula( Heil Fisher)?$"),
+            Contact('Samantha Rose Stein', 'wombkind.com'),
         ],
         patterns=[
             r"child pornography",
