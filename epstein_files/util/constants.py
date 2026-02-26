@@ -881,7 +881,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='025233', is_interesting=True, comment='Reputation.com discussion'),
     EmailCfg(id='017827', is_interesting=True, comment='Bannon / Peggy Siegal email about netflix doc on Epstein'),
     EmailCfg(id='030222', is_interesting=True, comment='Ross Gow / Ghislaine correspondence'),
-    EmailCfg(id='031326', is_interesting=True, description='the "dog that hasn\'t barked is trump"'),
+    EmailCfg(id='031326', is_interesting=True, description='"that dog that hasn\'t barked is trump"'),
     EmailCfg(id='029545', is_interesting=True, comment='Tyler Shears reputation'),
     EmailCfg(id='025812', is_interesting=True, comment='Tyler Shears reputation'),
     EmailCfg(id='033171', is_interesting=True, comment='Zubair'),
@@ -1384,7 +1384,7 @@ EMAILS_CONFIG = [
         is_interesting=True,
         truncate_to=4000,
     ),
-    EmailCfg(id='EFTA02540384', description='Epstein asking an intro to the bitcoin team he would go on to fund', is_interesting=True),
+    EmailCfg(id='EFTA02540384', description='Epstein asks for an intro to the bitcoin team he would go on to fund', is_interesting=True),
     EmailCfg(id='EFTA01769169', description='Epstein tells Jean Luc Brunel he can spend up to $25 million', truncate_to=NO_TRUNCATE),
     EmailCfg(
         id='EFTA02483194',
@@ -1406,6 +1406,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA01767036', description=f'"Karim" is probably {ALLEGED_KARIM_WADE}'),
     EmailCfg(id='EFTA02513560', description=f"{JEAN_LUC_BRUNEL} doesn't want to speak on the phone", truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA02671523', description=f"Jones is former Google chief technology advocate / CEO of Epstein investment Wearality"),
+    EmailCfg(id='EFTA01854384', description=f"{KARIM_WADE} asks if Epstein is free to meet the president (of Senegal?)", truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA00854166', description='"kazak contract will be ready for your review"', is_interesting=True, truncate_to=1100),
     EmailCfg(id='EFTA00080250', description=f"{LEON_BLACK} / Rothschild Group {DEUTSCHE_BANK} transactions", is_interesting=True),
     EmailCfg(id='EFTA02565917', description='Hassan Mohammed Abdul Latif Jameel is a Saudi businessman and philanthropist'),
@@ -2411,10 +2412,11 @@ OTHER_FILES_GIRLS = [
         recipients=[UNKNOWN_GIRL],
         truncate_to=1600,
     ),
-    EmailCfg(id='EFTA00848644', is_interesting=True, comment='"take a picture of your pussy"'),
+    EmailCfg(id='EFTA02431535', author=UNKNOWN_GIRL),
+    EmailCfg(id='EFTA00897668', recipients=[UNKNOWN_GIRL]),
+    EmailCfg(id='EFTA00848644', recipients=[UNKNOWN_GIRL], is_interesting=True, comment='"take a picture of your pussy"'),
     EmailCfg(id='EFTA02557291', description='possibly recruiting girls'),
     EmailCfg(id='EFTA01022353', description='George Models in Odessa, "She said she was 14-15 yo"', is_interesting=True),
-    EmailCfg(id='EFTA02431535', author=UNKNOWN_GIRL),
 ]
 
 OTHER_FILES_PHONE_BILL = [
@@ -2577,7 +2579,7 @@ OTHER_FILES_CRYPTO = [
         is_interesting=True,
         show_with_name=BROCK_PIERCE,
     ),
-    DocCfg(id='EFTA01733746', date='2011-05-18', description=f'schedule showing "drinks" with {HOWARD_LUTNICK}', show_full_panel=True),
+    DocCfg(id='EFTA01733746', date='2011-05-18', description=f'schedule showing "drinks" with {HOWARD_LUTNICK}', show_full_panel=True, truncate_to=700),
     DocCfg(id='EFTA00434306', description='calendar reminder for call with Howard Lutnick', date='2011-04-26'),
     DocCfg(id='EFTA00020515', author=FBI, description='tip about Howard Lutnick and financial irregularities', is_interesting=True),
     DocCfg(
@@ -2720,7 +2722,11 @@ OTHER_FILES_CRYPTO = [
     EmailCfg(id='EFTA01039626'),
     EmailCfg(id='EFTA02588723', description=f'discussion of crypto food stamps debit cards', is_interesting=True),
     EmailCfg(id='EFTA02588748', description=f'discussion of crypto food stamps debit cards', is_interesting=True, truncate_to=800),
-    EmailCfg(id='EFTA02035756', description=f"{AL_SECKEL} introduces Epstein to {BROCK_PIERCE} of Tether/{BLOCKCHAIN_CAPITAL} fame", is_interesting=True),
+    EmailCfg(
+        id='EFTA02035756',
+        description=f"{AL_SECKEL} introduces Epstein to Bannon business partner {BROCK_PIERCE} of Tether/{BLOCKCHAIN_CAPITAL}",
+        is_interesting=True,
+    ),
     EmailCfg(id='EFTA02372964', description='an "ICO" or "initial coin offering" was a very popular type of crypto scam at this time'),
     EmailCfg(
         id='EFTA02177147',
@@ -2962,6 +2968,7 @@ UNINTERESTING_EMAIL_IDS = [
 # Not uninteresting enough to be permanently marked as such but not good enough for --output-chrono
 NOT_CHRONOLOGICAL_VIEW_IDS = [
     '024432',
+    'EFTA02423635',
     'EFTA00007781',
     '016692',
     'EFTA01823635',
@@ -2973,7 +2980,14 @@ NOT_CHRONOLOGICAL_VIEW_IDS = [
     '030470',
     '030222',
     # '031826',
-    '031830',
+    '031826',
+    'EFTA01987283',
+    'EFTA01778423',
+    'EFTA01798022',
+    '030807',
+    'EFTA00434111',
+    'EFTA00432352',
+    '026583',
     '031986',
     '026584',
     '011908_6',

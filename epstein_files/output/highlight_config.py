@@ -767,6 +767,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         label='financial',
         style=FINANCIAL_COLOR,
         patterns=[
+            r"alterna[tv]i[tv]e finance",
             r"((anti )?money )?launder(s?|ers?|ing)?( money)?",
             r"(?<!(ature|Chase|zrahi|tsche)\s)bank(?!\s+(of|secrecy))",
             r"bond",
@@ -819,7 +820,6 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         patterns=[
             r"Ace Greenberg",
             r"AIG",
-            r"alterna[tv]i[tv]e finance",
             r"Andrew Nikou",
             r"Apollo",
             r"Ari Glass",
@@ -1778,6 +1778,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(GOOGLE_PLUS, "Google+", r"Google\+"),
             Contact(HONGBO_ROBERT_BAO, THIELS_VALAR, r"Hong,? Robert Bao|Hongbo( Robert)? Bao"),
             Contact(IAN_ODONNELL, THIELS_VALAR, r"Ian O'?Donnell|O'?Donnell, Ian"),
+            Contact('Jack Dorsey', 'co-founder of Twitter and Block (FKA Square)'),
             Contact(JAMES_FITZGERALD, THIELS_VALAR, r"James Fitz[g\s]eral?d?"),
             Contact(JASON_CALACANIS, 'All In Podcast with David Sacks, Uber investor', r"Jason (.{12})Calacanis"),
             Contact('LinkedIn', "LinkedIn", r"Linked[Il]n( Updates)?"),
@@ -1912,6 +1913,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         contacts=[
             Contact(PAULA, "ex-girlfriend who works in opera now", r"^Paula( Heil Fisher)?$"),
             Contact('Samantha Rose Stein', 'wombkind.com'),
+            Contact(UNKNOWN_GIRL),
         ],
         patterns=[
             r"child pornography",
