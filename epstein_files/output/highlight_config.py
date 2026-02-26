@@ -1237,7 +1237,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Morning News USA",
             r"(National )?Enquirer",
             r"News(max|week)",
-            r"NYer",
+            r"NY(er| mag(azine)?)",
             r"Palm Beach (Daily News|Post)",
             r"PERVERSION OF JUSTICE",
             r"Politico",

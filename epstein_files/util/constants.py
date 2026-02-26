@@ -1315,7 +1315,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00383027', recipients=[LINDA_STONE]),
     EmailCfg(id='EFTA01002282', recipients=[LINDA_STONE], comment='signature'),
     EmailCfg(id='EFTA02266524', recipients=[MARIA_PRUSAKOVA], author_reason=CRYPTO_PR_LAB, description='Medici Bank'),
-    EmailCfg(id='EFTA00579769', recipients=['Melania'], date='2002-10-23 15:49:00', is_interesting=True),
+    EmailCfg(id='EFTA00579769', recipients=['Melania'], date='2002-10-23 15:49:00', is_interesting=True, truncate_to=587),
     EmailCfg(id='EFTA02731632', recipients=[OFFICE_OF_THE_DEPUTY_ATTORNEY_GENERAL]),
     EmailCfg(
         id='EFTA00926593',
