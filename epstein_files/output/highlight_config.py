@@ -13,7 +13,7 @@ from epstein_files.documents.documents.categories import (CATEGORY_STYLES, CATEG
 from epstein_files.documents.emails.constants import (ALL_HEADER_PATTERNS, QUOTE_INDENT_CHAR_GROUP, REPLY_REGEX,
      SENT_FROM_REGEX, XML_STRIPPED_MSG)
 from epstein_files.output.highlighted_names import HighlightGroup, HighlightedNames, HighlightPatterns, ManualHighlight
-from epstein_files.people.contact import Contact
+from epstein_files.people.contact import Contact, epstein_co, epstein_trust
 from epstein_files.util.constant.names import *
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constants import EPSTEIN_V_ROTHSTEIN_EDWARDS
@@ -568,17 +568,24 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 name=JEFFREY_EPSTEIN,
                 emailer_pattern=r"[djl]\s?ee[vy]acation[©@]?g?(mail.com)?|Epstine|\bJEE?\b|Jeff(rey)? (Edward )?E((sp|ps)tein?)?( VI Foundation)?|jeeproject@yahoo.com|J Jep|Jeffery Edwards|(?<!(ark L.|rd Jay|Edward) )Epstein|Jeffrey Epst.*comj?",
             ),
-            Contact(MARK_EPSTEIN, "brother of Jeffrey", r"Mark (L\. )?(Epstein|Lloyd)")
+            Contact(MARK_EPSTEIN, "brother of Jeffrey", r"Mark (L\. )?(Epstein|Lloyd)"),
+            epstein_co('Coatue'),
+            epstein_co('Island Grounds Inc.'),
+            epstein_co('Jeepers Inc.'),
+            epstein_trust('Butterfly Trust'),  # TODO: shuliak
+            epstein_trust('Caterpillar Trust', r"(2017 )?Caterpillar Trust"),
+            epstein_trust('C.O.U.Q. Foundation', r"C\.?O\.?U\.?Q\.?( Foundation)?"),  # charity account
+            epstein_trust('Financial Trust Company', r"Financial Trust Co(\.|mpany)"),
+            epstein_trust('Gratitude America'),
+            epstein_trust('Haze Trust'),
+            epstein_trust('Southern Financial Company', r"Southern Financial( Co(mpany)?)?"),
+            epstein_trust('Southern Trust'),
+            epstein_trust('The Sweater Trust', r"(The )?Sweater Trust"),
         ],
         patterns=[
-            r"(2017 )?Caterpillar Trust",
             r"Coatue",
-            r"C\.?O\.?U\.?Q\.?( Foundation)?",  # Epstein charity account
             r"Enhanced Education",
-            r"Financial Trust Co(\.|mpany)",
             r"FT Real Estate",
-            r"Gratitude America",
-            r"(Butterfly|Haze|Southern) (Financial|Trust)( Co(mpany)?)?",
             r"Hyperion( Air)?",
             r"IPI",
             r"Island Grounds( Inc\.?)",
@@ -592,7 +599,6 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Plan D",
             r"SCI JEP",
             r"Southern Country International",
-            r"(The )?Sweater Trust",
             r"(?-i:The Prof)",
             r"Thomas World Air",
             r"Zorro( (Management|Ranch))?",

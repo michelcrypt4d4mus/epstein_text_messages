@@ -10,6 +10,7 @@ from epstein_files.util.helpers.string_helper import as_pattern, indented, quote
 from epstein_files.util.logging import logger
 
 MIN_LEN_FOR_OPTIONAL_LAST_CHAR = 5
+LLC_OR_INC = re.compile(r".*( (Inc\.?|LLC))$")
 
 
 @dataclass
@@ -113,3 +114,30 @@ class Contact:
     @classmethod
     def repr_string(cls, contact_infos: list[Self]) -> str:
         return '[\n' + indented(',\n'.join([repr(contact) for contact in contact_infos]), 4) + '\n],'
+
+
+def epstein_trust(name: str, emailer_pattern: str = '', beneficiaries: list[str] | None = None) -> Contact:
+    beneficiary_str = ''
+
+    if beneficiaries:
+        if len(beneficiaries) == 1:
+            beneficiary_str = f"with sole beneficiary {beneficiaries[0]}"
+        else:
+            beneficiary_str = f"with beneficiaries {','.join(beneficiaries)}"
+
+    beneficiary_str = f", {beneficiary_str}" if beneficiary_str else ''
+    return Contact(name, f'Epstein financial trust{beneficiary_str}', emailer_pattern, is_organization=True)
+
+
+def epstein_co(name: str, emailer_pattern: str = '') -> Contact:
+    if (llc_or_inc_match := LLC_OR_INC.match(name)) and not emailer_pattern:
+        suffix = llc_or_inc_match.group(1)
+        emailer_pattern = name.removesuffix(suffix)
+        # print(f"suffix='{suffix}', emailer_pattern='{emailer_pattern}'")
+
+        if suffix.endswith('.'):
+            suffix = suffix.replace('.', r'\.?')
+
+        emailer_pattern += fr"({suffix})?"
+
+    return Contact(name, 'Epstein company', emailer_pattern, is_organization=True)
