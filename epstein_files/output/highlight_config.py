@@ -2077,7 +2077,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         label='dollars',
         style=FINANCIAL_COLOR,
         patterns=[
-            r"\$[\d,.]+(\s?(m(illion)?|thousand))?",
+            r"\$[\d,.]+(\s*(bn|[bm](illion)?|mm|thousand))?",
         ]
     ),
     HighlightPatterns(
