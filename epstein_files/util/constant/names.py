@@ -37,6 +37,7 @@ ANDRES_SERRANO = 'Andres Serrano'
 ANN_MARIE_VILLAFANA = 'Ann Marie Villafana'
 ANAS_ALRASHEED = 'Anas Alrasheed'
 ANTHONY_BARRETT = 'Anthony Barrett'
+ANYA_RASULOVA = 'Anya Rasulova'
 ARIANE_DE_ROTHSCHILD = 'Ariane de Rothschild'
 AZIZA_ALAHMADI = 'Aziza Alahmadi'
 BARBRO_C_EHNBOM = 'Barbro C. Ehnbom'
@@ -331,7 +332,7 @@ NAMES_TO_NOT_PARTIALLY_MATCH = set("""
     ian inc inc. ivan
     jack james jay jean jeff jeffrey jennifer jeremy jessica joel john jon jonathan joseph jr julia justin
     kafka kahn karl kate katherine kelly ken kevin krassner
-    larry larsen laurie lawrence leon lesley linda link lisa london love
+    larry larsen laurie lawrence len leon lesley linda link lisa london love
     management manhattan mann marc maria marie mark martin matthew melanie michael mike miller mitchell miles morris moskowitz
     nancy nathan neal new nicholas nicole nick norman ny
     owen

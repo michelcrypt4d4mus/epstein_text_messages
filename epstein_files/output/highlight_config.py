@@ -346,7 +346,6 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         label=Interesting.CRYPTO,
         style='orange1 bold',
         contacts=[
-            Contact('Alphabit', 'crypto fund', is_organization=True),
             Contact(
                 name=ADAM_BACK,
                 info=f"co-founder of {BLOCKSTREAM}, bitcoin core developer, Tether defender",
@@ -356,14 +355,8 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(ANTHONY_SCARAMUCCI, "Skybridge Capital, FTX investor, Trump spokesman for two weeks", r"mooch|(Anthony ('The Mooch' )?)?Scaramucci"),
             Contact(ARIANNA_SIMPSON, f"a16z partner involved in the Axie Infinity debacle, Autonomous Partners"),
             Contact(AUSTIN_HILL, f"{BLOCKSTREAM} co-founder with {ADAM_BACK}, Brudder Ventures", r"Austin\s*(Hill|@blockstream.com)"),
-            Contact('BGC', f"{CANTOR} related firm of {HOWARD_LUTNICK}", is_organization=True),
-            Contact('Bioptix', 'old name of RIOT Blockchain from when it was a biotech company', is_organization=True),
-            Contact('Bitfinex', f"crypto exchange run by the same people that run Tether", is_organization=True),
-            Contact('Bitmain', f"Chinese manufacturer of bitcoin mining rigs", is_organization=True),
             Contact('Barry Silbert', f"founder of Digital Currency Group with {LARRY_SUMMERS} on the board"),
             Contact('Ben Horowitz', 'co-founder of crypto heavy venture fund Andreessen Horowitz AKA a16z, Trump convert'),
-            Contact(BLOCKSTREAM, f"early crypto firm co-founded by {ADAM_BACK} and {AUSTIN_HILL}", is_organization=True),
-            Contact(BLOCKCHAIN_CAPITAL, f"crypto VC fund co-founded by Bart Stephens and {BROCK_PIERCE}", is_organization=True),
             Contact(
                 'Bo Collins',
                 f"AKA James Robert Collins, {MERCANTILE_GLOBAL_HOLDINGS}, testified in trial of Miles Guo/Miles Kwok",
@@ -371,22 +364,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             ),
             Contact(BROCK_PIERCE, "Bannon partner, Tether co-founder, friend of Yair Netanyahu, sex crime history", r"Brock( Pierce)?"),
             Contact(BRYAN_BISHOP, "executive at LedgerX and Polymath fund"),
-            Contact(CANTOR, f"Howard Lutnick's financial firm", r"Cantor(,? (Fitzgerald|Opportunities|Ventures?))?", is_organization=True),
-            Contact('Coinbase', 'largest American crypto exchange', is_organization=True),
             Contact('Cory Fields', 'bitcoin developer', is_organization=True),
-            Contact(
-                'Cryptocurrency Partners',
-                f'crypto fund set up by Epstein and {BROCK_PIERCE} as a sidecar to {BLOCKCHAIN_CAPITAL}',
-                r"Crypto ?Currency Partners( II)?",
-                is_organization=True
-            ),
-            Contact('Crypto PR Lab', f"firm founded by {MARIA_PRUSAKOVA} and {ALEKSANDRA_KARPOVA}", is_organization=True),
-            Contact(
-                'Digital Currency Initiative',
-                f"crypto part of {MIT_MEDIA_LAB}",
-                r"Digital (Assets?|Currenc(ies|y)) Initiative",
-                is_organization=True
-            ),
             Contact('Dan Morehead', 'Pantera Capital', r"(Dan )?Morehead"),
             Contact(DONALD_NORMAN, f"co-founder of early British crypto exchange Intersango with {AMIR_TAAKI}"),
             Contact(ED_BOYLE, f"Medici Bank", r"Ed Boy(el|le)"),
@@ -403,15 +381,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(JEFFREY_WERNICK, "former COO of Parler, involved in numerous crypto companies like Bitforex"),
             Contact(JEREMY_RUBIN, "developer/researcher", r"Jeremy Rub(in|m)"),
             Contact("Jim Pallotta", f"{MIT_MEDIA_LAB} advisory board"),
-            Contact("Kathryn Haun", "crypto VC at Haun Ventures, former a16z"),
-            Contact('Kraken', "second largest American crypto exchange after Coinbase", is_organization=True),
-            Contact(
-                KYARA_INVESTMENT,
-                f"an Epstein fund, usually created with {JOI_ITO}",
-                r"Kyara( Investments?)?( [IV]+)?",
-                is_organization=True
-            ),
-            Contact('Libra', f"Facebook's attempt at a stablecoin that was canceled by the US government"),
+            Contact("Kathryn Haun", "crypto VC at Haun Ventures, former a16z", is_organization=True),  # TODO: not really org...
             Contact(LORENZO_DE_MEDICI, "Medici Bank, possibly Medici heir?", r"Prince Lorenzo|Lorenzo de Medici"),
             Contact(MADARS_VIRZA, f"ZCash lead dev, {MIT_MEDIA_LAB}"),
             Contact(
@@ -420,36 +390,59 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 r"adreeson|(Marc\s*)?(?<!Gavin )Andreess?en"
             ),
             Contact('Matthew Gilbert', 'assistant to Howard Lutnick'),
-            Contact(
+            Contact('Ross Ulbricht', 'founder of infamous online drug market Silk Road, pardoned by Trump'),
+            Contact('Suhas Daftuar', 'Chaincode Labs'),
+            Contact('W. Bradford Stephens', f"co-founder of {BLOCKCHAIN_CAPITAL}", r"(Brad(ford)?|Bart) Stephens"),
+            Contact("Wladimir van der Laan", 'bitcoin core developer', r"Wladimir( van der Laan)?"),
+            company('Alphabit', 'crypto fund'),
+            company('BGC', f"{CANTOR} related firm of {HOWARD_LUTNICK}"),
+            company('Bioptix', 'old name of RIOT Blockchain from when it was a biotech company'),
+            company('Bitfinex', f"crypto exchange run by the same people that run Tether"),
+            company('Bitmain', f"Chinese manufacturer of bitcoin mining rigs"),
+            company(BLOCKSTREAM, f"early crypto firm co-founded by {ADAM_BACK} and {AUSTIN_HILL}"),
+            company(BLOCKCHAIN_CAPITAL, f"crypto VC fund co-founded by Bart Stephens and {BROCK_PIERCE}"),
+            company(CANTOR, f"Howard Lutnick's financial firm", r"Cantor(,? (Fitzgerald|Opportunities|Ventures?))?"),
+            company('Coinbase', 'largest American crypto exchange invested in by Epstein'),
+            company(
+                'Cryptocurrency Partners',
+                f'crypto fund set up by Epstein and {BROCK_PIERCE} as a sidecar to {BLOCKCHAIN_CAPITAL}',
+                r"Crypto ?Currency Partners( II)?",
+            ),
+            company('Crypto PR Lab', f"firm founded by {MARIA_PRUSAKOVA} and {ALEKSANDRA_KARPOVA}"),
+            company(
+                'Digital Currency Initiative',
+                f"crypto part of {MIT_MEDIA_LAB}",
+                r"Digital (Assets?|Currenc(ies|y)) Initiative",
+            ),
+            company('Kraken', "second largest American crypto exchange after Coinbase"),
+            company(
+                KYARA_INVESTMENT,
+                f"an Epstein fund, usually created with {JOI_ITO}",
+                r"Kyara( Investments?)?( [IV]+)?",
+            ),
+            company('Libra', f"Facebook's attempt at a stablecoin that was canceled by the US government"),
+            company(
                 'Medici Bank',
                 f"crypto friendly bank set up by {LORENZO_DE_MEDICI} with investment from {MARIA_PRUSAKOVA} and maybe {BROCK_PIERCE}",
-                is_organization=True
             ),
-            Contact(
+            company(
                 MERCANTILE_GLOBAL_HOLDINGS,
                 'company of Bo Collins who ended up testifying in trial of Miles Guo / Miles Kwok',
-                is_organization=True
             ),
-            Contact(
+            company(
                 'Noble Bank',
                 f"failed crypto friendly bank with ties to Tether and {BROCK_PIERCE}",
                 r"Noble (Bank|Markets)",
-                is_organization=True,
                 link_to_bio='https://news.bitcoinprotocol.org/how-noble-markets-connected-tether-epstein-and-their-shadow-banking-network/',
             ),
-            Contact('Pantera Capital', "silicon valley crypto fund of Dan Morehead", is_organization=True),
-            Contact('Ribbit Capital', 'crypto friendly venture fund', is_organization=True),
-            Contact('Ripple', 'token issuing company run by Trump megadonor Brad Garlinghouse', is_organization=True),
-            Contact('Ross Ulbricht', 'founder of infamous online drug market Silk Road, pardoned by Trump'),
-            Contact('Suhas Daftuar', 'Chaincode Labs'),
-            Contact('Tether', f"$180 billion stablecoin founded by {BROCK_PIERCE} whose money is managed by {HOWARD_LUTNICK}", is_organization=True),
-            Contact('W. Bradford Stephens', f"co-founder of {BLOCKCHAIN_CAPITAL}", r"(Brad(ford)?|Bart) Stephens"),
-            Contact("Wladimir van der Laan", 'bitcoin core developer', r"Wladimir( van der Laan)?"),
-            Contact(
+            company('Pantera Capital', "silicon valley crypto fund of Dan Morehead"),
+            company('Ribbit Capital', 'crypto friendly venture fund'),
+            company('Ripple', 'token issuing company run by Trump megadonor Brad Garlinghouse'),
+            company('Tether', f"$180 billion stablecoin founded by {BROCK_PIERCE} whose money is managed by {HOWARD_LUTNICK}"),
+            company(
                 'ZeroCash',
                 f"early name for Epstein funded untraceable cryptocurrency ZCash developed by {MADARS_VIRZA}",
                 r"ZeroC(ash|oin)",
-                is_organization=True
             ),
         ],
         patterns=[
@@ -613,6 +606,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             epstein_co('Coatue'),
             epstein_co('FT Real Estate'),
             epstein_co('Island Grounds Inc.'),
+            epstein_co('Hyperion Air', r"Hyperion( Air)?"),
             epstein_co('Jeepers Inc.'),
             epstein_co('Laurel, Inc.'),
             epstein_co('JEGE LLC'),
@@ -629,6 +623,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             epstein_trust('Butterfly Trust', beneficiaries=[KARYNA_SHULIAK]),  # TODO: shuliak
             epstein_trust('Caterpillar Trust', r"(2017 )?Caterpillar Trust"),
             epstein_trust('C.O.U.Q. Foundation', r"C\.?O\.?U\.?Q\.?( Foundation)?"),  # charity account
+            epstein_trust('Enhanced Education'),
             epstein_trust('Financial Trust Company', r"Financial Trust Co(\.|mpany)"),
             epstein_trust('Gratitude America'),
             epstein_trust('Haze Trust'),
@@ -637,8 +632,6 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             epstein_trust('The Sweater Trust', r"(The )?Sweater Trust"),
         ],
         patterns=[
-            r"Enhanced Education",
-            r"Hyperion( Air)?",
             r"IPI",
             r"(?-i:The Prof)",
             r"Zorro( Ranch)?",
@@ -743,7 +736,6 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 emailer_pattern=r"(Thor.{3,8})?Jag[il]and?",
             ),
             Contact('Viktor Orban', 'prime minister of Hungary', r"(Vi(c|k)tor )?Orbah?n"),
-            company('Alfa Bank', 'Russian bank', r"Alfa( Bank)?"),
             company('ECB', 'European Central Bank'),
         ],
         patterns=[
@@ -1044,7 +1036,6 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"FinCEN",
             r"(Director (of )?)?Financial Crimes Enforcement Network",
             r"Financial Industry Regulatory Authority",
-            r"Florence Hutner",
             r"FOIA",
             r"food stamps",
             r"FTC",
@@ -1141,9 +1132,10 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(ANIL_AMBANI, "billionaire chairman of Reliance Group", r"Anil.Ambani"),
             company(
                 'InsightsPod',
-                f"{ZUBAIR_KHAN} company recommended by {MARIA_PRUSAKOVA}, did social media work for Epstein during the 2016 election",
+                f"{ZUBAIR_KHAN} and {ANYA_RASULOVA}'s company recommended by {MARIA_PRUSAKOVA}, did social media work for Epstein during the 2016 election",
                 link_to_bio=SUBSTACK_INSIGHTS_POD
             ),
+            company('Tranchulas', f'cybsecurity firm of {ZUBAIR_KHAN}, provider of offensive hacking services'),
         ],
         patterns=[
             r"Abraaj",
@@ -1157,7 +1149,6 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Modi",
             r"Mumbai",
             r"(New )?Delhi",
-            r"Tranchulas",
         ],
     ),
     HighlightedNames(
@@ -1464,6 +1455,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         label=MIDEAST,
         style='dark_sea_green4',
         contacts=[
+            Contact('Adnad Khashoggi', 'arms dealer involved in the Iran-Contra scandal, Epstein\'s former employer', r"kasshohgi|Kh?ashoggi"),
             Contact(ANAS_ALRASHEED, f"former information minister of Kuwait {QUESTION_MARKS}", r"anas al rashee[cd]"),
             Contact(AZIZA_ALAHMADI, "Abu Dhabi Department of Culture & Tourism, assistant of Al Sabbagh"),
             Contact(
@@ -1471,8 +1463,15 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 info="sharia auditor in Qatar, friend of Sheikh Jabor Al-Thani",
                 emailer_pattern=r"Fawzi.Siam?",
             ),
+            Contact('Kaira Kelimbetov', 'former Deputy Prime Minister of Kazakhstan'),
+            Contact("Mohammed bin Salman", 'AKA "MBS", prince of Saudi Arabia', r"Mohammed bin Salman|MBS", is_organization=True),  # TODO: not an org
+            Contact('Mohammed bin Zayed', 'AKA "MBZ", ruler of Abu Dhabi', r"Mohamed bin Zayed|MBZ", is_organization=True),
+            Contact('Muhammad bin Nayef', 'AKA "MBN", former crown prince of Saudi Arabia', r"M[ou]hamm[ae]d bin Nayef|MBN", is_organization=True),
+            Contact('Nursultan Nazarbayev', 'former president of Kazakhstan'),
+            Contact('Rakhat Aliyev', 'corrupt Kazakh politician'),
             Contact(RAAFAT_ALSABBAGH, "Saudi royal advisor"),
-            Contact(SHAHER_ABDULHAK_BESHER, "Yemeni billionaire", r"\bShaher( Abdulhak Besher)?\b")
+            Contact(SHAHER_ABDULHAK_BESHER, "Yemeni billionaire", r"\bShaher( Abdulhak Besher)?\b"),
+            Contact('Timur Kulibayev', 'businessman from Kazakhstan'),
         ],
         patterns=[
             r"Abdulmalik Al-Makhlafi",
@@ -1482,7 +1481,6 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Ahmadinejad",
             r"Al Qasimi",
             r"Al Qa[ei]da",
-            r"(Rakhat )?Aliyev",
             r"Arab",
             r"Aramco",
             r"Armenia",
@@ -1519,19 +1517,15 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Islam(abad|ic|ist)?",
             r"Istanbul",
             r"Kabul",
-            r"(Kairat )?Kelimbetov",
-            r"kasshohgi",
             r"Kaz(akh|ich)stan",
             r"Kazakh?",
             r"Kh[ao]menei",
             r"Khalid Sheikh Mohammed",
-            r"Kh?ashoggi",
             r"KSA",
             r"Leban(ese|on)",
             r"Libyan?",
             r"Mahmoud",
             r"Marra[hk]e[cs]h",
-            r"MB(N|S|Z)",
             r"Mid(dle)? East(ern)?",
             r"MJ",
             r"Mohammed bin Salman",
@@ -1540,7 +1534,6 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Mubarak",
             r"Muslim( Brotherhood)?",
             r"Nayaf",
-            r"Nazarbayev",
             r"Pak[ai]stani?",
             r"Omar",
             r"(Osama )?Bin Laden",
@@ -1560,7 +1553,6 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Syrian?",
             r"(Tarek )?El Sayed",
             r"Tehran",
-            r"Timur Kulibayev",
             r"Tripoli",
             r"Tunisian?",
             r"Turk(ey|ish)?(?!s & Caicos)",
@@ -1731,6 +1723,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         label='Russia',
         style='red bold',
         contacts=[
+            Contact(ANYA_RASULOVA, f'Uzbeki co-founder of {INSIGHTS_POD} with {ZUBAIR_KHAN}'),
             Contact(ALEKSANDRA_KARPOVA, f"{CRYPTO_PR_LAB} co-founder", r"Aleksandra Karpova"),
             Contact(ANASTASIYA_SIROOCHENKO, '', r"Anastasiya( Siro(chenko)?)?"),
             Contact('Dasha Zhukova', "art collector, daughter of Alexander Zhukov"),
@@ -1741,6 +1734,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 emailer_pattern=r"Karyna Shuliak?",
             ),
             Contact('Kira Dikhtyar', emailer_pattern=r"Kira (D|Kira)", link_to_bio='https://x.com/FlippersUpNow/status/2020490996287443071'),
+            Contact('Len Blavatnik', 'oligarch'),
             Contact(
                 MARIA_PRUSAKOVA,
                 info=f"AKA Masha Prusso, former Olympic snowboarder, {CRYPTO_PR_LAB} co-founder, \"found ladies\" for Epstein",
@@ -1753,20 +1747,21 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 info="former model, fund manager at New York State Insurance Fund, Рената Болотова",
                 emailer_pattern=r"Renata Bolotova|Rena B|Renata Bo\w+|renbolotova",
             ),
+            Contact('Semion Mogilevich', 'infamous Russian mafia boss'),
             Contact(
                 SERGEY_BELYAKOV,
                 emailer_pattern=r"Sergey Belyako|Беляков Сергей|Cepre(ct|il) [6BES][\w.]+|6(er|of)no\w+ [CE]\w+",
                 info="graduate of Russia's FSB academy (AKA \"a spy\"), head of the St. Petersburg Economic Forum Foundation",
                 link_to_bio='https://dossier.center/jeffreyepsteinrusconnect-en/',
             ),
-            Contact(SVETLANA_POZHIDAEVA, f"Epstein's Russian assistant who was recommended for a visa by Sergei Belyakov (FSB) and {DAVID_BLAINE}")
+            Contact(SVETLANA_POZHIDAEVA, f"Epstein's Russian assistant who was recommended for a visa by Sergei Belyakov (FSB) and {DAVID_BLAINE}"),
+            Contact('Oleg Deripaska', 'oligarch'),
+            company('Alfa Bank', 'Russian bank', r"Alfa( Bank)?"),
+            company('Day One Ventures', f"silicon valley venture fund run by {MASHA_DROKOVA}"),
         ],
         patterns=[
-            r"Alfa Bank",
-            r"Anya Rasulova",
             r"Chernobyl",
             r"Crimea",
-            r"Day One Ventures",
             r"(Dmitry )?(Kiselyov|(Lana )?Pozhidaeva|Medvedev|Rybolo(o?l?ev|vlev))",
             r"Di?mitry( Akhanov)?",
             r"FSB",
@@ -1776,13 +1771,11 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Kremlin",
             r"(Anastasia )?Kuznetsova",
             r"Lavrov",
-            r"(Len )?Blavatnik",
             r"Lukoil",
             r"Minsk",
             r"Moscow",
             r"Nic(k|holas) Kovarsky",  # Friend of Belyakov
             r"(Natalia )?Veselnitskaya",
-            r"(Oleg )?Deripaska",
             r"Oleksandr Vilkul",
             r"Onexim",  # Prokhorov investment vehicle
             r"Prokhorov",
@@ -1796,7 +1789,6 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Russ?ian?",
             r"Sberbank",
             r"Serguei Beloussov",
-            r'(Semion )?Mogilevich',
             r"Soviet( Union)?",
             r"USSR",
             r"(Vitaly )?Churkin",
@@ -1854,9 +1846,10 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact('Reuben Kobulnik', THIELS_VALAR),
             Contact(STEVEN_SINOFSKY, "a16z, ex-Microsoft, loves bitcoin", r"Steven Sinofsky?"),
             Contact('Talia Parnass', f"{PETER_THIEL}'s assistant"),
-            Contact(VALAR_VENTURES, f"{PETER_THIEL} affiliated fintech venture fund", r"V[ae]lar (Global Fund|Ventures)?"),
             Contact(VINCENZO_IOZZO, "CEO of the identity-security company SlashID", r"Vincenzo [IL]ozzo"),
             Contact(ZUBAIR_KHAN, f"Tranchulas cybersecurity, InsightsPod founder, Islamabad / Dubai, friend of {MASHA_DROKOVA}"),
+            company('Neoteny', f"Japanese venture fund of {JOI_ITO}"),
+            company(VALAR_VENTURES, f"{PETER_THIEL} affiliated fintech venture fund", r"V[ae]lar (Global Fund|Ventures)?"),
         ],
         patterns=[
             r"Accel( Partners)?",
@@ -1879,7 +1872,6 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"LinkedIn",
             r"(Mark )?Zuckerberg",
             r"Masa(yoshi)?(\sSon)?",
-            r"Neoteny",  # Joi Ito Japanese fund?
             r"Najeev",
             r"Nathan Myhrvold",
             r"Palantir",
@@ -1897,7 +1889,6 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Tencent",
             r"thielcapital",
             r"Tim Ferriss?",
-            r"Valar( (Global Fund|Ventures))?",
             r"Vision Fund",
             r"Wearality( Corporation)?",
             r"WhatsApp",
@@ -1908,7 +1899,9 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         label='Trump',
         style='red3 bold',
         contacts=[
+            Contact('Alan Weisselberg', f"Donald Trump's accountant", r"(Alan )?Weiss?elberg"),
             Contact('Bruce Moskowitz', "'Trump's health guy' according to Epstein"),
+            Contact('Marla Maples', 'ex-wife of Donald Trump'),
             Contact(
                 name=NICHOLAS_RIBIS,
                 info=f"Hilton CEO, former president of {TRUMP_ORG}",
@@ -1917,7 +1910,6 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         ],
         patterns=[
             r"@?realDonaldTrump",
-            r"(Alan )?Weiss?elberg",
             r"Alex Jones",
             r"(Brad(ley)? )Parscale",
             r"\bDJ?T\b",
@@ -1925,12 +1917,10 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"(Donald\s+(J\.\s+)?)?Trump(ism| (Org(anization)?|Properties)( LLC)?)?",
             r"Don(ald| Jr)(?! (B|Norman|Rubin))",
             r"(Hope )?Hicks",
-            # r"(Howard )?Lutnic?k",
             r"Ivank?a",
             r"Jared", r"(?<!Tony )Kushner",
             r"(Madeleine )?Westerhout",
             r"Mar[-\s]*a[-\s]*Lago",
-            r"(Marla )?Maples",
             r"(Matt(hew)? )?Calamari",
             r"\bMatt C\b",
             r"Michael (D\.? )?Cohen",
@@ -1948,7 +1938,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         style='sea_green1',
         contacts=[
             Contact(CECILE_DE_JONGH, "Virgin Islands first lady 2007-2015"),
-            Contact(KENNETH_E_MAPP, "Virgin Islands Governor"),
+            Contact(KENNETH_E_MAPP, "Virgin Islands Governor", r"(Kenneth E\. )?Mapp"),
             Contact(STACEY_PLASKETT, "Virgin Islands non-voting member of Congress")
         ],
         patterns=[
@@ -1961,7 +1951,6 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Haiti(an)?",
             r"Jamaican?",
             r"(John )deJongh( Jr\.?)",
-            r"(Kenneth E\. )?Mapp",
             r"PBI",
             r"(?<!Bank\sof\s)Puerto Ric(an|o)",
             r"San Juan",
@@ -1982,7 +1971,6 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         ],
         patterns=[
             r"child pornography",
-            r"(David )?Bo[il]es(,? Schiller( & Flexner)?)?",
             r"Ellaina As?tras?",
             r"(Gloria )?Allred",
             r"gyneconomist",
@@ -2007,6 +1995,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         style='medium_orchid1',
         contacts=[
             Contact(BRAD_EDWARDS, ROTHSTEIN_ROSENFELDT_ADLER, r"Brad(ley)?( J(.?|ames))? Edwards"),
+            Contact('David Boies', 'Boies, Schiller, & Flexner', r"(David )?Bo[il]es(,? Schiller( & Flexner)?)?"),
             Contact(
                 name=DOUGLAS_WIGDOR,
                 info=f"lawsuit against {LEON_BLACK}, Wigdor LLP",
@@ -2019,17 +2008,21 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 emailer_pattern=r"Jeanne (M\.?)? Christensen",
             ),
             Contact(JACK_SCAROLA, "Searcy Denney Scarola Barnhart & Shipley"),
-            Contact(KEN_JENNE, ROTHSTEIN_ROSENFELDT_ADLER)
+            Contact(KEN_JENNE, ROTHSTEIN_ROSENFELDT_ADLER),
+            company(
+                'Rothstein, Rosenfeldt, Adler',
+                'shady law firm that sued Epstein but maybe also worked for him, also associated with Roger Stone',
+                r"Rothstein,? Rosenfeldt,? Adler",
+            ),
+            company('Wigdor Law', 'sued Epstein', r"Wigdor(Law)?"),
         ],
         patterns=[
             r"(Alan( P.)?|MINTZ) FRAADE",
             r"(J\.? )?(Stan(ley)? )?Pottinger",
             r"(Mi(chael|ke) )?Avenatti",
             r"Paul (G. )?Cassell",
-            r"Rothstein,? Rosenfeldt,? Adler",
             r"Rosenfeldt",
             r"(Scott )?Rothstein",
-            r"Wigdor(Law)?",
         ],
     ),
     HighlightedNames(

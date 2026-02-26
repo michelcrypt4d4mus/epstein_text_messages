@@ -14,6 +14,7 @@ def test_repr():
     name=JEFFREY_EPSTEIN,
     info="one and only",
     emailer_pattern=r"Jeffrey Epstein|jeevacation",
+    highlight_pattern=r"Jeffrey[-_.\s]*Epstein|jeevacation|Epstein,[-_.\s]*Jeffrey",
 )"""
 
 

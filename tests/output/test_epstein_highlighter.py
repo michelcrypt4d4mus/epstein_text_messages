@@ -50,6 +50,7 @@ HIGHLIGHT_COUNTS = {
     "adr": 3,
     "ag": 1,
     "aipac": 1,
+    'alfa': 1,
     "aml": 38,
     "anti-money laundering": 2,
     'anti-money-laundering': 2,
