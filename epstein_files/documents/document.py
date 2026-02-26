@@ -33,7 +33,7 @@ from epstein_files.util.constant.strings import *
 from epstein_files.util.constants import CONFIGS_BY_ID, DEFAULT_TRUNCATE_TO
 from epstein_files.util.env import args, site_config
 from epstein_files.util.helpers.data_helpers import (date_str, patternize, prefix_keys,
-     remove_zero_time, uniquify, without_falsey)
+     remove_zero_time, uniquify, uniq_sorted, without_falsey)
 from epstein_files.util.helpers.link_helper import link_text_obj
 from epstein_files.util.helpers.file_helper import coerce_file_path, file_size_to_str
 from epstein_files.util.helpers.string_helper import collapse_newlines, join_truthy
@@ -300,9 +300,13 @@ class Document:
     @property
     def people(self) -> list[str]:
         """Names of people who either sent/received this email or are mentioned in it."""
-        body_characters = [c.name for c in HIGHLIGHTED_CONTACTS if c.highlight_regex.search(self.text)]
-        body_characters += [self.author] if self.author else []
-        return sorted(uniquify(body_characters))
+        people = [c.name for c in HIGHLIGHTED_CONTACTS if c.highlight_regex.search(self.text)]
+        people = uniq_sorted(people + ([self.author] if self.author else []))
+
+        if people:
+            self.log(f"people() found {', '.join(people)}")
+
+        return people
 
     @property
     def prettified_text(self) -> Text:

@@ -356,7 +356,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(ARIANNA_SIMPSON, f"a16z partner involved in the Axie Infinity debacle, Autonomous Partners"),
             Contact(AUSTIN_HILL, f"{BLOCKSTREAM} co-founder with {ADAM_BACK}, Brudder Ventures", r"Austin\s*(Hill|@blockstream.com)"),
             Contact('Barry Silbert', f"founder of Digital Currency Group with {LARRY_SUMMERS} on the board"),
-            Contact('Ben Horowitz', 'co-founder of crypto heavy venture fund Andreessen Horowitz AKA a16z, Trump convert'),
+            Contact('Ben Horowitz', 'co-founder of crypto heavy venture fund Andreessen Horowitz AKA a16z, Trump convert', is_organization=True),
             Contact(
                 'Bo Collins',
                 f"AKA James Robert Collins, {MERCANTILE_GLOBAL_HOLDINGS}, testified in trial of Miles Guo/Miles Kwok",
@@ -387,13 +387,19 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(
                 'Marc Andreessen',
                 'co-founder of crypto heavy venture fund Andreessen Horowitz AKA a16z, Trump convert',
-                r"adreeson|(Marc\s*)?(?<!Gavin )Andreess?en"
+                r"adreeson|(Marc\s*)?(?<!Gavin )Andreess?en(?!\s+Horowitz)",
+                is_organization=True
             ),
             Contact('Matthew Gilbert', 'assistant to Howard Lutnick'),
             Contact('Ross Ulbricht', 'founder of infamous online drug market Silk Road, pardoned by Trump'),
             Contact('Suhas Daftuar', 'Chaincode Labs'),
             Contact('W. Bradford Stephens', f"co-founder of {BLOCKCHAIN_CAPITAL}", r"(Brad(ford)?|Bart) Stephens"),
             Contact("Wladimir van der Laan", 'bitcoin core developer', r"Wladimir( van der Laan)?"),
+            company(
+                'a16z',
+                "AKA Andressen Horowitz, crypto heavy venture fund founded by Marc Andreessen and Ben Horowitz",
+                r"a16z|Andrees?sen Horowitz",
+            ),
             company('Alphabit', 'crypto fund'),
             company('BGC', f"{CANTOR} related firm of {HOWARD_LUTNICK}"),
             company('Bioptix', 'old name of RIOT Blockchain from when it was a biotech company'),
