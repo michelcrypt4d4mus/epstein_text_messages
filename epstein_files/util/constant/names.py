@@ -322,7 +322,7 @@ NAMES_TO_NOT_PARTIALLY_MATCH = """
     adam al alain alan alison alfredo allen alex alexander amanda andres andrew ann anthony asia audrey
     back bard barrett barry bennet bernard bill black bob boris boyle brad brenner bruce bryan
     cameron caroline carolyn chris christian christina christopher cohen
-    dan daniel danny darren dave david debbie department donald douglas dylan
+    dan daniel danny darren dave david debbie department doj donald douglas dylan
     ed edward edwards elisa enforcement enterprise enterprises entourage epstein eric erika etienne
     faith fisher fitzgerald forget frances francesca fred friendly frost fuller fund
     gates gateway general gerald george gilbert girl gold gordon greg
@@ -330,7 +330,7 @@ NAMES_TO_NOT_PARTIALLY_MATCH = """
     ian inc inc. ivan
     jack james jay jean jeff jeffrey jennifer jeremy jessica joel john jon jonathan joseph jr julia justin
     kafka kahn karl kate katherine kelly ken kevin krassner
-    larry larsen laurie lawrence leon lesley linda link lisa love
+    larry larsen laurie lawrence leon lesley linda link lisa london love
     management manhattan mann marc maria marie mark martin matthew melanie michael mike miller mitchell miles morris moskowitz
     nancy nathan neal new nicholas nicole nick norman ny
     owen

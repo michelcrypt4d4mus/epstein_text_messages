@@ -202,7 +202,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(BILL_GATES, "ex-Microsoft, Gates Foundation, bgC3"),
             Contact(
                 name=BORIS_NIKOLIC,
-                info=f"biotech VC partner of {BILL_GATES}, Epstein estate executor",
+                info=f"biotech partner of {BILL_GATES} in bgC3 / Bill Gates Ventures, Epstein estate executor",
                 emailer_pattern=r"(boris )?nikolic?",
             )
         ],
