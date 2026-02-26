@@ -81,6 +81,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Dan(iel|ny) Kahneman",
             r"(Francis )?Crick",
             r"J(ames|im) Watson",
+            r"(Karl )?Marx",
             r"(Lord )?Martin Rees",
             r"Massachusetts Institute of Technology",
             r"Mayo Clinic",
