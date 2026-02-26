@@ -22,5 +22,5 @@ def test_epstein_co():
     assert jege.emailer_pattern == r"Jege( LLC)?"
     butterfly = epstein_co('Butterfly Inc')
     assert butterfly.emailer_pattern == r"Butterfly( Inc)?"
-    butterfly = epstein_co('Butterfly Inc.')
-    assert butterfly.emailer_pattern == r"Butterfly( Inc\.?)?"
+    butterfly = epstein_co('Butterfly, Inc.')
+    assert butterfly.emailer_pattern == r"Butterfly(,? Inc\.?)?"

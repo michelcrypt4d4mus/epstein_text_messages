@@ -10,7 +10,7 @@ from epstein_files.util.helpers.string_helper import as_pattern, indented, quote
 from epstein_files.util.logging import logger
 
 MIN_LEN_FOR_OPTIONAL_LAST_CHAR = 5
-LLC_OR_INC = re.compile(r".*( (Inc\.?|LLC))$")
+LLC_OR_INC = re.compile(r".*?(,? (Inc\.?|LLC))$")
 
 
 @dataclass
@@ -134,6 +134,9 @@ def epstein_co(name: str, emailer_pattern: str = '') -> Contact:
         suffix = llc_or_inc_match.group(1)
         emailer_pattern = name.removesuffix(suffix)
         # print(f"suffix='{suffix}', emailer_pattern='{emailer_pattern}'")
+
+        if suffix.startswith(','):
+            suffix = suffix.replace(',', ',?')
 
         if suffix.endswith('.'):
             suffix = suffix.replace('.', r'\.?')
