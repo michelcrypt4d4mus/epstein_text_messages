@@ -48,7 +48,7 @@ LINK_LINE_REGEX = re.compile(f"^[>• ]*htt")
 LINK_LINE2_REGEX = re.compile(r"^[-\w.%&=/]{5,}$")
 QUOTED_REPLY_LINE_REGEX = re.compile(r'(\nFrom:(.*)|wrote:)\n', re.IGNORECASE)
 REPLY_TEXT_REGEX = re.compile(rf"^(.*?){REPLY_LINE_PATTERN}", re.DOTALL | re.IGNORECASE | re.MULTILINE)
-XML_PLIST_REGEX = re.compile(r"[<=]\?xml version.*</(plist|xml)>", re.DOTALL)
+XML_PLIST_REGEX = re.compile(r"[<=]?\?xml version.*</(plist|xml)>", re.DOTALL)
 
 # Timestamp regexes
 BAD_TIMEZONE_REGEX = re.compile(fr'\((UTC|GMT\+\d\d:\d\d)\)|{REDACTED}')
@@ -97,7 +97,7 @@ OCR_REPAIRS: dict[str | re.Pattern, str] = {
     'I nline-Images:': 'Inline-Images:',
     re.compile(r"^((?:B?cc|To):.*)\n(>?;.*)", re.IGNORECASE | re.MULTILINE): r'\1 \2',
     re.compile(r"^From "): 'From: ',
-    re.compile(r"^(Sent|Subject) (?![Ff]rom|using|[Vv]ia)", re.MULTILINE): r'\1: ',
+    re.compile(r"^(Sent|Subject) (?![Ff]rom|using|[Vv]ia|with)", re.MULTILINE): r'\1: ',
     re.compile(r"^Subject[.•]{,2} ", re.MULTILINE): 'Subject: ',
     re.compile(r"^(Forwarded|Original) Message$", re.IGNORECASE | re.MULTILINE): r"--- \1 Message ---",  # Make forward lines match our highlight
     # Excessive quote chars
@@ -114,10 +114,11 @@ OCR_REPAIRS: dict[str | re.Pattern, str] = {
     re.compile(r"^--\w+-- (conversation-id|date-last-viewed).*(flags|remote-id\s\d+)(\s*\d{6,}.*remote-id.*\d+)?", re.MULTILINE): '',
     re.compile(r"<mailto:([-\w=.@]+)[»>]"): r'\1',
     # Names / email addresses
-    'Alireza lttihadieh': ALIREZA_ITTIHADIEH,
-    'Miroslav Laj6ak': MIROSLAV_LAJCAK,
-    'Ross G°w': ROSS_GOW,
-    'Torn Pritzker': TOM_PRITZKER,
+    r'Alireza lttihadieh': ALIREZA_ITTIHADIEH,
+    r'bamaby': 'barnaby',
+    r'Miroslav Laj6ak': MIROSLAV_LAJCAK,
+    r'Ross G°w': ROSS_GOW,
+    r'Torn Pritzker': TOM_PRITZKER,
     re.compile(r"( [AP]M,)\s+wrote:$", re.MULTILINE): r'\1 <REDACTED> wrote:',
     re.compile(r' Banno(r]?|\b)'): ' Bannon',
     re.compile(r"\bBamaby\b"): 'Barnaby',
@@ -624,8 +625,11 @@ class Email(Communication):
     def _strip_unwanted_text(self) -> str:
         """Add newlines before quoted replies and snip signatures."""
         # Insert line breaks now unless header is broken, in which case we'll do it later after fixing header
+        # self.(f"text before _add_line_breaks:\n\n{self.text}\n---")
         text = self.text if self.header.was_initially_empty else _add_line_breaks(self.text)
         text = REPLY_REGEX.sub(r'\n\1', text)  # Newlines between quoted replies
+        text = FORWARDED_TOO_MUCH_SPACE_REGEX.sub(r'\1\n', text)
+        # self.warn(f"text after _add_line_breaks:\n\n{text}\n---")
 
         for name, signature_regex in EMAIL_SIGNATURE_REGEXES.items():
             signature_replacement = f'<...snipped {name.lower()} email signature...>'
@@ -906,6 +910,7 @@ class Email(Communication):
 
 def _add_line_breaks(email_text: str) -> str:
     text = EMAIL_SIMPLE_HEADER_LINE_BREAK_REGEX.sub(r'\n\1\n', email_text).strip()
+    logger.debug(f"text in _add_line_breaks()\n---\n{text}\n---")
     return FORWARDED_TOO_MUCH_SPACE_REGEX.sub(r'\1\n', text)
 
 

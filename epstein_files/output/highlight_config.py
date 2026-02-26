@@ -81,6 +81,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Dan(iel|ny) Kahneman",
             r"(Francis )?Crick",
             r"J(ames|im) Watson",
+            r"(Karl )?Marx",
             r"(Lord )?Martin Rees",
             r"Massachusetts Institute of Technology",
             r"Mayo Clinic",
@@ -109,9 +110,9 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         label='Africa',
         style='light_pink4',
         contacts=[
-            Contact('Abdoulaye Wade', "former president of Senegal, father of Karim Wade"),
+            Contact('Abdoulaye Wade', f"former president of Senegal, father of {KARIM_WADE}"),
             Contact('Ivan Glasenberg', "South African former CEO of Glencore, one of the world's largest commodity trading and mining companies"),
-            Contact('Karim Wade', 'son of the president of Senegal, facing arrest for corruption, email handle is "Afri zp"'),
+            Contact(KARIM_WADE, 'son of the president of Senegal, facing arrest for corruption, email handle is "Afri zp"', r"Afri [xz]p?|Karim Wade"),
             Contact('Miles Alexander', "Operations Manager Michaelhouse Balgowan KwaZulu-Natal South Africa"),
             Contact('Macky Sall', "prime minister of Senegal, defeated Abdoulaye Wade")
         ],
@@ -126,6 +127,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Johannesburg",
             r"Kenyan?",
             r"Kinshasa",
+            r"Madagascar",
             r"Mobutu Seko",
             r"Nigerian?",
             r"Okey Enelamah",
@@ -177,6 +179,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Lena Dunham",
             r"Madonna",
             r"Mark Burnett",
+            r"New Apostolic Church",
             r"New York Film Festival",
             r"Peter Getzels",
             r"Phaidon",
@@ -240,6 +243,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"(Barry )?Honig",
             r"((Bill|David) )?Koch( (Bro(s|thers)|Industries))?",
             r"BP",
+            r"Braintree",
             r"Colony Capital",
             r"(General|Limited) Partner",
             r"Gruterite",
@@ -247,6 +251,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Jeanne Houweling",  # CEO of Adfin, company lutnick and epstein invested in
             r"Johann? Eliasc?h",
             r"((John|Patricia) )?Kluge",
+            r"LNG",
             r"Mar[ck] Rich",
             r"McKinsey",
             r"Montilla",  # Junkermann
@@ -256,6 +261,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"(Les(lie)? )?Wexner",
             r"Michael Klein",
             r"New Leaf Ventures",
+            r"Overstock(.com)?",
             r"Park Partners",
             r"Ponz[il] scheme",
             r"Paypal",
@@ -283,6 +289,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         label='China',
         style='bright_red',
         contacts=[
+            Contact('Desmond Shum', f'Hong Kong financier, friend of {PETER_MANDELSON}'),
             Contact(GINO_YU, f"professor / game designer in Hong Kong, friend of {MASHA_DROKOVA}, worked on PR for Epstein"),
         ],
         patterns=[
@@ -300,10 +307,11 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"HK",
             r"Hong",
             r"Huaw[ae]i",
+            r"Jack Ma",
             r"Kim Jong Un",
             r"Kong",
-            r"Jack Ma",
             r"Kwok",
+            r"Li Botan",
             r"(Madam )?Fu Ying",
             r"Ministry\sof\sState\sSecurity",
             r"MSS",
@@ -348,7 +356,11 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(ED_BOYLE, f"Medici Bank", r"Ed Boy(el|le)"),
             Contact(FRANCESCA_HALL, f"'Assistant/Calendar Queen to The BlockStream team' / {AUSTIN_HILL}"),
             Contact(GAVIN_ANDRESEN, 'core bitcoin developer', r"(Gavin )?Andr.ss?en"),
-            Contact(HOWARD_LUTNICK, "Tether's banker, Cantor Fitzgerald, US Commerce Secretary under Trump", r"Lutnick(,? Howard)|Howard( William)? Lutnick"),
+            Contact(
+                name=HOWARD_LUTNICK,
+                info="Tether's banker, Cantor Fitzgerald, US Commerce Secretary under Trump",
+                emailer_pattern=r"Lutnick(,? Howard)|Howard( William)? Lutnick|HWL"
+            ),
             Contact(JEFFREY_WERNICK, "former COO of Parler, involved in numerous crypto companies like Bitforex"),
             Contact(JEREMY_RUBIN, "developer/researcher", r"Jeremy Rub(in|m)"),
             Contact(LORENZO_DE_MEDICI, "Medici Bank, possibly Medici heir?", r"Prince Lorenzo|Lorenzo de Medici"),
@@ -371,6 +383,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"block\s?(chain|tree)( capital)?",
             r"Blockstream",
             r"Blythe Masters",
+            r"(Bo|James) (Robert )?Collins",
             r"Brac",  # Brock? EFTA01792443
             r"(Brad(ford)?|Bart) Stephens",  # co-founder, Blockchain Capital
             r"Bradley Rotter",
@@ -874,7 +887,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 emailer_pattern=r"Andrew (L\.? )?Farkas|Farkas, Andrew( L\.?)?",
             ),
             Contact(DANGENE_AND_JENNIE_ENTERPRISE, "founders of the members-only CORE club"),
-            Contact(DAVID_STERN, f"emailed Epstein from Moscow, knows chairman of {DEUTSCHE_BANK} (?)", r"David Ste(m|rn?)|ds@witangroup"),
+            Contact(DAVID_STERN, f"emailed Epstein from Moscow, knows chairman of {DEUTSCHE_BANK} (?)", r"David Ste(m|rn?)|ds[@®]witangroup"),
             Contact(
                 name=JONATHAN_FARKAS,
                 info="heir to the Alexander's department store fortune",
@@ -1414,7 +1427,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Gulf Cooperation Council",
             r"GCC",
             r"(Hamid )?Karzai",
-            r"Hamad bin Jassim",
+            r"Hamad( bin Jassim)?",
             r"Hamas",
             r"Hassan (Mohammed )?(Abdul )?(.atif )?Jameel",
             r"Hezbollah",
@@ -1443,6 +1456,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"MJ",
             r"Mohammed bin Salman",
             r"Morocc(an|o)",
+            r"Mosque",
             r"Mubarak",
             r"Muslim( Brotherhood)?",
             r"Nayaf",
@@ -1459,7 +1473,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Saudi( Arabian?)?",
             r"Shariah?",
             r"SHC",
-            r"sheikh",
+            r"sheikh?",
             r"shia",
             r"(Sultan )?Yacoub",
             r"Sultan(?! Ahmed)",
@@ -1831,7 +1845,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"(Donald\s+(J\.\s+)?)?Trump(ism| (Org(anization)?|Properties)( LLC)?)?",
             r"Don(ald| Jr)(?! (B|Norman|Rubin))",
             r"(Hope )?Hicks",
-            r"(Howard )?Lutnic?k",
+            # r"(Howard )?Lutnic?k",
             r"Ivank?a",
             r"Jared", r"(?<!Tony )Kushner",
             r"(Madeleine )?Westerhout",
@@ -1883,6 +1897,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         style=VICTIM_COLOR,
         contacts=[
             Contact(PAULA, "ex-girlfriend who works in opera now", r"^Paula( Heil Fisher)?$"),
+            Contact('Samantha Rose Stein', 'wombkind.com'),
         ],
         patterns=[
             r"child pornography",
