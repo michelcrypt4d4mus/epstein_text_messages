@@ -585,7 +585,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             epstein_co('Southern Country International'),
             epstein_co('Thomas World Air'),
             epstein_co('Zorro Management'),
-            epstein_trust('Butterfly Trust'),  # TODO: shuliak
+            epstein_trust('Butterfly Trust', beneficiaries=[KARYNA_SHULIAK]),  # TODO: shuliak
             epstein_trust('Caterpillar Trust', r"(2017 )?Caterpillar Trust"),
             epstein_trust('C.O.U.Q. Foundation', r"C\.?O\.?U\.?Q\.?( Foundation)?"),  # charity account
             epstein_trust('Financial Trust Company', r"Financial Trust Co(\.|mpany)"),

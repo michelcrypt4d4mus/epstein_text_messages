@@ -10,6 +10,7 @@ from epstein_files.documents.documents.doc_cfg import CommunicationCfg
 from epstein_files.output.highlight_config import HIGHLIGHTED_CONTACTS, get_style_for_name, styled_name
 from epstein_files.output.rich import styled_key_value
 from epstein_files.util.constant.names import UNKNOWN, Name
+from epstein_files.util.helpers.data_helpers import uniquify
 from epstein_files.util.helpers.rich_helpers import no_bold
 
 TIMESTAMP_SECONDS_REGEX = re.compile(r":\d{2}$")
@@ -46,10 +47,10 @@ class Communication(Document):
         return no_bold(self.author_style)
 
     @property
-    def characters(self) -> set[str]:
+    def people(self) -> list[str]:
         """Names of people who either sent/received this email or are mentioned in it."""
-        body_characters = [c.name for c in HIGHLIGHTED_CONTACTS if c.highlight_regex.search(self.text)]
-        return set([p for p in self.participants if p] + body_characters)
+        people = super().people + [p for p in self.participants if p]
+        return sorted(uniquify(people))
 
     @property
     def config(self) -> CommunicationCfg | None:

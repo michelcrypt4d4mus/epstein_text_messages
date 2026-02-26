@@ -27,7 +27,7 @@ from epstein_files.util.constant.html import HTML_TERMINAL_THEME, RICH_HTML_TEMP
 from epstein_files.util.constant.names import *
 from epstein_files.util.constant.strings import AUTHOR
 from epstein_files.util.env import args
-from epstein_files.util.helpers.data_helpers import dict_sets_to_lists
+from epstein_files.util.helpers.data_helpers import dict_sets_to_lists, uniq_sorted
 from epstein_files.util.helpers.file_helper import file_size_str, log_file_write
 from epstein_files.util.logging import logger, exit_with_error
 
@@ -47,29 +47,43 @@ def print_curated_chronological(epstein_files: EpsteinFiles) -> list[Document]:
     html_elements = [html_so_far()]  # Print the title page to html as is
     printed_docs: list[Document] = []
     people_encountered = set()
+    new_characters_queue = []
     other_files_queue = []  # Collects sequential OtherFiles into tables
+
+    def print_characters_panel(new_characters: list[str]) -> None:
+        if (bio_panel := _biographical_panel(uniq_sorted(new_characters), doc)):
+            console.print(_align_biographical_panel(bio_panel))
+            html_elements.append(div_class(rich_to_html(bio_panel, minimize_width=True), 'person_bio_panel'))
+
+        people_encountered.update(new_characters)
 
     for doc in epstein_files.unique_documents:
         if not doc.is_interesting:
             continue
         elif isinstance(doc, OtherFile) and doc.is_valid_for_table:
+            new_characters_queue.extend(doc.people)
             other_files_queue.append(doc)
             continue
         elif other_files_queue:
-            title = None if any(isinstance(d, OtherFile) for d in printed_docs) else OTHER_FILES_TABLE_MSG
-            table = OtherFile.files_preview_table(other_files_queue, title=title, title_justify='center')
+            has_printed_any_other_file_objs = any(isinstance(d, OtherFile) for d in printed_docs)
+            print_characters_panel(new_characters_queue)
+
+            if has_printed_any_other_file_objs:
+                table_title = None
+            else:
+                table_title = OTHER_FILES_TABLE_MSG
+                console.line()
+                html_elements.append('<div style="height: 1em"></div>')
+
+            table = OtherFile.files_preview_table(other_files_queue, title=table_title, title_justify='center')
             console.print(Padding(table, (0, 0, 1, site_config.other_files_table_indent)))
             html_elements.append(OtherFile.files_preview_table_to_html(table))
             printed_docs.extend(other_files_queue)
+            new_characters_queue = []
             other_files_queue = []
 
         if isinstance(doc, Communication):
-            new_characters = sorted([p for p in doc.characters if p not in people_encountered])
-            people_encountered.update(new_characters)
-
-            if (bio_panel := _biographical_panel(new_characters, doc)):
-                console.print(_align_biographical_panel(bio_panel))
-                html_elements.append(div_class(rich_to_html(bio_panel, minimize_width=True), 'person_bio_panel'))
+            print_characters_panel([p for p in doc.people if p not in people_encountered])
 
         doc.print()
         printed_docs.append(doc)
@@ -386,7 +400,7 @@ def _biographical_panel(names: list[str], next_doc: Document) -> Panel | None:
         expand=False,
         # padding=(0, 2),
         style='on gray7',
-        title=Text(f"new people in next {next_doc._debug_prefix}", 'grey85 italic'),
+        title=Text(f"new names in next {next_doc._debug_prefix}", 'grey85 italic'),
         title_align='right',
     )
 
