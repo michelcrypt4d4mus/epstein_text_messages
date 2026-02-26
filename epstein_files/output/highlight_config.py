@@ -657,7 +657,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(RICHARD_KAHN, "Epstein estate executor", r"rich(ard)? kahn?")
         ],
         patterns=[
-            r"HBRK( (Associates,? )?Inc)?"
+            r"HBRK( (Associates,? )?Inc)?",
         ]
     ),
     HighlightedNames(
@@ -2054,7 +2054,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         patterns=[r"#metoo"]
     ),
     HighlightPatterns(
-        label='financial',
+        label='dollars',
         style=FINANCIAL_COLOR,
         patterns=[
             r"\$[\d,.]+(\s?(m(illion)?|thousand))?",
