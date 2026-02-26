@@ -136,9 +136,6 @@ class HighlightedNames(HighlightPatterns):
         info_pieces = without_falsey(info_pieces)
         return ', '.join(info_pieces) if info_pieces else None
 
-    def __str__(self) -> str:
-        return super().__str__()
-
     def __repr__(self) -> str:
         s = f"{type(self).__name__}("
 
@@ -165,6 +162,9 @@ class HighlightedNames(HighlightPatterns):
                 s += f"{json.dumps(value)},"
 
         return s + '\n)'
+
+    def __str__(self) -> str:
+        return super().__str__()
 
 
 @dataclass(kw_only=True)
