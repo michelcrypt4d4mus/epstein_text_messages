@@ -549,7 +549,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         label='Epstein',
         style='blue1',
         contacts=[
-            Contact(ASIA_GATEWAY, f"corporate vehicle set up by Epstein and {DAVID_STERN}", r"Asia\s*Gateway(\s*L(imited|td))"),
+            Contact(ASIA_GATEWAY, f"corporate vehicle set up by Epstein and {DAVID_STERN}", r"Asia\s*Gateway(\s*L(imited|td))?"),
             Contact(
                 name=JEFFREY_EPSTEIN,
                 emailer_pattern=r"[djl]\s?ee[vy]acation[©@]?g?(mail.com)?|Epstine|\bJEE?\b|Jeff(rey)? (Edward )?E((sp|ps)tein?)?( VI Foundation)?|jeeproject@yahoo.com|J Jep|Jeffery Edwards|(?<!(ark L.|rd Jay|Edward) )Epstein|Jeffrey Epst.*comj?",
@@ -687,6 +687,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Alfa( Bank)",
             r"(Angela )?Merk(el|le)",
             r"Austria",
+            r"Barcelona",
             r"Belgi(an|um)",
             r"(Benjamin )?Harnwell",
             r"Berlin",
@@ -723,6 +724,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Lithuanian?",
             r"Le Pen",
             r"(?<!DOJ )London",
+            r"Luxembourg",
             r"Macron",
             r"Malta",
             r"Melusine",

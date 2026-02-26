@@ -182,6 +182,7 @@ SNEAKY_DOG = '"sneaky dog"'
 SINCERELY_SNEAKY = f'{SNEAKY_DOG} + "Sincerely"'
 
 # Descriptions
+AL_SECKEL_BILL_FIGHT = f"{AL_SECKEL} and Epstein fight about the bill for reputation management services"
 IS_IT_ROGER_STONE = "is the 'roger' Epstein is trying to meet Roger Stone?"
 ALLEGED_KARIM_WADE = f"allegedly corrupt Senegalese politician {KARIM_WADE}"
 KYARA_FUND = f"Epstein crypto fund {KYARA_INVESTMENT}"
@@ -577,7 +578,8 @@ EMAILS_CONFIG = [
     EmailCfg(id='032946', description='discussion of obtaining a Moroccan visa for an unnamed woman', is_interesting=True),
     EmailCfg(id='031320', description='discussion of routing Gratitude foundation money through Peggy Siegal', is_interesting=True),
     EmailCfg(id='031152', description='discussion of notoriously corrupt Kazakh politician Rakhat Aliyev', is_interesting=True),
-    EmailCfg(id='022219', description=f"{AL_SECKEL} and Epstein fight about the bill for reputation management services", truncate_to=2404),
+    EmailCfg(id='022203', description=AL_SECKEL_BILL_FIGHT),
+    EmailCfg(id='022219', description=AL_SECKEL_BILL_FIGHT, truncate_to=2404),
     EmailCfg(id='032671', description='connections to Fusion GPS who produced the Steele Dossier on Trump'),
     EmailCfg(id='033052', description='connections to Fusion GPS who produced the Steele Dossier on Trump'),
     EmailCfg(id='031472', description="discussion of publishing an audio recording related to the coup in Turkey"),
@@ -1360,7 +1362,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA02730485', date='2021-12-03 00:00:00'),
     EmailCfg(id='EFTA00901970', description=f"{AL_SECKEL}'s response to Epstein's forged email", is_interesting=True, truncate_to=3000),
     EmailCfg(id='EFTA00992595', description=f"{ARIANE_DE_ROTHSCHILD} mentions her visit to Mongolia"),
-    EmailCfg(id='EFTA00888467', description='a very strange conversation about "Peter" and "mj"', is_interesting=True),
+    EmailCfg(id='EFTA00888467', description='a very strange conversation about "Peter" and "mj"', is_interesting=True, truncate_to=1600),
     EmailCfg(
         id='EFTA02021096',
         description=f"discussion of the murder of Martine Vik Magnussen by {SHAHER_ABDULHAK_BESHER}'s son Farouk",
@@ -2711,7 +2713,7 @@ OTHER_FILES_CRYPTO = [
     EmailCfg(id='EFTA01039626'),
     EmailCfg(id='EFTA02588723', description=f'discussion of crypto food stamps debit cards', is_interesting=True),
     EmailCfg(id='EFTA02588748', description=f'discussion of crypto food stamps debit cards', is_interesting=True, truncate_to=800),
-    EmailCfg(id='EFTA02035756', description=f"{AL_SECKEL} introduces Epstein to {BROCK_PIERCE}", is_interesting=True),
+    EmailCfg(id='EFTA02035756', description=f"{AL_SECKEL} introduces Epstein to {BROCK_PIERCE} of Tether/{BLOCKCHAIN_CAPITAL} fame", is_interesting=True),
     EmailCfg(id='EFTA02372964', description='an "ICO" or "initial coin offering" was a very popular type of crypto scam at this time'),
     EmailCfg(
         id='EFTA02177147',
@@ -2954,6 +2956,9 @@ UNINTERESTING_EMAIL_IDS = [
 NOT_CHRONOLOGICAL_VIEW_IDS = [
     '024432',
     '016692',
+    'EFTA01823635',
+    'EFTA00747181',
+    'EFTA00758140',
     '022247',
     '030095',
     '022234',

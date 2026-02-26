@@ -175,7 +175,7 @@ def one_row_table_html(table: Table, css_props: CssProps = None) -> str:
             **(HtmlStyle(table.header_style).to_css if table.header_style else {})
         }
 
-        logger.warning(f"header_props: {header_props}\n  border_props: {border_props}\n")
+        logger.debug(f"header_props: {header_props}\nborder_props: {border_props}\n")
 
         header_div = div_class(
             rich_to_html(Text('', style=col.header_style or '').append(col.header)),
