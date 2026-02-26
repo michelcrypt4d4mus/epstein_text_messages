@@ -27,6 +27,7 @@ class Contact:
     emailer_pattern: str = ''
     emailer_regex: re.Pattern = field(init=False)
     highlight_regex: re.Pattern = field(init=False)
+    is_interesting: bool = True  # Eligible for bio panel
     is_junk: bool = False  # TODO: this sucks
     is_organization: bool = False
     link_to_bio: str = ''
@@ -39,6 +40,13 @@ class Contact:
         except re.error as e:
             logger.fatal(f"failed to compile emailer_regex for {self.name}: {e}")
             raise e
+
+        if self.info == LAW_ENFORCEMENT:
+            self.is_interesting = False
+
+    @property
+    def has_bio(self) -> bool:
+        return bool(self.is_interesting and self.info)
 
     @property
     def highlight_pattern(self) -> str:

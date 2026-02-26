@@ -1839,13 +1839,11 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(ANDREW_MCCORMACK, f"partner at {THIELS_VALAR} {'(???)'}", r"Andrew McCorm(ack?)?"),
             Contact('Auren Hoffman', "CEO of SafeGraph (firm that gathers location data from mobile devices) and LiveRamp"),
             Contact(ELON_MUSK, "father of Mecha-Hitler"),
-            Contact(GOOGLE_PLUS, "Google+", r"Google\+"),
             Contact(HONGBO_ROBERT_BAO, THIELS_VALAR, r"Hong,? Robert Bao|Hongbo( Robert)? Bao"),
             Contact(IAN_ODONNELL, THIELS_VALAR, r"Ian O'?Donnell|O'?Donnell, Ian"),
             Contact('Jack Dorsey', 'co-founder of Twitter and Block (FKA Square)'),
             Contact(JAMES_FITZGERALD, THIELS_VALAR, r"James Fitz[g\s]eral?d?"),
             Contact(JASON_CALACANIS, 'All In Podcast with David Sacks, Uber investor', r"Jason (.{12})Calacanis"),
-            Contact('LinkedIn', "LinkedIn", r"Linked[Il]n( Updates)?"),
             Contact(PHILIP_ROSEDALE, 'Second Life Founder'),
             Contact(PETER_THIEL, "Paypal mafia member, founder of Palantir, Facebook investor"),
             Contact(REID_HOFFMAN, "PayPal mafia member, founder of LinkedIn"),
@@ -1854,6 +1852,8 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact('Talia Parnass', f"{PETER_THIEL}'s assistant"),
             Contact(VINCENZO_IOZZO, "CEO of the identity-security company SlashID", r"Vincenzo [IL]ozzo"),
             Contact(ZUBAIR_KHAN, f"Tranchulas cybersecurity, InsightsPod founder, Islamabad / Dubai, friend of {MASHA_DROKOVA}"),
+            company(GOOGLE_PLUS, "Google+", r"Google\+", is_interesting=False),
+            company('LinkedIn', "LinkedIn", r"Linked[Il]n( Updates)?", is_interesting=False),
             company('Neoteny', f"Japanese venture fund of {JOI_ITO}"),
             company(VALAR_VENTURES, f"{PETER_THIEL} affiliated fintech venture fund", r"V[ae]lar (Global Fund|Ventures)?"),
         ],
@@ -2224,7 +2224,7 @@ PEOPLE_BIOS = {
     contact.name: highlighted_group.info_for(contact.name, include_category=True)
     for highlighted_group in HIGHLIGHTED_NAMES
     for contact in highlighted_group.contacts
-    if contact.info and contact.info != LAW_ENFORCEMENT
+    if contact.has_bio
 }
 
 
