@@ -73,7 +73,7 @@ class Contact:
         else:
             pattern = remove_question_marks(self.name)  # TODO: this sucks
 
-            if len(pattern) >= MIN_LEN_FOR_OPTIONAL_LAST_CHAR:
+            if len(pattern) >= MIN_LEN_FOR_OPTIONAL_LAST_CHAR and not self.is_organization:
                 pattern = self.name + '?'
 
         return as_pattern(pattern)

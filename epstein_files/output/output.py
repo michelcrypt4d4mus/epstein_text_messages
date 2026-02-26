@@ -50,7 +50,10 @@ def print_curated_chronological(epstein_files: EpsteinFiles) -> list[Document]:
     new_characters_queue = []
     other_files_queue = []  # Collects sequential OtherFiles into tables
 
-    def print_characters_panel(new_characters: list[str]) -> None:
+    def print_characters_panel(people: list[str]) -> None:
+        nonlocal people_encountered
+        new_characters = [p for p in people if p not in people_encountered]
+
         if (bio_panel := _biographical_panel(uniq_sorted(new_characters), doc)):
             console.print(_align_biographical_panel(bio_panel))
             html_elements.append(div_class(rich_to_html(bio_panel, minimize_width=True), 'person_bio_panel'))
@@ -85,7 +88,7 @@ def print_curated_chronological(epstein_files: EpsteinFiles) -> list[Document]:
             other_files_queue = []
 
         if isinstance(doc, Communication):
-            print_characters_panel([p for p in doc.people if p not in people_encountered])
+            print_characters_panel([p for p in doc.people])
 
         doc.print()
         printed_docs.append(doc)

@@ -225,7 +225,11 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(ALIREZA_ITTIHADIEH, "CEO Freestream Aircraft Limited", r"Alireza.[Il]ttihadieh"),
             Contact('André Balazs', 'hotelier, CEO of André Balazs Properties', r"Andre Bala(sz|zs)"),
             Contact('AT&T Court Appearance Team', "AT&T"),
-            Contact(BARBRO_C_EHNBOM, "Swedish pharmaceuticals, SALSS", r"behnbom@aol.com|(Barbro\s.*)?Ehnbom|Barbro"),
+            Contact(
+                BARBRO_C_EHNBOM,
+                "Swedish pharmaceuticals, SALSS, alleged recruiter of girls",
+                r"behnbom@aol.com|(Barbro\s.*)?Ehnbom|Barbro"
+            ),
             Contact(BARRY_J_COHEN, emailer_pattern=r"barry ((j.?|james) )?cohen?"),
             Contact('David Mitchell', "Mitchell Holdings, New York real estate developer", r"David( J\.?)? Mitchell"),
             Contact(GERALD_BARTON, "Maryland property developer Landmark Land Company", r"Gerald.*Barton"),
@@ -372,7 +376,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(FRANCESCA_HALL, f"'Assistant/Calendar Queen to The BlockStream team' / {AUSTIN_HILL}"),
             Contact('Fred Ehrsam', "co-founder of Coinbase"),
             Contact(GAVIN_ANDRESEN, 'core bitcoin developer', r"(Gavin )?Andr.ss?en"),
-            Contact('Hester Peirce', f"famously pro-crypto SEC board member known as 'crypto mom'"),
+            Contact('Hester Peirce', f"famously pro-crypto SEC board member known as 'crypto mom'", is_organization=True),  # TODO: not really org...
             Contact(
                 name=HOWARD_LUTNICK,
                 info="Tether's banker, Cantor Fitzgerald, US Commerce Secretary under Trump",
@@ -827,7 +831,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         patterns=[
             r"alterna[tv]i[tv]e finance",
             r"((anti )?money )?launder(s?|ers?|ing)?( money)?",
-            r"(?<!(ature|Chase|zrahi|tsche)\s)bank(?!\s+(of|secrecy))",
+            r"(?<!(alfa|ture|hase|rahi|sche)\s)bank(?!\s+(of|secrecy))",
             r"bond",
             r"capital controls",
             r"C[EF]O",
@@ -1844,7 +1848,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact('Jack Dorsey', 'co-founder of Twitter and Block (FKA Square)'),
             Contact(JAMES_FITZGERALD, THIELS_VALAR, r"James Fitz[g\s]eral?d?"),
             Contact(JASON_CALACANIS, 'All In Podcast with David Sacks, Uber investor', r"Jason (.{12})Calacanis"),
-            Contact(PHILIP_ROSEDALE, 'Second Life Founder'),
+            Contact(PHILIP_ROSEDALE, 'Second Life founder'),
             Contact(PETER_THIEL, "Paypal mafia member, founder of Palantir, Facebook investor"),
             Contact(REID_HOFFMAN, "PayPal mafia member, founder of LinkedIn"),
             Contact('Reuben Kobulnik', THIELS_VALAR),

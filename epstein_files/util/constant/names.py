@@ -331,7 +331,7 @@ NAMES_TO_NOT_PARTIALLY_MATCH = set("""
     haddad hall hanson harry hassan hay heather henry hill hoffman howard
     ian inc inc. ivan
     jack james jay jean jeff jeffrey jennifer jeremy jessica joel john jon jonathan joseph jr julia justin
-    kafka kahn karl kate katherine kelly ken kevin krassner
+    kafka kahn karl kate katherine kathryn kelly ken kevin krassner
     larry larsen laurie lawrence len leon lesley linda link lisa london love
     management manhattan mann marc maria marie mark martin matthew melanie michael mike miller mitchell miles morris moskowitz
     nancy nathan neal new nicholas nicole nick norman ny
