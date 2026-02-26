@@ -280,6 +280,7 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
         "Sent from my iPhone"
     ],
     "Jeffrey Epstein": [
+        "Sent from my iPad",
         "Sent from my iPhone",
         "Sorry for all the typos .Sent from my iPhone"
     ],
@@ -473,6 +474,7 @@ SIGNATURE_SUBSTITUTION_COUNTS = {
     BRAD_KARP: 5,
     'Bradford Stephens': 9,
     BROCK_PIERCE: 117,
+    'Cantor Fitzgerald': 5,
     DANIEL_SIAD: 5,
     "Danny Frost": 8,
     DARREN_INDYKE: 47,
