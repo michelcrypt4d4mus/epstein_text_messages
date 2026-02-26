@@ -1855,6 +1855,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             company(GOOGLE_PLUS, "Google+", r"Google\+", is_interesting=False),
             company('LinkedIn', "LinkedIn", r"Linked[Il]n( Updates)?", is_interesting=False),
             company('Neoteny', f"Japanese venture fund of {JOI_ITO}"),
+            company('Second Life', f"virtual world with early attempt at virtual currency the Linden Dollar", r"Second Life|Linden dollar"),
             company(VALAR_VENTURES, f"{PETER_THIEL} affiliated fintech venture fund", r"V[ae]lar (Global Fund|Ventures)?"),
         ],
         patterns=[
@@ -1884,7 +1885,6 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Paul Allen",
             r"(Peter\s)?Th(ie|ei)l",
             r"Pierre Omidyar",
-            r"Second Life",
             r"Sergey Brin",
             r"Silicon Valley",
             r"Skyp(ed?|ing)",
