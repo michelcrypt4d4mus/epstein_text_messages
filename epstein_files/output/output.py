@@ -64,7 +64,7 @@ def print_curated_chronological(epstein_files: EpsteinFiles) -> list[Document]:
             other_files_queue = []
 
         if isinstance(doc, Communication):
-            new_characters = [p for p in doc.characters if p not in people_encountered]
+            new_characters = sorted([p for p in doc.characters if p not in people_encountered])
             people_encountered.update(new_characters)
 
             if (bio_panel := _biographical_panel(new_characters, doc)):
