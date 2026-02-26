@@ -4,7 +4,7 @@ from typing import Self
 
 from epstein_files.util.constant.names import (NAMES_TO_NOT_PARTIALLY_MATCH, SIMPLE_NAME_REGEX, Name,
      constantize_name, name_variations)
-from epstein_files.util.constant.strings import INDENT_NEWLINE, INDENTED_JOIN
+from epstein_files.util.constant.strings import INDENT_NEWLINE, INDENTED_JOIN, LAW_ENFORCEMENT
 from epstein_files.util.helpers.data_helpers import constantize_names
 from epstein_files.util.helpers.string_helper import as_pattern, indented, quote, remove_question_marks
 from epstein_files.util.logging import logger
@@ -35,7 +35,7 @@ class Contact:
     def __post_init__(self):
         try:
             self.emailer_regex = re.compile(self.pattern, re.IGNORECASE)
-            self.highlight_regex = re.compile(self.highlight_pattern)
+            self.highlight_regex = re.compile(fr"\b({self.highlight_pattern})\b", re.IGNORECASE)
         except re.error as e:
             logger.fatal(f"failed to compile emailer_regex for {self.name}: {e}")
             raise e
@@ -54,6 +54,7 @@ class Contact:
         for partial_name in name_variations(self.name):
             if partial_name.lower() not in NAMES_TO_NOT_PARTIALLY_MATCH and SIMPLE_NAME_REGEX.match(partial_name):
                 name_patterns.append(as_pattern(partial_name))
+                logger.debug(f"Contact('{self.name}'): appending partial name '{partial_name}'")
 
         return '|'.join(name_patterns)
 
@@ -91,6 +92,7 @@ class Contact:
 
                 add_prop(_field, value)
 
+        props.append(f'highlight_pattern=r"{self.highlight_pattern}"')
         return props
 
     def __repr__(self) -> str:
@@ -144,3 +146,7 @@ def epstein_co(name: str, emailer_pattern: str = '') -> Contact:
         emailer_pattern += fr"({suffix})?"
 
     return Contact(name, 'Epstein company', emailer_pattern, is_organization=True)
+
+
+def law_enforcement(name: str, emailer_pattern: str = '') -> Contact:
+    return Contact(name, LAW_ENFORCEMENT, emailer_pattern=emailer_pattern, is_organization=True)

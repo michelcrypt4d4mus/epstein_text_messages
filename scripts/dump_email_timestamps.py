@@ -85,7 +85,7 @@ def print_partial_names_used_in_regexes():
         elif not highlight.should_match_first_last_name:
             continue
 
-        for name in highlight.emailers:
+        for name in highlight.contacts:
             for partial_name in [n.lower() for n in [extract_first_name(name), extract_last_name(name)]]:
                 partial_name_counts[partial_name] += 1
 

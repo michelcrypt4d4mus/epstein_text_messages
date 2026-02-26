@@ -318,10 +318,10 @@ WAPO = 'WaPo'
 
 
 # First and last names that should be made part of a highlighting regex for emailers
-NAMES_TO_NOT_PARTIALLY_MATCH = """
+NAMES_TO_NOT_PARTIALLY_MATCH = set("""
     adam al alain alan alison alfredo allen alex alexander amanda andres andrew ann anthony asia audrey
     back bard barrett barry bennet bernard bill black bob boris boyle brad brenner bruce bryan
-    cameron caroline carolyn chris christian christina christopher cohen
+    cameron capital caroline carolyn chris christian christina christopher cohen
     dan daniel danny darren dave david debbie department doj donald douglas dylan
     ed edward edwards elisa enforcement enterprise enterprises entourage epstein eric erik erika etienne
     faith fisher fitzgerald forget frances francesca fred friendly frost fuller fund
@@ -342,13 +342,13 @@ NAMES_TO_NOT_PARTIALLY_MATCH = """
     ventures victor
     wade waters
     y
-""".strip().split()
+""".strip().split())
 
 # Names to color white in the word counts
-OTHER_NAMES = NAMES_TO_NOT_PARTIALLY_MATCH + """
+OTHER_NAMES = list(NAMES_TO_NOT_PARTIALLY_MATCH) + """
     aaron albert alberto alec alexandra alice anderson andre ann anna anne ariana arthur
     baldwin barack barrett ben benjamin berger bert binant bob bonner boyden bradley brady branson bright bruno bryant burton
-    capital chapman charles charlie christopher clint cohen colin collins conway
+    chapman charles charlie christopher clint cohen colin collins conway
     davis dean debbie debra deborah dennis diana diane diaz dickinson dixon dominique don dylan
     edmond elizabeth emily entwistle erik evelyn
     ferguson flachsbart francis franco frank

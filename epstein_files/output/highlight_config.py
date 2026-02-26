@@ -13,10 +13,11 @@ from epstein_files.documents.documents.categories import (CATEGORY_STYLES, CATEG
 from epstein_files.documents.emails.constants import (ALL_HEADER_PATTERNS, QUOTE_INDENT_CHAR_GROUP, REPLY_REGEX,
      SENT_FROM_REGEX, XML_STRIPPED_MSG)
 from epstein_files.output.highlighted_names import HighlightGroup, HighlightedNames, HighlightPatterns, ManualHighlight
-from epstein_files.people.contact import Contact, epstein_co, epstein_trust
+from epstein_files.people.contact import Contact, epstein_co, epstein_trust, law_enforcement
 from epstein_files.util.constant.names import *
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constants import EPSTEIN_V_ROTHSTEIN_EDWARDS
+from epstein_files.util.env import args
 from epstein_files.util.helpers.data_helpers import flatten
 from epstein_files.util.helpers.string_helper import indented
 from epstein_files.util.logging import logger
@@ -354,13 +355,13 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(ANTHONY_SCARAMUCCI, "Skybridge Capital, FTX investor, Trump spokesman for two weeks", r"mooch|(Anthony ('The Mooch' )?)?Scaramucci"),
             Contact(ARIANNA_SIMPSON, f"a16z partner involved in the Axie Infinity debacle, Autonomous Partners"),
             Contact(AUSTIN_HILL, f"{BLOCKSTREAM} co-founder with {ADAM_BACK}, Brudder Ventures", r"Austin\s*(Hill|@blockstream.com)"),
-            Contact('BGC', f"{CANTOR} related firm of {HOWARD_LUTNICK}"),
+            Contact('BGC', f"{CANTOR} related firm of {HOWARD_LUTNICK}", is_organization=True),
             Contact('Bioptix', 'old name of RIOT Blockchain from when it was a biotech company', is_organization=True),
-            Contact('Bitfinex', f"crypto exchange run by the same people that run Tether"),
-            Contact('Bitmain', f"Chinese manufacturer of bitcoin mining rigs"),
+            Contact('Bitfinex', f"crypto exchange run by the same people that run Tether", is_organization=True),
+            Contact('Bitmain', f"Chinese manufacturer of bitcoin mining rigs", is_organization=True),
             Contact('Barry Silbert', f"founder of Digital Currency Group with {LARRY_SUMMERS} on the board"),
-            Contact(BLOCKSTREAM, f"early crypto firm co-founded by {ADAM_BACK} and {AUSTIN_HILL}"),
-            Contact(BLOCKCHAIN_CAPITAL, f"crypto VC fund co-founded by Bart Stephens and {BROCK_PIERCE}"),
+            Contact(BLOCKSTREAM, f"early crypto firm co-founded by {ADAM_BACK} and {AUSTIN_HILL}", is_organization=True),
+            Contact(BLOCKCHAIN_CAPITAL, f"crypto VC fund co-founded by Bart Stephens and {BROCK_PIERCE}", is_organization=True),
             Contact(BROCK_PIERCE, "Bannon partner, Tether co-founder, friend of Yair Netanyahu, sex crime history", r"Brock( Pierce)?"),
             Contact(BRYAN_BISHOP, "executive at LedgerX and Polymath fund"),
             Contact(CANTOR, f"Howard Lutnick's financial firm", r"Cantor(,? (Fitzgerald|Opportunities|Ventures?))?", is_organization=True),
@@ -373,7 +374,12 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 is_organization=True
             ),
             Contact('Crypto PR Lab', f"firm founded by {MARIA_PRUSAKOVA} and {ALEKSANDRA_KARPOVA}", is_organization=True),
-            Contact('Digital Currency Initiative', f"crypto part of {MIT_MEDIA_LAB}", r"Digital (Assets?|Currenc(ies|y)( Initiative)?)"),
+            Contact(
+                'Digital Currency Initiative',
+                f"crypto part of {MIT_MEDIA_LAB}",
+                r"Digital (Assets?|Currenc(ies|y) Initiative",
+                is_organization=True
+            ),
             Contact('Dan Morehead', 'Pantera Capital', r"(Dan )?Morehead"),
             Contact(DONALD_NORMAN, f"co-founder of early British crypto exchange Intersango with {AMIR_TAAKI}"),
             Contact(ED_BOYLE, f"Medici Bank", r"Ed Boy(el|le)"),
@@ -401,12 +407,16 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(LORENZO_DE_MEDICI, "Medici Bank, possibly Medici heir?", r"Prince Lorenzo|Lorenzo de Medici"),
             Contact(MADARS_VIRZA, f"ZCash lead dev, {MIT_MEDIA_LAB}"),
             Contact('Matthew Gilbert', 'assistant to Howard Lutnick'),
-            Contact('Medici Bank', f"crypto friendly bank set up by {LORENZO_DE_MEDICI} with investment from {MARIA_PRUSAKOVA} and maybe {BROCK_PIERCE}"),
+            Contact(
+                'Medici Bank',
+                f"crypto friendly bank set up by {LORENZO_DE_MEDICI} with investment from {MARIA_PRUSAKOVA} and maybe {BROCK_PIERCE}",
+                is_organization=True
+            ),
             Contact("Mercantile Global Holdings", 'company of Bo Collins who ended up testifying in trial of Miles Guo / Miles Kwok', is_organization=True),
             Contact('Noble Bank', f"failed crypto friendly bank with ties to Tether and {BROCK_PIERCE}", r"Noble (Bank|Markets)", is_organization=True),
-            Contact('Pantera Capital', "crypto fund of Dan Morehead"),
+            Contact('Pantera Capital', "crypto fund of Dan Morehead", is_organization=True),
             Contact('Ribbit Capital', 'crypto friendly venture fund', is_organization=True),
-            Contact('Ripple', 'token issuing company run by Trump megadonor Brad Garlinghouse'),
+            Contact('Ripple', 'token issuing company run by Trump megadonor Brad Garlinghouse', is_organization=True),
             Contact('Ross Ulbricht', 'founder of infamous online drug market Silk Road, pardoned by Trump'),
             Contact('Suhas Daftuar', 'Chaincode Labs'),
             Contact('Tether', f"$180 billion stablecoin founded by {BROCK_PIERCE} whose money is managed by {HOWARD_LUTNICK}", is_organization=True),
@@ -434,6 +444,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Coinmint",
             r"cr[iy]?pto (coins?|currenc(y|ies)|mining)?",
             r"crypto(graph(ic|y))?",
+            r"Digital (Assets?|Currenc(ies|y)",
             r"e-?(currency|gold)",
             r"FTX",
             r"(?-i:G)alaxy",
@@ -538,7 +549,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(EDUARDO_ROBLES, "home builder at Creative Kingdom Dubai", r"Ed(uardo)? Robles"),
             Contact(ERIC_ROTH, "jet decorator at International Jet"),
             Contact(GWENDOLYN_BECK, "Epstein fund manager in the 90s"),
-            Contact('Ike Groff', f"brother of {LESLEY_GROFF}?"),
+            Contact('Ike Groff', f"brother of {LESLEY_GROFF}?", is_organization=True),
             Contact(JANUSZ_BANASIAK, "Epstein's house manager", r"Janu[is]z Banasiak"),
             Contact('John Allessi', "Epstein's houseman"),
             Contact(JEAN_HUGUEN, "interior design at Alberto Pinto Cabinet", r"Jean[\s.]Huguen"),
@@ -946,27 +957,27 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 emailer_pattern=r"Villafana, Ann Marie|(A(\.|nn) Marie )?Villafa(c|n|ri)a",
             ),
             Contact(AUDREY_STRAUSS, "USA Attorney", r"Audrey Strauss|Strauss, Audrey"),
-            Contact(BUREAU_OF_PRISONS, "American law enforcement", r"bop\.gov|(Federal )?Bureau of Prisons", is_organization=True),
             Contact(CHRISTOPHER_DILORIO, "self described whistleblower", r"Chris(topher )? Di[lI]o[nr](io)?"),
             Contact(
                 name=DANNY_FROST,
                 info="Director of Communications at Manhattan D.A.",
                 emailer_pattern=r"Frost, Danny|frostd@dany.nyc.gov|Danny Frost",
             ),
-            Contact('DOJ Inspector General', "American law enforcement", is_organization=True),
-            Contact('DOJ London', "American law enforcement", is_organization=True),
-            Contact(FBI, "American law enforcement", is_organization=True),
             Contact('Florence Hutner', "New York Office of Chief Medical Examiner"),
-            Contact('Justin Alfano', "American law enforcement"),
-            Contact('Manhattan DA', "American law enforcement", is_organization=True),
-            Contact('NY FBI', "American law enforcement", is_organization=True),
-            Contact(OFFICE_OF_THE_DEPUTY_ATTORNEY_GENERAL, "American law enforcement", r"\bODAG\b"),
+            Contact('Justin Alfano', f"American {LAW_ENFORCEMENT}"),
             Contact('Paula Speer', "court reporter"),
             Contact('Police Code Enforcement', "Palm Beach buildings code enforcement", is_organization=True),
-            Contact(SDNY, "American law enforcement, Southern District of New York", is_organization=True),
-            Contact('USAHUB-USAJournal111', "American law enforcement", is_organization=True),
-            Contact(USANYS, "American law enforcement", is_organization=True),
-            Contact('USMS', "United States Marshal Service", is_organization=True)
+            law_enforcement(BUREAU_OF_PRISONS, r"bop\.gov|(Federal )?Bureau of Prisons"),
+            law_enforcement('DOJ Inspector General'),
+            law_enforcement('DOJ London'),
+            law_enforcement(FBI),
+            law_enforcement('Manhattan DA'),
+            law_enforcement('NY FBI'),
+            law_enforcement(OFFICE_OF_THE_DEPUTY_ATTORNEY_GENERAL, r"\bODAG\b"),
+            law_enforcement(SDNY),
+            law_enforcement('USAHUB-USAJournal111'),
+            law_enforcement(USANYS),
+            law_enforcement('USMS'),
         ],
         patterns=[
             r"(?<!Data\s)AG",
@@ -2236,4 +2247,6 @@ def _print_highlighted_names_repr() -> None:
     sys.exit()
 
 
-#_print_highlighted_names_repr()
+if args.deep_debug:
+    for c in HIGHLIGHTED_CONTACTS:
+        print(repr(c))

@@ -61,7 +61,9 @@ def print_curated_chronological(epstein_files: EpsteinFiles) -> list[Document]:
         if not doc.is_interesting:
             continue
         elif isinstance(doc, OtherFile) and doc.is_valid_for_table:
-            new_characters_queue.extend(doc.people)
+            if doc.length < 50_000:
+                new_characters_queue.extend(doc.people)
+
             other_files_queue.append(doc)
             continue
         elif other_files_queue:
@@ -400,7 +402,7 @@ def _biographical_panel(names: list[str], next_doc: Document) -> Panel | None:
         expand=False,
         # padding=(0, 2),
         style='on gray7',
-        title=Text(f"new names in next {next_doc._debug_prefix}", 'grey85 italic'),
+        title=Text(f"new names in next file(s)", 'grey85 italic'),
         title_align='right',
     )
 
