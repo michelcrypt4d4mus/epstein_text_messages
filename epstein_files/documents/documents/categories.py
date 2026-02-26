@@ -75,7 +75,7 @@ CATEGORY_STYLE_MAPPING = {
 }
 
 CATEGORY_STYLES = {
-    Interesting.LETTER: 'medium_orchid1',
+    Interesting.LETTER: 'plum4',
     Interesting.SOCIAL: 'yellow1',
     Neutral.FLIGHT_LOG: 'cyan',
     Neutral.MISC: 'deep_pink3',
