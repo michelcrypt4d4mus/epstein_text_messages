@@ -323,7 +323,7 @@ NAMES_TO_NOT_PARTIALLY_MATCH = """
     back bard barrett barry bennet bernard bill black bob boris boyle brad brenner bruce bryan
     cameron caroline carolyn chris christian christina christopher cohen
     dan daniel danny darren dave david debbie department doj donald douglas dylan
-    ed edward edwards elisa enforcement enterprise enterprises entourage epstein eric erika etienne
+    ed edward edwards elisa enforcement enterprise enterprises entourage epstein eric erik erika etienne
     faith fisher fitzgerald forget frances francesca fred friendly frost fuller fund
     gates gateway general gerald george gilbert girl gold gordon greg
     haddad hall hanson harry hassan hay heather henry hill hoffman howard
