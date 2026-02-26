@@ -27,6 +27,7 @@ class Contact:
     emailer_regex: re.Pattern = field(init=False)
     highlight_regex: re.Pattern = field(init=False)
     is_junk: bool = False  # TODO: this sucks
+    is_organization: bool = False
     link_to_bio: str = ''
     # jmail_url: str
 
@@ -44,7 +45,7 @@ class Contact:
         `self.emailer_pattern` extended with first/last name variations.
         Used for color highlighting with `HighlightedNames` / `EpsteinHighlighter`.
         """
-        if self.is_junk:
+        if self.is_junk or self.is_organization:
             return self.pattern
 
         name_patterns = [self.pattern]

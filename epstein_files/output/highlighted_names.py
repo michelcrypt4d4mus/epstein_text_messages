@@ -127,7 +127,11 @@ class HighlightedNames(HighlightPatterns):
         info_pieces = [self.category_str()] if include_category else []
 
         if (contact := self.contacts_lookup.get(name)):
-            info_pieces.append(contact.info)
+            # Don't prefix with category if category is in the info string
+            if info_pieces and info_pieces[0] in contact.info:
+                info_pieces = [contact.info]
+            else:
+                info_pieces.append(contact.info)
 
         info_pieces = without_falsey(info_pieces)
         return ', '.join(info_pieces) if info_pieces else None
