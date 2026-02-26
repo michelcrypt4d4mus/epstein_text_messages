@@ -2540,24 +2540,6 @@ OTHER_FILES_CRYPTO = [
     DocCfg(id='EFTA00803459', author=HONEYCOMB_FUND, description="January 2019 report", is_interesting=True),
     DocCfg(id='EFTA00603445', author=HONEYCOMB_FUND, description="July 2017 report", is_interesting=True),
     DocCfg(id='EFTA00803464', author=HONEYCOMB_FUND, description="July 2018 report", date='2018-07-17', is_interesting=True),
-    # Joi Ito / Kyara
-    DocCfg(id='024256', author=JOI_ITO, description=f"Internet & Society: The Technologies and Politics of Control"),
-    DocCfg(id='EFTA00805860', description=f"{JOI_ITO}'s Neoteny 3 fund investor update / portfolio"),
-    DocCfg(id='EFTA01118268', description=f"{JOI_ITO}'s Neoteny 3 fund investor update", date='2015-06-30'),
-    DocCfg(id='EFTA01116280', description=f"{KYARA_FUND} I LLC (Physical Graph Corporation) operating agreement with edits"),
-    DocCfg(id='EFTA01108775', description=f"{KYARA_FUND} I LLC (Physical Graph Corporation) operating agreement"),
-    DocCfg(id='EFTA00605699', description=f"{KYARA_FUND} II LLC incorporation papers"),
-    DocCfg(id='EFTA01186455', description=f"{KYARA_FUND} II LLC operating agreement"),
-    DocCfg(id='EFTA00584696', description=f"{KYARA_FUND} III LLC operating agreement"),
-    EmailCfg(id='026360', description=f"{JOI_ITO} writes to Epstein to thank him for providing funding for the bitcoin core development team"),
-    EmailCfg(id='EFTA00999549', description=f"{JOI_ITO} and {JEREMY_RUBIN} meet {LARRY_SUMMERS} to discuss bitcoin", is_interesting=True),
-    EmailCfg(id='EFTA01752601', description=f"{JOI_ITO} and Epstein name their new fund Kyara"),
-    EmailCfg(id='EFTA02342561', is_interesting=True, description=f"China, {REID_HOFFMAN}, bitcoin"),
-    EmailCfg(id='EFTA00473175', truncate_to=1000),
-    EmailCfg(id='EFTA02601259', description=f"discussion of investments hidden through {JOI_ITO}"),
-    EmailCfg(id='EFTA02505439', description=f'summary of {KYARA_INVESTMENT} shell companies with {JOI_ITO}'),
-    # Kushner
-    DocCfg(id='EFTA00128987', description='suspicious activity report (SAR) about Kushner co. crypto payments to suspicious Russian person'),
     # Howard Lutnick
     DocCfg(
         id='EFTA00289560',
@@ -2588,6 +2570,7 @@ OTHER_FILES_CRYPTO = [
         description=f'evidence list w/tip about {HOWARD_LUTNICK}, Cantor Fitzgerald, and BGC from an employee who had already blown the whistle successfully',
         truncate_to=(77_000, 77_300),
     ),
+    EmailCfg(id='EFTA00970606', show_with_name=HOWARD_LUTNICK),
     EmailCfg(id='EFTA01778423', show_with_name=HOWARD_LUTNICK),
     EmailCfg(id='EFTA00474452', description=f"{HOWARD_LUTNICK} and {JEFFREY_EPSTEIN}, NIMBYs"),
     EmailCfg(
@@ -2605,6 +2588,24 @@ OTHER_FILES_CRYPTO = [
     EmailCfg(id='EFTA00398853', description=f'{HOWARD_LUTNICK} visit to the island', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA00873540', description=f'{HOWARD_LUTNICK} and {PRINCE_ANDREW}'),
     EmailCfg(id='EFTA00957552', description=f'thank you note for a $50,000 donation in honor of Tether banker {HOWARD_LUTNICK}'),
+    # Joi Ito / Kyara
+    DocCfg(id='024256', author=JOI_ITO, description=f"Internet & Society: The Technologies and Politics of Control"),
+    DocCfg(id='EFTA00805860', description=f"{JOI_ITO}'s Neoteny 3 fund investor update / portfolio"),
+    DocCfg(id='EFTA01118268', description=f"{JOI_ITO}'s Neoteny 3 fund investor update", date='2015-06-30'),
+    DocCfg(id='EFTA01116280', description=f"{KYARA_FUND} I LLC (Physical Graph Corporation) operating agreement with edits"),
+    DocCfg(id='EFTA01108775', description=f"{KYARA_FUND} I LLC (Physical Graph Corporation) operating agreement"),
+    DocCfg(id='EFTA00605699', description=f"{KYARA_FUND} II LLC incorporation papers"),
+    DocCfg(id='EFTA01186455', description=f"{KYARA_FUND} II LLC operating agreement"),
+    DocCfg(id='EFTA00584696', description=f"{KYARA_FUND} III LLC operating agreement"),
+    EmailCfg(id='026360', description=f"{JOI_ITO} writes to Epstein to thank him for providing funding for the bitcoin core development team"),
+    EmailCfg(id='EFTA00999549', description=f"{JOI_ITO} and {JEREMY_RUBIN} meet {LARRY_SUMMERS} to discuss bitcoin", is_interesting=True),
+    EmailCfg(id='EFTA01752601', description=f"{JOI_ITO} and Epstein name their new fund Kyara"),
+    EmailCfg(id='EFTA02342561', is_interesting=True, description=f"China, {REID_HOFFMAN}, bitcoin"),
+    EmailCfg(id='EFTA00473175', truncate_to=1000),
+    EmailCfg(id='EFTA02601259', description=f"discussion of investments hidden through {JOI_ITO}"),
+    EmailCfg(id='EFTA02505439', description=f'summary of {KYARA_INVESTMENT} shell companies with {JOI_ITO}'),
+    # Kushner
+    DocCfg(id='EFTA00128987', description='suspicious activity report (SAR) about Kushner co. crypto payments to suspicious Russian person'),
     # Masha Drokova
     EmailCfg(
         id='EFTA01003115',
