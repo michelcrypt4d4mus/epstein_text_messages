@@ -24,7 +24,7 @@ def test_against_csv(epstein_files):
     bad_docs = []
     repair_ids = []
 
-    for doc in epstein_files.unique_documents:
+    for doc in epstein_files.non_duplicate_docs:
         if (csv_row := csv_docs.get(doc.file_id)):
             for k, csv_val in csv_row.items():
                 if k in EMAIL_PROPS and not isinstance(doc, Email):

@@ -2376,7 +2376,7 @@ OTHER_FILES_MISC = [
 ]
 
 OTHER_FILES_GIRLS = [
-    DocCfg(id='EFTA00306033', author=SERGEY_BELYAKOV, description='Epstein Russian visa', is_shown_full_panel=True),
+    DocCfg(id='EFTA00306033', author=SERGEY_BELYAKOV, description='Epstein Russian visa', show_full_panel=True),
     EmailCfg(id='EFTA00848644', is_interesting=True, comment='"take a picture of your pussy"'),
     EmailCfg(id='EFTA02557291', description='possibly recruiting girls'),
     EmailCfg(id='EFTA01022353', description='George Models in Odessa, "She said she was 14-15 yo"', is_interesting=True),
@@ -2555,14 +2555,14 @@ OTHER_FILES_CRYPTO = [
         is_interesting=True,
         show_with_name=BROCK_PIERCE,
     ),
-    DocCfg(id='EFTA01733746', date='2011-05-18', description=f'schedule showing "drinks" with {HOWARD_LUTNICK}', is_shown_full_panel=True),
+    DocCfg(id='EFTA01733746', date='2011-05-18', description=f'schedule showing "drinks" with {HOWARD_LUTNICK}', show_full_panel=True),
     DocCfg(id='EFTA00434306', description='calendar reminder for call with Howard Lutnick', date='2011-04-26'),
     DocCfg(id='EFTA00020515', author=FBI, description='tip about Howard Lutnick and financial irregularities', is_interesting=True),
     DocCfg(
         id='EFTA01249207',
         author=FBI,
         description="tip linking American commerce secretary and Tether asset custodian Howard Lutnick to Ponzi schemes and Russian money",
-        is_shown_full_panel=True,
+        show_full_panel=True,
         show_with_name=BROCK_PIERCE,
     ),
     DocCfg(

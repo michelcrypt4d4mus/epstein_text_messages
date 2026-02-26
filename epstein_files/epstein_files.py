@@ -138,6 +138,10 @@ class EpsteinFiles:
         return [d for d in self.documents if d.file_info.is_local_extract_file]
 
     @property
+    def non_duplicate_docs(self) -> Sequence[Document]:
+        return Document.without_dupes(self.documents)
+
+    @property
     def non_json_other_files(self) -> list[OtherFile]:
         return [doc for doc in self.other_files if not isinstance(doc, JsonFile)]
 
@@ -155,7 +159,7 @@ class EpsteinFiles:
 
     @property
     def unique_documents(self) -> Sequence[Document]:
-        return [d for d in Document.without_dupes(self.documents) if not d.is_attachment]
+        return [d for d in self.non_duplicate_docs if not d.is_attachment]
 
     @property
     def unique_emails(self) -> list[Email]:

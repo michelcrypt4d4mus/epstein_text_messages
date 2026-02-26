@@ -145,7 +145,7 @@ class DocCfg:
     is_in_chrono: bool | None = None
     is_synthetic: bool | None = None
     replace_text_with: str = ''
-    is_shown_full_panel: bool = False
+    show_full_panel: bool = False
     show_with_name: str = ''
     truncate_to: int | tuple[int, int] | None = None
 
@@ -157,7 +157,7 @@ class DocCfg:
         self.id = self.id.upper()
         self.set_category(self.category)
 
-        if self.background_color or self.is_shown_full_panel:
+        if self.background_color or self.show_full_panel:
             self.is_interesting = True
 
         if self.author_uncertain and isinstance(self.author_uncertain, str):
