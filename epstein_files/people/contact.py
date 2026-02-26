@@ -25,6 +25,7 @@ class Contact:
     info: str = ''
     emailer_pattern: str = ''
     emailer_regex: re.Pattern = field(init=False)
+    highlight_regex: re.Pattern = field(init=False)
     is_junk: bool = False  # TODO: this sucks
     link_to_bio: str = ''
     # jmail_url: str
@@ -32,6 +33,7 @@ class Contact:
     def __post_init__(self):
         try:
             self.emailer_regex = re.compile(self.pattern, re.IGNORECASE)
+            self.highlight_regex = re.compile(self.highlight_pattern)
         except re.error as e:
             logger.fatal(f"failed to compile emailer_regex for {self.name}: {e}")
             raise e

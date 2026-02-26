@@ -10,12 +10,14 @@ from rich.text import Text
 
 from epstein_files.documents.documents.categories import (CATEGORY_STYLES, CATEGORY_STYLE_MAPPING,
      DEFAULT_CATEGORY_STYLE, Interesting, Neutral, Uninteresting)
-from epstein_files.documents.emails.constants import ALL_HEADER_PATTERNS, QUOTE_INDENT_CHAR_GROUP, REPLY_REGEX, SENT_FROM_REGEX, XML_STRIPPED_MSG
+from epstein_files.documents.emails.constants import (ALL_HEADER_PATTERNS, QUOTE_INDENT_CHAR_GROUP, REPLY_REGEX,
+     SENT_FROM_REGEX, XML_STRIPPED_MSG)
 from epstein_files.output.highlighted_names import HighlightGroup, HighlightedNames, HighlightPatterns, ManualHighlight
 from epstein_files.people.contact import Contact
 from epstein_files.util.constant.names import *
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constants import EPSTEIN_V_ROTHSTEIN_EDWARDS
+from epstein_files.util.helpers.data_helpers import flatten
 from epstein_files.util.helpers.string_helper import indented
 from epstein_files.util.logging import logger
 
@@ -154,6 +156,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(BILL_SIEGEL, "documentary film producer and director"),
             Contact(DAVID_BLAINE, "famous magician"),
             Contact('David Brenner', "American comedian and actor"),
+            Contact('Nick Jarecki', "American filmmaker"),
             Contact('Richard Merkin', "painter, illustrator and arts educator"),
             Contact(STEVEN_PFEIFFER, "Associate Director at Independent Filmmaker Project (IFP)"),
             Contact('Steven Gaydos', "American screenwriter and journalist")
@@ -2154,6 +2157,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
 ]
 
 HIGHLIGHTED_NAMES = [hg for hg in HIGHLIGHT_GROUPS if isinstance(hg, HighlightedNames)]
+HIGHLIGHTED_CONTACTS = flatten([hn.contacts for hn in HIGHLIGHTED_NAMES])
 
 PEOPLE_BIOS = {
     contact.name: highlighted_group.info_for(contact.name, include_category=True)

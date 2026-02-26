@@ -24,7 +24,7 @@ from epstein_files.documents.emails.email_header import (EMAIL_SIMPLE_HEADER_REG
 from epstein_files.documents.emails.emailers import extract_emailer_names
 from epstein_files.documents.other_file import OtherFile
 from epstein_files.people.interesting_people import EMAILERS_OF_INTEREST_SET
-from epstein_files.output.highlight_config import HIGHLIGHTED_NAMES, get_style_for_name
+from epstein_files.output.highlight_config import HIGHLIGHTED_NAMES, HIGHLIGHTED_CONTACTS, get_style_for_name
 from epstein_files.output.html.builder import table_to_html
 from epstein_files.output.html.elements import to_em
 from epstein_files.output.layout_elements.file_display import FileDisplay, JustifyMethod
