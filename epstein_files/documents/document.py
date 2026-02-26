@@ -20,7 +20,7 @@ from epstein_files.documents.documents.file_info import FileInfo
 from epstein_files.documents.documents.search_result import MatchedLine
 from epstein_files.documents.emails.constants import DOJ_EMAIL_OCR_REPAIRS, FALLBACK_TIMESTAMP
 from epstein_files.documents.emails.email_header import DETECT_EMAIL_REGEX
-from epstein_files.output.highlight_config import get_style_for_name
+from epstein_files.output.highlight_config import get_style_for_category, get_style_for_name
 from epstein_files.output.layout_elements.file_display import BasePanel, FileDisplay
 from epstein_files.output.html.builder import VERTICAL_MARGIN
 from epstein_files.output.rich import (INFO_STYLE, NA_TXT, SKIPPED_FILE_MSG_PADDING, SYMBOL_STYLE,
@@ -139,6 +139,10 @@ class Document:
     @property
     def category(self) -> str:
         return self.config.category if self.config and self.config.category else self.default_category()
+
+    @property
+    def category_style(self) -> str:
+        return get_style_for_category(self.category) or ''
 
     @property
     def config(self) -> DocCfg | None:

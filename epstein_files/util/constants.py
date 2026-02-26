@@ -2528,6 +2528,16 @@ OTHER_FILES_CRYPTO = [
     DocCfg(id='EFTA00805569', description='Mercantile Global Holdings, San Juan Mercantile Bank & Trust, Noble Bank + Signature Bank + BitGo'),
     DocCfg(id='EFTA01088079', description="someone's thoughts on bitcoin"),
     EmailCfg(id='EFTA00495372', description=f'discussion of Medici Bank, a new successor to Noble Bank as a crypto bank', is_interesting=True),
+    EmailCfg(
+        id='EFTA01030070',
+        description="Bo Collins inspired by Epstein to set up Mercantile Global Holdings crypto trading offering stablecoins to people who can't get bank accounts",
+        is_interesting=True,
+    ),
+    EmailCfg(
+        id='EFTA02603577',
+        description='meeting with Mercantile Global Holdings Bo Collins, who would testify in the trial of Miles Guo',
+        is_interesting=True
+    ),
     # David Stern
     EmailCfg(id='EFTA02494305', description=f"planning a crypto exchange in Belarus, {DAVID_STERN}'s \"Chinese guys\" can't do it because of the PRC's crackdown on crypto"),
     EmailCfg(id='EFTA00886763', description=f"documents are being prepared to license Epstein and {DAVID_STERN}'s crypto exchange in Belarus"),
@@ -2677,17 +2687,7 @@ OTHER_FILES_CRYPTO = [
     EmailCfg(id='EFTA02645742', description=f"tax implications of the untraceable 'privacy coin' ZCash", is_interesting=True),
     EmailCfg(id='EFTA02374960', description=f"Epstein says that he will fund a seat at MIT Media Lab for ZCash founder {MADARS_VIRZA}", is_interesting=True),
     # Unsorted
-    DocCfg(
-        id='EFTA01030070',
-        description="Mercantile Global Holdings' Bo Collins inspired by Epstein to set up crypto trading around the world offering stablecoins to people who can't get bank accounts",
-        is_interesting=True,
-    ),
     DocCfg(id='EFTA01388197', author=DEUTSCHE_BANK, description='bitcoin and blockchain symposium', date='2018-04-03', attached_to_email_id='EFTA01388354'),
-    EmailCfg(
-        id='EFTA02603577',
-        description='meeting with Mercantile Global Holdings Bo Collins, who would testify in the trial of Miles Guo',
-        is_interesting=True
-    ),
     EmailCfg(id='EFTA01388354', description=f"invitation to {DEUTSCHE_BANK} blockchain event with Mike Novogratz"),
     EmailCfg(id='EFTA01434500', description=f"everyone assumes Epstein's banker {PAUL_BARRETT} will want to know about the blockchain event"),
     EmailCfg(id='EFTA00993615', description=f"{MASHA_DROKOVA} explains the price of bitcoin can be manipulated if Epstein makes public comments"),

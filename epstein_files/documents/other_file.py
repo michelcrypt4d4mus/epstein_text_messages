@@ -209,7 +209,7 @@ class OtherFile(Document):
 
         for file in files:
             # call superclass method to avoid border_style rainbow
-            link_and_info = [FileInfo.build_external_links(file.file_info, id_only=bool(args.mobile))]
+            link_and_info = [FileInfo.build_external_links(file.file_info, file.category_style, id_only=bool(args.mobile))]
 
             if file.date_str:
                 date_txt = Text(file.date_str, style=TIMESTAMP_STYLE)
