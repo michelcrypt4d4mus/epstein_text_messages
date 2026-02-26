@@ -237,6 +237,8 @@ TANCREDI_MARCHIOLO = 'Tancredi Marchiolo'
 YUKO_BARNABY = 'Yuko Barnaby'
 WHITFIELD_DIFFIE = 'Whitfield Diffie'
 
+UNKNOWN_GIRL = 'unknown girl'
+
 # No communications but name is in the files
 BILL_GATES = 'Bill Gates'
 DONALD_TRUMP = 'Donald Trump'
@@ -323,7 +325,7 @@ NAMES_TO_NOT_PARTIALLY_MATCH = """
     dan daniel danny darren dave david debbie department donald douglas dylan
     ed edward edwards elisa enforcement enterprise enterprises entourage epstein eric erika etienne
     faith fisher fitzgerald forget frances francesca fred friendly frost fuller fund
-    gates gateway general gerald george gilbert gold gordon greg
+    gates gateway general gerald george gilbert girl gold gordon greg
     haddad hall hanson harry hassan hay heather henry hill hoffman howard
     ian inc inc. ivan
     jack james jay jean jeff jeffrey jennifer jeremy jessica joel john jon jonathan joseph jr julia justin
@@ -336,6 +338,7 @@ NAMES_TO_NOT_PARTIALLY_MATCH = """
     randall rangel reid richard robert rodriguez roger rosenberg ross roth roy rubenstein rubin
     santos scott sean service services skip smith stacey stanley stern stephen steve steven stone story susan
     team terry the thomas tim tom tony trust tyler
+    unknown
     ventures victor
     wade waters
     y

@@ -1362,7 +1362,6 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA02730485', date='2021-12-03 00:00:00'),
     EmailCfg(id='EFTA00901970', description=f"{AL_SECKEL}'s response to Epstein's forged email", is_interesting=True, truncate_to=3000),
     EmailCfg(id='EFTA00992595', description=f"{ARIANE_DE_ROTHSCHILD} mentions her visit to Mongolia"),
-    EmailCfg(id='EFTA00888467', description='a very strange conversation about "Peter" and "mj"', is_interesting=True, truncate_to=1600),
     EmailCfg(
         id='EFTA02021096',
         description=f"discussion of the murder of Martine Vik Magnussen by {SHAHER_ABDULHAK_BESHER}'s son Farouk",
@@ -1523,8 +1522,8 @@ BOFA_WEALTH_MGMT = f'{BOFA} Wealth Management'
 DERSH_GIUFFRE_TWEET = f"about {VIRGINIA_GIUFFRE}"
 DEUTSCHE_BANK_TAX_TOPICS = f'{DEUTSCHE_BANK} Wealth Management Tax Topics'
 DIANA_DEGETTE_CAMPAIGN = "Colorado legislator Diana DeGette's campaign"
-FBI_REPORT = f"report on Epstein investigation (redacted)"
-FBI_SEIZED_PROPERTY = f"seized property inventory (redacted)"
+FBI_REPORT = f"report on Epstein investigation"  # (redacted)
+FBI_SEIZED_PROPERTY = f"seized property inventory"  # (redacted)
 FEMALE_HEALTH_COMPANY = 'Female Health Company (FHC)'
 FIRE_AND_FURY = f"Fire And Fury"
 HBS_APPLICATION = f"{HARVARD} Business School application letter"
@@ -1736,7 +1735,7 @@ OTHER_FILES_ARTICLE = [
 ]
 
 OTHER_FILES_DEPOSITION = [
-    DocCfg(id='EFTA00159483', author=LAWRANCE_VISOSKI),
+    DocCfg(id='EFTA00159483', author=LAWRANCE_VISOSKI, is_interesting=True),
     DocCfg(id='021824', author=PAUL_G_CASSELL, description=f"from {EDWARDS_V_DERSHOWITZ}"),
     DocCfg(id='013463', author='Scott Rothstein', description=f"from {JANE_DOE_V_EPSTEIN_TRUMP}", date='2010-03-23'),
     DocCfg(id='017488', author='Scott Rothstein', description=f"from {EPSTEIN_V_ROTHSTEIN_EDWARDS}", date='2012-06-22'),
@@ -2382,15 +2381,16 @@ OTHER_FILES_MISC = [
 
 OTHER_FILES_GIRLS = [
     DocCfg(id='EFTA00306033', author=SERGEY_BELYAKOV, description='Epstein Russian visa', show_full_panel=True),
-    EmailCfg(id='EFTA00848644', is_interesting=True, comment='"take a picture of your pussy"'),
-    EmailCfg(id='EFTA02557291', description='possibly recruiting girls'),
-    EmailCfg(id='EFTA01022353', description='George Models in Odessa, "She said she was 14-15 yo"', is_interesting=True),
     CommunicationCfg(
         id='EFTA01612733',
         author=MARIA_PRUSAKOVA,
         author_uncertain=True,
         comment='WhatsApp',
         description=f'says being Epstein\'s lawyer would be "way better than supplying ladies", also discusses Medici Bank',
+    ),
+    CommunicationCfg(
+        id='EFTA01616933',
+        description='"now im finding pussy for you" / "no one can beat your pussy network"',
     ),
     EmailCfg(
         id='EFTA00927927',
@@ -2404,10 +2404,17 @@ OTHER_FILES_GIRLS = [
         description='Masha Prusso asks about Zubair Khan, discusses recruiting girls for Epstein',
         is_interesting=True,
     ),
-    CommunicationCfg(
-        id='EFTA01616933',
-        description='"now im finding pussy for you" / "no one can beat your pussy network"',
+    EmailCfg(
+        id='EFTA00888467',
+        description='a very strange conversation about "Peter" and "mj"',
+        is_interesting=True,
+        recipients=[UNKNOWN_GIRL],
+        truncate_to=1600,
     ),
+    EmailCfg(id='EFTA00848644', is_interesting=True, comment='"take a picture of your pussy"'),
+    EmailCfg(id='EFTA02557291', description='possibly recruiting girls'),
+    EmailCfg(id='EFTA01022353', description='George Models in Odessa, "She said she was 14-15 yo"', is_interesting=True),
+    EmailCfg(id='EFTA02431535', author=UNKNOWN_GIRL),
 ]
 
 OTHER_FILES_PHONE_BILL = [
@@ -2955,6 +2962,7 @@ UNINTERESTING_EMAIL_IDS = [
 # Not uninteresting enough to be permanently marked as such but not good enough for --output-chrono
 NOT_CHRONOLOGICAL_VIEW_IDS = [
     '024432',
+    'EFTA00007781',
     '016692',
     'EFTA01823635',
     'EFTA00747181',
