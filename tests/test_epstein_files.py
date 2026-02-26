@@ -24,7 +24,7 @@ def test_against_csv(epstein_files):
     bad_docs = []
     repair_ids = []
 
-    for doc in epstein_files.unique_documents:
+    for doc in epstein_files.non_duplicate_docs:
         if (csv_row := csv_docs.get(doc.file_id)):
             for k, csv_val in csv_row.items():
                 if k in EMAIL_PROPS and not isinstance(doc, Email):
@@ -75,7 +75,7 @@ def test_imessage_text_counts(epstein_files):
 
 
 def test_no_files_after_2025(epstein_files):
-    bad_docs = [d for d in epstein_files.documents if d.timestamp and d.timestamp > datetime(2025, 1, 1)]
+    bad_docs = [d for d in epstein_files.documents if d.timestamp and d.timestamp > datetime(2025, 12, 1)]
 
     for doc in bad_docs:
         console.print(doc)

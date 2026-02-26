@@ -23,7 +23,6 @@ ON_TIME_REPLY_PATTERNS = [
 
 FORWARDED_LINE_PATTERN = r"[- ]*((Forwarded|Original)\s*[Mm]essa.e:?|Message d'?origine)[- ]*|Begin [Ff]orwarded [Mm]essage:?"
 FORWARDED_TOO_MUCH_SPACE_REGEX = re.compile(fr"^({FORWARDED_LINE_PATTERN})\n\n", re.MULTILINE | re.IGNORECASE)
-print(FORWARDED_TOO_MUCH_SPACE_REGEX.pattern)
 REPLY_LINE_ENDING_PATTERN = r"[_ \n]((?-i:[AP]M)|[<_]|w?rote:?)"
 REPLY_NUMERIC_DATE_PATTERN = fr"\d+[-/][\d\w]+[-/]\d+"
 REPLY_ON_DAY_MONTH_PATTERN = fr"(\d+ )?(({'|'.join(ON_TIME_REPLY_PATTERNS)})\w*)"
@@ -80,8 +79,6 @@ FRENCH_HEADER_PATTERNS = [
     r'Sujet',
 ]
 
-FRENCH_HEADER_PATTERNS = [h + ' ?' for h in FRENCH_HEADER_PATTERNS]
-
 GERMAN_HEADER_PATTERNS = [
     'Betreff',
     'Gesendet',
@@ -96,10 +93,15 @@ RUSSIAN_HEADER_PATTERNS = [
     'От',
 ]
 
+FRENCH_HEADER_PATTERNS = [h + ' ?' for h in FRENCH_HEADER_PATTERNS]
+FOREIGN_HEADER_PATTERNS = FRENCH_HEADER_PATTERNS + GERMAN_HEADER_PATTERNS + RUSSIAN_HEADER_PATTERNS
+
 # TODO; parse [Il]nline-[Il]mages etc.
-ALL_HEADER_PATTERNS = HEADER_FIELDS_PATTERNS + FRENCH_HEADER_PATTERNS + GERMAN_HEADER_PATTERNS + RUSSIAN_HEADER_PATTERNS + [
+ALL_HEADER_PATTERNS = HEADER_FIELDS_PATTERNS + FOREIGN_HEADER_PATTERNS + [
     r"[Il]nline-[Il]mages",
 ]
+
+ALL_HEADER_FIELDS_PATTERN = '|'.join(ALL_HEADER_PATTERNS)
 
 # DojFile specific repairs must be applied before checking doc.is_email
 DOJ_EMAIL_OCR_REPAIRS: dict[str | re.Pattern, str] = {

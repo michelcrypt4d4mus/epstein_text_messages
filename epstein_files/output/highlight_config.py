@@ -549,7 +549,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         label='Epstein',
         style='blue1',
         contacts=[
-            Contact(ASIA_GATEWAY, f"corporate vehicle set up by Epstein and {DAVID_STERN}", r"Asia\s*Gateway(\s*L(imited|td))"),
+            Contact(ASIA_GATEWAY, f"corporate vehicle set up by Epstein and {DAVID_STERN}", r"Asia\s*Gateway(\s*L(imited|td))?"),
             Contact(
                 name=JEFFREY_EPSTEIN,
                 emailer_pattern=r"[djl]\s?ee[vy]acation[©@]?g?(mail.com)?|Epstine|\bJEE?\b|Jeff(rey)? (Edward )?E((sp|ps)tein?)?( VI Foundation)?|jeeproject@yahoo.com|J Jep|Jeffery Edwards|(?<!(ark L.|rd Jay|Edward) )Epstein|Jeffrey Epst.*comj?",
@@ -657,7 +657,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(RICHARD_KAHN, "Epstein estate executor", r"rich(ard)? kahn?")
         ],
         patterns=[
-            r"HBRK( (Associates,? )?Inc)?"
+            r"HBRK( (Associates,? )?Inc)?",
         ]
     ),
     HighlightedNames(
@@ -687,6 +687,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Alfa( Bank)",
             r"(Angela )?Merk(el|le)",
             r"Austria",
+            r"Barcelona",
             r"Belgi(an|um)",
             r"(Benjamin )?Harnwell",
             r"Berlin",
@@ -708,6 +709,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Fr(ance|ench)",
             r"Geneva",
             r"Germany?",
+            r"Gibraltar",
             r"Gillard",
             r"Gree(ce|k)",
             r"Hollande",
@@ -722,6 +724,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Lithuanian?",
             r"Le Pen",
             r"(?<!DOJ )London",
+            r"Luxembourg",
             r"Macron",
             r"Malta",
             r"Melusine",
@@ -764,12 +767,18 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         label='financial',
         style=FINANCIAL_COLOR,
         patterns=[
-            r"((anti.?)?money )?launder(s?|ers?|ing)?( money)?",
+            r"alterna[tv]i[tv]e finance",
+            r"((anti )?money )?launder(s?|ers?|ing)?( money)?",
             r"(?<!(ature|Chase|zrahi|tsche)\s)bank(?!\s+(of|secrecy))",
+            r"bond",
             r"C[EF]O",
             r"Chief (Executive|Financ(e|ial)) Officer",
             r"(co-?)?founder",
+            r"equities",
+            r"(naked )?shorting",
+            r"NASDAQ",
             r"real estate( developer)?",
+            r"(reverse )?mortgage",
             r"stock market",
             r"Trust(ee| Estate)",
             r"tax(e[ds])?",
@@ -811,7 +820,6 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         patterns=[
             r"Ace Greenberg",
             r"AIG",
-            r"alterna[tv]i[tv]e finance",
             r"Andrew Nikou",
             r"Apollo",
             r"Ari Glass",
@@ -831,6 +839,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"D\.?B\.? Zwirn",
             r"Deutsche? (Asset|(Post)?Bank)",
             r"donor advised fund",
+            r"Drexel",
             r"Electron Capital (Partners)?",
             r"Fenner",
             r"First Bank of Puerto Rico",
@@ -904,7 +913,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         ],
     ),
     HighlightedNames(
-        label='government',
+        label=Neutral.GOVERNMENT,
         style='color(24) bold',
         contacts=[
             Contact(
@@ -972,7 +981,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Federal Bureau of Investigation",
             r"FinCEN",
             r"(Director (of )?)?Financial Crimes Enforcement Network",
-            r"(www\.)?FINRA(\.org)?",
+            r"Financial Industry Regulatory Authority",
             r"Florence Hutner",
             r"FOIA",
             r"food stamps",
@@ -981,6 +990,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"(General )?P(a|e)traeus",
             r"Geoff Ling",
             r"Homeland Security",
+            r"IG",
             r"Interpol",
             r"IRS",
             r"(James )?Comey",
@@ -1013,7 +1023,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"SAR",
             r"SCOTUS",
             r"SD(FL|NY)",
-            r"(?-i:SEC)",
+            r"(?-i:SEC)( filing)?",
             r"sec.gov",
             r"Secret Service",
             r"Securities (&|and) Exchange Commission",
@@ -1021,6 +1031,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"State Dep(artmen)?t",
             r"Strzok",
             r"Supreme Court",
+            r"TCR",
             r"Treasury (Dep(artmen)?t|Secretary)",
             r"TSA",
             r"U\.?S\.? attorney",
@@ -1029,8 +1040,10 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"UNITED STATES DISTRICT COURT?",
             r"US (AF|Army|Air Force)",
             r"Walter Reed( Army Institute of Research)?",
+            r"whistleblower",
             r"(William J\.? )?Zloch",
             r"WRAIR",
+            r"(www\.)?FINRA(\.org)?",
         ],
     ),
     HighlightedNames(
@@ -1226,7 +1239,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Morning News USA",
             r"(National )?Enquirer",
             r"News(max|week)",
-            r"NYer",
+            r"NY(er| mag(azine)?)",
             r"Palm Beach (Daily News|Post)",
             r"PERVERSION OF JUSTICE",
             r"Politico",
@@ -1346,7 +1359,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Boston",
             r"Brooklyn",
             r"California",
-            r"Canada",
+            r"Canadi?an?",
             r"Cape Cod",
             r"Charlottesville",
             r"Colorado",
@@ -1369,6 +1382,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Phoenix",
             r"Portland",
             r"San Francisco",
+            r"Santa Monica",
             r"Sant[ae] Fe",
             r"Telluride",
             r"Teterboro",
@@ -1764,6 +1778,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(GOOGLE_PLUS, "Google+", r"Google\+"),
             Contact(HONGBO_ROBERT_BAO, THIELS_VALAR, r"Hong,? Robert Bao|Hongbo( Robert)? Bao"),
             Contact(IAN_ODONNELL, THIELS_VALAR, r"Ian O'?Donnell|O'?Donnell, Ian"),
+            Contact('Jack Dorsey', 'co-founder of Twitter and Block (FKA Square)'),
             Contact(JAMES_FITZGERALD, THIELS_VALAR, r"James Fitz[g\s]eral?d?"),
             Contact(JASON_CALACANIS, 'All In Podcast with David Sacks, Uber investor', r"Jason (.{12})Calacanis"),
             Contact('LinkedIn', "LinkedIn", r"Linked[Il]n( Updates)?"),
@@ -1898,6 +1913,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         contacts=[
             Contact(PAULA, "ex-girlfriend who works in opera now", r"^Paula( Heil Fisher)?$"),
             Contact('Samantha Rose Stein', 'wombkind.com'),
+            Contact(UNKNOWN_GIRL),
         ],
         patterns=[
             r"child pornography",
@@ -1912,6 +1928,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"pa?edophile",
             r"pussy",
             r"(child )?sex traffi?c?k(ers?|ing)",
+            r"Sasha Grey",
             r"Stephanie Clifford",
             r"Stormy Daniels",
             r"strange women",
@@ -2054,7 +2071,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         patterns=[r"#metoo"]
     ),
     HighlightPatterns(
-        label='financial',
+        label='dollars',
         style=FINANCIAL_COLOR,
         patterns=[
             r"\$[\d,.]+(\s?(m(illion)?|thousand))?",

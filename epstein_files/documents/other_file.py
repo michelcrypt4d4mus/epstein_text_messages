@@ -33,6 +33,9 @@ FIRST_FEW_LINES = 'First Few Lines'
 MAX_DAYS_SPANNED_TO_BE_VALID = 10
 MAX_EXTRACTED_TIMESTAMPS = 100
 MIN_TIMESTAMP = datetime(2000, 1, 1)
+MIN_PAGES_TO_TRUNCATE_PREVIEW = 10
+TRUNCATED_PREVIEW_LEN = 200
+
 LOG_INDENT = '\n         '
 TIMESTAMP_LOG_INDENT = f'{LOG_INDENT}    '
 VAST_HOUSE = 'vast house'  # Michael Wolff article draft about Epstein indicator
@@ -100,7 +103,7 @@ class OtherFile(Document):
     @property
     def is_valid_for_table(self) -> bool:
         """Return True if this file is OK to put in a table in the curated chronological views."""
-        return not (self.config and (self.config.is_excerpt or self.config.is_shown_full_panel))
+        return not (self.config and (self.config.is_excerpt or self.config.show_full_panel))
 
     @property
     def metadata(self) -> Metadata:
@@ -116,7 +119,12 @@ class OtherFile(Document):
     def preview_text(self) -> str:
         """Text at start of file stripped of newlinesfor display in tables and other cramped settings."""
         text = self.config_replace_text_with if self.config_replace_text_with else self.text
-        return WHITESPACE_REGEX.sub(' ', text)[0:site_config.other_files_preview_chars]
+        text = WHITESPACE_REGEX.sub(' ', text)[0:site_config.other_files_preview_chars]
+
+        if text.count('Page') > MIN_PAGES_TO_TRUNCATE_PREVIEW:
+            text = text[0:TRUNCATED_PREVIEW_LEN]
+
+        return text
 
     @property
     def preview_text_highlighted(self) -> Text:
@@ -201,7 +209,7 @@ class OtherFile(Document):
 
         for file in files:
             # call superclass method to avoid border_style rainbow
-            link_and_info = [FileInfo.build_external_links(file.file_info, id_only=bool(args.mobile))]
+            link_and_info = [FileInfo.build_external_links(file.file_info, file.category_style, id_only=bool(args.mobile))]
 
             if file.date_str:
                 date_txt = Text(file.date_str, style=TIMESTAMP_STYLE)

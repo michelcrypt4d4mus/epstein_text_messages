@@ -84,10 +84,10 @@ NON_METADATA_FIELDS = [
 
 # Categories where we want to include the category name at start of the description string
 CATEGORY_PREAMBLES = {
-    Interesting.DEPOSITION: 'deposition of',
     Interesting.LETTER: 'letter',
     Interesting.REPUTATION: REPUTATION_MGMT,
     Interesting.TEXT_MSG: 'text message',
+    Neutral.DEPOSITION: 'deposition of',
     Neutral.FLIGHT_LOG: Neutral.FLIGHT_LOG.replace('_', ' '),
     Neutral.PRESSER: Neutral.PRESSER.replace('_', ' '),
     Neutral.RESUMÉ: 'professional resumé',
@@ -145,7 +145,7 @@ class DocCfg:
     is_in_chrono: bool | None = None
     is_synthetic: bool | None = None
     replace_text_with: str = ''
-    is_shown_full_panel: bool = False
+    show_full_panel: bool = False
     show_with_name: str = ''
     truncate_to: int | tuple[int, int] | None = None
 
@@ -157,7 +157,7 @@ class DocCfg:
         self.id = self.id.upper()
         self.set_category(self.category)
 
-        if self.background_color or self.is_shown_full_panel:
+        if self.background_color or self.show_full_panel:
             self.is_interesting = True
 
         if self.author_uncertain and isinstance(self.author_uncertain, str):
@@ -334,6 +334,10 @@ class DocCfg:
     def recipients_str(self) -> str:
         """Overloaded in subclasses that support recipients."""
         return ''
+
+    # @property
+    # def table_preview_len(self) -> int | None:
+    #     """Number of chars to show in an `OtherFile` table view."""
 
     @property
     def timestamp(self) -> datetime | None:

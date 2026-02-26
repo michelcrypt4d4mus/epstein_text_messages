@@ -86,7 +86,7 @@ def blaine_letter(id: str, date: str, suffix: str = '') -> CommunicationCfg:
 
 
 def fbi_report(id: str, description: str, **kwargs) -> DocCfg:
-    return DocCfg(id=id, author=FBI, category=Neutral.LEGAL, description=description, **kwargs)
+    return DocCfg(id=id, author=FBI, category=Neutral.GOVERNMENT, description=description, **kwargs)
 
 
 def letter(id: str, author: str, recipients: list[Name], description: str, date: str = '', **kwargs) -> CommunicationCfg:

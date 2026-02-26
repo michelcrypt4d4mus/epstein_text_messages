@@ -64,7 +64,7 @@ def write_files_csv():
     timer = Timer()
     rows = []
 
-    for doc in Document.sort_by_id(epstein_files.unique_documents):
+    for doc in Document.sort_by_id(epstein_files.non_duplicate_docs):
         row = {k: getattr(doc, k) for k in ROOT_PROPS}
         row.update({k: (getattr(doc, k) if isinstance(doc, Email) else None) for k in EMAIL_PROPS})
         row.update({k: (getattr(doc.config, k) if doc.config else None) for k in CFG_PROPS})

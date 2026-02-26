@@ -13,7 +13,6 @@ DEFAULT_CATEGORY_STYLE = 'wheat4'
 
 class Interesting(StrEnum):
     CRYPTO = auto()
-    DEPOSITION = auto()
     GIRLS = auto()
     LETTER = auto()
     MONEY = auto()
@@ -23,8 +22,10 @@ class Interesting(StrEnum):
 
 class Neutral(StrEnum):
     BUSINESS = auto()
+    DEPOSITION = auto()
     FINANCE = auto()
     FLIGHT_LOG = auto()
+    GOVERNMENT = auto()
     LEGAL = auto()
     MISC = auto()
     PRESSER = auto()
@@ -58,11 +59,11 @@ class Category(StrEnum):
 
 # These categories map to highlighted group labels for the purposes of coloring
 CATEGORY_STYLE_MAPPING = {
-    Interesting.DEPOSITION: LAWYER,
     Interesting.GIRLS: 'victim',
     Interesting.MONEY: Neutral.FINANCE,
     Interesting.REPUTATION: PUBLICIST,
     Interesting.TEXT_MSG: TECH_BRO,
+    Neutral.DEPOSITION: LAWYER,
     Neutral.LEGAL: LAWYER,
     Neutral.SKYPE_LOG: TECH_BRO,
     Uninteresting.ARTICLE: JOURNALIST,
@@ -74,12 +75,12 @@ CATEGORY_STYLE_MAPPING = {
 }
 
 CATEGORY_STYLES = {
-    Interesting.LETTER: 'medium_orchid1',
-    Neutral.RESUMÉ: 'deep_pink4',
+    Interesting.LETTER: 'plum4',
     Interesting.SOCIAL: 'yellow1',
     Neutral.FLIGHT_LOG: 'cyan',
     Neutral.MISC: 'deep_pink3',
     Neutral.PRESSER: 'sandy_brown',
+    Neutral.RESUMÉ: 'deep_pink4',
     Uninteresting.JSON: 'dark_red',
     Uninteresting.PHONE_BILL: 'cyan',
 }
@@ -92,7 +93,6 @@ CONSTANT_CATEGORIES = [
         Uninteresting.JSON,
     ]
 ]
-
 
 is_interesting = lambda category: _is_in_enum(category, Interesting)
 is_neutral = lambda category: _is_in_enum(category, Neutral)

@@ -707,7 +707,7 @@ class Email(Communication):
 
             if LINK_LINE_REGEX.search(line):
                 while i < (len(lines) - 1) \
-                        and not lines[i + 1].startswith('htt') \
+                        and not (lines[i + 1].startswith('htt') or lines[i + 1].startswith('www') or lines[i + 1].endswith('com')) \
                         and (lines[i + 1].endswith('/') \
                             or any(s in lines[i + 1] for s in URL_SIGNIFIERS) \
                             or LINK_LINE2_REGEX.match(lines[i + 1])):
@@ -910,7 +910,7 @@ class Email(Communication):
 
 def _add_line_breaks(email_text: str) -> str:
     text = EMAIL_SIMPLE_HEADER_LINE_BREAK_REGEX.sub(r'\n\1\n', email_text).strip()
-    logger.debug(f"text in _add_line_breaks()\n---\n{text}\n---")
+    logger.debug(f"text after EMAIL_SIMPLE_HEADER_LINE_BREAK_REGEX _add_line_breaks()\n---\n{text}\n---")
     return FORWARDED_TOO_MUCH_SPACE_REGEX.sub(r'\1\n', text)
 
 
