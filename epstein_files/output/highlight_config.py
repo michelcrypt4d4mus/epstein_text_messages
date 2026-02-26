@@ -1928,6 +1928,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"pa?edophile",
             r"pussy",
             r"(child )?sex traffi?c?k(ers?|ing)",
+            r"Sasha Grey",
             r"Stephanie Clifford",
             r"Stormy Daniels",
             r"strange women",

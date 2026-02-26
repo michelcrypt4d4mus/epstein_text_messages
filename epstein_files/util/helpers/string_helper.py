@@ -12,7 +12,7 @@ from epstein_files.util.constant.strings import QUESTION_MARKS_REGEX
 PDFALYZER_IMAGE_PANEL_REGEX = re.compile(r"\n╭─* Page \d+, Image \d+.*?╯\n?", re.DOTALL)
 MULTINEWLINE_REGEX = re.compile(r"\n{2,}")
 MULTISPACE_REGEX = re.compile(" +")
-WHITESPACE_CHAR = r"[-_\s]*"
+WHITESPACE_CHAR = r"[-_.\s]*"
 DATE_LENGTH = len('2025-05-05')
 
 capitalize_first = lambda s: s[0].upper() + s[1:]

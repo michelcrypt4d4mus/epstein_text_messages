@@ -1327,7 +1327,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA02547678', recipients=[RENATA_BOLOTOVA], uncertain_recipient=SNEAKY_DOG),
     EmailCfg(id='EFTA02626300', recipients=[RENATA_BOLOTOVA], uncertain_recipient=SNEAKY_DOG),
     EmailCfg(id='EFTA00935996', recipients=[RENATA_BOLOTOVA], uncertain_recipient=SNEAKY_DOG),
-    EmailCfg(id='EFTA01846434', recipients=[RENATA_BOLOTOVA], uncertain_recipient=SNEAKY_DOG),
+    EmailCfg(id='EFTA01846434', recipients=[RENATA_BOLOTOVA], uncertain_recipient=SNEAKY_DOG, truncate_to=1220),
     EmailCfg(id='EFTA00977447', recipients=[RENATA_BOLOTOVA], uncertain_recipient=SNEAKY_DOG, duplicate_ids=['EFTA02577917', 'EFTA01946045']),
     EmailCfg(id='EFTA01843319', recipients=[RENATA_BOLOTOVA], uncertain_recipient=SNEAKY_DOG, duplicate_ids=['EFTA00929871', 'EFTA01773449', 'EFTA02550388']),
     EmailCfg(id='EFTA00850130', recipients=[SERGEY_BELYAKOV]),
@@ -1488,7 +1488,7 @@ EMAILS_CONFIG = [
     EmailCfg(
         id='EFTA02010589',
         date='2012-01-31 9:16 PM',
-        description='raunchy email mentioning "Sasah Grey guy" (Grey is a famous porn star)',
+        description='raunchy email mentioning "Sasha Grey guy" (Grey is a famous porn star)',
         is_interesting=True,
         recipients=[JEFFREY_EPSTEIN],
     ),
