@@ -25,6 +25,7 @@ class Neutral(StrEnum):
     BUSINESS = auto()
     FINANCE = auto()
     FLIGHT_LOG = auto()
+    GOVERNMENT = auto()
     LEGAL = auto()
     MISC = auto()
     PRESSER = auto()
@@ -75,11 +76,11 @@ CATEGORY_STYLE_MAPPING = {
 
 CATEGORY_STYLES = {
     Interesting.LETTER: 'medium_orchid1',
-    Neutral.RESUMÉ: 'deep_pink4',
     Interesting.SOCIAL: 'yellow1',
     Neutral.FLIGHT_LOG: 'cyan',
     Neutral.MISC: 'deep_pink3',
     Neutral.PRESSER: 'sandy_brown',
+    Neutral.RESUMÉ: 'deep_pink4',
     Uninteresting.JSON: 'dark_red',
     Uninteresting.PHONE_BILL: 'cyan',
 }
@@ -92,7 +93,6 @@ CONSTANT_CATEGORIES = [
         Uninteresting.JSON,
     ]
 ]
-
 
 is_interesting = lambda category: _is_in_enum(category, Interesting)
 is_neutral = lambda category: _is_in_enum(category, Neutral)

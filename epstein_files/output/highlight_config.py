@@ -911,7 +911,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         ],
     ),
     HighlightedNames(
-        label='government',
+        label=Neutral.GOVERNMENT,
         style='color(24) bold',
         contacts=[
             Contact(

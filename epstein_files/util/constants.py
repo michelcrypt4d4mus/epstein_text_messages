@@ -956,9 +956,6 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA02660820', author=FAWZI_SIAM, truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA02349713', author=FAWZI_SIAM, truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA02661442', author=FAWZI_SIAM, truncate_to=NO_TRUNCATE),
-    EmailCfg(id='EFTA02730483', author=FBI, date='2023-07-11T08:25:00'),  # TODO: actually reply timestamp
-    EmailCfg(id='EFTA02731552', author=FBI, recipients=[USANYS], date='2021-05-26 16:12:00', uncertain_recipient='true'),
-    EmailCfg(id='EFTA00039971', author=FBI, recipients=[USANYS], uncertain_recipient='true'),
     EmailCfg(id='EFTA00039985', author='Florence Hutner', recipients=[USANYS], author_reason='signature'),
     EmailCfg(
         id='EFTA00677752',
@@ -1893,23 +1890,6 @@ OTHER_FILES_LEGAL = [
     DocCfg(id='022277', description=f"text of National Labour Relations Board (NLRB) law", is_interesting=False),
 
     # DOJ files
-    DocCfg(
-        id='EFTA00164939',
-        author=DOJ,
-        date='2025-09-01',   # TODO: approximate
-        description='Powerpoint summary of Child Sex Trafficking Task Force Epstein investigation',
-        is_interesting=True,
-    ),
-    DocCfg(id='EFTA00020506', author=FBI, description='"chauffeur also told Epstein \'I have something on you, remember what I buried!\'"'),
-    DocCfg(id='EFTA02731200', author=DOJ, description=f"memo about potential prosecutation of Epstein's assistant"),
-    DocCfg(id='EFTA02731082', author=DOJ, description="memo about investigation into Epstein's co-conspirators"),
-    DocCfg(id='EFTA00084614', author=PALM_BEACH_POLICE, description='incident report detailing the investigation into Jeffrey Epstein'),
-    DocCfg(id='EFTA00007893', author=PALM_BEACH_POLICE, description=f"receipts, notes, bank statements of {GHISLAINE_MAXWELL}"),
-    DocCfg(id='EFTA00005569', author=PALM_BEACH_POLICE, replace_text_with='photo lineup featuring Epstein', date='2005-03-17'),
-    DocCfg(id='EFTA02730274', description='evidence inventory that appears to have since been deleted from the DOJ website'),
-    DocCfg(id='EFTA00001884', description='photo of letter from Virgin Islands DOJ to Epstein', date='2019-03-14'),
-    DocCfg(id='EFTA00074744', description="USVI court filing about Epstein will and estate"),
-    DocCfg(id='EFTA00007157', description='victim list and police log'),
     DocCfg(id='EFTA00005586', replace_text_with='completely redacted 69 pages labeled "Grand Jury - NY"'),
 ]
 
@@ -2036,6 +2016,29 @@ OTHER_FILES_FINANCE = [
 
     # DOJ
     DocCfg(id='EFTA01078403', author='Red Dot Trade Finance', description='investment adviser uniform application', date='2014-05-14'),
+]
+
+OTHER_FILES_GOVERNMENT = [
+    DocCfg(
+        id='EFTA00164939',
+        author=DOJ,
+        date='2025-09-01',   # TODO: approximate
+        description='Powerpoint summary of Child Sex Trafficking Task Force Epstein investigation',
+        is_interesting=True,
+    ),
+    DocCfg(id='EFTA02730274', description='evidence inventory that appears to have since been deleted from the DOJ website'),
+    DocCfg(id='EFTA00001884', description='photo of letter from Virgin Islands DOJ to Epstein', date='2019-03-14'),
+    DocCfg(id='EFTA00074744', description="USVI court filing about Epstein will and estate"),
+    DocCfg(id='EFTA00007157', description='victim list and police log'),
+    DocCfg(id='EFTA00020506', author=FBI, description='"chauffeur also told Epstein \'I have something on you, remember what I buried!\'"'),
+    DocCfg(id='EFTA02731200', author=DOJ, description=f"memo about potential prosecutation of Epstein's assistant"),
+    DocCfg(id='EFTA02731082', author=DOJ, description="memo about investigation into Epstein's co-conspirators"),
+    DocCfg(id='EFTA00084614', author=PALM_BEACH_POLICE, description='incident report detailing the investigation into Jeffrey Epstein'),
+    DocCfg(id='EFTA00007893', author=PALM_BEACH_POLICE, description=f"receipts, notes, bank statements of {GHISLAINE_MAXWELL}"),
+    DocCfg(id='EFTA00005569', author=PALM_BEACH_POLICE, replace_text_with='photo lineup featuring Epstein', date='2005-03-17'),
+    EmailCfg(id='EFTA02730483', author=FBI, date='2023-07-11T08:25:00'),  # TODO: actually reply timestamp
+    EmailCfg(id='EFTA02731552', author=FBI, recipients=[USANYS], date='2021-05-26 16:12:00', uncertain_recipient='true'),
+    EmailCfg(id='EFTA00039971', author=FBI, recipients=[USANYS], uncertain_recipient='true'),
 ]
 
 # Epstein money. This category makes is_interesting = True
