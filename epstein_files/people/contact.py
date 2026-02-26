@@ -118,6 +118,10 @@ class Contact:
         return '[\n' + indented(',\n'.join([repr(contact) for contact in contact_infos]), 4) + '\n],'
 
 
+def company(name: str, description: str, emailer_pattern: str = '', **kwargs) -> Contact:
+    return Contact(name, description, emailer_pattern, is_organization=True, **kwargs)
+
+
 def epstein_trust(name: str, emailer_pattern: str = '', beneficiaries: list[str] | None = None) -> Contact:
     beneficiary_str = ''
 

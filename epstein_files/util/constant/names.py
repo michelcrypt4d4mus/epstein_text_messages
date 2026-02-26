@@ -320,13 +320,13 @@ WAPO = 'WaPo'
 
 # First and last names that should be made part of a highlighting regex for emailers
 NAMES_TO_NOT_PARTIALLY_MATCH = set("""
-    adam al alain alan alison alfredo allen alex alexander amanda andres andrew ann anthony asia audrey
-    back bard barrett barry bennet bernard bill black bob boris boyle brad brenner bruce bryan
+    adam al alain alan alison alfredo allen alex alexander amanda andres andrew ann anthony ari asia audrey
+    back bard barrett barry ben bennet bernard bill black bob boris boyle brad brenner bruce bryan
     cameron capital caroline carolyn chris christian christina christopher cohen
     dan daniel danny darren dave david debbie department doj donald douglas dylan
     ed edward edwards elisa enforcement enterprise enterprises entourage epstein eric erik erika etienne
     faith fisher fitzgerald forget frances francesca fred friendly frost fuller fund
-    gates gateway general gerald george gilbert girl gold gordon greg
+    gates gateway general gerald george gilbert girl glass gold gordon greg
     haddad hall hanson harry hassan hay heather henry hill hoffman howard
     ian inc inc. ivan
     jack james jay jean jeff jeffrey jennifer jeremy jessica joel john jon jonathan joseph jr julia justin
