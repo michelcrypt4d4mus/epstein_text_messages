@@ -1492,6 +1492,7 @@ EMAILS_CONFIG = [
         is_interesting=True,
         recipients=[JEFFREY_EPSTEIN],
     ),
+    EmailCfg(id='EFTA01841553', truncate_to=900),
     EmailCfg(id='EFTA00664619', author=SUE, author_reason='"Dear Sue"'),
 ]
 
