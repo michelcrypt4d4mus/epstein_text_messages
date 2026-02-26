@@ -377,7 +377,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(
                 'Digital Currency Initiative',
                 f"crypto part of {MIT_MEDIA_LAB}",
-                r"Digital (Assets?|Currenc(ies|y) Initiative",
+                r"Digital (Assets?|Currenc(ies|y)) Initiative",
                 is_organization=True
             ),
             Contact('Dan Morehead', 'Pantera Capital', r"(Dan )?Morehead"),
@@ -444,7 +444,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Coinmint",
             r"cr[iy]?pto (coins?|currenc(y|ies)|mining)?",
             r"crypto(graph(ic|y))?",
-            r"Digital (Assets?|Currenc(ies|y)",
+            r"Digital (Assets?|Currenc(ies|y))",
             r"e-?(currency|gold)",
             r"FTX",
             r"(?-i:G)alaxy",
@@ -574,7 +574,12 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         label='Epstein',
         style='blue1',
         contacts=[
-            Contact(ASIA_GATEWAY, f"corporate vehicle set up by Epstein and {DAVID_STERN}", r"Asia\s*Gateway(\s*L(imited|td))?"),
+            Contact(
+                f"{ASIA_GATEWAY} Limited",
+                f"corporate vehicle set up by Epstein and {DAVID_STERN}",
+                r"Asia\s*Gateway(\s*L(imited|td))?",
+                is_organization=True
+            ),
             Contact(
                 name=JEFFREY_EPSTEIN,
                 emailer_pattern=r"[djl]\s?ee[vy]acation[©@]?g?(mail.com)?|Epstine|\bJEE?\b|Jeff(rey)? (Edward )?E((sp|ps)tein?)?( VI Foundation)?|jeeproject@yahoo.com|J Jep|Jeffery Edwards|(?<!(ark L.|rd Jay|Edward) )Epstein|Jeffrey Epst.*comj?",
@@ -2190,7 +2195,7 @@ PEOPLE_BIOS = {
     contact.name: highlighted_group.info_for(contact.name, include_category=True)
     for highlighted_group in HIGHLIGHTED_NAMES
     for contact in highlighted_group.contacts
-    if contact.info
+    if contact.info and contact.info != LAW_ENFORCEMENT
 }
 
 
