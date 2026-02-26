@@ -707,7 +707,7 @@ class Email(Communication):
 
             if LINK_LINE_REGEX.search(line):
                 while i < (len(lines) - 1) \
-                        and not lines[i + 1].startswith('htt') \
+                        and not (lines[i + 1].startswith('htt') or lines[i + 1].startswith('www') or lines[i + 1].endswith('com')) \
                         and (lines[i + 1].endswith('/') \
                             or any(s in lines[i + 1] for s in URL_SIGNIFIERS) \
                             or LINK_LINE2_REGEX.match(lines[i + 1])):
