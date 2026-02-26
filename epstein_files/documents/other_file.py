@@ -33,6 +33,9 @@ FIRST_FEW_LINES = 'First Few Lines'
 MAX_DAYS_SPANNED_TO_BE_VALID = 10
 MAX_EXTRACTED_TIMESTAMPS = 100
 MIN_TIMESTAMP = datetime(2000, 1, 1)
+MIN_PAGES_TO_TRUNCATE_PREVIEW = 10
+TRUNCATED_PREVIEW_LEN = 200
+
 LOG_INDENT = '\n         '
 TIMESTAMP_LOG_INDENT = f'{LOG_INDENT}    '
 VAST_HOUSE = 'vast house'  # Michael Wolff article draft about Epstein indicator
@@ -116,7 +119,12 @@ class OtherFile(Document):
     def preview_text(self) -> str:
         """Text at start of file stripped of newlinesfor display in tables and other cramped settings."""
         text = self.config_replace_text_with if self.config_replace_text_with else self.text
-        return WHITESPACE_REGEX.sub(' ', text)[0:site_config.other_files_preview_chars]
+        text = WHITESPACE_REGEX.sub(' ', text)[0:site_config.other_files_preview_chars]
+
+        if text.count('Page') > MIN_PAGES_TO_TRUNCATE_PREVIEW:
+            text = text[0:TRUNCATED_PREVIEW_LEN]
+
+        return text
 
     @property
     def preview_text_highlighted(self) -> Text:

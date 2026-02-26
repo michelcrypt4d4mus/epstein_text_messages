@@ -335,6 +335,10 @@ class DocCfg:
         """Overloaded in subclasses that support recipients."""
         return ''
 
+    # @property
+    # def table_preview_len(self) -> int | None:
+    #     """Number of chars to show in an `OtherFile` table view."""
+
     @property
     def timestamp(self) -> datetime | None:
         if self.date:
