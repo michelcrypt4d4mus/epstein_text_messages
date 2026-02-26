@@ -180,6 +180,7 @@ HIGHLIGHT_COUNTS = {
     'nasdaq': 18,
     "none": 52,  # TODO: stop highlighting 'None'
     'nydfs': 1,
+    'oleg': 1,
     "pa": 1,
     'pakastani': 1,
     "peirce": 1,
