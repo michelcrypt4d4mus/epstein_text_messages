@@ -2415,7 +2415,7 @@ OTHER_FILES_GIRLS = [
         truncate_to=1600,
     ),
     EmailCfg(id='EFTA02431535', author=UNKNOWN_GIRL),
-    EmailCfg(id='EFTA00897668', recipients=[UNKNOWN_GIRL]),
+    EmailCfg(id='EFTA00897668', people=[JEAN_LUC_BRUNEL, JEFFREY_EPSTEIN, UNKNOWN_GIRL], recipients=[UNKNOWN_GIRL]),
     EmailCfg(id='EFTA00848644', recipients=[UNKNOWN_GIRL], is_interesting=True, comment='"take a picture of your pussy"'),
     EmailCfg(id='EFTA01811230', description=f'"Renat" is probably {RENATA_BOLOTOVA}'),
     EmailCfg(id='EFTA02557291', description='possibly recruiting girls'),

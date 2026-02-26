@@ -49,6 +49,9 @@ class Communication(Document):
     @property
     def people(self) -> list[str]:
         """Names of people who either sent/received this email or are mentioned in it."""
+        if self.config and self.config.people:
+            return self.config.people
+
         people = super().people + [p for p in self.participants if p]
         return sorted(uniquify(people))
 

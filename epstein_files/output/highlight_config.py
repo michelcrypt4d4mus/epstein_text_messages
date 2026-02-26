@@ -1715,7 +1715,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 info=f"AKA Masha Prusso, former Olympic snowboarder, {CRYPTO_PR_LAB} co-founder, \"found ladies\" for Epstein",
                 emailer_pattern=r"Ma(sha|riy?a) (Prus(kova|so))",
             ),
-            Contact(MASHA_DROKOVA, "silicon valley VC, former Putin Youth member"),
+            Contact(MASHA_DROKOVA, 'silicon valley VC firm Day One Ventures, former Putin Youth member, star of "Putin\'s Kiss"'),
             Contact(OLGA_PONOMAR_BECKER),
             Contact(
                 RENATA_BOLOTOVA,
