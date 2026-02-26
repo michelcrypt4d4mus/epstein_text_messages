@@ -282,6 +282,7 @@ GOOGLE_PLUS = 'Google Plus'
 INSIGHTS_POD = f"InsightsPod"  # Zubair bots
 JP_MORGAN = 'JP Morgan'
 KYARA_INVESTMENT = 'Kyara Investment'
+MERCANTILE_GLOBAL_HOLDINGS = 'Mercantile Global Holdings'
 MIT_MEDIA_LAB = 'MIT Media Lab'
 NEXT_MANAGEMENT = 'Next Management LLC'
 NOBEL_CHARITABLE_TRUST = 'Nobel Charitable Trust'

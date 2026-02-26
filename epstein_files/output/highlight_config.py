@@ -362,6 +362,11 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact('Barry Silbert', f"founder of Digital Currency Group with {LARRY_SUMMERS} on the board"),
             Contact(BLOCKSTREAM, f"early crypto firm co-founded by {ADAM_BACK} and {AUSTIN_HILL}", is_organization=True),
             Contact(BLOCKCHAIN_CAPITAL, f"crypto VC fund co-founded by Bart Stephens and {BROCK_PIERCE}", is_organization=True),
+            Contact(
+                'Bo Collins',
+                f"AKA James Robert Collins, {MERCANTILE_GLOBAL_HOLDINGS}, testified in trial of Miles Guo/Miles Kwok",
+                r"(Bo|James) (Robert )?Collins"
+            ),
             Contact(BROCK_PIERCE, "Bannon partner, Tether co-founder, friend of Yair Netanyahu, sex crime history", r"Brock( Pierce)?"),
             Contact(BRYAN_BISHOP, "executive at LedgerX and Polymath fund"),
             Contact(CANTOR, f"Howard Lutnick's financial firm", r"Cantor(,? (Fitzgerald|Opportunities|Ventures?))?", is_organization=True),
@@ -370,7 +375,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(
                 'Cryptocurrency Partners',
                 f'crypto fund set up by Epstein and {BROCK_PIERCE} as a sidecar to {BLOCKCHAIN_CAPITAL}',
-                r"Cryptocurrency Partners( II)?",
+                r"Crypto ?Currency Partners( II)?",
                 is_organization=True
             ),
             Contact('Crypto PR Lab', f"firm founded by {MARIA_PRUSAKOVA} and {ALEKSANDRA_KARPOVA}", is_organization=True),
@@ -412,7 +417,11 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 f"crypto friendly bank set up by {LORENZO_DE_MEDICI} with investment from {MARIA_PRUSAKOVA} and maybe {BROCK_PIERCE}",
                 is_organization=True
             ),
-            Contact("Mercantile Global Holdings", 'company of Bo Collins who ended up testifying in trial of Miles Guo / Miles Kwok', is_organization=True),
+            Contact(
+                MERCANTILE_GLOBAL_HOLDINGS,
+                'company of Bo Collins who ended up testifying in trial of Miles Guo / Miles Kwok',
+                is_organization=True
+            ),
             Contact('Noble Bank', f"failed crypto friendly bank with ties to Tether and {BROCK_PIERCE}", r"Noble (Bank|Markets)", is_organization=True),
             Contact('Pantera Capital', "crypto fund of Dan Morehead", is_organization=True),
             Contact('Ribbit Capital', 'crypto friendly venture fund', is_organization=True),
@@ -432,7 +441,6 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Bit(Angels|Fury|Go)",
             r"block (chain|tree)",
             r"Blythe Masters",
-            r"(Bo|James) (Robert )?Collins",
             r"Brac",  # Brock? EFTA01792443
             r"Bradley Rotter",
             r"Brian Forde",
@@ -467,7 +475,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"SpanCash",
             r"stable coins",
             r"(?-i:S)tellar",
-            r"Stephens Investment Management",
+            r"Stephens Inv(\.|estment) M(anagement|gmt\.?)",
             r"Steve Waterhouse",
             r"supersecretbitcoinproject",
             r"Tally Capital",
