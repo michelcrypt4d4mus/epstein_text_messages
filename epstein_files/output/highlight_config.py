@@ -406,6 +406,12 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 is_organization=True
             ),
             Contact('Matthew Gilbert', 'assistant to Howard Lutnick'),
+            Contact("Matthew Roszak", 'co-founder of Bloq, accusations of insider trading'),
+            Contact(
+                'Mike Novogratz',
+                'CEO of Galaxy Digital, made a billion dollars in the Terra/Luna ponzi',
+                r"(Mi(chael|ke) )?Novogratz"
+            ),
             Contact('Ross Ulbricht', 'founder of infamous online drug market Silk Road, pardoned by Trump'),
             Contact(
                 'Steve Jurvetson',
@@ -427,6 +433,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             company('Bitmain', f"Chinese manufacturer of bitcoin mining rigs"),
             company(BLOCKSTREAM, f"early crypto firm co-founded by {ADAM_BACK} and {AUSTIN_HILL}"),
             company(BLOCKCHAIN_CAPITAL, f"crypto VC fund co-founded by Bart Stephens and {BROCK_PIERCE}"),
+            company('Bloq', 'blockchain company'),
             company(CANTOR, f"Howard Lutnick's financial firm", r"Cantor(,? (Fitzgerald|Opportunities|Ventures?))?"),
             company('Coinbase', 'largest American crypto exchange invested in by Epstein'),
             company(
@@ -505,10 +512,6 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Joyce Kim",
             r"Layer (1|One)",
             r"LedgerX",
-            r"Libra",
-            r"(Marc )?(?<!Gavin )Andreess?en", r"adreeson",
-            r"Matthew Roszak",
-            r"Mi(chael|ke) Novogratz",
             r"Northern Data",
             r"(Patrick )?Murck",
             r"Playsino",
@@ -838,7 +841,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Swed(en|ish)(?![-\s]+American Life Scienc)",
             r"Swi(ss|tzerland)",
             r"Tommy Robinson",
-            r"(Tony\s)?Blair",
+            r"(Tony )Blair",
             r"United Kingdom",
             r"U\.K\.",
             r"Ukrai?n(e|ian)",
