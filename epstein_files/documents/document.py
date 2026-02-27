@@ -20,7 +20,7 @@ from epstein_files.documents.documents.file_info import FileInfo
 from epstein_files.documents.documents.search_result import MatchedLine
 from epstein_files.documents.emails.constants import DOJ_EMAIL_OCR_REPAIRS, FALLBACK_TIMESTAMP
 from epstein_files.documents.emails.email_header import DETECT_EMAIL_REGEX
-from epstein_files.output.highlight_config import get_style_for_category, get_style_for_name
+from epstein_files.output.highlight_config import HIGHLIGHTED_CONTACTS, get_style_for_category, get_style_for_name
 from epstein_files.output.layout_elements.file_display import BasePanel, FileDisplay
 from epstein_files.output.html.builder import VERTICAL_MARGIN
 from epstein_files.output.rich import (INFO_STYLE, NA_TXT, SKIPPED_FILE_MSG_PADDING, SYMBOL_STYLE,
@@ -33,7 +33,7 @@ from epstein_files.util.constant.strings import *
 from epstein_files.util.constants import CONFIGS_BY_ID, DEFAULT_TRUNCATE_TO
 from epstein_files.util.env import args, site_config
 from epstein_files.util.helpers.data_helpers import (date_str, patternize, prefix_keys,
-     remove_zero_time, without_falsey)
+     remove_zero_time, uniquify, uniq_sorted, without_falsey)
 from epstein_files.util.helpers.link_helper import link_text_obj
 from epstein_files.util.helpers.file_helper import coerce_file_path, file_size_to_str
 from epstein_files.util.helpers.string_helper import collapse_newlines, join_truthy
@@ -296,6 +296,17 @@ class Document:
 
         prefix = '' if self.config and self.config.timestamp else 'inferred '
         return f"{prefix}timestamp: {remove_zero_time(self.timestamp)}"
+
+    @property
+    def people(self) -> list[str]:
+        """Names of people who either sent/received this email or are mentioned in it."""
+        people = [c.name for c in HIGHLIGHTED_CONTACTS if c.highlight_regex.search(self.text)]
+        people = uniq_sorted(people + ([self.author] if self.author else []))
+
+        if people:
+            self.log(f"people() found {', '.join(people)}")
+
+        return people
 
     @property
     def prettified_text(self) -> Text:

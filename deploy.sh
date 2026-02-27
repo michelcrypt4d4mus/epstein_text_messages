@@ -100,7 +100,7 @@ if [ -n "$ONLY_MOBILE" ]; then
     exit
 fi
 
-print_deploy_step "Building index.html..."
+print_deploy_step "Building curated page..."
 $GENERATE_CMD
 print_deploy_step "Building text messages page... "
 $GENERATE_CMD --all-texts

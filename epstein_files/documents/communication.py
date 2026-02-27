@@ -7,9 +7,10 @@ from rich.text import Text
 
 from epstein_files.documents.document import CLOSE_PROPERTIES_CHAR, Document
 from epstein_files.documents.documents.doc_cfg import CommunicationCfg
-from epstein_files.output.highlight_config import get_style_for_name, styled_name
+from epstein_files.output.highlight_config import HIGHLIGHTED_CONTACTS, get_style_for_name, styled_name
 from epstein_files.output.rich import styled_key_value
 from epstein_files.util.constant.names import UNKNOWN, Name
+from epstein_files.util.helpers.data_helpers import uniquify
 from epstein_files.util.helpers.rich_helpers import no_bold
 
 TIMESTAMP_SECONDS_REGEX = re.compile(r":\d{2}$")
@@ -44,6 +45,15 @@ class Communication(Document):
     @property
     def border_style(self) -> str:
         return no_bold(self.author_style)
+
+    @property
+    def people(self) -> list[str]:
+        """Names of people who either sent/received this email or are mentioned in it."""
+        if self.config and self.config.people:
+            return self.config.people
+
+        people = super().people + [p for p in self.participants if p]
+        return sorted(uniquify(people))
 
     @property
     def config(self) -> CommunicationCfg | None:

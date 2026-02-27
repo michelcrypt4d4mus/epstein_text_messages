@@ -37,6 +37,7 @@ ANDRES_SERRANO = 'Andres Serrano'
 ANN_MARIE_VILLAFANA = 'Ann Marie Villafana'
 ANAS_ALRASHEED = 'Anas Alrasheed'
 ANTHONY_BARRETT = 'Anthony Barrett'
+ANYA_RASULOVA = 'Anya Rasulova'
 ARIANE_DE_ROTHSCHILD = 'Ariane de Rothschild'
 AZIZA_ALAHMADI = 'Aziza Alahmadi'
 BARBRO_C_EHNBOM = 'Barbro C. Ehnbom'
@@ -282,6 +283,7 @@ GOOGLE_PLUS = 'Google Plus'
 INSIGHTS_POD = f"InsightsPod"  # Zubair bots
 JP_MORGAN = 'JP Morgan'
 KYARA_INVESTMENT = 'Kyara Investment'
+MERCANTILE_GLOBAL_HOLDINGS = 'Mercantile Global Holdings'
 MIT_MEDIA_LAB = 'MIT Media Lab'
 NEXT_MANAGEMENT = 'Next Management LLC'
 NOBEL_CHARITABLE_TRUST = 'Nobel Charitable Trust'
@@ -318,34 +320,34 @@ WAPO = 'WaPo'
 
 
 # First and last names that should be made part of a highlighting regex for emailers
-NAMES_TO_NOT_PARTIALLY_MATCH = """
-    adam al alain alan alison alfredo allen alex alexander amanda andres andrew ann anthony asia audrey
-    back bard barrett barry bennet bernard bill black bob boris boyle brad brenner bruce bryan
-    cameron caroline carolyn chris christian christina christopher cohen
-    dan daniel danny darren dave david debbie department donald douglas dylan
-    ed edward edwards elisa enforcement enterprise enterprises entourage epstein eric erika etienne
+NAMES_TO_NOT_PARTIALLY_MATCH = set("""
+    adam al alain alan alison alfredo allen alex alexander amanda andres andrew ann anthony ari asia audrey
+    back bard barrett barry ben bennet bernard bill black bob boris boyle brad brenner bruce bryan
+    cameron capital caroline carolyn chris christian christina christopher cohen
+    dan daniel danny darren dave david debbie department doj donald douglas dylan
+    ed edward edwards elisa enforcement enterprise enterprises entourage epstein eric erik erika etienne
     faith fisher fitzgerald forget frances francesca fred friendly frost fuller fund
-    gates gateway general gerald george gilbert girl gold gordon greg
+    gates gateway general gerald george gilbert girl glass gold gordon greg
     haddad hall hanson harry hassan hay heather henry hill hoffman howard
     ian inc inc. ivan
-    jack james jay jean jeff jeffrey jennifer jeremy jessica joel john jon jonathan joseph jr julia justin
-    kafka kahn karl kate katherine kelly ken kevin krassner
-    larry larsen laurie lawrence leon lesley linda link lisa love
+    jack james jay jean jeff jeffrey jennifer jeremy jessica jim joel john jon jonathan joseph jr julia justin
+    kafka kahn karl kate katherine kathryn kelly ken kevin krassner
+    larry larsen laurie lawrence len leon lesley linda link lisa london love
     management manhattan mann marc maria marie mark martin matthew melanie michael mike miller mitchell miles morris moskowitz
-    nancy nathan neal new nicholas nicole norman ny
+    nancy nathan neal new nicholas nicole nick norman ny
     owen
     paul paula pen peter philip pierce plus police prince
     randall rangel reid richard robert rodriguez roger rosenberg ross roth roy rubenstein rubin
     santos scott sean service services skip smith stacey stanley stern stephen steve steven stone story susan
     team terry the thomas tim tom tony trust tyler
     unknown
-    ventures victor
+    ventures victor viktor
     wade waters
     y
-""".strip().split()
+""".strip().split())
 
 # Names to color white in the word counts
-OTHER_NAMES = NAMES_TO_NOT_PARTIALLY_MATCH + """
+OTHER_NAMES = list(NAMES_TO_NOT_PARTIALLY_MATCH) + """
     aaron albert alberto alec alexandra alice anderson andre ann anna anne ariana arthur
     baldwin barack barrett ben benjamin berger bert binant bob bonner boyden bradley brady branson bright bruno bryant burton
     chapman charles charlie christopher clint cohen colin collins conway
@@ -361,7 +363,7 @@ OTHER_NAMES = NAMES_TO_NOT_PARTIALLY_MATCH + """
     marcus marianne matt matthew melissa michele michelle moore moscowitz
     nancy nussbaum
     paulson philippe
-    rafael ray richard richardson rob robert robin ron rubin rudolph ryan
+    rafael ray richard richardson rob robert robin ron ross rubin rudolph ryan
     sara sarah seligman serge sergey silverman sloman smith snowden sorkin steele stevie stewart
     ted theresa thompson tiffany timothy
     valeria

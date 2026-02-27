@@ -578,8 +578,6 @@ EMAILS_CONFIG = [
     EmailCfg(id='032946', description='discussion of obtaining a Moroccan visa for an unnamed woman', is_interesting=True),
     EmailCfg(id='031320', description='discussion of routing Gratitude foundation money through Peggy Siegal', is_interesting=True),
     EmailCfg(id='031152', description='discussion of notoriously corrupt Kazakh politician Rakhat Aliyev', is_interesting=True),
-    EmailCfg(id='022203', description=AL_SECKEL_BILL_FIGHT),
-    EmailCfg(id='022219', description=AL_SECKEL_BILL_FIGHT, truncate_to=2404),
     EmailCfg(id='032671', description='connections to Fusion GPS who produced the Steele Dossier on Trump'),
     EmailCfg(id='033052', description='connections to Fusion GPS who produced the Steele Dossier on Trump'),
     EmailCfg(id='031472', description="discussion of publishing an audio recording related to the coup in Turkey"),
@@ -1402,6 +1400,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA02573653', description=f'discussion of {PRINCE_ANDREW}\'s Urramoor, "Howard" is probably Howard Lutnick which Urramoor partnered with'),
     EmailCfg(id='EFTA02592748', description=f"Epstein asking {BROCK_PIERCE} for a favour related to someone named 'Sue'", truncate_to=300),
     EmailCfg(id='EFTA01008242', description='Epstein passes on an investment in Radius'),
+    EmailCfg(id='EFTA00955694', description=f"Epstein thanks {ELON_MUSK} for the SpaceX tour that Musk has said never happened", is_interesting=True),
     EmailCfg(id='EFTA00630134', description=f'Epstein recommends Signal encrypted messenger to {ALLEGED_KARIM_WADE}', is_interesting=True),
     EmailCfg(id='EFTA01767036', description=f'"Karim" is probably {ALLEGED_KARIM_WADE}'),
     EmailCfg(id='EFTA02513560', description=f"{JEAN_LUC_BRUNEL} doesn't want to speak on the phone", truncate_to=NO_TRUNCATE),
@@ -1439,6 +1438,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00870717', duplicate_ids=['EFTA01932706']),
     EmailCfg(id='EFTA00915302', duplicate_ids=['EFTA01860910', 'EFTA01986221', 'EFTA01776411']),
     EmailCfg(id='EFTA01776613', duplicate_ids=['EFTA01860812', 'EFTA00915297', 'EFTA02691059']),
+    EmailCfg(id='EFTA01998247', is_interesting=True, show_with_name=ELON_MUSK),
     EmailCfg(id='019321', truncate_to=700),
     EmailCfg(id='022247', truncate_to=2000),
     EmailCfg(id='EFTA00982094', truncate_to=250),
@@ -1492,6 +1492,7 @@ EMAILS_CONFIG = [
         is_interesting=True,
         recipients=[JEFFREY_EPSTEIN],
     ),
+    EmailCfg(id='EFTA01841553', truncate_to=900),
     EmailCfg(id='EFTA00664619', author=SUE, author_reason='"Dear Sue"'),
 ]
 
@@ -2038,6 +2039,7 @@ OTHER_FILES_GOVERNMENT = [
     DocCfg(id='EFTA00084614', author=PALM_BEACH_POLICE, description='incident report detailing the investigation into Jeffrey Epstein'),
     DocCfg(id='EFTA00007893', author=PALM_BEACH_POLICE, description=f"receipts, notes, bank statements of {GHISLAINE_MAXWELL}"),
     DocCfg(id='EFTA00005569', author=PALM_BEACH_POLICE, replace_text_with='photo lineup featuring Epstein', date='2005-03-17'),
+    EmailCfg(id='EFTA00129096', date='2025-04-03 7:13:35 PM', description=f'background check on {MASHA_DROKOVA}', is_interesting=True),
     EmailCfg(id='EFTA02730483', author=FBI, date='2023-07-11T08:25:00'),  # TODO: actually reply timestamp
     EmailCfg(id='EFTA02731552', author=FBI, recipients=[USANYS], date='2021-05-26 16:12:00', uncertain_recipient='true'),
     EmailCfg(id='EFTA00039971', author=FBI, recipients=[USANYS], uncertain_recipient='true'),
@@ -2131,7 +2133,10 @@ OTHER_FILES_REPUTATION = [
     DocCfg(id='030875', description=f"Epstein's Wikipedia page", date='2014-02-08'),  # Date is based on tyler shears; seckel was 2010
     DocCfg(id='026583', description=f"Google search results for '{JEFFREY_EPSTEIN}' with analysis ({OSBORNE_LLP}?)"),
     DocCfg(id='029350', description=f"Microsoft Bing search results for Epstein with sex offender at top, maybe from {TYLER_SHEARS}?"),
+    EmailCfg(id='022203', description=AL_SECKEL_BILL_FIGHT, truncate_to=500),
+    EmailCfg(id='022219', description=AL_SECKEL_BILL_FIGHT, truncate_to=2404),
     # DOJ files
+    EmailCfg(id='EFTA01830035', description=AL_SECKEL_BILL_FIGHT),
     DocCfg(id='EFTA01810372', author=TYLER_SHEARS, description=f'invoice for reputation management work', is_interesting=True, attached_to_email_id='EFTA01931256'),
 ]
 
@@ -2413,8 +2418,9 @@ OTHER_FILES_GIRLS = [
         truncate_to=1600,
     ),
     EmailCfg(id='EFTA02431535', author=UNKNOWN_GIRL),
-    EmailCfg(id='EFTA00897668', recipients=[UNKNOWN_GIRL]),
+    EmailCfg(id='EFTA00897668', people=[JEAN_LUC_BRUNEL, JEFFREY_EPSTEIN, UNKNOWN_GIRL], recipients=[UNKNOWN_GIRL]),
     EmailCfg(id='EFTA00848644', recipients=[UNKNOWN_GIRL], is_interesting=True, comment='"take a picture of your pussy"'),
+    EmailCfg(id='EFTA01811230', description=f'"Renat" is probably {RENATA_BOLOTOVA}'),
     EmailCfg(id='EFTA02557291', description='possibly recruiting girls'),
     EmailCfg(id='EFTA01022353', description='George Models in Odessa, "She said she was 14-15 yo"', is_interesting=True),
 ]
@@ -2487,7 +2493,7 @@ OTHER_FILES_CRYPTO = [
     DocCfg(id='EFTA01093509', author=CRYPTO_CURRENCY_PARTNERS_II, description=f"partnership draft", truncate_to=DEFAULT_TRUNCATE_TO * 2),
     DocCfg(id='EFTA01093444', author=CRYPTO_CURRENCY_PARTNERS_II, description='application form', attached_to_email_id='EFTA00626220'),  #EFTA02708994
     DocCfg(id='EFTA01093471', author=CRYPTO_CURRENCY_PARTNERS_II, description='operating agreement', attached_to_email_id='EFTA00626220'),
-    EmailCfg(id='EFTA00752383', description=f"Mindshift conference attendee list", is_interesting=True),
+    EmailCfg(id='EFTA00752383', description=f"Mindshift conference attendee list including {BROCK_PIERCE}", is_interesting=True),
     EmailCfg(id='EFTA01139067', description=f'Epstein tells Farkas he has not invested in {CRYPTO_CURRENCY_PARTNERS_II}', is_interesting=True),
     EmailCfg(id='EFTA00673123', description=f"{BROCK_PIERCE} and Epstein invested in Coinbase which would turn out to be extremely lucrative", duplicate_ids=['EFTA02371875']),
     EmailCfg(id='EFTA01051074', description=f'{BROCK_PIERCE} arranging meeting between Bannon and Epstein (in Doha?)'),
@@ -2982,6 +2988,7 @@ NOT_CHRONOLOGICAL_VIEW_IDS = [
     '030222',
     # '031826',
     '031826',
+    'EFTA01773417',
     'EFTA01987283',
     'EFTA01778423',
     'EFTA01798022',

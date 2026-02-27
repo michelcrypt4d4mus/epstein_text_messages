@@ -18,7 +18,7 @@ DOC_TYPE_STYLES = {
     EMAIL_CLASS: 'dark_orange3',
     JSON_FILE_CLASS: 'sandy_brown',
     MESSENGER_LOG_CLASS: 'deep_pink4',
-    OTHER_FILE_CLASS: 'grey69',
+    OTHER_FILE_CLASS: 'dark_sea_green',
 }
 
 LOG_THEME = {
