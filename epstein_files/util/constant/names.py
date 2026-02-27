@@ -329,7 +329,7 @@ NAMES_TO_NOT_PARTIALLY_MATCH = set("""
     dan daniel danny darren dave david debbie department doj donald douglas dylan
     ed edward edwards elisa enforcement enterprise enterprises entourage epstein eric erik erika etienne
     faith fisher fitzgerald forget frances francesca fred friendly frost fuller fund
-    gates gateway general gerald george gilbert girl glass gold gordon greg
+    gates gateway general gerald george gilbert girl glass gloria gold gordon greg
     haddad hall hanson harry hassan hay heather henry hill hoffman howard
     ian inc inc. ivan
     jack james jay jean jeanne jeff jeffrey jennifer jeremy jessica jim joel john jon jonathan joseph jr julia justin
@@ -339,11 +339,11 @@ NAMES_TO_NOT_PARTIALLY_MATCH = set("""
     nancy nathan neal new nicholas nicole nick norman ny
     oleg owen
     paul paula pen perry peter philip pierce plus police prince
-    randall rangel reid richard robert rodriguez roger rosenberg ross roth roy rubenstein rubin
+    randall rangel reid richard robert roberts rodriguez roger rosenberg ross roth roy rubenstein rubin
     santos scott sean sergey service services skip smith stacey stanley stern stephen steve steven stone story susan
     team terry the thomas tim tom tony trust tyler
     unknown
-    ventures victor viktor
+    ventures victor viktor virginia
     wade waters
     y
 """.strip().split())

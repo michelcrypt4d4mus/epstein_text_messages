@@ -2031,12 +2031,12 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact('Samantha Rose Stein', 'wombkind.com'),
             Contact('Sasha Grey', 'famous porn star', is_organization=True),  # TODO: not an org
             Contact(UNKNOWN_GIRL),
+            Contact('Virginia Giuffre', f"one of Epstein's first public accusers", r"(Virginia ((L\.?|Roberts) )?)?Giuffre",),
         ],
         patterns=[
             r"child porn(ography)?",
             r"(child )?sex traffi?c?k(ers?|ing)",
             r"Ellaina As?tras?",
-            r"(Gloria )?Allred",
             r"gyneconomist",
             r"(Jane|Tiffany) Doe",
             r"Katie Johnson",
@@ -2045,13 +2045,11 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"pa?edophile",
             r"pussy",
             r"(?-i:S)anctum",
-            r"Sasha Grey",
             r"Stephanie Clifford",
+            r"(?-i:S)ue",
             r"Stormy Daniels",
             r"strange women",
             r"vibrator",
-            r"(Virginia ((L\.?|Roberts) )?)?Giuffre",
-            r"Virginia Roberts",
             r"way better than supplying you ladies",
         ],
     ),
@@ -2061,11 +2059,8 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         contacts=[
             Contact(BRAD_EDWARDS, ROTHSTEIN_ROSENFELDT_ADLER, r"Brad(ley)?( J(.?|ames))? Edwards"),
             Contact('David Boies', 'Boies, Schiller, & Flexner', r"(David )?Bo[il]es(,? Schiller( & Flexner)?)?"),
-            Contact(
-                name=DOUGLAS_WIGDOR,
-                info=f"lawsuit against {LEON_BLACK}, Wigdor LLP",
-                emailer_pattern=r"Doug(las)? (H\.?)? Wigdor",
-            ),
+            Contact(DOUGLAS_WIGDOR, f"lawsuit against {LEON_BLACK}, Wigdor LLP", r"Doug(las)? (H\.?)? Wigdor"),
+            Contact('Gloria Allred', "victim's lawyer on many well known sexual harassment cases"),
             Contact('Grant J. Smith', ROTHSTEIN_ROSENFELDT_ADLER),
             Contact(
                 name=JEANNE_M_CHRISTENSEN,
