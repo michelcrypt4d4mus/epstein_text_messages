@@ -723,6 +723,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         ],
         patterns=[
             r"(Barry (E. )?)?Krischer",
+            r"Clifford Chance",
             r"dersh",
             r"Kate Kelly",
             r"Kirkland & Ellis",
@@ -780,7 +781,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         patterns=[
             r"Amsterdam",
             r"(Angela )?Merk(el|le)",
-            r"Austria",
+            r"Austrian?",
             r"Barcelona",
             r"Belgi(an|um)",
             r"(Benjamin )?Harnwell",
@@ -1783,7 +1784,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact('Len Blavatnik', 'oligarch'),
             Contact(
                 MARIA_PRUSAKOVA,
-                info=f"AKA Masha Prusso, former Olympic snowboarder, {CRYPTO_PR_LAB} co-founder, \"found ladies\" for Epstein",
+                info=f"AKA Masha Prusso, former Olympic snowboarder, {CRYPTO_PR_LAB} co-founder, \"found ladies\" for Epstein, Clifford Chance",
                 emailer_pattern=r"Ma(sha|riy?a) (Prus(kova|so))",
                 link_to_bio='https://www.reddit.com/r/Epstein/comments/1qvsnqs/a_detailed_report_on_masha_prusso_aka_maria/',
             ),
@@ -1809,7 +1810,10 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 info="graduate of Russia's FSB academy (AKA \"a spy\"), head of the St. Petersburg Economic Forum",
                 link_to_bio='https://dossier.center/jeffreyepsteinrusconnect-en/',
             ),
-            Contact(SVETLANA_POZHIDAEVA, f"Epstein's Russian assistant who was recommended for a visa by Sergei Belyakov (FSB) and {DAVID_BLAINE}"),
+            Contact(
+                SVETLANA_POZHIDAEVA,
+                f"AKA 'Sophia Platt', Epstein's Russian assistant who was recommended for a visa by Sergei Belyakov (FSB) and {DAVID_BLAINE}"
+            ),
             Contact(YULIA_DOROKHINA),
             company('Alfa Bank', 'Russian bank', r"Alfa( Bank)?"),
             company('Day One Ventures', f"silicon valley venture fund run by {MASHA_DROKOVA}"),

@@ -73,6 +73,7 @@ OFFICIAL_LINKS = [
 
 EXTERNAL_LINKS = OFFICIAL_LINKS + [
     ExternalLink(EPSTEIN_WEB_URL, 'biographies', link_text='EpsteinWeb'),
+    ExternalLink('https://epsteinexposed.com'),
     ExternalLink(JMAIL_URL, 'read His Emails via Gmail interface', link_text='Jmail'),
     ExternalLink('https://tommycarstensen.com/epstein/index.html', 'metadata', link_text='Carstensen Epstein Archive'),
     ExternalLink(EPSTEIN_DOCS_URL, 'old docs', link_text='epstein-docs'),
