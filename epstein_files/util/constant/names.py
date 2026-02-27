@@ -323,14 +323,14 @@ WAPO = 'WaPo'
 
 # First and last names that should be made part of a highlighting regex for emailers
 NAMES_TO_NOT_PARTIALLY_MATCH = set("""
-    adam al alain alan alison alfredo allen alex alexander amanda andres andrew ann anthony ari asia audrey
+    adam al alain alan alison alfredo allen alex alexander amanda andres andrew angela ann anthony ari asia audrey
     back bard barrett barry ben bennet bernard bill black bo bob boris boyle brad brenner bruce bryan
     cameron capital caroline carolyn chris christian christina christopher cohen collins
     dan daniel danny darren dave david debbie department doj donald douglas dylan
     ed edward edwards elisa enforcement enterprise enterprises entourage epstein eric erik erika etienne
     faith fisher fitzgerald forget frances frank francesca fred friendly frost fuller fund
     gates gateway general gerald george gilbert girl glass gloria gold gordon greg
-    haddad hall hanson harry hassan hay heather henry hill hoffman howard
+    haddad hall hanson harry hassan hay heather henry hill ho hoffman howard
     ian inc inc. ivan
     jack james jay jean jeanne jeff jeffrey jennifer jeremy jessica jim joel john jon jonathan joseph jr julia justin
     kafka kahn karl kate katherine kathryn kelly ken kevin krassner
@@ -366,7 +366,7 @@ OTHER_NAMES = list(NAMES_TO_NOT_PARTIALLY_MATCH) + """
     nancy nussbaum
     paulson philippe
     rafael ray richard richardson rob robert robin ron ross rubin rudolph ryan
-    sara sarah seligman serge sergey silverman sloman smith snowden sorkin steele stevie stewart
+    sara sarah seligman serge sergey silverman sloman smith snowden sorkin stanley steele stevie stewart
     ted theresa thompson tiffany timothy
     valeria
     walter warren weinstein weiss william

@@ -305,11 +305,21 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         label='China',
         style='bright_red',
         contacts=[
+            Contact(
+                'Angela Ho',
+                'daughter of Chinese gambling / organized crime kingpin Stanley Ho',
+                link_to_bio='https://www.theguardian.com/business/2020/may/26/stanley-ho-the-billionaire-macao-casino-tycoon-dies-aged-98'
+            ),
             Contact('Desmond Shum', f'Hong Kong financier, friend of {PETER_MANDELSON}'),
             Contact(
                 GINO_YU,
                 f"professor / game designer / AI researcher in Hong Kong, friend of {MASHA_DROKOVA}, worked on PR for Epstein",
                 is_organization=True  # TODO: not an org
+            ),
+            Contact(
+                'Stanley Ho',
+                'gambling magnate connected to / possible head of organized crime group',
+                link_to_bio='https://www.theguardian.com/business/2020/may/26/stanley-ho-the-billionaire-macao-casino-tycoon-dies-aged-98'
             ),
         ],
         patterns=[
@@ -333,6 +343,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Kwok",
             r"Li Botan",
             r"(Madam )?Fu Ying",
+            r"Mac(au|ua)",
             r"Ministry\sof\sState\sSecurity",
             r"MSS",
             r"North .?Korean?",
