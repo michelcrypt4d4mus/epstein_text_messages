@@ -588,6 +588,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact('Alfredo Rodriguez', "Epstein's butler, stole the journal"),
             Contact('Bella Klein', "Epstein's accountant"),
             Contact('Bernard Kruger', "Epstein's doctor"),
+            Contact(CECILIA_STEEN, f'Epstein assistant who moved to Dubai'),
             Contact(DAPHNE_WALLACE, "logistics and schedule coordination", r"Da.hne Wallace"),
             Contact(EDUARDO_ROBLES, "home builder at Creative Kingdom Dubai", r"Ed(uardo)? Robles"),
             Contact(ERIC_ROTH, "jet decorator at International Jet"),
@@ -872,7 +873,6 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(AMANDA_ENS, "Citigroup", r"ens, amanda?|Amanda.Ens"),
             Contact('Ari Glass', f'Boothbay manager whom Epstein called "a bit sketchy" but invested $50 million with'),
             Contact(BRAD_WECHSLER, f"IMAX chairman, head of {LEON_BLACK}'s personal investment vehicle according to FT"),
-            Contact(CECILIA_STEEN),
             Contact(DANIEL_SABBA, f"{UBS} Investment Bank"),
             Contact(
                 name=DAVID_FISZEL,

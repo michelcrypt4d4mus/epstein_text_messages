@@ -2425,6 +2425,13 @@ OTHER_FILES_GIRLS = [
         is_interesting=True,
         recipients=[JEFFREY_EPSTEIN],
     ),
+    EmailCfg(
+        id='EFTA01026268',
+        description="Epstein pressuring someone to find girls in Russia",
+        recipients=[UNKNOWN_GIRL],
+        truncate_to=3100
+    ),
+    EmailCfg(id='EFTA00671662', author='Miranda', author_reason='quoted signature'),
     EmailCfg(id='EFTA01990168', author=UNKNOWN_GIRL, is_interesting=True),
     EmailCfg(id='EFTA02431535', author=UNKNOWN_GIRL),
     EmailCfg(id='EFTA00897668', people=[JEAN_LUC_BRUNEL, JEFFREY_EPSTEIN, UNKNOWN_GIRL], recipients=[UNKNOWN_GIRL]),
@@ -2432,6 +2439,9 @@ OTHER_FILES_GIRLS = [
     EmailCfg(id='EFTA01811230', description=f'"Renat" is probably {RENATA_BOLOTOVA}'),
     EmailCfg(id='EFTA02557291', description='possibly recruiting girls'),
     EmailCfg(id='EFTA01022353', description='George Models in Odessa, "She said she was 14-15 yo"', is_interesting=True),
+    EmailCfg(id='EFTA02449477', author=UNKNOWN_GIRL, description='argument about finding girls for Epstein', truncate_to=NO_TRUNCATE),
+    EmailCfg(id='EFTA01768670', description='"find girls for the agency"'),
+    EmailCfg(id='EFTA01782788', author=UNKNOWN_GIRL, description='"I need 21-24, wiling to travel and work hard"', truncate_to=NO_TRUNCATE),
 ]
 
 OTHER_FILES_PHONE_BILL = [
