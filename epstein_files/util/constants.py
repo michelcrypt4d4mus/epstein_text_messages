@@ -2594,6 +2594,7 @@ OTHER_FILES_CRYPTO = [
     DocCfg(id='EFTA01733746', date='2011-05-18', description=f'schedule showing "drinks" with {HOWARD_LUTNICK}', show_full_panel=True, truncate_to=700),
     DocCfg(id='EFTA00434306', description='calendar reminder for call with Howard Lutnick', date='2011-04-26'),
     DocCfg(id='EFTA00020515', author=FBI, description='tip about Howard Lutnick and financial irregularities', is_interesting=True),
+    DocCfg(id='EFTA00173881', author='US Secret Service', show_with_name=HOWARD_LUTNICK, truncate_to=800),
     DocCfg(
         id='EFTA01249207',
         author=FBI,
