@@ -1768,6 +1768,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 'silicon valley VC of Day One Ventures, publicist for QWave, former Putin Youth member, star of "Putin\'s Kiss"',
                 r"(Marii?y?a|Masha) (Bucher|Drokova)",
             ),
+            Contact('Oleg Deripaska', 'oligarch'),
             Contact(OLGA_PONOMAR_BECKER),
             Contact(
                 RENATA_BOLOTOVA,
@@ -1783,8 +1784,8 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 info="graduate of Russia's FSB academy (AKA \"a spy\"), head of the St. Petersburg Economic Forum",
                 link_to_bio='https://dossier.center/jeffreyepsteinrusconnect-en/',
             ),
+            Contact('Steve Jurvetson', 'partner at Draper Fisher Jurvetson, alleged victim of sexual blackmail by Frank Creer'),
             Contact(SVETLANA_POZHIDAEVA, f"Epstein's Russian assistant who was recommended for a visa by Sergei Belyakov (FSB) and {DAVID_BLAINE}"),
-            Contact('Oleg Deripaska', 'oligarch'),
             company('Alfa Bank', 'Russian bank', r"Alfa( Bank)?"),
             company('Day One Ventures', f"silicon valley venture fund run by {MASHA_DROKOVA}"),
             company('Quantum Wave Fund', f"venture fund associated with {MASHA_DROKOVA} focused on quantum stuff", r"(Quantum Wave|QWave) (Capital|Fund)"),
