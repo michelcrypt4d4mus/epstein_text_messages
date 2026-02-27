@@ -371,7 +371,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(ARIANNA_SIMPSON, f"a16z partner involved in the Axie Infinity debacle, Autonomous Partners"),
             Contact(AUSTIN_HILL, f"{BLOCKSTREAM} co-founder with {ADAM_BACK}, Brudder Ventures", r"Austin\s*(Hill|@blockstream.com)"),
             Contact('Barry Silbert', f"founder of Digital Currency Group with {LARRY_SUMMERS} on the board"),
-            Contact('Ben Horowitz', 'co-founder of crypto heavy venture fund Andreessen Horowitz AKA a16z, Trump convert', is_organization=True),
+            Contact('Ben Horowitz', 'co-founder of crypto heavy venture fund Andreessen Horowitz AKA a16z, Trump convert', is_organization=True),  # TODO: not really org...
             Contact(
                 'Bo Collins',
                 f"AKA James Robert Collins, {MERCANTILE_GLOBAL_HOLDINGS}, testified in trial of Miles Guo/Miles Kwok",
@@ -452,6 +452,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 f"fund run by Tim Draper, John Fisher, and Steve Jurvetson",
                 r"DFJ( Capital|Fund)?|Draper Fisher Jurvetson"
             ),
+            company('Electric Coin Company', f"FKA 'Zerocoin', {MADARS_VIRZA} and untraceable cryptocurrency ZCash"),
             company('Kraken', "second largest American crypto exchange after Coinbase"),
             company(
                 KYARA_INVESTMENT,
@@ -478,7 +479,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             company('Ripple', 'token issuing company run by Trump megadonor Brad Garlinghouse'),
             company('Tether', f"$180 billion stablecoin founded by {BROCK_PIERCE} whose money is managed by {HOWARD_LUTNICK}"),
             company(
-                'ZeroCash',
+                'Zerocoin',
                 f"early name for Epstein funded untraceable cryptocurrency ZCash developed by {MADARS_VIRZA}",
                 r"ZeroC(ash|oin)",
             ),
@@ -776,6 +777,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             company('ECB', 'European Central Bank'),
         ],
         patterns=[
+            r"Amsterdam",
             r"(Angela )?Merk(el|le)",
             r"Austria",
             r"Barcelona",
@@ -833,6 +835,8 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Polish",
             r"pope",
             r"Portugal",
+            r"Prague",
+            r"Rotterdam",
             r"Scotland",
             r"(Sebastian )?Kurz",
             r"Stockholm",
