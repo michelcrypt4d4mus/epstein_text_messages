@@ -27,7 +27,7 @@ from epstein_files.output.rich import (INFO_STYLE, NA_TXT, SKIPPED_FILE_MSG_PADD
      add_cols_to_table, build_table, console, highlighter, styled_key_value, prefix_with, styled_dict,
      wrap_in_markup_style)
 from epstein_files.output.site.sites import EXTRACTS_BASE_URL
-from epstein_files.people.interesting_people import UNINTERESTING_AUTHORS
+from epstein_files.people.interesting_people import PERSONS_OF_INTEREST, UNINTERESTING_AUTHORS
 from epstein_files.util.constant.names import Name
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constants import CONFIGS_BY_ID, DEFAULT_TRUNCATE_TO
@@ -166,7 +166,7 @@ class Document:
         if self.config and self.config.replace_text_with:
             text = join_truthy(self.config.author, self.config.replace_text_with)
 
-            if len(text) < 300:
+            if len(text) < 300 and not text.startswith('photo'):
                 return f"(Text of {text} {CHECK_LINK_FOR_DETAILS})"
             else:
                 return text
@@ -262,6 +262,8 @@ class Document:
         elif self.author in UNINTERESTING_AUTHORS:
             return False
         elif self.file_info.is_house_oversight_file and not (self.author or self.config):
+            return True
+        elif self.config and self.config.show_with_name in PERSONS_OF_INTEREST:
             return True
 
     @property

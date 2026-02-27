@@ -1305,6 +1305,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00840591', recipients=[LESLEY_GROFF]),
     EmailCfg(id='EFTA00369335', recipients=[LESLEY_GROFF]),
     EmailCfg(id='EFTA02227488', recipients=[LESLEY_GROFF]),
+    EmailCfg(id='EFTA02175423', recipients=[LESLEY_GROFF], truncate_to=650),
     EmailCfg(id='EFTA02256631', recipients=[LESLEY_GROFF], truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA00482121', recipients=[LESLEY_GROFF]),
     EmailCfg(id='EFTA00368951', recipients=[LESLEY_GROFF], author_reason='can be seen in EFTA00368958'),
@@ -1421,6 +1422,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA02633194', description=f'Why is {NICOLE_JUNKERMANN} quoting an appraisal by "FSB (Russians)"?', is_interesting=True),
     # EmailCfg(id='EFTA00039689', description=f"{SEC_WHISTLEBLOWER} re: Signature Bank, Hapoalim, Bioptix/RIOT, Barry Honig, etc."),
     # EmailCfg(id='EFTA00093702', description=f"{SEC_WHISTLEBLOWER}", comment="rest is visible in EFTA00039689 after 102_000 chars"),
+    EmailCfg(id='EFTA00826876', description=f"Epstein offers to help pay for {PETER_THIEL}'s lawsuit against Gawker"),
     EmailCfg(id='EFTA00875181', duplicate_ids=['EFTA01901268']),
     EmailCfg(id='EFTA01852975', duplicate_ids=['EFTA02001764']),
     EmailCfg(id='EFTA00563586', duplicate_ids=['EFTA02323722']),
@@ -1485,15 +1487,23 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA02641374', is_interesting=True),
     # EmailCfg(id='EFTA02641374', is_interesting=True),
     EmailCfg(id='EFTA00953261', author=LARRY_SUMMERS, recipients=[JEFFREY_EPSTEIN]),
-    EmailCfg(
-        id='EFTA02010589',
-        date='2012-01-31 9:16 PM',
-        description=f'raunchy email mentioning "Sasha Grey guy" (Grey is a famous porn star), note {BORIS_NIKOLIC} name in SMTP info at end',
-        is_interesting=True,
-        recipients=[JEFFREY_EPSTEIN],
-    ),
     EmailCfg(id='EFTA01841553', truncate_to=900),
     EmailCfg(id='EFTA00664619', author=SUE, author_reason='"Dear Sue"'),
+    EmailCfg(
+        id='EFTA00719854',
+        description=f'{BORIS_NIKOLIC} introduces Epstein to Chris Poole AKA "moot", the founder of 4chan',
+        is_interesting=True,
+        show_with_name=CHRIS_POOLE
+    ),
+    EmailCfg(
+        id='EFTA00922824',
+        description=f"Epstein met with the founder of 4chan the day the infamous /pol/ board was created",
+        show_with_name=CHRIS_POOLE
+    ),
+    EmailCfg(id='EFTA01848168', show_with_name=CHRIS_POOLE),
+    EmailCfg(id='EFTA01849797', show_with_name=CHRIS_POOLE),
+    EmailCfg(id='EFTA02179653', show_with_name=CHRIS_POOLE),
+    EmailCfg(id='EFTA01987383', show_with_name=CHRIS_POOLE),
 ]
 
 
@@ -2423,12 +2433,33 @@ OTHER_FILES_GIRLS = [
         recipients=[UNKNOWN_GIRL],
         truncate_to=1600,
     ),
+    EmailCfg(
+        id='EFTA02010589',
+        author=UNKNOWN_GIRL,
+        date='2012-01-31 9:16 PM',
+        description=f'raunchy email mentioning "Sasha Grey guy", note {BORIS_NIKOLIC} and bgC3 in SMTP info at end',
+        is_interesting=True,
+        recipients=[JEFFREY_EPSTEIN],
+    ),
+    EmailCfg(
+        id='EFTA01026268',
+        author_reason='juliador89®mail.ru is unredacted',
+        description=f"Epstein pressuring {YULIA_DOROKHINA} to find girls in Russia and send him nude pics and videos",
+        recipients=[YULIA_DOROKHINA],
+        truncate_to=3100
+    ),
+    EmailCfg(id='EFTA00671662', author='Miranda', author_reason='quoted signature'),
+    EmailCfg(id='EFTA01990168', author=UNKNOWN_GIRL, is_interesting=True),
     EmailCfg(id='EFTA02431535', author=UNKNOWN_GIRL),
+    EmailCfg(id='EFTA01875607', author=UNKNOWN_GIRL),
     EmailCfg(id='EFTA00897668', people=[JEAN_LUC_BRUNEL, JEFFREY_EPSTEIN, UNKNOWN_GIRL], recipients=[UNKNOWN_GIRL]),
     EmailCfg(id='EFTA00848644', recipients=[UNKNOWN_GIRL], is_interesting=True, comment='"take a picture of your pussy"'),
     EmailCfg(id='EFTA01811230', description=f'"Renat" is probably {RENATA_BOLOTOVA}'),
     EmailCfg(id='EFTA02557291', description='possibly recruiting girls'),
     EmailCfg(id='EFTA01022353', description='George Models in Odessa, "She said she was 14-15 yo"', is_interesting=True),
+    EmailCfg(id='EFTA02449477', author=UNKNOWN_GIRL, description='argument about finding girls for Epstein', truncate_to=NO_TRUNCATE),
+    EmailCfg(id='EFTA01768670', description='"find girls for the agency"'),
+    EmailCfg(id='EFTA01782788', author=UNKNOWN_GIRL, description='"I need 21-24, wiling to travel and work hard"', truncate_to=NO_TRUNCATE),
 ]
 
 OTHER_FILES_PHONE_BILL = [
@@ -2591,6 +2622,7 @@ OTHER_FILES_CRYPTO = [
         is_interesting=True,
         show_with_name=BROCK_PIERCE,
     ),
+    DocCfg(id='EFTA01230639', replace_text_with=f'photo of Epstein and {HOWARD_LUTNICK} on the island that was removed from DOJ website', date='2012-12-22'),
     DocCfg(id='EFTA01733746', date='2011-05-18', description=f'schedule showing "drinks" with {HOWARD_LUTNICK}', show_full_panel=True, truncate_to=700),
     DocCfg(id='EFTA00434306', description='calendar reminder for call with Howard Lutnick', date='2011-04-26'),
     DocCfg(id='EFTA00020515', author=FBI, description='tip about Howard Lutnick and financial irregularities', is_interesting=True),
@@ -2609,6 +2641,13 @@ OTHER_FILES_CRYPTO = [
     ),
     EmailCfg(id='EFTA00970606', show_with_name=HOWARD_LUTNICK),
     EmailCfg(id='EFTA01778423', show_with_name=HOWARD_LUTNICK),
+    EmailCfg(
+        id='EFTA00173881',
+        author='US Secret Service',
+        recipients=['Enterprise Vetting Center'],
+        show_with_name=HOWARD_LUTNICK,
+        truncate_to=800
+    ),
     EmailCfg(id='EFTA00474452', description=f"{HOWARD_LUTNICK} and {JEFFREY_EPSTEIN}, NIMBYs"),
     EmailCfg(
         id='EFTA00873541',
