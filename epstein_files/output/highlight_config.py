@@ -400,8 +400,9 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             ),
             Contact('Matthew Gilbert', 'assistant to Howard Lutnick'),
             Contact('Ross Ulbricht', 'founder of infamous online drug market Silk Road, pardoned by Trump'),
+            Contact('Steve Jurvetson', 'partner at Draper Fisher Jurvetson, alleged victim of sexual blackmail by Frank Creer'),
             Contact('Suhas Daftuar', 'Chaincode Labs'),
-            Contact('Tim Draper', 'investor who loves bitcoin', r"Tim(othy)?( Cook)? Draper"),
+            Contact('Tim Draper', 'partner at Draper Fisher Jurvetson, loves bitcoin', r"Tim(othy)?( Cook)? Draper"),
             Contact('W. Bradford Stephens', f"co-founder of {BLOCKCHAIN_CAPITAL}", r"(Brad(ford)?|Bart) Stephens"),
             Contact("Wladimir van der Laan", 'bitcoin core developer', r"Wladimir( van der Laan)?"),
             company(
@@ -1784,7 +1785,6 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 info="graduate of Russia's FSB academy (AKA \"a spy\"), head of the St. Petersburg Economic Forum",
                 link_to_bio='https://dossier.center/jeffreyepsteinrusconnect-en/',
             ),
-            Contact('Steve Jurvetson', 'partner at Draper Fisher Jurvetson, alleged victim of sexual blackmail by Frank Creer'),
             Contact(SVETLANA_POZHIDAEVA, f"Epstein's Russian assistant who was recommended for a visa by Sergei Belyakov (FSB) and {DAVID_BLAINE}"),
             company('Alfa Bank', 'Russian bank', r"Alfa( Bank)?"),
             company('Day One Ventures', f"silicon valley venture fund run by {MASHA_DROKOVA}"),
