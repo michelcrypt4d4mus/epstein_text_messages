@@ -299,7 +299,11 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         style='bright_red',
         contacts=[
             Contact('Desmond Shum', f'Hong Kong financier, friend of {PETER_MANDELSON}'),
-            Contact(GINO_YU, f"professor / game designer in Hong Kong, friend of {MASHA_DROKOVA}, worked on PR for Epstein"),
+            Contact(
+                GINO_YU,
+                f"professor / game designer / AI researcher in Hong Kong, friend of {MASHA_DROKOVA}, worked on PR for Epstein",
+                is_organization=True  # TODO: not an org
+            ),
         ],
         patterns=[
             r"Ali.?baba",
@@ -397,6 +401,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact('Matthew Gilbert', 'assistant to Howard Lutnick'),
             Contact('Ross Ulbricht', 'founder of infamous online drug market Silk Road, pardoned by Trump'),
             Contact('Suhas Daftuar', 'Chaincode Labs'),
+            Contact('Tim Draper', 'investor who loves bitcoin', r"Tim(othy)?( Cook)? Draper"),
             Contact('W. Bradford Stephens', f"co-founder of {BLOCKCHAIN_CAPITAL}", r"(Brad(ford)?|Bart) Stephens"),
             Contact("Wladimir van der Laan", 'bitcoin core developer', r"Wladimir( van der Laan)?"),
             company(
@@ -423,6 +428,11 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 'Digital Currency Initiative',
                 f"crypto part of {MIT_MEDIA_LAB}",
                 r"Digital (Assets?|Currenc(ies|y)) Initiative",
+            ),
+            company(
+                'Draper Fisher Jurvetson',
+                f"fund run by Tim Draper, John Fisher, and Steve Jurvetson",
+                r"DFJ( Capital|Fund)?|Draper Fisher Jurvetson"
             ),
             company('Kraken', "second largest American crypto exchange after Coinbase"),
             company(
@@ -745,6 +755,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 info="former prime minister of Norway, Nobel Peace Prize Committee",
                 emailer_pattern=r"(Thor.{3,8})?Jag[il]and?",
             ),
+            Contact('Viktor Yushchenko', 'former president of Ukraine'),
             Contact('Viktor Orban', 'prime minister of Hungary', r"(Vi(c|k)tor )?Orbah?n"),
             company('ECB', 'European Central Bank'),
         ],
@@ -1102,6 +1113,8 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             USANYS,
             r"UNITED STATES DISTRICT COURT?",
             r"US (AF|Army|Air Force)",
+            r"USSS",
+            r"(U\.?S\.? )?Secret Service",
             r"Walter Reed( Army Institute of Research)?",
             r"whistleblower",
             r"(William J\.? )?Zloch",
@@ -1750,7 +1763,11 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 info=f"AKA Masha Prusso, former Olympic snowboarder, {CRYPTO_PR_LAB} co-founder, \"found ladies\" for Epstein",
                 emailer_pattern=r"Ma(sha|riy?a) (Prus(kova|so))",
             ),
-            Contact(MASHA_DROKOVA, 'silicon valley VC firm Day One Ventures, former Putin Youth member, star of "Putin\'s Kiss"'),
+            Contact(
+                MASHA_DROKOVA,
+                'silicon valley VC of Day One Ventures, publicist for QWave, former Putin Youth member, star of "Putin\'s Kiss"',
+                r"(Marii?y?a|Masha) (Bucher|Drokova)",
+            ),
             Contact(OLGA_PONOMAR_BECKER),
             Contact(
                 RENATA_BOLOTOVA,
@@ -1758,16 +1775,20 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 emailer_pattern=r"Renata Bolotova|Rena B|Renata Bo\w+|renbolotova",
             ),
             Contact('Semion Mogilevich', 'infamous Russian mafia boss'),
+            Contact("Serguei Beloussov", 'technologist', r"Serg Bell"),
+            Contact('Serguei Kouzmine', 'co-founder of QWave Capital and gambling copmany Ritzio Entertainment'),
             Contact(
                 SERGEY_BELYAKOV,
                 emailer_pattern=r"Sergey Belyako|Беляков Сергей|Cepre(ct|il) [6BES][\w.]+|6(er|of)no\w+ [CE]\w+",
-                info="graduate of Russia's FSB academy (AKA \"a spy\"), head of the St. Petersburg Economic Forum Foundation",
+                info="graduate of Russia's FSB academy (AKA \"a spy\"), head of the St. Petersburg Economic Forum",
                 link_to_bio='https://dossier.center/jeffreyepsteinrusconnect-en/',
             ),
             Contact(SVETLANA_POZHIDAEVA, f"Epstein's Russian assistant who was recommended for a visa by Sergei Belyakov (FSB) and {DAVID_BLAINE}"),
             Contact('Oleg Deripaska', 'oligarch'),
             company('Alfa Bank', 'Russian bank', r"Alfa( Bank)?"),
             company('Day One Ventures', f"silicon valley venture fund run by {MASHA_DROKOVA}"),
+            company('Quantum Wave Fund', f"venture fund associated with {MASHA_DROKOVA} focused on quantum stuff", r"(Quantum Wave|QWave) (Capital|Fund)"),
+            company('Runa Capital', 'fund of Serguei Beloussov with investment from Steve Jurvetson and Frank Creer'),
         ],
         patterns=[
             r"Chernobyl",
@@ -1798,7 +1819,6 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r'Svet',
             r"Russ?ian?",
             r"Sberbank",
-            r"Serguei Beloussov",
             r"Soviet( Union)?",
             r"USSR",
             r"(Vitaly )?Churkin",
@@ -1889,6 +1909,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Paul Allen",
             r"(Peter\s)?Th(ie|ei)l",
             r"Pierre Omidyar",
+            r"quantum comput(er|ing)",
             r"Sergey Brin",
             r"Silicon Valley",
             r"Skyp(ed?|ing)",
@@ -1980,7 +2001,8 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(UNKNOWN_GIRL),
         ],
         patterns=[
-            r"child pornography",
+            r"child porn(ography)?",
+            r"(child )?sex traffi?c?k(ers?|ing)",
             r"Ellaina As?tras?",
             r"(Gloria )?Allred",
             r"gyneconomist",
@@ -1990,7 +2012,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Minor Victim",
             r"pa?edophile",
             r"pussy",
-            r"(child )?sex traffi?c?k(ers?|ing)",
+            r"(?-i:S)anctum",
             r"Sasha Grey",
             r"Stephanie Clifford",
             r"Stormy Daniels",
