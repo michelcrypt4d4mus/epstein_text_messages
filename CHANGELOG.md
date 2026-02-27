@@ -1,4 +1,6 @@
 # NEXT RELEASE
+
+### 1.8.7
 * More biographical information panels in chrono view
 * `DocCfg.show_full_panel` param
 
