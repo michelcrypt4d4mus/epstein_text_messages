@@ -129,6 +129,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Ghana(ian)?",
             r"Glencore",
             r"Goodluck Jonathan",
+            r"I[v=]ory Coast",
             r"Johannesburg",
             r"Kenyan?",
             r"Kinshasa",
@@ -1665,7 +1666,11 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(AL_SECKEL, "Isabel Maxwell's husband, Mindshift conference, mysterious death"),
             Contact('Barnaby Marsh', "co-founder of philanthropy services company Saint Partners"),
             Contact(CHRISTINA_GALBRAITH, f"{JEFFREY_EPSTEIN} VI Foundation Media/PR, worked with {TYLER_SHEARS}"),
-            Contact(IAN_OSBORNE, f"{IAN_OSBORNE} & Partners reputation repairer hired in 2011", fr"{IAN_OSBORNE}|lan Osbome"),
+            Contact(
+                IAN_OSBORNE,
+                f"{IAN_OSBORNE} & Partners PR hired by Epstein in 2011, started Hedosophia fund with Epstein's help",
+                r"[Il]an Osbou?(rn|m)e"
+            ),
             Contact(MATTHEW_HILTZIK, "crisis PR at Hiltzik Strategies"),
             Contact(MICHAEL_SITRICK, "crisis PR", r"(Mi(chael|ke).{0,5})?[CS]itrick"),
             Contact('Owen Blicksilver', "OBPR, Inc."),
@@ -1680,7 +1685,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 name=TYLER_SHEARS,
                 info=f"reputation management, worked on with {CHRISTINA_GALBRAITH}",
                 emailer_pattern=r"T[vy]ler Shears",
-            )
+            ),
         ],
         patterns=[
             r"(Matt(hew)? )?Hiltzi[gk]",
@@ -1781,6 +1786,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         label='Russia',
         style='red bold',
         contacts=[
+            Contact('Alisher Usmanov', 'Uzbeki oligarch with alleged ties to Putin, organized crime'),
             Contact(ANYA_RASULOVA, f'Uzbeki co-founder of {INSIGHTS_POD} with {ZUBAIR_KHAN}'),
             Contact(ALEKSANDRA_KARPOVA, f"{CRYPTO_PR_LAB} co-founder", r"Aleksandra Karpova"),
             Contact(ANASTASIYA_SIROOCHENKO, '', r"Anastasiya( Siro(chenko)?)?"),
@@ -1823,9 +1829,11 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             ),
             Contact(
                 SVETLANA_POZHIDAEVA,
-                f"AKA 'Sophia Platt', Epstein's Russian assistant who was recommended for a visa by Sergei Belyakov (FSB) and {DAVID_BLAINE}"
+                f"AKA 'Sophia Platt', Epstein's Russian assistant who was recommended for a visa by Sergei Belyakov (FSB) and {DAVID_BLAINE}",
+                r"Sophia Platt|((Svet)?Lana )?Pozhidaeva|\b(Lana|Svet)\b",
             ),
             Contact(YULIA_DOROKHINA),
+            Contact('Yuri Milner', f'Russian/Israeli investor whom Epstein says is managing "Russian gangster money"'),
             company('Alfa Bank', 'Russian bank', r"Alfa( Bank)?"),
             company('Day One Ventures', f"silicon valley venture fund run by {MASHA_DROKOVA}"),
             company('Quantum Wave Fund', f"venture fund associated with {MASHA_DROKOVA} focused on quantum stuff", r"(Quantum Wave|QWave) (Capital|Fund)"),
@@ -1834,7 +1842,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         patterns=[
             r"Chernobyl",
             r"Crimea",
-            r"(Dmitry )?(Kiselyov|(Lana )?Pozhidaeva|Medvedev|Rybolo(o?l?ev|vlev))",
+            r"(Dmitry )?(Kiselyov|Pozhidaeva|Medvedev|Rybolo(o?l?ev|vlev))",
             r"Di?mitry( Akhanov)?",
             r"FSB",
             r"GRU",
@@ -1846,6 +1854,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Lukoil",
             r"Minsk",
             r"Moscow",
+            r"Muscovite",
             r"Nic(k|holas) Kovarsky",  # Friend of Belyakov
             r"(Natalia )?Veselnitskaya",
             r"Oleksandr Vilkul",
@@ -1856,9 +1865,8 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"RT",
             r"Ruben Vardanyan",
             r"Rusnano( USA)?(,? Inc\.?)?",
-            r"St.? Petersburg",
-            r'Svet',
-            r"Russ?ian?",
+            r"Russ?ian?( (mafia|gangster))?",
+            r"St\.? Petersburg",
             r"Sberbank",
             r"Soviet( Union)?",
             r"USSR",

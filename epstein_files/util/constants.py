@@ -1384,6 +1384,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA02641951', description=f"{DAVID_STERN} recommends ProtonMail for more secure communications"),
     EmailCfg(id='EFTA00626220', description=f'discussion of a "sidecar fund" with {BROCK_PIERCE} / {CRYPTO_CURRENCY_PARTNERS_II}'),
     EmailCfg(id='EFTA00652799', description=f'Epstein calls Ari Glass "a bit sketchy" despite investing ~$50 million in his fund Boothbay'),
+    EmailCfg(id='EFTA00987206', description=f"Epstein is upset with {BORIS_NIKOLIC} over 'Yuri'"),
     EmailCfg(id='EFTA01784901', description=f"{JEREMY_RUBIN} has cashed multiple checks directly from Epstein", is_interesting=True),
     EmailCfg(
         id='EFTA02634615',
@@ -1431,6 +1432,15 @@ EMAILS_CONFIG = [
     # EmailCfg(id='EFTA00039689', description=f"{SEC_WHISTLEBLOWER} re: Signature Bank, Hapoalim, Bioptix/RIOT, Barry Honig, etc."),
     # EmailCfg(id='EFTA00093702', description=f"{SEC_WHISTLEBLOWER}", comment="rest is visible in EFTA00039689 after 102_000 chars"),
     EmailCfg(id='EFTA00826876', description=f"Epstein offers to help pay for {PETER_THIEL}'s lawsuit against Gawker"),
+    EmailCfg(
+        id='EFTA01882985',
+        description='Epstein: "Yuri money is russian gangster money, Usmanov" ("Steve" is Steve Ballmer)',
+        is_interesting=True,
+        recipients=[BORIS_NIKOLIC],
+        uncertain_recipient='maybe Boris Nikolic but Boris asks Epstein same question a few months later',
+    ),
+    EmailCfg(id='EFTA01986756', comment='maybe from Boris Nikolic but Boris asks Epstein same question a few months later'),
+    EmailCfg(id='EFTA01858685', is_interesting=True),
     EmailCfg(id='EFTA00875181', duplicate_ids=['EFTA01901268']),
     EmailCfg(id='EFTA01852975', duplicate_ids=['EFTA02001764']),
     EmailCfg(id='EFTA00563586', duplicate_ids=['EFTA02323722']),
