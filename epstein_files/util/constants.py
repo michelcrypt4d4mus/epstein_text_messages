@@ -2724,6 +2724,7 @@ OTHER_FILES_CRYPTO = [
     # Reid Hoffman
     EmailCfg(id='EFTA00820371', description='bank digital currencies article', is_interesting=True),
     # SEC / NYDFS
+    EmailCfg(id='EFTA01747752', description=f"Farkas delivering {BEN_LAWSKY_NYDFS}", truncate_to=700),
     EmailCfg(id='EFTA02588398', description=f"Epstein went to the Treasury Dept of the US to talk about bitcoin", is_interesting=True),
     EmailCfg(id='EFTA00987194', description=f"Epstein proposes {BEN_LAWSKY_NYDFS} get rid of sales tax on bitcoin", is_interesting=True),
     EmailCfg(id='EFTA02591315', description=f"{ANDREW_FARKAS} arranging for Epstein to meet {BEN_LAWSKY_NYDFS}", is_interesting=True, truncate_to=1900),
