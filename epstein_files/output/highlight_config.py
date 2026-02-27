@@ -2180,7 +2180,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
     HighlightedNames(
         contacts=[Contact(PRINCE_ANDREW, "British royal family", r"Prince Andrew|The Duke")],
         patterns=[
-            r'\bPA\b',
+            r'\b(?<!FOI/)PA\b',
             r"(?<!Cantor )Urramoor(\s*Limited)?",
         ],
         style='dodger_blue1',
