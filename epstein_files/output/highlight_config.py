@@ -2277,7 +2277,7 @@ HIGHLIGHTED_NAMES = [hg for hg in HIGHLIGHT_GROUPS if isinstance(hg, Highlighted
 HIGHLIGHTED_CONTACTS = flatten([hn.contacts for hn in HIGHLIGHTED_NAMES])
 
 PEOPLE_BIOS = {
-    contact.name: highlighted_group.info_for(contact.name, include_category=True)
+    contact.name: contact.bio
     for highlighted_group in HIGHLIGHTED_NAMES
     for contact in highlighted_group.contacts
     if contact.has_bio

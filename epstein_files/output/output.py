@@ -390,8 +390,7 @@ def _align_biographical_panel(panel: Panel) -> Align | None:
 def _biographical_panel(names: list[str], next_doc: Document) -> Panel | None:
     """Panel showing biographical info for a list of names."""
     bios = [
-        Text('', justify='right').append(Text(name, f"{get_style_for_name(name)} bold")).append(
-            f": {PEOPLE_BIOS[name]}", style='dim italic')
+        Text('', justify='right').append(PEOPLE_BIOS[name])
         for name in names if PEOPLE_BIOS.get(name)
     ]
 

@@ -284,7 +284,7 @@ class EpsteinFiles:
                 MessengerLog.__name__: _sorted_metadata(self.imessage_logs),
                 OtherFile.__name__: _sorted_metadata(self.non_json_other_files),
             },
-            'people': PEOPLE_BIOS,
+            'people': {name: bio.plain for name, bio in PEOPLE_BIOS.items()},
         }
 
         return json.dumps(metadata, indent=4, sort_keys=True)

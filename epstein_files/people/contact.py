@@ -2,10 +2,13 @@ import re
 from dataclasses import dataclass, field, fields
 from typing import Self
 
+from rich.text import Text
+
 from epstein_files.util.constant.names import (NAMES_TO_NOT_PARTIALLY_MATCH, SIMPLE_NAME_REGEX, Name,
      constantize_name, name_variations)
 from epstein_files.util.constant.strings import INDENT_NEWLINE, INDENTED_JOIN, LAW_ENFORCEMENT
 from epstein_files.util.helpers.data_helpers import constantize_names
+from epstein_files.util.helpers.link_helper import link_text_obj
 from epstein_files.util.helpers.string_helper import as_pattern, indented, quote, remove_question_marks
 from epstein_files.util.logging import logger
 
@@ -29,6 +32,8 @@ class Contact:
     name: str
     info: str = ''
     emailer_pattern: str = ''
+    category: str = ''
+    style: str = ''
     emailer_regex: re.Pattern = field(init=False)
     highlight_regex: re.Pattern = field(init=False)
     is_emailer: bool = True
@@ -48,6 +53,23 @@ class Contact:
 
         if self.info == LAW_ENFORCEMENT:
             self.is_interesting = False
+
+    @property
+    def bio(self) -> Text:
+        """Biographical info about this entity."""
+        txt = Text('').append(f'[{self.category}] ', style='dim') if self.category else Text('')
+
+        if self.link_to_bio:
+            txt.append(link_text_obj(self.link_to_bio, self.name, self.bold_style))
+        else:
+            txt.append(self.name, style=self.bold_style)
+
+        txt.append(': ').append(self.info, style='italic')
+        return txt
+
+    @property
+    def bold_style(self) -> str:
+        return f"{self.style} bold".strip()
 
     @property
     def has_bio(self) -> bool:
