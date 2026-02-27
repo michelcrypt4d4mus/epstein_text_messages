@@ -2039,7 +2039,11 @@ OTHER_FILES_GOVERNMENT = [
     DocCfg(id='EFTA00084614', author=PALM_BEACH_POLICE, description='incident report detailing the investigation into Jeffrey Epstein'),
     DocCfg(id='EFTA00007893', author=PALM_BEACH_POLICE, description=f"receipts, notes, bank statements of {GHISLAINE_MAXWELL}"),
     DocCfg(id='EFTA00005569', author=PALM_BEACH_POLICE, replace_text_with='photo lineup featuring Epstein', date='2005-03-17'),
-    EmailCfg(id='EFTA00129096', date='2025-04-03 7:13:35 PM', description=f'background check on {MASHA_DROKOVA}', is_interesting=True),
+    EmailCfg(
+        id='EFTA00129096',
+        date='2025-04-03 7:13:35 PM', description=f'background check on Tim Draper and {MASHA_DROKOVA}',
+        show_full_panel=True,
+    ),
     EmailCfg(id='EFTA02730483', author=FBI, date='2023-07-11T08:25:00'),  # TODO: actually reply timestamp
     EmailCfg(id='EFTA02731552', author=FBI, recipients=[USANYS], date='2021-05-26 16:12:00', uncertain_recipient='true'),
     EmailCfg(id='EFTA00039971', author=FBI, recipients=[USANYS], uncertain_recipient='true'),
