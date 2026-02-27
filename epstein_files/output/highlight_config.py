@@ -1871,6 +1871,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact('Auren Hoffman', "CEO of SafeGraph (firm that gathers location data from mobile devices) and LiveRamp"),
             Contact(CHRIS_POOLE, 'founder of 4chan AKA "Moot"', r"mmot|Chris Poole?"),
             Contact(ELON_MUSK, "father of Mecha-Hitler"),
+            Contact('Frank Creer', 'CEO of Draper Hero Institute alleged to be a sexual blackmailer by the Secret Service', r"Frank( Moyle)? Creer"),
             Contact(HONGBO_ROBERT_BAO, THIELS_VALAR, r"Hong,? Robert Bao|Hongbo( Robert)? Bao"),
             Contact(IAN_ODONNELL, THIELS_VALAR, r"Ian O'?Donnell|O'?Donnell, Ian"),
             Contact('Jack Dorsey', 'co-founder of Twitter and Block (FKA Square)'),
