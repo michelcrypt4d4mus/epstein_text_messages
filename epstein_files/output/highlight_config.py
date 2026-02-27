@@ -400,7 +400,10 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             ),
             Contact('Matthew Gilbert', 'assistant to Howard Lutnick'),
             Contact('Ross Ulbricht', 'founder of infamous online drug market Silk Road, pardoned by Trump'),
-            Contact('Steve Jurvetson', 'partner at Draper Fisher Jurvetson, alleged victim of sexual blackmail by Frank Creer'),
+            Contact(
+                'Steve Jurvetson',
+                'board of SpaceX, former partner at Draper Fisher Jurvetson (resigned because of #MeToo allegations)',
+            ),
             Contact('Suhas Daftuar', 'Chaincode Labs'),
             Contact('Tim Draper', 'partner at Draper Fisher Jurvetson, loves bitcoin', r"Tim(othy)?( Cook)? Draper"),
             Contact('W. Bradford Stephens', f"co-founder of {BLOCKCHAIN_CAPITAL}", r"(Brad(ford)?|Bart) Stephens"),
