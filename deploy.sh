@@ -89,9 +89,9 @@ git merge --no-edit master --quiet
 
 
 # Build files
-print_deploy_step "Building mobile page... "
+print_deploy_step "Building curated mobile page... "
 $GENERATE_MOBILE_CMD
-print_deploy_step "Building mobile curated chronological page..."
+print_deploy_step "Building curated chronological mobile page..."
 $GENERATE_MOBILE_CMD --output-chrono
 
 if [ -n "$ONLY_MOBILE" ]; then
@@ -112,7 +112,7 @@ else
     $GENERATE_CMD --output-chrono
     print_deploy_step "Building all emails page..."
     $GENERATE_CMD --all-emails
-    print_deploy_step "Building chronological emails page..."
+    print_deploy_step "Building emails chronological page..."
     $GENERATE_CMD --all-emails-chrono
     print_deploy_step "Building other files table page..."
     $GENERATE_CMD --all-other-files
