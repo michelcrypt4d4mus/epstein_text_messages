@@ -471,6 +471,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 f"an Epstein fund, usually created with {JOI_ITO}",
                 r"Kyara( Investments?)?( [IV]+)?",
             ),
+            company('LedgerX', 'crypto company later acquired by FTX for $298 million in a very shady deal'),
             company('Libra', f"Facebook's attempt at a stablecoin that was canceled by the US government"),
             company(
                 'Medici Bank',
@@ -524,7 +525,6 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"itBit",
             r"Joyce Kim",
             r"Layer (1|One)",
-            r"LedgerX",
             r"Northern Data",
             r"(Patrick )?Murck",
             r"Playsino",

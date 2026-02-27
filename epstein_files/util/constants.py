@@ -2751,6 +2751,8 @@ OTHER_FILES_CRYPTO = [
     EmailCfg(id='EFTA00964459', description=f'discussion of sharia compliant crypto token', is_interesting=True),
     EmailCfg(id='EFTA00990442', description=f"Epstein offers to cover all costs for Sharia Coin", is_interesting=True),
     EmailCfg(id='032359', description='HBJ brings up "e-currency" (Sharia Coin, probably)'),
+    # Silk Road / Ulbricht
+    EmailCfg(id='EFTA00972689', description=f"Epstein and Nikolic ruminate on the Silk Road bust", truncate_to=NO_TRUNCATE),
     # Valar
     DocCfg(id='EFTA00605996', description='Wedbush BUY rating on Digital Currency Group GBTC', is_interesting=False),
     DocCfg(id='EFTA01121910', author=VALAR_VENTURES, description="contract", truncate_to=DEFAULT_TRUNCATE_TO),
