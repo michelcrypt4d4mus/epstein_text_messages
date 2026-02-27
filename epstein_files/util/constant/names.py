@@ -340,7 +340,7 @@ NAMES_TO_NOT_PARTIALLY_MATCH = set("""
     oleg owen
     paul paula pen perry peter philip pierce plus police prince
     randall rangel reid richard robert roberts rodriguez roger rosenberg ross roth roy rubenstein rubin
-    santos scott sean sergey service services skip smith stacey stanley stern stephen steve steven stone story susan
+    santos scott sean sergey service services skip smith son stacey stanley stern stephen steve steven stone story susan
     team terry the thomas tim tom tony trust tyler
     unknown
     ventures victor viktor virginia
