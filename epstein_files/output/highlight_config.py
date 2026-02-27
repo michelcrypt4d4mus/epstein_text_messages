@@ -359,6 +359,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         ],
     ),
     HighlightedNames(
+        category=Interesting.CRYPTO,
         label=JOI_ITO,
         style='gold1 bold',
         contacts=[
@@ -367,6 +368,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 info=f"head of {MIT_MEDIA_LAB} and MIT Digital Currency Initiative, co-founded VC funds with Epstein",
                 emailer_pattern=r"ji@media.mit.?edu|(joichi|joi)( Ito)?",
             ),
+            company('Neoteny', f"Japanese venture fund of {JOI_ITO}"),
         ]
     ),
     HighlightedNames(
@@ -1935,7 +1937,6 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             company(GOOGLE_PLUS, "Google+", r"Google\+", is_interesting=False),
             company('Honeycomb Asset Management', 'venture fund Epstein invested in Spotify through'),
             company('LinkedIn', "LinkedIn", r"Linked[Il]n( Updates)?", is_interesting=False),
-            company('Neoteny', f"Japanese venture fund of {JOI_ITO}"),
             company('Second Life', f"virtual world with early attempt at virtual currency the Linden Dollar", r"Second Life|Linden dollar"),
             company('Softbank Vision Fund', "Masayohsi Son's fund focused on tech, AI, WeWork", r"Softbank|(Softbank )?Vision Fund"),
             company(VALAR_VENTURES, f"{PETER_THIEL} affiliated fintech venture fund", r"V[ae]lar (Global Fund|Ventures)?", is_emailer=True),

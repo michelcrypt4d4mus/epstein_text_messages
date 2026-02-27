@@ -59,15 +59,15 @@ class Contact:
         """Biographical info about this entity."""
         txt = Text('')
 
-        if self.category:
-            txt.append(' [').append(self.category.lower(), style=f'{self.style} dim').append(']')
-
         if self.link_to_bio:
             txt.append(link_text_obj(self.link_to_bio, self.name, self.bold_style))
         else:
             txt.append(self.name, style=self.bold_style)
 
-        txt.append(': ').append(self.info, style='italic')
+        if self.category:
+            txt.append(' [', style='dim').append(self.category.lower(), style=f'{self.style} dim').append(']', style='dim')
+
+        txt.append(' ').append(self.info, style='italic')
         return txt
 
     @property
