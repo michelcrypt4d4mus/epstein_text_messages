@@ -2000,6 +2000,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         contacts=[
             Contact(PAULA, "ex-girlfriend who works in opera now", r"^Paula( Heil Fisher)?$"),
             Contact('Samantha Rose Stein', 'wombkind.com'),
+            Contact('Sasha Grey', 'famous porn star', is_organization=True),  # TODO: not an org
             Contact(UNKNOWN_GIRL),
         ],
         patterns=[
@@ -2019,6 +2020,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Stephanie Clifford",
             r"Stormy Daniels",
             r"strange women",
+            r"vibrator",
             r"(Virginia ((L\.?|Roberts) )?)?Giuffre",
             r"Virginia Roberts",
             r"way better than supplying you ladies",

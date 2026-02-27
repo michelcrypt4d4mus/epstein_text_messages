@@ -1488,11 +1488,13 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00953261', author=LARRY_SUMMERS, recipients=[JEFFREY_EPSTEIN]),
     EmailCfg(
         id='EFTA02010589',
+        author=UNKNOWN_GIRL,
         date='2012-01-31 9:16 PM',
-        description=f'raunchy email mentioning "Sasha Grey guy" (Grey is a famous porn star), note {BORIS_NIKOLIC} name in SMTP info at end',
+        description=f'raunchy email mentioning "Sasha Grey guy", note {BORIS_NIKOLIC} and bgC3 in SMTP info at end',
         is_interesting=True,
         recipients=[JEFFREY_EPSTEIN],
     ),
+    EmailCfg(id='EFTA01990168', author=UNKNOWN_GIRL,),
     EmailCfg(id='EFTA01841553', truncate_to=900),
     EmailCfg(id='EFTA00664619', author=SUE, author_reason='"Dear Sue"'),
 ]
