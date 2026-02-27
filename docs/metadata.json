@@ -54058,6 +54058,27 @@
                 "type": "Email"
             },
             {
+                "author": "US Secret Service",
+                "category": "crypto",
+                "file_id": "EFTA00173881",
+                "file_size": 2334,
+                "filename": "EFTA00173881.txt",
+                "header": {
+                    "classification": "UNCLASSIFIED",
+                    "importance": "Normal",
+                    "sent_at": "Thu, 30 Jan 2025 17:48:18 +0000",
+                    "subject": "RE: Expedite ARMS Reach - Howard William Lutnick --- UNCLASSIFIED"
+                },
+                "num_lines": 43,
+                "recipients": [
+                    "Enterprise Vetting Center"
+                ],
+                "show_with_name": "Howard Lutnick",
+                "timestamp": "2025-01-30T17:48:18",
+                "truncate_to": 800,
+                "type": "Email"
+            },
+            {
                 "file_id": "EFTA00173883",
                 "file_size": 1746,
                 "filename": "EFTA00173883.txt",
@@ -57158,6 +57179,27 @@
                 "type": "Email"
             },
             {
+                "author": "Miranda",
+                "author_reason": "quoted signature",
+                "category": "girls",
+                "file_id": "EFTA00671662",
+                "file_size": 3050,
+                "filename": "EFTA00671662.txt",
+                "header": {
+                    "sent_at": "Fri, 29 Jun 2012 21:59:04 +0000",
+                    "subject": "Re:",
+                    "to": [
+                        "Jeffrey Epstein <jeevacation@gmail.com>"
+                    ]
+                },
+                "num_lines": 59,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "timestamp": "2012-06-29T21:59:04",
+                "type": "Email"
+            },
+            {
                 "author": "Lesley Groff",
                 "file_id": "EFTA00672270",
                 "file_size": 437,
@@ -58451,6 +58493,30 @@
                 "type": "Email"
             },
             {
+                "author": "Boris Nikolic",
+                "description": "Boris Nikolic introduces Epstein to Chris Poole AKA \"moot\", the founder of 4chan",
+                "file_id": "EFTA00719854",
+                "file_size": 2213,
+                "filename": "EFTA00719854.txt",
+                "header": {
+                    "author": "Boris Nikolic",
+                    "sent_at": "Thu, 20 Oct 2011 02:31:25 +0000",
+                    "subject": "RE: Re:",
+                    "to": [
+                        "Jeffrey Epstein <jeevacation@gmail.com>"
+                    ]
+                },
+                "is_interesting": true,
+                "num_lines": 51,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "show_with_name": "Chris Poole",
+                "timestamp": "2011-10-20T02:31:25",
+                "truncate_to": -1,
+                "type": "Email"
+            },
+            {
                 "author": "Steven Sinofsky",
                 "author_reason": "Sinofsky in previous To: field",
                 "author_uncertain": "Sinofsky in previous To: field",
@@ -58968,6 +59034,26 @@
                     "Jeffrey Epstein"
                 ],
                 "timestamp": "2016-05-31T14:32:38",
+                "type": "Email"
+            },
+            {
+                "author": "Jeffrey Epstein",
+                "description": "Epstein offers to help pay for Peter Thiel's lawsuit against Gawker",
+                "file_id": "EFTA00826876",
+                "file_size": 841,
+                "filename": "EFTA00826876.txt",
+                "header": {
+                    "author": "\"Jeffrey E.\" <jeevacation@gmail.com>",
+                    "sent_at": "Wed, 25 May 2016 09:32:57 +0000",
+                    "to": [
+                        "Peter Thiel"
+                    ]
+                },
+                "num_lines": 18,
+                "recipients": [
+                    "Peter Thiel"
+                ],
+                "timestamp": "2016-05-25T09:32:57",
                 "type": "Email"
             },
             {
@@ -60859,6 +60945,28 @@
                     "Richard Kahn"
                 ],
                 "timestamp": "2018-01-03T23:49:32",
+                "type": "Email"
+            },
+            {
+                "author": "Jeffrey Epstein",
+                "description": "Epstein met with the founder of 4chan the day the infamous /pol/ board was created",
+                "file_id": "EFTA00922824",
+                "file_size": 2996,
+                "filename": "EFTA00922824.txt",
+                "header": {
+                    "author": "Jeffrey Epstein <jeevacation@gmail.com>",
+                    "sent_at": "Mon, 24 Oct 2011 16:08:01 +0000",
+                    "subject": "Re: Re:",
+                    "to": [
+                        "Boris Nikolic"
+                    ]
+                },
+                "num_lines": 71,
+                "recipients": [
+                    "Boris Nikolic"
+                ],
+                "show_with_name": "Chris Poole",
+                "timestamp": "2011-10-24T16:08:01",
                 "type": "Email"
             },
             {
@@ -64324,6 +64432,27 @@
             },
             {
                 "author": "Jeffrey Epstein",
+                "author_reason": "juliador89\u00aemail.ru is unredacted",
+                "category": "girls",
+                "description": "Epstein pressuring Yulia Dorokhina to find girls in Russia and send him nude pics and videos",
+                "file_id": "EFTA01026268",
+                "file_size": 10207,
+                "filename": "EFTA01026268.txt",
+                "header": {
+                    "author": "\"Jeffrey E.\" <jeevacation@gmail.com>",
+                    "sent_at": "Thu, 30 Aug 2018 20:23:14 +0000",
+                    "subject": "Re: Re[27]: Hey"
+                },
+                "num_lines": 320,
+                "recipients": [
+                    "Yulia Dorokhina"
+                ],
+                "timestamp": "2018-08-30T20:23:14",
+                "truncate_to": 3100,
+                "type": "Email"
+            },
+            {
+                "author": "Jeffrey Epstein",
                 "file_id": "EFTA01026305",
                 "file_size": 6887,
                 "filename": "EFTA01026305.txt",
@@ -66776,6 +66905,29 @@
                 "type": "Email"
             },
             {
+                "author": "Boris Nikolic",
+                "category": "girls",
+                "description": "\"find girls for the agency\"",
+                "file_id": "EFTA01768670",
+                "file_size": 1329,
+                "filename": "EFTA01768670.txt",
+                "header": {
+                    "author": "Boris Nikolic",
+                    "sent_at": "Sunday, April 15, 2012 4:59 PM",
+                    "subject": "RE:",
+                    "to": [
+                        "Jeffrey Epstein"
+                    ]
+                },
+                "num_lines": 22,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "sent_from_device": "Sent from my Windows Phone",
+                "timestamp": "2012-04-15T16:59:00",
+                "type": "Email"
+            },
+            {
                 "author": "Jean Luc Brunel",
                 "description": "Epstein tells Jean Luc Brunel he can spend up to $25 million",
                 "file_id": "EFTA01769169",
@@ -67102,6 +67254,28 @@
                     "Madars Virza"
                 ],
                 "timestamp": "2015-10-21T03:04:00",
+                "type": "Email"
+            },
+            {
+                "author": "unknown girl",
+                "category": "girls",
+                "description": "\"I need 21-24, wiling to travel and work hard\"",
+                "file_id": "EFTA01782788",
+                "file_size": 1935,
+                "filename": "EFTA01782788.txt",
+                "header": {
+                    "sent_at": "Thursday, April 21, 2016 11:35 AM",
+                    "subject": "Re:",
+                    "to": [
+                        "jeffrey E."
+                    ]
+                },
+                "num_lines": 36,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "timestamp": "2016-04-21T11:35:00",
+                "truncate_to": -1,
                 "type": "Email"
             },
             {
@@ -67642,6 +67816,33 @@
                 "uncertain_recipient": "\"sneaky dog\""
             },
             {
+                "author": "Lesley Groff",
+                "file_id": "EFTA01848168",
+                "file_size": 257,
+                "filename": "EFTA01848168.txt",
+                "header": {
+                    "author": "Lesley Groff",
+                    "cc": [
+                        "Lyn fontanilla",
+                        "Jojo Fontanilla"
+                    ],
+                    "sent_at": "Fri 1/27/2012 5:36:34 PM",
+                    "subject": "Chris Poole",
+                    "to": [
+                        "Jeffrey Epstein CCUeey i n mil. m"
+                    ]
+                },
+                "num_lines": 6,
+                "recipients": [
+                    "Jeffrey Epstein",
+                    "Jojo Fontanilla",
+                    "Lyn Fontanilla"
+                ],
+                "show_with_name": "Chris Poole",
+                "timestamp": "2012-01-27T17:36:34",
+                "type": "Email"
+            },
+            {
                 "file_id": "EFTA01849532",
                 "file_size": 340,
                 "filename": "EFTA01849532.txt",
@@ -67657,6 +67858,26 @@
                     "Jeffrey Epstein"
                 ],
                 "timestamp": "2011-12-31T03:14:52",
+                "type": "Email"
+            },
+            {
+                "author": "Jeffrey Epstein",
+                "file_id": "EFTA01849797",
+                "file_size": 843,
+                "filename": "EFTA01849797.txt",
+                "header": {
+                    "author": "Jeffrey Epstein",
+                    "sent_at": "Sun 11/13/2011 7:41:48 PM",
+                    "to": [
+                        "Lesley Groff )"
+                    ]
+                },
+                "num_lines": 17,
+                "recipients": [
+                    "Lesley Groff"
+                ],
+                "show_with_name": "Chris Poole",
+                "timestamp": "2011-11-13T19:41:48",
                 "type": "Email"
             },
             {
@@ -67868,6 +68089,25 @@
                     "John Brockman"
                 ],
                 "timestamp": "2011-06-06T11:54:00",
+                "type": "Email"
+            },
+            {
+                "author": "unknown girl",
+                "category": "girls",
+                "file_id": "EFTA01875607",
+                "file_size": 367,
+                "filename": "EFTA01875607.txt",
+                "header": {
+                    "sent_at": "Wed 8/15/2012 5:15:28 PM",
+                    "to": [
+                        "\u2022\u2022 rjeevacationegmailcom]"
+                    ]
+                },
+                "num_lines": 7,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "timestamp": "2012-08-15T17:15:28",
                 "type": "Email"
             },
             {
@@ -69563,6 +69803,35 @@
                 "type": "Email"
             },
             {
+                "author": "Lesley Groff",
+                "file_id": "EFTA01987383",
+                "file_size": 239,
+                "filename": "EFTA01987383.txt",
+                "header": {
+                    "author": "Lesley Groff",
+                    "cc": [
+                        "<REDACTED>",
+                        "Lynn Fontanilla",
+                        "Jojo Fontanilla"
+                    ],
+                    "sent_at": "Fri 11/11/2011 11:04:32 PM",
+                    "subject": "Chris Poole",
+                    "to": [
+                        "jeevacation@gmail.com"
+                    ]
+                },
+                "num_lines": 6,
+                "recipients": [
+                    null,
+                    "Jeffrey Epstein",
+                    "Jojo Fontanilla",
+                    "Lyn Fontanilla"
+                ],
+                "show_with_name": "Chris Poole",
+                "timestamp": "2011-11-11T23:04:32",
+                "type": "Email"
+            },
+            {
                 "author": "Renata Bolotova",
                 "author_reason": "\"sneaky dog\" + \"Sincerely\"",
                 "dupe_type": "same",
@@ -69582,6 +69851,57 @@
                     "Jeffrey Epstein"
                 ],
                 "timestamp": "2012-02-23T23:47:00",
+                "type": "Email"
+            },
+            {
+                "author": "unknown girl",
+                "category": "girls",
+                "file_id": "EFTA01990168",
+                "file_size": 3266,
+                "filename": "EFTA01990168.txt",
+                "header": {
+                    "sent_at": "Sun 12/4/2011 12:50:08 PM",
+                    "subject": "Re:",
+                    "to": [
+                        "jeevacation@gmail.com[jeevacation@gmail.com]",
+                        "jeffrey epsteinljeevacation@gmail.comj"
+                    ]
+                },
+                "is_interesting": true,
+                "num_lines": 69,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "sent_from_device": "Sent from my iPad",
+                "timestamp": "2011-12-04T12:50:08",
+                "truncate_to": -1,
+                "type": "Email"
+            },
+            {
+                "author": "Lesley Groff",
+                "file_id": "EFTA01990808",
+                "file_size": 383,
+                "filename": "EFTA01990808.txt",
+                "header": {
+                    "author": "Lesley Groff",
+                    "cc": [
+                        "Lyn fontanilla",
+                        "Jojo fontanilla"
+                    ],
+                    "sent_at": "Fri 1/6/2012 5:33:37 PM",
+                    "subject": "Chris Poole",
+                    "to": [
+                        "jeevacation@gmail.com[jeevacation@gmail.com]",
+                        "Jeffrey Epstein CCUeeyacation mail.com"
+                    ]
+                },
+                "num_lines": 7,
+                "recipients": [
+                    "Jeffrey Epstein",
+                    "Jojo Fontanilla",
+                    "Lyn Fontanilla"
+                ],
+                "timestamp": "2012-01-06T17:33:37",
                 "type": "Email"
             },
             {
@@ -69765,8 +70085,10 @@
                 "type": "Email"
             },
             {
+                "author": "unknown girl",
+                "category": "girls",
                 "date": "2012-01-31 9:16 PM",
-                "description": "raunchy email mentioning \"Sasha Grey guy\" (Grey is a famous porn star), note Boris Nikolic name in SMTP info at end",
+                "description": "raunchy email mentioning \"Sasha Grey guy\", note Boris Nikolic and bgC3 in SMTP info at end",
                 "file_id": "EFTA02010589",
                 "file_size": 7511,
                 "filename": "EFTA02010589.txt",
@@ -70828,6 +71150,24 @@
                 "type": "Email"
             },
             {
+                "author": "Chris Poole",
+                "file_id": "EFTA02175423",
+                "file_size": 1298,
+                "filename": "EFTA02175423.txt",
+                "header": {
+                    "author": "Chris Poole",
+                    "sent_at": "Fri 1/27/2012 11:42:50 PM",
+                    "subject": "Re: Jeffrey Epstein tomorrow time!?"
+                },
+                "num_lines": 34,
+                "recipients": [
+                    "Lesley Groff"
+                ],
+                "timestamp": "2012-01-27T23:42:50",
+                "truncate_to": 650,
+                "type": "Email"
+            },
+            {
                 "author": "Linda Stone",
                 "author_reason": "\"Hi Linda\"",
                 "author_uncertain": "\"Hi Linda\"",
@@ -70847,6 +71187,59 @@
                 ],
                 "timestamp": "2012-01-10T18:25:23",
                 "truncate_to": -1,
+                "type": "Email"
+            },
+            {
+                "file_id": "EFTA02179653",
+                "file_size": 1707,
+                "filename": "EFTA02179653.txt",
+                "header": {
+                    "sent_at": "Fri 11/18/2011 11:06:12 PM",
+                    "subject": "Re: Chris Poole fyi",
+                    "to": [
+                        "Lesley Gro"
+                    ]
+                },
+                "num_lines": 40,
+                "recipients": [
+                    "Lesley Groff"
+                ],
+                "show_with_name": "Chris Poole",
+                "timestamp": "2011-11-18T23:06:12",
+                "type": "Email"
+            },
+            {
+                "author": "ChrisPoole",
+                "file_id": "EFTA02179829",
+                "file_size": 1767,
+                "filename": "EFTA02179829.txt",
+                "header": {
+                    "author": "ChrisPoole",
+                    "sent_at": "Sat 11/19/2011 1:12:42 AM",
+                    "subject": "Re: Jeffrey Epstein",
+                    "to": [
+                        "Lesley Gro"
+                    ]
+                },
+                "num_lines": 49,
+                "recipients": [
+                    "Lesley Groff"
+                ],
+                "timestamp": "2011-11-19T01:12:42",
+                "type": "Email"
+            },
+            {
+                "author": "Chris Poole",
+                "file_id": "EFTA02179926",
+                "file_size": 1602,
+                "filename": "EFTA02179926.txt",
+                "header": {
+                    "author": "Chris Poole",
+                    "sent_at": "Tue 11/15/2011 6:48:22 AM",
+                    "subject": "Re: Jeffrey Epstein...?"
+                },
+                "num_lines": 40,
+                "timestamp": "2011-11-15T06:48:22",
                 "type": "Email"
             },
             {
@@ -73537,6 +73930,28 @@
                     "Jeffrey Epstein"
                 ],
                 "timestamp": "2016-10-10T19:14:00",
+                "type": "Email"
+            },
+            {
+                "author": "unknown girl",
+                "category": "girls",
+                "description": "argument about finding girls for Epstein",
+                "file_id": "EFTA02449477",
+                "file_size": 6669,
+                "filename": "EFTA02449477.txt",
+                "header": {
+                    "sent_at": "Friday, May 4, 2018 8:04 PM",
+                    "subject": "Re:",
+                    "to": [
+                        "jeffrey E."
+                    ]
+                },
+                "num_lines": 121,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "timestamp": "2018-05-04T20:04:00",
+                "truncate_to": -1,
                 "type": "Email"
             },
             {
@@ -109548,6 +109963,8 @@
         "Carolyn Rangel": "deepak, Deepak Chopra's assistant (???)",
         "Caterpillar Trust": "Epstein financial trust",
         "Cecile de Jongh": "USVI, Virgin Islands first lady 2007-2015",
+        "Cecilia Steen": "employee, Epstein assistant who moved to Dubai",
+        "Chris Poole": "tech bro, founder of 4chan AKA \"Moot\"",
         "Christian Everdell": "Ghislaine Maxwell's lawyer ca. 2021, Cohen & Gresser",
         "Christina Galbraith": "publicist, Jeffrey Epstein VI Foundation Media/PR, worked with Tyler Shears",
         "Christopher Dilorio": "government, self described whistleblower",
@@ -109807,6 +110224,7 @@
         "Runa Capital": "Russia, fund of Serguei Beloussov with investment from Steve Jurvetson and Frank Creer",
         "SCI JEP": "Epstein company",
         "Samantha Rose Stein": "girls, wombkind.com",
+        "Sasha Grey": "girls, famous porn star",
         "Scott J. Link": "lawyer, criminal defense attorney",
         "Sean Bannon": "Republican, Steve Bannon's brother",
         "Sean J. Lancaster": "employee, airplane reseller",
@@ -109826,7 +110244,7 @@
         "Stacey Richman": "lawyer, New York criminal defense attorney",
         "Stanley Rosenberg": "lobbyist, former President of the Massachusetts Senate",
         "Steve Bannon": "Republican, Trump campaign manager, memecoin grifter",
-        "Steve Jurvetson": "crypto, partner at Draper Fisher Jurvetson, alleged victim of sexual blackmail by Frank Creer",
+        "Steve Jurvetson": "crypto, board of SpaceX, former partner at Draper Fisher Jurvetson (resigned because of #MeToo allegations)",
         "Steven Elkman": "finance, Deutsche Bank",
         "Steven Gaydos": "arts, American screenwriter and journalist",
         "Steven Hoffenberg": "finance, Epstein's Towers Financial ponzi partner, prison for 18 years",
