@@ -134,9 +134,12 @@ else
     print_deploy_step "Skipping DOJ files (TAG_RELEASE not set)..."
 fi
 
+print_deploy_step "Copying custom HTML chrono pages into place..."
 cp docs/chrono_real_html.html docs/index.html
+cp docs/chrono_real_html_mobile.html docs/mobile_chronological.html
 
 # Commit changes
+print_deploy_step "Committing changes..."
 commit_gh_pages_changes
 print_deploy_step "Deployed URLs:"
 epstein_generate --show-urls
