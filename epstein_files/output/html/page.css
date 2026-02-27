@@ -53,12 +53,6 @@ div.document_panel_header {
     top: 0px;
 }
 
-div.imessage_log {
-    margin-top: 2.5em;
-    margin-bottom: 2.5em;
-    word-wrap: break-word;
-}
-
 div.no_expand {
     display: inline-block;
     width: fit-content;
