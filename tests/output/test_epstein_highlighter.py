@@ -182,7 +182,7 @@ HIGHLIGHT_COUNTS = {
     'nydfs': 1,
     "pa": 1,
     'pakastani': 1,
-    "peirce": 1,
+    # "peirce": 1,
     "president obama": 1,
     "puerto rico": 1,
     "putin": 1,
