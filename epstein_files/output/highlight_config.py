@@ -616,6 +616,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(LYN_FONTANILLA, "Filipino housekeeper", r"L.nn? Fontanilla"),
             Contact(MERWIN_DELA_CRUZ, "housekeeper", r"Merwin"),
             Contact(NADIA_MARCINKO, "Epstein's pilot", r"Na[dď]i?a Marcinko(v[aá])?"),
+            Contact('Perry Lang', f"Epstein's personal chef 1998-2002", r"(Adam )?Perry Lang"),
             Contact('Sean J. Lancaster', "airplane reseller"),
             Contact(STORY_COWLES, "Epstein's male assistant")
         ],

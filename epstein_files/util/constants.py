@@ -2039,6 +2039,12 @@ OTHER_FILES_GOVERNMENT = [
         description='Powerpoint summary of Child Sex Trafficking Task Force Epstein investigation',
         is_interesting=True,
     ),
+    DocCfg(
+        id='EFTA01246710',
+        author=FBI,
+        description="interview where Epstein's chef says Donald Trump came to Epstein's came for dinner",
+        truncate_to=(6000, 7500),
+    ),
     DocCfg(id='EFTA02730274', description='evidence inventory that appears to have since been deleted from the DOJ website'),
     DocCfg(id='EFTA00001884', description='photo of letter from Virgin Islands DOJ to Epstein', date='2019-03-14'),
     DocCfg(id='EFTA00074744', description="USVI court filing about Epstein will and estate"),
