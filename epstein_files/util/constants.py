@@ -1384,6 +1384,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA02641951', description=f"{DAVID_STERN} recommends ProtonMail for more secure communications"),
     EmailCfg(id='EFTA00626220', description=f'discussion of a "sidecar fund" with {BROCK_PIERCE} / {CRYPTO_CURRENCY_PARTNERS_II}'),
     EmailCfg(id='EFTA00652799', description=f'Epstein calls Ari Glass "a bit sketchy" despite investing ~$50 million in his fund Boothbay'),
+    EmailCfg(id='EFTA00987206', description=f"Epstein is upset with {BORIS_NIKOLIC} over 'Yuri'"),
     EmailCfg(id='EFTA01784901', description=f"{JEREMY_RUBIN} has cashed multiple checks directly from Epstein", is_interesting=True),
     EmailCfg(
         id='EFTA02634615',
@@ -1431,6 +1432,15 @@ EMAILS_CONFIG = [
     # EmailCfg(id='EFTA00039689', description=f"{SEC_WHISTLEBLOWER} re: Signature Bank, Hapoalim, Bioptix/RIOT, Barry Honig, etc."),
     # EmailCfg(id='EFTA00093702', description=f"{SEC_WHISTLEBLOWER}", comment="rest is visible in EFTA00039689 after 102_000 chars"),
     EmailCfg(id='EFTA00826876', description=f"Epstein offers to help pay for {PETER_THIEL}'s lawsuit against Gawker"),
+    EmailCfg(
+        id='EFTA01882985',
+        description='Epstein: "Yuri money is russian gangster money, Usmanov" ("Steve" is Steve Ballmer)',
+        is_interesting=True,
+        recipients=[BORIS_NIKOLIC],
+        uncertain_recipient='maybe Boris Nikolic but Boris asks Epstein same question a few months later',
+    ),
+    EmailCfg(id='EFTA01986756', comment='maybe from Boris Nikolic but Boris asks Epstein same question a few months later'),
+    EmailCfg(id='EFTA01858685', is_interesting=True),
     EmailCfg(id='EFTA00875181', duplicate_ids=['EFTA01901268']),
     EmailCfg(id='EFTA01852975', duplicate_ids=['EFTA02001764']),
     EmailCfg(id='EFTA00563586', duplicate_ids=['EFTA02323722']),
@@ -2091,7 +2101,7 @@ OTHER_FILES_MONEY = [
         author='Organized Crime Drug Enforcement Task Force',
         description='report on DEA investigations into Epstein related drug money laundering',
     ),
-    DocCfg(id='EFTA00016884', description="Epstein's last will and testament"),
+    DocCfg(id='EFTA00016884', description="Epstein's last will and testament", date='2014-11-18'),
     DocCfg(id='EFTA01266380', description="Epstein's 2014 Trust with bequests"),
     DocCfg(id='EFTA01282282', description=f"Epstein Butterfly Trust (sole beneficiary {KARYNA_SHULIAK})"),
     DocCfg(id='EFTA00099424', description=f"Epstein 2017 Trust (Eva Andersson Dubin, {DARREN_INDYKE}, {RICHARD_KAHN})"),
@@ -2637,7 +2647,7 @@ OTHER_FILES_CRYPTO = [
         is_interesting=True,
         show_with_name=BROCK_PIERCE,
     ),
-    DocCfg(id='EFTA01230639', replace_text_with=f'photo of Epstein and {HOWARD_LUTNICK} on the island that was removed from DOJ website', date='2012-12-22'),
+    DocCfg(id='EFTA01230639', date='2012-12-22'),
     DocCfg(id='EFTA01733746', date='2011-05-18', description=f'schedule showing "drinks" with {HOWARD_LUTNICK}', show_full_panel=True, truncate_to=700),
     DocCfg(id='EFTA00434306', description='calendar reminder for call with Howard Lutnick', date='2011-04-26'),
     DocCfg(id='EFTA00020515', author=FBI, description='tip about Howard Lutnick and financial irregularities', is_interesting=True),
@@ -2724,6 +2734,7 @@ OTHER_FILES_CRYPTO = [
     # Reid Hoffman
     EmailCfg(id='EFTA00820371', description='bank digital currencies article', is_interesting=True),
     # SEC / NYDFS
+    EmailCfg(id='EFTA01747752', description=f"Farkas delivering {BEN_LAWSKY_NYDFS}", truncate_to=700),
     EmailCfg(id='EFTA02588398', description=f"Epstein went to the Treasury Dept of the US to talk about bitcoin", is_interesting=True),
     EmailCfg(id='EFTA00987194', description=f"Epstein proposes {BEN_LAWSKY_NYDFS} get rid of sales tax on bitcoin", is_interesting=True),
     EmailCfg(id='EFTA02591315', description=f"{ANDREW_FARKAS} arranging for Epstein to meet {BEN_LAWSKY_NYDFS}", is_interesting=True, truncate_to=1900),
@@ -2885,14 +2896,16 @@ INTERESTING_EMAIL_IDS = [
 UNINTERESTING_EMAIL_IDS = [
     # Alan Dlugash
     'EFTA02367999',
-    # Epstein
-    '030997',
-    '033428',
-    # John Page
-    '016693',
-    # Jabor
-    '030786',
-    '033011',
+    # Amir Taaki
+    'EFTA01983108',
+    # austin hill
+    'EFTA01024046',
+    'EFTA01010209',
+    'EFTA00461202',
+    'EFTA02229342',
+    'EFTA01005712',
+    'EFTA01005715',
+    'EFTA02228570',
     # Bannon
     'EFTA02517956',
     '030710',
@@ -2932,10 +2945,18 @@ UNINTERESTING_EMAIL_IDS = [
     'EFTA02507454',
     'EFTA02478704',
     '030724',
+    # Epstein
+    '030997',
+    '033428',
     # Eric Roth
     '033386',
+    # Jabor
+    '030786',
+    '033011',
     # Jeremy Rubin
     'EFTA00714127',
+    # John Page
+    '016693',
     # Joi Ito
     '029500',
     '029279',
@@ -2955,22 +2976,13 @@ UNINTERESTING_EMAIL_IDS = [
     'EFTA02238841',
     # Krassner
     '033345',
-    # Amir Taaki
-    'EFTA01983108',
     # Ganbat
     'EFTA02469375',
-    # austin hill
-    'EFTA01024046',
-    'EFTA01010209',
-    'EFTA00461202',
-    'EFTA02229342',
-    'EFTA01005712',
-    'EFTA01005715',
-    'EFTA02228570',
-    # bolotova
+    # Renata Bolotova
     'EFTA01903041',
     'EFTA01969322',
     'EFTA01035614',
+    'EFTA02719248',
     # Wolff
     '021120',
     # Iozzo

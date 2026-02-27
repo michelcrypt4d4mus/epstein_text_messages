@@ -10,10 +10,12 @@ CONTACT_INFO = Contact(
 
 
 def test_repr():
-    assert repr(CONTACT_INFO) == """Contact(
+    assert repr(CONTACT_INFO) == r"""Contact(
     name=JEFFREY_EPSTEIN,
     info="one and only",
     emailer_pattern=r"Jeffrey Epstein|jeevacation",
+    is_emailer="True",
+    is_interesting="True",
     highlight_pattern=r"Jeffrey[-_.\s]*Epstein|jeevacation|Epstein,[-_.\s]*Jeffrey",
 )"""
 

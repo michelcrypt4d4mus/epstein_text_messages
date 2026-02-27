@@ -114,6 +114,11 @@ class HighlightedNames(HighlightPatterns):
         self.regex = self.compile_patterns(self._pattern)
         self.contacts_lookup = Contact.build_name_lookup(self.contacts)
 
+        for contact in self.contacts:
+            contact.category = self.category_str
+            contact.style = self.style
+
+    @property
     def category_str(self) -> str:
         if self.category:
             return self.category
@@ -124,7 +129,7 @@ class HighlightedNames(HighlightPatterns):
 
     def info_for(self, name: str, include_category: bool = False) -> str | None:
         """Label and additional info for 'name' if 'name' is in `self.contacts`."""
-        info_pieces = [self.category_str()] if include_category else []
+        info_pieces = [self.category_str] if include_category else []
 
         if (contact := self.contacts_lookup.get(name)):
             # Don't prefix with category if category is in the info string

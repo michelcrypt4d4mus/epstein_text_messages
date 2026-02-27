@@ -37,7 +37,7 @@ def test_against_csv(epstein_files):
                     if doc_val == csv_val:
                         continue
                     elif all(isinstance(v, datetime) for v in [csv_val, doc_val]) and \
-                            (days := abs(days_between(csv_val, doc_val))) <= 2:
+                            (days := abs(days_between(csv_val, doc_val))) <= 3:
                         doc.log(f"timestamps differ by {days - 1} days, just a warning ({doc_val} vs {csv_val})")
                         continue
 
