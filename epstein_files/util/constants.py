@@ -1421,6 +1421,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA02633194', description=f'Why is {NICOLE_JUNKERMANN} quoting an appraisal by "FSB (Russians)"?', is_interesting=True),
     # EmailCfg(id='EFTA00039689', description=f"{SEC_WHISTLEBLOWER} re: Signature Bank, Hapoalim, Bioptix/RIOT, Barry Honig, etc."),
     # EmailCfg(id='EFTA00093702', description=f"{SEC_WHISTLEBLOWER}", comment="rest is visible in EFTA00039689 after 102_000 chars"),
+    EmailCfg(id='EFTA00826876', description=f"Epstein offers to help pay for {PETER_THIEL}'s lawsuit against Gawker"),
     EmailCfg(id='EFTA00875181', duplicate_ids=['EFTA01901268']),
     EmailCfg(id='EFTA01852975', duplicate_ids=['EFTA02001764']),
     EmailCfg(id='EFTA00563586', duplicate_ids=['EFTA02323722']),

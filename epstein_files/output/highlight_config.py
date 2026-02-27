@@ -1292,6 +1292,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"FrontPage Magazine",
             r"FT",
             r"Futurism",
+            r"Gawker",
             r"(George )?Stephanopoulus",
             r"Ger(ald|ry) Baker",
             r"Globe and Mail",
