@@ -57,14 +57,17 @@ class Contact:
     @property
     def bio(self) -> Text:
         """Biographical info about this entity."""
-        txt = Text('').append(f'[{self.category}] ', style='dim') if self.category else Text('')
+        txt = Text('') if self.category else Text('')
 
         if self.link_to_bio:
             txt.append(link_text_obj(self.link_to_bio, self.name, self.bold_style))
         else:
             txt.append(self.name, style=self.bold_style)
 
-        txt.append(': ').append(self.info, style='italic')
+        if self.category:
+            txt.append(f' [{self.category}]', style='dim')
+
+        txt.append(' ').append(self.info, style='italic')
         return txt
 
     @property
