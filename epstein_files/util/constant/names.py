@@ -328,13 +328,13 @@ NAMES_TO_NOT_PARTIALLY_MATCH = set("""
     cameron capital caroline carolyn chris christian christina christopher cohen collins
     dan daniel danny darren dave david debbie department doj donald douglas dylan
     ed edward edwards elisa enforcement enterprise enterprises entourage epstein eric erik erika etienne
-    faith fisher fitzgerald forget frances francesca fred friendly frost fuller fund
+    faith fisher fitzgerald forget frances frank francesca fred friendly frost fuller fund
     gates gateway general gerald george gilbert girl glass gloria gold gordon greg
     haddad hall hanson harry hassan hay heather henry hill hoffman howard
     ian inc inc. ivan
     jack james jay jean jeanne jeff jeffrey jennifer jeremy jessica jim joel john jon jonathan joseph jr julia justin
     kafka kahn karl kate katherine kathryn kelly ken kevin krassner
-    lang larry larsen laurie lawrence len leon lesley linda link lisa london love
+    lang larry larsen laurie lawrence len leon les lesley linda link lisa london love
     management manhattan mann marc maria marie mark martin matthew melanie michael mike miller mitchell miles morris moskowitz
     nancy nathan neal new nicholas nicole nick norman ny
     oleg owen

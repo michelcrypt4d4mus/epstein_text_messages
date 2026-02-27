@@ -55,7 +55,7 @@ SUPPRESS_LOGS_FOR_AUTHORS = [
 ]
 
 # Collect all regexes and contacts
-ALL_CONTACTS = HIGHLIGHTED_CONTACTS + ADDITIONAL_CONTACTS
+ALL_CONTACTS = [c for c in HIGHLIGHTED_CONTACTS if c.is_emailer] + ADDITIONAL_CONTACTS
 CONTACTS_DICT = {c.name: c for c in ALL_CONTACTS}
 EMAILER_ID_REGEXES = {c.name: c.emailer_regex for c in ALL_CONTACTS}
 
@@ -84,5 +84,7 @@ def extract_emailer_names(emailer_str: str) -> list[Name]:
 
         return names_found
 
-    names_found = names_found or [emailer_str]
-    return [reverse_first_and_last_names(name) for name in names_found]
+
+    names_found = [reverse_first_and_last_names(name) for name in (names_found or [emailer_str])]
+    logger.debug(f"names_found in '{emailer_str}': {names_found}")
+    return names_found

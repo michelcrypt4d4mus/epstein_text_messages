@@ -21,12 +21,17 @@ class Contact:
         info (str, optional): biographical info about this person
         emailer_pattern (str, optional): manually constructed regex pattern to match this person in email headers
         emailer_regex (re.Pattern): pattern that matches this person's name in various variations
+        is_emailer (bool): should email headers be scanned for this entity
+        is_interesting (bool): should a biographical entry be generated for this panel in the chronological view
+        is_organization (bool): if this is a company or group, don't try to match first and last versions of its name
+        link_to_bio (str, optional): a link to some info about this entity
     """
     name: str
     info: str = ''
     emailer_pattern: str = ''
     emailer_regex: re.Pattern = field(init=False)
     highlight_regex: re.Pattern = field(init=False)
+    is_emailer: bool = True
     is_interesting: bool = True  # Eligible for bio panel
     is_junk: bool = False  # TODO: this sucks
     is_organization: bool = False
@@ -127,6 +132,7 @@ class Contact:
 
 
 def company(name: str, description: str, emailer_pattern: str = '', **kwargs) -> Contact:
+    kwargs['is_emailer'] = kwargs.get('is_emailer', False)
     return Contact(name, description, emailer_pattern, is_organization=True, **kwargs)
 
 

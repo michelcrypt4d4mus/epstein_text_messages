@@ -924,7 +924,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 f'fund run by Ari Glass whom Epstein called "a bit sketchy" but invested $50 million with',
                 r"Booth\s*bay(\sFund\sManagement)?",
             ),
-            company(DEUTSCHE_BANK, 'favoured bank of Trump, Epstein, and money launderers', r"Deutsche? (Asset|(Post)?Bank)|DB(?!\s+Zw)"),
+            company(DEUTSCHE_BANK, 'favoured bank of Trump, Epstein, and money launderers', r"Deutsche? (Asset|(Post)?Bank)|\bDB\b(?!\s+Zw)"),
             company("First Bank of Puerto Rico", 'bank used by Epstein'),
         ],
         patterns=[
@@ -1919,7 +1919,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             company('Neoteny', f"Japanese venture fund of {JOI_ITO}"),
             company('Second Life', f"virtual world with early attempt at virtual currency the Linden Dollar", r"Second Life|Linden dollar"),
             company('Softbank Vision Fund', "Masayohsi Son's fund focused on tech, AI, WeWork", r"Softbank|(Softbank )?Vision Fund"),
-            company(VALAR_VENTURES, f"{PETER_THIEL} affiliated fintech venture fund", r"V[ae]lar (Global Fund|Ventures)?"),
+            company(VALAR_VENTURES, f"{PETER_THIEL} affiliated fintech venture fund", r"V[ae]lar (Global Fund|Ventures)?", is_emailer=True),
         ],
         patterns=[
             r"4chan",
