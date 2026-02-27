@@ -415,7 +415,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact('Ross Ulbricht', 'founder of infamous online drug market Silk Road, pardoned by Trump'),
             Contact(
                 'Steve Jurvetson',
-                'board of SpaceX, former partner at Draper Fisher Jurvetson (resigned because of #MeToo allegations)',
+                'board of SpaceX, former partner at Draper Fisher Jurvetson, resigned because of #MeToo allegations',
             ),
             Contact('Suhas Daftuar', 'Chaincode Labs'),
             Contact('Tim Draper', 'partner at Draper Fisher Jurvetson, loves bitcoin', r"Tim(othy)?( Cook)? Draper"),
