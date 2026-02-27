@@ -1,5 +1,5 @@
 # NEXT RELEASE
-* `Contact` now has `is_emailer`, `is_interesting`, and `link_to_bio` props and `bio()` method for biographical panel
+* `Contact` now has `is_emailer`, `is_interesting`, and `link_to_bio` props
 
 ### 1.8.7
 * More biographical information panels in chrono view
