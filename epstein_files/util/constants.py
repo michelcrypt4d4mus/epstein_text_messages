@@ -2042,7 +2042,7 @@ OTHER_FILES_GOVERNMENT = [
     DocCfg(
         id='EFTA01246710',
         author=FBI,
-        description="interview where Epstein's chef says Donald Trump came to Epstein's came for dinner",
+        description="interview where Epstein's chef says Donald Trump came to Epstein's house for dinner",
         truncate_to=(6000, 7500),
     ),
     DocCfg(id='EFTA02730274', description='evidence inventory that appears to have since been deleted from the DOJ website'),

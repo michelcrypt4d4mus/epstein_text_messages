@@ -1785,6 +1785,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 MARIA_PRUSAKOVA,
                 info=f"AKA Masha Prusso, former Olympic snowboarder, {CRYPTO_PR_LAB} co-founder, \"found ladies\" for Epstein",
                 emailer_pattern=r"Ma(sha|riy?a) (Prus(kova|so))",
+                link_to_bio='https://www.reddit.com/r/Epstein/comments/1qvsnqs/a_detailed_report_on_masha_prusso_aka_maria/',
             ),
             Contact(
                 MASHA_DROKOVA,
