@@ -337,7 +337,7 @@ NAMES_TO_NOT_PARTIALLY_MATCH = set("""
     larry larsen laurie lawrence len leon lesley linda link lisa london love
     management manhattan mann marc maria marie mark martin matthew melanie michael mike miller mitchell miles morris moskowitz
     nancy nathan neal new nicholas nicole nick norman ny
-    owen
+    oleg owen
     paul paula pen peter philip pierce plus police prince
     randall rangel reid richard robert rodriguez roger rosenberg ross roth roy rubenstein rubin
     santos scott sean service services skip smith stacey stanley stern stephen steve steven stone story susan

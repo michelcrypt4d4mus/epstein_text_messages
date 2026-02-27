@@ -1773,6 +1773,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 'silicon valley VC of Day One Ventures, publicist for QWave, former Putin Youth member, star of "Putin\'s Kiss"',
                 r"(Marii?y?a|Masha) (Bucher|Drokova)",
             ),
+            Contact('Oleg Boyko', 'oligarch'),
             Contact('Oleg Deripaska', 'oligarch'),
             Contact(OLGA_PONOMAR_BECKER),
             Contact(
