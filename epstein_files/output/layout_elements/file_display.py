@@ -162,6 +162,9 @@ class FileDisplay:
         if self.background_color:
             div_props.update(HtmlStyle(f"on {self.background_color}").to_css)
 
+        if isinstance(self.body_panel, BasePanel) and self.body_panel.is_list:
+            div_props.update(vertical_margin_props(to_em(2)))
+
         return div_tag(inner_html, div_props)
 
     def __rich_console__(self, console: Console, options: ConsoleOptions) -> RenderResult:
