@@ -1790,6 +1790,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 link_to_bio='https://dossier.center/jeffreyepsteinrusconnect-en/',
             ),
             Contact(SVETLANA_POZHIDAEVA, f"Epstein's Russian assistant who was recommended for a visa by Sergei Belyakov (FSB) and {DAVID_BLAINE}"),
+            Contact(YULIA_DOROKHINA),
             company('Alfa Bank', 'Russian bank', r"Alfa( Bank)?"),
             company('Day One Ventures', f"silicon valley venture fund run by {MASHA_DROKOVA}"),
             company('Quantum Wave Fund', f"venture fund associated with {MASHA_DROKOVA} focused on quantum stuff", r"(Quantum Wave|QWave) (Capital|Fund)"),
@@ -1867,6 +1868,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact('Alisa Bekins', f"{PETER_THIEL}'s assistant"),
             Contact(ANDREW_MCCORMACK, f"partner at {THIELS_VALAR} {'(???)'}", r"Andrew McCorm(ack?)?"),
             Contact('Auren Hoffman', "CEO of SafeGraph (firm that gathers location data from mobile devices) and LiveRamp"),
+            Contact(CHRIS_POOLE, 'founder of 4chan AKA "Moot"', r"mmot|Chris Poole?"),
             Contact(ELON_MUSK, "father of Mecha-Hitler"),
             Contact(HONGBO_ROBERT_BAO, THIELS_VALAR, r"Hong,? Robert Bao|Hongbo( Robert)? Bao"),
             Contact(IAN_ODONNELL, THIELS_VALAR, r"Ian O'?Donnell|O'?Donnell, Ian"),
@@ -1888,6 +1890,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             company(VALAR_VENTURES, f"{PETER_THIEL} affiliated fintech venture fund", r"V[ae]lar (Global Fund|Ventures)?"),
         ],
         patterns=[
+            r"4chan",
             r"Accel( Partners)?",
             r"AG?I",
             r"Artificial (General )?Intelligence",
@@ -2001,6 +2004,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         label=Interesting.GIRLS,
         style=VICTIM_COLOR,
         contacts=[
+            Contact('Miranda'),
             Contact(PAULA, "ex-girlfriend who works in opera now", r"^Paula( Heil Fisher)?$"),
             Contact('Samantha Rose Stein', 'wombkind.com'),
             Contact('Sasha Grey', 'famous porn star', is_organization=True),  # TODO: not an org

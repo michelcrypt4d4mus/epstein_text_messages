@@ -1305,6 +1305,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00840591', recipients=[LESLEY_GROFF]),
     EmailCfg(id='EFTA00369335', recipients=[LESLEY_GROFF]),
     EmailCfg(id='EFTA02227488', recipients=[LESLEY_GROFF]),
+    EmailCfg(id='EFTA02175423', recipients=[LESLEY_GROFF], truncate_to=650),
     EmailCfg(id='EFTA02256631', recipients=[LESLEY_GROFF], truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA00482121', recipients=[LESLEY_GROFF]),
     EmailCfg(id='EFTA00368951', recipients=[LESLEY_GROFF], author_reason='can be seen in EFTA00368958'),
@@ -1488,6 +1489,21 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00953261', author=LARRY_SUMMERS, recipients=[JEFFREY_EPSTEIN]),
     EmailCfg(id='EFTA01841553', truncate_to=900),
     EmailCfg(id='EFTA00664619', author=SUE, author_reason='"Dear Sue"'),
+    EmailCfg(
+        id='EFTA00719854',
+        description=f'{BORIS_NIKOLIC} introduces Epstein to Chris Poole AKA "moot", the founder of 4chan',
+        is_interesting=True,
+        show_with_name=CHRIS_POOLE
+    ),
+    EmailCfg(
+        id='EFTA00922824',
+        description=f"Epstein met with the founder of 4chan the day the infamous /pol/ board was created",
+        show_with_name=CHRIS_POOLE
+    ),
+    EmailCfg(id='EFTA01848168', show_with_name=CHRIS_POOLE),
+    EmailCfg(id='EFTA01849797', show_with_name=CHRIS_POOLE),
+    EmailCfg(id='EFTA02179653', show_with_name=CHRIS_POOLE),
+    EmailCfg(id='EFTA01987383', show_with_name=CHRIS_POOLE),
 ]
 
 
@@ -2427,13 +2443,15 @@ OTHER_FILES_GIRLS = [
     ),
     EmailCfg(
         id='EFTA01026268',
-        description="Epstein pressuring someone to find girls in Russia",
-        recipients=[UNKNOWN_GIRL],
+        author_reason='juliador89®mail.ru is unredacted',
+        description=f"Epstein pressuring {YULIA_DOROKHINA} to find girls in Russia and send him nude pics and videos",
+        recipients=[YULIA_DOROKHINA],
         truncate_to=3100
     ),
     EmailCfg(id='EFTA00671662', author='Miranda', author_reason='quoted signature'),
     EmailCfg(id='EFTA01990168', author=UNKNOWN_GIRL, is_interesting=True),
     EmailCfg(id='EFTA02431535', author=UNKNOWN_GIRL),
+    EmailCfg(id='EFTA01875607', author=UNKNOWN_GIRL),
     EmailCfg(id='EFTA00897668', people=[JEAN_LUC_BRUNEL, JEFFREY_EPSTEIN, UNKNOWN_GIRL], recipients=[UNKNOWN_GIRL]),
     EmailCfg(id='EFTA00848644', recipients=[UNKNOWN_GIRL], is_interesting=True, comment='"take a picture of your pussy"'),
     EmailCfg(id='EFTA01811230', description=f'"Renat" is probably {RENATA_BOLOTOVA}'),
