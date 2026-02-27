@@ -2886,14 +2886,16 @@ INTERESTING_EMAIL_IDS = [
 UNINTERESTING_EMAIL_IDS = [
     # Alan Dlugash
     'EFTA02367999',
-    # Epstein
-    '030997',
-    '033428',
-    # John Page
-    '016693',
-    # Jabor
-    '030786',
-    '033011',
+    # Amir Taaki
+    'EFTA01983108',
+    # austin hill
+    'EFTA01024046',
+    'EFTA01010209',
+    'EFTA00461202',
+    'EFTA02229342',
+    'EFTA01005712',
+    'EFTA01005715',
+    'EFTA02228570',
     # Bannon
     'EFTA02517956',
     '030710',
@@ -2933,10 +2935,18 @@ UNINTERESTING_EMAIL_IDS = [
     'EFTA02507454',
     'EFTA02478704',
     '030724',
+    # Epstein
+    '030997',
+    '033428',
     # Eric Roth
     '033386',
+    # Jabor
+    '030786',
+    '033011',
     # Jeremy Rubin
     'EFTA00714127',
+    # John Page
+    '016693',
     # Joi Ito
     '029500',
     '029279',
@@ -2956,22 +2966,13 @@ UNINTERESTING_EMAIL_IDS = [
     'EFTA02238841',
     # Krassner
     '033345',
-    # Amir Taaki
-    'EFTA01983108',
     # Ganbat
     'EFTA02469375',
-    # austin hill
-    'EFTA01024046',
-    'EFTA01010209',
-    'EFTA00461202',
-    'EFTA02229342',
-    'EFTA01005712',
-    'EFTA01005715',
-    'EFTA02228570',
-    # bolotova
+    # Renata Bolotova
     'EFTA01903041',
     'EFTA01969322',
     'EFTA01035614',
+    'EFTA02719248',
     # Wolff
     '021120',
     # Iozzo
