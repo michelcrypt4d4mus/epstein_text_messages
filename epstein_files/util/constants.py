@@ -2591,10 +2591,10 @@ OTHER_FILES_CRYPTO = [
         is_interesting=True,
         show_with_name=BROCK_PIERCE,
     ),
+    DocCfg(id='EFTA01230639', replace_text_with=f'photo of Epstein and {HOWARD_LUTNICK} on the island that was removed from DOJ website', date='2012-12-22'),
     DocCfg(id='EFTA01733746', date='2011-05-18', description=f'schedule showing "drinks" with {HOWARD_LUTNICK}', show_full_panel=True, truncate_to=700),
     DocCfg(id='EFTA00434306', description='calendar reminder for call with Howard Lutnick', date='2011-04-26'),
     DocCfg(id='EFTA00020515', author=FBI, description='tip about Howard Lutnick and financial irregularities', is_interesting=True),
-    DocCfg(id='EFTA00173881', author='US Secret Service', show_with_name=HOWARD_LUTNICK, truncate_to=800),
     DocCfg(
         id='EFTA01249207',
         author=FBI,
@@ -2610,6 +2610,13 @@ OTHER_FILES_CRYPTO = [
     ),
     EmailCfg(id='EFTA00970606', show_with_name=HOWARD_LUTNICK),
     EmailCfg(id='EFTA01778423', show_with_name=HOWARD_LUTNICK),
+    EmailCfg(
+        id='EFTA00173881',
+        author='US Secret Service',
+        recipients=['Enterprise Vetting Center'],
+        show_with_name=HOWARD_LUTNICK,
+        truncate_to=800
+    ),
     EmailCfg(id='EFTA00474452', description=f"{HOWARD_LUTNICK} and {JEFFREY_EPSTEIN}, NIMBYs"),
     EmailCfg(
         id='EFTA00873541',

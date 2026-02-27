@@ -166,7 +166,7 @@ class Document:
         if self.config and self.config.replace_text_with:
             text = join_truthy(self.config.author, self.config.replace_text_with)
 
-            if len(text) < 300:
+            if len(text) < 300 and not text.startswith('photo'):
                 return f"(Text of {text} {CHECK_LINK_FOR_DETAILS})"
             else:
                 return text
