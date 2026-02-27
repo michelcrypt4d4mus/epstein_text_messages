@@ -1054,7 +1054,6 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00697417', author=LESLEY_GROFF, author_uncertain=True, is_interesting=True, show_with_name=GANBAT_CHULUUNKHUU),
     EmailCfg(id='EFTA02069175', author=LESLEY_GROFF, recipients=[GANBAT_CHULUUNKHUU], author_uncertain=True),
     EmailCfg(id='EFTA02271414', author=LESLEY_GROFF, recipients=[GANBAT_CHULUUNKHUU], author_uncertain=True),
-    EmailCfg(id='EFTA02113506', author=LESLEY_GROFF, recipients=[TYLER_SHEARS], author_uncertain=True),
     EmailCfg(id='EFTA00405795', author=LESLEY_GROFF, duplicate_ids=['EFTA02159829']),
     EmailCfg(id='EFTA00419742', author=LESLEY_GROFF, duplicate_ids=['EFTA02174857']),
     EmailCfg(
@@ -1313,6 +1312,15 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00383027', recipients=[LINDA_STONE]),
     EmailCfg(id='EFTA01002282', recipients=[LINDA_STONE], comment='signature'),
     EmailCfg(id='EFTA02266524', recipients=[MARIA_PRUSAKOVA], author_reason=CRYPTO_PR_LAB, description='Medici Bank'),
+    EmailCfg(id='EFTA02503155', recipients=[MARIA_PRUSAKOVA], author_reason='visible in quoted reply'),
+    EmailCfg(id='EFTA00920848', author=MARIA_PRUSAKOVA, author_uncertain='law school'),
+    EmailCfg(id='EFTA02038002', author=MARIA_PRUSAKOVA, author_reason='Clifford Chance'),
+    EmailCfg(id='EFTA02036490', author=MARIA_PRUSAKOVA, author_reason='Clifford Chance'),
+    EmailCfg(id='EFTA02022813', author=MARIA_PRUSAKOVA, author_reason='Clifford Chance'),
+    EmailCfg(id='EFTA02001536', author=MARIA_PRUSAKOVA, author_reason='Clifford Chance'),
+    EmailCfg(id='EFTA01772533', author=MARIA_PRUSAKOVA, author_reason='Clifford Chance'),
+    EmailCfg(id='EFTA01775280', author=MARIA_PRUSAKOVA, author_reason='Clifford Chance', truncate_to=2000),
+    EmailCfg(id='EFTA02507271', author=MARIA_PRUSAKOVA, author_uncertain='LGT Bank in signature'),
     EmailCfg(id='EFTA00579769', recipients=['Melania'], date='2002-10-23 15:49:00', is_interesting=True, truncate_to=587),
     EmailCfg(id='EFTA02731632', recipients=[OFFICE_OF_THE_DEPUTY_ATTORNEY_GENERAL]),
     EmailCfg(
@@ -1437,6 +1445,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00428083', duplicate_ids=['EFTA02183761']),
     EmailCfg(id='EFTA00432350', duplicate_ids=['EFTA02187050']),
     EmailCfg(id='EFTA00432352', duplicate_ids=['EFTA02187120']),
+    EmailCfg(id='EFTA00373948', duplicate_ids=['EFTA02113506']),
     EmailCfg(id='EFTA00870717', duplicate_ids=['EFTA01932706']),
     EmailCfg(id='EFTA00915302', duplicate_ids=['EFTA01860910', 'EFTA01986221', 'EFTA01776411']),
     EmailCfg(id='EFTA01776613', duplicate_ids=['EFTA01860812', 'EFTA00915297', 'EFTA02691059']),
@@ -2039,6 +2048,12 @@ OTHER_FILES_GOVERNMENT = [
         description='Powerpoint summary of Child Sex Trafficking Task Force Epstein investigation',
         is_interesting=True,
     ),
+    DocCfg(
+        id='EFTA01246710',
+        author=FBI,
+        description="interview where Epstein's chef says Donald Trump came to Epstein's house for dinner",
+        truncate_to=(6000, 7500),
+    ),
     DocCfg(id='EFTA02730274', description='evidence inventory that appears to have since been deleted from the DOJ website'),
     DocCfg(id='EFTA00001884', description='photo of letter from Virgin Islands DOJ to Epstein', date='2019-03-14'),
     DocCfg(id='EFTA00074744', description="USVI court filing about Epstein will and estate"),
@@ -2507,7 +2522,7 @@ OTHER_FILES_CRYPTO = [
     EmailCfg(id='EFTA00999897', description=f"Epstein claims he's a fan of {ADAM_BACK} (who has recently claimed he had nothing to do with Epstein)"),
     EmailCfg(id='EFTA01915883', description=f"{JOI_ITO} thinks {AUSTIN_HILL} is shady (which he is)"),
     EmailCfg(id='EFTA00988395', description=f'"Andy Back" is probably Blockstream bitcoin dev {ADAM_BACK}', duplicate_ids=['EFTA01928856']),
-    EmailCfg(id='EFTA01925969', description=f"{AUSTIN_HILL} and {ADAM_BACK} and some women plan a trip to The Island", is_interesting=True),
+    EmailCfg(id='EFTA01925969', description=f"{AUSTIN_HILL} and {ADAM_BACK} and some women plan a trip to Epstein's island", is_interesting=True),
     EmailCfg(
         id='EFTA00955063',
         description=f'{AUSTIN_HILL} explains that some crypto funds are engaged in fraudulent wash trading (the attached Excel sheet listing those funds has not been found)',
@@ -2963,6 +2978,8 @@ UNINTERESTING_EMAIL_IDS = [
     # Lesley?
     'EFTA02229402',
     'EFTA02229659',
+    # Maria Prusakova
+    'EFTA01772533',
     # DOJ / USANYS
     'EFTA00039799',
     'EFTA02730469',
@@ -3026,6 +3043,7 @@ NOT_CHRONOLOGICAL_VIEW_IDS = [
     'EFTA01823635',
     'EFTA00747181',
     'EFTA00758140',
+    'EFTA01979689',
     '022247',
     '030095',
     '022234',
@@ -3056,6 +3074,7 @@ NOT_CHRONOLOGICAL_VIEW_IDS = [
     '027032',
     '027126',
     '030881',
+    'EFTA00373948',
     'EFTA00659818',
     'EFTA01931339',
     'EFTA01923844',

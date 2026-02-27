@@ -106,7 +106,8 @@ def print_title_page_top() -> None:
     console.line()
     _print_starred_header(site_config.not_all_files_warning, num_spaces=0, num_stars=0)
     print_centered(f"This dataset includes everything from the {HOUSE_OVERSIGHT_TRANCHE}", style=DATASET_DESCRIPTION_STYLE)
-    print_centered(f"as well as a curated selection of the {DOJ_2026_TRANCHE}.", style=DATASET_DESCRIPTION_STYLE)
+    print_centered(f"as well as a curated selection of the {DOJ_2026_TRANCHE}", style=DATASET_DESCRIPTION_STYLE)
+    print_centered(f"with a particular focus on cryptocurrency", style=DATASET_DESCRIPTION_STYLE)
 
 
 def _site_directory() -> Panel:

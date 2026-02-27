@@ -324,23 +324,23 @@ WAPO = 'WaPo'
 # First and last names that should be made part of a highlighting regex for emailers
 NAMES_TO_NOT_PARTIALLY_MATCH = set("""
     adam al alain alan alison alfredo allen alex alexander amanda andres andrew ann anthony ari asia audrey
-    back bard barrett barry ben bennet bernard bill black bob boris boyle brad brenner bruce bryan
-    cameron capital caroline carolyn chris christian christina christopher cohen
+    back bard barrett barry ben bennet bernard bill black bo bob boris boyle brad brenner bruce bryan
+    cameron capital caroline carolyn chris christian christina christopher cohen collins
     dan daniel danny darren dave david debbie department doj donald douglas dylan
     ed edward edwards elisa enforcement enterprise enterprises entourage epstein eric erik erika etienne
     faith fisher fitzgerald forget frances francesca fred friendly frost fuller fund
     gates gateway general gerald george gilbert girl glass gold gordon greg
     haddad hall hanson harry hassan hay heather henry hill hoffman howard
     ian inc inc. ivan
-    jack james jay jean jeff jeffrey jennifer jeremy jessica jim joel john jon jonathan joseph jr julia justin
+    jack james jay jean jeanne jeff jeffrey jennifer jeremy jessica jim joel john jon jonathan joseph jr julia justin
     kafka kahn karl kate katherine kathryn kelly ken kevin krassner
-    larry larsen laurie lawrence len leon lesley linda link lisa london love
+    lang larry larsen laurie lawrence len leon lesley linda link lisa london love
     management manhattan mann marc maria marie mark martin matthew melanie michael mike miller mitchell miles morris moskowitz
     nancy nathan neal new nicholas nicole nick norman ny
-    owen
-    paul paula pen peter philip pierce plus police prince
+    oleg owen
+    paul paula pen perry peter philip pierce plus police prince
     randall rangel reid richard robert rodriguez roger rosenberg ross roth roy rubenstein rubin
-    santos scott sean service services skip smith stacey stanley stern stephen steve steven stone story susan
+    santos scott sean sergey service services skip smith stacey stanley stern stephen steve steven stone story susan
     team terry the thomas tim tom tony trust tyler
     unknown
     ventures victor viktor
