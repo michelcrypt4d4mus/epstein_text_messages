@@ -1829,7 +1829,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             ),
             Contact(
                 SVETLANA_POZHIDAEVA,
-                f"AKA 'Sophia Platt', Epstein's Russian assistant who was recommended for a visa by Sergei Belyakov (FSB) and {DAVID_BLAINE}",
+                f"AKA 'Sophia Platt', Epstein's Russian assistant recommended for visa by Sergei Belyakov (FSB) & {DAVID_BLAINE}",
                 r"Sophia Platt|((Svet)?Lana )?Pozhidaeva|\b(Lana|Svet)\b",
             ),
             Contact(YULIA_DOROKHINA),
@@ -2154,7 +2154,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(
                 name=JABOR_Y,
                 info="former Qatari prime minister Hamad bin Jassim AKA \"HBJ\"",
-                emailer_pattern=r"[jil]abor y?",
+                emailer_pattern=r"[ji]abor y?|labor y",
             )
         ],
         category=MIDEAST,

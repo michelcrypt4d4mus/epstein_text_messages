@@ -197,12 +197,12 @@ class OtherFile(Document):
         title_pfx: str = '',
         title: str | Text | None = '',
         title_justify: str = '',
-        footer: Text | None = None  # TODO: Unused
+        **kwargs
     ) -> Table:
         """Build a table of `OtherFile` documents."""
         title = '' if title is None else (title or f'{title_pfx}Other Files Details in Chronological Order')
         title_justify = title_justify or ('left' if title else 'center')
-        table = build_table(title, caption=footer, show_lines=True, title_justify=title_justify)
+        table = build_table(title, show_lines=True, title_justify=title_justify, **kwargs)
         table.add_column('File', justify='center', width=FILENAME_LENGTH)
         table.add_column('Info', justify='center', width=DATE_LENGTH)
         table.add_column(FIRST_FEW_LINES, justify='left', style='pale_turquoise4', width=PREVIEW_COL_WIDTH)
@@ -240,14 +240,9 @@ class OtherFile(Document):
         title_pfx: str = '',
         title: str | Text | None = '',
         title_justify: str = '',
-        footer: Text | None = None  # TODO: Unused
+        **kwargs
     ) -> str:
-        table = cls.files_preview_table(files, title_pfx, title, title_justify, footer)
-        return cls.files_preview_table_to_html(table)
-
-    @classmethod
-    def files_preview_table_to_html(cls, table: Table) -> str:
-        return table_to_html(table, with_horizontal_lines=True)
+        return table_to_html(cls.files_preview_table(files, title_pfx, title, title_justify, **kwargs))
 
     @classmethod
     def _mobilize_table(cls, _table: Table) -> Table:

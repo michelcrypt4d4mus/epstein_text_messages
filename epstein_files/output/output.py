@@ -15,7 +15,7 @@ from epstein_files.documents.messenger_log import MessengerLog
 from epstein_files.documents.other_file import FIRST_FEW_LINES, OtherFile
 from epstein_files.epstein_files import EpsteinFiles
 from epstein_files.output.highlight_config import PEOPLE_BIOS, get_style_for_name
-from epstein_files.output.html.builder import buffer_as_html, rich_to_html, write_templated_html
+from epstein_files.output.html.builder import buffer_as_html, rich_to_html, table_to_html, write_templated_html
 from epstein_files.output.html.elements import div_class
 from epstein_files.output.rich import *
 from epstein_files.output.site.sites import (AUTHORS_USING_SIGNATURES, EMAILERS_TABLE_PNG_PATH,
@@ -47,49 +47,62 @@ def print_curated_chronological(epstein_files: EpsteinFiles) -> list[Document]:
     html_elements = [html_so_far()]  # Print the title page to html as is
     printed_docs: list[Document] = []
     people_encountered = set()
-    new_characters_queue = []
     other_files_queue = []  # Collects sequential OtherFiles into tables
 
-    def print_characters_panel(people: list[str]) -> None:
+    def new_names(document: Document) -> list[str]:
         nonlocal people_encountered
-        new_characters = [p for p in people if p not in people_encountered]
+        return [p for p in document.people if p not in people_encountered]
 
-        if (bio_panel := _biographical_panel(uniq_sorted(new_characters), doc)):
+    def print_characters_panel(names: list[str]) -> None:
+        nonlocal html_elements
+        nonlocal people_encountered
+
+        if (bio_panel := _biographical_panel(uniq_sorted(names))):
             console.print(_align_biographical_panel(bio_panel))
             html_elements.append(div_class(rich_to_html(bio_panel, minimize_width=True), 'person_bio_panel'))
 
-        people_encountered.update(new_characters)
+        people_encountered.update(names)
+
+    def print_other_files_queue() -> None:
+        nonlocal html_elements
+        nonlocal other_files_queue
+        nonlocal printed_docs
+        has_printed_any_other_file_objs = any(isinstance(d, OtherFile) for d in printed_docs)
+
+        if has_printed_any_other_file_objs:
+            table_title = None
+        else:
+            table_title = OTHER_FILES_TABLE_MSG
+            console.line()
+            html_elements.append('<div style="height: 1em"></div>')
+
+        table = OtherFile.files_preview_table(
+            other_files_queue,
+            title=table_title,
+            title_justify='center',
+            show_header=not has_printed_any_other_file_objs,
+        )
+
+        console.print(Padding(table, (0, 0, 1, site_config.other_files_table_indent)))
+        html_elements.append(table_to_html(table))  # TODO: missing indent
+        printed_docs.extend(other_files_queue)
+        other_files_queue = []
 
     for doc in epstein_files.unique_documents:
         if not doc.is_interesting:
             continue
         elif isinstance(doc, OtherFile) and doc.is_valid_for_table:
-            if doc.length < 50_000:
-                new_characters_queue.extend(doc.people)
-
             other_files_queue.append(doc)
+
+            if new_names(doc):
+                print_characters_panel(new_names(doc))
+                print_other_files_queue()
+
             continue
         elif other_files_queue:
-            has_printed_any_other_file_objs = any(isinstance(d, OtherFile) for d in printed_docs)
-            print_characters_panel(new_characters_queue)
+            print_other_files_queue()
 
-            if has_printed_any_other_file_objs:
-                table_title = None
-            else:
-                table_title = OTHER_FILES_TABLE_MSG
-                console.line()
-                html_elements.append('<div style="height: 1em"></div>')
-
-            table = OtherFile.files_preview_table(other_files_queue, title=table_title, title_justify='center')
-            console.print(Padding(table, (0, 0, 1, site_config.other_files_table_indent)))
-            html_elements.append(OtherFile.files_preview_table_to_html(table))
-            printed_docs.extend(other_files_queue)
-            new_characters_queue = []
-            other_files_queue = []
-
-        if isinstance(doc, Communication):
-            print_characters_panel([p for p in doc.people])
-
+        print_characters_panel(new_names(doc))
         doc.print()
         printed_docs.append(doc)
         html_elements.append(doc.to_html())
@@ -387,7 +400,7 @@ def _align_biographical_panel(panel: Panel) -> Align | None:
     return Align(Padding(panel, site_config.character_bio_padding), 'right')
 
 
-def _biographical_panel(names: list[str], next_doc: Document) -> Panel | None:
+def _biographical_panel(names: list[str]) -> Panel | None:
     """Panel showing biographical info for a list of names."""
     bios = [
         Text('', justify='right').append(PEOPLE_BIOS[name])
