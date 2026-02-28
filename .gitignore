@@ -207,7 +207,9 @@ marimo/_static/
 marimo/_lsp/
 __marimo__/
 .env
-
+# not ignored on gh_pages branch
+docs/*.html
+docs/*.json
 
 social_media_post_with_url.txt
 /scripts/epstein_files/**/*
