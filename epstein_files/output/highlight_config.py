@@ -247,6 +247,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 r"David( J\.?)? Mitchell",
                 match_partial_names=None,
             ),
+            Contact('David Rowland', f"{PRINCE_ANDREW}'s trusted money man whom Epstein does not like", match_partial_names=None),
             Contact(GERALD_BARTON, "Maryland property developer Landmark Land Company"),
             Contact('Jeanne Houweling', f'CEO of Adfin, a company Epstein and {HOWARD_LUTNICK} invested in'),
             Contact(
