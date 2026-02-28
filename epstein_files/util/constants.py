@@ -794,7 +794,6 @@ EMAILS_CONFIG = [
     EmailCfg(id='025878', duplicate_ids=['028486']),
     EmailCfg(id='032764', duplicate_ids=['033565']),
     EmailCfg(id='026618', duplicate_ids=['028485']),
-    EmailCfg(id='030609', duplicate_ids=['030495']),
     EmailCfg(id='029831', duplicate_ids=['028972']),
     EmailCfg(id='033498', duplicate_ids=['029884']),
     EmailCfg(id='028620', duplicate_ids=['027094']),
@@ -1383,7 +1382,8 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA02641951', description=f"{DAVID_STERN} recommends ProtonMail for more secure communications"),
     EmailCfg(id='EFTA00626220', description=f'discussion of a "sidecar fund" with {BROCK_PIERCE} / {CRYPTO_CURRENCY_PARTNERS_II}'),
     EmailCfg(id='EFTA00652799', description=f'Epstein calls Ari Glass "a bit sketchy" despite investing ~$50 million in his fund Boothbay'),
-    EmailCfg(id='EFTA00987206', description=f"Epstein is upset with {BORIS_NIKOLIC} over 'Yuri'"),
+    EmailCfg(id='EFTA00987206', description=f"Epstein helps {BORIS_NIKOLIC} draft an email to Yuri Milner about a healthcare fund", is_interesting=True),
+    EmailCfg(id='EFTA00949295', is_interesting=True),
     EmailCfg(id='EFTA01784901', description=f"{JEREMY_RUBIN} has cashed multiple checks directly from Epstein", is_interesting=True),
     EmailCfg(
         id='EFTA02634615',
@@ -1421,7 +1421,6 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA01145923', description=f"modeling contract"),
     EmailCfg(id='EFTA00877726', description='Epstein and Stern discuss plans to manage money for wealthy Chinese'),
     EmailCfg(id='EFTA00900908', description="negotiation of repurchase of part of Epstein's stake in Coinbase"),
-    EmailCfg(id='EFTA02436105', description="one of Epstein's goals in life was to make a lot of money in virtual currency", is_interesting=True),
     EmailCfg(id='EFTA00754450', description='"PA" is probably Prince Andrew', duplicate_ids=['EFTA02418244']),
     EmailCfg(id='EFTA01003346', description=f"{PETER_THIEL} tells Epstein to invest in his fund", is_interesting=True),
     EmailCfg(id='EFTA00758140', description="possibly about Sarah Ferguson?"),
@@ -1438,7 +1437,8 @@ EMAILS_CONFIG = [
         uncertain_recipient='maybe Boris Nikolic but Boris asks Epstein same question a few months later',
     ),
     EmailCfg(id='EFTA01986756', author=MELANIE_PHILLIPS, author_uncertain=f"{STEVEN_SINOFSKY}'s gf at the time"),
-    EmailCfg(id='EFTA01858685', is_interesting=True),
+    EmailCfg(id='EFTA01858685', is_interesting=True, comment='Boris asks about Stanley Ho (maybe)'),
+    EmailCfg(id='030467', duplicate_ids=['030584']),
     EmailCfg(id='EFTA00875181', duplicate_ids=['EFTA01901268']),
     EmailCfg(id='EFTA01852975', duplicate_ids=['EFTA02001764']),
     EmailCfg(id='EFTA00563586', duplicate_ids=['EFTA02323722']),
@@ -1507,17 +1507,6 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00953261', author=LARRY_SUMMERS, recipients=[JEFFREY_EPSTEIN]),
     EmailCfg(id='EFTA01841553', truncate_to=900),
     EmailCfg(id='EFTA00664619', author=SUE, author_reason='"Dear Sue"'),
-    EmailCfg(
-        id='EFTA00719854',
-        description=f'{BORIS_NIKOLIC} introduces Epstein to Chris Poole AKA "moot", the founder of 4chan',
-        is_interesting=True,
-        show_with_name=CHRIS_POOLE
-    ),
-    EmailCfg(
-        id='EFTA00922824',
-        description=f"Epstein met with the founder of 4chan the day the infamous /pol/ board was created",
-        show_with_name=CHRIS_POOLE
-    ),
     EmailCfg(id='EFTA01848168', show_with_name=CHRIS_POOLE),
     EmailCfg(id='EFTA01849797', show_with_name=CHRIS_POOLE),
     EmailCfg(id='EFTA02179653', show_with_name=CHRIS_POOLE),
@@ -2212,6 +2201,18 @@ OTHER_FILES_SOCIAL = [
     DocCfg(id='028988', author=INSIGHTS_POD, description=f"pitch deck", date='2016-08-20', attached_to_email_id='033171'),
     DocCfg(id='026627', author=INSIGHTS_POD, description=f"report on impact of presidential debate", attached_to_email_id='026626'),
     DocCfg(id='022213', description=f"{SCREENSHOT} Facebook group called 'Shit Pilots Say' disparaging a 'global girl'"),
+    EmailCfg(
+        id='EFTA00719854',
+        description=f'{BORIS_NIKOLIC} introduces Epstein to Chris Poole AKA "moot", the founder of 4chan',
+        is_interesting=True,
+        show_with_name=CHRIS_POOLE
+    ),
+    EmailCfg(
+        id='EFTA00922824',
+        description=f"Epstein met with the founder of 4chan the day the infamous /pol/ board was created",
+        show_with_name=CHRIS_POOLE,
+        is_interesting=True,
+    ),
 ]
 
 OTHER_FILES_TWEET = [
@@ -2503,6 +2504,8 @@ OTHER_FILES_GIRLS = [
         recipients=[YULIA_DOROKHINA],
         truncate_to=3100
     ),
+    EmailCfg(id='030609', duplicate_ids=['030495']),
+    EmailCfg(id='EFTA00766770'),
     EmailCfg(id='EFTA00671662', author='Miranda', author_reason='quoted signature'),
     EmailCfg(id='EFTA01990168', author=UNKNOWN_GIRL, is_interesting=True),
     EmailCfg(id='EFTA02431535', author=UNKNOWN_GIRL),
@@ -2798,8 +2801,12 @@ OTHER_FILES_CRYPTO = [
     EmailCfg(id='EFTA00964459', description=f'discussion of sharia compliant crypto token', is_interesting=True),
     EmailCfg(id='EFTA00990442', description=f"Epstein offers to cover all costs for Sharia Coin", is_interesting=True),
     EmailCfg(id='032359', description='HBJ brings up "e-currency" (Sharia Coin, probably)'),
-    # Silk Road / Ulbricht
+    # Boris Nikolic
+    EmailCfg(id='EFTA02436105', description="one of Epstein's goals in life was to make a lot of money in virtual currency", is_interesting=True),
     EmailCfg(id='EFTA00972689', description=f"Epstein and Nikolic ruminate on the Silk Road bust", truncate_to=NO_TRUNCATE),
+    EmailCfg(id='EFTA00844780'),
+    EmailCfg(id='EFTA01770220'),
+    EmailCfg(id='EFTA02037504'),
     # Valar
     DocCfg(id='EFTA00605996', description='Wedbush BUY rating on Digital Currency Group GBTC', is_interesting=False),
     DocCfg(id='EFTA01121910', author=VALAR_VENTURES, description="contract", truncate_to=DEFAULT_TRUNCATE_TO),

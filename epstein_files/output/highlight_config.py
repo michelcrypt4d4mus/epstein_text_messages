@@ -139,6 +139,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Kenyan?",
             r"Kinshasa",
             r"Madagascar",
+            r"Masai",
             r"Mobutu Seko",
             r"Nigerian?",
             r"Okey Enelamah",
