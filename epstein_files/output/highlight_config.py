@@ -1897,15 +1897,15 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(JULIA_SANTOS, "possibly a Russian in Paris that was recruiting girls from Ukraine for Epstein", match_partial_names=None),
             Contact(
                 KARYNA_SHULIAK,
-                info="Epstein's final girlfriend to whom he tried to leave $50-100 million and the island",
-                emailer_pattern=r"Karyna Shuliak?",
+                f"Epstein girlfriend to whom he tried to leave $50-100 million and the island, in an alleged sham marriage to {JENNIFER_KALIN}",
+                r"Karyna Shuliak?",
             ),
             Contact('Kira Dikhtyar', emailer_pattern=r"Kira (D|Kira)", link_to_bio='https://x.com/FlippersUpNow/status/2020490996287443071'),
             Contact('Len Blavatnik', 'oligarch'),
             Contact(
                 MARIA_PRUSAKOVA,
-                info=f"AKA Masha Prusso, former Olympic snowboarder, {CRYPTO_PR_LAB} co-founder, \"found ladies\" for Epstein, Clifford Chance",
-                emailer_pattern=r"Ma(sha|riy?a) (Prus(kova|so))",
+                f"AKA Masha Prusso, former Olympic snowboarder, {CRYPTO_PR_LAB} co-founder, \"found ladies\" for Epstein, Clifford Chance",
+                r"Ma(sha|riy?a) (Prus(kova|so))",
                 link_to_bio='https://www.reddit.com/r/Epstein/comments/1qvsnqs/a_detailed_report_on_masha_prusso_aka_maria/',
             ),
             Contact(
@@ -1918,16 +1918,16 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(OLGA_PONOMAR_BECKER),
             Contact(
                 RENATA_BOLOTOVA,
-                info="former model, fund manager at New York State Insurance Fund, Рената Болотова",
-                emailer_pattern=r"Renata Bolotova|Rena B|Renata Bo\w+|renbolotova",
+                "former model, fund manager at New York State Insurance Fund, Рената Болотова",
+                r"Renata Bolotova|Rena B|Renata Bo\w+|renbolotova",
             ),
             Contact('Semion Mogilevich', 'infamous Russian mafia boss'),
             Contact("Serguei Beloussov", 'technologist', r"Serg Bell"),
             Contact('Serguei Kouzmine', 'co-founder of QWave Capital and gambling copmany Ritzio Entertainment'),
             Contact(
                 SERGEY_BELYAKOV,
-                emailer_pattern=r"Sergey Belyako|Беляков Сергей|Cepre(ct|il) [6BES][\w.]+|6(er|of)no\w+ [CE]\w+",
-                info="graduate of Russia's FSB academy (AKA \"a spy\"), head of the St. Petersburg Economic Forum",
+                "graduate of Russia's FSB academy (AKA \"a spy\"), head of the St. Petersburg Economic Forum",
+                r"Sergey Belyako|Беляков Сергей|Cepre(ct|il) [6BES][\w.]+|6(er|of)no\w+ [CE]\w+",
                 link_to_bio='https://dossier.center/jeffreyepsteinrusconnect-en/',
             ),
             Contact(
@@ -1943,7 +1943,11 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             ),
             company('Alfa Bank', 'Russian bank', r"Alfa( Bank)?"),
             company('Day One Ventures', f"silicon valley venture fund run by {MASHA_DROKOVA}"),
-            company('Quantum Wave Fund', f"venture fund associated with {MASHA_DROKOVA} focused on quantum stuff", r"(Quantum Wave|QWave) (Capital|Fund)"),
+            company(
+                'Quantum Wave Fund',
+                f"venture fund associated with {MASHA_DROKOVA} focused on quantum stuff",
+                r"(Quantum Wave|QWave) (Capital|Fund)",
+            ),
             company('Runa Capital', 'fund of Serguei Beloussov with investment from Steve Jurvetson and Frank Creer'),
         ],
         patterns=[
@@ -2158,12 +2162,9 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         label=Interesting.GIRLS,
         style=VICTIM_COLOR,
         contacts=[
+            Contact(JENNIFER_KALIN, f"allegedly involved in a sham marriage to {KARYNA_SHULIAK}"),
             Contact('Miranda'),
-            Contact(
-                PAULA_HEIL_FISHER,
-                "Epstein's ex-girlfriend who works in opera now",
-                match_partial_names=None,
-            ),
+            Contact(PAULA_HEIL_FISHER, "Epstein's ex-girlfriend who works in opera now", match_partial_names=None),
             Contact('Samantha Rose Stein', 'wombkind.com', match_partial_names=None),
             Contact('Sasha Grey', 'famous porn star', match_partial_names=None),
             Contact(UNKNOWN_GIRL, match_partial_names=None),

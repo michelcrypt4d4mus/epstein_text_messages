@@ -101,6 +101,7 @@ JEAN_HUGUEN = 'Jean Huguen'
 JEAN_LUC_BRUNEL = 'Jean Luc Brunel'
 JEFF_FULLER = 'Jeff Fuller'
 JENNIFER_JACQUET = 'Jennifer Jacquet'
+JENNIFER_KALIN = 'Jennifer Kalin'
 JEREMY_RUBIN = 'Jeremy Rubin'             # Bitcoin dev
 JES_STALEY = 'Jes Staley'
 JESSICA_CADWELL = 'Jessica Cadwell'       # Paralegal?
