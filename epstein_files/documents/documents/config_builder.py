@@ -26,6 +26,12 @@ DUPLICATES = {
     'EFTA00591792': ['EFTA00810358'],
 }
 
+CASE_IDS = {
+    '1:20-cr-00330-AJN': f"US v. {GHISLAINE_MAXWELL}",
+    '1:20-cv-00833-PAE': f"New York Times v. {BUREAU_OF_PRISONS}",
+    '1:19-cr-00490-RMB': f"US v. {JEFFREY_EPSTEIN}",
+}
+
 
 def build_cfg_from_text(doc: 'Document') -> DocCfg | None:
     """Scan the text to see if author, description, category, etc. can be derived from the contents."""
@@ -57,7 +63,8 @@ def build_cfg_from_text(doc: 'Document') -> DocCfg | None:
     elif VALAR_CAPITAL_CALL_REGEX.search(text):
         cfg = valar_cfg(doc.file_id, 'requesting money previously promised by Epstein to invest in a new opportunity')
     elif (case_match := LEGAL_FILING_REGEX.search(text)):
-        cfg = _cfg(category=Neutral.LEGAL, description=f"legal filing in case {case_match.group(1)}")
+        case_name = CASE_IDS.get(case_match.group(1), f"case {case_match.group(1)}")
+        cfg = _cfg(category=Neutral.LEGAL, description=f"legal filing in {case_name}")
     elif len(text) < 2600 and HARD_DRIVE_REGEX.search(text):
         cfg = _cfg(category=Neutral.MISC, description='photo of a hard drive')
     elif lines[0].lower().strip() == 'valuation report':

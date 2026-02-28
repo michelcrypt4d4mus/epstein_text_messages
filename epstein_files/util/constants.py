@@ -1771,6 +1771,7 @@ OTHER_FILES_DEPOSITION = [
     DocCfg(id='017488', author='Scott Rothstein', description=f"from {EPSTEIN_V_ROTHSTEIN_EDWARDS}", date='2012-06-22'),
     DocCfg(id='EFTA00009229', author='Alex Acosta', description='pages 1-100', date='2020-04-30', is_interesting=True),
     DocCfg(id='EFTA00009116', author='Alex Acosta', description='pages 300-411', date='2020-04-30', is_interesting=True),
+    DocCfg(id='EFTA00008744', author='FBI', date='2021-03-29', description='grand jury testimony of Child Exploitation & Human Trafficking Task Force member'),
 ]
 
 OTHER_FILES_LEGAL = [
@@ -1941,14 +1942,14 @@ OTHER_FILES_LEGAL = [
     DocCfg(id='022277', description=f"text of National Labour Relations Board (NLRB) law", is_interesting=False),
 
     # DOJ files
-    DocCfg(id='EFTA00039153', author=BUREAU_OF_PRISONS,  date='2019-01-06', description='List of Exhibits, Chapter 2'),
+    DocCfg(id='EFTA00039153', author=BUREAU_OF_PRISONS, date='2019-01-06', description='List of Exhibits, Chapter 2'),
+    DocCfg(id='EFTA00039190', author=BUREAU_OF_PRISONS, date='2016-11-23', description='Special Housing Units', is_interesting=False),
     DocCfg(id='EFTA02730741', author=DOJ, date='2025-05-01', date_uncertain=True, description="Evidence list for 50D-NY-3027571 Filtering On 'Type(s): 1B'"),
     DocCfg(id='EFTA02730486', author=DOJ, date='2025-05-01', date_uncertain=True, description="Evidence list for 50D-NY-3027571 Filtering On '1A'"),
     DocCfg(id='EFTA00040006', author=DOJ, date='2019-08-27', description='Personal History of Defendant Jeffrey Epstein with grand jury indictment'),
     DocCfg(id='EFTA02731226', author=DOJ, date='2021-03-14', description=f'memo seeking authorization to charge {GHISLAINE_MAXWELL} with additional offenses'),
     DocCfg(id='EFTA00005586', replace_text_with='completely redacted 69 pages labeled "Grand Jury - NY"'),
     DocCfg(id='EFTA00039817', date='2021-04-19', description='notice of hearing', duplicate_ids=['EFTA00039791'], is_interesting=False),
-    DocCfg(id='EFTA00008744', date='2021-03-29', description='grand jury testimony of FBI Child Exploitation and Human Trafficking Task Force'),
 ]
 
 OTHER_FILES_CONFERENCE = [
