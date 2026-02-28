@@ -2093,6 +2093,11 @@ OTHER_FILES_GOVERNMENT = [
         description="interview where Epstein's chef says Donald Trump came to Epstein's house for dinner",
         truncate_to=(6000, 7500),
     ),
+    DocCfg(
+        id='EFTA02730477',
+        author=FBI,
+        description=f'Research and Key Findings for Roderic Alexander, defense witness for {GHISLAINE_MAXWELL}',
+    ),
     DocCfg(id='EFTA02730274', description='evidence inventory that appears to have since been deleted from the DOJ website'),
     DocCfg(id='EFTA00001884', description='photo of letter from Virgin Islands DOJ to Epstein', date='2019-03-14'),
     DocCfg(id='EFTA00074744', description="USVI court filing about Epstein will and estate"),
@@ -2145,7 +2150,6 @@ OTHER_FILES_MONEY = [
     DocCfg(id='EFTA00000476', replace_text_with='photo of JEFFREY EPSTEIN CASH DISBURSEMENTS for the month 2006-09', date='2006-09-01'),
     EmailCfg(id='EFTA00037187', is_interesting=True),
 ]
-
 
 # This category makes is_interesting default to True
 OTHER_FILES_LETTER = [
