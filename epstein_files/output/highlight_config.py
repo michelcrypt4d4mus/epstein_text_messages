@@ -129,7 +129,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             ),
             Contact('Miles Alexander', "Operations Manager Michaelhouse Balgowan KwaZulu-Natal South Africa", match_partial_names=None),
             Contact('Macky Sall', "prime minister of Senegal, defeated Abdoulaye Wade", match_partial_names=None),
-            Contact(RASSECK_BOURGI, f"{KARIM_WADE}'s lawyer", r"(Rasseck|Ute) Bourgi"),
+            Contact(RASSECK_BOURGI, f"{KARIM_WADE}'s lawyer", r"(Rasseck|Ute) Bourgi", match_partial_names='both'),
         ],
         patterns=[
             r"Abuja",
