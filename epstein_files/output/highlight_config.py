@@ -396,8 +396,17 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 emailer_pattern=r"((Andy|Adam) )Back?",
                 match_partial_names=None,
             ),
-            Contact(AMIR_TAAKI, f"bitcoin bro, partner of {DONALD_NORMAN} (and {BROCK_PIERCE}?)", r"Amir Taaki|genjix", match_partial_names='both'),
-            Contact(ANTHONY_SCARAMUCCI, "Skybridge Capital, FTX investor, Trump spokesman for two weeks", r"mooch|(Anthony ('The Mooch' )?)?Scaramucci"),
+            Contact(
+                AMIR_TAAKI,
+                f"bitcoin bro, partner of {DONALD_NORMAN} (and {BROCK_PIERCE}?)",
+                r"Amir Taaki|genjix",
+                match_partial_names='both'
+            ),
+            Contact(
+                ANTHONY_SCARAMUCCI,
+                "Skybridge Capital, FTX investor, Trump spokesman for two weeks",
+                r"mooch|(Anthony ('The Mooch' )?)?Scaramucci"
+            ),
             Contact(ARIANNA_SIMPSON, f"a16z partner involved in the Axie Infinity debacle, Autonomous Partners", match_partial_names=None),
             Contact(
                 AUSTIN_HILL,
@@ -406,7 +415,11 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 match_partial_names='first'  # TODO: questionable
             ),
             Contact('Barry Silbert', f"founder of Digital Currency Group with {LARRY_SUMMERS} on the board"),
-            Contact('Ben Horowitz', 'co-founder of crypto heavy venture fund Andreessen Horowitz AKA a16z, Trump convert', match_partial_names=None),
+            Contact(
+                'Ben Horowitz',
+                'co-founder of crypto heavy venture fund Andreessen Horowitz AKA a16z, Trump convert',
+                match_partial_names=None
+            ),
             Contact(
                 'Bo Collins',
                 f"AKA James Robert Collins, {MERCANTILE_GLOBAL_HOLDINGS}, testified in trial of Miles Guo/Miles Kwok",
@@ -729,8 +742,13 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact('Alan S Halperin', "partner at Paul, Weiss"),
             Contact(ALAN_DERSHOWITZ, f"{HARVARD} Law School professor", r"(alan.{1,7})?dershowi(lz?|t?z)|AlanDersh"),
             Contact(ARDA_BESKARDES, "NYC immigration attorney allegedly involved in sex-trafficking operations"),
-            Contact(BENNET_MOSKOWITZ, "represented the Epstein estate executors", r"Moskowitz.*Bennet|Bennet.*Moskowitz", match_partial_names=None),
-            Contact(BRAD_KARP, "head of the law firm Paul Weiss", r"Brad (S.? )?Karp|Karp, Brad"),
+            Contact(
+                BENNET_MOSKOWITZ,
+                "represented the Epstein estate executors",
+                r"Moskowitz.*Bennet|Bennet.*Moskowitz",
+                match_partial_names=None,
+            ),
+            Contact(BRAD_KARP, "head of the law firm Paul Weiss", r"Brad (S.? )?Karp|Karp, Brad", match_partial_names=None),
             Contact(
                 name=CHRISTIAN_EVERDELL,
                 info=f"{GHISLAINE_MAXWELL}'s lawyer ca. 2021, Cohen & Gresser",
@@ -2136,7 +2154,11 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         style=VICTIM_COLOR,
         contacts=[
             Contact('Miranda'),
-            Contact(PAULA, "ex-girlfriend who works in opera now", r"^Paula( Heil Fisher)?$"),
+            Contact(
+                PAULA_HEIL_FISHER,
+                "Epstein's ex-girlfriend who works in opera now",
+                match_partial_names=None,
+            ),
             Contact('Samantha Rose Stein', 'wombkind.com', match_partial_names=None),
             Contact('Sasha Grey', 'famous porn star', match_partial_names=None),
             Contact(UNKNOWN_GIRL, match_partial_names=None),
@@ -2261,12 +2283,6 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
     HighlightedNames(
         contacts=[Contact(MELANIE_WALKER, f"doctor, friend of {BILL_GATES}", match_partial_names=None)],
         style='pale_violet_red1',
-        category=FRIEND
-    ),
-    HighlightedNames(
-        label='paula',
-        style='pink1',
-        contacts=[Contact(PAULA, "Epstein's ex-girlfriend who is now in the opera world", r"^Paula( Heil Fisher)?$", match_partial_names=None)],
         category=FRIEND
     ),
     HighlightedNames(
