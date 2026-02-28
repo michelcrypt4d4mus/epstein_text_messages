@@ -3005,6 +3005,8 @@ UNINTERESTING_EMAIL_IDS = [
     'EFTA00005705',
     'EFTA00005716',
     'EFTA00005717',
+    # Ian Osborne
+    'EFTA01763771',
     # Jabor
     '030786',
     '033011',
