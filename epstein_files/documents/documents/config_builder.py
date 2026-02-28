@@ -10,6 +10,7 @@ from epstein_files.util.logging import logger
 DEUTSCHE_SOUTHERN_REGEX = re.compile(r"^.{,50}Deutsche Bank.{,1000}(SOUTHERN TRUST|RED HOOK QUARTER)", re.DOTALL)
 EVIDENCE_REGEX = re.compile(r".{,1000}ITEM\s+WAS\s+NOT\s+SCANNED")
 FBI_FILE_REGEX = re.compile(r"^(UNCLASSIFIED\s+)?FEDERAL BUREAU OF INVESTIGATION")
+GRAND_JURY_REGEX = re.compile(r"Grand Jury", re.IGNORECASE)
 HARD_DRIVE_REGEX = re.compile(r"westerndigital|Gold SATA")
 LEGAL_FILING_REGEX = re.compile(r"^Case (\d+:\d+-.*?) Doc")
 LSJE_FORM_REGEX = re.compile(r".{,5}LSJE,\s+LLC.*Emergency\s+Contact\s+Form", re.DOTALL)
@@ -26,6 +27,12 @@ DUPLICATES = {
     'EFTA00591792': ['EFTA00810358'],
 }
 
+CASE_IDS = {
+    '1:20-cr-00330-AJN': f"US v. {GHISLAINE_MAXWELL}",
+    '1:20-cv-00833-PAE': f"New York Times v. {BUREAU_OF_PRISONS}",
+    '1:19-cr-00490-RMB': f"US v. {JEFFREY_EPSTEIN}",
+}
+
 
 def build_cfg_from_text(doc: 'Document') -> DocCfg | None:
     """Scan the text to see if author, description, category, etc. can be derived from the contents."""
@@ -40,6 +47,8 @@ def build_cfg_from_text(doc: 'Document') -> DocCfg | None:
         cfg = fbi_report(doc.file_id, 'memorandum or report')
     elif EVIDENCE_REGEX.search(text):
         cfg = _cfg(category=Neutral.LEGAL, description='photos of collected evidence')
+    elif GRAND_JURY_REGEX.search(text[0:100]):
+        cfg = _cfg(category=Neutral.LEGAL, description='grand jury proceedings')
     elif 'LedgerX' in text[0:500]:
         cfg = _cfg(category=Interesting.CRYPTO, description=LEDGERX_MSG)
     elif LSJE_FORM_REGEX.search(text):
@@ -57,7 +66,8 @@ def build_cfg_from_text(doc: 'Document') -> DocCfg | None:
     elif VALAR_CAPITAL_CALL_REGEX.search(text):
         cfg = valar_cfg(doc.file_id, 'requesting money previously promised by Epstein to invest in a new opportunity')
     elif (case_match := LEGAL_FILING_REGEX.search(text)):
-        cfg = _cfg(category=Neutral.LEGAL, description=f"legal filing in case {case_match.group(1)}")
+        case_name = CASE_IDS.get(case_match.group(1), f"case {case_match.group(1)}")
+        cfg = _cfg(category=Neutral.LEGAL, description=f"legal filing in {case_name}")
     elif len(text) < 2600 and HARD_DRIVE_REGEX.search(text):
         cfg = _cfg(category=Neutral.MISC, description='photo of a hard drive')
     elif lines[0].lower().strip() == 'valuation report':
@@ -82,6 +92,15 @@ def blaine_letter(id: str, date: str, suffix: str = '') -> CommunicationCfg:
         description=join_truthy(f"recommending genius visa for a Epstein's assistant {SVETLANA_POZHIDAEVA}", suffix),
         is_interesting=True,
         recipients=['Immigration'],
+    )
+
+
+def fbi_defense_witness(id: str, witness: str, date: str = '') -> DocCfg:
+    return DocCfg(
+        id=id,
+        author=FBI,
+        date=date,
+        description=f'Research and Key Findings for {witness}, defense witness for {GHISLAINE_MAXWELL}',
     )
 
 

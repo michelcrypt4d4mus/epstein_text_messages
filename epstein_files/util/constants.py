@@ -4,7 +4,7 @@ Custom configurations for various files.
 from itertools import groupby
 
 from epstein_files.documents.documents.config_builder import (WOLFF_EPSTEIN_ARTICLE_DRAFT, blaine_letter,
-     fbi_report, letter, starr_letter, whistleblower_cfg, wolff_draft_cfg)
+     fbi_defense_witness, fbi_report, letter, starr_letter, whistleblower_cfg, wolff_draft_cfg)
 from epstein_files.documents.documents.categories import CONSTANT_CATEGORIES, Interesting, Neutral
 from epstein_files.documents.documents.doc_cfg import (DEFAULT_TRUNCATE_TO, SHORT_TRUNCATE_TO, NO_TRUNCATE,
      CommunicationCfg, DocCfg, EmailCfg, TextCfg, phone_bill_cfg)
@@ -1517,6 +1517,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA01849797', show_with_name=CHRIS_POOLE),
     EmailCfg(id='EFTA02179653', show_with_name=CHRIS_POOLE),
     EmailCfg(id='EFTA01987383', show_with_name=CHRIS_POOLE),
+    EmailCfg(id='EFTA00909508', comment='party at Bunker'),
 ]
 
 
@@ -1769,6 +1770,11 @@ OTHER_FILES_DEPOSITION = [
     DocCfg(id='021824', author=PAUL_G_CASSELL, description=f"from {EDWARDS_V_DERSHOWITZ}"),
     DocCfg(id='013463', author='Scott Rothstein', description=f"from {JANE_DOE_V_EPSTEIN_TRUMP}", date='2010-03-23'),
     DocCfg(id='017488', author='Scott Rothstein', description=f"from {EPSTEIN_V_ROTHSTEIN_EDWARDS}", date='2012-06-22'),
+    DocCfg(id='EFTA00009229', author='Alex Acosta', description='pages 1-100', date='2020-04-30', is_interesting=True),
+    DocCfg(id='EFTA00009329', author='Alex Acosta', description='pages 101-200', date='2020-04-30', is_interesting=True),
+    DocCfg(id='EFTA00009016', author='Alex Acosta', description='pages 201-300', date='2020-04-30', is_interesting=True),
+    DocCfg(id='EFTA00009116', author='Alex Acosta', description='pages 300-411', date='2020-04-30', is_interesting=True),
+    DocCfg(id='EFTA00008744', author='FBI', date='2021-03-29', description='grand jury testimony of Child Exploitation & Human Trafficking Task Force member'),
 ]
 
 OTHER_FILES_LEGAL = [
@@ -1939,7 +1945,14 @@ OTHER_FILES_LEGAL = [
     DocCfg(id='022277', description=f"text of National Labour Relations Board (NLRB) law", is_interesting=False),
 
     # DOJ files
+    DocCfg(id='EFTA00039153', author=BUREAU_OF_PRISONS, date='2019-01-06', description='List of Exhibits, Chapter 2'),
+    DocCfg(id='EFTA00039190', author=BUREAU_OF_PRISONS, date='2016-11-23', description='Special Housing Units', is_interesting=False),
+    DocCfg(id='EFTA02730741', author=DOJ, date='2025-05-01', date_uncertain=True, description="Evidence list for 50D-NY-3027571 Filtering On 'Type(s): 1B'"),
+    DocCfg(id='EFTA02730486', author=DOJ, date='2025-05-01', date_uncertain=True, description="Evidence list for 50D-NY-3027571 Filtering On '1A'"),
+    DocCfg(id='EFTA00040006', author=DOJ, date='2019-08-27', description='Personal History of Defendant Jeffrey Epstein with grand jury indictment'),
+    DocCfg(id='EFTA02731226', author=DOJ, date='2021-03-14', description=f'memo seeking authorization to charge {GHISLAINE_MAXWELL} with additional offenses'),
     DocCfg(id='EFTA00005586', replace_text_with='completely redacted 69 pages labeled "Grand Jury - NY"'),
+    DocCfg(id='EFTA00039817', date='2021-04-19', description='notice of hearing', duplicate_ids=['EFTA00039791'], is_interesting=False),
 ]
 
 OTHER_FILES_CONFERENCE = [
@@ -2082,6 +2095,9 @@ OTHER_FILES_GOVERNMENT = [
         description="interview where Epstein's chef says Donald Trump came to Epstein's house for dinner",
         truncate_to=(6000, 7500),
     ),
+    fbi_defense_witness('EFTA02730267', 'Malcolm Grumbridge', '2022-04-14'),
+    fbi_defense_witness('EFTA02730477', 'Roderic Alexander', '2022-01-19'),
+    fbi_defense_witness('EFTA02730271', REDACTED, '2022-03-22'),
     DocCfg(id='EFTA02730274', description='evidence inventory that appears to have since been deleted from the DOJ website'),
     DocCfg(id='EFTA00001884', description='photo of letter from Virgin Islands DOJ to Epstein', date='2019-03-14'),
     DocCfg(id='EFTA00074744', description="USVI court filing about Epstein will and estate"),
@@ -2135,7 +2151,6 @@ OTHER_FILES_MONEY = [
     EmailCfg(id='EFTA00037187', is_interesting=True),
 ]
 
-
 # This category makes is_interesting default to True
 OTHER_FILES_LETTER = [
     CommunicationCfg(
@@ -2144,9 +2159,10 @@ OTHER_FILES_LETTER = [
         date='2016-06-24',  # date is based on Brexit reference but he could be backtesting,
         description=f"about algorithmic trading",
     ),
-    CommunicationCfg(id='EFTA00007609', recipients=['Alberto'], duplicate_ids=['EFTA00007582']),
     CommunicationCfg(id='026134', recipients=['George'], description=f'about opportunities to buy banks in Ukraine'),
+    CommunicationCfg(id='EFTA00007609', recipients=['Alberto'], duplicate_ids=['EFTA00007582']),
     CommunicationCfg(id='EFTA02731023', author='Senator Ron Wyden', recipients=[LEON_BLACK], is_interesting=False),
+    CommunicationCfg(id='EFTA02731018', author='Senator Ron Wyden', recipients=['Marc Rowan'], is_interesting=False),
     blaine_letter(id='019086', date='2015-05-27', suffix='naming various Putin puppet regimes'),
     blaine_letter(id='019474', date='2015-05-29'),
     blaine_letter(id='019476', date='2015-06-01'),
@@ -2512,6 +2528,9 @@ OTHER_FILES_GIRLS = [
     ),
     EmailCfg(id='030609', duplicate_ids=['030495']),
     EmailCfg(id='EFTA00766770'),
+    EmailCfg(id='EFTA00878255', comment=BORIS_NIKOLIC),
+    EmailCfg(id='EFTA02551185', comment=BORIS_NIKOLIC),
+    EmailCfg(id='EFTA02538269', duplicate_ids=['EFTA01866636'], comment=BORIS_NIKOLIC),
     EmailCfg(id='EFTA00671662', author='Miranda', author_reason='quoted signature'),
     EmailCfg(id='EFTA01990168', author=UNKNOWN_GIRL, is_interesting=True),
     EmailCfg(id='EFTA02431535', author=UNKNOWN_GIRL),
@@ -3024,6 +3043,7 @@ UNINTERESTING_EMAIL_IDS = [
     # Epstein
     '030997',
     '033428',
+    '030154',
     # Eric Roth
     '033386',
     # FBI
