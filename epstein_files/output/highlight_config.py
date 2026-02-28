@@ -2109,6 +2109,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Erick? Sc?hmidt",
             r"Greylock( Partners)?",
             r"(Jeff )?Bezos",
+            r"Kimbal Musk",
             r"Larry Page",
             r"(Mark )?Zuckerberg",
             r"Najeev",
@@ -2214,7 +2215,11 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         label=Interesting.GIRLS,
         style=VICTIM_COLOR,
         contacts=[
-            Contact(JENNIFER_KALIN, f"allegedly involved in a sham marriage to {KARYNA_SHULIAK}"),
+            Contact(
+                JENNIFER_KALIN,
+                f"allegedly involved in a sham marriage to {KARYNA_SHULIAK}, dated Kimbal Musk",
+                link_to_bio='https://x.com/JOKAQARMY1/status/2026731420832481549',
+            ),
             Contact('Miranda'),
             Contact(PAULA_HEIL_FISHER, "Epstein's ex-girlfriend who works in opera now", match_partial_names=None),
             Contact('Samantha Rose Stein', 'wombkind.com', match_partial_names=None),
