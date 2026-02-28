@@ -417,7 +417,7 @@ def _biographical_panel(names: list[str]) -> Panel | None:
         expand=False,
         # padding=(0, 2),
         style='on gray7',
-        title=Text(f"new names in next file(s)", 'grey85 italic'),
+        title=Text(f"new names in next file", 'grey85 italic'),
         title_align='right',
     )
 
