@@ -2992,6 +2992,10 @@ UNINTERESTING_EMAIL_IDS = [
     '033428',
     # Eric Roth
     '033386',
+    # FBI
+    'EFTA00005705',
+    'EFTA00005716',
+    'EFTA00005717',
     # Jabor
     '030786',
     '033011',

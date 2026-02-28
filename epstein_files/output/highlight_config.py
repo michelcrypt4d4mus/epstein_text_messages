@@ -438,7 +438,8 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(
                 name=HOWARD_LUTNICK,
                 info="Tether's banker, Cantor Fitzgerald, US Commerce Secretary under Trump",
-                emailer_pattern=r"Lutnic?k(,? Howard)|How.rd( W(\.|illiam)?)? Lutnick|HWL"
+                emailer_pattern=r"Lutnic?k(,? Howard)|How.rd( W(\.|illiam)?)? Lutnick|HWL",
+                link_to_bio='https://cryptadamus.substack.com/p/trumps-transition-team-is-tethered',
             ),
             Contact(JEFFREY_WERNICK, "former COO of Parler, involved in numerous crypto companies like Bitforex"),
             Contact(JEREMY_RUBIN, "developer/researcher", r"Jeremy Rub(in|m)", match_partial_names=None),
