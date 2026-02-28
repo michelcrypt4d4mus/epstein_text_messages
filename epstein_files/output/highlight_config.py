@@ -482,6 +482,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact('Suhas Daftuar', 'Chaincode Labs'),
             Contact('Tim Draper', 'partner at Draper Fisher Jurvetson, loves bitcoin', r"Tim(othy)?( Cook)? Draper"),
             Contact('W. Bradford Stephens', f"co-founder of {BLOCKCHAIN_CAPITAL}", r"(Brad(ford)?|Bart) Stephens"),
+            Contact('William Wheeler', f'co-founder of cashintocoins.com, {EXPRESSCOIN} with {BROCK_PIERCE}', match_partial_names=None),
             Contact("Wladimir van der Laan", 'bitcoin core developer', r"Wladimir( van der Laan)?"),
             company(
                 'a16z',
@@ -521,6 +522,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 r"DFJ( Capital|Fund)?|Draper Fisher Jurvetson"
             ),
             company('Electric Coin Company', f"FKA 'Zerocoin', {MADARS_VIRZA} and untraceable cryptocurrency ZCash"),
+            company('ExpressCoin', f"bitcoin market founded by {BROCK_PIERCE} and William Wheeler"),
             company('Kraken', "second largest American crypto exchange after Coinbase"),
             company(
                 KYARA_INVESTMENT,
@@ -2001,7 +2003,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(YULIA_DOROKHINA),
             Contact(
                 'Yuri Milner',
-                f'Russian/Israeli investor whom Epstein says is managing "Russian gangster money"',
+                f'Russian-Israeli investor whom Epstein says is managing "Russian gangster money"',
                 match_partial_names='both',
             ),
             company('Alfa Bank', 'Russian bank often used by FSB', r"Alfa( Bank)?"),
