@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from epstein_files.util.constant.names import CECILE_DE_JONGH, JEFFREY_EPSTEIN
+from epstein_files.util.constant.names import CECILE_DE_JONGH, CHRISTINA_GALBRAITH, JEFFREY_EPSTEIN
 
 
 def test_debug_dict(email):
@@ -37,6 +37,11 @@ def test_debug_dict(email):
         },
         'email.is_interesting': True,
         'email.is_word_count_worthy': True,
+        'email.people': [
+            CECILE_DE_JONGH,
+            CHRISTINA_GALBRAITH,
+            JEFFREY_EPSTEIN,
+        ],
         'email.num_lines': 47,
         'email.recipients': [CECILE_DE_JONGH, JEFFREY_EPSTEIN],
         'email.timestamp': datetime(2012, 6, 22, 23, 8),

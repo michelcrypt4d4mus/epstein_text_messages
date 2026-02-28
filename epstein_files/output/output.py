@@ -88,7 +88,9 @@ def print_curated_chronological(epstein_files: EpsteinFiles) -> list[Document]:
         other_files_queue = []
 
     for doc in epstein_files.unique_documents:
-        if not doc.is_interesting:
+        should_print = doc.is_interesting if not args.invert_chrono else not doc.is_interesting
+
+        if not should_print:
             continue
         elif isinstance(doc, OtherFile) and doc.is_valid_for_table:
             if new_names(doc):

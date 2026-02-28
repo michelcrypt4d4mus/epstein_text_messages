@@ -74,6 +74,7 @@ debug.add_argument('--colors-only', '-c', action='store_true', help='print heade
 debug.add_argument('--constantize', action='store_true', help='constantize names when printing repr() of objects')
 debug.add_argument('--debug', '-d', action='store_true', help='set debug level to INFO')
 debug.add_argument('--deep-debug', '-dd', action='store_true', help='set debug level to DEBUG')
+debug.add_argument('--invert-chrono', action='store_true', help='uninteresting emails in chrono view instead of interesting ones')
 debug.add_argument('--load-new', '-ln', action='store_true', help='load any new files and write pickle file')
 debug.add_argument('--panelize-emails', '-pe', action='store_true', help='show email descriptions in Panels instead of Tables')
 debug.add_argument('--reload-doj', '-rd', action='store_true', help='reload only the DOJ files, not HOUSE_OVERSIGHT')

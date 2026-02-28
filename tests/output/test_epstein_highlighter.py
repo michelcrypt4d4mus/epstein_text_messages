@@ -82,9 +82,9 @@ HIGHLIGHT_COUNTS = {
     "chinese": 1,
     "chris dilorio": 25,
     'christopher dilorio': 4,
-    "cis": 1,
+    "cis": 1,  # TODO: wtf?
     "clayton": 10,
-    "coleman": 6,
+    'convertible notes': 1,
     "colorado": 2,
     "credit suisse": 1,
     "date:": 2,
