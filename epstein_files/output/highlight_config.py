@@ -1413,9 +1413,10 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(JENNIFER_JACQUET, "Future Science magazine"),
             Contact(JOHN_BROCKMAN, "literary agent and author specializing in scientific literature"),
             Contact(
-                'Julie K. Brown',
-                'blew the lid on the Epstein sweetheart deal',
-                r"Julie (K.? )?Brown|jbrown@miamiherald.com"
+                JULIE_K_BROWN,
+                'blew the lid on the 2006 Epstein sweetheart deal',
+                r"Julie (K.? )?Brown|jbrown@miamiherald.com",
+                match_partial_names=None,
             ),
             Contact(LANDON_THOMAS, "New York Times financial reporter", r"lando[nr] thomas( jr)?|thomas jr.?, lando[nr]"),
             Contact(
