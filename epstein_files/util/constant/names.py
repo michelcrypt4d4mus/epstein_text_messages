@@ -101,6 +101,7 @@ JEAN_HUGUEN = 'Jean Huguen'
 JEAN_LUC_BRUNEL = 'Jean Luc Brunel'
 JEFF_FULLER = 'Jeff Fuller'
 JENNIFER_JACQUET = 'Jennifer Jacquet'
+JENNIFER_KALIN = 'Jennifer Kalin'
 JEREMY_RUBIN = 'Jeremy Rubin'             # Bitcoin dev
 JES_STALEY = 'Jes Staley'
 JESSICA_CADWELL = 'Jessica Cadwell'       # Paralegal?
@@ -135,6 +136,7 @@ MARK_TRAMO = 'Mark Tramo'
 MARTIN_NOWAK = 'Martin Nowak'
 MARTIN_WEINBERG = "Martin Weinberg"
 MARIA_PRUSAKOVA = 'Maria Prusakova'
+MASAYOSHI_SON = 'Masayoshi Son'
 MASHA_DROKOVA = 'Masha Drokova'
 MATTHEW_HILTZIK = 'Matthew Hiltzik'
 MELANIE_SPINELLA = 'Melanie Spinella'
@@ -157,7 +159,7 @@ PAUL_BARRETT = 'Paul Barrett'
 PAUL_KRASSNER = 'Paul Krassner'
 PAUL_MORRIS = 'Paul Morris'
 PAUL_PROSPERI = 'Paul Prosperi'
-PAULA = f"Paula Heil Fisher {QUESTION_MARKS}"  # the last email about opera lines up but if Fisher was supposedly w/Epstein at Bear Stearns the timeline is a bit weird for her to call him "Unc"
+PAULA_HEIL_FISHER = f"Paula Heil Fisher"  # the last email about opera lines up but if Fisher was supposedly w/Epstein at Bear Stearns the timeline is a bit weird for her to call him "Unc"
 PEGGY_SIEGAL = 'Peggy Siegal'
 PETER_ATTIA = 'Peter Attia'
 PETER_MANDELSON = 'Peter Mandelson'
@@ -323,8 +325,8 @@ VI_DAILY_NEWS = f'{VIRGIN_ISLANDS} Daily News'
 WAPO = 'WaPo'
 
 
-# First and last names that should be made part of a highlighting regex for emailers
-NAMES_TO_NOT_PARTIALLY_MATCH = set("""
+# Names to color white in the word counts
+OTHER_NAMES = """
     adam al alain alan alison alfredo allen alex alexander amanda andres andrew angela ann anthony ari asia audrey
     back bard barrett barry ben bennet bernard bill black bo bob boris boyle brad brenner bruce bryan
     cameron capital caroline carolyn chris christian christina christopher cohen collins
@@ -347,11 +349,6 @@ NAMES_TO_NOT_PARTIALLY_MATCH = set("""
     unknown
     ventures victor viktor virginia
     wade waters
-    y
-""".strip().split())
-
-# Names to color white in the word counts
-OTHER_NAMES = list(NAMES_TO_NOT_PARTIALLY_MATCH) + """
     aaron albert alberto alec alexandra alice anderson andre ann anna anne ariana arthur
     baldwin barack barrett ben benjamin berger bert binant bob bonner boyden bradley brady branson bright bruno bryant burton
     chapman charles charlie christopher clint cohen colin collins conway

@@ -4,8 +4,7 @@ from typing import Literal, Self
 
 from rich.text import Text
 
-from epstein_files.util.constant.names import (NAMES_TO_NOT_PARTIALLY_MATCH, Name,
-     constantize_name, extract_first_name, extract_last_name)
+from epstein_files.util.constant.names import Name, constantize_name, extract_first_name, extract_last_name
 from epstein_files.util.constant.strings import INDENT_NEWLINE, INDENTED_JOIN, LAW_ENFORCEMENT, PartialName
 from epstein_files.util.helpers.data_helpers import constantize_names
 from epstein_files.util.helpers.link_helper import link_text_obj
@@ -24,11 +23,16 @@ class Contact:
         name (str): Person or organization name
         info (str, optional): biographical info about this person
         emailer_pattern (str, optional): manually constructed regex pattern to match this person in email headers
-        emailer_regex (re.Pattern): pattern that matches this person's name in various variations
+        category (str, optional): category of this entity
+        style (str, optional): style to use when printing this entity's name
+        emailer_regex (re.Pattern): pattern that matches this person's name in email headers
+        highlight_regex (re.Pattern): pattern that matches this person's name in various variations for highlightihng
         is_emailer (bool): should email headers be scanned for this entity
         is_interesting (bool): should a biographical entry be generated for this panel in the chronological view
+        is_junk (bool): for junk email
         is_organization (bool): if this is a company or group, don't try to match first and last versions of its name
         link_to_bio (str, optional): a link to some info about this entity
+        match_partial_names (PartialName | None): whether to also match this entity's first and last names
     """
     name: str
     info: str = ''
@@ -48,9 +52,6 @@ class Contact:
     def __post_init__(self):
         if self.is_organization:
             self.match_partial_names = None
-
-        if self.info == LAW_ENFORCEMENT:  # TODO: this sucks
-            self.is_interesting = False
 
         try:
             self.emailer_regex = re.compile(self.pattern, re.IGNORECASE)
@@ -77,8 +78,7 @@ class Contact:
         if self.category:
             txt.append(' [', style='dim').append(self.category.lower(), style=f'{self.style} dim').append(']', style='dim')
 
-        txt.append(' ').append(self.info, style='italic')
-        return txt
+        return txt.append(' ').append(self.info, style='italic')
 
     @property
     def bold_style(self) -> str:
@@ -187,19 +187,6 @@ def company(name: str, description: str = '', emailer_pattern: str = '', **kwarg
     return Contact(name, description, emailer_pattern, is_organization=True, **kwargs)
 
 
-def epstein_trust(name: str, emailer_pattern: str = '', beneficiaries: list[str] | None = None) -> Contact:
-    beneficiary_str = ''
-
-    if beneficiaries:
-        if len(beneficiaries) == 1:
-            beneficiary_str = f"sole beneficiary {beneficiaries[0]}"
-        else:
-            beneficiary_str = f"beneficiaries {', '.join(beneficiaries)}"
-
-    beneficiary_str = f", {beneficiary_str}" if beneficiary_str else ''
-    return company(name, f'Epstein financial trust{beneficiary_str}', emailer_pattern)
-
-
 def epstein_co(name: str, emailer_pattern: str = '') -> Contact:
     if (llc_or_inc_match := LLC_OR_INC.match(name)) and not emailer_pattern:
         suffix = llc_or_inc_match.group(1)
@@ -216,5 +203,18 @@ def epstein_co(name: str, emailer_pattern: str = '') -> Contact:
     return company(name, 'Epstein company', emailer_pattern)
 
 
+def epstein_trust(name: str, emailer_pattern: str = '', beneficiaries: list[str] | None = None) -> Contact:
+    beneficiary_str = ''
+
+    if beneficiaries:
+        if len(beneficiaries) == 1:
+            beneficiary_str = f"sole beneficiary {beneficiaries[0]}"
+        else:
+            beneficiary_str = f"beneficiaries {', '.join(beneficiaries)}"
+
+    beneficiary_str = f", {beneficiary_str}" if beneficiary_str else ''
+    return company(name, f'Epstein financial trust{beneficiary_str}', emailer_pattern)
+
+
 def law_enforcement(name: str, emailer_pattern: str = '') -> Contact:
-    return Contact(name, LAW_ENFORCEMENT, emailer_pattern=emailer_pattern, is_organization=True)
+    return company(name, LAW_ENFORCEMENT, emailer_pattern, is_interesting=False)

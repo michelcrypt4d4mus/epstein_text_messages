@@ -62,6 +62,7 @@ CATEGORY_STYLE_MAPPING = {
     Interesting.GIRLS: 'victim',
     Interesting.MONEY: Neutral.FINANCE,
     Interesting.REPUTATION: PUBLICIST,
+    Interesting.SOCIAL: PUBLICIST,
     Interesting.TEXT_MSG: TECH_BRO,
     Neutral.DEPOSITION: LAWYER,
     Neutral.LEGAL: LAWYER,
@@ -71,7 +72,7 @@ CATEGORY_STYLE_MAPPING = {
     Uninteresting.CONFERENCE: ACADEMIA,  # TODO: this maps to f"{get_style_for_category(ACADEMIA)} dim"
     Uninteresting.POLITICS: LOBBYIST,
     Uninteresting.PROPERTY: BUSINESS,
-    Uninteresting.TWEET: Interesting.SOCIAL,
+    Uninteresting.TWEET: PUBLICIST,
 }
 
 CATEGORY_STYLES = {

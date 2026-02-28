@@ -165,7 +165,7 @@ DEVICE_SIGNATURE_TO_AUTHORS = {
         TERRY_KAFKA,
     ],
     "Sent via BlackBerry from T-Mobile": [
-        PAULA
+        PAULA_HEIL_FISHER
     ],
     "Sent via tin can and string.": [
         "Mark Epstein"
@@ -372,7 +372,7 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
         "Sent from my BlackBerry 10 smartphone.",
         "Sent from my iPhone"
     ],
-    PAULA: [
+    PAULA_HEIL_FISHER: [
         "Sent via BlackBerry from T-Mobile"
     ],
     PEGGY_SIEGAL: [
