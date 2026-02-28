@@ -74,6 +74,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(ROGER_SCHANK, "Teachers College, Columbia University"),
             Contact('Sandy Pentland', MIT_MEDIA_LAB, r"((Alex|Sandy) )?Pentland"),
             Contact(SETH_LLOYD, "professor of mechanical engineering at MIT"),
+            Contact(STEVEN_VICTOR_MD, "doctor who treated Epstein's girlfriends", match_partial_names=None),
             Contact('Valeria Chomsky', f"wife of {NOAM_CHOMSKY}", match_partial_names='both'),
             Contact(YUKO_BARNABY, f"{MIT_MEDIA_LAB} Assistant to the Director", r"Y[ou]ko Ba(m|rn)(aby)?"),
             Contact(WHITFIELD_DIFFIE, f"MIT cryptographer and mathematician", r"whitfield.{,3}diffie?", match_partial_names='both'),
@@ -82,6 +83,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 f"once great research institute overtaken by get rich quick schemes under {JOI_ITO}",
                 r"(MIT )?Media Lab",
             ),
+            company('Mount Sinai', f"hospital in NYC where {EVA_DUBIN} works"),
         ],
         patterns=[
             r"Andy Lippman",  # Media Lab
@@ -720,7 +722,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             ),
             Contact(
                 name=JEFFREY_EPSTEIN,
-                emailer_pattern=r"[dfjl]\s?ee[vy]acation[©@]?g?(mail.com)?|Epstine|\bJEE?\b|Jeff(rey)? (Edward )?E((sp|ps)tein?)?( VI Foundation)?|jeeproject@yahoo.com|J Jep|Jeffery Edwards|(?<!(ark L.|rd Jay|Edward) )Epstein|Jeffrey Epst.*comj?",
+                emailer_pattern=r"ee[vy]acation[©@e]?g?(mail.com)?|Epstine|\bJEE?\b|Jeff(rey)? (Edward )?E((sp|ps)tein?)?( VI Foundation)?|jeeproject@yahoo.com|J Jep|Jeffery Edwards|(?<!(ark L.|rd Jay|Edward) )Epstein|Jeffrey Epst.*comj?",
                 match_partial_names=None,
             ),
             Contact(MARK_EPSTEIN, "brother of Jeffrey", r"Mark (L\. )?(Epstein|Lloyd)", match_partial_names=None),
@@ -2254,7 +2256,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"child porn(ography)?",
             r"(child )?sex traffi?c?k(ers?|ing)",
             r"Ellaina As?tras?",
-            r"gyneconomist",
+            r"gyn(eco(logist|nomist)|o)",
             r"(Jane|Tiffany) Doe",
             r"Katie Johnson",
             r"Midget stripper",

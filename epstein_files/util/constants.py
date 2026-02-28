@@ -1454,14 +1454,13 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA02608800', duplicate_ids=['EFTA01010308']),
     EmailCfg(id='EFTA00870649', duplicate_ids=['EFTA01932408']),
     EmailCfg(id='EFTA00717931', duplicate_ids=['EFTA01774218']),
-    EmailCfg(id='EFTA01776411', duplicate_ids=['EFTA02691069']),
     EmailCfg(id='EFTA02390441', duplicate_ids=['EFTA02403336']),
     EmailCfg(id='EFTA00428083', duplicate_ids=['EFTA02183761']),
     EmailCfg(id='EFTA00432350', duplicate_ids=['EFTA02187050']),
     EmailCfg(id='EFTA00432352', duplicate_ids=['EFTA02187120']),
     EmailCfg(id='EFTA00373948', duplicate_ids=['EFTA02113506']),
     EmailCfg(id='EFTA00870717', duplicate_ids=['EFTA01932706']),
-    EmailCfg(id='EFTA00915302', duplicate_ids=['EFTA01860910', 'EFTA01986221', 'EFTA01776411']),
+    EmailCfg(id='EFTA00915302', duplicate_ids=['EFTA01860910', 'EFTA01986221', 'EFTA01776411', 'EFTA02691069']),
     EmailCfg(id='EFTA01776613', duplicate_ids=['EFTA01860812', 'EFTA00915297', 'EFTA02691059']),
     EmailCfg(id='EFTA01998247', is_interesting=True, show_with_name=ELON_MUSK),
     EmailCfg(id='019321', truncate_to=700),
@@ -2329,6 +2328,8 @@ OTHER_FILES_ACADEMIA = [
         duplicate_ids=['029356'],  # 029356 is zoomed in corner
         is_interesting=False,
     ),
+    EmailCfg(id='EFTA00954900', description=f'Epstein donation to Mount Sinai'),
+    EmailCfg(id='EFTA00955864', description=f'Epstein donation to Mount Sinai', is_interesting=False)
 ]
 
 # resumes and application letters
@@ -2532,11 +2533,15 @@ OTHER_FILES_GIRLS = [
     EmailCfg(id='EFTA02551185', comment=BORIS_NIKOLIC),
     EmailCfg(id='EFTA02538269', duplicate_ids=['EFTA01866636'], comment=BORIS_NIKOLIC),
     EmailCfg(id='EFTA00671662', author='Miranda', author_reason='quoted signature'),
+    EmailCfg(id='EFTA02027844', author=UNKNOWN_GIRL, description='permission to "fuck someone with a condom"', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA01990168', author=UNKNOWN_GIRL, is_interesting=True),
     EmailCfg(id='EFTA02431535', author=UNKNOWN_GIRL),
     EmailCfg(id='EFTA01875607', author=UNKNOWN_GIRL),
+    EmailCfg(id='EFTA02441035', author=STEVEN_VICTOR_MD, description="complaining about free treatment for Epstein's girls"),
+    EmailCfg(id='EFTA00738485', recipients=[STEVEN_VICTOR_MD], truncate_to=640, comment=STEVEN_VICTOR_MD),
     EmailCfg(id='EFTA00897668', people=[JEAN_LUC_BRUNEL, JEFFREY_EPSTEIN, UNKNOWN_GIRL], recipients=[UNKNOWN_GIRL]),
     EmailCfg(id='EFTA00848644', recipients=[UNKNOWN_GIRL], is_interesting=True, comment='"take a picture of your pussy"'),
+    EmailCfg(id='EFTA01953412', description=f'{EVA_DUBIN} suggests Epstein endow "The Epstein Floor For Women" at Mt. Sinai'),
     EmailCfg(id='EFTA01811230', description=f'"Renat" is probably {RENATA_BOLOTOVA}'),
     EmailCfg(id='EFTA02557291', description='possibly recruiting girls'),
     EmailCfg(id='EFTA01022353', description='George Models in Odessa, "She said she was 14-15 yo"', is_interesting=True),

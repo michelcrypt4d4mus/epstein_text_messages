@@ -29,7 +29,6 @@ ADDITIONAL_CONTACTS = [
     Contact('Ariane Dwyer'),
     Contact('Brittany Henderson'),
     Contact('Danny Goldberg', match_partial_names=None),
-    Contact(ED_BOYLE),
     Contact('Jeff Pagliuca'),
     Contact(JOHN_PAGE, match_partial_names=None),
     Contact('Julie Shample'),
@@ -44,7 +43,6 @@ ADDITIONAL_CONTACTS = [
     Contact('Oliver Goodenough'),
     Contact('Peter Green', match_partial_names=None),
     Contact('Sarah Mapes'),
-    Contact('Steven Victor MD', match_partial_names=None),
     company('Coursera', is_emailer=True),
 ]
 

@@ -182,7 +182,7 @@ TRUNCATE_EMAILS_FROM = TRUNCATE_EMAILS_FROM_OR_TO + [
     'Skip Rimer',
     'Steven Elkman',
     STEVEN_PFEIFFER,
-    'Steven Victor MD',
+    STEVEN_VICTOR_MD,
     TERRY_KAFKA,
 ]
 
