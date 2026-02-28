@@ -1081,6 +1081,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00701326', author=LINDA_STONE, author_uncertain='"Stone"'),
     EmailCfg(id='EFTA00397956', author=LINDA_STONE, author_reason='unique email signature'),
     EmailCfg(id='EFTA01988194', author=RASSECK_BOURGI, description=f'{RASSECK_BOURGI} using his wife\'s email "because it is a private email"'),
+    EmailCfg(id='EFTA01978227', description=f"Epstein arranging tour of Harvard for {RASSECK_BOURGI}'s daughter"),
     EmailCfg(
         id='EFTA00773139',
         author='Reinaldo Avila',
