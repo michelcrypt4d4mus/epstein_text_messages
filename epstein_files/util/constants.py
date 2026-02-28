@@ -1770,7 +1770,7 @@ OTHER_FILES_DEPOSITION = [
         id='EFTA00159483',
         author=LAWRANCE_VISOSKI,
         is_interesting=True,
-        non_participants=[EHUD_BARAK, GLENN_DUBIN],
+        non_participants=[EHUD_BARAK, GLENN_DUBIN, LARRY_SUMMERS],
     ),
     DocCfg(id='021824', author=PAUL_G_CASSELL, description=f"from {EDWARDS_V_DERSHOWITZ}"),
     DocCfg(id='013463', author='Scott Rothstein', description=f"from {JANE_DOE_V_EPSTEIN_TRUMP}", date='2010-03-23'),

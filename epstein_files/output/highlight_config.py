@@ -1846,6 +1846,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(ALEKSANDRA_KARPOVA, f"{CRYPTO_PR_LAB} co-founder", r"Aleksandra Karpova"),
             Contact(ANASTASIYA_SIROOCHENKO, '', r"Anastasiya( Siro(chenko)?)?"),
             Contact('Dasha Zhukova', "art collector, daughter of Alexander Zhukov"),
+            Contact('Igor Zinoviev', f"Epstein's bodyguard, MMA fighter"),
             Contact(JULIA_SANTOS, "possibly a Russian in Paris that was recruiting girls from Ukraine for Epstein", match_partial_names=None),
             Contact(
                 KARYNA_SHULIAK,
