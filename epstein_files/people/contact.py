@@ -217,4 +217,4 @@ def epstein_trust(name: str, emailer_pattern: str = '', beneficiaries: list[str]
 
 
 def law_enforcement(name: str, emailer_pattern: str = '') -> Contact:
-    return company(name, LAW_ENFORCEMENT, emailer_pattern, is_interesting=True)
+    return company(name, LAW_ENFORCEMENT, emailer_pattern, is_interesting=False)
