@@ -409,8 +409,9 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             ),
             Contact(
                 AMIR_TAAKI,
-                f"bitcoin bro, partner of {DONALD_NORMAN} (and {BROCK_PIERCE}?)",
+                f"bitcoin bro, co-founder of Intersango with {DONALD_NORMAN} (and {BROCK_PIERCE}?)",
                 r"Amir Taaki|genjix",
+                link_to_bio='https://www.axios.com/2023/12/14/customers-of-dead-bitcoin-exchange-demand-refunds',
                 match_partial_names='both'
             ),
             Contact(
@@ -447,7 +448,12 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(BRYAN_BISHOP, "executive at LedgerX and Polymath fund", match_partial_names=None),
             Contact('Cory Fields', 'bitcoin developer', match_partial_names=None),
             Contact('Dan Morehead', 'founder of Pantera Capital', r"(Dan )?Morehead"),
-            Contact(DONALD_NORMAN, f"co-founder of early British crypto exchange Intersango with {AMIR_TAAKI}", match_partial_names=None),
+            Contact(
+                DONALD_NORMAN,
+                f"co-founder of early British crypto exchange Intersango with {AMIR_TAAKI}",
+                link_to_bio='https://www.axios.com/2023/12/14/customers-of-dead-bitcoin-exchange-demand-refunds',
+                match_partial_names=None
+            ),
             Contact(ED_BOYLE, f"Medici Bank", r"Ed Boy(el|le)", match_partial_names=None),
             Contact('Erik Svenson', BLOCKSTREAM),
             Contact(FRANCESCA_HALL, f"'Assistant/Calendar Queen to The BlockStream team' / {AUSTIN_HILL}", match_partial_names=None),
@@ -528,6 +534,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             ),
             company('Electric Coin Company', f"FKA 'Zerocoin', {MADARS_VIRZA} and untraceable cryptocurrency ZCash"),
             company('ExpressCoin', f"bitcoin market founded by {BROCK_PIERCE} and William Wheeler"),
+            company('Intersango', 'early UK bitcoin exchange'),
             company('Kraken', "second largest American crypto exchange after Coinbase"),
             company(
                 KYARA_INVESTMENT,
@@ -2004,6 +2011,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 f"AKA 'Sophia Platt', Epstein's Russian assistant recommended for visa by Sergei Belyakov (FSB) & {DAVID_BLAINE}",
                 r"Sophia Platt|((Svet)?Lana )?Pozhidaeva|\b(Lana|Svet)\b",
                 link_to_bio='https://dossier.center/jeffreyepsteinrusconnect-en/',
+                match_partial_names='first',
             ),
             Contact('Vitaly Churkin', 'Russian ambassador to the United Nations'),
             Contact(YULIA_DOROKHINA),
