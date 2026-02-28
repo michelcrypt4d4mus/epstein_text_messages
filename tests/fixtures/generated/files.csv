@@ -208,7 +208,7 @@ file_id,category,author,is_interesting,timestamp,recipients_str,sent_from_device
 019338,email,Jeffrey Epstein,False,2018-07-23 13:58:04,Steve Bannon,,
 019343,email,Jeffrey Epstein,False,2018-07-23 15:32:23,Steve Bannon,,
 019348,email,Jeffrey Epstein,True,2018-07-23 15:58:02,Steve Bannon,,
-019352,government,FBI,True,2007-05-01 00:00:00,,,FBI report on Epstein investigation
+019352,government,FBI,True,2007-05-01 00:00:00,,,FBI report on Epstein investigation containing clippings of various press items
 019396,academia,,False,2009-11-09 00:00:00,,,Harvard Economics 1545 Professor Kenneth Rogoff syllabus
 019406,email,R. Couri Hay,,2011-03-04 19:03:00,Jeffrey Epstein,,
 019407,email,Jay Lefkowitz,,2011-03-08 16:40:35,Jeffrey Epstein;Michael Sitrick,,
@@ -6506,7 +6506,7 @@ EFTA02717459,email,Joi Ito,True,2014-08-15 16:24:00,Jeffrey Epstein;Reid Hoffman
 EFTA02719248,email,Renata Bolotova,False,2014-11-11 10:12:00,Jeffrey Epstein,,Renata Bolotova
 EFTA02720981,email,Philip Rosedale,True,2014-08-18 17:19:35,Jeffrey Epstein,,
 EFTA02721858,email,Jem Bendell,,2012-09-22 03:04:16,Jeffrey Epstein,,
-EFTA02725909,crypto,,True,2009-02-27 00:00:00,,,"memo to NYDFS for NYC Bitcoin Exchange, Balaji Srinivisan & Andrew Farkas on board"
+EFTA02725909,crypto,,True,2016-01-01 00:00:00,,,"memo to NYDFS of NYC Bitcoin Exchange, Balaji Srinivisan & Andrew Farkas on board"
 EFTA02730265,email,Boris Nikolic,,2013-08-24 14:02:57,Jeffrey Epstein,Sent from my Windows Phone,
 EFTA02730267,,,,2022-02-27 00:00:00,,,
 EFTA02730271,,,,2022-02-27 00:00:00,,,

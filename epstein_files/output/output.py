@@ -80,7 +80,6 @@ def print_curated_chronological(epstein_files: EpsteinFiles) -> list[Document]:
             other_files_queue,
             title=table_title,
             title_justify='center',
-            show_header=not has_printed_any_other_file_objs,
         )
 
         console.print(Padding(table, (0, 0, 1, site_config.other_files_table_indent)))

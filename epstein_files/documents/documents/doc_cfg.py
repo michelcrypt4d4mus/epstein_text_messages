@@ -254,7 +254,8 @@ class DocCfg:
 
     @property
     def is_empty(self) -> bool:
-        return not any([v for k, v in asdict(self).items() if k != 'id'])
+        has_truthy_field = any([v for k, v in asdict(self).items() if k not in ['id', 'is_valid_for_name_scan']])
+        return self.is_valid_for_name_scan is True and not has_truthy_field
 
     @property
     def is_description_a_title(self) -> bool:

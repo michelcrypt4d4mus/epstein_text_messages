@@ -11,6 +11,7 @@ def test_debug_dict(email):
         'EmailCfg.author': 'Christina Galbraith',
         'EmailCfg.author_reason': 'from "Christina media/PR"',
         'EmailCfg.is_of_interest': True,
+        'EmailCfg.is_valid_for_name_scan': True,
         'file_info.external_url': 'https://epstein.media/files/house_oversight_019446',
         'file_info.file_id': '019446',
         'file_info.file_size': 2923,
