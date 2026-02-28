@@ -6,9 +6,9 @@ from datetime import datetime
 from pathlib import Path
 from typing import ClassVar, Self, Sequence, TypeVar
 
-from rich.align import Align, AlignMethod
+from rich.align import Align
 from inflection import underscore
-from rich.console import Console, ConsoleOptions, Group, JustifyMethod, RenderableType, RenderResult
+from rich.console import Console, ConsoleOptions, Group, JustifyMethod, RenderResult
 from rich.markup import escape
 from rich.padding import Padding
 from rich.panel import Panel
@@ -32,8 +32,8 @@ from epstein_files.util.constant.names import Name
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constants import CONFIGS_BY_ID, DEFAULT_TRUNCATE_TO
 from epstein_files.util.env import args, site_config
-from epstein_files.util.helpers.data_helpers import (date_str, patternize, prefix_keys,
-     remove_zero_time, uniquify, uniq_sorted, without_falsey)
+from epstein_files.util.helpers.data_helpers import (date_str, patternize, prefix_keys, remove_zero_time,
+     uniquify, uniq_sorted, without_falsey)
 from epstein_files.util.helpers.link_helper import link_text_obj
 from epstein_files.util.helpers.file_helper import coerce_file_path, file_size_to_str
 from epstein_files.util.helpers.string_helper import collapse_newlines, join_truthy

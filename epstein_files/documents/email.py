@@ -279,7 +279,7 @@ class Email(Communication):
     def html_margin_bottom(self) -> str:
         """Overloaded in `Email` for case of emails with attachments."""
         if self.attached_docs:
-            return '5px'
+            return '6px'
         else:
             return super().html_margin_bottom
 
