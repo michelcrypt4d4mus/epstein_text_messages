@@ -22,6 +22,8 @@ TECH_BRO = 'tech'
 PALM_BEACH = 'Palm Beach'
 VIRGIN_ISLANDS = 'Virgin Islands'
 
+# Highlighter
+REGEX_STYLE_PREFIX = 'regex'
 # Styles
 ALT_LINK_STYLE = 'white dim'
 ARCHIVE_LINK_COLOR = 'slate_blue3'
@@ -35,8 +37,6 @@ SUBHEADER_STYLE = 'dim gray54 italic'
 TEXT_LINK = 'text_link'
 TIMESTAMP_STYLE = 'turquoise4'
 TIMESTAMP_DIM = f"turquoise4 dim"
-# Highlighter
-REGEX_STYLE_PREFIX = 'regex'
 
 # Misc
 APPEARS_IN = 'appears in'
