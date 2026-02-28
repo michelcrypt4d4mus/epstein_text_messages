@@ -708,7 +708,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             epstein_trust('Financial Trust Company', r"Financial Trust Co(\.|mpany)"),
             epstein_trust('Gratitude America'),
             epstein_trust('Haze Trust'),
-            epstein_trust('Southern Financial Company', r"Southern Financial( Co(mpany)?)?"),
+            epstein_trust('Southern Financial Company', r"Southern Financial( (Co(mpany)?|LLC))?"),
             epstein_trust('Southern Trust'),
             epstein_trust('The Sweater Trust', r"(The )?Sweater Trust"),
         ],
@@ -970,7 +970,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             company(
                 'Boothbay',
                 f'fund run by Ari Glass whom Epstein called "a bit sketchy" but invested $50 million with',
-                r"Booth\s*bay(\sFund\sManagement)?",
+                r"Booth\s*bay(\s(Fund\sManagement|(Absolute|Enhanced|Multi)( Return)?( Strateg(ies|y))?( Fund)?))?",
             ),
             company(
                 DEUTSCHE_BANK,
