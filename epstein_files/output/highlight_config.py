@@ -115,13 +115,13 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         label='Africa',
         style='light_pink4',
         contacts=[
-            Contact('Abdoulaye Wade', f"former president of Senegal, father of {KARIM_WADE}", match_partial_names='both'),
+            Contact('Abdoulaye Wade', f"former president of Senegal, father of {KARIM_WADE}", match_partial_names='first'),
             Contact('Ivan Glasenberg', "South African former CEO of Glencore, one of the world's largest commodity trading and mining companies"),
             Contact(
                 KARIM_WADE,
-                'son of the president of Senegal, facing arrest for corruption, email handle is "Afri zp"',
+                'son of the president of Senegal, facing arrest for corruption',
                 r"Afri [xz]p?|Karim Wade",
-                match_partial_names='both'
+                match_partial_names='first',
             ),
             Contact('Miles Alexander', "Operations Manager Michaelhouse Balgowan KwaZulu-Natal South Africa", match_partial_names=None),
             Contact('Macky Sall', "prime minister of Senegal, defeated Abdoulaye Wade", match_partial_names=None),
@@ -429,7 +429,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(
                 BROCK_PIERCE,
                 "Bannon partner, Tether co-founder, friend of Yair Netanyahu, sex crime history",
-                r"Brock( Pierce)?",
+                r"Brock(?!man)( Pierce)?",
                 link_to_bio='https://www.hollywoodreporter.com/lifestyle/lifestyle-news/strange-saga-jeffrey-epstein-s-link-brock-pierce-1240462/',
                 match_partial_names='first',
             ),
@@ -893,7 +893,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"(Kamila )?Bobinska",
             r"Kiev",
             r"Latvian?",
-            r"Liechtenstein",
+            r"Lie?chtenstein",
             r"Lithuanian?",
             r"Le Pen",
             r"(?<!DOJ )London",
