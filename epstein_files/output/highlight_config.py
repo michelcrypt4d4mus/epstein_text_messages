@@ -470,7 +470,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 r"adreeson|(Marc\s*)?(?<!Gavin )Andreess?en(?!\s+Horowitz)",
                 is_organization=True
             ),
-            Contact('Matthew Gilbert', 'assistant to Howard Lutnick'),
+            Contact('Matthew Gilbert', 'assistant to Howard Lutnick', match_partial_names=None),
             Contact("Matthew Roszak", 'co-founder of Bloq, accusations of insider trading'),
             Contact(
                 'Mike Novogratz',
