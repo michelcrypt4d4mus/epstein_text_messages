@@ -2006,7 +2006,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(VINCENZO_IOZZO, "CEO of the identity-security company SlashID", r"Vincenzo [IL]ozzo", match_partial_names='both'),
             Contact(ZUBAIR_KHAN, f"Tranchulas cybersecurity, InsightsPod founder, Islamabad / Dubai, friend of {MASHA_DROKOVA}", match_partial_names='both'),
             company(GOOGLE_PLUS, "Google Plus", r"Google\+", is_emailer=True, is_interesting=False),
-            company('Honeycomb Asset Management', 'venture fund Epstein invested in Spotify through'),
+            company('Honeycomb Asset Management', 'venture fund Epstein invested in Spotify through', r"Honeycomb( (Offshore Fund|Partners)( (LP|Ltd))?)?"),
             company('LinkedIn', "LinkedIn", r"Linked[Il]n( Updates)?", is_emailer=True, is_interesting=False),
             company('Second Life', f"virtual world with early attempt at virtual currency the Linden Dollar", r"Second Life|Linden dollar"),
             company('Softbank Vision Fund', "Masayohsi Son's fund focused on tech, AI, WeWork", r"Softbank|(Softbank )?Vision Fund"),
