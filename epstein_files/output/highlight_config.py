@@ -404,7 +404,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             ),
             Contact(
                 ANTHONY_SCARAMUCCI,
-                "Skybridge Capital, FTX investor, Trump spokesman for two weeks",
+                '"The Mooch", Skybridge Capital, FTX investor, Trump spokesman for two weeks',
                 r"mooch|(Anthony ('The Mooch' )?)?Scaramucci"
             ),
             Contact(ARIANNA_SIMPSON, f"a16z partner involved in the Axie Infinity debacle, Autonomous Partners", match_partial_names=None),
