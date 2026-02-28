@@ -53,9 +53,6 @@ class Contact:
         if self.is_organization:
             self.match_partial_names = None
 
-        if self.info == LAW_ENFORCEMENT:  # TODO: this sucks
-            self.is_interesting = False
-
         try:
             self.emailer_regex = re.compile(self.pattern, re.IGNORECASE)
         except re.error as e:
@@ -81,8 +78,7 @@ class Contact:
         if self.category:
             txt.append(' [', style='dim').append(self.category.lower(), style=f'{self.style} dim').append(']', style='dim')
 
-        txt.append(' ').append(self.info, style='italic')
-        return txt
+        return txt.append(' ').append(self.info, style='italic')
 
     @property
     def bold_style(self) -> str:
@@ -221,4 +217,4 @@ def epstein_trust(name: str, emailer_pattern: str = '', beneficiaries: list[str]
 
 
 def law_enforcement(name: str, emailer_pattern: str = '') -> Contact:
-    return company(name, LAW_ENFORCEMENT, emailer_pattern)
+    return company(name, LAW_ENFORCEMENT, emailer_pattern, is_interesting=True)
