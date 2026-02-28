@@ -807,18 +807,27 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         ],
         patterns=[
             r"(Barry (E. )?)?Krischer",
-            r"Clifford Chance",
             r"dersh",
             r"Kate Kelly",
             r"Kirkland & Ellis",
             r"(Leon )?Jaworski",
             r"Michael J. Pike",
-            r"Paul,? Weiss",
             PERKINS_COIE,
             r"Steptoe( & Johnson)?( LLP)?",
-            r"Sull(ivan)? (&|and)? Crom(well)?",
             r"Wein(berg|garten)",
         ],
+    ),
+    HighlightedNames(
+        label='law firm',
+        style='medium_purple3',
+        contacts=[
+            company('Clifford Chance', f'law firm where {MARIA_PRUSAKOVA} did an internship in Paris'),
+        ],
+        patterns=[
+            r"Paul,? Weiss",
+            r"Skadden(,? Arps)",
+            r"Sull(ivan)? (&|and)? Crom(well)?",
+        ]
     ),
     HighlightedNames(
         label=ESTATE_EXECUTOR,
