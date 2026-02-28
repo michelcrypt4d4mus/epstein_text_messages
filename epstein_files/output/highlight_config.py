@@ -1618,7 +1618,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 info="sharia auditor in Qatar, friend of Sheikh Jabor Al-Thani",
                 emailer_pattern=r"Fawzi.Siam?",
             ),
-            Contact('Hassan Jameel', 'scion of Saudi family, Abdul Latif Jameel', r"Hassan (Mohammed )?(Abdul )?(.atif )?Jameel"),
+            Contact(HASSAN_JAMEEL, 'scion of Saudi family, Abdul Latif Jameel', r"Hassan (Mohammed )?(Abdul )?(.atif )?Jameel"),
             Contact('Kairat Kelimbetov', 'former Deputy Prime Minister of Kazakhstan', match_partial_names='both'),
             Contact("Mohammed bin Salman", 'AKA "MBS", prince of Saudi Arabia', r"Mohammed bin Salman|MBS", is_organization=True),  # TODO: not an org
             Contact('Mohammed bin Zayed', 'AKA "MBZ", ruler of Abu Dhabi', r"Mohamed bin Zayed|MBZ", is_organization=True),
@@ -1628,6 +1628,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(RAAFAT_ALSABBAGH, "Saudi royal advisor"),
             Contact(SHAHER_ABDULHAK_BESHER, "Yemeni billionaire", r"\bShaher( Abdulhak Besher)?\b"),
             Contact('Timur Kulibayev', 'businessman from Kazakhstan'),
+            company('GCC', 'Gulf Cooperation Council', r"GCC|Gulf Cooperation Council")
         ],
         patterns=[
             r"Abdulmalik Al-Makhlafi",
@@ -1658,8 +1659,6 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Erdogan",
             r"Fashi",
             r"Gaddafi",
-            r"Gulf Cooperation Council",
-            r"GCC",
             r"(Hamid )?Karzai",
             r"Hamad( bin Jassim)?",
             r"Hamas",
