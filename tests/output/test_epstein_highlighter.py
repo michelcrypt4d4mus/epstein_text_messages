@@ -206,7 +206,6 @@ HIGHLIGHT_COUNTS = {
     "southern district of florida": 1,
     "southern district of new york": 2,
     "spitzer": 2,
-    'stein': 2,
     "subject:": 25,
     "sull crom": 6,
     "sullivan cromwell": 3,

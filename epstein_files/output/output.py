@@ -92,12 +92,13 @@ def print_curated_chronological(epstein_files: EpsteinFiles) -> list[Document]:
         if not doc.is_interesting:
             continue
         elif isinstance(doc, OtherFile) and doc.is_valid_for_table:
-            other_files_queue.append(doc)
-
             if new_names(doc):
-                print_characters_panel(new_names(doc))
-                print_other_files_queue()
+                if other_files_queue:
+                    print_other_files_queue()  # Clear the queue before bios panel
 
+                print_characters_panel(new_names(doc))
+
+            other_files_queue.append(doc)
             continue
         elif other_files_queue:
             print_other_files_queue()

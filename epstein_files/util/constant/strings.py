@@ -1,4 +1,8 @@
 import re
+from typing import Literal
+
+# Types
+PartialName = Literal['both', 'first', 'last']
 
 # Categories
 ACADEMIA = 'academia'
@@ -12,7 +16,7 @@ MIDEAST = 'mideast'
 PUBLICIST = 'publicist'
 REPUTATION = 'reputation'
 REPUTATION_MGMT = f'{REPUTATION} management'
-TECH_BRO = 'tech bro'
+TECH_BRO = 'tech'
 
 # Locations
 PALM_BEACH = 'Palm Beach'
