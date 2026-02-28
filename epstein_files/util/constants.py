@@ -2553,7 +2553,7 @@ OTHER_FILES_CRYPTO = [
     EmailCfg(id='EFTA02529170', description=f"Blockstream set up a special company to invest in an Asian ride hailing service"),
     EmailCfg(id='EFTA01917402', description=f'discussion of Epstein investment in Blockstream funneled through {JOI_ITO}', is_interesting=True),
     EmailCfg(id='EFTA00999897', description=f"Epstein claims he's a fan of {ADAM_BACK} (who has recently claimed he had nothing to do with Epstein)"),
-    EmailCfg(id='EFTA01915883', description=f"{JOI_ITO} thinks {AUSTIN_HILL} is shady (which he is)"),
+    EmailCfg(id='EFTA01915883', description=f"{JOI_ITO} doesn't trust {AUSTIN_HILL} (for good reason)"),
     EmailCfg(id='EFTA00988395', description=f'"Andy Back" is probably Blockstream bitcoin dev {ADAM_BACK}', duplicate_ids=['EFTA01928856']),
     EmailCfg(id='EFTA01925969', description=f"{AUSTIN_HILL} and {ADAM_BACK} and some women plan a trip to Epstein's island", is_interesting=True),
     EmailCfg(
