@@ -2939,6 +2939,7 @@ WHISTLEBLOWER_IDS = {
 OTHER_FILES_CRYPTO.extend([whistleblower_cfg(id, desc) for id, desc in WHISTLEBLOWER_IDS.items()])
 
 INTERESTING_EMAIL_IDS = [
+    '033096',
     'EFTA02516264',
 ]
 

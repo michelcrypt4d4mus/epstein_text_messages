@@ -1974,12 +1974,14 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 r"Sergey Belyako|Беляков Сергей|Cepre(ct|il) [6BES][\w.]+|6(er|of)no\w+ [CE]\w+",
                 link_to_bio='https://dossier.center/jeffreyepsteinrusconnect-en/',
             ),
+            Contact('Sergey Lavrov', 'foreign minister under Putin'),
             Contact(
                 SVETLANA_POZHIDAEVA,
                 f"AKA 'Sophia Platt', Epstein's Russian assistant recommended for visa by Sergei Belyakov (FSB) & {DAVID_BLAINE}",
                 r"Sophia Platt|((Svet)?Lana )?Pozhidaeva|\b(Lana|Svet)\b",
                 link_to_bio='https://dossier.center/jeffreyepsteinrusconnect-en/',
             ),
+            Contact('Vitaly Churkin', 'Russian ambassador to the United Nations'),
             Contact(YULIA_DOROKHINA),
             Contact(
                 'Yuri Milner',
@@ -2025,7 +2027,6 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"St\.? Petersburg",
             r"Soviet( Union)?",
             r"USSR",
-            r"(Vitaly )?Churkin",
             r"Vlad(imir)?(?! Yudash)",
             r"(Vladimir )?Putin",
             r"Xitrans",
