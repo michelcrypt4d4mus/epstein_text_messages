@@ -1,5 +1,5 @@
 from epstein_files.people.contact import Contact, epstein_co, epstein_trust
-from epstein_files.util.constant.names import JEFFREY_EPSTEIN
+from epstein_files.util.constant.names import JEAN_LUC_BRUNEL, JEFFREY_EPSTEIN
 
 NAME = 'Nasir Jones'
 EMAILER_PATTERN = r"Nasir[-_.\s]*Jones?"
@@ -49,6 +49,9 @@ def test_highlight_pattern():
     c = _build_contact(match_partial_names='first')
     assert c.emailer_regex.pattern == EMAILER_PATTERN
     assert c.highlight_pattern == r"Nasir[-_.\s]*Jones?|Jones,?[-_.\s]*Nasir|Nasir"
+
+    jean_luc = Contact(JEAN_LUC_BRUNEL, match_partial_names='both')
+    assert jean_luc.highlight_pattern == r'Jean[-_.\s]*Luc[-_.\s]*Brunel?|Brunel,?[-_.\s]*Jean[-_.\s]*Luc|Jean[-_.\s]*Luc|Brunel'
 
 
 def _build_contact(**kwargs) -> Contact:

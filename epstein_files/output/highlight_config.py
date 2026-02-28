@@ -1679,7 +1679,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         contacts=[
             Contact('Abi Schwinck', f"{JEAN_LUC_BRUNEL}'s MC2 Model Management {'(???)'}"),
             Contact(DANIEL_SIAD, 'model scout funded by Epstein'),
-            Contact(FAITH_KATES, "Next Models co-founder", r"faith kates?"),
+            Contact(FAITH_KATES, "Next Models co-founder", r"faith kates?", match_partial_names=None),
             Contact('Gianni Serazzi', "fashion consultant?"),
             Contact(
                 name=HEATHER_MANN,
@@ -1691,17 +1691,19 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 name=JEAN_LUC_BRUNEL,
                 info="MC2 Model Management founder, died by suicide in French jail",
                 emailer_pattern=r"Jean Luc Brunel?|JeanLuc",
+                match_partial_names='both',
             ),
             Contact(
                 name=JEFF_FULLER,
                 info=f"president of {JEAN_LUC_BRUNEL}'s MC2 Model Management USA",
                 emailer_pattern=r"jeff@mc2mm.com|Jeff Fuller",
+                match_partial_names=None,
             ),
-            Contact(MANUELA_MARTINEZ, "Mega Partners (Brazilian agency)", r"Manuela (- Mega Partners|Martinez)"),
+            Contact(MANUELA_MARTINEZ, "Mega Partners (Brazilian agency)", r"Manuela (- Mega Partners|Martinez)", match_partial_names=None),
             Contact(MARIANA_IDZKOWSKA, emailer_pattern=r"Mariana [Il]d[źi]kowska?"),
             Contact('Michael Sanka', f"{JEAN_LUC_BRUNEL}'s MC2 Model Management {'(???)'}"),
             Contact('Vladimir Yudashkin', "director of the 1 Mother Agency"),
-            Contact('Yfke Sturm', 'model from Holland'),
+            Contact('Yfke Sturm', 'model from Holland', match_partial_names='both'),
             Contact('lorraine@mc2mm.com', f"{JEAN_LUC_BRUNEL}'s MC2 Model Management"),
             Contact('pink@mc2mm.com', f"{JEAN_LUC_BRUNEL}'s MC2 Model Management", r"^Pink$|pink@mc2mm\.com"),
         ],
@@ -1846,6 +1848,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(ALEKSANDRA_KARPOVA, f"{CRYPTO_PR_LAB} co-founder", r"Aleksandra Karpova"),
             Contact(ANASTASIYA_SIROOCHENKO, '', r"Anastasiya( Siro(chenko)?)?"),
             Contact('Dasha Zhukova', "art collector, daughter of Alexander Zhukov"),
+            Contact('Igor Zinoviev', f"Epstein's bodyguard, MMA fighter"),
             Contact(JULIA_SANTOS, "possibly a Russian in Paris that was recruiting girls from Ukraine for Epstein", match_partial_names=None),
             Contact(
                 KARYNA_SHULIAK,
@@ -2154,7 +2157,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(KEN_JENNE, ROTHSTEIN_ROSENFELDT_ADLER),
             company(
                 ROTHSTEIN_ROSENFELDT_ADLER,
-                "shady law firm that sued Epstein, Rothstein ran a billion dollar Ponzi scheme and was Roger Stone's partner",
+                "shady law firm that sued Epstein, Rothstein ran $1.2 billionn Ponzi scheme and was Roger Stone's partner",
                 r"Rothstein,? Rosenfeldt,? Adler",
                 link_to_bio='https://en.wikipedia.org/wiki/Scott_W._Rothstein',
             ),

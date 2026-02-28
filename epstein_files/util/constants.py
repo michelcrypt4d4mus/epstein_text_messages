@@ -1426,7 +1426,6 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00754450', description='"PA" is probably Prince Andrew', duplicate_ids=['EFTA02418244']),
     EmailCfg(id='EFTA01003346', description=f"{PETER_THIEL} tells Epstein to invest in his fund", is_interesting=True),
     EmailCfg(id='EFTA00758140', description="possibly about Sarah Ferguson?"),
-    EmailCfg(id='EFTA02434682', description=f"Epstein and {JEAN_LUC_BRUNEL} courting a finance bro with women", is_interesting=True),
     EmailCfg(id='EFTA01013413', description='Reza Bundy is the founder of IronPlanet'),
     EmailCfg(id='EFTA02633194', description=f'Why is {NICOLE_JUNKERMANN} quoting an appraisal by "FSB (Russians)"?', is_interesting=True),
     # EmailCfg(id='EFTA00039689', description=f"{SEC_WHISTLEBLOWER} re: Signature Bank, Hapoalim, Bioptix/RIOT, Barry Honig, etc."),
@@ -1770,7 +1769,7 @@ OTHER_FILES_DEPOSITION = [
         id='EFTA00159483',
         author=LAWRANCE_VISOSKI,
         is_interesting=True,
-        non_participants=[EHUD_BARAK, GLENN_DUBIN],
+        non_participants=[EHUD_BARAK, GLENN_DUBIN, LARRY_SUMMERS],
     ),
     DocCfg(id='021824', author=PAUL_G_CASSELL, description=f"from {EDWARDS_V_DERSHOWITZ}"),
     DocCfg(id='013463', author='Scott Rothstein', description=f"from {JANE_DOE_V_EPSTEIN_TRUMP}", date='2010-03-23'),
@@ -2463,6 +2462,12 @@ OTHER_FILES_GIRLS = [
     CommunicationCfg(
         id='EFTA01616933',
         description='"now im finding pussy for you" / "no one can beat your pussy network"',
+    ),
+    EmailCfg(
+        id='EFTA02434682',
+        description=f"Epstein and {JEAN_LUC_BRUNEL} courting a finance bro with women",
+        is_interesting=True,
+        truncate_to=1500,
     ),
     EmailCfg(
         id='EFTA00927927',
