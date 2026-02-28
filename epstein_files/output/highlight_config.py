@@ -418,7 +418,13 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 r"(Bo|James) (Robert )?Collins",
                 match_partial_names=None,
             ),
-            Contact(BROCK_PIERCE, "Bannon partner, Tether co-founder, friend of Yair Netanyahu, sex crime history", r"Brock( Pierce)?", match_partial_names='both'),
+            Contact(
+                BROCK_PIERCE,
+                "Bannon partner, Tether co-founder, friend of Yair Netanyahu, sex crime history",
+                r"Brock( Pierce)?",
+                link_to_bio='https://www.hollywoodreporter.com/lifestyle/lifestyle-news/strange-saga-jeffrey-epstein-s-link-brock-pierce-1240462/',
+                match_partial_names='first',
+            ),
             Contact(BRYAN_BISHOP, "executive at LedgerX and Polymath fund", match_partial_names=None),
             Contact('Cory Fields', 'bitcoin developer', match_partial_names=None),
             Contact('Dan Morehead', 'founder of Pantera Capital', r"(Dan )?Morehead"),
@@ -1725,7 +1731,11 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         label=PUBLICIST,
         style='orange_red1',
         contacts=[
-            Contact(AL_SECKEL, "Isabel Maxwell's husband, Mindshift conference, mysterious death"),
+            Contact(
+                AL_SECKEL,
+                "Isabel Maxwell's husband, Mindshift conference, mysterious death",
+                link_to_bio='https://www.tabletmag.com/sections/news/articles/the-illusionist-al-seckel',
+            ),
             Contact('Barnaby Marsh', "co-founder of philanthropy services company Saint Partners"),
             Contact(CHRISTINA_GALBRAITH, f"{JEFFREY_EPSTEIN} VI Foundation Media/PR, worked with {TYLER_SHEARS}"),
             Contact(
