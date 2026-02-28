@@ -1791,7 +1791,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         style='pale_violet_red1',
         contacts=[
             Contact('Abi Schwinck', f"{JEAN_LUC_BRUNEL}'s MC2 Model Management {'(???)'}"),
-            Contact(DANIEL_SIAD, 'model scout funded by Epstein'),
+            Contact(DANIEL_SIAD, 'model scout funded by Epstein to recruit in eastern Europe'),
             Contact(FAITH_KATES, "Next Models co-founder", r"faith kates?", match_partial_names=None),
             Contact('Gianni Serazzi', "fashion consultant?"),
             Contact(
@@ -2264,10 +2264,11 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"child porn(ography)?",
             r"(child )?sex traffi?c?k(ers?|ing)",
             r"Ellaina As?tras?",
+            r"girls?",
             r"gyn(eco(logist|nomist)|o)",
             r"(Jane|Tiffany) Doe",
             r"Katie Johnson",
-            r"Midget stripper",
+            r"(Midget )?strippers?",
             r"Minor Victim",
             r"pa?edophile",
             r"pussy",
