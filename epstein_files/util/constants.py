@@ -291,6 +291,7 @@ EMAILS_CONFIG = [
         description="Bank Leumi would get in trouble for helping Americans avoid taxes a few years after this",
     ),
     EmailCfg(id='EFTA01775500', author=DAVID_STERN, author_reason='in quoted reply', description=f'"PA" is probably {PRINCE_ANDREW}'),
+    EmailCfg(id='EFTA02410642', description=f'"PA" is probably {PRINCE_ANDREW}'),
     EmailCfg(id='EFTA02570707', author=DAVID_STERN, author_uncertain='in quoted reply', truncate_to=NO_TRUNCATE),
     EmailCfg(id='031460', author=EDWARD_JAY_EPSTEIN, author_reason='quoted reply has edwardjayepstein.com', is_fwded_article=True),
     EmailCfg(
@@ -1369,7 +1370,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA02731577', date='2024-10-16T00:00:00', date_uncertain='actually reply timestamp'),
     EmailCfg(id='EFTA02730468', author=USANYS, recipients=[USANYS], date='2019-07-11T08:25:00', date_uncertain='just wrong'),
     # Generated basd on OtherFile.extract_timestamp()
-    EmailCfg(id='EFTA02731783', date='2022-01-21 17:28:00'),
+    EmailCfg(id='EFTA02731783', author=USANYS, date='2022-01-21 17:28:00'),
     EmailCfg(id='EFTA00039888', date='2019-05-14 16:49:00'),
     EmailCfg(id='EFTA00040145', date='2021-11-09 17:24:30'),
     EmailCfg(id='EFTA02730485', date='2021-12-03 00:00:00'),
@@ -3165,6 +3166,8 @@ NOT_CHRONOLOGICAL_VIEW_IDS = [
     'EFTA00758140',
     'EFTA01979689',
     'EFTA00878255',
+    'EFTA00766770',
+    '030609',
     '022247',
     '030095',
     '022234',
