@@ -16,7 +16,7 @@ from epstein_files.documents.email import TRUNCATE_EMAILS_BY, MAILING_LISTS, JUN
 from epstein_files.documents.emails.emailers import CONTACTS_DICT, cleanup_str
 from epstein_files.documents.messenger_log import MessengerLog
 from epstein_files.documents.other_file import OtherFile
-from epstein_files.output.highlight_config import (QUESTION_MARKS_TXT, get_highlight_group_for_name,
+from epstein_files.output.highlight_config import (HIGHLIGHTED_NAMES, QUESTION_MARKS_TXT, get_highlight_group_for_name,
      get_style_for_name, styled_category, styled_name)
 from epstein_files.output.highlighted_names import HighlightedNames, HighlightPatterns, ManualHighlight
 from epstein_files.output.rich import (GREY_NUMBERS, TABLE_TITLE_STYLE, build_table, console, join_texts,
@@ -43,6 +43,13 @@ INVALID_FOR_EPSTEIN_WEB = JUNK_EMAILERS + MAILING_LISTS + [
     'BS Stern',
     UNKNOWN,
 ]
+
+PEOPLE_BIOS = {
+    contact.name: contact.bio
+    for highlighted_group in HIGHLIGHTED_NAMES
+    for contact in highlighted_group.contacts
+    if contact.has_bio
+}
 
 
 @dataclass(kw_only=True)
