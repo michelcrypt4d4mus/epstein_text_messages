@@ -1081,7 +1081,12 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00701326', author=LINDA_STONE, author_uncertain='"Stone"'),
     EmailCfg(id='EFTA00397956', author=LINDA_STONE, author_reason='unique email signature'),
     EmailCfg(id='EFTA01988194', author=RASSECK_BOURGI, description=f'{RASSECK_BOURGI} using his wife\'s email "because it is a private email"'),
-    EmailCfg(id='EFTA00773139', author='Reinaldo Avila', description="Epstein calls Swedish billionaire Johan Eliasch \"not the brightest bulb\"", truncate_to=1000),
+    EmailCfg(
+        id='EFTA00773139',
+        author='Reinaldo Avila',
+        description="Epstein calls Swedish billionaire Johan Eliasch \"not the brightest bulb\"",
+        truncate_to=1000
+    ),
     EmailCfg(
         id='EFTA02312343',
         description=f"cyrillic about {RENATA_BOLOTOVA}'s visa issues, possibly marriage related?",
