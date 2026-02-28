@@ -1392,7 +1392,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             ),
             Contact(PAUL_KRASSNER, "60s counterculture guy, Merry Prankster", r"Pa\s?ul Krassner"),
             Contact('Peter Aldhous', "Buzzfeed science reporter"),
-            Contact('Susan Edelman', "New York Post reporter"),
+            Contact('Susan Edelman', "New York Post reporter", match_partial_names=None),
             Contact('Tim Zagat', "Zagat restaurant guide CEO"),
             Contact(
                 'Vicky Ward',
@@ -1426,7 +1426,6 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Con[cs]hita", r"Sarnoff",
             r"Daily Business Review",
             r"(?<!Virgin[-\s]Islands[-\s])(The\s*)?Daily\s*(Beast|Mail|News|Telegraph)",
-            r"David Pecker",
             r"David Brooks",
             r"Ed Krassenstein",
             r"(Emily )?Michot",
@@ -1508,6 +1507,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         label='Latin America',
         style='yellow',
         contacts=[
+            Contact('Edgar Zambrano', 'Venezuelan politician'),
             Contact('Reinaldo Avila Da Silva', "Peter Mandelson's Brazilian partner", r"Reinaldo Avila", match_partial_names=None),
         ],
         patterns=[
@@ -1530,7 +1530,6 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Panama( Papers)?",
             r"Peru(vian)?",
             r"Venezuelan?",
-            r"Zambrano",
         ],
     ),
     HighlightedNames(
