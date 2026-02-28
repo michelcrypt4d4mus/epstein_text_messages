@@ -1998,6 +1998,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             company('Women Empowerment', f"organization started by Epstein's assistant {SVETLANA_POZHIDAEVA}"),
         ],
         patterns=[
+            r"Belarus(sian)?",
             r"Chernobyl",
             r"Crimea",
             r"(Dmitry )?(Kiselyov|Pozhidaeva|Medvedev)",
