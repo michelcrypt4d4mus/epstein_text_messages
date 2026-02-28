@@ -759,7 +759,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(DAVID_SCHOEN, "criminal defense attorney after 2019 arrest"),
             Contact(DEBBIE_FEIN, f"civil attorney Epstein v. Scott Rothstein, {BRAD_EDWARDS}, & L.M."),
             Contact('Erika Kellerhals', "attorney in St. Thomas"),
-            Contact(FRED_HADDAD, "co-founder of Heck's in West Virginia"),
+            Contact(FRED_HADDAD, "co-founder of Heck's in West Virginia", match_partial_names=None),
             Contact(GERALD_LEFCOURT, f"friend of {ALAN_DERSHOWITZ}", r"Gerald (B\.? )?Lefcourt"),
             Contact('Howard Rubenstein', "Epstein's former spokesman"),
             Contact(JACK_GOLDBERGER, "criminal defense attorney on 2008 case"),
@@ -784,6 +784,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 name=TONJA_HADDAD_COLEMAN,
                 info=f"civil attorney Epstein v. Scott Rothstein, {BRAD_EDWARDS}, & L.M.",
                 emailer_pattern=r"To(nj|rl)a Haddad Coleman|haddadfm@aol.com",
+                match_partial_names='first',
             )
         ],
         patterns=[
