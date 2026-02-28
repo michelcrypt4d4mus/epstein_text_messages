@@ -810,7 +810,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 link_to_bio='https://www.reddit.com/r/TrueAnon/comments/1pn8pdj/episode_509_jeffreys_bbb/'
             ),
             Contact('Caroline Lang', "daughter of Jack Lang"),
-            Contact(EDWARD_ROD_LARSEN, f"son of {TERJE_ROD_LARSEN}"),
+            Contact(EDWARD_ROD_LARSEN, f"son of {TERJE_ROD_LARSEN}", match_partial_names=None),
             Contact('Fabrice Aidan', f"diplomat who worked with {TERJE_ROD_LARSEN}"),
             Contact('Jack Lang', "former French Minister of National Education"),
             Contact(
@@ -819,7 +819,12 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 emailer_pattern=r"Miro(slav)?( Laj[cč][aá]k)?",
             ),
             Contact(PETER_MANDELSON, "recently arrested former UK ambassador to the US", r"((Lord|Peter) )?Mandelson"),
-            Contact(TERJE_ROD_LARSEN, "Norwegian diplomat", r"Terje(( (R[øo]e?d[-\s])?)?Lars[eo]n)?"),
+            Contact(
+                TERJE_ROD_LARSEN,
+                "Norwegian head of International Peace Institute (IPI), gave jobs to Epstein's eastern European girls",
+                r"Terje(( (R[øo]e?d[-\s])?)?Lars[eo]n)?",
+                link_to_bio='https://en.wikipedia.org/wiki/Terje_R%C3%B8d-Larsen',
+            ),
             Contact(
                 name=THORBJORN_JAGLAND,
                 info="former prime minister of Norway, Nobel Peace Prize Committee",
@@ -1498,9 +1503,9 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         contacts=[
             Contact(BOB_CROWE, "partner at Nelson Mullins", r"[BR]ob Crowe"),
             Contact('Joshua Cooper Ramo', "co-CEO of Henry Kissinger Associates"),
-            Contact(KATHERINE_KEATING, "daughter of former Australian prime minister"),
+            Contact(KATHERINE_KEATING, "daughter of former Australian prime minister", match_partial_names=None),
             Contact(OLIVIER_COLOM, "Epstein's banker at Edmond de Rothschild (Suisse) SA Bank", r"Colom, Olivier?|Olivier Colom"),
-            Contact('Paul Keating', "former prime minister of Australia"),
+            Contact('Paul Keating', "former prime minister of Australia", match_partial_names=None),
             Contact('Stanley Rosenberg', "former President of the Massachusetts Senate")
         ],
         patterns=[
