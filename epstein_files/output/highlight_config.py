@@ -2107,7 +2107,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         patterns=[
             r"AG?I",
             r"Artificial (General )?Intelligence",
-            r"cyber( security)?",
+            r"cyber( (security|space))?",
             r"deep learning",
             r"Facebook",
             r"Instagram",
@@ -2385,12 +2385,14 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         style='dim',
         patterns=[
             REPLY_REGEX.pattern,
+            r"^(Best|Cheers),?\nJeremy",
+            r"^@JeremyRubin",
             r"^(> )?wrote:$",
             r"CONFIDENTIAL FOR ATTORNEY'S EYES ONLY(\nDO NOT COPY)?",
             r"PRIVILEGED - ATTORNEY WORK.*(\nCONFIDENTIAL - SUBJECT TO.*)?",
             r"Managing Partner - Crypto Currency Partners",  # brock pierce
             r"Please use this email for.*general Media Lab.*",  # Joi Ito
-            r"-Austin\nAustin Hill - B..dder.*(\n.*B92ED3E3)?",
+            r"-Austin\nAustin Hill - B..dder.*(\n.*B92ED3E3)?",  # Austin Hill
             r"^(Please note my new email address?:?.*|Follow me on twitter @[Il]hsummers|www.larrysummers.com)$", # larry summers
         ],
     ),
