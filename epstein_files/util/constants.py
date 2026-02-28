@@ -21,10 +21,9 @@ VALAR_FUND = f"{PETER_THIEL}'s {VALAR_VENTURES} fund"
 
 HEADER_ABBREVIATIONS = {
     "AD": "Abu Dhabi",
-    "Barak": "Ehud Barak (Former Israeli prime minister)",
+    "Barak": f"former Israeli prime minister {EHUD_BARAK}",
     "Barrack": "Tom Barrack (Trump ally)",
     'BG, Bill': "Bill Gates",
-    'bgC3': 'Bill Gates Ventures (renamed in 2018)',
     "Brock": 'Brock Pierce (crypto bro with a very sordid past)',
     "DB": "Deutsche Bank (maybe??)",
     "GCC": "Gulf Cooperation Council",
@@ -33,7 +32,6 @@ HEADER_ABBREVIATIONS = {
     'Jared': "Jared Kushner",
     'Jagland': 'Thorbjørn Jagland (former Norwegian prime minister)',
     'JEGE': "Epstein's airplane holding company",
-    JEFFREY_WERNICK: 'right wing crypto bro, former COO of Parler',
     'Joi': f"Joi Ito ({MIT_MEDIA_LAB}, MIT Digital Currency Initiative)",
     "Hoffenberg": f"{STEVEN_HOFFENBERG} (Epstein's ponzi scheme partner)",
     'KSA': "Kingdom of Saudi Arabia",
@@ -42,7 +40,6 @@ HEADER_ABBREVIATIONS = {
     'LSJ': "Little St. James (Epstein's island)",
     'Madars': 'Madars Virza (co-founder of privacy crypto ZCash)',
     'Mapp': f'{KENNETH_E_MAPP} (Governor of {VIRGIN_ISLANDS})',
-    'Masa': 'Masayoshi Son (Softbank)',
     'MBS': "Mohammed bin Salman Al Saud (Saudi ruler)",
     'MBZ': "Mohamed bin Zayed Al Nahyan (Emirates sheikh)",
     "Miro": MIROSLAV_LAJCAK,
@@ -53,7 +50,6 @@ HEADER_ABBREVIATIONS = {
     "Terje": TERJE_ROD_LARSEN,
     "VI": f"U.S. {VIRGIN_ISLANDS}",
     "Woody": "Woody Allen",
-    "Zug": "City in Switzerland (crypto hub)",
 }
 
 
@@ -2808,7 +2804,7 @@ OTHER_FILES_CRYPTO = [
     DocCfg(id='EFTA00591691', author=VALAR_VENTURES, description="contract", truncate_to=DEFAULT_TRUNCATE_TO),
     DocCfg(id='EFTA00810362', author=VALAR_VENTURES, description="investor questionnaire", truncate_to=DEFAULT_TRUNCATE_TO),
     DocCfg(id='EFTA00810239', author=VALAR_FUND, description='pitch deck'),
-    DocCfg(id='EFTA00591045', author=VALAR_FUND, description='brochure'),
+    DocCfg(id='EFTA00591045', author=VALAR_FUND, description='brochure', non_participants=[MASAYOSHI_SON]),
     DocCfg(id='EFTA00810510', author=VALAR_FUND, description='Fall 2016 Update'),
     DocCfg(id='EFTA00810474', author=VALAR_FUND, description='Fall 2018 Update'),
     DocCfg(

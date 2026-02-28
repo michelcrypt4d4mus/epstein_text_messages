@@ -135,6 +135,7 @@ MARK_TRAMO = 'Mark Tramo'
 MARTIN_NOWAK = 'Martin Nowak'
 MARTIN_WEINBERG = "Martin Weinberg"
 MARIA_PRUSAKOVA = 'Maria Prusakova'
+MASAYOSHI_SON = 'Masayoshi Son'
 MASHA_DROKOVA = 'Masha Drokova'
 MATTHEW_HILTZIK = 'Matthew Hiltzik'
 MELANIE_SPINELLA = 'Melanie Spinella'

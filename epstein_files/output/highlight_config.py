@@ -524,7 +524,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             ),
             company(
                 MERCANTILE_GLOBAL_HOLDINGS,
-                'company of Bo Collins who ended up testifying in trial of Miles Guo / Miles Kwok',
+                'company of Bo Collins who ended up testifying in trial of chinese criminal Miles Guo / Miles Kwok',
             ),
             company(
                 'Noble Bank',
@@ -853,6 +853,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact('Viktor Yushchenko', 'former president of Ukraine'),
             Contact('Viktor Orban', 'prime minister of Hungary', r"(Vi(c|k)tor )?Orbah?n"),
             company('ECB', 'European Central Bank'),
+            company('Zug', "city in Switzerland known as a hub for crypto and dodgy finance"),
         ],
         patterns=[
             r"Amsterdam",
@@ -2034,7 +2035,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact('Jack Dorsey', 'co-founder of Twitter and Block (FKA Square)'),
             Contact(JAMES_FITZGERALD, THIELS_VALAR, r"James Fitz[g\s]eral?d?", match_partial_names=None),
             Contact(JASON_CALACANIS, 'All In Podcast with David Sacks, Uber investor', r"Jason (.{12})Calacanis"),
-            Contact('Masayoshi Son', 'CEO of Softbank, often referred to as "Masa"', r"Masa(yoshi)?(\sSon)?", match_partial_names='first'),
+            Contact(MASAYOSHI_SON, 'CEO of Softbank, often referred to as "Masa"', r"Masa(yoshi)?(\sSon)?", match_partial_names='first'),
             Contact(MELANIE_PHILLIPS, f'girlfriend of {STEVEN_SINOFSKY}', match_partial_names=None),
             Contact('Nathan Myhrvold', f"former CTO of Microsoft, co-founder of Intellectual Ventures"),
             Contact(PHILIP_ROSEDALE, 'Second Life founder'),
@@ -2045,6 +2046,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact('Talia Parnass', f"{PETER_THIEL}'s assistant"),
             Contact(VINCENZO_IOZZO, "CEO of the identity-security company SlashID", r"Vincenzo [IL]ozzo", match_partial_names='both'),
             Contact(ZUBAIR_KHAN, f"Tranchulas cybersecurity, InsightsPod founder, Islamabad / Dubai, friend of {MASHA_DROKOVA}", match_partial_names='both'),
+            company('bgC3', 'Bill Gates Ventures (renamed in 2018)'),
             company(GOOGLE_PLUS, "Google Plus", r"Google\+", is_emailer=True, is_interesting=False),
             company('Honeycomb Asset Management', 'venture fund Epstein invested in Spotify through', r"Honeycomb( (Offshore Fund|Partners)( (LP|Ltd))?)?"),
             company('LinkedIn', "LinkedIn", r"Linked[Il]n( Updates)?", is_emailer=True, is_interesting=False),
