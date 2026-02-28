@@ -1517,6 +1517,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA01849797', show_with_name=CHRIS_POOLE),
     EmailCfg(id='EFTA02179653', show_with_name=CHRIS_POOLE),
     EmailCfg(id='EFTA01987383', show_with_name=CHRIS_POOLE),
+    EmailCfg(id='EFTA00909508', comment='party at Bunker'),
 ]
 
 
@@ -2522,6 +2523,9 @@ OTHER_FILES_GIRLS = [
     ),
     EmailCfg(id='030609', duplicate_ids=['030495']),
     EmailCfg(id='EFTA00766770'),
+    EmailCfg(id='EFTA00878255', comment=BORIS_NIKOLIC),
+    EmailCfg(id='EFTA02551185', comment=BORIS_NIKOLIC),
+    EmailCfg(id='EFTA02538269', duplicate_ids=['EFTA01866636'], comment=BORIS_NIKOLIC),
     EmailCfg(id='EFTA00671662', author='Miranda', author_reason='quoted signature'),
     EmailCfg(id='EFTA01990168', author=UNKNOWN_GIRL, is_interesting=True),
     EmailCfg(id='EFTA02431535', author=UNKNOWN_GIRL),

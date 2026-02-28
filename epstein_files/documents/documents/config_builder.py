@@ -10,6 +10,7 @@ from epstein_files.util.logging import logger
 DEUTSCHE_SOUTHERN_REGEX = re.compile(r"^.{,50}Deutsche Bank.{,1000}(SOUTHERN TRUST|RED HOOK QUARTER)", re.DOTALL)
 EVIDENCE_REGEX = re.compile(r".{,1000}ITEM\s+WAS\s+NOT\s+SCANNED")
 FBI_FILE_REGEX = re.compile(r"^(UNCLASSIFIED\s+)?FEDERAL BUREAU OF INVESTIGATION")
+GRAND_JURY_REGEX = re.compile(r"Grand Jury", re.IGNORECASE)
 HARD_DRIVE_REGEX = re.compile(r"westerndigital|Gold SATA")
 LEGAL_FILING_REGEX = re.compile(r"^Case (\d+:\d+-.*?) Doc")
 LSJE_FORM_REGEX = re.compile(r".{,5}LSJE,\s+LLC.*Emergency\s+Contact\s+Form", re.DOTALL)
@@ -46,6 +47,8 @@ def build_cfg_from_text(doc: 'Document') -> DocCfg | None:
         cfg = fbi_report(doc.file_id, 'memorandum or report')
     elif EVIDENCE_REGEX.search(text):
         cfg = _cfg(category=Neutral.LEGAL, description='photos of collected evidence')
+    elif GRAND_JURY_REGEX.search(text[0:100]):
+        cfg = _cfg(category=Neutral.LEGAL, description='grand jury proceedings')
     elif 'LedgerX' in text[0:500]:
         cfg = _cfg(category=Interesting.CRYPTO, description=LEDGERX_MSG)
     elif LSJE_FORM_REGEX.search(text):
