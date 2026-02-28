@@ -165,6 +165,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(BILL_SIEGEL, "documentary film producer and director"),
             Contact(DAVID_BLAINE, "famous magician"),
             Contact('David Brenner', "American comedian and actor"),
+            Contact('David Geffen', 'record label and film studio owner'),
             Contact('Nick Jarecki', "American filmmaker"),
             Contact('Richard Merkin', "painter, illustrator and arts educator"),
             Contact(STEVEN_PFEIFFER, "Associate Director at Independent Filmmaker Project (IFP)"),
@@ -623,6 +624,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         patterns=[
             r"(Al )?Franken",
             r"Al Gore",
+            r"Al(i|ex) Mayorkas",
             r"((Barac?k|President) )?Obama",
             r"((Bill|Hillart?y) )?Clinton",
             r"((Chuck|Charles) )?S(ch|hc)umer",
@@ -1199,6 +1201,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Homeland Security",
             r"IG",
             r"Interpol",
+            r"(?-i:INS)",
             r"IRS",
             r"(James )?Comey",
             r"(Jennifer Shasky )?Calvery",

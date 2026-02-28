@@ -1352,6 +1352,11 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA02637315', is_interesting=True, description=f"{AZIZA_ALAHMADI} says BTC to fiat is legalized in middle east"),
     EmailCfg(id='EFTA02517037', is_interesting=True, description=f"Epstein wants to talk about Kazakhstan with {LARRY_SUMMERS}"),
     EmailCfg(id='EFTA02559311', is_interesting=True, description=f"Epstein has some connection to the sovereign wealth fund of Kazakhstan"),
+    EmailCfg(
+        id='EFTA01993032',
+        is_interesting=True,
+        description=f'{IAN_OSBORNE} calls Greg Craig "my guy", offers to help with visa for woman Epstein "prefers not be part of my file"',
+    ),
     EmailCfg(id='EFTA02062130', is_interesting=True, description=f'{NILI_PRIELL_BARAK} installing cameras at Epstein\'s house'),
     EmailCfg(id='EFTA02730481', date='2023-07-07T11:01:00', date_uncertain='actually reply timestamp'),
     EmailCfg(id='EFTA02731577', date='2024-10-16T00:00:00', date_uncertain='actually reply timestamp'),
