@@ -806,11 +806,9 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             )
         ],
         patterns=[
-            r"(Barry (E. )?)?Krischer",
             r"dersh",
             r"Kate Kelly",
             r"Kirkland & Ellis",
-            r"(Leon )?Jaworski",
             r"Michael J. Pike",
             PERKINS_COIE,
             r"Steptoe( & Johnson)?( LLP)?",
@@ -818,12 +816,13 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         ],
     ),
     HighlightedNames(
-        label='law firm',
+        label='law firm',  # Non-Epstein affiliated
         style='medium_purple3',
         contacts=[
             company('Clifford Chance', f'law firm where {MARIA_PRUSAKOVA} did an internship in Paris'),
         ],
         patterns=[
+            r"(Leon )?Jaworski",
             r"Paul,? Weiss",
             r"Skadden(,? Arps)",
             r"Sull(ivan)? (&|and)? Crom(well)?",
@@ -1147,6 +1146,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 emailer_pattern=r"Alison( J\.?)? Nathan|Nathan NYSD Chambers?",
                 match_partial_names=None,
             ),
+            Contact('Barry Krischer', "prosecutor in charge of Epstein's sweetheart deal in 2006", r"(Barry (E. )?)?Krischer"),
             Contact(
                 name=ANN_MARIE_VILLAFANA,
                 info="Southern District of Florida (SDFL) U.S. Attorney",
