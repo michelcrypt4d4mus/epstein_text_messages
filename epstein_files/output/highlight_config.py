@@ -772,7 +772,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             ),
             Contact(LILLY_SANCHEZ, CRIMINAL_DEFENSE_ATTORNEY, r"Lilly.*?Sanchez"),
             Contact(MARTIN_WEINBERG, CRIMINAL_DEFENSE_ATTORNEY, r"Martin.*?Weinberg"),
-            Contact(MICHAEL_MILLER, "Steptoe LLP partner", r"Micha(el)? Miller|Miller, Micha(el)?"),
+            Contact(MICHAEL_MILLER, "Steptoe LLP partner", r"Micha(el)? Miller|Miller, Micha(el)?", match_partial_names=None),
             Contact(REID_WEINGARTEN, "Steptoe LLP partner", r"Weingarten, Rei[cdi]|Rei[cdi] Weingarten"),
             Contact(ROBERT_D_CRITTON_JR, CRIMINAL_DEFENSE_ATTORNEY, r"Robert D.? Critton,? Jr\.?", match_partial_names=None),
             Contact('Robert Gold', "helped Epstein track down money belonging to Spanish families", match_partial_names=None),
@@ -2177,7 +2177,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"pussy",
             r"(?-i:S)anctum",
             r"Stephanie Clifford",
-            r"(?-i:S)ue",
+            r"(?-i:S)ue\b",  # Only in brock emails really?
             r"Stormy Daniels",
             r"strange women",
             r"vibrator",
