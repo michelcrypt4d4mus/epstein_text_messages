@@ -68,6 +68,7 @@ class Contact:
     @property
     def bio(self) -> Text:
         """Biographical info about this entity."""
+        from epstein_files.output.rich import highlighter
         txt = Text('')
 
         if self.link_to_bio:
@@ -78,7 +79,7 @@ class Contact:
         if self.category:
             txt.append(' [', style='dim').append(self.category.lower(), style=f'{self.style} dim').append(']', style='dim')
 
-        return txt.append(' ').append(self.info, style='italic')
+        return txt.append(' ').append(highlighter(Text(self.info, style='italic grey70')))
 
     @property
     def bold_style(self) -> str:

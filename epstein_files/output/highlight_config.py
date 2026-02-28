@@ -165,6 +165,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(BILL_SIEGEL, "documentary film producer and director"),
             Contact(DAVID_BLAINE, "famous magician"),
             Contact('David Brenner', "American comedian and actor"),
+            Contact('David Geffen', 'record label and film studio owner'),
             Contact('Nick Jarecki', "American filmmaker"),
             Contact('Richard Merkin', "painter, illustrator and arts educator"),
             Contact(STEVEN_PFEIFFER, "Associate Director at Independent Filmmaker Project (IFP)"),
@@ -254,7 +255,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             ),
             Contact(
                 NICOLE_JUNKERMANN,
-                f"ex-model, NJF Capital / JunkermannGroup, investor in Revolut, online poker, Carbyne w/{EHUD_BARAK}",
+                f"ex-model, NJF Capital/JunkermannGroup, investor in Revolut, online poker, China",
                 r"(Nicole )?Junke(nn|rm)ann?",
             ),
             Contact('Nikolajs Smirnovs', f"{NICOLE_JUNKERMANN}'s NJF Capital / JunkermannGroup", r"Nikolajs (NJF|Smirnovs)"),
@@ -505,6 +506,11 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 r"Digital (Assets?|Currenc(ies|y)) Initiative",
             ),
             company(
+                'Digital Currency Group',
+                'DCG, formerly the most import crypto VC fund in the US, rekt by FTXplosion',
+                r"DCG|Digital Currency Group",
+            ),
+            company(
                 'Draper Fisher Jurvetson',
                 f"fund run by Tim Draper, John Fisher, and Steve Jurvetson",
                 r"DFJ( Capital|Fund)?|Draper Fisher Jurvetson"
@@ -572,6 +578,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"itBit",
             r"Joyce Kim",
             r"Layer (1|One)",
+            r"Linden Dollar",
             r"Northern Data",
             r"(Patrick )?Murck",
             r"Playsino",
@@ -607,11 +614,17 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         contacts=[
             Contact(PAUL_PROSPERI, "friend of Bill Clinton"),
             Contact(BILL_RICHARDSON, 'governor of New Mexico', r"(Governor )?(Bill )?Richardson"),
+            Contact(
+                'Greg Craig',
+                'former Obama White House counsel, worked w/Paul Manafort in Ukraine, acquitted of charges',
+                match_partial_names=None,
+            ),
             Contact('Janis Hartley', f'assistant to Governor Bill Richardson {QUESTION_MARKS}'),
         ],
         patterns=[
             r"(Al )?Franken",
             r"Al Gore",
+            r"Al(i|ex) Mayorkas",
             r"((Barac?k|President) )?Obama",
             r"((Bill|Hillart?y) )?Clinton",
             r"((Chuck|Charles) )?S(ch|hc)umer",
@@ -1188,6 +1201,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Homeland Security",
             r"IG",
             r"Interpol",
+            r"(?-i:INS)",
             r"IRS",
             r"(James )?Comey",
             r"(Jennifer Shasky )?Calvery",
@@ -2082,7 +2096,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             company(GOOGLE_PLUS, "Google Plus", r"Google\+", is_emailer=True, is_interesting=False),
             company('Honeycomb Asset Management', 'venture fund Epstein invested in Spotify through', r"Honeycomb( (Offshore Fund|Partners)( (LP|Ltd))?)?"),
             company('LinkedIn', "LinkedIn", r"Linked[Il]n( Updates)?", is_emailer=True, is_interesting=False),
-            company('Second Life', f"virtual world with early attempt at virtual currency the Linden Dollar", r"Second Life|Linden dollar"),
+            company('Second Life', f"virtual world with early attempt at virtual currency the Linden Dollar", r"Second Life"),
             company('Softbank Vision Fund', "Masayohsi Son's fund focused on tech, AI, WeWork", r"Softbank|(Softbank )?Vision Fund"),
             company('ThielCapital', f"{PETER_THIEL} organization"),
             company(VALAR_VENTURES, f"{PETER_THIEL} affiliated fintech venture fund", r"V[ae]lar (Global Fund|Ventures)?", is_emailer=True),
@@ -2140,6 +2154,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact('Marla Maples', 'ex-wife of Donald Trump', match_partial_names='both'),
             Contact('Michael Caputo', 'former Putin and Gazprom PR guy, Trump appointee, acolyte of Roger Stone'),
             Contact(NICHOLAS_RIBIS, f"Hilton CEO, former president of {TRUMP_ORG}", r"Nic(holas|k)[\s._]Ribi?s?|Ribbis"),
+            Contact('Paul Manafort', 'Trump campaign manager, partner of Roger Stone, worked for Russians in Ukraine, convicted of financial fraud'),
             Contact('Roger Stone', "infamous political trickster with a tattoo of Nixon's face on his back", match_partial_names=None),
         ],
         patterns=[
@@ -2244,7 +2259,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(KEN_JENNE, ROTHSTEIN_ROSENFELDT_ADLER),
             company(
                 ROTHSTEIN_ROSENFELDT_ADLER,
-                "shady law firm that sued Epstein, Rothstein ran $1.2 billionn Ponzi scheme and was Roger Stone's partner",
+                "shady law firm, Rothstein ran $1.2 billion Ponzi scheme & was Roger Stone's partner",
                 r"Rothstein,? Rosenfeldt,? Adler",
                 link_to_bio='https://en.wikipedia.org/wiki/Scott_W._Rothstein',
             ),
@@ -2446,13 +2461,6 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
 
 HIGHLIGHTED_NAMES = [hg for hg in HIGHLIGHT_GROUPS if isinstance(hg, HighlightedNames)]
 HIGHLIGHTED_CONTACTS = flatten([hn.contacts for hn in HIGHLIGHTED_NAMES])
-
-PEOPLE_BIOS = {
-    contact.name: contact.bio
-    for highlighted_group in HIGHLIGHTED_NAMES
-    for contact in highlighted_group.contacts
-    if contact.has_bio
-}
 
 
 def get_contact(name: str) -> Contact | None:

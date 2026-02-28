@@ -23,9 +23,8 @@ from epstein_files.documents.emails.util import split_up_dilorio
 from epstein_files.documents.json_file import JsonFile
 from epstein_files.documents.messenger_log import MSG_REGEX, MessengerLog
 from epstein_files.documents.other_file import OtherFile
-from epstein_files.output.highlight_config import PEOPLE_BIOS
 from epstein_files.output.rich import console
-from epstein_files.people.person import INVALID_FOR_EPSTEIN_WEB, Person
+from epstein_files.people.person import INVALID_FOR_EPSTEIN_WEB, PEOPLE_BIOS, Person
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constants import *
 from epstein_files.util.env import args, logger

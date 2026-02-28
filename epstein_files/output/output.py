@@ -14,7 +14,7 @@ from epstein_files.documents.email import Email
 from epstein_files.documents.messenger_log import MessengerLog
 from epstein_files.documents.other_file import FIRST_FEW_LINES, OtherFile
 from epstein_files.epstein_files import EpsteinFiles
-from epstein_files.output.highlight_config import PEOPLE_BIOS, get_style_for_name
+from epstein_files.output.highlight_config import get_style_for_name
 from epstein_files.output.html.builder import buffer_as_html, rich_to_html, table_to_html, write_templated_html
 from epstein_files.output.html.elements import div_class
 from epstein_files.output.rich import *
@@ -22,7 +22,7 @@ from epstein_files.output.site.sites import (AUTHORS_USING_SIGNATURES, EMAILERS_
      FILEs_THAT_ARE_NEITHER_EMAILS_NOR, HIS_EMAILS, HIS_TEXT_MESSAGES, HTML_DIR, SELECTIONS_FROM)
 from epstein_files.output.title_page import print_color_key, print_other_page_link, print_section_header
 from epstein_files.people.interesting_people import EMAILERS_TO_PRINT
-from epstein_files.people.person import Person
+from epstein_files.people.person import PEOPLE_BIOS, Person
 from epstein_files.util.constant.html import HTML_TERMINAL_THEME, RICH_HTML_TEMPLATE
 from epstein_files.util.constant.names import *
 from epstein_files.util.constant.strings import AUTHOR
