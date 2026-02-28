@@ -937,6 +937,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         label='financial',
         style=FINANCIAL_COLOR,
         patterns=[
+            r"American Express",
             r"alterna[tv]i[tv]e finance",
             r"((anti )?money )?launder(s?|ers?|ing)?( money)?",
             r"(?<!(alfa|ture|hase|rahi|sche)\s)bank(?!\s+(of|secrecy))",
@@ -946,10 +947,13 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"C[EF]O",
             r"Chief (Executive|Financ(e|ial)) Officer",
             r"(co-?)?founder",
+            r"convertible note",
             r"donor advised fund",
             r"equities",
+            r"Mastercard",
             r"(naked )?shorting",
             r"NASDAQ",
+            r"PayPay Card",
             r"philanthrop(i(es|st)|y)",
             r"ponz[il] scheme",
             r"real estate( developer)?",
@@ -2321,7 +2325,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         label='dollars',
         style=FINANCIAL_COLOR,
         patterns=[
-            r"\$[\d,.]+(\s*(bn|[bm](illion)?|mm|thousand))?",
+            r"\$[\d,.]+(\s*(bn|[bm](illion|m)?|k|thousand))?",
         ]
     ),
     HighlightPatterns(
