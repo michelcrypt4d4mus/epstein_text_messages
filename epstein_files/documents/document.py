@@ -302,11 +302,21 @@ class Document:
     @property
     def people(self) -> list[str]:
         """Names of people who either sent/received this email or are mentioned in it."""
-        people = [c.name for c in HIGHLIGHTED_CONTACTS if c.highlight_regex.search(self.text)]
+        text = self.text
+
+        if self.config:
+            if not self.config.is_valid_for_name_scan:
+                return []
+            elif self.config.replace_text_with:
+                text = self.config.replace_text_with
+
+        people = [c.name for c in HIGHLIGHTED_CONTACTS if c.highlight_regex.search(text)]
         people = uniq_sorted(people + ([self.author] if self.author else []))
+        non_particpants = self.config.non_participants if self.config else []
+        people = [p for p in people if p not in non_particpants]
 
         if people:
-            self.log(f"people() found {', '.join(people)}")
+            self.log(f"people() found: {', '.join(people)}")
 
         return people
 

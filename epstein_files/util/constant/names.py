@@ -204,6 +204,7 @@ ANDREW_MCCORMACK = 'Andrew McCormack'
 ARIANNA_SIMPSON = 'Arianna Simpson'
 AUDREY_STRAUSS = 'Audrey Strauss'
 AUSTIN_HILL = 'Austin Hill'
+BILL_RICHARDSON = 'Bill Richardson'
 BOBBI_C_STERNHEIM = 'Bobbi C. Sternheim'
 BROCK_PIERCE = 'Brock Pierce'
 CHRIS_POOLE = 'Chris Poole'
@@ -227,6 +228,7 @@ JULIA_SANTOS = 'Julia Santos'
 KARYNA_SHULIAK = 'Karyna Shuliak'
 LORENZO_DE_MEDICI = 'Lorenzo de Medici'
 MADARS_VIRZA = 'Madars Virza'
+MELANIE_PHILLIPS = 'Melanie Phillips'
 NICOLE_JUNKERMANN = 'Nicole Junkermann'
 OLGA_PONOMAR_BECKER = 'Olga Ponomar-Becker'
 PERKINS_COIE = 'Perkins Coie'
@@ -292,7 +294,7 @@ NOBEL_CHARITABLE_TRUST = 'Nobel Charitable Trust'
 OFFICE_OF_THE_DEPUTY_ATTORNEY_GENERAL = 'Office of the Deputy Attorney General'
 OSBORNE_LLP = f"{IAN_OSBORNE} & Partners"  # Ian Osborne's PR firm
 PALM_BEACH_POLICE = f"{PALM_BEACH} Police"
-ROTHSTEIN_ROSENFELDT_ADLER = "Rothstein Rosenfeldt Adler (Rothstein was Roger Stone's partner)"  # and a crook
+ROTHSTEIN_ROSENFELDT_ADLER = "Rothstein Rosenfeldt Adler"  # and a crook
 SDNY = 'SDNY'
 SOUTHERN_TRUST_COMPANY = 'Southern Trust Company'
 TRUMP_ORG = 'Trump Organization'
@@ -340,7 +342,7 @@ NAMES_TO_NOT_PARTIALLY_MATCH = set("""
     oleg owen
     paul paula pen perry peter philip pierce plus police prince
     randall rangel reid richard robert roberts rodriguez roger rosenberg ross roth roy rubenstein rubin
-    santos scott sean sergey service services skip smith son stacey stanley stern stephen steve steven stone story susan
+    santos scott sean sergey service services simpson skip smith son stacey stanley stein stern stephen steve steven stone story susan
     team terry the thomas tim tom tony trust tyler
     unknown
     ventures victor viktor virginia
@@ -372,8 +374,6 @@ OTHER_NAMES = list(NAMES_TO_NOT_PARTIALLY_MATCH) + """
     walter warren weinstein weiss william
     zach zack
 """.strip().split()
-
-SIMPLE_NAME_REGEX = re.compile(r"^[-\w, ]+$", re.IGNORECASE)
 
 
 def constantize_name(name: str) -> str:
@@ -413,14 +413,6 @@ def extract_last_name(name: str) -> str:
         return first_last_names[-1]
 
 
-def name_variations(name: str) -> list[str]:
-    """['Firstname', 'Lastname', 'Lastname, Firstname'."""
-    if ' 'in name:
-        return [reversed_name(name), extract_first_name(name), extract_last_name(name)]  # NOTE:  Order matters!
-    else:
-        return []
-
-
 def reverse_first_and_last_names(name: str) -> str:
     """If there's a comma in the name in the style 'Lastname, Firstname', reverse it and remove comma."""
     if '@' in name:
@@ -431,14 +423,6 @@ def reverse_first_and_last_names(name: str) -> str:
         return f"{names[1]} {names[0]}"
     else:
         return name
-
-
-def reversed_name(name: str) -> str:
-    """'Jeffrey Epstein' becomes 'Epstein Jeffrey'."""
-    if ' ' not in name:
-        return name
-
-    return f"{extract_last_name(name)}, {extract_first_name(name)}"
 
 
 def sort_names(names: Sequence[Name]) -> list[Name]:

@@ -1359,9 +1359,9 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA02517037', is_interesting=True, description=f"Epstein wants to talk about Kazakhstan with {LARRY_SUMMERS}"),
     EmailCfg(id='EFTA02559311', is_interesting=True, description=f"Epstein has some connection to the sovereign wealth fund of Kazakhstan"),
     EmailCfg(id='EFTA02062130', is_interesting=True, description=f'{NILI_PRIELL_BARAK} installing cameras at Epstein\'s house'),
-    EmailCfg(id='EFTA02730481', date='2023-07-07T11:01:00'),  # TODO: actually reply timestamp
-    EmailCfg(id='EFTA02731577', date='2024-10-16T00:00:00'),  # TODO: actually reply timestamp
-    EmailCfg(id='EFTA02730468', author=USANYS, recipients=[USANYS], date='2019-07-11T08:25:00'),  # TODO: This is just wrong
+    EmailCfg(id='EFTA02730481', date='2023-07-07T11:01:00', date_uncertain='actually reply timestamp'),
+    EmailCfg(id='EFTA02731577', date='2024-10-16T00:00:00', date_uncertain='actually reply timestamp'),
+    EmailCfg(id='EFTA02730468', author=USANYS, recipients=[USANYS], date='2019-07-11T08:25:00', date_uncertain='just wrong'),
     # Generated basd on OtherFile.extract_timestamp()
     EmailCfg(id='EFTA02731783', date='2022-01-21 17:28:00'),
     EmailCfg(id='EFTA00039888', date='2019-05-14 16:49:00'),
@@ -1434,12 +1434,12 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00826876', description=f"Epstein offers to help pay for {PETER_THIEL}'s lawsuit against Gawker"),
     EmailCfg(
         id='EFTA01882985',
-        description='Epstein: "Yuri money is russian gangster money, Usmanov" ("Steve" is Steve Ballmer)',
+        description=f'Epstein: "yuri money is russian gangster money, Usmanov" ("Steve" is likely {STEVEN_SINOFSKY})',
         is_interesting=True,
-        recipients=[BORIS_NIKOLIC],
+        recipients=[MELANIE_PHILLIPS],
         uncertain_recipient='maybe Boris Nikolic but Boris asks Epstein same question a few months later',
     ),
-    EmailCfg(id='EFTA01986756', comment='maybe from Boris Nikolic but Boris asks Epstein same question a few months later'),
+    EmailCfg(id='EFTA01986756', author=MELANIE_PHILLIPS, author_uncertain=f"{STEVEN_SINOFSKY}'s gf at the time"),
     EmailCfg(id='EFTA01858685', is_interesting=True),
     EmailCfg(id='EFTA00875181', duplicate_ids=['EFTA01901268']),
     EmailCfg(id='EFTA01852975', duplicate_ids=['EFTA02001764']),
@@ -1766,7 +1766,12 @@ OTHER_FILES_ARTICLE = [
 ]
 
 OTHER_FILES_DEPOSITION = [
-    DocCfg(id='EFTA00159483', author=LAWRANCE_VISOSKI, is_interesting=True),
+    DocCfg(
+        id='EFTA00159483',
+        author=LAWRANCE_VISOSKI,
+        is_interesting=True,
+        non_participants=[EHUD_BARAK, GLENN_DUBIN],
+    ),
     DocCfg(id='021824', author=PAUL_G_CASSELL, description=f"from {EDWARDS_V_DERSHOWITZ}"),
     DocCfg(id='013463', author='Scott Rothstein', description=f"from {JANE_DOE_V_EPSTEIN_TRUMP}", date='2010-03-23'),
     DocCfg(id='017488', author='Scott Rothstein', description=f"from {EPSTEIN_V_ROTHSTEIN_EDWARDS}", date='2012-06-22'),
@@ -1809,9 +1814,27 @@ OTHER_FILES_LEGAL = [
     DocCfg(id='012103', author=EPSTEIN_V_ROTHSTEIN_EDWARDS, description=f"Telephone Interview with {VIRGINIA_GIUFFRE}", date='2011-05-17'),
     DocCfg(id='029315', author=EPSTEIN_V_ROTHSTEIN_EDWARDS, description=f"Plaintiff Motion for Summary Judgment by {JACK_SCAROLA}", date='2013-09-13'),
     DocCfg(id='013304', author=EPSTEIN_V_ROTHSTEIN_EDWARDS, description=f"Plaintiff Response to Epstein's Motion for Summary Judgment", date='2014-04-17'),
-    fbi_report('019352', FBI_REPORT),
-    fbi_report('021434', FBI_REPORT),
-    fbi_report('018872', FBI_REPORT),
+    fbi_report('019352', f"{FBI_REPORT} containing clippings of various press items"),
+    fbi_report('021434', FBI_REPORT, is_valid_for_name_scan=False),
+    fbi_report(
+        '018872',
+        FBI_REPORT,
+        non_participants=[
+            BILL_GATES,
+            BILL_RICHARDSON,
+            EDUARDO_ROBLES,
+            GERALD_LEFCOURT,
+            GLENN_DUBIN,
+            JOI_ITO,
+            LARRY_SUMMERS,
+            MARK_EPSTEIN,
+            MARTIN_NOWAK,
+            MORTIMER_ZUCKERMAN,
+            PRINCE_ANDREW,
+            STEVEN_HOFFENBERG,
+            SVETLANA_POZHIDAEVA
+        ],
+    ),
     fbi_report('021569', FBI_REPORT),
     fbi_report('EFTA01688746', FBI_REPORT),
     DocCfg(id='017792', author=GIUFFRE_V_DERSHOWITZ, description=f"article about {ALAN_DERSHOWITZ}'s appearance on Wolf Blitzer"),
@@ -1877,9 +1900,9 @@ OTHER_FILES_LEGAL = [
     DocCfg(id='017830', author=JASTA_SAUDI_LAWSUIT, description=f"legal text and court documents"),
     DocCfg(id='017904', author=JASTA_SAUDI_LAWSUIT, description=f"Westlaw search results", date='2019-01-01'),
     DocCfg(id='014037', author='Journal of Criminal Law and Criminology', description=f"article on {CVRA}"),
-    starr_letter('025353', '2008-05-19', ['010723', '019224'], 'redacted'),
+    starr_letter('025353', '2008-05-19', ['010723', '019224'], 'redacted', non_participants=[LANDON_THOMAS]),
     starr_letter('025704', '2008-05-27', ['010732', '019221'], 'redacted'),
-    starr_letter('012130', '2008-06-19', ['012135']),
+    starr_letter('012130', '2008-06-19', ['012135'], non_participants=[LESLEY_GROFF]),
     letter(
         id='031447',
         author=MARTIN_WEINBERG,
@@ -2054,7 +2077,8 @@ OTHER_FILES_GOVERNMENT = [
     DocCfg(
         id='EFTA00164939',
         author=DOJ,
-        date='2025-09-01',   # TODO: approximate
+        date='2025-09-01',
+        date_uncertain='approximate',
         description='Powerpoint summary of Child Sex Trafficking Task Force Epstein investigation',
         is_interesting=True,
     ),
@@ -2081,7 +2105,7 @@ OTHER_FILES_GOVERNMENT = [
         show_full_panel=True,
         truncate_to=NO_TRUNCATE,  # TODO this shouldn't be necessary?
     ),
-    EmailCfg(id='EFTA02730483', author=FBI, date='2023-07-11T08:25:00'),  # TODO: actually reply timestamp
+    EmailCfg(id='EFTA02730483', author=FBI, date='2023-07-11T08:25:00', date_uncertain='actually reply timestamp'),
     EmailCfg(id='EFTA02731552', author=FBI, recipients=[USANYS], date='2021-05-26 16:12:00', uncertain_recipient='true'),
     EmailCfg(id='EFTA00039971', author=FBI, recipients=[USANYS], uncertain_recipient='true'),
 ]
@@ -2231,7 +2255,8 @@ OTHER_FILES_POLITICS = [
     DocCfg(id='031670', description=f"letter from General Mike Flynn's lawyers to senators Mark Warner & Richard Burr about subpoena"),
     DocCfg(
         id='029357',
-        date='2015-01-15',  # TODO: this is just a guess
+        date='2015-01-15',
+        date_uncertain='a guess',
         description=f"possibly book extract about Israel's challenges entering 2015",
         duplicate_ids=['028887'],
     ),
@@ -2565,7 +2590,12 @@ OTHER_FILES_CRYPTO = [
     EmailCfg(id='EFTA00658457', description=f'{BROCK_PIERCE} says they will not invest in Bitfury', truncate_to=700),
     EmailCfg(id='EFTA00998595', description=f'{BROCK_PIERCE} and Epstein discuss structure of crypto investments'),
     EmailCfg(id='EFTA01000882', description=f"{BROCK_PIERCE} asks for Epstein's permission to disclose his name to Coinbase team", is_interesting=True),
-    EmailCfg(id='EFTA00689503', description=f"{BROCK_PIERCE} posted a review of the infamous Russian criminal crypto exchange BTC-e to LinkedIn", is_interesting=True),
+    EmailCfg(
+        id='EFTA00689503',
+        description=f"{BROCK_PIERCE} posts review of infamous Russian criminal crypto exchange BTC-e to LinkedIn",
+        is_interesting=True,
+        show_with_name=BROCK_PIERCE,
+    ),
     EmailCfg(id='EFTA00664424', description=f"{BROCK_PIERCE} suggests {LARRY_SUMMERS} could get involved with Tether and Noble Bank"),
     # Coinbase
     DocCfg(
@@ -2719,7 +2749,12 @@ OTHER_FILES_CRYPTO = [
     EmailCfg(id='EFTA01010128'),
     # Misc
     DocCfg(id='EFTA01734786', description='LedgerX Series B pitch deck'),
-    DocCfg(id='EFTA02725909', description='memo to NYDFS for NYC Bitcoin Exchange, Balaji Srinivisan & Andrew Farkas on board'),
+    DocCfg(
+        id='EFTA02725909',
+        description=f'memo to NYDFS of NYC Bitcoin Exchange, Balaji Srinivisan & {ANDREW_FARKAS} on board',
+        date='2016-01-01',
+        date_uncertain='mentions ethereum so must be after 2015-06',
+    ),
     DocCfg(id='EFTA00811666', description='asset valuations of Epstein\'s holdings, includes "Coinbase via grat"', date='2018-01-31'),
     EmailCfg(id='EFTA01060993', description=f"Epstein says he knows \"a few\" guys who hold over $50 million in bitcoin", is_interesting=True),
     EmailCfg(id='EFTA01915234', description='discussion of crypto regulations', is_interesting=True),
@@ -2751,6 +2786,8 @@ OTHER_FILES_CRYPTO = [
     EmailCfg(id='EFTA00964459', description=f'discussion of sharia compliant crypto token', is_interesting=True),
     EmailCfg(id='EFTA00990442', description=f"Epstein offers to cover all costs for Sharia Coin", is_interesting=True),
     EmailCfg(id='032359', description='HBJ brings up "e-currency" (Sharia Coin, probably)'),
+    # Silk Road / Ulbricht
+    EmailCfg(id='EFTA00972689', description=f"Epstein and Nikolic ruminate on the Silk Road bust", truncate_to=NO_TRUNCATE),
     # Valar
     DocCfg(id='EFTA00605996', description='Wedbush BUY rating on Digital Currency Group GBTC', is_interesting=False),
     DocCfg(id='EFTA01121910', author=VALAR_VENTURES, description="contract", truncate_to=DEFAULT_TRUNCATE_TO),
@@ -3048,6 +3085,7 @@ UNINTERESTING_EMAIL_IDS = [
 # Not uninteresting enough to be permanently marked as such but not good enough for --output-chrono
 NOT_CHRONOLOGICAL_VIEW_IDS = [
     '024432',
+    '019352',
     'EFTA00915298',
     'EFTA02423635',
     'EFTA00007781',

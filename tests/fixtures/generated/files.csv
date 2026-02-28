@@ -266,7 +266,7 @@ file_id,category,author,is_interesting,timestamp,recipients_str,sent_from_device
 021434,government,FBI,True,2009-08-08 00:00:00,,,FBI report on Epstein investigation
 021569,government,FBI,True,2014-03-01 00:00:00,,,FBI report on Epstein investigation
 021718,article,Virgin Islands Daily News,False,2016-02-27 00:00:00,,,Virgin Islands Daily News
-021729,email,Jeffrey Epstein,False,2019-03-14 16:48:11,Darren Indyke;Deutsche Bank;Jack Goldberger;Martin Weinberg,,
+021729,email,Jeffrey Epstein,False,2019-03-14 16:48:11,Darren Indyke;Jack Goldberger;Martin Weinberg,,
 021740,email,Darren Indyke,False,2019-03-14 16:30:53,Jeffrey Epstein,,
 021749,email,Darren Indyke,,2019-03-14 17:28:39,Jeffrey Epstein,,
 021758,email,Jeffrey Epstein,False,2009-06-19 23:01:00,Peggy Siegal,,
@@ -609,7 +609,7 @@ file_id,category,author,is_interesting,timestamp,recipients_str,sent_from_device
 025707,messengerlog,Steve Bannon,True,2018-08-17 08:53:05,,,Steve Bannon (???)
 025734,messengerlog,Steve Bannon,True,2018-08-25 04:31:18,,,Steve Bannon (???)
 025763,finance,S&P,False,2014-08-05 00:00:00,,,"S&P report: ""Economic Research: How Increasing Income Inequality Is Dampening U.S. Growth"""
-025790,email,Tonja Haddad Coleman,,2015-01-29 20:33:35,Darren Indyke;Deutsche Bank;Jack Goldberger;Jeffrey Epstein,,
+025790,email,Tonja Haddad Coleman,,2015-01-29 20:33:35,Darren Indyke;Jack Goldberger;Jeffrey Epstein,,
 025792,email,digest-noreply@quora.com,False,2019-07-14 19:03:52,Jeffrey Epstein,,
 025797,conference,,True,2013-05-29 00:00:00,,,someone's notes from Aspen Strategy Group
 025812,email,Tyler Shears,True,2014-07-16 17:56:14,Christina Galbraith;Jeffrey Epstein;Richard Kahn,,
@@ -892,7 +892,7 @@ file_id,category,author,is_interesting,timestamp,recipients_str,sent_from_device
 026887,article,Robert Lawrence Kuhn,False,2018-09-18 00:00:00,,,"Robert Lawrence Kuhn BBC ""New Tariffs - Trade War"""
 026893,email,Richard Kahn,False,2018-10-15 18:56:57,Jeffrey Epstein,,
 026909,finance,Goldman Sachs Investment Management Division,False,2018-10-14 00:00:00,,,"Goldman Sachs Investment Management Division report: ""The Unsteady Undertow Commands the Seas (Temporarily)"", attached to email 026893"
-026924,email,Paul Krassner,False,2018-12-20 20:09:23,Caryl Ratner;Danny Goldberg;Deutsche Bank;Kevin Bright,,
+026924,email,Paul Krassner,False,2018-12-20 20:09:23,Caryl Ratner;Danny Goldberg;Kevin Bright,,
 026934,email,Lawrance Visoski,,2018-12-23 22:57:55,Jeffrey Epstein,Sent from my iPhone,
 026935,email,Richard Kahn,,2019-01-10 20:23:40,Jeffrey Epstein,,
 026936,email,Richard Kahn,,2019-01-23 19:12:03,Jeffrey Epstein,,
@@ -1271,9 +1271,9 @@ file_id,category,author,is_interesting,timestamp,recipients_str,sent_from_device
 029766,email,Lesley Groff,,2011-04-03 14:08:00,Darren Indyke;Jeffrey Epstein,,
 029773,email,Stephanie,,2011-03-04 23:15:40,Jeffrey Epstein;Peggy Siegal,,
 029831,email,Jack Goldberger,,2016-04-28 16:59:27,Alan Dershowitz;Jeffrey Epstein;Roy Black,Sent from my iPhone,
-029833,email,Alan Dershowitz,,2016-04-28 16:51:57,Deutsche Bank;Jack Goldberger;Jeffrey Epstein;Roy Black,Sent from my iPhone,
-029835,email,Roy Black,,2016-04-28 16:47:41,Alan Dershowitz;Deutsche Bank;Jack Goldberger;Jeffrey Epstein,,
-029837,email,Jeffrey Epstein,,2016-04-28 16:39:12,Alan Dershowitz;Deutsche Bank;Jack Goldberger;Roy Black,,
+029833,email,Alan Dershowitz,,2016-04-28 16:51:57,Jack Goldberger;Jeffrey Epstein;Roy Black,Sent from my iPhone,
+029835,email,Roy Black,,2016-04-28 16:47:41,Alan Dershowitz;Jack Goldberger;Jeffrey Epstein,,
+029837,email,Jeffrey Epstein,,2016-04-28 16:39:12,Alan Dershowitz;Jack Goldberger;Roy Black,,
 029839,email,Soon-Yi Previn,,2015-12-08 17:58:45,Jeffrey Epstein,Sent from Soon-Yi's iPhone,
 029841,email,Stephanie,,2011-06-14 16:54:35,Jeffrey Epstein;Lesley Groff,,
 029848,email,Richard Kahn,,2017-01-26 14:16:35,Jeffrey Epstein,,
@@ -1287,7 +1287,7 @@ file_id,category,author,is_interesting,timestamp,recipients_str,sent_from_device
 029864,email,Richard Kahn,,2015-09-17 22:00:33,Jeffrey Epstein,,
 029865,article,LA Times,False,2016-11-05 00:00:00,,,LA Times front page article about Deepak Chopra and young Iranians
 029866,email,editorialstaff@flipboard.com,False,2019-07-06 18:57:33,Jeffrey Epstein,,
-029889,email,Jessica Cadwell,,2009-08-11 19:16:00,Connie Zaguirre;Deutsche Bank;Jack Goldberger;Jeffrey Epstein;Robert D. Critton Jr.,,
+029889,email,Jessica Cadwell,,2009-08-11 19:16:00,Connie Zaguirre;Jack Goldberger;Jeffrey Epstein;Robert D. Critton Jr.,,
 029893,email,Jeffrey Epstein,,2009-08-11 19:00:57,Jessica Cadwell,,
 029898,email,Larry Summers,,2015-01-08 01:26:40,Jeffrey Epstein,Sent from my iPhone,
 029899,email,Jeffrey Epstein,,2015-01-08 15:11:21,Kathryn Ruemmler,,
@@ -1642,13 +1642,13 @@ file_id,category,author,is_interesting,timestamp,recipients_str,sent_from_device
 030989,email,Richard Kahn,,2019-05-29 22:28:52,Jeffrey Epstein,,
 030992,email,Jeffrey Epstein,False,2009-04-14 19:02:11,,,
 030997,email,Jeffrey Epstein,False,2009-05-29 15:04:08,,,Jeffrey Epstein
-030999,email,Jeffrey Epstein,,2009-10-09 16:43:25,Deutsche Bank;Jack Goldberger;Robert D. Critton Jr.,,
-031002,email,Jeffrey Epstein,,2009-10-09 16:52:57,Deutsche Bank;Jack Goldberger,,
+030999,email,Jeffrey Epstein,,2009-10-09 16:43:25,Jack Goldberger;Robert D. Critton Jr.,,
+031002,email,Jeffrey Epstein,,2009-10-09 16:52:57,Jack Goldberger,,
 031005,email,Jeffrey Epstein,,2009-10-09 17:19:34,Mortimer Zuckerman,,
 031011,email,Jeffrey Epstein,,2010-06-14 20:18:52,Tom Pritzker,,jokes about Chicago corruption
 031017,email,Jeffrey Epstein,,2011-01-29 00:36:51,Boris Nikolic,,
-031018,email,Jeffrey Epstein,,2011-01-30 23:35:21,BGC;Boris Nikolic,,
-031020,email,Jeffrey Epstein,,2011-01-30 23:45:40,BGC;Boris Nikolic,,
+031018,email,Jeffrey Epstein,,2011-01-30 23:35:21,Boris Nikolic,,
+031020,email,Jeffrey Epstein,,2011-01-30 23:45:40,Boris Nikolic,,
 031022,email,Jeffrey Epstein,,2011-04-06 22:15:22,Lawrence Krauss,,
 031026,email,Jeffrey Epstein,,2011-04-06 22:55:39,Lawrence Krauss,,
 031031,email,Jeffrey Epstein,,2011-04-06 22:56:35,Lawrence Krauss,,
@@ -1739,7 +1739,7 @@ file_id,category,author,is_interesting,timestamp,recipients_str,sent_from_device
 031354,conference,Nobel Charitable Trust,False,2012-02-27 00:00:00,,,"Nobel Charitable Trust ""Thinking About the Environment and Technology"" report 2011"
 031359,conference,Nobel Charitable Trust,False,2012-05-27 00:00:00,,,"Nobel Charitable Trust ""Earth Environment Convention"" about ESG investing"
 031383,email,Ghislaine Maxwell,,2011-04-02 14:15:40,Jeffrey Epstein,,
-031384,email,Jeffrey Epstein,,2019-03-05 23:12:41,Darren Indyke;Deutsche Bank;Jack Goldberger;Martin Weinberg;Scott J. Link,,
+031384,email,Jeffrey Epstein,,2019-03-05 23:12:41,Darren Indyke;Jack Goldberger;Martin Weinberg;Scott J. Link,,
 031392,email,Jeffrey Epstein,,2019-03-05 23:21:53,Lilly Sanchez,,
 031396,article,WaPo,False,2019-02-06 00:00:00,,,WaPo DOJ discipline office with limited reach to probe handling of controversial sex abuse case
 031399,email,Lilly Sanchez,False,2019-03-05 23:08:12,Jeffrey Epstein,,
@@ -2527,7 +2527,7 @@ file_id,category,author,is_interesting,timestamp,recipients_str,sent_from_device
 033220,finance,Joseph G. Carson,True,2018-02-27 00:00:00,,,Joseph G. Carson short economic report on defense spending under Trump
 033222,email,Darren Indyke,,2017-02-01 17:02:59,Jeffrey Epstein;Richard Kahn,,
 033224,email,Landon Thomas Jr,,2017-02-03 15:43:10,Jeffrey Epstein,,
-033225,email,Paul Krassner,,2017-02-12 00:25:16,Danny Goldberg;Deutsche Bank;Michael Simmons;Samuel Leff,,
+033225,email,Paul Krassner,,2017-02-12 00:25:16,Danny Goldberg;Michael Simmons;Samuel Leff,,
 033226,email,Landon Thomas Jr,,2017-02-15 15:48:18,Jeffrey Epstein,,
 033227,email,Robert Trivers,,2017-03-13 13:36:48,Jeffrey Epstein,,
 033228,email,Tonja Haddad Coleman,,2017-03-14 12:31:06,Darren Indyke;Fred Haddad;Jeffrey Epstein,,
@@ -2633,7 +2633,7 @@ file_id,category,author,is_interesting,timestamp,recipients_str,sent_from_device
 033354,email,Nicholas Ribis,,2019-05-07 23:53:10,Jeffrey Epstein,Sent from my iPhone,
 033355,email,Richard Kahn,,2019-05-08 00:36:13,Jeffrey Epstein,,
 033356,email,Richard Kahn,,2019-05-09 09:28:17,Jeffrey Epstein,,
-033357,email,Paul Krassner,,2019-05-09 23:24:30,Danny Goldberg;Deutsche Bank;Kevin Bright,,
+033357,email,Paul Krassner,,2019-05-09 23:24:30,Danny Goldberg;Kevin Bright,,
 033358,email,Richard Kahn,,2019-05-19 10:21:24,Jeffrey Epstein,,
 033359,email,Richard Kahn,,2019-05-22 17:02:24,Jeffrey Epstein,,
 033360,email,Henry Holt,,2019-05-28 20:51:55,Jeffrey Epstein;Stephen Rubin,,Henry Holt
@@ -2723,7 +2723,7 @@ file_id,category,author,is_interesting,timestamp,recipients_str,sent_from_device
 033578,email,Ehud Barak,True,2017-02-12 16:30:33,Jeffrey Epstein,Sent from my iPhone,
 033580,email,David Fiszel,,2016-12-15 08:37:33,Jeffrey Epstein,,
 033582,email,Jonathan Farkas,,2016-12-07 17:29:21,Jeffrey Epstein,,Jonathan Farkas
-033583,email,Jeffrey Epstein,,2016-11-02 20:53:35,Darren Indyke;Deutsche Bank;Jack Goldberger,,
+033583,email,Jeffrey Epstein,,2016-11-02 20:53:35,Darren Indyke;Jack Goldberger,,
 033584,email,Robert Trivers,,2016-09-26 20:59:46,Jeffrey Epstein,,Robert Trivers
 033585,email,Soon-Yi Previn,,2016-09-13 11:04:37,Jeffrey Epstein,Sent from Soon-Yi's iPhone,
 033587,email,Martin Weinberg,,2016-04-27 19:49:46,Jeffrey Epstein,Sent from my iPhone,
@@ -5214,7 +5214,7 @@ EFTA00093702_8,email,Christopher Dilorio,,2021-08-17 05:54:00,SEC,,
 EFTA00093702_9,email,Christopher Dilorio,,2021-08-16 20:55:00,SEC,,
 EFTA00099424,money,,True,2017-07-08 23:00:00,,,"Epstein 2017 Trust (Eva Andersson Dubin, Darren Indyke, Richard Kahn)"
 EFTA00103908,,,,2019-08-27 10:30:00,,,
-EFTA00104945,email,,False,2019-08-13 01:18:13,Alfa Bank;Andrew Stemmer;Erika Engelson;Justin Alfano;Vijay Dewan,,
+EFTA00104945,email,,False,2019-08-13 01:18:13,Andrew Stemmer;Erika Engelson;Justin Alfano;Vijay Dewan,,
 EFTA00128987,crypto,,True,2019-07-24 00:00:00,,,suspicious activity report (SAR) about Kushner co. crypto payments to suspicious Russian person
 EFTA00129096,government,,True,2025-04-03 19:13:35,FBI,,background check on Tim Draper and Masha Drokova
 EFTA00151544,email,,True,2019-07-30 15:30:26,,,
@@ -5419,7 +5419,7 @@ EFTA00681240,email,Andrew Farkas,True,2014-09-27 12:50:35,Jeffrey Epstein,,
 EFTA00681554,email,Jeffrey Epstein,,2017-06-15 18:46:44,Olga Ponomar-Becker,,
 EFTA00685520,crypto,,True,2011-04-13 11:41:28,Jeffrey Epstein,,call with Howard Lutnick
 EFTA00686861,email,Renata Bolotova,True,2012-02-25 01:23:54,Jeffrey Epstein,,Renata Bolotova (???)
-EFTA00689503,crypto,LinkedIn,True,2013-10-07 17:31:09,Jeffrey Epstein,,Brock Pierce posted a review of the infamous Russian criminal crypto exchange BTC-e to LinkedIn
+EFTA00689503,crypto,LinkedIn,True,2013-10-07 17:31:09,Jeffrey Epstein,,Brock Pierce posts review of infamous Russian criminal crypto exchange BTC-e to LinkedIn
 EFTA00691410,email,Austin Hill,True,2017-10-12 14:18:42,Jeffrey Epstein,,
 EFTA00691703,email,Google Plus,,2013-05-17 18:19:56,Jeffrey Epstein,,
 EFTA00693620,email,Brock Pierce,False,2014-10-02 14:50:20,Jeffrey Epstein,,
@@ -5639,7 +5639,7 @@ EFTA00964459,crypto,Austin Hill,True,2017-11-08 11:41:43,Jeffrey Epstein,,discus
 EFTA00968132,email,Eric Doherty,,2017-11-02 04:37:53,Andrew McCormack;Hongbo Robert Bao;James Fitzgerald;Reuben Kobulnik;Stanley Santos,,
 EFTA00970606,crypto,David Stern,True,2013-09-12 15:28:58,Jeffrey Epstein,,
 EFTA00972124,email,Gino Yu,True,2017-10-23 23:53:07,Jeffrey Epstein,,
-EFTA00972689,email,Jeffrey Epstein,,2013-10-06 19:46:00,Boris Nikolic,,
+EFTA00972689,crypto,Jeffrey Epstein,True,2013-10-06 19:46:00,Boris Nikolic,,Epstein and Nikolic ruminate on the Silk Road bust
 EFTA00974046,email,Jeffrey Epstein,True,2013-10-29 16:26:18,Tyler Shears,,
 EFTA00974152,email,Andrew McCormack,,2017-10-25 14:37:51,Jeffrey Epstein,,
 EFTA00974250,email,Masha Drokova,True,2017-10-25 16:06:07,Jeffrey Epstein,,
@@ -5883,6 +5883,7 @@ EFTA01205267,crypto,Valar Ventures,True,2015-06-30 00:00:00,,,Valar Ventures is 
 EFTA01217703,skype_log,,,2014-05-13 22:32:18,,,"skype log of conversation with Joscha Bach, Lawrence Krauss, actress Athena Zelcovich"
 EFTA01217736,skype_log,,,2014-05-26 19:52:08,,,"skype log of conversation with Tyler Shears, actress Athena Zelcovich"
 EFTA01217787,skype_log,,True,2014-08-22 20:12:59,,,"skype log of conversation with Hanna Traff at Spotify, Tyler Shears"
+EFTA01230639,crypto,,True,2012-12-22 00:00:00,,,
 EFTA01246710,government,FBI,True,2021-02-09 00:00:00,,,FBI interview where Epstein's chef says Donald Trump came to Epstein's house for dinner
 EFTA01249207,crypto,FBI,True,2021-03-17 00:00:00,,,FBI tip linking American commerce secretary and Tether asset custodian Howard Lutnick to Ponzi schemes and Russian money
 EFTA01249210,crypto,FBI,True,2021-04-23 13:26:00,,,FBI tip linking American commerce secretary and Tether asset custodian Howard Lutnick to Ponzi schemes and Russian money
@@ -6037,7 +6038,7 @@ EFTA01862563,email,Jeffrey Epstein,True,2011-06-11 12:24:09,Brock Pierce;John Br
 EFTA01866387,email,Jeffrey Epstein,True,2011-06-06 11:54:00,Brock Pierce;John Brockman,,
 EFTA01875607,girls,unknown girl,True,2012-08-15 17:15:28,Jeffrey Epstein,,unknown girl
 EFTA01877854,email,Jeffrey Epstein,True,2012-07-10 10:34:22,David Stern,Sent from my iPad,
-EFTA01882985,email,Jeffrey Epstein,True,2012-05-15 11:03:43,Boris Nikolic,,"Epstein: ""Yuri money is russian gangster money, Usmanov"" (""Steve"" is Steve Ballmer)"
+EFTA01882985,email,Jeffrey Epstein,True,2012-05-15 11:03:43,Melanie Phillips,,"Epstein: ""yuri money is russian gangster money, Usmanov"" (""Steve"" is likely Steven Sinofsky)"
 EFTA01884703,email,Jeffrey Epstein,True,2012-05-15 12:44:37,None,,
 EFTA01890312,email,David Stern,True,2012-09-12 11:28:42,Jeffrey Epstein,,
 EFTA01896926,email,Philip Rosedale,True,2013-03-19 00:51:15,Jeffrey Epstein,,
@@ -6085,7 +6086,7 @@ EFTA01940349,email,Christina Galbraith,True,2014-01-02 21:56:55,Jeffrey Epstein;
 EFTA01941232,email,Jeffrey Epstein,,2014-01-19 22:26:25,Thorbjørn Jagland,,
 EFTA01943067,crypto,Jeffrey Epstein,True,2014-01-05 12:27:44,,,comments on Ariane de Rothschild and bitcoin
 EFTA01946750,email,Tyler Shears,True,2013-11-13 21:51:07,Jeffrey Epstein,,
-EFTA01946813,email,Bill Gates,,2013-11-13 22:01:51,BGC;Boris Nikolic;Jeffrey Epstein,,
+EFTA01946813,email,Bill Gates,,2013-11-13 22:01:51,Boris Nikolic;Jeffrey Epstein,,
 EFTA01947908,email,Christina Galbraith,True,2013-11-13 22:51:48,Jeffrey Epstein;Tyler Shears,,Christina Galbraith
 EFTA01949827,email,Jeffrey Epstein,True,2013-11-16 18:34:48,David Stern,,
 EFTA01950559,email,Tyler Shears,True,2013-11-14 00:11:34,Christina Galbraith,Sent from my iPhone,
@@ -6109,7 +6110,7 @@ EFTA01979689,email,Jeffrey Epstein,True,2010-11-05 13:03:23,David Stern,,
 EFTA01979701,email,Jeffrey Epstein,,2010-10-29 15:09:50,Prince Andrew,,
 EFTA01983108,email,Amir Taaki,False,2011-07-07 22:33:38,Jeffrey Epstein,,
 EFTA01985762,email,Renata Bolotova,True,2012-01-24 09:35:00,Jeffrey Epstein,Sent from my iPad,Renata Bolotova
-EFTA01986756,email,,True,2012-05-15 12:05:22,Jeffrey Epstein,,
+EFTA01986756,email,Melanie Phillips,,2012-05-15 12:05:22,Jeffrey Epstein,,Melanie Phillips (???)
 EFTA01987283,email,David Stern,True,2011-02-28 10:04:31,Jeffrey Epstein,,
 EFTA01987383,email,Lesley Groff,True,2011-11-11 23:04:32,None;Jeffrey Epstein;Jojo Fontanilla;Lyn Fontanilla,,
 EFTA01990168,girls,unknown girl,True,2011-12-04 12:50:08,Jeffrey Epstein,Sent from my iPad,unknown girl

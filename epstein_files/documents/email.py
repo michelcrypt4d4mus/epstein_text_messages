@@ -463,7 +463,7 @@ class Email(Communication):
 
         if (attachments_table := self._attached_docs_table):
             indent_props = {'margin-left': to_em(site_config.attachment_indent)}
-            html += table_to_html(attachments_table, True, indent_props)
+            html += table_to_html(attachments_table, indent_props)
 
         return html
 

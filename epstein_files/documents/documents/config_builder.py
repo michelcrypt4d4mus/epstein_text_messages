@@ -101,7 +101,7 @@ def letter(id: str, author: str, recipients: list[Name], description: str, date:
     )
 
 
-def starr_letter(id: str, date: str, duplicate_ids: list[str], dupe_type: DuplicateType = 'same') -> CommunicationCfg:
+def starr_letter(id: str, date: str, duplicate_ids: list[str], dupe_type: DuplicateType = 'same', **kwargs) -> CommunicationCfg:
     return letter(
         id=id,
         author=KEN_STARR,
@@ -110,6 +110,7 @@ def starr_letter(id: str, date: str, duplicate_ids: list[str], dupe_type: Duplic
         duplicate_ids=duplicate_ids,
         dupe_type=dupe_type,
         recipients=['Judge Mark Filip'],
+        **kwargs
     )
 
 

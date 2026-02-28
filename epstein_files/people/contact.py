@@ -1,12 +1,12 @@
 import re
 from dataclasses import dataclass, field, fields
-from typing import Self
+from typing import Literal, Self
 
 from rich.text import Text
 
-from epstein_files.util.constant.names import (NAMES_TO_NOT_PARTIALLY_MATCH, SIMPLE_NAME_REGEX, Name,
-     constantize_name, name_variations)
-from epstein_files.util.constant.strings import INDENT_NEWLINE, INDENTED_JOIN, LAW_ENFORCEMENT
+from epstein_files.util.constant.names import (NAMES_TO_NOT_PARTIALLY_MATCH, Name,
+     constantize_name, extract_first_name, extract_last_name)
+from epstein_files.util.constant.strings import INDENT_NEWLINE, INDENTED_JOIN, LAW_ENFORCEMENT, PartialName
 from epstein_files.util.helpers.data_helpers import constantize_names
 from epstein_files.util.helpers.link_helper import link_text_obj
 from epstein_files.util.helpers.string_helper import as_pattern, indented, quote, remove_question_marks
@@ -14,6 +14,7 @@ from epstein_files.util.logging import logger
 
 MIN_LEN_FOR_OPTIONAL_LAST_CHAR = 5
 LLC_OR_INC = re.compile(r".*?(,? (Inc\.?|LLC))$")
+SIMPLE_NAME_REGEX = re.compile(r"^[-\w, ]+$", re.IGNORECASE)
 
 
 @dataclass
@@ -41,30 +42,42 @@ class Contact:
     is_junk: bool = False  # TODO: this sucks
     is_organization: bool = False
     link_to_bio: str = ''
+    match_partial_names: PartialName | None = 'last'
     # jmail_url: str
 
     def __post_init__(self):
+        if self.is_organization:
+            self.match_partial_names = None
+
+        if self.info == LAW_ENFORCEMENT:  # TODO: this sucks
+            self.is_interesting = False
+
         try:
             self.emailer_regex = re.compile(self.pattern, re.IGNORECASE)
-            self.highlight_regex = re.compile(fr"\b({self.highlight_pattern})\b", re.IGNORECASE)
         except re.error as e:
             logger.fatal(f"failed to compile emailer_regex for {self.name}: {e}")
             raise e
 
-        if self.info == LAW_ENFORCEMENT:
-            self.is_interesting = False
+        try:
+            self.highlight_regex = re.compile(fr"\b({self.highlight_pattern})\b", re.IGNORECASE)
+        except re.error as e:
+            logger.fatal(f"failed to compile highlight_regex for {self.name}: {e}")
+            raise e
 
     @property
     def bio(self) -> Text:
         """Biographical info about this entity."""
-        txt = Text('').append(f'[{self.category.lower()}] ', style=f'{self.style} dim') if self.category else Text('')
+        txt = Text('')
 
         if self.link_to_bio:
             txt.append(link_text_obj(self.link_to_bio, self.name, self.bold_style))
         else:
             txt.append(self.name, style=self.bold_style)
 
-        txt.append(': ').append(self.info, style='italic')
+        if self.category:
+            txt.append(' [', style='dim').append(self.category.lower(), style=f'{self.style} dim').append(']', style='dim')
+
+        txt.append(' ').append(self.info, style='italic')
         return txt
 
     @property
@@ -81,20 +94,35 @@ class Contact:
         `self.emailer_pattern` extended with first/last name variations.
         Used for color highlighting with `HighlightedNames` / `EpsteinHighlighter`.
         """
-        if self.is_junk or self.is_organization:
+        # TODO: this sucks
+        if self.is_junk:
             return self.pattern
 
+        return '|'.join(self.name_patterns)
+
+    @property
+    def name_patterns(self) -> list[str]:
+        """['Firstname', 'Lastname', 'Lastname, Firstname'."""
         name_patterns = [self.pattern]
 
-        for partial_name in name_variations(self.name):
-            if partial_name.lower() not in NAMES_TO_NOT_PARTIALLY_MATCH and SIMPLE_NAME_REGEX.match(partial_name):
-                name_patterns.append(as_pattern(partial_name))
-                logger.debug(f"Contact('{self.name}'): appending partial name '{partial_name}'")
+        if ' ' in self.name and self.match_partial_names is not None:
+            name = remove_question_marks(self.name)  # TODO: this sucks
+            first_name = extract_first_name(name)
+            last_name = extract_last_name(name)
+            name_patterns.append(as_pattern(f"{last_name},? {first_name}"))  # Reversed name
 
-        return '|'.join(name_patterns)
+            if self.match_partial_names in ['both', 'first'] and SIMPLE_NAME_REGEX.match(first_name):
+                name_patterns.append(as_pattern(first_name))
+
+            if self.match_partial_names in ['both', 'last'] and SIMPLE_NAME_REGEX.match(last_name):
+                name_patterns.append(as_pattern(last_name))
+
+        logger.debug(f"Contact('{self.name}') name_patterns: '{name_patterns}'")
+        return name_patterns
 
     @property
     def pattern(self) -> str:
+        """Pattern used for matching emails, base pattern for highlights."""
         if self.emailer_pattern:
             pattern = self.emailer_pattern
         else:
@@ -153,7 +181,8 @@ class Contact:
         return '[\n' + indented(',\n'.join([repr(contact) for contact in contact_infos]), 4) + '\n],'
 
 
-def company(name: str, description: str, emailer_pattern: str = '', **kwargs) -> Contact:
+# TODO: rename organization(), make class method (?)
+def company(name: str, description: str = '', emailer_pattern: str = '', **kwargs) -> Contact:
     kwargs['is_emailer'] = kwargs.get('is_emailer', False)
     return Contact(name, description, emailer_pattern, is_organization=True, **kwargs)
 
@@ -163,19 +192,18 @@ def epstein_trust(name: str, emailer_pattern: str = '', beneficiaries: list[str]
 
     if beneficiaries:
         if len(beneficiaries) == 1:
-            beneficiary_str = f"with sole beneficiary {beneficiaries[0]}"
+            beneficiary_str = f"sole beneficiary {beneficiaries[0]}"
         else:
-            beneficiary_str = f"with beneficiaries {','.join(beneficiaries)}"
+            beneficiary_str = f"beneficiaries {', '.join(beneficiaries)}"
 
     beneficiary_str = f", {beneficiary_str}" if beneficiary_str else ''
-    return Contact(name, f'Epstein financial trust{beneficiary_str}', emailer_pattern, is_organization=True)
+    return company(name, f'Epstein financial trust{beneficiary_str}', emailer_pattern)
 
 
 def epstein_co(name: str, emailer_pattern: str = '') -> Contact:
     if (llc_or_inc_match := LLC_OR_INC.match(name)) and not emailer_pattern:
         suffix = llc_or_inc_match.group(1)
         emailer_pattern = name.removesuffix(suffix)
-        # print(f"suffix='{suffix}', emailer_pattern='{emailer_pattern}'")
 
         if suffix.startswith(','):
             suffix = suffix.replace(',', ',?')
@@ -185,7 +213,7 @@ def epstein_co(name: str, emailer_pattern: str = '') -> Contact:
 
         emailer_pattern += fr"({suffix})?"
 
-    return Contact(name, 'Epstein company', emailer_pattern, is_organization=True)
+    return company(name, 'Epstein company', emailer_pattern)
 
 
 def law_enforcement(name: str, emailer_pattern: str = '') -> Contact:

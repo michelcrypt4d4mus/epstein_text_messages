@@ -97,11 +97,11 @@ def rich_to_html(
     return html_text
 
 
-def table_to_html(table: Table, with_horizontal_lines: bool = False, css_props: CssProps = None) -> str:
+def table_to_html(table: Table, css_props: CssProps = None) -> str:
     col_styles = [col.style or '' for col in table.columns]
     border_props = border_css_props(table.border_style)
     header_css_props = HtmlStyle(table.header_style).to_css if table.header_style else {}
-    row_props = {'border-bottom': '1px solid dimgray'} if with_horizontal_lines else {}
+    row_props = {'border-bottom': '1px solid dimgray'} if table.show_lines else {}
 
     if table.title:
         title_txt = table.title.copy() if isinstance(table.title, Text) else Text(table.title)
@@ -115,7 +115,7 @@ def table_to_html(table: Table, with_horizontal_lines: bool = False, css_props: 
 
     cell_props = {
         **row_props,
-        **(vertical_pad_props(to_em(0.5)) if with_horizontal_lines else {})
+        **(vertical_pad_props(to_em(0.5)) if table.show_lines else {})
     }
 
     headers = [
@@ -146,10 +146,8 @@ def table_to_html(table: Table, with_horizontal_lines: bool = False, css_props: 
         for i, _row in enumerate(table.rows)
     ]
 
-    if table.show_header:
-        rows_with_header = [headers, *rows]
-
-    html_rows = [div_class('\n'.join(row), 'row', row_props, role='row') for row in rows_with_header]
+    rows = [headers, *rows] if table.show_header else rows
+    html_rows = [div_class('\n'.join(row), 'row', row_props, role='row') for row in rows]
     table_html = div_class('\n\n'.join(html_rows), 'table', border_props, role='table')
     div_props = {**BOTTOM_MARGIN_PROPS, **(css_props or {})}
     return div_class(title_html + '\n' + table_html, 'table_container', div_props)

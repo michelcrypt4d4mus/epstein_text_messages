@@ -4,7 +4,7 @@ Constants and methods for dentifying people in email headers.
 import re
 
 from epstein_files.output.highlight_config import HIGHLIGHTED_CONTACTS
-from epstein_files.people.contact import Contact
+from epstein_files.people.contact import Contact, company
 from epstein_files.util.constant.names import *
 from epstein_files.util.constant.strings import REDACTED
 from epstein_files.util.helpers.data_helpers import escape_single_quotes, flatten
@@ -25,27 +25,27 @@ ADDITIONAL_CONTACTS = [
     Contact(THANU_BOONYAWATANA, emailer_pattern=r"Thanu (BOONYAWATANA|Cnx)"),
     # No custom regex
     Contact('Amanda Kirby'),
-    Contact('Anne Boyles'),
+    Contact('Anne Boyles', match_partial_names=None),
     Contact('Ariane Dwyer'),
     Contact('Brittany Henderson'),
-    Contact('Coursera'),
-    Contact('Danny Goldberg'),
+    Contact('Danny Goldberg', match_partial_names=None),
     Contact(ED_BOYLE),
     Contact('Jeff Pagliuca'),
-    Contact(JOHN_PAGE),
+    Contact(JOHN_PAGE, match_partial_names=None),
     Contact('Julie Shample'),
     Contact('Kathleen Ruderman'),
-    Contact('Kevin Bright'),
-    Contact('Larry Cohen'),
+    Contact('Kevin Bright', match_partial_names=None),
+    Contact('Larry Cohen', match_partial_names=None),
     Contact('Lawrence Delson'),
-    Contact('Michael Simmons'),
+    Contact('Michael Simmons', match_partial_names=None),
     Contact('middle.east.update@hotmail.com'),
     Contact('Nancy Cain'),
-    Contact('Nancy Portland'),
+    Contact('Nancy Portland', match_partial_names=None),
     Contact('Oliver Goodenough'),
-    Contact('Peter Green'),
+    Contact('Peter Green', match_partial_names=None),
     Contact('Sarah Mapes'),
-    Contact('Steven Victor MD'),
+    Contact('Steven Victor MD', match_partial_names=None),
+    company('Coursera', is_emailer=True),
 ]
 
 SUPPRESS_LOGS_FOR_AUTHORS = [
