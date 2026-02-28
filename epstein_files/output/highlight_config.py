@@ -1132,7 +1132,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             ),
             Contact('Florence Hutner', "New York Office of Chief Medical Examiner"),
             Contact('Justin Alfano', f"American {LAW_ENFORCEMENT}"),
-            Contact('Paula Speer', "court reporter"),
+            Contact('Paula Speer', "court reporter", match_partial_names=None),
             Contact('Police Code Enforcement', "Palm Beach buildings code enforcement", is_organization=True),
             law_enforcement(BUREAU_OF_PRISONS, r"bop\.gov|(Federal )?Bureau of Prisons"),
             law_enforcement('DOJ Inspector General'),
@@ -1255,7 +1255,12 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 emailer_pattern=r"(La(wrence|(n|rr)y).{1,5})?Summers?|^LH$|LHS|[Il]hsofficel?",
             ),
             Contact('Leah Reis-Dennis', f"producer for {LISA_NEW}'s Poetry in America"),
-            Contact(LISA_NEW, f'professor of poetry, wife of {LARRY_SUMMERS}, AKA "Elisa New"', r"E?Lisa New?\b", match_partial_names=None),
+            Contact(
+                LISA_NEW,
+                f'professor of poetry, wife of {LARRY_SUMMERS}, AKA "Elisa New"',
+                r"E?Lisa New?\b",
+                match_partial_names=None,
+            ),
             Contact('Lisa Randall', "theoretical physicist", match_partial_names=None),
             Contact(MARTIN_NOWAK, "professor of mathematics and biology", r"(Martin.*?)?No[vw]ak|Nowak, Martin"),
             Contact(MOSHE_HOFFMAN, "behavioral and evolutionary economics", match_partial_names=None)
@@ -1367,14 +1372,10 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(JAMES_HILL, "ABC News", r"hill, james e.|james.e.hill@abc.com", match_partial_names=None),
             Contact(JENNIFER_JACQUET, "Future Science magazine"),
             Contact(JOHN_BROCKMAN, "literary agent and author specializing in scientific literature"),
-            Contact(
-                name=LANDON_THOMAS,
-                info="New York Times financial reporter",
-                emailer_pattern=r"lando[nr] thomas( jr)?|thomas jr.?, lando[nr]",
-            ),
+            Contact(LANDON_THOMAS, "New York Times financial reporter", r"lando[nr] thomas( jr)?|thomas jr.?, lando[nr]"),
             Contact(
                 name=MICHAEL_WOLFF,
-                info="Author of \"Fire and Fury: Inside the Trump White House\"",
+                info="author of \"Fire and Fury: Inside the Trump White House\"",
                 emailer_pattern=r"Michael Wol(f[ef]e?|i)|Wolff",
             ),
             Contact(PAUL_KRASSNER, "60s counterculture guy, Merry Prankster", r"Pa\s?ul Krassner"),
@@ -1496,7 +1497,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         label='Latin America',
         style='yellow',
         contacts=[
-            Contact('Reinaldo Avila Da Silva', "Peter Mandelson's Brazilian partner", r"Reinaldo Avila"),
+            Contact('Reinaldo Avila Da Silva', "Peter Mandelson's Brazilian partner", r"Reinaldo Avila", match_partial_names=None),
         ],
         patterns=[
             r"Argentin(a|ian)",
@@ -1525,7 +1526,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         label=LOBBYIST,
         style='dark_khaki',
         contacts=[
-            Contact(BOB_CROWE, "partner at Nelson Mullins", r"[BR]ob Crowe"),
+            Contact(BOB_CROWE, "partner at Nelson Mullins", r"[BR]ob Crowe", match_partial_names=None),
             Contact('Joshua Cooper Ramo', "co-CEO of Henry Kissinger Associates"),
             Contact(KATHERINE_KEATING, "daughter of former Australian prime minister", match_partial_names=None),
             Contact(OLIVIER_COLOM, "Epstein's banker at Edmond de Rothschild (Suisse) SA Bank", r"Colom, Olivier?|Olivier Colom"),
@@ -1545,12 +1546,13 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         style='light_coral',
         contacts=[
             Contact(
-                name=GANBAT_CHULUUNKHUU,
-                info="corrupt Mongolian politician who was later wanted by Interpol",
-                emailer_pattern=r"Ganbat(@| Ch(uluunkhuu)?)?",
+                GANBAT_CHULUUNKHUU,
+                "corrupt Mongolian politician who was later wanted by Interpol",
+                r"Ganbat(@| Ch(uluunkhuu)?)?",
+                match_partial_names='both',
             ),
-            Contact('Khaltmaagiin Battulga', "former president of Mongolia"),
-            Contact(PUREVSUREN_LUNDEG, "Mongolian ambassador to the UN", r"Purevsuren( Lundeg)?"),
+            Contact('Khaltmaagiin Battulga', "former president of Mongolia", match_partial_names='both'),
+            Contact(PUREVSUREN_LUNDEG, "Mongolian ambassador to the UN", r"Purevsuren( Lundeg)?", match_partial_names='both'),
         ],
         patterns=[
             r"Batzaya",

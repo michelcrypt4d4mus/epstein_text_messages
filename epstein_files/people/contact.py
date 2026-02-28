@@ -4,8 +4,7 @@ from typing import Literal, Self
 
 from rich.text import Text
 
-from epstein_files.util.constant.names import (NAMES_TO_NOT_PARTIALLY_MATCH, Name,
-     constantize_name, extract_first_name, extract_last_name)
+from epstein_files.util.constant.names import Name, constantize_name, extract_first_name, extract_last_name
 from epstein_files.util.constant.strings import INDENT_NEWLINE, INDENTED_JOIN, LAW_ENFORCEMENT, PartialName
 from epstein_files.util.helpers.data_helpers import constantize_names
 from epstein_files.util.helpers.link_helper import link_text_obj
@@ -187,19 +186,6 @@ def company(name: str, description: str = '', emailer_pattern: str = '', **kwarg
     return Contact(name, description, emailer_pattern, is_organization=True, **kwargs)
 
 
-def epstein_trust(name: str, emailer_pattern: str = '', beneficiaries: list[str] | None = None) -> Contact:
-    beneficiary_str = ''
-
-    if beneficiaries:
-        if len(beneficiaries) == 1:
-            beneficiary_str = f"sole beneficiary {beneficiaries[0]}"
-        else:
-            beneficiary_str = f"beneficiaries {', '.join(beneficiaries)}"
-
-    beneficiary_str = f", {beneficiary_str}" if beneficiary_str else ''
-    return company(name, f'Epstein financial trust{beneficiary_str}', emailer_pattern)
-
-
 def epstein_co(name: str, emailer_pattern: str = '') -> Contact:
     if (llc_or_inc_match := LLC_OR_INC.match(name)) and not emailer_pattern:
         suffix = llc_or_inc_match.group(1)
@@ -216,5 +202,18 @@ def epstein_co(name: str, emailer_pattern: str = '') -> Contact:
     return company(name, 'Epstein company', emailer_pattern)
 
 
+def epstein_trust(name: str, emailer_pattern: str = '', beneficiaries: list[str] | None = None) -> Contact:
+    beneficiary_str = ''
+
+    if beneficiaries:
+        if len(beneficiaries) == 1:
+            beneficiary_str = f"sole beneficiary {beneficiaries[0]}"
+        else:
+            beneficiary_str = f"beneficiaries {', '.join(beneficiaries)}"
+
+    beneficiary_str = f", {beneficiary_str}" if beneficiary_str else ''
+    return company(name, f'Epstein financial trust{beneficiary_str}', emailer_pattern)
+
+
 def law_enforcement(name: str, emailer_pattern: str = '') -> Contact:
-    return Contact(name, LAW_ENFORCEMENT, emailer_pattern=emailer_pattern, is_organization=True)
+    return company(name, LAW_ENFORCEMENT, emailer_pattern)

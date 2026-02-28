@@ -325,8 +325,8 @@ VI_DAILY_NEWS = f'{VIRGIN_ISLANDS} Daily News'
 WAPO = 'WaPo'
 
 
-# First and last names that should be made part of a highlighting regex for emailers
-NAMES_TO_NOT_PARTIALLY_MATCH = set("""
+# Names to color white in the word counts
+OTHER_NAMES = """
     adam al alain alan alison alfredo allen alex alexander amanda andres andrew angela ann anthony ari asia audrey
     back bard barrett barry ben bennet bernard bill black bo bob boris boyle brad brenner bruce bryan
     cameron capital caroline carolyn chris christian christina christopher cohen collins
@@ -349,11 +349,6 @@ NAMES_TO_NOT_PARTIALLY_MATCH = set("""
     unknown
     ventures victor viktor virginia
     wade waters
-    y
-""".strip().split())
-
-# Names to color white in the word counts
-OTHER_NAMES = list(NAMES_TO_NOT_PARTIALLY_MATCH) + """
     aaron albert alberto alec alexandra alice anderson andre ann anna anne ariana arthur
     baldwin barack barrett ben benjamin berger bert binant bob bonner boyden bradley brady branson bright bruno bryant burton
     chapman charles charlie christopher clint cohen colin collins conway
