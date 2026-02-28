@@ -232,11 +232,6 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         contacts=[
             Contact(ALIREZA_ITTIHADIEH, "CEO Freestream Aircraft Limited", r"Alireza.[Il]ttihadieh", match_partial_names='both'),
             Contact('André Balazs', 'hotelier, CEO of André Balazs Properties', r"Andre Bala(sz|zs)"),
-            Contact(
-                BARBRO_C_EHNBOM,
-                "Swedish pharmaceuticals, SALSS, alleged recruiter of girls",
-                r"behnbom@aol.com|(Barbro\s.*)?Ehnbom|Barbro"
-            ),
             Contact(BARRY_J_COHEN, emailer_pattern=r"barry ((j.?|james) )?cohen?", match_partial_names=None),
             Contact(
                 'David Mitchell',
@@ -808,6 +803,12 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         contacts=[
             company('AfD', 'right wing German political party'),
             Contact(ANDRZEJ_DUDA, "former president of Poland"),
+            Contact(
+                BARBRO_C_EHNBOM,
+                "Swedish pharmaceuticals, SALSS, alleged recruiter of girls",
+                r"behnbom@aol.com|(Barbro\s.*)?Ehnbom|Barbro",
+                link_to_bio='https://www.reddit.com/r/TrueAnon/comments/1pn8pdj/episode_509_jeffreys_bbb/'
+            ),
             Contact('Caroline Lang', "daughter of Jack Lang"),
             Contact(EDWARD_ROD_LARSEN, f"son of {TERJE_ROD_LARSEN}"),
             Contact('Fabrice Aidan', f"diplomat who worked with {TERJE_ROD_LARSEN}"),
