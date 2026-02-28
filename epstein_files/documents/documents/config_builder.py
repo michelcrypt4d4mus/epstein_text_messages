@@ -95,6 +95,15 @@ def blaine_letter(id: str, date: str, suffix: str = '') -> CommunicationCfg:
     )
 
 
+def fbi_defense_witness(id: str, witness: str, date: str = '') -> DocCfg:
+    return DocCfg(
+        id=id,
+        author=FBI,
+        date=date,
+        description=f'Research and Key Findings for {witness}, defense witness for {GHISLAINE_MAXWELL}',
+    )
+
+
 def fbi_report(id: str, description: str, **kwargs) -> DocCfg:
     return DocCfg(id=id, author=FBI, category=Neutral.GOVERNMENT, description=description, **kwargs)
 

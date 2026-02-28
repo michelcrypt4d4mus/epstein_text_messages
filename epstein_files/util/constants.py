@@ -4,7 +4,7 @@ Custom configurations for various files.
 from itertools import groupby
 
 from epstein_files.documents.documents.config_builder import (WOLFF_EPSTEIN_ARTICLE_DRAFT, blaine_letter,
-     fbi_report, letter, starr_letter, whistleblower_cfg, wolff_draft_cfg)
+     fbi_defense_witness, fbi_report, letter, starr_letter, whistleblower_cfg, wolff_draft_cfg)
 from epstein_files.documents.documents.categories import CONSTANT_CATEGORIES, Interesting, Neutral
 from epstein_files.documents.documents.doc_cfg import (DEFAULT_TRUNCATE_TO, SHORT_TRUNCATE_TO, NO_TRUNCATE,
      CommunicationCfg, DocCfg, EmailCfg, TextCfg, phone_bill_cfg)
@@ -1771,6 +1771,7 @@ OTHER_FILES_DEPOSITION = [
     DocCfg(id='013463', author='Scott Rothstein', description=f"from {JANE_DOE_V_EPSTEIN_TRUMP}", date='2010-03-23'),
     DocCfg(id='017488', author='Scott Rothstein', description=f"from {EPSTEIN_V_ROTHSTEIN_EDWARDS}", date='2012-06-22'),
     DocCfg(id='EFTA00009229', author='Alex Acosta', description='pages 1-100', date='2020-04-30', is_interesting=True),
+    DocCfg(id='EFTA00009329', author='Alex Acosta', description='pages 101-200', date='2020-04-30', is_interesting=True),
     DocCfg(id='EFTA00009116', author='Alex Acosta', description='pages 300-411', date='2020-04-30', is_interesting=True),
     DocCfg(id='EFTA00008744', author='FBI', date='2021-03-29', description='grand jury testimony of Child Exploitation & Human Trafficking Task Force member'),
 ]
@@ -2093,11 +2094,9 @@ OTHER_FILES_GOVERNMENT = [
         description="interview where Epstein's chef says Donald Trump came to Epstein's house for dinner",
         truncate_to=(6000, 7500),
     ),
-    DocCfg(
-        id='EFTA02730477',
-        author=FBI,
-        description=f'Research and Key Findings for Roderic Alexander, defense witness for {GHISLAINE_MAXWELL}',
-    ),
+    fbi_defense_witness('EFTA02730267', 'Malcolm Grumbridge', '2022-04-14'),
+    fbi_defense_witness('EFTA02730477', 'Roderic Alexander', '2022-01-19'),
+    fbi_defense_witness('EFTA02730271', REDACTED, '2022-03-22'),
     DocCfg(id='EFTA02730274', description='evidence inventory that appears to have since been deleted from the DOJ website'),
     DocCfg(id='EFTA00001884', description='photo of letter from Virgin Islands DOJ to Epstein', date='2019-03-14'),
     DocCfg(id='EFTA00074744', description="USVI court filing about Epstein will and estate"),
