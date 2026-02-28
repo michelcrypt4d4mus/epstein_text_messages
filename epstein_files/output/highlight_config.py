@@ -688,7 +688,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(ERIC_ROTH, "jet decorator at International Jet", match_partial_names=None),
             Contact(GWENDOLYN_BECK, "Epstein fund manager in the 90s", match_partial_names='first'),
             Contact('Ike Groff', f"brother of {LESLEY_GROFF}?", is_organization=True, match_partial_names=None),
-            Contact(JANUSZ_BANASIAK, "Epstein's house manager", r"Janu[is]z Banasiak"),
+            Contact(JANUSZ_BANASIAK, "Epstein's house manager", r"Janu[is]z Banasiak", match_partial_names='both'),
             Contact('John Allessi', "Epstein's houseman"),
             Contact(JEAN_HUGUEN, "interior design at Alberto Pinto Cabinet", r"Jean[\s.]Huguen"),
             Contact(JOJO_FONTANILLA, "Filipino housekeeper", r"Jo.. Fontanilla"),
@@ -697,7 +697,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact('Linda Pinto', "interior design at Alberto Pinto Cabinet"),
             Contact(LYN_FONTANILLA, "Filipino housekeeper", r"L.nn? Fontanilla"),
             Contact(MERWIN_DELA_CRUZ, "housekeeper", r"Merwin"),
-            Contact(NADIA_MARCINKO, "Epstein's pilot", r"Na[dď]i?a Marcinko(v[aá])?"),
+            Contact(NADIA_MARCINKO, "Lolita Express pilot", r"Na[dď]i?a Marcinko(v[aá])?"),
             Contact('Perry Lang', f"Epstein's personal chef 1998-2002", r"(Adam )?Perry Lang"),
             Contact('Sean J. Lancaster', "airplane reseller"),
             Contact(STORY_COWLES, "Epstein's male assistant")
@@ -853,7 +853,6 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         label='Europe',
         style='light_sky_blue3',
         contacts=[
-            company('AfD', 'right wing German political party'),
             Contact(ANDRZEJ_DUDA, "former president of Poland"),
             Contact(
                 BARBRO_C_EHNBOM,
@@ -885,6 +884,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             ),
             Contact('Viktor Yushchenko', 'former president of Ukraine'),
             Contact('Viktor Orban', 'prime minister of Hungary', r"(Vi(c|k)tor )?Orbah?n"),
+            company('AfD', 'right wing German political party'),
             company('ECB', 'European Central Bank'),
             company('Zug', "city in Switzerland known as a hub for crypto and dodgy finance"),
         ],
