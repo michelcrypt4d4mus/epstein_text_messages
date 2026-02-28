@@ -805,7 +805,7 @@ class Email(Communication):
         }
 
         log_args_str = ', '.join([f"{k}={v}" for k, v in log_args.items() if v])
-        self.warn(f"Truncate determination: {log_args_str}")
+        self.log(f"Truncate determination: {log_args_str}")
         return num_chars
 
     def __rich_console__(self, console: Console, options: ConsoleOptions) -> RenderResult:
