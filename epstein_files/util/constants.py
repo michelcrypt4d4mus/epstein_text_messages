@@ -2801,6 +2801,8 @@ OTHER_FILES_CRYPTO = [
     EmailCfg(id='EFTA00964459', description=f'discussion of sharia compliant crypto token', is_interesting=True),
     EmailCfg(id='EFTA00990442', description=f"Epstein offers to cover all costs for Sharia Coin", is_interesting=True),
     EmailCfg(id='032359', description='HBJ brings up "e-currency" (Sharia Coin, probably)'),
+    # Bill Gates
+    EmailCfg(id='EFTA02639760', description='Epstein pushing cryptocurrency on Bill Gates'),
     # Boris Nikolic
     EmailCfg(id='EFTA02436105', description="one of Epstein's goals in life was to make a lot of money in virtual currency", is_interesting=True),
     EmailCfg(id='EFTA00972689', description=f"Epstein and Nikolic ruminate on the Silk Road bust", truncate_to=NO_TRUNCATE),
