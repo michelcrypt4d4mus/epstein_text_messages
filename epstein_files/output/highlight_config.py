@@ -972,7 +972,12 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 f'fund run by Ari Glass whom Epstein called "a bit sketchy" but invested $50 million with',
                 r"Booth\s*bay(\sFund\sManagement)?",
             ),
-            company(DEUTSCHE_BANK, 'favoured bank of Trump, Epstein, and money launderers', r"Deutsche? (Asset|(Post)?Bank)|\bDB\b(?!\s+Zw)"),
+            company(
+                DEUTSCHE_BANK,
+                'favoured bank of Trump, Epstein, and money launderers',
+                r"Deutsche? (Asset|(Post)?Bank)|\bDB\b(?!\s+Zw)",
+                link_to_bio='https://www.ft.com/content/b1d9e8c4-1874-4c82-941d-9a2e1512bc4c',
+            ),
             company("First Bank of Puerto Rico", 'bank used by Epstein'),
             company('Goldman Sachs', emailer_pattern=r"Goldman( Sachs)", is_interesting=False),
         ],
