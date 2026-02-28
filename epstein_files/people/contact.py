@@ -23,11 +23,16 @@ class Contact:
         name (str): Person or organization name
         info (str, optional): biographical info about this person
         emailer_pattern (str, optional): manually constructed regex pattern to match this person in email headers
-        emailer_regex (re.Pattern): pattern that matches this person's name in various variations
+        category (str, optional): category of this entity
+        style (str, optional): style to use when printing this entity's name
+        emailer_regex (re.Pattern): pattern that matches this person's name in email headers
+        highlight_regex (re.Pattern): pattern that matches this person's name in various variations for highlightihng
         is_emailer (bool): should email headers be scanned for this entity
         is_interesting (bool): should a biographical entry be generated for this panel in the chronological view
+        is_junk (bool): for junk email
         is_organization (bool): if this is a company or group, don't try to match first and last versions of its name
         link_to_bio (str, optional): a link to some info about this entity
+        match_partial_names (PartialName | None): whether to also match this entity's first and last names
     """
     name: str
     info: str = ''
