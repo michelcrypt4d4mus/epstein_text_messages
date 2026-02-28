@@ -2155,7 +2155,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(KEN_JENNE, ROTHSTEIN_ROSENFELDT_ADLER),
             company(
                 ROTHSTEIN_ROSENFELDT_ADLER,
-                "shady law firm that sued Epstein, Rothstein ran a billion dollar Ponzi scheme and was Roger Stone's partner",
+                "shady law firm that sued Epstein, Rothstein ran $1.2 billionn Ponzi scheme and was Roger Stone's partner",
                 r"Rothstein,? Rosenfeldt,? Adler",
                 link_to_bio='https://en.wikipedia.org/wiki/Scott_W._Rothstein',
             ),
