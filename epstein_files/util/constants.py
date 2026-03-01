@@ -3009,7 +3009,7 @@ UNINTERESTING_EMAIL_IDS = [
     'EFTA02367999',
     # Amir Taaki
     'EFTA01983108',
-    # austin hill
+    # Austin Hill
     'EFTA01024046',
     'EFTA01010209',
     'EFTA00461202',
@@ -3067,6 +3067,8 @@ UNINTERESTING_EMAIL_IDS = [
     'EFTA00005705',
     'EFTA00005716',
     'EFTA00005717',
+    # Ganbat
+    'EFTA02469375',
     # Ian Osborne
     'EFTA01763771',
     # Jabor
@@ -3095,23 +3097,17 @@ UNINTERESTING_EMAIL_IDS = [
     'EFTA02238841',
     # Krassner
     '033345',
-    # Ganbat
-    'EFTA02469375',
-    # Renata Bolotova
-    'EFTA01903041',
-    'EFTA01969322',
-    'EFTA01035614',
-    'EFTA02719248',
-    # Wolff
-    '021120',
-    # Iozzo
-    '033280',
     # Lesley?
     'EFTA02229402',
     'EFTA02229659',
     # Maria Prusakova
     'EFTA01772533',
-    # DOJ / USANYS
+    # Renata Bolotova
+    'EFTA01903041',
+    'EFTA01969322',
+    'EFTA01035614',
+    'EFTA02719248',
+    # USANYS / DOJ
     'EFTA00039799',
     'EFTA02730469',
     'EFTA02730471',
@@ -3141,6 +3137,11 @@ UNINTERESTING_EMAIL_IDS = [
     # TODO: These have UNKNOWN recipient so they currently get printed but we should configure it so they don't
     'EFTA00039894',
     'EFTA00039878',
+    # Vincenzo Iozzo
+    '033280',
+    'EFTA02624738',
+    # Wolff
+    '021120',
     # Unknown
     '030992',
     '032213',
