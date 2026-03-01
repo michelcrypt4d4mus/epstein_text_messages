@@ -162,7 +162,7 @@ TEXTS_CONFIG = CONFIRMED_TEXTS_CONFIG + UNCONFIRMED_TEXTS_CONFIG + UNKNOWN_TXT_M
 ################################################ EMAILS ################################################
 ########################################################################################################
 
-BEN_LAWSKY_NYDFS = 'head of NY Dept of Financial Services Ben Lawsky'
+BEN_LAWSKY_NYDFS = f'head of NY Dept of Financial Services {BEN_LAWSKY}'
 
 # Atribution reasons
 BOLOTOVA_REASON = 'Same signature style as 029020 ("--" followed by "Sincerely Renata Bolotova")'
