@@ -278,6 +278,7 @@ TULSI_GABBARD = 'Tulsi Gabbard'
 VIRGINIA_GIUFFRE = 'Virginia Giuffre'
 
 # Organizations
+ALL_IN_PODCAST = 'All-In Podcast'
 ASIA_GATEWAY = 'Asia Gateway'
 ATT_COURT_APPEARANCE_TEAM = 'AT&T Court Appearance Team'
 BEAR_STEARNS = 'Bear Stearns'
