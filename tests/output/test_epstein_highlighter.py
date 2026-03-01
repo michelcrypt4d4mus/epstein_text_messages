@@ -184,6 +184,7 @@ HIGHLIGHT_COUNTS = {
     'pakastani': 1,
     # "peirce": 1,
     "president obama": 1,
+    'properties': 1,
     "puerto rico": 1,
     "putin": 1,
     "rakishev": 2,
