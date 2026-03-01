@@ -2163,7 +2163,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             company('LinkedIn', "LinkedIn", r"Linked[Il]n( Updates)?", is_emailer=True, is_interesting=False),
             company('Second Life', f"virtual world with early attempt at virtual currency the Linden Dollar", r"Second Life"),
             company('Softbank Vision Fund', "Masayohsi Son's fund focused on tech, AI, WeWork", r"Softbank|(Softbank )?Vision Fund"),
-            copmany('Tarana Wireless', 'broadband provider', r"Tarana( (Technology|Wireless))?"),
+            company('Tarana Wireless', 'broadband provider', r"Tarana( (Technology|Wireless))?"),
             company('ThielCapital', f"{PETER_THIEL} organization"),
             company(VALAR_VENTURES, f"{PETER_THIEL} affiliated fintech venture fund", r"V[ae]lar (Global Fund|Ventures)?", is_emailer=True),
             company('WeWork', 'infamously stupid failed temporary office space company'),
