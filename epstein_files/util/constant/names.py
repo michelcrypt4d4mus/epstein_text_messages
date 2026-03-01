@@ -304,6 +304,7 @@ GOLDMAN_INVESTMENT_MGMT = f'{GOLDMAN_SACHS} Investment Management Division'
 GOOGLE_PLUS = 'Google Plus'
 HEDOSOPHIA = 'Hedosophia'
 INSIGHTS_POD = f"InsightsPod"  # Zubair bots
+INTERNATIONAL_PEACE_INSTITUTE = 'International Peace Institute'
 JP_MORGAN = 'JP Morgan'
 KYARA_INVESTMENT = 'Kyara Investment'
 MC2_MODEL_MGMT = 'MC2 Model Management'

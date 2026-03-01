@@ -13,7 +13,7 @@ from epstein_files.documents.documents.categories import (CATEGORY_STYLES, CATEG
 from epstein_files.documents.emails.constants import (ALL_HEADER_PATTERNS, QUOTE_INDENT_CHAR_GROUP, REPLY_REGEX,
      SENT_FROM_REGEX, XML_STRIPPED_MSG)
 from epstein_files.output.highlighted_names import HighlightGroup, HighlightedNames, HighlightPatterns, ManualHighlight
-from epstein_files.people.contact import Contact, organization, epstein_co, epstein_trust, law_enforcement
+from epstein_files.people.contact import Contact, acronym_org, organization, epstein_co, epstein_trust, law_enforcement
 from epstein_files.util.constant.names import *
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constant.urls import SUBSTACK_INSIGHTS_POD
@@ -919,7 +919,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(PETER_MANDELSON, "recently arrested former UK ambassador to the US", r"((Lord|Peter) )?Mandelson"),
             Contact(
                 TERJE_ROD_LARSEN,
-                "Norwegian head of International Peace Institute (IPI), gave jobs to Epstein's eastern European girls",
+                f"Norwegian head of {INTERNATIONAL_PEACE_INSTITUTE} (IPI), gave jobs to Epstein's eastern European girls",
                 r"Terje(( (R[øo]e?d[-\s])?)?Lars[eo]n)?",
                 link_to_bio='https://en.wikipedia.org/wiki/Terje_R%C3%B8d-Larsen',
             ),
@@ -930,9 +930,9 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             ),
             Contact('Viktor Yushchenko', 'former president of Ukraine'),
             Contact('Viktor Orban', 'prime minister of Hungary', r"(Vi(c|k)tor )?Orbah?n"),
+            acronym_org('European Central Bank'),
+            acronym_org(INTERNATIONAL_PEACE_INSTITUTE, "gave jobs to Epstein's girls"),
             organization('AfD', 'right wing German political party'),
-            organization('ECB', 'European Central Bank'),
-            organization('IPI', "International Peace Institute, gave jobs to Epstein's girls"),
             organization('Zug', "city in Switzerland known as a hub for crypto and dodgy finance"),
         ],
         patterns=[
@@ -1239,12 +1239,12 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact('Justin Alfano', f"American {LAW_ENFORCEMENT}"),
             Contact('Michael Reiter', f"{PALM_BEACH_POLICE} chief who first caught Epstein"),
             Contact('Paula Speer', "court reporter", match_partial=None),
+            acronym_org('Metropolitan Detention Center', 'jail where Epstein died'),
+            acronym_org('Office of Foreign Assets Control', 'agency in charge of sanctions'),
             organization('BaFin', "German financial regulator, tried to arrest journalists who exposed Wirecard's fraud"),
             organization('FINRA', "Financial Industry Regulatory Authority", r"(www\.)?FINRA(\.org)?|Financial Industry Regulatory Authority",),
             organization('INS', "US Immigration and Naturalization Service", r"(?-i:INS)"),
             organization('FinCEN', 'Financial Crimes Enforcement Network', r"(Director (of )?)?(Financial Crimes Enforcement Network|FinCEN)"),
-            organization('MDC', "Metropolitan Detention Center, jail where Epstein died", r"Metropolitan Detention Center|MDC"),
-            organization('OFAC', 'Office of Foreign Assets Control, agency in charge of sanctions', r"Office of Foreign Assets Control|OFAC"),
             organization(
                 SECURITIES_AND_EXCHANGE_COMMISSION,
                 "AKA 'SEC', US market regulator",

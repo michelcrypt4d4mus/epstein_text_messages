@@ -184,10 +184,17 @@ class Contact:
         return '[\n' + indented(',\n'.join([repr(contact) for contact in contact_infos]), 4) + '\n],'
 
 
-def acronym_org(name: str, **kwargs) -> Contact:
+def acronym_org(name: str, description: str = '', **kwargs) -> Contact:
     """Like organization() but auto-generates a regex matching the org's initials."""
-    initials = ''.join([fr"{word[0]}\.?" for word in name.split()])
-    return organization(name, emailer_pattern='|'.join([initials, name]), **kwargs)
+    initials = [word[0] for word in name.split() if word[0].isupper()]
+    initials_pattern = ''.join([fr"{letter}\.?" for letter in initials])
+
+    return organization(
+        ''.join(initials),
+        join_truthy(name, description, ', '),
+        '|'.join([initials_pattern, name]),
+        **kwargs
+    )
 
 
 # TODO: make class method (?)
