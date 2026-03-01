@@ -1157,7 +1157,11 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 emailer_pattern=r"Jonathan Fark(a|u)(s|il)",
             ),
             Contact('linkspirit', "Skype username of someone Epstein communicated with"),
-            Contact('Perry Bard', f"{PALM_BEACH} chiropractor, phone # appeared in investigations", match_partial_names=None),
+            Contact(
+                'Perry Bard',
+                f"{PALM_BEACH} chiropractor whose phone # appeared in investigations",
+                match_partial_names=None,
+            ),
             Contact('Peter Thomas Roth', "student of Epstein at Dalton, skincare company founder", match_partial_names=None),
             Contact(STEPHEN_HANSON, emailer_pattern=r"ste(phen|ve) hanson?|Shanson900"),
             Contact(TOM_BARRACK, "long time friend of Trump")
