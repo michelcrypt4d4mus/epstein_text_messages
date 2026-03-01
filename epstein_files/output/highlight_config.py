@@ -2150,7 +2150,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(ANDREW_MCCORMACK, f"partner at {THIELS_VALAR} {'(???)'}", r"Andrew McCorm(ack?)?"),
             Contact('Auren Hoffman', "CEO of SafeGraph (firm that gathers location data from mobile devices) and LiveRamp", match_partial_names=None),
             Contact('Chamath Palihapitiya', "All-In Podcast, Facebook, SPAC and crypto enthusiast, Trump convert", match_partial_names='both'),
-            Contact(CHRIS_POOLE, 'AKA "Moot", founder of 4chan, ex-Google', r"mmot|Chris Poole?|(?-i:Moot)"),
+            Contact(CHRIS_POOLE, 'AKA "Moot", founder of 4chan, ex-Google', r"mmot|Chris Poole?|(?-i:Moot)", link_to_bio='https://4chan.org/'),
             Contact('Danny Hillis', "computer scientist, artificial intelligence researcher"),
             Contact('Drew Houston', 'CEO of Dropbox', match_partial_names=None),
             Contact(ELON_MUSK, "father of Mecha-Hitler", match_partial_names='both'),
@@ -2235,12 +2235,21 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         label='Trump',
         style='red3 bold',
         contacts=[
-            Contact('Alan Weisselberg', f"Donald Trump's accountant", r"(Alan )?Weiss?e?lberg"),
+            Contact(
+                'Alan Weisselberg',
+                f"Donald Trump's accountant",
+                r"(Alan )?Weiss?e?lberg",
+                link_to_bio='https://manhattanda.org/d-a-bragg-allen-weisselberg-sentenced-to-5-months-in-jail/',
+            ),
             Contact('Bruce Moskowitz', "'Trump's health guy' according to Epstein", match_partial_names=None),
             Contact('Marla Maples', 'ex-wife of Donald Trump', match_partial_names='both'),
             Contact('Michael Caputo', 'former Putin and Gazprom PR guy, Trump appointee, acolyte of Roger Stone'),
             Contact(NICHOLAS_RIBIS, f"Hilton CEO, former president of {TRUMP_ORG}", r"Nic(holas|k)[\s._]Ribi?s?|Ribbis"),
-            Contact('Paul Manafort', 'Trump campaign manager, partner of Roger Stone, worked for Russians in Ukraine, convicted of financial fraud'),
+            Contact(
+                'Paul Manafort',
+                'Trump campaign manager, partner of Roger Stone, worked for Russians in Ukraine, convicted of financial fraud',
+                link_to_bio='https://en.wikipedia.org/wiki/Trials_of_Paul_Manafort',
+            ),
             Contact('Roger Stone', "infamous political trickster with a tattoo of Nixon's face on his back", match_partial_names=None),
         ],
         patterns=[
