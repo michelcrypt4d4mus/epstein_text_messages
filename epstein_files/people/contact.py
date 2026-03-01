@@ -12,7 +12,9 @@ from epstein_files.util.helpers.string_helper import as_pattern, indented, is_in
 from epstein_files.util.logging import logger
 
 MIN_LEN_FOR_OPTIONAL_LAST_CHAR = 5
-COMPANY_SUFFIX_REGEX = re.compile(r".*?(,? (Inc\.?|LLC|Mgmt|Management))$")
+MGMT_PATTERN = r"M(ana)?ge?m(en)?t"
+MGMT_REGEX = re.compile(MGMT_PATTERN)
+COMPANY_SUFFIX_REGEX = re.compile(fr".*?(,? (Inc\.?|LLC|{MGMT_PATTERN}))$")
 SIMPLE_NAME_REGEX = re.compile(r"^[-\w, ]+$", re.IGNORECASE)
 
 
@@ -188,8 +190,11 @@ def organization(name: str, description: str = '', emailer_pattern: str = '', **
         suffix = suffix_match.group(1)
         emailer_pattern = name.removesuffix(suffix)
 
-        if suffix.startswith(','):
-            suffix = suffix.replace(',', ',?')
+        if not MGMT_REGEX.search(suffix):
+            if suffix.startswith(','):
+                suffix = suffix.replace(',', ',?')
+            else:
+                suffix = f",?{suffix}"
 
         if suffix.endswith('.'):
             suffix = suffix.replace('.', r'\.?')

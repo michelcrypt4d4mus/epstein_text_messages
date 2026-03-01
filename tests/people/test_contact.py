@@ -23,18 +23,7 @@ def test_repr():
 )"""
 
 
-def test_company():
-    coatue = organization('Coatue Management', 'VC fund')
-    assert coatue.emailer_pattern == r'Coatue( Management)?'
-
-
 def test_epstein_co():
-    jege = epstein_co('Jege LLC')
-    assert jege.emailer_pattern == r"Jege( LLC)?"
-    butterfly = epstein_co('Butterfly Inc')
-    assert butterfly.emailer_pattern == r"Butterfly( Inc)?"
-    butterfly = epstein_co('Butterfly, Inc.')
-    assert butterfly.emailer_pattern == r"Butterfly(,? Inc\.?)?"
     zorro = epstein_co('Zorro', description='for New Mexico ranch')
     assert zorro.info == f"Epstein company for New Mexico ranch"
 
@@ -64,6 +53,15 @@ def test_highlight_pattern():
 
     jean_luc = Contact(JEAN_LUC_BRUNEL, match_partial='both')
     assert jean_luc.highlight_pattern == r'Jean[-_.\s]*Luc[-_.\s]*Brunel?|Brunel,?[-_.\s]*Jean[-_.\s]*Luc|Jean[-_.\s]*Luc|Brunel'
+
+
+def test_organization():
+    assert organization('Jege LLC').emailer_pattern == r"Jege(,? LLC)?"
+    assert organization('Jege, LLC').emailer_pattern == r"Jege(,? LLC)?"
+    assert organization('Butterfly Inc').emailer_pattern == r"Butterfly(,? Inc)?"
+    assert organization('Butterfly, Inc.').emailer_pattern == r"Butterfly(,? Inc\.?)?"
+    coatue = organization('Coatue Management', 'VC fund')
+    assert coatue.emailer_pattern == r'Coatue( Management)?'
 
 
 def _build_contact(**kwargs) -> Contact:
