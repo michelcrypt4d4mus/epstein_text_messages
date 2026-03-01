@@ -2594,7 +2594,6 @@ OTHER_FILES_CRYPTO = [
         date='2017-11-15',
         duplicate_ids=['EFTA00793120'],
     ),
-
     # Bannon
     EmailCfg(id='030711', description='Epstein says "we can discuss michael and his coins", unclear what that means'),
     EmailCfg(id='026260', comment='Bannon cripto coin issues'),
@@ -2610,23 +2609,29 @@ OTHER_FILES_CRYPTO = [
     EmailCfg(id='EFTA01004576'),
     # Blockstream
     DocCfg(id='EFTA00797613', description='Alphabit crypto fund pitch deck', attached_to_email_id='EFTA00955063'),
+    EmailCfg(
+        id='EFTA00955063',
+        description=f'{AUSTIN_HILL} explains that some crypto funds are engaged in fraudulent wash trading (the attached Excel sheet listing those funds has not been found)',
+        is_interesting=True,
+    ),
     EmailCfg(id='EFTA02529170', description=f"Blockstream set up a special company to invest in an Asian ride hailing service"),
     EmailCfg(id='EFTA01917402', description=f'discussion of Epstein investment in Blockstream funneled through {JOI_ITO}', is_interesting=True),
     EmailCfg(id='EFTA00999897', description=f"Epstein claims he's a fan of {ADAM_BACK} (who has recently claimed he had nothing to do with Epstein)"),
     EmailCfg(id='EFTA01915883', description=f"{JOI_ITO} doesn't trust {AUSTIN_HILL} (for good reason)"),
     EmailCfg(id='EFTA00988395', description=f'"Andy Back" is probably Blockstream bitcoin dev {ADAM_BACK}', duplicate_ids=['EFTA01928856']),
     EmailCfg(id='EFTA01925969', description=f"{AUSTIN_HILL} and {ADAM_BACK} and some women plan a trip to Epstein's island", is_interesting=True),
-    EmailCfg(
-        id='EFTA00955063',
-        description=f'{AUSTIN_HILL} explains that some crypto funds are engaged in fraudulent wash trading (the attached Excel sheet listing those funds has not been found)',
-        is_interesting=True,
-    ),
     EmailCfg(id='EFTA00929418', description=f"Epstein forwards information from {AUSTIN_HILL} about fraudulent crypto trading operations to {PAUL_BARRETT}"),
     EmailCfg(id='EFTA01010209', description=f"{AUSTIN_HILL} calls {AMIR_TAAKI} \"a bit crazy\'"),
     EmailCfg(id='EFTA01788532', description=f"{AUSTIN_HILL} asking about Jeffrey Katzenberg's contact info"),
     EmailCfg(id='EFTA02515798', recipients=[LINDA_STONE], description='Epstein confirms he invested in Blockstream'),  # response to EFTA02515756
     # Blockchain Capital / Brock Pierce / Crypto Currency Partners
     DocCfg(id='024271', author=BLOCKCHAIN_CAPITAL, description="pitch deck", date='2015-10-01'),
+    EmailCfg(
+        id='EFTA00689503',
+        description=f"{BROCK_PIERCE} posts review of infamous Russian criminal crypto exchange BTC-e to LinkedIn",
+        is_interesting=True,
+        show_with_name=BROCK_PIERCE,
+    ),
     DocCfg(id='EFTA01088644', author=BLOCKCHAIN_CAPITAL, description="pitch deck", date='2015-10-01'),
     DocCfg(id='EFTA00604942', author=BLOCKCHAIN_CAPITAL, description="Investor Update", date='2015-10-01'),
     DocCfg(id='EFTA01089535', author=CRYPTO_CURRENCY_PARTNERS_II, description=f"investor report", date='2014-10-01'),
@@ -2650,12 +2655,6 @@ OTHER_FILES_CRYPTO = [
     EmailCfg(id='EFTA00658457', description=f'{BROCK_PIERCE} says they will not invest in Bitfury', truncate_to=700),
     EmailCfg(id='EFTA00998595', description=f'{BROCK_PIERCE} and Epstein discuss structure of crypto investments'),
     EmailCfg(id='EFTA01000882', description=f"{BROCK_PIERCE} asks for Epstein's permission to disclose his name to Coinbase team", is_interesting=True),
-    EmailCfg(
-        id='EFTA00689503',
-        description=f"{BROCK_PIERCE} posts review of infamous Russian criminal crypto exchange BTC-e to LinkedIn",
-        is_interesting=True,
-        show_with_name=BROCK_PIERCE,
-    ),
     EmailCfg(id='EFTA00664424', description=f"{BROCK_PIERCE} suggests {LARRY_SUMMERS} could get involved with Tether and Noble Bank"),
     # Coinbase
     DocCfg(
@@ -2687,17 +2686,17 @@ OTHER_FILES_CRYPTO = [
     EmailCfg(id='EFTA01013922', description=f"{CRYPTO_PR_LAB} business plan", is_interesting=True),
     EmailCfg(id='EFTA00495349', author=MARIA_PRUSAKOVA, author_reason=CRYPTO_PR_LAB, description='Ed Boyle / Medici Bank'),
     EmailCfg(
-        id='EFTA02349697',
-        author=MARIA_PRUSAKOVA,
-        author_reason='boyfriend Christian, same as 032374',
-        description=f'{MARIA_PRUSAKOVA} says she is starting a crypto company with {ZUBAIR_KHAN}',
-    ),
-    EmailCfg(
         id='EFTA02267133',
         author=LESLEY_GROFF,
         recipients=[MARIA_PRUSAKOVA],
         uncertain_recipient=f"{CRYPTO_PR_LAB} signature, could be Prusakova's partner",
         truncate_to=NO_TRUNCATE
+    ),
+    EmailCfg(
+        id='EFTA02349697',
+        author=MARIA_PRUSAKOVA,
+        author_reason='boyfriend Christian, same as 032374',
+        description=f'{MARIA_PRUSAKOVA} says she is starting a crypto company with {ZUBAIR_KHAN}',
     ),
     # Crypto PR Lab / Medici Bank
     DocCfg(id='EFTA01613731', description='Medici Bank conversation on Whatsapp'),
@@ -2728,6 +2727,9 @@ OTHER_FILES_CRYPTO = [
     DocCfg(id='EFTA00603445', author=HONEYCOMB_FUND, description="July 2017 report", is_interesting=True),
     DocCfg(id='EFTA00803464', author=HONEYCOMB_FUND, description="July 2018 report", date='2018-07-17', is_interesting=True),
     # Howard Lutnick
+    DocCfg(id='EFTA01230639', date='2012-12-22'),
+    DocCfg(id='EFTA00434306', description='calendar reminder for call with Howard Lutnick', date='2011-04-26'),
+    DocCfg(id='EFTA00020515', author=FBI, description='tip about Howard Lutnick and financial irregularities', is_interesting=True),
     DocCfg(
         id='EFTA00289560',
         date='2012-12-28',
@@ -2741,7 +2743,6 @@ OTHER_FILES_CRYPTO = [
         is_interesting=True,
         show_with_name=BROCK_PIERCE,
     ),
-    DocCfg(id='EFTA01230639', date='2012-12-22'),
     DocCfg(
         id='EFTA01733746',
         date='2011-05-18',
@@ -2750,8 +2751,6 @@ OTHER_FILES_CRYPTO = [
         show_full_panel=True,
         truncate_to=700,
     ),
-    DocCfg(id='EFTA00434306', description='calendar reminder for call with Howard Lutnick', date='2011-04-26'),
-    DocCfg(id='EFTA00020515', author=FBI, description='tip about Howard Lutnick and financial irregularities', is_interesting=True),
     DocCfg(
         id='EFTA01249207',
         author=FBI,
@@ -2765,8 +2764,6 @@ OTHER_FILES_CRYPTO = [
         description=f'evidence list w/tip about {HOWARD_LUTNICK}, Cantor Fitzgerald, and BGC from an employee who had already blown the whistle successfully',
         truncate_to=(77_000, 77_300),
     ),
-    EmailCfg(id='EFTA00970606', show_with_name=HOWARD_LUTNICK),
-    EmailCfg(id='EFTA01778423', show_with_name=HOWARD_LUTNICK),
     EmailCfg(
         id='EFTA00173881',
         author='US Secret Service',
@@ -2774,12 +2771,12 @@ OTHER_FILES_CRYPTO = [
         show_with_name=HOWARD_LUTNICK,
         truncate_to=800
     ),
-    EmailCfg(id='EFTA00474452', description=f"{HOWARD_LUTNICK} and {JEFFREY_EPSTEIN}, NIMBYs"),
     EmailCfg(
         id='EFTA00873541',
         description=f"Epstein says his neighbor {HOWARD_LUTNICK} (recently seen with {PRINCE_ANDREW}) is smart",
         show_with_name=HOWARD_LUTNICK,
     ),
+    EmailCfg(id='EFTA00474452', description=f"{HOWARD_LUTNICK} and {JEFFREY_EPSTEIN}, NIMBYs"),
     EmailCfg(id='EFTA02374900', description=f'article about {HOWARD_LUTNICK} real estate purchase'),
     EmailCfg(id='EFTA00443752', description=f"invitation from {HOWARD_LUTNICK}"),
     EmailCfg(id='EFTA00462693', description=f"Epstein gets a table for 10 at the dinner honouring {HOWARD_LUTNICK}"),
@@ -2790,6 +2787,8 @@ OTHER_FILES_CRYPTO = [
     EmailCfg(id='EFTA00398853', description=f'{HOWARD_LUTNICK} visit to the island', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA00873540', description=f'{HOWARD_LUTNICK} and {PRINCE_ANDREW}'),
     EmailCfg(id='EFTA00957552', description=f'thank you note for a $50,000 donation in honor of Tether banker {HOWARD_LUTNICK}'),
+    EmailCfg(id='EFTA00970606', show_with_name=HOWARD_LUTNICK),
+    EmailCfg(id='EFTA01778423', show_with_name=HOWARD_LUTNICK),
     # Joi Ito / Kyara
     DocCfg(id='024256', author=JOI_ITO, description=f"Internet & Society: The Technologies and Politics of Control"),
     DocCfg(id='EFTA00805860', description=f"{JOI_ITO}'s Neoteny 3 fund investor update / portfolio"),
