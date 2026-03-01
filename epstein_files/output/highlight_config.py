@@ -1851,7 +1851,8 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(
                 IAN_OSBORNE,
                 f"{IAN_OSBORNE} & Partners PR hired by Epstein, {HEDOSOPHIA} fund which launched SPACs with Chamath advised by Epstein",
-                r"[Il]an Osbou?(rn|m)e"
+                r"[Il]an Osbou?(rn|m)e",
+                link_to_bio='https://www.businessinsider.com/profile-ian-osborne-cofounder-chamath-palihapitiya-social-capital-hedosophia-spac-2021-5'
             ),
             Contact(MATTHEW_HILTZIK, "crisis PR at Hiltzik Strategies"),
             Contact(MICHAEL_SITRICK, "crisis PR", r"(Mi(chael|ke).{0,5})?[CS]itrick"),
