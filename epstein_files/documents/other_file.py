@@ -17,9 +17,10 @@ from epstein_files.documents.document import CLOSE_PROPERTIES_CHAR, WHITESPACE_R
 from epstein_files.documents.documents.config_builder import build_cfg_from_text
 from epstein_files.documents.documents.doc_cfg import DocCfg, Metadata
 from epstein_files.documents.documents.file_info import FileInfo
+from epstein_files.output.epstein_highlighter import highlighter
 from epstein_files.output.highlight_config import QUESTION_MARKS_TXT, styled_category
 from epstein_files.output.html.builder import table_to_html
-from epstein_files.output.rich import build_table, console, highlighter
+from epstein_files.output.rich import build_table, console
 from epstein_files.people.interesting_people import PERSONS_OF_INTEREST
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constants import *

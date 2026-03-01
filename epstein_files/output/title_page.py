@@ -11,6 +11,7 @@ from rich.padding import Padding
 from rich.table import Table
 from rich.text import Text
 
+from epstein_files.output.epstein_highlighter import highlighter
 from epstein_files.output.layout_elements.demi_table import build_demi_table
 from epstein_files.output.highlight_config import HIGHLIGHTED_NAMES
 from epstein_files.output.rich import *

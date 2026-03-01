@@ -14,6 +14,7 @@ from epstein_files.documents.email import Email
 from epstein_files.documents.messenger_log import MessengerLog
 from epstein_files.documents.other_file import FIRST_FEW_LINES, OtherFile
 from epstein_files.epstein_files import EpsteinFiles
+from epstein_files.output.epstein_highlighter import highlighter
 from epstein_files.output.highlight_config import get_style_for_name
 from epstein_files.output.html.builder import buffer_as_html, rich_to_html, table_to_html, write_templated_html
 from epstein_files.output.html.elements import div_class

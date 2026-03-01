@@ -33,6 +33,7 @@ MC2_MODEL_MANAGEMENT = f"{JEAN_LUC_BRUNEL}'s MC2 Model Management"
 QUESTION_MARKS_TXT = Text(QUESTION_MARKS, style='grey50')
 THIELS_VALAR = f"{PETER_THIEL}'s {VALAR_VENTURES}"
 
+EPSTEIN_COLOR = 'blue1'
 FINANCIAL_COLOR = 'dark_sea_green2'
 VICTIM_COLOR = 'orchid1'
 
@@ -560,6 +561,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 MERCANTILE_GLOBAL_HOLDINGS,
                 'company of Bo Collins who ended up testifying in trial of chinese criminal Miles Guo / Miles Kwok',
             ),
+            company('Mindshift', f"conference on Epstein's island organized by {AL_SECKEL}", r"Mindshift( conference)?"),
             company(
                 'Noble Bank',
                 f"failed crypto friendly bank with ties to Tether and {BROCK_PIERCE}",
@@ -727,8 +729,19 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         ],
     ),
     HighlightedNames(
+        label=JEE,
+        style=EPSTEIN_COLOR,
+        contacts=[
+            Contact(
+                name=JEFFREY_EPSTEIN,
+                emailer_pattern=r"ee[vy]acation[©@e]?g?(mail.com)?|Epstine|\bJEE?\b|Jeff(rey)? (Edward )?E((sp|ps)tein?)?( VI Foundation)?|jeeproject@yahoo.com|J Jep|Jeffery Edwards|(?<!(ark L.|rd Jay|Edward) )Epstein|Jeffrey Epst.*comj?",
+                match_partial_names=None,
+            ),
+        ]
+    ),
+    HighlightedNames(
         label='Epstein',
-        style='blue1',
+        style=EPSTEIN_COLOR,
         contacts=[
             Contact(
                 f"{ASIA_GATEWAY} Limited",
@@ -736,12 +749,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 r"Asia\s*Gateway(\s*L(imited|td))?",
                 is_organization=True
             ),
-            Contact(
-                name=JEFFREY_EPSTEIN,
-                emailer_pattern=r"ee[vy]acation[©@e]?g?(mail.com)?|Epstine|\bJEE?\b|Jeff(rey)? (Edward )?E((sp|ps)tein?)?( VI Foundation)?|jeeproject@yahoo.com|J Jep|Jeffery Edwards|(?<!(ark L.|rd Jay|Edward) )Epstein|Jeffrey Epst.*comj?",
-                match_partial_names=None,
-            ),
-            Contact(MARK_EPSTEIN, "brother of Jeffrey", r"Mark (L\. )?(Epstein|Lloyd)", match_partial_names=None),
+            Contact(MARK_EPSTEIN, "brother of Jeffrey", r"Mark (L\.? )?(Epstein|Lloyd)", match_partial_names=None),
             epstein_co('Coatue'),
             epstein_co('FT Real Estate'),
             epstein_co('Island Grounds Inc.'),

@@ -4,8 +4,9 @@ from datetime import datetime
 
 from rich.text import Text
 
+from epstein_files.output.epstein_highlighter import highlighter
 from epstein_files.output.highlight_config import get_style_for_name
-from epstein_files.output.rich import TEXT_LINK, highlighter
+from epstein_files.output.rich import TEXT_LINK
 from epstein_files.util.constant.names import (ANTHONY_SCARAMUCCI, JEFFREY_EPSTEIN, STEVE_BANNON,
      UNKNOWN, Name, extract_last_name)
 from epstein_files.util.constant.strings import TIMESTAMP_DIM

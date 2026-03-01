@@ -11,9 +11,10 @@ from rich.text import Text
 from epstein_files.documents.communication import Communication
 from epstein_files.documents.documents.doc_cfg import Metadata
 from epstein_files.documents.imessage.text_message import TextMessage
+from epstein_files.output.epstein_highlighter import highlighter
 from epstein_files.output.layout_elements.file_display import BasePanel, FileDisplay
 from epstein_files.output.highlight_config import styled_name
-from epstein_files.output.rich import LAST_TIMESTAMP_STYLE, build_table, highlighter
+from epstein_files.output.rich import LAST_TIMESTAMP_STYLE, build_table
 from epstein_files.people.interesting_people import PERSONS_OF_INTEREST
 from epstein_files.util.constant.names import JEFFREY_EPSTEIN, Name
 from epstein_files.util.constant.strings import AUTHOR, TIMESTAMP_STYLE
