@@ -2417,6 +2417,12 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 emailer_pattern=r"g max(well)?|Ghislaine|Maxwell",
                 match_partial_names='both',
             ),
+            Contact(
+                'Robert Maxwell',
+                f"father of Ghislaine, British / Russian / Israeli agent, financial fraudster, mysterious death",
+                link_to_bio='https://en.wikipedia.org/wiki/Robert_Maxwell',
+                match_partial_names=None,
+            ),
             Contact('Ted Waitt', f"boyfriend of {GHISLAINE_MAXWELL}, guest at Chelsea Clinton wedding"),
         ],
         patterns=[
