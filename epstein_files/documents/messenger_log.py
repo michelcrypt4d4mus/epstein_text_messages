@@ -9,6 +9,7 @@ from rich.text import Text
 
 from epstein_files.documents.communication import Communication
 from epstein_files.documents.documents.doc_cfg import Metadata
+from epstein_files.documents.emails.constants import FALLBACK_TIMESTAMP
 from epstein_files.documents.imessage.text_message import TextMessage
 from epstein_files.output.epstein_highlighter import highlighter
 from epstein_files.output.layout_elements.file_display import BasePanel, FileDisplay
@@ -17,7 +18,7 @@ from epstein_files.output.rich import LAST_TIMESTAMP_STYLE, build_table
 from epstein_files.people.interesting_people import PERSONS_OF_INTEREST
 from epstein_files.util.constant.names import JEFFREY_EPSTEIN, Name
 from epstein_files.util.constant.strings import AUTHOR, TIMESTAMP_STYLE
-from epstein_files.util.helpers.data_helpers import days_between, days_between_str, sort_dict
+from epstein_files.util.helpers.data_helpers import days_between, days_between_str, flatten, sort_dict
 from epstein_files.util.helpers.string_helper import iso_timestamp
 from epstein_files.util.logging import logger
 
@@ -158,6 +159,9 @@ class MessengerLog(Communication):
     def summary_table(cls, log_files: list['MessengerLog']) -> Table:
         """Build a table summarizing the text messages in 'imessage_logs'."""
         author_counts = cls.count_authors(log_files)
+        messages = flatten([log.messages for log in log_files])
+        messages = [m for m in messages if m.timestamp_sort_key != FALLBACK_TIMESTAMP]
+        messages = sorted(messages, key=lambda tm: tm.timestamp_sort_key)
         msg_count = sum([len(log.messages) for log in log_files])
 
         footer = f"deanonymized {msg_count - author_counts[None]:,} of {msg_count:,} text messages in"
@@ -170,13 +174,15 @@ class MessengerLog(Communication):
         counts_table.add_column('Days', justify='right', style='dim')
 
         for name, count in sort_dict(author_counts):
+            logger.warning(f'Found {count} logs for {name}')
             logs = log_files if name == JEFFREY_EPSTEIN else [log for log in log_files if log.author == name]
-            first_at = logs[0].first_message_at(name)
-            last_at = logs[-1].first_message_at(name)
+            name_messages = [m for m in messages if m.author == name]
+            first_at = name_messages[0].timestamp_sort_key
+            last_at = name_messages[-1].timestamp_sort_key
 
             counts_table.add_row(
                 styled_name(name),
-                str(len(logs)),
+                str(len(logs) or 1),
                 f"{count:,}",
                 iso_timestamp(first_at),
                 iso_timestamp(last_at),
