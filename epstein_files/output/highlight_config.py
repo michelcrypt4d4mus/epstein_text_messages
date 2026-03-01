@@ -2390,7 +2390,13 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
 
     # Individuals
     HighlightedNames(
-        contacts=[Contact(STEVEN_HOFFENBERG, "Epstein's ponzi partner in Towers Financial, did 18 years in prison")],
+        contacts=[
+            Contact(
+                STEVEN_HOFFENBERG,
+                "Epstein's partner in Towers Financial Ponzi scheme, did 18 years in prison",
+                link_to_bio='https://en.wikipedia.org/wiki/Steven_Hoffenberg',
+            )
+        ],
         style='dark_olive_green3',
         category=Neutral.FINANCE,
         patterns=[r"(steven? )?hoffenberg?w?"],
