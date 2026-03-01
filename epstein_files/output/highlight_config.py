@@ -969,7 +969,6 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Ital(ian|y)",
             r"Jacques",
             r"(Justin )?Trudeau",
-            r"(Kamila )?Bobinska",
             r"Kiev",
             r"Latvian?",
             r"Lie?chtenstein",
@@ -1072,6 +1071,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(JIDE_ZEITLIN, f"former partner at {GOLDMAN_SACHS}, allegations of sexual misconduct"),
             Contact('Ira Zicherman', f"{BEAR_STEARNS} exec, co-trustee with Ghislaine"),
             Contact('John Paulson', f"hedge fund guy, Trump donor"),
+            Contact('Kamila Bobinska', f"Argan Capital Advisors, Dots Ventures, Movens Capital, ex-{DEUTSCHE_BANK}"),
             Contact('Laurie Cameron', "currency trading"),
             Contact(
                 name=LEON_BLACK,
