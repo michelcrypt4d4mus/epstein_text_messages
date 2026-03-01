@@ -2028,7 +2028,11 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             ),
             Contact('Nicholas Kovarsky', f"friend of {SERGEY_BELYAKOV}", r"Nic(k|holas) Kovarsky"),
             Contact('Oleg Boyko', 'oligarch'),
-            Contact('Oleg Deripaska', 'oligarch'),
+            Contact(
+                'Oleg Deripaska',
+                'oligarch with underage sex scandal history',
+                link_to_bio='https://www.themoscowtimes.com/2025/06/19/investigative-report-alleges-links-between-billionaire-deripaska-and-prostitution-ring-involving-minors-a89503',
+            ),
             Contact(OLGA_PONOMAR_BECKER),
             Contact(
                 RENATA_BOLOTOVA,
