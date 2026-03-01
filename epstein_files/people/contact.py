@@ -32,7 +32,7 @@ class Contact:
         is_junk (bool): for junk email
         is_organization (bool): if this is a company or group, don't try to match first and last versions of its name
         link_to_bio (str, optional): a link to some info about this entity
-        match_partial_names (PartialName | None): whether to also match this entity's first and last names
+        match_partial (PartialName | None): whether to also match this entity's first and last names
     """
     name: str
     info: str = ''
@@ -46,12 +46,12 @@ class Contact:
     is_junk: bool = False  # TODO: this sucks
     is_organization: bool = False
     link_to_bio: str = ''
-    match_partial_names: PartialName | None = 'last'
+    match_partial: PartialName | None = 'last'
     # jmail_url: str
 
     def __post_init__(self):
         if self.is_organization:
-            self.match_partial_names = None
+            self.match_partial = None
 
         try:
             self.emailer_regex = re.compile(self.pattern, re.IGNORECASE)
@@ -106,16 +106,16 @@ class Contact:
         """['Firstname', 'Lastname', 'Lastname, Firstname'."""
         name_patterns = [self.pattern]
 
-        if ' ' in self.name and self.match_partial_names is not None:
+        if ' ' in self.name and self.match_partial is not None:
             name = remove_question_marks(self.name)  # TODO: this sucks
             first_name = extract_first_name(name)
             last_name = extract_last_name(name)
             name_patterns.append(as_pattern(f"{last_name},? {first_name}"))  # Reversed name
 
-            if self.match_partial_names in ['both', 'first'] and SIMPLE_NAME_REGEX.match(first_name):
+            if self.match_partial in ['both', 'first'] and SIMPLE_NAME_REGEX.match(first_name):
                 name_patterns.append(as_pattern(first_name))
 
-            if self.match_partial_names in ['both', 'last'] and SIMPLE_NAME_REGEX.match(last_name):
+            if self.match_partial in ['both', 'last'] and SIMPLE_NAME_REGEX.match(last_name):
                 name_patterns.append(as_pattern(last_name))
 
         logger.debug(f"Contact('{self.name}') name_patterns: '{name_patterns}'")

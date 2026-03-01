@@ -18,7 +18,7 @@ def test_repr():
     emailer_pattern=r"Jeffrey Epstein|jeevacation",
     is_emailer="True",
     is_interesting="True",
-    match_partial_names="last",
+    match_partial="last",
     highlight_pattern=r"Jeffrey[-_.\s]*Epstein|jeevacation|Epstein,?[-_.\s]*Jeffrey|Epstein",
 )"""
 
@@ -48,14 +48,14 @@ def test_highlight_pattern():
     c = _build_contact()
     assert c.emailer_regex.pattern == EMAILER_PATTERN
     assert c.highlight_pattern == r"Nasir[-_.\s]*Jones?|Jones,?[-_.\s]*Nasir|Jones"
-    c = _build_contact(match_partial_names='both')
+    c = _build_contact(match_partial='both')
     assert c.emailer_regex.pattern == EMAILER_PATTERN
     assert c.highlight_pattern == r"Nasir[-_.\s]*Jones?|Jones,?[-_.\s]*Nasir|Nasir|Jones"
-    c = _build_contact(match_partial_names='first')
+    c = _build_contact(match_partial='first')
     assert c.emailer_regex.pattern == EMAILER_PATTERN
     assert c.highlight_pattern == r"Nasir[-_.\s]*Jones?|Jones,?[-_.\s]*Nasir|Nasir"
 
-    jean_luc = Contact(JEAN_LUC_BRUNEL, match_partial_names='both')
+    jean_luc = Contact(JEAN_LUC_BRUNEL, match_partial='both')
     assert jean_luc.highlight_pattern == r'Jean[-_.\s]*Luc[-_.\s]*Brunel?|Brunel,?[-_.\s]*Jean[-_.\s]*Luc|Jean[-_.\s]*Luc|Brunel'
 
 
