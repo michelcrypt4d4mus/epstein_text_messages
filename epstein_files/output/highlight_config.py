@@ -188,7 +188,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact('Richard Merkin', "painter, illustrator and arts educator"),
             Contact(STEVEN_PFEIFFER, "Associate Director at Independent Filmmaker Project (IFP)"),
             Contact('Steven Gaydos', "American screenwriter and journalist"),
-            Contact('Woody Allen', f'filmmaker who married his adopted daughter {SOON_YI_PREVIN}', match_partial_names='first'),
+            Contact(WOODY_ALLEN, f'filmmaker who married his adopted daughter {SOON_YI_PREVIN}', match_partial_names='first'),
         ],
         patterns=[
             r"(Art )?Spiegelman",
@@ -2464,7 +2464,13 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         category='Europe',
     ),
     HighlightedNames(
-        contacts=[Contact(SOON_YI_PREVIN, "wife of Woody Allen", r"Soon Yi Previn?", match_partial_names='both')],
+        contacts=[
+            Contact(
+                SOON_YI_PREVIN, f"former adopted daughter / now wife of {WOODY_ALLEN}",
+                r"Soon Yi Previn?",
+                match_partial_names='both'
+            ),
+        ],
         style='hot_pink',
         category=ARTS
     ),

@@ -194,6 +194,7 @@ TONJA_HADDAD_COLEMAN = 'Tonja Haddad Coleman'
 TYLER_SHEARS = 'Tyler Shears'  # Reputation manager, like Al Seckel
 VINCENZO_IOZZO = 'Vincenzo Iozzo'
 VINIT_SAHNI = 'Vinit Sahni'
+WOODY_ALLEN = 'Woody Allen'
 ZUBAIR_KHAN = 'Zubair Khan'
 
 # DOJ files emails
