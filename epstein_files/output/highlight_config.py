@@ -2380,7 +2380,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         category='Republican',
         contacts=[
             Contact(SEAN_BANNON, f"{STEVE_BANNON}'s brother", r"sean bannon?", match_partial_names=None),
-            Contact(STEVE_BANNON, "Trump campaign manager, memecoin grifter", r"steve banno[nr]?")
+            Contact(STEVE_BANNON, "Trump campaign manager, memecoin grifter, Epstein bestie", r"steve banno[nr]?")
         ],
         patterns=[
             r"(American )?Dharma",
