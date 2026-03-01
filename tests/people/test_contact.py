@@ -37,6 +37,11 @@ def test_epstein_trust():
     assert butterfly.info == 'Epstein financial trust, sole beneficiary Karyna'
     butterfly = epstein_trust('Butterfly Trust', beneficiaries=['Karyna', 'Dave'])
     assert butterfly.info == "Epstein financial trust, beneficiaries Karyna, Dave"
+    year_trust = epstein_trust('2012', trustees=['Bob', 'Dylan'])
+    assert year_trust.name == 'Jeffrey E. Epstein 2012 Trust'
+    assert year_trust.info == 'Epstein financial trust, trustees: Bob, Dylan'
+    year_trust = epstein_trust('2012', trustees=['Bob', 'Dylan'], beneficiaries=['Karyna'])
+    assert year_trust.info == 'Epstein financial trust, sole beneficiary Karyna, trustees: Bob, Dylan'
 
 
 def test_highlight_pattern():

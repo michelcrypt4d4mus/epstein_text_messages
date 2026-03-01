@@ -8,7 +8,7 @@ from epstein_files.util.constant.names import Name, constantize_name, extract_fi
 from epstein_files.util.constant.strings import INDENT_NEWLINE, INDENTED_JOIN, LAW_ENFORCEMENT, PartialName
 from epstein_files.util.helpers.data_helpers import constantize_names
 from epstein_files.util.helpers.link_helper import link_text_obj
-from epstein_files.util.helpers.string_helper import as_pattern, indented, quote, remove_question_marks
+from epstein_files.util.helpers.string_helper import as_pattern, indented, is_integer, quote, remove_question_marks, join_truthy
 from epstein_files.util.logging import logger
 
 MIN_LEN_FOR_OPTIONAL_LAST_CHAR = 5
@@ -204,7 +204,14 @@ def epstein_co(name: str, emailer_pattern: str = '') -> Contact:
     return company(name, 'Epstein company', emailer_pattern)
 
 
-def epstein_trust(name: str, emailer_pattern: str = '', beneficiaries: list[str] | None = None) -> Contact:
+def epstein_trust(
+    name: str,
+    emailer_pattern: str = '',
+    beneficiaries: list[str] | None = None,
+    trustees: list[str] | None = None,
+) -> Contact:
+    """One of Epstein's financial trust entities."""
+    name = f"Jeffrey E. Epstein {name} Trust" if is_integer(name) else name
     beneficiary_str = ''
 
     if beneficiaries:
@@ -212,6 +219,9 @@ def epstein_trust(name: str, emailer_pattern: str = '', beneficiaries: list[str]
             beneficiary_str = f"sole beneficiary {beneficiaries[0]}"
         else:
             beneficiary_str = f"beneficiaries {', '.join(beneficiaries)}"
+
+    if trustees:
+        beneficiary_str = join_truthy(beneficiary_str, f"trustees: " + ', '.join(trustees), ', ')
 
     beneficiary_str = f", {beneficiary_str}" if beneficiary_str else ''
     return company(name, f'Epstein financial trust{beneficiary_str}', emailer_pattern)
