@@ -111,13 +111,13 @@ DEVICE_SIGNATURE_TO_AUTHORS = {
         EVA_DUBIN,
         'Faith Kates',
         FRED_HADDAD,
-        'Gino Yu',
-        'Glenn Dubin',
+        GINO_YU,
+        GLENN_DUBIN,
         'Harry Fisch',
         HEATHER_MANN,
-        'Jack Goldberger',
-        'Jeffrey Epstein',
-        'Jes Staley',
+        JACK_GOLDBERGER,
+        JEFFREY_EPSTEIN,
+        JES_STALEY,
         'Johnny el Hachem',
         JOI_ITO,
         'Jonathan Farkas',
@@ -145,7 +145,7 @@ DEVICE_SIGNATURE_TO_AUTHORS = {
         'Stacey Richman',
         'Stanley Rosenberg',
         'Stephen Hanson',
-        'Sultan Ahmed Bin Sulayem',
+        SULTAN_BIN_SULAYEM,
         'Terje Rød-Larsen',
         'Terry Kafka',
         'Tom Barrack',
@@ -168,10 +168,10 @@ DEVICE_SIGNATURE_TO_AUTHORS = {
         PAULA_HEIL_FISHER
     ],
     "Sent via tin can and string.": [
-        "Mark Epstein"
+        MARK_EPSTEIN,
     ],
     "Sorry for all the typos .Sent from my iPhone": [
-        "Jeffrey Epstein"
+        JEFFREY_EPSTEIN
     ],
     'Typos, misspellings courtesy of iPhone': [
         LINDA_STONE,
