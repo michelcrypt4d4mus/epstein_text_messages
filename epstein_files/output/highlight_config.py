@@ -62,6 +62,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(DAVID_HAIG, "evolutionary geneticist?", emailer_pattern=r"David Haig|Haig, David"),
             Contact('David Grosof', "MIT Sloan School of Management"),
             Contact('Ed Boyden', f"{MIT_MEDIA_LAB} neurobiology"),
+            Contact('Elkhonon Goldberg', f"Neuropsychologist, arranged Moscow University meetings", r"(Dr\.?|Elkhonon) Goldberg", match_partial='first'),
             Contact('Harry Fisch', "men's health expert at New York-Presbyterian / Weill Cornell (?)"),
             Contact('James Watson', 'one of the discoverers of DNA', match_partial=None),
             Contact(JOSCHA_BACH, "cognitive science / AI research", match_partial='both'),
@@ -183,7 +184,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         contacts=[
             Contact(ANDRES_SERRANO, "'Piss Christ' artist"),
             Contact('Barry Josephson', "American film producer, editor FamilySecurityMatters.org"),
-            Contact(BILL_SIEGEL, "documentary film producer and director"),
+            Contact(BILL_SIEGEL, "documentary film producer and director", match_partial=None),
             Contact('Bobby Slayton', 'comedian and actor'),
             Contact(DAVID_BLAINE, "famous magician"),
             Contact('David Brenner', "American comedian and actor"),
@@ -740,7 +741,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact('Rich Barnett', "logistics for Epstein's properties", match_partial=None),
             Contact('Sarah Kellen', "now Sarah Vickers, named co-conspirator", r"(Sarah )?(Kellen|Vickers)"),
             Contact('Sean J. Lancaster', "airplane reseller"),
-            Contact('Steve Griffis', 'AKA "Steve from downstairs", building employee', r"Steve (Griffis|\(from downstairs\))"),
+            Contact('Steve Griffis', 'AKA "Steve from downstairs", building employee', r"Steve (Griffis|\(from downstairs)"),
             Contact(STORY_COWLES, "Epstein's male assistant")
         ],
     ),
@@ -1082,7 +1083,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 link_to_bio='https://prospect.org/2026/02/26/newspapers-did-not-kill-themselves-jeffrey-epstein-mort-zuckerman-daily-news/',
             ),
             Contact(NORMAN_D_RAU, "managing director at Morgan Stanley"),
-            Contact(PAUL_BARRETT, r"Alpha Group Capital", r"Paul Barre(d|tt)|Barrett,? Paul( S)?"),
+            Contact(PAUL_BARRETT, r"Alpha Group Capital", r"Paul Barre(d|tt)|Barrett,? Paul( S)?", match_partial=None),
             Contact(PAUL_MORRIS, f"Epstein's primary private banker at JP Morgan then {DEUTSCHE_BANK}", r"morris, paul|Paul Morris"),
             Contact('Skip Rimer', "Milken Institute (Michael Milken)"),
             Contact('Steven Elkman', f"{DEUTSCHE_BANK}"),
@@ -1180,7 +1181,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(
                 name=JONATHAN_FARKAS,
                 info=f"son of {ANDREW_FARKAS}, heir to the Alexander's department store fortune",
-                emailer_pattern=r"Jonathan Fark(a|u)(s|il)",
+                emailer_pattern=r"Jonath[ao]n Fark(a|u)(s|il)",
                 match_partial=None,
             ),
             Contact('linkspirit', "Skype username of someone Epstein communicated with"),
@@ -1190,11 +1191,13 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 match_partial=None,
             ),
             Contact('Peter Thomas Roth', "student of Epstein at Dalton, skincare company founder", match_partial=None),
+            Contact('Philip Diaz', 'unknown', match_partial=None),
             Contact('Philip Kafka', f"president of Prince Concepts (son of {TERRY_KAFKA}?)", match_partial=None),
-            Contact('Sam Jaradeh', f"partner of {BORIS_NIKOLIC}"),
+            Contact('Sam Jaradeh', f"business partner of {BORIS_NIKOLIC}"),
             Contact(STEPHEN_HANSON, emailer_pattern=r"ste(phen|ve) hanson?|Shanson900"),
             Contact(TERRY_KAFKA, "CEO of billboard co. Impact Outdoor, 45 year Epstein friend", match_partial=None),
-            Contact(TOM_BARRACK, "long time friend of Trump")
+            Contact(TOM_BARRACK, "long time friend of Trump"),
+            Contact('Warren Eisenstein', 'childhood friend of Epstein'),
         ],
         patterns=[
             r"Jonanthan and Kimberly Farkus",
@@ -1344,6 +1347,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         style='light_goldenrod3',
         contacts=[
             Contact('Donald Rubin', "Professor of Statistics", match_partial=None),
+            Contact('Henry Rosovsky', f'emeritus dean of {HARVARD}', r"(Henry )?Rosovs(k|lc)y"),
             Contact('Kelly Friendly', f"longtime aide and spokesperson of {LARRY_SUMMERS}", match_partial=None),
             Contact(
                 LARRY_SUMMERS,
@@ -1903,7 +1907,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(MATTHEW_HILTZIK, "crisis PR at Hiltzik Strategies"),
             Contact(MICHAEL_SITRICK, "crisis PR", r"(Mi(chael|ke).{0,5})?[CS]itrick"),
             Contact('Owen Blicksilver', "OBPR, Inc."),
-            Contact(PEGGY_SIEGAL, "socialite, movie promoter", r"Peggy Siegal?"),
+            Contact(PEGGY_SIEGAL, "socialite, movie promoter", r"Peggy Sieg[ae]l?"),
             Contact('R. Couri Hay'),
             Contact(
                 name=ROSS_GOW,
@@ -2021,6 +2025,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(ANYA_RASULOVA, f'Uzbeki co-founder of {INSIGHTS_POD} with {ZUBAIR_KHAN}'),
             Contact(ALEKSANDRA_KARPOVA, f"{CRYPTO_PR_LAB} co-founder", r"Aleksandra Karpova"),
             Contact(ANASTASIYA_SIROOCHENKO, '', r"Anastasiya( Siro(chenko)?)?"),
+            Contact(DASHA_GRUPMAN, 'recruiter of girls for Epstein', r"Da(ry|sh)a Grupman"),
             Contact('Dasha Zhukova', "art collector, daughter of Alexander Zhukov"),
             Contact(
                 'Dmitry Rybolovlev',
@@ -2104,6 +2109,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Belarus(sian)?",
             r"Chernobyl",
             r"Crimea",
+            r"Dasha",
             r"(Dmitry )?(Kiselyov|Pozhidaeva|Medvedev)",
             r"Di?mitry( Akhanov)?",
             r"FSB",
@@ -2424,6 +2430,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         style='spring_green3',
         contacts=[
             Contact('André Balazs', 'hotelier, CEO of André Balazs Properties', r"Andre Bala(sz|zs)"),
+            Contact('Anthony Barrett', 'Ossa Properties', match_partial=None),
             Contact('Daniel Rosenberg', 'real estate developer', match_partial=None),
             Contact(
                 DAVID_MITCHELL,

@@ -114,7 +114,8 @@ class DocCfg:
         attached_to_email_id (str, optional): ID of `Email` object this document was an attachment of
         author (Name): Author of the document (if any)
         author_reason (str, optional): Optional explanation of why we are sure this email can be attributed to this author
-        author_uncertain(str | bool, optional): Like setting `author_reason` but `is_attribution_uncertain` will be False
+        author_uncertain (str | bool, optional): Like setting `author_reason` but `is_attribution_uncertain` will be False
+        background_color (str, optional): set `is_interesting=True` and show in full panel with background color
         category (str, optional): Type of file
         comment (str, optional): Info about this file not worth being in the description
         date (str, optional): Parsed to a datetime by timestamp() if it exists
@@ -127,6 +128,7 @@ class DocCfg:
         is_valid_for_name_scan (bool): should text of this doc be scanned for names to create biographical panels
         non_participants (list[str]): hacky way to avoid false detection of some people
         replace_text_with (str, optional): Replace the contents of this file with this string
+        show_full_panel (bool, optional): set `is_interesting=True` and show in a full panel view, not in a table
         show_with_name (str, optional): if set this document will be displayed all with the person specified
         truncate_to (int | tuple[int, int], optional): Number of characters to truncate this email to when displayed.
     """
@@ -162,7 +164,10 @@ class DocCfg:
         self.id = self.id.upper()
         self.set_category(self.category)
 
-        if self.background_color or self.show_full_panel:
+        if self.background_color:
+            self.show_full_panel = True
+
+        if self.show_full_panel:
             self.is_interesting = True
 
         if self.author_uncertain and isinstance(self.author_uncertain, str):
