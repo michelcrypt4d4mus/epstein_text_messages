@@ -1021,6 +1021,9 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
     HighlightedNames(
         label='financial',
         style=FINANCIAL_COLOR,
+        contacts=[
+            # company('SPAC', '"special purpose acquisition vehicle", backdoor way of selling companies to the public w/out much regulatory oversight'),
+        ],
         patterns=[
             r"American Express",
             r"alterna[tv]i[tv]e finance",
@@ -1900,7 +1903,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(CHRISTINA_GALBRAITH, f"{JEFFREY_EPSTEIN} VI Foundation Media/PR, worked with {TYLER_SHEARS}"),
             Contact(
                 IAN_OSBORNE,
-                f"{IAN_OSBORNE} & Partners PR hired by Epstein, {HEDOSOPHIA} fund which launched SPACs with Chamath advised by Epstein",
+                f"hired by Epstein to do PR, set up {HEDOSOPHIA} which launched SPACs with {CHAMATH_PALIHAPITIYA} advised by Epstein",
                 r"[Il]an Osbou?(rn|m)e",
                 link_to_bio='https://www.businessinsider.com/profile-ian-osborne-cofounder-chamath-palihapitiya-social-capital-hedosophia-spac-2021-5'
             ),
@@ -2178,9 +2181,15 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact('Alisa Bekins', f"{PETER_THIEL}'s assistant"),
             Contact(ANDREW_MCCORMACK, f"partner at {THIELS_VALAR} {'(???)'}", r"Andrew McCorm(ack?)?"),
             Contact('Auren Hoffman', "CEO of SafeGraph (firm that gathers location data from mobile devices) and LiveRamp", match_partial=None),
-            Contact('Chamath Palihapitiya', "All-In Podcast, Facebook, SPAC and crypto enthusiast, Trump convert", match_partial='both'),
+            Contact(CHAMATH_PALIHAPITIYA, "All-In Podcast, Facebook, crypto enthusiast, SPAC grifter, Trump convert", match_partial='both'),
             Contact(CHRIS_POOLE, 'AKA "Moot", founder of 4chan, ex-Google', r"mmot|Chris Poole?|(?-i:Moot)", link_to_bio='https://4chan.org/'),
             Contact('Danny Hillis', "computer scientist, artificial intelligence researcher"),
+            Contact(
+                'David Sacks',
+                f"Craft Ventures, All-In Podcast, notoriously anti-Ukraine/pro-Russia VC allegedly connected to Wirecard",
+                link_to_bio='https://www.thecaptainslog.io/the-david-sacks-files-part-i/',
+                match_partial=None,
+            ),
             Contact('Drew Houston', 'CEO of Dropbox', match_partial=None),
             Contact(ELON_MUSK, "father of Mecha-Hitler", match_partial='both'),
             Contact(
@@ -2194,7 +2203,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(IAN_ODONNELL, THIELS_VALAR, r"Ian O'?Donnell|O'?Donnell, Ian"),
             Contact('Jack Dorsey', 'co-founder of Twitter and Block (FKA Square)'),
             Contact(JAMES_FITZGERALD, THIELS_VALAR, r"James Fitz[g\s]eral?d?", match_partial=None),
-            Contact(JASON_CALACANIS, 'All In Podcast with David Sacks, Uber investor', r"Jason (.{12})Calacanis"),
+            Contact(JASON_CALACANIS, f'All In Podcast with David Sacks and {CHAMATH_PALIHAPITIYA}, Uber investor', r"Jason (.{12})Calacanis"),
             Contact(MASAYOSHI_SON, 'CEO of Softbank, often referred to as "Masa"', r"Masa(yoshi)?(\sSon)?", match_partial='first'),
             Contact(MELANIE_PHILLIPS, f'girlfriend of {STEVEN_SINOFSKY}', match_partial=None),
             Contact('Nathan Myhrvold', f"former CTO of Microsoft, co-founder of Intellectual Ventures"),
