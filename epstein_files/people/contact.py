@@ -12,7 +12,7 @@ from epstein_files.util.helpers.string_helper import as_pattern, indented, is_in
 from epstein_files.util.logging import logger
 
 MIN_LEN_FOR_OPTIONAL_LAST_CHAR = 5
-LLC_OR_INC = re.compile(r".*?(,? (Inc\.?|LLC))$")
+COMPANY_SUFFIX_REGEX = re.compile(r".*?(,? (Inc\.?|LLC|Mgmt|Management))$")
 SIMPLE_NAME_REGEX = re.compile(r"^[-\w, ]+$", re.IGNORECASE)
 
 
@@ -184,13 +184,8 @@ class Contact:
 
 # TODO: rename organization(), make class method (?)
 def company(name: str, description: str = '', emailer_pattern: str = '', **kwargs) -> Contact:
-    kwargs['is_emailer'] = kwargs.get('is_emailer', False)
-    return Contact(name, description, emailer_pattern, is_organization=True, **kwargs)
-
-
-def epstein_co(name: str, emailer_pattern: str = '') -> Contact:
-    if (llc_or_inc_match := LLC_OR_INC.match(name)) and not emailer_pattern:
-        suffix = llc_or_inc_match.group(1)
+    if (suffix_match := COMPANY_SUFFIX_REGEX.match(name)) and not emailer_pattern:
+        suffix = suffix_match.group(1)
         emailer_pattern = name.removesuffix(suffix)
 
         if suffix.startswith(','):
@@ -201,7 +196,12 @@ def epstein_co(name: str, emailer_pattern: str = '') -> Contact:
 
         emailer_pattern += fr"({suffix})?"
 
-    return company(name, 'Epstein company', emailer_pattern)
+    kwargs['is_emailer'] = kwargs.get('is_emailer', False)
+    return Contact(name, description, emailer_pattern, is_organization=True, **kwargs)
+
+
+def epstein_co(name: str, emailer_pattern: str = '', **kwargs) -> Contact:
+    return company(name, 'Epstein company', emailer_pattern, **kwargs)
 
 
 def epstein_trust(

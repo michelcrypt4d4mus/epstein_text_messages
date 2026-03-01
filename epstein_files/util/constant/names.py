@@ -306,6 +306,7 @@ HEDOSOPHIA = 'Hedosophia'
 INSIGHTS_POD = f"InsightsPod"  # Zubair bots
 JP_MORGAN = 'JP Morgan'
 KYARA_INVESTMENT = 'Kyara Investment'
+MC2_MODEL_MGMT = 'MC2 Model Management'
 MERCANTILE_GLOBAL_HOLDINGS = 'Mercantile Global Holdings'
 MIT_MEDIA_LAB = 'MIT Media Lab'
 NEXT_MANAGEMENT = 'Next Management LLC'

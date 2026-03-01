@@ -30,7 +30,7 @@ EPSTEIN_V_ROTHSTEIN_EDWARDS_ATTORNEY = f"{CIVIL_ATTORNEY} {EPSTEIN_V_ROTHSTEIN_E
 ESTATE_EXECUTOR = 'estate executor'
 EPSTEIN_ESTATE_EXECUTOR = f"Epstein {ESTATE_EXECUTOR}"
 JUNKERMANN_FUND = f"{NICOLE_JUNKERMANN}'s fund, invested in China, online poker, Russian run Euro bank Revolut"
-MC2_MODEL_MANAGEMENT = f"{JEAN_LUC_BRUNEL}'s MC2 Model Management"
+JEAN_LUC_MC2 = f"{JEAN_LUC_BRUNEL}'s {MC2_MODEL_MGMT}"
 QUESTION_MARKS_TXT = Text(QUESTION_MARKS, style='grey50')
 THIELS_VALAR = f"{PETER_THIEL}'s {VALAR_VENTURES}"
 
@@ -766,7 +766,6 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 f"corporate vehicle set up by Epstein and {DAVID_STERN}, presumably to manage money of wealthy Chinese",
                 r"Asia\s*Gateway(\s*L(imited|td))?",
             ),
-            epstein_co('Coatue'),
             epstein_co('FT Real Estate'),
             epstein_co('Island Grounds Inc.'),
             epstein_co('Hyperion Air', r"Hyperion( Air)?"),
@@ -974,6 +973,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Kiev",
             r"Latvian?",
             r"Lie?chtenstein",
+            r"Lisbon",
             r"Lithuanian?",
             r"Le Pen",
             r"(?<!DOJ )London",
@@ -995,12 +995,13 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Paris",
             r"Polish",
             r"pope",
-            r"Portugal",
+            r"Portug(al|uese)",
             r"Prague",
             r"Riga",
             r"Rotterdam",
             r"Scotland",
             r"(Sebastian )?Kurz",
+            r"Spa(in|ni(ard|sh))",
             r"Stockholm",
             r"Strasbourg",
             r"Strauss[-\s]?Kahn",
@@ -1014,7 +1015,6 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Vatican",
             r"Venice",
             r"Vienna",
-            r"Zug",
             r"Zurich",
         ],
     ),
@@ -1850,7 +1850,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         label='modeling',
         style='pale_violet_red1',
         contacts=[
-            Contact('Abi Schwinck', f"{JEAN_LUC_BRUNEL}'s MC2 Model Management {'(???)'}"),
+            Contact('Abi Schwinck', f"{JEAN_LUC_MC2} {QUESTION_MARKS}"),
             Contact(DANIEL_SIAD, 'model scout funded by Epstein to recruit in eastern Europe'),
             Contact(FAITH_KATES, "Next Models co-founder", r"faith kates?", match_partial=None),
             Contact('Gianni Serazzi', "fashion consultant?"),
@@ -1862,7 +1862,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             ),
             Contact(
                 name=JEAN_LUC_BRUNEL,
-                info="MC2 Model Management founder, #MeToo problems, died by suicide in French jail",
+                info=f"{MC2_MODEL_MGMT} founder, #MeToo problems, died by suicide in French jail",
                 emailer_pattern=r"Jean Luc Brunel?|JeanLuc",
                 match_partial='both',
             ),
@@ -1874,12 +1874,13 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             ),
             Contact(MANUELA_MARTINEZ, "Mega Partners (Brazilian agency)", r"Manuela (- Mega Partners|Martinez)", match_partial=None),
             Contact(MARIANA_IDZKOWSKA, emailer_pattern=r"Mariana [Il]d[źi]kowska?"),
-            Contact('Michael Sanka', f"{JEAN_LUC_BRUNEL}'s MC2 Model Management {'(???)'}"),
+            Contact('Michael Sanka', f"{JEAN_LUC_MC2} {QUESTION_MARKS}"),
             Contact('Naomi Campbell', 'supermodel', match_partial=None),
             Contact('Vladimir Yudashkin', "director of the 1 Mother Agency"),
             Contact('Yfke Sturm', 'model from Holland', match_partial='both'),
-            Contact('lorraine@mc2mm.com', f"{JEAN_LUC_BRUNEL}'s MC2 Model Management"),
-            Contact('pink@mc2mm.com', f"{JEAN_LUC_BRUNEL}'s MC2 Model Management", r"^Pink$|pink@mc2mm\.com"),
+            Contact('lorraine@mc2mm.com', JEAN_LUC_MC2),
+            Contact('pink@mc2mm.com', JEAN_LUC_MC2, r"^Pink$|pink@mc2mm\.com"),
+            company('MC2 Model Management', f"{JEAN_LUC_BRUNEL}'s modeling agency"),
         ],
         patterns=[
             r"\w+@mc2mm.com",
@@ -2102,6 +2103,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             ),
             company('Alfa Bank', 'Russian bank often used by FSB', r"Alfa( Bank)?"),
             company('Apoletto', f"VC firm associated with Yuri Milner"),
+            company('BaFin', "German financial regulator that tried to arrest journalists calling out Wirecard's fraud"),
             company('Day One Ventures', f"silicon valley venture fund run by {MASHA_DROKOVA}"),
             company(
                 'Quantum Wave Fund',
@@ -2110,6 +2112,12 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             ),
             company('Runa Capital', 'fund of Serguei Beloussov with investment from Steve Jurvetson and Frank Creer'),
             company('Sberbank', 'Russian bank'),
+            company(
+                'Wirecard',
+                f"largest financial fraud in German history, connections to FSB and crypto, CFO Jan Marsalek is a fugitive in Russia",
+                r"Wirecard( Bank)?",
+                link_to_bio='https://www.newyorker.com/magazine/2023/03/06/how-the-biggest-fraud-in-german-history-unravelled',
+            ),
             company('Women Empowerment', f"organization started by Epstein's assistant {SVETLANA_POZHIDAEVA}"),
         ],
         patterns=[
@@ -2185,12 +2193,12 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact('Alisa Bekins', f"{PETER_THIEL}'s assistant"),
             Contact(ANDREW_MCCORMACK, f"partner at {THIELS_VALAR} {'(???)'}", r"Andrew McCorm(ack?)?"),
             Contact('Auren Hoffman', "CEO of SafeGraph (firm that gathers location data from mobile devices) and LiveRamp", match_partial=None),
-            Contact(CHAMATH_PALIHAPITIYA, "All-In Podcast, Facebook, crypto enthusiast, SPAC grifter, Trump convert", match_partial='both'),
+            Contact(CHAMATH_PALIHAPITIYA, f"{ALL_IN_PODCAST}, Facebook, crypto enthusiast, SPAC grifter, Trump convert", match_partial='both'),
             Contact(CHRIS_POOLE, 'AKA "Moot", founder of 4chan, ex-Google', r"mmot|Chris Poole?|(?-i:Moot)", link_to_bio='https://4chan.org/'),
             Contact('Danny Hillis', "computer scientist, artificial intelligence researcher", r"Dan(iel|ny) Hillis?"),
             Contact(
                 'David Sacks',
-                f"Craft Ventures, All-In Podcast, notoriously anti-Ukraine/pro-Russia VC allegedly connected to Wirecard",
+                f"Craft Ventures, {ALL_IN_PODCAST}, anti-Ukraine / pro-Russia VC with connections to Wirecard",
                 link_to_bio='https://www.thecaptainslog.io/the-david-sacks-files-part-i/',
                 match_partial=None,
             ),
@@ -2211,6 +2219,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(MASAYOSHI_SON, 'CEO of Softbank, often referred to as "Masa"', r"Masa(yoshi)?(\sSon)?", match_partial='first'),
             Contact(MELANIE_PHILLIPS, f'girlfriend of {STEVEN_SINOFSKY}', match_partial=None),
             Contact('Nathan Myhrvold', f"former CTO of Microsoft, co-founder of Intellectual Ventures"),
+            Contact('Philippe Laffont', f"founder of Coatue"),
             Contact(PHILIP_ROSEDALE, 'Second Life founder'),
             Contact(PETER_THIEL, "Paypal mafia member, founder of Palantir, Facebook investor", r"(Peter )?Th(ie|ei)l"),
             Contact('Rajeev Misra', "formerly Softbank Vision Fund executive", r"[NR]ajeev"),
@@ -2226,6 +2235,11 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 match_partial='both',
             ),
             company('bgC3', 'renamed "Bill Gates Ventures" in 2018'),
+            company(
+                'Coatue Management',
+                "VC fund founded by Philippe Laffont possibly invested in by Epstein",
+                r"Coatue( (Enterprises?|Management|Mgmt))?",
+            ),
             company(GOOGLE_PLUS, "Google Plus", r"Google\+", is_emailer=True, is_interesting=False),
             company(
                 'Honeycomb Asset Management',
@@ -2234,10 +2248,12 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             ),
             company('Jawbone', f'wireless earpiece company invested in by Epstein and {IAN_OSBORNE}'),
             company('LinkedIn', "LinkedIn", r"Linked[Il]n( Updates)?", is_emailer=True, is_interesting=False),
+            company('Number26', f'fintech frontend for Wirecard Bank, renamed "N26"', r"N(umber)?26"),
             company('Second Life', f"virtual world with early attempt at virtual currency the Linden Dollar", r"Second Life"),
             company('Softbank Vision Fund', "Masayohsi Son's fund focused on tech, AI, WeWork", r"Softbank|(Softbank )?Vision Fund"),
             company('Tarana Wireless', 'broadband provider', r"Tarana( (Technology|Wireless))?"),
             company('ThielCapital', f"{PETER_THIEL} organization"),
+            company('Transferwise', 'fintech'),
             company(VALAR_VENTURES, f"{PETER_THIEL} affiliated fintech venture fund", r"V[ae]lar (Global Fund|Ventures)?", is_emailer=True),
             company(
                 'WeWork',
@@ -2460,7 +2476,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 r"David( J\.?)? Mitchell",
                 match_partial=None,
             ),
-            Contact(GERALD_BARTON, "Maryland property developer Landmark Land Company"),
+            Contact(GERALD_BARTON, "Maryland property developer Landmark Land Company", r"(?<!Wes )Barton"),
             Contact('Kira Titenva', 'real estate agent'),
             Contact(
                 MARC_LEON,
