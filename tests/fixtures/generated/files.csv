@@ -481,7 +481,7 @@ file_id,category,author,is_interesting,timestamp,recipients_str,sent_from_device
 023720,article,Future Science,False,2012-02-28 00:00:00,,,"Future Science article: ""Is Shame Necessary?"" by Jennifer Jacquet"
 023731,book,Roger Schank,False,2011-02-28 00:00:00,,,"book titled ""Teaching Minds How Cognitive Science Can Save Our Schools"" by Roger Schank"
 024003,money,,True,2020-02-28 00:00:00,,,New Leaf Ventures ($375 million biotech fund) private placement memorandum
-024117,misc,,True,2012-07-28 00:00:00,,,anti-money laundering (AML) & terrorist financing (CFT) U.S. law FAQ
+024117,government,,True,2012-07-28 00:00:00,,,"anti-money laundering (AML), Bank Secrecy Act (BSA), & terrorist financing (CFT) US law FAQ"
 024132,finance,JP Morgan,False,2012-03-15 00:00:00,,,"JP Morgan report: ""Eye On The Market"""
 024135,finance,UBS,False,2012-06-29 00:00:00,,,UBS CIO Monthly Extended report
 024179,conference,67th U.N. General Assembly,False,2012-09-21 00:00:00,,,67th U.N. General Assembly president and first lady schedule
@@ -5224,6 +5224,7 @@ EFTA00173953,money,Organized Crime Drug Enforcement Task Force,True,2020-03-06 1
 EFTA00238496,email,,True,2017-02-28 19:07:23,Ghislaine Maxwell;Juliana Shkreli;Molly Ladd,,
 EFTA00238499,money,,True,,,,wire transfer to Signature Bank account
 EFTA00277089,email,USANYS,,2020-07-13 19:57:50,USANYS,,USANYS tip for the FBI / DOJ that Swedish billionaire Johan Eliasch may be connected to Epstein's crimes
+EFTA00277107,email,,True,2020-07-27 07:35:24,USAMA Victim Assistance;USANYS,,FBI tip alleging connections between Wirecard and Ghislaine Maxwell network
 EFTA00289560,crypto,,True,2012-12-28 00:00:00,,,"Howard Lutnick and Epstein business deal for Adfin Solutions, Inc. (Southern Trust is Epstein)"
 EFTA00295126,crypto,Crypto PR Lab,True,2018-11-27 19:30:00,,,Crypto PR Lab accounting statement
 EFTA00306033,girls,Sergey Belyakov,True,2018-05-31 00:00:00,,,Sergey Belyakov Epstein Russian visa
@@ -5672,7 +5673,7 @@ EFTA00982818,email,Austin Hill,True,2017-10-18 15:18:18,Jeffrey Epstein,,
 EFTA00982864,email,Jeffrey Epstein,True,2017-10-18 16:26:06,Austin Hill,,
 EFTA00985076,email,Brock Pierce,True,2014-03-11 19:28:58,Jeffrey Epstein,,
 EFTA00987194,crypto,Jeffrey Epstein,True,2014-04-18 11:50:34,Andrew Farkas,,Epstein proposes head of NY Dept of Financial Services Ben Lawsky get rid of sales tax on bitcoin
-EFTA00987206,email,Jeffrey Epstein,True,2014-04-18 21:30:55,Boris Nikolic,,Epstein helps Boris Nikolic draft an email to Yuri Milner about a healthcare fund
+EFTA00987206,email,Jeffrey Epstein,True,2014-04-18 21:30:55,Boris Nikolic,,Epstein helps Boris Nikolic draft an email to Yuri Milner
 EFTA00987576,email,Jeffrey Epstein,True,2014-04-15 15:31:40,Austin Hill,,
 EFTA00988010,email,Jeffrey Epstein,True,2014-04-14 01:50:37,Andrew Farkas,,
 EFTA00988395,crypto,Jeffrey Epstein,True,2014-04-19 15:22:45,Amir Taaki,,"""Andy Back"" is probably Blockstream bitcoin dev Adam Back"
@@ -6025,7 +6026,7 @@ EFTA01778423,crypto,,True,2011-03-24 17:06:00,Jeffrey Epstein,,
 EFTA01781620,email,David Schoen,,2015-05-12 23:48:00,Jeffrey Epstein,Sent from AOL Mobile Mail,David Schoen (???)
 EFTA01781741,crypto,Jeremy Rubin,True,2015-10-21 03:04:00,Jeffrey Epstein;Joi Ito;Madars Virza,,Joi Ito introduces Epstein to Madars Virza and the untraceable private crypto ZCash
 EFTA01782788,girls,unknown girl,True,2016-04-21 11:35:00,Jeffrey Epstein,,"unknown girl ""I need 21-24, wiling to travel and work hard"""
-EFTA01784901,email,Jeremy Rubin,True,2016-08-01 13:29:00,Jeffrey Epstein;Richard Kahn,,Jeremy Rubin has cashed multiple checks directly from Epstein
+EFTA01784901,crypto,Jeremy Rubin,True,2016-08-01 13:29:00,Jeffrey Epstein;Richard Kahn,,Jeremy Rubin has cashed multiple checks directly from Epstein
 EFTA01785924,email,Richard Kahn,,2016-11-30 13:44:00,Jeffrey Epstein,,
 EFTA01787633,email,Joi Ito,True,2015-05-14 11:19:00,Jeffrey Epstein,,
 EFTA01788532,crypto,Austin Hill,True,2015-03-18 17:59:00,Jeffrey Epstein,,Austin Hill asking about Jeffrey Katzenberg's contact info

@@ -182,8 +182,8 @@ class Contact:
         return '[\n' + indented(',\n'.join([repr(contact) for contact in contact_infos]), 4) + '\n],'
 
 
-# TODO: rename organization(), make class method (?)
-def company(name: str, description: str = '', emailer_pattern: str = '', **kwargs) -> Contact:
+# TODO: make class method (?)
+def organization(name: str, description: str = '', emailer_pattern: str = '', **kwargs) -> Contact:
     if (suffix_match := COMPANY_SUFFIX_REGEX.match(name)) and not emailer_pattern:
         suffix = suffix_match.group(1)
         emailer_pattern = name.removesuffix(suffix)
@@ -201,7 +201,7 @@ def company(name: str, description: str = '', emailer_pattern: str = '', **kwarg
 
 
 def epstein_co(name: str, emailer_pattern: str = '', description: str = '', **kwargs) -> Contact:
-    return company(name, join_truthy('Epstein company', description), emailer_pattern, **kwargs)
+    return organization(name, join_truthy('Epstein company', description), emailer_pattern, **kwargs)
 
 
 def epstein_trust(
@@ -224,8 +224,8 @@ def epstein_trust(
         beneficiary_str = join_truthy(beneficiary_str, f"trustees: " + ', '.join(trustees), ', ')
 
     beneficiary_str = f", {beneficiary_str}" if beneficiary_str else ''
-    return company(name, f'Epstein financial trust{beneficiary_str}', emailer_pattern)
+    return organization(name, f'Epstein financial trust{beneficiary_str}', emailer_pattern)
 
 
 def law_enforcement(name: str, emailer_pattern: str = '', description: str = '') -> Contact:
-    return company(name, description or LAW_ENFORCEMENT, emailer_pattern, is_interesting=False)
+    return organization(name, description or LAW_ENFORCEMENT, emailer_pattern, is_interesting=False)

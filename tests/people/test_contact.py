@@ -1,4 +1,4 @@
-from epstein_files.people.contact import Contact, company, epstein_co, epstein_trust
+from epstein_files.people.contact import Contact, organization, epstein_co, epstein_trust
 from epstein_files.util.constant.names import JEAN_LUC_BRUNEL, JEFFREY_EPSTEIN
 
 NAME = 'Nasir Jones'
@@ -24,7 +24,7 @@ def test_repr():
 
 
 def test_company():
-    coatue = company('Coatue Management', 'VC fund')
+    coatue = organization('Coatue Management', 'VC fund')
     assert coatue.emailer_pattern == r'Coatue( Management)?'
 
 
