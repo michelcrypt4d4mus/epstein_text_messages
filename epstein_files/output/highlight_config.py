@@ -1159,7 +1159,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact('linkspirit', "Skype username of someone Epstein communicated with"),
             Contact(
                 'Perry Bard',
-                f"{PALM_BEACH} chiropractor whose phone # appeared in investigations",
+                f"{PALM_BEACH} chiropractor whose phone number came up in Epstein victim investigations",
                 match_partial_names=None,
             ),
             Contact('Peter Thomas Roth', "student of Epstein at Dalton, skincare company founder", match_partial_names=None),
