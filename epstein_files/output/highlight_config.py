@@ -2096,13 +2096,13 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact('Vitaly Churkin', 'Russian ambassador to the United Nations'),
             Contact(YULIA_DOROKHINA),
             Contact(
-                'Yuri Milner',
+                YURI_MILNER,
                 f'Russian-Israeli investor whom Epstein says is managing "Russian gangster money"',
                 link_to_bio='https://www.nytimes.com/2017/11/05/world/yuri-milner-facebook-twitter-russia.html',
                 match_partial='both',
             ),
             company('Alfa Bank', 'Russian bank often used by FSB', r"Alfa( Bank)?"),
-            company('Apoletto', f"VC firm associated with Yuri Milner"),
+            company('Apoletto', f"VC firm associated with {YURI_MILNER}"),
             company('BaFin', "German financial regulator that tried to arrest journalists calling out Wirecard's fraud"),
             company('Day One Ventures', f"silicon valley venture fund run by {MASHA_DROKOVA}"),
             company(

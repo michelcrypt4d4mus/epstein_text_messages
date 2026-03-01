@@ -8,6 +8,7 @@ Name = str | None
 
 # Unknown / None
 UNKNOWN = '(unknown)'
+UNKNOWN_GIRL = 'unknown girl'
 
 # Texting Names
 ANDRZEJ_DUDA = 'Andrzej Duda or entourage'
@@ -251,8 +252,7 @@ TANCREDI_MARCHIOLO = 'Tancredi Marchiolo'
 WHITFIELD_DIFFIE = 'Whitfield Diffie'
 YUKO_BARNABY = 'Yuko Barnaby'
 YULIA_DOROKHINA = 'Yulia Dorokhina'
-
-UNKNOWN_GIRL = 'unknown girl'
+YURI_MILNER = 'Yuri Milner'
 
 # No communications but name is in the files
 BEN_LAWSKY = 'Ben Lawsky'
