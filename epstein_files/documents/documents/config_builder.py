@@ -33,6 +33,10 @@ CASE_IDS = {
     '1:19-cr-00490-RMB': f"US v. {JEFFREY_EPSTEIN}",
 }
 
+EMERGENCY_CONTACT_DATES = {
+    'EFTA00003042': '2019-02-06'
+}
+
 
 def build_cfg_from_text(doc: 'Document') -> DocCfg | None:
     """Scan the text to see if author, description, category, etc. can be derived from the contents."""
@@ -52,7 +56,11 @@ def build_cfg_from_text(doc: 'Document') -> DocCfg | None:
     elif 'LedgerX' in text[0:500]:
         cfg = _cfg(category=Interesting.CRYPTO, description=LEDGERX_MSG)
     elif LSJE_FORM_REGEX.search(text):
-        cfg = _cfg(category=Neutral.BUSINESS, description="emergency contact form for employee of Epstein's LSJE")
+        cfg = _cfg(
+            category=Neutral.BUSINESS,
+            date=EMERGENCY_CONTACT_DATES.get(doc.file_id, ''),
+            description="emergency contact form for employee of Epstein's LSJE",
+        )
     elif SUBPOENA_REGEX.search(text):
         cfg = _cfg(category=Neutral.LEGAL, description='grand jury subpoena or response')
     elif VI_DAILY_NEWS_REGEX.search(text):

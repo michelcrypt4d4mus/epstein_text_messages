@@ -12,7 +12,9 @@ from epstein_files.util.helpers.string_helper import as_pattern, indented, is_in
 from epstein_files.util.logging import logger
 
 MIN_LEN_FOR_OPTIONAL_LAST_CHAR = 5
-LLC_OR_INC = re.compile(r".*?(,? (Inc\.?|LLC))$")
+MGMT_PATTERN = r"M(ana)?ge?m(en)?t"
+MGMT_REGEX = re.compile(MGMT_PATTERN)
+COMPANY_SUFFIX_REGEX = re.compile(fr".*?(,? (Inc\.?|LLC|{MGMT_PATTERN}))$")
 SIMPLE_NAME_REGEX = re.compile(r"^[-\w, ]+$", re.IGNORECASE)
 
 
@@ -182,26 +184,42 @@ class Contact:
         return '[\n' + indented(',\n'.join([repr(contact) for contact in contact_infos]), 4) + '\n],'
 
 
-# TODO: rename organization(), make class method (?)
-def company(name: str, description: str = '', emailer_pattern: str = '', **kwargs) -> Contact:
-    kwargs['is_emailer'] = kwargs.get('is_emailer', False)
-    return Contact(name, description, emailer_pattern, is_organization=True, **kwargs)
+def acronym_org(name: str, description: str = '', **kwargs) -> Contact:
+    """Like organization() but auto-generates a regex matching the org's initials."""
+    initials = [word[0] for word in name.split() if word[0].isupper()]
+    initials_pattern = ''.join([fr"{letter}\.?" for letter in initials])
+
+    return organization(
+        ''.join(initials),
+        join_truthy(name, description, ', '),
+        '|'.join([initials_pattern, name]),
+        **kwargs
+    )
 
 
-def epstein_co(name: str, emailer_pattern: str = '') -> Contact:
-    if (llc_or_inc_match := LLC_OR_INC.match(name)) and not emailer_pattern:
-        suffix = llc_or_inc_match.group(1)
+# TODO: make class method (?)
+def organization(name: str, description: str = '', emailer_pattern: str = '', **kwargs) -> Contact:
+    if (suffix_match := COMPANY_SUFFIX_REGEX.match(name)) and not emailer_pattern:
+        suffix = suffix_match.group(1)
         emailer_pattern = name.removesuffix(suffix)
 
-        if suffix.startswith(','):
-            suffix = suffix.replace(',', ',?')
+        if not MGMT_REGEX.search(suffix):
+            if suffix.startswith(','):
+                suffix = suffix.replace(',', ',?')
+            else:
+                suffix = f",?{suffix}"
 
         if suffix.endswith('.'):
             suffix = suffix.replace('.', r'\.?')
 
         emailer_pattern += fr"({suffix})?"
 
-    return company(name, 'Epstein company', emailer_pattern)
+    kwargs['is_emailer'] = kwargs.get('is_emailer', False)
+    return Contact(name, description, emailer_pattern, is_organization=True, **kwargs)
+
+
+def epstein_co(name: str, emailer_pattern: str = '', description: str = '', **kwargs) -> Contact:
+    return organization(name, join_truthy('Epstein company', description), emailer_pattern, **kwargs)
 
 
 def epstein_trust(
@@ -224,8 +242,8 @@ def epstein_trust(
         beneficiary_str = join_truthy(beneficiary_str, f"trustees: " + ', '.join(trustees), ', ')
 
     beneficiary_str = f", {beneficiary_str}" if beneficiary_str else ''
-    return company(name, f'Epstein financial trust{beneficiary_str}', emailer_pattern)
+    return organization(name, f'Epstein financial trust{beneficiary_str}', emailer_pattern)
 
 
-def law_enforcement(name: str, emailer_pattern: str = '') -> Contact:
-    return company(name, LAW_ENFORCEMENT, emailer_pattern, is_interesting=False)
+def law_enforcement(name: str, emailer_pattern: str = '', description: str = '') -> Contact:
+    return organization(name, description or LAW_ENFORCEMENT, emailer_pattern, is_interesting=False)

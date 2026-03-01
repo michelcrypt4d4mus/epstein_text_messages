@@ -1,5 +1,5 @@
-from epstein_files.people.contact import Contact, epstein_co, epstein_trust
-from epstein_files.util.constant.names import JEAN_LUC_BRUNEL, JEFFREY_EPSTEIN
+from epstein_files.people.contact import Contact, acronym_org, organization, epstein_co, epstein_trust
+from epstein_files.util.constant.names import INTERNATIONAL_PEACE_INSTITUTE, JEAN_LUC_BRUNEL, JEFFREY_EPSTEIN
 
 NAME = 'Nasir Jones'
 EMAILER_PATTERN = r"Nasir[-_.\s]*Jones?"
@@ -9,6 +9,18 @@ CONTACT_INFO = Contact(
     emailer_pattern=r"Jeffrey Epstein|jeevacation",
     info="one and only"
 )
+
+
+def test_acronym_org():
+    ipi = acronym_org(INTERNATIONAL_PEACE_INSTITUTE)
+    assert ipi.name == 'IPI'
+    assert ipi.info == INTERNATIONAL_PEACE_INSTITUTE
+    assert ipi.emailer_pattern == r"I\.?P\.?I\.?|International Peace Institute"
+    ipi = acronym_org(INTERNATIONAL_PEACE_INSTITUTE, 'Terje org')
+    assert ipi.info == f"{INTERNATIONAL_PEACE_INSTITUTE}, Terje org"
+    ofac = acronym_org('Office of Foreign Assets Control')
+    assert ofac.name == 'OFAC'
+    assert ofac.emailer_pattern == r"O\.?F\.?A\.?C\.?|Office of Foreign Assets Control"
 
 
 def test_repr():
@@ -24,12 +36,8 @@ def test_repr():
 
 
 def test_epstein_co():
-    jege = epstein_co('Jege LLC')
-    assert jege.emailer_pattern == r"Jege( LLC)?"
-    butterfly = epstein_co('Butterfly Inc')
-    assert butterfly.emailer_pattern == r"Butterfly( Inc)?"
-    butterfly = epstein_co('Butterfly, Inc.')
-    assert butterfly.emailer_pattern == r"Butterfly(,? Inc\.?)?"
+    zorro = epstein_co('Zorro', description='for New Mexico ranch')
+    assert zorro.info == f"Epstein company for New Mexico ranch"
 
 
 def test_epstein_trust():
@@ -57,6 +65,15 @@ def test_highlight_pattern():
 
     jean_luc = Contact(JEAN_LUC_BRUNEL, match_partial='both')
     assert jean_luc.highlight_pattern == r'Jean[-_.\s]*Luc[-_.\s]*Brunel?|Brunel,?[-_.\s]*Jean[-_.\s]*Luc|Jean[-_.\s]*Luc|Brunel'
+
+
+def test_organization():
+    assert organization('Jege LLC').emailer_pattern == r"Jege(,? LLC)?"
+    assert organization('Jege, LLC').emailer_pattern == r"Jege(,? LLC)?"
+    assert organization('Butterfly Inc').emailer_pattern == r"Butterfly(,? Inc)?"
+    assert organization('Butterfly, Inc.').emailer_pattern == r"Butterfly(,? Inc\.?)?"
+    coatue = organization('Coatue Management', 'VC fund')
+    assert coatue.emailer_pattern == r'Coatue( Management)?'
 
 
 def _build_contact(**kwargs) -> Contact:

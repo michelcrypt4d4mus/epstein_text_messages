@@ -4,7 +4,7 @@ Constants and methods for dentifying people in email headers.
 import re
 
 from epstein_files.output.highlight_config import HIGHLIGHTED_CONTACTS
-from epstein_files.people.contact import Contact, company
+from epstein_files.people.contact import Contact, organization
 from epstein_files.util.constant.names import *
 from epstein_files.util.constant.strings import REDACTED
 from epstein_files.util.helpers.data_helpers import escape_single_quotes, flatten
@@ -43,7 +43,7 @@ ADDITIONAL_CONTACTS = [
     Contact('Oliver Goodenough'),
     Contact('Peter Green', match_partial=None),
     Contact('Sarah Mapes'),
-    company('Coursera', is_emailer=True),
+    organization('Coursera', is_emailer=True),
 ]
 
 SUPPRESS_LOGS_FOR_AUTHORS = [

@@ -13,7 +13,7 @@ from epstein_files.documents.documents.categories import (CATEGORY_STYLES, CATEG
 from epstein_files.documents.emails.constants import (ALL_HEADER_PATTERNS, QUOTE_INDENT_CHAR_GROUP, REPLY_REGEX,
      SENT_FROM_REGEX, XML_STRIPPED_MSG)
 from epstein_files.output.highlighted_names import HighlightGroup, HighlightedNames, HighlightPatterns, ManualHighlight
-from epstein_files.people.contact import Contact, company, epstein_co, epstein_trust, law_enforcement
+from epstein_files.people.contact import Contact, acronym_org, organization, epstein_co, epstein_trust, law_enforcement
 from epstein_files.util.constant.names import *
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constant.urls import SUBSTACK_INSIGHTS_POD
@@ -30,7 +30,7 @@ EPSTEIN_V_ROTHSTEIN_EDWARDS_ATTORNEY = f"{CIVIL_ATTORNEY} {EPSTEIN_V_ROTHSTEIN_E
 ESTATE_EXECUTOR = 'estate executor'
 EPSTEIN_ESTATE_EXECUTOR = f"Epstein {ESTATE_EXECUTOR}"
 JUNKERMANN_FUND = f"{NICOLE_JUNKERMANN}'s fund, invested in China, online poker, Russian run Euro bank Revolut"
-MC2_MODEL_MANAGEMENT = f"{JEAN_LUC_BRUNEL}'s MC2 Model Management"
+JEAN_LUC_MC2 = f"{JEAN_LUC_BRUNEL}'s {MC2_MODEL_MGMT}"
 QUESTION_MARKS_TXT = Text(QUESTION_MARKS, style='grey50')
 THIELS_VALAR = f"{PETER_THIEL}'s {VALAR_VENTURES}"
 
@@ -91,12 +91,12 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact('Valeria Chomsky', f"wife of {NOAM_CHOMSKY}", match_partial='both'),
             Contact(YUKO_BARNABY, f"{MIT_MEDIA_LAB} Assistant to the Director", r"Y[ou]ko Ba(m|rn)(aby)?"),
             Contact(WHITFIELD_DIFFIE, f"MIT cryptographer and mathematician", r"whitfield.{,3}diffie?", match_partial='both'),
-            company(
+            organization(
                 MIT_MEDIA_LAB,
                 f"once great research institute overtaken by get rich quick schemes under {JOI_ITO}",
                 r"(MIT )?Media Lab",
             ),
-            company('Mount Sinai', f"hospital in NYC where {EVA_DUBIN} works"),
+            organization('Mount Sinai', f"hospital in NYC where {EVA_DUBIN} works"),
         ],
         patterns=[
             r"Andy Lippman",  # Media Lab
@@ -276,10 +276,10 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact('Sam Belzberg', "Canadian businessman"),
             Contact(STEVE_WYNN, 'gambling magnate', match_partial=None),
             Contact(TOM_PRITZKER, "chairman of The Pritzker Organization and Hyatt Hotels"),
-            company(ATT_COURT_APPEARANCE_TEAM, "AT&T", is_interesting=False),
-            company('Junkermann Group', JUNKERMANN_FUND),
-            company('NJF Capital', JUNKERMANN_FUND, r"NJF( Capital)?"),
-            company(
+            organization(ATT_COURT_APPEARANCE_TEAM, "AT&T", is_interesting=False),
+            organization('Junkermann Group', JUNKERMANN_FUND),
+            organization('NJF Capital', JUNKERMANN_FUND, r"NJF( Capital)?"),
+            organization(
                 'Swedish American Life Science Summit',
                 f"(SALSS) {BARBRO_C_EHNBOM} outfit, probable recruiting grounds for Epstein",
                 r"Swedish American Life Science Summit|SALSS",
@@ -402,8 +402,8 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 emailer_pattern=r"ji@media.mit.?edu|(joichi|joi)( Ito)?",
                 match_partial='both'
             ),
-            company('Digital Garage', f"{JOI_ITO} Japanese company"),
-            company('Neoteny', f"Japanese venture fund of {JOI_ITO}"),
+            organization('Digital Garage', f"{JOI_ITO} Japanese company"),
+            organization('Neoteny', f"Japanese venture fund of {JOI_ITO}"),
         ]
     ),
     HighlightedNames(
@@ -511,87 +511,87 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact('W. Bradford Stephens', f"co-founder of {BLOCKCHAIN_CAPITAL}", r"(Brad(ford)?|Bart) Stephens"),
             Contact('William Wheeler', f'co-founder of cashintocoins.com, {EXPRESSCOIN} with {BROCK_PIERCE}', match_partial=None),
             Contact("Wladimir van der Laan", 'bitcoin core developer', r"Wladimir( van der Laan)?"),
-            company(
+            organization(
                 'a16z',
                 "AKA 'Andressen Horowitz', crypto heavy venture fund of Marc Andreessen / Ben Horowitz, invested in many scams",
                 r"a16z|Andrees?sen Horowitz",
                 link_to_bio='https://cryptadamus.substack.com/p/of-tech-bros-and-trumpers',
             ),
-            company('Alphabit', 'crypto fund'),
-            company('BGC', f"{CANTOR} related firm of {HOWARD_LUTNICK}"),
-            company('Bioptix', 'old name of RIOT Blockchain from when it was a biotech company'),
-            company('Bitfinex', f"crypto exchange run by the same people that run Tether"),
-            company('Bitmain', f"Chinese manufacturer of bitcoin mining rigs"),
-            company(BLOCKSTREAM, f"early crypto firm co-founded by {ADAM_BACK} and {AUSTIN_HILL}"),
-            company(BLOCKCHAIN_CAPITAL, f"crypto VC fund co-founded by Bart Stephens and {BROCK_PIERCE}"),
-            company('Bloq', 'blockchain company', is_interesting=False),
-            company(
+            organization('Alphabit', 'crypto fund'),
+            organization('BGC', f"{CANTOR} related firm of {HOWARD_LUTNICK}"),
+            organization('Bioptix', 'old name of RIOT Blockchain from when it was a biotech company'),
+            organization('Bitfinex', f"crypto exchange run by the same people that run Tether"),
+            organization('Bitmain', f"Chinese manufacturer of bitcoin mining rigs"),
+            organization(BLOCKSTREAM, f"early crypto firm co-founded by {ADAM_BACK} and {AUSTIN_HILL}"),
+            organization(BLOCKCHAIN_CAPITAL, f"crypto VC fund co-founded by Bart Stephens and {BROCK_PIERCE}"),
+            organization('Bloq', 'blockchain company', is_interesting=False),
+            organization(
                 'BTC-e',
                 'infamous Russian crypto exchange through which Mt. Gox stolen funds were laundered, CEO Vinnik convicted but pardoned by Trump',
                 link_to_bio='https://en.wikipedia.org/wiki/BTC-e',
             ),
-            company(CANTOR, f"Howard Lutnick's financial firm", r"Cantor(,? (Fitzgerald|Opportunities|Ventures?))?"),
-            company('Coinbase', 'largest American crypto exchange invested in by Epstein'),
-            company(
+            organization(CANTOR, f"Howard Lutnick's financial firm", r"Cantor(,? (Fitzgerald|Opportunities|Ventures?))?"),
+            organization('Coinbase', 'largest American crypto exchange invested in by Epstein'),
+            organization(
                 'Cryptocurrency Partners',
                 f'crypto fund set up by Epstein and {BROCK_PIERCE} as a sidecar to {BLOCKCHAIN_CAPITAL}',
                 r"Crypto ?Currency Partners( II)?",
             ),
-            company('Crypto PR Lab', f"firm founded by {MARIA_PRUSAKOVA} and {ALEKSANDRA_KARPOVA}"),
-            company(
+            organization('Crypto PR Lab', f"firm founded by {MARIA_PRUSAKOVA} and {ALEKSANDRA_KARPOVA}"),
+            organization(
                 'Digital Currency Initiative',
                 f"crypto part of {MIT_MEDIA_LAB}",
                 r"Digital (Assets?|Currenc(ies|y)) Initiative",
             ),
-            company(
+            organization(
                 'Digital Currency Group',
                 'AKA "DCG", formerly the most import crypto VC fund in the US, rekt in FTXplosion',
                 r"DCG|Digital Currency Group",
             ),
-            company(
+            organization(
                 'Draper Fisher Jurvetson',
                 f"fund run by Tim Draper, John Fisher, and Steve Jurvetson, blackmail allegations",
                 r"DFJ( Capital|Fund)?|Draper Fisher Jurvetson",
             ),
-            company('Electric Coin Company', f"FKA 'Zerocoin', {MADARS_VIRZA} and untraceable cryptocurrency ZCash"),
-            company(EXPRESSCOIN, f"bitcoin market founded by {BROCK_PIERCE} and William Wheeler"),
-            company('Intersango', 'early UK bitcoin exchange'),
-            company('Kraken', '2nd largest American crypto exchange, CEO + employees prone to calling the US dollar "slave money"'),
-            company(
+            organization('Electric Coin Company', f"FKA 'Zerocoin', {MADARS_VIRZA} and untraceable cryptocurrency ZCash"),
+            organization(EXPRESSCOIN, f"bitcoin market founded by {BROCK_PIERCE} and William Wheeler"),
+            organization('Intersango', 'early UK bitcoin exchange'),
+            organization('Kraken', '2nd largest American crypto exchange, CEO + employees prone to calling the US dollar "slave money"'),
+            organization(
                 KYARA_INVESTMENT,
                 f"an Epstein fund, usually created with {JOI_ITO}",
                 r"Kyara( Investments?)?( [IV]+)?",
             ),
-            company('LedgerX', 'crypto derivatives platform acquired by FTX for $298 million in a very shady deal'),
-            company('Libra', f"Facebook's attempt at a stablecoin that was canceled by the US government"),
-            company(
+            organization('LedgerX', 'crypto derivatives platform acquired by FTX for $298 million in a very shady deal'),
+            organization('Libra', f"Facebook's attempt at a stablecoin that was canceled by the US government"),
+            organization(
                 'Medici Bank',
                 f"crypto friendly bank set up by {LORENZO_DE_MEDICI} with investment from {MARIA_PRUSAKOVA} and maybe {BROCK_PIERCE}",
             ),
-            company(
+            organization(
                 MERCANTILE_GLOBAL_HOLDINGS,
                 'company of Bo Collins who ended up testifying in trial of chinese criminal Miles Guo / Miles Kwok',
             ),
-            company('Mindshift', f"conference on Epstein's island organized by {AL_SECKEL}", r"Mindshift( conference)?"),
-            company(
+            organization('Mindshift', f"conference on Epstein's island organized by {AL_SECKEL}", r"Mindshift( conference)?"),
+            organization(
                 'Mt. Gox',
                 f"FKA 'Magic the Gathering: Online Exchange, infamous early bitcoin market that was hacked / robbed",
                 r"Mt\.? Gox",
                 link_to_bio='https://en.wikipedia.org/wiki/Mt._Gox',
             ),
-            company(
+            organization(
                 'Noble Bank',
                 f"failed crypto friendly bank with ties to Tether and {BROCK_PIERCE}",
                 r"Noble (Bank|Markets)",
                 link_to_bio='https://news.bitcoinprotocol.org/how-noble-markets-connected-tether-epstein-and-their-shadow-banking-network/',
             ),
-            company('Pantera Capital', "silicon valley crypto fund of Dan Morehead"),
-            company('PayPay', 'bitcoin debit card', r"PayPay( Card)?"),
-            company('Ribbit Capital', 'crypto friendly venture fund'),
-            company('Ripple', 'token issuing company run by Trump megadonor Brad Garlinghouse'),
-            company('Silk Road', 'online illegal drug market, first real use case for crypto'),
-            company('Tether', f"$180 billion stablecoin founded by {BROCK_PIERCE} whose money is managed by {HOWARD_LUTNICK}"),
-            company(
+            organization('Pantera Capital', "silicon valley crypto fund of Dan Morehead"),
+            organization('PayPay', 'bitcoin debit card', r"PayPay( Card)?"),
+            organization('Ribbit Capital', 'crypto friendly venture fund'),
+            organization('Ripple', 'token issuing company run by Trump megadonor Brad Garlinghouse'),
+            organization('Silk Road', 'online illegal drug market, first real use case for crypto'),
+            organization('Tether', f"$180 billion stablecoin founded by {BROCK_PIERCE} whose money is managed by {HOWARD_LUTNICK}"),
+            organization(
                 'Zerocoin',
                 f"early name for Epstein funded untraceable cryptocurrency ZCash developed by {MADARS_VIRZA}",
                 r"ZeroC(ash|oin)",
@@ -761,12 +761,11 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         label='Epstein',
         style=EPSTEIN_COLOR,
         contacts=[
-            company(
+            organization(
                 f"{ASIA_GATEWAY} Limited",
                 f"corporate vehicle set up by Epstein and {DAVID_STERN}, presumably to manage money of wealthy Chinese",
                 r"Asia\s*Gateway(\s*L(imited|td))?",
             ),
-            epstein_co('Coatue'),
             epstein_co('FT Real Estate'),
             epstein_co('Island Grounds Inc.'),
             epstein_co('Hyperion Air', r"Hyperion( Air)?"),
@@ -775,9 +774,9 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             # epstein_co('JEGE LLC'),
             epstein_co('JEGE, Inc.'),
             epstein_co('LSJ LLC'),
-            epstein_co('LSJE LLC'),
+            epstein_co('LSJE, LLC'),
             epstein_co('Nautilus'),
-            epstein_co('Neptune LLC'),
+            epstein_co('Neptune, LLC'),
             epstein_co('NES LLC'),
             epstein_co('Plan D'),
             epstein_co('SCI JEP'),
@@ -801,7 +800,6 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             epstein_trust('The Sweater Trust', r"(The )?Sweater Trust"),
         ],
         patterns=[
-            r"IPI",
             r"(?-i:The Prof)",
             r"Zorro( Ranch)?",
         ],
@@ -872,7 +870,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         label='law firm',  # Non-Epstein affiliated
         style='medium_purple3',
         contacts=[
-            company('Clifford Chance', f'law firm where {MARIA_PRUSAKOVA} did an internship in Paris'),
+            organization('Clifford Chance', f'law firm where {MARIA_PRUSAKOVA} did an internship in Paris'),
         ],
         patterns=[
             r"(Leon )?Jaworski",
@@ -921,7 +919,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(PETER_MANDELSON, "recently arrested former UK ambassador to the US", r"((Lord|Peter) )?Mandelson"),
             Contact(
                 TERJE_ROD_LARSEN,
-                "Norwegian head of International Peace Institute (IPI), gave jobs to Epstein's eastern European girls",
+                f"Norwegian head of {INTERNATIONAL_PEACE_INSTITUTE} (IPI), gave jobs to Epstein's eastern European girls",
                 r"Terje(( (R[øo]e?d[-\s])?)?Lars[eo]n)?",
                 link_to_bio='https://en.wikipedia.org/wiki/Terje_R%C3%B8d-Larsen',
             ),
@@ -932,9 +930,10 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             ),
             Contact('Viktor Yushchenko', 'former president of Ukraine'),
             Contact('Viktor Orban', 'prime minister of Hungary', r"(Vi(c|k)tor )?Orbah?n"),
-            company('AfD', 'right wing German political party'),
-            company('ECB', 'European Central Bank'),
-            company('Zug', "city in Switzerland known as a hub for crypto and dodgy finance"),
+            acronym_org('European Central Bank'),
+            acronym_org(INTERNATIONAL_PEACE_INSTITUTE, "gave jobs to Epstein's girls"),
+            organization('AfD', 'right wing German political party'),
+            organization('Zug', "city in Switzerland known as a hub for crypto and dodgy finance"),
         ],
         patterns=[
             r"Amsterdam",
@@ -970,10 +969,10 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Ital(ian|y)",
             r"Jacques",
             r"(Justin )?Trudeau",
-            r"(Kamila )?Bobinska",
             r"Kiev",
             r"Latvian?",
             r"Lie?chtenstein",
+            r"Lisbon",
             r"Lithuanian?",
             r"Le Pen",
             r"(?<!DOJ )London",
@@ -995,12 +994,13 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Paris",
             r"Polish",
             r"pope",
-            r"Portugal",
+            r"Portug(al|uese)",
             r"Prague",
             r"Riga",
             r"Rotterdam",
             r"Scotland",
             r"(Sebastian )?Kurz",
+            r"Spa(in|ni(ard|sh))",
             r"Stockholm",
             r"Strasbourg",
             r"Strauss[-\s]?Kahn",
@@ -1014,13 +1014,15 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Vatican",
             r"Venice",
             r"Vienna",
-            r"Zug",
             r"Zurich",
         ],
     ),
     HighlightedNames(
         label='financial',
         style=FINANCIAL_COLOR,
+        contacts=[
+            # company('SPAC', '"special purpose acquisition vehicle", backdoor way of selling companies to the public w/out much regulatory oversight'),
+        ],
         patterns=[
             r"American Express",
             r"alterna[tv]i[tv]e finance",
@@ -1035,6 +1037,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"convertible note",
             r"donor advised fund",
             r"equities",
+            r"fraud(ulent)",
             r"Mastercard",
             r"(naked )?shorting",
             r"NASDAQ",
@@ -1068,10 +1071,11 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(JIDE_ZEITLIN, f"former partner at {GOLDMAN_SACHS}, allegations of sexual misconduct"),
             Contact('Ira Zicherman', f"{BEAR_STEARNS} exec, co-trustee with Ghislaine"),
             Contact('John Paulson', f"hedge fund guy, Trump donor"),
+            Contact('Kamila Bobinska', f"Argan Capital Advisors, Dots Ventures, Movens Capital, ex-{DEUTSCHE_BANK}"),
             Contact('Laurie Cameron', "currency trading"),
             Contact(
                 name=LEON_BLACK,
-                info='Apollo CEO who paid Epstein tens of millions for "tax advice"',
+                info='Apollo CEO who paid Epstein more than $150 million for "tax advice"',
                 emailer_pattern=r"Leon\s*Black?|(?<!Marc )Leon(?! (Botstein|Jaworski|Wieseltier))",
                 match_partial=None,
             ),
@@ -1085,27 +1089,27 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(NORMAN_D_RAU, "managing director at Morgan Stanley"),
             Contact(PAUL_BARRETT, r"Alpha Group Capital", r"Paul Barre(d|tt)|Barrett,? Paul( S)?", match_partial=None),
             Contact(PAUL_MORRIS, f"Epstein's primary private banker at JP Morgan then {DEUTSCHE_BANK}", r"morris, paul|Paul Morris"),
-            Contact('Skip Rimer', "Milken Institute (Michael Milken)"),
+            Contact('Skip Rimer', "Michael Milken's Milken Institute"),
             Contact('Steven Elkman', f"{DEUTSCHE_BANK}"),
             Contact('Stephen Schwarzman', 'CEO of Blackstone', r"(Ste(phen|ve) )?Schwart?z?man"),
             Contact(TANCREDI_MARCHIOLO, "hedge fund manager"),
             Contact('Vahe Stepanian', "Cetera Financial Group"),
             Contact(VINIT_SAHNI, f"analyst at {DEUTSCHE_BANK} and {GOLDMAN_SACHS}"),
-            company(BEAR_STEARNS, 'investment bank where Epstein got his first job in finance, failed in 2008'),
-            company(
+            organization(BEAR_STEARNS, 'investment bank where Epstein got his first job in finance, failed in 2008'),
+            organization(
                 'Boothbay',
                 f'fund run by Ari Glass whom Epstein called "a bit sketchy" but invested $50 million with',
                 r"Booth\s*bay(\s(Fund\sManagement|(Absolute|Enhanced|Multi)( Return)?( Strateg(ies|y))?( Fund)?))?",
             ),
-            company(
+            organization(
                 DEUTSCHE_BANK,
-                'favoured bank of Trump, Epstein, and money launderers',
+                'favoured bank of Jeffrey Epstein, the Trump family, and Russian money launderers',
                 r"Deutsche? (Asset|(Post)?Bank)|\bDB\b(?!\s+Zw)",
                 link_to_bio='https://www.ft.com/content/b1d9e8c4-1874-4c82-941d-9a2e1512bc4c',
             ),
-            company("FirstBank", 'Puerto Rican bank used by Epstein', r"First Bank( of Puerto Rico)?"),
-            company('Goldman Sachs', emailer_pattern=r"Goldman( Sachs)", is_interesting=False),
-            company('Julius Baer', 'Swiss bank'),
+            organization("FirstBank", 'Puerto Rican bank used by Epstein', r"First Bank( of Puerto Rico)?"),
+            organization('Goldman Sachs', emailer_pattern=r"Goldman( Sachs)?", is_interesting=False),
+            organization('Julius Baer', 'Swiss bank'),
         ],
         patterns=[
             r"Ace Greenberg",
@@ -1215,7 +1219,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 match_partial=None,
             ),
             Contact('Barry Krischer', "prosecutor in charge of Epstein's sweetheart deal in 2006", r"(Barry (E. )?)?Krischer"),
-            Contact(BEN_LAWSKY, f"head of NY Dept of Financial Services (NYDFS)"),
+            Contact(BEN_LAWSKY, f"head of NY Dept of Financial Services (NYDFS), 2nd most powerful financial regulator in the US"),
             Contact(
                 name=ANN_MARIE_VILLAFANA,
                 info="Southern District of Florida (SDFL) U.S. Attorney",
@@ -1225,16 +1229,27 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(CHRISTOPHER_DILORIO, "self described whistleblower", r"Chris(topher )? Di[lI]o[nr](io)?"),
             Contact(
                 name=DANNY_FROST,
-                info="Director of Communications at Manhattan D.A.",
+                info="Director of Communications at Manhattan District Attorney",
                 emailer_pattern=r"Frost, Danny|frostd@dany.nyc.gov|Danny Frost",
                 match_partial=None,
             ),
-            Contact('Florence Hutner', "New York Office of Chief Medical Examiner"),
+            Contact('Florence Hutner', "New York Office of Chief Medical Examiner", match_partial=None),
             Contact('Gary Gensler', 'future head of the SEC'),
+            Contact("Geoff Ling", "director of DARPA Biological Technologies Office", r"Geoff(rey)? Ling", match_partial=None),
             Contact('Justin Alfano', f"American {LAW_ENFORCEMENT}"),
+            Contact('Michael Reiter', f"{PALM_BEACH_POLICE} chief who first caught Epstein"),
             Contact('Paula Speer', "court reporter", match_partial=None),
-            Contact('Police Code Enforcement', "Palm Beach buildings code enforcement", is_organization=True),
-            company('INS', "US Immigration and Naturalization Service", r"(?-i:INS)"),
+            acronym_org('Metropolitan Detention Center', 'jail where Epstein died'),
+            acronym_org('Office of Foreign Assets Control', 'agency in charge of sanctions'),
+            organization('BaFin', "German financial regulator, tried to arrest journalists who exposed Wirecard's fraud"),
+            organization('FINRA', "Financial Industry Regulatory Authority", r"(www\.)?FINRA(\.org)?|Financial Industry Regulatory Authority",),
+            organization('INS', "US Immigration and Naturalization Service", r"(?-i:INS)"),
+            organization('FinCEN', 'Financial Crimes Enforcement Network', r"(Director (of )?)?(Financial Crimes Enforcement Network|FinCEN)"),
+            organization(
+                SECURITIES_AND_EXCHANGE_COMMISSION,
+                "AKA 'SEC', US market regulator",
+                r"sec\.?gov|Securities (&|and) Exchange Commission|SEC Filing",
+            ),
             law_enforcement(BUREAU_OF_PRISONS, r"bop\.gov|(Federal )?Bureau of Prisons"),
             law_enforcement('DOJ Inspector General'),
             law_enforcement('DOJ London'),
@@ -1242,6 +1257,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             law_enforcement('Manhattan DA'),
             law_enforcement('NY FBI'),
             law_enforcement(OFFICE_OF_THE_DEPUTY_ATTORNEY_GENERAL, r"\bODAG\b"),
+            law_enforcement('Police Code Enforcement', description=f"{PALM_BEACH} buildings code enforcement"),
             law_enforcement(SDNY),
             law_enforcement('USAHUB-USAJournal111'),
             law_enforcement(USANYS),
@@ -1275,14 +1291,10 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"FDIC",
             r"FDLE",
             r"Federal Bureau of Investigation",
-            r"FinCEN",
-            r"(Director (of )?)?Financial Crimes Enforcement Network",
-            r"Financial Industry Regulatory Authority",
             r"FOIA",
             r"food stamps",
             r"FTC",
             r"(General )?P(a|e)traeus",
-            r"Geoff Ling",
             r"Homeland Security",
             r"IG",
             r"Interpol",
@@ -1296,17 +1308,13 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"(Kurt )?(L\.? )?Gottschall",
             r"KYC",
             r"(Lann?a )?Belohlavek",
-            r"MDC",
-            r"Metropolitan Detention Center",
-            r"(Michael )?Reiter",
+            r"law enforcement",
             r"NIH",
             r"NPA",
             r"NS(A|C)",
             r"NYDFS",
             r"NYPD",
             r"OCC",
-            r"ODAG",
-            r"OFAC",
             r"OGE",
             r"Office of Government Ethics",
             r"PBPD",
@@ -1318,28 +1326,23 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"SCOTUS",
             r"SD(FL|NY)",
             r"(?-i:SEC)( filing)?",
-            r"sec.gov",
-            r"Secret Service",
-            r"Securities (&|and) Exchange Commission",
             r"Southern District( of (Florida|New York))?",
             r"State Dep(artmen)?t",
-            r"Strzok",
+            r"(Peter? )?Strzok",
             r"Supreme Court",
             r"TCR",
             r"Treasury (Dep(artmen)?t|Secretary)",
             r"TSA",
             r"U\.?S\.? attorney",
             r"USAID",
-            USANYS,
             r"UNITED STATES DISTRICT COURT?",
             r"US (AF|Army|Air Force)",
             r"USSS",
             r"(U\.?S\.? )?Secret Service",
             r"Walter Reed( Army Institute of Research)?",
             r"whistleblower",
-            r"(William J\.? )?Zloch",
+            r"(William J\.? )?Zloch",  # Judge
             r"WRAIR",
-            r"(www\.)?FINRA(\.org)?",
         ],
     ),
     HighlightedNames(
@@ -1379,12 +1382,12 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         style='bright_green',
         contacts=[
             Contact(ANIL_AMBANI, "billionaire chairman of Reliance Group", r"Anil.Ambani"),
-            company(
+            organization(
                 'InsightsPod',
                 f"{ZUBAIR_KHAN} and {ANYA_RASULOVA}'s company recommended by {MARIA_PRUSAKOVA}, did social media work for Epstein during the 2016 election",
                 link_to_bio=SUBSTACK_INSIGHTS_POD
             ),
-            company('Tranchulas', f'cybsecurity firm of {ZUBAIR_KHAN}, provider of offensive hacking services'),
+            organization('Tranchulas', f'cybsecurity firm of {ZUBAIR_KHAN}, provider of offensive hacking services'),
         ],
         patterns=[
             r"Abraaj",
@@ -1411,19 +1414,19 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             ),
             Contact('Mitchell Bard', "director of the American-Israeli Cooperative Enterprise (AICE)", match_partial=None),
             Contact(NILI_PRIELL_BARAK, f"wife of {EHUD_BARAK}", r"Nili Priell?", match_partial=None),
-            company('Bank Leumi', 'Israeli bank that helped Americans avoid taxes', r"(Bank )?Leumi"),
-            company(
+            organization('Bank Leumi', 'Israeli bank that helped Americans avoid taxes', r"(Bank )?Leumi"),
+            organization(
                 CARBYNE,
                 f"Israeli co. FKA Reporty invested in by Epstein, {EHUD_BARAK}, and {NICOLE_JUNKERMANN}",
                 r"Carbyne|Reporty",
                 link_to_bio='https://www.forbes.com/sites/thomasbrewster/2026/02/10/epstein-police-surveillance-investments-with-ehud-barak/',
             ),
-            company(
+            organization(
                 'Hapoalim',
                 f"largest bank in Israel, convicted of enabling tax evasion, fraud, and money laundering",
                 link_to_bio='https://www.justice.gov/usao-edny/pr/bank-hapoalim-agrees-pay-more-30-million-its-role-money-laundering-conspiracy-involving',
             ),
-            company("Mizrahi Bank", '3rd largest bank in Israel'),
+            organization("Mizrahi Bank", '3rd largest bank in Israel'),
         ],
         patterns=[
             r"AIPAC",
@@ -1502,10 +1505,10 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 r"Vick[iy] Ward",
                 match_partial=None,
             ),
-            company(HENRY_HOLT, f"{MICHAEL_WOLFF}'s book publisher"),
-            company('Futurism', f'odd outlet that seems hooked up with {MASHA_DROKOVA}'),
-            company('Gawker', f'independent news site killed by a Hulk Hogan lawsuit funded by {PETER_THIEL}'),
-            company('Newsmax', "right wing American news outlet", r"Newsmax(\.com)?", is_emailer=True),
+            organization(HENRY_HOLT, f"{MICHAEL_WOLFF}'s book publisher"),
+            organization('Futurism', f'odd outlet that seems hooked up with {MASHA_DROKOVA}'),
+            organization('Gawker', f'independent news site killed by a Hulk Hogan lawsuit funded by {PETER_THIEL}'),
+            organization('Newsmax', "right wing American news outlet", r"Newsmax(\.com)?", is_emailer=True),
         ],
         patterns=[
             r"ABC( News)?",
@@ -1757,7 +1760,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 link_to_bio='https://en.wikipedia.org/wiki/Murder_of_Martine_Vik_Magnussen',
             ),
             Contact('Timur Kulibayev', 'businessman from Kazakhstan'),
-            company('GCC', 'Gulf Cooperation Council', r"GCC|Gulf Cooperation Council")
+            organization('GCC', 'Gulf Cooperation Council', r"GCC|Gulf Cooperation Council")
         ],
         patterns=[
             r"Abdulmalik Al-Makhlafi",
@@ -1847,7 +1850,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         label='modeling',
         style='pale_violet_red1',
         contacts=[
-            Contact('Abi Schwinck', f"{JEAN_LUC_BRUNEL}'s MC2 Model Management {'(???)'}"),
+            Contact('Abi Schwinck', f"{JEAN_LUC_MC2} {QUESTION_MARKS}"),
             Contact(DANIEL_SIAD, 'model scout funded by Epstein to recruit in eastern Europe'),
             Contact(FAITH_KATES, "Next Models co-founder", r"faith kates?", match_partial=None),
             Contact('Gianni Serazzi', "fashion consultant?"),
@@ -1859,7 +1862,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             ),
             Contact(
                 name=JEAN_LUC_BRUNEL,
-                info="MC2 Model Management founder, #MeToo problems, died by suicide in French jail",
+                info=f"{MC2_MODEL_MGMT} founder, #MeToo problems, died by suicide in French jail",
                 emailer_pattern=r"Jean Luc Brunel?|JeanLuc",
                 match_partial='both',
             ),
@@ -1871,12 +1874,13 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             ),
             Contact(MANUELA_MARTINEZ, "Mega Partners (Brazilian agency)", r"Manuela (- Mega Partners|Martinez)", match_partial=None),
             Contact(MARIANA_IDZKOWSKA, emailer_pattern=r"Mariana [Il]d[źi]kowska?"),
-            Contact('Michael Sanka', f"{JEAN_LUC_BRUNEL}'s MC2 Model Management {'(???)'}"),
+            Contact('Michael Sanka', f"{JEAN_LUC_MC2} {QUESTION_MARKS}"),
             Contact('Naomi Campbell', 'supermodel', match_partial=None),
             Contact('Vladimir Yudashkin', "director of the 1 Mother Agency"),
             Contact('Yfke Sturm', 'model from Holland', match_partial='both'),
-            Contact('lorraine@mc2mm.com', f"{JEAN_LUC_BRUNEL}'s MC2 Model Management"),
-            Contact('pink@mc2mm.com', f"{JEAN_LUC_BRUNEL}'s MC2 Model Management", r"^Pink$|pink@mc2mm\.com"),
+            Contact('lorraine@mc2mm.com', JEAN_LUC_MC2),
+            Contact('pink@mc2mm.com', JEAN_LUC_MC2, r"^Pink$|pink@mc2mm\.com"),
+            organization('MC2 Model Management', f"{JEAN_LUC_BRUNEL}'s modeling agency"),
         ],
         patterns=[
             r"\w+@mc2mm.com",
@@ -1900,7 +1904,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(CHRISTINA_GALBRAITH, f"{JEFFREY_EPSTEIN} VI Foundation Media/PR, worked with {TYLER_SHEARS}"),
             Contact(
                 IAN_OSBORNE,
-                f"{IAN_OSBORNE} & Partners PR hired by Epstein, {HEDOSOPHIA} fund which launched SPACs with Chamath advised by Epstein",
+                f"hired by Epstein to do PR, set up {HEDOSOPHIA} which launched SPACs with {CHAMATH_PALIHAPITIYA} advised by Epstein",
                 r"[Il]an Osbou?(rn|m)e",
                 link_to_bio='https://www.businessinsider.com/profile-ian-osborne-cofounder-chamath-palihapitiya-social-capital-hedosophia-spac-2021-5'
             ),
@@ -1919,7 +1923,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 info=f"reputation management, worked on with {CHRISTINA_GALBRAITH}",
                 emailer_pattern=r"T[vy]ler Shears",
             ),
-            company(HEDOSOPHIA, f"{IAN_OSBORNE} VC fund, invested in Alibaba, launched SPACs with Chamath advised by Epstein"),
+            organization(HEDOSOPHIA, f"{IAN_OSBORNE} VC fund, invested in Alibaba, launched SPACs with Chamath advised by Epstein"),
         ],
         patterns=[
             r"(Matt(hew)? )?Hiltzi[gk]",
@@ -2022,7 +2026,11 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         contacts=[
             Contact('Alisher Usmanov', 'Uzbeki oligarch with alleged ties to Putin, organized crime'),
             Contact('Alysia Riabenkova', 'Russian painter', r"Alesia|Alysia( Riabenkova)?|Riabenkova"),
-            Contact(ANYA_RASULOVA, f'Uzbeki co-founder of {INSIGHTS_POD} with {ZUBAIR_KHAN}'),
+            Contact(
+                ANYA_RASULOVA,
+                f'Uzbeki co-founder of {INSIGHTS_POD}, social media work for Epstein during 2016 US election',
+                link_to_bio=SUBSTACK_INSIGHTS_POD,
+            ),
             Contact(ALEKSANDRA_KARPOVA, f"{CRYPTO_PR_LAB} co-founder", r"Aleksandra Karpova"),
             Contact(ANASTASIYA_SIROOCHENKO, '', r"Anastasiya( Siro(chenko)?)?"),
             Contact(DASHA_GRUPMAN, 'recruiter of girls for Epstein', r"Da(ry|sh)a Grupman"),
@@ -2088,22 +2096,28 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact('Vitaly Churkin', 'Russian ambassador to the United Nations'),
             Contact(YULIA_DOROKHINA),
             Contact(
-                'Yuri Milner',
+                YURI_MILNER,
                 f'Russian-Israeli investor whom Epstein says is managing "Russian gangster money"',
                 link_to_bio='https://www.nytimes.com/2017/11/05/world/yuri-milner-facebook-twitter-russia.html',
                 match_partial='both',
             ),
-            company('Alfa Bank', 'Russian bank often used by FSB', r"Alfa( Bank)?"),
-            company('Apoletto', f"VC firm associated with Yuri Milner"),
-            company('Day One Ventures', f"silicon valley venture fund run by {MASHA_DROKOVA}"),
-            company(
+            organization('Alfa Bank', 'Russian bank often used by FSB', r"Alfa( Bank)?"),
+            organization('Apoletto', f"VC firm associated with {YURI_MILNER}"),
+            organization('Day One Ventures', f"silicon valley venture fund run by {MASHA_DROKOVA}"),
+            organization(
                 'Quantum Wave Fund',
                 f"venture fund associated with {MASHA_DROKOVA} focused on quantum stuff",
                 r"(Quantum Wave|QWave) (Capital|Fund)",
             ),
-            company('Runa Capital', 'fund of Serguei Beloussov with investment from Steve Jurvetson and Frank Creer'),
-            company('Sberbank', 'Russian bank'),
-            company('Women Empowerment', f"organization started by Epstein's assistant {SVETLANA_POZHIDAEVA}"),
+            organization('Runa Capital', 'fund of Serguei Beloussov with investment from Steve Jurvetson and Frank Creer'),
+            organization('Sberbank', 'Russian bank'),
+            organization(
+                'Wirecard',
+                f"largest financial fraud in German history, connections to FSB and crypto, CFO Jan Marsalek is a fugitive in Russia",
+                r"Wirecard( Bank)?",
+                link_to_bio='https://www.newyorker.com/magazine/2023/03/06/how-the-biggest-fraud-in-german-history-unravelled',
+            ),
+            organization('Women Empowerment', f"organization started by Epstein's assistant {SVETLANA_POZHIDAEVA}"),
         ],
         patterns=[
             r"Belarus(sian)?",
@@ -2178,9 +2192,15 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact('Alisa Bekins', f"{PETER_THIEL}'s assistant"),
             Contact(ANDREW_MCCORMACK, f"partner at {THIELS_VALAR} {'(???)'}", r"Andrew McCorm(ack?)?"),
             Contact('Auren Hoffman', "CEO of SafeGraph (firm that gathers location data from mobile devices) and LiveRamp", match_partial=None),
-            Contact('Chamath Palihapitiya', "All-In Podcast, Facebook, SPAC and crypto enthusiast, Trump convert", match_partial='both'),
+            Contact(CHAMATH_PALIHAPITIYA, f"{ALL_IN_PODCAST}, Facebook, crypto enthusiast, SPAC grifter, Trump convert", match_partial='both'),
             Contact(CHRIS_POOLE, 'AKA "Moot", founder of 4chan, ex-Google', r"mmot|Chris Poole?|(?-i:Moot)", link_to_bio='https://4chan.org/'),
-            Contact('Danny Hillis', "computer scientist, artificial intelligence researcher"),
+            Contact('Danny Hillis', "computer scientist, artificial intelligence researcher", r"Dan(iel|ny) Hillis?"),
+            Contact(
+                'David Sacks',
+                f"Craft Ventures, {ALL_IN_PODCAST}, anti-Ukraine / pro-Russia VC with connections to Wirecard",
+                link_to_bio='https://www.thecaptainslog.io/the-david-sacks-files-part-i/',
+                match_partial=None,
+            ),
             Contact('Drew Houston', 'CEO of Dropbox', match_partial=None),
             Contact(ELON_MUSK, "father of Mecha-Hitler", match_partial='both'),
             Contact(
@@ -2194,10 +2214,11 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(IAN_ODONNELL, THIELS_VALAR, r"Ian O'?Donnell|O'?Donnell, Ian"),
             Contact('Jack Dorsey', 'co-founder of Twitter and Block (FKA Square)'),
             Contact(JAMES_FITZGERALD, THIELS_VALAR, r"James Fitz[g\s]eral?d?", match_partial=None),
-            Contact(JASON_CALACANIS, 'All In Podcast with David Sacks, Uber investor', r"Jason (.{12})Calacanis"),
+            Contact(JASON_CALACANIS, f'{ALL_IN_PODCAST} with David Sacks and {CHAMATH_PALIHAPITIYA}, Uber investor', r"Jason (.{12})Calacanis"),
             Contact(MASAYOSHI_SON, 'CEO of Softbank, often referred to as "Masa"', r"Masa(yoshi)?(\sSon)?", match_partial='first'),
             Contact(MELANIE_PHILLIPS, f'girlfriend of {STEVEN_SINOFSKY}', match_partial=None),
             Contact('Nathan Myhrvold', f"former CTO of Microsoft, co-founder of Intellectual Ventures"),
+            Contact('Philippe Laffont', f"founder of Coatue"),
             Contact(PHILIP_ROSEDALE, 'Second Life founder'),
             Contact(PETER_THIEL, "Paypal mafia member, founder of Palantir, Facebook investor", r"(Peter )?Th(ie|ei)l"),
             Contact('Rajeev Misra', "formerly Softbank Vision Fund executive", r"[NR]ajeev"),
@@ -2206,18 +2227,34 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(STEVEN_SINOFSKY, "a16z, ex-Microsoft, loves bitcoin", r"Steven Sinofsky?"),
             Contact('Talia Parnass', f"{PETER_THIEL}'s assistant"),
             Contact(VINCENZO_IOZZO, "CEO of the identity-security company SlashID", r"Vincenzo [IL]ozzo", match_partial='both'),
-            Contact(ZUBAIR_KHAN, f"Tranchulas cybersecurity, InsightsPod founder, Islamabad / Dubai, friend of {MASHA_DROKOVA}", match_partial='both'),
-            company('bgC3', 'renamed "Bill Gates Ventures" in 2018'),
-            company(GOOGLE_PLUS, "Google Plus", r"Google\+", is_emailer=True, is_interesting=False),
-            company('Honeycomb Asset Management', 'venture fund Epstein invested in Spotify through', r"Honeycomb( (Offshore Fund|Partners)( (LP|Ltd))?)?"),
-            company('Jawbone', f'wireless earpiece company invested in by Epstein and {IAN_OSBORNE}'),
-            company('LinkedIn', "LinkedIn", r"Linked[Il]n( Updates)?", is_emailer=True, is_interesting=False),
-            company('Second Life', f"virtual world with early attempt at virtual currency the Linden Dollar", r"Second Life"),
-            company('Softbank Vision Fund', "Masayohsi Son's fund focused on tech, AI, WeWork", r"Softbank|(Softbank )?Vision Fund"),
-            company('Tarana Wireless', 'broadband provider', r"Tarana( (Technology|Wireless))?"),
-            company('ThielCapital', f"{PETER_THIEL} organization"),
-            company(VALAR_VENTURES, f"{PETER_THIEL} affiliated fintech venture fund", r"V[ae]lar (Global Fund|Ventures)?", is_emailer=True),
-            company(
+            Contact(
+                ZUBAIR_KHAN,
+                f"InsightsPod social media work on 2016 US election for Epstein, Islamabad/Dubai, friend of {MARIA_PRUSAKOVA}, Tranchulas cybersecurity",
+                link_to_bio=SUBSTACK_INSIGHTS_POD,
+                match_partial='both',
+            ),
+            organization('bgC3', 'renamed "Bill Gates Ventures" in 2018'),
+            organization(
+                'Coatue Management',
+                "VC fund founded by Philippe Laffont possibly invested in by Epstein",
+                r"Coatue( (Enterprises?|Management|Mgmt))?",
+            ),
+            organization(GOOGLE_PLUS, "Google Plus", r"Google\+", is_emailer=True, is_interesting=False),
+            organization(
+                'Honeycomb Asset Management',
+                'venture fund Epstein invested in Spotify through',
+                r"Honeycomb( (Offshore Fund|Partners)( (LP|Ltd))?)?",
+            ),
+            organization('Jawbone', f'wireless earpiece company invested in by Epstein and {IAN_OSBORNE}'),
+            organization('LinkedIn', "LinkedIn", r"Linked[Il]n( Updates)?", is_emailer=True, is_interesting=False),
+            organization('Number26', f'fintech frontend for Wirecard Bank, renamed "N26"', r"N(umber)?26"),
+            organization('Second Life', f"virtual world with early attempt at virtual currency the Linden Dollar", r"Second Life"),
+            organization('Softbank Vision Fund', "Masayohsi Son's fund focused on tech, AI, WeWork", r"Softbank|(Softbank )?Vision Fund"),
+            organization('Tarana Wireless', 'broadband provider', r"Tarana( (Technology|Wireless))?"),
+            organization('ThielCapital', f"{PETER_THIEL} organization"),
+            organization('Transferwise', 'fintech'),
+            organization(VALAR_VENTURES, f"{PETER_THIEL} affiliated fintech venture fund", r"V[ae]lar (Global Fund|Ventures)?", is_emailer=True),
+            organization(
                 'WeWork',
                 'infamously stupid failed temporary office space company',
                 link_to_bio='https://www.theguardian.com/business/2023/nov/06/wework-bankruptcy-rise-fall',
@@ -2395,13 +2432,13 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             ),
             Contact(JACK_SCAROLA, "Searcy Denney Scarola Barnhart & Shipley"),
             Contact(KEN_JENNE, ROTHSTEIN_ROSENFELDT_ADLER),
-            company(
+            organization(
                 ROTHSTEIN_ROSENFELDT_ADLER,
                 "shady law firm, Rothstein ran $1.2 billion Ponzi scheme & was Roger Stone's partner",
                 r"Rothstein,? Rosenfeldt,? Adler",
                 link_to_bio='https://en.wikipedia.org/wiki/Scott_W._Rothstein',
             ),
-            company('Wigdor Law', 'sued Epstein', r"Wigdor(Law)?"),
+            organization('Wigdor Law', 'sued Epstein', r"Wigdor(Law)?"),
         ],
         patterns=[
             r"(Alan( P.)?|MINTZ) FRAADE",
@@ -2438,7 +2475,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 r"David( J\.?)? Mitchell",
                 match_partial=None,
             ),
-            Contact(GERALD_BARTON, "Maryland property developer Landmark Land Company"),
+            Contact(GERALD_BARTON, "Maryland property developer Landmark Land Company", r"(?<!Wes )Barton"),
             Contact('Kira Titenva', 'real estate agent'),
             Contact(
                 MARC_LEON,

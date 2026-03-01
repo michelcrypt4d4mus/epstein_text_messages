@@ -8,6 +8,7 @@ Name = str | None
 
 # Unknown / None
 UNKNOWN = '(unknown)'
+UNKNOWN_GIRL = 'unknown girl'
 
 # Texting Names
 ANDRZEJ_DUDA = 'Andrzej Duda or entourage'
@@ -251,12 +252,12 @@ TANCREDI_MARCHIOLO = 'Tancredi Marchiolo'
 WHITFIELD_DIFFIE = 'Whitfield Diffie'
 YUKO_BARNABY = 'Yuko Barnaby'
 YULIA_DOROKHINA = 'Yulia Dorokhina'
-
-UNKNOWN_GIRL = 'unknown girl'
+YURI_MILNER = 'Yuri Milner'
 
 # No communications but name is in the files
 BEN_LAWSKY = 'Ben Lawsky'
 BILL_GATES = 'Bill Gates'
+CHAMATH_PALIHAPITIYA = 'Chamath Palihapitiya'
 DONALD_TRUMP = 'Donald Trump'
 HENRY_HOLT = 'Henry Holt'  # Actually a company?
 IVANKA = 'Ivanka'
@@ -277,6 +278,7 @@ TULSI_GABBARD = 'Tulsi Gabbard'
 VIRGINIA_GIUFFRE = 'Virginia Giuffre'
 
 # Organizations
+ALL_IN_PODCAST = 'All-In Podcast'
 ASIA_GATEWAY = 'Asia Gateway'
 ATT_COURT_APPEARANCE_TEAM = 'AT&T Court Appearance Team'
 BEAR_STEARNS = 'Bear Stearns'
@@ -302,8 +304,10 @@ GOLDMAN_INVESTMENT_MGMT = f'{GOLDMAN_SACHS} Investment Management Division'
 GOOGLE_PLUS = 'Google Plus'
 HEDOSOPHIA = 'Hedosophia'
 INSIGHTS_POD = f"InsightsPod"  # Zubair bots
+INTERNATIONAL_PEACE_INSTITUTE = 'International Peace Institute'
 JP_MORGAN = 'JP Morgan'
 KYARA_INVESTMENT = 'Kyara Investment'
+MC2_MODEL_MGMT = 'MC2 Model Management'
 MERCANTILE_GLOBAL_HOLDINGS = 'Mercantile Global Holdings'
 MIT_MEDIA_LAB = 'MIT Media Lab'
 NEXT_MANAGEMENT = 'Next Management LLC'
@@ -313,6 +317,7 @@ OSBORNE_LLP = f"{IAN_OSBORNE} & Partners"  # Ian Osborne's PR firm
 PALM_BEACH_POLICE = f"{PALM_BEACH} Police"
 ROTHSTEIN_ROSENFELDT_ADLER = "Rothstein Rosenfeldt Adler"  # and a crook
 SDNY = 'SDNY'
+SECURITIES_AND_EXCHANGE_COMMISSION = 'Securities & Exchange Commission'
 SOUTHERN_TRUST_COMPANY = 'Southern Trust Company'
 TRUMP_ORG = 'Trump Organization'
 UBS = 'UBS'

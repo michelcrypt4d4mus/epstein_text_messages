@@ -1365,6 +1365,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA02731482', recipients=[USANYS], uncertain_recipient='true'),
     EmailCfg(id='EFTA02731713', recipients=[USANYS], uncertain_recipient='true'),
     EmailCfg(id='EFTA02731718', recipients=[USANYS], uncertain_recipient='true'),
+    EmailCfg(id='EFTA00949295', is_interesting=True),
     EmailCfg(id='EFTA02605815', is_interesting=True, comment='totally tricked out by uncle jeffrey'),
     EmailCfg(id='EFTA02645069', is_interesting=True, description='Epstein says the Mongolians have asked him to create a currency'),
     EmailCfg(id='EFTA02637315', is_interesting=True, description=f"{AZIZA_ALAHMADI} says BTC to fiat is legalized in middle east"),
@@ -1401,9 +1402,8 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA02641951', description=f"{DAVID_STERN} recommends ProtonMail for more secure communications"),
     EmailCfg(id='EFTA00626220', description=f'discussion of a "sidecar fund" with {BROCK_PIERCE} / {CRYPTO_CURRENCY_PARTNERS_II}'),
     EmailCfg(id='EFTA00652799', description=f'Epstein calls Ari Glass "a bit sketchy" despite investing ~$50 million in his fund Boothbay'),
-    EmailCfg(id='EFTA00987206', description=f"Epstein helps {BORIS_NIKOLIC} draft an email to Yuri Milner about a healthcare fund", is_interesting=True),
-    EmailCfg(id='EFTA00949295', is_interesting=True),
-    EmailCfg(id='EFTA01784901', description=f"{JEREMY_RUBIN} has cashed multiple checks directly from Epstein", is_interesting=True),
+    EmailCfg(id='EFTA00987206', description=f"Epstein helps {BORIS_NIKOLIC} draft an email to {YURI_MILNER}", is_interesting=True),
+    EmailCfg(id='EFTA00277107', description=f'FBI tip alleging connections between Wirecard and {GHISLAINE_MAXWELL} network', truncate_to=5500),
     EmailCfg(
         id='EFTA02634615',
         description=f"Indyke says Epstein didn't want his name associated with his investment in {CARBYNE} / Reporty",
@@ -1847,6 +1847,7 @@ OTHER_FILES_LEGAL = [
             MARTIN_NOWAK,
             MORTIMER_ZUCKERMAN,
             PRINCE_ANDREW,
+            SECURITIES_AND_EXCHANGE_COMMISSION,
             STEVEN_HOFFENBERG,
             SVETLANA_POZHIDAEVA
         ],
@@ -2097,6 +2098,11 @@ OTHER_FILES_FINANCE = [
 ]
 
 OTHER_FILES_GOVERNMENT = [
+    DocCfg(
+        id='024117',
+        description=f"anti-money laundering (AML), Bank Secrecy Act (BSA), & terrorist financing (CFT) US law FAQ",
+        is_interesting=True,
+    ),
     DocCfg(
         id='EFTA00164939',
         author=DOJ,
@@ -2425,7 +2431,6 @@ OTHER_FILES_MISC = [
     DocCfg(id='026634', author='Michael Carrier', description=f'comments about an Apollo linked fund "DE Fund VIII"'),
     DocCfg(id='031425', author=SCOTT_J_LINK, description=f'completely redacted email', is_interesting=False),
     DocCfg(id='020447', author='Working Group on Chinese Influence Activities in the US', description=f'Promoting Constructive Vigilance'),
-    DocCfg(id='024117', description=f"anti-money laundering (AML) & terrorist financing (CFT) U.S. law FAQ"),
     DocCfg(id='012718', description=f"{CVRA} congressional record", date='2011-06-17'),
     DocCfg(id='019448', description=f"Haitian business investment proposal called Jacmel", attached_to_email_id='019446'),
     DocCfg(id='023644', description=f"interview with Mohammed bin Salman", date='2016-04-25', is_interesting=False),
@@ -2796,6 +2801,8 @@ OTHER_FILES_CRYPTO = [
     EmailCfg(id='EFTA01778423', show_with_name=HOWARD_LUTNICK),
     # Joi Ito / Kyara
     DocCfg(id='024256', author=JOI_ITO, description=f"Internet & Society: The Technologies and Politics of Control"),
+    EmailCfg(id='028847', description=f"the announcement of a hunt for Putin's money seems to greatly concern Epstein and {JOI_ITO}"),
+    EmailCfg(id='026360', description=f"{JOI_ITO} writes to Epstein to thank him for providing funding for the bitcoin core development team"),
     DocCfg(id='EFTA00805860', description=f"{JOI_ITO}'s Neoteny 3 fund investor update / portfolio"),
     DocCfg(id='EFTA01118268', description=f"{JOI_ITO}'s Neoteny 3 fund investor update", date='2015-06-30'),
     DocCfg(id='EFTA01116280', description=f"{KYARA_FUND} I LLC (Physical Graph Corporation) operating agreement with edits"),
@@ -2803,8 +2810,6 @@ OTHER_FILES_CRYPTO = [
     DocCfg(id='EFTA00605699', description=f"{KYARA_FUND} II LLC incorporation papers"),
     DocCfg(id='EFTA01186455', description=f"{KYARA_FUND} II LLC operating agreement"),
     DocCfg(id='EFTA00584696', description=f"{KYARA_FUND} III LLC operating agreement"),
-    EmailCfg(id='028847', description=f"the announcement of a hunt for Putin's money seems to greatly concern Epstein and {JOI_ITO}"),
-    EmailCfg(id='026360', description=f"{JOI_ITO} writes to Epstein to thank him for providing funding for the bitcoin core development team"),
     EmailCfg(id='EFTA00999549', description=f"{JOI_ITO} and {JEREMY_RUBIN} meet {LARRY_SUMMERS} to discuss bitcoin", is_interesting=True),
     EmailCfg(id='EFTA01752601', description=f"{JOI_ITO} and Epstein name their new fund Kyara"),
     EmailCfg(id='EFTA02342561', is_interesting=True, description=f"China, {REID_HOFFMAN}, bitcoin"),
@@ -2912,6 +2917,7 @@ OTHER_FILES_CRYPTO = [
     EmailCfg(id='EFTA01434500', description=f"everyone assumes Epstein's banker {PAUL_BARRETT} will want to know about the blockchain event"),
     EmailCfg(id='EFTA00993615', description=f"{MASHA_DROKOVA} explains the price of bitcoin can be manipulated if Epstein makes public comments"),
     EmailCfg(id='EFTA02584771', description=f"discussion of decentralized prediction maarkets like Polymarket"),
+    EmailCfg(id='EFTA01784901', description=f"{JEREMY_RUBIN} has cashed multiple checks directly from Epstein", is_interesting=True),
     EmailCfg(
         id='EFTA01007544',
         description=f'{JEREMY_RUBIN} describes "grey area between pump and develop" when Epstein objects on ethical grounds',
