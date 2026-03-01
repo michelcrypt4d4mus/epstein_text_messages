@@ -76,7 +76,12 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(ROGER_SCHANK, "Teachers College, Columbia University"),
             Contact('Sandy Pentland', MIT_MEDIA_LAB, r"((Alex|Sandy) )?Pentland"),
             Contact(SETH_LLOYD, "professor of mechanical engineering at MIT"),
-            Contact(STEVEN_VICTOR_MD, "doctor who treated Epstein's girlfriends", match_partial_names=None),
+            Contact(
+                STEVEN_VICTOR_MD,
+                "doctor who treated Epstein's girls",
+                link_to_bio='https://www.nytimes.com/2026/02/28/us/jeffrey-epstein-doctors.html?unlocked_article_code=1.PlA.f4B2.BgLoXD-aVKkw&smid=url-share',
+                match_partial_names=None
+            ),
             Contact('Valeria Chomsky', f"wife of {NOAM_CHOMSKY}", match_partial_names='both'),
             Contact(YUKO_BARNABY, f"{MIT_MEDIA_LAB} Assistant to the Director", r"Y[ou]ko Ba(m|rn)(aby)?"),
             Contact(WHITFIELD_DIFFIE, f"MIT cryptographer and mathematician", r"whitfield.{,3}diffie?", match_partial_names='both'),
@@ -226,7 +231,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 info=f"biotech partner of {BILL_GATES} in bgC3 / Bill Gates Ventures, Epstein estate executor",
                 emailer_pattern=r"(boris )?nikolic?",
                 match_partial_names='both'
-            )
+            ),
         ],
         patterns=[
             r"BG",
@@ -1005,7 +1010,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"alterna[tv]i[tv]e finance",
             r"((anti )?money )?launder(s?|ers?|ing)?( money)?",
             r"(?<!(alfa|ture|hase|rahi|sche)\s)bank(?!\s+(of|secrecy))",
-            r"bond",
+            r"(junk )?bond",
             r"capital controls",
             r"casino",
             r"C[EF]O",
@@ -1050,7 +1055,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact('Laurie Cameron', "currency trading"),
             Contact(
                 name=LEON_BLACK,
-                info="Apollo CEO who paid Epstein tens of millions for tax advice",
+                info='Apollo CEO who paid Epstein tens of millions for "tax advice"',
                 emailer_pattern=r"Leon\s*Black?|(?<!Marc )Leon(?! (Botstein|Jaworski|Wieseltier))",
                 match_partial_names=None,
             ),
@@ -1164,6 +1169,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 match_partial_names=None,
             ),
             Contact('Peter Thomas Roth', "student of Epstein at Dalton, skincare company founder", match_partial_names=None),
+            Contact('Sam Jaradeh', f"partner of {BORIS_NIKOLIC}"),
             Contact(STEPHEN_HANSON, emailer_pattern=r"ste(phen|ve) hanson?|Shanson900"),
             Contact(TOM_BARRACK, "long time friend of Trump")
         ],
@@ -2006,7 +2012,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(
                 MARIA_PRUSAKOVA,
                 f"AKA Masha Prusso, former Olympic snowboarder, {CRYPTO_PR_LAB} co-founder, \"found ladies\" for Epstein",
-                r"Ma(sha|riy?a) (Prus(kova|so))",
+                r"Ma(sha|riy?a) (Prusa?(kova|so))",
                 link_to_bio='https://www.reddit.com/r/Epstein/comments/1qvsnqs/a_detailed_report_on_masha_prusso_aka_maria/',
             ),
             Contact(
@@ -2134,7 +2140,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(ANDREW_MCCORMACK, f"partner at {THIELS_VALAR} {'(???)'}", r"Andrew McCorm(ack?)?"),
             Contact('Auren Hoffman', "CEO of SafeGraph (firm that gathers location data from mobile devices) and LiveRamp", match_partial_names=None),
             Contact('Chamath Palihapitiya', "All-In Podcast, Facebook, SPAC and crypto enthusiast, Trump convert", match_partial_names='both'),
-            Contact(CHRIS_POOLE, 'AKA "Moot", founder of 4chan, ex-Google', r"mmot|Chris Poole?"),
+            Contact(CHRIS_POOLE, 'AKA "Moot", founder of 4chan, ex-Google', r"mmot|Chris Poole?|(?-i:Moot)"),
             Contact('Danny Hillis', "computer scientist, artificial intelligence researcher"),
             Contact('Drew Houston', 'CEO of Dropbox', match_partial_names=None),
             Contact(ELON_MUSK, "father of Mecha-Hitler", match_partial_names='both'),
