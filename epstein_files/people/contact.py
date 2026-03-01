@@ -200,8 +200,8 @@ def company(name: str, description: str = '', emailer_pattern: str = '', **kwarg
     return Contact(name, description, emailer_pattern, is_organization=True, **kwargs)
 
 
-def epstein_co(name: str, emailer_pattern: str = '', **kwargs) -> Contact:
-    return company(name, 'Epstein company', emailer_pattern, **kwargs)
+def epstein_co(name: str, emailer_pattern: str = '', description: str = '', **kwargs) -> Contact:
+    return company(name, join_truthy('Epstein company', description), emailer_pattern, **kwargs)
 
 
 def epstein_trust(

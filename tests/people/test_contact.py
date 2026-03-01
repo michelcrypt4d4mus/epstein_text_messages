@@ -35,6 +35,8 @@ def test_epstein_co():
     assert butterfly.emailer_pattern == r"Butterfly( Inc)?"
     butterfly = epstein_co('Butterfly, Inc.')
     assert butterfly.emailer_pattern == r"Butterfly(,? Inc\.?)?"
+    zorro = epstein_co('Zorro', description='for New Mexico ranch')
+    assert zorro.info == f"Epstein company for New Mexico ranch"
 
 
 def test_epstein_trust():
