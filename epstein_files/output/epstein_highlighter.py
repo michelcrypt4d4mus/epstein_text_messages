@@ -6,8 +6,9 @@ from rich.console import Console
 from rich.highlighter import RegexHighlighter
 from rich.text import Text
 
+from epstein_files.output.highlighted_names import HighlightedNames
 from epstein_files.output.highlight_config import HIGHLIGHT_GROUPS
-from epstein_files.util.constant.strings import REGEX_STYLE_PREFIX
+from epstein_files.util.constant.strings import JEE, REGEX_STYLE_PREFIX
 from epstein_files.util.env import args
 from epstein_files.util.helpers.data_helpers import sort_dict
 from epstein_files.util.logging import logger
@@ -45,3 +46,23 @@ class EpsteinHighlighter(RegexHighlighter):
                 console.print(f"{highlighted:25s} highlighted {count} times")
             except Exception as e:
                 logger.error(f"Failed to print highlight count {count} for {highlighted}")
+
+
+class NonEpsteinHighlighter(EpsteinHighlighter):
+    """Highlights everything except Epstein's name."""
+    highlights: list[re.Pattern] = [
+        hg.regex for hg in HIGHLIGHT_GROUPS
+        if not (isinstance(hg, HighlightedNames) and hg.label == JEE)
+    ]
+
+
+def temp_highlighter(pattern: str) -> EpsteinHighlighter:
+    """Temporary highlighter that adds `pattern` to the usual highlight regexes."""
+    class TempHighlighter(EpsteinHighlighter):
+        highlights = EpsteinHighlighter.highlights + [re.compile(fr"(?P<trump>{pattern})", re.IGNORECASE)]
+
+    return TempHighlighter()
+
+
+highlighter = EpsteinHighlighter()
+non_epstein_highlighter = NonEpsteinHighlighter()

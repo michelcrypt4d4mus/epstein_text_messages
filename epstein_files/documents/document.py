@@ -20,11 +20,12 @@ from epstein_files.documents.documents.file_info import FileInfo
 from epstein_files.documents.documents.search_result import MatchedLine
 from epstein_files.documents.emails.constants import DOJ_EMAIL_OCR_REPAIRS, FALLBACK_TIMESTAMP
 from epstein_files.documents.emails.email_header import DETECT_EMAIL_REGEX
+from epstein_files.output.epstein_highlighter import highlighter, non_epstein_highlighter
 from epstein_files.output.highlight_config import HIGHLIGHTED_CONTACTS, get_style_for_category, get_style_for_name
 from epstein_files.output.layout_elements.file_display import BasePanel, FileDisplay
 from epstein_files.output.html.builder import VERTICAL_MARGIN
 from epstein_files.output.rich import (INFO_STYLE, NA_TXT, SKIPPED_FILE_MSG_PADDING, SYMBOL_STYLE,
-     add_cols_to_table, build_table, console, highlighter, styled_key_value, prefix_with, styled_dict,
+     add_cols_to_table, build_table, console, styled_key_value, prefix_with, styled_dict,
      wrap_in_markup_style)
 from epstein_files.output.site.sites import EXTRACTS_BASE_URL
 from epstein_files.people.interesting_people import PERSONS_OF_INTEREST, UNINTERESTING_AUTHORS
@@ -159,7 +160,7 @@ class Document:
     def config_description_txt(self) -> Text | None:
         """Add parentheses to `self.config.description`."""
         style = 'bright_white italic' if site_config.email_info_in_subtitle else INFO_STYLE
-        return highlighter(Text(self.config_description, style)) if self.config_description else None
+        return non_epstein_highlighter(Text(self.config_description, style)) if self.config_description else None
 
     @property
     def config_replace_text_with(self) -> str | None:

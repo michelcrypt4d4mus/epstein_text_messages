@@ -33,6 +33,7 @@ MC2_MODEL_MANAGEMENT = f"{JEAN_LUC_BRUNEL}'s MC2 Model Management"
 QUESTION_MARKS_TXT = Text(QUESTION_MARKS, style='grey50')
 THIELS_VALAR = f"{PETER_THIEL}'s {VALAR_VENTURES}"
 
+EPSTEIN_COLOR = 'blue1'
 FINANCIAL_COLOR = 'dark_sea_green2'
 VICTIM_COLOR = 'orchid1'
 
@@ -560,6 +561,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 MERCANTILE_GLOBAL_HOLDINGS,
                 'company of Bo Collins who ended up testifying in trial of chinese criminal Miles Guo / Miles Kwok',
             ),
+            company('Mindshift', f"conference on Epstein's island organized by {AL_SECKEL}", r"Mindshift( conference)?"),
             company(
                 'Noble Bank',
                 f"failed crypto friendly bank with ties to Tether and {BROCK_PIERCE}",
@@ -727,8 +729,19 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         ],
     ),
     HighlightedNames(
+        label=JEE,
+        style=EPSTEIN_COLOR,
+        contacts=[
+            Contact(
+                name=JEFFREY_EPSTEIN,
+                emailer_pattern=r"ee[vy]acation[©@e]?g?(mail.com)?|Epstine|\bJEE?\b|Jeff(rey)? (Edward )?E((sp|ps)tein?)?( VI Foundation)?|jeeproject@yahoo.com|J Jep|Jeffery Edwards|(?<!(ark L.|rd Jay|Edward) )Epstein|Jeffrey Epst.*comj?",
+                match_partial_names=None,
+            ),
+        ]
+    ),
+    HighlightedNames(
         label='Epstein',
-        style='blue1',
+        style=EPSTEIN_COLOR,
         contacts=[
             Contact(
                 f"{ASIA_GATEWAY} Limited",
@@ -736,12 +749,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 r"Asia\s*Gateway(\s*L(imited|td))?",
                 is_organization=True
             ),
-            Contact(
-                name=JEFFREY_EPSTEIN,
-                emailer_pattern=r"ee[vy]acation[©@e]?g?(mail.com)?|Epstine|\bJEE?\b|Jeff(rey)? (Edward )?E((sp|ps)tein?)?( VI Foundation)?|jeeproject@yahoo.com|J Jep|Jeffery Edwards|(?<!(ark L.|rd Jay|Edward) )Epstein|Jeffrey Epst.*comj?",
-                match_partial_names=None,
-            ),
-            Contact(MARK_EPSTEIN, "brother of Jeffrey", r"Mark (L\. )?(Epstein|Lloyd)", match_partial_names=None),
+            Contact(MARK_EPSTEIN, "brother of Jeffrey", r"Mark (L\.? )?(Epstein|Lloyd)", match_partial_names=None),
             epstein_co('Coatue'),
             epstein_co('FT Real Estate'),
             epstein_co('Island Grounds Inc.'),
@@ -1149,7 +1157,11 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 emailer_pattern=r"Jonathan Fark(a|u)(s|il)",
             ),
             Contact('linkspirit', "Skype username of someone Epstein communicated with"),
-            Contact('Perry Bard', f"{PALM_BEACH} chiropractor, phone # appeared in investigations", match_partial_names=None),
+            Contact(
+                'Perry Bard',
+                f"{PALM_BEACH} chiropractor whose phone number came up in Epstein victim investigations",
+                match_partial_names=None,
+            ),
             Contact('Peter Thomas Roth', "student of Epstein at Dalton, skincare company founder", match_partial_names=None),
             Contact(STEPHEN_HANSON, emailer_pattern=r"ste(phen|ve) hanson?|Shanson900"),
             Contact(TOM_BARRACK, "long time friend of Trump")
@@ -1170,6 +1182,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 match_partial_names=None,
             ),
             Contact('Barry Krischer', "prosecutor in charge of Epstein's sweetheart deal in 2006", r"(Barry (E. )?)?Krischer"),
+            Contact(BEN_LAWSKY, f"head of NY Dept of Financial Services (NYDFS)"),
             Contact(
                 name=ANN_MARIE_VILLAFANA,
                 info="Southern District of Florida (SDFL) U.S. Attorney",
@@ -1184,9 +1197,11 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 match_partial_names=None,
             ),
             Contact('Florence Hutner', "New York Office of Chief Medical Examiner"),
+            Contact('Gary Gensler', 'future head of the SEC'),
             Contact('Justin Alfano', f"American {LAW_ENFORCEMENT}"),
             Contact('Paula Speer', "court reporter", match_partial_names=None),
             Contact('Police Code Enforcement', "Palm Beach buildings code enforcement", is_organization=True),
+            company('INS', "US Immigration and Naturalization Service", r"(?-i:INS)"),
             law_enforcement(BUREAU_OF_PRISONS, r"bop\.gov|(Federal )?Bureau of Prisons"),
             law_enforcement('DOJ Inspector General'),
             law_enforcement('DOJ London'),
@@ -1209,10 +1224,9 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Attorney General",
             r"Bank Secrecy Act",
             r'Barbara Burns',  # AUSA
-            r"(Ben )?Lawsky",
             r"((Bob|Robert) )?Mueller",
             r"BSA",
-            r"(Byung\s)?Pak",
+            r"(Byung )?(J\. )?Pak",
             r"Case 1:19-cv-03377(-LAP)?",
             r"(CENT|NORTH|SOUTH)COM",
             r"CFTC?",
@@ -1234,13 +1248,11 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"FOIA",
             r"food stamps",
             r"FTC",
-            r"(Gary )?Gensler",
             r"(General )?P(a|e)traeus",
             r"Geoff Ling",
             r"Homeland Security",
             r"IG",
             r"Interpol",
-            r"(?-i:INS)",
             r"IRS",
             r"(James )?Comey",
             r"(Jennifer Shasky )?Calvery",
@@ -1371,6 +1383,11 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 f"Israeli co. FKA Reporty invested in by Epstein, {EHUD_BARAK}, and {NICOLE_JUNKERMANN}",
                 r"Carbyne|Reporty",
             ),
+            company(
+                'Hapoalim',
+                f"largest bank in Israel, convicted of enabling tax evasion, fraud, and money laundering",
+                link_to_bio='https://www.justice.gov/usao-edny/pr/bank-hapoalim-agrees-pay-more-30-million-its-role-money-laundering-conspiracy-involving',
+            ),
             company("Mizrahi Bank", '3rd largest bank in Israel'),
         ],
         patterns=[
@@ -1378,14 +1395,13 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Bibi",
             r"(eh|(Ehud|Nili Priell) )?barak",
             r"EB",
-            r"Hapoalim",
             r"Idan Ofer",
             r"Israeli?",
             r"Jerusalem",
             r"J Street",
             r"Menachem Begin",
             r"Mossad",
-            r"Netanyahu",
+            r"(Benjamin|Binyamin|Yair )?Netanyahu",
             r"(Sheldon )?Adelson",
             r"Tel Aviv",
             r"(The )?Shimon Post",
@@ -2149,6 +2165,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             company('Softbank Vision Fund', "Masayohsi Son's fund focused on tech, AI, WeWork", r"Softbank|(Softbank )?Vision Fund"),
             company('ThielCapital', f"{PETER_THIEL} organization"),
             company(VALAR_VENTURES, f"{PETER_THIEL} affiliated fintech venture fund", r"V[ae]lar (Global Fund|Ventures)?", is_emailer=True),
+            company('WeWork', 'infamously stupid failed temporary office space company'),
         ],
         patterns=[
             r"4chan",
@@ -2184,6 +2201,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Artificial (General )?Intelligence",
             r"cyber( (security|space))?",
             r"deep learning",
+            r"Dropbox",
             r"Facebook",
             r"Instagram",
             r"Microsoft",

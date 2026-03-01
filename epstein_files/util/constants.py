@@ -162,7 +162,7 @@ TEXTS_CONFIG = CONFIRMED_TEXTS_CONFIG + UNCONFIRMED_TEXTS_CONFIG + UNKNOWN_TXT_M
 ################################################ EMAILS ################################################
 ########################################################################################################
 
-BEN_LAWSKY_NYDFS = 'head of NY Dept of Financial Services Ben Lawsky'
+BEN_LAWSKY_NYDFS = f'head of NY Dept of Financial Services {BEN_LAWSKY}'
 
 # Atribution reasons
 BOLOTOVA_REASON = 'Same signature style as 029020 ("--" followed by "Sincerely Renata Bolotova")'
@@ -856,12 +856,12 @@ EMAILS_CONFIG = [
         is_interesting=True
     ),
     EmailCfg(id='026449', description="comments about Trump's 'former bridge girl and toy'", is_interesting=True),
-    EmailCfg(id='028847', description=f"the announcement of a hunt for Putin's illicit money seems to greatly concern Epstein and {JOI_ITO}"),
-    EmailCfg(id='033377', description="Epstein says he knows Russian oligarch Oleg Deripaska", is_interesting=True),
-    EmailCfg(id='032229', description='Michael Wolff offers ideas for entrapping Trump', is_interesting=True),
-    EmailCfg(id='023454', description='Email invitation sent to tech CEOs and Epstein', is_interesting=True, truncate_to=1878),
     EmailCfg(id='032842', description='discussion of "stealing" a casino in Atlantic City', is_interesting=True),
+    EmailCfg(id='033377', description="Epstein says he knows Russian oligarch Oleg Deripaska", is_interesting=True),
+    EmailCfg(id='023454', description='Email invitation sent to tech CEOs and Epstein', is_interesting=True, truncate_to=1878),
+    EmailCfg(id='030950', description=f"{IAN_OSBORNE} spending quality time in Russia before Jawbone investment", truncate_to=4500),
     EmailCfg(id='029098', description=f"{MASHA_DROKOVA}'s skype contact is in Moscow", is_interesting=True),
+    EmailCfg(id='032229', description=f'{MICHAEL_WOLFF} offers ideas for entrapping Trump', is_interesting=True),
     EmailCfg(id='020143', description=f"{STEVEN_SINOFSKY} has heard a sad story about women in tech from {MASHA_DROKOVA}", truncate_to=1000),
     EmailCfg(id='028784', is_interesting=True, duplicate_ids=['026549'], comment='seminars: Money / Power'),
     EmailCfg(id='026505', is_interesting=True, comment='I know how dirty trump is'),
@@ -909,7 +909,6 @@ EMAILS_CONFIG = [
     EmailCfg(id='032865', truncate_to=445, comment='Barton reply'),
     EmailCfg(id='029100', truncate_to=450, comment='drokova'),
     EmailCfg(id='027126', truncate_to=1000, comment='Summers'),
-    EmailCfg(id='030950', truncate_to=4500, comment='Ian Osborne'),
     EmailCfg(id='029684', truncate_to=402, comment='Maldives reply'),
     EmailCfg(id='017574', truncate_to=4000, comment='Lisa Randall invite'),
     EmailCfg(id='030589', truncate_to=1000, comment='Brett Jaffe Fwd'),
@@ -1087,6 +1086,14 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA01802168', author=LINDA_STONE, author_uncertain='"Stone"'),
     EmailCfg(id='EFTA00701326', author=LINDA_STONE, author_uncertain='"Stone"'),
     EmailCfg(id='EFTA00397956', author=LINDA_STONE, author_reason='unique email signature'),
+    EmailCfg(id='EFTA00920848', author=MARIA_PRUSAKOVA, author_uncertain='law school'),
+    EmailCfg(id='EFTA02038002', author=MARIA_PRUSAKOVA, author_reason='Clifford Chance'),
+    EmailCfg(id='EFTA02036490', author=MARIA_PRUSAKOVA, author_reason='Clifford Chance'),
+    EmailCfg(id='EFTA02022813', author=MARIA_PRUSAKOVA, author_reason='Clifford Chance'),
+    EmailCfg(id='EFTA02001536', author=MARIA_PRUSAKOVA, author_reason='Clifford Chance'),
+    EmailCfg(id='EFTA01772533', author=MARIA_PRUSAKOVA, author_reason='Clifford Chance'),
+    EmailCfg(id='EFTA01775280', author=MARIA_PRUSAKOVA, author_reason='Clifford Chance', truncate_to=2000),
+    EmailCfg(id='EFTA02507271', author=MARIA_PRUSAKOVA, author_uncertain='LGT Bank in signature'),
     EmailCfg(id='EFTA01988194', author=RASSECK_BOURGI, description=f'{RASSECK_BOURGI} using his wife\'s email "because it is a private email"'),
     EmailCfg(id='EFTA01978227', description=f"Epstein arranging tour of Harvard for {RASSECK_BOURGI}'s daughter"),
     EmailCfg(
@@ -1320,14 +1327,6 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA01002282', recipients=[LINDA_STONE], comment='signature'),
     EmailCfg(id='EFTA02266524', recipients=[MARIA_PRUSAKOVA], author_reason=CRYPTO_PR_LAB, description='Medici Bank'),
     EmailCfg(id='EFTA02503155', recipients=[MARIA_PRUSAKOVA], author_reason='visible in quoted reply'),
-    EmailCfg(id='EFTA00920848', author=MARIA_PRUSAKOVA, author_uncertain='law school'),
-    EmailCfg(id='EFTA02038002', author=MARIA_PRUSAKOVA, author_reason='Clifford Chance'),
-    EmailCfg(id='EFTA02036490', author=MARIA_PRUSAKOVA, author_reason='Clifford Chance'),
-    EmailCfg(id='EFTA02022813', author=MARIA_PRUSAKOVA, author_reason='Clifford Chance'),
-    EmailCfg(id='EFTA02001536', author=MARIA_PRUSAKOVA, author_reason='Clifford Chance'),
-    EmailCfg(id='EFTA01772533', author=MARIA_PRUSAKOVA, author_reason='Clifford Chance'),
-    EmailCfg(id='EFTA01775280', author=MARIA_PRUSAKOVA, author_reason='Clifford Chance', truncate_to=2000),
-    EmailCfg(id='EFTA02507271', author=MARIA_PRUSAKOVA, author_uncertain='LGT Bank in signature'),
     EmailCfg(id='EFTA00579769', recipients=['Melania'], date='2002-10-23 15:49:00', is_interesting=True, truncate_to=587),
     EmailCfg(id='EFTA02731632', recipients=[OFFICE_OF_THE_DEPUTY_ATTORNEY_GENERAL]),
     EmailCfg(
@@ -1433,6 +1432,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00854166', description='"kazak contract will be ready for your review"', is_interesting=True, truncate_to=1100),
     EmailCfg(id='EFTA00080250', description=f"{LEON_BLACK} / Rothschild Group {DEUTSCHE_BANK} transactions", is_interesting=True),
     EmailCfg(id='EFTA02565917', description='Hassan Mohammed Abdul Latif Jameel is a Saudi businessman and philanthropist'),
+    EmailCfg(id='EFTA02455633', description=f"{MASHA_DROKOVA} loves WeWork", truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA01145923', description=f"modeling contract"),
     EmailCfg(id='EFTA00877726', description='Epstein and Stern discuss plans to manage money for wealthy Chinese'),
     EmailCfg(id='EFTA00754450', description='"PA" is probably Prince Andrew', duplicate_ids=['EFTA02418244']),
@@ -2793,6 +2793,7 @@ OTHER_FILES_CRYPTO = [
     DocCfg(id='EFTA00605699', description=f"{KYARA_FUND} II LLC incorporation papers"),
     DocCfg(id='EFTA01186455', description=f"{KYARA_FUND} II LLC operating agreement"),
     DocCfg(id='EFTA00584696', description=f"{KYARA_FUND} III LLC operating agreement"),
+    EmailCfg(id='028847', description=f"the announcement of a hunt for Putin's money seems to greatly concern Epstein and {JOI_ITO}"),
     EmailCfg(id='026360', description=f"{JOI_ITO} writes to Epstein to thank him for providing funding for the bitcoin core development team"),
     EmailCfg(id='EFTA00999549', description=f"{JOI_ITO} and {JEREMY_RUBIN} meet {LARRY_SUMMERS} to discuss bitcoin", is_interesting=True),
     EmailCfg(id='EFTA01752601', description=f"{JOI_ITO} and Epstein name their new fund Kyara"),

@@ -251,6 +251,7 @@ YULIA_DOROKHINA = 'Yulia Dorokhina'
 UNKNOWN_GIRL = 'unknown girl'
 
 # No communications but name is in the files
+BEN_LAWSKY = 'Ben Lawsky'
 BILL_GATES = 'Bill Gates'
 DONALD_TRUMP = 'Donald Trump'
 HENRY_HOLT = 'Henry Holt'  # Actually a company?

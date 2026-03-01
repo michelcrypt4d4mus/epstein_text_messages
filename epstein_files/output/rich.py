@@ -16,7 +16,7 @@ from rich.table import Table
 from rich.text import Text
 from rich.theme import Theme
 
-from epstein_files.output.epstein_highlighter import EpsteinHighlighter
+from epstein_files.output.epstein_highlighter import highlighter
 from epstein_files.output.highlight_config import HIGHLIGHT_GROUPS
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constant.urls import *
@@ -76,7 +76,7 @@ RAINBOW = [
 # Instantiate console object
 CONSOLE_KWARGS = {
     'color_system': '256',
-    'highlighter': EpsteinHighlighter(),
+    'highlighter': highlighter,
     'record': args.build,
     'safe_box': True,
     'theme': Theme(THEME_STYLES),
@@ -88,7 +88,6 @@ if args.suppress_output:
     CONSOLE_KWARGS.update({'file': open(devnull, "wt")})
 
 console = Console(**CONSOLE_KWARGS)
-highlighter = CONSOLE_KWARGS['highlighter']
 
 
 def add_cols_to_table(table: Table, cols: list[str | dict], justify: str = 'center') -> None:
@@ -303,14 +302,6 @@ def styled_key_value(
     txt = Text('').append(f"{key:>{indent}}", style=key_style)
     txt.append(sep, style=SYMBOL_STYLE).append(val_txt)
     return txt
-
-
-def temp_highlighter(pattern: str) -> EpsteinHighlighter:
-    """Temporary highlighter that adds `pattern` to the usual highlight regexes."""
-    class TempHighlighter(EpsteinHighlighter):
-        highlights = EpsteinHighlighter.highlights + [re.compile(fr"(?P<trump>{pattern})", re.IGNORECASE)]
-
-    return TempHighlighter()
 
 
 def wrap_in_markup_style(msg: str, style: str | None = None) -> str:
