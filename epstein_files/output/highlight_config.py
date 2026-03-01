@@ -2149,6 +2149,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             company('Softbank Vision Fund', "Masayohsi Son's fund focused on tech, AI, WeWork", r"Softbank|(Softbank )?Vision Fund"),
             company('ThielCapital', f"{PETER_THIEL} organization"),
             company(VALAR_VENTURES, f"{PETER_THIEL} affiliated fintech venture fund", r"V[ae]lar (Global Fund|Ventures)?", is_emailer=True),
+            company('WeWork', 'infamously stupid failed temporary office space company'),
         ],
         patterns=[
             r"4chan",
