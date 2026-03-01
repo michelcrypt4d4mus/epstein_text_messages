@@ -2140,6 +2140,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             company('bgC3', 'Bill Gates Ventures (renamed in 2018)'),
             company(GOOGLE_PLUS, "Google Plus", r"Google\+", is_emailer=True, is_interesting=False),
             company('Honeycomb Asset Management', 'venture fund Epstein invested in Spotify through', r"Honeycomb( (Offshore Fund|Partners)( (LP|Ltd))?)?"),
+            company('Jawbone', f'wireless earpiece company invested in by Epstein and {IAN_OSBORNE}'),
             company('LinkedIn', "LinkedIn", r"Linked[Il]n( Updates)?", is_emailer=True, is_interesting=False),
             company('Second Life', f"virtual world with early attempt at virtual currency the Linden Dollar", r"Second Life"),
             company('Softbank Vision Fund', "Masayohsi Son's fund focused on tech, AI, WeWork", r"Softbank|(Softbank )?Vision Fund"),
