@@ -2193,6 +2193,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Artificial (General )?Intelligence",
             r"cyber( (security|space))?",
             r"deep learning",
+            r"Dropbox",
             r"Facebook",
             r"Instagram",
             r"Microsoft",
