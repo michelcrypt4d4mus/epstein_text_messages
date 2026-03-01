@@ -1841,6 +1841,7 @@ OTHER_FILES_LEGAL = [
             EDUARDO_ROBLES,
             GERALD_LEFCOURT,
             GLENN_DUBIN,
+            JEAN_LUC_BRUNEL,
             JOI_ITO,
             LARRY_SUMMERS,
             MARK_EPSTEIN,

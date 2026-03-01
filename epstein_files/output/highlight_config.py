@@ -25,7 +25,7 @@ from epstein_files.util.logging import logger
 
 CIVIL_ATTORNEY = 'civil attorney'
 CRIMINAL_DEFENSE_ATTORNEY = 'criminal defense attorney'
-CRIMINAL_DEFENSE_2008 = f"{CRIMINAL_DEFENSE_ATTORNEY} on 2008 case"
+CRIMINAL_DEFENSE_2008 = f"Epstein {CRIMINAL_DEFENSE_ATTORNEY} on 2008 case"
 EPSTEIN_V_ROTHSTEIN_EDWARDS_ATTORNEY = f"{CIVIL_ATTORNEY} {EPSTEIN_V_ROTHSTEIN_EDWARDS}"
 ESTATE_EXECUTOR = 'estate executor'
 EPSTEIN_ESTATE_EXECUTOR = f"Epstein {ESTATE_EXECUTOR}"
@@ -481,7 +481,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact("Jim Pallotta", f"{MIT_MEDIA_LAB} advisory board"),
             Contact("Kathryn Haun", "crypto VC at Haun Ventures, former a16z"),
             Contact(LORENZO_DE_MEDICI, "Medici Bank, possibly Medici heir?", r"Prince Lorenzo|Lorenzo de Medici"),
-            Contact(MADARS_VIRZA, f"ZCash lead dev, {MIT_MEDIA_LAB}"),
+            Contact(MADARS_VIRZA, f"ZCash lead dev, {MIT_MEDIA_LAB}", match_partial_names='both'),
             Contact(
                 'Marc Andreessen',
                 'co-founder of crypto heavy venture fund Andreessen Horowitz AKA a16z, Trump convert',
@@ -758,6 +758,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             epstein_co('Laurel, Inc.'),
             # epstein_co('JEGE LLC'),
             epstein_co('JEGE, Inc.'),
+            epstein_co('LSJ LLC'),
             epstein_co('LSJE LLC'),
             epstein_co('Nautilus'),
             epstein_co('Neptune LLC'),
@@ -811,9 +812,9 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(FRED_HADDAD, "co-founder of Heck's in West Virginia", match_partial_names=None),
             Contact(GERALD_LEFCOURT, f"friend of {ALAN_DERSHOWITZ}", r"Gerald (B\.? )?Lefcourt"),
             Contact('Howard Rubenstein', "Epstein's former spokesman"),
-            Contact(JACK_GOLDBERGER, "criminal defense attorney on 2008 case"),
-            Contact(JACKIE_PERCZEK, "criminal defense attorney on 2008 case", r"jackie percze[kl]?"),
-            Contact(JAY_LEFKOWITZ, "Kirkland & Ellis partner, criminal defense attorney on 2008 case"),
+            Contact(JACK_GOLDBERGER, CRIMINAL_DEFENSE_2008),
+            Contact(JACKIE_PERCZEK, CRIMINAL_DEFENSE_2008, r"jackie percze[kl]?"),
+            Contact(JAY_LEFKOWITZ, f"Kirkland & Ellis partner, {CRIMINAL_DEFENSE_2008}"),
             Contact(JESSICA_CADWELL, f"paralegal to {ROBERT_D_CRITTON_JR} whom Epstein appears to recruit"),
             Contact(
                 name=KEN_STARR,
@@ -826,7 +827,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(REID_WEINGARTEN, "Steptoe LLP partner", r"Weingarten, Rei[cdi]|Rei[cdi] Weingarten"),
             Contact(ROBERT_D_CRITTON_JR, CRIMINAL_DEFENSE_ATTORNEY, r"Robert D.? Critton,? Jr\.?", match_partial_names=None),
             Contact('Robert Gold', "helped Epstein track down money belonging to Spanish families", match_partial_names=None),
-            Contact('Roy Black', f"{CRIMINAL_DEFENSE_ATTORNEY} on 2008 case", match_partial_names=None),
+            Contact('Roy Black', CRIMINAL_DEFENSE_2008, match_partial_names=None),
             Contact(SCOTT_J_LINK, CRIMINAL_DEFENSE_ATTORNEY, r"scott j. link?", match_partial_names=None),
             Contact(STACEY_RICHMAN, f"New York {CRIMINAL_DEFENSE_ATTORNEY}", r"srichmanlaw|Stacey Richman"),
             Contact(
@@ -1827,7 +1828,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             ),
             Contact(
                 name=JEAN_LUC_BRUNEL,
-                info="MC2 Model Management founder, died by suicide in French jail",
+                info="MC2 Model Management founder, #MeToo problems, died by suicide in French jail",
                 emailer_pattern=r"Jean Luc Brunel?|JeanLuc",
                 match_partial_names='both',
             ),
