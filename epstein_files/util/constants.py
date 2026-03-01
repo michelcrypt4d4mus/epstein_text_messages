@@ -2098,6 +2098,11 @@ OTHER_FILES_FINANCE = [
 
 OTHER_FILES_GOVERNMENT = [
     DocCfg(
+        id='024117',
+        description=f"anti-money laundering (AML), Bank Secrecy Act (BSA), & terrorist financing (CFT) US law FAQ",
+        is_interesting=True,
+    ),
+    DocCfg(
         id='EFTA00164939',
         author=DOJ,
         date='2025-09-01',
@@ -2425,7 +2430,6 @@ OTHER_FILES_MISC = [
     DocCfg(id='026634', author='Michael Carrier', description=f'comments about an Apollo linked fund "DE Fund VIII"'),
     DocCfg(id='031425', author=SCOTT_J_LINK, description=f'completely redacted email', is_interesting=False),
     DocCfg(id='020447', author='Working Group on Chinese Influence Activities in the US', description=f'Promoting Constructive Vigilance'),
-    DocCfg(id='024117', description=f"anti-money laundering (AML) & terrorist financing (CFT) U.S. law FAQ"),
     DocCfg(id='012718', description=f"{CVRA} congressional record", date='2011-06-17'),
     DocCfg(id='019448', description=f"Haitian business investment proposal called Jacmel", attached_to_email_id='019446'),
     DocCfg(id='023644', description=f"interview with Mohammed bin Salman", date='2016-04-25', is_interesting=False),
