@@ -800,7 +800,6 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             epstein_trust('The Sweater Trust', r"(The )?Sweater Trust"),
         ],
         patterns=[
-            r"IPI",
             r"(?-i:The Prof)",
             r"Zorro( Ranch)?",
         ],
@@ -933,6 +932,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact('Viktor Orban', 'prime minister of Hungary', r"(Vi(c|k)tor )?Orbah?n"),
             organization('AfD', 'right wing German political party'),
             organization('ECB', 'European Central Bank'),
+            organization('IPI', "International Peace Institute, gave jobs to Epstein's girls"),
             organization('Zug', "city in Switzerland known as a hub for crypto and dodgy finance"),
         ],
         patterns=[

@@ -1,4 +1,4 @@
-from epstein_files.people.contact import Contact, organization, epstein_co, epstein_trust
+from epstein_files.people.contact import Contact, acronym_org, organization, epstein_co, epstein_trust
 from epstein_files.util.constant.names import JEAN_LUC_BRUNEL, JEFFREY_EPSTEIN
 
 NAME = 'Nasir Jones'
@@ -9,6 +9,10 @@ CONTACT_INFO = Contact(
     emailer_pattern=r"Jeffrey Epstein|jeevacation",
     info="one and only"
 )
+
+
+def test_acronym_org():
+    assert acronym_org('International Peace Institute').emailer_pattern == r"I\.?P\.?I\.?|International Peace Institute"
 
 
 def test_repr():
