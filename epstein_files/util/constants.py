@@ -970,7 +970,12 @@ EMAILS_CONFIG = [
         author=GANBAT_CHULUUNKHUU,
         description=f"Esptein wants \"a job re water /energy\" for someone ({RENATA_BOLOTOVA} {QUESTION_MARKS})",
     ),
-    EmailCfg(id='EFTA00845330', author=GREG_WYLER, author_reason='"Greg" + Wyler is on other emails with Stern and Epstein at that time'),
+    EmailCfg(id='EFTA02469895', author=GREG_WYLER, author_uncertain=True),
+    EmailCfg(
+        id='EFTA00845330',
+        author=GREG_WYLER,
+        author_reason='"Greg" + Wyler is on other emails with Stern and Epstein at that time',
+    ),
     EmailCfg(id='EFTA02640711', author=JABOR_Y, description='Jabor Y / HBJ home address', is_interesting=True),
     EmailCfg(id='EFTA02334332', author=JASON_CALACANIS),
     EmailCfg(
