@@ -5,6 +5,7 @@ from typing import Self
 
 from rich.text import Text
 
+from epstein_files.documents.emails.constants import FALLBACK_TIMESTAMP
 from epstein_files.output.epstein_highlighter import highlighter
 from epstein_files.output.highlight_config import get_style_for_name
 from epstein_files.output.rich import TEXT_LINK
@@ -51,6 +52,13 @@ class TextMessage:
             self.text = self.text.replace('\n', '').replace(' ', '_')
         else:
             self.text = self.text.replace('\n', ' ')
+
+    @property
+    def timestamp_sort_key(self) -> datetime:
+        try:
+            return self.parse_timestamp()
+        except Exception as e:
+            return FALLBACK_TIMESTAMP
 
     def is_link(self) -> bool:
         return self.text.startswith('http')
