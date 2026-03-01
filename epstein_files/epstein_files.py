@@ -22,6 +22,7 @@ from epstein_files.documents.emails.constants import UNINTERESTING_EMAILERS
 from epstein_files.documents.emails.util import split_up_dilorio
 from epstein_files.documents.json_file import JsonFile
 from epstein_files.documents.messenger_log import MSG_REGEX, MessengerLog
+from epstein_files.documents.messenger_log_pdf import IMESSAGE_PDF_IDS, MessengerLogPdf
 from epstein_files.documents.other_file import OtherFile
 from epstein_files.output.rich import console
 from epstein_files.people.person import INVALID_FOR_EPSTEIN_WEB, PEOPLE_BIOS, Person
@@ -499,6 +500,8 @@ def document_cls(doc: Document) -> Type[Document]:
         return Document
     elif doc.text[0] == '{':
         return JsonFile
+    elif doc.file_id in IMESSAGE_PDF_IDS:
+        return MessengerLogPdf
     elif doc.is_email:
         return Email
     elif doc.file_info.is_doj_file:

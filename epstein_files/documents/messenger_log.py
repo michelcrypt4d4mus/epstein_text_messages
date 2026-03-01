@@ -1,8 +1,7 @@
-import logging
 import re
 from collections import defaultdict
 from dataclasses import dataclass, field
-from datetime import datetime, timedelta
+from datetime import datetime
 
 from rich.console import Console, ConsoleOptions, NewLine, RenderResult
 from rich.table import Table
@@ -39,7 +38,7 @@ class MessengerLog(Communication):
 
     def __post_init__(self):
         super().__post_init__()
-        self.messages = [self._build_message(match) for match in MSG_REGEX.finditer(self.text)]
+        self.messages = self._extract_messages()
 
     @property
     def is_interesting(self) -> bool | None:
@@ -117,6 +116,9 @@ class MessengerLog(Communication):
             text=match.group(4).strip(),
             timestamp_str=match.group(2).strip(),
         )
+
+    def _extract_messages(self) -> list[TextMessage]:
+        return [self._build_message(match) for match in MSG_REGEX.finditer(self.text)]
 
     def _extract_recipients(self) -> list[Name]:
         return [JEFFREY_EPSTEIN]

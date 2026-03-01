@@ -1,6 +1,7 @@
 import re
 from dataclasses import dataclass, field, fields
 from datetime import datetime
+from typing import Self
 
 from rich.text import Text
 
@@ -73,6 +74,12 @@ class TextMessage:
             return Text.from_markup(f"[link={self.text}]{self.text}[/link]", style=TEXT_LINK)
         else:
             return highlighter(self.text)
+
+    def __eq__(self, other: Self):
+        return self.author == other.author and \
+               self.text == other.text and \
+               self.timestamp_str == other.timestamp_str and \
+               self.author_str == other.author_str
 
     def __rich__(self) -> Text:
         timestamp_txt = self.timestamp_txt().append(' ')
