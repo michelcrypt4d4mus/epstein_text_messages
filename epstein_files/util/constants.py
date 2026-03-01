@@ -138,7 +138,8 @@ UNCONFIRMED_TEXTS_CONFIG = [
         author=STEVE_BANNON,
         author_uncertain='AI says Trump + NYT coverage',
         is_interesting=True,
-        description='contains discussion of Chinese criminal Miles Guo AKA Miles Kwok'
+        description='contains discussion of Chinese criminal Miles Guo AKA Miles Kwok',
+        people=[JEFFREY_EPSTEIN, MILES_GUO, STEVE_BANNON]
     ),
     TextCfg(id='031045', author=STEVE_BANNON, author_uncertain='AI says Trump and New York Times coverage'),
     TextCfg(id='027275', is_interesting=True, comment='"Crypto- Kerry- Qatar -sessions"')
@@ -291,6 +292,7 @@ EMAILS_CONFIG = [
         description="Bank Leumi would get in trouble for helping Americans avoid taxes a few years after this",
     ),
     EmailCfg(id='EFTA01775500', author=DAVID_STERN, author_reason='in quoted reply', description=f'"PA" is probably {PRINCE_ANDREW}'),
+    EmailCfg(id='EFTA02410642', description=f'"PA" is probably {PRINCE_ANDREW}'),
     EmailCfg(id='EFTA02570707', author=DAVID_STERN, author_uncertain='in quoted reply', truncate_to=NO_TRUNCATE),
     EmailCfg(id='031460', author=EDWARD_JAY_EPSTEIN, author_reason='quoted reply has edwardjayepstein.com', is_fwded_article=True),
     EmailCfg(
@@ -1369,7 +1371,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA02731577', date='2024-10-16T00:00:00', date_uncertain='actually reply timestamp'),
     EmailCfg(id='EFTA02730468', author=USANYS, recipients=[USANYS], date='2019-07-11T08:25:00', date_uncertain='just wrong'),
     # Generated basd on OtherFile.extract_timestamp()
-    EmailCfg(id='EFTA02731783', date='2022-01-21 17:28:00'),
+    EmailCfg(id='EFTA02731783', author=USANYS, date='2022-01-21 17:28:00'),
     EmailCfg(id='EFTA00039888', date='2019-05-14 16:49:00'),
     EmailCfg(id='EFTA00040145', date='2021-11-09 17:24:30'),
     EmailCfg(id='EFTA02730485', date='2021-12-03 00:00:00'),
@@ -1395,7 +1397,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA01784901', description=f"{JEREMY_RUBIN} has cashed multiple checks directly from Epstein", is_interesting=True),
     EmailCfg(
         id='EFTA02634615',
-        description=f"Indyke says Epstein didn't want his name associated with his investment in Carbyne / Reporty",
+        description=f"Indyke says Epstein didn't want his name associated with his investment in {CARBYNE} / Reporty",
         is_interesting=True,
         truncate_to=4000,
     ),
@@ -1407,17 +1409,18 @@ EMAILS_CONFIG = [
         is_interesting=True,
         show_with_name=GANBAT_CHULUUNKHUU
     ),
+    EmailCfg(id='EFTA00637023', description=f"discussion of getting around laws against money laundering in places like Myanmar + Mongolia"),
+    EmailCfg(id='EFTA02573653', description=f'discussion of {PRINCE_ANDREW}\'s Urramoor, "Howard" is probably Howard Lutnick which Urramoor partnered with'),
     EmailCfg(id='EFTA02629771', description=f"discussion of {RENATA_BOLOTOVA}'s employment at IPI", is_interesting=True),
-    EmailCfg(id='EFTA00637023', description=f"discussion of getting around laws against laundering money in places like Myanmar and Mongolia"),
-    EmailCfg(id='EFTA02396341', description='the Sharia Coin gambit', is_interesting=True),
-    EmailCfg(id='EFTA02630431', description=f"Carbyne FKA 'Reporty' is an Israeli company invested in by Epstein, Junkermann, and {EHUD_BARAK}"),
+    EmailCfg(id='EFTA02630431', description=f"{CARBYNE} FKA 'Reporty' is an Israeli company invested in by Epstein, Junkermann, and {EHUD_BARAK}"),
     EmailCfg(id='EFTA00671263', description="Eagle's View Capital Management September 2017 Performance Update"),
     EmailCfg(id='EFTA00836182', description=f'email to investors in {VALAR_FUND}'),
-    EmailCfg(id='EFTA02573653', description=f'discussion of {PRINCE_ANDREW}\'s Urramoor, "Howard" is probably Howard Lutnick which Urramoor partnered with'),
     EmailCfg(id='EFTA02592748', description=f"Epstein asking {BROCK_PIERCE} for a favour related to someone named 'Sue'", truncate_to=300),
     EmailCfg(id='EFTA01008242', description='Epstein passes on an investment in Radius'),
     EmailCfg(id='EFTA00955694', description=f"Epstein thanks {ELON_MUSK} for the SpaceX tour that Musk has said never happened", is_interesting=True),
     EmailCfg(id='EFTA00630134', description=f'Epstein recommends Signal encrypted messenger to {ALLEGED_KARIM_WADE}', is_interesting=True),
+    EmailCfg(id='EFTA00941197', description=f'Epstein appears to be helping with an investment in Jawbone by {HEDOSOPHIA}'),
+    EmailCfg(id='EFTA00927227', description=f"{IAN_OSBORNE} pitches his new venture fund {HEDOSOPHIA} to Epstein", is_interesting=True),
     EmailCfg(id='EFTA01767036', description=f'"Karim" is probably {ALLEGED_KARIM_WADE}'),
     EmailCfg(id='EFTA02513560', description=f"{JEAN_LUC_BRUNEL} doesn't want to speak on the phone", truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA02671523', description=f"Jones is former Google chief technology advocate / CEO of Epstein investment Wearality"),
@@ -1431,6 +1434,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA01003346', description=f"{PETER_THIEL} tells Epstein to invest in his fund", is_interesting=True),
     EmailCfg(id='EFTA00758140', description="possibly about Sarah Ferguson?"),
     EmailCfg(id='EFTA01013413', description='Reza Bundy is the founder of IronPlanet'),
+    EmailCfg(id='EFTA02396341', description='the Sharia Coin gambit', is_interesting=True),
     EmailCfg(id='EFTA02633194', description=f'Why is {NICOLE_JUNKERMANN} quoting an appraisal by "FSB (Russians)"?', is_interesting=True),
     # EmailCfg(id='EFTA00039689', description=f"{SEC_WHISTLEBLOWER} re: Signature Bank, Hapoalim, Bioptix/RIOT, Barry Honig, etc."),
     # EmailCfg(id='EFTA00093702', description=f"{SEC_WHISTLEBLOWER}", comment="rest is visible in EFTA00039689 after 102_000 chars"),
@@ -1454,17 +1458,17 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA02608800', duplicate_ids=['EFTA01010308']),
     EmailCfg(id='EFTA00870649', duplicate_ids=['EFTA01932408']),
     EmailCfg(id='EFTA00717931', duplicate_ids=['EFTA01774218']),
-    EmailCfg(id='EFTA01776411', duplicate_ids=['EFTA02691069']),
     EmailCfg(id='EFTA02390441', duplicate_ids=['EFTA02403336']),
     EmailCfg(id='EFTA00428083', duplicate_ids=['EFTA02183761']),
     EmailCfg(id='EFTA00432350', duplicate_ids=['EFTA02187050']),
     EmailCfg(id='EFTA00432352', duplicate_ids=['EFTA02187120']),
     EmailCfg(id='EFTA00373948', duplicate_ids=['EFTA02113506']),
     EmailCfg(id='EFTA00870717', duplicate_ids=['EFTA01932706']),
-    EmailCfg(id='EFTA00915302', duplicate_ids=['EFTA01860910', 'EFTA01986221', 'EFTA01776411']),
+    EmailCfg(id='EFTA00915302', duplicate_ids=['EFTA01860910', 'EFTA01986221', 'EFTA01776411', 'EFTA02691069']),
     EmailCfg(id='EFTA01776613', duplicate_ids=['EFTA01860812', 'EFTA00915297', 'EFTA02691059']),
     EmailCfg(id='EFTA01998247', is_interesting=True, show_with_name=ELON_MUSK),
     EmailCfg(id='019321', truncate_to=700),
+    EmailCfg(id='013484', truncate_to=700),
     EmailCfg(id='022247', truncate_to=2000),
     EmailCfg(id='EFTA00982094', truncate_to=250),
     EmailCfg(id='EFTA00915298', truncate_to=300),
@@ -1518,6 +1522,8 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA02179653', show_with_name=CHRIS_POOLE),
     EmailCfg(id='EFTA01987383', show_with_name=CHRIS_POOLE),
     EmailCfg(id='EFTA00909508', comment='party at Bunker'),
+    EmailCfg(id='EFTA00718804', non_participants=[MILES_GUO]),
+    EmailCfg(id='EFTA00932122', non_participants=[MILES_GUO]),
 ]
 
 
@@ -2329,6 +2335,8 @@ OTHER_FILES_ACADEMIA = [
         duplicate_ids=['029356'],  # 029356 is zoomed in corner
         is_interesting=False,
     ),
+    EmailCfg(id='EFTA00954900', description=f'Epstein donation to Mount Sinai'),
+    EmailCfg(id='EFTA00955864', description=f'Epstein donation to Mount Sinai', is_interesting=False)
 ]
 
 # resumes and application letters
@@ -2532,11 +2540,15 @@ OTHER_FILES_GIRLS = [
     EmailCfg(id='EFTA02551185', comment=BORIS_NIKOLIC),
     EmailCfg(id='EFTA02538269', duplicate_ids=['EFTA01866636'], comment=BORIS_NIKOLIC),
     EmailCfg(id='EFTA00671662', author='Miranda', author_reason='quoted signature'),
+    EmailCfg(id='EFTA02027844', author=UNKNOWN_GIRL, description='permission to "fuck someone with a condom"', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA01990168', author=UNKNOWN_GIRL, is_interesting=True),
     EmailCfg(id='EFTA02431535', author=UNKNOWN_GIRL),
     EmailCfg(id='EFTA01875607', author=UNKNOWN_GIRL),
+    EmailCfg(id='EFTA02441035', author=STEVEN_VICTOR_MD, description="complaining about free treatment for Epstein's girls"),
+    EmailCfg(id='EFTA00738485', recipients=[STEVEN_VICTOR_MD], truncate_to=640, comment=STEVEN_VICTOR_MD),
     EmailCfg(id='EFTA00897668', people=[JEAN_LUC_BRUNEL, JEFFREY_EPSTEIN, UNKNOWN_GIRL], recipients=[UNKNOWN_GIRL]),
     EmailCfg(id='EFTA00848644', recipients=[UNKNOWN_GIRL], is_interesting=True, comment='"take a picture of your pussy"'),
+    EmailCfg(id='EFTA01953412', description=f'{EVA_DUBIN} suggests Epstein endow "The Epstein Floor For Women" at Mt. Sinai'),
     EmailCfg(id='EFTA01811230', description=f'"Renat" is probably {RENATA_BOLOTOVA}'),
     EmailCfg(id='EFTA02557291', description='possibly recruiting girls'),
     EmailCfg(id='EFTA01022353', description='George Models in Odessa, "She said she was 14-15 yo"', is_interesting=True),
@@ -3159,6 +3171,9 @@ NOT_CHRONOLOGICAL_VIEW_IDS = [
     'EFTA00747181',
     'EFTA00758140',
     'EFTA01979689',
+    'EFTA00878255',
+    'EFTA00766770',
+    '030609',
     '022247',
     '030095',
     '022234',
@@ -3209,6 +3224,7 @@ NOT_CHRONOLOGICAL_VIEW_IDS = [
     '030721',
     '030785',
     '029497',
+    '030795',
     'EFTA02465832',
     '030444',
     '030788',
