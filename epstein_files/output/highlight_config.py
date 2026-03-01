@@ -1075,7 +1075,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact('Laurie Cameron', "currency trading"),
             Contact(
                 name=LEON_BLACK,
-                info='Apollo CEO who paid Epstein tens of millions for "tax advice"',
+                info='Apollo CEO who paid Epstein more than $150 million for "tax advice"',
                 emailer_pattern=r"Leon\s*Black?|(?<!Marc )Leon(?! (Botstein|Jaworski|Wieseltier))",
                 match_partial=None,
             ),
@@ -1089,7 +1089,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(NORMAN_D_RAU, "managing director at Morgan Stanley"),
             Contact(PAUL_BARRETT, r"Alpha Group Capital", r"Paul Barre(d|tt)|Barrett,? Paul( S)?", match_partial=None),
             Contact(PAUL_MORRIS, f"Epstein's primary private banker at JP Morgan then {DEUTSCHE_BANK}", r"morris, paul|Paul Morris"),
-            Contact('Skip Rimer', "Milken Institute (Michael Milken)"),
+            Contact('Skip Rimer', "Michael Milken's Milken Institute"),
             Contact('Steven Elkman', f"{DEUTSCHE_BANK}"),
             Contact('Stephen Schwarzman', 'CEO of Blackstone', r"(Ste(phen|ve) )?Schwart?z?man"),
             Contact(TANCREDI_MARCHIOLO, "hedge fund manager"),
@@ -1103,12 +1103,12 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             ),
             organization(
                 DEUTSCHE_BANK,
-                'favoured bank of Trump, Epstein, and money launderers',
+                'favoured bank of Jeffrey Epstein, the Trump family, and Russian money launderers',
                 r"Deutsche? (Asset|(Post)?Bank)|\bDB\b(?!\s+Zw)",
                 link_to_bio='https://www.ft.com/content/b1d9e8c4-1874-4c82-941d-9a2e1512bc4c',
             ),
             organization("FirstBank", 'Puerto Rican bank used by Epstein', r"First Bank( of Puerto Rico)?"),
-            organization('Goldman Sachs', emailer_pattern=r"Goldman( Sachs)", is_interesting=False),
+            organization('Goldman Sachs', emailer_pattern=r"Goldman( Sachs)?", is_interesting=False),
             organization('Julius Baer', 'Swiss bank'),
         ],
         patterns=[
