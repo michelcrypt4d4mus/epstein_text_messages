@@ -54,6 +54,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         style='light_goldenrod2',
         contacts=[
             Contact('Daniel Kahneman', "Nobel economic sciences laureate and cognitivie psychologist (?)", r"Dan(iel|ny) Kahneman"),
+            Contact(DANIEL_SCHMACHTENBERGER, "founder of Civilization Research Institute", link_to_bio='https://civilizationemerging.com/about/'),
             Contact(DAVID_HAIG, "evolutionary geneticist?", emailer_pattern=r"David Haig|Haig, David"),
             Contact('David Grosof', "MIT Sloan School of Management"),
             Contact('Ed Boyden', f"{MIT_MEDIA_LAB} neurobiology professor"),

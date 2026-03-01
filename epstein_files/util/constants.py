@@ -1312,7 +1312,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00369335', recipients=[LESLEY_GROFF]),
     EmailCfg(id='EFTA02227488', recipients=[LESLEY_GROFF]),
     EmailCfg(id='EFTA02175423', recipients=[LESLEY_GROFF], truncate_to=650),
-    EmailCfg(id='EFTA02256631', recipients=[LESLEY_GROFF], truncate_to=NO_TRUNCATE),
+    EmailCfg(id='EFTA02256631', description=f"{MASHA_DROKOVA} introduces {DANIEL_SCHMACHTENBERGER}", recipients=[LESLEY_GROFF], truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA00482121', recipients=[LESLEY_GROFF]),
     EmailCfg(id='EFTA00368951', recipients=[LESLEY_GROFF], author_reason='can be seen in EFTA00368958'),
     EmailCfg(id='EFTA00313867', recipients=[LESLEY_GROFF], truncate_to=NO_TRUNCATE),
