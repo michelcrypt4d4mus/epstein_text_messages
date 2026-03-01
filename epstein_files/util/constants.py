@@ -138,7 +138,8 @@ UNCONFIRMED_TEXTS_CONFIG = [
         author=STEVE_BANNON,
         author_uncertain='AI says Trump + NYT coverage',
         is_interesting=True,
-        description='contains discussion of Chinese criminal Miles Guo AKA Miles Kwok'
+        description='contains discussion of Chinese criminal Miles Guo AKA Miles Kwok',
+        people=[JEFFREY_EPSTEIN, MILES_GUO, STEVE_BANNON]
     ),
     TextCfg(id='031045', author=STEVE_BANNON, author_uncertain='AI says Trump and New York Times coverage'),
     TextCfg(id='027275', is_interesting=True, comment='"Crypto- Kerry- Qatar -sessions"')
@@ -1396,7 +1397,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA01784901', description=f"{JEREMY_RUBIN} has cashed multiple checks directly from Epstein", is_interesting=True),
     EmailCfg(
         id='EFTA02634615',
-        description=f"Indyke says Epstein didn't want his name associated with his investment in Carbyne / Reporty",
+        description=f"Indyke says Epstein didn't want his name associated with his investment in {CARBYNE} / Reporty",
         is_interesting=True,
         truncate_to=4000,
     ),
@@ -1408,17 +1409,17 @@ EMAILS_CONFIG = [
         is_interesting=True,
         show_with_name=GANBAT_CHULUUNKHUU
     ),
+    EmailCfg(id='EFTA00637023', description=f"discussion of getting around laws against money laundering in places like Myanmar + Mongolia"),
+    EmailCfg(id='EFTA02573653', description=f'discussion of {PRINCE_ANDREW}\'s Urramoor, "Howard" is probably Howard Lutnick which Urramoor partnered with'),
     EmailCfg(id='EFTA02629771', description=f"discussion of {RENATA_BOLOTOVA}'s employment at IPI", is_interesting=True),
-    EmailCfg(id='EFTA00637023', description=f"discussion of getting around laws against laundering money in places like Myanmar and Mongolia"),
-    EmailCfg(id='EFTA02396341', description='the Sharia Coin gambit', is_interesting=True),
-    EmailCfg(id='EFTA02630431', description=f"Carbyne FKA 'Reporty' is an Israeli company invested in by Epstein, Junkermann, and {EHUD_BARAK}"),
+    EmailCfg(id='EFTA02630431', description=f"{CARBYNE} FKA 'Reporty' is an Israeli company invested in by Epstein, Junkermann, and {EHUD_BARAK}"),
     EmailCfg(id='EFTA00671263', description="Eagle's View Capital Management September 2017 Performance Update"),
     EmailCfg(id='EFTA00836182', description=f'email to investors in {VALAR_FUND}'),
-    EmailCfg(id='EFTA02573653', description=f'discussion of {PRINCE_ANDREW}\'s Urramoor, "Howard" is probably Howard Lutnick which Urramoor partnered with'),
     EmailCfg(id='EFTA02592748', description=f"Epstein asking {BROCK_PIERCE} for a favour related to someone named 'Sue'", truncate_to=300),
     EmailCfg(id='EFTA01008242', description='Epstein passes on an investment in Radius'),
     EmailCfg(id='EFTA00955694', description=f"Epstein thanks {ELON_MUSK} for the SpaceX tour that Musk has said never happened", is_interesting=True),
     EmailCfg(id='EFTA00630134', description=f'Epstein recommends Signal encrypted messenger to {ALLEGED_KARIM_WADE}', is_interesting=True),
+    EmailCfg(id='EFTA00927227', description=f"{IAN_OSBORNE} pitches his new venture fund {HEDOSOPHIA} to Epstein"),
     EmailCfg(id='EFTA01767036', description=f'"Karim" is probably {ALLEGED_KARIM_WADE}'),
     EmailCfg(id='EFTA02513560', description=f"{JEAN_LUC_BRUNEL} doesn't want to speak on the phone", truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA02671523', description=f"Jones is former Google chief technology advocate / CEO of Epstein investment Wearality"),
@@ -1432,6 +1433,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA01003346', description=f"{PETER_THIEL} tells Epstein to invest in his fund", is_interesting=True),
     EmailCfg(id='EFTA00758140', description="possibly about Sarah Ferguson?"),
     EmailCfg(id='EFTA01013413', description='Reza Bundy is the founder of IronPlanet'),
+    EmailCfg(id='EFTA02396341', description='the Sharia Coin gambit', is_interesting=True),
     EmailCfg(id='EFTA02633194', description=f'Why is {NICOLE_JUNKERMANN} quoting an appraisal by "FSB (Russians)"?', is_interesting=True),
     # EmailCfg(id='EFTA00039689', description=f"{SEC_WHISTLEBLOWER} re: Signature Bank, Hapoalim, Bioptix/RIOT, Barry Honig, etc."),
     # EmailCfg(id='EFTA00093702', description=f"{SEC_WHISTLEBLOWER}", comment="rest is visible in EFTA00039689 after 102_000 chars"),
@@ -1518,6 +1520,8 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA02179653', show_with_name=CHRIS_POOLE),
     EmailCfg(id='EFTA01987383', show_with_name=CHRIS_POOLE),
     EmailCfg(id='EFTA00909508', comment='party at Bunker'),
+    EmailCfg(id='EFTA00718804', non_participants=[MILES_GUO]),
+    EmailCfg(id='EFTA00932122', non_participants=[MILES_GUO]),
 ]
 
 
@@ -3218,6 +3222,8 @@ NOT_CHRONOLOGICAL_VIEW_IDS = [
     '030721',
     '030785',
     '029497',
+    '030795',
+    '013484',
     'EFTA02465832',
     '030444',
     '030788',
