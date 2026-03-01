@@ -844,13 +844,18 @@ EMAILS_CONFIG = [
     EmailCfg(id='028925', fwded_text_after='> on Jan 4, 2015'),
     EmailCfg(id='029773', fwded_text_after='Omar Quadhafi', duplicate_ids=['012685']),
     EmailCfg(id='012197_4', fwded_text_after='Thanks -- Jay', is_fwded_article=False),
-    EmailCfg(id='026449', description="comments about Trump's 'former bridge girl and toy'", is_interesting=True),
     EmailCfg(
         id='030727',
         description='Epstein requesting help for Russia, discussion of unknown dead Chinese shareholder',
         is_interesting=True,
         truncate_to=400,
     ),
+    EmailCfg(
+        id='025879',
+        description="internal email from Epstein's island manager to Epstein's lawyer saying Bill Clinton was never on the island",
+        is_interesting=True
+    ),
+    EmailCfg(id='026449', description="comments about Trump's 'former bridge girl and toy'", is_interesting=True),
     EmailCfg(id='028847', description=f"the announcement of a hunt for Putin's illicit money seems to greatly concern Epstein and {JOI_ITO}"),
     EmailCfg(id='033377', description="Epstein says he knows Russian oligarch Oleg Deripaska", is_interesting=True),
     EmailCfg(id='032229', description='Michael Wolff offers ideas for entrapping Trump', is_interesting=True),
