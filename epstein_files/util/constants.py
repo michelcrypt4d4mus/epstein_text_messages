@@ -2153,6 +2153,7 @@ OTHER_FILES_MONEY = [
         author='Organized Crime Drug Enforcement Task Force',
         description='report on DEA investigations into Epstein related drug money laundering',
     ),
+    DocCfg(id='EFTA01265973', description="large transfers around time of Epstein arrest"),
     DocCfg(id='EFTA00016884', description="Epstein's last will and testament", date='2014-11-18'),
     DocCfg(id='EFTA01266380', description="Epstein's 2014 Trust with bequests"),
     DocCfg(id='EFTA01282282', description=f"Epstein Butterfly Trust (sole beneficiary {KARYNA_SHULIAK})"),

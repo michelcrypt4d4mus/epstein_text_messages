@@ -253,30 +253,15 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         style='spring_green4',
         contacts=[
             Contact(ALIREZA_ITTIHADIEH, "CEO Freestream Aircraft Limited", r"Alireza.[Il]ttihadieh", match_partial='both'),
-            Contact('André Balazs', 'hotelier, CEO of André Balazs Properties', r"Andre Bala(sz|zs)"),
             Contact(BARRY_J_COHEN, emailer_pattern=r"barry ((j.?|james) )?cohen?", match_partial=None),
             Contact('Barry Zelin', 'Axiom Capital'),
-            Contact('Daniel Rosenberg', 'real estate developer', match_partial=None),
-            Contact(
-                DAVID_MITCHELL,
-                "New York real estate developer, Mitchell Holdings",
-                r"David( J\.?)? Mitchell",
-                match_partial=None,
-            ),
             Contact('David Rowland', f"{PRINCE_ANDREW}'s trusted money man whom Epstein does not like", match_partial=None),
             Contact('Ed Razek', "Victoria's Secret executive"),
-            Contact(GERALD_BARTON, "Maryland property developer Landmark Land Company"),
             Contact('Jeanne Houweling', f'CEO of Adfin, a company Epstein and {HOWARD_LUTNICK} invested in'),
             Contact(
                 'Les Wexner',
                 "CEO of Victoria's Secret, Abercrombie & Fitch, gave Epstein a house and power of attorney",
                 r"(Les(lie)? )?Wexner",
-            ),
-            Contact(
-                MARC_LEON,
-                "Epstein's realtor in Morocco, Luxury Properties Sari",
-                r"Marc[.\s]+(Kensington|Leon)|Kensington2",
-                match_partial=None,
             ),
             Contact(
                 NICOLE_JUNKERMANN,
@@ -287,6 +272,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(GORDON_GETTY, "heir to oil tycoon J. Paul Getty"),
             Contact('Reza Bundy', f"founder of IronPlanet"),
             Contact(ROBERT_LAWRENCE_KUHN, "investment banker, China expert", r"Robert (Lawrence )?Kuhn"),
+            Contact('Sam Belzberg', "Canadian businessman"),
             Contact(STEVE_WYNN, 'gambling magnate', match_partial=None),
             Contact(TOM_PRITZKER, "chairman of The Pritzker Organization and Hyatt Hotels"),
             company(ATT_COURT_APPEARANCE_TEAM, "AT&T", is_interesting=False),
@@ -730,9 +716,10 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         label='employee',
         style='medium_purple4',
         contacts=[
-            Contact('Alfredo Rodriguez', "Epstein's butler, stole the journal", match_partial=None),
+            Contact('Adriana Ross', 'named co-conspirator', match_partial=None),
+            Contact('Alfredo Rodriguez', "Epstein's butler, stole Epstein's black book", match_partial=None),
             Contact('Bella Klein', "Epstein's accountant"),
-            Contact('Bernard Kruger', "Epstein's doctor"),
+            Contact('Bernard Kruger', "Epstein's doctor", match_partial=None),
             Contact(CECILIA_STEEN, f'Epstein assistant who moved to Dubai'),
             Contact(DAPHNE_WALLACE, "logistics and schedule coordination", r"Da.hne Wallace", match_partial=None),
             Contact(EDUARDO_ROBLES, "home builder at Creative Kingdom Dubai", r"Ed(uardo)? Robles", match_partial=None),
@@ -750,14 +737,11 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(MERWIN_DELA_CRUZ, "housekeeper", r"Merwin"),
             Contact(NADIA_MARCINKO, "Lolita Express pilot", r"Na[dď]i?a Marcinko(v[aá])?"),
             Contact('Perry Lang', f"Epstein's personal chef 1998-2002", r"(Adam )?Perry Lang"),
+            Contact('Rich Barnett', "logistics for Epstein's properties", match_partial=None),
+            Contact('Sarah Kellen', "now Sarah Vickers, named co-conspirator", r"(Sarah )?(Kellen|Vickers)"),
             Contact('Sean J. Lancaster', "airplane reseller"),
             Contact('Steve Griffis', 'AKA "Steve from downstairs", building employee', r"Steve (Griffis|\(from downstairs\))"),
             Contact(STORY_COWLES, "Epstein's male assistant")
-        ],
-        patterns=[
-            r"Adriana Ross",
-            r"(Sarah )?Kellen", r"Vickers",  # Married name is Metiers
-            r"Rich Barnett",
         ],
     ),
     HighlightedNames(
@@ -1055,8 +1039,6 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"NASDAQ",
             r"philanthrop(i(es|st)|y)",
             r"ponz[il] scheme",
-            r"real estate( developer)?",
-            r"(reverse )?mortgage",
             r"stock market",
             r"Trust(ee| Estate)",
             r"(income )?tax(e[ds])?( code)?",
@@ -1194,6 +1176,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 r"David Ste(m|rn?)|ds[@®]witangroup",
                 match_partial=None
             ),
+            Contact('Jill Iscol', 'heiress, philanthropist, IF Hummingbird Foundation'),
             Contact(
                 name=JONATHAN_FARKAS,
                 info=f"son of {ANDREW_FARKAS}, heir to the Alexander's department store fortune",
@@ -2436,7 +2419,33 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Biosphere",
         ],
     ),
-
+    HighlightedNames(
+        label='real estate',
+        style='spring_green3',
+        contacts=[
+            Contact('André Balazs', 'hotelier, CEO of André Balazs Properties', r"Andre Bala(sz|zs)"),
+            Contact('Daniel Rosenberg', 'real estate developer', match_partial=None),
+            Contact(
+                DAVID_MITCHELL,
+                "New York real estate developer, Mitchell Holdings",
+                r"David( J\.?)? Mitchell",
+                match_partial=None,
+            ),
+            Contact(GERALD_BARTON, "Maryland property developer Landmark Land Company"),
+            Contact('Kira Titenva', 'real estate agent'),
+            Contact(
+                MARC_LEON,
+                "Epstein's realtor in Morocco, Luxury Properties Sari",
+                r"Marc[.\s]+(Kensington|Leon)|Kensington2",
+                match_partial=None,
+            ),
+        ],
+        patterns=[
+            r"properties",
+            r"real estate( developer)?",
+            r"(reverse )?mortgage",
+        ]
+    ),
     # Individuals
     HighlightedNames(
         contacts=[
