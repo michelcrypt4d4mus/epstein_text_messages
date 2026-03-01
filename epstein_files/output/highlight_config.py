@@ -1246,7 +1246,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             company('MDC', "Metropolitan Detention Center, jail where Epstein died", r"Metropolitan Detention Center|MDC"),
             company('OFAC', 'Office of Foreign Assets Control, agency in charge of sanctions', r"Office of Foreign Assets Control|OFAC"),
             company(
-                'Securities & Exchange Commission',
+                SECURITIES_AND_EXCHANGE_COMMISSION,
                 "AKA 'SEC', US market regulator",
                 r"sec\.?gov|Securities (&|and) Exchange Commission|SEC Filing",
             ),
