@@ -2089,7 +2089,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             ),
         ],
         patterns=[
-            r"Australian?(?! Ave)",
+            r"Austrai?lian?(?! Ave)",
             r"Bangkok",
             r"Burm(a|ese)",
             r"Cambodian?",
