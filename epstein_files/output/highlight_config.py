@@ -2028,6 +2028,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(
                 'Yuri Milner',
                 f'Russian-Israeli investor whom Epstein says is managing "Russian gangster money"',
+                link_to_bio='https://www.nytimes.com/2017/11/05/world/yuri-milner-facebook-twitter-russia.html',
                 match_partial_names='both',
             ),
             company('Alfa Bank', 'Russian bank often used by FSB', r"Alfa( Bank)?"),
