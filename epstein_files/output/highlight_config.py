@@ -491,7 +491,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 'Marc Andreessen',
                 'co-founder of crypto heavy venture fund Andreessen Horowitz AKA a16z, Trump convert',
                 r"adreeson|(Marc\s*)?(?<!Gavin )Andreess?en(?!\s+Horowitz)",
-                is_organization=True
+                match_partial_names=None,
             ),
             Contact('Matthew Gilbert', 'assistant to Howard Lutnick', match_partial_names=None),
             Contact("Matthew Roszak", 'co-founder of Bloq, accusations of insider trading'),
@@ -512,8 +512,9 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact("Wladimir van der Laan", 'bitcoin core developer', r"Wladimir( van der Laan)?"),
             company(
                 'a16z',
-                "AKA Andressen Horowitz, crypto heavy venture fund founded by Marc Andreessen and Ben Horowitz",
+                "AKA 'Andressen Horowitz', crypto heavy venture fund of Marc Andreessen / Ben Horowitz, invested in many scams",
                 r"a16z|Andrees?sen Horowitz",
+                link_to_bio='https://x.com/hashtag/slugsofa16z?src=hashtag_click',
             ),
             company('Alphabit', 'crypto fund'),
             company('BGC', f"{CANTOR} related firm of {HOWARD_LUTNICK}"),
@@ -523,7 +524,11 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             company(BLOCKSTREAM, f"early crypto firm co-founded by {ADAM_BACK} and {AUSTIN_HILL}"),
             company(BLOCKCHAIN_CAPITAL, f"crypto VC fund co-founded by Bart Stephens and {BROCK_PIERCE}"),
             company('Bloq', 'blockchain company', is_interesting=False),
-            company('BTC-e', 'infamous Russian crypto exchange through which bitcoins stolen from Mt. Gox were laundered'),
+            company(
+                'BTC-e',
+                'Russian crypto exchange through which Mt. Gox stolen funds were laundered, CEO Vinnik convicted but pardoned by Trump',
+                link_to_bio='https://en.wikipedia.org/wiki/BTC-e',
+            ),
             company(CANTOR, f"Howard Lutnick's financial firm", r"Cantor(,? (Fitzgerald|Opportunities|Ventures?))?"),
             company('Coinbase', 'largest American crypto exchange invested in by Epstein'),
             company(
@@ -567,6 +572,12 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 'company of Bo Collins who ended up testifying in trial of chinese criminal Miles Guo / Miles Kwok',
             ),
             company('Mindshift', f"conference on Epstein's island organized by {AL_SECKEL}", r"Mindshift( conference)?"),
+            company(
+                'Mt. Gox',
+                f"FKA 'Magic the Gathering: Online Exchange, infamous early bitcoin market that was hacked / robbed",
+                r"Mt\.? Gox",
+                link_to_bio='https://en.wikipedia.org/wiki/Mt._Gox',
+            ),
             company(
                 'Noble Bank',
                 f"failed crypto friendly bank with ties to Tether and {BROCK_PIERCE}",
