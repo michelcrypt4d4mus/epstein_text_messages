@@ -54,6 +54,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         style='light_goldenrod2',
         contacts=[
             Contact('Daniel Kahneman', "Nobel economic sciences laureate and cognitivie psychologist (?)", r"Dan(iel|ny) Kahneman"),
+            Contact(DANIEL_SCHMACHTENBERGER, "founder of Civilization Research Institute", link_to_bio='https://civilizationemerging.com/about/'),
             Contact(DAVID_HAIG, "evolutionary geneticist?", emailer_pattern=r"David Haig|Haig, David"),
             Contact('David Grosof', "MIT Sloan School of Management"),
             Contact('Ed Boyden', f"{MIT_MEDIA_LAB} neurobiology professor"),
@@ -2089,7 +2090,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             ),
         ],
         patterns=[
-            r"Australian?(?! Ave)",
+            r"Austrai?lian?(?! Ave)",
             r"Bangkok",
             r"Burm(a|ese)",
             r"Cambodian?",
@@ -2198,7 +2199,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         label='Trump',
         style='red3 bold',
         contacts=[
-            Contact('Alan Weisselberg', f"Donald Trump's accountant", r"(Alan )?Weiss?elberg"),
+            Contact('Alan Weisselberg', f"Donald Trump's accountant", r"(Alan )?Weiss?e?lberg"),
             Contact('Bruce Moskowitz', "'Trump's health guy' according to Epstein", match_partial_names=None),
             Contact('Marla Maples', 'ex-wife of Donald Trump', match_partial_names='both'),
             Contact('Michael Caputo', 'former Putin and Gazprom PR guy, Trump appointee, acolyte of Roger Stone'),
