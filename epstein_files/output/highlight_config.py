@@ -1942,7 +1942,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(MARIANA_IDZKOWSKA, emailer_pattern=r"Mariana [Il]d[źi]kowska?"),
             Contact('Michael Sanka', f"{JEAN_LUC_MC2} {QUESTION_MARKS}"),
             Contact('Naomi Campbell', 'supermodel', match_partial=None),
-            Contact('Ramsey Elkholy', f"scouted models for Epstein, member of Monotronic", match_partial='both'),
+            Contact('Ramsey Elkholy', f"scouted girls for Epstein, member of Monotronic", match_partial='both'),
             Contact('Vladimir Yudashkin', "director of the 1 Mother Agency"),
             Contact('Yfke Sturm', 'model from Holland', match_partial='both'),
             Contact('lorraine@mc2mm.com', JEAN_LUC_MC2),
@@ -1964,7 +1964,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         contacts=[
             Contact(
                 AL_SECKEL,
-                "Isabel Maxwell's husband, Mindshift conference, mysterious death",
+                "Isabel Maxwell's husband, Mindshift conference organizer, mysterious death",
                 link_to_bio='https://www.tabletmag.com/sections/news/articles/the-illusionist-al-seckel',
             ),
             Contact('Barnaby Marsh', "co-founder of philanthropy services company Saint Partners"),
