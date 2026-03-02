@@ -1242,7 +1242,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact('Philip Kafka', f"president of Prince Concepts (son of {TERRY_KAFKA}?)", match_partial=None),
             Contact('Sam Jaradeh', f"business partner of {BORIS_NIKOLIC}"),
             Contact(STEPHEN_HANSON, emailer_pattern=r"ste(phen|ve) hanson?|Shanson900"),
-            Contact(TERRY_KAFKA, "CEO of billboard co. Impact Outdoor, 45 year Epstein friend", match_partial=None),
+            Contact(TERRY_KAFKA, "CEO of Impact Outdoor (highway billboards), lifelong friend of Epstein", match_partial=None),
             Contact(TOM_BARRACK, "long time friend of Trump"),
             Contact('Warren Eisenstein', 'childhood friend of Epstein'),
         ],
