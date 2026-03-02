@@ -1486,7 +1486,7 @@ file_id,category,author,is_interesting,timestamp,recipients_str,sent_from_device
 030624,email,Tonja Haddad Coleman,,2013-10-18 22:38:16,Darren Indyke;Debbie Fein;Jeffrey Epstein,Sent from my iPhone,
 030626,email,Jeffrey Epstein,,2018-12-21 21:22:54,Alan Dershowitz;Darren Indyke;Kathryn Ruemmler;Ken Starr;Martin Weinberg,,
 030628,email,Jeffrey Epstein,,2011-07-01 22:38:00,Peggy Siegal,,
-030630,email,Maria Prusakova,True,2016-07-08 20:10:26,Jeffrey Epstein,,Maria Prusakova Masha Prusso / Maria Prusakova asks about Zubair Khan
+030630,social,Maria Prusakova,True,2016-07-08 20:10:26,Jeffrey Epstein,,Maria Prusakova Masha Prusso / Maria Prusakova asks about Zubair Khan
 030631,email,Kathryn Ruemmler,,2015-08-27 14:27:09,Jeffrey Epstein,Sent from my iPhone,
 030635,email,Faith Kates,,2016-06-24 10:49:32,Jeffrey Epstein,Sent from my iPhone,
 030636,email,Linda Stone,,2016-09-25 19:10:59,Jeffrey Epstein,Co-authored with iPhone auto-correct,
@@ -1724,8 +1724,8 @@ file_id,category,author,is_interesting,timestamp,recipients_str,sent_from_device
 031328,email,Ghislaine Maxwell,,2011-05-18 11:27:18,Jeffrey Epstein,,
 031329,email,middle.east.update@hotmail.com,False,2011-06-01 22:47:23,Jeffrey Epstein,,
 031332,email,Ghislaine Maxwell,,2011-06-02 14:20:56,Jeffrey Epstein,,
-031333,email,,False,2011-06-18 14:51:44,Jeffrey Epstein,Sent from my iPad,"Fort Knox conspiracy theory, looks like a Russian disinfo article"
-031335,email,,False,2011-06-18 14:59:52,Jeffrey Epstein,,"Fort Knox conspiracy theory, looks like a Russian disinfo article"
+031333,email,,False,2011-06-18 14:51:44,Jeffrey Epstein,Sent from my iPad,"Fort Knox conspiracy theory, looks like Russian disinfo"
+031335,email,,False,2011-06-18 14:59:52,Jeffrey Epstein,,"Fort Knox conspiracy theory, looks like Russian disinfo"
 031338,email,Ghislaine Maxwell,,2015-02-28 03:47:18,Jeffrey Epstein,,
 031339,email,David Schoen,,2016-08-12 13:28:18,Jeffrey Epstein,Sent from AOL Mobile Mail,David Schoen
 031340,email,Paul Krassner,False,2018-08-01 23:59:13,Jeffrey Epstein,,
@@ -2052,7 +2052,7 @@ file_id,category,author,is_interesting,timestamp,recipients_str,sent_from_device
 032369,email,Landon Thomas Jr,,2016-11-14 14:51:53,Jeffrey Epstein,,
 032370,email,Landon Thomas Jr,,2016-11-14 14:54:06,Jeffrey Epstein,,
 032372,email,Landon Thomas Jr,,2016-11-14 14:59:28,Jeffrey Epstein,,
-032374,email,Maria Prusakova,True,2016-11-16 18:48:02,Jeffrey Epstein,,Maria Prusakova
+032374,email,Maria Prusakova,True,2016-11-16 18:48:02,Jeffrey Epstein,,Maria Prusakova boyfriend named Christian mentioned
 032375,email,Maria Prusakova,True,2016-11-16 18:55:56,Jeffrey Epstein,,Maria Prusakova
 032376,email,Linda Pinto,,2016-11-25 11:53:06,Jeffrey Epstein,,
 032378,email,Lawrance Visoski,,2016-11-25 22:28:28,Jeffrey Epstein,Sent from my iPhone,
