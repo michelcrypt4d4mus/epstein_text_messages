@@ -1860,18 +1860,18 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(
                 name=HEATHER_MANN,
                 info=f"South African former model, ex-girlfriend of {PRINCE_ANDREW} (?)",
-                emailer_pattern=r"Heather Mann?",
                 match_partial=None,
             ),
             Contact(
-                name=JEAN_LUC_BRUNEL,
-                info=f"{MC2_MODEL_MGMT} founder, #MeToo problems, died by suicide in French jail",
-                emailer_pattern=r"Jean Luc Brunel?|JeanLuc",
+                JEAN_LUC_BRUNEL,
+                f"{MC2_MODEL_MGMT} founder, #MeToo problems, died by suicide in French jail",
+                r"Jean Luc Brunel?|JeanLuc",
+                link_to_bio='https://en.wikipedia.org/wiki/Jean-Luc_Brunel',
                 match_partial='both',
             ),
             Contact(
                 name=JEFF_FULLER,
-                info=f"president of {JEAN_LUC_BRUNEL}'s MC2 Model Management USA",
+                info=f"president of {JEAN_LUC_MC2} USA",
                 emailer_pattern=r"jeff@mc2mm.com|Jeff Fuller",
                 match_partial=None,
             ),
