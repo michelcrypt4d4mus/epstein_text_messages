@@ -2223,7 +2223,7 @@ OTHER_FILES_MONEY = [
     DocCfg(id='EFTA01273102', description=f"payment from Epstein to {RENATA_BOLOTOVA}'s father's account at Sberbank"),
     DocCfg(id='EFTA00238499', description='wire transfer to Signature Bank account'),
     DocCfg(id='EFTA00000476', replace_text_with='photo of JEFFREY EPSTEIN CASH DISBURSEMENTS for the month 2006-09', date='2006-09-01'),
-    DocCfg(id='EFTA01086463', description=f"{MORTIMER_ZUCKERMAN}'s art collection invetory and valuation report"),
+    DocCfg(id='EFTA01086463', description=f"{MORTIMER_ZUCKERMAN}'s art collection invetory and valuation report", is_valid_for_name_scan=False),
     # Emails
     EmailCfg(id='EFTA00037187', is_interesting=True),
     EmailCfg(id='EFTA00371120', description=f"Epstein appears to invest in {ATORUS}"),

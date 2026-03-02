@@ -274,8 +274,9 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             ),
             Contact(
                 NICOLE_JUNKERMANN,
-                f"ex-model, NJF Capital/JunkermannGroup, investor in Revolut, online poker, China",
+                f"German countess / ex-model, NJF Capital/JunkermannGroup, investor in Revolut, gambling, China",
                 r"(Nicole )?Junke(nn|rm)ann?",
+                link_to_bio='https://www.yahoo.com/news/articles/german-countess-advised-nhs-called-130000074.html',
             ),
             Contact('Nikolajs Smirnovs', f"{NICOLE_JUNKERMANN}'s NJF Capital / JunkermannGroup", r"Nikolajs (NJF|Smirnovs)"),
             Contact(GORDON_GETTY, "heir to oil tycoon J. Paul Getty"),
@@ -1210,9 +1211,10 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         style='tan',
         contacts=[
             Contact(
-                name=ANDREW_FARKAS,
-                info="heir to Alexander's department store fortune, Island Capital Group",
-                emailer_pattern=r"Andrew (L\.? )?Farkas|Farkas, Andrew( L\.?)?",
+                ANDREW_FARKAS,
+                "heir to Alexander's department store fortune who has claimed he barely knew Epstein",
+                r"Andrew (L\.? )?Farkas|Farkas, Andrew( L\.?)?",
+                link_to_bio='https://www.nytimes.com/2026/02/09/nyregion/farkas-epstein-lawsuit-ties.html',
             ),
             Contact(DANGENE_AND_JENNIE_ENTERPRISE, "founders of the members-only CORE club", match_partial=None),
             Contact(
@@ -1461,7 +1463,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             organization('Bank Leumi', 'Israeli bank that helped Americans avoid taxes', r"(Bank )?Leumi"),
             organization(
                 CARBYNE,
-                f"Israeli co. FKA Reporty invested in by Epstein, {EHUD_BARAK}, and {NICOLE_JUNKERMANN}",
+                f'Israeli co. FKA "Reporty" invested in by Epstein, {EHUD_BARAK}, and {NICOLE_JUNKERMANN}',
                 r"Carbyne|Reporty",
                 link_to_bio='https://www.forbes.com/sites/thomasbrewster/2026/02/10/epstein-police-surveillance-investments-with-ehud-barak/',
             ),
@@ -2071,6 +2073,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 r"(Marii?y?a|Masha) (Bucher|Drokova)",
                 link_to_bio='https://www.forbes.com/sites/iainmartin/2026/02/04/how-jeffrey-epstein-helped-his-publicist-become-a-big-time-venture-capitalist/',
             ),
+            Contact('Mikhail Prokhorov', 'Russian-Israeli oligarch'),
             Contact('Nicholas Kovarsky', f"friend of {SERGEY_BELYAKOV}", r"Nic(k|holas) Kovarsky"),
             Contact('Oleg Boyko', 'oligarch'),
             Contact(
@@ -2148,7 +2151,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Muscovite",
             r"(Natalia )?Veselnitskaya",
             r"Onexim",  # Prokhorov investment vehicle
-            r"Prokhorov",
+            r"Revolut",
             r"Rakishev",
             r"Rosneft",
             r"RT",
