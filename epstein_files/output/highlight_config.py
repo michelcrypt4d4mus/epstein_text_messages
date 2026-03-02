@@ -1471,6 +1471,13 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact('Alain Forget', "author of \"How To Get Out Of This World ALIVE\"", match_partial=None),
             Contact('Alex Yablon', "New York Magazine fact checker (?)"),
             Contact(
+                'Conchita Sarnoff',
+                'journalist Epstein attempted to bribe',
+                r"Con[cs]hita( Sarnoff)?",
+                link_to_bio='https://conchitasarnoff.com/',
+                match_partial='both',
+            ),
+            Contact(
                 'Dylan Love',
                 f'Business Insider / The Next Web, financial support from Epstein via {MASHA_DROKOVA}',
                 match_partial=None,
@@ -1531,7 +1538,6 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"China Daily",
             r"(C|MS)?NBC( News)?",
             r"CNN(politics?)?",
-            r"Con[cs]hita", r"Sarnoff",
             r"Daily Business Review",
             r"(?<!Virgin[-\s]Islands[-\s])(The\s*)?Daily\s*(Beast|Mail|News|Telegraph)",
             r"David Brooks",
