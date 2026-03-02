@@ -508,7 +508,11 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 emailer_pattern=r"Lutnic?k(,? Howard)|How.rd( W(\.|illiam)?)? Lutnick|HWL",
                 link_to_bio='https://cryptadamus.substack.com/p/trumps-transition-team-is-tethered',
             ),
-            Contact(JEFFREY_WERNICK, "former COO of Parler, involved in numerous crypto companies like Bitforex"),
+            Contact(
+                JEFFREY_WERNICK,
+                "former COO of Parler, involved in numerous crypto companies like Bitforex",
+                link_to_bio='https://www.npr.org/2021/03/23/980341703/ex-ceo-sues-parler-over-arrogant-theft-claims-site-was-hijacked',
+            ),
             Contact(JEREMY_RUBIN, "developer/researcher", r"Jeremy Rub(in|m)", match_partial=None),
             Contact("Jim Pallotta", f"{MIT_MEDIA_LAB} advisory board"),
             Contact("Kathryn Haun", "crypto VC at Haun Ventures, former a16z", link_to_bio='https://www.haun.co/'),
