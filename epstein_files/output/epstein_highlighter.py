@@ -49,10 +49,10 @@ class EpsteinHighlighter(RegexHighlighter):
 
 
 class NonEpsteinHighlighter(EpsteinHighlighter):
-    """Highlights everything except Epstein's name."""
+    """Highlights everything except Epstein's name and financial terms."""
     highlights: list[re.Pattern] = [
         hg.regex for hg in HIGHLIGHT_GROUPS
-        if not (isinstance(hg, HighlightedNames) and hg.label == JEE)
+        if not (isinstance(hg, HighlightedNames) and hg.label in [JEE, 'financial'])
     ]
 
 

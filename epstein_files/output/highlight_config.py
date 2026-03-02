@@ -1214,7 +1214,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         contacts=[
             Contact(
                 name=ANDREW_FARKAS,
-                info="heir to the Alexander's department store fortune, Island Capital Group",
+                info="heir to Alexander's department store fortune, Island Capital Group",
                 emailer_pattern=r"Andrew (L\.? )?Farkas|Farkas, Andrew( L\.?)?",
             ),
             Contact(DANGENE_AND_JENNIE_ENTERPRISE, "founders of the members-only CORE club", match_partial=None),
@@ -1227,7 +1227,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact('Jill Iscol', 'heiress, philanthropist, IF Hummingbird Foundation'),
             Contact(
                 name=JONATHAN_FARKAS,
-                info=f"son of {ANDREW_FARKAS}, heir to the Alexander's department store fortune",
+                info=f"son of {ANDREW_FARKAS}, heir to Alexander's department store fortune",
                 emailer_pattern=r"Jonath[ao]n Fark(a|u)(s|il)",
                 match_partial=None,
             ),
@@ -1238,7 +1238,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 match_partial=None,
             ),
             Contact('Peter Thomas Roth', "student of Epstein at Dalton, skincare company founder", match_partial=None),
-            Contact('Philip Diaz', 'unknown', match_partial=None),
+            Contact('Philip Diaz', match_partial=None),
             Contact('Philip Kafka', f"president of Prince Concepts (son of {TERRY_KAFKA}?)", match_partial=None),
             Contact('Sam Jaradeh', f"business partner of {BORIS_NIKOLIC}"),
             Contact(STEPHEN_HANSON, emailer_pattern=r"ste(phen|ve) hanson?|Shanson900"),
