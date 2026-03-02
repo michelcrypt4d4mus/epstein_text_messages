@@ -259,7 +259,6 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(ALIREZA_ITTIHADIEH, "CEO Freestream Aircraft Limited", r"Alireza.[Il]ttihadieh", match_partial='both'),
             Contact(BARRY_J_COHEN, emailer_pattern=r"barry ((j.?|james) )?cohen?", match_partial=None),
             Contact('Barry Zelin', 'Axiom Capital'),
-            Contact('David Rowland', f"{PRINCE_ANDREW}'s trusted money man whom Epstein does not like", match_partial=None),
             Contact('Ed Razek', "Victoria's Secret executive"),
             Contact('Jeanne Houweling', f'CEO of Adfin, a company Epstein and {HOWARD_LUTNICK} invested in'),
             Contact(
@@ -1070,10 +1069,12 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 info="CIO Honeycomb Asset Management, Epstein invested in Spotify through him",
                 emailer_pattern=r"David Fis?zel",
             ),
+            Contact('David Rowland', f"{PRINCE_ANDREW}'s trusted money man at Banque Havilland whom Epstein does not trust", match_partial=None),
             Contact(JES_STALEY, "former CEO of Barclays", r"J(ames|es) (E\.? )?Staley"),
             Contact(JIDE_ZEITLIN, f"former partner at {GOLDMAN_SACHS}, allegations of sexual misconduct"),
             Contact('Ira Zicherman', f"{BEAR_STEARNS} exec, co-trustee with Ghislaine"),
             Contact('John Paulson', f"hedge fund guy, Trump donor"),
+            Contact('Jonathan Rowland', f"Banque Havilland", match_partial=None),
             Contact('Kamila Bobinska', f"Argan Capital Advisors, Dots Ventures, Movens Capital, ex-{DEUTSCHE_BANK}"),
             Contact('Laurie Cameron', "currency trading"),
             Contact(
