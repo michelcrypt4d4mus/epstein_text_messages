@@ -193,7 +193,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact('David Brenner', "American comedian and actor"),
             Contact('David Geffen', 'record label and film studio owner'),
             Contact('Larry Gagosian', 'famous art dealer'),
-            Contact('Marla Prather', 'art curator at MoMA'),
+            Contact('Marla Prather', f'art curator at MoMA, wife of {MORTIMER_ZUCKERMAN}'),
             Contact('Nick Jarecki', "American filmmaker"),
             Contact('Richard Merkin', "painter, illustrator and arts educator"),
             Contact(STEVEN_PFEIFFER, "Associate Director at Independent Filmmaker Project (IFP)"),
