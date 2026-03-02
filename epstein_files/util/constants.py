@@ -2600,6 +2600,7 @@ OTHER_FILES_GIRLS = [
     EmailCfg(id='EFTA00848644', recipients=[UNKNOWN_GIRL], is_interesting=True, description='"take a picture of your pussy"'),
     EmailCfg(id='EFTA00950368', description='"any [girl] friends for me?"', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA00883738', description=f"{DASHA_GRUPMAN} looking to rent townhouse for diplomats", show_with_name=DASHA_GRUPMAN),
+    EmailCfg(id='EFTA01140210', description='Epstein asks about fake Instagram followers', is_interesting=True),
     EmailCfg(id='EFTA01953412', description=f'{EVA_DUBIN} suggests Epstein endow "The Epstein Floor For Women" at Mt. Sinai'),
     EmailCfg(id='EFTA01768670', description='"find girls for the agency"'),
     EmailCfg(id='EFTA01022353', description='George Models in Odessa is basically a porn site, "She said she was 14-15 yo"', is_interesting=True),

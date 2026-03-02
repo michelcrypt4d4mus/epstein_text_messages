@@ -2448,6 +2448,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 link_to_bio='https://x.com/JOKAQARMY1/status/2026731420832481549',
             ),
             Contact(KATHERINE_KEATING, "daughter of former Australian prime minister Paul Keating", match_partial=None),
+            Contact('Ekaterina Gusarova', f'AKA "Katya", Instagram model {QUESTION_MARKS}', r"(Ekaterina|Katya)? Gusm?arova"),
             Contact('Miranda', f'appears to have done an internship at {CLIFFORD_CHANCE} with {MARIA_PRUSAKOVA}?'),
             Contact(PAULA_HEIL_FISHER, "Epstein's ex-girlfriend who works in opera now", match_partial=None),
             Contact(
