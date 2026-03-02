@@ -175,8 +175,9 @@ STATE_CODES = {
     for row in STATES_PIPE_DELIMITED.split('\n')
 }
 
+# some states excluded for pattern matching reasons re: important locations or names
 STATE_NAME_PATTERNS = [
     f"{state}n?" if state.endswith('a') else state
     for state in STATE_CODES.values()
-    if state not in ['Arizon', 'Florida', 'New York', 'Texas', 'Washington']  # excluded for pattern matching reasons re: important locations
+    if state not in ['Arizon', 'Florida', 'New York', 'Texas', 'Virginia', 'Washington']
 ]

@@ -2681,6 +2681,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Toronto",
             r"Tu(sc|cs)on",
             r"Vancouver",
+            r"Virginian?(?! (L\.?)? (Giuffre|Roberts))",
             r"Washington( D\.?C)?(?! Post)",
             r"Westchester",
         ],
