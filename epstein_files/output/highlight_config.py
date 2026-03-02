@@ -617,6 +617,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             organization('Ribbit Capital', 'crypto friendly venture fund'),
             organization('Ripple', 'token issuing company run by Trump megadonor Brad Garlinghouse'),
             organization('Silk Road', 'online illegal drug market, first real use case for crypto'),
+            organization('Stellar', 'blockchain architecture alternative to bitcoin and ethereum', r"stellar\.org"),
             organization('Tether', f"$180 billion stablecoin founded by {BROCK_PIERCE} whose money is managed by {HOWARD_LUTNICK}"),
             organization(
                 'Zerocoin',
