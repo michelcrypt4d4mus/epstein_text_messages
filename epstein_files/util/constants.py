@@ -1937,33 +1937,6 @@ OTHER_FILES_LEGAL = [
     DocCfg(id='017830', author=JASTA_SAUDI_LAWSUIT, description=f"legal text and court documents"),
     DocCfg(id='017904', author=JASTA_SAUDI_LAWSUIT, description=f"Westlaw search results", date='2019-01-01'),
     DocCfg(id='014037', author='Journal of Criminal Law and Criminology', description=f"article on {CVRA}"),
-    starr_letter('025353', '2008-05-19', ['010723', '019224'], 'redacted', non_participants=[LANDON_THOMAS]),
-    starr_letter('025704', '2008-05-27', ['010732', '019221'], 'redacted'),
-    starr_letter('012130', '2008-06-19', ['012135'], non_participants=[LESLEY_GROFF]),
-    letter(
-        id='031447',
-        author=MARTIN_WEINBERG,
-        recipients=['Melanie Ann Pustay', "Sean O'Neill"],
-        description=f"re: Epstein FOIA request"
-    ),
-    letter(
-        id='028965',
-        author=MARTIN_WEINBERG,
-        description=f"threatening libel lawsuit",
-        duplicate_ids=['028928'],
-        recipients=['ABC / Good Morning America'],
-    ),
-    DocCfg(
-        id='026793',
-        author='Mintz Fraade',
-        description=f"letter from {STEVEN_HOFFENBERG}'s lawyers offering to take over Epstein's business and resolve his legal issues",
-        date='2018-03-23',
-    ),
-    DocCfg(
-        id='020662',
-        author='Mishcon de Reya',
-        description=f"libel threat letter from {ALAN_DERSHOWITZ}'s British lawyers to Daily Mail",
-    ),
     DocCfg(
         id='029416',
         author="National Enquirer / Radar Online v. FBI",
@@ -1980,10 +1953,38 @@ OTHER_FILES_LEGAL = [
     DocCfg(id='028540', author='SCOTUS', description=f"decision in Budha Ismail Jam et al. v. INTERNATIONAL FINANCE CORP"),
     DocCfg(id='012197', author='SDFL', description=f"response to {JAY_LEFKOWITZ} on Epstein Plea Agreement Compliance"),
     DocCfg(id='022277', description=f"text of National Labour Relations Board (NLRB) law", is_interesting=False),
+    # legal letters
+    letter(
+        id='031447',
+        author=MARTIN_WEINBERG,
+        recipients=['Melanie Ann Pustay', "Sean O'Neill"],
+        description=f"re: Epstein FOIA request"
+    ),
+    letter(
+        id='028965',
+        author=MARTIN_WEINBERG,
+        description=f"threatening libel lawsuit",
+        duplicate_ids=['028928'],
+        recipients=['ABC / Good Morning America'],
+    ),
+    letter(
+        id='026793',
+        author=f"Mintz Fraade ({STEVEN_HOFFENBERG}'s lawyers)",
+        description=f"offering to take over Epstein's business and resolve his legal issues",
+        date='2018-03-23',
+        recipients=[DARREN_INDYKE],
+    ),
+    letter(
+        id='020662',
+        author=f"Mishcon de Reya ({ALAN_DERSHOWITZ}'s lawyers)",
+        description=f"threatening libel lawsuit",
+        recipients=['Daily Mail'],
+    ),
+    starr_letter('025353', '2008-05-19', ['010723', '019224'], 'redacted', non_participants=[LANDON_THOMAS]),
+    starr_letter('025704', '2008-05-27', ['010732', '019221'], 'redacted'),
+    starr_letter('012130', '2008-06-19', ['012135'], non_participants=[LESLEY_GROFF]),
 
     # DOJ files
-    DocCfg(id='EFTA00039153', author=BUREAU_OF_PRISONS, date='2019-01-06', description='List of Exhibits, Chapter 2'),
-    DocCfg(id='EFTA00039190', author=BUREAU_OF_PRISONS, date='2016-11-23', description='Special Housing Units', is_interesting=False),
     DocCfg(id='EFTA02730741', author=DOJ, date='2025-05-01', date_uncertain=True, description="Evidence list for 50D-NY-3027571 Filtering On 'Type(s): 1B'"),
     DocCfg(id='EFTA02730486', author=DOJ, date='2025-05-01', date_uncertain=True, description="Evidence list for 50D-NY-3027571 Filtering On '1A'"),
     DocCfg(id='EFTA00040006', author=DOJ, date='2019-08-27', description='Personal History of Defendant Jeffrey Epstein with grand jury indictment'),
@@ -2135,7 +2136,9 @@ OTHER_FILES_GOVERNMENT = [
         description=f"approved mail list during Epstein's 2009 incarceration in {PALM_BEACH}",
         show_full_panel=True,
     ),
-    DocCfg(id='EFTA00039025', author=BUREAU_OF_PRISONS, description=f"report on death of Jeffrey Epstein", is_interesting=True),
+    DocCfg(id='EFTA00039153', author=BUREAU_OF_PRISONS, description='List of Exhibits, Chapter 2', date='2019-01-06'),
+    DocCfg(id='EFTA00039025', author=BUREAU_OF_PRISONS, description="report on death of Jeffrey Epstein", is_interesting=True),
+    DocCfg(id='EFTA00039190', author=BUREAU_OF_PRISONS, description='Special Housing Units', date='2016-11-23', is_interesting=False),
     DocCfg(id='EFTA00039227', author=BUREAU_OF_PRISONS, replace_text_with='Inmate Discipline Program Statement'),
     DocCfg(id='EFTA00039295', author=BUREAU_OF_PRISONS, replace_text_with='Inmate Telephone Privileges Program Statement'),
     DocCfg(id='EFTA00039312', author=BUREAU_OF_PRISONS, replace_text_with='Program Statement / Memo about BOP Pharmacy Program'),
