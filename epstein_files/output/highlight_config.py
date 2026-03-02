@@ -1048,12 +1048,10 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Zurich",
         ],
     ),
-    HighlightedNames(
+    HighlightPatterns(
         label='financial',
         style=FINANCIAL_COLOR,
-        contacts=[
-            # company('SPAC', '"special purpose acquisition vehicle", backdoor way of selling companies to the public w/out much regulatory oversight'),
-        ],
+        use_word_boundary=True,
         patterns=[
             r"American Express",
             r"alterna[tv]i[tv]e finance",
@@ -1066,7 +1064,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"convertible note",
             r"donor advised fund",
             r"equities",
-            r"invest(ment|or)s?",
+            r"(?<!Kyara\s)invest(ment|or)s?",
             r"(junk )?bond",
             r"Mastercard",
             r"(naked )?shorting",
@@ -1166,9 +1164,11 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Andrew Nikou",
             r"Apollo",
             r"Bank of Scotland",
+            r"Bayerische Landesbank",
             r"(Bernie )?Madoff",
             r"Black(rock|stone)",
             r"B of A",
+            r"BHF Bank",
             r"Charles Schwab",
             r"Chase Bank",
             r"Cheetah Investment( Management)?",
@@ -2354,8 +2354,10 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         style='color(117)',
         category=TECH_BRO,
         patterns=[
+            r"Activision",
             r"AG?I",
             r"Artificial (General )?Intelligence",
+            r"Blizzard Entertainment",
             r"cyber( (security|space))?",
             r"deep learning",
             r"Dropbox",
@@ -2478,7 +2480,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Katie Johnson",
             r"(Midget )?strippers?",
             r"Minor Victim",
-            r"orgasm(ic|s)?"
+            r"orgasm(ic|s)?",
             r"pa?edophile",
             r"pussy",
             r"(?-i:S)anctum",

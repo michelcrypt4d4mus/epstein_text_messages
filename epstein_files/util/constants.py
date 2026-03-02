@@ -6,8 +6,8 @@ from itertools import groupby
 from epstein_files.documents.documents.config_builder import (WOLFF_EPSTEIN_ARTICLE_DRAFT, blaine_letter,
      fbi_defense_witness, fbi_report, letter, starr_letter, whistleblower_cfg, wolff_draft_cfg)
 from epstein_files.documents.documents.categories import CONSTANT_CATEGORIES, Interesting, Neutral
-from epstein_files.documents.documents.doc_cfg import (DEFAULT_TRUNCATE_TO, SHORT_TRUNCATE_TO, NO_TRUNCATE,
-     CommunicationCfg, DocCfg, EmailCfg, TextCfg, phone_bill_cfg)
+from epstein_files.documents.documents.doc_cfg import (DEFAULT_TRUNCATE_TO, GOLDMAN_INVESTMENT_MGMT,
+     SHORT_TRUNCATE_TO, NO_TRUNCATE, CommunicationCfg, DocCfg, EmailCfg, TextCfg, phone_bill_cfg)
 from epstein_files.documents.doj_files.full_text import EFTA00009622_TEXT
 from epstein_files.documents.emails.constants import FLIGHT_IN_2012_PEOPLE, IRAN_DEAL_RECIPIENTS, TRIVERS_CCS
 from epstein_files.util.helpers.string_helper import join_truthy, quote
@@ -2963,7 +2963,6 @@ OTHER_FILES_CRYPTO = [
     EmailCfg(id='EFTA02374960', description=f"Epstein says that he will fund a seat at MIT Media Lab for ZCash founder {MADARS_VIRZA}", is_interesting=True),
     # Misc / unsorted
     DocCfg(id='EFTA00605996', description='Wedbush BUY rating on Digital Currency Group GBTC', is_interesting=False),
-    DocCfg(id='EFTA02414991', description=f"Epstein signs up for World of Warcraft"),
     DocCfg(id='EFTA01388197', author=DEUTSCHE_BANK, description='bitcoin and blockchain symposium', date='2018-04-03', attached_to_email_id='EFTA01388354'),
     DocCfg(
         id='EFTA01612888',
@@ -2972,6 +2971,7 @@ OTHER_FILES_CRYPTO = [
     ),
     EmailCfg(id='EFTA00629471', author=JOHN_BROCKMAN, truncate_to=3000),
     EmailCfg(id='EFTA00899331', truncate_to=NO_TRUNCATE),
+    EmailCfg(id='EFTA02414991', description=f"Epstein signs up for World of Warcraft", truncate_to=350),
     EmailCfg(id='EFTA01388354', description=f"invitation to {DEUTSCHE_BANK} blockchain event with Mike Novogratz"),
     EmailCfg(id='EFTA01434500', description=f"everyone assumes Epstein's banker {PAUL_BARRETT} will want to know about the blockchain event"),
     EmailCfg(id='EFTA00993615', description=f"{MASHA_DROKOVA} explains the price of bitcoin can be manipulated if Epstein makes public comments"),
