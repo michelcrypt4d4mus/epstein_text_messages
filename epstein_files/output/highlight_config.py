@@ -1072,7 +1072,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"philanthrop(i(es|st)|y)",
             r"ponz[il] scheme",
             r"preferreds",
-            r"securities(?! fraud)",
+            r"securities(?! ((&|and) Exchange|fraud))",
             r"stock market",
             r"Trust(ee| Estate)s?",
             r"(income )?tax(e[ds])?( code)?",
@@ -1305,7 +1305,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             organization(
                 SECURITIES_AND_EXCHANGE_COMMISSION,
                 "AKA 'SEC', US market regulator",
-                r"sec\.?gov|Securities (&|and) Exchange Commission|SEC Filing",
+                r"sec\.?gov|Securities (&|and) Exchange Commission",
             ),
             law_enforcement(BUREAU_OF_PRISONS, r"bop\.gov|(Federal )?Bureau of Prisons"),
             law_enforcement('DOJ Inspector General'),
