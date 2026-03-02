@@ -1428,7 +1428,7 @@ file_id,category,author,is_interesting,timestamp,recipients_str,sent_from_device
 030417,email,Eva Dubin,,2011-03-08 23:49:00,Jeffrey Epstein,,
 030420,email,Stephen Hanson,,2011-03-09 01:51:00,Jeffrey Epstein,Sent from Steve Hanson's Blackberry,
 030423,email,Intelligence Squared,False,2011-04-28 12:31:12,Jeffrey Epstein,,
-030426,reputation,Ian Osborne & Partners,True,2011-06-14 00:00:00,,,reputation management Ian Osborne & Partners: reputation repair proposal (cites Michael Milken)
+030426,reputation,Ian Osborne,True,2011-06-14 00:00:00,,,reputation management Ian Osborne: reputation repair proposal citing Michael Milken
 030429,email,Tyler Shears,True,2014-03-20 18:19:00,Christina Galbraith;Jeffrey Epstein,,
 030430,email,John Brockman,,2017-02-06 20:34:19,Jeffrey Epstein,,
 030431,email,Michael Wolff,,2018-03-24 01:37:40,Jeffrey Epstein,,
@@ -1486,7 +1486,7 @@ file_id,category,author,is_interesting,timestamp,recipients_str,sent_from_device
 030624,email,Tonja Haddad Coleman,,2013-10-18 22:38:16,Darren Indyke;Debbie Fein;Jeffrey Epstein,Sent from my iPhone,
 030626,email,Jeffrey Epstein,,2018-12-21 21:22:54,Alan Dershowitz;Darren Indyke;Kathryn Ruemmler;Ken Starr;Martin Weinberg,,
 030628,email,Jeffrey Epstein,,2011-07-01 22:38:00,Peggy Siegal,,
-030630,email,Maria Prusakova,True,2016-07-08 20:10:26,Jeffrey Epstein,,Maria Prusakova Masha Prusso / Maria Prusakova asks about Zubair Khan
+030630,social,Maria Prusakova,True,2016-07-08 20:10:26,Jeffrey Epstein,,Maria Prusakova Masha Prusso / Maria Prusakova asks about Zubair Khan
 030631,email,Kathryn Ruemmler,,2015-08-27 14:27:09,Jeffrey Epstein,Sent from my iPhone,
 030635,email,Faith Kates,,2016-06-24 10:49:32,Jeffrey Epstein,Sent from my iPhone,
 030636,email,Linda Stone,,2016-09-25 19:10:59,Jeffrey Epstein,Co-authored with iPhone auto-correct,
@@ -1717,15 +1717,15 @@ file_id,category,author,is_interesting,timestamp,recipients_str,sent_from_device
 031307,email,Jeffrey Epstein,,2016-08-17 16:11:25,Darren Indyke,,
 031313,email,Jeffrey Epstein,,2016-08-18 14:47:14,Darren Indyke,,
 031319,email,Jeffrey Epstein,,2016-11-18 18:27:24,Landon Thomas Jr,,
-031320,email,Jeffrey Epstein,True,2017-11-21 13:44:04,Richard Kahn,,discussion of routing Gratitude foundation money through Peggy Siegal
+031320,email,Jeffrey Epstein,True,2017-11-21 13:44:04,Richard Kahn,,routing Gratitude foundation money through Peggy Siegal
 031325,email,Jeffrey Epstein,,2019-02-25 19:25:08,Michael Wolff,,
 031326,email,Ghislaine Maxwell,True,2011-04-02 19:09:39,Jeffrey Epstein,,"""that dog that hasn't barked is trump"""
 031327,email,Ghislaine Maxwell,,2011-05-18 11:27:04,Jeffrey Epstein,,
 031328,email,Ghislaine Maxwell,,2011-05-18 11:27:18,Jeffrey Epstein,,
 031329,email,middle.east.update@hotmail.com,False,2011-06-01 22:47:23,Jeffrey Epstein,,
 031332,email,Ghislaine Maxwell,,2011-06-02 14:20:56,Jeffrey Epstein,,
-031333,email,,False,2011-06-18 14:51:44,Jeffrey Epstein,Sent from my iPad,"Fort Knox conspiracy theory, looks like a Russian disinfo article"
-031335,email,,False,2011-06-18 14:59:52,Jeffrey Epstein,,"Fort Knox conspiracy theory, looks like a Russian disinfo article"
+031333,email,,False,2011-06-18 14:51:44,Jeffrey Epstein,Sent from my iPad,"Fort Knox conspiracy theory, looks like Russian disinfo"
+031335,email,,False,2011-06-18 14:59:52,Jeffrey Epstein,,"Fort Knox conspiracy theory, looks like Russian disinfo"
 031338,email,Ghislaine Maxwell,,2015-02-28 03:47:18,Jeffrey Epstein,,
 031339,email,David Schoen,,2016-08-12 13:28:18,Jeffrey Epstein,Sent from AOL Mobile Mail,David Schoen
 031340,email,Paul Krassner,False,2018-08-01 23:59:13,Jeffrey Epstein,,
@@ -2017,7 +2017,7 @@ file_id,category,author,is_interesting,timestamp,recipients_str,sent_from_device
 032312,email,Andres Serrano,,2016-10-10 21:30:57,Jeffrey Epstein,,
 032314,email,Andres Serrano,,2016-10-10 22:21:57,Jeffrey Epstein,,
 032317,email,Peter Attia,,2016-10-19 12:54:06,Jeffrey Epstein,,
-032319,email,Zubair Khan,True,2016-10-29 13:40:09,Jeffrey Epstein,,
+032319,social,Zubair Khan,True,2016-10-29 13:40:09,Jeffrey Epstein,,
 032320,email,Richard Kahn,,2016-10-29 21:04:53,Jeffrey Epstein,,
 032321,legal,Jane Doe v. Donald Trump and Jeffrey Epstein,,2016-10-04 00:00:00,,,Jane Doe v. Donald Trump and Jeffrey Epstein: Notice of Initial Conference
 032323,email,Zubair Khan,True,2016-11-04 12:43:32,Jeffrey Epstein,,
@@ -2052,7 +2052,7 @@ file_id,category,author,is_interesting,timestamp,recipients_str,sent_from_device
 032369,email,Landon Thomas Jr,,2016-11-14 14:51:53,Jeffrey Epstein,,
 032370,email,Landon Thomas Jr,,2016-11-14 14:54:06,Jeffrey Epstein,,
 032372,email,Landon Thomas Jr,,2016-11-14 14:59:28,Jeffrey Epstein,,
-032374,email,Maria Prusakova,True,2016-11-16 18:48:02,Jeffrey Epstein,,Maria Prusakova
+032374,email,Maria Prusakova,True,2016-11-16 18:48:02,Jeffrey Epstein,,Maria Prusakova boyfriend named Christian mentioned
 032375,email,Maria Prusakova,True,2016-11-16 18:55:56,Jeffrey Epstein,,Maria Prusakova
 032376,email,Linda Pinto,,2016-11-25 11:53:06,Jeffrey Epstein,,
 032378,email,Lawrance Visoski,,2016-11-25 22:28:28,Jeffrey Epstein,Sent from my iPhone,
@@ -2100,20 +2100,20 @@ file_id,category,author,is_interesting,timestamp,recipients_str,sent_from_device
 032457,email,Paul Krassner,,2017-02-08 00:34:24,Jeffrey Epstein;Nancy Cain,,Paul Krassner
 032458,email,Etienne Binant,,2017-02-10 17:40:45,Caroline Lang;Jeffrey Epstein,,discussion of acquiring pieces for Epstein's art collection
 032461,email,Caroline Lang,,2017-02-10 18:37:32,Etienne Binant;Jeffrey Epstein,,
-032464,email,Darren Indyke,,2017-02-15 11:11:40,Jeffrey Epstein,Sent from my iPhone,redacted discussion about art advisor Etienne Binant
-032467,email,Darren Indyke,,2017-02-15 11:49:48,Jeffrey Epstein,Sent from my iPhone,redacted discussion about art advisor Etienne Binant
+032464,email,Darren Indyke,,2017-02-15 11:11:40,Jeffrey Epstein,Sent from my iPhone,redacted discussion of art advisor Etienne Binant
+032467,email,Darren Indyke,,2017-02-15 11:49:48,Jeffrey Epstein,Sent from my iPhone,redacted discussion of art advisor Etienne Binant
 032471,email,Michael Wolff,,2017-02-15 13:16:03,Jeffrey Epstein,,
 032472,email,Kathryn Ruemmler,,2017-02-15 13:28:39,Jeffrey Epstein,Sent from my iPad,
 032474,email,Michael Wolff,,2017-02-15 13:31:07,Jeffrey Epstein,,
 032475,email,Michael Wolff,,2017-02-15 13:31:25,Jeffrey Epstein,,
 032476,email,Michael Wolff,,2017-02-15 13:53:41,Jeffrey Epstein,,
 032478,email,Michael Wolff,,2017-02-15 13:59:28,Jeffrey Epstein,,
-032480,email,Darren Indyke,,2017-02-15 17:54:14,Jeffrey Epstein,Sent from my Verizon 4G LTE Droid,redacted discussion about art advisor Etienne Binant
+032480,email,Darren Indyke,,2017-02-15 17:54:14,Jeffrey Epstein,Sent from my Verizon 4G LTE Droid,redacted discussion of art advisor Etienne Binant
 032484,email,Paul Krassner,,2017-02-16 00:07:16,Jeffrey Epstein,,
 032485,email,Landon Thomas Jr,,2017-02-16 01:36:00,Jeffrey Epstein,Sent from my iPhone,
-032486,email,Darren Indyke,,2017-02-17 02:34:42,Jeffrey Epstein,Sent from my iPhone,redacted discussion about art advisor Etienne Binant
-032491,email,Darren Indyke,,2017-02-17 19:00:21,Jeffrey Epstein,,redacted discussion about art advisor Etienne Binant
-032496,email,Darren Indyke,,2017-02-17 20:34:47,Jeffrey Epstein,,redacted discussion about art advisor Etienne Binant
+032486,email,Darren Indyke,,2017-02-17 02:34:42,Jeffrey Epstein,Sent from my iPhone,redacted discussion of art advisor Etienne Binant
+032491,email,Darren Indyke,,2017-02-17 19:00:21,Jeffrey Epstein,,redacted discussion of art advisor Etienne Binant
+032496,email,Darren Indyke,,2017-02-17 20:34:47,Jeffrey Epstein,,redacted discussion of art advisor Etienne Binant
 032502,email,Roy Black,,2017-02-19 00:01:21,Jeffrey Epstein,,
 032503,email,Thorbjørn Jagland,,2017-02-19 07:54:56,Jeffrey Epstein,,
 032504,email,Thorbjørn Jagland,,2017-02-19 21:11:12,Jeffrey Epstein,,
@@ -2353,7 +2353,7 @@ file_id,category,author,is_interesting,timestamp,recipients_str,sent_from_device
 032942,email,Jeffrey Epstein,,2016-12-07 17:30:18,Jonathan Farkas,,
 032943,email,Jeffrey Epstein,,2016-12-13 13:48:54,Michael Wolff,,
 032944,email,Jeffrey Epstein,,2016-12-15 15:58:59,Tom Pritzker,,
-032946,email,Jeffrey Epstein,True,2016-12-17 20:30:26,Jabor Y,,discussion of obtaining a Moroccan visa for an unnamed woman
+032946,email,Jeffrey Epstein,True,2016-12-17 20:30:26,Jabor Y,,discussion of obtaining a Moroccan visa for unnamed woman
 032948,email,Jeffrey Epstein,,2016-12-18 15:35:10,Tom Pritzker,,
 032949,email,Jeffrey Epstein,,2017-01-06 11:29:46,Sultan Ahmed Bin Sulayem,,
 032951,email,Jeffrey Epstein,False,2017-01-06 14:49:47,None;Raafat Alsabbagh,,
@@ -2365,11 +2365,11 @@ file_id,category,author,is_interesting,timestamp,recipients_str,sent_from_device
 032958,email,Jeffrey Epstein,,2017-01-15 14:28:57,Alireza Ittihadieh,,
 032961,email,Jeffrey Epstein,,2017-01-29 09:59:36,Landon Thomas Jr,,
 032963,email,Jeffrey Epstein,,2017-02-08 00:37:31,Paul Krassner,,
-032964,email,Jeffrey Epstein,,2017-02-15 11:37:13,Darren Indyke,Sent from my iPhone,redacted discussion about art advisor Etienne Binant
-032968,email,Jeffrey Epstein,,2017-02-15 11:37:26,Darren Indyke,,redacted discussion about art advisor Etienne Binant
+032964,email,Jeffrey Epstein,,2017-02-15 11:37:13,Darren Indyke,Sent from my iPhone,redacted discussion of art advisor Etienne Binant
+032968,email,Jeffrey Epstein,,2017-02-15 11:37:26,Darren Indyke,,redacted discussion of art advisor Etienne Binant
 032972,email,Jeffrey Epstein,,2017-02-15 13:52:46,Michael Wolff,,
 032974,email,Jeffrey Epstein,,2017-02-16 02:03:54,Landon Thomas Jr,,
-032975,email,Jeffrey Epstein,,2017-02-17 20:26:51,Darren Indyke,,redacted discussion about art advisor Etienne Binant
+032975,email,Jeffrey Epstein,,2017-02-17 20:26:51,Darren Indyke,,redacted discussion of art advisor Etienne Binant
 032980,email,Jeffrey Epstein,,2017-02-19 00:31:38,Reid Weingarten,,
 032982,email,Jeffrey Epstein,,2017-02-19 10:13:59,Thorbjørn Jagland,,
 032983,email,Jeffrey Epstein,,2017-03-03 16:27:13,Landon Thomas Jr,,
@@ -5027,16 +5027,16 @@ EFTA00031006,email,Geoffrey USANYS Berman,,2019-08-16 19:36:47,. ODAG,,
 EFTA00034357,misc,Bureau of Prisons,True,2019-08-10 00:00:00,,,Bureau of Prisons internal message about discovery of Epstein's body
 EFTA00036062,,,,2019-07-29 00:00:00,,,
 EFTA00037187,money,. NY FBI,True,2020-08-04 18:29:32,NY FBI,,
-EFTA00039025,misc,Bureau of Prisons,True,2021-12-13 00:00:00,,,Bureau of Prisons report on death of Jeffrey Epstein
+EFTA00039025,government,Bureau of Prisons,True,2021-12-13 00:00:00,,,Bureau of Prisons report on death of Jeffrey Epstein
 EFTA00039153,legal,Bureau of Prisons,,2019-01-06 00:00:00,,,"Bureau of Prisons List of Exhibits, Chapter 2"
-EFTA00039156,misc,Bureau of Prisons,,2013-07-17 00:00:00,,,
+EFTA00039156,government,Bureau of Prisons,,2013-07-17 00:00:00,,,
 EFTA00039190,legal,Bureau of Prisons,False,2016-11-23 00:00:00,,,Bureau of Prisons Special Housing Units
 EFTA00039208,,,,2015-07-06 00:00:00,,,
-EFTA00039227,misc,Bureau of Prisons,,2011-08-01 00:00:00,,,
+EFTA00039227,government,Bureau of Prisons,,2011-08-01 00:00:00,,,
 EFTA00039282,,,,2020-11-18 00:00:00,,,
-EFTA00039295,misc,Bureau of Prisons,,2008-02-11 00:00:00,,,
-EFTA00039312,misc,Bureau of Prisons,,2005-01-15 00:00:00,,,
-EFTA00039351,misc,Bureau of Prisons,,2003-09-10 00:00:00,,,
+EFTA00039295,government,Bureau of Prisons,,2008-02-11 00:00:00,,,
+EFTA00039312,government,Bureau of Prisons,,2005-01-15 00:00:00,,,
+EFTA00039351,government,Bureau of Prisons,,2003-09-10 00:00:00,,,
 EFTA00039356,,,,2019-09-17 00:00:00,,,
 EFTA00039357,email,Bureau of Prisons,,2019-08-12 08:58:00,DOJ Inspector General,,Bureau of Prisons
 EFTA00039367,,,,2019-12-01 00:00:00,,,
@@ -5346,7 +5346,7 @@ EFTA00615490,,,,2017-05-31 00:00:00,,,
 EFTA00617222,crypto,Valar Ventures,True,2020-09-01 00:00:00,,,Valar Ventures requesting money previously promised by Epstein to invest in a new opportunity
 EFTA00621239,crypto,Crypto Currency Partners II,True,2014-10-01 00:00:00,,,Crypto Currency Partners II investor report
 EFTA00621739,money,,True,2017-05-31 00:00:00,,,valuations of Epstein's investments
-EFTA00626220,email,Brock Pierce,True,2014-11-12 00:26:47,Jeffrey Epstein,,"discussion of a ""sidecar fund"" with Brock Pierce / Crypto Currency Partners II"
+EFTA00626220,crypto,Brock Pierce,True,2014-11-12 00:26:47,Jeffrey Epstein,,"setting up ""sidecar fund"" with Brock Pierce / Crypto Currency Partners II"
 EFTA00626844,email,Jabor Y,True,2017-07-02 08:55:46,Jeffrey Epstein,,
 EFTA00627622,email,,True,2017-07-04 14:25:04,Ganbat Chuluunkhuu,,
 EFTA00629471,crypto,John Brockman,True,2011-06-11 14:38:20,Jeffrey Epstein,,John Brockman
@@ -5374,7 +5374,7 @@ EFTA00645400,email,Brock Pierce,False,2014-11-14 20:31:04,Jeffrey Epstein,,
 EFTA00645449,email,Anastasiya Siroochenko,,2017-02-03 15:06:57,Arda Beskardes;Jeffrey Epstein,,Anastasiya Siroochenko
 EFTA00649516,email,Joi Ito,False,2015-01-13 20:39:14,Jeffrey Epstein,,
 EFTA00650026,email,Jeremy Rubin,True,2015-11-01 22:15:10,Jeffrey Epstein,,
-EFTA00652799,email,Paul Barrett,,2013-03-04 17:39:59,Jeffrey Epstein,,"Epstein calls Ari Glass ""a bit sketchy"" despite investing ~$50 million in his fund Boothbay"
+EFTA00652799,money,Paul Barrett,True,2013-03-04 17:39:59,Jeffrey Epstein,,"Epstein calls Ari Glass ""a bit sketchy"" despite investing ~$50 million in his fund Boothbay"
 EFTA00655658,email,Jeremy Rubin,True,2016-08-03 13:03:44,Jeffrey Epstein,,
 EFTA00656005,email,Donald Norman,,2011-07-21 23:14:22,Jeffrey Epstein,,Donald Norman
 EFTA00656691,email,Lesley Groff,,2011-11-22 12:56:31,Jeffrey Epstein,Sent from my iPhone,
@@ -6509,7 +6509,7 @@ EFTA02607472,email,,True,2018-12-28 22:05:00,,Sent from my iPhone,
 EFTA02607982,email,Jeffrey Epstein,True,2019-01-01 18:54:00,Ganbat Chuluunkhuu,,
 EFTA02608112,crypto,Jeffrey Epstein,True,2018-06-11 18:58:00,Richard Kahn,,
 EFTA02608800,email,Jeffrey Epstein,True,2017-09-23 16:05:00,Austin Hill,,
-EFTA02609062,email,Masha Drokova,True,2018-12-24 22:08:00,Jeffrey Epstein,,Masha Drokova is assembling a team
+EFTA02609062,girls,Masha Drokova,True,2018-12-24 22:08:00,Jeffrey Epstein,,Masha Drokova is assembling a team
 EFTA02610126,email,Jeffrey Epstein,True,2018-12-21 19:07:00,Madars Virza,,
 EFTA02610641,email,Richard Kahn,,2018-12-18 13:37:00,Jeffrey Epstein,,
 EFTA02611134,email,Renata Bolotova,True,2018-12-11 18:42:00,Jeffrey Epstein,,Renata Bolotova (???)

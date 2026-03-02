@@ -106,3 +106,78 @@ INDENTED_JOIN = f',{INDENT_NEWLINE}'
 
 WEEKDAYS = 'Sunday Monday Tuesday Wednesday Thursday Friday Saturday'.split()
 MONTHS = 'January February March April May June July August September October November December'.split()
+
+STATES_PIPE_DELIMITED = """
+AL|Alabama
+AK|Alaska
+AZ|Arizona
+AR|Arkansas
+CA|California
+CO|Colorado
+CT|Connecticut
+DE|Delaware
+FL|Florida
+GA|Georgia
+HI|Hawaii
+ID|Idaho
+IL|Illinois
+IN|Indiana
+IA|Iowa
+KS|Kansas
+KY|Kentucky
+LA|Louisiana
+ME|Maine
+MD|Maryland
+MA|Massachusetts
+MI|Michigan
+MN|Minnesota
+MS|Mississippi
+MO|Missouri
+MT|Montana
+NE|Nebraska
+NY|New York
+NV|Nevada
+NH|New Hampshire
+NJ|New Jersey
+NM|New Mexico
+NC|North Carolina
+ND|North Dakota
+OH|Ohio
+OK|Oklahoma
+OR|Oregon
+PA|Pennsylvania
+RI|Rhode Island
+SC|South Carolina
+SD|South Dakota
+TN|Tennessee
+TX|Texas
+UT|Utah
+VT|Vermont
+VA|Virginia
+WA|Washington
+WV|West Virginia
+WI|Wisconsin
+WY|Wyoming
+""".strip()
+
+OTHER_US_DELIMITED = """
+DC|District of Columbia
+AS|American Samoa
+GU|Guam
+MP|Northern Mariana Islands
+PR|Puerto Rico
+UM|United States Minor Outlying Islands
+VI|Virgin Islands, U.S.
+""".strip()
+
+STATE_CODES = {
+    row.split('|')[0]: row.split('|')[1]
+    for row in STATES_PIPE_DELIMITED.split('\n')
+}
+
+# some states excluded for pattern matching reasons re: important locations or names
+STATE_NAME_PATTERNS = [
+    f"{state}n?" if state.endswith('a') else state
+    for state in STATE_CODES.values()
+    if state not in ['Arizon', 'Florida', 'New York', 'Texas', 'Virginia', 'Washington']
+]

@@ -59,11 +59,13 @@ class HtmlTemplate:
             return 'Curated'
 
 
+CUSTOM_HTML_TEMPLATE = HtmlTemplate(
+    """<div class="doc_container page_container">\n        {code}\n    </div>"""
+)
+
 RICH_HTML_TEMPLATE = HtmlTemplate(
     f"""<pre style="font-family:{FONT_FAMILY}"><code style="font-family:inherit">{{code}}</code></pre>""",
 )
-
-CUSTOM_HTML_TEMPLATE = HtmlTemplate("""<div class="container">\n        {code}\n    </div>""")
 
 
 # Swap black for white

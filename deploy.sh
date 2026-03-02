@@ -137,6 +137,7 @@ fi
 print_deploy_step "Copying custom HTML chrono pages into place..."
 cp docs/chrono_real_html.html docs/index.html
 cp docs/chrono_real_html_mobile.html docs/mobile_chronological.html
+cp docs/real_html_chronological_emails.html docs/chronological_emails.html
 
 # Commit changes
 print_deploy_step "Committing changes..."

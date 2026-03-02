@@ -89,7 +89,7 @@ class DocPrinter:
             if isinstance(doc, Document):
                 doc.print()
                 doc_div = '\n'.join([self.print_characters_panel(self.new_names(doc), True), doc.to_html()])
-                self.html_elements.append(div_class(doc_div, 'bio_email_container'))
+                self.html_elements.append(div_class(doc_div, 'doc_container'))
                 self.printed_docs.append(doc)
             else:
                 console.print(doc)

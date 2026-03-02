@@ -160,6 +160,8 @@ class DocCfg:
     def __post_init__(self):
         if self.id in self.duplicate_ids:
             raise ValueError(f"{self.id} is a duplicate of itself!")
+        elif 'efta' in self.id:
+            logger.warning(f"{self.id} is lowercase")
 
         self.truncate_to = self.truncate_to or (NO_TRUNCATE if self.is_interesting else self.truncate_to)
         self.id = self.id.upper()
@@ -176,6 +178,13 @@ class DocCfg:
 
         if self.duplicate_of_id or self.duplicate_ids:
             self.dupe_type = self.dupe_type or SAME
+
+    @classmethod
+    def describe(cls, id: str, description: str, **kwargs) -> Self:
+        """Alternate constructor for a config with a description."""
+        # TODO: find expression: (Doc|Email)Cfg\(id=('\w+'), description=(f?'.*?')\),
+        # TODO:         replace: $1Cfg.describe($2, $3),
+        return cls(id=id, description=description, **kwargs)
 
     @property
     def author_str(self) -> str:
@@ -514,12 +523,12 @@ class CommunicationCfg(DocCfg):
         is_fwded_article (bool, optional): `True` if this is a newspaper article someone fwded. Used to exclude articles from word counting.
         people (list[str]): overrides `people` property
         recipients (list[Name]): Who received the communication
-        uncertain_recipient (str, optional): Optional explanation of why this recipient was attributed, but uncertainly
+        recipient_uncertain (bool | str, optional): Optional explanation of why this recipient was attributed, but uncertainly
     """
     is_fwded_article: bool | None = None
     people: list[str] = field(default_factory=list)
     recipients: list[Name] = field(default_factory=list)
-    uncertain_recipient: str | None = None
+    recipient_uncertain: bool | str = ''
 
     def __post_init__(self):
         super().__post_init__()
