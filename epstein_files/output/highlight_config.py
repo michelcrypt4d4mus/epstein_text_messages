@@ -2436,6 +2436,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Katie Johnson",
             r"(Midget )?strippers?",
             r"Minor Victim",
+            r"orgasm(ic|s)?"
             r"pa?edophile",
             r"pussy",
             r"(?-i:S)anctum",

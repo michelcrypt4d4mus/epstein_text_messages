@@ -3134,8 +3134,10 @@ UNINTERESTING_EMAIL_IDS = [
     # Lesley?
     'EFTA02229402',
     'EFTA02229659',
+    'EFTA01987383',
     # Maria Prusakova
     'EFTA01772533',
+    'EFTA01740489',
     # Renata Bolotova
     'EFTA01903041',
     'EFTA01969322',
