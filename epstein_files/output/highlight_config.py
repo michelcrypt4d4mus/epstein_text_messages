@@ -877,7 +877,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(ROBERT_D_CRITTON_JR, CRIMINAL_DEFENSE_ATTORNEY, r"Robert D.? Critton,? Jr\.?", match_partial=None),
             Contact('Robert Gold', "helped Epstein track down money belonging to Spanish families", match_partial=None),
             Contact('Roy Black', CRIMINAL_DEFENSE_2008, match_partial=None),
-            Contact(SCOTT_J_LINK, CRIMINAL_DEFENSE_ATTORNEY, r"scott j. link?", match_partial=None),
+            Contact(SCOTT_J_LINK, CRIMINAL_DEFENSE_ATTORNEY, match_partial=None),
             Contact(STACEY_RICHMAN, f"New York {CRIMINAL_DEFENSE_ATTORNEY}", r"srichmanlaw|Stacey Richman"),
             Contact(
                 name=TONJA_HADDAD_COLEMAN,
@@ -1122,7 +1122,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 r"Mortimer( B\.?)? Zuckerman",
                 link_to_bio='https://prospect.org/2026/02/26/newspapers-did-not-kill-themselves-jeffrey-epstein-mort-zuckerman-daily-news/',
             ),
-            Contact(NORMAN_D_RAU, "managing director at Morgan Stanley"),
+            Contact(NORMAN_D_RAU, "managing director at Morgan Stanley", match_partial=None),
             Contact(PAUL_BARRETT, r"Alpha Group Capital", r"Paul Barre(d|tt)|Barrett,? Paul( S)?", match_partial=None),
             Contact(
                 PAUL_MORRIS,
@@ -2420,7 +2420,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         style='sea_green1',
         contacts=[
             Contact(CECILE_DE_JONGH, "Virgin Islands first lady 2007-2015, Epstein office manager"),
-            Contact(KENNETH_E_MAPP, "Virgin Islands Governor", r"(Kenneth E\. )?Mapp"),
+            Contact(KENNETH_E_MAPP, "Virgin Islands Governor"),
             Contact(STACEY_PLASKETT, "Virgin Islands non-voting member of Congress"),
             acronym('British Virgin Islands', 'infamous offshore tax haven'),
         ],
@@ -2499,7 +2499,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(DOUGLAS_WIGDOR, WIGDOR_ATTORNEY, r"Doug(las)? (H\.?)? Wigdor", match_partial=None),
             Contact('Gloria Allred', "victim's lawyer on many well known sexual harassment cases"),
             Contact('Grant J. Smith', ROTHSTEIN_ROSENFELDT_ADLER_ATTORNEY, match_partial=None),
-            Contact(JEANNE_M_CHRISTENSEN, WIGDOR_ATTORNEY, r"Jeanne (M\.?)? Christensen"),
+            Contact(JEANNE_M_CHRISTENSEN, WIGDOR_ATTORNEY),
             Contact(JACK_SCAROLA, "Searcy Denney Scarola Barnhart & Shipley attorney"),
             Contact(KEN_JENNE, ROTHSTEIN_ROSENFELDT_ADLER_ATTORNEY),
             organization(
@@ -2578,11 +2578,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         style='deep_pink3',
         category='Epstein',
         contacts=[
-            Contact(
-                name=BOBBI_C_STERNHEIM,
-                info=f"{GHISLAINE_MAXWELL} {CRIMINAL_DEFENSE_ATTORNEY}",
-                emailer_pattern=r"Bobbi C\.? Sternheim",
-            ),
+            Contact(BOBBI_C_STERNHEIM, f"{GHISLAINE_MAXWELL} {CRIMINAL_DEFENSE_ATTORNEY}"),
             Contact(
                 name=GHISLAINE_MAXWELL,
                 info="Epstein's girlfriend, daughter of the spy Robert Maxwell",
