@@ -750,7 +750,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact('Bella Klein', "Epstein's accountant", match_partial=None),
             Contact('Bernard Kruger', "Epstein's doctor", match_partial=None),
             Contact(CECILIA_STEEN, f'Epstein assistant who moved to Dubai'),
-            Contact(DAPHNE_WALLACE, "logistics and schedule coordination", r"Da.hne Wallace", match_partial=None),
+            Contact(DAPHNE_WALLACE, "LSJE accountant", r"Da.hne Wallace", match_partial=None),
             Contact(EDUARDO_ROBLES, "home builder at Creative Kingdom Dubai", r"Ed(uardo)? Robles", match_partial=None),
             Contact(ERIC_ROTH, "jet decorator at International Jet", match_partial=None),
             Contact(GWENDOLYN_BECK, "Epstein fund manager in the 90s", match_partial='first'),
@@ -758,6 +758,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(JANUSZ_BANASIAK, "Epstein's house manager", r"Janu[is]z Banasiak", match_partial='both'),
             Contact('John Allessi', "Epstein's houseman"),
             Contact(JEAN_HUGUEN, "interior design at Alberto Pinto Cabinet", r"Jean[\s.]Huguen"),
+            Contact('Jennaine Ruan', f'IT Manager at {SOUTHERN_TRUST_COMPANY}'),
             Contact(JOJO_FONTANILLA, "Filipino housekeeper", r"Jo.. Fontanilla"),
             Contact(LAWRANCE_VISOSKI, "Epstein's pilot", r"La(rry|wrance) Visoski?|Lvjet"),
             Contact(LESLEY_GROFF, "Epstein's assistant", r"Lesley (K(\.|atherine)? )?Gro(ff)?"),
@@ -770,7 +771,8 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact('Sarah Kellen', "now Sarah Vickers, named co-conspirator", r"(Sarah )?(Kellen|Vickers)"),
             Contact('Sean J. Lancaster', "airplane reseller"),
             Contact('Steve Griffis', 'AKA "Steve from downstairs", building employee', r"Steve (Griffis|\(from downstairs)"),
-            Contact(STORY_COWLES, "Epstein's male assistant")
+            Contact(STORY_COWLES, "Epstein's male assistant"),
+            Contact('Una Pascal', f"{SOUTHERN_TRUST_COMPANY} accountant", match_partial=None),
         ],
     ),
     HighlightedNames(
@@ -2417,7 +2419,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         label='USVI',
         style='sea_green1',
         contacts=[
-            Contact(CECILE_DE_JONGH, "Virgin Islands first lady 2007-2015"),
+            Contact(CECILE_DE_JONGH, "Virgin Islands first lady 2007-2015, Epstein office manager"),
             Contact(KENNETH_E_MAPP, "Virgin Islands Governor", r"(Kenneth E\. )?Mapp"),
             Contact(STACEY_PLASKETT, "Virgin Islands non-voting member of Congress"),
             acronym('British Virgin Islands', 'infamous offshore tax haven'),
