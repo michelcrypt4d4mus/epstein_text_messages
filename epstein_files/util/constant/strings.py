@@ -91,6 +91,9 @@ HOUSE_OVERSIGHT_NOV_2025_FILE_NAME_REGEX = re.compile(fr"{HOUSE_OVERSIGHT_NOV_20
 LOCAL_EXTRACT_REGEX = re.compile(r"_\d{1,2}$")
 QUESTION_MARKS_REGEX = re.compile(fr' {re.escape(QUESTION_MARKS)}$')
 
+# Other regexes
+CASE_ID_REGEX = re.compile(r"Case\s+(Number:\s+)?\d:\d{2}-[a-z]{2}-\d{5}-[A-Z]{3}")
+
 # Decorative
 LEFT_ARROWS = '⇚ ⇠ ⇷ ⟵ ⇜ ⇽ ⬰ ⬲'
 RIGHT_ARROWS = '↦ ↠ ➔ ➤ ➦ ➱ ➪ ➾'

@@ -328,6 +328,9 @@ US_ORG = 'US Office of Government Information Services'
 VALAR_GLOBAL_FUND = 'Valar Global Fund'
 VALAR_VENTURES = 'Valar Ventures'
 
+# Locations
+LITTLE_SAINT_JAMES = 'Little Saint James'
+
 # Publications
 BBC = 'BBC'
 BLOOMBERG = 'Bloomberg'

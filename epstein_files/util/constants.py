@@ -2206,6 +2206,8 @@ OTHER_FILES_MONEY = [
     DocCfg(id='EFTA01273102', description=f"payment from Epstein to {RENATA_BOLOTOVA}'s father's account at Sberbank"),
     DocCfg(id='EFTA00238499', description='wire transfer to Signature Bank account'),
     DocCfg(id='EFTA00000476', replace_text_with='photo of JEFFREY EPSTEIN CASH DISBURSEMENTS for the month 2006-09', date='2006-09-01'),
+    DocCfg(id='EFTA01111057', author=MORTIMER_ZUCKERMAN, date='2014-07-10', description='Mortimer B. Zuckerman Management Trust'),
+    DocCfg(id='EFTA01086463', description=f"{MORTIMER_ZUCKERMAN}'s art collection invetory and valuation report"),
     EmailCfg(id='EFTA00037187', is_interesting=True),
 ]
 
@@ -2527,6 +2529,13 @@ OTHER_FILES_MISC = [
     DocCfg(id='EFTA00004070', replace_text_with="photos of Epstein with handwritten caption that didn't OCR well"),
     DocCfg(id='EFTA02731260', replace_text_with='notebook full of handwritten love letters with terrible OCR text'),
     DocCfg(id='EFTA00006100', replace_text_with='Palm Beach Police fax machine activity log 2005-12-28 to 2006-01-04'),
+    DocCfg(
+        id='EFTA00003149',
+        date='2016-01-01',
+        date_uncertain='complete guess',
+        description=f"{LITTLE_SAINT_JAMES} staff list",
+        show_full_panel=True,
+    ),
     # Attachments
     DocCfg(id='EFTA00590685', attached_to_email_id='EFTA00830911'),
     # Dates
@@ -2536,6 +2545,7 @@ OTHER_FILES_MISC = [
 OTHER_FILES_GIRLS = [
     EmailCfg(id='030609', duplicate_ids=['030495']),
     DocCfg(id='EFTA00306033', author=SERGEY_BELYAKOV, description='Epstein Russian visa', show_full_panel=True),
+    DocCfg(id='EFTA02731420', description=f'victim diary naming {LARRY_SUMMERS}, {PRINCE_ANDREW}, Dan Snyder, {LEON_BLACK}'),
     CommunicationCfg(
         id='EFTA01612733',
         author=MARIA_PRUSAKOVA,
@@ -3246,6 +3256,7 @@ NOT_CHRONOLOGICAL_VIEW_IDS = [
     'EFTA00915298',
     'EFTA02423635',
     'EFTA00007781',
+    'EFTA00770066',
     '016692',
     'EFTA01823635',
     'EFTA00747181',

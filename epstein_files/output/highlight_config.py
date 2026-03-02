@@ -185,14 +185,15 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         label=ARTS,
         style='light_steel_blue3',
         contacts=[
-            Contact(ANDRES_SERRANO, "'Piss Christ' artist"),
-            Contact('Barry Josephson', "American film producer, editor FamilySecurityMatters.org"),
+            Contact(ANDRES_SERRANO, '"Piss Christ" artist'),
+            Contact('Barry Josephson', "American film producer"), #, editor FamilySecurityMatters.org"),
             Contact(BILL_SIEGEL, "documentary film producer and director", match_partial=None),
             Contact('Bobby Slayton', 'comedian and actor'),
             Contact(DAVID_BLAINE, "famous magician"),
             Contact('David Brenner', "American comedian and actor"),
             Contact('David Geffen', 'record label and film studio owner'),
             Contact('Larry Gagosian', 'famous art dealer'),
+            Contact('Marla Prather', f'art curator at MoMA, wife of {MORTIMER_ZUCKERMAN}'),
             Contact('Nick Jarecki', "American filmmaker"),
             Contact('Richard Merkin', "painter, illustrator and arts educator"),
             Contact(STEVEN_PFEIFFER, "Associate Director at Independent Filmmaker Project (IFP)"),
@@ -394,7 +395,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"SCMP",
             r"Shang?hai",
             r"V-?Nee",
-            r"Xi(aomi)?", r"Jinping",
+            r"(?<!Article\s)Xi(aomi)?", r"Jinping",
         ],
     ),
     HighlightedNames(
@@ -616,6 +617,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             organization('Ribbit Capital', 'crypto friendly venture fund'),
             organization('Ripple', 'token issuing company run by Trump megadonor Brad Garlinghouse'),
             organization('Silk Road', 'online illegal drug market, first real use case for crypto'),
+            organization('Stellar', 'blockchain architecture alternative to bitcoin and ethereum', r"stellar\.org"),
             organization('Tether', f"$180 billion stablecoin founded by {BROCK_PIERCE} whose money is managed by {HOWARD_LUTNICK}"),
             organization(
                 'Zerocoin',
@@ -748,7 +750,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact('Bella Klein', "Epstein's accountant", match_partial=None),
             Contact('Bernard Kruger', "Epstein's doctor", match_partial=None),
             Contact(CECILIA_STEEN, f'Epstein assistant who moved to Dubai'),
-            Contact(DAPHNE_WALLACE, "logistics and schedule coordination", r"Da.hne Wallace", match_partial=None),
+            Contact(DAPHNE_WALLACE, "LSJE accountant", r"Da.hne Wallace", match_partial=None),
             Contact(EDUARDO_ROBLES, "home builder at Creative Kingdom Dubai", r"Ed(uardo)? Robles", match_partial=None),
             Contact(ERIC_ROTH, "jet decorator at International Jet", match_partial=None),
             Contact(GWENDOLYN_BECK, "Epstein fund manager in the 90s", match_partial='first'),
@@ -756,6 +758,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(JANUSZ_BANASIAK, "Epstein's house manager", r"Janu[is]z Banasiak", match_partial='both'),
             Contact('John Allessi', "Epstein's houseman"),
             Contact(JEAN_HUGUEN, "interior design at Alberto Pinto Cabinet", r"Jean[\s.]Huguen"),
+            Contact('Jennaine Ruan', f'IT Manager at {SOUTHERN_TRUST_COMPANY}'),
             Contact(JOJO_FONTANILLA, "Filipino housekeeper", r"Jo.. Fontanilla"),
             Contact(LAWRANCE_VISOSKI, "Epstein's pilot", r"La(rry|wrance) Visoski?|Lvjet"),
             Contact(LESLEY_GROFF, "Epstein's assistant", r"Lesley (K(\.|atherine)? )?Gro(ff)?"),
@@ -768,7 +771,8 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact('Sarah Kellen', "now Sarah Vickers, named co-conspirator", r"(Sarah )?(Kellen|Vickers)"),
             Contact('Sean J. Lancaster', "airplane reseller"),
             Contact('Steve Griffis', 'AKA "Steve from downstairs", building employee', r"Steve (Griffis|\(from downstairs)"),
-            Contact(STORY_COWLES, "Epstein's male assistant")
+            Contact(STORY_COWLES, "Epstein's male assistant"),
+            Contact('Una Pascal', f"{SOUTHERN_TRUST_COMPANY} accountant", match_partial=None),
         ],
     ),
     HighlightedNames(
@@ -873,7 +877,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(ROBERT_D_CRITTON_JR, CRIMINAL_DEFENSE_ATTORNEY, r"Robert D.? Critton,? Jr\.?", match_partial=None),
             Contact('Robert Gold', "helped Epstein track down money belonging to Spanish families", match_partial=None),
             Contact('Roy Black', CRIMINAL_DEFENSE_2008, match_partial=None),
-            Contact(SCOTT_J_LINK, CRIMINAL_DEFENSE_ATTORNEY, r"scott j. link?", match_partial=None),
+            Contact(SCOTT_J_LINK, CRIMINAL_DEFENSE_ATTORNEY, match_partial=None),
             Contact(STACEY_RICHMAN, f"New York {CRIMINAL_DEFENSE_ATTORNEY}", r"srichmanlaw|Stacey Richman"),
             Contact(
                 name=TONJA_HADDAD_COLEMAN,
@@ -1055,7 +1059,6 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"alterna[tv]i[tv]e finance",
             r"((anti )?money )?launder(s?|ers?|ing)?( money)?",
             r"(?<!(alfa|ture|hase|rahi|sche)\s)bank(?!\s+(of|secrecy))",
-            r"(junk )?bond",
             r"capital controls",
             r"C[EF]O",
             r"Chief (Executive|Financ(e|ial)) Officer",
@@ -1064,11 +1067,13 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"donor advised fund",
             r"equities",
             r"invest(ment|or)s?",
+            r"(junk )?bond",
             r"Mastercard",
             r"(naked )?shorting",
             r"NASDAQ",
             r"philanthrop(i(es|st)|y)",
             r"ponz[il] scheme",
+            r"preferreds",
             r"securities(?! fraud)",
             r"stock market",
             r"Trust(ee| Estate)s?",
@@ -1114,9 +1119,10 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(
                 MORTIMER_ZUCKERMAN,
                 "business partner of Epstein, publisher of New York Daily News and US News & World Report",
+                r"Mortimer( B\.?)? Zuckerman",
                 link_to_bio='https://prospect.org/2026/02/26/newspapers-did-not-kill-themselves-jeffrey-epstein-mort-zuckerman-daily-news/',
             ),
-            Contact(NORMAN_D_RAU, "managing director at Morgan Stanley"),
+            Contact(NORMAN_D_RAU, "managing director at Morgan Stanley", match_partial=None),
             Contact(PAUL_BARRETT, r"Alpha Group Capital", r"Paul Barre(d|tt)|Barrett,? Paul( S)?", match_partial=None),
             Contact(
                 PAUL_MORRIS,
@@ -1185,7 +1191,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"(Jerome )?Powell(?! M\. Cabot)",
             r"(Jimmy )?Cayne",
             r"Joon Yun",
-            r"j\.?p\.? morgan(\.?com| Chase)?",
+            r"j\.?p\.? morgan(\.?com| Chase)?( Bank)?",
             r"JPMC?",
             r"Lehman( Brothers)?",
             r"Merrill( Lynch)?",
@@ -1214,7 +1220,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         contacts=[
             Contact(
                 name=ANDREW_FARKAS,
-                info="heir to the Alexander's department store fortune, Island Capital Group",
+                info="heir to Alexander's department store fortune, Island Capital Group",
                 emailer_pattern=r"Andrew (L\.? )?Farkas|Farkas, Andrew( L\.?)?",
             ),
             Contact(DANGENE_AND_JENNIE_ENTERPRISE, "founders of the members-only CORE club", match_partial=None),
@@ -1227,7 +1233,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact('Jill Iscol', 'heiress, philanthropist, IF Hummingbird Foundation'),
             Contact(
                 name=JONATHAN_FARKAS,
-                info=f"son of {ANDREW_FARKAS}, heir to the Alexander's department store fortune",
+                info=f"son of {ANDREW_FARKAS}, heir to Alexander's department store fortune",
                 emailer_pattern=r"Jonath[ao]n Fark(a|u)(s|il)",
                 match_partial=None,
             ),
@@ -1238,11 +1244,11 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 match_partial=None,
             ),
             Contact('Peter Thomas Roth', "student of Epstein at Dalton, skincare company founder", match_partial=None),
-            Contact('Philip Diaz', 'unknown', match_partial=None),
+            Contact('Philip Diaz', match_partial=None),
             Contact('Philip Kafka', f"president of Prince Concepts (son of {TERRY_KAFKA}?)", match_partial=None),
             Contact('Sam Jaradeh', f"business partner of {BORIS_NIKOLIC}"),
             Contact(STEPHEN_HANSON, emailer_pattern=r"ste(phen|ve) hanson?|Shanson900"),
-            Contact(TERRY_KAFKA, "CEO of billboard co. Impact Outdoor, 45 year Epstein friend", match_partial=None),
+            Contact(TERRY_KAFKA, "CEO of Impact Outdoor (highway billboards), lifelong friend of Epstein", match_partial=None),
             Contact(TOM_BARRACK, "long time friend of Trump"),
             Contact('Warren Eisenstein', 'childhood friend of Epstein'),
         ],
@@ -1287,8 +1293,11 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 "West Virginia attorney who defended Epstein, now a federal judge",
                 link_to_bio='https://www.wboy.com/news/west-virginia/where-is-west-virginia-mentioned-in-the-epstein-files/',
             ),
+            acronym('Know Your Customer', 'anti-money laundering legal framework'),
             acronym('Metropolitan Detention Center', 'jail where Epstein died'),
             acronym('Office of Foreign Assets Control', 'agency in charge of sanctions'),
+            acronym('Office of the Comptroller of the Currency'),
+            acronym('Office of Government Ethics'),
             organization('BaFin', "German financial regulator, tried to arrest journalists who exposed Wirecard's fraud"),
             organization('FINRA', "Financial Industry Regulatory Authority", r"(www\.)?FINRA(\.org)?|Financial Industry Regulatory Authority",),
             organization('INS', "US Immigration and Naturalization Service", r"(?-i:INS)"),
@@ -1329,12 +1338,12 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"CFTC?",
             r"CIA",
             r"CIS",
+            r"CTR",  # Currency Transaction Report
             r"CVRA",
             r"DARPA",
             r"Dep(artmen)?t\.? of (the )?(Justice|Treasury)",
             r"DHS",
             r"DOJ",
-            r"EDGAR (Filing|Search)",  # SEC database is EDGAR
             r"FCPA",
             r"FDIC",
             r"FDLE",
@@ -1354,7 +1363,6 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"(Justice|Treasury) Dep(t|artment)",
             r"(Kirk )?Blouin",
             r"(Kurt )?(L\.? )?Gottschall",
-            r"KYC",
             r"(Lann?a )?Belohlavek",
             r"law enforcement",
             r"NIH",
@@ -1362,9 +1370,6 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"NS(A|C)",
             r"NYDFS",
             r"NYPD",
-            r"OCC",
-            r"OGE",
-            r"Office of Government Ethics",
             r"PBPD",
             r"police",
             r"POTUS",
@@ -1414,7 +1419,8 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             ),
             Contact('Lisa Randall', "theoretical physicist", match_partial=None),
             Contact(MARTIN_NOWAK, "professor of mathematics and biology", r"(Martin.*?)?No[vw]ak|Nowak, Martin"),
-            Contact(MOSHE_HOFFMAN, "behavioral and evolutionary economics", match_partial=None)
+            Contact(MOSHE_HOFFMAN, "behavioral and evolutionary economics", match_partial=None),
+            Contact('Steve Kosslyn', "neuroscientist, Active Learning Sciences"),
         ],
         patterns=[
             r"Cambridge",
@@ -1422,7 +1428,6 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Harvard( (Business|Law|University)( School)?)?",
             r"(Jonathan )?Zittrain",
             r"Poetry in America",
-            r"(Stephen )?Kosslyn",
         ],
     ),
     HighlightedNames(
@@ -2414,8 +2419,8 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         label='USVI',
         style='sea_green1',
         contacts=[
-            Contact(CECILE_DE_JONGH, "Virgin Islands first lady 2007-2015"),
-            Contact(KENNETH_E_MAPP, "Virgin Islands Governor", r"(Kenneth E\. )?Mapp"),
+            Contact(CECILE_DE_JONGH, "Virgin Islands first lady 2007-2015, Epstein office manager"),
+            Contact(KENNETH_E_MAPP, "Virgin Islands Governor"),
             Contact(STACEY_PLASKETT, "Virgin Islands non-voting member of Congress"),
             acronym('British Virgin Islands', 'infamous offshore tax haven'),
         ],
@@ -2433,8 +2438,9 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"San Juan",
             r"S(ain)?t.? Thomas",
             r"USVI",
+            r"U(nited |\.)?S(tates|\.)? Virgin Islands",
             r"(?<!stein |vis-a-)VI(?!s-a-)",
-            r"(The )?Virgin Is(al|la)nd?s( Daily News)?",  # Hard to make this work right
+            r"(The )?Virgin Is(al|la)nd?s( Daily News)?",  # TODO: Hard to make this work right
             r"(West )?Palm Beach( County)?(?! (Daily|Police|Post))",
         ],
     ),
@@ -2493,7 +2499,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(DOUGLAS_WIGDOR, WIGDOR_ATTORNEY, r"Doug(las)? (H\.?)? Wigdor", match_partial=None),
             Contact('Gloria Allred', "victim's lawyer on many well known sexual harassment cases"),
             Contact('Grant J. Smith', ROTHSTEIN_ROSENFELDT_ADLER_ATTORNEY, match_partial=None),
-            Contact(JEANNE_M_CHRISTENSEN, WIGDOR_ATTORNEY, r"Jeanne (M\.?)? Christensen"),
+            Contact(JEANNE_M_CHRISTENSEN, WIGDOR_ATTORNEY),
             Contact(JACK_SCAROLA, "Searcy Denney Scarola Barnhart & Shipley attorney"),
             Contact(KEN_JENNE, ROTHSTEIN_ROSENFELDT_ADLER_ATTORNEY),
             organization(
@@ -2572,17 +2578,14 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         style='deep_pink3',
         category='Epstein',
         contacts=[
-            Contact(
-                name=BOBBI_C_STERNHEIM,
-                info=f"{GHISLAINE_MAXWELL} {CRIMINAL_DEFENSE_ATTORNEY}",
-                emailer_pattern=r"Bobbi C\.? Sternheim",
-            ),
+            Contact(BOBBI_C_STERNHEIM, f"{GHISLAINE_MAXWELL} {CRIMINAL_DEFENSE_ATTORNEY}"),
             Contact(
                 name=GHISLAINE_MAXWELL,
                 info="Epstein's girlfriend, daughter of the spy Robert Maxwell",
                 emailer_pattern=r"g max(well)?|Ghislaine|Maxwell",
-                match_partial='both',
+                match_partial='first',
             ),
+            Contact('Isabel Maxwell', f"sister of Ghislaine, wife of {AL_SECKEL}", match_partial=None),
             Contact(
                 'Robert Maxwell',
                 f"father of Ghislaine, British / Russian / Israeli agent, financial fraudster, mysterious death",
@@ -2593,6 +2596,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         ],
         patterns=[
             r"gmax(1@ellmax.com)?",
+            r"Maxwell",
             r"(The )?TerraMar Project",
             r"(Scott )?Borgenson", # Ghislaine lawyer
         ],
@@ -2674,6 +2678,16 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
 
     # Highlight regexes for things other than names, only used by RegexHighlighter pattern matching
     HighlightPatterns(
+        label='legal',
+        style='pale_turquoise4',
+        patterns=[
+            fr"^{CASE_ID_REGEX.pattern}.*",
+            CASE_ID_REGEX.pattern,
+            r"EDGAR (Filing|Search)",  # SEC database is EDGAR
+            r"Page \d+ of \d+",
+        ]
+    ),
+    HighlightPatterns(
         label='phone_number',
         style='bright_green',
         patterns=[
@@ -2713,7 +2727,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         patterns=[fr"{REDACTED}|<?Privileged - Redacted>?"],
     ),
     HighlightPatterns(
-        label='sent_from',
+        label='sent_from_device',
         style='light_cyan3 italic dim',
         patterns=[fr"{QUOTE_INDENT_CHAR_GROUP}*{SENT_FROM_REGEX.pattern}"],
     ),

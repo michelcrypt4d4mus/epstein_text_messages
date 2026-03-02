@@ -112,6 +112,10 @@ class SiteType(StrEnum):
         return site_type.endswith(MOBILE_SUFFIX)
 
     @classmethod
+    def real_html_build_path(cls, site_type: 'SiteType') -> Path:
+        return HTML_DIR.joinpath('real_html_' + HTML_BUILD_FILENAMES[site_type])
+
+    @classmethod
     def _is_lesser_site(cls, site_type: Self) -> bool:
         return site_type in [cls.DOJ_FILES, cls.JSON_METADATA]  #+ [cls.JSON_FILES]
 
@@ -157,7 +161,7 @@ AUTHORS_USING_SIGNATURES = 'Authors Seen Using Email Signatures'
 SELECTIONS_FROM = 'Selections from '
 HIS_EMAILS = 'His Emails'
 HIS_TEXT_MESSAGES = 'His Text Messages'
-FILEs_THAT_ARE_NEITHER_EMAILS_NOR = 'Files That Are Neither Emails Nor Text Messages'
+FILES_THAT_ARE_NEITHER_EMAILS_NOR = 'Files That Are Neither Emails Nor Text Messages'
 
 class PageSections(StrEnum):
     EMAILS = auto()
@@ -170,7 +174,7 @@ SECTION_ANCHORS = {
     PageSections.EMAILS: SELECTIONS_FROM + HIS_EMAILS,
     PageSections.EMAIL_SIGNATURES: AUTHORS_USING_SIGNATURES,
     PageSections.TEXT_MESSAGES: SELECTIONS_FROM + HIS_TEXT_MESSAGES,
-    PageSections.OTHER_FILES: FILEs_THAT_ARE_NEITHER_EMAILS_NOR,
+    PageSections.OTHER_FILES: FILES_THAT_ARE_NEITHER_EMAILS_NOR,
 }
 
 

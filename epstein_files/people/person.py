@@ -343,11 +343,12 @@ class Person:
 
         return link_text_obj(self.external_link(site), link_str or site, style=self.style())
 
-    def print_emails(self) -> list[Email]:
+    def print_emails(self, doc_printer: 'DocPrinter') -> list[Email]:
         """
         Print complete emails to or from a particular 'author' along with any specially marked docs
         configured with `show_with_name` of this user. Returns the Emails that were printed.
         """
+        # TODO: DocPrinter doesn't render HTML for the person's info tables etc.
         print_centered(self.info_panel)
 
         if site_config.show_emailer_tables:
@@ -366,8 +367,8 @@ class Person:
             for d in docs
         ]
 
-        Document.print_documents(docs)
-        return self._printable_emails
+        doc_printer.print_documents(docs)
+        return self._printable_emails  # TODO: doesn't return FileDisplay objects!
 
     def print_emails_table(self) -> None:
         """Print a table of this person's emails summary (timestamps, subject liness, etc)."""

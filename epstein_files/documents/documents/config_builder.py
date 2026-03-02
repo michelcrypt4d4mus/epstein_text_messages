@@ -31,6 +31,7 @@ CASE_IDS = {
     '1:20-cr-00330-AJN': f"US v. {GHISLAINE_MAXWELL}",
     '1:20-cv-00833-PAE': f"New York Times v. {BUREAU_OF_PRISONS}",
     '1:19-cr-00490-RMB': f"US v. {JEFFREY_EPSTEIN}",
+    '1:22-cv-10904-JSR': f"US Virgin Islands v. JPMorgan Chase",
 }
 
 EMERGENCY_CONTACT_DATES = {

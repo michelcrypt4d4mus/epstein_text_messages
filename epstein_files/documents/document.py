@@ -674,26 +674,6 @@ class Document:
         """Number of elements of `docs` that have an author attribution."""
         return len([doc for doc in docs if doc.author])
 
-    @classmethod
-    def print_documents(cls, docs: Sequence[Self | FileDisplay]) -> None:
-        """Print a collection of `Document` objects, with appropriate suppression text for dupes etc."""
-        last_doc_was_suppressed = False
-
-        for doc in docs:
-            if (is_document := isinstance(doc, cls)) and doc.suppressed_txt:
-                doc.print()
-                last_doc_was_suppressed = True
-                continue
-
-            if last_doc_was_suppressed:
-                console.line()
-
-            last_doc_was_suppressed = False
-            doc.print() if is_document else console.print(doc)
-
-            # if doc.config_description_txt:
-            #     import pdb;pdb.set_trace()
-
     @staticmethod
     def count_by_month(docs: Sequence['DocumentType']) -> Counter[str | None]:
         return Counter([d.timestamp.date().isoformat()[0:7] if d.timestamp else None for d in docs])

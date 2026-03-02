@@ -14,13 +14,14 @@ from epstein_files.documents.email import Email
 from epstein_files.documents.messenger_log import MessengerLog
 from epstein_files.documents.other_file import FIRST_FEW_LINES, OtherFile
 from epstein_files.epstein_files import EpsteinFiles
+from epstein_files.output.doc_printer import DocPrinter
 from epstein_files.output.epstein_highlighter import highlighter
 from epstein_files.output.highlight_config import get_style_for_name
 from epstein_files.output.html.builder import buffer_as_html, rich_to_html, table_to_html, write_templated_html
 from epstein_files.output.html.elements import div_class
 from epstein_files.output.rich import *
 from epstein_files.output.site.sites import (AUTHORS_USING_SIGNATURES, EMAILERS_TABLE_PNG_PATH,
-     FILEs_THAT_ARE_NEITHER_EMAILS_NOR, HIS_EMAILS, HIS_TEXT_MESSAGES, HTML_DIR, SELECTIONS_FROM)
+     FILES_THAT_ARE_NEITHER_EMAILS_NOR, HIS_EMAILS, HIS_TEXT_MESSAGES, HTML_DIR, HTML_BUILD_FILENAMES, SELECTIONS_FROM)
 from epstein_files.output.title_page import print_color_key, print_other_page_link, print_section_header
 from epstein_files.people.interesting_people import EMAILERS_TO_PRINT
 from epstein_files.people.person import PEOPLE_BIOS, Person
@@ -34,7 +35,6 @@ from epstein_files.util.logging import logger, exit_with_error
 
 OTHER_INTERESTING_EMAILS_SUBTITLE = 'Other Interesting Emails\n(these emails have been flagged as being of particular interest)'
 DEVICE_SIGNATURE_SUBTITLE = f"Email [italic]Sent from \\[DEVICE][/italic] Signature Breakdown"
-OTHER_FILES_TABLE_MSG = Text("(non emails will appear in tables)", 'gray27 italic')
 DEVICE_SIGNATURE = 'Device Signature'
 DEVICE_SIGNATURE_PADDING = (1, 0)
 PRINT_COLOR_KEY_EVERY_N_EMAILS = 150
@@ -45,85 +45,25 @@ HTML_CHRONO_MOBILE_PATH = HTML_DIR.joinpath(f'{HTML_CHRONO_BASENAME}_mobile.html
 
 def print_curated_chronological(epstein_files: EpsteinFiles) -> list[Document]:
     """Print only interesting files of all types in chronological order."""
-    html_elements = [html_so_far()]  # Print the title page to html as is
-    printed_docs: list[Document] = []
-    people_encountered = set()
-    other_files_queue = []  # Collects sequential OtherFiles into tables
+    should_print = lambda doc: doc.is_interesting if not args.invert_chrono else not doc.is_interesting
+    docs = [d for d in epstein_files.unique_documents if should_print(d)]
+    doc_printer = DocPrinter()
+    doc_printer.print_documents(docs)
 
-    def new_names(document: Document) -> list[str]:
-        nonlocal people_encountered
-        return [p for p in document.people if p not in people_encountered]
-
-    def print_characters_panel(names: list[str]) -> None:
-        nonlocal html_elements
-        nonlocal people_encountered
-
-        if (bio_panel := _biographical_panel(uniq_sorted(names))):
-            console.print(_align_biographical_panel(bio_panel))
-            html_elements.append(div_class(rich_to_html(bio_panel, minimize_width=True), 'person_bio_panel'))
-
-        people_encountered.update(names)
-
-    def print_other_files_queue() -> None:
-        nonlocal html_elements
-        nonlocal other_files_queue
-        nonlocal printed_docs
-        has_printed_any_other_file_objs = any(isinstance(d, OtherFile) for d in printed_docs)
-
-        if has_printed_any_other_file_objs:
-            table_title = None
-        else:
-            table_title = OTHER_FILES_TABLE_MSG
-            console.line()
-            html_elements.append('<div style="height: 1em"></div>')
-
-        table = OtherFile.files_preview_table(
-            other_files_queue,
-            title=table_title,
-            title_justify='center',
-        )
-
-        console.print(Padding(table, (0, 0, 1, site_config.other_files_table_indent)))
-        html_elements.append(table_to_html(table))  # TODO: missing indent
-        printed_docs.extend(other_files_queue)
-        other_files_queue = []
-
-    for doc in epstein_files.unique_documents:
-        should_print = doc.is_interesting if not args.invert_chrono else not doc.is_interesting
-
-        if not should_print:
-            continue
-        elif isinstance(doc, OtherFile) and doc.is_valid_for_table:
-            if new_names(doc):
-                if other_files_queue:
-                    print_other_files_queue()  # Clear the queue before bios panel
-
-                print_characters_panel(new_names(doc))
-
-            other_files_queue.append(doc)
-            continue
-        elif other_files_queue:
-            print_other_files_queue()
-
-        print_characters_panel(new_names(doc))
-        doc.print()
-        printed_docs.append(doc)
-        html_elements.append(doc.to_html())
-
-        # if doc.config_description_txt:
-        #     import pdb;pdb.set_trace()
     if args.mobile:
         real_html_path = HTML_CHRONO_MOBILE_PATH
     else:
         real_html_path = HTML_CHRONO_PATH
 
-    write_templated_html(html_elements, real_html_path)
-    return printed_docs
+    doc_printer.write_html(real_html_path)
+    return doc_printer.printed_docs
 
 
 def print_doj_files(epstein_files: EpsteinFiles) -> list[DojFile]:
     """Doesn't print DojFiles that are actually Emails, that's handled in print_emails()."""
-    Document.print_documents(Document.without_dupes(epstein_files.doj_files))
+    doc_printer = DocPrinter()
+    doc_printer.print_documents(Document.without_dupes(epstein_files.doj_files))
+    doc_printer.write_html(SiteType.real_html_build_path(SiteType.DOJ_FILES))
     return epstein_files.doj_files
 
 
@@ -135,11 +75,10 @@ def print_all_emails_chronological(epstein_files: EpsteinFiles) -> list[Email]:
     console.print(Padding(table, (2, 0)))
     print_subtitle_panel('The Chronologically Ordered Emails')
     console.line()
-
-    for email in emails:
-        console.print(email)
-
-    return emails
+    doc_printer = DocPrinter()
+    doc_printer.print_documents(emails)
+    doc_printer.write_html(SiteType.real_html_build_path(SiteType.EMAILS_CHRONOLOGICAL))
+    return doc_printer.printed_docs
 
 
 def print_emailers_info(epstein_files: EpsteinFiles) -> None:
@@ -177,8 +116,8 @@ def print_emails_section(epstein_files: EpsteinFiles) -> list[Email]:
     all_emailers = sorted(epstein_files.emailers, key=lambda person: person.earliest_email_at)
     all_emails = Person.emails_from_people(all_emailers)
     num_emails_printed_since_last_color_key = 0
-    printed_emails: list[Email] = []
     people_to_print: list[Person]
+    doc_printer = DocPrinter()
 
     if args.names:
         try:
@@ -197,8 +136,7 @@ def print_emails_section(epstein_files: EpsteinFiles) -> list[Email]:
         if person.name in epstein_files.uninteresting_emailers and not args.names:
             continue
 
-        printed_person_emails = person.print_emails()
-        printed_emails.extend(printed_person_emails)
+        printed_person_emails = person.print_emails(doc_printer)
         num_emails_printed_since_last_color_key += len(printed_person_emails)
 
         # Print color key every once in a while
@@ -207,29 +145,30 @@ def print_emails_section(epstein_files: EpsteinFiles) -> list[Email]:
             num_emails_printed_since_last_color_key = 0
 
     if args.names:
-        return printed_emails
+        return doc_printer.printed_emails
 
     # Print other interesting emails
-    printed_email_ids = [email.file_id for email in printed_emails]
+    printed_email_ids = [email.file_id for email in doc_printer.printed_docs]
     extra_emails = [e for e in all_emails if e.is_interesting and e.file_id not in printed_email_ids]
     logger.warning(f"Found {len(extra_emails)} extra_emails...")
 
     if len(extra_emails) > 0:
-        print_subtitle_panel(OTHER_INTERESTING_EMAILS_SUBTITLE)
+        print_subtitle_panel(OTHER_INTERESTING_EMAILS_SUBTITLE)  # TODO: not yet in DocPrinter HTML output!
         console.line()
-
-        for other_email in Document.sort_by_timestamp(extra_emails):
-            console.print(other_email)
-            printed_emails.append(cast(Email, other_email))
+        doc_printer.print_documents(Document.sort_by_timestamp(extra_emails))
 
     if args.all_emails:
-        _verify_all_emails_were_printed(epstein_files, printed_emails)
+        _verify_all_emails_were_printed(epstein_files, doc_printer.printed_emails)
 
     _print_email_device_signature_info(epstein_files)
-    fwded_articles = [e for e in printed_emails if e.config and e.is_fwded_article]
-    log_msg = f"Rewrote {len(Email.rewritten_header_ids)} of {len(printed_emails)} email headers"
+    fwded_articles = [e for e in doc_printer.printed_emails if e.config and e.is_fwded_article]
+    log_msg = f"Rewrote {len(Email.rewritten_header_ids)} of {len(doc_printer.printed_emails)} email headers"
     logger.warning(f"  -> {log_msg}, {len(fwded_articles)} of the Emails printed were forwarded articles.")
-    return printed_emails
+
+    if args.all_emails:
+        doc_printer.write_html(SiteType.real_html_build_path(SiteType.EMAILS))
+
+    return doc_printer.printed_emails
 
 
 # NOTE: the JSON files from Nov. 2025 are completely uninteresting
@@ -271,7 +210,7 @@ def print_other_files_section(epstein_files: EpsteinFiles) -> list[OtherFile]:
     title_pfx = '' if args.all_other_files else 'Selected '
     category_table = OtherFile.summary_table(files, title_pfx=title_pfx)
     other_files_preview_table = OtherFile.files_preview_table(files, title_pfx=title_pfx)
-    print_section_header(f"{FIRST_FEW_LINES} of {len(files)} {title_pfx}{FILEs_THAT_ARE_NEITHER_EMAILS_NOR}")
+    print_section_header(f"{FIRST_FEW_LINES} of {len(files)} {title_pfx}{FILES_THAT_ARE_NEITHER_EMAILS_NOR}")
     print_other_page_link(epstein_files)
     _print_section_summary_table(category_table)
     console.print(other_files_preview_table)
@@ -397,33 +336,3 @@ def _verify_all_emails_were_printed(epstein_files: EpsteinFiles, already_printed
 
     if not missed_an_email:
         logger.warning(f"All {len(epstein_files.emails):,} emails printed at least once.")
-
-
-def _align_biographical_panel(panel: Panel) -> Align | None:
-    return Align(Padding(panel, site_config.character_bio_padding), 'right')
-
-
-def _biographical_panel(names: list[str]) -> Panel | None:
-    """Panel showing biographical info for a list of names."""
-    bios = [
-        Text('', justify='right').append(PEOPLE_BIOS[name])
-        for name in names if PEOPLE_BIOS.get(name)
-    ]
-
-    if not bios:
-        return None
-
-    return Panel(
-        Group(*bios),
-        border_style='dim',
-        box=box.DOUBLE,
-        expand=False,
-        # padding=(0, 2),
-        style='on gray7',
-        title=Text(f"new names in next file", 'grey85 italic'),
-        title_align='right',
-    )
-
-
-def html_so_far() -> str:
-    return buffer_as_html(console, False)
