@@ -1105,6 +1105,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact('Vahe Stepanian', "Cetera Financial Group", match_partial='both'),
             Contact(VINIT_SAHNI, f"analyst at {DEUTSCHE_BANK} and {GOLDMAN_SACHS}", match_partial='both'),
             acronym("Grantor Retained Annuity Trust", "tax shelter structure favoured by Epstein"),
+            organization('Banque Havilland', 'Rowland family private bank in Luxembourg, charter revoked in 2024 for money laundering'),
             organization(BEAR_STEARNS, 'investment bank where Epstein got his first job in finance, failed in 2008'),
             organization(
                 'Boothbay',
