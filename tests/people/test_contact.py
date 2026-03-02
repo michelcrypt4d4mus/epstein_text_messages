@@ -21,6 +21,8 @@ def test_acronym():
     ofac = acronym('Office of Foreign Assets Control')
     assert ofac.name == 'OFAC'
     assert ofac.emailer_pattern == r"O\.?F\.?A\.?C\.?|Office of Foreign Assets Control"
+    occ = acronym('Office of the Comptroller of the Currency')
+    assert occ.name == 'OCC'
 
 
 def test_repr():

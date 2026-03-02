@@ -1059,7 +1059,6 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"alterna[tv]i[tv]e finance",
             r"((anti )?money )?launder(s?|ers?|ing)?( money)?",
             r"(?<!(alfa|ture|hase|rahi|sche)\s)bank(?!\s+(of|secrecy))",
-            r"(junk )?bond",
             r"capital controls",
             r"C[EF]O",
             r"Chief (Executive|Financ(e|ial)) Officer",
@@ -1068,11 +1067,13 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"donor advised fund",
             r"equities",
             r"invest(ment|or)s?",
+            r"(junk )?bond",
             r"Mastercard",
             r"(naked )?shorting",
             r"NASDAQ",
             r"philanthrop(i(es|st)|y)",
             r"ponz[il] scheme",
+            r"preferreds",
             r"securities(?! fraud)",
             r"stock market",
             r"Trust(ee| Estate)s?",
@@ -1190,7 +1191,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"(Jerome )?Powell(?! M\. Cabot)",
             r"(Jimmy )?Cayne",
             r"Joon Yun",
-            r"j\.?p\.? morgan(\.?com| Chase)?",
+            r"j\.?p\.? morgan(\.?com| Chase)?( Bank)?",
             r"JPMC?",
             r"Lehman( Brothers)?",
             r"Merrill( Lynch)?",
@@ -1292,8 +1293,11 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 "West Virginia attorney who defended Epstein, now a federal judge",
                 link_to_bio='https://www.wboy.com/news/west-virginia/where-is-west-virginia-mentioned-in-the-epstein-files/',
             ),
+            acronym('Know Your Customer', 'anti-money laundering legal framework'),
             acronym('Metropolitan Detention Center', 'jail where Epstein died'),
             acronym('Office of Foreign Assets Control', 'agency in charge of sanctions'),
+            acronym('Office of the Comptroller of the Currency'),
+            acronym('Office of Government Ethics'),
             organization('BaFin', "German financial regulator, tried to arrest journalists who exposed Wirecard's fraud"),
             organization('FINRA', "Financial Industry Regulatory Authority", r"(www\.)?FINRA(\.org)?|Financial Industry Regulatory Authority",),
             organization('INS', "US Immigration and Naturalization Service", r"(?-i:INS)"),
@@ -1334,12 +1338,12 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"CFTC?",
             r"CIA",
             r"CIS",
+            r"CTR",  # Currency Transaction Report
             r"CVRA",
             r"DARPA",
             r"Dep(artmen)?t\.? of (the )?(Justice|Treasury)",
             r"DHS",
             r"DOJ",
-            r"EDGAR (Filing|Search)",  # SEC database is EDGAR
             r"FCPA",
             r"FDIC",
             r"FDLE",
@@ -1359,7 +1363,6 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"(Justice|Treasury) Dep(t|artment)",
             r"(Kirk )?Blouin",
             r"(Kurt )?(L\.? )?Gottschall",
-            r"KYC",
             r"(Lann?a )?Belohlavek",
             r"law enforcement",
             r"NIH",
@@ -1367,9 +1370,6 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"NS(A|C)",
             r"NYDFS",
             r"NYPD",
-            r"OCC",
-            r"OGE",
-            r"Office of Government Ethics",
             r"PBPD",
             r"police",
             r"POTUS",
@@ -2438,8 +2438,9 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"San Juan",
             r"S(ain)?t.? Thomas",
             r"USVI",
+            r"U(nited |\.)?S(tates|\.)? Virgin Islands",
             r"(?<!stein |vis-a-)VI(?!s-a-)",
-            r"(The )?Virgin Is(al|la)nd?s( Daily News)?",  # Hard to make this work right
+            r"(The )?Virgin Is(al|la)nd?s( Daily News)?",  # TODO: Hard to make this work right
             r"(West )?Palm Beach( County)?(?! (Daily|Police|Post))",
         ],
     ),
@@ -2679,6 +2680,16 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
 
     # Highlight regexes for things other than names, only used by RegexHighlighter pattern matching
     HighlightPatterns(
+        label='legal',
+        style='pale_turquoise4',
+        patterns=[
+            fr"^{CASE_ID_REGEX.pattern}.*",
+            CASE_ID_REGEX.pattern,
+            r"EDGAR (Filing|Search)",  # SEC database is EDGAR
+            r"Page \d+ of \d+",
+        ]
+    ),
+    HighlightPatterns(
         label='phone_number',
         style='bright_green',
         patterns=[
@@ -2718,7 +2729,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         patterns=[fr"{REDACTED}|<?Privileged - Redacted>?"],
     ),
     HighlightPatterns(
-        label='sent_from',
+        label='sent_from_device',
         style='light_cyan3 italic dim',
         patterns=[fr"{QUOTE_INDENT_CHAR_GROUP}*{SENT_FROM_REGEX.pattern}"],
     ),

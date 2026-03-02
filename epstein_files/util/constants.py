@@ -2529,7 +2529,13 @@ OTHER_FILES_MISC = [
     DocCfg(id='EFTA00004070', replace_text_with="photos of Epstein with handwritten caption that didn't OCR well"),
     DocCfg(id='EFTA02731260', replace_text_with='notebook full of handwritten love letters with terrible OCR text'),
     DocCfg(id='EFTA00006100', replace_text_with='Palm Beach Police fax machine activity log 2005-12-28 to 2006-01-04'),
-    DocCfg(id='EFTA00003149', description=f"{LITTLE_SAINT_JAMES} staff list", show_full_panel=True),
+    DocCfg(
+        id='EFTA00003149',
+        date='2016-01-01',
+        date_uncertain='complete guess',
+        description=f"{LITTLE_SAINT_JAMES} staff list",
+        show_full_panel=True,
+    ),
     # Attachments
     DocCfg(id='EFTA00590685', attached_to_email_id='EFTA00830911'),
     # Dates
