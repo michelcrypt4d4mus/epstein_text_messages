@@ -59,7 +59,7 @@ def test_highlight_pattern():
 def test_middle_initial():
     assert CONTACT_INFO._middle_initial == ''
     assert Contact('Robert D Critton')._middle_initial == 'D'
-    assert Contact('Robert D. Critton')._middle_initial == 'D.'
+    assert Contact('Robert D. Critton')._middle_initial == 'D'
     assert Contact('Robert Dow Critton')._middle_initial == ''
 
 
@@ -70,6 +70,11 @@ def test_organization():
     assert organization('Butterfly, Inc.').emailer_pattern == r"Butterfly(,? Inc\.?)?"
     coatue = organization('Coatue Management', 'VC fund')
     assert coatue.emailer_pattern == r'Coatue( Management)?'
+
+
+def test_pattern():
+    assert _build_contact().pattern == EMAILER_PATTERN
+    assert Contact('Robert D Critton').pattern == r"Robert[-_.\s]*D\.?[-_.\s]*Critton?"
 
 
 def test_repr():

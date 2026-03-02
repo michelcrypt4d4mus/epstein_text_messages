@@ -102,10 +102,35 @@ class Contact:
         if self.is_junk:
             return self.pattern
 
-        return '|'.join(self.name_patterns)
+        return '|'.join(self._name_patterns)
 
     @property
-    def name_patterns(self) -> list[str]:
+    def pattern(self) -> str:
+        """Pattern used for matching emails, base pattern for highlights."""
+        if self.emailer_pattern:
+            pattern = self.emailer_pattern
+        else:
+            if self._middle_initial:
+                pattern = fr"{self._names[0]} {self._middle_initial}\.? {self._names[-1]}"
+            else:
+                pattern = self.name
+
+            if len(self.name) >= MIN_LEN_FOR_OPTIONAL_LAST_CHAR and not self.is_organization:
+                pattern += '?'
+
+        return as_pattern(pattern)
+
+    @property
+    def _middle_initial(self) -> str:
+        if len(self._names) != 3:
+            return ''
+        elif MIDDLE_INITIAL_REGEX.match(self._names[1]):
+            return self._names[1][0]
+        else:
+            return ''
+
+    @property
+    def _name_patterns(self) -> list[str]:
         """['Firstname', 'Lastname', 'Lastname, Firstname'."""
         name_patterns = [self.pattern]
 
@@ -123,28 +148,6 @@ class Contact:
 
         logger.debug(f"Contact('{self.name}') name_patterns: '{name_patterns}'")
         return name_patterns
-
-    @property
-    def pattern(self) -> str:
-        """Pattern used for matching emails, base pattern for highlights."""
-        if self.emailer_pattern:
-            pattern = self.emailer_pattern
-        else:
-            pattern = self.name
-
-            if len(self.name) >= MIN_LEN_FOR_OPTIONAL_LAST_CHAR and not self.is_organization:
-                pattern += '?'
-
-        return as_pattern(pattern)
-
-    @property
-    def _middle_initial(self) -> str:
-        if len(self._names) != 3:
-            return ''
-        elif MIDDLE_INITIAL_REGEX.match(self._names[1]):
-            return self._names[1]
-        else:
-            return ''
 
     @property
     def _names(self) -> list[str]:
