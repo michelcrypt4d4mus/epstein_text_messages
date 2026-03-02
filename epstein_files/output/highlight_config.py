@@ -13,7 +13,7 @@ from epstein_files.documents.documents.categories import (CATEGORY_STYLES, CATEG
 from epstein_files.documents.emails.constants import (ALL_HEADER_PATTERNS, QUOTE_INDENT_CHAR_GROUP, REPLY_REGEX,
      SENT_FROM_REGEX, XML_STRIPPED_MSG)
 from epstein_files.output.highlighted_names import HighlightGroup, HighlightedNames, HighlightPatterns, ManualHighlight
-from epstein_files.people.contact import Contact, acronym_org, organization, epstein_co, epstein_trust, law_enforcement
+from epstein_files.people.contact import Contact, acronym, organization, epstein_co, epstein_trust, law_enforcement
 from epstein_files.util.constant.names import *
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constant.urls import SUBSTACK_INSIGHTS_POD
@@ -32,7 +32,9 @@ EPSTEIN_ESTATE_EXECUTOR = f"Epstein {ESTATE_EXECUTOR}"
 JUNKERMANN_FUND = f"{NICOLE_JUNKERMANN}'s fund, invested in China, online poker, Russian run Euro bank Revolut"
 JEAN_LUC_MC2 = f"{JEAN_LUC_BRUNEL}'s {MC2_MODEL_MGMT}"
 QUESTION_MARKS_TXT = Text(QUESTION_MARKS, style='grey50')
+ROTHSTEIN_ROSENFELDT_ADLER_ATTORNEY = f"{ROTHSTEIN_ROSENFELDT_ADLER} attorney"
 THIELS_VALAR = f"{PETER_THIEL}'s {VALAR_VENTURES}"
+WIGDOR_ATTORNEY = f"Wigdor LLP lawyer in {LEON_BLACK} lawsuit"
 
 EPSTEIN_COLOR = 'blue1'
 FINANCIAL_COLOR = 'dark_sea_green2'
@@ -825,7 +827,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 emailer_pattern=r"C(hristian )?Everdell?",
             ),
             Contact('Connie Zaguirre', f"office of {'Robert D. Critton Jr.'}"),
-            Contact(DAVID_SCHOEN, "criminal defense attorney after 2019 arrest"),
+            Contact(DAVID_SCHOEN, "Epstein criminal defense attorney after 2019 arrest"),
             Contact(DEBBIE_FEIN, f"civil attorney Epstein v. Scott Rothstein, {BRAD_EDWARDS}, & L.M."),
             Contact('Erika Kellerhals', "attorney in St. Thomas"),
             Contact(FRED_HADDAD, "co-founder of Heck's in West Virginia", match_partial=None),
@@ -930,8 +932,8 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             ),
             Contact('Viktor Yushchenko', 'former president of Ukraine'),
             Contact('Viktor Orban', 'prime minister of Hungary', r"(Vi(c|k)tor )?Orbah?n"),
-            acronym_org('European Central Bank'),
-            acronym_org(INTERNATIONAL_PEACE_INSTITUTE, "gave jobs to Epstein's girls"),
+            acronym('European Central Bank'),
+            acronym(INTERNATIONAL_PEACE_INSTITUTE, "gave jobs to Epstein's girls"),
             organization('AfD', 'right wing German political party'),
             organization('Zug', "city in Switzerland known as a hub for crypto and dodgy finance"),
         ],
@@ -1095,6 +1097,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(TANCREDI_MARCHIOLO, "hedge fund manager"),
             Contact('Vahe Stepanian', "Cetera Financial Group"),
             Contact(VINIT_SAHNI, f"analyst at {DEUTSCHE_BANK} and {GOLDMAN_SACHS}"),
+            acronym("Grantor Retained Annuity Trust", "tax shelter structure favoured by Epstein"),
             organization(BEAR_STEARNS, 'investment bank where Epstein got his first job in finance, failed in 2008'),
             organization(
                 'Boothbay',
@@ -1239,8 +1242,8 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact('Justin Alfano', f"American {LAW_ENFORCEMENT}"),
             Contact('Michael Reiter', f"{PALM_BEACH_POLICE} chief who first caught Epstein"),
             Contact('Paula Speer', "court reporter", match_partial=None),
-            acronym_org('Metropolitan Detention Center', 'jail where Epstein died'),
-            acronym_org('Office of Foreign Assets Control', 'agency in charge of sanctions'),
+            acronym('Metropolitan Detention Center', 'jail where Epstein died'),
+            acronym('Office of Foreign Assets Control', 'agency in charge of sanctions'),
             organization('BaFin', "German financial regulator, tried to arrest journalists who exposed Wirecard's fraud"),
             organization('FINRA', "Financial Industry Regulatory Authority", r"(www\.)?FINRA(\.org)?|Financial Industry Regulatory Authority",),
             organization('INS', "US Immigration and Naturalization Service", r"(?-i:INS)"),
@@ -2399,7 +2402,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"child porn(ography)?",
             r"(child )?sex traffi?c?k(ers?|ing)",
             r"Ellaina As?tras?",
-            r"(fresh )?(hot )?(new )?girls?",
+            r"(fresh )?(hot )?(new )?girl( friend)?s?",
             r"gyn(eco(logist|nomist)|o)",
             r"(Jane|Tiffany) Doe",
             r"Katie Johnson",
@@ -2420,25 +2423,21 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         label='victim lawyer',
         style='medium_orchid1',
         contacts=[
-            Contact(BRAD_EDWARDS, ROTHSTEIN_ROSENFELDT_ADLER, r"Brad(ley)?( J(.?|ames))? Edwards", match_partial=None),
+            Contact(BRAD_EDWARDS, ROTHSTEIN_ROSENFELDT_ADLER_ATTORNEY, r"Brad(ley)?( J(.?|ames))? Edwards", match_partial=None),
             Contact('David Boies', 'Boies, Schiller, & Flexner', r"(David )?Bo[il]es(,? Schiller( & Flexner)?)?"),
-            Contact(DOUGLAS_WIGDOR, f"lawsuit against {LEON_BLACK}, Wigdor LLP", r"Doug(las)? (H\.?)? Wigdor", match_partial=None),
+            Contact(DOUGLAS_WIGDOR, WIGDOR_ATTORNEY, r"Doug(las)? (H\.?)? Wigdor", match_partial=None),
             Contact('Gloria Allred', "victim's lawyer on many well known sexual harassment cases"),
-            Contact('Grant J. Smith', ROTHSTEIN_ROSENFELDT_ADLER, match_partial=None),
-            Contact(
-                name=JEANNE_M_CHRISTENSEN,
-                info=f"lawsuit against {LEON_BLACK}, Wigdor LLP",
-                emailer_pattern=r"Jeanne (M\.?)? Christensen",
-            ),
-            Contact(JACK_SCAROLA, "Searcy Denney Scarola Barnhart & Shipley"),
-            Contact(KEN_JENNE, ROTHSTEIN_ROSENFELDT_ADLER),
+            Contact('Grant J. Smith', ROTHSTEIN_ROSENFELDT_ADLER_ATTORNEY, match_partial=None),
+            Contact(JEANNE_M_CHRISTENSEN, WIGDOR_ATTORNEY, r"Jeanne (M\.?)? Christensen"),
+            Contact(JACK_SCAROLA, "Searcy Denney Scarola Barnhart & Shipley attorney"),
+            Contact(KEN_JENNE, ROTHSTEIN_ROSENFELDT_ADLER_ATTORNEY),
             organization(
                 ROTHSTEIN_ROSENFELDT_ADLER,
                 "shady law firm, Rothstein ran $1.2 billion Ponzi scheme & was Roger Stone's partner",
                 r"Rothstein,? Rosenfeldt,? Adler",
                 link_to_bio='https://en.wikipedia.org/wiki/Scott_W._Rothstein',
             ),
-            organization('Wigdor Law', 'sued Epstein', r"Wigdor(Law)?"),
+            organization('Wigdor Law', f"sued {LEON_BLACK} alleging crimes at Epstein's properties", r"Wigdor(Law)?( LLP)?"),
         ],
         patterns=[
             r"(Alan( P.)?|MINTZ) FRAADE",
