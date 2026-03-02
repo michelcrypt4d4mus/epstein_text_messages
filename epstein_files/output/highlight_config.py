@@ -293,6 +293,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"((Bill|David) )?Koch( (Bro(s|thers)|Industries))?",
             r"BP",
             r"Braintree",
+            r"casino",
             r"Colony Capital",
             r"(General|Limited) Partner",
             r"Gruterite",
@@ -1033,7 +1034,6 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"(?<!(alfa|ture|hase|rahi|sche)\s)bank(?!\s+(of|secrecy))",
             r"(junk )?bond",
             r"capital controls",
-            r"casino",
             r"C[EF]O",
             r"Chief (Executive|Financ(e|ial)) Officer",
             r"(co-?)?founder",
@@ -2626,7 +2626,8 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         label='dollars',
         style=FINANCIAL_COLOR,
         patterns=[
-            r"\$[\d,.]+(\s*(bn|[bm](illion|m)?|k|thousand))?",
+            r"\$[\d,.]+(\s*(bn|[bm](illl?ion|m)?|k|thousand))?( dollars?)?",
+            r"[\d,.]+\s*[bm]illl?ion( dollars?)?",
         ]
     ),
     HighlightPatterns(
