@@ -1447,6 +1447,10 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00877726', description='Epstein and Stern discuss plans to manage money for wealthy Chinese'),
     EmailCfg(id='EFTA00754450', description='"PA" is probably Prince Andrew', duplicate_ids=['EFTA02418244']),
     EmailCfg(id='EFTA01003346', description=f"{PETER_THIEL} tells Epstein to invest in his fund", is_interesting=True),
+    EmailCfg(id='EFTA01970982', description='Epstein planning a meeting with Vladimir Putin', is_interesting=True),
+    EmailCfg(id='EFTA01914954', description='Epstein planning a meeting with Vladimir Putin', is_interesting=True),
+    EmailCfg(id='EFTA02591998', description=f'Epstein: "i have a friend of Putin\'s" probably re: {SVETLANA_POZHIDAEVA} visa', is_interesting=True),
+    EmailCfg(id='EFTA01974447', description='"I know you are going to meet putin on the 20th"', is_interesting=True),
     EmailCfg(id='EFTA00758140', description="possibly about Sarah Ferguson?"),
     EmailCfg(id='EFTA01013413', description='Reza Bundy is the founder of IronPlanet'),
     EmailCfg(id='EFTA02339109', description=f'someone named Sue needs help (probably a sham marriage to {BROCK_PIERCE}, see later emails)'),
@@ -2901,6 +2905,8 @@ OTHER_FILES_CRYPTO = [
     EmailCfg(id='EFTA02002675', description=f"{JASON_CALACANIS} passes Epstein the names of the bitcoin core developers"),
     # Reid Hoffman
     EmailCfg(id='EFTA00820371', description='bank digital currencies article', is_interesting=True),
+    # Russia
+    EmailCfg(id='EFTA02591998', description='Epstein spoke to Vladimir Putin about digital currency', is_interesting=True),
     # SEC / NYDFS
     EmailCfg(id='EFTA01747752', description=f"Farkas delivering {BEN_LAWSKY_NYDFS}", truncate_to=700),
     EmailCfg(id='EFTA02588398', description=f"Epstein went to the Treasury Dept of the US to talk about bitcoin", is_interesting=True),
