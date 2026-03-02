@@ -184,6 +184,10 @@ SEC_WHISTLEBLOWER = 'whistleblower emails to SEC'
 VALAR_MEETING = f"meeting with {PETER_THIEL}'s {VALAR_VENTURES} fund"
 
 
+def binant_redacted(id: str, truncate_to: int = 700) -> EmailCfg:
+    return EmailCfg(id=id, truncate_to=truncate_to, description=f"redacted discussion of art advisor {ETIENNE_BINANT}")
+
+
 EMAILS_CONFIG = [
     # TODO: 026294 and 026296 might also be Ittihadieh based on timing
     EmailCfg(id='032436', author=ALIREZA_ITTIHADIEH, author_reason='signature'),
@@ -629,16 +633,15 @@ EMAILS_CONFIG = [
     EmailCfg(id='021758', duplicate_ids=['030616'], is_fwded_article=True, comment="Radar Online article about Epstein's early prison release"),
     EmailCfg(id='033297', duplicate_ids=['033586'], is_fwded_article=True, comment='Sultan Sulayem article about Trump and Russia'),
     EmailCfg(id='032458', truncate_to=NO_TRUNCATE, description='discussion of acquiring pieces for Epstein\'s art collection'),
-    EmailCfg(id='032464', truncate_to=NO_TRUNCATE, description='redacted discussion about art advisor Etienne Binant'),
-    # TODO: just use a search string for truncation
-    EmailCfg(id='032964', truncate_to=700, description='redacted discussion about art advisor Etienne Binant'),
-    EmailCfg(id='032968', truncate_to=700, description='redacted discussion about art advisor Etienne Binant'),
-    EmailCfg(id='032467', truncate_to=700, description='redacted discussion about art advisor Etienne Binant'),
-    EmailCfg(id='032480', truncate_to=700, description='redacted discussion about art advisor Etienne Binant'),
-    EmailCfg(id='032486', truncate_to=700, description='redacted discussion about art advisor Etienne Binant'),
-    EmailCfg(id='032491', truncate_to=700, description='redacted discussion about art advisor Etienne Binant'),
-    EmailCfg(id='032975', truncate_to=700, description='redacted discussion about art advisor Etienne Binant'),
-    EmailCfg(id='032496', truncate_to=700, description='redacted discussion about art advisor Etienne Binant'),
+    binant_redacted('032964'),
+    binant_redacted('032968'),
+    binant_redacted('032467'),
+    binant_redacted('032480'),
+    binant_redacted('032486'),
+    binant_redacted('032491'),
+    binant_redacted('032975'),
+    binant_redacted('032496'),
+    binant_redacted('032464', NO_TRUNCATE),
     EmailCfg(id='021231', is_fwded_article=True, comment='11 places with worse economy than US'),
     EmailCfg(id='021729', is_fwded_article=True, comment='Acosta rebuke'),
     EmailCfg(id='025643', is_fwded_article=True, comment='Alice Fisher stated to be in the mix of potential candidates for new FBI director.'),
