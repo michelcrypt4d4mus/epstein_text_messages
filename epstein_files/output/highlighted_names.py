@@ -50,9 +50,11 @@ class HighlightPatterns(HighlightGroup):
     Attributes:
         flags (re.RegexFlag): flags to use when compiling the patterns to an `re.Pattern`
         patterns (list[str]): regex patterns identifying strings matching this group
+        use_word_boundary (bool, optional): if True, patterns can only match before/after word boundary `\b`
     """
     patterns: list[str] = field(default_factory=list)
     regex_flags: re.RegexFlag = re.IGNORECASE | re.MULTILINE
+    use_word_boundary: bool = False
     _pattern: str = field(init=False)
 
     def __post_init__(self):
@@ -63,6 +65,10 @@ class HighlightPatterns(HighlightGroup):
 
         self.patterns = [as_pattern(p) for p in self.patterns]
         self._pattern = '|'.join(self.patterns)
+
+        if self.use_word_boundary:
+            self._pattern = fr"\b(({self._pattern})s?)\b"
+
         self.regex = self.compile_patterns(self._pattern)
 
     def __repr__(self) -> str:

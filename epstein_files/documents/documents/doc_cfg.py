@@ -30,6 +30,7 @@ NO_TRUNCATE = -1
 SAME = 'same'
 
 MAX_REPR_LINE_LENGTH = 135
+GOLDMAN_INVESTMENT_MGMT = f'{GOLDMAN_SACHS} Investment Management Division'
 ZUBAIR_AND_ANYA = f"{ZUBAIR_KHAN} and Anya Rasulova"
 
 # Authors of financial report pablum

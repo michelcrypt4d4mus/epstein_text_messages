@@ -302,7 +302,6 @@ EPSTEIN_FOUNDATION = 'Jeffrey Epstein VI Foundation'
 EXPRESSCOIN = 'ExpressCoin'
 FBI = 'FBI'
 GOLDMAN_SACHS = 'Goldman Sachs'
-GOLDMAN_INVESTMENT_MGMT = f'{GOLDMAN_SACHS} Investment Management Division'
 GOOGLE_PLUS = 'Google Plus'
 HEDOSOPHIA = 'Hedosophia'
 INSIGHTS_POD = f"InsightsPod"  # Zubair bots
