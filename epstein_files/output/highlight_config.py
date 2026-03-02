@@ -1249,6 +1249,11 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact('Justin Alfano', f"American {LAW_ENFORCEMENT}"),
             Contact('Michael Reiter', f"{PALM_BEACH_POLICE} chief who first caught Epstein"),
             Contact('Paula Speer', "court reporter", match_partial=None),
+            Contact(
+                'Stephanie Thacker',
+                "West Virginia attorney who defended Epstein, now a federal judge",
+                link_to_bio='https://www.wboy.com/news/west-virginia/where-is-west-virginia-mentioned-in-the-epstein-files/',
+            ),
             acronym('Metropolitan Detention Center', 'jail where Epstein died'),
             acronym('Office of Foreign Assets Control', 'agency in charge of sanctions'),
             organization('BaFin', "German financial regulator, tried to arrest journalists who exposed Wirecard's fraud"),
