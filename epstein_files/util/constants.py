@@ -524,9 +524,9 @@ EMAILS_CONFIG = [
     EmailCfg(id='013482', recipients=[JEFFREY_EPSTEIN], is_fwded_article=True),
     EmailCfg(
         id='029558',
-        recipients=[JEFFREY_EPSTEIN, KATHERINE_KEATING],
         author_reason='BCC',
         fwded_text_after='Creativity is central',
+        recipients=[JEFFREY_EPSTEIN, KATHERINE_KEATING],
     ),
     EmailCfg(id='033456', recipients=["Joel"], author_reason='reply'),
     EmailCfg(id='033458', recipients=["Joel"], author_reason='reply'),

@@ -126,6 +126,7 @@ HIGHLIGHT_COUNTS = {
     "from:": 25,
     "german": 1,
     'gibraltar': 35,
+    'gibralter': 1,
     "glenn": 1,
     'goldman': 5,
     "greek": 2,
