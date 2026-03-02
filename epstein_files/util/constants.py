@@ -1796,7 +1796,13 @@ OTHER_FILES_DEPOSITION = [
     DocCfg(id='EFTA00009329', author='Alex Acosta', description='pages 101-200', date='2020-04-30', is_interesting=True),
     DocCfg(id='EFTA00009016', author='Alex Acosta', description='pages 201-300', date='2020-04-30', is_interesting=True),
     DocCfg(id='EFTA00009116', author='Alex Acosta', description='pages 300-411', date='2020-04-30', is_interesting=True),
-    DocCfg(id='EFTA00008744', author='FBI', date='2021-03-29', description='grand jury testimony of Child Exploitation & Human Trafficking Task Force member'),
+    DocCfg(
+        id='EFTA00008744',
+        author='FBI',
+        date='2021-03-29',
+        description='grand jury testimony of Child Exploitation & Human Trafficking Task Force member',
+    ),
+    DocCfg(id='EFTA01108807', author='Jane Doe', date='2010-02-09', description='vol. III of IV'),
 ]
 
 OTHER_FILES_LEGAL = [
