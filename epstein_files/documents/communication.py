@@ -76,7 +76,7 @@ class Communication(Document):
 
     @property
     def is_recipient_uncertain(self) -> bool:
-        return bool(self.config and self.config.uncertain_recipient)
+        return bool(self.config and self.config.recipient_uncertain)
 
     @property
     def participants(self) -> set[Name]:

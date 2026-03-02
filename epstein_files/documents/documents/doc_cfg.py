@@ -523,12 +523,12 @@ class CommunicationCfg(DocCfg):
         is_fwded_article (bool, optional): `True` if this is a newspaper article someone fwded. Used to exclude articles from word counting.
         people (list[str]): overrides `people` property
         recipients (list[Name]): Who received the communication
-        uncertain_recipient (str, optional): Optional explanation of why this recipient was attributed, but uncertainly
+        recipient_uncertain (bool | str, optional): Optional explanation of why this recipient was attributed, but uncertainly
     """
     is_fwded_article: bool | None = None
     people: list[str] = field(default_factory=list)
     recipients: list[Name] = field(default_factory=list)
-    uncertain_recipient: str | None = None
+    recipient_uncertain: bool | str = ''
 
     def __post_init__(self):
         super().__post_init__()

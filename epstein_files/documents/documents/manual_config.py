@@ -89,7 +89,7 @@ def create_configs(docs: Sequence[Document]) -> Sequence[DocCfg]:
                     if not cfg.author_reason:
                         _ask_for_value(cfg, 'author_uncertain', doc, doc_val)
                 elif prop == 'recipients':
-                    _ask_for_value(cfg, 'uncertain_recipient', doc, doc_val)
+                    _ask_for_value(cfg, 'recipient_uncertain', doc, doc_val)
 
         for prop in CFG_PROPS:
             if not (doc_val := getattr(cfg, prop)):
