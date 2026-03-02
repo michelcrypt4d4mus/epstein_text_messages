@@ -1402,9 +1402,7 @@ EMAILS_CONFIG = [
     ),
     EmailCfg(id='EFTA02541344', description=f"{BROCK_PIERCE} on marriage and polygamy with people named Crystal and Sue"),
     EmailCfg(id='EFTA02641951', description=f"{DAVID_STERN} recommends ProtonMail for more secure communications"),
-    EmailCfg(id='EFTA00626220', description=f'discussion of a "sidecar fund" with {BROCK_PIERCE} / {CRYPTO_CURRENCY_PARTNERS_II}'),
     EmailCfg(id='EFTA00770066', description=f"Epstein lists conferences he intends to fund", recipients=['Lisa Randall'], truncate_to=4500),
-    EmailCfg(id='EFTA00652799', description=f'Epstein calls Ari Glass "a bit sketchy" despite investing ~$50 million in his fund Boothbay'),
     EmailCfg(id='EFTA00987206', description=f"Epstein helps {BORIS_NIKOLIC} draft an email to {YURI_MILNER}", is_interesting=True),
     EmailCfg(id='EFTA00277107', description=f'FBI tip alleging connections between Wirecard and {GHISLAINE_MAXWELL} network', truncate_to=5500),
     EmailCfg(
@@ -2216,6 +2214,7 @@ OTHER_FILES_MONEY = [
     DocCfg(id='EFTA01111057', author=MORTIMER_ZUCKERMAN, date='2014-07-10', description='Mortimer B. Zuckerman Management Trust'),
     DocCfg(id='EFTA01086463', description=f"{MORTIMER_ZUCKERMAN}'s art collection invetory and valuation report"),
     EmailCfg(id='EFTA00037187', is_interesting=True),
+    EmailCfg(id='EFTA00652799', description=f'Epstein calls Ari Glass "a bit sketchy" despite investing ~$50 million in his fund Boothbay'),
 ]
 
 # This category makes is_interesting default to True
@@ -2719,6 +2718,7 @@ OTHER_FILES_CRYPTO = [
     EmailCfg(id='EFTA00664424', description=f"{BROCK_PIERCE} suggests {LARRY_SUMMERS} could get involved with Tether and Noble Bank"),
     EmailCfg(id='EFTA01139067', description=f'Epstein tells Farkas he has not invested in {CRYPTO_CURRENCY_PARTNERS_II}', is_interesting=True),
     EmailCfg(id='EFTA00752383', description=f"Mindshift conference attendee list including {BROCK_PIERCE}", is_interesting=True),
+    EmailCfg(id='EFTA00626220', description=f'setting up "sidecar fund" with {BROCK_PIERCE} / {CRYPTO_CURRENCY_PARTNERS_II}'),
     # Boris Nikolic
     EmailCfg(id='EFTA00844780'),
     EmailCfg(id='EFTA01770220'),
