@@ -2244,6 +2244,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 link_to_bio=SUBSTACK_INSIGHTS_POD,
                 match_partial='both',
             ),
+            organization('Accel Partners', 'venture capital firm', r"Accel( Partners)?"),
             organization('bgC3', 'renamed "Bill Gates Ventures" in 2018'),
             organization(
                 'Coatue Management',
@@ -2251,6 +2252,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 r"Coatue( (Enterprises?|Management|Mgmt))?",
             ),
             organization(GOOGLE_PLUS, "Google Plus", r"Google\+", is_emailer=True, is_interesting=False),
+            organization('Greylock', 'OG silicon valley venture capital firm', r"Greylock( Partners)?"),
             organization(
                 'Honeycomb Asset Management',
                 'venture fund Epstein invested in Spotify through',
@@ -2266,6 +2268,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             organization('ThielCapital', f"{PETER_THIEL} organization"),
             organization('Transferwise', 'fintech'),
             organization(VALAR_VENTURES, f"{PETER_THIEL} affiliated fintech venture fund", r"V[ae]lar (Global Fund|Ventures)?", is_emailer=True),
+            organization('Wearality', f"startup invested in by Epstein and {JOI_ITO}", r"Wearality( Corporation)?"),
             organization(
                 'WeWork',
                 'infamously stupid failed temporary office space company',
@@ -2274,10 +2277,8 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         ],
         patterns=[
             r"4chan",
-            r"Accel( Partners)?",
             r"Eliezer Yudkowsky",
             r"Erick? Sc?hmidt",
-            r"Greylock( Partners)?",
             r"(Jeff )?Bezos",
             r"Kimbal Musk",
             r"Larry Page",
@@ -2293,7 +2294,6 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"(Steve )?Ballmer",
             r"Tencent",
             r"Tim Ferriss?",
-            r"Wearality( Corporation)?",
             r"WikiLeak(ed|s)",
         ],
     ),
