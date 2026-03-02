@@ -1,4 +1,6 @@
 # NEXT RELEASE
+
+### 1.8.8
 * new `DocPrinter` class manages formatted document printing
 * Make biographical panels sticky
 * `MessengerLogPdf` class for unstructured text message PDFs
