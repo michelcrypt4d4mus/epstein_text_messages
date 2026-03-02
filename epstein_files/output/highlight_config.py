@@ -398,14 +398,28 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         ],
     ),
     HighlightedNames(
+        label='crime',
+        style='color(125)',
+        contacts=[
+            Contact('John Gotti', 'boss of the Gambino crime family'),
+            Contact('Anthony Trentacosta', 'Gambino crime family'),
+        ],
+        patterns=[
+            r'cocaine',
+            r'(drug|mexican) cartel',
+            r"fraud(ulent)?",
+            r'heroin',
+        ],
+    ),
+    HighlightedNames(
         category=Interesting.CRYPTO,
         label=JOI_ITO,
         style='gold1 bold',
         contacts=[
             Contact(
-                name=JOI_ITO,
-                info=f"head of {MIT_MEDIA_LAB} and MIT Digital Currency Initiative, co-founded VC funds with Epstein",
-                emailer_pattern=r"ji@media.mit.?edu|(joichi|joi)( Ito)?",
+                JOI_ITO,
+                "head of {MIT_MEDIA_LAB} and MIT Digital Currency Initiative, co-founded VC funds with Epstein",
+                r"ji@media.mit.?edu|(joichi|joi)( Ito)?",
                 match_partial='both'
             ),
             organization('Digital Garage', f"{JOI_ITO} Japanese company"),
@@ -725,7 +739,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         contacts=[
             Contact('Adriana Ross', 'named co-conspirator', match_partial=None),
             Contact('Alfredo Rodriguez', "Epstein's butler, stole Epstein's black book", match_partial=None),
-            Contact('Bella Klein', "Epstein's accountant"),
+            Contact('Bella Klein', "Epstein's accountant", match_partial=None),
             Contact('Bernard Kruger', "Epstein's doctor", match_partial=None),
             Contact(CECILIA_STEEN, f'Epstein assistant who moved to Dubai'),
             Contact(DAPHNE_WALLACE, "logistics and schedule coordination", r"Da.hne Wallace", match_partial=None),
@@ -1043,14 +1057,13 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"convertible note",
             r"donor advised fund",
             r"equities",
-            r"fraud(ulent)",
             r"Mastercard",
             r"(naked )?shorting",
             r"NASDAQ",
             r"philanthrop(i(es|st)|y)",
             r"ponz[il] scheme",
             r"stock market",
-            r"Trust(ee| Estate)",
+            r"Trust(ee| Estate)s?",
             r"(income )?tax(e[ds])?( code)?",
             r"Wall Street(?! Jour)",
         ]
@@ -1856,6 +1869,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Nayaf",
             r"Pak[ai]stani?",
             r"Omar",
+            r"OPEC",
             r"(Osama )?Bin Laden",
             r"Osama(?! al)",
             r"Palestin(e|ian)",
@@ -2225,7 +2239,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact('Alisa Bekins', f"{PETER_THIEL}'s assistant"),
             Contact(ANDREW_MCCORMACK, f"partner at {THIELS_VALAR} {'(???)'}", r"Andrew McCorm(ack?)?"),
             Contact('Auren Hoffman', "CEO of SafeGraph (firm that gathers location data from mobile devices) and LiveRamp", match_partial=None),
-            Contact(BOBBY_KOTICK, 'CEO of video game titan Activision Blizzard ("Call of Duty", "World of Warcraft", etc.)'),
+            Contact(BOBBY_KOTICK, 'CEO of video game titan Activision Blizzard ("Call of Duty", "World of Warcraft", etc.)', r"Kotick, Bobby|Bobby Kotick"),
             Contact(CHAMATH_PALIHAPITIYA, f"{ALL_IN_PODCAST}, Facebook, crypto enthusiast, SPAC grifter, Trump convert", match_partial='both'),
             Contact(CHRIS_POOLE, 'AKA "Moot", founder of 4chan, ex-Google', r"mmot|Chris Poole?|(?-i:Moot)", link_to_bio='https://4chan.org/'),
             Contact('Danny Hillis', "computer scientist, artificial intelligence researcher", r"Dan(iel|ny) Hillis?"),
