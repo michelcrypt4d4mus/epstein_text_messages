@@ -184,7 +184,7 @@ class Contact:
         return '[\n' + indented(',\n'.join([repr(contact) for contact in contact_infos]), 4) + '\n],'
 
 
-def acronym_org(name: str, description: str = '', **kwargs) -> Contact:
+def acronym(name: str, description: str = '', **kwargs) -> Contact:
     """Like organization() but auto-generates a regex matching the org's initials."""
     initials = [word[0] for word in name.split() if word[0].isupper()]
     initials_pattern = ''.join([fr"{letter}\.?" for letter in initials])

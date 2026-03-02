@@ -1,4 +1,4 @@
-from epstein_files.people.contact import Contact, acronym_org, organization, epstein_co, epstein_trust
+from epstein_files.people.contact import Contact, acronym, organization, epstein_co, epstein_trust
 from epstein_files.util.constant.names import INTERNATIONAL_PEACE_INSTITUTE, JEAN_LUC_BRUNEL, JEFFREY_EPSTEIN
 
 NAME = 'Nasir Jones'
@@ -11,14 +11,14 @@ CONTACT_INFO = Contact(
 )
 
 
-def test_acronym_org():
-    ipi = acronym_org(INTERNATIONAL_PEACE_INSTITUTE)
+def test_acronym():
+    ipi = acronym(INTERNATIONAL_PEACE_INSTITUTE)
     assert ipi.name == 'IPI'
     assert ipi.info == INTERNATIONAL_PEACE_INSTITUTE
     assert ipi.emailer_pattern == r"I\.?P\.?I\.?|International Peace Institute"
-    ipi = acronym_org(INTERNATIONAL_PEACE_INSTITUTE, 'Terje org')
+    ipi = acronym(INTERNATIONAL_PEACE_INSTITUTE, 'Terje org')
     assert ipi.info == f"{INTERNATIONAL_PEACE_INSTITUTE}, Terje org"
-    ofac = acronym_org('Office of Foreign Assets Control')
+    ofac = acronym('Office of Foreign Assets Control')
     assert ofac.name == 'OFAC'
     assert ofac.emailer_pattern == r"O\.?F\.?A\.?C\.?|Office of Foreign Assets Control"
 
