@@ -185,8 +185,8 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         label=ARTS,
         style='light_steel_blue3',
         contacts=[
-            Contact(ANDRES_SERRANO, "'Piss Christ' artist"),
-            Contact('Barry Josephson', "American film producer, editor FamilySecurityMatters.org"),
+            Contact(ANDRES_SERRANO, '"Piss Christ" artist'),
+            Contact('Barry Josephson', "American film producer"), #, editor FamilySecurityMatters.org"),
             Contact(BILL_SIEGEL, "documentary film producer and director", match_partial=None),
             Contact('Bobby Slayton', 'comedian and actor'),
             Contact(DAVID_BLAINE, "famous magician"),
