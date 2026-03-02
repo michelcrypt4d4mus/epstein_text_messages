@@ -529,6 +529,11 @@ class CommunicationCfg(DocCfg):
 
         self.recipients = sort_names(self.recipients)
 
+    @classmethod
+    def describe(cls, id: str, description: str, **kwargs) -> Self:
+        """Alternate constructor for a config with a description."""
+        return cls(id=id, description=description, **kwargs)
+
     @property
     def recipients_str(self) -> str:
         return ', '.join([r or UNKNOWN for r in self.recipients])
