@@ -533,6 +533,13 @@ EMAILS_CONFIG = [
     EmailCfg(id='033460', recipients=["Joel"], author_reason='reply'),
     EmailCfg(id='025589', recipients=[GORDON_GETTY, JEFFREY_EPSTEIN] + TRIVERS_CCS, author_reason='reply'),
     EmailCfg(
+        id='031688',
+        recipients=[JEFFREY_EPSTEIN],
+        uncertain_recipient='yes',
+        is_fwded_article=True,
+        comment='Bill Siegel fwd of email about Hamas'
+    ),
+    EmailCfg(
         id='021090',
         recipients=[JONATHAN_FARKAS],
         author_reason='Reply to a message signed "jonathan" same as other Farkas emails',
@@ -629,15 +636,6 @@ EMAILS_CONFIG = [
     EmailCfg(id='021758', duplicate_ids=['030616'], is_fwded_article=True, comment="Radar Online article about Epstein's early prison release"),
     EmailCfg(id='033297', duplicate_ids=['033586'], is_fwded_article=True, comment='Sultan Sulayem article about Trump and Russia'),
     EmailCfg(id='032458', truncate_to=NO_TRUNCATE, description='discussion of acquiring pieces for Epstein\'s art collection'),
-    binant_redacted('032964'),
-    binant_redacted('032968'),
-    binant_redacted('032467'),
-    binant_redacted('032480'),
-    binant_redacted('032486'),
-    binant_redacted('032491'),
-    binant_redacted('032975'),
-    binant_redacted('032496'),
-    binant_redacted('032464', NO_TRUNCATE),
     EmailCfg(id='021231', is_fwded_article=True, comment='11 places with worse economy than US'),
     EmailCfg(id='021729', is_fwded_article=True, comment='Acosta rebuke'),
     EmailCfg(id='025643', is_fwded_article=True, comment='Alice Fisher stated to be in the mix of potential candidates for new FBI director.'),
@@ -650,7 +648,6 @@ EMAILS_CONFIG = [
     EmailCfg(id='016218', is_fwded_article=True, comment='AT&T confirms it paid Trump lawyer Cohen for insights on Trump'),
     EmailCfg(id='030209', is_fwded_article=True, comment='Atlantic Council "Syria: Blackberry Diplomacy"'),
     EmailCfg(id='030372', is_fwded_article=True, comment='Bannon China Iran'),
-    EmailCfg(id='031688', recipients=[JEFFREY_EPSTEIN], uncertain_recipient='yes', is_fwded_article=True, comment='Bill Siegel fwd of email about Hamas'),
     EmailCfg(id='023564', is_fwded_article=True, comment="Bloomberg: Leon Black's Tax-Overhaul Dilemma Could Alter Wall Street Model"),
     EmailCfg(id='024300', is_fwded_article=True, comment='Bookstore owner calls police after customer confronted Steve Bannon'),
     EmailCfg(id='016801', is_fwded_article=True, comment='Capital Market Outlook'),
@@ -928,8 +925,16 @@ EMAILS_CONFIG = [
     EmailCfg(id='025163', truncate_to=NO_TRUNCATE, comment='Tom Pritzer'),
     EmailCfg(id='022265', truncate_to=NO_TRUNCATE),
     EmailCfg(id='026243', truncate_to=NO_TRUNCATE),
-    EmailCfg(id='EFTA00859299', truncate_to=2000),
     EmailCfg(id='014797_1', has_uninteresting_bccs=True),
+    binant_redacted('032964'),
+    binant_redacted('032968'),
+    binant_redacted('032467'),
+    binant_redacted('032480'),
+    binant_redacted('032486'),
+    binant_redacted('032491'),
+    binant_redacted('032975'),
+    binant_redacted('032496'),
+    binant_redacted('032464', NO_TRUNCATE),
 
     # DOJ files
     EmailCfg(id='EFTA00645449', author=ANASTASIYA_SIROOCHENKO, author_reason='Jmail'),
@@ -1500,6 +1505,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA01731638', truncate_to=530),
     EmailCfg(id='EFTA00362171', truncate_to=1096),
     EmailCfg(id='EFTA00836570', truncate_to=1600),
+    EmailCfg(id='EFTA00859299', truncate_to=2000),
     EmailCfg(id='EFTA00681240', truncate_to=2000),
     EmailCfg(id='EFTA00669647', truncate_to=2500),
     EmailCfg(id='EFTA02374977', truncate_to=2500),
@@ -2268,7 +2274,7 @@ OTHER_FILES_PROPERTY = [
 ]
 
 OTHER_FILES_REPUTATION = [
-    DocCfg(id='030426', author=OSBORNE_LLP, description=f"reputation repair proposal (cites Michael Milken)", date='2011-06-14'),
+    DocCfg(id='030426', author=IAN_OSBORNE, description=f"reputation repair proposal citing Michael Milken", date='2011-06-14'),
     DocCfg(id='026582', description=f"Epstein's internet search results at start of reputation repair campaign, maybe from {OSBORNE_LLP}"),
     DocCfg(id='030573', description=f"Epstein's unflattering Google search results, maybe screenshot by {AL_SECKEL} or {OSBORNE_LLP}"),
     DocCfg(id='030875', description=f"Epstein's Wikipedia page", date='2014-02-08'),  # Date is based on tyler shears; seckel was 2010
@@ -2276,9 +2282,16 @@ OTHER_FILES_REPUTATION = [
     DocCfg(id='029350', description=f"Microsoft Bing search results for Epstein with sex offender at top, maybe from {TYLER_SHEARS}?"),
     EmailCfg(id='022203', description=AL_SECKEL_BILL_FIGHT, truncate_to=500),
     EmailCfg(id='022219', description=AL_SECKEL_BILL_FIGHT, truncate_to=2404),
+
     # DOJ files
     EmailCfg(id='EFTA01830035', description=AL_SECKEL_BILL_FIGHT),
-    DocCfg(id='EFTA01810372', author=TYLER_SHEARS, description=f'invoice for reputation management work', is_interesting=True, attached_to_email_id='EFTA01931256'),
+    DocCfg(
+        id='EFTA01810372',
+        author=TYLER_SHEARS,
+        description=f'invoice for reputation management work',
+        is_interesting=True,
+        attached_to_email_id='EFTA01931256'
+    ),
 ]
 
 OTHER_FILES_SOCIAL = [
