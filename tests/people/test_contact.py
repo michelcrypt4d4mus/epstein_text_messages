@@ -3,6 +3,7 @@ from epstein_files.util.constant.names import INTERNATIONAL_PEACE_INSTITUTE, JEA
 
 NAME = 'Nasir Jones'
 EMAILER_PATTERN = r"Nasir[-_.\s]*Jones?"
+HIGHLIGHT_PATTERN = fr"{EMAILER_PATTERN}|Jones,?[-_.\s]*Nasir"
 
 CONTACT_INFO = Contact(
     name=JEFFREY_EPSTEIN,
@@ -43,15 +44,13 @@ def test_epstein_trust():
 
 
 def test_highlight_pattern():
-    c = _build_contact()
-    assert c.emailer_regex.pattern == EMAILER_PATTERN
-    assert c.highlight_pattern == r"Nasir[-_.\s]*Jones?|Jones,?[-_.\s]*Nasir|Jones"
-    c = _build_contact(match_partial='both')
-    assert c.emailer_regex.pattern == EMAILER_PATTERN
-    assert c.highlight_pattern == r"Nasir[-_.\s]*Jones?|Jones,?[-_.\s]*Nasir|Nasir|Jones"
-    c = _build_contact(match_partial='first')
-    assert c.emailer_regex.pattern == EMAILER_PATTERN
-    assert c.highlight_pattern == r"Nasir[-_.\s]*Jones?|Jones,?[-_.\s]*Nasir|Nasir"
+    def assert_highlight_pattern_suffix(c: Contact, suffix: str):
+        assert c.emailer_regex.pattern == EMAILER_PATTERN
+        assert c.highlight_pattern == fr"{HIGHLIGHT_PATTERN}|{suffix}"
+
+    assert_highlight_pattern_suffix(_build_contact(), 'Jones')
+    assert_highlight_pattern_suffix(_build_contact(match_partial='both'), 'Nasir|Jones')
+    assert_highlight_pattern_suffix(_build_contact(match_partial='first'), 'Nasir')
 
     jean_luc = Contact(JEAN_LUC_BRUNEL, match_partial='both')
     assert jean_luc.highlight_pattern == r'Jean[-_.\s]*Luc[-_.\s]*Brunel?|Brunel,?[-_.\s]*Jean[-_.\s]*Luc|Jean[-_.\s]*Luc|Brunel'
