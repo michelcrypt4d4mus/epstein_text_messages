@@ -1087,7 +1087,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact('Michael Milken', 'infamous junk bond king who went to prison in the 1980s', r"(Mi(chael|ke) )?Milken( Conference|Institute)?"),
             Contact(
                 MORTIMER_ZUCKERMAN,
-                "business partner of Epstein, newspaper publisher",
+                "business partner of Epstein, publisher of New York Daily News and US News & World Report",
                 link_to_bio='https://prospect.org/2026/02/26/newspapers-did-not-kill-themselves-jeffrey-epstein-mort-zuckerman-daily-news/',
             ),
             Contact(NORMAN_D_RAU, "managing director at Morgan Stanley"),
@@ -1105,7 +1105,12 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact('Vahe Stepanian', "Cetera Financial Group", match_partial='both'),
             Contact(VINIT_SAHNI, f"analyst at {DEUTSCHE_BANK} and {GOLDMAN_SACHS}", match_partial='both'),
             acronym("Grantor Retained Annuity Trust", "tax shelter structure favoured by Epstein"),
-            organization('Banque Havilland', 'Rowland family private bank in Luxembourg, charter revoked in 2024 for money laundering'),
+            organization(
+                'Banque Havilland',
+                f"Rowland family private bank in Luxembourg used by {PRINCE_ANDREW}, charter revoked in 2024 for money laundering",
+                r"(Banque )?Havilland",
+                link_to_bio='https://en.wikipedia.org/wiki/Banque_Havilland',
+            ),
             organization(BEAR_STEARNS, 'investment bank where Epstein got his first job in finance, failed in 2008'),
             organization(
                 'Boothbay',
