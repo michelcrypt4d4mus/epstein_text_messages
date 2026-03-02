@@ -218,6 +218,7 @@ EMAIL_SIGNATURE_REGEXES = {
     LEON_BLACK: re.compile(r"This email and any files transmitted with it are confidential and intended solely.*\n(they|whom).*\ndissemination.*\nother.*\nand delete.*"),
     LISA_NEW: re.compile(r"Elisa New\nPowell M. Cabot.*\n(Director.*\n)?Harvard.*\n148.*\n([1I] )?12.*\nCambridge.*\n([1I] )?02138"),
     MARTIN_WEINBERG: re.compile(r"(Martin G. Weinberg, Esq.\n20 Park Plaza((, )|\n)Suite 1000\nBoston, MA 02116(\n61.*?)?(\n.*?([cC]ell|Office))*\n)?This Electronic Message contains.*?contents of this message is.*?prohibited.", re.DOTALL),
+    MICHAEL_FOWLER: re.compile(r"The information contained [=i]n this e-mail message.{,1650}complete\s+loss\s+of\s+[c=]api[ct=]al", re.DOTALL),
     MICHAEL_MILLER: re.compile(r"Michael C. Miller\nPartner\nwww.steptoe.com/mmiller\nSteptoe\n(Privileged.*\n)?(\+1\s+)?direct.*\n(\+1\s+)?(\+1\s+)?fax.*\n(\+1.*)?cell.*\n(www.steptoe.com\n)?This message and any.*\nyou are not.*\nnotify the sender.*"),
     NICHOLAS_RIBIS: re.compile(r"60 Morris Turnpike 2FL\nSummit,? NJ.*\n0:\nF:\n\*{20,}\nCONFIDENTIALITY NOTICE.*\nattachments.*\ncopying.*\nIf you have.*\nthe copy.*\nThank.*\n\*{20,}"),
     PETER_MANDELSON: re.compile(r'Disclaimer This email and any attachments to it may be.*?with[ \n]+number(.*?EC4V[ \n]+6BJ)?', re.DOTALL | re.IGNORECASE),
