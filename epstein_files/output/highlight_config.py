@@ -2587,8 +2587,9 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 name=GHISLAINE_MAXWELL,
                 info="Epstein's girlfriend, daughter of the spy Robert Maxwell",
                 emailer_pattern=r"g max(well)?|Ghislaine|Maxwell",
-                match_partial='both',
+                match_partial='first',
             ),
+            Contact('Isabel Maxwell', f"sister of Ghislaine, wife of {AL_SECKEL}", match_partial=None),
             Contact(
                 'Robert Maxwell',
                 f"father of Ghislaine, British / Russian / Israeli agent, financial fraudster, mysterious death",
@@ -2599,6 +2600,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         ],
         patterns=[
             r"gmax(1@ellmax.com)?",
+            r"Maxwell",
             r"(The )?TerraMar Project",
             r"(Scott )?Borgenson", # Ghislaine lawyer
         ],
