@@ -15,6 +15,7 @@ MIN_LEN_FOR_OPTIONAL_LAST_CHAR = 5
 MGMT_PATTERN = r"M(ana)?ge?m(en)?t"
 MGMT_REGEX = re.compile(MGMT_PATTERN)
 COMPANY_SUFFIX_REGEX = re.compile(fr".*?(,? (Inc\.?|LLC|{MGMT_PATTERN}))$")
+MIDDLE_INITIAL_REGEX = re.compile(r"^[A-Z]\.?$")
 SIMPLE_NAME_REGEX = re.compile(r"^[-\w, ]+$", re.IGNORECASE)
 
 
@@ -129,12 +130,25 @@ class Contact:
         if self.emailer_pattern:
             pattern = self.emailer_pattern
         else:
-            pattern = remove_question_marks(self.name)  # TODO: this sucks
+            pattern = self.name
 
-            if len(pattern) >= MIN_LEN_FOR_OPTIONAL_LAST_CHAR and not self.is_organization:
-                pattern = self.name + '?'
+            if len(self.name) >= MIN_LEN_FOR_OPTIONAL_LAST_CHAR and not self.is_organization:
+                pattern += '?'
 
         return as_pattern(pattern)
+
+    @property
+    def _middle_initial(self) -> str:
+        if len(self._names) != 3:
+            return ''
+        elif MIDDLE_INITIAL_REGEX.match(self._names[1]):
+            return self._names[1]
+        else:
+            return ''
+
+    @property
+    def _names(self) -> list[str]:
+        return self.name.split()
 
     @property
     def _props_strs(self) -> list[str]:

@@ -1,5 +1,5 @@
 from epstein_files.people.contact import Contact, acronym, organization, epstein_co, epstein_trust
-from epstein_files.util.constant.names import INTERNATIONAL_PEACE_INSTITUTE, JEAN_LUC_BRUNEL, JEFFREY_EPSTEIN
+from epstein_files.util.constant.names import INTERNATIONAL_PEACE_INSTITUTE, JEAN_LUC_BRUNEL, JEFFREY_EPSTEIN, SULTAN_BIN_SULAYEM
 
 NAME = 'Nasir Jones'
 EMAILER_PATTERN = r"Nasir[-_.\s]*Jones?"
@@ -23,18 +23,6 @@ def test_acronym():
     assert ofac.emailer_pattern == r"O\.?F\.?A\.?C\.?|Office of Foreign Assets Control"
     occ = acronym('Office of the Comptroller of the Currency')
     assert occ.name == 'OCC'
-
-
-def test_repr():
-    assert repr(CONTACT_INFO) == r"""Contact(
-    name=JEFFREY_EPSTEIN,
-    info="one and only",
-    emailer_pattern=r"Jeffrey Epstein|jeevacation",
-    is_emailer="True",
-    is_interesting="True",
-    match_partial="last",
-    highlight_pattern=r"Jeffrey[-_.\s]*Epstein|jeevacation|Epstein,?[-_.\s]*Jeffrey|Epstein",
-)"""
 
 
 def test_epstein_co():
@@ -69,6 +57,13 @@ def test_highlight_pattern():
     assert jean_luc.highlight_pattern == r'Jean[-_.\s]*Luc[-_.\s]*Brunel?|Brunel,?[-_.\s]*Jean[-_.\s]*Luc|Jean[-_.\s]*Luc|Brunel'
 
 
+def test_middle_initial():
+    assert CONTACT_INFO._middle_initial == ''
+    assert Contact('Robert D Critton')._middle_initial == 'D'
+    assert Contact('Robert D. Critton')._middle_initial == 'D.'
+    assert Contact('Robert Dow Critton')._middle_initial == ''
+
+
 def test_organization():
     assert organization('Jege LLC').emailer_pattern == r"Jege(,? LLC)?"
     assert organization('Jege, LLC').emailer_pattern == r"Jege(,? LLC)?"
@@ -76,6 +71,18 @@ def test_organization():
     assert organization('Butterfly, Inc.').emailer_pattern == r"Butterfly(,? Inc\.?)?"
     coatue = organization('Coatue Management', 'VC fund')
     assert coatue.emailer_pattern == r'Coatue( Management)?'
+
+
+def test_repr():
+    assert repr(CONTACT_INFO) == r"""Contact(
+    name=JEFFREY_EPSTEIN,
+    info="one and only",
+    emailer_pattern=r"Jeffrey Epstein|jeevacation",
+    is_emailer="True",
+    is_interesting="True",
+    match_partial="last",
+    highlight_pattern=r"Jeffrey[-_.\s]*Epstein|jeevacation|Epstein,?[-_.\s]*Jeffrey|Epstein",
+)"""
 
 
 def _build_contact(**kwargs) -> Contact:
