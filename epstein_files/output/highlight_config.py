@@ -411,7 +411,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         patterns=[
             r'cocaine',
             r'(drug|mexican) (cartel|traffick(ers?|ing))',
-            r'criminals?',
+            r'criminals?( prosecution)?',
             r'crime famil(ies|y)',
             r'Gambino',
             r'heroin',
@@ -1098,6 +1098,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 match_partial=None,
             ),
             Contact(MELANIE_SPINELLA, f"representative of {LEON_BLACK}", r"M?elanie Spine[Il]{2}a"),
+            Contact('Michael Fowler', f"{ATORUS} / Red Dot Trade fund co-founder", match_partial=None),
             Contact('Michael Milken', 'infamous junk bond king who went to prison in the 1980s', r"(Mi(chael|ke) )?Milken( Conference|Institute)?"),
             Contact(
                 MORTIMER_ZUCKERMAN,
@@ -1121,6 +1122,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact('Vahe Stepanian', "Cetera Financial Group", match_partial='both'),
             Contact(VINIT_SAHNI, f"analyst at {DEUTSCHE_BANK} and {GOLDMAN_SACHS}", match_partial='both'),
             acronym("Grantor Retained Annuity Trust", "tax shelter structure favoured by Epstein"),
+            organization('Atorus', 'AKA "Red Dot Trade Finance", fund of Michael Fowler and Joshua Levy'),
             organization(
                 'Banque Havilland',
                 f"Rowland family private bank in Luxembourg used by {PRINCE_ANDREW}, charter revoked in 2024 for money laundering",
@@ -2638,7 +2640,8 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"convertible note",
             r"donor advised fund",
             r"equities",
-            r"(?<!Kyara\s)invest(ment|or)s?",
+            r"hedge fund",
+            r"(?<!Kyara\s)invest(ment|or)s?(\sadvis[eo]r[sy]?)?",
             r"(junk )?bond",
             r"Mastercard",
             r"(naked )?shorting",

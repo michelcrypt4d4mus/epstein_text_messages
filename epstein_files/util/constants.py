@@ -2115,7 +2115,8 @@ OTHER_FILES_FINANCE = [
     ),
 
     # DOJ
-    DocCfg(id='EFTA01078403', author='Red Dot Trade Finance', description='investment adviser uniform application', date='2014-05-14'),
+    DocCfg(id='EFTA01078403', author=ATORUS, description='investment adviser uniform application', date='2014-05-14'),
+    DocCfg(id='EFTA02690885', author=ATORUS, description='pitch deck'),
 ]
 
 OTHER_FILES_GOVERNMENT = [
@@ -2152,7 +2153,7 @@ OTHER_FILES_GOVERNMENT = [
         description='Powerpoint summary of Child Sex Trafficking Task Force Epstein investigation',
         is_interesting=True,
     ),
-    DocCfg(id='EFTA02731200', author=DOJ, description=f"memo about potential prosecutation of Epstein's assistant"),
+    DocCfg(id='EFTA02731200', author=DOJ, description="memo about potential prosecutation of Epstein's assistant"),
     DocCfg(id='EFTA02731082', author=DOJ, description="memo about investigation into Epstein's co-conspirators"),
     DocCfg(
         id='EFTA01246710',
@@ -2160,10 +2161,7 @@ OTHER_FILES_GOVERNMENT = [
         description="interview where Epstein's chef says Donald Trump came to Epstein's house for dinner",
         truncate_to=(6000, 7500),
     ),
-    DocCfg(id='EFTA00020506', author=FBI, description='"chauffeur also told Epstein \'I have something on you, remember what I buried!\'"'),
-    fbi_defense_witness('EFTA02730267', 'Malcolm Grumbridge', '2022-04-14'),
-    fbi_defense_witness('EFTA02730477', 'Roderic Alexander', '2022-01-19'),
-    fbi_defense_witness('EFTA02730271', REDACTED, '2022-03-22'),
+    DocCfg(id='EFTA00020506', author=FBI, description='"chauffeur told Epstein \'I have something on you, remember what I buried!\'"'),
     DocCfg(id='EFTA00084614', author=PALM_BEACH_POLICE, description='incident report detailing the investigation into Jeffrey Epstein'),
     DocCfg(id='EFTA00007893', author=PALM_BEACH_POLICE, description=f"receipts, notes, bank statements of {GHISLAINE_MAXWELL}"),
     DocCfg(id='EFTA00005569', author=PALM_BEACH_POLICE, replace_text_with='photo lineup featuring Epstein', date='2005-03-17'),
@@ -2172,6 +2170,9 @@ OTHER_FILES_GOVERNMENT = [
     DocCfg(id='EFTA00001884', description='photo of letter from Virgin Islands DOJ to Epstein', date='2019-03-14'),
     DocCfg(id='EFTA00074744', description="USVI court filing about Epstein will and estate"),
     DocCfg(id='EFTA00007157', description='victim list and police log'),
+    fbi_defense_witness('EFTA02730267', 'Malcolm Grumbridge', '2022-04-14'),
+    fbi_defense_witness('EFTA02730271', REDACTED, '2022-03-22'),
+    fbi_defense_witness('EFTA02730477', 'Roderic Alexander', '2022-01-19'),
 
     # Emails
     EmailCfg(
@@ -2225,6 +2226,7 @@ OTHER_FILES_MONEY = [
     DocCfg(id='EFTA01086463', description=f"{MORTIMER_ZUCKERMAN}'s art collection invetory and valuation report"),
     # Emails
     EmailCfg(id='EFTA00037187', is_interesting=True),
+    EmailCfg(id='EFTA00371120', description=f"Epstein appears to invest in {ATORUS}"),
     EmailCfg(id='EFTA00652799', description=f'Epstein calls Ari Glass "a bit sketchy" despite investing ~$50 million in his fund Boothbay'),
 ]
 
