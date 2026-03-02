@@ -394,7 +394,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"SCMP",
             r"Shang?hai",
             r"V-?Nee",
-            r"Xi(aomi)?", r"Jinping",
+            r"(?<!Article\s)Xi(aomi)?", r"Jinping",
         ],
     ),
     HighlightedNames(
@@ -1114,6 +1114,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(
                 MORTIMER_ZUCKERMAN,
                 "business partner of Epstein, publisher of New York Daily News and US News & World Report",
+                r"Mortimer( B\.?)? Zuckerman",
                 link_to_bio='https://prospect.org/2026/02/26/newspapers-did-not-kill-themselves-jeffrey-epstein-mort-zuckerman-daily-news/',
             ),
             Contact(NORMAN_D_RAU, "managing director at Morgan Stanley"),
