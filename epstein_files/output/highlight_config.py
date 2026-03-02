@@ -1971,7 +1971,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(CHRISTINA_GALBRAITH, f"{JEFFREY_EPSTEIN} VI Foundation Media/PR, worked with {TYLER_SHEARS}"),
             Contact(
                 IAN_OSBORNE,
-                f"hired by Epstein to do PR, set up {HEDOSOPHIA} which launched SPACs with {CHAMATH_PALIHAPITIYA} advised by Epstein",
+                f"did PR for Epstein, runs {HEDOSOPHIA} which launched SPACs with {CHAMATH_PALIHAPITIYA} advised by Epstein",
                 r"[Il]an Osbou?(rn|m)e",
                 link_to_bio='https://www.businessinsider.com/profile-ian-osborne-cofounder-chamath-palihapitiya-social-capital-hedosophia-spac-2021-5'
             ),
