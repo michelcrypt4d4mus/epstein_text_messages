@@ -2119,29 +2119,11 @@ OTHER_FILES_FINANCE = [
 ]
 
 OTHER_FILES_GOVERNMENT = [
-    DocCfg(id='efta00128379', date='2019-01-06', description='analysis of two of Epstein\'s desktop computers', is_interesting=True),
     DocCfg(
         id='024117',
         description=f"anti-money laundering (AML), Bank Secrecy Act (BSA), & terrorist financing (CFT) US law FAQ",
         is_interesting=True,
     ),
-    DocCfg(
-        id='EFTA00164939',
-        author=DOJ,
-        date='2025-09-01',
-        date_uncertain='approximate',
-        description='Powerpoint summary of Child Sex Trafficking Task Force Epstein investigation',
-        is_interesting=True,
-    ),
-    DocCfg(
-        id='EFTA01246710',
-        author=FBI,
-        description="interview where Epstein's chef says Donald Trump came to Epstein's house for dinner",
-        truncate_to=(6000, 7500),
-    ),
-    fbi_defense_witness('EFTA02730267', 'Malcolm Grumbridge', '2022-04-14'),
-    fbi_defense_witness('EFTA02730477', 'Roderic Alexander', '2022-01-19'),
-    fbi_defense_witness('EFTA02730271', REDACTED, '2022-03-22'),
     DocCfg(
         id='EFTA00315076',
         date='2008-06-01',
@@ -2154,16 +2136,42 @@ OTHER_FILES_GOVERNMENT = [
         description=f"approved mail list during Epstein's 2009 incarceration in {PALM_BEACH}",
         show_full_panel=True,
     ),
+    DocCfg(id='EFTA00039025', author=BUREAU_OF_PRISONS, description=f"report on death of Jeffrey Epstein", is_interesting=True),
+    DocCfg(id='EFTA00039227', author=BUREAU_OF_PRISONS, replace_text_with='Inmate Discipline Program Statement'),
+    DocCfg(id='EFTA00039295', author=BUREAU_OF_PRISONS, replace_text_with='Inmate Telephone Privileges Program Statement'),
+    DocCfg(id='EFTA00039312', author=BUREAU_OF_PRISONS, replace_text_with='Program Statement / Memo about BOP Pharmacy Program'),
+    DocCfg(id='EFTA00039351', author=BUREAU_OF_PRISONS, replace_text_with='Program Statement / Memo about BOP Pharmacy Program'),
+    DocCfg(id='EFTA00039156', author=BUREAU_OF_PRISONS, replace_text_with='Standards of Employee Conduct'),
+    DocCfg(
+        id='EFTA00164939',
+        author=DOJ,
+        date='2025-09-01',
+        date_uncertain='approximate',
+        description='Powerpoint summary of Child Sex Trafficking Task Force Epstein investigation',
+        is_interesting=True,
+    ),
+    DocCfg(id='EFTA02731200', author=DOJ, description=f"memo about potential prosecutation of Epstein's assistant"),
+    DocCfg(id='EFTA02731082', author=DOJ, description="memo about investigation into Epstein's co-conspirators"),
+    DocCfg(
+        id='EFTA01246710',
+        author=FBI,
+        description="interview where Epstein's chef says Donald Trump came to Epstein's house for dinner",
+        truncate_to=(6000, 7500),
+    ),
+    DocCfg(id='EFTA00020506', author=FBI, description='"chauffeur also told Epstein \'I have something on you, remember what I buried!\'"'),
+    fbi_defense_witness('EFTA02730267', 'Malcolm Grumbridge', '2022-04-14'),
+    fbi_defense_witness('EFTA02730477', 'Roderic Alexander', '2022-01-19'),
+    fbi_defense_witness('EFTA02730271', REDACTED, '2022-03-22'),
+    DocCfg(id='EFTA00084614', author=PALM_BEACH_POLICE, description='incident report detailing the investigation into Jeffrey Epstein'),
+    DocCfg(id='EFTA00007893', author=PALM_BEACH_POLICE, description=f"receipts, notes, bank statements of {GHISLAINE_MAXWELL}"),
+    DocCfg(id='EFTA00005569', author=PALM_BEACH_POLICE, replace_text_with='photo lineup featuring Epstein', date='2005-03-17'),
+    DocCfg(id='EFTA00128379', description='analysis of two of Epstein\'s desktop computers', date='2019-01-06', is_interesting=True),
     DocCfg(id='EFTA02730274', description='evidence inventory that appears to have since been deleted from the DOJ website'),
     DocCfg(id='EFTA00001884', description='photo of letter from Virgin Islands DOJ to Epstein', date='2019-03-14'),
     DocCfg(id='EFTA00074744', description="USVI court filing about Epstein will and estate"),
     DocCfg(id='EFTA00007157', description='victim list and police log'),
-    DocCfg(id='EFTA00020506', author=FBI, description='"chauffeur also told Epstein \'I have something on you, remember what I buried!\'"'),
-    DocCfg(id='EFTA02731200', author=DOJ, description=f"memo about potential prosecutation of Epstein's assistant"),
-    DocCfg(id='EFTA02731082', author=DOJ, description="memo about investigation into Epstein's co-conspirators"),
-    DocCfg(id='EFTA00084614', author=PALM_BEACH_POLICE, description='incident report detailing the investigation into Jeffrey Epstein'),
-    DocCfg(id='EFTA00007893', author=PALM_BEACH_POLICE, description=f"receipts, notes, bank statements of {GHISLAINE_MAXWELL}"),
-    DocCfg(id='EFTA00005569', author=PALM_BEACH_POLICE, replace_text_with='photo lineup featuring Epstein', date='2005-03-17'),
+
+    # Emails
     EmailCfg(
         id='EFTA00129096',
         date='2025-04-03 7:13:35 PM',
@@ -2494,12 +2502,6 @@ OTHER_FILES_MISC = [
         description=f"internal message about discovery of Epstein's body",
         background_color='red'
     ),
-    DocCfg(id='EFTA00039025', author=BUREAU_OF_PRISONS, description=f"report on death of Jeffrey Epstein", is_interesting=True),
-    DocCfg(id='EFTA00039227', author=BUREAU_OF_PRISONS, replace_text_with='Inmate Discipline Program Statement'),
-    DocCfg(id='EFTA00039295', author=BUREAU_OF_PRISONS, replace_text_with='Inmate Telephone Privileges Program Statement'),
-    DocCfg(id='EFTA00039312', author=BUREAU_OF_PRISONS, replace_text_with='Program Statement / Memo about BOP Pharmacy Program'),
-    DocCfg(id='EFTA00039351', author=BUREAU_OF_PRISONS, replace_text_with='Program Statement / Memo about BOP Pharmacy Program'),
-    DocCfg(id='EFTA00039156', author=BUREAU_OF_PRISONS, replace_text_with='Standards of Employee Conduct'),
     DocCfg(id='EFTA00005783', description='heavily redacted handwritten note, 30+ completely redacted pages', date='2019-08-29'),
     # Urramoor
     DocCfg(
