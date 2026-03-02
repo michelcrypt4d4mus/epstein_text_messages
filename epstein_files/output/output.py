@@ -54,15 +54,15 @@ def print_curated_chronological(epstein_files: EpsteinFiles) -> list[Document]:
         nonlocal people_encountered
         return [p for p in document.people if p not in people_encountered]
 
-    def print_characters_panel(names: list[str]) -> None:
+    def print_characters_panel(names: list[str], is_sticky: bool) -> str | None:
         nonlocal html_elements
         nonlocal people_encountered
 
         if (bio_panel := _biographical_panel(uniq_sorted(names))):
             console.print(_align_biographical_panel(bio_panel))
-            html_elements.append(div_class(rich_to_html(bio_panel, minimize_width=True), 'person_bio_panel'))
-
-        people_encountered.update(names)
+            people_encountered.update(names)
+            class_name = ('sticky_' if is_sticky else '') + 'person_bio_panel'
+            return div_class(rich_to_html(bio_panel, minimize_width=True), class_name)
 
     def print_other_files_queue() -> None:
         nonlocal html_elements
@@ -88,7 +88,7 @@ def print_curated_chronological(epstein_files: EpsteinFiles) -> list[Document]:
         printed_docs.extend(other_files_queue)
         other_files_queue = []
 
-    for doc in epstein_files.unique_documents:
+    for doc in epstein_files.unique_documents[0:250]:
         should_print = doc.is_interesting if not args.invert_chrono else not doc.is_interesting
 
         if not should_print:
@@ -98,17 +98,18 @@ def print_curated_chronological(epstein_files: EpsteinFiles) -> list[Document]:
                 if other_files_queue:
                     print_other_files_queue()  # Clear the queue before bios panel
 
-                print_characters_panel(new_names(doc))
+                if (bio_div := print_characters_panel(new_names(doc), False)):
+                    html_elements.append(bio_div)
 
             other_files_queue.append(doc)
             continue
         elif other_files_queue:
             print_other_files_queue()
 
-        print_characters_panel(new_names(doc))
         doc.print()
+        doc_div = '\n'.join([print_characters_panel(new_names(doc), True) or '', doc.to_html()])
+        html_elements.append(div_class(doc_div, 'bio_email_container'))
         printed_docs.append(doc)
-        html_elements.append(doc.to_html())
 
         # if doc.config_description_txt:
         #     import pdb;pdb.set_trace()

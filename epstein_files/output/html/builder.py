@@ -191,7 +191,7 @@ def one_row_table_html(table: Table, css_props: CssProps = None) -> str:
 
     return div_class(
         header_div + '\n' + body_div,
-        'no_expand',
+        'black_background no_expand',
         {
             'text-align': table.columns[0].justify,
             **border_props,

@@ -9,7 +9,7 @@ from rich.table import Table
 from rich.text import Text
 from rich.panel import Panel
 
-from epstein_files.output.html.elements import HtmlStyle
+from epstein_files.output.html.elements import HtmlStyle, div_class
 from epstein_files.output.html.builder import (PANEL_BASE_PROPS, VERTICAL_MARGIN, border_css_props, rich_to_html,
      one_row_table_html, text_to_list, text_to_div, vertical_margin_props)
 from epstein_files.output.html.elements import div_tag, to_em, side_props
@@ -60,7 +60,7 @@ class BasePanel:
             if indents[1]:
                 div_props.update(side_props('margin', ['right'], to_em(indents[1])))
 
-        return div_tag(html, div_props)
+        return div_class(html, 'black_background', div_props)
 
     def __rich__(self) -> Panel:
         return Panel(
@@ -132,6 +132,7 @@ class FileDisplay:
     @property
     def subheader_div(self) -> str:
         css_props = {
+            'class_name': 'black_background',
             **self.horizontal_body_margin_css_props,
             **vertical_margin_props(SUBHEADER_VERTICAL_PADDING),
         }
