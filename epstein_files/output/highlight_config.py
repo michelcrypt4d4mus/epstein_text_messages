@@ -1003,7 +1003,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Fr(ance|ench)",
             r"Geneva",
             r"Germany?",
-            r"Gibraltar",
+            r"Gibralt[ae]r",
             r"Gillard",
             r"Gree(ce|k)",
             r"Hollande",
