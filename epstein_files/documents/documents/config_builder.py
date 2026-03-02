@@ -93,6 +93,10 @@ def build_cfg_from_text(doc: 'Document') -> DocCfg | None:
     return cfg
 
 
+def binant_redacted(id: str, truncate_to: int = 700) -> EmailCfg:
+    return EmailCfg(id=id, truncate_to=truncate_to, description=f"redacted discussion of art advisor {ETIENNE_BINANT}")
+
+
 def blaine_letter(id: str, date: str, suffix: str = '') -> CommunicationCfg:
     return letter(
         id,

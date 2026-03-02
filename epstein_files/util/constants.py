@@ -3,8 +3,8 @@ Custom configurations for various files.
 """
 from itertools import groupby
 
-from epstein_files.documents.documents.config_builder import (WOLFF_EPSTEIN_ARTICLE_DRAFT, blaine_letter,
-     fbi_defense_witness, fbi_report, letter, starr_letter, whistleblower_cfg, wolff_draft_cfg)
+from epstein_files.documents.documents.config_builder import (WOLFF_EPSTEIN_ARTICLE_DRAFT, binant_redacted,
+     blaine_letter, fbi_defense_witness, fbi_report, letter, starr_letter, whistleblower_cfg, wolff_draft_cfg)
 from epstein_files.documents.documents.categories import CONSTANT_CATEGORIES, Interesting, Neutral
 from epstein_files.documents.documents.doc_cfg import (DEFAULT_TRUNCATE_TO, GOLDMAN_INVESTMENT_MGMT,
      SHORT_TRUNCATE_TO, NO_TRUNCATE, CommunicationCfg, DocCfg, EmailCfg, TextCfg, phone_bill_cfg)
@@ -182,10 +182,6 @@ ALLEGED_KARIM_WADE = f"allegedly corrupt Senegalese politician {KARIM_WADE}"
 KYARA_FUND = f"Epstein crypto fund {KYARA_INVESTMENT}"
 SEC_WHISTLEBLOWER = 'whistleblower emails to SEC'
 VALAR_MEETING = f"meeting with {PETER_THIEL}'s {VALAR_VENTURES} fund"
-
-
-def binant_redacted(id: str, truncate_to: int = 700) -> EmailCfg:
-    return EmailCfg(id=id, truncate_to=truncate_to, description=f"redacted discussion of art advisor {ETIENNE_BINANT}")
 
 
 EMAILS_CONFIG = [
