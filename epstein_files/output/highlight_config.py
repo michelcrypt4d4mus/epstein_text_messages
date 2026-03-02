@@ -2414,12 +2414,12 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         contacts=[
             Contact(CECILE_DE_JONGH, "Virgin Islands first lady 2007-2015"),
             Contact(KENNETH_E_MAPP, "Virgin Islands Governor", r"(Kenneth E\. )?Mapp"),
-            Contact(STACEY_PLASKETT, "Virgin Islands non-voting member of Congress")
+            Contact(STACEY_PLASKETT, "Virgin Islands non-voting member of Congress"),
+            acronym('British Virgin Islands', 'infamous offshore tax haven'),
         ],
         patterns=[
             r"Antigua",
             r"Bahamas",
-            r"BVI",
             r"Carr?ibb?ean",
             r"Dominican Republic",
             r"(Great|Little) St.? James",
