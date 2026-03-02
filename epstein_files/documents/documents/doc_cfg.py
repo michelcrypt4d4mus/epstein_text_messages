@@ -177,6 +177,13 @@ class DocCfg:
         if self.duplicate_of_id or self.duplicate_ids:
             self.dupe_type = self.dupe_type or SAME
 
+    @classmethod
+    def describe(cls, id: str, description: str, **kwargs) -> Self:
+        """Alternate constructor for a config with a description."""
+        # TODO: find expression: (Doc|Email)Cfg\(id=('\w+'), description=(f?'.*?')\),
+        # TODO:         replace: $1Cfg.describe($2, $3),
+        return cls(id=id, description=description, **kwargs)
+
     @property
     def author_str(self) -> str:
         return self.author or ''
@@ -528,11 +535,6 @@ class CommunicationCfg(DocCfg):
             raise ValueError(f"{self.id} recipients is not a list: {self.recipients}")
 
         self.recipients = sort_names(self.recipients)
-
-    @classmethod
-    def describe(cls, id: str, description: str, **kwargs) -> Self:
-        """Alternate constructor for a config with a description."""
-        return cls(id=id, description=description, **kwargs)
 
     @property
     def recipients_str(self) -> str:
