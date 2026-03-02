@@ -14,11 +14,11 @@ from epstein_files.documents.doj_file import DojFile
 from epstein_files.documents.email import Email
 from epstein_files.documents.messenger_log import MessengerLog
 from epstein_files.documents.other_file import OtherFile
+from epstein_files.output.layout_elements.file_display import FileDisplay
 from epstein_files.output.highlight_config import get_style_for_name
 from epstein_files.output.html.builder import buffer_as_html, rich_to_html, table_to_html, write_templated_html
 from epstein_files.output.html.elements import div_class
 from epstein_files.output.rich import console
-from epstein_files.output.title_page import print_color_key, print_other_page_link, print_section_header
 from epstein_files.people.person import PEOPLE_BIOS, Person
 from epstein_files.util.constant.names import *
 from epstein_files.util.env import args, site_config
@@ -35,6 +35,16 @@ class DocPrinter:
     other_files_queue: list[OtherFile] = field(default_factory=list)
     people_encountered: set[str] = field(default_factory=set)
     printed_docs: list[Document] = field(default_factory=list)
+    printed_file_displays: list[FileDisplay] = field(default_factory=list)
+
+    @property
+    def printed_emails(self) -> list[Email]:
+        emails = [e for e in self.printed_docs if isinstance(e, Email)]
+
+        if len(emails) != len(self.printed_docs):
+            logger.warning(f"DocPrinted.printed_emails returning {len(emails)} of {len(self.printed_docs)} printed docs...")
+
+        return emails
 
     def new_names(self, document: Document) -> list[str]:
         return [p for p in document.people if p not in self.people_encountered]
@@ -48,16 +58,22 @@ class DocPrinter:
         else:
             return ''
 
-    def print_documents(self, docs: Sequence[Document]) -> None:
+    def print_documents(self, docs: Sequence[Document | FileDisplay]) -> None:
+        last_doc_was_suppressed = False
+
         if len(self.html_elements) == 0:
             self.html_elements.append(self._html_so_far())
 
         for doc in docs:
-            should_print = doc.is_interesting if not args.invert_chrono else not doc.is_interesting
-
-            if not should_print:
+            if isinstance(doc, Document) and doc.suppressed_txt:
+                # TODO: add suppressed_txt to html_elements
+                doc.print()
+                last_doc_was_suppressed = True
                 continue
-            elif isinstance(doc, OtherFile) and doc.is_valid_for_table:
+            elif last_doc_was_suppressed:
+                console.line()
+
+            if isinstance(doc, OtherFile) and doc.is_valid_for_table:
                 if self.new_names(doc):
                     if self.other_files_queue:
                         self._print_other_files_queue()  # Clear the queue before bios panel
@@ -70,10 +86,17 @@ class DocPrinter:
             elif self.other_files_queue:
                 self._print_other_files_queue()
 
-            doc.print()
-            doc_div = '\n'.join([self.print_characters_panel(self.new_names(doc), True), doc.to_html()])
-            self.html_elements.append(div_class(doc_div, 'bio_email_container'))
-            self.printed_docs.append(doc)
+            if isinstance(doc, Document):
+                doc.print()
+                doc_div = '\n'.join([self.print_characters_panel(self.new_names(doc), True), doc.to_html()])
+                self.html_elements.append(div_class(doc_div, 'bio_email_container'))
+                self.printed_docs.append(doc)
+            else:
+                console.print(doc)
+                self.html_elements.append(doc.to_html())
+                self.printed_file_displays.append(doc)
+
+            last_doc_was_suppressed = False
 
     def write_html(self, html_path: Path) -> None:
         """Write the collection of html elements to a file."""
