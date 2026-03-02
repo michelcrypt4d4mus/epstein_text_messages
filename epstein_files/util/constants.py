@@ -2207,7 +2207,7 @@ OTHER_FILES_MONEY = [
     DocCfg(id='EFTA00238499', description='wire transfer to Signature Bank account'),
     DocCfg(id='EFTA00000476', replace_text_with='photo of JEFFREY EPSTEIN CASH DISBURSEMENTS for the month 2006-09', date='2006-09-01'),
     DocCfg(id='EFTA01111057', author=MORTIMER_ZUCKERMAN, date='2014-07-10', description='Mortimer B. Zuckerman Management Trust'),
-    DocCfg(id='EFTA01086463', description=f"art collection (of {LEON_BLACK}?) invetory and valuation report"),
+    DocCfg(id='EFTA01086463', description=f"{MORTIMER_ZUCKERMAN}'s art collection invetory and valuation report"),
     EmailCfg(id='EFTA00037187', is_interesting=True),
 ]
 
