@@ -2400,7 +2400,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         ],
         patterns=[
             r"child porn(ography)?",
-            r"(child )?sex traffi?c?k(ers?|ing)",
+            r"(child )?(sex )?traffi?c?k(ers?|ing)",
             r"Ellaina As?tras?",
             r"(fresh )?(hot )?(new )?girl( friend)?s?",
             r"gyn(eco(logist|nomist)|o)",
