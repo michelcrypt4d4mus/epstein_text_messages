@@ -227,6 +227,9 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"shirley maclaine",
             r"Sotheby's",
             r"Zach Braff",
+            # Video games
+            r"Call of Duty",
+            r"World of Warcraft",
         ],
     ),
     HighlightedNames(
@@ -2222,6 +2225,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact('Alisa Bekins', f"{PETER_THIEL}'s assistant"),
             Contact(ANDREW_MCCORMACK, f"partner at {THIELS_VALAR} {'(???)'}", r"Andrew McCorm(ack?)?"),
             Contact('Auren Hoffman', "CEO of SafeGraph (firm that gathers location data from mobile devices) and LiveRamp", match_partial=None),
+            Contact(BOBBY_KOTICK, 'CEO of video game titan Activision Blizzard ("Call of Duty", "World of Warcraft", etc.)'),
             Contact(CHAMATH_PALIHAPITIYA, f"{ALL_IN_PODCAST}, Facebook, crypto enthusiast, SPAC grifter, Trump convert", match_partial='both'),
             Contact(CHRIS_POOLE, 'AKA "Moot", founder of 4chan, ex-Google', r"mmot|Chris Poole?|(?-i:Moot)", link_to_bio='https://4chan.org/'),
             Contact('Danny Hillis', "computer scientist, artificial intelligence researcher", r"Dan(iel|ny) Hillis?"),

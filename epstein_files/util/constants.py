@@ -1433,7 +1433,9 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00955694', description=f"Epstein thanks {ELON_MUSK} for the SpaceX tour that Musk has said never happened", is_interesting=True),
     EmailCfg(id='EFTA00630134', description=f'Epstein recommends Signal encrypted messenger to {ALLEGED_KARIM_WADE}', is_interesting=True),
     EmailCfg(id='EFTA00941197', description=f'Epstein appears to be helping with an investment in Jawbone by {HEDOSOPHIA}'),
+    EmailCfg(id='EFTA01905320', description='"girls and i are going to see don musk at space x tomorrow"'),
     EmailCfg(id='EFTA00927227', description=f"{IAN_OSBORNE} pitches his new venture fund {HEDOSOPHIA} to Epstein", is_interesting=True),
+    EmailCfg(id='EFTA01762201', description='"indoctrinating kids into an economy"', is_interesting=True),
     EmailCfg(id='EFTA01767036', description=f'"Karim" is probably {ALLEGED_KARIM_WADE}'),
     EmailCfg(id='EFTA02513560', description=f"{JEAN_LUC_BRUNEL} doesn't want to speak on the phone", truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA02671523', description=f"Jones is former Google chief technology advocate / CEO of Epstein investment Wearality"),
@@ -2102,6 +2104,7 @@ OTHER_FILES_FINANCE = [
 ]
 
 OTHER_FILES_GOVERNMENT = [
+    DocCfg(id='efta00128379', date='2019-01-06', description='analysis of two of Epstein\'s desktop computers', is_interesting=True),
     DocCfg(
         id='024117',
         description=f"anti-money laundering (AML), Bank Secrecy Act (BSA), & terrorist financing (CFT) US law FAQ",
@@ -2631,6 +2634,8 @@ OTHER_FILES_CRYPTO = [
     EmailCfg(id='EFTA02517572', description=f'Bannon says that they need to stop EU regulation of crypto scams "dead in its tracks"'),
     EmailCfg(id='EFTA00881711', description=f"Bannon and Epstein discuss bitcoin and crypto donations", is_interesting=True),
     EmailCfg(id='EFTA00881759', description=f"Epstein and {STEVE_BANNON} discuss collection donations in bitcoin", is_interesting=True),
+    # Bill Gates
+    EmailCfg(id='EFTA02639760', description='Epstein pushing cryptocurrency on Bill Gates'),
     # Bitmain
     EmailCfg(id='EFTA01004576'),
     # Blockstream
@@ -2671,8 +2676,7 @@ OTHER_FILES_CRYPTO = [
     DocCfg(id='EFTA01093471', author=CRYPTO_CURRENCY_PARTNERS_II, description='operating agreement', attached_to_email_id='EFTA00626220'),
     DocCfg(id='EFTA01126582', author=EXPRESSCOIN, description=f"pitch deck for {BROCK_PIERCE} co.", attached_to_email_id='EFTA00990186'),
     DocCfg(id='EFTA01125964', author=EXPRESSCOIN, description=f"pitch deck for {BROCK_PIERCE} co.", attached_to_email_id='EFTA00985076'),
-    EmailCfg(id='EFTA00752383', description=f"Mindshift conference attendee list including {BROCK_PIERCE}", is_interesting=True),
-    EmailCfg(id='EFTA01139067', description=f'Epstein tells Farkas he has not invested in {CRYPTO_CURRENCY_PARTNERS_II}', is_interesting=True),
+    EmailCfg(id='EFTA02465656', description=f"{BROCK_PIERCE} describes investment in video game items company"),
     EmailCfg(id='EFTA00673123', description=f"{BROCK_PIERCE} and Epstein invested in Coinbase which would turn out to be extremely lucrative", duplicate_ids=['EFTA02371875']),
     EmailCfg(id='EFTA01051074', description=f'{BROCK_PIERCE} arranging meeting between Bannon and Epstein (in Doha?)'),
     EmailCfg(id='EFTA02361144', description=f'{BROCK_PIERCE} brings Epstein an opportunity to invest in Blockstream, bitcoin developer {ADAM_BACK}\'s company'),
@@ -2682,6 +2686,18 @@ OTHER_FILES_CRYPTO = [
     EmailCfg(id='EFTA00998595', description=f'{BROCK_PIERCE} and Epstein discuss structure of crypto investments'),
     EmailCfg(id='EFTA01000882', description=f"{BROCK_PIERCE} asks for Epstein's permission to disclose his name to Coinbase team", is_interesting=True),
     EmailCfg(id='EFTA00664424', description=f"{BROCK_PIERCE} suggests {LARRY_SUMMERS} could get involved with Tether and Noble Bank"),
+    EmailCfg(id='EFTA01139067', description=f'Epstein tells Farkas he has not invested in {CRYPTO_CURRENCY_PARTNERS_II}', is_interesting=True),
+    EmailCfg(id='EFTA00752383', description=f"Mindshift conference attendee list including {BROCK_PIERCE}", is_interesting=True),
+    # Boris Nikolic
+    EmailCfg(id='EFTA00844780'),
+    EmailCfg(id='EFTA01770220'),
+    EmailCfg(id='EFTA02037504'),
+    EmailCfg(id='EFTA00972689', description=f"Epstein and Nikolic ruminate on the Silk Road bust", truncate_to=NO_TRUNCATE),
+    EmailCfg(
+        id='EFTA02436105',
+        description="one of Epstein's goals in life was to make a lot of money in virtual currency",
+        is_interesting=True,
+    ),
     # Coinbase
     DocCfg(
         id='EFTA01082451',
@@ -2845,6 +2861,13 @@ OTHER_FILES_CRYPTO = [
     EmailCfg(id='EFTA01010171'),
     EmailCfg(id='EFTA01010128'),
     # Misc
+    DocCfg(id='EFTA02005667', author='Clearstone', description='Online Gaming Fund pitch deck', date='2011-02-01', date_uncertain=True),
+    DocCfg(
+        id='EFTA01074293',
+        author='Jerry Brito, Houman Shadab, & Andrea Castillo',
+        date='2014-04-10',
+        description='discussion draft of "Bitcoin Financial Regulation" paper',
+    ),
     DocCfg(
         id='EFTA02725909',
         description=f'memo to NYDFS of NYC Bitcoin Exchange, Balaji Srinivisan & {ANDREW_FARKAS} on board',
@@ -2884,18 +2907,6 @@ OTHER_FILES_CRYPTO = [
     EmailCfg(id='EFTA00964459', description=f'discussion of sharia compliant crypto token', is_interesting=True),
     EmailCfg(id='EFTA00990442', description=f"Epstein offers to cover all costs for Sharia Coin", is_interesting=True),
     EmailCfg(id='EFTA02396341', description='the Sharia Coin gambit', is_interesting=True),
-    # Bill Gates
-    EmailCfg(id='EFTA02639760', description='Epstein pushing cryptocurrency on Bill Gates'),
-    # Boris Nikolic
-    EmailCfg(id='EFTA00844780'),
-    EmailCfg(id='EFTA01770220'),
-    EmailCfg(id='EFTA02037504'),
-    EmailCfg(id='EFTA00972689', description=f"Epstein and Nikolic ruminate on the Silk Road bust", truncate_to=NO_TRUNCATE),
-    EmailCfg(
-        id='EFTA02436105',
-        description="one of Epstein's goals in life was to make a lot of money in virtual currency",
-        is_interesting=True,
-    ),
     # Valar
     DocCfg(id='EFTA00810239', author=VALAR_FUND, description='pitch deck'),
     DocCfg(id='EFTA00591045', author=VALAR_FUND, description='brochure', non_participants=[MASAYOSHI_SON]),
@@ -2921,6 +2932,7 @@ OTHER_FILES_CRYPTO = [
     EmailCfg(id='EFTA02374960', description=f"Epstein says that he will fund a seat at MIT Media Lab for ZCash founder {MADARS_VIRZA}", is_interesting=True),
     # Misc / unsorted
     DocCfg(id='EFTA00605996', description='Wedbush BUY rating on Digital Currency Group GBTC', is_interesting=False),
+    DocCfg(id='EFTA02414991', description=f"Epstein signs up for World of Warcraft"),
     DocCfg(id='EFTA01388197', author=DEUTSCHE_BANK, description='bitcoin and blockchain symposium', date='2018-04-03', attached_to_email_id='EFTA01388354'),
     DocCfg(
         id='EFTA01612888',
