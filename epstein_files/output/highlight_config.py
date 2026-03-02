@@ -1414,7 +1414,8 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             ),
             Contact('Lisa Randall', "theoretical physicist", match_partial=None),
             Contact(MARTIN_NOWAK, "professor of mathematics and biology", r"(Martin.*?)?No[vw]ak|Nowak, Martin"),
-            Contact(MOSHE_HOFFMAN, "behavioral and evolutionary economics", match_partial=None)
+            Contact(MOSHE_HOFFMAN, "behavioral and evolutionary economics", match_partial=None),
+            Contact('Steve Kosslyn', "neuroscientist, Active Learning Sciences"),
         ],
         patterns=[
             r"Cambridge",
@@ -1422,7 +1423,6 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Harvard( (Business|Law|University)( School)?)?",
             r"(Jonathan )?Zittrain",
             r"Poetry in America",
-            r"(Stephen )?Kosslyn",
         ],
     ),
     HighlightedNames(
