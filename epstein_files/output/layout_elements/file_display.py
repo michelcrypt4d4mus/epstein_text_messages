@@ -1,4 +1,3 @@
-from copy import deepcopy
 from dataclasses import dataclass, field
 from typing import Literal
 
@@ -9,7 +8,7 @@ from rich.table import Table
 from rich.text import Text
 from rich.panel import Panel
 
-from epstein_files.output.html.elements import HtmlStyle, div_class
+from epstein_files.output.html.elements import BLACK_BG, HtmlStyle, div_class
 from epstein_files.output.html.builder import (PANEL_BASE_PROPS, VERTICAL_MARGIN, border_css_props, rich_to_html,
      one_row_table_html, text_to_list, text_to_div, vertical_margin_props)
 from epstein_files.output.html.elements import div_tag, to_em, side_props
@@ -60,7 +59,7 @@ class BasePanel:
             if indents[1]:
                 div_props.update(side_props('margin', ['right'], to_em(indents[1])))
 
-        return div_class(html, 'black_background', div_props)
+        return div_class(html, BLACK_BG, div_props)
 
     def __rich__(self) -> Panel:
         return Panel(
@@ -131,16 +130,15 @@ class FileDisplay:
 
     @property
     def subheader_div(self) -> str:
+        if not self.subheaders:
+            return ''
+
         css_props = {
-            'class_name': 'black_background',
             **self.horizontal_body_margin_css_props,
             **vertical_margin_props(SUBHEADER_VERTICAL_PADDING),
         }
 
-        if self.subheaders:
-            return text_to_div(Text('\n').join(self.subheaders), css_props)
-        else:
-            return ''
+        return text_to_div(Text('\n').join(self.subheaders), css_props)
 
     def align(self, element: RenderableType) -> RenderableType:
         return Align(element, self.justify) if self.justify else element

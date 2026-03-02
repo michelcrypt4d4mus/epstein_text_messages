@@ -29,11 +29,14 @@ CODE_TEMPLATE = '{code}'
 SPLITTER = '-# JUNK #-'
 SPLITTER_TEMPLATE = SPLITTER + """{stylesheet} {background} {foreground}"""  # these template vars allow export_html() to work
 
+# CSS classes
+BLACK_BG = 'black_background'
+
+# CSS dicts
+CODE_TAG_CSS = {'font-family': 'inherit'}
 FONT_CSS_PROPS = {'font-family': FONT_FAMILY}
 HTML_CONSOLE_KWARGS = copy(CONSOLE_KWARGS)
 HTML_CONSOLE_KWARGS.update({'file': open(devnull, "wt"), 'record': True})
-
-CODE_TAG_CSS = {'font-family': 'inherit'}
 PRE_TAG_CSS = {}
 
 html_console = Console(**HTML_CONSOLE_KWARGS)

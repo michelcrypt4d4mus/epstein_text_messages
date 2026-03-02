@@ -3,18 +3,16 @@ a {
     text-decoration-color: inherit;
 }
 
-div.bio_email_container {
-    display: flex;
-    flex-direction: column;
-}
-
 div.black_background {
     background-color: black;
 }
 
-div.container {
+div.doc_container {
     display: flex;
     flex-direction: column;
+}
+
+div.page_container {
     padding-top: 1.5em;
 }
 
