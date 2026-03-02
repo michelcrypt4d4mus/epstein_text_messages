@@ -2192,28 +2192,35 @@ OTHER_FILES_MONEY = [
         description=f"Michael Milken's Knowledge Universe Education (KUE) $1,000,000 corporate share placement notice (SEC filing?)"
     ),
     DocCfg(id='024003', description=f"New Leaf Ventures ($375 million biotech fund) private placement memorandum"),
+
     # DOJ files
     DocCfg(
         id='EFTA00173953',
         author='Organized Crime Drug Enforcement Task Force',
         description='report on DEA investigations into Epstein related drug money laundering',
     ),
-    DocCfg(id='EFTA01265973', description="large transfers around time of Epstein arrest", show_full_panel=True),
+    DocCfg(
+        id='EFTA01681865',
+        author=DEUTSCHE_BANK,
+        description=f"explanations of all of Epstein's large payments prepared for DOJ",
+        is_interesting=True,
+    ),
+    DocCfg(id='EFTA01111057', author=MORTIMER_ZUCKERMAN, date='2014-07-10', description='Mortimer B. Zuckerman Management Trust'),
+    DocCfg(id='EFTA01285411', description=f"bank statement for Epstein's {SOUTHERN_TRUST_COMPANY} showing $82 million balance"),
     DocCfg(id='EFTA00016884', description="Epstein's last will and testament", date='2014-11-18'),
     DocCfg(id='EFTA01266380', description="Epstein's 2014 Trust with bequests"),
     DocCfg(id='EFTA01282282', description=f"Epstein Butterfly Trust (sole beneficiary {KARYNA_SHULIAK})"),
     DocCfg(id='EFTA00099424', description=f"Epstein 2017 Trust (Eva Andersson Dubin, {DARREN_INDYKE}, {RICHARD_KAHN})"),
     DocCfg(id='EFTA01266457', description=f"Epstein 2018 Trust ({KATHRYN_RUEMMLER}, {DARREN_INDYKE}, {RICHARD_KAHN})"),
     DocCfg(id='EFTA01266204', description=f"Epstein The 1953 Trust ({DARREN_INDYKE}, {RICHARD_KAHN})", date='2019-08-08'),
-    DocCfg(id='EFTA01681865', author=DEUTSCHE_BANK, description=f"explanations of all of Epstein's large payments prepared for DOJ", is_interesting=True),
-    DocCfg(id='EFTA01285411', description=f"bank statement for Epstein's {SOUTHERN_TRUST_COMPANY} showing $82 million balance"),
+    DocCfg(id='EFTA01265973', description="large transfers around time of Epstein arrest", show_full_panel=True),
     DocCfg(id='EFTA01087311', description=f'{LEON_BLACK} Family Partners cash projections'),
     DocCfg(id='EFTA00007781', description='paychecks signed by Epstein deposited at Colonial Bank', date='2005-08-12'),
     DocCfg(id='EFTA01273102', description=f"payment from Epstein to {RENATA_BOLOTOVA}'s father's account at Sberbank"),
     DocCfg(id='EFTA00238499', description='wire transfer to Signature Bank account'),
     DocCfg(id='EFTA00000476', replace_text_with='photo of JEFFREY EPSTEIN CASH DISBURSEMENTS for the month 2006-09', date='2006-09-01'),
-    DocCfg(id='EFTA01111057', author=MORTIMER_ZUCKERMAN, date='2014-07-10', description='Mortimer B. Zuckerman Management Trust'),
     DocCfg(id='EFTA01086463', description=f"{MORTIMER_ZUCKERMAN}'s art collection invetory and valuation report"),
+    # Emails
     EmailCfg(id='EFTA00037187', is_interesting=True),
     EmailCfg(id='EFTA00652799', description=f'Epstein calls Ari Glass "a bit sketchy" despite investing ~$50 million in his fund Boothbay'),
 ]
@@ -2227,12 +2234,14 @@ OTHER_FILES_LETTER = [
         description=f"about algorithmic trading",
     ),
     CommunicationCfg(id='026134', recipients=['George'], description=f'about opportunities to buy banks in Ukraine'),
-    CommunicationCfg(id='EFTA00007609', recipients=['Alberto'], duplicate_ids=['EFTA00007582']),
-    CommunicationCfg(id='EFTA02731023', author='Senator Ron Wyden', recipients=[LEON_BLACK], is_interesting=False),
-    CommunicationCfg(id='EFTA02731018', author='Senator Ron Wyden', recipients=['Marc Rowan'], is_interesting=False),
     blaine_letter(id='019086', date='2015-05-27', suffix='naming various Putin puppet regimes'),
     blaine_letter(id='019474', date='2015-05-29'),
     blaine_letter(id='019476', date='2015-06-01'),
+
+    # DOJ files
+    CommunicationCfg(id='EFTA00007609', recipients=['Alberto'], duplicate_ids=['EFTA00007582']),
+    CommunicationCfg(id='EFTA02731023', author='Senator Ron Wyden', recipients=[LEON_BLACK], is_interesting=False),
+    CommunicationCfg(id='EFTA02731018', author='Senator Ron Wyden', recipients=['Marc Rowan'], is_interesting=False),
 ]
 
 OTHER_FILES_PROPERTY = [
