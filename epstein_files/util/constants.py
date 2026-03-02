@@ -1098,7 +1098,12 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA01772533', author=MARIA_PRUSAKOVA, author_reason=CLIFFORD_CHANCE),
     EmailCfg(id='EFTA01775280', author=MARIA_PRUSAKOVA, author_reason=CLIFFORD_CHANCE, truncate_to=2000),
     EmailCfg(id='EFTA02507271', author=MARIA_PRUSAKOVA, author_uncertain='LGT Bank in signature'),
-    EmailCfg(id='EFTA01988194', author=RASSECK_BOURGI, description=f'{RASSECK_BOURGI} using his wife\'s email "because it is a private email"'),
+    EmailCfg(
+        id='EFTA01988194',
+        author=RASSECK_BOURGI,
+        description=f'{RASSECK_BOURGI} using his wife\'s email "because it is a private email" to ask for favours re: Harvard',
+        truncate_to=735,
+    ),
     EmailCfg(id='EFTA01978227', description=f"Epstein arranging tour of Harvard for {RASSECK_BOURGI}'s daughter"),
     EmailCfg(
         id='EFTA00773139',
