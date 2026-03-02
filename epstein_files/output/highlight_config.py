@@ -577,7 +577,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             organization('Mindshift', f"conference on Epstein's island organized by {AL_SECKEL}", r"Mindshift( conference)?"),
             organization(
                 'Mt. Gox',
-                f"FKA 'Magic the Gathering: Online Exchange, infamous early bitcoin market that was hacked / robbed",
+                f"FKA 'Magic the Gathering: Online Exchange', infamous early bitcoin market that was hacked / robbed",
                 r"Mt\.? Gox",
                 link_to_bio='https://en.wikipedia.org/wiki/Mt._Gox',
             ),
@@ -872,7 +872,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         label='law firm',  # Non-Epstein affiliated
         style='medium_purple3',
         contacts=[
-            organization('Clifford Chance', f'law firm where {MARIA_PRUSAKOVA} did an internship in Paris'),
+            organization(CLIFFORD_CHANCE, f'law firm where {MARIA_PRUSAKOVA} did an internship in Paris'),
         ],
         patterns=[
             r"(Leon )?Jaworski",
@@ -1076,9 +1076,10 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact('Kamila Bobinska', f"Argan Capital Advisors, Dots Ventures, Movens Capital, ex-{DEUTSCHE_BANK}"),
             Contact('Laurie Cameron', "currency trading"),
             Contact(
-                name=LEON_BLACK,
-                info='Apollo CEO who paid Epstein more than $150 million for "tax advice"',
-                emailer_pattern=r"Leon\s*Black?|(?<!Marc )Leon(?! (Botstein|Jaworski|Wieseltier))",
+                LEON_BLACK,
+                'Apollo CEO who paid Epstein more than $150 million for "tax advice", defendant in various lawsuits',
+                r"Leon\s*Black?|(?<!Marc )Leon(?! (Botstein|Jaworski|Wieseltier))",
+                link_to_bio='https://x.com/kevinnbass/status/2027255769595302219',
                 match_partial=None,
             ),
             Contact(MELANIE_SPINELLA, f"representative of {LEON_BLACK}", r"M?elanie Spine[Il]{2}a"),
@@ -1090,13 +1091,18 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             ),
             Contact(NORMAN_D_RAU, "managing director at Morgan Stanley"),
             Contact(PAUL_BARRETT, r"Alpha Group Capital", r"Paul Barre(d|tt)|Barrett,? Paul( S)?", match_partial=None),
-            Contact(PAUL_MORRIS, f"Epstein's primary private banker at JP Morgan then {DEUTSCHE_BANK}", r"morris, paul|Paul Morris"),
+            Contact(
+                PAUL_MORRIS,
+                f"Epstein's primary private banker at JP Morgan then {DEUTSCHE_BANK}",
+                r"morris, paul|Paul Morris",
+                match_partial=None,
+            ),
             Contact('Skip Rimer', "Michael Milken's Milken Institute"),
             Contact('Steven Elkman', f"{DEUTSCHE_BANK}"),
             Contact('Stephen Schwarzman', 'CEO of Blackstone', r"(Ste(phen|ve) )?Schwart?z?man"),
-            Contact(TANCREDI_MARCHIOLO, "hedge fund manager"),
-            Contact('Vahe Stepanian', "Cetera Financial Group"),
-            Contact(VINIT_SAHNI, f"analyst at {DEUTSCHE_BANK} and {GOLDMAN_SACHS}"),
+            Contact(TANCREDI_MARCHIOLO, "hedge fund manager", match_partial='both'),
+            Contact('Vahe Stepanian', "Cetera Financial Group", match_partial='both'),
+            Contact(VINIT_SAHNI, f"analyst at {DEUTSCHE_BANK} and {GOLDMAN_SACHS}", match_partial='both'),
             acronym("Grantor Retained Annuity Trust", "tax shelter structure favoured by Epstein"),
             organization(BEAR_STEARNS, 'investment bank where Epstein got his first job in finance, failed in 2008'),
             organization(
@@ -1652,7 +1658,6 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         contacts=[
             Contact(BOB_CROWE, "partner at Nelson Mullins", r"[BR]ob Crowe", match_partial=None),
             Contact('Joshua Cooper Ramo', "co-CEO of Henry Kissinger Associates"),
-            Contact(KATHERINE_KEATING, "daughter of former Australian prime minister", match_partial=None),
             Contact(OLIVIER_COLOM, "Epstein's banker at Edmond de Rothschild (Suisse) SA Bank", r"Colom, Olivier?|Olivier Colom"),
             Contact('Paul Keating', "former prime minister of Australia", match_partial=None),
             Contact('Stanley Rosenberg', "former President of the Massachusetts Senate", match_partial=None)
@@ -1727,6 +1732,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Texas(?! A&M)",
             r"Toronto",
             r"Tu(sc|cs)on",
+            r"Vancouver",
             r"Vermont",
             r"Washington( D\.?C)?(?! Post)",
             r"Westchester",
@@ -2397,7 +2403,8 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 f"allegedly involved in a sham marriage to {KARYNA_SHULIAK}, dated Kimbal Musk",
                 link_to_bio='https://x.com/JOKAQARMY1/status/2026731420832481549',
             ),
-            Contact('Miranda'),
+            Contact(KATHERINE_KEATING, "daughter of former Australian prime minister", match_partial=None),
+            Contact('Miranda', f'appears to have done an internship at {CLIFFORD_CHANCE} with {MARIA_PRUSAKOVA}?'),
             Contact(PAULA_HEIL_FISHER, "Epstein's ex-girlfriend who works in opera now", match_partial=None),
             Contact('Samantha Rose Stein', 'wombkind.com', link_to_bio='https://x.com/SteinSamantha', match_partial=None),
             Contact('Sasha Grey', 'famous porn star', match_partial=None),
