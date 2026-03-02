@@ -1869,7 +1869,7 @@ OTHER_FILES_LEGAL = [
     fbi_report('EFTA01688746', FBI_REPORT),
     fbi_report(
         'EFTA00129085',
-        'wiretap report linking phone number in John Gotti / Gambino investigation to number in Epstein investigation',
+        'wiretap report linking phone number in John Gotti / Gambino / Michael Bilotti investigation to number in Epstein investigation',
         is_interesting=True,
     ),
     DocCfg(id='017792', author=GIUFFRE_V_DERSHOWITZ, description=f"article about {ALAN_DERSHOWITZ}'s appearance on Wolf Blitzer"),
@@ -2600,6 +2600,7 @@ OTHER_FILES_GIRLS = [
     EmailCfg(id='EFTA01768670', description='"find girls for the agency"'),
     EmailCfg(id='EFTA01022353', description='George Models in Odessa is basically a porn site, "She said she was 14-15 yo"', is_interesting=True),
     EmailCfg(id='EFTA00950394', description='"how old will you go?"', is_interesting=True),
+    EmailCfg(id='EFTA01660651', description='list of Trump accusers', is_interesting=True),
     EmailCfg(id='EFTA01145923', description="modeling contract"),
     EmailCfg(id='EFTA02557291', description='possibly recruiting girls'),
     EmailCfg(id='EFTA01811230', description=f'"Renat" is probably {RENATA_BOLOTOVA}'),
