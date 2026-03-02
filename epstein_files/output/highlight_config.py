@@ -2113,6 +2113,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 link_to_bio='https://www.nytimes.com/2017/11/05/world/yuri-milner-facebook-twitter-russia.html',
                 match_partial='both',
             ),
+            Contact('Yury Molodtsov', f"assistant to {MASHA_DROKOVA} {QUESTION_MARKS}"),
             organization('Alfa Bank', 'Russian bank often used by FSB', r"Alfa( Bank)?"),
             organization('Apoletto', f"VC firm associated with {YURI_MILNER}"),
             organization('Day One Ventures', f"silicon valley venture fund run by {MASHA_DROKOVA}"),
@@ -2164,7 +2165,6 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Vlad(imir)?(?! Yudash)",
             r"(Vladimir )?Putin",
             r"Xitrans",
-            r"Yury Molodtsov",
         ],
     ),
     HighlightedNames(
