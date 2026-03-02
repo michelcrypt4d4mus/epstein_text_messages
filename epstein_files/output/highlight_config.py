@@ -2258,6 +2258,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             ),
             organization('Jawbone', f'wireless earpiece company invested in by Epstein and {IAN_OSBORNE}'),
             organization('LinkedIn', "LinkedIn", r"Linked[Il]n( Updates)?", is_emailer=True, is_interesting=False),
+            organization('Mozilla', 'maker of the Firefox browser', r"Mozilla( Corp(oration)?)?"),
             organization('Number26', f'fintech frontend for Wirecard Bank, renamed "N26"', r"N(umber)?26"),
             organization('Second Life', f"virtual world with early attempt at virtual currency the Linden Dollar", r"Second Life"),
             organization('Softbank Vision Fund', "Masayohsi Son's fund focused on tech, AI, WeWork", r"Softbank|(Softbank )?Vision Fund"),
