@@ -1931,6 +1931,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             organization('Elite Models', 'well known modeling agency'),
             organization('Icarine', f"agency with connections to {JEAN_LUC_BRUNEL}"),
             organization('MC2 Model Management', f"{JEAN_LUC_BRUNEL}'s modeling agency", r"MC2( Model Management)?"),
+            organization('One Model Management', 'agency'),
         ],
         patterns=[
             r"\w+@mc2mm.com",
