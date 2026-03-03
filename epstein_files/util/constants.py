@@ -1375,7 +1375,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00852324', recipients=[SERGEY_BELYAKOV, JEFFREY_EPSTEIN, 'Elena Bolyakina', PETER_THIEL]),
     EmailCfg(id='EFTA00857165', recipients=['Seth Lloyd'], author_reason='quoted reply line'),
     EmailCfg(id='EFTA00749241', recipients=[SULTAN_BIN_SULAYEM], author_reason='widely reported', is_interesting=True),
-    EmailCfg(id='EFTA02407636', recipients=[UMAR_DZHABRAILOV], author_reason='addressed to "Umar"'),
+    EmailCfg(id='EFTA02334771', recipients=[UMAR_DZHABRAILOV], author_reason='addressed to "Umar"', duplicate_ids=['EFTA00582171', 'EFTA00581170']),
     EmailCfg(id='EFTA00582504', recipients=[UMAR_DZHABRAILOV], author_reason='quoted reply'),
     EmailCfg(id='EFTA02731721', recipients=[USANYS]),
     EmailCfg(id='EFTA02731582', recipients=[USANYS]),
