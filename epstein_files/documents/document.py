@@ -312,6 +312,9 @@ class Document:
             elif self.config.replace_text_with:
                 text = self.config.replace_text_with
 
+            if self.config_description:
+                text += (" " + self.config_description)
+
         people = [c.name for c in HIGHLIGHTED_CONTACTS if c.highlight_regex.search(text)]
         people = uniq_sorted(people + ([self.author] if self.author else []))
         non_particpants = self.config.non_participants if self.config else []
