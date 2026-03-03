@@ -294,7 +294,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             organization('NJF Capital', JUNKERMANN_FUND, r"NJF( Capital)?"),
             organization(
                 'Swedish American Life Science Summit',
-                f"(SALSS) {BARBRO_C_EHNBOM} outfit, probable recruiting grounds for Epstein",
+                f"(SALSS) {BARBRO_C_EHNBOM} event, recruiting grounds for Epstein",
                 r"Swedish American Life Science Summit|SALSS",
             ),
         ],
@@ -319,9 +319,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"(Steve )?Wynn",
             r"Michael Klein",
             r"New Leaf Ventures",
-            r"Overstock(.com)?",
             r"Park Partners",
-            r"Paypal",
             r"Robin\s?hood",
             r"Trilateral Commission",
             r"Valhi",
@@ -353,7 +351,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact('Desmond Shum', f'Hong Kong financier, friend of {PETER_MANDELSON}', match_partial='both'),
             Contact(
                 GINO_YU,
-                f"professor / game designer / AI researcher in Hong Kong, friend of {MASHA_DROKOVA}, worked on PR for Epstein",
+                f"professor / game designer / AI researcher in Hong Kong, friend of {MASHA_DROKOVA}, did PR for Epstein",
                 match_partial=None,
             ),
             Contact(
@@ -511,7 +509,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact('Hester Peirce', f"famously pro-crypto SEC board member known as 'crypto mom'", match_partial=None),
             Contact(
                 name=HOWARD_LUTNICK,
-                info="Tether's banker, Cantor Fitzgerald, US Commerce Secretary under Trump",
+                info="Tether's banker, Cantor Fitzgerald, Trump Secretary of Commerce",
                 emailer_pattern=r"Lutnic?k(,? Howard)|How.rd( W(\.|illiam)?)? Lutnick|HWL",
                 link_to_bio='https://cryptadamus.substack.com/p/trumps-transition-team-is-tethered',
             ),
@@ -1937,7 +1935,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(CHRISTINA_GALBRAITH, f"{JEFFREY_EPSTEIN} VI Foundation Media/PR, worked with {TYLER_SHEARS}"),
             Contact(
                 IAN_OSBORNE,
-                f"did PR for Epstein, runs {HEDOSOPHIA} which launched SPACs with {CHAMATH_PALIHAPITIYA} advised by Epstein",
+                f"PR for Epstein, runs {HEDOSOPHIA} which launched SPACs with {CHAMATH_PALIHAPITIYA} advised by Epstein",
                 r"[Il]an Osbou?(rn|m)e",
                 link_to_bio='https://www.businessinsider.com/profile-ian-osborne-cofounder-chamath-palihapitiya-social-capital-hedosophia-spac-2021-5'
             ),
@@ -2383,6 +2381,8 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Instagram",
             r"Microsoft",
             r"MSFT",
+            r"Overstock(.com)?",
+            r"Paypal",
             r"quantum comput(er|ing)",
             r"Silicon Valley",
             r"Skyp(ed?|ing)",
@@ -2479,7 +2479,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact('Miranda', f'appears to have done an internship at {CLIFFORD_CHANCE} with {MARIA_PRUSAKOVA}?'),
             Contact(PAULA_HEIL_FISHER, "Epstein's ex-girlfriend who works in opera now", match_partial=None),
             Contact('Samantha Rose Stein', 'wombkind.com', link_to_bio='https://x.com/SteinSamantha', match_partial=None),
-            Contact('Sasha Grey', 'famous porn star', match_partial=None),
+            Contact('Sasha Grey', 'porn star', match_partial=None),
             Contact(UNKNOWN_GIRL, match_partial=None),
             Contact('Virginia Giuffre', f"one of Epstein's first public accusers", r"(Virginia ((L\.?|Roberts) )?)?Giuffre",),
         ],
