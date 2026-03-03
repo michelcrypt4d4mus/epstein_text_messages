@@ -1232,6 +1232,13 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 r"David Ste(m|rn?)|ds[@®]witangroup",
                 match_partial=None
             ),
+            Contact(
+                JENNIE_SAUNDERS,
+                f'co-founder of Core Club, {DANGENE_AND_JENNIE_ENTERPRISE}, accused of recruiting underage girls',
+                fr"Core Club|Jennie (Enterprise|Saunders)",
+                link_to_bio='https://www.crainsnewyork.com/real-estate/core-club-founder-jennie-enterprise-exchanged-thousands-emails-jeffrey-epstein',
+                match_partial=None,
+            ),
             Contact('Jill Iscol', 'heiress, philanthropist, IF Hummingbird Foundation'),
             Contact(
                 name=JONATHAN_FARKAS,
@@ -2394,6 +2401,12 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 'Trump campaign manager, partner of Roger Stone, worked for Russians in Ukraine, convicted of financial fraud',
                 link_to_bio='https://en.wikipedia.org/wiki/Trials_of_Paul_Manafort',
             ),
+            Contact(
+                'Paolo Zampolli',
+                'modeling agent, friend of Trump, money for passports scandal in Dominica, may have introduced Melania to Donald',
+                r"Paolo Z[ae]mpoll?i",
+                link_to_bio='https://dominicanewsonline.com/news/homepage/news/the-zampolli-matter-more-fuel-for-where-de-money-gone-campaign/',
+            ),
             Contact('Roger Stone', "infamous political trickster with a tattoo of Nixon's face on his back", match_partial=None),
         ],
         patterns=[
@@ -2434,7 +2447,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Bahamas",
             r"Carr?ibb?ean",
             r"Cayman Islands?",
-            r"Dominican Republic",
+            r"Dominica(n Republic)?",
             r"(Great|Little) St.? James",
             r"Haiti(an)?",
             r"Jamaican?",

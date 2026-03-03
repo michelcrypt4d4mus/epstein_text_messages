@@ -104,6 +104,7 @@ JAY_LEFKOWITZ = 'Jay Lefkowitz'
 JEAN_HUGUEN = 'Jean Huguen'
 JEAN_LUC_BRUNEL = 'Jean Luc Brunel'
 JEFF_FULLER = 'Jeff Fuller'
+JENNIE_SAUNDERS = 'Jennie Saunders'
 JENNIFER_JACQUET = 'Jennifer Jacquet'
 JENNIFER_KALIN = 'Jennifer Kalin'
 JEREMY_RUBIN = 'Jeremy Rubin'             # Bitcoin dev
