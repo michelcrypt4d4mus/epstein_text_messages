@@ -126,7 +126,7 @@ UNCONFIRMED_TEXTS_CONFIG = [
     TextCfg(id='027365', author=STEVE_BANNON, author_uncertain='AI says Trump and New York Times coverage'),
     TextCfg(id='027406', author=STEVE_BANNON, author_uncertain='AI says Trump and New York Times coverage'),
     TextCfg(id='027655', author=STEVE_BANNON, author_uncertain='AI says Trump and New York Times coverage'),
-    TextCfg(id='027722', author=STEVE_BANNON, duplicate_ids=['027720'], author_uncertain='AI says Trump and New York Times coverage'),
+    TextCfg(id='027722', author=STEVE_BANNON, author_uncertain='AI says Trump and New York Times coverage', duplicate_ids=['027720']),
     TextCfg(id='027735', author=STEVE_BANNON, author_uncertain='AI says Trump and New York Times coverage'),
     TextCfg(id='027794', author=STEVE_BANNON, author_uncertain='AI says Trump and New York Times coverage'),
     TextCfg(id='025368', author=STEVE_BANNON, author_uncertain='AI', is_interesting=True, comment='obama slander'),
@@ -163,8 +163,6 @@ TEXTS_CONFIG = CONFIRMED_TEXTS_CONFIG + UNCONFIRMED_TEXTS_CONFIG + UNKNOWN_TXT_M
 ################################################ EMAILS ################################################
 ########################################################################################################
 
-BEN_LAWSKY_NYDFS = f'head of NY Dept of Financial Services {BEN_LAWSKY}'
-
 # Atribution reasons
 BOLOTOVA_REASON = 'Same signature style as 029020 ("--" followed by "Sincerely Renata Bolotova")'
 DROKOVA_TIMING_REASON = 'timing, subject (interviews/articles), and sequential ID'
@@ -179,6 +177,7 @@ SINCERELY_SNEAKY = f'{SNEAKY_DOG} + "Sincerely"'
 
 # Descriptions
 AL_SECKEL_BILL_FIGHT = f"{AL_SECKEL} and Epstein fight about the bill for reputation management services"
+BEN_LAWSKY_NYDFS = f'head of NY Dept of Financial Services {BEN_LAWSKY}'
 IS_IT_ROGER_STONE = "is the 'roger' Epstein is trying to meet Roger Stone?"
 ALLEGED_KARIM_WADE = f"allegedly corrupt Senegalese politician {KARIM_WADE}"
 KYARA_FUND = f"Epstein crypto fund {KYARA_INVESTMENT}"
@@ -257,8 +256,6 @@ EMAILS_CONFIG = [
         dupe_type='redacted',
         comment="the same except for 'your Anna!'. author must be specified because email address is redacted in 026745 so it needs the config",
     ),
-    EmailCfg(id='031206', duplicate_ids=['031227']),
-    EmailCfg(id='031591', duplicate_ids=['031442', '031996']),
     EmailCfg(id='019446', author=CHRISTINA_GALBRAITH, author_reason='from "Christina media/PR"'),
     EmailCfg(
         id='026624',
@@ -588,16 +585,13 @@ EMAILS_CONFIG = [
     EmailCfg(id='031036', description=f'{BARBRO_C_EHNBOM} related donation / Swedish girls discussion', is_interesting=True),
     EmailCfg(id='030737', description='Bannon says there is a "crazed jihad" against Epstein', is_interesting=True),
     EmailCfg(id='030738', description='Bannon tells Epstein "somebody big has u in the gunsights"', is_interesting=True),
+    EmailCfg(id='032458', description='discussion of acquiring pieces for Epstein\'s art collection', truncate_to=NO_TRUNCATE),
     EmailCfg(id='032946', description='discussion of obtaining a Moroccan visa for unnamed woman', is_interesting=True),
     EmailCfg(id='031152', description='discussion of notoriously corrupt Kazakh politician Rakhat Aliyev', is_interesting=True),
     EmailCfg(id='032671', description='connections to Fusion GPS who produced the Steele Dossier on Trump'),
     EmailCfg(id='033052', description='connections to Fusion GPS who produced the Steele Dossier on Trump'),
     EmailCfg(id='031472', description="discussion of publishing an audio recording related to the coup in Turkey"),
-    EmailCfg(
-        id='031830',
-        description='Epstein gets defensive about the 2008 financial crisis as portrayed in "Inside Job"',
-        truncate_to=350,
-    ),
+    EmailCfg(id='031830', description='Epstein gets defensive about "Inside Job"\'s take on the 2008 financial crisis', truncate_to=350),
     EmailCfg(id='031333', description='Fort Knox conspiracy theory, looks like Russian disinfo', is_fwded_article=True),
     EmailCfg(id='031335', description='Fort Knox conspiracy theory, looks like Russian disinfo', is_fwded_article=True),
     EmailCfg(id='030648', description=IS_IT_ROGER_STONE),
@@ -612,6 +606,8 @@ EMAILS_CONFIG = [
     EmailCfg(id='016693', description='signed "MM"'),
     EmailCfg(id='023627', description=WOLFF_EPSTEIN_ARTICLE_DRAFT, is_fwded_article=True, is_interesting=True, truncate_to=16800),
     EmailCfg(id='028524', description='Zach Braff op-ed on Woody Allen in NYT', is_fwded_article=True, is_interesting=False),
+    EmailCfg(id='031206', duplicate_ids=['031227']),
+    EmailCfg(id='031591', duplicate_ids=['031442', '031996']),
     EmailCfg(id='031428', duplicate_ids=['031388'], is_fwded_article=True),
     EmailCfg(id='033528', duplicate_ids=['033517'], is_fwded_article=True),
     EmailCfg(id='030238', duplicate_ids=['031130'], is_fwded_article=True),
@@ -630,7 +626,6 @@ EMAILS_CONFIG = [
     EmailCfg(id='032023', duplicate_ids=['032012'], is_fwded_article=True, comment='American-Israeli Cooperative Enterprise Newsletter'),
     EmailCfg(id='021758', duplicate_ids=['030616'], is_fwded_article=True, comment="Radar Online article about Epstein's early prison release"),
     EmailCfg(id='033297', duplicate_ids=['033586'], is_fwded_article=True, comment='Sultan Sulayem article about Trump and Russia'),
-    EmailCfg(id='032458', truncate_to=NO_TRUNCATE, description='discussion of acquiring pieces for Epstein\'s art collection'),
     EmailCfg(id='021231', is_fwded_article=True, comment='11 places with worse economy than US'),
     EmailCfg(id='021729', is_fwded_article=True, comment='Acosta rebuke'),
     EmailCfg(id='025643', is_fwded_article=True, comment='Alice Fisher stated to be in the mix of potential candidates for new FBI director.'),
@@ -690,7 +685,6 @@ EMAILS_CONFIG = [
     EmailCfg(id='026551', is_fwded_article=True, comment='Sultan bin Sulayem "Ayatollah between the sheets"'),
     EmailCfg(id='031768', is_fwded_article=True, comment="Sultan bin Sulayem 'Horseface'"),
     EmailCfg(id='026829', is_fwded_article=True, comment='taxes'),
-    EmailCfg(id='026273', is_fwded_article=True),
     EmailCfg(id='029901', is_fwded_article=True, comment='THE EDGE question'),
     EmailCfg(id='026924', is_fwded_article=True, comment='The Onion'),
     EmailCfg(id='031705', is_fwded_article=True, comment='Thomas Friedman why not in vegas?'),
@@ -703,9 +697,9 @@ EMAILS_CONFIG = [
     EmailCfg(id='033311', is_fwded_article=True, truncate_to=SHORT_TRUNCATE_TO, comment='Kahn taxes'),
     EmailCfg(id='029433', is_fwded_article=True, truncate_to=SHORT_TRUNCATE_TO, comment='Kahn taxes'),
     EmailCfg(id='031764', is_fwded_article=True, truncate_to=3500, comment='broidy malaysia'),
+    EmailCfg(id='026273', is_fwded_article=True),
     EmailCfg(id='032475', date='2017-02-15 13:31:25'),
     EmailCfg(id='030373', date='2018-10-03 01:49:27'),
-    EmailCfg(id='032325', duplicate_ids=['026014'], dupe_type='quoted', is_interesting=True, comment='Zubair'),
     EmailCfg(id='026631', duplicate_ids=['026632'], dupe_type='quoted'),
     EmailCfg(id='028768', duplicate_ids=['026563'], dupe_type='redacted'),
     EmailCfg(id='027056', duplicate_ids=['028762'], dupe_type='redacted'),
@@ -2402,15 +2396,22 @@ OTHER_FILES_SOCIAL = [
         id='030630',
         author=MARIA_PRUSAKOVA,
         author_reason=PRUSAKOVA_BERKELY,
-        description=f'Masha Prusso / {MARIA_PRUSAKOVA} asks about Zubair Khan',
+        description=f'Masha Prusso / {MARIA_PRUSAKOVA} asks about Zubair Khan and {INSIGHTS_POD}',
         is_interesting=True,
     ),
     EmailCfg(
         id='032319',
+        description=f"{ZUBAIR_KHAN} says social media vibes are good for Trump in last week before the 2016 election",
         dupe_type='quoted',
         duplicate_ids=['032283'],
         is_interesting=True,
-        comment='Zubair',
+    ),
+    EmailCfg(
+        id='032325',
+        description=f"{ZUBAIR_KHAN} predicts Trump winning in 2016",
+        dupe_type='quoted',
+        duplicate_ids=['026014'],
+        is_interesting=True,
     ),
     EmailCfg(
         id='EFTA00719854',
