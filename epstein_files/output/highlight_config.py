@@ -2724,6 +2724,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"(co-?)?founder",
             r"convertible note",
             r"donor advised fund",
+            r"EBITDA",
             r"equities",
             r"hedge fund",
             r"(?<!Kyara\s)invest(ment|or)s?(\sadvis[eo]r[sy]?)?",
