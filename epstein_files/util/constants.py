@@ -582,6 +582,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='021106', recipients=[STEVE_BANNON], author_reason='reply'),
     EmailCfg(id='029344', actual_text='I thought of you when I read this article. Was this your idea? Alan', is_fwded_article=True),
     EmailCfg(id='032358', actual_text=REDACTED),
+    EmailCfg(id='030430', description=f"{STEVE_BANNON} was involved in the Biosphere project"),
     EmailCfg(id='031036', description=f'{BARBRO_C_EHNBOM} related donation / Swedish girls discussion', is_interesting=True),
     EmailCfg(id='030737', description='Bannon says there is a "crazed jihad" against Epstein', is_interesting=True),
     EmailCfg(id='030738', description='Bannon tells Epstein "somebody big has u in the gunsights"', is_interesting=True),

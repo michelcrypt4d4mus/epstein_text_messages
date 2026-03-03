@@ -2561,6 +2561,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         label='victim lawyer',
         style='medium_orchid1',
         contacts=[
+            Contact('Alan P. Fraade', f'lawyer for {STEVEN_HOFFENBERG}'),
             Contact(BRAD_EDWARDS, ROTHSTEIN_ROSENFELDT_ADLER_ATTORNEY, r"Brad(ley)?( J(.?|ames))? Edwards", match_partial=None),
             Contact('David Boies', 'Boies, Schiller, & Flexner', r"(David )?Bo[il]es(,? Schiller( & Flexner)?)?"),
             Contact(DOUGLAS_WIGDOR, WIGDOR_ATTORNEY, r"Doug(las)? (H\.?)? Wigdor", match_partial=None),
@@ -2573,6 +2574,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(PAUL_G_CASSELL, 'professor at University of Utah, victim advocate'),
             Contact(STANLEY_POTTINGER, f"{VIRGINIA_GIUFFRE} legal team while working for Epstein", r"(J\.? )?(Stan(ley)? )?Pottinger"),
             organization('Marsh Law Firm', 'victim counsel'),
+            organization('Mintz Fraade', f'law firm working for {STEVEN_HOFFENBERG}'),
             organization(
                 ROTHSTEIN_ROSENFELDT_ADLER,
                 "shady law firm, Rothstein ran $1.2 billion Ponzi scheme & was Roger Stone's partner",
@@ -2582,9 +2584,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             organization('Wigdor Law', f"sued {LEON_BLACK} alleging crimes at Epstein's properties", r"Wigdor(Law)?( LLP)?"),
         ],
         patterns=[
-            r"(Alan( P.)?|MINTZ) FRAADE",
             r"(Mi(chael|ke) )?Avenatti",
-            r"Paul (G. )?Cassell",
             r"Rosenfeldt",
             r"(Scott )?Rothstein",
         ],
@@ -2595,13 +2595,12 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         category='Republican',
         contacts=[
             Contact(SEAN_BANNON, f"{STEVE_BANNON}'s brother", r"sean bannon?", match_partial=None),
-            Contact(STEVE_BANNON, "Trump campaign manager, memecoin grifter, Epstein bestie", r"steve banno[nr]?")
+            Contact(STEVE_BANNON, "Trump campaign manager, memecoin grifter, Epstein bestie", r"steve banno[nr]?"),
+            organization('Biosphere', f'closed loop science experiment to mimic the earth in the 90s overseen by {STEVE_BANNON}'),
         ],
         patterns=[
             r"Arnold Schwarzenegger",
             r"(American )?Dharma",
-            r"Biosphere",
-            r"Rumsfeld",
         ],
     ),
     HighlightedNames(
