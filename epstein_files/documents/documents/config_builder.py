@@ -156,6 +156,10 @@ def valar_cfg(id: str, description: str = '', text: str = '') -> DocCfg:
     )
 
 
+def victim_diary(id: str, description: str) -> DocCfg:
+    return DocCfg(id=id, category=Interesting.DIARY, description=description)
+
+
 def whistleblower_cfg(id, description: str = '') -> EmailCfg:
     return EmailCfg(
         id=id,
