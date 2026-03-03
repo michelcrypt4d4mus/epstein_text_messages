@@ -2550,6 +2550,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(JEANNE_M_CHRISTENSEN, WIGDOR_ATTORNEY),
             Contact(JACK_SCAROLA, "Searcy Denney Scarola Barnhart & Shipley attorney"),
             Contact(KEN_JENNE, ROTHSTEIN_ROSENFELDT_ADLER_ATTORNEY),
+            Contact(LAURA_A_MENNINGER, 'Haddon, Morgan and Foreman P.C.'),
             Contact(PAUL_G_CASSELL, 'professor at University of Utah, victim advocate'),
             Contact(STANLEY_POTTINGER, f"{VIRGINIA_GIUFFRE} legal team while working for Epstein", r"(J\.? )?(Stan(ley)? )?Pottinger"),
             organization('Marsh Law Firm', 'victim counsel'),

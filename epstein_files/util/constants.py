@@ -4,7 +4,7 @@ Custom configurations for various files.
 from itertools import groupby
 
 from epstein_files.documents.documents.categories import CONSTANT_CATEGORIES, Interesting, Neutral
-from epstein_files.documents.documents.config_builder import (JANE_DOE_V_USA, WOLFF_EPSTEIN_ARTICLE_DRAFT, binant_redacted,
+from epstein_files.documents.documents.config_builder import (FBI_REPORT, JANE_DOE_V_USA, WOLFF_EPSTEIN_ARTICLE_DRAFT, binant_redacted,
      blaine_letter, fbi_defense_witness, fbi_report, letter, phone_bill_cfg, starr_letter, whistleblower_cfg, victim_diary,
      wolff_draft_cfg)
 from epstein_files.documents.documents.doc_cfg import (DEFAULT_TRUNCATE_TO, GOLDMAN_INVESTMENT_MGMT,
@@ -181,6 +181,7 @@ BEN_LAWSKY_NYDFS = f'head of NY Dept of Financial Services {BEN_LAWSKY}'
 IS_IT_ROGER_STONE = "is the 'roger' Epstein is trying to meet Roger Stone?"
 ALLEGED_KARIM_WADE = f"allegedly corrupt Senegalese politician {KARIM_WADE}"
 KYARA_FUND = f"Epstein crypto fund {KYARA_INVESTMENT}"
+RIOT_BLOCKCHAIN_DESCRIPTION = 'RIOT Blockchain (FKA "Bioptix") is a sketchy bitcoin miner in Texas'
 SEC_WHISTLEBLOWER = 'whistleblower emails to SEC'
 VALAR_MEETING = f"meeting with {PETER_THIEL}'s {VALAR_VENTURES} fund"
 
@@ -1612,7 +1613,6 @@ BOFA_WEALTH_MGMT = f'{BOFA} Wealth Management'
 DERSH_GIUFFRE_TWEET = f"about {VIRGINIA_GIUFFRE}"
 DEUTSCHE_BANK_TAX_TOPICS = f'{DEUTSCHE_BANK} Wealth Management Tax Topics'
 DIANA_DEGETTE_CAMPAIGN = "Colorado legislator Diana DeGette's campaign"
-FBI_REPORT = f"report on Epstein investigation"  # (redacted)
 FBI_SEIZED_PROPERTY = f"seized property inventory"  # (redacted)
 FEMALE_HEALTH_COMPANY = 'Female Health Company (FHC)'
 FIRE_AND_FURY = f"Fire And Fury"
@@ -1634,6 +1634,54 @@ SWEDISH_LIFE_SCIENCES_SUMMIT = f"{BARBRO_C_EHNBOM}'s Swedish American Life Scien
 TRUMP_DISCLOSURES = f"Donald Trump financial disclosures from U.S. Office of Government Ethics"
 UBS_CIO_REPORT = 'CIO Monthly Extended report'
 WOMEN_EMPOWERMENT = f"Women Empowerment (WE) conference"
+
+
+OTHER_FILES_ACADEMIA = [
+    DocCfg(id='027004', author=JOSCHA_BACH, description=f"The Computational Structure of Mental Representation", date='2013-02-26'),
+    DocCfg(
+        id='014697',
+        author=LAWRENCE_KRAUSS_ASU_ORIGINS,
+        description=f'report: "Challenges of AI: Envisioning and Addressing Adverse Outcomes"',
+        duplicate_ids=['011284']
+    ),
+    DocCfg(id='026731', author='Lord Martin Rees', description=f"speech at first inaugural Cornell Carl Sagan Lecture"),
+    DocCfg(id='015501', author=f"{MOSHE_HOFFMAN}, Erez Yoeli, and Carlos David Navarrete", description=f"Game Theory and Morality"),
+    DocCfg(
+        id='026521',
+        author=f"{MOSHE_HOFFMAN}, Erez Yoeli, and {MARTIN_NOWAK}",
+        description=f"Cooperating Without Looking: Game Theory Model of Trust and Reciprocal Cooperation"
+    ),
+    DocCfg(id='022405', author=NOAM_CHOMSKY, description=f"letter attesting to Epstein's good character"),
+    DocCfg(id='025143', author=ROBERT_TRIVERS, description=f"Africa, Parasites, Intelligence", date='2018-06-25'),
+    DocCfg(id='029155', author=ROBERT_TRIVERS, description=f'response sent to the Gruterites ({GORDON_GETTY} fans)', date='2018-03-19'),
+    DocCfg(
+        id='033323',
+        author=f"{ROBERT_TRIVERS} and Nathan H. Lents",
+        description=f"'Does Trump Fit the Evolutionary Role of Narcissistic Sociopath?' (draft)",
+        date='2018-12-07',
+    ),
+    DocCfg(id='023416', description=HARVARD_POETRY),
+    DocCfg(id='023435', description=HARVARD_POETRY),
+    DocCfg(id='023450', description=HARVARD_POETRY),
+    DocCfg(id='023452', description=HARVARD_POETRY),
+    DocCfg(id='029517', description=HARVARD_POETRY),
+    DocCfg(id='029543', description=HARVARD_POETRY),
+    DocCfg(id='029589', description=HARVARD_POETRY),
+    DocCfg(id='029603', description=HARVARD_POETRY),
+    DocCfg(id='029298', description=HARVARD_POETRY),
+    DocCfg(id='029592', description=HARVARD_POETRY),
+    DocCfg(id='019396', description=f'{HARVARD} Economics 1545 Professor Kenneth Rogoff syllabus'),
+    DocCfg(id='022445', description=f"Inference: International Review of Science Feedback & Comments", date='2018-11-01'),
+    DocCfg(
+        id='029355',
+        description=f'{SCREENSHOT} quote in book about {LARRY_SUMMERS}',
+        dupe_type='quoted',
+        duplicate_ids=['029356'],  # 029356 is zoomed in corner
+        is_interesting=False,
+    ),
+    EmailCfg(id='EFTA00954900', description=f'Epstein donation to {MOUNT_SINAI}'),
+    EmailCfg(id='EFTA00955864', description=f'Epstein donation to {MOUNT_SINAI}', is_interesting=False)
+]
 
 
 OTHER_FILES_ARTICLE = [
@@ -1923,941 +1971,6 @@ OTHER_FILES_CONFERENCE = [
         date='2011-01-18',
     ),
     DocCfg(id='017526', description=f'Intellectual Jazz conference brochure f. {DAVID_BLAINE}'),
-]
-
-
-# All authors of documents in this category will be marked uninteresting
-OTHER_FILES_FINANCE = [
-    DocCfg(id='024631', author='Ackrell Capital', description=f"Cannabis Investment Report 2018", is_interesting=True),
-    DocCfg(id='016111', author=BOFA_MERRILL, description=f"GEMs Paper #26 Saudi Arabia: beyond oil but not so fast", date='2016-06-30'),
-    DocCfg(id='010609', author=BOFA_MERRILL, description=f"Liquid Insight Trump's effect on MXN", date='2016-09-22'),
-    DocCfg(id='025978', author=BOFA_MERRILL, description=f"Understanding when risk parity risk Increases", date='2016-08-09'),
-    DocCfg(id='014404', author=BOFA_MERRILL, description=f'Japan Investment Strategy Report', date='2016-11-18'),
-    DocCfg(id='014410', author=BOFA_MERRILL, description=f'Japan Investment Strategy Report', date='2016-11-18'),
-    DocCfg(id='014424', author=BOFA_MERRILL, description=f"Japan Macro Watch", date='2016-11-14'),
-    DocCfg(id='014731', author=BOFA_MERRILL, description=f"Global Rates, FX & EM 2017 Year Ahead", date='2016-11-16'),
-    DocCfg(id='014432', author=BOFA_MERRILL, description=f"Global Cross Asset Strategy - Year Ahead The Trump inflection", date='2016-11-30'),
-    DocCfg(id='014460', author=BOFA_MERRILL, description=f"European Equity Strategy 2017", date='2016-12-01'),
-    DocCfg(id='014972', author=BOFA_MERRILL, description=f"Global Equity Volatility Insights", date='2017-06-20'),
-    DocCfg(id='014622', author=BOFA_MERRILL, description=f"Top 10 US Ideas Quarterly", date='2017-01-03'),
-    DocCfg(id='023069', author=BOFA_MERRILL, description=f"Equity Strategy Focus Point Death and Taxes", date='2017-01-29'),
-    DocCfg(id='014721', author=BOFA_MERRILL, description=f"Cause and Effect Fade the Trump Risk Premium", date='2017-02-13'),
-    DocCfg(id='014887', author=BOFA_MERRILL, description=f"Internet / e-Commerce", date='2017-04-06'),
-    DocCfg(id='014873', author=BOFA_MERRILL, description=f"Hess Corp", date='2017-04-11'),
-    DocCfg(id='023575', author=BOFA_MERRILL, description=f"Global Equity Volatility Insights", date='2017-06-01'),
-    DocCfg(id='014518', author=BOFA_WEALTH_MGMT, description=f'tax alert', date='2016-05-02'),
-    DocCfg(id='029438', author=BOFA_WEALTH_MGMT, description=f'tax report', date='2018-01-02'),
-    DocCfg(id='026668', author="Boothbay Fund Management", description=f"2016-Q4 earnings report signed by Ari Glass", is_interesting=True),
-    DocCfg(id='024302', author='Carvana', description=f"form 14A SEC filing proxy statement", date='2019-04-23'),
-    DocCfg(id='029305', author='CCH Tax', description=f"Briefing on end of Defense of Marriage Act", date='2013-06-27'),
-    DocCfg(id='026794', author=DEUTSCHE_BANK, description=f"Global Political and Regulatory Risk in 2015/2016"),
-    DocCfg(id='022361', author=DEUTSCHE_BANK_TAX_TOPICS, date='2013-05-01', attached_to_email_id='022359'),
-    DocCfg(id='022325', author=DEUTSCHE_BANK_TAX_TOPICS, date='2013-12-20'),
-    DocCfg(id='022330', author=DEUTSCHE_BANK_TAX_TOPICS, date='2013-12-20', description='table of contents'),
-    DocCfg(id='019440', author=DEUTSCHE_BANK_TAX_TOPICS, date='2014-01-29'),
-    DocCfg(id='024202', author=ELECTRON_CAPITAL_PARTNERS, description=f"Global Utility White Paper", date='2013-03-08'),
-    DocCfg(id='022372', author='Ernst & Young', date='2016-11-09', description=f'2016 election report'),
-    DocCfg(id='014532', author=GOLDMAN_INVESTMENT_MGMT, description=f"Outlook - Half Full", date='2017-01-01'),
-    DocCfg(
-        id='026909',
-        attached_to_email_id='026893',
-        author=GOLDMAN_INVESTMENT_MGMT,
-        description=f"The Unsteady Undertow Commands the Seas (Temporarily)",
-        date='2018-10-14',
-    ),
-    DocCfg(id='026944', author=GOLDMAN_INVESTMENT_MGMT, description=f"Risk of a US-Iran Military Conflict", date='2019-05-23'),
-    DocCfg(id='018804', author='Integra Realty Resources', description=f"appraisal of going concern for IGY American Yacht Harbor Marina in {VIRGIN_ISLANDS}"),
-    DocCfg(id='026679', author='Invesco', description=f"Global Sovereign Asset Management Study 2017"),
-    DocCfg(
-        id='033220',
-        author='Joseph G. Carson',
-        description=f"short economic report on defense spending under Trump",
-        is_interesting=True,
-    ),
-    DocCfg(id='026572', author=JP_MORGAN, description=f"Global Asset Allocation report", date='2012-11-09'),
-    DocCfg(id='030848', author=JP_MORGAN, description=f"Global Asset Allocation report", date='2013-03-28'),
-    DocCfg(id='030840', author=JP_MORGAN, description=f"Market Thoughts"),
-    DocCfg(id='022350', author=JP_MORGAN, description=f"tax efficiency of Intentionally Defective Grantor Trusts (IDGT)"),
-    DocCfg(id='025242', author=JP_MORGAN, description=JP_MORGAN_EYE_ON_THE_MARKET, date='2012-04-09'),
-    DocCfg(id='030010', author=JP_MORGAN, description=JP_MORGAN_EYE_ON_THE_MARKET, attached_to_email_id='030006', date='2011-06-14'),
-    DocCfg(id='030808', author=JP_MORGAN, description=JP_MORGAN_EYE_ON_THE_MARKET, date='2011-07-11'),
-    DocCfg(id='025221', author=JP_MORGAN, description=JP_MORGAN_EYE_ON_THE_MARKET, date='2011-07-25'),
-    DocCfg(id='025229', author=JP_MORGAN, description=JP_MORGAN_EYE_ON_THE_MARKET, date='2011-08-04'),
-    DocCfg(id='030814', author=JP_MORGAN, description=JP_MORGAN_EYE_ON_THE_MARKET, date='2011-11-21'),
-    DocCfg(id='024132', author=JP_MORGAN, description=JP_MORGAN_EYE_ON_THE_MARKET, date='2012-03-15'),
-    DocCfg(id='024194', author=JP_MORGAN, description=JP_MORGAN_EYE_ON_THE_MARKET, date='2012-10-22'),
-    DocCfg(id='025296', author='Laffer Associates', description=f'report predicting Trump win', date='2016-07-06'),
-    DocCfg(
-        id='020824',
-        author='Mary Meeker',
-        date='2011-02-01',
-        description=f"USA Inc: A Basic Summary of America's Financial Statements compiled",
-    ),
-    DocCfg(id='025551', author='Morgan Stanley', description=f'report about alternative asset managers', date='2018-01-30'),
-    DocCfg(id='019856', author='Sadis Goldberg LLP', description=f"report on SCOTUS ruling about insider trading", is_interesting=True),
-    DocCfg(id='025763', author='S&P', description=f"Economic Research: How Increasing Income Inequality Is Dampening U.S. Growth", date='2014-08-05'),
-    DocCfg(id='024135', author=UBS, description=UBS_CIO_REPORT, date='2012-06-29'),
-    DocCfg(id='025247', author=UBS, description=UBS_CIO_REPORT, date='2012-10-25'),
-    DocCfg(id='026584', description="article about tax implications of disregarded entities", date='2009-07-01', is_interesting=True),
-    DocCfg(id='024817', description="Cowen's CBD / Cannabis report", date='2019-02-25', is_interesting=True),
-    DocCfg(
-        id='012048',
-        category=Neutral.PRESSER,
-        description=f"Rockefeller Partners with Gregory J. Fleming to Create Independent Financial Services Firm and other articles",
-        is_interesting=False,
-    ),
-
-    # DOJ
-    DocCfg(id='EFTA01078403', author=ATORUS, description='investment adviser uniform application', date='2014-05-14'),
-    DocCfg(id='EFTA02690885', author=ATORUS, description='pitch deck'),
-]
-
-
-OTHER_FILES_GOVERNMENT = [
-    DocCfg(
-        id='024117',
-        description=f"anti-money laundering (AML), Bank Secrecy Act (BSA), & terrorist financing (CFT) US law FAQ",
-        is_interesting=True,
-    ),
-    DocCfg(
-        id='EFTA00315076',
-        date='2008-06-01',
-        description=f"visitor list during Epstein's 2009 incarceration in {PALM_BEACH}",
-        show_full_panel=True,
-    ),
-    DocCfg(
-        id='EFTA00306074',
-        date='2008-06-01',
-        description=f"approved mail list during Epstein's 2009 incarceration in {PALM_BEACH}",
-        show_full_panel=True,
-    ),
-    DocCfg(id='EFTA00039153', author=BUREAU_OF_PRISONS, description='List of Exhibits, Chapter 2', date='2019-01-06'),
-    DocCfg(id='EFTA00039025', author=BUREAU_OF_PRISONS, description="report on death of Jeffrey Epstein", is_interesting=True),
-    DocCfg(id='EFTA00039190', author=BUREAU_OF_PRISONS, description='Special Housing Units', date='2016-11-23', is_interesting=False),
-    DocCfg(id='EFTA00039227', author=BUREAU_OF_PRISONS, replace_text_with='Inmate Discipline Program Statement'),
-    DocCfg(id='EFTA00039295', author=BUREAU_OF_PRISONS, replace_text_with='Inmate Telephone Privileges Program Statement'),
-    DocCfg(id='EFTA00039312', author=BUREAU_OF_PRISONS, replace_text_with='Program Statement / Memo about BOP Pharmacy Program'),
-    DocCfg(id='EFTA00039351', author=BUREAU_OF_PRISONS, replace_text_with='Program Statement / Memo about BOP Pharmacy Program'),
-    DocCfg(id='EFTA00039156', author=BUREAU_OF_PRISONS, replace_text_with='Standards of Employee Conduct'),
-    DocCfg(
-        id='EFTA00164939',
-        author=DOJ,
-        date='2025-09-01',
-        date_uncertain='approximate',
-        description='Powerpoint summary of Child Sex Trafficking Task Force Epstein investigation',
-        is_interesting=True,
-    ),
-    DocCfg(id='EFTA02731200', author=DOJ, description="memo about potential prosecutation of Epstein's assistant"),
-    DocCfg(id='EFTA02731082', author=DOJ, description="memo about investigation into Epstein's co-conspirators"),
-    DocCfg(id='EFTA02730741', author=DOJ, date='2025-05-01', date_uncertain=True, description="Evidence list for 50D-NY-3027571 Filtering On 'Type(s): 1B'"),
-    DocCfg(id='EFTA02730486', author=DOJ, date='2025-05-01', date_uncertain=True, description="Evidence list for 50D-NY-3027571 Filtering On '1A'"),
-    DocCfg(id='EFTA00040006', author=DOJ, date='2019-08-27', description='Personal History of Defendant Jeffrey Epstein + grand jury indictment'),
-    DocCfg(id='EFTA02731226', author=DOJ, date='2021-03-14', description=f'memo seeking authorization to charge {GHISLAINE_MAXWELL} with additional offenses'),
-    DocCfg(
-        id='EFTA01246710',
-        author=FBI,
-        description="interview where Epstein's chef says Donald Trump came to Epstein's house for dinner",
-        truncate_to=(6000, 7500),
-    ),
-    DocCfg(id='EFTA01249591', author=FBI, description=f"allegations against {HENRY_JARECKI}"),
-    DocCfg(id='EFTA00081226', author=FBI, description='interview with minor victim'),
-    DocCfg(id='EFTA00038915', author=FBI, description='interview with minor victim who said Epstein knew she was 14'),
-    DocCfg(id='EFTA00023055', author=FBI, description="evidence of notes left about newly recruited underage girls by girls giving massages"),
-    DocCfg(id='EFTA00222943', author=FBI, description=f"agent believes computers were removed from Epstein's residence"),
-    DocCfg(id='EFTA00020506', author=FBI, description='"chauffeur told Epstein \'I have something on you, remember what I buried!\'"'),
-    DocCfg(
-        id='EFTA00159321',
-        author=FBI,
-        description='interview re: Paolo Zampolli, Epstein assaults, and the possibility Epstein introduced Melania to Donald Trump'),
-    DocCfg(id='EFTA00084614', author=PALM_BEACH_POLICE, description='incident report detailing the investigation into Jeffrey Epstein'),
-    DocCfg(id='EFTA00007893', author=PALM_BEACH_POLICE, description=f"receipts, notes, bank statements of {GHISLAINE_MAXWELL}"),
-    DocCfg(id='EFTA00005569', author=PALM_BEACH_POLICE, replace_text_with='photo lineup featuring Epstein', date='2005-03-17'),
-    DocCfg(id='EFTA00128379', description='analysis of two of Epstein\'s desktop computers', date='2019-01-06', is_interesting=True),
-    DocCfg(id='EFTA02730274', description='evidence inventory that appears to have since been deleted from the DOJ website'),
-    DocCfg(id='EFTA00001884', description='photo of letter from Virgin Islands DOJ to Epstein', date='2019-03-14'),
-    DocCfg(id='EFTA00074744', description="USVI court filing about Epstein will and estate"),
-    DocCfg(id='EFTA00007157', description='victim list and police log'),
-    fbi_defense_witness('EFTA02730267', 'Malcolm Grumbridge', '2022-04-14'),
-    fbi_defense_witness('EFTA02730271', REDACTED, '2022-03-22'),
-    fbi_defense_witness('EFTA02730477', 'Roderic Alexander', '2022-01-19'),
-    letter('EFTA00098456', PAUL_G_CASSELL, ['Scotland Yard'], 'International Sex Trafficking by Jeffrey Epstein, contains court filings'),
-
-    # Emails
-    EmailCfg(
-        id='EFTA00129096',
-        date='2025-04-03 7:13:35 PM',
-        description=f'background check on Tim Draper and {MASHA_DROKOVA}',
-        show_full_panel=True,
-        truncate_to=NO_TRUNCATE,  # TODO this shouldn't be necessary?
-    ),
-    EmailCfg(id='EFTA02730483', author=FBI, date='2023-07-11T08:25:00', date_uncertain='actually reply timestamp'),
-    EmailCfg(id='EFTA02731552', author=FBI, recipients=[USANYS], date='2021-05-26 16:12:00', recipient_uncertain='true'),
-    EmailCfg(id='EFTA00039971', author=FBI, recipients=[USANYS], recipient_uncertain='true'),
-    EmailCfg(id='EFTA00037683', description=f"tip that the murder of DC Madam Jeanne Palfrey might be connected to Epstein's network"),
-]
-
-
-OTHER_FILES_LEGAL = [
-    DocCfg(id='017789', author=ALAN_DERSHOWITZ, description=f'letter to {HARVARD} Crimson complaining he was defamed'),
-    DocCfg(id='011908', author=BRUNEL_V_EPSTEIN, description=f"court filing"),
-    DocCfg(id='017603', author=DAVID_SCHOEN, description=LEXIS_NEXIS_CVRA_SEARCH, date='2019-02-28'),
-    DocCfg(id='017635', author=DAVID_SCHOEN, description=LEXIS_NEXIS_CVRA_SEARCH, date='2019-02-28'),
-    DocCfg(id='016509', author=DAVID_SCHOEN, description=LEXIS_NEXIS_CVRA_SEARCH, date='2019-02-28'),
-    DocCfg(id='017714', author=DAVID_SCHOEN, description=LEXIS_NEXIS_CVRA_SEARCH, date='2019-02-28'),
-
-    DocCfg(
-        id='010757',
-        author=EDWARDS_V_DERSHOWITZ,
-        description=f"plaintiff response to Dershowitz Motion to Determine Confidentiality of Court Records",
-        date='2015-11-23',
-    ),
-    DocCfg(
-        id='010887',
-        author=EDWARDS_V_DERSHOWITZ,
-        description=f"Dershowitz Motion for Clarification of Confidentiality Order",
-        date='2016-01-29',
-    ),
-    DocCfg(
-        id='015590',
-        author=EDWARDS_V_DERSHOWITZ,
-        description=f"Dershowitz Redacted Motion to Modify Confidentiality Order",
-        date='2016-02-03',
-    ),
-    DocCfg(
-        id='015650',
-        author=EDWARDS_V_DERSHOWITZ,
-        description=f"Giuffre Response to Dershowitz Motion for Clarification of Confidentiality Order",
-        date='2016-02-08',
-    ),
-    DocCfg(id='010566', author=EPSTEIN_V_ROTHSTEIN_EDWARDS, description=f"Statement of Undisputed Facts", date='2010-11-04'),
-    DocCfg(id='012707', author=EPSTEIN_V_ROTHSTEIN_EDWARDS, description=f"Master Contact List - Privilege Log", date='2011-03-22'),
-    DocCfg(id='012103', author=EPSTEIN_V_ROTHSTEIN_EDWARDS, description=f"Telephone Interview with {VIRGINIA_GIUFFRE}", date='2011-05-17'),
-    DocCfg(id='029315', author=EPSTEIN_V_ROTHSTEIN_EDWARDS, description=f"Plaintiff Motion for Summary Judgment by {JACK_SCAROLA}", date='2013-09-13'),
-    DocCfg(id='013304', author=EPSTEIN_V_ROTHSTEIN_EDWARDS, description=f"Plaintiff Response to Epstein's Motion for Summary Judgment", date='2014-04-17'),
-    DocCfg(id='017792', author=GIUFFRE_V_DERSHOWITZ, description=f"article about {ALAN_DERSHOWITZ}'s appearance on Wolf Blitzer"),
-    DocCfg(id='017767', author=GIUFFRE_V_DERSHOWITZ, description=f"article about {ALAN_DERSHOWITZ} working with {JEFFREY_EPSTEIN}"),
-    DocCfg(id='017796', author=GIUFFRE_V_DERSHOWITZ, description=f"article about {ALAN_DERSHOWITZ}"),
-    DocCfg(id='017935', author=GIUFFRE_V_DERSHOWITZ, description=f"defamation complaint", date='2019-04-16'),
-    DocCfg(id='017824', author=GIUFFRE_V_DERSHOWITZ, description=f"{MIAMI_HERALD} article by {JULIE_K_BROWN}"),
-    DocCfg(
-        id='017818',
-        author=GIUFFRE_V_DERSHOWITZ,
-        description=f"{MIAMI_HERALD} article about accusations against {ALAN_DERSHOWITZ} by {JULIE_K_BROWN}",
-        date='2018-12-27',
-    ),
-    DocCfg(id='017800', author=GIUFFRE_V_DERSHOWITZ, description=f'{MIAMI_HERALD} "Perversion of Justice" by {JULIE_K_BROWN}'),
-    DocCfg(id='022237', author=GIUFFRE_V_DERSHOWITZ, description=f"partial court filing with fact checking questions?"),
-    DocCfg(id='016197', author=GIUFFRE_V_DERSHOWITZ, description=f"response to Florida Bar complaint by {ALAN_DERSHOWITZ} about David Boies from {PAUL_G_CASSELL}"),
-    DocCfg(id='017771', author=GIUFFRE_V_DERSHOWITZ, description=f'Vanity Fair article "The Talented Mr. Epstein" by Vicky Ward', date='2011-06-27'),
-    DocCfg(id='014118', author=GIUFFRE_V_EPSTEIN, description=f"Declaration in Support of Motion to Compel Production of Documents", date='2016-10-21'),
-    DocCfg(id='014652', author=GIUFFRE_V_MAXWELL, description=f"Complaint", date='2015-04-22'),
-    DocCfg(id='015529', author=GIUFFRE_V_MAXWELL, description=f"Defamation Complaint", date='2015-09-21'),
-    DocCfg(
-        id='014797',
-        author=GIUFFRE_V_MAXWELL,
-        date='2017-03-17',
-        description=f"Declaration of Laura A. Menninger in Opposition to Plaintiff's Motion",
-    ),
-    DocCfg(id='011304', author=GIUFFRE_V_MAXWELL, description=f"Oral Argument Transcript", date='2017-03-17'),
-    DocCfg(
-        id='014788',
-        author=GIUFFRE_V_MAXWELL,
-        date='2017-03-17',
-        description=f"Maxwell Response to Plaintiff's Omnibus Motion in Limine",
-        duplicate_ids=['011463'],
-    ),
-    DocCfg(
-        id='019297',
-        author=GIUFFRE_V_MAXWELL,
-        description=f'letter from {ALAN_DERSHOWITZ} lawyer Andrew G. Celli',
-        date='2018-02-07'
-    ),
-    DocCfg(
-        id='025937',
-        author=JANE_DOE_V_EPSTEIN_TRUMP,
-        description=f'Affidavit of Tiffany Doe describing Jane Doe being raped by Epstein and Trump',
-        date='2016-06-20',
-    ),
-    DocCfg(id='025939', author=JANE_DOE_V_EPSTEIN_TRUMP, description=f'Affidavit of Jane Doe describing being raped by Epstein', date='2016-06-20'),
-    DocCfg(id='013489', author=JANE_DOE_V_EPSTEIN_TRUMP, description=f'Affidavit of {BRAD_EDWARDS}', date='2010-07-20'),
-    DocCfg(id='029398', author=JANE_DOE_V_EPSTEIN_TRUMP, description=f'article in Law.com'),
-    DocCfg(id='026854', author=JANE_DOE_V_EPSTEIN_TRUMP, description=f"Civil Docket"),
-    DocCfg(id='026384', author=JANE_DOE_V_EPSTEIN_TRUMP, description=f"Complaint for rape and sexual abuse", date='2016-06-20', attached_to_email_id='029837'),
-    DocCfg(id='029257', author=JANE_DOE_V_EPSTEIN_TRUMP, description=f'allegations and identity of plaintiff Katie Johnson', date='2016-04-26'),
-    DocCfg(id='032321', author=JANE_DOE_V_EPSTEIN_TRUMP, description=f"Notice of Initial Conference", date='2016-10-04'),
-    DocCfg(id='EFTA00211168', author=JANE_DOE_V_EPSTEIN_TRUMP, description='Epstein employee affidavit alleging sexual assaults'),
-    DocCfg(id='010735', author=JANE_DOE_V_USA, description=f"Dershowitz Reply in Support of Motion for Limited Intervention", date='2015-02-02'),
-    DocCfg(id='014084', author=JANE_DOE_V_USA, description=f"Jane Doe Response to Dershowitz's Motion for Limited Intervention", date='2015-03-24'),
-    DocCfg(id='023361', author=JASTA_SAUDI_LAWSUIT, description=f"legal text and court documents", date='2012-01-20'),
-    DocCfg(id='017830', author=JASTA_SAUDI_LAWSUIT, description=f"legal text and court documents"),
-    DocCfg(id='017904', author=JASTA_SAUDI_LAWSUIT, description=f"Westlaw search results", date='2019-01-01'),
-    DocCfg(id='014037', author='Journal of Criminal Law and Criminology', description=f"article on {CVRA}"),
-    DocCfg(
-        id='029416',
-        author="National Enquirer / Radar Online v. FBI",
-        description=f"FOIA lawsuit filing",
-        date='2017-05-25',
-        duplicate_ids=['029405']
-    ),
-    DocCfg(
-        id='016420',
-        author=NEW_YORK_V_EPSTEIN,
-        description=f"New York Post Motion to Unseal Appellate Briefs",
-        date='2019-01-11',
-    ),
-    DocCfg(id='028540', author='SCOTUS', description=f"decision in Budha Ismail Jam et al. v. INTERNATIONAL FINANCE CORP"),
-    DocCfg(id='012197', author='SDFL', description=f"response to {JAY_LEFKOWITZ} on Epstein Plea Agreement Compliance"),
-    DocCfg(id='022277', description=f"text of National Labour Relations Board (NLRB) law", is_interesting=False),
-    fbi_report('019352', f"{FBI_REPORT} containing clippings of various press items"),
-    fbi_report('021434', FBI_REPORT, is_valid_for_name_scan=False),
-    fbi_report(
-        '018872',
-        FBI_REPORT,
-        non_participants=[
-            BILL_GATES,
-            BILL_RICHARDSON,
-            EDUARDO_ROBLES,
-            GERALD_LEFCOURT,
-            GLENN_DUBIN,
-            JEAN_LUC_BRUNEL,
-            JOI_ITO,
-            LARRY_SUMMERS,
-            MARK_EPSTEIN,
-            MARTIN_NOWAK,
-            MORTIMER_ZUCKERMAN,
-            PRINCE_ANDREW,
-            SECURITIES_AND_EXCHANGE_COMMISSION,
-            STEVEN_HOFFENBERG,
-            SVETLANA_POZHIDAEVA
-        ],
-    ),
-    fbi_report('021569', FBI_REPORT),
-    fbi_report('EFTA01688746', FBI_REPORT),
-    fbi_report(
-        'EFTA00129085',
-        'wiretap report linking phone number in John Gotti / Gambino / Michael Bilotti investigation to number in Epstein investigation',
-        is_interesting=True,
-    ),
-    # legal letters
-    letter(
-        id='031447',
-        author=MARTIN_WEINBERG,
-        recipients=['Melanie Ann Pustay', "Sean O'Neill"],
-        description=f"re: Epstein FOIA request"
-    ),
-    letter(
-        id='028965',
-        author=MARTIN_WEINBERG,
-        description=f"threatening libel lawsuit",
-        duplicate_ids=['028928'],
-        recipients=['ABC / Good Morning America'],
-    ),
-    letter(
-        id='026793',
-        author=f"Mintz Fraade ({STEVEN_HOFFENBERG}'s lawyers)",
-        description=f"offering to take over Epstein's business and resolve his legal issues",
-        date='2018-03-23',
-        recipients=[DARREN_INDYKE],
-    ),
-    letter(
-        id='020662',
-        author=f"Mishcon de Reya ({ALAN_DERSHOWITZ}'s lawyers)",
-        description=f"threatening libel lawsuit",
-        recipients=['Daily Mail'],
-    ),
-    letter('010560', GLORIA_ALLRED, [SCOTT_J_LINK], "alleging abuse of a girl from Kansas", '2019-06-19'),
-    starr_letter('025353', '2008-05-19', ['010723', '019224'], 'redacted', non_participants=[LANDON_THOMAS]),
-    starr_letter('025704', '2008-05-27', ['010732', '019221'], 'redacted'),
-    starr_letter('012130', '2008-06-19', ['012135'], non_participants=[LESLEY_GROFF]),
-
-    # DOJ files
-    DocCfg(id='EFTA01106135', author=BILL_GATES, description=f"gives Epstein power to negotiate on behalf of {BORIS_NIKOLIC}"),
-    DocCfg(id='EFTA01112265', author=EDWARDS_V_DERSHOWITZ, description='interview with minor victim', is_interesting=True),
-    DocCfg(id='EFTA01125109', author=EDWARDS_V_DERSHOWITZ, description='interview with minor victim', is_interesting=True),
-    DocCfg(id='EFTA01139414', author=EDWARDS_V_DERSHOWITZ, description='interview with minor victim', is_interesting=True),
-    DocCfg(id='EFTA00177201', author=JANE_DOE_V_USA, description='court docket and many filings', is_interesting=True),
-    DocCfg(id='EFTA00590940', author=JANE_DOE_V_USA, description='interview with minor victim', is_interesting=True),
-    DocCfg(id='EFTA01081391', author=JANE_DOE_V_USA, description='interview with minor victim', is_interesting=True),
-    DocCfg(id='EFTA00727684', author=f"{REDACTED} v. {JEFFREY_EPSTEIN}", description='sworn testimony, list of co-conspirators'),
-    DocCfg(id='EFTA00143492', description=f"court filing in which a victim calls Giuffre lawyer {STANLEY_POTTINGER} an abuser"),
-    DocCfg(id='EFTA00039817', description='notice of hearing', date='2021-04-19', duplicate_ids=['EFTA00039791'], is_interesting=False),
-    DocCfg(id='EFTA00005586', replace_text_with='completely redacted 69 pages labeled "Grand Jury - NY"'),
-]
-
-
-# Epstein money. This category makes is_interesting = True
-OTHER_FILES_MONEY = [
-    # private placement memoranda
-    DocCfg(
-        id='024432',
-        date='2006-09-27',
-        description=f"Michael Milken's Knowledge Universe Education (KUE) $1,000,000 corporate share placement notice (SEC filing?)"
-    ),
-    DocCfg(id='024003', description=f"New Leaf Ventures ($375 million biotech fund) private placement memorandum"),
-
-    # DOJ files
-    DocCfg(
-        id='EFTA00173953',
-        author='Organized Crime Drug Enforcement Task Force',
-        description='report on DEA investigations into Epstein related drug money laundering',
-    ),
-    DocCfg(
-        id='EFTA01681865',
-        author=DEUTSCHE_BANK,
-        description=f"explanations of all of Epstein's large payments prepared for DOJ",
-        is_interesting=True,
-    ),
-    DocCfg(
-        id='EFTA01111057',
-        author=MORTIMER_ZUCKERMAN,
-        date='2014-07-10',
-        description='Mortimer B. Zuckerman Management Trust',
-        non_participants=['Marla Maples'],
-    ),
-    DocCfg(id='EFTA01285411', description=f"bank statement for Epstein's {SOUTHERN_TRUST_COMPANY} showing $82 million balance"),
-    DocCfg(id='EFTA00016884', description="Epstein's last will and testament", date='2014-11-18'),
-    DocCfg(id='EFTA00089546', description=f"Epstein last will and testament codicil naming {JAMES_CAYNE} an executor", date='2007-09-20'),
-    DocCfg(id='EFTA00299927', description=f"Estate plan for {JAMES_CAYNE} found in Epstein's possession"),
-    DocCfg(id='EFTA01266380', description="Epstein's 2014 Trust with bequests"),
-    DocCfg(id='EFTA01282282', description=f"Epstein Butterfly Trust (sole beneficiary {KARYNA_SHULIAK})"),
-    DocCfg(id='EFTA01583819', description=f"Epstein had control of {JAMES_CAYNE}'s assets"),
-    DocCfg(id='EFTA00099424', description=f"Epstein 2017 Trust (Eva Andersson Dubin, {DARREN_INDYKE}, {RICHARD_KAHN})"),
-    DocCfg(id='EFTA01266457', description=f"Epstein 2018 Trust ({KATHRYN_RUEMMLER}, {DARREN_INDYKE}, {RICHARD_KAHN})"),
-    DocCfg(id='EFTA01266204', description=f"Epstein The 1953 Trust ({DARREN_INDYKE}, {RICHARD_KAHN})", date='2019-08-08'),
-    DocCfg(id='EFTA01265973', description="large transfers around time of Epstein arrest", show_full_panel=True),
-    DocCfg(id='EFTA01087311', description=f'{LEON_BLACK} Family Partners cash projections'),
-    DocCfg(id='EFTA00007781', description='paychecks signed by Epstein deposited at Colonial Bank', date='2005-08-12'),
-    DocCfg(id='EFTA01273102', description=f"payment from Epstein to {RENATA_BOLOTOVA}'s father's account at Sberbank"),
-    DocCfg(id='EFTA00238499', description='wire transfer to Signature Bank account'),
-    DocCfg(id='EFTA00000476', replace_text_with='photo of JEFFREY EPSTEIN CASH DISBURSEMENTS for the month 2006-09', date='2006-09-01'),
-    DocCfg(id='EFTA01086463', description=f"{MORTIMER_ZUCKERMAN}'s art collection invetory and valuation report", is_valid_for_name_scan=False),
-    # Emails
-    EmailCfg(id='EFTA00037187', is_interesting=True),
-    EmailCfg(id='EFTA00371120', description=f"Epstein appears to invest in {ATORUS}"),
-    EmailCfg(id='EFTA00652799', description=f'Epstein calls Ari Glass "a bit sketchy" despite investing ~$50 million in his fund Boothbay'),
-]
-
-# This category makes is_interesting default to True
-OTHER_FILES_LETTER = [
-    CommunicationCfg(
-        id='026011',
-        author='Gennady Mashtalyar',
-        date='2016-06-24',  # date is based on Brexit reference but he could be backtesting,
-        description=f"about algorithmic trading",
-    ),
-    CommunicationCfg(id='026134', recipients=['George'], description=f'about opportunities to buy banks in Ukraine'),
-    blaine_letter(id='019086', date='2015-05-27', suffix='naming various Putin puppet regimes'),
-    blaine_letter(id='019474', date='2015-05-29'),
-    blaine_letter(id='019476', date='2015-06-01'),
-
-    # DOJ files
-    CommunicationCfg(id='EFTA00007609', recipients=['Alberto'], duplicate_ids=['EFTA00007582']),
-    CommunicationCfg(id='EFTA02731023', author='Senator Ron Wyden', recipients=[LEON_BLACK], is_interesting=False),
-    CommunicationCfg(id='EFTA02731018', author='Senator Ron Wyden', recipients=['Marc Rowan'], is_interesting=False),
-]
-
-OTHER_FILES_PROPERTY = [
-    DocCfg(
-        id='026759',
-        author='Great Bay Condominium Owners Association',
-        category=Neutral.PRESSER,
-        description=f'Hurricane Irma damage',
-        date='2017-09-13',
-        is_interesting=False,
-    ),
-    DocCfg(id='016602', author=PALM_BEACH_CODE_ENFORCEMENT, description='board minutes', date='2008-04-17'),
-    DocCfg(id='016554', author=PALM_BEACH_CODE_ENFORCEMENT, description='board minutes', date='2008-07-17', duplicate_ids=['016616', '016574']),
-    DocCfg(id='016636', author=PALM_BEACH_WATER_COMMITTEE, description=f"Meeting on January 29, 2009"),
-    DocCfg(id='022417', author='Park Partners NYC', description=f"letter to partners in real estate project with architectural plans"),
-    DocCfg(id='027068', author=THE_REAL_DEAL, description=f"{REAL_DEAL_ARTICLE} Palm House Hotel Bankruptcy and EB-5 Visa Fraud Allegations"),
-    DocCfg(id='029520', author=THE_REAL_DEAL, description=f"{REAL_DEAL_ARTICLE} 'Lost Paradise at the Palm House'", date='2019-06-17'),
-    DocCfg(id='016597', author='Trump Properties LLC', description=f'appeal of some decision about Mar-a-Lago by {PALM_BEACH} authorities'),
-    DocCfg(id='018743', description=f"Las Vegas property listing"),
-    DocCfg(id='016695', description=f"{PALM_BEACH_PROPERTY_INFO} (?)"),
-    DocCfg(id='016697', description=f"{PALM_BEACH_PROPERTY_INFO} (?) that mentions Trump"),
-    DocCfg(id='016599', description=f"{PALM_BEACH_TSV} consumption (water?)"),
-    DocCfg(id='016600', description=f"{PALM_BEACH_TSV} consumption (water?)"),
-    DocCfg(id='016601', description=f"{PALM_BEACH_TSV} consumption (water?)"),
-    DocCfg(id='016694', description=f"{PALM_BEACH_TSV} consumption (water?)"),
-    DocCfg(id='016552', description=f"{PALM_BEACH_TSV} info"),
-    DocCfg(id='016698', description=f"{PALM_BEACH_TSV} info (broken?)"),
-    DocCfg(id='016696', description=f"{PALM_BEACH_TSV} info (water quality?"),
-    DocCfg(
-        id='018727',
-        description=f"{VIRGIN_ISLANDS} property deal pitch deck, building will be leased to the U.S. govt GSA",
-        date='2014-06-01',
-    ),
-]
-
-OTHER_FILES_REPUTATION = [
-    DocCfg(id='030426', author=IAN_OSBORNE, description=f"reputation repair proposal citing Michael Milken", date='2011-06-14'),
-    DocCfg(id='026582', description=f"Epstein's internet search results at start of reputation repair campaign, maybe from {OSBORNE_LLP}"),
-    DocCfg(id='030573', description=f"Epstein's unflattering Google search results, maybe screenshot by {AL_SECKEL} or {OSBORNE_LLP}"),
-    DocCfg(id='030875', description=f"Epstein's Wikipedia page", date='2014-02-08'),  # Date is based on tyler shears; seckel was 2010
-    DocCfg(id='026583', description=f"Google search results for '{JEFFREY_EPSTEIN}' with analysis ({OSBORNE_LLP}?)"),
-    DocCfg(id='029350', description=f"Microsoft Bing search results for Epstein with sex offender at top", attached_to_email_id='EFTA00675542'),
-    EmailCfg(id='022203', description=AL_SECKEL_BILL_FIGHT, truncate_to=500),
-    EmailCfg(id='022219', description=AL_SECKEL_BILL_FIGHT, truncate_to=2404),
-
-    # DOJ files
-    EmailCfg(id='EFTA01830035', description=AL_SECKEL_BILL_FIGHT),
-    DocCfg(
-        id='EFTA01810372',
-        author=TYLER_SHEARS,
-        description=f'invoice for reputation management work',
-        is_interesting=True,
-        attached_to_email_id='EFTA01931256'
-    ),
-]
-
-OTHER_FILES_SOCIAL = [
-    DocCfg(id='028815', author=INSIGHTS_POD, description=f"business plan", date='2016-08-20', attached_to_email_id='033171'),
-    DocCfg(id='011170', author=INSIGHTS_POD, description=f'case study of social media vibe analysis using tweets from #Brexit', date='2016-06-23', attached_to_email_id='033171'),
-    DocCfg(id='032324', author=INSIGHTS_POD, description=f"social media election sentiment analysis", date='2016-11-05', attached_to_email_id='032323'),
-    DocCfg(id='032281', author=INSIGHTS_POD, description=f"social media election sentiment report", date='2016-10-25', attached_to_email_id='032280'),
-    DocCfg(id='028988', author=INSIGHTS_POD, description=f"pitch deck", date='2016-08-20', attached_to_email_id='033171'),
-    DocCfg(id='026627', author=INSIGHTS_POD, description=f"report on impact of presidential debate", attached_to_email_id='026626'),
-    DocCfg(id='022213', description=f"{SCREENSHOT} Facebook group called 'Shit Pilots Say' disparaging a 'global girl'"),
-    EmailCfg(id='033171', is_interesting=True, comment='Zubair'),
-    EmailCfg(
-        id='030630',
-        author=MARIA_PRUSAKOVA,
-        author_reason=PRUSAKOVA_BERKELY,
-        description=f'Masha Prusso / {MARIA_PRUSAKOVA} asks about Zubair Khan and {INSIGHTS_POD}',
-        is_interesting=True,
-    ),
-    EmailCfg(
-        id='032319',
-        description=f"{ZUBAIR_KHAN} says social media vibes are good for Trump in last week before the 2016 election",
-        dupe_type='quoted',
-        duplicate_ids=['032283'],
-        is_interesting=True,
-    ),
-    EmailCfg(
-        id='032325',
-        description=f"{ZUBAIR_KHAN} predicts Trump winning in 2016",
-        dupe_type='quoted',
-        duplicate_ids=['026014'],
-        is_interesting=True,
-    ),
-    EmailCfg(
-        id='EFTA00719854',
-        description=f'{BORIS_NIKOLIC} introduces Epstein to Chris Poole AKA "moot", the founder of 4chan',
-        is_interesting=True,
-        show_with_name=CHRIS_POOLE
-    ),
-    EmailCfg(
-        id='EFTA00922824',
-        description=f"Epstein meets with {CHRIS_POOLE} (founder of 4chan) the day the infamous /pol/ board is created",
-        is_interesting=True,
-        show_with_name=CHRIS_POOLE,
-    ),
-]
-
-
-OTHER_FILES_POLITICS = [
-    DocCfg(id='030258', author=ALAN_DERSHOWITZ, description=f'{ARTICLE_DRAFT} Mueller probe, almost same as 030248'),
-    DocCfg(id='030248', author=ALAN_DERSHOWITZ, description=f'{ARTICLE_DRAFT} Mueller probe, almost same as 030258'),
-    DocCfg(id='029165', author=ALAN_DERSHOWITZ, description=f'{ARTICLE_DRAFT} Mueller probe, almost same as 030258'),
-    DocCfg(id='029918', author=DIANA_DEGETTE_CAMPAIGN, description=f"bio", date='2012-09-27'),
-    DocCfg(id='031184', author=DIANA_DEGETTE_CAMPAIGN, description=f"invitation to fundraiser hosted by {BARBRO_C_EHNBOM}", date='2012-09-27'),
-    DocCfg(id='026248', author='Don McGahn', description=f'letter from Trump lawyer to Devin Nunes (R-CA) about FISA courts and Trump'),
-    DocCfg(id='027009', author=EHUD_BARAK, description=f"speech to AIPAC", date='2013-03-03'),
-    DocCfg(
-        id='019233',
-        author='Freedom House',
-        date='2017-06-02',
-        description=f"'Breaking Down Democracy: Goals, Strategies, and Methods of Modern Authoritarians'",
-    ),
-    DocCfg(id='026856', author='Kevin Rudd', description=f'speech "Xi Jinping, China And The Global Order"', date='2018-06-26'),
-    DocCfg(id='026827', author='Scowcroft Group', description=f'report on ISIS', date='2015-11-14'),
-    DocCfg(id='024294', author=STACEY_PLASKETT, description=f"campaign flier", date='2016-10-01'),
-    DocCfg(
-        id='023133',
-        author=f"{TERJE_ROD_LARSEN}, Nur Laiq, Fabrice Aidan",
-        date='2014-12-09',
-        description=f'The Search for Peace in the Arab-Israeli Conflict',
-    ),
-    DocCfg(id='033468', description=f'{ARTICLE_DRAFT} Rod Rosenstein', date='2018-09-24'),
-    DocCfg(id='025849', author=US_ORG, description=quote('Building a Bridge Between FOIA Requesters & Agencies'),
-    ),
-    # CommunicationCfg(id='031670', author="General Mike Flynn's lawyers", recipients=['Sen. Mark Warner & Richard Burr'], description=f"about subpoena"),
-    DocCfg(id='031670', description=f"letter from General Mike Flynn's lawyers to senators Mark Warner & Richard Burr about subpoena"),
-    DocCfg(
-        id='029357',
-        date='2015-01-15',
-        date_uncertain='a guess',
-        description=f"possibly book extract about Israel's challenges entering 2015",
-        duplicate_ids=['028887'],
-    ),
-    DocCfg(id='010617', description=TRUMP_DISCLOSURES, date='2017-01-20', is_interesting=True, attached_to_email_id='033091'),
-    DocCfg(id='016699', description=TRUMP_DISCLOSURES, date='2017-01-20', is_interesting=True, attached_to_email_id='033091'),
-]
-
-OTHER_FILES_ACADEMIA = [
-    DocCfg(id='027004', author=JOSCHA_BACH, description=f"The Computational Structure of Mental Representation", date='2013-02-26'),
-    DocCfg(
-        id='014697',
-        author=LAWRENCE_KRAUSS_ASU_ORIGINS,
-        description=f'report: "Challenges of AI: Envisioning and Addressing Adverse Outcomes"',
-        duplicate_ids=['011284']
-    ),
-    DocCfg(id='026731', author='Lord Martin Rees', description=f"speech at first inaugural Cornell Carl Sagan Lecture"),
-    DocCfg(id='015501', author=f"{MOSHE_HOFFMAN}, Erez Yoeli, and Carlos David Navarrete", description=f"Game Theory and Morality"),
-    DocCfg(
-        id='026521',
-        author=f"{MOSHE_HOFFMAN}, Erez Yoeli, and {MARTIN_NOWAK}",
-        description=f"Cooperating Without Looking: Game Theory Model of Trust and Reciprocal Cooperation"
-    ),
-    DocCfg(id='022405', author=NOAM_CHOMSKY, description=f"letter attesting to Epstein's good character"),
-    DocCfg(id='025143', author=ROBERT_TRIVERS, description=f"Africa, Parasites, Intelligence", date='2018-06-25'),
-    DocCfg(id='029155', author=ROBERT_TRIVERS, description=f'response sent to the Gruterites ({GORDON_GETTY} fans)', date='2018-03-19'),
-    DocCfg(
-        id='033323',
-        author=f"{ROBERT_TRIVERS} and Nathan H. Lents",
-        description=f"'Does Trump Fit the Evolutionary Role of Narcissistic Sociopath?' (draft)",
-        date='2018-12-07',
-    ),
-    DocCfg(id='023416', description=HARVARD_POETRY),
-    DocCfg(id='023435', description=HARVARD_POETRY),
-    DocCfg(id='023450', description=HARVARD_POETRY),
-    DocCfg(id='023452', description=HARVARD_POETRY),
-    DocCfg(id='029517', description=HARVARD_POETRY),
-    DocCfg(id='029543', description=HARVARD_POETRY),
-    DocCfg(id='029589', description=HARVARD_POETRY),
-    DocCfg(id='029603', description=HARVARD_POETRY),
-    DocCfg(id='029298', description=HARVARD_POETRY),
-    DocCfg(id='029592', description=HARVARD_POETRY),
-    DocCfg(id='019396', description=f'{HARVARD} Economics 1545 Professor Kenneth Rogoff syllabus'),
-    DocCfg(id='022445', description=f"Inference: International Review of Science Feedback & Comments", date='2018-11-01'),
-    DocCfg(
-        id='029355',
-        description=f'{SCREENSHOT} quote in book about {LARRY_SUMMERS}',
-        dupe_type='quoted',
-        duplicate_ids=['029356'],  # 029356 is zoomed in corner
-        is_interesting=False,
-    ),
-    EmailCfg(id='EFTA00954900', description=f'Epstein donation to {MOUNT_SINAI}'),
-    EmailCfg(id='EFTA00955864', description=f'Epstein donation to {MOUNT_SINAI}', is_interesting=False)
-]
-
-# resumes and application letters
-OTHER_FILES_RESUMÉ = [
-    DocCfg(
-        id='029304',
-        attached_to_email_id='029299',
-        author=MICHAEL_J_BOCCIO,
-        description=f"recommendation letter by {DONALD_TRUMP}",
-    ),
-    DocCfg(id='022367', author='Jack J. Grynberg', description=RESUME_OF, date='2014-07-01'),
-    DocCfg(
-        id='029302',
-        attached_to_email_id='029299',
-        author=MICHAEL_J_BOCCIO,
-        description=f"{RESUME_OF} (former lawyer at the {TRUMP_ORG})",
-        date='2011-08-07',
-    ),
-    DocCfg(
-        id='029301',
-        attached_to_email_id='029299',
-        author=MICHAEL_J_BOCCIO,
-        description=f"letter from former lawyer at the {TRUMP_ORG}",
-        date='2011-08-07',
-    ),
-    DocCfg(id='029102', author=NERIO_ALESSANDRI, description=HBS_APPLICATION),
-    DocCfg(id='029104', author=NERIO_ALESSANDRI, description=HBS_APPLICATION),
-    DocCfg(id='015671', author='Robin Solomon', description=RESUME_OF, date='2015-06-02'),  # She left Mount Sinai at some point in 2015,
-    DocCfg(id='015672', author='Robin Solomon', description=RESUME_OF, date='2015-06-02'),  # She left Mount Sinai at some point in 2015,
-    DocCfg(id='029623', description=f'bio of Kathleen Harrington, Founding Partner, C/H Global Strategies'),
-]
-
-
-OTHER_FILES_FLIGHT_LOG = [
-    DocCfg(id='022780'),
-    DocCfg(id='022816'),
-]
-
-
-OTHER_FILES_DIARY = [
-    victim_diary('EFTA02731465', f"naming {JES_STALEY}, {TED_LEONSIS}, {GEORGE_VRADENBURG}, references tinkerbell"),
-    victim_diary('EFTA02731420', f'naming {LARRY_SUMMERS}, {PRINCE_ANDREW}, Dan Snyder, {LEON_BLACK}, {TED_LEONSIS}'),
-]
-
-
-OTHER_FILES_GIRLS = [
-    EmailCfg(id='030609', duplicate_ids=['030495']),
-    letter('EFTA00078198', 'Marsh Law Firm', [USANYS], "allegations of sexual abuse at Epstein's house", '2020-11-10'),
-    DocCfg(id='EFTA00306033', author=SERGEY_BELYAKOV, description='Epstein Russian visa', show_full_panel=True),
-    DocCfg(id='EFTA00014648', description='former employee "understood that all the girls were school girls"', show_full_panel=True),
-    DocCfg(
-        id='EFTA00077200',
-        author='French Ministry of Justice',
-        date='2020-07-08',
-        description=f'allegations that {JEAN_LUC_BRUNEL} drugged a model and Epstein + Ghislaine assaulted a minor',
-    ),
-    DocCfg(
-        id='EFTA00079597',
-        author='French Ministry of Justice',
-        description=f"allegations of sexual assault by {JEAN_LUC_BRUNEL}",
-        date='2020-07-08',
-    ),
-    CommunicationCfg(
-        id='EFTA01612733',
-        author=MARIA_PRUSAKOVA,
-        author_uncertain=True,
-        comment='WhatsApp',
-        description=f'says being Epstein\'s lawyer would be "way better than supplying ladies", also discusses Medici Bank',
-    ),
-    CommunicationCfg(
-        id='EFTA01616933',
-        description='"now im finding pussy for you" / "no one can beat your pussy network"',
-    ),
-    EmailCfg(
-        id='EFTA02339926',
-        author=JULIA_SANTOS,
-        author_uncertain='https://www.reddit.com/r/Epstein/comments/1qwbn5i/trafficker_julia_santos/',
-        description='"might be naughty"',
-    ),
-    EmailCfg(
-        id='033178',
-        author=MARIA_PRUSAKOVA,
-        author_reason=PRUSAKOVA_BERKELY,
-        description='Masha Prusso asks about Zubair Khan, discusses recruiting girls for Epstein',
-        is_interesting=True,
-    ),
-    EmailCfg(
-        id='EFTA00669538',
-        author=MARIA_PRUSAKOVA,
-        author_uncertain='discussion of "experiments"',
-        description='blowjob instructions, sexual experiments',
-        truncate_to=NO_TRUNCATE,
-    ),
-    EmailCfg(id='EFTA00671662', author='Miranda', author_reason='quoted signature', description="yet another girl finder"),
-    EmailCfg(id='EFTA02441035', author=STEVEN_VICTOR_MD, description="complaining about free treatment for Epstein's girls"),
-    EmailCfg(
-        id='EFTA00659941',
-        author=SVETLANA_POZHIDAEVA,
-        author_reason='https://tommycarstensen.com/epstein/findings.html#victim-diary-names-multiple-men',
-        description=f'{SVETLANA_POZHIDAEVA} forwarding her intimate conversations with {JOSHUA_FINK} to Epstein (to what end?)',
-        is_interesting=True,
-    ),
-    EmailCfg(
-        id='EFTA02010589',
-        author=UNKNOWN_GIRL,
-        date='2012-01-31 9:16 PM',
-        description=f'raunchy email mentioning "Sasha Grey guy", note {BORIS_NIKOLIC} and bgC3 in SMTP info at end',
-        is_interesting=True,
-        recipients=[JEFFREY_EPSTEIN],
-    ),
-    EmailCfg(
-        id='EFTA01998247',
-        author=UNKNOWN_GIRL,
-        description=f'trying to recruit {ELON_MUSK}?',
-        is_interesting=True,
-        show_with_name=ELON_MUSK,
-    ),
-    EmailCfg(id='EFTA02431535', author=UNKNOWN_GIRL),
-    EmailCfg(id='EFTA01875607', author=UNKNOWN_GIRL),
-    EmailCfg(id='EFTA00901581', author=UNKNOWN_GIRL),
-    EmailCfg(id='EFTA01990168', author=UNKNOWN_GIRL, is_interesting=True),
-    EmailCfg(id='EFTA02027844', author=UNKNOWN_GIRL, description='permission to "fuck someone with a condom"', truncate_to=NO_TRUNCATE),
-    EmailCfg(id='EFTA02449477', author=UNKNOWN_GIRL, description='argument about finding girls for Epstein', truncate_to=NO_TRUNCATE),
-    EmailCfg(id='EFTA01782788', author=UNKNOWN_GIRL, description='"I need 21-24, wiling to travel and work hard"', truncate_to=NO_TRUNCATE),
-    EmailCfg(
-        id='EFTA01026268',
-        author_reason='juliador89®mail.ru is unredacted',
-        description=f"Epstein pressuring {YULIA_DOROKHINA} to find girls in Russia and send him nude pics and videos",
-        recipients=[YULIA_DOROKHINA],
-        truncate_to=3100,
-    ),
-    EmailCfg(id='EFTA00738485', recipients=[STEVEN_VICTOR_MD], truncate_to=640),
-    EmailCfg(
-        id='EFTA00888467',
-        description=f'very strange conversation about "Peter" and "mj" (probably {HASSAN_JAMEEL})',
-        is_interesting=True,
-        recipients=[UNKNOWN_GIRL],
-        truncate_to=1600,
-    ),
-    EmailCfg(
-        id='EFTA02223525',
-        recipients=[ANNA_KASATKINA, BELLA_KLEIN, JANUSZ_BANASIAK],
-        recipient_uncertain='https://www.reddit.com/r/Epstein/comments/1qwbn5i/trafficker_julia_santos/',
-        truncate_to=800
-    ),
-    EmailCfg(id='EFTA00897668', recipients=[UNKNOWN_GIRL], people=[JEAN_LUC_BRUNEL, JEFFREY_EPSTEIN, UNKNOWN_GIRL]),
-    EmailCfg(id='EFTA00848644', recipients=[UNKNOWN_GIRL], is_interesting=True, description='"take a picture of your pussy"'),
-    EmailCfg(id='EFTA00775255', description='"20 years old but she looks younger"', non_participants=[BROCK_PIERCE]),
-    EmailCfg(id='EFTA00078209', description='allegations about Russian organized crime, sex trafficking', truncate_to=8500),
-    EmailCfg(id='EFTA01648951', description=f'allegations against Trump, {HOWARD_LUTNICK}, Glen Dubin, {LEON_BLACK}, {JES_STALEY}'),
-    EmailCfg(id='EFTA00950368', description='"any [girl] friends for me?"', truncate_to=NO_TRUNCATE),
-    EmailCfg(id='EFTA00883738', description=f"{DASHA_GRUPMAN} looking to rent townhouse for diplomats", show_with_name=DASHA_GRUPMAN),
-    EmailCfg(
-        id='EFTA00577409',
-        date='2004-01-01',
-        date_uncertain='just a guess, string is 4501 which is NULL in Microsoft Outlook',
-        description='Epstein and Ghislaine discuss girl "from donad trumps party" who blackmailed [someone]',
-    ),
-    EmailCfg(
-        id='EFTA01877084',
-        comment='https://x.com/HansMahncke/status/2024351830998994979',
-        description=f'Epstein and {JEAN_LUC_BRUNEL} "managing" {JOSHUA_FINK}\'s relationship with {SVETLANA_POZHIDAEVA}',
-        is_interesting=True,
-    ),
-    EmailCfg(id='EFTA01140210', description='Epstein asks about fake Instagram followers', is_interesting=True),
-    EmailCfg(id='EFTA01854125', description=f'Epstein says to {HENRY_JARECKI} "you torture, and mistreat each" girl'),
-    EmailCfg(id='EFTA01953412', description=f'{EVA_DUBIN} suggests Epstein endow "The Epstein Floor For Women" at Mt. Sinai'),
-    EmailCfg(id='EFTA01768670', description='"find girls for the agency"'),
-    EmailCfg(id='EFTA01022353', description='Odessa\'s George Models is basically a porn site + "she said she was 14-15 yo"', is_interesting=True),
-    EmailCfg(id='EFTA00950394', description='"how old will you go?"', is_interesting=True),
-    EmailCfg(id='EFTA01767237', description='"is 24 too old for you?"'),
-    EmailCfg(id='EFTA01660651', description='list of Trump accusers', is_interesting=True),
-    EmailCfg(id='EFTA02609062', description=f"{MASHA_DROKOVA} is assembling a team", is_interesting=True),
-    EmailCfg(id='EFTA01145923', description=f"{JEAN_LUC_BRUNEL} modeling contract for {MC2_MODEL_MGMT}"),
-    EmailCfg(id='EFTA02557291', description='possibly recruiting girls'),
-    EmailCfg(id='EFTA01811230', description=f'"Renat" is probably {RENATA_BOLOTOVA}'),
-    EmailCfg(id='EFTA00894079', description='"say hi to Snow White"', is_interesting=True),
-    EmailCfg(id='EFTA00908180', description='"two cinderellas"'),
-    EmailCfg(id='EFTA00751119', description='"Valdson to teach girls how to serve"'),
-    EmailCfg(
-        id='EFTA02434682',
-        description=f"Epstein and {JEAN_LUC_BRUNEL} courting a finance bro with women",
-        is_interesting=True,
-        truncate_to=1500,
-    ),
-    EmailCfg(
-        id='EFTA00927927',
-        description=f"reads like {RENATA_BOLOTOVA} talking about recruiting girls for Epstein",
-        is_interesting=True,
-    ),
-    EmailCfg(id='EFTA00743526', truncate_to=NO_TRUNCATE),
-    EmailCfg(id='EFTA02664956', truncate_to=NO_TRUNCATE),
-    EmailCfg(id='EFTA00819508', truncate_to=NO_TRUNCATE, comment=JULIA_SANTOS),
-    EmailCfg(id='EFTA00460312', truncate_to=NO_TRUNCATE, comment=JULIA_SANTOS),
-    EmailCfg(id='EFTA00878255', comment=BORIS_NIKOLIC),
-    EmailCfg(id='EFTA02551185', comment=BORIS_NIKOLIC),
-    EmailCfg(id='EFTA02538269', comment=BORIS_NIKOLIC, duplicate_ids=['EFTA01866636']),
-    EmailCfg(id='EFTA00736518', comment=JES_STALEY + ' beauty and the beast'),
-    EmailCfg(id='EFTA02344845', comment=JULIA_SANTOS),
-    EmailCfg(id='EFTA02491007', comment=JULIA_SANTOS),
-    EmailCfg(id='EFTA00633284', comment=JULIA_SANTOS),
-    EmailCfg(id='EFTA00664521', comment=JULIA_SANTOS),
-    EmailCfg(id='EFTA00997666', comment=JULIA_SANTOS),
-    EmailCfg(id='EFTA00964428', comment=JULIA_SANTOS + ' Valdson'),
-    EmailCfg(id='EFTA02398135', comment=JULIA_SANTOS + ' "Sochi"'),
-    EmailCfg(id='EFTA00766770'),
-]
-
-
-OTHER_FILES_MISC = [
-    DocCfg(id='029326', category=Neutral.PRESSER, author=EPSTEIN_FOUNDATION, date='2013-02-15'),
-    DocCfg(id='026565', category=Neutral.PRESSER, author=EPSTEIN_FOUNDATION, comment=f'maybe a draft of 029326', date='2013-02-15'),
-    DocCfg(id='022494', author='DOJ', description=f'Foreign Corrupt Practices Act (FCPA) Resource Guide'),
-    DocCfg(id='023096', author=EPSTEIN_FOUNDATION, description=f'blog post', date='2012-11-15'),
-    DocCfg(id='027071', author=FEMALE_HEALTH_COMPANY, description=f"brochure requesting donations for female condoms in Uganda"),
-    DocCfg(id='027074', author=FEMALE_HEALTH_COMPANY, description=f"pitch deck (USAID was a customer)"),
-    DocCfg(id='032735', author=GORDON_GETTY, description=f"on Trump", date='2018-03-20'),  # Dated based on concurrent emails from Getty
-    DocCfg(id='025540', author=JEFFREY_EPSTEIN, description=f"rough draft of his side of the story"),
-    DocCfg(id='026634', author='Michael Carrier', description=f'comments about an Apollo linked fund "DE Fund VIII"'),
-    DocCfg(id='031425', author=SCOTT_J_LINK, description=f'completely redacted email', is_interesting=False),
-    DocCfg(id='020447', author='Working Group on Chinese Influence Activities in the US', description=f'Promoting Constructive Vigilance'),
-    DocCfg(id='012718', description=f"{CVRA} congressional record", date='2011-06-17'),
-    DocCfg(id='019448', description=f"Haitian business investment proposal called Jacmel", attached_to_email_id='019446'),
-    DocCfg(id='023644', description=f"interview with Mohammed bin Salman", date='2016-04-25', is_interesting=False),
-    DocCfg(
-        id='030142',
-        author=f"{KATHRYN_RUEMMLER} & {KEN_STARR}",
-        date='2016-09-01',
-        description=f"mostly empty {JASTA} (Justice Against Sponsors of Terrorism Act) doc referencing suit against Saudis",
-    ),
-    DocCfg(
-        id='033338',
-        category=Neutral.PRESSER,
-        date='2000-06-07',
-        description=f"end of {DONALD_TRUMP} & {NICHOLAS_RIBIS} working relationship at Trump's casino",
-        is_interesting=True,
-    ),
-    DocCfg(id='029328', description=f"Rafanelli Events promotional deck", is_interesting=False),
-    DocCfg(id='029475', description=f'{VIRGIN_ISLANDS} Twin City Mobile Integrated Health Services (TCMIH) proposal/request for donation', is_interesting=False),
-    DocCfg(id='029448', description=f"weird short essay titled 'President Obama and Self-Deception'"),
-
-    # DOJ files
-    DocCfg(
-        id='EFTA00034357',
-        author=BUREAU_OF_PRISONS,
-        date='2019-08-10',
-        description=f"internal message about discovery of Epstein's body",
-        background_color='red'
-    ),
-    DocCfg(id='EFTA00165515', description="contractor describes Epstein's gun safes", show_full_panel=True),
-    DocCfg(id='EFTA00005783', description='heavily redacted handwritten note, 30+ completely redacted pages', date='2019-08-29'),
-    DocCfg(id='EFTA00024275', description='large Wexner funded payments to OB-GYN'),
-    DocCfg(id='EFTA00029538', description=f"{GHISLAINE_MAXWELL} provided school girl uniforms", show_full_panel=True),
-    # Urramoor
-    DocCfg(
-        id='EFTA01107738',
-        description=f"creation of {CANTOR_URRAMOOR} with Mr. T's (Prince Andrew?) Urramoor and {LUTNICKS_CANTOR}",
-        is_interesting=True,
-    ),
-    DocCfg(
-        id='EFTA01141453',
-        description=f"referral agreement between Mr. T's (Prince Andrew?) Urramoor and {LUTNICKS_CANTOR}",
-        is_interesting=True,
-    ),
-    # Replacement text
-    DocCfg(
-        id='EFTA00009622',
-        date='2006-07-19',
-        description='handwritten notes from a victim interview transcribed by Claude AI',
-        is_interesting=True,
-        replace_text_with=EFTA00009622_TEXT,
-    ),
-    DocCfg(
-        id='EFTA00004477',
-        is_interesting=True,
-        replace_text_with='Epstein 50th birthday photo book 12 "THAIS, MOSCOW GIRLS, AFRICA, HAWAII, [REDACTED] [REDACTED], Zorro, [REDACTED] [REDACTED] [REDACTED], CRACK WHOLE PROPOSAL, BALI/THAILAND/ASIA, RUSSIA, [REDACTED], [REDACTED], NUDES, YOGAL GIRLS',
-    ),
-    DocCfg(id='EFTA00004070', replace_text_with="photos of Epstein with handwritten caption that didn't OCR well"),
-    DocCfg(id='EFTA02731260', replace_text_with='notebook full of handwritten love letters with terrible OCR text'),
-    DocCfg(id='EFTA00006100', replace_text_with='Palm Beach Police fax machine activity log 2005-12-28 to 2006-01-04'),
-    DocCfg(
-        id='EFTA00003149',
-        date='2016-01-01',
-        date_uncertain='complete guess',
-        description=f"{LITTLE_SAINT_JAMES} staff list",
-        show_full_panel=True,
-    ),
-    # Attachments
-    DocCfg(id='EFTA00590685', attached_to_email_id='EFTA00830911'),
-    # Dates
-    DocCfg(id='EFTA02025218', date='2011-09-09'),
-]
-
-
-OTHER_FILES_PHONE_BILL = [
-    phone_bill_cfg('EFTA00007070', 'MetroPCS', '2006'),
-    phone_bill_cfg('EFTA00006770', 'MetroPCS', '2006-02-01 to 2006-06-16'),
-    phone_bill_cfg('EFTA00006870', 'MetroPCS', '2006-02-09 to 2006-07'),
-    phone_bill_cfg('EFTA00006970', 'MetroPCS', '2006-04-15 to 2006-07-16'),
-    phone_bill_cfg('EFTA00007501', 'T-Mobile', '2005'),
-    phone_bill_cfg('EFTA00006487', 'T-Mobile', '2006'),
-    phone_bill_cfg('EFTA00006387', 'T-Mobile', '2006-06-15 to 2006-07-23'),
-    phone_bill_cfg('EFTA00006587', 'T-Mobile', '2006-09-04 to 2016-10-15'),
-    phone_bill_cfg('EFTA00006687', 'T-Mobile', '2006-10-31 to 2006-12-25'),
-    phone_bill_cfg('EFTA00007401', 'T-Mobile', '2004-08-25 to 2005-07-13'),
-    # These two are subpoena response letters w/attached phone bill)
-    phone_bill_cfg('EFTA00007301', 'T-Mobile', 'Blackberry phone logs for 2005', date='2007-03-23'),
-    phone_bill_cfg('EFTA00007253', 'T-Mobile', date='2007-03-23'),
-]
-
-
-OTHER_FILES_TWEET = [
-    DocCfg(id='023050', author=ALAN_DERSHOWITZ, description=DERSH_GIUFFRE_TWEET),
-    DocCfg(id='017787', author=ALAN_DERSHOWITZ, description=DERSH_GIUFFRE_TWEET),
-    DocCfg(id='033433', author=ALAN_DERSHOWITZ, description=f"{DERSH_GIUFFRE_TWEET} / David Boies", date='2019-03-02'),
-    DocCfg(id='033432', author=ALAN_DERSHOWITZ, description=f"{DERSH_GIUFFRE_TWEET} / David Boies", date='2019-05-02'),
-    DocCfg(id='031546', author=DONALD_TRUMP, description=f"about Russian collusion", date='2018-01-06'),
-    DocCfg(id='030884', author='Ed Krassenstein'),
-    DocCfg(id='033236', description=f'selection about Ivanka Trump in Arabic', date='2017-05-20'),
 ]
 
 
@@ -3245,6 +2358,850 @@ OTHER_FILES_CRYPTO = [
     EmailCfg(id='EFTA00899331', truncate_to=NO_TRUNCATE),
 ]
 
+
+# All authors of documents in this category will be marked uninteresting
+OTHER_FILES_FINANCE = [
+    DocCfg(id='024631', author='Ackrell Capital', description=f"Cannabis Investment Report 2018", is_interesting=True),
+    DocCfg(id='016111', author=BOFA_MERRILL, description=f"GEMs Paper #26 Saudi Arabia: beyond oil but not so fast", date='2016-06-30'),
+    DocCfg(id='010609', author=BOFA_MERRILL, description=f"Liquid Insight Trump's effect on MXN", date='2016-09-22'),
+    DocCfg(id='025978', author=BOFA_MERRILL, description=f"Understanding when risk parity risk Increases", date='2016-08-09'),
+    DocCfg(id='014404', author=BOFA_MERRILL, description=f'Japan Investment Strategy Report', date='2016-11-18'),
+    DocCfg(id='014410', author=BOFA_MERRILL, description=f'Japan Investment Strategy Report', date='2016-11-18'),
+    DocCfg(id='014424', author=BOFA_MERRILL, description=f"Japan Macro Watch", date='2016-11-14'),
+    DocCfg(id='014731', author=BOFA_MERRILL, description=f"Global Rates, FX & EM 2017 Year Ahead", date='2016-11-16'),
+    DocCfg(id='014432', author=BOFA_MERRILL, description=f"Global Cross Asset Strategy - Year Ahead The Trump inflection", date='2016-11-30'),
+    DocCfg(id='014460', author=BOFA_MERRILL, description=f"European Equity Strategy 2017", date='2016-12-01'),
+    DocCfg(id='014972', author=BOFA_MERRILL, description=f"Global Equity Volatility Insights", date='2017-06-20'),
+    DocCfg(id='014622', author=BOFA_MERRILL, description=f"Top 10 US Ideas Quarterly", date='2017-01-03'),
+    DocCfg(id='023069', author=BOFA_MERRILL, description=f"Equity Strategy Focus Point Death and Taxes", date='2017-01-29'),
+    DocCfg(id='014721', author=BOFA_MERRILL, description=f"Cause and Effect Fade the Trump Risk Premium", date='2017-02-13'),
+    DocCfg(id='014887', author=BOFA_MERRILL, description=f"Internet / e-Commerce", date='2017-04-06'),
+    DocCfg(id='014873', author=BOFA_MERRILL, description=f"Hess Corp", date='2017-04-11'),
+    DocCfg(id='023575', author=BOFA_MERRILL, description=f"Global Equity Volatility Insights", date='2017-06-01'),
+    DocCfg(id='014518', author=BOFA_WEALTH_MGMT, description=f'tax alert', date='2016-05-02'),
+    DocCfg(id='029438', author=BOFA_WEALTH_MGMT, description=f'tax report', date='2018-01-02'),
+    DocCfg(id='026668', author="Boothbay Fund Management", description=f"2016-Q4 earnings report signed by Ari Glass", is_interesting=True),
+    DocCfg(id='024302', author='Carvana', description=f"form 14A SEC filing proxy statement", date='2019-04-23'),
+    DocCfg(id='029305', author='CCH Tax', description=f"Briefing on end of Defense of Marriage Act", date='2013-06-27'),
+    DocCfg(id='026794', author=DEUTSCHE_BANK, description=f"Global Political and Regulatory Risk in 2015/2016"),
+    DocCfg(id='022361', author=DEUTSCHE_BANK_TAX_TOPICS, date='2013-05-01', attached_to_email_id='022359'),
+    DocCfg(id='022325', author=DEUTSCHE_BANK_TAX_TOPICS, date='2013-12-20'),
+    DocCfg(id='022330', author=DEUTSCHE_BANK_TAX_TOPICS, date='2013-12-20', description='table of contents'),
+    DocCfg(id='019440', author=DEUTSCHE_BANK_TAX_TOPICS, date='2014-01-29'),
+    DocCfg(id='024202', author=ELECTRON_CAPITAL_PARTNERS, description=f"Global Utility White Paper", date='2013-03-08'),
+    DocCfg(id='022372', author='Ernst & Young', date='2016-11-09', description=f'2016 election report'),
+    DocCfg(id='014532', author=GOLDMAN_INVESTMENT_MGMT, description=f"Outlook - Half Full", date='2017-01-01'),
+    DocCfg(
+        id='026909',
+        attached_to_email_id='026893',
+        author=GOLDMAN_INVESTMENT_MGMT,
+        description=f"The Unsteady Undertow Commands the Seas (Temporarily)",
+        date='2018-10-14',
+    ),
+    DocCfg(id='026944', author=GOLDMAN_INVESTMENT_MGMT, description=f"Risk of a US-Iran Military Conflict", date='2019-05-23'),
+    DocCfg(id='018804', author='Integra Realty Resources', description=f"appraisal of going concern for IGY American Yacht Harbor Marina in {VIRGIN_ISLANDS}"),
+    DocCfg(id='026679', author='Invesco', description=f"Global Sovereign Asset Management Study 2017"),
+    DocCfg(
+        id='033220',
+        author='Joseph G. Carson',
+        description=f"short economic report on defense spending under Trump",
+        is_interesting=True,
+    ),
+    DocCfg(id='026572', author=JP_MORGAN, description=f"Global Asset Allocation report", date='2012-11-09'),
+    DocCfg(id='030848', author=JP_MORGAN, description=f"Global Asset Allocation report", date='2013-03-28'),
+    DocCfg(id='030840', author=JP_MORGAN, description=f"Market Thoughts"),
+    DocCfg(id='022350', author=JP_MORGAN, description=f"tax efficiency of Intentionally Defective Grantor Trusts (IDGT)"),
+    DocCfg(id='025242', author=JP_MORGAN, description=JP_MORGAN_EYE_ON_THE_MARKET, date='2012-04-09'),
+    DocCfg(id='030010', author=JP_MORGAN, description=JP_MORGAN_EYE_ON_THE_MARKET, attached_to_email_id='030006', date='2011-06-14'),
+    DocCfg(id='030808', author=JP_MORGAN, description=JP_MORGAN_EYE_ON_THE_MARKET, date='2011-07-11'),
+    DocCfg(id='025221', author=JP_MORGAN, description=JP_MORGAN_EYE_ON_THE_MARKET, date='2011-07-25'),
+    DocCfg(id='025229', author=JP_MORGAN, description=JP_MORGAN_EYE_ON_THE_MARKET, date='2011-08-04'),
+    DocCfg(id='030814', author=JP_MORGAN, description=JP_MORGAN_EYE_ON_THE_MARKET, date='2011-11-21'),
+    DocCfg(id='024132', author=JP_MORGAN, description=JP_MORGAN_EYE_ON_THE_MARKET, date='2012-03-15'),
+    DocCfg(id='024194', author=JP_MORGAN, description=JP_MORGAN_EYE_ON_THE_MARKET, date='2012-10-22'),
+    DocCfg(id='025296', author='Laffer Associates', description=f'report predicting Trump win', date='2016-07-06'),
+    DocCfg(
+        id='020824',
+        author='Mary Meeker',
+        date='2011-02-01',
+        description=f"USA Inc: A Basic Summary of America's Financial Statements compiled",
+    ),
+    DocCfg(id='025551', author='Morgan Stanley', description=f'report about alternative asset managers', date='2018-01-30'),
+    DocCfg(id='019856', author='Sadis Goldberg LLP', description=f"report on SCOTUS ruling about insider trading", is_interesting=True),
+    DocCfg(id='025763', author='S&P', description=f"Economic Research: How Increasing Income Inequality Is Dampening U.S. Growth", date='2014-08-05'),
+    DocCfg(id='024135', author=UBS, description=UBS_CIO_REPORT, date='2012-06-29'),
+    DocCfg(id='025247', author=UBS, description=UBS_CIO_REPORT, date='2012-10-25'),
+    DocCfg(id='026584', description="article about tax implications of disregarded entities", date='2009-07-01', is_interesting=True),
+    DocCfg(id='024817', description="Cowen's CBD / Cannabis report", date='2019-02-25', is_interesting=True),
+    DocCfg(
+        id='012048',
+        category=Neutral.PRESSER,
+        description=f"Rockefeller Partners with Gregory J. Fleming to Create Independent Financial Services Firm and other articles",
+        is_interesting=False,
+    ),
+
+    # DOJ
+    DocCfg(id='EFTA01078403', author=ATORUS, description='investment adviser uniform application', date='2014-05-14'),
+    DocCfg(id='EFTA02690885', author=ATORUS, description='pitch deck'),
+]
+
+
+OTHER_FILES_DIARY = [
+    victim_diary('EFTA02731465', f"naming {JES_STALEY}, {TED_LEONSIS}, {GEORGE_VRADENBURG}, references tinkerbell"),
+    victim_diary('EFTA02731420', f'naming {LARRY_SUMMERS}, {PRINCE_ANDREW}, Dan Snyder, {LEON_BLACK}, {TED_LEONSIS}'),
+]
+
+
+OTHER_FILES_FLIGHT_LOG = [
+    DocCfg(id='022780'),
+    DocCfg(id='022816'),
+]
+
+
+OTHER_FILES_GIRLS = [
+    EmailCfg(id='030609', duplicate_ids=['030495']),
+    letter('EFTA00078198', 'Marsh Law Firm', [USANYS], "allegations of sexual abuse at Epstein's house", '2020-11-10'),
+    DocCfg(id='EFTA00306033', author=SERGEY_BELYAKOV, description='Epstein Russian visa', show_full_panel=True),
+    DocCfg(id='EFTA00014648', description='former employee "understood that all the girls were school girls"', show_full_panel=True),
+    DocCfg(
+        id='EFTA00077200',
+        author='French Ministry of Justice',
+        date='2020-07-08',
+        description=f'allegations that {JEAN_LUC_BRUNEL} drugged a model and Epstein + Ghislaine assaulted a minor',
+    ),
+    DocCfg(
+        id='EFTA00079597',
+        author='French Ministry of Justice',
+        description=f"allegations of sexual assault by {JEAN_LUC_BRUNEL}",
+        date='2020-07-08',
+    ),
+    CommunicationCfg(
+        id='EFTA01612733',
+        author=MARIA_PRUSAKOVA,
+        author_uncertain=True,
+        comment='WhatsApp',
+        description=f'says being Epstein\'s lawyer would be "way better than supplying ladies", also discusses Medici Bank',
+    ),
+    CommunicationCfg(
+        id='EFTA01616933',
+        description='"now im finding pussy for you" / "no one can beat your pussy network"',
+    ),
+    EmailCfg(
+        id='EFTA02339926',
+        author=JULIA_SANTOS,
+        author_uncertain='https://www.reddit.com/r/Epstein/comments/1qwbn5i/trafficker_julia_santos/',
+        description='"might be naughty"',
+    ),
+    EmailCfg(
+        id='033178',
+        author=MARIA_PRUSAKOVA,
+        author_reason=PRUSAKOVA_BERKELY,
+        description='Masha Prusso asks about Zubair Khan, discusses recruiting girls for Epstein',
+        is_interesting=True,
+    ),
+    EmailCfg(
+        id='EFTA00669538',
+        author=MARIA_PRUSAKOVA,
+        author_uncertain='discussion of "experiments"',
+        description='blowjob instructions, sexual experiments',
+        truncate_to=NO_TRUNCATE,
+    ),
+    EmailCfg(id='EFTA00671662', author='Miranda', author_reason='quoted signature', description="yet another girl finder"),
+    EmailCfg(id='EFTA02441035', author=STEVEN_VICTOR_MD, description="complaining about free treatment for Epstein's girls"),
+    EmailCfg(
+        id='EFTA00659941',
+        author=SVETLANA_POZHIDAEVA,
+        author_reason='https://tommycarstensen.com/epstein/findings.html#victim-diary-names-multiple-men',
+        description=f'{SVETLANA_POZHIDAEVA} forwarding her intimate conversations with {JOSHUA_FINK} to Epstein (to what end?)',
+        is_interesting=True,
+    ),
+    EmailCfg(
+        id='EFTA02010589',
+        author=UNKNOWN_GIRL,
+        date='2012-01-31 9:16 PM',
+        description=f'raunchy email mentioning "Sasha Grey guy", note {BORIS_NIKOLIC} and bgC3 in SMTP info at end',
+        is_interesting=True,
+        recipients=[JEFFREY_EPSTEIN],
+    ),
+    EmailCfg(
+        id='EFTA01998247',
+        author=UNKNOWN_GIRL,
+        description=f'trying to recruit {ELON_MUSK}?',
+        is_interesting=True,
+        show_with_name=ELON_MUSK,
+    ),
+    EmailCfg(id='EFTA02431535', author=UNKNOWN_GIRL),
+    EmailCfg(id='EFTA01875607', author=UNKNOWN_GIRL),
+    EmailCfg(id='EFTA00901581', author=UNKNOWN_GIRL),
+    EmailCfg(id='EFTA01990168', author=UNKNOWN_GIRL, is_interesting=True),
+    EmailCfg(id='EFTA02027844', author=UNKNOWN_GIRL, description='permission to "fuck someone with a condom"', truncate_to=NO_TRUNCATE),
+    EmailCfg(id='EFTA02449477', author=UNKNOWN_GIRL, description='argument about finding girls for Epstein', truncate_to=NO_TRUNCATE),
+    EmailCfg(id='EFTA01782788', author=UNKNOWN_GIRL, description='"I need 21-24, wiling to travel and work hard"', truncate_to=NO_TRUNCATE),
+    EmailCfg(
+        id='EFTA01026268',
+        author_reason='juliador89®mail.ru is unredacted',
+        description=f"Epstein pressuring {YULIA_DOROKHINA} to find girls in Russia and send him nude pics and videos",
+        recipients=[YULIA_DOROKHINA],
+        truncate_to=3100,
+    ),
+    EmailCfg(id='EFTA00738485', recipients=[STEVEN_VICTOR_MD], truncate_to=640),
+    EmailCfg(
+        id='EFTA00888467',
+        description=f'very strange conversation about "Peter" and "mj" (probably {HASSAN_JAMEEL})',
+        is_interesting=True,
+        recipients=[UNKNOWN_GIRL],
+        truncate_to=1600,
+    ),
+    EmailCfg(
+        id='EFTA02223525',
+        recipients=[ANNA_KASATKINA, BELLA_KLEIN, JANUSZ_BANASIAK],
+        recipient_uncertain='https://www.reddit.com/r/Epstein/comments/1qwbn5i/trafficker_julia_santos/',
+        truncate_to=800
+    ),
+    EmailCfg(id='EFTA00897668', recipients=[UNKNOWN_GIRL], people=[JEAN_LUC_BRUNEL, JEFFREY_EPSTEIN, UNKNOWN_GIRL]),
+    EmailCfg(id='EFTA00848644', recipients=[UNKNOWN_GIRL], is_interesting=True, description='"take a picture of your pussy"'),
+    EmailCfg(id='EFTA00775255', description='"20 years old but she looks younger"', non_participants=[BROCK_PIERCE]),
+    EmailCfg(id='EFTA00078209', description='allegations about Russian organized crime, sex trafficking', truncate_to=8500),
+    EmailCfg(id='EFTA01648951', description=f'allegations against Trump, {HOWARD_LUTNICK}, Glen Dubin, {LEON_BLACK}, {JES_STALEY}'),
+    EmailCfg(id='EFTA00950368', description='"any [girl] friends for me?"', truncate_to=NO_TRUNCATE),
+    EmailCfg(id='EFTA00883738', description=f"{DASHA_GRUPMAN} looking to rent townhouse for diplomats", show_with_name=DASHA_GRUPMAN),
+    EmailCfg(
+        id='EFTA00577409',
+        date='2004-01-01',
+        date_uncertain='just a guess, string is 4501 which is NULL in Microsoft Outlook',
+        description='Epstein and Ghislaine discuss girl "from donad trumps party" who blackmailed [someone]',
+    ),
+    EmailCfg(
+        id='EFTA01877084',
+        comment='https://x.com/HansMahncke/status/2024351830998994979',
+        description=f'Epstein and {JEAN_LUC_BRUNEL} "managing" {JOSHUA_FINK}\'s relationship with {SVETLANA_POZHIDAEVA}',
+        is_interesting=True,
+    ),
+    EmailCfg(id='EFTA01140210', description='Epstein asks about fake Instagram followers', is_interesting=True),
+    EmailCfg(id='EFTA01854125', description=f'Epstein says to {HENRY_JARECKI} "you torture, and mistreat each" girl'),
+    EmailCfg(id='EFTA01953412', description=f'{EVA_DUBIN} suggests Epstein endow "The Epstein Floor For Women" at Mt. Sinai'),
+    EmailCfg(id='EFTA01768670', description='"find girls for the agency"'),
+    EmailCfg(id='EFTA01022353', description='Odessa\'s George Models is basically a porn site + "she said she was 14-15 yo"', is_interesting=True),
+    EmailCfg(id='EFTA00950394', description='"how old will you go?"', is_interesting=True),
+    EmailCfg(id='EFTA01767237', description='"is 24 too old for you?"'),
+    EmailCfg(id='EFTA01660651', description='list of Trump accusers', is_interesting=True),
+    EmailCfg(id='EFTA02609062', description=f"{MASHA_DROKOVA} is assembling a team", is_interesting=True),
+    EmailCfg(id='EFTA01145923', description=f"{JEAN_LUC_BRUNEL} modeling contract for {MC2_MODEL_MGMT}"),
+    EmailCfg(id='EFTA02557291', description='possibly recruiting girls'),
+    EmailCfg(id='EFTA01811230', description=f'"Renat" is probably {RENATA_BOLOTOVA}'),
+    EmailCfg(id='EFTA00894079', description='"say hi to Snow White"', is_interesting=True),
+    EmailCfg(id='EFTA00908180', description='"two cinderellas"'),
+    EmailCfg(id='EFTA00751119', description='"Valdson to teach girls how to serve"'),
+    EmailCfg(
+        id='EFTA02434682',
+        description=f"Epstein and {JEAN_LUC_BRUNEL} courting a finance bro with women",
+        is_interesting=True,
+        truncate_to=1500,
+    ),
+    EmailCfg(
+        id='EFTA00927927',
+        description=f"reads like {RENATA_BOLOTOVA} talking about recruiting girls for Epstein",
+        is_interesting=True,
+    ),
+    EmailCfg(id='EFTA00743526', truncate_to=NO_TRUNCATE),
+    EmailCfg(id='EFTA02664956', truncate_to=NO_TRUNCATE),
+    EmailCfg(id='EFTA00819508', truncate_to=NO_TRUNCATE, comment=JULIA_SANTOS),
+    EmailCfg(id='EFTA00460312', truncate_to=NO_TRUNCATE, comment=JULIA_SANTOS),
+    EmailCfg(id='EFTA00878255', comment=BORIS_NIKOLIC),
+    EmailCfg(id='EFTA02551185', comment=BORIS_NIKOLIC),
+    EmailCfg(id='EFTA02538269', comment=BORIS_NIKOLIC, duplicate_ids=['EFTA01866636']),
+    EmailCfg(id='EFTA00736518', comment=JES_STALEY + ' beauty and the beast'),
+    EmailCfg(id='EFTA02344845', comment=JULIA_SANTOS),
+    EmailCfg(id='EFTA02491007', comment=JULIA_SANTOS),
+    EmailCfg(id='EFTA00633284', comment=JULIA_SANTOS),
+    EmailCfg(id='EFTA00664521', comment=JULIA_SANTOS),
+    EmailCfg(id='EFTA00997666', comment=JULIA_SANTOS),
+    EmailCfg(id='EFTA00964428', comment=JULIA_SANTOS + ' Valdson'),
+    EmailCfg(id='EFTA02398135', comment=JULIA_SANTOS + ' "Sochi"'),
+    EmailCfg(id='EFTA00766770'),
+]
+
+
+OTHER_FILES_GOVERNMENT = [
+    DocCfg(
+        id='024117',
+        description=f"anti-money laundering (AML), Bank Secrecy Act (BSA), & terrorist financing (CFT) US law FAQ",
+        is_interesting=True,
+    ),
+    DocCfg(
+        id='EFTA00315076',
+        date='2008-06-01',
+        description=f"visitor list during Epstein's 2009 incarceration in {PALM_BEACH}",
+        show_full_panel=True,
+    ),
+    DocCfg(
+        id='EFTA00306074',
+        date='2008-06-01',
+        description=f"approved mail list during Epstein's 2009 incarceration in {PALM_BEACH}",
+        show_full_panel=True,
+    ),
+    DocCfg(id='EFTA00039153', author=BUREAU_OF_PRISONS, description='List of Exhibits, Chapter 2', date='2019-01-06'),
+    DocCfg(id='EFTA00039025', author=BUREAU_OF_PRISONS, description="report on death of Jeffrey Epstein", is_interesting=True),
+    DocCfg(id='EFTA00039190', author=BUREAU_OF_PRISONS, description='Special Housing Units', date='2016-11-23', is_interesting=False),
+    DocCfg(id='EFTA00039227', author=BUREAU_OF_PRISONS, replace_text_with='Inmate Discipline Program Statement'),
+    DocCfg(id='EFTA00039295', author=BUREAU_OF_PRISONS, replace_text_with='Inmate Telephone Privileges Program Statement'),
+    DocCfg(id='EFTA00039312', author=BUREAU_OF_PRISONS, replace_text_with='Program Statement / Memo about BOP Pharmacy Program'),
+    DocCfg(id='EFTA00039351', author=BUREAU_OF_PRISONS, replace_text_with='Program Statement / Memo about BOP Pharmacy Program'),
+    DocCfg(id='EFTA00039156', author=BUREAU_OF_PRISONS, replace_text_with='Standards of Employee Conduct'),
+    DocCfg(
+        id='EFTA00164939',
+        author=DOJ,
+        date='2025-09-01',
+        date_uncertain='approximate',
+        description='Powerpoint summary of Child Sex Trafficking Task Force Epstein investigation',
+        is_interesting=True,
+    ),
+    DocCfg(id='EFTA02731200', author=DOJ, description="memo about potential prosecutation of Epstein's assistant"),
+    DocCfg(id='EFTA02731082', author=DOJ, description="memo about investigation into Epstein's co-conspirators"),
+    DocCfg(id='EFTA02730741', author=DOJ, date='2025-05-01', date_uncertain=True, description="Evidence list for 50D-NY-3027571 Filtering On 'Type(s): 1B'"),
+    DocCfg(id='EFTA02730486', author=DOJ, date='2025-05-01', date_uncertain=True, description="Evidence list for 50D-NY-3027571 Filtering On '1A'"),
+    DocCfg(id='EFTA00040006', author=DOJ, date='2019-08-27', description='Personal History of Defendant Jeffrey Epstein + grand jury indictment'),
+    DocCfg(id='EFTA02731226', author=DOJ, date='2021-03-14', description=f'memo seeking authorization to charge {GHISLAINE_MAXWELL} with additional offenses'),
+    DocCfg(
+        id='EFTA01246710',
+        author=FBI,
+        description="interview where Epstein's chef says Donald Trump came to Epstein's house for dinner",
+        truncate_to=(6000, 7500),
+    ),
+    DocCfg(id='EFTA01249591', author=FBI, description=f"allegations against {HENRY_JARECKI}"),
+    DocCfg(id='EFTA00081226', author=FBI, description='interview with minor victim'),
+    DocCfg(id='EFTA00038915', author=FBI, description='interview with minor victim who said Epstein knew she was 14'),
+    DocCfg(id='EFTA00023055', author=FBI, description="evidence of notes left about newly recruited underage girls by girls giving massages"),
+    DocCfg(id='EFTA00222943', author=FBI, description=f"agent believes computers were removed from Epstein's residence"),
+    DocCfg(id='EFTA00020506', author=FBI, description='"chauffeur told Epstein \'I have something on you, remember what I buried!\'"'),
+    DocCfg(
+        id='EFTA00159321',
+        author=FBI,
+        description='interview re: Paolo Zampolli, Epstein assaults, and the possibility Epstein introduced Melania to Donald Trump',
+    ),
+    DocCfg(id='EFTA00084614', author=PALM_BEACH_POLICE, description='incident report detailing the investigation into Jeffrey Epstein'),
+    DocCfg(id='EFTA00007893', author=PALM_BEACH_POLICE, description=f"receipts, notes, bank statements of {GHISLAINE_MAXWELL}"),
+    DocCfg(id='EFTA00005569', author=PALM_BEACH_POLICE, replace_text_with='photo lineup featuring Epstein', date='2005-03-17'),
+    DocCfg(id='EFTA00128379', description='analysis of two of Epstein\'s desktop computers', date='2019-01-06', is_interesting=True),
+    DocCfg(id='EFTA02730274', description='evidence inventory that appears to have since been deleted from the DOJ website'),
+    DocCfg(id='EFTA00001884', description='photo of letter from Virgin Islands DOJ to Epstein', date='2019-03-14'),
+    DocCfg(id='EFTA00074744', description="USVI court filing about Epstein will and estate"),
+    DocCfg(id='EFTA00007157', description='victim list and police log'),
+    fbi_defense_witness('EFTA02730267', 'Malcolm Grumbridge', '2022-04-14'),
+    fbi_defense_witness('EFTA02730271', REDACTED, '2022-03-22'),
+    fbi_defense_witness('EFTA02730477', 'Roderic Alexander', '2022-01-19'),
+    letter('EFTA00098456', PAUL_G_CASSELL, ['Scotland Yard'], 'International Sex Trafficking by Jeffrey Epstein, contains court filings'),
+
+    # Emails
+    EmailCfg(
+        id='EFTA00129096',
+        date='2025-04-03 7:13:35 PM',
+        description=f'background check on Tim Draper and {MASHA_DROKOVA}',
+        show_full_panel=True,
+        truncate_to=NO_TRUNCATE,  # TODO this shouldn't be necessary?
+    ),
+    EmailCfg(id='EFTA02730483', author=FBI, date='2023-07-11T08:25:00', date_uncertain='actually reply timestamp'),
+    EmailCfg(id='EFTA02731552', author=FBI, recipients=[USANYS], date='2021-05-26 16:12:00', recipient_uncertain='true'),
+    EmailCfg(id='EFTA00039971', author=FBI, recipients=[USANYS], recipient_uncertain='true'),
+    EmailCfg(id='EFTA00037683', description=f"tip that the murder of DC Madam Jeanne Palfrey might be connected to Epstein's network"),
+]
+
+
+OTHER_FILES_JUNK = [
+    DocCfg(id='026678', description=f"fragment of image metadata {QUESTION_MARKS}", date='2017-06-29'),
+    DocCfg(id='022986', description=f"fragment of a screenshot {QUESTION_MARKS}"),
+    DocCfg(id='033478', description=f'{MEME} Kim Jong Un reading {FIRE_AND_FURY}', date='2018-01-05', duplicate_ids=['032713']),
+    DocCfg(id='033177', description=f"{MEME} Trump with text 'WOULD YOU TRUST THIS MAN WITH YOUR DAUGHTER?'"),
+    DocCfg(id='029564', description=OBAMA_JOKE, date='2013-07-26'),
+    DocCfg(id='029353', description=OBAMA_JOKE, date='2013-07-26'),
+    DocCfg(id='029352', description=OBAMA_JOKE, date='2013-07-26'),
+    DocCfg(id='029351', description=OBAMA_JOKE, date='2013-07-26'),
+    DocCfg(id='029354', description=OBAMA_JOKE, date='2013-07-26'),
+    DocCfg(id='031293'),
+    # Completely redacted DOJ emails, no timestamp at all
+    DocCfg(id='EFTA02731726'),
+    DocCfg(id='EFTA02731728'),
+]
+
+
+OTHER_FILES_LEGAL = [
+    DocCfg(id='017789', author=ALAN_DERSHOWITZ, description=f'letter to {HARVARD} Crimson complaining he was defamed'),
+    DocCfg(id='011908', author=BRUNEL_V_EPSTEIN, description=f"court filing"),
+    DocCfg(id='017603', author=DAVID_SCHOEN, description=LEXIS_NEXIS_CVRA_SEARCH, date='2019-02-28'),
+    DocCfg(id='017635', author=DAVID_SCHOEN, description=LEXIS_NEXIS_CVRA_SEARCH, date='2019-02-28'),
+    DocCfg(id='016509', author=DAVID_SCHOEN, description=LEXIS_NEXIS_CVRA_SEARCH, date='2019-02-28'),
+    DocCfg(id='017714', author=DAVID_SCHOEN, description=LEXIS_NEXIS_CVRA_SEARCH, date='2019-02-28'),
+    DocCfg(
+        id='010757',
+        author=EDWARDS_V_DERSHOWITZ,
+        description=f"plaintiff response to Dershowitz Motion to Determine Confidentiality of Court Records",
+        date='2015-11-23',
+    ),
+    DocCfg(
+        id='010887',
+        author=EDWARDS_V_DERSHOWITZ,
+        description=f"Dershowitz Motion for Clarification of Confidentiality Order",
+        date='2016-01-29',
+    ),
+    DocCfg(
+        id='015590',
+        author=EDWARDS_V_DERSHOWITZ,
+        description=f"Dershowitz Redacted Motion to Modify Confidentiality Order",
+        date='2016-02-03',
+    ),
+    DocCfg(
+        id='015650',
+        author=EDWARDS_V_DERSHOWITZ,
+        description=f"Giuffre Response to Dershowitz Motion for Clarification of Confidentiality Order",
+        date='2016-02-08',
+    ),
+    DocCfg(id='010566', author=EPSTEIN_V_ROTHSTEIN_EDWARDS, description=f"Statement of Undisputed Facts", date='2010-11-04'),
+    DocCfg(id='012707', author=EPSTEIN_V_ROTHSTEIN_EDWARDS, description=f"Master Contact List - Privilege Log", date='2011-03-22'),
+    DocCfg(id='012103', author=EPSTEIN_V_ROTHSTEIN_EDWARDS, description=f"Telephone Interview with {VIRGINIA_GIUFFRE}", date='2011-05-17'),
+    DocCfg(id='029315', author=EPSTEIN_V_ROTHSTEIN_EDWARDS, description=f"Plaintiff Motion for Summary Judgment by {JACK_SCAROLA}", date='2013-09-13'),
+    DocCfg(id='013304', author=EPSTEIN_V_ROTHSTEIN_EDWARDS, description=f"Plaintiff Response to Epstein's Motion for Summary Judgment", date='2014-04-17'),
+    DocCfg(id='017792', author=GIUFFRE_V_DERSHOWITZ, description=f"article about {ALAN_DERSHOWITZ}'s appearance on Wolf Blitzer"),
+    DocCfg(id='017767', author=GIUFFRE_V_DERSHOWITZ, description=f"article about {ALAN_DERSHOWITZ} working with {JEFFREY_EPSTEIN}"),
+    DocCfg(id='017796', author=GIUFFRE_V_DERSHOWITZ, description=f"article about {ALAN_DERSHOWITZ}"),
+    DocCfg(id='017935', author=GIUFFRE_V_DERSHOWITZ, description=f"defamation complaint", date='2019-04-16'),
+    DocCfg(id='017824', author=GIUFFRE_V_DERSHOWITZ, description=f"{MIAMI_HERALD} article by {JULIE_K_BROWN}"),
+    DocCfg(
+        id='017818',
+        author=GIUFFRE_V_DERSHOWITZ,
+        description=f"{MIAMI_HERALD} article about accusations against {ALAN_DERSHOWITZ} by {JULIE_K_BROWN}",
+        date='2018-12-27',
+    ),
+    DocCfg(id='017800', author=GIUFFRE_V_DERSHOWITZ, description=f'{MIAMI_HERALD} "Perversion of Justice" by {JULIE_K_BROWN}'),
+    DocCfg(id='022237', author=GIUFFRE_V_DERSHOWITZ, description=f"partial court filing with fact checking questions?"),
+    DocCfg(id='016197', author=GIUFFRE_V_DERSHOWITZ, description=f"response to Florida Bar complaint by {ALAN_DERSHOWITZ} about David Boies from {PAUL_G_CASSELL}"),
+    DocCfg(id='017771', author=GIUFFRE_V_DERSHOWITZ, description=f'Vanity Fair article "The Talented Mr. Epstein" by Vicky Ward', date='2011-06-27'),
+    DocCfg(id='014118', author=GIUFFRE_V_EPSTEIN, description=f"Declaration in Support of Motion to Compel Production of Documents", date='2016-10-21'),
+    DocCfg(id='014652', author=GIUFFRE_V_MAXWELL, description=f"Complaint", date='2015-04-22'),
+    DocCfg(id='015529', author=GIUFFRE_V_MAXWELL, description=f"Defamation Complaint", date='2015-09-21'),
+    DocCfg(
+        id='014797',
+        author=GIUFFRE_V_MAXWELL,
+        date='2017-03-17',
+        description=f"Declaration of {LAURA_A_MENNINGER} in Opposition to Plaintiff's Motion",
+    ),
+    DocCfg(id='011304', author=GIUFFRE_V_MAXWELL, description=f"Oral Argument Transcript", date='2017-03-17'),
+    DocCfg(
+        id='014788',
+        author=GIUFFRE_V_MAXWELL,
+        date='2017-03-17',
+        description=f"Maxwell Response to Plaintiff's Omnibus Motion in Limine",
+        duplicate_ids=['011463'],
+    ),
+    DocCfg(
+        id='025937',
+        author=JANE_DOE_V_EPSTEIN_TRUMP,
+        description=f'Affidavit of Tiffany Doe describing Jane Doe being raped by Epstein and Trump',
+        date='2016-06-20',
+    ),
+    DocCfg(id='025939', author=JANE_DOE_V_EPSTEIN_TRUMP, description=f'Affidavit of Jane Doe describing being raped by Epstein', date='2016-06-20'),
+    DocCfg(id='013489', author=JANE_DOE_V_EPSTEIN_TRUMP, description=f'Affidavit of {BRAD_EDWARDS}', date='2010-07-20'),
+    DocCfg(id='029398', author=JANE_DOE_V_EPSTEIN_TRUMP, description=f'article in Law.com'),
+    DocCfg(id='026854', author=JANE_DOE_V_EPSTEIN_TRUMP, description=f"Civil Docket"),
+    DocCfg(id='026384', author=JANE_DOE_V_EPSTEIN_TRUMP, description=f"Complaint for rape and sexual abuse", date='2016-06-20', attached_to_email_id='029837'),
+    DocCfg(id='029257', author=JANE_DOE_V_EPSTEIN_TRUMP, description=f'allegations and identity of plaintiff Katie Johnson', date='2016-04-26'),
+    DocCfg(id='032321', author=JANE_DOE_V_EPSTEIN_TRUMP, description=f"Notice of Initial Conference", date='2016-10-04'),
+    DocCfg(id='010735', author=JANE_DOE_V_USA, description=f"Dershowitz Reply in Support of Motion for Limited Intervention", date='2015-02-02'),
+    DocCfg(id='014084', author=JANE_DOE_V_USA, description=f"Jane Doe Response to Dershowitz's Motion for Limited Intervention", date='2015-03-24'),
+    DocCfg(id='023361', author=JASTA_SAUDI_LAWSUIT, description=f"legal text and court documents", date='2012-01-20'),
+    DocCfg(id='017830', author=JASTA_SAUDI_LAWSUIT, description=f"legal text and court documents"),
+    DocCfg(id='017904', author=JASTA_SAUDI_LAWSUIT, description=f"Westlaw search results", date='2019-01-01'),
+    DocCfg(id='014037', author='Journal of Criminal Law and Criminology', description=f"article on {CVRA}"),
+    DocCfg(
+        id='029416',
+        author="National Enquirer / Radar Online v. FBI",
+        description=f"FOIA lawsuit filing",
+        date='2017-05-25',
+        duplicate_ids=['029405']
+    ),
+    DocCfg(
+        id='016420',
+        author=NEW_YORK_V_EPSTEIN,
+        description=f"New York Post Motion to Unseal Appellate Briefs",
+        date='2019-01-11',
+    ),
+    DocCfg(id='028540', author='SCOTUS', description=f"decision in Budha Ismail Jam et al. v. INTERNATIONAL FINANCE CORP"),
+    DocCfg(id='012197', author='SDFL', description=f"response to {JAY_LEFKOWITZ} on Epstein Plea Agreement Compliance"),
+    DocCfg(id='022277', description=f"text of National Labour Relations Board (NLRB) law", is_interesting=False),
+    fbi_report('019352', f"{FBI_REPORT} containing clippings of various press items"),
+    fbi_report('021434', is_valid_for_name_scan=False),
+    fbi_report(
+        '018872',
+        non_participants=[
+            BILL_GATES,
+            BILL_RICHARDSON,
+            EDUARDO_ROBLES,
+            GERALD_LEFCOURT,
+            GLENN_DUBIN,
+            JEAN_LUC_BRUNEL,
+            JOI_ITO,
+            LARRY_SUMMERS,
+            MARK_EPSTEIN,
+            MARTIN_NOWAK,
+            MORTIMER_ZUCKERMAN,
+            PRINCE_ANDREW,
+            SECURITIES_AND_EXCHANGE_COMMISSION,
+            STEVEN_HOFFENBERG,
+            SVETLANA_POZHIDAEVA
+        ],
+    ),
+    fbi_report('021569'),
+    fbi_report('EFTA01688746'),
+    fbi_report(
+        'EFTA00129085',
+        'wiretap report linking phone number in John Gotti / Gambino / Michael Bilotti investigation to number in Epstein investigation',
+        is_interesting=True,
+    ),
+
+    # legal letters
+    letter(
+        '019297',
+        f"{ALAN_DERSHOWITZ}'s lawyer Andrew G. Celli",
+        [STANLEY_POTTINGER, PAUL_G_CASSELL, LAURA_A_MENNINGER, 'Sigrid S. McCawley'],
+        f"threatening sanctions re: {GIUFFRE_V_MAXWELL}",
+    ),
+    letter(
+        id='026793',
+        author=f"Mintz Fraade ({STEVEN_HOFFENBERG}'s lawyers)",
+        description=f"offering to take over Epstein's business and resolve his legal issues",
+        date='2018-03-23',
+        recipients=[DARREN_INDYKE],
+    ),
+    letter(
+        id='020662',
+        author=f"Mishcon de Reya ({ALAN_DERSHOWITZ}'s UK lawyers)",
+        description=f"threatening libel lawsuit",
+        recipients=['Daily Mail'],
+    ),
+    letter('010560', GLORIA_ALLRED, [SCOTT_J_LINK], "alleging abuse of a girl from Kansas", '2019-06-19'),
+    letter('028965', MARTIN_WEINBERG, ['ABC / Good Morning America'], "threatening libel lawsuit", duplicate_ids=['028928']),
+    letter('031447', MARTIN_WEINBERG, ['Melanie Ann Pustay', "Sean O'Neill"], "re: Epstein FOIA request", '2015-08-19'),
+    starr_letter('025353', '2008-05-19', ['010723', '019224'], 'redacted', non_participants=[LANDON_THOMAS]),
+    starr_letter('025704', '2008-05-27', ['010732', '019221'], 'redacted'),
+    starr_letter('012130', '2008-06-19', ['012135'], non_participants=[LESLEY_GROFF]),
+
+    # DOJ files
+    DocCfg(id='EFTA01106135', author=BILL_GATES, description=f"gives Epstein power to negotiate on behalf of {BORIS_NIKOLIC}"),
+    DocCfg(id='EFTA01112265', author=EDWARDS_V_DERSHOWITZ, description='interview with minor victim', is_interesting=True),
+    DocCfg(id='EFTA01125109', author=EDWARDS_V_DERSHOWITZ, description='interview with minor victim', is_interesting=True),
+    DocCfg(id='EFTA01139414', author=EDWARDS_V_DERSHOWITZ, description='interview with minor victim', is_interesting=True),
+    DocCfg(id='EFTA00211168', author=JANE_DOE_V_EPSTEIN_TRUMP, description='Epstein employee affidavit alleging sexual assaults'),
+    DocCfg(id='EFTA00177201', author=JANE_DOE_V_USA, description='court docket and many filings', is_interesting=True),
+    DocCfg(id='EFTA00590940', author=JANE_DOE_V_USA, description='interview with minor victim', is_interesting=True),
+    DocCfg(id='EFTA01081391', author=JANE_DOE_V_USA, description='interview with minor victim', is_interesting=True),
+    DocCfg(id='EFTA00727684', author=f"{REDACTED} v. {JEFFREY_EPSTEIN}", description='sworn testimony, list of co-conspirators'),
+    DocCfg(id='EFTA00143492', description=f"court filing in which a victim calls Giuffre lawyer {STANLEY_POTTINGER} an abuser"),
+    DocCfg(id='EFTA00039817', description='notice of hearing', date='2021-04-19', duplicate_ids=['EFTA00039791'], is_interesting=False),
+    DocCfg(id='EFTA00005586', replace_text_with='completely redacted 69 pages labeled "Grand Jury - NY"'),
+]
+
+
+# This category makes is_interesting default to True
+OTHER_FILES_LETTER = [
+    CommunicationCfg(
+        id='026011',
+        author='Gennady Mashtalyar',
+        date='2016-06-24',  # date is based on Brexit reference but he could be backtesting,
+        description=f"about algorithmic trading",
+    ),
+    CommunicationCfg(id='026134', recipients=['George'], description=f'about opportunities to buy banks in Ukraine'),
+    blaine_letter(id='019086', date='2015-05-27', suffix='naming various Putin puppet regimes'),
+    blaine_letter(id='019474', date='2015-05-29'),
+    blaine_letter(id='019476', date='2015-06-01'),
+
+    # DOJ files
+    CommunicationCfg(id='EFTA00007609', recipients=['Alberto'], duplicate_ids=['EFTA00007582']),
+    CommunicationCfg(id='EFTA02731023', author='Senator Ron Wyden', recipients=[LEON_BLACK], is_interesting=False),
+    CommunicationCfg(id='EFTA02731018', author='Senator Ron Wyden', recipients=['Marc Rowan'], is_interesting=False),
+]
+
+
+OTHER_FILES_MISC = [
+    DocCfg(id='029326', category=Neutral.PRESSER, author=EPSTEIN_FOUNDATION, date='2013-02-15'),
+    DocCfg(id='026565', category=Neutral.PRESSER, author=EPSTEIN_FOUNDATION, comment=f'maybe a draft of 029326', date='2013-02-15'),
+    DocCfg(id='022494', author='DOJ', description=f'Foreign Corrupt Practices Act (FCPA) Resource Guide'),
+    DocCfg(id='023096', author=EPSTEIN_FOUNDATION, description=f'blog post', date='2012-11-15'),
+    DocCfg(id='027071', author=FEMALE_HEALTH_COMPANY, description=f"brochure requesting donations for female condoms in Uganda"),
+    DocCfg(id='027074', author=FEMALE_HEALTH_COMPANY, description=f"pitch deck (USAID was a customer)"),
+    DocCfg(id='032735', author=GORDON_GETTY, description=f"on Trump", date='2018-03-20'),  # Dated based on concurrent emails from Getty
+    DocCfg(id='025540', author=JEFFREY_EPSTEIN, description=f"rough draft of his side of the story"),
+    DocCfg(id='026634', author='Michael Carrier', description=f'comments about an Apollo linked fund "DE Fund VIII"'),
+    DocCfg(id='031425', author=SCOTT_J_LINK, description=f'completely redacted email', is_interesting=False),
+    DocCfg(id='020447', author='Working Group on Chinese Influence Activities in the US', description=f'Promoting Constructive Vigilance'),
+    DocCfg(id='012718', description=f"{CVRA} congressional record", date='2011-06-17'),
+    DocCfg(id='019448', description=f"Haitian business investment proposal called Jacmel", attached_to_email_id='019446'),
+    DocCfg(id='023644', description=f"interview with Mohammed bin Salman", date='2016-04-25', is_interesting=False),
+    DocCfg(
+        id='030142',
+        author=f"{KATHRYN_RUEMMLER} & {KEN_STARR}",
+        date='2016-09-01',
+        description=f"mostly empty {JASTA} (Justice Against Sponsors of Terrorism Act) doc referencing suit against Saudis",
+    ),
+    DocCfg(
+        id='033338',
+        category=Neutral.PRESSER,
+        date='2000-06-07',
+        description=f"end of {DONALD_TRUMP} & {NICHOLAS_RIBIS} working relationship at Trump's casino",
+        is_interesting=True,
+    ),
+    DocCfg(id='029328', description=f"Rafanelli Events promotional deck", is_interesting=False),
+    DocCfg(id='029475', description=f'{VIRGIN_ISLANDS} Twin City Mobile Integrated Health Services (TCMIH) proposal/request for donation', is_interesting=False),
+    DocCfg(id='029448', description=f"weird short essay titled 'President Obama and Self-Deception'"),
+
+    # DOJ files
+    DocCfg(
+        id='EFTA00034357',
+        author=BUREAU_OF_PRISONS,
+        date='2019-08-10',
+        description=f"internal message about discovery of Epstein's body",
+        background_color='red'
+    ),
+    DocCfg(id='EFTA00165515', description="contractor describes Epstein's gun safes", show_full_panel=True),
+    DocCfg(id='EFTA00005783', description='heavily redacted handwritten note, 30+ completely redacted pages', date='2019-08-29'),
+    DocCfg(id='EFTA00024275', description='large Wexner funded payments to OB-GYN'),
+    DocCfg(id='EFTA00029538', description=f"{GHISLAINE_MAXWELL} provided school girl uniforms", show_full_panel=True),
+    # Urramoor
+    DocCfg(
+        id='EFTA01107738',
+        description=f"creation of {CANTOR_URRAMOOR} with Mr. T's (Prince Andrew?) Urramoor and {LUTNICKS_CANTOR}",
+        is_interesting=True,
+    ),
+    DocCfg(
+        id='EFTA01141453',
+        description=f"referral agreement between Mr. T's (Prince Andrew?) Urramoor and {LUTNICKS_CANTOR}",
+        is_interesting=True,
+    ),
+    # Replacement text
+    DocCfg(
+        id='EFTA00009622',
+        date='2006-07-19',
+        description='handwritten notes from a victim interview transcribed by Claude AI',
+        is_interesting=True,
+        replace_text_with=EFTA00009622_TEXT,
+    ),
+    DocCfg(
+        id='EFTA00004477',
+        is_interesting=True,
+        replace_text_with='Epstein 50th birthday photo book 12 "THAIS, MOSCOW GIRLS, AFRICA, HAWAII, [REDACTED] [REDACTED], Zorro, [REDACTED] [REDACTED] [REDACTED], CRACK WHOLE PROPOSAL, BALI/THAILAND/ASIA, RUSSIA, [REDACTED], [REDACTED], NUDES, YOGAL GIRLS',
+    ),
+    DocCfg(id='EFTA00004070', replace_text_with="photos of Epstein with handwritten caption that didn't OCR well"),
+    DocCfg(id='EFTA02731260', replace_text_with='notebook full of handwritten love letters with terrible OCR text'),
+    DocCfg(id='EFTA00006100', replace_text_with='Palm Beach Police fax machine activity log 2005-12-28 to 2006-01-04'),
+    DocCfg(
+        id='EFTA00003149',
+        date='2016-01-01',
+        date_uncertain='complete guess',
+        description=f"{LITTLE_SAINT_JAMES} staff list",
+        show_full_panel=True,
+    ),
+    # Attachments
+    DocCfg(id='EFTA00590685', attached_to_email_id='EFTA00830911'),
+    # Dates
+    DocCfg(id='EFTA02025218', date='2011-09-09'),
+]
+
+
+# Epstein money. This category makes is_interesting = True
+OTHER_FILES_MONEY = [
+    # private placement memoranda
+    DocCfg(
+        id='024432',
+        date='2006-09-27',
+        description=f"Michael Milken's Knowledge Universe Education (KUE) $1,000,000 corporate share placement notice (SEC filing?)"
+    ),
+    DocCfg(id='024003', description=f"New Leaf Ventures ($375 million biotech fund) private placement memorandum"),
+
+    # DOJ files
+    DocCfg(
+        id='EFTA00173953',
+        author='Organized Crime Drug Enforcement Task Force',
+        description='report on DEA investigations into Epstein related drug money laundering',
+    ),
+    DocCfg(
+        id='EFTA01681865',
+        author=DEUTSCHE_BANK,
+        description=f"explanations of all of Epstein's large payments prepared for DOJ",
+        is_interesting=True,
+    ),
+    DocCfg(
+        id='EFTA01111057',
+        author=MORTIMER_ZUCKERMAN,
+        date='2014-07-10',
+        description='Mortimer B. Zuckerman Management Trust',
+        non_participants=['Marla Maples'],
+    ),
+    DocCfg(id='EFTA01285411', description=f"bank statement for Epstein's {SOUTHERN_TRUST_COMPANY} showing $82 million balance"),
+    DocCfg(id='EFTA00016884', description="Epstein's last will and testament", date='2014-11-18'),
+    DocCfg(id='EFTA00089546', description=f"Epstein last will and testament codicil naming {JAMES_CAYNE} an executor", date='2007-09-20'),
+    DocCfg(id='EFTA00299927', description=f"Estate plan for {JAMES_CAYNE} found in Epstein's possession"),
+    DocCfg(id='EFTA01266380', description="Epstein's 2014 Trust with bequests"),
+    DocCfg(id='EFTA01282282', description=f"Epstein Butterfly Trust (sole beneficiary {KARYNA_SHULIAK})"),
+    DocCfg(id='EFTA01583819', description=f"Epstein had control of {JAMES_CAYNE}'s assets"),
+    DocCfg(id='EFTA00099424', description=f"Epstein 2017 Trust (Eva Andersson Dubin, {DARREN_INDYKE}, {RICHARD_KAHN})"),
+    DocCfg(id='EFTA01266457', description=f"Epstein 2018 Trust ({KATHRYN_RUEMMLER}, {DARREN_INDYKE}, {RICHARD_KAHN})"),
+    DocCfg(id='EFTA01266204', description=f"Epstein The 1953 Trust ({DARREN_INDYKE}, {RICHARD_KAHN})", date='2019-08-08'),
+    DocCfg(id='EFTA01265973', description="large transfers around time of Epstein arrest", show_full_panel=True),
+    DocCfg(id='EFTA01087311', description=f'{LEON_BLACK} Family Partners cash projections'),
+    DocCfg(id='EFTA00007781', description='paychecks signed by Epstein deposited at Colonial Bank', date='2005-08-12'),
+    DocCfg(id='EFTA01273102', description=f"payment from Epstein to {RENATA_BOLOTOVA}'s father's account at Sberbank"),
+    DocCfg(id='EFTA00238499', description='wire transfer to Signature Bank account'),
+    DocCfg(id='EFTA00000476', replace_text_with='photo of JEFFREY EPSTEIN CASH DISBURSEMENTS for the month 2006-09', date='2006-09-01'),
+    DocCfg(id='EFTA01086463', description=f"{MORTIMER_ZUCKERMAN}'s art collection invetory and valuation report", is_valid_for_name_scan=False),
+    # Emails
+    EmailCfg(id='EFTA00037187', is_interesting=True),
+    EmailCfg(id='EFTA00371120', description=f"Epstein appears to invest in {ATORUS}"),
+    EmailCfg(id='EFTA00652799', description=f'Epstein calls Ari Glass "a bit sketchy" despite investing ~$50 million in his fund Boothbay'),
+]
+
+
+OTHER_FILES_PHONE_BILL = [
+    phone_bill_cfg('EFTA00007070', 'MetroPCS', '2006'),
+    phone_bill_cfg('EFTA00006770', 'MetroPCS', '2006-02-01 to 2006-06-16'),
+    phone_bill_cfg('EFTA00006870', 'MetroPCS', '2006-02-09 to 2006-07'),
+    phone_bill_cfg('EFTA00006970', 'MetroPCS', '2006-04-15 to 2006-07-16'),
+    phone_bill_cfg('EFTA00007501', 'T-Mobile', '2005'),
+    phone_bill_cfg('EFTA00006487', 'T-Mobile', '2006'),
+    phone_bill_cfg('EFTA00006387', 'T-Mobile', '2006-06-15 to 2006-07-23'),
+    phone_bill_cfg('EFTA00006587', 'T-Mobile', '2006-09-04 to 2016-10-15'),
+    phone_bill_cfg('EFTA00006687', 'T-Mobile', '2006-10-31 to 2006-12-25'),
+    phone_bill_cfg('EFTA00007401', 'T-Mobile', '2004-08-25 to 2005-07-13'),
+    # These two are subpoena response letters w/attached phone bill)
+    phone_bill_cfg('EFTA00007301', 'T-Mobile', 'Blackberry phone logs for 2005', date='2007-03-23'),
+    phone_bill_cfg('EFTA00007253', 'T-Mobile', date='2007-03-23'),
+]
+
+
+OTHER_FILES_POLITICS = [
+    DocCfg(id='030258', author=ALAN_DERSHOWITZ, description=f'{ARTICLE_DRAFT} Mueller probe, almost same as 030248'),
+    DocCfg(id='030248', author=ALAN_DERSHOWITZ, description=f'{ARTICLE_DRAFT} Mueller probe, almost same as 030258'),
+    DocCfg(id='029165', author=ALAN_DERSHOWITZ, description=f'{ARTICLE_DRAFT} Mueller probe, almost same as 030258'),
+    DocCfg(id='029918', author=DIANA_DEGETTE_CAMPAIGN, description=f"bio", date='2012-09-27'),
+    DocCfg(id='031184', author=DIANA_DEGETTE_CAMPAIGN, description=f"invitation to fundraiser hosted by {BARBRO_C_EHNBOM}", date='2012-09-27'),
+    DocCfg(id='026248', author='Don McGahn', description=f'letter from Trump lawyer to Devin Nunes (R-CA) about FISA courts and Trump'),
+    DocCfg(id='027009', author=EHUD_BARAK, description=f"speech to AIPAC", date='2013-03-03'),
+    DocCfg(
+        id='019233',
+        author='Freedom House',
+        date='2017-06-02',
+        description=f"'Breaking Down Democracy: Goals, Strategies, and Methods of Modern Authoritarians'",
+    ),
+    DocCfg(id='026856', author='Kevin Rudd', description=f'speech "Xi Jinping, China And The Global Order"', date='2018-06-26'),
+    DocCfg(id='026827', author='Scowcroft Group', description=f'report on ISIS', date='2015-11-14'),
+    DocCfg(id='024294', author=STACEY_PLASKETT, description=f"campaign flier", date='2016-10-01'),
+    DocCfg(
+        id='023133',
+        author=f"{TERJE_ROD_LARSEN}, Nur Laiq, Fabrice Aidan",
+        date='2014-12-09',
+        description=f'The Search for Peace in the Arab-Israeli Conflict',
+    ),
+    DocCfg(id='033468', description=f'{ARTICLE_DRAFT} Rod Rosenstein', date='2018-09-24'),
+    DocCfg(id='025849', author=US_ORG, description=quote('Building a Bridge Between FOIA Requesters & Agencies'),
+    ),
+    # CommunicationCfg(id='031670', author="General Mike Flynn's lawyers", recipients=['Sen. Mark Warner & Richard Burr'], description=f"about subpoena"),
+    DocCfg(id='031670', description=f"letter from General Mike Flynn's lawyers to senators Mark Warner & Richard Burr about subpoena"),
+    DocCfg(
+        id='029357',
+        date='2015-01-15',
+        date_uncertain='a guess',
+        description=f"possibly book extract about Israel's challenges entering 2015",
+        duplicate_ids=['028887'],
+    ),
+    DocCfg(id='010617', description=TRUMP_DISCLOSURES, date='2017-01-20', is_interesting=True, attached_to_email_id='033091'),
+    DocCfg(id='016699', description=TRUMP_DISCLOSURES, date='2017-01-20', is_interesting=True, attached_to_email_id='033091'),
+]
+
+
+OTHER_FILES_PROPERTY = [
+    DocCfg(
+        id='026759',
+        author='Great Bay Condominium Owners Association',
+        category=Neutral.PRESSER,
+        description=f'Hurricane Irma damage',
+        date='2017-09-13',
+        is_interesting=False,
+    ),
+    DocCfg(id='016602', author=PALM_BEACH_CODE_ENFORCEMENT, description='board minutes', date='2008-04-17'),
+    DocCfg(id='016554', author=PALM_BEACH_CODE_ENFORCEMENT, description='board minutes', date='2008-07-17', duplicate_ids=['016616', '016574']),
+    DocCfg(id='016636', author=PALM_BEACH_WATER_COMMITTEE, description=f"Meeting on January 29, 2009"),
+    DocCfg(id='022417', author='Park Partners NYC', description=f"letter to partners in real estate project with architectural plans"),
+    DocCfg(id='027068', author=THE_REAL_DEAL, description=f"{REAL_DEAL_ARTICLE} Palm House Hotel Bankruptcy and EB-5 Visa Fraud Allegations"),
+    DocCfg(id='029520', author=THE_REAL_DEAL, description=f"{REAL_DEAL_ARTICLE} 'Lost Paradise at the Palm House'", date='2019-06-17'),
+    DocCfg(id='016597', author='Trump Properties LLC', description=f'appeal of some decision about Mar-a-Lago by {PALM_BEACH} authorities'),
+    DocCfg(id='018743', description=f"Las Vegas property listing"),
+    DocCfg(id='016695', description=f"{PALM_BEACH_PROPERTY_INFO} (?)"),
+    DocCfg(id='016697', description=f"{PALM_BEACH_PROPERTY_INFO} (?) that mentions Trump"),
+    DocCfg(id='016599', description=f"{PALM_BEACH_TSV} consumption (water?)"),
+    DocCfg(id='016600', description=f"{PALM_BEACH_TSV} consumption (water?)"),
+    DocCfg(id='016601', description=f"{PALM_BEACH_TSV} consumption (water?)"),
+    DocCfg(id='016694', description=f"{PALM_BEACH_TSV} consumption (water?)"),
+    DocCfg(id='016552', description=f"{PALM_BEACH_TSV} info"),
+    DocCfg(id='016698', description=f"{PALM_BEACH_TSV} info (broken?)"),
+    DocCfg(id='016696', description=f"{PALM_BEACH_TSV} info (water quality?"),
+    DocCfg(
+        id='018727',
+        description=f"{VIRGIN_ISLANDS} property deal pitch deck, building will be leased to the U.S. govt GSA",
+        date='2014-06-01',
+    ),
+]
+
+
+OTHER_FILES_REPUTATION = [
+    DocCfg(id='030426', author=IAN_OSBORNE, description=f"reputation repair proposal citing Michael Milken", date='2011-06-14'),
+    DocCfg(id='026582', description=f"Epstein's internet search results at start of reputation repair campaign, maybe from {OSBORNE_LLP}"),
+    DocCfg(id='030573', description=f"Epstein's unflattering Google search results, maybe screenshot by {AL_SECKEL} or {OSBORNE_LLP}"),
+    DocCfg(id='030875', description=f"Epstein's Wikipedia page", date='2014-02-08'),  # Date is based on tyler shears; seckel was 2010
+    DocCfg(id='026583', description=f"Google search results for '{JEFFREY_EPSTEIN}' with analysis ({OSBORNE_LLP}?)"),
+    DocCfg(id='029350', description=f"Microsoft Bing search results for Epstein with sex offender at top", attached_to_email_id='EFTA00675542'),
+    EmailCfg(id='022203', description=AL_SECKEL_BILL_FIGHT, truncate_to=500),
+    EmailCfg(id='022219', description=AL_SECKEL_BILL_FIGHT, truncate_to=2404),
+
+    # DOJ files
+    EmailCfg(id='EFTA01830035', description=AL_SECKEL_BILL_FIGHT),
+    DocCfg(
+        id='EFTA01810372',
+        author=TYLER_SHEARS,
+        description=f'invoice for reputation management work',
+        is_interesting=True,
+        attached_to_email_id='EFTA01931256'
+    ),
+]
+
+
+# resumes and application letters
+OTHER_FILES_RESUMÉ = [
+    DocCfg(
+        id='029304',
+        attached_to_email_id='029299',
+        author=MICHAEL_J_BOCCIO,
+        description=f"recommendation letter by {DONALD_TRUMP}",
+    ),
+    DocCfg(id='022367', author='Jack J. Grynberg', description=RESUME_OF, date='2014-07-01'),
+    DocCfg(
+        id='029302',
+        attached_to_email_id='029299',
+        author=MICHAEL_J_BOCCIO,
+        description=f"{RESUME_OF} (former lawyer at the {TRUMP_ORG})",
+        date='2011-08-07',
+    ),
+    DocCfg(
+        id='029301',
+        attached_to_email_id='029299',
+        author=MICHAEL_J_BOCCIO,
+        description=f"letter from former lawyer at the {TRUMP_ORG}",
+        date='2011-08-07',
+    ),
+    DocCfg(id='029102', author=NERIO_ALESSANDRI, description=HBS_APPLICATION),
+    DocCfg(id='029104', author=NERIO_ALESSANDRI, description=HBS_APPLICATION),
+    DocCfg(id='015671', author='Robin Solomon', description=RESUME_OF, date='2015-06-02'),  # She left Mount Sinai at some point in 2015,
+    DocCfg(id='015672', author='Robin Solomon', description=RESUME_OF, date='2015-06-02'),  # She left Mount Sinai at some point in 2015,
+    DocCfg(id='029623', description=f'bio of Kathleen Harrington, Founding Partner, C/H Global Strategies'),
+]
+
+
 OTHER_FILES_SKYPE_LOG = [
     CommunicationCfg(id='032206', recipients=[LAWRENCE_KRAUSS]),
     CommunicationCfg(id='032208', recipients=[LAWRENCE_KRAUSS]),
@@ -3263,6 +3220,52 @@ OTHER_FILES_SKYPE_LOG = [
         is_interesting=True,
     ),
 ]
+
+
+OTHER_FILES_SOCIAL = [
+    DocCfg(id='028815', author=INSIGHTS_POD, description=f"business plan", date='2016-08-20', attached_to_email_id='033171'),
+    DocCfg(id='011170', author=INSIGHTS_POD, description=f'case study of social media vibe analysis using tweets from #Brexit', date='2016-06-23', attached_to_email_id='033171'),
+    DocCfg(id='032324', author=INSIGHTS_POD, description=f"social media election sentiment analysis", date='2016-11-05', attached_to_email_id='032323'),
+    DocCfg(id='032281', author=INSIGHTS_POD, description=f"social media election sentiment report", date='2016-10-25', attached_to_email_id='032280'),
+    DocCfg(id='028988', author=INSIGHTS_POD, description=f"pitch deck", date='2016-08-20', attached_to_email_id='033171'),
+    DocCfg(id='026627', author=INSIGHTS_POD, description=f"report on impact of presidential debate", attached_to_email_id='026626'),
+    DocCfg(id='022213', description=f"{SCREENSHOT} Facebook group called 'Shit Pilots Say' disparaging a 'global girl'"),
+    EmailCfg(id='033171', is_interesting=True, comment='Zubair'),
+    EmailCfg(
+        id='030630',
+        author=MARIA_PRUSAKOVA,
+        author_reason=PRUSAKOVA_BERKELY,
+        description=f'Masha Prusso / {MARIA_PRUSAKOVA} asks about Zubair Khan and {INSIGHTS_POD}',
+        is_interesting=True,
+    ),
+    EmailCfg(
+        id='032319',
+        description=f"{ZUBAIR_KHAN} says social media vibes are good for Trump in last week before the 2016 election",
+        dupe_type='quoted',
+        duplicate_ids=['032283'],
+        is_interesting=True,
+    ),
+    EmailCfg(
+        id='032325',
+        description=f"{ZUBAIR_KHAN} predicts Trump winning in 2016",
+        dupe_type='quoted',
+        duplicate_ids=['026014'],
+        is_interesting=True,
+    ),
+    EmailCfg(
+        id='EFTA00719854',
+        description=f'{BORIS_NIKOLIC} introduces Epstein to Chris Poole AKA "moot", the founder of 4chan',
+        is_interesting=True,
+        show_with_name=CHRIS_POOLE
+    ),
+    EmailCfg(
+        id='EFTA00922824',
+        description=f"Epstein meets with {CHRIS_POOLE} (founder of 4chan) the day the infamous /pol/ board is created",
+        is_interesting=True,
+        show_with_name=CHRIS_POOLE,
+    ),
+]
+
 
 OTHER_FILES_TEXT_MSG = [
     DocCfg(id='033434', description=f"{SCREENSHOT} iMessage chat labeled 'Edwards'"),
@@ -3293,23 +3296,17 @@ OTHER_FILES_TEXT_MSG = [
     ),
 ]
 
-OTHER_FILES_JUNK = [
-    DocCfg(id='026678', description=f"fragment of image metadata {QUESTION_MARKS}", date='2017-06-29'),
-    DocCfg(id='022986', description=f"fragment of a screenshot {QUESTION_MARKS}"),
-    DocCfg(id='033478', description=f'{MEME} Kim Jong Un reading {FIRE_AND_FURY}', date='2018-01-05', duplicate_ids=['032713']),
-    DocCfg(id='033177', description=f"{MEME} Trump with text 'WOULD YOU TRUST THIS MAN WITH YOUR DAUGHTER?'"),
-    DocCfg(id='029564', description=OBAMA_JOKE, date='2013-07-26'),
-    DocCfg(id='029353', description=OBAMA_JOKE, date='2013-07-26'),
-    DocCfg(id='029352', description=OBAMA_JOKE, date='2013-07-26'),
-    DocCfg(id='029351', description=OBAMA_JOKE, date='2013-07-26'),
-    DocCfg(id='029354', description=OBAMA_JOKE, date='2013-07-26'),
-    DocCfg(id='031293'),
-    # Completely redacted DOJ emails, no timestamp at all
-    DocCfg(id='EFTA02731726'),
-    DocCfg(id='EFTA02731728'),
+
+OTHER_FILES_TWEET = [
+    DocCfg(id='023050', author=ALAN_DERSHOWITZ, description=DERSH_GIUFFRE_TWEET),
+    DocCfg(id='017787', author=ALAN_DERSHOWITZ, description=DERSH_GIUFFRE_TWEET),
+    DocCfg(id='033433', author=ALAN_DERSHOWITZ, description=f"{DERSH_GIUFFRE_TWEET} / David Boies", date='2019-03-02'),
+    DocCfg(id='033432', author=ALAN_DERSHOWITZ, description=f"{DERSH_GIUFFRE_TWEET} / David Boies", date='2019-05-02'),
+    DocCfg(id='031546', author=DONALD_TRUMP, description=f"about Russian collusion", date='2018-01-06'),
+    DocCfg(id='030884', author='Ed Krassenstein'),
+    DocCfg(id='033236', description=f'selection about Ivanka Trump in Arabic', date='2017-05-20'),
 ]
 
-RIOT_BLOCKCHAIN_DESCRIPTION = 'RIOT Blockchain (FKA "Bioptix") is a sketchy bitcoin miner in Texas'
 
 WHISTLEBLOWER_IDS = {
     'EFTA00093702_37': '',
