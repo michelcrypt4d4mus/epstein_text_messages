@@ -1898,7 +1898,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(MANUELA_MARTINEZ, "Mega Partners (Brazilian agency)", r"Manuela (- Mega Partners|Martinez)", match_partial=None),
             Contact(MARIANA_IDZKOWSKA, emailer_pattern=r"Mariana [Il]d[źi]kowska?"),
             Contact('Michael Sanka', f"{JEAN_LUC_MC2} {QUESTION_MARKS}"),
-            Contact('Naomi Campbell', 'supermodel', match_partial=None),
+            Contact(NAOMI_CAMPBELL, 'supermodel', match_partial=None),
             Contact('Ramsey Elkholy', f"scouted girls for Epstein in NYC, member of Monotronic", match_partial='both'),
             Contact('Vladimir Yudashkin', "director of the 1 Mother Agency"),
             Contact('Yfke Sturm', 'model from Holland', match_partial='both'),
@@ -2093,6 +2093,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 match_partial='both',
             ),
             Contact('Vitaly Churkin', 'Russian ambassador to the United Nations'),
+            Contact('Vladislav Doronin', f'olgarch, dated {NAOMI_CAMPBELL}'),
             Contact(
                 YURI_MILNER,
                 f'Russian-Israeli investor whom Epstein says is managing "Russian gangster money"',
