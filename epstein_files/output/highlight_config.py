@@ -2275,7 +2275,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(IAN_ODONNELL, THIELS_VALAR, r"Ian O'?Donnell|O'?Donnell, Ian"),
             Contact('Jack Dorsey', 'co-founder of Twitter and Block (FKA Square)'),
             Contact(JAMES_FITZGERALD, THIELS_VALAR, r"James Fitz[g\s]eral?d?", match_partial=None),
-            Contact(JASON_CALACANIS, f'{ALL_IN_PODCAST} with David Sacks and {CHAMATH_PALIHAPITIYA}, Uber investor', r"Jason (.{12})Calacanis"),
+            Contact(JASON_CALACANIS, f'{ALL_IN_PODCAST} with David Sacks and {CHAMATH_PALIHAPITIYA}, Uber investor', r"Jason (.{12})?Calacanis"),
             Contact(MASAYOSHI_SON, 'CEO of Softbank, often referred to as "Masa"', r"Masa(yoshi)?(\sSon)?", match_partial='first'),
             Contact(MELANIE_PHILLIPS, f'girlfriend of {STEVEN_SINOFSKY}', match_partial=None),
             Contact('Nathan Myhrvold', f"former CTO of Microsoft, co-founder of Intellectual Ventures"),
