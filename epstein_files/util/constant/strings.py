@@ -38,6 +38,9 @@ TEXT_LINK = 'text_link'
 TIMESTAMP_STYLE = 'turquoise4'
 TIMESTAMP_DIM = f"turquoise4 dim"
 
+# File IDs
+LEON_BLACK_EMAIL_ID = '023208'
+
 # Misc
 APPEARS_IN = 'appears in'
 AUTHOR = 'author'
@@ -84,9 +87,9 @@ EPSTEIN_FILES_NOV_2025 = 'epstein_files_nov_2025'
 EFTA_PREFIX = 'EFTA'
 HOUSE_OVERSIGHT_PREFIX = 'HOUSE_OVERSIGHT_'
 DOJ_DATASET_ID_REGEX = re.compile(r"(?:epstein_dataset_|DataSet )(\d+)")
-DOJ_FILE_STEM_REGEX = re.compile(fr"({EFTA_PREFIX}\d{{8}}(_\d{{1,2}})?)")
+DOJ_FILE_STEM_REGEX = re.compile(fr"({EFTA_PREFIX}\d{{8}}(_\d{{1,3}})?)")
 DOJ_FILE_NAME_REGEX = re.compile(fr"{DOJ_FILE_STEM_REGEX.pattern}(\.txt)?")
-HOUSE_OVERSIGHT_NOV_2025_ID_REGEX = re.compile(r"(\d{6}(_\d{1,2})?)")
+HOUSE_OVERSIGHT_NOV_2025_ID_REGEX = re.compile(r"(\d{6}(_\d{1,3})?)")
 HOUSE_OVERSIGHT_NOV_2025_FILE_STEM_REGEX = re.compile(fr"{HOUSE_OVERSIGHT_PREFIX}{HOUSE_OVERSIGHT_NOV_2025_ID_REGEX.pattern}")
 HOUSE_OVERSIGHT_NOV_2025_FILE_NAME_REGEX = re.compile(fr"{HOUSE_OVERSIGHT_NOV_2025_FILE_STEM_REGEX.pattern}(\.txt(\.json)?)?")
 LOCAL_EXTRACT_REGEX = re.compile(r"_\d{1,2}$")

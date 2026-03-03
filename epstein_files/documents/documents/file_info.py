@@ -6,7 +6,7 @@ from typing import Mapping
 from rich.text import Text
 
 from epstein_files.output.rich import join_texts, prefix_with, styled_dict
-from epstein_files.util.constant.strings import ALT_LINK_STYLE, ARCHIVE_LINK_COLOR, DOJ_DATASET_ID_REGEX
+from epstein_files.util.constant.strings import ALT_LINK_STYLE, ARCHIVE_LINK_COLOR, DOJ_DATASET_ID_REGEX, LEON_BLACK_EMAIL_ID
 from epstein_files.util.constant.urls import *
 from epstein_files.util.env import DOJ_PDFS_20260130_DIR, site_config
 from epstein_files.util.helpers.file_helper import (coerce_file_stem, coerce_url_slug, extract_file_id,
@@ -103,7 +103,7 @@ class FileInfo:
     @property
     def has_file(self) -> bool:
         """Returns false for derivations of massive Dilorio emails."""
-        return not (self.is_doj_file and self.is_local_extract_file)
+        return not ((LEON_BLACK_EMAIL_ID in self.file_id or self.is_doj_file) and self.is_local_extract_file)
 
     @property
     def is_doj_file(self) -> bool:

@@ -119,11 +119,10 @@ def file_size_to_str(size: int, digits: int | None = None) -> str:
 def file_stem_for_id(id: int | str) -> str:
     if isinstance(id, int) or (isinstance(id, str) and len(id) <= 6):
         return f"{HOUSE_OVERSIGHT_PREFIX}{format_house_oversight_id(id)}"
-
-    if len(id) == 8:
+    elif HOUSE_OVERSIGHT_NOV_2025_ID_REGEX.match(id):
         return f"{HOUSE_OVERSIGHT_PREFIX}{id}"
     else:
-        raise RuntimeError(f"Unknown kind of file id {id}")
+        raise ValueError(f"Unknown kind of file id {id}")
 
 
 def format_house_oversight_id(id: int | str) -> str:
