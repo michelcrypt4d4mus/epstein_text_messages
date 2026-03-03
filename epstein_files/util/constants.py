@@ -1087,6 +1087,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA01802168', author=LINDA_STONE, author_uncertain='"Stone"'),
     EmailCfg(id='EFTA00701326', author=LINDA_STONE, author_uncertain='"Stone"'),
     EmailCfg(id='EFTA00397956', author=LINDA_STONE, author_reason='unique email signature'),
+    EmailCfg(id='EFTA00770066', author='Lisa Randall', description=f"Epstein lists conferences he intends to fund", truncate_to=4500),
     EmailCfg(id='EFTA00920848', author=MARIA_PRUSAKOVA, author_uncertain='law school'),
     EmailCfg(id='EFTA02038002', author=MARIA_PRUSAKOVA, author_reason=CLIFFORD_CHANCE),
     EmailCfg(id='EFTA02036490', author=MARIA_PRUSAKOVA, author_reason=CLIFFORD_CHANCE),
@@ -1449,7 +1450,6 @@ EMAILS_CONFIG = [
     ),
     EmailCfg(id='EFTA02541344', description=f"{BROCK_PIERCE} on marriage and polygamy with people named Crystal and Sue"),
     EmailCfg(id='EFTA02641951', description=f"{DAVID_STERN} recommends ProtonMail for more secure communications"),
-    EmailCfg(id='EFTA00770066', description=f"Epstein lists conferences he intends to fund", recipients=['Lisa Randall'], truncate_to=4500),
     EmailCfg(id='EFTA00987206', description=f"Epstein helps {BORIS_NIKOLIC} draft an email to {YURI_MILNER}", is_interesting=True),
     EmailCfg(id='EFTA00277107', description=f'FBI tip alleging connections between Wirecard and {GHISLAINE_MAXWELL} network', truncate_to=5500),
     EmailCfg(

@@ -89,7 +89,7 @@ def split_up_leon_black(big_email: Email) -> list[Email]:
         if 'Avantario' in text_to_scan_for_recipients:
             email.extracted_recipients += ['Joe Avantario']
 
-        if email.recipients and not email.extracted_author:
+        if email.recipients and not email.extracted_author and 'Jeffrey-' not in text_to_scan_for_recipients:
             email.extracted_author = JEFFREY_EPSTEIN
 
             if JEFFREY_EPSTEIN in email.extracted_recipients:
