@@ -2512,6 +2512,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact('Virginia Giuffre', f"one of Epstein's first public accusers", r"(Virginia ((L\.?|Roberts) )?)?Giuffre",),
         ],
         patterns=[
+            r"abortion",
             r"ballerina",
             r"Beautify and the Beast",
             r"(child )?porn(ography)?",
