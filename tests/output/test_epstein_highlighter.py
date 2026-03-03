@@ -256,7 +256,7 @@ HIGHLIGHT_COUNTS = {
     "washington": 4,
     'whistleblower': 48,
     'whistleblowers': 11,
-    "wire card": 2,
+    "wire card": 4,
     "wireca rd": 1,
     "wsj": 1,
     "www.finra.org": 6
