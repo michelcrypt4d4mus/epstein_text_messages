@@ -279,6 +279,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 "CEO of Victoria's Secret, Abercrombie & Fitch, gave Epstein a house and power of attorney",
                 r"(Les(lie)? )?Wexner",
             ),
+            Contact('Mitchell Baker', "founder of Mozilla", match_partial=None),
             Contact(
                 NICOLE_JUNKERMANN,
                 f"German countess / ex-model, NJF Capital/JunkermannGroup, investor in Revolut, gambling, China",
@@ -2730,6 +2731,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"(?<!(alfa|ture|hase|rahi|sche)\s)bank(?!\s+(of|secrecy))",
             r"capital controls",
             r"C[EF]O",
+            r"charit(ies|y)",
             r"Chief (Executive|Financ(e|ial)) Officer",
             r"(co-?)?founder",
             r"convertible note",
