@@ -30,7 +30,7 @@ SPLITTER = '-# JUNK #-'
 SPLITTER_TEMPLATE = SPLITTER + """{stylesheet} {background} {foreground}"""  # these template vars allow export_html() to work
 
 # CSS classes
-BLACK_BG = 'black_background'
+BLACK_BACKGROUND = 'black_background'
 
 # CSS dicts
 CODE_TAG_CSS = {'font-family': 'inherit'}

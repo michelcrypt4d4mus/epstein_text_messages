@@ -5,6 +5,7 @@ a {
 
 div.black_background {
     background-color: black;
+    z-index: 10;
 }
 
 div.doc_container {
@@ -19,6 +20,7 @@ div.page_container {
 div.table {
     border: 1px solid dimgray;
     display: table;
+    z-index: 10;
 }
 
 /* this is really more of a cell than a column */
@@ -69,7 +71,6 @@ div.person_bio_panel {
     margin-left: auto;
     margin-right: 0;
     width: fit-content;
-    z-index: -10;
 }
 
 div.sticky_person_bio_panel {
@@ -79,7 +80,6 @@ div.sticky_person_bio_panel {
     position: sticky;
     top: 0px;
     width: fit-content;
-    z-index: -10;
 }
 
 div.row {

@@ -158,7 +158,7 @@ def table_cell(contents: RenderableType, props: CssProps = None, extra_class: st
     return div_class(cell_html, join_truthy(extra_class, 'column'), props, role='cell')
 
 
-def text_to_div(txt: Text, css_props: dict[str, str], class_name: str = f"{BLACK_BG} no_expand") -> str:
+def text_to_div(txt: Text, css_props: dict[str, str], class_name: str = f"{BLACK_BACKGROUND} no_expand") -> str:
     return div_class(rich_to_html(txt), class_name, css_props)
 
 
@@ -191,7 +191,7 @@ def one_row_table_html(table: Table, css_props: CssProps = None) -> str:
 
     return div_class(
         header_div + '\n' + body_div,
-        f'{BLACK_BG} no_expand',
+        f'{BLACK_BACKGROUND} no_expand',
         {
             'text-align': table.columns[0].justify,
             **border_props,
