@@ -2286,7 +2286,13 @@ OTHER_FILES_MONEY = [
         description=f"explanations of all of Epstein's large payments prepared for DOJ",
         is_interesting=True,
     ),
-    DocCfg(id='EFTA01111057', author=MORTIMER_ZUCKERMAN, date='2014-07-10', description='Mortimer B. Zuckerman Management Trust'),
+    DocCfg(
+        id='EFTA01111057',
+        author=MORTIMER_ZUCKERMAN,
+        date='2014-07-10',
+        description='Mortimer B. Zuckerman Management Trust',
+        non_participants=['Marla Maples'],
+    ),
     DocCfg(id='EFTA01285411', description=f"bank statement for Epstein's {SOUTHERN_TRUST_COMPANY} showing $82 million balance"),
     DocCfg(id='EFTA00016884', description="Epstein's last will and testament", date='2014-11-18'),
     DocCfg(id='EFTA00089546', description=f"Epstein last will and testament codicil naming {JAMES_CAYNE} an executor", date='2007-09-20'),
@@ -2368,7 +2374,7 @@ OTHER_FILES_REPUTATION = [
     DocCfg(id='030573', description=f"Epstein's unflattering Google search results, maybe screenshot by {AL_SECKEL} or {OSBORNE_LLP}"),
     DocCfg(id='030875', description=f"Epstein's Wikipedia page", date='2014-02-08'),  # Date is based on tyler shears; seckel was 2010
     DocCfg(id='026583', description=f"Google search results for '{JEFFREY_EPSTEIN}' with analysis ({OSBORNE_LLP}?)"),
-    DocCfg(id='029350', description=f"Microsoft Bing search results for Epstein with sex offender at top, maybe from {TYLER_SHEARS}?"),
+    DocCfg(id='029350', description=f"Microsoft Bing search results for Epstein with sex offender at top", attached_to_email_id='EFTA00675542'),
     EmailCfg(id='022203', description=AL_SECKEL_BILL_FIGHT, truncate_to=500),
     EmailCfg(id='022219', description=AL_SECKEL_BILL_FIGHT, truncate_to=2404),
 
@@ -3509,6 +3515,7 @@ NOT_CHRONOLOGICAL_VIEW_IDS = [
     'EFTA00840747',
     'EFTA02475571',
     '030807',
+    '032842',
     'EFTA00434111',
     'EFTA00432352',
     '026583',
