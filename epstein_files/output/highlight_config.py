@@ -487,6 +487,12 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 match_partial=None
             ),
             Contact(
+                'Blythe Masters',
+                'created the weapon of financial destruction known as the Credit Default Swap, now a crypto bro-ette',
+                link_to_bio='https://en.wikipedia.org/wiki/Blythe_Masters',
+                match_partial=None,
+            ),
+            Contact(
                 'Bo Collins',
                 f"AKA James Robert Collins, {MERCANTILE_GLOBAL_HOLDINGS}, testified in trial of Miles Guo/Miles Kwok",
                 r"(Bo|James) (Robert )?Collins",
@@ -650,7 +656,6 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"bit[o\s]?coin( Foundation)?",
             r"Bit(Angels|Fury|Go)",
             r"block (chain|tree)",
-            r"Blythe Masters",
             r"Brac",  # Brock? EFTA01792443
             r"Bradley Rotter",
             r"Brian Forde",

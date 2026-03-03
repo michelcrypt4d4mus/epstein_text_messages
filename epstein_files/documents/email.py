@@ -342,6 +342,11 @@ class Email(Communication):
         return metadata
 
     @property
+    def people(self) -> list[str]:
+        """Includes people in attachments."""
+        return sorted(uniquify(super().people + flatten([ad.people for ad in self.attached_docs])))
+
+    @property
     def prettified_text(self) -> Text:
         """Cleaned up text ready for printing."""
         should_rewrite_header = self.header.was_initially_empty and self.header.num_header_rows > 0

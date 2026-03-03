@@ -2421,21 +2421,12 @@ OTHER_FILES_SOCIAL = [
     ),
     EmailCfg(
         id='EFTA00922824',
-        description=f"Epstein met with the founder of 4chan the day the infamous /pol/ board was created",
-        show_with_name=CHRIS_POOLE,
+        description=f"Epstein meets with {CHRIS_POOLE} (founder of 4chan) the day the infamous /pol/ board is created",
         is_interesting=True,
+        show_with_name=CHRIS_POOLE,
     ),
 ]
 
-OTHER_FILES_TWEET = [
-    DocCfg(id='023050', author=ALAN_DERSHOWITZ, description=DERSH_GIUFFRE_TWEET),
-    DocCfg(id='017787', author=ALAN_DERSHOWITZ, description=DERSH_GIUFFRE_TWEET),
-    DocCfg(id='033433', author=ALAN_DERSHOWITZ, description=f"{DERSH_GIUFFRE_TWEET} / David Boies", date='2019-03-02'),
-    DocCfg(id='033432', author=ALAN_DERSHOWITZ, description=f"{DERSH_GIUFFRE_TWEET} / David Boies", date='2019-05-02'),
-    DocCfg(id='031546', author=DONALD_TRUMP, description=f"about Russian collusion", date='2018-01-06'),
-    DocCfg(id='030884', author='Ed Krassenstein'),
-    DocCfg(id='033236', description=f'selection about Ivanka Trump in Arabic', date='2017-05-20'),
-]
 
 OTHER_FILES_POLITICS = [
     DocCfg(id='030258', author=ALAN_DERSHOWITZ, description=f'{ARTICLE_DRAFT} Mueller probe, almost same as 030248'),
@@ -2584,94 +2575,12 @@ OTHER_FILES_FLIGHT_LOG = [
     DocCfg(id='022816'),
 ]
 
-OTHER_FILES_MISC = [
-    DocCfg(id='029326', category=Neutral.PRESSER, author=EPSTEIN_FOUNDATION, date='2013-02-15'),
-    DocCfg(id='026565', category=Neutral.PRESSER, author=EPSTEIN_FOUNDATION, comment=f'maybe a draft of 029326', date='2013-02-15'),
-    DocCfg(id='022494', author='DOJ', description=f'Foreign Corrupt Practices Act (FCPA) Resource Guide'),
-    DocCfg(id='023096', author=EPSTEIN_FOUNDATION, description=f'blog post', date='2012-11-15'),
-    DocCfg(id='027071', author=FEMALE_HEALTH_COMPANY, description=f"brochure requesting donations for female condoms in Uganda"),
-    DocCfg(id='027074', author=FEMALE_HEALTH_COMPANY, description=f"pitch deck (USAID was a customer)"),
-    DocCfg(id='032735', author=GORDON_GETTY, description=f"on Trump", date='2018-03-20'),  # Dated based on concurrent emails from Getty
-    DocCfg(id='025540', author=JEFFREY_EPSTEIN, description=f"rough draft of his side of the story"),
-    DocCfg(id='026634', author='Michael Carrier', description=f'comments about an Apollo linked fund "DE Fund VIII"'),
-    DocCfg(id='031425', author=SCOTT_J_LINK, description=f'completely redacted email', is_interesting=False),
-    DocCfg(id='020447', author='Working Group on Chinese Influence Activities in the US', description=f'Promoting Constructive Vigilance'),
-    DocCfg(id='012718', description=f"{CVRA} congressional record", date='2011-06-17'),
-    DocCfg(id='019448', description=f"Haitian business investment proposal called Jacmel", attached_to_email_id='019446'),
-    DocCfg(id='023644', description=f"interview with Mohammed bin Salman", date='2016-04-25', is_interesting=False),
-    DocCfg(
-        id='030142',
-        author=f"{KATHRYN_RUEMMLER} & {KEN_STARR}",
-        date='2016-09-01',
-        description=f"mostly empty {JASTA} (Justice Against Sponsors of Terrorism Act) doc referencing suit against Saudis",
-    ),
-    DocCfg(
-        id='033338',
-        category=Neutral.PRESSER,
-        date='2000-06-07',
-        description=f"end of {DONALD_TRUMP} & {NICHOLAS_RIBIS} working relationship at Trump's casino",
-        is_interesting=True,
-    ),
-    DocCfg(id='029328', description=f"Rafanelli Events promotional deck", is_interesting=False),
-    DocCfg(id='029475', description=f'{VIRGIN_ISLANDS} Twin City Mobile Integrated Health Services (TCMIH) proposal/request for donation', is_interesting=False),
-    DocCfg(id='029448', description=f"weird short essay titled 'President Obama and Self-Deception'"),
-
-    # DOJ files
-    DocCfg(
-        id='EFTA00034357',
-        author=BUREAU_OF_PRISONS,
-        date='2019-08-10',
-        description=f"internal message about discovery of Epstein's body",
-        background_color='red'
-    ),
-    DocCfg(id='EFTA00165515', description="contractor describes Epstein's gun safes", show_full_panel=True),
-    DocCfg(id='EFTA00005783', description='heavily redacted handwritten note, 30+ completely redacted pages', date='2019-08-29'),
-    DocCfg(id='EFTA00024275', description='large Wexner funded payments to OB-GYN'),
-    DocCfg(id='EFTA00029538', description=f"{GHISLAINE_MAXWELL} provided school girl uniforms", show_full_panel=True),
-    # Urramoor
-    DocCfg(
-        id='EFTA01107738',
-        description=f"creation of {CANTOR_URRAMOOR} with Mr. T's (Prince Andrew?) Urramoor and {LUTNICKS_CANTOR}",
-        is_interesting=True,
-    ),
-    DocCfg(
-        id='EFTA01141453',
-        description=f"referral agreement between Mr. T's (Prince Andrew?) Urramoor and {LUTNICKS_CANTOR}",
-        is_interesting=True,
-    ),
-    # Replacement text
-    DocCfg(
-        id='EFTA00009622',
-        date='2006-07-19',
-        description='handwritten notes from a victim interview transcribed by Claude AI',
-        is_interesting=True,
-        replace_text_with=EFTA00009622_TEXT,
-    ),
-    DocCfg(
-        id='EFTA00004477',
-        is_interesting=True,
-        replace_text_with='Epstein 50th birthday photo book 12 "THAIS, MOSCOW GIRLS, AFRICA, HAWAII, [REDACTED] [REDACTED], Zorro, [REDACTED] [REDACTED] [REDACTED], CRACK WHOLE PROPOSAL, BALI/THAILAND/ASIA, RUSSIA, [REDACTED], [REDACTED], NUDES, YOGAL GIRLS',
-    ),
-    DocCfg(id='EFTA00004070', replace_text_with="photos of Epstein with handwritten caption that didn't OCR well"),
-    DocCfg(id='EFTA02731260', replace_text_with='notebook full of handwritten love letters with terrible OCR text'),
-    DocCfg(id='EFTA00006100', replace_text_with='Palm Beach Police fax machine activity log 2005-12-28 to 2006-01-04'),
-    DocCfg(
-        id='EFTA00003149',
-        date='2016-01-01',
-        date_uncertain='complete guess',
-        description=f"{LITTLE_SAINT_JAMES} staff list",
-        show_full_panel=True,
-    ),
-    # Attachments
-    DocCfg(id='EFTA00590685', attached_to_email_id='EFTA00830911'),
-    # Dates
-    DocCfg(id='EFTA02025218', date='2011-09-09'),
-]
 
 OTHER_FILES_DIARY = [
     victim_diary('EFTA02731465', f"naming {JES_STALEY}, {TED_LEONSIS}, {GEORGE_VRADENBURG}, references tinkerbell"),
     victim_diary('EFTA02731420', f'naming {LARRY_SUMMERS}, {PRINCE_ANDREW}, Dan Snyder, {LEON_BLACK}, {TED_LEONSIS}'),
 ]
+
 
 OTHER_FILES_GIRLS = [
     EmailCfg(id='030609', duplicate_ids=['030495']),
@@ -2836,6 +2745,92 @@ OTHER_FILES_GIRLS = [
     EmailCfg(id='EFTA00766770'),
 ]
 
+
+OTHER_FILES_MISC = [
+    DocCfg(id='029326', category=Neutral.PRESSER, author=EPSTEIN_FOUNDATION, date='2013-02-15'),
+    DocCfg(id='026565', category=Neutral.PRESSER, author=EPSTEIN_FOUNDATION, comment=f'maybe a draft of 029326', date='2013-02-15'),
+    DocCfg(id='022494', author='DOJ', description=f'Foreign Corrupt Practices Act (FCPA) Resource Guide'),
+    DocCfg(id='023096', author=EPSTEIN_FOUNDATION, description=f'blog post', date='2012-11-15'),
+    DocCfg(id='027071', author=FEMALE_HEALTH_COMPANY, description=f"brochure requesting donations for female condoms in Uganda"),
+    DocCfg(id='027074', author=FEMALE_HEALTH_COMPANY, description=f"pitch deck (USAID was a customer)"),
+    DocCfg(id='032735', author=GORDON_GETTY, description=f"on Trump", date='2018-03-20'),  # Dated based on concurrent emails from Getty
+    DocCfg(id='025540', author=JEFFREY_EPSTEIN, description=f"rough draft of his side of the story"),
+    DocCfg(id='026634', author='Michael Carrier', description=f'comments about an Apollo linked fund "DE Fund VIII"'),
+    DocCfg(id='031425', author=SCOTT_J_LINK, description=f'completely redacted email', is_interesting=False),
+    DocCfg(id='020447', author='Working Group on Chinese Influence Activities in the US', description=f'Promoting Constructive Vigilance'),
+    DocCfg(id='012718', description=f"{CVRA} congressional record", date='2011-06-17'),
+    DocCfg(id='019448', description=f"Haitian business investment proposal called Jacmel", attached_to_email_id='019446'),
+    DocCfg(id='023644', description=f"interview with Mohammed bin Salman", date='2016-04-25', is_interesting=False),
+    DocCfg(
+        id='030142',
+        author=f"{KATHRYN_RUEMMLER} & {KEN_STARR}",
+        date='2016-09-01',
+        description=f"mostly empty {JASTA} (Justice Against Sponsors of Terrorism Act) doc referencing suit against Saudis",
+    ),
+    DocCfg(
+        id='033338',
+        category=Neutral.PRESSER,
+        date='2000-06-07',
+        description=f"end of {DONALD_TRUMP} & {NICHOLAS_RIBIS} working relationship at Trump's casino",
+        is_interesting=True,
+    ),
+    DocCfg(id='029328', description=f"Rafanelli Events promotional deck", is_interesting=False),
+    DocCfg(id='029475', description=f'{VIRGIN_ISLANDS} Twin City Mobile Integrated Health Services (TCMIH) proposal/request for donation', is_interesting=False),
+    DocCfg(id='029448', description=f"weird short essay titled 'President Obama and Self-Deception'"),
+
+    # DOJ files
+    DocCfg(
+        id='EFTA00034357',
+        author=BUREAU_OF_PRISONS,
+        date='2019-08-10',
+        description=f"internal message about discovery of Epstein's body",
+        background_color='red'
+    ),
+    DocCfg(id='EFTA00165515', description="contractor describes Epstein's gun safes", show_full_panel=True),
+    DocCfg(id='EFTA00005783', description='heavily redacted handwritten note, 30+ completely redacted pages', date='2019-08-29'),
+    DocCfg(id='EFTA00024275', description='large Wexner funded payments to OB-GYN'),
+    DocCfg(id='EFTA00029538', description=f"{GHISLAINE_MAXWELL} provided school girl uniforms", show_full_panel=True),
+    # Urramoor
+    DocCfg(
+        id='EFTA01107738',
+        description=f"creation of {CANTOR_URRAMOOR} with Mr. T's (Prince Andrew?) Urramoor and {LUTNICKS_CANTOR}",
+        is_interesting=True,
+    ),
+    DocCfg(
+        id='EFTA01141453',
+        description=f"referral agreement between Mr. T's (Prince Andrew?) Urramoor and {LUTNICKS_CANTOR}",
+        is_interesting=True,
+    ),
+    # Replacement text
+    DocCfg(
+        id='EFTA00009622',
+        date='2006-07-19',
+        description='handwritten notes from a victim interview transcribed by Claude AI',
+        is_interesting=True,
+        replace_text_with=EFTA00009622_TEXT,
+    ),
+    DocCfg(
+        id='EFTA00004477',
+        is_interesting=True,
+        replace_text_with='Epstein 50th birthday photo book 12 "THAIS, MOSCOW GIRLS, AFRICA, HAWAII, [REDACTED] [REDACTED], Zorro, [REDACTED] [REDACTED] [REDACTED], CRACK WHOLE PROPOSAL, BALI/THAILAND/ASIA, RUSSIA, [REDACTED], [REDACTED], NUDES, YOGAL GIRLS',
+    ),
+    DocCfg(id='EFTA00004070', replace_text_with="photos of Epstein with handwritten caption that didn't OCR well"),
+    DocCfg(id='EFTA02731260', replace_text_with='notebook full of handwritten love letters with terrible OCR text'),
+    DocCfg(id='EFTA00006100', replace_text_with='Palm Beach Police fax machine activity log 2005-12-28 to 2006-01-04'),
+    DocCfg(
+        id='EFTA00003149',
+        date='2016-01-01',
+        date_uncertain='complete guess',
+        description=f"{LITTLE_SAINT_JAMES} staff list",
+        show_full_panel=True,
+    ),
+    # Attachments
+    DocCfg(id='EFTA00590685', attached_to_email_id='EFTA00830911'),
+    # Dates
+    DocCfg(id='EFTA02025218', date='2011-09-09'),
+]
+
+
 OTHER_FILES_PHONE_BILL = [
     phone_bill_cfg('EFTA00007070', 'MetroPCS', '2006'),
     phone_bill_cfg('EFTA00006770', 'MetroPCS', '2006-02-01 to 2006-06-16'),
@@ -2851,6 +2846,18 @@ OTHER_FILES_PHONE_BILL = [
     phone_bill_cfg('EFTA00007301', 'T-Mobile', 'Blackberry phone logs for 2005', date='2007-03-23'),
     phone_bill_cfg('EFTA00007253', 'T-Mobile', date='2007-03-23'),
 ]
+
+
+OTHER_FILES_TWEET = [
+    DocCfg(id='023050', author=ALAN_DERSHOWITZ, description=DERSH_GIUFFRE_TWEET),
+    DocCfg(id='017787', author=ALAN_DERSHOWITZ, description=DERSH_GIUFFRE_TWEET),
+    DocCfg(id='033433', author=ALAN_DERSHOWITZ, description=f"{DERSH_GIUFFRE_TWEET} / David Boies", date='2019-03-02'),
+    DocCfg(id='033432', author=ALAN_DERSHOWITZ, description=f"{DERSH_GIUFFRE_TWEET} / David Boies", date='2019-05-02'),
+    DocCfg(id='031546', author=DONALD_TRUMP, description=f"about Russian collusion", date='2018-01-06'),
+    DocCfg(id='030884', author='Ed Krassenstein'),
+    DocCfg(id='033236', description=f'selection about Ivanka Trump in Arabic', date='2017-05-20'),
+]
+
 
 # This category is automatically 'interesting', see OtherFile class
 OTHER_FILES_CRYPTO = [
