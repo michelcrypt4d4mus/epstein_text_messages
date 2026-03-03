@@ -780,6 +780,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact('Steve Griffis', 'AKA "Steve from downstairs", building employee', r"Steve (Griffis|\(from downstairs)"),
             Contact(STORY_COWLES, "Epstein's male assistant"),
             Contact('Una Pascal', f"{SOUTHERN_TRUST_COMPANY} accountant", match_partial=None),
+            Contact('Valdson Vieira Cotrin', f"Paris driver, annual trip to Brasil", r"(Cotrin )?Valdson( Contrin)?", match_partial='both'),
         ],
     ),
     HighlightedNames(
@@ -1044,6 +1045,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Riga",
             r"Rotterdam",
             r"San Marino",
+            r"Schengen( (Area|Visa))?",
             r"Scotland",
             r"(Sebastian )?Kurz",
             r"Slov(ak|en)ian?",
@@ -2053,7 +2055,11 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 link_to_bio='https://en.wikipedia.org/wiki/Dmitry_Rybolovlev',
             ),
             Contact('Igor Zinoviev', f"Epstein's bodyguard, MMA fighter"),
-            Contact(JULIA_SANTOS, "possibly a Russian in Paris that was recruiting girls from Ukraine for Epstein", match_partial=None),
+            Contact(
+                JULIA_SANTOS,  # TODO: Jmail says her email is julia.santos@hbs.edu
+                "recruiter of girls from Ukraine for Epstein, possibly Harvard Business School student",
+                match_partial=None,
+            ),
             Contact(
                 KARYNA_SHULIAK,
                 f"girlfriend to whom Epstein tried to leave $50 million and the island, alleged sham marriage to {JENNIFER_KALIN}",
@@ -2159,7 +2165,8 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Rusnano( USA)?(,? Inc\.?)?",
             r"Russ?ian?( (mafia|gangster))?",
             r"Serbian?",
-            r"St\.? Petersburg",
+            r"Sochi",
+            r"S(ain)?t\.? Petersburg",
             r"Soviet( Union)?",
             r"USSR",
             r"Vlad(imir)?(?! Yudash)",
@@ -2433,6 +2440,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Katie Johnson",
             r"(Midget )?strippers?",
             r"Minor Victim",
+            r"model(ing|s)",
             r"orgasm(ic|s)?",
             r"pa?edophile",
             r"pussy",
