@@ -40,6 +40,10 @@ EMERGENCY_CONTACT_DATES = {
     'EFTA00003042': '2019-02-06'
 }
 
+DESCRIPTIONS = {
+    'EFTA00015532': "alleging Epstein tried to buy victim's silence",
+}
+
 
 def build_cfg_from_text(doc: 'Document') -> DocCfg | None:
     """Scan the text to see if author, description, category, etc. can be derived from the contents."""
@@ -78,7 +82,8 @@ def build_cfg_from_text(doc: 'Document') -> DocCfg | None:
         cfg = valar_cfg(doc.file_id, 'requesting money previously promised by Epstein to invest in a new opportunity')
     elif (case_match := LEGAL_FILING_REGEX.search(text)):
         case_name = CASE_IDS.get(case_match.group(1), f"case {case_match.group(1)}")
-        cfg = _cfg(category=Neutral.LEGAL, description=f"legal filing in {case_name}")
+        description = join_truthy(f"legal filing in {case_name}", DESCRIPTIONS.get(doc.file_id, ''))
+        cfg = _cfg(category=Neutral.LEGAL, description=description)
     elif len(text) < 2600 and HARD_DRIVE_REGEX.search(text):
         cfg = _cfg(category=Neutral.MISC, description='photo of a hard drive')
     elif lines[0].lower().strip() == 'valuation report':
@@ -107,6 +112,7 @@ def blaine_letter(id: str, date: str, suffix: str = '') -> CommunicationCfg:
         description=join_truthy(f"recommending genius visa for a Epstein's assistant {SVETLANA_POZHIDAEVA}", suffix),
         is_interesting=True,
         recipients=['Immigration'],
+        show_with_name=SVETLANA_POZHIDAEVA,
     )
 
 
