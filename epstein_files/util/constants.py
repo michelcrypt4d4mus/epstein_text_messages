@@ -3156,6 +3156,7 @@ OTHER_FILES_CRYPTO = [
     # Vincenzo
     EmailCfg(id='EFTA02588723', description=f'discussion of crypto food stamps debit cards', is_interesting=True),
     EmailCfg(id='EFTA02588748', description=f'discussion of crypto food stamps debit cards', is_interesting=True, truncate_to=800),
+    EmailCfg(id='EFTA02584771', description=f"discussion of decentralized prediction markets (e.g. Polymarket)", is_interesting=True),
     # ZCash / Madars Virza
     DocCfg(id='EFTA00811130', author=PERKINS_COIE, description='tax opinion on ZCash tokens'),
     DocCfg(id='EFTA00603348', description=f"Electric Coin Company created the untraceable crypto ZCash funded by {LARRY_SUMMERS}'s DCG"),
@@ -3181,7 +3182,6 @@ OTHER_FILES_CRYPTO = [
     EmailCfg(id='EFTA01388354', description=f"invitation to {DEUTSCHE_BANK} blockchain event with Mike Novogratz"),
     EmailCfg(id='EFTA01434500', description=f"everyone assumes Epstein's banker {PAUL_BARRETT} will want to know about the blockchain event"),
     EmailCfg(id='EFTA00993615', description=f"{MASHA_DROKOVA} explains the price of bitcoin can be manipulated if Epstein makes public comments"),
-    EmailCfg(id='EFTA02584771', description=f"discussion of decentralized prediction maarkets like Polymarket"),
     EmailCfg(id='EFTA01784901', description=f"{JEREMY_RUBIN} has cashed multiple checks directly from Epstein", is_interesting=True),
     EmailCfg(
         id='EFTA01007544',
@@ -3451,6 +3451,7 @@ UNINTERESTING_EMAIL_IDS = [
     # Vincenzo Iozzo
     '033280',
     'EFTA02624738',
+    'EFTA01751416',  # Visible in EFTA02584771
     # Wolff
     '021120',
     # Unknown

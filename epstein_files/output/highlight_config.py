@@ -631,6 +631,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             ),
             organization('Pantera Capital', "silicon valley crypto fund of Dan Morehead"),
             organization('PayPay', 'bitcoin debit card', r"PayPay( Card)?"),
+            organization('Polymarket', 'blockchain based gambling site ("prediction market")'),
             organization('Ribbit Capital', 'crypto friendly venture fund'),
             organization('Ripple', 'token issuing company run by Trump megadonor Brad Garlinghouse'),
             organization('Silk Road', 'online illegal drug market, first real use case for crypto'),
