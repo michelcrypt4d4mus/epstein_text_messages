@@ -683,7 +683,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Steve Waterhouse",
             r"supersecretbitcoinproject",
             r"Tally Capital",
-            r"(transparent|virtual) (currenc(ies|y)|goods?|money)",
+            r"(transparent|virtual) (currenc(ies|y)|good|item|money)",
             r"wash trad(es?|ing)",
             r"Wire ca\n?rd",
             r"XRP",
