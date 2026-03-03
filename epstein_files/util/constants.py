@@ -2520,7 +2520,7 @@ OTHER_FILES_GIRLS = [
         id='EFTA01991293',
         author=SVETLANA_POZHIDAEVA,
         author_reason=f"convo about {JOSHUA_FINK} breakup",
-        description=f'did {ELON_MUSK} date {SVETLANA_POZHIDAEVA} after she blackmailed {JOSHUA_FINK}?! ("he asked 6 times if Elon [gave] me anything")',
+        description=f'did {ELON_MUSK} date {SVETLANA_POZHIDAEVA} after she blackmailed {JOSHUA_FINK}? ("he asked 6 times if Elon [gave] me anything")',
         is_interesting=True,
     ),
     EmailCfg(
