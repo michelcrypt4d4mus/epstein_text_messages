@@ -2668,6 +2668,7 @@ OTHER_FILES_GIRLS = [
     EmailCfg(id='030609', duplicate_ids=['030495']),
     letter('EFTA00078198', 'Marsh Law Firm', [USANYS], "allegations of sexual abuse at Epstein's house", '2020-11-10'),
     DocCfg(id='EFTA00306033', author=SERGEY_BELYAKOV, description='Epstein Russian visa', show_full_panel=True),
+    DocCfg(id='EFTA00014648', description='former employee "understood that all the girls were school girls"', show_full_panel=True),
     DocCfg(
         id='EFTA00077200',
         author='French Ministry of Justice',
@@ -2781,7 +2782,6 @@ OTHER_FILES_GIRLS = [
     EmailCfg(id='EFTA01854125', description=f'Epstein says to {HENRY_JARECKI} "you torture, and mistreat each" girl'),
     EmailCfg(id='EFTA01953412', description=f'{EVA_DUBIN} suggests Epstein endow "The Epstein Floor For Women" at Mt. Sinai'),
     EmailCfg(id='EFTA01768670', description='"find girls for the agency"'),
-    EmailCfg(id='EFTA00014648', description='former employee "understood that all the girls were school girls"', show_full_panel=True),
     EmailCfg(id='EFTA01022353', description='George Models in Odessa is basically a porn site, "She said she was 14-15 yo"', is_interesting=True),
     EmailCfg(id='EFTA00950394', description='"how old will you go?"', is_interesting=True),
     EmailCfg(
