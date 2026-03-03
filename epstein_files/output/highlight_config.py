@@ -1513,6 +1513,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         label=JOURNALIST,
         style='bright_yellow',
         contacts=[
+            Contact('Adam Bly', "editor of SEED magazine"),
             Contact('Alain Forget', "author of \"How To Get Out Of This World ALIVE\"", match_partial=None),
             Contact('Alex Yablon', "New York Magazine fact checker (?)"),
             Contact(
@@ -2022,7 +2023,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(
                 name=ARIANE_DE_ROTHSCHILD,
                 info="heiress",
-                emailer_pattern=r"AdeR|(A\. (de )?)?Rothsh?ch?il[cd]|Ariane(?! Dwyer)",
+                emailer_pattern=r"AdeR|(A(\.|riane) (de )?)?Rothsh?ch?il[cd]|Ariane(?! Dwyer)",
             ),
             Contact('Edmond Rothschild', emailer_pattern=r"Edmond (de )?Rothsh?ch?il[cd]"),
             Contact(
