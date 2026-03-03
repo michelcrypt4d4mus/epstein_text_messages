@@ -2643,6 +2643,12 @@ OTHER_FILES_GIRLS = [
         recipients=[UNKNOWN_GIRL],
         truncate_to=1600,
     ),
+    EmailCfg(
+        id='EFTA02223525',
+        recipients=[ANNA_KASATKINA, BELLA_KLEIN, JANUSZ_BANASIAK],
+        recipient_uncertain='https://www.reddit.com/r/Epstein/comments/1qwbn5i/trafficker_julia_santos/',
+        truncate_to=800
+    ),
     EmailCfg(id='EFTA00897668', recipients=[UNKNOWN_GIRL], people=[JEAN_LUC_BRUNEL, JEFFREY_EPSTEIN, UNKNOWN_GIRL]),
     EmailCfg(id='EFTA00848644', recipients=[UNKNOWN_GIRL], is_interesting=True, description='"take a picture of your pussy"'),
     EmailCfg(id='EFTA00950368', description='"any [girl] friends for me?"', truncate_to=NO_TRUNCATE),
@@ -3085,6 +3091,13 @@ OTHER_FILES_SKYPE_LOG = [
     CommunicationCfg(id='EFTA01217787', recipients=[TYLER_SHEARS, 'Hanna Traff at Spotify'], is_interesting=True),
     CommunicationCfg(id='EFTA01217703', recipients=['actress Athena Zelcovich', JOSCHA_BACH, LAWRENCE_KRAUSS]),
     CommunicationCfg(id='EFTA01217736', recipients=['actress Athena Zelcovich', TYLER_SHEARS]),
+    CommunicationCfg(
+        id='EFTA01623342',
+        author=ANNA_KASATKINA,
+        author_uncertain='https://www.reddit.com/r/Epstein/comments/1qwbn5i/trafficker_julia_santos/',
+        description='recruiting russian girls',
+        is_interesting=True,
+    ),
 ]
 
 OTHER_FILES_TEXT_MSG = [

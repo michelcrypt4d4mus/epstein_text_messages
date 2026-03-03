@@ -754,7 +754,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         contacts=[
             Contact('Adriana Ross', 'named co-conspirator', match_partial=None),
             Contact('Alfredo Rodriguez', "Epstein's butler, stole Epstein's black book", match_partial=None),
-            Contact('Bella Klein', "Epstein's accountant", match_partial=None),
+            Contact(BELLA_KLEIN, "Epstein's accountant", match_partial=None),
             Contact('Bernard Kruger', "Epstein's doctor", match_partial=None),
             Contact(CECILIA_STEEN, f'Epstein assistant who moved to Dubai'),
             Contact(DAPHNE_WALLACE, "LSJE accountant", r"Da.hne Wallace", match_partial=None),
@@ -1029,6 +1029,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"MI 5",
             r"Milano?",
             r"Monaco",
+            r"Muenchen",
             r"Munich",
             r"NATO",
             r"(Nicholas )?Sarkozy",
@@ -2040,13 +2041,14 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         contacts=[
             Contact('Alisher Usmanov', 'Uzbeki oligarch with alleged ties to Putin, organized crime'),
             Contact('Alysia Riabenkova', 'Russian painter', r"Alesia|Alysia( Riabenkova)?|Riabenkova"),
+            Contact(ANNA_KASATKINA, 'Russian girl'),
+            Contact(ALEKSANDRA_KARPOVA, f"{CRYPTO_PR_LAB} co-founder", r"Aleksandra Karpova"),
+            Contact(ANASTASIYA_SIROOCHENKO, '', r"Anastasiya( Siro(chenko)?)?"),
             Contact(
                 ANYA_RASULOVA,
                 f'Uzbeki co-founder of {INSIGHTS_POD}, social media work for Epstein during 2016 US election',
                 link_to_bio=SUBSTACK_INSIGHTS_POD,
             ),
-            Contact(ALEKSANDRA_KARPOVA, f"{CRYPTO_PR_LAB} co-founder", r"Aleksandra Karpova"),
-            Contact(ANASTASIYA_SIROOCHENKO, '', r"Anastasiya( Siro(chenko)?)?"),
             Contact(DASHA_GRUPMAN, 'recruiter of girls for Epstein', r"Da(ry|sh)a Grupman"),
             Contact('Dasha Zhukova', "art collector, daughter of Alexander Zhukov"),
             Contact(
@@ -2146,6 +2148,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Dasha",
             r"(Dmitry )?(Kiselyov|Pozhidaeva|Medvedev)",
             r"Di?mitry( Akhanov)?",
+            r"Domodedovo",
             r"FSB",
             r"GRU",
             r"KGB",
@@ -2158,6 +2161,8 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Moscow",
             r"Muscovite",
             r"(Natalia )?Veselnitskaya",
+            r"Novosibirsk",
+            r"Omsk",
             r"Onexim",  # Prokhorov investment vehicle
             r"Revolut",
             r"Rakishev",
