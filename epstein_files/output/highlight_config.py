@@ -417,7 +417,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         patterns=[
             r'cocaine',
             r'(drug|mexican) (cartel|traffick(ers?|ing))',
-            r'criminals?( prosecution)?',
+            r'criminals?(?! defense)( prosecution)?',
             r'crime famil(ies|y)',
             r"(on )?drugs",
             r'Gambino',
@@ -2374,7 +2374,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         style='color(117)',
         category=TECH_BRO,
         patterns=[
-            r"Activision",
+            r"Activision( Blizzard)?",
             r"AG?I",
             r"Artificial (General )?Intelligence",
             r"Blizzard Entertainment",
