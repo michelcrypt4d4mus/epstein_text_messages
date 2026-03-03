@@ -271,6 +271,7 @@ BILL_GATES = 'Bill Gates'
 CHAMATH_PALIHAPITIYA = 'Chamath Palihapitiya'
 DONALD_TRUMP = 'Donald Trump'
 GEORGE_VRADENBURG = 'George Vradenburg'
+GLORIA_ALLRED = 'Gloria Allred'
 HENRY_HOLT = 'Henry Holt'  # Actually a company?
 IVANKA = 'Ivanka'
 JAMES_PATTERSON = 'James Patterson'

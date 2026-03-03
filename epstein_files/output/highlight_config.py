@@ -2545,7 +2545,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(BRAD_EDWARDS, ROTHSTEIN_ROSENFELDT_ADLER_ATTORNEY, r"Brad(ley)?( J(.?|ames))? Edwards", match_partial=None),
             Contact('David Boies', 'Boies, Schiller, & Flexner', r"(David )?Bo[il]es(,? Schiller( & Flexner)?)?"),
             Contact(DOUGLAS_WIGDOR, WIGDOR_ATTORNEY, r"Doug(las)? (H\.?)? Wigdor", match_partial=None),
-            Contact('Gloria Allred', "victim's lawyer on many well known sexual harassment cases"),
+            Contact(GLORIA_ALLRED, "victim's lawyer on many well known sexual harassment cases"),
             Contact('Grant J. Smith', ROTHSTEIN_ROSENFELDT_ADLER_ATTORNEY, match_partial=None),
             Contact(JEANNE_M_CHRISTENSEN, WIGDOR_ATTORNEY),
             Contact(JACK_SCAROLA, "Searcy Denney Scarola Barnhart & Shipley attorney"),
