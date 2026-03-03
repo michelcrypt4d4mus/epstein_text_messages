@@ -158,7 +158,7 @@ def table_cell(contents: RenderableType, props: CssProps = None, extra_class: st
     return div_class(cell_html, join_truthy(extra_class, 'column'), props, role='cell')
 
 
-def text_to_div(txt: Text, css_props: dict[str, str], class_name: str = BLACK_BG) -> str:
+def text_to_div(txt: Text, css_props: dict[str, str], class_name: str = f"{BLACK_BG} no_expand") -> str:
     return div_class(rich_to_html(txt), class_name, css_props)
 
 

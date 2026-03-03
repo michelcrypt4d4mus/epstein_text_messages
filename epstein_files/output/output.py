@@ -46,7 +46,7 @@ HTML_CHRONO_MOBILE_PATH = HTML_DIR.joinpath(f'{HTML_CHRONO_BASENAME}_mobile.html
 def print_curated_chronological(epstein_files: EpsteinFiles) -> list[Document]:
     """Print only interesting files of all types in chronological order."""
     should_print = lambda doc: doc.is_interesting if not args.invert_chrono else not doc.is_interesting
-    docs = [d for d in epstein_files.unique_documents if should_print(d)]
+    docs = [d for d in epstein_files.unique_documents if should_print(d)][:200]
     doc_printer = DocPrinter()
     doc_printer.print_documents(docs)
 
