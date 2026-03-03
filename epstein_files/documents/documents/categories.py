@@ -13,6 +13,7 @@ DEFAULT_CATEGORY_STYLE = 'wheat4'
 
 class Interesting(StrEnum):
     CRYPTO = auto()
+    DIARY = auto()
     GIRLS = auto()
     LETTER = auto()
     MONEY = auto()

@@ -2262,6 +2262,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact('Reuben Kobulnik', THIELS_VALAR),
             Contact(STEVEN_SINOFSKY, "a16z, ex-Microsoft, loves bitcoin", r"Steven Sinofsky?"),
             Contact('Talia Parnass', f"{PETER_THIEL}'s assistant"),
+            Contact(TED_LEONSIS, 'AOL executive, owner of Monumental Sports (Wizards, Capitals)'),
             Contact(VINCENZO_IOZZO, "CEO of the identity-security company SlashID", r"Vincenzo [IL]ozzo", match_partial='both'),
             Contact(
                 ZUBAIR_KHAN,
@@ -2465,6 +2466,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Stormy Daniels",
             r"strange women",
             r"vibrator",
+            VICTIM_DIARY,
             r"way better than supplying you ladies",
         ],
     ),

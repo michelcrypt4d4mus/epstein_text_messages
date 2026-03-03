@@ -279,6 +279,7 @@ PAUL_G_CASSELL = 'Paul G. Cassell'
 RUDY_GIULIANI = 'Rudy Giuliani'
 SERGEY_BELYAKOV = 'Sergey Belyakov'
 STEVE_WYNN = 'Steve Wynn'
+TED_LEONSIS = 'Ted Leonsis'
 TULSI_GABBARD = 'Tulsi Gabbard'
 VIRGINIA_GIUFFRE = 'Virginia Giuffre'
 

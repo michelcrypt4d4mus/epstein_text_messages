@@ -5,7 +5,8 @@ from itertools import groupby
 
 from epstein_files.documents.documents.categories import CONSTANT_CATEGORIES, Interesting, Neutral
 from epstein_files.documents.documents.config_builder import (WOLFF_EPSTEIN_ARTICLE_DRAFT, binant_redacted,
-     blaine_letter, fbi_defense_witness, fbi_report, letter, starr_letter, whistleblower_cfg, wolff_draft_cfg)
+     blaine_letter, fbi_defense_witness, fbi_report, letter, starr_letter, whistleblower_cfg, victim_diary,
+     wolff_draft_cfg)
 from epstein_files.documents.documents.doc_cfg import (DEFAULT_TRUNCATE_TO, GOLDMAN_INVESTMENT_MGMT,
      SHORT_TRUNCATE_TO, NO_TRUNCATE, CommunicationCfg, DocCfg, EmailCfg, TextCfg, phone_bill_cfg)
 from epstein_files.documents.doj_files.full_text import EFTA00009622_TEXT
@@ -2582,6 +2583,10 @@ OTHER_FILES_MISC = [
     DocCfg(id='EFTA00590685', attached_to_email_id='EFTA00830911'),
     # Dates
     DocCfg(id='EFTA02025218', date='2011-09-09'),
+]
+
+OTHER_FILES_DIARY = [
+    victim_diary('EFTA02731465', f"names {JES_STALEY}, {TED_LEONSIS}, tinkerbell"),
 ]
 
 OTHER_FILES_GIRLS = [

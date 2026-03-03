@@ -85,6 +85,7 @@ NON_METADATA_FIELDS = [
 
 # Categories where we want to include the category name at start of the description string
 CATEGORY_PREAMBLES = {
+    Interesting.DIARY: VICTIM_DIARY,
     Interesting.LETTER: 'letter',
     Interesting.REPUTATION: REPUTATION_MGMT,
     Interesting.TEXT_MSG: 'text message',

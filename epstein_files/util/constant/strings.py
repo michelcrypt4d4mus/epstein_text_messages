@@ -51,6 +51,7 @@ NA = 'n/a'
 REDACTED = '<REDACTED>'
 QUESTION_MARKS = '(???)'
 TEXT_MESSAGE = 'text message'
+VICTIM_DIARY = 'victim diary'
 
 # Document subclass names (this sucks)
 DOCUMENT_CLASS = 'Document'
