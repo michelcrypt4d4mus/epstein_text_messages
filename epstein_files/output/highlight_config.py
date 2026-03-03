@@ -2123,7 +2123,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             organization(
                 'Wirecard',
                 f"largest financial fraud in German history, connections to FSB and crypto, CFO Jan Marsalek is a fugitive in Russia",
-                r"Wirecard( Bank)?",
+                r"Wire\s?card( Bank)?",
                 link_to_bio='https://www.newyorker.com/magazine/2023/03/06/how-the-biggest-fraud-in-german-history-unravelled',
             ),
             organization('Women Empowerment', f"organization started by Epstein's assistant {SVETLANA_POZHIDAEVA}"),
