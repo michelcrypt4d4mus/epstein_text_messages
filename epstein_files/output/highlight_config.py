@@ -2317,7 +2317,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(MASAYOSHI_SON, 'CEO of Softbank, often referred to as "Masa"', r"Masa(yoshi)?(\sSon)?", match_partial='first'),
             Contact(MELANIE_PHILLIPS, f'girlfriend of {STEVEN_SINOFSKY}', match_partial=None),
             Contact('Nathan Myhrvold', f"former CTO of Microsoft, co-founder of Intellectual Ventures"),
-            Contact('Philippe Laffont', f"founder of Coatue"),
+            Contact('Philippe Laffont', f"Coatue Management founder"),
             Contact(PHILIP_ROSEDALE, 'Second Life founder'),
             Contact(PETER_THIEL, "Paypal mafia member, founder of Palantir, Facebook investor", r"(Peter )?Th(ie|ei)l"),
             Contact('Rajeev Misra', "formerly Softbank Vision Fund executive", r"[NR]ajeev"),
@@ -2771,13 +2771,18 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
     HighlightPatterns(
         label='legal',
         style='pale_turquoise4',
+        use_word_boundary=True,
         patterns=[
+            r"affidavit",
             r"autopsy",
             fr"^{CASE_ID_REGEX.pattern}.*",
             CASE_ID_REGEX.pattern,
+            r"deposition",
             r"EDGAR (Filing|Search)",  # SEC database is EDGAR
+            r"General Counsel",
             r"Notary Public",
             r"Page \d+ of \d+",
+            r"testimony",
         ]
     ),
     HighlightPatterns(
