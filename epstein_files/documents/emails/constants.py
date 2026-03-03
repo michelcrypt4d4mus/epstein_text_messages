@@ -292,7 +292,7 @@ TRIVERS_CCS: list[Name] = [
     "Mike Cagney",
     "Evan Smith",
     "Roger Edelen",
-    "Oliver Goodenough",
+    OLIVER_GOODENOUGH,
     "Paul Zak",
     "Peter J Richerson",
     "Clair Brown",

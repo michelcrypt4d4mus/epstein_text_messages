@@ -40,10 +40,9 @@ ADDITIONAL_CONTACTS = [
     Contact('middle.east.update@hotmail.com'),
     Contact('Nancy Cain'),
     Contact('Nancy Portland', match_partial=None),
-    Contact('Oliver Goodenough'),
+    Contact(OLIVER_GOODENOUGH),
     Contact('Peter Green', match_partial=None),
     Contact('Sarah Mapes'),
-    organization('Coursera', is_emailer=True),
 ]
 
 SUPPRESS_LOGS_FOR_AUTHORS = [
