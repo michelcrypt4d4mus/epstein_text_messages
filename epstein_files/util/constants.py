@@ -2442,6 +2442,7 @@ OTHER_FILES_FINANCE = [
     # DOJ
     DocCfg(id='EFTA01078403', author=ATORUS, description='investment adviser uniform application', date='2014-05-14'),
     DocCfg(id='EFTA02690885', author=ATORUS, description='pitch deck'),
+    DocCfg(id='EFTA00593276', author=EDMOND_DE_ROTHSCHILD, description='org chart', is_interesting=True),
 ]
 
 
@@ -2516,8 +2517,10 @@ OTHER_FILES_GIRLS = [
         description=f'{SVETLANA_POZHIDAEVA} forwarding her intimate conversations with {JOSHUA_FINK} to Epstein (to what end?)',
         is_interesting=True,
     ),
+    EmailCfg(id='EFTA01995523', author=SVETLANA_POZHIDAEVA, author_uncertain=f"{JOSHUA_FINK} + Sent from Blackberry"),
     EmailCfg(id='EFTA01877224', author=SVETLANA_POZHIDAEVA, author_uncertain=f"{JOSHUA_FINK} texts"),
     EmailCfg(id='EFTA00937507', author=SVETLANA_POZHIDAEVA, author_uncertain=f"{JOSHUA_FINK} texts"),
+    EmailCfg(id='EFTA02560884', recipients=[SVETLANA_POZHIDAEVA], recipient_uncertain=f"{JOSHUA_FINK} texts"),
     EmailCfg(
         id='EFTA01991293',
         author=SVETLANA_POZHIDAEVA,

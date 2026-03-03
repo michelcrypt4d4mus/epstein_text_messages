@@ -420,13 +420,14 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r'(drug|mexican) (cartel|traffick(ers?|ing))',
             r'criminals?(?! defense)( prosecution)?',
             r'crime famil(ies|y)',
-            r"(on )?drugs",
+            r"(on )?drug(gy|s)",
             r'Gambino',
             r'heroin',
             r'methamphetamines?',
             r"murder(e[dr]|ing)?",
             r"organized crime",
             r"(securities )?fraud(ulent)?",
+            r"xanax",
         ],
     ),
     HighlightedNames(
@@ -1731,7 +1732,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         contacts=[
             Contact(BOB_CROWE, "partner at Nelson Mullins", r"[BR]ob Crowe", match_partial=None),
             Contact('Joshua Cooper Ramo', "co-CEO of Henry Kissinger Associates"),
-            Contact(OLIVIER_COLOM, "Epstein's banker at Edmond de Rothschild (Suisse) SA Bank", r"Colom, Olivier?|Olivier Colom"),
+            Contact(OLIVIER_COLOM, f"Epstein's banker at {EDMOND_DE_ROTHSCHILD} (Suisse) SA Bank", r"Colom, Olivier?|Olivier Colom"),
             Contact('Paul Keating', "former prime minister of Australia", match_partial=None),
             Contact('Stanley Rosenberg', "former President of the Massachusetts Senate", match_partial=None)
         ],
@@ -2064,12 +2065,12 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 info="heiress",
                 emailer_pattern=r"AdeR|(A(\.|riane) (de )?)?Rothsh?ch?il[cd]|Ariane(?! Dwyer)",
             ),
-            Contact('Edmond Rothschild', emailer_pattern=r"Edmond (de )?Rothsh?ch?il[cd]"),
             Contact(
                 name=JOHNNY_EL_HACHEM,
                 info="Edmond de Rothschild Private Equity",
                 emailer_pattern=r"el hachem johnny|johnny el hachem",
-            )
+            ),
+            organization(EDMOND_DE_ROTHSCHILD, f"Swiss bank"),
         ],
         patterns=['AdR'],
     ),
