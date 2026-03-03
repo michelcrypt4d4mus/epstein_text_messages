@@ -2187,6 +2187,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         label='russian girl',
         style='color(161)',
         contacts=[
+            Contact('Aksana Samy', 'Russian girl'),
             Contact('Alena Davydenkova', 'Russian girl'),
             Contact('Alysia Riabenkova', 'Russian painter', r"Alesia|Alysia( Riabenkova)?|Riabenkova"),
             Contact(ANASTASIYA_SIROOCHENKO, '', r"Anastasiya( Siro(chenko)?)?"),

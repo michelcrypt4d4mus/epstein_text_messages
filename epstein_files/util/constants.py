@@ -2492,6 +2492,7 @@ OTHER_FILES_GIRLS = [
         author_uncertain='https://www.reddit.com/r/Epstein/comments/1qwbn5i/trafficker_julia_santos/',
         description='"might be naughty"',
     ),
+    EmailCfg(id='EFTA01805304', author=KIRA_DIKHTYAR, author_reason='Jmail', truncate_to=NO_TRUNCATE),
     EmailCfg(
         id='033178',
         author=MARIA_PRUSAKOVA,
@@ -2583,7 +2584,7 @@ OTHER_FILES_GIRLS = [
     EmailCfg(id='EFTA01768670', description='"find girls for the agency"'),
     EmailCfg(id='EFTA01022353', description='Odessa\'s George Models is basically a porn site + "she said she was 14-15 yo"', is_interesting=True),
     EmailCfg(id='EFTA00950394', description='"how old will you go?"', is_interesting=True),
-    EmailCfg(id='EFTA01767237', description='"is 24 too old for you?"'),
+    EmailCfg(id='EFTA01767237', description='"is 24 too old for you?"', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA01660651', description='list of Trump accusers', is_interesting=True),
     EmailCfg(id='EFTA02609062', description=f"{MASHA_DROKOVA} is assembling a team", is_interesting=True),
     EmailCfg(id='EFTA01145923', description=f"{JEAN_LUC_BRUNEL} modeling contract for {MC2_MODEL_MGMT}"),
