@@ -2115,6 +2115,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 UMAR_DZHABRAILOV,
                 f'oligarch who called {GHISLAINE_MAXWELL} his "soulmate", death by "suicide" 2026-03-02',
                 r"Umar D(j|zh)abrailov",
+                # https://jamestown.org/kadyrovs-chechen-network-in-moscow-2/
                 link_to_bio='https://nypost.com/2026/03/02/world-news/russian-mogul-who-called-ghislaine-maxwell-his-soulmate-found-dead/',
                 match_partial='both',
             ),

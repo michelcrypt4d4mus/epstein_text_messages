@@ -76,7 +76,7 @@ def test_organization():
 
 def test_pattern():
     assert _build_contact().pattern == EMAILER_PATTERN
-    assert Contact('Robert D Critton').pattern == r"Robert[-_.\s]*D\.?[-_.\s]*Critton?"
+    assert Contact('Robert D Critton').pattern == r"Robert[-_.\s]*(D\.?[-_.\s]*)?Critton?"
 
 
 def test_repr():

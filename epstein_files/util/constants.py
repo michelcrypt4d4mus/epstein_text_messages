@@ -319,13 +319,12 @@ EMAILS_CONFIG = [
     EmailCfg(id='026943', author=JEFFREY_EPSTEIN, recipients=[RICHARD_KAHN], date='2019-05-22 05:47:00'),
     EmailCfg(
         id='023208',
-        author=JEFFREY_EPSTEIN,
-        comment="Long discussion about leon black's finances",
-        description="very long email chain about Leon Black's finances and things like Gratitude America",
+        # author=JEFFREY_EPSTEIN,
+        # description="very long email chain about Leon Black's finances and things like Gratitude America",
         duplicate_ids=['023291'],
-        fwded_text_after='Date: Tue, Oct 27',
-        recipients=[BRAD_WECHSLER, MELANIE_SPINELLA],
-        truncate_to=NO_TRUNCATE,
+        # fwded_text_after='Date: Tue, Oct 27',
+        # recipients=[BRAD_WECHSLER, MELANIE_SPINELLA],
+        # truncate_to=NO_TRUNCATE,
     ),
     EmailCfg(
         id='032214',
@@ -2518,6 +2517,13 @@ OTHER_FILES_GIRLS = [
         is_interesting=True,
     ),
     EmailCfg(
+        id='EFTA01991293',
+        author=SVETLANA_POZHIDAEVA,
+        author_reason=f"convo about {JOSHUA_FINK} breakup",
+        description=f'did {ELON_MUSK} date {SVETLANA_POZHIDAEVA} after she blackmailed {JOSHUA_FINK}?! ("he asked 6 times if Elon [gave] me anything")',
+        is_interesting=True,
+    ),
+    EmailCfg(
         id='EFTA02010589',
         author=UNKNOWN_GIRL,
         date='2012-01-31 9:16 PM',
@@ -3290,7 +3296,7 @@ OTHER_FILES_TEXT_MSG = [
         show_full_panel=True
     ),
     CommunicationCfg(id='EFTA01611042', author=ED_BOYLE, recipients=[None, MARIA_PRUSAKOVA]),
-    CommunicationCfg(id='EFTA02731525', author=LEON_BLACK, author_uncertain=True),
+    CommunicationCfg(id='EFTA02731525', author=LEON_BLACK, author_uncertain=True, show_full_panel=True),
     CommunicationCfg(
         id='EFTA01612665',
         description='sender is "stressed about finding girls", Epstein gives advice on how to find them',
