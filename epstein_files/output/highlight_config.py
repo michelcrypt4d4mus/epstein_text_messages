@@ -1709,6 +1709,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Panama( Papers)?",
             r"Peru(vian)?",
             r"Salvadoran",
+            r"South American?",
             r"Venezuelan?",
         ],
     ),
@@ -1916,13 +1917,12 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact('pink@mc2mm.com', JEAN_LUC_MC2, r"^Pink$|pink@mc2mm\.com"),
             organization('ID Models', "Paolo Zampolli's modeling agency"),
             organization('Elite Models', 'well known modeling agency'),
-            organization('MC2 Model Management', f"{JEAN_LUC_BRUNEL}'s modeling agency"),
+            organization('MC2 Model Management', f"{JEAN_LUC_BRUNEL}'s modeling agency", r"MC2( Model Management)?"),
         ],
         patterns=[
             r"\w+@mc2mm.com",
+            r"Faena",
             r"George Models",
-            r"MC2",
-            r"(Nicole )?Junkerman",  # Also a venture fund manager now
             r"noah\s*models(.com)?",
             r"Tigrane?",
         ],
