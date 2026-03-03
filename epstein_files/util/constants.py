@@ -1375,6 +1375,8 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00852324', recipients=[SERGEY_BELYAKOV, JEFFREY_EPSTEIN, 'Elena Bolyakina', PETER_THIEL]),
     EmailCfg(id='EFTA00857165', recipients=['Seth Lloyd'], author_reason='quoted reply line'),
     EmailCfg(id='EFTA00749241', recipients=[SULTAN_BIN_SULAYEM], author_reason='widely reported', is_interesting=True),
+    EmailCfg(id='EFTA02407636', recipients=[UMAR_DZHABRAILOV], author_reason='addressed to "Umar"'),
+    EmailCfg(id='EFTA00582504', recipients=[UMAR_DZHABRAILOV], author_reason='quoted reply'),
     EmailCfg(id='EFTA02731721', recipients=[USANYS]),
     EmailCfg(id='EFTA02731582', recipients=[USANYS]),
     EmailCfg(id='EFTA02731512', recipients=[USANYS]),
@@ -1796,7 +1798,7 @@ OTHER_FILES_DEPOSITION = [
     DocCfg(id='013463', author='Scott Rothstein', description=f"from {JANE_DOE_V_EPSTEIN_TRUMP}", date='2010-03-23'),
     DocCfg(id='017488', author='Scott Rothstein', description=f"from {EPSTEIN_V_ROTHSTEIN_EDWARDS}", date='2012-06-22'),
     # DOJ
-    DocCfg(id='EFTA00615804', author=ALAN_DERSHOWITZ, description='pages 334-461'),
+    DocCfg(id='EFTA00615804', author=ALAN_DERSHOWITZ, date='2016-01-12', description='pages 334-461 (heavily redacted)'),
     DocCfg(
         id='EFTA00159483',
         author=LAWRANCE_VISOSKI,
