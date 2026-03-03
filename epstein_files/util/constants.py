@@ -934,7 +934,6 @@ EMAILS_CONFIG = [
     # DOJ files
     EmailCfg(id='EFTA00645449', author=ANASTASIYA_SIROOCHENKO, author_reason='Jmail'),
     EmailCfg(id='EFTA00040142', author=ATT_COURT_APPEARANCE_TEAM, recipients=[USANYS]),
-    EmailCfg(id='EFTA02229342', author=AUSTIN_HILL),
     EmailCfg(id='EFTA01040692', author=ALAN_DLUGASH, description='meeting about tax implications of ZCash'),
     EmailCfg(id='EFTA00039357', author=BUREAU_OF_PRISONS, recipients=['DOJ Inspector General']),
     EmailCfg(id='EFTA01947908', author=CHRISTINA_GALBRAITH, author_reason='"Christina" appears in EFTA01950559'),
@@ -1485,16 +1484,19 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00949376', description=f"Epstein paying {MC2_MODEL_MGMT}", truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA00630134', description=f'Epstein recommends Signal encrypted messenger to {ALLEGED_KARIM_WADE}', is_interesting=True),
     EmailCfg(id='EFTA00955694', description=f"Epstein thanks {ELON_MUSK} for the SpaceX tour that Musk has said never happened", is_interesting=True),
+    EmailCfg(id='EFTA02561277', description=f"{ELON_MUSK} get a massage", is_interesting=True),
     EmailCfg(id='EFTA01905320', description='"girls and i are going to see don musk at space x tomorrow"', is_interesting=True),
     EmailCfg(id='EFTA02565917', description='Hassan Mohammed Abdul Latif Jameel is a Saudi businessman and philanthropist'),
     EmailCfg(id='EFTA00927227', description=f"{IAN_OSBORNE} pitches his new venture fund {HEDOSOPHIA} to Epstein", is_interesting=True),
     EmailCfg(id='EFTA01767036', description=f'"Karim" is probably {ALLEGED_KARIM_WADE}'),
     EmailCfg(id='EFTA02513560', description=f"{JEAN_LUC_BRUNEL} doesn't want to speak on the phone", truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA02671523', description=f"Jones is former Google chief technology advocate / CEO of Epstein investment Wearality"),
+    EmailCfg(id='EFTA02464628', description=f"{KATHRYN_RUEMMLER} and Epstein on {JEAN_LUC_BRUNEL}'s immunity deal (for Epstein testimony?)", is_interesting=True),
     EmailCfg(id='EFTA01854384', description=f"{KARIM_WADE} asks if Epstein is free to meet the president (of Senegal?)", truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA00854166', description='"kazak contract will be ready for your review"', is_interesting=True, truncate_to=1100),
     EmailCfg(id='EFTA00080250', description=f"{LEON_BLACK} / Rothschild Group {DEUTSCHE_BANK} transactions", is_interesting=True),
     EmailCfg(id='EFTA02455633', description=f"{MASHA_DROKOVA} loves WeWork", truncate_to=NO_TRUNCATE),
+    EmailCfg(id='EFTA01958867', description=f'"Mr. T" is {PRINCE_ANDREW}, "Howard" is {HOWARD_LUTNICK}'),
     EmailCfg(id='EFTA00771388', description=f"{NAOMI_CAMPBELL} seems to have made some introductions to Russian oligarchs"),
     EmailCfg(id='EFTA00754450', description='"PA" is probably Prince Andrew', duplicate_ids=['EFTA02418244']),
     EmailCfg(id='EFTA01003346', description=f"{PETER_THIEL} tells Epstein to invest in his fund", is_interesting=True),
@@ -2284,7 +2286,13 @@ OTHER_FILES_MONEY = [
         description=f"explanations of all of Epstein's large payments prepared for DOJ",
         is_interesting=True,
     ),
-    DocCfg(id='EFTA01111057', author=MORTIMER_ZUCKERMAN, date='2014-07-10', description='Mortimer B. Zuckerman Management Trust'),
+    DocCfg(
+        id='EFTA01111057',
+        author=MORTIMER_ZUCKERMAN,
+        date='2014-07-10',
+        description='Mortimer B. Zuckerman Management Trust',
+        non_participants=['Marla Maples'],
+    ),
     DocCfg(id='EFTA01285411', description=f"bank statement for Epstein's {SOUTHERN_TRUST_COMPANY} showing $82 million balance"),
     DocCfg(id='EFTA00016884', description="Epstein's last will and testament", date='2014-11-18'),
     DocCfg(id='EFTA00089546', description=f"Epstein last will and testament codicil naming {JAMES_CAYNE} an executor", date='2007-09-20'),
@@ -2366,7 +2374,7 @@ OTHER_FILES_REPUTATION = [
     DocCfg(id='030573', description=f"Epstein's unflattering Google search results, maybe screenshot by {AL_SECKEL} or {OSBORNE_LLP}"),
     DocCfg(id='030875', description=f"Epstein's Wikipedia page", date='2014-02-08'),  # Date is based on tyler shears; seckel was 2010
     DocCfg(id='026583', description=f"Google search results for '{JEFFREY_EPSTEIN}' with analysis ({OSBORNE_LLP}?)"),
-    DocCfg(id='029350', description=f"Microsoft Bing search results for Epstein with sex offender at top, maybe from {TYLER_SHEARS}?"),
+    DocCfg(id='029350', description=f"Microsoft Bing search results for Epstein with sex offender at top", attached_to_email_id='EFTA00675542'),
     EmailCfg(id='022203', description=AL_SECKEL_BILL_FIGHT, truncate_to=500),
     EmailCfg(id='022219', description=AL_SECKEL_BILL_FIGHT, truncate_to=2404),
 
@@ -2869,6 +2877,13 @@ OTHER_FILES_CRYPTO = [
     # Bitmain
     EmailCfg(id='EFTA01004576'),
     # Blockstream
+    EmailCfg(id='EFTA02229342', author=AUSTIN_HILL),
+    EmailCfg(
+        id='EFTA02406818',
+        author=AUSTIN_HILL,
+        author_reason='unique email signature',
+        description=f"{AUSTIN_HILL} asks Epstein about how the Treasury Dept. will treat dollar backed stablecoins like Tether",
+    ),
     DocCfg(id='EFTA00797613', description='Alphabit crypto fund pitch deck', attached_to_email_id='EFTA00955063'),
     EmailCfg(
         id='EFTA00955063',
@@ -3154,6 +3169,8 @@ OTHER_FILES_CRYPTO = [
     # Vincenzo
     EmailCfg(id='EFTA02588723', description=f'discussion of crypto food stamps debit cards', is_interesting=True),
     EmailCfg(id='EFTA02588748', description=f'discussion of crypto food stamps debit cards', is_interesting=True, truncate_to=800),
+    EmailCfg(id='EFTA02584771', description=f"discussion of decentralized prediction markets (e.g. Polymarket)", is_interesting=True),
+    EmailCfg(id='EFTA00995269', description=f"Epstein suggests Monaco and Vatican City as good places for crypto"),
     # ZCash / Madars Virza
     DocCfg(id='EFTA00811130', author=PERKINS_COIE, description='tax opinion on ZCash tokens'),
     DocCfg(id='EFTA00603348', description=f"Electric Coin Company created the untraceable crypto ZCash funded by {LARRY_SUMMERS}'s DCG"),
@@ -3173,13 +3190,12 @@ OTHER_FILES_CRYPTO = [
         description='A Blockchain-Based Approach to Health Information Exchange Networks',
     ),
     EmailCfg(id='EFTA00629471', author=JOHN_BROCKMAN, truncate_to=3000),
-    EmailCfg(id='efta00797937', author='John Pfeffer', description="An (Institutional) Investor's Take on Cryptoassets", date='2017-12-24'),
+    EmailCfg(id='EFTA00797937', author='John Pfeffer', description="An (Institutional) Investor's Take on Cryptoassets", date='2017-12-24'),
     EmailCfg(id='EFTA01762201', description='"indoctrinating kids into an economy"', show_with_name=BOBBY_KOTICK),
     EmailCfg(id='EFTA02414991', description=f"Epstein signs up for World of Warcraft", truncate_to=350),
     EmailCfg(id='EFTA01388354', description=f"invitation to {DEUTSCHE_BANK} blockchain event with Mike Novogratz"),
     EmailCfg(id='EFTA01434500', description=f"everyone assumes Epstein's banker {PAUL_BARRETT} will want to know about the blockchain event"),
     EmailCfg(id='EFTA00993615', description=f"{MASHA_DROKOVA} explains the price of bitcoin can be manipulated if Epstein makes public comments"),
-    EmailCfg(id='EFTA02584771', description=f"discussion of decentralized prediction maarkets like Polymarket"),
     EmailCfg(id='EFTA01784901', description=f"{JEREMY_RUBIN} has cashed multiple checks directly from Epstein", is_interesting=True),
     EmailCfg(
         id='EFTA01007544',
@@ -3406,6 +3422,9 @@ UNINTERESTING_EMAIL_IDS = [
     # Maria Prusakova
     'EFTA01772533',
     'EFTA01740489',
+    # Philip Rosedale
+    'EFTA01903448',
+    'EFTA01899565',
     # Renata Bolotova
     'EFTA01903041',
     'EFTA01969322',
@@ -3446,6 +3465,7 @@ UNINTERESTING_EMAIL_IDS = [
     # Vincenzo Iozzo
     '033280',
     'EFTA02624738',
+    'EFTA01751416',  # Visible in EFTA02584771
     # Wolff
     '021120',
     # Unknown
@@ -3486,6 +3506,7 @@ NOT_CHRONOLOGICAL_VIEW_IDS = [
     'EFTA01979689',
     'EFTA00878255',
     'EFTA00766770',
+    'EFTA00384774',
     '030609',
     '022247',
     '030095',
@@ -3502,6 +3523,7 @@ NOT_CHRONOLOGICAL_VIEW_IDS = [
     'EFTA00840747',
     'EFTA02475571',
     '030807',
+    '032842',
     'EFTA00434111',
     'EFTA00432352',
     '026583',

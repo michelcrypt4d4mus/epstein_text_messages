@@ -120,6 +120,7 @@ SIGNATURE_PATTERNS = [
 ]
 
 DEVICE_PATTERNS = [
+    r"apologies for any typos",
     r"email( app)?",
     r"and string",
     r"AT&T",
