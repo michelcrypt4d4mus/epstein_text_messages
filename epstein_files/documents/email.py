@@ -129,6 +129,7 @@ OCR_REPAIRS: dict[str | re.Pattern, str] = {
     'BlackBerry by AT &T': 'BlackBerry by AT&T',
     'BlackBerry from T- Mobile': 'BlackBerry from T-Mobile',
     'Envoy& de': 'Envoyé de',
+    'Envoye avec BlackBerry° d': 'Envoye avec BlackBerry® d',
     'from Samsung Mob.le': 'from Samsung Mobile',
     'gJeremyRubin': '@JeremyRubin',
     'Mail for i Phone': 'Mail for iPhone',
