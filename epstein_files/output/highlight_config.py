@@ -2132,7 +2132,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Bel[ao]rus(sian)?",
             r"Chernobyl",
             r"Crimea",
-            r"(Dmitry )?(Kiselyov|Pozhidaeva|Medvedev)",
+            r"(Dmitry )?(Kiselyov|Medvedev)",
             r"Di?mitry( Akhanov)?",
             r"Domodedovo",
             r"FSB",

@@ -2684,7 +2684,7 @@ OTHER_FILES_GIRLS = [
         id='EFTA00659941',
         author=SVETLANA_POZHIDAEVA,
         author_reason='https://tommycarstensen.com/epstein/findings.html#victim-diary-names-multiple-men',
-        description=f'{SVETLANA_POZHIDAEVA} forwarding her intimate conversations with {JOSHUA_FINK} to Epstein',
+        description=f'{SVETLANA_POZHIDAEVA} forwarding her intimate conversations with {JOSHUA_FINK} to Epstein (to what end?)',
         is_interesting=True,
     ),
     EmailCfg(

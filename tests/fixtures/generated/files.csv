@@ -5231,6 +5231,7 @@ EFTA00129085,government,FBI,True,2015-11-21 00:00:00,,,FBI wiretap report linkin
 EFTA00129096,government,,True,2025-04-03 19:13:35,FBI;aisse@fbi.sgov.gov,,background check on Tim Draper and Masha Drokova
 EFTA00151544,email,,True,2019-07-30 15:30:26,,,
 EFTA00158752,deposition,"<REDACTED> v. Estate of Jeffrey Epstein, Ghislaine Maxwell",,2019-11-12 00:00:00,,,"deposition of <REDACTED> v. Estate of Jeffrey Epstein, Ghislaine Maxwell Ghislaine Maxwell ""was relentless"""
+EFTA00159321,government,FBI,True,2019-11-26 00:00:00,,,"FBI interview about Paolo Zampolli, claims that Epstein introduced Melania to Donald Trump"
 EFTA00159483,deposition,Lawrance Visoski,True,2009-10-15 00:00:00,,,deposition of Lawrance Visoski
 EFTA00161836,legal,,,2023-01-10 00:00:00,,,legal filing in US Virgin Islands v. JPMorgan Chase
 EFTA00164939,government,DOJ,True,2025-09-01 00:00:00,,,DOJ Powerpoint summary of Child Sex Trafficking Task Force Epstein investigation
@@ -5408,7 +5409,7 @@ EFTA00656691,email,Lesley Groff,,2011-11-22 12:56:31,Jeffrey Epstein,Sent from m
 EFTA00657903,email,Sergey Belyakov,True,2016-02-11 21:52:20,Jeffrey Epstein,,
 EFTA00658457,crypto,Brock Pierce,True,2015-02-13 20:31:33,Jeffrey Epstein,,Brock Pierce says they will not invest in Bitfury
 EFTA00659818,email,Renata Bolotova,True,2013-12-05 22:28:51,Jeffrey Epstein,,Renata Bolotova (???)
-EFTA00659941,girls,Svetlana Pozhidaeva,True,2012-05-08 17:52:38,Jeffrey Epstein,Sent via BlackBerry from T-Mobile,"Svetlana Pozhidaeva ""Josh is toxic"""
+EFTA00659941,girls,Svetlana Pozhidaeva,True,2012-05-08 17:52:38,Jeffrey Epstein,Sent via BlackBerry from T-Mobile,Svetlana Pozhidaeva Svetlana Pozhidaeva forwarding her intimate conversations with Joshua Fink to Epstein (to what end?)
 EFTA00661205,email,Ekaterina Gusarova,,2011-11-10 14:08:59,Jeffrey Epstein,,
 EFTA00661348,email,Steven Sinofsky,True,2014-12-01 22:39:02,Jeffrey Epstein,Sent using Acompli email app,
 EFTA00662373,email,Masha Drokova,True,2017-11-06 23:14:00,Jeffrey Epstein,,"Masha Drokova ""She is interesting. Great looks"""
@@ -6133,6 +6134,7 @@ EFTA01862308,email,,True,2011-06-30 06:21:14,Jeffrey Epstein,,
 EFTA01862563,email,Jeffrey Epstein,,2011-06-11 12:24:09,John Brockman,,
 EFTA01866387,email,Jeffrey Epstein,,2011-06-06 11:54:00,John Brockman,,
 EFTA01875607,girls,unknown girl,True,2012-08-15 17:15:28,Jeffrey Epstein,,unknown girl
+EFTA01877084,girls,Jean Luc Brunel,True,2012-06-07 18:51:08,Jeffrey Epstein,,"Epstein and Jean Luc Brunel ""managing"" Joshua Fink's relationship with Svetlana Pozhidaeva"
 EFTA01877854,email,Jeffrey Epstein,True,2012-07-10 10:34:22,David Stern,Sent from my iPad,
 EFTA01882985,email,Jeffrey Epstein,True,2012-05-15 11:03:43,Melanie Phillips,,"Epstein: ""yuri money is russian gangster money, Usmanov"" (""Steve"" is likely Steven Sinofsky)"
 EFTA01884703,email,Jeffrey Epstein,True,2012-05-15 12:44:37,None,,
@@ -6717,7 +6719,7 @@ EFTA02731500,,,,,,,
 EFTA02731501,email,USANYS,,2024-03-12 12:50:30,Douglas Wigdor;Jeanne M. Christensen;Meredith Firetog,,USANYS (???)
 EFTA02731510,,,,,,,
 EFTA02731511,email,Jeanne M. Christensen,,2024-03-07 19:10:20,USANYS,,
-EFTA02731512,email,Jeanne M. Christensen,,2024-03-07 18:54:05,USANYS,,
+EFTA02731512,email,Jeanne M. Christensen,,2024-03-07 18:54:05,USANYS,,specific allegations against Ghislaine Maxwell
 EFTA02731514,email,Jeanne M. Christensen,,2024-03-07 18:54:26,USANYS,,
 EFTA02731515,email,Jeanne M. Christensen,,2024-03-07 21:20:52,USANYS,,
 EFTA02731517,email,Jeanne M. Christensen,,2024-03-11 16:34:00,Douglas Wigdor;Meredith Firetog,,
@@ -6729,7 +6731,7 @@ EFTA02731528,email,USANYS,,2021-05-06 09:39:15,USANYS,,USANYS (???)
 EFTA02731529,,,,2017-03-02 00:00:00,,,
 EFTA02731552,government,FBI,True,2021-05-26 16:12:00,USANYS,,FBI
 EFTA02731556,,,,2013-04-02 00:00:00,,,
-EFTA02731576,text_msg,,True,2010-10-15 06:00:00,,,text message to Leon Black allegations against Leon Black in contemporaneous text
+EFTA02731576,text_msg,,True,2010-10-15 06:00:00,,,text message to Leon Black making contemporaneous accusations
 EFTA02731577,email,USANYS,,2024-10-16 00:00:00,USANYS,,
 EFTA02731578,email,USANYS,True,2021-05-28 10:00:00,,,USANYS
 EFTA02731582,email,FBI,,2023-07-03 17:24:39,USANYS,,
@@ -6756,7 +6758,7 @@ EFTA02731644,email,USANYS,,2021-11-16 16:36:54,Jeanne M. Christensen,,USANYS
 EFTA02731646,email,USANYS,,2021-08-24 10:50:11,Jeanne M. Christensen,,USANYS (???)
 EFTA02731648,email,,False,2023-07-24 16:07:25,,,
 EFTA02731651,email,USANYS,,2023-07-29 13:38:58,Jeanne M. Christensen,,USANYS (???)
-EFTA02731655,email,USANYS,,2021-08-17 16:24:50,USANYS,,USANYS (???)
+EFTA02731655,email,USANYS,True,2021-08-17 16:24:50,USANYS,,USANYS (???) specific allegations against Leon Black
 EFTA02731659,email,USANYS,,2023-06-01 21:41:21,USANYS,,USANYS (???)
 EFTA02731660,email,USANYS,,2023-07-22 11:48:27,USANYS,,USANYS (???)
 EFTA02731662,email,,False,2023-07-04 20:12:21,,,
@@ -6786,7 +6788,7 @@ EFTA02731733,email,USANYS,,2021-05-17 17:29:00,USANYS,,USANYS (???)
 EFTA02731734,email,,False,2024-08-01 16:51:00,,,
 EFTA02731735,email,,False,2024-03-04 05:04:00,USANYS,,
 EFTA02731736,email,USANYS,,2023-06-12 13:53:00,USANYS,,USANYS (???)
-EFTA02731737,email,USANYS,,2023-06-30 16:05:00,FBI,,USANYS (???)
+EFTA02731737,email,USANYS,True,2023-06-30 16:05:00,FBI,,USANYS (???)
 EFTA02731754,email,USANYS,,2024-03-06 23:24:00,USANYS,,USANYS (???)
 EFTA02731755,email,USANYS,,2024-03-20 17:36:10,Douglas Wigdor;Jeanne M. Christensen,,USANYS
 EFTA02731757,email,USANYS,,2023-02-28 10:44:00,USANYS,,USANYS (???)
