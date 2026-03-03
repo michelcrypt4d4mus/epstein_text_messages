@@ -2523,6 +2523,12 @@ OTHER_FILES_GIRLS = [
         author_uncertain=f"{JOSHUA_FINK} + Sent from Blackberry",
         description=f'"pictures of {REDACTED}" may be "Lana" ({SVETLANA_POZHIDAEVA}) or "Dana" according to Jmail',
     ),
+    EmailCfg(
+        id='EFTA01870453',
+        author=SVETLANA_POZHIDAEVA,
+        author_uncertain=f"{JOSHUA_FINK} texts",
+        description=f'{JOSHUA_FINK} and {SVETLANA_POZHIDAEVA} discuss an abortion ("You have known you are preg for a week")',
+    ),
     EmailCfg(id='EFTA01877224', author=SVETLANA_POZHIDAEVA, author_uncertain=f"{JOSHUA_FINK} texts"),
     EmailCfg(id='EFTA00937507', author=SVETLANA_POZHIDAEVA, author_uncertain=f"{JOSHUA_FINK} texts"),
     EmailCfg(id='EFTA02560884', recipients=[SVETLANA_POZHIDAEVA], recipient_uncertain=f"{JOSHUA_FINK} texts"),
