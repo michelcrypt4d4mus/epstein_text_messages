@@ -2020,12 +2020,12 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"GOP",
             r"((Chair|Jay|Joseph) )?Clayton",  # SEC chair, now SDNY
             r"((Bill|William) )?Hinman",
+            r"(Henry )?Kissinger",
             r"Jeff(rey)? Sessions",
             r"(John (R.? )?)?Bolton",
             r"Kasich",
             r"Keith Schiller",
             r"Kelly( Anne?)? Conway|Kellyanne",
-            r"Kissinger",
             r"Kobach",
             r"Kolfage",
             r"(Larry )?Kudlow",
@@ -2094,6 +2094,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact('Igor Zinoviev', f"Epstein's bodyguard, MMA fighter"),
             Contact('Len Blavatnik', 'oligarch', link_to_bio='https://en.wikipedia.org/wiki/Len_Blavatnik'),
             Contact('Mikhail Prokhorov', 'Russian-Israeli oligarch'),
+            Contact('Mikheil Saakashvili', 'president of Georgia', r"Mikh[ae]il Saakashvili"),
             Contact('Nicholas Kovarsky', f"friend of {SERGEY_BELYAKOV}", r"Nic(k|holas) Kovarsky"),
             Contact('Oleg Boyko', 'oligarch'),
             Contact(
@@ -2120,6 +2121,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 link_to_bio='https://nypost.com/2026/03/02/world-news/russian-mogul-who-called-ghislaine-maxwell-his-soulmate-found-dead/',
                 match_partial='both',
             ),
+            Contact('Viktor Yanukovych', 'pro-Putin former president of Ukraine', r"Vi[ck]tor Yanukovych"),
             Contact('Vitaly Churkin', 'Russian ambassador to the United Nations'),
             Contact('Vladislav Doronin', f'olgarch, dated {NAOMI_CAMPBELL}'),
             Contact(
@@ -2445,7 +2447,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"\bDJ?T\b",
             r"Donald J. Tramp",
             r"(Donald\s+(J\.\s+)?)?Trump(ism| (Org(anization)?|Properties)( LLC)?)?",
-            r"Don(ald| Jr)(?! (B|Norman|Rubin))",
+            r"Don(ald| Jr)(?! (B|Norman|Rumsfeld|Rubin))",
             r"(Hope )?Hicks",
             r"Ivank?a",
             r"Jared", r"(?<!Tony )Kushner",
@@ -2586,8 +2588,10 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(STEVE_BANNON, "Trump campaign manager, memecoin grifter, Epstein bestie", r"steve banno[nr]?")
         ],
         patterns=[
+            r"Arnold Schwarzenegger",
             r"(American )?Dharma",
             r"Biosphere",
+            r"Rumsfeld",
         ],
     ),
     HighlightedNames(

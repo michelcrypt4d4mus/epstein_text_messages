@@ -2933,7 +2933,7 @@ OTHER_FILES_LETTER = [
         description=f"about algorithmic trading",
     ),
     CommunicationCfg(id='026134', recipients=['George'], description=f'about opportunities to buy banks in Ukraine'),
-    blaine_letter(id='019086', date='2015-05-27', suffix='naming various Putin puppet regimes'),
+    blaine_letter(id='019086', date='2015-05-27', suffix='naming various Putin puppet regimes', show_full_panel=True),
     blaine_letter(id='019474', date='2015-05-29'),
     blaine_letter(id='019476', date='2015-06-01'),
 

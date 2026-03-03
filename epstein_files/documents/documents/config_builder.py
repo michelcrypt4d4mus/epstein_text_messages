@@ -105,7 +105,7 @@ def binant_redacted(id: str, truncate_to: int = 700) -> EmailCfg:
     return EmailCfg(id=id, truncate_to=truncate_to, description=f"redacted discussion of art advisor {ETIENNE_BINANT}")
 
 
-def blaine_letter(id: str, date: str, suffix: str = '') -> CommunicationCfg:
+def blaine_letter(id: str, date: str, suffix: str = '', **kwargs) -> CommunicationCfg:
     return letter(
         id,
         DAVID_BLAINE,
@@ -114,6 +114,7 @@ def blaine_letter(id: str, date: str, suffix: str = '') -> CommunicationCfg:
         is_interesting=True,
         recipients=['Immigration'],
         show_with_name=SVETLANA_POZHIDAEVA,
+        **kwargs
     )
 
 
