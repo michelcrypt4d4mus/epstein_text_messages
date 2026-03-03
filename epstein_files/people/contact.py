@@ -111,7 +111,7 @@ class Contact:
             pattern = self.emailer_pattern
         else:
             if self._middle_initial:
-                pattern = fr"{self._names[0]} {self._middle_initial}\.? {self._names[-1]}"
+                pattern = fr"{self._names[0]} ({self._middle_initial}\.? )?{self._names[-1]}"
             else:
                 pattern = self.name
 
