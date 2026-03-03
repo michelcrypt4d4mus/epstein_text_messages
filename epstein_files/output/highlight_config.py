@@ -2386,6 +2386,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             ),
             Contact('Bruce Moskowitz', "'Trump's health guy' according to Epstein", match_partial=None),
             Contact('Marla Maples', 'ex-wife of Donald Trump', match_partial='both'),
+            Contact('Melania', "Melania... Trump?"),
             Contact('Michael Caputo', 'former Putin and Gazprom PR guy, Trump appointee, acolyte of Roger Stone'),
             Contact(NICHOLAS_RIBIS, f"Hilton CEO, former president of {TRUMP_ORG}", r"Nic(holas|k)[\s._]Ribi?s?|Ribbis"),
             Contact(
