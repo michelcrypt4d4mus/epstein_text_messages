@@ -146,6 +146,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 KARIM_WADE,
                 'son of the president of Senegal, facing arrest for corruption',
                 r"Afri [xz]p?|Karim Wade",
+                link_to_bio='https://www.bbc.com/news/world-africa-32020574',
                 match_partial='first',
             ),
             Contact('Miles Alexander', "Operations Manager Michaelhouse Balgowan KwaZulu-Natal South Africa", match_partial=None),
