@@ -2517,7 +2517,12 @@ OTHER_FILES_GIRLS = [
         description=f'{SVETLANA_POZHIDAEVA} forwarding her intimate conversations with {JOSHUA_FINK} to Epstein (to what end?)',
         is_interesting=True,
     ),
-    EmailCfg(id='EFTA01995523', author=SVETLANA_POZHIDAEVA, author_uncertain=f"{JOSHUA_FINK} + Sent from Blackberry"),
+    EmailCfg(
+        id='EFTA01995523',
+        author=SVETLANA_POZHIDAEVA,
+        author_uncertain=f"{JOSHUA_FINK} + Sent from Blackberry",
+        description=f'"pictures of {REDACTED}" may be "Lana" ({SVETLANA_POZHIDAEVA}) or "Dana" according to Jmail',
+    ),
     EmailCfg(id='EFTA01877224', author=SVETLANA_POZHIDAEVA, author_uncertain=f"{JOSHUA_FINK} texts"),
     EmailCfg(id='EFTA00937507', author=SVETLANA_POZHIDAEVA, author_uncertain=f"{JOSHUA_FINK} texts"),
     EmailCfg(id='EFTA02560884', recipients=[SVETLANA_POZHIDAEVA], recipient_uncertain=f"{JOSHUA_FINK} texts"),
