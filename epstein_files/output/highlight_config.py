@@ -773,7 +773,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact('Jennaine Ruan', f'IT Manager at {SOUTHERN_TRUST_COMPANY}'),
             Contact(JOJO_FONTANILLA, "Filipino housekeeper", r"Jo.. Fontanilla"),
             Contact(LAWRANCE_VISOSKI, "Epstein's pilot", r"La(rry|wrance) Visoski?|Lvjet"),
-            Contact(LESLEY_GROFF, "Epstein's assistant", r"Lesley (K(\.|atherine)? )?Gro(ff)?"),
+            Contact(LESLEY_GROFF, "Epstein's assistant", r"Lesl(ey|ie) (K(\.|atherine)? )?Gro(ff)?"),
             Contact('Linda Pinto', "interior design at Alberto Pinto Cabinet"),
             Contact(LYN_FONTANILLA, "Filipino housekeeper", r"L.nn? Fontanilla"),
             Contact(MERWIN_DELA_CRUZ, "housekeeper", r"Merwin"),
@@ -1517,18 +1517,12 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"zionists?",
         ],
     ),
-    HighlightedNames(
-        label='Japan',
-        style='color(168)',
-        patterns=[
-            r"BOJ",
-            r"(Bank of )?Japan(ese)?",
-            r"jpy?(?! Morgan)",
-            r"SG",
-            r"Singapore",
-            r"Toky[op]",
-        ],
-    ),
+    # HighlightedNames(
+    #     label='Japan',
+    #     style='color(168)',
+    #     patterns=[
+    #     ],
+    # ),
     HighlightedNames(
         label=JOURNALIST,
         style='bright_yellow',
@@ -1906,6 +1900,12 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(MARIANA_IDZKOWSKA, emailer_pattern=r"Mariana [Il]d[źi]kowska?"),
             Contact('Michael Sanka', f"{JEAN_LUC_MC2} {QUESTION_MARKS}"),
             Contact(NAOMI_CAMPBELL, 'supermodel', match_partial=None),
+            Contact(
+                'Paolo Zampolli',
+                'ID Models, friend of Trump, money for passports scandal in Dominica, may have introduced Melania to Donald',
+                r"(Paolo )?Z[ae]mpoll?i",
+                link_to_bio='https://dominicanewsonline.com/news/homepage/news/the-zampolli-matter-more-fuel-for-where-de-money-gone-campaign/',
+            ),
             Contact('Ramsey Elkholy', f"scouted girls for Epstein in NYC, member of Monotronic", match_partial='both'),
             Contact('Vladimir Yudashkin', "director of the 1 Mother Agency"),
             Contact('Yfke Sturm', 'model from Holland', match_partial='both'),
@@ -2252,6 +2252,13 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Tai(pei|wan)",
             r"Thai(land)?",
             r"Vietnam(ese)?",
+            # Japan
+            r"BOJ",
+            r"(Bank of )?Japan(ese)?",
+            r"jpy?(?! Morgan)",
+            r"SG",
+            r"Singapore",
+            r"Toky[op]",
         ],
     ),
     HighlightedNames(
@@ -2400,12 +2407,6 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 'Paul Manafort',
                 'Trump campaign manager, partner of Roger Stone, worked for Russians in Ukraine, convicted of financial fraud',
                 link_to_bio='https://en.wikipedia.org/wiki/Trials_of_Paul_Manafort',
-            ),
-            Contact(
-                'Paolo Zampolli',
-                'modeling agent, friend of Trump, money for passports scandal in Dominica, may have introduced Melania to Donald',
-                r"(Paolo )?Z[ae]mpoll?i",
-                link_to_bio='https://dominicanewsonline.com/news/homepage/news/the-zampolli-matter-more-fuel-for-where-de-money-gone-campaign/',
             ),
             Contact('Roger Stone', "infamous political trickster with a tattoo of Nixon's face on his back", match_partial=None),
         ],

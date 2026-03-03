@@ -2155,6 +2155,7 @@ OTHER_FILES_FINANCE = [
     DocCfg(id='EFTA02690885', author=ATORUS, description='pitch deck'),
 ]
 
+
 OTHER_FILES_GOVERNMENT = [
     DocCfg(
         id='024117',
@@ -2207,6 +2208,7 @@ OTHER_FILES_GOVERNMENT = [
     DocCfg(id='EFTA01249591', author=FBI, description=f"allegations against Henry Jarecki"),
     DocCfg(id='EFTA00222943', author=FBI, description=f"agent believes computers were removed from Epstein's residence"),
     DocCfg(id='EFTA00020506', author=FBI, description='"chauffeur told Epstein \'I have something on you, remember what I buried!\'"'),
+    DocCfg(id='EFTA00159321', author=FBI, description='interview about Paolo Zampolli, claims that Epstein introduced Melania to Donald Trump'),
     DocCfg(id='EFTA00084614', author=PALM_BEACH_POLICE, description='incident report detailing the investigation into Jeffrey Epstein'),
     DocCfg(id='EFTA00007893', author=PALM_BEACH_POLICE, description=f"receipts, notes, bank statements of {GHISLAINE_MAXWELL}"),
     DocCfg(id='EFTA00005569', author=PALM_BEACH_POLICE, replace_text_with='photo lineup featuring Epstein', date='2005-03-17'),
@@ -2232,6 +2234,7 @@ OTHER_FILES_GOVERNMENT = [
     EmailCfg(id='EFTA02731552', author=FBI, recipients=[USANYS], date='2021-05-26 16:12:00', recipient_uncertain='true'),
     EmailCfg(id='EFTA00039971', author=FBI, recipients=[USANYS], recipient_uncertain='true'),
 ]
+
 
 # Epstein money. This category makes is_interesting = True
 OTHER_FILES_MONEY = [
