@@ -7,7 +7,7 @@ from rich.highlighter import RegexHighlighter
 from rich.text import Text
 
 from epstein_files.output.highlighted_names import HighlightedNames
-from epstein_files.output.highlight_config import HIGHLIGHT_GROUPS
+from epstein_files.output.highlight_config import HIGHLIGHT_GROUPS, HIGHLIGHTED_NAMES
 from epstein_files.util.constant.strings import JEE, REGEX_STYLE_PREFIX
 from epstein_files.util.env import args
 from epstein_files.util.helpers.data_helpers import sort_dict
@@ -49,11 +49,8 @@ class EpsteinHighlighter(RegexHighlighter):
 
 
 class NonEpsteinHighlighter(EpsteinHighlighter):
-    """Highlights everything except Epstein's name and financial terms."""
-    highlights: list[re.Pattern] = [
-        hg.regex for hg in HIGHLIGHT_GROUPS
-        if not (isinstance(hg, HighlightedNames) and hg.label in [JEE, 'financial'])
-    ]
+    """Doesn't highlight Epstein's name, highlights only `HighlightedNames` patterns (no `HighlightPatterns`)."""
+    highlights: list[re.Pattern] = [hn.regex for hn in HIGHLIGHTED_NAMES if hn.label not in [JEE]]
 
 
 def temp_highlighter(pattern: str) -> EpsteinHighlighter:

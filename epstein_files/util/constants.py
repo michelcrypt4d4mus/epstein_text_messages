@@ -501,6 +501,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='027063', recipients=[ANTHONY_BARRETT]),
     EmailCfg(id='030764', recipients=[ARIANE_DE_ROTHSCHILD], author_reason='reply'),
     EmailCfg(id='026431', recipients=[ARIANE_DE_ROTHSCHILD], author_reason='reply'),
+    EmailCfg(id='EFTA00825164', recipients=[ARIANE_DE_ROTHSCHILD], author_reason='reply'),
     EmailCfg(id='032876', recipients=[CECILIA_STEEN], author_reason='unredacted in 032267'),
     EmailCfg(id='026466', recipients=[DIANE_ZIMAN], author_reason='Quoted reply'),
     EmailCfg(id='031607', recipients=[EDWARD_JAY_EPSTEIN], is_fwded_article=True, author_reason='quoted reply has edwardjayepstein.com'),
@@ -1027,6 +1028,9 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00428084', author=LESLEY_GROFF, author_uncertain=True, recipients=[JEFFREY_EPSTEIN], recipient_uncertain='meeting'),
     EmailCfg(id='EFTA00334935', author=LESLEY_GROFF, author_uncertain=True),
     EmailCfg(id='EFTA02246686', author=LESLEY_GROFF, author_uncertain=True),
+    EmailCfg(id='EFTA02220616', author=LESLEY_GROFF, author_uncertain=True),
+    EmailCfg(id='EFTA02254640', author=LESLEY_GROFF, author_uncertain=True),
+    EmailCfg(id='EFTA00552880', author=LESLEY_GROFF, author_uncertain=True),
     EmailCfg(id='EFTA00494858', author=LESLEY_GROFF, author_uncertain=True),
     EmailCfg(id='EFTA00357521', author=LESLEY_GROFF, author_uncertain=True),
     EmailCfg(id='EFTA02100999', author=LESLEY_GROFF, author_uncertain=True),
@@ -1231,7 +1235,9 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00039813', author=USANYS),
     EmailCfg(id='EFTA00039815', author=USANYS),
     EmailCfg(id='EFTA00039825', author=USANYS),
+    EmailCfg(id='EFTA02731783', author=USANYS, date='2022-01-21 17:28:00'),
     EmailCfg(id='EFTA02731578', author=USANYS, date='2021-05-28 10:00:00'),
+    EmailCfg(id='EFTA02730468', author=USANYS, recipients=[USANYS], date='2019-07-11T08:25:00', date_uncertain='just wrong'),
     EmailCfg(id='EFTA00039983', author=USANYS, author_uncertain=True),
     EmailCfg(id='EFTA00039886', author=USANYS, author_uncertain=True),
     EmailCfg(id='EFTA02731651', author=USANYS, author_uncertain=True),
@@ -1337,6 +1343,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA02227488', recipients=[LESLEY_GROFF]),
     EmailCfg(id='EFTA02234448', recipients=[LESLEY_GROFF]),
     EmailCfg(id='EFTA00482121', recipients=[LESLEY_GROFF]),
+    EmailCfg(id='EFTA00468081', recipients=[LESLEY_GROFF], recipient_uncertain=True),
     EmailCfg(id='EFTA00368951', recipients=[LESLEY_GROFF], author_reason='can be seen in EFTA00368958'),
     EmailCfg(id='EFTA02175423', recipients=[LESLEY_GROFF], truncate_to=650),
     EmailCfg(id='EFTA00313867', recipients=[LESLEY_GROFF], truncate_to=NO_TRUNCATE),
@@ -1394,10 +1401,9 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA02062130', is_interesting=True, description=f'{NILI_PRIELL_BARAK} installing cameras at Epstein\'s house'),
     EmailCfg(id='EFTA02730481', date='2023-07-07T11:01:00', date_uncertain='actually reply timestamp'),
     EmailCfg(id='EFTA02731577', date='2024-10-16T00:00:00', date_uncertain='actually reply timestamp'),
-    EmailCfg(id='EFTA02730468', author=USANYS, recipients=[USANYS], date='2019-07-11T08:25:00', date_uncertain='just wrong'),
     # Generated basd on OtherFile.extract_timestamp()
-    EmailCfg(id='EFTA02731783', author=USANYS, date='2022-01-21 17:28:00'),
     EmailCfg(id='EFTA00901970', description=f"{AL_SECKEL}'s response to Epstein's forged email", is_interesting=True, truncate_to=3000),
+    EmailCfg(id='EFTA02367311', description='Alice Rothschild', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA00992595', description=f"{ARIANE_DE_ROTHSCHILD} mentions her visit to Mongolia"),
     EmailCfg(
         id='EFTA02021096',
@@ -2223,7 +2229,7 @@ OTHER_FILES_MONEY = [
     DocCfg(id='EFTA01273102', description=f"payment from Epstein to {RENATA_BOLOTOVA}'s father's account at Sberbank"),
     DocCfg(id='EFTA00238499', description='wire transfer to Signature Bank account'),
     DocCfg(id='EFTA00000476', replace_text_with='photo of JEFFREY EPSTEIN CASH DISBURSEMENTS for the month 2006-09', date='2006-09-01'),
-    DocCfg(id='EFTA01086463', description=f"{MORTIMER_ZUCKERMAN}'s art collection invetory and valuation report"),
+    DocCfg(id='EFTA01086463', description=f"{MORTIMER_ZUCKERMAN}'s art collection invetory and valuation report", is_valid_for_name_scan=False),
     # Emails
     EmailCfg(id='EFTA00037187', is_interesting=True),
     EmailCfg(id='EFTA00371120', description=f"Epstein appears to invest in {ATORUS}"),
@@ -2594,15 +2600,10 @@ OTHER_FILES_GIRLS = [
         description='"now im finding pussy for you" / "no one can beat your pussy network"',
     ),
     EmailCfg(
-        id='EFTA02434682',
-        description=f"Epstein and {JEAN_LUC_BRUNEL} courting a finance bro with women",
-        is_interesting=True,
-        truncate_to=1500,
-    ),
-    EmailCfg(
-        id='EFTA00927927',
-        description=f"reads like {RENATA_BOLOTOVA} talking about recruiting girls for Epstein",
-        is_interesting=True,
+        id='EFTA02339926',
+        author=JULIA_SANTOS,
+        author_uncertain='https://www.reddit.com/r/Epstein/comments/1qwbn5i/trafficker_julia_santos/',
+        description='"might be naughty"',
     ),
     EmailCfg(
         id='033178',
@@ -2611,6 +2612,8 @@ OTHER_FILES_GIRLS = [
         description='Masha Prusso asks about Zubair Khan, discusses recruiting girls for Epstein',
         is_interesting=True,
     ),
+    EmailCfg(id='EFTA00671662', author='Miranda', author_reason='quoted signature', description="yet another girl finder"),
+    EmailCfg(id='EFTA02441035', author=STEVEN_VICTOR_MD, description="complaining about free treatment for Epstein's girls"),
     EmailCfg(
         id='EFTA02010589',
         author=UNKNOWN_GIRL,
@@ -2619,6 +2622,12 @@ OTHER_FILES_GIRLS = [
         is_interesting=True,
         recipients=[JEFFREY_EPSTEIN],
     ),
+    EmailCfg(id='EFTA02431535', author=UNKNOWN_GIRL),
+    EmailCfg(id='EFTA01875607', author=UNKNOWN_GIRL),
+    EmailCfg(id='EFTA01990168', author=UNKNOWN_GIRL, is_interesting=True),
+    EmailCfg(id='EFTA02027844', author=UNKNOWN_GIRL, description='permission to "fuck someone with a condom"', truncate_to=NO_TRUNCATE),
+    EmailCfg(id='EFTA02449477', author=UNKNOWN_GIRL, description='argument about finding girls for Epstein', truncate_to=NO_TRUNCATE),
+    EmailCfg(id='EFTA01782788', author=UNKNOWN_GIRL, description='"I need 21-24, wiling to travel and work hard"', truncate_to=NO_TRUNCATE),
     EmailCfg(
         id='EFTA01026268',
         author_reason='juliador89®mail.ru is unredacted',
@@ -2626,14 +2635,6 @@ OTHER_FILES_GIRLS = [
         recipients=[YULIA_DOROKHINA],
         truncate_to=3100,
     ),
-    EmailCfg(id='EFTA00671662', author='Miranda', author_reason='quoted signature', description="yet another girl finder"),
-    EmailCfg(id='EFTA02441035', author=STEVEN_VICTOR_MD, description="complaining about free treatment for Epstein's girls"),
-    EmailCfg(id='EFTA02431535', author=UNKNOWN_GIRL),
-    EmailCfg(id='EFTA01875607', author=UNKNOWN_GIRL),
-    EmailCfg(id='EFTA01990168', author=UNKNOWN_GIRL, is_interesting=True),
-    EmailCfg(id='EFTA02027844', author=UNKNOWN_GIRL, description='permission to "fuck someone with a condom"', truncate_to=NO_TRUNCATE),
-    EmailCfg(id='EFTA02449477', author=UNKNOWN_GIRL, description='argument about finding girls for Epstein', truncate_to=NO_TRUNCATE),
-    EmailCfg(id='EFTA01782788', author=UNKNOWN_GIRL, description='"I need 21-24, wiling to travel and work hard"', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA00738485', recipients=[STEVEN_VICTOR_MD], truncate_to=640),
     EmailCfg(
         id='EFTA00888467',
@@ -2641,6 +2642,12 @@ OTHER_FILES_GIRLS = [
         is_interesting=True,
         recipients=[UNKNOWN_GIRL],
         truncate_to=1600,
+    ),
+    EmailCfg(
+        id='EFTA02223525',
+        recipients=[ANNA_KASATKINA, BELLA_KLEIN, JANUSZ_BANASIAK],
+        recipient_uncertain='https://www.reddit.com/r/Epstein/comments/1qwbn5i/trafficker_julia_santos/',
+        truncate_to=800
     ),
     EmailCfg(id='EFTA00897668', recipients=[UNKNOWN_GIRL], people=[JEAN_LUC_BRUNEL, JEFFREY_EPSTEIN, UNKNOWN_GIRL]),
     EmailCfg(id='EFTA00848644', recipients=[UNKNOWN_GIRL], is_interesting=True, description='"take a picture of your pussy"'),
@@ -2656,11 +2663,33 @@ OTHER_FILES_GIRLS = [
     EmailCfg(id='EFTA01145923', description="modeling contract"),
     EmailCfg(id='EFTA02557291', description='possibly recruiting girls'),
     EmailCfg(id='EFTA01811230', description=f'"Renat" is probably {RENATA_BOLOTOVA}'),
-    EmailCfg(id='EFTA00766770'),
+    EmailCfg(id='EFTA00751119', description='"Valdson to teach girls how to serve"'),
+    EmailCfg(
+        id='EFTA02434682',
+        description=f"Epstein and {JEAN_LUC_BRUNEL} courting a finance bro with women",
+        is_interesting=True,
+        truncate_to=1500,
+    ),
+    EmailCfg(
+        id='EFTA00927927',
+        description=f"reads like {RENATA_BOLOTOVA} talking about recruiting girls for Epstein",
+        is_interesting=True,
+    ),
     EmailCfg(id='EFTA00743526', truncate_to=NO_TRUNCATE),
+    EmailCfg(id='EFTA02664956', truncate_to=NO_TRUNCATE),
+    EmailCfg(id='EFTA00819508', truncate_to=NO_TRUNCATE, comment=JULIA_SANTOS),
+    EmailCfg(id='EFTA00460312', truncate_to=NO_TRUNCATE, comment=JULIA_SANTOS),
+    EmailCfg(id='EFTA02344845', comment=JULIA_SANTOS),
+    EmailCfg(id='EFTA02491007', comment=JULIA_SANTOS),
+    EmailCfg(id='EFTA00633284', comment=JULIA_SANTOS),
+    EmailCfg(id='EFTA00664521', comment=JULIA_SANTOS),
+    EmailCfg(id='EFTA00997666', comment=JULIA_SANTOS),
+    EmailCfg(id='EFTA00964428', comment=JULIA_SANTOS + ' Valdson'),
+    EmailCfg(id='EFTA02398135', comment=JULIA_SANTOS + ' "Sochi"'),
     EmailCfg(id='EFTA00878255', comment=BORIS_NIKOLIC),
     EmailCfg(id='EFTA02551185', comment=BORIS_NIKOLIC),
     EmailCfg(id='EFTA02538269', comment=BORIS_NIKOLIC, duplicate_ids=['EFTA01866636']),
+    EmailCfg(id='EFTA00766770'),
 ]
 
 OTHER_FILES_PHONE_BILL = [
@@ -3062,6 +3091,13 @@ OTHER_FILES_SKYPE_LOG = [
     CommunicationCfg(id='EFTA01217787', recipients=[TYLER_SHEARS, 'Hanna Traff at Spotify'], is_interesting=True),
     CommunicationCfg(id='EFTA01217703', recipients=['actress Athena Zelcovich', JOSCHA_BACH, LAWRENCE_KRAUSS]),
     CommunicationCfg(id='EFTA01217736', recipients=['actress Athena Zelcovich', TYLER_SHEARS]),
+    CommunicationCfg(
+        id='EFTA01623342',
+        author=ANNA_KASATKINA,
+        author_uncertain='https://www.reddit.com/r/Epstein/comments/1qwbn5i/trafficker_julia_santos/',
+        description='recruiting russian girls',
+        is_interesting=True,
+    ),
 ]
 
 OTHER_FILES_TEXT_MSG = [
@@ -3259,6 +3295,8 @@ UNINTERESTING_EMAIL_IDS = [
     # TODO: These have UNKNOWN recipient so they currently get printed but we should configure it so they don't
     'EFTA00039894',
     'EFTA00039878',
+    # Valdson
+    'EFTA02303690',
     # Vincenzo Iozzo
     '033280',
     'EFTA02624738',

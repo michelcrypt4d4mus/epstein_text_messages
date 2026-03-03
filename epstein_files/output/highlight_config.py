@@ -274,8 +274,9 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             ),
             Contact(
                 NICOLE_JUNKERMANN,
-                f"ex-model, NJF Capital/JunkermannGroup, investor in Revolut, online poker, China",
+                f"German countess / ex-model, NJF Capital/JunkermannGroup, investor in Revolut, gambling, China",
                 r"(Nicole )?Junke(nn|rm)ann?",
+                link_to_bio='https://www.yahoo.com/news/articles/german-countess-advised-nhs-called-130000074.html',
             ),
             Contact('Nikolajs Smirnovs', f"{NICOLE_JUNKERMANN}'s NJF Capital / JunkermannGroup", r"Nikolajs (NJF|Smirnovs)"),
             Contact(GORDON_GETTY, "heir to oil tycoon J. Paul Getty"),
@@ -753,7 +754,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         contacts=[
             Contact('Adriana Ross', 'named co-conspirator', match_partial=None),
             Contact('Alfredo Rodriguez', "Epstein's butler, stole Epstein's black book", match_partial=None),
-            Contact('Bella Klein', "Epstein's accountant", match_partial=None),
+            Contact(BELLA_KLEIN, "Epstein's accountant", match_partial=None),
             Contact('Bernard Kruger', "Epstein's doctor", match_partial=None),
             Contact(CECILIA_STEEN, f'Epstein assistant who moved to Dubai'),
             Contact(DAPHNE_WALLACE, "LSJE accountant", r"Da.hne Wallace", match_partial=None),
@@ -779,6 +780,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact('Steve Griffis', 'AKA "Steve from downstairs", building employee', r"Steve (Griffis|\(from downstairs)"),
             Contact(STORY_COWLES, "Epstein's male assistant"),
             Contact('Una Pascal', f"{SOUTHERN_TRUST_COMPANY} accountant", match_partial=None),
+            Contact('Valdson Vieira Cotrin', f"Paris driver, annual trip to Brasil", r"(Cotrin )?Valdson( Contrin)?", match_partial='both'),
         ],
     ),
     HighlightedNames(
@@ -1027,6 +1029,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"MI 5",
             r"Milano?",
             r"Monaco",
+            r"Muenchen",
             r"Munich",
             r"NATO",
             r"(Nicholas )?Sarkozy",
@@ -1043,6 +1046,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Riga",
             r"Rotterdam",
             r"San Marino",
+            r"Schengen( (Area|Visa))?",
             r"Scotland",
             r"(Sebastian )?Kurz",
             r"Slov(ak|en)ian?",
@@ -1210,9 +1214,10 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         style='tan',
         contacts=[
             Contact(
-                name=ANDREW_FARKAS,
-                info="heir to Alexander's department store fortune, Island Capital Group",
-                emailer_pattern=r"Andrew (L\.? )?Farkas|Farkas, Andrew( L\.?)?",
+                ANDREW_FARKAS,
+                "heir to Alexander's department store fortune who has claimed he barely knew Epstein",
+                r"Andrew (L\.? )?Farkas|Farkas, Andrew( L\.?)?",
+                link_to_bio='https://www.nytimes.com/2026/02/09/nyregion/farkas-epstein-lawsuit-ties.html',
             ),
             Contact(DANGENE_AND_JENNIE_ENTERPRISE, "founders of the members-only CORE club", match_partial=None),
             Contact(
@@ -1461,7 +1466,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             organization('Bank Leumi', 'Israeli bank that helped Americans avoid taxes', r"(Bank )?Leumi"),
             organization(
                 CARBYNE,
-                f"Israeli co. FKA Reporty invested in by Epstein, {EHUD_BARAK}, and {NICOLE_JUNKERMANN}",
+                f'Israeli co. FKA "Reporty" invested in by Epstein, {EHUD_BARAK}, and {NICOLE_JUNKERMANN}',
                 r"Carbyne|Reporty",
                 link_to_bio='https://www.forbes.com/sites/thomasbrewster/2026/02/10/epstein-police-surveillance-investments-with-ehud-barak/',
             ),
@@ -1509,6 +1514,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         label=JOURNALIST,
         style='bright_yellow',
         contacts=[
+            Contact('Adam Bly', "editor of SEED magazine"),
             Contact('Alain Forget', "author of \"How To Get Out Of This World ALIVE\"", match_partial=None),
             Contact('Alex Yablon', "New York Magazine fact checker (?)"),
             Contact(
@@ -2018,7 +2024,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(
                 name=ARIANE_DE_ROTHSCHILD,
                 info="heiress",
-                emailer_pattern=r"AdeR|(A\. (de )?)?Rothsh?ch?il[cd]|Ariane(?! Dwyer)",
+                emailer_pattern=r"AdeR|(A(\.|riane) (de )?)?Rothsh?ch?il[cd]|Ariane(?! Dwyer)",
             ),
             Contact('Edmond Rothschild', emailer_pattern=r"Edmond (de )?Rothsh?ch?il[cd]"),
             Contact(
@@ -2034,15 +2040,11 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         style='red bold',
         contacts=[
             Contact('Alisher Usmanov', 'Uzbeki oligarch with alleged ties to Putin, organized crime'),
-            Contact('Alysia Riabenkova', 'Russian painter', r"Alesia|Alysia( Riabenkova)?|Riabenkova"),
             Contact(
                 ANYA_RASULOVA,
                 f'Uzbeki co-founder of {INSIGHTS_POD}, social media work for Epstein during 2016 US election',
                 link_to_bio=SUBSTACK_INSIGHTS_POD,
             ),
-            Contact(ALEKSANDRA_KARPOVA, f"{CRYPTO_PR_LAB} co-founder", r"Aleksandra Karpova"),
-            Contact(ANASTASIYA_SIROOCHENKO, '', r"Anastasiya( Siro(chenko)?)?"),
-            Contact(DASHA_GRUPMAN, 'recruiter of girls for Epstein', r"Da(ry|sh)a Grupman"),
             Contact('Dasha Zhukova', "art collector, daughter of Alexander Zhukov"),
             Contact(
                 'Dmitry Rybolovlev',
@@ -2051,38 +2053,14 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 link_to_bio='https://en.wikipedia.org/wiki/Dmitry_Rybolovlev',
             ),
             Contact('Igor Zinoviev', f"Epstein's bodyguard, MMA fighter"),
-            Contact(JULIA_SANTOS, "possibly a Russian in Paris that was recruiting girls from Ukraine for Epstein", match_partial=None),
-            Contact(
-                KARYNA_SHULIAK,
-                f"girlfriend to whom Epstein tried to leave $50 million and the island, alleged sham marriage to {JENNIFER_KALIN}",
-                r"Karyna Shuliak?",
-            ),
-            Contact('Kira Dikhtyar', emailer_pattern=r"Kira (D|Kira)", link_to_bio='https://x.com/FlippersUpNow/status/2020490996287443071'),
             Contact('Len Blavatnik', 'oligarch', link_to_bio='https://en.wikipedia.org/wiki/Len_Blavatnik'),
-            Contact(
-                MARIA_PRUSAKOVA,
-                f"AKA Masha Prusso, former Olympic snowboarder, {CRYPTO_PR_LAB} co-founder, \"found ladies\" for Epstein",
-                r"Ma(sha|riy?a) (Prusa?(kova|so))",
-                link_to_bio='https://www.reddit.com/r/Epstein/comments/1qvsnqs/a_detailed_report_on_masha_prusso_aka_maria/',
-            ),
-            Contact(
-                MASHA_DROKOVA,
-                'AKA "Masha Bucher", silicon valley VC (Day One Ventures), publicist for QWave, former Putin Youth member, star of "Putin\'s Kiss"',
-                r"(Marii?y?a|Masha) (Bucher|Drokova)",
-                link_to_bio='https://www.forbes.com/sites/iainmartin/2026/02/04/how-jeffrey-epstein-helped-his-publicist-become-a-big-time-venture-capitalist/',
-            ),
+            Contact('Mikhail Prokhorov', 'Russian-Israeli oligarch'),
             Contact('Nicholas Kovarsky', f"friend of {SERGEY_BELYAKOV}", r"Nic(k|holas) Kovarsky"),
             Contact('Oleg Boyko', 'oligarch'),
             Contact(
                 'Oleg Deripaska',
                 'oligarch with underage sex scandal history',
                 link_to_bio='https://www.themoscowtimes.com/2025/06/19/investigative-report-alleges-links-between-billionaire-deripaska-and-prostitution-ring-involving-minors-a89503',
-            ),
-            Contact(OLGA_PONOMAR_BECKER),
-            Contact(
-                RENATA_BOLOTOVA,
-                "former model, fund manager at New York State Insurance Fund, Рената Болотова",
-                r"Renata Bolotova|Rena B|Renata Bo\w+|renbolotova",
             ),
             Contact('Ruben Vardanyan', 'Armenian oligarch, former minister of breakawy province of Artsakh'),
             Contact('Semion Mogilevich', 'infamous Russian mafia boss'),
@@ -2095,21 +2073,14 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 link_to_bio='https://dossier.center/jeffreyepsteinrusconnect-en/',
             ),
             Contact('Sergey Lavrov', 'foreign minister under Putin'),
-            Contact(
-                SVETLANA_POZHIDAEVA,
-                f"AKA 'Sophia Platt', Epstein's Russian assistant recommended for visa by Sergei Belyakov (FSB) & {DAVID_BLAINE}",
-                r"Sophia Platt|((Svet)?Lana )?Pozhidaeva|\b(Lana|Svet)\b",
-                link_to_bio='https://dossier.center/jeffreyepsteinrusconnect-en/',
-                match_partial='first',
-            ),
             Contact('Vitaly Churkin', 'Russian ambassador to the United Nations'),
-            Contact(YULIA_DOROKHINA),
             Contact(
                 YURI_MILNER,
                 f'Russian-Israeli investor whom Epstein says is managing "Russian gangster money"',
                 link_to_bio='https://www.nytimes.com/2017/11/05/world/yuri-milner-facebook-twitter-russia.html',
                 match_partial='both',
             ),
+            Contact('Yury Molodtsov', f"assistant to {MASHA_DROKOVA} {QUESTION_MARKS}"),
             organization('Alfa Bank', 'Russian bank often used by FSB', r"Alfa( Bank)?"),
             organization('Apoletto', f"VC firm associated with {YURI_MILNER}"),
             organization('Day One Ventures', f"silicon valley venture fund run by {MASHA_DROKOVA}"),
@@ -2132,9 +2103,9 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Bel[ao]rus(sian)?",
             r"Chernobyl",
             r"Crimea",
-            r"Dasha",
             r"(Dmitry )?(Kiselyov|Pozhidaeva|Medvedev)",
             r"Di?mitry( Akhanov)?",
+            r"Domodedovo",
             r"FSB",
             r"GRU",
             r"KGB",
@@ -2147,22 +2118,76 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Moscow",
             r"Muscovite",
             r"(Natalia )?Veselnitskaya",
+            r"Novosibirsk",
+            r"Omsk",
             r"Onexim",  # Prokhorov investment vehicle
-            r"Prokhorov",
+            r"Revolut",
             r"Rakishev",
             r"Rosneft",
             r"RT",
             r"Rusnano( USA)?(,? Inc\.?)?",
             r"Russ?ian?( (mafia|gangster))?",
             r"Serbian?",
-            r"St\.? Petersburg",
+            r"Sochi",
+            r"S(ain)?t\.? Petersburg",
             r"Soviet( Union)?",
             r"USSR",
             r"Vlad(imir)?(?! Yudash)",
             r"(Vladimir )?Putin",
             r"Xitrans",
-            r"Yury Molodtsov",
         ],
+    ),
+    HighlightedNames(
+        label='russian girl',
+        style='color(161)',
+        contacts=[
+            Contact('Alysia Riabenkova', 'Russian painter', r"Alesia|Alysia( Riabenkova)?|Riabenkova"),
+            Contact(ANASTASIYA_SIROOCHENKO, '', r"Anastasiya( Siro(chenko)?)?"),
+            Contact(ANNA_KASATKINA, 'Russian girl'),
+            Contact(ALEKSANDRA_KARPOVA, f"{CRYPTO_PR_LAB} co-founder", r"Aleksandra Karpova"),
+            Contact(DASHA_GRUPMAN, 'recruiter of girls for Epstein', r"Da(ry|sh)a Grupman"),
+            Contact(
+                JULIA_SANTOS,  # TODO: Jmail says her email is julia.santos@hbs.edu
+                "recruiter of girls from Ukraine for Epstein, possibly Harvard Business School student",
+                match_partial=None,
+            ),
+            Contact(
+                KARYNA_SHULIAK,
+                f"girlfriend to whom Epstein tried to leave $50 million and the island, alleged sham marriage to {JENNIFER_KALIN}",
+                r"Karyna Shuliak?",
+            ),
+            Contact('Kira Dikhtyar', emailer_pattern=r"Kira (D|Kira)", link_to_bio='https://x.com/FlippersUpNow/status/2020490996287443071'),
+            Contact('Krystyna Gwiazda', 'Russian girl'),
+            Contact(
+                MARIA_PRUSAKOVA,
+                f"AKA Masha Prusso, former Olympic snowboarder, {CRYPTO_PR_LAB} co-founder, \"found ladies\" for Epstein",
+                r"Ma(sha|riy?a) (Prusa?(kova|so))",
+                link_to_bio='https://www.reddit.com/r/Epstein/comments/1qvsnqs/a_detailed_report_on_masha_prusso_aka_maria/',
+            ),
+            Contact(
+                MASHA_DROKOVA,
+                'AKA "Masha Bucher", silicon valley VC (Day One Ventures), publicist for QWave, former Putin Youth member, star of "Putin\'s Kiss"',
+                r"(Marii?y?a|Masha) (Bucher|Drokova)",
+                link_to_bio='https://www.forbes.com/sites/iainmartin/2026/02/04/how-jeffrey-epstein-helped-his-publicist-become-a-big-time-venture-capitalist/',
+            ),
+            Contact(OLGA_PONOMAR_BECKER, 'Russian girl'),
+            Contact(
+                RENATA_BOLOTOVA,
+                "former model, fund manager at New York State Insurance Fund, Рената Болотова",
+                r"Renata Bolotova|Rena B|Renata Bo\w+|renbolotova",
+            ),
+            Contact(
+                SVETLANA_POZHIDAEVA,
+                f"AKA 'Sophia Platt', Epstein's Russian assistant recommended for visa by Sergei Belyakov (FSB) & {DAVID_BLAINE}",
+                r"Sophia Platt|((Svet)?Lana )?Pozhidaeva|\b(Lana|Svet)\b",
+                link_to_bio='https://dossier.center/jeffreyepsteinrusconnect-en/',
+                match_partial='first',
+            ),
+            Contact(YULIA_DOROKHINA, 'Russian girl'),
+        ],
+        patterns=[
+            r"Dasha",
+        ]
     ),
     HighlightedNames(
         label='SE Asia',
@@ -2430,6 +2455,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Katie Johnson",
             r"(Midget )?strippers?",
             r"Minor Victim",
+            r"model(ing|s)",
             r"orgasm(ic|s)?",
             r"pa?edophile",
             r"pussy",
@@ -2744,6 +2770,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Please use this email for.*general Media Lab.*",  # Joi Ito
             r"-Austin\nAustin Hill - B..dder.*(\n.*B92ED3E3)?",  # Austin Hill
             r"^(Please note my new email address?:?.*|Follow me on twitter @[Il]hsummers|www.larrysummers.com)$", # larry summers
+            r"^W dniu wt.*",  # Russian cyrillic
         ],
     ),
     HighlightPatterns(
