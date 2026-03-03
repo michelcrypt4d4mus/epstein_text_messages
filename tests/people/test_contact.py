@@ -1,5 +1,5 @@
 from epstein_files.people.contact import Contact, acronym, organization, epstein_co, epstein_trust
-from epstein_files.util.constant.names import INTERNATIONAL_PEACE_INSTITUTE, JEAN_LUC_BRUNEL, JEFFREY_EPSTEIN, SULTAN_BIN_SULAYEM
+from epstein_files.people.names import INTERNATIONAL_PEACE_INSTITUTE, JEAN_LUC_BRUNEL, JEFFREY_EPSTEIN, SULTAN_BIN_SULAYEM
 
 NAME = 'Nasir Jones'
 EMAILER_PATTERN = r"Nasir[-_.\s]*Jones?"

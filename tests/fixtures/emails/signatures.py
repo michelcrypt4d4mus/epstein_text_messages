@@ -1,4 +1,4 @@
-from epstein_files.util.constant.names import *
+from epstein_files.people.names import *
 
 DEVICE_SIGNATURE_TO_AUTHORS = {
     'Co-authored with iPhone auto-correct': [
@@ -490,12 +490,14 @@ SIGNATURE_SUBSTITUTION_COUNTS = {
     JEANNE_M_CHRISTENSEN: 37,
     JEFFREY_EPSTEIN: 3935,
     JESSICA_CADWELL: 57,
+    JES_STALEY: 3,
     KEN_JENNE: 1,
     LARRY_SUMMERS: 235,
     LAWRENCE_KRAUSS: 78,
     LEON_BLACK: 4,
     LISA_NEW: 68,
     MARTIN_WEINBERG: 17,
+    MICHAEL_FOWLER: 4,
     'Michael Miller': 6,
     NICHOLAS_RIBIS: 2,
     PAUL_BARRETT: 10,

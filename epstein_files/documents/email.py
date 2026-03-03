@@ -31,7 +31,7 @@ from epstein_files.output.layout_elements.file_display import FileDisplay, Justi
 from epstein_files.output.rich import DEFAULT_TABLE_KWARGS, build_table, highlighter, join_texts, styled_key_value
 from epstein_files.util.constant.strings import APPEARS_IN, ARCHIVE_LINK_COLOR, REDACTED, TIMESTAMP_DIM
 from epstein_files.util.constant.urls import URL_SIGNIFIERS
-from epstein_files.util.constant.names import sort_names
+from epstein_files.people.names import sort_names
 from epstein_files.util.constants import CONFIGS_BY_ID, DEFAULT_TRUNCATE_TO, NO_TRUNCATE, SHORT_TRUNCATE_TO
 from epstein_files.util.env import args, site_config
 from epstein_files.util.helpers.data_helpers import (AMERICAN_TIME_REGEX, TIMEZONE_INFO, flatten,

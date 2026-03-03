@@ -1,6 +1,6 @@
 from rich.text import Text
 
-from epstein_files.util.constant.names import *
+from epstein_files.people.names import *
 from epstein_files.util.constant.strings import PALM_BEACH_CODE_ENFORCEMENT, PALM_BEACH_WATER_COMMITTEE, UN_GENERAL_ASSEMBLY
 from epstein_files.util.constant.urls import SUBSTACK_INSIGHTS_LINK
 

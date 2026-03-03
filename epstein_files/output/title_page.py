@@ -17,7 +17,7 @@ from epstein_files.output.highlight_config import HIGHLIGHTED_NAMES
 from epstein_files.output.rich import *
 from epstein_files.output.site.sites import SECTION_ANCHORS
 from epstein_files.output.site.site_config import MOBILE_WARNING
-from epstein_files.util.constant.names import UNKNOWN
+from epstein_files.people.names import UNKNOWN
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constant.urls import *
 from epstein_files.util.constants import HEADER_ABBREVIATIONS

@@ -19,7 +19,7 @@ from epstein_files.output.highlighted_names import HighlightedNames
 from epstein_files.output.html.builder import table_to_html, write_templated_html
 from epstein_files.people.person import Person
 from epstein_files.util.constant.html import CUSTOM_HTML_TEMPLATE, RICH_HTML_TEMPLATE
-from epstein_files.util.constant.names import *
+from epstein_files.people.names import *
 from epstein_files.util.constants import CONFIGS_BY_ID, EmailCfg
 from epstein_files.util.helpers.data_helpers import *
 from epstein_files.util.helpers.debugging_helper import print_all_timestamps, print_file_counts

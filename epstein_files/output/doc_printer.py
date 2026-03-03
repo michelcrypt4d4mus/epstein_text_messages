@@ -20,7 +20,7 @@ from epstein_files.output.html.builder import buffer_as_html, rich_to_html, tabl
 from epstein_files.output.html.elements import div_class
 from epstein_files.output.rich import console
 from epstein_files.people.person import PEOPLE_BIOS, Person
-from epstein_files.util.constant.names import *
+from epstein_files.people.names import *
 from epstein_files.util.env import args, site_config
 from epstein_files.util.helpers.data_helpers import dict_sets_to_lists, uniq_sorted
 from epstein_files.util.logging import logger, exit_with_error
@@ -47,7 +47,7 @@ class DocPrinter:
         return emails
 
     def new_names(self, document: Document) -> list[str]:
-        return [p for p in document.people if p not in self.people_encountered]
+        return [p for p in document.people if p in PEOPLE_BIOS and p not in self.people_encountered]
 
     def print_characters_panel(self, names: list[str], is_sticky: bool) -> str:
         if (bio_panel := self._biographical_panel(uniq_sorted(names))):
@@ -65,7 +65,7 @@ class DocPrinter:
             self.html_elements.append(self._html_so_far())
 
         for doc in docs:
-            logger.debug(f"Printing {doc}")
+            logger.warning(f"Printing {doc}")
 
             if isinstance(doc, Document) and doc.suppressed_txt:
                 # TODO: add suppressed_txt to html_elements

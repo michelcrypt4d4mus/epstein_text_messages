@@ -14,7 +14,7 @@ from epstein_files.epstein_files import EpsteinFiles
 from epstein_files.output.epstein_highlighter import highlighter
 from epstein_files.output.rich import console, print_centered, print_subtitle_panel
 from epstein_files.util.constant.common_words import COMMON_WORDS_LIST, COMMON_WORDS, UNSINGULARIZABLE_WORDS
-from epstein_files.util.constant.names import OTHER_NAMES
+from epstein_files.people.names import OTHER_NAMES
 from epstein_files.util.env import args
 from epstein_files.util.helpers.data_helpers import ALL_NAMES, flatten, sort_dict
 from epstein_files.util.logging import logger

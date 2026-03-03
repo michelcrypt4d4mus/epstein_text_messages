@@ -6,7 +6,7 @@ from copy import copy
 
 from dateutil.parser import parse
 
-from epstein_files.util.constant.names import *
+from epstein_files.people.names import *
 from epstein_files.util.constant.strings import MONTHS, WEEKDAYS, REDACTED
 
 FALLBACK_TIMESTAMP = parse("1/1/2051 12:01:01 AM")

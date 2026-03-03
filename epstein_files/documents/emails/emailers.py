@@ -5,7 +5,7 @@ import re
 
 from epstein_files.output.highlight_config import HIGHLIGHTED_CONTACTS
 from epstein_files.people.contact import Contact, organization
-from epstein_files.util.constant.names import *
+from epstein_files.people.names import *
 from epstein_files.util.constant.strings import REDACTED
 from epstein_files.util.helpers.data_helpers import escape_single_quotes, flatten
 from epstein_files.util.logging import logger

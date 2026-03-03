@@ -1,4 +1,4 @@
-from epstein_files.util.constant.names import *
+from epstein_files.people.names import *
 
 MESSENGER_LOG_AUTHOR_COUNTS = {
     None: 56,

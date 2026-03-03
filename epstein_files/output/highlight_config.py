@@ -14,7 +14,7 @@ from epstein_files.documents.emails.constants import (ALL_HEADER_PATTERNS, QUOTE
      SENT_FROM_REGEX, XML_STRIPPED_MSG)
 from epstein_files.output.highlighted_names import HighlightGroup, HighlightedNames, HighlightPatterns, ManualHighlight
 from epstein_files.people.contact import Contact, acronym, organization, epstein_co, epstein_trust, law_enforcement
-from epstein_files.util.constant.names import *
+from epstein_files.people.names import *
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constant.urls import SUBSTACK_INSIGHTS_POD
 from epstein_files.util.constants import EPSTEIN_V_ROTHSTEIN_EDWARDS
@@ -99,7 +99,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 f"once great research institute overtaken by get rich quick schemes under {JOI_ITO}",
                 r"(MIT )?Media Lab",
             ),
-            organization('Mount Sinai', f"hospital in NYC where {EVA_DUBIN} works"),
+            organization(MOUNT_SINAI, f"hospital in NYC where {EVA_DUBIN} works", r"Mount Sinai( Hospital)"),
         ],
         patterns=[
             r"Andy Lippman",  # Media Lab
@@ -146,6 +146,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 KARIM_WADE,
                 'son of the president of Senegal, facing arrest for corruption',
                 r"Afri [xz]p?|Karim Wade",
+                link_to_bio='https://www.bbc.com/news/world-africa-32020574',
                 match_partial='first',
             ),
             Contact('Miles Alexander', "Operations Manager Michaelhouse Balgowan KwaZulu-Natal South Africa", match_partial=None),
@@ -703,9 +704,10 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(
                 'Greg Craig',
                 'former Obama White House counsel, worked w/Paul Manafort in Ukraine, acquitted of charges',
+                link_to_bio='https://www.politico.com/story/2019/05/13/rick-gates-roger-stone-greg-craig-1318870',
                 match_partial=None,
             ),
-            Contact('Janis Hartley', f'assistant to Governor Bill Richardson {QUESTION_MARKS}'),
+            Contact('Janis Hartley', f'assistant to Governor Bill Richardson {QUESTION_MARKS}', match_partial=None),
         ],
         patterns=[
             r"(Al )?Franken",
@@ -746,7 +748,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         label='Dubins',
         style='medium_orchid1',
         contacts=[
-            Contact(EVA_DUBIN, f"Epstein's ex-girlfriend now married to {GLENN_DUBIN}", match_partial=None),
+            Contact(EVA_DUBIN, f"Epstein's ex-girlfriend now married to {GLENN_DUBIN}, doctor at {MOUNT_SINAI}", match_partial=None),
             Contact(GLENN_DUBIN, "Highbridge Capital Management, married to Epstein's ex-gf Eva", match_partial='first'),
         ],
         patterns=[r"((Celina|Eva( Anderss?on)?|Glenn?) )?Dubin"],
@@ -1896,7 +1898,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(MANUELA_MARTINEZ, "Mega Partners (Brazilian agency)", r"Manuela (- Mega Partners|Martinez)", match_partial=None),
             Contact(MARIANA_IDZKOWSKA, emailer_pattern=r"Mariana [Il]d[źi]kowska?"),
             Contact('Michael Sanka', f"{JEAN_LUC_MC2} {QUESTION_MARKS}"),
-            Contact('Naomi Campbell', 'supermodel', match_partial=None),
+            Contact(NAOMI_CAMPBELL, 'supermodel', match_partial=None),
             Contact('Ramsey Elkholy', f"scouted girls for Epstein in NYC, member of Monotronic", match_partial='both'),
             Contact('Vladimir Yudashkin', "director of the 1 Mother Agency"),
             Contact('Yfke Sturm', 'model from Holland', match_partial='both'),
@@ -2091,6 +2093,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 match_partial='both',
             ),
             Contact('Vitaly Churkin', 'Russian ambassador to the United Nations'),
+            Contact('Vladislav Doronin', f'olgarch, dated {NAOMI_CAMPBELL}'),
             Contact(
                 YURI_MILNER,
                 f'Russian-Israeli investor whom Epstein says is managing "Russian gangster money"',
@@ -2210,7 +2213,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(YULIA_DOROKHINA, 'Russian girl'),
         ],
         patterns=[
-            r"Dasha",
+            r"[DM]asha",
         ]
     ),
     HighlightedNames(
@@ -2274,7 +2277,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(IAN_ODONNELL, THIELS_VALAR, r"Ian O'?Donnell|O'?Donnell, Ian"),
             Contact('Jack Dorsey', 'co-founder of Twitter and Block (FKA Square)'),
             Contact(JAMES_FITZGERALD, THIELS_VALAR, r"James Fitz[g\s]eral?d?", match_partial=None),
-            Contact(JASON_CALACANIS, f'{ALL_IN_PODCAST} with David Sacks and {CHAMATH_PALIHAPITIYA}, Uber investor', r"Jason (.{12})Calacanis"),
+            Contact(JASON_CALACANIS, f'{ALL_IN_PODCAST} with David Sacks and {CHAMATH_PALIHAPITIYA}, Uber investor', r"Jason (.{12})?Calacanis"),
             Contact(MASAYOSHI_SON, 'CEO of Softbank, often referred to as "Masa"', r"Masa(yoshi)?(\sSon)?", match_partial='first'),
             Contact(MELANIE_PHILLIPS, f'girlfriend of {STEVEN_SINOFSKY}', match_partial=None),
             Contact('Nathan Myhrvold', f"former CTO of Microsoft, co-founder of Intellectual Ventures"),
@@ -2383,6 +2386,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             ),
             Contact('Bruce Moskowitz', "'Trump's health guy' according to Epstein", match_partial=None),
             Contact('Marla Maples', 'ex-wife of Donald Trump', match_partial='both'),
+            Contact('Melania', "Melania... Trump?"),
             Contact('Michael Caputo', 'former Putin and Gazprom PR guy, Trump appointee, acolyte of Roger Stone'),
             Contact(NICHOLAS_RIBIS, f"Hilton CEO, former president of {TRUMP_ORG}", r"Nic(holas|k)[\s._]Ribi?s?|Ribbis"),
             Contact(
@@ -2719,6 +2723,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             fr"^{CASE_ID_REGEX.pattern}.*",
             CASE_ID_REGEX.pattern,
             r"EDGAR (Filing|Search)",  # SEC database is EDGAR
+            r"Notary Public",
             r"Page \d+ of \d+",
         ]
     ),

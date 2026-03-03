@@ -7,7 +7,7 @@ from epstein_files.documents.email import Email
 from epstein_files.documents.messenger_log import MessengerLog
 from epstein_files.documents.other_file import OtherFile
 from epstein_files.output.rich import console, print_subtitle_panel
-from epstein_files.util.constant.names import *
+from epstein_files.people.names import *
 from epstein_files.util.constants import CONFIGS_BY_ID
 from epstein_files.util.helpers.data_helpers import days_between, uniquify
 from epstein_files.util.helpers.string_helper import prop_str

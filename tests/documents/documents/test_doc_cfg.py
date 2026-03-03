@@ -5,7 +5,7 @@ from epstein_files.documents.documents.categories import Interesting, Neutral, U
 from epstein_files.documents.documents.doc_cfg import CommunicationCfg, DocCfg, EmailCfg
 from epstein_files.documents.other_file import OtherFile
 from epstein_files.output.highlight_config import QUESTION_MARKS_TXT
-from epstein_files.util.constant.names import BLOCKCHAIN_CAPITAL, BOFA_MERRILL, JOI_ITO, Name
+from epstein_files.people.names import BLOCKCHAIN_CAPITAL, BOFA_MERRILL, JOI_ITO, Name
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constants import CONFIGS_BY_ID
 

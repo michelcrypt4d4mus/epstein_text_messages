@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from epstein_files.util.constant.names import CECILE_DE_JONGH, CHRISTINA_GALBRAITH, JEFFREY_EPSTEIN
+from epstein_files.people.names import CECILE_DE_JONGH, CHRISTINA_GALBRAITH, JEFFREY_EPSTEIN
 
 
 def test_debug_dict(email):

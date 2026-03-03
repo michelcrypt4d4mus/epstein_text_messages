@@ -26,7 +26,7 @@ from epstein_files.output.title_page import print_color_key, print_other_page_li
 from epstein_files.people.interesting_people import EMAILERS_TO_PRINT
 from epstein_files.people.person import PEOPLE_BIOS, Person
 from epstein_files.util.constant.html import HTML_TERMINAL_THEME, RICH_HTML_TEMPLATE
-from epstein_files.util.constant.names import *
+from epstein_files.people.names import *
 from epstein_files.util.constant.strings import AUTHOR
 from epstein_files.util.env import args
 from epstein_files.util.helpers.data_helpers import dict_sets_to_lists, uniq_sorted
