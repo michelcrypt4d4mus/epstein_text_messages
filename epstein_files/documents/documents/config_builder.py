@@ -19,6 +19,7 @@ SUBPOENA_REGEX = re.compile(r"GRAND JURY SUBPOENA")
 VALAR_CAPITAL_CALL_REGEX = re.compile(r"^Val[ao]r.{,190} Capital Call", re.MULTILINE | re.IGNORECASE | re.DOTALL)
 VI_DAILY_NEWS_REGEX = re.compile(r'virgin\s*is[kl][ai]nds\s*daily\s*news', re.IGNORECASE)
 
+JANE_DOE_V_USA = 'Jane Doe #1 and Jane Doe #2 v. United States'
 LEDGERX_MSG = 'LedgerX was later acquired by FTX for $298 million'
 WOLFF_EPSTEIN_ARTICLE_DRAFT = f"draft of an unpublished article ca. 2014"
 
@@ -32,6 +33,7 @@ CASE_IDS = {
     '1:20-cv-00833-PAE': f"New York Times v. {BUREAU_OF_PRISONS}",
     '1:19-cr-00490-RMB': f"US v. {JEFFREY_EPSTEIN}",
     '1:22-cv-10904-JSR': f"US Virgin Islands v. JPMorgan Chase",
+    '9:08-cv-80736-KAM': JANE_DOE_V_USA,
 }
 
 EMERGENCY_CONTACT_DATES = {

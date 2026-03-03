@@ -237,6 +237,7 @@ HOWARD_LUTNICK = 'Howard Lutnick'
 IAN_ODONNELL = "Ian O'Donnell"
 JAMES_FITZGERALD = 'James Fitzgerald'
 JASON_CALACANIS = 'Jason Calacanis'
+JOSHUA_FINK = 'Joshua Fink'
 JULIA_SANTOS = 'Julia Santos'
 KARYNA_SHULIAK = 'Karyna Shuliak'
 LORENZO_DE_MEDICI = 'Lorenzo de Medici'
