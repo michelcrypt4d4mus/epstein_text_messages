@@ -1,4 +1,5 @@
 # NEXT RELEASE
+* Fix `z-index` for bio panel links
 
 ### 1.8.8
 * new `DocPrinter` class manages formatted document printing
