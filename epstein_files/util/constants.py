@@ -2684,7 +2684,8 @@ OTHER_FILES_GIRLS = [
         id='EFTA00659941',
         author=SVETLANA_POZHIDAEVA,
         author_reason='https://tommycarstensen.com/epstein/findings.html#victim-diary-names-multiple-men',
-        description=f'"Josh is toxic"',
+        description=f'{SVETLANA_POZHIDAEVA} forwarding her intimate conversations with {JOSHUA_FINK} to Epstein',
+        is_interesting=True,
     ),
     EmailCfg(
         id='EFTA02010589',

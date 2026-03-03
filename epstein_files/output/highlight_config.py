@@ -416,6 +416,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r'(drug|mexican) (cartel|traffick(ers?|ing))',
             r'criminals?( prosecution)?',
             r'crime famil(ies|y)',
+            r"(on )?drugs",
             r'Gambino',
             r'heroin',
             r'methamphetamines?',
@@ -952,6 +953,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(EDWARD_ROD_LARSEN, f"son of {TERJE_ROD_LARSEN}", match_partial=None),
             Contact('Fabrice Aidan', f"diplomat who worked with {TERJE_ROD_LARSEN}"),
             Contact('Jack Lang', "former French Minister of National Education", match_partial=None),
+            Contact('Martine Vik Magnussen', f'murdered by son of {SHAHER_ABDULHAK_BESHER}', match_partial=None),
             Contact(
                 name=MIROSLAV_LAJCAK,
                 info=f"Russia-friendly Slovakian politician, friend of {STEVE_BANNON}",
@@ -2502,6 +2504,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"orgasm(ic|s)?",
             r"pa?edophile",
             r"pussy",
+            r"(rough )?sex(ual(ity)?)?",
             r"(?-i:S)anctum",
             r"Snow White",
             r"Stephanie Clifford",
@@ -2732,6 +2735,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"stock market",
             r"Trust(ee| Estate)s?",
             r"(income )?tax(e[ds])?( code)?",
+            r"(?-i:VAT)",
             r"Wall Street(?! Jour)",
         ]
     ),
@@ -2739,6 +2743,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         label='legal',
         style='pale_turquoise4',
         patterns=[
+            r"autopsy",
             fr"^{CASE_ID_REGEX.pattern}.*",
             CASE_ID_REGEX.pattern,
             r"EDGAR (Filing|Search)",  # SEC database is EDGAR
