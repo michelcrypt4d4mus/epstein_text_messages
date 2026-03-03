@@ -2509,6 +2509,7 @@ OTHER_FILES_GIRLS = [
     ),
     EmailCfg(id='EFTA00671662', author='Miranda', author_reason='quoted signature', description="yet another girl finder"),
     EmailCfg(id='EFTA02441035', author=STEVEN_VICTOR_MD, description="complaining about free treatment for Epstein's girls"),
+    EmailCfg(id='EFTA01877224', author=SVETLANA_POZHIDAEVA, author_uncertain=f"{JOSHUA_FINK} texts"),
     EmailCfg(
         id='EFTA00659941',
         author=SVETLANA_POZHIDAEVA,
@@ -2516,6 +2517,7 @@ OTHER_FILES_GIRLS = [
         description=f'{SVETLANA_POZHIDAEVA} forwarding her intimate conversations with {JOSHUA_FINK} to Epstein (to what end?)',
         is_interesting=True,
     ),
+    EmailCfg(id='EFTA00937507', author=SVETLANA_POZHIDAEVA, author_uncertain=f"{JOSHUA_FINK} texts"),
     EmailCfg(
         id='EFTA01991293',
         author=SVETLANA_POZHIDAEVA,
