@@ -5,10 +5,10 @@ from itertools import groupby
 
 from epstein_files.documents.documents.categories import CONSTANT_CATEGORIES, Interesting, Neutral
 from epstein_files.documents.documents.config_builder import (JANE_DOE_V_USA, WOLFF_EPSTEIN_ARTICLE_DRAFT, binant_redacted,
-     blaine_letter, fbi_defense_witness, fbi_report, letter, starr_letter, whistleblower_cfg, victim_diary,
+     blaine_letter, fbi_defense_witness, fbi_report, letter, phone_bill_cfg, starr_letter, whistleblower_cfg, victim_diary,
      wolff_draft_cfg)
 from epstein_files.documents.documents.doc_cfg import (DEFAULT_TRUNCATE_TO, GOLDMAN_INVESTMENT_MGMT,
-     SHORT_TRUNCATE_TO, NO_TRUNCATE, CommunicationCfg, DocCfg, EmailCfg, TextCfg, phone_bill_cfg)
+     SHORT_TRUNCATE_TO, NO_TRUNCATE, CommunicationCfg, DocCfg, EmailCfg, TextCfg)
 from epstein_files.documents.doj_files.full_text import EFTA00009622_TEXT
 from epstein_files.documents.emails.constants import FLIGHT_IN_2012_PEOPLE, IRAN_DEAL_RECIPIENTS, TRIVERS_CCS
 from epstein_files.util.helpers.string_helper import join_truthy, quote

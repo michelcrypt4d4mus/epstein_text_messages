@@ -64,7 +64,6 @@ class OtherFile(Document):
     # Class vars
     INCLUDE_DESCRIPTION_IN_SUMMARY_PANEL: ClassVar[bool] = True  # Class var for logging output
     MAX_TIMESTAMP: ClassVar[datetime] = datetime(2022, 12, 31) # Overloaded in DojFile
-    num_synthetic_cfgs_created: ClassVar[int] = 0
 
     def __post_init__(self):
         super().__post_init__()

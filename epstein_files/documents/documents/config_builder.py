@@ -141,6 +141,16 @@ def letter(id: str, author: str, recipients: list[Name], description: str, date:
     )
 
 
+def phone_bill_cfg(id: str, author: str, dates: str = '', **kwargs) -> DocCfg:
+    return DocCfg(
+        id=id,
+        author=author,
+        category=Uninteresting.PHONE_BILL,
+        replace_text_with=f"phone bill" + (f" covering {dates}" if dates else ''),
+        **kwargs
+    )
+
+
 def starr_letter(id: str, date: str, duplicate_ids: list[str], dupe_type: DuplicateType = 'same', **kwargs) -> CommunicationCfg:
     return letter(
         id=id,
