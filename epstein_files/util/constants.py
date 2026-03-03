@@ -2519,8 +2519,8 @@ OTHER_FILES_GIRLS = [
     ),
     EmailCfg(
         id='EFTA01995523',
-        author=SVETLANA_POZHIDAEVA,
-        author_uncertain=f"{JOSHUA_FINK} + Sent from Blackberry",
+        # author=SVETLANA_POZHIDAEVA,
+        # author_uncertain=f"{JOSHUA_FINK} + Sent from Blackberry",
         description=f'"pictures of {REDACTED}" may be "Lana" ({SVETLANA_POZHIDAEVA}) or "Dana" according to Jmail',
     ),
     EmailCfg(
@@ -2549,10 +2549,16 @@ OTHER_FILES_GIRLS = [
     ),
     EmailCfg(
         id='EFTA01998247',
-        author=UNKNOWN_GIRL,
+        author=SVETLANA_POZHIDAEVA,
+        author_uncertain='device signature',
         description=f'trying to recruit {ELON_MUSK}?',
         is_interesting=True,
         show_with_name=ELON_MUSK,
+    ),
+    EmailCfg(
+        id='EFTA01772677',
+        author=SVETLANA_POZHIDAEVA,
+        author_uncertain='device signature',
     ),
     EmailCfg(id='EFTA02431535', author=UNKNOWN_GIRL),
     EmailCfg(id='EFTA01875607', author=UNKNOWN_GIRL),
@@ -2612,7 +2618,11 @@ OTHER_FILES_GIRLS = [
     EmailCfg(id='EFTA02609062', description=f"{MASHA_DROKOVA} is assembling a team", is_interesting=True),
     EmailCfg(id='EFTA01145923', description=f"{JEAN_LUC_BRUNEL} modeling contract for {MC2_MODEL_MGMT}"),
     EmailCfg(id='EFTA02557291', description='possibly recruiting girls'),
-    EmailCfg(id='EFTA01811230', description=f'"Renat" is probably {RENATA_BOLOTOVA}'),
+    EmailCfg(
+        id='EFTA01811230',
+        description=f'"Renat" is probably {RENATA_BOLOTOVA}, {REDACTED} might be "Irinia" or {SVETLANA_POZHIDAEVA}',
+        duplicate_ids=['EFTA00732294'],
+    ),
     EmailCfg(id='EFTA00894079', description='"say hi to Snow White"', is_interesting=True),
     EmailCfg(id='EFTA00908180', description='"two cinderellas"'),
     EmailCfg(id='EFTA00751119', description='"Valdson to teach girls how to serve"'),

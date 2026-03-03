@@ -126,6 +126,7 @@ OCR_REPAIRS: dict[str | re.Pattern, str] = {
     re.compile(r"[ijlp']ee[vy]acation[©@a(&,P ]{1,3}g?mail.com"): 'jeevacation@gmail.com',
     'gyahoo.com': '@yahoo.com',
     # Signatures
+    re.compile(r'Blac[il]cBerry'): 'BlackBerry',
     'BlackBerry by AT &T': 'BlackBerry by AT&T',
     'BlackBerry from T- Mobile': 'BlackBerry from T-Mobile',
     'Envoy& de': 'Envoyé de',
