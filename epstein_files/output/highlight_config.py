@@ -2404,7 +2404,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(
                 'Paolo Zampolli',
                 'modeling agent, friend of Trump, money for passports scandal in Dominica, may have introduced Melania to Donald',
-                r"Paolo Z[ae]mpoll?i",
+                r"(Paolo )?Z[ae]mpoll?i",
                 link_to_bio='https://dominicanewsonline.com/news/homepage/news/the-zampolli-matter-more-fuel-for-where-de-money-gone-campaign/',
             ),
             Contact('Roger Stone', "infamous political trickster with a tattoo of Nixon's face on his back", match_partial=None),
