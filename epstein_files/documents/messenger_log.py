@@ -174,7 +174,7 @@ class MessengerLog(Communication):
         counts_table.add_column('Days', justify='right', style='dim')
 
         for name, count in sort_dict(author_counts):
-            logger.warning(f'Found {count} logs for {name}')
+            logger.info(f'Found {count} logs for {name}')
             logs = log_files if name == JEFFREY_EPSTEIN else [log for log in log_files if log.author == name]
             name_messages = [m for m in messages if m.author == name]
             first_at = name_messages[0].timestamp_sort_key
