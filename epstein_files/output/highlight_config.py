@@ -2523,6 +2523,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Ellaina As?tras?",
             r"(fresh )?(hot )?(new )?(school )?girl( friend)?s?",
             r"gyn(eco(logist|nomist)|o)",
+            r"I love you",
             r"intercourse",
             r"(Jane|Tiffany) Doe",
             r"Katie Johnson",
