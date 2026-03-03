@@ -3200,7 +3200,7 @@ OTHER_FILES_TEXT_MSG = [
     DocCfg(id='EFTA01611898', description=f"screenshot of recent contacts in an iPhone"),
     CommunicationCfg(
         id='EFTA02731576',
-        description=f"allegations against {LEON_BLACK} in contemporaneous text",
+        description=f"making contemporaneous accusations",
         recipients=[LEON_BLACK],
         show_full_panel=True
     ),
