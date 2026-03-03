@@ -2459,8 +2459,8 @@ OTHER_FILES_ACADEMIA = [
         duplicate_ids=['029356'],  # 029356 is zoomed in corner
         is_interesting=False,
     ),
-    EmailCfg(id='EFTA00954900', description=f'Epstein donation to Mount Sinai'),
-    EmailCfg(id='EFTA00955864', description=f'Epstein donation to Mount Sinai', is_interesting=False)
+    EmailCfg(id='EFTA00954900', description=f'Epstein donation to {MOUNT_SINAI}'),
+    EmailCfg(id='EFTA00955864', description=f'Epstein donation to {MOUNT_SINAI}', is_interesting=False)
 ]
 
 # resumes and application letters

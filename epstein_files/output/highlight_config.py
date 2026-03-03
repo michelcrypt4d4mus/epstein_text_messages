@@ -99,7 +99,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 f"once great research institute overtaken by get rich quick schemes under {JOI_ITO}",
                 r"(MIT )?Media Lab",
             ),
-            organization('Mount Sinai', f"hospital in NYC where {EVA_DUBIN} works"),
+            organization(MOUNT_SINAI, f"hospital in NYC where {EVA_DUBIN} works", r"Mount Sinai( Hospital)"),
         ],
         patterns=[
             r"Andy Lippman",  # Media Lab
@@ -704,9 +704,10 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(
                 'Greg Craig',
                 'former Obama White House counsel, worked w/Paul Manafort in Ukraine, acquitted of charges',
+                link_to_bio='https://www.politico.com/story/2019/05/13/rick-gates-roger-stone-greg-craig-1318870',
                 match_partial=None,
             ),
-            Contact('Janis Hartley', f'assistant to Governor Bill Richardson {QUESTION_MARKS}'),
+            Contact('Janis Hartley', f'assistant to Governor Bill Richardson {QUESTION_MARKS}', match_partial=None),
         ],
         patterns=[
             r"(Al )?Franken",
@@ -747,7 +748,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         label='Dubins',
         style='medium_orchid1',
         contacts=[
-            Contact(EVA_DUBIN, f"Epstein's ex-girlfriend now married to {GLENN_DUBIN}", match_partial=None),
+            Contact(EVA_DUBIN, f"Epstein's ex-girlfriend now married to {GLENN_DUBIN}, doctor at {MOUNT_SINAI}", match_partial=None),
             Contact(GLENN_DUBIN, "Highbridge Capital Management, married to Epstein's ex-gf Eva", match_partial='first'),
         ],
         patterns=[r"((Celina|Eva( Anderss?on)?|Glenn?) )?Dubin"],
