@@ -934,7 +934,6 @@ EMAILS_CONFIG = [
     # DOJ files
     EmailCfg(id='EFTA00645449', author=ANASTASIYA_SIROOCHENKO, author_reason='Jmail'),
     EmailCfg(id='EFTA00040142', author=ATT_COURT_APPEARANCE_TEAM, recipients=[USANYS]),
-    EmailCfg(id='EFTA02229342', author=AUSTIN_HILL),
     EmailCfg(id='EFTA01040692', author=ALAN_DLUGASH, description='meeting about tax implications of ZCash'),
     EmailCfg(id='EFTA00039357', author=BUREAU_OF_PRISONS, recipients=['DOJ Inspector General']),
     EmailCfg(id='EFTA01947908', author=CHRISTINA_GALBRAITH, author_reason='"Christina" appears in EFTA01950559'),
@@ -2877,6 +2876,13 @@ OTHER_FILES_CRYPTO = [
     # Bitmain
     EmailCfg(id='EFTA01004576'),
     # Blockstream
+    EmailCfg(id='EFTA02229342', author=AUSTIN_HILL),
+    EmailCfg(
+        id='EFTA02406818',
+        author=AUSTIN_HILL,
+        author_reason='unique email signature',
+        description=f"{AUSTIN_HILL} asks Epstein about how the Treasury Dept. will treat dollar backed stablecoins like Tether",
+    ),
     DocCfg(id='EFTA00797613', description='Alphabit crypto fund pitch deck', attached_to_email_id='EFTA00955063'),
     EmailCfg(
         id='EFTA00955063',
@@ -3163,6 +3169,7 @@ OTHER_FILES_CRYPTO = [
     EmailCfg(id='EFTA02588723', description=f'discussion of crypto food stamps debit cards', is_interesting=True),
     EmailCfg(id='EFTA02588748', description=f'discussion of crypto food stamps debit cards', is_interesting=True, truncate_to=800),
     EmailCfg(id='EFTA02584771', description=f"discussion of decentralized prediction markets (e.g. Polymarket)", is_interesting=True),
+    EmailCfg(id='EFTA00995269', description=f"Epstein suggests Monaco and Vatican City as good places for crypto"),
     # ZCash / Madars Virza
     DocCfg(id='EFTA00811130', author=PERKINS_COIE, description='tax opinion on ZCash tokens'),
     DocCfg(id='EFTA00603348', description=f"Electric Coin Company created the untraceable crypto ZCash funded by {LARRY_SUMMERS}'s DCG"),
