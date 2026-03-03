@@ -2672,6 +2672,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         patterns=[
             r'\b(?<!FOI/)PA\b',
             r"(?<!Cantor )Urramoor(\s*Limited)?",
+            r"Mr\. T",
         ],
         style='dodger_blue1',
         category='Europe',
