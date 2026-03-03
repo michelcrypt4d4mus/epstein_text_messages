@@ -1996,6 +1996,7 @@ OTHER_FILES_LEGAL = [
     starr_letter('012130', '2008-06-19', ['012135'], non_participants=[LESLEY_GROFF]),
 
     # DOJ files
+    DocCfg(id='EFTA00727684', author=f"{REDACTED} v. {JEFFREY_EPSTEIN}", description='sworn testimony, list of co-conspirators'),
     DocCfg(id='EFTA02730741', author=DOJ, date='2025-05-01', date_uncertain=True, description="Evidence list for 50D-NY-3027571 Filtering On 'Type(s): 1B'"),
     DocCfg(id='EFTA02730486', author=DOJ, date='2025-05-01', date_uncertain=True, description="Evidence list for 50D-NY-3027571 Filtering On '1A'"),
     DocCfg(id='EFTA00040006', author=DOJ, date='2019-08-27', description='Personal History of Defendant Jeffrey Epstein with grand jury indictment'),
@@ -2590,13 +2591,13 @@ OTHER_FILES_MISC = [
 ]
 
 OTHER_FILES_DIARY = [
-    victim_diary('EFTA02731465', f"names {JES_STALEY}, {TED_LEONSIS}, tinkerbell"),
+    victim_diary('EFTA02731465', f"naming {JES_STALEY}, {TED_LEONSIS}, tinkerbell"),
+    victim_diary('EFTA02731420', f'naming {LARRY_SUMMERS}, {PRINCE_ANDREW}, Dan Snyder, {LEON_BLACK}, {TED_LEONSIS}'),
 ]
 
 OTHER_FILES_GIRLS = [
     EmailCfg(id='030609', duplicate_ids=['030495']),
     DocCfg(id='EFTA00306033', author=SERGEY_BELYAKOV, description='Epstein Russian visa', show_full_panel=True),
-    DocCfg(id='EFTA02731420', description=f'victim diary naming {LARRY_SUMMERS}, {PRINCE_ANDREW}, Dan Snyder, {LEON_BLACK}'),
     CommunicationCfg(
         id='EFTA01612733',
         author=MARIA_PRUSAKOVA,
@@ -3123,6 +3124,12 @@ OTHER_FILES_TEXT_MSG = [
     DocCfg(id='EFTA01618494', author=RENATA_BOLOTOVA, description=f'iMessage screenshots', author_uncertain='sneaky'),
     DocCfg(id='EFTA01618400', author=RENATA_BOLOTOVA, description=f'iMessage screenshots', author_uncertain='sneaky'),
     DocCfg(id='EFTA01611898', description=f"screenshot of recent contacts in an iPhone"),
+    CommunicationCfg(
+        id='EFTA02731576',
+        description=f"allegations against {LEON_BLACK} in contemporaneous text",
+        recipients=[LEON_BLACK],
+        show_full_panel=True
+    ),
     CommunicationCfg(id='EFTA01611042', author=ED_BOYLE, recipients=[None, MARIA_PRUSAKOVA]),
     CommunicationCfg(id='EFTA02731525', author=LEON_BLACK, author_uncertain=True),
     CommunicationCfg(

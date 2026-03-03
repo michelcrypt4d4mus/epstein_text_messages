@@ -2153,6 +2153,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(ANNA_KASATKINA, 'Russian girl'),
             Contact(ALEKSANDRA_KARPOVA, f"{CRYPTO_PR_LAB} co-founder", r"Aleksandra Karpova"),
             Contact(DASHA_GRUPMAN, 'recruiter of girls for Epstein', r"Da(ry|sh)a Grupman"),
+            Contact('Ekaterina Gusarova', f'AKA "Katya", Instagram model {QUESTION_MARKS}', r"(Ekaterina|Katya)? Gusm?arova"),
             Contact(
                 JULIA_SANTOS,  # TODO: Jmail says her email is julia.santos@hbs.edu
                 "recruiter of girls from Ukraine for Epstein, possibly Harvard Business School student",
@@ -2182,6 +2183,12 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 RENATA_BOLOTOVA,
                 "former model, fund manager at New York State Insurance Fund, Рената Болотова",
                 r"Renata Bolotova|Rena B|Renata Bo\w+|renbolotova",
+            ),
+            Contact(
+                'Ruslana Korshunova',
+                f"Russian model who visited Epstein's island before falling to her death in 2008",
+                link_to_bio='https://en.wikipedia.org/wiki/Ruslana_Korshunova',
+                match_partial='both',
             ),
             Contact(
                 SVETLANA_POZHIDAEVA,
@@ -2438,15 +2445,8 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 link_to_bio='https://x.com/JOKAQARMY1/status/2026731420832481549',
             ),
             Contact(KATHERINE_KEATING, "daughter of former Australian prime minister Paul Keating", match_partial=None),
-            Contact('Ekaterina Gusarova', f'AKA "Katya", Instagram model {QUESTION_MARKS}', r"(Ekaterina|Katya)? Gusm?arova"),
             Contact('Miranda', f'appears to have done an internship at {CLIFFORD_CHANCE} with {MARIA_PRUSAKOVA}?'),
             Contact(PAULA_HEIL_FISHER, "Epstein's ex-girlfriend who works in opera now", match_partial=None),
-            Contact(
-                'Ruslana Korshunova',
-                f"Russian model who visited Epstein's island before falling to her death in 2008",
-                link_to_bio='https://en.wikipedia.org/wiki/Ruslana_Korshunova',
-                match_partial='both',
-            ),
             Contact('Samantha Rose Stein', 'wombkind.com', link_to_bio='https://x.com/SteinSamantha', match_partial=None),
             Contact('Sasha Grey', 'famous porn star', match_partial=None),
             Contact(UNKNOWN_GIRL, match_partial=None),
