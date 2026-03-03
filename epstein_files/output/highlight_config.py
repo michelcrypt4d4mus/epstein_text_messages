@@ -2229,7 +2229,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         ]
     ),
     HighlightedNames(
-        label='SE Asia',
+        label='Asia',
         style='light_salmon3 bold',
         contacts=[
             Contact(
