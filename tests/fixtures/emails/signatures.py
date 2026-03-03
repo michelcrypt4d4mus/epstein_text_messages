@@ -1,4 +1,4 @@
-from epstein_files.util.constant.names import *
+from epstein_files.people.names import *
 
 DEVICE_SIGNATURE_TO_AUTHORS = {
     'Co-authored with iPhone auto-correct': [

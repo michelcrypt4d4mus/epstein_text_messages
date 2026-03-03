@@ -29,7 +29,7 @@ from epstein_files.output.rich import (INFO_STYLE, NA_TXT, SKIPPED_FILE_MSG_PADD
      wrap_in_markup_style)
 from epstein_files.output.site.sites import EXTRACTS_BASE_URL
 from epstein_files.people.interesting_people import PERSONS_OF_INTEREST, UNINTERESTING_AUTHORS
-from epstein_files.util.constant.names import Name
+from epstein_files.people.names import Name
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constants import CONFIGS_BY_ID, DEFAULT_TRUNCATE_TO
 from epstein_files.util.env import args, site_config

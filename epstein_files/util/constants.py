@@ -12,7 +12,7 @@ from epstein_files.documents.documents.doc_cfg import (DEFAULT_TRUNCATE_TO, GOLD
 from epstein_files.documents.doj_files.full_text import EFTA00009622_TEXT
 from epstein_files.documents.emails.constants import FLIGHT_IN_2012_PEOPLE, IRAN_DEAL_RECIPIENTS, TRIVERS_CCS
 from epstein_files.util.helpers.string_helper import join_truthy, quote
-from epstein_files.util.constant.names import *
+from epstein_files.people.names import *
 from epstein_files.util.constant.strings import *
 from epstein_files.util.logging import logger
 

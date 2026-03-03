@@ -6,7 +6,7 @@ from epstein_files.documents.documents.doc_cfg import EmailCfg, Metadata
 from epstein_files.documents.emails.constants import ALL_HEADER_FIELDS_PATTERN, HEADER_FIELDS_PATTERN
 from epstein_files.documents.emails.emailers import BAD_EMAILER_REGEX, TIME_REGEX
 from epstein_files.util.constant.strings import AUTHOR
-from epstein_files.util.constant.names import UNKNOWN
+from epstein_files.people.names import UNKNOWN
 from epstein_files.util.constants import CONFIGS_BY_ID
 from epstein_files.util.helpers.string_helper import indented, join_truthy
 from epstein_files.util.logging import logger

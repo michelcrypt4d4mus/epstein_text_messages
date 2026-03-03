@@ -20,7 +20,7 @@ from epstein_files.output.html.builder import buffer_as_html, rich_to_html, tabl
 from epstein_files.output.html.elements import div_class
 from epstein_files.output.rich import console
 from epstein_files.people.person import PEOPLE_BIOS, Person
-from epstein_files.util.constant.names import *
+from epstein_files.people.names import *
 from epstein_files.util.env import args, site_config
 from epstein_files.util.helpers.data_helpers import dict_sets_to_lists, uniq_sorted
 from epstein_files.util.logging import logger, exit_with_error

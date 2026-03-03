@@ -4,7 +4,7 @@ from typing import Literal, Self
 
 from rich.text import Text
 
-from epstein_files.util.constant.names import Name, constantize_name, extract_first_name, extract_last_name
+from epstein_files.people.names import Name, constantize_name, extract_first_name, extract_last_name
 from epstein_files.util.constant.strings import INDENT_NEWLINE, INDENTED_JOIN, LAW_ENFORCEMENT, PartialName
 from epstein_files.util.helpers.data_helpers import constantize_names
 from epstein_files.util.helpers.link_helper import link_text_obj

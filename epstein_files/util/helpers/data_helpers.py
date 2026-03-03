@@ -7,7 +7,7 @@ from datetime import datetime, timezone
 from dateutil import tz
 from typing import Any, Mapping, Sequence, TypeVar
 
-from epstein_files.util.constant import names
+from epstein_files.people import names
 from epstein_files.util.env import args
 from epstein_files.util.logging import logger
 

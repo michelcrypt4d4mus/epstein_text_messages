@@ -12,7 +12,7 @@ from rich.text import Text
 from epstein_files.documents.documents.categories import (Category, Interesting, Neutral, Uninteresting,
      is_category, is_interesting, is_uninteresting)
 from epstein_files.people.interesting_people import PERSONS_OF_INTEREST
-from epstein_files.util.constant.names import *
+from epstein_files.people.names import *
 from epstein_files.util.constant.strings import *
 from epstein_files.util.env import args
 from epstein_files.util.helpers.data_helpers import without_falsey

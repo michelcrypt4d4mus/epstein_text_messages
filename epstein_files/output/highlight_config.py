@@ -14,7 +14,7 @@ from epstein_files.documents.emails.constants import (ALL_HEADER_PATTERNS, QUOTE
      SENT_FROM_REGEX, XML_STRIPPED_MSG)
 from epstein_files.output.highlighted_names import HighlightGroup, HighlightedNames, HighlightPatterns, ManualHighlight
 from epstein_files.people.contact import Contact, acronym, organization, epstein_co, epstein_trust, law_enforcement
-from epstein_files.util.constant.names import *
+from epstein_files.people.names import *
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constant.urls import SUBSTACK_INSIGHTS_POD
 from epstein_files.util.constants import EPSTEIN_V_ROTHSTEIN_EDWARDS

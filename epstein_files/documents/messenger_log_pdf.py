@@ -6,7 +6,7 @@ from datetime import datetime
 from epstein_files.documents.messenger_log import MessengerLog
 from epstein_files.documents.imessage.text_message import TextMessage
 from epstein_files.output.rich import console
-from epstein_files.util.constant.names import JEFFREY_EPSTEIN, STEVE_BANNON
+from epstein_files.people.names import JEFFREY_EPSTEIN, STEVE_BANNON
 from epstein_files.util.logging import logger
 
 BRACKET_NUM_PATTERN = r"\s*\[?\d\]?\s*"
