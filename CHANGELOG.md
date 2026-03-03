@@ -1,4 +1,5 @@
 # NEXT RELEASE
+* `--max-records` debug arg
 * Fix `z-index` for bio panel links
 
 ### 1.8.8
