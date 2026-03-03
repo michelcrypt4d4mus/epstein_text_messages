@@ -2040,16 +2040,11 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         style='red bold',
         contacts=[
             Contact('Alisher Usmanov', 'Uzbeki oligarch with alleged ties to Putin, organized crime'),
-            Contact('Alysia Riabenkova', 'Russian painter', r"Alesia|Alysia( Riabenkova)?|Riabenkova"),
-            Contact(ANNA_KASATKINA, 'Russian girl'),
-            Contact(ALEKSANDRA_KARPOVA, f"{CRYPTO_PR_LAB} co-founder", r"Aleksandra Karpova"),
-            Contact(ANASTASIYA_SIROOCHENKO, '', r"Anastasiya( Siro(chenko)?)?"),
             Contact(
                 ANYA_RASULOVA,
                 f'Uzbeki co-founder of {INSIGHTS_POD}, social media work for Epstein during 2016 US election',
                 link_to_bio=SUBSTACK_INSIGHTS_POD,
             ),
-            Contact(DASHA_GRUPMAN, 'recruiter of girls for Epstein', r"Da(ry|sh)a Grupman"),
             Contact('Dasha Zhukova', "art collector, daughter of Alexander Zhukov"),
             Contact(
                 'Dmitry Rybolovlev',
@@ -2058,30 +2053,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 link_to_bio='https://en.wikipedia.org/wiki/Dmitry_Rybolovlev',
             ),
             Contact('Igor Zinoviev', f"Epstein's bodyguard, MMA fighter"),
-            Contact(
-                JULIA_SANTOS,  # TODO: Jmail says her email is julia.santos@hbs.edu
-                "recruiter of girls from Ukraine for Epstein, possibly Harvard Business School student",
-                match_partial=None,
-            ),
-            Contact(
-                KARYNA_SHULIAK,
-                f"girlfriend to whom Epstein tried to leave $50 million and the island, alleged sham marriage to {JENNIFER_KALIN}",
-                r"Karyna Shuliak?",
-            ),
-            Contact('Kira Dikhtyar', emailer_pattern=r"Kira (D|Kira)", link_to_bio='https://x.com/FlippersUpNow/status/2020490996287443071'),
             Contact('Len Blavatnik', 'oligarch', link_to_bio='https://en.wikipedia.org/wiki/Len_Blavatnik'),
-            Contact(
-                MARIA_PRUSAKOVA,
-                f"AKA Masha Prusso, former Olympic snowboarder, {CRYPTO_PR_LAB} co-founder, \"found ladies\" for Epstein",
-                r"Ma(sha|riy?a) (Prusa?(kova|so))",
-                link_to_bio='https://www.reddit.com/r/Epstein/comments/1qvsnqs/a_detailed_report_on_masha_prusso_aka_maria/',
-            ),
-            Contact(
-                MASHA_DROKOVA,
-                'AKA "Masha Bucher", silicon valley VC (Day One Ventures), publicist for QWave, former Putin Youth member, star of "Putin\'s Kiss"',
-                r"(Marii?y?a|Masha) (Bucher|Drokova)",
-                link_to_bio='https://www.forbes.com/sites/iainmartin/2026/02/04/how-jeffrey-epstein-helped-his-publicist-become-a-big-time-venture-capitalist/',
-            ),
             Contact('Mikhail Prokhorov', 'Russian-Israeli oligarch'),
             Contact('Nicholas Kovarsky', f"friend of {SERGEY_BELYAKOV}", r"Nic(k|holas) Kovarsky"),
             Contact('Oleg Boyko', 'oligarch'),
@@ -2089,12 +2061,6 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 'Oleg Deripaska',
                 'oligarch with underage sex scandal history',
                 link_to_bio='https://www.themoscowtimes.com/2025/06/19/investigative-report-alleges-links-between-billionaire-deripaska-and-prostitution-ring-involving-minors-a89503',
-            ),
-            Contact(OLGA_PONOMAR_BECKER),
-            Contact(
-                RENATA_BOLOTOVA,
-                "former model, fund manager at New York State Insurance Fund, Рената Болотова",
-                r"Renata Bolotova|Rena B|Renata Bo\w+|renbolotova",
             ),
             Contact('Ruben Vardanyan', 'Armenian oligarch, former minister of breakawy province of Artsakh'),
             Contact('Semion Mogilevich', 'infamous Russian mafia boss'),
@@ -2107,15 +2073,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 link_to_bio='https://dossier.center/jeffreyepsteinrusconnect-en/',
             ),
             Contact('Sergey Lavrov', 'foreign minister under Putin'),
-            Contact(
-                SVETLANA_POZHIDAEVA,
-                f"AKA 'Sophia Platt', Epstein's Russian assistant recommended for visa by Sergei Belyakov (FSB) & {DAVID_BLAINE}",
-                r"Sophia Platt|((Svet)?Lana )?Pozhidaeva|\b(Lana|Svet)\b",
-                link_to_bio='https://dossier.center/jeffreyepsteinrusconnect-en/',
-                match_partial='first',
-            ),
             Contact('Vitaly Churkin', 'Russian ambassador to the United Nations'),
-            Contact(YULIA_DOROKHINA),
             Contact(
                 YURI_MILNER,
                 f'Russian-Israeli investor whom Epstein says is managing "Russian gangster money"',
@@ -2145,7 +2103,6 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Bel[ao]rus(sian)?",
             r"Chernobyl",
             r"Crimea",
-            r"Dasha",
             r"(Dmitry )?(Kiselyov|Pozhidaeva|Medvedev)",
             r"Di?mitry( Akhanov)?",
             r"Domodedovo",
@@ -2179,6 +2136,57 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"(Vladimir )?Putin",
             r"Xitrans",
         ],
+    ),
+    HighlightedNames(
+        label='russian girl',
+        style='color(161)',
+        contacts=[
+            Contact('Alysia Riabenkova', 'Russian painter', r"Alesia|Alysia( Riabenkova)?|Riabenkova"),
+            Contact(ANASTASIYA_SIROOCHENKO, '', r"Anastasiya( Siro(chenko)?)?"),
+            Contact(ANNA_KASATKINA, 'Russian girl'),
+            Contact(ALEKSANDRA_KARPOVA, f"{CRYPTO_PR_LAB} co-founder", r"Aleksandra Karpova"),
+            Contact(DASHA_GRUPMAN, 'recruiter of girls for Epstein', r"Da(ry|sh)a Grupman"),
+            Contact(
+                JULIA_SANTOS,  # TODO: Jmail says her email is julia.santos@hbs.edu
+                "recruiter of girls from Ukraine for Epstein, possibly Harvard Business School student",
+                match_partial=None,
+            ),
+            Contact(
+                KARYNA_SHULIAK,
+                f"girlfriend to whom Epstein tried to leave $50 million and the island, alleged sham marriage to {JENNIFER_KALIN}",
+                r"Karyna Shuliak?",
+            ),
+            Contact('Kira Dikhtyar', emailer_pattern=r"Kira (D|Kira)", link_to_bio='https://x.com/FlippersUpNow/status/2020490996287443071'),
+            Contact(
+                MARIA_PRUSAKOVA,
+                f"AKA Masha Prusso, former Olympic snowboarder, {CRYPTO_PR_LAB} co-founder, \"found ladies\" for Epstein",
+                r"Ma(sha|riy?a) (Prusa?(kova|so))",
+                link_to_bio='https://www.reddit.com/r/Epstein/comments/1qvsnqs/a_detailed_report_on_masha_prusso_aka_maria/',
+            ),
+            Contact(
+                MASHA_DROKOVA,
+                'AKA "Masha Bucher", silicon valley VC (Day One Ventures), publicist for QWave, former Putin Youth member, star of "Putin\'s Kiss"',
+                r"(Marii?y?a|Masha) (Bucher|Drokova)",
+                link_to_bio='https://www.forbes.com/sites/iainmartin/2026/02/04/how-jeffrey-epstein-helped-his-publicist-become-a-big-time-venture-capitalist/',
+            ),
+            Contact(OLGA_PONOMAR_BECKER, 'Russian girl'),
+            Contact(
+                RENATA_BOLOTOVA,
+                "former model, fund manager at New York State Insurance Fund, Рената Болотова",
+                r"Renata Bolotova|Rena B|Renata Bo\w+|renbolotova",
+            ),
+            Contact(
+                SVETLANA_POZHIDAEVA,
+                f"AKA 'Sophia Platt', Epstein's Russian assistant recommended for visa by Sergei Belyakov (FSB) & {DAVID_BLAINE}",
+                r"Sophia Platt|((Svet)?Lana )?Pozhidaeva|\b(Lana|Svet)\b",
+                link_to_bio='https://dossier.center/jeffreyepsteinrusconnect-en/',
+                match_partial='first',
+            ),
+            Contact(YULIA_DOROKHINA, 'Russian girl'),
+        ],
+        patterns=[
+            r"Dasha",
+        ]
     ),
     HighlightedNames(
         label='SE Asia',
