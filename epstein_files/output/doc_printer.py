@@ -65,7 +65,7 @@ class DocPrinter:
             self.html_elements.append(self._html_so_far())
 
         for doc in docs:
-            logger.warning(f"Printing {doc}")
+            logger.info(f"Printing {doc}")
 
             if isinstance(doc, Document) and doc.suppressed_txt:
                 # TODO: add suppressed_txt to html_elements
