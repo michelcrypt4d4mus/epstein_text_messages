@@ -2493,6 +2493,7 @@ OTHER_FILES_GIRLS = [
         description='"might be naughty"',
     ),
     EmailCfg(id='EFTA01805304', author=KIRA_DIKHTYAR, author_reason='Jmail', truncate_to=NO_TRUNCATE),
+    EmailCfg(id='EFTA01766199', author=KIRA_DIKHTYAR, author_reason='reply', truncate_to=NO_TRUNCATE),
     EmailCfg(
         id='033178',
         author=MARIA_PRUSAKOVA,
