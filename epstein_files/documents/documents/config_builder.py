@@ -107,6 +107,7 @@ def blaine_letter(id: str, date: str, suffix: str = '') -> CommunicationCfg:
         description=join_truthy(f"recommending genius visa for a Epstein's assistant {SVETLANA_POZHIDAEVA}", suffix),
         is_interesting=True,
         recipients=['Immigration'],
+        show_with_name=SVETLANA_POZHIDAEVA,
     )
 
 

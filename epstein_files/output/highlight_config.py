@@ -2214,7 +2214,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             ),
             Contact(
                 SVETLANA_POZHIDAEVA,
-                f"AKA 'Sophia Platt', Epstein's Russian assistant recommended for visa by Sergei Belyakov (FSB) & {DAVID_BLAINE}",
+                f"AKA 'Sophia Platt', Epstein's assistant recommended for visa by {SERGEY_BELYAKOV} (FSB) & {DAVID_BLAINE}",
                 r"Sophia Platt|((Svet)?Lana )?Pozhidaeva|\b(Lana|Svet)\b",
                 link_to_bio='https://dossier.center/jeffreyepsteinrusconnect-en/',
                 match_partial='first',
