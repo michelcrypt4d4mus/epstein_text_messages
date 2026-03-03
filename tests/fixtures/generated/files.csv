@@ -5239,6 +5239,7 @@ EFTA00173881,crypto,US Secret Service,True,2025-01-30 17:48:18,Enterprise Vettin
 EFTA00173883,email,,True,2025-01-30 17:15:29,,,
 EFTA00173953,money,Organized Crime Drug Enforcement Task Force,True,2020-03-06 15:00:00,,,Organized Crime Drug Enforcement Task Force report on DEA investigations into Epstein related drug money laundering
 EFTA00177201,government,Jane Doe #1 and Jane Doe #2 v. United States,,2008-10-17 10:41:21,,,Jane Doe #1 and Jane Doe #2 v. United States court docket and many filings
+EFTA00222943,government,FBI,True,2007-07-02 00:00:00,,,FBI agent believes computers were removed from Epstein's residence
 EFTA00238496,email,,True,2017-02-28 19:07:23,Ghislaine Maxwell;Juliana Shkreli;Molly Ladd,,
 EFTA00238499,money,,True,,,,wire transfer to Signature Bank account
 EFTA00277089,email,USANYS,,2020-07-13 19:57:50,USANYS,,USANYS tip for the FBI / DOJ that Swedish billionaire Johan Eliasch may be connected to Epstein's crimes
@@ -5341,7 +5342,8 @@ EFTA00554702,email,Karyna Shuliak,,2019-05-07 02:38:17,Lorenz Ehrsam,,
 EFTA00554776,email,Karyna Shuliak,,2019-05-16 14:56:54,Lorenz Ehrsam;Richard Kahn,,
 EFTA00563586,email,,True,2011-08-08 11:07:16,Story Cowles,,
 EFTA00572771,email,Lesley Groff,,2016-01-12 13:08:11,Karyna Shuliak,,
-EFTA00579769,email,Ghislaine Maxwell,True,2002-10-23 15:49:00,Melania,,
+EFTA00579769,email,Ghislaine Maxwell,True,2002-10-23 15:49:00,Melania,,Melania... Trump?
+EFTA00582171,email,Ghislaine Maxwell,True,2001-05-24 22:26:32,Umar Dzhabrailov,,
 EFTA00582504,email,Ghislaine Maxwell,True,2001-05-25 14:49:28,Umar Dzhabrailov,,
 EFTA00582508,email,Umar Dzhabrailov,True,2001-05-24 08:02:13,Ghislaine Maxwell,,
 EFTA00584696,crypto,,True,2014-09-04 00:00:00,,,Epstein crypto fund Kyara Investment III LLC operating agreement
@@ -5511,6 +5513,7 @@ EFTA00758140,email,David Stern,True,2010-05-26 12:42:12,Jeffrey Epstein,,possibl
 EFTA00758271,email,David Stern,True,2010-08-27 19:43:20,Jeffrey Epstein,,
 EFTA00766770,girls,Boris Nikolic,True,2009-12-04 04:57:49,Jeffrey Epstein,,
 EFTA00770066,email,,True,2009-09-11 14:57:05,Lisa Randall,Sent from my Verizon Wireless BlackBerry,Epstein lists conferences he intends to fund
+EFTA00771388,email,David Stern,True,2009-10-14 17:28:00,Jeffrey Epstein,,Naomi Campbell seems to have made some introductions to Russian oligarchs
 EFTA00773139,email,Reinaldo Avila,,2009-07-30 13:53:56,Jeffrey Epstein,Sent from my BlackBerry® wireless device,"Reinaldo Avila Epstein calls Swedish billionaire Johan Eliasch ""not the brightest bulb"""
 EFTA00781689,messengerlogpdf,,True,2018-10-05 19:23:11,,,
 EFTA00785160,,,,2019-05-19 14:27:36,,,
@@ -5623,7 +5626,7 @@ EFTA00873587,email,Richard Kahn,,2018-06-27 05:35:21,Jeffrey Epstein,,
 EFTA00874793,crypto,Steve Bannon,True,2018-02-28 13:26:56,Jeffrey Epstein,,"Bannon says that they need to stop EU regulation of crypto scams ""dead in its tracks"""
 EFTA00875181,email,Brock Pierce,True,2013-02-27 04:45:51,Jeffrey Epstein,,
 EFTA00877487,email,Masha Drokova,True,2018-02-21 06:21:56,Jeffrey Epstein,,
-EFTA00877726,email,David Stern,True,2011-11-21 11:25:01,Jeffrey Epstein,,Epstein and Stern discuss plans to manage money for wealthy Chinese
+EFTA00877726,email,David Stern,True,2011-11-21 11:25:01,Jeffrey Epstein,,Epstein and David Stern discuss plans to manage money for wealthy Chinese
 EFTA00878255,girls,Jeffrey Epstein,True,2011-09-23 10:37:23,Boris Nikolic,,
 EFTA00880881,email,Masha Drokova,True,2018-02-17 00:45:37,Jeffrey Epstein;Jonathan Halata,,
 EFTA00881711,crypto,Jeffrey Epstein,True,2018-02-19 15:19:11,Steve Bannon,,Bannon and Epstein discuss bitcoin and crypto donations
@@ -6071,7 +6074,7 @@ EFTA01756411,email,Steven Sinofsky,True,2013-11-12 21:45:00,Jeffrey Epstein,,
 EFTA01757037,email,Renata Bolotova,True,2013-07-05 15:46:00,Jeffrey Epstein,,Renata Bolotova (???)
 EFTA01761627,email,David Mitchell,,2013-05-04 16:48:00,Jeffrey Epstein,,
 EFTA01762126,email,Brock Pierce,True,2013-02-25 19:00:00,Jeffrey Epstein,,
-EFTA01762201,email,Pablos Holman,True,2013-05-03 21:02:00,Jeffrey Epstein,,"""indoctrinating kids into an economy"""
+EFTA01762201,crypto,Pablos Holman,True,2013-05-03 21:02:00,Jeffrey Epstein,,"""indoctrinating kids into an economy"""
 EFTA01763770,email,Sultan Ahmed Bin Sulayem,True,2012-11-22 04:44:00,Jean Luc Brunel;Jeffrey Epstein,,
 EFTA01763771,email,Ian Osborne,False,2012-10-25 01:14:00,Jeffrey Epstein,,
 EFTA01764152,email,Steven Sinofsky,True,2013-03-21 14:37:00,Jeffrey Epstein,,
@@ -6295,7 +6298,7 @@ EFTA02189747,email,Janis Hartley,,2011-05-01 17:16:19,Lesley Groff,,
 EFTA02191245,email,,True,2011-04-04 08:00:00,,,
 EFTA02210223,email,e e v iu,True,2017-04-11 16:04:06,,,
 EFTA02220616,email,Lesley Groff,True,2017-08-31 19:40:10,Julia Santos;Valdson Vieira Cotrin,Sent from my iPhone,Lesley Groff (???)
-EFTA02223525,girls,Lesley Groff,True,2051-01-01 00:01:01,Anna Kasatkina;Bella Klein;Janusz Banasiak,,
+EFTA02223525,girls,Lesley Groff,True,2017-02-21 00:12:28,Anna Kasatkina;Bella Klein;Janusz Banasiak,,
 EFTA02225790,email,Lesley Groff,True,2017-10-03 17:44:40,Masha Drokova,Sent from my iPhone,Lesley Groff (???)
 EFTA02225815,email,Lesley Groff,True,2017-10-05 17:32:56,Bryan Johnson;Masha Drokova,,Lesley Groff (???)
 EFTA02227488,email,Austin Hill,True,2017-10-23 11:17:36,Lesley Groff,,
@@ -6354,7 +6357,6 @@ EFTA02318365,email,LSJ,True,2012-12-21 12:17:00,,Sent from my iPhone,
 EFTA02324346,email,Karyna Shuliak,True,2017-09-14 14:32:00,Renata Bolotova,,
 EFTA02328335,email,,True,2017-03-25 17:47:00,None;Jeffrey Epstein;Karyna Shuliak,,
 EFTA02334332,email,Jason Calacanis,True,2002-10-28 20:04:00,Ghislaine Maxwell,,Jason Calacanis
-EFTA02334771,email,Ghislaine Maxwell,True,4501-01-01 05:00:00,Umar Dzhabrailov,,
 EFTA02337365,email,Larry Summers,,2015-10-01 12:01:00,Jeffrey Epstein,Sent from my iPad,
 EFTA02339109,email,Brock Pierce,True,2014-10-25 06:04:00,Jeffrey Epstein,,"someone named Sue needs help (probably a sham marriage to Brock Pierce, see later emails)"
 EFTA02339926,girls,Julia Santos,True,2017-09-27 12:41:00,Jeffrey Epstein,,"Julia Santos (???) ""might be naughty"""
@@ -6709,7 +6711,7 @@ EFTA02731482,email,Jeanne M. Christensen,,2023-05-25 18:58:00,USANYS,,
 EFTA02731484,email,USANYS,,2023-07-21 22:04:00,USANYS,,USANYS (???)
 EFTA02731485,email,USANYS,,2023-06-12 13:53:00,USANYS,,USANYS (???)
 EFTA02731486,email,USANYS,,2023-05-30 10:20:00,USANYS,,USANYS (???)
-EFTA02731488,email,USANYS,True,2023-05-26 12:50:51,USANYS,,USANYS (???)
+EFTA02731488,email,USANYS,True,2023-05-26 12:50:51,USANYS,,USANYS (???) possible evidence of girls being trafficked to Leon Black
 EFTA02731490,email,USANYS,,2024-03-12 12:48:30,USANYS,,USANYS (???)
 EFTA02731500,,,,,,,
 EFTA02731501,email,USANYS,,2024-03-12 12:50:30,Douglas Wigdor;Jeanne M. Christensen;Meredith Firetog,,USANYS (???)

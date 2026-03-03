@@ -1911,6 +1911,8 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact('Yfke Sturm', 'model from Holland', match_partial='both'),
             Contact('lorraine@mc2mm.com', JEAN_LUC_MC2),
             Contact('pink@mc2mm.com', JEAN_LUC_MC2, r"^Pink$|pink@mc2mm\.com"),
+            organization('ID Models', "Paolo Zampolli's modeling agency"),
+            organization('Elite Models', 'well known modeling agency'),
             organization('MC2 Model Management', f"{JEAN_LUC_BRUNEL}'s modeling agency"),
         ],
         patterns=[
@@ -2493,7 +2495,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Katie Johnson",
             r"(Midget )?strippers?",
             r"Minor Victim",
-            r"model(ing|s)",
+            r"(?<!(ID|te)\s)model(ing|s)",
             r"orgasm(ic|s)?",
             r"pa?edophile",
             r"pussy",
