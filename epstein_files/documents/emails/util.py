@@ -13,6 +13,7 @@ DILORIO_SPLIT = '\nFrom: Chris'
 LEON_BLACK_EMAIL_REGEX = re.compile(r"^(From: .{,50}\nDate:|Date: ).*?(?=(From|Date|\Z))", re.DOTALL | re.MULTILINE)
 LEON_BLACK_FWD_REGEX = re.compile(r"^-+(Forwarded|Original) message-+", re.MULTILINE)
 TO_LEON_REGEX = re.compile(r"^Leon,", re.MULTILINE)
+TO_JEFFREY_REGEX = re.compile(r"^Jeffrey-", re.MULTILINE)
 
 LEON_BLACK_OCR_REPAIRS = {
     re.compile('^ate: ', re.MULTILINE): 'Date: ',
@@ -89,7 +90,7 @@ def split_up_leon_black(big_email: Email) -> list[Email]:
         if 'Avantario' in text_to_scan_for_recipients:
             email.extracted_recipients += ['Joe Avantario']
 
-        if email.recipients and not email.extracted_author and 'Jeffrey-' not in text_to_scan_for_recipients:
+        if email.recipients and not (email.extracted_author or TO_JEFFREY_REGEX.search(text_to_scan_for_recipients)):
             email.extracted_author = JEFFREY_EPSTEIN
 
             if JEFFREY_EPSTEIN in email.extracted_recipients:
