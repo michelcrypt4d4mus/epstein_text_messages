@@ -63,7 +63,7 @@ def test_against_csv(epstein_files):
 
 
 def test_all_configured_file_ids_exist(epstein_files):
-    all_ids = [doc.file_id for doc in epstein_files.documents]
+    all_ids = [doc.file_id for doc in epstein_files._documents]
     missing_ids = [id for id in CONFIGS_BY_ID.keys() if id not in all_ids]
     assert len(missing_ids) == 0, f"Missing {len(missing_ids)} files that are configured: {missing_ids}"
 
