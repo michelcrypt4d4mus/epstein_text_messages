@@ -1491,6 +1491,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA01767036', description=f'"Karim" is probably {ALLEGED_KARIM_WADE}'),
     EmailCfg(id='EFTA02513560', description=f"{JEAN_LUC_BRUNEL} doesn't want to speak on the phone", truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA02671523', description=f"Jones is former Google chief technology advocate / CEO of Epstein investment Wearality"),
+    EmailCfg(id='EFTA02464628', description=f"{KATHRYN_RUEMMLER} and Epstein on {JEAN_LUC_BRUNEL}'s immunity deal (for Epstein testimony?)", is_interesting=True),
     EmailCfg(id='EFTA01854384', description=f"{KARIM_WADE} asks if Epstein is free to meet the president (of Senegal?)", truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA00854166', description='"kazak contract will be ready for your review"', is_interesting=True, truncate_to=1100),
     EmailCfg(id='EFTA00080250', description=f"{LEON_BLACK} / Rothschild Group {DEUTSCHE_BANK} transactions", is_interesting=True),
@@ -3173,7 +3174,7 @@ OTHER_FILES_CRYPTO = [
         description='A Blockchain-Based Approach to Health Information Exchange Networks',
     ),
     EmailCfg(id='EFTA00629471', author=JOHN_BROCKMAN, truncate_to=3000),
-    EmailCfg(id='efta00797937', author='John Pfeffer', description="An (Institutional) Investor's Take on Cryptoassets", date='2017-12-24'),
+    EmailCfg(id='EFTA00797937', author='John Pfeffer', description="An (Institutional) Investor's Take on Cryptoassets", date='2017-12-24'),
     EmailCfg(id='EFTA01762201', description='"indoctrinating kids into an economy"', show_with_name=BOBBY_KOTICK),
     EmailCfg(id='EFTA02414991', description=f"Epstein signs up for World of Warcraft", truncate_to=350),
     EmailCfg(id='EFTA01388354', description=f"invitation to {DEUTSCHE_BANK} blockchain event with Mike Novogratz"),
@@ -3406,6 +3407,9 @@ UNINTERESTING_EMAIL_IDS = [
     # Maria Prusakova
     'EFTA01772533',
     'EFTA01740489',
+    # Philip Rosedale
+    'EFTA01903448',
+    'EFTA01899565',
     # Renata Bolotova
     'EFTA01903041',
     'EFTA01969322',
