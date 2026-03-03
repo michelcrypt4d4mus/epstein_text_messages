@@ -2523,6 +2523,7 @@ OTHER_FILES_GIRLS = [
         description=f'did {ELON_MUSK} date {SVETLANA_POZHIDAEVA} after she blackmailed {JOSHUA_FINK}? ("he asked 6 times if Elon [gave] me anything")',
         is_interesting=True,
     ),
+    EmailCfg(id='EFTA00937507', author=SVETLANA_POZHIDAEVA, author_uncertain=f"{JOSHUA_FINK} texts"),
     EmailCfg(
         id='EFTA02010589',
         author=UNKNOWN_GIRL,
