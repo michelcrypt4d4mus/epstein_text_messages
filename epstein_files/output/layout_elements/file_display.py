@@ -8,7 +8,7 @@ from rich.table import Table
 from rich.text import Text
 from rich.panel import Panel
 
-from epstein_files.output.html.elements import BLACK_BG, HtmlStyle, div_class
+from epstein_files.output.html.elements import BLACK_BACKGROUND, HtmlStyle, div_class
 from epstein_files.output.html.builder import (PANEL_BASE_PROPS, VERTICAL_MARGIN, border_css_props, rich_to_html,
      one_row_table_html, text_to_list, text_to_div, vertical_margin_props)
 from epstein_files.output.html.elements import div_tag, to_em, side_props
@@ -59,7 +59,7 @@ class BasePanel:
             if indents[1]:
                 div_props.update(side_props('margin', ['right'], to_em(indents[1])))
 
-        return div_class(html, BLACK_BG, div_props)
+        return div_class(html, BLACK_BACKGROUND, div_props)
 
     def __rich__(self) -> Panel:
         return Panel(
