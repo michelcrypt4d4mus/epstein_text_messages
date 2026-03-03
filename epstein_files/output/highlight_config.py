@@ -2157,6 +2157,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 r"Karyna Shuliak?",
             ),
             Contact('Kira Dikhtyar', emailer_pattern=r"Kira (D|Kira)", link_to_bio='https://x.com/FlippersUpNow/status/2020490996287443071'),
+            Contact('Krystyna Gwiazda', 'Russian girl'),
             Contact(
                 MARIA_PRUSAKOVA,
                 f"AKA Masha Prusso, former Olympic snowboarder, {CRYPTO_PR_LAB} co-founder, \"found ladies\" for Epstein",
@@ -2769,6 +2770,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Please use this email for.*general Media Lab.*",  # Joi Ito
             r"-Austin\nAustin Hill - B..dder.*(\n.*B92ED3E3)?",  # Austin Hill
             r"^(Please note my new email address?:?.*|Follow me on twitter @[Il]hsummers|www.larrysummers.com)$", # larry summers
+            r"^W dniu wt.*",  # Russian cyrillic
         ],
     ),
     HighlightPatterns(
