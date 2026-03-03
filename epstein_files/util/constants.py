@@ -2864,7 +2864,7 @@ OTHER_FILES_CRYPTO = [
     # Bannon
     EmailCfg(id='030711', description='Epstein says "we can discuss michael and his coins", unclear what that means'),
     EmailCfg(id='026260', comment='Bannon cripto coin issues'),
-    EmailCfg(id='026258', description='Bannon suggests Jeffrey Wernick, CEO of Parler and man affiliated with many shady crypto businesses, can help'),
+    EmailCfg(id='026258', description=f'Bannon suggests {JEFFREY_WERNICK}, Parler COO and man affiliated with many shady crypto businesses, can help'),
     EmailCfg(id='030781', description="Esptein says the crypto coin issues they're having are 'US based'"),
     EmailCfg(id='026255', description='Epstein requests help with "coin issues" and "prohibitions foreign donor" (sic)', is_interesting=True),
     EmailCfg(id='EFTA01020383', description='Epstein emails Bannon a quote about the use of crypto to evade capital controls'),
