@@ -62,6 +62,9 @@ elif any_uncommitted_changes; then
 fi
 
 
+# Check for new files
+./scripts/extract_doj_pdfs.py
+
 # Build .png and push master changes
 git push origin master --quiet
 epstein_generate --make-clean --suppress-output

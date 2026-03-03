@@ -151,4 +151,5 @@ def log_file_write(file_path: str | Path) -> None:
 
 
 def open_file_or_url(thing_to_open: str | Path) -> None:
-    check_output(['open', str(thing_to_open)])
+    cmd = 'code' if str(thing_to_open).endswith('.txt') else 'open'
+    check_output([cmd, str(thing_to_open)])

@@ -58,9 +58,11 @@ def test_highlight_pattern():
 
 def test_middle_initial():
     assert CONTACT_INFO._middle_initial == ''
-    assert Contact('Robert D Critton')._middle_initial == 'D'
-    assert Contact('Robert D. Critton')._middle_initial == 'D'
     assert Contact('Robert Dow Critton')._middle_initial == ''
+    assert Contact('Robert D Critton')._middle_initial == 'D'
+    critton = Contact('Robert D. Critton')
+    assert critton._middle_initial == 'D'
+    assert critton.emailer_regex.pattern == r"Robert[-_.\s]*(D\.?[-_.\s]*)?Critton?"
 
 
 def test_organization():

@@ -84,7 +84,8 @@ class EpsteinFiles:
 
         logger.warning(f"Building new cache file, this will take a few minutes...")
         epstein_files = EpsteinFiles()
-        timer.print_at_checkpoint(f'Processed {len(epstein_files.file_paths):,} files, {OtherFile.num_synthetic_cfgs_created} synthetic configs')
+        num_synthetic_cfgs = len([c for c in CONFIGS_BY_ID.values() if c.is_synthetic])
+        timer.print_at_checkpoint(f'Processed {len(epstein_files.file_paths):,} files, {num_synthetic_cfgs} synthetic configs')
         return epstein_files
 
     @property

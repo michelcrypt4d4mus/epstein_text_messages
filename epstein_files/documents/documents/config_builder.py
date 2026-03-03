@@ -19,6 +19,7 @@ SUBPOENA_REGEX = re.compile(r"GRAND JURY SUBPOENA")
 VALAR_CAPITAL_CALL_REGEX = re.compile(r"^Val[ao]r.{,190} Capital Call", re.MULTILINE | re.IGNORECASE | re.DOTALL)
 VI_DAILY_NEWS_REGEX = re.compile(r'virgin\s*is[kl][ai]nds\s*daily\s*news', re.IGNORECASE)
 
+FBI_REPORT = f"report on Epstein investigation"  # (redacted)
 JANE_DOE_V_USA = 'Jane Doe #1 and Jane Doe #2 v. United States'
 LEDGERX_MSG = 'LedgerX was later acquired by FTX for $298 million'
 WOLFF_EPSTEIN_ARTICLE_DRAFT = f"draft of an unpublished article ca. 2014"
@@ -125,7 +126,7 @@ def fbi_defense_witness(id: str, witness: str, date: str = '') -> DocCfg:
     )
 
 
-def fbi_report(id: str, description: str, **kwargs) -> DocCfg:
+def fbi_report(id: str, description: str = FBI_REPORT, **kwargs) -> DocCfg:
     return DocCfg(id=id, author=FBI, category=Neutral.GOVERNMENT, description=description, **kwargs)
 
 
@@ -137,6 +138,16 @@ def letter(id: str, author: str, recipients: list[Name], description: str, date:
         date=date,
         description=description,
         recipients=recipients,
+        **kwargs
+    )
+
+
+def phone_bill_cfg(id: str, author: str, dates: str = '', **kwargs) -> DocCfg:
+    return DocCfg(
+        id=id,
+        author=author,
+        category=Uninteresting.PHONE_BILL,
+        replace_text_with=f"phone bill" + (f" covering {dates}" if dates else ''),
         **kwargs
     )
 

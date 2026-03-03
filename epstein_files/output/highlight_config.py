@@ -233,7 +233,6 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"New Apostolic Church",
             r"New York Film Festival",
             r"Peter Getzels",
-            r"Ramsey Elkholy",
             r"Regan arts",
             r"shirley maclaine",
             r"Sotheby's",
@@ -487,6 +486,12 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 match_partial=None
             ),
             Contact(
+                'Blythe Masters',
+                'created the weapon of financial destruction known as the Credit Default Swap, now a crypto bro-ette',
+                link_to_bio='https://en.wikipedia.org/wiki/Blythe_Masters',
+                match_partial=None,
+            ),
+            Contact(
                 'Bo Collins',
                 f"AKA James Robert Collins, {MERCANTILE_GLOBAL_HOLDINGS}, testified in trial of Miles Guo/Miles Kwok",
                 r"(Bo|James) (Robert )?Collins",
@@ -650,7 +655,6 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"bit[o\s]?coin( Foundation)?",
             r"Bit(Angels|Fury|Go)",
             r"block (chain|tree)",
-            r"Blythe Masters",
             r"Brac",  # Brock? EFTA01792443
             r"Bradley Rotter",
             r"Brian Forde",
@@ -1918,7 +1922,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 r"(Paolo )?Z[ae]mpoll?i",
                 link_to_bio='https://dominicanewsonline.com/news/homepage/news/the-zampolli-matter-more-fuel-for-where-de-money-gone-campaign/',
             ),
-            Contact('Ramsey Elkholy', f"scouted girls for Epstein in NYC, member of Monotronic", match_partial='both'),
+            Contact(RAMSEY_ELKHOLY, f"scouted girls for Epstein in NYC, member of Monotronic", match_partial='both'),
             Contact('Vladimir Yudashkin', "director of the 1 Mother Agency"),
             Contact('Yfke Sturm', 'model from Holland', match_partial='both'),
             Contact('lorraine@mc2mm.com', JEAN_LUC_MC2),
@@ -1927,6 +1931,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             organization('Elite Models', 'well known modeling agency'),
             organization('Icarine', f"agency with connections to {JEAN_LUC_BRUNEL}"),
             organization('MC2 Model Management', f"{JEAN_LUC_BRUNEL}'s modeling agency", r"MC2( Model Management)?"),
+            organization('One Model Management', 'agency'),
         ],
         patterns=[
             r"\w+@mc2mm.com",
@@ -2182,6 +2187,8 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         label='russian girl',
         style='color(161)',
         contacts=[
+            Contact('Aksana Samy', 'Russian girl'),
+            Contact('Alena Davydenkova', 'Russian girl'),
             Contact('Alysia Riabenkova', 'Russian painter', r"Alesia|Alysia( Riabenkova)?|Riabenkova"),
             Contact(ANASTASIYA_SIROOCHENKO, '', r"Anastasiya( Siro(chenko)?)?"),
             Contact(ANNA_KASATKINA, 'Russian girl'),
@@ -2198,7 +2205,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 f"girlfriend to whom Epstein tried to leave $50 million and the island, alleged sham marriage to {JENNIFER_KALIN}",
                 r"Karyna Shuliak?",
             ),
-            Contact('Kira Dikhtyar', emailer_pattern=r"Kira (D|Kira)", link_to_bio='https://x.com/FlippersUpNow/status/2020490996287443071'),
+            Contact(KIRA_DIKHTYAR, 'very active recruiter', r"Kira (D|Kira)", link_to_bio='https://x.com/FlippersUpNow/status/2020490996287443071'),
             Contact('Krystyna Gwiazda', 'Russian girl'),
             Contact(
                 MARIA_PRUSAKOVA,
@@ -2232,6 +2239,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 match_partial='first',
             ),
             Contact(YULIA_DOROKHINA, 'Russian girl'),
+            Contact('Yulia Trubuckai', 'Russian girl'),
         ],
         patterns=[
             r"[DM]asha",
@@ -2310,7 +2318,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(MASAYOSHI_SON, 'CEO of Softbank, often referred to as "Masa"', r"Masa(yoshi)?(\sSon)?", match_partial='first'),
             Contact(MELANIE_PHILLIPS, f'girlfriend of {STEVEN_SINOFSKY}', match_partial=None),
             Contact('Nathan Myhrvold', f"former CTO of Microsoft, co-founder of Intellectual Ventures"),
-            Contact('Philippe Laffont', f"founder of Coatue"),
+            Contact('Philippe Laffont', f"Coatue Management founder"),
             Contact(PHILIP_ROSEDALE, 'Second Life founder'),
             Contact(PETER_THIEL, "Paypal mafia member, founder of Palantir, Facebook investor", r"(Peter )?Th(ie|ei)l"),
             Contact('Rajeev Misra', "formerly Softbank Vision Fund executive", r"[NR]ajeev"),
@@ -2332,6 +2340,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 "VC fund founded by Philippe Laffont possibly invested in by Epstein",
                 r"Coatue( (Enterprises?|Management|Mgmt))?",
             ),
+            organization('Coursera', is_emailer=True, is_interesting=False),
             organization(GOOGLE_PLUS, "Google Plus", r"Google\+", is_emailer=True, is_interesting=False),
             organization('Greylock', 'OG silicon valley venture capital firm', r"Greylock( Partners)?"),
             organization(
@@ -2540,11 +2549,12 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(BRAD_EDWARDS, ROTHSTEIN_ROSENFELDT_ADLER_ATTORNEY, r"Brad(ley)?( J(.?|ames))? Edwards", match_partial=None),
             Contact('David Boies', 'Boies, Schiller, & Flexner', r"(David )?Bo[il]es(,? Schiller( & Flexner)?)?"),
             Contact(DOUGLAS_WIGDOR, WIGDOR_ATTORNEY, r"Doug(las)? (H\.?)? Wigdor", match_partial=None),
-            Contact('Gloria Allred', "victim's lawyer on many well known sexual harassment cases"),
+            Contact(GLORIA_ALLRED, "victim's lawyer on many well known sexual harassment cases"),
             Contact('Grant J. Smith', ROTHSTEIN_ROSENFELDT_ADLER_ATTORNEY, match_partial=None),
             Contact(JEANNE_M_CHRISTENSEN, WIGDOR_ATTORNEY),
             Contact(JACK_SCAROLA, "Searcy Denney Scarola Barnhart & Shipley attorney"),
             Contact(KEN_JENNE, ROTHSTEIN_ROSENFELDT_ADLER_ATTORNEY),
+            Contact(LAURA_A_MENNINGER, 'Haddon, Morgan and Foreman P.C.'),
             Contact(PAUL_G_CASSELL, 'professor at University of Utah, victim advocate'),
             Contact(STANLEY_POTTINGER, f"{VIRGINIA_GIUFFRE} legal team while working for Epstein", r"(J\.? )?(Stan(ley)? )?Pottinger"),
             organization('Marsh Law Firm', 'victim counsel'),
@@ -2762,13 +2772,18 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
     HighlightPatterns(
         label='legal',
         style='pale_turquoise4',
+        use_word_boundary=True,
         patterns=[
+            r"affidavit",
             r"autopsy",
             fr"^{CASE_ID_REGEX.pattern}.*",
             CASE_ID_REGEX.pattern,
+            r"deposition",
             r"EDGAR (Filing|Search)",  # SEC database is EDGAR
+            r"General Counsel",
             r"Notary Public",
             r"Page \d+ of \d+",
+            r"testimony",
         ]
     ),
     HighlightPatterns(
