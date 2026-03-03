@@ -158,6 +158,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             organization('Glencore', 'Swiss mining company'),
         ],
         patterns=[
+            r"Addis Ababa",
             r"Abuja",
             r"Angola",
             r"Buhari",
@@ -178,8 +179,10 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Rwandan?",
             r"Senegal(ese)?",
             r"Serengeti",
+            r"Somalil?an?d?",
             r"(South )?African?",
             r"(Strive )?Masiyiwa",
+            r"Sudan(ese)?",
             r"Tanzanian?",
             r"Ugandan?",
             r"Zaire",
