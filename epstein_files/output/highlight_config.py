@@ -115,6 +115,8 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Mayo Clinic",
             r"MIT",
             r"Murray Gell-Mann",
+            r"NYU",
+            r"New York University",
             r"Norman Finkelstein",
             r"Oxford(?! Analytica)",
             r"plant biology",
@@ -194,6 +196,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(DAVID_BLAINE, "famous magician"),
             Contact('David Brenner', "American comedian and actor"),
             Contact('David Geffen', 'record label and film studio owner'),
+            Contact('Henry Jarecki', 'psychiatrist and philanthropist', match_partial=None),
             Contact(ETIENNE_BINANT, f"art advisor {QUESTION_MARKS}"),
             Contact('Larry Gagosian', 'famous art dealer'),
             Contact('Marla Prather', f'art curator at MoMA, wife of {MORTIMER_ZUCKERMAN}'),
@@ -804,6 +807,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 f"corporate vehicle set up by Epstein and {DAVID_STERN}, presumably to manage money of wealthy Chinese",
                 r"Asia\s*Gateway(\s*L(imited|td))?",
             ),
+            epstein_co('Little Saint James Island', r'Little S(ain)?t\.? James( Island)?'),
             epstein_co('FT Real Estate'),
             epstein_co('Island Grounds Inc.'),
             epstein_co('Hyperion Air', r"Hyperion( Air)?"),
@@ -1232,6 +1236,12 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 info=f"son of {ANDREW_FARKAS}, heir to Alexander's department store fortune",
                 emailer_pattern=r"Jonath[ao]n Fark(a|u)(s|il)",
                 match_partial=None,
+            ),
+            Contact(
+                JOSHUA_FINK,
+                f"son of Blackrock CEO Larry Fink, possibly dated {SVETLANA_POZHIDAEVA}",
+                r"Josh(ua)? Fink",
+                match_partial=None
             ),
             Contact('linkspirit', "Skype username of someone Epstein communicated with"),
             Contact(
@@ -1912,7 +1922,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 "Isabel Maxwell's husband, Mindshift conference organizer, mysterious death",
                 link_to_bio='https://www.tabletmag.com/sections/news/articles/the-illusionist-al-seckel',
             ),
-            Contact('Barnaby Marsh', "co-founder of philanthropy services company Saint Partners"),
+            Contact('Barnaby Marsh', "co-founder of philanthropy services company Saint Partners", match_partial=None),
             Contact(CHRISTINA_GALBRAITH, f"{JEFFREY_EPSTEIN} VI Foundation Media/PR, worked with {TYLER_SHEARS}"),
             Contact(
                 IAN_OSBORNE,
@@ -2419,6 +2429,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Antigua",
             r"Bahamas",
             r"Carr?ibb?ean",
+            r"Cayman Islands?",
             r"Dominican Republic",
             r"(Great|Little) St.? James",
             r"Haiti(an)?",
@@ -2453,6 +2464,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact('Virginia Giuffre', f"one of Epstein's first public accusers", r"(Virginia ((L\.?|Roberts) )?)?Giuffre",),
         ],
         patterns=[
+            r"Beautify and the Beast",
             r"(child )?porn(ography)?",
             r"condom",
             r"(?<!drug )(child\s*)?(sex\s*)?traffi?c?k(ers?|ing)",
@@ -2468,6 +2480,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"pa?edophile",
             r"pussy",
             r"(?-i:S)anctum",
+            r"Snow White",
             r"Stephanie Clifford",
             r"(?-i:S)ue\b",  # Only in brock emails really?
             r"Stormy Daniels",
@@ -2489,6 +2502,8 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(JEANNE_M_CHRISTENSEN, WIGDOR_ATTORNEY),
             Contact(JACK_SCAROLA, "Searcy Denney Scarola Barnhart & Shipley attorney"),
             Contact(KEN_JENNE, ROTHSTEIN_ROSENFELDT_ADLER_ATTORNEY),
+            Contact(PAUL_G_CASSELL, 'professor at University of Utah, victim advocate'),
+            organization('Marsh Law Firm', 'victim counsel'),
             organization(
                 ROTHSTEIN_ROSENFELDT_ADLER,
                 "shady law firm, Rothstein ran $1.2 billion Ponzi scheme & was Roger Stone's partner",
@@ -2542,6 +2557,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             ),
         ],
         patterns=[
+            r"Mandarin Oriental",
             r"properties",
             r"real estate( developer)?",
             r"(reverse )?mortgage",

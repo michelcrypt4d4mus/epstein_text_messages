@@ -4,7 +4,7 @@ Custom configurations for various files.
 from itertools import groupby
 
 from epstein_files.documents.documents.categories import CONSTANT_CATEGORIES, Interesting, Neutral
-from epstein_files.documents.documents.config_builder import (WOLFF_EPSTEIN_ARTICLE_DRAFT, binant_redacted,
+from epstein_files.documents.documents.config_builder import (JANE_DOE_V_USA, WOLFF_EPSTEIN_ARTICLE_DRAFT, binant_redacted,
      blaine_letter, fbi_defense_witness, fbi_report, letter, starr_letter, whistleblower_cfg, victim_diary,
      wolff_draft_cfg)
 from epstein_files.documents.documents.doc_cfg import (DEFAULT_TRUNCATE_TO, GOLDMAN_INVESTMENT_MGMT,
@@ -1572,8 +1572,8 @@ GIUFFRE_V_DERSHOWITZ = f"{VIRGINIA_GIUFFRE} v. {ALAN_DERSHOWITZ}"
 GIUFFRE_V_EPSTEIN = f"{VIRGINIA_GIUFFRE} v. {JEFFREY_EPSTEIN}"
 GIUFFRE_V_MAXWELL = f"{VIRGINIA_GIUFFRE} v. {GHISLAINE_MAXWELL}"
 JANE_DOE_V_EPSTEIN_TRUMP = f"Jane Doe v. Donald Trump and {JEFFREY_EPSTEIN}"
-JANE_DOE_V_USA = 'Jane Doe #1 and Jane Doe #2 v. United States'
 NEW_YORK_V_EPSTEIN = f"New York v. {JEFFREY_EPSTEIN}"
+REDACTED_V_EPSTEIN_ESATE = f"{REDACTED} v. Estate of Jeffrey Epstein, {GHISLAINE_MAXWELL}"
 
 # Descriptions of non-email, non-text message files
 ARTICLE_DRAFT = 'draft of an article about'
@@ -1816,6 +1816,10 @@ OTHER_FILES_DEPOSITION = [
         description='grand jury testimony of Child Exploitation & Human Trafficking Task Force member',
     ),
     DocCfg(id='EFTA01108807', author='Jane Doe', date='2010-02-09', description='vol. III of IV'),
+    # DocCfg(id='EFTA00064843', author=UNKNOWN_GIRL, description=f'{GHISLAINE_MAXWELL} "relentless"'),
+    DocCfg(id='EFTA00078311', author=REDACTED_V_EPSTEIN_ESATE, description=f'Boies Schiller filing about sexual abuse of their client'),
+    DocCfg(id='EFTA00105975', author=REDACTED_V_EPSTEIN_ESATE, description=f'{GHISLAINE_MAXWELL} "was relentless"'),
+    DocCfg(id='EFTA00158752', author=REDACTED_V_EPSTEIN_ESATE, description=f'{GHISLAINE_MAXWELL} "was relentless"'),
 ]
 
 OTHER_FILES_LEGAL = [
@@ -1996,6 +2000,7 @@ OTHER_FILES_LEGAL = [
     starr_letter('012130', '2008-06-19', ['012135'], non_participants=[LESLEY_GROFF]),
 
     # DOJ files
+    DocCfg(id='EFTA01106135', author=BILL_GATES, description=f"gives Epstein power to negotiate on behalf of {BORIS_NIKOLIC}"),
     DocCfg(id='EFTA00727684', author=f"{REDACTED} v. {JEFFREY_EPSTEIN}", description='sworn testimony, list of co-conspirators'),
     DocCfg(id='EFTA02730741', author=DOJ, date='2025-05-01', date_uncertain=True, description="Evidence list for 50D-NY-3027571 Filtering On 'Type(s): 1B'"),
     DocCfg(id='EFTA02730486', author=DOJ, date='2025-05-01', date_uncertain=True, description="Evidence list for 50D-NY-3027571 Filtering On '1A'"),
@@ -2173,6 +2178,15 @@ OTHER_FILES_GOVERNMENT = [
         description="interview where Epstein's chef says Donald Trump came to Epstein's house for dinner",
         truncate_to=(6000, 7500),
     ),
+    DocCfg(id='EFTA00177201', author=JANE_DOE_V_USA, description='court docket and many filings'),
+    DocCfg(id='EFTA00081226', author=FBI, description='interview with minor victim'),
+    DocCfg(id='EFTA00590940', author=JANE_DOE_V_USA, description='interview with minor victim'),
+    DocCfg(id='EFTA01081391', author=JANE_DOE_V_USA, description='interview with minor victim'),
+    DocCfg(id='EFTA01112265', author=EDWARDS_V_DERSHOWITZ, description='interview with minor victim'),
+    DocCfg(id='EFTA01125109', author=EDWARDS_V_DERSHOWITZ, description='interview with minor victim'),
+    DocCfg(id='EFTA01139414', author=EDWARDS_V_DERSHOWITZ, description='interview with minor victim'),
+    DocCfg(id='EFTA01249591', author=FBI, description=f"allegations against Henry Jarecki"),
+    DocCfg(id='EFTA00222943', author=FBI, description=f"agent believes computers were removed from Epstein's residence"),
     DocCfg(id='EFTA00020506', author=FBI, description='"chauffeur told Epstein \'I have something on you, remember what I buried!\'"'),
     DocCfg(id='EFTA00084614', author=PALM_BEACH_POLICE, description='incident report detailing the investigation into Jeffrey Epstein'),
     DocCfg(id='EFTA00007893', author=PALM_BEACH_POLICE, description=f"receipts, notes, bank statements of {GHISLAINE_MAXWELL}"),
@@ -2185,6 +2199,7 @@ OTHER_FILES_GOVERNMENT = [
     fbi_defense_witness('EFTA02730267', 'Malcolm Grumbridge', '2022-04-14'),
     fbi_defense_witness('EFTA02730271', REDACTED, '2022-03-22'),
     fbi_defense_witness('EFTA02730477', 'Roderic Alexander', '2022-01-19'),
+    letter('EFTA00098456', PAUL_G_CASSELL, ['Scotland Yard'], 'International Sex Trafficking by Jeffrey Epstein, contains court filings'),
 
     # Emails
     EmailCfg(
@@ -2549,7 +2564,10 @@ OTHER_FILES_MISC = [
         description=f"internal message about discovery of Epstein's body",
         background_color='red'
     ),
+    DocCfg(id='EFTA00165515', description="contractor describes Epstein's gun safes", show_full_panel=True),
     DocCfg(id='EFTA00005783', description='heavily redacted handwritten note, 30+ completely redacted pages', date='2019-08-29'),
+    DocCfg(id='EFTA00024275', description='large Wexner funded payments to OB-GYN'),
+    DocCfg(id='EFTA00029538', description=f"{GHISLAINE_MAXWELL} provided school girl uniforms", show_full_panel=True),
     # Urramoor
     DocCfg(
         id='EFTA01107738',
@@ -2597,6 +2615,7 @@ OTHER_FILES_DIARY = [
 
 OTHER_FILES_GIRLS = [
     EmailCfg(id='030609', duplicate_ids=['030495']),
+    letter('EFTA00078198', 'Marsh Law Firm', [USANYS], "allegations of sexual abuse at Epstein's house", '2020-11-10'),
     DocCfg(id='EFTA00306033', author=SERGEY_BELYAKOV, description='Epstein Russian visa', show_full_panel=True),
     CommunicationCfg(
         id='EFTA01612733',
@@ -2661,6 +2680,8 @@ OTHER_FILES_GIRLS = [
     ),
     EmailCfg(id='EFTA00897668', recipients=[UNKNOWN_GIRL], people=[JEAN_LUC_BRUNEL, JEFFREY_EPSTEIN, UNKNOWN_GIRL]),
     EmailCfg(id='EFTA00848644', recipients=[UNKNOWN_GIRL], is_interesting=True, description='"take a picture of your pussy"'),
+    EmailCfg(id='EFTA00078209', description='allegations about Russian organized crime, sex trafficking', truncate_to=8500),
+    EmailCfg(id='EFTA01648951', description=f'allegations against Trump, {HOWARD_LUTNICK}, Glen Dubin, {LEON_BLACK}, {JES_STALEY}'),
     EmailCfg(id='EFTA00950368', description='"any [girl] friends for me?"', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA00883738', description=f"{DASHA_GRUPMAN} looking to rent townhouse for diplomats", show_with_name=DASHA_GRUPMAN),
     EmailCfg(id='EFTA01140210', description='Epstein asks about fake Instagram followers', is_interesting=True),
@@ -2668,11 +2689,14 @@ OTHER_FILES_GIRLS = [
     EmailCfg(id='EFTA01768670', description='"find girls for the agency"'),
     EmailCfg(id='EFTA01022353', description='George Models in Odessa is basically a porn site, "She said she was 14-15 yo"', is_interesting=True),
     EmailCfg(id='EFTA00950394', description='"how old will you go?"', is_interesting=True),
+    EmailCfg(id='EFTA00659941', author=SVETLANA_POZHIDAEVA, author_reason='https://tommycarstensen.com/epstein/findings.html#victim-diary-names-multiple-men', description=f'"Josh is toxic"'),
     EmailCfg(id='EFTA01660651', description='list of Trump accusers', is_interesting=True),
     EmailCfg(id='EFTA02609062', description=f"{MASHA_DROKOVA} is assembling a team", is_interesting=True),
     EmailCfg(id='EFTA01145923', description="modeling contract"),
     EmailCfg(id='EFTA02557291', description='possibly recruiting girls'),
     EmailCfg(id='EFTA01811230', description=f'"Renat" is probably {RENATA_BOLOTOVA}'),
+    EmailCfg(id='EFTA00894079', description='"say hi to Snow White"', is_interesting=True),
+    EmailCfg(id='EFTA00736518', comment=JES_STALEY + ' beauty and the beast'),
     EmailCfg(id='EFTA00751119', description='"Valdson to teach girls how to serve"'),
     EmailCfg(
         id='EFTA02434682',
