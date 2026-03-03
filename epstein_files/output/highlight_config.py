@@ -2073,6 +2073,11 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 link_to_bio='https://dossier.center/jeffreyepsteinrusconnect-en/',
             ),
             Contact('Sergey Lavrov', 'foreign minister under Putin'),
+            Contact(
+                UMAR_DZHABRAILOV,
+                f'oligarch who called {GHISLAINE_MAXWELL} his "soulmate", death by "suicide" 2026-03-02',
+                r"Umar D(j|zh)abrailov",
+            ),
             Contact('Vitaly Churkin', 'Russian ambassador to the United Nations'),
             Contact(
                 YURI_MILNER,

@@ -1792,15 +1792,17 @@ OTHER_FILES_ARTICLE = [
 ]
 
 OTHER_FILES_DEPOSITION = [
+    DocCfg(id='021824', author=PAUL_G_CASSELL, description=f"from {EDWARDS_V_DERSHOWITZ}"),
+    DocCfg(id='013463', author='Scott Rothstein', description=f"from {JANE_DOE_V_EPSTEIN_TRUMP}", date='2010-03-23'),
+    DocCfg(id='017488', author='Scott Rothstein', description=f"from {EPSTEIN_V_ROTHSTEIN_EDWARDS}", date='2012-06-22'),
+    # DOJ
+    DocCfg(id='EFTA00615804', author=ALAN_DERSHOWITZ, description='pages 334-461'),
     DocCfg(
         id='EFTA00159483',
         author=LAWRANCE_VISOSKI,
         is_interesting=True,
         non_participants=[EHUD_BARAK, GLENN_DUBIN, LARRY_SUMMERS],
     ),
-    DocCfg(id='021824', author=PAUL_G_CASSELL, description=f"from {EDWARDS_V_DERSHOWITZ}"),
-    DocCfg(id='013463', author='Scott Rothstein', description=f"from {JANE_DOE_V_EPSTEIN_TRUMP}", date='2010-03-23'),
-    DocCfg(id='017488', author='Scott Rothstein', description=f"from {EPSTEIN_V_ROTHSTEIN_EDWARDS}", date='2012-06-22'),
     DocCfg(id='EFTA00009229', author='Alex Acosta', description='pages 1-100', date='2020-04-30', is_interesting=True),
     DocCfg(id='EFTA00009329', author='Alex Acosta', description='pages 101-200', date='2020-04-30', is_interesting=True),
     DocCfg(id='EFTA00009016', author='Alex Acosta', description='pages 201-300', date='2020-04-30', is_interesting=True),
