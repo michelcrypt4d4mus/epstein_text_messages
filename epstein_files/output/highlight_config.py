@@ -2213,7 +2213,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(YULIA_DOROKHINA, 'Russian girl'),
         ],
         patterns=[
-            r"Dasha",
+            r"[DM]asha",
         ]
     ),
     HighlightedNames(
@@ -2722,6 +2722,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             fr"^{CASE_ID_REGEX.pattern}.*",
             CASE_ID_REGEX.pattern,
             r"EDGAR (Filing|Search)",  # SEC database is EDGAR
+            r"Notary Public",
             r"Page \d+ of \d+",
         ]
     ),
