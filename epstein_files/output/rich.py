@@ -76,13 +76,15 @@ RAINBOW = [
     'navajo_white1',
 ]
 
+RICH_THEME = Theme(THEME_STYLES)
+
 # Instantiate console object
 CONSOLE_KWARGS = {
     'color_system': '256',
     'highlighter': highlighter,
     'record': args.build,
     'safe_box': True,
-    'theme': Theme(THEME_STYLES),
+    'theme': RICH_THEME,
     'width': args.width,
 }
 
