@@ -2991,6 +2991,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         use_word_boundary=True,
         patterns=[
             r"American Express",
+            r"Amex",
             r"alterna[tv]i[tv]e finance",
             r"((anti )?money )?launder(s?|ers?|ing)?( money)?",
             r"(?<!(alfa|ture|hase|rahi|sche)\s)bank(?!\s+(of|secrecy))",
