@@ -2246,7 +2246,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 link_to_bio='https://en.wikipedia.org/wiki/Ruslana_Korshunova',
                 match_partial='both',
             ),
-            Contact('Sanita', 'Russian girl'),
+            Contact(SANITA, "Russian girl who gets mad at Epstein when he suggets a massage"),
             Contact(
                 SVETLANA_POZHIDAEVA,
                 f"AKA 'Sophia Platt', Epstein assistant, went to FSB feeder school MGIMO, visa recommended by {SERGEY_BELYAKOV} (FSB) & {DAVID_BLAINE}",
