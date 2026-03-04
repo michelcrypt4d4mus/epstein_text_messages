@@ -1466,6 +1466,11 @@ EMAILS_CONFIG = [
         is_interesting=True,
         show_with_name=GANBAT_CHULUUNKHUU
     ),
+    EmailCfg(
+        id='EFTA00039989',
+        description=f"ICE has an immigration hold on a man who might have important info about the Epstein case",
+        is_interesting=True,
+    ),
     EmailCfg(id='EFTA00637023', description=f"discussion of getting around laws against money laundering in places like Myanmar + Mongolia"),
     EmailCfg(id='EFTA02573653', description=f'discussion of {PRINCE_ANDREW}\'s Urramoor, "Howard" is probably Howard Lutnick which Urramoor partnered with'),
     EmailCfg(id='EFTA02629771', description=f"discussion of {RENATA_BOLOTOVA}'s employment at IPI", is_interesting=True),
