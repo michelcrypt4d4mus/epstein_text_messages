@@ -1465,7 +1465,7 @@ EMAILS_CONFIG = [
         id='EFTA02483194',
         description=f"fwded email from {GANBAT_CHULUUNKHUU} explaining why he's now wanted by Interpol",
         is_interesting=True,
-        show_with_name=GANBAT_CHULUUNKHUU
+        show_with_name=GANBAT_CHULUUNKHUU,
     ),
     EmailCfg(
         id='EFTA00039989',
@@ -1594,6 +1594,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA01849797', show_with_name=CHRIS_POOLE),
     EmailCfg(id='EFTA02179653', show_with_name=CHRIS_POOLE),
     EmailCfg(id='EFTA01987383', show_with_name=CHRIS_POOLE),
+    EmailCfg(id='EFTA00376832', show_with_name=MARIANA_IDZKOWSKA),
     EmailCfg(id='EFTA00718804', non_participants=[MILES_GUO]),
     EmailCfg(id='EFTA00932122', non_participants=[MILES_GUO]),
     EmailCfg(id='EFTA00909508', comment='party at Bunker'),
