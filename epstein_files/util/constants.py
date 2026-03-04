@@ -2004,6 +2004,8 @@ OTHER_FILES_CRYPTO = [
     EmailCfg(id='026258', description=f'Bannon suggests {JEFFREY_WERNICK}, Parler COO and man affiliated with many shady crypto businesses, can help'),
     EmailCfg(id='030781', description="Esptein says the crypto coin issues they're having are 'US based'"),
     EmailCfg(id='026255', description='Epstein requests help with "coin issues" and "prohibitions foreign donor" (sic)', is_interesting=True),
+    EmailCfg(id='EFTA02521522'),
+    EmailCfg(id='EFTA02524752', description=f'{STEVE_BANNON} "is thinking of combining crypto with his politcial movement"', show_with_name=STEVE_BANNON),
     EmailCfg(id='EFTA01020383', description='Epstein emails Bannon a quote about the use of crypto to evade capital controls'),
     EmailCfg(id='EFTA00874793', description=f'Bannon says that they need to stop EU regulation of crypto scams "dead in its tracks"', is_interesting=True),
     EmailCfg(id='EFTA02517572', description=f'Bannon says that they need to stop EU regulation of crypto scams "dead in its tracks"'),
@@ -2215,6 +2217,8 @@ OTHER_FILES_CRYPTO = [
     EmailCfg(id='EFTA00957552', description=f'thank you note for a $50,000 donation in honor of Tether banker {HOWARD_LUTNICK}'),
     EmailCfg(id='EFTA00970606', show_with_name=HOWARD_LUTNICK),
     EmailCfg(id='EFTA01778423', show_with_name=HOWARD_LUTNICK),
+    # Jeremy Rubin
+    EmailCfg(id='EFTA02466979', description='"AID Coin"'),
     # Joi Ito / Kyara
     DocCfg(id='024256', author=JOI_ITO, description=f"Internet & Society: The Technologies and Politics of Control"),
     EmailCfg(id='028847', description=f"the announcement of a hunt for Putin's money seems to greatly concern Epstein and {JOI_ITO}"),
@@ -2293,6 +2297,7 @@ OTHER_FILES_CRYPTO = [
     EmailCfg(id='EFTA00964459', description=f'discussion of sharia compliant crypto token', is_interesting=True),
     EmailCfg(id='EFTA00990442', description=f"Epstein offers to cover all costs for Sharia Coin", is_interesting=True),
     EmailCfg(id='EFTA02396341', description='the Sharia Coin gambit', is_interesting=True),
+    EmailCfg(id='efta01005117', description='announcement that the Stellar blockchain is Sharia compliant'),
     # Valar
     DocCfg(id='EFTA00810239', author=VALAR_FUND, description='pitch deck'),
     DocCfg(id='EFTA00591045', author=VALAR_FUND, description='brochure', non_participants=[MASAYOSHI_SON]),
@@ -2613,7 +2618,7 @@ OTHER_FILES_GIRLS = [
     EmailCfg(id='EFTA00883738', description=f"{DASHA_GRUPMAN} looking to rent townhouse for diplomats", show_with_name=DASHA_GRUPMAN),
     EmailCfg(
         id='EFTA00577409',
-        date='2004-01-01',
+        date='2003-06-01',
         date_uncertain='just a guess, string is 4501 which is NULL in Microsoft Outlook',
         description='Epstein and Ghislaine discuss girl "from donad trumps party" who blackmailed [someone]',
     ),
@@ -3138,7 +3143,12 @@ OTHER_FILES_MONEY = [
     ),
     DocCfg(id='EFTA01285411', description=f"bank statement for Epstein's {SOUTHERN_TRUST_COMPANY} showing $82 million balance"),
     DocCfg(id='EFTA00016884', description="Epstein's last will and testament", date='2014-11-18'),
-    DocCfg(id='EFTA00089546', description=f"Epstein last will and testament codicil naming {JAMES_CAYNE} an executor", date='2007-09-20'),
+    DocCfg(
+        id='EFTA00089546',
+        description=f"Epstein last will and testament codicil naming {JAMES_CAYNE} an executor",
+        date='2007-09-20',
+        non_participants=[JOI_ITO],
+    ),
     DocCfg(id='EFTA00299927', description=f"Estate plan for {JAMES_CAYNE} found in Epstein's possession"),
     DocCfg(id='EFTA01266380', description="Epstein's 2014 Trust with bequests"),
     DocCfg(id='EFTA01282282', description=f"Epstein Butterfly Trust (sole beneficiary {KARYNA_SHULIAK})"),
@@ -3494,6 +3504,8 @@ UNINTERESTING_EMAIL_IDS = [
     'EFTA00005717',
     # Ganbat
     'EFTA02469375',
+    # Ghislaine
+    'EFTA00582171',  # Visible in other files
     # Ian Osborne
     'EFTA01763771',
     # Jabor
@@ -3602,6 +3614,7 @@ UNINTERESTING_EMAIL_IDS = [
 
 # Not uninteresting enough to be permanently marked as such but not good enough for --output-chrono
 NOT_CHRONOLOGICAL_VIEW_IDS = [
+    'EFTA00582504',
     '024432',
     '019352',
     'EFTA00915298',
