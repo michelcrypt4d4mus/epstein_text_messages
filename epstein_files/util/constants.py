@@ -1111,7 +1111,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA01978227', description=f"Epstein arranging tour of Harvard for {RASSECK_BOURGI}'s daughter"),
     EmailCfg(
         id='EFTA00773139',
-        author='Reinaldo Avila',
+        author=REINALDO_AVILA_DA_SILVA,
         description="Epstein calls Swedish billionaire Johan Eliasch \"not the brightest bulb\"",
         truncate_to=1000
     ),

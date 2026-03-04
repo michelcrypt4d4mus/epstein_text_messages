@@ -1806,7 +1806,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         style='yellow',
         contacts=[
             Contact('Edgar Zambrano', 'Venezuelan politician'),
-            Contact('Reinaldo Avila Da Silva', "Peter Mandelson's Brazilian partner", r"Reinaldo Avila", match_partial=None),
+            Contact(REINALDO_AVILA_DA_SILVA, "Peter Mandelson's Brazilian partner", r"Reinaldo Avila", match_partial=None),
         ],
         patterns=[
             r"Argentin(a|ian)",
