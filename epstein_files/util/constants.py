@@ -1392,12 +1392,6 @@ EMAILS_CONFIG = [
         description='discussion of a symposium on deception and alternative finance',
         is_interesting=True,
     ),
-    EmailCfg(
-        id='EFTA01857628',
-        recipients=[RENATA_BOLOTOVA],
-        recipient_uncertain='https://x.com/FlippersUpNow/status/2023457206109155345',
-        description='"igrushki" means "toys" in Russian',
-    ),
     EmailCfg(id='EFTA01039112', recipients=[RENATA_BOLOTOVA], recipient_uncertain=SNEAKY_DOG),
     EmailCfg(id='EFTA01006355', recipients=[RENATA_BOLOTOVA], recipient_uncertain=SNEAKY_DOG),
     EmailCfg(id='EFTA02547678', recipients=[RENATA_BOLOTOVA], recipient_uncertain=SNEAKY_DOG),
@@ -2611,6 +2605,30 @@ OTHER_FILES_GIRLS = [
     EmailCfg(id='EFTA02027844', author=UNKNOWN_GIRL, description='permission to "fuck someone with a condom"', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA02449477', author=UNKNOWN_GIRL, description='argument about finding girls for Epstein', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA01782788', author=UNKNOWN_GIRL, description='"I need 21-24, wiling to travel and work hard"', truncate_to=NO_TRUNCATE),
+    EmailCfg(id='EFTA00738485', recipients=[STEVEN_VICTOR_MD], truncate_to=640),
+    # Recipients
+    EmailCfg(
+        id='EFTA02223525',
+        recipients=[ANNA_KASATKINA, BELLA_KLEIN, JANUSZ_BANASIAK],
+        recipient_uncertain='https://www.reddit.com/r/Epstein/comments/1qwbn5i/trafficker_julia_santos/',
+        truncate_to=800
+    ),
+    EmailCfg(
+        id='EFTA01857628',
+        recipients=[RENATA_BOLOTOVA],
+        recipient_uncertain='https://x.com/FlippersUpNow/status/2023457206109155345',
+        description='"igrushki" means "toys" in Russian',
+    ),
+    EmailCfg(id='EFTA00857669', recipients=[SANITA], description=f"{SANITA} is mad at Epstein", truncate_to=NO_TRUNCATE),
+    EmailCfg(
+        id='EFTA00888467',
+        description=f'very strange conversation about "Peter" (maybe {PETER_MANDELSON}?) and "mj" (maybe {HASSAN_JAMEEL}?)',
+        is_interesting=True,
+        recipients=[UNKNOWN_GIRL],
+        truncate_to=1600,
+    ),
+    EmailCfg(id='EFTA00897668', recipients=[UNKNOWN_GIRL], people=[JEAN_LUC_BRUNEL, JEFFREY_EPSTEIN, UNKNOWN_GIRL]),
+    EmailCfg(id='EFTA00848644', recipients=[UNKNOWN_GIRL], is_interesting=True, description='"take a picture of your pussy"'),
     EmailCfg(
         id='EFTA01026268',
         author_reason='juliador89®mail.ru is unredacted',
@@ -2618,23 +2636,6 @@ OTHER_FILES_GIRLS = [
         recipients=[YULIA_DOROKHINA],
         truncate_to=3100,
     ),
-    EmailCfg(id='EFTA00738485', recipients=[STEVEN_VICTOR_MD], truncate_to=640),
-    EmailCfg(
-        id='EFTA00888467',
-        description=f'very strange conversation about "Peter" and "mj" (probably {HASSAN_JAMEEL})',
-        is_interesting=True,
-        recipients=[UNKNOWN_GIRL],
-        truncate_to=1600,
-    ),
-    EmailCfg(
-        id='EFTA02223525',
-        recipients=[ANNA_KASATKINA, BELLA_KLEIN, JANUSZ_BANASIAK],
-        recipient_uncertain='https://www.reddit.com/r/Epstein/comments/1qwbn5i/trafficker_julia_santos/',
-        truncate_to=800
-    ),
-    EmailCfg(id='EFTA00857669', recipients=[SANITA], description=f"{SANITA} is mad at Epstein", truncate_to=NO_TRUNCATE),
-    EmailCfg(id='EFTA00897668', recipients=[UNKNOWN_GIRL], people=[JEAN_LUC_BRUNEL, JEFFREY_EPSTEIN, UNKNOWN_GIRL]),
-    EmailCfg(id='EFTA00848644', recipients=[UNKNOWN_GIRL], is_interesting=True, description='"take a picture of your pussy"'),
     EmailCfg(id='EFTA00775255', description='"20 years old but she looks younger"', non_participants=[BROCK_PIERCE]),
     EmailCfg(id='EFTA00078209', description='allegations about Russian organized crime, sex trafficking', truncate_to=8500),
     EmailCfg(id='EFTA01648951', description=f'allegations against Trump, {HOWARD_LUTNICK}, Glen Dubin, {LEON_BLACK}, {JES_STALEY}'),
