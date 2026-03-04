@@ -292,6 +292,7 @@ EMAILS_CONFIG = [
         description="Bank Leumi would get in trouble for helping Americans avoid taxes a few years after this",
     ),
     EmailCfg(id='EFTA01775500', author=DAVID_STERN, author_reason='in quoted reply', description=f'"PA" is probably {PRINCE_ANDREW}'),
+    EmailCfg(id='EFTA01862308', author=DAVID_STERN, author_uncertain='timing + David rowland'),
     EmailCfg(id='EFTA02410642', description=f'"PA" is probably {PRINCE_ANDREW}'),
     EmailCfg(id='EFTA02570707', author=DAVID_STERN, author_uncertain='in quoted reply', truncate_to=NO_TRUNCATE),
     EmailCfg(id='031460', author=EDWARD_JAY_EPSTEIN, author_reason='quoted reply has edwardjayepstein.com', is_fwded_article=True),
@@ -1489,6 +1490,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00941197', description=f'Epstein appears to be helping with an investment in Jawbone by {HEDOSOPHIA}'),
     EmailCfg(id='EFTA02592748', description=f"Epstein asking {BROCK_PIERCE} for a favour related to someone named 'Sue'", truncate_to=300),
     EmailCfg(id='EFTA00664252', description='Epstein explains his "no wives / no girlfriends" policy', truncate_to=NO_TRUNCATE),
+    EmailCfg(id='EFTA02689871', description=f"Epstein instructs {DAVID_STERN} to avoid {BANQUE_HAVILLAND}"),
     EmailCfg(id='EFTA01008242', description='Epstein passes on an investment in Radius'),
     EmailCfg(id='EFTA00949376', description=f"Epstein paying {MC2_MODEL_MGMT}", truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA00630134', description=f'Epstein recommends Signal encrypted messenger to {ALLEGED_KARIM_WADE}', is_interesting=True),
@@ -2155,7 +2157,7 @@ OTHER_FILES_CRYPTO = [
     DocCfg(id='EFTA00803464', author=HONEYCOMB_FUND, description="July 2018 report", date='2018-07-17', is_interesting=True),
     # Howard Lutnick
     DocCfg(id='EFTA01230639', date='2012-12-22'),
-    DocCfg(id='EFTA00434306', description='calendar reminder for call with Howard Lutnick', date='2011-04-26'),
+    DocCfg(id='EFTA00434306', description='calendar reminder for call with Howard Lutnick', date='2011-04-26', show_full_panel=True),
     DocCfg(id='EFTA00020515', author=FBI, description='tip about Howard Lutnick and financial irregularities', is_interesting=True),
     DocCfg(
         id='EFTA00289560',
@@ -3491,6 +3493,7 @@ UNINTERESTING_EMAIL_IDS = [
     # David Stern
     'EFTA02507454',
     'EFTA02478704',
+    'EFTA01862308',
     '030724',
     # Epstein
     '030997',

@@ -148,7 +148,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact('Ivan Glasenberg', "South African former CEO of Glencore, one of the world's largest commodity trading and mining companies"),
             Contact(
                 KARIM_WADE,
-                'son of the president of Senegal, facing arrest for corruption',
+                'son of the president of Senegal, arrested for corruption',
                 r"Afri [xz]p?|Karim Wade",
                 link_to_bio='https://www.bbc.com/news/world-africa-32020574',
                 match_partial='first',
@@ -309,12 +309,6 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             organization(ATT_COURT_APPEARANCE_TEAM, "AT&T", is_interesting=False),
             organization('Junkermann Group', JUNKERMANN_FUND),
             organization('NJF Capital', JUNKERMANN_FUND, r"NJF( Capital)?"),
-            organization(
-                'Swedish American Life Science Summit',
-                f"(SALSS) {BARBRO_C_EHNBOM} event, recruiting grounds for Epstein",
-                r"Swedish American Life Science Summit|SALSS",
-                link_to_bio='https://www.politico.eu/article/jeffrey-epstein-files-sweden-business-leader-ehnbom-proposed-meet-women/',
-            ),
         ],
         patterns=[
             r"Arthur Klein",
@@ -443,6 +437,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r'Gambino',
             r'heroin',
             r'methamphetamines?',
+            r"narco(tic)?",
             r"murder(e[dr]|ing)?",
             r"organized crime",
             r"(securities )?fraud(ulent)?",
@@ -1036,13 +1031,19 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             ),
             Contact('Viktor Yushchenko', 'former president of Ukraine'),
             Contact('Viktor Orban', 'prime minister of Hungary', r"(Vi(c|k)tor )?Orbah?n"),
+            organization('AfD', 'right wing German political party'),
             acronym('European Central Bank'),
             acronym(
                 INTERNATIONAL_PEACE_INSTITUTE,
                 "gave jobs to Epstein's girls",
                 link_to_bio='https://apnews.com/article/jeffrey-epstein-kevin-rudd-oslo-crime-think-tanks-ca62b1c799d2cb3bb346afcf4dfec355',
             ),
-            organization('AfD', 'right wing German political party'),
+            organization(
+                'Swedish American Life Science Summit',
+                f"(SALSS) {BARBRO_C_EHNBOM} event, recruiting grounds for Epstein",
+                r"Swedish American Life Science Summit|SALSS",
+                link_to_bio='https://www.politico.eu/article/jeffrey-epstein-files-sweden-business-leader-ehnbom-proposed-meet-women/',
+            ),
             organization('Zug', "city in Switzerland known as a hub for crypto and dodgy finance"),
         ],
         patterns=[
