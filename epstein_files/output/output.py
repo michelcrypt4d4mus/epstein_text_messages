@@ -21,7 +21,7 @@ from epstein_files.output.html.builder import buffer_as_html, rich_to_html, tabl
 from epstein_files.output.html.elements import div_class
 from epstein_files.output.rich import *
 from epstein_files.output.site.sites import (AUTHORS_USING_SIGNATURES, EMAILERS_TABLE_PNG_PATH,
-     FILES_THAT_ARE_NEITHER_EMAILS_NOR, HIS_EMAILS, HIS_TEXT_MESSAGES, HTML_DIR, HTML_BUILD_FILENAMES, SELECTIONS_FROM)
+     FILES_THAT_ARE_NEITHER_EMAILS_NOR, HIS_EMAILS, HIS_TEXT_MESSAGES, HTML_DIR, SELECTIONS_FROM)
 from epstein_files.output.title_page import print_color_key, print_other_page_link, print_section_header
 from epstein_files.people.interesting_people import EMAILERS_TO_PRINT
 from epstein_files.people.person import PEOPLE_BIOS, Person
@@ -164,7 +164,7 @@ def print_emails_section(epstein_files: EpsteinFiles) -> list[Email]:
     if args.all_emails:
         _verify_all_emails_were_printed(epstein_files, doc_printer.printed_emails)
 
-    _print_email_device_signature_info(epstein_files)
+    print_email_device_signatures(epstein_files)
     fwded_articles = [e for e in doc_printer.printed_emails if e.config and e.is_fwded_article]
     log_msg = f"Rewrote {len(Email.rewritten_header_ids)} of {len(doc_printer.printed_emails)} email headers"
     logger.warning(f"  -> {log_msg}, {len(fwded_articles)} of the Emails printed were forwarded articles.")
@@ -301,7 +301,7 @@ def write_html(output_path: Path | None, **kwargs) -> None:
         log_file_write(output_path)
 
 
-def _print_email_device_signature_info(epstein_files: EpsteinFiles) -> None:
+def print_email_device_signatures(epstein_files: EpsteinFiles) -> None:
     print_subtitle_panel(DEVICE_SIGNATURE_SUBTITLE)
     console.print(_signature_table(epstein_files.email_device_signatures_to_authors(), (DEVICE_SIGNATURE, AUTHOR), ', '))
     console.print(_signature_table(epstein_files.email_authors_to_device_signatures(), (AUTHOR, DEVICE_SIGNATURE)))

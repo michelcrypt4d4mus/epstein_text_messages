@@ -35,6 +35,7 @@ class SiteType(StrEnum):
     CURATED_MOBILE = auto()
     CHRONOLOGICAL = CHRONOLOGICAL
     CHRONOLOGICAL_MOBILE = f"{CHRONOLOGICAL}_mobile"
+    DEVICE_SIGNATURES = auto()
     DOJ_FILES = auto()
     EMAILS = auto()
     EMAILS_CHRONOLOGICAL = auto()
@@ -60,7 +61,8 @@ class SiteType(StrEnum):
 
     @classmethod
     def build_path(cls, site_type: 'SiteType') -> Path:
-        return HTML_DIR.joinpath(HTML_BUILD_FILENAMES[site_type])
+        """Defaults to `[site_type].html` if not configured in `HTML_BUILD_FILENAMES`."""
+        return HTML_DIR.joinpath(HTML_BUILD_FILENAMES.get(site_type, f"{site_type}.html"))
 
     @classmethod
     def get_url(cls, site_type: 'SiteType') -> str:
@@ -124,26 +126,24 @@ class SiteType(StrEnum):
 #  - curated_chronological.html
 HTML_BUILD_FILENAMES = {
     SiteType.EMAILS_CHRONOLOGICAL:  f'chronological_emails.html',
-    SiteType.CURATED:               f'curated.html',
-    SiteType.CURATED_MOBILE:        f'curated_mobile.html',
     SiteType.CHRONOLOGICAL:         f"index.html",
     SiteType.CHRONOLOGICAL_MOBILE:  f"mobile_chronological.html",
     SiteType.DOJ_FILES:             f'doj_2026-01-30_non_email_files.html',
     SiteType.EMAILS:                f'emails_grouped_by_counterparty.html',
     SiteType.JSON_METADATA:         f'metadata.json',
-    SiteType.OTHER_FILES_TABLE:     f'other_files_table.html',
     SiteType.TEXT_MESSAGES:         f'text_messages_{EPSTEIN_FILES_NOV_2025}.html',
     SiteType.WORD_COUNT:            f'communication_word_count.html',
 #     SiteType.EPSTEIN_WORD_COUNT: 'epstein_texts_and_emails_word_count.html'),
 }
 
-# Order matters, it's the order the links are shown in the header
+# NOTE: Order matters, it's the order the links are shown in the header
 # Colons are used to break and parenthesize display
 SITE_DESCRIPTIONS = {
     SiteType.CURATED:               f"curated:by my interests, files grouped by type",
     SiteType.CHRONOLOGICAL:         f"curated chronological:all types intermingled",
     SiteType.EMAILS:                f"emailers:all emails grouped by counterparty",
     SiteType.EMAILS_CHRONOLOGICAL:  f"emails chronological:all emails chronological order",
+    SiteType.DEVICE_SIGNATURES:     f"signatures:email signatures and who uses them",
     SiteType.TEXT_MESSAGES:         f"text messages:{HOUSE_OVERSIGHT_TRANCHE}",
     SiteType.CURATED_MOBILE:        f"mobile:an attempt at mobile compatibility",
     SiteType.CHRONOLOGICAL_MOBILE:  f"chrono mobile:another attempt at mobile compatibility",

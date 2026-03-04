@@ -48,6 +48,7 @@ output.add_argument('--json-files', action='store_true', help='pretty print all 
 output.add_argument('--json-metadata', '-jm', action='store_true', help='dump JSON metadata for all files and exit')
 output.add_argument('--mobile', '-mob', action='store_true', help='build a mobile version of the site')
 output.add_argument('--output-chrono', '-oc', action='store_true', help='output curated files of all types in chronological order')
+output.add_argument('--output-devices', '-od', action='store_true', help='output "Sent from my iPhone" style device signature')
 output.add_argument('--output-emails', '-oe', action='store_true', help='generate emails section')
 output.add_argument('--output-other', '-oo', action='store_true', help='generate other files section')
 output.add_argument('--output-texts', '-ot', action='store_true', help='generate text messages section')
@@ -147,6 +148,8 @@ if is_html_script:
                 args._site_type = SiteType.JSON_METADATA
             elif args.output_chrono:
                 args._site_type = SiteType.CHRONOLOGICAL
+            elif args.output_devices:
+                args._site_type = SiteType.DEVICE_SIGNATURES
             elif args.output_word_count:
                 args._site_type = SiteType.WORD_COUNT
 
