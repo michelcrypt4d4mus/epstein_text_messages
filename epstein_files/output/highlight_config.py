@@ -2493,6 +2493,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 f"brother of {ELON_MUSK}, dated Epstein's girl {JENNIFER_KALIN}",
                 r"Kimball?( Musk)?",
                 link_to_bio='https://www.theguardian.com/us-news/2026/feb/10/jeffrey-epstein-tesla-kimbal-musk',
+                match_partial='first',
             ),
             Contact(MASAYOSHI_SON, 'CEO of Softbank, often referred to as "Masa"', r"Masa(yoshi)?(\sSon)?", match_partial='first'),
             Contact(MELANIE_PHILLIPS, f'girlfriend of {STEVEN_SINOFSKY}', match_partial=None),

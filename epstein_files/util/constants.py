@@ -2530,6 +2530,21 @@ OTHER_FILES_GIRLS = [
         description='blowjob instructions, sexual experiments',
         truncate_to=NO_TRUNCATE,
     ),
+    EmailCfg(
+        id='EFTA02010589',
+        author=MARIA_PRUSAKOVA,
+        date='2012-01-31 9:16 PM',
+        description=f'raunchy email mentioning "Sasha Grey guy", note {BORIS_NIKOLIC} and bgC3 in SMTP info at end',
+        is_interesting=True,
+        recipients=[JEFFREY_EPSTEIN],
+    ),
+    EmailCfg(
+        id='EFTA00928879',
+        author=MARIA_PRUSAKOVA,
+        author_uncertain='sounds like Prusakova',
+        description=f'raunchy email, "find fun girls"',
+    ),
+    EmailCfg(id='EFTA01990168', author=MARIA_PRUSAKOVA, author_uncertain='"experiments"', is_interesting=True),
     EmailCfg(id='EFTA00671662', author='Miranda', author_reason='quoted signature', description="yet another girl finder"),
     EmailCfg(id='EFTA02441035', author=STEVEN_VICTOR_MD, description="complaining about free treatment for Epstein's girls"),
     EmailCfg(
@@ -2562,14 +2577,6 @@ OTHER_FILES_GIRLS = [
         is_interesting=True,
     ),
     EmailCfg(
-        id='EFTA02010589',
-        author=UNKNOWN_GIRL,
-        date='2012-01-31 9:16 PM',
-        description=f'raunchy email mentioning "Sasha Grey guy", note {BORIS_NIKOLIC} and bgC3 in SMTP info at end',
-        is_interesting=True,
-        recipients=[JEFFREY_EPSTEIN],
-    ),
-    EmailCfg(
         id='EFTA01998247',
         author=SVETLANA_POZHIDAEVA,
         author_uncertain='device signature',
@@ -2585,7 +2592,6 @@ OTHER_FILES_GIRLS = [
     EmailCfg(id='EFTA02431535', author=UNKNOWN_GIRL),
     EmailCfg(id='EFTA01875607', author=UNKNOWN_GIRL),
     EmailCfg(id='EFTA00901581', author=UNKNOWN_GIRL),
-    EmailCfg(id='EFTA01990168', author=UNKNOWN_GIRL, is_interesting=True),
     EmailCfg(id='EFTA02027844', author=UNKNOWN_GIRL, description='permission to "fuck someone with a condom"', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA02449477', author=UNKNOWN_GIRL, description='argument about finding girls for Epstein', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA01782788', author=UNKNOWN_GIRL, description='"I need 21-24, wiling to travel and work hard"', truncate_to=NO_TRUNCATE),
@@ -3554,6 +3560,8 @@ UNINTERESTING_EMAIL_IDS = [
     'EFTA01969322',
     'EFTA01035614',
     'EFTA02719248',
+    # Svetlana
+    'EFTA01772677',
     # USANYS / DOJ
     'EFTA00039799',
     'EFTA02730469',
@@ -3640,6 +3648,7 @@ NOT_CHRONOLOGICAL_VIEW_IDS = [
     '030222',
     # '031826',
     '031826',
+    'EFTA02001536',
     'EFTA01773417',
     'EFTA01987283',
     'EFTA01778423',
