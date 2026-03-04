@@ -74,9 +74,13 @@ OFFICIAL_LINKS = [
 EXTERNAL_LINKS = OFFICIAL_LINKS + [
     # ExternalLink(EPSTEIN_WEB_URL, 'biographies', link_text='EpsteinWeb'),
     ExternalLink('https://epsteinexposed.com'),
-    ExternalLink('https://randallscott25-star.github.io/epstein-forensic-finance/narratives/19_grand_opus_narrative.html', 'money', link_text='Epstein Audit'),
+    ExternalLink(
+        'https://randallscott25-star.github.io/epstein-forensic-finance/narratives/19_grand_opus_narrative.html',
+        'money',
+        link_text='Epstein Audit'
+    ),
     ExternalLink(JMAIL_URL, 'read His Emails via Gmail interface', link_text='Jmail'),
-    ExternalLink('https://tommycarstensen.com/epstein/index.html', 'metadata', link_text='Carstensen Epstein Archive'),
+    ExternalLink('https://tommycarstensen.com/epstein/index.html', 'findings', link_text='Carstensen Epstein Archive'),
     ExternalLink(EPSTEIN_DOCS_URL, 'old docs', link_text='epstein-docs'),
     ExternalLink(EPSTEIN_MEDIA_URL, 'raw document images'),
     # ExternalLink(EPSTEINIFY_URL, 'raw images alt', link_text='Epsteinify'),

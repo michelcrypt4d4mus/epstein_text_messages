@@ -143,7 +143,7 @@ def print_title_page_bottom(epstein_files: 'EpsteinFiles') -> None:
     console.line()
     _print_abbreviations_table()
     _print_external_links()
-    console.line()
+    console.line(2)
     print_centered(epstein_files.overview_table())
     print_color_key()
     print_centered(f"(if you think there's an attribution error or can deanonymize an {UNKNOWN} contact {CRYPTADAMUS_TWITTER})", 'grey46')
