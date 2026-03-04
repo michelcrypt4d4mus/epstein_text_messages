@@ -1,4 +1,5 @@
 from datetime import datetime
+from itertools import chain
 
 import pytest
 
@@ -97,8 +98,12 @@ def test_signature_substitutions(epstein_files):
 def test_signatures(epstein_files):
     authors_to_devices = epstein_files.email_authors_to_device_signatures()
     devices_to_authors = epstein_files.email_device_signatures_to_authors()
+    all_authors = uniquify([k for k in chain(authors_to_devices.keys(), AUTHORS_TO_DEVICE_SIGNATURES.keys())])
 
-    for name, device_signatures in authors_to_devices.items():
+    for name in all_authors:
+        assert name in authors_to_devices, f"{name} is in AUTHORS_TO_DEVICE_SIGNATURES but not in results!"
+        device_signatures = set(authors_to_devices[name])
+
         if device_signatures not in COMMON_DEVICE_SIGNATURES:
             assert name in AUTHORS_TO_DEVICE_SIGNATURES, f"{name} has {device_signatures} signatures, fixture has none!"
             fixture_signatures = set(AUTHORS_TO_DEVICE_SIGNATURES[name])

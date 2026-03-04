@@ -33,10 +33,11 @@ REPLY_PATTERNS = [
     FORWARDED_LINE_PATTERN,
     r"At \d{2}:\d{2} [AP]M.*wrote:",
     r"In a message dated \d+/\d+/\d+.*writes:",
-    r"[Il][Il] giorno .*scritto:",                         # Italian
     r"Le .* a [eo](cr|m)it ?:?",                        # French
     r"Am \d\d\.\d\d\..*schrieb.*",                      # German
+    r"[Il][Il] giorno .*scritto:",                      # Italian
     r"(Den .* folgende|(fre|lor|son)\. .* skrev .*):",  # Norwegian
+    r"Dnia .*napisal\(a\):",                            # Polish
 ]
 
 # print(fr"(?<!M)On ({REPLY_ON_DATE_PATTERN})[., ].*{REPLY_LINE_ENDING_PATTERN}")
@@ -126,7 +127,7 @@ DEVICE_PATTERNS = [
     r"AT&T",
     r"Droid",
     r"iOS",
-    r"iPad",
+    r"iPada?",
     r"Phone",
     r"Mail(\w+for\s+(\w+))?(\s+App)?",
     r"Samsung Mobile",
@@ -134,7 +135,14 @@ DEVICE_PATTERNS = [
     r"BlackBerry(.*(AT&T|device|Handheld|Orange|smartphone|T- ?Mobile))?",
 ]
 
-DEVICE_PATTERN = r"(Envoy[ée] (avec|de mon)|Sent (from|using|via|with)).*(" + '|'.join(DEVICE_PATTERNS) + r")"
+SENT_PREFIX_PATTERNS = [
+    r"Envoy[ée] (avec|de mon)",
+    r"Sent (from|using|via|with)",
+    r"Wyslane z",
+]
+
+DEVICE_PATTERN = fr"({'|'.join(SENT_PREFIX_PATTERNS)}).*(" + '|'.join(DEVICE_PATTERNS) + ")"
+print(DEVICE_PATTERN)
 EPSTEIN_TYPO_PREFIX = r"((Please forgive|Sorry for all the) typos.{1,4})"
 SENT_FROM_DEVICE_PATTERN = '|'.join([DEVICE_PATTERN] + SIGNATURE_PATTERNS)
 SENT_FROM_REGEX = re.compile(fr'^{EPSTEIN_TYPO_PREFIX}?({SENT_FROM_DEVICE_PATTERN})\.?( -*)?', re.M | re.I)

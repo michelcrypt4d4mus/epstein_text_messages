@@ -20,6 +20,14 @@ def highlight_config_dict() -> dict:
     }
 
 
+def print_all_highlighted_quotes(epstein_files):
+    from epstein_files.output.rich import console
+
+    for email in epstein_files.emails:
+        if email.config and email.config.highlight_quote:
+            console.print(email)
+
+
 def print_all_timestamps(epstein_files):
     from epstein_files.output.rich import console
     fallbacks = valid = 0

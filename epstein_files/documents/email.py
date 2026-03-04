@@ -15,7 +15,7 @@ from rich.table import Table
 from rich.text import Text
 
 from epstein_files.documents.communication import Communication
-from epstein_files.documents.document import CLOSE_PROPERTIES_CHAR
+from epstein_files.documents.document import CLOSE_PROPERTIES_CHAR, EXCERPT_STYLE
 from epstein_files.documents.documents.categories import Uninteresting
 from epstein_files.documents.documents.doc_cfg import DebugDict, EmailCfg, Metadata
 from epstein_files.documents.emails.constants import *
@@ -24,11 +24,12 @@ from epstein_files.documents.emails.email_header import (EMAIL_SIMPLE_HEADER_REG
 from epstein_files.documents.emails.emailers import extract_emailer_names
 from epstein_files.documents.other_file import OtherFile
 from epstein_files.people.interesting_people import EMAILERS_OF_INTEREST_SET
-from epstein_files.output.highlight_config import HIGHLIGHTED_NAMES, HIGHLIGHTED_CONTACTS, get_style_for_name
+from epstein_files.output.epstein_highlighter import highlighter, temp_highlighter
+from epstein_files.output.highlight_config import HIGHLIGHTED_NAMES, get_style_for_name
 from epstein_files.output.html.builder import table_to_html
 from epstein_files.output.html.elements import to_em
 from epstein_files.output.layout_elements.file_display import FileDisplay, JustifyMethod
-from epstein_files.output.rich import DEFAULT_TABLE_KWARGS, build_table, highlighter, join_texts, styled_key_value
+from epstein_files.output.rich import DEFAULT_TABLE_KWARGS, build_table, join_texts, styled_key_value
 from epstein_files.util.constant.strings import APPEARS_IN, ARCHIVE_LINK_COLOR, REDACTED, TIMESTAMP_DIM
 from epstein_files.util.constant.urls import URL_SIGNIFIERS
 from epstein_files.people.names import sort_names
@@ -387,8 +388,13 @@ class Email(Communication):
             for line in text.split('\n')
         ]
 
-        text = join_texts(lines, '\n')
-        txt = highlighter(text)
+        if self.config and self.config.highlighted_pattern:
+            logger.warning(f"self.config.highlighted_pattern='{self.config.highlighted_pattern}'")
+            txt_highlighter = temp_highlighter(self.config.highlighted_pattern)
+        else:
+            txt_highlighter = highlighter
+
+        txt = txt_highlighter(join_texts(lines, '\n'))
 
         if trim_footer_txt:
             txt.append('...\n\n').append(trim_footer_txt)
@@ -839,8 +845,20 @@ class Email(Communication):
 
     @property
     def _attached_docs_table(self) -> Table | None:
-        if self.attached_docs:
-            attachments_table_title = f"| Email Attachments for {self.file_info.url_slug}:" # ╏┇┣
+        if not self.attached_docs:
+            return None
+
+        attachments_table_title = f"| Email Attachments for {self.file_info.url_slug}:" # ╏┇┣
+
+        if (doc := self.attached_docs[0]).config and doc.config.show_full_panel:
+            if len(self.attached_docs) > 1:
+                raise ValueError(f"Can't show more than one panelized attachment for {self}!")
+
+            table = Table(title=attachments_table_title, title_justify='left')
+            table.add_column(doc.config.description)
+            table.add_row(highlighter(Text(self.attached_docs[0].text, EXCERPT_STYLE)))
+            return table
+        else:
             return OtherFile.files_preview_table(self.attached_docs, title=attachments_table_title)
 
     def _body_as_panel(self, text: str | Text, description: Text | None = None) -> Panel:

@@ -331,6 +331,9 @@ class Document:
         style = INFO_STYLE if self.config_replace_text_with and len(self.config_replace_text_with) < 300 else ''
         text = self.config_replace_text_with or self.text
 
+        if self.config and self.config.highlight_quote:
+            raise ValueError(f"highlight_quote functionality not implemented in Document yet {self}")
+
         if args.char_nums:
             text = self._inject_line_numbers(text, args.char_nums)
 

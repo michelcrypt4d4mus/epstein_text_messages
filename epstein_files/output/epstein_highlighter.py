@@ -8,7 +8,7 @@ from rich.text import Text
 
 from epstein_files.output.highlighted_names import HighlightedNames
 from epstein_files.output.highlight_config import HIGHLIGHT_GROUPS, HIGHLIGHTED_NAMES
-from epstein_files.util.constant.strings import JEE, REGEX_STYLE_PREFIX
+from epstein_files.util.constant.strings import HIGHLIGHTED_QUOTE, JEE, REGEX_STYLE_PREFIX
 from epstein_files.util.env import args
 from epstein_files.util.helpers.data_helpers import sort_dict
 from epstein_files.util.logging import logger
@@ -57,10 +57,11 @@ class NonEpsteinHighlighter(EpsteinHighlighter):
     highlights: list[re.Pattern] = [hn.regex for hn in HIGHLIGHTED_NAMES if hn.label not in [JEE]]
 
 
-def temp_highlighter(pattern: str) -> EpsteinHighlighter:
+def temp_highlighter(pattern: str, theme_style_name: str = HIGHLIGHTED_QUOTE) -> EpsteinHighlighter:
     """Temporary highlighter that adds `pattern` to the usual highlight regexes."""
     class TempHighlighter(EpsteinHighlighter):
-        highlights = EpsteinHighlighter.highlights + [re.compile(fr"(?P<trump>{pattern})", re.IGNORECASE)]
+        logger.warning(f"temp_highlighter pattern: '{pattern}'")
+        highlights = [re.compile(fr"(?P<{theme_style_name}>{pattern})", re.IGNORECASE)] + EpsteinHighlighter.highlights
 
     return TempHighlighter()
 
