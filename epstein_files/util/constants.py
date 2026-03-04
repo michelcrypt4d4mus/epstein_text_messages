@@ -2636,6 +2636,7 @@ OTHER_FILES_GIRLS = [
         description=f'"Kimbal really like Jen" (Epstein\'s girl {JENNIFER_KALIN} whom Kimbal would later date)',
         is_interesting=True,
     ),
+    EmailCfg(id='EFTA00855566', description=f"introducing Sanita", truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA01995972', description=f'"meeting elon tmr for lunch"', is_interesting=True),
     EmailCfg(id='EFTA01140210', description='Epstein asks about fake Instagram followers', is_interesting=True),
     EmailCfg(id='EFTA01854125', description=f'Epstein says to {HENRY_JARECKI} "you torture, and mistreat each" girl'),

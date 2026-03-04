@@ -2215,7 +2215,12 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 f"girlfriend to whom Epstein tried to leave $50 million and the island, alleged sham marriage to {JENNIFER_KALIN}",
                 r"Karyna Shuliak?",
             ),
-            Contact(KIRA_DIKHTYAR, 'very active recruiter', r"Kira (D|Kira)", link_to_bio='https://x.com/FlippersUpNow/status/2020490996287443071'),
+            Contact(
+                KIRA_DIKHTYAR,
+                'AKA "Kira Prokhorova", very active recruiter',
+                r"Kira (D|Ki(ra|m)|Prokhorova?)",
+                link_to_bio='https://x.com/FlippersUpNow/status/2020490996287443071',
+            ),
             Contact('Krystyna Gwiazda', 'Russian girl'),
             Contact(
                 MARIA_PRUSAKOVA,
