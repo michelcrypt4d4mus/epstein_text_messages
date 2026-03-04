@@ -2325,6 +2325,12 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact('Jack Dorsey', 'co-founder of Twitter and Block (FKA Square)'),
             Contact(JAMES_FITZGERALD, THIELS_VALAR, r"James Fitz[g\s]eral?d?", match_partial=None),
             Contact(JASON_CALACANIS, f'{ALL_IN_PODCAST} with David Sacks and {CHAMATH_PALIHAPITIYA}, Uber investor', r"Jason (.{12})?Calacanis"),
+            Contact(
+                KIMBAL_MUSK,
+                f"brother of {ELON_MUSK}, dated Epstein's girl {JENNIFER_KALIN}",
+                r"Kimball?( Musk)?",
+                link_to_bio='https://www.theguardian.com/us-news/2026/feb/10/jeffrey-epstein-tesla-kimbal-musk',
+            ),
             Contact(MASAYOSHI_SON, 'CEO of Softbank, often referred to as "Masa"', r"Masa(yoshi)?(\sSon)?", match_partial='first'),
             Contact(MELANIE_PHILLIPS, f'girlfriend of {STEVEN_SINOFSKY}', match_partial=None),
             Contact('Nathan Myhrvold', f"former CTO of Microsoft, co-founder of Intellectual Ventures"),
@@ -2381,7 +2387,6 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Eliezer Yudkowsky",
             r"Erick? Sc?hmidt",
             r"(Jeff )?Bezos",
-            r"Kimbal Musk",
             r"Larry Page",
             r"(Mark )?Zuckerberg",
             r"Najeev",
@@ -2505,7 +2510,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         contacts=[
             Contact(
                 JENNIFER_KALIN,
-                f"allegedly involved in a sham marriage to {KARYNA_SHULIAK}, dated Kimbal Musk",
+                f"involved in an alleged sham marriage to {KARYNA_SHULIAK}, dated {KIMBAL_MUSK}",
                 link_to_bio='https://x.com/JOKAQARMY1/status/2026731420832481549',
             ),
             Contact('Jeanne Palfrey', '"The DC Madam", murdered'),
