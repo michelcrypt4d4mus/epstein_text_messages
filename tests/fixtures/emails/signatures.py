@@ -7,6 +7,9 @@ DEVICE_SIGNATURE_TO_AUTHORS = {
     'Envoyé de mon iPhone': [
         'Fabrice Aidan',
     ],
+    'Envoye de mon iPhone': [
+        JULIA_SANTOS,
+    ],
     "Sent from AOL Mobile Mail": [
         DAVID_SCHOEN,
     ],
@@ -167,8 +170,14 @@ DEVICE_SIGNATURE_TO_AUTHORS = {
     "Sent via BlackBerry from T-Mobile": [
         PAULA_HEIL_FISHER
     ],
+    'Sent via Superhuman iOS': [
+        MASHA_DROKOVA
+    ],
     "Sent via tin can and string.": [
         MARK_EPSTEIN,
+    ],
+    'Sent with BlackBerry': [
+        BRAD_KARP
     ],
     "Sorry for all the typos .Sent from my iPhone": [
         JEFFREY_EPSTEIN
@@ -209,6 +218,7 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
     AUSTIN_HILL: [
         'Sent from Mailbox for iPad',
         'Sent from Mailbox for iPhone',
+        'Sent from one of my many test mobile devices while on the go and changing the world : so my apologies for any typos',
     ],
     AZIZA_ALAHMADI: [
         "Sent from my iPhone"
@@ -219,6 +229,9 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
     BORIS_NIKOLIC: [
         "Sent from my Samsung JackTM, a Windows Mobile® smartphone from AT&T",
         "Sent from my Windows Phone"
+    ],
+    BRAD_KARP: [
+        'Sent with BlackBerry'
     ],
     BROCK_PIERCE: [
         'Sent from my Samsung smartphone on AT&T',
@@ -282,6 +295,9 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
     "Jack Goldberger": [
         "Sent from my iPhone"
     ],
+    JEAN_LUC_BRUNEL: [
+        'Sent from Samsung Mobile',
+    ],
     "Jeffrey Epstein": [
         "Sent from my iPad",
         "Sent from my iPhone",
@@ -300,6 +316,9 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
     "Jonathan Farkas": [
         "Sent from my iPhone"
     ],
+    JULIA_SANTOS: [
+        'Envoye de mon iPhone'
+    ],
     KARIM_WADE: [
         "Envoye avec BlackBerry® d'Orange"
     ],
@@ -315,6 +334,9 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
     ],
     KEN_STARR: [
         "Sent from my iPhone"
+    ],
+    KIRA_DIKHTYAR: [
+        'Sent from AOL Mobile Mail',
     ],
     'LSJ': [
         "Sent from my iPhone"
@@ -356,6 +378,9 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
     ],
     "Martin Weinberg": [
         "Sent from my iPhone"
+    ],
+    MASHA_DROKOVA: [
+        'Sent via Superhuman iOS'
     ],
     "Matthew Hiltzik": [
         "Sent from my iPhone"
@@ -472,7 +497,7 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
     ],
     VINCENZO_IOZZO: [
         'Sent from my Iphone',
-        'Sent from my iPhone',
+        'Sent from my iphone',
     ],
     'Yuko Barnaby': [
         'Sent from my iPhone',
@@ -503,6 +528,7 @@ SIGNATURE_SUBSTITUTION_COUNTS = {
     'Francesca Hall': 2,
     ERIC_ROTH: 5,
     GHISLAINE_MAXWELL: 13,
+    'Javier Solano': 6,
     JEANNE_M_CHRISTENSEN: 37,
     JEFFREY_EPSTEIN: 3935,
     JESSICA_CADWELL: 57,
@@ -527,5 +553,6 @@ SIGNATURE_SUBSTITUTION_COUNTS = {
     TERRY_KAFKA: 10,
     TOM_PRITZKER: 17,
     TONJA_HADDAD_COLEMAN: 9,
+    USANYS: 2,
     'W Bradford Stephens': 2,
 }
