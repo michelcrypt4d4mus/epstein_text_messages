@@ -2638,7 +2638,11 @@ OTHER_FILES_GIRLS = [
     EmailCfg(id='EFTA00078209', description='allegations about Russian organized crime, sex trafficking', truncate_to=8500),
     EmailCfg(id='EFTA01648951', description=f'allegations against Trump, {HOWARD_LUTNICK}, Glen Dubin, {LEON_BLACK}, {JES_STALEY}'),
     EmailCfg(id='EFTA00950368', description='"any [girl] friends for me?"', truncate_to=NO_TRUNCATE),
-    EmailCfg(id='EFTA00883738', description=f"{DASHA_GRUPMAN} looking to rent townhouse for diplomats", show_with_name=DASHA_GRUPMAN),
+    EmailCfg(
+        id='EFTA00883738',
+        description=f'prolific Epstein recruiter {DASHA_GRUPMAN} looking to rent townhouse for "diplomats"',
+        show_with_name=DASHA_GRUPMAN,
+    ),
     EmailCfg(
         id='EFTA00577409',
         date='2003-06-01',
