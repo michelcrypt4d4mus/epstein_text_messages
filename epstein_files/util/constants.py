@@ -1471,6 +1471,15 @@ EMAILS_CONFIG = [
         description=f"ICE has an immigration hold on a man who might have important info about the Epstein case",
         is_interesting=True,
     ),
+    # Descriptions
+    EmailCfg(
+        id='EFTA00339256',
+        author=LESLEY_GROFF,
+        author_uncertain=True,
+        description=f"the (possibly faked) death of {AL_SECKEL}",
+        is_interesting=True,
+    ),
+    EmailCfg(id='EFTA00664252', description='Epstein explains his "no wives / no girlfriends" policy'),
     EmailCfg(id='EFTA00637023', description=f"discussion of getting around laws against money laundering in places like Myanmar + Mongolia"),
     EmailCfg(id='EFTA02573653', description=f'discussion of {PRINCE_ANDREW}\'s Urramoor, "Howard" is probably Howard Lutnick which Urramoor partnered with'),
     EmailCfg(id='EFTA02629771', description=f"discussion of {RENATA_BOLOTOVA}'s employment at IPI", is_interesting=True),
@@ -2754,6 +2763,12 @@ OTHER_FILES_GOVERNMENT = [
         author=FBI,
         description="interview where Epstein's chef says Donald Trump came to Epstein's house for dinner",
         truncate_to=(6000, 7500),
+    ),
+    DocCfg(
+        id='EFTA00174375',
+        author=FBI,
+        date='2022-11-18',
+        description=f"interview of {LUKE_D_THORBURN} with a lot of takes on Epstein, China, and {STEVE_BANNON}",
     ),
     DocCfg(id='EFTA01249591', author=FBI, description=f"allegations against {HENRY_JARECKI}"),
     DocCfg(id='EFTA00081226', author=FBI, description='interview with minor victim'),

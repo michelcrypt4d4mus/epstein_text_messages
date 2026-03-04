@@ -65,6 +65,11 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact('Ed Boyden', f"{MIT_MEDIA_LAB} neurobiology"),
             Contact('Elkhonon Goldberg', f"Neuropsychologist, arranged Moscow University meetings", r"(Dr\.?|Elkhonon) Goldberg", match_partial='first'),
             Contact('Harry Fisch', "men's health expert at New York-Presbyterian / Weill Cornell (?)"),
+            Contact(
+                JAMES_TAGG,
+                "The Penrose Institute, Sunlight Aerospace, claims to be inventor of the eSIM",
+                link_to_bio='https://www.sunlightx.com/james-tagg'
+            ),
             Contact('James Watson', 'one of the discoverers of DNA', match_partial=None),
             Contact(JOSCHA_BACH, "cognitive science / AI research", match_partial='both'),
             Contact(LAWRENCE_KRAUSS, "theoretical physicist with #MeToo problems", r"Lawrence Kraus[es]?|[jl]awkrauss|kruase"),
@@ -1323,6 +1328,11 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact('Gary Gensler', 'future head of the SEC'),
             Contact("Geoff Ling", "director of DARPA Biological Technologies Office", r"Geoff(rey)? Ling", match_partial=None),
             Contact('Justin Alfano', f"American {LAW_ENFORCEMENT}"),
+            Contact(
+                LUKE_D_THORBURN,
+                "informant, ex-Goldman Sachs, Paraguay",
+                link_to_bio='https://www.nytimes.com/2016/03/01/nyregion/goldman-sachs-puts-worker-linked-to-donald-trump-on-leave.html',
+            ),
             Contact('Michael Reiter', f"{PALM_BEACH_POLICE} chief who first caught Epstein"),
             Contact('Paula Speer', "court reporter", match_partial=None),
             Contact(
