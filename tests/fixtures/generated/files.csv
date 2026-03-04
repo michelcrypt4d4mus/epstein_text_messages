@@ -463,7 +463,7 @@ file_id,category,author,is_interesting,timestamp,recipients_str,sent_from_device
 023208_121,email,Jeffrey Epstein,,2015-10-26 20:37:00,Brad Wechsler;Melanie Spinella,,
 023208_122,email,Jeffrey Epstein,,2016-06-03 17:56:00,Heather Gray,,
 023208_123,email,Jeffrey Epstein,True,2016-06-03 15:02:00,,,
-023208_13,email,Jeffrey Epstein,,2015-11-24 00:00:00,Alan S Halperin;Melanie Spinella;Ada Clapp;Joe Avantario,Sent from my Verizon Wireless BlackBerry,
+023208_13,email,,True,2015-11-24 00:00:00,Alan S Halperin;Jeffrey Epstein;Melanie Spinella;Ada Clapp;Joe Avantario,Sent from my Verizon Wireless BlackBerry,
 023208_14,email,Jeffrey Epstein,,2015-11-30 17:21:00,Leon Black;Melanie Spinella,,
 023208_15,email,Jeffrey Epstein,,2015-12-01 12:26:00,Brad Wechsler,,
 023208_16,email,Jeffrey Epstein,,2015-10-28 00:56:00,Lesley Groff,,
@@ -473,7 +473,7 @@ file_id,category,author,is_interesting,timestamp,recipients_str,sent_from_device
 023208_21,email,Jeffrey Epstein,,2015-12-07 20:05:00,Leon Black;Melanie Spinella,,
 023208_22,email,Jeffrey Epstein,,2014-12-28 05:18:00,Brad Wechsler;Ada Clapp,,
 023208_24,email,Jeffrey Epstein,True,2015-12-09 10:16:00,,,
-023208_26,email,Jeffrey Epstein,True,2015-12-11 00:19:00,,,
+023208_26,email,,True,2015-12-11 00:19:00,Jeffrey Epstein,,
 023208_27,email,Jeffrey Epstein,,2015-12-11 09:49:00,Leon Black;Melanie Spinella,,
 023208_29,email,Jeffrey Epstein,,2015-04-15 08:59:00,Leon Black;Melanie Spinella,,
 023208_3,email,Jeffrey Epstein,,2015-10-28 05:56:00,Lesley Groff,,
@@ -5630,7 +5630,7 @@ EFTA00756817,email,David Stern,True,2010-09-15 09:02:02,Jeffrey Epstein,,
 EFTA00758140,email,David Stern,True,2010-05-26 12:42:12,Jeffrey Epstein,,possibly about Sarah Ferguson?
 EFTA00758271,email,David Stern,True,2010-08-27 19:43:20,Jeffrey Epstein,,
 EFTA00766770,girls,Boris Nikolic,True,2009-12-04 04:57:49,Jeffrey Epstein,,
-EFTA00770066,email,,True,2009-09-11 14:57:05,Lisa Randall,Sent from my Verizon Wireless BlackBerry,Epstein lists conferences he intends to fund
+EFTA00770066,email,Lisa Randall,,2009-09-11 14:57:05,Jeffrey Epstein,Sent from my Verizon Wireless BlackBerry,Lisa Randall Epstein lists conferences he intends to fund
 EFTA00771388,email,David Stern,True,2009-10-14 17:28:00,Jeffrey Epstein,,Naomi Campbell seems to have made some introductions to Russian oligarchs
 EFTA00773139,email,Reinaldo Avila,,2009-07-30 13:53:56,Jeffrey Epstein,Sent from my BlackBerry® wireless device,"Reinaldo Avila Epstein calls Swedish billionaire Johan Eliasch ""not the brightest bulb"""
 EFTA00775255,girls,Daniel Siad,True,2009-06-02 10:42:53,Jeffrey Epstein,,"""20 years old but she looks younger"""
@@ -5799,7 +5799,7 @@ EFTA00932122,email,Jeffrey Epstein,True,2012-03-29 22:07:02,Ian Osborne,,
 EFTA00935082,email,Jeffrey Epstein,True,2012-05-15 11:28:41,Ian Osborne,,
 EFTA00935516,email,Renata Bolotova,True,2017-12-30 06:02:31,Jeffrey Epstein,,Renata Bolotova
 EFTA00935996,email,Jeffrey Epstein,True,2012-05-29 10:51:05,Renata Bolotova,,
-EFTA00937507,girls,Svetlana Pozhidaeva,True,2012-06-08 20:02:25,Jeffrey Epstein,,Svetlana Pozhidaeva (???)
+EFTA00937507,girls,Svetlana Pozhidaeva,True,2012-06-08 20:02:25,Jeffrey Epstein,Sent via BlackBerry from T-Mobile,Svetlana Pozhidaeva (???)
 EFTA00941197,email,Jeffrey Epstein,,2012-08-18 18:48:15,Hosain Rahman,,Epstein appears to be helping with an investment in Jawbone by Hedosophia
 EFTA00947511,email,Arda Beskardes,,2017-11-27 22:29:56,Jeffrey Epstein,,
 EFTA00947882,email,Austin Hill,True,2017-11-28 11:01:22,Jeffrey Epstein,,
@@ -6793,7 +6793,7 @@ EFTA02671394,email,Terje Rød-Larsen,,2015-11-06 09:51:00,Jeffrey Epstein,Sent f
 EFTA02671523,email,Joi Ito,True,2015-11-01 07:48:00,Jeffrey Epstein,,Jones is former Google chief technology advocate / CEO of Epstein investment Wearality
 EFTA02689871,email,David Stern,True,2011-06-24 10:40:00,Jeffrey Epstein,,
 EFTA02690885,finance,ATorus,False,2014-03-01 00:00:00,,,ATorus pitch deck
-EFTA02694762,email,Karim Wade,True,2011-11-05 11:06:00,Jeffrey Epstein,Envoye avec BlackBerry° d'Orange,
+EFTA02694762,email,Karim Wade,True,2011-11-05 11:06:00,Jeffrey Epstein,Envoye avec BlackBerry® d'Orange,
 EFTA02696764,email,Renata Bolotova,True,2015-03-05 21:28:00,Jeffrey Epstein,,Renata Bolotova
 EFTA02697209,email,Karim Wade,True,2012-03-23 01:00:00,Jeffrey Epstein,Envoye avec BlackBerry® d'Orange,
 EFTA02699752,email,David Stern,True,2012-07-10 10:38:00,Jeff,,
