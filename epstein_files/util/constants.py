@@ -2623,10 +2623,15 @@ OTHER_FILES_GIRLS = [
     ),
     EmailCfg(
         id='EFTA02007083',
-        description=f"Epstein and {BORIS_NIKOLIC} semi-stalking {KIMBAL_MUSK} who would go on to date Epstein's girl",
+        description=f"{BORIS_NIKOLIC} encourages {KIMBAL_MUSK} to ditch his girlfriend for Epstein's girl {JENNIFER_KALIN} (and he says yes)",
         truncate_to=NO_TRUNCATE,
     ),
-    EmailCfg(id='EFTA01885139', description=f'"Kimbal really like Jen" (Epstein\'s girl {JENNIFER_KALIN} whom Kimbal would later date)'),
+    EmailCfg(
+        id='EFTA01885139',
+        description=f'"Kimbal really like Jen" (Epstein\'s girl {JENNIFER_KALIN} whom Kimbal would later date)',
+        is_interesting=True,
+    ),
+    EmailCfg(id='EFTA01995972', description=f'"meeting elon tmr for lunch"', is_interesting=True),
     EmailCfg(id='EFTA01140210', description='Epstein asks about fake Instagram followers', is_interesting=True),
     EmailCfg(id='EFTA01854125', description=f'Epstein says to {HENRY_JARECKI} "you torture, and mistreat each" girl'),
     EmailCfg(id='EFTA01953412', description=f'{EVA_DUBIN} suggests Epstein endow "The Epstein Floor For Women" at Mt. Sinai'),

@@ -210,6 +210,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact('Steven Gaydos', "American screenwriter and journalist"),
             Contact(WOODY_ALLEN, f'filmmaker who married his adopted daughter {SOON_YI_PREVIN}', match_partial='first'),
             organization('Phaidon', 'titan of art book publishing'),
+            organization('Boom Boom Room', '"models and bottles" style club in NYC'),
         ],
         patterns=[
             r"(Art )?Spiegelman",
