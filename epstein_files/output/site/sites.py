@@ -51,7 +51,7 @@ class SiteType(StrEnum):
 
     @classmethod
     def all_links(cls) -> dict['SiteType', Text]:
-        """Use SITE_DESCRIPTIONS dict because it's sorted the way we want in the directory."""
+        """Use `SITE_DESCRIPTIONS` dict because it's sorted the way we want in the directory."""
         return {site_type: SiteType.link_txt(site_type) for site_type in SITE_DESCRIPTIONS}
 
     @classmethod
