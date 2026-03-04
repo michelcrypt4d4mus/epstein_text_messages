@@ -2362,6 +2362,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(
                 JULIA_SANTOS,  # TODO: Jmail says her email is julia.santos@hbs.edu
                 "recruiter of girls from Ukraine for Epstein, possibly Harvard Business School student",
+                link_to_bio='https://www.reddit.com/r/Epstein/comments/1qwbn5i/trafficker_julia_santos/',
                 match_partial=None,
             ),
             Contact(
