@@ -77,7 +77,7 @@ class Contact:
         if self.link_to_bio:
             txt.append(link_text_obj(self.link_to_bio, self.name, self.bold_style))
         else:
-            txt.append(self.name, style=self.bold_style)
+            txt.append(self.name, style=self.style)
 
         if self.category:
             txt.append(' [', style='dim').append(self.category.lower(), style=f'{self.style} dim').append(']', style='dim')
