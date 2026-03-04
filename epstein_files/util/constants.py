@@ -1117,10 +1117,10 @@ EMAILS_CONFIG = [
     ),
     EmailCfg(
         id='EFTA02312343',
-        description=f"cyrillic about {RENATA_BOLOTOVA}'s visa issues, possibly marriage related?",
+        description=f"email about sham marriage visa issues, possibly from {RENATA_BOLOTOVA}'s spouse",
         is_interesting=True,
     ),
-    DocCfg(id='EFTA02312343_1', attached_to_email_id='EFTA02312343', description='English translation of visa issues', show_full_panel=True),
+    DocCfg(id='EFTA02312343_1', attached_to_email_id='EFTA02312343', description='English translation of visa issues email', show_full_panel=True),
     EmailCfg(
         id='EFTA00708783',
         author=RENATA_BOLOTOVA,

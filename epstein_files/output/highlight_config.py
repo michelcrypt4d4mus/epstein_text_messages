@@ -113,6 +113,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Carl Sagan",
             r"Columbia( (Business School|University))?",
             r"(Francis )?Crick",
+            r"green card",
             r"(Karl )?Marx",
             r"(Lord )?Martin Rees",
             r"Massachusetts Institute of Technology",
@@ -123,6 +124,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"New York University",
             r"Norman Finkelstein",
             r"Oxford(?! Analytica)",
+            r"PhD",
             r"plant biology",
             r"Praluent",
             r"Princeton( University)?",
@@ -2383,8 +2385,9 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(
                 RENATA_BOLOTOVA,
                 "former model, fund manager at New York State Insurance Fund, Рената Болотова",
-                r"Renata Bolotova|Rena B|Renata Bo\w+|renbolotova",
+                r"Renata Bolotova|Rena B|Renata Bo\w+|renbolotova|Ренат[ау]|Болотова",
                 link_to_bio='https://x.com/Cryptadamist/status/1996965537478566063',
+                match_partial='both'
             ),
             Contact(
                 'Ruslana Korshunova',
@@ -2745,6 +2748,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"(Jane|Tiffany) Doe",
             r"Katie Johnson",
             r"lingerie",
+            r"marri(age|ed)",
             r"massag(e(d|use)?s?|ing)( table)?",
             r"(Midget )?strippers?",
             r"Minor Victim",
