@@ -1671,7 +1671,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"(The )?Financial Times",
             r"The Guardian",
             r"TheHill",
-            r"(The )?Mail On Sunday",
+            r"(?<!Mobile\s)(The )?Mail On Sunday",
             r"(The )?N(ew )?Y(ork)? (Magazine|Observer|P(ost)?|T(imes)?)",
             r"(The )?New Yorker",
             r"(The )?Wall Street Journal",
@@ -2242,10 +2242,11 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             ),
             Contact(
                 'Ruslana Korshunova',
-                f"Russian model who visited Epstein's island before falling to her death in 2008",
+                "Russian model who visited Epstein's island before falling to her death in 2008",
                 link_to_bio='https://en.wikipedia.org/wiki/Ruslana_Korshunova',
                 match_partial='both',
             ),
+            Contact('Sanita', 'Russian girl'),
             Contact(
                 SVETLANA_POZHIDAEVA,
                 f"AKA 'Sophia Platt', Epstein assistant, went to FSB feeder school MGIMO, visa recommended by {SERGEY_BELYAKOV} (FSB) & {DAVID_BLAINE}",
