@@ -103,6 +103,8 @@ if [ -n "$ONLY_MOBILE" ]; then
     exit
 fi
 
+print_deploy_step "Building email signatures page..."
+$GENERATE_CMD --output-devices
 print_deploy_step "Building curated page..."
 $GENERATE_CMD
 print_deploy_step "Building text messages page... "
