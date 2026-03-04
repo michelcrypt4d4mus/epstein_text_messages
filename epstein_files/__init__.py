@@ -16,7 +16,6 @@ from rich.text import Text
 
 from epstein_files.epstein_files import EpsteinFiles, document_cls
 from epstein_files.documents.document import Document
-from epstein_files.documents.documents.doc_cfg import EmailCfg
 from epstein_files.documents.documents.word_count import print_word_counts
 from epstein_files.documents.doj_file import DojFile
 from epstein_files.documents.email import Email
@@ -100,7 +99,7 @@ def epstein_grep():
         return
 
     for search_term in args.positional_args:
-        tmp_highlight = temp_highlighter(search_term)
+        tmp_highlight = temp_highlighter(search_term, 'reverse')
         search_results = epstein_files.docs_matching(search_term, args.names)
         search_results = sorted(search_results, key=lambda sr: sr.document.timestamp_sort_key)
         print_subtitle_panel(f"Found {len(search_results)} documents matching '{search_term}'")

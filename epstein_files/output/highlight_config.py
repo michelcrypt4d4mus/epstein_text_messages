@@ -2082,7 +2082,6 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 match_partial='both',
             ),
             organization('Elite Models', 'well known modeling agency'),
-            organization('George Models', 'based in Odessa, very young girls, basically a porn site'),
             organization('Icarine', f"agency with connections to {JEAN_LUC_BRUNEL}"),
             organization('ID Models', "Paolo Zampolli's modeling agency"),
             organization('MC2 Model Management', f"{JEAN_LUC_BRUNEL}'s modeling agency", r"MC2( Model Management)?"),
@@ -2413,6 +2412,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             ),
             Contact(YULIA_DOROKHINA, 'Russian girl, recruiter'),
             Contact('Yulia Trubuckai', 'Russian girl'),
+            organization('George Models', 'based in Odessa, very young girls, basically a porn site'),
         ],
         patterns=[
             r"[DM]asha",
@@ -2762,7 +2762,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"massag(e(d|use)?s?|ing)( table)?",
             r"(Midget )?strippers?",
             r"Minor Victim",
-            r"(?<!(ID|te)\s)model(ing|s)",
+            r"(?<!(ID|ge|te)\s)model(ing|s)",
             r"orgasm(ic|s)?",
             r"pa?edophile",
             r"pregnan(cy|t)",
@@ -2997,7 +2997,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         style=FINANCIAL_COLOR,
         patterns=[
             r"\$[\d,.]+(\s*(bn|[bm](illl?ion|m)?|k|thousand))?( dollars?)?",
-            r"[\d,.]+\s*[bm]illl?ion( dollars?)?",
+            r"[\d,.]+\s*[bm]illl?ion( dollars?)?( loan)?",
         ]
     ),
     HighlightPatterns(

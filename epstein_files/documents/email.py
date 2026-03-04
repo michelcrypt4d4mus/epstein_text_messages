@@ -24,11 +24,12 @@ from epstein_files.documents.emails.email_header import (EMAIL_SIMPLE_HEADER_REG
 from epstein_files.documents.emails.emailers import extract_emailer_names
 from epstein_files.documents.other_file import OtherFile
 from epstein_files.people.interesting_people import EMAILERS_OF_INTEREST_SET
+from epstein_files.output.epstein_highlighter import highlighter, temp_highlighter
 from epstein_files.output.highlight_config import HIGHLIGHTED_NAMES, get_style_for_name
 from epstein_files.output.html.builder import table_to_html
 from epstein_files.output.html.elements import to_em
 from epstein_files.output.layout_elements.file_display import FileDisplay, JustifyMethod
-from epstein_files.output.rich import DEFAULT_TABLE_KWARGS, build_table, highlighter, join_texts, styled_key_value
+from epstein_files.output.rich import DEFAULT_TABLE_KWARGS, build_table, join_texts, styled_key_value
 from epstein_files.util.constant.strings import APPEARS_IN, ARCHIVE_LINK_COLOR, REDACTED, TIMESTAMP_DIM
 from epstein_files.util.constant.urls import URL_SIGNIFIERS
 from epstein_files.people.names import sort_names
@@ -387,7 +388,13 @@ class Email(Communication):
             for line in text.split('\n')
         ]
 
-        txt = highlighter(join_texts(lines, '\n'))
+        if self.config and self.config.highlighted_pattern:
+            logger.warning(f"self.config.highlighted_pattern='{self.config.highlighted_pattern}'")
+            txt_highlighter = temp_highlighter(self.config.highlighted_pattern)
+        else:
+            txt_highlighter = highlighter
+
+        txt = txt_highlighter(join_texts(lines, '\n'))
 
         if trim_footer_txt:
             txt.append('...\n\n').append(trim_footer_txt)

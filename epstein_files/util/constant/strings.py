@@ -24,7 +24,9 @@ PALM_BEACH = 'Palm Beach'
 VIRGIN_ISLANDS = 'Virgin Islands'
 
 # Highlighter
+HIGHLIGHTED_QUOTE = 'highlighted_quote'
 REGEX_STYLE_PREFIX = 'regex'
+
 # Styles
 ALT_LINK_STYLE = 'white dim'
 ARCHIVE_LINK_COLOR = 'slate_blue3'
