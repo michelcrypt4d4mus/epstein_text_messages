@@ -63,7 +63,12 @@ fi
 
 
 # Check for new files
-./scripts/extract_doj_pdfs.py
+if [[ $PICKLE_ARG != "--overwrite-pickle" ]]; then
+    print_deploy_step "Scanning for new files with extract_doj_pdfs.py... $PICKLE_ARG"
+    ./scripts/extract_doj_pdfs.py
+else
+    print_deploy_step "Full rescan..."
+fi
 
 # Build .png and push master changes
 git push origin master --quiet

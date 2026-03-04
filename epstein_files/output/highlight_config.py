@@ -148,7 +148,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact('Ivan Glasenberg', "South African former CEO of Glencore, one of the world's largest commodity trading and mining companies"),
             Contact(
                 KARIM_WADE,
-                'son of the president of Senegal, facing arrest for corruption',
+                'son of the president of Senegal, arrested for corruption',
                 r"Afri [xz]p?|Karim Wade",
                 link_to_bio='https://www.bbc.com/news/world-africa-32020574',
                 match_partial='first',
@@ -309,12 +309,6 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             organization(ATT_COURT_APPEARANCE_TEAM, "AT&T", is_interesting=False),
             organization('Junkermann Group', JUNKERMANN_FUND),
             organization('NJF Capital', JUNKERMANN_FUND, r"NJF( Capital)?"),
-            organization(
-                'Swedish American Life Science Summit',
-                f"(SALSS) {BARBRO_C_EHNBOM} event, recruiting grounds for Epstein",
-                r"Swedish American Life Science Summit|SALSS",
-                link_to_bio='https://www.politico.eu/article/jeffrey-epstein-files-sweden-business-leader-ehnbom-proposed-meet-women/',
-            ),
         ],
         patterns=[
             r"Arthur Klein",
@@ -443,6 +437,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r'Gambino',
             r'heroin',
             r'methamphetamines?',
+            r"narco(tic)?",
             r"murder(e[dr]|ing)?",
             r"organized crime",
             r"(securities )?fraud(ulent)?",
@@ -1009,11 +1004,17 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(EDWARD_ROD_LARSEN, f"son of {TERJE_ROD_LARSEN}", match_partial=None),
             Contact('Fabrice Aidan', f"diplomat who worked with {TERJE_ROD_LARSEN}"),
             Contact('Jack Lang', "former French Minister of National Education", match_partial=None),
-            Contact('Martine Vik Magnussen', f'murdered by son of {SHAHER_ABDULHAK_BESHER}', match_partial=None),
+            Contact(
+                'Martine Vik Magnussen',
+                f'murdered by son of {SHAHER_ABDULHAK_BESHER}',
+                link_to_bio='https://en.wikipedia.org/wiki/Murder_of_Martine_Vik_Magnussen',
+                match_partial=None
+            ),
             Contact(
                 MIROSLAV_LAJCAK,
-                f"Russia-friendly Slovakian politician, friend of {STEVE_BANNON}",
+                f"Russia-friendly Slovakian national security advisor, friend of {STEVE_BANNON}",
                 r"Miro(slav)?( Laj[cč][aá]k)?",
+                link_to_bio='https://www.bbc.com/news/articles/cnvgljj1dygo',
             ),
             Contact('Oleksandr Vilkul', f"former deputy prime minister of Ukraine"),
             Contact(
@@ -1036,13 +1037,19 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             ),
             Contact('Viktor Yushchenko', 'former president of Ukraine'),
             Contact('Viktor Orban', 'prime minister of Hungary', r"(Vi(c|k)tor )?Orbah?n"),
+            organization('AfD', 'right wing German political party'),
             acronym('European Central Bank'),
             acronym(
                 INTERNATIONAL_PEACE_INSTITUTE,
                 "gave jobs to Epstein's girls",
                 link_to_bio='https://apnews.com/article/jeffrey-epstein-kevin-rudd-oslo-crime-think-tanks-ca62b1c799d2cb3bb346afcf4dfec355',
             ),
-            organization('AfD', 'right wing German political party'),
+            organization(
+                'Swedish American Life Science Summit',
+                f"(SALSS) {BARBRO_C_EHNBOM} event, recruiting grounds for Epstein",
+                r"Swedish American Life Science Summit|SALSS",
+                link_to_bio='https://www.politico.eu/article/jeffrey-epstein-files-sweden-business-leader-ehnbom-proposed-meet-women/',
+            ),
             organization('Zug', "city in Switzerland known as a hub for crypto and dodgy finance"),
         ],
         patterns=[
@@ -2364,13 +2371,14 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 MARIA_PRUSAKOVA,
                 f"AKA Masha Prusso, former Olympic snowboarder, {CRYPTO_PR_LAB} co-founder, \"found ladies\" for Epstein",
                 r"Ma(sha|riy?a) (Prusa?(kova|so))",
-                link_to_bio='https://www.reddit.com/r/Epstein/comments/1qvsnqs/a_detailed_report_on_masha_prusso_aka_maria/',
+                # https://www.reddit.com/r/Epstein/comments/1qvsnqs/a_detailed_report_on_masha_prusso_aka_maria/
+                link_to_bio='https://www.scamurai.io/p/epstein-files-suggest-ex-polygon',
             ),
             Contact(
                 MASHA_DROKOVA,
                 'AKA "Masha Bucher", silicon valley VC (Day One Ventures), publicist for QWave, former Putin Youth member, star of "Putin\'s Kiss"',
                 r"(Marii?y?a|Masha) (Bucher|Drokova)",
-                link_to_bio='https://www.forbes.com/sites/iainmartin/2026/02/04/how-jeffrey-epstein-helped-his-publicist-become-a-big-time-venture-capitalist/',
+                link_to_bio='https://davidzmorris.substack.com/p/i-found-epstein-i-just-didnt-realize',
             ),
             Contact(OLGA_PONOMAR_BECKER, 'Russian girl'),
             Contact(
@@ -2491,6 +2499,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 f"brother of {ELON_MUSK}, dated Epstein's girl {JENNIFER_KALIN}",
                 r"Kimball?( Musk)?",
                 link_to_bio='https://www.theguardian.com/us-news/2026/feb/10/jeffrey-epstein-tesla-kimbal-musk',
+                match_partial='first',
             ),
             Contact(MASAYOSHI_SON, 'CEO of Softbank, often referred to as "Masa"', r"Masa(yoshi)?(\sSon)?", match_partial='first'),
             Contact(MELANIE_PHILLIPS, f'girlfriend of {STEVEN_SINOFSKY}', match_partial=None),
@@ -2982,6 +2991,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         use_word_boundary=True,
         patterns=[
             r"American Express",
+            r"Amex",
             r"alterna[tv]i[tv]e finance",
             r"((anti )?money )?launder(s?|ers?|ing)?( money)?",
             r"(?<!(alfa|ture|hase|rahi|sche)\s)bank(?!\s+(of|secrecy))",
