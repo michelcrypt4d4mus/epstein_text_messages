@@ -385,7 +385,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='027046', author=LAWRANCE_VISOSKI, duplicate_ids=['028789']),
     EmailCfg(id='033488', author=LAWRANCE_VISOSKI, duplicate_ids=['033154']),
     EmailCfg(id='033309', author=LINDA_STONE, author_reason='"Co-authored with iPhone autocorrect"'),
-    EmailCfg(id='017581', author='Lisa Randall', author_reason='reply header'),
+    EmailCfg(id='017581', author=LISA_RANDALL, author_reason='reply header'),
     EmailCfg(
         id='032374',
         author=MARIA_PRUSAKOVA,
@@ -906,7 +906,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='031217', truncate_to=1800, duplicate_ids=['021761'], comment='1st email for dersh, has long article'),
     EmailCfg(id='029342', truncate_to=2000, comment='Hakeem Jeffries fundraiser'),
     EmailCfg(id='026059', truncate_to=2650, comment='Rothschild'),
-    EmailCfg(id='017574', truncate_to=4000, comment='Lisa Randall invite'),
+    EmailCfg(id='017574', truncate_to=4000, comment=f'{LISA_RANDALL} invite'),
     EmailCfg(id='018045', truncate_to=SHORT_TRUNCATE_TO, comment='invite'),
     EmailCfg(id='028494', truncate_to=NO_TRUNCATE, duplicate_ids=['026234'], comment='in palm beach w/trump people'),
     EmailCfg(id='032643', truncate_to=NO_TRUNCATE, comment='Anas al Rasheed'),
@@ -1088,7 +1088,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA01802168', author=LINDA_STONE, author_uncertain='"Stone"'),
     EmailCfg(id='EFTA00701326', author=LINDA_STONE, author_uncertain='"Stone"'),
     EmailCfg(id='EFTA00397956', author=LINDA_STONE, author_reason='unique email signature'),
-    EmailCfg(id='EFTA00770066', author='Lisa Randall', description=f"Epstein lists conferences he intends to fund", truncate_to=4500),
+    EmailCfg(id='EFTA00770066', author=LISA_RANDALL, description=f"Epstein lists conferences he intends to fund", truncate_to=4500),
     EmailCfg(id='EFTA00920848', author=MARIA_PRUSAKOVA, author_uncertain='law school'),
     EmailCfg(id='EFTA02038002', author=MARIA_PRUSAKOVA, author_reason=CLIFFORD_CHANCE),
     EmailCfg(id='EFTA02036490', author=MARIA_PRUSAKOVA, author_reason=CLIFFORD_CHANCE),
@@ -1118,8 +1118,9 @@ EMAILS_CONFIG = [
     EmailCfg(
         id='EFTA02312343',
         description=f"cyrillic about {RENATA_BOLOTOVA}'s visa issues, possibly marriage related?",
-        is_interesting=True
+        is_interesting=True,
     ),
+    DocCfg(id='EFTA02312343_1', attached_to_email_id='EFTA02312343', description='English translation of visa issues', show_full_panel=True),
     EmailCfg(
         id='EFTA00708783',
         author=RENATA_BOLOTOVA,

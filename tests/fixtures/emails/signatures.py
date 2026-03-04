@@ -68,7 +68,7 @@ DEVICE_SIGNATURE_TO_AUTHORS = {
     ],
     "Sent from my Verizon Wireless BlackBerry": [
         ALAN_DERSHOWITZ,
-        "Lisa Randall",
+        LISA_RANDALL,
     ],
     "Sent from my Windows 10 phone": [
         UNKNOWN,
@@ -369,7 +369,7 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
     LISA_NEW: [
         "Sent from my iPhone"
     ],
-    "Lisa Randall": [
+    LISA_RANDALL: [
         "Sent from my Verizon Wireless BlackBerry"
     ],
     MARIANA_IDZKOWSKA: [

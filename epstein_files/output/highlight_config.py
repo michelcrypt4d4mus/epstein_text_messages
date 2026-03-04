@@ -1545,7 +1545,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 r"E?Lisa New?\b",
                 match_partial=None,
             ),
-            Contact('Lisa Randall', "theoretical physicist", match_partial=None),
+            Contact(LISA_RANDALL, "theoretical physicist", match_partial=None),
             Contact(MARTIN_NOWAK, "professor of mathematics and biology", r"(Martin.*?)?No[vw]ak|Nowak, Martin"),
             Contact(MOSHE_HOFFMAN, "behavioral and evolutionary economics", match_partial=None),
             Contact('Steve Kosslyn', "neuroscientist, Active Learning Sciences"),
