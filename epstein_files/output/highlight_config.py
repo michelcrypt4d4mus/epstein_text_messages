@@ -947,6 +947,11 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(SCOTT_J_LINK, CRIMINAL_DEFENSE_ATTORNEY, match_partial=None),
             Contact(STACEY_RICHMAN, f"New York {CRIMINAL_DEFENSE_ATTORNEY}", r"srichmanlaw|Stacey Richman"),
             Contact(
+                'Stephanie Thacker',
+                "West Virginia attorney who defended Epstein, now a federal judge",
+                link_to_bio='https://www.wboy.com/news/west-virginia/where-is-west-virginia-mentioned-in-the-epstein-files/',
+            ),
+            Contact(
                 TONJA_HADDAD_COLEMAN,
                 f"civil attorney Epstein v. Scott Rothstein, {BRAD_EDWARDS}, & L.M.",
                 r"To(nj|rl)a Haddad Coleman|haddadfm@aol.com",
@@ -1418,11 +1423,6 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 link_to_bio='https://www.bbc.com/news/articles/cx2407jrn83o',
             ),
             Contact('Paula Speer', "court reporter", match_partial=None),
-            Contact(
-                'Stephanie Thacker',
-                "West Virginia attorney who defended Epstein, now a federal judge",
-                link_to_bio='https://www.wboy.com/news/west-virginia/where-is-west-virginia-mentioned-in-the-epstein-files/',
-            ),
             acronym('Know Your Customer', 'anti-money laundering legal framework'),
             acronym('Metropolitan Detention Center', 'jail where Epstein died'),
             acronym('Office of Foreign Assets Control', 'agency in charge of sanctions'),
