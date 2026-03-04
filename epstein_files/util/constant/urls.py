@@ -7,7 +7,7 @@ from rich.text import Text
 
 from epstein_files.output.site.sites import GH_PROJECT_URL, TO_FROM, SiteType
 from epstein_files.util.env import args
-from epstein_files.util.constant.strings import SOCIAL_MEDIA_LINK_STYLE, TEXT_LINK
+from epstein_files.util.constant.strings import ARCHIVE_ALT_LINK_STYLE, SOCIAL_MEDIA_LINK_STYLE, TEXT_LINK
 from epstein_files.util.helpers.file_helper import coerce_file_stem
 from epstein_files.util.helpers.link_helper import SUBSTACK_POST_LINK_STYLE, ExternalLink, link_markup, link_text_obj
 from epstein_files.util.helpers.string_helper import remove_question_marks
@@ -80,7 +80,13 @@ EXTERNAL_LINKS = OFFICIAL_LINKS + [
         link_text='Epstein Audit'
     ),
     ExternalLink(JMAIL_URL, 'read His Emails via Gmail interface', link_text='Jmail'),
-    ExternalLink('https://tommycarstensen.com/epstein/index.html', 'findings', link_text='Carstensen Epstein Archive'),
+    ExternalLink(
+        'https://tommycarstensen.com/epstein/index.html',
+        comment='findings',
+        comment_url='https://tommycarstensen.com/epstein/findings.html',
+        comment_style='light_sea_green italic',
+        link_text='Carstensen Epstein Archive'
+    ),
     ExternalLink(EPSTEIN_DOCS_URL, 'old docs', link_text='epstein-docs'),
     ExternalLink(EPSTEIN_MEDIA_URL, 'raw document images'),
     # ExternalLink(EPSTEINIFY_URL, 'raw images alt', link_text='Epsteinify'),
