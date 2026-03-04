@@ -36,7 +36,6 @@ ROTHSTEIN_ROSENFELDT_ADLER_ATTORNEY = f"{ROTHSTEIN_ROSENFELDT_ADLER} attorney"
 THIELS_VALAR = f"{PETER_THIEL}'s {VALAR_VENTURES}"
 WIGDOR_ATTORNEY = f"Wigdor LLP lawyer in {LEON_BLACK} lawsuit"
 
-EPSTEIN_COLOR = 'blue1'
 FINANCIAL_COLOR = 'dark_sea_green2'
 VICTIM_COLOR = 'orchid1'
 
@@ -2558,7 +2557,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         ],
     ),
     HighlightedNames(
-        label='victim lawyer',
+        label=VICTIM_LAWYER,
         style='medium_orchid1',
         contacts=[
             Contact('Alan P. Fraade', f'lawyer for {STEVEN_HOFFENBERG}'),
@@ -2604,7 +2603,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         ],
     ),
     HighlightedNames(
-        label='real estate',
+        label=REAL_ESTATE,
         style='spring_green3',
         contacts=[
             Contact('André Balazs', 'hotelier, CEO of André Balazs Properties', r"Andre Bala(sz|zs)"),
@@ -2934,10 +2933,12 @@ def get_highlight_group_for_name(name: str | None) -> HighlightGroup | None:
 
 
 def get_style_for_category(category: str) -> str | None:
+    """
+    First check `CATEGORY_STYLES`, then check if there's a mapping in `CATEGORY_STYLE_MAPPING`,
+    and finally just match the category name to the `HighlightedNames.label`.
+    """
     if category in CATEGORY_STYLES:
         return CATEGORY_STYLES[category]
-    elif category == Uninteresting.CONFERENCE:
-        return f"{get_style_for_category(ACADEMIA)} dim"
 
     for highlight_group in HIGHLIGHT_GROUPS:
         if highlight_group.label == CATEGORY_STYLE_MAPPING.get(category, category):
