@@ -10,7 +10,7 @@ from rich.panel import Panel
 from rich.style import Style
 from rich.text import Text
 
-from epstein_files.output.rich import CONSOLE_KWARGS
+from epstein_files.output.rich import CONSOLE_KWARGS, RICH_THEME
 from epstein_files.util.constant.html import FONT_FAMILY, HTML_TERMINAL_THEME
 from epstein_files.util.helpers.data_helpers import sort_dict_by_keys
 from epstein_files.util.helpers.string_helper import quote
@@ -48,7 +48,15 @@ class HtmlStyle:
     style: Style = field(init=False)
 
     def __post_init__(self):
-        self.style = self._style if isinstance(self._style, Style) else Style.parse(self._style or '')
+        if isinstance(self._style, Style):
+            self.style = self._style
+        elif self._style:
+            if self._style in RICH_THEME.styles:
+                self.style = RICH_THEME.styles[self._style]
+            else:
+                self.style = Style.parse(self._style)
+        else:
+            self.style = Style.parse('')
 
     @property
     def bg_hex(self) -> str:

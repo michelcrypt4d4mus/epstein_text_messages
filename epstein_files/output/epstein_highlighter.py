@@ -60,7 +60,6 @@ class NonEpsteinHighlighter(EpsteinHighlighter):
 def temp_highlighter(pattern: str, theme_style_name: str = HIGHLIGHTED_QUOTE) -> EpsteinHighlighter:
     """Temporary highlighter that adds `pattern` to the usual highlight regexes."""
     class TempHighlighter(EpsteinHighlighter):
-        logger.warning(f"temp_highlighter pattern: '{pattern}'")
         highlights = [re.compile(fr"(?P<{theme_style_name}>{pattern})", re.IGNORECASE)] + EpsteinHighlighter.highlights
 
     return TempHighlighter()

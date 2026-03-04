@@ -142,7 +142,7 @@ SENT_PREFIX_PATTERNS = [
 ]
 
 DEVICE_PATTERN = fr"({'|'.join(SENT_PREFIX_PATTERNS)}).*(" + '|'.join(DEVICE_PATTERNS) + ")"
-print(DEVICE_PATTERN)
+# print(DEVICE_PATTERN)
 EPSTEIN_TYPO_PREFIX = r"((Please forgive|Sorry for all the) typos.{1,4})"
 SENT_FROM_DEVICE_PATTERN = '|'.join([DEVICE_PATTERN] + SIGNATURE_PATTERNS)
 SENT_FROM_REGEX = re.compile(fr'^{EPSTEIN_TYPO_PREFIX}?({SENT_FROM_DEVICE_PATTERN})\.?( -*)?', re.M | re.I)
