@@ -26,7 +26,7 @@ from epstein_files.util.logging import logger
 CIVIL_ATTORNEY = 'civil attorney'
 CRIMINAL_DEFENSE_ATTORNEY = 'criminal defense attorney'
 CRIMINAL_DEFENSE_2008 = f"Epstein {CRIMINAL_DEFENSE_ATTORNEY} on 2008 case"
-EPSTEIN_V_ROTHSTEIN_EDWARDS_ATTORNEY = f"{CIVIL_ATTORNEY} {EPSTEIN_V_ROTHSTEIN_EDWARDS}"
+EPSTEIN_V_ROTHSTEIN_EDWARDS_ATTORNEY = f"{CIVIL_ATTORNEY} in {EPSTEIN_V_ROTHSTEIN_EDWARDS}"
 ESTATE_EXECUTOR = 'estate executor'
 EPSTEIN_ESTATE_EXECUTOR = f"Epstein {ESTATE_EXECUTOR}"
 JUNKERMANN_FUND = f"{NICOLE_JUNKERMANN}'s fund, invested in China, online poker, Russian run Euro bank Revolut"
@@ -922,12 +922,12 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(BRAD_KARP, "head of the law firm Paul Weiss", r"Brad (S.? )?Karp|Karp, Brad", match_partial=None),
             Contact('Connie Zaguirre', f"office of {'Robert D. Critton Jr.'}"),
             Contact(DAVID_SCHOEN, "Epstein criminal defense attorney after 2019 arrest"),
-            Contact(DEBBIE_FEIN, f"civil attorney Epstein v. Scott Rothstein, {BRAD_EDWARDS}, & L.M."),
+            Contact(DEBBIE_FEIN, f"Epstein {EPSTEIN_V_ROTHSTEIN_EDWARDS_ATTORNEY}"),
             Contact('Erika Kellerhals', "attorney in St. Thomas"),
             Contact(FRED_HADDAD, "co-founder of Heck's in West Virginia", match_partial=None),
             Contact(GERALD_LEFCOURT, f"friend of {ALAN_DERSHOWITZ}", r"Gerald (B\.? )?Lefcourt"),
             Contact('Howard Rubenstein', "Epstein's former spokesman"),
-            Contact(JACK_GOLDBERGER, CRIMINAL_DEFENSE_2008),
+            Contact(JACK_GOLDBERGER, CRIMINAL_DEFENSE_2008, r"Jack( A(lan|\.?))?Goldberger"),
             Contact(JACKIE_PERCZEK, CRIMINAL_DEFENSE_2008, r"jackie percze[kl]?"),
             Contact(JAY_LEFKOWITZ, f"Kirkland & Ellis partner, {CRIMINAL_DEFENSE_2008}"),
             Contact(JESSICA_CADWELL, f"paralegal to {ROBERT_D_CRITTON_JR} whom Epstein appears to recruit"),
@@ -937,8 +937,9 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 r"starr, ken|Ken(neth (W. )?)? starr?|starr",
                 link_to_bio='https://en.wikipedia.org/wiki/Ken_Starr',
             ),
-            Contact(LILLY_SANCHEZ, CRIMINAL_DEFENSE_ATTORNEY, r"Lilly.*?Sanchez"),
-            Contact(MARTIN_WEINBERG, CRIMINAL_DEFENSE_ATTORNEY, r"Martin.*?Weinberg"),
+            Contact(LILLY_SANCHEZ, CRIMINAL_DEFENSE_ATTORNEY, r"Lilly.*{,15}Sanchez"),
+            Contact(MARTIN_WEINBERG, CRIMINAL_DEFENSE_ATTORNEY, r"Martin.*{,15}Weinberg"),
+            Contact('Michael J. Pike', 'Epstein lawyer', match_partial=None),
             Contact(MICHAEL_MILLER, "Steptoe LLP partner", r"Micha(el)? Miller|Miller, Micha(el)?", match_partial=None),
             Contact(REID_WEINGARTEN, "Steptoe LLP partner", r"Weingarten, Rei[cdi]|Rei[cdi] Weingarten"),
             Contact(ROBERT_D_CRITTON_JR, CRIMINAL_DEFENSE_ATTORNEY, r"Robert D.? Critton,? Jr\.?", match_partial=None),
@@ -962,10 +963,8 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"dersh",
             r"Kate Kelly",
             r"Kirkland & Ellis",
-            r"Michael J. Pike",
             PERKINS_COIE,
             r"Steptoe( & Johnson)?( LLP)?",
-            r"Wein(berg|garten)",
         ],
     ),
     HighlightedNames(
