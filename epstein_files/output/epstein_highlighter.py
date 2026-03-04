@@ -30,8 +30,12 @@ class EpsteinHighlighter(RegexHighlighter):
             highlight_regex(re_highlight, style_prefix=self.base_style)
 
             if args.stats and isinstance(re_highlight, re.Pattern):
+                # if re_highlight.search(text.plain):
+                #     logger.debug(f"Matched pattern {re_highlight.pattern}")
+
                 for match in re_highlight.finditer(text.plain):
                     matched_str = (match.group(1) or 'None').replace('\n', ' ').strip().lower()
+                    # logger.debug(f"Matched string {match.group(1)}")
                     type(self).highlight_counts[matched_str] += 1
 
     def print_highlight_counts(self, console: Console) -> None:
