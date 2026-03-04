@@ -2175,7 +2175,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Kolfage",
             r"(Larry )?Kudlow",
             r"Lewandowski",
-            r"(Marco\s)?Rubio",
+            r"(Marco )?Rubio",
             r"(Mark )Meadows",
             r"Mattis",
             r"McCain",
@@ -2627,8 +2627,17 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             ),
             Contact('Bruce Moskowitz', "'Trump's health guy' according to Epstein", match_partial=None),
             Contact('Marla Maples', 'ex-wife of Donald Trump', match_partial='both'),
-            Contact('Melania', "Melania... Trump?", r"Melania"),
-            Contact('Michael Caputo', 'former Putin and Gazprom PR guy, Trump appointee, acolyte of Roger Stone'),
+            Contact(
+                'Melania',
+                "...Trump?",
+                r"Melania",
+                link_to_bio='https://www.politico.com/newsletters/playbook/2021/10/15/models-and-bottles-when-melanias-pal-paolo-blew-through-dc-494719',
+            ),
+            Contact(
+                'Michael Caputo',
+                'former Putin and Gazprom PR guy, Trump appointee, acolyte of Roger Stone',
+                link_to_bio='https://en.wikipedia.org/wiki/Michael_Caputo',
+            ),
             Contact(NICHOLAS_RIBIS, f"Hilton CEO, former president of {TRUMP_ORG}", r"Nic(holas|k)[\s._]Ribi?s?|Ribbis"),
             Contact(
                 'Paul Manafort',
