@@ -2622,6 +2622,11 @@ OTHER_FILES_GIRLS = [
         is_interesting=True,
     ),
     EmailCfg(
+        id='EFTA02499884',
+        description=f'"I gave another girl to kimball and he is thrilled"',
+        truncate_to=NO_TRUNCATE,
+    ),
+    EmailCfg(
         id='EFTA02007083',
         description=f"{BORIS_NIKOLIC} encourages {KIMBAL_MUSK} to ditch his girlfriend for Epstein's girl {JENNIFER_KALIN} (and he says yes)",
         truncate_to=NO_TRUNCATE,
