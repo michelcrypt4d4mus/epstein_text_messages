@@ -2299,7 +2299,7 @@ OTHER_FILES_CRYPTO = [
     EmailCfg(id='EFTA00964459', description=f'discussion of sharia compliant crypto token', is_interesting=True),
     EmailCfg(id='EFTA00990442', description=f"Epstein offers to cover all costs for Sharia Coin", is_interesting=True),
     EmailCfg(id='EFTA02396341', description='the Sharia Coin gambit', is_interesting=True),
-    EmailCfg(id='efta01005117', description='announcement that the Stellar blockchain is Sharia compliant'),
+    EmailCfg(id='EFTA01005117', description='announcement that the Stellar blockchain is Sharia compliant'),
     # Valar
     DocCfg(id='EFTA00810239', author=VALAR_FUND, description='pitch deck'),
     DocCfg(id='EFTA00591045', author=VALAR_FUND, description='brochure', non_participants=[MASAYOSHI_SON]),
