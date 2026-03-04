@@ -2284,6 +2284,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact('Yury Molodtsov', f"assistant to {MASHA_DROKOVA} {QUESTION_MARKS}"),
             organization('Alfa Bank', 'Russian bank often used by FSB', r"Alfa( Bank)?"),
             organization('Apoletto', f"VC firm associated with {YURI_MILNER}"),
+            organization('Buryat', "Mongol ethnic group native to southeastern Siberia", r"Buryat[is]?"),
             organization('Day One Ventures', f"silicon valley venture fund run by {MASHA_DROKOVA}"),
             organization(
                 'Quantum Wave Fund',
@@ -2744,6 +2745,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"((blonde?|fresh|hot|naughty|new|school|underage|young) )*girl( friend)?",
             r"gyn(eco(logist|nomist)|o)",
             r"I love you",
+            r"ig(ni|ru)shki",
             r"intercourse",
             r"(Jane|Tiffany) Doe",
             r"Katie Johnson",

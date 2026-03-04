@@ -1392,6 +1392,12 @@ EMAILS_CONFIG = [
         description='discussion of a symposium on deception and alternative finance',
         is_interesting=True,
     ),
+    EmailCfg(
+        id='EFTA01857628',
+        recipients=[RENATA_BOLOTOVA],
+        recipient_uncertain='https://x.com/FlippersUpNow/status/2023457206109155345',
+        description='"igrushki" means "toys" in Russian',
+    ),
     EmailCfg(id='EFTA01039112', recipients=[RENATA_BOLOTOVA], recipient_uncertain=SNEAKY_DOG),
     EmailCfg(id='EFTA01006355', recipients=[RENATA_BOLOTOVA], recipient_uncertain=SNEAKY_DOG),
     EmailCfg(id='EFTA02547678', recipients=[RENATA_BOLOTOVA], recipient_uncertain=SNEAKY_DOG),
