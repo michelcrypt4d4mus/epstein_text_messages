@@ -186,10 +186,12 @@ DEVICE_SIGNATURE_TO_AUTHORS = {
 
 AUTHORS_TO_DEVICE_SIGNATURES = {
     UNKNOWN: [
+        'Sent via BlackBerry from T-Mobile',
         "Sent from my Windows 10 phone",
         "Sent from my iPad",
         "Sent from my iPhone",
-        "Sent via BlackBerry by AT&T"
+        'Sent from my Verizon Wireless BlackBerry',
+        "Sent via BlackBerry by AT&T",
     ],
     ALAN_DERSHOWITZ: [
         "Sent from my Verizon Wireless BlackBerry",
@@ -219,6 +221,7 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
         "Sent from my Windows Phone"
     ],
     BROCK_PIERCE: [
+        'Sent from my Samsung smartphone on AT&T',
         'Sent from my iPad',
         'Sent from my iPhone',
     ],
@@ -296,6 +299,9 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
     ],
     "Jonathan Farkas": [
         "Sent from my iPhone"
+    ],
+    KARIM_WADE: [
+        "Envoye avec BlackBerry® d'Orange"
     ],
     KARYNA_SHULIAK: [
         'Sent from my iPhone',
@@ -385,6 +391,9 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
     "Reid Weingarten": [
         "Sent from my BlackBerry 10 smartphone.",
     ],
+    'Reinaldo Avila': [
+        'Sent from my BlackBerry® wireless device',
+    ],
     RENATA_BOLOTOVA: [
         "Sent from my iPad",
         "Sent from my iPhone"
@@ -401,6 +410,10 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
     ],
     "Ross Gow": [
         "Sent from my BlackBerry® wireless device"
+    ],
+    'Sam Jaradeh': [
+        'Sent from my iphone',
+        'Sent from my iPhone',
     ],
     "Sean Bannon": [
         "Sent from ProtonMail",
@@ -434,6 +447,9 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
     ],
     "Sultan Ahmed Bin Sulayem": [
         "Sent from my iPhone"
+    ],
+    SVETLANA_POZHIDAEVA: [
+        'Sent via BlackBerry from T-Mobile',
     ],
     TERJE_ROD_LARSEN: [
         "Sent from my iPhone"

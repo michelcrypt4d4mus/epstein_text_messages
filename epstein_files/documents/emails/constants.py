@@ -137,7 +137,7 @@ DEVICE_PATTERNS = [
 DEVICE_PATTERN = r"(Envoy[ée] (avec|de mon)|Sent (from|using|via|with)).*(" + '|'.join(DEVICE_PATTERNS) + r")"
 EPSTEIN_TYPO_PREFIX = r"((Please forgive|Sorry for all the) typos.{1,4})"
 SENT_FROM_DEVICE_PATTERN = '|'.join([DEVICE_PATTERN] + SIGNATURE_PATTERNS)
-SENT_FROM_REGEX = re.compile(fr'^{QUOTE_INDENT_CHAR_GROUP}*{EPSTEIN_TYPO_PREFIX}?({SENT_FROM_DEVICE_PATTERN})\.?( -*)?', re.M | re.I)
+SENT_FROM_REGEX = re.compile(fr'^{EPSTEIN_TYPO_PREFIX}?({SENT_FROM_DEVICE_PATTERN})\.?( -*)?', re.M | re.I)
 
 # Misc
 MAILING_LISTS = [

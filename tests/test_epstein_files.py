@@ -17,6 +17,12 @@ from .fixtures.emails.signatures import AUTHORS_TO_DEVICE_SIGNATURES, DEVICE_SIG
 from .fixtures.messenger_logs.author_counts import IMESSAGE_LOG_IDS, MESSENGER_LOG_AUTHOR_COUNTS
 from .fixtures.fixture_csvs import CFG_PROPS, EMAIL_PROPS, load_files_csv
 
+COMMON_DEVICE_SIGNATURES = [
+    set(["Sent from my iPad"]),
+    set(["Sent from my iPhone"]),
+    set(["Sent from my iPad", "Sent from my iPhone"]),
+]
+
 
 def test_against_csv(epstein_files):
     """CSV data can be updated by running './scripts/update_fixture_csv.py'."""
@@ -92,8 +98,11 @@ def test_signatures(epstein_files):
     authors_to_devices = epstein_files.email_authors_to_device_signatures()
     devices_to_authors = epstein_files.email_device_signatures_to_authors()
 
-    for name in [JEFFREY_EPSTEIN, LINDA_STONE, STEVEN_SINOFSKY]:
-        assert authors_to_devices[name] == set(AUTHORS_TO_DEVICE_SIGNATURES[name])
+    for name, device_signatures in authors_to_devices.items():
+        if device_signatures not in COMMON_DEVICE_SIGNATURES:
+            assert name in AUTHORS_TO_DEVICE_SIGNATURES, f"{name} has {device_signatures} signatures, fixture has none!"
+            fixture_signatures = set(AUTHORS_TO_DEVICE_SIGNATURES[name])
+            assert device_signatures == fixture_signatures, f"{name} has {device_signatures} signatures, should have {fixture_signatures}"
 
     for signature in ["Sent from my BlackBerry 10 smartphone."]:
         assert devices_to_authors[signature] == set(DEVICE_SIGNATURE_TO_AUTHORS[signature])
