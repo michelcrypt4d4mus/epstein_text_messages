@@ -169,6 +169,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Angola",
             r"Buhari",
             r"Ethiopian?",
+            r"Eritrean?",
             r"Ghana(ian)?",
             r"I[v=]ory Coast",
             r"Johannesburg",
