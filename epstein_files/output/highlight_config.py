@@ -1334,7 +1334,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             ),
             Contact(
                 JOSHUA_FINK,
-                f"son of Blackrock CEO Larry Fink (world's largest money manager), possibly dated {SVETLANA_POZHIDAEVA}",
+                f"son of Blackrock CEO Larry Fink (world's largest money manager), dated {SVETLANA_POZHIDAEVA}",
                 r"Josh(ua)? Fink",
                 link_to_bio='https://nypost.com/2012/06/01/fink-kid-is-a-big-fat-loser/',
                 match_partial=None
