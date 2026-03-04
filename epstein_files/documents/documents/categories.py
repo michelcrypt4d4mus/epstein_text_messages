@@ -9,6 +9,7 @@ from typing import Type
 from epstein_files.util.constant.strings import *
 
 DEFAULT_CATEGORY_STYLE = 'wheat4'
+SOCIAL_STYLE = 'khaki3'
 
 
 class Interesting(StrEnum):
@@ -60,31 +61,29 @@ class Category(StrEnum):
 
 # These categories map to highlighted group labels for the purposes of coloring
 CATEGORY_STYLE_MAPPING = {
-    Interesting.GIRLS: 'victim',
     Interesting.MONEY: Neutral.FINANCE,
     Interesting.REPUTATION: PUBLICIST,
-    Interesting.SOCIAL: PUBLICIST,
     Interesting.TEXT_MSG: TECH_BRO,
-    Neutral.DEPOSITION: LAWYER,
+    Neutral.DEPOSITION: VICTIM_LAWYER,
     Neutral.LEGAL: LAWYER,
+    Neutral.PRESSER: PUBLICIST,
     Neutral.SKYPE_LOG: TECH_BRO,
     Uninteresting.ARTICLE: JOURNALIST,
     Uninteresting.BOOK: JOURNALIST,
-    Uninteresting.CONFERENCE: ACADEMIA,  # TODO: this maps to f"{get_style_for_category(ACADEMIA)} dim"
+    Uninteresting.CONFERENCE: ACADEMIA,
     Uninteresting.POLITICS: LOBBYIST,
-    Uninteresting.PROPERTY: BUSINESS,
-    Uninteresting.TWEET: PUBLICIST,
+    Uninteresting.PROPERTY: REAL_ESTATE,
 }
 
 CATEGORY_STYLES = {
     Interesting.LETTER: 'plum4',
-    Interesting.SOCIAL: 'yellow1',
-    Neutral.FLIGHT_LOG: 'cyan',
-    Neutral.MISC: 'deep_pink3',
-    Neutral.PRESSER: 'sandy_brown',
+    Interesting.SOCIAL: SOCIAL_STYLE,
+    Neutral.FLIGHT_LOG: EPSTEIN_COLOR,
+    Neutral.MISC: 'navajo_white1',
     Neutral.RESUMÉ: 'deep_pink4',
     Uninteresting.JSON: 'dark_red',
-    Uninteresting.PHONE_BILL: 'cyan',
+    Uninteresting.PHONE_BILL: 'slate_blue3',
+    Uninteresting.TWEET: SOCIAL_STYLE,
 }
 
 # These are the categories we expect to see as OTHER_FILES_[category] variables for in constants.py

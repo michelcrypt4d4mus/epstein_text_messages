@@ -582,6 +582,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='021106', recipients=[STEVE_BANNON], author_reason='reply'),
     EmailCfg(id='029344', actual_text='I thought of you when I read this article. Was this your idea? Alan', is_fwded_article=True),
     EmailCfg(id='032358', actual_text=REDACTED),
+    EmailCfg(id='030430', description=f"{STEVE_BANNON} was involved in the Biosphere project"),
     EmailCfg(id='031036', description=f'{BARBRO_C_EHNBOM} related donation / Swedish girls discussion', is_interesting=True),
     EmailCfg(id='030737', description='Bannon says there is a "crazed jihad" against Epstein', is_interesting=True),
     EmailCfg(id='030738', description='Bannon tells Epstein "somebody big has u in the gunsights"', is_interesting=True),
@@ -1086,6 +1087,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA01802168', author=LINDA_STONE, author_uncertain='"Stone"'),
     EmailCfg(id='EFTA00701326', author=LINDA_STONE, author_uncertain='"Stone"'),
     EmailCfg(id='EFTA00397956', author=LINDA_STONE, author_reason='unique email signature'),
+    EmailCfg(id='EFTA00770066', author='Lisa Randall', description=f"Epstein lists conferences he intends to fund", truncate_to=4500),
     EmailCfg(id='EFTA00920848', author=MARIA_PRUSAKOVA, author_uncertain='law school'),
     EmailCfg(id='EFTA02038002', author=MARIA_PRUSAKOVA, author_reason=CLIFFORD_CHANCE),
     EmailCfg(id='EFTA02036490', author=MARIA_PRUSAKOVA, author_reason=CLIFFORD_CHANCE),
@@ -1448,7 +1450,6 @@ EMAILS_CONFIG = [
     ),
     EmailCfg(id='EFTA02541344', description=f"{BROCK_PIERCE} on marriage and polygamy with people named Crystal and Sue"),
     EmailCfg(id='EFTA02641951', description=f"{DAVID_STERN} recommends ProtonMail for more secure communications"),
-    EmailCfg(id='EFTA00770066', description=f"Epstein lists conferences he intends to fund", recipients=['Lisa Randall'], truncate_to=4500),
     EmailCfg(id='EFTA00987206', description=f"Epstein helps {BORIS_NIKOLIC} draft an email to {YURI_MILNER}", is_interesting=True),
     EmailCfg(id='EFTA00277107', description=f'FBI tip alleging connections between Wirecard and {GHISLAINE_MAXWELL} network', truncate_to=5500),
     EmailCfg(
@@ -1464,6 +1465,11 @@ EMAILS_CONFIG = [
         description=f"fwded email from {GANBAT_CHULUUNKHUU} explaining why he's now wanted by Interpol",
         is_interesting=True,
         show_with_name=GANBAT_CHULUUNKHUU
+    ),
+    EmailCfg(
+        id='EFTA00039989',
+        description=f"ICE has an immigration hold on a man who might have important info about the Epstein case",
+        is_interesting=True,
     ),
     EmailCfg(id='EFTA00637023', description=f"discussion of getting around laws against money laundering in places like Myanmar + Mongolia"),
     EmailCfg(id='EFTA02573653', description=f'discussion of {PRINCE_ANDREW}\'s Urramoor, "Howard" is probably Howard Lutnick which Urramoor partnered with'),
@@ -2442,6 +2448,7 @@ OTHER_FILES_FINANCE = [
     # DOJ
     DocCfg(id='EFTA01078403', author=ATORUS, description='investment adviser uniform application', date='2014-05-14'),
     DocCfg(id='EFTA02690885', author=ATORUS, description='pitch deck'),
+    DocCfg(id='EFTA00593276', author=EDMOND_DE_ROTHSCHILD, description='org chart', is_interesting=True),
 ]
 
 
@@ -2509,7 +2516,6 @@ OTHER_FILES_GIRLS = [
     ),
     EmailCfg(id='EFTA00671662', author='Miranda', author_reason='quoted signature', description="yet another girl finder"),
     EmailCfg(id='EFTA02441035', author=STEVEN_VICTOR_MD, description="complaining about free treatment for Epstein's girls"),
-    EmailCfg(id='EFTA01877224', author=SVETLANA_POZHIDAEVA, author_uncertain=f"{JOSHUA_FINK} texts"),
     EmailCfg(
         id='EFTA00659941',
         author=SVETLANA_POZHIDAEVA,
@@ -2517,7 +2523,21 @@ OTHER_FILES_GIRLS = [
         description=f'{SVETLANA_POZHIDAEVA} forwarding her intimate conversations with {JOSHUA_FINK} to Epstein (to what end?)',
         is_interesting=True,
     ),
+    EmailCfg(
+        id='EFTA01995523',
+        # author=SVETLANA_POZHIDAEVA,
+        # author_uncertain=f"{JOSHUA_FINK} + Sent from Blackberry",
+        description=f'"pictures of {REDACTED}" may be "Lana" ({SVETLANA_POZHIDAEVA}) or "Dana" according to Jmail',
+    ),
+    EmailCfg(
+        id='EFTA01870453',
+        author=SVETLANA_POZHIDAEVA,
+        author_uncertain=f"{JOSHUA_FINK} texts",
+        description=f'{JOSHUA_FINK} and {SVETLANA_POZHIDAEVA} discuss an abortion ("You have known you are preg for a week")',
+    ),
+    EmailCfg(id='EFTA01877224', author=SVETLANA_POZHIDAEVA, author_uncertain=f"{JOSHUA_FINK} texts"),
     EmailCfg(id='EFTA00937507', author=SVETLANA_POZHIDAEVA, author_uncertain=f"{JOSHUA_FINK} texts"),
+    EmailCfg(id='EFTA02560884', recipients=[SVETLANA_POZHIDAEVA], recipient_uncertain=f"{JOSHUA_FINK} texts"),
     EmailCfg(
         id='EFTA01991293',
         author=SVETLANA_POZHIDAEVA,
@@ -2536,10 +2556,16 @@ OTHER_FILES_GIRLS = [
     ),
     EmailCfg(
         id='EFTA01998247',
-        author=UNKNOWN_GIRL,
+        author=SVETLANA_POZHIDAEVA,
+        author_uncertain='device signature',
         description=f'trying to recruit {ELON_MUSK}?',
         is_interesting=True,
         show_with_name=ELON_MUSK,
+    ),
+    EmailCfg(
+        id='EFTA01772677',
+        author=SVETLANA_POZHIDAEVA,
+        author_uncertain='device signature',
     ),
     EmailCfg(id='EFTA02431535', author=UNKNOWN_GIRL),
     EmailCfg(id='EFTA01875607', author=UNKNOWN_GIRL),
@@ -2599,7 +2625,11 @@ OTHER_FILES_GIRLS = [
     EmailCfg(id='EFTA02609062', description=f"{MASHA_DROKOVA} is assembling a team", is_interesting=True),
     EmailCfg(id='EFTA01145923', description=f"{JEAN_LUC_BRUNEL} modeling contract for {MC2_MODEL_MGMT}"),
     EmailCfg(id='EFTA02557291', description='possibly recruiting girls'),
-    EmailCfg(id='EFTA01811230', description=f'"Renat" is probably {RENATA_BOLOTOVA}'),
+    EmailCfg(
+        id='EFTA01811230',
+        description=f'"Renat" is probably {RENATA_BOLOTOVA}, {REDACTED} might be "Irinia" or {SVETLANA_POZHIDAEVA}',
+        duplicate_ids=['EFTA00732294'],
+    ),
     EmailCfg(id='EFTA00894079', description='"say hi to Snow White"', is_interesting=True),
     EmailCfg(id='EFTA00908180', description='"two cinderellas"'),
     EmailCfg(id='EFTA00751119', description='"Valdson to teach girls how to serve"'),
@@ -2920,7 +2950,7 @@ OTHER_FILES_LETTER = [
         description=f"about algorithmic trading",
     ),
     CommunicationCfg(id='026134', recipients=['George'], description=f'about opportunities to buy banks in Ukraine'),
-    blaine_letter(id='019086', date='2015-05-27', suffix='naming various Putin puppet regimes'),
+    blaine_letter(id='019086', date='2015-05-27', suffix='naming various Putin puppet regimes', show_full_panel=True),
     blaine_letter(id='019474', date='2015-05-29'),
     blaine_letter(id='019476', date='2015-06-01'),
 

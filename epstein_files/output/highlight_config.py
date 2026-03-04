@@ -36,7 +36,6 @@ ROTHSTEIN_ROSENFELDT_ADLER_ATTORNEY = f"{ROTHSTEIN_ROSENFELDT_ADLER} attorney"
 THIELS_VALAR = f"{PETER_THIEL}'s {VALAR_VENTURES}"
 WIGDOR_ATTORNEY = f"Wigdor LLP lawyer in {LEON_BLACK} lawsuit"
 
-EPSTEIN_COLOR = 'blue1'
 FINANCIAL_COLOR = 'dark_sea_green2'
 VICTIM_COLOR = 'orchid1'
 
@@ -420,13 +419,14 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r'(drug|mexican) (cartel|traffick(ers?|ing))',
             r'criminals?(?! defense)( prosecution)?',
             r'crime famil(ies|y)',
-            r"(on )?drugs",
+            r"(on )?drug(gy|s)",
             r'Gambino',
             r'heroin',
             r'methamphetamines?',
             r"murder(e[dr]|ing)?",
             r"organized crime",
             r"(securities )?fraud(ulent)?",
+            r"xanax",
         ],
     ),
     HighlightedNames(
@@ -1007,6 +1007,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Brexit(eers?)?",
             r"Brit(ain|ish)",
             r"Brussels",
+            r"Buckingham Palace",
             r"Bulgarian?",
             r"Canadi?an?",
             r"Cannes",
@@ -1731,7 +1732,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         contacts=[
             Contact(BOB_CROWE, "partner at Nelson Mullins", r"[BR]ob Crowe", match_partial=None),
             Contact('Joshua Cooper Ramo', "co-CEO of Henry Kissinger Associates"),
-            Contact(OLIVIER_COLOM, "Epstein's banker at Edmond de Rothschild (Suisse) SA Bank", r"Colom, Olivier?|Olivier Colom"),
+            Contact(OLIVIER_COLOM, f"Epstein's banker at {EDMOND_DE_ROTHSCHILD} (Suisse) SA Bank", r"Colom, Olivier?|Olivier Colom"),
             Contact('Paul Keating', "former prime minister of Australia", match_partial=None),
             Contact('Stanley Rosenberg', "former President of the Massachusetts Senate", match_partial=None)
         ],
@@ -2019,12 +2020,12 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"GOP",
             r"((Chair|Jay|Joseph) )?Clayton",  # SEC chair, now SDNY
             r"((Bill|William) )?Hinman",
+            r"(Henry )?Kissinger",
             r"Jeff(rey)? Sessions",
             r"(John (R.? )?)?Bolton",
             r"Kasich",
             r"Keith Schiller",
             r"Kelly( Anne?)? Conway|Kellyanne",
-            r"Kissinger",
             r"Kobach",
             r"Kolfage",
             r"(Larry )?Kudlow",
@@ -2064,12 +2065,12 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 info="heiress",
                 emailer_pattern=r"AdeR|(A(\.|riane) (de )?)?Rothsh?ch?il[cd]|Ariane(?! Dwyer)",
             ),
-            Contact('Edmond Rothschild', emailer_pattern=r"Edmond (de )?Rothsh?ch?il[cd]"),
             Contact(
                 name=JOHNNY_EL_HACHEM,
                 info="Edmond de Rothschild Private Equity",
                 emailer_pattern=r"el hachem johnny|johnny el hachem",
-            )
+            ),
+            organization(EDMOND_DE_ROTHSCHILD, f"Swiss bank"),
         ],
         patterns=['AdR'],
     ),
@@ -2093,6 +2094,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact('Igor Zinoviev', f"Epstein's bodyguard, MMA fighter"),
             Contact('Len Blavatnik', 'oligarch', link_to_bio='https://en.wikipedia.org/wiki/Len_Blavatnik'),
             Contact('Mikhail Prokhorov', 'Russian-Israeli oligarch'),
+            Contact('Mikheil Saakashvili', 'president of Georgia', r"Mikh[ae]il Saakashvili"),
             Contact('Nicholas Kovarsky', f"friend of {SERGEY_BELYAKOV}", r"Nic(k|holas) Kovarsky"),
             Contact('Oleg Boyko', 'oligarch'),
             Contact(
@@ -2119,6 +2121,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 link_to_bio='https://nypost.com/2026/03/02/world-news/russian-mogul-who-called-ghislaine-maxwell-his-soulmate-found-dead/',
                 match_partial='both',
             ),
+            Contact('Viktor Yanukovych', 'pro-Putin former president of Ukraine', r"Vi[ck]tor Yanukovych"),
             Contact('Vitaly Churkin', 'Russian ambassador to the United Nations'),
             Contact('Vladislav Doronin', f'olgarch, dated {NAOMI_CAMPBELL}'),
             Contact(
@@ -2234,7 +2237,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             ),
             Contact(
                 SVETLANA_POZHIDAEVA,
-                f"AKA 'Sophia Platt', Epstein's assistant recommended for visa by {SERGEY_BELYAKOV} (FSB) & {DAVID_BLAINE}",
+                f"AKA 'Sophia Platt', Epstein assistant, went to FSB feeder school MGIMO, visa recommended by {SERGEY_BELYAKOV} (FSB) & {DAVID_BLAINE}",
                 r"Sophia Platt|((Svet)?Lana )?Pozhidaeva|\b(Lana|Svet)\b",
                 link_to_bio='https://dossier.center/jeffreyepsteinrusconnect-en/',
                 match_partial='first',
@@ -2444,7 +2447,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"\bDJ?T\b",
             r"Donald J. Tramp",
             r"(Donald\s+(J\.\s+)?)?Trump(ism| (Org(anization)?|Properties)( LLC)?)?",
-            r"Don(ald| Jr)(?! (B|Norman|Rubin))",
+            r"Don(ald| Jr)(?! (B|Norman|Rumsfeld|Rubin))",
             r"(Hope )?Hicks",
             r"Ivank?a",
             r"Jared", r"(?<!Tony )Kushner",
@@ -2509,43 +2512,55 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact('Virginia Giuffre', f"one of Epstein's first public accusers", r"(Virginia ((L\.?|Roberts) )?)?Giuffre",),
         ],
         patterns=[
+            r"abortion",
             r"ballerina",
             r"Beautify and the Beast",
+            r"butt plug",
             r"(child )?porn(ography)?",
             r"Cinderella",
             r"condom",
             r"dancer",
+            r"dildo",
             r"(?<!drug )(child\s*)?(sex\s*)?traffi?c?k(ers?|ing)",
             r"Ellaina As?tras?",
-            r"(fresh )?(hot )?(new )?(school )?girl( friend)?s?",
+            r"((blonde?|fresh|hot|naughty|new|school|underage|young) )*girl( friend)?",
             r"gyn(eco(logist|nomist)|o)",
+            r"I love you",
             r"intercourse",
             r"(Jane|Tiffany) Doe",
             r"Katie Johnson",
-            r"massag(ed?|ing)",
+            r"lingerie",
+            r"massag(e(d|use)?s?|ing)( table)?",
             r"(Midget )?strippers?",
             r"Minor Victim",
             r"(?<!(ID|te)\s)model(ing|s)",
             r"orgasm(ic|s)?",
             r"pa?edophile",
+            r"pregnan(cy|t)",
+            r"prostitut(e|ion)",
             r"pussy",
-            r"(rough )?sex(ual(ity)?)?",
+            r"(rough )?sex(ual(ity)?|toy)?",
+            r"(rubber )?penis(es)?",
             r"(?-i:S)anctum",
             r"Snow White",
             r"Stephanie Clifford",
             r"(?-i:S)ue\b",  # Only in brock emails really?
             r"Stormy Daniels",
             r"strange women",
+            r"teenager?",
             r"Tinkerbell",
+            r"underage",
             r"vibrator",
+            r"you are preg",
             VICTIM_DIARY,
             r"way better than supplying you ladies",
         ],
     ),
     HighlightedNames(
-        label='victim lawyer',
+        label=VICTIM_LAWYER,
         style='medium_orchid1',
         contacts=[
+            Contact('Alan P. Fraade', f'lawyer for {STEVEN_HOFFENBERG}'),
             Contact(BRAD_EDWARDS, ROTHSTEIN_ROSENFELDT_ADLER_ATTORNEY, r"Brad(ley)?( J(.?|ames))? Edwards", match_partial=None),
             Contact('David Boies', 'Boies, Schiller, & Flexner', r"(David )?Bo[il]es(,? Schiller( & Flexner)?)?"),
             Contact(DOUGLAS_WIGDOR, WIGDOR_ATTORNEY, r"Doug(las)? (H\.?)? Wigdor", match_partial=None),
@@ -2558,6 +2573,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(PAUL_G_CASSELL, 'professor at University of Utah, victim advocate'),
             Contact(STANLEY_POTTINGER, f"{VIRGINIA_GIUFFRE} legal team while working for Epstein", r"(J\.? )?(Stan(ley)? )?Pottinger"),
             organization('Marsh Law Firm', 'victim counsel'),
+            organization('Mintz Fraade', f'law firm working for {STEVEN_HOFFENBERG}'),
             organization(
                 ROTHSTEIN_ROSENFELDT_ADLER,
                 "shady law firm, Rothstein ran $1.2 billion Ponzi scheme & was Roger Stone's partner",
@@ -2567,9 +2583,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             organization('Wigdor Law', f"sued {LEON_BLACK} alleging crimes at Epstein's properties", r"Wigdor(Law)?( LLP)?"),
         ],
         patterns=[
-            r"(Alan( P.)?|MINTZ) FRAADE",
             r"(Mi(chael|ke) )?Avenatti",
-            r"Paul (G. )?Cassell",
             r"Rosenfeldt",
             r"(Scott )?Rothstein",
         ],
@@ -2580,15 +2594,16 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         category='Republican',
         contacts=[
             Contact(SEAN_BANNON, f"{STEVE_BANNON}'s brother", r"sean bannon?", match_partial=None),
-            Contact(STEVE_BANNON, "Trump campaign manager, memecoin grifter, Epstein bestie", r"steve banno[nr]?")
+            Contact(STEVE_BANNON, "Trump campaign manager, memecoin grifter, Epstein bestie", r"steve banno[nr]?"),
+            organization('Biosphere', f'closed loop science experiment to mimic the earth in the 90s overseen by {STEVE_BANNON}'),
         ],
         patterns=[
+            r"Arnold Schwarzenegger",
             r"(American )?Dharma",
-            r"Biosphere",
         ],
     ),
     HighlightedNames(
-        label='real estate',
+        label=REAL_ESTATE,
         style='spring_green3',
         contacts=[
             Contact('André Balazs', 'hotelier, CEO of André Balazs Properties', r"Andre Bala(sz|zs)"),
@@ -2634,12 +2649,12 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         style='deep_pink3',
         category='Epstein',
         contacts=[
-            Contact(BOBBI_C_STERNHEIM, f"{GHISLAINE_MAXWELL} {CRIMINAL_DEFENSE_ATTORNEY}"),
+            Contact(BOBBI_C_STERNHEIM, f"{GHISLAINE_MAXWELL}'s {CRIMINAL_DEFENSE_ATTORNEY}"),
+            Contact('Emmy Tayler', f"{GHISLAINE_MAXWELL}'s personal assistant"),
             Contact(
-                name=GHISLAINE_MAXWELL,
-                info="Epstein's girlfriend, daughter of the spy Robert Maxwell",
-                emailer_pattern=r"g max(well)?|Ghislaine|Maxwell",
-                match_partial='first',
+                GHISLAINE_MAXWELL,
+                "Epstein's girlfriend, daughter of the spy Robert Maxwell",
+                r"g max(1@ellmax.com|well)?|Ghislai?ne|Maxwell",
             ),
             Contact('Isabel Maxwell', f"sister of Ghislaine, wife of {AL_SECKEL}", match_partial=None),
             Contact(
@@ -2648,13 +2663,13 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 link_to_bio='https://en.wikipedia.org/wiki/Robert_Maxwell',
                 match_partial=None,
             ),
+            Contact('Scott Borgenson', f"boyfriend (and lawyer?) of {GHISLAINE_MAXWELL}"),
             Contact('Ted Waitt', f"boyfriend of {GHISLAINE_MAXWELL}, guest at Chelsea Clinton wedding"),
-        ],
-        patterns=[
-            r"gmax(1@ellmax.com)?",
-            r"Maxwell",
-            r"(The )?TerraMar Project",
-            r"(Scott )?Borgenson", # Ghislaine lawyer
+            organization(
+                "The Terramar Project",
+                f"clean oceans environmental nonprofit launched by {GHISLAINE_MAXWELL} for reputation repair",
+                r"(The )?TerraMar( Project)?",
+            ),
         ],
     ),
     HighlightedNames(
@@ -2918,10 +2933,12 @@ def get_highlight_group_for_name(name: str | None) -> HighlightGroup | None:
 
 
 def get_style_for_category(category: str) -> str | None:
+    """
+    First check `CATEGORY_STYLES`, then check if there's a mapping in `CATEGORY_STYLE_MAPPING`,
+    and finally just match the category name to the `HighlightedNames.label`.
+    """
     if category in CATEGORY_STYLES:
         return CATEGORY_STYLES[category]
-    elif category == Uninteresting.CONFERENCE:
-        return f"{get_style_for_category(ACADEMIA)} dim"
 
     for highlight_group in HIGHLIGHT_GROUPS:
         if highlight_group.label == CATEGORY_STYLE_MAPPING.get(category, category):

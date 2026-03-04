@@ -126,15 +126,17 @@ OCR_REPAIRS: dict[str | re.Pattern, str] = {
     re.compile(r"[ijlp']ee[vy]acation[©@a(&,P ]{1,3}g?mail.com"): 'jeevacation@gmail.com',
     'gyahoo.com': '@yahoo.com',
     # Signatures
+    re.compile(r'Blac[il]cBerry'): 'BlackBerry',
     'BlackBerry by AT &T': 'BlackBerry by AT&T',
     'BlackBerry from T- Mobile': 'BlackBerry from T-Mobile',
     'Envoy& de': 'Envoyé de',
+    'Envoye avec BlackBerry° d': 'Envoye avec BlackBerry® d',
     'from Samsung Mob.le': 'from Samsung Mobile',
     'gJeremyRubin': '@JeremyRubin',
     'Mail for i Phone': 'Mail for iPhone',
     'Sent from Mabfl': 'Sent from Mobile',  # NADIA_MARCINKO signature bad OCR
     'twitter glhsummers': 'twitter @lhsummers',
-    re.compile(r"from my ['!()][Pp]hone"): 'from my iPhone',  # TODO: this changes the casing
+    re.compile(r"from my ['!()]([Pp]hone)"): r'from my i\1',
     re.compile(r"[cC]o-authored with i ?Phone auto-correct"): "Co-authored with iPhone auto-correct",
     re.compile(r"twitter\.com[i/][lI]krauss[1lt]"): "twitter.com/lkrauss1",
     re.compile(r'from my BlackBerry[0°] wireless device'): 'from my BlackBerry® wireless device',

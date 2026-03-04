@@ -25,7 +25,7 @@ from epstein_files.documents.other_file import OtherFile
 from epstein_files.output.epstein_highlighter import highlighter, temp_highlighter
 from epstein_files.output.output import (print_curated_chronological, print_doj_files, print_emails_section,
      print_json_files, print_stats, print_other_files_section, print_text_messages_section, print_all_emails_chronological,
-     print_emailers_info, print_json_metadata, show_urls, write_html)
+     print_email_device_signatures, print_emailers_info, print_json_metadata, show_urls, write_html)
 from epstein_files.output.rich import console, print_json, print_subtitle_panel
 from epstein_files.output.site.sites import make_clean
 from epstein_files.output.title_page import print_color_key, print_title_page_top, print_title_page_bottom
@@ -43,13 +43,15 @@ def epstein_generate() -> None:
     timer, epstein_files = _load_files_and_check_early_exit_args()
     print_title_page_top()
 
-    if args.all_emails_chrono or args.output_word_count:
+    if args.all_emails_chrono or args.output_word_count or args.output_devices:
         print_color_key()
     else:
         print_title_page_bottom(epstein_files)
 
     if args.colors_only:
         pass
+    elif args.output_devices:
+        print_email_device_signatures(epstein_files)
     elif args.output_chrono:
         print_subtitle_panel('Selected Files of Interest in Chronological Order')
         printed_docs = print_curated_chronological(epstein_files)

@@ -137,7 +137,7 @@ DEVICE_PATTERNS = [
 DEVICE_PATTERN = r"(Envoy[ée] (avec|de mon)|Sent (from|using|via|with)).*(" + '|'.join(DEVICE_PATTERNS) + r")"
 EPSTEIN_TYPO_PREFIX = r"((Please forgive|Sorry for all the) typos.{1,4})"
 SENT_FROM_DEVICE_PATTERN = '|'.join([DEVICE_PATTERN] + SIGNATURE_PATTERNS)
-SENT_FROM_REGEX = re.compile(fr'^{QUOTE_INDENT_CHAR_GROUP}*{EPSTEIN_TYPO_PREFIX}?({SENT_FROM_DEVICE_PATTERN})\.?( -*)?', re.M | re.I)
+SENT_FROM_REGEX = re.compile(fr'^{EPSTEIN_TYPO_PREFIX}?({SENT_FROM_DEVICE_PATTERN})\.?( -*)?', re.M | re.I)
 
 # Misc
 MAILING_LISTS = [
@@ -210,6 +210,7 @@ EMAIL_SIGNATURE_REGEXES = {
     ERIC_ROTH: re.compile(r"2221 Smithtown Avenue\nLong Island.*\nRonkonkoma.*\n(.1. )?Phone\nFax\nCell\ne-mail"),
     FRANCESCA_HALL: re.compile(r"The contents of this e-mail message and.{,600}message and its attachments[.,]? if any", re.DOTALL),
     GHISLAINE_MAXWELL: re.compile(r"FACEBOOK\nTWITTER\nG\+\nPINTEREST\nINSTAGRAM\nPLEDGE\nTHE DAILY CATCH"),
+    'Javier Solano': re.compile(r"www.SolanoLegal.{,120}Bronx.{,20}?$(\n[TF]:$)*", re.DOTALL | re.MULTILINE),
     JEANNE_M_CHRISTENSEN: re.compile(r"[A ]*(Please consider the environment before printing this e-mail.{,5})?This communication may contain Confidential.{,500}(facsimile|mail)\s+or\s+phone. Thank you\.?|Partner\s+WIGDOR.{,12}(85 Fifth Avenue|New York).{,20}\s+(T:.{,6}\n)?.{,15}com", re.DOTALL),
     JEFFREY_EPSTEIN: re.compile(r"(([* =0,]+|please .ote.{,6})\s+)?([>»•]+ )*[T=]h[e=][ =]inf[o=].ma[t=][i=]on co[n=][t=]a[i=]ne. i. t..s..ommunic.ti.{,600}all\s+([>»] )*.t.a.hm..t..([>»\s]+copyright\s+.[ae]ll\s+[r=][i=][g=][h=][t=][s=]\s+[r=][e=][s=][e=][r=][v=][e=][d=]?)?", re.DOTALL),
     JES_STALEY: re.compile(r"This email is confidential and subject to important.{,250}disclosures/email\.?", re.DOTALL),
@@ -235,6 +236,7 @@ EMAIL_SIGNATURE_REGEXES = {
     TOM_PRITZKER: re.compile(r"The contents of this email message.*\ncontain confidential.*\n(not )?the intended.*\n(error|please).*\n(you )?(are )?not the.*\n(this )?message.*"),
     TONJA_HADDAD_COLEMAN: re.compile(fr"Tonja Haddad Coleman.*\nTonja Haddad.*\nAdvocate Building\n315 SE 7th.*(\nSuite.*)?\nFort Lauderdale.*(\n({REDACTED} )?facsimile)?(\nwww.tonjahaddad.com?)?(\nPlease add this efiling.*\nThe information.*\nyou are not.*\nyou are not.*)?", re.IGNORECASE),
     UNKNOWN: re.compile(r"(This message is directed to and is for the use of the above-noted addressee only.*\nhereon\.)", re.DOTALL),
+    USANYS: re.compile(r"Southern District of New York\s+One Saint Andrew's Plaza\s+New York,?\s*New York 10007(\s+Tel)?"),
     'W Bradford Stephens': re.compile(r"This email \(including.*\n(please.*\n)?it.*\nand do not.*\n(does.*\n)?constitute.*\ninvestment.*\n(info.*\n)?contained.*\nthe.*\s*(sender.*\n)?update.*\nthis.*(\nemail.*)?"),
 }
 

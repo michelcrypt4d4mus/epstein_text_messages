@@ -14,6 +14,7 @@ LAWYER = 'lawyer'
 LOBBYIST = 'lobbyist'
 MIDEAST = 'mideast'
 PUBLICIST = 'publicist'
+REAL_ESTATE = 'real estate'
 REPUTATION = 'reputation'
 REPUTATION_MGMT = f'{REPUTATION} management'
 TECH_BRO = 'tech'
@@ -31,12 +32,14 @@ ARCHIVE_LINK_UNDERLINE = f"{ARCHIVE_LINK_COLOR} underline"
 ARCHIVE_ALT_LINK_STYLE = 'medium_purple4 italic'  # "(raw files)" link
 AUX_SITE_LINK_STYLE = 'dark_orange3'
 DEFAULT_NAME_STYLE = 'grey23'
+EPSTEIN_COLOR = 'blue1'
 EXCERPT_STYLE = 'italic cornsilk1'
 SOCIAL_MEDIA_LINK_STYLE = 'pale_turquoise4'
 SUBHEADER_STYLE = 'dim gray54 italic'
 TEXT_LINK = 'text_link'
 TIMESTAMP_STYLE = 'turquoise4'
 TIMESTAMP_DIM = f"turquoise4 dim"
+VICTIM_LAWYER = 'victim lawyer'
 
 # File IDs
 LEON_BLACK_EMAIL_ID = '023208'
