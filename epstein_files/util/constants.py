@@ -2743,6 +2743,7 @@ OTHER_FILES_GIRLS = [
         author=KIRA_DIKHTYAR,
         author_uncertain='AOL signature',
         description=f'{SANITA} is mad at Epstein (and "makes lists")',
+        show_with_name=SANITA,
         truncate_to=NO_TRUNCATE,
     ),
     EmailCfg(id='EFTA00376832', show_with_name=MARIANA_IDZKOWSKA),
