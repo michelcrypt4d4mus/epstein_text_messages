@@ -2613,6 +2613,9 @@ OTHER_FILES_GIRLS = [
         description=f'Epstein and {JEAN_LUC_BRUNEL} "managing" {JOSHUA_FINK}\'s relationship with {SVETLANA_POZHIDAEVA}',
         is_interesting=True,
     ),
+    EmailCfg(id='efta00704924', description=f"attached picture of {JOSHUA_FINK} and {FILIPA_PEROVIC} who would later marry", is_interesting=True),
+    EmailCfg(id='efta02217672', description=f"{DAVID_L_NEUHAUSER} is raising money for a {JOSHUA_FINK} fund, promises Epstein he won't reveal they're talking", is_interesting=True),
+    EmailCfg(id='EFTA01907281', description=f"Epstein asks about {JOSHUA_FINK}'s girlfriends not named Svetlana", show_with_name=JOSHUA_FINK, is_interesting=True),
     EmailCfg(id='EFTA01140210', description='Epstein asks about fake Instagram followers', is_interesting=True),
     EmailCfg(id='EFTA01854125', description=f'Epstein says to {HENRY_JARECKI} "you torture, and mistreat each" girl'),
     EmailCfg(id='EFTA01953412', description=f'{EVA_DUBIN} suggests Epstein endow "The Epstein Floor For Women" at Mt. Sinai'),
@@ -2630,6 +2633,7 @@ OTHER_FILES_GIRLS = [
         duplicate_ids=['EFTA00732294'],
     ),
     EmailCfg(id='EFTA00894079', description='"say hi to Snow White"', is_interesting=True),
+    EmailCfg(id='efta01798715', description=f"taking an interest in {JOSHUA_FINK}'s investments in Eritrea"),
     EmailCfg(id='EFTA00908180', description='"two cinderellas"'),
     EmailCfg(id='EFTA00751119', description='"Valdson to teach girls how to serve"'),
     EmailCfg(

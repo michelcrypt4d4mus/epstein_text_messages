@@ -271,7 +271,9 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(ALIREZA_ITTIHADIEH, "CEO Freestream Aircraft Limited", r"Alireza.[Il]ttihadieh", match_partial='both'),
             Contact(BARRY_J_COHEN, emailer_pattern=r"barry ((j.?|james) )?cohen?", match_partial=None),
             Contact('Barry Zelin', 'Axiom Capital'),
+            Contact(DAVID_L_NEUHAUSER, f'Livermore Partners, partner of {JOSHUA_FINK}'),
             Contact('Ed Razek', "Victoria's Secret executive"),
+            Contact(FILIPA_PEROVIC, f"now Filipa Fink (married to {JOSHUA_FINK}), Coatue Management"),
             Contact('Jeanne Houweling', f'CEO of Adfin, a company Epstein and {HOWARD_LUTNICK} invested in'),
             Contact(
                 'Les Wexner',

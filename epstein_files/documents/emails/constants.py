@@ -227,6 +227,7 @@ EMAIL_SIGNATURE_REGEXES = {
     PETER_MANDELSON: re.compile(r'Disclaimer This email and any attachments to it may be.*?with[ \n]+number(.*?EC4V[ \n]+6BJ)?', re.DOTALL | re.IGNORECASE),
     PAUL_BARRETT: re.compile(r"Paul Barrett[\n\s]+Alpha Group Capital LLC[\n\s]+(142 W 57th Street, 11th Floor, New York, NY 10019?[\n\s]+)?(al?[\n\s]*)?ALPHA GROUP[\n\s]+CAPITAL"),
     PETER_ATTIA: re.compile(r"The information contained in this transmission may contain.*\n(laws|patient).*\n(distribution|named).*\n(distribution.*\nplease.*|copies.*)"),
+    PETER_MANDELSON: re.compile(r"^Disclaimer\s+This email and any attachments to.{,700}United Kingdom EC4V 68J\.?", re.MULTILINE | re.DOTALL),
     RICHARD_KAHN: re.compile(fr'Richard Kahn\s+HBRK Associates Inc.?\s+((301|575) .*\s+)?Ne.*(\n(Tel?|Phone|Fa.{{,5}}|[Ce]el*|{REDACTED})( [-.\d]{{,13}})?)*', re.IGNORECASE),
     ROSS_GOW: re.compile(r"Ross Gow\nManaging Partner\nACUITY Reputation Limited\n23 Berkeley Square\nLondon.*\nMobile.*\nTel"),
     STEPHEN_HANSON: re.compile(r"(> )?Confidentiality Notice: This e-mail transmission.*\n(which it is addressed )?and may contain.*\n(applicable law. If you are not the intended )?recipient you are hereby.*\n(information contained in or attached to this transmission is )?STRICTLY PROHIBITED.*"),
