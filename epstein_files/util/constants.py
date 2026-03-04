@@ -2657,7 +2657,7 @@ OTHER_FILES_GIRLS = [
     EmailCfg(id='EFTA02217672', description=f"{DAVID_L_NEUHAUSER} is raising money for a {JOSHUA_FINK} fund, promises Epstein he won't reveal they're talking", is_interesting=True),
     EmailCfg(
         id='EFTA01907281',
-        description=f"Epstein asks about {JOSHUA_FINK} and pretends it's because {TANCREDI_MARCHIOLO} asked *him* when it was Epstein who asked Marchiolo",
+        description=f"Epstein asks about {JOSHUA_FINK}, pretends it's because {TANCREDI_MARCHIOLO} asked *him* (Epstein asked Marchiolo)",
         show_with_name=JOSHUA_FINK,
         is_interesting=True,
     ),
