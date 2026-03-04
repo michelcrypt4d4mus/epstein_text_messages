@@ -2997,6 +2997,7 @@ OTHER_FILES_LEGAL = [
             JEAN_LUC_BRUNEL,
             JOI_ITO,
             LARRY_SUMMERS,
+            LAWRANCE_VISOSKI,  # Just bc his deposition comes soon after
             MARK_EPSTEIN,
             MARTIN_NOWAK,
             MORTIMER_ZUCKERMAN,
