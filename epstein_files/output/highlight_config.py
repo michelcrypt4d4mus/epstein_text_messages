@@ -2243,7 +2243,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(
                 SVETLANA_POZHIDAEVA,
                 f"AKA 'Sophia Platt', Epstein assistant, went to FSB feeder school MGIMO, visa recommended by {SERGEY_BELYAKOV} (FSB) & {DAVID_BLAINE}",
-                r"Sophia Platt|((Svet)?Lana )?Pozhidaeva|\b(Lana|Svet)\b",
+                r"Sophia Platt|((Svet)?Lana )?Pozhidaeva|\b(Lana|Svet)\b|p\.selana|Selana P\b",
                 link_to_bio='https://dossier.center/jeffreyepsteinrusconnect-en/',
                 match_partial='first',
             ),
