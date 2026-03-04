@@ -2085,12 +2085,14 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             organization('Icarine', f"agency with connections to {JEAN_LUC_BRUNEL}"),
             organization('ID Models', "Paolo Zampolli's modeling agency"),
             organization('MC2 Model Management', f"{JEAN_LUC_BRUNEL}'s modeling agency", r"MC2( Model Management)?"),
+            organization('Next Models', f"modeling agency co-founded by {FAITH_KATES}"),
             organization('One Model Management', 'agency'),
         ],
         patterns=[
             r"\w+@mc2mm.com",
             r"Faena",
             r"noah\s*models(.com)?",
+            r"(?<!(ID|ge|te|xt)\s)model(ing|s)",
         ],
     ),
     HighlightedNames(
@@ -2762,7 +2764,6 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"massag(e(d|use)?s?|ing)( table)?",
             r"(Midget )?strippers?",
             r"Minor Victim",
-            r"(?<!(ID|ge|te)\s)model(ing|s)",
             r"orgasm(ic|s)?",
             r"pa?edophile",
             r"pregnan(cy|t)",
