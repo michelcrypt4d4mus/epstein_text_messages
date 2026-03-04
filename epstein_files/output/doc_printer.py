@@ -15,15 +15,14 @@ from epstein_files.documents.email import Email
 from epstein_files.documents.messenger_log import MessengerLog
 from epstein_files.documents.other_file import OtherFile
 from epstein_files.output.layout_elements.file_display import FileDisplay
-from epstein_files.output.highlight_config import get_style_for_name
 from epstein_files.output.html.builder import buffer_as_html, rich_to_html, table_to_html, write_templated_html
-from epstein_files.output.html.elements import div_class
+from epstein_files.output.html.elements import div_class, to_em
 from epstein_files.output.rich import console
 from epstein_files.people.person import PEOPLE_BIOS, Person
 from epstein_files.people.names import *
 from epstein_files.util.env import args, site_config
-from epstein_files.util.helpers.data_helpers import dict_sets_to_lists, uniq_sorted
-from epstein_files.util.logging import logger, exit_with_error
+from epstein_files.util.helpers.data_helpers import uniq_sorted
+from epstein_files.util.logging import logger
 
 OTHER_FILES_TABLE_MSG = Text("(non emails will appear in tables)", 'gray27 italic')
 
@@ -124,7 +123,8 @@ class DocPrinter:
         )
 
         console.print(Padding(table, (0, 0, 1, site_config.other_files_table_indent)))
-        self.html_elements.append(table_to_html(table))  # TODO: missing indent
+        table_div_css_props = {'margin-left': to_em(site_config.other_files_table_indent)}
+        self.html_elements.append(table_to_html(table, table_div_css_props))
         self.printed_docs.extend(self.other_files_queue)
         self.other_files_queue = []
 

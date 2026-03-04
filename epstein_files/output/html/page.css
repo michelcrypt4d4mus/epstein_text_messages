@@ -87,8 +87,10 @@ div.row {
 }
 
 div.table_container {
+    background-color: black;
     max-width: 99%;
     width: 99%;
+    z-index: 10;
 }
 
 li {
