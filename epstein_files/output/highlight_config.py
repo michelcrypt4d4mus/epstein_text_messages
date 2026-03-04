@@ -2372,7 +2372,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 MASHA_DROKOVA,
                 'AKA "Masha Bucher", silicon valley VC (Day One Ventures), publicist for QWave, former Putin Youth member, star of "Putin\'s Kiss"',
                 r"(Marii?y?a|Masha) (Bucher|Drokova)",
-                link_to_bio='https://www.forbes.com/sites/iainmartin/2026/02/04/how-jeffrey-epstein-helped-his-publicist-become-a-big-time-venture-capitalist/',
+                link_to_bio='https://davidzmorris.substack.com/p/i-found-epstein-i-just-didnt-realize',
             ),
             Contact(OLGA_PONOMAR_BECKER, 'Russian girl'),
             Contact(
