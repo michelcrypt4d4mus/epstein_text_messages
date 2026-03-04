@@ -1004,11 +1004,17 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(EDWARD_ROD_LARSEN, f"son of {TERJE_ROD_LARSEN}", match_partial=None),
             Contact('Fabrice Aidan', f"diplomat who worked with {TERJE_ROD_LARSEN}"),
             Contact('Jack Lang', "former French Minister of National Education", match_partial=None),
-            Contact('Martine Vik Magnussen', f'murdered by son of {SHAHER_ABDULHAK_BESHER}', match_partial=None),
+            Contact(
+                'Martine Vik Magnussen',
+                f'murdered by son of {SHAHER_ABDULHAK_BESHER}',
+                link_to_bio='https://en.wikipedia.org/wiki/Murder_of_Martine_Vik_Magnussen',
+                match_partial=None
+            ),
             Contact(
                 MIROSLAV_LAJCAK,
-                f"Russia-friendly Slovakian politician, friend of {STEVE_BANNON}",
+                f"Russia-friendly Slovakian national security advisor, friend of {STEVE_BANNON}",
                 r"Miro(slav)?( Laj[cč][aá]k)?",
+                link_to_bio='https://www.bbc.com/news/articles/cnvgljj1dygo',
             ),
             Contact('Oleksandr Vilkul', f"former deputy prime minister of Ukraine"),
             Contact(

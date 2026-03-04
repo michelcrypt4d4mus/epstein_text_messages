@@ -1056,7 +1056,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA02069175', author=LESLEY_GROFF, recipients=[GANBAT_CHULUUNKHUU], author_uncertain=True),
     EmailCfg(id='EFTA02271414', author=LESLEY_GROFF, recipients=[GANBAT_CHULUUNKHUU], author_uncertain=True),
     EmailCfg(id='EFTA00405795', author=LESLEY_GROFF, duplicate_ids=['EFTA02159829']),
-    EmailCfg(id='EFTA00419742', author=LESLEY_GROFF, duplicate_ids=['EFTA02174857']),
+    EmailCfg(id='EFTA00419742', author=LESLEY_GROFF, duplicate_ids=['EFTA02174857'], truncate_to=500),
     EmailCfg(
         id='EFTA00384774',
         author_reason='unique email signature',
@@ -1178,7 +1178,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00995559', author=RENATA_BOLOTOVA, author_reason='poorly redacted signature'),
     EmailCfg(id='EFTA01059181', author=RENATA_BOLOTOVA, author_uncertain=SNEAKY_DOG),
     EmailCfg(id='EFTA01923844', author=RENATA_BOLOTOVA, author_uncertain=SNEAKY_DOG),
-    EmailCfg(id='EFTA00686861', author=RENATA_BOLOTOVA, author_uncertain=SNEAKY_DOG),
+    EmailCfg(id='EFTA00686861', author=RENATA_BOLOTOVA, author_uncertain=SNEAKY_DOG, is_interesting=False),
     EmailCfg(id='EFTA00870433', author=RENATA_BOLOTOVA, author_uncertain=SNEAKY_DOG, duplicate_ids=['EFTA01925240']),
     EmailCfg(id='EFTA01035614', author=RENATA_BOLOTOVA, author_uncertain=SNEAKY_DOG),
     EmailCfg(id='EFTA01748575', author=RENATA_BOLOTOVA, author_uncertain=SNEAKY_DOG),
@@ -3502,6 +3502,7 @@ UNINTERESTING_EMAIL_IDS = [
     'EFTA01002109',
     'EFTA02365466',
     'EFTA00709543',
+    'EFTA00419736',  # visible elsewhere
     # David Stern
     'EFTA02507454',
     'EFTA02478704',
@@ -3523,6 +3524,7 @@ UNINTERESTING_EMAIL_IDS = [
     'EFTA00582171',  # Visible in other files
     # Ian Osborne
     'EFTA01763771',
+    'EFTA00932122',
     # Jabor
     '030786',
     '033011',
@@ -3654,6 +3656,7 @@ NOT_CHRONOLOGICAL_VIEW_IDS = [
     '030222',
     # '031826',
     '031826',
+    '019446',  #Haiti jacmel
     'EFTA02001536',
     'EFTA01773417',
     'EFTA01987283',
