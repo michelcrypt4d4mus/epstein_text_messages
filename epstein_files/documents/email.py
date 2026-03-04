@@ -389,7 +389,7 @@ class Email(Communication):
         ]
 
         if self.config and self.config.highlighted_pattern:
-            logger.warning(f"self.config.highlighted_pattern='{self.config.highlighted_pattern}'")
+            logger.debug(f"self.config.highlighted_pattern='{self.config.highlighted_pattern}'")
             txt_highlighter = temp_highlighter(self.config.highlighted_pattern)
         else:
             txt_highlighter = highlighter
