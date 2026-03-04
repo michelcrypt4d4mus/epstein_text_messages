@@ -3441,8 +3441,9 @@ OTHER_FILES_TEXT_MSG = [
         id='EFTA01620764',
         author=MELANIE_WALKER,
         author_uncertain=True,
-        description=f'conversation about Bill Gates being drunk all the time',
+        description=f'conversation about crypto philanthropy and Bill Gates being drunk all the time',
         is_interesting=True,
+        truncate_to=(250, 3500)
     ),
     DocCfg(id='EFTA01618381', author=RENATA_BOLOTOVA, description=f'iMessage screenshots', author_uncertain='sneaky'),
     DocCfg(id='EFTA01622387', author=RENATA_BOLOTOVA, description=f'iMessage screenshots', author_uncertain='sneaky'),

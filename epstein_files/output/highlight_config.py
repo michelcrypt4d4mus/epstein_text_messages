@@ -240,6 +240,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Mark Burnett",
             r"New Apostolic Church",
             r"New York Film Festival",
+            r"pseudonym",
             r"Peter Getzels",
             r"Regan arts",
             r"shirley maclaine",
@@ -3013,6 +3014,8 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         style=FINANCIAL_COLOR,
         use_word_boundary=True,
         patterns=[
+            r"accountant",
+            r"accounting firm",
             r"American Express",
             r"Amex",
             r"alterna[tv]i[tv]e finance",
@@ -3057,6 +3060,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"deposition",
             r"EDGAR (Filing|Search)",  # SEC database is EDGAR
             r"General Counsel",
+            r"lawyer",
             r"Notary Public",
             r"Page \d+ of \d+",
             r"testimony",
