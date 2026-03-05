@@ -307,7 +307,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(
                 NICOLE_JUNKERMANN,
                 f"German countess / ex-model, NJF Capital/JunkermannGroup, investor in Revolut, gambling, China",
-                r"(Nicole )?Junke(nn|rm)ann?",
+                r"(Nicole )?[J5]unke(nn|rm)ann?",
                 link_to_bio='https://www.yahoo.com/news/articles/german-countess-advised-nhs-called-130000074.html',
             ),
             Contact('Nikolajs Smirnovs', f"{NICOLE_JUNKERMANN}'s NJF Capital / JunkermannGroup", r"Nikolajs (NJF|Smirnovs)"),
@@ -709,7 +709,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             ),
         ],
         patterns=[
-            r"alternative money",
+            r"alternative (currenc(ies|y)|money)",
             r"Balaji( Srinivisan)?",
             r"Ben Forman",
             r"bit[o\s]?coin( Foundation)?",
@@ -1214,7 +1214,12 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 info="CIO Honeycomb Asset Management, Epstein invested in Spotify through him",
                 emailer_pattern=r"David Fis?zel",
             ),
-            Contact('David Rowland', f"{PRINCE_ANDREW}'s trusted money man at Banque Havilland whom Epstein does not trust", match_partial=None),
+            Contact(
+                'David Rowland',
+                f"{PRINCE_ANDREW}'s trusted money man at Banque Havilland whom Epstein does not trust",
+                match_partial=None,
+            ),
+            Contact('Ted Forstmann', "private equity, founder of Forstmann Little & co."),
             Contact(
                 JES_STALEY,
                 "former CEO of Barclays, allegations by multiple Epstein victims",
