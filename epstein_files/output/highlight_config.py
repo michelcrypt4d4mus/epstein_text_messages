@@ -2418,7 +2418,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(
                 KIRA_DIKHTYAR,
                 'AKA "Kira Prokhorova", very active recruiter',
-                r"Kira (D|Ki(ra|m)|Prokhorova?)",
+                r"Kira (D(ikhtyar)?|Ki(ra|m)|Prokhorova?)",
                 link_to_bio='https://x.com/FlippersUpNow/status/2020490996287443071',
             ),
             Contact('Krystyna Gwiazda', 'Russian girl'),
