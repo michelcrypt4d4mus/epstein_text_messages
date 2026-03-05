@@ -2286,6 +2286,11 @@ OTHER_FILES_CRYPTO = [
     DocCfg(id='EFTA00605699', description=f"{KYARA_FUND} II LLC incorporation papers"),
     DocCfg(id='EFTA01186455', description=f"{KYARA_FUND} II LLC operating agreement"),
     DocCfg(id='EFTA00584696', description=f"{KYARA_FUND} III LLC operating agreement"),
+    EmailCfg(
+        id='EFTA02376268',
+        description=f"introduction to {JEREMY_RUBIN}",
+        recipients=[JEFFREY_EPSTEIN, JEREMY_RUBIN, LINDA_STONE, None],
+    ),
     EmailCfg(id='EFTA00989593', description=f'donations from {LEON_BLACK} to {MIT_MEDIA_LAB} / Digital Currency Initiative {QUESTION_MARKS}'),
     EmailCfg(id='EFTA00999549', description=f"{JOI_ITO} and {JEREMY_RUBIN} meet {LARRY_SUMMERS} to discuss bitcoin", is_interesting=True),
     EmailCfg(id='EFTA01752601', description=f"{JOI_ITO} and Epstein name their new fund Kyara"),
