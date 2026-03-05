@@ -1009,6 +1009,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         label='Europe',
         style='light_sky_blue3',
         contacts=[
+            Contact('Alastair Campbell', 'journalist, spokesman for Tony Blair', match_partial='first'),
             Contact('Alistair Darling', 'former UK Chancellor of the Exchequer under Gordon Brown'),
             Contact(ANDRZEJ_DUDA, "former president of Poland"),
             Contact(
@@ -1667,7 +1668,6 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact('Adam Bly', "editor of SEED magazine"),
             Contact('Alain Forget', "author of \"How To Get Out Of This World ALIVE\"", match_partial=None),
             Contact('Alex Yablon', "New York Magazine fact checker (?)"),
-            Contact('Alistair Campbell', 'British journalist', match_partial=None),
             Contact(
                 'Conchita Sarnoff',
                 'journalist Epstein attempted to bribe',

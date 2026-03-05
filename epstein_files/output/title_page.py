@@ -109,7 +109,7 @@ def print_title_page_top() -> None:
     print_centered(f"This dataset includes everything from the {HOUSE_OVERSIGHT_TRANCHE}", style=DATASET_DESCRIPTION_STYLE)
     print_centered(f"as well as a curated selection of the {DOJ_2026_TRANCHE}", style=DATASET_DESCRIPTION_STYLE)
     print_centered(f"with a particular focus on cryptocurrency", style=DATASET_DESCRIPTION_STYLE)
-    print_centered(f"and women who speak Russian", style=DATASET_DESCRIPTION_STYLE)
+    print_centered(f"and women who speak Russian.", style=DATASET_DESCRIPTION_STYLE)
 
 
 def print_title_page_bottom(epstein_files: 'EpsteinFiles') -> None:
@@ -119,6 +119,10 @@ def print_title_page_bottom(epstein_files: 'EpsteinFiles') -> None:
     _print_external_links()
     console.line(2)
     print_centered(epstein_files.overview_table())
+    # updated_txt = Text('last updated: ').append(highlighter(datetime.now().date().isoformat()))
+    # updated_panel = Panel(updated_txt, expand=False, style='grey35', padding=(0, 4))
+    # console.line()
+    # print_centered(updated_panel)
     print_color_key()
     print_centered(f"(if you think there's an attribution error or can deanonymize an {UNKNOWN} contact {CRYPTADAMUS_TWITTER})", 'grey46')
     print_centered(f"(thanks to {link_markup('https://x.com/ImDrinknWyn', '@ImDrinknWyn', 'dodger_blue3')} + others for help attributing redacted emails)")

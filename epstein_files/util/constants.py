@@ -1115,6 +1115,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA01986756', author=MELANIE_PHILLIPS, author_uncertain=f"{STEVEN_SINOFSKY}'s gf at the time"),
     EmailCfg(id='EFTA00355684', author='Mira Bach', is_interesting=False),
     EmailCfg(id='EFTA01063008', author=OLGA_PONOMAR_BECKER, author_reason='Jmail'),
+    EmailCfg(id='EFTA01834130', author=PETER_MANDELSON, author_uncertain='reply', is_interesting=False),
     EmailCfg(
         id='EFTA01988194',
         author=RASSECK_BOURGI,
@@ -1330,6 +1331,8 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA02731697', author=USANYS, recipients=[USANYS], date='2021-06-07 17:33:00', author_uncertain=True),
     EmailCfg(id='EFTA02731583', author=USANYS, recipients=[USANYS], date='2022-01-21 17:28:00', author_uncertain=True),
     EmailCfg(id='EFTA02731587', author=USANYS, recipients=[USANYS], date='2022-01-21 17:28:00', author_uncertain=True),
+
+    # Recipients
     EmailCfg(
         id='EFTA01043393',
         description=f'did Epstein and {BROCK_PIERCE} have a falling out?',
@@ -1399,6 +1402,15 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00681554', recipients=[OLGA_PONOMAR_BECKER]),
     EmailCfg(id='EFTA02669915', recipients=[OLGA_PONOMAR_BECKER]),
     EmailCfg(id='EFTA00745622', recipients=[PETER_MANDELSON], truncate_to=520),
+    EmailCfg(
+        id='EFTA00892654',
+        description='- "moneylaund" is a term some jounalists use to describe offshore corrupt finance',
+        highlight_quote='i need your head in moneyland',
+        recipients=[PETER_MANDELSON],
+        recipient_uncertain=True,
+        truncate_to=520,
+    ),
+
     EmailCfg(
         id='EFTA00926593',
         author=PHILIP_ROSEDALE,

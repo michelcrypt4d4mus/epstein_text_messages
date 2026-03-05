@@ -654,7 +654,7 @@ class Document:
         return ''
 
     @classmethod
-    def files_summary_table(cls, title: str, first_col_name: str) -> Table:
+    def files_summary_table(cls, title: str | Text, first_col_name: str) -> Table:
         """Empty table with appropriate cols for summarizing groups of files."""
         table = build_table(title)
         cols = [{'name': first_col_name, 'min_width': 14}] + SUMMARY_TABLE_COLS
