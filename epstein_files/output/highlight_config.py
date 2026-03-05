@@ -1020,6 +1020,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 r"behnbom@aol.com|(Barbro\s.*)?Ehnbom|Barbro",
                 link_to_bio='https://www.reddit.com/r/TrueAnon/comments/1pn8pdj/episode_509_jeffreys_bbb/'
             ),
+            Contact('Benjamin Wegg-Prosser', f"CEO of {PETER_MANDELSON}'s failed lobbying firm Global Counsel"),
             Contact('Caroline Lang', "daughter of Jack Lang"),
             Contact(EDWARD_ROD_LARSEN, f"son of {TERJE_ROD_LARSEN}", match_partial=None),
             Contact('Fabrice Aidan', f"diplomat who worked with {TERJE_ROD_LARSEN}"),
@@ -1057,13 +1058,14 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             ),
             Contact('Viktor Yushchenko', 'former president of Ukraine'),
             Contact('Viktor Orban', 'prime minister of Hungary', r"(Vi(c|k)tor )?Orbah?n"),
-            organization('AfD', 'right wing German political party'),
             acronym('European Central Bank'),
             acronym(
                 INTERNATIONAL_PEACE_INSTITUTE,
                 "gave jobs to Epstein's girls",
                 link_to_bio='https://apnews.com/article/jeffrey-epstein-kevin-rudd-oslo-crime-think-tanks-ca62b1c799d2cb3bb346afcf4dfec355',
             ),
+            organization('AfD', 'right wing German political party'),
+            organization('Global Counsel', f"failed strategic consultancy / lobbying firm of {PETER_MANDELSON}"),
             organization(
                 'Swedish American Life Science Summit',
                 f"(SALSS) {BARBRO_C_EHNBOM} event, recruiting grounds for Epstein",
@@ -1271,6 +1273,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             organization("FirstBank", 'Puerto Rican bank used by Epstein', r"First Bank( of Puerto Rico)?"),
             organization('Goldman Sachs', emailer_pattern=r"Goldman( Sachs)?", is_interesting=False),
             organization('Julius Baer', 'Swiss bank'),
+            organization('Lazard', 'UK financial advisory and asset management firm'),
         ],
         patterns=[
             r"Ace Greenberg",
@@ -2464,6 +2467,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Bangkok",
             r"Burm(a|ese)",
             r"Cambodian?",
+            r"Hanoi",
             r"Indonesian?",
             r"Laos",
             r"Malaysian?",
@@ -3068,6 +3072,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"(junk )?bond",
             r"Managing Director",
             r"Mastercard",
+            r"money(land)?",
             r"(naked )?shorting",
             r"NASDAQ",
             r"philanthrop(i(es|st)|y)",
