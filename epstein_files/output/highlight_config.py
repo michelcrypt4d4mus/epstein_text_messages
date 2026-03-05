@@ -2438,6 +2438,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         ],
         patterns=[
             r"[DM]asha",
+            r"[JY]ulia",
             r"Svetl?ana",
         ]
     ),
@@ -2782,7 +2783,6 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"ig(ni|ru)shki",
             r"intercourse",
             r"(Jane|Tiffany) Doe",
-            r"Julia",
             r"Katie Johnson",
             r"lingerie",
             r"marri(age|ed)",

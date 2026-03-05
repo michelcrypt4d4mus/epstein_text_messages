@@ -10,6 +10,7 @@ def test_debug_dict(email):
     assert debug_dict == {
         'EmailCfg.author': 'Christina Galbraith',
         'EmailCfg.author_reason': 'from "Christina media/PR"',
+        'EmailCfg.is_in_chrono': False,
         'EmailCfg.is_of_interest': True,
         'EmailCfg.is_valid_for_name_scan': True,
         'file_info.external_url': 'https://epstein.media/files/house_oversight_019446',

@@ -195,6 +195,7 @@ DEVICE_SIGNATURE_TO_AUTHORS = {
 
 AUTHORS_TO_DEVICE_SIGNATURES = {
     UNKNOWN: [
+        'Envoye de mon iPhone',
         'Sent via BlackBerry from T-Mobile',
         "Sent from my Windows 10 phone",
         "Sent from my iPad",
