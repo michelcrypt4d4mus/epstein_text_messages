@@ -71,6 +71,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 link_to_bio='https://www.sunlightx.com/james-tagg'
             ),
             Contact('James Watson', 'one of the discoverers of DNA', match_partial=None),
+            Contact(JEM_BENDELL, 'board member of Community Forge, provider of alternative currency software', match_partial='both'),
             Contact(JOSCHA_BACH, "cognitive science / AI research", match_partial='both'),
             Contact(LAWRENCE_KRAUSS, "theoretical physicist with #MeToo problems", r"Lawrence Kraus[es]?|[jl]awkrauss|kruase"),
             Contact('Lee Smolin', 'physicist'),
@@ -96,7 +97,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             ),
             Contact('Valeria Chomsky', f"wife of {NOAM_CHOMSKY}", match_partial='both'),
             Contact('Victoria Stodden', 'professor of statistics at University of Southern California'),
-            Contact(YUKO_BARNABY, f"{MIT_MEDIA_LAB} Assistant to the Director", r"Y[ou]ko Ba(m|rn)(aby)?"),
+            Contact(YUKO_BARNABY, f"{MIT_MEDIA_LAB} Assistant to the Director", r"Y[ou]ko Ba(m|rn)(aby)?(?! Marsh)", match_partial=None),
             Contact(WHITFIELD_DIFFIE, f"MIT cryptographer and mathematician", r"whitfield.{,3}diffie?", match_partial='both'),
             organization(
                 MIT_MEDIA_LAB,
@@ -139,6 +140,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"(?-i:TED)x?",
             r"Tulane",
             r"UCLA",
+            r"Wharton",
         ],
     ),
     HighlightedNames(
@@ -305,7 +307,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(
                 NICOLE_JUNKERMANN,
                 f"German countess / ex-model, NJF Capital/JunkermannGroup, investor in Revolut, gambling, China",
-                r"(Nicole )?Junke(nn|rm)ann?",
+                r"(Nicole )?[J5]unke(nn|rm)ann?",
                 link_to_bio='https://www.yahoo.com/news/articles/german-countess-advised-nhs-called-130000074.html',
             ),
             Contact('Nikolajs Smirnovs', f"{NICOLE_JUNKERMANN}'s NJF Capital / JunkermannGroup", r"Nikolajs (NJF|Smirnovs)"),
@@ -430,13 +432,14 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"RMB",
             r"SCMP",
             r"Shang?hai",
+            r"Tianjin",
             r"V-?Nee",
             r"(?<!Article\s)Xi(aomi)?", r"Jinping",
         ],
     ),
     HighlightedNames(
         label='crime',
-        style='deep_pink2',
+        style='salmon1',
         contacts=[
             Contact('John Gotti', 'boss of the Gambino crime family'),
             Contact('Anthony Trentacosta', 'Gambino crime family'),
@@ -447,6 +450,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r'(drug|mexican) (cartel|traffick(ers?|ing))',
             r'criminals?(?! defense)( prosecution)?',
             r'crime famil(ies|y)',
+            r'dark web',
             r"(on )?drug(gy|s)",
             r'Gambino',
             r'heroin',
@@ -705,7 +709,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             ),
         ],
         patterns=[
-            r"alternative money",
+            r"alternative (currenc(ies|y)|money)",
             r"Balaji( Srinivisan)?",
             r"Ben Forman",
             r"bit[o\s]?coin( Foundation)?",
@@ -1210,7 +1214,12 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 info="CIO Honeycomb Asset Management, Epstein invested in Spotify through him",
                 emailer_pattern=r"David Fis?zel",
             ),
-            Contact('David Rowland', f"{PRINCE_ANDREW}'s trusted money man at Banque Havilland whom Epstein does not trust", match_partial=None),
+            Contact(
+                'David Rowland',
+                f"{PRINCE_ANDREW}'s trusted money man at Banque Havilland whom Epstein does not trust",
+                match_partial=None,
+            ),
+            Contact('Ted Forstmann', "private equity, founder of Forstmann Little & co."),
             Contact(
                 JES_STALEY,
                 "former CEO of Barclays, allegations by multiple Epstein victims",
@@ -2418,7 +2427,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(
                 KIRA_DIKHTYAR,
                 'AKA "Kira Prokhorova", very active recruiter',
-                r"Kira (D|Ki(ra|m)|Prokhorova?)",
+                r"Kira (D(ikhtyar)?|Ki(ra|m)|Prokhorova?)",
                 link_to_bio='https://x.com/FlippersUpNow/status/2020490996287443071',
             ),
             Contact('Krystyna Gwiazda', 'Russian girl'),
@@ -2804,7 +2813,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"dildo",
             r"(?<!drug )(child\s*)?(sex\s*)?traffi?c?k(ers?|ing)",
             r"Ellaina As?tras?",
-            r"((blonde?|fresh|hot|naughty|new|school|underage|young) )*girl( friend)?",
+            r"((blonde?|fresh|hot|naughty|new|pretty|school|underage|young) )*girl( friend)?",
             r"gyn(eco(logist|nomist)|o)",
             r"I love you",
             r"ig(ni|ru)shki",

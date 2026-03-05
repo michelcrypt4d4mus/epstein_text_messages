@@ -115,6 +115,7 @@ DOJ_EMAIL_OCR_REPAIRS: dict[str | re.Pattern, str] = {
 
 # "Sent from my iPhone" regexes
 DEVICE_PATTERNS = [
+    r"4G network",
     r"apologies for any typos",
     r"email( app)?",
     r"and string",
@@ -132,6 +133,8 @@ DEVICE_PATTERNS = [
 
 SENT_PREFIX_PATTERNS = [
     r"Envoy[ée] (avec|de mon)",
+    r"From my Android phone",
+    r"Get Outlook",
     r"Sent (from|on|using|via|with)",
     r"Von meinem",
     r"Wyslane z",
@@ -219,11 +222,12 @@ EMAIL_SIGNATURE_REGEXES = {
     EDUARDO_ROBLES: re.compile(r"(• )?email:.*\n(• )?email:\n(• )?website: www.creativekingdom.com\n(• )?address: 5th Floor Office No:504 Aspect Tower,\nBusiness Bay, Dubai United Arab Emirates."),
     'Erika Kellerhals': re.compile(r"Notice: This communica.ion may contain privileged or other confidential.{,310}delete the copy you recei.ed. Thank you.?", re.DOTALL),
     ERIC_ROTH: re.compile(r"2221 Smithtown Avenue\nLong Island.*\nRonkonkoma.*\n(.1. )?Phone\nFax\nCell\ne-mail"),
+    FAITH_KATES: re.compile(r"(15 Watts Street.{,40})?NOTE ?: ?This message including any attachments contains information.{,750}messagelabs.com/email", re.DOTALL),
     FRANCESCA_HALL: re.compile(r"The contents of this e-mail message and.{,600}message and its attachments[.,]? if any", re.DOTALL),
     GHISLAINE_MAXWELL: re.compile(r"FACEBOOK\nTWITTER\nG\+\nPINTEREST\nINSTAGRAM\nPLEDGE\nTHE DAILY CATCH"),
     'Javier Solano': re.compile(r"www.SolanoLegal.{,120}Bronx.{,20}?$(\n[TF]:$)*", re.DOTALL | re.MULTILINE),
     JEANNE_M_CHRISTENSEN: re.compile(r"[A ]*(Please consider the environment before printing this e-mail.{,5})?This communication may contain Confidential.{,500}(facsimile|mail)\s+or\s+phone. Thank you\.?|Partner\s+WIGDOR.{,12}(85 Fifth Avenue|New York).{,20}\s+(T:.{,6}\n)?.{,15}com", re.DOTALL),
-    JEFFREY_EPSTEIN: re.compile(r"(([* =0,]+|please .ote.{,6})\s+)?([>»•]+ )*[T=]h[e=][ =]inf[o=].ma[t=][i=]on co[n=][t=]a[i=]ne. i. t..s..ommunic.ti.{,600}all\s+([>»] )*.t.a.hm..t..([>»\s]+copyright\s+.[ae]ll\s+[r=][i=][g=][h=][t=][s=]\s+[r=][e=][s=][e=][r=][v=][e=][d=]?)?", re.DOTALL),
+    JEFFREY_EPSTEIN: re.compile(r"(([* =0,]+|please .ote.{,6})\s+)?([>»•]+ )*[T=]h[e=][ =]inf[o=].ma[t=][i=][o=][n=] [c=][o=][n=][t=]a[i=]ne. i. t..s..ommunic.ti.{,600}all\s+([>»] )*.t.a.hm..t..([>»\s]+copyright\s+.[ae]ll\s+[r=][i=][g=][h=][t=][s=]\s+[r=][e=][s=][e=][r=][v=][e=][d=]?)?", re.DOTALL),
     JES_STALEY: re.compile(r"This email is confidential and subject to important.{,250}disclosures/email\.?", re.DOTALL),
     JESSICA_CADWELL: re.compile(r"(f.*\n)?Certified Para.*\nFlorida.*\nBURMAN.*\n515.*\nSuite.*\nWest Palm.*(\nTel:.*)?(\nEmail:.*)?", re.IGNORECASE),
     KEN_JENNE: re.compile(r"Ken Jenne\nRothstein.*\n401 E.*\nFort Lauderdale.*", re.IGNORECASE),

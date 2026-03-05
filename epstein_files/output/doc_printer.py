@@ -14,7 +14,7 @@ from epstein_files.documents.doj_file import DojFile
 from epstein_files.documents.email import Email
 from epstein_files.documents.messenger_log import MessengerLog
 from epstein_files.documents.other_file import OtherFile
-from epstein_files.output.layout_elements.file_display import FileDisplay
+from epstein_files.output.layout_elements.file_display import BasePanel, FileDisplay
 from epstein_files.output.html.builder import buffer_as_html, rich_to_html, table_to_html, write_templated_html
 from epstein_files.output.html.elements import div_class, to_em
 from epstein_files.output.rich import console
@@ -23,6 +23,7 @@ from epstein_files.people.names import *
 from epstein_files.util.env import args, site_config
 from epstein_files.util.helpers.data_helpers import uniq_sorted
 from epstein_files.util.logging import logger
+from epstein_files.util.timer import Timer
 
 OTHER_FILES_TABLE_MSG = Text("(non emails will appear in tables)", 'gray27 italic')
 
@@ -36,6 +37,7 @@ class DocPrinter:
     people_encountered: set[str] = field(default_factory=set)
     printed_docs: list[Document] = field(default_factory=list)
     printed_file_displays: list[FileDisplay] = field(default_factory=list)
+    suppressed_docs_queue: list[Document] = field(default_factory=list)
 
     @property
     def printed_emails(self) -> list[Email]:
@@ -63,20 +65,20 @@ class DocPrinter:
         if len(self.html_elements) == 0:
             self.html_elements.append(self._html_so_far())
 
-        logger.warning(f"{type(self).__name__}.print_documents() called with {len(docs):,} Documents...")
-        last_doc_was_suppressed = False
+        if len(docs) > 500:
+            logger.warning(f"{type(self).__name__}.print_documents() called with {len(docs):,} Documents...")
+
+        timer = Timer()
         i = 0
 
         for i, doc in enumerate(docs, 1):
             logger.info(f"Printing {doc}")
 
             if isinstance(doc, Document) and doc.suppressed_txt:
-                # TODO: add suppressed_txt to html_elements
-                doc.print()
-                last_doc_was_suppressed = True
+                self.suppressed_docs_queue.append(doc)
                 continue
-            elif last_doc_was_suppressed:
-                console.line()
+            elif self.suppressed_docs_queue:
+                self._print_suppression_msgs_queue()
 
             if isinstance(doc, OtherFile) and doc.is_valid_for_table:
                 if self.new_names(doc):
@@ -91,8 +93,8 @@ class DocPrinter:
                 self._print_other_files_queue()
 
             if isinstance(doc, Document):
-                doc.print()
                 self.print_characters_panel(self.new_names(doc))
+                doc.print()
                 self._append_html_element(doc.to_html())
                 self.printed_docs.append(doc)
             else:
@@ -101,16 +103,15 @@ class DocPrinter:
                 self.html_elements.append(doc.to_html())
                 self.printed_file_displays.append(doc)
 
-            last_doc_was_suppressed = False
-
             if i % 100 == 0:
-                logger.warning(f"Printed {i} documents...")
-
-        logger.warning(f"Printed {i} total documents...")
+                timer.print_at_checkpoint(f"Printed {i} documents")
 
     def write_html(self, html_path: Path) -> None:
         """Write the collection of html elements to a file."""
         write_templated_html(self.html_elements, html_path)
+
+    def _align_biographical_panel(self, panel: Panel) -> Align | None:
+        return Align(Padding(panel, site_config.character_bio_padding), 'right')
 
     def _append_html_element(self, element: str) -> None:
         if self.last_bio_panel:
@@ -118,31 +119,6 @@ class DocPrinter:
             self.last_bio_panel = ''
 
         self.html_elements.append(div_class(element, 'doc_container'))
-
-    def _print_other_files_queue(self) -> None:
-        has_printed_any_other_file_objs = any(isinstance(d, OtherFile) for d in self.printed_docs)
-
-        if has_printed_any_other_file_objs:
-            table_title = None
-        else:
-            table_title = OTHER_FILES_TABLE_MSG
-            console.line()
-            self.html_elements.append('<div style="height: 1em"></div>')
-
-        table = OtherFile.files_preview_table(
-            self.other_files_queue,
-            title=table_title,
-            title_justify='center',
-        )
-
-        console.print(Padding(table, (0, 0, 1, site_config.other_files_table_indent)))
-        table_html = table_to_html(table, {'margin-left': to_em(site_config.other_files_table_indent)})
-        self._append_html_element(table_html)
-        self.printed_docs.extend(self.other_files_queue)
-        self.other_files_queue = []
-
-    def _align_biographical_panel(self, panel: Panel) -> Align | None:
-        return Align(Padding(panel, site_config.character_bio_padding), 'right')
 
     def _biographical_panel(self, names: list[str]) -> Panel | None:
         """Panel showing biographical info for a list of names."""
@@ -167,3 +143,35 @@ class DocPrinter:
 
     def _html_so_far(self) -> str:
         return buffer_as_html(console, False)
+
+    def _print_other_files_queue(self) -> None:
+        has_printed_any_other_file_objs = any(isinstance(d, OtherFile) for d in self.printed_docs)
+
+        if has_printed_any_other_file_objs:
+            table_title = None
+        else:
+            table_title = OTHER_FILES_TABLE_MSG
+            console.line()
+            self.html_elements.append('<div style="height: 1em"></div>')
+
+        table = OtherFile.files_preview_table(
+            self.other_files_queue,
+            title=table_title,
+            title_justify='center',
+        )
+
+        console.print(Padding(table, (0, 0, 1, site_config.other_files_table_indent)))
+        table_html = table_to_html(table, {'margin-left': to_em(site_config.other_files_table_indent)})
+        self._append_html_element(table_html)
+        self.printed_docs.extend(self.other_files_queue)
+        self.other_files_queue = []
+
+    def _print_suppression_msgs_queue(self) -> None:
+        """Print any suppression messages."""
+        for doc in self.suppressed_docs_queue:
+            doc.print()
+
+        msgs_panel = BasePanel(border_style='', text=[d.suppressed_txt for d in self.suppressed_docs_queue])
+        self.html_elements.append(msgs_panel.to_div((site_config.info_indent, 0)))  # TODO: better indent handling
+        self.suppressed_docs_queue = []
+        console.line()

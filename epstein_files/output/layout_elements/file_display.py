@@ -13,7 +13,6 @@ from epstein_files.output.html.builder import (PANEL_BASE_PROPS, VERTICAL_MARGIN
      one_row_table_html, text_to_list, text_to_div, vertical_margin_props)
 from epstein_files.output.html.elements import div_tag, to_em, side_props
 from epstein_files.output.rich import join_texts
-from epstein_files.util.env import site_config
 
 JustifyMethod = Literal['center', 'left', 'right']
 
@@ -40,26 +39,23 @@ class BasePanel:
     def to_div(self, indents: tuple[int, int] | None = None) -> str:
         """Create an HTML <div> string for this panel."""
         indents = indents or (0, 0)
-        div_props = dict(PANEL_BASE_PROPS)
-
-        # Handle MessengerLog / TextMessage list. # TODO this sucks
-        if self.is_list:
-            html = text_to_list(self.text, class_name='no_bullets')
-            div_props = {'word-wrap': 'break-word'}
-            return div_class(html, BLACK_BACKGROUND, div_props)
-
-        html = rich_to_html(self.text)
-
-        div_props = {
-            **PANEL_BASE_PROPS,
-            **border_css_props(self.border_style),
-        }
+        div_props = {}
 
         if indents[0]:
             div_props.update(side_props('margin', ['left'], to_em(indents[0])))
 
         if indents[1]:
             div_props.update(side_props('margin', ['right'], to_em(indents[1])))
+
+        # Handle MessengerLog / TextMessage list. # TODO this sucks
+        if self.is_list:
+            html = text_to_list(self.text, class_name='no_bullets')
+            div_props.update({'word-wrap': 'break-word'})
+            return div_class(html, BLACK_BACKGROUND, div_props)
+
+        html = rich_to_html(self.text)
+        div_props.update(PANEL_BASE_PROPS)
+        div_props.update(border_css_props(self.border_style))
 
         # TODO: make the title 'dim'
         title = self.title.plain if self.title else ''
@@ -80,8 +76,8 @@ class FileDisplay:
     """Allows for proper right vs. left justify of a Document display."""
     background_color: str = ''
     body_panel: BasePanel | Table
-    file_info: BasePanel
-    indent: int = 0
+    file_info: BasePanel | None = None
+    indent: int = 0  # TODO: this should be a property of the BasePanel
     justify: JustifyMethod | None = None
     margin_bottom: str = VERTICAL_MARGIN
     subheaders: list[Text] = field(default_factory=list)
@@ -118,17 +114,17 @@ class FileDisplay:
 
         return subheaders
 
+    # TODO: rename body_margin?
     @property
     def margin(self) -> tuple[int, int, int, int]:
+        """Margin for the body."""
         padding = [0, 0, 0, 0]
 
         # Set subtle indent
         if self.justify == 'right':
-            padding[1] = site_config.info_indent
-            padding[3] = self.indent
-        else:
             padding[1] = self.indent
-            padding[3] = site_config.info_indent
+        else:
+            padding[3] = self.indent
 
         return tuple(padding)
 
@@ -153,11 +149,8 @@ class FileDisplay:
         else:
             body_html = self.body_panel.to_div(self.horizontal_body_margin)
 
-        elements = [
-            self.file_info.to_div(),
-            self.subheader_div,
-            body_html
-        ]
+        elements = [self.file_info.to_div()] if self.file_info else []
+        elements.extend([self.subheader_div, body_html])
 
         inner_html = '\n'.join(elements)
         div_props = {**DOC_DIV_CSS_PROPS, 'margin-bottom': self.margin_bottom}
@@ -180,7 +173,7 @@ class FileDisplay:
         indented_elemeents = [*self.justified_subheaders, self.body_panel]
         indented_elemeents = [Padding(e, self.margin) for e in indented_elemeents]
         indented_elemeents[-1].bottom = BOTTOM_PADDING
-        elements = [self.file_info] + indented_elemeents
+        elements = ([self.file_info] if self.file_info else []) + indented_elemeents
 
         for element in elements:
             yield self.align(element)
