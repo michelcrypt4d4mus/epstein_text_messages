@@ -97,7 +97,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             ),
             Contact('Valeria Chomsky', f"wife of {NOAM_CHOMSKY}", match_partial='both'),
             Contact('Victoria Stodden', 'professor of statistics at University of Southern California'),
-            Contact(YUKO_BARNABY, f"{MIT_MEDIA_LAB} Assistant to the Director", r"Y[ou]ko Ba(m|rn)(aby)?"),
+            Contact(YUKO_BARNABY, f"{MIT_MEDIA_LAB} Assistant to the Director", r"Y[ou]ko Ba(m|rn)(aby)?(?! Marsh)", match_partial=None),
             Contact(WHITFIELD_DIFFIE, f"MIT cryptographer and mathematician", r"whitfield.{,3}diffie?", match_partial='both'),
             organization(
                 MIT_MEDIA_LAB,
