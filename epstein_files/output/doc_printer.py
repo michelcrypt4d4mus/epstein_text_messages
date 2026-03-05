@@ -110,12 +110,39 @@ class DocPrinter:
         """Write the collection of html elements to a file."""
         write_templated_html(self.html_elements, html_path)
 
+    def _align_biographical_panel(self, panel: Panel) -> Align | None:
+        return Align(Padding(panel, site_config.character_bio_padding), 'right')
+
     def _append_html_element(self, element: str) -> None:
         if self.last_bio_panel:
             element = '\n'.join([self.last_bio_panel, element])
             self.last_bio_panel = ''
 
         self.html_elements.append(div_class(element, 'doc_container'))
+
+    def _biographical_panel(self, names: list[str]) -> Panel | None:
+        """Panel showing biographical info for a list of names."""
+        bios = [
+            Text('', justify='right').append(PEOPLE_BIOS[name])
+            for name in names if PEOPLE_BIOS.get(name)
+        ]
+
+        if not bios:
+            return None
+
+        return Panel(
+            Group(*bios),
+            border_style='dim',
+            box=box.DOUBLE,
+            expand=False,
+            # padding=(0, 2),
+            style='on gray7',
+            title=Text(f"new names in next file", 'grey85 italic'),
+            title_align='right',
+        )
+
+    def _html_so_far(self) -> str:
+        return buffer_as_html(console, False)
 
     def _print_other_files_queue(self) -> None:
         has_printed_any_other_file_objs = any(isinstance(d, OtherFile) for d in self.printed_docs)
@@ -148,30 +175,3 @@ class DocPrinter:
         self.html_elements.append(msgs_panel.to_div((site_config.info_indent, 0)))  # TODO: better indent handling
         self.suppressed_docs_queue = []
         console.line()
-
-    def _align_biographical_panel(self, panel: Panel) -> Align | None:
-        return Align(Padding(panel, site_config.character_bio_padding), 'right')
-
-    def _biographical_panel(self, names: list[str]) -> Panel | None:
-        """Panel showing biographical info for a list of names."""
-        bios = [
-            Text('', justify='right').append(PEOPLE_BIOS[name])
-            for name in names if PEOPLE_BIOS.get(name)
-        ]
-
-        if not bios:
-            return None
-
-        return Panel(
-            Group(*bios),
-            border_style='dim',
-            box=box.DOUBLE,
-            expand=False,
-            # padding=(0, 2),
-            style='on gray7',
-            title=Text(f"new names in next file", 'grey85 italic'),
-            title_align='right',
-        )
-
-    def _html_so_far(self) -> str:
-        return buffer_as_html(console, False)
