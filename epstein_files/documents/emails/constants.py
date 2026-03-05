@@ -351,6 +351,7 @@ UNINTERESTING_EMAILERS = FLIGHT_IN_2012_PEOPLE + IRAN_DEAL_RECIPIENTS + TRIVERS_
     'Police Code Enforcement',               # Kirk Blouin / John Page CC
     'Sam Harris',                            # Lawrence Krauss CC
     SAMUEL_LEFF,                             # Random CC
+    'SEC',                                   # Emails show up under Chris Dilorio
     'Sean T Lehane',                         # Random CC
     'Stephen Rubin',                         # Random CC
     THANU_BOONYAWATANA,                      # Eduardo Robles CC
