@@ -60,10 +60,11 @@ class DocPrinter:
             self.last_bio_panel = div_class(rich_to_html(bio_panel, minimize_width=True), class_name)
 
     def print_documents(self, docs: Sequence[Document | FileDisplay]) -> None:
-        last_doc_was_suppressed = False
-
         if len(self.html_elements) == 0:
             self.html_elements.append(self._html_so_far())
+
+        last_doc_was_suppressed = False
+        i = 0
 
         for i, doc in enumerate(docs, 1):
             logger.info(f"Printing {doc}")
@@ -103,6 +104,8 @@ class DocPrinter:
 
             if i % 100 == 0:
                 logger.warning(f"Printed {i} documents...")
+
+        logger.warning(f"Printed {i} total documents...")
 
     def write_html(self, html_path: Path) -> None:
         """Write the collection of html elements to a file."""
