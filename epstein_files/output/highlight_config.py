@@ -439,7 +439,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
     ),
     HighlightedNames(
         label='crime',
-        style='deep_pink2',
+        style='salmon1',
         contacts=[
             Contact('John Gotti', 'boss of the Gambino crime family'),
             Contact('Anthony Trentacosta', 'Gambino crime family'),
@@ -450,6 +450,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r'(drug|mexican) (cartel|traffick(ers?|ing))',
             r'criminals?(?! defense)( prosecution)?',
             r'crime famil(ies|y)',
+            r'dark web',
             r"(on )?drug(gy|s)",
             r'Gambino',
             r'heroin',

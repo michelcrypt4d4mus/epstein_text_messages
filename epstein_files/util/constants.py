@@ -2045,6 +2045,7 @@ OTHER_FILES_CRYPTO = [
         highlight_quote="I would like to see you alone to discuss alternative currencies",
         recipients=[JEFFREY_EPSTEIN],
     ),
+    EmailCfg(id='EFTA02575430', description='alternative currencies group'),
     EmailCfg(id='EFTA01852443'),
     # Bannon
     EmailCfg(id='030711', description='Epstein says "we can discuss michael and his coins", unclear what that means'),
