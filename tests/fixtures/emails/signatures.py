@@ -208,6 +208,9 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
         "Sent from my Verizon Wireless BlackBerry",
         "Sent from my iPhone"
     ],
+    'Amir Stemhell': [
+        'Sent from Yahoo Mail on Android',
+    ],
     ANAS_ALRASHEED: [
         "Sent from my iPhone",
     ],
@@ -260,6 +263,9 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
     "David Schoen": [
         "Sent from AOL Mobile Mail",
         "Sent from my iPhone"
+    ],
+    'Donna Air': [
+        'Sent from my BlackBerry® wireless device'
     ],
     EHUD_BARAK: [
         "Sent from my iPad",
@@ -359,14 +365,17 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
         "Sent from my iPad",
         "Sent from my iPhone"
     ],
+    'Lawrence Delson': [
+        'Sent on Android',
+    ],
     LAWRENCE_KRAUSS: [
-        "Sent from my iPhone"
+        "Sent from my iPhone",
     ],
     'Leighton Candler': [
         'Sent from my BlackBerry Wireless Device',
     ],
     LESLEY_GROFF: [
-        "Sent from my iPhone"
+        "Sent from my iPhone",
     ],
     LINDA_STONE: [
         'Co-authored with iPhone auto-correct',
@@ -376,7 +385,7 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
         'i Phone feature: Tupos & Abbrvtns',
     ],
     LISA_NEW: [
-        "Sent from my iPhone"
+        "Sent from my iPhone",
     ],
     LISA_RANDALL: [
         "Sent from my Verizon Wireless BlackBerry"
@@ -409,6 +418,9 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
     MOHAMED_WAHEED_HASSAN: [
         "Sent from President's iPad",
         "Sent from my iPhone"
+    ],
+    'Myla Trestiza': [
+        'Sent from Yahoo Mail for iPhone'
     ],
     "Neal Kassell": [
         "Sent from my iPad",
@@ -515,6 +527,10 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
     ],
     TYLER_SHEARS: [
         "Sent from my iPhone"
+    ],
+    UNKNOWN_GIRL: [
+        'Sent from my iPad',
+        'Sent via BlackBerry from T-Mobile',
     ],
     USANYS: [
         "Sent from my iPhone"
