@@ -63,6 +63,7 @@ class DocPrinter:
         if len(self.html_elements) == 0:
             self.html_elements.append(self._html_so_far())
 
+        logger.warning(f"{type(self).__name__}.print_documents() called with {len(docs):,} Documents...")
         last_doc_was_suppressed = False
         i = 0
 

@@ -43,7 +43,7 @@ from epstein_files.util.logging import logger
 
 # Email bod regexes
 BAD_FIRST_LINE_REGEX = re.compile(r'^(>>|Grant_Smith066474"eMailContent.htm|LOVE & KISSES)$')
-BAD_LINE_REGEX = re.compile(r'^(>;?|\d{1,2}|PAGE INTENTIONALLY LEFT BLANK|Classification: External Communication|Hide caption|Importance:?\s*High|[iI,•]|[1i] (_ )?[il]|, [-,]|L\._|_filtered|si.nature.asc|.*(yiv0232|font-family:|margin-bottom:).*)$')
+BAD_LINE_REGEX = re.compile(r'^(>;?|[>»]*=20|\d{1,2}|PAGE INTENTIONALLY LEFT BLANK|Classification: External Communication|Hide caption|Importance:?\s*High|[iI,•]|[1i] (_ )?[il]|, [-,]|L\._|_filtered|si.nature.asc|.*(yiv0232|font-family:|margin-bottom:).*)$')
 BAD_SUBJECT_CONTINUATIONS = ['orwarded', 'Hi ', 'Sent ', 'AmLaw', 'Original Message', 'Privileged', 'Sorry', '---']
 LINK_LINE_REGEX = re.compile(f"^[>• ]*htt")
 LINK_LINE2_REGEX = re.compile(r"^[-\w.%&=/]{5,}$")
@@ -98,7 +98,7 @@ OCR_REPAIRS: dict[str | re.Pattern, str] = {
     'I nline-Images:': 'Inline-Images:',
     re.compile(r"^((?:B?cc|To):.*)\n(>?;.*)", re.IGNORECASE | re.MULTILINE): r'\1 \2',
     re.compile(r"^From "): 'From: ',
-    re.compile(r"^(Sent|Subject) (?![Ff]rom|using|[Vv]ia|with)", re.MULTILINE): r'\1: ',
+    re.compile(r"^(Sent|Subject) (?![Ff]rom|on|using|[Rr]emote|[Vv]ia|with)", re.MULTILINE): r'\1: ',
     re.compile(r"^Subject[.•]{,2} ", re.MULTILINE): 'Subject: ',
     re.compile(r"^(Forwarded|Original) Message$", re.IGNORECASE | re.MULTILINE): r"--- \1 Message ---",  # Make forward lines match our highlight
     # Excessive quote chars

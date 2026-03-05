@@ -208,6 +208,12 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(DAVID_BLAINE, "famous magician", link_to_bio='https://en.wikipedia.org/wiki/David_Blaine'),
             Contact('David Brenner', "American comedian and actor"),
             Contact('David Geffen', 'record label and film studio owner'),
+            Contact(
+                'Donna Air',
+                'British actress and TV presenter',
+                link_to_bio='https://graziadaily.co.uk/life/tv-and-film/donna-air/',
+                match_partial=None,
+            ),
             Contact('Errol Morris', 'documentary film maker, films about Robert McNamara, Donald Rumsfeld, and Bannon', match_partial=None),
             Contact(HENRY_JARECKI, 'psychiatrist and philanthropist, owned neighboring island', match_partial=None),
             Contact(ETIENNE_BINANT, f"art advisor {QUESTION_MARKS}"),
@@ -217,6 +223,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact('Richard Merkin', "painter, illustrator and arts educator"),
             Contact(STEVEN_PFEIFFER, "Associate Director at Independent Filmmaker Project (IFP)"),
             Contact('Steven Gaydos', "American screenwriter and journalist"),
+            Contact('Tommy Mattolla', 'former CEO of Sony, ex-husband of Mariah Carey'),
             Contact('Val Kilmer', 'famous movie actor', match_partial=None),
             Contact(WOODY_ALLEN, f'filmmaker who married his adopted daughter {SOON_YI_PREVIN}', match_partial='first'),
             organization('Phaidon', 'titan of art book publishing'),
@@ -239,6 +246,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Kid Rock",
             r"Lena Dunham",
             r"Madonna",
+            r"Mariah Carey",
             r"Mark Burnett",
             r"New Apostolic Church",
             r"New York Film Festival",
@@ -447,6 +455,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"murder(e[dr]|ing)?",
             r"organized crime",
             r"(securities )?fraud(ulent)?",
+            r"suicide",
             r"xanax",
         ],
     ),
@@ -480,9 +489,9 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(
                 AMIR_TAAKI,
                 f"bitcoin bro, co-founder of Intersango with {DONALD_NORMAN} (and {BROCK_PIERCE}?)",
-                r"Amir Taaki|genjix",
+                r"Amir(?! Stemhell)( Taaki)|genjix",
                 link_to_bio='https://www.axios.com/2023/12/14/customers-of-dead-bitcoin-exchange-demand-refunds',
-                match_partial='both'
+                match_partial='last'
             ),
             Contact(
                 ANTHONY_SCARAMUCCI,
@@ -525,6 +534,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 BROCK_PIERCE,
                 "Bannon partner, Tether co-founder, friend of Yair Netanyahu, sex crime history",
                 r"Brock(?!man)( Pierce)?",
+                # https://cryptadamus.substack.com/i/149639184/den-of-brockiquity
                 link_to_bio='https://protos.com/brock-pierces-dark-and-disturbing-friendship-with-jeffrey-epstein/',
                 match_partial='first',
             ),
@@ -841,6 +851,11 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact('Linda Pinto', "interior design at Alberto Pinto Cabinet"),
             Contact(LYN_FONTANILLA, "Filipino housekeeper", r"L.nn? Fontanilla"),
             Contact(MERWIN_DELA_CRUZ, "housekeeper", r"Merwin"),
+            Contact(
+                'Myla Trestiza',
+                'yacht staff',
+                link_to_bio='https://thespinoff.co.nz/society/05-02-2026/the-epstein-files-and-nz-managers-models-and-the-kiwi-billionaire',
+            ),
             Contact(NADIA_MARCINKO, "Lolita Express pilot", r"Na[dď]i?a Marcinko(v[aá])?"),
             Contact('Perry Lang', f"Epstein's personal chef 1998-2002", r"(Adam )?Perry Lang"),
             Contact('Richard Barnett', "logistics for Epstein's properties", r"Rich(ard)? Barnett", match_partial=None),
@@ -1007,12 +1022,19 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         label='Europe',
         style='light_sky_blue3',
         contacts=[
+            Contact('Alastair Campbell', 'journalist, spokesman for Tony Blair', match_partial='first'),
+            Contact('Alistair Darling', 'former UK Chancellor of the Exchequer under Gordon Brown'),
             Contact(ANDRZEJ_DUDA, "former president of Poland"),
             Contact(
                 BARBRO_C_EHNBOM,
                 "Swedish pharmaceuticals, SALSS, alleged recruiter of girls",
                 r"behnbom@aol.com|(Barbro\s.*)?Ehnbom|Barbro",
                 link_to_bio='https://www.reddit.com/r/TrueAnon/comments/1pn8pdj/episode_509_jeffreys_bbb/'
+            ),
+            Contact(
+                'Benjamin Wegg-Prosser',
+                f"CEO of {PETER_MANDELSON}'s failed lobbying firm Global Counsel",
+                link_to_bio='https://en.wikipedia.org/wiki/Benjamin_Wegg-Prosser',
             ),
             Contact('Caroline Lang', "daughter of Jack Lang"),
             Contact(EDWARD_ROD_LARSEN, f"son of {TERJE_ROD_LARSEN}", match_partial=None),
@@ -1051,13 +1073,14 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             ),
             Contact('Viktor Yushchenko', 'former president of Ukraine'),
             Contact('Viktor Orban', 'prime minister of Hungary', r"(Vi(c|k)tor )?Orbah?n"),
-            organization('AfD', 'right wing German political party'),
             acronym('European Central Bank'),
             acronym(
                 INTERNATIONAL_PEACE_INSTITUTE,
                 "gave jobs to Epstein's girls",
                 link_to_bio='https://apnews.com/article/jeffrey-epstein-kevin-rudd-oslo-crime-think-tanks-ca62b1c799d2cb3bb346afcf4dfec355',
             ),
+            organization('AfD', 'right wing German political party'),
+            organization('Global Counsel', f"failed strategic consultancy / lobbying firm of {PETER_MANDELSON}"),
             organization(
                 'Swedish American Life Science Summit',
                 f"(SALSS) {BARBRO_C_EHNBOM} event, recruiting grounds for Epstein",
@@ -1265,6 +1288,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             organization("FirstBank", 'Puerto Rican bank used by Epstein', r"First Bank( of Puerto Rico)?"),
             organization('Goldman Sachs', emailer_pattern=r"Goldman( Sachs)?", is_interesting=False),
             organization('Julius Baer', 'Swiss bank'),
+            organization('Lazard', 'UK financial advisory and asset management firm'),
         ],
         patterns=[
             r"Ace Greenberg",
@@ -1878,7 +1902,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(
                 GANBAT_CHULUUNKHUU,
                 "corrupt Mongolian politician who was later wanted by Interpol",
-                r"Ganbat(@| Ch(uluunkhuu)?)?",
+                r"Ganbat(@| Ch(uluunkhuu)?)?|gambahtss?",
                 link_to_bio='https://news.mn/en/227194/',
                 match_partial='both',
             ),
@@ -2064,7 +2088,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(HEATHER_MANN, f"South African model, ex-girlfriend of {PRINCE_ANDREW} (?)", match_partial=None),
             Contact(
                 JEAN_LUC_BRUNEL,
-                f"{MC2_MODEL_MGMT} founder, #MeToo problems, died by suicide in French jail",
+                f"{MC2_MODEL_MGMT} founder, #MeToo problems, died just like Epstein but in a French jail",
                 r"Jean Luc Brunel?|JeanLuc",
                 link_to_bio='https://en.wikipedia.org/wiki/Jean-Luc_Brunel',
                 match_partial='both',
@@ -2079,6 +2103,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(MARIANA_IDZKOWSKA, 'Polish model, island visitor', r"Mariana [Il]d[źi]kowska?"),
             Contact('Michael Sanka', f"{JEAN_LUC_MC2} {QUESTION_MARKS}"),
             Contact(NAOMI_CAMPBELL, 'supermodel', match_partial=None),
+            Contact('Ofer Raphaeli', f'founder of the Israeli branch of {JEAN_LUC_MC2}', link_to_bio='https://www.jpost.com/international/article-887415'),
             Contact(
                 'Paolo Zampolli',
                 'ID Models, allegedly tried to buy Elite Models w/Epstein, $ for passports scandal in Dominica, introduced Melania to Donald (?)',
@@ -2129,6 +2154,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 r"[Il]an Osbou?(rn|m)e",
                 link_to_bio='https://www.businessinsider.com/profile-ian-osborne-cofounder-chamath-palihapitiya-social-capital-hedosophia-spac-2021-5'
             ),
+            Contact('Lila Walker', f"assistant to {PEGGY_SIEGAL}", match_partial=None),
             Contact(MATTHEW_HILTZIK, "crisis PR at Hiltzik Strategies", r"(Matt(hew)? )?Hiltzi[gk]"),
             Contact(MICHAEL_SITRICK, "crisis PR", r"(Mi(chael|ke).{0,5})?[CS]itrick"),
             Contact('Owen Blicksilver', "OBPR, Inc."),
@@ -2437,6 +2463,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         ],
         patterns=[
             r"[DM]asha",
+            r"[JY]ulia",
             r"Svetl?ana",
         ]
     ),
@@ -2456,6 +2483,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Bangkok",
             r"Burm(a|ese)",
             r"Cambodian?",
+            r"Hanoi",
             r"Indonesian?",
             r"Laos",
             r"Malaysian?",
@@ -2643,6 +2671,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Paypal",
             r"quantum comput(er|ing)",
             r"Silicon Valley",
+            r"Sony",
             r"SkyNet",
             r"Skyp(ed?|ing)",
             r"Tim Cook",
@@ -2781,7 +2810,6 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"ig(ni|ru)shki",
             r"intercourse",
             r"(Jane|Tiffany) Doe",
-            r"Julia",
             r"Katie Johnson",
             r"lingerie",
             r"marri(age|ed)",
@@ -3060,6 +3088,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"(junk )?bond",
             r"Managing Director",
             r"Mastercard",
+            r"money(land)?",
             r"(naked )?shorting",
             r"NASDAQ",
             r"philanthrop(i(es|st)|y)",

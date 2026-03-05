@@ -1,17 +1,18 @@
 from epstein_files.people.names import *
 
 MESSENGER_LOG_AUTHOR_COUNTS = {
-    None: 56,
+    None: 78,
     ANDRZEJ_DUDA: 8,
     ANIL_AMBANI: 24,
     ANTHONY_SCARAMUCCI: 57,
     ARDA_BESKARDES: 2,
     CELINA_DUBIN: 49,
     EVA: 13,
-    JEFFREY_EPSTEIN: 2593,
+    JEFFREY_EPSTEIN: 2_623,
     JOI_ITO: 10,
     LARRY_SUMMERS: 31,
-    LAWRENCE_KRAUSS: 2,
+    LAWRENCE_KRAUSS: 4,
+    'Martin': 3,
     MELANIE_WALKER: 388,
     MICHAEL_WOLFF: 7,
     MIROSLAV_LAJCAK: 58,
@@ -100,5 +101,6 @@ IMESSAGE_LOG_IDS = [
     "031045",
     "031054",
     "031173",
+    'EFTA00508054',
     'EFTA00781689',
 ]

@@ -10,6 +10,7 @@ from pathlib import Path
 from typing import Mapping, Sequence, Type, cast
 
 from rich.table import Table
+from rich.text import Text
 from yaralyzer.util.helpers.interaction_helper import ask_to_proceed
 
 from epstein_files.documents.document import Document
@@ -24,7 +25,7 @@ from epstein_files.documents.json_file import JsonFile
 from epstein_files.documents.messenger_log import MSG_REGEX, MessengerLog
 from epstein_files.documents.messenger_log_pdf import IMESSAGE_PDF_IDS, MessengerLogPdf
 from epstein_files.documents.other_file import OtherFile
-from epstein_files.output.rich import console
+from epstein_files.output.rich import TABLE_TITLE_STYLE, console
 from epstein_files.people.person import INVALID_FOR_EPSTEIN_WEB, PEOPLE_BIOS, Person
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constants import *
@@ -335,7 +336,9 @@ class EpsteinFiles:
 
     def overview_table(self) -> Table:
         """Table showing file counts by type."""
-        table = Document.files_summary_table('Files Overview', 'File Type')
+        title = Text('Files Overview ', TABLE_TITLE_STYLE)
+        title.append('(last updated: ', 'dim').append(datetime.now().date().isoformat(), 'cyan').append(')', 'dim')
+        table = Document.files_summary_table(title, 'File Type')
         table.add_row('Emails', *Document.file_summary_row(self.emails))
         table.add_row('iMessage Logs', *Document.file_summary_row(self.imessage_logs))
         table.add_row('JSON Data', *Document.file_summary_row(self.json_files, True))

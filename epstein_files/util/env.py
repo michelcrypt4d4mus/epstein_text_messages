@@ -7,6 +7,7 @@ from rich_argparse_plus import RichHelpFormatterPlus
 
 from epstein_files.output.site.site_config import ALL_OTHER_FILES_MULTIPLIER, DEFAULT_WIDTH, MobileConfig, SiteConfig
 from epstein_files.output.site.sites import *
+from epstein_files.util.constant.strings import SUPPRESS_OUTPUT
 from epstein_files.util.helpers.env_helpers import get_env_dir
 from epstein_files.util.logging import env_log_level, exit_with_error, logger, set_log_level
 
@@ -54,7 +55,7 @@ output.add_argument('--output-other', '-oo', action='store_true', help='generate
 output.add_argument('--output-texts', '-ot', action='store_true', help='generate text messages section')
 output.add_argument('--output-word-count', '-ow', action='store_true', help='generate table of most frequently used words')
 output.add_argument('--sort-alphabetical', action='store_true', help='sort tables alphabetically intead of by count')
-output.add_argument('--suppress-output', action='store_true', help='no output to terminal (use with --build)')
+output.add_argument(SUPPRESS_OUTPUT, action='store_true', help='no output to terminal (use with --build)')
 output.add_argument('--uninteresting', action='store_true', help='only output uninteresting other files')
 output.add_argument('--width', '-w', type=int, default=DEFAULT_WIDTH, help='screen width to use (in characters)')
 
