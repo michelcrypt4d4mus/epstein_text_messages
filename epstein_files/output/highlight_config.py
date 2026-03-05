@@ -489,9 +489,9 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(
                 AMIR_TAAKI,
                 f"bitcoin bro, co-founder of Intersango with {DONALD_NORMAN} (and {BROCK_PIERCE}?)",
-                r"Amir Taaki|genjix",
+                r"Amir(?! Stemhell)( Taaki)|genjix",
                 link_to_bio='https://www.axios.com/2023/12/14/customers-of-dead-bitcoin-exchange-demand-refunds',
-                match_partial='both'
+                match_partial='last'
             ),
             Contact(
                 ANTHONY_SCARAMUCCI,
@@ -2149,6 +2149,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 r"[Il]an Osbou?(rn|m)e",
                 link_to_bio='https://www.businessinsider.com/profile-ian-osborne-cofounder-chamath-palihapitiya-social-capital-hedosophia-spac-2021-5'
             ),
+            Contact('Lila Walker', f"assistant to {PEGGY_SIEGAL}", match_partial=None),
             Contact(MATTHEW_HILTZIK, "crisis PR at Hiltzik Strategies", r"(Matt(hew)? )?Hiltzi[gk]"),
             Contact(MICHAEL_SITRICK, "crisis PR", r"(Mi(chael|ke).{0,5})?[CS]itrick"),
             Contact('Owen Blicksilver', "OBPR, Inc."),

@@ -1531,6 +1531,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00630134', description=f'Epstein recommends Signal encrypted messenger to {ALLEGED_KARIM_WADE}', is_interesting=True),
     EmailCfg(id='EFTA00955694', description=f"Epstein thanks {ELON_MUSK} for the SpaceX tour that Musk has said never happened", is_interesting=True),
     EmailCfg(id='EFTA02561277', description=f"{ELON_MUSK} get a massage", is_interesting=True),
+    EmailCfg(id='EFTA00322570', description=f'booking flight for {REDACTED} from Hong Kong to NYC'),
     EmailCfg(id='EFTA02565917', description='Hassan Mohammed Abdul Latif Jameel is a Saudi businessman and philanthropist'),
     EmailCfg(id='EFTA00927227', description=f"{IAN_OSBORNE} pitches his new venture fund {HEDOSOPHIA} to Epstein", is_interesting=True),
     EmailCfg(id='EFTA01767036', description=f'"Karim" is probably {ALLEGED_KARIM_WADE}'),
@@ -3758,6 +3759,8 @@ NOT_CHRONOLOGICAL_VIEW_IDS = [
     'EFTA02516675',
     '011908_6',
     #
+    'EFTA02048499',
+    'EFTA00322570',
     'EFTA02001536',
     'EFTA01773417',
     'EFTA01987283',

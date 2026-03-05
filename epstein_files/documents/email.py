@@ -98,7 +98,7 @@ OCR_REPAIRS: dict[str | re.Pattern, str] = {
     'I nline-Images:': 'Inline-Images:',
     re.compile(r"^((?:B?cc|To):.*)\n(>?;.*)", re.IGNORECASE | re.MULTILINE): r'\1 \2',
     re.compile(r"^From "): 'From: ',
-    re.compile(r"^(Sent|Subject) (?![Ff]rom|using|[Rr]emote|[Vv]ia|with)", re.MULTILINE): r'\1: ',
+    re.compile(r"^(Sent|Subject) (?![Ff]rom|on|using|[Rr]emote|[Vv]ia|with)", re.MULTILINE): r'\1: ',
     re.compile(r"^Subject[.•]{,2} ", re.MULTILINE): 'Subject: ',
     re.compile(r"^(Forwarded|Original) Message$", re.IGNORECASE | re.MULTILINE): r"--- \1 Message ---",  # Make forward lines match our highlight
     # Excessive quote chars

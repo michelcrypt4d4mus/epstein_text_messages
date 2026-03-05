@@ -132,7 +132,7 @@ DEVICE_PATTERNS = [
 
 SENT_PREFIX_PATTERNS = [
     r"Envoy[ée] (avec|de mon)",
-    r"Sent (from|using|via|with)",
+    r"Sent (from|on|using|via|with)",
     r"Von meinem",
     r"Wyslane z",
 ]
