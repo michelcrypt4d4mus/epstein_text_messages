@@ -147,7 +147,7 @@ class FileDisplay:
         if self.is_table:
             body_html = one_row_table_html(self.body_panel, self.horizontal_body_margin_css_props)
         else:
-            body_html = self.body_panel.to_div((1, 1))
+            body_html = self.body_panel.to_div(self.horizontal_body_margin)
 
         elements = [
             self.file_info.to_div(),
@@ -161,6 +161,7 @@ class FileDisplay:
         if self.background_color:
             div_props.update(HtmlStyle(f"on {self.background_color}").to_css)
 
+        # Add more vertical margin before/after text messages
         if isinstance(self.body_panel, BasePanel) and self.body_panel.is_list:
             div_props.update(vertical_margin_props(to_em(2)))
 

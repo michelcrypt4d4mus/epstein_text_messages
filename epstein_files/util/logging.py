@@ -38,6 +38,7 @@ class LogHighlighter(ReprHighlighter):
         "(?P<epstein_filename>" + '|'.join([HOUSE_OVERSIGHT_NOV_2025_FILE_NAME_REGEX.pattern, DOJ_FILE_NAME_REGEX.pattern]) + ')',
     ]
 
+
 log_console = Console(
     color_system='256',
     stderr=True,
@@ -45,10 +46,8 @@ log_console = Console(
     width=max(console_width_possibilities())
 )
 
-
 log_handler = RichHandler(console=log_console, highlighter=LogHighlighter(), show_path=False)
 logging.basicConfig(level="NOTSET", format="%(message)s", datefmt=" ", handlers=[log_handler])
-logger = logging.getLogger(__name__)
 logger = logging.getLogger("epstein_text_files")
 
 

@@ -15,15 +15,14 @@ from epstein_files.documents.email import Email
 from epstein_files.documents.messenger_log import MessengerLog
 from epstein_files.documents.other_file import OtherFile
 from epstein_files.output.layout_elements.file_display import FileDisplay
-from epstein_files.output.highlight_config import get_style_for_name
 from epstein_files.output.html.builder import buffer_as_html, rich_to_html, table_to_html, write_templated_html
-from epstein_files.output.html.elements import div_class
+from epstein_files.output.html.elements import div_class, to_em
 from epstein_files.output.rich import console
 from epstein_files.people.person import PEOPLE_BIOS, Person
 from epstein_files.people.names import *
 from epstein_files.util.env import args, site_config
-from epstein_files.util.helpers.data_helpers import dict_sets_to_lists, uniq_sorted
-from epstein_files.util.logging import logger, exit_with_error
+from epstein_files.util.helpers.data_helpers import uniq_sorted
+from epstein_files.util.logging import logger
 
 OTHER_FILES_TABLE_MSG = Text("(non emails will appear in tables)", 'gray27 italic')
 
@@ -33,6 +32,7 @@ class DocPrinter:
     """Handles printing collections of documents with biographical info panels interspersed."""
     html_elements: list[str] = field(default_factory=list)
     other_files_queue: list[OtherFile] = field(default_factory=list)
+    last_bio_panel = ''
     people_encountered: set[str] = field(default_factory=set)
     printed_docs: list[Document] = field(default_factory=list)
     printed_file_displays: list[FileDisplay] = field(default_factory=list)
@@ -49,20 +49,22 @@ class DocPrinter:
     def new_names(self, document: Document) -> list[str]:
         return [p for p in document.people if p in PEOPLE_BIOS and p not in self.people_encountered]
 
-    def print_characters_panel(self, names: list[str], is_sticky: bool) -> str:
+    def print_characters_panel(self, names: list[str], is_sticky: bool = True) -> None:
         if (bio_panel := self._biographical_panel(uniq_sorted(names))):
+            if self.last_bio_panel:
+                raise RuntimeError(f"last_bio_panel should be empty, instead it's:\n{self.last_bio_panel}")
+
             console.print(self._align_biographical_panel(bio_panel))
             self.people_encountered.update(names)
             class_name = ('sticky_' if is_sticky else '') + 'person_bio_panel'
-            return div_class(rich_to_html(bio_panel, minimize_width=True), class_name)
-        else:
-            return ''
+            self.last_bio_panel = div_class(rich_to_html(bio_panel, minimize_width=True), class_name)
 
     def print_documents(self, docs: Sequence[Document | FileDisplay]) -> None:
-        last_doc_was_suppressed = False
-
         if len(self.html_elements) == 0:
             self.html_elements.append(self._html_so_far())
+
+        last_doc_was_suppressed = False
+        i = 0
 
         for i, doc in enumerate(docs, 1):
             logger.info(f"Printing {doc}")
@@ -78,10 +80,9 @@ class DocPrinter:
             if isinstance(doc, OtherFile) and doc.is_valid_for_table:
                 if self.new_names(doc):
                     if self.other_files_queue:
-                        self._print_other_files_queue()  # Clear the queue before bios panel
+                        self._print_other_files_queue()  # Clear the queue before new biographical panel
 
-                    if (bio_div := self.print_characters_panel(self.new_names(doc), False)):
-                        self.html_elements.append(bio_div)
+                    self.print_characters_panel(self.new_names(doc))
 
                 self.other_files_queue.append(doc)
                 continue
@@ -89,11 +90,12 @@ class DocPrinter:
                 self._print_other_files_queue()
 
             if isinstance(doc, Document):
-                doc_div = '\n'.join([self.print_characters_panel(self.new_names(doc), True), doc.to_html()])
                 doc.print()
-                self.html_elements.append(div_class(doc_div, 'doc_container'))
+                self.print_characters_panel(self.new_names(doc))
+                self._append_html_element(doc.to_html())
                 self.printed_docs.append(doc)
             else:
+                # TODO: this sucks
                 console.print(doc)
                 self.html_elements.append(doc.to_html())
                 self.printed_file_displays.append(doc)
@@ -103,9 +105,18 @@ class DocPrinter:
             if i % 100 == 0:
                 logger.warning(f"Printed {i} documents...")
 
+        logger.warning(f"Printed {i} total documents...")
+
     def write_html(self, html_path: Path) -> None:
         """Write the collection of html elements to a file."""
         write_templated_html(self.html_elements, html_path)
+
+    def _append_html_element(self, element: str) -> None:
+        if self.last_bio_panel:
+            element = '\n'.join([self.last_bio_panel, element])
+            self.last_bio_panel = ''
+
+        self.html_elements.append(div_class(element, 'doc_container'))
 
     def _print_other_files_queue(self) -> None:
         has_printed_any_other_file_objs = any(isinstance(d, OtherFile) for d in self.printed_docs)
@@ -124,7 +135,8 @@ class DocPrinter:
         )
 
         console.print(Padding(table, (0, 0, 1, site_config.other_files_table_indent)))
-        self.html_elements.append(table_to_html(table))  # TODO: missing indent
+        table_html = table_to_html(table, {'margin-left': to_em(site_config.other_files_table_indent)})
+        self._append_html_element(table_html)
         self.printed_docs.extend(self.other_files_queue)
         self.other_files_queue = []
 

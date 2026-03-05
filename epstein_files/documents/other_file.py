@@ -134,7 +134,7 @@ class OtherFile(Document):
             txt = highlighter(Text(escape(self.preview_text), style='italic grey35'))
         elif self.length > site_config.other_files_preview_chars:
             num_missing_chars = self.length - len(txt)
-            txt.append(f"... ({num_missing_chars:,} more chars)", 'dim italic')
+            txt.append(f"... ({num_missing_chars:,} more characters)", 'dim italic')
 
         return txt
 

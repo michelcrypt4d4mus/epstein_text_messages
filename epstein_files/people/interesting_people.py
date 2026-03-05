@@ -67,6 +67,7 @@ EMAILERS_OF_INTEREST = [
     BOBBY_KOTICK,
     KIRA_DIKHTYAR,
     JOSHUA_FINK,
+    SANITA,
     None,
 ]
 

@@ -58,7 +58,7 @@ THEME_STYLES = {
     DEFAULT: 'wheat4',
     TEXT_LINK: 'deep_sky_blue4 underline',
     # f"{REGEX_STYLE_PREFIX}.{HIGHLIGHTED_QUOTE}": 'on gray27',
-    f"{REGEX_STYLE_PREFIX}.{HIGHLIGHTED_QUOTE}": 'honeydew2 bold underline on gray15',
+    f"{REGEX_STYLE_PREFIX}.{HIGHLIGHTED_QUOTE}": 'honeydew2 italic on gray15',
     f"{REGEX_STYLE_PREFIX}.reverse": 'reverse',
     **{hg.theme_style_name: hg.style for hg in HIGHLIGHT_GROUPS},
 }

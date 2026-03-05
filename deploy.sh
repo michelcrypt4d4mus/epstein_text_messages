@@ -64,10 +64,10 @@ fi
 
 # Check for new files
 if [[ $PICKLE_ARG != "--overwrite-pickle" ]]; then
-    print_deploy_step "Scanning for new files with extract_doj_pdfs.py... $PICKLE_ARG"
+    print_deploy_step "Scanning for new files with extract_doj_pdfs.py..."
     ./scripts/extract_doj_pdfs.py
 else
-    print_deploy_step "Full rescan..."
+    print_deploy_step "Doing full file rescan..."
 fi
 
 # Build .png and push master changes

@@ -26,7 +26,7 @@ from epstein_files.util.logging import logger
 CIVIL_ATTORNEY = 'civil attorney'
 CRIMINAL_DEFENSE_ATTORNEY = 'criminal defense attorney'
 CRIMINAL_DEFENSE_2008 = f"Epstein {CRIMINAL_DEFENSE_ATTORNEY} on 2008 case"
-EPSTEIN_V_ROTHSTEIN_EDWARDS_ATTORNEY = f"{CIVIL_ATTORNEY} {EPSTEIN_V_ROTHSTEIN_EDWARDS}"
+EPSTEIN_V_ROTHSTEIN_EDWARDS_ATTORNEY = f"{CIVIL_ATTORNEY} in {EPSTEIN_V_ROTHSTEIN_EDWARDS}"
 ESTATE_EXECUTOR = 'estate executor'
 EPSTEIN_ESTATE_EXECUTOR = f"Epstein {ESTATE_EXECUTOR}"
 JUNKERMANN_FUND = f"{NICOLE_JUNKERMANN}'s fund, invested in China, online poker, Russian run Euro bank Revolut"
@@ -240,6 +240,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Mark Burnett",
             r"New Apostolic Church",
             r"New York Film Festival",
+            r"pseudonym",
             r"Peter Getzels",
             r"Regan arts",
             r"shirley maclaine",
@@ -851,7 +852,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         contacts=[
             Contact(
                 name=JEFFREY_EPSTEIN,
-                emailer_pattern=r"ee[vy]acation[©@e]?g?(mail.com)?|Epstine|\bJEE?\b|Jeff(rey)? (Edward )?E((sp|ps)tein?)?( VI Foundation)?|jeeproject@yahoo.com|J Jep|Jeffery Edwards|(?<!(ark L.|rd Jay|Edward) )Epstein|Jeffrey Epst.*comj?",
+                emailer_pattern=r"j?ee[vy]acatio[mn]?[©@baeoq]?g?(mail.com)?|Epstine|\bJEE?\b|Jeff(rey)? (Edward )?E((sp|ps)tein?)?( VI Foundation)?|jeeproject@yahoo.com|J Jep|Jeffery Edwards?|(?<!(ark L.|rd Jay|Edward) )Epstein(,? Jeffrey( Edward)?)?|Jeffrey Epst.*comj?",
                 match_partial=None,
             ),
             Contact(MARK_EPSTEIN, "brother of Jeffrey", r"Mark (L\.? )?(Epstein|Lloyd)", match_partial=None),
@@ -922,12 +923,12 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(BRAD_KARP, "head of the law firm Paul Weiss", r"Brad (S.? )?Karp|Karp, Brad", match_partial=None),
             Contact('Connie Zaguirre', f"office of {'Robert D. Critton Jr.'}"),
             Contact(DAVID_SCHOEN, "Epstein criminal defense attorney after 2019 arrest"),
-            Contact(DEBBIE_FEIN, f"civil attorney Epstein v. Scott Rothstein, {BRAD_EDWARDS}, & L.M."),
+            Contact(DEBBIE_FEIN, f"Epstein {EPSTEIN_V_ROTHSTEIN_EDWARDS_ATTORNEY}"),
             Contact('Erika Kellerhals', "attorney in St. Thomas"),
             Contact(FRED_HADDAD, "co-founder of Heck's in West Virginia", match_partial=None),
             Contact(GERALD_LEFCOURT, f"friend of {ALAN_DERSHOWITZ}", r"Gerald (B\.? )?Lefcourt"),
             Contact('Howard Rubenstein', "Epstein's former spokesman"),
-            Contact(JACK_GOLDBERGER, CRIMINAL_DEFENSE_2008),
+            Contact(JACK_GOLDBERGER, CRIMINAL_DEFENSE_2008, r"Jack( A(lan|\.?))?Goldberger"),
             Contact(JACKIE_PERCZEK, CRIMINAL_DEFENSE_2008, r"jackie percze[kl]?"),
             Contact(JAY_LEFKOWITZ, f"Kirkland & Ellis partner, {CRIMINAL_DEFENSE_2008}"),
             Contact(JESSICA_CADWELL, f"paralegal to {ROBERT_D_CRITTON_JR} whom Epstein appears to recruit"),
@@ -937,8 +938,9 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 r"starr, ken|Ken(neth (W. )?)? starr?|starr",
                 link_to_bio='https://en.wikipedia.org/wiki/Ken_Starr',
             ),
-            Contact(LILLY_SANCHEZ, CRIMINAL_DEFENSE_ATTORNEY, r"Lilly.*?Sanchez"),
-            Contact(MARTIN_WEINBERG, CRIMINAL_DEFENSE_ATTORNEY, r"Martin.*?Weinberg"),
+            Contact(LILLY_SANCHEZ, CRIMINAL_DEFENSE_ATTORNEY, r"Lilly.{,15}Sanchez"),
+            Contact(MARTIN_WEINBERG, CRIMINAL_DEFENSE_ATTORNEY, r"Martin.{,15}Weinberg"),
+            Contact('Michael J. Pike', 'Epstein lawyer', match_partial=None),
             Contact(MICHAEL_MILLER, "Steptoe LLP partner", r"Micha(el)? Miller|Miller, Micha(el)?", match_partial=None),
             Contact(REID_WEINGARTEN, "Steptoe LLP partner", r"Weingarten, Rei[cdi]|Rei[cdi] Weingarten"),
             Contact(ROBERT_D_CRITTON_JR, CRIMINAL_DEFENSE_ATTORNEY, r"Robert D.? Critton,? Jr\.?", match_partial=None),
@@ -946,6 +948,11 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact('Roy Black', CRIMINAL_DEFENSE_2008, match_partial=None),
             Contact(SCOTT_J_LINK, CRIMINAL_DEFENSE_ATTORNEY, match_partial=None),
             Contact(STACEY_RICHMAN, f"New York {CRIMINAL_DEFENSE_ATTORNEY}", r"srichmanlaw|Stacey Richman"),
+            Contact(
+                'Stephanie Thacker',
+                "West Virginia attorney who defended Epstein, now a federal judge",
+                link_to_bio='https://www.wboy.com/news/west-virginia/where-is-west-virginia-mentioned-in-the-epstein-files/',
+            ),
             Contact(
                 TONJA_HADDAD_COLEMAN,
                 f"civil attorney Epstein v. Scott Rothstein, {BRAD_EDWARDS}, & L.M.",
@@ -957,10 +964,8 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"dersh",
             r"Kate Kelly",
             r"Kirkland & Ellis",
-            r"Michael J. Pike",
             PERKINS_COIE,
             r"Steptoe( & Johnson)?( LLP)?",
-            r"Wein(berg|garten)",
         ],
     ),
     HighlightedNames(
@@ -1418,11 +1423,6 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 link_to_bio='https://www.bbc.com/news/articles/cx2407jrn83o',
             ),
             Contact('Paula Speer', "court reporter", match_partial=None),
-            Contact(
-                'Stephanie Thacker',
-                "West Virginia attorney who defended Epstein, now a federal judge",
-                link_to_bio='https://www.wboy.com/news/west-virginia/where-is-west-virginia-mentioned-in-the-epstein-files/',
-            ),
             acronym('Know Your Customer', 'anti-money laundering legal framework'),
             acronym('Metropolitan Detention Center', 'jail where Epstein died'),
             acronym('Office of Foreign Assets Control', 'agency in charge of sanctions'),
@@ -1607,7 +1607,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             ),
             organization(
                 CARBYNE,
-                f'Israeli co. FKA "Reporty" invested in by Epstein, {EHUD_BARAK}, and {NICOLE_JUNKERMANN}',
+                f'FKA "Reporty", Israeli co. invested in by Epstein, {EHUD_BARAK}, and {NICOLE_JUNKERMANN}',
                 r"Carbyne|Reporty",
                 link_to_bio='https://www.forbes.com/sites/thomasbrewster/2026/02/10/epstein-police-surveillance-investments-with-ehud-barak/',
             ),
@@ -2085,12 +2085,14 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             organization('Icarine', f"agency with connections to {JEAN_LUC_BRUNEL}"),
             organization('ID Models', "Paolo Zampolli's modeling agency"),
             organization('MC2 Model Management', f"{JEAN_LUC_BRUNEL}'s modeling agency", r"MC2( Model Management)?"),
+            organization('Next Models', f"modeling agency co-founded by {FAITH_KATES}"),
             organization('One Model Management', 'agency'),
         ],
         patterns=[
             r"\w+@mc2mm.com",
             r"Faena",
             r"noah\s*models(.com)?",
+            r"(?<!(ID|ge|te|xt)\s)model(ing|s)",
         ],
     ),
     HighlightedNames(
@@ -2334,7 +2336,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Rosneft",
             r"RT",
             r"Rusnano( USA)?(,? Inc\.?)?",
-            r"Russ?ian?( (mafia|gangster))?",
+            r"Russ?ian?( (federation|mafia|gangster))?",
             r"Serbian?",
             r"Sochi",
             r"S(ain)?t\.? Petersburg",
@@ -2360,6 +2362,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(
                 JULIA_SANTOS,  # TODO: Jmail says her email is julia.santos@hbs.edu
                 "recruiter of girls from Ukraine for Epstein, possibly Harvard Business School student",
+                link_to_bio='https://www.reddit.com/r/Epstein/comments/1qwbn5i/trafficker_julia_santos/',
                 match_partial=None,
             ),
             Contact(
@@ -2571,7 +2574,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             organization('Tarana Wireless', 'broadband provider', r"Tarana( (Technology|Wireless))?"),
             organization('ThielCapital', f"{PETER_THIEL} organization"),
             organization('Transferwise', 'fintech'),
-            organization(VALAR_VENTURES, f"{PETER_THIEL} affiliated fintech venture fund", r"V[ae]lar (Global Fund|Ventures)?", is_emailer=True),
+            organization(VALAR_VENTURES, f"{PETER_THIEL} affiliated fintech venture fund", r"V[ae]lar( (Global Fund|Ventures?))?", is_emailer=True),
             organization('Wearality', f"startup invested in by Epstein and {JOI_ITO}", r"Wearality( Corporation)?"),
             organization(
                 'WeWork',
@@ -2762,7 +2765,6 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"massag(e(d|use)?s?|ing)( table)?",
             r"(Midget )?strippers?",
             r"Minor Victim",
-            r"(?<!(ID|ge|te)\s)model(ing|s)",
             r"orgasm(ic|s)?",
             r"pa?edophile",
             r"pregnan(cy|t)",
@@ -3012,6 +3014,8 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         style=FINANCIAL_COLOR,
         use_word_boundary=True,
         patterns=[
+            r"accountant",
+            r"accounting firm",
             r"American Express",
             r"Amex",
             r"alterna[tv]i[tv]e finance",
@@ -3056,6 +3060,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"deposition",
             r"EDGAR (Filing|Search)",  # SEC database is EDGAR
             r"General Counsel",
+            r"lawyer",
             r"Notary Public",
             r"Page \d+ of \d+",
             r"testimony",

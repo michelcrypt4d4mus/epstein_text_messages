@@ -423,16 +423,6 @@ class Email(Communication):
             return self.header.subject or ''
 
     @property
-    def _summary(self) -> Text:
-        """One line summary mostly for logging."""
-        txt = self._summary_with_author
-
-        if len(self.recipients) > 0:
-            txt.append(', ').append(styled_key_value('recipients', self.recipients_txt()))
-
-        return txt.append(CLOSE_PROPERTIES_CHAR)
-
-    @property
     def uninteresting_txt(self) -> Text | None:
         """Text to print for uninteresting files."""
         if (uninteresting_txt := super().uninteresting_txt):
@@ -440,6 +430,16 @@ class Email(Communication):
                 uninteresting_txt.append(f' ("{self.subject}")', style='light_yellow3')
 
             return uninteresting_txt
+
+    @property
+    def _summary(self) -> Text:
+        """One line summary for logging only."""
+        txt = self._summary_with_author
+
+        if len(self.recipients) > 0:
+            txt.append(', ').append(styled_key_value('recipients', self.recipients_txt()))
+
+        return txt.append(CLOSE_PROPERTIES_CHAR)
 
     def file_display(self, align: JustifyMethod | None = None, indent: int = 0) -> FileDisplay:
         """Allows for proper right vs. left justify."""
@@ -474,11 +474,54 @@ class Email(Communication):
     def to_html(self) -> str:
         html = super().to_html()
 
-        if (attachments_table := self._attached_docs_table):
+        if (attachments_table := self._attached_docs_table()):
             indent_props = {'margin-left': to_em(site_config.attachment_indent)}
             html += table_to_html(attachments_table, indent_props)
 
         return html
+
+    def _attached_docs_table(self) -> Table | None:
+        if not self.attached_docs:
+            return None
+
+        attachments_table_title = f"| Email Attachments for {self.file_info.url_slug}:" # ╏┇┣
+
+        if (doc := self.attached_docs[0]).config and doc.config.show_full_panel:
+            if len(self.attached_docs) > 1:
+                raise ValueError(f"Can't show more than one panelized attachment for {self}!")
+
+            table = Table(title=attachments_table_title, title_justify='left')
+            table.add_column(doc.config.description)
+            table.add_row(highlighter(Text(self.attached_docs[0].text, EXCERPT_STYLE)))
+            return table
+        else:
+            return OtherFile.files_preview_table(self.attached_docs, title=attachments_table_title)
+
+    def _body_as_panel(self, text: str | Text, description: Text | None = None) -> Panel:
+        """Renders the info info text in the panel's bottom border."""
+        return Panel(
+            text,
+            border_style=self.border_style,
+            expand=False,
+            title=Text(' ').join(description.split(' ')) if description else None,  # split then join makes rich color subtitle correctly
+            title_align='right',
+        )
+
+    def _body_as_table(self, text: str | Text, description: Text | None = None) -> Table:
+        """Renders the info text as a top row in a table-ish view."""
+        panel = Table(
+            border_style=self.border_style,
+            box=box.ROUNDED,
+            header_style='on gray11',
+            show_header=bool(description)
+        )
+
+        if description and site_config.email_info_in_subtitle:
+            description = Text('', justify='right').append(description)
+
+        panel.add_column(description or '')
+        panel.add_row(text)
+        return panel
 
     def _debug_props(self) -> DebugDict:
         props = super()._debug_props()
@@ -634,34 +677,6 @@ class Email(Communication):
 
         self._set_text(lines=lines)
 
-    # TODO: why isn't this done in self._repair()?
-    def _strip_unwanted_text(self) -> str:
-        """Add newlines before quoted replies and snip signatures."""
-        # Insert line breaks now unless header is broken, in which case we'll do it later after fixing header
-        # self.(f"text before _add_line_breaks:\n\n{self.text}\n---")
-        text = self.text if self.header.was_initially_empty else _add_line_breaks(self.text)
-        text = REPLY_REGEX.sub(r'\n\1', text)  # Newlines between quoted replies
-        text = FORWARDED_TOO_MUCH_SPACE_REGEX.sub(r'\1\n', text)
-        # self.warn(f"text after _add_line_breaks:\n\n{text}\n---")
-
-        for name, signature_regex in EMAIL_SIGNATURE_REGEXES.items():
-            signature_replacement = f'<...snipped {name.lower()} email signature...>'
-            text, num_replaced = signature_regex.subn(signature_replacement, text)
-            self.signature_substitution_counts[name] = self.signature_substitution_counts.get(name, 0)
-            self.signature_substitution_counts[name] += num_replaced
-
-        # Share / Tweet lines
-        if self.author == KATHRYN_RUEMMLER:
-            text = '\n'.join([line for line in text.split('\n') if line not in ['Share', 'Tweet', 'Bookmark it']])
-
-        # Remove XML cruft in some files
-        text, num_plists_stripped = XML_PLIST_REGEX.subn(XML_STRIPPED_MSG, text)
-
-        if num_plists_stripped:
-            self.log(f"Replaced {num_plists_stripped} XML plists...")
-
-        return collapse_newlines(text).strip()
-
     def _remove_line(self, idx: int) -> None:
         """Remove a line from `self.lines`."""
         num_lines = idx * 2
@@ -762,6 +777,34 @@ class Email(Communication):
             else:
                 return sent_from
 
+    # TODO: why isn't this done in self._repair()?
+    def _strip_unwanted_text(self) -> str:
+        """Add newlines before quoted replies and snip signatures."""
+        # Insert line breaks now unless header is broken, in which case we'll do it later after fixing header
+        # self.(f"text before _add_line_breaks:\n\n{self.text}\n---")
+        text = self.text if self.header.was_initially_empty else _add_line_breaks(self.text)
+        text = REPLY_REGEX.sub(r'\n\1', text)  # Newlines between quoted replies
+        text = FORWARDED_TOO_MUCH_SPACE_REGEX.sub(r'\1\n', text)
+        # self.warn(f"text after _add_line_breaks:\n\n{text}\n---")
+
+        for name, signature_regex in EMAIL_SIGNATURE_REGEXES.items():
+            signature_replacement = f'<...snipped {name.lower()} email signature...>'
+            text, num_replaced = signature_regex.subn(signature_replacement, text)
+            self.signature_substitution_counts[name] = self.signature_substitution_counts.get(name, 0)
+            self.signature_substitution_counts[name] += num_replaced
+
+        # Share / Tweet lines
+        if self.author == KATHRYN_RUEMMLER:
+            text = '\n'.join([line for line in text.split('\n') if line not in ['Share', 'Tweet', 'Bookmark it']])
+
+        # Remove XML cruft in some files
+        text, num_plists_stripped = XML_PLIST_REGEX.subn(XML_STRIPPED_MSG, text)
+
+        if num_plists_stripped:
+            self.log(f"Replaced {num_plists_stripped} XML plists...")
+
+        return collapse_newlines(text).strip()
+
     def _truncate_to_length(self) -> int:
         """Decide how many chars we should limit the dislpay of this email to."""
         quote_cutoff = self._idx_of_nth_quoted_reply()  # Trim if there's many quoted replies
@@ -840,52 +883,8 @@ class Email(Communication):
         body_bottom_padding = 0 if self.attached_docs else 1
         yield Padding(body, (0, 0, body_bottom_padding, site_config.other_files_table_indent))
 
-        if (attachments_table := self._attached_docs_table):
+        if (attachments_table := self._attached_docs_table()):
             yield Padding(attachments_table, (0, 0, 1, site_config.attachment_indent))
-
-    @property
-    def _attached_docs_table(self) -> Table | None:
-        if not self.attached_docs:
-            return None
-
-        attachments_table_title = f"| Email Attachments for {self.file_info.url_slug}:" # ╏┇┣
-
-        if (doc := self.attached_docs[0]).config and doc.config.show_full_panel:
-            if len(self.attached_docs) > 1:
-                raise ValueError(f"Can't show more than one panelized attachment for {self}!")
-
-            table = Table(title=attachments_table_title, title_justify='left')
-            table.add_column(doc.config.description)
-            table.add_row(highlighter(Text(self.attached_docs[0].text, EXCERPT_STYLE)))
-            return table
-        else:
-            return OtherFile.files_preview_table(self.attached_docs, title=attachments_table_title)
-
-    def _body_as_panel(self, text: str | Text, description: Text | None = None) -> Panel:
-        """Renders the info info text in the panel's bottom border."""
-        return Panel(
-            text,
-            border_style=self.border_style,
-            expand=False,
-            title=Text(' ').join(description.split(' ')) if description else None,  # split then join makes rich color subtitle correctly
-            title_align='right',
-        )
-
-    def _body_as_table(self, text: str | Text, description: Text | None = None) -> Table:
-        """Renders the info text as a top row in a table-ish view."""
-        panel = Table(
-            border_style=self.border_style,
-            box=box.ROUNDED,
-            header_style='on gray11',
-            show_header=bool(description)
-        )
-
-        if description and site_config.email_info_in_subtitle:
-            description = Text('', justify='right').append(description)
-
-        panel.add_column(description or '')
-        panel.add_row(text)
-        return panel
 
     @staticmethod
     def build_emails_table(emails: list['Email'], name: Name = '', title: str = '', show_length: bool = False) -> Table:
