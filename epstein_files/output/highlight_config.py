@@ -1607,7 +1607,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             ),
             organization(
                 CARBYNE,
-                f'Israeli co. FKA "Reporty" invested in by Epstein, {EHUD_BARAK}, and {NICOLE_JUNKERMANN}',
+                f'FKA "Reporty", Israeli co. invested in by Epstein, {EHUD_BARAK}, and {NICOLE_JUNKERMANN}',
                 r"Carbyne|Reporty",
                 link_to_bio='https://www.forbes.com/sites/thomasbrewster/2026/02/10/epstein-police-surveillance-investments-with-ehud-barak/',
             ),
@@ -2574,7 +2574,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             organization('Tarana Wireless', 'broadband provider', r"Tarana( (Technology|Wireless))?"),
             organization('ThielCapital', f"{PETER_THIEL} organization"),
             organization('Transferwise', 'fintech'),
-            organization(VALAR_VENTURES, f"{PETER_THIEL} affiliated fintech venture fund", r"V[ae]lar (Global Fund|Ventures)?", is_emailer=True),
+            organization(VALAR_VENTURES, f"{PETER_THIEL} affiliated fintech venture fund", r"V[ae]lar( (Global Fund|Ventures?))?", is_emailer=True),
             organization('Wearality', f"startup invested in by Epstein and {JOI_ITO}", r"Wearality( Corporation)?"),
             organization(
                 'WeWork',

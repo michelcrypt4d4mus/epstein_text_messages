@@ -114,12 +114,6 @@ DOJ_EMAIL_OCR_REPAIRS: dict[str | re.Pattern, str] = {
 }
 
 # "Sent from my iPhone" regexes
-SIGNATURE_PATTERNS = [
-    r"Co-authored with iPhone auto-correct",
-    r"(i Phone feature:|Pls excuse) tupos & abbrvtns",
-    r"Typos,? misspellings courtesy of iPhone(\s*word & thought substitution|Send from my mobile...please excuse typos)?"
-]
-
 DEVICE_PATTERNS = [
     r"apologies for any typos",
     r"email( app)?",
@@ -141,11 +135,18 @@ SENT_PREFIX_PATTERNS = [
     r"Wyslane z",
 ]
 
+# bespoke signature patterns
+SIGNATURE_PATTERNS = [
+    r"Co-authored with iPhone auto-correct",
+    r"(i Phone feature:|Pls excuse) tupos & abbrvtns",
+    r"Typos,? misspellings courtesy of iPhone(\s*word & thought substitution|Send from my mobile...please excuse typos)?"
+]
+
 DEVICE_PATTERN = fr"({'|'.join(SENT_PREFIX_PATTERNS)}).*(" + '|'.join(DEVICE_PATTERNS) + ")"
-# print(DEVICE_PATTERN)
 EPSTEIN_TYPO_PREFIX = r"((Please forgive|Sorry for all the) typos.{1,4})"
 SENT_FROM_DEVICE_PATTERN = '|'.join([DEVICE_PATTERN] + SIGNATURE_PATTERNS)
-SENT_FROM_REGEX = re.compile(fr'^{EPSTEIN_TYPO_PREFIX}?({SENT_FROM_DEVICE_PATTERN})\.?( -*)?', re.M | re.I)
+SENT_FROM_REGEX = re.compile(fr'^{EPSTEIN_TYPO_PREFIX}?({SENT_FROM_DEVICE_PATTERN})\.?( -*)?', re.MULTILINE | re.IGNORECASE)
+# print(SENT_FROM_REGEX.pattern)
 
 # Misc
 MAILING_LISTS = [
