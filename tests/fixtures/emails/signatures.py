@@ -196,10 +196,11 @@ DEVICE_SIGNATURE_TO_AUTHORS = {
 AUTHORS_TO_DEVICE_SIGNATURES = {
     UNKNOWN: [
         'Envoye de mon iPhone',
+        'Sent from Yahoo Mail for iPhone',
+        'Sent from my Verizon Wireless BlackBerry',
         "Sent from my Windows 10 phone",
         "Sent from my iPad",
         "Sent from my iPhone",
-        'Sent from my Verizon Wireless BlackBerry',
         "Sent via BlackBerry by AT&T",
         'Sent via BlackBerry from T-Mobile',
     ],
