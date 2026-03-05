@@ -1850,14 +1850,13 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact('Joshua Cooper Ramo', "co-CEO of Henry Kissinger Associates"),
             Contact(OLIVIER_COLOM, f"Epstein's banker at {EDMOND_DE_ROTHSCHILD} (Suisse) SA Bank", r"Colom, Olivier?|Olivier Colom"),
             Contact('Paul Keating', "former prime minister of Australia", match_partial=None),
-            Contact('Stanley Rosenberg', "former President of the Massachusetts Senate", match_partial=None)
+            Contact('Stanley Rosenberg', "former President of the Massachusetts Senate", match_partial=None),
+            Contact('Vinoda Basnayake', f'Nelson Mullins Riley, worked on getting {KARIM_WADE} out of jail'),
+            Contact('Elisabeth Feliho', f'Nelson Mullins Riley, worked on getting {KARIM_WADE} out of jail'),
+            acronym('Center for Strategic and International Studies', 'American think tank'),
         ],
         patterns=[
-            r"CSIS",
-            r"elisabeth feliho",
             r"(Kevin )?Rudd",
-            r"Stanley Rosenberg",
-            r"Vinoda Basnayake",
         ],
     ),
     HighlightedNames(
