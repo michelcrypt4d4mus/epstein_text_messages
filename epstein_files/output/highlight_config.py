@@ -1009,6 +1009,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         label='Europe',
         style='light_sky_blue3',
         contacts=[
+            Contact('Alistair Darling', 'former UK Chancellor of the Exchequer under Gordon Brown'),
             Contact(ANDRZEJ_DUDA, "former president of Poland"),
             Contact(
                 BARBRO_C_EHNBOM,
@@ -1666,6 +1667,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact('Adam Bly', "editor of SEED magazine"),
             Contact('Alain Forget', "author of \"How To Get Out Of This World ALIVE\"", match_partial=None),
             Contact('Alex Yablon', "New York Magazine fact checker (?)"),
+            Contact('Alistair Campbell', 'British journalist', match_partial=None),
             Contact(
                 'Conchita Sarnoff',
                 'journalist Epstein attempted to bribe',
@@ -2081,6 +2083,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(MARIANA_IDZKOWSKA, 'Polish model, island visitor', r"Mariana [Il]d[źi]kowska?"),
             Contact('Michael Sanka', f"{JEAN_LUC_MC2} {QUESTION_MARKS}"),
             Contact(NAOMI_CAMPBELL, 'supermodel', match_partial=None),
+            Contact('Ofer Raphaeli', f'founder of the Israeli branch of {JEAN_LUC_MC2}', link_to_bio='https://www.jpost.com/international/article-887415'),
             Contact(
                 'Paolo Zampolli',
                 'ID Models, allegedly tried to buy Elite Models w/Epstein, $ for passports scandal in Dominica, introduced Melania to Donald (?)',

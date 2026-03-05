@@ -549,6 +549,9 @@ class CommunicationCfg(DocCfg):
         if not isinstance(self.recipients, list):
             raise ValueError(f"{self.id} recipients is not a list: {self.recipients}")
 
+        if self.is_fwded_article:
+            self.is_valid_for_name_scan = False
+
         self.recipients = sort_names(self.recipients)
 
     @property
@@ -582,6 +585,12 @@ class EmailCfg(CommunicationCfg):
     has_uninteresting_ccs: bool = False
     has_uninteresting_bccs: bool = False
     subject: str | None = None
+
+    def __post_init__(self):
+        super().__post_init__()
+
+        if self.fwded_text_after:
+            self.is_valid_for_name_scan = False
 
     @property
     def truncate_at(self) -> int | tuple[int, int] | None:

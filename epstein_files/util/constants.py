@@ -980,6 +980,7 @@ EMAILS_CONFIG = [
     ),
     EmailCfg(id='EFTA02640711', author=JABOR_Y, description='Jabor Y / HBJ home address', is_interesting=True),
     EmailCfg(id='EFTA02334332', author=JASON_CALACANIS),
+    EmailCfg(id='EFTA02434805', author=JEAN_LUC_BRUNEL, author_uncertain='reply', description='what lawyers offices got sealed?'),
     EmailCfg(
         id='EFTA00838218',
         author=JULIA_SANTOS,
@@ -1519,6 +1520,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA02565917', description='Hassan Mohammed Abdul Latif Jameel is a Saudi businessman and philanthropist'),
     EmailCfg(id='EFTA00927227', description=f"{IAN_OSBORNE} pitches his new venture fund {HEDOSOPHIA} to Epstein", is_interesting=True),
     EmailCfg(id='EFTA01767036', description=f'"Karim" is probably {ALLEGED_KARIM_WADE}'),
+    EmailCfg(id='EFTA02515416', description=f'{JEAN_LUC_BRUNEL} is having visa problems', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA02513560', description=f"{JEAN_LUC_BRUNEL} doesn't want to speak on the phone", truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA02671523', description=f"Jones is former Google chief technology advocate / CEO of Epstein investment Wearality"),
     EmailCfg(id='EFTA02464628', description=f"{KATHRYN_RUEMMLER} and Epstein on {JEAN_LUC_BRUNEL}'s immunity deal (for Epstein testimony?)", is_interesting=True),
@@ -1535,6 +1537,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA01013413', description='Reza Bundy is the founder of IronPlanet'),
     EmailCfg(id='EFTA02339109', description=f'someone named Sue needs help (probably a sham marriage to {BROCK_PIERCE}, see later emails)'),
     EmailCfg(id='EFTA00364437', description='planning a trip to the Ivory Coast', is_interesting=True, truncate_to=2_000),
+    EmailCfg(id='efta02353279', description=f'why is a frenchman like {JEAN_LUC_BRUNEL} "normally in Israel"?'),
     EmailCfg(id='EFTA02633194', description=f'{NICOLE_JUNKERMANN} quotes an appraisal by "FSB (Russians)"', is_interesting=True),
     # EmailCfg(id='EFTA00039689', description=f"{SEC_WHISTLEBLOWER} re: Signature Bank, Hapoalim, Bioptix/RIOT, Barry Honig, etc."),
     # EmailCfg(id='EFTA00093702', description=f"{SEC_WHISTLEBLOWER}", comment="rest is visible in EFTA00039689 after 102_000 chars"),
