@@ -433,6 +433,7 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
     ],
     PUREVSUREN_LUNDEG: [
         'Sent from my iPad',
+        'Sent from Yahoo Mail for iPhone',
     ],
     REID_WEINGARTEN: [
         "Sent from my BlackBerry 10 smartphone.",
