@@ -367,6 +367,9 @@ class Person:
             for d in docs
         ]
 
+        if args.suppress_output:
+            logger.warning(f"Pringing {len(docs)} documents for {self.name_str}...")
+
         doc_printer.print_documents(docs)
         return self._printable_emails  # TODO: doesn't return FileDisplay objects!
 

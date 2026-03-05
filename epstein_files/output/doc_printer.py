@@ -23,6 +23,7 @@ from epstein_files.people.names import *
 from epstein_files.util.env import args, site_config
 from epstein_files.util.helpers.data_helpers import uniq_sorted
 from epstein_files.util.logging import logger
+from epstein_files.util.timer import Timer
 
 OTHER_FILES_TABLE_MSG = Text("(non emails will appear in tables)", 'gray27 italic')
 
@@ -63,8 +64,11 @@ class DocPrinter:
         if len(self.html_elements) == 0:
             self.html_elements.append(self._html_so_far())
 
-        logger.warning(f"{type(self).__name__}.print_documents() called with {len(docs):,} Documents...")
+        if len(docs) > 500:
+            logger.warning(f"{type(self).__name__}.print_documents() called with {len(docs):,} Documents...")
+
         last_doc_was_suppressed = False
+        timer = Timer()
         i = 0
 
         for i, doc in enumerate(docs, 1):
@@ -104,9 +108,7 @@ class DocPrinter:
             last_doc_was_suppressed = False
 
             if i % 100 == 0:
-                logger.warning(f"Printed {i} documents...")
-
-        logger.warning(f"Printed {i} total documents...")
+                timer.print_at_checkpoint(f"Printed {i} documents")
 
     def write_html(self, html_path: Path) -> None:
         """Write the collection of html elements to a file."""
