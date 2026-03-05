@@ -2645,7 +2645,7 @@ OTHER_FILES_GIRLS = [
     EmailCfg(id='EFTA00950368', description='"any [girl] friends for me?"', truncate_to=NO_TRUNCATE),
     EmailCfg(
         id='EFTA00883738',
-        description=f'prolific Epstein recruiter {DASHA_GRUPMAN} looking to rent townhouse for "diplomats"',
+        description=f'Epstein recruiter {DASHA_GRUPMAN} looking to spend $50,000 to rent a townhouse for "diplomats"',
         show_with_name=DASHA_GRUPMAN,
     ),
     EmailCfg(

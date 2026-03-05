@@ -95,10 +95,11 @@ class Document:
 
     Attributes:
         file_path (Path): Local path to file
+        extracted_author (Name): who created the text in this file, extracted from the text (AKA "not configured")
+        extracted_timestamp (datetime, optional): When the file was originally created, extracted from the text
         file_info (FileInfo): Manages things having to do with the underlying file (paths, URLs, etc.)
         lines (list[str]): Number of lines in the file after all the cleanup
         text (str): Contents of the file
-        timestamp (datetime, optional): When the file was originally created
     """
     # Class constants
     INCLUDE_DESCRIPTION_IN_SUMMARY_PANEL: ClassVar[bool] = False
