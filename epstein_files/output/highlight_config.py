@@ -217,6 +217,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact('Richard Merkin', "painter, illustrator and arts educator"),
             Contact(STEVEN_PFEIFFER, "Associate Director at Independent Filmmaker Project (IFP)"),
             Contact('Steven Gaydos', "American screenwriter and journalist"),
+            Contact('Val Kilmer', 'famous movie actor'),
             Contact(WOODY_ALLEN, f'filmmaker who married his adopted daughter {SOON_YI_PREVIN}', match_partial='first'),
             organization('Phaidon', 'titan of art book publishing'),
             organization('Boom Boom Room', '"models and bottles" style club in NYC'),
