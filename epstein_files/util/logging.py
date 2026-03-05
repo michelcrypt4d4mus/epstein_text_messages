@@ -1,6 +1,6 @@
 import logging
+import sys
 from os import environ
-from sys import exit
 
 from rich.console import Console
 from rich.highlighter import ReprHighlighter
@@ -46,8 +46,9 @@ log_console = Console(
     width=max(console_width_possibilities())
 )
 
+datefmt = r'%H:%M:%S' if SUPPRESS_OUTPUT in sys.argv else ' '
 log_handler = RichHandler(console=log_console, highlighter=LogHighlighter(), show_path=False)
-logging.basicConfig(level="NOTSET", format="%(message)s", datefmt=" ", handlers=[log_handler])
+logging.basicConfig(level="NOTSET", format="%(message)s", datefmt=datefmt, handlers=[log_handler])
 logger = logging.getLogger("epstein_text_files")
 
 
@@ -61,7 +62,7 @@ env_log_level = None
 def exit_with_error(msg: str) -> None:
     print('')
     logger.error(msg + '\n')
-    exit(1)
+    sys.exit(1)
 
 
 def set_log_level(log_level: int | str) -> None:

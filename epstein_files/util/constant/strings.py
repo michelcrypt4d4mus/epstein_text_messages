@@ -61,6 +61,9 @@ QUESTION_MARKS = '(???)'
 TEXT_MESSAGE = 'text message'
 VICTIM_DIARY = 'victim diary'
 
+# CLI args
+SUPPRESS_OUTPUT = '--suppress-output'
+
 # Document subclass names (this sucks)
 DOCUMENT_CLASS = 'Document'
 DOJ_FILE_CLASS = 'DojFile'
