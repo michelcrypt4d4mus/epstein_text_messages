@@ -1020,7 +1020,11 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 r"behnbom@aol.com|(Barbro\s.*)?Ehnbom|Barbro",
                 link_to_bio='https://www.reddit.com/r/TrueAnon/comments/1pn8pdj/episode_509_jeffreys_bbb/'
             ),
-            Contact('Benjamin Wegg-Prosser', f"CEO of {PETER_MANDELSON}'s failed lobbying firm Global Counsel"),
+            Contact(
+                'Benjamin Wegg-Prosser',
+                f"CEO of {PETER_MANDELSON}'s failed lobbying firm Global Counsel",
+                link_to_bio='https://en.wikipedia.org/wiki/Benjamin_Wegg-Prosser',
+            ),
             Contact('Caroline Lang', "daughter of Jack Lang"),
             Contact(EDWARD_ROD_LARSEN, f"son of {TERJE_ROD_LARSEN}", match_partial=None),
             Contact('Fabrice Aidan', f"diplomat who worked with {TERJE_ROD_LARSEN}"),
