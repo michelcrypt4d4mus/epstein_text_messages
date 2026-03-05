@@ -94,6 +94,27 @@ div.table_container {
     width: fit-content;
 }
 
+fieldset {
+    /* border: 10px solid transparent;
+    border-top-color: black; */
+    background-color: black;
+    box-sizing: border-box;
+    grid-area: 1 / 1; /* first row, first column */
+    /* padding: 20px; */
+    width: inherit;
+    z-index: 10;
+}
+
+legend {
+    background-color: black;
+    font-family: Menlo, 'DejaVu Sans Mono', consolas, 'Courier New', monospace;
+    font-size: inherit;
+    font-style: italic;
+    margin-left: auto;
+    padding: 0 0.35em;
+    z-index: 10;
+}
+
 li {
     margin-top: 0px;
     margin-bottom: 0px;

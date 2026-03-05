@@ -92,6 +92,17 @@ def div_class(contents: str, class_name: str, css_props: CssProps = None, **kwar
     return div_tag(contents, css_props, class_name=class_name, **kwargs)
 
 
+def div_with_legend(contents: str, legend: str, css_props: CssProps = None, **kwargs) -> str:
+    """Use <fieldset> + <legend>: https://css-tricks.com/how-to-add-text-in-borders-using-basic-html-elements/"""
+    css_props = css_props or {}
+
+    if legend:
+        legend_css_props = {'color': css_props.get('border-color', 'white')}
+        contents = tag('legend', legend, legend_css_props) + contents
+
+    return tag('fieldset', contents, css_props)
+
+
 def from_em(units: str | None) -> int | None:
     if not units:
         return None

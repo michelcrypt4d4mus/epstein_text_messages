@@ -37,7 +37,7 @@ CFG_PROPS = [
 
 def create_configs(docs: Sequence[Document]) -> Sequence[DocCfg]:
     """Manually review and create `DocCfg` objects for new files."""
-    console.print(*docs)
+    console.print(*Document.sort_by_timestamp(docs))
     cfgs = []
     what_to_do = Prompt.ask(QUESTION.append(f" [y/n/{ALL}/IDs]", style='magenta'))
 

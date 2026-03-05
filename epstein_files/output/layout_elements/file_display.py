@@ -8,7 +8,7 @@ from rich.table import Table
 from rich.text import Text
 from rich.panel import Panel
 
-from epstein_files.output.html.elements import BLACK_BACKGROUND, HtmlStyle, div_class
+from epstein_files.output.html.elements import BLACK_BACKGROUND, HtmlStyle, div_class, div_with_legend
 from epstein_files.output.html.builder import (PANEL_BASE_PROPS, VERTICAL_MARGIN, border_css_props, rich_to_html,
      one_row_table_html, text_to_list, text_to_div, vertical_margin_props)
 from epstein_files.output.html.elements import div_tag, to_em, side_props
@@ -42,24 +42,28 @@ class BasePanel:
         indents = indents or (0, 0)
         div_props = dict(PANEL_BASE_PROPS)
 
+        # Handle MessengerLog / TextMessage list. # TODO this sucks
         if self.is_list:
             html = text_to_list(self.text, class_name='no_bullets')
             div_props = {'word-wrap': 'break-word'}
-        else:
-            html = rich_to_html(self.text)
+            return div_class(html, BLACK_BACKGROUND, div_props)
 
-            div_props = {
-                **PANEL_BASE_PROPS,
-                **border_css_props(self.border_style),
-            }
+        html = rich_to_html(self.text)
 
-            if indents[0]:
-                div_props.update(side_props('margin', ['left'], to_em(indents[0])))
+        div_props = {
+            **PANEL_BASE_PROPS,
+            **border_css_props(self.border_style),
+        }
 
-            if indents[1]:
-                div_props.update(side_props('margin', ['right'], to_em(indents[1])))
+        if indents[0]:
+            div_props.update(side_props('margin', ['left'], to_em(indents[0])))
 
-        return div_class(html, BLACK_BACKGROUND, div_props)
+        if indents[1]:
+            div_props.update(side_props('margin', ['right'], to_em(indents[1])))
+
+        # TODO: make the title 'dim'
+        title = self.title.plain if self.title else ''
+        return div_with_legend(html, title, div_props, class_name=BLACK_BACKGROUND)
 
     def __rich__(self) -> Panel:
         return Panel(

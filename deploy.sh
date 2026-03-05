@@ -48,9 +48,11 @@ any_uncommitted_changes() {
 
 commit_gh_pages_changes() {
     echo -e ""
+    print_deploy_step "Committing changes to gh_pages..."
     git commit -am"Update HTML"
     git push origin gh_pages --quiet
 }
+
 
 # Preparation (check branch, clean build artifacts, etc.)
 if [[ $CURRENT_BRANCH != "master" ]]; then
@@ -61,8 +63,7 @@ elif any_uncommitted_changes; then
     exit 1
 fi
 
-
-# Check for new files
+# Check for new files unless doing --overwrite-pickled
 if [[ $PICKLE_ARG != "--overwrite-pickle" ]]; then
     print_deploy_step "Scanning for new files with extract_doj_pdfs.py..."
     ./scripts/extract_doj_pdfs.py
@@ -70,12 +71,12 @@ else
     print_deploy_step "Doing full file rescan..."
 fi
 
-# Build .png and push master changes
+
+# Push master changes and build emailers .png (with --overwrite-pickle if --pickled not used)
 git push origin master --quiet
 epstein_generate --make-clean --suppress-output
 print_deploy_step "Building emailer info .png... $PICKLE_ARG"
 $GENERATE_CMD --emailers-info $PICKLE_ARG
-
 
 if [ -n "$TAG_RELEASE" ]; then
     print_deploy_step "Copying 'the_epstein_files.local.pkl.gz' to 'the_epstein_files.pkl.gz'..."
@@ -91,16 +92,38 @@ else
     print_msg "  No changes to emailers .png file..."
 fi
 
+
 # Switch to gh_pages branch
 git checkout gh_pages
 git merge --no-edit master --quiet
 
-
-# Build files
-print_deploy_step "Building curated mobile page... "
-$GENERATE_MOBILE_CMD
+# Build pages
+print_deploy_step "Building curated chronological page..."
+$GENERATE_CMD --output-chrono
 print_deploy_step "Building curated chronological mobile page..."
 $GENERATE_MOBILE_CMD --output-chrono
+
+print_deploy_step "Copying curated custom HTML chronological pages into place..."
+cp docs/chrono_real_html.html docs/index.html
+cp docs/chrono_real_html_mobile.html docs/mobile_chronological.html
+
+# Fast pages
+print_deploy_step "Building email signatures page..."
+$GENERATE_CMD --output-devices
+print_deploy_step "Building text messages page... "
+$GENERATE_CMD --all-texts
+print_deploy_step "Building word counts page..."
+$GENERATE_CMD --output-word-count --width 125
+print_deploy_step "Building JSON metadata page..."
+$GENERATE_CMD --json-metadata
+print_deploy_step "Building other files table page..."
+$GENERATE_CMD --all-other-files
+
+# Slower pages
+print_deploy_step "Building curated page..."
+$GENERATE_CMD
+print_deploy_step "Building curated mobile page... "
+$GENERATE_MOBILE_CMD
 
 if [ -n "$ONLY_MOBILE" ]; then
     commit_gh_pages_changes
@@ -108,49 +131,27 @@ if [ -n "$ONLY_MOBILE" ]; then
     exit
 fi
 
-print_deploy_step "Building email signatures page..."
-$GENERATE_CMD --output-devices
-print_deploy_step "Building curated page..."
-$GENERATE_CMD
-print_deploy_step "Building text messages page... "
-$GENERATE_CMD --all-texts
-
 if [ -n "$ONLY_TEXTS" ]; then
     print_deploy_step "Skipping build of emails pages..."
 else
-    print_deploy_step "Building curated chronological page..."
-    $GENERATE_CMD --output-chrono
     print_deploy_step "Building all emails page..."
     $GENERATE_CMD --all-emails
     print_deploy_step "Building emails chronological page..."
     $GENERATE_CMD --all-emails-chrono
-    print_deploy_step "Building other files table page..."
-    $GENERATE_CMD --all-other-files
+    print_deploy_step "Copying custom HTML chrono emails page into place..."
+    cp docs/real_html_chronological_emails.html docs/chronological_emails.html
 fi
 
-print_deploy_step "Building word counts page..."
-$GENERATE_CMD --output-word-count --width 125
-print_deploy_step "Building JSON metadata page..."
-$GENERATE_CMD --json-metadata
-# print_deploy_step "Building JSON files data..."
-# $GENERATE_CMD --json-files
-
-if [ -n "$NO_DOJ" ]; then
-    print_deploy_step "Skipping DOJ files (NO_DOJ is set)..."
-elif [ -n "$TAG_RELEASE" ]; then
+# Only build DOJ files site if TAG_RELEASE=true
+if [ -n "$TAG_RELEASE" ]; then
     print_deploy_step "Building DOJ 2026 files..."
     $GENERATE_CMD --all-doj-files --whole-file
 else
     print_deploy_step "Skipping DOJ files (TAG_RELEASE not set)..."
 fi
 
-print_deploy_step "Copying custom HTML chrono pages into place..."
-cp docs/chrono_real_html.html docs/index.html
-cp docs/chrono_real_html_mobile.html docs/mobile_chronological.html
-cp docs/real_html_chronological_emails.html docs/chronological_emails.html
 
 # Commit changes
-print_deploy_step "Committing changes..."
 commit_gh_pages_changes
 print_deploy_step "Deployed URLs:"
 epstein_generate --show-urls
