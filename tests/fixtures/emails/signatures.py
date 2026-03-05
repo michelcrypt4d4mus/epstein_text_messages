@@ -245,6 +245,7 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
     CECILIA_STEEN: [
         "Sent from my iPad"
     ],
+    'Danny Vicars': ['Sent from Yahoo Mail on Android'],
     "Darren Indyke": [
         "Sent from my Verizon 4G LTE Droid",
         "Sent from my iPhone"
@@ -377,6 +378,7 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
         'Sent from my Samsung Galaxy smartphone.',
         'Sent from my iPhone',
     ],
+    OLIVIER_COLOM: ['Envoye de mon iPhone'],
     PAULA_HEIL_FISHER: ["Sent via BlackBerry from T-Mobile"],
     PEGGY_SIEGAL: [
         "Sent from my iPad",
