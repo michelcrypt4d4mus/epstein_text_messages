@@ -2269,7 +2269,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(
                 name=ARIANE_DE_ROTHSCHILD,
                 info=f"heiress, runs the bank {EDMOND_DE_ROTHSCHILD} (Suisse) SA",
-                emailer_pattern=r"AdeR|(A(\.|riane) (de )?)?Rothsh?ch?il[cd]|Ariane(?! Dwyer)",
+                emailer_pattern=r"AdeR|(A(\.|riane) (de )?)?Roths?h?ch?il[cd]|Ariane(?! Dwyer)",
             ),
             Contact(JOHNNY_EL_HACHEM, f"{EDMOND_DE_ROTHSCHILD} Private Equity", r"el hachem johnny|johnny el hachem"),
             organization(EDMOND_DE_ROTHSCHILD, f"Swiss bank"),

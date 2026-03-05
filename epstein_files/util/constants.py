@@ -3145,6 +3145,7 @@ OTHER_FILES_LEGAL = [
     DocCfg(id='EFTA00590940', author=JANE_DOE_V_USA, description='interview with minor victim', is_interesting=True),
     DocCfg(id='EFTA01081391', author=JANE_DOE_V_USA, description='interview with minor victim', is_interesting=True),
     DocCfg(id='EFTA00727684', author=f"{REDACTED} v. {JEFFREY_EPSTEIN}", description='sworn testimony, list of co-conspirators'),
+    DocCfg(id='EFTA00796700', description=f"detailed notes on Epstein's relationship with {ALAN_DERSHOWITZ}", is_interesting=True),
     DocCfg(id='EFTA00143492', description=f"court filing in which a victim calls Giuffre lawyer {STANLEY_POTTINGER} an abuser"),
     DocCfg(id='EFTA00039817', description='notice of hearing', date='2021-04-19', duplicate_ids=['EFTA00039791'], is_interesting=False),
     DocCfg(id='EFTA00005586', replace_text_with='completely redacted 69 pages labeled "Grand Jury - NY"'),
