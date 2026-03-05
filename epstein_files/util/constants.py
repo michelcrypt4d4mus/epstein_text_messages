@@ -1449,12 +1449,12 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA02731514', recipients=[USANYS], comment='journal upload followup'),
     EmailCfg(id='EFTA02731511', recipients=[USANYS], comment='journal upload followup'),
     EmailCfg(id='EFTA02731515', recipients=[USANYS], comment='journal upload followup'),
-    EmailCfg(id='EFTA02731735', recipients=[USANYS], date='2024-03-04T05:04:00', recipient_uncertain='true'),
+    EmailCfg(id='EFTA02731735', recipients=[USANYS], date='2024-03-04T05:04:00', recipient_uncertain=True),
     EmailCfg(id='EFTA02731715', recipients=[USANYS], duplicate_ids=['EFTA02731762']),
-    EmailCfg(id='EFTA02731480', recipients=[USANYS], recipient_uncertain='true'),
-    EmailCfg(id='EFTA02731482', recipients=[USANYS], recipient_uncertain='true'),
-    EmailCfg(id='EFTA02731713', recipients=[USANYS], recipient_uncertain='true'),
-    EmailCfg(id='EFTA02731718', recipients=[USANYS], recipient_uncertain='true'),
+    EmailCfg(id='EFTA02731480', recipients=[USANYS], recipient_uncertain=True),
+    EmailCfg(id='EFTA02731482', recipients=[USANYS], recipient_uncertain=True),
+    EmailCfg(id='EFTA02731713', recipients=[USANYS], recipient_uncertain=True),
+    EmailCfg(id='EFTA02731718', recipients=[USANYS], recipient_uncertain=True),
     EmailCfg(id='EFTA00949295', is_interesting=True),
     EmailCfg(id='EFTA02605815', is_interesting=True, comment='totally tricked out by uncle jeffrey'),
     EmailCfg(id='EFTA02645069', is_interesting=True, description='Epstein says the Mongolians have asked him to create a currency'),
@@ -2916,8 +2916,8 @@ OTHER_FILES_GOVERNMENT = [
         truncate_to=NO_TRUNCATE,  # TODO this shouldn't be necessary?
     ),
     EmailCfg(id='EFTA02730483', author=FBI, date='2023-07-11T08:25:00', date_uncertain='actually reply timestamp'),
-    EmailCfg(id='EFTA02731552', author=FBI, recipients=[USANYS], date='2021-05-26 16:12:00', recipient_uncertain='true'),
-    EmailCfg(id='EFTA00039971', author=FBI, recipients=[USANYS], recipient_uncertain='true'),
+    EmailCfg(id='EFTA02731552', author=FBI, recipients=[USANYS], date='2021-05-26 16:12:00', recipient_uncertain=True),
+    EmailCfg(id='EFTA00039971', author=FBI, recipients=[USANYS], recipient_uncertain=True),
     EmailCfg(id='EFTA00037683', description=f"tip that the murder of DC Madam Jeanne Palfrey might be connected to Epstein's network"),
 ]
 
