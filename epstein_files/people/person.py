@@ -19,6 +19,7 @@ from epstein_files.documents.other_file import OtherFile
 from epstein_files.output.highlight_config import (HIGHLIGHTED_NAMES, QUESTION_MARKS_TXT, get_highlight_group_for_name,
      get_style_for_name, styled_category, styled_name)
 from epstein_files.output.highlighted_names import HighlightedNames, HighlightPatterns, ManualHighlight
+from epstein_files.output.layout_elements.file_display import FileDisplay
 from epstein_files.output.rich import (GREY_NUMBERS, TABLE_TITLE_STYLE, build_table, console, join_texts,
      print_centered, print_special_note)
 from epstein_files.people.contact import Contact
@@ -361,15 +362,14 @@ class Person:
             print_special_note(SPECIAL_NOTES[self.name])
 
         docs = Document.sort_by_timestamp(self._printable_emails + self.show_with_emails_docs)
+        docs = [d.file_display(align='right') if isinstance(d, OtherFile) else d for d in docs]   # TODO this sucks
 
-        # TODO this sucks
-        docs = [
-            d.file_display(align='right', indent=site_config.show_with_indent) if isinstance(d, OtherFile) else d
-            for d in docs
-        ]
+        for d in docs:
+            if isinstance(d, FileDisplay):
+                d.indent = site_config.show_with_indent
 
         if args.suppress_output:
-            logger.warning(f"Pringing {len(docs)} documents for {self.name_str}...")
+            logger.warning(f"Printing {len(docs)} documents for {self.name_str}...")
 
         doc_printer.print_documents(docs)
         return self._printable_emails  # TODO: doesn't return FileDisplay objects!

@@ -217,6 +217,7 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
     ],
     'Audrey Strauss': ["Sent from my iPhone"],
     AUSTIN_HILL: [
+        'Get Outlook for iOS',
         'Sent from Mailbox for iPad',
         'Sent from Mailbox for iPhone',
         'Sent from one of my many test mobile devices while on the go and changing the world : so my apologies for any typos',
