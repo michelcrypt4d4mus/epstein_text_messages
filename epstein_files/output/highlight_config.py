@@ -1853,7 +1853,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact('Stanley Rosenberg', "former President of the Massachusetts Senate", match_partial=None),
             Contact('Vinoda Basnayake', f'Nelson Mullins Riley, worked on getting {KARIM_WADE} out of jail'),
             Contact('Elisabeth Feliho', f'Nelson Mullins Riley, worked on getting {KARIM_WADE} out of jail'),
-            acronym('Center for Strategic and International Studies', 'American think tank'),
+            acronym('Center for Strategic and International Studies', 'pro-war American think tank'),
         ],
         patterns=[
             r"(Kevin )?Rudd",
