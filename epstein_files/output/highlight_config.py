@@ -678,9 +678,13 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             organization('Polymarket', 'blockchain based gambling site ("prediction market")'),
             organization('Ribbit Capital', 'crypto friendly venture fund'),
             organization('Ripple', 'token issuing company run by Trump megadonor Brad Garlinghouse'),
-            organization('Silk Road', 'online illegal drug market, first real use case for crypto'),
+            organization('Silk Road', f'online illegal drugs market run by Ross Ulbricht, first real use case for crypto'),
             organization('Stellar', 'blockchain architecture alternative to bitcoin and ethereum', r"stellar\.org"),
-            organization('Tether', f"$180 billion stablecoin founded by {BROCK_PIERCE} whose money is managed by {HOWARD_LUTNICK}"),
+            organization(
+                'Tether',
+                f"$180 billion stablecoin founded by {BROCK_PIERCE}, beloved by drug cartel + rogue nuclear states, cash managed by {HOWARD_LUTNICK}",
+                link_to_bio='https://cryptadamus.substack.com/p/trumps-transition-team-is-tethered'
+            ),
             organization(
                 'Zerocoin',
                 f"early name for Epstein funded untraceable cryptocurrency ZCash developed by {MADARS_VIRZA}",
@@ -725,7 +729,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Ron Rivest",
             r"Silk Road",
             r"SpanCash",
-            r"stable coins",
+            r"stable coin",
             r"(?-i:S)tellar",
             r"Stephens Inv(\.|estment) M(anagement|gmt\.?)",
             r"Steve Waterhouse",
@@ -2621,6 +2625,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Dropbox",
             r"Facebook",
             r"fintech",
+            r"Google",
             r"Instagram",
             r"Microsoft",
             r"MSFT",
