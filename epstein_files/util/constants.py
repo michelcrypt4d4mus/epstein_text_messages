@@ -3210,6 +3210,7 @@ OTHER_FILES_MISC = [
         description=f"internal message about discovery of Epstein's body",
         background_color='red'
     ),
+    DocCfg(id='EFTA00005386', description='heavily redacted photo album, lot of photos of girls'),
     DocCfg(id='EFTA00728783', description='list of names and phone numbers'),
     DocCfg(id='EFTA00165515', description="contractor describes Epstein's gun safes", show_full_panel=True),
     DocCfg(id='EFTA00005783', description='heavily redacted handwritten note, 30+ completely redacted pages', date='2019-08-29'),
