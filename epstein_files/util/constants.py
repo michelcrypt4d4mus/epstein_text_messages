@@ -2729,7 +2729,7 @@ OTHER_FILES_GIRLS = [
     EmailCfg(id='EFTA01856467', description=f"Epstein looking for {JOSHUA_FINK} (again)", truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA01854125', description=f'Epstein says to {HENRY_JARECKI} "you torture, and mistreat each" girl'),
     EmailCfg(id='EFTA01953412', description=f'{EVA_DUBIN} suggests Epstein endow "The Epstein Floor For Women" at Mt. Sinai'),
-    EmailCfg(id='efta00658028', description=f"{FAITH_KATES} trying to get a contract for Regina?"),
+    EmailCfg(id='EFTA00658028', description=f"{FAITH_KATES} trying to get a contract for Regina?"),
     EmailCfg(id='EFTA00855566', description=f"introducing {SANITA}", truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA01660651', description='list of Trump accusers', is_interesting=True),
     EmailCfg(id='EFTA02609062', description=f"{MASHA_DROKOVA} is assembling a team", is_interesting=True),
@@ -3132,7 +3132,7 @@ OTHER_FILES_MISC = [
         description=f"internal message about discovery of Epstein's body",
         background_color='red'
     ),
-    DocCfg(id='efta00728783', description='list of names and phone numbers'),
+    DocCfg(id='EFTA00728783', description='list of names and phone numbers'),
     DocCfg(id='EFTA00165515', description="contractor describes Epstein's gun safes", show_full_panel=True),
     DocCfg(id='EFTA00005783', description='heavily redacted handwritten note, 30+ completely redacted pages', date='2019-08-29'),
     DocCfg(id='EFTA00024275', description='large Wexner funded payments to OB-GYN'),
