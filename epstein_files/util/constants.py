@@ -1523,7 +1523,11 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00877726', description=f'Epstein and {DAVID_STERN} discuss plans to manage money for wealthy Chinese'),
     EmailCfg(id='EFTA00941197', description=f'Epstein appears to be helping with an investment in Jawbone by {HEDOSOPHIA}'),
     EmailCfg(id='EFTA02592748', description=f"Epstein asks {BROCK_PIERCE} for a favour related to someone named 'Sue'", truncate_to=300),
-    EmailCfg(id='EFTA01801056', description=f'Epstein asks {PETER_MANDELSON} to find him a new assistant, "multi lingaul, 22-25"'),
+    EmailCfg(
+        id='EFTA01801056',
+        description=f'Epstein asks {PETER_MANDELSON} to find him a new assistant, "multi lingaul, 22-25"',
+        truncate_to=1200,
+    ),
     EmailCfg(id='EFTA00664252', description='Epstein explains his "no wives / no girlfriends" policy', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA02689871', description=f"Epstein instructs {DAVID_STERN} to avoid {BANQUE_HAVILLAND}"),
     EmailCfg(id='EFTA01008242', description='Epstein passes on an investment in Radius'),
