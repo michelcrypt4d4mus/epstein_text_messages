@@ -2793,12 +2793,14 @@ OTHER_FILES_GOVERNMENT = [
     DocCfg(
         id='EFTA00315076',
         date='2008-06-01',
+        date_uncertain=True,
         description=f"visitor list during Epstein's 2009 incarceration in {PALM_BEACH}",
         show_full_panel=True,
     ),
     DocCfg(
         id='EFTA00306074',
         date='2008-06-01',
+        date_uncertain=True,
         description=f"approved mail list during Epstein's 2009 incarceration in {PALM_BEACH}",
         show_full_panel=True,
     ),

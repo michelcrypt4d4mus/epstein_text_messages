@@ -294,13 +294,17 @@ class Document:
         return len(self.lines)
 
     @property
-    def panel_title_timestamp(self) -> str | None:
+    def panel_title_timestamp(self) -> str:
         """String placed in the `title` of the enclosing `Panel` when printing this document's text."""
-        if (self.timestamp or FALLBACK_TIMESTAMP) == FALLBACK_TIMESTAMP:
-            return None
+        if self.timestamp in [None, FALLBACK_TIMESTAMP]:
+            return ''
 
-        prefix = '' if self.config and self.config.timestamp else 'inferred '
-        return f"{prefix}timestamp: {remove_zero_time(self.timestamp)}"
+        if self.config and self.config.timestamp:
+            prefix = 'approximate' if self.config.date_uncertain else ''
+        else:
+            prefix = 'inferred'
+
+        return join_truthy(prefix, f"timestamp: {remove_zero_time(self.timestamp)}")
 
     @property
     def people(self) -> list[str]:
