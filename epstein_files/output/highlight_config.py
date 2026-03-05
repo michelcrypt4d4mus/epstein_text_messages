@@ -1897,7 +1897,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(
                 GANBAT_CHULUUNKHUU,
                 "corrupt Mongolian politician who was later wanted by Interpol",
-                r"Ganbat(@| Ch(uluunkhuu)?)?",
+                r"Ganbat(@| Ch(uluunkhuu)?)?|gambahtss?",
                 link_to_bio='https://news.mn/en/227194/',
                 match_partial='both',
             ),
