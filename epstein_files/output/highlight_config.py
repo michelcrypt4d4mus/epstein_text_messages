@@ -140,6 +140,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"(?-i:TED)x?",
             r"Tulane",
             r"UCLA",
+            r"Wharton",
         ],
     ),
     HighlightedNames(
@@ -2806,7 +2807,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"dildo",
             r"(?<!drug )(child\s*)?(sex\s*)?traffi?c?k(ers?|ing)",
             r"Ellaina As?tras?",
-            r"((blonde?|fresh|hot|naughty|new|school|underage|young) )*girl( friend)?",
+            r"((blonde?|fresh|hot|naughty|new|pretty|school|underage|young) )*girl( friend)?",
             r"gyn(eco(logist|nomist)|o)",
             r"I love you",
             r"ig(ni|ru)shki",

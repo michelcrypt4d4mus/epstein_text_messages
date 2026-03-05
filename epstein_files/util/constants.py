@@ -2263,6 +2263,7 @@ OTHER_FILES_CRYPTO = [
     EmailCfg(id='EFTA00970606', show_with_name=HOWARD_LUTNICK),
     EmailCfg(id='EFTA01778423', show_with_name=HOWARD_LUTNICK),
     # Jem Bendell
+    EmailCfg(id='EFTA00630785', description='alternative currencies discussion'),
     EmailCfg(id='EFTA02724230', description='alternative currencies discussion', truncate_to=NO_TRUNCATE),
     # Jeremy Rubin
     EmailCfg(id='EFTA02466979', description='"AID Coin"'),
@@ -2767,6 +2768,7 @@ OTHER_FILES_GIRLS = [
         highlight_quote="I have a friend of Putin,s",
         is_interesting=True,
     ),
+    EmailCfg(id='EFTA02557757', highlight_quote="I have a girl Sana working half time/who by the way you'd like"),
     EmailCfg(id='EFTA00771856', highlight_quote="I know 23 is on the old side for you", is_interesting=True),
     EmailCfg(id='EFTA01905320', highlight_quote='girls and i are going to see don musk at space x tomorrow', is_interesting=True),
     EmailCfg(id='EFTA01803353', highlight_quote='having problems with regina', description='(Ramsey?)'),
