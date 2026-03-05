@@ -519,6 +519,7 @@ class Document:
         return '\n'.join(self.lines[0:n])[:DEFAULT_TRUNCATE_TO]
 
     def to_html(self) -> str:
+        # TODO: this does not include the timestamp for OtherFiles!
         return self.file_display().to_html()
 
     def truncation_note(self, truncate_to: int) -> Text:
