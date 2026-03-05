@@ -1184,7 +1184,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact('David Rowland', f"{PRINCE_ANDREW}'s trusted money man at Banque Havilland whom Epstein does not trust", match_partial=None),
             Contact(
                 JES_STALEY,
-                "former CEO of Barclays, allegations from Epstein victims",
+                "former CEO of Barclays, allegations by multiple Epstein victims",
                 r"J(ames|es) (E\.? )?Staley",
                 link_to_bio='https://www.theguardian.com/us-news/2026/feb/05/jes-staley-barclays-rape-allegation-us-prosecutors-epstein',
             ),
@@ -1202,7 +1202,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact('Laurie Cameron', "currency trading"),
             Contact(
                 LEON_BLACK,
-                'Apollo CEO who paid Epstein more than $150 million for "tax advice", defendant in various lawsuits',
+                'Apollo CEO, paid Epstein more than $150 million for "tax advice", serious allegations by multiple Epstein victims',
                 r"Leon\s*Black?|(?<!Marc )Leon(?! (Botstein|Jaworski|Wieseltier))",
                 link_to_bio='https://x.com/kevinnbass/status/2027255769595302219',
                 match_partial=None,
