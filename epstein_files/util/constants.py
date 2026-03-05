@@ -1106,6 +1106,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00674483', author=MARIANA_IDZKOWSKA),
     EmailCfg(id='EFTA00662373', author=MASHA_DROKOVA, author_reason='"Best, Masha"', highlight_quote='She is interesting. Great looks'),
     EmailCfg(id='EFTA01986756', author=MELANIE_PHILLIPS, author_uncertain=f"{STEVEN_SINOFSKY}'s gf at the time"),
+    EmailCfg(id='EFTA00355684', author='Mira Bach', is_interesting=False),
     EmailCfg(id='EFTA01063008', author=OLGA_PONOMAR_BECKER, author_reason='Jmail'),
     EmailCfg(
         id='EFTA01988194',
@@ -2663,7 +2664,11 @@ OTHER_FILES_GIRLS = [
         description=f'Epstein and {JEAN_LUC_BRUNEL} "managing" {JOSHUA_FINK}\'s relationship with {SVETLANA_POZHIDAEVA}',
         is_interesting=True,
     ),
-    EmailCfg(id='EFTA00704924', description=f"attachment is pic of {JOSHUA_FINK} + {FILIPA_PEROVIC} who later married", is_interesting=True),
+    EmailCfg(
+        id='EFTA00704924',
+        description=f"attachment is pic of {JOSHUA_FINK} + {FILIPA_PEROVIC} who later married",
+        show_with_name=JOSHUA_FINK,
+    ),
     EmailCfg(
         id='EFTA02217672',
         description=f"{DAVID_L_NEUHAUSER} is raising money for a {JOSHUA_FINK} fund, promises Epstein he won't reveal they're talking",
@@ -2679,6 +2684,13 @@ OTHER_FILES_GIRLS = [
         id='EFTA02007083',
         description=f"{BORIS_NIKOLIC} encourages {KIMBAL_MUSK} to ditch his girlfriend for Epstein's girl {JENNIFER_KALIN} (and he says yes)",
         truncate_to=NO_TRUNCATE,
+    ),
+    EmailCfg(
+        id='EFTA00412260',
+        author=LESLEY_GROFF,
+        date='2012-05-25 19:51:20',
+        description=f'Epstein really wants "*your friend*" (emphasis {LESLEY_GROFF}\'s) to meet {PETER_MANDELSON}',
+        truncate_to=4_000,
     ),
     EmailCfg(
         id='EFTA02504370',

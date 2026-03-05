@@ -120,6 +120,7 @@ DEVICE_PATTERNS = [
     r"and string",
     r"AT&T",
     r"Droid",
+    r" gesendet",
     r"iOS",
     r"iPada?",
     r"Phone",
@@ -132,6 +133,7 @@ DEVICE_PATTERNS = [
 SENT_PREFIX_PATTERNS = [
     r"Envoy[ée] (avec|de mon)",
     r"Sent (from|using|via|with)",
+    r"Von meinem",
     r"Wyslane z",
 ]
 

@@ -525,6 +525,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 BROCK_PIERCE,
                 "Bannon partner, Tether co-founder, friend of Yair Netanyahu, sex crime history",
                 r"Brock(?!man)( Pierce)?",
+                # https://cryptadamus.substack.com/i/149639184/den-of-brockiquity
                 link_to_bio='https://protos.com/brock-pierces-dark-and-disturbing-friendship-with-jeffrey-epstein/',
                 match_partial='first',
             ),
