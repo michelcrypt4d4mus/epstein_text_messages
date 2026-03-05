@@ -442,12 +442,12 @@ class Email(Communication):
 
         return txt.append(CLOSE_PROPERTIES_CHAR)
 
-    def file_display(self, align: JustifyMethod | None = None, indent: int = 0) -> FileDisplay:
+    def file_display(self, align: JustifyMethod | None = None) -> FileDisplay:
         """Allows for proper right vs. left justify."""
         return FileDisplay(
             body_panel=self._body_as_table(self.prettified_text, self.config_description_txt),
             file_info=self.file_id_panel,
-            indent=indent,
+            indent=site_config.info_indent,
             justify=align,
             margin_bottom=self.html_margin_bottom,
             subheaders=self.info,

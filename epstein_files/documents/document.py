@@ -24,9 +24,8 @@ from epstein_files.output.epstein_highlighter import highlighter, non_epstein_hi
 from epstein_files.output.highlight_config import HIGHLIGHTED_CONTACTS, get_style_for_category, get_style_for_name
 from epstein_files.output.layout_elements.file_display import BasePanel, FileDisplay
 from epstein_files.output.html.builder import VERTICAL_MARGIN
-from epstein_files.output.rich import (INFO_STYLE, NA_TXT, SKIPPED_FILE_MSG_PADDING, SYMBOL_STYLE,
-     add_cols_to_table, build_table, console, styled_key_value, prefix_with, styled_dict,
-     wrap_in_markup_style)
+from epstein_files.output.rich import (INFO_STYLE, NA_TXT, SYMBOL_STYLE, add_cols_to_table, build_table, console,
+     styled_key_value, prefix_with, styled_dict, wrap_in_markup_style)
 from epstein_files.output.site.sites import EXTRACTS_BASE_URL
 from epstein_files.people.interesting_people import PERSONS_OF_INTEREST, UNINTERESTING_AUTHORS
 from epstein_files.people.names import Name
@@ -444,7 +443,7 @@ class Document:
     def colored_external_links(self) -> Text:
         return self.file_info.build_external_links(with_alt_links=True)
 
-    def file_display(self, align: JustifyMethod | None = None, indent: int = 0) -> FileDisplay:
+    def file_display(self, align: JustifyMethod | None = None) -> FileDisplay:
         """Allows for proper right vs. left justify."""
         body = BasePanel(
             border_style=self.border_style,
@@ -456,7 +455,7 @@ class Document:
             background_color=self.config.background_color if self.config else '',
             body_panel=body,
             file_info=self.file_id_panel,
-            indent=indent,
+            indent=site_config.info_indent,
             justify=align,
             margin_bottom=self.html_margin_bottom,
             subheaders=self.info,
@@ -482,8 +481,8 @@ class Document:
         if self.is_attachment:
             self.warn(f"is an attachment and self.print() was calleed")
             return
-        elif (skipped_file_txt := self.suppressed_txt):
-            console.print(Padding(skipped_file_txt, SKIPPED_FILE_MSG_PADDING))
+        elif (suppressed_txt := self.suppressed_txt):
+            console.print(Padding(suppressed_txt, site_config.suppressed_file_padding()))
             return
 
         # TODO: this approach to forcing whole_file sucks

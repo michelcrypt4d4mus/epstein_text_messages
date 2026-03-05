@@ -43,6 +43,7 @@ class MobileConfig:
     site_glossary_horizontal_padding: ClassVar[int] = 2
     social_link_separator: ClassVar[str] = ' '
     subtitle_width: ClassVar[int | None] = None
+    suppressed_file_indent: ClassVar[int] = 0
     width: ClassVar[int] = 52
 
     @classmethod
@@ -60,6 +61,10 @@ class MobileConfig:
         timestamp = timestamp if isinstance(timestamp, Text) else Text(' at ').append(str(timestamp), TIMESTAMP_STYLE)
         txt.append(' to ').append(recipients).append(timestamp)
         return txt
+
+    @classmethod
+    def suppressed_file_padding(cls) -> tuple[int, int, int, int]:
+        return (0, 0, 0, cls.suppressed_file_indent)
 
 
 class SiteConfig(MobileConfig):
@@ -79,6 +84,7 @@ class SiteConfig(MobileConfig):
     site_glossary_horizontal_padding: ClassVar[int] = 5
     social_link_separator: ClassVar[str] = '  /  '
     subtitle_width: ClassVar[int | None] = 110
+    suppressed_file_indent: ClassVar[int] = 0
     width: ClassVar[int] = DEFAULT_WIDTH
 
     @classmethod

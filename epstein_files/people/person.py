@@ -362,6 +362,7 @@ class Person:
 
         docs = Document.sort_by_timestamp(self._printable_emails + self.show_with_emails_docs)
 
+        # TODO this sucks
         docs = [
             d.file_display(align='right', indent=site_config.show_with_indent) if isinstance(d, OtherFile) else d
             for d in docs
