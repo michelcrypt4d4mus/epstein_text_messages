@@ -447,6 +447,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"murder(e[dr]|ing)?",
             r"organized crime",
             r"(securities )?fraud(ulent)?",
+            r"suicide",
             r"xanax",
         ],
     ),
@@ -2065,7 +2066,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(HEATHER_MANN, f"South African model, ex-girlfriend of {PRINCE_ANDREW} (?)", match_partial=None),
             Contact(
                 JEAN_LUC_BRUNEL,
-                f"{MC2_MODEL_MGMT} founder, #MeToo problems, died by suicide in French jail",
+                f"{MC2_MODEL_MGMT} founder, #MeToo problems, died just like Epstein but in a French jail",
                 r"Jean Luc Brunel?|JeanLuc",
                 link_to_bio='https://en.wikipedia.org/wiki/Jean-Luc_Brunel',
                 match_partial='both',

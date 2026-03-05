@@ -143,7 +143,13 @@ UNCONFIRMED_TEXTS_CONFIG = [
         people=[JEFFREY_EPSTEIN, MILES_GUO, STEVE_BANNON]
     ),
     TextCfg(id='031045', author=STEVE_BANNON, author_uncertain='AI says Trump and New York Times coverage'),
-    TextCfg(id='027275', is_interesting=True, comment='"Crypto- Kerry- Qatar -sessions"')
+    TextCfg(id='027275', is_interesting=True, comment='"Crypto- Kerry- Qatar -sessions"'),
+
+    # DOJ PDFs
+    TextCfg(
+        id='EFTA00508054',
+        description=f'Multiple counterparties, at least some Bannon. Epstein brings up the suicide of Ruslana Korshunova whom he "knew very well".'
+    ),
 ]
 
 # Necessary because some of these will be marked uninteresting, which overrides the config
