@@ -3083,8 +3083,8 @@ OTHER_FILES_LEGAL = [
     letter(
         id='026793',
         author=f"Mintz Fraade ({STEVEN_HOFFENBERG}'s lawyers)",
-        description=f"offering to take over Epstein's business and resolve his legal issues",
         date='2018-03-23',
+        description=f"offering to take over Epstein's business and resolve his legal issues",
         recipients=[DARREN_INDYKE],
     ),
     letter(
