@@ -1315,7 +1315,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA02731484', author=USANYS, recipients=[USANYS], author_uncertain=True),
     EmailCfg(id='EFTA02731757', author=USANYS, recipients=[USANYS], author_uncertain=True),
     EmailCfg(id='EFTA02731623', author=USANYS, recipients=[USANYS], author_uncertain=True),
-    EmailCfg(id='EFTA00039879', author=USANYS, recipients=[USANYS], recipient_uncertain='True'),
+    EmailCfg(id='EFTA00039879', author=USANYS, recipients=[USANYS], recipient_uncertain=True),
     EmailCfg(
         id='EFTA02731488',
         author=USANYS,
@@ -2332,7 +2332,7 @@ OTHER_FILES_CRYPTO = [
         description=f"Epstein and {KATHRYN_RUEMMLER} meet with {BEN_LAWSKY_NYDFS} to discuss bitcoin",
         is_interesting=True,
         recipients=[LESLEY_GROFF],
-        recipient_uncertain='yes',
+        recipient_uncertain=True,
     ),
     # Sharia coin
     EmailCfg(id='032359', description='HBJ brings up "e-currency" (Sharia Coin, probably)'),
