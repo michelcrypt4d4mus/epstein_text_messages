@@ -196,12 +196,12 @@ DEVICE_SIGNATURE_TO_AUTHORS = {
 AUTHORS_TO_DEVICE_SIGNATURES = {
     UNKNOWN: [
         'Envoye de mon iPhone',
-        'Sent via BlackBerry from T-Mobile',
         "Sent from my Windows 10 phone",
         "Sent from my iPad",
         "Sent from my iPhone",
         'Sent from my Verizon Wireless BlackBerry',
         "Sent via BlackBerry by AT&T",
+        'Sent via BlackBerry from T-Mobile',
     ],
     ALAN_DERSHOWITZ: [
         "Sent from my Verizon Wireless BlackBerry",
@@ -226,6 +226,9 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
     ],
     BARBRO_C_EHNBOM: [
         'Sent from iPad',
+    ],
+    'Benjamin Wegg-Prosser': [
+        'Sent from my BlackBerry® wireless device',
     ],
     BORIS_NIKOLIC: [
         "Sent from my Samsung JackTM, a Windows Mobile® smartphone from AT&T",
@@ -298,6 +301,7 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
     ],
     JEAN_LUC_BRUNEL: [
         'Sent from Samsung Mobile',
+        'Sent via BlackBerry from T-Mobile',
     ],
     JEFFREY_EPSTEIN: [
         "Sent from my iPad",
@@ -357,6 +361,9 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
     LAWRENCE_KRAUSS: [
         "Sent from my iPhone"
     ],
+    'Leighton Candler': [
+        'Sent from my BlackBerry Wireless Device',
+    ],
     LESLEY_GROFF: [
         "Sent from my iPhone"
     ],
@@ -395,6 +402,9 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
     "Michael Miller": [
         "Sent from my BlackBerry - the most secure mobile device"
     ],
+    'Mira Bach': [
+        'Von meinem iPhone gesendet'
+    ],
     MOHAMED_WAHEED_HASSAN: [
         "Sent from President's iPad",
         "Sent from my iPhone"
@@ -407,12 +417,19 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
         "Sent from my BlackBerry 10 smartphone.",
         "Sent from my iPhone"
     ],
+    NICOLE_JUNKERMANN: [
+        'Sent from my Samsung Galaxy smartphone.',
+        'Sent from my iPhone',
+    ],
     PAULA_HEIL_FISHER: [
         "Sent via BlackBerry from T-Mobile"
     ],
     PEGGY_SIEGAL: [
         "Sent from my iPad",
         'Sent via BlackBerry by AT&T',
+    ],
+    PETER_MANDELSON: [
+        'Sent from my BlackBerry® wireless device',
     ],
     PUREVSUREN_LUNDEG: [
         'Sent from my iPad',
@@ -475,7 +492,8 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
         'Sent using Acompli email app',
     ],
     SULTAN_BIN_SULAYEM: [
-        "Sent from my iPhone"
+        'Sent from my BlackBerry® wireless device',
+        "Sent from my iPhone",
     ],
     SVETLANA_POZHIDAEVA: [
         'Sent via BlackBerry from T-Mobile',

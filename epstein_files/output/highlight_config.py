@@ -208,6 +208,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(DAVID_BLAINE, "famous magician", link_to_bio='https://en.wikipedia.org/wiki/David_Blaine'),
             Contact('David Brenner', "American comedian and actor"),
             Contact('David Geffen', 'record label and film studio owner'),
+            Contact('Donna Air', 'British actress and TV presenter'),
             Contact('Errol Morris', 'documentary film maker, films about Robert McNamara, Donald Rumsfeld, and Bannon', match_partial=None),
             Contact(HENRY_JARECKI, 'psychiatrist and philanthropist, owned neighboring island', match_partial=None),
             Contact(ETIENNE_BINANT, f"art advisor {QUESTION_MARKS}"),

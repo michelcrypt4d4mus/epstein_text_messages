@@ -3617,6 +3617,7 @@ UNINTERESTING_EMAIL_IDS = [
     # Jabor
     '030786',
     '033011',
+    # Jean Luc Brunel
     # Jeremy Rubin
     'EFTA00714127',
     # John Page
@@ -3755,6 +3756,7 @@ NOT_CHRONOLOGICAL_VIEW_IDS = [
     # Jean Luc visa etc
     'EFTA02515416',
     'EFTA02516675',
+    '011908_6',
     #
     'EFTA02001536',
     'EFTA01773417',
@@ -3771,7 +3773,6 @@ NOT_CHRONOLOGICAL_VIEW_IDS = [
     '026583',
     '031986',
     '026584',
-    '011908_6',
     '029973',
     '031038',
     '028760',
