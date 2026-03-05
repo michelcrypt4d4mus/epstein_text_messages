@@ -39,26 +39,23 @@ class BasePanel:
     def to_div(self, indents: tuple[int, int] | None = None) -> str:
         """Create an HTML <div> string for this panel."""
         indents = indents or (0, 0)
-        div_props = dict(PANEL_BASE_PROPS)
-
-        # Handle MessengerLog / TextMessage list. # TODO this sucks
-        if self.is_list:
-            html = text_to_list(self.text, class_name='no_bullets')
-            div_props = {'word-wrap': 'break-word'}
-            return div_class(html, BLACK_BACKGROUND, div_props)
-
-        html = rich_to_html(self.text)
-
-        div_props = {
-            **PANEL_BASE_PROPS,
-            **border_css_props(self.border_style),
-        }
+        div_props = {}
 
         if indents[0]:
             div_props.update(side_props('margin', ['left'], to_em(indents[0])))
 
         if indents[1]:
             div_props.update(side_props('margin', ['right'], to_em(indents[1])))
+
+        # Handle MessengerLog / TextMessage list. # TODO this sucks
+        if self.is_list:
+            html = text_to_list(self.text, class_name='no_bullets')
+            div_props.update({'word-wrap': 'break-word'})
+            return div_class(html, BLACK_BACKGROUND, div_props)
+
+        html = rich_to_html(self.text)
+        div_props.update(PANEL_BASE_PROPS)
+        div_props.update(border_css_props(self.border_style))
 
         # TODO: make the title 'dim'
         title = self.title.plain if self.title else ''
