@@ -1549,6 +1549,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA01013413', description='Reza Bundy is the founder of IronPlanet'),
     EmailCfg(id='EFTA02339109', description=f'someone named Sue needs help (probably a sham marriage to {BROCK_PIERCE}, see later emails)'),
     EmailCfg(id='EFTA00364437', description='planning a trip to the Ivory Coast', is_interesting=True, truncate_to=2_000),
+    EmailCfg(id='EFTA02412854', description=f'who\'s "D>>>" and what does he have to be careful about?'),
     EmailCfg(id='efta02353279', description=f'why is a frenchman like {JEAN_LUC_BRUNEL} "normally in Israel"?'),
     EmailCfg(id='EFTA02633194', description=f'{NICOLE_JUNKERMANN} quotes an appraisal by "FSB (Russians)"', is_interesting=True),
     # EmailCfg(id='EFTA00039689', description=f"{SEC_WHISTLEBLOWER} re: Signature Bank, Hapoalim, Bioptix/RIOT, Barry Honig, etc."),
@@ -3749,6 +3750,10 @@ NOT_CHRONOLOGICAL_VIEW_IDS = [
     # '031826',
     '031826',
     '019446',  #Haiti jacmel
+    # Jean Luc visa etc
+    'EFTA02515416',
+    'EFTA02516675',
+    #
     'EFTA02001536',
     'EFTA01773417',
     'EFTA01987283',
