@@ -1115,7 +1115,8 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA01986756', author=MELANIE_PHILLIPS, author_uncertain=f"{STEVEN_SINOFSKY}'s gf at the time"),
     EmailCfg(id='EFTA00355684', author='Mira Bach', is_interesting=False),
     EmailCfg(id='EFTA01063008', author=OLGA_PONOMAR_BECKER, author_reason='Jmail'),
-    EmailCfg(id='EFTA01834130', author=PETER_MANDELSON, author_uncertain='reply', is_interesting=False),
+    EmailCfg(id='EFTA02436834', author=PETER_MANDELSON, author_reason='reply'),
+    EmailCfg(id='EFTA01834130', author=PETER_MANDELSON, author_reason='reply', is_interesting=False),
     EmailCfg(
         id='EFTA01988194',
         author=RASSECK_BOURGI,
