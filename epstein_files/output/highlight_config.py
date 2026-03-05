@@ -851,6 +851,11 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact('Linda Pinto', "interior design at Alberto Pinto Cabinet"),
             Contact(LYN_FONTANILLA, "Filipino housekeeper", r"L.nn? Fontanilla"),
             Contact(MERWIN_DELA_CRUZ, "housekeeper", r"Merwin"),
+            Contact(
+                'Myla Trestiza',
+                'yacht staff',
+                link_to_bio='https://thespinoff.co.nz/society/05-02-2026/the-epstein-files-and-nz-managers-models-and-the-kiwi-billionaire',
+            ),
             Contact(NADIA_MARCINKO, "Lolita Express pilot", r"Na[dď]i?a Marcinko(v[aá])?"),
             Contact('Perry Lang', f"Epstein's personal chef 1998-2002", r"(Adam )?Perry Lang"),
             Contact('Richard Barnett', "logistics for Epstein's properties", r"Rich(ard)? Barnett", match_partial=None),

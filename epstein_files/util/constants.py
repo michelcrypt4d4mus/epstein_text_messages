@@ -2638,6 +2638,7 @@ OTHER_FILES_GIRLS = [
     EmailCfg(id='EFTA02027844', author=UNKNOWN_GIRL, description='permission to "fuck someone with a condom"', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA02449477', author=UNKNOWN_GIRL, description='argument about finding girls for Epstein', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA01782788', author=UNKNOWN_GIRL, description='"I need 21-24, wiling to travel and work hard"', truncate_to=NO_TRUNCATE),
+    EmailCfg(id='EFTA00763537', author=UNKNOWN_GIRL, highlight_quote="19 but I look younger than her"),
     EmailCfg(id='EFTA00738485', recipients=[STEVEN_VICTOR_MD], truncate_to=640),
     # Recipients
     EmailCfg(
@@ -3758,7 +3759,12 @@ NOT_CHRONOLOGICAL_VIEW_IDS = [
     'EFTA02515416',
     'EFTA02516675',
     '011908_6',
-    #
+    # Jabor
+    # Deepak
+    'EFTA02342230',
+    # Misc
+    'EFTA00329334',
+    # --- #
     'EFTA02048499',
     'EFTA00322570',
     'EFTA02001536',
