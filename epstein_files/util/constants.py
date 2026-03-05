@@ -2037,6 +2037,14 @@ OTHER_FILES_CRYPTO = [
         date='2017-11-15',
         duplicate_ids=['EFTA00793120'],
     ),
+    # Alternative currencies
+    EmailCfg(
+        id='EFTA02021870',
+        author=BARNABY_MARSH,
+        date='2012-01-29 11:15:00',
+        highlight_quote="I would like to see you alone to discuss alternative currencies",
+        recipients=[JEFFREY_EPSTEIN],
+    ),
     # Bannon
     EmailCfg(id='030711', description='Epstein says "we can discuss michael and his coins", unclear what that means'),
     EmailCfg(id='026260', comment='Bannon cripto coin issues'),
