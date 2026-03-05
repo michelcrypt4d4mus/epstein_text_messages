@@ -71,6 +71,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 link_to_bio='https://www.sunlightx.com/james-tagg'
             ),
             Contact('James Watson', 'one of the discoverers of DNA', match_partial=None),
+            Contact(JEM_BENDELL, 'board member of Community Forge, provider of alternative currency software', match_partial='both'),
             Contact(JOSCHA_BACH, "cognitive science / AI research", match_partial='both'),
             Contact(LAWRENCE_KRAUSS, "theoretical physicist with #MeToo problems", r"Lawrence Kraus[es]?|[jl]awkrauss|kruase"),
             Contact('Lee Smolin', 'physicist'),
@@ -430,6 +431,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"RMB",
             r"SCMP",
             r"Shang?hai",
+            r"Tianjin",
             r"V-?Nee",
             r"(?<!Article\s)Xi(aomi)?", r"Jinping",
         ],
