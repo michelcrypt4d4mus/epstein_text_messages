@@ -167,7 +167,7 @@ class DocCfg:
             logger.warning(f"{self.id} is lowercase")
 
         if self.highlight_quote:
-            self.description = join_truthy(f'"{self.highlight_quote}"', self.description)
+            self.description = join_truthy(f'"{self.highlight_quote}"', self.description, ', ')
 
         self.truncate_to = self.truncate_to or (NO_TRUNCATE if self.is_interesting else self.truncate_to)
         self.id = self.id.upper()

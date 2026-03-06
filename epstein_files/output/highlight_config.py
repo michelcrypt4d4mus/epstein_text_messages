@@ -116,6 +116,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Carl Sagan",
             r"chemist(ry)?",
             r"Columbia( (Business School|University))?",
+            r"cryptographer",
             r"(Francis )?Crick",
             r"green card",
             r"(Karl )?Marx",
@@ -137,6 +138,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"(Richard )?Dawkins",
             r"Rockefeller University",
             r"Sanofi",
+            r"scientist",
             r"Stanford( University)?( Hospital)?",
             r"(Ste(ph|v)en )?Hawking",
             r"(Steven? )?Pinker",
@@ -592,7 +594,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(
                 'Marc Andreessen',
                 'co-founder of crypto heavy venture fund Andreessen Horowitz AKA a16z, Trump convert',
-                r"adreeson|(Marc\s*)?(?<!Gavin )Andreess?en(?!\s+Horowitz)|@pmarca",
+                r"adreeson|(Marc\s*)?(?<!Gavin )Andreess?en(?!\s+Horowitz)|pmarca",
                 link_to_bio='https://cryptadamus.substack.com/p/of-tech-bros-and-trumpers',
                 match_partial=None,
             ),
@@ -630,7 +632,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             organization('Bioptix', 'old name of RIOT Blockchain from when it was a biotech company'),
             organization('Bitfinex', f"crypto exchange run by the same people that run Tether"),
             organization('Bitmain', f"Chinese manufacturer of bitcoin mining rigs"),
-            organization(BLOCKSTREAM, f"early crypto firm co-founded by {ADAM_BACK} and {AUSTIN_HILL}", r"(@the)?blockstream"),
+            organization(BLOCKSTREAM, f"early crypto firm co-founded by {ADAM_BACK} and {AUSTIN_HILL}", r"(the)?blockstream"),
             organization(BLOCKCHAIN_CAPITAL, f"crypto VC fund co-founded by Bart Stephens and {BROCK_PIERCE}"),
             organization('Bloq', 'blockchain company', is_interesting=False),
             organization(

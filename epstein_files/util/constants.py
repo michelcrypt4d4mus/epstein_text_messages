@@ -2079,7 +2079,12 @@ OTHER_FILES_CRYPTO = [
         description=f'{AUSTIN_HILL} explains that some crypto funds are engaged in fraudulent wash trading (the attached Excel sheet listing those funds has not been found)',
         is_interesting=True,
     ),
-    EmailCfg(id='EFTA00673841', highlight_quote='business, Bitcoin, personal & esoteric mind games that we play', truncate_to=NO_TRUNCATE),
+    EmailCfg(
+        id='EFTA00673841',
+        description="@pmarca is Marc Andreessen (a16z)",
+        highlight_quote='business, Bitcoin, personal & esoteric mind games that we play',
+        truncate_to=NO_TRUNCATE,
+    ),
     EmailCfg(id='EFTA02529170', description=f"Blockstream set up a special company to invest in an Asian ride hailing service"),
     EmailCfg(id='EFTA01917402', description=f'discussion of Epstein investment in Blockstream funneled through {JOI_ITO}', is_interesting=True),
     EmailCfg(id='EFTA00999897', description=f"Epstein claims he's a fan of {ADAM_BACK} (who has recently claimed he had nothing to do with Epstein)"),
