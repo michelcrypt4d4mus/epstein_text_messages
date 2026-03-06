@@ -317,7 +317,7 @@ def print_email_device_signatures(epstein_files: EpsteinFiles) -> None:
 
     console.line()
     print_subtitle_panel("Emoji Usage")
-    console.print(_signature_table(emoji_authors, ('Emoji', AUTHOR)))
+    print_centered(_signature_table(emoji_authors, ('Emoji', AUTHOR)))
 
 
 def _print_section_summary_table(table: Table) -> None:
