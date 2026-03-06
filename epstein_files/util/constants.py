@@ -319,7 +319,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='033360', author=HENRY_HOLT, author_reason='in signature'),
     EmailCfg(id='033384', author=JACK_GOLDBERGER, author_uncertain='Might be Paul Prosperi?'),
     EmailCfg(id='026024', author=JEAN_HUGUEN, author_reason='signature'),
-    EmailCfg(id='021823', author=JEAN_LUC_BRUNEL, author_reason='reply'),
+    EmailCfg(id='021823', author=JEAN_LUC_BRUNEL, author_reason='reply', truncate_to=900),
     EmailCfg(id='031624', author=JEFFREY_EPSTEIN),
     EmailCfg(id='018726', author=JEFFREY_EPSTEIN, date='2018-06-08 08:36:00'),
     EmailCfg(id='032283', author=JEFFREY_EPSTEIN, date='2016-09-14 08:04:00'),
