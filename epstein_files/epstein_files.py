@@ -473,7 +473,8 @@ class EpsteinFiles:
                 continue
 
             cls = document_cls(document)
-            docs.append(cls(file_path, lines=document.lines, text=document.text))
+            # docs.append(cls(file_path, lines=document.lines, text=document.text))
+            docs.append(cls(file_path))  # TODO: needs to reload DropsiteEmail
             logger.info(str(docs[-1]))
 
             if doc_timer.seconds_since_start() > SLOW_FILE_SECONDS:

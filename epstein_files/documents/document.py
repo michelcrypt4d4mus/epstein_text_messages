@@ -3,6 +3,8 @@ import re
 from collections import Counter
 from dataclasses import asdict, dataclass, field
 from datetime import datetime
+from email import policy
+from email.parser import BytesParser
 from pathlib import Path
 from typing import ClassVar, Self, Sequence, TypeVar
 
@@ -493,8 +495,13 @@ class Document:
     def raw_text(self) -> str:
         """Reload the raw data from the underlying file and return it."""
         logger.warning(f"{self.file_path.name}: raw_text() called...")
-        with open(self.file_path) as f:
-            return f.read()
+
+        if self.file_info.is_eml_file:
+            with open(self.file_path, 'rb') as fp:
+                eml = BytesParser(policy=policy.default).parse(fp)
+                return eml.get_body(('plain', 'related', 'html')).get_content()
+        else:
+            return self.file_path.read_text()
 
     def reload(self) -> Self:
         """Rebuild a new version of this object by loading the source file from disk again."""
