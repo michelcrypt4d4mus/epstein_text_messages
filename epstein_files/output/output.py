@@ -1,4 +1,5 @@
 import json
+from collections import defaultdict
 from os import unlink
 from subprocess import CalledProcessError, check_output
 from typing import cast
@@ -17,20 +18,19 @@ from epstein_files.epstein_files import EpsteinFiles
 from epstein_files.output.doc_printer import DocPrinter
 from epstein_files.output.epstein_highlighter import highlighter
 from epstein_files.output.highlight_config import get_style_for_name
-from epstein_files.output.html.builder import buffer_as_html, rich_to_html, table_to_html, write_templated_html
-from epstein_files.output.html.elements import div_class
 from epstein_files.output.rich import *
 from epstein_files.output.site.sites import (AUTHORS_USING_SIGNATURES, EMAILERS_TABLE_PNG_PATH,
      FILES_THAT_ARE_NEITHER_EMAILS_NOR, HIS_EMAILS, HIS_TEXT_MESSAGES, HTML_DIR, SELECTIONS_FROM)
 from epstein_files.output.title_page import print_color_key, print_other_page_link, print_section_header
 from epstein_files.people.interesting_people import EMAILERS_TO_PRINT
-from epstein_files.people.person import PEOPLE_BIOS, Person
-from epstein_files.util.constant.html import HTML_TERMINAL_THEME, RICH_HTML_TEMPLATE
 from epstein_files.people.names import *
+from epstein_files.people.person import Person
+from epstein_files.util.constant.html import HTML_TERMINAL_THEME, RICH_HTML_TEMPLATE
 from epstein_files.util.constant.strings import AUTHOR
 from epstein_files.util.env import args
 from epstein_files.util.helpers.data_helpers import dict_sets_to_lists, uniq_sorted
 from epstein_files.util.helpers.file_helper import file_size_str, log_file_write
+from epstein_files.util.helpers.string_helper import extract_emojis
 from epstein_files.util.logging import logger, exit_with_error
 
 OTHER_INTERESTING_EMAILS_SUBTITLE = 'Other Interesting Emails\n(these emails have been flagged as being of particular interest)'
@@ -305,6 +305,25 @@ def print_email_device_signatures(epstein_files: EpsteinFiles) -> None:
     print_subtitle_panel(DEVICE_SIGNATURE_SUBTITLE)
     console.print(_signature_table(epstein_files.email_device_signatures_to_authors(), (DEVICE_SIGNATURE, AUTHOR), ', '))
     console.print(_signature_table(epstein_files.email_authors_to_device_signatures(), (AUTHOR, DEVICE_SIGNATURE)))
+    author_emojis = defaultdict(set)
+    emoji_authors = defaultdict(set)
+
+    for email in [e for e in epstein_files.emails if e.is_word_count_worthy]:
+        if (emojis := extract_emojis(email.actual_text)):
+            author_emojis[email.author].update(emojis)
+
+            for emoji in emojis:
+                emoji_authors[emoji].add(email.author or UNKNOWN)
+
+    table = Table(title='Author Emoji Usage', show_lines=True)
+    table.add_column('Emoji')
+    table.add_column('Authors')
+
+    for author, emojis in author_emojis.items():
+        table.add_row(author, '  '.join(emojis))
+
+    console.print(table)
+    console.print(_signature_table(emoji_authors, ('Emoji', AUTHOR)))
 
 
 def _print_section_summary_table(table: Table) -> None:
@@ -315,7 +334,15 @@ def _print_section_summary_table(table: Table) -> None:
 def _signature_table(keyed_sets: dict[str, set[str]], cols: tuple[str, str], join_char: str = '\n') -> Padding:
     """Build table for who signed emails with 'Sent from my iPhone' etc."""
     new_dict = dict_sets_to_lists(keyed_sets)
-    title = 'Email Signatures Used By Authors' if cols[0] == AUTHOR else AUTHORS_USING_SIGNATURES
+
+    if cols[0] == AUTHOR:
+        if cols[1] == DEVICE_SIGNATURE:
+            title = 'Email Signatures Used By Authors'
+        else:
+            title = f"{cols[1]} used by Authors"
+    else:
+        title = AUTHORS_USING_SIGNATURES
+
     table = build_table(title, header_style="bold reverse", show_lines=True)
 
     for i, col in enumerate(cols):

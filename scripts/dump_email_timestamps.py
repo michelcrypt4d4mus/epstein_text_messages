@@ -32,12 +32,15 @@ from epstein_files.output.rich import bool_txt, console, highlighter, print_json
 
 # Show biggest files
 for i, email in enumerate(epstein_files.emails):
+    if not email.is_word_count_worthy:
+        continue
+
     if (emojis := extract_emojis(email.actual_text)):
         # console.print(email._summary)
         console.print(email)
         print(f"   found emojis: {emojis}")
-        console.line()
-        print(f"----- actual text {email.file_id} -----\n{email.actual_text}\n--------------end actual text-------------\n")
+        # console.line()
+        # print(f"----- actual text {email.file_id} -----\n{email.actual_text}\n--------------end actual text-------------\n")
         console.line(2)
 
 

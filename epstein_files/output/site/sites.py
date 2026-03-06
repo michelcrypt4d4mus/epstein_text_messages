@@ -143,7 +143,7 @@ SITE_DESCRIPTIONS = {
     SiteType.CHRONOLOGICAL:         f"curated chronological:all types intermingled",
     SiteType.EMAILS:                f"emailers:all emails grouped by counterparty",
     SiteType.EMAILS_CHRONOLOGICAL:  f"emails chronological:all emails chronological order",
-    SiteType.DEVICE_SIGNATURES:     f"signatures:email signatures and who uses them",
+    SiteType.DEVICE_SIGNATURES:     f"signatures:email signatures/emojis and who uses them",
     SiteType.TEXT_MESSAGES:         f"text messages:{HOUSE_OVERSIGHT_TRANCHE}",
     SiteType.CURATED_MOBILE:        f"mobile:an attempt at mobile compatibility",
     SiteType.CHRONOLOGICAL_MOBILE:  f"chrono mobile:another attempt at mobile compatibility",
