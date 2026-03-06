@@ -99,6 +99,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact('Victoria Stodden', 'professor of statistics at University of Southern California'),
             Contact(YUKO_BARNABY, f"{MIT_MEDIA_LAB} Assistant to the Director", r"Y[ou]ko Ba(m|rn)(aby)?(?! Marsh)", match_partial=None),
             Contact(WHITFIELD_DIFFIE, f"MIT cryptographer and mathematician", r"whitfield.{,3}diffie?", match_partial='both'),
+            organization('Dalton', 'NYC private high school where Epstein got his first job by lying about his credentials'),
             organization(
                 MIT_MEDIA_LAB,
                 f"once great research institute overtaken by get rich quick schemes under {JOI_ITO}",
@@ -110,13 +111,17 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Andy Lippman",  # Media Lab
             r"Arizona State University",
             r"Bard ((Early )?College|High School|Schools)",
+            r"biolog(y|i(es|st))",
             r"Brotherton",
             r"Carl Sagan",
+            r"chemist(ry)?",
             r"Columbia( (Business School|University))?",
+            r"cryptographer",
             r"(Francis )?Crick",
             r"green card",
             r"(Karl )?Marx",
             r"(Lord )?Martin Rees",
+            r"LSAT",
             r"Massachusetts Institute of Technology",
             r"Mayo Clinic",
             r"MIT",
@@ -126,13 +131,15 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Norman Finkelstein",
             r"Oxford(?! Analytica)",
             r"PhD",
+            r"physics",
             r"plant biology",
             r"Praluent",
             r"Princeton( University)?",
             r"Regeneron",
             r"(Richard )?Dawkins",
             r"Rockefeller University",
-            r"Sanofi",
+            r"Sanofi",  # drug name
+            r"scientist",
             r"Stanford( University)?( Hospital)?",
             r"(Ste(ph|v)en )?Hawking",
             r"(Steven? )?Pinker",
@@ -293,6 +300,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(ALIREZA_ITTIHADIEH, "CEO Freestream Aircraft Limited", r"Alireza.[Il]ttihadieh", match_partial='both'),
             Contact(BARRY_J_COHEN, emailer_pattern=r"barry ((j.?|james) )?cohen?", match_partial=None),
             Contact('Barry Zelin', 'Axiom Capital'),
+            Contact('Bob Dudley', 'CEO of BP / British Petroleum', r"[BR]ob(ert) Dudley|Dudley, Robe?r?t?"),
             Contact(DAVID_L_NEUHAUSER, f'Livermore Partners, partner of {JOSHUA_FINK}'),
             Contact('Ed Razek', "Victoria's Secret executive"),
             Contact(FILIPA_PEROVIC, f"now Filipa Fink (married to {JOSHUA_FINK}), Coatue Management"),
@@ -322,6 +330,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact('Sam Belzberg', "Canadian businessman"),
             Contact(STEVE_WYNN, f'gambling magnate, possible dispute with {MILES_GUO}', match_partial=None),
             Contact(TOM_PRITZKER, "chairman of The Pritzker Organization and Hyatt Hotels"),
+            organization('501c3', 'IRS code for a non-profit entity'),
             organization(ATT_COURT_APPEARANCE_TEAM, "AT&T", is_interesting=False),
             organization('Junkermann Group', JUNKERMANN_FUND),
             organization('NJF Capital', JUNKERMANN_FUND, r"NJF( Capital)?"),
@@ -466,7 +475,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
     HighlightedNames(
         category=Interesting.CRYPTO,
         label=JOI_ITO,
-        style='gold1 bold',
+        style='gold1',
         contacts=[
             Contact(
                 JOI_ITO,
@@ -496,6 +505,12 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 r"Amir(?! Stemhell)( Taaki)|genjix",
                 link_to_bio='https://www.axios.com/2023/12/14/customers-of-dead-bitcoin-exchange-demand-refunds',
                 match_partial='last'
+            ),
+            Contact(
+                'Andrew Larkin',
+                f'insider trading charges from SEC related to online gambling, friend of {AUSTIN_HILL}',
+                link_to_bio='https://www.sec.gov/enforcement-litigation/litigation-releases/lr-25422',
+                match_partial=None,
             ),
             Contact(
                 ANTHONY_SCARAMUCCI,
@@ -582,7 +597,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(
                 'Marc Andreessen',
                 'co-founder of crypto heavy venture fund Andreessen Horowitz AKA a16z, Trump convert',
-                r"adreeson|(Marc\s*)?(?<!Gavin )Andreess?en(?!\s+Horowitz)",
+                r"adreeson|(Marc\s*)?(?<!Gavin )Andreess?en(?!\s+Horowitz)|pmarca",
                 link_to_bio='https://cryptadamus.substack.com/p/of-tech-bros-and-trumpers',
                 match_partial=None,
             ),
@@ -606,7 +621,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 r"Tim(othy)?( Cook)? Draper",
                 link_to_bio='https://x.com/Cryptadamist/status/2027175564444930286',
             ),
-            Contact('W. Bradford Stephens', f"co-founder of {BLOCKCHAIN_CAPITAL}", r"(Brad(ford)?|Bart) Stephens"),
+            Contact('W. Bradford Stephens', f"co-founder of {BLOCKCHAIN_CAPITAL}", r"(Brad(ford)?|Bart) Stephens", match_partial=None),
             Contact('William Wheeler', f'co-founder of cashintocoins.com, {EXPRESSCOIN} with {BROCK_PIERCE}', match_partial=None),
             Contact("Wladimir van der Laan", 'bitcoin core developer', r"Wladimir( van der Laan)?"),
             organization(
@@ -619,8 +634,9 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             organization('BGC', f"{CANTOR} related firm of {HOWARD_LUTNICK}"),
             organization('Bioptix', 'old name of RIOT Blockchain from when it was a biotech company'),
             organization('Bitfinex', f"crypto exchange run by the same people that run Tether"),
+            organization('BitFury', 'Dutch bitcoin mining company founded by Valery Vavilov and Mark Dollar'),
             organization('Bitmain', f"Chinese manufacturer of bitcoin mining rigs"),
-            organization(BLOCKSTREAM, f"early crypto firm co-founded by {ADAM_BACK} and {AUSTIN_HILL}"),
+            organization(BLOCKSTREAM, f"early crypto firm co-founded by {ADAM_BACK} and {AUSTIN_HILL}", r"(the)?blockstream"),
             organization(BLOCKCHAIN_CAPITAL, f"crypto VC fund co-founded by Bart Stephens and {BROCK_PIERCE}"),
             organization('Bloq', 'blockchain company', is_interesting=False),
             organization(
@@ -814,6 +830,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"(Matteo )?Salvini",
             r"Maxine Waters",
             r"(Nancy )?Pelosi",
+            r"Occupy New York",
             r"Open Society( Global Board)?",
             r"Ron Dellums",
             r"Schumer",
@@ -877,7 +894,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         contacts=[
             Contact(
                 name=JEFFREY_EPSTEIN,
-                emailer_pattern=r"j?ee[vy]acatio[mn]?[©@baeoq]?g?(mail.com)?|Epstine|\bJEE?\b|Jeff(rey)? (Edward )?E((sp|ps)tein?)?( VI Foundation)?|jeeproject@yahoo.com|J Jep|Jeffery Edwards?|(?<!(ark L.|rd Jay|Edward) )Epstein(,? Jeffrey( Edward)?)?|Jeffrey Epst.*comj?",
+                emailer_pattern=r"j?ee[vy]acatio[mn]?[©@baeoq]?g?(mail.com)?|Epstine|\bJEE?\b|Jefff?(rey)? (Edward )?E((sp|ps)tein?)?( VI Foundation)?|jeeproject@yahoo.com|J Jep|Jeffery Edwards?|(?<!(ark L.|rd Jay|Edward) )Epstein(,? Jeffrey( Edward)?)?|Jeffrey Epst.*comj?",
                 match_partial=None,
             ),
             Contact(MARK_EPSTEIN, "brother of Jeffrey", r"Mark (L\.? )?(Epstein|Lloyd)", match_partial=None),
@@ -1124,6 +1141,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"EU",
             r"Europe(an)?( Union)?",
             r"Finland",
+            r'Florence',
             r"Fr(ance|ench)",
             r"Geneva",
             r"Germany?",
@@ -1365,7 +1383,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 r"Andrew (L\.? )?Farkas|Farkas, Andrew( L\.?)?",
                 link_to_bio='https://www.nytimes.com/2026/02/09/nyregion/farkas-epstein-lawsuit-ties.html',
             ),
-            Contact(DANGENE_AND_JENNIE_ENTERPRISE, "founders of the members-only CORE club", match_partial=None),
+            Contact('Rob Goldsamt', 'CEO of Basic Care Networks'),
             Contact(
                 DAVID_STERN,
                 f"Epstein's partner in various businesses including Asia Gateway Ltd.",
@@ -1375,7 +1393,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(
                 JENNIE_SAUNDERS,
                 f'co-founder of Core Club, {DANGENE_AND_JENNIE_ENTERPRISE}, accused of recruiting underage girls',
-                fr"Core Club|Jennie (Enterprise|Saunders)",
+                fr"Core Club|(Dangene and )?Jennie (Enterprise|Saunders)",
                 link_to_bio='https://www.crainsnewyork.com/real-estate/core-club-founder-jennie-enterprise-exchanged-thousands-emails-jeffrey-epstein',
                 match_partial=None,
             ),
@@ -1468,6 +1486,8 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 link_to_bio='https://www.engadget.com/2012-03-12-darpa-director-exits-agency-for-google-assumes-mysterious-role.html',
                 match_partial=None,
             ),
+            acronym('Foreign Corrupt Practices Act'),
+            acronym('Justice Against Sponsors of Terrorism Act', 'law permitting 9/11 survivors to sue Saudi Arabia'),
             acronym('Know Your Customer', 'anti-money laundering legal framework'),
             acronym('Metropolitan Detention Center', 'jail where Epstein died'),
             acronym('Office of Foreign Assets Control', 'agency in charge of sanctions'),
@@ -1955,6 +1975,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 emailer_pattern=r"Fawzi.Siam?",
                 match_partial='first',
             ),
+            Contact('Hamad bin Khalifa al-Thani', 'emir of Qatar', match_partial=None),
             Contact(
                 HASSAN_JAMEEL,
                 'scion of Saudi family, Abdul Latif Jameel',
@@ -1995,7 +2016,8 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 link_to_bio='https://en.wikipedia.org/wiki/Murder_of_Martine_Vik_Magnussen',
             ),
             Contact('Timur Kulibayev', 'businessman from Kazakhstan'),
-            organization('GCC', 'Gulf Cooperation Council', r"GCC|Gulf Cooperation Council")
+            organization('GCC', 'Gulf Cooperation Council', r"GCC|Gulf Cooperation Council"),
+            organization('Rayyan Bank', 'Islamic bank based in Qatar'),
         ],
         patterns=[
             r"Abdulmalik Al-Makhlafi",
@@ -2027,7 +2049,6 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Fashi",
             r"Gaddafi",
             r"(Hamid )?Karzai",
-            r"Hamad( bin Jassim)?",
             r"Hamas",
             r"Hezbollah",
             r"Hourani",
@@ -2269,7 +2290,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(
                 name=ARIANE_DE_ROTHSCHILD,
                 info=f"heiress, runs the bank {EDMOND_DE_ROTHSCHILD} (Suisse) SA",
-                emailer_pattern=r"AdeR|(A(\.|riane) (de )?)?Rothsh?ch?il[cd]|Ariane(?! Dwyer)",
+                emailer_pattern=r"AdeR|(A(\.|riane) (de )?)?Roths?h?ch?il[cd]|Ariane(?! Dwyer)",
             ),
             Contact(JOHNNY_EL_HACHEM, f"{EDMOND_DE_ROTHSCHILD} Private Equity", r"el hachem johnny|johnny el hachem"),
             organization(EDMOND_DE_ROTHSCHILD, f"Swiss bank"),
@@ -2281,6 +2302,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         style='red bold',
         contacts=[
             Contact('Alisher Usmanov', 'Uzbeki oligarch with alleged ties to Putin, organized crime'),
+            Contact('Andrey Vavilov', 'former Russian finance minister accused of stealing $230 million and other frauds'),
             Contact(
                 ANYA_RASULOVA,
                 f'Uzbeki co-founder of {INSIGHTS_POD}, social media work for Epstein during 2016 US election',
@@ -2494,6 +2516,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Cambodian?",
             r"Hanoi",
             r"Indonesian?",
+            r"Kari Lai",
             r"Laos",
             r"Malaysian?",
             r"Male?dives",
@@ -2684,6 +2707,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"SkyNet",
             r"Skyp(ed?|ing)",
             r"Tim Cook",
+            r"Uber",
             r"WhatsApp",
         ],
     ),
@@ -2766,10 +2790,11 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Haiti(an)?",
             r"Jamaican?",
             r"(John )deJongh( Jr\.?)",
+            r"Martinique",
             r"PBI",
-            r"(?<!Bank\sof\s)Puerto Ric(an|o)",
+            r"(?<!Bank\sof\s)Pu?erto\s*Ric(an|o)",
             r"San Juan",
-            r"S(ain)?t.? Thomas",
+            r"S(ain)?t\.? Thomas",
             r"USVI",
             r"U(nited |\.)?S(tates|\.)? Virgin Islands",
             r"(?<!stein |vis-a-)VI(?!s-a-)",
@@ -2914,6 +2939,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 match_partial=None,
             ),
             Contact(GERALD_BARTON, "Maryland property developer Landmark Land Company", r"(?<!Wes )Barton"),
+            Contact('Jed Garfield', 'high end real estate agent for Russians etc.', match_partial=None),
             Contact('Kira Titenva', 'real estate agent'),
             Contact(
                 MARC_LEON,
@@ -2926,6 +2952,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Mandarin Oriental",
             r"properties",
             r"real estate( developer)?",
+            r"int[e=]rior design(er)?",
             r"(reverse )?mortgage",
         ]
     ),
@@ -2979,16 +3006,15 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
     HighlightedNames(
         contacts=[
             Contact(
-                JABOR_Y,  # TODO: fix the name
-                "former Qatari prime minister Hamad bin Jassim AKA \"HBJ\", planned Sharia crypto with Epstein",
-                r"[ji]abor y?|labor y",
+                HAMAD_BIN_JASSIM,
+                " AKA \"HBJ\", former Qatari prime minister, planned Sharia crypto with Epstein",
+                r"[ji]abor y?|labor y|HBJ|Hamad bin Jassim( al-Thani)?",
                 link_to_bio='https://en.wikipedia.org/wiki/Hamad_bin_Jassim_bin_Jaber_Al_Thani',
                 match_partial=None,
-            )
+            ),
         ],
         category=MIDEAST,
         style='spring_green1',
-        patterns=[r"HBJ"],
     ),
     HighlightedNames(
         contacts=[
@@ -3083,6 +3109,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"alterna[tv]i[tv]e finance",
             r"((anti )?money )?launder(s?|ers?|ing)?( money)?",
             r"(?<!(alfa|ture|hase|rahi|sche)\s)bank(?!\s+(of|secrecy))",
+            r"Black Sc?holes",
             r"capital controls",
             r"C[EF]O",
             r"charit(ies|y)",
@@ -3100,6 +3127,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"money(land)?",
             r"(naked )?shorting",
             r"NASDAQ",
+            r"options trad(er|ing)",
             r"philanthrop(i(es|st)|y)",
             r"ponz[il] scheme",
             r"preferreds",

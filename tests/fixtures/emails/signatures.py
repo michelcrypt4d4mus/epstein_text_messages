@@ -209,9 +209,7 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
         "Sent from my iPhone"
     ],
     'Amir Stemhell': ['Sent from Yahoo Mail on Android'],
-    ANAS_ALRASHEED: [
-        "Sent from my iPhone",
-    ],
+    ANAS_ALRASHEED: ["Sent from my iPhone"],
     ANDREW_FARKAS: [
         'Sent from my iPad',
     ],
@@ -287,9 +285,7 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
         "Sent from my iPhone",
         "Sorry for all the typos .Sent from my iPhone"
     ],
-    JES_STALEY: [
-        "Sent from my iPhone"
-    ],
+    JES_STALEY: ["Sent from my iPhone"],
     "Johnny el Hachem": ["Sent from my iPhone"],
     JOI_ITO: [
         "Sent from my iPad",
@@ -314,15 +310,9 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
     ],
     "Kelly Friendly": ["Sent from my iPhone"],
     KEN_STARR: ["Sent from my iPhone"],
-    KENNETH_E_MAPP: [
-        'Get Outlook for Android',
-    ],
-    KIRA_DIKHTYAR: [
-        'Sent from AOL Mobile Mail',
-    ],
-    'LSJ': [
-        "Sent from my iPhone"
-    ],
+    KENNETH_E_MAPP: ['Get Outlook for Android'],
+    KIRA_DIKHTYAR: ['Sent from AOL Mobile Mail'],
+    'LSJ': ["Sent from my iPhone"],
     LANDON_THOMAS: [
         "Sent from my BlackBerry® wireless device",
         "Sent from my iPhone"
@@ -397,7 +387,7 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
     REINALDO_AVILA_DA_SILVA: ['Sent from my BlackBerry® wireless device'],
     RENATA_BOLOTOVA: [
         "Sent from my iPad",
-        "Sent from my iPhone"
+        "Sent from my iPhone",
     ],
     RICHARD_KAHN: ["Sent from my iPhone"],
     "Richard Merkin": [
@@ -406,11 +396,12 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
     ],
     ROBERT_LAWRENCE_KUHN: ["Sent from my iPhone"],
     ROSS_GOW: ["Sent from my BlackBerry® wireless device"],
+    'Roy Black': ['Get Outlook for iOS'],
     'Sam Jaradeh': [
         'Sent from my iphone',
         'Sent from my iPhone',
     ],
-    "Sean Bannon": [
+    SEAN_BANNON: [
         "Sent from ProtonMail",
         "Sent from my iPhone"
     ],
@@ -464,9 +455,7 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
         'Sent from my Iphone',
         'Sent from my iphone',
     ],
-    'Yuko Barnaby': [
-        'Sent from my iPhone',
-    ],
+    'Yuko Barnaby': ['Sent from my iPhone'],
 }
 
 SIGNATURE_SUBSTITUTION_COUNTS = {

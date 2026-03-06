@@ -209,7 +209,9 @@ EMAIL_SIGNATURE_REGEXES = {
     ARIANE_DE_ROTHSCHILD: re.compile(r"Ensemble adoptons des gestes responsables : .{,1300}Espanol I Chinese$", re.DOTALL | re.MULTILINE),
     BARBRO_C_EHNBOM: re.compile(r"Barbro C.? Ehn.*\nChairman, Swedish-American.*\n((Office|Cell|Sweden):.*\n)*(360.*\nNew York.*)?"),
     BRAD_KARP: re.compile(r"This message is intended only for the use of the Addressee and may contain information.*\nnot the intended recipient, you are hereby notified.*\nreceived this communication in error.*"),
+    # TODO: two brads
     'Bradford Stephens': re.compile(r'^One Ferry Building,? Suite .{,5}\nSan.*\n(o.*\n)?www.*', re.MULTILINE | re.IGNORECASE),
+    'W Bradford Stephens': re.compile(r"This email \(including.*\n(please.*\n)?it.*\nand do not.*\n(does.*\n)?constitute.*\ninvestment.*\n(info.*\n)?contained.*\nthe.*\s*(sender.*\n)?update.*\nthis.*(\nemail.*)?"),
     BROCK_PIERCE: re.compile(r"[>» ]*Best regards,\n[>» ]*Brock( Pierce)?|IMPORTANT NOTICE: This.*\n(individual.*\nthat is.*\nlaw.*\nemployee.*\nrecipient.*|may contain info.*\nreader of this.*)|(Mobile?:?.*\n)?(Skype:.*\n)?E:?.*\n(W:.*\n)?(Follow me.*\n)?Co-invest.*(\nLinked.*)?"),
     'Cantor Fitzgerald': re.compile(r"CONFIDENTIAL: This e-mail, including its contents and attachments.{,1300}by\s+th.\s+Operations\s+Department\.?", re.DOTALL),
     DANIEL_SIAD: re.compile(r"Confidentiality Notice: The information contained in this electronic message is PRIVILEGED and confidential information intended only for the use of the individual entity or entities named as recipient or recipients. If the reader is not the intended recipient, be hereby notified that any dissemination, distribution or copy of this communication is strictly prohibited. If you have received this communication in error, please notify me immediately by electronic mail or by telephone and permanently delete this message from your computer system. Thank you.".replace(' ', r'\s*'), re.IGNORECASE),
@@ -253,7 +255,6 @@ EMAIL_SIGNATURE_REGEXES = {
     TONJA_HADDAD_COLEMAN: re.compile(fr"Tonja Haddad Coleman.*\nTonja Haddad.*\nAdvocate Building\n315 SE 7th.*(\nSuite.*)?\nFort Lauderdale.*(\n({REDACTED} )?facsimile)?(\nwww.tonjahaddad.com?)?(\nPlease add this efiling.*\nThe information.*\nyou are not.*\nyou are not.*)?", re.IGNORECASE),
     UNKNOWN: re.compile(r"(This message is directed to and is for the use of the above-noted addressee only.*\nhereon\.)", re.DOTALL),
     USANYS: re.compile(r"Southern District of New York\s+One Saint Andrew's Plaza\s+New York,?\s*New York 10007(\s+Tel)?"),
-    'W Bradford Stephens': re.compile(r"This email \(including.*\n(please.*\n)?it.*\nand do not.*\n(does.*\n)?constitute.*\ninvestment.*\n(info.*\n)?contained.*\nthe.*\s*(sender.*\n)?update.*\nthis.*(\nemail.*)?"),
 }
 
 # Some emails have a lot of uninteresting CCs
@@ -351,6 +352,7 @@ UNINTERESTING_EMAILERS = FLIGHT_IN_2012_PEOPLE + IRAN_DEAL_RECIPIENTS + TRIVERS_
     'Police Code Enforcement',               # Kirk Blouin / John Page CC
     'Sam Harris',                            # Lawrence Krauss CC
     SAMUEL_LEFF,                             # Random CC
+    'SEC',                                   # Emails show up under Chris Dilorio
     'Sean T Lehane',                         # Random CC
     'Stephen Rubin',                         # Random CC
     THANU_BOONYAWATANA,                      # Eduardo Robles CC

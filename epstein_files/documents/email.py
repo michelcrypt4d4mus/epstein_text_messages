@@ -29,7 +29,7 @@ from epstein_files.output.highlight_config import HIGHLIGHTED_NAMES, get_style_f
 from epstein_files.output.html.builder import table_to_html
 from epstein_files.output.html.elements import to_em
 from epstein_files.output.layout_elements.file_display import FileDisplay, JustifyMethod
-from epstein_files.output.rich import DEFAULT_TABLE_KWARGS, build_table, join_texts, styled_key_value
+from epstein_files.output.rich import DEFAULT_TABLE_KWARGS, build_table, create_hyperlinks, join_texts, styled_key_value
 from epstein_files.util.constant.strings import APPEARS_IN, ARCHIVE_LINK_COLOR, REDACTED, TIMESTAMP_DIM
 from epstein_files.util.constant.urls import URL_SIGNIFIERS
 from epstein_files.people.names import sort_names
@@ -45,7 +45,7 @@ from epstein_files.util.logging import logger
 BAD_FIRST_LINE_REGEX = re.compile(r'^(>>|Grant_Smith066474"eMailContent.htm|LOVE & KISSES)$')
 BAD_LINE_REGEX = re.compile(r'^(>;?|[>»]*=20|\d{1,2}|PAGE INTENTIONALLY LEFT BLANK|Classification: External Communication|Hide caption|Importance:?\s*High|[iI,•]|[1i] (_ )?[il]|, [-,]|L\._|_filtered|si.nature.asc|.*(yiv0232|font-family:|margin-bottom:).*)$')
 BAD_SUBJECT_CONTINUATIONS = ['orwarded', 'Hi ', 'Sent ', 'AmLaw', 'Original Message', 'Privileged', 'Sorry', '---']
-LINK_LINE_REGEX = re.compile(f"^[>• ]*htt")
+LINK_LINE_REGEX = re.compile(r"^[>• ]*htt")
 LINK_LINE2_REGEX = re.compile(r"^[-\w.%&=/]{5,}$")
 QUOTED_REPLY_LINE_REGEX = re.compile(r'(\nFrom:(.*)|wrote:)\n', re.IGNORECASE)
 REPLY_TEXT_REGEX = re.compile(rf"^(.*?){REPLY_LINE_PATTERN}", re.DOTALL | re.IGNORECASE | re.MULTILINE)
@@ -96,7 +96,7 @@ OCR_REPAIRS: dict[str | re.Pattern, str] = {
     re.compile(r"([<.=_HIM][<>.=_HIM14]{5,}[<>.=_HIM]|MOMMINNEMUMMIN) *(wrote:?)?"): rf"{REDACTED} \2",
     re.compile(r"([,<>_]|AM|PM)\n(>)? ?wrote:?"): r'\1\2 wrote:',
     # Headers
-    'I nline-Images:': 'Inline-Images:',
+    re.compile(r"I ?(od|nl)ine-Images:"): 'Inline-Images:',
     re.compile(r"^((?:B?cc|To):.*)\n(>?;.*)", re.IGNORECASE | re.MULTILINE): r'\1 \2',
     re.compile(r"^From "): 'From: ',
     re.compile(r"^(Sent|Subject) (?![Ff]rom|on|using|[Rr]emote|[Vv]ia|with)", re.MULTILINE): r'\1: ',
@@ -138,11 +138,12 @@ OCR_REPAIRS: dict[str | re.Pattern, str] = {
     'Mail for i Phone': 'Mail for iPhone',
     'Sent from Mabfl': 'Sent from Mobile',  # NADIA_MARCINKO signature bad OCR
     'twitter glhsummers': 'twitter @lhsummers',
-    re.compile(r"from my ['!()]([Pp]hone)"): r'from my i\1',
     re.compile(r"[cC]o-authored with i ?Phone auto-correct"): "Co-authored with iPhone auto-correct",
-    re.compile(r"twitter\.com[i/][lI]krauss[1lt]"): "twitter.com/lkrauss1",
+    re.compile(r"from my ['!()]([Pp]hone)"): r'from my i\1',
     re.compile(r'from my BlackBerry[0°] wireless device'): 'from my BlackBerry® wireless device',
     re.compile(r'^INW$', re.MULTILINE): REDACTED,
+    re.compile(r'Sent from one of my many test mobile devices while on the go and changing the world\s+:\s+so\s+my\s+apologies for any typos'): 'Sent from one of my many test mobile devices while on the go and changing the world : so my apologies for any typos',
+    re.compile(r"twitter\.com[i/][lI]krauss[1lt]"): "twitter.com/lkrauss1",
     # links
     'classified-intelligence-\nmichael-flynn-trump': 'classified-intelligence-michael-flynn-trump',
     'on-accusers-rose-\nmcgowan/ ': 'on-accusers-rose-\nmcgowan/\n',
@@ -384,10 +385,7 @@ class Email(Communication):
         if args.char_nums:
             text = self._inject_line_numbers(text, args.char_nums)
 
-        lines = [
-            Text.from_markup(f"[link={line}]{line}[/link]") if line.startswith('http') else Text(line)
-            for line in text.split('\n')
-        ]
+        lines = [create_hyperlinks(line) for line in text.split('\n')]
 
         if self.config and self.config.highlighted_pattern:
             logger.debug(f"self.config.highlighted_pattern='{self.config.highlighted_pattern}'")

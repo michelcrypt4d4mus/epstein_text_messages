@@ -75,6 +75,7 @@ OTHER_FILE_CLASS = 'OtherFile'
 # Law
 CVRA = "Crime Victims' Rights Act [CVRA]"
 JASTA = 'JASTA'
+JASTA_FULL = f"{JASTA} (Justice Against Sponsors of Terrorism Act)"
 
 # Organizations
 BROCKMAN_INC = 'Brockman, Inc.'
