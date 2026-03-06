@@ -624,7 +624,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             organization('Bioptix', 'old name of RIOT Blockchain from when it was a biotech company'),
             organization('Bitfinex', f"crypto exchange run by the same people that run Tether"),
             organization('Bitmain', f"Chinese manufacturer of bitcoin mining rigs"),
-            organization(BLOCKSTREAM, f"early crypto firm co-founded by {ADAM_BACK} and {AUSTIN_HILL}"),
+            organization(BLOCKSTREAM, f"early crypto firm co-founded by {ADAM_BACK} and {AUSTIN_HILL}", r"(@the)?blockstream"),
             organization(BLOCKCHAIN_CAPITAL, f"crypto VC fund co-founded by Bart Stephens and {BROCK_PIERCE}"),
             organization('Bloq', 'blockchain company', is_interesting=False),
             organization(
