@@ -290,7 +290,6 @@ EMAILS_CONFIG = [
     EmailCfg(id='031560', author=DAVID_SCHOEN, author_reason='signature'),
     EmailCfg(id='026287', author=DAVID_SCHOEN, author_reason='signature'),
     EmailCfg(id='033419', author=DAVID_SCHOEN, author_reason='signature'),
-    EmailCfg(id='EFTA01781620', author=DAVID_SCHOEN, author_uncertain='"Sent from AOL Mobile Mail" in chain'),
     EmailCfg(
         id='EFTA02442672',
         author=DAVID_STERN,
@@ -2625,6 +2624,7 @@ OTHER_FILES_GIRLS = [
         author_uncertain='https://www.reddit.com/r/Epstein/comments/1qwbn5i/trafficker_julia_santos/',
         highlight_quote='very sweet and might be naughty t=o',
     ),
+    EmailCfg(id='EFTA01781620', author=KIRA_DIKHTYAR, author_uncertain='"Sent from AOL Mobile Mail" in chain'),
     EmailCfg(id='EFTA01805304', author=KIRA_DIKHTYAR, author_reason='Jmail', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA01766199', author=KIRA_DIKHTYAR, author_reason='reply', truncate_to=NO_TRUNCATE),
     EmailCfg(
@@ -2848,6 +2848,7 @@ OTHER_FILES_GIRLS = [
     EmailCfg(id='EFTA01995972', highlight_quote='you are meeting elon tmr for lunch'),
     EmailCfg(id='EFTA01768670', highlight_quote='find girls for the agency', description=f'but {BORIS_NIKOLIC} is a "biotech investor"...'),
     EmailCfg(id='EFTA01998027', highlight_quote="What day/night will be the wildest party on your island?", is_interesting=True),
+    EmailCfg(id='EFTA01930501', highlight_quote="Your littlest girl was a little naughty"),
 
     # Descriptions
     EmailCfg(id='EFTA00631762', description="visa problems for Epstein's South African friend"),
@@ -3849,7 +3850,7 @@ NOT_CHRONOLOGICAL_VIEW_IDS = [
     'EFTA01063216',  # canceled trip
     'EFTA01738267',  # canceled trip
     # Ehud barak
-    '032336'
+    '032336',
     '033338',
     'EFTA00582504',
     '024432',

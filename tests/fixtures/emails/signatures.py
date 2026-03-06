@@ -357,6 +357,7 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
         "Sent from my iPhone"
     ],
     'Myla Trestiza': ['Sent from Yahoo Mail for iPhone'],
+    NADIA_MARCINKO: ['Sent via portable phone'],
     "Neal Kassell": [
         "Sent from my iPad",
         "Sent from my iPhone"
@@ -427,6 +428,7 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
         'Sent from Windows Mail',
         'Sent using Acompli email app',
     ],
+    STORY_COWLES: ["Sent from Story's iPhone"],
     SULTAN_BIN_SULAYEM: [
         'Sent from my BlackBerry® wireless device',
         "Sent from my iPhone",
