@@ -656,7 +656,11 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 r"Cantor(,? (Fitzgerald|Opportunities|Ventures?))?",
                 link_to_bio='https://cryptadamus.substack.com/p/trumps-transition-team-is-tethered',
             ),
-            organization('Coinbase', 'largest American crypto exchange invested in by Epstein'),
+            organization(
+                'Coinbase',
+                'largest American crypto exchange, early investment from Epstein',
+                link_to_bio='https://protos.com/the-context-159-%e2%81%89%ef%b8%8f-epstein-a-convicted-pedo-invested-in-coinbase/',
+            ),
             organization(
                 'Cryptocurrency Partners',
                 f'crypto fund set up by Epstein and {BROCK_PIERCE} as a sidecar to {BLOCKCHAIN_CAPITAL}',
