@@ -14,7 +14,15 @@ HEADER_FIELDS = [AUTHOR, 'sent_at', 'to', 'subject']
 
 @dataclass
 class DropsiteEmail(Email):
-    eml: EmailMessage = field(init=False)
+    _eml: EmailMessage = field(init=False)
+
+    @property
+    def eml(self) -> EmailMessage:
+        if '_eml' not in dir(self):
+            with open(self.file_path, 'rb') as fp:
+                self._eml = BytesParser(policy=policy.default).parse(fp)
+
+        return self._eml
 
     def raw_text(self) -> str:
         """Reload the raw data from the underlying file and return it."""
@@ -25,6 +33,7 @@ class DropsiteEmail(Email):
         bcc = self.eml['bcc'].split(';') if self.eml['bcc'] else None
         cc = self.eml['cc'].split(';') if self.eml['cc'] else None
         field_names = HEADER_FIELDS + (['bcc'] if bcc else []) + (['cc'] if cc else [])
+        self.warn(f"header keys: {self.eml.keys()}")
 
         return EmailHeader(
             author=self.eml['from'],
@@ -38,9 +47,6 @@ class DropsiteEmail(Email):
 
     def _load_file(self) -> str:
         """Remove BOM and HOUSE OVERSIGHT lines, strip whitespace."""
-        with open(self.file_path, 'rb') as fp:
-            self.eml = BytesParser(policy=policy.default).parse(fp)
-
         body = self.eml.get_body(('plain', 'related', 'html')).get_content()
         text = self.with_header(f"\n{body}")
         # TODO: this should be in _repair()
