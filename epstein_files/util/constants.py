@@ -1545,7 +1545,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00949376', description=f"Epstein paying {MC2_MODEL_MGMT}", truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA00630134', description=f'Epstein recommends Signal encrypted messenger to {ALLEGED_KARIM_WADE}', is_interesting=True),
     EmailCfg(id='EFTA00955694', description=f"Epstein thanks {ELON_MUSK} for the SpaceX tour that Musk has said never happened", is_interesting=True),
-    EmailCfg(id='EFTA02561277', description=f"{ELON_MUSK} get a massage", is_interesting=True),
+    EmailCfg(id='EFTA02561277', description=f"planning for {ELON_MUSK} gets a massage", is_interesting=True),
     EmailCfg(id='EFTA00322570', description=f'booking flight for {REDACTED} from Hong Kong to NYC'),
     EmailCfg(id='EFTA02565917', description='Hassan Mohammed Abdul Latif Jameel is a Saudi businessman and philanthropist'),
     EmailCfg(id='EFTA00927227', description=f"{IAN_OSBORNE} pitches his new venture fund {HEDOSOPHIA} to Epstein", is_interesting=True),
@@ -2668,7 +2668,8 @@ OTHER_FILES_GIRLS = [
         id='EFTA01995523',
         # author=SVETLANA_POZHIDAEVA,
         # author_uncertain=f"{JOSHUA_FINK} + Sent from Blackberry",
-        description=f'"pictures of {REDACTED}" may be "Lana" ({SVETLANA_POZHIDAEVA}) or "Dana" according to Jmail',
+        description=f'impersonating [someone] talking to {JOSHUA_FINK}, {REDACTED} may be "Lana" ({SVETLANA_POZHIDAEVA}) or "Dana" (says Jmail)',
+        is_interesting=True,
     ),
     EmailCfg(
         id='EFTA01870453',
@@ -2678,7 +2679,12 @@ OTHER_FILES_GIRLS = [
     ),
     EmailCfg(id='EFTA01877224', author=SVETLANA_POZHIDAEVA, author_uncertain=f"{JOSHUA_FINK} texts"),
     EmailCfg(id='EFTA00937507', author=SVETLANA_POZHIDAEVA, author_uncertain=f"{JOSHUA_FINK} texts"),
-    EmailCfg(id='EFTA02560884', recipients=[SVETLANA_POZHIDAEVA], recipient_uncertain=f"{JOSHUA_FINK} texts"),
+    EmailCfg(
+        id='EFTA02560884',
+        description=f"is Epstein drafting {SVETLANA_POZHIDAEVA}'s responses to {JOSHUA_FINK} {QUESTION_MARKS}",
+        recipients=[SVETLANA_POZHIDAEVA],
+        recipient_uncertain=f"{JOSHUA_FINK} texts",
+    ),
     EmailCfg(
         id='EFTA01991293',
         author=SVETLANA_POZHIDAEVA,
