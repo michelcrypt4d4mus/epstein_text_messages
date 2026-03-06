@@ -9,6 +9,7 @@ from inflection import underscore
 
 from epstein_files.util.constant.strings import QUESTION_MARKS_REGEX
 
+EMOJI_REGEX = re.compile(r"(?<!\S)[:;=][-^]?[oODP()]|[oO()][-^]?[:=](?=$|\s)")
 PDFALYZER_IMAGE_PANEL_REGEX = re.compile(r"\n╭─* Page \d+, Image \d+.*?╯\n?", re.DOTALL)
 MULTINEWLINE_REGEX = re.compile(r"\n{2,}")
 MULTISPACE_REGEX = re.compile(" +")
@@ -34,6 +35,10 @@ def as_pattern(s: str) -> str:
 
 def constantize(s: str) -> str:
     return underscore(s.upper())
+
+
+def extract_emojis(s: str) -> list[str]:
+    return [m.group(0) for m in EMOJI_REGEX.finditer(s)]
 
 
 def has_line_starting_with(s: str | list[str], pfxes: str | list[str], limit: int | None = None) -> bool:
