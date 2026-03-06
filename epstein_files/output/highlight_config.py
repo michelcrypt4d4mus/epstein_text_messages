@@ -99,6 +99,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact('Victoria Stodden', 'professor of statistics at University of Southern California'),
             Contact(YUKO_BARNABY, f"{MIT_MEDIA_LAB} Assistant to the Director", r"Y[ou]ko Ba(m|rn)(aby)?(?! Marsh)", match_partial=None),
             Contact(WHITFIELD_DIFFIE, f"MIT cryptographer and mathematician", r"whitfield.{,3}diffie?", match_partial='both'),
+            organization('Dalton', 'NYC private high school where Epstein got his first job by lying about his credentials'),
             organization(
                 MIT_MEDIA_LAB,
                 f"once great research institute overtaken by get rich quick schemes under {JOI_ITO}",
@@ -110,8 +111,10 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Andy Lippman",  # Media Lab
             r"Arizona State University",
             r"Bard ((Early )?College|High School|Schools)",
+            r"biolog(y|i(es|st))",
             r"Brotherton",
             r"Carl Sagan",
+            r"chemist(ry)?",
             r"Columbia( (Business School|University))?",
             r"(Francis )?Crick",
             r"green card",
@@ -126,6 +129,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Norman Finkelstein",
             r"Oxford(?! Analytica)",
             r"PhD",
+            r"physics",
             r"plant biology",
             r"Praluent",
             r"Princeton( University)?",
