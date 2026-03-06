@@ -1771,7 +1771,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 'producer and technologist for CBS News in New York',
                 link_to_bio='https://www.edge.org/memberbio/dan_dubno',
             ),
-            Contact('David Pecker', 'publisher of National Enquirer and Weekly World News'),
+            Contact('David Pecker', 'lowlife publisher of National Enquirer and Weekly World News'),
             Contact(
                 'Dylan Love',
                 f'Business Insider / The Next Web, financial support from Epstein via {MASHA_DROKOVA}',
