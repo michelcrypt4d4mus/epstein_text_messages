@@ -704,7 +704,11 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 r"Kyara( Investments?)?( [IV]+)?",
             ),
             organization('LedgerX', 'crypto derivatives platform acquired by FTX for $298 million in a very shady deal'),
-            organization('Libra', f"Facebook's attempt at a stablecoin that was canceled by the US government"),
+            organization(
+                'Libra',
+                f"Facebook's attempt at a stablecoin that was canceled by the US government",
+                link_to_bio='https://www.amazon.com/Libra-Shrugged-Facebook-Tried-Money-ebook/dp/B08KK9SZP6',
+            ),
             organization(
                 'Medici Bank',
                 f"crypto friendly bank set up by {LORENZO_DE_MEDICI} with investment from {MARIA_PRUSAKOVA} and maybe {BROCK_PIERCE}",
