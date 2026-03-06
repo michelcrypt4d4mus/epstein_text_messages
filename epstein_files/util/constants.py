@@ -2716,7 +2716,7 @@ OTHER_FILES_GIRLS = [
         recipient_uncertain='https://x.com/FlippersUpNow/status/2023457206109155345',
         description='"igrushki" means "toys" in Russian',
     ),
-    EmailCfg(id='EFTA00857669', recipients=[SANITA], description=f"{SANITA} is mad at Epstein", truncate_to=NO_TRUNCATE),
+    EmailCfg(id='EFTA00857669', recipients=[SANITA], description=f"{SANITA} is maybe the only great girl with right thinking", truncate_to=NO_TRUNCATE),
     EmailCfg(
         id='EFTA00888467',
         description=f'very strange conversation about "Peter" (maybe {PETER_MANDELSON}?) and "mj" (maybe {HASSAN_JAMEEL}?)',
