@@ -137,7 +137,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Regeneron",
             r"(Richard )?Dawkins",
             r"Rockefeller University",
-            r"Sanofi",
+            r"Sanofi",  # drug name
             r"scientist",
             r"Stanford( University)?( Hospital)?",
             r"(Ste(ph|v)en )?Hawking",
