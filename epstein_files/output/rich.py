@@ -31,6 +31,8 @@ SUBTITLE_PADDING = (1, 0, 1, 0)
 GREY_NUMBERS = [58, 39, 39, 35, 30, 27, 23, 23, 19, 19, 15, 15, 15]
 VALID_GREYS = [0, 3, 7, 11, 15, 19, 23, 27, 30, 35, 37, 39, 42, 46, 50, 53, 54, 58, 62, 63, 66, 69, 70, 74, 78, 82, 84, 85, 89, 93]
 
+LINK_HREF_LINE_REGEX = re.compile(r"^([>• ]*)(http\S+)(.*)")
+
 DATASET_DESCRIPTION_STYLE = 'gray74'
 # INFO_STYLE = 'light_goldenrod2 italic'
 INFO_STYLE = 'gray50 italic'
@@ -141,6 +143,17 @@ def build_table(
         add_cols_to_table(table, cols)
 
     return table
+
+
+def create_hyperlinks(line: str) -> Text:
+    """Add [link] tags if appropriate."""
+    if (match := LINK_HREF_LINE_REGEX.match(line)):
+        link = match.group(2)
+        txt = Text(match.group(1))
+        txt.append(Text.from_markup(f"[link={link}]{link}[/link]"))
+        return txt.append(match.group(3))
+    else:
+        return Text(line)
 
 
 def indent_txt(txt: str | Text, spaces: int = 4, prefix: str = '') -> Text:

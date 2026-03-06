@@ -29,7 +29,7 @@ from epstein_files.output.highlight_config import HIGHLIGHTED_NAMES, get_style_f
 from epstein_files.output.html.builder import table_to_html
 from epstein_files.output.html.elements import to_em
 from epstein_files.output.layout_elements.file_display import FileDisplay, JustifyMethod
-from epstein_files.output.rich import DEFAULT_TABLE_KWARGS, build_table, join_texts, styled_key_value
+from epstein_files.output.rich import DEFAULT_TABLE_KWARGS, build_table, create_hyperlinks, join_texts, styled_key_value
 from epstein_files.util.constant.strings import APPEARS_IN, ARCHIVE_LINK_COLOR, REDACTED, TIMESTAMP_DIM
 from epstein_files.util.constant.urls import URL_SIGNIFIERS
 from epstein_files.people.names import sort_names
@@ -45,7 +45,7 @@ from epstein_files.util.logging import logger
 BAD_FIRST_LINE_REGEX = re.compile(r'^(>>|Grant_Smith066474"eMailContent.htm|LOVE & KISSES)$')
 BAD_LINE_REGEX = re.compile(r'^(>;?|[>»]*=20|\d{1,2}|PAGE INTENTIONALLY LEFT BLANK|Classification: External Communication|Hide caption|Importance:?\s*High|[iI,•]|[1i] (_ )?[il]|, [-,]|L\._|_filtered|si.nature.asc|.*(yiv0232|font-family:|margin-bottom:).*)$')
 BAD_SUBJECT_CONTINUATIONS = ['orwarded', 'Hi ', 'Sent ', 'AmLaw', 'Original Message', 'Privileged', 'Sorry', '---']
-LINK_LINE_REGEX = re.compile(f"^[>• ]*htt")
+LINK_LINE_REGEX = re.compile(r"^[>• ]*htt")
 LINK_LINE2_REGEX = re.compile(r"^[-\w.%&=/]{5,}$")
 QUOTED_REPLY_LINE_REGEX = re.compile(r'(\nFrom:(.*)|wrote:)\n', re.IGNORECASE)
 REPLY_TEXT_REGEX = re.compile(rf"^(.*?){REPLY_LINE_PATTERN}", re.DOTALL | re.IGNORECASE | re.MULTILINE)
@@ -384,10 +384,7 @@ class Email(Communication):
         if args.char_nums:
             text = self._inject_line_numbers(text, args.char_nums)
 
-        lines = [
-            Text.from_markup(f"[link={line}]{line}[/link]") if line.startswith('http') else Text(line)
-            for line in text.split('\n')
-        ]
+        lines = [create_hyperlinks(line) for line in text.split('\n')]
 
         if self.config and self.config.highlighted_pattern:
             logger.debug(f"self.config.highlighted_pattern='{self.config.highlighted_pattern}'")
