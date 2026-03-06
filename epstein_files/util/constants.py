@@ -2733,7 +2733,12 @@ OTHER_FILES_GIRLS = [
         recipient_uncertain='https://x.com/FlippersUpNow/status/2023457206109155345',
         description='"igrushki" means "toys" in Russian',
     ),
-    EmailCfg(id='EFTA00857669', recipients=[SANITA], description=f"{SANITA} is maybe the only great girl with right thinking", truncate_to=NO_TRUNCATE),
+    EmailCfg(
+        id='EFTA00857669',
+        description=f"{SANITA} is maybe the only great girl with right thinking",
+        recipients=[SANITA],
+        truncate_to=NO_TRUNCATE,
+    ),
     EmailCfg(
         id='EFTA00888467',
         description=f'very strange conversation about "Peter" (maybe {PETER_MANDELSON}?) and "mj" (maybe {HASSAN_JAMEEL}?)',
@@ -2840,7 +2845,7 @@ OTHER_FILES_GIRLS = [
     EmailCfg(id='EFTA01930285', highlight_quote='ukraine upheaval should provide many opportunites'),
     EmailCfg(id='EFTA00751119', highlight_quote='Valdson to teach girls how to serve'),
     EmailCfg(id='EFTA01995972', highlight_quote='you are meeting elon tmr for lunch'),
-    EmailCfg(id='EFTA01768670', highlight_quote='find girls for the agency', description=f'but {BORIS_NIKOLIC} is a tech investor...'),
+    EmailCfg(id='EFTA01768670', highlight_quote='find girls for the agency', description=f'but {BORIS_NIKOLIC} is a "biotech investor"...'),
     EmailCfg(id='EFTA01998027', highlight_quote="What day/night will be the wildest party on your island?", is_interesting=True),
 
     # Descriptions
@@ -3630,6 +3635,8 @@ WHISTLEBLOWER_IDS = {
 
 OTHER_FILES_CRYPTO.extend([whistleblower_cfg(id, desc) for id, desc in WHISTLEBLOWER_IDS.items()])
 
+
+# Interesting / uninteresting
 INTERESTING_EMAIL_IDS = [
     '033096',
     'EFTA02516264',
