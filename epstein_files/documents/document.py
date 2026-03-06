@@ -492,6 +492,7 @@ class Document:
 
     def raw_text(self) -> str:
         """Reload the raw data from the underlying file and return it."""
+        logger.warning(f"{self.file_path.name}: raw_text() called...")
         with open(self.file_path) as f:
             return f.read()
 
