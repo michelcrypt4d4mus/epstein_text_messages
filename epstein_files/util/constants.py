@@ -2435,7 +2435,7 @@ OTHER_FILES_CRYPTO = [
     EmailCfg(id='EFTA02645742', description=f"tax implications of the untraceable 'privacy coin' ZCash", is_interesting=True),
     EmailCfg(id='EFTA02374960', description=f"Epstein says that he will fund a seat at MIT Media Lab for ZCash founder {MADARS_VIRZA}", is_interesting=True),
     # Unsorted
-    EmailCfg(id='EFTA00629471', author=JOHN_BROCKMAN, truncate_to=3000),
+    EmailCfg(id='EFTA00629471', author=JOHN_BROCKMAN, non_participants=[AUSTIN_HILL, 'David Geffen'], truncate_to=3000),
     EmailCfg(id='EFTA01762201', highlight_quote='indoctrinating kids into an economy', show_with_name=BOBBY_KOTICK),
     EmailCfg(id='EFTA02414991', description=f"Epstein signs up for World of Warcraft", truncate_to=350),
     EmailCfg(id='EFTA01388354', description=f"invitation to {DEUTSCHE_BANK} blockchain event with Mike Novogratz"),

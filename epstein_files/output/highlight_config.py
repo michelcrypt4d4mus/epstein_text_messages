@@ -87,7 +87,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(ROBERT_TRIVERS, "evolutionary biology", r"tri[vy]ersr@gmail|Robert Trivers?"),
             Contact(ROGER_SCHANK, "AI pioneer, Teachers College, Columbia University, deceased"),
             Contact('Sandy Pentland', MIT_MEDIA_LAB, r"((Alex|Sandy) )?Pentland"),
-            Contact(SETH_LLOYD, "professor of mechanical engineering at MIT"),
+            Contact(SETH_LLOYD, "professor of mechanical engineering at MIT", match_partial=None),
             Contact(
                 STEVEN_VICTOR_MD,
                 "dermatologist who treated Epstein's girls",
