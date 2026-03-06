@@ -2058,8 +2058,8 @@ OTHER_FILES_CRYPTO = [
         highlight_quote="I would like to see you alone to discuss alternative currencies",
         recipients=[JEFFREY_EPSTEIN],
     ),
-    EmailCfg(id='EFTA02575430', description='alternative currencies group'),
     EmailCfg(id='EFTA01852443'),
+    EmailCfg(id='EFTA02575430', description='alternative currencies group'),
     # Bannon
     EmailCfg(id='030711', description='Epstein says "we can discuss michael and his coins", unclear what that means'),
     EmailCfg(id='026260', comment='Bannon cripto coin issues'),
@@ -2209,12 +2209,15 @@ OTHER_FILES_CRYPTO = [
         is_interesting=True
     ),
     # David Stern
-    EmailCfg(id='EFTA02494305', description=f"planning a crypto exchange in Belarus, {DAVID_STERN}'s \"Chinese guys\" can't do it because of the PRC's crackdown on crypto"),
+    EmailCfg(
+        id='EFTA02494305',
+        description=f"planning a crypto exchange in Belarus, {DAVID_STERN}'s \"Chinese guys\" can't do it because of the PRC's crackdown on crypto",
+    ),
     EmailCfg(id='EFTA00886763', description=f"documents are being prepared to license Epstein and {DAVID_STERN}'s crypto exchange in Belarus"),
     EmailCfg(
         id='EFTA02494000',
         description=f'Epstein says a crypto exchange in Belarus could be "very useful", {DAVID_STERN}\'s Chinese guys could have brought "significant volume"',
-        is_interesting=True
+        is_interesting=True,
     ),
     # Honeycomb
     DocCfg(id='EFTA00803491', author=HONEYCOMB_FUND, description="deck", is_interesting=True),
