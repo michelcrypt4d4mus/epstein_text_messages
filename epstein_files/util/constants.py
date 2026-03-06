@@ -2436,7 +2436,11 @@ OTHER_FILES_CRYPTO = [
     EmailCfg(id='EFTA02620980', description=f"{MADARS_VIRZA} says Tether was created to avoid anti-money laundering laws"),
     EmailCfg(id='EFTA01781741', description=f'{JOI_ITO} introduces Epstein to {MADARS_VIRZA} and the untraceable private crypto ZCash'),
     EmailCfg(id='EFTA02645742', description=f"tax implications of the untraceable 'privacy coin' ZCash", is_interesting=True),
-    EmailCfg(id='EFTA02374960', description=f"Epstein says that he will fund a seat at MIT Media Lab for ZCash founder {MADARS_VIRZA}", is_interesting=True),
+    EmailCfg(
+        id='EFTA02374960',
+        description=f"Epstein says that he will fund a seat at MIT Media Lab for ZCash founder {MADARS_VIRZA}",
+        is_interesting=True,
+    ),
     # Unsorted
     EmailCfg(id='EFTA00629471', author=JOHN_BROCKMAN, non_participants=[AUSTIN_HILL, 'David Geffen'], truncate_to=3000),
     EmailCfg(id='EFTA01762201', highlight_quote='indoctrinating kids into an economy', show_with_name=BOBBY_KOTICK),
@@ -2711,9 +2715,9 @@ OTHER_FILES_GIRLS = [
     EmailCfg(id='EFTA02431535', author=UNKNOWN_GIRL),
     EmailCfg(id='EFTA01875607', author=UNKNOWN_GIRL),
     EmailCfg(id='EFTA00901581', author=UNKNOWN_GIRL),
-    EmailCfg(id='EFTA02027844', author=UNKNOWN_GIRL, description='permission to "fuck someone with a condom"', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA02449477', author=UNKNOWN_GIRL, description='argument about finding girls for Epstein', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA01782788', author=UNKNOWN_GIRL, description='"I need 21-24, wiling to travel and work hard"', truncate_to=NO_TRUNCATE),
+    EmailCfg(id='EFTA02027844', author=UNKNOWN_GIRL, description='permission to "fuck someone with a condom"', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA00763537', author=UNKNOWN_GIRL, highlight_quote="19 but I look younger than her"),
     EmailCfg(id='EFTA00738485', recipients=[STEVEN_VICTOR_MD], truncate_to=640),
     # Recipients
