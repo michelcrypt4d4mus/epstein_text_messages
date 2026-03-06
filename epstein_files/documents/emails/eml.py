@@ -13,7 +13,7 @@ HEADER_FIELDS = [AUTHOR, 'sent_at', 'to', 'subject']
 
 
 @dataclass
-class Eml(Email):
+class DropsiteEmail(Email):
     eml: EmailMessage = field(init=False)
 
     def raw_text(self) -> str:
