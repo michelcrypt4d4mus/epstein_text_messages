@@ -3849,7 +3849,7 @@ NOT_CHRONOLOGICAL_VIEW_IDS = [
     'EFTA01063216',  # canceled trip
     'EFTA01738267',  # canceled trip
     # Ehud barak
-    '032336'
+    '032336',
     '033338',
     'EFTA00582504',
     '024432',
