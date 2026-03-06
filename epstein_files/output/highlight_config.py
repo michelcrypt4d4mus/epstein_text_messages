@@ -2998,11 +2998,13 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             ),
         ],
         patterns=[
+            r"int[e=]rior design(er)?",
+            r"landlord",
             r"Mandarin Oriental",
             r"properties",
             r"real estate( developer)?",
-            r"int[e=]rior design(er)?",
             r"(reverse )?mortgage",
+            r"tenant",
         ]
     ),
     # Individuals

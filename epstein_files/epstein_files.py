@@ -106,6 +106,10 @@ class EpsteinFiles:
         return [f for f in self.other_files if isinstance(f, DojFile)]
 
     @property
+    def dropsite_emails(self) -> list[DropsiteEmail]:
+        return [f for f in self.documents if isinstance(f, DropsiteEmail)]
+
+    @property
     def emails(self) -> list[Email]:
         return [d for d in self.documents if isinstance(d, Email)]
 
