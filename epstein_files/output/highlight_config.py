@@ -618,7 +618,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 r"Tim(othy)?( Cook)? Draper",
                 link_to_bio='https://x.com/Cryptadamist/status/2027175564444930286',
             ),
-            Contact('W. Bradford Stephens', f"co-founder of {BLOCKCHAIN_CAPITAL}", r"(Brad(ford)?|Bart) Stephens"),
+            Contact('W. Bradford Stephens', f"co-founder of {BLOCKCHAIN_CAPITAL}", r"(Brad(ford)?|Bart) Stephens", match_partial=None),
             Contact('William Wheeler', f'co-founder of cashintocoins.com, {EXPRESSCOIN} with {BROCK_PIERCE}', match_partial=None),
             Contact("Wladimir van der Laan", 'bitcoin core developer', r"Wladimir( van der Laan)?"),
             organization(

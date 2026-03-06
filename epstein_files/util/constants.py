@@ -893,7 +893,11 @@ EMAILS_CONFIG = [
     EmailCfg(id='026036', is_interesting=True, truncate_to=6000, comment='Gino Yu blockchain mention'),
     EmailCfg(id='030467', duplicate_ids=['030584']),
     EmailCfg(id='019321', truncate_to=700),
-    EmailCfg(id='013484', truncate_to=700),
+    EmailCfg(
+        id='013484',
+        non_participants=[ARIANE_DE_ROTHSCHILD, BRAD_WECHSLER, DAVID_SCHOEN, 'Mozilla'],
+        truncate_to=700,
+    ),
     EmailCfg(id='025594', truncate_to=720),
     EmailCfg(id='025603', truncate_to=850),
     EmailCfg(id='022247', truncate_to=2000),
@@ -2824,6 +2828,8 @@ OTHER_FILES_GIRLS = [
     EmailCfg(id='EFTA00751119', highlight_quote='Valdson to teach girls how to serve'),
     EmailCfg(id='EFTA01995972', highlight_quote='you are meeting elon tmr for lunch'),
     EmailCfg(id='EFTA01768670', highlight_quote='find girls for the agency', description=f'but {BORIS_NIKOLIC} is a tech investor...'),
+    EmailCfg(id='EFTA01998027', highlight_quote="What day/night will be the wildest party on your island?", is_interesting=True),
+
     # Descriptions
     EmailCfg(id='EFTA00631762', description="visa problems for Epstein's South African friend"),
     EmailCfg(id='EFTA01140210', description='Epstein asks about fake Instagram followers', is_interesting=True),
