@@ -1468,6 +1468,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 link_to_bio='https://www.engadget.com/2012-03-12-darpa-director-exits-agency-for-google-assumes-mysterious-role.html',
                 match_partial=None,
             ),
+            acronym('Justice Against Sponsors of Terrorism Act', 'law permitting 9/11 survivors to sue Saudi Arabia'),
             acronym('Know Your Customer', 'anti-money laundering legal framework'),
             acronym('Metropolitan Detention Center', 'jail where Epstein died'),
             acronym('Office of Foreign Assets Control', 'agency in charge of sanctions'),
