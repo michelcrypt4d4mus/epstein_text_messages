@@ -1325,7 +1325,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact('Skip Rimer', "Michael Milken's Milken Institute"),
             Contact('Steven Elkman', f"{DEUTSCHE_BANK}"),
             Contact('Stephen Schwarzman', 'CEO of Blackstone', r"(Ste(phen|ve) )?Schwart?z?man"),
-            Contact(TANCREDI_MARCHIOLO, "hedge fund manager", match_partial='both'),
+            Contact(TANCREDI_MARCHIOLO, "hedge fund manager, Bremner Capital Management", match_partial='both'),
             Contact('Vahe Stepanian', "Cetera Financial Group", match_partial='both'),
             Contact(VINIT_SAHNI, f"analyst at {DEUTSCHE_BANK} and {GOLDMAN_SACHS}", match_partial='both'),
             acronym("Grantor Retained Annuity Trust", "tax shelter structure favoured by Epstein"),
