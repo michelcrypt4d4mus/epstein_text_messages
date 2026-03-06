@@ -430,6 +430,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='021818', author=NADIA_MARCINKO, author_reason='reply'),
     EmailCfg(id='022214', author=NADIA_MARCINKO, author_reason='Reply header'),
     EmailCfg(id='021811', author=NADIA_MARCINKO, author_reason='signature and email address in the message'),
+    EmailCfg(id='EFTA01047249', author=NADIA_MARCINKO, author_reason='https://archive.ph/Qa6vU#selection-1621.160-1621.184'),
     EmailCfg(id='028487', author=NORMAN_D_RAU, author_reason='Fwded from "to" address', duplicate_ids=['026612']),
     EmailCfg(
         id='024923',
@@ -2857,6 +2858,7 @@ OTHER_FILES_GIRLS = [
     EmailCfg(id='EFTA01995972', highlight_quote='you are meeting elon tmr for lunch'),
     EmailCfg(id='EFTA01998027', highlight_quote="What day/night will be the wildest party on your island?", is_interesting=True),
     EmailCfg(id='EFTA01930501', highlight_quote="Your littlest girl was a little naughty"),
+    EmailCfg(id='DropSite 2006-05-29 1329', highlight_quote='I am giving the little girl a modeling\n> lesson'),
 
     # Descriptions
     EmailCfg(id='EFTA00631762', description="visa problems for Epstein's South African friend"),

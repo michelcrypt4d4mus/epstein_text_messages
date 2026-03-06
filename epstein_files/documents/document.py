@@ -118,8 +118,7 @@ class Document:
         if self.file_info.has_file and not self.file_path.exists():
             raise FileNotFoundError(f"File '{self.file_path}' does not exist!")
 
-        self.text = self.text or self._load_file()
-        self._set_text(text=self.text)
+        self._set_text(text=self.text or self._load_file())
         self._repair()
         self.extracted_author = None if self.author else self._extract_author()
         self.extracted_timestamp = None if self.timestamp else self._extract_timestamp()
@@ -597,6 +596,7 @@ class Document:
         """Remove BOM and HOUSE OVERSIGHT lines, strip whitespace."""
         text = self.raw_text()
         text = text[1:] if (len(text) > 0 and text[0] == '\ufeff') else text  # remove BOM
+        # TODO: this should be in _repair()
         text = self.repair_ocr_text(OCR_REPAIRS, text.strip())
 
         lines = [

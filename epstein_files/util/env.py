@@ -20,10 +20,12 @@ PICKLED_PATH = Path("the_epstein_files.local.pkl.gz")
 DOCS_DIR_ENV_VAR = 'EPSTEIN_DOCS_DIR'
 DOJ_PDFS_20260130_DIR_ENV_VAR = 'EPSTEIN_DOJ_PDFS_20260130_DIR'
 DOJ_TXTS_20260130_DIR_ENV_VAR = 'EPSTEIN_DOJ_TXTS_20260130_DIR'
+DROPSITE_EMLS_DIR_ENV_VAR = 'DROPSITE_EMLS_DIR'
 
 DOCS_DIR: Path = get_env_dir(DOCS_DIR_ENV_VAR, must_exist=True)
 DOJ_PDFS_20260130_DIR: Path = get_env_dir(DOJ_PDFS_20260130_DIR_ENV_VAR, must_exist=False)
 DOJ_TXTS_20260130_DIR: Path = get_env_dir(DOJ_TXTS_20260130_DIR_ENV_VAR, must_exist=False)
+DROPSITE_EMLS_DIR: Path = get_env_dir(DROPSITE_EMLS_DIR_ENV_VAR, must_exist=False)
 
 is_env_var_set = lambda s: len(environ.get(s) or '') > 0
 is_output_arg = lambda arg: any([arg.startswith(pfx) for pfx in ['all', 'colors_only', 'json', 'make_clean', 'output', 'show']])

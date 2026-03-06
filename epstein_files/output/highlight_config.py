@@ -278,6 +278,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         category=TECH_BRO,
         contacts=[
             Contact(BILL_GATES, "ex-Microsoft, Gates Foundation, bgC3"),
+            Contact('Dick Henriques', 'CFO of Bill and Melinda Gates Foundation'),
             Contact(
                 name=BORIS_NIKOLIC,
                 info=f"biotech partner of {BILL_GATES} in bgC3 / Bill Gates Ventures, Epstein estate executor",
