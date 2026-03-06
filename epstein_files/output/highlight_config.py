@@ -2689,6 +2689,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"SkyNet",
             r"Skyp(ed?|ing)",
             r"Tim Cook",
+            r"Uber",
             r"WhatsApp",
         ],
     ),
