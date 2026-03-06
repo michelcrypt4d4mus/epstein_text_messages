@@ -905,7 +905,12 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 'yacht staff',
                 link_to_bio='https://thespinoff.co.nz/society/05-02-2026/the-epstein-files-and-nz-managers-models-and-the-kiwi-billionaire',
             ),
-            Contact(NADIA_MARCINKO, 'Lolita Express pilot, FKA Nadia Marcinkova', r"Na[dď]i?a Marcinko(v[aá])?|nadja2102[@e]yahoo(\.?com)"),
+            Contact(
+                NADIA_MARCINKO,
+                'Lolita Express pilot, FKA Nadia Marcinkova',
+                r"Na[dď]i?a Marcinko(v[aá])?|nadja2102[@e]yahoo(\.?com)",
+                link_to_bio='https://archive.ph/Qa6vU',  # https://www.nybooks.com/articles/2026/03/26/the-devil-himself-jeffrey-epstein-enright/
+            ),
             Contact('Perry Lang', f"Epstein's personal chef 1998-2002", r"(Adam )?Perry Lang"),
             Contact('Richard Barnett', "logistics for Epstein's properties", r"Rich(ard)? Barnett", match_partial=None),
             Contact('Sarah Kellen', "now Sarah Vickers, named co-conspirator", r"(Sarah )?(Kellen|Vickers)"),

@@ -2841,7 +2841,13 @@ OTHER_FILES_GIRLS = [
     EmailCfg(id='EFTA01974447', highlight_quote='I know you are going to meet putin on the 20th', is_interesting=True),
     EmailCfg(id='EFTA01767237', highlight_quote='is 24 too old for you?', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA00854166', highlight_quote='kazak contract will be ready for your review', is_interesting=True, truncate_to=1100),
-    EmailCfg(id='EFTA00878421', highlight_quote="said that she felt gods presence next to her when she was in bed", is_interesting=True),
+    EmailCfg(
+        id='EFTA00878421',
+        highlight_quote="said that she felt gods presence next to her when she was in bed",
+        is_interesting=True,
+        recipients=[NADIA_MARCINKO],
+        recipient_uncertain='https://archive.ph/Qa6vU',  # https://www.nybooks.com/articles/2026/03/26/the-devil-himself-jeffrey-epstein-enright/
+    ),
     EmailCfg(id='EFTA00894079', highlight_quote='say hi to Snow White'),
     EmailCfg(id='EFTA00775255', highlight_quote='she is 20 years old but she looks younger', non_participants=[BROCK_PIERCE]),
     EmailCfg(id='EFTA00908180', highlight_quote='two cinderellas'),
