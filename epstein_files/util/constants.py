@@ -2673,10 +2673,11 @@ OTHER_FILES_GIRLS = [
         is_interesting=True,
     ),
     EmailCfg(
-        id='EFTA01995523',
+        id='EFTA01868066',
         # author=SVETLANA_POZHIDAEVA,
         # author_uncertain=f"{JOSHUA_FINK} + Sent from Blackberry",
-        description=f'impersonating [someone] talking to {JOSHUA_FINK}, {REDACTED} may be "Lana" ({SVETLANA_POZHIDAEVA}) or "Dana" (says Jmail)',
+        description=f'impersonating [someone] talking to {JOSHUA_FINK}',
+        duplicate_ids=['EFTA01995523'],
         is_interesting=True,
     ),
     EmailCfg(
