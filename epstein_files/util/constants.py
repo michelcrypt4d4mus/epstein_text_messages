@@ -1192,7 +1192,13 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA02404938', author=RENATA_BOLOTOVA, author_reason=SINCERELY_SNEAKY),
     EmailCfg(id='EFTA00671467', author=RENATA_BOLOTOVA, author_reason=SINCERELY_SNEAKY),
     EmailCfg(id='EFTA02719248', author=RENATA_BOLOTOVA, author_reason=SINCERELY_SNEAKY, duplicate_ids=['EFTA01803593']),
-    EmailCfg(id='EFTA00639014', author=RENATA_BOLOTOVA, author_reason=SINCERELY_SNEAKY, duplicate_ids=['EFTA02347987']),
+    EmailCfg(
+        id='EFTA00639014',
+        author=RENATA_BOLOTOVA,
+        author_reason=SINCERELY_SNEAKY,
+        duplicate_ids=['EFTA02347987'],
+        highlight_quote='she said she is coming to the island soon',
+    ),
     EmailCfg(id='EFTA00995559', author=RENATA_BOLOTOVA, author_reason='poorly redacted signature'),
     EmailCfg(id='EFTA01059181', author=RENATA_BOLOTOVA, author_uncertain=SNEAKY_DOG),
     EmailCfg(id='EFTA01923844', author=RENATA_BOLOTOVA, author_uncertain=SNEAKY_DOG),
@@ -3671,6 +3677,10 @@ UNINTERESTING_EMAIL_IDS = [
     'EFTA02478704',
     'EFTA01862308',
     '030724',
+    # Ehud Barak
+    '025878',
+    '026354',
+    '026618',
     # Epstein
     '030997',
     '033428',
@@ -3738,8 +3748,11 @@ UNINTERESTING_EMAIL_IDS = [
     'EFTA01969322',
     'EFTA01035614',
     'EFTA02719248',
+    'EFTA02696764',
     # Svetlana
     'EFTA01772677',
+    # Tyler Shears
+    'EFTA02511281',
     # USANYS / DOJ
     'EFTA00039799',
     'EFTA02730469',
