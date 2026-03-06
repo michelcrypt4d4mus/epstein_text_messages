@@ -1886,6 +1886,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Sharon Churcher",  # Daily Mail
             r"Sulzberger",
             r"SunSentinel",
+            r"tabloid",
             r"(The )?Financial Times",
             r"The Guardian",
             r"TheHill",
