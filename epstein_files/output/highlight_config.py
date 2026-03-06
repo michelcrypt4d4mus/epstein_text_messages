@@ -1393,7 +1393,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(
                 JENNIE_SAUNDERS,
                 f'co-founder of Core Club, {DANGENE_AND_JENNIE_ENTERPRISE}, accused of recruiting underage girls',
-                fr"Core Club|(Dangene and )?Jennie (Enterprise|Saunders)",
+                r"Core Club|(Dangene and )?Jennie (Enterprise?s?|Saunders)",
                 link_to_bio='https://www.crainsnewyork.com/real-estate/core-club-founder-jennie-enterprise-exchanged-thousands-emails-jeffrey-epstein',
                 match_partial=None,
             ),
