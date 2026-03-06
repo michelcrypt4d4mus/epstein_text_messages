@@ -639,7 +639,11 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             organization('BitFury', 'Dutch bitcoin mining company founded by Valery Vavilov and Mark Dollar'),
             organization('Bitmain', f"Chinese manufacturer of bitcoin mining rigs"),
             organization(BLOCKSTREAM, f"early crypto firm co-founded by {ADAM_BACK} and {AUSTIN_HILL}", r"(the)?blockstream"),
-            organization(BLOCKCHAIN_CAPITAL, f"crypto VC fund co-founded by Bart Stephens and {BROCK_PIERCE}"),
+            organization(
+                BLOCKCHAIN_CAPITAL,
+                f"early crypto VC fund co-founded by Bart Stephens and {BROCK_PIERCE}, invested in by Epstein",
+                link_to_bio='https://protos.com/the-context-159-%e2%81%89%ef%b8%8f-epstein-a-convicted-pedo-invested-in-coinbase/',
+            ),
             organization('Bloq', 'blockchain company', is_interesting=False),
             organization(
                 'BTC-e',
