@@ -20,7 +20,7 @@ from epstein_files.documents.documents.search_result import SearchResult
 from epstein_files.documents.doj_file import DojFile
 from epstein_files.documents.email import Email
 from epstein_files.documents.emails.constants import UNINTERESTING_EMAILERS
-from epstein_files.documents.emails.eml import DropsiteEmail
+from epstein_files.documents.emails.dropsite_email import DropsiteEmail
 from epstein_files.documents.emails.util import split_up_leon_black, split_up_dilorio
 from epstein_files.documents.json_file import JsonFile
 from epstein_files.documents.messenger_log import MSG_REGEX, MessengerLog
