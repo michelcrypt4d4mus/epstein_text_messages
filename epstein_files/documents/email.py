@@ -233,7 +233,7 @@ class Email(Communication):
         self.actual_text = self._extract_actual_text()
         self.sent_from_device = self._sent_from_device()
 
-        for signature, name  in KNOWN_SIGNATURES.items():
+        for signature, name in KNOWN_SIGNATURES.items():
             if self.has_unknown_participant and signature.lower() in self.text.lower():
                 self.warn(f"Found known signature for {name} in unattributed email.")
 
@@ -378,7 +378,7 @@ class Email(Communication):
                 lines += [cast(str, configured_actual_text), '\n']
 
             lines += text.split('\n')[num_lines_to_skip:]
-            text = self.header.rewrite_header() + '\n' + '\n'.join(lines)
+            text = self.with_header('\n'.join(lines))
             text = _add_line_breaks(text)
             self.rewritten_header_ids.add(self.file_id)
 
@@ -478,6 +478,10 @@ class Email(Communication):
             html += table_to_html(attachments_table, indent_props)
 
         return html
+
+    def with_header(self, text: str) -> str:
+        """Add the header lines to `text`."""
+        return self.header.rewrite_header() + '\n' + text
 
     def _attached_docs_table(self) -> Table | None:
         if not self.attached_docs:

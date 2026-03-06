@@ -278,6 +278,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         category=TECH_BRO,
         contacts=[
             Contact(BILL_GATES, "ex-Microsoft, Gates Foundation, bgC3"),
+            Contact('Dick Henriques', 'CFO of Bill and Melinda Gates Foundation'),
             Contact(
                 name=BORIS_NIKOLIC,
                 info=f"biotech partner of {BILL_GATES} in bgC3 / Bill Gates Ventures, Epstein estate executor",
@@ -905,7 +906,12 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 'yacht staff',
                 link_to_bio='https://thespinoff.co.nz/society/05-02-2026/the-epstein-files-and-nz-managers-models-and-the-kiwi-billionaire',
             ),
-            Contact(NADIA_MARCINKO, 'Lolita Express pilot, FKA Nadia Marcinkova', r"Na[dď]i?a Marcinko(v[aá])?|nadja2102[@e]yahoo(\.?com)"),
+            Contact(
+                NADIA_MARCINKO,
+                'Lolita Express pilot, FKA Nadia Marcinkova',
+                r"Na[dď]i?a Marcinko(v[aá])?|nadja2102[@e]yahoo(\.?com)",
+                link_to_bio='https://archive.ph/Qa6vU',  # https://www.nybooks.com/articles/2026/03/26/the-devil-himself-jeffrey-epstein-enright/
+            ),
             Contact('Perry Lang', f"Epstein's personal chef 1998-2002", r"(Adam )?Perry Lang"),
             Contact('Richard Barnett', "logistics for Epstein's properties", r"Rich(ard)? Barnett", match_partial=None),
             Contact('Sarah Kellen', "now Sarah Vickers, named co-conspirator", r"(Sarah )?(Kellen|Vickers)"),
@@ -922,7 +928,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         contacts=[
             Contact(
                 name=JEFFREY_EPSTEIN,
-                emailer_pattern=r"j?ee[vy]acatio[mn]?[©@baeoq]?g?(mail.com)?|Epstine|\bJEE?\b|Jefff?(rey)? (Edward )?E((sp|ps)tein?)?( VI Foundation)?|jeeproject@yahoo.com|J Jep|Jeffery Edwards?|(?<!(ark L.|rd Jay|Edward) )Epstein(,? Jeffrey( Edward)?)?|Jeffrey Epst.*comj?",
+                emailer_pattern=r"j?ee[vy]acatio[mn]?[©@baeoq]?g?(mail.com)?|Epstine|\bJEE?\b|Jefff?(rey)? (Edward )?E((sp|ps)tein?)?( VI Foundation)?|jeeproject@yahoo.com|J Jep|Jeffery Edwards?|(?<!(ark L.|rd Jay|Edward) )Epstein(,? Jeffrey( Edward)?)?|Jeffrey Epst.*comj?|littlestjeff@yahoo",
                 match_partial=None,
             ),
             Contact(MARK_EPSTEIN, "brother of Jeffrey", r"Mark (L\.? )?(Epstein|Lloyd)", match_partial=None),
@@ -1320,7 +1326,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact('Skip Rimer', "Michael Milken's Milken Institute"),
             Contact('Steven Elkman', f"{DEUTSCHE_BANK}"),
             Contact('Stephen Schwarzman', 'CEO of Blackstone', r"(Ste(phen|ve) )?Schwart?z?man"),
-            Contact(TANCREDI_MARCHIOLO, "hedge fund manager", match_partial='both'),
+            Contact(TANCREDI_MARCHIOLO, "hedge fund manager, Bremner Capital Management", match_partial='both'),
             Contact('Vahe Stepanian', "Cetera Financial Group", match_partial='both'),
             Contact(VINIT_SAHNI, f"analyst at {DEUTSCHE_BANK} and {GOLDMAN_SACHS}", match_partial='both'),
             acronym("Grantor Retained Annuity Trust", "tax shelter structure favoured by Epstein"),
@@ -1761,6 +1767,12 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 match_partial='both',
             ),
             Contact(
+                'Dan Dubno',
+                'producer and technologist for CBS News in New York',
+                link_to_bio='https://www.edge.org/memberbio/dan_dubno',
+            ),
+            Contact('David Pecker', 'publisher of National Enquirer and Weekly World News'),
+            Contact(
                 'Dylan Love',
                 f'Business Insider / The Next Web, financial support from Epstein via {MASHA_DROKOVA}',
                 match_partial=None,
@@ -1772,12 +1784,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 link_to_bio='https://www.godofthedesert.org/p/the-secrets-edward-jay-epstein-told',
                 match_partial=None,
             ),
-            Contact(
-                'Dan Dubno',
-                'producer and technologist for CBS News in New York',
-                link_to_bio='https://www.edge.org/memberbio/dan_dubno',
-            ),
-            Contact('David Pecker', 'publisher of National Enquirer and Weekly World News'),
+            Contact('Graydon Carter', f"editor of Vanity Fair"),
             Contact(JAMES_HILL, "ABC News", r"hill, james e.|james.e.hill@abc.com", match_partial=None),
             Contact(JENNIFER_JACQUET, "Future Science magazine"),
             Contact(JOHN_BROCKMAN, "literary agent and author specializing in scientific literature"),

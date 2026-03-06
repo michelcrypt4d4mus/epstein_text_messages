@@ -5,18 +5,21 @@ from subprocess import check_output
 from epstein_files.util.constant.strings import (DOJ_FILE_STEM_REGEX, DOJ_FILE_NAME_REGEX, EFTA_PREFIX,
      HOUSE_OVERSIGHT_NOV_2025_FILE_NAME_REGEX, HOUSE_OVERSIGHT_NOV_2025_FILE_STEM_REGEX,
      HOUSE_OVERSIGHT_NOV_2025_ID_REGEX, HOUSE_OVERSIGHT_PREFIX, LOCAL_EXTRACT_REGEX)
-from epstein_files.util.env import DOCS_DIR, DOJ_TXTS_20260130_DIR
+from epstein_files.util.env import DOCS_DIR, DOJ_TXTS_20260130_DIR, DROPSITE_EMLS_DIR
 from epstein_files.util.logging import logger
 
 EXTRACTED_EMAILS_DIR = Path('emails_extracted_from_legal_filings')
 DOJ_FILE_ID_REGEX = re.compile(fr".*{DOJ_FILE_NAME_REGEX.pattern}")
 HOUSE_FILE_ID_REGEX = re.compile(fr".*{HOUSE_OVERSIGHT_NOV_2025_FILE_NAME_REGEX.pattern}")
+
+DROPSITE_FILE_NAME_REGEX = re.compile(fr"{DROPSITE_EMLS_DIR}.* (\d\d\d\d-\d\d-\d\d \d+)\.eml")
 FILENAME_LENGTH = len(HOUSE_OVERSIGHT_PREFIX) + 6
 KB = 1024
 MB = KB * KB
 
-all_txt_paths = lambda: doj_txt_paths() + oversight_txt_paths()
+all_txt_paths = lambda: doj_txt_paths() + oversight_txt_paths() + dropsite_eml_paths()
 doj_txt_paths = lambda: [f for f in DOJ_TXTS_20260130_DIR.glob('**/*.txt')] if DOJ_TXTS_20260130_DIR else []
+dropsite_eml_paths = lambda: [f for f in DROPSITE_EMLS_DIR.glob('*.eml')]
 oversight_txt_paths = lambda: [f for f in DOCS_DIR.iterdir() if f.is_file() and not f.name.startswith('.')]
 
 file_size = lambda file_path: Path(file_path).stat().st_size
@@ -80,6 +83,8 @@ def extract_file_id(filename_or_id: int | str | Path) -> str:
     # DOJ 2026-01 files have different pattern
     if isinstance(filename_or_id, (str, Path)) and is_doj_file(filename_or_id):
         return Path(filename_or_id).stem
+    elif isinstance(filename_or_id, (str, Path)) and (m := DROPSITE_FILE_NAME_REGEX.match(str(filename_or_id))):
+        return f"DropSite {m.group(1)}"
     elif isinstance(filename_or_id, str):
         filename_or_id = filename_or_id.removesuffix(',')  # clean up commas from bad args.positional_args copypasta
 

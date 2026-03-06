@@ -430,6 +430,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='021818', author=NADIA_MARCINKO, author_reason='reply'),
     EmailCfg(id='022214', author=NADIA_MARCINKO, author_reason='Reply header'),
     EmailCfg(id='021811', author=NADIA_MARCINKO, author_reason='signature and email address in the message'),
+    EmailCfg(id='EFTA01047249', author=NADIA_MARCINKO, author_reason='https://archive.ph/Qa6vU#selection-1621.160-1621.184'),
     EmailCfg(id='028487', author=NORMAN_D_RAU, author_reason='Fwded from "to" address', duplicate_ids=['026612']),
     EmailCfg(
         id='024923',
@@ -1648,6 +1649,12 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00718804', non_participants=[MILES_GUO]),
     EmailCfg(id='EFTA00932122', non_participants=[MILES_GUO]),
     EmailCfg(id='EFTA00909508', comment='party at Bunker'),
+
+    # DropSite emails
+    EmailCfg(
+        id='DropSite 2002-12-07 1015',
+        description=f'draft (?) of email to Graydon Carter to get the assault allegations spiked from Vikcy Ward\'s Vanity Fair profile',
+    ),
 ]
 
 
@@ -2673,10 +2680,11 @@ OTHER_FILES_GIRLS = [
         is_interesting=True,
     ),
     EmailCfg(
-        id='EFTA01995523',
+        id='EFTA01868066',
         # author=SVETLANA_POZHIDAEVA,
         # author_uncertain=f"{JOSHUA_FINK} + Sent from Blackberry",
-        description=f'impersonating [someone] talking to {JOSHUA_FINK}, {REDACTED} may be "Lana" ({SVETLANA_POZHIDAEVA}) or "Dana" (says Jmail)',
+        description=f'impersonating [someone] talking to {JOSHUA_FINK}',
+        duplicate_ids=['EFTA01995523'],
         is_interesting=True,
     ),
     EmailCfg(
@@ -2841,7 +2849,13 @@ OTHER_FILES_GIRLS = [
     EmailCfg(id='EFTA01974447', highlight_quote='I know you are going to meet putin on the 20th', is_interesting=True),
     EmailCfg(id='EFTA01767237', highlight_quote='is 24 too old for you?', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA00854166', highlight_quote='kazak contract will be ready for your review', is_interesting=True, truncate_to=1100),
-    EmailCfg(id='EFTA00878421', highlight_quote="said that she felt gods presence next to her when she was in bed", is_interesting=True),
+    EmailCfg(
+        id='EFTA00878421',
+        highlight_quote="said that she felt gods presence next to her when she was in bed",
+        is_interesting=True,
+        recipients=[NADIA_MARCINKO],
+        recipient_uncertain='https://archive.ph/Qa6vU',  # https://www.nybooks.com/articles/2026/03/26/the-devil-himself-jeffrey-epstein-enright/
+    ),
     EmailCfg(id='EFTA00894079', highlight_quote='say hi to Snow White'),
     EmailCfg(id='EFTA00775255', highlight_quote='she is 20 years old but she looks younger', non_participants=[BROCK_PIERCE]),
     EmailCfg(id='EFTA00908180', highlight_quote='two cinderellas'),
@@ -2850,6 +2864,7 @@ OTHER_FILES_GIRLS = [
     EmailCfg(id='EFTA01995972', highlight_quote='you are meeting elon tmr for lunch'),
     EmailCfg(id='EFTA01998027', highlight_quote="What day/night will be the wildest party on your island?", is_interesting=True),
     EmailCfg(id='EFTA01930501', highlight_quote="Your littlest girl was a little naughty"),
+    EmailCfg(id='DropSite 2006-05-29 1329', highlight_quote='I am giving the little girl a modeling\n> lesson'),
 
     # Descriptions
     EmailCfg(id='EFTA00631762', description="visa problems for Epstein's South African friend"),

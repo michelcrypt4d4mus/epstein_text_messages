@@ -1,5 +1,6 @@
 import logging
 from dataclasses import asdict, dataclass, field
+from hashlib import md5
 from pathlib import Path
 from typing import Mapping
 
@@ -73,6 +74,8 @@ class FileInfo:
         """The primary external URL to use when linking to this document's source."""
         if self.is_doj_file and self.doj_2026_dataset_id:
             return doj_2026_file_url(self.doj_2026_dataset_id, self.url_slug)
+        elif self.is_eml_file:
+            return JMAIL_URL
         else:
             return self.url_for_id(self.url_slug)
 
@@ -94,7 +97,10 @@ class FileInfo:
 
     @property
     def file_stem(self) -> str:
-        return coerce_file_stem(self.file_id)
+        if self.is_eml_file:
+            return self.local_path.stem
+        else:
+            return coerce_file_stem(self.file_id)
 
     @property
     def filename(self) -> str:
@@ -104,6 +110,10 @@ class FileInfo:
     def has_file(self) -> bool:
         """Returns false for derivations of massive Dilorio emails."""
         return not ((LEON_BLACK_EMAIL_ID in self.file_id or self.is_doj_file) and self.is_local_extract_file)
+
+    @property
+    def is_eml_file(self) -> bool:
+        return str(self.local_path).endswith('.eml')
 
     @property
     def is_doj_file(self) -> bool:
@@ -130,6 +140,11 @@ class FileInfo:
 
     @property
     def url_slug(self) -> str:
+        if self.is_eml_file:
+            hash = md5(self.local_path.read_bytes()).hexdigest()
+            logger.warning(f"{self.file_stem} hash: {hash}")
+            return hash
+
         return coerce_url_slug(self.file_id)
 
     @property
@@ -155,13 +170,14 @@ class FileInfo:
         return link_markup(self.external_url, link_txt, style=no_bold(style))
 
     def external_link_txt(self, style: str = '', id_only: bool = False) -> Text:
+        id_only = id_only or self.is_eml_file
         return Text.from_markup(self.external_link_markup(style, id_only))
 
     def build_external_links(self, style: str = '', with_alt_links: bool = False, id_only: bool = False) -> Text:
         """Returns colored links to epstein.media and alternates in a Text object."""
         links = [self.external_link_txt(style, id_only)]
 
-        if with_alt_links:
+        if with_alt_links and not self.is_eml_file:
             if self.doj_2026_dataset_id:
                 jmail_url = jmail_doj_2026_file_url(self.doj_2026_dataset_id, self.file_id)
                 jmail_link = link_text_obj(jmail_url, JMAIL, style=f"{style} dim" if style else ARCHIVE_LINK_COLOR)

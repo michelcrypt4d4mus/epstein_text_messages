@@ -3,6 +3,8 @@ import re
 from collections import Counter
 from dataclasses import asdict, dataclass, field
 from datetime import datetime
+from email import policy
+from email.parser import BytesParser
 from pathlib import Path
 from typing import ClassVar, Self, Sequence, TypeVar
 
@@ -118,8 +120,7 @@ class Document:
         if self.file_info.has_file and not self.file_path.exists():
             raise FileNotFoundError(f"File '{self.file_path}' does not exist!")
 
-        self.text = self.text or self._load_file()
-        self._set_text(text=self.text)
+        self._set_text(text=self.text or self._load_file())
         self._repair()
         self.extracted_author = None if self.author else self._extract_author()
         self.extracted_timestamp = None if self.timestamp else self._extract_timestamp()
@@ -493,8 +494,13 @@ class Document:
 
     def raw_text(self) -> str:
         """Reload the raw data from the underlying file and return it."""
-        with open(self.file_path) as f:
-            return f.read()
+        if self.file_info.is_eml_file:
+            with open(self.file_path, 'rb') as fp:
+                # TODO: the header is not here, it's just a stopgap so the Document can be built before file type determined
+                eml = BytesParser(policy=policy.default).parse(fp)
+                return eml.get_body(('plain', 'related', 'html')).get_content()
+        else:
+            return self.file_path.read_text()
 
     def reload(self) -> Self:
         """Rebuild a new version of this object by loading the source file from disk again."""
@@ -597,6 +603,7 @@ class Document:
         """Remove BOM and HOUSE OVERSIGHT lines, strip whitespace."""
         text = self.raw_text()
         text = text[1:] if (len(text) > 0 and text[0] == '\ufeff') else text  # remove BOM
+        # TODO: this should be in _repair()
         text = self.repair_ocr_text(OCR_REPAIRS, text.strip())
 
         lines = [

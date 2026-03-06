@@ -16,6 +16,7 @@ DOC_TYPE_STYLES = {
     DOCUMENT_CLASS: 'grey69',
     DOJ_FILE_CLASS: 'magenta',
     EMAIL_CLASS: 'dark_orange3',
+    'DropsiteEmail': 'orange1',
     JSON_FILE_CLASS: 'sandy_brown',
     MESSENGER_LOG_CLASS: 'deep_pink4',
     f"{MESSENGER_LOG_CLASS}Pdf": 'deep_pink4',

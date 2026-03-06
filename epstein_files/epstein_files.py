@@ -20,6 +20,7 @@ from epstein_files.documents.documents.search_result import SearchResult
 from epstein_files.documents.doj_file import DojFile
 from epstein_files.documents.email import Email
 from epstein_files.documents.emails.constants import UNINTERESTING_EMAILERS
+from epstein_files.documents.emails.dropsite_email import DropsiteEmail
 from epstein_files.documents.emails.util import split_up_leon_black, split_up_dilorio
 from epstein_files.documents.json_file import JsonFile
 from epstein_files.documents.messenger_log import MSG_REGEX, MessengerLog
@@ -258,12 +259,12 @@ class EpsteinFiles:
 
         return Document.sort_by_timestamp(emails)
 
-    def get_ids(self, file_ids: list[str], rebuild: bool = False) -> Sequence[Document]:
+    def get_ids(self, ids: list[str], rebuild: bool = False) -> Sequence[Document]:
         """Get `Document` objects for `file_ids`. If `rebuild` is True then rebuild `Document` from .txt file."""
-        docs = [d for d in self._documents if d.file_id in file_ids]
+        docs = [d for d in self._documents if d.file_id in ids]
 
-        if len(docs) != len(file_ids):
-            logger.warning(f"{len(file_ids)} file IDs provided but only {len(docs)} documents found!")
+        if len(docs) != len(ids):
+            logger.warning(f"{len(ids)} file IDs provided but only {len(docs)} documents found! ids: {ids}")
 
         return [d.reload() if rebuild else d for d in docs]
 
@@ -472,7 +473,8 @@ class EpsteinFiles:
                 continue
 
             cls = document_cls(document)
-            docs.append(cls(file_path, lines=document.lines, text=document.text))
+            # docs.append(cls(file_path, lines=document.lines, text=document.text))
+            docs.append(cls(file_path))  # TODO: needs to reload DropsiteEmail
             logger.info(str(docs[-1]))
 
             if doc_timer.seconds_since_start() > SLOW_FILE_SECONDS:
@@ -506,6 +508,8 @@ def document_cls(doc: Document) -> Type[Document]:
     """Find the appropriate `Document` subclass for this file based on the contents."""
     if doc.length == 0:
         return Document
+    elif doc.file_info.is_eml_file:
+        return DropsiteEmail
     elif doc.text[0] == '{':
         return JsonFile
     elif doc.file_id in IMESSAGE_PDF_IDS:

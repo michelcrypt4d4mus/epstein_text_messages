@@ -1,6 +1,5 @@
 #!/usr/bin/env python
 # Print email ID + timestamp
-import logging
 import sys
 from collections import defaultdict
 
@@ -29,7 +28,6 @@ from epstein_files.util.logging import logger
 from epstein_files.output.rich import bool_txt, console, highlighter, print_json, print_subtitle_panel
 
 
-
 # Show biggest files
 for i, email in enumerate(epstein_files.emails):
     if not email.is_word_count_worthy:
@@ -43,9 +41,8 @@ for i, email in enumerate(epstein_files.emails):
         # print(f"----- actual text {email.file_id} -----\n{email.actual_text}\n--------------end actual text-------------\n")
         console.line(2)
 
-
-
 sys.exit()
+
 
 for email in epstein_files.unique_emails:
     if email.is_persons_first_email:
