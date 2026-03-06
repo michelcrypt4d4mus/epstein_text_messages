@@ -844,7 +844,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='030015', fwded_text_after='Bill Clinton reportedly'),
     EmailCfg(id='026312', fwded_text_after='Steve Bannon trying to get on disgraced'),
     EmailCfg(id='031742', fwded_text_after="Trump's former campaign manager Paul Manafort"),
-    EmailCfg(id='028925', fwded_text_after='> on Jan 4, 2015'),
+    EmailCfg(id='028925', description=f'{JOI_ITO} plays down Epstein\'s "bad press"', truncate_to=NO_TRUNCATE),
     EmailCfg(id='029773', fwded_text_after='Omar Quadhafi', duplicate_ids=['012685']),
     EmailCfg(id='012197_4', fwded_text_after='Thanks -- Jay', is_fwded_article=False),
     EmailCfg(
@@ -863,7 +863,6 @@ EMAILS_CONFIG = [
     EmailCfg(id='033377', description="Epstein says he knows Russian oligarch Oleg Deripaska", is_interesting=True),
     EmailCfg(id='023454', description='Email invitation sent to tech CEOs and Epstein', is_interesting=True, truncate_to=1878),
     EmailCfg(id='030950', description=f"{IAN_OSBORNE} spending quality time in Russia before Jawbone investment", truncate_to=4500),
-    EmailCfg(id='029224', description=f'{JOI_ITO} plays down Epstein\'s "bad press"'),
     EmailCfg(id='029098', description=f"{MASHA_DROKOVA}'s skype contact is in Moscow", is_interesting=True),
     EmailCfg(id='032229', description=f'{MICHAEL_WOLFF} offers ideas for entrapping Trump', is_interesting=True),
     EmailCfg(id='020143', description=f"{STEVEN_SINOFSKY} has heard a sad story about women in tech from {MASHA_DROKOVA}", truncate_to=1000),
@@ -3688,6 +3687,7 @@ UNINTERESTING_EMAIL_IDS = [
     '029204',
     '029094',
     '029096',
+    '029224',  # visible elsewhere
     '029429',
     '029587',
     '029237',
