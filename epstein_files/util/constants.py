@@ -607,7 +607,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='032671', description='connections to Fusion GPS who produced the Steele Dossier on Trump'),
     EmailCfg(id='033052', description='connections to Fusion GPS who produced the Steele Dossier on Trump'),
     EmailCfg(id='031472', description="discussion of publishing an audio recording related to the coup in Turkey"),
-    EmailCfg(id='031830', description='Epstein gets defensive about "Inside Job"\'s take on the 2008 financial crisis', truncate_to=350),
+    EmailCfg(id='031830', description='Epstein gets defensive about the portayal of the 2008 financial crisis in the movie "Inside Job"', truncate_to=400),
     EmailCfg(id='031333', description='Fort Knox conspiracy theory, looks like Russian disinfo', is_fwded_article=True),
     EmailCfg(id='031335', description='Fort Knox conspiracy theory, looks like Russian disinfo', is_fwded_article=True),
     EmailCfg(id='030648', description=IS_IT_ROGER_STONE),

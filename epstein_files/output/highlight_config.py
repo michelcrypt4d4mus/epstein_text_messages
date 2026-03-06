@@ -2798,6 +2798,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Bahamas",
             r"Carr?ibb?ean",
             r"Cayman Islands?",
+            r"Cura[cç]ao",
             r"Dominica(n Republic)?",
             r"(Great|Little) St.? James",
             r"Haiti(an)?",
