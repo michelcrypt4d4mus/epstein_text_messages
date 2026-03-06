@@ -928,7 +928,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         contacts=[
             Contact(
                 name=JEFFREY_EPSTEIN,
-                emailer_pattern=r"j?ee[vy]acatio[mn]?[©@baeoq]?g?(mail.com)?|Epstine|\bJEE?\b|Jefff?(rey)? (Edward )?E((sp|ps)tein?)?( VI Foundation)?|jeeproject@yahoo.com|J Jep|Jeffery Edwards?|(?<!(ark L.|rd Jay|Edward) )Epstein(,? Jeffrey( Edward)?)?|Jeffrey Epst.*comj?",
+                emailer_pattern=r"j?ee[vy]acatio[mn]?[©@baeoq]?g?(mail.com)?|Epstine|\bJEE?\b|Jefff?(rey)? (Edward )?E((sp|ps)tein?)?( VI Foundation)?|jeeproject@yahoo.com|J Jep|Jeffery Edwards?|(?<!(ark L.|rd Jay|Edward) )Epstein(,? Jeffrey( Edward)?)?|Jeffrey Epst.*comj?|littlestjeff@yahoo",
                 match_partial=None,
             ),
             Contact(MARK_EPSTEIN, "brother of Jeffrey", r"Mark (L\.? )?(Epstein|Lloyd)", match_partial=None),
@@ -1767,6 +1767,12 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 match_partial='both',
             ),
             Contact(
+                'Dan Dubno',
+                'producer and technologist for CBS News in New York',
+                link_to_bio='https://www.edge.org/memberbio/dan_dubno',
+            ),
+            Contact('David Pecker', 'publisher of National Enquirer and Weekly World News'),
+            Contact(
                 'Dylan Love',
                 f'Business Insider / The Next Web, financial support from Epstein via {MASHA_DROKOVA}',
                 match_partial=None,
@@ -1778,12 +1784,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 link_to_bio='https://www.godofthedesert.org/p/the-secrets-edward-jay-epstein-told',
                 match_partial=None,
             ),
-            Contact(
-                'Dan Dubno',
-                'producer and technologist for CBS News in New York',
-                link_to_bio='https://www.edge.org/memberbio/dan_dubno',
-            ),
-            Contact('David Pecker', 'publisher of National Enquirer and Weekly World News'),
+            Contact('Graydon Carter', f"editor of Vanity Fair"),
             Contact(JAMES_HILL, "ABC News", r"hill, james e.|james.e.hill@abc.com", match_partial=None),
             Contact(JENNIFER_JACQUET, "Future Science magazine"),
             Contact(JOHN_BROCKMAN, "literary agent and author specializing in scientific literature"),

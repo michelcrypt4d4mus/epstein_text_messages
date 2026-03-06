@@ -259,12 +259,12 @@ class EpsteinFiles:
 
         return Document.sort_by_timestamp(emails)
 
-    def get_ids(self, file_ids: list[str], rebuild: bool = False) -> Sequence[Document]:
+    def get_ids(self, ids: list[str], rebuild: bool = False) -> Sequence[Document]:
         """Get `Document` objects for `file_ids`. If `rebuild` is True then rebuild `Document` from .txt file."""
-        docs = [d for d in self._documents if d.file_id in file_ids]
+        docs = [d for d in self._documents if d.file_id in ids]
 
-        if len(docs) != len(file_ids):
-            logger.warning(f"{len(file_ids)} file IDs provided but only {len(docs)} documents found!")
+        if len(docs) != len(ids):
+            logger.warning(f"{len(ids)} file IDs provided but only {len(docs)} documents found! ids: {ids}")
 
         return [d.reload() if rebuild else d for d in docs]
 

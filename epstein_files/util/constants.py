@@ -1649,6 +1649,12 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00718804', non_participants=[MILES_GUO]),
     EmailCfg(id='EFTA00932122', non_participants=[MILES_GUO]),
     EmailCfg(id='EFTA00909508', comment='party at Bunker'),
+
+    # DropSite emails
+    EmailCfg(
+        id='DropSite 2002-12-07 1015',
+        description=f'draft (?) of email to Graydon Carter to get the assault allegations spiked from Vikcy Ward\'s Vanity Fair profile',
+    ),
 ]
 
 

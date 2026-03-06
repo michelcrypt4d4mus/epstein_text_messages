@@ -494,10 +494,9 @@ class Document:
 
     def raw_text(self) -> str:
         """Reload the raw data from the underlying file and return it."""
-        logger.warning(f"{self.file_path.name}: raw_text() called...")
-
         if self.file_info.is_eml_file:
             with open(self.file_path, 'rb') as fp:
+                # TODO: the header is not here, it's just a stopgap so the Document can be built before file type determined
                 eml = BytesParser(policy=policy.default).parse(fp)
                 return eml.get_body(('plain', 'related', 'html')).get_content()
         else:

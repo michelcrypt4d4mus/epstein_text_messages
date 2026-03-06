@@ -9,6 +9,8 @@ from epstein_files.util.logging import logger
 from epstein_files.util.constant.strings import AUTHOR
 from epstein_files.util.helpers.string_helper import collapse_newlines
 
+HEADERS_TO_CHECK = ['Authentication-Results', 'Content-Transfer-Encoding', 'Content-Type', 'DKIM-Signature', 'DomainKey-Signature', 'Received', 'References', 'X-Mailer']
+DEFAULT_EML_HEADERS = HEADERS_TO_CHECK + ['Date', 'From', 'Subject', 'To', 'MIME-Version', 'Content-Length']
 HEADER_FIELDS = [AUTHOR, 'sent_at', 'to', 'subject']
 
 
@@ -36,7 +38,11 @@ class DropsiteEmail(Email):
         bcc = self.eml['bcc'].split(';') if self.eml['bcc'] else None
         cc = self.eml['cc'].split(';') if self.eml['cc'] else None
         field_names = HEADER_FIELDS + (['bcc'] if bcc else []) + (['cc'] if cc else [])
-        self.warn(f"header keys: {self.eml.keys()}")
+        # self.warn(f"header keys: {self.eml.keys()}")
+
+        for header in self.eml.keys():
+            if header not in DEFAULT_EML_HEADERS:
+                self.warn(f"unexpected header {header}: '{self.eml[header]}'")
 
         return EmailHeader(
             author=self.eml['from'],
