@@ -48,8 +48,8 @@ class HighlightPatterns(HighlightGroup):
     Color highlighting for things other than people's names (e.g. phone numbers, email headers).
 
     Attributes:
-        flags (re.RegexFlag): flags to use when compiling the patterns to an `re.Pattern`
         patterns (list[str]): regex patterns identifying strings matching this group
+        regex_flags (re.RegexFlag): flags to use when compiling the patterns to an `re.Pattern`
         use_word_boundary (bool, optional): if True, patterns can only match before/after word boundary `\b`
     """
     patterns: list[str] = field(default_factory=list)
@@ -70,6 +70,7 @@ class HighlightPatterns(HighlightGroup):
             self._pattern = fr"\b(({self._pattern})s?)\b"
 
         self.regex = self.compile_patterns(self._pattern)
+
 
     def __repr__(self) -> str:
         return f"{type(self).__name__}(label='{self.label}', pattern='{self._pattern}', style='{self.style}')"
@@ -124,6 +125,8 @@ class HighlightedNames(HighlightPatterns):
             contact.category = self.category_str
             contact.style = self.style
 
+        logger.debug(repr(self))
+
     @property
     def category_str(self) -> str:
         if self.category:
@@ -150,7 +153,7 @@ class HighlightedNames(HighlightPatterns):
     def __repr__(self) -> str:
         s = f"{type(self).__name__}("
 
-        for property in ['label', 'style', 'category', 'patterns', 'contacts']:
+        for property in ['label', 'style', 'category', 'patterns', 'contacts', '_pattern']:
             value = getattr(self, property)
 
             if not value or (property == 'label' and len(self.contacts) == 1 and not self.patterns):
@@ -168,6 +171,10 @@ class HighlightedNames(HighlightPatterns):
             elif property == 'patterns':
                 s += '[\n        '
                 s += repr(value).removeprefix('[').removesuffix(']').replace(', ', ',\n        ')
+                s += ',\n    ],'
+            elif isinstance(value, list) and value and isinstance(value[0], Contact):
+                s += '[\n        '
+                s += f"    {', '.join([c.name for c in value])}"
                 s += ',\n    ],'
             else:
                 s += f"{json.dumps(value)},"

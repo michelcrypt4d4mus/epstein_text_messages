@@ -1185,7 +1185,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA02547825', author=RENATA_BOLOTOVA, author_reason=SINCERELY_SNEAKY),
     EmailCfg(id='EFTA02387781', author=RENATA_BOLOTOVA, author_reason=SINCERELY_SNEAKY),
     EmailCfg(id='EFTA02696764', author=RENATA_BOLOTOVA, author_reason=SINCERELY_SNEAKY),
-    EmailCfg(id='EFTA02372848', author=RENATA_BOLOTOVA, author_reason=SINCERELY_SNEAKY),
+    EmailCfg(id='EFTA02372848', author=RENATA_BOLOTOVA, author_reason=SINCERELY_SNEAKY, description=f"job in Puerto Rico"),
     EmailCfg(id='EFTA02376299', author=RENATA_BOLOTOVA, author_reason=SINCERELY_SNEAKY),
     EmailCfg(id='EFTA02389443', author=RENATA_BOLOTOVA, author_reason=SINCERELY_SNEAKY),
     EmailCfg(id='EFTA00703980', author=RENATA_BOLOTOVA, author_reason=SINCERELY_SNEAKY),
