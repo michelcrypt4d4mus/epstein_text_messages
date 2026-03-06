@@ -56,7 +56,7 @@ PEOPLE_BIOS = {
 @dataclass(kw_only=True)
 class Person:
     """Collection of data about someone texting or emailing Epstein."""
-    contact_info: Contact = field(init=False)
+    contact: Contact = field(init=False)
     name: Name
     emails: list[Email] = field(default_factory=list)
     imessage_logs: list[MessengerLog] = field(default_factory=list)
@@ -65,7 +65,7 @@ class Person:
     _searched_for_highlight_group: bool = False
 
     def __post_init__(self):
-        self.contact_info = CONTACTS_DICT.get(str(self.name)) or Contact(name=cleanup_str(str(self.name)))
+        self.contact = CONTACTS_DICT.get(str(self.name)) or Contact(name=cleanup_str(str(self.name)))
         self.emails = Document.sort_by_timestamp(self.emails)
         self.imessage_logs = Document.sort_by_timestamp(self.imessage_logs)
 
