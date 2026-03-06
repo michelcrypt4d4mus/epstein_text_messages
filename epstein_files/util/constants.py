@@ -1108,7 +1108,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00920848', author=MARIA_PRUSAKOVA, author_uncertain='law school'),
     EmailCfg(id='EFTA02038002', author=MARIA_PRUSAKOVA, author_reason=CLIFFORD_CHANCE),
     EmailCfg(id='EFTA02036490', author=MARIA_PRUSAKOVA, author_reason=CLIFFORD_CHANCE),
-    EmailCfg(id='EFTA02022813', author=MARIA_PRUSAKOVA, author_reason=CLIFFORD_CHANCE),
+    EmailCfg(id='EFTA02022813', author=MARIA_PRUSAKOVA, author_reason=CLIFFORD_CHANCE, highlight_quote='I want to learn more sexual tricks'),
     EmailCfg(id='EFTA02001536', author=MARIA_PRUSAKOVA, author_reason=CLIFFORD_CHANCE),
     EmailCfg(id='EFTA01772533', author=MARIA_PRUSAKOVA, author_reason=CLIFFORD_CHANCE),
     EmailCfg(id='EFTA01775280', author=MARIA_PRUSAKOVA, author_reason=CLIFFORD_CHANCE, truncate_to=2000),
@@ -3755,6 +3755,7 @@ UNINTERESTING_EMAIL_IDS = [
     'EFTA01035614',
     'EFTA02719248',
     'EFTA02696764',
+    'EFTA00927986',
     # Svetlana
     'EFTA01772677',
     # Tyler Shears

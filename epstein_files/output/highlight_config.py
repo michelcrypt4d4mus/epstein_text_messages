@@ -121,6 +121,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"green card",
             r"(Karl )?Marx",
             r"(Lord )?Martin Rees",
+            r"LSAT",
             r"Massachusetts Institute of Technology",
             r"Mayo Clinic",
             r"MIT",
@@ -1380,7 +1381,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 r"Andrew (L\.? )?Farkas|Farkas, Andrew( L\.?)?",
                 link_to_bio='https://www.nytimes.com/2026/02/09/nyregion/farkas-epstein-lawsuit-ties.html',
             ),
-            Contact(DANGENE_AND_JENNIE_ENTERPRISE, "founders of the members-only CORE club", match_partial=None),
+            Contact('Rob Goldsamt', 'CEO of Basic Care Networks'),
             Contact(
                 DAVID_STERN,
                 f"Epstein's partner in various businesses including Asia Gateway Ltd.",
@@ -1390,7 +1391,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(
                 JENNIE_SAUNDERS,
                 f'co-founder of Core Club, {DANGENE_AND_JENNIE_ENTERPRISE}, accused of recruiting underage girls',
-                fr"Core Club|Jennie (Enterprise|Saunders)",
+                fr"Core Club|(Dangene and )?Jennie (Enterprise|Saunders)",
                 link_to_bio='https://www.crainsnewyork.com/real-estate/core-club-founder-jennie-enterprise-exchanged-thousands-emails-jeffrey-epstein',
                 match_partial=None,
             ),
