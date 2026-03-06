@@ -1975,6 +1975,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 emailer_pattern=r"Fawzi.Siam?",
                 match_partial='first',
             ),
+            Contact('Hamad bin Khalifa al-Thani', 'emir of Qatar', match_partial=None),
             Contact(
                 HASSAN_JAMEEL,
                 'scion of Saudi family, Abdul Latif Jameel',
@@ -2015,7 +2016,8 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 link_to_bio='https://en.wikipedia.org/wiki/Murder_of_Martine_Vik_Magnussen',
             ),
             Contact('Timur Kulibayev', 'businessman from Kazakhstan'),
-            organization('GCC', 'Gulf Cooperation Council', r"GCC|Gulf Cooperation Council")
+            organization('GCC', 'Gulf Cooperation Council', r"GCC|Gulf Cooperation Council"),
+            organization('Rayyan Bank', 'Islamic bank based in Qatar'),
         ],
         patterns=[
             r"Abdulmalik Al-Makhlafi",
@@ -2047,7 +2049,6 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Fashi",
             r"Gaddafi",
             r"(Hamid )?Karzai",
-            r"Hamad( bin Jassim)?",
             r"Hamas",
             r"Hezbollah",
             r"Hourani",
@@ -3005,16 +3006,15 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
     HighlightedNames(
         contacts=[
             Contact(
-                JABOR_Y,  # TODO: fix the name
-                "former Qatari prime minister Hamad bin Jassim AKA \"HBJ\", planned Sharia crypto with Epstein",
-                r"[ji]abor y?|labor y",
+                HAMAD_BIN_JASSIM,
+                " AKA \"HBJ\", former Qatari prime minister, planned Sharia crypto with Epstein",
+                r"[ji]abor y?|labor y|HBJ|Hamad bin Jassim( al-Thani)?",
                 link_to_bio='https://en.wikipedia.org/wiki/Hamad_bin_Jassim_bin_Jaber_Al_Thani',
                 match_partial=None,
-            )
+            ),
         ],
         category=MIDEAST,
         style='spring_green1',
-        patterns=[r"HBJ"],
     ),
     HighlightedNames(
         contacts=[

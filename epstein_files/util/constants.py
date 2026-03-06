@@ -1218,7 +1218,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA02603940', author=RENATA_BOLOTOVA, author_uncertain=SNEAKY_DOG),
     EmailCfg(id='EFTA02396796', author=RENATA_BOLOTOVA, author_uncertain=SNEAKY_DOG),
     EmailCfg(id='EFTA01801003', author=RENATA_BOLOTOVA, author_uncertain=SNEAKY_DOG),
-    EmailCfg(id='EFTA00816407', author=RENATA_BOLOTOVA, author_uncertain=SNEAKY_DOG),
+    EmailCfg(id='EFTA00816407', author=RENATA_BOLOTOVA, author_uncertain=SNEAKY_DOG, is_interesting=False),
     EmailCfg(id='EFTA02395750', author=RENATA_BOLOTOVA, author_uncertain=SNEAKY_DOG),
     EmailCfg(id='EFTA00667441', author=RENATA_BOLOTOVA, author_uncertain=SNEAKY_DOG, description=f"{RENATA_BOLOTOVA}'s mom comes to USA"),
     EmailCfg(id='EFTA01931339', author=RENATA_BOLOTOVA, author_uncertain=SNEAKY_DOG),
@@ -3829,6 +3829,11 @@ UNINTERESTING_EMAIL_IDS = [
 
 # Not uninteresting enough to be permanently marked as such but not good enough for --output-chrono
 NOT_CHRONOLOGICAL_VIEW_IDS = [
+    # Karim Wade
+    'EFTA01063216',  # canceled trip
+    'EFTA01738267',  # canceled trip
+    # Ehud barak
+    '032336'
     '033338',
     'EFTA00582504',
     '024432',
