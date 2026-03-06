@@ -470,7 +470,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
     HighlightedNames(
         category=Interesting.CRYPTO,
         label=JOI_ITO,
-        style='gold1 bold',
+        style='gold1',
         contacts=[
             Contact(
                 JOI_ITO,
@@ -500,6 +500,12 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 r"Amir(?! Stemhell)( Taaki)|genjix",
                 link_to_bio='https://www.axios.com/2023/12/14/customers-of-dead-bitcoin-exchange-demand-refunds',
                 match_partial='last'
+            ),
+            Contact(
+                'Andrew Larkin',
+                f'insider trading charges from SEC related to online gambling, friend of {AUSTIN_HILL}',
+                link_to_bio='https://www.sec.gov/enforcement-litigation/litigation-releases/lr-25422',
+                match_partial=None,
             ),
             Contact(
                 ANTHONY_SCARAMUCCI,
@@ -586,7 +592,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(
                 'Marc Andreessen',
                 'co-founder of crypto heavy venture fund Andreessen Horowitz AKA a16z, Trump convert',
-                r"adreeson|(Marc\s*)?(?<!Gavin )Andreess?en(?!\s+Horowitz)",
+                r"adreeson|(Marc\s*)?(?<!Gavin )Andreess?en(?!\s+Horowitz)|@pmarca",
                 link_to_bio='https://cryptadamus.substack.com/p/of-tech-bros-and-trumpers',
                 match_partial=None,
             ),
@@ -818,6 +824,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"(Matteo )?Salvini",
             r"Maxine Waters",
             r"(Nancy )?Pelosi",
+            r"Occupy New York",
             r"Open Society( Global Board)?",
             r"Ron Dellums",
             r"Schumer",
@@ -3091,6 +3098,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"alterna[tv]i[tv]e finance",
             r"((anti )?money )?launder(s?|ers?|ing)?( money)?",
             r"(?<!(alfa|ture|hase|rahi|sche)\s)bank(?!\s+(of|secrecy))",
+            r"Black Sc?holes",
             r"capital controls",
             r"C[EF]O",
             r"charit(ies|y)",
@@ -3108,6 +3116,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"money(land)?",
             r"(naked )?shorting",
             r"NASDAQ",
+            r"options trad(er|ing)",
             r"philanthrop(i(es|st)|y)",
             r"ponz[il] scheme",
             r"preferreds",

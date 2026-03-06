@@ -2066,6 +2066,7 @@ OTHER_FILES_CRYPTO = [
     # Bitmain
     EmailCfg(id='EFTA01004576'),
     # Blockstream
+    DocCfg(id='EFTA00797613', description='Alphabit crypto fund pitch deck', attached_to_email_id='EFTA00955063'),
     EmailCfg(id='EFTA02229342', author=AUSTIN_HILL),
     EmailCfg(
         id='EFTA02406818',
@@ -2073,12 +2074,12 @@ OTHER_FILES_CRYPTO = [
         author_reason='unique email signature',
         description=f"{AUSTIN_HILL} asks Epstein about how the Treasury Dept. will treat dollar backed stablecoins like Tether",
     ),
-    DocCfg(id='EFTA00797613', description='Alphabit crypto fund pitch deck', attached_to_email_id='EFTA00955063'),
     EmailCfg(
         id='EFTA00955063',
         description=f'{AUSTIN_HILL} explains that some crypto funds are engaged in fraudulent wash trading (the attached Excel sheet listing those funds has not been found)',
         is_interesting=True,
     ),
+    EmailCfg(id='EFTA00673841', highlight_quote='business, Bitcoin, personal & esoteric mind games that we play', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA02529170', description=f"Blockstream set up a special company to invest in an Asian ride hailing service"),
     EmailCfg(id='EFTA01917402', description=f'discussion of Epstein investment in Blockstream funneled through {JOI_ITO}', is_interesting=True),
     EmailCfg(id='EFTA00999897', description=f"Epstein claims he's a fan of {ADAM_BACK} (who has recently claimed he had nothing to do with Epstein)"),
@@ -3687,6 +3688,7 @@ UNINTERESTING_EMAIL_IDS = [
     '029204',
     '029094',
     '029096',
+    '028924',  # visible elsewhere
     '029224',  # visible elsewhere
     '029429',
     '029587',
