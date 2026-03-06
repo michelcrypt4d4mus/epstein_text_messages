@@ -315,14 +315,8 @@ def print_email_device_signatures(epstein_files: EpsteinFiles) -> None:
             for emoji in emojis:
                 emoji_authors[emoji].add(email.author or UNKNOWN)
 
-    table = Table(title='Author Emoji Usage', show_lines=True)
-    table.add_column('Emoji')
-    table.add_column('Authors')
-
-    for author, emojis in author_emojis.items():
-        table.add_row(author, '  '.join(emojis))
-
-    console.print(table)
+    console.line()
+    print_subtitle_panel("Emoji Usage")
     console.print(_signature_table(emoji_authors, ('Emoji', AUTHOR)))
 
 
