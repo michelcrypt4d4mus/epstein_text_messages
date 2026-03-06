@@ -26,7 +26,10 @@ class DropsiteEmail(Email):
 
     def raw_text(self) -> str:
         """Reload the raw data from the underlying file and return it."""
-        return self.eml.as_string()
+        # TODO: this isn't the raw text... should be the following line
+        # return self.eml.as_string()
+        body = self.eml.get_body(('plain', 'related', 'html')).get_content()
+        return self.with_header(f"\n{body}")
 
     def _extract_header(self) -> EmailHeader:
         """Extract an `EmailHeader` from the OCR text."""
@@ -47,8 +50,7 @@ class DropsiteEmail(Email):
 
     def _load_file(self) -> str:
         """Remove BOM and HOUSE OVERSIGHT lines, strip whitespace."""
-        body = self.eml.get_body(('plain', 'related', 'html')).get_content()
-        text = self.with_header(f"\n{body}")
+        text = self.raw_text()
         # TODO: this should be in _repair()
         # text = self.repair_ocr_text(OCR_REPAIRS, text.strip())
         lines = [line.strip() if self.STRIP_WHITESPACE else line for line in text.split('\n')]
