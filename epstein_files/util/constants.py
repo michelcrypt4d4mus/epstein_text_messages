@@ -1526,9 +1526,10 @@ EMAILS_CONFIG = [
     ),
     EmailCfg(id='EFTA00923902', description=f"Andrey Vavilov offers to buy Epstein's house for $100 million", truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA01175429', description=f"Andrey Vavilov offers to buy Epstein's house for $100 million"),
+    EmailCfg(id='EFTA00363992', description=f"car rental for {MARIANA_IDZKOWSKA}"),
+    EmailCfg(id='EFTA02630431', description=f"{CARBYNE} is an Israeli company invested in by Epstein, {NICOLE_JUNKERMANN}, & {EHUD_BARAK}"),
     EmailCfg(id='EFTA02573653', description=f'discussion of {PRINCE_ANDREW}\'s Urramoor, "Howard" is probably {HOWARD_LUTNICK} which Urramoor partnered with'),
     EmailCfg(id='EFTA02629771', description=f"discussion of {RENATA_BOLOTOVA}'s employment at IPI", is_interesting=True),
-    EmailCfg(id='EFTA02630431', description=f"{CARBYNE} FKA 'Reporty' is an Israeli company invested in by Epstein, Junkermann, and {EHUD_BARAK}"),
     EmailCfg(id='EFTA00671263', description="Eagle's View Capital Management September 2017 Performance Update"),
     EmailCfg(id='EFTA00836182', description=f'email to investors in {VALAR_FUND}'),
     EmailCfg(id='EFTA00877726', description=f'Epstein and {DAVID_STERN} discuss plans to manage money for wealthy Chinese'),
@@ -2058,8 +2059,8 @@ OTHER_FILES_CRYPTO = [
         highlight_quote="I would like to see you alone to discuss alternative currencies",
         recipients=[JEFFREY_EPSTEIN],
     ),
-    EmailCfg(id='EFTA02575430', description='alternative currencies group'),
     EmailCfg(id='EFTA01852443'),
+    EmailCfg(id='EFTA02575430', description='alternative currencies group'),
     # Bannon
     EmailCfg(id='030711', description='Epstein says "we can discuss michael and his coins", unclear what that means'),
     EmailCfg(id='026260', comment='Bannon cripto coin issues'),
@@ -2209,12 +2210,15 @@ OTHER_FILES_CRYPTO = [
         is_interesting=True
     ),
     # David Stern
-    EmailCfg(id='EFTA02494305', description=f"planning a crypto exchange in Belarus, {DAVID_STERN}'s \"Chinese guys\" can't do it because of the PRC's crackdown on crypto"),
+    EmailCfg(
+        id='EFTA02494305',
+        description=f"planning a crypto exchange in Belarus, {DAVID_STERN}'s \"Chinese guys\" can't do it because of the PRC's crackdown on crypto",
+    ),
     EmailCfg(id='EFTA00886763', description=f"documents are being prepared to license Epstein and {DAVID_STERN}'s crypto exchange in Belarus"),
     EmailCfg(
         id='EFTA02494000',
         description=f'Epstein says a crypto exchange in Belarus could be "very useful", {DAVID_STERN}\'s Chinese guys could have brought "significant volume"',
-        is_interesting=True
+        is_interesting=True,
     ),
     # Honeycomb
     DocCfg(id='EFTA00803491', author=HONEYCOMB_FUND, description="deck", is_interesting=True),
@@ -2433,9 +2437,13 @@ OTHER_FILES_CRYPTO = [
     EmailCfg(id='EFTA02620980', description=f"{MADARS_VIRZA} says Tether was created to avoid anti-money laundering laws"),
     EmailCfg(id='EFTA01781741', description=f'{JOI_ITO} introduces Epstein to {MADARS_VIRZA} and the untraceable private crypto ZCash'),
     EmailCfg(id='EFTA02645742', description=f"tax implications of the untraceable 'privacy coin' ZCash", is_interesting=True),
-    EmailCfg(id='EFTA02374960', description=f"Epstein says that he will fund a seat at MIT Media Lab for ZCash founder {MADARS_VIRZA}", is_interesting=True),
+    EmailCfg(
+        id='EFTA02374960',
+        description=f"Epstein says that he will fund a seat at MIT Media Lab for ZCash founder {MADARS_VIRZA}",
+        is_interesting=True,
+    ),
     # Unsorted
-    EmailCfg(id='EFTA00629471', author=JOHN_BROCKMAN, truncate_to=3000),
+    EmailCfg(id='EFTA00629471', author=JOHN_BROCKMAN, non_participants=[AUSTIN_HILL, 'David Geffen'], truncate_to=3000),
     EmailCfg(id='EFTA01762201', highlight_quote='indoctrinating kids into an economy', show_with_name=BOBBY_KOTICK),
     EmailCfg(id='EFTA02414991', description=f"Epstein signs up for World of Warcraft", truncate_to=350),
     EmailCfg(id='EFTA01388354', description=f"invitation to {DEUTSCHE_BANK} blockchain event with Mike Novogratz"),
@@ -2708,9 +2716,9 @@ OTHER_FILES_GIRLS = [
     EmailCfg(id='EFTA02431535', author=UNKNOWN_GIRL),
     EmailCfg(id='EFTA01875607', author=UNKNOWN_GIRL),
     EmailCfg(id='EFTA00901581', author=UNKNOWN_GIRL),
-    EmailCfg(id='EFTA02027844', author=UNKNOWN_GIRL, description='permission to "fuck someone with a condom"', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA02449477', author=UNKNOWN_GIRL, description='argument about finding girls for Epstein', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA01782788', author=UNKNOWN_GIRL, description='"I need 21-24, wiling to travel and work hard"', truncate_to=NO_TRUNCATE),
+    EmailCfg(id='EFTA02027844', author=UNKNOWN_GIRL, description='permission to "fuck someone with a condom"', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA00763537', author=UNKNOWN_GIRL, highlight_quote="19 but I look younger than her"),
     EmailCfg(id='EFTA00738485', recipients=[STEVEN_VICTOR_MD], truncate_to=640),
     # Recipients
@@ -2726,7 +2734,12 @@ OTHER_FILES_GIRLS = [
         recipient_uncertain='https://x.com/FlippersUpNow/status/2023457206109155345',
         description='"igrushki" means "toys" in Russian',
     ),
-    EmailCfg(id='EFTA00857669', recipients=[SANITA], description=f"{SANITA} is maybe the only great girl with right thinking", truncate_to=NO_TRUNCATE),
+    EmailCfg(
+        id='EFTA00857669',
+        description=f"{SANITA} is maybe the only great girl with right thinking",
+        recipients=[SANITA],
+        truncate_to=NO_TRUNCATE,
+    ),
     EmailCfg(
         id='EFTA00888467',
         description=f'very strange conversation about "Peter" (maybe {PETER_MANDELSON}?) and "mj" (maybe {HASSAN_JAMEEL}?)',
@@ -2833,7 +2846,7 @@ OTHER_FILES_GIRLS = [
     EmailCfg(id='EFTA01930285', highlight_quote='ukraine upheaval should provide many opportunites'),
     EmailCfg(id='EFTA00751119', highlight_quote='Valdson to teach girls how to serve'),
     EmailCfg(id='EFTA01995972', highlight_quote='you are meeting elon tmr for lunch'),
-    EmailCfg(id='EFTA01768670', highlight_quote='find girls for the agency', description=f'but {BORIS_NIKOLIC} is a tech investor...'),
+    EmailCfg(id='EFTA01768670', highlight_quote='find girls for the agency', description=f'but {BORIS_NIKOLIC} is a "biotech investor"...'),
     EmailCfg(id='EFTA01998027', highlight_quote="What day/night will be the wildest party on your island?", is_interesting=True),
 
     # Descriptions
@@ -3623,6 +3636,8 @@ WHISTLEBLOWER_IDS = {
 
 OTHER_FILES_CRYPTO.extend([whistleblower_cfg(id, desc) for id, desc in WHISTLEBLOWER_IDS.items()])
 
+
+# Interesting / uninteresting
 INTERESTING_EMAIL_IDS = [
     '033096',
     'EFTA02516264',
@@ -3825,6 +3840,7 @@ UNINTERESTING_EMAIL_IDS = [
     '030823',  # "little hodiaki"
     '027009',
     '026273',
+    'EFTA00363992',  # car rental
 ]
 
 # Not uninteresting enough to be permanently marked as such but not good enough for --output-chrono
