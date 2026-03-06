@@ -631,6 +631,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             organization('BGC', f"{CANTOR} related firm of {HOWARD_LUTNICK}"),
             organization('Bioptix', 'old name of RIOT Blockchain from when it was a biotech company'),
             organization('Bitfinex', f"crypto exchange run by the same people that run Tether"),
+            organization('BitFury', 'Dutch bitcoin mining company founded by Valery Vavilov and Mark Dollar'),
             organization('Bitmain', f"Chinese manufacturer of bitcoin mining rigs"),
             organization(BLOCKSTREAM, f"early crypto firm co-founded by {ADAM_BACK} and {AUSTIN_HILL}", r"(the)?blockstream"),
             organization(BLOCKCHAIN_CAPITAL, f"crypto VC fund co-founded by Bart Stephens and {BROCK_PIERCE}"),
@@ -2295,6 +2296,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         style='red bold',
         contacts=[
             Contact('Alisher Usmanov', 'Uzbeki oligarch with alleged ties to Putin, organized crime'),
+            Contact('Andrey Vavilov', 'offered to buy Epstein house for $100 million'),
             Contact(
                 ANYA_RASULOVA,
                 f'Uzbeki co-founder of {INSIGHTS_POD}, social media work for Epstein during 2016 US election',

@@ -1514,6 +1514,7 @@ EMAILS_CONFIG = [
         description=f"the (possibly faked) death of {AL_SECKEL}",
         is_interesting=True,
     ),
+    EmailCfg(id='EFTA01175429', description=f"Andrey Vavilov offers to buy Epstein's house for $100 million"),
     EmailCfg(id='EFTA02573653', description=f'discussion of {PRINCE_ANDREW}\'s Urramoor, "Howard" is probably {HOWARD_LUTNICK} which Urramoor partnered with'),
     EmailCfg(id='EFTA02629771', description=f"discussion of {RENATA_BOLOTOVA}'s employment at IPI", is_interesting=True),
     EmailCfg(id='EFTA02630431', description=f"{CARBYNE} FKA 'Reporty' is an Israeli company invested in by Epstein, Junkermann, and {EHUD_BARAK}"),
