@@ -1811,8 +1811,9 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact('Tim Zagat', "Zagat restaurant guide CEO"),
             Contact(
                 'Vicky Ward',
-                "her coverage of allegations against Epstein was spiked by editors, then went on to praise Epstein",
+                "coverage of Epstein allegations was spiked by editors in 2003, went on to publicly praise Epstein and Ghislaine as great people in 2011",
                 r"Vick[iy] Ward",
+                link_to_bio='https://www.npr.org/2019/08/22/753390385/a-dead-cat-a-lawyers-call-and-a-5-figure-donation-how-media-fell-short-on-epstei',
                 match_partial=None,
             ),
             organization(HENRY_HOLT, f"{MICHAEL_WOLFF}'s book publisher"),
