@@ -2848,6 +2848,7 @@ OTHER_FILES_GIRLS = [
     EmailCfg(id='EFTA01995972', highlight_quote='you are meeting elon tmr for lunch'),
     EmailCfg(id='EFTA01768670', highlight_quote='find girls for the agency', description=f'but {BORIS_NIKOLIC} is a "biotech investor"...'),
     EmailCfg(id='EFTA01998027', highlight_quote="What day/night will be the wildest party on your island?", is_interesting=True),
+    EmailCfg(id='EFTA01930501', highlight_quote="Your littlest girl was a little naughty"),
 
     # Descriptions
     EmailCfg(id='EFTA00631762', description="visa problems for Epstein's South African friend"),

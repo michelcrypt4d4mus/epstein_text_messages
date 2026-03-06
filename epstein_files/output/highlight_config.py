@@ -1401,6 +1401,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 r"David Ste(m|rn?)|ds[@®]witangroup",
                 match_partial=None
             ),
+            Contact('Douglas Leese', 'British arms dealer / defense contractor'),
             Contact(
                 JENNIE_SAUNDERS,
                 f'co-founder of Core Club, {DANGENE_AND_JENNIE_ENTERPRISE}, accused of recruiting underage girls',
