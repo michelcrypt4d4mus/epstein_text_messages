@@ -330,6 +330,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact('Sam Belzberg', "Canadian businessman"),
             Contact(STEVE_WYNN, f'gambling magnate, possible dispute with {MILES_GUO}', match_partial=None),
             Contact(TOM_PRITZKER, "chairman of The Pritzker Organization and Hyatt Hotels"),
+            organization('501c3', 'IRS code for a non-profit entity'),
             organization(ATT_COURT_APPEARANCE_TEAM, "AT&T", is_interesting=False),
             organization('Junkermann Group', JUNKERMANN_FUND),
             organization('NJF Capital', JUNKERMANN_FUND, r"NJF( Capital)?"),
