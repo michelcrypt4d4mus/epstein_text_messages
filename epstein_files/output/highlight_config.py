@@ -2296,7 +2296,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         style='red bold',
         contacts=[
             Contact('Alisher Usmanov', 'Uzbeki oligarch with alleged ties to Putin, organized crime'),
-            Contact('Andrey Vavilov', 'offered to buy Epstein house for $100 million'),
+            Contact('Andrey Vavilov', 'former Russian finance minister accused of stealing $230 million and other frauds'),
             Contact(
                 ANYA_RASULOVA,
                 f'Uzbeki co-founder of {INSIGHTS_POD}, social media work for Epstein during 2016 US election',

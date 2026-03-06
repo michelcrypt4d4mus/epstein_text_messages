@@ -1514,6 +1514,7 @@ EMAILS_CONFIG = [
         description=f"the (possibly faked) death of {AL_SECKEL}",
         is_interesting=True,
     ),
+    EmailCfg(id='EFTA00923902', description=f"Andrey Vavilov offers to buy Epstein's house for $100 million", truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA01175429', description=f"Andrey Vavilov offers to buy Epstein's house for $100 million"),
     EmailCfg(id='EFTA02573653', description=f'discussion of {PRINCE_ANDREW}\'s Urramoor, "Howard" is probably {HOWARD_LUTNICK} which Urramoor partnered with'),
     EmailCfg(id='EFTA02629771', description=f"discussion of {RENATA_BOLOTOVA}'s employment at IPI", is_interesting=True),
@@ -3287,6 +3288,13 @@ OTHER_FILES_MONEY = [
     DocCfg(id='024003', description=f"New Leaf Ventures ($375 million biotech fund) private placement memorandum"),
 
     # DOJ files
+    DocCfg(
+        id='EFTA01413294',
+        comment='related to EFTA01357341, efta01363125, + more based on Vavilov Street address',
+        date='2016-12-16',
+        date_uncertain='hard to tell',
+        description='compliance report on payment from Epstein to Sberbank account of Nikolay Aleksandrovich Gyrov',
+    ),
     DocCfg(
         id='EFTA00173953',
         author='Organized Crime Drug Enforcement Task Force',
