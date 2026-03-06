@@ -2565,6 +2565,7 @@ OTHER_FILES_FLIGHT_LOG = [
 
 
 OTHER_FILES_GIRLS = [
+    EmailCfg(id='025874', description=f"possibly about {VIRGINIA_GIUFFRE} {QUESTION_MARKS}"),
     EmailCfg(id='030609', duplicate_ids=['030495']),
     letter('EFTA00078198', 'Marsh Law Firm', [USANYS], "allegations of sexual abuse at Epstein's house", '2020-11-10'),
     DocCfg(id='EFTA00306033', author=SERGEY_BELYAKOV, description='Epstein Russian visa', show_full_panel=True),
