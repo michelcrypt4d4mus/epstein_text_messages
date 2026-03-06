@@ -1771,7 +1771,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 'producer and technologist for CBS News in New York',
                 link_to_bio='https://www.edge.org/memberbio/dan_dubno',
             ),
-            Contact('David Pecker', 'publisher of National Enquirer and Weekly World News'),
+            Contact('David Pecker', 'lowlife publisher of National Enquirer and Weekly World News'),
             Contact(
                 'Dylan Love',
                 f'Business Insider / The Next Web, financial support from Epstein via {MASHA_DROKOVA}',
@@ -1784,7 +1784,12 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 link_to_bio='https://www.godofthedesert.org/p/the-secrets-edward-jay-epstein-told',
                 match_partial=None,
             ),
-            Contact('Graydon Carter', f"editor of Vanity Fair"),
+            Contact(
+                'Graydon Carter',
+                f"editor of Vanity Fair",
+                link_to_bio='https://www.newyorker.com/news/annals-of-communications/why-didnt-vanity-fair-break-the-jeffrey-epstein-story',
+                match_partial='first',
+            ),
             Contact(JAMES_HILL, "ABC News", r"hill, james e.|james.e.hill@abc.com", match_partial=None),
             Contact(JENNIFER_JACQUET, "Future Science magazine"),
             Contact(JOHN_BROCKMAN, "literary agent and author specializing in scientific literature"),
@@ -1806,8 +1811,9 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact('Tim Zagat', "Zagat restaurant guide CEO"),
             Contact(
                 'Vicky Ward',
-                "her coverage of allegations against Epstein was spiked by editors, then went on to praise Epstein",
+                "coverage of Epstein allegations was spiked by editors in 2003, went on to publicly praise Epstein and Ghislaine as great people in 2011",
                 r"Vick[iy] Ward",
+                link_to_bio='https://www.npr.org/2019/08/22/753390385/a-dead-cat-a-lawyers-call-and-a-5-figure-donation-how-media-fell-short-on-epstei',
                 match_partial=None,
             ),
             organization(HENRY_HOLT, f"{MICHAEL_WOLFF}'s book publisher"),
@@ -1849,7 +1855,6 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Ger(ald|ry) Baker",
             r"Globe and Mail",
             r"Good Morning America",
-            r"Graydon( Carter)?",
             r"Hollywood Reporter",
             r"Huff(ington)?( Po(st)?)?",
             r"Ingram, David",
@@ -1881,6 +1886,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Sharon Churcher",  # Daily Mail
             r"Sulzberger",
             r"SunSentinel",
+            r"tabloid",
             r"(The )?Financial Times",
             r"The Guardian",
             r"TheHill",
@@ -2993,11 +2999,13 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             ),
         ],
         patterns=[
+            r"int[e=]rior design(er)?",
+            r"landlord",
             r"Mandarin Oriental",
             r"properties",
             r"real estate( developer)?",
-            r"int[e=]rior design(er)?",
             r"(reverse )?mortgage",
+            r"tenant",
         ]
     ),
     # Individuals
