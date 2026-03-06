@@ -24,23 +24,22 @@ from epstein_files.util.constants import CONFIGS_BY_ID, EmailCfg
 from epstein_files.util.helpers.data_helpers import *
 from epstein_files.util.helpers.debugging_helper import print_all_timestamps, print_file_counts
 from epstein_files.util.helpers.file_helper import open_file_or_url
-from epstein_files.util.helpers.string_helper import quote
+from epstein_files.util.helpers.string_helper import extract_emojis, quote
 from epstein_files.util.logging import logger
 from epstein_files.output.rich import bool_txt, console, highlighter, print_json, print_subtitle_panel
 
 
-print_subtitle_panel('Rich HTML Template')
-print(RICH_HTML_TEMPLATE)
-print('\n')
-print_subtitle_panel('CUSTOM HTML TEMPLATE')
-print(CUSTOM_HTML_TEMPLATE)
 
-# # Show biggest files
-# for i, doc in enumerate(sorted(epstein_files.doj_files, key=lambda f: -f.length)):
-#     console.print(f"{doc.file_id}: {doc.file_info.file_size_str} ({doc.length:,} bytes)")
+# Show biggest files
+for i, email in enumerate(epstein_files.emails):
+    if (emojis := extract_emojis(email.actual_text)):
+        # console.print(email._summary)
+        console.print(email)
+        print(f"   found emojis: {emojis}")
+        console.line()
+        print(f"----- actual text {email.file_id} -----\n{email.actual_text}\n--------------end actual text-------------\n")
+        console.line(2)
 
-#     if i > 2000:
-#         break
 
 
 sys.exit()

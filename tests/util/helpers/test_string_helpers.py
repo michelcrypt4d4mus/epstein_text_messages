@@ -1,5 +1,7 @@
 from epstein_files.util.helpers.string_helper import as_pattern, extract_emojis, has_line_starting_with, indented
 
+EMAIL_TEXT = ">From: umar ovk.ru\n>To:\n>Subject:"
+
 
 def test_as_pattern():
     assert as_pattern('nas - illmatic') == r'nas[-_.\s]*-[-_.\s]*illmatic'
@@ -9,7 +11,9 @@ def test_as_pattern():
 def test_extract_emojis():
     assert extract_emojis('thanks :)') == [':)']
     assert extract_emojis('thanks :-) see you') == [':-)']
-    assert extract_emojis('thanks :-) see you :P\nhappy :) :D') == [':-)', ':P', ':)', ':D']
+    assert extract_emojis('thanks :-) see you :P\nhappy :) :D who (-:') == [':-)', ':P', ':)', ':D', '(-:']
+    assert extract_emojis('(^: hoo boy') == ['(^:']
+    assert extract_emojis(EMAIL_TEXT) == []
 
 
 def test_indented():
