@@ -3840,6 +3840,7 @@ UNINTERESTING_EMAIL_IDS = [
     '030823',  # "little hodiaki"
     '027009',
     '026273',
+    'EFTA00363992',  # car renta,
 ]
 
 # Not uninteresting enough to be permanently marked as such but not good enough for --output-chrono
