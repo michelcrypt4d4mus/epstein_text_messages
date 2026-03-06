@@ -2315,7 +2315,14 @@ OTHER_FILES_CRYPTO = [
     EmailCfg(id='EFTA01010171'),
     EmailCfg(id='EFTA01010128'),
     # Misc
-    DocCfg(id='EFTA02005667', author='Clearstone', description='Online Gaming Fund pitch deck', date='2011-02-01', date_uncertain=True),
+    DocCfg(
+        id='EFTA02005667',
+        author='Clearstone',
+        date='2011-02-01',
+        date_uncertain=True,
+        description='Online Gaming Fund pitch deck',
+        non_participants=[AUSTIN_HILL],
+    ),
     DocCfg(
         id='EFTA01388197',
         attached_to_email_id='EFTA01388354',
