@@ -1003,6 +1003,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact('Alan S Halperin', "partner at Paul, Weiss"),
             Contact(ALAN_DERSHOWITZ, f"{HARVARD} Law School professor", r"(alan.{1,7})?dershowi(lz?|t?z)|AlanDersh"),
             Contact(ARDA_BESKARDES, "NYC immigration attorney allegedly involved in sex-trafficking operations"),
+            Contact('Bebe Avdiu', f'legal assistant to {DARREN_INDYKE}'),
             Contact(
                 BENNET_MOSKOWITZ,
                 "represented the Epstein estate executors",
