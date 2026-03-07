@@ -10,20 +10,22 @@ from tests.conftest import FILE_TEXT_DUMP_DIR
 from tests.fixtures.fixture_csvs import load_files_csv, write_files_csv
 
 
-for doc in epstein_files.documents:
-    output_file = FILE_TEXT_DUMP_DIR.joinpath(doc.file_id)
+def update_text_dump() -> None:
+    for doc in epstein_files.documents:
+        output_file = FILE_TEXT_DUMP_DIR.joinpath(doc.file_id)
 
-    if output_file.exists():
-        if (old_contents := output_file.read_text()) == doc.text:
-            doc.log(f"text matches '{output_file}', skipping...")
-            continue
+        if output_file.exists():
+            if (old_contents := output_file.read_text()) == doc.text:
+                doc.log(f"text matches '{output_file}', skipping...")
+                continue
 
-        num_diff_chars = len(old_contents) - doc.length
-        doc.warn(f"updating existing file at '{output_file}' with {num_diff_chars} new chars...")
-    else:
-        doc.warn(f"file doesn't exist, writing {len(doc.text)} chars to '{output_file}'...")
+            num_diff_chars = len(old_contents) - doc.length
+            doc.warn(f"updating existing file at '{output_file}' with {num_diff_chars} new chars...")
+        else:
+            doc.warn(f"file doesn't exist, writing {len(doc.text)} chars to '{output_file}'...")
 
-    output_file.write_text(doc.text)
+        output_file.write_text(doc.text)
 
 
+# update_text_dump()
 write_files_csv()

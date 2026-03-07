@@ -508,6 +508,7 @@ SIGNATURE_SUBSTITUTION_COUNTS = {
     'Michael Miller': 6,
     NICHOLAS_RIBIS: 2,
     PAUL_BARRETT: 10,
+    'Paul Venables': 4,
     PETER_ATTIA: 3,
     PETER_MANDELSON: 10,
     RICHARD_KAHN: 193,
