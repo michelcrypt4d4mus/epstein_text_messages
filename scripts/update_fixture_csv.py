@@ -19,7 +19,7 @@ def update_text_dump() -> None:
                 doc.log(f"text matches '{output_file}', skipping...")
                 continue
 
-            num_diff_chars = len(old_contents) - doc.length
+            num_diff_chars = doc.length - len(old_contents)
             doc.warn(f"updating existing file at '{output_file}' with {num_diff_chars} new chars...")
         else:
             doc.warn(f"file doesn't exist, writing {len(doc.text)} chars to '{output_file}'...")
@@ -27,5 +27,5 @@ def update_text_dump() -> None:
         output_file.write_text(doc.text)
 
 
-# update_text_dump()
+update_text_dump()
 write_files_csv()
