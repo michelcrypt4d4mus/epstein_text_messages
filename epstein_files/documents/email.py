@@ -43,7 +43,7 @@ from epstein_files.util.logging import logger
 
 # Email bod regexes
 BAD_FIRST_LINE_REGEX = re.compile(r'^(>>|Grant_Smith066474"eMailContent.htm|LOVE & KISSES)$')
-BAD_LINE_REGEX = re.compile(r'^(>;?|[>»]*=20|\d{1,2}|PAGE INTENTIONALLY LEFT BLANK|Classification: External Communication|Hide caption|Importance:?\s*High|[iI,•]|[1i] (_ )?[il]|, [-,]|L\._|_filtered|si.nature.asc|.*(yiv0232|font-family:|margin-bottom:).*)$')
+BAD_LINE_REGEX = re.compile(r'^([>=];?|[>»]*=20|\d{1,2}|PAGE INTENTIONALLY LEFT BLANK|Classification: External Communication|Hide caption|Importance:?\s*High|[iI,•]|[1i] (_ )?[il]|, [-,]|L\._|_filtered|si.nature.asc|.*(yiv0232|font-family:|margin-bottom:).*)$')
 BAD_SUBJECT_CONTINUATIONS = ['orwarded', 'Hi ', 'Sent ', 'AmLaw', 'Original Message', 'Privileged', 'Sorry', '---']
 LINK_LINE_REGEX = re.compile(r"^[>• ]*htt")
 LINK_LINE2_REGEX = re.compile(r"^[-\w.%&=/]{5,}$")
@@ -702,6 +702,8 @@ class Email(Communication):
         if BAD_FIRST_LINE_REGEX.match(self.lines[0]):
             self._set_text(lines=self.lines[1:])
 
+        # print(self._numbered_lines())
+        # import pdb;pdb.set_trace()
         self._set_text(lines=[line for line in self.lines if not BAD_LINE_REGEX.match(line)])
         old_text = self.text
 
@@ -730,6 +732,8 @@ class Email(Communication):
         # logger.debug(f"repaired_text\n---\n{self.text}\n---")
         self._set_text(text=repaired_text)
         self._strip_unwanted_text()
+        # TODO: we're currently calling this twice to handle lines with HTML garbage that turn into something matching BAD_LINE_REGEX
+        self._set_text(lines=[line for line in self.lines if not BAD_LINE_REGEX.match(line)])
 
     def _repair_links_and_quoted_subjects(self, text: str) -> str:
         """Repair links that the OCR has broken into multiple lines as well as 'Subject:' lines."""
