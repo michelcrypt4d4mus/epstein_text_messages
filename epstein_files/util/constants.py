@@ -3925,6 +3925,8 @@ NOT_CHRONOLOGICAL_VIEW_IDS = [
     'EFTA02516675',
     '011908_6',
     # Jabor
+    # Joi Ito
+    'EFTA01058627',
     # Deepak
     'EFTA02342230',
     # Misc

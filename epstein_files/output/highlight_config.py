@@ -81,6 +81,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact('Nancy Dahl', f"wife of {LAWRENCE_KRAUSS}"),
             Contact(NEAL_KASSELL, "professor of neurosurgery at University of Virginia"),
             Contact('Neri Oxman', f"MIT, wife of Bill Ackman", match_partial='both'),
+            Contact('Nicholas Christakis', f"Yale professor of Social and Natural Science"),
             Contact(NOAM_CHOMSKY, "professor of linguistics at MIT", match_partial='both'),
             Contact('Norman Finkelstein', "scholar, well known critic of Israel"),
             Contact(PETER_ATTIA, "longevity medicine"),
@@ -148,6 +149,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Tulane",
             r"UCLA",
             r"Wharton",
+            r"Yale",
         ],
     ),
     HighlightedNames(
