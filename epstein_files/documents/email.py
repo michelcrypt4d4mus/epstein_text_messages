@@ -213,6 +213,10 @@ class Email(Communication):
         sent_from_device (str, optional): "Sent from my iPhone" style signature (if it exists).
         signature_substitution_counts (dict[str, int]): Number of times a signature was replaced with
             <...snipped...> per name
+        _line_merge_arguments (list[tuple[int] | tuple[int, int]]): preconfigured list of line merges that will fix up
+            files from the HOUSE_OVERSIGHT_ collection in memory while leaving the source files untouched
+        _was_split_up (bool, optional): True if this file Email was one of the big ones that was split into pieces
+            and thus should generally be hidden / not shown
     """
     attached_docs: list[OtherFile] = field(default_factory=list)
     actual_text: str = field(init=False)
