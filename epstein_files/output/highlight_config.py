@@ -2402,6 +2402,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 link_to_bio='https://dossier.center/jeffreyepsteinrusconnect-en/',
             ),
             Contact('Sergey Lavrov', 'foreign minister under Putin'),
+            Contact('Svetlana Pudina', 'assistant to Vladislav Doronin'),
             Contact(
                 UMAR_DZHABRAILOV,
                 f'oligarch who called {GHISLAINE_MAXWELL} his "soulmate", death by "suicide" 2026-03-02',
@@ -2540,9 +2541,9 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(
                 SVETLANA_POZHIDAEVA,
                 f"AKA 'Sophia Platt', Epstein assistant, went to FSB feeder school MGIMO, visa recommended by {SERGEY_BELYAKOV} (FSB) & {DAVID_BLAINE}",
-                r"Sophia Platt|((Svet)?Lana )?Pozhidaeva|\b(Lana|Svet)\b|p\.selana|Selana P\b",
+                r"Sophia Platt|((Svet)?Lana )?Pozhidaeva|\b(Lana|Svet)\b|p\.selana|Selana P\b|Svetlan(?! Pudina)",
                 link_to_bio='https://dossier.center/jeffreyepsteinrusconnect-en/',
-                match_partial='first',
+                match_partial=None,
             ),
             Contact(YULIA_DOROKHINA, 'Russian girl, recruiter'),
             Contact('Yulia Trubuckai', 'Russian girl'),
