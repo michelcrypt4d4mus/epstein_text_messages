@@ -1399,7 +1399,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA02175423', recipients=[LESLEY_GROFF], truncate_to=650),
     EmailCfg(id='EFTA00313867', recipients=[LESLEY_GROFF], truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA00383027', recipients=[LINDA_STONE]),
-    EmailCfg(id='EFTA01002282', recipients=[LINDA_STONE], comment='signature'),
+    EmailCfg(id='EFTA01002282', recipients=[LINDA_STONE], author_reason='signature'),
     EmailCfg(id='EFTA02266524', recipients=[MARIA_PRUSAKOVA], author_reason=CRYPTO_PR_LAB, description='Medici Bank'),
     EmailCfg(id='EFTA02503155', recipients=[MARIA_PRUSAKOVA], author_reason='visible in quoted reply'),
     EmailCfg(
@@ -2336,6 +2336,7 @@ OTHER_FILES_CRYPTO = [
     EmailCfg(id='EFTA01752601', description=f"{JOI_ITO} and Epstein name their new fund Kyara"),
     EmailCfg(id='EFTA02703885', description=f"{LINDA_STONE} introducing Epstein to {JEREMY_RUBIN}"),
     EmailCfg(id='EFTA02505439', description=f'summary of {KYARA_INVESTMENT} shell companies with {JOI_ITO}'),
+    EmailCfg(id='EFTA01973301', recipients=[LINDA_STONE], author_reason='signature'),
     EmailCfg(id='EFTA00473175', truncate_to=1000),
     # Kushner
     DocCfg(id='EFTA00128987', description='suspicious activity report (SAR) about Kushner co. crypto payments to suspicious Russian person'),
