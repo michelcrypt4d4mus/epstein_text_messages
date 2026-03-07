@@ -31,6 +31,7 @@ OTHER_FILES_TABLE_MSG = Text("(non emails will appear in tables)", 'gray27 itali
 @dataclass
 class DocPrinter:
     """Handles printing collections of documents with biographical info panels interspersed."""
+    collect_other_files_to_tables: bool = True
     html_elements: list[str] = field(default_factory=list)
     other_files_queue: list[OtherFile] = field(default_factory=list)
     last_bio_panel = ''
@@ -80,7 +81,7 @@ class DocPrinter:
             elif self.suppressed_docs_queue:
                 self._print_suppression_msgs_queue()
 
-            if isinstance(doc, OtherFile) and doc.is_valid_for_table:
+            if isinstance(doc, OtherFile) and doc.is_valid_for_table and self.collect_other_files_to_tables:
                 if self.new_names(doc):
                     if self.other_files_queue:
                         self._print_other_files_queue()  # Clear the queue before new biographical panel
