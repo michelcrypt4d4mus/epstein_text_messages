@@ -3127,7 +3127,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(
                 SULTAN_BIN_SULAYEM,
                 "chairman of ports in Dubai, CEO of DP World",
-                r"Sultan (Ahmed )?bin Sulaye?m?|ssulayem©aol.com",
+                r"Sultan (Ahmed )?bin Sulaye?m?|ssulayem[©@a](aol|etisalat\.?blackberry).com",
                 link_to_bio='https://www.bbc.com/news/articles/ce82xgd2g3yo',
             )
         ],
