@@ -282,9 +282,10 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(BILL_GATES, "ex-Microsoft, Gates Foundation, bgC3"),
             Contact('Dick Henriques', 'CFO of Bill and Melinda Gates Foundation'),
             Contact(
-                name=BORIS_NIKOLIC,
-                info=f"biotech partner of {BILL_GATES} in bgC3 / Bill Gates Ventures, Epstein estate executor",
-                emailer_pattern=r"(boris )?nikolic?",
+                BORIS_NIKOLIC,
+                f"biotech partner of {BILL_GATES} in bgC3 / Bill Gates Ventures, Epstein estate executor",
+                r"(boris )?nikolic?",
+                link_to_bio='https://www.wsj.com/articles/how-epstein-inserted-himself-in-a-split-between-bill-gates-and-a-top-gates-adviser-6d8fca69',
                 match_partial='both'
             ),
         ],
