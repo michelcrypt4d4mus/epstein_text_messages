@@ -2068,6 +2068,7 @@ OTHER_FILES_CRYPTO = [
     ),
     EmailCfg(id='EFTA01852443'),
     EmailCfg(id='EFTA01754301'),
+    EmailCfg(id='EFTA02361956', author=LINDA_STONE, author_reason='signature'),
     EmailCfg(id='EFTA02575430', description='alternative currencies group'),
     EmailCfg(id='EFTA00660838', description=f"Epstein says his trip to Ivory Coast was amazing", truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA02391375', highlight_quote="Have you heard of the alternative currency"),
