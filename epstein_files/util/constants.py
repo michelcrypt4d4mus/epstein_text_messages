@@ -3905,6 +3905,8 @@ NOT_CHRONOLOGICAL_VIEW_IDS = [
     'EFTA02342230',
     # Misc
     'EFTA00329334',
+    # Tyler Shears
+    'EFTA02372294',
     # --- #
     'EFTA02048499',
     'EFTA00322570',
