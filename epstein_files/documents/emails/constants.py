@@ -115,6 +115,7 @@ DOJ_EMAIL_OCR_REPAIRS: dict[str | re.Pattern, str] = {
 
 # "Sent from my iPhone" regexes
 SENT_FROM_DEVICE_PREFIXES = [
+    r"Empower your Business",
     r"Envoy[ée] (avec|de mon)",
     r"From my Android phone",
     r"Get Outlook",
@@ -131,6 +132,7 @@ SENT_FROM_DEVICE_SUFFIXES = [
     r"and string",
     r"AT&T",
     r"Droid",
+    "from Etisalat",
     r" gesendet",
     r"iOS",
     r"iPada?",

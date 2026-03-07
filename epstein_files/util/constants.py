@@ -1489,6 +1489,8 @@ EMAILS_CONFIG = [
     ),
     EmailCfg(
         id='EFTA01878623',
+        author=SHAHER_ABDULHAK_BESHER,
+        author_reason='"S A" + comments about son',
         description=f"discussion of the murder of Martine Vik Magnussen by {SHAHER_ABDULHAK_BESHER}'s son Farouk",
         is_interesting=True,
     ),
