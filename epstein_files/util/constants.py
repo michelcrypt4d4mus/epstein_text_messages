@@ -1627,6 +1627,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00676383', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA02628058', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA02626427', truncate_to=NO_TRUNCATE),
+    EmailCfg(id='EFTA01880345', author=SHAHER_ABDULHAK_BESHER),
     shaher_murder_email('EFTA02021096'),
     shaher_murder_email('EFTA00937008', author=SHAHER_ABDULHAK_BESHER, author_reason='Etislat signature'),
     shaher_murder_email('EFTA01878623', author=SHAHER_ABDULHAK_BESHER, author_reason='"S A" + "your son"', description='khat is a Yemeni drug,'),

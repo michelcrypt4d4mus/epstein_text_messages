@@ -2068,7 +2068,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(
                 SHAHER_ABDULHAK_BESHER,
                 "Yemeni billionaire whose son fled London after murdering Martine Vik Magnussen",
-                r"\bShaher( Abdulhak Besher)?\b",
+                r"\b(Shaher( Abdulhak Besher)?|S\s?A)\b",
                 link_to_bio='https://en.wikipedia.org/wiki/Murder_of_Martine_Vik_Magnussen',
             ),
             Contact('Timur Kulibayev', 'businessman from Kazakhstan'),

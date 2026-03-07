@@ -11,7 +11,9 @@ from epstein_files.util.constant.strings import MONTHS, WEEKDAYS, REDACTED
 
 FALLBACK_TIMESTAMP = parse("1/1/2051 12:01:01 AM")
 XML_STRIPPED_MSG = '<...removed Apple XML plist...>'
-QUOTE_INDENT_CHAR_GROUP = '[->»• ]'
+QUOTE_CHARS = '->»•'
+QUOTE_INDENT_CHAR_GROUP = fr'[{QUOTE_CHARS} ]'
+QUOTE_INDENT_GROUP_NEWLINES = fr'[{QUOTE_CHARS}\s]'
 
 # Reply line regexes
 or_equal_sign_char_group = lambda s: f"[{s}=]"  # DataSet 11 has a lot of random '=' replacing characters
@@ -245,6 +247,7 @@ EMAIL_SIGNATURE_REGEXES = {
     MICHAEL_MILLER: re.compile(r"Michael C. Miller\nPartner\nwww.steptoe.com/mmiller\nSteptoe\n(Privileged.*\n)?(\+1\s+)?direct.*\n(\+1\s+)?(\+1\s+)?fax.*\n(\+1.*)?cell.*\n(www.steptoe.com\n)?This message and any.*\nyou are not.*\nnotify the sender.*"),
     NICHOLAS_RIBIS: re.compile(r"60 Morris Turnpike 2FL\nSummit,? NJ.*\n0:\nF:\n\*{20,}\nCONFIDENTIALITY NOTICE.*\nattachments.*\ncopying.*\nIf you have.*\nthe copy.*\nThank.*\n\*{20,}"),
     PAUL_BARRETT: re.compile(r"Paul Barrett[\n\s]+Alpha Group Capital LLC[\n\s]+(142 W 57th Street, 11th Floor, New York, NY 10019?[\n\s]+)?(al?[\n\s]*)?ALPHA GROUP[\n\s]+CAPITAL"),
+    'Paul Venables': re.compile(fr"{QUOTE_INDENT_GROUP_NEWLINES}*This email{QUOTE_INDENT_GROUP_NEWLINES}*\(including attachments\) is confidential.{{,600}}Matrix{QUOTE_INDENT_GROUP_NEWLINES}*Chambers.*?(?=\Z|\n)", re.DOTALL),
     PETER_ATTIA: re.compile(r"The information contained in this transmission may contain.*\n(laws|patient).*\n(distribution|named).*\n(distribution.*\nplease.*|copies.*)"),
     PETER_MANDELSON: re.compile(r'Disclaimer\s+This email and any attachments to.*?with\s+number(.*?EC4V\s+6BJ\.?)?', re.DOTALL | re.IGNORECASE),
     # PETER_MANDELSON: re.compile(r"^Disclaimer\s+This email and any attachments to.{,700}United\s+Kingdom\s+EC4V\s+68J\.?", re.IGNORECASE | re.MULTILINE | re.DOTALL),
