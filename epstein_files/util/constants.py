@@ -2324,13 +2324,14 @@ OTHER_FILES_CRYPTO = [
         description=f"introduction to {JEREMY_RUBIN}",
         recipients=[JEFFREY_EPSTEIN, JEREMY_RUBIN, LINDA_STONE, None],
     ),
+    EmailCfg(id='EFTA02342561', description=f"China, {REID_HOFFMAN}, bitcoin", is_interesting=True),
+    EmailCfg(id='EFTA02601259', description=f"discussion of investments hidden through {JOI_ITO}"),
     EmailCfg(id='EFTA00989593', description=f'donations from {LEON_BLACK} to {MIT_MEDIA_LAB} / Digital Currency Initiative {QUESTION_MARKS}'),
     EmailCfg(id='EFTA00999549', description=f"{JOI_ITO} and {JEREMY_RUBIN} meet {LARRY_SUMMERS} to discuss bitcoin", is_interesting=True),
     EmailCfg(id='EFTA01752601', description=f"{JOI_ITO} and Epstein name their new fund Kyara"),
-    EmailCfg(id='EFTA02342561', is_interesting=True, description=f"China, {REID_HOFFMAN}, bitcoin"),
-    EmailCfg(id='EFTA00473175', truncate_to=1000),
-    EmailCfg(id='EFTA02601259', description=f"discussion of investments hidden through {JOI_ITO}"),
+    EmailCfg(id='EFTA02703885', description=f"{LINDA_STONE} introducing Epstein to {JEREMY_RUBIN}"),
     EmailCfg(id='EFTA02505439', description=f'summary of {KYARA_INVESTMENT} shell companies with {JOI_ITO}'),
+    EmailCfg(id='EFTA00473175', truncate_to=1000),
     # Kushner
     DocCfg(id='EFTA00128987', description='suspicious activity report (SAR) about Kushner co. crypto payments to suspicious Russian person'),
     # Masha Drokova
