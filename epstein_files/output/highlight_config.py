@@ -2068,7 +2068,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(
                 SHAHER_ABDULHAK_BESHER,
                 "Yemeni billionaire whose son fled London after murdering Martine Vik Magnussen",
-                r"\b(Shaher( Abdulhak Besher)?|S\s?A)\b",
+                r"\b(Shaher( Abdulhak Besher)?)\b",  # NOTE: Shaher has custom handling for "S A" in emailers.py
                 link_to_bio='https://en.wikipedia.org/wiki/Murder_of_Martine_Vik_Magnussen',
             ),
             Contact('Timur Kulibayev', 'businessman from Kazakhstan'),

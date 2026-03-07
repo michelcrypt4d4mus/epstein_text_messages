@@ -413,7 +413,9 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
         "Sent from my iPhone"
     ],
     SHAHER_ABDULHAK_BESHER: [
+        'Empower your Business with BlackBerry® and Mobile Solutions from Etisalat',
         'Sent from my iPad',
+        'Sent from my iPhone',
     ],
     SOON_YI_PREVIN: [
         "Sent from Soon-Yi's iPhone"
