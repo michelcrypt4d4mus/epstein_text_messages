@@ -2070,6 +2070,7 @@ OTHER_FILES_CRYPTO = [
     EmailCfg(id='EFTA01754301'),
     EmailCfg(id='EFTA02575430', description='alternative currencies group'),
     EmailCfg(id='EFTA00660838', description=f"Epstein says his trip to Ivory Coast was amazing", truncate_to=NO_TRUNCATE),
+    EmailCfg(id='EFTA02391375', highlight_quote="Have you heard of the alternative currency"),
     # Bannon
     EmailCfg(id='030711', description='Epstein says "we can discuss michael and his coins", unclear what that means'),
     EmailCfg(id='026260', comment='Bannon cripto coin issues'),
