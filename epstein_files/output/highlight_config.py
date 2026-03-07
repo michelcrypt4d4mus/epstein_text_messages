@@ -469,6 +469,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"(on )?drug(gy|s)",
             r'Gambino',
             r'heroin',
+            r'khat',
             r'(meth)?amphetamine',
             r"Modafanil",
             r"narco(tic)?",
@@ -2036,6 +2037,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 r"Hassan (Mohammed )?(Abdul )?(.atif )?Jameel",
                 link_to_bio='https://en.wikipedia.org/wiki/Hassan_Jameel',
             ),
+            Contact('Hayel Besher', f"relative of {SHAHER_ABDULHAK_BESHER} {QUESTION_MARKS}"),
             Contact(
                 'Kairat Kelimbetov',
                 'former deputy prime minister of Kazakhstan',

@@ -153,6 +153,15 @@ def phone_bill_cfg(id: str, author: str, dates: str = '', **kwargs) -> DocCfg:
     )
 
 
+def shaher_murder_email(id: str, description: str = '', **kwargs) -> EmailCfg:
+    return EmailCfg(
+        id=id,
+        description=join_truthy(description, f"discussion of the murder of Martine Vik Magnussen by {SHAHER_ABDULHAK_BESHER}'s son Farouk"),
+        is_interesting=True,
+        **kwargs
+    )
+
+
 def starr_letter(id: str, date: str, duplicate_ids: list[str], dupe_type: DuplicateType = 'same', **kwargs) -> CommunicationCfg:
     return letter(
         id=id,
