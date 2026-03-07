@@ -21,7 +21,7 @@ for doc in epstein_files.documents:
         num_diff_chars = len(old_contents) - doc.length
         doc.warn(f"updating existing file at '{output_file}' with {num_diff_chars} new chars...")
     else:
-        doc.warn(f"file doesn't exist, writing {len(doc.text)} to '{output_file}'...")
+        doc.warn(f"file doesn't exist, writing {len(doc.text)} chars to '{output_file}'...")
 
     output_file.write_text(doc.text)
 

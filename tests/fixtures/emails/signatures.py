@@ -360,7 +360,10 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
         "Sent from my iPhone"
     ],
     'Myla Trestiza': ['Sent from Yahoo Mail for iPhone'],
-    NADIA_MARCINKO: ['Sent via portable phone'],
+    NADIA_MARCINKO: [
+        'Sent from my iPhone',
+        'Sent via portable phone',
+    ],
     "Neal Kassell": [
         "Sent from my iPad",
         "Sent from my iPhone"
