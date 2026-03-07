@@ -204,8 +204,11 @@ def epstein_show():
 
         if args.raw:
             console.line()
-            console.print(Panel(Text("RAW: ").append(doc._summary), expand=False, style=doc.border_style))
+            console.print(Panel(Text(f"RAW {doc.file_id} RAW").append(doc._summary), expand=False, style=doc.border_style))
             console.print(escape(doc.raw_text()), '\n')
+
+            console.print(Panel(Text(f"LINES {doc.file_id} LINES")))
+            print(doc._numbered_lines() + '\n\n')
 
             if isinstance(doc, Email):
                 console.print(Panel(Text("actual_text: ").append(doc._summary), expand=False, style=doc.border_style))

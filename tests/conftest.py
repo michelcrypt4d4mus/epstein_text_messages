@@ -15,6 +15,7 @@ from epstein_files.util.helpers.file_helper import *
 
 FIXTURES_DIR = Path(__file__).parent.joinpath('fixtures', 'generated')
 FILE_INFO_CSV_PATH = FIXTURES_DIR.joinpath('files.csv')
+FILE_TEXT_DUMP_DIR = Path('source_data/processed')
 
 
 @pytest.fixture

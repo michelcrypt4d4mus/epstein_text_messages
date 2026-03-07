@@ -13,7 +13,7 @@ from epstein_files.util.constants import CONFIGS_BY_ID
 from epstein_files.util.helpers.data_helpers import days_between, uniquify
 from epstein_files.util.helpers.string_helper import prop_str
 
-from .conftest import assert_higher_counts
+from .conftest import FILE_TEXT_DUMP_DIR, assert_higher_counts
 from .fixtures.emails.signatures import AUTHORS_TO_DEVICE_SIGNATURES, DEVICE_SIGNATURE_TO_AUTHORS, SIGNATURE_SUBSTITUTION_COUNTS
 from .fixtures.messenger_logs.author_counts import IMESSAGE_LOG_IDS, MESSENGER_LOG_AUTHOR_COUNTS
 from .fixtures.fixture_csvs import CFG_PROPS, EMAIL_PROPS, load_files_csv
@@ -67,6 +67,21 @@ def test_against_csv(epstein_files):
 
     bad_ids = uniquify([doc.file_id for doc in bad_docs])
     assert len(bad_ids) == 0, f"{len(bad_ids)} docs don't match CSV, {len(repair_ids)} might be reparable: {' '.join(repair_ids)}"
+
+
+def test_file_contents(epstein_files):
+    for doc in epstein_files.unique_documents:
+        output_file = FILE_TEXT_DUMP_DIR.joinpath(doc.file_id)
+        old_contents = output_file.read_text()
+
+        if doc.file_info.is_eml_file:
+            if old_contents != doc.text:
+                doc.warn(f" mismatch against fixture file...")
+        else:
+            if old_contents == doc.text:
+                doc.warn(f"file is OK")
+            else:
+                assert old_contents == doc.text, f"{doc.file_id} text doesn't match '{output_file}'"
 
 
 def test_all_configured_file_ids_exist(epstein_files):

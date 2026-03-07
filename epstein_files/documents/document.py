@@ -38,7 +38,7 @@ from epstein_files.util.helpers.data_helpers import (date_str, patternize, prefi
      uniquify, uniq_sorted, without_falsey)
 from epstein_files.util.helpers.link_helper import link_text_obj
 from epstein_files.util.helpers.file_helper import coerce_file_path, file_size_to_str
-from epstein_files.util.helpers.string_helper import collapse_newlines, join_truthy
+from epstein_files.util.helpers.string_helper import collapse_newlines, join_truthy, quote
 from epstein_files.util.logging import DOC_TYPE_STYLES, FILENAME_STYLE, logger
 
 CHECK_LINK_FOR_DETAILS = 'not shown here, check original PDF for details'
@@ -496,9 +496,7 @@ class Document:
         """Reload the raw data from the underlying file and return it."""
         if self.file_info.is_eml_file:
             with open(self.file_path, 'rb') as fp:
-                # TODO: the header is not here, it's just a stopgap so the Document can be built before file type determined
-                eml = BytesParser(policy=policy.default).parse(fp)
-                return eml.get_body(('plain', 'related', 'html')).get_content()
+                return BytesParser(policy=policy.default).parse(fp).as_string()
         else:
             return self.file_path.read_text()
 
@@ -601,21 +599,22 @@ class Document:
 
     def _load_file(self) -> str:
         """Remove BOM and HOUSE OVERSIGHT lines, strip whitespace."""
-        text = self.raw_text()
-        text = text[1:] if (len(text) > 0 and text[0] == '\ufeff') else text  # remove BOM
-        # TODO: this should be in _repair()
-        text = self.repair_ocr_text(OCR_REPAIRS, text.strip())
+        return self.raw_text()
 
-        lines = [
-            line.strip() if self.STRIP_WHITESPACE else line for line in text.split('\n')
-            if not (line.startswith(HOUSE_OVERSIGHT) or line.startswith('EFTA'))
-        ]
-
-        return collapse_newlines('\n'.join(lines))
+    def _numbered_lines(self) -> str:
+        """For logging."""
+        return '\n'.join([f"[{i}] {quote(line)}" for i, line in enumerate(self.lines)])
 
     def _repair(self) -> None:
         """Can optionally be overloaded in subclasses to further improve self.text."""
-        pass
+        text = self.repair_ocr_text(OCR_REPAIRS, self.text.lstrip('\ufeff').strip())  # remove BOM
+
+        lines = [
+            line.strip() if self.STRIP_WHITESPACE else line for line in text.split('\n')
+            if not (line.startswith(HOUSE_OVERSIGHT) or line.startswith(EFTA_PREFIX))
+        ]
+
+        self._set_text(text=collapse_newlines('\n'.join(lines)))
 
     def _set_text(self, lines: list[str] | None = None, text: str | None = None) -> None:
         """Set `self.text` and `self.lines` based on arguments passed."""

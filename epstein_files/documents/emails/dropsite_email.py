@@ -26,19 +26,11 @@ class DropsiteEmail(Email):
 
         return self._eml
 
-    def raw_text(self) -> str:
-        """Reload the raw data from the underlying file and return it."""
-        # TODO: this isn't the raw text... should be the following line
-        # return self.eml.as_string()
-        body = self.eml.get_body(('plain', 'related', 'html')).get_content()
-        return self.with_header(f"\n{body}")
-
     def _extract_header(self) -> EmailHeader:
         """Extract an `EmailHeader` from the OCR text."""
         bcc = self.eml['bcc'].split(';') if self.eml['bcc'] else None
         cc = self.eml['cc'].split(';') if self.eml['cc'] else None
         field_names = HEADER_FIELDS + (['bcc'] if bcc else []) + (['cc'] if cc else [])
-        # self.warn(f"header keys: {self.eml.keys()}")
 
         for header in self.eml.keys():
             if header not in DEFAULT_EML_HEADERS:
@@ -56,17 +48,5 @@ class DropsiteEmail(Email):
 
     def _load_file(self) -> str:
         """Remove BOM and HOUSE OVERSIGHT lines, strip whitespace."""
-        text = self.raw_text()
-        # TODO: this should be in _repair()
-        # text = self.repair_ocr_text(OCR_REPAIRS, text.strip())
-        lines = [line.strip() if self.STRIP_WHITESPACE else line for line in text.split('\n')]
-        logger.debug(f"File ID: {self.file_id}")
-
-        for i, line in enumerate(lines):
-            logger.debug(f'[{i}] "{line}"')
-
-        return collapse_newlines('\n'.join(lines))
-
-    def _repair(self) -> None:
-        """Can optionally be overloaded in subclasses to further improve self.text."""
-        pass
+        body = self.eml.get_body(('plain', 'related', 'html')).get_content()
+        return self.with_header(f"\n{body}")
