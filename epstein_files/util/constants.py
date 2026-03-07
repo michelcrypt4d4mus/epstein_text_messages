@@ -2068,6 +2068,7 @@ OTHER_FILES_CRYPTO = [
     EmailCfg(id='EFTA01852443'),
     EmailCfg(id='EFTA01754301'),
     EmailCfg(id='EFTA02575430', description='alternative currencies group'),
+    EmailCfg(id='EFTA00660838', description=f"Epstein says his trip to Ivory Coast was amazing", truncate_to=NO_TRUNCATE),
     # Bannon
     EmailCfg(id='030711', description='Epstein says "we can discuss michael and his coins", unclear what that means'),
     EmailCfg(id='026260', comment='Bannon cripto coin issues'),
@@ -2304,6 +2305,7 @@ OTHER_FILES_CRYPTO = [
     EmailCfg(id='EFTA00970606', show_with_name=HOWARD_LUTNICK),
     EmailCfg(id='EFTA01778423', show_with_name=HOWARD_LUTNICK),
     # Jem Bendell
+    EmailCfg(id='EFTA01005603', description="if you are interested in blockchain and alternative currencies"),
     EmailCfg(id='EFTA00630785', description='alternative currencies discussion'),
     EmailCfg(id='EFTA02724230', description='alternative currencies discussion', truncate_to=NO_TRUNCATE),
     # Jeremy Rubin
@@ -2870,7 +2872,7 @@ OTHER_FILES_GIRLS = [
     EmailCfg(id='DropSite 2006-05-29 1329', highlight_quote='I am giving the little girl a modeling\n> lesson'),
 
     # Descriptions
-    EmailCfg(id='efta02559808', description=f"{EVA_DUBIN} delivering amphetamines (adderall) to Epstein", is_interesting=True),
+    EmailCfg(id='EFTA02559808', description=f"{EVA_DUBIN} delivering amphetamines (adderall) to Epstein", is_interesting=True),
     EmailCfg(id='EFTA01840103', description="Epstein apparently suggesting amphetamines (adderall)", is_interesting=True),
     EmailCfg(id='EFTA00631762', description="visa problems for Epstein's South African friend"),
     EmailCfg(id='EFTA01140210', description='Epstein asks about fake Instagram followers', is_interesting=True),
