@@ -102,6 +102,7 @@ site_config = MobileConfig if args.mobile else SiteConfig
 args._site_type = SiteType.CURATED
 
 args.debug = args.deep_debug or args.debug or is_env_var_set('DEBUG')
+args.names = [name.title() for name in args.names] if args.names and args.names[0][0].islower() else args.names
 args.names = [None if n == 'None' else n.strip() for n in (args.names or [])]
 args.output_emails = args.output_emails or args.all_emails
 args.output_other = args.output_other or args.all_other_files or args.uninteresting
