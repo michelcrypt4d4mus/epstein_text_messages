@@ -3138,7 +3138,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         label='dollars',
         style=FINANCIAL_COLOR,
         patterns=[
-            r"\$[\d,.]+(\s*(bn|[bm](illl?ion|m)?|k|thousand))?( dollars?)?",
+            r"\$[\dO,.]+(\s*(bn|[bm](illl?ion|m)?|k|thousand))?( dollars?)?",
             r"[\d,.]+\s*[bm]illl?ion( dollars?)?( loan)?",
         ]
     ),
