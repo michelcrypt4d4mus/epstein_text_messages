@@ -2317,7 +2317,7 @@ OTHER_FILES_CRYPTO = [
         id='EFTA01005603',
         author=JEM_BENDELL,
         author_reason='sig',
-        description="if you are interested in blockchain and alternative currencies",
+        highlight_quote="if you are interested in blockchain and alternative currencies",
     ),
     EmailCfg(id='EFTA00630785', description='alternative currencies discussion'),
     EmailCfg(id='EFTA02724230', description='alternative currencies discussion', truncate_to=NO_TRUNCATE),
