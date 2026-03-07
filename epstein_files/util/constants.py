@@ -1230,7 +1230,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00826575', author=RENATA_BOLOTOVA, author_uncertain=SNEAKY_DOG, duplicate_ids=['EFTA02462211']),
     EmailCfg(id='EFTA00039796', author=SDNY, recipients=[USANYS]),
     EmailCfg(id='EFTA01926669', author=SERGEY_BELYAKOV),
-    EmailCfg(id='EFTA00858688', author=SERGEY_BELYAKOV),
+    EmailCfg(id='EFTA00858688', author=SERGEY_BELYAKOV, description=f"Epstein introduces {EHUD_BARAK} to {SERGEY_BELYAKOV}"),
     EmailCfg(id='EFTA00704085', author=SERGEY_BELYAKOV, author_reason='response to EFTA00835324'),
     EmailCfg(id='EFTA01767424', author=SHAHER_ABDULHAK_BESHER, author_reason='"sincerely shaher"'),
     EmailCfg(id='EFTA00039663', author=STACEY_RICHMAN, recipients=[USANYS], author_reason='unredacted in EFTA00039662'),
@@ -2868,6 +2868,8 @@ OTHER_FILES_GIRLS = [
     EmailCfg(id='DropSite 2006-05-29 1329', highlight_quote='I am giving the little girl a modeling\n> lesson'),
 
     # Descriptions
+    EmailCfg(id='efta02559808', description=f"{EVA_DUBIN} delivering amphetamines (adderall)", is_interesting=True),
+    EmailCfg(id='EFTA01840103', description="Epstein apparently suggesting amphetamines (adderall)", is_interesting=True),
     EmailCfg(id='EFTA00631762', description="visa problems for Epstein's South African friend"),
     EmailCfg(id='EFTA01140210', description='Epstein asks about fake Instagram followers', is_interesting=True),
     EmailCfg(id='EFTA00937981', description=f"Epstein looking for {JOSHUA_FINK} (again)"),
@@ -3907,6 +3909,7 @@ NOT_CHRONOLOGICAL_VIEW_IDS = [
     'EFTA00329334',
     # Tyler Shears
     'EFTA02372294',
+    '028965',
     # --- #
     'EFTA02048499',
     'EFTA00322570',
