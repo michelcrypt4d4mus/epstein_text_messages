@@ -430,7 +430,6 @@ EMAILS_CONFIG = [
     EmailCfg(id='021818', author=NADIA_MARCINKO, author_reason='reply'),
     EmailCfg(id='022214', author=NADIA_MARCINKO, author_reason='Reply header'),
     EmailCfg(id='021811', author=NADIA_MARCINKO, author_reason='signature and email address in the message'),
-    EmailCfg(id='EFTA01047249', author=NADIA_MARCINKO, author_reason='https://archive.ph/Qa6vU#selection-1621.160-1621.184'),
     EmailCfg(id='028487', author=NORMAN_D_RAU, author_reason='Fwded from "to" address', duplicate_ids=['026612']),
     EmailCfg(
         id='024923',
@@ -2344,7 +2343,7 @@ OTHER_FILES_CRYPTO = [
     EmailCfg(id='EFTA00989593', description=f'donations from {LEON_BLACK} to {MIT_MEDIA_LAB} / Digital Currency Initiative {QUESTION_MARKS}'),
     EmailCfg(id='EFTA00999549', description=f"{JOI_ITO} and {JEREMY_RUBIN} meet {LARRY_SUMMERS} to discuss bitcoin", is_interesting=True),
     EmailCfg(id='EFTA01752601', description=f"{JOI_ITO} and Epstein name their new fund Kyara"),
-    EmailCfg(id='EFTA02703885', description=f"{LINDA_STONE} introducing Epstein to {JEREMY_RUBIN}"),
+    EmailCfg(id='EFTA02703885', author=LINDA_STONE, author_reason='sig', description=f"{LINDA_STONE} introducing Epstein to {JEREMY_RUBIN}"),
     EmailCfg(id='EFTA02505439', description=f'summary of {KYARA_INVESTMENT} shell companies with {JOI_ITO}'),
     EmailCfg(id='EFTA01973301', recipients=[LINDA_STONE], author_reason='signature'),
     EmailCfg(id='EFTA00473175', truncate_to=1000),
@@ -2838,6 +2837,9 @@ OTHER_FILES_GIRLS = [
         description=f'Epstein really wants "*your friend*" (emphasis {LESLEY_GROFF}\'s) to meet {PETER_MANDELSON}',
         truncate_to=4_000,
     ),
+    EmailCfg(id='EFTA01047249', author=NADIA_MARCINKO, author_reason='Miro, https://archive.ph/Qa6vU#selection-1621.160-1621.184'),
+
+    # Quotes
     EmailCfg(
         id='EFTA02504370',
         highlight_quote=f'lovely girl with financial troubles',
@@ -2845,7 +2847,6 @@ OTHER_FILES_GIRLS = [
         recipient_uncertain='"Sent from AOL Mobile Mail"',
         truncate_to=NO_TRUNCATE,
     ),
-    # Quotes
     EmailCfg(
         id='EFTA01022353',
         highlight_quote='she said she was 14-15 yo',
@@ -2864,7 +2865,6 @@ OTHER_FILES_GIRLS = [
         highlight_quote="I have a friend of Putin,s",
         is_interesting=True,
     ),
-
     EmailCfg(id='EFTA01965732', highlight_quote='facilictating his illicit trysts, with married women, to being asked to provide adderall fro bridge tournamnts'),
     EmailCfg(id='EFTA01768670', highlight_quote='find girls for the agency', description=f'but {BORIS_NIKOLIC} is a "biotech investor"...'),
     EmailCfg(id='EFTA01905320', highlight_quote='girls and i are going to see don musk at space x tomorrow', is_interesting=True),
