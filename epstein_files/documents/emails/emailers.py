@@ -72,6 +72,8 @@ def extract_emailer_names(emailer_str: str) -> list[Name]:
         return []
     elif emailer_str.lower() in ['j', 'jeffrey']:
         return [JEFFREY_EPSTEIN]
+    elif emailer_str.lower() in ['sa', 's a']:
+        return [SHAHER_ABDULHAK_BESHER]
 
     names_found: list[Name] = [name for name, regex in EMAILER_ID_REGEXES.items() if regex.search(emailer_str)]
 

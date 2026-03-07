@@ -65,7 +65,7 @@ def print_curated_chronological(epstein_files: EpsteinFiles) -> list[Document]:
 
 def print_doj_files(epstein_files: EpsteinFiles) -> list[DojFile]:
     """Doesn't print DojFiles that are actually Emails, that's handled in print_emails()."""
-    doc_printer = DocPrinter()
+    doc_printer = DocPrinter(collect_other_files_to_tables=False)
     doc_printer.print_documents(Document.without_dupes(epstein_files.doj_files))
     doc_printer.write_html(SiteType.real_html_build_path(SiteType.DOJ_FILES))
     return epstein_files.doj_files

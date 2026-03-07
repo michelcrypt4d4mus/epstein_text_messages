@@ -413,7 +413,9 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
         "Sent from my iPhone"
     ],
     SHAHER_ABDULHAK_BESHER: [
+        'Empower your Business with BlackBerry® and Mobile Solutions from Etisalat',
         'Sent from my iPad',
+        'Sent from my iPhone',
     ],
     SOON_YI_PREVIN: [
         "Sent from Soon-Yi's iPhone"
@@ -506,6 +508,7 @@ SIGNATURE_SUBSTITUTION_COUNTS = {
     'Michael Miller': 6,
     NICHOLAS_RIBIS: 2,
     PAUL_BARRETT: 10,
+    'Paul Venables': 4,
     PETER_ATTIA: 3,
     PETER_MANDELSON: 10,
     RICHARD_KAHN: 193,

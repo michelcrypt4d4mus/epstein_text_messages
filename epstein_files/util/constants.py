@@ -4,9 +4,9 @@ Custom configurations for various files.
 from itertools import groupby
 
 from epstein_files.documents.documents.categories import CONSTANT_CATEGORIES, Interesting, Neutral
-from epstein_files.documents.documents.config_builder import (FBI_REPORT, JANE_DOE_V_USA, WOLFF_EPSTEIN_ARTICLE_DRAFT, binant_redacted,
-     blaine_letter, fbi_defense_witness, fbi_report, letter, phone_bill_cfg, starr_letter, whistleblower_cfg, victim_diary,
-     wolff_draft_cfg)
+from epstein_files.documents.documents.config_builder import (FBI_REPORT, JANE_DOE_V_USA, WOLFF_EPSTEIN_ARTICLE_DRAFT,
+     binant_redacted, blaine_letter, fbi_defense_witness, fbi_report, letter, phone_bill_cfg, shaher_murder_email,
+     starr_letter, whistleblower_cfg, victim_diary, wolff_draft_cfg)
 from epstein_files.documents.documents.doc_cfg import (DEFAULT_TRUNCATE_TO, GOLDMAN_INVESTMENT_MGMT,
      SHORT_TRUNCATE_TO, NO_TRUNCATE, CommunicationCfg, DocCfg, EmailCfg, TextCfg)
 from epstein_files.documents.doj_files.full_text import EFTA00009622_TEXT
@@ -1138,7 +1138,7 @@ EMAILS_CONFIG = [
         description=f"email about sham marriage visa issues, possibly from {RENATA_BOLOTOVA}'s spouse",
         is_interesting=True,
     ),
-    DocCfg(id='EFTA02312343_1', attached_to_email_id='EFTA02312343', description='English translation of visa issues email', show_full_panel=True),
+    DocCfg(id='EFTA02312343_1', attached_to_email_id='EFTA02312343', description='translation of visa email', show_full_panel=True),
     EmailCfg(
         id='EFTA00708783',
         author=RENATA_BOLOTOVA,
@@ -1483,11 +1483,6 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA02367311', description='Alice Rothschild', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA00992595', description=f"{ARIANE_DE_ROTHSCHILD} mentions her visit to Mongolia"),
     EmailCfg(
-        id='EFTA02021096',
-        description=f"discussion of the murder of Martine Vik Magnussen by {SHAHER_ABDULHAK_BESHER}'s son Farouk",
-        is_interesting=True,
-    ),
-    EmailCfg(
         id='EFTA01834864',
         description=f"forged email by Epstein complaining about {AL_SECKEL}'s Mindshift conference",
         is_interesting=True,
@@ -1632,6 +1627,11 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00676383', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA02628058', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA02626427', truncate_to=NO_TRUNCATE),
+    EmailCfg(id='EFTA01880345', author=SHAHER_ABDULHAK_BESHER),
+    shaher_murder_email('EFTA02021096'),
+    shaher_murder_email('EFTA00937008', author=SHAHER_ABDULHAK_BESHER, author_reason='Etislat signature'),
+    shaher_murder_email('EFTA01878623', author=SHAHER_ABDULHAK_BESHER, author_reason='"S A" + "your son"', description='khat is a Yemeni drug,'),
+
     #### MAGIC COMMENT FOR MANUAL CONFIG ####
     EmailCfg(
         id='EFTA02581361',
