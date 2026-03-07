@@ -2862,7 +2862,6 @@ OTHER_FILES_GIRLS = [
     ),
     EmailCfg(
         id='EFTA02415420',
-        description=f'maybe re: {SVETLANA_POZHIDAEVA} visa?',
         highlight_quote="I have a friend of Putin,s",
         is_interesting=True,
     ),
