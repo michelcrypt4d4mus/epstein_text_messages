@@ -1488,6 +1488,11 @@ EMAILS_CONFIG = [
         is_interesting=True,
     ),
     EmailCfg(
+        id='EFTA01878623',
+        description=f"discussion of the murder of Martine Vik Magnussen by {SHAHER_ABDULHAK_BESHER}'s son Farouk",
+        is_interesting=True,
+    ),
+    EmailCfg(
         id='EFTA01834864',
         description=f"forged email by Epstein complaining about {AL_SECKEL}'s Mindshift conference",
         is_interesting=True,
