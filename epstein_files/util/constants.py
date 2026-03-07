@@ -2308,8 +2308,12 @@ OTHER_FILES_CRYPTO = [
     EmailCfg(id='EFTA00970606', show_with_name=HOWARD_LUTNICK),
     EmailCfg(id='EFTA01778423', show_with_name=HOWARD_LUTNICK),
     # Jem Bendell
-    EmailCfg(id='EFTA01005603', author=JEM_BENDELL, author_reason='name in signature'),
-    EmailCfg(id='EFTA01005603', description="if you are interested in blockchain and alternative currencies"),
+    EmailCfg(
+        id='EFTA01005603',
+        author=JEM_BENDELL,
+        author_reason='sig',
+        description="if you are interested in blockchain and alternative currencies",
+    ),
     EmailCfg(id='EFTA00630785', description='alternative currencies discussion'),
     EmailCfg(id='EFTA02724230', description='alternative currencies discussion', truncate_to=NO_TRUNCATE),
     # Jeremy Rubin
