@@ -2704,12 +2704,6 @@ OTHER_FILES_GIRLS = [
     EmailCfg(id='EFTA01877224', author=SVETLANA_POZHIDAEVA, author_uncertain=f"{JOSHUA_FINK} texts"),
     EmailCfg(id='EFTA00937507', author=SVETLANA_POZHIDAEVA, author_uncertain=f"{JOSHUA_FINK} texts"),
     EmailCfg(
-        id='EFTA02560884',
-        description=f"is Epstein drafting {SVETLANA_POZHIDAEVA}'s responses to {JOSHUA_FINK} {QUESTION_MARKS}",
-        recipients=[SVETLANA_POZHIDAEVA],
-        recipient_uncertain=f"{JOSHUA_FINK} texts",
-    ),
-    EmailCfg(
         id='EFTA01991293',
         author=SVETLANA_POZHIDAEVA,
         author_reason=f"convo about {JOSHUA_FINK} breakup",
@@ -2737,6 +2731,7 @@ OTHER_FILES_GIRLS = [
     EmailCfg(id='EFTA02027844', author=UNKNOWN_GIRL, description='permission to "fuck someone with a condom"', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA00763537', author=UNKNOWN_GIRL, highlight_quote="19 but I look younger than her"),
     EmailCfg(id='EFTA00738485', recipients=[STEVEN_VICTOR_MD], truncate_to=640),
+
     # Recipients
     EmailCfg(
         id='EFTA02223525',
@@ -2755,6 +2750,18 @@ OTHER_FILES_GIRLS = [
         description=f"{SANITA} is maybe the only great girl with right thinking",
         recipients=[SANITA],
         truncate_to=NO_TRUNCATE,
+    ),
+    EmailCfg(
+        id='EFTA02560884',
+        description=f"is Epstein drafting {SVETLANA_POZHIDAEVA}'s responses to {JOSHUA_FINK} {QUESTION_MARKS}",
+        recipients=[SVETLANA_POZHIDAEVA],
+        recipient_uncertain=f"{JOSHUA_FINK} texts",
+    ),
+    EmailCfg(
+        id='EFTA02543909',
+        author_reason='p.selena@yahoo.com in replies',
+        description=f'{SVETLANA_POZHIDAEVA}\'s relationship with "J" ({JOSHUA_FINK}?) and "B" {QUESTION_MARKS}',
+        recipients=[SVETLANA_POZHIDAEVA],
     ),
     EmailCfg(
         id='EFTA00888467',
