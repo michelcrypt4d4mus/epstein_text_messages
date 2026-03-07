@@ -794,7 +794,6 @@ class Email(Communication):
         """Add newlines before quoted replies, snip signatures and XML, etc.."""
         # Insert line breaks now unless header is broken, in which case we'll do it later after fixing header
         # self.(f"text before _add_line_breaks:\n\n{self.text}\n---")
-        self.warn(f"_strip_unwanted_text() called for author '{self.author_txt.plain}'...")
         text = self.text if self.header.was_initially_empty else _add_line_breaks(self.text)
         text = REPLY_REGEX.sub(r'\n\1', text)  # Newlines between quoted replies
         text = FORWARDED_TOO_MUCH_SPACE_REGEX.sub(r'\1\n', text)
