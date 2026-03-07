@@ -982,7 +982,7 @@ EMAILS_CONFIG = [
         author=GREG_WYLER,
         author_reason='"Greg" + Wyler is on other emails with Stern and Epstein at that time',
     ),
-    EmailCfg(id='EFTA02640711', author=JABOR_Y, description='Jabor Y / HBJ home address', is_interesting=True),
+    EmailCfg(id='EFTA02640711', author=HAMAD_BIN_JASSIM, description='Jabor Y / HBJ home address', is_interesting=True),
     EmailCfg(id='EFTA02334332', author=JASON_CALACANIS),
     EmailCfg(id='EFTA02434805', author=JEAN_LUC_BRUNEL, author_uncertain='reply', description='what lawyers offices got sealed?'),
     EmailCfg(
