@@ -1,4 +1,5 @@
 # NEXT RELEASE
+* Create `DropsiteEmail` class to process `.eml` files from DropSite News
 
 ### 1.8.11
 * Add last updated info to title page

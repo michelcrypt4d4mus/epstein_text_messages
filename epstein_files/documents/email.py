@@ -213,6 +213,10 @@ class Email(Communication):
         sent_from_device (str, optional): "Sent from my iPhone" style signature (if it exists).
         signature_substitution_counts (dict[str, int]): Number of times a signature was replaced with
             <...snipped...> per name
+        _line_merge_arguments (list[tuple[int] | tuple[int, int]]): preconfigured list of line merges that will fix up
+            files from the HOUSE_OVERSIGHT_ collection in memory while leaving the source files untouched
+        _was_split_up (bool, optional): True if this file Email was one of the big ones that was split into pieces
+            and thus should generally be hidden / not shown
     """
     attached_docs: list[OtherFile] = field(default_factory=list)
     actual_text: str = field(init=False)
@@ -229,7 +233,6 @@ class Email(Communication):
 
     def __post_init__(self):
         super().__post_init__()
-        self.text = self._strip_unwanted_text()
         self.actual_text = self._extract_actual_text()
         self.sent_from_device = self._sent_from_device()
 
@@ -691,6 +694,8 @@ class Email(Communication):
     def _repair(self) -> None:
         """Repair particularly janky files. Note that OCR_REPAIRS are applied *after* other line adjustments."""
         # Some DOJ cleanup needs to happen first if this is a DOJ file.
+        super()._repair()
+
         if self.file_info.is_doj_file:
             self._set_text(text=self.repair_ocr_text(DOJ_EMAIL_OCR_REPAIRS, strip_pdfalyzer_panels(self.text)))
 
@@ -724,6 +729,7 @@ class Email(Communication):
         repaired_text = self._repair_links_and_quoted_subjects(self.repair_ocr_text(OCR_REPAIRS, self.text))
         # logger.debug(f"repaired_text\n---\n{self.text}\n---")
         self._set_text(text=repaired_text)
+        self._strip_unwanted_text()
 
     def _repair_links_and_quoted_subjects(self, text: str) -> str:
         """Repair links that the OCR has broken into multiple lines as well as 'Subject:' lines."""
@@ -780,11 +786,11 @@ class Email(Communication):
             else:
                 return sent_from
 
-    # TODO: why isn't this done in self._repair()?
-    def _strip_unwanted_text(self) -> str:
-        """Add newlines before quoted replies and snip signatures."""
+    def _strip_unwanted_text(self) -> None:
+        """Add newlines before quoted replies, snip signatures and XML, etc.."""
         # Insert line breaks now unless header is broken, in which case we'll do it later after fixing header
         # self.(f"text before _add_line_breaks:\n\n{self.text}\n---")
+        self.warn(f"_strip_unwanted_text() called for author '{self.author_txt.plain}'...")
         text = self.text if self.header.was_initially_empty else _add_line_breaks(self.text)
         text = REPLY_REGEX.sub(r'\n\1', text)  # Newlines between quoted replies
         text = FORWARDED_TOO_MUCH_SPACE_REGEX.sub(r'\1\n', text)
@@ -796,17 +802,13 @@ class Email(Communication):
             self.signature_substitution_counts[name] = self.signature_substitution_counts.get(name, 0)
             self.signature_substitution_counts[name] += num_replaced
 
-        # Share / Tweet lines
-        if self.author == KATHRYN_RUEMMLER:
-            text = '\n'.join([line for line in text.split('\n') if line not in ['Share', 'Tweet', 'Bookmark it']])
-
         # Remove XML cruft in some files
         text, num_plists_stripped = XML_PLIST_REGEX.subn(XML_STRIPPED_MSG, text)
 
         if num_plists_stripped:
             self.log(f"Replaced {num_plists_stripped} XML plists...")
 
-        return collapse_newlines(text).strip()
+        self._set_text(text=collapse_newlines(text).strip())
 
     def _truncate_to_length(self) -> int:
         """Decide how many chars we should limit the dislpay of this email to."""

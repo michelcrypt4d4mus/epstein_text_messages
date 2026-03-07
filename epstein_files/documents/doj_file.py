@@ -326,6 +326,7 @@ class DojFile(OtherFile):
 
     def _repair(self) -> None:
         """Overloads superclass method."""
+        super()._repair()
         new_text = self.repair_ocr_text(DOJ_EMAIL_OCR_REPAIRS, self.text)
         self._set_text(text=new_text)
         self._remove_number_only_lines()

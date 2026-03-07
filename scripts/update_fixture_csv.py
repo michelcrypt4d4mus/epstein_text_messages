@@ -2,13 +2,28 @@
 # Update the CSV fixtures with the Document props pytest compares against.
 from pathlib import Path
 
+from epstein_files.util.helpers.file_helper import file_size_str
 from epstein_files.util.logging import logger
 
+from scripts.use_pickled import epstein_files
+from tests.conftest import FILE_TEXT_DUMP_DIR
 from tests.fixtures.fixture_csvs import load_files_csv, write_files_csv
 
 
-write_files_csv()
+for doc in epstein_files.documents:
+    output_file = FILE_TEXT_DUMP_DIR.joinpath(doc.file_id)
 
-# for id, props in load_files_csv().items():
-#     if any(v for v in props.items()):
-#         print(f'{id}: {props}')
+    if output_file.exists():
+        if (old_contents := output_file.read_text()) == doc.text:
+            doc.log(f"text matches '{output_file}', skipping...")
+            continue
+
+        num_diff_chars = len(old_contents) - doc.length
+        doc.warn(f"updating existing file at '{output_file}' with {num_diff_chars} new chars...")
+    else:
+        doc.warn(f"file doesn't exist, writing {len(doc.text)} chars to '{output_file}'...")
+
+    output_file.write_text(doc.text)
+
+
+write_files_csv()

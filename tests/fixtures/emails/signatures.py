@@ -260,7 +260,10 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
         "Sent from my iPhone"
     ],
     "Erika Kellerhals": ["Sent from my iPhone"],
-    EVA_DUBIN: ["Sent from my iPhone"],
+    EVA_DUBIN: [
+        'Sent from my Verizon Wireless BlackBerry',
+        "Sent from my iPhone",
+    ],
     'Fabrice Aidan': ['Envoyé de mon iPhone'],
     FAITH_KATES: ["Sent from my iPhone"],
     FRED_HADDAD: [
@@ -357,7 +360,10 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
         "Sent from my iPhone"
     ],
     'Myla Trestiza': ['Sent from Yahoo Mail for iPhone'],
-    NADIA_MARCINKO: ['Sent via portable phone'],
+    NADIA_MARCINKO: [
+        'Sent from my iPhone',
+        'Sent via portable phone',
+    ],
     "Neal Kassell": [
         "Sent from my iPad",
         "Sent from my iPhone"

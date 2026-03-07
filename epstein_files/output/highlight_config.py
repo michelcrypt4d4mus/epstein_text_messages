@@ -81,6 +81,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact('Nancy Dahl', f"wife of {LAWRENCE_KRAUSS}"),
             Contact(NEAL_KASSELL, "professor of neurosurgery at University of Virginia"),
             Contact('Neri Oxman', f"MIT, wife of Bill Ackman", match_partial='both'),
+            Contact('Nicholas Christakis', f"Yale professor of Social and Natural Science"),
             Contact(NOAM_CHOMSKY, "professor of linguistics at MIT", match_partial='both'),
             Contact('Norman Finkelstein', "scholar, well known critic of Israel"),
             Contact(PETER_ATTIA, "longevity medicine"),
@@ -148,6 +149,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Tulane",
             r"UCLA",
             r"Wharton",
+            r"Yale",
         ],
     ),
     HighlightedNames(
@@ -458,6 +460,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact('Michael Bilotti', 'murderer', r"Michael (A\.? )?Bilotti"),
         ],
         patterns=[
+            r"adderall",
             r'cocaine',
             r'(drug|mexican) (cartel|traffick(ers?|ing))',
             r'criminals?(?! defense)( prosecution)?',
@@ -466,10 +469,12 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"(on )?drug(gy|s)",
             r'Gambino',
             r'heroin',
-            r'methamphetamines?',
+            r'(meth)?amphetamine',
+            r"Modafanil",
             r"narco(tic)?",
             r"murder(e[dr]|ing)?",
             r"organized crime",
+            r"Provigil",
             r"(securities )?fraud(ulent)?",
             r"suicide",
             r"xanax",
@@ -3138,7 +3143,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         label='dollars',
         style=FINANCIAL_COLOR,
         patterns=[
-            r"\$[\d,.]+(\s*(bn|[bm](illl?ion|m)?|k|thousand))?( dollars?)?",
+            r"\$[\dO,.]+(\s*(bn|[bm](illl?ion|m)?|k|thousand))?( dollars?)?",
             r"[\d,.]+\s*[bm]illl?ion( dollars?)?( loan)?",
         ]
     ),

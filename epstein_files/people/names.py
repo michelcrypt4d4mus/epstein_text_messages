@@ -95,7 +95,6 @@ HAMAD_BIN_JASSIM = 'Hamad bin Jassim al-Thani'
 HEATHER_MANN = 'Heather Mann'
 IAN_OSBORNE = 'Ian Osborne'
 INTELLIGENCE_SQUARED = 'Intelligence Squared'
-JABOR_Y = 'Jabor Y'                       # mysterious 'influential man in Qatar"
 JACK_GOLDBERGER = 'Jack Goldberger'
 JACK_SCAROLA = 'Jack Scarola'
 JACKIE_PERCZEK = 'Jackie Perczek'
