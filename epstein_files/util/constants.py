@@ -2454,6 +2454,7 @@ OTHER_FILES_CRYPTO = [
     DocCfg(id='EFTA01088484', author=VALAR_VENTURES, description="contract", truncate_to=DEFAULT_TRUNCATE_TO),
     DocCfg(id='EFTA00591691', author=VALAR_VENTURES, description="contract", truncate_to=DEFAULT_TRUNCATE_TO),
     DocCfg(id='EFTA00810362', author=VALAR_VENTURES, description="investor questionnaire", truncate_to=DEFAULT_TRUNCATE_TO),
+    EmailCfg(id='EFTA01001339', description=f"{PETER_THIEL} introduces Epstein to the {VALAR_VENTURES} founders"),
     # Vincenzo
     EmailCfg(id='EFTA00637023', description=f"discussion of getting around money laundering laws in places like Myanmar + Mongolia"),
     EmailCfg(id='EFTA02588723', description=f'discussion of crypto food stamps debit cards', is_interesting=True),
