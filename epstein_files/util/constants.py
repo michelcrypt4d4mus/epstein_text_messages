@@ -1115,6 +1115,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00684871', author=MARIANA_IDZKOWSKA),
     EmailCfg(id='EFTA00674483', author=MARIANA_IDZKOWSKA),
     EmailCfg(id='EFTA00662373', author=MASHA_DROKOVA, author_reason='"Best, Masha"', highlight_quote='She is interesting. Great looks'),
+    EmailCfg(id='EFTA00667366', author='Match.com', description=f"Match.com is redacted for some reason"),
     EmailCfg(id='EFTA01986756', author=MELANIE_PHILLIPS, author_uncertain=f"{STEVEN_SINOFSKY}'s gf at the time"),
     EmailCfg(id='EFTA00355684', author='Mira Bach', is_interesting=False),
     EmailCfg(id='EFTA01063008', author=OLGA_PONOMAR_BECKER, author_reason='Jmail'),
@@ -1553,7 +1554,6 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA01854384', description=f"{KARIM_WADE} asks if Epstein is free to meet the president (of Senegal?)", truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA00080250', description=f"{LEON_BLACK} / Rothschild Group {DEUTSCHE_BANK} transactions", is_interesting=True),
     EmailCfg(id='EFTA02455633', description=f"{MASHA_DROKOVA} loves WeWork", truncate_to=NO_TRUNCATE),
-    EmailCfg(id='EFTA00667366', description=f"Match.com is redacted for some reason"),
     EmailCfg(id='EFTA01958867', description=f'"Mr. T" is {PRINCE_ANDREW}, "Howard" is {HOWARD_LUTNICK}'),
     EmailCfg(id='EFTA00771388', description=f"{NAOMI_CAMPBELL} seems to have made some introductions to Russian oligarchs"),
     EmailCfg(id='EFTA00754450', description='"PA" is probably Prince Andrew', duplicate_ids=['EFTA02418244']),
@@ -1620,6 +1620,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA02374977', truncate_to=2500),
     EmailCfg(id='EFTA00700415', truncate_to=DEFAULT_TRUNCATE_TO),
     EmailCfg(id='EFTA00869828', truncate_to=SHORT_TRUNCATE_TO),
+    EmailCfg(id='EFTA00875591', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA00959952', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA01010114', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA01903448', truncate_to=NO_TRUNCATE),
@@ -2650,7 +2651,6 @@ OTHER_FILES_GIRLS = [
         author_uncertain='https://www.reddit.com/r/Epstein/comments/1qwbn5i/trafficker_julia_santos/',
         highlight_quote='very sweet and might be naughty t=o',
     ),
-    EmailCfg(id='EFTA01987855', description='sex scandal in Liberia'),
     EmailCfg(id='EFTA01781620', author=KIRA_DIKHTYAR, author_uncertain='"Sent from AOL Mobile Mail" in chain'),
     EmailCfg(id='EFTA01805304', author=KIRA_DIKHTYAR, author_reason='Jmail', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA01766199', author=KIRA_DIKHTYAR, author_reason='reply', truncate_to=NO_TRUNCATE),
@@ -2899,6 +2899,8 @@ OTHER_FILES_GIRLS = [
     EmailCfg(id='EFTA02559808', description=f"{EVA_DUBIN} delivering amphetamines (adderall) to Epstein", is_interesting=True, truncate_to=200),
     EmailCfg(id='EFTA01840103', description="Epstein apparently suggesting amphetamines (adderall)", is_interesting=True),
     EmailCfg(id='EFTA00631762', description="visa problems for Epstein's South African friend"),
+    EmailCfg(id='EFTA01987855', description=f'Epstein, Brunel, and {SULTAN_BIN_SULAYEM} very interested in a Liberian sex scandal'),
+    EmailCfg(id='EFTA01817903', description=f'Epstein, Brunel, and {SULTAN_BIN_SULAYEM} sharing news of a Liberian sex scandal', is_interesting=True),
     EmailCfg(id='EFTA01140210', description='Epstein asks about fake Instagram followers', is_interesting=True),
     EmailCfg(id='EFTA00937981', description=f"Epstein looking for {JOSHUA_FINK} (again)"),
     EmailCfg(id='EFTA00668344', description=f"Epstein looking for {JOSHUA_FINK} (again)"),
@@ -3777,7 +3779,7 @@ UNINTERESTING_EMAIL_IDS = [
     '030786',
     '033011',
     # Jean Luc Brunel
-    'EFTA01817903',  # TODO not entirely uninteresting...
+    'EFTA01987855',  # TODO not entirely uninteresting...
     # Jeremy Rubin
     'EFTA00714127',
     # John Page
