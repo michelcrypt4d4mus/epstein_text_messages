@@ -10,7 +10,7 @@ from epstein_files.util.constant.strings import REDACTED
 from epstein_files.util.helpers.data_helpers import escape_single_quotes, flatten
 from epstein_files.util.logging import logger
 
-BAD_EMAILER_REGEX = re.compile(r'^(>|11111111)|agreed|ok|sexy|re:|fwd:|LIMITED PARTNERS|Multiple Senders|((sent|attachments|subject|importance).*|.*(january|201\d|hysterical|i have|image0|so that people|article 1.?|PROSPECTIVE INVESTORS|momminnemummin|These conspiracy theories|your state|undisclosed|www\.theguardian|talk in|it was a|what do|cc:|call (back|me)|afiaata|[IM]{4,}).*)$', re.IGNORECASE)
+BAD_EMAILER_REGEX = re.compile(r'^(>|11111111)|agreed|ok(?!asha)|sexy|re:|fwd:|LIMITED PARTNERS|Multiple Senders|((sent|attachments|subject|importance).*|.*(january|201\d|hysterical|i have|image0|so that people|article 1.?|PROSPECTIVE INVESTORS|momminnemummin|These conspiracy theories|your state|undisclosed|www\.theguardian|talk in|it was a|what do|cc:|call (back|me)|afiaata|[IM]{4,}).*)$', re.IGNORECASE)
 BAD_NAME_CHARS_REGEX = re.compile(r"[\"'\[\]*><•=()‹?]")
 TIME_REGEX = re.compile(r'^((\d{1,2}/\d{1,2}/\d{2,4}|Thursday|Monday|Tuesday|Wednesday|Friday|Saturday|Sunday)|\d{4} ).*')
 
@@ -66,10 +66,10 @@ def extract_emailer_names(emailer_str: str) -> list[Name]:
     raw_names = emailer_str.split(';')
     emailer_str = cleanup_str(emailer_str)
 
-    if raw_names == [REDACTED] or raw_names == [UNKNOWN]:
-        return [None]
-    elif len(emailer_str) == 0:
+    if len(emailer_str) == 0:
         return []
+    elif raw_names == [REDACTED] or raw_names == [UNKNOWN]:
+        return [None]
     elif emailer_str.lower() in ['j', 'jeffrey']:
         return [JEFFREY_EPSTEIN]
     elif emailer_str.lower() in ['sa', 's a']:

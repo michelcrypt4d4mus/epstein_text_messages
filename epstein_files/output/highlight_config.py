@@ -1133,6 +1133,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 r"Miro(slav)?( Laj[cč][aá]k)?",
                 link_to_bio='https://www.bbc.com/news/articles/cnvgljj1dygo',
             ),
+            Contact('Oleksandra Okasha', 'Ukrainian travel agent (?)', r"Okasha, Oleksandra"),
             Contact('Oleksandr Vilkul', f"former deputy prime minister of Ukraine"),
             Contact(
                 PETER_MANDELSON,
@@ -2177,6 +2178,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         style='pale_violet_red1',
         contacts=[
             Contact('Abi Schwinck', f"{JEAN_LUC_MC2} {QUESTION_MARKS}"),
+            Contact('Aleksandra Rastovic', 'model, received FedEx packages from Epstein', r"Ale(ks|x)(andra)? Rasto[uv]ic|superaleksandra"),
             Contact(
                 DANIEL_SIAD,
                 'model scout funded by Epstein to recruit in eastern Europe',
@@ -2879,7 +2881,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         label=Interesting.GIRLS,
         style=VICTIM_COLOR,
         contacts=[
-            Contact('Aleksandra Rastovic', QUESTION_MARKS, r"Aleks(andra)? Rastovic|superaleksandra"),
+            Contact('Aleksandra Eriksson', QUESTION_MARKS),
             Contact(
                 JENNIFER_KALIN,
                 f"involved in an alleged sham marriage to {KARYNA_SHULIAK}, dated {KIMBAL_MUSK}",
