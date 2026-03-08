@@ -2617,7 +2617,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         style='bright_cyan',
         contacts=[
             Contact('Alisa Bekins', f"{PETER_THIEL}'s assistant"),
-            Contact(ANDREW_MCCORMACK, f"partner at {THIELS_VALAR} {'(???)'}", r"Andrew McCorm(ack?)?"),
+            Contact(ANDREW_MCCORMACK, f"co-founder of {THIELS_VALAR}", r"Andrew McCorm(ack?)?"),
             Contact('Auren Hoffman', "CEO of SafeGraph (mobile device location data co.), LiveRamp", match_partial=None),
             Contact(
                 BOBBY_KOTICK,
@@ -2652,7 +2652,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(HOSAIN_RAHMAN, 'CEO of Jawbone', match_partial='first'),
             Contact(IAN_ODONNELL, THIELS_VALAR, r"Ian O'?Donnell|O'?Donnell, Ian"),
             Contact('Jack Dorsey', 'co-founder of Twitter and Block (FKA Square)'),
-            Contact(JAMES_FITZGERALD, THIELS_VALAR, r"James Fitz[g\s]eral?d?", match_partial=None),
+            Contact(JAMES_FITZGERALD, f"co-founder of {THIELS_VALAR}", r"James Fitz[g\s]eral?d?", match_partial=None),
             Contact(
                 JASON_CALACANIS,
                 f'{ALL_IN_PODCAST} with David Sacks and {CHAMATH_PALIHAPITIYA}, Uber investor',
