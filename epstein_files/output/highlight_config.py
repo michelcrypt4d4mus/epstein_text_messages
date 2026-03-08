@@ -954,7 +954,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         label='Epstein',
         style=EPSTEIN_COLOR,
         contacts=[
-            Contact('sultan175', f"Epstein's account name on Match.com"),
+            Contact('sultan175', f"Epstein's account name on Match.com", is_emailer=False),
             organization(
                 f"{ASIA_GATEWAY} Limited",
                 f"corporate vehicle set up by Epstein and {DAVID_STERN}, presumably to manage money of wealthy Chinese",
