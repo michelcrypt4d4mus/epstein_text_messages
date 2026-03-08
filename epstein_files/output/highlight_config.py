@@ -2937,7 +2937,9 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"(rough )?sex(ual(ity)?| (machine|toy))?",
             r"(rubber )?penis(es)?",
             r"(?-i:S)anctum",
+            r'sexysearch2010',
             r"Snow White",
+            r"sophiembh",
             r"Stephanie Clifford",
             r"(?-i:S)ue\b",  # Only in brock emails really?
             r"Stormy Daniels",
