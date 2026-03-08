@@ -2373,6 +2373,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         label='Russia',
         style='red bold',
         contacts=[
+            Contact('Alexei Navalny', 'assassinated Russian opposition leader', r"Ale(ksandr|xei) Navalni?y"),
             Contact('Alisher Usmanov', 'Uzbeki oligarch with alleged ties to Putin, organized crime'),
             Contact('Andrey Vavilov', 'former Russian finance minister accused of stealing $230 million and other frauds'),
             Contact(

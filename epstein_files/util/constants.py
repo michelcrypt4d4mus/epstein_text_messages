@@ -2701,6 +2701,12 @@ OTHER_FILES_GIRLS = [
         is_interesting=True,
     ),
     EmailCfg(
+        id='EFTA01844498',
+        author=SVETLANA_POZHIDAEVA,
+        author_reason='mentions Josh (Fink), BlackBerry signature',
+        description=f"{JOSHUA_FINK} thinks Svetlana had an affair with Navalny {QUESTION_MARKS}",
+    ),
+    EmailCfg(
         id='EFTA01868066',
         # author=SVETLANA_POZHIDAEVA,
         # author_uncertain=f"{JOSHUA_FINK} + Sent from Blackberry",
