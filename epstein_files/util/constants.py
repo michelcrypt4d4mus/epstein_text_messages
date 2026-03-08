@@ -2610,6 +2610,7 @@ OTHER_FILES_FINANCE = [
     DocCfg(id='EFTA00593276', author=EDMOND_DE_ROTHSCHILD, description='org chart', is_interesting=True),
     # Prop trading / HFT
     DocCfg(id='EFTA00611806', author='Adam Campbell', description='CEA, LLC High Liquidity Trading Program presentation'),
+    DocCfg(id='EFTA01088824', author='Boothbay', description='Absolute Return Strategies Fund pitch deck'),
     DocCfg(id='EFTA00556664', author='Qarmin', description='high frequency trading pitch deck'),
 ]
 
@@ -3337,6 +3338,7 @@ OTHER_FILES_MISC = [
     DocCfg(id='EFTA00005783', description='heavily redacted handwritten note, 30+ completely redacted pages', date='2019-08-29'),
     DocCfg(id='EFTA00024275', description='large Wexner funded payments to OB-GYN'),
     DocCfg(id='EFTA00029538', description=f"{GHISLAINE_MAXWELL} provided school girl uniforms", show_full_panel=True),
+    DocCfg(id='EFTA00266322', description=f"documents about pitches for non-profits in Australia, including to Effective Altruism"),
     # Urramoor
     DocCfg(
         id='EFTA01107738',

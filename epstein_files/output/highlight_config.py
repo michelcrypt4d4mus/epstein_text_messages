@@ -1837,6 +1837,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 link_to_bio='https://www.npr.org/2019/08/22/753390385/a-dead-cat-a-lawyers-call-and-a-5-figure-donation-how-media-fell-short-on-epstei',
                 match_partial=None,
             ),
+            organization('Effective Altruism', 'cult popular with tech CEOs who want an excuse for hoarding money (e.g. SBF of FTX)'),
             organization(HENRY_HOLT, f"{MICHAEL_WOLFF}'s book publisher"),
             organization('Futurism', f'odd outlet that seems hooked up with {MASHA_DROKOVA}'),
             organization('Gawker', f'independent news site killed by a Hulk Hogan lawsuit funded by {PETER_THIEL}'),
