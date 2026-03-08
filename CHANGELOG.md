@@ -1,4 +1,6 @@
 # NEXT RELEASE
+
+# 1.9.0
 * Create `DropsiteEmail` class to process `.eml` files from DropSite News
 
 ### 1.8.11
