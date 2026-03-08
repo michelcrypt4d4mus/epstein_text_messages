@@ -5,8 +5,8 @@ from itertools import groupby
 
 from epstein_files.documents.documents.categories import CONSTANT_CATEGORIES, Interesting, Neutral
 from epstein_files.documents.documents.config_builder import (FBI_REPORT, JANE_DOE_V_USA, WOLFF_EPSTEIN_ARTICLE_DRAFT,
-     binant_redacted, blaine_letter, fbi_defense_witness, fbi_report, letter, phone_bill_cfg, shaher_murder_email,
-     starr_letter, whistleblower_cfg, victim_diary, wolff_draft_cfg)
+     binant_redacted, blaine_letter, fbi_defense_witness, fbi_report, fedex_invoice, letter, phone_bill_cfg,
+     shaher_murder_email, starr_letter, whistleblower_cfg, victim_diary, wolff_draft_cfg)
 from epstein_files.documents.documents.doc_cfg import (DEFAULT_TRUNCATE_TO, GOLDMAN_INVESTMENT_MGMT,
      SHORT_TRUNCATE_TO, NO_TRUNCATE, CommunicationCfg, DocCfg, EmailCfg, TextCfg)
 from epstein_files.documents.doj_files.full_text import EFTA00009622_TEXT
@@ -1521,6 +1521,7 @@ EMAILS_CONFIG = [
     ),
     EmailCfg(id='EFTA00923902', description=f"Andrey Vavilov offers to buy Epstein's house for $100 million", truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA01175429', description=f"Andrey Vavilov offers to buy Epstein's house for $100 million"),
+    EmailCfg(id='EFTA00322570', description=f'booking flight for {REDACTED} from Hong Kong to NYC'),
     EmailCfg(id='EFTA00363992', description=f"car rental for {MARIANA_IDZKOWSKA}"),
     EmailCfg(id='EFTA02630431', description=f"{CARBYNE} is an Israeli company invested in by Epstein, {NICOLE_JUNKERMANN}, & {EHUD_BARAK}"),
     EmailCfg(id='EFTA02573653', description=f'discussion of {PRINCE_ANDREW}\'s Urramoor, "Howard" is probably {HOWARD_LUTNICK} which Urramoor partnered with'),
@@ -1537,15 +1538,14 @@ EMAILS_CONFIG = [
     ),
     EmailCfg(id='EFTA00664252', description='Epstein explains his "no wives / no girlfriends" policy', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA02689871', description=f"Epstein instructs {DAVID_STERN} to avoid {BANQUE_HAVILLAND}"),
-    EmailCfg(id='EFTA01008242', description='Epstein passes on an investment in Radius'),
     EmailCfg(id='EFTA00949376', description=f"Epstein paying {MC2_MODEL_MGMT}", truncate_to=NO_TRUNCATE),
+    EmailCfg(id='EFTA01060612', description=f"Epstein plots against the JASTA bill"),
     EmailCfg(id='EFTA00630134', description=f'Epstein recommends Signal encrypted messenger to {ALLEGED_KARIM_WADE}', is_interesting=True),
     EmailCfg(id='EFTA00955694', description=f"Epstein thanks {ELON_MUSK} for the SpaceX tour that Musk has said never happened", is_interesting=True),
     EmailCfg(id='EFTA02561277', description=f"planning for {ELON_MUSK} gets a massage", is_interesting=True),
-    EmailCfg(id='EFTA00322570', description=f'booking flight for {REDACTED} from Hong Kong to NYC'),
     EmailCfg(id='EFTA02565917', description='Hassan Mohammed Abdul Latif Jameel is a Saudi businessman and philanthropist'),
+    EmailCfg(id='EFTA02277132', description='hotel booking in Kiev'),
     EmailCfg(id='EFTA00927227', description=f"{IAN_OSBORNE} pitches his new venture fund {HEDOSOPHIA} to Epstein", is_interesting=True),
-    EmailCfg(id='EFTA01060612', description=f"Epstein plots against the JASTA bill"),
     EmailCfg(id='EFTA01767036', description=f'"Karim" is probably {ALLEGED_KARIM_WADE}'),
     EmailCfg(id='EFTA02515416', description=f'{JEAN_LUC_BRUNEL} is having visa problems', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA02513560', description=f"{JEAN_LUC_BRUNEL} doesn't want to speak on the phone", truncate_to=NO_TRUNCATE),
@@ -2439,8 +2439,14 @@ OTHER_FILES_CRYPTO = [
     EmailCfg(id='EFTA02396341', description='the Sharia Coin gambit', is_interesting=True),
     EmailCfg(id='EFTA01005117', description='announcement that the Stellar blockchain is Sharia compliant'),
     # Valar
+    DocCfg(
+        id='EFTA00591045',
+        attached_to_email_id='EFTA01001339',
+        author=VALAR_FUND,
+        description='pitch deck',
+        non_participants=[MASAYOSHI_SON],
+    ),
     DocCfg(id='EFTA00810239', author=VALAR_FUND, description='pitch deck'),
-    DocCfg(id='EFTA00591045', author=VALAR_FUND, description='brochure', non_participants=[MASAYOSHI_SON]),
     DocCfg(id='EFTA00810510', author=VALAR_FUND, description='Fall 2016 Update'),
     DocCfg(id='EFTA00810474', author=VALAR_FUND, description='Fall 2018 Update'),
     DocCfg(id='EFTA01121910', author=VALAR_VENTURES, description="contract", truncate_to=DEFAULT_TRUNCATE_TO),
@@ -2448,11 +2454,13 @@ OTHER_FILES_CRYPTO = [
     DocCfg(id='EFTA01088484', author=VALAR_VENTURES, description="contract", truncate_to=DEFAULT_TRUNCATE_TO),
     DocCfg(id='EFTA00591691', author=VALAR_VENTURES, description="contract", truncate_to=DEFAULT_TRUNCATE_TO),
     DocCfg(id='EFTA00810362', author=VALAR_VENTURES, description="investor questionnaire", truncate_to=DEFAULT_TRUNCATE_TO),
+    EmailCfg(id='EFTA01001339', description=f"{PETER_THIEL} introduces Epstein to the {VALAR_VENTURES} founders"),
     # Vincenzo
     EmailCfg(id='EFTA00637023', description=f"discussion of getting around money laundering laws in places like Myanmar + Mongolia"),
     EmailCfg(id='EFTA02588723', description=f'discussion of crypto food stamps debit cards', is_interesting=True),
     EmailCfg(id='EFTA02588748', description=f'discussion of crypto food stamps debit cards', is_interesting=True, truncate_to=800),
     EmailCfg(id='EFTA02584771', description=f"discussion of decentralized prediction markets (e.g. Polymarket)", is_interesting=True),
+    EmailCfg(id='EFTA01008242', description='Epstein passes on an investment in Radius'),
     EmailCfg(id='EFTA00995269', description=f"Epstein suggests Monaco and Vatican City as good places for crypto"),
     # ZCash / Madars Virza
     DocCfg(id='EFTA00811130', author=PERKINS_COIE, description='tax opinion on ZCash tokens'),
@@ -2612,6 +2620,7 @@ OTHER_FILES_DIARY = [
 OTHER_FILES_FLIGHT_LOG = [
     DocCfg(id='022780'),
     DocCfg(id='022816'),
+    DocCfg(id='EFTA00623147', author=DAVID_RODGERS, date='2016-06-30', date_uncertain='guess based on employment history'),
 ]
 
 
@@ -2698,6 +2707,12 @@ OTHER_FILES_GIRLS = [
         author_reason='https://tommycarstensen.com/epstein/findings.html#victim-diary-names-multiple-men',
         description=f'{SVETLANA_POZHIDAEVA} forwarding her intimate conversations with {JOSHUA_FINK} to Epstein (to what end?)',
         is_interesting=True,
+    ),
+    EmailCfg(
+        id='EFTA01844498',
+        author=SVETLANA_POZHIDAEVA,
+        author_reason='mentions Josh (Fink), BlackBerry signature',
+        description=f"{JOSHUA_FINK} thinks Svetlana had an affair with Navalny {QUESTION_MARKS}",
     ),
     EmailCfg(
         id='EFTA01868066',
@@ -2901,6 +2916,7 @@ OTHER_FILES_GIRLS = [
     EmailCfg(id='EFTA00631762', description="visa problems for Epstein's South African friend"),
     EmailCfg(id='EFTA01987855', description=f'Epstein, Brunel, and {SULTAN_BIN_SULAYEM} very interested in a Liberian sex scandal'),
     EmailCfg(id='EFTA01817903', description=f'Epstein, Brunel, and {SULTAN_BIN_SULAYEM} sharing news of a Liberian sex scandal', is_interesting=True),
+    EmailCfg(id='EFTA01818540', description=f'Epstein forwarding news of the Liberian sex scandal to {JES_STALEY}'),
     EmailCfg(id='EFTA01140210', description='Epstein asks about fake Instagram followers', is_interesting=True),
     EmailCfg(id='EFTA00937981', description=f"Epstein looking for {JOSHUA_FINK} (again)"),
     EmailCfg(id='EFTA00668344', description=f"Epstein looking for {JOSHUA_FINK} (again)"),
@@ -3311,6 +3327,7 @@ OTHER_FILES_MISC = [
         description=f"internal message about discovery of Epstein's body",
         background_color='red'
     ),
+    DocCfg(id='EFTA01063691', description='inventory of address books and Skype logs seized from Epstein computers'),
     DocCfg(id='EFTA00005386', description='heavily redacted photo album, lot of photos of girls'),
     DocCfg(id='EFTA00728783', description='list of names and phone numbers'),
     DocCfg(id='EFTA00165515', description="contractor describes Epstein's gun safes", show_full_panel=True),
@@ -3341,6 +3358,7 @@ OTHER_FILES_MISC = [
         is_interesting=True,
         replace_text_with='Epstein 50th birthday photo book 12 "THAIS, MOSCOW GIRLS, AFRICA, HAWAII, [REDACTED] [REDACTED], Zorro, [REDACTED] [REDACTED] [REDACTED], CRACK WHOLE PROPOSAL, BALI/THAILAND/ASIA, RUSSIA, [REDACTED], [REDACTED], NUDES, YOGAL GIRLS',
     ),
+    DocCfg(id='EFTA01628970', replace_text_with='redacted pictures of naked women'),
     DocCfg(id='EFTA00004070', replace_text_with="photos of Epstein with handwritten caption that didn't OCR well"),
     DocCfg(id='EFTA02731260', replace_text_with='notebook full of handwritten love letters with terrible OCR text'),
     DocCfg(id='EFTA00006100', replace_text_with='Palm Beach Police fax machine activity log 2005-12-28 to 2006-01-04'),
@@ -3355,6 +3373,9 @@ OTHER_FILES_MISC = [
     DocCfg(id='EFTA00590685', attached_to_email_id='EFTA00830911'),
     # Dates
     DocCfg(id='EFTA02025218', date='2011-09-09'),
+    # FedEx
+    fedex_invoice('EFTA00217072', '2005-06-20'),
+    fedex_invoice('EFTA00217080', '2005-06-27'),
 ]
 
 
@@ -3573,6 +3594,21 @@ OTHER_FILES_SKYPE_LOG = [
     CommunicationCfg(id='032210', recipients=['linkspirit'], is_interesting=True),
     CommunicationCfg(id='018224', recipients=['linkspirit', LAWRENCE_KRAUSS], is_interesting=True),  # we don't know who linkspirit is yet
     CommunicationCfg(id='EFTA01617727'),
+    CommunicationCfg(
+        id='EFTA00507334',
+        recipients=[
+            'Aleksandra Eriksson',
+            ANASTASIYA_SIROOCHENKO,
+            'Catherine',
+            DANIEL_SIAD,
+            DAVID_STERN,
+            'Emad Hanna',
+            'Jade Huang',
+            NADIA_MARCINKO,
+            'sexysearch2010',
+            'sophiembh'
+        ],
+    ),
     CommunicationCfg(id='EFTA01217787', recipients=[TYLER_SHEARS, 'Hanna Traff at Spotify'], is_interesting=True),
     CommunicationCfg(id='EFTA01217703', recipients=['actress Athena Zelcovich', JOSCHA_BACH, LAWRENCE_KRAUSS]),
     CommunicationCfg(id='EFTA01217736', recipients=['actress Athena Zelcovich', TYLER_SHEARS]),

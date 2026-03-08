@@ -900,7 +900,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact('Brice Gordon', 'property manager', match_partial=None),
             Contact(CECILIA_STEEN, f'Epstein assistant, moved to Dubai to work for money launderers (?)'),
             Contact(DAPHNE_WALLACE, "LSJE accountant", r"Da.hne Wallace", match_partial=None),
-            Contact('David Rodgers', "Epstein's pilot", match_partial=None),
+            Contact(DAVID_RODGERS, "Epstein's pilot", match_partial=None),
             Contact(EDUARDO_ROBLES, "home builder at Creative Kingdom Dubai", r"Ed(uardo)? Robles", match_partial=None),
             Contact(ERIC_ROTH, "jet decorator at International Jet", match_partial=None),
             Contact(GWENDOLYN_BECK, "Epstein fund manager in the 90s, ran for Congress", match_partial='first'),
@@ -1133,6 +1133,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 r"Miro(slav)?( Laj[cč][aá]k)?",
                 link_to_bio='https://www.bbc.com/news/articles/cnvgljj1dygo',
             ),
+            Contact('Oleksandra Okasha', 'Ukrainian travel agent (?)', r"Okasha, Oleksandra"),
             Contact('Oleksandr Vilkul', f"former deputy prime minister of Ukraine"),
             Contact(
                 PETER_MANDELSON,
@@ -2177,6 +2178,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         style='pale_violet_red1',
         contacts=[
             Contact('Abi Schwinck', f"{JEAN_LUC_MC2} {QUESTION_MARKS}"),
+            Contact('Aleksandra Rastovic', 'model, received FedEx packages from Epstein', r"Ale(ks|x)(andra)? Rasto[uv]ic|superaleksandra"),
             Contact(
                 DANIEL_SIAD,
                 'model scout funded by Epstein to recruit in eastern Europe',
@@ -2371,6 +2373,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         label='Russia',
         style='red bold',
         contacts=[
+            Contact('Alexei Navalny', 'assassinated Russian opposition leader', r"Ale(ksandr|xei) Navalni?y"),
             Contact('Alisher Usmanov', 'Uzbeki oligarch with alleged ties to Putin, organized crime'),
             Contact('Andrey Vavilov', 'former Russian finance minister accused of stealing $230 million and other frauds'),
             Contact(
@@ -2614,7 +2617,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         style='bright_cyan',
         contacts=[
             Contact('Alisa Bekins', f"{PETER_THIEL}'s assistant"),
-            Contact(ANDREW_MCCORMACK, f"partner at {THIELS_VALAR} {'(???)'}", r"Andrew McCorm(ack?)?"),
+            Contact(ANDREW_MCCORMACK, f"co-founder of {THIELS_VALAR}", r"Andrew McCorm(ack?)?"),
             Contact('Auren Hoffman', "CEO of SafeGraph (mobile device location data co.), LiveRamp", match_partial=None),
             Contact(
                 BOBBY_KOTICK,
@@ -2649,7 +2652,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(HOSAIN_RAHMAN, 'CEO of Jawbone', match_partial='first'),
             Contact(IAN_ODONNELL, THIELS_VALAR, r"Ian O'?Donnell|O'?Donnell, Ian"),
             Contact('Jack Dorsey', 'co-founder of Twitter and Block (FKA Square)'),
-            Contact(JAMES_FITZGERALD, THIELS_VALAR, r"James Fitz[g\s]eral?d?", match_partial=None),
+            Contact(JAMES_FITZGERALD, f"co-founder of {THIELS_VALAR}", r"James Fitz[g\s]eral?d?", match_partial=None),
             Contact(
                 JASON_CALACANIS,
                 f'{ALL_IN_PODCAST} with David Sacks and {CHAMATH_PALIHAPITIYA}, Uber investor',
@@ -2879,6 +2882,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         label=Interesting.GIRLS,
         style=VICTIM_COLOR,
         contacts=[
+            Contact('Aleksandra Eriksson', QUESTION_MARKS),
             Contact(
                 JENNIFER_KALIN,
                 f"involved in an alleged sham marriage to {KARYNA_SHULIAK}, dated {KIMBAL_MUSK}",
@@ -2933,7 +2937,9 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"(rough )?sex(ual(ity)?| (machine|toy))?",
             r"(rubber )?penis(es)?",
             r"(?-i:S)anctum",
+            r'sexysearch2010',
             r"Snow White",
+            r"sophiembh",
             r"Stephanie Clifford",
             r"(?-i:S)ue\b",  # Only in brock emails really?
             r"Stormy Daniels",
