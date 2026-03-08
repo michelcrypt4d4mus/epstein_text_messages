@@ -5,8 +5,8 @@ from itertools import groupby
 
 from epstein_files.documents.documents.categories import CONSTANT_CATEGORIES, Interesting, Neutral
 from epstein_files.documents.documents.config_builder import (FBI_REPORT, JANE_DOE_V_USA, WOLFF_EPSTEIN_ARTICLE_DRAFT,
-     binant_redacted, blaine_letter, fbi_defense_witness, fbi_report, letter, phone_bill_cfg, shaher_murder_email,
-     starr_letter, whistleblower_cfg, victim_diary, wolff_draft_cfg)
+     binant_redacted, blaine_letter, fbi_defense_witness, fbi_report, fedex_invoice, letter, phone_bill_cfg,
+     shaher_murder_email, starr_letter, whistleblower_cfg, victim_diary, wolff_draft_cfg)
 from epstein_files.documents.documents.doc_cfg import (DEFAULT_TRUNCATE_TO, GOLDMAN_INVESTMENT_MGMT,
      SHORT_TRUNCATE_TO, NO_TRUNCATE, CommunicationCfg, DocCfg, EmailCfg, TextCfg)
 from epstein_files.documents.doj_files.full_text import EFTA00009622_TEXT
@@ -3313,7 +3313,6 @@ OTHER_FILES_MISC = [
         description=f"internal message about discovery of Epstein's body",
         background_color='red'
     ),
-    DocCfg(id='EFTA00217072', description='FedEx invoice', date='2005-06-20'),
     DocCfg(id='EFTA01063691', description='inventory of address books and Skype logs seized from Epstein computers'),
     DocCfg(id='EFTA00005386', description='heavily redacted photo album, lot of photos of girls'),
     DocCfg(id='EFTA00728783', description='list of names and phone numbers'),
@@ -3360,6 +3359,9 @@ OTHER_FILES_MISC = [
     DocCfg(id='EFTA00590685', attached_to_email_id='EFTA00830911'),
     # Dates
     DocCfg(id='EFTA02025218', date='2011-09-09'),
+    # FedEx
+    fedex_invoice('EFTA00217072', '2005-06-20'),
+    fedex_invoice('EFTA00217080', '2005-06-27'),
 ]
 
 
