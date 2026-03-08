@@ -895,7 +895,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         contacts=[
             Contact('Adriana Ross', 'named co-conspirator', match_partial=None),
             Contact('Alfredo Rodriguez', "Epstein's butler, stole Epstein's black book", match_partial=None),
-            Contact(BELLA_KLEIN, "Epstein's accountant", match_partial=None),
+            Contact(BELLA_KLEIN, "one of Epstein's accountants", match_partial=None),
             Contact('Bernard Kruger', "Epstein's doctor", match_partial=None),
             Contact('Brice Gordon', 'property manager', match_partial=None),
             Contact(CECILIA_STEEN, f'Epstein assistant, moved to Dubai to work for money launderers (?)'),
@@ -904,6 +904,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(EDUARDO_ROBLES, "home builder at Creative Kingdom Dubai", r"Ed(uardo)? Robles", match_partial=None),
             Contact(ERIC_ROTH, "jet decorator at International Jet", match_partial=None),
             Contact(GWENDOLYN_BECK, "Epstein fund manager in the 90s, ran for Congress", match_partial='first'),
+            Contact('Harry Beller', "one of Epstein's accountants"),
             Contact('Ike Groff', f"brother of {LESLEY_GROFF}?", is_organization=True, match_partial=None),
             Contact(JANUSZ_BANASIAK, "Epstein's house manager", r"Janu[is]z Banasiak", match_partial='both'),
             Contact('John Allessi', "Epstein's houseman"),
@@ -1022,6 +1023,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             ),
             Contact(BRAD_KARP, "head of the law firm Paul Weiss", r"Brad (S.? )?Karp|Karp, Brad", match_partial=None),
             Contact('Connie Zaguirre', f"office of {'Robert D. Critton Jr.'}"),
+            Contact('Daniel Weiner', f"lawyer for Epstein executors {DARREN_INDYKE} & {RICHARD_KAHN}", match_partial=None),
             Contact(DAVID_SCHOEN, "Epstein criminal defense attorney after 2019 arrest"),
             Contact(DEBBIE_FEIN, f"Epstein {EPSTEIN_V_ROTHSTEIN_EDWARDS_ATTORNEY}"),
             Contact('Erika Kellerhals', "attorney in St. Thomas"),
@@ -2269,6 +2271,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 r"T[vy]ler Shears",
             ),
             organization(HEDOSOPHIA, f"{IAN_OSBORNE} VC fund, invested in Alibaba, launched SPACs with Chamath advised by Epstein"),
+            organization('Wagging Tail Entertainment', f"{PEGGY_SIEGAL} company"),
         ],
         patterns=[
             r"Philip Barden",
@@ -3000,7 +3003,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         style='spring_green3',
         contacts=[
             Contact('André Balazs', 'hotelier, CEO of André Balazs Properties', r"Andre Bala(sz|zs)"),
-            Contact('Anthony Barrett', 'Ossa Properties', match_partial=None),
+            Contact('Anthony Barrett', "Ossa Properties (Mark Epstein company)", match_partial=None),
             Contact('Daniel Rosenberg', 'real estate developer', match_partial=None),
             Contact(
                 DAVID_MITCHELL,
@@ -3017,6 +3020,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 r"Marc[.\s]+(Kensington|Leon)|Kensington2",
                 match_partial=None,
             ),
+            organization('Ossa Properties', f"{MARK_EPSTEIN} company"),
         ],
         patterns=[
             r"int[e=]rior design(er)?",
