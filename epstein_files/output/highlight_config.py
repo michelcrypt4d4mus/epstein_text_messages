@@ -953,6 +953,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         label='Epstein',
         style=EPSTEIN_COLOR,
         contacts=[
+            Contact('sultan175', f"Epstein's account name on Match.com"),
             organization(
                 f"{ASIA_GATEWAY} Limited",
                 f"corporate vehicle set up by Epstein and {DAVID_STERN}, presumably to manage money of wealthy Chinese",
@@ -2705,7 +2706,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             ),
             organization('Jawbone', f'wireless earpiece company invested in by Epstein and {IAN_OSBORNE}'),
             organization('LinkedIn', "LinkedIn", r"Linked[Il]n( Updates)?", is_emailer=True, is_interesting=False),
-            organizaation('Match.com', 'dating site', r"match\.com|matchmail", is_emailer=True),
+            organization('Match.com', 'dating site', r"match\.com|matchmail", is_emailer=True),
             organization('Mozilla', 'maker of the Firefox browser', r"Mozilla( Corp(oration)?)?"),
             organization('MySpace', "early social media, Epstein's creeptastic account data was lost", r"(www\.?)myspace(\.?com)?"),
             organization('Number26', f'fintech frontend for Wirecard Bank, renamed "N26"', r"N(umber)?26"),
