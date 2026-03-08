@@ -12,21 +12,24 @@ from epstein_files.util.logging import logger
 
 BRACKET_NUM_PATTERN = r"\s*\[?\d\]?\s*"
 DATE_PATTERN = r"(?P<timestamp>\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2})\s+\(?UTC\)?" + fr"(?:{BRACKET_NUM_PATTERN})?"
-SENDER_PATTERN = r"\s*Sender:(?P<sender>.*?)Participants:?(?P<participants>.*?\)$)"
+SENDER_PATTERN = r"\s*Sender:(?P<sender>.*?)Participants:?(?P<participants>(\s*?|.*?\))$)"
 MSG_REGEX = re.compile(fr'iMessage\s+(?:{BRACKET_NUM_PATTERN})?{DATE_PATTERN}{SENDER_PATTERN}(?P<msg>.*?)(?=iMessage|NYCO24362|SMS)', re.DOTALL | re.M)
 REDACTED_AUTHOR_REGEX = re.compile(r"^([-+•_1MENO.=F]+|[4Ide])$")
+# Sometimes participants field ends up in the message
+JUNK_SUFFIX_REGEX = re.compile(r"\)?,? ?Self \( ?(e:?)?jeeitunes[®@]gmail.com ?\)")
 # print(MSG_REGEX.pattern)
 
 MATCH_GROUPS = [
+    'timestamp',
     'sender',
     'participants',
-    'timestamp',
     'msg',
 ]
 
 IMESSAGE_PDF_IDS = [
     'EFTA00781689',
     'EFTA00508054',  # TODO: needs review, might be missing messages
+    'EFTA01218267',
 ]
 
 
@@ -54,6 +57,11 @@ class MessengerLogPdf(MessengerLog):
             elif not sender:
                 sender = None
 
+            if (junk_suffix := JUNK_SUFFIX_REGEX.search(msg)):
+                self.warn(f"Found junk suffixes in message, removing. msg:\n-----\n{msg}\n-----")
+                msg = JUNK_SUFFIX_REGEX.sub('', msg).strip()
+                self.warn(f"msg stripped of junk:\n-----\n{msg}\n-----\n")
+
             text_message = TextMessagePdf(
                 author=sender,
                 is_id_confirmed=len(sender or '') > 0 and sender != STEVE_BANNON,
@@ -61,12 +69,15 @@ class MessengerLogPdf(MessengerLog):
                 timestamp_str=match.group('timestamp').strip(),
             )
 
+            for g in MATCH_GROUPS:
+                self.log(f"  match [{g}] '{match.group(g).strip()}'")
+
             if msgs and text_message == msgs[-1]:
                 self.log(f"Parsed TextMessage is the same as the last one, skipping...\n")
                 continue
-
-            for g in MATCH_GROUPS:
-                self.log(f"  match [{g}] '{match.group(g).strip()}'")
+            elif not msg:
+                self.warn(f"Empty text message, skipping...")
+                continue
 
             self.log(f'\nmessage: {text_message.__rich__().plain}\n')
             msgs.append(text_message)

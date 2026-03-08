@@ -2901,6 +2901,7 @@ OTHER_FILES_GIRLS = [
     EmailCfg(id='EFTA00631762', description="visa problems for Epstein's South African friend"),
     EmailCfg(id='EFTA01987855', description=f'Epstein, Brunel, and {SULTAN_BIN_SULAYEM} very interested in a Liberian sex scandal'),
     EmailCfg(id='EFTA01817903', description=f'Epstein, Brunel, and {SULTAN_BIN_SULAYEM} sharing news of a Liberian sex scandal', is_interesting=True),
+    EmailCfg(id='EFTA01818540', description=f'Epstein forwarding news of the Liberian sex scandal to {JES_STALEY}'),
     EmailCfg(id='EFTA01140210', description='Epstein asks about fake Instagram followers', is_interesting=True),
     EmailCfg(id='EFTA00937981', description=f"Epstein looking for {JOSHUA_FINK} (again)"),
     EmailCfg(id='EFTA00668344', description=f"Epstein looking for {JOSHUA_FINK} (again)"),
