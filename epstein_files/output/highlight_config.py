@@ -1075,6 +1075,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         style='medium_purple3',
         contacts=[
             organization(CLIFFORD_CHANCE, f'law firm where {MARIA_PRUSAKOVA} did an internship in Paris'),
+            organization('Latham & Watkins', f'law firm where {KATHRYN_RUEMMLER} worked', r"Latham (&|and) Watkins"),
         ],
         patterns=[
             r"(Leon )?Jaworski",
