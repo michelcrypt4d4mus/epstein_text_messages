@@ -2613,6 +2613,7 @@ OTHER_FILES_DIARY = [
 OTHER_FILES_FLIGHT_LOG = [
     DocCfg(id='022780'),
     DocCfg(id='022816'),
+    DocCfg(id='EFTA00623147', author=DAVID_RODGERS),
 ]
 
 

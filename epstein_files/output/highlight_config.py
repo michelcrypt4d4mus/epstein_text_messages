@@ -900,7 +900,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact('Brice Gordon', 'property manager', match_partial=None),
             Contact(CECILIA_STEEN, f'Epstein assistant, moved to Dubai to work for money launderers (?)'),
             Contact(DAPHNE_WALLACE, "LSJE accountant", r"Da.hne Wallace", match_partial=None),
-            Contact('David Rodgers', "Epstein's pilot", match_partial=None),
+            Contact(DAVID_RODGERS, "Epstein's pilot", match_partial=None),
             Contact(EDUARDO_ROBLES, "home builder at Creative Kingdom Dubai", r"Ed(uardo)? Robles", match_partial=None),
             Contact(ERIC_ROTH, "jet decorator at International Jet", match_partial=None),
             Contact(GWENDOLYN_BECK, "Epstein fund manager in the 90s, ran for Congress", match_partial='first'),
