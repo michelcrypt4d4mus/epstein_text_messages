@@ -3776,6 +3776,7 @@ UNINTERESTING_EMAIL_IDS = [
     '030786',
     '033011',
     # Jean Luc Brunel
+    'EFTA01817903',  # TODO not entirely uninteresting...
     # Jeremy Rubin
     'EFTA00714127',
     # John Page
