@@ -2879,6 +2879,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         label=Interesting.GIRLS,
         style=VICTIM_COLOR,
         contacts=[
+            Contact('Aleksandra Rastovic', QUESTION_MARKS, r"Aleks(andra)? Rastovic|superaleksandra"),
             Contact(
                 JENNIFER_KALIN,
                 f"involved in an alleged sham marriage to {KARYNA_SHULIAK}, dated {KIMBAL_MUSK}",
