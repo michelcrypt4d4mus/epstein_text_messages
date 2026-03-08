@@ -2439,8 +2439,14 @@ OTHER_FILES_CRYPTO = [
     EmailCfg(id='EFTA02396341', description='the Sharia Coin gambit', is_interesting=True),
     EmailCfg(id='EFTA01005117', description='announcement that the Stellar blockchain is Sharia compliant'),
     # Valar
+    DocCfg(
+        id='EFTA00591045',
+        attached_to_email_id='EFTA01001339',
+        author=VALAR_FUND,
+        description='pitch deck',
+        non_participants=[MASAYOSHI_SON],
+    ),
     DocCfg(id='EFTA00810239', author=VALAR_FUND, description='pitch deck'),
-    DocCfg(id='EFTA00591045', author=VALAR_FUND, description='brochure', non_participants=[MASAYOSHI_SON]),
     DocCfg(id='EFTA00810510', author=VALAR_FUND, description='Fall 2016 Update'),
     DocCfg(id='EFTA00810474', author=VALAR_FUND, description='Fall 2018 Update'),
     DocCfg(id='EFTA01121910', author=VALAR_VENTURES, description="contract", truncate_to=DEFAULT_TRUNCATE_TO),
