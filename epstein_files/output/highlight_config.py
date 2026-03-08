@@ -157,6 +157,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         style='light_pink4',
         contacts=[
             Contact('Abdoulaye Wade', f"former president of Senegal, father of {KARIM_WADE}", match_partial='first'),
+            Contact('Ellen Johnson-Sirleaf', 'president of Liberia'),
             Contact('Goodluck Jonathan', 'president of Nigeria', match_partial=None),
             Contact('Ivan Glasenberg', "South African former CEO of Glencore, one of the world's largest commodity trading and mining companies"),
             Contact(
@@ -171,6 +172,12 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact('Okey Enelamah', f"Nigerian trade minister"),
             Contact(RASSECK_BOURGI, f"{KARIM_WADE}'s lawyer", r"(Rasseck|Ute) Bourgi", match_partial='both'),
             Contact('Yoweri Museveni', 'president of Uganda', match_partial='both'),
+            Contact(
+                'Willis Knuckles',
+                f'Liberian politician whose sex scandal Epstein, Brunel, and {SULTAN_BIN_SULAYEM} seem interested in',
+                link_to_bio='https://en.wikipedia.org/wiki/Willis_Knuckles',
+                match_partial=None,
+            ),
             organization('Econet Wireless', 'African mobile phone company', r"Econet( Wireless)?"),
             organization('Glencore', 'Swiss mining company'),
         ],
@@ -192,6 +199,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r'Malawi',
             r"Masai",
             r"Mobutu Seko",
+            r"Monrovia",
             r"Nigerian?",
             r"(Paul )?Kagame",
             r"(Republic of )?Congo",
