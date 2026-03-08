@@ -2605,6 +2605,7 @@ OTHER_FILES_FINANCE = [
     ),
 
     # DOJ
+    DocCfg(id='EFTA00611806', author='Adam Campbell', description='CEA, LLC High Liquidity Trading Program presentation'),
     DocCfg(id='EFTA01078403', author=ATORUS, description='investment adviser uniform application', date='2014-05-14'),
     DocCfg(id='EFTA02690885', author=ATORUS, description='pitch deck'),
     DocCfg(id='EFTA00593276', author=EDMOND_DE_ROTHSCHILD, description='org chart', is_interesting=True),
