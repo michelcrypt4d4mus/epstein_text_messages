@@ -943,6 +943,8 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00040142', author=ATT_COURT_APPEARANCE_TEAM, recipients=[USANYS]),
     EmailCfg(id='EFTA01040692', author=ALAN_DLUGASH, description='meeting about tax implications of ZCash'),
     EmailCfg(id='EFTA00039357', author=BUREAU_OF_PRISONS, recipients=['DOJ Inspector General']),
+    EmailCfg(id='EFTA01851487', author=CHRISTINA_GALBRAITH, author_reason='topic, cell: in redacted sig'),
+    EmailCfg(id='EFTA01851738', author=CHRISTINA_GALBRAITH, author_reason='topic, cell: in redacted sig'),
     EmailCfg(id='EFTA01947908', author=CHRISTINA_GALBRAITH, author_reason='"Christina" appears in EFTA01950559'),
     EmailCfg(id='EFTA01940349', author=CHRISTINA_GALBRAITH, author_uncertain='subject matter'),
     EmailCfg(id='EFTA01747822', author=DARREN_INDYKE, author_reason='reply'),
@@ -1358,6 +1360,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA02068282', recipients=[ANDREW_MCCORMACK]),
     EmailCfg(id='EFTA01913311', recipients=[CHRISTINA_GALBRAITH], duplicate_ids=['EFTA00994273']),
     EmailCfg(id='EFTA01950559', recipients=[CHRISTINA_GALBRAITH], recipient_uncertain='"Christina" in thread'),
+    EmailCfg(id='EFTA01745739', recipients=[CHRISTINA_GALBRAITH, JEFFREY_EPSTEIN], author_reason='topic, cell: in redacted sig'),
     EmailCfg(id='EFTA02518357', recipients=[CHRISTINA_GALBRAITH, RICHARD_KAHN], author_reason='"Christina" appears in email'),
     EmailCfg(id='EFTA00915426', recipients=[DONALD_NORMAN], author_reason='"This is Donald"'),
     EmailCfg(id='EFTA00916133', recipients=[DONALD_NORMAN], author_reason='signed "Donald"', duplicate_ids=['EFTA01862243']),
@@ -1918,9 +1921,17 @@ OTHER_FILES_ARTICLE = [
     DocCfg(id='031794', description=f"very short French magazine clipping"),
 
     # DOJ files
-    DocCfg(id='EFTA02711825', description='article titled "Artificial Intelligence Ignites in Ethiopia"', is_interesting=True),
+    DocCfg(
+        id='EFTA02711825',
+        author='Techonomy',
+        author_uncertain='either this or EFTA01139627 are referenced in email EFTA01745739',
+        description='article titled "Artificial Intelligence Ignites in Ethiopia"',
+        is_interesting=True,
+    ),
     DocCfg(
         id='EFTA01139627',
+        author='Techonomy',
+        author_uncertain='either this or EFTA02711825 are referenced in email EFTA01745739',
         date='2014-08-15',
         date_uncertain=f'using date of {BEN_GOERTZEL} email',
         description='article about iCog Labs titled "A Harvard Financier, Jeffrey Epstein, Advances Artificial Intelligence in Ethiopia"',
@@ -3350,6 +3361,7 @@ OTHER_FILES_MISC = [
         description=f"internal message about discovery of Epstein's body",
         background_color='red'
     ),
+    DocCfg(id='EFTA01103465', author=BEN_GOERTZEL, date='2012-12-02', description='funding proposal for AI labs in Africa etc.'),
     DocCfg(id='EFTA01063691', description='inventory of address books and Skype logs seized from Epstein computers'),
     DocCfg(id='EFTA00005386', description='heavily redacted photo album, lot of photos of girls'),
     DocCfg(id='EFTA00728783', description='list of names and phone numbers'),
