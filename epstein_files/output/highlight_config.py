@@ -2548,7 +2548,6 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(
                 KARYNA_SHULIAK,
                 f"girlfriend to whom Epstein tried to leave $50 million and the island, alleged sham marriage to {JENNIFER_KALIN}",
-                r"Karyna Shuliak?",
                 link_to_bio='https://www.lemonde.fr/en/international/article/2026/02/22/karyna-shuliak-was-jeffrey-epstein-s-last-partner-and-main-heiress-she-won-t-benefit-from-his-will_6750738_4.html',
             ),
             Contact(
