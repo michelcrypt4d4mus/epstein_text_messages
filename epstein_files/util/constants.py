@@ -1414,7 +1414,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00745622', recipients=[PETER_MANDELSON], truncate_to=520),
     EmailCfg(
         id='EFTA00892654',
-        description='- "moneylaund" is a term some jounalists use to describe offshore corrupt finance',
+        description='("moneyland" is a term some jounalists use to describe offshore corrupt finance)',
         highlight_quote='i need your head in moneyland',
         recipients=[PETER_MANDELSON],
         recipient_uncertain=True,
