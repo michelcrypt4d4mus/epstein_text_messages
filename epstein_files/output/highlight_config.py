@@ -256,10 +256,12 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 match_partial=None,
             ),
             Contact('Errol Morris', 'documentary film maker, films about Robert McNamara, Donald Rumsfeld, and Bannon', match_partial=None),
-            Contact(HENRY_JARECKI, 'psychiatrist and philanthropist, owned neighboring island', match_partial=None),
             Contact(ETIENNE_BINANT, f"art advisor {QUESTION_MARKS}"),
+            Contact('Frederic Fekkai', f"hairdresser Epstein liked his girls to use"),
+            Contact(HENRY_JARECKI, 'psychiatrist and philanthropist, owned neighboring island', match_partial=None),
             Contact('Larry Gagosian', 'famous art dealer', link_to_bio='https://en.wikipedia.org/wiki/Larry_Gagosian'),
             Contact('Marla Prather', f'art curator at MoMA, wife of {MORTIMER_ZUCKERMAN}'),
+            Contact('Michael Ovitz', 'former president of Disney'),
             Contact('Nick Jarecki', "American filmmaker"),
             Contact('Richard Merkin', "painter, illustrator and arts educator"),
             Contact(STEVEN_PFEIFFER, "Associate Director at Independent Filmmaker Project (IFP)"),
@@ -854,7 +856,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         label='Democrat',
         style='sky_blue1',
         contacts=[
-            Contact(PAUL_PROSPERI, "friend of Bill Clinton"),
+            Contact('Andrew Cuomo', 'governor of New York'),
             Contact(
                 BILL_RICHARDSON,
                 'former governor of New Mexico',
@@ -868,6 +870,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 match_partial=None,
             ),
             Contact('Janis Hartley', f'assistant to Governor Bill Richardson {QUESTION_MARKS}', match_partial=None),
+            Contact(PAUL_PROSPERI, "friend of Bill Clinton"),
         ],
         patterns=[
             r"(Al )?Franken",
@@ -1532,6 +1535,12 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 match_partial=None,
             ),
             Contact(
+                name=ANN_MARIE_VILLAFANA,
+                info="Southern District of Florida (SDFL) U.S. Attorney",
+                emailer_pattern=r"Villafana, Ann Marie|(A(\.|nn) Marie )?Villafa(c|n|ri)a",
+            ),
+            Contact(AUDREY_STRAUSS, "USA Attorney", r"Audrey Strauss|Strauss, Audrey", match_partial=None),
+            Contact(
                 'Barry Krischer',
                 "prosecutor in charge of Epstein's sweetheart deal in 2006",
                 r"(Barry (E. )?)?Krischer",
@@ -1542,13 +1551,8 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 f"head of NY Dept of Financial Services (NYDFS), 2nd most powerful financial regulator in the US",
                 link_to_bio='https://en.wikipedia.org/wiki/Benjamin_Lawsky',
             ),
-            Contact(
-                name=ANN_MARIE_VILLAFANA,
-                info="Southern District of Florida (SDFL) U.S. Attorney",
-                emailer_pattern=r"Villafana, Ann Marie|(A(\.|nn) Marie )?Villafa(c|n|ri)a",
-            ),
-            Contact(AUDREY_STRAUSS, "USA Attorney", r"Audrey Strauss|Strauss, Audrey", match_partial=None),
             Contact(CHRISTOPHER_DILORIO, "self described whistleblower", r"Chris(topher )? Di[lI]o[nr](io)?"),
+            Contact('Cyrus Vance', 'Manhattan District Attorney 2010-2021'),
             Contact(
                 name=DANNY_FROST,
                 info="Director of Communications at Manhattan District Attorney",
@@ -1814,6 +1818,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 link_to_bio='https://conchitasarnoff.com/',
                 match_partial='both',
             ),
+            Contact('Chris Cuomo', 'newscaster, brother of NY governor Andrew Cuomo', r"Chris(topher)? Cuomo", match_partial=None),
             Contact(
                 'Dan Dubno',
                 'producer and technologist for CBS News in New York',
