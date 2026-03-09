@@ -423,6 +423,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 link_to_bio='https://www.theguardian.com/business/2020/may/26/stanley-ho-the-billionaire-macao-casino-tycoon-dies-aged-98',
                 match_partial=None
             ),
+            Contact('Wang Qishan', 'former vice president of China, head of China Construction Bank'),
         ],
         patterns=[
             r"Ali.?baba",
