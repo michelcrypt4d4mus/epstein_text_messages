@@ -272,6 +272,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         ],
         patterns=[
             r"(Art )?Spiegelman",
+            r"artis(an|t)",
             r"Artspace",
             r"Ayn Rand",
             r"bono mick",
@@ -289,6 +290,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Madonna",
             r"Mariah Carey",
             r"Mark Burnett",
+            r"musician",
             r"New Apostolic Church",
             r"New York Film Festival",
             r"pseudonym",
