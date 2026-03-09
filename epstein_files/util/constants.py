@@ -4043,6 +4043,7 @@ NOT_CHRONOLOGICAL_VIEW_IDS = [
     'EFTA00878255',
     'EFTA00766770',
     'EFTA00384774',
+    'EFTA02144766',  # Zorro Ranch
     'EFTA02308934',  # Yoed Nir
     'EFTA02009735',  # Boris email about Regina Dugan
     'EFTA00719151',  # Boris Regina TED
