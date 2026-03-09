@@ -769,6 +769,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 r"Noble (Bank|Markets)",
                 link_to_bio='https://news.bitcoinprotocol.org/how-noble-markets-connected-tether-epstein-and-their-shadow-banking-network/',
             ),
+            organization('OneCoin', 'massive $10 billion crypto + multi-level marketing fraud created by Ruja Ignatova'),
             organization('Pantera Capital', "silicon valley crypto fund of Dan Morehead"),
             organization('PayPay', 'bitcoin debit card', r"PayPay( Card)?"),
             organization('Polymarket', 'blockchain based gambling site ("prediction market")'),
@@ -2558,6 +2559,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 r"Kira (D(ikhtyar)?|Ki(ra|m)|Prokhorova?)",
                 link_to_bio='https://x.com/FlippersUpNow/status/2020490996287443071',
             ),
+            Contact('Konstantin Ignatov', 'OneCoin fraud, brother of billionaire crypto fugitive Ruja Ignatova'),
             Contact('Krystyna Gwiazda', 'Russian girl'),
             Contact(
                 MARIA_PRUSAKOVA,
