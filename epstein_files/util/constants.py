@@ -945,6 +945,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA01777318', author=BEN_GOERTZEL),
     EmailCfg(id='EFTA01946710', author=BEN_GOERTZEL),
     EmailCfg(id='EFTA02679857', author=BEN_GOERTZEL),
+    EmailCfg(id='EFTA00771142', author=BEN_GOERTZEL),
     EmailCfg(id='EFTA00773916', author=BEN_GOERTZEL),
     EmailCfg(id='EFTA00039357', author=BUREAU_OF_PRISONS, recipients=['DOJ Inspector General']),
     EmailCfg(id='EFTA01851487', author=CHRISTINA_GALBRAITH, author_reason='topic, cell: in redacted sig'),
@@ -3485,8 +3486,14 @@ OTHER_FILES_MONEY = [
     DocCfg(
         id='EFTA01681865',
         author=DEUTSCHE_BANK,
-        description=f"explanations of all of Epstein's large payments prepared for DOJ",
+        description="explanations of all of Epstein's large payments prepared for DOJ",
         is_interesting=True,
+    ),
+    DocCfg(
+        id='EFTA01361270',
+        author=DEUTSCHE_BANK,
+        date='2014-01-02',
+        description=f"$60,000 transfer to {BEN_GOERTZEL}'s Novamente",
     ),
     DocCfg(
         id='EFTA01111057',
