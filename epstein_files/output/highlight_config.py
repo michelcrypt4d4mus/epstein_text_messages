@@ -97,7 +97,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact('Neri Oxman', f"MIT, wife of Bill Ackman", match_partial='both'),
             Contact('Nicholas Christakis', f"Yale professor of Social and Natural Science"),
             Contact(NOAM_CHOMSKY, "professor of linguistics at MIT", match_partial='both'),
-            Contact('Norman Finkelstein', "scholar, well known critic of Israel"),
+            Contact('Norman Finkelstein', "scholar, well known critic of Israel", match_partial=None),
             Contact(PETER_ATTIA, "longevity medicine"),
             Contact(ROBERT_TRIVERS, "evolutionary biology", r"tri[vy]ersr@gmail|Robert Trivers?"),
             Contact(ROGER_SCHANK, "AI pioneer, Teachers College, Columbia University, deceased"),
@@ -1879,6 +1879,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             organization('Gawker', f'independent news site killed by a Hulk Hogan lawsuit funded by {PETER_THIEL}'),
             organization('Newsmax', "right wing American news outlet", r"Newsmax(\.com)?", is_emailer=True),
             organization('Techonomy', "tech news outlet publishing pieces about Epstein's philanthropy"),
+            organization('US News & World Report', emailer_pattern=r"US News (and|&) World Report"),
         ],
         patterns=[
             r"ABC( News)?",
