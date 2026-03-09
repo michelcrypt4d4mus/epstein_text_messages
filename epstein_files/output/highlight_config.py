@@ -856,6 +856,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         label='Democrat',
         style='sky_blue1',
         contacts=[
+            Contact('Alex Mayorkas', 'future DHS secretary', r"Al(i|ex) Mayorkas"),
             Contact('Andrew Cuomo', 'governor of New York'),
             Contact(
                 BILL_RICHARDSON,
@@ -863,6 +864,9 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 r"(Governor )?(Bill )?Richardson",
                 link_to_bio='https://en.wikipedia.org/wiki/Bill_Richardson',
             ),
+            Contact('Ed Mezvinsky', 'former congressman, criminal Ponzi schemer', r"(Ed(ward)? )?Mezvinsky",),
+            Contact('Eliot Spitzer', 'former prosecutor / NY governor who went after big banks, prostitution scandal', r"(Eliott? )?Spitzer(, Eliot)?"),
+            Contact('George Mitchell', 'former US senator from Maine', match_partial=None),
             Contact(
                 'Greg Craig',
                 'former Obama White House counsel, worked w/Paul Manafort in Ukraine, acquitted of charges',
@@ -875,7 +879,6 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         patterns=[
             r"(Al )?Franken",
             r"Al Gore",
-            r"Al(i|ex) Mayorkas",
             r"((Barac?k|President) )?Obama",
             r"((Bill|Hillart?y) )?Clinton",
             r"((Chuck|Charles) )?S(ch|hc)umer",
@@ -884,11 +887,8 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Dem(ocrat(ic)?)?",
             r"(Diana )?DeGette",
             r"DNC",
-            r"(Ed(ward)? )?Mezvinsky",
             r"Elena Kagan",
-            r"(Eliott? )?Spitzer(, Eliot)?",
             r"Eric Holder",
-            r"George Mitchell",
             r"(George )?Soros",
             r"Hakeem Jeffries",
             r"Hill?ary",
