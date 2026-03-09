@@ -97,7 +97,11 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 match_partial=None
             ),
             Contact('Valeria Chomsky', f"wife of {NOAM_CHOMSKY}", match_partial='both'),
-            Contact('Victoria Stodden', 'professor of statistics at University of Southern California'),
+            Contact(
+                'Victoria Stodden',
+                'professor of statistics at University of Southern California',
+                link_to_bio='https://www.h-its.org/people/prof-dr-victoria-stodden/',
+            ),
             Contact(YUKO_BARNABY, f"{MIT_MEDIA_LAB} Assistant to the Director", r"Y[ou]ko Ba(m|rn)(aby)?(?! Marsh)", match_partial=None),
             Contact(WHITFIELD_DIFFIE, f"MIT cryptographer and mathematician", r"whitfield.{,3}diffie?", match_partial='both'),
             organization('Dalton', 'NYC private high school where Epstein got his first job by lying about his credentials'),
