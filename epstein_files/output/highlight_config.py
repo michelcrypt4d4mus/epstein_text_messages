@@ -1816,7 +1816,11 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             ),
             Contact(JAMES_HILL, "ABC News", r"hill, james e.|james.e.hill@abc.com", match_partial=None),
             Contact(JENNIFER_JACQUET, "Future Science magazine"),
-            Contact(JOHN_BROCKMAN, "literary agent and author specializing in scientific literature"),
+            Contact(
+                JOHN_BROCKMAN,
+                "literary agent and author specializing in scientific literature",
+                link_to_bio='https://lunch.publishersmarketplace.com/2026/02/reports-detail-how-literary-agent-brockman-connected-epstein-with-scholars/',
+            ),
             Contact(
                 JULIE_K_BROWN,
                 'blew the lid on the 2006 Epstein sweetheart deal',
