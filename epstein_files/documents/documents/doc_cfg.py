@@ -344,7 +344,7 @@ class DocCfg:
         # category field checks
         if is_interesting(self.category):
             return True
-        elif self.category == Category.FINANCE and self.author is not None:
+        elif self.category == Category.FINANCE and self.author is not None:  # TODO: boothbay and other pitch decks should be of interest
             return False
         elif is_uninteresting(self.category):
             return False

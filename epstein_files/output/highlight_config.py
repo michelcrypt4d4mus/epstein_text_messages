@@ -56,14 +56,23 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         label=Uninteresting.ACADEMIA,
         style='light_goldenrod2',
         contacts=[
-            Contact(BEN_GOERTZEL, 'AI researcher, Humanity+ chairman'),
+            Contact(BEN_GOERTZEL, 'AI researcher, Humanity+ chairman, iCog Labs'),
             Contact('Brian Greene', 'physicist at Columbia University', match_partial=None),
             Contact('Daniel Kahneman', "Nobel economic sciences laureate and cognitivie psychologist (?)", r"Dan(iel|ny) Kahneman"),
-            Contact(DANIEL_SCHMACHTENBERGER, "founder of Civilization Research Institute", link_to_bio='https://civilizationemerging.com/about/'),
+            Contact(
+                DANIEL_SCHMACHTENBERGER,
+                "founder of Civilization Research Institute",
+                link_to_bio='https://civilizationemerging.com/about/',
+            ),
             Contact(DAVID_HAIG, "evolutionary geneticist?", emailer_pattern=r"David Haig|Haig, David"),
             Contact('David Grosof', "MIT Sloan School of Management"),
             Contact('Ed Boyden', f"{MIT_MEDIA_LAB} neurobiology"),
-            Contact('Elkhonon Goldberg', f"Neuropsychologist, arranged Moscow University meetings", r"(Dr\.?|Elkhonon) Goldberg", match_partial='first'),
+            Contact(
+                'Elkhonon Goldberg',
+                f"Neuropsychologist, arranged Moscow University meetings",
+                r"(Dr\.?|Elkhonon) Goldberg",
+                match_partial='first',
+            ),
             Contact('Harry Fisch', "men's health expert at New York-Presbyterian / Weill Cornell (?)"),
             Contact(
                 JAMES_TAGG,
@@ -73,7 +82,12 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact('James Watson', 'one of the discoverers of DNA', match_partial=None),
             Contact(JEM_BENDELL, 'board member of Community Forge, provider of alternative currency software', match_partial='both'),
             Contact(JOSCHA_BACH, "cognitive science / AI research", match_partial='both'),
-            Contact(LAWRENCE_KRAUSS, "theoretical physicist with #MeToo problems", r"Lawrence Kraus[es]?|[jl]awkrauss|kruase"),
+            Contact(
+                LAWRENCE_KRAUSS,
+                "theoretical physicist with #MeToo problems",
+                r"Lawrence Kraus[es]?|[jl]awkrauss|kruase",
+                link_to_bio='https://www.theatlantic.com/science/archive/2018/10/lawrence-krauss-sexual-misconduct-me-too-arizona-state/573844/',
+            ),
             Contact('Lee Smolin', 'physicist'),
             Contact(LINDA_STONE, f"ex-Microsoft, {MIT_MEDIA_LAB}", match_partial=None),
             Contact(MARK_TRAMO, "professor of neurology at UCLA"),
@@ -97,16 +111,22 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 match_partial=None
             ),
             Contact('Valeria Chomsky', f"wife of {NOAM_CHOMSKY}", match_partial='both'),
-            Contact('Victoria Stodden', 'professor of statistics at University of Southern California'),
+            Contact(
+                'Victoria Stodden',
+                'professor of statistics at University of Southern California',
+                link_to_bio='https://www.h-its.org/people/prof-dr-victoria-stodden/',
+            ),
             Contact(YUKO_BARNABY, f"{MIT_MEDIA_LAB} Assistant to the Director", r"Y[ou]ko Ba(m|rn)(aby)?(?! Marsh)", match_partial=None),
             Contact(WHITFIELD_DIFFIE, f"MIT cryptographer and mathematician", r"whitfield.{,3}diffie?", match_partial='both'),
-            organization('Dalton', 'NYC private high school where Epstein got his first job by lying about his credentials'),
+            organization('Dalton', 'NYC private high school where Epstein got his first job after lying about his credentials'),
+            organization('iCog Labs', f'AI co. in Addis Ababa founded by {BEN_GOERTZEL} and Getnet Assefa Gesaw (funded by Epstein?)'),
             organization(
                 MIT_MEDIA_LAB,
                 f"once great research institute overtaken by get rich quick schemes under {JOI_ITO}",
                 r"(MIT )?Media Lab",
             ),
             organization(MOUNT_SINAI, f"hospital in NYC where {EVA_DUBIN} works", r"Mount Sinai( Hospital)"),
+            organization('OpenCog', f'AI research in Hong Kong overseen by {BEN_GOERTZEL} and funded in part by Epstein'),
         ],
         patterns=[
             r"Andy Lippman",  # Media Lab
@@ -423,6 +443,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 link_to_bio='https://www.theguardian.com/business/2020/may/26/stanley-ho-the-billionaire-macao-casino-tycoon-dies-aged-98',
                 match_partial=None
             ),
+            Contact('Wang Qishan', 'former vice president of China, head of China Construction Bank'),
         ],
         patterns=[
             r"Ali.?baba",
@@ -788,6 +809,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"ethereum",
             r"FTX",
             r"(?-i:G)alaxy",
+            r"Genghis Coin",
             r"GogoCoin",
             r"ICO",
             r"itBit",
@@ -1075,6 +1097,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         style='medium_purple3',
         contacts=[
             organization(CLIFFORD_CHANCE, f'law firm where {MARIA_PRUSAKOVA} did an internship in Paris'),
+            organization('Latham & Watkins', f'law firm where {KATHRYN_RUEMMLER} worked', r"Latham (&|and) Watkins"),
         ],
         patterns=[
             r"(Leon )?Jaworski",
@@ -1377,6 +1400,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             organization('Goldman Sachs', emailer_pattern=r"Goldman( Sachs)?", is_interesting=False),
             organization('Julius Baer', 'Swiss bank'),
             organization('Lazard', 'UK financial advisory and asset management firm'),
+            organization('Silvergate Bank', 'crypto friendly bank that failed after the FTX crisis', r"Silver Gate( Bank)?"),
         ],
         patterns=[
             r"Ace Greenberg",
@@ -1417,6 +1441,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Merrill( Lynch)?",
             r"(Michael )?Cembalest",
             r"MLPF&S",
+            r"moneyland",
             r"Morgan Stanley",
             r"OpenGate Capital(, LLC)?",
             r"(Peter L. )?Scher",
@@ -1812,7 +1837,11 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             ),
             Contact(JAMES_HILL, "ABC News", r"hill, james e.|james.e.hill@abc.com", match_partial=None),
             Contact(JENNIFER_JACQUET, "Future Science magazine"),
-            Contact(JOHN_BROCKMAN, "literary agent and author specializing in scientific literature"),
+            Contact(
+                JOHN_BROCKMAN,
+                "literary agent and author specializing in scientific literature",
+                link_to_bio='https://lunch.publishersmarketplace.com/2026/02/reports-detail-how-literary-agent-brockman-connected-epstein-with-scholars/',
+            ),
             Contact(
                 JULIE_K_BROWN,
                 'blew the lid on the 2006 Epstein sweetheart deal',
@@ -1836,10 +1865,12 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 link_to_bio='https://www.npr.org/2019/08/22/753390385/a-dead-cat-a-lawyers-call-and-a-5-figure-donation-how-media-fell-short-on-epstei',
                 match_partial=None,
             ),
+            organization('Effective Altruism', 'cult popular with tech CEOs who want an excuse for hoarding money (e.g. SBF of FTX)'),
             organization(HENRY_HOLT, f"{MICHAEL_WOLFF}'s book publisher"),
             organization('Futurism', f'odd outlet that seems hooked up with {MASHA_DROKOVA}'),
             organization('Gawker', f'independent news site killed by a Hulk Hogan lawsuit funded by {PETER_THIEL}'),
             organization('Newsmax', "right wing American news outlet", r"Newsmax(\.com)?", is_emailer=True),
+            organization('Techonomy', "tech news outlet publishing pieces about Epstein's philanthropy"),
         ],
         patterns=[
             r"ABC( News)?",
@@ -2227,7 +2258,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             organization('Elite Models', 'well known modeling agency'),
             organization('Icarine', f"agency with connections to {JEAN_LUC_BRUNEL}"),
             organization('ID Models', "Paolo Zampolli's modeling agency"),
-            organization('MC2 Model Management', f"{JEAN_LUC_BRUNEL}'s modeling agency", r"MC2( Model Management)?"),
+            organization(MC2_MODEL_MGMT, f"{JEAN_LUC_BRUNEL} and Epstein's modeling agency", r"MC2( Model Management)?"),
             organization('Next Models', f"modeling agency co-founded by {FAITH_KATES}"),
             organization('One Model Management', 'agency'),
         ],
@@ -2390,7 +2421,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             ),
             Contact('Igor Zinoviev', f"Epstein's bodyguard, MMA fighter"),
             Contact('Len Blavatnik', 'oligarch', link_to_bio='https://en.wikipedia.org/wiki/Len_Blavatnik'),
-            Contact('Mikhail Prokhorov', 'Russian-Israeli oligarch'),
+            Contact('Mikhail Prokhorov', 'Russian-Israeli oligarch', link_to_bio='https://en.wikipedia.org/wiki/Mikhail_Prokhorov'),
             Contact('Mikheil Saakashvili', 'president of Georgia', r"Mikh[ae]il Saakashvili"),
             Contact('Nicholas Kovarsky', f"friend of {SERGEY_BELYAKOV}", r"Nic(k|holas) Kovarsky"),
             Contact('Oleg Boyko', 'oligarch'),
@@ -2517,7 +2548,6 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(
                 KARYNA_SHULIAK,
                 f"girlfriend to whom Epstein tried to leave $50 million and the island, alleged sham marriage to {JENNIFER_KALIN}",
-                r"Karyna Shuliak?",
                 link_to_bio='https://www.lemonde.fr/en/international/article/2026/02/22/karyna-shuliak-was-jeffrey-epstein-s-last-partner-and-main-heiress-she-won-t-benefit-from-his-will_6750738_4.html',
             ),
             Contact(
@@ -3206,7 +3236,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"(junk )?bond",
             r"Managing Director",
             r"Mastercard",
-            r"money(land)?",
+            r"money",
             r"(naked )?shorting",
             r"NASDAQ",
             r"options trad(er|ing)",

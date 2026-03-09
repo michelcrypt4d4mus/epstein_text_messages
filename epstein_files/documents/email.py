@@ -87,6 +87,9 @@ REPLY_SPLITTERS = [f"{field}:" for field in COMMON_HEADER_FIELDS] + [
 ]
 
 OCR_REPAIRS: dict[str | re.Pattern, str] = {
+    # '­': '-',
+    # '‐': '-',
+    '-­‐': '-',  # TODO: weird hyphens in 027004 and other files that rich doesn't handle well
     re.compile('»'): '>>',
     re.compile(r'grnail\.com'): 'gmail.com',
     'Newsmax. corn': 'Newsmax.com',
@@ -756,7 +759,7 @@ class Email(Communication):
                     line += lines[i + 1]
                     i += 1
 
-                line = line.replace(' ', '')
+                line = line if '[' in line or ']' in line else line.replace(' ', '')
             elif ' http' in line and line.endswith('html'):
                 pre_link, post_link = line.split(' http', 1)
                 line = f"{pre_link} http{post_link.replace(' ', '')}"

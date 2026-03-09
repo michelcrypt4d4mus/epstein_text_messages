@@ -898,7 +898,6 @@ EMAILS_CONFIG = [
         truncate_to=700,
     ),
     EmailCfg(id='025594', truncate_to=720),
-    EmailCfg(id='025603', truncate_to=850),
     EmailCfg(id='022247', truncate_to=2000),
     EmailCfg(id='025655', truncate_to=400, comment='reply to article'),
     EmailCfg(id='029684', truncate_to=402, comment='Maldives reply'),
@@ -943,7 +942,12 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00645449', author=ANASTASIYA_SIROOCHENKO, author_reason='Jmail'),
     EmailCfg(id='EFTA00040142', author=ATT_COURT_APPEARANCE_TEAM, recipients=[USANYS]),
     EmailCfg(id='EFTA01040692', author=ALAN_DLUGASH, description='meeting about tax implications of ZCash'),
+    EmailCfg(id='EFTA01777318', author=BEN_GOERTZEL),
+    EmailCfg(id='EFTA01946710', author=BEN_GOERTZEL),
+    EmailCfg(id='EFTA02679857', author=BEN_GOERTZEL),
     EmailCfg(id='EFTA00039357', author=BUREAU_OF_PRISONS, recipients=['DOJ Inspector General']),
+    EmailCfg(id='EFTA01851487', author=CHRISTINA_GALBRAITH, author_reason='topic, cell: in redacted sig'),
+    EmailCfg(id='EFTA01851738', author=CHRISTINA_GALBRAITH, author_reason='topic, cell: in redacted sig'),
     EmailCfg(id='EFTA01947908', author=CHRISTINA_GALBRAITH, author_reason='"Christina" appears in EFTA01950559'),
     EmailCfg(id='EFTA01940349', author=CHRISTINA_GALBRAITH, author_uncertain='subject matter'),
     EmailCfg(id='EFTA01747822', author=DARREN_INDYKE, author_reason='reply'),
@@ -1224,7 +1228,13 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA01931339', author=RENATA_BOLOTOVA, author_uncertain=SNEAKY_DOG),
     EmailCfg(id='EFTA00659818', author=RENATA_BOLOTOVA, author_uncertain=SNEAKY_DOG),
     EmailCfg(id='EFTA01757037', author=RENATA_BOLOTOVA, author_uncertain=SNEAKY_DOG),
-    EmailCfg(id='EFTA00697443', author=RENATA_BOLOTOVA, author_uncertain=SNEAKY_DOG),
+    EmailCfg(
+        id='EFTA00697443',
+        author=RENATA_BOLOTOVA,
+        author_uncertain=SNEAKY_DOG,
+        description=f'Mongolian election outcome bodes well for {RENATA_BOLOTOVA}',
+        truncate_to=1800,
+    ),
     EmailCfg(id='EFTA01961947', author=RENATA_BOLOTOVA, author_uncertain=SNEAKY_DOG, recipients=[JEFFREY_EPSTEIN]),
     EmailCfg(id='EFTA00676720', author=RENATA_BOLOTOVA, author_uncertain=SNEAKY_DOG, duplicate_ids=['EFTA01961947']),
     EmailCfg(id='EFTA00826575', author=RENATA_BOLOTOVA, author_uncertain=SNEAKY_DOG, duplicate_ids=['EFTA02462211']),
@@ -1351,7 +1361,9 @@ EMAILS_CONFIG = [
         recipients=[ANDREW_FARKAS],
     ),
     EmailCfg(id='EFTA02068282', recipients=[ANDREW_MCCORMACK]),
+    EmailCfg(id='EFTA01913311', recipients=[CHRISTINA_GALBRAITH], duplicate_ids=['EFTA00994273']),
     EmailCfg(id='EFTA01950559', recipients=[CHRISTINA_GALBRAITH], recipient_uncertain='"Christina" in thread'),
+    EmailCfg(id='EFTA01745739', recipients=[CHRISTINA_GALBRAITH, JEFFREY_EPSTEIN], author_reason='topic, cell: in redacted sig'),
     EmailCfg(id='EFTA02518357', recipients=[CHRISTINA_GALBRAITH, RICHARD_KAHN], author_reason='"Christina" appears in email'),
     EmailCfg(id='EFTA00915426', recipients=[DONALD_NORMAN], author_reason='"This is Donald"'),
     EmailCfg(id='EFTA00916133', recipients=[DONALD_NORMAN], author_reason='signed "Donald"', duplicate_ids=['EFTA01862243']),
@@ -1415,7 +1427,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00745622', recipients=[PETER_MANDELSON], truncate_to=520),
     EmailCfg(
         id='EFTA00892654',
-        description='- "moneylaund" is a term some jounalists use to describe offshore corrupt finance',
+        description='("moneyland" is a term some jounalists use to describe offshore corrupt finance)',
         highlight_quote='i need your head in moneyland',
         recipients=[PETER_MANDELSON],
         recipient_uncertain=True,
@@ -1910,6 +1922,24 @@ OTHER_FILES_ARTICLE = [
     ),
     DocCfg(id='025094', description=f'{TRANSLATION} Spanish article about Cuba', date='2015-11-08'),
     DocCfg(id='031794', description=f"very short French magazine clipping"),
+
+    # DOJ files
+    DocCfg(
+        id='EFTA02711825',
+        author='Techonomy',
+        author_uncertain='either this or EFTA01139627 are referenced in email EFTA01745739',
+        description='article titled "Artificial Intelligence Ignites in Ethiopia"',
+        is_interesting=True,
+    ),
+    DocCfg(
+        id='EFTA01139627',
+        author='Techonomy',
+        author_uncertain='either this or EFTA02711825 are referenced in email EFTA01745739',
+        date='2014-08-15',
+        date_uncertain=f'using date of {BEN_GOERTZEL} email',
+        description='article about iCog Labs titled "A Harvard Financier, Jeffrey Epstein, Advances Artificial Intelligence in Ethiopia"',
+        is_interesting=True,
+    ),
 ]
 
 
@@ -2328,6 +2358,7 @@ OTHER_FILES_CRYPTO = [
     DocCfg(id='024256', author=JOI_ITO, description=f"Internet & Society: The Technologies and Politics of Control"),
     EmailCfg(id='028847', description=f"the announcement of a hunt for Putin's money seems to greatly concern Epstein and {JOI_ITO}"),
     EmailCfg(id='026360', description=f"{JOI_ITO} writes to Epstein to thank him for providing funding for the bitcoin core development team"),
+    EmailCfg(id='025603', description=f"Epstein funnels money from {ANDREW_FARKAS} to {MIT_MEDIA_LAB} / {JOI_ITO}", truncate_to=850),
     DocCfg(id='EFTA00805860', description=f"{JOI_ITO}'s Neoteny 3 fund investor update / portfolio"),
     DocCfg(id='EFTA01118268', description=f"{JOI_ITO}'s Neoteny 3 fund investor update", date='2015-06-30'),
     DocCfg(id='EFTA01116280', description=f"{KYARA_FUND} I LLC (Physical Graph Corporation) operating agreement with edits"),
@@ -2608,6 +2639,10 @@ OTHER_FILES_FINANCE = [
     DocCfg(id='EFTA01078403', author=ATORUS, description='investment adviser uniform application', date='2014-05-14'),
     DocCfg(id='EFTA02690885', author=ATORUS, description='pitch deck'),
     DocCfg(id='EFTA00593276', author=EDMOND_DE_ROTHSCHILD, description='org chart', is_interesting=True),
+    # Prop trading / HFT
+    DocCfg(id='EFTA00611806', author='Adam Campbell', description='CEA, LLC High Liquidity Trading Program presentation'),
+    DocCfg(id='EFTA01088824', author='Boothbay', description='Absolute Return Strategies Fund pitch deck'),
+    DocCfg(id='EFTA00556664', author='Qarmin', description='high frequency trading pitch deck'),
 ]
 
 
@@ -2647,7 +2682,9 @@ OTHER_FILES_GIRLS = [
         author=MARIA_PRUSAKOVA,
         author_uncertain=True,
         comment='WhatsApp',
+        # TODO: highlight_quote
         description=f'says being Epstein\'s lawyer would be "way better than supplying ladies", also discusses Medici Bank',
+        show_full_panel=True,
     ),
     CommunicationCfg(
         id='EFTA01616933',
@@ -2913,7 +2950,6 @@ OTHER_FILES_GIRLS = [
     # Descriptions
     EmailCfg(id='EFTA02559808', description=f"{EVA_DUBIN} delivering amphetamines (adderall) to Epstein", is_interesting=True, truncate_to=200),
     EmailCfg(id='EFTA01840103', description="Epstein apparently suggesting amphetamines (adderall)", is_interesting=True),
-    EmailCfg(id='EFTA00631762', description="visa problems for Epstein's South African friend"),
     EmailCfg(id='EFTA01987855', description=f'Epstein, Brunel, and {SULTAN_BIN_SULAYEM} very interested in a Liberian sex scandal'),
     EmailCfg(id='EFTA01817903', description=f'Epstein, Brunel, and {SULTAN_BIN_SULAYEM} sharing news of a Liberian sex scandal', is_interesting=True),
     EmailCfg(id='EFTA01818540', description=f'Epstein forwarding news of the Liberian sex scandal to {JES_STALEY}'),
@@ -2923,11 +2959,11 @@ OTHER_FILES_GIRLS = [
     EmailCfg(id='EFTA01856467', description=f"Epstein looking for {JOSHUA_FINK} (again)", truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA01854125', description=f'Epstein says to {HENRY_JARECKI} "you torture, and mistreat each" girl'),
     EmailCfg(id='EFTA01953412', description=f'{EVA_DUBIN} suggests Epstein endow "The Epstein Floor For Women" at Mt. Sinai'),
-    EmailCfg(id='EFTA00658028', description=f"{FAITH_KATES} trying to get a contract for Regina?"),
+    EmailCfg(id='EFTA00658028', description=f'{FAITH_KATES} trying to get a modeling contract for "Regina"?'),
     EmailCfg(id='EFTA00855566', description=f"introducing {SANITA}", truncate_to=NO_TRUNCATE),
+    EmailCfg(id='EFTA01145923', description=f"{JEAN_LUC_BRUNEL} modeling contract for {MC2_MODEL_MGMT}"),
     EmailCfg(id='EFTA01660651', description='list of Trump accusers', is_interesting=True),
     EmailCfg(id='EFTA02609062', description=f"{MASHA_DROKOVA} is assembling a team", is_interesting=True),
-    EmailCfg(id='EFTA01145923', description=f"{JEAN_LUC_BRUNEL} modeling contract for {MC2_MODEL_MGMT}"),
     EmailCfg(id='EFTA02557291', description='possibly recruiting girls'),
     EmailCfg(
         id='EFTA01811230',
@@ -2935,8 +2971,9 @@ OTHER_FILES_GIRLS = [
         duplicate_ids=['EFTA00732294'],
     ),
     EmailCfg(id='EFTA00901905', description="smoking in the house oh no!"),
-    EmailCfg(id='EFTA01798715', description=f"taking an interest in {JOSHUA_FINK}'s investments in Eritrea in between hair gigs"),
     EmailCfg(id='EFTA00914505', description=f'{SVETLANA_POZHIDAEVA} and {JOSHUA_FINK}...', duplicate_ids=['EFTA01999588']),
+    EmailCfg(id='EFTA01798715', description=f"taking an interest in {JOSHUA_FINK}'s investments in Eritrea in between hair gigs"),
+    EmailCfg(id='EFTA00631762', description="visa problems for Epstein's South African friend"),
     EmailCfg(
         id='EFTA02434682',
         description=f"Epstein and {JEAN_LUC_BRUNEL} courting a finance bro with women",
@@ -3327,6 +3364,7 @@ OTHER_FILES_MISC = [
         description=f"internal message about discovery of Epstein's body",
         background_color='red'
     ),
+    DocCfg(id='EFTA01103465', author=BEN_GOERTZEL, date='2013-12-02', description='funding proposal for AI labs in Africa etc.'),
     DocCfg(id='EFTA01063691', description='inventory of address books and Skype logs seized from Epstein computers'),
     DocCfg(id='EFTA00005386', description='heavily redacted photo album, lot of photos of girls'),
     DocCfg(id='EFTA00728783', description='list of names and phone numbers'),
@@ -3334,6 +3372,7 @@ OTHER_FILES_MISC = [
     DocCfg(id='EFTA00005783', description='heavily redacted handwritten note, 30+ completely redacted pages', date='2019-08-29'),
     DocCfg(id='EFTA00024275', description='large Wexner funded payments to OB-GYN'),
     DocCfg(id='EFTA00029538', description=f"{GHISLAINE_MAXWELL} provided school girl uniforms", show_full_panel=True),
+    DocCfg(id='EFTA00266322', description=f"documents about pitches for non-profits in Australia, including to Effective Altruism"),
     # Urramoor
     DocCfg(
         id='EFTA01107738',
@@ -3588,9 +3627,9 @@ OTHER_FILES_RESUMÉ = [
 
 
 OTHER_FILES_SKYPE_LOG = [
-    CommunicationCfg(id='032206', recipients=[LAWRENCE_KRAUSS]),
-    CommunicationCfg(id='032208', recipients=[LAWRENCE_KRAUSS]),
-    CommunicationCfg(id='032209', recipients=[LAWRENCE_KRAUSS]),
+    CommunicationCfg(id='032206', recipients=[LAWRENCE_KRAUSS], is_interesting=False),
+    CommunicationCfg(id='032208', recipients=[LAWRENCE_KRAUSS], is_interesting=False),
+    CommunicationCfg(id='032209', recipients=[LAWRENCE_KRAUSS], is_interesting=False),
     CommunicationCfg(id='032210', recipients=['linkspirit'], is_interesting=True),
     CommunicationCfg(id='018224', recipients=['linkspirit', LAWRENCE_KRAUSS], is_interesting=True),  # we don't know who linkspirit is yet
     CommunicationCfg(id='EFTA01617727'),
@@ -3761,6 +3800,8 @@ UNINTERESTING_EMAIL_IDS = [
     '030983',
     '030958',
     '026477',
+    # Ben Goertzel
+    'EFTA01745739',
     # Brock
     'EFTA02174702',
     'EFTA00371547',
