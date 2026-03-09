@@ -2559,7 +2559,11 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 r"Kira (D(ikhtyar)?|Ki(ra|m)|Prokhorova?)",
                 link_to_bio='https://x.com/FlippersUpNow/status/2020490996287443071',
             ),
-            Contact('Konstantin Ignatov', 'OneCoin fraud, brother of billionaire crypto fugitive Ruja Ignatova'),
+            Contact(
+                'Konstantin Ignatov',
+                'OneCoin fraud, brother of billionaire crypto fugitive Ruja Ignatova',
+                link_to_bio='https://en.wikipedia.org/wiki/Ruja_Ignatova',
+            ),
             Contact('Krystyna Gwiazda', 'Russian girl'),
             Contact(
                 MARIA_PRUSAKOVA,
