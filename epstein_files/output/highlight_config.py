@@ -59,11 +59,20 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(BEN_GOERTZEL, 'AI researcher, Humanity+ chairman'),
             Contact('Brian Greene', 'physicist at Columbia University', match_partial=None),
             Contact('Daniel Kahneman', "Nobel economic sciences laureate and cognitivie psychologist (?)", r"Dan(iel|ny) Kahneman"),
-            Contact(DANIEL_SCHMACHTENBERGER, "founder of Civilization Research Institute", link_to_bio='https://civilizationemerging.com/about/'),
+            Contact(
+                DANIEL_SCHMACHTENBERGER,
+                "founder of Civilization Research Institute",
+                link_to_bio='https://civilizationemerging.com/about/',
+            ),
             Contact(DAVID_HAIG, "evolutionary geneticist?", emailer_pattern=r"David Haig|Haig, David"),
             Contact('David Grosof', "MIT Sloan School of Management"),
             Contact('Ed Boyden', f"{MIT_MEDIA_LAB} neurobiology"),
-            Contact('Elkhonon Goldberg', f"Neuropsychologist, arranged Moscow University meetings", r"(Dr\.?|Elkhonon) Goldberg", match_partial='first'),
+            Contact(
+                'Elkhonon Goldberg',
+                f"Neuropsychologist, arranged Moscow University meetings",
+                r"(Dr\.?|Elkhonon) Goldberg",
+                match_partial='first',
+            ),
             Contact('Harry Fisch', "men's health expert at New York-Presbyterian / Weill Cornell (?)"),
             Contact(
                 JAMES_TAGG,
