@@ -3361,7 +3361,7 @@ OTHER_FILES_MISC = [
         description=f"internal message about discovery of Epstein's body",
         background_color='red'
     ),
-    DocCfg(id='EFTA01103465', author=BEN_GOERTZEL, date='2012-12-02', description='funding proposal for AI labs in Africa etc.'),
+    DocCfg(id='EFTA01103465', author=BEN_GOERTZEL, date='2013-12-02', description='funding proposal for AI labs in Africa etc.'),
     DocCfg(id='EFTA01063691', description='inventory of address books and Skype logs seized from Epstein computers'),
     DocCfg(id='EFTA00005386', description='heavily redacted photo album, lot of photos of girls'),
     DocCfg(id='EFTA00728783', description='list of names and phone numbers'),
@@ -3797,6 +3797,8 @@ UNINTERESTING_EMAIL_IDS = [
     '030983',
     '030958',
     '026477',
+    # Ben Goertzel
+    'EFTA01745739',
     # Brock
     'EFTA02174702',
     'EFTA00371547',
