@@ -2917,7 +2917,6 @@ OTHER_FILES_GIRLS = [
     # Descriptions
     EmailCfg(id='EFTA02559808', description=f"{EVA_DUBIN} delivering amphetamines (adderall) to Epstein", is_interesting=True, truncate_to=200),
     EmailCfg(id='EFTA01840103', description="Epstein apparently suggesting amphetamines (adderall)", is_interesting=True),
-    EmailCfg(id='EFTA00631762', description="visa problems for Epstein's South African friend"),
     EmailCfg(id='EFTA01987855', description=f'Epstein, Brunel, and {SULTAN_BIN_SULAYEM} very interested in a Liberian sex scandal'),
     EmailCfg(id='EFTA01817903', description=f'Epstein, Brunel, and {SULTAN_BIN_SULAYEM} sharing news of a Liberian sex scandal', is_interesting=True),
     EmailCfg(id='EFTA01818540', description=f'Epstein forwarding news of the Liberian sex scandal to {JES_STALEY}'),
@@ -2927,11 +2926,11 @@ OTHER_FILES_GIRLS = [
     EmailCfg(id='EFTA01856467', description=f"Epstein looking for {JOSHUA_FINK} (again)", truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA01854125', description=f'Epstein says to {HENRY_JARECKI} "you torture, and mistreat each" girl'),
     EmailCfg(id='EFTA01953412', description=f'{EVA_DUBIN} suggests Epstein endow "The Epstein Floor For Women" at Mt. Sinai'),
-    EmailCfg(id='EFTA00658028', description=f"{FAITH_KATES} trying to get a contract for Regina?"),
+    EmailCfg(id='EFTA00658028', description=f'{FAITH_KATES} trying to get a modeling contract for "Regina"?'),
     EmailCfg(id='EFTA00855566', description=f"introducing {SANITA}", truncate_to=NO_TRUNCATE),
+    EmailCfg(id='EFTA01145923', description=f"{JEAN_LUC_BRUNEL} modeling contract for {MC2_MODEL_MGMT}"),
     EmailCfg(id='EFTA01660651', description='list of Trump accusers', is_interesting=True),
     EmailCfg(id='EFTA02609062', description=f"{MASHA_DROKOVA} is assembling a team", is_interesting=True),
-    EmailCfg(id='EFTA01145923', description=f"{JEAN_LUC_BRUNEL} modeling contract for {MC2_MODEL_MGMT}"),
     EmailCfg(id='EFTA02557291', description='possibly recruiting girls'),
     EmailCfg(
         id='EFTA01811230',
@@ -2939,8 +2938,9 @@ OTHER_FILES_GIRLS = [
         duplicate_ids=['EFTA00732294'],
     ),
     EmailCfg(id='EFTA00901905', description="smoking in the house oh no!"),
-    EmailCfg(id='EFTA01798715', description=f"taking an interest in {JOSHUA_FINK}'s investments in Eritrea in between hair gigs"),
     EmailCfg(id='EFTA00914505', description=f'{SVETLANA_POZHIDAEVA} and {JOSHUA_FINK}...', duplicate_ids=['EFTA01999588']),
+    EmailCfg(id='EFTA01798715', description=f"taking an interest in {JOSHUA_FINK}'s investments in Eritrea in between hair gigs"),
+    EmailCfg(id='EFTA00631762', description="visa problems for Epstein's South African friend"),
     EmailCfg(
         id='EFTA02434682',
         description=f"Epstein and {JEAN_LUC_BRUNEL} courting a finance bro with women",
