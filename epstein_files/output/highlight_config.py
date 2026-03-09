@@ -1378,6 +1378,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             organization('Goldman Sachs', emailer_pattern=r"Goldman( Sachs)?", is_interesting=False),
             organization('Julius Baer', 'Swiss bank'),
             organization('Lazard', 'UK financial advisory and asset management firm'),
+            organization('Silvergate Bank', 'crypto friendly bank that failed after the FTX crisis', r"Silver Gate( Bank)?"),
         ],
         patterns=[
             r"Ace Greenberg",
