@@ -2395,7 +2395,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             ),
             Contact('Igor Zinoviev', f"Epstein's bodyguard, MMA fighter"),
             Contact('Len Blavatnik', 'oligarch', link_to_bio='https://en.wikipedia.org/wiki/Len_Blavatnik'),
-            Contact('Mikhail Prokhorov', 'Russian-Israeli oligarch'),
+            Contact('Mikhail Prokhorov', 'Russian-Israeli oligarch', link_to_bio='https://en.wikipedia.org/wiki/Mikhail_Prokhorov'),
             Contact('Mikheil Saakashvili', 'president of Georgia', r"Mikh[ae]il Saakashvili"),
             Contact('Nicholas Kovarsky', f"friend of {SERGEY_BELYAKOV}", r"Nic(k|holas) Kovarsky"),
             Contact('Oleg Boyko', 'oligarch'),
