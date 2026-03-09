@@ -73,7 +73,12 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact('James Watson', 'one of the discoverers of DNA', match_partial=None),
             Contact(JEM_BENDELL, 'board member of Community Forge, provider of alternative currency software', match_partial='both'),
             Contact(JOSCHA_BACH, "cognitive science / AI research", match_partial='both'),
-            Contact(LAWRENCE_KRAUSS, "theoretical physicist with #MeToo problems", r"Lawrence Kraus[es]?|[jl]awkrauss|kruase"),
+            Contact(
+                LAWRENCE_KRAUSS,
+                "theoretical physicist with #MeToo problems",
+                r"Lawrence Kraus[es]?|[jl]awkrauss|kruase",
+                link_to_bio='https://www.theatlantic.com/science/archive/2018/10/lawrence-krauss-sexual-misconduct-me-too-arizona-state/573844/',
+            ),
             Contact('Lee Smolin', 'physicist'),
             Contact(LINDA_STONE, f"ex-Microsoft, {MIT_MEDIA_LAB}", match_partial=None),
             Contact(MARK_TRAMO, "professor of neurology at UCLA"),

@@ -3595,9 +3595,9 @@ OTHER_FILES_RESUMÉ = [
 
 
 OTHER_FILES_SKYPE_LOG = [
-    CommunicationCfg(id='032206', recipients=[LAWRENCE_KRAUSS]),
-    CommunicationCfg(id='032208', recipients=[LAWRENCE_KRAUSS]),
-    CommunicationCfg(id='032209', recipients=[LAWRENCE_KRAUSS]),
+    CommunicationCfg(id='032206', recipients=[LAWRENCE_KRAUSS], is_interesting=False),
+    CommunicationCfg(id='032208', recipients=[LAWRENCE_KRAUSS], is_interesting=False),
+    CommunicationCfg(id='032209', recipients=[LAWRENCE_KRAUSS], is_interesting=False),
     CommunicationCfg(id='032210', recipients=['linkspirit'], is_interesting=True),
     CommunicationCfg(id='018224', recipients=['linkspirit', LAWRENCE_KRAUSS], is_interesting=True),  # we don't know who linkspirit is yet
     CommunicationCfg(id='EFTA01617727'),
