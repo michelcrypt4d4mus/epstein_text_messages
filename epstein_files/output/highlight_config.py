@@ -807,6 +807,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"ethereum",
             r"FTX",
             r"(?-i:G)alaxy",
+            r"Genghis Coin",
             r"GogoCoin",
             r"ICO",
             r"itBit",
