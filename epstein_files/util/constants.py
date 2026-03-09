@@ -945,6 +945,9 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA01777318', author=BEN_GOERTZEL),
     EmailCfg(id='EFTA01946710', author=BEN_GOERTZEL),
     EmailCfg(id='EFTA02679857', author=BEN_GOERTZEL),
+    EmailCfg(id='EFTA00771142', author=BEN_GOERTZEL),
+    EmailCfg(id='EFTA00773916', author=BEN_GOERTZEL),
+    EmailCfg(id='EFTA02437992', author=BEN_GOERTZEL, recipients=[None, JEFFREY_EPSTEIN]),
     EmailCfg(id='EFTA00039357', author=BUREAU_OF_PRISONS, recipients=['DOJ Inspector General']),
     EmailCfg(id='EFTA01851487', author=CHRISTINA_GALBRAITH, author_reason='topic, cell: in redacted sig'),
     EmailCfg(id='EFTA01851738', author=CHRISTINA_GALBRAITH, author_reason='topic, cell: in redacted sig'),
@@ -1294,6 +1297,14 @@ EMAILS_CONFIG = [
         is_interesting=True,
         recipients=[FBI],
         truncate_to=5000,
+    ),
+    EmailCfg(
+        id='EFTA00090614',
+        author=USANYS,
+        author_uncertain=True,
+        description='alleges cover up of crimes of wealthy / powerful people by DA Cyrus Vance',
+        recipients=[FBI],
+        recipient_uncertain=True,
     ),
     EmailCfg(id='EFTA02731593', author=USANYS, recipients=['Manhattan DA']),
     EmailCfg(id='EFTA00039419', author=USANYS, recipients=['Manhattan DA']),
@@ -1767,6 +1778,20 @@ OTHER_FILES_ACADEMIA = [
         duplicate_ids=['029356'],  # 029356 is zoomed in corner
         is_interesting=False,
     ),
+    DocCfg(
+        id='EFTA01103509',
+        author=BEN_GOERTZEL,
+        date='2013-02-01',
+        description='"Creating Robots with Toddler-Level Intelligence Using the OpenCog AGI Architecture" proposal for Epstein Foundation',
+    ),
+    DocCfg(
+        id='EFTA01106148',
+        author=GINO_YU,
+        date='2011-05-01',
+        description='OpenCog Hong Kong Project Interim Report',
+    ),
+    DocCfg(id='EFTA01114164', author=BEN_GOERTZEL, description='OpenCog Road Map 2011-2023', date='2011-01-01', date_uncertain=True),
+    DocCfg(id='EFTA01114145', author=f"{BEN_GOERTZEL} and {GINO_YU}", description="OpenCog AGI Toddler Project", date='2011-06-01', date_uncertain=True),
     EmailCfg(id='EFTA00954900', description=f'Epstein donation to {MOUNT_SINAI}'),
     EmailCfg(id='EFTA00955864', description=f'Epstein donation to {MOUNT_SINAI}', is_interesting=False)
 ]
@@ -3270,6 +3295,7 @@ OTHER_FILES_LEGAL = [
     ),
     fbi_report('021569'),
     fbi_report('EFTA01688746'),
+    fbi_report('EFTA00090314', f'tips about Jared Kushner, Ivanka Trump, Chabad, {ALAN_DERSHOWITZ}, etc.', is_interesting=True),
     fbi_report(
         'EFTA00129085',
         'wiretap report linking phone number in John Gotti / Gambino / Michael Bilotti investigation to number in Epstein investigation',
@@ -3461,8 +3487,14 @@ OTHER_FILES_MONEY = [
     DocCfg(
         id='EFTA01681865',
         author=DEUTSCHE_BANK,
-        description=f"explanations of all of Epstein's large payments prepared for DOJ",
+        description="explanations of all of Epstein's large payments prepared for DOJ",
         is_interesting=True,
+    ),
+    DocCfg(
+        id='EFTA01361270',
+        author=DEUTSCHE_BANK,
+        date='2014-01-02',
+        description=f"$60,000 transfer from {SOUTHERN_TRUST_COMPANY} to {BEN_GOERTZEL}'s Novamente",
     ),
     DocCfg(
         id='EFTA01111057',
@@ -4011,6 +4043,7 @@ NOT_CHRONOLOGICAL_VIEW_IDS = [
     'EFTA00878255',
     'EFTA00766770',
     'EFTA00384774',
+    'EFTA02144766',  # Zorro Ranch
     'EFTA02308934',  # Yoed Nir
     'EFTA02009735',  # Boris email about Regina Dugan
     'EFTA00719151',  # Boris Regina TED

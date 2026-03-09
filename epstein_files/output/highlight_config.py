@@ -97,7 +97,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact('Neri Oxman', f"MIT, wife of Bill Ackman", match_partial='both'),
             Contact('Nicholas Christakis', f"Yale professor of Social and Natural Science"),
             Contact(NOAM_CHOMSKY, "professor of linguistics at MIT", match_partial='both'),
-            Contact('Norman Finkelstein', "scholar, well known critic of Israel"),
+            Contact('Norman Finkelstein', "scholar, well known critic of Israel", match_partial=None),
             Contact(PETER_ATTIA, "longevity medicine"),
             Contact(ROBERT_TRIVERS, "evolutionary biology", r"tri[vy]ersr@gmail|Robert Trivers?"),
             Contact(ROGER_SCHANK, "AI pioneer, Teachers College, Columbia University, deceased"),
@@ -371,6 +371,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             organization('501c3', 'IRS code for a non-profit entity'),
             organization(ATT_COURT_APPEARANCE_TEAM, "AT&T", is_interesting=False),
             organization('Junkermann Group', JUNKERMANN_FUND),
+            organization('Lockheed Martin', 'American military contractor'),
             organization('NJF Capital', JUNKERMANN_FUND, r"NJF( Capital)?"),
         ],
         patterns=[
@@ -972,7 +973,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         contacts=[
             Contact(
                 name=JEFFREY_EPSTEIN,
-                emailer_pattern=r"j?ee[vy]acatio[mn]?[©@baeoq]?g?(mail.com)?|Epstine|\bJEE?\b|Jefff?(rey)? (Edward )?E((sp|ps)tein?)?( VI Foundation)?|jeeproject@yahoo.com|J Jep|Jeffery Edwards?|(?<!(ark L.|rd Jay|Edward) )Epstein(,? Jeffrey( Edward)?)?|Jeffrey Epst.*comj?|littlestjeff@yahoo",
+                emailer_pattern=r"j?ee[vy]acatio[mn]?[©@baeoq]?g?(mail.com)?|Epstine|\bJEE?\b|Jefff?(rey)? (Edward )?E((sp|ps)tein?)?( VI Foundation)?|jeeproject@yahoo.com|J Jep|Jeffery Edwards?|(?<!(ark L.|rd Jay|Edward) )Epstein(,? Jeffrey( Edward)?)?|Jeffrey Epst.*comj?|littlestjeff@yahoo|zorroranch@aol",
                 match_partial=None,
             ),
             Contact(MARK_EPSTEIN, "brother of Jeffrey", r"Mark (L\.? )?(Epstein|Lloyd)", match_partial=None),
@@ -1874,11 +1875,12 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 match_partial=None,
             ),
             organization('Effective Altruism', 'cult popular with tech CEOs who want an excuse for hoarding money (e.g. SBF of FTX)'),
-            organization(HENRY_HOLT, f"{MICHAEL_WOLFF}'s book publisher"),
             organization('Futurism', f'odd outlet that seems hooked up with {MASHA_DROKOVA}'),
             organization('Gawker', f'independent news site killed by a Hulk Hogan lawsuit funded by {PETER_THIEL}'),
+            organization(HENRY_HOLT, f"{MICHAEL_WOLFF}'s book publisher"),
             organization('Newsmax', "right wing American news outlet", r"Newsmax(\.com)?", is_emailer=True),
             organization('Techonomy', "tech news outlet publishing pieces about Epstein's philanthropy"),
+            organization('US News & World Report', emailer_pattern=r"US News (and|&) World Report"),
         ],
         patterns=[
             r"ABC( News)?",
@@ -2335,6 +2337,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact('Chris Christie', 'former governor of New Jersey, Trump 1.0 transition team head', r"(Chris\s+)?Christie"),
             Contact('Darrell Issa', 'congressman described as a Russian agent by other Republicans, helped form SpaceX'),
             Contact('Don McGahn', 'White House Counsel to Trump 1.0'),
+            Contact('Elliott Broidy', 'fundraiser, impregnated / paid off / paid for an abortion for a Playboy Playmate he had affair with'),
             Contact('Juleanna Glover', "CEO of D.C. public affairs advisory firm Ridgely|Walsh"),
             Contact(RUDY_GIULIANI, 'disbarred former mayor of NYC'),
             Contact(TULSI_GABBARD, 'former Democrat, National Security Advisor under Trump 2.0'),
