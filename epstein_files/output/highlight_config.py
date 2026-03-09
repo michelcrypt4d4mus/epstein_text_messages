@@ -2336,6 +2336,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact('Chris Christie', 'former governor of New Jersey, Trump 1.0 transition team head', r"(Chris\s+)?Christie"),
             Contact('Darrell Issa', 'congressman described as a Russian agent by other Republicans, helped form SpaceX'),
             Contact('Don McGahn', 'White House Counsel to Trump 1.0'),
+            Contact('Elliott Broidy', 'fundraiser, impregnated / paid off / paid for an abortion for a Playboy Playmate he had affair with'),
             Contact('Juleanna Glover', "CEO of D.C. public affairs advisory firm Ridgely|Walsh"),
             Contact(RUDY_GIULIANI, 'disbarred former mayor of NYC'),
             Contact(TULSI_GABBARD, 'former Democrat, National Security Advisor under Trump 2.0'),
