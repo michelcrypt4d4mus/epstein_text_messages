@@ -126,7 +126,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 r"(MIT )?Media Lab",
             ),
             organization(MOUNT_SINAI, f"hospital in NYC where {EVA_DUBIN} works", r"Mount Sinai( Hospital)"),
-            organization('OpenCog', f'AI research in Hong Kong overseen by {BEN_GOERTZEL}'),
+            organization('OpenCog', f'AI research in Hong Kong overseen by {BEN_GOERTZEL} and funded in part by Epstein'),
         ],
         patterns=[
             r"Andy Lippman",  # Media Lab
