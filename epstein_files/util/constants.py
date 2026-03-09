@@ -2651,7 +2651,9 @@ OTHER_FILES_GIRLS = [
         author=MARIA_PRUSAKOVA,
         author_uncertain=True,
         comment='WhatsApp',
+        # TODO: highlight_quote
         description=f'says being Epstein\'s lawyer would be "way better than supplying ladies", also discusses Medici Bank',
+        show_full_panel=True,
     ),
     CommunicationCfg(
         id='EFTA01616933',
