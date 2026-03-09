@@ -1356,6 +1356,7 @@ EMAILS_CONFIG = [
         recipients=[ANDREW_FARKAS],
     ),
     EmailCfg(id='EFTA02068282', recipients=[ANDREW_MCCORMACK]),
+    EmailCfg(id='EFTA01913311', recipients=[CHRISTINA_GALBRAITH], duplicate_ids=['EFTA00994273']),
     EmailCfg(id='EFTA01950559', recipients=[CHRISTINA_GALBRAITH], recipient_uncertain='"Christina" in thread'),
     EmailCfg(id='EFTA02518357', recipients=[CHRISTINA_GALBRAITH, RICHARD_KAHN], author_reason='"Christina" appears in email'),
     EmailCfg(id='EFTA00915426', recipients=[DONALD_NORMAN], author_reason='"This is Donald"'),
@@ -1915,6 +1916,16 @@ OTHER_FILES_ARTICLE = [
     ),
     DocCfg(id='025094', description=f'{TRANSLATION} Spanish article about Cuba', date='2015-11-08'),
     DocCfg(id='031794', description=f"very short French magazine clipping"),
+
+    # DOJ files
+    DocCfg(id='EFTA02711825', description='article titled "Artificial Intelligence Ignites in Ethiopia"', is_interesting=True),
+    DocCfg(
+        id='EFTA01139627',
+        date='2014-08-15',
+        date_uncertain=f'using date of {BEN_GOERTZEL} email',
+        description='article about iCog Labs titled "A Harvard Financier, Jeffrey Epstein, Advances Artificial Intelligence in Ethiopia"',
+        is_interesting=True,
+    ),
 ]
 
 

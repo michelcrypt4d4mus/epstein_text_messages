@@ -56,7 +56,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         label=Uninteresting.ACADEMIA,
         style='light_goldenrod2',
         contacts=[
-            Contact(BEN_GOERTZEL, 'AI researcher, Humanity+ chairman'),
+            Contact(BEN_GOERTZEL, 'AI researcher, Humanity+ chairman, iCog Labs'),
             Contact('Brian Greene', 'physicist at Columbia University', match_partial=None),
             Contact('Daniel Kahneman', "Nobel economic sciences laureate and cognitivie psychologist (?)", r"Dan(iel|ny) Kahneman"),
             Contact(
@@ -119,6 +119,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(YUKO_BARNABY, f"{MIT_MEDIA_LAB} Assistant to the Director", r"Y[ou]ko Ba(m|rn)(aby)?(?! Marsh)", match_partial=None),
             Contact(WHITFIELD_DIFFIE, f"MIT cryptographer and mathematician", r"whitfield.{,3}diffie?", match_partial='both'),
             organization('Dalton', 'NYC private high school where Epstein got his first job after lying about his credentials'),
+            organization('iCog Labs', f'AI company in Addis Ababa founded by {BEN_GOERTZEL} and Getnet Assefa Gesaw (funded by Epstein?)'),
             organization(
                 MIT_MEDIA_LAB,
                 f"once great research institute overtaken by get rich quick schemes under {JOI_ITO}",
