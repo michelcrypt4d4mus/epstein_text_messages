@@ -371,6 +371,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             organization('501c3', 'IRS code for a non-profit entity'),
             organization(ATT_COURT_APPEARANCE_TEAM, "AT&T", is_interesting=False),
             organization('Junkermann Group', JUNKERMANN_FUND),
+            organization('Lockheed Martin', 'American military contractor'),
             organization('NJF Capital', JUNKERMANN_FUND, r"NJF( Capital)?"),
         ],
         patterns=[

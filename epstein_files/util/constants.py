@@ -945,6 +945,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA01777318', author=BEN_GOERTZEL),
     EmailCfg(id='EFTA01946710', author=BEN_GOERTZEL),
     EmailCfg(id='EFTA02679857', author=BEN_GOERTZEL),
+    EmailCfg(id='EFTA00773916', author=BEN_GOERTZEL),
     EmailCfg(id='EFTA00039357', author=BUREAU_OF_PRISONS, recipients=['DOJ Inspector General']),
     EmailCfg(id='EFTA01851487', author=CHRISTINA_GALBRAITH, author_reason='topic, cell: in redacted sig'),
     EmailCfg(id='EFTA01851738', author=CHRISTINA_GALBRAITH, author_reason='topic, cell: in redacted sig'),
@@ -1775,6 +1776,20 @@ OTHER_FILES_ACADEMIA = [
         duplicate_ids=['029356'],  # 029356 is zoomed in corner
         is_interesting=False,
     ),
+    DocCfg(
+        id='EFTA01103509',
+        author=BEN_GOERTZEL,
+        date='2013-02-01',
+        description='"Creating Robots with Toddler-Level Intelligence Using the OpenCog AGI Architecture" proposal for Epstein Foundation',
+    ),
+    DocCfg(
+        id='EFTA01106148',
+        author=GINO_YU,
+        date='2011-05-01',
+        description='OpenCog Hong Kong Project Interim Report',
+    ),
+    DocCfg(id='EFTA01114164', author=BEN_GOERTZEL, description='OpenCog Road Map 2011-2023', date='2011-01-01', date_uncertain=True),
+    DocCfg(id='EFTA01114145', author=f"{BEN_GOERTZEL} and {GINO_YU}", description="OpenCog AGI Toddler Project", date='2011-06-01', date_uncertain=True),
     EmailCfg(id='EFTA00954900', description=f'Epstein donation to {MOUNT_SINAI}'),
     EmailCfg(id='EFTA00955864', description=f'Epstein donation to {MOUNT_SINAI}', is_interesting=False)
 ]
