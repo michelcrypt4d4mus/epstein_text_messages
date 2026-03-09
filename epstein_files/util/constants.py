@@ -1533,6 +1533,7 @@ EMAILS_CONFIG = [
     ),
     EmailCfg(id='EFTA00923902', description=f"Andrey Vavilov offers to buy Epstein's house for $100 million", truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA01175429', description=f"Andrey Vavilov offers to buy Epstein's house for $100 million"),
+    EmailCfg(id='EFTA00756577', description=f"{BEN_GOERTZEL} congratulates Epstein on getting out of jail", is_interesting=True, truncate_to=2500),
     EmailCfg(id='EFTA00322570', description=f'booking flight for {REDACTED} from Hong Kong to NYC'),
     EmailCfg(id='EFTA00363992', description=f"car rental for {MARIANA_IDZKOWSKA}"),
     EmailCfg(id='EFTA02630431', description=f"{CARBYNE} is an Israeli company invested in by Epstein, {NICOLE_JUNKERMANN}, & {EHUD_BARAK}"),
