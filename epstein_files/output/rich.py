@@ -148,6 +148,7 @@ def build_table(
 def create_hyperlinks(line: str) -> Text:
     """Add [link] tags if appropriate."""
     if (match := LINK_HREF_LINE_REGEX.match(line)):
+        logger.debug(f"Creating hyperlink for '{line}'")
         link = match.group(2)
         txt = Text(match.group(1))
         txt.append(Text.from_markup(f"[link={link}]{link}[/link]"))
