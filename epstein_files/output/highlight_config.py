@@ -126,6 +126,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 r"(MIT )?Media Lab",
             ),
             organization(MOUNT_SINAI, f"hospital in NYC where {EVA_DUBIN} works", r"Mount Sinai( Hospital)"),
+            organization('OpenCog', 'AI '),
         ],
         patterns=[
             r"Andy Lippman",  # Media Lab
@@ -1869,6 +1870,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             organization('Futurism', f'odd outlet that seems hooked up with {MASHA_DROKOVA}'),
             organization('Gawker', f'independent news site killed by a Hulk Hogan lawsuit funded by {PETER_THIEL}'),
             organization('Newsmax', "right wing American news outlet", r"Newsmax(\.com)?", is_emailer=True),
+            organization('Techonomy', "tech news outlet publishing pieces about Epstein's philanthropy"),
         ],
         patterns=[
             r"ABC( News)?",

@@ -87,6 +87,9 @@ REPLY_SPLITTERS = [f"{field}:" for field in COMMON_HEADER_FIELDS] + [
 ]
 
 OCR_REPAIRS: dict[str | re.Pattern, str] = {
+    # '­': '-',
+    # '‐': '-',
+    '-­‐': '-',  # TODO: weird hyphens in 027004 and other files that rich doesn't handle well
     re.compile('»'): '>>',
     re.compile(r'grnail\.com'): 'gmail.com',
     'Newsmax. corn': 'Newsmax.com',
