@@ -1002,6 +1002,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             epstein_co('LSJ LLC'),
             epstein_co('LSJE, LLC'),
             epstein_co('Laurel, Inc.'),
+            epstein_co('Liquid Funding', link_to_bio='https://craigunger.substack.com/p/jeffrey-epsteins-really-big-short'),
             epstein_co('Nautilus'),
             epstein_co('Neptune, LLC'),
             epstein_co('NES LLC'),
