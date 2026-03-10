@@ -950,7 +950,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact('Lalasa', f'house cleaner {QUESTION_MARKS}'),
             Contact('Larry E. Morrison', "Epstein's pilot", match_partial=None),
             Contact(LAWRANCE_VISOSKI, "Epstein's pilot", r"La(rry|wrance) Visoski?|Lvjet"),
-            Contact(LESLEY_GROFF, "Epstein's assistant, unindicted co-conspirator", r"Lesl(ey|ie) (K(\.|atherine)? )?Gro(ff)?"),
+            Contact(LESLEY_GROFF, "unindicted co-conspirator, assistant who managed Epstein's calendar", r"Lesl(ey|ie) (K(\.|atherine)? )?Gro(ff)?"),
             Contact('Linda Pinto', "interior design at Alberto Pinto Cabinet"),
             Contact(LYN_FONTANILLA, "Filipino housekeeper", r"L.nn? Fontanilla"),
             Contact(MERWIN_DELA_CRUZ, "housekeeper", r"Merwin"),
