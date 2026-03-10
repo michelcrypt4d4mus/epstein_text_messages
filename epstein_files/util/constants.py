@@ -2880,7 +2880,7 @@ OTHER_FILES_GIRLS = [
         description=f'very strange conversation about "Peter" (maybe {PETER_MANDELSON}?) and "mj" (maybe {HASSAN_JAMEEL}?)',
         is_interesting=True,
         recipients=[UNKNOWN_GIRL],
-        truncate_to=1600,
+        truncate_to=NO_TRUNCATE,
     ),
     EmailCfg(id='EFTA00897668', recipients=[UNKNOWN_GIRL], people=[JEAN_LUC_BRUNEL, JEFFREY_EPSTEIN, UNKNOWN_GIRL]),
     EmailCfg(id='EFTA00848644', recipients=[UNKNOWN_GIRL], is_interesting=True, description='"take a picture of your pussy"'),
@@ -4041,6 +4041,7 @@ UNINTERESTING_EMAIL_IDS = [
     '030823',  # "little hodiaki"
     '027009',
     '026273',
+    'EFTA02431535',  # visible in EFTA00888467
     'EFTA00363992',  # car rental
     'EFTA02187735',  # housekeeping
 ]
