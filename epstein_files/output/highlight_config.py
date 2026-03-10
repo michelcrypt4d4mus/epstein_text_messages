@@ -2837,6 +2837,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Tim Cook",
             r"Uber",
             r"WhatsApp",
+            r"(?-i:Y)ahoo",
         ],
     ),
     # aquamarine1
