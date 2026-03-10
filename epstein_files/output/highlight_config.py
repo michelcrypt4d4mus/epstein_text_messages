@@ -1734,7 +1734,12 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 match_partial=None,
             ),
             Contact(LISA_RANDALL, "theoretical physicist", match_partial=None),
-            Contact(MARTIN_NOWAK, "professor of mathematics and biology", r"(Martin.*?)?No[vw]ak|Nowak, Martin"),
+            Contact(
+                MARTIN_NOWAK,
+                "professor of mathematics and biology",
+                r"(Martin.*?)?No[vw]ak|Nowak, Martin",
+                link_to_bio='https://www.thecrimson.com/article/2026/2/25/nowak-leave-epstein/',
+            ),
             Contact(MOSHE_HOFFMAN, "behavioral and evolutionary economics", match_partial=None),
             Contact('Steve Kosslyn', "neuroscientist, Active Learning Sciences"),
         ],
