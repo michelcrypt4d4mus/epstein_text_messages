@@ -56,7 +56,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         label=Uninteresting.ACADEMIA,
         style='light_goldenrod2',
         contacts=[
-            Contact(BEN_GOERTZEL, 'AI researcher, Humanity+ chairman, iCog Labs'),
+            Contact(BEN_GOERTZEL, 'AI researcher, Humanity+ chairman, iCog Labs, funded by Epstein'),
             Contact('Brian Greene', 'physicist at Columbia University', match_partial=None),
             Contact('Daniel Kahneman', "Nobel economic sciences laureate and cognitivie psychologist (?)", r"Dan(iel|ny) Kahneman"),
             Contact(
@@ -1511,8 +1511,9 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact('Jill Iscol', 'heiress, philanthropist, IF Hummingbird Foundation'),
             Contact(
                 JONATHAN_FARKAS,
-                f"son of {ANDREW_FARKAS}, heir to Alexander's department store fortune",
+                f"son of {ANDREW_FARKAS}, heir to department store fortune, spouse of Trump's ambassador to Malta",
                 r"Jonath[ao]n Fark(a|u)(s|il)",
+                link_to_bio='https://www.yahoo.com/news/articles/jeffrey-please-help-humiliating-emails-032309827.html',
                 match_partial=None,
             ),
             Contact(
