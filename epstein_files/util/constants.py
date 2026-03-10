@@ -1264,6 +1264,12 @@ EMAILS_CONFIG = [
         description="tip for the FBI / DOJ that Swedish billionaire Johan Eliasch may be connected to Epstein's crimes",
         duplicate_ids=['EFTA00151184']
     ),
+    EmailCfg(
+        id='EFTA00157083',
+        author=USANYS,
+        highlight_quote='STXU has recovered a password "asdfasdfasdfasdf" (no quotes) for item NYCO24364',
+        truncate_to=1400,
+    ),
     EmailCfg(id='EFTA02731755', author=USANYS),
     EmailCfg(id='EFTA00039890', author=USANYS),
     EmailCfg(id='EFTA00039662', author=USANYS),
@@ -1287,12 +1293,6 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA02731501', author=USANYS, author_uncertain=True),
     EmailCfg(id='EFTA02731633', author=USANYS, author_uncertain=True),
     EmailCfg(id='EFTA02731699', author=USANYS, author_uncertain=True, recipients=[FBI], date='2021-05-27 10:19:00'),
-    EmailCfg(
-        id='EFTA00157083',
-        author=USANYS,
-        highlight_quote='STXU has recovered a password "asdfasdfasdfasdf" (no quotes) for item NYCO24364',
-        truncate_to=1400,
-    ),
     EmailCfg(id='EFTA00040121', author=USANYS, recipients=[ATT_COURT_APPEARANCE_TEAM]),
     EmailCfg(id='EFTA02731630', author=USANYS, recipients=[FBI]),
     EmailCfg(
