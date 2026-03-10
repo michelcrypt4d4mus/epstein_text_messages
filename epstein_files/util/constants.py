@@ -1046,6 +1046,8 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00334935', author=LESLEY_GROFF, author_uncertain=True),
     EmailCfg(id='EFTA02246686', author=LESLEY_GROFF, author_uncertain=True),
     EmailCfg(id='EFTA02220616', author=LESLEY_GROFF, author_uncertain=True),
+    EmailCfg(id='EFTA02143419', author=LESLEY_GROFF, author_uncertain=True),
+    EmailCfg(id='EFTA00384399', author=LESLEY_GROFF, author_uncertain=True),
     EmailCfg(id='EFTA02254640', author=LESLEY_GROFF, author_uncertain=True),
     EmailCfg(id='EFTA00552880', author=LESLEY_GROFF, author_uncertain=True),
     EmailCfg(id='EFTA00494858', author=LESLEY_GROFF, author_uncertain=True),
@@ -1599,6 +1601,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00758140', description="possibly about Sarah Ferguson?"),
     EmailCfg(id='EFTA01013413', description='Reza Bundy is the founder of IronPlanet'),
     EmailCfg(id='EFTA02339109', description=f'someone named Sue needs help (probably a sham marriage to {BROCK_PIERCE}, see later emails)'),
+    EmailCfg(id='EFTA00532500', description=f"visa applications for Russia, Belarus, and Kazakhstan", is_interesting=True, truncate_to=420),
     EmailCfg(id='EFTA02412854', description=f'who\'s "D>>>" and what does he have to be careful about?'),
     EmailCfg(id='EFTA02353279', description=f'why is a frenchman like {JEAN_LUC_BRUNEL} "normally in Israel"?'),
     EmailCfg(id='EFTA02633194', description=f'{NICOLE_JUNKERMANN} quotes an appraisal by "FSB (Russians)"', is_interesting=True),
@@ -3002,6 +3005,7 @@ OTHER_FILES_GIRLS = [
     EmailCfg(id='EFTA00668344', description=f"Epstein looking for {JOSHUA_FINK} (again)"),
     EmailCfg(id='EFTA01856467', description=f"Epstein looking for {JOSHUA_FINK} (again)", truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA01854125', description=f'Epstein says to {HENRY_JARECKI} "you torture, and mistreat each" girl'),
+    EmailCfg(id='EFTA01936438', description=f'Epstein\'s standard password might be "MVEMJSNUP"', is_interesting=True),
     EmailCfg(id='EFTA01953412', description=f'{EVA_DUBIN} suggests Epstein endow "The Epstein Floor For Women" at Mt. Sinai'),
     EmailCfg(id='EFTA00658028', description=f'{FAITH_KATES} trying to get a modeling contract for "Regina"?'),
     EmailCfg(id='EFTA00855566', description=f"introducing {SANITA}", truncate_to=NO_TRUNCATE),
@@ -3544,7 +3548,7 @@ OTHER_FILES_MONEY = [
     DocCfg(id='EFTA00000476', replace_text_with='photo of JEFFREY EPSTEIN CASH DISBURSEMENTS for the month 2006-09', date='2006-09-01'),
     # Emails
     EmailCfg(id='EFTA00037187', is_interesting=True),
-    EmailCfg(id='EFTA02189550', description=f"Ike Groff invests $250,000 in Mangrove Partners managed by Nathaniel August"),
+    EmailCfg(id='EFTA02189550', author='Ike Groff', author_uncertain=True, description=f"Ike Groff invests $250,000 in Mangrove Partners managed by Nathaniel August"),
     EmailCfg(id='EFTA00371120', description=f"Epstein appears to invest in {ATORUS}"),
     EmailCfg(id='EFTA00652799', description=f'Epstein calls Ari Glass "a bit sketchy" despite investing ~$50 million in his fund Boothbay'),
 ]
@@ -4037,6 +4041,7 @@ UNINTERESTING_EMAIL_IDS = [
     '027009',
     '026273',
     'EFTA00363992',  # car rental
+    'EFTA02187735',  # housekeeping
 ]
 
 # Not uninteresting enough to be permanently marked as such but not good enough for --output-chrono
