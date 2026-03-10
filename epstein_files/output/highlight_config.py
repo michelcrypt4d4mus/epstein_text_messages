@@ -3319,6 +3319,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             CASE_ID_REGEX.pattern,
             r"deposition",
             r"EDGAR (Filing|Search)",  # SEC database is EDGAR
+            r"(federal|state) judge",
             r"General Counsel",
             r"lawyer",
             r"Notary Public",
