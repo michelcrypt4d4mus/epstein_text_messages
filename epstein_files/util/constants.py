@@ -3448,6 +3448,7 @@ OTHER_FILES_MISC = [
         is_interesting=True,
         replace_text_with='Epstein 50th birthday photo book 12 "THAIS, MOSCOW GIRLS, AFRICA, HAWAII, [REDACTED] [REDACTED], Zorro, [REDACTED] [REDACTED] [REDACTED], CRACK WHOLE PROPOSAL, BALI/THAILAND/ASIA, RUSSIA, [REDACTED], [REDACTED], NUDES, YOGAL GIRLS',
     ),
+    DocCfg(id='EFTA01682477', replace_text_with='"Important Message" formatted notepad with notes about missed phone calls etc.'),
     DocCfg(id='EFTA01628970', replace_text_with='redacted pictures of naked women'),
     DocCfg(id='EFTA00004070', replace_text_with="photos of Epstein with handwritten caption that didn't OCR well"),
     DocCfg(id='EFTA02731260', replace_text_with='notebook full of handwritten love letters with terrible OCR text'),
