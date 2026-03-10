@@ -1294,6 +1294,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA02731643', author=USANYS, author_uncertain=True),
     EmailCfg(id='EFTA02731501', author=USANYS, author_uncertain=True),
     EmailCfg(id='EFTA02731633', author=USANYS, author_uncertain=True),
+    EmailCfg(id='EFTA01660679', author=USANYS, author_uncertain=True, recipients=[FBI], recipient_uncertain=True),
     EmailCfg(id='EFTA02731699', author=USANYS, author_uncertain=True, recipients=[FBI], date='2021-05-27 10:19:00'),
     EmailCfg(id='EFTA00040121', author=USANYS, recipients=[ATT_COURT_APPEARANCE_TEAM]),
     EmailCfg(id='EFTA02731630', author=USANYS, recipients=[FBI]),
