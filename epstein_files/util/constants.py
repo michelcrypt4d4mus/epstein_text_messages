@@ -2785,7 +2785,7 @@ OTHER_FILES_GIRLS = [
     ),
     EmailCfg(id='EFTA01990168', author=MARIA_PRUSAKOVA, author_uncertain='"experiments"', is_interesting=True),
     EmailCfg(id='EFTA00671662', author='Miranda', author_reason='quoted signature', description="yet another girl finder"),
-    EmailCfg(id='EFTA02441035', author=STEVEN_VICTOR_MD, description="complaints about free treatment for Epstein's girls"),
+    EmailCfg(id='EFTA02441035', author=STEVEN_VICTOR_MD, description="complaints about free medical treatment for Epstein's girls"),
     EmailCfg(
         id='EFTA00659941',
         author=SVETLANA_POZHIDAEVA,
@@ -4069,6 +4069,7 @@ NOT_CHRONOLOGICAL_VIEW_IDS = [
     'EFTA00878255',
     'EFTA00766770',
     'EFTA00384774',
+    'EFTA02437992',  # Ben Goertzel
     'EFTA01613143',  # Melanie Walker
     'EFTA02144766',  # Zorro Ranch
     'EFTA02308934',  # Yoed Nir
