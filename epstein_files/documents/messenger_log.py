@@ -27,6 +27,10 @@ GUESSED_MSG = 'and is probably with'
 MSG_REGEX = re.compile(r'Sender:(.*?)\nTime:(.*? (AM|PM)).*?Message:(.*?)\s*?((?=(\nSender)|\Z))', re.DOTALL)
 REDACTED_AUTHOR_REGEX = re.compile(r"^([-+•_1MENO.=F]+|[4Ide])$")
 
+END_DATES = {
+    'EFTA01613143': datetime(2017, 6, 29),
+}
+
 
 # TODO: screenshot messenger log: EFTA01612665
 @dataclass
@@ -61,7 +65,8 @@ class MessengerLog(Communication):
 
     @property
     def subheader(self) -> Text | None:
-        num_days_str = days_between_str(self.timestamp, self.messages[-1].parse_timestamp())
+        ended_at = END_DATES.get(self.file_id) or self.messages[-1].parse_timestamp()
+        num_days_str = days_between_str(self.timestamp, ended_at)
         txt = Text(f"(iMessage log covers {num_days_str} starting ", style='dim')
         txt.append(self.date_str, style=TIMESTAMP_STYLE).append(' ')
 
