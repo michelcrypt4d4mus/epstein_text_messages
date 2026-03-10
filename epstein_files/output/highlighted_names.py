@@ -189,6 +189,7 @@ class HighlightedNames(HighlightPatterns):
 class ManualHighlight(HighlightGroup):
     """For when you can't construct the regex."""
     pattern: str
+    regex_flags: re.RegexFlag = re.MULTILINE
 
     def __post_init__(self):
         super().__post_init__()
@@ -196,4 +197,4 @@ class ManualHighlight(HighlightGroup):
         if self._capture_group_marker not in self.pattern:
             raise ValueError(f"Label '{self.label}' must appear in regex pattern '{self.pattern}'")
 
-        self.regex = re.compile(self.pattern, re.MULTILINE)
+        self.regex = re.compile(self.pattern, self.regex_flags)
