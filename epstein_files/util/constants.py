@@ -3698,7 +3698,7 @@ OTHER_FILES_SKYPE_LOG = [
             'Catherine',
             DANIEL_SIAD,
             DAVID_STERN,
-            'Emad Hanna',
+            EMAD_HANNA,
             'Jade Huang',
             NADIA_MARCINKO,
             'sexysearch2010',

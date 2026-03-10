@@ -1123,7 +1123,8 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 info="Epstein estate executor",
                 emailer_pattern=r"darren$|Darren (K(\.|eith)? )?[il]n[dq]_?yke?|dkiesq",
             ),
-            Contact(RICHARD_KAHN, "Epstein estate executor", r"rich(ard)? kahn?")
+            Contact(RICHARD_KAHN, "Epstein estate executor", r"rich(ard)? kahn?"),
+            Contact(EMAD_HANNA, f"Project controller for {RICHARD_KAHN}'s HBRK Associates", match_partial=None),
         ],
         patterns=[
             r"HBRK( (Associates,? )?Inc)?",
