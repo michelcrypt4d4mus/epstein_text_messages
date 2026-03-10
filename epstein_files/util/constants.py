@@ -3295,6 +3295,7 @@ OTHER_FILES_LEGAL = [
             BILL_GATES,
             BILL_RICHARDSON,
             EDUARDO_ROBLES,
+            'Eliot Spitzer',
             GERALD_LEFCOURT,
             GLENN_DUBIN,
             JEAN_LUC_BRUNEL,

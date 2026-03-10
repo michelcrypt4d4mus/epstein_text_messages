@@ -258,7 +258,6 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact('Errol Morris', 'documentary film maker, films about Robert McNamara, Donald Rumsfeld, and Bannon', match_partial=None),
             Contact(ETIENNE_BINANT, f"art advisor {QUESTION_MARKS}"),
             Contact('Frederic Fekkai', f"hairdresser Epstein liked his girls to use"),
-            Contact(HENRY_JARECKI, 'psychiatrist and philanthropist, owned neighboring island', match_partial=None),
             Contact('Larry Gagosian', 'famous art dealer', link_to_bio='https://en.wikipedia.org/wiki/Larry_Gagosian'),
             Contact('Marla Prather', f'art curator at MoMA, wife of {MORTIMER_ZUCKERMAN}'),
             Contact('Michael Ovitz', 'former president of Disney'),
@@ -1134,13 +1133,14 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 r"darren$|Darren (K(\.|eith)? )?[il]n[dq]_?yke?|dkiesq",
                 link_to_bio='https://en.wikipedia.org/wiki/Estate_of_Jeffrey_Epstein',
             ),
+            Contact(EMAD_HANNA, f"Project controller for {RICHARD_KAHN}'s HBRK Associates", match_partial=None),
+            Contact(HENRY_JARECKI, 'psychiatrist and philanthropist, owned neighboring island', match_partial=None),
             Contact(
                 RICHARD_KAHN,
                 "Epstein's accountant and estate executor",
                 r"rich(ard)? kahn?",
                 link_to_bio='https://en.wikipedia.org/wiki/Estate_of_Jeffrey_Epstein',
             ),
-            Contact(EMAD_HANNA, f"Project controller for {RICHARD_KAHN}'s HBRK Associates", match_partial=None),
         ],
         patterns=[
             r"HBRK( (Associates,? )?Inc)?",
