@@ -1294,6 +1294,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA02731643', author=USANYS, author_uncertain=True),
     EmailCfg(id='EFTA02731501', author=USANYS, author_uncertain=True),
     EmailCfg(id='EFTA02731633', author=USANYS, author_uncertain=True),
+    EmailCfg(id='EFTA01660679', author=USANYS, author_uncertain=True, recipients=[FBI], recipient_uncertain=True),
     EmailCfg(id='EFTA02731699', author=USANYS, author_uncertain=True, recipients=[FBI], date='2021-05-27 10:19:00'),
     EmailCfg(id='EFTA00040121', author=USANYS, recipients=[ATT_COURT_APPEARANCE_TEAM]),
     EmailCfg(id='EFTA02731630', author=USANYS, recipients=[FBI]),
@@ -1450,9 +1451,8 @@ EMAILS_CONFIG = [
         highlight_quote='i need your head in moneyland',
         recipients=[PETER_MANDELSON],
         recipient_uncertain=True,
-        truncate_to=520,
+        truncate_to=1_700,
     ),
-
     EmailCfg(
         id='EFTA00926593',
         author=PHILIP_ROSEDALE,
@@ -2784,7 +2784,7 @@ OTHER_FILES_GIRLS = [
     ),
     EmailCfg(id='EFTA01990168', author=MARIA_PRUSAKOVA, author_uncertain='"experiments"', is_interesting=True),
     EmailCfg(id='EFTA00671662', author='Miranda', author_reason='quoted signature', description="yet another girl finder"),
-    EmailCfg(id='EFTA02441035', author=STEVEN_VICTOR_MD, description="complaints about free treatment for Epstein's girls"),
+    EmailCfg(id='EFTA02441035', author=STEVEN_VICTOR_MD, description="complaints about free medical treatment for Epstein's girls"),
     EmailCfg(
         id='EFTA00659941',
         author=SVETLANA_POZHIDAEVA,
@@ -2879,7 +2879,7 @@ OTHER_FILES_GIRLS = [
         description=f'very strange conversation about "Peter" (maybe {PETER_MANDELSON}?) and "mj" (maybe {HASSAN_JAMEEL}?)',
         is_interesting=True,
         recipients=[UNKNOWN_GIRL],
-        truncate_to=1600,
+        truncate_to=NO_TRUNCATE,
     ),
     EmailCfg(id='EFTA00897668', recipients=[UNKNOWN_GIRL], people=[JEAN_LUC_BRUNEL, JEFFREY_EPSTEIN, UNKNOWN_GIRL]),
     EmailCfg(id='EFTA00848644', recipients=[UNKNOWN_GIRL], is_interesting=True, description='"take a picture of your pussy"'),
@@ -2967,7 +2967,7 @@ OTHER_FILES_GIRLS = [
     ),
     EmailCfg(id='EFTA01965732', highlight_quote='facilictating his illicit trysts, with married women, to being asked to provide adderall fro bridge tournamnts'),
     EmailCfg(id='EFTA01768670', highlight_quote='find girls for the agency', description=f'but {BORIS_NIKOLIC} is a "biotech investor"...'),
-    EmailCfg(id='EFTA01905320', highlight_quote='girls and i are going to see don musk at space x tomorrow', is_interesting=True),
+    EmailCfg(id='EFTA01905320', highlight_quote='girls and i are going to see elon musk at space x tomorrow', is_interesting=True),
     EmailCfg(id='EFTA01803353', highlight_quote='having problems with regina', description='(Ramsey?)'),
     EmailCfg(id='EFTA01858707', highlight_quote='How is the marriage plan going'),
     EmailCfg(id='EFTA00950394', highlight_quote='how old will you go?'),
@@ -4040,6 +4040,7 @@ UNINTERESTING_EMAIL_IDS = [
     '030823',  # "little hodiaki"
     '027009',
     '026273',
+    'EFTA02431535',  # visible in EFTA00888467
     'EFTA00363992',  # car rental
     'EFTA02187735',  # housekeeping
 ]
@@ -4068,6 +4069,8 @@ NOT_CHRONOLOGICAL_VIEW_IDS = [
     'EFTA00878255',
     'EFTA00766770',
     'EFTA00384774',
+    'EFTA00892654',  # Mandelson
+    'EFTA02437992',  # Ben Goertzel
     'EFTA01613143',  # Melanie Walker
     'EFTA02144766',  # Zorro Ranch
     'EFTA02308934',  # Yoed Nir

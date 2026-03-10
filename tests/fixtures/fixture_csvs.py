@@ -78,4 +78,4 @@ def write_files_csv():
     if args.debug:
         console.print('\n\n' + FILE_INFO_CSV_PATH.read_text())
 
-    timer.print_at_checkpoint(f"Wrote {file_size_str(FILE_INFO_CSV_PATH)}to '{FILE_INFO_CSV_PATH}'.")
+    timer.print_at_checkpoint(f"Wrote {file_size_str(FILE_INFO_CSV_PATH)} to '{FILE_INFO_CSV_PATH}'.")

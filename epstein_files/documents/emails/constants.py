@@ -213,6 +213,7 @@ EMAIL_SIGNATURE_REGEXES = {
     'Andrew Nikou': re.compile(r'1999 Avenue of the Stars.{,105}genuinely required\.', re.DOTALL),
     ARDA_BESKARDES: re.compile(r"Attorne.-at-Law\s+.{,200}Admitted to practice.{,300}relying\s+on\s+this\s+message.?", re.DOTALL),
     ARIANE_DE_ROTHSCHILD: re.compile(r"Ensemble adoptons des gestes responsables : .{,1300}Espanol I Chinese$", re.DOTALL | re.MULTILINE),
+    # 'Asia Gateway': re.compile('Michelin House\n81 Fulham Road?\nLondon.*\nUK(\n(Tel|Fax):.*)*'),
     BARBRO_C_EHNBOM: re.compile(r"Barbro C.? Ehn.*\nChairman, Swedish-American.*\n((Office|Cell|Sweden):.*\n)*(360.*\nNew York.*)?"),
     BRAD_KARP: re.compile(r"This message is intended only for the use of the Addressee and may contain information.*\nnot the intended recipient, you are hereby notified.*\nreceived this communication in error.*"),
     # TODO: two brads

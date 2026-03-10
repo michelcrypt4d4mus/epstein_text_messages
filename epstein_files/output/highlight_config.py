@@ -1570,7 +1570,13 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 link_to_bio='https://en.wikipedia.org/wiki/Benjamin_Lawsky',
             ),
             Contact(CHRISTOPHER_DILORIO, "self described whistleblower", r"Chris(topher )? Di[lI]o[nr](io)?"),
-            Contact('Cyrus Vance', 'Manhattan District Attorney 2010-2021'),
+            Contact(
+                'Cyrus Vance Jr.',
+                'Manhattan District Attorney 2010-2021',
+                r"Cyrus Vance(,? Jr\.?)?",
+                link_to_bio='https://www.politico.com/states/new-york/city-hall/story/2020/01/23/sexual-assault-survivors-call-on-cy-vance-jr-to-resign-1253915',
+                match_partial=None,
+            ),
             Contact(
                 name=DANNY_FROST,
                 info="Director of Communications at Manhattan District Attorney",
@@ -2145,6 +2151,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             ),
             Contact('Timur Kulibayev', 'businessman from Kazakhstan'),
             organization('GCC', 'Gulf Cooperation Council', r"GCC|Gulf Cooperation Council"),
+            organization('Halkbank', 'Turkish bank charged with evading sanctions on Iran, pardoned by Trump', r"Halk Bank(asi)?"),
             organization('Rayyan Bank', 'Islamic bank based in Qatar'),
         ],
         patterns=[
@@ -2489,7 +2496,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             ),
             Contact('Viktor Yanukovych', 'pro-Putin former president of Ukraine', r"Vi[ck]tor Yanukovych"),
             Contact('Vitaly Churkin', 'Russian ambassador to the United Nations'),
-            Contact('Vladislav Doronin', f'olgarch, dated {NAOMI_CAMPBELL}'),
+            Contact('Vladislav Doronin', f'oligarch, dated {NAOMI_CAMPBELL}'),
             Contact(
                 YURI_MILNER,
                 f'Russian-Israeli investor whom Epstein says is managing "Russian gangster money"',
