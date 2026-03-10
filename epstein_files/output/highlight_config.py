@@ -3234,7 +3234,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         contacts=[
             Contact(
                 SULTAN_BIN_SULAYEM,
-                "chairman of ports in Dubai, CEO of DP World, resigned over Epstein",
+                "chairman of ports in Dubai, CEO of DP World, resigned over Epstein ties",
                 r"Sultan (Ahmed )?bin Sulaye?m?|ssulayem[©@a](aol|etisalat\.?blackberry).com",
                 link_to_bio='https://www.bbc.com/news/articles/ce82xgd2g3yo',
             )
