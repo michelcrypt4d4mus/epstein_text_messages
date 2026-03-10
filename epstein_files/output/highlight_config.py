@@ -2489,7 +2489,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             ),
             Contact('Viktor Yanukovych', 'pro-Putin former president of Ukraine', r"Vi[ck]tor Yanukovych"),
             Contact('Vitaly Churkin', 'Russian ambassador to the United Nations'),
-            Contact('Vladislav Doronin', f'olgarch, dated {NAOMI_CAMPBELL}'),
+            Contact('Vladislav Doronin', f'oligarch, dated {NAOMI_CAMPBELL}'),
             Contact(
                 YURI_MILNER,
                 f'Russian-Israeli investor whom Epstein says is managing "Russian gangster money"',
