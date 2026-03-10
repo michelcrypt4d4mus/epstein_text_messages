@@ -5,8 +5,8 @@ from itertools import groupby
 
 from epstein_files.documents.documents.categories import CONSTANT_CATEGORIES, Interesting, Neutral
 from epstein_files.documents.documents.config_builder import (FBI_REPORT, JANE_DOE_V_USA, WOLFF_EPSTEIN_ARTICLE_DRAFT,
-     binant_redacted, blaine_letter, fbi_defense_witness, fbi_report, fedex_invoice, letter, phone_bill_cfg,
-     shaher_murder_email, starr_letter, whistleblower_cfg, victim_diary, wolff_draft_cfg)
+     binant_redacted, blaine_letter, fbi_defense_witness, fbi_report, fedex_invoice, important_messages_pad, letter,
+     phone_bill_cfg, shaher_murder_email, starr_letter, whistleblower_cfg, victim_diary, wolff_draft_cfg)
 from epstein_files.documents.documents.doc_cfg import (DEFAULT_TRUNCATE_TO, GOLDMAN_INVESTMENT_MGMT,
      SHORT_TRUNCATE_TO, NO_TRUNCATE, CommunicationCfg, DocCfg, EmailCfg, TextCfg)
 from epstein_files.documents.doj_files.full_text import EFTA00009622_TEXT
@@ -3448,7 +3448,6 @@ OTHER_FILES_MISC = [
         is_interesting=True,
         replace_text_with='Epstein 50th birthday photo book 12 "THAIS, MOSCOW GIRLS, AFRICA, HAWAII, [REDACTED] [REDACTED], Zorro, [REDACTED] [REDACTED] [REDACTED], CRACK WHOLE PROPOSAL, BALI/THAILAND/ASIA, RUSSIA, [REDACTED], [REDACTED], NUDES, YOGAL GIRLS',
     ),
-    DocCfg(id='EFTA01682477', replace_text_with='"Important Message" formatted notepad with notes about missed phone calls etc.'),
     DocCfg(id='EFTA01628970', replace_text_with='redacted pictures of naked women'),
     DocCfg(id='EFTA00004070', replace_text_with="photos of Epstein with handwritten caption that didn't OCR well"),
     DocCfg(id='EFTA02731260', replace_text_with='notebook full of handwritten love letters with terrible OCR text'),
@@ -3467,6 +3466,9 @@ OTHER_FILES_MISC = [
     # FedEx
     fedex_invoice('EFTA00217072', '2005-06-20'),
     fedex_invoice('EFTA00217080', '2005-06-27'),
+    # Message pads
+    important_messages_pad('EFTA01719859', '2005-10-03'),
+    important_messages_pad('EFTA01682477', '2005-04-01'),
 ]
 
 

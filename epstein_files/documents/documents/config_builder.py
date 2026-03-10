@@ -135,6 +135,14 @@ def fbi_report(id: str, description: str = FBI_REPORT, **kwargs) -> DocCfg:
     return DocCfg(id=id, author=FBI, category=Neutral.GOVERNMENT, description=description, **kwargs)
 
 
+def important_messages_pad(id: str, date: str = '') -> DocCfg:
+    return DocCfg(
+        id=id,
+        date=date,
+        replace_text_with='"Important Message" formatted notepad with notes about missed phone calls etc.'
+    )
+
+
 def letter(id: str, author: str, recipients: list[Name], description: str, date: str = '', **kwargs) -> CommunicationCfg:
     return CommunicationCfg(
         id=id,
