@@ -1119,11 +1119,17 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         category=LAWYER,
         contacts=[
             Contact(
-                name=DARREN_INDYKE,
-                info="Epstein estate executor",
-                emailer_pattern=r"darren$|Darren (K(\.|eith)? )?[il]n[dq]_?yke?|dkiesq",
+                DARREN_INDYKE,
+                "Epstein's lawyer and estate executor",
+                r"darren$|Darren (K(\.|eith)? )?[il]n[dq]_?yke?|dkiesq",
+                link_to_bio='https://en.wikipedia.org/wiki/Estate_of_Jeffrey_Epstein',
             ),
-            Contact(RICHARD_KAHN, "Epstein estate executor", r"rich(ard)? kahn?"),
+            Contact(
+                RICHARD_KAHN,
+                "Epstein's accountant and estate executor",
+                r"rich(ard)? kahn?",
+                link_to_bio='https://en.wikipedia.org/wiki/Estate_of_Jeffrey_Epstein',
+            ),
             Contact(EMAD_HANNA, f"Project controller for {RICHARD_KAHN}'s HBRK Associates", match_partial=None),
         ],
         patterns=[
