@@ -3513,6 +3513,7 @@ OTHER_FILES_MONEY = [
         non_participants=['Marla Maples'],
     ),
     DocCfg(id='EFTA01285411', description=f"bank statement for Epstein's {SOUTHERN_TRUST_COMPANY} showing $82 million balance"),
+    DocCfg(id='EFTA01222951', description=f"credit card expenses for Carlos L Rodriguez using Plum Card", date='2019-02-12'),
     DocCfg(id='EFTA00016884', description="Epstein's last will and testament", date='2014-11-18'),
     DocCfg(
         id='EFTA00089546',
