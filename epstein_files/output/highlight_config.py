@@ -966,6 +966,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(STORY_COWLES, "Epstein's male assistant"),
             Contact('Una Pascal', f"{SOUTHERN_TRUST_COMPANY} accountant", match_partial=None),
             Contact('Valdson Vieira Cotrin', f"Paris driver, annual trip to Brasil", r"(Cotrin )?Valdson( Contrin)?", match_partial='both'),
+            Contact('William Murphy', f"sysadmin at {RICHARD_KAHN}'s HBRK, did tech stuff for Epstein and Epstein used his name on Skype", match_partial=None),
         ],
     ),
     HighlightedNames(
