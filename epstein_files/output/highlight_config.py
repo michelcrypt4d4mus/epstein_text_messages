@@ -1359,7 +1359,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 link_to_bio='https://www.propublica.org/article/the-bizarre-fall-of-the-ceo-of-coach-and-kate-spades-parent-company',
                 match_partial='both',
             ),
-            Contact('Ira Zicherman', f"{BEAR_STEARNS} exec, co-trustee with Ghislaine"),
+            Contact('Ira Zicherman', f"former {BEAR_STEARNS} exec, co-trustee of J. Epstein Foundation with Ghislaine"),
             Contact(JAMES_CAYNE, f"CEO of {BEAR_STEARNS}, executor of Epstein's will"),
             Contact('John Paulson', f"hedge fund guy, Trump donor"),
             Contact('Jonathan Rowland', f"Banque Havilland", match_partial=None),
