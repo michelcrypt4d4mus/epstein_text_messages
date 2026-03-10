@@ -2145,6 +2145,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             ),
             Contact('Timur Kulibayev', 'businessman from Kazakhstan'),
             organization('GCC', 'Gulf Cooperation Council', r"GCC|Gulf Cooperation Council"),
+            organization('Halkbank', 'Turkish bank charged with evading sanctions on Iran, pardoned by Trump', r"Halk Bank(asi)?"),
             organization('Rayyan Bank', 'Islamic bank based in Qatar'),
         ],
         patterns=[
