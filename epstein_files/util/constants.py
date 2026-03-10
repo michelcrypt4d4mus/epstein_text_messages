@@ -3118,6 +3118,7 @@ OTHER_FILES_GOVERNMENT = [
         date='2022-11-18',
         description=f"interview of {LUKE_D_THORBURN} with a lot of takes on Epstein, China, and {STEVE_BANNON}",
     ),
+    DocCfg(id='EFTA00247131', author=FBI, description='search warrant for New York house', date='2019-07-07'),
     DocCfg(id='EFTA01249591', author=FBI, description=f"allegations against {HENRY_JARECKI}"),
     DocCfg(id='EFTA00081226', author=FBI, description='interview with minor victim'),
     DocCfg(id='EFTA00038915', author=FBI, description='interview with minor victim who said Epstein knew she was 14'),
