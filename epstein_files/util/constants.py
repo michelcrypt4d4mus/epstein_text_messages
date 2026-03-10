@@ -2679,6 +2679,7 @@ OTHER_FILES_FINANCE = [
     ),
 
     # DOJ
+    DocCfg(id='EFTA00286949', author='Nathaniel August', description='Mangrove Partners valuation report', date='2016-11-03'),
     DocCfg(id='EFTA01078403', author=ATORUS, description='investment adviser uniform application', date='2014-05-14'),
     DocCfg(id='EFTA02690885', author=ATORUS, description='pitch deck'),
     DocCfg(id='EFTA00593276', author=EDMOND_DE_ROTHSCHILD, description='org chart', is_interesting=True),
@@ -3543,6 +3544,7 @@ OTHER_FILES_MONEY = [
     DocCfg(id='EFTA00000476', replace_text_with='photo of JEFFREY EPSTEIN CASH DISBURSEMENTS for the month 2006-09', date='2006-09-01'),
     # Emails
     EmailCfg(id='EFTA00037187', is_interesting=True),
+    EmailCfg(id='EFTA02189550', description=f"Ike Groff invests $250,000 in Mangrove Partners managed by Nathaniel August"),
     EmailCfg(id='EFTA00371120', description=f"Epstein appears to invest in {ATORUS}"),
     EmailCfg(id='EFTA00652799', description=f'Epstein calls Ari Glass "a bit sketchy" despite investing ~$50 million in his fund Boothbay'),
 ]
@@ -3713,6 +3715,7 @@ OTHER_FILES_SKYPE_LOG = [
             'sophiembh'
         ],
     ),
+    CommunicationCfg(id='EFTA01613143', author=MELANIE_WALKER, date='2017-06-24'),
     CommunicationCfg(id='EFTA01217787', recipients=[TYLER_SHEARS, 'Hanna Traff at Spotify'], is_interesting=True),
     CommunicationCfg(id='EFTA01217703', recipients=['actress Athena Zelcovich', JOSCHA_BACH, LAWRENCE_KRAUSS]),
     CommunicationCfg(id='EFTA01217736', recipients=['actress Athena Zelcovich', TYLER_SHEARS]),
@@ -4047,6 +4050,7 @@ NOT_CHRONOLOGICAL_VIEW_IDS = [
     'EFTA00582504',
     '024432',
     '019352',
+    'EFTA02053321',  # Ike Groff
     'EFTA00915298',
     'EFTA02423635',
     'EFTA00007781',
@@ -4059,6 +4063,7 @@ NOT_CHRONOLOGICAL_VIEW_IDS = [
     'EFTA00878255',
     'EFTA00766770',
     'EFTA00384774',
+    'EFTA01613143',  # Melanie Walker
     'EFTA02144766',  # Zorro Ranch
     'EFTA02308934',  # Yoed Nir
     'EFTA02009735',  # Boris email about Regina Dugan

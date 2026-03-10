@@ -934,7 +934,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(ERIC_ROTH, "jet decorator at International Jet", match_partial=None),
             Contact(GWENDOLYN_BECK, "Epstein fund manager in the 90s, ran for Congress", match_partial='first'),
             Contact('Harry Beller', "one of Epstein's accountants"),
-            Contact('Ike Groff', f"brother of {LESLEY_GROFF}?", is_organization=True, match_partial=None),
+            Contact('Ike Groff', f"maybe brother or husband of {LESLEY_GROFF}?", is_organization=True, match_partial=None),
             Contact(JANUSZ_BANASIAK, "Epstein's house manager", r"Janu[is]z Banasiak", match_partial='both'),
             Contact('John Allessi', "Epstein's houseman"),
             Contact(JEAN_HUGUEN, "interior design at Alberto Pinto Cabinet", r"Jean[\s.]Huguen"),
