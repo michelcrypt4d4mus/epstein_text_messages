@@ -17,12 +17,14 @@ from epstein_files.util.logging import logger
 from epstein_files.util.helpers.data_helpers import prefix_keys
 from epstein_files.util.helpers.string_helper import strip_pdfalyzer_panels
 
-EMPTY_LENGTH = 15
+BAD_LINE_REGEX = re.compile(r"^SUBJECT TO PROTECTIVE ORDER PARAGRAPHS .*")
 BAD_OCR_EMPTY_LENGTH = 150
+EMPTY_LENGTH = 15
 IGNORE_LINE_REGEX = re.compile(r"^(\d+\n?|[\s+❑]{2,})$")
 MIN_VALID_LENGTH = 10
 SINGLE_IMAGE_NO_TEXT = 'no text found in image(s)'
 WORD_REGEX = re.compile(r"[A-Za-z]{3,}")
+
 
 # From EFTA00000020 to EFTA00000344 there doesn't seem to be any text
 BAD_OCR_ID_RANGES = [
@@ -329,5 +331,9 @@ class DojFile(OtherFile):
         """Overloads superclass method."""
         super()._repair()
         new_text = self.repair_ocr_text(DOJ_EMAIL_OCR_REPAIRS, self.text)
-        self._set_text(text=new_text)
+        self._set_text(text=self._remove_bad_lines(new_text))
         self._remove_number_only_lines()
+
+    @classmethod
+    def _remove_bad_lines(cls, text: str) -> str:
+        return '\n'.join([line for line in text.split('\n') if not BAD_LINE_REGEX.match(line)])

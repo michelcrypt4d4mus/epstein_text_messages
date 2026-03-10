@@ -278,6 +278,7 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
     GWENDOLYN_BECK: ["Sent from my Windows Phone"],
     "Harry Fisch": ["Sent from my iPhone"],
     HEATHER_MANN: ["Sent from my iPhone"],
+    'Ike Groff': ['Sent via BlackBerry by AT&T'],
     JACK_GOLDBERGER: ["Sent from my iPhone"],
     JEAN_LUC_BRUNEL: [
         'Sent from Samsung Mobile',

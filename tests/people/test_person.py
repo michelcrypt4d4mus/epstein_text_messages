@@ -4,6 +4,8 @@ from epstein_files.people.person import Person
 from epstein_files.people.names import *
 from epstein_files.util.constant.strings import QUESTION_MARKS
 
+SULAYEM_DESCRIPTION = 'chairman of ports in Dubai, CEO of DP World, resigned over Epstein ties'
+
 
 @pytest.fixture(scope='session')
 def sultan(epstein_files) -> Person:
@@ -27,8 +29,8 @@ def eva(epstein_files) -> Person:
 
 def test_info_str(anne_boyles, john_page, eva, sultan):
     assert sultan.highlight_group is not None
-    assert sultan.info_str == 'chairman of ports in Dubai, CEO of DP World'
-    assert sultan.info_with_category == 'mideast, chairman of ports in Dubai, CEO of DP World'
+    assert sultan.info_str == SULAYEM_DESCRIPTION
+    assert sultan.info_with_category == f'mideast, {SULAYEM_DESCRIPTION}'
 
     assert john_page.highlight_group is None
     assert john_page.info_with_category == ''

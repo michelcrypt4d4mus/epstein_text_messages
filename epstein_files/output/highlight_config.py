@@ -56,7 +56,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         label=Uninteresting.ACADEMIA,
         style='light_goldenrod2',
         contacts=[
-            Contact(BEN_GOERTZEL, 'AI researcher, Humanity+ chairman, iCog Labs'),
+            Contact(BEN_GOERTZEL, 'AI researcher, Humanity+ chairman, iCog Labs, funded by Epstein'),
             Contact('Brian Greene', 'physicist at Columbia University', match_partial=None),
             Contact('Daniel Kahneman', "Nobel economic sciences laureate and cognitivie psychologist (?)", r"Dan(iel|ny) Kahneman"),
             Contact(
@@ -338,7 +338,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         contacts=[
             Contact(ALIREZA_ITTIHADIEH, "CEO Freestream Aircraft Limited", r"Alireza.[Il]ttihadieh", match_partial='both'),
             Contact(BARRY_J_COHEN, emailer_pattern=r"barry ((j.?|james) )?cohen?", match_partial=None),
-            Contact('Barry Zelin', 'Axiom Capital'),
+            Contact('Barry Zelin', 'Axiom Capital', link_to_bio='https://epsteingraph.com/people/barry-w-zelin'),
             Contact('Bob Dudley', 'CEO of BP / British Petroleum', r"[BR]ob(ert) Dudley|Dudley, Robe?r?t?"),
             Contact(DAVID_L_NEUHAUSER, f'Livermore Partners, partner of {JOSHUA_FINK}'),
             Contact('Ed Razek', "Victoria's Secret executive"),
@@ -780,6 +780,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             ),
             organization('OneCoin', 'massive $10 billion crypto + multi-level marketing fraud created by Ruja Ignatova'),
             organization('Pantera Capital', "silicon valley crypto fund of Dan Morehead"),
+            organization('Parabridge International Services', f'entity associated with {CANTOR}'),
             organization('PayPay', 'bitcoin debit card', r"PayPay( Card)?"),
             organization('Polymarket', 'blockchain based gambling site ("prediction market")'),
             organization('Ribbit Capital', 'crypto friendly venture fund'),
@@ -949,7 +950,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact('Lalasa', f'house cleaner {QUESTION_MARKS}'),
             Contact('Larry E. Morrison', "Epstein's pilot", match_partial=None),
             Contact(LAWRANCE_VISOSKI, "Epstein's pilot", r"La(rry|wrance) Visoski?|Lvjet"),
-            Contact(LESLEY_GROFF, "Epstein's assistant", r"Lesl(ey|ie) (K(\.|atherine)? )?Gro(ff)?"),
+            Contact(LESLEY_GROFF, "unindicted co-conspirator, assistant who managed Epstein's calendar", r"Lesl(ey|ie) (K(\.|atherine)? )?Gro(ff)?"),
             Contact('Linda Pinto', "interior design at Alberto Pinto Cabinet"),
             Contact(LYN_FONTANILLA, "Filipino housekeeper", r"L.nn? Fontanilla"),
             Contact(MERWIN_DELA_CRUZ, "housekeeper", r"Merwin"),
@@ -1358,7 +1359,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 link_to_bio='https://www.propublica.org/article/the-bizarre-fall-of-the-ceo-of-coach-and-kate-spades-parent-company',
                 match_partial='both',
             ),
-            Contact('Ira Zicherman', f"{BEAR_STEARNS} exec, co-trustee with Ghislaine"),
+            Contact('Ira Zicherman', f"former {BEAR_STEARNS} exec, co-trustee of J. Epstein Foundation with Ghislaine"),
             Contact(JAMES_CAYNE, f"CEO of {BEAR_STEARNS}, executor of Epstein's will"),
             Contact('John Paulson', f"hedge fund guy, Trump donor"),
             Contact('Jonathan Rowland', f"Banque Havilland", match_partial=None),
@@ -1510,8 +1511,9 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact('Jill Iscol', 'heiress, philanthropist, IF Hummingbird Foundation'),
             Contact(
                 JONATHAN_FARKAS,
-                f"son of {ANDREW_FARKAS}, heir to Alexander's department store fortune",
+                f"son of {ANDREW_FARKAS}, heir to department store fortune, spouse of Trump's ambassador to Malta",
                 r"Jonath[ao]n Fark(a|u)(s|il)",
+                link_to_bio='https://www.yahoo.com/news/articles/jeffrey-please-help-humiliating-emails-032309827.html',
                 match_partial=None,
             ),
             Contact(
@@ -1732,7 +1734,12 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 match_partial=None,
             ),
             Contact(LISA_RANDALL, "theoretical physicist", match_partial=None),
-            Contact(MARTIN_NOWAK, "professor of mathematics and biology", r"(Martin.*?)?No[vw]ak|Nowak, Martin"),
+            Contact(
+                MARTIN_NOWAK,
+                "professor of mathematics and biology",
+                r"(Martin.*?)?No[vw]ak|Nowak, Martin",
+                link_to_bio='https://www.thecrimson.com/article/2026/2/25/nowak-leave-epstein/',
+            ),
             Contact(MOSHE_HOFFMAN, "behavioral and evolutionary economics", match_partial=None),
             Contact('Steve Kosslyn', "neuroscientist, Active Learning Sciences"),
         ],
@@ -2038,6 +2045,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Salvadoran",
             r"South American?",
             r"Venezuelan?",
+            r"Yucatan( Peninsula)?",
         ],
     ),
     HighlightedNames(
@@ -2249,7 +2257,13 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 'model scout funded by Epstein to recruit in eastern Europe',
                 link_to_bio='https://en.wikipedia.org/wiki/Daniel_Siad#Connection_to_Epstein_and_Brunel',
             ),
-            Contact(FAITH_KATES, "Next Models co-founder", r"faith kates?", match_partial=None),
+            Contact(
+                FAITH_KATES,
+                "Next Models co-founder",
+                r"faith kates?",
+                link_to_bio='https://wwd.com/fashion-news/fashion-scoops/next-model-faith-kates-management-stays-quiet-departure-1238368757/',
+                match_partial=None,
+            ),
             Contact('Gianni Serazzi', "fashion consultant?"),
             Contact(HEATHER_MANN, f"South African model, ex-girlfriend of {PRINCE_ANDREW} (?)", match_partial=None),
             Contact(
@@ -3101,6 +3115,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             organization('Ossa Properties', f"{MARK_EPSTEIN} company"),
         ],
         patterns=[
+            r"((five star|Hyatt) )?hotel( room)?",
             r"int[e=]rior design(er)?",
             r"landlord",
             r"Mandarin Oriental",
@@ -3221,7 +3236,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         contacts=[
             Contact(
                 SULTAN_BIN_SULAYEM,
-                "chairman of ports in Dubai, CEO of DP World",
+                "chairman of ports in Dubai, CEO of DP World, resigned over Epstein ties",
                 r"Sultan (Ahmed )?bin Sulaye?m?|ssulayem[©@a](aol|etisalat\.?blackberry).com",
                 link_to_bio='https://www.bbc.com/news/articles/ce82xgd2g3yo',
             )
@@ -3306,6 +3321,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             CASE_ID_REGEX.pattern,
             r"deposition",
             r"EDGAR (Filing|Search)",  # SEC database is EDGAR
+            r"(federal|state) judge",
             r"General Counsel",
             r"lawyer",
             r"Notary Public",
