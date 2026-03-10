@@ -2045,6 +2045,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Salvadoran",
             r"South American?",
             r"Venezuelan?",
+            r"Yucatan( Peninsula)?",
         ],
     ),
     HighlightedNames(
@@ -3114,6 +3115,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             organization('Ossa Properties', f"{MARK_EPSTEIN} company"),
         ],
         patterns=[
+            r"((five star|Hyatt) )?hotel( room)?",
             r"int[e=]rior design(er)?",
             r"landlord",
             r"Mandarin Oriental",
