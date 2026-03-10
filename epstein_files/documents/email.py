@@ -18,6 +18,7 @@ from epstein_files.documents.communication import Communication
 from epstein_files.documents.document import CLOSE_PROPERTIES_CHAR, EXCERPT_STYLE
 from epstein_files.documents.documents.categories import Uninteresting
 from epstein_files.documents.documents.doc_cfg import DebugDict, EmailCfg, Metadata
+from epstein_files.documents.doj_file import DojFile
 from epstein_files.documents.emails.constants import *
 from epstein_files.documents.emails.email_header import (EMAIL_SIMPLE_HEADER_REGEX,
      EMAIL_SIMPLE_HEADER_LINE_BREAK_REGEX, EmailHeader)
@@ -700,7 +701,8 @@ class Email(Communication):
         super()._repair()
 
         if self.file_info.is_doj_file:
-            self._set_text(text=self.repair_ocr_text(DOJ_EMAIL_OCR_REPAIRS, strip_pdfalyzer_panels(self.text)))
+            new_text = DojFile._remove_bad_lines(strip_pdfalyzer_panels(self.text))
+            self._set_text(text=self.repair_ocr_text(DOJ_EMAIL_OCR_REPAIRS, new_text))
 
         if BAD_FIRST_LINE_REGEX.match(self.lines[0]):
             self._set_text(lines=self.lines[1:])
