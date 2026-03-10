@@ -780,6 +780,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             ),
             organization('OneCoin', 'massive $10 billion crypto + multi-level marketing fraud created by Ruja Ignatova'),
             organization('Pantera Capital', "silicon valley crypto fund of Dan Morehead"),
+            organization('Parabridge International Services', f'entity associated with {CANTOR}'),
             organization('PayPay', 'bitcoin debit card', r"PayPay( Card)?"),
             organization('Polymarket', 'blockchain based gambling site ("prediction market")'),
             organization('Ribbit Capital', 'crypto friendly venture fund'),
@@ -2249,7 +2250,13 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 'model scout funded by Epstein to recruit in eastern Europe',
                 link_to_bio='https://en.wikipedia.org/wiki/Daniel_Siad#Connection_to_Epstein_and_Brunel',
             ),
-            Contact(FAITH_KATES, "Next Models co-founder", r"faith kates?", match_partial=None),
+            Contact(
+                FAITH_KATES,
+                "Next Models co-founder",
+                r"faith kates?",
+                link_to_bio='https://wwd.com/fashion-news/fashion-scoops/next-model-faith-kates-management-stays-quiet-departure-1238368757/',
+                match_partial=None,
+            ),
             Contact('Gianni Serazzi', "fashion consultant?"),
             Contact(HEATHER_MANN, f"South African model, ex-girlfriend of {PRINCE_ANDREW} (?)", match_partial=None),
             Contact(
