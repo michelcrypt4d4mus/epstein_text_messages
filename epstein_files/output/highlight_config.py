@@ -1570,7 +1570,13 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 link_to_bio='https://en.wikipedia.org/wiki/Benjamin_Lawsky',
             ),
             Contact(CHRISTOPHER_DILORIO, "self described whistleblower", r"Chris(topher )? Di[lI]o[nr](io)?"),
-            Contact('Cyrus Vance', 'Manhattan District Attorney 2010-2021'),
+            Contact(
+                'Cyrus Vance Jr.',
+                'Manhattan District Attorney 2010-2021',
+                r"Cyrus Vance(,? Jr\.?)?",
+                link_to_bio='https://www.politico.com/states/new-york/city-hall/story/2020/01/23/sexual-assault-survivors-call-on-cy-vance-jr-to-resign-1253915',
+                match_partial=None,
+            ),
             Contact(
                 name=DANNY_FROST,
                 info="Director of Communications at Manhattan District Attorney",

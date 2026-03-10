@@ -1451,9 +1451,8 @@ EMAILS_CONFIG = [
         highlight_quote='i need your head in moneyland',
         recipients=[PETER_MANDELSON],
         recipient_uncertain=True,
-        truncate_to=520,
+        truncate_to=1_700,
     ),
-
     EmailCfg(
         id='EFTA00926593',
         author=PHILIP_ROSEDALE,
@@ -4070,6 +4069,7 @@ NOT_CHRONOLOGICAL_VIEW_IDS = [
     'EFTA00878255',
     'EFTA00766770',
     'EFTA00384774',
+    'EFTA00892654',  # Mandelson
     'EFTA02437992',  # Ben Goertzel
     'EFTA01613143',  # Melanie Walker
     'EFTA02144766',  # Zorro Ranch
