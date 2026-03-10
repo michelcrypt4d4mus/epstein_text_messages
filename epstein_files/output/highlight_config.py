@@ -493,6 +493,11 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact('John Gotti', 'boss of the Gambino crime family'),
             Contact('Anthony Trentacosta', 'Gambino crime family'),
             Contact('Michael Bilotti', 'murderer', r"Michael (A\.? )?Bilotti"),
+            organization(
+                'Aubin Securities',
+                'Ponzi scheme run by U.S. marine Christopher Aubin',
+                link_to_bio='https://www.golocalprov.com/investigations/alleged-ri-ponzi-schemers-case-expands-18-file-lawsuit-against-td-bank',
+            ),
         ],
         patterns=[
             r"adderall",
@@ -675,7 +680,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 link_to_bio='https://cryptadamus.substack.com/p/of-tech-bros-and-trumpers',
             ),
             organization('Alphabit', 'crypto fund'),
-            organization('BGC', f"{CANTOR} related firm of {HOWARD_LUTNICK}"),
+            organization('BGC', f"{CANTOR} related firm of {HOWARD_LUTNICK}", r"BGC( (International|Partners))?"),
             organization('Bioptix', 'old name of RIOT Blockchain from when it was a biotech company'),
             organization('Bitfinex', f"crypto exchange run by the same people that run Tether"),
             organization('BitFury', 'Dutch bitcoin mining company founded by Valery Vavilov and Mark Dollar'),
@@ -1181,6 +1186,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 r"((Lord|Peter) )?M[ae]ndelson",
                 link_to_bio='https://bylinetimes.com/2026/02/05/peter-mandelsons-downfall-puts-morgan-mcsweeneys-future-in-doubt/',
             ),
+            Contact('Sarah Ferguson', f'AKA "Fergie", former Duchess of York / wife of {PRINCE_ANDREW}', match_partial=None),
             Contact(
                 TERJE_ROD_LARSEN,
                 f"Norwegian head of {INTERNATIONAL_PEACE_INSTITUTE} (IPI), gave jobs to Epstein's eastern European girls",
@@ -1401,7 +1407,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 r"(Banque )?Havilland",
                 link_to_bio='https://en.wikipedia.org/wiki/Banque_Havilland',
             ),
-            organization(BEAR_STEARNS, 'investment bank where Epstein got his first job in finance, failed in 2008'),
+            organization(BEAR_STEARNS, 'investment bank where Epstein got his first job in finance, failed in 2008', r"Bear Stea?rns"),
             organization(
                 'Boothbay',
                 f'fund run by Ari Glass whom Epstein called "a bit sketchy" but invested $50 million with',
