@@ -125,6 +125,7 @@ SENT_FROM_DEVICE_PREFIXES = [
     r"Sent (from|on|using|via|with)",
     r"Von meinem",
     r"Wyslane z",
+    r'Отправлено',
 ]
 
 SENT_FROM_DEVICE_SUFFIXES = [
