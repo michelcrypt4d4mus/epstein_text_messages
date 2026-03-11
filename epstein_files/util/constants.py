@@ -1643,6 +1643,8 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA01890312', duplicate_ids=['EFTA00712715'], truncate_to=400),
     EmailCfg(id='EFTA00915302', duplicate_ids=['EFTA01860910', 'EFTA01986221', 'EFTA01776411', 'EFTA02691069']),
     EmailCfg(id='EFTA01776613', duplicate_ids=['EFTA01860812', 'EFTA00915297', 'EFTA02691059']),
+
+    # Truncations
     EmailCfg(id='EFTA00982094', truncate_to=250),
     EmailCfg(id='EFTA00915298', truncate_to=300),
     EmailCfg(id='EFTA00915300', truncate_to=250),
@@ -1655,6 +1657,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00675069', truncate_to=478),
     EmailCfg(id='EFTA00982818', truncate_to=500),
     EmailCfg(id='EFTA01731638', truncate_to=530),
+    EmailCfg(id='EFTA00398724', truncate_to=700),
     EmailCfg(id='EFTA00362171', truncate_to=1096),
     EmailCfg(id='EFTA02606529', truncate_to=1500),
     EmailCfg(id='EFTA00836570', truncate_to=1600),
