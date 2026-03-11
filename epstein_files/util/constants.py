@@ -108,7 +108,7 @@ UNCONFIRMED_TEXTS_CONFIG = [
     TextCfg(id='027695', author=STEVE_BANNON),
     TextCfg(id='027594', author=STEVE_BANNON),
     TextCfg(id='027549', author=STEVE_BANNON),
-    TextCfg(id='027764', author=STEVE_BANNON),
+    TextCfg(id='027764', author=STEVE_BANNON, description=f"includes discussion of Facebook's attempt at crypto called Libra"),
     TextCfg(id='027585', author=STEVE_BANNON, author_uncertain='references Tokyo trip'),
     TextCfg(id='027434', author=STEVE_BANNON, author_uncertain='references Maher appearance'),
     TextCfg(id='027428', author=STEVE_BANNON, author_uncertain='references HBJ meeting on 9/28 from other Bannon/Epstein convo'),
@@ -3158,7 +3158,7 @@ OTHER_FILES_GOVERNMENT = [
     DocCfg(id='EFTA00038915', author=FBI, description='interview with minor victim who said Epstein knew she was 14'),
     DocCfg(id='EFTA00023055', author=FBI, description="evidence of notes left about newly recruited underage girls by girls giving massages"),
     DocCfg(id='EFTA00222943', author=FBI, description=f"agent believes computers were removed from Epstein's residence"),
-    DocCfg(id='EFTA00020506', author=FBI, description='"chauffeur told Epstein \'I have something on you, remember what I buried!\'"'),
+    DocCfg(id='EFTA00020506', author=FBI, description='"chauffeur told Epstein \'I have something on you, remember what I buried!\'"', show_full_panel=True),
     DocCfg(id='EFTA00084614', author=PALM_BEACH_POLICE, description='incident report detailing the investigation into Jeffrey Epstein'),
     DocCfg(id='EFTA00007893', author=PALM_BEACH_POLICE, description=f"receipts, notes, bank statements of {GHISLAINE_MAXWELL}"),
     DocCfg(id='EFTA00005569', author=PALM_BEACH_POLICE, replace_text_with='photo lineup featuring Epstein', date='2005-03-17'),
@@ -3942,6 +3942,7 @@ UNINTERESTING_EMAIL_IDS = [
     'EFTA00005705',
     'EFTA00005716',
     'EFTA00005717',
+    'EFTA00039971',  # Attached 302 is missing?
     # Ganbat
     'EFTA02469375',
     # Ghislaine
