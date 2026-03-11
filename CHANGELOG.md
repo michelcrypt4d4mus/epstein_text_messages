@@ -1,4 +1,5 @@
 # NEXT RELEASE
+* Refactor most document category configs to their own files
 
 ### 1.9.1
 

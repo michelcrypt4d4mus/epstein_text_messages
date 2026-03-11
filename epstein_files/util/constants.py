@@ -3,6 +3,7 @@ Custom configurations for various files.
 """
 from itertools import groupby
 
+# These imports are actually used, but through a dynamic locals() reference
 from epstein_files.documents.config.categories.academia import ACADEMIA_CFGS
 from epstein_files.documents.config.categories.article import ARTICLE_CFGS
 from epstein_files.documents.config.categories.arts import ARTS_CFGS
@@ -15,6 +16,7 @@ from epstein_files.documents.config.categories.girls import GIRLS_CFGS
 from epstein_files.documents.config.categories.government import GOVERNMENT_CFGS
 from epstein_files.documents.config.categories.junk import JUNK_CFGS
 from epstein_files.documents.config.categories.legal import LEGAL_CFGS
+from epstein_files.documents.config.categories.letter import LETTER_CFGS
 from epstein_files.documents.config.categories.misc import MISC_CFGS
 from epstein_files.documents.config.categories.money import MONEY_CFGS
 from epstein_files.documents.config.categories.phone_bill import PHONE_BILL_CFGS
@@ -28,12 +30,8 @@ from epstein_files.documents.config.categories.text_msg import TEXT_MSG_CFGS
 from epstein_files.documents.config.emails import EMAILS_CONFIG
 from epstein_files.documents.config.imessage_logs import TEXTS_CONFIG
 from epstein_files.documents.documents.categories import CONSTANT_CATEGORIES, Interesting, Neutral
-from epstein_files.documents.documents.config_builder import (FBI_REPORT, JANE_DOE_V_USA, blaine_letter,
-     fbi_defense_witness, fbi_report, fedex_invoice, important_messages_pad, letter,
-     phone_bill_cfg, starr_letter, whistleblower_cfg, victim_diary, wolff_draft_cfg)
-from epstein_files.documents.documents.doc_cfg import (DEFAULT_TRUNCATE_TO, GOLDMAN_INVESTMENT_MGMT,
-     SHORT_TRUNCATE_TO, NO_TRUNCATE, CommunicationCfg, DocCfg, EmailCfg)
-from epstein_files.documents.doj_files.full_text import EFTA00009622_TEXT
+from epstein_files.documents.documents.config_builder import victim_diary
+from epstein_files.documents.documents.doc_cfg import DocCfg, EmailCfg
 from epstein_files.people.names import *
 from epstein_files.util.constant.strings import *
 from epstein_files.util.helpers.string_helper import join_truthy, quote
@@ -76,46 +74,19 @@ HEADER_ABBREVIATIONS = {
 
 
 ################################################################################################
-####################################### OTHER FILES ############################################
+####################################### DOC CONFIGS ############################################
 ################################################################################################
-
-# Descriptions of non-email, non-text message files
-# FBI_SEIZED_PROPERTY = f"seized property inventory"  # (redacted)
-# KEN_STARR_LETTER = f"letter to judge overseeing Epstein's criminal prosecution, mentions Alex Acosta"
-
 
 DIARY_CFGS = [
     victim_diary('EFTA02731465', f"naming {JES_STALEY}, {TED_LEONSIS}, {GEORGE_VRADENBURG}, references tinkerbell"),
     victim_diary('EFTA02731420', f'naming {LARRY_SUMMERS}, {PRINCE_ANDREW}, Dan Snyder, {LEON_BLACK}, {TED_LEONSIS}'),
 ]
 
-
 FLIGHT_LOG_CFGS = [
     DocCfg(id='022780'),
     DocCfg(id='022816'),
     DocCfg(id='EFTA00623147', author=DAVID_RODGERS, date='2016-06-30', date_uncertain='guess based on employment history'),
 ]
-
-
-# This category makes is_interesting default to True
-LETTER_CFGS = [
-    CommunicationCfg(
-        id='026011',
-        author='Gennady Mashtalyar',
-        date='2016-06-24',  # date is based on Brexit reference but he could be backtesting,
-        description=f"about algorithmic trading",
-    ),
-    CommunicationCfg(id='026134', recipients=['George'], description=f'about opportunities to buy banks in Ukraine'),
-    blaine_letter(id='019086', date='2015-05-27', suffix='naming various Putin puppet regimes', show_full_panel=True),
-    blaine_letter(id='019474', date='2015-05-29'),
-    blaine_letter(id='019476', date='2015-06-01'),
-
-    # DOJ files
-    CommunicationCfg(id='EFTA00007609', recipients=['Alberto'], duplicate_ids=['EFTA00007582']),
-    CommunicationCfg(id='EFTA02731023', author='Senator Ron Wyden', recipients=[LEON_BLACK], is_interesting=False),
-    CommunicationCfg(id='EFTA02731018', author='Senator Ron Wyden', recipients=['Marc Rowan'], is_interesting=False),
-]
-
 
 # Interesting / uninteresting
 INTERESTING_EMAIL_IDS = [
@@ -472,7 +443,8 @@ NOT_CHRONOLOGICAL_VIEW_IDS = [cfg.id for cfg in FLIGHT_LOG_CFGS] + [
     # '024185', # UN
 ]
 
-# Build OtherFile / DojFile config list by combining OTHER_FILES_[BLAH] variables
+
+# Build config list by combining [BLAH]_CFGS variables and setting category to [BLAH] for each
 CATEGORY_CONFIGS: list[DocCfg] = []
 
 for category in CONSTANT_CATEGORIES:
@@ -499,7 +471,11 @@ for cfg in ALL_CONFIGS:
 
 
 # Collect special docs to show with special people
-SHOW_WITH_DOCS = {id: list(cfgs) for id, cfgs in groupby(ALL_CONFIGS, lambda cfg: cfg.show_with_name) if id}
+SHOW_WITH_DOCS = {
+    id: list(cfgs)
+    for id, cfgs in groupby(ALL_CONFIGS, lambda cfg: cfg.show_with_name)
+    if id
+}
 
 
 def check_no_overlapping_configs():
