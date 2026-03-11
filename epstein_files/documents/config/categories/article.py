@@ -4,8 +4,8 @@ Newspaper and magazine articles. By default considered uninteresting.
 from pathlib import Path
 
 from epstein_files.documents.config.categories.legal import JANE_DOE_V_EPSTEIN_TRUMP
-from epstein_files.documents.documents.config_builder import JANE_DOE_V_USA, wolff_draft_cfg
-from epstein_files.documents.documents.doc_cfg import DocCfg
+from epstein_files.documents.config.config_builder import JANE_DOE_V_USA, wolff_draft_cfg
+from epstein_files.documents.config.doc_cfg import DocCfg
 from epstein_files.people.names import *
 from epstein_files.util.constant.strings import *
 from epstein_files.util.helpers.string_helper import join_truthy, quote

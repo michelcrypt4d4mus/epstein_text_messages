@@ -8,7 +8,7 @@ from rich.padding import Padding
 from rich.panel import Panel
 from rich.text import Text
 
-from epstein_files.documents.documents.doc_cfg import DebugDict
+from epstein_files.documents.config.doc_cfg import DebugDict
 from epstein_files.documents.emails.constants import DOJ_EMAIL_OCR_REPAIRS, FALLBACK_TIMESTAMP
 from epstein_files.documents.other_file import OtherFile
 from epstein_files.output.layout_elements.left_bar_panel import LeftBarPanel

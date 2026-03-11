@@ -2,7 +2,7 @@ import json
 import re
 from dataclasses import asdict, dataclass, field
 
-from epstein_files.documents.documents.doc_cfg import EmailCfg, Metadata
+from epstein_files.documents.config.doc_cfg import EmailCfg, Metadata
 from epstein_files.documents.emails.constants import ALL_HEADER_FIELDS_PATTERN, HEADER_FIELDS_PATTERN
 from epstein_files.documents.emails.emailers import BAD_EMAILER_REGEX, TIME_REGEX
 from epstein_files.util.constant.strings import AUTHOR

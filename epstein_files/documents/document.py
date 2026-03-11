@@ -17,7 +17,7 @@ from rich.panel import Panel
 from rich.text import Text
 from rich.table import Table
 
-from epstein_files.documents.documents.doc_cfg import DUPE_TYPE_STRS, NO_TRUNCATE, DebugDict, EmailCfg, DocCfg, Metadata
+from epstein_files.documents.config.doc_cfg import DEFAULT_TRUNCATE_TO, DUPE_TYPE_STRS, NO_TRUNCATE, DebugDict, EmailCfg, DocCfg, Metadata
 from epstein_files.documents.documents.file_info import FileInfo
 from epstein_files.documents.documents.search_result import MatchedLine
 from epstein_files.documents.emails.constants import DOJ_EMAIL_OCR_REPAIRS, FALLBACK_TIMESTAMP
@@ -32,7 +32,7 @@ from epstein_files.output.site.sites import EXTRACTS_BASE_URL
 from epstein_files.people.interesting_people import PERSONS_OF_INTEREST, UNINTERESTING_AUTHORS
 from epstein_files.people.names import Name
 from epstein_files.util.constant.strings import *
-from epstein_files.util.constants import CONFIGS_BY_ID, DEFAULT_TRUNCATE_TO
+from epstein_files.util.constants import CONFIGS_BY_ID
 from epstein_files.util.env import args, site_config
 from epstein_files.util.helpers.data_helpers import (date_str, patternize, prefix_keys, remove_zero_time,
      uniquify, uniq_sorted, without_falsey)

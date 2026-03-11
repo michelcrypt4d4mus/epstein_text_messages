@@ -3,6 +3,8 @@ Custom configurations for various files.
 """
 from itertools import groupby
 
+from epstein_files.documents.config.categories.emails import EMAILS_CONFIG
+from epstein_files.documents.config.categories.imessage_logs import TEXTS_CONFIG
 # These imports are actually used, but through a dynamic locals() reference
 from epstein_files.documents.config.categories.academia import ACADEMIA_CFGS
 from epstein_files.documents.config.categories.article import ARTICLE_CFGS
@@ -27,11 +29,9 @@ from epstein_files.documents.config.categories.resume import RESUMÉ_CFGS
 from epstein_files.documents.config.categories.skype_log import SKYPE_LOG_CFGS
 from epstein_files.documents.config.categories.social import SOCIAL_CFGS, TWEET_CFGS
 from epstein_files.documents.config.categories.text_msg import TEXT_MSG_CFGS
-from epstein_files.documents.config.emails import EMAILS_CONFIG
-from epstein_files.documents.config.imessage_logs import TEXTS_CONFIG
+from epstein_files.documents.config.config_builder import victim_diary
+from epstein_files.documents.config.doc_cfg import DocCfg, EmailCfg
 from epstein_files.documents.documents.categories import CONSTANT_CATEGORIES, Interesting, Neutral
-from epstein_files.documents.documents.config_builder import victim_diary
-from epstein_files.documents.documents.doc_cfg import DocCfg, EmailCfg
 from epstein_files.people.names import *
 from epstein_files.util.constant.strings import *
 from epstein_files.util.helpers.string_helper import join_truthy, quote

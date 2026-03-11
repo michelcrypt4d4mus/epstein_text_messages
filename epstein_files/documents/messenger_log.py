@@ -8,7 +8,7 @@ from rich.table import Table
 from rich.text import Text
 
 from epstein_files.documents.communication import Communication
-from epstein_files.documents.documents.doc_cfg import Metadata
+from epstein_files.documents.config.doc_cfg import Metadata
 from epstein_files.documents.emails.constants import FALLBACK_TIMESTAMP
 from epstein_files.documents.imessage.text_message import TextMessage
 from epstein_files.output.epstein_highlighter import highlighter

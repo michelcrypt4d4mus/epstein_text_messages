@@ -2,7 +2,7 @@ import pytest
 from copy import deepcopy
 
 from epstein_files.documents.documents.categories import Interesting, Neutral, Uninteresting
-from epstein_files.documents.documents.doc_cfg import CommunicationCfg, DocCfg, EmailCfg
+from epstein_files.documents.config.doc_cfg import CommunicationCfg, DocCfg, EmailCfg
 from epstein_files.documents.other_file import OtherFile
 from epstein_files.output.highlight_config import QUESTION_MARKS_TXT
 from epstein_files.people.names import BLOCKCHAIN_CAPITAL, BOFA_MERRILL, JOI_ITO, Name

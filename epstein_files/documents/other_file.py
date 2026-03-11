@@ -14,8 +14,8 @@ from rich.table import Table
 from rich.text import Text
 
 from epstein_files.documents.document import CLOSE_PROPERTIES_CHAR, Document
-from epstein_files.documents.documents.config_builder import build_cfg_from_text
-from epstein_files.documents.documents.doc_cfg import DocCfg, Metadata
+from epstein_files.documents.config.config_builder import build_cfg_from_text
+from epstein_files.documents.config.doc_cfg import DocCfg, Metadata
 from epstein_files.documents.documents.file_info import FileInfo
 from epstein_files.output.epstein_highlighter import highlighter
 from epstein_files.output.highlight_config import QUESTION_MARKS_TXT, styled_category

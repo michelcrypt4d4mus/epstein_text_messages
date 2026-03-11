@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from epstein_files.documents.documents.doc_cfg import DocCfg, EmailCfg
+from epstein_files.documents.config.doc_cfg import DocCfg, EmailCfg
 from epstein_files.people.names import *
 from epstein_files.util.constant.strings import *
 

@@ -1,7 +1,7 @@
 from dateutil.parser import parse
 
 from epstein_files.documents.documents.categories import Category, Interesting, Neutral, Uninteresting
-from epstein_files.documents.documents.doc_cfg import CommunicationCfg, DocCfg, DuplicateType, EmailCfg
+from epstein_files.documents.config.doc_cfg import CommunicationCfg, DocCfg, DuplicateType, EmailCfg
 from epstein_files.people.names import *
 from epstein_files.util.helpers.string_helper import has_line_starting_with, join_truthy
 from epstein_files.util.logging import logger

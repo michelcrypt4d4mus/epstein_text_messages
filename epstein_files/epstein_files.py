@@ -14,7 +14,7 @@ from rich.text import Text
 from yaralyzer.util.helpers.interaction_helper import ask_to_proceed
 
 from epstein_files.documents.document import Document
-from epstein_files.documents.documents.doc_cfg import Metadata
+from epstein_files.documents.config.doc_cfg import Metadata
 from epstein_files.documents.documents.manual_config import create_configs
 from epstein_files.documents.documents.search_result import SearchResult
 from epstein_files.documents.doj_file import DojFile

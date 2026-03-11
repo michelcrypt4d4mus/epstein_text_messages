@@ -1,5 +1,5 @@
-from epstein_files.documents.documents.config_builder import blaine_letter
-from epstein_files.documents.documents.doc_cfg import CommunicationCfg
+from epstein_files.documents.config.config_builder import blaine_letter
+from epstein_files.documents.config.doc_cfg import CommunicationCfg
 from epstein_files.people.names import LEON_BLACK
 
 

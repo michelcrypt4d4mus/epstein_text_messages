@@ -1,6 +1,6 @@
 from epstein_files.documents.config.categories.legal import (EDWARDS_V_DERSHOWITZ, JANE_DOE_V_EPSTEIN_TRUMP,
      JANE_DOE_2_V_EPSTEIN, EPSTEIN_V_ROTHSTEIN_EDWARDS, REDACTED_V_EPSTEIN_ESATE)
-from epstein_files.documents.documents.doc_cfg import DocCfg
+from epstein_files.documents.config.doc_cfg import DocCfg
 from epstein_files.people.names import *
 from epstein_files.util.constant.strings import *
 
