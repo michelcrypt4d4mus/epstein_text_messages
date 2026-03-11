@@ -1593,7 +1593,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA02565917', description='Hassan Mohammed Abdul Latif Jameel is a Saudi businessman and philanthropist'),
     EmailCfg(id='EFTA02277132', description='hotel booking in Kiev'),
     EmailCfg(id='EFTA00927227', description=f"{IAN_OSBORNE} pitches his new venture fund {HEDOSOPHIA} to Epstein", is_interesting=True),
-    EmailCfg(id='EFTA01756112', description=f'{JOI_ITO} plays down Epstein\'s "jail thing"'.),
+    EmailCfg(id='EFTA01756112', description=f'{JOI_ITO} plays down Epstein\'s "jail thing"'),
     EmailCfg(id='EFTA01767036', description=f'"Karim" is probably {ALLEGED_KARIM_WADE}'),
     EmailCfg(id='EFTA02515416', description=f'{JEAN_LUC_BRUNEL} is having visa problems', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA02513560', description=f"{JEAN_LUC_BRUNEL} doesn't want to speak on the phone", truncate_to=NO_TRUNCATE),
@@ -2219,6 +2219,7 @@ OTHER_FILES_CRYPTO = [
         description=f"{BROCK_PIERCE} posts review of infamous Russian criminal crypto exchange BTC-e to LinkedIn",
         is_interesting=True,
         show_with_name=BROCK_PIERCE,
+        # truncate_to=(1_400, 3_050),  # TODO: enable excerpts in emails
     ),
     DocCfg(id='EFTA01088644', author=BLOCKCHAIN_CAPITAL, description="pitch deck", date='2015-10-01'),
     DocCfg(id='EFTA00604942', author=BLOCKCHAIN_CAPITAL, description="Investor Update", date='2015-10-01'),
