@@ -2290,7 +2290,12 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 r"(Paolo )?Z[ae]mpoll?i",
                 link_to_bio='https://dominicanewsonline.com/news/homepage/news/the-zampolli-matter-more-fuel-for-where-de-money-gone-campaign/',
             ),
-            Contact(RAMSEY_ELKHOLY, f"scouted girls for Epstein in NYC, member of Monotronic", match_partial='both'),
+            Contact(
+                RAMSEY_ELKHOLY,
+                f"scouted girls for Epstein in NYC, member of Monotronic",
+                link_to_bio='https://ramseyelkholyny.com/',
+                match_partial='both',
+            ),
             # Contact('Regina', f'model, Epstein and {FAITH_KATES} tried to get her a contract'),
             Contact('Vladimir Yudashkin', "director of the 1 Mother Agency"),
             Contact('Yfke Sturm', 'model from Holland', link_to_bio='https://en.wikipedia.org/wiki/Yfke_Sturm', match_partial='both'),
