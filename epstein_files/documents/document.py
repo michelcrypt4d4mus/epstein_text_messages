@@ -44,7 +44,6 @@ from epstein_files.util.logging import DOC_TYPE_STYLES, FILENAME_STYLE, logger
 CHECK_LINK_FOR_DETAILS = 'not shown here, check original PDF for details'
 CLOSE_PROPERTIES_CHAR = ']'
 HOUSE_OVERSIGHT = HOUSE_OVERSIGHT_PREFIX.replace('_', ' ').strip()
-WHITESPACE_REGEX = re.compile(r"\s{2,}|\t|\n", re.MULTILINE)
 MIN_DOCUMENT_ID = 10477
 
 FILENAME_MATCH_STYLES = [

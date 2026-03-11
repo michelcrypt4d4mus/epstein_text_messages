@@ -17,7 +17,7 @@ from epstein_files.util.constant.strings import *
 from epstein_files.util.env import args
 from epstein_files.util.helpers.data_helpers import without_falsey
 from epstein_files.util.helpers.file_helper import is_doj_file
-from epstein_files.util.helpers.string_helper import is_bool_prop, join_truthy, quote
+from epstein_files.util.helpers.string_helper import collapse_whitespace, is_bool_prop, join_truthy, quote
 from epstein_files.util.logging import logger
 
 DebugDict = dict[str, bool | datetime | str | Path | None]
@@ -168,7 +168,8 @@ class DocCfg:
             self.id = self.id.upper()
 
         if self.highlight_quote:
-            self.description = join_truthy(f'"{self.highlight_quote}"', self.description, ', ')
+            description_quote = collapse_whitespace(self.highlight_quote.replace('>', ''))
+            self.description = join_truthy(f'"{description_quote}"', self.description, ', ')
 
         self.truncate_to = self.truncate_to or (NO_TRUNCATE if self.is_interesting else self.truncate_to)
         self.set_category(self.category)

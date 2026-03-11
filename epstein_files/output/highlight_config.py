@@ -176,6 +176,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"(?-i:TED)x?",
             r"Tulane",
             r"UCLA",
+            r"Uni(versity)? of Cumbria",
             r"Wharton",
             r"Yale",
         ],
@@ -266,7 +267,6 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact('Errol Morris', 'documentary film maker, films about Robert McNamara, Donald Rumsfeld, and Bannon', match_partial=None),
             Contact(ETIENNE_BINANT, f"art advisor {QUESTION_MARKS}"),
             Contact('Frederic Fekkai', f"hairdresser Epstein liked his girls to use"),
-            Contact(HENRY_JARECKI, 'psychiatrist and philanthropist, owned neighboring island', match_partial=None),
             Contact('Larry Gagosian', 'famous art dealer', link_to_bio='https://en.wikipedia.org/wiki/Larry_Gagosian'),
             Contact('Marla Prather', f'art curator at MoMA, wife of {MORTIMER_ZUCKERMAN}'),
             Contact('Michael Ovitz', 'former president of Disney'),
@@ -935,7 +935,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
     ),
     HighlightedNames(
         label='employee',
-        style='medium_purple4',
+        style='light_slate_blue',
         contacts=[
             Contact('Adriana Ross', 'named co-conspirator', match_partial=None),
             Contact('Alfredo Rodriguez', "Epstein's butler, stole Epstein's black book", match_partial=None),
@@ -1142,13 +1142,14 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 r"darren$|Darren (K(\.|eith)? )?[il]n[dq]_?yke?|dkiesq",
                 link_to_bio='https://en.wikipedia.org/wiki/Estate_of_Jeffrey_Epstein',
             ),
+            Contact(EMAD_HANNA, f"Project controller for {RICHARD_KAHN}'s HBRK Associates", match_partial=None),
+            Contact(HENRY_JARECKI, 'psychiatrist and philanthropist, owned neighboring island', match_partial=None),
             Contact(
                 RICHARD_KAHN,
                 "Epstein's accountant and estate executor",
                 r"rich(ard)? kahn?",
                 link_to_bio='https://en.wikipedia.org/wiki/Estate_of_Jeffrey_Epstein',
             ),
-            Contact(EMAD_HANNA, f"Project controller for {RICHARD_KAHN}'s HBRK Associates", match_partial=None),
         ],
         patterns=[
             r"HBRK( (Associates,? )?Inc)?",
@@ -2276,7 +2277,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(HEATHER_MANN, f"South African model, ex-girlfriend of {PRINCE_ANDREW} (?)", match_partial=None),
             Contact(
                 JEAN_LUC_BRUNEL,
-                f"{MC2_MODEL_MGMT} founder, #MeToo problems, died just like Epstein but in a French jail",
+                f"{MC2_MODEL_MGMT} founder, #MeToo problems, died like Epstein but in a French jail",
                 r"Jean Luc Brunel?|JeanLuc",
                 link_to_bio='https://en.wikipedia.org/wiki/Jean-Luc_Brunel',
                 match_partial='both',
@@ -2298,7 +2299,12 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 r"(Paolo )?Z[ae]mpoll?i",
                 link_to_bio='https://dominicanewsonline.com/news/homepage/news/the-zampolli-matter-more-fuel-for-where-de-money-gone-campaign/',
             ),
-            Contact(RAMSEY_ELKHOLY, f"scouted girls for Epstein in NYC, member of Monotronic", match_partial='both'),
+            Contact(
+                RAMSEY_ELKHOLY,
+                f"scouted girls for Epstein in NYC, member of Monotronic",
+                link_to_bio='https://ramseyelkholyny.com/',
+                match_partial='both',
+            ),
             # Contact('Regina', f'model, Epstein and {FAITH_KATES} tried to get her a contract'),
             Contact('Vladimir Yudashkin', "director of the 1 Mother Agency"),
             Contact('Yfke Sturm', 'model from Holland', link_to_bio='https://en.wikipedia.org/wiki/Yfke_Sturm', match_partial='both'),
@@ -2710,6 +2716,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         contacts=[
             Contact('Alisa Bekins', f"{PETER_THIEL}'s assistant"),
             Contact(ANDREW_MCCORMACK, f"co-founder of {THIELS_VALAR}", r"Andrew McCorm(ack?)?"),
+            Contact("Andy Rubin", "ex-Microsoft, ex-Google, fired for #MeToo reasons", match_partial=None),
             Contact('Auren Hoffman', "CEO of SafeGraph (mobile device location data co.), LiveRamp", match_partial=None),
             Contact(
                 BOBBY_KOTICK,
@@ -2763,7 +2770,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact('Nathan Myhrvold', f"former CTO of Microsoft, co-founder of Intellectual Ventures"),
             Contact(
                 PETER_THIEL,
-                f"Paypal mafia, Palantr co-founder, Facebook investor, Epstein invested ~$40 million in his fund {VALAR_VENTURES}",
+                f"Paypal mafia, Palantir co-founder, Facebook investor, Epstein invested ~$40 million in his fund {VALAR_VENTURES}",
                 r"(Peter )?Th(ie|ei)l",
                 link_to_bio='https://www.nytimes.com/2026/02/05/business/epstein-investments-palantir-coinbase-thiel.html',
             ),
@@ -2772,6 +2779,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact('Rajeev Misra', "formerly Softbank Vision Fund executive", r"[NR]ajeev"),
             Contact(REID_HOFFMAN, "PayPal mafia member, founder of LinkedIn, Democrat donor", match_partial=None),
             Contact('Reuben Kobulnik', THIELS_VALAR),
+            Contact('Saida Sapieva', f'maybe assistant to {REID_HOFFMAN} {QUESTION_MARKS}'),
             Contact('Talia Parnass', f"{PETER_THIEL}'s assistant"),
             Contact(TED_LEONSIS, 'AOL executive, owner of Monumental Sports (Wizards, Capitals)'),
             Contact(
@@ -2834,6 +2842,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Erick? Sc?hmidt",
             r"(Jeff )?Bezos",
             r"Larry Page",
+            r"Lytro",  # a16z co.
             r"(Mark )?Zuckerberg",
             r"Najeev",
             r"Palantir",
@@ -2856,8 +2865,10 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         patterns=[
             r"Activision( Blizzard)?",
             r"AG?I",
+            r"(?-i:A)pple",
             r"Artificial (General )?Intelligence",
             r"Blizzard Entertainment",
+            r"Cisco",
             r"cyber( (security|space))?",
             r"deep learning",
             r"Dropbox",
@@ -2865,6 +2876,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"fintech",
             r"Google",
             r"Instagram",
+            r"(?-i:I)ntel",
             r"Microsoft",
             r"MSFT",
             r"Overstock(.com)?",
@@ -2875,6 +2887,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"SkyNet",
             r"Skyp(ed?|ing)",
             r"Tim Cook",
+            r"Twitter",
             r"Uber",
             r"WhatsApp",
             r"(?-i:Y)ahoo",
