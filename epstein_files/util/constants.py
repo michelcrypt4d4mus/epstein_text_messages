@@ -1587,6 +1587,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA02565917', description='Hassan Mohammed Abdul Latif Jameel is a Saudi businessman and philanthropist'),
     EmailCfg(id='EFTA02277132', description='hotel booking in Kiev'),
     EmailCfg(id='EFTA00927227', description=f"{IAN_OSBORNE} pitches his new venture fund {HEDOSOPHIA} to Epstein", is_interesting=True),
+    EmailCfg(id='EFTA01756112', description=f'{JOI_ITO} plays down Epstein\'s "jail thing"'.),
     EmailCfg(id='EFTA01767036', description=f'"Karim" is probably {ALLEGED_KARIM_WADE}'),
     EmailCfg(id='EFTA02515416', description=f'{JEAN_LUC_BRUNEL} is having visa problems', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA02513560', description=f"{JEAN_LUC_BRUNEL} doesn't want to speak on the phone", truncate_to=NO_TRUNCATE),
@@ -3916,6 +3917,7 @@ UNINTERESTING_EMAIL_IDS = [
     'EFTA02507454',
     'EFTA02478704',
     'EFTA01862308',
+    'EFTA02570707',
     '030724',
     # Ehud Barak
     '025878',
