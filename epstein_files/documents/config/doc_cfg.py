@@ -528,6 +528,7 @@ class DocCfg:
 
     @classmethod
     def set_categories(cls, cfgs: Sequence['DocCfg'], category: str | Path) -> None:
+        """Set the `category` property for all `cfgs`."""
         category = category.stem if isinstance(category, Path) else category
         logger.debug(f"Setting category for {len(cfgs)} configs to '{category}'")
 
