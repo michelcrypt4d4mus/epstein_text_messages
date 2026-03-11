@@ -800,7 +800,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             ),
         ],
         patterns=[
-            r"alternative (currenc(ies|y)|money)",
+            r"altern?ative (currenc(ies|y)|money)",
             r"Balaji( Srinivisan)?",
             r"Ben Forman",
             r"bit[o\s]?coin( Foundation)?",
