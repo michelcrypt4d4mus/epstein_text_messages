@@ -1580,7 +1580,7 @@ EMAILS_CONFIG = [
         description=f'Epstein asks {PETER_MANDELSON} to find him a new assistant, "multi lingaul, 22-25"',
         truncate_to=1200,
     ),
-    EmailCfg(id='EFTA00829178', description="Epstein deletes his Instagram account", truncate_to=598),
+    EmailCfg(id='EFTA00829178', description="Epstein deletes his Instagram account", truncate_to=598, is_interesting=True),
     EmailCfg(id='EFTA00664252', description='Epstein explains his "no wives / no girlfriends" policy', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA02689871', description=f"Epstein instructs {DAVID_STERN} to avoid {BANQUE_HAVILLAND}"),
     EmailCfg(id='EFTA00949376', description=f"Epstein paying {MC2_MODEL_MGMT}", truncate_to=NO_TRUNCATE),
