@@ -1139,7 +1139,7 @@ EMAILS_CONFIG = [
         id='EFTA01988194',
         author=RASSECK_BOURGI,
         description=f'{RASSECK_BOURGI} using his wife\'s email "because it is a private email" to ask for favours re: Harvard',
-        truncate_to=735,
+        truncate_to=NO_TRUNCATE,
     ),
     EmailCfg(id='EFTA01978227', description=f"Epstein arranging tour of Harvard for {RASSECK_BOURGI}'s daughter"),
     EmailCfg(
@@ -3976,6 +3976,8 @@ UNINTERESTING_EMAIL_IDS = [
     'EFTA01899565',
     # Ramsey Elkholy
     'EFTA02438522',  # visible elsewhere
+    # Rasseck Bourgi
+    'EFTA01990389',  # visible in EFTA01988194
     # Renata Bolotova
     'EFTA01903041',
     'EFTA01969322',

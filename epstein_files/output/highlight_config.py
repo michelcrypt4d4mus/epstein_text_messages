@@ -168,6 +168,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"(?-i:TED)x?",
             r"Tulane",
             r"UCLA",
+            r"Uni(versity)? of Cumbria",
             r"Wharton",
             r"Yale",
         ],
