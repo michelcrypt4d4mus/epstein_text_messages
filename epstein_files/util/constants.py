@@ -3158,6 +3158,13 @@ OTHER_FILES_GOVERNMENT = [
         author=FBI,
         description='interview re: Paolo Zampolli, Epstein assaults, and the possibility Epstein introduced Melania to Donald Trump',
     ),
+    # https://www.bbc.com/news/articles/c6271ngl014o
+    DocCfg(
+        id='EFTA01660676',
+        author=FBI,
+        description='tip about recently convicted rapists Tal and Oren Alexander at Epstein\'s house',
+        show_full_panel=True,
+    ),
     DocCfg(id='EFTA00247131', author=FBI, description='search warrant for New York house', date='2019-07-07'),
     DocCfg(id='EFTA01249591', author=FBI, description=f"allegations against {HENRY_JARECKI}"),
     DocCfg(id='EFTA00081226', author=FBI, description='interview with minor victim'),

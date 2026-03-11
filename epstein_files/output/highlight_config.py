@@ -2321,8 +2321,9 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         patterns=[
             r"\w+@mc2mm.com",
             r"Faena",
-            r"noah\s*models(.com)?",
             r"(?<!(ID|ge|te|xt)\s)model(ing|s)",
+            r"noah\s*models(.com)?",
+            r"Victoria's Secret",
         ],
     ),
     HighlightedNames(
