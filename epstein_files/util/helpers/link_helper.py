@@ -21,7 +21,6 @@ SOCIAL_MEDIA_LINK_STYLE = 'pale_turquoise4'
 SUBSTACK_POST_LINK_STYLE = 'bright_cyan'
 
 SOCIAL_PLATFORMS = {
-    'substack': 'substack',
     'universeodon': 'mastodon',
     'x.com': 'twitter',
 }
