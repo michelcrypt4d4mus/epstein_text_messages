@@ -144,6 +144,7 @@ UNCONFIRMED_TEXTS_CONFIG = [
     ),
     TextCfg(id='031045', author=STEVE_BANNON, author_uncertain='AI says Trump and New York Times coverage'),
     TextCfg(id='027275', is_interesting=True, comment='"Crypto- Kerry- Qatar -sessions"'),
+    TextCfg(id='027792', duplicate_ids=['027694'], dupe_type='quoted'),
 
     # DOJ PDFs
     TextCfg(
