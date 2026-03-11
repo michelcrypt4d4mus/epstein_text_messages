@@ -195,7 +195,7 @@ file_id,category,author,is_interesting,timestamp,recipients_str,sent_from_device
 019219,email,Kathryn Ruemmler,,2017-02-11 13:37:47,Jeffrey Epstein,Sent from my iPad,
 019233,politics,Freedom House,False,2017-06-02 00:00:00,,,"Freedom House 'Breaking Down Democracy: Goals, Strategies, and Methods of Modern Authoritarians'"
 019297,letter,Alan Dershowitz's lawyer Andrew G. Celli,True,2018-02-09 00:00:00,,,"letter from Alan Dershowitz's lawyer Andrew G. Celli to Laura A. Menninger, Paul G. Cassell, Sigrid S. McCawley, Stanley Pottinger threatening sanctions re: Virginia Giuffre v. Ghislaine Maxwell"
-019300,conference,Svetlana Pozhidaeva,True,2019-04-05 00:00:00,,,Svetlana Pozhidaeva Women Empowerment (WE) conference f. Kathryn Ruemmler
+019300,girls,Svetlana Pozhidaeva,True,2019-04-05 00:00:00,,,Svetlana Pozhidaeva Women Empowerment (WE) conference f. Kathryn Ruemmler
 019302,email,Steve Bannon,True,2018-07-22 23:27:26,Jeffrey Epstein,Sent via BlackBerry by AT&T,
 019305,email,Steve Bannon,True,2018-07-22 23:58:18,Jeffrey Epstein,Sent via BlackBerry by AT&T,
 019308,email,Steve Bannon,True,2018-07-23 00:18:57,Jeffrey Epstein,Sent via BlackBerry by AT&T,
@@ -310,7 +310,7 @@ file_id,category,author,is_interesting,timestamp,recipients_str,sent_from_device
 022260,email,Vinit Sahni,,2014-03-14 02:24:19,Jeffrey Epstein;Paul Morris,,
 022262,email,Vinit Sahni,,2014-03-14 04:41:47,Jeffrey Epstein,,
 022265,email,Reid Weingarten,,2017-03-15 12:14:18,Jeffrey Epstein,Sent from my BlackBerry 10 smartphone.,
-022267,conference,Svetlana Pozhidaeva,True,,,,Svetlana Pozhidaeva Women Empowerment (WE) conference founder essay about growing the seminar business
+022267,girls,Svetlana Pozhidaeva,True,,,,Svetlana Pozhidaeva Women Empowerment (WE) conference founder essay about growing the seminar business
 022272,email,Jeffrey Epstein,,2014-03-14 03:39:28,Vinit Sahni,,
 022275,email,Jeffrey Epstein,,2018-08-23 16:01:11,Kathryn Ruemmler,,
 022277,legal,,False,2018-06-07 00:00:00,,,text of National Labour Relations Board (NLRB) law
@@ -328,7 +328,7 @@ file_id,category,author,is_interesting,timestamp,recipients_str,sent_from_device
 022396,email,Svetlana Pozhidaeva,True,2016-11-22 17:55:37,Jeffrey Epstein,,Svetlana Pozhidaeva (???)
 022397,email,Paul Krassner,,2017-03-22 14:35:34,Jeffrey Epstein,,
 022405,academia,Noam Chomsky,False,,,,letter attesting to Epstein's good character by Noam Chomsky
-022407,conference,Svetlana Pozhidaeva,True,2018-03-10 00:00:00,,,Svetlana Pozhidaeva Women Empowerment (WE) conference seminar pitch deck
+022407,girls,Svetlana Pozhidaeva,True,2018-03-10 00:00:00,,,Svetlana Pozhidaeva Women Empowerment (WE) conference seminar pitch deck
 022417,property,Park Partners NYC,False,2017-03-10 00:00:00,,,Park Partners NYC letter to partners in real estate project with architectural plans
 022443,email,Nicholas Ribis,,2016-01-21 14:28:39,Jeffrey Epstein,,
 022444,email,Nicholas Ribis,,2016-04-25 14:04:49,Jeffrey Epstein,,
@@ -2149,8 +2149,8 @@ file_id,category,author,is_interesting,timestamp,recipients_str,sent_from_device
 032369,email,Landon Thomas Jr,,2016-11-14 14:51:53,Jeffrey Epstein,,
 032370,email,Landon Thomas Jr,,2016-11-14 14:54:06,Jeffrey Epstein,,
 032372,email,Landon Thomas Jr,,2016-11-14 14:59:28,Jeffrey Epstein,,
-032374,email,Maria Prusakova,True,2016-11-16 18:48:02,Jeffrey Epstein,,Maria Prusakova boyfriend named Christian mentioned
-032375,email,Maria Prusakova,True,2016-11-16 18:55:56,Jeffrey Epstein,,Maria Prusakova
+032374,girls,Maria Prusakova,True,2016-11-16 18:48:02,Jeffrey Epstein,,Maria Prusakova boyfriend named Christian mentioned
+032375,girls,Maria Prusakova,True,2016-11-16 18:55:56,Jeffrey Epstein,,Maria Prusakova
 032376,email,Linda Pinto,,2016-11-25 11:53:06,Jeffrey Epstein,,
 032378,email,Lawrance Visoski,,2016-11-25 22:28:28,Jeffrey Epstein,Sent from my iPhone,
 032379,email,Jennie Saunders,,2016-11-27 17:50:02,Jeffrey Epstein,,
@@ -2643,7 +2643,7 @@ file_id,category,author,is_interesting,timestamp,recipients_str,sent_from_device
 033243,email,Kathryn Ruemmler,,2017-07-30 15:11:00,Jeffrey Epstein,,
 033244,email,Richard Kahn,,2017-08-07 19:51:25,Jeffrey Epstein,,
 033245,email,Landon Thomas Jr,,2017-08-10 18:35:55,Jeffrey Epstein,,
-033246,email,Maria Prusakova,True,2017-09-06 05:08:21,Jeffrey Epstein,,Maria Prusakova
+033246,girls,Maria Prusakova,True,2017-09-06 05:08:21,Jeffrey Epstein,,Maria Prusakova
 033247,email,,True,2017-09-06 09:18:52,Jeffrey Epstein,,
 033249,email,Deepak Chopra,,2017-09-06 17:19:43,Jeffrey Epstein,,
 033251,email,Lawrance Visoski,,2017-09-16 19:57:47,Darren Indyke;Jeffrey Epstein;Richard Kahn,,
@@ -5964,7 +5964,7 @@ EFTA00995559,email,Renata Bolotova,True,2014-08-17 00:16:27,Jeffrey Epstein,,Ren
 EFTA00995592,email,Vincenzo Iozzo,True,2014-08-17 14:09:58,Jeffrey Epstein,Sent from my Iphone,
 EFTA00997251,email,Brock Pierce,False,2014-09-24 13:16:48,Jeffrey Epstein,,
 EFTA00997253,email,Jeffrey Epstein,False,2014-09-24 13:18:43,Brock Pierce,,
-EFTA00997627,email,Jeffrey Epstein,True,2014-09-26 07:36:20,Maria Prusakova,,"""you will be introduced to more gorgeous Alicas, i promise"""
+EFTA00997627,girls,Jeffrey Epstein,True,2014-09-26 07:36:20,Maria Prusakova,,"""you will be introduced to more gorgeous Alicas, i promise"""
 EFTA00997666,girls,Jeffrey Epstein,True,2017-10-04 12:22:35,Julia Santos,,
 EFTA00997801,email,Brock Pierce,True,2014-09-28 01:04:50,Jeffrey Epstein,,
 EFTA00997803,email,Brock Pierce,True,2014-09-28 01:06:35,Jeffrey Epstein,,

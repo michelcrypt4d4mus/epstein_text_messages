@@ -526,6 +526,14 @@ class DocCfg:
 
         logger.info(f"Created {created} {cls.__name__} with {prop}={val}, updated {updated} existing.")
 
+    @classmethod
+    def set_categories(cls, cfgs: Sequence['DocCfg'], category: str | Path) -> None:
+        category = category.stem if isinstance(category, Path) else category
+        logger.debug(f"Setting category for {len(cfgs)} configs to '{category}'")
+
+        for cfg in cfgs:
+            cfg.set_category(cfg.category or category)
+
 
 @dataclass(kw_only=True)
 class CommunicationCfg(DocCfg):

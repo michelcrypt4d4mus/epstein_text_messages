@@ -8,6 +8,7 @@ from typing import Sequence
 from rich.console import Console
 from rich.text import Text
 
+from epstein_files.documents.config.categories.legal import EPSTEIN_V_ROTHSTEIN_EDWARDS
 from epstein_files.documents.documents.categories import (CATEGORY_STYLES, CATEGORY_STYLE_MAPPING,
      DEFAULT_CATEGORY_STYLE, Interesting, Neutral, Uninteresting)
 from epstein_files.documents.emails.constants import (ALL_HEADER_PATTERNS, QUOTE_INDENT_CHAR_GROUP, REPLY_REGEX,
@@ -17,7 +18,6 @@ from epstein_files.people.contact import Contact, acronym, organization, epstein
 from epstein_files.people.names import *
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constant.urls import SUBSTACK_INSIGHTS_POD
-from epstein_files.util.constants import EPSTEIN_V_ROTHSTEIN_EDWARDS
 from epstein_files.util.env import args
 from epstein_files.util.helpers.data_helpers import flatten
 from epstein_files.util.helpers.string_helper import indented

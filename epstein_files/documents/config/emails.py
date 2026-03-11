@@ -1,8 +1,7 @@
 """
-Custom configurations for various files.
+Custom configurations for emails of no particular category.
 """
-from itertools import groupby
-
+from epstein_files.documents.config.categories.crypto import VALAR_FUND
 from epstein_files.documents.documents.categories import Interesting, Neutral
 from epstein_files.documents.documents.config_builder import (WOLFF_EPSTEIN_ARTICLE_DRAFT,
      binant_redacted, shaher_murder_email)
@@ -15,7 +14,6 @@ from epstein_files.util.logging import logger
 
 OTHER_FILES_PFX = 'OTHER_FILES_'
 PARTICIPANTS_FIELD = 'Participants: field'
-VALAR_FUND = f"{PETER_THIEL}'s {VALAR_VENTURES} fund"
 
 
 ########################################################################################################
@@ -29,7 +27,6 @@ KATHY_REASON = 'from "Kathy" about dems, sent from iPad'
 LARRY_REASON = 'Planes discussion signed "Larry"'
 LINDA_STONE_ATTRIBUTION = '"iPhone word substitution" in signature, which is traced back to "Linda, thanks" in EFTA00961792'
 PAULA_REASON = 'signature of "Sent via BlackBerry from T-Mobile"'
-PRUSAKOVA_BERKELY = 'Epstein paid for Prusakova to go to Berkeley'
 SENT_FROM_SOON_YI = '"Sent from Soon-Yi\'s iPhone"'
 SNEAKY_DOG = '"sneaky dog"'
 SINCERELY_SNEAKY = f'{SNEAKY_DOG} + "Sincerely"'
@@ -239,21 +236,6 @@ EMAILS_CONFIG = [
     EmailCfg(id='033488', author=LAWRANCE_VISOSKI, duplicate_ids=['033154']),
     EmailCfg(id='033309', author=LINDA_STONE, author_reason='"Co-authored with iPhone autocorrect"'),
     EmailCfg(id='017581', author=LISA_RANDALL, author_reason='reply header'),
-    EmailCfg(
-        id='032374',
-        author=MARIA_PRUSAKOVA,
-        author_reason=PRUSAKOVA_BERKELY,
-        description='boyfriend named Christian mentioned',
-        is_interesting=True,
-    ),
-    EmailCfg(id='032375', author=MARIA_PRUSAKOVA, author_reason=PRUSAKOVA_BERKELY, truncate_to=295),
-    EmailCfg(id='033246', author=MARIA_PRUSAKOVA, author_reason='Kind regards/Cordialement in signature'),
-    EmailCfg(
-        id='EFTA00997627',
-        highlight_quote='you will be introduced to more gorgeous Alicas, i promise',
-        recipients=[MARIA_PRUSAKOVA],
-        recipient_uncertain='Kind regards/Cordialement in signature',
-    ),
     EmailCfg(id='026609', author='Mark Green', author_reason='Actually a fwd, Mark Green is in signature'),
     EmailCfg(id='030472', author=MARTIN_WEINBERG, author_uncertain='Maybe. in reply'),
     EmailCfg(

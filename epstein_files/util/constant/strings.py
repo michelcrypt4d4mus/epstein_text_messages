@@ -48,6 +48,7 @@ LEON_BLACK_EMAIL_ID = '023208'
 
 # Misc
 APPEARS_IN = 'appears in'
+ARTICLE_DRAFT = 'draft of an article about'
 AUTHOR = 'author'
 CHRONOLOGICAL = 'chronological'
 DEFAULT = 'default'
@@ -58,7 +59,9 @@ LAW_ENFORCEMENT = 'law enforcement'
 NA = 'n/a'
 REDACTED = '<REDACTED>'
 QUESTION_MARKS = '(???)'
+SCREENSHOT = 'screenshot of'
 TEXT_MESSAGE = 'text message'
+TRANSLATION = 'translation of'
 VICTIM_DIARY = 'victim diary'
 
 # CLI args
