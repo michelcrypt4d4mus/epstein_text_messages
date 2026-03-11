@@ -1,4 +1,3 @@
-import os
 import re
 from pathlib import Path
 from subprocess import check_output, run
@@ -21,6 +20,7 @@ HOUSE_FILE_ID_REGEX = re.compile(fr".*{HOUSE_OVERSIGHT_NOV_2025_FILE_NAME_REGEX.
 
 FILENAME_LENGTH = len(HOUSE_OVERSIGHT_PREFIX) + 6  # TODO: this is obsolete
 DIFF_COLORS = ['spring_green4', 'sea_green1']
+DIFF_PFXES = ['<', '>']
 KB = 1024
 MB = KB * KB
 
@@ -28,8 +28,6 @@ all_txt_paths = lambda: doj_txt_paths() + oversight_txt_paths() + dropsite_eml_p
 doj_txt_paths = lambda: [f for f in DOJ_TXTS_20260130_DIR.glob('**/*.txt')] if DOJ_TXTS_20260130_DIR else []
 dropsite_eml_paths = lambda: [f for f in DROPSITE_EMLS_DIR.glob('*.eml')]
 oversight_txt_paths = lambda: [f for f in DOCS_DIR.iterdir() if f.is_file() and not f.name.startswith('.')]
-
-file_size = lambda file_path: Path(file_path).stat().st_size
 
 
 # Coerce methods handle both string and int arguments.
@@ -116,6 +114,9 @@ def extract_file_id(filename_or_id: int | str | Path) -> str:
         raise RuntimeError(f"Failed to extract file ID from '{filename_or_id}' (type: {type(filename_or_id).__name__}!")
 
 
+file_size = lambda file_path: Path(file_path).stat().st_size
+
+
 def file_size_str(file_path: str | Path, digits: int | None = None):
     return file_size_to_str(file_size(file_path), digits)
 
@@ -171,6 +172,7 @@ def log_file_write(file_path: str | Path) -> None:
 
 
 def open_file_or_url(thing_to_open: str | Path) -> None:
+    """Use `open` shell command to open `thing_to_open` (usually a local path or URL)."""
     cmd = 'code' if str(thing_to_open).endswith('.txt') else 'open'
     check_output([cmd, str(thing_to_open)])
 
@@ -185,7 +187,7 @@ def _print_colored_diff_output(diff_result: str, files: list[str | Path]) -> lis
     from epstein_files.output.rich import console
 
     panel_file_txts = [
-        Text('').append(f"file{i + 1}: ", 'dim').append(str(relative_to_project_dir(f)), DIFF_COLORS[i])
+        Text(f"{DIFF_PFXES[i]} ").append(f"file{i + 1}: ", 'dim').append(str(relative_to_project_dir(f)), DIFF_COLORS[i])
         for i, f in enumerate(files)
     ]
 
@@ -193,9 +195,9 @@ def _print_colored_diff_output(diff_result: str, files: list[str | Path]) -> lis
     diff_line_txts = []
 
     for line in diff_result.split('\n'):
-        if line.startswith('<'):
+        if line.startswith(DIFF_PFXES[0]):
             style = DIFF_COLORS[0]
-        elif line.startswith('>'):
+        elif line.startswith(DIFF_PFXES[1]):
             style = DIFF_COLORS[1]
         else:
             style='dim'
