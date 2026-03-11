@@ -591,7 +591,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='031659', is_interesting=True, highlight_quote='i have met some very bad people „ none as bad as trump'),
     EmailCfg(id='031326', is_interesting=True, highlight_quote='that dog that hasn\'t barked is trump'),
     EmailCfg(id='031451', is_interesting=True, highlight_quote='would you like photso of donald and girls in bikinis in my kitchen'),
-    EmailCfg(id='031596', is_interesting=True, highlight_quote='would you like photso of donald and girls in bikinis in my kitchen'),
+    EmailCfg(id='031596', is_interesting=True, highlight_quote='would you like photso of donald and girls in bikinis in my kitchen', truncate_to=500),
     EmailCfg(id='031601', is_interesting=True, highlight_quote='Old gf i gave to donald', truncate_to=2000),
     # actual_text
     EmailCfg(id='029344', actual_text='I thought of you when I read this article. Was this your idea? Alan', is_fwded_article=True),
@@ -1042,7 +1042,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00461202', author=LESLEY_GROFF),
     EmailCfg(id='EFTA02246744', author=LESLEY_GROFF),
     EmailCfg(id='EFTA02102384', author=LESLEY_GROFF),
-    EmailCfg(id='EFTA02067245', author=LESLEY_GROFF, description=VALAR_MEETING, is_interesting=True, author_uncertain=True),
+    EmailCfg(id='EFTA02067245', author=LESLEY_GROFF, description=VALAR_MEETING, is_interesting=True, author_uncertain=True, truncate_to=600),
     EmailCfg(id='EFTA02068490', author=LESLEY_GROFF, description=VALAR_MEETING, is_interesting=True, author_uncertain=True),
     EmailCfg(id='EFTA02067872', author=LESLEY_GROFF, description=VALAR_MEETING, is_interesting=True, author_uncertain=True),
     EmailCfg(id='EFTA01731288', author=LESLEY_GROFF, author_reason='signature'),
@@ -3980,6 +3980,7 @@ UNINTERESTING_EMAIL_IDS = [
     # Krassner
     '033345',
     # Leon Black related
+    '023208_24',
     '023208_26',
     # Lesley?
     'EFTA02229402',
@@ -4004,6 +4005,7 @@ UNINTERESTING_EMAIL_IDS = [
     'EFTA02719248',
     'EFTA02696764',
     'EFTA00927986',
+    'EFTA00667874',
     # Svetlana
     'EFTA01772677',
     # Tyler Shears
