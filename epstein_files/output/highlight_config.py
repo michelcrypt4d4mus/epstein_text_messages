@@ -2762,7 +2762,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact('Nathan Myhrvold', f"former CTO of Microsoft, co-founder of Intellectual Ventures"),
             Contact(
                 PETER_THIEL,
-                f"Paypal mafia, Palantr co-founder, Facebook investor, Epstein invested ~$40 million in his fund {VALAR_VENTURES}",
+                f"Paypal mafia, Palantir co-founder, Facebook investor, Epstein invested ~$40 million in his fund {VALAR_VENTURES}",
                 r"(Peter )?Th(ie|ei)l",
                 link_to_bio='https://www.nytimes.com/2026/02/05/business/epstein-investments-palantir-coinbase-thiel.html',
             ),
