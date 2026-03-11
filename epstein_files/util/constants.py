@@ -2922,7 +2922,7 @@ OTHER_FILES_GIRLS = [
     ),
     EmailCfg(
         id='EFTA00704924',
-        description=f"attachment is pic of {JOSHUA_FINK} + {FILIPA_PEROVIC} who later married",
+        description=f"stalking Josh Fink (attachment is pic of {JOSHUA_FINK} and {FILIPA_PEROVIC} who later married)",
         show_with_name=JOSHUA_FINK,
     ),
     EmailCfg(
