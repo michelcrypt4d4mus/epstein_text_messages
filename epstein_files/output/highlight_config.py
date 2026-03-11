@@ -2141,6 +2141,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 match_partial=None,
             ),
             Contact('Nursultan Nazarbayev', 'former president of Kazakhstan', match_partial='both'),
+            Contact('Dariga Nazarbayeva', 'daughter of Nursultan Nazarbayev'),
             Contact(
                 'Rakhat Aliyev',
                 'corrupt Kazakh politician',

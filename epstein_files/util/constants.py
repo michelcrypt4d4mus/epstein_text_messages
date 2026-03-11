@@ -105,7 +105,7 @@ UNCONFIRMED_TEXTS_CONFIG = [
     TextCfg(id='027148', author=MELANIE_WALKER),
     TextCfg(id='027440', author=MICHAEL_WOLFF, author_uncertain='AI says Trump book/journalism project'),
     TextCfg(id='027568', author=STEVE_BANNON),
-    TextCfg(id='027695', author=STEVE_BANNON),
+    TextCfg(id='027695', author=STEVE_BANNON, description='"kazak daughter the key" may be about Dariga Nazarbayeva'),
     TextCfg(id='027594', author=STEVE_BANNON),
     TextCfg(id='027549', author=STEVE_BANNON),
     TextCfg(id='027764', author=STEVE_BANNON, description=f"includes discussion of Facebook's attempt at crypto called Libra", is_interesting=True),
