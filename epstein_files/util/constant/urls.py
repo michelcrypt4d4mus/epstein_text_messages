@@ -7,7 +7,7 @@ from rich.text import Text
 
 from epstein_files.output.site.sites import GH_PROJECT_URL, TO_FROM, SiteType
 from epstein_files.util.env import args
-from epstein_files.util.constant.strings import ARCHIVE_ALT_LINK_STYLE, SOCIAL_MEDIA_LINK_STYLE, TEXT_LINK
+from epstein_files.util.constant.strings import SOCIAL_MEDIA_LINK_STYLE, TEXT_LINK
 from epstein_files.util.helpers.file_helper import coerce_file_stem
 from epstein_files.util.helpers.link_helper import SUBSTACK_POST_LINK_STYLE, ExternalLink, link_markup, link_text_obj
 from epstein_files.util.helpers.string_helper import remove_question_marks
@@ -97,10 +97,10 @@ EXTERNAL_LINKS = OFFICIAL_LINKS + [
 ]
 
 CRYPTADAMUS_SOCIAL_LINKS = [
-    link_text_obj('https://universeodon.com/@cryptadamist/115572634993386057', '@mastodon', style=SOCIAL_MEDIA_LINK_STYLE),
-    link_text_obj(SUBSTACK_URL, '@substack', style=SOCIAL_MEDIA_LINK_STYLE),
-    link_text_obj('https://x.com/Cryptadamist/status/1990866804630036988', '@twitter', style=SOCIAL_MEDIA_LINK_STYLE),
-    link_text_obj(GH_PROJECT_URL, '@github', style=SOCIAL_MEDIA_LINK_STYLE)
+    ExternalLink.social_link('universeodon.com/@cryptadamist/115572634993386057', 'mastodon'),
+    ExternalLink.social_link(SUBSTACK_URL),
+    ExternalLink.social_link('https://x.com/Cryptadamist/status/1990866804630036988'),
+    ExternalLink.social_link(GH_PROJECT_URL),
 ]
 
 # Misc

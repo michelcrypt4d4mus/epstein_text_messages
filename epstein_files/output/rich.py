@@ -162,8 +162,14 @@ def indent_txt(txt: str | Text, spaces: int = 4, prefix: str = '') -> Text:
     return indent + Text(f"\n{indent}").join(txt.split('\n'))
 
 
-def join_texts(txts: Sequence[str | Text], join: str = ' ', encloser: str = '', encloser_style: str = 'wheat4') -> Text:
+def join_texts(
+    _txts: Sequence[str | ExternalLink | Text],
+    join: str = ' ',
+    encloser: str = '',
+    encloser_style: str = 'wheat4'
+) -> Text:
     """Join rich.Text objs into one."""
+    txts = [t.__rich__() if isinstance(t, ExternalLink) else t for t in _txts]
     txt = Text('')
 
     for i, _txt in enumerate(txts):

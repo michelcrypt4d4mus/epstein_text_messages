@@ -7,7 +7,8 @@ from dataclasses import dataclass
 from rich.text import Text
 from typing import Self
 
-from epstein_files.util.constant.strings import ARCHIVE_LINK_COLOR, ARCHIVE_ALT_LINK_STYLE, ARCHIVE_LINK_COLOR
+from epstein_files.util.constant.strings import (ARCHIVE_LINK_COLOR, ARCHIVE_ALT_LINK_STYLE,
+     ARCHIVE_LINK_COLOR, SOCIAL_MEDIA_LINK_STYLE)
 from epstein_files.util.helpers.rich_helpers import enclose, join_non_empty
 
 EXTERNAL_LINK_STYLE = 'light_slate_grey bold'
@@ -15,6 +16,12 @@ OFFICIAL_LINK_STYLE = 'navajo_white3 bold'
 SUBSTACK_POST_LINK_STYLE = 'bright_cyan'
 
 LINK_REGEX = re.compile(r"^https?://.*")
+
+SOCIAL_PLATFORMS = {
+    'substack': 'substack',
+    'universeodon': 'mastodon',
+    'x.com': 'twitter',
+}
 
 
 @dataclass
@@ -50,12 +57,29 @@ class ExternalLink:
             **kwargs
         )
 
+    @classmethod
+    def social_link(cls, url: str, platform_name: str = '') -> Self:
+        """Alternate constructor for social media links."""
+        if not platform_name:
+            for domain_str, platform in SOCIAL_PLATFORMS.items():
+                if domain_str in url:
+                    platform_name = platform
+                    break
+
+        link = cls(url, platform_name, link_style=SOCIAL_MEDIA_LINK_STYLE)
+        link.link_text = f"@{link.link_text or link.domain_stem}"
+        return link
+
+    @property
+    def domain_stem(self) -> str:
+        """e.g. retrun 'github' for a github.com/blah URL."""
+        return self.url.removeprefix('https://').split('.')[0]
+
     @property
     def link(self) -> Text:
         return link_text_obj(self.url, self.link_text, self.link_style)
 
-    @property
-    def link_with_comment(self) -> Text:
+    def __rich__(self) -> Text:
         comment = Text('')
 
         if self.comment_url:
@@ -65,9 +89,6 @@ class ExternalLink:
             comment = enclose(Text(self.comment, 'color(195) dim italic'), '()', self.parentheses_style)
 
         return join_non_empty(self.link, comment)
-
-    def __rich__(self) -> Text:
-        return self.link_with_comment
 
 
 def coerce_https(url: str) -> str:

@@ -170,7 +170,7 @@ def _print_abbreviations_table() -> None:
 def _print_external_links() -> None:
     print_centered(Text('External Links', style=TABLE_TITLE_STYLE))
 
-    for link in sorted(EXTERNAL_LINKS, key=lambda link: -len(link.link_with_comment)):
+    for link in sorted(EXTERNAL_LINKS, key=lambda link: -len(link.__rich__())):
         print_centered(link)
 
 
