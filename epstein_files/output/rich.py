@@ -211,7 +211,8 @@ def print_centered(obj: RenderableType, style: str = '') -> None:
     console.print(Align.center(obj), highlight=False, style=style)
 
 
-def print_json(label: str, obj: object, skip_falsey: bool = False) -> None:
+def print_json(obj: object, label: str = '', skip_falsey: bool = False) -> None:
+    """Print an `object` as rich prettified / formatted JSON."""
     if isinstance(obj, dict):
         if skip_falsey:
             obj = {k: v for k, v in obj.items() if v}
@@ -219,7 +220,10 @@ def print_json(label: str, obj: object, skip_falsey: bool = False) -> None:
         obj = json_safe(obj)
 
     console.line()
-    console.print(Panel(label, expand=False))
+
+    if label:
+        console.print(Panel(label, expand=False))
+
     console.print_json(json.dumps(obj, sort_keys=True), indent=4)
     console.line()
 
@@ -351,4 +355,4 @@ def wrap_in_markup_style(msg: str, style: str | None = None) -> str:
 
 
 if args.colors_only and args.debug:
-    print_json('THEME_STYLES', THEME_STYLES)
+    print_json(THEME_STYLES, 'THEME_STYLES')

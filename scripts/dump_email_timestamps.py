@@ -17,7 +17,6 @@ from epstein_files.output.highlight_config import HIGHLIGHT_GROUPS, get_style_fo
 from epstein_files.output.highlighted_names import HighlightedNames
 from epstein_files.output.html.builder import table_to_html, write_templated_html
 from epstein_files.people.person import Person
-from epstein_files.util.constant.html import CUSTOM_HTML_TEMPLATE, RICH_HTML_TEMPLATE
 from epstein_files.people.names import *
 from epstein_files.util.constants import CONFIGS_BY_ID, EmailCfg
 from epstein_files.util.helpers.data_helpers import *
@@ -25,7 +24,7 @@ from epstein_files.util.helpers.debugging_helper import print_all_timestamps, pr
 from epstein_files.util.helpers.file_helper import open_file_or_url
 from epstein_files.util.helpers.string_helper import extract_emojis, quote
 from epstein_files.util.logging import logger
-from epstein_files.output.rich import bool_txt, console, highlighter, print_json, print_subtitle_panel
+from epstein_files.output.rich import bool_txt, console, highlighter, print_subtitle_panel
 
 
 # Show biggest files

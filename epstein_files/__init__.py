@@ -218,7 +218,7 @@ def epstein_show():
             console.print(doc._debug_txt(), style='dim')
 
     if args.stats:
-        print_json("Highlight counts", highlighter.highlight_counts)
+        print_json(highlighter.highlight_counts, "Highlight counts")
 
 
 def _load_files_and_check_early_exit_args() -> tuple[Timer, EpsteinFiles]:

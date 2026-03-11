@@ -46,7 +46,7 @@ def print_all_timestamps(epstein_files):
 
 def print_highlight_patterns() -> None:
     from epstein_files.output.rich import print_json
-    print_json('patterns', highlight_config_dict())
+    print_json(highlight_config_dict(), 'rich highlight patterns')
     import sys
     sys.exit()
 

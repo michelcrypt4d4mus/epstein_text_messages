@@ -12,7 +12,6 @@ from epstein_files.documents.email import Email
 from epstein_files.documents.other_file import OtherFile
 from epstein_files.output.doc_printer import DocPrinter
 from epstein_files.output.html.builder import table_to_html, write_templated_html
-from epstein_files.output.rich import console, highlighter, print_json, print_subtitle_panel
 from epstein_files.output.site.sites import SAMPLE_HTML_PATH
 from epstein_files.output.title_page import print_title_page_top, print_title_page_bottom
 from epstein_files.people.person import Person
