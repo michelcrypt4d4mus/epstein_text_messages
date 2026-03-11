@@ -2589,6 +2589,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         contacts=[
             Contact('Aksana Samy', 'Russian girl'),
             Contact('Alena Davydenkova', 'Russian girl'),
+            Contact('Alisa Khayrutdinova', 'Russian girl'),
             Contact('Alysia Riabenkova', 'Russian painter', r"Alesia|Alysia( Riabenkova)?|Riabenkova"),
             Contact(ANASTASIYA_SIROOCHENKO, '', r"Anastasiya( Siro(chenko)?)?"),
             Contact(ANNA_KASATKINA, 'Russian girl'),
@@ -2605,6 +2606,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(
                 KARYNA_SHULIAK,
                 f"girlfriend to whom Epstein tried to leave $50 million and the island, alleged sham marriage to {JENNIFER_KALIN}",
+                r"(Karyna|Карина|Кариша)( Shuliak)?",
                 link_to_bio='https://www.lemonde.fr/en/international/article/2026/02/22/karyna-shuliak-was-jeffrey-epstein-s-last-partner-and-main-heiress-she-won-t-benefit-from-his-will_6750738_4.html',
             ),
             Contact(
