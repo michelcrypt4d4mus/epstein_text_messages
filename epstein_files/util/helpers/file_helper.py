@@ -175,8 +175,9 @@ def open_file_or_url(thing_to_open: str | Path) -> None:
     check_output([cmd, str(thing_to_open)])
 
 
-def path_relative_to_project(_path: str | Path) -> Path:
-    return Path(str(_path).removeprefix(f"{PROJECT_DIR}{os.sep}"))
+def relative_to_project_dir(_path: str | Path) -> Path:
+    path = Path(_path)
+    return path.relative_to(PROJECT_DIR) if path.is_absolute() else path
 
 
 def _print_colored_diff_output(diff_result: str, files: list[str | Path]) -> list[Text]:
@@ -184,7 +185,7 @@ def _print_colored_diff_output(diff_result: str, files: list[str | Path]) -> lis
     from epstein_files.output.rich import console
 
     panel_file_txts = [
-        Text('').append(f"file{i + 1}: ", 'dim').append(str(path_relative_to_project(f)), DIFF_COLORS[i])
+        Text('').append(f"file{i + 1}: ", 'dim').append(str(relative_to_project_dir(f)), DIFF_COLORS[i])
         for i, f in enumerate(files)
     ]
 
