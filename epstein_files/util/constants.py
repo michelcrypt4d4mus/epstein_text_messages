@@ -1044,7 +1044,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA02102384', author=LESLEY_GROFF),
     EmailCfg(id='EFTA02067245', author=LESLEY_GROFF, description=VALAR_MEETING, is_interesting=True, author_uncertain=True, truncate_to=600),
     EmailCfg(id='EFTA02068490', author=LESLEY_GROFF, description=VALAR_MEETING, is_interesting=True, author_uncertain=True, truncate_to=540),
-    EmailCfg(id='EFTA02067872', author=LESLEY_GROFF, description=VALAR_MEETING, is_interesting=True, author_uncertain=True),
+    EmailCfg(id='EFTA02067872', author=LESLEY_GROFF, description=VALAR_MEETING, author_uncertain=True),
     EmailCfg(id='EFTA01731288', author=LESLEY_GROFF, author_reason='signature'),
     # These attributions are based mostly on the email text being about Epstein scheduling
     EmailCfg(id='EFTA02089459', author=LESLEY_GROFF, author_uncertain=True, description='Nicole Junkermann meeting'),
