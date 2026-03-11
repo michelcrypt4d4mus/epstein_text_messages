@@ -2519,6 +2519,8 @@ OTHER_FILES_CRYPTO = [
     EmailCfg(id='EFTA00990442', description=f"Epstein offers to cover all costs for Sharia Coin", is_interesting=True),
     EmailCfg(id='EFTA02396341', description='the Sharia Coin gambit', is_interesting=True),
     EmailCfg(id='EFTA01005117', description='announcement that the Stellar blockchain is Sharia compliant'),
+    # Steven Sinofsky / a16z
+    EmailCfg(id='EFTA01804670', highlight_quote='Andreessen really into this whole virtual money space', truncate_to=700),
     # Valar
     DocCfg(
         id='EFTA00591045',
