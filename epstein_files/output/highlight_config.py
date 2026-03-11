@@ -1988,6 +1988,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"(The )?Wall Street Journal",
             r"(The )?Wa(shington )?Po(st)?",
             r"(Thomson )?Reuters",
+            r"T(homas|om) Friedman",
             r"(Uma )?Sanghvi",
             r"USA Today",
             r"Vanity Fair",
