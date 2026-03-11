@@ -1,3 +1,6 @@
+"""
+Methods to help with building various kinds of `DocCfg` or `EmailCfg` objects.
+"""
 from dateutil.parser import parse
 
 from epstein_files.documents.documents.categories import Category, Interesting, Neutral, Uninteresting
