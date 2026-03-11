@@ -341,6 +341,7 @@ INSIGHTS_POD = f"InsightsPod"  # Zubair bots
 INTERNATIONAL_PEACE_INSTITUTE = 'International Peace Institute'
 JP_MORGAN = 'JP Morgan'
 KYARA_INVESTMENT = 'Kyara Investment'
+LAWRENCE_KRAUSS_ASU_ORIGINS = f"{LAWRENCE_KRAUSS}'s ASU Origins Project"
 MC2_MODEL_MGMT = 'MC2 Model Management'
 MERCANTILE_GLOBAL_HOLDINGS = 'Mercantile Global Holdings'
 MIT_MEDIA_LAB = 'MIT Media Lab'

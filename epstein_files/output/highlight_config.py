@@ -8,6 +8,7 @@ from typing import Sequence
 from rich.console import Console
 from rich.text import Text
 
+from epstein_files.documents.config.categories.legal import EPSTEIN_V_ROTHSTEIN_EDWARDS
 from epstein_files.documents.documents.categories import (CATEGORY_STYLES, CATEGORY_STYLE_MAPPING,
      DEFAULT_CATEGORY_STYLE, Interesting, Neutral, Uninteresting)
 from epstein_files.documents.emails.constants import (ALL_HEADER_PATTERNS, QUOTE_INDENT_CHAR_GROUP, REPLY_REGEX,
@@ -17,7 +18,6 @@ from epstein_files.people.contact import Contact, acronym, organization, epstein
 from epstein_files.people.names import *
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constant.urls import SUBSTACK_INSIGHTS_POD
-from epstein_files.util.constants import EPSTEIN_V_ROTHSTEIN_EDWARDS
 from epstein_files.util.env import args
 from epstein_files.util.helpers.data_helpers import flatten
 from epstein_files.util.helpers.string_helper import indented
@@ -270,7 +270,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact('Larry Gagosian', 'famous art dealer', link_to_bio='https://en.wikipedia.org/wiki/Larry_Gagosian'),
             Contact('Marla Prather', f'art curator at MoMA, wife of {MORTIMER_ZUCKERMAN}'),
             Contact('Michael Ovitz', 'former president of Disney'),
-            Contact('Nick Jarecki', "American filmmaker"),
+            Contact('Nick Jarecki', "American filmmaker", match_partial=None),
             Contact('Richard Merkin', "painter, illustrator and arts educator"),
             Contact(STEVEN_PFEIFFER, "Associate Director at Independent Filmmaker Project (IFP)"),
             Contact('Steven Gaydos', "American screenwriter and journalist"),
@@ -2329,8 +2329,9 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         patterns=[
             r"\w+@mc2mm.com",
             r"Faena",
-            r"noah\s*models(.com)?",
             r"(?<!(ID|ge|te|xt)\s)model(ing|s)",
+            r"noah\s*models(.com)?",
+            r"Victoria's Secret",
         ],
     ),
     HighlightedNames(
@@ -2511,7 +2512,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(
                 SERGEY_BELYAKOV,
                 "graduate of Russia's FSB academy (AKA \"a spy\"), head of the St. Petersburg Economic Forum",
-                r"Sergey Belyako|Беляков Сергей|Cepre(ct|il) [6BES][\w.]+|6(er|of)no\w+ [CE]\w+",
+                r"Sergey Belyako|Беляков Сергей|Сергей Беляков|Cepre(ct|il) [6BES][\w.]+|6(er|of)no\w+ [CE]\w+",
                 link_to_bio='https://dossier.center/jeffreyepsteinrusconnect-en/',
             ),
             Contact('Sergey Lavrov', 'foreign minister under Putin'),
@@ -2873,6 +2874,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"(?-i:A)pple",
             r"Artificial (General )?Intelligence",
             r"Blizzard Entertainment",
+            r"Cash App?",
             r"Cisco",
             r"cyber( (security|space))?",
             r"deep learning",
@@ -3001,6 +3003,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 link_to_bio='https://x.com/JOKAQARMY1/status/2026731420832481549',
             ),
             Contact('Jeanne Palfrey', '"The DC Madam", murdered'),
+            Contact('Jennifer Aros', 'abused by Epstein starting at age 14', link_to_bio='https://x.com/epsteinsearchin/status/2031730091827544180'),
             Contact(KATHERINE_KEATING, "daughter of former Australian prime minister Paul Keating", match_partial=None),
             Contact('Miranda', f'appears to have done an internship at {CLIFFORD_CHANCE} with {MARIA_PRUSAKOVA}?'),
             Contact(PAULA_HEIL_FISHER, "Epstein's ex-girlfriend who works in opera now", match_partial=None),

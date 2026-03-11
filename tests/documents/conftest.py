@@ -1,7 +1,7 @@
 import pytest
 
 from epstein_files.documents.document import Document
-from epstein_files.documents.documents.doc_cfg import DocCfg
+from epstein_files.documents.config.doc_cfg import DocCfg
 from epstein_files.documents.doj_file import DojFile
 from epstein_files.documents.email import Email
 from epstein_files.documents.messenger_log import MessengerLog

@@ -195,6 +195,7 @@ DEVICE_SIGNATURE_TO_AUTHORS = {
 
 AUTHORS_TO_DEVICE_SIGNATURES = {
     UNKNOWN: [
+        'Отправлено с iPhone',
         'Envoye de mon iPhone',
         'Sent from Yahoo Mail for iPhone',
         'Sent from my Verizon Wireless BlackBerry',
@@ -250,6 +251,7 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
         "Sent from my iPhone"
     ],
     'David Grosof': ['Please forgive typos. Sent from Android Nexus 6 phone.'],
+    'David Rodgers': ['Sent from AOL Mobile Mail'],
     "David Schoen": [
         "Sent from AOL Mobile Mail",
         "Sent from my iPhone"
@@ -413,6 +415,7 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
         "Sent from ProtonMail",
         "Sent from my iPhone"
     ],
+    SERGEY_BELYAKOV: ['Отправлено с iPhone'],
     SHAHER_ABDULHAK_BESHER: [
         'Empower your Business with BlackBerry® and Mobile Solutions from Etisalat',
         'Sent from my iPad',
