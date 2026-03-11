@@ -7,15 +7,18 @@ from dataclasses import dataclass
 from rich.text import Text
 from typing import Self
 
-from epstein_files.util.constant.strings import (ARCHIVE_LINK_COLOR, ARCHIVE_ALT_LINK_STYLE,
-     ARCHIVE_LINK_COLOR, SOCIAL_MEDIA_LINK_STYLE)
+from epstein_files.util.constant.strings import ARCHIVE_LINK_COLOR, ARCHIVE_ALT_LINK_STYLE, ARCHIVE_LINK_COLOR
 from epstein_files.util.helpers.rich_helpers import enclose, join_non_empty
 
-EXTERNAL_LINK_STYLE = 'light_slate_grey bold'
-OFFICIAL_LINK_STYLE = 'navajo_white3 bold'
-SUBSTACK_POST_LINK_STYLE = 'bright_cyan'
-
+HTTPS = 'https://'
 LINK_REGEX = re.compile(r"^https?://.*")
+
+EXTERNAL_LINK_STYLE = 'light_slate_grey bold'
+LINK_COMMENT_STYLE = 'color(195) dim italic'
+OFFICIAL_LINK_STYLE = 'navajo_white3 bold'
+LINK_COMMENT_PARENTHESES_STYLE = 'gray27'
+SOCIAL_MEDIA_LINK_STYLE = 'pale_turquoise4'
+SUBSTACK_POST_LINK_STYLE = 'bright_cyan'
 
 SOCIAL_PLATFORMS = {
     'substack': 'substack',
@@ -31,10 +34,10 @@ class ExternalLink:
     url: str
     link_text: str = ''
     comment: str = ''
-    comment_style: str = ''
     comment_url: str = ''
+    comment_style: str = LINK_COMMENT_STYLE
     link_style: str = EXTERNAL_LINK_STYLE
-    parentheses_style: str = 'gray27'
+    parentheses_style: str = LINK_COMMENT_PARENTHESES_STYLE
 
     def __post_init__(self):
         self.url = coerce_https(self.url)
@@ -71,24 +74,42 @@ class ExternalLink:
         return link
 
     @property
+    def domain(self) -> str:
+        return self.short_url.split('/')[0]
+
+    @property
     def domain_stem(self) -> str:
         """e.g. retrun 'github' for a github.com/blah URL."""
-        return self.url.removeprefix('https://').split('.')[0]
+        domain_pieces = self.domain.split('.')
+
+        if len(domain_pieces) == 2:
+            return domain_pieces[0]
+        elif len(domain_pieces) == 3:
+            return domain_pieces[1]
+        else:
+            raise ValueError(f"Can't get domain_stem for url '{self.url}' (domain_pieces: {domain_pieces})")
 
     @property
     def link(self) -> Text:
         return link_text_obj(self.url, self.link_text, self.link_style)
 
-    def __rich__(self) -> Text:
+    @property
+    def short_url(self) -> str:
+        return self.url.removeprefix(HTTPS)
+
+    def to_txt(self) -> Text:
         comment = Text('')
 
         if self.comment_url:
             comment = link_text_obj(self.comment_url, self.comment, self.comment_style)
             comment = enclose(comment, '()')
         elif self.comment:
-            comment = enclose(Text(self.comment, 'color(195) dim italic'), '()', self.parentheses_style)
+            comment = enclose(Text(self.comment, self.comment_style), '()', self.parentheses_style)
 
         return join_non_empty(self.link, comment)
+
+    def __rich__(self) -> Text:
+        return self.to_txt()
 
 
 def coerce_https(url: str) -> str:

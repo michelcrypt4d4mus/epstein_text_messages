@@ -7,7 +7,7 @@ from rich.text import Text
 
 from epstein_files.output.site.sites import GH_PROJECT_URL, TO_FROM, SiteType
 from epstein_files.util.env import args
-from epstein_files.util.constant.strings import SOCIAL_MEDIA_LINK_STYLE, TEXT_LINK
+from epstein_files.util.constant.strings import TEXT_LINK
 from epstein_files.util.helpers.file_helper import coerce_file_stem
 from epstein_files.util.helpers.link_helper import SUBSTACK_POST_LINK_STYLE, ExternalLink, link_markup, link_text_obj
 from epstein_files.util.helpers.string_helper import remove_question_marks
@@ -29,13 +29,22 @@ DOJ_2026_FILE_BASE_URL = "https://www.justice.gov/epstein/files/DataSet%20"
 EPSTEIN_DOCS_URL = 'https://epstein-docs.github.io'
 OVERSIGHT_REPUBS_PRESSER_URL = 'https://oversight.house.gov/release/oversight-committee-releases-additional-epstein-estate-documents/'
 OVERSIGHT_DRIVE_URL = 'https://drive.google.com/drive/folders/1hTNH5woIRio578onLGElkTWofUSWRoH_'
-SUBSTACK_URL = 'https://cryptadamus.substack.com/p/i-made-epsteins-text-messages-great'
-SUBSTACK_INSIGHTS_POD = 'https://cryptadamus.substack.com/p/maybe-the-russian-bots-were-jeffrey'
 
-SUBSTACK_INSIGHTS_LINK = link_text_obj(
-    SUBSTACK_INSIGHTS_POD,
+SUBSTACK_BASE_URL = 'https://cryptadamus.substack.com'
+SUBSTACK_POST_BASE_URL = f"{SUBSTACK_BASE_URL}/p"
+SUBSTACK_POST_TXT_MESSAGES_URL = f'{SUBSTACK_POST_BASE_URL}/i-made-epsteins-text-messages-great'
+SUBSTACK_POST_INSIGHTSPOD_URL = f'{SUBSTACK_POST_BASE_URL}/maybe-the-russian-bots-were-jeffrey'
+
+SUBSTACK_POST_TXT_MSGS_LINK = ExternalLink(
+    SUBSTACK_POST_TXT_MESSAGES_URL,
+    "I Made Epstein's Text Messages Great Again (And You Should Read Them)",
+    link_style=f'{SUBSTACK_POST_LINK_STYLE} bold'
+)
+
+SUBSTACK_INSIGHTS_LINK = ExternalLink(
+    SUBSTACK_POST_INSIGHTSPOD_URL,
     '"Maybe The Russian Bots Were Jeffrey Epstein The Whole Time"',
-    SUBSTACK_POST_LINK_STYLE
+    link_style=SUBSTACK_POST_LINK_STYLE
 )
 
 # DOJ docs
@@ -98,7 +107,7 @@ EXTERNAL_LINKS = OFFICIAL_LINKS + [
 
 CRYPTADAMUS_SOCIAL_LINKS = [
     ExternalLink.social_link('universeodon.com/@cryptadamist/115572634993386057', 'mastodon'),
-    ExternalLink.social_link(SUBSTACK_URL),
+    ExternalLink.social_link(SUBSTACK_POST_TXT_MESSAGES_URL),
     ExternalLink.social_link('https://x.com/Cryptadamist/status/1990866804630036988'),
     ExternalLink.social_link(GH_PROJECT_URL),
 ]

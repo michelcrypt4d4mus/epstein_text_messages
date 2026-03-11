@@ -17,7 +17,7 @@ from epstein_files.output.highlighted_names import HighlightGroup, HighlightedNa
 from epstein_files.people.contact import Contact, acronym, organization, epstein_co, epstein_trust, law_enforcement
 from epstein_files.people.names import *
 from epstein_files.util.constant.strings import *
-from epstein_files.util.constant.urls import SUBSTACK_INSIGHTS_POD
+from epstein_files.util.constant.urls import SUBSTACK_POST_INSIGHTSPOD_URL
 from epstein_files.util.env import args
 from epstein_files.util.helpers.data_helpers import flatten
 from epstein_files.util.helpers.string_helper import indented
@@ -1760,7 +1760,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             organization(
                 'InsightsPod',
                 f"{ZUBAIR_KHAN} and {ANYA_RASULOVA}'s company recommended by {MARIA_PRUSAKOVA}, did social media work for Epstein during the 2016 election",
-                link_to_bio=SUBSTACK_INSIGHTS_POD
+                link_to_bio=SUBSTACK_POST_INSIGHTSPOD_URL
             ),
             organization('Tranchulas', f'cybsecurity firm of {ZUBAIR_KHAN}, provider of offensive hacking services'),
         ],
@@ -2468,7 +2468,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(
                 ANYA_RASULOVA,
                 f'Uzbeki co-founder of {INSIGHTS_POD}, social media work for Epstein during 2016 US election',
-                link_to_bio=SUBSTACK_INSIGHTS_POD,
+                link_to_bio=SUBSTACK_POST_INSIGHTSPOD_URL,
             ),
             Contact('Dasha Zhukova', "art collector, daughter of Alexander Zhukov"),
             Contact(
@@ -2789,7 +2789,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(
                 ZUBAIR_KHAN,
                 f"InsightsPod social media work on 2016 US election for Epstein, Islamabad/Dubai, friend of {MARIA_PRUSAKOVA}, Tranchulas cybersecurity",
-                link_to_bio=SUBSTACK_INSIGHTS_POD,
+                link_to_bio=SUBSTACK_POST_INSIGHTSPOD_URL,
                 match_partial='both',
             ),
             organization('Accel Partners', 'venture capital firm', r"Accel( Partners)?"),

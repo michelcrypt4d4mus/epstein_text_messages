@@ -169,7 +169,7 @@ def join_texts(
     encloser_style: str = 'wheat4'
 ) -> Text:
     """Join rich.Text objs into one."""
-    txts = [t.__rich__() if isinstance(t, ExternalLink) else t for t in _txts]
+    txts = [t.to_txt() if isinstance(t, ExternalLink) else t for t in _txts]
     txt = Text('')
 
     for i, _txt in enumerate(txts):

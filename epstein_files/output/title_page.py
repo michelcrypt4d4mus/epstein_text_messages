@@ -179,15 +179,10 @@ def _print_page_title(width: int = TITLE_WIDTH) -> None:
     title = Text('', justify='center').append('The Epstein Files', style='underline bold')
     title_panel = Panel(title, box=box.DOUBLE_EDGE, expand=True, padding=(2, 2), style=TITLE_STYLE, width=width)
     print_centered(vertically_pad(title_panel))
-
-    print_centered_link(
-        SUBSTACK_URL,
-        "I Made Epstein's Text Messages Great Again (And You Should Read Them)",
-        style=f'{SUBSTACK_POST_LINK_STYLE} bold'
-    )
+    print_centered(SUBSTACK_POST_TXT_MSGS_LINK)
 
     if not args.mobile:
-        print_centered_link(SUBSTACK_URL, SUBSTACK_URL.removeprefix('https://'), style=f'{SUBSTACK_POST_LINK_STYLE} dim')
+        print_centered_link(SUBSTACK_POST_TXT_MESSAGES_URL, SUBSTACK_POST_TXT_MESSAGES_URL.removeprefix('https://'), style=f'{SUBSTACK_POST_LINK_STYLE} dim')
 
     print_centered(join_texts(CRYPTADAMUS_SOCIAL_LINKS, join=site_config.social_link_separator))
     console.line()
