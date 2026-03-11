@@ -105,10 +105,10 @@ UNCONFIRMED_TEXTS_CONFIG = [
     TextCfg(id='027148', author=MELANIE_WALKER),
     TextCfg(id='027440', author=MICHAEL_WOLFF, author_uncertain='AI says Trump book/journalism project'),
     TextCfg(id='027568', author=STEVE_BANNON),
-    TextCfg(id='027695', author=STEVE_BANNON),
+    TextCfg(id='027695', author=STEVE_BANNON, description='"kazak daughter the key" may be about Dariga Nazarbayeva (low confidence)'),
     TextCfg(id='027594', author=STEVE_BANNON),
     TextCfg(id='027549', author=STEVE_BANNON),
-    TextCfg(id='027764', author=STEVE_BANNON),
+    TextCfg(id='027764', author=STEVE_BANNON, description=f"includes discussion of Facebook's attempt at crypto called Libra", is_interesting=True),
     TextCfg(id='027585', author=STEVE_BANNON, author_uncertain='references Tokyo trip'),
     TextCfg(id='027434', author=STEVE_BANNON, author_uncertain='references Maher appearance'),
     TextCfg(id='027428', author=STEVE_BANNON, author_uncertain='references HBJ meeting on 9/28 from other Bannon/Epstein convo'),
@@ -127,7 +127,7 @@ UNCONFIRMED_TEXTS_CONFIG = [
     TextCfg(id='027406', author=STEVE_BANNON, author_uncertain='AI says Trump and New York Times coverage'),
     TextCfg(id='027655', author=STEVE_BANNON, author_uncertain='AI says Trump and New York Times coverage'),
     TextCfg(id='027722', author=STEVE_BANNON, author_uncertain='AI says Trump and New York Times coverage', duplicate_ids=['027720']),
-    TextCfg(id='027735', author=STEVE_BANNON, author_uncertain='AI says Trump and New York Times coverage'),
+    TextCfg(id='027735', author=STEVE_BANNON, author_uncertain='AI says Trump and New York Times coverage', description=f"Bannon just returned from Kazakhstan"),
     TextCfg(id='027794', author=STEVE_BANNON, author_uncertain='AI says Trump and New York Times coverage'),
     TextCfg(id='025368', author=STEVE_BANNON, author_uncertain='AI', is_interesting=True, comment='obama slander'),
     TextCfg(id='025707', author=STEVE_BANNON, author_uncertain='AI', is_interesting=True, comment='mentions thiel, dubai'),
@@ -144,6 +144,7 @@ UNCONFIRMED_TEXTS_CONFIG = [
     ),
     TextCfg(id='031045', author=STEVE_BANNON, author_uncertain='AI says Trump and New York Times coverage'),
     TextCfg(id='027275', is_interesting=True, comment='"Crypto- Kerry- Qatar -sessions"'),
+    TextCfg(id='027792', duplicate_ids=['027694'], dupe_type='quoted'),
 
     # DOJ PDFs
     TextCfg(
@@ -591,7 +592,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='031659', is_interesting=True, highlight_quote='i have met some very bad people „ none as bad as trump'),
     EmailCfg(id='031326', is_interesting=True, highlight_quote='that dog that hasn\'t barked is trump'),
     EmailCfg(id='031451', is_interesting=True, highlight_quote='would you like photso of donald and girls in bikinis in my kitchen'),
-    EmailCfg(id='031596', is_interesting=True, highlight_quote='would you like photso of donald and girls in bikinis in my kitchen'),
+    EmailCfg(id='031596', is_interesting=True, highlight_quote='would you like photso of donald and girls in bikinis in my kitchen', truncate_to=500),
     EmailCfg(id='031601', is_interesting=True, highlight_quote='Old gf i gave to donald', truncate_to=2000),
     # actual_text
     EmailCfg(id='029344', actual_text='I thought of you when I read this article. Was this your idea? Alan', is_fwded_article=True),
@@ -1042,9 +1043,9 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00461202', author=LESLEY_GROFF),
     EmailCfg(id='EFTA02246744', author=LESLEY_GROFF),
     EmailCfg(id='EFTA02102384', author=LESLEY_GROFF),
-    EmailCfg(id='EFTA02067245', author=LESLEY_GROFF, description=VALAR_MEETING, is_interesting=True, author_uncertain=True),
-    EmailCfg(id='EFTA02068490', author=LESLEY_GROFF, description=VALAR_MEETING, is_interesting=True, author_uncertain=True),
-    EmailCfg(id='EFTA02067872', author=LESLEY_GROFF, description=VALAR_MEETING, is_interesting=True, author_uncertain=True),
+    EmailCfg(id='EFTA02067245', author=LESLEY_GROFF, description=VALAR_MEETING, is_interesting=True, author_uncertain=True, truncate_to=600),
+    EmailCfg(id='EFTA02068490', author=LESLEY_GROFF, description=VALAR_MEETING, is_interesting=True, author_uncertain=True, truncate_to=540),
+    EmailCfg(id='EFTA02067872', author=LESLEY_GROFF, description=VALAR_MEETING, author_uncertain=True),
     EmailCfg(id='EFTA01731288', author=LESLEY_GROFF, author_reason='signature'),
     # These attributions are based mostly on the email text being about Epstein scheduling
     EmailCfg(id='EFTA02089459', author=LESLEY_GROFF, author_uncertain=True, description='Nicole Junkermann meeting'),
@@ -1580,7 +1581,7 @@ EMAILS_CONFIG = [
         description=f'Epstein asks {PETER_MANDELSON} to find him a new assistant, "multi lingaul, 22-25"',
         truncate_to=1200,
     ),
-    EmailCfg(id='EFTA00829178', description="Epstein deletes his Instagram account", truncate_to=598),
+    EmailCfg(id='EFTA00829178', description="Epstein deletes his Instagram account", truncate_to=598, is_interesting=True),
     EmailCfg(id='EFTA00664252', description='Epstein explains his "no wives / no girlfriends" policy', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA02689871', description=f"Epstein instructs {DAVID_STERN} to avoid {BANQUE_HAVILLAND}"),
     EmailCfg(id='EFTA00949376', description=f"Epstein paying {MC2_MODEL_MGMT}", truncate_to=NO_TRUNCATE),
@@ -1633,6 +1634,8 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00040145', date='2021-11-09 17:24:30'),
     EmailCfg(id='EFTA02730485', date='2021-12-03 00:00:00'),
     EmailCfg(id='EFTA01858685', is_interesting=True, comment='Boris asks about Stanley Ho (maybe)'),
+
+    # Duplicates
     EmailCfg(id='EFTA00875181', duplicate_ids=['EFTA01901268']),
     EmailCfg(id='EFTA01852975', duplicate_ids=['EFTA02001764']),
     EmailCfg(id='EFTA00563586', duplicate_ids=['EFTA02323722']),
@@ -1648,6 +1651,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00432352', duplicate_ids=['EFTA02187120']),
     EmailCfg(id='EFTA00373948', duplicate_ids=['EFTA02113506']),
     EmailCfg(id='EFTA00870717', duplicate_ids=['EFTA01932706']),
+    EmailCfg(id='EFTA00494141', duplicate_ids=['EFTA02284036'], is_interesting=False),
     EmailCfg(id='EFTA01890312', duplicate_ids=['EFTA00712715'], truncate_to=400),
     EmailCfg(id='EFTA00915302', duplicate_ids=['EFTA01860910', 'EFTA01986221', 'EFTA01776411', 'EFTA02691069']),
     EmailCfg(id='EFTA01776613', duplicate_ids=['EFTA01860812', 'EFTA00915297', 'EFTA02691059']),
@@ -2412,8 +2416,10 @@ OTHER_FILES_CRYPTO = [
     EmailCfg(id='EFTA02724230', description='alternative currencies discussion', truncate_to=NO_TRUNCATE),
     # Jeremy Rubin
     EmailCfg(id='EFTA02466979', description='"AID Coin"'),
+    EmailCfg(id='EFTA02343669', description='rumours that people are using bitcoin to exfiltrate capital from China'),
     # Joi Ito / Kyara
     DocCfg(id='024256', author=JOI_ITO, description=f"Internet & Society: The Technologies and Politics of Control"),
+    EmailCfg(id='025598', is_interesting=False),
     EmailCfg(id='028847', description=f"the announcement of a hunt for Putin's money seems to greatly concern Epstein and {JOI_ITO}"),
     EmailCfg(id='026360', description=f"{JOI_ITO} writes to Epstein to thank him for providing funding for the bitcoin core development team"),
     EmailCfg(id='025603', description=f"Epstein funnels money from {ANDREW_FARKAS} to {MIT_MEDIA_LAB} / {JOI_ITO}", truncate_to=850),
@@ -3006,6 +3012,7 @@ OTHER_FILES_GIRLS = [
     ),
     EmailCfg(id='EFTA00894079', highlight_quote='say hi to Snow White'),
     EmailCfg(id='EFTA00775255', highlight_quote='she is 20 years old but she looks younger', non_participants=[BROCK_PIERCE]),
+    EmailCfg(id='EFTA02387676', highlight_quote="thats the closest i get to karyna providing me new pussy"),
     EmailCfg(id='EFTA00908180', highlight_quote='two cinderellas'),
     EmailCfg(id='EFTA01930285', highlight_quote='ukraine upheaval should provide many opportunites'),
     EmailCfg(id='EFTA00751119', highlight_quote='Valdson to teach girls how to serve'),
@@ -3015,6 +3022,7 @@ OTHER_FILES_GIRLS = [
     EmailCfg(id='DropSite 2006-05-29 1329', highlight_quote='I am giving the little girl a modeling\n> lesson'),
 
     # Descriptions
+    EmailCfg(id='EFTA00572157', description='translation: "Congratulations on the new addition!!! What did you name the little miracle?"'),
     EmailCfg(id='EFTA02559808', description=f"{EVA_DUBIN} delivering amphetamines (adderall) to Epstein", is_interesting=True, truncate_to=200),
     EmailCfg(id='EFTA01840103', description="Epstein apparently suggesting amphetamines (adderall)", is_interesting=True),
     EmailCfg(id='EFTA01987855', description=f'Epstein, Brunel, and {SULTAN_BIN_SULAYEM} very interested in a Liberian sex scandal'),
@@ -3156,7 +3164,7 @@ OTHER_FILES_GOVERNMENT = [
     DocCfg(id='EFTA00038915', author=FBI, description='interview with minor victim who said Epstein knew she was 14'),
     DocCfg(id='EFTA00023055', author=FBI, description="evidence of notes left about newly recruited underage girls by girls giving massages"),
     DocCfg(id='EFTA00222943', author=FBI, description=f"agent believes computers were removed from Epstein's residence"),
-    DocCfg(id='EFTA00020506', author=FBI, description='"chauffeur told Epstein \'I have something on you, remember what I buried!\'"'),
+    DocCfg(id='EFTA00020506', author=FBI, description='"chauffeur told Epstein \'I have something on you, remember what I buried!\'"', show_full_panel=True),
     DocCfg(id='EFTA00084614', author=PALM_BEACH_POLICE, description='incident report detailing the investigation into Jeffrey Epstein'),
     DocCfg(id='EFTA00007893', author=PALM_BEACH_POLICE, description=f"receipts, notes, bank statements of {GHISLAINE_MAXWELL}"),
     DocCfg(id='EFTA00005569', author=PALM_BEACH_POLICE, replace_text_with='photo lineup featuring Epstein', date='2005-03-17'),
@@ -3940,6 +3948,7 @@ UNINTERESTING_EMAIL_IDS = [
     'EFTA00005705',
     'EFTA00005716',
     'EFTA00005717',
+    'EFTA00039971',  # Attached 302 is missing?
     # Ganbat
     'EFTA02469375',
     # Ghislaine
@@ -3979,10 +3988,14 @@ UNINTERESTING_EMAIL_IDS = [
     'EFTA02318365',
     # Krassner
     '033345',
+    # Leon Black related
+    '023208_24',
+    '023208_26',
     # Lesley?
     'EFTA02229402',
     'EFTA02229659',
     'EFTA01987383',
+    'EFTA02067872',
     # Maria Prusakova
     'EFTA01772533',
     'EFTA01740489',
@@ -4002,6 +4015,7 @@ UNINTERESTING_EMAIL_IDS = [
     'EFTA02719248',
     'EFTA02696764',
     'EFTA00927986',
+    'EFTA00667874',
     # Svetlana
     'EFTA01772677',
     # Tyler Shears

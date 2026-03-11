@@ -247,7 +247,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
     ),
     HighlightedNames(
         label=ARTS,
-        style='light_steel_blue3',
+        style='wheat4',
         contacts=[
             Contact(ANDRES_SERRANO, '"Piss Christ" artist', link_to_bio='https://en.wikipedia.org/wiki/Andres_Serrano'),
             Contact('Barry Josephson', "American film producer"), #, editor FamilySecurityMatters.org"),
@@ -808,7 +808,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             ),
         ],
         patterns=[
-            r"alternative (currenc(ies|y)|money)",
+            r"altern?ative (currenc(ies|y)|money)",
             r"Balaji( Srinivisan)?",
             r"Ben Forman",
             r"bit[o\s]?coin( Foundation)?",
@@ -1996,6 +1996,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"(The )?Wall Street Journal",
             r"(The )?Wa(shington )?Po(st)?",
             r"(Thomson )?Reuters",
+            r"T(homas|om) Friedman",
             r"(Uma )?Sanghvi",
             r"USA Today",
             r"Vanity Fair",
@@ -2148,6 +2149,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 match_partial=None,
             ),
             Contact('Nursultan Nazarbayev', 'former president of Kazakhstan', match_partial='both'),
+            Contact('Dariga Nazarbayeva', 'daughter of Nursultan Nazarbayev'),
             Contact(
                 'Rakhat Aliyev',
                 'corrupt Kazakh politician',
@@ -2595,6 +2597,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         contacts=[
             Contact('Aksana Samy', 'Russian girl'),
             Contact('Alena Davydenkova', 'Russian girl'),
+            Contact('Alisa Khayrutdinova', 'Russian girl'),
             Contact('Alysia Riabenkova', 'Russian painter', r"Alesia|Alysia( Riabenkova)?|Riabenkova"),
             Contact(ANASTASIYA_SIROOCHENKO, '', r"Anastasiya( Siro(chenko)?)?"),
             Contact(ANNA_KASATKINA, 'Russian girl'),
@@ -2611,6 +2614,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(
                 KARYNA_SHULIAK,
                 f"girlfriend to whom Epstein tried to leave $50 million and the island, alleged sham marriage to {JENNIFER_KALIN}",
+                r"(Karyna|Карина|Кариша)( Shuliak)?",
                 link_to_bio='https://www.lemonde.fr/en/international/article/2026/02/22/karyna-shuliak-was-jeffrey-epstein-s-last-partner-and-main-heiress-she-won-t-benefit-from-his-will_6750738_4.html',
             ),
             Contact(
@@ -2854,6 +2858,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Spotify",
             r"(Steve )?Ballmer",
             r"Tencent",
+            r"Tesla",
             r"Tim Ferriss?",
             r"WikiLeak(ed|s)",
         ],
