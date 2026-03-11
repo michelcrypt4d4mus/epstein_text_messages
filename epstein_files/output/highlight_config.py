@@ -2771,6 +2771,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact('Rajeev Misra', "formerly Softbank Vision Fund executive", r"[NR]ajeev"),
             Contact(REID_HOFFMAN, "PayPal mafia member, founder of LinkedIn, Democrat donor", match_partial=None),
             Contact('Reuben Kobulnik', THIELS_VALAR),
+            Contact('Saida Sapieva', f'maybe assistant to {REID_HOFFMAN} {QUESTION_MARKS}'),
             Contact('Talia Parnass', f"{PETER_THIEL}'s assistant"),
             Contact(TED_LEONSIS, 'AOL executive, owner of Monumental Sports (Wizards, Capitals)'),
             Contact(
