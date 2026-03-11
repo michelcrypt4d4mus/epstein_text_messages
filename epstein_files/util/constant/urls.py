@@ -92,8 +92,10 @@ EXTERNAL_LINKS = OFFICIAL_LINKS + [
 # Social media links
 X_BASE_URL = 'https://x.com'
 CRYPTADAMUS_X_URL = f'{X_BASE_URL}/Cryptadamist'
-CRYPTADAMUS_TWITTER = link_markup(CRYPTADAMUS_X_URL, '@cryptadamist')
-
+CRYPTADAMUS_X_LINK_MARKUP = link_markup(CRYPTADAMUS_X_URL, '@cryptadamist')
+# Mastodon
+MASTODON_POST_URL = 'universeodon.com/@cryptadamist/115572634993386057'
+# Substack
 SUBSTACK_BASE_URL = 'https://cryptadamus.substack.com'
 SUBSTACK_POST_BASE_URL = f"{SUBSTACK_BASE_URL}/p"
 SUBSTACK_POST_TXT_MESSAGES_URL = f'{SUBSTACK_POST_BASE_URL}/i-made-epsteins-text-messages-great'
@@ -112,7 +114,7 @@ SUBSTACK_INSIGHTS_LINK = ExternalLink(
 )
 
 CRYPTADAMUS_SOCIAL_LINKS = [
-    ExternalLink.social_link('universeodon.com/@cryptadamist/115572634993386057'),
+    ExternalLink.social_link(MASTODON_POST_URL),
     ExternalLink.social_link(SUBSTACK_POST_TXT_MESSAGES_URL),
     ExternalLink.social_link(f'{CRYPTADAMUS_X_URL}/status/2028867724307316882'),
     ExternalLink.social_link(GH_PROJECT_URL),

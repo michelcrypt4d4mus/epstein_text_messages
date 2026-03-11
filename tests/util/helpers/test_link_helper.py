@@ -1,5 +1,5 @@
 from epstein_files.util.helpers.link_helper import ExternalLink
-from epstein_files.util.constant.urls import GH_PROJECT_URL, SUBSTACK_POST_TXT_MESSAGES_URL, SUBSTACK_POST_INSIGHTSPOD_URL
+from epstein_files.util.constant.urls import GH_PROJECT_URL, SUBSTACK_POST_TXT_MESSAGES_URL, SUBSTACK_POST_INSIGHTSPOD_URL, MASTODON_POST_URL
 
 
 def test_external_link():
@@ -18,3 +18,4 @@ def test_social_link():
     x = ExternalLink.social_link('https://x.com/Cryptadamist/status/2028867724307316882')
     assert x.link_text == '@twitter'
     assert ExternalLink.social_link(GH_PROJECT_URL).link_text == '@github'
+    assert ExternalLink.social_link(MASTODON_POST_URL).link_text == '@mastodon'

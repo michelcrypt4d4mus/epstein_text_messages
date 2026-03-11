@@ -124,7 +124,7 @@ def print_title_page_bottom(epstein_files: 'EpsteinFiles') -> None:
     # console.line()
     # print_centered(updated_panel)
     print_color_key()
-    print_centered(f"(if you think there's an attribution error or can deanonymize an {UNKNOWN} contact {CRYPTADAMUS_TWITTER})", 'grey46')
+    print_centered(f"(if you think there's an attribution error or can deanonymize an {UNKNOWN} contact {CRYPTADAMUS_X_LINK_MARKUP})", 'grey46')
     print_centered(f"(thanks to {link_markup('https://x.com/ImDrinknWyn', '@ImDrinknWyn', 'dodger_blue3')} + others for help attributing redacted emails)")
     console.line()
 
