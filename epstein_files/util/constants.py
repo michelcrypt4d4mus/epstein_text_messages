@@ -899,6 +899,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='019321', truncate_to=700),
     EmailCfg(
         id='013484',
+        description='Peter Thiel conference speaker list',
         non_participants=[ARIANE_DE_ROTHSCHILD, BRAD_WECHSLER, DAVID_SCHOEN, 'Mozilla'],
         truncate_to=700,
     ),
