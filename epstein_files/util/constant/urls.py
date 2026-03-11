@@ -49,29 +49,6 @@ DOC_LINK_BASE_URLS: dict[ExternalSite, str] = {
     ROLLCALL: f'https://rollcall.com/factbase/epstein/file?id=',
 }
 
-
-# social links
-CRYPTADAMUS_X_URL = 'https://x.com/Cryptadamist'
-CRYPTADAMUS_TWITTER = link_markup(CRYPTADAMUS_X_URL, '@cryptadamist')
-
-SUBSTACK_BASE_URL = 'https://cryptadamus.substack.com'
-SUBSTACK_POST_BASE_URL = f"{SUBSTACK_BASE_URL}/p"
-SUBSTACK_POST_TXT_MESSAGES_URL = f'{SUBSTACK_POST_BASE_URL}/i-made-epsteins-text-messages-great'
-SUBSTACK_POST_INSIGHTSPOD_URL = f'{SUBSTACK_POST_BASE_URL}/maybe-the-russian-bots-were-jeffrey'
-
-SUBSTACK_POST_TXT_MSGS_LINK = ExternalLink(
-    SUBSTACK_POST_TXT_MESSAGES_URL,
-    "I Made Epstein's Text Messages Great Again (And You Should Read Them)",
-    link_style=f'{SUBSTACK_POST_LINK_STYLE} bold'
-)
-
-SUBSTACK_INSIGHTS_LINK = ExternalLink(
-    SUBSTACK_POST_INSIGHTSPOD_URL,
-    '"Maybe The Russian Bots Were Jeffrey Epstein The Whole Time"',
-    link_style=SUBSTACK_POST_LINK_STYLE
-)
-
-
 OFFICIAL_LINKS = [
     ExternalLink.official_link(
         DOJ_2026_URL,
@@ -111,10 +88,33 @@ EXTERNAL_LINKS = OFFICIAL_LINKS + [
     ExternalLink('epsteinsearch.info'),
 ]
 
+
+# Social media links
+X_BASE_URL = 'https://x.com'
+CRYPTADAMUS_X_URL = f'{X_BASE_URL}/Cryptadamist'
+CRYPTADAMUS_TWITTER = link_markup(CRYPTADAMUS_X_URL, '@cryptadamist')
+
+SUBSTACK_BASE_URL = 'https://cryptadamus.substack.com'
+SUBSTACK_POST_BASE_URL = f"{SUBSTACK_BASE_URL}/p"
+SUBSTACK_POST_TXT_MESSAGES_URL = f'{SUBSTACK_POST_BASE_URL}/i-made-epsteins-text-messages-great'
+SUBSTACK_POST_INSIGHTSPOD_URL = f'{SUBSTACK_POST_BASE_URL}/maybe-the-russian-bots-were-jeffrey'
+
+SUBSTACK_POST_TXT_MSGS_LINK = ExternalLink(
+    SUBSTACK_POST_TXT_MESSAGES_URL,
+    "I Made Epstein's Text Messages Great Again (And You Should Read Them)",
+    link_style=f'{SUBSTACK_POST_LINK_STYLE} bold'
+)
+
+SUBSTACK_INSIGHTS_LINK = ExternalLink(
+    SUBSTACK_POST_INSIGHTSPOD_URL,
+    '"Maybe The Russian Bots Were Jeffrey Epstein The Whole Time"',
+    link_style=SUBSTACK_POST_LINK_STYLE
+)
+
 CRYPTADAMUS_SOCIAL_LINKS = [
     ExternalLink.social_link('universeodon.com/@cryptadamist/115572634993386057'),
     ExternalLink.social_link(SUBSTACK_POST_TXT_MESSAGES_URL),
-    ExternalLink.social_link(f'{CRYPTADAMUS_X_URL}/status/1990866804630036988'),
+    ExternalLink.social_link(f'{CRYPTADAMUS_X_URL}/status/2028867724307316882'),
     ExternalLink.social_link(GH_PROJECT_URL),
 ]
 
@@ -145,7 +145,7 @@ rollcall_doc_url = lambda file_stem: build_doc_url(DOC_LINK_BASE_URLS[ROLLCALL],
 
 # Jmail
 search_jmail_url = lambda txt: f"{JMAIL_URL}/search?q={urllib.parse.quote(txt)}"
-search_twitter_url = lambda txt: f"https://x.com/search?q={urllib.parse.quote(txt)}&src=typed_query&f=live"
+search_twitter_url = lambda txt: f"{X_BASE_URL}/search?q={urllib.parse.quote(txt)}&src=typed_query&f=live"
 
 PERSON_LINK_BUILDERS: dict[ExternalSite, Callable[[str], str]] = {
     EPSTEIN_MEDIA: epstein_media_person_url,

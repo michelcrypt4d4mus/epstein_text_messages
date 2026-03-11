@@ -15,6 +15,6 @@ def test_social_link():
     assert link.domain_stem == 'substack'
     link = ExternalLink.social_link(SUBSTACK_POST_INSIGHTSPOD_URL)
     assert link.link_text == '@substack'
-    x = ExternalLink.social_link('https://x.com/Cryptadamist/status/1990866804630036988')
+    x = ExternalLink.social_link('https://x.com/Cryptadamist/status/2028867724307316882')
     assert x.link_text == '@twitter'
     assert ExternalLink.social_link(GH_PROJECT_URL).link_text == '@github'

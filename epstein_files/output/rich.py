@@ -23,7 +23,7 @@ from epstein_files.util.constant.urls import *
 from epstein_files.util.env import args, site_config
 from epstein_files.util.helpers.data_helpers import json_safe, sort_dict
 from epstein_files.util.helpers.link_helper import link_markup
-from epstein_files.util.helpers.rich_helpers import enclose
+from epstein_files.util.helpers.rich_helpers import enclose, left_indent_padding
 from epstein_files.util.logging import logger
 
 NA_TXT = Text(NA, style='dim')
@@ -168,7 +168,7 @@ def join_texts(
     encloser: str = '',
     encloser_style: str = 'wheat4'
 ) -> Text:
-    """Join rich.Text objs into one."""
+    """Join a collection of `Text` objs into one, similar to standard `str.join()`."""
     txts = [t.to_txt() if isinstance(t, ExternalLink) else t for t in _txts]
     txt = Text('')
 
@@ -178,11 +178,19 @@ def join_texts(
     return txt
 
 
+# TODO: unused
 def left_indent(obj: RenderableType, num_spaces: int) -> Padding:
+    """Add left padding to any `Renderable`."""
     return Padding(obj, left_indent_padding(num_spaces))
 
 
-def prefix_with(txt: list[str] | list[Text] | Text | str, pfx: str, pfx_style: str = '', indent: str | int = '') -> Text:
+def prefix_with(
+    txt: list[Text] | list[str] | Text | str,
+    pfx: str,
+    pfx_style: str = '',
+    indent: str | int = ''
+) -> Text:
+    """Add a rich stylized prefix to a `Text`, `str`, or array of either."""
     indent = indent * ' ' if isinstance(indent, int) else indent
 
     lines = [
@@ -201,10 +209,6 @@ def print_centered(obj: RenderableType, style: str = '') -> None:
             obj = Text('', justify='center').append(obj)
 
     console.print(Align.center(obj), highlight=False, style=style)
-
-
-def print_centered_link(url: str, link_text: str, style: str | None = None) -> None:
-    print_centered(link_text_obj(url, link_text, style or ARCHIVE_LINK_COLOR))
 
 
 def print_json(label: str, obj: object, skip_falsey: bool = False) -> None:

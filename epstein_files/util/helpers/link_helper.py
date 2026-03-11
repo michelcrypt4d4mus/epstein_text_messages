@@ -2,6 +2,7 @@
 Functions that build rich Text links.
 """
 import re
+from urllib.parse import urlsplit
 
 from dataclasses import dataclass
 from rich.text import Text
@@ -74,7 +75,7 @@ class ExternalLink:
 
     @property
     def domain(self) -> str:
-        return self.short_url.split('/')[0]
+        return urlsplit(self.url).hostname
 
     @property
     def domain_stem(self) -> str:
