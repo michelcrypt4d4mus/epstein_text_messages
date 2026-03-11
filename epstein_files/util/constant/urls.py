@@ -22,6 +22,7 @@ ROLLCALL = 'RollCall'
 TWITTER = 'search X'
 
 # External URLs
+CARSTENSEN_URL = 'https://tommycarstensen.com/epstein'
 COFFEEZILLA_ARCHIVE_URL = 'https://journaliststudio.google.com/pinpoint/search?collection=061ce61c9e70bdfd'
 COURIER_NEWSROOM_ARCHIVE_URL = 'https://journaliststudio.google.com/pinpoint/search?collection=092314e384a58618'
 DOJ_2026_FILE_BASE_URL = "https://www.justice.gov/epstein/files/DataSet%20"
@@ -68,31 +69,31 @@ OFFICIAL_LINKS = [
         comment='raw files',
         comment_url=OVERSIGHT_DRIVE_URL,
         link_text='2025 Oversight Committee Press Release',
-    )
+    ),
 ]
 
 EXTERNAL_LINKS = OFFICIAL_LINKS + [
     # ExternalLink(EPSTEIN_WEB_URL, 'biographies', link_text='EpsteinWeb'),
-    ExternalLink('https://epsteinexposed.com'),
     ExternalLink(
-        'https://randallscott25-star.github.io/epstein-forensic-finance/narratives/19_grand_opus_narrative.html',
+        'randallscott25-star.github.io/epstein-forensic-finance/narratives/19_grand_opus_narrative.html',
         'money',
         link_text='Epstein Audit'
     ),
     ExternalLink(JMAIL_URL, 'read His Emails via Gmail interface', link_text='Jmail'),
     ExternalLink(
-        'https://tommycarstensen.com/epstein/index.html',
+        CARSTENSEN_URL,
         comment='findings',
-        comment_url='https://tommycarstensen.com/epstein/findings.html',
+        comment_url=f"{CARSTENSEN_URL}/findings.html",
         comment_style='light_sea_green italic',
         link_text='Carstensen Epstein Archive'
     ),
-    ExternalLink(EPSTEIN_DOCS_URL, 'old docs', link_text='epstein-docs'),
+    # ExternalLink(EPSTEIN_DOCS_URL, 'old docs', link_text='epstein-docs'),
     ExternalLink(EPSTEIN_MEDIA_URL, 'raw document images'),
     # ExternalLink(EPSTEINIFY_URL, 'raw images alt', link_text='Epsteinify'),
-    ExternalLink('https://bitcoinprotocol.org/epstein-bitcoin-emails', 'crypto', link_text='Epstein Bitcoin Emails'),
-    ExternalLink('https://efta-search.vercel.app', 'search filters', link_text='EFTA Search'),
-    ExternalLink('epsteinsearch.info')
+    ExternalLink('bitcoinprotocol.org/epstein-bitcoin-emails', 'crypto', link_text='Epstein Bitcoin Emails'),
+    ExternalLink('efta-search.vercel.app', 'search filters', link_text='EFTA Search'),
+    ExternalLink('epsteinexposed.com', link_text='Epstein Exposed'),
+    ExternalLink('epsteinsearch.info'),
 ]
 
 CRYPTADAMUS_SOCIAL_LINKS = [

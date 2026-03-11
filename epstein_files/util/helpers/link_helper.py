@@ -23,6 +23,10 @@ class ExternalLink:
     link_text: str = ''
     parentheses_style: str = 'gray27'
 
+    def __post_init__(self):
+        if not self.url.startswith('https://'):
+            self.url = f"https://{self.url}"
+
     @classmethod
     def official_link(cls, url: str,  **kwargs) -> Self:
         """Alternate constructor."""
