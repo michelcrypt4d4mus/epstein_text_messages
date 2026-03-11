@@ -1124,7 +1124,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00684871', author=MARIANA_IDZKOWSKA),
     EmailCfg(id='EFTA00674483', author=MARIANA_IDZKOWSKA),
     EmailCfg(id='EFTA00662373', author=MASHA_DROKOVA, author_reason='"Best, Masha"', highlight_quote='She is interesting. Great looks'),
-    EmailCfg(id='EFTA00667366', author='Match.com', description=f"Match.com is redacted for some reason"),
+    EmailCfg(id='EFTA00667366', author='Match.com', description=f"Match.com is redacted for some reason", truncate_to=300),
     EmailCfg(id='EFTA01986756', author=MELANIE_PHILLIPS, author_uncertain=f"{STEVEN_SINOFSKY}'s gf at the time"),
     EmailCfg(id='EFTA00355684', author='Mira Bach', is_interesting=False),
     EmailCfg(id='EFTA01063008', author=OLGA_PONOMAR_BECKER, author_reason='Jmail'),
@@ -4083,6 +4083,8 @@ NOT_CHRONOLOGICAL_VIEW_IDS = [cfg.id for cfg in OTHER_FILES_FLIGHT_LOG] + [
     '022234',
     '030470',
     '030222',
+    # Christina Galbraith
+    'EFTA00941810'
     # '031826',
     '031826',
     '019446',  #Haiti jacmel
@@ -4097,6 +4099,8 @@ NOT_CHRONOLOGICAL_VIEW_IDS = [cfg.id for cfg in OTHER_FILES_FLIGHT_LOG] + [
     'EFTA02342230',
     # Misc
     'EFTA00329334',
+    # Renata Bolotova
+    'EFTA00667441',
     # Tyler Shears
     'EFTA02372294',
     '028965',
