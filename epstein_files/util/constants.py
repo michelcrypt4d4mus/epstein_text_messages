@@ -1043,7 +1043,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA02246744', author=LESLEY_GROFF),
     EmailCfg(id='EFTA02102384', author=LESLEY_GROFF),
     EmailCfg(id='EFTA02067245', author=LESLEY_GROFF, description=VALAR_MEETING, is_interesting=True, author_uncertain=True, truncate_to=600),
-    EmailCfg(id='EFTA02068490', author=LESLEY_GROFF, description=VALAR_MEETING, is_interesting=True, author_uncertain=True),
+    EmailCfg(id='EFTA02068490', author=LESLEY_GROFF, description=VALAR_MEETING, is_interesting=True, author_uncertain=True, truncate_to=540),
     EmailCfg(id='EFTA02067872', author=LESLEY_GROFF, description=VALAR_MEETING, is_interesting=True, author_uncertain=True),
     EmailCfg(id='EFTA01731288', author=LESLEY_GROFF, author_reason='signature'),
     # These attributions are based mostly on the email text being about Epstein scheduling
@@ -2412,6 +2412,7 @@ OTHER_FILES_CRYPTO = [
     EmailCfg(id='EFTA02724230', description='alternative currencies discussion', truncate_to=NO_TRUNCATE),
     # Jeremy Rubin
     EmailCfg(id='EFTA02466979', description='"AID Coin"'),
+    EmailCfg(id='EFTA02343669', description='rumours that people are using bitcoin to exfiltrate capital from China'),
     # Joi Ito / Kyara
     DocCfg(id='024256', author=JOI_ITO, description=f"Internet & Society: The Technologies and Politics of Control"),
     EmailCfg(id='028847', description=f"the announcement of a hunt for Putin's money seems to greatly concern Epstein and {JOI_ITO}"),
@@ -3986,6 +3987,7 @@ UNINTERESTING_EMAIL_IDS = [
     'EFTA02229402',
     'EFTA02229659',
     'EFTA01987383',
+    'EFTA02067872',
     # Maria Prusakova
     'EFTA01772533',
     'EFTA01740489',
