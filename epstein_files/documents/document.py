@@ -1,12 +1,14 @@
 import logging
 import re
+import tempfile
 from collections import Counter
+from contextlib import contextmanager
 from dataclasses import asdict, dataclass, field
 from datetime import datetime
 from email import policy
 from email.parser import BytesParser
 from pathlib import Path
-from typing import ClassVar, Self, Sequence, TypeVar
+from typing import ClassVar, Generator, Self, Sequence, TypeVar
 
 from rich.align import Align
 from inflection import underscore
@@ -37,7 +39,7 @@ from epstein_files.util.env import args, site_config
 from epstein_files.util.helpers.data_helpers import (date_str, patternize, prefix_keys, remove_zero_time,
      uniquify, uniq_sorted, without_falsey)
 from epstein_files.util.helpers.link_helper import link_text_obj
-from epstein_files.util.helpers.file_helper import coerce_file_path, file_size_to_str
+from epstein_files.util.helpers.file_helper import coerce_file_path, file_size_str, file_size_to_str
 from epstein_files.util.helpers.string_helper import collapse_newlines, join_truthy, quote
 from epstein_files.util.logging import DOC_TYPE_STYLES, FILENAME_STYLE, logger
 
@@ -646,14 +648,22 @@ class Document:
 
         logger.warning(f"Wrote {self.length} chars of cleaned {self.filename} to {output_path}.")
 
-    def _write_clean_text_to_tmp_file(self) -> Path:
-        """Write `self.text` to a temporary file."""
-        if (tmp_file_path := Path(f"{self.file_path}_tmp.txt")).exists():
-            self.warn(f"Deleting existing tmp file '{tmp_file_path}'...")
-            tmp_file_path.unlink()
+    @contextmanager
+    def _write_tmp_file(self) -> Generator[Path, None, None]:
+        with tempfile.NamedTemporaryFile(dir=self.file_path.parent) as tmp_doc_file:
+            tmp_path = Path(tmp_doc_file.name)
+            self._write_clean_text(tmp_path)
+            self.warn(f"created tmp file '{tmp_doc_file.name}' ({file_size_str(tmp_path)})")
+            yield Path(tmp_doc_file.name)
 
-        self._write_clean_text(tmp_file_path)
-        return tmp_file_path
+    # def _write_clean_text_to_tmp_file(self) -> Path:
+    #     """Write `self.text` to a temporary file."""
+    #     if (tmp_file_path := Path(f"{self.file_path}_tmp.txt")).exists():
+    #         self.warn(f"Deleting existing tmp file '{tmp_file_path}'...")
+    #         tmp_file_path.unlink()
+
+    #     self._write_clean_text(tmp_file_path)
+    #     return tmp_file_path
 
     def __rich_console__(self, console: Console, options: ConsoleOptions) -> RenderResult:
         """Default `Document` renderer (Email and MessengerLog override this)."""
