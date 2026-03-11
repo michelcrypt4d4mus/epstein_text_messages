@@ -1,3 +1,6 @@
+"""
+Methods to help with manually adjusting `DocCfg` objects at new file import time.
+"""
 import sys
 from pathlib import Path
 from typing import Mapping, Sequence, Type, cast
