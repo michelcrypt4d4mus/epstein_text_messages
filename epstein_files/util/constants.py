@@ -1634,6 +1634,8 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00040145', date='2021-11-09 17:24:30'),
     EmailCfg(id='EFTA02730485', date='2021-12-03 00:00:00'),
     EmailCfg(id='EFTA01858685', is_interesting=True, comment='Boris asks about Stanley Ho (maybe)'),
+
+    # Duplicates
     EmailCfg(id='EFTA00875181', duplicate_ids=['EFTA01901268']),
     EmailCfg(id='EFTA01852975', duplicate_ids=['EFTA02001764']),
     EmailCfg(id='EFTA00563586', duplicate_ids=['EFTA02323722']),
@@ -1649,6 +1651,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00432352', duplicate_ids=['EFTA02187120']),
     EmailCfg(id='EFTA00373948', duplicate_ids=['EFTA02113506']),
     EmailCfg(id='EFTA00870717', duplicate_ids=['EFTA01932706']),
+    EmailCfg(id='EFTA00494141', duplicate_ids=['EFTA02284036'], is_interesting=False),
     EmailCfg(id='EFTA01890312', duplicate_ids=['EFTA00712715'], truncate_to=400),
     EmailCfg(id='EFTA00915302', duplicate_ids=['EFTA01860910', 'EFTA01986221', 'EFTA01776411', 'EFTA02691069']),
     EmailCfg(id='EFTA01776613', duplicate_ids=['EFTA01860812', 'EFTA00915297', 'EFTA02691059']),
@@ -2416,6 +2419,7 @@ OTHER_FILES_CRYPTO = [
     EmailCfg(id='EFTA02343669', description='rumours that people are using bitcoin to exfiltrate capital from China'),
     # Joi Ito / Kyara
     DocCfg(id='024256', author=JOI_ITO, description=f"Internet & Society: The Technologies and Politics of Control"),
+    EmailCfg(id='025598', is_interesting=False),
     EmailCfg(id='028847', description=f"the announcement of a hunt for Putin's money seems to greatly concern Epstein and {JOI_ITO}"),
     EmailCfg(id='026360', description=f"{JOI_ITO} writes to Epstein to thank him for providing funding for the bitcoin core development team"),
     EmailCfg(id='025603', description=f"Epstein funnels money from {ANDREW_FARKAS} to {MIT_MEDIA_LAB} / {JOI_ITO}", truncate_to=850),
