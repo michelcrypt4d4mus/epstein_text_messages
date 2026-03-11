@@ -81,19 +81,11 @@ def test_file_contents(epstein_files):
         if not old_contents_path.exists():
             errors.append(f"No file found at '{old_contents_path}' to compare against!")
             continue
+        elif old_contents_path.read_text() != doc.text:
+            errors.append(f"{doc.file_id} text doesn't match '{old_contents_path}'")
 
-        old_contents = old_contents_path.read_text()
-
-        if old_contents == doc.text:
-            continue
-
-        errors.append("{doc.file_id} text doesn't match '{old_contents_path}'")
-
-        with doc._write_tmp_file() as new_contents_tmp_path:
-            diff_files(old_contents_path, new_contents_tmp_path, print_to_console=True)
-            console.line()
-            # doc.log(f"Deleting temp file at '{new_contents_tmp_path}'")
-            # new_contents_tmp_path.unlink()
+            with doc._write_tmp_file() as new_contents_tmp_path:
+                diff_files(old_contents_path, new_contents_tmp_path, print_to_console=True)
 
     assert errors == []
 

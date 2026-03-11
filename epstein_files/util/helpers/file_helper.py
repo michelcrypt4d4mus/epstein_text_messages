@@ -1,3 +1,4 @@
+import os
 import re
 from pathlib import Path
 from subprocess import check_output, run
@@ -11,12 +12,14 @@ from epstein_files.util.constant.strings import (DOJ_FILE_STEM_REGEX, DOJ_FILE_N
 from epstein_files.util.env import DOCS_DIR, DOJ_TXTS_20260130_DIR, DROPSITE_EMLS_DIR
 from epstein_files.util.logging import logger
 
-EXTRACTED_EMAILS_DIR = Path('emails_extracted_from_legal_filings')
+PROJECT_DIR = Path(__file__).parent.parent.parent.parent
+EXTRACTED_EMAILS_DIR = PROJECT_DIR.joinpath('emails_extracted_from_legal_filings')
+
 DOJ_FILE_ID_REGEX = re.compile(fr".*{DOJ_FILE_NAME_REGEX.pattern}")
+DROPSITE_FILE_NAME_REGEX = re.compile(fr"{DROPSITE_EMLS_DIR}.* (\d\d\d\d-\d\d-\d\d \d+)\.eml")
 HOUSE_FILE_ID_REGEX = re.compile(fr".*{HOUSE_OVERSIGHT_NOV_2025_FILE_NAME_REGEX.pattern}")
 
-DROPSITE_FILE_NAME_REGEX = re.compile(fr"{DROPSITE_EMLS_DIR}.* (\d\d\d\d-\d\d-\d\d \d+)\.eml")
-FILENAME_LENGTH = len(HOUSE_OVERSIGHT_PREFIX) + 6
+FILENAME_LENGTH = len(HOUSE_OVERSIGHT_PREFIX) + 6  # TODO: this is obsolete
 DIFF_COLORS = ['spring_green4', 'sea_green1']
 KB = 1024
 MB = KB * KB
@@ -172,17 +175,21 @@ def open_file_or_url(thing_to_open: str | Path) -> None:
     check_output([cmd, str(thing_to_open)])
 
 
+def path_relative_to_project(_path: str | Path) -> Path:
+    return Path(str(_path).removeprefix(f"{PROJECT_DIR}{os.sep}"))
+
+
 def _print_colored_diff_output(diff_result: str, files: list[str | Path]) -> list[Text]:
     """Color the output of shell `diff` execution."""
     from epstein_files.output.rich import console
-    txts = [Text('diff output:')]
 
     panel_file_txts = [
-        Text('').append(f"file{i + 1}: ", 'dim').append(str(f), DIFF_COLORS[i])
+        Text('').append(f"file{i + 1}: ", 'dim').append(str(path_relative_to_project(f)), DIFF_COLORS[i])
         for i, f in enumerate(files)
     ]
 
     console.print('\n', Panel(Text('\n').join(panel_file_txts), expand=False))
+    diff_line_txts = []
 
     for line in diff_result.split('\n'):
         if line.startswith('<'):
@@ -192,7 +199,7 @@ def _print_colored_diff_output(diff_result: str, files: list[str | Path]) -> lis
         else:
             style='dim'
 
-        txts.append(Text(line, style=style))
-        console.print(line, style=style)
+        diff_line_txts.append(Text(line, style=style))
+        console.print(diff_line_txts[-1])
 
-    return txts
+    return diff_line_txts

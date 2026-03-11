@@ -1,6 +1,5 @@
 import logging
 import re
-import tempfile
 from collections import Counter
 from contextlib import contextmanager
 from dataclasses import asdict, dataclass, field
@@ -8,6 +7,7 @@ from datetime import datetime
 from email import policy
 from email.parser import BytesParser
 from pathlib import Path
+from tempfile import NamedTemporaryFile
 from typing import ClassVar, Generator, Self, Sequence, TypeVar
 
 from rich.align import Align
@@ -650,10 +650,10 @@ class Document:
 
     @contextmanager
     def _write_tmp_file(self) -> Generator[Path, None, None]:
-        with tempfile.NamedTemporaryFile(dir=self.file_path.parent) as tmp_doc_file:
+        with NamedTemporaryFile(dir=self.file_path.parent) as tmp_doc_file:
             tmp_path = Path(tmp_doc_file.name)
             self._write_clean_text(tmp_path)
-            self.warn(f"created tmp file '{tmp_doc_file.name}' ({file_size_str(tmp_path)})")
+            self.log(f"created tmp file '{tmp_doc_file.name}' ({file_size_str(tmp_path)})")
             yield Path(tmp_doc_file.name)
 
     # def _write_clean_text_to_tmp_file(self) -> Path:
