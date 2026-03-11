@@ -3165,6 +3165,7 @@ OTHER_FILES_GOVERNMENT = [
         description='tip about recently convicted rapists Tal and Oren Alexander at Epstein\'s house',
         show_full_panel=True,
     ),
+    DocCfg(id='EFTA02858481', author=FBI, description='interview with victim Jennifer Aros'),
     DocCfg(id='EFTA00247131', author=FBI, description='search warrant for New York house', date='2019-07-07'),
     DocCfg(id='EFTA01249591', author=FBI, description=f"allegations against {HENRY_JARECKI}"),
     DocCfg(id='EFTA00081226', author=FBI, description='interview with minor victim'),
