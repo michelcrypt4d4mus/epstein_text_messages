@@ -10,7 +10,6 @@ from epstein_files.documents.emails.constants import FLIGHT_IN_2012_PEOPLE, IRAN
 from epstein_files.util.helpers.string_helper import join_truthy, quote
 from epstein_files.people.names import *
 from epstein_files.util.constant.strings import *
-from epstein_files.util.logging import logger
 
 OTHER_FILES_PFX = 'OTHER_FILES_'
 PARTICIPANTS_FIELD = 'Participants: field'

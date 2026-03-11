@@ -1,7 +1,4 @@
 from epstein_files.documents.config.config_builder import phone_bill_cfg
-from epstein_files.people.names import *
-from epstein_files.util.constant.strings import *
-from epstein_files.util.logging import logger
 
 
 PHONE_BILL_CFGS = [

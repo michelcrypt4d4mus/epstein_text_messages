@@ -40,6 +40,3 @@ BOOK_CFGS = [
     DocCfg(id='EFTA00008220', replace_text_with='"Massage book: Chapter 11: Putting the Moves Together"'),
     DocCfg(id='EFTA00008120', replace_text_with='"Part II: The Art of Receiving a Massage"'),
 ]
-
-
-# DocCfg.set_categories(BOOK_CFGS, Path(__file__))

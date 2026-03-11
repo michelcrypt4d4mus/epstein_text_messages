@@ -67,6 +67,3 @@ ACADEMIA_CFGS = [
     EmailCfg(id='EFTA00954900', description=f'Epstein donation to {MOUNT_SINAI}'),
     EmailCfg(id='EFTA00955864', description=f'Epstein donation to {MOUNT_SINAI}', is_interesting=False)
 ]
-
-
-# DocCfg.set_categories(ACADEMIA_CFGS, Path(__file__))

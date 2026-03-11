@@ -1,9 +1,8 @@
-from epstein_files.documents.documents.categories import CONSTANT_CATEGORIES, Interesting, Neutral
+from epstein_files.documents.documents.categories import Neutral
 from epstein_files.documents.config.doc_cfg import DocCfg
-from epstein_files.people.names import *
-from epstein_files.util.constant.strings import *
-from epstein_files.util.helpers.string_helper import join_truthy, quote
-from epstein_files.util.logging import logger
+from epstein_files.people.names import THE_REAL_DEAL
+from epstein_files.util.constant.strings import (PALM_BEACH, PALM_BEACH_CODE_ENFORCEMENT, PALM_BEACH_TSV,
+     PALM_BEACH_PROPERTY_INFO, PALM_BEACH_WATER_COMMITTEE, VIRGIN_ISLANDS)
 
 REAL_DEAL_ARTICLE = 'article by Keith Larsen'
 
@@ -40,7 +39,3 @@ PROPERTY_CFGS = [
         date='2014-06-01',
     ),
 ]
-
-
-from pathlib import Path
-DocCfg.set_categories(PROPERTY_CFGS, Path(__file__))

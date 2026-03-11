@@ -1,14 +1,9 @@
-from epstein_files.documents.documents.categories import CONSTANT_CATEGORIES, Interesting, Neutral
-from epstein_files.documents.config.config_builder import (FBI_REPORT, JANE_DOE_V_USA, blaine_letter,
-     fbi_defense_witness, fbi_report, fedex_invoice, important_messages_pad, letter,
-     phone_bill_cfg, starr_letter, whistleblower_cfg, victim_diary, wolff_draft_cfg)
-from epstein_files.documents.config.doc_cfg import (DEFAULT_TRUNCATE_TO, GOLDMAN_INVESTMENT_MGMT,
-     SHORT_TRUNCATE_TO, NO_TRUNCATE, CommunicationCfg, DocCfg, EmailCfg)
-from epstein_files.documents.doj_files.full_text import EFTA00009622_TEXT
+from epstein_files.documents.config.config_builder import (FBI_REPORT, JANE_DOE_V_USA, fbi_report, letter,
+     starr_letter)
+from epstein_files.documents.config.doc_cfg import DocCfg, EmailCfg
 from epstein_files.people.names import *
 from epstein_files.util.constant.strings import *
 from epstein_files.util.helpers.string_helper import join_truthy, quote
-from epstein_files.util.logging import logger
 
 # Legal cases
 BRUNEL_V_EPSTEIN = f"{JEAN_LUC_BRUNEL} v. {JEFFREY_EPSTEIN} and Tyler McDonald d/b/a YI.org"

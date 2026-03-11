@@ -1,5 +1,3 @@
-from pathlib import Path
-
 from epstein_files.documents.config.doc_cfg import DocCfg
 from epstein_files.people.names import *
 from epstein_files.util.constant.strings import *
@@ -30,6 +28,3 @@ ARTS_CFGS = [
         description=f'art show flier for "The House Of The Nobleman"',
     ),
 ]
-
-
-DocCfg.set_categories(ARTS_CFGS, Path(__file__))

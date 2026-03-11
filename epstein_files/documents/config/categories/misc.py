@@ -1,6 +1,6 @@
 from epstein_files.documents.config.config_builder import fedex_invoice, important_messages_pad
 from epstein_files.documents.config.doc_cfg import DocCfg
-from epstein_files.documents.documents.categories import CONSTANT_CATEGORIES, Interesting, Neutral
+from epstein_files.documents.documents.categories import Interesting, Neutral
 from epstein_files.documents.doj_files.full_text import EFTA00009622_TEXT
 from epstein_files.people.names import *
 from epstein_files.util.constant.strings import *

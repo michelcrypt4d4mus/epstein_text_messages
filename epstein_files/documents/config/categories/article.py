@@ -185,6 +185,3 @@ ARTICLE_CFGS = [
         is_interesting=True,
     ),
 ]
-
-
-DocCfg.set_categories(ARTICLE_CFGS, Path(__file__))
