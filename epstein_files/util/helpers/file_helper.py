@@ -1,6 +1,9 @@
 import re
 from pathlib import Path
-from subprocess import check_output
+from subprocess import check_output, run
+
+from rich.panel import Panel
+from rich.text import Text
 
 from epstein_files.util.constant.strings import (DOJ_FILE_STEM_REGEX, DOJ_FILE_NAME_REGEX, EFTA_PREFIX,
      HOUSE_OVERSIGHT_NOV_2025_FILE_NAME_REGEX, HOUSE_OVERSIGHT_NOV_2025_FILE_STEM_REGEX,
@@ -14,6 +17,7 @@ HOUSE_FILE_ID_REGEX = re.compile(fr".*{HOUSE_OVERSIGHT_NOV_2025_FILE_NAME_REGEX.
 
 DROPSITE_FILE_NAME_REGEX = re.compile(fr"{DROPSITE_EMLS_DIR}.* (\d\d\d\d-\d\d-\d\d \d+)\.eml")
 FILENAME_LENGTH = len(HOUSE_OVERSIGHT_PREFIX) + 6
+DIFF_COLORS = ['spring_green4', 'sea_green1']
 KB = 1024
 MB = KB * KB
 
@@ -51,9 +55,6 @@ def coerce_file_stem(filename_or_id: int | str | Path) -> str:
     elif isinstance(filename_or_id, Path):
         return filename_or_id.stem
 
-    # print(f"\n\n, filename_or_id={filename_or_id} ({type(filename_or_id)})")
-    # import pdb;pdb.set_trace()
-
     if isinstance(filename_or_id, str) and filename_or_id.startswith(HOUSE_OVERSIGHT_PREFIX):
         file_id = extract_file_id(filename_or_id)
         file_stem = file_stem_for_id(file_id)
@@ -73,6 +74,18 @@ def coerce_url_slug(filename_or_id: int | str | Path) -> str:
         return LOCAL_EXTRACT_REGEX.sub('', file_stem)
     else:
         return file_stem
+
+
+def diff_files(file1: str | Path, file2: str | Path, print_to_console: bool = True) -> str:
+    """Run shell `diff` for two files."""
+    cmd = f"diff '{file1}' '{file2}'"
+    logger.warning(f"Running diff cmd: '{cmd}'")
+    diff_result = run(cmd, shell=True, capture_output=True, text=True).stdout
+
+    if print_to_console:
+        _print_colored_diff_output(diff_result, [file1, file2])
+
+    return diff_result
 
 
 def extract_efta_id(file_id: str) -> int:
@@ -157,3 +170,29 @@ def log_file_write(file_path: str | Path) -> None:
 def open_file_or_url(thing_to_open: str | Path) -> None:
     cmd = 'code' if str(thing_to_open).endswith('.txt') else 'open'
     check_output([cmd, str(thing_to_open)])
+
+
+def _print_colored_diff_output(diff_result: str, files: list[str | Path]) -> list[Text]:
+    """Color the output of shell `diff` execution."""
+    from epstein_files.output.rich import console
+    txts = [Text('diff output:')]
+
+    panel_file_txts = [
+        Text('').append(f"file{i + 1}: ", 'dim').append(str(f), DIFF_COLORS[i])
+        for i, f in enumerate(files)
+    ]
+
+    console.print('\n', Panel(Text('\n').join(panel_file_txts), expand=False))
+
+    for line in diff_result.split('\n'):
+        if line.startswith('<'):
+            style = DIFF_COLORS[0]
+        elif line.startswith('>'):
+            style = DIFF_COLORS[1]
+        else:
+            style='dim'
+
+        txts.append(Text(line, style=style))
+        console.print(line, style=style)
+
+    return txts

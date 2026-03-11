@@ -2,6 +2,7 @@ from datetime import datetime
 from itertools import chain
 
 import pytest
+from rich.panel import Panel
 
 from epstein_files.documents.document import Document
 from epstein_files.documents.email import Email
@@ -11,6 +12,7 @@ from epstein_files.output.rich import console, print_subtitle_panel
 from epstein_files.people.names import *
 from epstein_files.util.constants import CONFIGS_BY_ID
 from epstein_files.util.helpers.data_helpers import days_between, uniquify
+from epstein_files.util.helpers.file_helper import diff_files
 from epstein_files.util.helpers.string_helper import prop_str
 
 from .conftest import FILE_TEXT_DUMP_DIR, assert_higher_counts
@@ -23,8 +25,6 @@ COMMON_DEVICE_SIGNATURES = [
     set(["Sent from my iPhone"]),
     set(["Sent from my iPad", "Sent from my iPhone"]),
 ]
-
-OK_FILES_FOR_DIFF = ['EFTA00582504']
 
 
 def test_against_csv(epstein_files):
@@ -72,20 +72,29 @@ def test_against_csv(epstein_files):
 
 
 def test_file_contents(epstein_files):
-    for doc in epstein_files.unique_documents:
-        output_file = FILE_TEXT_DUMP_DIR.joinpath(doc.file_id)
-        old_contents = output_file.read_text()
+    """Run `scripts/update_fixtures.py` to write/update the .txt files that will be tested against."""
+    errors = []
 
-        if doc.file_info.is_eml_file:
-            if old_contents != doc.text:
-                doc.warn(f" mismatch against fixture file...")
-        else:
-            if old_contents == doc.text:
-                doc.warn(f"file is OK")
-            elif doc.file_id in OK_FILES_FOR_DIFF:
-                doc.warn(f"files diff but OK ID")
-            else:
-                assert old_contents == doc.text, f"{doc.file_id} text doesn't match '{output_file}'"
+    for doc in epstein_files.unique_documents:
+        old_contents_path := FILE_TEXT_DUMP_DIR.joinpath(doc.file_id)
+
+        if not old_contents_path.exists():
+            errors.append(f"No file found at '{old_contents_path}' to compare against!")
+            continue
+
+        old_contents = old_contents_path.read_text()
+
+        if old_contents == doc.text:
+            continue
+
+        errors.append("{doc.file_id} text doesn't match '{old_contents_path}'")
+        new_contents_tmp_path = doc._write_clean_text_to_tmp_file()
+        diff_files(old_contents_path, new_contents_tmp_path, print_to_console=True)
+        console.line()
+        doc.log(f"Deleting temp file at '{new_contents_tmp_path}'")
+        new_contents_tmp_path.unlink()
+
+    assert errors == []
 
 
 def test_all_configured_file_ids_exist(epstein_files):

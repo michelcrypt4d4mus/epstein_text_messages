@@ -646,6 +646,15 @@ class Document:
 
         logger.warning(f"Wrote {self.length} chars of cleaned {self.filename} to {output_path}.")
 
+    def _write_clean_text_to_tmp_file(self) -> Path:
+        """Write `self.text` to a temporary file."""
+        if (tmp_file_path := Path(f"{self.file_path}_tmp.txt")).exists():
+            self.warn(f"Deleting existing tmp file '{tmp_file_path}'...")
+            tmp_file_path.unlink()
+
+        self._write_clean_text(tmp_file_path)
+        return tmp_file_path
+
     def __rich_console__(self, console: Console, options: ConsoleOptions) -> RenderResult:
         """Default `Document` renderer (Email and MessengerLog override this)."""
         yield self.file_display()
