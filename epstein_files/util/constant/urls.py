@@ -91,7 +91,8 @@ EXTERNAL_LINKS = OFFICIAL_LINKS + [
     ExternalLink(EPSTEIN_MEDIA_URL, 'raw document images'),
     # ExternalLink(EPSTEINIFY_URL, 'raw images alt', link_text='Epsteinify'),
     ExternalLink('https://bitcoinprotocol.org/epstein-bitcoin-emails', 'crypto', link_text='Epstein Bitcoin Emails'),
-    ExternalLink('https://efta-search.vercel.app', 'search filters', link_text='EFTASearch'),
+    ExternalLink('https://efta-search.vercel.app', 'search filters', link_text='EFTA Search'),
+    ExternalLink('epsteinsearch.info')
 ]
 
 CRYPTADAMUS_SOCIAL_LINKS = [

@@ -1454,6 +1454,7 @@ EMAILS_CONFIG = [
         id='EFTA01882985',
         description=f'Epstein: "yuri money is russian gangster money, Usmanov" ("Steve" is likely {STEVEN_SINOFSKY})',
         is_interesting=True,
+        non_participants=[STEVEN_SINOFSKY],
         recipients=[MELANIE_PHILLIPS],
         recipient_uncertain='maybe Boris Nikolic but Boris asks Epstein same question a few months later',
     ),
