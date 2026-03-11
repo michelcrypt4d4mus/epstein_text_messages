@@ -60,15 +60,15 @@ DOC_LINK_BASE_URLS: dict[ExternalSite, str] = {
 OFFICIAL_LINKS = [
     ExternalLink.official_link(
         DOJ_2026_URL,
+        'DOJ Epstein Files Transparency Act Disclosures',
         comment='search',
         comment_url=DOJ_SEARCH_URL,
-        link_text='DOJ Epstein Files Transparency Act Disclosures'
     ),
     ExternalLink.official_link(
         OVERSIGHT_REPUBS_PRESSER_URL,
+        '2025 Oversight Committee Press Release',
         comment='raw files',
         comment_url=OVERSIGHT_DRIVE_URL,
-        link_text='2025 Oversight Committee Press Release',
     ),
 ]
 
@@ -76,23 +76,23 @@ EXTERNAL_LINKS = OFFICIAL_LINKS + [
     # ExternalLink(EPSTEIN_WEB_URL, 'biographies', link_text='EpsteinWeb'),
     ExternalLink(
         'randallscott25-star.github.io/epstein-forensic-finance/narratives/19_grand_opus_narrative.html',
-        'money',
-        link_text='Epstein Audit'
+        'Epstein Audit',
+        comment='money',
     ),
-    ExternalLink(JMAIL_URL, 'read His Emails via Gmail interface', link_text='Jmail'),
+    ExternalLink(JMAIL_URL, 'Jmail', 'read His Emails via Gmail interface'),
     ExternalLink(
         CARSTENSEN_URL,
+        'Carstensen Epstein Archive',
         comment='findings',
         comment_url=f"{CARSTENSEN_URL}/findings.html",
         comment_style='light_sea_green italic',
-        link_text='Carstensen Epstein Archive'
     ),
     # ExternalLink(EPSTEIN_DOCS_URL, 'old docs', link_text='epstein-docs'),
-    ExternalLink(EPSTEIN_MEDIA_URL, 'raw document images'),
+    ExternalLink(EPSTEIN_MEDIA_URL, comment='raw document images'),
     # ExternalLink(EPSTEINIFY_URL, 'raw images alt', link_text='Epsteinify'),
-    ExternalLink('bitcoinprotocol.org/epstein-bitcoin-emails', 'crypto', link_text='Epstein Bitcoin Emails'),
-    ExternalLink('efta-search.vercel.app', 'search filters', link_text='EFTA Search'),
-    ExternalLink('epsteinexposed.com', link_text='Epstein Exposed'),
+    ExternalLink('bitcoinprotocol.org/epstein-bitcoin-emails', 'Epstein Bitcoin Emails', 'crypto'),
+    ExternalLink('efta-search.vercel.app', 'EFTA Search', 'search filters'),
+    ExternalLink('epsteinexposed.com', 'Epstein Exposed'),
     ExternalLink('epsteinsearch.info'),
 ]
 

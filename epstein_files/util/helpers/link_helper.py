@@ -1,6 +1,8 @@
 """
 Functions that build rich Text links.
 """
+import re
+
 from dataclasses import dataclass
 from rich.text import Text
 from typing import Self
@@ -12,30 +14,37 @@ EXTERNAL_LINK_STYLE = 'light_slate_grey bold'
 OFFICIAL_LINK_STYLE = 'navajo_white3 bold'
 SUBSTACK_POST_LINK_STYLE = 'bright_cyan'
 
+LINK_REGEX = re.compile(r"^https?://.*")
+
 
 @dataclass
 class ExternalLink:
+    """Container for rich `Text` links with optional parenthetical comment."""
+
     url: str
+    link_text: str = ''
     comment: str = ''
     comment_style: str = ''
     comment_url: str = ''
     link_style: str = EXTERNAL_LINK_STYLE
-    link_text: str = ''
     parentheses_style: str = 'gray27'
 
     def __post_init__(self):
-        if not self.url.startswith('https://'):
-            self.url = f"https://{self.url}"
+        self.url = coerce_https(self.url)
+        self.comment_url = coerce_https(self.comment_url) if self.comment_url else self.comment_url
 
     @classmethod
-    def official_link(cls, url: str,  **kwargs) -> Self:
-        """Alternate constructor."""
+    def official_link(cls, url: str, link_text: str, comment: str, comment_url: str, **kwargs) -> Self:
+        """Alternate constructor for differently colored links to official sources like justice.gov."""
         def pop_with_default(arg: str, default_value: str) -> str:
             return kwargs.pop(arg) if arg in kwargs else default_value
 
         return cls(
-            url,
+            url=url,
+            link_text=link_text,
+            comment=comment,
             comment_style=pop_with_default('comment_style', ARCHIVE_ALT_LINK_STYLE),
+            comment_url=comment_url,
             link_style=pop_with_default('link_style', OFFICIAL_LINK_STYLE),
             parentheses_style='wheat4',
             **kwargs
@@ -61,12 +70,18 @@ class ExternalLink:
         return self.link_with_comment
 
 
+def coerce_https(url: str) -> str:
+    """Prepend https:// if it's not there already."""
+    return url if LINK_REGEX.match(url) else f"https://{url}"
+
+
 def link_markup(
     url: str,
     link_text: str = '',
     style: str | None = ARCHIVE_LINK_COLOR,
     underline: bool = True
 ) -> str:
+    """Create a rich markup string that can be turned to colored/linked `Text` with `Text.from_markup()`."""
     link_text = link_text or url.removeprefix('https://')
     style = ((style or '') + (' underline' if underline else '')).strip()
     return f"[link={url}][{style}]{link_text}[/{style}][/link]"
