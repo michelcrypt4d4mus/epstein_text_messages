@@ -2708,6 +2708,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         contacts=[
             Contact('Alisa Bekins', f"{PETER_THIEL}'s assistant"),
             Contact(ANDREW_MCCORMACK, f"co-founder of {THIELS_VALAR}", r"Andrew McCorm(ack?)?"),
+            Contact("Andy Rubin", "ex-Microsoft, ex-Google, fired for #MeToo reasons", match_partial=None),
             Contact('Auren Hoffman', "CEO of SafeGraph (mobile device location data co.), LiveRamp", match_partial=None),
             Contact(
                 BOBBY_KOTICK,
@@ -2832,6 +2833,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Erick? Sc?hmidt",
             r"(Jeff )?Bezos",
             r"Larry Page",
+            r"Lytro",  # a16z co.
             r"(Mark )?Zuckerberg",
             r"Najeev",
             r"Palantir",
@@ -2854,8 +2856,10 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         patterns=[
             r"Activision( Blizzard)?",
             r"AG?I",
+            r"(?-i:A)pple",
             r"Artificial (General )?Intelligence",
             r"Blizzard Entertainment",
+            r"Cisco",
             r"cyber( (security|space))?",
             r"deep learning",
             r"Dropbox",
@@ -2863,6 +2867,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"fintech",
             r"Google",
             r"Instagram",
+            r"(?-i:I)ntel",
             r"Microsoft",
             r"MSFT",
             r"Overstock(.com)?",
@@ -2873,6 +2878,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"SkyNet",
             r"Skyp(ed?|ing)",
             r"Tim Cook",
+            r"Twitter",
             r"Uber",
             r"WhatsApp",
             r"(?-i:Y)ahoo",
