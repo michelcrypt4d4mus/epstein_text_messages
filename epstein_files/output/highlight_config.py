@@ -239,7 +239,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
     ),
     HighlightedNames(
         label=ARTS,
-        style='light_steel_blue3',
+        style='wheat4',
         contacts=[
             Contact(ANDRES_SERRANO, '"Piss Christ" artist', link_to_bio='https://en.wikipedia.org/wiki/Andres_Serrano'),
             Contact('Barry Josephson', "American film producer"), #, editor FamilySecurityMatters.org"),
