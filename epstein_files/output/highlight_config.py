@@ -2846,6 +2846,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Spotify",
             r"(Steve )?Ballmer",
             r"Tencent",
+            r"Tesla",
             r"Tim Ferriss?",
             r"WikiLeak(ed|s)",
         ],
