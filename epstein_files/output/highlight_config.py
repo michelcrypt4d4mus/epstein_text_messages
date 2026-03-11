@@ -262,7 +262,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact('Larry Gagosian', 'famous art dealer', link_to_bio='https://en.wikipedia.org/wiki/Larry_Gagosian'),
             Contact('Marla Prather', f'art curator at MoMA, wife of {MORTIMER_ZUCKERMAN}'),
             Contact('Michael Ovitz', 'former president of Disney'),
-            Contact('Nick Jarecki', "American filmmaker"),
+            Contact('Nick Jarecki', "American filmmaker", match_partial=None),
             Contact('Richard Merkin', "painter, illustrator and arts educator"),
             Contact(STEVEN_PFEIFFER, "Associate Director at Independent Filmmaker Project (IFP)"),
             Contact('Steven Gaydos', "American screenwriter and journalist"),
@@ -2504,7 +2504,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(
                 SERGEY_BELYAKOV,
                 "graduate of Russia's FSB academy (AKA \"a spy\"), head of the St. Petersburg Economic Forum",
-                r"Sergey Belyako|Беляков Сергей|Cepre(ct|il) [6BES][\w.]+|6(er|of)no\w+ [CE]\w+",
+                r"Sergey Belyako|Беляков Сергей|Сергей Беляков|Cepre(ct|il) [6BES][\w.]+|6(er|of)no\w+ [CE]\w+",
                 link_to_bio='https://dossier.center/jeffreyepsteinrusconnect-en/',
             ),
             Contact('Sergey Lavrov', 'foreign minister under Putin'),
