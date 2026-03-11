@@ -861,7 +861,12 @@ EMAILS_CONFIG = [
     EmailCfg(id='032842', description='discussion of "stealing" a casino in Atlantic City', is_interesting=True),
     EmailCfg(id='033377', description="Epstein says he knows Russian oligarch Oleg Deripaska", is_interesting=True),
     EmailCfg(id='023454', description='Email invitation sent to tech CEOs and Epstein', is_interesting=True, truncate_to=1878),
-    EmailCfg(id='030950', description=f"{IAN_OSBORNE} spending quality time in Russia before Jawbone investment", truncate_to=4500),
+    EmailCfg(
+        id='030950',
+        description=f"{IAN_OSBORNE} spending quality time in Russia before Jawbone investment",
+        highlight_quote='fatty at LinkedIn',
+        truncate_to=4500,
+    ),
     EmailCfg(id='029098', description=f"{MASHA_DROKOVA}'s skype contact is in Moscow", is_interesting=True),
     EmailCfg(id='032229', description=f'{MICHAEL_WOLFF} offers ideas for entrapping Trump', is_interesting=True),
     EmailCfg(id='020143', description=f"{STEVEN_SINOFSKY} has heard a sad story about women in tech from {MASHA_DROKOVA}", truncate_to=1000),
