@@ -28,7 +28,7 @@ COMMON_DEVICE_SIGNATURES = [
 
 
 def test_against_csv(epstein_files):
-    """CSV data can be updated by running './scripts/update_fixture_csv.py'."""
+    """CSV data can be updated by running './scripts/update_file_fixtures.py'."""
     csv_docs = load_files_csv()
     bad_docs = []
     repair_ids = []
@@ -47,7 +47,7 @@ def test_against_csv(epstein_files):
                         continue
                     elif all(isinstance(v, datetime) for v in [csv_val, doc_val]) and \
                             (days := abs(days_between(csv_val, doc_val))) <= 3:
-                        doc.log(f"timestamps differ by {days - 1} days, just a warning ({doc_val} vs {csv_val})")
+                        doc.warn(f"timestamps differ by {days - 1} days, just a warning ({doc_val} vs {csv_val})")
                         continue
 
                     bad_docs.append(doc)
@@ -72,7 +72,7 @@ def test_against_csv(epstein_files):
 
 
 def test_file_contents(epstein_files):
-    """Run `scripts/update_fixtures.py` to write/update the .txt files that will be tested against."""
+    """Run `scripts/update_file_fixtures.py` to write/update the .txt files that will be tested against."""
     errors = []
 
     for doc in epstein_files.unique_documents:
