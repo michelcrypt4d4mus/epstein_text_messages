@@ -14,6 +14,8 @@ PDFALYZER_IMAGE_PANEL_REGEX = re.compile(r"\n╭─* Page \d+, Image \d+.*?╯\n
 MULTINEWLINE_REGEX = re.compile(r"\n{2,}")
 MULTISPACE_REGEX = re.compile(" +")
 INTEGER_REGEX = re.compile(r'^\d+$')
+WHITESPACE_REGEX = re.compile(r"\s{2,}|\t|\n", re.MULTILINE)
+
 WHITESPACE_CHAR = r"[-_.\s]*"
 DATE_LENGTH = len('2025-05-05')
 
@@ -21,6 +23,7 @@ capitalize_first = lambda s: s[0].upper() + s[1:]
 capture_group_marker = lambda label: fr"?P<{label}>"
 collapse_newlines = lambda text: MULTINEWLINE_REGEX.sub('\n\n', text)
 collapse_spaces = lambda s: MULTISPACE_REGEX.sub(' ', s)
+collapse_whitespace = lambda s: WHITESPACE_REGEX.sub(' ', s)
 is_bool_prop = lambda prop: prop.startswith('is_')
 is_integer = lambda s: bool(INTEGER_REGEX.match(s))
 iso_timestamp = lambda dt: dt.isoformat().replace('T', ' ')

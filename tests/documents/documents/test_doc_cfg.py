@@ -91,21 +91,6 @@ def uninteresting_description() -> DocCfg:
     return _doj_cfg(Neutral.LEGAL, description=CVRA + " law stuff")
 
 
-@pytest.mark.parametrize(
-    "id,category,description",
-    [
-        pytest.param('026731', Uninteresting.ACADEMIA, 'speech at first inaugural Cornell Carl Sagan Lecture by Lord Martin Rees'),
-        pytest.param('010912', Uninteresting.BOOK, 'book titled "Free Growth and Other Surprises" (draft) by Gordon Getty'),
-        pytest.param('018438', Uninteresting.BOOK, 'book titled "The S&M Feminist" by Clarisse Thorn'),
-        pytest.param('EFTA00006100', Neutral.MISC, ''),
-    ]
-)
-def test_file_descriptions(get_other_file, id, category, description):
-    file = get_other_file(id)
-    assert file.config.category == category
-    assert file.config.complete_description == description
-
-
 def test_category_txt(blockchain_cap_cfg, empty_house_cfg, junk_doc_cfg, legal_cfg, skype_cfg):
     assert blockchain_cap_cfg.category_txt.style == 'orange1 bold'
     assert empty_house_cfg.category_txt == QUESTION_MARKS_TXT
@@ -165,6 +150,26 @@ def test_complete_description(
     assert tweet_cfg.complete_description == 'Tweet by Klippenstein'
     tweet_cfg.description = 'libelous'
     assert tweet_cfg.complete_description == 'Tweet by Klippenstein libelous'
+
+
+@pytest.mark.parametrize(
+    "id,category,description",
+    [
+        pytest.param('026731', Uninteresting.ACADEMIA, 'speech at first inaugural Cornell Carl Sagan Lecture by Lord Martin Rees'),
+        pytest.param('010912', Uninteresting.BOOK, 'book titled "Free Growth and Other Surprises" (draft) by Gordon Getty'),
+        pytest.param('018438', Uninteresting.BOOK, 'book titled "The S&M Feminist" by Clarisse Thorn'),
+        pytest.param('EFTA00006100', Neutral.MISC, ''),
+    ]
+)
+def test_descriptions(get_other_file, id, category, description):
+    file = get_other_file(id)
+    assert file.config.category == category
+    assert file.config.complete_description == description
+
+
+def test_highlight_quote():
+    quote_cfg = EmailCfg(id=ID, highlight_quote='somebody to\nscrub > again')
+    assert quote_cfg.complete_description == '"somebody to scrub again"'
 
 
 def test_is_empty(academia_cfg, empty_doj_cfg, empty_house_cfg):

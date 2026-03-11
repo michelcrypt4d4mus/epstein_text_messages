@@ -13,7 +13,7 @@ from rich.panel import Panel
 from rich.table import Table
 from rich.text import Text
 
-from epstein_files.documents.document import CLOSE_PROPERTIES_CHAR, WHITESPACE_REGEX, Document
+from epstein_files.documents.document import CLOSE_PROPERTIES_CHAR, Document
 from epstein_files.documents.documents.config_builder import build_cfg_from_text
 from epstein_files.documents.documents.doc_cfg import DocCfg, Metadata
 from epstein_files.documents.documents.file_info import FileInfo
@@ -26,7 +26,7 @@ from epstein_files.util.constant.strings import *
 from epstein_files.util.constants import *
 from epstein_files.util.helpers.data_helpers import days_between, remove_timezone, uniquify
 from epstein_files.util.helpers.file_helper import FILENAME_LENGTH
-from epstein_files.util.helpers.string_helper import DATE_LENGTH
+from epstein_files.util.helpers.string_helper import DATE_LENGTH, collapse_whitespace
 from epstein_files.util.env import args, site_config
 from epstein_files.util.logging import logger
 
@@ -119,7 +119,7 @@ class OtherFile(Document):
     def preview_text(self) -> str:
         """Text at start of file stripped of newlinesfor display in tables and other cramped settings."""
         text = self.config_replace_text_with if self.config_replace_text_with else self.text
-        text = WHITESPACE_REGEX.sub(' ', text)[0:site_config.other_files_preview_chars]
+        text = collapse_whitespace(text)[0:site_config.other_files_preview_chars]
 
         if text.count('Page') > MIN_PAGES_TO_TRUNCATE_PREVIEW:
             text = text[0:TRUNCATED_PREVIEW_LEN]
