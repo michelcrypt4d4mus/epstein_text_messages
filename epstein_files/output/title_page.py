@@ -182,7 +182,7 @@ def _print_page_title(width: int = TITLE_WIDTH) -> None:
     print_centered(SUBSTACK_POST_TXT_MSGS_LINK)
 
     if not args.mobile:
-        print_centered_link(SUBSTACK_POST_TXT_MESSAGES_URL, SUBSTACK_POST_TXT_MESSAGES_URL.removeprefix('https://'), style=f'{SUBSTACK_POST_LINK_STYLE} dim')
+        print_centered(SUBSTACK_POST_TXT_MSGS_LINK.url_link, style=f'{SUBSTACK_POST_LINK_STYLE} dim')
 
     print_centered(join_texts(CRYPTADAMUS_SOCIAL_LINKS, join=site_config.social_link_separator))
     console.line()

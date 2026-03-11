@@ -87,15 +87,21 @@ class ExternalLink:
         elif len(domain_pieces) == 3:
             return domain_pieces[1]
         else:
-            raise ValueError(f"Can't get domain_stem for url '{self.url}' (domain_pieces: {domain_pieces})")
+            raise ValueError(f"Can't extract domain_stem for '{self.url}' (domain_pieces={domain_pieces})")
 
     @property
     def link(self) -> Text:
+        """Link without the (comment) part."""
         return link_text_obj(self.url, self.link_text, self.link_style)
 
     @property
     def short_url(self) -> str:
         return self.url.removeprefix(HTTPS)
+
+    @property
+    def url_link(self) -> Text:
+        """Link that uses the short_url as link_text (overriding actual link_text property)."""
+        return link_text_obj(self.url, self.short_url, self.link_style)
 
     def to_txt(self) -> Text:
         comment = Text('')
