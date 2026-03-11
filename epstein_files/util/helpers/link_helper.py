@@ -57,6 +57,9 @@ class ExternalLink:
 
         return join_non_empty(self.link, comment)
 
+    def __rich__(self) -> Text:
+        return self.link_with_comment
+
 
 def link_markup(
     url: str,
