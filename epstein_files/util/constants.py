@@ -3979,6 +3979,8 @@ UNINTERESTING_EMAIL_IDS = [
     'EFTA02318365',
     # Krassner
     '033345',
+    # Leon Black related
+    '023208_26',
     # Lesley?
     'EFTA02229402',
     'EFTA02229659',
