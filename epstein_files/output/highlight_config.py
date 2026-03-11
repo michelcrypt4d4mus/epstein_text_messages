@@ -926,7 +926,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
     ),
     HighlightedNames(
         label='employee',
-        style='medium_purple4',
+        style='light_slate_blue',
         contacts=[
             Contact('Adriana Ross', 'named co-conspirator', match_partial=None),
             Contact('Alfredo Rodriguez', "Epstein's butler, stole Epstein's black book", match_partial=None),
