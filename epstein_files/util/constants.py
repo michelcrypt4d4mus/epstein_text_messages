@@ -1607,6 +1607,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00758140', description="possibly about Sarah Ferguson?"),
     EmailCfg(id='EFTA01013413', description='Reza Bundy is the founder of IronPlanet'),
     EmailCfg(id='EFTA02339109', description=f'someone named Sue needs help (probably a sham marriage to {BROCK_PIERCE}, see later emails)'),
+    EmailCfg(id='EFTA01764152', description=f"thoughts on {STEVEN_SINOFSKY} joining a16z (which he later did)"),
     EmailCfg(id='EFTA00532500', description=f"visa applications for Russia, Belarus, and Kazakhstan", is_interesting=True, truncate_to=420),
     EmailCfg(id='EFTA02412854', description=f'who\'s "D>>>" and what does he have to be careful about?'),
     EmailCfg(id='EFTA02353279', description=f'why is a frenchman like {JEAN_LUC_BRUNEL} "normally in Israel"?'),
@@ -3906,6 +3907,7 @@ UNINTERESTING_EMAIL_IDS = [
     'EFTA01001754',  # visible elsewhere
     'EFTA00699275',
     'EFTA00864590',
+    'EFTA00875181',
     # Christina Galbraith
     '031591',
     # David Stern
