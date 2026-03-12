@@ -187,6 +187,9 @@ OCR_REPAIRS: dict[str | re.Pattern, str] = {
     'AVG°': 'AVGO',
     'Saw Matt C with DTF at golf': 'Saw Matt C with DJT at golf',
     re.compile(r"[i. ]*Privileged[- ]*Redacted[i. ]*"): '<PRIVILEGED - REDACTED>',
+    # Russian
+    re.compile(r'^BTOpHHK', re.MULTILINE | re.IGNORECASE): 'Вторник',
+    re.compile(r"^Cpe\w{2,},", re.MULTILINE | re.IGNORECASE): 'среда,',
 }
 
 METADATA_FIELDS = [

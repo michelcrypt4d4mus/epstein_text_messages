@@ -196,3 +196,15 @@ STATE_NAME_PATTERNS = [
     for state in STATE_CODES.values()
     if state not in ['Arizon', 'Florida', 'New York', 'Texas', 'Virginia', 'Washington']
 ]
+
+RUSSIAN_WEEKDAYS = [
+    'понедельник',
+    'вторник', 'Вторник',
+    'среда',
+    'четверг', 'Четверг',
+    'пятница',
+    'суббота',
+    'воскресенье',
+]
+
+RUSSIAN_ON = 'в'

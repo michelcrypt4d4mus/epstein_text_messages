@@ -353,6 +353,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact('Bob Dudley', 'CEO of BP / British Petroleum', r"[BR]ob(ert) Dudley|Dudley, Robe?r?t?"),
             Contact(DAVID_L_NEUHAUSER, f'Livermore Partners, partner of {JOSHUA_FINK}'),
             Contact('Ed Razek', "Victoria's Secret executive"),
+            Contact('Eduardo Teodorani', 'Italian, CNH Industrial'),
             Contact(FILIPA_PEROVIC, f"now Filipa Fink (married to {JOSHUA_FINK}), Coatue Management"),
             Contact('Jeanne Houweling', f'CEO of Adfin, a company Epstein and {HOWARD_LUTNICK} invested in'),
             Contact(
@@ -382,6 +383,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(TOM_PRITZKER, "chairman of The Pritzker Organization and Hyatt Hotels"),
             organization('501c3', 'IRS code for a non-profit entity'),
             organization(ATT_COURT_APPEARANCE_TEAM, "AT&T", is_interesting=False),
+            organization('CNH Industrial', 'Italian multinational metals company'),
             organization('Junkermann Group', JUNKERMANN_FUND),
             organization('Lockheed Martin', 'American military contractor'),
             organization('NJF Capital', JUNKERMANN_FUND, r"NJF( Capital)?"),
@@ -2672,7 +2674,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 link_to_bio='https://dossier.center/jeffreyepsteinrusconnect-en/',
                 match_partial=None,
             ),
-            Contact(YULIA_DOROKHINA, 'Russian girl, recruiter'),
+            Contact(YULIA_DOROKHINA, 'prolific recruiter of girls, possibly formally employed by Epstein'),
             Contact('Yuliya Kiseleva', 'Ukrainian with "400 girls for model and wedding agencies" and "cheap excort" (sic) according to Epstein'),
             Contact('Yulia Trubuckai', f"Russian girl recruited by {KIRA_DIKHTYAR}"),
             organization('George Models', 'based in Odessa, very young girls, basically a porn site'),
@@ -2682,6 +2684,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         patterns=[
             r"[DM]asha",
             r"[JY]ulia",
+            r"Nastya",
             r"Svetl?ana",
         ]
     ),
@@ -3017,6 +3020,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact('Jennifer Aros', 'abused by Epstein starting at age 14', link_to_bio='https://x.com/epsteinsearchin/status/2031730091827544180'),
             Contact(JESSICA_BANKS, f'co-founder of {QUESTION_MARKS}', match_partial=None),
             Contact(KATHERINE_KEATING, "daughter of former Australian prime minister Paul Keating", match_partial=None),
+            Contact('Lucrezia Camponovo', QUESTION_MARKS),
             Contact('Miranda', f'appears to have done an internship at {CLIFFORD_CHANCE} with {MARIA_PRUSAKOVA}?'),
             Contact(PAULA_HEIL_FISHER, "Epstein's ex-girlfriend who works in opera now", match_partial=None),
             # Contact('Regina E. Frangul', f'Amex travel agent {QUESTION_MARKS}'),
