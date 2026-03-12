@@ -59,9 +59,10 @@ def has_line_starting_with(s: str | list[str], pfxes: str | list[str], limit: in
     return False
 
 
-def indented(s: str, spaces: int = 4, prefix: str = '') -> str:
+def indented(text: str | list[str], spaces: int = 4, prefix: str = '') -> str:
     line_prefix = (' ' * spaces) + prefix
-    return line_prefix + f"\n{line_prefix}".join(s.split('\n'))
+    lines = text.split('\n') if isinstance(text, str) else text
+    return line_prefix + f"\n{line_prefix}".join(lines)
 
 
 def join_truthy(prefix: str | None, suffix: str | None, sep: str = '') -> str:

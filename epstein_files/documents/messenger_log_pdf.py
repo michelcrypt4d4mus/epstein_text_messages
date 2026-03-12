@@ -10,6 +10,7 @@ from epstein_files.people.names import JEFFREY_EPSTEIN, LAWRENCE_KRAUSS, STEVE_B
 from epstein_files.util.env import args
 from epstein_files.util.helpers.data_helpers import coerce_utc
 from epstein_files.util.logging import logger
+from epstein_files.util.helpers.string_helper import indented, quote
 
 BRACKET_NUM_PATTERN = r"\s*\[?\d\]?\s*"
 DATE_PATTERN = r"(?P<timestamp>\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2})\s+\(?UTC\)?" + fr"(?:{BRACKET_NUM_PATTERN})?"
@@ -60,26 +61,29 @@ class MessengerLogPdf(MessengerLog):
                 sender = None
 
             if JUNK_SUFFIX_REGEX.search(msg):
-                self.warn(f"Found junk suffixes in message, removing. msg:\n-----\n{msg}\n-----")
+                self.debug_log(f"Found junk suffixes in message, removing. msg:\n-----\n{msg}\n-----")
                 msg = JUNK_SUFFIX_REGEX.sub('', msg).strip()
-                self.warn(f"msg stripped of junk:\n-----\n{msg}\n-----\n")
+                self.log(f"Text message stripped of junk suffixes:\n-----\n{msg}\n-----\n")
 
             text_message = TextMessagePdf(
                 author=sender,
                 is_id_confirmed=len(sender or '') > 0 and sender != STEVE_BANNON,
                 text=msg,
-                timestamp_str=match.group('timestamp').strip(),
+                timestamp_str=timestamp_str,
             )
-
-            for g in MATCH_GROUPS:
-                self.log(f"  match [{g}] '{match.group(g).strip()}'")
 
             if msgs and text_message == msgs[-1]:
                 self.log(f"Parsed TextMessage is the same as the last one, skipping...\n")
                 continue
-            elif not msg:
-                self.warn(f"Empty text message, skipping...")
-                continue
+            else:
+                capture_group_logs = indented([f"  [{g}] '{match.group(g).strip()}'" for g in MATCH_GROUPS])
+                self.debug_log(f"Raw regex capture groups\n-----\n{capture_group_logs}\n----\n")
+
+                if msg:
+                    self.log(f"Found sender='{sender}', timestamp_str='{timestamp_str}'\nmsg: {quote(msg)}")
+                else:
+                    self.warn(f"Empty text message from {sender} at {timestamp_str}, skipping...")
+                    continue
 
             self.log(f'\nmessage: {text_message.__rich__().plain}\n')
             msgs.append(text_message)
