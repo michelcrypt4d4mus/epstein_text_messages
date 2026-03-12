@@ -113,7 +113,7 @@ class Document:
     text: str = ''
 
     # Class constants, overloaded in some subclasses
-    MAX_TIMESTAMP: ClassVar[datetime] = coerce_utc_strict(datetime(2026, 1, 29))  # Cutoff for _extract_timestamp()
+    MAX_TIMESTAMP: ClassVar[datetime] = coerce_utc_strict(datetime(2026, 1, 29))  # Cutoff for extract_timestamp()
     STRIP_WHITESPACE: ClassVar[bool] = True                                       # Should strip whitespace (overridden in JsonFile)
     _INCLUDE_DESCRIPTION_IN_SUMMARY_PANEL: ClassVar[bool] = False                 # For logging only
 
@@ -125,8 +125,8 @@ class Document:
 
         self._set_text(text=self.text or self._load_file())
         self._repair()
-        self.extracted_author = None if self.author else self._extract_author()
-        self.extracted_timestamp = None if self.timestamp else coerce_utc(self._extract_timestamp())
+        self.extracted_author = None if self.author else self.extract_author()
+        self.extracted_timestamp = None if self.timestamp else coerce_utc(self.extract_timestamp())
 
     @classmethod
     def from_file_id(cls, file_id: str | int) -> Self:
@@ -587,11 +587,11 @@ class Document:
         txt_lines = styled_dict(self._debug_dict(), sep=': ')
         return prefix_with(txt_lines, ' ', pfx_style='grey', indent=2)
 
-    def _extract_author(self) -> Name:
+    def extract_author(self) -> Name:
         """Extended in `Email` subclass to pull from  headers."""
         pass
 
-    def _extract_timestamp(self) -> datetime | None:
+    def extract_timestamp(self) -> datetime | None:
         """Should be implemented in subclasses."""
         pass
 

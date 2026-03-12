@@ -584,7 +584,7 @@ class Email(Communication):
 
         return text.strip()
 
-    def _extract_author(self) -> Name:
+    def extract_author(self) -> Name:
         """Overloads superclass method, called at instantiation time."""
         if self.header.author:
             authors = extract_emailer_names(self.header.author)
@@ -608,7 +608,7 @@ class Email(Communication):
         logger.debug(f"{self.file_id} extracted header\n\n{header}\n")
         return header
 
-    def _extract_recipients(self) -> list[Name]:
+    def extract_recipients(self) -> list[Name]:
         """Scan the To:, BCC: and CC: fields for known names, falling back to raw strings if no names identified."""
         recipients = flatten([extract_emailer_names(r) for r in self.header.recipients])
         recipients = uniquify(recipients)
@@ -626,7 +626,7 @@ class Email(Communication):
 
         return sort_names(recipients)
 
-    def _extract_timestamp(self) -> datetime:
+    def extract_timestamp(self) -> datetime:
         """Find the time this email was sent."""
         if self.header.sent_at and (timestamp := _parse_email_timestamp(self.header.sent_at)):
             return timestamp

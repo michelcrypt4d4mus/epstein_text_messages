@@ -21,13 +21,13 @@ class Communication(Document):
     Superclass for `Email` and `MessengerLog`.
 
     Attributes:
-        recipients (list[Name]): People to whom this email was sent.
+        extracted_recipients (list[Name]): People to whom this email was sent, extracted from `self.text`
     """
     extracted_recipients: list[Name] = field(default_factory=list)
 
     def __post_init__(self):
         super().__post_init__()
-        self.extracted_recipients = [] if self.config and self.config.recipients else self._extract_recipients()
+        self.extracted_recipients = [] if self.config and self.config.recipients else self.extract_recipients()
 
     @property
     def author_or_unknown(self) -> str:
@@ -112,7 +112,7 @@ class Communication(Document):
         """Overrides super() method to apply `self.author_style`."""
         return self.file_info.build_external_links(self.recipient_style, with_alt_links=True)
 
-    def _extract_recipients(self) -> list[Name]:
+    def extract_recipients(self) -> list[Name]:
         """Overload in subclasses"""
         return []
 

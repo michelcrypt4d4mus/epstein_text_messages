@@ -124,10 +124,10 @@ class MessengerLog(Communication):
     def _extract_messages(self) -> list[TextMessage]:
         return [self._build_message(match) for match in MSG_REGEX.finditer(self.text)]
 
-    def _extract_recipients(self) -> list[Name]:
+    def extract_recipients(self) -> list[Name]:
         return [JEFFREY_EPSTEIN]
 
-    def _extract_timestamp(self) -> datetime:
+    def extract_timestamp(self) -> datetime:
         for match in MSG_REGEX.finditer(self.text):
             message = self._build_message(match)
 

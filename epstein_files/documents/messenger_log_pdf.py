@@ -86,7 +86,7 @@ class MessengerLogPdf(MessengerLog):
 
         return msgs
 
-    def _extract_timestamp(self) -> datetime:
+    def extract_timestamp(self) -> datetime:
         return self._extract_messages()[0].parse_timestamp()
 
 
