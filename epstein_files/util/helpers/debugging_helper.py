@@ -1,3 +1,6 @@
+"""
+Methods used only for debugging / logging.
+"""
 from collections import defaultdict
 from datetime import datetime
 
@@ -64,14 +67,6 @@ def print_file_counts(epstein_files) -> None:
     console.print(styled_dict(counts))
 
 
-def _verify_filenames(epstein_files):
-    doc_filenames = set([doc.file_path.name for doc in epstein_files.documents])
-
-    for file_path in epstein_files.file_paths:
-        if file_path.name not in doc_filenames:
-            print(f"'{file_path}' is not in list of {len(doc_filenames)} Document obj filenames!")
-
-
 def print_interesting_doc_panels_and_props(epstein_files, sort_by_category: bool = True):
     """Only prints OtherFile objects."""
     from epstein_files.documents.other_file import OtherFile
@@ -121,3 +116,12 @@ def tz_debug_str(dt: datetime) -> str:
     dt_local = dt.replace(tzinfo=tz.UTC).astimezone(tz.gettz())
     dt_utc = dt_local.astimezone(tz.UTC)
     return f"{dt.isoformat()} (tzinfo={dt.tzinfo}, local={dt_local.isoformat()}, utc={dt_utc.isoformat()})"
+
+
+
+def _verify_filenames(epstein_files):
+    doc_filenames = set([doc.file_path.name for doc in epstein_files.documents])
+
+    for file_path in epstein_files.file_paths:
+        if file_path.name not in doc_filenames:
+            print(f"'{file_path}' is not in list of {len(doc_filenames)} Document obj filenames!")
