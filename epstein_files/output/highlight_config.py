@@ -1906,6 +1906,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 r"Julie (K.? )?Brown|jbrown@miamiherald.com",
                 match_partial=None,
             ),
+            Contact('Kia Kokalitcheva', 'US venture capital news at Pitchbook'),
             Contact(LANDON_THOMAS, "New York Times financial reporter", r"lando[nr] thomas( jr)?|thomas jr.?, lando[nr]"),
             Contact(
                 name=MICHAEL_WOLFF,
