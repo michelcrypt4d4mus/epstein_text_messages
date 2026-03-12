@@ -9,6 +9,7 @@ from epstein_files.util.logging import logger
 
 @dataclass
 class HtmlStyle:
+    """Converts rich `Style` objects and style strings to HTML RGB codes."""
     _style: Style | str | None
     style: Style = field(init=False)
 
@@ -45,11 +46,22 @@ class HtmlStyle:
 
     @property
     def to_css(self) -> dict[str, str]:
+        """Create CSS properties for this style."""
         props = {}
 
         if self.bg_hex:
             props['background-color'] = self.bg_hex
+
         if self.hex:
             props['color'] = self.hex
 
+        if self.style.bold:
+            props['font-weight'] = 'bold'
+
+        if self.style.italic:
+            props['text-decoration'] = 'italic'
+
         return props
+
+    def __str__(self) -> str:
+        return f"{type(self).__name__}(style={self.style}, _style={self._style})"
