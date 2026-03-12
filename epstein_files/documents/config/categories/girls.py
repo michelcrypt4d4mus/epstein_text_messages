@@ -327,7 +327,7 @@ GIRLS_CFGS = [
 
     # Descriptions
     EmailCfg(id='EFTA01816788', description=f"Russian girl for {PRINCE_ANDREW}"),
-    EmailCfg(id='EFTA00572157', description='translation: "Congratulations on the new addition!!! What did you name the little miracle?"'),
+    EmailCfg(id='EFTA00572157', description='translation: "Congratulations on the new addition!!! What did you name the little miracle?" (seems to be about a cat)'),
     EmailCfg(id='EFTA02559808', description=f"{EVA_DUBIN} delivering amphetamines (adderall) to Epstein", is_interesting=True, truncate_to=200),
     EmailCfg(id='EFTA01840103', description="Epstein apparently suggesting amphetamines (adderall)", is_interesting=True),
     EmailCfg(id='EFTA01987855', description=f'Epstein, Brunel, and {SULTAN_BIN_SULAYEM} very interested in a Liberian sex scandal'),
