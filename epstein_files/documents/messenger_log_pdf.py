@@ -20,7 +20,7 @@ REDACTED_AUTHOR_REGEX = re.compile(r"^([-+•_1MENO.=F]+|[4Ide])$")
 # Sometimes participants field ends up in the message
 JUNK_PREFIX_REGEX = re.compile(r"Sender: Self .{1,3}eeitunes.{,10}Participants: ? \(?")
 JUNK_SUFFIX_REGEX = re.compile(r"\)?,? ?(Sender:\s)?Self \( ?(e:?)?jeeitunes[®@]gmail.com ?\)|Participants: Lawrence Krauss(\s*\()?")
-VALID_SENDER_REGEX = re.compile(r"\w{3,} \w{3,}")
+VALID_SENDER_REGEX = re.compile(r"\w{4,}")
 # print(MSG_REGEX.pattern)
 
 MATCH_GROUPS = [
@@ -59,7 +59,7 @@ class MessengerLogPdf(MessengerLog):
                 sender = STEVE_BANNON
             elif self.file_id == 'EFTA00508054' and sender == 'Lawrence':
                 sender = LAWRENCE_KRAUSS
-            elif sender and not VALID_SENDER_REGEX.match(sender):
+            elif not VALID_SENDER_REGEX.search(sender):
                 self.warn(f"text message sender '{sender}' is not a valid name")
                 sender = None
 
