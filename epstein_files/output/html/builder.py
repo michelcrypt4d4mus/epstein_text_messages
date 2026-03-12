@@ -37,15 +37,8 @@ PANEL_BORDER_PROPS = {
 }
 
 
-def body_panel_css_props(border_style: str | Style | None) -> dict[str, str]:
-    """CSS for panel with Document text."""
-    return {
-        **border_css_props(border_style),
-        **PANEL_BASE_PROPS,
-    }
-
-
 def border_css_props(style: str | Style | None) -> dict[str, str]:
+    """CSS props to make an HTML div with border-color set to `style` arg as a standard CSS RGB string."""
     if style is None:
         return {}
 
@@ -60,7 +53,8 @@ def border_css_props(style: str | Style | None) -> dict[str, str]:
         return {}
 
 
-def buffer_as_html(_console: Console, clear: bool = True) -> str:
+def console_buffer_to_html(_console: Console, clear: bool = True) -> str:
+    """Export the current `console` write buffer to an HTML string."""
     html = _console.export_html(
         clear=clear,
         code_format=PRE_CONSOLE_TEMPLATE,
@@ -131,7 +125,7 @@ def rich_to_html(
         logger.debug(f"Temporarily set console width to {html_console.width}")
 
     html_console.print(obj, end='')
-    html_text = buffer_as_html(html_console)
+    html_text = console_buffer_to_html(html_console)
     html_console.width = old_console_width
     return html_text
 
