@@ -10,7 +10,7 @@ from epstein_files.documents.config.doc_cfg import CommunicationCfg
 from epstein_files.output.highlight_config import get_style_for_name, styled_name
 from epstein_files.output.rich import styled_key_value
 from epstein_files.people.names import UNKNOWN, Name
-from epstein_files.util.helpers.data_helpers import uniquify
+from epstein_files.util.helpers.data_helpers import uniq_sorted
 from epstein_files.util.helpers.rich_helpers import no_bold
 from epstein_files.util.helpers.string_helper import timestamp_without_seconds
 
@@ -48,7 +48,7 @@ class Communication(Document):
     @property
     def people(self) -> list[str]:
         """Names of people who either sent/received this email or are mentioned in it."""
-        if self.config and self.config.people:
+        if self.config and self.config.people:  # TODO: this check also happens in superclass but still necessary here
             return self.config.people
 
         people = super().people + [p for p in self.participants if p]
