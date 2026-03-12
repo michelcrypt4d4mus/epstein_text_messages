@@ -199,6 +199,7 @@ GIRLS_CFGS = [
         description=f'{SVETLANA_POZHIDAEVA}\'s relationship with "J" ({JOSHUA_FINK}?) and "B" {QUESTION_MARKS}',
         recipients=[SVETLANA_POZHIDAEVA],
     ),
+    EmailCfg(id='EFTA00937556', recipients=[SVETLANA_POZHIDAEVA], recipient_uncertain=True),
     EmailCfg(
         id='EFTA00888467',
         description=f'very strange conversation about "Peter" (maybe {PETER_MANDELSON}?) and "mj" (maybe {HASSAN_JAMEEL}?)',

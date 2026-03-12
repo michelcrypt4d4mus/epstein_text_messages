@@ -271,6 +271,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact('Frederic Fekkai', f"hairdresser Epstein liked his girls to use"),
             Contact('Larry Gagosian', 'famous art dealer', link_to_bio='https://en.wikipedia.org/wiki/Larry_Gagosian'),
             Contact('Marla Prather', f'art curator at MoMA, wife of {MORTIMER_ZUCKERMAN}'),
+            Contact('Martha Stewart', match_partial=None, is_interesting=False),
             Contact('Michael Ovitz', 'former president of Disney'),
             Contact('Nick Jarecki', "American filmmaker", match_partial=None),
             Contact('Richard Merkin', "painter, illustrator and arts educator"),
@@ -2669,7 +2670,8 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 match_partial=None,
             ),
             Contact(YULIA_DOROKHINA, 'Russian girl, recruiter'),
-            Contact('Yulia Trubuckai', 'Russian girl'),
+            Contact('Yuliya Kiseleva', 'Ukrainian model scout (???)'),
+            Contact('Yulia Trubuckai', f"Russian girl recruited by {KIRA_DIKHTYAR}"),
             organization('George Models', 'based in Odessa, very young girls, basically a porn site'),
         ],
         patterns=[
@@ -2760,6 +2762,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(IAN_ODONNELL, THIELS_VALAR, r"Ian O'?Donnell|O'?Donnell, Ian"),
             Contact('Jack Dorsey', 'co-founder of Twitter and Block (FKA Square)'),
             Contact(JAMES_FITZGERALD, f"co-founder of {THIELS_VALAR}", r"James Fitz[g\s]eral?d?", match_partial=None),
+            Contact('James Meisken', 'biotech at Delos'),
             Contact(
                 JASON_CALACANIS,
                 f'{ALL_IN_PODCAST} with David Sacks and {CHAMATH_PALIHAPITIYA}, Uber investor',
