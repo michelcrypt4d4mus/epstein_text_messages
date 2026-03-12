@@ -354,7 +354,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact('Bob Dudley', 'CEO of BP / British Petroleum', r"[BR]ob(ert) Dudley|Dudley, Robe?r?t?"),
             Contact(DAVID_L_NEUHAUSER, f'Livermore Partners, partner of {JOSHUA_FINK}'),
             Contact('Ed Razek', "Victoria's Secret executive"),
-            Contact('Eduardo Teodorani', 'Italian, CNH Industrial'),
+            Contact('Eduardo Teodorani', 'Italian, CNH Industrial', r"(Eduardo )?Teodorani(,? Eduardo)?"),
             Contact(FILIPA_PEROVIC, f"now Filipa Fink (married to {JOSHUA_FINK}), Coatue Management"),
             Contact('Jeanne Houweling', f'CEO of Adfin, a company Epstein and {HOWARD_LUTNICK} invested in'),
             Contact(

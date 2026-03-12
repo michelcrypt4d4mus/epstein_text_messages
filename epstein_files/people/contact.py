@@ -69,6 +69,10 @@ class Contact:
             logger.fatal(f"failed to compile highlight_regex for {self.name}: {e}")
             raise e
 
+        # if 'Teodor' in self.name:
+        #     logger.warning(f"{self.name} emailer_regex: {self.emailer_regex.pattern}")
+        #     logger.warning(f"{self.name} highlight_regex: {self.highlight_regex.pattern}")
+
     @property
     def bio(self) -> Text:
         """Biographical info about this entity."""
