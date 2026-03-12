@@ -221,6 +221,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Masai",
             r"Mobutu Seko",
             r"Monrovian?",
+            r"Nairobi",
             r"Nigerian?",
             r"(Paul )?Kagame",
             r"(Republic of )?Congo",

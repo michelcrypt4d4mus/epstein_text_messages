@@ -10,7 +10,7 @@ from epstein_files.people.names import JEFFREY_EPSTEIN, LAWRENCE_KRAUSS, STEVE_B
 from epstein_files.util.env import args
 from epstein_files.util.helpers.data_helpers import coerce_utc
 from epstein_files.util.logging import logger
-from epstein_files.util.helpers.string_helper import indented, quote
+from epstein_files.util.helpers.string_helper import collapse_whitespace, indented, quote
 
 BRACKET_NUM_PATTERN = r"\s*\[?\d\]?\s*"
 DATE_PATTERN = r"(?P<timestamp>\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2})\s+\(?UTC\)?" + fr"(?:{BRACKET_NUM_PATTERN})?"
@@ -18,7 +18,9 @@ SENDER_PATTERN = r"\s*Sender:(?P<sender>.*?)Participants:?(?P<participants>(\s*?
 MSG_REGEX = re.compile(fr'iMessage\s+(?:{BRACKET_NUM_PATTERN})?{DATE_PATTERN}{SENDER_PATTERN}(?P<msg>.*?)(?=iMessage|NYCO24362|SMS)', re.DOTALL | re.M)
 REDACTED_AUTHOR_REGEX = re.compile(r"^([-+•_1MENO.=F]+|[4Ide])$")
 # Sometimes participants field ends up in the message
-JUNK_SUFFIX_REGEX = re.compile(r"\)?,? ?Self \( ?(e:?)?jeeitunes[®@]gmail.com ?\)")
+JUNK_PREFIX_REGEX = re.compile(r"Sender: Self .{1,3}eeitunes.{,10}Participants: ? \(?")
+JUNK_SUFFIX_REGEX = re.compile(r"\)?,? ?(Sender:\s)?Self \( ?(e:?)?jeeitunes[®@]gmail.com ?\)|Participants: Lawrence Krauss(\s*\()?")
+VALID_SENDER_REGEX = re.compile(r"\w{3,} \w{3,}")
 # print(MSG_REGEX.pattern)
 
 MATCH_GROUPS = [
@@ -49,7 +51,7 @@ class MessengerLogPdf(MessengerLog):
         for match in MSG_REGEX.finditer(self.text):
             msg = match.group('msg').strip()
             timestamp_str = match.group('timestamp').strip()
-            sender = match.group('sender').replace('(', '').replace(')', '').strip()
+            sender = collapse_whitespace(match.group('sender').replace('(', '').replace(')', ''))
 
             if sender.startswith('Self'):
                 sender = JEFFREY_EPSTEIN
@@ -57,13 +59,18 @@ class MessengerLogPdf(MessengerLog):
                 sender = STEVE_BANNON
             elif self.file_id == 'EFTA00508054' and sender == 'Lawrence':
                 sender = LAWRENCE_KRAUSS
-            elif not sender:
+            elif sender and not VALID_SENDER_REGEX.match(sender):
+                self.warn(f"text message sender '{sender}' is not a valid name")
                 sender = None
 
             if JUNK_SUFFIX_REGEX.search(msg):
                 self.debug_log(f"Found junk suffixes in message, removing. msg:\n-----\n{msg}\n-----")
                 msg = JUNK_SUFFIX_REGEX.sub('', msg).strip()
-                self.log(f"Text message stripped of junk suffixes:\n-----\n{msg}\n-----\n")
+
+                if msg:
+                    self.debug_log(f"Text message stripped of junk suffixes:\n-----\n{msg}\n-----\n")
+                else:
+                    self.debug_log(f"Text stripped of junk suffixes is empty!")
 
             text_message = TextMessagePdf(
                 author=sender,
@@ -76,16 +83,18 @@ class MessengerLogPdf(MessengerLog):
                 self.log(f"Parsed TextMessage is the same as the last one, skipping...\n")
                 continue
             else:
-                capture_group_logs = indented([f"  [{g}] '{match.group(g).strip()}'" for g in MATCH_GROUPS])
-                self.debug_log(f"Raw regex capture groups\n-----\n{capture_group_logs}\n----\n")
-
                 if msg:
-                    self.log(f"Found sender='{sender}', timestamp_str='{timestamp_str}'\nmsg: {quote(msg)}")
+                    self.log(f'adding TextMsg: {text_message.__rich__().plain}')
+                    # self.log(f"Found sender='{sender}', timestamp_str='{timestamp_str}', msg={quote(msg)}")
                 else:
-                    self.warn(f"Empty text message from {sender} at {timestamp_str}, skipping...")
+                    self.warn(f"Skipping empty text message match from {sender} at {timestamp_str}, skipping...")
+
+                capture_group_msgs = [f"[{g}] '" + quote(match.group(g).replace('\n', ' ').strip()) + "'" for g in MATCH_GROUPS]
+                self.debug_log(f"[raw capture groups]\n\n{indented(capture_group_msgs, 8)}\n")
+
+                if not msg:
                     continue
 
-            self.log(f'\nmessage: {text_message.__rich__().plain}\n')
             msgs.append(text_message)
 
         return msgs

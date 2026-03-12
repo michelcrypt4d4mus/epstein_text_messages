@@ -347,7 +347,7 @@ NOT_CHRONOLOGICAL_VIEW_IDS = [cfg.id for cfg in FLIGHT_LOG_CFGS] + [
     '030470',
     '030222',
     # Christina Galbraith
-    'EFTA00941810'
+    'EFTA00941810',
     # '031826',
     '031826',
     '019446',  #Haiti jacmel
