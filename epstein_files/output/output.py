@@ -49,7 +49,8 @@ def print_curated_chronological(epstein_files: EpsteinFiles, doc_printer: DocPri
     if args.max_records:
         docs = docs[:args.max_records]
 
-    doc_printer.print_subtitle_panel('Selected Files of Interest in Chronological Order')
+    # TODO: reenable once title page is actually centered
+    # doc_printer.print_subtitle_panel('Selected Files of Interest in Chronological Order')
     doc_printer.print_documents(docs)
     return doc_printer.printed_docs
 
@@ -123,6 +124,9 @@ def print_emails_section(epstein_files: EpsteinFiles, doc_printer: DocPrinter) -
             people_to_print = epstein_files.person_objs(EMAILERS_TO_PRINT)
 
         doc_printer.print_renderable(_section_summary_table(Person.emailer_info_table(all_emailers, people_to_print)))
+
+    if args.max_records:
+        people_to_print = people_to_print[0:args.max_records]
 
     for person in people_to_print:
         if person.name in epstein_files.uninteresting_emailers and not args.names:
