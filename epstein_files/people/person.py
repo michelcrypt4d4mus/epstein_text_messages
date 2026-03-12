@@ -359,7 +359,7 @@ class Person:
         Print complete emails to or from a particular 'author' along with any specially marked docs
         configured with `show_with_name` of this user. Returns the Emails that were printed.
         """
-        logger.warning(f"print_emails() called for '{self.name}'")
+        logger.debug(f"print_emails() called for '{self.name}'")
         doc_printer.print_renderable(self.email_info_panel(), align='center')
 
         if self.biography_txt:
