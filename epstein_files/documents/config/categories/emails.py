@@ -1156,6 +1156,7 @@ EMAILS_CONFIG = [
         description='alleges cover up of crimes of wealthy / powerful people by DA Cyrus Vance',
         recipients=[FBI],
         recipient_uncertain=True,
+        truncate_to=7000,
     ),
     EmailCfg(id='EFTA02731593', author=USANYS, recipients=['Manhattan DA']),
     EmailCfg(id='EFTA00039419', author=USANYS, recipients=['Manhattan DA']),
