@@ -189,7 +189,7 @@ class OtherFile(Document):
         else:
             log_msg = f"Choosing '{timestamp}' from {len(timestamps)} extracted timestamps " \
                       f"spanning {days_spanned} days\n\n" + \
-                      indented('\n'.join([tz_debug_str(dt) for dt in timestamps]))
+                      indented([tz_debug_str(dt) for dt in timestamps])
 
         if days_spanned > MAX_DAYS_SPANNED_TO_LOG_TOP_LINES:
             self._log_top_lines(10, msg=log_msg, level=logging.DEBUG)

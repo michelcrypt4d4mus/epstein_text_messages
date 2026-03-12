@@ -201,7 +201,7 @@ class Contact:
 
     @classmethod
     def repr_string(cls, contact_infos: list[Self]) -> str:
-        return '[\n' + indented(',\n'.join([repr(contact) for contact in contact_infos]), 4) + '\n],'
+        return '[\n' + indented([repr(contact) for contact in contact_infos], 4) + '\n],'
 
 
 def acronym(name: str, description: str = '', **kwargs) -> Contact:
