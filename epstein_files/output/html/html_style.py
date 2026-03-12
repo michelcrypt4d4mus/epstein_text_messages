@@ -21,7 +21,7 @@ class HtmlStyle:
             self.style = RICH_THEME.styles.get(self._style) or Style.parse(self._style)
 
     @property
-    def bg_hex(self) -> str:
+    def background_color_hex(self) -> str:
         if self.style.reverse:
             if self.style.color:
                 return self.style.color.get_truecolor(HTML_TERMINAL_THEME).hex
@@ -33,7 +33,7 @@ class HtmlStyle:
             return ''
 
     @property
-    def hex(self) -> str:
+    def foreground_color_hex(self) -> str:
         if self.style.reverse:
             if self.style.bgcolor:
                 return self.style.bgcolor.get_truecolor(HTML_TERMINAL_THEME).hex
@@ -49,11 +49,11 @@ class HtmlStyle:
         """Create CSS properties for this style."""
         props = {}
 
-        if self.bg_hex:
-            props['background-color'] = self.bg_hex
+        if self.background_color_hex:
+            props['background-color'] = self.background_color_hex
 
-        if self.hex:
-            props['color'] = self.hex
+        if self.foreground_color_hex:
+            props['color'] = self.foreground_color_hex
 
         if self.style.bold:
             props['font-weight'] = 'bold'

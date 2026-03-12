@@ -70,6 +70,11 @@ class Person:
         self.imessage_logs = Document.sort_by_timestamp(self.imessage_logs)
 
     @property
+    def biography_txt(self) -> Text | None:
+        if self.info_with_category:
+            return Text(f"({self.info_with_category})", justify='center', style=f"{self._email_info_style} italic")
+
+    @property
     def category(self) -> str | None:
         if self.highlighted_names_group:
             category = self.highlighted_names_group.category or self.highlighted_names_group.label
@@ -154,26 +159,12 @@ class Person:
             return self.highlight_group
 
     @property
-    def info_panel(self) -> Padding:
-        """Return a `Panel` with the name of an emailer and a few tidbits of information about them."""
-        style = 'white' if (not self.style() or self.style() == DEFAULT) else self.style()
-        panel_style = f"black on {style} bold"
+    def full_info_panel(self) -> Padding:
+        """Return a `Group` with the name of an emailer and a few tidbits of information about them below."""
+        elements: list[RenderableType] = [self.email_info_panel()]
 
-        if self.name == JEFFREY_EPSTEIN:
-            email_count = len(self._printable_emails)
-            title_suffix = f"sent by {JEFFREY_EPSTEIN} to himself"
-        else:
-            email_count = len(self.unique_emails)
-            num_days = self.email_conversation_length_in_days
-            title_suffix = f"{TO_FROM} {self.name_str} starting {self.earliest_email_date} covering {num_days:,} days"
-
-        title = f"Found {email_count} emails {title_suffix}"
-        width = max(MIN_AUTHOR_PANEL_WIDTH, len(title) + 4, len(self.info_with_category) + 8)
-        panel = Panel(Text(title, justify='center'), width=width, style=panel_style)
-        elements: list[RenderableType] = [panel]
-
-        if self.info_with_category:
-            elements.append(Text(f"({self.info_with_category})", justify='center', style=f"{style} italic"))
+        if self.biography_txt:
+            elements.append(self.biography_txt)
 
         return Padding(Group(*elements), (2, 0, 1, 0))
 
@@ -324,6 +315,10 @@ class Person:
         return Document.without_dupes(self.emails_to)
 
     @property
+    def _email_info_style(self) -> str:
+        return 'white' if (not self.style() or self.style() == DEFAULT) else self.style()
+
+    @property
     def _printable_emails(self):
         """For Epstein we only want to print emails he sent to himself."""
         if self.name == JEFFREY_EPSTEIN:
@@ -334,6 +329,21 @@ class Person:
     @property
     def _unique_printable_emails(self):
         return Document.without_dupes(self._printable_emails)
+
+    def email_info_panel(self) -> Panel:
+        """Just the person's name on the colored background with email counts."""
+        if self.name == JEFFREY_EPSTEIN:
+            email_count = len(self._printable_emails)
+            title_suffix = f"sent by {JEFFREY_EPSTEIN} to himself"
+        else:
+            email_count = len(self.unique_emails)
+            num_days = self.email_conversation_length_in_days
+            title_suffix = f"{TO_FROM} {self.name_str} starting {self.earliest_email_date} covering {num_days:,} days"
+
+        title = f"Found {email_count} emails {title_suffix}"
+        width = max(MIN_AUTHOR_PANEL_WIDTH, len(title) + 4, len(self.info_with_category) + 8)
+        panel_style = f"black on {self._email_info_style} bold"
+        return Panel(Text(title, justify='center'), width=width, style=panel_style)
 
     def external_link(self, site: ExternalSite = EPSTEINIFY) -> str:
         return PERSON_LINK_BUILDERS[site](self.name_str)
@@ -349,21 +359,28 @@ class Person:
         Print complete emails to or from a particular 'author' along with any specially marked docs
         configured with `show_with_name` of this user. Returns the Emails that were printed.
         """
-        # TODO: DocPrinter doesn't render HTML for the person's info tables etc.
-        print_centered(self.info_panel)
+        logger.warning(f"print_emails() called for '{self.name}'")
+        doc_printer.print_renderable(self.email_info_panel(), align='center')
+
+        if self.biography_txt:
+            doc_printer.print_renderable(self.biography_txt, align='center')
+
+        doc_printer.line()
 
         if site_config.show_emailer_tables:
-            self.print_emails_table()
+            doc_printer.print_renderable(self._emails_table(), align='center')
 
         if self.category == Uninteresting.JUNK:
             logger.warning(f"Not printing junk emailer '{self.name}'")  # Junk emailers only get a table
             return self._printable_emails
         elif self.name in SPECIAL_NOTES:
+            # TODO: DocPrinter doesn't render HTML for the special notes
             print_special_note(SPECIAL_NOTES[self.name])
 
         docs = Document.sort_by_timestamp(self._printable_emails + self.show_with_emails_docs)
         docs = [d.file_display(align='right') if isinstance(d, OtherFile) else d for d in docs]   # TODO this sucks
 
+        # TODO this sucks
         for d in docs:
             if isinstance(d, FileDisplay):
                 d.indent = site_config.show_with_indent
@@ -372,20 +389,19 @@ class Person:
             logger.warning(f"Printing {len(docs)} documents for {self.name_str}...")
 
         doc_printer.print_documents(docs)
-        return self._printable_emails  # TODO: doesn't return FileDisplay objects!
-
-    def print_emails_table(self) -> None:
-        """Print a table of this person's emails summary (timestamps, subject liness, etc)."""
-        table = Email.build_emails_table(self._unique_printable_emails, self.name)
-        print_centered(Padding(table, (0, 5, 0, 5)))
-
-        if self.is_linkable:
-            print_centered(self.external_links_line)
-
-        console.line()
+        doc_printer.line(2)
+        return self._printable_emails  # TODO: doesn't return FileDisplay objects that may have also been printed!
 
     def style(self, allow_bold: bool = True) -> str:
         return get_style_for_name(self.name, allow_bold=allow_bold)
+
+    def _emails_table(self) -> Align | Padding:
+        """Build a table of this person's emails summary (timestamps, subject liness, etc)."""
+        caption = self.external_links_line if self.is_linkable else None
+        table = Email.build_emails_table(self._unique_printable_emails, self.name, caption=caption)
+        padded_table = Padding(table, (0, 5, 0, 5))
+        logger.debug(f"built emails table for '{self.name}' with {len(table.columns)} cols and {table.row_count} rows")
+        return padded_table
 
     def __str__(self):
         return f"{self.name_str}"

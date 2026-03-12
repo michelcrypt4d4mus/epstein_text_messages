@@ -85,7 +85,7 @@ EXTERNAL_LINKS = OFFICIAL_LINKS + [
     ExternalLink('bitcoinprotocol.org/epstein-bitcoin-emails', 'Epstein Bitcoin Emails', 'crypto'),
     ExternalLink('efta-search.vercel.app', 'EFTA Search', 'search filters'),
     ExternalLink('epsteinexposed.com', 'Epstein Exposed'),
-    ExternalLink('epsteinsearch.info'),
+    # ExternalLink('epsteinsearch.info'),  # Paid site
 ]
 
 

@@ -4,6 +4,25 @@ CODE_TEMPLATE_TEST = """<code style="font-family: inherit">{code}</code>"""
 PRE_TEMPLATE_TEST = f"""<pre>{CODE_TEMPLATE_TEST}</pre>"""
 
 
+def test_padding_tuple_to_props():
+    assert padding_tuple_to_props(1) == {f'padding-{side}': '1em' for side in ALL_SIDES}
+    assert padding_tuple_to_props((1,)) == {f'padding-{side}': '1em' for side in ALL_SIDES}
+    assert padding_tuple_to_props((1, 0)) == {f'padding-{side}': '1em' for side in VERTICAL_SIDES}
+    assert padding_tuple_to_props((0, 1)) == {f'padding-{side}': '1em' for side in HORIZONTAL_SIDES}
+
+    assert padding_tuple_to_props((1, 2)) == {
+        **{f'padding-{side}': '2em' for side in HORIZONTAL_SIDES},
+        **{f'padding-{side}': '1em' for side in VERTICAL_SIDES},
+    }
+
+    assert padding_tuple_to_props((1, 2, 3, 4)) == {
+        'padding-top': '1em',
+        'padding-right': '2em',
+        'padding-bottom': '3em',
+        'padding-left': '4em',
+    }
+
+
 def test_pre_console_template():
     assert PRE_CONSOLE_TEMPLATE == """<pre>{code}</pre>-# JUNK #-{stylesheet} {background} {foreground}"""
 

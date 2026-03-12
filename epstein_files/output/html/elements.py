@@ -7,6 +7,7 @@ from typing import Literal, Mapping
 
 from rich.console import Console, RenderableType
 from rich.panel import Panel
+from rich.padding import PaddingDimensions
 from rich.style import Style
 from rich.text import Text
 
@@ -24,7 +25,7 @@ SideProp = Literal['margin', 'padding']
 
 HORIZONTAL_SIDES: list[Side] = ['left', 'right']
 VERTICAL_SIDES: list[Side] = ['top', 'bottom']
-ALL_SIDES: list[Side] = VERTICAL_SIDES + HORIZONTAL_SIDES
+ALL_SIDES: list[Side] = ['top', 'right', 'bottom', 'left']  # Order matters for converting PaddingDimension!
 
 CODE_TEMPLATE = '{code}'
 SPLITTER = '-# JUNK #-'
@@ -35,6 +36,7 @@ BLACK_BACKGROUND = 'black_background'
 BLACK_BG__NO_EXPAND = f"{BLACK_BACKGROUND} no_expand"
 
 # CSS dicts
+CENTERED = {'margin-left': 'auto', 'margin-right': 'auto'}
 CODE_TAG_CSS = {'font-family': 'inherit'}
 FONT_CSS_PROPS = {'font-family': FONT_FAMILY}
 HTML_CONSOLE_KWARGS = copy(CONSOLE_KWARGS)
@@ -93,6 +95,21 @@ def margin_props(horizontal: CssUnit, vertical: CssUnit) -> dict[str, str]:
 
 def padding_props(horizontal: CssUnit, vertical: CssUnit) -> dict[str, str]:
     return {**horizontal_pad_props(horizontal), **vertical_pad_props(vertical)}
+
+
+def padding_tuple_to_props(padding: PaddingDimensions):
+    if isinstance(padding, int):
+        padding_tuple = [padding, padding, padding, padding]
+    elif len(padding) == 1:
+        padding_tuple = [padding[0]] * 4
+    elif len(padding) == 2:
+        padding_tuple = padding * 2
+    elif len(padding) == 4:
+        padding_tuple = list(padding)
+    else:
+        raise ValueError(f"unknown padding dimension: {padding}")
+
+    return {f"padding-{ALL_SIDES[i]}": to_em(amount) for i, amount in enumerate(padding_tuple) if amount}
 
 
 def side_props(prop: SideProp, sides: list[Side], units: CssUnit) -> dict[str, str]:
