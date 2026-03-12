@@ -107,6 +107,7 @@ LOCAL_EXTRACT_REGEX = re.compile(r"_\d{1,2}$")
 QUESTION_MARKS_REGEX = re.compile(fr' {re.escape(QUESTION_MARKS)}$')
 
 # Other regexes
+AMPERSAND_CHAR_GROUP = r"[®@a]"
 CASE_ID_REGEX = re.compile(r"Case\s+(Number:\s+)?\d:\d{2}-[a-z]{2}-\d{5}-[A-Z]{3}")
 
 # Decorative
@@ -196,3 +197,15 @@ STATE_NAME_PATTERNS = [
     for state in STATE_CODES.values()
     if state not in ['Arizon', 'Florida', 'New York', 'Texas', 'Virginia', 'Washington']
 ]
+
+RUSSIAN_WEEKDAYS = [
+    'понедельник',
+    'вторник', 'Вторник',
+    'среда',
+    'четверг', 'Четверг',
+    'пятница',
+    'суббота',
+    'воскресенье',
+]
+
+RUSSIAN_ON = 'в'

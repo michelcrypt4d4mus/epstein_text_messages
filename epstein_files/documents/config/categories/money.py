@@ -70,9 +70,21 @@ MONEY_CFGS = [
     DocCfg(id='EFTA01273102', description=f"payment from Epstein to {RENATA_BOLOTOVA}'s father's account at Sberbank"),
     DocCfg(id='EFTA00238499', description='wire transfer to Signature Bank account'),
     DocCfg(id='EFTA00000476', replace_text_with='photo of JEFFREY EPSTEIN CASH DISBURSEMENTS for the month 2006-09', date='2006-09-01'),
+
     # Emails
     EmailCfg(id='EFTA00037187', is_interesting=True),
-    EmailCfg(id='EFTA02189550', author='Ike Groff', author_uncertain=True, description=f"Ike Groff invests $250,000 in Mangrove Partners managed by Nathaniel August"),
+    EmailCfg(
+        id='EFTA00461557',
+        author=LESLEY_GROFF,
+        author_uncertain='schedule',
+        description=f"{ARIANE_DE_ROTHSCHILD} and {SERGEY_BELYAKOV} visiting at the same time",
+    ),
+    EmailCfg(
+        id='EFTA02189550',
+        author='Ike Groff',
+        author_uncertain=True,
+        description=f"Ike Groff invests $250,000 in Mangrove Partners managed by Nathaniel August",
+    ),
     EmailCfg(id='EFTA00371120', description=f"Epstein appears to invest in {ATORUS}"),
     EmailCfg(id='EFTA00652799', description=f'Epstein calls Ari Glass "a bit sketchy" despite investing ~$50 million in his fund Boothbay'),
 ]

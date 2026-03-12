@@ -7,7 +7,7 @@ from copy import copy
 from dateutil.parser import parse
 
 from epstein_files.people.names import *
-from epstein_files.util.constant.strings import MONTHS, WEEKDAYS, REDACTED
+from epstein_files.util.constant.strings import MONTHS, WEEKDAYS, REDACTED, RUSSIAN_WEEKDAYS
 from epstein_files.util.env import args
 from epstein_files.util.helpers.data_helpers import coerce_utc_strict
 from epstein_files.util.helpers.string_helper import or_equal_sign_char_group
@@ -25,8 +25,15 @@ ON_TIME_REPLY_PATTERNS = [
     *[''.join(or_equal_sign_char_group(chr) for chr in day[:3]) for day in WEEKDAYS]
 ]
 
+FORWARDED_MSG_PATTERNS = [
+    r"Begin [Ff]orwarded [Mm]essage:?",
+    r"(Forwarded|Original)\s*[Mm]essa.e:?",
+    r"Message d'?origine",
+    r'Пересылаемое сообщение',  # Russian
+]
+
 REPLY_ON_DAY_MONTH_PATTERN = fr"(\d+ )?(({'|'.join(ON_TIME_REPLY_PATTERNS)})\w*)"
-FORWARDED_LINE_PATTERN = r"[- ]*((Forwarded|Original)\s*[Mm]essa.e:?|Message d'?origine)[- ]*|Begin [Ff]orwarded [Mm]essage:?"
+FORWARDED_LINE_PATTERN = fr"[- ]*{'|'.join(FORWARDED_MSG_PATTERNS)}"
 FORWARDED_TOO_MUCH_SPACE_REGEX = re.compile(fr"^({FORWARDED_LINE_PATTERN})\n\n", re.MULTILINE | re.IGNORECASE)
 REPLY_LINE_ENDING_PATTERN = r"[_ \n]((?-i:[AP]M)|[<_]|w?rote:?)"
 REPLY_NUMERIC_DATE_PATTERN = fr"\d+[-/.][\d\w]+[-/.]\d+"
@@ -42,6 +49,7 @@ REPLY_PATTERNS = [
     r"[Il][Il] giorno .*scritto:",                      # Italian
     r"(Den .* folgende|(fre|lor|son)\. .* skrev .*):",  # Norwegian
     r"Dnia .*napisal\(a\):",                            # Polish
+    fr"({'|'.join(RUSSIAN_WEEKDAYS)}).*:",                # Russian
 ]
 
 REPLY_LINE_PATTERN = fr"^({QUOTE_INDENT_CHAR_GROUP}*({'|'.join(REPLY_PATTERNS)}))"
@@ -213,6 +221,8 @@ EMAIL_SIGNATURE_REGEXES = {
     ALAN_DLUGASH: re.compile(r"Alan J\.? Dlugash LLC\n(767.*\n)?New York.*(\n(Tel|Cel|Fa[lx]|P:).*)*"),
     ANDREW_FARKAS: re.compile(r"This message, and any attachments hereto.{,1000}considered a legally binding", re.DOTALL),
     'Andrew Nikou': re.compile(r'1999 Avenue of the Stars.{,105}genuinely required\.', re.DOTALL),
+    # ANTOINE_VERGLAS: re.compile(r"^studi?o?.*?\ncell?.*?\n"),
+    ANTOINE_VERGLAS: re.compile(r"(^(stud|cell|e?fax).{,30}\n)*Please follow.{400,680}copies from your system and files\.?", re.MULTILINE | re.DOTALL),
     ARDA_BESKARDES: re.compile(r"Attorne.-at-Law\s+.{,200}Admitted to practice.{,300}relying\s+on\s+this\s+message.?", re.DOTALL),
     ARIANE_DE_ROTHSCHILD: re.compile(r"Ensemble adoptons des gestes responsables : .{,1300}Espanol I Chinese$", re.DOTALL | re.MULTILINE),
     # 'Asia Gateway': re.compile('Michelin House\n81 Fulham Road?\nLondon.*\nUK(\n(Tel|Fax):.*)*'),

@@ -75,7 +75,7 @@ class SiteConfig(MobileConfig):
     info_indent: ClassVar[int] = 1
     max_alt_links: ClassVar[int | None] = None
     not_all_files_warning: ClassVar[str] = starred_header(NOT_ALL_FILES_MSG, num_spaces=6, num_stars=14)
-    num_color_key_cols: ClassVar[int] = 6
+    num_color_key_cols: ClassVar[int] = 5
     other_files_preview_chars: ClassVar[int] = 900
     other_files_table_indent: ClassVar[int] = 2
     section_header_padding: ClassVar[PaddingDimensions] = (2, 25, 1, 25)
