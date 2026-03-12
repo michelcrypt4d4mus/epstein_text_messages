@@ -298,11 +298,10 @@ class Document:
 
     @property
     def panel_title_timestamp(self) -> str:
-        """String placed in the `title` of the enclosing `Panel` when printing this document's text."""
+        """Time or date string placed in the `title` of the enclosing `Panel` when printing this `Document`."""
         if self.timestamp is None or self.timestamp == FALLBACK_TIMESTAMP:
             return ''
-
-        if self.config and self.config.timestamp:
+        elif self.config and self.config.timestamp:
             if self.config.date_uncertain:
                 prefix = 'approximate'
             else:
