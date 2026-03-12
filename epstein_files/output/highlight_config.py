@@ -59,6 +59,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         regex_flags=re.DOTALL | re.MULTILINE,
     ),
 
+    # Names
     HighlightedNames(
         label=Uninteresting.ACADEMIA,
         style='light_goldenrod2',
