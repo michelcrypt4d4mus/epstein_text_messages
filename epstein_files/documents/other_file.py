@@ -1,7 +1,6 @@
 import re
 import logging
 import warnings
-from copy import copy
 from dataclasses import asdict, dataclass
 from datetime import datetime, timezone
 from typing import ClassVar, Sequence
@@ -116,25 +115,30 @@ class OtherFile(Document):
         return metadata
 
     @property
-    def preview_text(self) -> str:
-        """Text at start of file stripped of newlinesfor display in tables and other cramped settings."""
-        text = self.config_replace_text_with if self.config_replace_text_with else self.text
-        text = collapse_whitespace(text)[0:site_config.other_files_preview_chars]
+    def preview_chars(self) -> str:
+        """Text at start of file stripped of newlines for display in tables and other cramped settings."""
+        num_chars = site_config.other_files_preview_chars
+        text = self.text
+
+        if self.config:
+            if self.config.num_preview_chars:
+                num_chars = self.config.num_preview_chars
+
+            if self.config_replace_text_with:
+                text = self.config_replace_text_with
 
         if text.count('Page') > MIN_PAGES_TO_TRUNCATE_PREVIEW:
-            text = text[0:TRUNCATED_PREVIEW_LEN]
+            num_chars = TRUNCATED_PREVIEW_LEN
 
-        return text
+        return collapse_whitespace(text)[0:num_chars]
 
     @property
-    def preview_text_highlighted(self) -> Text:
-        txt = highlighter(escape(self.preview_text))
+    def preview_txt(self) -> Text:
+        txt = highlighter(escape(self.preview_chars))
 
-        if self.config_replace_text_with:
-            txt = highlighter(Text(escape(self.preview_text), style='italic grey35'))
-        elif self.length > site_config.other_files_preview_chars:
-            num_missing_chars = self.length - len(txt)
-            txt.append(f"... ({num_missing_chars:,} more characters)", 'dim italic')
+        # TODO: should check self.length > len(self.preview_chars) but won't quite work with prettified text insertions
+        if self.length > site_config.other_files_preview_chars and not self.config_replace_text_with:
+            txt.append(f"... ({self.length - len(txt):,} more characters)", 'dim italic')
 
         return txt
 
@@ -224,7 +228,7 @@ class OtherFile(Document):
                 preview_text = file.duplicate_file_txt
                 row_style = 'dim'
             else:
-                preview_text = file.preview_text_highlighted
+                preview_text = file.preview_txt
                 row_style = ''
                 link_and_info += file.info
 

@@ -277,17 +277,17 @@ class DojFile(OtherFile):
         return len(self.text.strip().removesuffix(NO_IMAGE_SUFFIX)) < MIN_VALID_LENGTH
 
     @property
-    def preview_text(self) -> str:
+    def preview_chars(self) -> str:
         """Text at start of file stripped of newlinesfor display in tables and other cramped settings."""
-        return SINGLE_IMAGE_NO_TEXT if self.is_empty or self.is_bad_ocr else super().preview_text
+        return SINGLE_IMAGE_NO_TEXT if self.is_empty or self.is_bad_ocr else super().preview_chars
 
     @property
-    def preview_text_highlighted(self) -> Text:
-        """Overloads superclass method."""
-        if self.preview_text == SINGLE_IMAGE_NO_TEXT:
-            return Text(self.preview_text, style='dim italic')
+    def preview_txt(self) -> Text:
+        """Overloads superclass method for `SINGLE_IMAGE_NO_TEXT` files."""
+        if (preview_chars := self.preview_chars) == SINGLE_IMAGE_NO_TEXT:
+            return Text(preview_chars, style='dim italic')
         else:
-            return super().preview_text_highlighted
+            return super().preview_txt
 
     @property
     def timestamp_sort_key(self) -> tuple[datetime, str, int]:
