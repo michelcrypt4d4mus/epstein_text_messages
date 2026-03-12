@@ -32,6 +32,7 @@ SPLITTER_TEMPLATE = SPLITTER + """{stylesheet} {background} {foreground}"""  # t
 
 # CSS classes
 BLACK_BACKGROUND = 'black_background'
+BLACK_BG__NO_EXPAND = f"{BLACK_BACKGROUND} no_expand"
 
 # CSS dicts
 CODE_TAG_CSS = {'font-family': 'inherit'}
@@ -41,48 +42,6 @@ HTML_CONSOLE_KWARGS.update({'file': open(devnull, "wt"), 'record': True})
 PRE_TAG_CSS = {}
 
 html_console = Console(**HTML_CONSOLE_KWARGS)
-
-
-@dataclass
-class HtmlStyle:
-    _style: Style | str | None
-    style: Style = field(init=False)
-
-    def __post_init__(self):
-        if isinstance(self._style, Style):
-            self.style = self._style
-        elif self._style:
-            if self._style in RICH_THEME.styles:
-                self.style = RICH_THEME.styles[self._style]
-            else:
-                self.style = Style.parse(self._style)
-        else:
-            self.style = Style.parse('')
-
-    @property
-    def bg_hex(self) -> str:
-        if self.style.bgcolor:
-            return self.style.bgcolor.get_truecolor(HTML_TERMINAL_THEME).hex
-        else:
-            return ''
-
-    @property
-    def hex(self) -> str:
-        if self.style.color:
-            return self.style.color.get_truecolor(HTML_TERMINAL_THEME).hex
-        else:
-            return ''
-
-    @property
-    def to_css(self) -> dict[str, str]:
-        props = {}
-
-        if self.bg_hex:
-            props['background-color'] = self.bg_hex
-        if self.hex:
-            props['color'] = self.hex
-
-        return props
 
 
 def div_tag(contents: str, css_props: CssProps = None, **kwargs) -> str:

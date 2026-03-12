@@ -8,6 +8,7 @@ from rich.style import Style
 from rich.table import Table
 from rich.text import Text
 
+from epstein_files.output.html.html_style import HtmlStyle
 from epstein_files.output.html.elements import *
 from epstein_files.util.constant.html import CUSTOM_HTML_TEMPLATE, HTML_TERMINAL_THEME
 from epstein_files.util.helpers.data_helpers import listify
@@ -101,13 +102,17 @@ def one_row_table_html(table: Table, css_props: CssProps = None) -> str:
 
     return div_class(
         join_truthy(header_div, body_div, '\n'),
-        f'{BLACK_BACKGROUND} no_expand',
+        BLACK_BG__NO_EXPAND,
         {
             'text-align': col1.justify,
             **border_props,
             **css_props
         }
     )
+
+
+def panel_to_div(panel: Panel) -> str:
+    """Convert a rich `Panel` to a div that looks the same."""
 
 
 def rich_to_html(
@@ -194,7 +199,7 @@ def table_to_html(table: Table, css_props: CssProps = None) -> str:
     return div_class(title_html + '\n' + table_html, 'table_container', div_props)
 
 
-def text_to_div(txt: Text, css_props: dict[str, str], class_name: str = f"{BLACK_BACKGROUND} no_expand") -> str:
+def text_to_div(txt: Text, css_props: dict[str, str], class_name: str = BLACK_BG__NO_EXPAND) -> str:
     return div_class(rich_to_html(txt), class_name, css_props)
 
 
