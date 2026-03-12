@@ -26,7 +26,7 @@ from epstein_files.output.epstein_highlighter import highlighter, temp_highlight
 from epstein_files.output.output import (print_curated_chronological, print_doj_files, print_emails_section,
      print_json_files, print_stats, print_other_files_section, print_text_messages_section, print_all_emails_chronological,
      print_email_device_signatures, print_emailers_info, print_json_metadata, show_urls, write_html)
-from epstein_files.output.rich import console, print_json, subtitle_panel
+from epstein_files.output.rich import console, print_json, print_subtitle_panel, subtitle_panel
 from epstein_files.output.site.sites import SiteType, make_clean
 from epstein_files.output.title_page import print_color_key, print_title_page_top, print_title_page_bottom
 from epstein_files.util.constant.strings import HOUSE_OVERSIGHT_NOV_2025_ID_REGEX
@@ -55,7 +55,6 @@ def epstein_generate() -> None:
     elif args.output_devices:
         print_email_device_signatures(epstein_files)
     elif args.output_chrono:
-        doc_printer.print_renderable(subtitle_panel('Selected Files of Interest in Chronological Order'))
         printed_docs = print_curated_chronological(epstein_files, doc_printer)
         timer.log_section_complete('Document', epstein_files.unique_documents, printed_docs)
     elif args.output_word_count:

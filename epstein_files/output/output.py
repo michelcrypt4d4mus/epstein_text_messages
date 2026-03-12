@@ -49,6 +49,7 @@ def print_curated_chronological(epstein_files: EpsteinFiles, doc_printer: DocPri
     if args.max_records:
         docs = docs[:args.max_records]
 
+    doc_printer.print_subtitle_panel('Selected Files of Interest in Chronological Order')
     doc_printer.print_documents(docs)
     return doc_printer.printed_docs
 
@@ -65,9 +66,8 @@ def print_all_emails_chronological(epstein_files: EpsteinFiles, doc_printer: Doc
     emails = Document.sort_by_timestamp([e for e in epstein_files.unique_emails if not e.is_mailing_list])
     title = f'Table of All {len(emails):,} Non-Junk Emails in Chronological Order (actual emails below)'
     table = Email.build_emails_table(emails, title=title, show_length=True)
-    console.print(Padding(table, (2, 0)))
-    print_subtitle_panel('The Chronologically Ordered Emails')
-    console.line()
+    doc_printer.print_renderable(Padding(table, (2, 0)))
+    doc_printer.print_subtitle_panel('The Chronologically Ordered Emails')
     doc_printer.print_documents(emails)
     return doc_printer.printed_emails
 
@@ -145,8 +145,7 @@ def print_emails_section(epstein_files: EpsteinFiles, doc_printer: DocPrinter) -
     logger.warning(f"Found {len(extra_emails)} extra_emails...")
 
     if len(extra_emails) > 0:
-        print_subtitle_panel(OTHER_INTERESTING_EMAILS_SUBTITLE)  # TODO: not yet in DocPrinter HTML output!
-        console.line()
+        doc_printer.print_subtitle_panel(OTHER_INTERESTING_EMAILS_SUBTITLE)
         doc_printer.print_documents(Document.sort_by_timestamp(extra_emails))
 
     if args.all_emails:

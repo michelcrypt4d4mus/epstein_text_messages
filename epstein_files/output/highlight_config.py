@@ -3335,6 +3335,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"preferreds",
             r"Series (7|30)",
             r"securities(?! ((&|and) Exchange|fraud))",
+            r"sovereign (wealth )?fund",
             r"stock market",
             r"Trust(ee| Estate)s?",
             r"(income )?tax(e[ds])?( code)?",

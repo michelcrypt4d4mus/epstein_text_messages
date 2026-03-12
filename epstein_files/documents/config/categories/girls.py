@@ -316,6 +316,7 @@ GIRLS_CFGS = [
     ),
     EmailCfg(id='EFTA00894079', highlight_quote='say hi to Snow White'),
     EmailCfg(id='EFTA00775255', highlight_quote='she is 20 years old but she looks younger', non_participants=[BROCK_PIERCE]),
+    EmailCfg(id='EFTA00366629', highlight_quote='stunning girls to bring over drinks when your next available'),
     EmailCfg(id='EFTA02387676', highlight_quote="thats the closest i get to karyna providing me new pussy"),
     EmailCfg(id='EFTA00908180', highlight_quote='two cinderellas'),
     EmailCfg(id='EFTA01930285', highlight_quote='ukraine upheaval should provide many opportunites'),
