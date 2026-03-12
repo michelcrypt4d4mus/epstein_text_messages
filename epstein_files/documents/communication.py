@@ -7,13 +7,12 @@ from rich.text import Text
 
 from epstein_files.documents.document import CLOSE_PROPERTIES_CHAR, Document
 from epstein_files.documents.config.doc_cfg import CommunicationCfg
-from epstein_files.output.highlight_config import HIGHLIGHTED_CONTACTS, get_style_for_name, styled_name
+from epstein_files.output.highlight_config import get_style_for_name, styled_name
 from epstein_files.output.rich import styled_key_value
 from epstein_files.people.names import UNKNOWN, Name
 from epstein_files.util.helpers.data_helpers import uniquify
 from epstein_files.util.helpers.rich_helpers import no_bold
-
-TIMESTAMP_SECONDS_REGEX = re.compile(r":\d{2}$")
+from epstein_files.util.helpers.string_helper import timestamp_without_seconds
 
 
 @dataclass
@@ -96,7 +95,7 @@ class Communication(Document):
 
     @property
     def timestamp_without_seconds(self) -> str:
-        return TIMESTAMP_SECONDS_REGEX.sub('', str(self.timestamp))
+        return timestamp_without_seconds(self.timestamp)
 
     @property
     def _summary(self) -> Text:

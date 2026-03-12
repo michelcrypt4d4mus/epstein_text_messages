@@ -14,6 +14,7 @@ PDFALYZER_IMAGE_PANEL_REGEX = re.compile(r"\n╭─* Page \d+, Image \d+.*?╯\n
 MULTINEWLINE_REGEX = re.compile(r"\n{2,}")
 MULTISPACE_REGEX = re.compile(" +")
 INTEGER_REGEX = re.compile(r'^\d+$')
+TIMESTAMP_SECONDS_REGEX = re.compile(r":\d{2}(\.\d+)?([-+]\d{2}:\d{2})?$")
 WHITESPACE_REGEX = re.compile(r"\s{2,}|\t|\n", re.MULTILINE)
 
 WHITESPACE_CHAR = r"[-_.\s]*"
@@ -97,3 +98,16 @@ def starred_header(msg: str, num_stars: int = 7, num_spaces: int = 2) -> str:
     stars = '*' * num_stars
     spaces = ' ' * num_spaces
     return f"{spaces}{stars} {msg} {stars}{spaces}"
+
+
+def timestamp_without_seconds(dt: datetime) -> str:
+    # print(self.timestamp)
+    # m = TIMESTAMP_SECONDS_REGEX.search(str(self.timestamp))
+    # print(f"\nmatch: {m}\n")
+    # import pdb;pdb.set_trace()
+    return TIMESTAMP_SECONDS_REGEX.sub('', str(dt))
+
+
+def timestamp_without_zero_hour(dt: datetime) -> str:
+    """Remove the time part of a datetime string if it's 00:00:00, otherwise keep it."""
+    return dt.strftime(r'%Y-%m-%d %H:%M:%S').removesuffix(' 00:00:00')

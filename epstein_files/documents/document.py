@@ -37,10 +37,10 @@ from epstein_files.util.constant.strings import *
 from epstein_files.util.constants import CONFIGS_BY_ID
 from epstein_files.util.env import args, site_config
 from epstein_files.util.helpers.data_helpers import (coerce_utc, coerce_utc_strict, date_str, patternize, prefix_keys,
-     remove_zero_time, uniquify, uniq_sorted, without_falsey)
+     uniquify, uniq_sorted, without_falsey)
 from epstein_files.util.helpers.link_helper import link_text_obj
 from epstein_files.util.helpers.file_helper import coerce_file_path, file_size_str, file_size_to_str
-from epstein_files.util.helpers.string_helper import collapse_newlines, join_truthy, quote
+from epstein_files.util.helpers.string_helper import collapse_newlines, join_truthy, quote, timestamp_without_zero_hour
 from epstein_files.util.logging import DOC_TYPE_STYLES, FILENAME_STYLE, logger
 
 CHECK_LINK_FOR_DETAILS = 'not shown here, check original PDF for details'
@@ -307,7 +307,7 @@ class Document:
         else:
             prefix = 'inferred'
 
-        return join_truthy(prefix, f"timestamp: {remove_zero_time(self.timestamp)}")
+        return join_truthy(prefix, f"timestamp: {timestamp_without_zero_hour(self.timestamp)}")
 
     @property
     def people(self) -> list[str]:
@@ -422,7 +422,7 @@ class Document:
         txt.append(f" {self.file_id}", style=FILENAME_STYLE)
 
         if self.timestamp:
-            timestamp_str = remove_zero_time(self.timestamp).replace('T', ' ')
+            timestamp_str = timestamp_without_zero_hour(self.timestamp)
             txt.append(' (', style=SYMBOL_STYLE)
             txt.append(f"{timestamp_str}", style=TIMESTAMP_DIM).append(')', style=SYMBOL_STYLE)
 
