@@ -221,6 +221,8 @@ EMAIL_SIGNATURE_REGEXES = {
     ALAN_DLUGASH: re.compile(r"Alan J\.? Dlugash LLC\n(767.*\n)?New York.*(\n(Tel|Cel|Fa[lx]|P:).*)*"),
     ANDREW_FARKAS: re.compile(r"This message, and any attachments hereto.{,1000}considered a legally binding", re.DOTALL),
     'Andrew Nikou': re.compile(r'1999 Avenue of the Stars.{,105}genuinely required\.', re.DOTALL),
+    # ANTOINE_VERGLAS: re.compile(r"^studi?o?.*?\ncell?.*?\n"),
+    ANTOINE_VERGLAS: re.compile(r"(^(stud|cell|e?fax).{,30}\n)*Please follow.{400,680}copies from your system and files\.?", re.MULTILINE | re.DOTALL),
     ARDA_BESKARDES: re.compile(r"Attorne.-at-Law\s+.{,200}Admitted to practice.{,300}relying\s+on\s+this\s+message.?", re.DOTALL),
     ARIANE_DE_ROTHSCHILD: re.compile(r"Ensemble adoptons des gestes responsables : .{,1300}Espanol I Chinese$", re.DOTALL | re.MULTILINE),
     # 'Asia Gateway': re.compile('Michelin House\n81 Fulham Road?\nLondon.*\nUK(\n(Tel|Fax):.*)*'),
