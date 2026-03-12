@@ -60,7 +60,7 @@ class MessengerLogPdf(MessengerLog):
             elif self.file_id == 'EFTA00508054' and sender == 'Lawrence':
                 sender = LAWRENCE_KRAUSS
             elif not VALID_SENDER_REGEX.search(sender):
-                self.warn(f"text message sender '{sender}' is not a valid name")
+                self.log(f"text message sender '{sender}' is not a valid name")
                 sender = None
 
             if JUNK_SUFFIX_REGEX.search(msg):
@@ -87,7 +87,7 @@ class MessengerLogPdf(MessengerLog):
                     self.log(f'adding TextMsg: {text_message.__rich__().plain}')
                     # self.log(f"Found sender='{sender}', timestamp_str='{timestamp_str}', msg={quote(msg)}")
                 else:
-                    self.warn(f"Skipping empty text message match from {sender} at {timestamp_str}, skipping...")
+                    self.warn(f"Skipping empty text message match from {sender} at {timestamp_str}...")
 
                 capture_group_msgs = [f"[{g}] '" + quote(match.group(g).replace('\n', ' ').strip()) + "'" for g in MATCH_GROUPS]
                 self.debug_log(f"[raw capture groups]\n\n{indented(capture_group_msgs, 8)}\n")

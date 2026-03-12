@@ -307,7 +307,7 @@ def styled_key_value(
         val_style = ''
 
         if isinstance(val, int):
-            val = str(val)
+            val = f"{val:,}"
             val_style = 'cyan'
         elif isinstance(val, Path):
             val = val = f"'{val}'"
