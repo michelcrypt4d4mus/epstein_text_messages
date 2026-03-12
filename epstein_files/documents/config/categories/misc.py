@@ -51,6 +51,7 @@ MISC_CFGS = [
     ),
     DocCfg(id='EFTA01103465', author=BEN_GOERTZEL, date='2013-12-02', description='funding proposal for AI labs in Africa etc.'),
     DocCfg(id='EFTA00165515', description="contractor describes Epstein's gun safes", show_full_panel=True),
+    DocCfg(id='EFTA01063811', description="contents of the Apple Address Book on one of Epstein's accounts", date='2014-08-07', date_uncertain=True, is_interesting=True),
     DocCfg(id='EFTA00266322', description=f"documents about pitches for non-profits in Australia, including to Effective Altruism"),
     DocCfg(id='EFTA00029538', description=f"{GHISLAINE_MAXWELL} provided school girl uniforms", show_full_panel=True),
     DocCfg(id='EFTA00005783', description='heavily redacted handwritten note, 30+ completely redacted pages', date='2019-08-29'),
