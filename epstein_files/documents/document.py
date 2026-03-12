@@ -319,22 +319,24 @@ class Document:
     @property
     def people(self) -> list[str]:
         """Names of people who either sent/received this email or are mentioned in it."""
-        text = self.text
         people = [self.author] if self.author else []
+        text_to_scan = self.text
         non_participants = []
 
         if self.config:
+            if self.config.people:
+                return self.config.people
             if not self.config.is_valid_for_name_scan:
                 return people
             elif self.config.replace_text_with:
-                text = self.config.replace_text_with
+                text_to_scan = self.config.replace_text_with
 
             if self.config.description:
-                text = f"{self.config.description}\n{text}"
+                text_to_scan = f"{self.config.description}\n{text_to_scan}"
 
             non_participants = self.config.non_participants
 
-        people.extend([c.name for c in HIGHLIGHTED_CONTACTS if c.highlight_regex.search(text)])
+        people.extend([c.name for c in HIGHLIGHTED_CONTACTS if c.highlight_regex.search(text_to_scan)])
         people = uniq_sorted([p for p in people if p not in non_participants])
 
         if people:

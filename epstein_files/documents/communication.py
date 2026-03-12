@@ -52,7 +52,7 @@ class Communication(Document):
             return self.config.people
 
         people = super().people + [p for p in self.participants if p]
-        return sorted(uniquify(people))
+        return uniq_sorted(people)
 
     @property
     def config(self) -> CommunicationCfg | None:

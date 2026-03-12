@@ -357,7 +357,7 @@ class Email(Communication):
     @property
     def people(self) -> list[str]:
         """Includes people in attachments."""
-        return sorted(uniquify(super().people + flatten([ad.people for ad in self.attached_docs])))
+        return uniq_sorted(super().people + flatten([ad.people for ad in self.attached_docs]))
 
     @property
     def prettified_text(self) -> Text:

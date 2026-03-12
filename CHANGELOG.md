@@ -1,4 +1,5 @@
 # NEXT RELEASE
+* Include author in `Document.people()` even if `is_valid_for_name_scan` is false
 * Coerce all timestamps to UTC timezone instead of no timezone
 
 ### 1.9.2

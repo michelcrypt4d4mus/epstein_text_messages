@@ -25,7 +25,7 @@ from epstein_files.output.rich import build_table, console
 from epstein_files.people.interesting_people import PERSONS_OF_INTEREST
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constants import *
-from epstein_files.util.helpers.data_helpers import days_between, coerce_utc_strict, uniquify
+from epstein_files.util.helpers.data_helpers import days_between, coerce_utc_strict, uniquify, uniq_sorted
 from epstein_files.util.helpers.debugging_helper import tz_debug_str
 from epstein_files.util.helpers.file_helper import FILENAME_LENGTH
 from epstein_files.util.helpers.string_helper import DATE_LENGTH, collapse_whitespace, indented
@@ -169,7 +169,7 @@ class OtherFile(Document):
 
     def _choose_extracted_timestamp(self, timestamps: list[datetime]) -> datetime | None:
         """Most recent timestamp appearing in the text is usually the most likely to be correct."""
-        timestamps = sorted(uniquify(timestamps), reverse=True)
+        timestamps = uniq_sorted(timestamps, reverse=True)
 
         if len(timestamps) == 0:
             if not (self.is_duplicate or VAST_HOUSE in self.text):

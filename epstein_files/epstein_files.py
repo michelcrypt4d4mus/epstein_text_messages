@@ -31,7 +31,7 @@ from epstein_files.people.person import INVALID_FOR_EPSTEIN_WEB, PEOPLE_BIOS, Pe
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constants import *
 from epstein_files.util.env import args, logger
-from epstein_files.util.helpers.data_helpers import flatten, json_safe, sort_dict_by_keys, uniquify
+from epstein_files.util.helpers.data_helpers import flatten, json_safe, sort_dict_by_keys, uniquify, uniq_sorted
 from epstein_files.util.helpers.file_helper import all_txt_paths, doj_txt_paths, extract_file_id, file_size_str
 from epstein_files.util.timer import Timer
 
@@ -161,7 +161,7 @@ class EpsteinFiles:
     def uninteresting_emailers(self) -> list[Name]:
         """Emailers whom we don't want to print a separate section for because they're just CCed."""
         if '_uninteresting_emailers' not in vars(self):
-            self._uninteresting_emailers = sorted(uniquify(UNINTERESTING_EMAILERS + self.uninteresting_ccs))
+            self._uninteresting_emailers = uniq_sorted(UNINTERESTING_EMAILERS + self.uninteresting_ccs)
 
         return self._uninteresting_emailers
 
@@ -504,7 +504,7 @@ class EpsteinFiles:
         for email in [e for e in self.emails if e.config and e.config.has_uninteresting_ccs]:
             self.uninteresting_ccs += email.recipients
 
-        self.uninteresting_ccs = sorted(uniquify(self.uninteresting_ccs))
+        self.uninteresting_ccs = uniq_sorted(self.uninteresting_ccs)
         logger.info(f"Extracted uninteresting_ccs: {self.uninteresting_ccs}")
 
 
