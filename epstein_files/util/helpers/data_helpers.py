@@ -128,7 +128,7 @@ def sort_dict_by_keys(d: Mapping[names.Name, T]) -> dict[names.Name, T]:
     return {k: d[k] for k in names.sort_names(dict_key_list(d))}
 
 
-def uniq_sorted(_list: Sequence[T], reverse: bool = True) -> list[T]:
+def uniq_sorted(_list: Sequence[T], reverse: bool = False) -> list[T]:
     return sorted(uniquify(_list), reverse=reverse)
 
 
