@@ -104,8 +104,8 @@ print_deploy_step "Building curated chronological mobile page..."
 $GENERATE_MOBILE_CMD --output-chrono
 
 print_deploy_step "Copying curated custom HTML chronological pages into place..."
-cp docs/chrono_real_html.html docs/index.html
-cp docs/chrono_real_html_mobile.html docs/mobile_chronological.html
+cp docs/real_html_index.html docs/index.html
+cp docs/real_html_mobile_chronological.html docs/mobile_chronological.html
 
 # Fast pages
 print_deploy_step "Building email signatures page..."
