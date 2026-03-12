@@ -19,6 +19,7 @@ WHITESPACE_REGEX = re.compile(r"\s{2,}|\t|\n", re.MULTILINE)
 
 WHITESPACE_CHAR = r"[-_.\s]*"
 DATE_LENGTH = len('2025-05-05')
+DOUBLESPACE_IF_LINE_LEN_OVER = 120
 
 capitalize_first = lambda s: s[0].upper() + s[1:]
 capture_group_marker = lambda label: fr"?P<{label}>"
@@ -42,6 +43,14 @@ def as_pattern(s: str) -> str:
 
 def constantize(s: str) -> str:
     return underscore(s.upper())
+
+
+def doublespace_lines(s: str) -> str:
+    """Doublespace \n hars if s has long lines."""
+    if max(len(line) for line in s.split('\n')) > DOUBLESPACE_IF_LINE_LEN_OVER:
+        return s.replace('\n', '\n\n')
+    else:
+        return s
 
 
 def extract_emojis(s: str) -> list[str]:
@@ -92,6 +101,10 @@ def quote(s: str, try_single_quote_first: bool = False) -> str:
 
 def remove_question_marks(name: str):
     return QUESTION_MARKS_REGEX.sub('', name).strip()
+
+
+def snip_msg(msg: str) -> str:
+    return f'<...{msg}...>'
 
 
 def starred_header(msg: str, num_stars: int = 7, num_spaces: int = 2) -> str:

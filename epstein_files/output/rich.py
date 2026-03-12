@@ -24,6 +24,7 @@ from epstein_files.util.env import args, site_config
 from epstein_files.util.helpers.data_helpers import json_safe, sort_dict
 from epstein_files.util.helpers.link_helper import link_markup
 from epstein_files.util.helpers.rich_helpers import enclose, left_indent_padding
+from epstein_files.util.helpers.string_helper import snip_msg
 from epstein_files.util.logging import logger
 
 NA_TXT = Text(NA, style='dim')
@@ -236,6 +237,12 @@ def print_special_note(note: str | Text) -> None:
 def print_subtitle_panel(msg: str, style: str = 'black on white', center: bool = True) -> None:
     """A reverse color panel to put at the top of sections."""
     console.print(subtitle_panel(msg, style))
+
+
+def snip_msg_txt(msg: str, style: str = '') -> Text:
+    """Make it like <...msg...>. Uses markup in case there are links in `msg`"""
+    txt = Text('', style=style)
+    return txt.append(Text.from_markup(wrap_in_markup_style(snip_msg(msg), 'dim')))
 
 
 def subtitle_panel(msg: str, style: str = 'black on white') -> Align:

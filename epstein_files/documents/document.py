@@ -29,18 +29,18 @@ from epstein_files.output.highlight_config import HIGHLIGHTED_CONTACTS, get_styl
 from epstein_files.output.layout_elements.file_display import BasePanel, FileDisplay
 from epstein_files.output.html.builder import VERTICAL_MARGIN
 from epstein_files.output.rich import (INFO_STYLE, NA_TXT, SYMBOL_STYLE, add_cols_to_table, build_table, console,
-     styled_key_value, prefix_with, styled_dict, wrap_in_markup_style)
+     styled_key_value, prefix_with, snip_msg_txt, styled_dict, wrap_in_markup_style)
 from epstein_files.output.site.sites import EXTRACTS_BASE_URL
 from epstein_files.people.interesting_people import PERSONS_OF_INTEREST, UNINTERESTING_AUTHORS
 from epstein_files.people.names import Name
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constants import CONFIGS_BY_ID
 from epstein_files.util.env import args, site_config
-from epstein_files.util.helpers.data_helpers import (coerce_utc, coerce_utc_strict, date_str, patternize, prefix_keys,
+from epstein_files.util.helpers.data_helpers import (CharRange, coerce_utc, coerce_utc_strict, date_str, patternize, prefix_keys,
      uniquify, uniq_sorted, without_falsey)
 from epstein_files.util.helpers.link_helper import link_text_obj
 from epstein_files.util.helpers.file_helper import coerce_file_path, file_size_str, file_size_to_str
-from epstein_files.util.helpers.string_helper import collapse_newlines, join_truthy, quote, timestamp_without_zero_hour
+from epstein_files.util.helpers.string_helper import collapse_newlines, doublespace_lines, join_truthy, quote, snip_msg, timestamp_without_zero_hour
 from epstein_files.util.logging import DOC_TYPE_STYLES, FILENAME_STYLE, logger
 
 CHECK_LINK_FOR_DETAILS = 'not shown here, check original PDF for details'
@@ -135,7 +135,7 @@ class Document:
 
     @property
     def author(self) -> Name:
-        return self.config.author if self.config and self.config.author else self.extracted_author
+        return self._config.author or self.extracted_author
 
     @property
     def border_style(self) -> str:
@@ -154,6 +154,12 @@ class Document:
     def config(self) -> DocCfg | None:
         """Get the configured `DocCfg` object for this file id (if any)."""
         return CONFIGS_BY_ID.get(self.file_id)
+
+    # TODO: swap this in for config() when it's safe to do so
+    @property
+    def _config(self) -> DocCfg:
+        """Like `self.config` but falls back to return empty `DocCfg` object."""
+        return self.config or self.dummy_cfg()
 
     @property
     def config_description(self) -> str:
@@ -347,34 +353,20 @@ class Document:
     @property
     def prettified_text(self) -> Text:
         """Returns the string we want to print as the body of the document."""
+        if self.config and self.config.highlight_quote:
+            raise NotImplementedError(f"highlight_quote functionality not implemented in Document yet {self}")
+
         style = INFO_STYLE if self.config_replace_text_with and len(self.config_replace_text_with) < 300 else ''
         text = self.config_replace_text_with or self.text
 
-        if self.config and self.config.highlight_quote:
-            raise ValueError(f"highlight_quote functionality not implemented in Document yet {self}")
-
         if args.char_nums:
-            text = self._inject_line_numbers(text, args.char_nums)
+            text = self._inject_line_numbers(text, args.char_nums)   # For debugging/choosing truncation points
 
-        if self.config is None or self.config.truncate_at in [None, NO_TRUNCATE] or args.whole_file:
-            return highlighter(Text(text, style))
-
-        char_range = list(self.config.truncate_at) if self.config.is_excerpt else [0, self.config.truncate_at]
-        trim_footer_txt = self.truncation_note(char_range[1])
-        chars = text[char_range[0]:char_range[1]]
-
-        if char_range[0] > 0:
-            # Add paragraph separators if very long lines
-            if max(len(line) for line in  chars.split('\n')) > 120:
-                chars = chars.replace('\n', '\n\n')
-
-            _txt = Text('', style=EXCERPT_STYLE)
-            _txt.append(f'<...trimmed first {char_range[0]:,} characters...>\n\n', 'dim')
-            txt = _txt.append('...').append(highlighter(Text(chars, style)))
+        # Call excerpt_text() if there's truncation instructions in this doc's config
+        if self.config and self.config.char_range and not args.whole_file:
+            return self.excerpt_text(self.config.char_range, text)
         else:
-            txt = highlighter(Text(chars, style))
-
-        return txt.append('...\n\n').append(trim_footer_txt)
+            return highlighter(Text(text, style))
 
     @property
     def suppressed_txt(self) -> Text | None:
@@ -461,6 +453,19 @@ class Document:
     def debug_log(self, msg: str) -> None:
         self.log(msg, logging.DEBUG)
 
+    def excerpt_text(self, char_range: CharRange, text: str = '') -> Text:
+        """Create an excerpt of `text`, add appropriate header/footer if truncated, and highlight it."""
+        text = text or self.text
+        excerpt_chars = text[char_range[0]:char_range[1]]
+        # TODO bad place for doublespacing... for now it's ok because only excerpts are affected.
+        # excerpt_chars = doublespace_lines(text[char_range[0]:char_range[1]])
+        txt = self._intro_txt(char_range[0]).append(highlighter(excerpt_chars))
+
+        if (footer_txt := self.trimmed_chars_txt(char_range[1])):
+            txt.append('...\n\n').append(footer_txt)
+
+        return txt
+
     def extract_author(self) -> Name:
         """Extended in `Email` subclass to pull from headers etc."""
         return None
@@ -537,8 +542,6 @@ class Document:
         """Panel + subheaders with filename linking to raw file plus any additional info about the file."""
         padded_info = [Padding(sentence, site_config.info_padding()) for sentence in self.info]
         return Group(*([self.file_id_panel] + padded_info))
-        elements = [panel] + padded_info
-        return Group(*[Align(e, 'right') for e in elements])
 
     def top_lines(self, n: int = 10) -> str:
         """First n lines."""
@@ -548,11 +551,13 @@ class Document:
         # TODO: this does not include the timestamp for OtherFiles!
         return self.file_display().to_html()
 
-    def truncation_note(self, truncate_to: int) -> Text:
+    def trimmed_chars_txt(self, truncate_to: int) -> Text | None:
         """String with link to source URL that will replace the text after the truncation point."""
-        link_markup = self.external_link_markup
-        trim_note = f"<...trimmed to {truncate_to:,} characters of {self.length:,}, read the rest at {link_markup}...>"
-        return Text.from_markup(wrap_in_markup_style(trim_note, 'dim'))
+        if truncate_to >= len(self.text):
+            return None
+        else:
+            msg = f"trimmed to {truncate_to:,} characters of {self.length:,}, read the rest at {self.external_link_markup}"
+            return snip_msg_txt(msg)
 
     def truthy_props(self, prop_names: list[str]) -> DebugDict:
         """Return key/value pairs but only if the value is truthy."""
@@ -651,6 +656,14 @@ class Document:
         txt = Text(f"Skipping ", f"{INFO_STYLE} dim").append(self.external_link_txt)
         return txt.append(" because it's ").append(reason)
 
+    def _intro_txt(self, cutoff: int) -> Text:
+        """Truncation message if it's an excerpt."""
+        if cutoff == 0:
+            return Text('')
+
+        msg = f'trimmed first {cutoff:,} characters'
+        return snip_msg_txt(msg, EXCERPT_STYLE).append('...')
+
     def _write_clean_text(self, output_path: Path) -> None:
         """Write self.text to 'output_path'. Used only for diffing files."""
         if output_path.exists():
@@ -691,6 +704,11 @@ class Document:
     @classmethod
     def default_category(cls) -> str:
         return ''
+
+    @classmethod
+    def dummy_cfg(cls) -> DocCfg:
+        """Empty config so you can call config methods without "if self.config and self.config.thing"."""
+        return DocCfg(id='DUMMY')
 
     @classmethod
     def files_summary_table(cls, title: str | Text, first_col_name: str) -> Table:

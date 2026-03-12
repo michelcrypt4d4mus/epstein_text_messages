@@ -371,36 +371,38 @@ class Email(Communication):
     @property
     def prettified_text(self) -> Text:
         """Cleaned up text ready for printing."""
-        should_rewrite_header = self.header.was_initially_empty and self.header.num_header_rows > 0
-        num_chars = self._truncate_to_length()
-        trim_footer_txt = None
-        text = self.text
-
-        # Truncate long emails but leave a note explaining what happened w/link to source document
-        if len(text) > num_chars:
-            text = text[0:num_chars]
-            trim_footer_txt = self.truncation_note(num_chars)
-
-        text = collapse_newlines(text)
-
         # Rewrite broken headers where the values are on separate lines from the field names
-        if should_rewrite_header:
-            configured_actual_text = self.config.actual_text if self.config and self.config.actual_text else None
+        text = collapse_newlines(self.text)
+
+        if self.header.should_rewrite_header:
             num_lines_to_skip = self.header.num_header_rows
             lines = []
 
             # Emails w/configured 'actual_text' are particularly broken; need to shuffle some lines
-            if configured_actual_text is not None:
+            if (body_str := self.config.actual_text if (self.config and self.config.actual_text) else None) is not None:
+                lines.extend([cast(str, body_str), '\n'])
                 num_lines_to_skip += 1
-                lines += [cast(str, configured_actual_text), '\n']
 
             lines += text.split('\n')[num_lines_to_skip:]
-            text = self.with_header('\n'.join(lines))
-            text = _add_line_breaks(text)
-            self.rewritten_header_ids.add(self.file_id)
+            text = _add_line_breaks(self.with_header('\n'.join(lines)))
+            self.rewritten_header_ids.add(self.file_id)  # TODO: this is just for telemetry, it sucks
 
         if args.char_nums:
             text = self._inject_line_numbers(text, args.char_nums)
+
+
+        char_range = self.config.char_range if self.config and self.config.char_range else (0, self.length)
+        text = self.text
+
+        if self.config and self.config.char_range:
+            return self.excerpt_text(self.config.char_range)
+
+        # Truncate long emails but leave a note explaining what happened w/link to source document
+        if len(text) > (num_chars := self._truncate_to_length()):
+            text = text[0:num_chars]
+            trim_footer_txt = self.trimmed_chars_txt(num_chars)
+
+        text = collapse_newlines(text)
 
         lines = [create_hyperlinks(line) for line in text.split('\n')]
 
@@ -908,6 +910,10 @@ class Email(Communication):
 
         if (attachments_table := self._attached_docs_table()):
             yield Padding(attachments_table, (0, 0, 1, site_config.attachment_indent))
+
+    @classmethod
+    def dummy_cfg(cls) -> EmailCfg:
+        return EmailCfg(id='DUMMY')
 
     @staticmethod
     def build_emails_table(emails: list['Email'], name: Name = '', title: str = '', show_length: bool = False, **kwargs) -> Table:

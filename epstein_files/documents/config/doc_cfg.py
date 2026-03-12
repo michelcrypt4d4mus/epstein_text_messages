@@ -16,7 +16,7 @@ from epstein_files.people.interesting_people import PERSONS_OF_INTEREST
 from epstein_files.people.names import *
 from epstein_files.util.constant.strings import *
 from epstein_files.util.env import args, site_config
-from epstein_files.util.helpers.data_helpers import coerce_utc_strict, without_falsey
+from epstein_files.util.helpers.data_helpers import CharRange, coerce_utc_strict, without_falsey
 from epstein_files.util.helpers.file_helper import is_doj_file
 from epstein_files.util.helpers.string_helper import collapse_whitespace, is_bool_prop, join_truthy, quote
 from epstein_files.util.logging import logger
@@ -386,12 +386,24 @@ class DocCfg:
             return parsed_dt
 
     @property
-    def truncate_at(self) -> int | tuple[int, int] | None:
+    def truncate_at(self) -> int | CharRange | None:
         """The number of chars to show when printing this document."""
         if self.truncate_to:
             return self.truncate_to
         elif self.category in SHORT_TRUNCATE_CATEGORIES:
             return SHORT_TRUNCATE_TO
+
+    @property
+    def char_range(self) -> CharRange | None:
+        """`truncate_to` as (0, value) tuple if it's an int value."""
+        if self.truncate_at is None or self.truncate_to == NO_TRUNCATE:
+            return None
+        elif isinstance(self.truncate_at, int):
+            return (0, self.truncate_at)
+        elif isinstance(self.truncate_at, tuple):
+            return self.truncate_at
+        else:
+            raise ValueError(f"{self.id} unknown truncate_at type ({type(self.truncate_at).__name__}, value={self.truncate_at})")
 
     @property
     def truthy_props(self) -> dict[str, bool | str | None]:
@@ -610,7 +622,7 @@ class EmailCfg(CommunicationCfg):
             self.is_valid_for_name_scan = False
 
     @property
-    def truncate_at(self) -> int | tuple[int, int] | None:
+    def truncate_at(self) -> int | CharRange | None:
         if super().truncate_at:
             return super().truncate_at
         elif self.is_fwded_article or self.fwded_text_after:
