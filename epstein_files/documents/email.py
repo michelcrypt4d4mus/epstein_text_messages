@@ -285,7 +285,7 @@ class Email(Communication):
 
     @property
     def header(self) -> EmailHeader:
-        self._header = self._header or self._extract_header()
+        self._header = self._header or self.extract_header()
         return self._header
 
     @property
@@ -448,6 +448,79 @@ class Email(Communication):
 
         return txt.append(CLOSE_PROPERTIES_CHAR)
 
+    def extract_author(self) -> Name:
+        """Overloads superclass method, called at instantiation time."""
+        if self.header.author:
+            authors = extract_emailer_names(self.header.author)
+            return authors[0] if (len(authors) > 0 and authors[0]) else None
+
+    def extract_header(self) -> EmailHeader:
+        """Extract an `EmailHeader` from the OCR text."""
+        header_match = EMAIL_SIMPLE_HEADER_REGEX.search(self.text)
+
+        if header_match:
+            header = EmailHeader.from_header_lines(header_match.group(0))
+
+            # DOJ file OCR text is broken in a less consistent way than the HOUSE_OVERSIGHT files
+            if header.is_empty and not self.file_info.is_doj_file:
+                header.repair_empty_header(self.lines)
+        else:
+            log_level = logging.INFO if self.config else logging.WARNING
+            self._log_top_lines(msg='No email header match found!', level=log_level)
+            header = EmailHeader(field_names=[])
+
+        logger.debug(f"{self.file_id} extracted header\n\n{header}\n")
+        return header
+
+    def extract_recipients(self) -> list[Name]:
+        """Scan the To:, BCC: and CC: fields for known names, falling back to raw strings if no names identified."""
+        recipients = flatten([extract_emailer_names(r) for r in self.header.recipients])
+        recipients = uniquify(recipients)
+
+        # Assume mailing list emails are to Epstein
+        if self.author in BCC_LISTS and (self.is_note_to_self(recipients) or not recipients):
+            recipients: list[Name] = [JEFFREY_EPSTEIN]
+
+        # Remove self CCs but preserve self emails
+        if not (self.is_note_to_self(recipients) or self.author is None):
+            if self.author in self.recipients:
+                self.log(f"Removing email to self for {self.author}")
+
+            recipients = [r for r in recipients if r != self.author]
+
+        return sort_names(recipients)
+
+    def extract_timestamp(self) -> datetime:
+        """Find the time this email was sent."""
+        if self.header.sent_at and (timestamp := _parse_email_timestamp(self.header.sent_at)):
+            return timestamp
+
+        searchable_lines = self.lines[0:MAX_NUM_HEADER_LINES]
+        searchable_text = '\n'.join(searchable_lines)
+
+        if (date_match := DATE_HEADER_REGEX.search(searchable_text)):
+            if (timestamp := _parse_email_timestamp(date_match.group(1))):
+                return timestamp
+
+        logger.debug(f"Failed to find timestamp, falling back to parsing {MAX_NUM_HEADER_LINES} lines...")
+
+        for line in searchable_lines:
+            if not TIMESTAMP_LINE_REGEX.search(line):
+                continue
+
+            if (timestamp := _parse_email_timestamp(line)):
+                logger.debug(f"Fell back to timestamp {timestamp} in line '{line}'...")
+                return timestamp
+
+        no_timestamp_msg = f"No timestamp found in '{self.file_path.name}'"
+
+        if self.is_duplicate:
+            logger.warning(f"{no_timestamp_msg} but timestamp should be copied from {self.duplicate_of_id}")
+        else:
+            logger.error(f"{no_timestamp_msg}, top lines:\n" + '\n'.join(self.lines[0:MAX_NUM_HEADER_LINES + 10]))
+
+        return FALLBACK_TIMESTAMP
+
     def file_display(self, align: JustifyMethod | None = None) -> FileDisplay:
         """Allows for proper right vs. left justify."""
         return FileDisplay(
@@ -583,79 +656,6 @@ class Email(Communication):
             break
 
         return text.strip()
-
-    def extract_author(self) -> Name:
-        """Overloads superclass method, called at instantiation time."""
-        if self.header.author:
-            authors = extract_emailer_names(self.header.author)
-            return authors[0] if (len(authors) > 0 and authors[0]) else None
-
-    def _extract_header(self) -> EmailHeader:
-        """Extract an `EmailHeader` from the OCR text."""
-        header_match = EMAIL_SIMPLE_HEADER_REGEX.search(self.text)
-
-        if header_match:
-            header = EmailHeader.from_header_lines(header_match.group(0))
-
-            # DOJ file OCR text is broken in a less consistent way than the HOUSE_OVERSIGHT files
-            if header.is_empty and not self.file_info.is_doj_file:
-                header.repair_empty_header(self.lines)
-        else:
-            log_level = logging.INFO if self.config else logging.WARNING
-            self._log_top_lines(msg='No email header match found!', level=log_level)
-            header = EmailHeader(field_names=[])
-
-        logger.debug(f"{self.file_id} extracted header\n\n{header}\n")
-        return header
-
-    def extract_recipients(self) -> list[Name]:
-        """Scan the To:, BCC: and CC: fields for known names, falling back to raw strings if no names identified."""
-        recipients = flatten([extract_emailer_names(r) for r in self.header.recipients])
-        recipients = uniquify(recipients)
-
-        # Assume mailing list emails are to Epstein
-        if self.author in BCC_LISTS and (self.is_note_to_self(recipients) or not recipients):
-            recipients: list[Name] = [JEFFREY_EPSTEIN]
-
-        # Remove self CCs but preserve self emails
-        if not (self.is_note_to_self(recipients) or self.author is None):
-            if self.author in self.recipients:
-                self.log(f"Removing email to self for {self.author}")
-
-            recipients = [r for r in recipients if r != self.author]
-
-        return sort_names(recipients)
-
-    def extract_timestamp(self) -> datetime:
-        """Find the time this email was sent."""
-        if self.header.sent_at and (timestamp := _parse_email_timestamp(self.header.sent_at)):
-            return timestamp
-
-        searchable_lines = self.lines[0:MAX_NUM_HEADER_LINES]
-        searchable_text = '\n'.join(searchable_lines)
-
-        if (date_match := DATE_HEADER_REGEX.search(searchable_text)):
-            if (timestamp := _parse_email_timestamp(date_match.group(1))):
-                return timestamp
-
-        logger.debug(f"Failed to find timestamp, falling back to parsing {MAX_NUM_HEADER_LINES} lines...")
-
-        for line in searchable_lines:
-            if not TIMESTAMP_LINE_REGEX.search(line):
-                continue
-
-            if (timestamp := _parse_email_timestamp(line)):
-                logger.debug(f"Fell back to timestamp {timestamp} in line '{line}'...")
-                return timestamp
-
-        no_timestamp_msg = f"No timestamp found in '{self.file_path.name}'"
-
-        if self.is_duplicate:
-            logger.warning(f"{no_timestamp_msg} but timestamp should be copied from {self.duplicate_of_id}")
-        else:
-            logger.error(f"{no_timestamp_msg}, top lines:\n" + '\n'.join(self.lines[0:MAX_NUM_HEADER_LINES + 10]))
-
-        return FALLBACK_TIMESTAMP
 
     def _idx_of_nth_quoted_reply(self, n: int = MAX_QUOTED_REPLIES) -> int | None:
         """Get position of the nth 'On June 12th, 1985 [SOMEONE] wrote:' style line in self.text."""

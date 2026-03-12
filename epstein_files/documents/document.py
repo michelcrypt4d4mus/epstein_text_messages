@@ -461,6 +461,14 @@ class Document:
     def debug_log(self, msg: str) -> None:
         self.log(msg, logging.DEBUG)
 
+    def extract_author(self) -> Name:
+        """Extended in `Email` subclass to pull from headers etc."""
+        return None
+
+    def extract_timestamp(self) -> datetime | None:
+        """Should be implemented in subclasses."""
+        return None
+
     def file_display(self, align: JustifyMethod | None = None) -> FileDisplay:
         """Allows for proper right vs. left justify."""
         body = BasePanel(
@@ -586,14 +594,6 @@ class Document:
         """Prettified version of `self._debug_dict()` suitable for printing."""
         txt_lines = styled_dict(self._debug_dict(), sep=': ')
         return prefix_with(txt_lines, ' ', pfx_style='grey', indent=2)
-
-    def extract_author(self) -> Name:
-        """Extended in `Email` subclass to pull from  headers."""
-        pass
-
-    def extract_timestamp(self) -> datetime | None:
-        """Should be implemented in subclasses."""
-        pass
 
     def _inject_line_numbers(self, text: str, interval: int) -> str:
         """Inject character numbers markers into `text`. For debugging only."""

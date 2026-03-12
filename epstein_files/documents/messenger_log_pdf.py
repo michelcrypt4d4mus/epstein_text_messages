@@ -39,7 +39,7 @@ IMESSAGE_PDF_IDS = [
 class MessengerLogPdf(MessengerLog):
     """Class for unstructured iMessage logs in some PDFs."""
 
-    def _extract_messages(self) -> list[TextMessage]:
+    def extract_messages(self) -> list[TextMessage]:
         msgs: list[TextMessagePdf] = []
 
         if args.raw:
@@ -87,7 +87,7 @@ class MessengerLogPdf(MessengerLog):
         return msgs
 
     def extract_timestamp(self) -> datetime:
-        return self._extract_messages()[0].parse_timestamp()
+        return self.extract_messages()[0].parse_timestamp()
 
 
 @dataclass(kw_only=True)

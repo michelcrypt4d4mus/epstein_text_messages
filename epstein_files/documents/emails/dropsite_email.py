@@ -26,7 +26,7 @@ class DropsiteEmail(Email):
 
         return self._eml
 
-    def _extract_header(self) -> EmailHeader:
+    def extract_header(self) -> EmailHeader:
         """Extract an `EmailHeader` from the OCR text."""
         bcc = self.eml['bcc'].split(';') if self.eml['bcc'] else None
         cc = self.eml['cc'].split(';') if self.eml['cc'] else None

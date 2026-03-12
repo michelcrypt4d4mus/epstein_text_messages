@@ -43,7 +43,7 @@ class MessengerLog(Communication):
 
     def __post_init__(self):
         super().__post_init__()
-        self.messages = self._extract_messages()
+        self.messages = self.extract_messages()
 
     @property
     def is_interesting(self) -> bool | None:
@@ -80,6 +80,23 @@ class MessengerLog(Communication):
             txt.append(highlighter(f" using the phone number {self.phone_number}"))
 
         return txt.append(')')
+
+    def extract_messages(self) -> list[TextMessage]:
+        return [self._build_message(match) for match in MSG_REGEX.finditer(self.text)]
+
+    def extract_recipients(self) -> list[Name]:
+        return [JEFFREY_EPSTEIN]
+
+    def extract_timestamp(self) -> datetime:
+        for match in MSG_REGEX.finditer(self.text):
+            message = self._build_message(match)
+
+            try:
+                return message.parse_timestamp()
+            except ValueError as e:
+                logger.info(f"Failed to parse '{message.timestamp_str}' to datetime! Using next match. Error: {e}'")
+
+        raise RuntimeError(f"{self}: No timestamp found!")
 
     def file_display(self, align: JustifyMethod | None = None) -> FileDisplay:
         """`FileDisplay` object that controls how this object is presented."""
@@ -120,23 +137,6 @@ class MessengerLog(Communication):
             text=match.group(4).strip(),
             timestamp_str=match.group(2).strip(),
         )
-
-    def _extract_messages(self) -> list[TextMessage]:
-        return [self._build_message(match) for match in MSG_REGEX.finditer(self.text)]
-
-    def extract_recipients(self) -> list[Name]:
-        return [JEFFREY_EPSTEIN]
-
-    def extract_timestamp(self) -> datetime:
-        for match in MSG_REGEX.finditer(self.text):
-            message = self._build_message(match)
-
-            try:
-                return message.parse_timestamp()
-            except ValueError as e:
-                logger.info(f"Failed to parse '{message.timestamp_str}' to datetime! Using next match. Error: {e}'")
-
-        raise RuntimeError(f"{self}: No timestamp found!")
 
     def __rich_console__(self, console: Console, options: ConsoleOptions) -> RenderResult:
         yield self.rich_header()
