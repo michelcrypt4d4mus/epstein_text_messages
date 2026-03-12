@@ -19,7 +19,7 @@ from epstein_files.output.layout_elements.file_display import BasePanel, FileDis
 from epstein_files.output.html.builder import (console_buffer_to_html, panel_to_div, rich_to_html, table_to_html,
      text_to_div, unwrap_rich, write_templated_html)
 from epstein_files.output.html.elements import div_class, tag, to_em
-from epstein_files.output.rich import console
+from epstein_files.output.rich import console, subtitle_panel
 from epstein_files.people.person import PEOPLE_BIOS, Person
 from epstein_files.people.names import *
 from epstein_files.util.env import args, site_config
@@ -140,6 +140,10 @@ class DocPrinter:
             self.html_elements.append(tag('p', renderable, css_props))
         else:
             raise TypeError(f"renderable of unsupported type: {type(renderable).__name__}: {renderable}")
+
+    def print_subtitle_panel(self, subtitle: str) -> None:
+        self.print_renderable(subtitle_panel(subtitle))
+        self.line()
 
     def write_html(self, html_path: Path) -> None:
         """Write the collection of html elements to a file."""
