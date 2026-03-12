@@ -320,23 +320,25 @@ class Document:
     def people(self) -> list[str]:
         """Names of people who either sent/received this email or are mentioned in it."""
         text = self.text
+        people = [self.author] if self.author else []
+        non_participants = []
 
         if self.config:
             if not self.config.is_valid_for_name_scan:
-                return []
+                return people
             elif self.config.replace_text_with:
                 text = self.config.replace_text_with
 
-            if self.config_description:
-                text = f"{self.config_description}\n{text}"
+            if self.config.description:
+                text = f"{self.config.description}\n{text}"
 
-        people = [c.name for c in HIGHLIGHTED_CONTACTS if c.highlight_regex.search(text)]
-        people = uniq_sorted(people + ([self.author] if self.author else []))
-        non_particpants = self.config.non_participants if self.config else []
-        people = [p for p in people if p not in non_particpants]
+            non_participants = self.config.non_participants
+
+        people.extend([c.name for c in HIGHLIGHTED_CONTACTS if c.highlight_regex.search(text)])
+        people = uniq_sorted([p for p in people if p not in non_participants])
 
         if people:
-            self.log(f"people() found: {', '.join(people)}")
+            self.log(f"people() found {len(people)} names: {', '.join(people)}")
 
         return people
 
