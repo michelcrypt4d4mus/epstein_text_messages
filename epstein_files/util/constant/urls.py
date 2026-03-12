@@ -7,13 +7,28 @@ from rich.text import Text
 
 from epstein_files.output.site.sites import GH_PROJECT_URL, TO_FROM, SiteType
 from epstein_files.util.env import args
-from epstein_files.util.constant.strings import ARCHIVE_ALT_LINK_STYLE, SOCIAL_MEDIA_LINK_STYLE, TEXT_LINK
+from epstein_files.util.constant.strings import TEXT_LINK
 from epstein_files.util.helpers.file_helper import coerce_file_stem
 from epstein_files.util.helpers.link_helper import SUBSTACK_POST_LINK_STYLE, ExternalLink, link_markup, link_text_obj
 from epstein_files.util.helpers.string_helper import remove_question_marks
 
+# DOJ docs
+DOJ_2026_URL = 'https://www.justice.gov/epstein/doj-disclosures'
+DOJ_SEARCH_URL = 'https://www.justice.gov/epstein/search'
+
+# External URLs
+CARSTENSEN_URL = 'https://tommycarstensen.com/epstein'
+COFFEEZILLA_ARCHIVE_URL = 'https://journaliststudio.google.com/pinpoint/search?collection=061ce61c9e70bdfd'
+COURIER_NEWSROOM_ARCHIVE_URL = 'https://journaliststudio.google.com/pinpoint/search?collection=092314e384a58618'
+DOJ_2026_FILE_BASE_URL = "https://www.justice.gov/epstein/files/DataSet%20"
+EPSTEIN_DOCS_URL = 'https://epstein-docs.github.io'
+OVERSIGHT_REPUBS_PRESSER_URL = 'https://oversight.house.gov/release/oversight-committee-releases-additional-epstein-estate-documents/'
+OVERSIGHT_DRIVE_URL = 'https://drive.google.com/drive/folders/1hTNH5woIRio578onLGElkTWofUSWRoH_'
+
+
 # External site names
 ExternalSite = Literal['epstein.media', 'epsteinify', 'EpsteinWeb', 'Jmail', 'RollCall', 'search X']
+
 EPSTEIN_MEDIA = 'epstein.media'
 EPSTEIN_WEB = 'EpsteinWeb'
 EPSTEINIFY = 'epsteinify'
@@ -21,31 +36,9 @@ JMAIL = 'Jmail'
 ROLLCALL = 'RollCall'
 TWITTER = 'search X'
 
-# External URLs
-COFFEEZILLA_ARCHIVE_URL = 'https://journaliststudio.google.com/pinpoint/search?collection=061ce61c9e70bdfd'
-COURIER_NEWSROOM_ARCHIVE_URL = 'https://journaliststudio.google.com/pinpoint/search?collection=092314e384a58618'
-DOJ_2026_FILE_BASE_URL = "https://www.justice.gov/epstein/files/DataSet%20"
-EPSTEIN_DOCS_URL = 'https://epstein-docs.github.io'
-OVERSIGHT_REPUBS_PRESSER_URL = 'https://oversight.house.gov/release/oversight-committee-releases-additional-epstein-estate-documents/'
-OVERSIGHT_DRIVE_URL = 'https://drive.google.com/drive/folders/1hTNH5woIRio578onLGElkTWofUSWRoH_'
-SUBSTACK_URL = 'https://cryptadamus.substack.com/p/i-made-epsteins-text-messages-great'
-SUBSTACK_INSIGHTS_POD = 'https://cryptadamus.substack.com/p/maybe-the-russian-bots-were-jeffrey'
-
-SUBSTACK_INSIGHTS_LINK = link_text_obj(
-    SUBSTACK_INSIGHTS_POD,
-    '"Maybe The Russian Bots Were Jeffrey Epstein The Whole Time"',
-    SUBSTACK_POST_LINK_STYLE
-)
-
-# DOJ docs
-DOJ_2026_URL = 'https://www.justice.gov/epstein/doj-disclosures'
-DOJ_SEARCH_URL = 'https://www.justice.gov/epstein/search'
-# ours
-CRYPTADAMUS_TWITTER = link_markup('https://x.com/cryptadamist', '@cryptadamist')
-
-# Document source sites
-EPSTEINIFY_URL = 'https://epsteinify.com'
-EPSTEIN_MEDIA_URL = 'https://epstein.media'
+# Document source URLs
+EPSTEINIFY_URL = f'https://{EPSTEINIFY}.com'
+EPSTEIN_MEDIA_URL = f'https://{EPSTEIN_MEDIA}'
 EPSTEIN_WEB_URL = 'https://epsteinweb.org'
 JMAIL_URL = 'https://jmail.world'
 
@@ -59,46 +52,72 @@ DOC_LINK_BASE_URLS: dict[ExternalSite, str] = {
 OFFICIAL_LINKS = [
     ExternalLink.official_link(
         DOJ_2026_URL,
+        'DOJ Epstein Files Transparency Act Disclosures',
         comment='search',
         comment_url=DOJ_SEARCH_URL,
-        link_text='DOJ Epstein Files Transparency Act Disclosures'
     ),
     ExternalLink.official_link(
         OVERSIGHT_REPUBS_PRESSER_URL,
+        '2025 Oversight Committee Press Release',
         comment='raw files',
         comment_url=OVERSIGHT_DRIVE_URL,
-        link_text='2025 Oversight Committee Press Release',
-    )
+    ),
 ]
 
 EXTERNAL_LINKS = OFFICIAL_LINKS + [
     # ExternalLink(EPSTEIN_WEB_URL, 'biographies', link_text='EpsteinWeb'),
-    ExternalLink('https://epsteinexposed.com'),
     ExternalLink(
-        'https://randallscott25-star.github.io/epstein-forensic-finance/narratives/19_grand_opus_narrative.html',
-        'money',
-        link_text='Epstein Audit'
+        'randallscott25-star.github.io/epstein-forensic-finance/narratives/19_grand_opus_narrative.html',
+        'Epstein Audit',
+        comment='money',
     ),
-    ExternalLink(JMAIL_URL, 'read His Emails via Gmail interface', link_text='Jmail'),
+    ExternalLink(JMAIL_URL, 'Jmail', 'read His Emails via Gmail interface'),
     ExternalLink(
-        'https://tommycarstensen.com/epstein/index.html',
+        CARSTENSEN_URL,
+        'Carstensen Epstein Archive',
         comment='findings',
-        comment_url='https://tommycarstensen.com/epstein/findings.html',
+        comment_url=f"{CARSTENSEN_URL}/findings.html",
         comment_style='light_sea_green italic',
-        link_text='Carstensen Epstein Archive'
     ),
-    ExternalLink(EPSTEIN_DOCS_URL, 'old docs', link_text='epstein-docs'),
-    ExternalLink(EPSTEIN_MEDIA_URL, 'raw document images'),
+    # ExternalLink(EPSTEIN_DOCS_URL, 'old docs', link_text='epstein-docs'),
+    ExternalLink(EPSTEIN_MEDIA_URL, comment='raw document images'),
     # ExternalLink(EPSTEINIFY_URL, 'raw images alt', link_text='Epsteinify'),
-    ExternalLink('https://bitcoinprotocol.org/epstein-bitcoin-emails', 'crypto', link_text='Epstein Bitcoin Emails'),
-    ExternalLink('https://efta-search.vercel.app', 'search filters', link_text='EFTASearch'),
+    ExternalLink('bitcoinprotocol.org/epstein-bitcoin-emails', 'Epstein Bitcoin Emails', 'crypto'),
+    ExternalLink('efta-search.vercel.app', 'EFTA Search', 'search filters'),
+    ExternalLink('epsteinexposed.com', 'Epstein Exposed'),
+    ExternalLink('epsteinsearch.info'),
 ]
 
+
+# Social media links
+X_BASE_URL = 'https://x.com'
+CRYPTADAMUS_X_URL = f'{X_BASE_URL}/Cryptadamist'
+CRYPTADAMUS_X_LINK_MARKUP = link_markup(CRYPTADAMUS_X_URL, '@cryptadamist')
+# Mastodon
+MASTODON_POST_URL = 'universeodon.com/@cryptadamist/115572634993386057'
+# Substack
+SUBSTACK_BASE_URL = 'https://cryptadamus.substack.com'
+SUBSTACK_POST_BASE_URL = f"{SUBSTACK_BASE_URL}/p"
+SUBSTACK_POST_TXT_MESSAGES_URL = f'{SUBSTACK_POST_BASE_URL}/i-made-epsteins-text-messages-great'
+SUBSTACK_POST_INSIGHTSPOD_URL = f'{SUBSTACK_POST_BASE_URL}/maybe-the-russian-bots-were-jeffrey'
+
+SUBSTACK_POST_TXT_MSGS_LINK = ExternalLink(
+    SUBSTACK_POST_TXT_MESSAGES_URL,
+    "I Made Epstein's Text Messages Great Again (And You Should Read Them)",
+    link_style=f'{SUBSTACK_POST_LINK_STYLE} bold'
+)
+
+SUBSTACK_INSIGHTS_LINK = ExternalLink(
+    SUBSTACK_POST_INSIGHTSPOD_URL,
+    '"Maybe The Russian Bots Were Jeffrey Epstein The Whole Time"',
+    link_style=SUBSTACK_POST_LINK_STYLE
+)
+
 CRYPTADAMUS_SOCIAL_LINKS = [
-    link_text_obj('https://universeodon.com/@cryptadamist/115572634993386057', '@mastodon', style=SOCIAL_MEDIA_LINK_STYLE),
-    link_text_obj(SUBSTACK_URL, '@substack', style=SOCIAL_MEDIA_LINK_STYLE),
-    link_text_obj('https://x.com/Cryptadamist/status/1990866804630036988', '@twitter', style=SOCIAL_MEDIA_LINK_STYLE),
-    link_text_obj(GH_PROJECT_URL, '@github', style=SOCIAL_MEDIA_LINK_STYLE)
+    ExternalLink.social_link(MASTODON_POST_URL),
+    ExternalLink.social_link(SUBSTACK_POST_TXT_MESSAGES_URL),
+    ExternalLink.social_link(f'{CRYPTADAMUS_X_URL}/status/2028867724307316882'),
+    ExternalLink.social_link(GH_PROJECT_URL),
 ]
 
 # Misc
@@ -128,7 +147,7 @@ rollcall_doc_url = lambda file_stem: build_doc_url(DOC_LINK_BASE_URLS[ROLLCALL],
 
 # Jmail
 search_jmail_url = lambda txt: f"{JMAIL_URL}/search?q={urllib.parse.quote(txt)}"
-search_twitter_url = lambda txt: f"https://x.com/search?q={urllib.parse.quote(txt)}&src=typed_query&f=live"
+search_twitter_url = lambda txt: f"{X_BASE_URL}/search?q={urllib.parse.quote(txt)}&src=typed_query&f=live"
 
 PERSON_LINK_BUILDERS: dict[ExternalSite, Callable[[str], str]] = {
     EPSTEIN_MEDIA: epstein_media_person_url,

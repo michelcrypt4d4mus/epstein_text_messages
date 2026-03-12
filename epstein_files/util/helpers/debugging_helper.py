@@ -1,5 +1,10 @@
+"""
+Methods used only for debugging / logging.
+"""
 from collections import defaultdict
+from datetime import datetime
 
+from dateutil import tz
 from rich.padding import Padding
 from rich.text import Text
 
@@ -46,7 +51,7 @@ def print_all_timestamps(epstein_files):
 
 def print_highlight_patterns() -> None:
     from epstein_files.output.rich import print_json
-    print_json('patterns', highlight_config_dict())
+    print_json(highlight_config_dict(), 'rich highlight patterns')
     import sys
     sys.exit()
 
@@ -60,14 +65,6 @@ def print_file_counts(epstein_files) -> None:
 
     counts['total'] = i + 1
     console.print(styled_dict(counts))
-
-
-def _verify_filenames(epstein_files):
-    doc_filenames = set([doc.file_path.name for doc in epstein_files.documents])
-
-    for file_path in epstein_files.file_paths:
-        if file_path.name not in doc_filenames:
-            print(f"'{file_path}' is not in list of {len(doc_filenames)} Document obj filenames!")
 
 
 def print_interesting_doc_panels_and_props(epstein_files, sort_by_category: bool = True):
@@ -113,3 +110,18 @@ def print_interesting_doc_panels_and_props(epstein_files, sort_by_category: bool
 
     print('')
     logger.warning(f"Printed {num_printed} object configs, {num_interesting} interesting ones.\n\n")
+
+
+def tz_debug_str(dt: datetime) -> str:
+    dt_local = dt.replace(tzinfo=tz.UTC).astimezone(tz.gettz())
+    dt_utc = dt_local.astimezone(tz.UTC)
+    return f"{dt.isoformat()} (tzinfo={dt.tzinfo}, local={dt_local.isoformat()}, utc={dt_utc.isoformat()})"
+
+
+
+def _verify_filenames(epstein_files):
+    doc_filenames = set([doc.file_path.name for doc in epstein_files.documents])
+
+    for file_path in epstein_files.file_paths:
+        if file_path.name not in doc_filenames:
+            print(f"'{file_path}' is not in list of {len(doc_filenames)} Document obj filenames!")

@@ -277,6 +277,6 @@ def test_highlight_count(get_email):
     dilorio_email = get_email('EFTA00039828').reload()
     dilorio_email.print(whole_file=True)
     test_console.print(dilorio_email)
-    print_json('highlight counts', highlighter.highlight_counts)
+    print_json(highlighter.highlight_counts, 'highlight counts')
     assert highlighter.highlight_counts == HIGHLIGHT_COUNTS
     args.stats = old_stats_arg

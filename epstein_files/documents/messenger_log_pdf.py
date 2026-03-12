@@ -8,7 +8,9 @@ from epstein_files.documents.imessage.text_message import TextMessage
 from epstein_files.output.rich import console
 from epstein_files.people.names import JEFFREY_EPSTEIN, LAWRENCE_KRAUSS, STEVE_BANNON
 from epstein_files.util.env import args
+from epstein_files.util.helpers.data_helpers import coerce_utc
 from epstein_files.util.logging import logger
+from epstein_files.util.helpers.string_helper import collapse_whitespace, indented, quote
 
 BRACKET_NUM_PATTERN = r"\s*\[?\d\]?\s*"
 DATE_PATTERN = r"(?P<timestamp>\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2})\s+\(?UTC\)?" + fr"(?:{BRACKET_NUM_PATTERN})?"
@@ -16,7 +18,9 @@ SENDER_PATTERN = r"\s*Sender:(?P<sender>.*?)Participants:?(?P<participants>(\s*?
 MSG_REGEX = re.compile(fr'iMessage\s+(?:{BRACKET_NUM_PATTERN})?{DATE_PATTERN}{SENDER_PATTERN}(?P<msg>.*?)(?=iMessage|NYCO24362|SMS)', re.DOTALL | re.M)
 REDACTED_AUTHOR_REGEX = re.compile(r"^([-+•_1MENO.=F]+|[4Ide])$")
 # Sometimes participants field ends up in the message
-JUNK_SUFFIX_REGEX = re.compile(r"\)?,? ?Self \( ?(e:?)?jeeitunes[®@]gmail.com ?\)")
+JUNK_PREFIX_REGEX = re.compile(r"Sender: Self .{1,3}eeitunes.{,10}Participants: ? \(?")
+JUNK_SUFFIX_REGEX = re.compile(r"\)?,? ?(Sender:\s)?Self \( ?(e:?)?jeeitunes[®@]gmail.com ?\)|Participants: Lawrence Krauss(\s*\()?")
+VALID_SENDER_REGEX = re.compile(r"\w{4,}")
 # print(MSG_REGEX.pattern)
 
 MATCH_GROUPS = [
@@ -38,7 +42,7 @@ IMESSAGE_PDF_IDS = [
 class MessengerLogPdf(MessengerLog):
     """Class for unstructured iMessage logs in some PDFs."""
 
-    def _extract_messages(self) -> list[TextMessage]:
+    def extract_messages(self) -> list[TextMessage]:
         msgs: list[TextMessagePdf] = []
 
         if args.raw:
@@ -47,7 +51,7 @@ class MessengerLogPdf(MessengerLog):
         for match in MSG_REGEX.finditer(self.text):
             msg = match.group('msg').strip()
             timestamp_str = match.group('timestamp').strip()
-            sender = match.group('sender').replace('(', '').replace(')', '').strip()
+            sender = collapse_whitespace(match.group('sender').replace('(', '').replace(')', ''))
 
             if sender.startswith('Self'):
                 sender = JEFFREY_EPSTEIN
@@ -55,42 +59,51 @@ class MessengerLogPdf(MessengerLog):
                 sender = STEVE_BANNON
             elif self.file_id == 'EFTA00508054' and sender == 'Lawrence':
                 sender = LAWRENCE_KRAUSS
-            elif not sender:
+            elif not VALID_SENDER_REGEX.search(sender):
+                self.warn(f"text message sender '{sender}' is not a valid name")
                 sender = None
 
-            if (junk_suffix := JUNK_SUFFIX_REGEX.search(msg)):
-                self.warn(f"Found junk suffixes in message, removing. msg:\n-----\n{msg}\n-----")
+            if JUNK_SUFFIX_REGEX.search(msg):
+                self.debug_log(f"Found junk suffixes in message, removing. msg:\n-----\n{msg}\n-----")
                 msg = JUNK_SUFFIX_REGEX.sub('', msg).strip()
-                self.warn(f"msg stripped of junk:\n-----\n{msg}\n-----\n")
+
+                if msg:
+                    self.debug_log(f"Text message stripped of junk suffixes:\n-----\n{msg}\n-----\n")
+                else:
+                    self.debug_log(f"Text stripped of junk suffixes is empty!")
 
             text_message = TextMessagePdf(
                 author=sender,
                 is_id_confirmed=len(sender or '') > 0 and sender != STEVE_BANNON,
                 text=msg,
-                timestamp_str=match.group('timestamp').strip(),
+                timestamp_str=timestamp_str,
             )
-
-            for g in MATCH_GROUPS:
-                self.log(f"  match [{g}] '{match.group(g).strip()}'")
 
             if msgs and text_message == msgs[-1]:
                 self.log(f"Parsed TextMessage is the same as the last one, skipping...\n")
                 continue
-            elif not msg:
-                self.warn(f"Empty text message, skipping...")
-                continue
+            else:
+                if msg:
+                    self.log(f'adding TextMsg: {text_message.__rich__().plain}')
+                    # self.log(f"Found sender='{sender}', timestamp_str='{timestamp_str}', msg={quote(msg)}")
+                else:
+                    self.warn(f"Skipping empty text message match from {sender} at {timestamp_str}, skipping...")
 
-            self.log(f'\nmessage: {text_message.__rich__().plain}\n')
+                capture_group_msgs = [f"[{g}] '" + quote(match.group(g).replace('\n', ' ').strip()) + "'" for g in MATCH_GROUPS]
+                self.debug_log(f"[raw capture groups]\n\n{indented(capture_group_msgs, 8)}\n")
+
+                if not msg:
+                    continue
+
             msgs.append(text_message)
 
         return msgs
 
-    def _extract_timestamp(self) -> datetime:
-        return self._extract_messages()[0].parse_timestamp()
-
+    def extract_timestamp(self) -> datetime:
+        return self.extract_messages()[0].parse_timestamp()
 
 
 @dataclass(kw_only=True)
 class TextMessagePdf(TextMessage):
     def parse_timestamp(self) -> datetime:
-        return parse(self.timestamp_str)
+        return coerce_utc(parse(self.timestamp_str))

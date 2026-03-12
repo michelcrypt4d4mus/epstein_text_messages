@@ -3,10 +3,10 @@ from collections import defaultdict
 from copy import deepcopy
 
 from rich.console import Console
+from rich.panel import Panel
 from rich.highlighter import RegexHighlighter
 from rich.text import Text
 
-from epstein_files.output.highlighted_names import HighlightedNames
 from epstein_files.output.highlight_config import HIGHLIGHT_GROUPS, HIGHLIGHTED_NAMES
 from epstein_files.util.constant.strings import HIGHLIGHTED_QUOTE, JEE, REGEX_STYLE_PREFIX
 from epstein_files.util.env import args
@@ -40,6 +40,7 @@ class EpsteinHighlighter(RegexHighlighter):
 
     def print_highlight_counts(self, console: Console) -> None:
         """Print counts of how many times strings were highlighted."""
+        console.print(Panel('Highlight counts', expand=False))
         highlight_counts = deepcopy(self.highlight_counts)
 
         for highlighted, count in sort_dict(highlight_counts):

@@ -32,7 +32,7 @@ from epstein_files.util.constant.strings import HOUSE_OVERSIGHT_NOV_2025_ID_REGE
 from epstein_files.util.constants import ALL_CONFIGS
 from epstein_files.util.env import args, site_config
 from epstein_files.util.helpers.data_helpers import flatten, uniquify
-from epstein_files.util.helpers.document_helper import diff_files
+from epstein_files.util.helpers.document_helper import diff_documents
 from epstein_files.util.helpers.file_helper import extract_file_id, is_local_extract_file
 from epstein_files.util.logging import exit_with_error, logger
 from epstein_files.util.timer import Timer
@@ -86,7 +86,7 @@ def epstein_generate() -> None:
 
 def epstein_diff():
     """Diff the cleaned up text of two files."""
-    diff_files(args.positional_args)
+    diff_documents(args.positional_args)
 
 
 def epstein_grep():
@@ -218,7 +218,7 @@ def epstein_show():
             console.print(doc._debug_txt(), style='dim')
 
     if args.stats:
-        print_json("Highlight counts", highlighter.highlight_counts)
+        print_json(highlighter.highlight_counts, "Highlight counts")
 
 
 def _load_files_and_check_early_exit_args() -> tuple[Timer, EpsteinFiles]:

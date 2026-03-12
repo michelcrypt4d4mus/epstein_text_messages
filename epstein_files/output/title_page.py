@@ -124,7 +124,7 @@ def print_title_page_bottom(epstein_files: 'EpsteinFiles') -> None:
     # console.line()
     # print_centered(updated_panel)
     print_color_key()
-    print_centered(f"(if you think there's an attribution error or can deanonymize an {UNKNOWN} contact {CRYPTADAMUS_TWITTER})", 'grey46')
+    print_centered(f"(if you think there's an attribution error or can deanonymize an {UNKNOWN} contact {CRYPTADAMUS_X_LINK_MARKUP})", 'grey46')
     print_centered(f"(thanks to {link_markup('https://x.com/ImDrinknWyn', '@ImDrinknWyn', 'dodger_blue3')} + others for help attributing redacted emails)")
     console.line()
 
@@ -170,8 +170,8 @@ def _print_abbreviations_table() -> None:
 def _print_external_links() -> None:
     print_centered(Text('External Links', style=TABLE_TITLE_STYLE))
 
-    for link in sorted(EXTERNAL_LINKS, key=lambda link: -len(link.link_with_comment)):
-        print_centered(link.link_with_comment)
+    for link in sorted(EXTERNAL_LINKS, key=lambda link: -len(link.__rich__())):
+        print_centered(link)
 
 
 def _print_page_title(width: int = TITLE_WIDTH) -> None:
@@ -179,15 +179,10 @@ def _print_page_title(width: int = TITLE_WIDTH) -> None:
     title = Text('', justify='center').append('The Epstein Files', style='underline bold')
     title_panel = Panel(title, box=box.DOUBLE_EDGE, expand=True, padding=(2, 2), style=TITLE_STYLE, width=width)
     print_centered(vertically_pad(title_panel))
-
-    print_centered_link(
-        SUBSTACK_URL,
-        "I Made Epstein's Text Messages Great Again (And You Should Read Them)",
-        style=f'{SUBSTACK_POST_LINK_STYLE} bold'
-    )
+    print_centered(SUBSTACK_POST_TXT_MSGS_LINK)
 
     if not args.mobile:
-        print_centered_link(SUBSTACK_URL, SUBSTACK_URL.removeprefix('https://'), style=f'{SUBSTACK_POST_LINK_STYLE} dim')
+        print_centered(SUBSTACK_POST_TXT_MSGS_LINK.url_link, style=f'{SUBSTACK_POST_LINK_STYLE} dim')
 
     print_centered(join_texts(CRYPTADAMUS_SOCIAL_LINKS, join=site_config.social_link_separator))
     console.line()

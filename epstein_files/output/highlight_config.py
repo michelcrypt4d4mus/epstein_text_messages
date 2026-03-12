@@ -17,7 +17,7 @@ from epstein_files.output.highlighted_names import HighlightGroup, HighlightedNa
 from epstein_files.people.contact import Contact, acronym, organization, epstein_co, epstein_trust, law_enforcement
 from epstein_files.people.names import *
 from epstein_files.util.constant.strings import *
-from epstein_files.util.constant.urls import SUBSTACK_INSIGHTS_POD
+from epstein_files.util.constant.urls import SUBSTACK_POST_INSIGHTSPOD_URL
 from epstein_files.util.env import args
 from epstein_files.util.helpers.data_helpers import flatten
 from epstein_files.util.helpers.string_helper import indented
@@ -134,6 +134,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 r"(MIT )?Media Lab",
             ),
             organization(MOUNT_SINAI, f"hospital in NYC where {EVA_DUBIN} works", r"Mount Sinai( Hospital)"),
+            organization('Novamente LLC'),
             organization('OpenCog', f'AI research in Hong Kong overseen by {BEN_GOERTZEL} and funded in part by Epstein'),
         ],
         patterns=[
@@ -229,6 +230,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Masai",
             r"Mobutu Seko",
             r"Monrovian?",
+            r"Nairobi",
             r"Nigerian?",
             r"(Paul )?Kagame",
             r"(Republic of )?Congo",
@@ -1434,6 +1436,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             organization('Goldman Sachs', emailer_pattern=r"Goldman( Sachs)?", is_interesting=False),
             organization('Julius Baer', 'Swiss bank'),
             organization('Lazard', 'UK financial advisory and asset management firm'),
+            organization('Qarmin', f"high frequency trading operation {QUESTION_MARKS}"),
             organization('Silvergate Bank', 'crypto friendly bank that failed after the FTX crisis', r"Silver Gate( Bank)?"),
         ],
         patterns=[
@@ -1768,7 +1771,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             organization(
                 'InsightsPod',
                 f"{ZUBAIR_KHAN} and {ANYA_RASULOVA}'s company recommended by {MARIA_PRUSAKOVA}, did social media work for Epstein during the 2016 election",
-                link_to_bio=SUBSTACK_INSIGHTS_POD
+                link_to_bio=SUBSTACK_POST_INSIGHTSPOD_URL
             ),
             organization('Tranchulas', f'cybsecurity firm of {ZUBAIR_KHAN}, provider of offensive hacking services'),
         ],
@@ -2476,7 +2479,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(
                 ANYA_RASULOVA,
                 f'Uzbeki co-founder of {INSIGHTS_POD}, social media work for Epstein during 2016 US election',
-                link_to_bio=SUBSTACK_INSIGHTS_POD,
+                link_to_bio=SUBSTACK_POST_INSIGHTSPOD_URL,
             ),
             Contact('Dasha Zhukova', "art collector, daughter of Alexander Zhukov"),
             Contact(
@@ -2797,7 +2800,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(
                 ZUBAIR_KHAN,
                 f"InsightsPod social media work on 2016 US election for Epstein, Islamabad/Dubai, friend of {MARIA_PRUSAKOVA}, Tranchulas cybersecurity",
-                link_to_bio=SUBSTACK_INSIGHTS_POD,
+                link_to_bio=SUBSTACK_POST_INSIGHTSPOD_URL,
                 match_partial='both',
             ),
             organization('Accel Partners', 'venture capital firm', r"Accel( Partners)?"),
@@ -3506,7 +3509,7 @@ def get_style_for_name(name: str | None, default_style: str = DEFAULT_NAME_STYLE
     highlight_group = get_highlight_group_for_name(name or UNKNOWN)
     style = highlight_group.style if highlight_group else default_style
     style = style if allow_bold else style.replace('bold', '').strip()
-    logger.debug(f"get_style_for_name('{name}', '{default_style}', '{allow_bold}') yielded '{style}'")
+    # logger.debug(f"get_style_for_name('{name}', '{default_style}', '{allow_bold}') yielded '{style}'")
     return style
 
 
@@ -3530,6 +3533,6 @@ def _print_highlighted_names_repr() -> None:
     sys.exit()
 
 
-if args.deep_debug:
+if args._debug_highlight_patterns:
     for c in HIGHLIGHTED_CONTACTS:
         print(repr(c))

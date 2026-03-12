@@ -13,7 +13,7 @@ BOOK_CFGS = [
     DocCfg(id='018438', author='Clarisse Thorn', description=f'The S&M Feminist', date='2012-05-14'),
     DocCfg(id='019477', author=EDWARD_JAY_EPSTEIN, description=f'How America Lost Its Secrets: Edward Snowden, the Man, and the Theft'),
     DocCfg(id='020153', author=EDWARD_JAY_EPSTEIN, description=f'The Snowden Affair: A Spy Story In Six Parts'),
-    DocCfg(id='011472', author=EHUD_BARAK, description=f'"Night Flight" (draft)', date='2006-07-12', duplicate_ids=['027849'], is_interesting=False),  # date from _extract_timestamp()
+    DocCfg(id='011472', author=EHUD_BARAK, description=f'"Night Flight" (draft)', date='2006-07-12', duplicate_ids=['027849'], is_interesting=False),  # date from extract_timestamp()
     DocCfg(id='010912', author=GORDON_GETTY, description=f'"Free Growth and Other Surprises" (draft)', date='2018-10-18'),
     DocCfg(id='010477', author=JAMES_PATTERSON, description=PATTERSON_BOOK_SCANS, date='2016-10-10'),
     DocCfg(id='010486', author=JAMES_PATTERSON, description=PATTERSON_BOOK_SCANS, date='2016-10-10'),

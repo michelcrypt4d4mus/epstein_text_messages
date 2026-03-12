@@ -21,7 +21,7 @@ from epstein_files.documents.doj_file import DojFile
 from epstein_files.documents.email import Email
 from epstein_files.documents.emails.constants import UNINTERESTING_EMAILERS
 from epstein_files.documents.emails.dropsite_email import DropsiteEmail
-from epstein_files.documents.emails.util import split_up_leon_black, split_up_dilorio
+from epstein_files.documents.emails.util import split_up_leon_black, split_up_dilorio_whistleblower_emails
 from epstein_files.documents.json_file import JsonFile
 from epstein_files.documents.messenger_log import MSG_REGEX, MessengerLog
 from epstein_files.documents.messenger_log_pdf import IMESSAGE_PDF_IDS, MessengerLogPdf
@@ -31,7 +31,7 @@ from epstein_files.people.person import INVALID_FOR_EPSTEIN_WEB, PEOPLE_BIOS, Pe
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constants import *
 from epstein_files.util.env import args, logger
-from epstein_files.util.helpers.data_helpers import flatten, json_safe, sort_dict_by_keys, uniquify
+from epstein_files.util.helpers.data_helpers import flatten, json_safe, sort_dict_by_keys, uniquify, uniq_sorted
 from epstein_files.util.helpers.file_helper import all_txt_paths, doj_txt_paths, extract_file_id, file_size_str
 from epstein_files.util.timer import Timer
 
@@ -63,7 +63,7 @@ class EpsteinFiles:
         """Iterate through files and build appropriate objects."""
         self.file_paths = sorted(all_txt_paths(), reverse=True)
         self._documents = self._load_file_paths(self.file_paths)
-        self._documents += split_up_dilorio(self.emails_by(CHRISTOPHER_DILORIO))
+        self._documents += split_up_dilorio_whistleblower_emails(self.emails_by(CHRISTOPHER_DILORIO))
         self._documents += split_up_leon_black(self.get_id(LEON_BLACK_EMAIL_ID))
         self._finalize_data_and_write_to_disk()
 
@@ -161,7 +161,7 @@ class EpsteinFiles:
     def uninteresting_emailers(self) -> list[Name]:
         """Emailers whom we don't want to print a separate section for because they're just CCed."""
         if '_uninteresting_emailers' not in vars(self):
-            self._uninteresting_emailers = sorted(uniquify(UNINTERESTING_EMAILERS + self.uninteresting_ccs))
+            self._uninteresting_emailers = uniq_sorted(UNINTERESTING_EMAILERS + self.uninteresting_ccs)
 
         return self._uninteresting_emailers
 
@@ -428,20 +428,20 @@ class EpsteinFiles:
         for email in self.emails:
             email.attached_docs = []  # Remove all attachments before re-finding them if it's a repair
 
-        for file in email_attachments:
-            email: Email = self.get_id(file.config.attached_to_email_id, required_type=Email)
+        for attachment in email_attachments:
+            email: Email = self.get_id(attachment.config.attached_to_email_id, required_type=Email)
 
             if email.is_duplicate:
-                raise ValueError(f"Cannot attach {file.file_id} to duplicate email {email}")
+                raise ValueError(f"Cannot attach {attachment.file_id} to duplicate email {email}")
 
-            email.attached_docs.append(file)
+            email.attached_docs.append(attachment)
 
-            if file.config.timestamp:  # Don't overwrite configured timestamps (think of a book or article attachment)
+            if attachment.config.timestamp:  # Don't overwrite configured timestamps (think of a book or article attachment)
                 continue
-            elif file.timestamp and file.timestamp != email.timestamp:
-                file.warn(f"Overwriting '{file.timestamp}' with {email}'s timestamp {email.timestamp}")
+            elif attachment.timestamp and attachment.timestamp != email.timestamp:
+                attachment.warn(f"Overwriting '{attachment.timestamp}' with {email}'s timestamp {email.timestamp}")
 
-            file.extracted_timestamp = email.timestamp
+            attachment.extracted_timestamp = email.timestamp
 
         # Set the is_persons_first_email flag on the earliest Email we have for each person.
         for emailer in self.emailers:
@@ -504,7 +504,7 @@ class EpsteinFiles:
         for email in [e for e in self.emails if e.config and e.config.has_uninteresting_ccs]:
             self.uninteresting_ccs += email.recipients
 
-        self.uninteresting_ccs = sorted(uniquify(self.uninteresting_ccs))
+        self.uninteresting_ccs = uniq_sorted(self.uninteresting_ccs)
         logger.info(f"Extracted uninteresting_ccs: {self.uninteresting_ccs}")
 
 

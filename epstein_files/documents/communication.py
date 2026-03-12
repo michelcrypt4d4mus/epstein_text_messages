@@ -7,13 +7,12 @@ from rich.text import Text
 
 from epstein_files.documents.document import CLOSE_PROPERTIES_CHAR, Document
 from epstein_files.documents.config.doc_cfg import CommunicationCfg
-from epstein_files.output.highlight_config import HIGHLIGHTED_CONTACTS, get_style_for_name, styled_name
+from epstein_files.output.highlight_config import get_style_for_name, styled_name
 from epstein_files.output.rich import styled_key_value
 from epstein_files.people.names import UNKNOWN, Name
-from epstein_files.util.helpers.data_helpers import uniquify
+from epstein_files.util.helpers.data_helpers import uniq_sorted
 from epstein_files.util.helpers.rich_helpers import no_bold
-
-TIMESTAMP_SECONDS_REGEX = re.compile(r":\d{2}$")
+from epstein_files.util.helpers.string_helper import timestamp_without_seconds
 
 
 @dataclass
@@ -22,13 +21,13 @@ class Communication(Document):
     Superclass for `Email` and `MessengerLog`.
 
     Attributes:
-        recipients (list[Name]): People to whom this email was sent.
+        extracted_recipients (list[Name]): People to whom this email was sent, extracted from `self.text`
     """
     extracted_recipients: list[Name] = field(default_factory=list)
 
     def __post_init__(self):
         super().__post_init__()
-        self.extracted_recipients = [] if self.config and self.config.recipients else self._extract_recipients()
+        self.extracted_recipients = [] if self.config and self.config.recipients else self.extract_recipients()
 
     @property
     def author_or_unknown(self) -> str:
@@ -49,11 +48,11 @@ class Communication(Document):
     @property
     def people(self) -> list[str]:
         """Names of people who either sent/received this email or are mentioned in it."""
-        if self.config and self.config.people:
+        if self.config and self.config.people:  # TODO: this check also happens in superclass but still necessary here
             return self.config.people
 
         people = super().people + [p for p in self.participants if p]
-        return sorted(uniquify(people))
+        return uniq_sorted(people)
 
     @property
     def config(self) -> CommunicationCfg | None:
@@ -96,7 +95,7 @@ class Communication(Document):
 
     @property
     def timestamp_without_seconds(self) -> str:
-        return TIMESTAMP_SECONDS_REGEX.sub('', str(self.timestamp))
+        return timestamp_without_seconds(self.timestamp)
 
     @property
     def _summary(self) -> Text:
@@ -113,7 +112,7 @@ class Communication(Document):
         """Overrides super() method to apply `self.author_style`."""
         return self.file_info.build_external_links(self.recipient_style, with_alt_links=True)
 
-    def _extract_recipients(self) -> list[Name]:
+    def extract_recipients(self) -> list[Name]:
         """Overload in subclasses"""
         return []
 

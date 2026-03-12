@@ -23,7 +23,7 @@ from epstein_files.util.constant.urls import *
 from epstein_files.util.env import args, site_config
 from epstein_files.util.helpers.data_helpers import json_safe, sort_dict
 from epstein_files.util.helpers.link_helper import link_markup
-from epstein_files.util.helpers.rich_helpers import enclose
+from epstein_files.util.helpers.rich_helpers import enclose, left_indent_padding
 from epstein_files.util.logging import logger
 
 NA_TXT = Text(NA, style='dim')
@@ -162,8 +162,14 @@ def indent_txt(txt: str | Text, spaces: int = 4, prefix: str = '') -> Text:
     return indent + Text(f"\n{indent}").join(txt.split('\n'))
 
 
-def join_texts(txts: Sequence[str | Text], join: str = ' ', encloser: str = '', encloser_style: str = 'wheat4') -> Text:
-    """Join rich.Text objs into one."""
+def join_texts(
+    _txts: Sequence[str | ExternalLink | Text],
+    join: str = ' ',
+    encloser: str = '',
+    encloser_style: str = 'wheat4'
+) -> Text:
+    """Join a collection of `Text` objs into one, similar to standard `str.join()`."""
+    txts = [t.to_txt() if isinstance(t, ExternalLink) else t for t in _txts]
     txt = Text('')
 
     for i, _txt in enumerate(txts):
@@ -172,11 +178,19 @@ def join_texts(txts: Sequence[str | Text], join: str = ' ', encloser: str = '', 
     return txt
 
 
+# TODO: unused
 def left_indent(obj: RenderableType, num_spaces: int) -> Padding:
+    """Add left padding to any `Renderable`."""
     return Padding(obj, left_indent_padding(num_spaces))
 
 
-def prefix_with(txt: list[str] | list[Text] | Text | str, pfx: str, pfx_style: str = '', indent: str | int = '') -> Text:
+def prefix_with(
+    txt: list[Text] | list[str] | Text | str,
+    pfx: str,
+    pfx_style: str = '',
+    indent: str | int = ''
+) -> Text:
+    """Add a rich stylized prefix to a `Text`, `str`, or array of either."""
     indent = indent * ' ' if isinstance(indent, int) else indent
 
     lines = [
@@ -197,11 +211,8 @@ def print_centered(obj: RenderableType, style: str = '') -> None:
     console.print(Align.center(obj), highlight=False, style=style)
 
 
-def print_centered_link(url: str, link_text: str, style: str | None = None) -> None:
-    print_centered(link_text_obj(url, link_text, style or ARCHIVE_LINK_COLOR))
-
-
-def print_json(label: str, obj: object, skip_falsey: bool = False) -> None:
+def print_json(obj: object, label: str = '', skip_falsey: bool = False) -> None:
+    """Print an `object` as rich prettified / formatted JSON."""
     if isinstance(obj, dict):
         if skip_falsey:
             obj = {k: v for k, v in obj.items() if v}
@@ -209,7 +220,10 @@ def print_json(label: str, obj: object, skip_falsey: bool = False) -> None:
         obj = json_safe(obj)
 
     console.line()
-    console.print(Panel(label, expand=False))
+
+    if label:
+        console.print(Panel(label, expand=False))
+
     console.print_json(json.dumps(obj, sort_keys=True), indent=4)
     console.line()
 
@@ -340,5 +354,5 @@ def wrap_in_markup_style(msg: str, style: str | None = None) -> str:
     return msg
 
 
-if args.colors_only and args.debug:
-    print_json('THEME_STYLES', THEME_STYLES)
+if args._debug_highlight_patterns:
+    print_json(THEME_STYLES, 'THEME_STYLES')

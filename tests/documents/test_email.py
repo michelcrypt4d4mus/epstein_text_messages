@@ -1,4 +1,12 @@
+import pytest
+
 from epstein_files.documents.email import JUNK_EMAILERS, Email
+
+
+@pytest.fixture
+def attributed_email(get_email) -> Email:
+    return get_email('033071')
+
 
 
 def test_attached_docs(get_email):
@@ -6,11 +14,10 @@ def test_attached_docs(get_email):
     assert len(email_with_attached.attached_docs) == 3
 
 
-def test_author_and_border_style(get_email):
-    email = get_email('033071')
-    assert email.author_style == 'blue1'
-    assert email.border_style == 'blue1'
-    assert email.recipient_style == 'purple'
+def test_author_and_border_style(attributed_email):
+    assert attributed_email.author_style == 'blue1'
+    assert attributed_email.border_style == 'blue1'
+    assert attributed_email.recipient_style == 'purple'
 
 
 def test_broken_header_repair(get_email):
@@ -47,3 +54,7 @@ def test_is_fwded_article(get_email):
 
 def test_junk_emailers():
     assert len(JUNK_EMAILERS) == 5
+
+
+def test_timestamp(attributed_email):
+    assert attributed_email.timestamp_without_seconds == '2018-01-15 15:17'

@@ -18,7 +18,7 @@ from epstein_files.output.rich import LAST_TIMESTAMP_STYLE, build_table
 from epstein_files.people.interesting_people import PERSONS_OF_INTEREST
 from epstein_files.people.names import JEFFREY_EPSTEIN, Name
 from epstein_files.util.constant.strings import AUTHOR, TIMESTAMP_STYLE
-from epstein_files.util.helpers.data_helpers import days_between, days_between_str, flatten, sort_dict
+from epstein_files.util.helpers.data_helpers import coerce_utc_strict, days_between, days_between_str, flatten, sort_dict
 from epstein_files.util.helpers.string_helper import iso_timestamp
 from epstein_files.util.logging import logger
 
@@ -28,7 +28,7 @@ MSG_REGEX = re.compile(r'Sender:(.*?)\nTime:(.*? (AM|PM)).*?Message:(.*?)\s*?((?
 REDACTED_AUTHOR_REGEX = re.compile(r"^([-+•_1MENO.=F]+|[4Ide])$")
 
 END_DATES = {
-    'EFTA01613143': datetime(2017, 6, 29),
+    'EFTA01613143': coerce_utc_strict(datetime(2017, 6, 29)),
 }
 
 
@@ -43,7 +43,7 @@ class MessengerLog(Communication):
 
     def __post_init__(self):
         super().__post_init__()
-        self.messages = self._extract_messages()
+        self.messages = self.extract_messages()
 
     @property
     def is_interesting(self) -> bool | None:
@@ -80,6 +80,23 @@ class MessengerLog(Communication):
             txt.append(highlighter(f" using the phone number {self.phone_number}"))
 
         return txt.append(')')
+
+    def extract_messages(self) -> list[TextMessage]:
+        return [self._build_message(match) for match in MSG_REGEX.finditer(self.text)]
+
+    def extract_recipients(self) -> list[Name]:
+        return [JEFFREY_EPSTEIN]
+
+    def extract_timestamp(self) -> datetime:
+        for match in MSG_REGEX.finditer(self.text):
+            message = self._build_message(match)
+
+            try:
+                return message.parse_timestamp()
+            except ValueError as e:
+                logger.info(f"Failed to parse '{message.timestamp_str}' to datetime! Using next match. Error: {e}'")
+
+        raise RuntimeError(f"{self}: No timestamp found!")
 
     def file_display(self, align: JustifyMethod | None = None) -> FileDisplay:
         """`FileDisplay` object that controls how this object is presented."""
@@ -120,23 +137,6 @@ class MessengerLog(Communication):
             text=match.group(4).strip(),
             timestamp_str=match.group(2).strip(),
         )
-
-    def _extract_messages(self) -> list[TextMessage]:
-        return [self._build_message(match) for match in MSG_REGEX.finditer(self.text)]
-
-    def _extract_recipients(self) -> list[Name]:
-        return [JEFFREY_EPSTEIN]
-
-    def _extract_timestamp(self) -> datetime:
-        for match in MSG_REGEX.finditer(self.text):
-            message = self._build_message(match)
-
-            try:
-                return message.parse_timestamp()
-            except ValueError as e:
-                logger.info(f"Failed to parse '{message.timestamp_str}' to datetime! Using next match. Error: {e}'")
-
-        raise RuntimeError(f"{self}: No timestamp found!")
 
     def __rich_console__(self, console: Console, options: ConsoleOptions) -> RenderResult:
         yield self.rich_header()

@@ -1,12 +1,14 @@
 import logging
 import re
 from collections import Counter
+from contextlib import contextmanager
 from dataclasses import asdict, dataclass, field
 from datetime import datetime
 from email import policy
 from email.parser import BytesParser
 from pathlib import Path
-from typing import ClassVar, Self, Sequence, TypeVar
+from tempfile import NamedTemporaryFile
+from typing import ClassVar, Generator, Self, Sequence, TypeVar
 
 from rich.align import Align
 from inflection import underscore
@@ -34,11 +36,11 @@ from epstein_files.people.names import Name
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constants import CONFIGS_BY_ID
 from epstein_files.util.env import args, site_config
-from epstein_files.util.helpers.data_helpers import (date_str, patternize, prefix_keys, remove_zero_time,
+from epstein_files.util.helpers.data_helpers import (coerce_utc, coerce_utc_strict, date_str, patternize, prefix_keys,
      uniquify, uniq_sorted, without_falsey)
 from epstein_files.util.helpers.link_helper import link_text_obj
-from epstein_files.util.helpers.file_helper import coerce_file_path, file_size_to_str
-from epstein_files.util.helpers.string_helper import collapse_newlines, join_truthy, quote
+from epstein_files.util.helpers.file_helper import coerce_file_path, file_size_str, file_size_to_str
+from epstein_files.util.helpers.string_helper import collapse_newlines, join_truthy, quote, timestamp_without_zero_hour
 from epstein_files.util.logging import DOC_TYPE_STYLES, FILENAME_STYLE, logger
 
 CHECK_LINK_FOR_DETAILS = 'not shown here, check original PDF for details'
@@ -101,17 +103,19 @@ class Document:
         lines (list[str]): Number of lines in the file after all the cleanup
         text (str): Contents of the file
     """
-    # Class constants
-    INCLUDE_DESCRIPTION_IN_SUMMARY_PANEL: ClassVar[bool] = False
-    STRIP_WHITESPACE: ClassVar[bool] = True  # Overridden in JsonFile
-
     file_path: Path
+
     # Derived at instantiation time
     extracted_author: Name = None
     extracted_timestamp: datetime | None = None
     file_info: FileInfo = field(init=False)
     lines: list[str] = field(default_factory=list)
     text: str = ''
+
+    # Class constants, overloaded in some subclasses
+    MAX_TIMESTAMP: ClassVar[datetime] = coerce_utc_strict(datetime(2026, 1, 29))  # Cutoff for extract_timestamp()
+    STRIP_WHITESPACE: ClassVar[bool] = True                                       # Should strip whitespace (overridden in JsonFile)
+    _INCLUDE_DESCRIPTION_IN_SUMMARY_PANEL: ClassVar[bool] = False                 # For logging only
 
     def __post_init__(self):
         self.file_info = FileInfo(self.file_path)
@@ -121,8 +125,8 @@ class Document:
 
         self._set_text(text=self.text or self._load_file())
         self._repair()
-        self.extracted_author = None if self.author else self._extract_author()
-        self.extracted_timestamp = None if self.timestamp else self._extract_timestamp()
+        self.extracted_author = None if self.author else self.extract_author()
+        self.extracted_timestamp = None if self.timestamp else coerce_utc(self.extract_timestamp())
 
     @classmethod
     def from_file_id(cls, file_id: str | int) -> Self:
@@ -294,38 +298,49 @@ class Document:
 
     @property
     def panel_title_timestamp(self) -> str:
-        """String placed in the `title` of the enclosing `Panel` when printing this document's text."""
-        if self.timestamp in [None, FALLBACK_TIMESTAMP]:
+        """Time or date shown in the `title` of the enclosing `Panel` when printing this `Document`."""
+        if self.timestamp is None or self.timestamp == FALLBACK_TIMESTAMP:
             return ''
-
-        if self.config and self.config.timestamp:
-            prefix = 'approximate' if self.config.date_uncertain else ''
+        elif self.config and self.config.timestamp:
+            if self.config.date_uncertain:
+                prefix = 'approximate'
+            else:
+                prefix = ''
         else:
             prefix = 'inferred'
 
-        return join_truthy(prefix, f"timestamp: {remove_zero_time(self.timestamp)}")
+        if all(unit == 0 for unit in [self.timestamp.hour, self.timestamp.minute, self.timestamp.second]):
+            date_or_time = 'date'
+        else:
+            date_or_time = 'timestamp'
+
+        return join_truthy(prefix, f"{date_or_time}: {timestamp_without_zero_hour(self.timestamp)}")
 
     @property
     def people(self) -> list[str]:
         """Names of people who either sent/received this email or are mentioned in it."""
-        text = self.text
+        people = [self.author] if self.author else []
+        text_to_scan = self.text
+        non_participants = []
 
         if self.config:
+            if self.config.people:
+                return self.config.people
             if not self.config.is_valid_for_name_scan:
-                return []
+                return people
             elif self.config.replace_text_with:
-                text = self.config.replace_text_with
+                text_to_scan = self.config.replace_text_with
 
-            if self.config_description:
-                text = f"{self.config_description}\n{text}"
+            if self.config.description:
+                text_to_scan = f"{self.config.description}\n{text_to_scan}"
 
-        people = [c.name for c in HIGHLIGHTED_CONTACTS if c.highlight_regex.search(text)]
-        people = uniq_sorted(people + ([self.author] if self.author else []))
-        non_particpants = self.config.non_participants if self.config else []
-        people = [p for p in people if p not in non_particpants]
+            non_participants = self.config.non_participants
+
+        people.extend([c.name for c in HIGHLIGHTED_CONTACTS if c.highlight_regex.search(text_to_scan)])
+        people = uniq_sorted([p for p in people if p not in non_participants])
 
         if people:
-            self.log(f"people() found: {', '.join(people)}")
+            self.log(f"people() found {len(people)} names: {', '.join(people)}")
 
         return people
 
@@ -418,7 +433,7 @@ class Document:
         txt.append(f" {self.file_id}", style=FILENAME_STYLE)
 
         if self.timestamp:
-            timestamp_str = remove_zero_time(self.timestamp).replace('T', ' ')
+            timestamp_str = timestamp_without_zero_hour(self.timestamp)
             txt.append(' (', style=SYMBOL_STYLE)
             txt.append(f"{timestamp_str}", style=TIMESTAMP_DIM).append(')', style=SYMBOL_STYLE)
 
@@ -435,13 +450,24 @@ class Document:
         """Panelized description() with info_txt(). Used in search results not in production HTML."""
         sentences = [self._summary]
 
-        if self.INCLUDE_DESCRIPTION_IN_SUMMARY_PANEL:
+        if self._INCLUDE_DESCRIPTION_IN_SUMMARY_PANEL:
             sentences += [Text('', style='italic').append(h) for h in self.info]
 
         return Panel(Group(*sentences), border_style=self._class_style, expand=False)
 
     def colored_external_links(self) -> Text:
         return self.file_info.build_external_links(with_alt_links=True)
+
+    def debug_log(self, msg: str) -> None:
+        self.log(msg, logging.DEBUG)
+
+    def extract_author(self) -> Name:
+        """Extended in `Email` subclass to pull from headers etc."""
+        return None
+
+    def extract_timestamp(self) -> datetime | None:
+        """Should be implemented in subclasses."""
+        return None
 
     def file_display(self, align: JustifyMethod | None = None) -> FileDisplay:
         """Allows for proper right vs. left justify."""
@@ -469,12 +495,6 @@ class Document:
     def log(self, msg: str, level: int = logging.INFO) -> None:
         """Log a message with with this document's filename as a prefix."""
         logger.log(level, f"{self.file_id} {self._class_name} {msg}")
-
-    def log_top_lines(self, n: int = 10, msg: str = '', level: int = logging.INFO) -> None:
-        """Log first 'n' lines of self.text at 'level'. 'msg' can be optionally provided."""
-        separator = '\n\n' if '\n' in msg else '. '
-        msg = (msg + separator) if msg else ''
-        self.log(f"{msg}First {n} lines:\n\n{self.top_lines(n)}\n", level)
 
     def print(self, whole_file: bool = False) -> None:
         """Print this object for some suppression message."""
@@ -575,14 +595,6 @@ class Document:
         txt_lines = styled_dict(self._debug_dict(), sep=': ')
         return prefix_with(txt_lines, ' ', pfx_style='grey', indent=2)
 
-    def _extract_author(self) -> Name:
-        """Extended in `Email` subclass to pull from  headers."""
-        pass
-
-    def _extract_timestamp(self) -> datetime | None:
-        """Should be implemented in subclasses."""
-        pass
-
     def _inject_line_numbers(self, text: str, interval: int) -> str:
         """Inject character numbers markers into `text`. For debugging only."""
         idx = interval
@@ -599,6 +611,12 @@ class Document:
     def _load_file(self) -> str:
         """Remove BOM and HOUSE OVERSIGHT lines, strip whitespace."""
         return self.raw_text()
+
+    def _log_top_lines(self, n: int = 10, msg: str = '', level: int = logging.DEBUG) -> None:
+        """Log first 'n' lines of self.text at 'level'. 'msg' can be optionally provided."""
+        separator = '\n\n' if '\n' in msg else '. '
+        msg = (msg + separator) if msg else ''
+        self.log(f"{msg}First {n} lines of {self.file_id}:\n\n{self.top_lines(n)}\n", level)
 
     def _numbered_lines(self) -> str:
         """For logging."""
@@ -626,7 +644,7 @@ class Document:
         else:
             raise RuntimeError(f"[{self.filename}] Either 'lines' or 'text' arg must be provided (neither was)")
 
-        logger.debug(f"_set_text() set self.text to\n---\n{self.text}\n---")
+        # logger.debug(f"_set_text() set self.text to\n---\n{self.text}\n---")
         self.lines = [line.strip() if self.STRIP_WHITESPACE else line for line in self.text.split('\n')]
 
     def _skipped_file_txt(self, reason: str | Text) -> Text:
@@ -645,6 +663,23 @@ class Document:
             f.write(self.text)
 
         logger.warning(f"Wrote {self.length} chars of cleaned {self.filename} to {output_path}.")
+
+    @contextmanager
+    def _write_tmp_file(self) -> Generator[Path, None, None]:
+        with NamedTemporaryFile(dir=self.file_path.parent) as tmp_doc_file:
+            tmp_path = Path(tmp_doc_file.name)
+            self._write_clean_text(tmp_path)
+            self.log(f"created tmp file '{tmp_doc_file.name}' ({file_size_str(tmp_path)})")
+            yield Path(tmp_doc_file.name)
+
+    # def _write_clean_text_to_tmp_file(self) -> Path:
+    #     """Write `self.text` to a temporary file."""
+    #     if (tmp_file_path := Path(f"{self.file_path}_tmp.txt")).exists():
+    #         self.warn(f"Deleting existing tmp file '{tmp_file_path}'...")
+    #         tmp_file_path.unlink()
+
+    #     self._write_clean_text(tmp_file_path)
+    #     return tmp_file_path
 
     def __rich_console__(self, console: Console, options: ConsoleOptions) -> RenderResult:
         """Default `Document` renderer (Email and MessengerLog override this)."""

@@ -10,6 +10,7 @@ from dataclasses import dataclass, field
 from epstein_files.people.contact import Contact
 from epstein_files.people.names import Name, constantize_name
 from epstein_files.util.constant.strings import REGEX_STYLE_PREFIX
+from epstein_files.util.env import args
 from epstein_files.util.helpers.data_helpers import without_falsey
 from epstein_files.util.helpers.string_helper import as_pattern, capture_group_marker
 from epstein_files.util.logging import logger
@@ -71,7 +72,6 @@ class HighlightPatterns(HighlightGroup):
 
         self.regex = self.compile_patterns(self._pattern)
 
-
     def __repr__(self) -> str:
         return f"{type(self).__name__}(label='{self.label}', pattern='{self._pattern}', style='{self.style}')"
 
@@ -125,7 +125,8 @@ class HighlightedNames(HighlightPatterns):
             contact.category = self.category_str
             contact.style = self.style
 
-        logger.debug(repr(self))
+        if args._debug_highlight_patterns:
+            logger.debug(repr(self))
 
     @property
     def category_str(self) -> str:

@@ -2,11 +2,11 @@ import re
 import logging
 import warnings
 from dataclasses import asdict, dataclass
-from datetime import datetime
+from datetime import datetime, timezone
 from typing import ClassVar, Sequence
 
 import datefinder
-from dateutil.parser import parse
+import dateutil
 from rich.console import Group
 from rich.markup import escape
 from rich.panel import Panel
@@ -24,22 +24,20 @@ from epstein_files.output.rich import build_table, console
 from epstein_files.people.interesting_people import PERSONS_OF_INTEREST
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constants import *
-from epstein_files.util.helpers.data_helpers import days_between, remove_timezone, uniquify
+from epstein_files.util.helpers.data_helpers import days_between, coerce_utc_strict, uniquify, uniq_sorted
+from epstein_files.util.helpers.debugging_helper import tz_debug_str
 from epstein_files.util.helpers.file_helper import FILENAME_LENGTH
-from epstein_files.util.helpers.string_helper import DATE_LENGTH, collapse_whitespace
+from epstein_files.util.helpers.string_helper import DATE_LENGTH, collapse_whitespace, indented
 from epstein_files.util.env import args, site_config
 from epstein_files.util.logging import logger
 
 FIRST_FEW_LINES = 'First Few Lines'
-MAX_DAYS_SPANNED_TO_BE_VALID = 10
+MAX_DAYS_SPANNED_TO_LOG_TOP_LINES = 10
 MAX_EXTRACTED_TIMESTAMPS = 100
-MIN_TIMESTAMP = datetime(2000, 1, 1)
+MIN_TIMESTAMP = coerce_utc_strict(datetime(2000, 1, 1))
 MIN_PAGES_TO_TRUNCATE_PREVIEW = 10
 TRUNCATED_PREVIEW_LEN = 200
 
-LOG_INDENT = '\n         '
-TIMESTAMP_LOG_INDENT = f'{LOG_INDENT}    '
-VAST_HOUSE = 'vast house'  # Michael Wolff article draft about Epstein indicator
 # There's 3 spaces (2 for padding, one for divider) between each col and then 2 on each side + 1 indent
 PREVIEW_COL_WIDTH = console.width - FILENAME_LENGTH - DATE_LENGTH - (3 * 2) - 6
 
@@ -47,6 +45,9 @@ SKIP_TIMESTAMP_EXTRACT = [
     PALM_BEACH_TSV,
     PALM_BEACH_PROPERTY_INFO,
 ]
+
+# TODO: get rid of this
+VAST_HOUSE = 'vast house'  # Michael Wolff article draft about Epstein indicator
 
 
 @dataclass
@@ -56,14 +57,12 @@ class OtherFile(Document):
 
     Attributes:
         derived_cfg (DocCfg, optional): a DocCfg object derived from contents of the file
-        was_timestamp_extracted (bool): True if the timestamp was programmatically extracted (and could be wrong)
     """
     derived_cfg: DocCfg | None = None
-    was_timestamp_extracted: bool = False
 
     # Class vars
-    INCLUDE_DESCRIPTION_IN_SUMMARY_PANEL: ClassVar[bool] = True  # Class var for logging output
-    MAX_TIMESTAMP: ClassVar[datetime] = datetime(2022, 12, 31) # Overloaded in DojFile
+    _INCLUDE_DESCRIPTION_IN_SUMMARY_PANEL: ClassVar[bool] = True                   # Overrides superclass
+    MAX_TIMESTAMP: ClassVar[datetime] = coerce_utc_strict(datetime(2022, 12, 31))  # Overloaded in DojFile
 
     def __post_init__(self):
         super().__post_init__()
@@ -110,31 +109,36 @@ class OtherFile(Document):
         metadata = super().metadata
         metadata['is_interesting'] = self.is_interesting
 
-        if self.was_timestamp_extracted:
-            metadata['was_timestamp_extracted'] = self.was_timestamp_extracted
+        if self.extracted_timestamp:
+            metadata['is_timestamp_inferred'] = True
 
         return metadata
 
     @property
-    def preview_text(self) -> str:
-        """Text at start of file stripped of newlinesfor display in tables and other cramped settings."""
-        text = self.config_replace_text_with if self.config_replace_text_with else self.text
-        text = collapse_whitespace(text)[0:site_config.other_files_preview_chars]
+    def preview_chars(self) -> str:
+        """Text at start of file stripped of newlines for display in tables and other cramped settings."""
+        num_chars = site_config.other_files_preview_chars
+        text = self.text
+
+        if self.config:
+            if self.config.num_preview_chars:
+                num_chars = self.config.num_preview_chars
+
+            if self.config_replace_text_with:
+                text = self.config_replace_text_with
 
         if text.count('Page') > MIN_PAGES_TO_TRUNCATE_PREVIEW:
-            text = text[0:TRUNCATED_PREVIEW_LEN]
+            num_chars = TRUNCATED_PREVIEW_LEN
 
-        return text
+        return collapse_whitespace(text)[0:num_chars]
 
     @property
-    def preview_text_highlighted(self) -> Text:
-        txt = highlighter(escape(self.preview_text))
+    def preview_txt(self) -> Text:
+        txt = highlighter(escape(self.preview_chars))
 
-        if self.config_replace_text_with:
-            txt = highlighter(Text(escape(self.preview_text), style='italic grey35'))
-        elif self.length > site_config.other_files_preview_chars:
-            num_missing_chars = self.length - len(txt)
-            txt.append(f"... ({num_missing_chars:,} more characters)", 'dim italic')
+        # TODO: should check self.length > len(self.preview_chars) but won't quite work with prettified text insertions
+        if self.length > site_config.other_files_preview_chars and not self.config_replace_text_with:
+            txt.append(f"... ({self.length - len(txt):,} more characters)", 'dim italic')
 
         return txt
 
@@ -143,7 +147,7 @@ class OtherFile(Document):
         """One line summary mostly for logging."""
         return super()._summary.append(CLOSE_PROPERTIES_CHAR)
 
-    def _extract_timestamp(self) -> datetime | None:
+    def extract_timestamp(self) -> datetime | None:
         """Return configured timestamp or value extracted by scanning text with datefinder."""
         timestamps: list[datetime] = []
 
@@ -155,40 +159,44 @@ class OtherFile(Document):
 
             try:
                 # TODO: datefinder.find_dates() cannot find 08/29/2019 style e.g. in EFTA00005783 :(
-                for timestamp in datefinder.find_dates(self.text, strict=False):
-                    timestamp = remove_timezone(timestamp)
-                    logger.debug(f"Found timestamp: '{timestamp}'")
+                for dt in datefinder.find_dates(self.text, strict=False):
+                    if MIN_TIMESTAMP < (dt := coerce_utc_strict(dt)) < self.MAX_TIMESTAMP:
+                        timestamps.append(dt)
 
-                    if MIN_TIMESTAMP < timestamp < self.MAX_TIMESTAMP:
-                        timestamps.append(timestamp)
-
+                    # Stop find_dates() once we've located a decent number of timestamps
                     if len(timestamps) >= MAX_EXTRACTED_TIMESTAMPS:
                         break
             except ValueError as e:
-                self.warn(f"Error while iterating through datefinder.find_dates(): {e}")
+                self.warn(f"{e}\nError iterating over dateutil.find_dates(), using {len(timestamps)} timestamps found so far")
+
+        return self._choose_extracted_timestamp(timestamps)
+
+    def _choose_extracted_timestamp(self, timestamps: list[datetime]) -> datetime | None:
+        """Most recent timestamp appearing in the text is usually the most likely to be correct."""
+        timestamps = uniq_sorted(timestamps, reverse=True)
 
         if len(timestamps) == 0:
             if not (self.is_duplicate or VAST_HOUSE in self.text):
-                self.log_top_lines(15, msg=f"No timestamps found")
+                self._log_top_lines(15, msg=f"No timestamps found")
 
             return None
 
-        self.was_timestamp_extracted = True
+        timestamp = timestamps[0]
+        days_spanned = days_between(timestamps[-1], timestamp)
 
         if len(timestamps) == 1:
-            return timestamps[0]
+            log_msg = f"Found only one extracted timestamp '{timestamp}', returning it..."
         else:
-            timestamps = sorted(uniquify(timestamps), reverse=True)
-            self._log_extracted_timestamps_info(timestamps)
-            return timestamps[0]  # Most recent timestamp appearing in text is usually the closest
+            log_msg = f"Choosing '{timestamp}' from {len(timestamps)} extracted timestamps " \
+                      f"spanning {days_spanned} days\n\n" + \
+                      indented([tz_debug_str(dt) for dt in timestamps])
 
-    def _log_extracted_timestamps_info(self, timestamps: list[datetime]) -> None:
-        num_days_spanned = days_between(timestamps[-1], timestamps[0])
-        timestamps_log_msg = f"Extracted {len(timestamps)} timestamps spanning {num_days_spanned} days{TIMESTAMP_LOG_INDENT}"
-        timestamps_log_msg += TIMESTAMP_LOG_INDENT.join([str(dt) for dt in timestamps])
+        if days_spanned > MAX_DAYS_SPANNED_TO_LOG_TOP_LINES:
+            self._log_top_lines(10, msg=log_msg, level=logging.DEBUG)
+        else:
+            self.debug_log(log_msg)
 
-        if num_days_spanned > MAX_DAYS_SPANNED_TO_BE_VALID and VAST_HOUSE not in self.text:
-            self.log_top_lines(15, msg=timestamps_log_msg, level=logging.DEBUG)
+        return timestamp
 
     @classmethod
     def files_preview_table(
@@ -220,7 +228,7 @@ class OtherFile(Document):
                 preview_text = file.duplicate_file_txt
                 row_style = 'dim'
             else:
-                preview_text = file.preview_text_highlighted
+                preview_text = file.preview_txt
                 row_style = ''
                 link_and_info += file.info
 

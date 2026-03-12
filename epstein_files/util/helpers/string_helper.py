@@ -14,6 +14,7 @@ PDFALYZER_IMAGE_PANEL_REGEX = re.compile(r"\n╭─* Page \d+, Image \d+.*?╯\n
 MULTINEWLINE_REGEX = re.compile(r"\n{2,}")
 MULTISPACE_REGEX = re.compile(" +")
 INTEGER_REGEX = re.compile(r'^\d+$')
+TIMESTAMP_SECONDS_REGEX = re.compile(r":\d{2}(\.\d+)?([-+]\d{2}:\d{2})?$")
 WHITESPACE_REGEX = re.compile(r"\s{2,}|\t|\n", re.MULTILINE)
 
 WHITESPACE_CHAR = r"[-_.\s]*"
@@ -23,11 +24,14 @@ capitalize_first = lambda s: s[0].upper() + s[1:]
 capture_group_marker = lambda label: fr"?P<{label}>"
 collapse_newlines = lambda text: MULTINEWLINE_REGEX.sub('\n\n', text)
 collapse_spaces = lambda s: MULTISPACE_REGEX.sub(' ', s)
-collapse_whitespace = lambda s: WHITESPACE_REGEX.sub(' ', s)
+collapse_whitespace = lambda s: WHITESPACE_REGEX.sub(' ', s).strip()
 is_bool_prop = lambda prop: prop.startswith('is_')
 is_integer = lambda s: bool(INTEGER_REGEX.match(s))
 iso_timestamp = lambda dt: dt.isoformat().replace('T', ' ')
 strip_pdfalyzer_panels = lambda s: PDFALYZER_IMAGE_PANEL_REGEX.sub('', s)
+
+# regexes
+or_equal_sign_char_group = lambda s: f"[{s}=]"  # DataSet 11 has a lot of random '=' replacing characters
 
 
 def as_pattern(s: str) -> str:
@@ -55,9 +59,10 @@ def has_line_starting_with(s: str | list[str], pfxes: str | list[str], limit: in
     return False
 
 
-def indented(s: str, spaces: int = 4, prefix: str = '') -> str:
-    indent = (' ' * spaces) + prefix
-    return indent + f"\n{indent}".join(s.split('\n'))
+def indented(text: str | list[str], spaces: int = 4, prefix: str = '') -> str:
+    line_prefix = (' ' * spaces) + prefix
+    lines = text.split('\n') if isinstance(text, str) else text
+    return line_prefix + f"\n{line_prefix}".join(lines)
 
 
 def join_truthy(prefix: str | None, suffix: str | None, sep: str = '') -> str:
@@ -94,3 +99,16 @@ def starred_header(msg: str, num_stars: int = 7, num_spaces: int = 2) -> str:
     stars = '*' * num_stars
     spaces = ' ' * num_spaces
     return f"{spaces}{stars} {msg} {stars}{spaces}"
+
+
+def timestamp_without_seconds(dt: datetime) -> str:
+    # print(self.timestamp)
+    # m = TIMESTAMP_SECONDS_REGEX.search(str(self.timestamp))
+    # print(f"\nmatch: {m}\n")
+    # import pdb;pdb.set_trace()
+    return TIMESTAMP_SECONDS_REGEX.sub('', str(dt))
+
+
+def timestamp_without_zero_hour(dt: datetime) -> str:
+    """Remove the time part of a datetime string if it's 00:00:00, otherwise keep it."""
+    return dt.strftime(r'%Y-%m-%d %H:%M:%S').removesuffix(' 00:00:00')
