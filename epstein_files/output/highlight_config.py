@@ -46,12 +46,19 @@ debug_console = Console(color_system='256')
 
 
 HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
-    # This has to come first to get both stylings applied to the email subjects
+    # These have to come first to get both stylings applied to the email subjects
     ManualHighlight(
         label='email_subject',
         style='light_yellow3',
         pattern=r"^(> )?(Classification|Flag|Objet\s?|Subject|Sujet\s?): (?P<email_subject>.*)",
     ),
+    ManualHighlight(
+        label='legal_question',
+        style='wheat4',
+        pattern=r"^(Q\. )(?P<legal_question>.{,500}?)(?=^A\.)",
+        regex_flags=re.DOTALL | re.MULTILINE,
+    ),
+
     HighlightedNames(
         label=Uninteresting.ACADEMIA,
         style='light_goldenrod2',
