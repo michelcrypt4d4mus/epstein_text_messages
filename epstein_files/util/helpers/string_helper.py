@@ -29,6 +29,9 @@ is_integer = lambda s: bool(INTEGER_REGEX.match(s))
 iso_timestamp = lambda dt: dt.isoformat().replace('T', ' ')
 strip_pdfalyzer_panels = lambda s: PDFALYZER_IMAGE_PANEL_REGEX.sub('', s)
 
+# regexes
+or_equal_sign_char_group = lambda s: f"[{s}=]"  # DataSet 11 has a lot of random '=' replacing characters
+
 
 def as_pattern(s: str) -> str:
     """Replace spaces with regex pattern for whitespace."""
@@ -56,8 +59,8 @@ def has_line_starting_with(s: str | list[str], pfxes: str | list[str], limit: in
 
 
 def indented(s: str, spaces: int = 4, prefix: str = '') -> str:
-    indent = (' ' * spaces) + prefix
-    return indent + f"\n{indent}".join(s.split('\n'))
+    line_prefix = (' ' * spaces) + prefix
+    return line_prefix + f"\n{line_prefix}".join(s.split('\n'))
 
 
 def join_truthy(prefix: str | None, suffix: str | None, sep: str = '') -> str:

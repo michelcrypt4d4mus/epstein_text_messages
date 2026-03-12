@@ -6,6 +6,7 @@ from datetime import datetime
 from pathlib import Path
 from typing import Any, Generator, Literal, Self, Sequence
 
+from dateutil import tz
 from dateutil.parser import parse
 from rich.text import Text
 
@@ -15,7 +16,7 @@ from epstein_files.people.interesting_people import PERSONS_OF_INTEREST
 from epstein_files.people.names import *
 from epstein_files.util.constant.strings import *
 from epstein_files.util.env import args
-from epstein_files.util.helpers.data_helpers import without_falsey
+from epstein_files.util.helpers.data_helpers import coerce_utc_strict, without_falsey
 from epstein_files.util.helpers.file_helper import is_doj_file
 from epstein_files.util.helpers.string_helper import collapse_whitespace, is_bool_prop, join_truthy, quote
 from epstein_files.util.logging import logger
@@ -376,9 +377,9 @@ class DocCfg:
 
     @property
     def timestamp(self) -> datetime | None:
-        if self.date:
-            return parse(self.date)
-            #return parse(f'{self.date} 00:00:00 UTC' if len(self.date) == 10 else self.date)
+        if self.date and (parsed_dt := coerce_utc_strict(parse(self.date))):
+            logger.debug(f"{self._class_name} [{self.id}] parsed {parsed_dt.isoformat()} from date='{self.date}'")
+            return parsed_dt
 
     @property
     def truncate_at(self) -> int | tuple[int, int] | None:
@@ -430,6 +431,10 @@ class DocCfg:
             props.pop('dupe_type')
 
         return props
+
+    @property
+    def _class_name(self) -> str:
+        return type(self).__name__
 
     def duplicate_cfgs(self) -> Generator[Self, None, None]:
         """Create synthetic `DocCfg` objects that set the 'duplicate_of_id' field to point back to this object."""

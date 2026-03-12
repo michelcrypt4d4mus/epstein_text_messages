@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 # Copy any emails extracted from legal filings into the repo.
 import csv
-import gzip
-from datetime import datetime
+from datetime import datetime, timezone, timedelta
+from copy import copy
 from pathlib import Path
 
 from dateutil.parser import parse
@@ -24,7 +24,6 @@ EMPTY_STRING_PROPS = [
 ROOT_PROPS = ['file_id'] + EMPTY_STRING_PROPS + [
     'author',
     'is_interesting',
-    'timestamp',
 ]
 
 EMAIL_PROPS = [
@@ -36,7 +35,7 @@ CFG_PROPS = [
     'complete_description'
 ]
 
-COLS = ROOT_PROPS + EMAIL_PROPS + CFG_PROPS
+COLS = ROOT_PROPS + ['timestamp'] + EMAIL_PROPS + CFG_PROPS
 
 
 def load_files_csv() -> dict[str, dict[str, bool | datetime | str | None]]:
@@ -66,6 +65,20 @@ def write_files_csv():
 
     for doc in Document.sort_by_id(epstein_files.non_duplicate_docs):
         row = {k: getattr(doc, k) for k in ROOT_PROPS}
+
+        if doc.timestamp:
+            timestamp = copy(doc.timestamp)
+
+            # if datetime.now().hour > 19 and doc.extracted_timestamp and str(doc.timestamp).endswith('00:00'):
+            #     timestamp = timestamp - timedelta(days=1)
+            #     doc.warn(f"Rolling back timestamp written to CSV by one day to {timestamp.date()}...")
+                # timestamp.replace(tzinfo=timezone.utc)
+                # row['timestamp'] = timestamp.astimezone(timezone.utc)
+
+            row['timestamp'] = timestamp
+        else:
+            row['timestamp'] = None
+
         row.update({k: (getattr(doc, k) if isinstance(doc, Email) else None) for k in EMAIL_PROPS})
         row.update({k: (getattr(doc.config, k) if doc.config else None) for k in CFG_PROPS})
         rows.append(row)

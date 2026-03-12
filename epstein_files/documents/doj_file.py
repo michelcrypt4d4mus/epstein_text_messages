@@ -14,7 +14,7 @@ from epstein_files.documents.other_file import OtherFile
 from epstein_files.output.layout_elements.left_bar_panel import LeftBarPanel
 from epstein_files.output.rich import RAINBOW, wrap_in_markup_style
 from epstein_files.util.logging import logger
-from epstein_files.util.helpers.data_helpers import prefix_keys
+from epstein_files.util.helpers.data_helpers import coerce_utc_strict, prefix_keys
 from epstein_files.util.helpers.string_helper import strip_pdfalyzer_panels
 
 BAD_LINE_REGEX = re.compile(r"^SUBJECT TO PROTECTIVE ORDER PARAGRAPHS .*")
@@ -225,10 +225,11 @@ class DojFile(OtherFile):
     Class for the files released by DOJ on 2026-01-30 with `EFTA000` prefix.
     """
     _border_style: str | None = None
-
-    # Class constants and variables
-    MAX_TIMESTAMP: ClassVar[datetime] = datetime(2025, 1, 29)  # Cutoff for _extract_timestamp(), Overloads superclass
+    # TODO: this class var kinda sucks
     border_style_rainbow_idx: ClassVar[int] = 0  # ClassVar to help change color as we print, no impact beyond fancier output
+
+    # Overrides superclass ClassVar
+    MAX_TIMESTAMP: ClassVar[datetime] = coerce_utc_strict(datetime(2026, 1, 29))
 
     def __post_init__(self):
         super().__post_init__()

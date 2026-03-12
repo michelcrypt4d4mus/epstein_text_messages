@@ -8,26 +8,28 @@ from dateutil.parser import parse
 
 from epstein_files.people.names import *
 from epstein_files.util.constant.strings import MONTHS, WEEKDAYS, REDACTED
+from epstein_files.util.env import args
+from epstein_files.util.helpers.data_helpers import coerce_utc_strict
+from epstein_files.util.helpers.string_helper import or_equal_sign_char_group
+from epstein_files.util.logging import logger
 
-FALLBACK_TIMESTAMP = parse("1/1/2051 12:01:01 AM")
+FALLBACK_TIMESTAMP = coerce_utc_strict(parse("1/1/2051 12:01:01 AM"))
 XML_STRIPPED_MSG = '<...removed Apple XML plist...>'
 QUOTE_CHARS = '->»•'
 QUOTE_INDENT_CHAR_GROUP = fr'[{QUOTE_CHARS} ]'
 QUOTE_INDENT_GROUP_NEWLINES = fr'[{QUOTE_CHARS}\s]'
 
 # Reply line regexes
-or_equal_sign_char_group = lambda s: f"[{s}=]"  # DataSet 11 has a lot of random '=' replacing characters
-
 ON_TIME_REPLY_PATTERNS = [
     *[''.join(or_equal_sign_char_group(chr) for chr in month[:2]) for month in MONTHS],
     *[''.join(or_equal_sign_char_group(chr) for chr in day[:3]) for day in WEEKDAYS]
 ]
 
+REPLY_ON_DAY_MONTH_PATTERN = fr"(\d+ )?(({'|'.join(ON_TIME_REPLY_PATTERNS)})\w*)"
 FORWARDED_LINE_PATTERN = r"[- ]*((Forwarded|Original)\s*[Mm]essa.e:?|Message d'?origine)[- ]*|Begin [Ff]orwarded [Mm]essage:?"
 FORWARDED_TOO_MUCH_SPACE_REGEX = re.compile(fr"^({FORWARDED_LINE_PATTERN})\n\n", re.MULTILINE | re.IGNORECASE)
 REPLY_LINE_ENDING_PATTERN = r"[_ \n]((?-i:[AP]M)|[<_]|w?rote:?)"
 REPLY_NUMERIC_DATE_PATTERN = fr"\d+[-/.][\d\w]+[-/.]\d+"
-REPLY_ON_DAY_MONTH_PATTERN = fr"(\d+ )?(({'|'.join(ON_TIME_REPLY_PATTERNS)})\w*)"
 REPLY_ON_DATE_PATTERN = '|'.join([REPLY_NUMERIC_DATE_PATTERN, REPLY_ON_DAY_MONTH_PATTERN])
 
 REPLY_PATTERNS = [
@@ -42,7 +44,6 @@ REPLY_PATTERNS = [
     r"Dnia .*napisal\(a\):",                            # Polish
 ]
 
-# print(fr"(?<!M)On ({REPLY_ON_DATE_PATTERN})[., ].*{REPLY_LINE_ENDING_PATTERN}")
 REPLY_LINE_PATTERN = fr"^({QUOTE_INDENT_CHAR_GROUP}*({'|'.join(REPLY_PATTERNS)}))"
 REPLY_REGEX = re.compile(REPLY_LINE_PATTERN, re.IGNORECASE | re.MULTILINE)
 
@@ -505,3 +506,8 @@ KNOWN_SIGNATURES = {
     'tupos & abbrvtns': LINDA_STONE,
     'Typos, misspellings courtesy of iPhone': LINDA_STONE,
 }
+
+
+if args.deep_debug:
+    logger.info(f"REPLY_LINE_PATTERN\n\n{REPLY_LINE_PATTERN}\n")
+    logger.info(f"SENT_FROM_REGEX pattern:\n\n'{SENT_FROM_REGEX.pattern}'\n")

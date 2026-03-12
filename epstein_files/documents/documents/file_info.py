@@ -46,7 +46,6 @@ class FileInfo:
         if self.is_doj_file:
             if (data_set_match := DOJ_DATASET_ID_REGEX.search(str(self.local_path))):
                 self.doj_2026_dataset_id = int(data_set_match.group(1))
-                logger.debug(f"Extracted data set ID {self.doj_2026_dataset_id} for {self.url_slug}")
             else:
                 self.warn(f"Couldn't find a data set ID in path '{self.local_path}'! Cannot create valid links.")
 

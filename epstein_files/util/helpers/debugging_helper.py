@@ -1,5 +1,7 @@
 from collections import defaultdict
+from datetime import datetime
 
+from dateutil import tz
 from rich.padding import Padding
 from rich.text import Text
 
@@ -113,3 +115,9 @@ def print_interesting_doc_panels_and_props(epstein_files, sort_by_category: bool
 
     print('')
     logger.warning(f"Printed {num_printed} object configs, {num_interesting} interesting ones.\n\n")
+
+
+def tz_debug_str(dt: datetime) -> str:
+    dt_local = dt.replace(tzinfo=tz.UTC).astimezone(tz.gettz())
+    dt_utc = dt_local.astimezone(tz.UTC)
+    return f"{dt.isoformat()} (tzinfo={dt.tzinfo}, local={dt_local.isoformat()}, utc={dt_utc.isoformat()})"

@@ -3498,7 +3498,7 @@ def get_style_for_name(name: str | None, default_style: str = DEFAULT_NAME_STYLE
     highlight_group = get_highlight_group_for_name(name or UNKNOWN)
     style = highlight_group.style if highlight_group else default_style
     style = style if allow_bold else style.replace('bold', '').strip()
-    logger.debug(f"get_style_for_name('{name}', '{default_style}', '{allow_bold}') yielded '{style}'")
+    # logger.debug(f"get_style_for_name('{name}', '{default_style}', '{allow_bold}') yielded '{style}'")
     return style
 
 
@@ -3522,6 +3522,6 @@ def _print_highlighted_names_repr() -> None:
     sys.exit()
 
 
-if args.deep_debug:
+if args._debug_highlight_patterns:
     for c in HIGHLIGHTED_CONTACTS:
         print(repr(c))

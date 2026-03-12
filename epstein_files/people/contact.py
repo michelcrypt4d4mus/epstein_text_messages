@@ -6,6 +6,7 @@ from rich.text import Text
 
 from epstein_files.people.names import Name, constantize_name, extract_first_name, extract_last_name
 from epstein_files.util.constant.strings import INDENT_NEWLINE, INDENTED_JOIN, LAW_ENFORCEMENT, PartialName
+from epstein_files.util.env import args
 from epstein_files.util.helpers.data_helpers import constantize_names
 from epstein_files.util.helpers.link_helper import link_text_obj
 from epstein_files.util.helpers.string_helper import as_pattern, indented, is_integer, quote, remove_question_marks, join_truthy
@@ -146,7 +147,9 @@ class Contact:
             if self.match_partial in ['both', 'last'] and SIMPLE_NAME_REGEX.match(last_name):
                 name_patterns.append(as_pattern(last_name))
 
-        logger.debug(f"Contact('{self.name}') name_patterns: '{name_patterns}'")
+        if args._debug_highlight_patterns:
+            logger.debug(f"Contact('{self.name}') name_patterns: '{name_patterns}'")
+
         return name_patterns
 
     @property

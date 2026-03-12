@@ -36,8 +36,8 @@ from epstein_files.util.constant.urls import URL_SIGNIFIERS
 from epstein_files.people.names import sort_names
 from epstein_files.util.constants import CONFIGS_BY_ID
 from epstein_files.util.env import args, site_config
-from epstein_files.util.helpers.data_helpers import (AMERICAN_TIME_REGEX, TIMEZONE_INFO, flatten,
-     prefix_keys, remove_timezone, uniquify)
+from epstein_files.util.helpers.data_helpers import (AMERICAN_TIME_REGEX, TIMEZONE_INFO, coerce_utc, flatten,
+     prefix_keys, uniquify)
 from epstein_files.util.helpers.link_helper import link_text_obj
 from epstein_files.util.helpers.string_helper import capitalize_first, collapse_newlines, is_bool_prop, strip_pdfalyzer_panels
 from epstein_files.util.logging import logger
@@ -264,6 +264,7 @@ class Email(Communication):
             if not self.derived_cfg and (extracted_from_cfg := CONFIGS_BY_ID.get(self.file_info.url_slug)):
                 self.derived_cfg = this_file_cfg or EmailCfg(id=self.file_id)
 
+                # Add "appears in [SOURCE]" pfx to description for docs extract ed from others (e.g. huge Dilorio emails)
                 if (extracted_from_description := extracted_from_cfg.complete_description):
                     self.derived_cfg.description = f"{APPEARS_IN} {extracted_from_description}"
 
@@ -557,7 +558,7 @@ class Email(Communication):
         elif self.header.num_header_rows == 0:
             return self.text
 
-        self.log_top_lines(20, "Raw text:", logging.DEBUG)
+        self._log_top_lines(20, "Raw text:", logging.DEBUG)
         self.log(f"With {self.header.num_header_rows} header lines removed:\n{text[0:500]}\n\n", logging.DEBUG)
         reply_text_match = REPLY_TEXT_REGEX.search(text)
 
@@ -601,7 +602,7 @@ class Email(Communication):
                 header.repair_empty_header(self.lines)
         else:
             log_level = logging.INFO if self.config else logging.WARNING
-            self.log_top_lines(msg='No email header match found!', level=log_level)
+            self._log_top_lines(msg='No email header match found!', level=log_level)
             header = EmailHeader(field_names=[])
 
         logger.debug(f"{self.file_id} extracted header\n\n{header}\n")
@@ -627,14 +628,14 @@ class Email(Communication):
 
     def _extract_timestamp(self) -> datetime:
         """Find the time this email was sent."""
-        if self.header.sent_at and (timestamp := _parse_timestamp(self.header.sent_at)):
+        if self.header.sent_at and (timestamp := _parse_email_timestamp(self.header.sent_at)):
             return timestamp
 
         searchable_lines = self.lines[0:MAX_NUM_HEADER_LINES]
         searchable_text = '\n'.join(searchable_lines)
 
         if (date_match := DATE_HEADER_REGEX.search(searchable_text)):
-            if (timestamp := _parse_timestamp(date_match.group(1))):
+            if (timestamp := _parse_email_timestamp(date_match.group(1))):
                 return timestamp
 
         logger.debug(f"Failed to find timestamp, falling back to parsing {MAX_NUM_HEADER_LINES} lines...")
@@ -643,7 +644,7 @@ class Email(Communication):
             if not TIMESTAMP_LINE_REGEX.search(line):
                 continue
 
-            if (timestamp := _parse_timestamp(line)):
+            if (timestamp := _parse_email_timestamp(line)):
                 logger.debug(f"Fell back to timestamp {timestamp} in line '{line}'...")
                 return timestamp
 
@@ -690,10 +691,10 @@ class Email(Communication):
     def _remove_line(self, idx: int) -> None:
         """Remove a line from `self.lines`."""
         num_lines = idx * 2
-        self.log_top_lines(num_lines, msg=f'before removal of line {idx}')
+        self._log_top_lines(num_lines, msg=f'before removal of line {idx}')
         del self.lines[idx]
         self._set_text(lines=self.lines)
-        self.log_top_lines(num_lines, msg=f'after removal of line {idx}')
+        self._log_top_lines(num_lines, msg=f'after removal of line {idx}')
 
     def _repair(self) -> None:
         """Repair particularly janky files. Note that OCR_REPAIRS are applied *after* other line adjustments."""
@@ -731,7 +732,7 @@ class Email(Communication):
 
         if old_text != self.text:
             self.log(f"Modified text, old:\n\n" + '\n'.join(old_text.split('\n')[0:12]) + '\n')
-            self.log_top_lines(12, 'Result of modifications')
+            self._log_top_lines(12, 'Result of modifications')
 
         repaired_text = self._repair_links_and_quoted_subjects(self.repair_ocr_text(OCR_REPAIRS, self.text))
         # logger.debug(f"repaired_text\n---\n{self.text}\n---")
@@ -947,11 +948,12 @@ class Email(Communication):
 
 def _add_line_breaks(email_text: str) -> str:
     text = EMAIL_SIMPLE_HEADER_LINE_BREAK_REGEX.sub(r'\n\1\n', email_text).strip()
-    logger.debug(f"text after EMAIL_SIMPLE_HEADER_LINE_BREAK_REGEX _add_line_breaks()\n---\n{text}\n---")
+    # logger.debug(f"text after EMAIL_SIMPLE_HEADER_LINE_BREAK_REGEX _add_line_breaks()\n---\n{text}\n---")
     return FORWARDED_TOO_MUCH_SPACE_REGEX.sub(r'\1\n', text)
 
 
-def _parse_timestamp(timestamp_str: str) -> None | datetime:
+# TODO: this might be obsolete bc of usage of datutil or similar
+def _parse_email_timestamp(timestamp_str: str) -> None | datetime:
     try:
         if (american_date_match := AMERICAN_TIME_REGEX.search(timestamp_str)):
             timestamp_str = american_date_match.group(1)
@@ -961,6 +963,7 @@ def _parse_timestamp(timestamp_str: str) -> None | datetime:
 
         timestamp = parse(timestamp_str, fuzzy=True, tzinfos=TIMEZONE_INFO)
         logger.debug(f'Parsed timestamp "%s" from string "%s"', timestamp, timestamp_str)
-        return remove_timezone(timestamp)
+        return coerce_utc(timestamp)
     except Exception as e:
         logger.debug(f'Failed to parse "{timestamp_str}" to timestamp!')
+        return None

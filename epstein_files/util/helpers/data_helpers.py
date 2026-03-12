@@ -3,6 +3,7 @@ Helpers for dealing with various kinds of data.
 """
 import itertools
 import re
+from copy import copy
 from datetime import datetime, timezone
 from dateutil import tz
 from typing import Any, Mapping, Sequence, TypeVar
@@ -23,6 +24,7 @@ PACIFIC_TZ = tz.gettz("America/Los_Angeles")
 TIMEZONE_INFO = {"PDT": PACIFIC_TZ, "PST": PACIFIC_TZ}  # Suppresses annoying warnings from parse() calls
 
 all_elements_same = lambda _list: len(_list) == 0 or all(x == _list[0] for x in _list)
+coerce_utc = lambda dt: coerce_utc_strict(dt) if dt else None
 date_str = lambda dt: dt.isoformat()[0:10] if dt else None
 dict_key_list = lambda d: [k for k in d.keys()]
 escape_double_quotes = lambda text: text.replace('"', r'\"')
@@ -30,8 +32,27 @@ escape_single_quotes = lambda text: text.replace("'", r"\'")
 days_between = lambda dt1, dt2: (dt2 - dt1).days + 1
 days_between_str = lambda dt1, dt2: f"{days_between(dt1, dt2)} day" + ('s' if days_between(dt1, dt2) > 1 else '')
 remove_zero_time = lambda dt: dt.isoformat().removesuffix('T00:00:00')
+timestamp_str = lambda dt: dt.isoformat()[0:19]
 uniquify = lambda _list: list(set(_list))
 without_falsey = lambda _list: [e for e in _list if e]
+
+
+def coerce_utc_strict(dt: datetime) -> datetime:
+    if not dt:
+        return None
+
+    old_dt_str = timestamp_str(dt)
+
+    if not dt.tzinfo:
+        dt = dt.replace(tzinfo=tz.UTC)
+
+    dt = dt.astimezone(tz.UTC)
+    dt_str = timestamp_str(dt)
+
+    if old_dt_str != dt_str:
+        logger.warning(f"Coerced timestamp '{old_dt_str}' to '{dt_str}' (ISO: {dt.isoformat()})")
+
+    return dt
 
 
 def constantize_names(s: str) -> str:
@@ -91,13 +112,6 @@ def patternize(_pattern: str | re.Pattern) -> re.Pattern:
 def prefix_keys(prefix: str, _dict: dict[str, T], sep='.') -> dict[str, T]:
     """Add `prefix` to the front of all the keys in `_dict`."""
     return {f"{prefix}{sep}{k}": v for k, v in _dict.items()}
-
-
-def remove_timezone(timestamp: datetime) -> datetime:
-    if timestamp.tzinfo:
-        timestamp = timestamp.astimezone(timezone.utc).replace(tzinfo=None)
-
-    return timestamp
 
 
 def sort_dict(d: dict[str | None, int] | dict[str, int]) -> list[tuple[str | None, int]]:

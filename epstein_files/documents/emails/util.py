@@ -20,8 +20,11 @@ LEON_BLACK_OCR_REPAIRS = {
 }
 
 
-def split_up_dilorio(dilorio_emails: list[Email]) -> list[Email]:
-    """Create emails from gigantic Chris Dilorio emails and mark the big email with `_was_split_up`."""
+def split_up_dilorio_whistleblower_emails(dilorio_emails: list[Email]) -> list[Email]:
+    """
+    1. Create multiple `Email`s from huge Dilorio email files (each Dilorio file is actually many smaller emails concatenated).
+    2. Mark the original big email with `_was_split_up=True`.
+    """
     sub_emails = []
     skipped = []
 
@@ -115,14 +118,14 @@ def _uniquify_by_timestamp(emails: list[Email], from_emails: list[Email], label:
     """Uniquify by timestamp to eliminate dupes."""
     # Validate timestamps
     for email in emails:
-        if email.timestamp > datetime(2026, 1, 1):
+        if email.timestamp is None or email.timestamp > Email.MAX_TIMESTAMP:
             raise ValueError(f"{email} bad timestamp in extracted email: {email.timestamp}")
 
-    uniq_emails_by_timestamp = {e.timestamp: e for e in Document.sort_by_id(emails)}
+    email_at_timestamp = {e.timestamp: e for e in Document.sort_by_id(emails)}
 
     logger.warning(
-        f"Created {len(emails)} ({len(uniq_emails_by_timestamp)} unique) Emails from {len(from_emails)} {label} emails" \
+        f"Created {len(emails)} ({len(email_at_timestamp)} unique) Emails from {len(from_emails)} {label} emails" \
         f", skipped {num_skipped} empty sub emails"
     )
 
-    return [e for e in uniq_emails_by_timestamp.values()]
+    return [e for e in email_at_timestamp.values()]

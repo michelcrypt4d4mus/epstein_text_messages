@@ -354,5 +354,5 @@ def wrap_in_markup_style(msg: str, style: str | None = None) -> str:
     return msg
 
 
-if args.colors_only and args.debug:
+if args._debug_highlight_patterns:
     print_json(THEME_STYLES, 'THEME_STYLES')

@@ -12,7 +12,7 @@ from epstein_files.output.rich import TEXT_LINK
 from epstein_files.people.names import (ANTHONY_SCARAMUCCI, JEFFREY_EPSTEIN, STEVE_BANNON,
      UNKNOWN, Name, extract_last_name)
 from epstein_files.util.constant.strings import TIMESTAMP_DIM
-from epstein_files.util.helpers.data_helpers import AMERICAN_DATE_FORMAT
+from epstein_files.util.helpers.data_helpers import AMERICAN_DATE_FORMAT, coerce_utc_strict
 from epstein_files.util.logging import logger
 
 EPSTEIN_TEXTERS = ['e:', 'e:jeeitunes@gmail.com']
@@ -64,7 +64,7 @@ class TextMessage:
         return self.text.startswith('http')
 
     def parse_timestamp(self) -> datetime:
-        return datetime.strptime(self.timestamp_str, AMERICAN_DATE_FORMAT)
+        return coerce_utc_strict(datetime.strptime(self.timestamp_str, AMERICAN_DATE_FORMAT))
 
     def timestamp_txt(self) -> Text:
         from epstein_files.util.env import site_config

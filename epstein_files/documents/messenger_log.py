@@ -18,7 +18,7 @@ from epstein_files.output.rich import LAST_TIMESTAMP_STYLE, build_table
 from epstein_files.people.interesting_people import PERSONS_OF_INTEREST
 from epstein_files.people.names import JEFFREY_EPSTEIN, Name
 from epstein_files.util.constant.strings import AUTHOR, TIMESTAMP_STYLE
-from epstein_files.util.helpers.data_helpers import days_between, days_between_str, flatten, sort_dict
+from epstein_files.util.helpers.data_helpers import coerce_utc_strict, days_between, days_between_str, flatten, sort_dict
 from epstein_files.util.helpers.string_helper import iso_timestamp
 from epstein_files.util.logging import logger
 
@@ -28,7 +28,7 @@ MSG_REGEX = re.compile(r'Sender:(.*?)\nTime:(.*? (AM|PM)).*?Message:(.*?)\s*?((?
 REDACTED_AUTHOR_REGEX = re.compile(r"^([-+•_1MENO.=F]+|[4Ide])$")
 
 END_DATES = {
-    'EFTA01613143': datetime(2017, 6, 29),
+    'EFTA01613143': coerce_utc_strict(datetime(2017, 6, 29)),
 }
 
 

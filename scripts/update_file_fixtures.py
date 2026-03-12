@@ -1,8 +1,5 @@
 #!/usr/bin/env python
 # Update the CSV fixtures with the Document props pytest compares against.
-from pathlib import Path
-
-from epstein_files.util.helpers.file_helper import file_size_str
 from epstein_files.util.logging import logger
 
 from scripts.use_pickled import epstein_files

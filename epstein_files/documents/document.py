@@ -36,8 +36,8 @@ from epstein_files.people.names import Name
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constants import CONFIGS_BY_ID
 from epstein_files.util.env import args, site_config
-from epstein_files.util.helpers.data_helpers import (date_str, patternize, prefix_keys, remove_zero_time,
-     uniquify, uniq_sorted, without_falsey)
+from epstein_files.util.helpers.data_helpers import (coerce_utc, coerce_utc_strict, date_str, patternize, prefix_keys,
+     remove_zero_time, uniquify, uniq_sorted, without_falsey)
 from epstein_files.util.helpers.link_helper import link_text_obj
 from epstein_files.util.helpers.file_helper import coerce_file_path, file_size_str, file_size_to_str
 from epstein_files.util.helpers.string_helper import collapse_newlines, join_truthy, quote
@@ -103,17 +103,19 @@ class Document:
         lines (list[str]): Number of lines in the file after all the cleanup
         text (str): Contents of the file
     """
-    # Class constants
-    INCLUDE_DESCRIPTION_IN_SUMMARY_PANEL: ClassVar[bool] = False
-    STRIP_WHITESPACE: ClassVar[bool] = True  # Overridden in JsonFile
-
     file_path: Path
+
     # Derived at instantiation time
     extracted_author: Name = None
     extracted_timestamp: datetime | None = None
     file_info: FileInfo = field(init=False)
     lines: list[str] = field(default_factory=list)
     text: str = ''
+
+    # Class constants, overloaded in some subclasses
+    MAX_TIMESTAMP: ClassVar[datetime] = coerce_utc_strict(datetime(2026, 1, 29))  # Cutoff for _extract_timestamp()
+    STRIP_WHITESPACE: ClassVar[bool] = True                                       # Should strip whitespace (overridden in JsonFile)
+    _INCLUDE_DESCRIPTION_IN_SUMMARY_PANEL: ClassVar[bool] = False                 # For logging only
 
     def __post_init__(self):
         self.file_info = FileInfo(self.file_path)
@@ -124,7 +126,7 @@ class Document:
         self._set_text(text=self.text or self._load_file())
         self._repair()
         self.extracted_author = None if self.author else self._extract_author()
-        self.extracted_timestamp = None if self.timestamp else self._extract_timestamp()
+        self.extracted_timestamp = None if self.timestamp else coerce_utc(self._extract_timestamp())
 
     @classmethod
     def from_file_id(cls, file_id: str | int) -> Self:
@@ -437,13 +439,16 @@ class Document:
         """Panelized description() with info_txt(). Used in search results not in production HTML."""
         sentences = [self._summary]
 
-        if self.INCLUDE_DESCRIPTION_IN_SUMMARY_PANEL:
+        if self._INCLUDE_DESCRIPTION_IN_SUMMARY_PANEL:
             sentences += [Text('', style='italic').append(h) for h in self.info]
 
         return Panel(Group(*sentences), border_style=self._class_style, expand=False)
 
     def colored_external_links(self) -> Text:
         return self.file_info.build_external_links(with_alt_links=True)
+
+    def debug_log(self, msg: str) -> None:
+        self.log(msg, logging.DEBUG)
 
     def file_display(self, align: JustifyMethod | None = None) -> FileDisplay:
         """Allows for proper right vs. left justify."""
@@ -471,12 +476,6 @@ class Document:
     def log(self, msg: str, level: int = logging.INFO) -> None:
         """Log a message with with this document's filename as a prefix."""
         logger.log(level, f"{self.file_id} {self._class_name} {msg}")
-
-    def log_top_lines(self, n: int = 10, msg: str = '', level: int = logging.INFO) -> None:
-        """Log first 'n' lines of self.text at 'level'. 'msg' can be optionally provided."""
-        separator = '\n\n' if '\n' in msg else '. '
-        msg = (msg + separator) if msg else ''
-        self.log(f"{msg}First {n} lines:\n\n{self.top_lines(n)}\n", level)
 
     def print(self, whole_file: bool = False) -> None:
         """Print this object for some suppression message."""
@@ -602,6 +601,12 @@ class Document:
         """Remove BOM and HOUSE OVERSIGHT lines, strip whitespace."""
         return self.raw_text()
 
+    def _log_top_lines(self, n: int = 10, msg: str = '', level: int = logging.DEBUG) -> None:
+        """Log first 'n' lines of self.text at 'level'. 'msg' can be optionally provided."""
+        separator = '\n\n' if '\n' in msg else '. '
+        msg = (msg + separator) if msg else ''
+        self.log(f"{msg}First {n} lines of {self.file_id}:\n\n{self.top_lines(n)}\n", level)
+
     def _numbered_lines(self) -> str:
         """For logging."""
         return '\n'.join([f"[{i}] {quote(line)}" for i, line in enumerate(self.lines)])
@@ -628,7 +633,7 @@ class Document:
         else:
             raise RuntimeError(f"[{self.filename}] Either 'lines' or 'text' arg must be provided (neither was)")
 
-        logger.debug(f"_set_text() set self.text to\n---\n{self.text}\n---")
+        # logger.debug(f"_set_text() set self.text to\n---\n{self.text}\n---")
         self.lines = [line.strip() if self.STRIP_WHITESPACE else line for line in self.text.split('\n')]
 
     def _skipped_file_txt(self, reason: str | Text) -> Text:

@@ -8,6 +8,7 @@ from epstein_files.documents.imessage.text_message import TextMessage
 from epstein_files.output.rich import console
 from epstein_files.people.names import JEFFREY_EPSTEIN, LAWRENCE_KRAUSS, STEVE_BANNON
 from epstein_files.util.env import args
+from epstein_files.util.helpers.data_helpers import coerce_utc
 from epstein_files.util.logging import logger
 
 BRACKET_NUM_PATTERN = r"\s*\[?\d\]?\s*"
@@ -58,7 +59,7 @@ class MessengerLogPdf(MessengerLog):
             elif not sender:
                 sender = None
 
-            if (junk_suffix := JUNK_SUFFIX_REGEX.search(msg)):
+            if JUNK_SUFFIX_REGEX.search(msg):
                 self.warn(f"Found junk suffixes in message, removing. msg:\n-----\n{msg}\n-----")
                 msg = JUNK_SUFFIX_REGEX.sub('', msg).strip()
                 self.warn(f"msg stripped of junk:\n-----\n{msg}\n-----\n")
@@ -89,8 +90,7 @@ class MessengerLogPdf(MessengerLog):
         return self._extract_messages()[0].parse_timestamp()
 
 
-
 @dataclass(kw_only=True)
 class TextMessagePdf(TextMessage):
     def parse_timestamp(self) -> datetime:
-        return parse(self.timestamp_str)
+        return coerce_utc(parse(self.timestamp_str))
