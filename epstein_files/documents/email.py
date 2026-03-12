@@ -190,7 +190,7 @@ OCR_REPAIRS: dict[str | re.Pattern, str] = {
     # Russian
     re.compile(r'^BTOpHHK', re.MULTILINE | re.IGNORECASE): 'Вторник',
     re.compile(r"^Cpe\w{2,},", re.MULTILINE | re.IGNORECASE): 'среда,',
-    re.compile(r"^Cy66ora", re.MULTILINE | re.IGNORECASE): 'суббота',
+    re.compile(r"^Cy66.rr?a", re.MULTILINE | re.IGNORECASE): 'суббота',
 }
 
 METADATA_FIELDS = [

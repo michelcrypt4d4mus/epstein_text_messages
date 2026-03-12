@@ -160,7 +160,8 @@ GIRLS_CFGS = [
     EmailCfg(id='EFTA01782788', author=UNKNOWN_GIRL, highlight_quote='"I need 21-24, wiling to travel and work hard"', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA02027844', author=UNKNOWN_GIRL, description='permission to "fuck someone with a condom"', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA00763537', author=UNKNOWN_GIRL, highlight_quote="19 but I look younger than her"),
-    EmailCfg(id='EFTA01025734', author=YULIA_DOROKHINA),
+    EmailCfg(id='EFTA01025400', author=YULIA_DOROKHINA),
+    EmailCfg(id='EFTA01025734', author=YULIA_DOROKHINA, truncate_to=1_300),
     EmailCfg(id='EFTA02634523', author=YULIA_DOROKHINA, author_uncertain='"Yulia"'),
     EmailCfg(id='EFTA01026136', author=YULIA_DOROKHINA, highlight_quote='send the masturbation video', truncate_to=5000),
 

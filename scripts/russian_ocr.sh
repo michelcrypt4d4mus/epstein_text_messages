@@ -15,12 +15,14 @@ echo -e ""
 export_pdf_to_images() {
     local pdf_path="$1"
     local output_prefix="$2"
-    local txt_output_path="$OUTPUT_DIR/$(underscored_basename "$pdf_path")"
+    local txt_output_path="$OUTPUT_DIR/$(underscored_basename "$pdf_path").txt"
 
     echo -e "\nRunning $(clr_green "pdftoppm -png '$pdf_path' '$output_prefix'")"
-    # pdftoppm -png "$pdf_path" "$output_prefix"
-    echo -e "\nRunning $(clr_green "$TESSERACT_CMD $output_prefix* $txt_output_path")..."
-    tesseract "$output_prefix*" "$txt_output_path" -l eng+rus
+    pdftoppm -png "$pdf_path" "$output_prefix"
+
+    echo -e "\nRunning tesseract on exported PNGs..."
+    for i in $output_prefix* ; do $TESSERACT_CMD "$i" stdout >> "$txt_output_path";  done;
+    cat "$txt_output_path"
 }
 
 # print the file's basename with underscores replacing spaces
