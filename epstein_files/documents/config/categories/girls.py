@@ -160,7 +160,9 @@ GIRLS_CFGS = [
     EmailCfg(id='EFTA01782788', author=UNKNOWN_GIRL, highlight_quote='"I need 21-24, wiling to travel and work hard"', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA02027844', author=UNKNOWN_GIRL, description='permission to "fuck someone with a condom"', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA00763537', author=UNKNOWN_GIRL, highlight_quote="19 but I look younger than her"),
+    EmailCfg(id='EFTA01025734', author=YULIA_DOROKHINA),
     EmailCfg(id='EFTA02634523', author=YULIA_DOROKHINA, author_uncertain='"Yulia"'),
+    EmailCfg(id='EFTA01026136', author=YULIA_DOROKHINA, highlight_quote='send the masturbation video', truncate_to=5000),
 
     # Recipients
     EmailCfg(
@@ -310,7 +312,6 @@ GIRLS_CFGS = [
         recipient_uncertain='https://archive.ph/Qa6vU',  # https://www.nybooks.com/articles/2026/03/26/the-devil-himself-jeffrey-epstein-enright/
     ),
     EmailCfg(id='EFTA00894079', highlight_quote='say hi to Snow White'),
-    EmailCfg(id='EFTA01026136', highlight_quote='send the masturbation video', author=YULIA_DOROKHINA, truncate_to=5000),
     EmailCfg(id='EFTA00775255', highlight_quote='she is 20 years old but she looks younger', non_participants=[BROCK_PIERCE]),
     EmailCfg(id='EFTA00366629', highlight_quote='stunning girls to bring over drinks when your next available'),
     EmailCfg(id='EFTA02387676', highlight_quote="thats the closest i get to karyna providing me new pussy"),
