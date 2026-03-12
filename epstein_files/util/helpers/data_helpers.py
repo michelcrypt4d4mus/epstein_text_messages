@@ -49,7 +49,7 @@ def coerce_utc_strict(dt: datetime) -> datetime:
     dt_str = timestamp_str(dt)
 
     if old_dt_str != dt_str:
-        logger.warning(f"Coerced timestamp '{old_dt_str}' to '{dt_str}' (ISO: {dt.isoformat()})")
+        logger.warning(f"Coerced timestamp '{old_dt_str}' to '{dt_str}' (ISO: '{dt.isoformat()}')")
 
     return dt
 
