@@ -181,16 +181,16 @@ OCR_REPAIRS: dict[str | re.Pattern, str] = {
     re.compile(r"PATTERSON NEW\s+BOOK\s+TELLING\s+FEDS\s+COVER\s+UP\s+OF\s+BILLIONAIRE\s+JEFF\s+EPSTEIN\s+CHILD\s+RAPES\s+RELEASE\s+DATE\s+OCT\s+10\s+2016\s+STEVEN\s+HOFFENBERG\s+IS\s+ON\s+THE\s+BOOK\s+WRITING\s+TEAM\s*!!!!"): "PATTERSON NEW BOOK TELLING FEDS COVER UP OF BILLIONAIRE JEFF EPSTEIN CHILD RAPES RELEASE DATE OCT 10 2016 STEVEN HOFFENBERG IS ON THE BOOK WRITING TEAM !!!!",
     re.compile(r"PROCEEDINGS FOR THE ST THOMAS ATTACHMENT OF\s*ALL JEFF EPSTEIN ASSETS"): "PROCEEDINGS FOR THE ST THOMAS ATTACHMENT OF ALL JEFF EPSTEIN ASSETS",
     re.compile(r"Subject:\s*Fwd: Trending Now: Friends for three decades"): "Subject: Fwd: Trending Now: Friends for three decades",
+    # Russian
+    re.compile(r'^BTOpHHK', re.MULTILINE | re.IGNORECASE): 'Вторник',
+    re.compile(r"^Cpe\w{2,},", re.MULTILINE | re.IGNORECASE): 'среда,',
+    re.compile(r"^Cy66.rr?a", re.MULTILINE | re.IGNORECASE): 'суббота',
     # XML footers
     re.compile('<[iI] ?nteger>'): '<integer>',
     # Misc
     'AVG°': 'AVGO',
     'Saw Matt C with DTF at golf': 'Saw Matt C with DJT at golf',
     re.compile(r"[i. ]*Privileged[- ]*Redacted[i. ]*"): '<PRIVILEGED - REDACTED>',
-    # Russian
-    re.compile(r'^BTOpHHK', re.MULTILINE | re.IGNORECASE): 'Вторник',
-    re.compile(r"^Cpe\w{2,},", re.MULTILINE | re.IGNORECASE): 'среда,',
-    re.compile(r"^Cy66.rr?a", re.MULTILINE | re.IGNORECASE): 'суббота',
 }
 
 METADATA_FIELDS = [
