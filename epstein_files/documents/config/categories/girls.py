@@ -137,6 +137,14 @@ GIRLS_CFGS = [
         author_uncertain=f"{JOSHUA_FINK} texts",
         description=f'{JOSHUA_FINK} and {SVETLANA_POZHIDAEVA} discuss an abortion ("You have known you are preg for a week")',
     ),
+    EmailCfg(
+        id='EFTA01894879',
+        description='"most of all its cheap excort"',
+        duplicate_ids=['EFTA00876711'],
+        highlight_quote='400 girls for model agencies and wedding agencies',
+        recipients=[SVETLANA_POZHIDAEVA],
+        recipient_uncertain='"Svet"',
+    ),
     EmailCfg(id='EFTA01877224', author=SVETLANA_POZHIDAEVA, author_uncertain=f"{JOSHUA_FINK} texts"),
     EmailCfg(id='EFTA00937507', author=SVETLANA_POZHIDAEVA, author_uncertain=f"{JOSHUA_FINK} texts"),
     EmailCfg(
@@ -199,7 +207,12 @@ GIRLS_CFGS = [
         description=f'{SVETLANA_POZHIDAEVA}\'s relationship with "J" ({JOSHUA_FINK}?) and "B" {QUESTION_MARKS}',
         recipients=[SVETLANA_POZHIDAEVA],
     ),
-    EmailCfg(id='EFTA00937556', recipients=[SVETLANA_POZHIDAEVA], recipient_uncertain=True),
+    EmailCfg(
+        id='EFTA00937556',
+        description=f"looks like Epstein coaching {SVETLANA_POZHIDAEVA} on how to respond to {JOSHUA_FINK}",
+        recipients=[SVETLANA_POZHIDAEVA],
+        recipient_uncertain=True,
+    ),
     EmailCfg(
         id='EFTA00888467',
         description=f'very strange conversation about "Peter" (maybe {PETER_MANDELSON}?) and "mj" (maybe {HASSAN_JAMEEL}?)',
@@ -257,6 +270,7 @@ GIRLS_CFGS = [
         description=f"{BORIS_NIKOLIC} encourages {KIMBAL_MUSK} to ditch his girlfriend for Epstein's girl {JENNIFER_KALIN} (and he says yes)",
         truncate_to=NO_TRUNCATE,
     ),
+    EmailCfg(id='EFTA02470883', recipients=[JESSICA_BANKS], recipient_uncertain='she uses "sooooooooo" a lot'),
     EmailCfg(
         id='EFTA00412260',
         author=LESLEY_GROFF,
