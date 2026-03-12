@@ -124,7 +124,11 @@ class DocPrinter:
         if self.other_files_queue:
             self._print_other_files_queue()
 
-    def print_renderable(self, _renderable: Align | Padding | Panel | Text | str, align: AlignMethod | None = None) -> None:
+    def print_renderable(
+        self,
+        _renderable: Align | Padding | Panel | Text | str,
+        align: AlignMethod | None = None
+    ) -> None:
         _renderable = Align(_renderable, align) if align and not isinstance(_renderable, Align) else _renderable
         console.print(_renderable)
         renderable, css_props = unwrap_rich(_renderable)
