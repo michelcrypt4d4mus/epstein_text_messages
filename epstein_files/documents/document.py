@@ -299,15 +299,23 @@ class Document:
     @property
     def panel_title_timestamp(self) -> str:
         """String placed in the `title` of the enclosing `Panel` when printing this document's text."""
-        if self.timestamp in [None, FALLBACK_TIMESTAMP]:
+        if self.timestamp is None or self.timestamp == FALLBACK_TIMESTAMP:
             return ''
 
         if self.config and self.config.timestamp:
-            prefix = 'approximate' if self.config.date_uncertain else ''
+            if self.config.date_uncertain:
+                prefix = 'approximate'
+            else:
+                prefix = ''
         else:
             prefix = 'inferred'
 
-        return join_truthy(prefix, f"timestamp: {timestamp_without_zero_hour(self.timestamp)}")
+        if all(unit == 0 for unit in [self.timestamp.hour, self.timestamp.minute, self.timestamp.second]):
+            date_or_time = 'date'
+        else:
+            date_or_time = 'timestamp'
+
+        return join_truthy(prefix, f"{date_or_time}: {timestamp_without_zero_hour(self.timestamp)}")
 
     @property
     def people(self) -> list[str]:
