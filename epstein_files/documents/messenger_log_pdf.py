@@ -60,7 +60,7 @@ class MessengerLogPdf(MessengerLog):
             elif self.file_id == 'EFTA00508054' and sender == 'Lawrence':
                 sender = LAWRENCE_KRAUSS
             elif not VALID_SENDER_REGEX.search(sender):
-                self.warn(f"text message sender '{sender}' is not a valid name")
+                self.log(f"text message sender '{sender}' is not a valid name")
                 sender = None
 
             if JUNK_SUFFIX_REGEX.search(msg):
