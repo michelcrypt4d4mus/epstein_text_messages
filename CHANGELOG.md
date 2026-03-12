@@ -3,6 +3,7 @@
 * Include author in `Document.people()` even if `is_valid_for_name_scan` is false
 * Coerce all timestamps to UTC timezone instead of no timezone
 * `DocPrinter` handles most printing, custom curated HTML now includes almost all required elements
+* `epstein_pdf_path` script
 
 ### 1.9.2
 * Refactor most document category configs to their own files and config related modules to `epstein_files.documents.config`

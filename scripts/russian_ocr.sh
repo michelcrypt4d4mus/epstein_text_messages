@@ -14,15 +14,20 @@ echo -e ""
 
 export_pdf_to_images() {
     local pdf_path="$1"
-    local output_prefix="$2"
-    local txt_output_path="$OUTPUT_DIR/$(underscored_basename "$pdf_path").txt"
+    local pdf_basename="$(basename "$pdf_path")"
+    local pdf_underscored_basename=$(underscored_basename "$pdf_path")
+    local output_prefix="$PDF_TO_IMAGE_DIR/$pdf_underscored_basename"
+    local txt_output_prefix="$OUTPUT_DIR/$pdf_underscored_basename"
 
-    echo -e "\nRunning $(clr_green "pdftoppm -png '$pdf_path' '$output_prefix'")"
+    echo -e "  PDF detected, exporting to images first..."
+    echo -e "  -> Running $(clr_green "pdftoppm -png '$pdf_path' '$output_prefix'")"
     pdftoppm -png "$pdf_path" "$output_prefix"
 
-    echo -e "\nRunning tesseract on exported PNGs..."
-    for i in $output_prefix* ; do $TESSERACT_CMD "$i" stdout >> "$txt_output_path";  done;
-    cat "$txt_output_path"
+    echo -e "\n  -> Running tesseract on exported PNGs..."
+    for f in $output_prefix* ; do $TESSERACT_CMD "$f" stdout >> "$txt_output_prefix"; done;
+    clr_cyan "\n\n----- OCR Result for '$pdf_basename' -------"
+    cat "$txt_output_prefix"
+    clr_cyan "------ END OCR for '$pdf_basename' ------"
 }
 
 # print the file's basename with underscores replacing spaces
@@ -39,10 +44,13 @@ if [[ -z "$1" ]]; then
 elif [[ "$1" =~ .(jpe?g|png)$ ]]; then
     echo -e "  Image detected, running tesseract directly on file..."
     img_file="$1"
+elif [[ "$1" =~ ^EFTA ]]; then
+    pdf_path="$(epstein_pdf_path $1)"
+    echo -e "  EFTA file ID detected, found pdf at $(clr_cyan "$pdf_path")"
+    export_pdf_to_images "$pdf_path"
+    exit
 elif [[ "$1" =~ .pdf$ ]]; then
-    echo -e "  PDF detected, exporting to images first..."
-    output_prefix="$PDF_TO_IMAGE_DIR/$(underscored_basename "$1")"
-    export_pdf_to_images "$1" "$output_prefix"
+    export_pdf_to_images "$1"
     exit
 fi
 

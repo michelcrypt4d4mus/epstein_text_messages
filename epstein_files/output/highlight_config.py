@@ -2614,6 +2614,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(DASHA_GRUPMAN, 'recruiter of girls for Epstein', r"Da(ry|sh)a Grupman"),
             Contact('Ekaterina Gusarova', f'AKA "Katya", Instagram model {QUESTION_MARKS}', r"(Ekaterina|Katya)? Gusm?arova"),
             Contact('Irina Vodolazova', 'Russian model', match_partial='both'),
+            Contact(JESSICA_BANKS, f'Russian speaker, un-Russian last name, co-founder of {QUESTION_MARKS}', match_partial=None),
             Contact(
                 JULIA_SANTOS,  # TODO: Jmail says her email is julia.santos@hbs.edu
                 "recruiter of girls from Ukraine for Epstein, possibly Harvard Business School student",
@@ -2674,7 +2675,11 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 link_to_bio='https://dossier.center/jeffreyepsteinrusconnect-en/',
                 match_partial=None,
             ),
-            Contact(YULIA_DOROKHINA, 'prolific recruiter of girls, possibly formally employed by Epstein'),
+            Contact(
+                YULIA_DOROKHINA,
+                'Юлия Дорохина, prolific recruiter of girls, possibly formally employed by Epstein at some point',
+                r"Yulia Dorokhina?|Юлия Дорохина",
+            ),
             Contact('Yuliya Kiseleva', 'Ukrainian with "400 girls for model and wedding agencies" and "cheap excort" (sic) according to Epstein'),
             Contact('Yulia Trubuckai', f"Russian girl recruited by {KIRA_DIKHTYAR}"),
             organization('George Models', 'based in Odessa, very young girls, basically a porn site'),
@@ -3018,7 +3023,6 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             ),
             Contact('Jeanne Palfrey', '"The DC Madam", murdered'),
             Contact('Jennifer Aros', 'abused by Epstein starting at age 14', link_to_bio='https://x.com/epsteinsearchin/status/2031730091827544180'),
-            Contact(JESSICA_BANKS, f'co-founder of {QUESTION_MARKS}', match_partial=None),
             Contact(KATHERINE_KEATING, "daughter of former Australian prime minister Paul Keating", match_partial=None),
             Contact('Lucrezia Camponovo', QUESTION_MARKS),
             Contact('Miranda', f'appears to have done an internship at {CLIFFORD_CHANCE} with {MARIA_PRUSAKOVA}?'),

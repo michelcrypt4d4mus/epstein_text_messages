@@ -53,6 +53,7 @@ pytest = "^9.0.1"
 epstein_diff = 'epstein_files:epstein_diff'
 epstein_generate = 'epstein_files:epstein_generate'
 epstein_grep = 'epstein_files:epstein_grep'
+epstein_pdf_path = 'epstein_files:epstein_pdf_path'
 epstein_show = 'epstein_files:epstein_show'
 
 

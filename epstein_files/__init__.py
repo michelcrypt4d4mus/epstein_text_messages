@@ -153,6 +153,19 @@ def epstein_grep():
             epstein_files.repair_ids(matched_ids)
 
 
+def epstein_pdf_path():
+    """Print the path to PDF with ID specified in first positional argument."""
+    file_id = args.positional_args[0]
+    assert file_id, "No ID provided!"
+    assert file_id.startswith('EFTA'), f"{file_id} doesn't look like a valid EFTA file id..."
+    document = EpsteinFiles.get_files().get_id(file_id)
+
+    if not (document and document.file_info.local_pdf_path):
+        logger.error(f"No PDF path found for {file_id}")
+
+    print(document.file_info.local_pdf_path)
+
+
 def epstein_show():
     """Show the color highlighted file. If --raw arg is passed, show the raw text of the file as well."""
     ids_with_attachments = set([c.attached_to_email_id for c in ALL_CONFIGS])
