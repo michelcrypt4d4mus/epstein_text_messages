@@ -128,6 +128,14 @@ def sort_dict_by_keys(d: Mapping[names.Name, T]) -> dict[names.Name, T]:
     return {k: d[k] for k in names.sort_names(dict_key_list(d))}
 
 
+def update_truthy(old_dict: dict[str, T], new_dict: dict[str, T]) -> None:
+    """Like dict update() but don't write keys with empty values."""
+    for k, v in new_dict.items():
+        if v:
+            old_dict[k] = v
+
+
+
 def uniq_sorted(_list: Sequence[T], reverse: bool = False) -> list[T]:
     return sorted(uniquify(_list), reverse=reverse)
 

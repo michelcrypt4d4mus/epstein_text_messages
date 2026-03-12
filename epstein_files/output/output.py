@@ -21,7 +21,7 @@ from epstein_files.output.highlight_config import get_style_for_name
 from epstein_files.output.rich import *
 from epstein_files.output.site.sites import (AUTHORS_USING_SIGNATURES, EMAILERS_TABLE_PNG_PATH,
      FILES_THAT_ARE_NEITHER_EMAILS_NOR, HIS_EMAILS, HIS_TEXT_MESSAGES, HTML_DIR, SELECTIONS_FROM)
-from epstein_files.output.title_page import print_color_key, print_other_page_link, print_section_header
+from epstein_files.output.title_page import print_color_key, print_other_page_link, section_header
 from epstein_files.people.interesting_people import EMAILERS_TO_PRINT
 from epstein_files.people.names import *
 from epstein_files.people.person import Person
@@ -34,6 +34,7 @@ from epstein_files.util.helpers.string_helper import extract_emojis
 from epstein_files.util.logging import logger, exit_with_error
 
 OTHER_INTERESTING_EMAILS_SUBTITLE = 'Other Interesting Emails\n(these emails have been flagged as being of particular interest)'
+CONVERSATIONS_SORTED_BY_TXT = Text("(conversations sorted chronologically based on timestamp of the first text message)", 'dim')
 DEVICE_SIGNATURE_SUBTITLE = f"Email [italic]Sent from \\[DEVICE][/italic] Signature Breakdown"
 DEVICE_SIGNATURE = 'Device Signature'
 DEVICE_SIGNATURE_PADDING = (1, 0)
@@ -43,7 +44,7 @@ HTML_CHRONO_PATH = HTML_DIR.joinpath(f'{HTML_CHRONO_BASENAME}.html')
 HTML_CHRONO_MOBILE_PATH = HTML_DIR.joinpath(f'{HTML_CHRONO_BASENAME}_mobile.html')
 
 
-def print_curated_chronological(epstein_files: EpsteinFiles) -> list[Document]:
+def print_curated_chronological(epstein_files: EpsteinFiles, doc_printer: DocPrinter) -> list[Document]:
     """Print only interesting files of all types in chronological order."""
     should_print = lambda doc: doc.is_interesting if not args.invert_chrono else not doc.is_interesting
     docs = [d for d in epstein_files.unique_documents if should_print(d)]
@@ -51,7 +52,6 @@ def print_curated_chronological(epstein_files: EpsteinFiles) -> list[Document]:
     if args.max_records:
         docs = docs[:args.max_records]
 
-    doc_printer = DocPrinter()
     doc_printer.print_documents(docs)
 
     if args.mobile:
@@ -63,15 +63,14 @@ def print_curated_chronological(epstein_files: EpsteinFiles) -> list[Document]:
     return doc_printer.printed_docs
 
 
-def print_doj_files(epstein_files: EpsteinFiles) -> list[DojFile]:
+def print_doj_files(epstein_files: EpsteinFiles, doc_printer: DocPrinter) -> list[DojFile]:
     """Doesn't print DojFiles that are actually Emails, that's handled in print_emails()."""
-    doc_printer = DocPrinter(collect_other_files_to_tables=False)
+    doc_printer.collect_other_files_to_tables = False
     doc_printer.print_documents(Document.without_dupes(epstein_files.doj_files))
-    doc_printer.write_html(SiteType.real_html_build_path(SiteType.DOJ_FILES))
     return epstein_files.doj_files
 
 
-def print_all_emails_chronological(epstein_files: EpsteinFiles) -> list[Email]:
+def print_all_emails_chronological(epstein_files: EpsteinFiles, doc_printer: DocPrinter) -> list[Email]:
     """Print all non-mailing list emails in chronological order."""
     emails = Document.sort_by_timestamp([e for e in epstein_files.unique_emails if not e.is_mailing_list])
     title = f'Table of All {len(emails):,} Non-Junk Emails in Chronological Order (actual emails below)'
@@ -79,10 +78,8 @@ def print_all_emails_chronological(epstein_files: EpsteinFiles) -> list[Email]:
     console.print(Padding(table, (2, 0)))
     print_subtitle_panel('The Chronologically Ordered Emails')
     console.line()
-    doc_printer = DocPrinter()
     doc_printer.print_documents(emails)
-    doc_printer.write_html(SiteType.real_html_build_path(SiteType.EMAILS_CHRONOLOGICAL))
-    return doc_printer.printed_docs
+    return doc_printer.printed_emails
 
 
 def print_emailers_info(epstein_files: EpsteinFiles) -> None:
@@ -114,14 +111,15 @@ def print_emailers_info(epstein_files: EpsteinFiles) -> None:
     unlink(svg_path)
 
 
-def print_emails_section(epstein_files: EpsteinFiles) -> list[Email]:
+def print_emails_section(epstein_files: EpsteinFiles, doc_printer: DocPrinter) -> list[Email]:
     """Prints emails, returns emails that were printed (may return dupes if printed for both author and recipient)."""
-    print_section_header((SELECTIONS_FROM if not args.all_emails else '') + HIS_EMAILS)
+    section_header_panel = section_header((SELECTIONS_FROM if not args.all_emails else '') + HIS_EMAILS)
+    doc_printer.print_renderable(section_header_panel)
+
     all_emailers = sorted(epstein_files.emailers, key=lambda person: person.earliest_email_at)
     all_emails = Person.emails_from_people(all_emailers)
     num_emails_printed_since_last_color_key = 0
     people_to_print: list[Person]
-    doc_printer = DocPrinter()
 
     if args.names:
         try:
@@ -134,7 +132,7 @@ def print_emails_section(epstein_files: EpsteinFiles) -> list[Email]:
         else:
             people_to_print = epstein_files.person_objs(EMAILERS_TO_PRINT)
 
-        _print_section_summary_table(Person.emailer_info_table(all_emailers, people_to_print))
+        doc_printer.print_renderable(_section_summary_table(Person.emailer_info_table(all_emailers, people_to_print)))
 
     for person in people_to_print:
         if person.name in epstein_files.uninteresting_emailers and not args.names:
@@ -203,7 +201,7 @@ def print_json_metadata(epstein_files: EpsteinFiles) -> None:
         console.print_json(epstein_files.json_metadata(), indent=4, sort_keys=True)
 
 
-def print_other_files_section(epstein_files: EpsteinFiles) -> list[OtherFile]:
+def print_other_files_section(epstein_files: EpsteinFiles, doc_printer: DocPrinter) -> list[OtherFile]:
     """Prints a table of `OtherFile` and returns the objects that were printed."""
     if args.uninteresting:
         files = [f for f in epstein_files.other_files if not f.is_interesting]
@@ -214,9 +212,11 @@ def print_other_files_section(epstein_files: EpsteinFiles) -> list[OtherFile]:
     title_pfx = '' if args.all_other_files else 'Selected '
     category_table = OtherFile.summary_table(files, title_pfx=title_pfx)
     other_files_preview_table = OtherFile.files_preview_table(files, title_pfx=title_pfx)
-    print_section_header(f"{FIRST_FEW_LINES} of {len(files)} {title_pfx}{FILES_THAT_ARE_NEITHER_EMAILS_NOR}")
-    print_other_page_link(epstein_files)
-    _print_section_summary_table(category_table)
+
+    header_panel = section_header(f"{FIRST_FEW_LINES} of {len(files)} {title_pfx}{FILES_THAT_ARE_NEITHER_EMAILS_NOR}")
+    doc_printer.print_renderable(header_panel)
+    print_other_page_link(epstein_files)  # TODO: not in custom HTML
+    doc_printer.print_renderable(_section_summary_table(category_table))
     console.print(other_files_preview_table)
     return files
 
@@ -238,7 +238,7 @@ def print_stats(epstein_files: EpsteinFiles) -> None:
     highlighter.print_highlight_counts(console)
 
 
-def print_text_messages_section(epstein_files: EpsteinFiles) -> list[MessengerLog]:
+def print_text_messages_section(epstein_files: EpsteinFiles, doc_printer: DocPrinter) -> list[MessengerLog]:
     """Print `MessengerLog` objects and return objects that were printed."""
     if args.names:
         imessage_logs = [log for log in epstein_files.imessage_logs if log.author in args.names]
@@ -249,16 +249,14 @@ def print_text_messages_section(epstein_files: EpsteinFiles) -> list[MessengerLo
         logger.warning(f"No MessengerLog found for {args.names}")
         return imessage_logs
 
-    print_section_header((SELECTIONS_FROM if not args.all_texts else '') + HIS_TEXT_MESSAGES)
-    print_centered("(conversations sorted chronologically based on timestamp of the first text message)", style='dim')
+    section_header_panel = section_header((SELECTIONS_FROM if not args.all_texts else '') + HIS_TEXT_MESSAGES)
+    doc_printer.print_renderable(section_header_panel)
+    doc_printer.print_renderable(Align.center(CONVERSATIONS_SORTED_BY_TXT))
 
     if not args.names:
-        _print_section_summary_table(MessengerLog.summary_table(imessage_logs))
+        doc_printer.print_renderable(_section_summary_table(MessengerLog.summary_table(imessage_logs)))
 
-    for log_file in imessage_logs:
-        console.print(log_file)
-        console.line()
-
+    doc_printer.print_documents(imessage_logs)
     return imessage_logs
 
 
@@ -320,9 +318,13 @@ def print_email_device_signatures(epstein_files: EpsteinFiles) -> None:
     print_centered(_signature_table(emoji_authors, ('Emoji', AUTHOR)))
 
 
-def _print_section_summary_table(table: Table) -> None:
-    """Print file stats table (top of each section has one)."""
-    print_centered(Padding(table, (1, 0, 1, 0)))
+# def _print_section_summary_table(table: Table) -> None:
+#     """Print file stats table (top of each section has one)."""
+#     print_centered(Padding(table, (1, 0, 1, 0)))
+
+
+def _section_summary_table(table: Table) -> Align:
+    return Align(Padding(table, (1, 0, 1, 0)), 'center')
 
 
 def _signature_table(keyed_sets: dict[str, set[str]], cols: tuple[str, str], join_char: str = '\n') -> Padding:

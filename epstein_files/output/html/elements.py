@@ -7,6 +7,7 @@ from typing import Literal, Mapping
 
 from rich.console import Console, RenderableType
 from rich.panel import Panel
+from rich.padding import PaddingDimensions
 from rich.style import Style
 from rich.text import Text
 
@@ -18,12 +19,13 @@ from epstein_files.util.logging import logger
 
 CssProps = dict[str, str] | None
 CssUnit = str | int
+HtmlListTag = Literal['ol', 'ul']
 Side = Literal['top', 'left', 'right', 'bottom']
 SideProp = Literal['margin', 'padding']
 
 HORIZONTAL_SIDES: list[Side] = ['left', 'right']
 VERTICAL_SIDES: list[Side] = ['top', 'bottom']
-ALL_SIDES: list[Side] = VERTICAL_SIDES + HORIZONTAL_SIDES
+ALL_SIDES: list[Side] = ['top', 'right', 'bottom', 'left']  # Order matters for converting PaddingDimension!
 
 CODE_TEMPLATE = '{code}'
 SPLITTER = '-# JUNK #-'
@@ -31,8 +33,10 @@ SPLITTER_TEMPLATE = SPLITTER + """{stylesheet} {background} {foreground}"""  # t
 
 # CSS classes
 BLACK_BACKGROUND = 'black_background'
+BLACK_BG__NO_EXPAND = f"{BLACK_BACKGROUND} no_expand"
 
 # CSS dicts
+CENTERED = {'margin-left': 'auto', 'margin-right': 'auto'}
 CODE_TAG_CSS = {'font-family': 'inherit'}
 FONT_CSS_PROPS = {'font-family': FONT_FAMILY}
 HTML_CONSOLE_KWARGS = copy(CONSOLE_KWARGS)
@@ -40,48 +44,6 @@ HTML_CONSOLE_KWARGS.update({'file': open(devnull, "wt"), 'record': True})
 PRE_TAG_CSS = {}
 
 html_console = Console(**HTML_CONSOLE_KWARGS)
-
-
-@dataclass
-class HtmlStyle:
-    _style: Style | str | None
-    style: Style = field(init=False)
-
-    def __post_init__(self):
-        if isinstance(self._style, Style):
-            self.style = self._style
-        elif self._style:
-            if self._style in RICH_THEME.styles:
-                self.style = RICH_THEME.styles[self._style]
-            else:
-                self.style = Style.parse(self._style)
-        else:
-            self.style = Style.parse('')
-
-    @property
-    def bg_hex(self) -> str:
-        if self.style.bgcolor:
-            return self.style.bgcolor.get_truecolor(HTML_TERMINAL_THEME).hex
-        else:
-            return ''
-
-    @property
-    def hex(self) -> str:
-        if self.style.color:
-            return self.style.color.get_truecolor(HTML_TERMINAL_THEME).hex
-        else:
-            return ''
-
-    @property
-    def to_css(self) -> dict[str, str]:
-        props = {}
-
-        if self.bg_hex:
-            props['background-color'] = self.bg_hex
-        if self.hex:
-            props['color'] = self.hex
-
-        return props
 
 
 def div_tag(contents: str, css_props: CssProps = None, **kwargs) -> str:
@@ -118,7 +80,7 @@ def horizontal_pad_props(units: CssUnit) -> dict[str, str]:
     return side_props('padding', HORIZONTAL_SIDES, units)
 
 
-def list_tag(elements: list[str], list_tag: Literal['ol', 'ul'] = 'ul', **kwargs) -> str:
+def list_tag(elements: list[str], list_tag: HtmlListTag = 'ul', **kwargs) -> str:
     if not elements:
         logger.warning(f"No elements to make <{list_tag}> for...")
         return ''
@@ -133,6 +95,21 @@ def margin_props(horizontal: CssUnit, vertical: CssUnit) -> dict[str, str]:
 
 def padding_props(horizontal: CssUnit, vertical: CssUnit) -> dict[str, str]:
     return {**horizontal_pad_props(horizontal), **vertical_pad_props(vertical)}
+
+
+def padding_tuple_to_props(padding: PaddingDimensions):
+    if isinstance(padding, int):
+        padding_tuple = [padding, padding, padding, padding]
+    elif len(padding) == 1:
+        padding_tuple = [padding[0]] * 4
+    elif len(padding) == 2:
+        padding_tuple = padding * 2
+    elif len(padding) == 4:
+        padding_tuple = list(padding)
+    else:
+        raise ValueError(f"unknown padding dimension: {padding}")
+
+    return {f"padding-{ALL_SIDES[i]}": to_em(amount) for i, amount in enumerate(padding_tuple) if amount}
 
 
 def side_props(prop: SideProp, sides: list[Side], units: CssUnit) -> dict[str, str]:

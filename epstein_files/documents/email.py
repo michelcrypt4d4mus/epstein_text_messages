@@ -901,7 +901,7 @@ class Email(Communication):
             yield Padding(attachments_table, (0, 0, 1, site_config.attachment_indent))
 
     @staticmethod
-    def build_emails_table(emails: list['Email'], name: Name = '', title: str = '', show_length: bool = False) -> Table:
+    def build_emails_table(emails: list['Email'], name: Name = '', title: str = '', show_length: bool = False, **kwargs) -> Table:
         """Turn a list of `Email` objects into a `Table` with sender, recipient, and subject line."""
         if title and name:
             raise ValueError(f"Can't provide both 'author' and 'title' args")
@@ -927,6 +927,7 @@ class Email(Communication):
             border_style=DEFAULT_TABLE_KWARGS['border_style'] if title else author_style,
             header_style="bold",
             highlight=True,
+            **kwargs
         )
 
         for email in emails:

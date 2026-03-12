@@ -8,10 +8,10 @@ from rich.table import Table
 from rich.text import Text
 from rich.panel import Panel
 
-from epstein_files.output.html.elements import BLACK_BACKGROUND, HtmlStyle, div_class, div_with_legend
 from epstein_files.output.html.builder import (PANEL_BASE_PROPS, VERTICAL_MARGIN, border_css_props, rich_to_html,
      one_row_table_html, text_to_list, text_to_div, vertical_margin_props)
-from epstein_files.output.html.elements import div_tag, to_em, side_props
+from epstein_files.output.html.elements import BLACK_BACKGROUND, div_class, div_with_legend, div_tag, to_em, side_props
+from epstein_files.output.html.html_style import HtmlStyle
 from epstein_files.output.rich import join_texts
 
 JustifyMethod = Literal['center', 'left', 'right']

@@ -66,6 +66,12 @@ div.no_expand {
     width: fit-content;
 }
 
+div.panel {
+    /* display: inline-block; */
+    width: fit-content;
+    z-index: 10;
+}
+
 div.person_bio_panel {
     margin-bottom: 0.7em;
     margin-left: auto;

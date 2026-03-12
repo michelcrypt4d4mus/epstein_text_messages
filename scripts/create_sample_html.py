@@ -2,6 +2,8 @@
 # Print email ID + timestamp
 from collections import defaultdict
 
+from rich.align import Align
+from rich.console import RenderableType
 from rich.panel import Panel
 from rich.table import Table
 from rich.text import Text
@@ -11,7 +13,7 @@ from epstein_files.documents.document import Document
 from epstein_files.documents.email import Email
 from epstein_files.documents.other_file import OtherFile
 from epstein_files.output.doc_printer import DocPrinter
-from epstein_files.output.html.builder import table_to_html, write_templated_html
+from epstein_files.output.html.builder import table_to_html, panel_to_div
 from epstein_files.output.site.sites import SAMPLE_HTML_PATH
 from epstein_files.output.title_page import print_title_page_top, print_title_page_bottom
 from epstein_files.people.person import Person
@@ -21,29 +23,58 @@ from epstein_files.util.logging import logger
 
 SAMPLE_SIZE = 3
 
+TEST_PANELS = [
+    Panel('bright_red', style='bright_red'),
+    Panel('bright_red reverse', style='bright_red reverse'),
+    Panel('cyan on red', style='cyan on red'),
+    Panel('cyan on red reverse', style='cyan on red reverse'),
+]
+
 
 doc_sets_to_sample = [
-    [o for o in epstein_files.other_files if o.config and o.config.show_full_panel],
-    [d for d in epstein_files._documents if d.suppressed_txt],
-    [o for o in epstein_files.other_files if o.config_description_txt],  # other file with description
-    [o for o in epstein_files.other_files if 1000 < o.length < 5000 and not o.config_description_txt], # other files no desc
+    # [o for o in epstein_files.other_files if o.config and o.config.show_full_panel],
+    # [d for d in epstein_files._documents if d.suppressed_txt],
+    # [o for o in epstein_files.other_files if o.config_description_txt],  # other file with description
+    # [o for o in epstein_files.other_files if 1000 < o.length < 5000 and not o.config_description_txt], # other files no desc
     [e for e in epstein_files.emails if e.config_description_txt], # emails with description
-    [d for d in epstein_files._documents if d.suppressed_txt],
-    [e for e in epstein_files.emails if not e.config_description_txt],  # email no desc
-    epstein_files.emails_with_attachments,
-    epstein_files.imessage_logs,
+    # [d for d in epstein_files._documents if d.suppressed_txt],
+    # [e for e in epstein_files.emails if not e.config_description_txt],  # email no desc
+    # epstein_files.emails_with_attachments,
+    # epstein_files.imessage_logs,
 ]
 
 emails_with_attachments_ids = [e.file_id for e in epstein_files.emails_with_attachments]
 print(f"Found {len(emails_with_attachments_ids)} emails with attachments: {emails_with_attachments_ids}")
 sample_docs = [epstein_files.get_id('EFTA00034357')] + flatten([docs[:SAMPLE_SIZE] for docs in doc_sets_to_sample])
-
 printer = DocPrinter()
+num_people_printed = 0
+
+# Print test panels
+# for panel in TEST_PANELS:
+#     printer.print_renderable(panel)
+
+# Print people panels
+for person in epstein_files.emailers:
+    if len(person.unique_emails) <= 5 or len(person.unique_emails) > 20:
+        continue
+
+    person.print_emails(printer)
+    num_people_printed += 1
+
+    if num_people_printed > 5:
+        logger.warning(f"Printed {num_people_printed} people, breaking loop")
+        break
+    else:
+        logger.warning(f"Printed person #{num_people_printed}")
+
+
+# Print docs
 printer.print_documents(sample_docs)
 
-all_emailers = sorted(epstein_files.emailers, key=lambda person: person.sort_key)
-people_table = Person.emailer_info_table(all_emailers, all_emailers, show_epstein_total=False)
-printer.html_elements.append(table_to_html(people_table))
+# Print big emailers summary table
+# all_emailers = sorted(epstein_files.emailers, key=lambda person: person.sort_key)
+# people_table = Person.emailer_info_table(all_emailers, all_emailers, show_epstein_total=False)
+# printer.html_elements.append(table_to_html(people_table))
 printer.write_html(SAMPLE_HTML_PATH)
 open_file_or_url(SAMPLE_HTML_PATH)
 

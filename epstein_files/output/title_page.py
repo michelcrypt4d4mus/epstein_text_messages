@@ -85,14 +85,15 @@ def print_other_page_link(epstein_files: 'EpsteinFiles') -> None:
     print_centered(parenthesize(chrono_emails_txt), style=OTHER_PAGE_MSG_STYLE)
 
 
-def print_section_header(msg: str, style: str = SECTION_HEADER_STYLE, is_centered: bool = False) -> None:
+def section_header(msg: str, style: str = SECTION_HEADER_STYLE, is_centered: bool = False) -> Padding:
+    """Make an aligned, padded panel that's centered."""
     if args._site_type == SiteType.CURATED:
         console.line(2)
         print_section_links()
 
     panel = Panel(Text(msg, justify='center'), expand=True, padding=(1, 1), style=style)
     panel = Align.center(panel) if is_centered else panel
-    console.print(Padding(panel, site_config.section_header_padding))
+    return Padding(panel, site_config.section_header_padding)
 
 
 def print_section_links(style: str = '') -> None:

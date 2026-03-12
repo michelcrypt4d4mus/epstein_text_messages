@@ -115,7 +115,8 @@ class SiteType(StrEnum):
 
     @classmethod
     def real_html_build_path(cls, site_type: 'SiteType') -> Path:
-        return HTML_DIR.joinpath('real_html_' + HTML_BUILD_FILENAMES[site_type])
+        """Path for the templated custom HTML version of the page."""
+        return HTML_DIR.joinpath(f'real_html_{cls.build_path(site_type).name}')
 
     @classmethod
     def _is_lesser_site(cls, site_type: Self) -> bool:

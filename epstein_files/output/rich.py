@@ -235,16 +235,17 @@ def print_special_note(note: str | Text) -> None:
 
 def print_subtitle_panel(msg: str, style: str = 'black on white', center: bool = True) -> None:
     """A reverse color panel to put at the top of sections."""
+    console.print(subtitle_panel(msg, style))
+
+
+def subtitle_panel(msg: str, style: str = 'black on white') -> Align:
     panel = Panel(
-        Text.from_markup(msg, justify='center' if center else 'left'),
-        width=site_config.subtitle_width if center else max(len(msg), 150),
-        style=style if center else ''
+        Text.from_markup(msg, justify='center'),
+        width=site_config.subtitle_width,
+        style=style
     )
 
-    if center:
-        print_centered(Padding(panel, SUBTITLE_PADDING))
-    else:
-        console.print(panel)
+    return Align.center(panel)
 
 
 def quote_txt(t: Text | str, try_double_quote_first: bool = False, style: str = '') -> Text:
