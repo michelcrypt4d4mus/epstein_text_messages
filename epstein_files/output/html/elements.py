@@ -18,6 +18,7 @@ from epstein_files.util.logging import logger
 
 CssProps = dict[str, str] | None
 CssUnit = str | int
+HtmlListTag = Literal['ol', 'ul']
 Side = Literal['top', 'left', 'right', 'bottom']
 SideProp = Literal['margin', 'padding']
 
@@ -118,7 +119,7 @@ def horizontal_pad_props(units: CssUnit) -> dict[str, str]:
     return side_props('padding', HORIZONTAL_SIDES, units)
 
 
-def list_tag(elements: list[str], list_tag: Literal['ol', 'ul'] = 'ul', **kwargs) -> str:
+def list_tag(elements: list[str], list_tag: HtmlListTag = 'ul', **kwargs) -> str:
     if not elements:
         logger.warning(f"No elements to make <{list_tag}> for...")
         return ''
