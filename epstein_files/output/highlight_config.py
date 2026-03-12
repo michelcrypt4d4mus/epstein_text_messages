@@ -2678,7 +2678,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(
                 YULIA_DOROKHINA,
                 'Юлия Дорохина, prolific recruiter of girls, possibly formally employed by Epstein at some point',
-                r"Yulia Dorokhina?|Юлия Дорохина",
+                fr"Yulia Dorokhina?|Юлия Дорохина|juliador89({AMPERSAND_CHAR_GROUP}mail.ru)?",
             ),
             Contact('Yuliya Kiseleva', 'Ukrainian with "400 girls for model and wedding agencies" and "cheap excort" (sic) according to Epstein'),
             Contact('Yulia Trubuckai', f"Russian girl recruited by {KIRA_DIKHTYAR}"),

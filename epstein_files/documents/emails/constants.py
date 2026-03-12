@@ -49,7 +49,7 @@ REPLY_PATTERNS = [
     r"[Il][Il] giorno .*scritto:",                      # Italian
     r"(Den .* folgende|(fre|lor|son)\. .* skrev .*):",  # Norwegian
     r"Dnia .*napisal\(a\):",                            # Polish
-    fr"{'|'.join(RUSSIAN_WEEKDAYS)}.*:",                # Russian
+    fr"({'|'.join(RUSSIAN_WEEKDAYS)}).*:",                # Russian
 ]
 
 REPLY_LINE_PATTERN = fr"^({QUOTE_INDENT_CHAR_GROUP}*({'|'.join(REPLY_PATTERNS)}))"

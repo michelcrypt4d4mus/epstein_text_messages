@@ -182,9 +182,10 @@ OCR_REPAIRS: dict[str | re.Pattern, str] = {
     re.compile(r"PROCEEDINGS FOR THE ST THOMAS ATTACHMENT OF\s*ALL JEFF EPSTEIN ASSETS"): "PROCEEDINGS FOR THE ST THOMAS ATTACHMENT OF ALL JEFF EPSTEIN ASSETS",
     re.compile(r"Subject:\s*Fwd: Trending Now: Friends for three decades"): "Subject: Fwd: Trending Now: Friends for three decades",
     # Russian
-    re.compile(r'^BTOpHHK', re.MULTILINE | re.IGNORECASE): 'Вторник',
+    re.compile(r'^B(TOpHHK|ocxpec\w+)', re.MULTILINE | re.IGNORECASE): 'Вторник',
     re.compile(r"^Cpe\w{2,},", re.MULTILINE | re.IGNORECASE): 'среда,',
     re.compile(r"^Cy66.rr?a", re.MULTILINE | re.IGNORECASE): 'суббота',
+    re.compile(r"^flo\w{7,8}[HKhkw],", re.MULTILINE): 'понедельник,',
     # XML footers
     re.compile('<[iI] ?nteger>'): '<integer>',
     # Misc
