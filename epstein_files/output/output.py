@@ -39,9 +39,6 @@ DEVICE_SIGNATURE_SUBTITLE = f"Email [italic]Sent from \\[DEVICE][/italic] Signat
 DEVICE_SIGNATURE = 'Device Signature'
 DEVICE_SIGNATURE_PADDING = (1, 0)
 PRINT_COLOR_KEY_EVERY_N_EMAILS = 150
-HTML_CHRONO_BASENAME = 'chrono_real_html'
-HTML_CHRONO_PATH = HTML_DIR.joinpath(f'{HTML_CHRONO_BASENAME}.html')
-HTML_CHRONO_MOBILE_PATH = HTML_DIR.joinpath(f'{HTML_CHRONO_BASENAME}_mobile.html')
 
 
 def print_curated_chronological(epstein_files: EpsteinFiles, doc_printer: DocPrinter) -> list[Document]:
@@ -54,13 +51,6 @@ def print_curated_chronological(epstein_files: EpsteinFiles, doc_printer: DocPri
 
     doc_printer.print_subtitle_panel('Selected Files of Interest in Chronological Order')
     doc_printer.print_documents(docs)
-
-    if args.mobile:
-        real_html_path = HTML_CHRONO_MOBILE_PATH
-    else:
-        real_html_path = HTML_CHRONO_PATH
-
-    doc_printer.write_html(real_html_path)
     return doc_printer.printed_docs
 
 
