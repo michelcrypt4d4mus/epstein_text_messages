@@ -186,6 +186,10 @@ OCR_REPAIRS: dict[str | re.Pattern, str] = {
     re.compile(r"^Cpe\w{2,},", re.MULTILINE | re.IGNORECASE): 'среда,',
     re.compile(r"^Cy66.rr?a", re.MULTILINE | re.IGNORECASE): 'суббота',
     re.compile(r"^flo\w{7,8}[HKhkw],", re.MULTILINE): 'понедельник,',
+    re.compile(r"^TeMa:", re.MULTILINE | re.IGNORECASE): 'Тема:',
+    re.compile(r"^KoMy:", re.MULTILINE | re.IGNORECASE): 'Кому:',
+    re.compile(r"^Aara:", re.MULTILINE | re.IGNORECASE): 'Дата:',
+    re.compile(r"^[O0]T:", re.MULTILINE | re.IGNORECASE): 'От:',
     # XML footers
     re.compile('<[iI] ?nteger>'): '<integer>',
     # Misc

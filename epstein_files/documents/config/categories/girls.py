@@ -182,6 +182,13 @@ GIRLS_CFGS = [
         description=f'looking for a job under {JIDE_ZEITLIN}',
         show_with_name=JIDE_ZEITLIN,
     ),
+    EmailCfg(
+        id='EFTA01036212',
+        author=YULIA_DOROKHINA,
+        author_uncertain='"Yulia"',
+        description=f"Epstein wants {YULIA_DOROKHINA} to travel on short notice",
+        truncate_to=NO_TRUNCATE,
+    ),
     EmailCfg(id='EFTA01025400', author=YULIA_DOROKHINA),
     EmailCfg(id='EFTA01025734', author=YULIA_DOROKHINA, truncate_to=1_300),
     EmailCfg(id='EFTA01024680', author=YULIA_DOROKHINA, author_uncertain='thread'),

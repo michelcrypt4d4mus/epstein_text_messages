@@ -2338,9 +2338,11 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             organization('Elite Models', 'well known modeling agency'),
             organization('Icarine', f"agency with connections to {JEAN_LUC_BRUNEL}"),
             organization('ID Models', "Paolo Zampolli's modeling agency"),
+            organization('Kate Spade', 'American maker of luxury handbags'),
             organization(MC2_MODEL_MGMT, f"{JEAN_LUC_BRUNEL} and Epstein's modeling agency", r"MC2( Model Management)?"),
             organization('Next Models', f"modeling agency co-founded by {FAITH_KATES}"),
             organization('One Model Management', 'agency'),
+            organization('Stuart Weitzman', 'luxury shoe maker')
         ],
         patterns=[
             r"\w+@mc2mm.com",
