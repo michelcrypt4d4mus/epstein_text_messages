@@ -2997,6 +2997,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         contacts=[
             Contact(CECILE_DE_JONGH, "Virgin Islands first lady 2007-2015, Epstein office manager"),
             Contact(KENNETH_E_MAPP, "Virgin Islands Governor"),
+            Contact('Michael Harrigan', 'Deputy Superintendent of Schools for St. Thomas / St. John districts of the Virgin Islands', match_partial=None),
             Contact(STACEY_PLASKETT, "Virgin Islands non-voting member of Congress"),
             acronym('British Virgin Islands', 'infamous offshore tax haven'),
         ],
@@ -3012,6 +3013,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Jamaican?",
             r"(John )deJongh( Jr\.?)",
             r"Martinique",
+            r"Michael Harrigan",
             r"PBI",
             r"(?<!Bank\sof\s)Pu?erto\s*Ric(an|o)",
             r"San Juan",

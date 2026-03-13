@@ -109,13 +109,11 @@ def binant_redacted(id: str, truncate_to: int = 700) -> EmailCfg:
 
 
 def blaine_letter(id: str, date: str, suffix: str = '', **kwargs) -> CommunicationCfg:
-    return letter(
+    return immigration_letter(
         id,
         DAVID_BLAINE,
         date=date,
         description=join_truthy(f"recommending genius visa for a Epstein's assistant {SVETLANA_POZHIDAEVA}", suffix),
-        is_interesting=True,
-        recipients=['INS'],
         show_with_name=SVETLANA_POZHIDAEVA,
         **kwargs
     )
@@ -138,6 +136,20 @@ def fbi_report(id: str, description: str = FBI_REPORT, **kwargs) -> DocCfg:
     return DocCfg(id=id, author=FBI, category=Neutral.GOVERNMENT, description=description, **kwargs)
 
 
+def immigration_letter(id: str, author: Name, date: str = '', description: str = '', show_with_name = '', **kwargs) -> CommunicationCfg:
+    """`show_with_name` is who the letter is about."""
+    return letter(
+        id,
+        author=author,
+        date=date,
+        description=description or 'letter of recommendation for a visa',
+        is_interesting=True,
+        recipients=['INS'],
+        show_with_name=show_with_name,
+        **kwargs
+    )
+
+
 def important_messages_pad(id: str, date: str = '') -> DocCfg:
     return DocCfg(
         id=id,
@@ -146,7 +158,7 @@ def important_messages_pad(id: str, date: str = '') -> DocCfg:
     )
 
 
-def letter(id: str, author: str, recipients: list[Name], description: str, date: str = '', **kwargs) -> CommunicationCfg:
+def letter(id: str, author: Name, recipients: list[Name], description: str, date: str = '', **kwargs) -> CommunicationCfg:
     return CommunicationCfg(
         id=id,
         author=author,
