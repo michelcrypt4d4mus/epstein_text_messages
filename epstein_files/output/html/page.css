@@ -68,6 +68,7 @@ div.no_expand {
 
 div.panel {
     box-sizing: border-box;
+    text-align: center;
     width: fit-content;
     z-index: 10;
 }

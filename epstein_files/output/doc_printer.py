@@ -36,6 +36,8 @@ EMPTY_LINE_HEIGHT = to_em(1.5)
 EMPTY_LINE_DIV = f'<div style="height: {EMPTY_LINE_HEIGHT}"></div>'
 STICKY_BIO_CSS_CLASS = 'sticky_person_bio_panel'
 
+PeopleBiosArg = list[str] | Document | FileDisplay
+
 
 @dataclass(kw_only=True)
 class DocPrinter:
@@ -70,30 +72,34 @@ class DocPrinter:
             console.line()
             self.html_elements.append(EMPTY_LINE_DIV)
 
-    def new_names(self, document: Document | FileDisplay) -> list[str]:
+    def new_names(self, names_or_doc: PeopleBiosArg) -> list[str]:
         """List of names found in relation to the documents that have not been encountered before."""
-        if isinstance(document, FileDisplay):
+        if isinstance(names_or_doc, FileDisplay):
             return []
+        elif isinstance(names_or_doc, Document):
+            names = names_or_doc.people
+        else:
+            names = names_or_doc
 
-        return [p for p in document.people if p in PEOPLE_BIOS and p not in self.people_encountered]
+        return [n for n in names if n not in self.people_encountered]
 
-    def build_biographies_panel_html(self, names: list[str]) -> str:
-        """NOTE: Also prints. to console!!"""
-        if names:
-            logger.debug(f"build_biographies_panel_html() called with names={names}")
+    def new_names_with_bios(self, names_or_doc: PeopleBiosArg) -> list[str]:
+        """Return names that a) were not seen before and b) have configured biographical info."""
+        return [n for n in self.new_names(names_or_doc) if PEOPLE_BIOS.get(n)]
 
-        if (bio_panel := self._biographical_panel(uniq_sorted(names))):  # TODO this shouldn't be necessary as names are checked before being passed in
+    def _build_biographies_panel_html(self, names: list[str]) -> str:
+        """NOTE: Also prints to console!!"""
+        if (bio_panel := self._biographical_panel(names)):
             self._print_other_files_queue()  # Clear the queue before new biographical panel
-            # logger.warning(f"probably double printing with last_bio_panel")
             console.print(self._align_biographical_panel(bio_panel))
             self.people_encountered.update(names)
             return div_class(rich_to_html(bio_panel, minimize_width=True), STICKY_BIO_CSS_CLASS)
         else:
             return ''
 
-    def cache_biographies_panel(self, names: list[str]) -> None:
+    def _cache_biographies_panel(self, names: list[str]) -> None:
         """The html string of the bios panel is cached in `self.last_bio_panel`."""
-        if (bios_html := self.build_biographies_panel_html(names)):
+        if (bios_html := self._build_biographies_panel_html(names)):
             if self.last_bio_panel:
                 raise RuntimeError(f"last_bio_panel should be empty, instead it's:\n{self.last_bio_panel}")
             else:
@@ -129,8 +135,8 @@ class DocPrinter:
             self._print_suppression_msgs_queue()
 
             if isinstance(doc, OtherFile) and doc.is_valid_for_table and self.collect_other_files_to_tables:
-                if (new_names := self.new_names(doc)):
-                    self.cache_biographies_panel(new_names)
+                if (new_names := self.new_names_with_bios(doc)):
+                    self._cache_biographies_panel(new_names)
 
                 self.other_files_queue.append(doc)
                 continue
@@ -161,7 +167,7 @@ class DocPrinter:
                 self.line()
                 continue
             elif isinstance(rich_obj, (Document, FileDisplay)):
-                doc_bios_html = self.build_biographies_panel_html(self.new_names(rich_obj))
+                doc_bios_html = self._build_biographies_panel_html(rich_obj.people)
                 self._append_element_with_bio_div(rich_obj.to_html(), doc_bios_html)
             elif isinstance(rich_obj, Table):
                 html_table = table_to_html(rich_obj, css_props)
@@ -232,21 +238,24 @@ class DocPrinter:
         element = '\n'.join([bio_panel, element])
         self.html_elements.append(div_class(element, 'doc_container'))
 
-    def _biographical_panel(self, names: list[str]) -> Panel | None:
+    def _biographical_panel(self, _names: list[str]) -> Panel | None:
         """Panel showing biographical info for a list of names."""
-        if not (bios := [Text('', justify='right').append(PEOPLE_BIOS[n]) for n in names if PEOPLE_BIOS.get(n)]):
-            return None
+        names = uniq_sorted(self.new_names_with_bios(_names))
 
-        return Panel(
-            Group(*bios),
-            border_style='dim',
-            box=box.DOUBLE,
-            expand=False,
-            # padding=(0, 2),
-            style='on gray7',
-            title=Text(f"new names in next file", 'grey85 italic'),
-            title_align='right',
-        )
+        if (bios := [Text('', justify='right').append(PEOPLE_BIOS[n]) for n in names if PEOPLE_BIOS.get(n)]):
+            logger.debug(f"Creating bios panel for {len(names)} new names (of {len(_names)} _names), names={names}")
+
+            return Panel(
+                Group(*bios),
+                border_style='dim',
+                box=box.DOUBLE,
+                expand=False,
+                style='on gray7',
+                title=Text(f"new names in next file", 'grey85 italic'),
+                title_align='right',
+            )
+        else:
+            return None
 
     def _html_so_far(self, mobile: bool = False) -> str:
         if mobile:
