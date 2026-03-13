@@ -207,10 +207,15 @@ class DocPrinter:
         self._print_title_page_elements(title_page_bottom_elements(self.epstein_files))
 
     def write_html(self, html_path: Path | SiteType) -> Path:
-        """Write the collection of html elements to a file."""
-        output_path = html_path if isinstance(html_path, Path) else SiteType.real_html_build_path(html_path)
-        write_templated_html(self.html_elements, output_path)
-        return output_path
+        """Export custom HTML, trigger rich export_html() if `SiteType` given, returns custom HTML path."""
+        if isinstance(html_path, SiteType):
+            from epstein_files.output.output import write_html
+            write_html(SiteType.html_output_path(html_path))
+            output_path = SiteType.real_html_build_path(html_path)
+        else:
+            output_path = html_path
+
+        return write_templated_html(self.html_elements, output_path)
 
     def write_mobile_html(self, html_path: Path) -> None:
         write_templated_html(self.mobile_html_elements, html_path)

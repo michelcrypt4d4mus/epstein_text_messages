@@ -11,7 +11,7 @@ from epstein_files.output.site.sites import SiteType
 from epstein_files.people.names import Name, constantize_name, extract_first_name, extract_last_name
 from epstein_files.util.constant.strings import INDENT_NEWLINE, INDENTED_JOIN, LAW_ENFORCEMENT, WIKIPEDIA, PartialName
 from epstein_files.util.constant.urls import wikipedia_url_for_name
-from epstein_files.util.env import args
+from epstein_files.util.env import args, site_config
 from epstein_files.util.helpers.data_helpers import constantize_names, listify
 from epstein_files.util.helpers.link_helper import ExternalLink, link_text_obj
 from epstein_files.util.helpers.rich_helpers import QUESTION_MARKS_TXT, enclose
@@ -222,7 +222,7 @@ class Contact:
     @classmethod
     def print_all_biographies(cls, doc_printer: 'DocPrinter') -> None:
         from epstein_files.documents.emails.emailers import ALL_CONTACTS
-        doc_printer.print_renderable([Padding(c.bio_txt, (1, 0, 0, 3)) for c in ALL_CONTACTS])
+        doc_printer.print_renderable([Padding(c.bio_txt, site_config.info_padding()) for c in ALL_CONTACTS])
 
     @classmethod
     def write_all_biographies_to_html(cls, doc_printer: 'DocPrinter') -> Path:

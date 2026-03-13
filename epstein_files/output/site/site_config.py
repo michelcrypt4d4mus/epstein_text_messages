@@ -53,7 +53,7 @@ class MobileConfig:
         return dt.strftime(r"%-d/%-m/%-y %-H:%M")
 
     @classmethod
-    def info_padding(cls) -> tuple[int, int, int, int]:
+    def info_padding(cls) -> PaddingDimensions:
         return (0, 0, 0, cls.info_indent)
 
     @classmethod

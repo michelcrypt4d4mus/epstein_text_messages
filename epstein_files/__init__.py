@@ -28,6 +28,7 @@ from epstein_files.output.output import (print_curated_chronological, print_doj_
      print_email_device_signatures, print_emailers_info, print_json_metadata, show_urls, write_html)
 from epstein_files.output.rich import console, print_json, print_subtitle_panel, subtitle_panel
 from epstein_files.output.site.sites import SiteType, make_clean
+from epstein_files.people.contact import Contact
 from epstein_files.util.constant.strings import HOUSE_OVERSIGHT_NOV_2025_ID_REGEX
 from epstein_files.util.constants import ALL_CONFIGS
 from epstein_files.util.env import args, site_config
@@ -50,6 +51,8 @@ def epstein_generate() -> None:
 
     if args.colors_only:
         pass
+    elif args.output_bios:
+        Contact.print_all_biographies(printer)
     elif args.output_devices:
         print_email_device_signatures(epstein_files)
     elif args.output_chrono:
@@ -78,9 +81,7 @@ def epstein_generate() -> None:
             printed_files = print_other_files_section(epstein_files, printer)
             timer.log_section_complete('OtherFile', epstein_files.other_files, printed_files)
 
-    logger.warning(f'after rendering block')
-    write_html(args.build)
-    printer.write_html(SiteType.real_html_build_path(args._site_type))
+    printer.write_html(args._site_type)
     logger.warning(f"Total time: {timer.seconds_since_start_str()}")
 
     if args.open_txt:
