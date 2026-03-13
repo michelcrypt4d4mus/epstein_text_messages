@@ -294,12 +294,19 @@ class Email(Communication):
             return super().config
 
     @property
+    def display_text(self) -> str:
+        """Config overrides what text should be displayed."""
+        return str(self.email_parts)
+        return collapse_newlines(self._config.replace_text_with or self.text)
+
+    @property
     def header(self) -> EmailHeader:
         self._header = self._header or self.extract_header()
         return self._header
 
     @property
     def email_parts(self) -> EmailParts:
+        """Separate header chars from the rest of the email text."""
         num_header_lines = self.header.num_header_rows
 
         if self.header.should_rewrite_header:
@@ -338,13 +345,12 @@ class Email(Communication):
     @property
     def is_fwded_article(self) -> bool:
         """True if this email is just a forward of an article from WSJ or whatever."""
-        if self.config:
-            if self.config.is_fwded_article is not None:
-                return self.config.is_fwded_article
-            elif self.config.fwded_text_after:
-                return True
-
-        return False
+        if self._config.is_fwded_article is not None:
+            return self._config.is_fwded_article
+        elif self._config.fwded_text_after:
+            return (len(self.actual_text) < 100)
+        else:
+            return False
 
     @property
     def is_interesting(self) -> bool | None:
@@ -367,10 +373,10 @@ class Email(Communication):
     @property
     def is_word_count_worthy(self) -> bool:
         """True if this file should be included in word counts."""
-        if self._config.fwded_text_after:
-            return bool(self._config.fwded_text_after) or len(self.actual_text) < 150
+        if self.is_fwded_article or self.is_mailing_list:
+            return False
         else:
-            return not self.is_mailing_list
+            return True
 
     @property
     def metadata(self) -> Metadata:
@@ -393,13 +399,14 @@ class Email(Communication):
     @property
     def prettified_txt(self) -> Text:
         """Overrides superclass.Cleaned up / formatted Text ready to be displayed."""
-        txt = self.excerpt_text(self._config.char_range, self.display_text)
-
-        # always show the email header even if there's a truncate_to excerpt configured
+        # always show the email header even if there's a configurated truncate_to that trims it out
         if self._config.char_range and self._config.char_range[0] > 0:
-            txt = self.email_parts.header_txt.append('\n\n').append(txt)
+            if self._config.char_range[0] < self.email_parts.header_len:
+                self.warn(f"The excerpt appears to start in the email header which will may in duplicate header chars")
 
-        return txt
+            return self.email_parts.header_txt.append('\n\n').append(super().prettified_txt)
+        else:
+            return super().prettified_txt
 
     @property
     def recipients_str(self) -> str:
@@ -553,10 +560,6 @@ class Email(Communication):
 
         return html
 
-    def with_header(self, text: str) -> str:
-        """Add the header lines to `text`."""
-        return self.header.rewrite_header() + '\n' + text
-
     def _attached_docs_table(self) -> Table | None:
         if not self.attached_docs:
             return None
@@ -619,8 +622,8 @@ class Email(Communication):
 
         text = '\n'.join(self.text.split('\n')[self.header.num_header_rows:]).strip()
 
-        if self.config and self.config.fwded_text_after:
-            return text.split(self.config.fwded_text_after)[0].strip()
+        if self._config.fwded_text_after:
+            return text.split(self._config.fwded_text_after)[0].strip()
         elif self.header.num_header_rows == 0:
             return self.text
 

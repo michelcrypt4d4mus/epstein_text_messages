@@ -41,6 +41,7 @@ def test_is_interesting(get_email, ito_email):
 
 
 def test_is_fwded_article(get_email):
+    assert get_email('EFTA02334332').is_word_count_worthy is True
     fwded_article = get_email('033311')
     assert fwded_article.is_word_count_worthy is False
     non_article_with_fwd_text = get_email('012197_4')

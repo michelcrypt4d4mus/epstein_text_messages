@@ -351,10 +351,21 @@ class Document:
     @property
     def prettified_txt(self) -> Text:
         """Returns the string we want to print as the body of the document."""
-        text = self.display_text
+         # TODO: not ideal place for doublespace call
+        display_text = doublespace_lines(self.display_text)
+        char_range = self._config.char_range or (0, self.length + 1)
         # TODO: do something better to give replacement_text have different style
         style = INFO_STYLE if self.config_replace_text_with and len(self.config_replace_text_with) < 300 else ''
-        return self.excerpt_text(self._config.char_range, text, style)
+        selected_txt = self._config.text_highlighter(Text(display_text, style))[char_range[0]:char_range[1]]  # array slice of `Text` obj preserves style
+        pretty_txt = self._intro_txt(char_range[0]).append(selected_txt)
+
+        if args.char_nums:    # For debugging/choosing truncation points
+            pretty_txt = self._inject_line_numbers(pretty_txt, args.char_nums)
+
+        if (footer_txt := self.trimmed_chars_txt(char_range[1])):
+            pretty_txt.append('...\n\n').append(footer_txt)
+
+        return pretty_txt
 
     @property
     def suppressed_txt(self) -> Text | None:
@@ -445,7 +456,6 @@ class Document:
         """Create an excerpt of `text`, add appropriate header/footer if truncated, and highlight it."""
         char_range = char_range or (0, len(text))
         text = doublespace_lines(text or self.text)        # TODO: not ideal place for doublespace call
-
         excerpt_txt = self._intro_txt(char_range[0])
         excerpt_txt.append(Text(text, style)[char_range[0]:char_range[1]])  # array slice of `Text` obj preserves style
 
@@ -455,7 +465,6 @@ class Document:
         if (footer_txt := self.trimmed_chars_txt(char_range[1])):
             excerpt_txt.append('...\n\n').append(footer_txt)
 
-        # self.warn(f"self.excerpt_text() about to highlight text")
         return self._config.text_highlighter(excerpt_txt)
 
     def extract_author(self) -> Name:

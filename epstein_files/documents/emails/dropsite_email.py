@@ -49,4 +49,4 @@ class DropsiteEmail(Email):
     def _load_file(self) -> str:
         """Remove BOM and HOUSE OVERSIGHT lines, strip whitespace."""
         body = self.eml.get_body(('plain', 'related', 'html')).get_content()
-        return self.with_header(f"\n{body}")
+        return f"{self.header.rewrite_header()}\n{body}"
