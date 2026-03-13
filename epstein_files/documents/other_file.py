@@ -124,8 +124,8 @@ class OtherFile(Document):
             if self.config.num_preview_chars:
                 num_chars = self.config.num_preview_chars
 
-            if self.config_replace_text_with:
-                text = self.config_replace_text_with
+            if self.config_display_text:
+                text = self.config_display_text
 
         if text.count('Page') > MIN_PAGES_TO_TRUNCATE_PREVIEW:
             num_chars = TRUNCATED_PREVIEW_LEN
@@ -137,7 +137,7 @@ class OtherFile(Document):
         txt = highlighter(escape(self.preview_chars))
 
         # TODO: should check self.length > len(self.preview_chars) but won't quite work with prettified text insertions
-        if self.length > site_config.other_files_preview_chars and not self.config_replace_text_with:
+        if self.length > site_config.other_files_preview_chars and not self.config_display_text:
             txt.append(f"... ({self.length - len(txt):,} more characters)", 'dim italic')
 
         return txt

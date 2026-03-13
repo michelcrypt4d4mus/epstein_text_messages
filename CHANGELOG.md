@@ -1,4 +1,5 @@
 # NEXT RELEASE
+* Rename `DocCfg.replace_text_with` to `display_text`
 
 ### 1.9.3
 * use the `DocPrinter` to build the title page so it correctly centers in the browser

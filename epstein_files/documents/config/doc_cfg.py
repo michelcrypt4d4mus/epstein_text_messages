@@ -82,7 +82,7 @@ NON_METADATA_FIELDS = [
     'actual_text',
     'id',
     'is_synthetic',
-    'replace_text_with',
+    'display_text',
 ]
 
 # Categories where we want to include the category name at start of the description string
@@ -123,6 +123,7 @@ class DocCfg:
         category (str, optional): Type of file
         comment (str, optional): Info about this file not worth being in the description
         date (str, optional): Parsed to a datetime by timestamp() if it exists
+        display_text (str, optional): Replace the contents of this file with this string when it's displayed
         dupe_type (DuplicateType | None): The type of duplicate this file is or its 'duplicate_ids' are
         duplicate_ids (list[str]): IDs of *other* documents that are dupes of this document
         duplicate_of_id (str | None): If this is a dupe the ID of the duplicated file. This file will be suppressed
@@ -134,7 +135,6 @@ class DocCfg:
         non_participants (list[str]): hacky way to avoid false detection of these names
         num_preview_chars (int, optional): customize number of preview_chars shown in `OtherFile` tables
         people (list[str]): override `Document.people()` with a fixed set of names (meaning no scan of the text)
-        replace_text_with (str, optional): Replace the contents of this file with this string
         show_full_panel (bool, optional): set `is_interesting=True` and show in a full panel view, not in a table
         show_with_name (str, optional): if set this document will be displayed all with the person specified
         truncate_to (int | tuple[int, int], optional): Number of characters to truncate this email to when displayed
@@ -152,6 +152,7 @@ class DocCfg:
     date: str = ''
     date_uncertain: str | bool = False
     description: str = ''
+    display_text: str = ''
     dupe_type: DuplicateType | None = None
     duplicate_ids: list[str] = field(default_factory=list)
     duplicate_of_id: str | None = None
@@ -163,7 +164,6 @@ class DocCfg:
     non_participants: list[str] = field(default_factory=list)  # TODO: this sucks
     num_preview_chars: int | None = None
     people: list[str] = field(default_factory=list)
-    replace_text_with: str = ''
     show_full_panel: bool = False
     show_with_name: str = ''
     truncate_to: int | tuple[int, int] | None = None
@@ -225,7 +225,7 @@ class DocCfg:
         author = f"{self.author} {QUESTION_MARKS}" if self.author and self.author_uncertain else self.author
 
         # If description is set at all in one of these if/else checks must be fully constructed
-        if self.replace_text_with and not self.description:
+        if self.display_text and not self.description:
             return ''
         if self.category == Uninteresting.BOOK or \
                 (self.category == Uninteresting.ACADEMIA and self.author and self.description):
@@ -496,8 +496,8 @@ class DocCfg:
         elif not is_category(self.category):
             logger.warning(f"'{self.category}' does not appear to be a valid category")
 
-        if self.category == Category.FLIGHT_LOG and not self.replace_text_with:
-            self.replace_text_with ='flight log'
+        if self.category == Category.FLIGHT_LOG and not self.display_text:
+            self.display_text ='flight log'
 
         self.description = quote(self.description) if self.is_description_a_title else self.description
 

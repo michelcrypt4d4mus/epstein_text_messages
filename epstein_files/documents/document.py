@@ -176,10 +176,10 @@ class Document:
         return non_epstein_highlighter(Text(self.config_description, style)) if self.config_description else None
 
     @property
-    def config_replace_text_with(self) -> str | None:
+    def config_display_text(self) -> str | None:
         """Configured replacement text."""
-        if self.config and self.config.replace_text_with:
-            text = join_truthy(self.config.author, self.config.replace_text_with)
+        if self.config and self.config.display_text:
+            text = join_truthy(self.config.author, self.config.display_text)
 
             if len(text) < 300 and not text.startswith('photo'):
                 return f"(Text of {text} {CHECK_LINK_FOR_DETAILS})"
@@ -193,7 +193,7 @@ class Document:
     @property
     def display_text(self) -> str:
         """Config overrides what text should be displayed."""
-        return collapse_newlines(self._config.replace_text_with or self.text)
+        return collapse_newlines(self._config.display_text or self.text)
 
     @property
     def duplicate_file_txt(self) -> Text | None:
@@ -355,7 +355,7 @@ class Document:
         display_text = doublespace_lines(self.display_text)
         char_range = self._config.char_range or (0, self.length + 1)
         # TODO: do something better to give replacement_text have different style
-        style = INFO_STYLE if self.config_replace_text_with and len(self.config_replace_text_with) < 300 else ''
+        style = INFO_STYLE if self.config_display_text and len(self.config_display_text) < 300 else ''
         selected_txt = self._config.text_highlighter(Text(display_text, style))[char_range[0]:char_range[1]]  # array slice of `Text` obj preserves style
         pretty_txt = self._intro_txt(char_range[0]).append(selected_txt)
 

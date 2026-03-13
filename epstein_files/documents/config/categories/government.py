@@ -6,6 +6,15 @@ from epstein_files.util.helpers.string_helper import join_truthy, quote
 from epstein_files.util.logging import logger
 
 
+def bop_doc(id: str, description: str = '', date: str = '', display_text: str = '', **kwargs) -> DocCfg:
+    return DocCfg(id=id, author=BUREAU_OF_PRISONS, description=description, date=date, display_text=display_text)
+
+
+def bop_policy_doc(id: str, display_text: str, date: str = '') -> DocCfg:
+    """Bureau of prison brochures, poliicy statements, etc."""
+    return bop_doc(id, date=date, display_text=display_text)
+
+
 GOVERNMENT_CFGS = [
     DocCfg(
         id='024117',
@@ -26,23 +35,28 @@ GOVERNMENT_CFGS = [
         description=f"approved mail list during Epstein's 2009 incarceration in {PALM_BEACH}",
         show_full_panel=True,
     ),
-    DocCfg(id='EFTA00109783', author=BUREAU_OF_PRISONS, description='prisoner assignments', date='2019-08-03'),
-    DocCfg(id='EFTA00035921', author=BUREAU_OF_PRISONS, description="Lieutenant's Logs", date='2019-08-06'),
-    DocCfg(id='EFTA00120617', author=BUREAU_OF_PRISONS, description='"Prisoner Remand or Order to Deliver" forms', date='2019-07-30'),
-    DocCfg(id='EFTA00109163', author=BUREAU_OF_PRISONS, description='various Metropolitan Correctional Center forms showing Konstantin Ignatov', date='2019-08-08', is_interesting=True),
-    DocCfg(id='EFTA00109654', author=BUREAU_OF_PRISONS, description='roster of inmates at Metropolitan Correctional Center', date='2019-08-08'),
-    DocCfg(id='EFTA00108533', author=BUREAU_OF_PRISONS, description='roster of inmates at Metropolitan Correctional Center', date='2019-07-23'),
-    DocCfg(id='EFTA00108552', author=BUREAU_OF_PRISONS, description='roster of inmates at Metropolitan Correctional Center', date='2019-07-23'),
-    DocCfg(id='EFTA00039153', author=BUREAU_OF_PRISONS, description='List of Exhibits, Chapter 2', date='2019-01-06'),
-    DocCfg(id='EFTA00039025', author=BUREAU_OF_PRISONS, description="report on death of Jeffrey Epstein", is_interesting=True),
-    DocCfg(id='EFTA00039190', author=BUREAU_OF_PRISONS, description='Special Housing Units', date='2016-11-23', is_interesting=False),
-    DocCfg(id='EFTA00120459', author=BUREAU_OF_PRISONS, replace_text_with='handwritten log of prisoner movements', date='2019-08-09'),
-    DocCfg(id='EFTA00039227', author=BUREAU_OF_PRISONS, replace_text_with='Inmate Discipline Program Statement'),
-    DocCfg(id='EFTA00039295', author=BUREAU_OF_PRISONS, replace_text_with='Inmate Telephone Privileges Program Statement'),
-    DocCfg(id='EFTA00039312', author=BUREAU_OF_PRISONS, replace_text_with='Program Statement / Memo about BOP Pharmacy Program'),
-    DocCfg(id='EFTA00039351', author=BUREAU_OF_PRISONS, replace_text_with='Program Statement / Memo about BOP Pharmacy Program'),
-    DocCfg(id='EFTA00039156', author=BUREAU_OF_PRISONS, replace_text_with='Standards of Employee Conduct'),
-    DocCfg(id='EFTA01125108', author='DHS', description=f'receipt for I129 Petition for a Nonimmigrant Worker filed by Sublime Art LLC, {ARDA_BESKARDES}', is_interesting=True),
+    bop_doc('EFTA00109783', 'prisoner assignments', '2019-08-03'),
+    bop_doc('EFTA00035921', "Lieutenant's Logs", '2019-08-06'),
+    bop_doc('EFTA00039153', 'List of Exhibits, Chapter 2', '2019-01-06'),
+    bop_doc('EFTA00109163', 'Metropolitan Correctional Center forms showing Konstantin Ignatov', '2019-08-08', is_interesting=True),
+    bop_doc('EFTA00120617', '"Prisoner Remand or Order to Deliver" forms', '2019-07-30'),
+    bop_doc('EFTA00109654', 'roster of inmates at Metropolitan Correctional Center', '2019-08-08'),
+    bop_doc('EFTA00108533', 'roster of inmates at Metropolitan Correctional Center', '2019-07-23'),
+    bop_doc('EFTA00108552', 'roster of inmates at Metropolitan Correctional Center', '2019-07-23'),
+    bop_doc('EFTA00039025', "report on death of Jeffrey Epstein", is_interesting=True),
+    bop_doc('EFTA00039190', 'Special Housing Units', '2016-11-23', is_interesting=False),
+    bop_policy_doc('EFTA00120459', 'handwritten log of prisoner movements', date='2019-08-09'),
+    bop_policy_doc('EFTA00039227', 'Inmate Discipline Program Statement'),
+    bop_policy_doc('EFTA00039295', 'Inmate Telephone Privileges Program Statement'),
+    bop_policy_doc('EFTA00039312', 'Program Statement / Memo about BOP Pharmacy Program'),
+    bop_policy_doc('EFTA00039351', 'Program Statement / Memo about BOP Pharmacy Program'),
+    bop_policy_doc('EFTA00039156', 'Standards of Employee Conduct'),
+    DocCfg(
+        id='EFTA01125108',
+        author='DHS',
+        description=f'receipt for I129 Petition for a Nonimmigrant Worker filed by Sublime Art LLC, {ARDA_BESKARDES}',
+        is_interesting=True,
+    ),
     DocCfg(
         id='EFTA00164939',
         author=DOJ,
@@ -63,6 +77,7 @@ GOVERNMENT_CFGS = [
     fbi_defense_witness('EFTA02730267', 'Malcolm Grumbridge', '2022-04-14'),
     fbi_defense_witness('EFTA02730271', REDACTED, '2022-03-22'),
     fbi_defense_witness('EFTA02730477', 'Roderic Alexander', '2022-01-19'),
+    # FBI interviews
     fbi_interview('EFTA02858481', 'Jennifer Aros', 'Epstein victim'),
     fbi_interview('EFTA00174375', LUKE_D_THORBURN, f"lot of takes on Epstein, China, and {STEVE_BANNON}"),
     fbi_interview('EFTA00081226', 'minor victim'),
@@ -70,6 +85,7 @@ GOVERNMENT_CFGS = [
     fbi_interview('EFTA01246710', PERRY_LANG, "Epstein's chef claims Donald Trump came to Epstein's house for dinner", truncate_to=(6000, 7500)),
     fbi_interview('EFTA00101927', None, f'claims au pair of Glenn and {EVA_DUBIN} was held against her will'),
     fbi_interview('EFTA00159321', None, f'covers {PAOLO_ZAMPOLLI}, Epstein, and the possibility Epstein introduced Melania to Donald Trump'),
+    # FBI reports
     fbi_report(
         '018872',
         non_participants=[
@@ -103,9 +119,10 @@ GOVERNMENT_CFGS = [
     fbi_report('EFTA01688746'),
     fbi_report('EFTA00151754', 'declaration of Law Enforcement Officer for Victim of Trafficking', is_interesting=True),
     fbi_report('EFTA00222943', "agent believes computers were removed from Epstein's residence"),
-    fbi_report('EFTA00020506', highlight_quote='chauffeur also told Epstein "I have something on you remember what I buried!"'),
     fbi_report('EFTA01249591', f"allegations against {HENRY_JARECKI}"),
-    fbi_report('EFTA00173569', 'hack of FBI Epstein files repo by foreign actor', is_interesting=True),
+    fbi_report('EFTA00173569', 'hack of FBI Epstein files repository by foreign actor', is_interesting=True),
+    fbi_report('EFTA00020506', highlight_quote='chauffeur also told Epstein "I have something on you remember what I buried!"'),
+    # FBI tips
     fbi_tip(
         'EFTA01660676',
         "about recently convicted rapists Tal and Oren Alexander at Epstein's house",
@@ -116,7 +133,7 @@ GOVERNMENT_CFGS = [
     fbi_tip('EFTA00090314', f'about {MASHA_DROKOVA}, Jared Kushner, Ivanka Trump, Chabad, {ALAN_DERSHOWITZ}, etc.', is_interesting=True),
     DocCfg(id='EFTA00084614', author=PALM_BEACH_POLICE, description='incident report detailing the investigation into Jeffrey Epstein'),
     DocCfg(id='EFTA00007893', author=PALM_BEACH_POLICE, description=f"receipts, notes, bank statements of {GHISLAINE_MAXWELL}"),
-    DocCfg(id='EFTA00005569', author=PALM_BEACH_POLICE, replace_text_with='photo lineup featuring Epstein', date='2005-03-17'),
+    DocCfg(id='EFTA00005569', author=PALM_BEACH_POLICE, display_text='photo lineup featuring Epstein', date='2005-03-17'),
     DocCfg(id='EFTA01227877', description='multi entry visa for the Russian Federation', date='2018-06-25', show_full_panel=True),
     DocCfg(id='EFTA00128379', description='analysis of two of Epstein\'s desktop computers', date='2019-01-06', is_interesting=True),
     DocCfg(id='EFTA02730274', description='evidence inventory that appears to have since been deleted from the DOJ website'),

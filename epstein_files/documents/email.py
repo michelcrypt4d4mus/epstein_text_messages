@@ -63,7 +63,7 @@ MAX_NUM_HEADER_LINES = 14
 MAX_QUOTED_REPLIES = 1
 NUM_WORDS_IN_LAST_QUOTE = 6
 
-# TODO: Copy replace_text_with?
+# TODO: Copy display_text?
 DERIVED_CFG_PROPS_TO_COPY = [
     'author_uncertain',
     'category',
@@ -297,7 +297,7 @@ class Email(Communication):
     def display_text(self) -> str:
         """Config overrides what text should be displayed."""
         return str(self.email_parts)
-        return collapse_newlines(self._config.replace_text_with or self.text)
+        return collapse_newlines(self._config.display_text or self.text)
 
     @property
     def header(self) -> EmailHeader:

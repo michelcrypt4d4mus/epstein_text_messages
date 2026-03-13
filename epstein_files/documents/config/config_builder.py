@@ -144,7 +144,7 @@ def fbi_tip(id: str, about: str, **kwargs) -> DocCfg:
 
 
 def fedex_invoice(id: str, date: str) -> DocCfg:
-    return DocCfg(id=id, author='FedEx', date=date, replace_text_with='FedEx invoice')
+    return DocCfg(id=id, author='FedEx', date=date, display_text='FedEx invoice')
 
 
 def immigration_letter(id: str, author: Name, date: str = '', description: str = '', show_with_name = '', **kwargs) -> CommunicationCfg:
@@ -171,7 +171,7 @@ def important_messages_pad(id: str, date: str = '') -> DocCfg:
     return DocCfg(
         id=id,
         date=date,
-        replace_text_with='"Important Message" formatted notepad with notes about missed phone calls etc.'
+        display_text='"Important Message" formatted notepad with notes about missed phone calls etc.'
     )
 
 
@@ -192,7 +192,7 @@ def phone_bill_cfg(id: str, author: str, dates: str = '', **kwargs) -> DocCfg:
         id=id,
         author=author,
         category=Uninteresting.PHONE_BILL,
-        replace_text_with=f"phone bill" + (f" covering {dates}" if dates else ''),
+        display_text=f"phone bill" + (f" covering {dates}" if dates else ''),
         **kwargs
     )
 

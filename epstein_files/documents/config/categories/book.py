@@ -35,8 +35,8 @@ BOOK_CFGS = [
     DocCfg(id='021145', author=VIRGINIA_GIUFFRE, description=f'"The Billionaire\'s Playboy Club" (draft?)'),
     DocCfg(id='031533', description=f'pages from a book about the Baylor University sexual assault scandal and Sam Ukwuachu'),
     # DOJ files
-    DocCfg(id='EFTA00008020', replace_text_with='"Massage for Dummies"'),
-    DocCfg(id='EFTA00008320', replace_text_with='"Massage for Dummies (???)"'),
-    DocCfg(id='EFTA00008220', replace_text_with='"Massage book: Chapter 11: Putting the Moves Together"'),
-    DocCfg(id='EFTA00008120', replace_text_with='"Part II: The Art of Receiving a Massage"'),
+    DocCfg(id='EFTA00008020', display_text='"Massage for Dummies"'),
+    DocCfg(id='EFTA00008320', display_text='"Massage for Dummies (???)"'),
+    DocCfg(id='EFTA00008220', display_text='"Massage book: Chapter 11: Putting the Moves Together"'),
+    DocCfg(id='EFTA00008120', display_text='"Part II: The Art of Receiving a Massage"'),
 ]
