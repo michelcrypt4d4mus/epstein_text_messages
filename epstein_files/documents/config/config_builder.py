@@ -138,11 +138,17 @@ def fbi_report(id: str, description: str = FBI_REPORT, **kwargs) -> DocCfg:
 
 def immigration_letter(id: str, author: Name, date: str = '', description: str = '', show_with_name = '', **kwargs) -> CommunicationCfg:
     """`show_with_name` is who the letter is about."""
+    person_recommended_for_visa = show_with_name or 'someone'
+    suffix = f"recommending \"genius\" visa for {person_recommended_for_visa}"
+
+    if person_recommended_for_visa not in description:
+        description = join_truthy(description, suffix)
+
     return letter(
         id,
         author=author,
         date=date,
-        description=description or 'letter of recommendation for a visa',
+        description=description,
         is_interesting=True,
         recipients=['INS'],
         show_with_name=show_with_name,
