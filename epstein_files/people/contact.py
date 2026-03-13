@@ -15,7 +15,9 @@ from epstein_files.util.helpers.rich_helpers import enclose
 from epstein_files.util.helpers.string_helper import as_pattern, indented, is_integer, quote, remove_question_marks, join_truthy
 from epstein_files.util.logging import logger
 
+BIO_STYLE = 'italic grey70'
 MIN_LEN_FOR_OPTIONAL_LAST_CHAR = 5
+
 MGMT_PATTERN = r"M(ana)?ge?m(en)?t"
 MGMT_REGEX = re.compile(MGMT_PATTERN)
 COMPANY_SUFFIX_REGEX = re.compile(fr".*?(,? (Inc\.?|LLC|{MGMT_PATTERN}))$")
@@ -62,35 +64,26 @@ class Contact:
             self.match_partial = None
 
         urls = [wikipedia_url_for_name(self.name) if url == WIKIPEDIA else url for url in  listify(self.url)]
-        self.links = [ExternalLink(url, self.name, link_style=self.bold_style) for url in urls]
+        self.links = [ExternalLink(url, self.name, link_style=self._style_bold) for url in urls]
 
         try:
             self.emailer_regex = re.compile(self.pattern, re.IGNORECASE)
-        except re.error as e:
-            logger.fatal(f"failed to compile emailer_regex for {self.name}: {e}")
-            raise e
-
-        try:
             self.highlight_regex = re.compile(fr"\b({self.highlight_pattern})\b", re.IGNORECASE)
         except re.error as e:
-            logger.fatal(f"failed to compile highlight_regex for {self.name}: {e}")
+            self._log(f"failed to compile emailer or highlight regex: {e}", logging.ERROR)
             raise e
 
     @property
     def bio(self) -> Text:
-        """Biographical info about this entity."""
+        """Biographical info about this entity with links etc."""
         from epstein_files.output.epstein_highlighter import non_epstein_highlighter
-        bio_txt = Text('').append(self.links[0].link if self.links else Text(self.name, self.style))
+        bio_txt = Text('').append(self.name_link)
 
         if self.category:
             category_txt = Text(self.category.lower(), style=f'{self.style} dim')
             bio_txt.append(enclose(category_txt, encloser='()', encloser_style='dim'))
 
-        return bio_txt.append(' ').append(non_epstein_highlighter(Text(self.info, style='italic grey70')))
-
-    @property
-    def bold_style(self) -> str:
-        return f"{self.style} bold".strip()
+        return bio_txt.append(' ').append(non_epstein_highlighter(Text(self.info, style=BIO_STYLE)))
 
     @property
     def has_bio(self) -> bool:
@@ -98,15 +91,16 @@ class Contact:
 
     @property
     def highlight_pattern(self) -> str:
-        """
-        `self.emailer_pattern` extended with first/last name variations.
-        Used for color highlighting with `HighlightedNames` / `EpsteinHighlighter`.
-        """
-        # TODO: this sucks
+        """`self.emailer_pattern` extended with first/last name variations for Rich highlighting."""
         if self.is_junk:
-            return self.pattern
+            return self.pattern  # TODO: this sucks
 
         return '|'.join(self._name_patterns)
+
+    @property
+    def name_link(self) -> Text:
+        """Colored name with hyperlink if applicable (otherwise just colored name)."""
+        return self.links[0].link if self.links else Text(self.name, self.style)
 
     @property
     def pattern(self) -> str:
@@ -123,11 +117,6 @@ class Contact:
                 pattern += '?'
 
         return as_pattern(pattern)
-
-    @property
-    def url_slug(self) -> str:
-        """URL safe version of the name with spaces replaced by underscores."""
-        return self.name.replace(' ', '_')
 
     @property
     def _middle_initial(self) -> str:
@@ -189,10 +178,13 @@ class Contact:
         props.append(f'highlight_pattern=r"{self.highlight_pattern}"')
         return props
 
+    @property
+    def _style_bold(self) -> str:
+        return f"{self.style} bold".strip()
+
     def _log(self, msg: str, level: int = logging.INFO) -> None:
         """Log something prefixed by this person's name."""
-        msg = f"{type(self).__name__}('{self.name}'): {msg}"
-        logger.log(level, msg)
+        logger.log(level, f"{type(self).__name__}('{self.name}'): {msg}")
 
     def _warn(self, msg: str) -> None:
         """Log warning with prefix."""

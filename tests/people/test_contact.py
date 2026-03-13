@@ -1,9 +1,13 @@
+from rich.text import Text
+
 from epstein_files.people.contact import Contact, acronym, organization, epstein_co, epstein_trust
 from epstein_files.people.names import INTERNATIONAL_PEACE_INSTITUTE, JEAN_LUC_BRUNEL, JEFFREY_EPSTEIN, SULTAN_BIN_SULAYEM
 
 NAME = 'Nasir Jones'
 EMAILER_PATTERN = r"Nasir[-_.\s]*Jones?"
 HIGHLIGHT_PATTERN = fr"{EMAILER_PATTERN}|Jones,?[-_.\s]*Nasir"
+URL = 'https://nasir.jones/ill'
+WIKIPEDIA_URL = 'https://en.wikipedia.org/wiki/Nasir_Jones'
 
 CONTACT_INFO = Contact(
     name=JEFFREY_EPSTEIN,
@@ -92,7 +96,12 @@ def test_repr():
 
 
 def test_urls():
-    c = Contact('Nasir Jones')
+    c = Contact('Nasir Jones', url='WIKIPEDIA')
+    assert c.links[0].url == WIKIPEDIA_URL
+    c = Contact('Nasir Jones', url=['WIKIPEDIA', URL])
+    assert c.links[0].url == WIKIPEDIA_URL
+    c = Contact('Nasir Jones', url=[URL, 'WIKIPEDIA'])
+    assert c.name_link == Text.from_markup(f'[link={URL}][bold underline]Nasir Jones[/bold underline][/link]')
 
 
 def _build_contact(**kwargs) -> Contact:
