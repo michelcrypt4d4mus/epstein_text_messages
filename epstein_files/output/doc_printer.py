@@ -41,18 +41,26 @@ PeopleBiosArg = list[str] | Document | FileDisplay
 
 @dataclass(kw_only=True)
 class DocPrinter:
-    """Handles printing collections of documents with biographical info panels interspersed."""
+    """
+    Handles printing collections of documents with biographical info panels interspersed.
+
+    Args:
+        epstein_files (EpsteinFiles): the data
+        collect_other_files_to_tables (bool, optional): OtherFiles will be collected into small tables if they are sequential
+        html_elements (list[str]): HTML for all objects printed so far
+        printed_docs (list[Document]): all Documents that have been printed so far
+        printed_name_bios (set[str]): all the names for which biographical information has been printed already
+
+    """
     epstein_files: 'EpsteinFiles'
-    also_print_for_mobile: bool = False
     collect_other_files_to_tables: bool = True
     html_elements: list[str] = field(default_factory=list)
-    mobile_html_elements: list[str] = field(default_factory=list)
-    other_files_queue: list[OtherFile] = field(default_factory=list)
-    last_bio_panel = ''
-    people_encountered: set[str] = field(default_factory=set)
     printed_docs: list[Document] = field(default_factory=list)
     printed_file_displays: list[FileDisplay] = field(default_factory=list)
-    suppressed_docs_queue: list[Document] = field(default_factory=list)
+    printed_name_bios: set[str] = field(default_factory=set)
+    _last_bio_panel = ''
+    _other_files_queue: list[OtherFile] = field(default_factory=list)
+    _suppressed_docs_queue: list[Document] = field(default_factory=list)
 
     def __post_init__(self):
         self.html_elements.append(self._html_so_far())  # Grab whatever's in the console buffer (usually title page)
@@ -81,29 +89,11 @@ class DocPrinter:
         else:
             names = names_or_doc
 
-        return [n for n in names if n not in self.people_encountered]
+        return [n for n in names if n not in self.printed_name_bios]
 
     def new_names_with_bios(self, names_or_doc: PeopleBiosArg) -> list[str]:
         """Return names that a) were not seen before and b) have configured biographical info."""
         return [n for n in self.new_names(names_or_doc) if PEOPLE_BIOS.get(n)]
-
-    def _build_biographies_panel_html(self, names: list[str]) -> str:
-        """NOTE: Also prints to console!!"""
-        if (bio_panel := self._biographical_panel(names)):
-            self._print_other_files_queue()  # Clear the queue before new biographical panel
-            console.print(self._align_biographical_panel(bio_panel))
-            self.people_encountered.update(names)
-            return div_class(rich_to_html(bio_panel, minimize_width=True), STICKY_BIO_CSS_CLASS)
-        else:
-            return ''
-
-    def _cache_biographies_panel(self, names: list[str]) -> None:
-        """The html string of the bios panel is cached in `self.last_bio_panel`."""
-        if (bios_html := self._build_biographies_panel_html(names)):
-            if self.last_bio_panel:
-                raise RuntimeError(f"last_bio_panel should be empty, instead it's:\n{self.last_bio_panel}")
-            else:
-                self.last_bio_panel = bios_html
 
     def print_centered(self, _renderables: RenderableType | list[RenderableType]):
         renderables = listify(_renderables)
@@ -129,7 +119,7 @@ class DocPrinter:
             logger.info(f"Printing {doc}")
 
             if isinstance(doc, Document) and doc.suppressed_txt:
-                self.suppressed_docs_queue.append(doc)
+                self._suppressed_docs_queue.append(doc)
                 continue
 
             self._print_suppression_msgs_queue()
@@ -138,7 +128,7 @@ class DocPrinter:
                 if (new_names := self.new_names_with_bios(doc)):
                     self._cache_biographies_panel(new_names)
 
-                self.other_files_queue.append(doc)
+                self._other_files_queue.append(doc)
                 continue
 
             self._print_other_files_queue()
@@ -173,7 +163,7 @@ class DocPrinter:
                 html_table = table_to_html(rich_obj, css_props)
 
                 # this is a bad way to signify the table being printed is an OtherFiles table
-                if self.last_bio_panel:
+                if self._last_bio_panel:
                     self._append_element_with_bio_div(html_table)
                 else:
                     self.html_elements.append(html_table)
@@ -223,17 +213,17 @@ class DocPrinter:
 
         return write_templated_html(self.html_elements, output_path)
 
-    def write_mobile_html(self, html_path: Path) -> None:
-        write_templated_html(self.mobile_html_elements, html_path)
+    # def write_mobile_html(self, html_path: Path) -> None:
+    #     write_templated_html(self.mobile_html_elements, html_path)
 
     def _align_biographical_panel(self, panel: Panel) -> Align:
         return Align(Padding(panel, site_config.character_bio_padding), 'right')
 
     def _append_element_with_bio_div(self, element: str, bio_panel: str = '') -> None:
         """Cache the `last_bio_panel` html so it can be placed inside div with document."""
-        if self.last_bio_panel:
-            bio_panel = self.last_bio_panel
-            self.last_bio_panel = ''
+        if self._last_bio_panel:
+            bio_panel = self._last_bio_panel
+            self._last_bio_panel = ''
 
         element = '\n'.join([bio_panel, element])
         self.html_elements.append(div_class(element, 'doc_container'))
@@ -257,7 +247,26 @@ class DocPrinter:
         else:
             return None
 
+    def _build_biographies_panel_html(self, names: list[str]) -> str:
+        """NOTE: Also prints to console!!"""
+        if (bio_panel := self._biographical_panel(names)):
+            self._print_other_files_queue()  # Clear the queue before new biographical panel
+            console.print(self._align_biographical_panel(bio_panel))
+            self.printed_name_bios.update(names)
+            return div_class(rich_to_html(bio_panel, minimize_width=True), STICKY_BIO_CSS_CLASS)
+        else:
+            return ''
+
+    def _cache_biographies_panel(self, names: list[str]) -> None:
+        """The html string of the bios panel is cached in `self.last_bio_panel`."""
+        if (bios_html := self._build_biographies_panel_html(names)):
+            if self._last_bio_panel:
+                raise RuntimeError(f"last_bio_panel should be empty, instead it's:\n{self._last_bio_panel}")
+            else:
+                self._last_bio_panel = bios_html
+
     def _html_so_far(self, mobile: bool = False) -> str:
+        """Return everything currently in the console buffer as an HTML string."""
         if mobile:
             return console_buffer_to_html(mobile_console, False)
         else:
@@ -265,7 +274,7 @@ class DocPrinter:
 
     def _print_other_files_queue(self) -> None:
         """Print any queued OtherFile objects collected in a table."""
-        if not self.other_files_queue:
+        if not self._other_files_queue:
             return
 
         # Title is only on the first OtherFiles table printed
@@ -275,19 +284,19 @@ class DocPrinter:
             table_title = OTHER_FILES_TABLE_MSG
             self.line()
 
-        table = OtherFile.files_preview_table(self.other_files_queue, title=table_title, title_justify='center')
+        table = OtherFile.files_preview_table(self._other_files_queue, title=table_title, title_justify='center')
         self.print_renderable(Padding(table, (0, 0, 1, site_config.other_files_table_indent)))
-        self.printed_docs.extend(self.other_files_queue)
-        self.other_files_queue = []
+        self.printed_docs.extend(self._other_files_queue)
+        self._other_files_queue = []
 
     def _print_suppression_msgs_queue(self) -> None:
         """Print any suppression messages."""
-        if not self.suppressed_docs_queue:
+        if not self._suppressed_docs_queue:
             return
 
-        msgs_panel = BasePanel(border_style='', text=[d.suppressed_txt for d in self.suppressed_docs_queue])
+        msgs_panel = BasePanel(border_style='', text=[d.suppressed_txt for d in self._suppressed_docs_queue])
         self.print_renderable(msgs_panel)
-        self.suppressed_docs_queue = []
+        self._suppressed_docs_queue = []
         console.line()  # TODO this isn't happening in HTML output
 
     def _print_title_page_elements(self, renderables: list[RenderableType]) -> None:
