@@ -129,16 +129,27 @@ def fbi_defense_witness(id: str, witness: str, date: str = '') -> DocCfg:
     )
 
 
-def fedex_invoice(id: str, date: str) -> DocCfg:
-    return DocCfg(id=id, author='FedEx', date=date, replace_text_with='FedEx invoice')
+def fbi_interview(id: str, interviewee: Name, description: str = '', date: str = '', **kwargs) -> CommunicationCfg:
+    return CommunicationCfg(
+        id=id,
+        author=FBI,
+        date=date,
+        description=join_truthy(f"interview with {interviewee or UNKNOWN}", description, ', '),
+        recipients=[interviewee],
+        **kwargs
+    )
+
+
+def fbi_report(id: str, description: str = FBI_REPORT, **kwargs) -> DocCfg:
+    return DocCfg(id=id, author=FBI, category=Neutral.GOVERNMENT, description=description, **kwargs)
 
 
 def fbi_tip(id: str, about: str, **kwargs) -> DocCfg:
     return fbi_report(id, f"tip {about}", **kwargs)
 
 
-def fbi_report(id: str, description: str = FBI_REPORT, **kwargs) -> DocCfg:
-    return DocCfg(id=id, author=FBI, category=Neutral.GOVERNMENT, description=description, **kwargs)
+def fedex_invoice(id: str, date: str) -> DocCfg:
+    return DocCfg(id=id, author='FedEx', date=date, replace_text_with='FedEx invoice')
 
 
 def immigration_letter(id: str, author: Name, date: str = '', description: str = '', show_with_name = '', **kwargs) -> CommunicationCfg:

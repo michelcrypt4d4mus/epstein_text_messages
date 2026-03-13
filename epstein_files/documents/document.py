@@ -667,8 +667,7 @@ class Document:
         if cutoff == 0:
             return Text('')
 
-        msg = f'trimmed first {cutoff:,} characters'
-        return snip_msg_txt(msg, EXCERPT_STYLE).append('...')
+        return snip_msg_txt(f'trimmed first {cutoff:,} characters', EXCERPT_STYLE).append('\n\n...')
 
     def _write_clean_text(self, output_path: Path) -> None:
         """Write self.text to 'output_path'. Used only for diffing files."""

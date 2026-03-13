@@ -1,5 +1,5 @@
 from epstein_files.documents.documents.categories import CONSTANT_CATEGORIES, Interesting, Neutral
-from epstein_files.documents.config.config_builder import FBI_REPORT, fbi_defense_witness, fbi_report, letter, fbi_tip
+from epstein_files.documents.config.config_builder import FBI_REPORT, fbi_defense_witness, fbi_interview, fbi_tip, fbi_report, letter
 from epstein_files.documents.config.doc_cfg import NO_TRUNCATE, DocCfg, EmailCfg
 from epstein_files.people.names import *
 from epstein_files.util.constant.strings import *
@@ -59,36 +59,29 @@ GOVERNMENT_CFGS = [
     DocCfg(id='EFTA00040006', author=DOJ, date='2019-08-27', description='Personal History of Defendant Jeffrey Epstein + grand jury indictment'),
     DocCfg(id='EFTA02731226', author=DOJ, date='2021-03-14', description=f'memo seeking authorization to charge {GHISLAINE_MAXWELL} with additional offenses'),
     DocCfg(
-        id='EFTA01246710',
-        author=FBI,
-        description="interview where Epstein's chef says Donald Trump came to Epstein's house for dinner",
-        truncate_to=(6000, 7500),
-    ),
-    DocCfg(
-        id='EFTA00174375',
-        author=FBI,
-        date='2022-11-18',
-        description=f"interview of {LUKE_D_THORBURN} with a lot of takes on Epstein, China, and {STEVE_BANNON}",
-    ),
-    DocCfg(
         id='EFTA00159321',
         author=FBI,
         description='interview re: Paolo Zampolli, Epstein assaults, and the possibility Epstein introduced Melania to Donald Trump',
     ),
-    fbi_tip('EFTA01660676', "about recently convicted rapists Tal and Oren Alexander at Epstein's house", comment='https://www.bbc.com/news/articles/c6271ngl014o', show_full_panel=True),
-    fbi_tip('EFTA00020490', 'from woman who thinks she encountered Epstein as a young girl'),
     DocCfg(id='EFTA00151754', author=FBI, description='delaration of Law Enforcement Officer for Victim of Trafficking', is_interesting=True),
     DocCfg(id='EFTA00222943', author=FBI, description=f"agent believes computers were removed from Epstein's residence"),
     DocCfg(id='EFTA00020506', author=FBI, description='"chauffeur told Epstein \'I have something on you, remember what I buried!\'"', show_full_panel=True),
     DocCfg(id='EFTA01249591', author=FBI, description=f"allegations against {HENRY_JARECKI}"),
     DocCfg(id='EFTA00023055', author=FBI, description="evidence of notes left about newly recruited underage girls by girls giving massages"),
-    DocCfg(id='EFTA00081226', author=FBI, description='interview with minor victim'),
-    DocCfg(id='EFTA00038915', author=FBI, description='interview with minor victim who said Epstein knew she was 14'),
-    DocCfg(id='EFTA02858481', author=FBI, description='interview with victim Jennifer Aros'),
-    DocCfg(id='EFTA00101927', author=FBI, description=f'interview with someone who mentions au pair of Glenn and {EVA_DUBIN} held against her will'),
     DocCfg(id='EFTA00173569', author=FBI, description='report on hack of FBI Epstein files repo by foreign actor', is_interesting=True),
     DocCfg(id='EFTA00247131', author=FBI, description='search warrant for New York house', date='2019-07-07'),
     DocCfg(id='EFTA01731217', author=FBI, description=f'requesting INS allow {NADIA_MARCINKO} be allowed to stay in the US because of an ongoing sex-trafficking case', is_interesting=True),
+    fbi_defense_witness('EFTA02730267', 'Malcolm Grumbridge', '2022-04-14'),
+    fbi_defense_witness('EFTA02730271', REDACTED, '2022-03-22'),
+    fbi_defense_witness('EFTA02730477', 'Roderic Alexander', '2022-01-19'),
+    fbi_interview('EFTA02858481', 'Jennifer Aros', 'Epstein victim'),
+    fbi_interview('EFTA00174375', LUKE_D_THORBURN, f"lot of takes on Epstein, China, and {STEVE_BANNON}"),
+    fbi_interview('EFTA00081226', 'minor victim'),
+    fbi_interview('EFTA00038915', 'minor victim', 'claims Epstein knew she was 14'),
+    fbi_interview('EFTA01246710', PERRY_LANG, "Epstein's chef claims Donald Trump came to Epstein's house for dinner", truncate_to=(6000, 7500)),
+    fbi_interview('EFTA00101927', None, f'claims au pair of Glenn and {EVA_DUBIN} was held against her will'),
+    fbi_tip('EFTA00020490', 'from woman who thinks she encountered Epstein as a young girl'),
+    fbi_tip('EFTA01660676', "about recently convicted rapists Tal and Oren Alexander at Epstein's house", comment='https://www.bbc.com/news/articles/c6271ngl014o', show_full_panel=True),
     DocCfg(id='EFTA00084614', author=PALM_BEACH_POLICE, description='incident report detailing the investigation into Jeffrey Epstein'),
     DocCfg(id='EFTA00007893', author=PALM_BEACH_POLICE, description=f"receipts, notes, bank statements of {GHISLAINE_MAXWELL}"),
     DocCfg(id='EFTA00005569', author=PALM_BEACH_POLICE, replace_text_with='photo lineup featuring Epstein', date='2005-03-17'),
@@ -99,9 +92,6 @@ GOVERNMENT_CFGS = [
     DocCfg(id='EFTA00001884', description='photo of letter from Virgin Islands DOJ to Epstein', date='2019-03-14'),
     DocCfg(id='EFTA00074744', description="USVI court filing about Epstein will and estate"),
     DocCfg(id='EFTA00007157', description='victim list and police log'),
-    fbi_defense_witness('EFTA02730267', 'Malcolm Grumbridge', '2022-04-14'),
-    fbi_defense_witness('EFTA02730271', REDACTED, '2022-03-22'),
-    fbi_defense_witness('EFTA02730477', 'Roderic Alexander', '2022-01-19'),
     letter('EFTA01653121', FBI, ['USCIS'], "regarding an individual's cooperation in the investigation of Epstein and Maxwell"),
     letter('EFTA00098456', PAUL_G_CASSELL, ['Scotland Yard'], 'International Sex Trafficking by Jeffrey Epstein, contains court filings'),
 
