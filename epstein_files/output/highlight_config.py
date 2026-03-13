@@ -8,10 +8,11 @@ from typing import Sequence
 from rich.console import Console
 from rich.text import Text
 
+from epstein_files.documents.config.categories.government import FBI_REPORT_FIELDS
 from epstein_files.documents.config.categories.legal import EPSTEIN_V_ROTHSTEIN_EDWARDS
 from epstein_files.documents.documents.categories import (CATEGORY_STYLES, CATEGORY_STYLE_MAPPING,
      DEFAULT_CATEGORY_STYLE, Interesting, Neutral, Uninteresting)
-from epstein_files.documents.emails.constants import (ALL_HEADER_PATTERNS, QUOTE_INDENT_CHAR_GROUP, REPLY_REGEX,
+from epstein_files.documents.emails.constants import (EMAIL_HEADER_FIELD_PATTERNS, QUOTE_INDENT_CHAR_GROUP, REPLY_REGEX,
      SENT_FROM_REGEX, XML_STRIPPED_MSG)
 from epstein_files.output.highlighted_names import HighlightGroup, HighlightedNames, HighlightPatterns, ManualHighlight
 from epstein_files.people.contact import Contact, acronym, organization, epstein_co, epstein_trust, law_enforcement
@@ -1151,7 +1152,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 link_to_bio='https://en.wikipedia.org/wiki/Estate_of_Jeffrey_Epstein',
             ),
             Contact(EMAD_HANNA, f"Project controller for {RICHARD_KAHN}'s HBRK Associates", match_partial=None),
-            Contact(HENRY_JARECKI, 'psychiatrist and philanthropist, owned neighboring island', match_partial=None),
+            Contact(HENRY_JARECKI, 'philanthropist, previous metals guy, owned neighboring island', match_partial=None),
             Contact(
                 RICHARD_KAHN,
                 "Epstein's accountant and estate executor",
@@ -1629,7 +1630,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             acronym('Justice Against Sponsors of Terrorism Act', 'law permitting 9/11 survivors to sue Saudi Arabia'),
             acronym('Know Your Customer', 'anti-money laundering legal framework'),
             acronym('Metropolitan Detention Center', 'jail where Epstein died'),
-            acronym('National Threat Operations Center'),
+            acronym('National Threat Operations Center', 'FBI center'),
             acronym('Office of Foreign Assets Control', 'agency in charge of sanctions'),
             acronym('Office of the Comptroller of the Currency'),
             acronym('Office of Government Ethics'),
@@ -3449,7 +3450,10 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
      HighlightPatterns(
         label='header_field',
         style='plum4',
-        patterns=[fr"^([>»•\s]{{,4}}({'|'.join(ALL_HEADER_PATTERNS)}):|on behalf of)"],
+        patterns=[
+            fr"^([>»•\s]{{,4}}({'|'.join(EMAIL_HEADER_FIELD_PATTERNS)}):|on behalf of)",
+            fr"^({'|'.join(FBI_REPORT_FIELDS)})",
+        ],
     ),
     HighlightPatterns(
         label='http_links',

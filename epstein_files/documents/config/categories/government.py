@@ -1,9 +1,16 @@
 from epstein_files.documents.config.config_builder import fbi_defense_witness, fbi_interview, fbi_tip, fbi_report, letter
 from epstein_files.documents.config.doc_cfg import NO_TRUNCATE, DocCfg, EmailCfg
 from epstein_files.people.names import *
-from epstein_files.util.constant.strings import REDACTED
+from epstein_files.util.constant.strings import MINOR_VICTIM, REDACTED
 from epstein_files.util.helpers.string_helper import join_truthy, quote
 from epstein_files.util.logging import logger
+
+FBI_REPORT_FIELDS = [
+    'Case ID #',
+    'Drafted By',
+    'Date/Time Received',
+    'Details',
+]
 
 
 def bop_doc(id: str, description: str = '', date: str = '', display_text: str = '', **kwargs) -> DocCfg:
@@ -82,15 +89,15 @@ GOVERNMENT_CFGS = [
     DocCfg(id='EFTA01731217', author=FBI, description=f'requesting INS allow {NADIA_MARCINKO} be allowed to stay in the US because of an ongoing sex-trafficking case', is_interesting=True),
     DocCfg(id='EFTA00247131', author=FBI, description='search warrant for New York house', date='2019-07-07'),
     fbi_defense_witness('EFTA02730267', 'Malcolm Grumbridge', '2022-04-14'),
-    fbi_defense_witness('EFTA02730271', REDACTED, '2022-03-22'),
     fbi_defense_witness('EFTA02730477', 'Roderic Alexander', '2022-01-19'),
+    fbi_defense_witness('EFTA02730271', None, '2022-03-22'),
     # FBI interviews
     fbi_interview('EFTA02858481', 'Jennifer Aros', 'Epstein victim'),
-    fbi_interview('EFTA00174375', LUKE_D_THORBURN, f"lot of takes on Epstein, China, and {STEVE_BANNON}"),
-    fbi_interview('EFTA00081226', 'minor victim'),
-    fbi_interview('EFTA00038915', 'minor victim', 'claims Epstein knew she was 14'),
+    fbi_interview('EFTA00174375', LUKE_D_THORBURN, f"lots of takes on Epstein, China, and {STEVE_BANNON}"),
+    fbi_interview('EFTA00081226', MINOR_VICTIM),
+    fbi_interview('EFTA00038915', MINOR_VICTIM, 'claims Epstein knew she was 14'),
     fbi_interview('EFTA01246710', PERRY_LANG, "Epstein's chef claims Donald Trump came to Epstein's house for dinner", truncate_to=(6000, 7500)),
-    fbi_interview('EFTA00101927', None, f'claims au pair of Glenn and {EVA_DUBIN} was held against her will'),
+    fbi_interview('EFTA00101927', None, f"claims Glenn and {EVA_DUBIN}'s Swiss au pair was being held against her will"),
     fbi_interview('EFTA00159321', None, f'covers {PAOLO_ZAMPOLLI}, Epstein, and the possibility Epstein introduced Melania to Donald Trump'),
     # FBI reports
     fbi_report(
@@ -126,7 +133,7 @@ GOVERNMENT_CFGS = [
     fbi_report('EFTA01688746'),
     fbi_report('EFTA00151754', 'declaration of Law Enforcement Officer for Victim of Trafficking', is_interesting=True),
     fbi_report('EFTA00222943', "agent believes computers were removed from Epstein's residence"),
-    fbi_report('EFTA01249591', f"allegations against {HENRY_JARECKI}"),
+    fbi_report('EFTA01249591', f"allegations against {HENRY_JARECKI}", show_full_panel=True),
     fbi_report('EFTA00173569', 'hack of FBI Epstein files repository by foreign actor', is_interesting=True),
     fbi_report('EFTA00020506', highlight_quote='chauffeur also told Epstein "I have something on you remember what I buried!"'),
     # FBI tips

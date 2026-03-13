@@ -129,8 +129,8 @@ def blaine_letter(id: str, date: str, suffix: str = '', **kwargs) -> Communicati
     )
 
 
-def fbi_defense_witness(id: str, witness: str, date: str = '') -> DocCfg:
-    description = f'Research and Key Findings for {witness}, defense witness for {GHISLAINE_MAXWELL}'
+def fbi_defense_witness(id: str, witness: Name, date: str = '') -> DocCfg:
+    description = f'Research and Key Findings for {witness or UNKNOWN}, defense witness for {GHISLAINE_MAXWELL}'
     return _set_fbi_doc_fields(DocCfg(id=id, date=date, description=description))
 
 

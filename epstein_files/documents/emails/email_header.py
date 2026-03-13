@@ -3,7 +3,7 @@ import re
 from dataclasses import asdict, dataclass, field
 
 from epstein_files.documents.config.doc_cfg import EmailCfg, Metadata
-from epstein_files.documents.emails.constants import ALL_HEADER_FIELDS_PATTERN, HEADER_FIELDS_PATTERN
+from epstein_files.documents.emails.constants import EMAIL_HEADER_FIELD_PATTERNS, HEADER_FIELDS_PATTERN
 from epstein_files.documents.emails.emailers import BAD_EMAILER_REGEX, TIME_REGEX
 from epstein_files.util.constant.strings import AUTHOR
 from epstein_files.people.names import UNKNOWN
@@ -17,8 +17,9 @@ EMAILER_FIELDS = [AUTHOR] + TO_FIELDS
 
 DETECT_EMAIL_REGEX = re.compile(r'^(.*\n){0,2}(From|Subject):')  # IDed 140 emails out of 3777 DOJ files with just 'From:' match
 HEADER_REGEX_STR = fr"(((?:(?:{HEADER_FIELDS_PATTERN}):|on behalf of ?)(?! +(by |from my|via )).*\n){{3,}})"
+EMAIL_HEADER_FIELDS_PATTERN = '|'.join(EMAIL_HEADER_FIELD_PATTERNS)
 EMAIL_SIMPLE_HEADER_REGEX = re.compile(rf'^{HEADER_REGEX_STR}')
-EMAIL_SIMPLE_HEADER_LINE_BREAK_REGEX = re.compile(fr"(((?:(?:{ALL_HEADER_FIELDS_PATTERN}):|on behalf of ?)(?! +(by |from my|via )).*\n){{3,}})")
+EMAIL_SIMPLE_HEADER_LINE_BREAK_REGEX = re.compile(fr"(((?:(?:{EMAIL_HEADER_FIELDS_PATTERN}):|on behalf of ?)(?! +(by |from my|via )).*\n){{3,}})")
 EMAIL_PRE_FORWARD_REGEX = re.compile(r"(.{3,2000}?)" + HEADER_REGEX_STR, re.DOTALL)  # Match up to the next email header section
 
 CONFIGURED_ACTUAL_TEXTS = [
