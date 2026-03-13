@@ -17,7 +17,11 @@ class HtmlStyle:
         if isinstance(self._style, Style):
             self.style = self._style
         else:
-            self._style = self._style or ''
+            if self._style == 'dim':
+                self._style = f"white {self._style}"  # Coerce gray if just 'dim'
+            elif self._style is None:
+                self._style = ''
+
             self.style = RICH_THEME.styles.get(self._style) or Style.parse(self._style)
 
     @property

@@ -104,6 +104,10 @@ args._site_type = SiteType.CURATED
 args.debug = args.deep_debug or args.debug or is_env_var_set('DEBUG')
 args._debug_highlight_patterns = (args.colors_only and args.debug)
 
+if args.colors_only:
+    args.build = HTML_DIR.joinpath('colors_only.html')
+    args._site_type = SiteType.CURATED
+
 # args.names = [name.title() for name in args.names] if args.names and args.names[0][0].islower() else args.names
 args.names = [None if n == 'None' else n.strip() for n in (args.names or [])]
 args.output_emails = args.output_emails or args.all_emails
@@ -159,10 +163,7 @@ if is_html_script:
             elif args.output_word_count:
                 args._site_type = SiteType.WORD_COUNT
 
-        if args.colors_only:
-            args.build = HTML_DIR.joinpath('colors_only.html')
-        else:
-            args.build = SiteType.build_path(args._site_type)
+        args.build = SiteType.html_output_path(args._site_type)
     elif 'sample_html' in parser.prog:
         args.build = SAMPLE_HTML_PATH
 elif parser.prog.startswith('epstein_') and not args.positional_args and not args.names:

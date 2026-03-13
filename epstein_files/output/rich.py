@@ -18,12 +18,13 @@ from rich.theme import Theme
 
 from epstein_files.output.epstein_highlighter import highlighter
 from epstein_files.output.highlight_config import HIGHLIGHT_GROUPS
+from epstein_files.output.site.site_config import MobileConfig
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constant.urls import *
 from epstein_files.util.env import args, site_config
 from epstein_files.util.helpers.data_helpers import json_safe, sort_dict
 from epstein_files.util.helpers.link_helper import link_markup
-from epstein_files.util.helpers.rich_helpers import enclose, left_indent_padding
+from epstein_files.util.helpers.rich_helpers import enclose, left_indent_padding, suppress_output_console_kwargs
 from epstein_files.util.helpers.string_helper import snip_msg
 from epstein_files.util.logging import logger
 
@@ -34,7 +35,7 @@ VALID_GREYS = [0, 3, 7, 11, 15, 19, 23, 27, 30, 35, 37, 39, 42, 46, 50, 53, 54, 
 
 LINK_HREF_LINE_REGEX = re.compile(r"^([>• ]*)(http\S+)(.*)")
 
-DATASET_DESCRIPTION_STYLE = 'gray74'
+DATASET_MSG_STYLE = 'gray74'
 # INFO_STYLE = 'light_goldenrod2 italic'
 INFO_STYLE = 'gray50 italic'
 KEY_STYLE = 'dim'
@@ -47,7 +48,6 @@ SYMBOL_STYLE = 'grey70'
 TABLE_BORDER_STYLE = 'grey46'
 TABLE_TITLE_STYLE = f"gray54 italic"
 TITLE_STYLE = 'black on white'  # color(103)'
-WARNING_STYLE = 'bold black on white'
 
 DEFAULT_TABLE_KWARGS = {
     'border_style': TABLE_BORDER_STYLE,
@@ -90,11 +90,13 @@ CONSOLE_KWARGS = {
     'width': args.width,
 }
 
+
 if args.suppress_output:
     logger.warning(f"Suppressing terminal output because args.suppress_output={args.suppress_output}...")
-    CONSOLE_KWARGS.update({'file': open(devnull, "wt")})
+    CONSOLE_KWARGS.update(suppress_output_console_kwargs())
 
 console = Console(**CONSOLE_KWARGS)
+mobile_console = Console(**{**CONSOLE_KWARGS, 'width': MobileConfig.width, **suppress_output_console_kwargs()})
 
 
 def add_cols_to_table(table: Table, cols: list[str | dict], justify: str = 'center') -> None:
@@ -251,14 +253,9 @@ def snip_msg_txt(msg: str, style: str = '') -> Text:
     return txt.append(Text.from_markup(wrap_in_markup_style(snip_msg(msg), 'dim')))
 
 
-def subtitle_panel(msg: str, style: str = 'black on white') -> Align:
-    panel = Panel(
-        Text.from_markup(msg, justify='center'),
-        width=site_config.subtitle_width,
-        style=style
-    )
-
-    return Align.center(panel)
+def subtitle_panel(msg: str, style: str = 'black on white') -> Panel:
+    """Less splashy title panel."""
+    return Panel(Text.from_markup(msg, justify='center'), width=site_config.subtitle_width, style=style)
 
 
 def quote_txt(t: Text | str, try_double_quote_first: bool = False, style: str = '') -> Text:

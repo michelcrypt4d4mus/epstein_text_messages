@@ -86,7 +86,7 @@ class FileInfo:
             if self.has_file:
                 self.warn(str(e))
             else:
-                self.log(f"no underlying file (but expected): {e}")
+                self.log(f"no underlying file (but expected): {e}", logging.DEBUG)
 
             return -1
 

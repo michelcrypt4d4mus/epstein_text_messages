@@ -3,7 +3,7 @@ from pathlib import Path
 
 from rich import box
 from rich.align import Align, AlignMethod
-from rich.console import Group
+from rich.console import Group, NewLine, RenderableType
 from rich.padding import Padding
 from rich.panel import Panel
 from rich.table import Table
@@ -19,24 +19,31 @@ from epstein_files.output.layout_elements.file_display import BasePanel, FileDis
 from epstein_files.output.html.builder import (console_buffer_to_html, panel_to_div, rich_to_html, table_to_html,
      text_to_div, unwrap_rich, write_templated_html)
 from epstein_files.output.html.elements import div_class, tag, to_em
-from epstein_files.output.rich import console, subtitle_panel
+from epstein_files.output.rich import console, mobile_console, subtitle_panel
 from epstein_files.people.person import PEOPLE_BIOS, Person
 from epstein_files.people.names import *
 from epstein_files.util.env import args, site_config
-from epstein_files.util.helpers.data_helpers import uniq_sorted
+from epstein_files.util.helpers.data_helpers import listify, uniq_sorted
+from epstein_files.util.helpers.rich_helpers import vertically_pad
 from epstein_files.util.logging import logger
 from epstein_files.util.timer import Timer
+from epstein_files.output.title_page import color_key, title_page_top_elements, title_page_bottom_elements
+# page_title_elements
 
 OTHER_FILES_TABLE_MSG = Text("(non emails will appear in tables)", 'gray27 italic')
 EMPTY_LINE_HEIGHT = to_em(1.5)
 EMPTY_LINE_DIV = f'<div style="height: {EMPTY_LINE_HEIGHT}"></div>'
+STICKY_BIO_CSS_CLASS = 'sticky_person_bio_panel'
 
 
-@dataclass
+@dataclass(kw_only=True)
 class DocPrinter:
     """Handles printing collections of documents with biographical info panels interspersed."""
+    epstein_files: 'EpsteinFiles'
+    also_print_for_mobile: bool = False
     collect_other_files_to_tables: bool = True
     html_elements: list[str] = field(default_factory=list)
+    mobile_html_elements: list[str] = field(default_factory=list)
     other_files_queue: list[OtherFile] = field(default_factory=list)
     last_bio_panel = ''
     people_encountered: set[str] = field(default_factory=set)
@@ -62,105 +69,159 @@ class DocPrinter:
             console.line()
             self.html_elements.append(EMPTY_LINE_DIV)
 
-    def new_names(self, document: Document) -> list[str]:
+    def new_names(self, document: Document | FileDisplay) -> list[str]:
+        """List of names found in relation to the documents that have not been encountered before."""
+        if isinstance(document, FileDisplay):
+            return []
+
         return [p for p in document.people if p in PEOPLE_BIOS and p not in self.people_encountered]
 
-    def print_characters_panel(self, names: list[str], is_sticky: bool = True) -> None:
-        if (bio_panel := self._biographical_panel(uniq_sorted(names))):
-            if self.last_bio_panel:
-                raise RuntimeError(f"last_bio_panel should be empty, instead it's:\n{self.last_bio_panel}")
+    def build_biographies_panel_html(self, names: list[str]) -> str:
+        """NOTE: Also prints. to console!!"""
+        if names:
+            logger.debug(f"build_biographies_panel_html() called with names={names}")
 
+        if (bio_panel := self._biographical_panel(uniq_sorted(names))):  # TODO this shouldn't be necessary as names are checked before being passed in
+            self._print_other_files_queue()  # Clear the queue before new biographical panel
+            # logger.warning(f"probably double printing with last_bio_panel")
             console.print(self._align_biographical_panel(bio_panel))
             self.people_encountered.update(names)
-            class_name = ('sticky_' if is_sticky else '') + 'person_bio_panel'
-            self.last_bio_panel = div_class(rich_to_html(bio_panel, minimize_width=True), class_name)
+            return div_class(rich_to_html(bio_panel, minimize_width=True), STICKY_BIO_CSS_CLASS)
+        else:
+            return ''
+
+    def cache_biographies_panel(self, names: list[str]) -> None:
+        """The html string of the bios panel is cached in `self.last_bio_panel`."""
+        if (bios_html := self.build_biographies_panel_html(names)):
+            if self.last_bio_panel:
+                raise RuntimeError(f"last_bio_panel should be empty, instead it's:\n{self.last_bio_panel}")
+            else:
+                self.last_bio_panel = bios_html
+
+    def print_centered(self, _renderables: RenderableType | list[RenderableType]):
+        renderables = listify(_renderables)
+
+        if any(isinstance(r, Align) for r in renderables):
+            logger.warning(f"wrapping an Align in another Align...")
+
+        self.print_renderable([Align.center(obj) for obj in listify(renderables)])
+
+    def print_color_key(self) -> None:
+        self.print_centered(color_key())
 
     def print_documents(self, docs: Sequence[Document | FileDisplay]) -> None:
-        if len(docs) > 500:
-            logger.warning(f"{type(self).__name__}.print_documents() called with {len(docs):,} Documents...")
-
         timer = Timer()
         i = 0
 
+        if len(docs) > 500:
+            logger.info(f"{type(self).__name__}.print_documents() called with {len(docs):,} Documents...")
+
+        # suppressed doc msg Text objects and OtherFile objects collect in queues and are printed in a group
+        # if a different obj type is encountered
         for i, doc in enumerate(docs, 1):
             logger.info(f"Printing {doc}")
 
             if isinstance(doc, Document) and doc.suppressed_txt:
                 self.suppressed_docs_queue.append(doc)
                 continue
-            elif self.suppressed_docs_queue:
-                self._print_suppression_msgs_queue()
+
+            self._print_suppression_msgs_queue()
 
             if isinstance(doc, OtherFile) and doc.is_valid_for_table and self.collect_other_files_to_tables:
-                if self.new_names(doc):
-                    if self.other_files_queue:
-                        self._print_other_files_queue()  # Clear the queue before new biographical panel
-
-                    self.print_characters_panel(self.new_names(doc))
+                if (new_names := self.new_names(doc)):
+                    self.cache_biographies_panel(new_names)
 
                 self.other_files_queue.append(doc)
                 continue
-            elif self.other_files_queue:
-                self._print_other_files_queue()
+
+            self._print_other_files_queue()
+            self.print_renderable(doc)
 
             if isinstance(doc, Document):
-                self.print_characters_panel(self.new_names(doc))
-                doc.print()
-                self._append_html_element(doc.to_html())
                 self.printed_docs.append(doc)
             else:
-                # TODO: this sucks
-                console.print(doc)
-                self.html_elements.append(doc.to_html())
                 self.printed_file_displays.append(doc)
 
             if i % 100 == 0:
                 timer.print_at_checkpoint(f"Printed {i} documents")
 
-        # Make sure to print any documents left in the queues
-        if self.suppressed_docs_queue:
-            self._print_suppression_msgs_queue()
+        # Print any stuff still in one of the deferred printing queues
+        self._print_suppression_msgs_queue()
+        self._print_other_files_queue()
 
-        if self.other_files_queue:
-            self._print_other_files_queue()
+    def print_renderable(self, renderables: RenderableType | list[RenderableType]) -> None:
+        """All things being printed should come through here, which collects both terminal and HTML output as its written."""
+        # _renderable = Align(_renderable, align) if align and not isinstance(_renderable, Align) else _renderable
+        for renderable in listify(renderables):
+            rich_obj, css_props = unwrap_rich(renderable)
 
-    def print_renderable(
-        self,
-        _renderable: Align | Padding | Panel | Text | str,
-        align: AlignMethod | None = None
-    ) -> None:
-        _renderable = Align(_renderable, align) if align and not isinstance(_renderable, Align) else _renderable
-        console.print(_renderable)
-        renderable, css_props = unwrap_rich(_renderable)
+            # Add html string for this renderable to self.html_elements
+            if isinstance(rich_obj, NewLine):
+                self.line()
+                continue
+            elif isinstance(rich_obj, (Document, FileDisplay)):
+                doc_bios_html = self.build_biographies_panel_html(self.new_names(rich_obj))
+                self._append_element_with_bio_div(rich_obj.to_html(), doc_bios_html)
+            elif isinstance(rich_obj, Table):
+                html_table = table_to_html(rich_obj, css_props)
 
-        if isinstance(renderable, Panel):
-            self.html_elements.append(panel_to_div(renderable, css_props))
-        elif isinstance(renderable, Table):
-            self.html_elements.append(table_to_html(renderable, css_props))
-            console.line(2)  # TODO: table_to_html() adds a bottom marking of 1.9em; should be unified somehow
-        elif isinstance(renderable, Text):
-            self.html_elements.append(text_to_div(renderable, css_props))
-        elif isinstance(renderable, str):
-            self.html_elements.append(tag('p', renderable, css_props))
-        else:
-            raise TypeError(f"renderable of unsupported type: {type(renderable).__name__}: {renderable}")
+                # this is a bad way to signify the table being printed is an OtherFiles table
+                if self.last_bio_panel:
+                    self._append_element_with_bio_div(html_table)
+                else:
+                    self.html_elements.append(html_table)
+            elif isinstance(rich_obj, Panel):
+                self.html_elements.append(panel_to_div(rich_obj, css_props))
+            elif isinstance(rich_obj, Text):
+                self.html_elements.append(text_to_div(rich_obj, css_props))
+            elif isinstance(rich_obj, BasePanel):
+                self.html_elements.append(rich_obj.to_div((site_config.info_indent, 0)))
+            elif '__rich__' in dir(rich_obj):
+                if (rendered_obj := rich_obj.__rich__()):
+                    if isinstance(rendered_obj, Text):
+                        element = text_to_div(rendered_obj, css_props)
+                    else:
+                        logger.warning(f"printinng possibly not fully supported object type {type(rich_obj).__name__}\n{rich_obj}")
+                        element = rich_to_html(rendered_obj)
+
+                    self.html_elements.append(element)
+                else:
+                    logger.warning(f"__rich__() returned None for {rich_obj} ({type(rich_obj).__name__})")
+            elif isinstance(rich_obj, str):
+                self.html_elements.append(tag('p', rich_obj, css_props))
+            else:
+                raise TypeError(f"renderable of unsupported type: {type(rich_obj).__name__}: {rich_obj}")
+
+            # TODO: we print at end after HTML is generated so the bios panel will be cached first but that sucks
+            # TODO: because build_biographies_panel_html() has the side effect of printing to the console.
+            console.print(renderable)
 
     def print_subtitle_panel(self, subtitle: str) -> None:
-        self.print_renderable(subtitle_panel(subtitle))
-        self.line()
+        self.print_centered(Padding(subtitle_panel(subtitle), (1, 0)))
+
+    def print_title_page_top(self) -> None:
+        self._print_title_page_elements(title_page_top_elements())
+
+    def print_title_page_bottom(self) -> None:
+        self._print_title_page_elements(title_page_bottom_elements(self.epstein_files))
 
     def write_html(self, html_path: Path) -> None:
         """Write the collection of html elements to a file."""
         write_templated_html(self.html_elements, html_path)
 
-    def _align_biographical_panel(self, panel: Panel) -> Align | None:
+    def write_mobile_html(self, html_path: Path) -> None:
+        write_templated_html(self.mobile_html_elements, html_path)
+
+    def _align_biographical_panel(self, panel: Panel) -> Align:
         return Align(Padding(panel, site_config.character_bio_padding), 'right')
 
-    def _append_html_element(self, element: str) -> None:
+    def _append_element_with_bio_div(self, element: str, bio_panel: str = '') -> None:
+        """Cache the `last_bio_panel` html so it can be placed inside div with document."""
         if self.last_bio_panel:
-            element = '\n'.join([self.last_bio_panel, element])
+            bio_panel = self.last_bio_panel
             self.last_bio_panel = ''
 
+        element = '\n'.join([bio_panel, element])
         self.html_elements.append(div_class(element, 'doc_container'))
 
     def _biographical_panel(self, names: list[str]) -> Panel | None:
@@ -184,36 +245,45 @@ class DocPrinter:
             title_align='right',
         )
 
-    def _html_so_far(self) -> str:
-        return console_buffer_to_html(console, False)
+    def _html_so_far(self, mobile: bool = False) -> str:
+        if mobile:
+            return console_buffer_to_html(mobile_console, False)
+        else:
+            return console_buffer_to_html(console, False)
 
     def _print_other_files_queue(self) -> None:
-        has_printed_any_other_file_objs = any(isinstance(d, OtherFile) for d in self.printed_docs)
+        """Print any queued OtherFile objects collected in a table."""
+        if not self.other_files_queue:
+            return
 
-        if has_printed_any_other_file_objs:
+        # Title is only on the first OtherFiles table printed
+        if any(isinstance(d, OtherFile) for d in self.printed_docs):
             table_title = None
         else:
             table_title = OTHER_FILES_TABLE_MSG
             self.line()
 
-        table = OtherFile.files_preview_table(
-            self.other_files_queue,
-            title=table_title,
-            title_justify='center',
-        )
-
-        console.print(Padding(table, (0, 0, 1, site_config.other_files_table_indent)))
-        table_html = table_to_html(table, {'margin-left': to_em(site_config.other_files_table_indent)})
-        self._append_html_element(table_html)
+        table = OtherFile.files_preview_table(self.other_files_queue, title=table_title, title_justify='center')
+        self.print_renderable(Padding(table, (0, 0, 1, site_config.other_files_table_indent)))
         self.printed_docs.extend(self.other_files_queue)
         self.other_files_queue = []
 
     def _print_suppression_msgs_queue(self) -> None:
         """Print any suppression messages."""
-        for doc in self.suppressed_docs_queue:
-            doc.print()
+        if not self.suppressed_docs_queue:
+            return
 
         msgs_panel = BasePanel(border_style='', text=[d.suppressed_txt for d in self.suppressed_docs_queue])
-        self.html_elements.append(msgs_panel.to_div((site_config.info_indent, 0)))
+        self.print_renderable(msgs_panel)
         self.suppressed_docs_queue = []
-        console.line()
+        console.line()  # TODO this isn't happening in HTML output
+
+    def _print_title_page_elements(self, renderables: list[RenderableType]) -> None:
+        """"Centered and vertically paded Tables and Panels."""
+        renderables = [vertically_pad(r) if isinstance(r, (Panel, Table)) else r for r in renderables]
+
+        for r in renderables:
+            obj, css_props = unwrap_rich(r)
+            logger.warning(f"Printing title page {type(obj).__name__} with css_props: {css_props}")
+
+        self.print_centered(renderables)

@@ -60,13 +60,18 @@ class SiteType(StrEnum):
         return {k: v for k, v in cls.all_links().items() if not cls.is_mobile(k)}
 
     @classmethod
-    def build_path(cls, site_type: 'SiteType') -> Path:
+    def html_output_path(cls, site_type: 'SiteType') -> Path:
         """Defaults to `[site_type].html` if not configured in `HTML_BUILD_FILENAMES`."""
         return HTML_DIR.joinpath(HTML_BUILD_FILENAMES.get(site_type, f"{site_type}.html"))
 
     @classmethod
+    def html_output_path_mobile(cls, site_type: 'SiteType') -> Path:
+        output_path = cls.html_output_path(site_type)
+        return output_path.parent.joinpath(output_path.name.replace('.html', '_mobile.html'))
+
+    @classmethod
     def get_url(cls, site_type: 'SiteType') -> str:
-        return f"{BASE_URL}/{cls.build_path(site_type).name}"
+        return f"{BASE_URL}/{cls.html_output_path(site_type).name}"
 
     @classmethod
     def get_mobile_redirect_url(cls, site_type: Self) -> str:
@@ -116,7 +121,7 @@ class SiteType(StrEnum):
     @classmethod
     def real_html_build_path(cls, site_type: 'SiteType') -> Path:
         """Path for the templated custom HTML version of the page."""
-        return HTML_DIR.joinpath(f'real_html_{cls.build_path(site_type).name}')
+        return HTML_DIR.joinpath(f'real_html_{cls.html_output_path(site_type).name}')
 
     @classmethod
     def _is_lesser_site(cls, site_type: Self) -> bool:
@@ -182,7 +187,7 @@ SECTION_ANCHORS = {
 def make_clean() -> None:
     """Delete all build artifacts."""
     for site_type in SiteType:
-        build_file = SiteType.build_path(site_type)
+        build_file = SiteType.html_output_path(site_type)
 
         for file in [build_file, Path(f"{build_file}.txt")]:
             if file.exists():

@@ -18,6 +18,8 @@ GIRLS_CFGS = [
     EmailCfg(id='030609', duplicate_ids=['030495']),
 
     # DOJ Files
+    DocCfg(id='EFTA02701609', author=GIANNI_SERAZZI, description='2morrow business plan', date='2014-09-30', date_uncertain=True),
+    DocCfg(id='EFTA01078143', author=GIANNI_SERAZZI, description='2morrow modeling pitch deck', date='2014-09-30', date_uncertain=True),
     DocCfg(id='EFTA00306033', author=SERGEY_BELYAKOV, description='Epstein Russian visa', show_full_panel=True),
     DocCfg(id='EFTA00014648', description='former employee "understood that all the girls were school girls"', show_full_panel=True),
     DocCfg(
@@ -158,6 +160,12 @@ GIRLS_CFGS = [
         description=f'trying to recruit {ELON_MUSK}?',
         is_interesting=True,
         show_with_name=ELON_MUSK,
+    ),
+    EmailCfg(
+        id='EFTA01894132',
+        author=SVETLANA_POZHIDAEVA,
+        author_uncertain='"Svet" in unredacted reply',
+        truncate_to=(900, 1_600),
     ),
     EmailCfg(id='EFTA01772677', author=SVETLANA_POZHIDAEVA, author_uncertain='device signature'),
     EmailCfg(id='EFTA01877224', author=SVETLANA_POZHIDAEVA, author_uncertain=f"{JOSHUA_FINK} texts"),

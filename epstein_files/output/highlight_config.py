@@ -2292,7 +2292,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 link_to_bio='https://wwd.com/fashion-news/fashion-scoops/next-model-faith-kates-management-stays-quiet-departure-1238368757/',
                 match_partial=None,
             ),
-            Contact('Gianni Serazzi', "fashion consultant?"),
+            Contact(GIANNI_SERAZZI, "founder of 2morrow"),
             Contact(HEATHER_MANN, f"South African model, ex-girlfriend of {PRINCE_ANDREW} (?)", match_partial=None),
             Contact(
                 JEAN_LUC_BRUNEL,
