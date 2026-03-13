@@ -276,6 +276,15 @@ class DocCfg:
         return bool(self.description or self.author)
 
     @property
+    def text_highlighter(self) -> 'EpsteinHighlighter':
+        from epstein_files.output.epstein_highlighter import highlighter, temp_highlighter
+
+        if self.highlighted_pattern:
+            temp_highlighter(self.highlighted_pattern)
+        else:
+            return highlighter
+
+    @property
     def highlighted_pattern(self) -> str | None:
         return re.escape(self.highlight_quote).replace(r'\ ', r"\s+") if self.highlight_quote else None
 

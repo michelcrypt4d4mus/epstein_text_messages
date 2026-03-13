@@ -311,7 +311,7 @@ class DojFile(OtherFile):
         """Alternate way of displaying DOJ files with a single color bar down the left side."""
         yield (info_panel := self.rich_header())
         border_style = info_panel.renderables[0].border_style
-        panel_args = [self.prettified_text, border_style]
+        panel_args = [self.prettified_txt, border_style]
 
         if self.panel_title_timestamp:
             panel_args.append(Text(f"[{self.panel_title_timestamp}]", style='dim italic ' + border_style))

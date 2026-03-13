@@ -30,7 +30,7 @@ from epstein_files.output.highlight_config import HIGHLIGHTED_NAMES, get_style_f
 from epstein_files.output.html.builder import table_to_html
 from epstein_files.output.html.elements import to_em
 from epstein_files.output.layout_elements.file_display import FileDisplay, JustifyMethod
-from epstein_files.output.rich import DEFAULT_TABLE_KWARGS, build_table, create_hyperlinks, join_texts, styled_key_value
+from epstein_files.output.rich import DEFAULT_TABLE_KWARGS, build_table, hyperlink_line, join_texts, styled_key_value
 from epstein_files.util.constant.strings import APPEARS_IN, ARCHIVE_LINK_COLOR, REDACTED, TIMESTAMP_DIM
 from epstein_files.util.constant.urls import URL_SIGNIFIERS
 from epstein_files.people.names import sort_names
@@ -369,11 +369,9 @@ class Email(Communication):
         return uniq_sorted(super().people + flatten([ad.people for ad in self.attached_docs]))
 
     @property
-    def prettified_text(self) -> Text:
-        """Cleaned up text ready for printing."""
+    def prettified_txt(self) -> Text:
+        """Cleaned up / formatted Text ready to be displayed."""
         # Rewrite broken headers where the values are on separate lines from the field names
-        text = collapse_newlines(self.text)
-
         if self.header.should_rewrite_header:
             num_lines_to_skip = self.header.num_header_rows
             lines = []
@@ -390,34 +388,7 @@ class Email(Communication):
         if args.char_nums:
             text = self._inject_line_numbers(text, args.char_nums)
 
-
-        char_range = self.config.char_range if self.config and self.config.char_range else (0, self.length)
-        text = self.text
-
-        if self.config and self.config.char_range:
-            return self.excerpt_text(self.config.char_range)
-
-        # Truncate long emails but leave a note explaining what happened w/link to source document
-        if len(text) > (num_chars := self._truncate_to_length()):
-            text = text[0:num_chars]
-            trim_footer_txt = self.trimmed_chars_txt(num_chars)
-
-        text = collapse_newlines(text)
-
-        lines = [create_hyperlinks(line) for line in text.split('\n')]
-
-        if self.config and self.config.highlighted_pattern:
-            logger.debug(f"self.config.highlighted_pattern='{self.config.highlighted_pattern}'")
-            txt_highlighter = temp_highlighter(self.config.highlighted_pattern)
-        else:
-            txt_highlighter = highlighter
-
-        txt = txt_highlighter(join_texts(lines, '\n'))
-
-        if trim_footer_txt:
-            txt.append('...\n\n').append(trim_footer_txt)
-
-        return txt
+        return self.excerpt_text(self._config.char_range, text)
 
     @property
     def recipients_str(self) -> str:
@@ -535,7 +506,7 @@ class Email(Communication):
     def file_display(self, align: JustifyMethod | None = None) -> FileDisplay:
         """Allows for proper right vs. left justify."""
         return FileDisplay(
-            body_panel=self._body_as_table(self.prettified_text, self.config_description_txt),
+            body_panel=self._body_as_table(self.prettified_txt, self.config_description_txt),
             file_info=self.file_id_panel,
             indent=site_config.info_indent,
             justify=align,
@@ -890,7 +861,7 @@ class Email(Communication):
         return num_chars
 
     def __rich_console__(self, console: Console, options: ConsoleOptions) -> RenderResult:
-        prettified_txt = self.prettified_text
+        prettified_txt = self.prettified_txt
         max_line_len = max(*[len(line) for line in prettified_txt.split('\n')])
         panel_subtitle = None
 

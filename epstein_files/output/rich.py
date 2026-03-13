@@ -146,8 +146,8 @@ def build_table(
     return table
 
 
-def create_hyperlinks(line: str) -> Text:
-    """Add [link] tags if appropriate."""
+def hyperlink_line(line: str) -> Text:
+    """Handles single line only. Add [link] tags if appropriate."""
     if (match := LINK_HREF_LINE_REGEX.match(line)):
         logger.debug(f"Creating hyperlink for '{line}'")
         link = match.group(2)
@@ -156,6 +156,12 @@ def create_hyperlinks(line: str) -> Text:
         return txt.append(match.group(3))
     else:
         return Text(line)
+
+
+def hyperlink_text(text: str) -> Text:
+    """Add rich Text hyperlinks to a string with newlines in it."""
+    lines = [hyperlink_line(line) for line in text.split('\n')]
+    return join_texts(lines, '\n')
 
 
 def indent_txt(txt: str | Text, spaces: int = 4, prefix: str = '') -> Text:

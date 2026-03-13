@@ -24,12 +24,12 @@ from epstein_files.documents.documents.file_info import FileInfo
 from epstein_files.documents.documents.search_result import MatchedLine
 from epstein_files.documents.emails.constants import DOJ_EMAIL_OCR_REPAIRS, FALLBACK_TIMESTAMP
 from epstein_files.documents.emails.email_header import DETECT_EMAIL_REGEX
-from epstein_files.output.epstein_highlighter import highlighter, non_epstein_highlighter
+from epstein_files.output.epstein_highlighter import highlighter, non_epstein_highlighter, temp_highlighter
 from epstein_files.output.highlight_config import HIGHLIGHTED_CONTACTS, get_style_for_category, get_style_for_name
 from epstein_files.output.layout_elements.file_display import BasePanel, FileDisplay
 from epstein_files.output.html.builder import VERTICAL_MARGIN
 from epstein_files.output.rich import (INFO_STYLE, NA_TXT, SYMBOL_STYLE, add_cols_to_table, build_table, console,
-     styled_key_value, prefix_with, snip_msg_txt, styled_dict, wrap_in_markup_style)
+     hyperlink_text, join_texts, styled_key_value, prefix_with, snip_msg_txt, styled_dict, hyperlink_line)
 from epstein_files.output.site.sites import EXTRACTS_BASE_URL
 from epstein_files.people.interesting_people import PERSONS_OF_INTEREST, UNINTERESTING_AUTHORS
 from epstein_files.people.names import Name
@@ -191,7 +191,7 @@ class Document:
     @property
     def display_text(self) -> str:
         """Config overrides what text should be displayed."""
-        return self._config.replace_text_with or self.text
+        return collapse_newlines(self._config.replace_text_with or self.text)
 
     @property
     def duplicate_file_txt(self) -> Text | None:
@@ -339,24 +339,19 @@ class Document:
             return self._config.people
         elif not self._config.is_valid_for_name_scan:
             return people
-        elif self._config.description:
+        elif self._config.description:  # Make sure to scan the description too
             text_to_scan = f"{self._config.description}\n{text_to_scan}"
 
         # Use `Contact` regexes to scan for the presence of people's names in `self.text`
         people.extend([c.name for c in HIGHLIGHTED_CONTACTS if c.highlight_regex.search(text_to_scan)])
-        people = uniq_sorted([p for p in people if p not in self._config.non_participants])
-        return people
+        return uniq_sorted([p for p in people if p not in self._config.non_participants])
 
     @property
-    def prettified_text(self) -> Text:
+    def prettified_txt(self) -> Text:
         """Returns the string we want to print as the body of the document."""
-        if self.config and self.config.highlight_quote:
-            raise NotImplementedError(f"highlight_quote functionality not implemented in Document yet {self}")
+        text = self.display_text
 
-        text = self.config_replace_text_with or self.text
-
-        # For debugging/choosing truncation points
-        if args.char_nums:
+        if args.char_nums:    # For debugging/choosing truncation points
             text = self._inject_line_numbers(text, args.char_nums)
 
         # TODO: do something better to give replacement_text have different style
@@ -450,16 +445,15 @@ class Document:
 
     def excerpt_text(self, char_range: CharRange | None = None, text: str = '', style = '') -> Text:
         """Create an excerpt of `text`, add appropriate header/footer if truncated, and highlight it."""
-        text = doublespace_lines(text or self.text)        # TODO: maybe not ideal place for doubelspace call
         char_range = char_range or (0, len(text))
-
-        txt = self._intro_txt(char_range[0])
-        txt.append(highlighter(Text(text, style))[char_range[0]:char_range[1]])  # array slice of `Text` obj preserves style
+        text = doublespace_lines(text or self.text)        # TODO: not ideal place for doublespace call
+        excerpt_txt = self._intro_txt(char_range[0])
+        excerpt_txt.append(Text(text, style)[char_range[0]:char_range[1]])  # array slice of `Text` obj preserves style
 
         if (footer_txt := self.trimmed_chars_txt(char_range[1])):
-            txt.append('...\n\n').append(footer_txt)
+            excerpt_txt.append('...\n\n').append(footer_txt)
 
-        return txt
+        return self._config.text_highlighter(excerpt_txt)
 
     def extract_author(self) -> Name:
         """Extended in `Email` subclass to pull from headers etc."""
@@ -473,7 +467,7 @@ class Document:
         """Allows for proper right vs. left justify."""
         body = BasePanel(
             border_style=self.border_style,
-            text=self.prettified_text,
+            text=self.prettified_txt,
             title=Text(f"({self.panel_title_timestamp})", style='dim') if self.panel_title_timestamp else None,
         )
 
