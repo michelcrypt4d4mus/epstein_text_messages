@@ -2314,7 +2314,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Contact(NAOMI_CAMPBELL, 'supermodel', match_partial=None),
             Contact('Ofer Raphaeli', f'founder of the Israeli branch of {JEAN_LUC_MC2}', link_to_bio='https://www.jpost.com/international/article-887415'),
             Contact(
-                'Paolo Zampolli',
+                PAOLO_ZAMPOLLI,
                 'ID Models, allegedly tried to buy Elite Models w/Epstein, $ for passports scandal in Dominica, introduced Melania to Donald (?)',
                 r"(Paolo )?Z[ae]mpoll?i",
                 link_to_bio='https://dominicanewsonline.com/news/homepage/news/the-zampolli-matter-more-fuel-for-where-de-money-gone-campaign/',

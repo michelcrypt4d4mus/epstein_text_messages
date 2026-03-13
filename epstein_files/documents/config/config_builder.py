@@ -63,7 +63,7 @@ def build_cfg_from_text(doc: 'Document') -> DocCfg | None:
         return DocCfg(id=doc.file_id, **kwargs)  # TODO: setting id to nothing sucks
 
     if FBI_FILE_REGEX.search(text):
-        cfg = fbi_report(doc.file_id, 'memorandum or report')
+        cfg = fbi_report(doc.file_id)
     elif EVIDENCE_REGEX.search(text):
         cfg = _cfg(category=Neutral.LEGAL, description='photos of collected evidence')
     elif GRAND_JURY_REGEX.search(text[0:100]):
