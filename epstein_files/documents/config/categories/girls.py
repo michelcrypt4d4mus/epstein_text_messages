@@ -115,6 +115,8 @@ GIRLS_CFGS = [
     ),
     EmailCfg(id='032375', author=MARIA_PRUSAKOVA, author_reason=PRUSAKOVA_BERKELY, truncate_to=295),
     EmailCfg(id='033246', author=MARIA_PRUSAKOVA, author_reason='Kind regards/Cordialement in signature'),
+    EmailCfg(id='EFTA00719146', recipients=[MARIA_PRUSAKOVA], recipient_uncertain='Clifford Chance, could be Miranda'),
+    EmailCfg(id='EFTA01990879', author=MARIA_PRUSAKOVA, author_uncertain='Clifford Chance, could be Miranda'),
     EmailCfg(id='EFTA01990168', author=MARIA_PRUSAKOVA, author_uncertain='"experiments"', is_interesting=True),
     EmailCfg(id='EFTA00671662', author='Miranda', author_reason='quoted signature', description="yet another girl finder"),
     EmailCfg(id='EFTA01047249', author=NADIA_MARCINKO, author_reason='Miro, https://archive.ph/Qa6vU#selection-1621.160-1621.184'),

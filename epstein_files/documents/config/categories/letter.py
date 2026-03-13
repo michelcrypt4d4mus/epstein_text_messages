@@ -1,6 +1,6 @@
 from epstein_files.documents.config.config_builder import blaine_letter, immigration_letter
 from epstein_files.documents.config.doc_cfg import CommunicationCfg, EmailCfg
-from epstein_files.people.names import ARIANE_DE_ROTHSCHILD, LEON_BLACK, MARTIN_NOWAK, MASHA_DROKOVA, SVETLANA_POZHIDAEVA, TERJE_ROD_LARSEN
+from epstein_files.people.names import *
 
 
 # This category makes is_interesting default to True
@@ -21,6 +21,7 @@ LETTER_CFGS = [
     immigration_letter('EFTA00589797', TERJE_ROD_LARSEN, '2015-05-02'),
     immigration_letter('EFTA01086449', ARIANE_DE_ROTHSCHILD),
     immigration_letter('EFTA01143800', None, show_with_name=SVETLANA_POZHIDAEVA),
+    immigration_letter('EFTA00537633', MARK_ZEFF, '2012-03-19', 'about SLK Designs, someone in interior design industry'),
     EmailCfg(id='EFTA02652017', description="inquiry about someone's immigration asylum application", is_interesting=True),
 
     # DOJ files
