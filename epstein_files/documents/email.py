@@ -322,7 +322,7 @@ class Email(Communication):
             body = _add_line_breaks('\n'.join(lines))
         else:
             header = '\n'.join(self.lines[0:num_header_lines])
-            body = '\n'.join(self.lines)[num_header_lines:]
+            body = '\n'.join(self.lines[num_header_lines:])
 
         return EmailParts(header, body)
 
