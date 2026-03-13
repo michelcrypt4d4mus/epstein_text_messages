@@ -1404,6 +1404,8 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA02573653', description=f'discussion of {PRINCE_ANDREW}\'s Urramoor, "Howard" is probably {HOWARD_LUTNICK} which Urramoor partnered with'),
     EmailCfg(id='EFTA02629771', description=f"discussion of {RENATA_BOLOTOVA}'s employment at IPI", is_interesting=True),
     EmailCfg(id='EFTA00671263', description="Eagle's View Capital Management September 2017 Performance Update"),
+    EmailCfg(id='EFTA00932166', description=f"discussion of {MARK_ZEFF}'s letter of visa recommendation for South African girl in EFTA00537633"),  # TODO: make it an attachment?
+    EmailCfg(id='EFTA00537622', author='Kathleen Gallagher', description=f"discussion of {MARK_ZEFF}'s letter of visa recommendation for South African girl in EFTA00537633"),  # TODO: make it an attachment?
     EmailCfg(id='EFTA00836182', description=f'email to investors in {VALAR_FUND}'),
     EmailCfg(id='EFTA00877726', description=f'Epstein and {DAVID_STERN} discuss plans to manage money for wealthy Chinese'),
     EmailCfg(id='EFTA00941197', description=f'Epstein appears to be helping with an investment in Jawbone by {HEDOSOPHIA}'),
