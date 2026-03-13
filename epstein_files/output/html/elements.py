@@ -46,6 +46,7 @@ FONT_CSS_PROPS = {'font-family': FONT_FAMILY}
 HTML_CONSOLE_KWARGS = copy(CONSOLE_KWARGS)
 HTML_CONSOLE_KWARGS.update({'file': open(devnull, "wt"), 'record': True})
 PRE_TAG_CSS = {}
+WIDTH_PROPS = ['max-width', 'width']
 
 DEFAULT_HTML_CONSOLE = Console(**HTML_CONSOLE_KWARGS)
 

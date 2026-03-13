@@ -225,13 +225,6 @@ class Contact:
         doc_printer.print_renderable([Padding(c.bio_txt, site_config.info_padding()) for c in ALL_CONTACTS])
 
     @classmethod
-    def write_all_biographies_to_html(cls, doc_printer: 'DocPrinter') -> Path:
-        from epstein_files.output.output import write_html
-        cls.print_all_biographies(doc_printer)
-        doc_printer.write_html(SiteType.CONTACT_BIOS)
-        return write_html(SiteType.CONTACT_BIOS)
-
-    @classmethod
     def _repr_string(cls, contact_infos: list[Self]) -> str:
         """Print a list of `Contact` objects to a python string that can recreate them when executed."""
         return '[\n' + indented([repr(contact) for contact in contact_infos], 4) + '\n],'

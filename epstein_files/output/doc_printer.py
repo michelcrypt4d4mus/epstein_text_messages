@@ -19,7 +19,7 @@ from epstein_files.output.layout_elements.file_display import BasePanel, FileDis
 from epstein_files.output.html.builder import (console_buffer_to_html, panel_to_div, rich_to_html, table_to_html,
      text_to_div, unwrap_rich, write_templated_html)
 from epstein_files.output.html.elements import div_class, tag, to_em
-from epstein_files.output.rich import console, mobile_console, subtitle_panel
+from epstein_files.output.rich import console, mobile_console, section_subtitle_panel
 from epstein_files.output.site.sites import SiteType
 from epstein_files.people.person import PEOPLE_BIOS, Person
 from epstein_files.people.names import *
@@ -197,8 +197,8 @@ class DocPrinter:
             # TODO: because build_biographies_panel_html() has the side effect of printing to the console.
             console.print(renderable)
 
-    def print_subtitle_panel(self, subtitle: str) -> None:
-        self.print_centered(Padding(subtitle_panel(subtitle), (1, 0)))
+    def print_section_subtitle(self, msg: str) -> None:
+        self.print_centered(section_subtitle_panel(msg))
 
     def print_title_page_top(self) -> None:
         self._print_title_page_elements(title_page_top_elements())
@@ -234,12 +234,7 @@ class DocPrinter:
 
     def _biographical_panel(self, names: list[str]) -> Panel | None:
         """Panel showing biographical info for a list of names."""
-        bios = [
-            Text('', justify='right').append(PEOPLE_BIOS[name])
-            for name in names if PEOPLE_BIOS.get(name)
-        ]
-
-        if not bios:
+        if not (bios := [Text('', justify='right').append(PEOPLE_BIOS[n]) for n in names if PEOPLE_BIOS.get(n)]):
             return None
 
         return Panel(

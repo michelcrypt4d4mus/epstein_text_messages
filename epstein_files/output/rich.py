@@ -44,6 +44,7 @@ LAST_TIMESTAMP_STYLE = 'wheat4'
 PATH_STYLE = 'deep_pink3'
 STR_VAL_STYLE = 'cornsilk1 italic'
 STR_VAL_STYLE_ALT = 'light_yellow3 italic'
+SUBTITLE_STYLE = 'black on white'
 SYMBOL_STYLE = 'grey70'
 TABLE_BORDER_STYLE = 'grey46'
 TABLE_TITLE_STYLE = f"gray54 italic"
@@ -242,9 +243,19 @@ def print_special_note(note: str | Text) -> None:
     print_centered(Padding(Panel(note, expand=True, padding=(1, 3), style='reverse'), (0, 0, 2, 0)))
 
 
-def print_subtitle_panel(msg: str, style: str = 'black on white', center: bool = True) -> None:
+def print_subtitle_panel(msg: str, style: str = SUBTITLE_STYLE, center: bool = True) -> None:
     """A reverse color panel to put at the top of sections."""
     console.print(subtitle_panel(msg, style))
+
+
+def quote_txt(t: Text | str, try_double_quote_first: bool = False, style: str = '') -> Text:
+    """Wrap Text object in double or single quotes as appropriate."""
+    if try_double_quote_first:
+        quote_char = '"' if '"' not in t else "'"
+    else:
+        quote_char = "'" if "'" not in t else '"'
+
+    return Text(quote_char, style=style).append(t).append(quote_char)
 
 
 def snip_msg_txt(msg: str, style: str = '') -> Text:
@@ -253,18 +264,13 @@ def snip_msg_txt(msg: str, style: str = '') -> Text:
     return txt.append(Text.from_markup(wrap_in_markup_style(snip_msg(msg), 'dim')))
 
 
-def subtitle_panel(msg: str, style: str = 'black on white') -> Panel:
+def section_subtitle_panel(msg: str, style: str = SUBTITLE_STYLE) -> Padding:
+    return Padding(subtitle_panel(msg, style), site_config.subtitle_padding)
+
+
+def subtitle_panel(msg: str, style: str = SUBTITLE_STYLE) -> Panel:
     """Less splashy title panel."""
     return Panel(Text.from_markup(msg, justify='center'), width=site_config.subtitle_width, style=style)
-
-
-def quote_txt(t: Text | str, try_double_quote_first: bool = False, style: str = '') -> Text:
-    if try_double_quote_first:
-        quote_char = '"' if '"' not in t else "'"
-    else:
-        quote_char = "'" if "'" not in t else '"'
-
-    return Text(quote_char, style=style).append(t).append(quote_char)
 
 
 def styled_dict(

@@ -32,6 +32,7 @@ class MobileConfig:
     abbreviations_width: ClassVar[int | None] = None
     attachment_indent: ClassVar[int] = 6
     character_bio_padding: ClassVar[tuple[int, int, int, int]] = (0, 0, 1, 2)
+    contact_list_padding: ClassVar[PaddingDimensions] = (0, 0, 0, 1)
     email_info_in_subtitle: ClassVar[bool] = False
     info_indent: ClassVar[int] = 1
     max_alt_links: ClassVar[int | None] = 1
@@ -44,6 +45,7 @@ class MobileConfig:
     show_emailer_tables: ClassVar[bool] = False
     site_glossary_horizontal_padding: ClassVar[int] = 2
     social_link_separator: ClassVar[str] = ' '
+    subtitle_padding: ClassVar[PaddingDimensions] = (2, 1, 1, 1)
     subtitle_width: ClassVar[int | None] = None
     suppressed_file_indent: ClassVar[int] = 0
     width: ClassVar[int] = 52
@@ -73,6 +75,7 @@ class SiteConfig(MobileConfig):
     abbreviations_width: ClassVar[int | None] = 62
     attachment_indent: ClassVar[int] = 12
     character_bio_padding: ClassVar[tuple[int, int, int, int]] = (0, 1, 0, 0)
+    contact_list_padding: ClassVar[PaddingDimensions] = (0, 0, 0, 5)
     email_info_in_subtitle: ClassVar[bool] = True
     info_indent: ClassVar[int] = 1
     max_alt_links: ClassVar[int | None] = None
@@ -85,6 +88,7 @@ class SiteConfig(MobileConfig):
     show_with_indent: ClassVar[int] = 30
     site_glossary_horizontal_padding: ClassVar[int] = 5
     social_link_separator: ClassVar[str] = '  /  '
+    subtitle_padding: ClassVar[PaddingDimensions] = (2, 0, 2, 0)
     subtitle_width: ClassVar[int | None] = 110
     suppressed_file_indent: ClassVar[int] = 0
     width: ClassVar[int] = DEFAULT_WIDTH

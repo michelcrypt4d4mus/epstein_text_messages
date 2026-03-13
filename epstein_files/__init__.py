@@ -19,6 +19,7 @@ from epstein_files.documents.document import Document
 from epstein_files.documents.documents.word_count import print_word_counts
 from epstein_files.documents.doj_file import DojFile
 from epstein_files.documents.email import Email
+from epstein_files.documents.emails.emailers import ALL_CONTACTS
 from epstein_files.documents.messenger_log import MessengerLog
 from epstein_files.documents.other_file import OtherFile
 from epstein_files.output.doc_printer import DocPrinter
@@ -44,7 +45,7 @@ def epstein_generate() -> None:
     printer = DocPrinter(epstein_files=epstein_files)
     printer.print_title_page_top()
 
-    if args.all_emails_chrono or args.output_word_count or args.output_devices:
+    if args.all_emails_chrono or args.output_bios or args.output_devices or args.output_word_count:
         printer.print_color_key()
     else:
         printer.print_title_page_bottom()
@@ -52,7 +53,8 @@ def epstein_generate() -> None:
     if args.colors_only:
         pass
     elif args.output_bios:
-        Contact.print_all_biographies(printer)
+        printer.print_section_subtitle('Entities With Configured Biographical Info')
+        printer.print_renderable([Padding(c.bio_txt, site_config.contact_list_padding) for c in ALL_CONTACTS])
     elif args.output_devices:
         print_email_device_signatures(epstein_files)
     elif args.output_chrono:

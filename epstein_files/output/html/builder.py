@@ -21,9 +21,9 @@ from epstein_files.util.logging import logger
 CSS = Path(__file__).parent.joinpath('page.css').read_text()
 BOX_BORDER_RADIUS = 4
 BOX_BORDER_WIDTH = 2
-PANEL_EXTRA_PADDINg = 0.5  # Accounts for the fact that there's 0.5 spaces between a and | "a | b" bc ansi
+MAKEUP_PADDING = 0.5  # Make HTML panel padding match ANSI (there's ~0.5 spaces between "a" and "|" in "a | b" in ansi)
 BORDER_HORIZONTAL_PADDING = to_em(1)
-BORDER_VERTICAL_PADDING = to_em(PANEL_EXTRA_PADDINg)
+BORDER_VERTICAL_PADDING = to_em(MAKEUP_PADDING)
 OUTPUT_PANEL_BORDER_PADDING = padding_props(BORDER_VERTICAL_PADDING, BORDER_VERTICAL_PADDING)  # Makes the inset border work
 INNER_PANEL_PADDING = padding_props(BORDER_HORIZONTAL_PADDING, BORDER_VERTICAL_PADDING)
 VERTICAL_MARGIN = to_em(1.9)  # Between elements
@@ -120,27 +120,31 @@ def panel_to_div(panel: Panel, css_props: CssPropsArg) -> str:
     css_props = css_props if css_props is not None else BOTTOM_MARGIN_PROPS  # TODO: Default bottom margin seems wrong
     # TODO: what's up with the string 'none'??
     border_style = panel.border_style if panel.style == 'none' or not panel.style else panel.style
-
-    common_css_props = {
-        'box-sizing': 'border-box',
-        **HtmlStyle(panel.style).to_css,
-    }
+    color_css_props = HtmlStyle(panel.style).to_css
 
     inner_div_css = {
-        **common_css_props,
+        **color_css_props,
         **border_css_props(border_style),
-        **padding_tuple_to_props(unpack_padding(panel.padding or (0,)), 0.5),  # Panel.padding affects inner div only
+        **padding_tuple_to_props(unpack_padding(panel.padding or (0,)), MAKEUP_PADDING),  # Panel.padding affects inner div only
     }
 
     outer_div_css = {
-        **common_css_props,
+        **color_css_props,
         **PANEL_BASE_PROPS,
         **css_props,
     }
 
+    if panel.width:
+        if panel.expand:
+            logger.warning(f"Panel '{panel.title}' width={panel.width} but expand=True")
+
+        for prop in WIDTH_PROPS:
+            inner_div_css[prop] = to_em(panel.width - MAKEUP_PADDING)
+            outer_div_css[prop] = to_em(panel.width)
+
     logger.debug(f"panel_to_div():\n         panel.style: '{panel.style}'\n  panel.border_style: '{panel.border_style}'\n  local border_style: '{border_style}'\n\ninner_div_css props: {inner_div_css}\n\nouter_div_css: {outer_div_css}\n")
-    inner_div = div_class(rich_to_html(panel.renderable), 'panel innerp', inner_div_css)
-    return div_class(inner_div, 'panel outerp', outer_div_css)
+    inner_div = div_class(rich_to_html(panel.renderable), 'panel inner_panel', inner_div_css)
+    return div_class(inner_div, 'panel outer_panel', outer_div_css)
 
 
 def rich_to_html(

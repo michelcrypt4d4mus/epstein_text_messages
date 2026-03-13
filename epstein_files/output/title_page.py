@@ -113,7 +113,7 @@ def print_other_page_link(epstein_files: 'EpsteinFiles') -> None:
 
 
 def section_header(msg: str, style: str = SECTION_HEADER_STYLE, is_centered: bool = False) -> Padding:
-    """Make an aligned, padded panel that's centered."""
+    """Make a padded Panel that's centered."""
     if args._site_type == SiteType.CURATED:
         console.line(2)
         print_section_links()

@@ -67,7 +67,7 @@ div.no_expand {
 }
 
 div.panel {
-    /* display: inline-block; */
+    box-sizing: border-box;
     width: fit-content;
     z-index: 10;
 }
