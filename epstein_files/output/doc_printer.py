@@ -284,6 +284,6 @@ class DocPrinter:
 
         for r in renderables:
             obj, css_props = unwrap_rich(r)
-            logger.warning(f"Printing title page {type(obj).__name__} with css_props: {css_props}")
+            logger.debug(f"Printing title page {type(obj).__name__} with css_props: {css_props}")
 
         self.print_centered(renderables)
