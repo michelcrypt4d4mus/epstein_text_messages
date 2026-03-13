@@ -29,8 +29,6 @@ INNER_PANEL_PADDING = padding_props(BORDER_HORIZONTAL_PADDING, BORDER_VERTICAL_P
 VERTICAL_MARGIN = to_em(1.9)  # Between elements
 BOTTOM_MARGIN_PROPS = {'margin-bottom': VERTICAL_MARGIN}
 
-PANEL_BODY_CSS_CLASS = 'no_expand document_body_container'
-
 # These are the props for the outer panel
 PANEL_BASE_PROPS = {
     "display": "inline-block",

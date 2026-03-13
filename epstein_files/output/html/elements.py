@@ -21,34 +21,40 @@ from epstein_files.util.logging import logger
 # Typps
 CssProps = dict[str, str]
 CssPropsArg = CssProps | None
-CssUnit = str | int
-
+CssUnit = int | str
 HtmlListTag = Literal['ol', 'ul']
+HtmlElements = str | list[str]
 Side = Literal['top', 'left', 'right', 'bottom']
 SideProp = Literal['margin', 'padding']
 
+# Side constants
 HORIZONTAL_SIDES: list[Side] = ['left', 'right']
 VERTICAL_SIDES: list[Side] = ['top', 'bottom']
 ALL_SIDES: list[Side] = ['top', 'right', 'bottom', 'left']  # Order matters for converting PaddingDimension!
 
+# HTML templating vars
 CODE_TEMPLATE = '{code}'
 SPLITTER = '-# JUNK #-'
 SPLITTER_TEMPLATE = SPLITTER + """{stylesheet} {background} {foreground}"""  # these template vars allow export_html() to work
+# rich.Console for converting rich renderables to HTML
+HTML_CONSOLE_KWARGS = copy(CONSOLE_KWARGS)
+HTML_CONSOLE_KWARGS.update({'file': open(devnull, "wt"), 'record': True})
+DEFAULT_HTML_CONSOLE = Console(**HTML_CONSOLE_KWARGS)
 
 # CSS classes
 BLACK_BACKGROUND = 'black_background'
-BLACK_BG__NO_EXPAND = f"{BLACK_BACKGROUND} no_expand"
-
+NO_EXPAND = 'no expand'
+BLACK_BG__NO_EXPAND = f"{BLACK_BACKGROUND} {NO_EXPAND}"
+PANEL_BODY_CSS_CLASS = f'{NO_EXPAND} document_body_container'
 # CSS dicts
 CENTERED = {'margin-left': 'auto', 'margin-right': 'auto'}
 CODE_TAG_CSS = {'font-family': 'inherit'}
 FONT_CSS_PROPS = {'font-family': FONT_FAMILY}
-HTML_CONSOLE_KWARGS = copy(CONSOLE_KWARGS)
-HTML_CONSOLE_KWARGS.update({'file': open(devnull, "wt"), 'record': True})
-PRE_TAG_CSS = {}
 WIDTH_PROPS = ['max-width', 'width']
 
-DEFAULT_HTML_CONSOLE = Console(**HTML_CONSOLE_KWARGS)
+# Metrics helpers
+to_em = lambda num_chars: f"{num_chars}em" if num_chars else ''
+to_px = lambda pixels: f"{pixels}px" if isinstance(pixels, int) else pixels
 
 
 def alignment_css(align: AlignMethod) -> CssProps:
@@ -63,15 +69,15 @@ def alignment_css(align: AlignMethod) -> CssProps:
         raise ValueError(f"unknown alignment value: '{align}'")
 
 
-def div_tag(contents: str, css_props: CssPropsArg = None, **kwargs) -> str:
+def div_tag(contents: HtmlElements, css_props: CssPropsArg = None, **kwargs) -> str:
     return tag('div', contents, css_props, **kwargs)
 
 
-def div_class(contents: str, class_name: str, css_props: CssPropsArg = None, **kwargs) -> str:
+def div_class(contents: HtmlElements, class_name: str, css_props: CssPropsArg = None, **kwargs) -> str:
     return div_tag(contents, css_props, class_name=class_name, **kwargs)
 
 
-def div_with_legend(contents: str, legend: str, css_props: CssPropsArg = None, **kwargs) -> str:
+def div_with_legend(contents: HtmlElements, legend: str, css_props: CssPropsArg = None, **kwargs) -> str:
     """Use <fieldset> + <legend>: https://css-tricks.com/how-to-add-text-in-borders-using-basic-html-elements/"""
     css_props = css_props or {}
 
@@ -79,7 +85,7 @@ def div_with_legend(contents: str, legend: str, css_props: CssPropsArg = None, *
         legend_css_props = {'color': css_props.get('border-color', 'white')}
         contents = tag('legend', legend, legend_css_props) + contents
 
-    return tag('fieldset', contents, css_props)
+    return tag('fieldset', contents, css_props, **kwargs)
 
 
 def from_em(units: str | None) -> int | None:
@@ -111,7 +117,7 @@ def margin_props(horizontal: CssUnit, vertical: CssUnit) -> dict[str, str]:
 
 
 def margin_tuple_to_props(dimensions: PaddingDimensions):
-    return sides_tuple_to_props('margin', dimensions)
+    return _sides_tuple_to_props('margin', dimensions)
 
 
 def padding_props(horizontal: CssUnit, vertical: CssUnit) -> dict[str, str]:
@@ -121,19 +127,11 @@ def padding_props(horizontal: CssUnit, vertical: CssUnit) -> dict[str, str]:
 def padding_tuple_to_props(dimensions: PaddingDimensions, constant: int | float = 0):
     """`constant` args adds a consant value to all 4 sides of padding."""
     padding_with_constant = tuple(d + constant for d in unpack_padding(dimensions))
-    return sides_tuple_to_props('padding', padding_with_constant)
+    return _sides_tuple_to_props('padding', padding_with_constant)
 
 
 def side_props(prop: SideProp, sides: list[Side], units: CssUnit) -> dict[str, str]:
     return {f"{prop}-{side}": to_px(units) for side in sides}
-
-
-def sides_tuple_to_props(side_prop: Literal['margin', 'padding'], dimensions: PaddingDimensions) -> CssProps:
-    return {
-        f"{side_prop}-{ALL_SIDES[i]}": to_em(amount)
-        for i, amount in enumerate(unpack_padding(dimensions))
-        if amount
-    }
 
 
 def strip_outer_tag(_html: str, tag: str) -> str:
@@ -146,7 +144,7 @@ def strip_outer_tag(_html: str, tag: str) -> str:
     return html
 
 
-def tag(tag: str, contents: str, css_props: CssPropsArg = None, **kwargs) -> str:
+def tag(tag: str, contents: HtmlElements, css_props: CssPropsArg = None, **kwargs) -> str:
     """Surround `contents` with <tag style="[CSS_STRING]">."""
     tag_kwargs = f' style="{to_inline_css(css_props)}"' if css_props else ''
 
@@ -156,20 +154,11 @@ def tag(tag: str, contents: str, css_props: CssPropsArg = None, **kwargs) -> str
 
         tag_kwargs += ' ' + ' '.join([f'{k}={quote(v)}' for k, v in kwargs.items()])
 
-    return f'<{tag}{tag_kwargs}>{contents}</{tag}>'
+    return f"<{tag}{tag_kwargs}>{_html_elements_str(contents)}</{tag}>"
 
 
 def to_inline_css(d: Mapping[str, str | int]) -> str:
-    css_props = [f'{k}: {v}' for k, v in sort_dict_by_keys(d).items() if v]
-    return '; '.join(css_props)
-
-
-def to_em(chars: int | float | None) -> str:
-    return f"{chars}em" if chars else ''
-
-
-def to_px(pixels: CssUnit) -> str:
-    return f"{pixels}px" if isinstance(pixels, int) else pixels
+    return '; '.join([f'{k}: {v}' for k, v in sort_dict_by_keys(d).items() if v])
 
 
 def unpack_padding(_dimensions: PaddingDimensions) -> tuple[int | float, int | float, int | float, int | float]:
@@ -197,8 +186,18 @@ def vertical_pad_props(units: CssUnit) -> dict[str, str]:
 
 
 def vertical_spacer(em_units: int) -> str:
-    return f'<div style="height: {em_units}"></div>'
+    return f'<div style="height: {to_em(em_units)}"></div>'
 
 
-PRE_CONSOLE_TEMPLATE_PREFIX = tag('pre', CODE_TEMPLATE, PRE_TAG_CSS)
+def _html_elements_str(contents: HtmlElements) -> str:
+    return '\n'.join(listify(contents))
+
+
+def _sides_tuple_to_props(prop: SideProp, dimensions: PaddingDimensions) -> CssProps:
+    """Turn all non-zero side dimensions into appropriate margin- or padding- CSS props."""
+    return {f"{prop}-{ALL_SIDES[i]}": to_em(d) for i, d in enumerate(unpack_padding(dimensions)) if d}
+
+
+# "PRE" because it makes <pre> tags
+PRE_CONSOLE_TEMPLATE_PREFIX = tag('pre', CODE_TEMPLATE, {})
 PRE_CONSOLE_TEMPLATE = PRE_CONSOLE_TEMPLATE_PREFIX + SPLITTER_TEMPLATE

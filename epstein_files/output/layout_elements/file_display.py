@@ -59,7 +59,7 @@ class BasePanel:
 
         # TODO: make the title 'dim'
         title = self.title.plain if self.title else ''
-        return div_with_legend(html, title, div_props, class_name=BLACK_BACKGROUND)
+        return div_with_legend(html, title, div_props)
 
     def __rich__(self) -> Panel:
         return Panel(
