@@ -91,6 +91,7 @@ GOVERNMENT_CFGS = [
     DocCfg(id='EFTA00101927', author=FBI, description=f'interview with someone who mentions au pair of Glenn and {EVA_DUBIN} held against her will'),
     DocCfg(id='EFTA00173569', author=FBI, description='report on hack of FBI Epstein files repo by foreign actor', is_interesting=True),
     DocCfg(id='EFTA00247131', author=FBI, description='search warrant for New York house', date='2019-07-07'),
+    DocCfg(id='EFTA01731217', author=FBI, description='requesting INS allow a sex trafficking victim from Slovakia be granted asylum for an ongoing case'),
     DocCfg(id='EFTA00084614', author=PALM_BEACH_POLICE, description='incident report detailing the investigation into Jeffrey Epstein'),
     DocCfg(id='EFTA00007893', author=PALM_BEACH_POLICE, description=f"receipts, notes, bank statements of {GHISLAINE_MAXWELL}"),
     DocCfg(id='EFTA00005569', author=PALM_BEACH_POLICE, replace_text_with='photo lineup featuring Epstein', date='2005-03-17'),
