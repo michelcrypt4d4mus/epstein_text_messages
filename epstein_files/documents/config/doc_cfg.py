@@ -277,10 +277,11 @@ class DocCfg:
 
     @property
     def text_highlighter(self) -> 'EpsteinHighlighter':
+        """Custom highlighter with `self.highlight_quote` pattern (if that prop is set)."""
         from epstein_files.output.epstein_highlighter import highlighter, temp_highlighter
 
         if self.highlighted_pattern:
-            temp_highlighter(self.highlighted_pattern)
+            return temp_highlighter(self.highlighted_pattern)
         else:
             return highlighter
 
