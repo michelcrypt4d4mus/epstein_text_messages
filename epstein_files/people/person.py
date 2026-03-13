@@ -360,15 +360,15 @@ class Person:
         configured with `show_with_name` of this user. Returns the Emails that were printed.
         """
         logger.debug(f"print_emails() called for '{self.name}'")
-        doc_printer.print_renderable(self.email_info_panel(), align='center')
+        doc_printer.print_centered(self.email_info_panel())
 
         if self.biography_txt:
-            doc_printer.print_renderable(self.biography_txt, align='center')
+            doc_printer.print_centered(self.biography_txt)
 
         doc_printer.line()
 
         if site_config.show_emailer_tables:
-            doc_printer.print_renderable(self._emails_table(), align='center')
+            doc_printer.print_centered(self._emails_table())
 
         if self.category == Uninteresting.JUNK:
             logger.warning(f"Not printing junk emailer '{self.name}'")  # Junk emailers only get a table

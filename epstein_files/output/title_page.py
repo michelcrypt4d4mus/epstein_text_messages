@@ -4,7 +4,7 @@ Methods that print the title page with all the links etc.
 # Rich reference: https://rich.readthedocs.io/en/latest/reference.html
 from rich import box
 from rich.align import Align
-from rich.console import Console, Group, RenderableType
+from rich.console import Console, Group, NewLine, RenderableType
 from rich.markup import escape
 from rich.panel import Panel
 from rich.padding import Padding
@@ -14,31 +14,42 @@ from rich.text import Text
 from epstein_files.output.epstein_highlighter import highlighter
 from epstein_files.output.layout_elements.demi_table import build_demi_table
 from epstein_files.output.highlight_config import HIGHLIGHTED_NAMES
+from epstein_files.output.html.builder import unwrap_rich
 from epstein_files.output.rich import *
 from epstein_files.output.site.sites import SECTION_ANCHORS
-from epstein_files.output.site.site_config import MOBILE_WARNING
+from epstein_files.output.site.site_config import MOBILE_WARNING_TXT
 from epstein_files.people.names import UNKNOWN
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constant.urls import *
 from epstein_files.util.constants import HEADER_ABBREVIATIONS
 from epstein_files.util.env import args, site_config
 from epstein_files.util.helpers.link_helper import SUBSTACK_POST_LINK_STYLE, link_markup, link_text_obj, parenthesize
-from epstein_files.util.helpers.rich_helpers import vertically_pad
+from epstein_files.util.helpers.rich_helpers import starred_header_txt, vertically_pad
 from epstein_files.util.helpers.string_helper import starred_header
 from epstein_files.util.logging import logger
-
-DATASET_DESCRIPTION_STYLE = 'gray74'
-DIRECTORY_STYLE = 'wheat4'
-OTHER_PAGE_MSG_STYLE = 'gray78 dim'
-STR_VAL_STYLE = 'cornsilk1 italic'
-STR_VAL_STYLE_ALT = 'light_yellow3 italic'
-SECTION_HEADER_STYLE = 'bold black on color(146)'
 
 SITE_GLOSSARY_MSG = f"The following views of the underlying selection of Epstein Files are available:"
 YOU_ARE_HERE = Text('«').append('you are here', style='bold khaki1 blink').append('»')
 SECTION_LINK_MSG = 'jump to a different section of this page'
 SUBTITLE_WIDTH = 110
 TITLE_WIDTH = 50
+
+DATASET_MSG_STYLE = 'gray74'
+DIRECTORY_STYLE = 'wheat4'
+OTHER_PAGE_MSG_STYLE = 'gray78 dim'
+STR_VAL_STYLE = 'cornsilk1 italic'
+STR_VAL_STYLE_ALT = 'light_yellow3 italic'
+SECTION_HEADER_STYLE = 'bold black on color(146)'
+
+DATASET_MSG_LINES = [
+    f"This dataset includes everything from the {HOUSE_OVERSIGHT_TRANCHE}",
+    f"as well as a curated selection of the {DOJ_2026_TRANCHE}",
+    f"with a particular focus on cryptocurrency",
+    f"and women who speak Russian.",
+]
+
+DATASET_MSG_TXTS = [Text(msg, justify='center', style=DATASET_MSG_STYLE) for msg in DATASET_MSG_LINES]
+DATASET_MSG = Align.center(join_texts(DATASET_MSG_TXTS, '\n'))
 
 # label of the HighlightedNames objects colors with the style of that same HighlightedNames
 COLOR_KEYS = [
@@ -50,6 +61,22 @@ SECTION_LINKS = [
     link_text_obj(internal_link_url(anchor), section_name, 'indian_red')
     for section_name, anchor in SECTION_ANCHORS.items()
 ]
+
+
+def color_key() -> Padding:
+    color_table = build_table('Rough Guide to Highlighted Colors', show_header=False)
+    num_colors = len(COLOR_KEYS)
+    row_number = 0
+
+    for i in range(0, site_config.num_color_key_cols):
+        color_table.add_column(f"color_col_{i}", justify='center')
+
+    while (row_number * site_config.num_color_key_cols) < num_colors:
+        idx = row_number * site_config.num_color_key_cols
+        color_table.add_row(*COLOR_KEYS[idx:(idx + site_config.num_color_key_cols)])
+        row_number += 1
+
+    return vertically_pad(color_table)
 
 
 def print_color_key() -> None:
@@ -101,33 +128,45 @@ def print_section_links(style: str = '') -> None:
     print_centered(build_demi_table(SECTION_LINK_MSG, SECTION_LINKS), style=style)
 
 
-def print_title_page_top() -> None:
-    """Top half of the title page."""
-    _print_page_title()
-    print_centered(_site_directory())
-    console.line()
-    _print_starred_header(site_config.not_all_files_warning, num_spaces=0, num_stars=0)
-    print_centered(f"This dataset includes everything from the {HOUSE_OVERSIGHT_TRANCHE}", style=DATASET_DESCRIPTION_STYLE)
-    print_centered(f"as well as a curated selection of the {DOJ_2026_TRANCHE}", style=DATASET_DESCRIPTION_STYLE)
-    print_centered(f"with a particular focus on cryptocurrency", style=DATASET_DESCRIPTION_STYLE)
-    print_centered(f"and women who speak Russian.", style=DATASET_DESCRIPTION_STYLE)
+def title_page_top_elements() -> list[RenderableType]:
+    return [
+        *_header_elements(),
+        _site_directory(),
+        starred_header_txt(site_config.not_all_files_warning, num_spaces=0, num_stars=0),
+        *DATASET_MSG_TXTS,
+    ]
 
 
-def print_title_page_bottom(epstein_files: 'EpsteinFiles') -> None:
-    """Bottom half of the title page."""
-    console.line()
-    _print_abbreviations_table()
-    _print_external_links()
-    console.line(2)
-    print_centered(epstein_files.overview_table())
-    # updated_txt = Text('last updated: ').append(highlighter(datetime.now().date().isoformat()))
-    # updated_panel = Panel(updated_txt, expand=False, style='grey35', padding=(0, 4))
-    # console.line()
-    # print_centered(updated_panel)
-    print_color_key()
-    print_centered(f"(if you think there's an attribution error or can deanonymize an {UNKNOWN} contact {CRYPTADAMUS_X_LINK_MARKUP})", 'grey46')
-    print_centered(f"(thanks to {link_markup('https://x.com/ImDrinknWyn', '@ImDrinknWyn', 'dodger_blue3')} + others for help attributing redacted emails)")
-    console.line()
+def title_page_bottom_elements(epstein_files: 'EpsteinFiles') -> list[RenderableType]:
+    return [
+        NewLine(),
+        _abbreviations_table(),
+        Text('External Links', style=TABLE_TITLE_STYLE),
+        *[link for link in sorted(EXTERNAL_LINKS, key=lambda link: -len(link.__rich__()))],
+        epstein_files.overview_table(),
+        NewLine(),
+        color_key(),
+        Text.from_markup(f"(if you think there's an attribution error or can deanonymize an {UNKNOWN} contact {CRYPTADAMUS_X_LINK_MARKUP})", style='grey46'),
+        Text.from_markup(f"(thanks to {link_markup('https://x.com/ImDrinknWyn', '@ImDrinknWyn', 'dodger_blue3')} + others for help attributing redacted emails)"),
+        NewLine(),
+    ]
+
+
+def _abbreviations_table() -> Padding:
+    table = build_table(title="Abbreviations Used Frequently In These Conversations", show_header=False)
+    table.add_column("Abbreviation", justify="center", style='bold')
+
+    table.add_column(
+        "Translation",
+        justify="center",
+        min_width=site_config.abbreviations_width,
+        style="white"
+    )
+
+    for k, v in HEADER_ABBREVIATIONS.items():
+        table.add_row(highlighter(k), v)
+
+    return vertically_pad(table)
 
 
 def _bulleted_site_link(site_type: SiteType, link: Text) -> Text:
@@ -148,50 +187,28 @@ def _bulleted_site_link(site_type: SiteType, link: Text) -> Text:
     return Text('➱ ').append(link).append(' ').append(you_are_here)
 
 
-def _print_abbreviations_table() -> None:
-    if args.mobile:
-        return
-
-    table = build_table(title="Abbreviations Used Frequently In These Conversations", show_header=False)
-    table.add_column("Abbreviation", justify="center", style='bold')
-
-    table.add_column(
-        "Translation",
-        justify="center",
-        min_width=site_config.abbreviations_width,
-        style="white"
-    )
-
-    for k, v in HEADER_ABBREVIATIONS.items():
-        table.add_row(highlighter(k), v)
-
-    console.print(Align.center(vertically_pad(table)))
-
-
-def _print_external_links() -> None:
-    print_centered(Text('External Links', style=TABLE_TITLE_STYLE))
-
-    for link in sorted(EXTERNAL_LINKS, key=lambda link: -len(link.__rich__())):
-        print_centered(link)
-
-
-def _print_page_title(width: int = TITLE_WIDTH) -> None:
-    print_centered(MOBILE_WARNING, style='dim')
+def _header_elements() -> list[RenderableType]:
     title = Text('', justify='center').append('The Epstein Files', style='underline bold')
-    title_panel = Panel(title, box=box.DOUBLE_EDGE, expand=True, padding=(2, 2), style=TITLE_STYLE, width=width)
-    print_centered(vertically_pad(title_panel))
-    print_centered(SUBSTACK_POST_TXT_MSGS_LINK)
+    title_panel = Panel(title, box=box.DOUBLE_EDGE, expand=True, padding=(2, 2), style=TITLE_STYLE, width=TITLE_WIDTH)
+    title_with_vertical_margin = vertically_pad(title_panel)
+
+    # unwrapped, css_props = unwrap_rich(title_with_vertical_margin)
+    # print(f"rich obj {unwrapped} has unwrapped title_panel css: {css_props}")
+    # import pdb;pdb.set_trace()
+
+    elements = [
+        MOBILE_WARNING_TXT,
+        title_with_vertical_margin,
+        SUBSTACK_POST_TXT_MSGS_LINK,
+    ]
 
     if not args.mobile:
-        print_centered(SUBSTACK_POST_TXT_MSGS_LINK.url_link, style=f'{SUBSTACK_POST_LINK_STYLE} dim')
+        substack_link = SUBSTACK_POST_TXT_MSGS_LINK.url_link
+        substack_link.stylize(f'{SUBSTACK_POST_LINK_STYLE} dim')
+        elements.append(substack_link)
 
-    print_centered(join_texts(CRYPTADAMUS_SOCIAL_LINKS, join=site_config.social_link_separator))
-    console.line()
-
-
-def _print_starred_header(msg: str, num_stars: int = 7, num_spaces: int = 2, style: str = WARNING_STYLE) -> None:
-    """String like '  *** Title Msg ***  '."""
-    print_centered(wrap_in_markup_style(starred_header(msg, num_stars, num_spaces), style))
+    elements.append(join_texts(CRYPTADAMUS_SOCIAL_LINKS, join=site_config.social_link_separator))
+    return elements
 
 
 def _site_directory() -> Panel:

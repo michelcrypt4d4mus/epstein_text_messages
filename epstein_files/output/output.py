@@ -49,7 +49,7 @@ def print_curated_chronological(epstein_files: EpsteinFiles, doc_printer: DocPri
     if args.max_records:
         docs = docs[:args.max_records]
 
-    # TODO: reenable once title page is actually centered
+    # TODO: reenable this
     # doc_printer.print_subtitle_panel('Selected Files of Interest in Chronological Order')
     doc_printer.print_documents(docs)
     return doc_printer.printed_docs
@@ -75,7 +75,9 @@ def print_all_emails_chronological(epstein_files: EpsteinFiles, doc_printer: Doc
 
 def print_emailers_info(epstein_files: EpsteinFiles) -> None:
     """Print tbe summary table of everyone who sent or received an email to a .png file."""
-    print_color_key()
+    # TODO: kinda sucks to have to use a DocPrinter just for the color key
+    doc_printer = DocPrinter(epstein_files=epstein_files)
+    doc_printer.print_color_key()
     console.line()
     all_emailers = sorted(epstein_files.emailers, key=lambda person: person.sort_key)
     console.print(Person.emailer_info_table(all_emailers, show_epstein_total=True))
@@ -110,25 +112,21 @@ def print_emails_section(epstein_files: EpsteinFiles, doc_printer: DocPrinter) -
     all_emailers = sorted(epstein_files.emailers, key=lambda person: person.earliest_email_at)
     all_emails = Person.emails_from_people(all_emailers)
     num_emails_printed_since_last_color_key = 0
-    people_to_print: list[Person]
 
     if args.names:
         try:
-            people_to_print = epstein_files.person_objs(args.names)
+            emailers_to_print = epstein_files.person_objs(args.names)
         except Exception as e:
             exit_with_error(str(e))
     else:
-        if args.all_emails:
-            people_to_print = all_emailers
-        else:
-            people_to_print = epstein_files.person_objs(EMAILERS_TO_PRINT)
-
-        doc_printer.print_renderable(_section_summary_table(Person.emailer_info_table(all_emailers, people_to_print)))
+        emailers_to_print = all_emailers if args.all_emails else epstein_files.person_objs(EMAILERS_TO_PRINT)
+        doc_printer.print_renderable(_section_summary_table(Person.emailer_info_table(all_emailers, emailers_to_print)))
 
     if args.max_records:
-        people_to_print = people_to_print[0:args.max_records]
+        logger.warning(f"Truncating to args.max_records={args.max_records} people")
+        emailers_to_print = emailers_to_print[0:args.max_records]
 
-    for person in people_to_print:
+    for person in emailers_to_print:
         if person.name in epstein_files.uninteresting_emailers and not args.names:
             continue
 
@@ -137,7 +135,7 @@ def print_emails_section(epstein_files: EpsteinFiles, doc_printer: DocPrinter) -
 
         # Print color key every once in a while
         if num_emails_printed_since_last_color_key > PRINT_COLOR_KEY_EVERY_N_EMAILS:
-            print_color_key()
+            doc_printer.print_color_key()
             num_emails_printed_since_last_color_key = 0
 
     if args.names:
@@ -146,14 +144,11 @@ def print_emails_section(epstein_files: EpsteinFiles, doc_printer: DocPrinter) -
     # Print other interesting emails
     printed_email_ids = [email.file_id for email in doc_printer.printed_docs]
     extra_emails = [e for e in all_emails if e.is_interesting and e.file_id not in printed_email_ids]
-    logger.warning(f"Found {len(extra_emails)} extra_emails...")
 
     if len(extra_emails) > 0:
+        logger.warning(f"Found {len(extra_emails)} additional interesting emails by less interesting people...")
         doc_printer.print_subtitle_panel(OTHER_INTERESTING_EMAILS_SUBTITLE)
         doc_printer.print_documents(Document.sort_by_timestamp(extra_emails))
-
-    if args.all_emails:
-        _verify_all_emails_were_printed(epstein_files, doc_printer.printed_emails)
 
     print_email_device_signatures(epstein_files)
     fwded_articles = [e for e in doc_printer.printed_emails if e.config and e.is_fwded_article]
@@ -161,7 +156,7 @@ def print_emails_section(epstein_files: EpsteinFiles, doc_printer: DocPrinter) -
     logger.warning(f"  -> {log_msg}, {len(fwded_articles)} of the Emails printed were forwarded articles.")
 
     if args.all_emails:
-        doc_printer.write_html(SiteType.real_html_build_path(SiteType.EMAILS))
+        _verify_all_emails_were_printed(epstein_files, doc_printer.printed_emails)
 
     return doc_printer.printed_emails
 
@@ -231,7 +226,7 @@ def print_stats(epstein_files: EpsteinFiles) -> None:
     highlighter.print_highlight_counts(console)
 
 
-def print_text_messages_section(epstein_files: EpsteinFiles, doc_printer: DocPrinter) -> list[MessengerLog]:
+def print_text_msgs_section(epstein_files: EpsteinFiles, doc_printer: DocPrinter) -> list[MessengerLog]:
     """Print `MessengerLog` objects and return objects that were printed."""
     if args.names:
         imessage_logs = [log for log in epstein_files.imessage_logs if log.author in args.names]
@@ -257,7 +252,7 @@ def show_urls() -> None:
     """Print the various URLs generated by this code."""
     try:
         urls = {
-            k: Text('[', 'grey30').append(file_size_str(SiteType.build_path(k), 1), 'cyan').append('] ') + \
+            k: Text('[', 'grey30').append(file_size_str(SiteType.html_output_path(k), 1), 'cyan').append('] ') + \
                 Text(v, ARCHIVE_LINK_COLOR)
             for k, v in SiteType.all_urls().items()
         }
@@ -309,11 +304,6 @@ def print_email_device_signatures(epstein_files: EpsteinFiles) -> None:
     console.line()
     print_subtitle_panel("Emoji Usage")
     print_centered(_signature_table(emoji_authors, ('Emoji', AUTHOR)))
-
-
-# def _print_section_summary_table(table: Table) -> None:
-#     """Print file stats table (top of each section has one)."""
-#     print_centered(Padding(table, (1, 0, 1, 0)))
 
 
 def _section_summary_table(table: Table) -> Align:

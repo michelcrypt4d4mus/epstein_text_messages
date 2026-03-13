@@ -15,7 +15,6 @@ from epstein_files.documents.other_file import OtherFile
 from epstein_files.output.doc_printer import DocPrinter
 from epstein_files.output.html.builder import table_to_html, panel_to_div
 from epstein_files.output.site.sites import SAMPLE_HTML_PATH
-from epstein_files.output.title_page import print_title_page_top, print_title_page_bottom
 from epstein_files.people.person import Person
 from epstein_files.util.helpers.data_helpers import flatten
 from epstein_files.util.helpers.file_helper import open_file_or_url
@@ -28,6 +27,8 @@ TEST_PANELS = [
     Panel('bright_red reverse', style='bright_red reverse'),
     Panel('cyan on red', style='cyan on red'),
     Panel('cyan on red reverse', style='cyan on red reverse'),
+    Panel('cyan with padding', padding=(2, 2), style='cyan'),
+    Panel('cyan on red with padding', padding=(2, 2), style='cyan on red'),
 ]
 
 
@@ -43,30 +44,32 @@ doc_sets_to_sample = [
     # epstein_files.imessage_logs,
 ]
 
-emails_with_attachments_ids = [e.file_id for e in epstein_files.emails_with_attachments]
-print(f"Found {len(emails_with_attachments_ids)} emails with attachments: {emails_with_attachments_ids}")
-sample_docs = [epstein_files.get_id('EFTA00034357')] + flatten([docs[:SAMPLE_SIZE] for docs in doc_sets_to_sample])
-printer = DocPrinter()
-num_people_printed = 0
 
-# Print test panels
-# for panel in TEST_PANELS:
-#     printer.print_renderable(panel)
+def print_sample_people():
+    """people panels and email history etc."""
+    num_people_printed = 0
 
-# Print people panels
-for person in epstein_files.emailers:
-    if len(person.unique_emails) <= 5 or len(person.unique_emails) > 20:
-        continue
+    for person in epstein_files.emailers:
+        if len(person.unique_emails) <= 5 or len(person.unique_emails) > 20:
+            continue
 
-    person.print_emails(printer)
-    num_people_printed += 1
+        person.print_emails(printer)
+        num_people_printed += 1
 
-    if num_people_printed > 5:
-        logger.warning(f"Printed {num_people_printed} people, breaking loop")
-        break
-    else:
-        logger.warning(f"Printed person #{num_people_printed}")
+        if num_people_printed > 5:
+            logger.warning(f"Printed {num_people_printed} people, breaking loop")
+            break
+        else:
+            logger.warning(f"Printed person #{num_people_printed}")
 
+
+# sample_docs = [epstein_files.get_id('EFTA00034357')] + flatten([docs[:SAMPLE_SIZE] for docs in doc_sets_to_sample])
+sample_docs = flatten([docs[:SAMPLE_SIZE] for docs in doc_sets_to_sample])
+printer = DocPrinter(epstein_files=epstein_files)
+
+for panel in TEST_PANELS:
+    printer.print_renderable(panel)
+    printer.line(2)
 
 # Print docs
 printer.print_documents(sample_docs)

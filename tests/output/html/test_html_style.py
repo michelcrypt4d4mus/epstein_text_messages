@@ -20,3 +20,7 @@ def test_hex():
     # print(f"\n\nstyle: {red_reverse.style}\n    -> hex='{red_reverse.hex}'\n    -> bg_hex='{red_reverse.bg_hex}'\n    reverse: {red_reverse.style.reverse}")
     assert red_reverse.foreground_color_hex == ''
     assert red_reverse.background_color_hex == RED_RGB
+
+    dim = HtmlStyle('dim')
+    assert dim.foreground_color_hex == '#c0c0c0'
+    assert dim.background_color_hex == ''

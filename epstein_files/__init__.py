@@ -24,64 +24,67 @@ from epstein_files.documents.other_file import OtherFile
 from epstein_files.output.doc_printer import DocPrinter
 from epstein_files.output.epstein_highlighter import highlighter, temp_highlighter
 from epstein_files.output.output import (print_curated_chronological, print_doj_files, print_emails_section,
-     print_json_files, print_stats, print_other_files_section, print_text_messages_section, print_all_emails_chronological,
+     print_json_files, print_stats, print_other_files_section, print_text_msgs_section, print_all_emails_chronological,
      print_email_device_signatures, print_emailers_info, print_json_metadata, show_urls, write_html)
 from epstein_files.output.rich import console, print_json, print_subtitle_panel, subtitle_panel
 from epstein_files.output.site.sites import SiteType, make_clean
-from epstein_files.output.title_page import print_color_key, print_title_page_top, print_title_page_bottom
 from epstein_files.util.constant.strings import HOUSE_OVERSIGHT_NOV_2025_ID_REGEX
 from epstein_files.util.constants import ALL_CONFIGS
 from epstein_files.util.env import args, site_config
 from epstein_files.util.helpers.data_helpers import flatten, uniquify
 from epstein_files.util.helpers.document_helper import diff_documents
-from epstein_files.util.helpers.file_helper import extract_file_id, is_local_extract_file
+from epstein_files.util.helpers.file_helper import extract_file_id, is_local_extract_file, open_file_or_url
 from epstein_files.util.logging import exit_with_error, logger
 from epstein_files.util.timer import Timer
 
 
 def epstein_generate() -> None:
     timer, epstein_files = _load_files_and_check_early_exit_args()
-    print_title_page_top()
+    printer = DocPrinter(epstein_files=epstein_files)
+    printer.print_title_page_top()
 
     if args.all_emails_chrono or args.output_word_count or args.output_devices:
-        print_color_key()
+        printer.print_color_key()
     else:
-        print_title_page_bottom(epstein_files)
-
-    doc_printer = DocPrinter()
+        printer.print_title_page_bottom()
 
     if args.colors_only:
         pass
     elif args.output_devices:
         print_email_device_signatures(epstein_files)
     elif args.output_chrono:
-        printed_docs = print_curated_chronological(epstein_files, doc_printer)
+        logger.warning(f'output chrono')
+        printed_docs = print_curated_chronological(epstein_files, printer)
         timer.log_section_complete('Document', epstein_files.unique_documents, printed_docs)
     elif args.output_word_count:
         print_word_counts(epstein_files)
         timer.print_at_checkpoint(f"Finished counting words")
     elif args.all_doj_files:
-        printed_doj_files = print_doj_files(epstein_files, doc_printer)
+        printed_doj_files = print_doj_files(epstein_files, printer)
         timer.log_section_complete('DojFile', epstein_files.doj_files, printed_doj_files)
     else:
         if args.output_emails:
-            printed_emails = print_emails_section(epstein_files, doc_printer)
+            printed_emails = print_emails_section(epstein_files, printer)
             timer.log_section_complete('Email', epstein_files.emails, printed_emails)
         elif args.all_emails_chrono:
-            printed_emails = print_all_emails_chronological(epstein_files, doc_printer)
+            printed_emails = print_all_emails_chronological(epstein_files, printer)
             timer.log_section_complete('Chronological Email', epstein_files.emails, printed_emails)
 
         if args.output_texts:
-            printed_logs = print_text_messages_section(epstein_files, doc_printer)
+            printed_logs = print_text_msgs_section(epstein_files, printer)
             timer.log_section_complete('MessengerLog', epstein_files.imessage_logs, printed_logs)
 
         if args.output_other:
-            printed_files = print_other_files_section(epstein_files, doc_printer)
+            printed_files = print_other_files_section(epstein_files, printer)
             timer.log_section_complete('OtherFile', epstein_files.other_files, printed_files)
 
-    doc_printer.write_html(SiteType.real_html_build_path(args._site_type))
+    logger.warning(f'after rendering block')
     write_html(args.build)
+    printer.write_html(SiteType.real_html_build_path(args._site_type))
     logger.warning(f"Total time: {timer.seconds_since_start_str()}")
+
+    if args.open_txt:
+        open_file_or_url(SiteType.real_html_build_path(args._site_type))
 
     if args.stats:
         print_stats(epstein_files)  # Used for building pytest checks
