@@ -4,7 +4,7 @@ import re
 from copy import deepcopy
 from dataclasses import dataclass, field
 from datetime import datetime
-from typing import ClassVar, cast
+from typing import ClassVar, cast, TypeVar
 
 from dateutil.parser import parse
 from rich import box
@@ -371,7 +371,9 @@ class Email(Communication):
     @property
     def prettified_txt(self) -> Text:
         """Cleaned up / formatted Text ready to be displayed."""
-        # Rewrite broken headers where the values are on separate lines from the field names
+        text = self.display_text
+
+        # replace email headers that are deeply broken with the results of more aggressive parsing
         if self.header.should_rewrite_header:
             num_lines_to_skip = self.header.num_header_rows
             lines = []
@@ -384,9 +386,6 @@ class Email(Communication):
             lines += text.split('\n')[num_lines_to_skip:]
             text = _add_line_breaks(self.with_header('\n'.join(lines)))
             self.rewritten_header_ids.add(self.file_id)  # TODO: this is just for telemetry, it sucks
-
-        if args.char_nums:
-            text = self._inject_line_numbers(text, args.char_nums)
 
         return self.excerpt_text(self._config.char_range, text)
 

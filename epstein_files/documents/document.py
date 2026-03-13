@@ -90,6 +90,8 @@ METADATA_FIELDS = [
     'timestamp',
 ]
 
+T = TypeVar('T', bound=str | Text)
+
 
 @dataclass
 class Document:
@@ -350,10 +352,6 @@ class Document:
     def prettified_txt(self) -> Text:
         """Returns the string we want to print as the body of the document."""
         text = self.display_text
-
-        if args.char_nums:    # For debugging/choosing truncation points
-            text = self._inject_line_numbers(text, args.char_nums)
-
         # TODO: do something better to give replacement_text have different style
         style = INFO_STYLE if self.config_replace_text_with and len(self.config_replace_text_with) < 300 else ''
         return self.excerpt_text(self._config.char_range, text, style)
@@ -447,8 +445,12 @@ class Document:
         """Create an excerpt of `text`, add appropriate header/footer if truncated, and highlight it."""
         char_range = char_range or (0, len(text))
         text = doublespace_lines(text or self.text)        # TODO: not ideal place for doublespace call
+
         excerpt_txt = self._intro_txt(char_range[0])
         excerpt_txt.append(Text(text, style)[char_range[0]:char_range[1]])  # array slice of `Text` obj preserves style
+
+        if args.char_nums:    # For debugging/choosing truncation points
+            excerpt_txt = self._inject_line_numbers(excerpt_txt, args.char_nums)
 
         if (footer_txt := self.trimmed_chars_txt(char_range[1])):
             excerpt_txt.append('...\n\n').append(footer_txt)
@@ -562,7 +564,7 @@ class Document:
         file_info = self.file_info.as_dict
 
         # Remove duplicate fields to save space
-        if config_info.get('id') == file_info.get('file_id'):
+        if config_info.get('id') and config_info.get('id') == file_info.get('file_id'):
             del file_info['id']
 
         if file_info.get('source_url') == file_info.get('external_url', 'blah'):
@@ -590,13 +592,17 @@ class Document:
         txt_lines = styled_dict(self._debug_dict(), sep=': ')
         return prefix_with(txt_lines, ' ', pfx_style='grey', indent=2)
 
-    def _inject_line_numbers(self, text: str, interval: int) -> str:
+    def _inject_line_numbers(self, text: T, interval: int) -> T:
         """Inject character numbers markers into `text`. For debugging only."""
         idx = interval
         new_text = text[:idx]
 
+        def line_marker(i: int) -> T:
+            marker_str = f'\n\n ------ {idx} ------ \n\n'
+            return Text(marker_str) if isinstance(text, Text) else marker_str
+
         while idx < len(text):
-            new_text += f'\n\n ------ {idx} ------ \n\n'
+            new_text += line_marker(idx)
             end_idx = idx + interval
             new_text += text[idx:end_idx]
             idx = end_idx
@@ -664,8 +670,7 @@ class Document:
 
         with open(output_path, 'w') as f:
             f.write(self.text)
-
-        logger.warning(f"Wrote {self.length} chars of cleaned {self.filename} to {output_path}.")
+            self.log(f"Wrote {self.length} chars of self.text to '{output_path}'.")
 
     @contextmanager
     def _write_tmp_file(self) -> Generator[Path, None, None]:
@@ -674,15 +679,6 @@ class Document:
             self._write_clean_text(tmp_path)
             self.log(f"created tmp file '{tmp_doc_file.name}' ({file_size_str(tmp_path)})")
             yield Path(tmp_doc_file.name)
-
-    # def _write_clean_text_to_tmp_file(self) -> Path:
-    #     """Write `self.text` to a temporary file."""
-    #     if (tmp_file_path := Path(f"{self.file_path}_tmp.txt")).exists():
-    #         self.warn(f"Deleting existing tmp file '{tmp_file_path}'...")
-    #         tmp_file_path.unlink()
-
-    #     self._write_clean_text(tmp_file_path)
-    #     return tmp_file_path
 
     def __rich_console__(self, console: Console, options: ConsoleOptions) -> RenderResult:
         """Default `Document` renderer (Email and MessengerLog override this)."""
