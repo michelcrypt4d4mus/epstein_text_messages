@@ -142,7 +142,7 @@ def panel_to_div(panel: Panel, css_props: CssPropsArg) -> str:
         **css_props,
     }
 
-    logger.warning(f"panel_to_div():\n         panel.style: '{panel.style}'\n  panel.border_style: '{panel.border_style}'\n  local border_style: '{border_style}'\n\ninner_div_css props: {inner_div_css}\n\nouter_div_css: {outer_div_css}\n")
+    logger.debug(f"panel_to_div():\n         panel.style: '{panel.style}'\n  panel.border_style: '{panel.border_style}'\n  local border_style: '{border_style}'\n\ninner_div_css props: {inner_div_css}\n\nouter_div_css: {outer_div_css}\n")
     inner_div = div_class(rich_to_html(panel.renderable), 'panel innerp', inner_div_css)
     return div_class(inner_div, 'panel outerp', outer_div_css)
 
