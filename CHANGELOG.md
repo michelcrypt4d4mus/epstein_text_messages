@@ -1,4 +1,6 @@
 # NEXT RELEASE
+
+### 1.9.3
 * use the `DocPrinter` to build the title page so it correctly centers in the browser
 * `DocCfg.highlight_quote` now works with `Email`s too
 * `Document._config` method falls back to a dummy / empty `DocCfg` / `EmailCfg` / etc.
