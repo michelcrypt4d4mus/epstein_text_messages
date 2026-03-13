@@ -684,6 +684,10 @@ class Email(Communication):
 
         self._set_text(lines=lines)
 
+    def _remove_bad_lines(self) -> None:
+        """Get rid of crufty lines matching `BAD_LINE_REGEX`"""
+        self._set_text(lines=[line for line in self.lines if not BAD_LINE_REGEX.match(line)])
+
     def _remove_line(self, idx: int) -> None:
         """Remove a line from `self.lines`."""
         num_lines = idx * 2
@@ -694,9 +698,9 @@ class Email(Communication):
 
     def _repair(self) -> None:
         """Repair particularly janky files. Note that OCR_REPAIRS are applied *after* other line adjustments."""
-        # Some DOJ cleanup needs to happen first if this is a DOJ file.
         super()._repair()
 
+        # Apply custom repairs for DOJ files
         if self.file_info.is_doj_file:
             new_text = DojFile._remove_bad_lines(strip_pdfalyzer_panels(self.text))
             self._set_text(text=self.repair_ocr_text(DOJ_EMAIL_OCR_REPAIRS, new_text))
@@ -704,44 +708,17 @@ class Email(Communication):
         if BAD_FIRST_LINE_REGEX.match(self.lines[0]):
             self._set_text(lines=self.lines[1:])
 
-        # print(self._numbered_lines())
-        # import pdb;pdb.set_trace()
-        self._set_text(lines=[line for line in self.lines if not BAD_LINE_REGEX.match(line)])
-        old_text = self.text
+        self._remove_bad_lines()
+        self.__bespoke_repair_house_oversight_emails()
+        self._set_text(text=self.repair_ocr_text(OCR_REPAIRS, self.text))
+        self._repair_links_and_quoted_subjects()
+        self._format_newlines_and_snip_signatures()
 
-        if self.file_id in LINE_REPAIR_MERGES:
-            for merge_args in LINE_REPAIR_MERGES[self.file_id]:
-                self._merge_lines(*merge_args)
-
-        if self.file_id in ['025233']:
-            self.lines[4] = f"Attachments: {self.lines[4]}"
-            self._set_text(lines=self.lines)
-        elif self.file_id == '029977':
-            self._set_text(text=self.text.replace('Sent 9/28/2012 2:41:02 PM', 'Sent: 9/28/2012 2:41:02 PM'))
-
-        # Bad line removal
-        if self.file_id == '025041':
-            self._remove_line(4)
-            self._remove_line(4)
-        elif self.file_id == '029692':
-            self._remove_line(3)
-
-        if old_text != self.text:
-            self.log(f"Modified text, old:\n\n" + '\n'.join(old_text.split('\n')[0:12]) + '\n')
-            self._log_top_lines(12, 'Result of modifications')
-
-        repaired_text = self._repair_links_and_quoted_subjects(self.repair_ocr_text(OCR_REPAIRS, self.text))
-        # logger.debug(f"repaired_text\n---\n{self.text}\n---")
-        self._set_text(text=repaired_text)
-        self._strip_unwanted_text()
-        # TODO: we're currently calling this twice to handle lines with HTML garbage that turn into something matching BAD_LINE_REGEX
-        self._set_text(lines=[line for line in self.lines if not BAD_LINE_REGEX.match(line)])
-
-    def _repair_links_and_quoted_subjects(self, text: str) -> str:
+    def _repair_links_and_quoted_subjects(self) -> None:
         """Repair links that the OCR has broken into multiple lines as well as 'Subject:' lines."""
-        lines = text.split('\n')
-        subject_line = next((line for line in lines if line.startswith('Subject:')), None) or ''
+        subject_line = next((line for line in self.lines if line.startswith('Subject:')), None) or ''
         subject = subject_line.split(':')[1].strip() if subject_line else ''
+        lines = self.lines
         new_lines = []
         i = 0
 
@@ -777,8 +754,8 @@ class Email(Communication):
             new_lines.append(line)
             i += 1
 
-        logger.debug(f"----after line repair---\n" + '\n'.join(new_lines[0:20]) + "\n---")
-        return '\n'.join(new_lines)
+        self.debug_log(f"----after line repair---\n" + '\n'.join(new_lines[0:20]) + "\n---")
+        self._set_text(lines=new_lines)
 
     def _sent_from_device(self) -> str | None:
         """Find any 'Sent from my iPhone' style signature line if it exist in the 'actual_text'."""
@@ -792,7 +769,7 @@ class Email(Communication):
             else:
                 return sent_from
 
-    def _strip_unwanted_text(self) -> None:
+    def _format_newlines_and_snip_signatures(self) -> None:
         """Add newlines before quoted replies, snip signatures and XML, etc.."""
         # Insert line breaks now unless header is broken, in which case we'll do it later after fixing header
         # self.(f"text before _add_line_breaks:\n\n{self.text}\n---")
@@ -814,6 +791,7 @@ class Email(Communication):
             self.log(f"Replaced {num_plists_stripped} XML plists...")
 
         self._set_text(text=collapse_newlines(text).strip())
+        self._remove_bad_lines()  # TODO: we're currently calling this twice to handle lines with HTML garbage that turn into something matching BAD_LINE_REGEX
 
     def _truncate_to_length(self) -> int:
         """Decide how many chars we should limit the dislpay of this email to."""
@@ -873,6 +851,29 @@ class Email(Communication):
         log_args_str = ', '.join([f"{k}={v}" for k, v in log_args.items() if v])
         self.log(f"Truncate determination: {log_args_str}")
         return num_chars
+
+    def __bespoke_repair_house_oversight_emails(self) -> None:
+        """Apply destructive repairs to the underyling text programmtically because we don't want to edit the underlying file."""
+        old_text = self.text
+
+        if self.file_id in LINE_REPAIR_MERGES:
+            for merge_args in LINE_REPAIR_MERGES[self.file_id]:
+                self._merge_lines(*merge_args)
+
+        if self.file_id in ['025233']:
+            self.lines[4] = f"Attachments: {self.lines[4]}"
+            self._set_text(lines=self.lines)
+        elif self.file_id == '029977':
+            self._set_text(text=self.text.replace('Sent 9/28/2012 2:41:02 PM', 'Sent: 9/28/2012 2:41:02 PM'))
+        elif self.file_id == '025041':
+            self._remove_line(4)
+            self._remove_line(4)
+        elif self.file_id == '029692':
+            self._remove_line(3)
+
+        if old_text != self.text:
+            self.log(f"Modified text, old:\n\n" + '\n'.join(old_text.split('\n')[0:12]) + '\n')
+            self._log_top_lines(12, 'Result of modifications')
 
     def __rich_console__(self, console: Console, options: ConsoleOptions) -> RenderResult:
         prettified_txt = self.prettified_txt
