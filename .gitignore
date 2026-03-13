@@ -221,3 +221,4 @@ the_epstein_files.local.pkl.gz.bak
 .urls.env
 .DS_Store
 .env.bak
+scripts/rich_link_style_bug.py
