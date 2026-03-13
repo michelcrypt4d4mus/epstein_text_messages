@@ -196,5 +196,9 @@ def vertical_pad_props(units: CssUnit) -> dict[str, str]:
     return side_props('padding', VERTICAL_SIDES, units)
 
 
+def vertical_spacer(em_units: int) -> str:
+    return f'<div style="height: {em_units}"></div>'
+
+
 PRE_CONSOLE_TEMPLATE_PREFIX = tag('pre', CODE_TEMPLATE, PRE_TAG_CSS)
 PRE_CONSOLE_TEMPLATE = PRE_CONSOLE_TEMPLATE_PREFIX + SPLITTER_TEMPLATE

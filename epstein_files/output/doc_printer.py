@@ -18,7 +18,7 @@ from epstein_files.documents.other_file import OtherFile
 from epstein_files.output.layout_elements.file_display import BasePanel, FileDisplay
 from epstein_files.output.html.builder import (console_buffer_to_html, panel_to_div, rich_to_html, table_to_html,
      text_to_div, unwrap_rich, write_templated_html)
-from epstein_files.output.html.elements import div_class, tag, to_em
+from epstein_files.output.html.elements import div_class, tag, to_em, vertical_spacer
 from epstein_files.output.rich import console, mobile_console, section_subtitle_panel
 from epstein_files.output.site.sites import SiteType
 from epstein_files.people.person import PEOPLE_BIOS, Person
@@ -36,7 +36,8 @@ EMPTY_LINE_HEIGHT = to_em(1.5)
 EMPTY_LINE_DIV = f'<div style="height: {EMPTY_LINE_HEIGHT}"></div>'
 STICKY_BIO_CSS_CLASS = 'sticky_person_bio_panel'
 
-PeopleBiosArg = list[str] | Document | FileDisplay
+PrintableObj = Document | FileDisplay
+PeopleBiosArg = list[str] | PrintableObj
 
 
 @dataclass(kw_only=True)
@@ -55,9 +56,8 @@ class DocPrinter:
     epstein_files: 'EpsteinFiles'
     collect_other_files_to_tables: bool = True
     html_elements: list[str] = field(default_factory=list)
-    printed_docs: list[Document] = field(default_factory=list)
-    printed_file_displays: list[FileDisplay] = field(default_factory=list)
     printed_name_bios: set[str] = field(default_factory=set)
+    printed_objs: list[PrintableObj] = field(default_factory=list)
     _last_bio_panel = ''
     _other_files_queue: list[OtherFile] = field(default_factory=list)
     _suppressed_docs_queue: list[Document] = field(default_factory=list)
@@ -67,18 +67,20 @@ class DocPrinter:
 
     @property
     def printed_emails(self) -> list[Email]:
-        emails = [e for e in self.printed_docs if isinstance(e, Email)]
+        return [e for e in self.printed_objs if isinstance(e, Email)]
 
-        if len(emails) != len(self.printed_docs):
-            logger.warning(f"DocPrinted.printed_emails returning {len(emails)} of {len(self.printed_docs)} printed docs...")
+    @property
+    def printed_file_displays(self) -> list[FileDisplay]:
+        return [e for e in self.printed_objs if isinstance(e, FileDisplay)]
 
-        return emails
+    @property
+    def printed_docs(self) -> list[Document]:
+        return [e for e in self.printed_objs if isinstance(e, Document)]
 
     def line(self, num: int = 1) -> None:
         """Print blank lines to HTML and terminal, similar to `console.line()`."""
-        for _i in range(0, num):
-            console.line()
-            self.html_elements.append(EMPTY_LINE_DIV)
+        self.html_elements.append(vertical_spacer(num))
+        console.line(num)
 
     def new_names(self, names_or_doc: PeopleBiosArg) -> list[str]:
         """List of names found in relation to the documents that have not been encountered before."""
@@ -107,23 +109,28 @@ class DocPrinter:
         self.print_centered(color_key())
 
     def print_documents(self, docs: Sequence[Document | FileDisplay]) -> None:
+        """
+        # sequential suppression msgs + OtherFiles collect in queues to be printed
+        # when obj of another type shows up OR (for OtherFiles) if there's new names for a biography panel
+        """
+        suppressed_docs: list[Document] = []
+        processed_suppressed_docs_queue = lambda: suppressed_docs.extend(self._print_suppression_msgs_queue())
         timer = Timer()
-        i = 0
 
-        if len(docs) > 500:
-            logger.info(f"{type(self).__name__}.print_documents() called with {len(docs):,} Documents...")
+        if (should_log_in_intervals := (len(docs) > 1000)):
+            logger.info(f"{type(self).__name__}.print_documents() called with {len(docs):,} objects...")
 
-        # suppressed doc msg Text objects and OtherFile objects collect in queues and are printed in a group
-        # if a different obj type is encountered
         for i, doc in enumerate(docs, 1):
-            logger.info(f"Printing {doc}")
+            logger.debug(f"Printing {doc}")
 
+            # Handle sequences of uninteresting or otherwise suppressed docs
             if isinstance(doc, Document) and doc.suppressed_txt:
                 self._suppressed_docs_queue.append(doc)
                 continue
 
-            self._print_suppression_msgs_queue()
+            processed_suppressed_docs_queue()
 
+            # Collect sequences of otherFile objects into a table
             if isinstance(doc, OtherFile) and doc.is_valid_for_table and self.collect_other_files_to_tables:
                 if (new_names := self.new_names_with_bios(doc)):
                     self._cache_biographies_panel(new_names)
@@ -134,17 +141,12 @@ class DocPrinter:
             self._print_other_files_queue()
             self.print_renderable(doc)
 
-            if isinstance(doc, Document):
-                self.printed_docs.append(doc)
-            else:
-                self.printed_file_displays.append(doc)
+            if should_log_in_intervals and (i % 100 == 0):
+                timer.print_at_checkpoint(f"Printed {i:,} objs of {len(docs):,} ({len(suppressed_docs):,} suppressed)")
 
-            if i % 100 == 0:
-                timer.print_at_checkpoint(f"Printed {i} documents")
-
-        # Print any stuff still in one of the deferred printing queues
-        self._print_suppression_msgs_queue()
+        processed_suppressed_docs_queue()
         self._print_other_files_queue()
+        timer.print_at_checkpoint(f"Finished printing {len(docs):,} objs ({len(suppressed_docs):,} suppressed)")
 
     def print_renderable(self, renderables: RenderableType | list[RenderableType]) -> None:
         """All things being printed should come through here, which collects both terminal and HTML output as its written."""
@@ -157,8 +159,9 @@ class DocPrinter:
                 self.line()
                 continue
             elif isinstance(rich_obj, (Document, FileDisplay)):
-                doc_bios_html = self._build_biographies_panel_html(rich_obj.people)
+                doc_bios_html = self._build_biographies_panel_html(rich_obj.people) if isinstance(rich_obj, Document) else ''
                 self._append_element_with_bio_div(rich_obj.to_html(), doc_bios_html)
+                self.printed_objs.append(rich_obj)
             elif isinstance(rich_obj, Table):
                 html_table = table_to_html(rich_obj, css_props)
 
@@ -286,18 +289,21 @@ class DocPrinter:
 
         table = OtherFile.files_preview_table(self._other_files_queue, title=table_title, title_justify='center')
         self.print_renderable(Padding(table, (0, 0, 1, site_config.other_files_table_indent)))
-        self.printed_docs.extend(self._other_files_queue)
+        self.printed_objs.extend(self._other_files_queue)
         self._other_files_queue = []
 
-    def _print_suppression_msgs_queue(self) -> None:
-        """Print any suppression messages."""
+    def _print_suppression_msgs_queue(self) -> list[Document]:
+        """Print any suppression messages. Returns Documents whose suppression msg was printed."""
         if not self._suppressed_docs_queue:
-            return
+            return []
 
         msgs_panel = BasePanel(border_style='', text=[d.suppressed_txt for d in self._suppressed_docs_queue])
         self.print_renderable(msgs_panel)
-        self._suppressed_docs_queue = []
         console.line()  # TODO this isn't happening in HTML output
+
+        processed_suppressed_docs = self._suppressed_docs_queue
+        self._suppressed_docs_queue = []  # Reset queue
+        return processed_suppressed_docs
 
     def _print_title_page_elements(self, renderables: list[RenderableType]) -> None:
         """"Centered and vertically paded Tables and Panels."""

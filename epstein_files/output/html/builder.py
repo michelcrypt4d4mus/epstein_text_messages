@@ -136,9 +136,7 @@ def panel_to_div(panel: Panel, css_props: CssPropsArg) -> str:
 
     if panel.width:
         if panel.expand:
-            logger.warning(f"Panel '{panel.title}' width={panel.width} but expand=True")
-
-        width = min(70, panel.width)
+            logger.info(f"Panel '{panel.title}' width={panel.width} but expand=True")
 
         for prop in WIDTH_PROPS:
             inner_div_css[prop] = to_em(panel.width - MAKEUP_PADDING)
