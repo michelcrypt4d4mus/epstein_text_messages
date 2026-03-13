@@ -5145,10 +5145,10 @@ EFTA00036062,,,,2019-07-29 00:00:00+00:00,,,
 EFTA00037187,money,. NY FBI,True,2020-08-04 18:29:32+00:00,NY FBI,,
 EFTA00037683,government,USANYS,,2020-07-29 16:21:44+00:00,USANYS,,tip that the murder of DC Madam Jeanne Palfrey might be connected to Epstein's network
 EFTA00038915,government,FBI,True,2007-08-13 00:00:00+00:00,,,"FBI interview with minor victim, claims Epstein knew she was 14"
-EFTA00039025,government,Bureau of Prisons,,2021-12-13 00:00:00+00:00,,,Bureau of Prisons report on death of Jeffrey Epstein
+EFTA00039025,government,Bureau of Prisons,True,2021-12-13 00:00:00+00:00,,,Bureau of Prisons report on death of Jeffrey Epstein
 EFTA00039153,government,Bureau of Prisons,,2019-01-06 00:00:00+00:00,,,"Bureau of Prisons List of Exhibits, Chapter 2"
 EFTA00039156,government,Bureau of Prisons,,2026-01-02 00:00:00+00:00,,,
-EFTA00039190,government,Bureau of Prisons,,2016-11-23 00:00:00+00:00,,,Bureau of Prisons Special Housing Units
+EFTA00039190,government,Bureau of Prisons,False,2016-11-23 00:00:00+00:00,,,Bureau of Prisons Special Housing Units
 EFTA00039208,,,,2026-01-04 00:00:00+00:00,,,
 EFTA00039227,government,Bureau of Prisons,,2026-01-14 00:00:00+00:00,,,
 EFTA00039282,,,,2020-11-18 00:00:00+00:00,,,
@@ -5350,7 +5350,7 @@ EFTA00105975,deposition,"<REDACTED> v. Estate of Jeffrey Epstein, Ghislaine Maxw
 EFTA00108533,government,Bureau of Prisons,,2019-07-23 00:00:00+00:00,,,Bureau of Prisons roster of inmates at Metropolitan Correctional Center
 EFTA00108552,government,Bureau of Prisons,,2019-07-23 00:00:00+00:00,,,Bureau of Prisons roster of inmates at Metropolitan Correctional Center
 EFTA00109001,email,,True,2019-09-06 06:09:00+00:00,,,
-EFTA00109163,government,Bureau of Prisons,,2019-08-08 00:00:00+00:00,,,Bureau of Prisons Metropolitan Correctional Center forms showing Konstantin Ignatov
+EFTA00109163,government,Bureau of Prisons,True,2019-08-08 00:00:00+00:00,,,Bureau of Prisons Metropolitan Correctional Center forms showing Konstantin Ignatov
 EFTA00109654,government,Bureau of Prisons,,2019-08-08 00:00:00+00:00,,,Bureau of Prisons roster of inmates at Metropolitan Correctional Center
 EFTA00109783,government,Bureau of Prisons,,2019-08-03 00:00:00+00:00,,,Bureau of Prisons prisoner assignments
 EFTA00120459,government,Bureau of Prisons,,2019-08-09 00:00:00+00:00,,,

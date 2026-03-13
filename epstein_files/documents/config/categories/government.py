@@ -7,7 +7,14 @@ from epstein_files.util.logging import logger
 
 
 def bop_doc(id: str, description: str = '', date: str = '', display_text: str = '', **kwargs) -> DocCfg:
-    return DocCfg(id=id, author=BUREAU_OF_PRISONS, description=description, date=date, display_text=display_text)
+    return DocCfg(
+        id=id,
+        author=BUREAU_OF_PRISONS,
+        description=description,
+        date=date,
+        display_text=display_text,
+        **kwargs
+    )
 
 
 def bop_policy_doc(id: str, display_text: str, date: str = '') -> DocCfg:
