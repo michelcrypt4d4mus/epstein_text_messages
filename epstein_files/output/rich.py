@@ -265,12 +265,18 @@ def snip_msg_txt(msg: str, style: str = '') -> Text:
 
 
 def section_subtitle_panel(msg: str, style: str = SUBTITLE_STYLE) -> Padding:
-    return Padding(subtitle_panel(msg, style), site_config.subtitle_padding)
+    """`subtitle_panel()` but with margins applied."""
+    return Padding(subtitle_panel(msg, style), site_config.subtitle_margins)
 
 
 def subtitle_panel(msg: str, style: str = SUBTITLE_STYLE) -> Panel:
-    """Less splashy title panel."""
-    return Panel(Text.from_markup(msg, justify='center'), width=site_config.subtitle_width, style=style)
+    """`Panel`  for important text, like name of a subsection."""
+    return Panel(
+        Text.from_markup(msg, justify='center'),
+        padding=site_config.subtitle_padding,
+        style=style,
+        width=site_config.subtitle_width,
+    )
 
 
 def styled_dict(

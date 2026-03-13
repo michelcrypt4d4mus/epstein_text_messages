@@ -45,7 +45,8 @@ class MobileConfig:
     show_emailer_tables: ClassVar[bool] = False
     site_glossary_horizontal_padding: ClassVar[int] = 2
     social_link_separator: ClassVar[str] = ' '
-    subtitle_padding: ClassVar[PaddingDimensions] = (2, 1, 1, 1)
+    subtitle_margins: ClassVar[PaddingDimensions] = (2, 1, 1, 1)
+    subtitle_padding: ClassVar[PaddingDimensions] = (0, 1)
     subtitle_width: ClassVar[int | None] = None
     suppressed_file_indent: ClassVar[int] = 0
     width: ClassVar[int] = 52
@@ -88,8 +89,9 @@ class SiteConfig(MobileConfig):
     show_with_indent: ClassVar[int] = 30
     site_glossary_horizontal_padding: ClassVar[int] = 5
     social_link_separator: ClassVar[str] = '  /  '
-    subtitle_padding: ClassVar[PaddingDimensions] = (2, 0, 2, 0)
-    subtitle_width: ClassVar[int | None] = 110
+    subtitle_margins: ClassVar[PaddingDimensions] = (2, 0, 2, 0)
+    subtitle_padding: ClassVar[PaddingDimensions] = (0, 3)
+    subtitle_width: ClassVar[int | None] = 70
     suppressed_file_indent: ClassVar[int] = 0
     width: ClassVar[int] = DEFAULT_WIDTH
 
