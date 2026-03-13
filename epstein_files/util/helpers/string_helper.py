@@ -20,6 +20,7 @@ WHITESPACE_REGEX = re.compile(r"\s{2,}|\t|\n", re.MULTILINE)
 WHITESPACE_CHAR = r"[-_.\s]*"
 DATE_LENGTH = len('2025-05-05')
 DOUBLESPACE_IF_LINE_LEN_OVER = 120
+DOUBLESPACE_IF_LONG_LINE_PCT = 0.4
 
 capitalize_first = lambda s: s[0].upper() + s[1:]
 capture_group_marker = lambda label: fr"?P<{label}>"
@@ -46,8 +47,11 @@ def constantize(s: str) -> str:
 
 
 def doublespace_lines(s: str) -> str:
-    """Doublespace \n hars if s has long lines."""
-    if max(len(line) for line in s.split('\n')) > DOUBLESPACE_IF_LINE_LEN_OVER:
+    """Doublespace \n chars if s has a high pct of long lines."""
+    lines = s.split('\n')
+    long_lines = [line for line in lines if len(line) > DOUBLESPACE_IF_LINE_LEN_OVER]
+
+    if (len(long_lines) / len(lines)) > DOUBLESPACE_IF_LONG_LINE_PCT:
         return s.replace('\n', '\n\n')
     else:
         return s

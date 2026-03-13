@@ -50,7 +50,7 @@ class FileInfo:
                 self.warn(f"Couldn't find a data set ID in path '{self.local_path}'! Cannot create valid links.")
 
     @property
-    def as_dict(self) -> Mapping[str, str | Path]:
+    def as_dict(self) -> dict[str, str | Path]:
         props = {k: v for k, v in asdict(self).items() if v}
         props.update({k: getattr(self, k) for k in FILE_PROPS if getattr(self, k)})
         props.update(self.paths)

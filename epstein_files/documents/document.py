@@ -8,7 +8,7 @@ from email import policy
 from email.parser import BytesParser
 from pathlib import Path
 from tempfile import NamedTemporaryFile
-from typing import ClassVar, Generator, Self, Sequence, TypeVar
+from typing import ClassVar, Generator, Mapping, Self, Sequence, TypeVar
 
 from rich.align import Align
 from inflection import underscore
@@ -79,6 +79,7 @@ DEBUG_PROPS_TRUTHY_ONLY = [
     AUTHOR,
     'category',
     'is_empty',
+    'people',
 ]
 
 METADATA_FIELDS = [
@@ -144,7 +145,7 @@ class Document:
 
     @property
     def category(self) -> str:
-        return self.config.category if self.config and self.config.category else self.default_category()
+        return self._config.category or self.default_category()
 
     @property
     def category_style(self) -> str:
@@ -186,6 +187,11 @@ class Document:
     @property
     def date_str(self) -> str | None:
         return date_str(self.timestamp)
+
+    @property
+    def display_text(self) -> str:
+        """Config overrides what text should be displayed."""
+        return self._config.replace_text_with or self.text
 
     @property
     def duplicate_file_txt(self) -> Text | None:
@@ -326,28 +332,19 @@ class Document:
     def people(self) -> list[str]:
         """Names of people who either sent/received this email or are mentioned in it."""
         people = [self.author] if self.author else []
-        text_to_scan = self.text
-        non_participants = []
+        text_to_scan = self.display_text
 
-        if self.config:
-            if self.config.people:
-                return self.config.people
-            if not self.config.is_valid_for_name_scan:
-                return people
-            elif self.config.replace_text_with:
-                text_to_scan = self.config.replace_text_with
+        # `DocCfg.people` prop overrides everything.
+        if self._config.people:
+            return self._config.people
+        elif not self._config.is_valid_for_name_scan:
+            return people
+        elif self._config.description:
+            text_to_scan = f"{self._config.description}\n{text_to_scan}"
 
-            if self.config.description:
-                text_to_scan = f"{self.config.description}\n{text_to_scan}"
-
-            non_participants = self.config.non_participants
-
+        # Use `Contact` regexes to scan for the presence of people's names in `self.text`
         people.extend([c.name for c in HIGHLIGHTED_CONTACTS if c.highlight_regex.search(text_to_scan)])
-        people = uniq_sorted([p for p in people if p not in non_participants])
-
-        if people:
-            self.log(f"people() found {len(people)} names: {', '.join(people)}")
-
+        people = uniq_sorted([p for p in people if p not in self._config.non_participants])
         return people
 
     @property
@@ -356,17 +353,15 @@ class Document:
         if self.config and self.config.highlight_quote:
             raise NotImplementedError(f"highlight_quote functionality not implemented in Document yet {self}")
 
-        style = INFO_STYLE if self.config_replace_text_with and len(self.config_replace_text_with) < 300 else ''
         text = self.config_replace_text_with or self.text
 
+        # For debugging/choosing truncation points
         if args.char_nums:
-            text = self._inject_line_numbers(text, args.char_nums)   # For debugging/choosing truncation points
+            text = self._inject_line_numbers(text, args.char_nums)
 
-        # Call excerpt_text() if there's truncation instructions in this doc's config
-        if self.config and self.config.char_range and not args.whole_file:
-            return self.excerpt_text(self.config.char_range, text)
-        else:
-            return highlighter(Text(text, style))
+        # TODO: do something better to give replacement_text have different style
+        style = INFO_STYLE if self.config_replace_text_with and len(self.config_replace_text_with) < 300 else ''
+        return self.excerpt_text(self._config.char_range, text, style)
 
     @property
     def suppressed_txt(self) -> Text | None:
@@ -453,13 +448,13 @@ class Document:
     def debug_log(self, msg: str) -> None:
         self.log(msg, logging.DEBUG)
 
-    def excerpt_text(self, char_range: CharRange, text: str = '') -> Text:
+    def excerpt_text(self, char_range: CharRange | None = None, text: str = '', style = '') -> Text:
         """Create an excerpt of `text`, add appropriate header/footer if truncated, and highlight it."""
-        text = text or self.text
-        excerpt_chars = text[char_range[0]:char_range[1]]
-        # TODO bad place for doublespacing... for now it's ok because only excerpts are affected.
-        # excerpt_chars = doublespace_lines(text[char_range[0]:char_range[1]])
-        txt = self._intro_txt(char_range[0]).append(highlighter(excerpt_chars))
+        text = doublespace_lines(text or self.text)        # TODO: maybe not ideal place for doubelspace call
+        char_range = char_range or (0, len(text))
+
+        txt = self._intro_txt(char_range[0])
+        txt.append(highlighter(Text(text, style))[char_range[0]:char_range[1]])  # array slice of `Text` obj preserves style
 
         if (footer_txt := self.trimmed_chars_txt(char_range[1])):
             txt.append('...\n\n').append(footer_txt)
@@ -568,15 +563,16 @@ class Document:
         self.log(msg, level=logging.WARNING)
 
     def _debug_dict(self, as_txt: bool = False, with_prefixes: bool = True) -> DebugDict | Text:
-        """Merge information about this document from config, file info, etc."""
+        """Merge information about this document from `DocCfg`, `FileInfo`, etc. objs."""
         config_info = self.config.truthy_props if self.config else {}
         file_info = self.file_info.as_dict
 
+        # Remove duplicate fields to save space
         if config_info.get('id') == file_info.get('file_id'):
-            config_info.pop('id')
+            del file_info['id']
 
         if file_info.get('source_url') == file_info.get('external_url', 'blah'):
-            file_info.pop('external_url')
+            del file_info['external_url']
 
         if with_prefixes:
             config_info = prefix_keys(type(self.config).__name__, config_info)

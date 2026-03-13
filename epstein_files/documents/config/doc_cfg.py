@@ -21,7 +21,7 @@ from epstein_files.util.helpers.file_helper import is_doj_file
 from epstein_files.util.helpers.string_helper import collapse_whitespace, is_bool_prop, join_truthy, quote
 from epstein_files.util.logging import logger
 
-DebugDict = dict[str, bool | datetime | str | Path | None]
+DebugDict = dict[str, bool | datetime | set | str | Path | None]
 DuplicateType = Literal['bounced', 'earlier', 'quoted', 'redacted', 'same']
 Metadata = dict[str, bool | datetime | int | str | None | list[str | None] | dict[str, bool | str]]
 
@@ -396,7 +396,7 @@ class DocCfg:
     @property
     def char_range(self) -> CharRange | None:
         """`truncate_to` as (0, value) tuple if it's an int value."""
-        if self.truncate_at is None or self.truncate_to == NO_TRUNCATE:
+        if args.whole_file or self.truncate_at in [None, NO_TRUNCATE]:
             return None
         elif isinstance(self.truncate_at, int):
             return (0, self.truncate_at)
