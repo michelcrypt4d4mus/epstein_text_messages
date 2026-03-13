@@ -99,7 +99,7 @@ CRYPTO_CFGS = [
         description=f"{BROCK_PIERCE} posts review of infamous Russian criminal crypto exchange BTC-e to LinkedIn",
         is_interesting=True,
         show_with_name=BROCK_PIERCE,
-        # truncate_to=(1_400, 3_050),  # TODO: enable excerpts in emails
+        truncate_to=(800, 3_100),
     ),
     DocCfg(id='EFTA01088644', author=BLOCKCHAIN_CAPITAL, description="pitch deck", date='2015-10-01'),
     DocCfg(id='EFTA00604942', author=BLOCKCHAIN_CAPITAL, description="Investor Update", date='2015-10-01'),
