@@ -429,6 +429,7 @@ GIRLS_CFGS = [
     EmailCfg(id='EFTA00631762', description="visa problems for Epstein's South African friend"),
     EmailCfg(id='EFTA00376832', show_with_name=MARIANA_IDZKOWSKA),
     EmailCfg(id='EFTA00743526', truncate_to=NO_TRUNCATE),
+    # EmailCfg(id='EFTA00743526', truncate_to=(300, 500)),  # Test cruft
     EmailCfg(id='EFTA02664956', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA00689698', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA02702141', truncate_to=NO_TRUNCATE, comment=ELON_MUSK),

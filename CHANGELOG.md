@@ -1,4 +1,5 @@
 # NEXT RELEASE
+* `DocCfg.highlight_quote` now works with `Email`s too
 * `Document._config` method falls back to a dummy / empty `DocCfg` / `EmailCfg` / etc.
 * `DocCfg` new property `num_preview_chars`, standardize preview length computation
 * Include author in `Document.people()` even if `is_valid_for_name_scan` is false

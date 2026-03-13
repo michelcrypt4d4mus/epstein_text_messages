@@ -20,6 +20,7 @@ from epstein_files.documents.documents.categories import Uninteresting
 from epstein_files.documents.config.doc_cfg import DEFAULT_TRUNCATE_TO, NO_TRUNCATE, SHORT_TRUNCATE_TO, DebugDict, EmailCfg, Metadata
 from epstein_files.documents.doj_file import DojFile
 from epstein_files.documents.emails.constants import *
+from epstein_files.documents.emails.email_parts import EmailParts
 from epstein_files.documents.emails.email_header import (EMAIL_SIMPLE_HEADER_REGEX,
      EMAIL_SIMPLE_HEADER_LINE_BREAK_REGEX, EmailHeader)
 from epstein_files.documents.emails.emailers import extract_emailer_names
@@ -298,6 +299,27 @@ class Email(Communication):
         return self._header
 
     @property
+    def email_parts(self) -> EmailParts:
+        num_header_lines = self.header.num_header_rows
+
+        if self.header.should_rewrite_header:
+            header = self.header.rewrite_header()
+            lines = []
+
+            # TODO: Emails w/configured 'actual_text' are particularly broken; need to shuffle some lines
+            if (actual_text := self._config.actual_text) is not None:
+                lines.extend([cast(str, actual_text), '\n'])
+                num_header_lines += 1
+
+            lines.extend(self.lines[num_header_lines:])
+            body = _add_line_breaks('\n'.join(lines))
+        else:
+            header = '\n'.join(self.lines[0:num_header_lines])
+            body = '\n'.join(self.lines)[num_header_lines:]
+
+        return EmailParts(header, body)
+
+    @property
     def html_margin_bottom(self) -> str:
         """Overloaded in `Email` for case of emails with attachments."""
         if self.attached_docs:
@@ -345,8 +367,8 @@ class Email(Communication):
     @property
     def is_word_count_worthy(self) -> bool:
         """True if this file should be included in word counts."""
-        if self.is_fwded_article:
-            return bool(self.config.fwded_text_after) or len(self.actual_text) < 150
+        if self._config.fwded_text_after:
+            return bool(self._config.fwded_text_after) or len(self.actual_text) < 150
         else:
             return not self.is_mailing_list
 
@@ -370,24 +392,14 @@ class Email(Communication):
 
     @property
     def prettified_txt(self) -> Text:
-        """Cleaned up / formatted Text ready to be displayed."""
-        text = self.display_text
+        """Overrides superclass.Cleaned up / formatted Text ready to be displayed."""
+        txt = self.excerpt_text(self._config.char_range, self.display_text)
 
-        # replace email headers that are deeply broken with the results of more aggressive parsing
-        if self.header.should_rewrite_header:
-            num_lines_to_skip = self.header.num_header_rows
-            lines = []
+        # always show the email header even if there's a truncate_to excerpt configured
+        if self._config.char_range and self._config.char_range[0] > 0:
+            txt = self.email_parts.header_txt.append('\n\n').append(txt)
 
-            # Emails w/configured 'actual_text' are particularly broken; need to shuffle some lines
-            if (body_str := self.config.actual_text if (self.config and self.config.actual_text) else None) is not None:
-                lines.extend([cast(str, body_str), '\n'])
-                num_lines_to_skip += 1
-
-            lines += text.split('\n')[num_lines_to_skip:]
-            text = _add_line_breaks(self.with_header('\n'.join(lines)))
-            self.rewritten_header_ids.add(self.file_id)  # TODO: this is just for telemetry, it sucks
-
-        return self.excerpt_text(self._config.char_range, text)
+        return txt
 
     @property
     def recipients_str(self) -> str:
