@@ -15,7 +15,7 @@ EVIDENCE_REGEX = re.compile(r".{,1000}ITEM\s+WAS\s+NOT\s+SCANNED")
 FBI_FILE_REGEX = re.compile(r"^(UNCLASSIFIED\s+)?FEDERAL BUREAU OF INVESTIGATION")
 GRAND_JURY_REGEX = re.compile(r"Grand Jury", re.IGNORECASE)
 HARD_DRIVE_REGEX = re.compile(r"westerndigital|Gold SATA")
-LEGAL_FILING_REGEX = re.compile(r"^Case (\d+:\d+-.*?) Doc")
+LEGAL_FILING_REGEX = re.compile(r"^Case (\d+:\d+-.*?)\s+Doc")
 LSJE_FORM_REGEX = re.compile(r".{,5}LSJE,\s+LLC.*Emergency\s+Contact\s+Form", re.DOTALL)
 SOUTHERN_FINANCIAL_REGEX = re.compile(r"^Southern Financial LLC salesforce.com")
 SUBPOENA_REGEX = re.compile(r"GRAND JURY SUBPOENA")
@@ -33,6 +33,7 @@ DUPLICATES = {
 }
 
 CASE_IDS = {
+    '1:19-cv-10479-ALC-DCF': f"Juliette Bryant v. {DARREN_INDYKE} and {RICHARD_KAHN} as executors of Epstein Estate",
     '1:20-cr-00330-AJN': f"US v. {GHISLAINE_MAXWELL}",
     '1:20-cv-00833-PAE': f"New York Times v. {BUREAU_OF_PRISONS}",
     '1:19-cr-00490-RMB': f"US v. {JEFFREY_EPSTEIN}",
