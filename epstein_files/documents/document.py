@@ -665,7 +665,7 @@ class Document:
     def _intro_txt(self, cutoff: int) -> Text:
         """Truncation message if it's an excerpt."""
         if cutoff == 0:
-            return Text('')
+            return Text('')  # Empty Text object makes sure the whole string starts with default no-style
 
         return snip_msg_txt(f'trimmed first {cutoff:,} characters', EXCERPT_STYLE).append('\n\n...')
 

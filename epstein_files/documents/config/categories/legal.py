@@ -125,38 +125,6 @@ LEGAL_CFGS = [
     DocCfg(id='028540', author='SCOTUS', description=f"decision in Budha Ismail Jam et al. v. INTERNATIONAL FINANCE CORP"),
     DocCfg(id='012197', author='SDFL', description=f"response to {JAY_LEFKOWITZ} on Epstein Plea Agreement Compliance"),
     DocCfg(id='022277', description=f"text of National Labour Relations Board (NLRB) law", is_interesting=False),
-    fbi_report('019352', f"{FBI_REPORT} containing clippings of various press items"),
-    fbi_report('021434', is_valid_for_name_scan=False),
-    fbi_report(
-        '018872',
-        non_participants=[
-            BILL_GATES,
-            BILL_RICHARDSON,
-            EDUARDO_ROBLES,
-            'Eliot Spitzer',
-            GERALD_LEFCOURT,
-            GLENN_DUBIN,
-            JEAN_LUC_BRUNEL,
-            JOI_ITO,
-            LARRY_SUMMERS,
-            LAWRANCE_VISOSKI,  # Just bc his deposition comes soon after
-            MARK_EPSTEIN,
-            MARTIN_NOWAK,
-            MORTIMER_ZUCKERMAN,
-            PRINCE_ANDREW,
-            SECURITIES_AND_EXCHANGE_COMMISSION,
-            STEVEN_HOFFENBERG,
-            SVETLANA_POZHIDAEVA
-        ],
-    ),
-    fbi_report('021569'),
-    fbi_report('EFTA01688746'),
-    fbi_report('EFTA00090314', f'tips about {MASHA_DROKOVA}, Jared Kushner, Ivanka Trump, Chabad, {ALAN_DERSHOWITZ}, etc.', is_interesting=True),
-    fbi_report(
-        'EFTA00129085',
-        'wiretap report linking phone number in John Gotti / Gambino / Michael Bilotti investigation to number in Epstein investigation',
-        is_interesting=True,
-    ),
 
     # legal letters
     letter(

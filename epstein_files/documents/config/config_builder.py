@@ -2,6 +2,7 @@
 Methods to help with building various kinds of `DocCfg` or `EmailCfg` objects.
 """
 from dateutil.parser import parse
+from typing import TypeVar
 
 from epstein_files.documents.documents.categories import Category, Interesting, Neutral, Uninteresting
 from epstein_files.documents.config.doc_cfg import CommunicationCfg, DocCfg, DuplicateType, EmailCfg
@@ -22,7 +23,7 @@ SUBPOENA_REGEX = re.compile(r"GRAND JURY SUBPOENA")
 VALAR_CAPITAL_CALL_REGEX = re.compile(r"^Val[ao]r.{,190} Capital Call", re.MULTILINE | re.IGNORECASE | re.DOTALL)
 VI_DAILY_NEWS_REGEX = re.compile(r'virgin\s*is[kl][ai]nds\s*daily\s*news', re.IGNORECASE)
 
-FBI_REPORT = f"report on Epstein investigation"  # (redacted)
+EPSTEIN_INVESTIGATION = 'Epstein investigation'
 JANE_DOE_V_USA = 'Jane Doe #1 and Jane Doe #2 v. United States'
 LEDGERX_MSG = 'LedgerX was later acquired by FTX for $298 million'
 WOLFF_EPSTEIN_ARTICLE_DRAFT = f"draft of an unpublished article ca. 2014"
@@ -48,6 +49,8 @@ EMERGENCY_CONTACT_DATES = {
 DESCRIPTIONS = {
     'EFTA00015532': "alleging Epstein tried to buy victim's silence",
 }
+
+Cfg = TypeVar('Cfg', bound=DocCfg)
 
 
 def build_cfg_from_text(doc: 'Document') -> DocCfg | None:
@@ -121,31 +124,23 @@ def blaine_letter(id: str, date: str, suffix: str = '', **kwargs) -> Communicati
 
 
 def fbi_defense_witness(id: str, witness: str, date: str = '') -> DocCfg:
-    return DocCfg(
-        id=id,
-        author=FBI,
-        date=date,
-        description=f'Research and Key Findings for {witness}, defense witness for {GHISLAINE_MAXWELL}',
-    )
+    description = f'Research and Key Findings for {witness}, defense witness for {GHISLAINE_MAXWELL}'
+    return _set_fbi_doc_fields(DocCfg(id=id, date=date, description=description))
 
 
 def fbi_interview(id: str, interviewee: Name, description: str = '', date: str = '', **kwargs) -> CommunicationCfg:
-    return CommunicationCfg(
-        id=id,
-        author=FBI,
-        date=date,
-        description=join_truthy(f"interview with {interviewee or UNKNOWN}", description, ', '),
-        recipients=[interviewee],
-        **kwargs
-    )
+    description = join_truthy(f"interview with {interviewee or UNKNOWN}", description, ', ')
+    cfg = CommunicationCfg(id=id, date=date, description=description, recipients=[interviewee], **kwargs)
+    return _set_fbi_doc_fields(cfg)
 
 
-def fbi_report(id: str, description: str = FBI_REPORT, **kwargs) -> DocCfg:
-    return DocCfg(id=id, author=FBI, category=Neutral.GOVERNMENT, description=description, **kwargs)
+def fbi_report(id: str, description: str = EPSTEIN_INVESTIGATION, **kwargs) -> DocCfg:
+    description = join_truthy('report', description, ' about ')
+    return _set_fbi_doc_fields(DocCfg(id=id, description=description, **kwargs))
 
 
 def fbi_tip(id: str, about: str, **kwargs) -> DocCfg:
-    return fbi_report(id, f"tip {about}", **kwargs)
+    return _set_fbi_doc_fields(DocCfg(id=id, description=f"tip {about}", **kwargs))
 
 
 def fedex_invoice(id: str, date: str) -> DocCfg:
@@ -254,3 +249,10 @@ def wolff_draft_cfg(id: str, suffix: str = '', **kwargs) -> DocCfg:
         description=join_truthy(WOLFF_EPSTEIN_ARTICLE_DRAFT, suffix),
         **kwargs
     )
+
+
+def _set_fbi_doc_fields(cfg: Cfg) -> Cfg:
+    """Mutate `cfg` to set FBI related properties. Returns `cfg` argument for convenience."""
+    cfg.author = FBI
+    cfg.category = Neutral.GOVERNMENT
+    return cfg
