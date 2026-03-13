@@ -46,8 +46,7 @@ PANEL_BORDER_PROPS = {
 # TODO: refactor this into HtmlStyle
 def border_css_props(style: str | Style | None) -> dict[str, str]:
     """CSS props to make an HTML div with border-color set to `style` arg as a standard CSS RGB string."""
-    logger.warning(f"border_css_props() style='{style}'")
-    # import pdb;pdb.set_trace()
+    # logger.warning(f"border_css_props() style='{style}'")
 
     if style and (html_style := HtmlStyle(style)).foreground_color_hex:
         return {
@@ -103,7 +102,7 @@ def one_row_table_html(table: Table, css_props: CssPropsArg = None) -> str:
         PANEL_BASE_PROPS
     )
 
-    logger.warning(f"one_row_table_html() border_style='{table.border_style}'\n\nborder_css_props: {border_css_props(table.border_style)}")
+    logger.debug(f"one_row_table_html() border_style='{table.border_style}'\n\nborder_css_props: {border_css_props(table.border_style)}")
 
     return div_class(
         join_truthy(header_div, body_div, '\n'),
