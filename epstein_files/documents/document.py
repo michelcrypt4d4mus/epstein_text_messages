@@ -8,7 +8,7 @@ from email import policy
 from email.parser import BytesParser
 from pathlib import Path
 from tempfile import NamedTemporaryFile
-from typing import ClassVar, Generator, Self, Sequence, TypeVar
+from typing import ClassVar, Generator, Mapping, Self, Sequence, TypeVar
 
 from rich.align import Align
 from inflection import underscore
@@ -24,23 +24,23 @@ from epstein_files.documents.documents.file_info import FileInfo
 from epstein_files.documents.documents.search_result import MatchedLine
 from epstein_files.documents.emails.constants import DOJ_EMAIL_OCR_REPAIRS, FALLBACK_TIMESTAMP
 from epstein_files.documents.emails.email_header import DETECT_EMAIL_REGEX
-from epstein_files.output.epstein_highlighter import highlighter, non_epstein_highlighter
+from epstein_files.output.epstein_highlighter import highlighter, non_epstein_highlighter, temp_highlighter
 from epstein_files.output.highlight_config import HIGHLIGHTED_CONTACTS, get_style_for_category, get_style_for_name
 from epstein_files.output.layout_elements.file_display import BasePanel, FileDisplay
 from epstein_files.output.html.builder import VERTICAL_MARGIN
 from epstein_files.output.rich import (INFO_STYLE, NA_TXT, SYMBOL_STYLE, add_cols_to_table, build_table, console,
-     styled_key_value, prefix_with, styled_dict, wrap_in_markup_style)
+     hyperlink_text, join_texts, styled_key_value, prefix_with, snip_msg_txt, styled_dict, hyperlink_line)
 from epstein_files.output.site.sites import EXTRACTS_BASE_URL
 from epstein_files.people.interesting_people import PERSONS_OF_INTEREST, UNINTERESTING_AUTHORS
 from epstein_files.people.names import Name
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constants import CONFIGS_BY_ID
 from epstein_files.util.env import args, site_config
-from epstein_files.util.helpers.data_helpers import (coerce_utc, coerce_utc_strict, date_str, patternize, prefix_keys,
+from epstein_files.util.helpers.data_helpers import (CharRange, coerce_utc, coerce_utc_strict, date_str, patternize, prefix_keys,
      uniquify, uniq_sorted, without_falsey)
 from epstein_files.util.helpers.link_helper import link_text_obj
 from epstein_files.util.helpers.file_helper import coerce_file_path, file_size_str, file_size_to_str
-from epstein_files.util.helpers.string_helper import collapse_newlines, join_truthy, quote, timestamp_without_zero_hour
+from epstein_files.util.helpers.string_helper import collapse_newlines, doublespace_lines, join_truthy, quote, snip_msg, timestamp_without_zero_hour
 from epstein_files.util.logging import DOC_TYPE_STYLES, FILENAME_STYLE, logger
 
 CHECK_LINK_FOR_DETAILS = 'not shown here, check original PDF for details'
@@ -79,6 +79,7 @@ DEBUG_PROPS_TRUTHY_ONLY = [
     AUTHOR,
     'category',
     'is_empty',
+    'people',
 ]
 
 METADATA_FIELDS = [
@@ -88,6 +89,8 @@ METADATA_FIELDS = [
     'num_lines',
     'timestamp',
 ]
+
+T = TypeVar('T', bound=str | Text)
 
 
 @dataclass
@@ -135,7 +138,7 @@ class Document:
 
     @property
     def author(self) -> Name:
-        return self.config.author if self.config and self.config.author else self.extracted_author
+        return self._config.author or self.extracted_author
 
     @property
     def border_style(self) -> str:
@@ -144,7 +147,7 @@ class Document:
 
     @property
     def category(self) -> str:
-        return self.config.category if self.config and self.config.category else self.default_category()
+        return self._config.category or self.default_category()
 
     @property
     def category_style(self) -> str:
@@ -154,6 +157,12 @@ class Document:
     def config(self) -> DocCfg | None:
         """Get the configured `DocCfg` object for this file id (if any)."""
         return CONFIGS_BY_ID.get(self.file_id)
+
+    # TODO: swap this in for config() when it's safe to do so
+    @property
+    def _config(self) -> DocCfg:
+        """Like `self.config` but falls back to return empty `DocCfg` object."""
+        return self.config or self.dummy_cfg()
 
     @property
     def config_description(self) -> str:
@@ -180,6 +189,11 @@ class Document:
     @property
     def date_str(self) -> str | None:
         return date_str(self.timestamp)
+
+    @property
+    def display_text(self) -> str:
+        """Config overrides what text should be displayed."""
+        return collapse_newlines(self._config.replace_text_with or self.text)
 
     @property
     def duplicate_file_txt(self) -> Text | None:
@@ -320,61 +334,38 @@ class Document:
     def people(self) -> list[str]:
         """Names of people who either sent/received this email or are mentioned in it."""
         people = [self.author] if self.author else []
-        text_to_scan = self.text
-        non_participants = []
+        text_to_scan = self.display_text
 
-        if self.config:
-            if self.config.people:
-                return self.config.people
-            if not self.config.is_valid_for_name_scan:
-                return people
-            elif self.config.replace_text_with:
-                text_to_scan = self.config.replace_text_with
+        # `DocCfg.people` prop overrides everything.
+        if self._config.people:
+            return self._config.people
+        elif not self._config.is_valid_for_name_scan:
+            return people
+        elif self._config.description:  # Make sure to scan the description too
+            text_to_scan = f"{self._config.description}\n{text_to_scan}"
 
-            if self.config.description:
-                text_to_scan = f"{self.config.description}\n{text_to_scan}"
-
-            non_participants = self.config.non_participants
-
+        # Use `Contact` regexes to scan for the presence of people's names in `self.text`
         people.extend([c.name for c in HIGHLIGHTED_CONTACTS if c.highlight_regex.search(text_to_scan)])
-        people = uniq_sorted([p for p in people if p not in non_participants])
-
-        if people:
-            self.log(f"people() found {len(people)} names: {', '.join(people)}")
-
-        return people
+        return uniq_sorted([p for p in people if p not in self._config.non_participants])
 
     @property
-    def prettified_text(self) -> Text:
+    def prettified_txt(self) -> Text:
         """Returns the string we want to print as the body of the document."""
+         # TODO: not ideal place for doublespace call
+        display_text = doublespace_lines(self.display_text)
+        char_range = self._config.char_range or (0, self.length + 1)
+        # TODO: do something better to give replacement_text have different style
         style = INFO_STYLE if self.config_replace_text_with and len(self.config_replace_text_with) < 300 else ''
-        text = self.config_replace_text_with or self.text
+        selected_txt = self._config.text_highlighter(Text(display_text, style))[char_range[0]:char_range[1]]  # array slice of `Text` obj preserves style
+        pretty_txt = self._intro_txt(char_range[0]).append(selected_txt)
 
-        if self.config and self.config.highlight_quote:
-            raise ValueError(f"highlight_quote functionality not implemented in Document yet {self}")
+        if args.char_nums:    # For debugging/choosing truncation points
+            pretty_txt = self._inject_line_numbers(pretty_txt, args.char_nums)
 
-        if args.char_nums:
-            text = self._inject_line_numbers(text, args.char_nums)
+        if (footer_txt := self.trimmed_chars_txt(char_range[1])):
+            pretty_txt.append('...\n\n').append(footer_txt)
 
-        if self.config is None or self.config.truncate_at in [None, NO_TRUNCATE] or args.whole_file:
-            return highlighter(Text(text, style))
-
-        char_range = list(self.config.truncate_at) if self.config.is_excerpt else [0, self.config.truncate_at]
-        trim_footer_txt = self.truncation_note(char_range[1])
-        chars = text[char_range[0]:char_range[1]]
-
-        if char_range[0] > 0:
-            # Add paragraph separators if very long lines
-            if max(len(line) for line in  chars.split('\n')) > 120:
-                chars = chars.replace('\n', '\n\n')
-
-            _txt = Text('', style=EXCERPT_STYLE)
-            _txt.append(f'<...trimmed first {char_range[0]:,} characters...>\n\n', 'dim')
-            txt = _txt.append('...').append(highlighter(Text(chars, style)))
-        else:
-            txt = highlighter(Text(chars, style))
-
-        return txt.append('...\n\n').append(trim_footer_txt)
+        return pretty_txt
 
     @property
     def suppressed_txt(self) -> Text | None:
@@ -461,6 +452,21 @@ class Document:
     def debug_log(self, msg: str) -> None:
         self.log(msg, logging.DEBUG)
 
+    def excerpt_text(self, char_range: CharRange | None = None, text: str = '', style = '') -> Text:
+        """Create an excerpt of `text`, add appropriate header/footer if truncated, and highlight it."""
+        char_range = char_range or (0, len(text))
+        text = doublespace_lines(text or self.text)        # TODO: not ideal place for doublespace call
+        excerpt_txt = self._intro_txt(char_range[0])
+        excerpt_txt.append(Text(text, style)[char_range[0]:char_range[1]])  # array slice of `Text` obj preserves style
+
+        if args.char_nums:    # For debugging/choosing truncation points
+            excerpt_txt = self._inject_line_numbers(excerpt_txt, args.char_nums)
+
+        if (footer_txt := self.trimmed_chars_txt(char_range[1])):
+            excerpt_txt.append('...\n\n').append(footer_txt)
+
+        return self._config.text_highlighter(excerpt_txt)
+
     def extract_author(self) -> Name:
         """Extended in `Email` subclass to pull from headers etc."""
         return None
@@ -473,7 +479,7 @@ class Document:
         """Allows for proper right vs. left justify."""
         body = BasePanel(
             border_style=self.border_style,
-            text=self.prettified_text,
+            text=self.prettified_txt,
             title=Text(f"({self.panel_title_timestamp})", style='dim') if self.panel_title_timestamp else None,
         )
 
@@ -537,8 +543,6 @@ class Document:
         """Panel + subheaders with filename linking to raw file plus any additional info about the file."""
         padded_info = [Padding(sentence, site_config.info_padding()) for sentence in self.info]
         return Group(*([self.file_id_panel] + padded_info))
-        elements = [panel] + padded_info
-        return Group(*[Align(e, 'right') for e in elements])
 
     def top_lines(self, n: int = 10) -> str:
         """First n lines."""
@@ -548,11 +552,13 @@ class Document:
         # TODO: this does not include the timestamp for OtherFiles!
         return self.file_display().to_html()
 
-    def truncation_note(self, truncate_to: int) -> Text:
+    def trimmed_chars_txt(self, truncate_to: int) -> Text | None:
         """String with link to source URL that will replace the text after the truncation point."""
-        link_markup = self.external_link_markup
-        trim_note = f"<...trimmed to {truncate_to:,} characters of {self.length:,}, read the rest at {link_markup}...>"
-        return Text.from_markup(wrap_in_markup_style(trim_note, 'dim'))
+        if truncate_to >= len(self.text):
+            return None
+        else:
+            msg = f"trimmed to {truncate_to:,} characters of {self.length:,}, read the rest at {self.external_link_markup}"
+            return snip_msg_txt(msg)
 
     def truthy_props(self, prop_names: list[str]) -> DebugDict:
         """Return key/value pairs but only if the value is truthy."""
@@ -563,15 +569,16 @@ class Document:
         self.log(msg, level=logging.WARNING)
 
     def _debug_dict(self, as_txt: bool = False, with_prefixes: bool = True) -> DebugDict | Text:
-        """Merge information about this document from config, file info, etc."""
+        """Merge information about this document from `DocCfg`, `FileInfo`, etc. objs."""
         config_info = self.config.truthy_props if self.config else {}
         file_info = self.file_info.as_dict
 
+        # Remove duplicate fields to save space
         if config_info.get('id') == file_info.get('file_id'):
-            config_info.pop('id')
+            del config_info['id']
 
         if file_info.get('source_url') == file_info.get('external_url', 'blah'):
-            file_info.pop('external_url')
+            del file_info['external_url']
 
         if with_prefixes:
             config_info = prefix_keys(type(self.config).__name__, config_info)
@@ -595,13 +602,17 @@ class Document:
         txt_lines = styled_dict(self._debug_dict(), sep=': ')
         return prefix_with(txt_lines, ' ', pfx_style='grey', indent=2)
 
-    def _inject_line_numbers(self, text: str, interval: int) -> str:
+    def _inject_line_numbers(self, text: T, interval: int) -> T:
         """Inject character numbers markers into `text`. For debugging only."""
         idx = interval
         new_text = text[:idx]
 
+        def line_marker(i: int) -> T:
+            marker_str = f'\n\n ------ {idx} ------ \n\n'
+            return Text(marker_str) if isinstance(text, Text) else marker_str
+
         while idx < len(text):
-            new_text += f'\n\n ------ {idx} ------ \n\n'
+            new_text += line_marker(idx)
             end_idx = idx + interval
             new_text += text[idx:end_idx]
             idx = end_idx
@@ -651,6 +662,14 @@ class Document:
         txt = Text(f"Skipping ", f"{INFO_STYLE} dim").append(self.external_link_txt)
         return txt.append(" because it's ").append(reason)
 
+    def _intro_txt(self, cutoff: int) -> Text:
+        """Truncation message if it's an excerpt."""
+        if cutoff == 0:
+            return Text('')
+
+        msg = f'trimmed first {cutoff:,} characters'
+        return snip_msg_txt(msg, EXCERPT_STYLE).append('...')
+
     def _write_clean_text(self, output_path: Path) -> None:
         """Write self.text to 'output_path'. Used only for diffing files."""
         if output_path.exists():
@@ -661,8 +680,7 @@ class Document:
 
         with open(output_path, 'w') as f:
             f.write(self.text)
-
-        logger.warning(f"Wrote {self.length} chars of cleaned {self.filename} to {output_path}.")
+            self.log(f"Wrote {self.length} chars of self.text to '{output_path}'.")
 
     @contextmanager
     def _write_tmp_file(self) -> Generator[Path, None, None]:
@@ -671,15 +689,6 @@ class Document:
             self._write_clean_text(tmp_path)
             self.log(f"created tmp file '{tmp_doc_file.name}' ({file_size_str(tmp_path)})")
             yield Path(tmp_doc_file.name)
-
-    # def _write_clean_text_to_tmp_file(self) -> Path:
-    #     """Write `self.text` to a temporary file."""
-    #     if (tmp_file_path := Path(f"{self.file_path}_tmp.txt")).exists():
-    #         self.warn(f"Deleting existing tmp file '{tmp_file_path}'...")
-    #         tmp_file_path.unlink()
-
-    #     self._write_clean_text(tmp_file_path)
-    #     return tmp_file_path
 
     def __rich_console__(self, console: Console, options: ConsoleOptions) -> RenderResult:
         """Default `Document` renderer (Email and MessengerLog override this)."""
@@ -691,6 +700,11 @@ class Document:
     @classmethod
     def default_category(cls) -> str:
         return ''
+
+    @classmethod
+    def dummy_cfg(cls) -> DocCfg:
+        """Empty config so you can call config methods without "if self.config and self.config.thing"."""
+        return DocCfg(id='DUMMY')
 
     @classmethod
     def files_summary_table(cls, title: str | Text, first_col_name: str) -> Table:

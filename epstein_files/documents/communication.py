@@ -119,3 +119,7 @@ class Communication(Document):
     @classmethod
     def default_category(cls) -> str:
         return cls.__name__.lower()
+
+    @classmethod
+    def dummy_cfg(cls) -> CommunicationCfg:
+        return CommunicationCfg(id='DUMMY')

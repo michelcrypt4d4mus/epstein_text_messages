@@ -120,6 +120,11 @@ class EmailHeader:
     def recipients(self) -> list[str]:
         return (self.to or []) + (self.cc or []) + (self.bcc or [])
 
+    @property
+    def should_rewrite_header(self) -> bool:
+        """True if this file's header is so busted it's better to just display what we parsed instead of the raw text."""
+        return self.was_initially_empty and self.num_header_rows > 0
+
     def as_dict(self, truthy_only: bool = True) -> Metadata:
         """Remove housekeeping fields that don't actually come from the email."""
         props = {k: v for k, v in asdict(self).items() if k not in NON_HEADER_FIELDS}

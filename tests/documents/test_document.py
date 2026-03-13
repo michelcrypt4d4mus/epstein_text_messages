@@ -44,7 +44,7 @@ def test_debug_dict(email):
             CHRISTINA_GALBRAITH,
             JEFFREY_EPSTEIN,
         ],
-        'email.num_lines': 50,
+        'email.num_lines': 51,
         'email.recipients': [CECILE_DE_JONGH, JEFFREY_EPSTEIN],
         'email.timestamp': coerce_utc_strict(datetime(2012, 6, 22, 23, 8)),
     }

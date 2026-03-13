@@ -12,6 +12,7 @@ from epstein_files.people import names
 from epstein_files.util.env import args
 from epstein_files.util.logging import logger
 
+CharRange = tuple[int, int]
 T = TypeVar('T')
 
 ISO_DATE_REGEX = re.compile(r'\d{4}-\d{2}(-\d{2})?')

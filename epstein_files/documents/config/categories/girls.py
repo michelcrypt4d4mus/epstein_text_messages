@@ -37,6 +37,7 @@ GIRLS_CFGS = [
         author=MARIA_PRUSAKOVA,
         author_uncertain=True,
         comment='WhatsApp',
+        # highlight_quote='way better than supplying ladies',
         # TODO: highlight_quote
         description=f'says being Epstein\'s lawyer would be "way better than supplying ladies", also discusses Medici Bank',
         show_full_panel=True,
@@ -429,6 +430,7 @@ GIRLS_CFGS = [
     EmailCfg(id='EFTA00631762', description="visa problems for Epstein's South African friend"),
     EmailCfg(id='EFTA00376832', show_with_name=MARIANA_IDZKOWSKA),
     EmailCfg(id='EFTA00743526', truncate_to=NO_TRUNCATE),
+    # EmailCfg(id='EFTA00743526', truncate_to=(150, 500)),  # Test cruft
     EmailCfg(id='EFTA02664956', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA00689698', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA02702141', truncate_to=NO_TRUNCATE, comment=ELON_MUSK),

@@ -4,7 +4,7 @@ import re
 from copy import deepcopy
 from dataclasses import dataclass, field
 from datetime import datetime
-from typing import ClassVar, cast
+from typing import ClassVar, cast, TypeVar
 
 from dateutil.parser import parse
 from rich import box
@@ -20,17 +20,18 @@ from epstein_files.documents.documents.categories import Uninteresting
 from epstein_files.documents.config.doc_cfg import DEFAULT_TRUNCATE_TO, NO_TRUNCATE, SHORT_TRUNCATE_TO, DebugDict, EmailCfg, Metadata
 from epstein_files.documents.doj_file import DojFile
 from epstein_files.documents.emails.constants import *
+from epstein_files.documents.emails.email_parts import EmailParts
 from epstein_files.documents.emails.email_header import (EMAIL_SIMPLE_HEADER_REGEX,
      EMAIL_SIMPLE_HEADER_LINE_BREAK_REGEX, EmailHeader)
 from epstein_files.documents.emails.emailers import extract_emailer_names
 from epstein_files.documents.other_file import OtherFile
 from epstein_files.people.interesting_people import EMAILERS_OF_INTEREST_SET
-from epstein_files.output.epstein_highlighter import highlighter, temp_highlighter
+from epstein_files.output.epstein_highlighter import highlighter
 from epstein_files.output.highlight_config import HIGHLIGHTED_NAMES, get_style_for_name
 from epstein_files.output.html.builder import table_to_html
 from epstein_files.output.html.elements import to_em
 from epstein_files.output.layout_elements.file_display import FileDisplay, JustifyMethod
-from epstein_files.output.rich import DEFAULT_TABLE_KWARGS, build_table, create_hyperlinks, join_texts, styled_key_value
+from epstein_files.output.rich import DEFAULT_TABLE_KWARGS, build_table, hyperlink_line, join_texts, styled_key_value
 from epstein_files.util.constant.strings import APPEARS_IN, ARCHIVE_LINK_COLOR, REDACTED, TIMESTAMP_DIM
 from epstein_files.util.constant.urls import URL_SIGNIFIERS
 from epstein_files.people.names import sort_names
@@ -293,9 +294,37 @@ class Email(Communication):
             return super().config
 
     @property
+    def display_text(self) -> str:
+        """Config overrides what text should be displayed."""
+        return str(self.email_parts)
+        return collapse_newlines(self._config.replace_text_with or self.text)
+
+    @property
     def header(self) -> EmailHeader:
         self._header = self._header or self.extract_header()
         return self._header
+
+    @property
+    def email_parts(self) -> EmailParts:
+        """Separate header chars from the rest of the email text."""
+        num_header_lines = self.header.num_header_rows
+
+        if self.header.should_rewrite_header:
+            header = self.header.rewrite_header()
+            lines = []
+
+            # TODO: Emails w/configured 'actual_text' are particularly broken; need to shuffle some lines
+            if (actual_text := self._config.actual_text) is not None:
+                lines.extend([cast(str, actual_text), '\n'])
+                num_header_lines += 1
+
+            lines.extend(self.lines[num_header_lines:])
+            body = _add_line_breaks('\n'.join(lines))
+        else:
+            header = '\n'.join(self.lines[0:num_header_lines])
+            body = '\n'.join(self.lines[num_header_lines:])
+
+        return EmailParts(header, body)
 
     @property
     def html_margin_bottom(self) -> str:
@@ -316,13 +345,12 @@ class Email(Communication):
     @property
     def is_fwded_article(self) -> bool:
         """True if this email is just a forward of an article from WSJ or whatever."""
-        if self.config:
-            if self.config.is_fwded_article is not None:
-                return self.config.is_fwded_article
-            elif self.config.fwded_text_after:
-                return True
-
-        return False
+        if self._config.is_fwded_article is not None:
+            return self._config.is_fwded_article
+        elif self._config.fwded_text_after:
+            return (len(self.actual_text) < 100)
+        else:
+            return False
 
     @property
     def is_interesting(self) -> bool | None:
@@ -345,10 +373,10 @@ class Email(Communication):
     @property
     def is_word_count_worthy(self) -> bool:
         """True if this file should be included in word counts."""
-        if self.is_fwded_article:
-            return bool(self.config.fwded_text_after) or len(self.actual_text) < 150
+        if self.is_fwded_article or self.is_mailing_list:
+            return False
         else:
-            return not self.is_mailing_list
+            return True
 
     @property
     def metadata(self) -> Metadata:
@@ -369,53 +397,16 @@ class Email(Communication):
         return uniq_sorted(super().people + flatten([ad.people for ad in self.attached_docs]))
 
     @property
-    def prettified_text(self) -> Text:
-        """Cleaned up text ready for printing."""
-        should_rewrite_header = self.header.was_initially_empty and self.header.num_header_rows > 0
-        num_chars = self._truncate_to_length()
-        trim_footer_txt = None
-        text = self.text
+    def prettified_txt(self) -> Text:
+        """Overrides superclass.Cleaned up / formatted Text ready to be displayed."""
+        # always show the email header even if there's a configurated truncate_to that trims it out
+        if self._config.char_range and self._config.char_range[0] > 0:
+            if self._config.char_range[0] < self.email_parts.header_len:
+                self.warn(f"The excerpt appears to start in the email header which will may in duplicate header chars")
 
-        # Truncate long emails but leave a note explaining what happened w/link to source document
-        if len(text) > num_chars:
-            text = text[0:num_chars]
-            trim_footer_txt = self.truncation_note(num_chars)
-
-        text = collapse_newlines(text)
-
-        # Rewrite broken headers where the values are on separate lines from the field names
-        if should_rewrite_header:
-            configured_actual_text = self.config.actual_text if self.config and self.config.actual_text else None
-            num_lines_to_skip = self.header.num_header_rows
-            lines = []
-
-            # Emails w/configured 'actual_text' are particularly broken; need to shuffle some lines
-            if configured_actual_text is not None:
-                num_lines_to_skip += 1
-                lines += [cast(str, configured_actual_text), '\n']
-
-            lines += text.split('\n')[num_lines_to_skip:]
-            text = self.with_header('\n'.join(lines))
-            text = _add_line_breaks(text)
-            self.rewritten_header_ids.add(self.file_id)
-
-        if args.char_nums:
-            text = self._inject_line_numbers(text, args.char_nums)
-
-        lines = [create_hyperlinks(line) for line in text.split('\n')]
-
-        if self.config and self.config.highlighted_pattern:
-            logger.debug(f"self.config.highlighted_pattern='{self.config.highlighted_pattern}'")
-            txt_highlighter = temp_highlighter(self.config.highlighted_pattern)
+            return self.email_parts.header_txt.append('\n\n').append(super().prettified_txt)
         else:
-            txt_highlighter = highlighter
-
-        txt = txt_highlighter(join_texts(lines, '\n'))
-
-        if trim_footer_txt:
-            txt.append('...\n\n').append(trim_footer_txt)
-
-        return txt
+            return super().prettified_txt
 
     @property
     def recipients_str(self) -> str:
@@ -533,7 +524,7 @@ class Email(Communication):
     def file_display(self, align: JustifyMethod | None = None) -> FileDisplay:
         """Allows for proper right vs. left justify."""
         return FileDisplay(
-            body_panel=self._body_as_table(self.prettified_text, self.config_description_txt),
+            body_panel=self._body_as_table(self.prettified_txt, self.config_description_txt),
             file_info=self.file_id_panel,
             indent=site_config.info_indent,
             justify=align,
@@ -568,10 +559,6 @@ class Email(Communication):
             html += table_to_html(attachments_table, indent_props)
 
         return html
-
-    def with_header(self, text: str) -> str:
-        """Add the header lines to `text`."""
-        return self.header.rewrite_header() + '\n' + text
 
     def _attached_docs_table(self) -> Table | None:
         if not self.attached_docs:
@@ -635,8 +622,8 @@ class Email(Communication):
 
         text = '\n'.join(self.text.split('\n')[self.header.num_header_rows:]).strip()
 
-        if self.config and self.config.fwded_text_after:
-            return text.split(self.config.fwded_text_after)[0].strip()
+        if self._config.fwded_text_after:
+            return text.split(self._config.fwded_text_after)[0].strip()
         elif self.header.num_header_rows == 0:
             return self.text
 
@@ -697,6 +684,10 @@ class Email(Communication):
 
         self._set_text(lines=lines)
 
+    def _remove_bad_lines(self) -> None:
+        """Get rid of crufty lines matching `BAD_LINE_REGEX`"""
+        self._set_text(lines=[line for line in self.lines if not BAD_LINE_REGEX.match(line)])
+
     def _remove_line(self, idx: int) -> None:
         """Remove a line from `self.lines`."""
         num_lines = idx * 2
@@ -707,9 +698,9 @@ class Email(Communication):
 
     def _repair(self) -> None:
         """Repair particularly janky files. Note that OCR_REPAIRS are applied *after* other line adjustments."""
-        # Some DOJ cleanup needs to happen first if this is a DOJ file.
         super()._repair()
 
+        # Apply custom repairs for DOJ files
         if self.file_info.is_doj_file:
             new_text = DojFile._remove_bad_lines(strip_pdfalyzer_panels(self.text))
             self._set_text(text=self.repair_ocr_text(DOJ_EMAIL_OCR_REPAIRS, new_text))
@@ -717,44 +708,17 @@ class Email(Communication):
         if BAD_FIRST_LINE_REGEX.match(self.lines[0]):
             self._set_text(lines=self.lines[1:])
 
-        # print(self._numbered_lines())
-        # import pdb;pdb.set_trace()
-        self._set_text(lines=[line for line in self.lines if not BAD_LINE_REGEX.match(line)])
-        old_text = self.text
+        self._remove_bad_lines()
+        self.__bespoke_repair_house_oversight_emails()
+        self._set_text(text=self.repair_ocr_text(OCR_REPAIRS, self.text))
+        self._repair_links_and_quoted_subjects()
+        self._format_newlines_and_snip_signatures()
 
-        if self.file_id in LINE_REPAIR_MERGES:
-            for merge_args in LINE_REPAIR_MERGES[self.file_id]:
-                self._merge_lines(*merge_args)
-
-        if self.file_id in ['025233']:
-            self.lines[4] = f"Attachments: {self.lines[4]}"
-            self._set_text(lines=self.lines)
-        elif self.file_id == '029977':
-            self._set_text(text=self.text.replace('Sent 9/28/2012 2:41:02 PM', 'Sent: 9/28/2012 2:41:02 PM'))
-
-        # Bad line removal
-        if self.file_id == '025041':
-            self._remove_line(4)
-            self._remove_line(4)
-        elif self.file_id == '029692':
-            self._remove_line(3)
-
-        if old_text != self.text:
-            self.log(f"Modified text, old:\n\n" + '\n'.join(old_text.split('\n')[0:12]) + '\n')
-            self._log_top_lines(12, 'Result of modifications')
-
-        repaired_text = self._repair_links_and_quoted_subjects(self.repair_ocr_text(OCR_REPAIRS, self.text))
-        # logger.debug(f"repaired_text\n---\n{self.text}\n---")
-        self._set_text(text=repaired_text)
-        self._strip_unwanted_text()
-        # TODO: we're currently calling this twice to handle lines with HTML garbage that turn into something matching BAD_LINE_REGEX
-        self._set_text(lines=[line for line in self.lines if not BAD_LINE_REGEX.match(line)])
-
-    def _repair_links_and_quoted_subjects(self, text: str) -> str:
+    def _repair_links_and_quoted_subjects(self) -> None:
         """Repair links that the OCR has broken into multiple lines as well as 'Subject:' lines."""
-        lines = text.split('\n')
-        subject_line = next((line for line in lines if line.startswith('Subject:')), None) or ''
+        subject_line = next((line for line in self.lines if line.startswith('Subject:')), None) or ''
         subject = subject_line.split(':')[1].strip() if subject_line else ''
+        lines = self.lines
         new_lines = []
         i = 0
 
@@ -790,8 +754,8 @@ class Email(Communication):
             new_lines.append(line)
             i += 1
 
-        logger.debug(f"----after line repair---\n" + '\n'.join(new_lines[0:20]) + "\n---")
-        return '\n'.join(new_lines)
+        self.debug_log(f"----after line repair---\n" + '\n'.join(new_lines[0:20]) + "\n---")
+        self._set_text(lines=new_lines)
 
     def _sent_from_device(self) -> str | None:
         """Find any 'Sent from my iPhone' style signature line if it exist in the 'actual_text'."""
@@ -805,7 +769,7 @@ class Email(Communication):
             else:
                 return sent_from
 
-    def _strip_unwanted_text(self) -> None:
+    def _format_newlines_and_snip_signatures(self) -> None:
         """Add newlines before quoted replies, snip signatures and XML, etc.."""
         # Insert line breaks now unless header is broken, in which case we'll do it later after fixing header
         # self.(f"text before _add_line_breaks:\n\n{self.text}\n---")
@@ -827,6 +791,7 @@ class Email(Communication):
             self.log(f"Replaced {num_plists_stripped} XML plists...")
 
         self._set_text(text=collapse_newlines(text).strip())
+        self._remove_bad_lines()  # TODO: we're currently calling this twice to handle lines with HTML garbage that turn into something matching BAD_LINE_REGEX
 
     def _truncate_to_length(self) -> int:
         """Decide how many chars we should limit the dislpay of this email to."""
@@ -887,8 +852,31 @@ class Email(Communication):
         self.log(f"Truncate determination: {log_args_str}")
         return num_chars
 
+    def __bespoke_repair_house_oversight_emails(self) -> None:
+        """Apply destructive repairs to the underyling text programmtically because we don't want to edit the underlying file."""
+        old_text = self.text
+
+        if self.file_id in LINE_REPAIR_MERGES:
+            for merge_args in LINE_REPAIR_MERGES[self.file_id]:
+                self._merge_lines(*merge_args)
+
+        if self.file_id in ['025233']:
+            self.lines[4] = f"Attachments: {self.lines[4]}"
+            self._set_text(lines=self.lines)
+        elif self.file_id == '029977':
+            self._set_text(text=self.text.replace('Sent 9/28/2012 2:41:02 PM', 'Sent: 9/28/2012 2:41:02 PM'))
+        elif self.file_id == '025041':
+            self._remove_line(4)
+            self._remove_line(4)
+        elif self.file_id == '029692':
+            self._remove_line(3)
+
+        if old_text != self.text:
+            self.log(f"Modified text, old:\n\n" + '\n'.join(old_text.split('\n')[0:12]) + '\n')
+            self._log_top_lines(12, 'Result of modifications')
+
     def __rich_console__(self, console: Console, options: ConsoleOptions) -> RenderResult:
-        prettified_txt = self.prettified_text
+        prettified_txt = self.prettified_txt
         max_line_len = max(*[len(line) for line in prettified_txt.split('\n')])
         panel_subtitle = None
 
@@ -908,6 +896,10 @@ class Email(Communication):
 
         if (attachments_table := self._attached_docs_table()):
             yield Padding(attachments_table, (0, 0, 1, site_config.attachment_indent))
+
+    @classmethod
+    def dummy_cfg(cls) -> EmailCfg:
+        return EmailCfg(id='DUMMY')
 
     @staticmethod
     def build_emails_table(emails: list['Email'], name: Name = '', title: str = '', show_length: bool = False, **kwargs) -> Table:

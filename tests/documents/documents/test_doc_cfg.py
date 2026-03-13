@@ -1,6 +1,8 @@
 import pytest
 from copy import deepcopy
 
+from rich.text import Text
+
 from epstein_files.documents.documents.categories import Interesting, Neutral, Uninteresting
 from epstein_files.documents.config.doc_cfg import CommunicationCfg, DocCfg, EmailCfg
 from epstein_files.documents.other_file import OtherFile
@@ -8,6 +10,10 @@ from epstein_files.output.highlight_config import QUESTION_MARKS_TXT
 from epstein_files.people.names import BLOCKCHAIN_CAPITAL, BOFA_MERRILL, JOI_ITO, Name
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constants import CONFIGS_BY_ID
+
+BASE_TRUTHY_PROPS = {
+    'is_valid_for_name_scan': True,
+}
 
 ID = '123456'
 SKYPE_LOG = Neutral.SKYPE_LOG.replace('_', ' ')
@@ -27,6 +33,10 @@ def blockchain_cap_cfg() -> DocCfg:
 @pytest.fixture
 def book_cfg() -> DocCfg:
     return _oversight_cfg(Uninteresting.BOOK, author='Elon Musk', description="Illmatic")
+
+@pytest.fixture
+def dummy_cfg() -> DocCfg:
+    return OtherFile.dummy_cfg()
 
 @pytest.fixture
 def empty_doj_cfg() -> DocCfg:
@@ -208,6 +218,30 @@ def test_is_of_interest(
     assert skype_cfg.is_of_interest is None
     assert UN_cfg.is_of_interest is True
     assert uninteresting_description.is_of_interest is False
+
+
+def test_truthy_props(legal_cfg, dummy_cfg, fwded_article):
+    dummy_props = dummy_cfg.truthy_props
+    del dummy_props['category_txt']
+    assert dummy_props == {'id': dummy_cfg.id, **BASE_TRUTHY_PROPS}
+
+    assert fwded_article.truthy_props == {
+        'id': fwded_article.id,
+        'author': 'BofA / Merrill Lynch',
+        # 'category_txt': Text('journalism'),
+        'is_of_interest': False,
+        'is_fwded_article': True,
+        'is_valid_for_name_scan': False,
+    }
+
+    assert legal_cfg.truthy_props == {
+        'id': legal_cfg.id,
+        'author': 'clinton v. trump',
+        'category_txt': Text('legal', 'purple'),
+        'complete_description': 'clinton v. trump: case law',
+        'description': 'case law',
+        'is_valid_for_name_scan': True,
+    }
 
 
 def _oversight_cfg(category: str = '', **kwargs) -> DocCfg:
