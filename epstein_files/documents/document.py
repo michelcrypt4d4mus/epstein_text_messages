@@ -455,6 +455,7 @@ class Document:
         if (footer_txt := self.trimmed_chars_txt(char_range[1])):
             excerpt_txt.append('...\n\n').append(footer_txt)
 
+        # self.warn(f"self.excerpt_text() about to highlight text")
         return self._config.text_highlighter(excerpt_txt)
 
     def extract_author(self) -> Name:
@@ -564,8 +565,8 @@ class Document:
         file_info = self.file_info.as_dict
 
         # Remove duplicate fields to save space
-        if config_info.get('id') and config_info.get('id') == file_info.get('file_id'):
-            del file_info['id']
+        if config_info.get('id') == file_info.get('file_id'):
+            del config_info['id']
 
         if file_info.get('source_url') == file_info.get('external_url', 'blah'):
             del file_info['external_url']
