@@ -50,6 +50,12 @@ DESCRIPTIONS = {
     'EFTA00015532': "alleging Epstein tried to buy victim's silence",
 }
 
+# Don't join with "about" if the description starts with one of these words
+REPORT_ABOUT_PREFIXES = [
+    'contain',
+    # 'with',
+]
+
 Cfg = TypeVar('Cfg', bound=DocCfg)
 
 
@@ -135,7 +141,8 @@ def fbi_interview(id: str, interviewee: Name, description: str = '', date: str =
 
 
 def fbi_report(id: str, description: str = EPSTEIN_INVESTIGATION, **kwargs) -> DocCfg:
-    description = join_truthy('report', description, ' about ')
+    joiner = ', ' if any(description.startswith(word) for word in REPORT_ABOUT_PREFIXES) else ' about '
+    description = join_truthy('report', description, joiner)
     return _set_fbi_doc_fields(DocCfg(id=id, description=description, **kwargs))
 
 

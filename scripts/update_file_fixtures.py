@@ -24,5 +24,5 @@ def update_text_dump() -> None:
         output_file.write_text(doc.text)
 
 
-update_text_dump()
 write_files_csv()
+update_text_dump()

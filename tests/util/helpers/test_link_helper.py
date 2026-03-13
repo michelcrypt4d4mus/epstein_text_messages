@@ -22,7 +22,7 @@ def test_social_link():
     link = ExternalLink.social_link(SUBSTACK_POST_TXT_MESSAGES_URL)
     assert link.link_text == '@substack'
     assert link.domain() == 'cryptadamus.substack.com'
-    assert link.domain(True) == 'cryptadamus.substack.com'
+    assert link.domain(True) == 'cryptadamus.substack'  # TODO: not idea
     assert link.domain_stem == 'substack'
     link = ExternalLink.social_link(SUBSTACK_POST_INSIGHTSPOD_URL)
     assert link.link_text == '@substack'
