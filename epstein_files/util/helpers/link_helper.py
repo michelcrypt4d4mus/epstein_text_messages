@@ -77,7 +77,7 @@ class ExternalLink:
     @property
     def domain_link(self) -> Text:
         """Returns a link using the TLD free domain as the `link_text`."""
-        return link_text_obj(self.url, self.domain(True), self.link_style)
+        return enclose(link_text_obj(self.url, self.domain(True), self.link_style), '[]')
 
     @property
     def domain_stem(self) -> str:
