@@ -262,19 +262,22 @@ def show_urls() -> None:
     console.print(Padding(styled_dict(urls), (1)))
 
 
-def write_html(output_path: Path | None, **kwargs) -> None:
+
+def write_html(output_path: Path | SiteType | None, **kwargs) -> Path | None:
     """
     Write all `console` output to HTML in `output_path` (if provided).
     if `args.write_txt` is set colored ANSI `.txt` files will be written instead.
+    Returns the path that was written (if any).
     """
     if not output_path:
         logger.warning(f"Not writing HTML because args.build={args.build}.")
         return
+    elif isinstance(output_path, SiteType):
+        output_path = SiteType.html_output_path(output_path)
 
     if args.write_txt:
-        txt_path = f"{output_path}.txt"
-        console.save_text(txt_path)
-        log_file_write(txt_path)
+        output_path = HTML_DIR.joinpath(f"{output_path}.txt")
+        console.save_text(str(output_path))
     else:
         console.save_html(
             str(output_path),
@@ -284,7 +287,8 @@ def write_html(output_path: Path | None, **kwargs) -> None:
             **kwargs
         )
 
-        log_file_write(output_path)
+    log_file_write(output_path)
+    return output_path
 
 
 def print_email_device_signatures(epstein_files: EpsteinFiles) -> None:

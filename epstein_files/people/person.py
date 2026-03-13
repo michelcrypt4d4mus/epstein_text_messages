@@ -46,7 +46,7 @@ INVALID_FOR_EPSTEIN_WEB = JUNK_EMAILERS + MAILING_LISTS + [
 ]
 
 PEOPLE_BIOS = {
-    contact.name: contact.bio
+    contact.name: contact.bio_txt
     for highlighted_group in HIGHLIGHTED_NAMES
     for contact in highlighted_group.contacts
     if contact.has_bio

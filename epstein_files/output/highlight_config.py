@@ -21,6 +21,7 @@ from epstein_files.util.constant.strings import *
 from epstein_files.util.constant.urls import SUBSTACK_POST_INSIGHTSPOD_URL
 from epstein_files.util.env import args
 from epstein_files.util.helpers.data_helpers import flatten
+from epstein_files.util.helpers.rich_helpers import QUESTION_MARKS_TXT
 from epstein_files.util.helpers.string_helper import indented
 from epstein_files.util.logging import logger
 
@@ -32,7 +33,6 @@ ESTATE_EXECUTOR = 'estate executor'
 EPSTEIN_ESTATE_EXECUTOR = f"Epstein {ESTATE_EXECUTOR}"
 JEAN_LUC_MC2 = f"{JEAN_LUC_BRUNEL}'s {MC2_MODEL_MGMT}"
 JUNKERMANN_FUND = f"{NICOLE_JUNKERMANN}'s fund, invested in China, online poker, Russian owned European bank Revolut"
-QUESTION_MARKS_TXT = Text(QUESTION_MARKS, style='grey50')
 ROTHSTEIN_ROSENFELDT_ADLER_ATTORNEY = f"{ROTHSTEIN_ROSENFELDT_ADLER} attorney"
 THIELS_VALAR = f"{PETER_THIEL}'s {VALAR_VENTURES}"
 WIGDOR_ATTORNEY = f"Wigdor LLP lawyer in {LEON_BLACK} lawsuit"

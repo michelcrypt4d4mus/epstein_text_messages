@@ -1,17 +1,20 @@
 import logging
 import re
 from dataclasses import dataclass, field, fields
+from pathlib import Path
 from typing import Literal, Self
 
+from rich.padding import Padding
 from rich.text import Text
 
+from epstein_files.output.site.sites import SiteType
 from epstein_files.people.names import Name, constantize_name, extract_first_name, extract_last_name
 from epstein_files.util.constant.strings import INDENT_NEWLINE, INDENTED_JOIN, LAW_ENFORCEMENT, WIKIPEDIA, PartialName
 from epstein_files.util.constant.urls import wikipedia_url_for_name
 from epstein_files.util.env import args
 from epstein_files.util.helpers.data_helpers import constantize_names, listify
 from epstein_files.util.helpers.link_helper import ExternalLink, link_text_obj
-from epstein_files.util.helpers.rich_helpers import enclose
+from epstein_files.util.helpers.rich_helpers import QUESTION_MARKS_TXT, enclose
 from epstein_files.util.helpers.string_helper import as_pattern, indented, is_integer, quote, remove_question_marks, join_truthy
 from epstein_files.util.logging import logger
 
@@ -47,14 +50,13 @@ class Contact:
     info: str = ''
     emailer_pattern: str = ''
     category: str = ''
-    style: str = ''
+    style: str = ''  # NOTE: not usually set at instantiation time!
     emailer_regex: re.Pattern = field(init=False)
     highlight_regex: re.Pattern = field(init=False)
     is_emailer: bool = True
     is_interesting: bool = True  # Eligible for bio panel
     is_junk: bool = False  # TODO: this sucks
     is_organization: bool = False
-    links: list[ExternalLink] = field(init=False)
     match_partial: PartialName | None = 'last'
     url: str | list[str] | Literal['WIKIPEDIA'] = ''
     # jmail_url: str
@@ -62,9 +64,6 @@ class Contact:
     def __post_init__(self):
         if self.is_organization:
             self.match_partial = None
-
-        urls = [wikipedia_url_for_name(self.name) if url == WIKIPEDIA else url for url in  listify(self.url)]
-        self.links = [ExternalLink(url, self.name, link_style=self._style_bold) for url in urls]
 
         try:
             self.emailer_regex = re.compile(self.pattern, re.IGNORECASE)
@@ -74,16 +73,22 @@ class Contact:
             raise e
 
     @property
-    def bio(self) -> Text:
+    def links(self) -> list[ExternalLink]:
+        urls = [wikipedia_url_for_name(self.name) if url == WIKIPEDIA else url for url in  listify(self.url)]
+        return [ExternalLink(url, self.name, link_style=self._style_bold) for url in urls]
+
+    @property
+    def bio_txt(self) -> Text:
         """Biographical info about this entity with links etc."""
         from epstein_files.output.epstein_highlighter import non_epstein_highlighter
-        bio_txt = Text('').append(self.name_link)
+        bio_txt = Text('').append(self.name_link).append(' ')
 
         if self.category:
             category_txt = Text(self.category.lower(), style=f'{self.style} dim')
-            bio_txt.append(enclose(category_txt, encloser='()', encloser_style='dim'))
+            bio_txt.append(enclose(category_txt, encloser='[]', encloser_style='dim'))
 
-        return bio_txt.append(' ').append(non_epstein_highlighter(Text(self.info, style=BIO_STYLE)))
+        biography = Text(self.info, style=BIO_STYLE) if self.info else QUESTION_MARKS_TXT
+        return bio_txt.append(' ').append(non_epstein_highlighter(biography))
 
     @property
     def has_bio(self) -> bool:
@@ -180,11 +185,17 @@ class Contact:
 
     @property
     def _style_bold(self) -> str:
-        return f"{self.style} bold".strip()
+        return self.style if 'bold' in self.style else f"{self.style} bold".strip()
 
     def _log(self, msg: str, level: int = logging.INFO) -> None:
         """Log something prefixed by this person's name."""
         logger.log(level, f"{type(self).__name__}('{self.name}'): {msg}")
+
+    def _log_debug_info(self) -> None:
+        """debugging method for styles."""
+        from epstein_files.output.rich import console
+        console.print(self.bio_txt, '\n', self.links[0], '\n',self.name_link, '\n')
+        self._log(f'   repr: {repr(self.links[0])}\n    str: {self.links[0]}\n   name_link: {repr(self.name_link)}')
 
     def _warn(self, msg: str) -> None:
         """Log warning with prefix."""
@@ -209,7 +220,20 @@ class Contact:
         return {c.name: c for c in contacts}
 
     @classmethod
-    def repr_string(cls, contact_infos: list[Self]) -> str:
+    def print_all_biographies(cls, doc_printer: 'DocPrinter') -> None:
+        from epstein_files.documents.emails.emailers import ALL_CONTACTS
+        doc_printer.print_renderable([Padding(c.bio_txt, (1, 0, 0, 3)) for c in ALL_CONTACTS])
+
+    @classmethod
+    def write_all_biographies_to_html(cls, doc_printer: 'DocPrinter') -> Path:
+        from epstein_files.output.output import write_html
+        cls.print_all_biographies(doc_printer)
+        doc_printer.write_html(SiteType.CONTACT_BIOS)
+        return write_html(SiteType.CONTACT_BIOS)
+
+    @classmethod
+    def _repr_string(cls, contact_infos: list[Self]) -> str:
+        """Print a list of `Contact` objects to a python string that can recreate them when executed."""
         return '[\n' + indented([repr(contact) for contact in contact_infos], 4) + '\n],'
 
 

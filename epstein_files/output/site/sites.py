@@ -31,6 +31,7 @@ MOBILE_SUFFIX = '_mobile'
 
 
 class SiteType(StrEnum):
+    CONTACT_BIOS = auto()
     CURATED = auto()
     CURATED_MOBILE = auto()
     CHRONOLOGICAL = CHRONOLOGICAL
@@ -39,11 +40,12 @@ class SiteType(StrEnum):
     DOJ_FILES = auto()
     EMAILS = auto()
     EMAILS_CHRONOLOGICAL = auto()
-    #JSON_FILES = auto()
     JSON_METADATA = auto()
     OTHER_FILES_TABLE = auto()
     TEXT_MESSAGES = auto()
     WORD_COUNT = auto()
+    # Dev sites
+    DEV_SAMPLE = auto()
 
     @classmethod
     def all_urls(cls) -> dict[Self, str]:
@@ -51,7 +53,7 @@ class SiteType(StrEnum):
 
     @classmethod
     def all_links(cls) -> dict['SiteType', Text]:
-        """Use `SITE_DESCRIPTIONS` dict because it's sorted the way we want in the directory."""
+        """Use `SITE_DESCRIPTIONS` dict because it's ordered and also omits unpublished site types."""
         return {site_type: SiteType.link_txt(site_type) for site_type in SITE_DESCRIPTIONS}
 
     @classmethod

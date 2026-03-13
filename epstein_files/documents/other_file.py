@@ -18,7 +18,7 @@ from epstein_files.documents.config.config_builder import build_cfg_from_text
 from epstein_files.documents.config.doc_cfg import DocCfg, Metadata
 from epstein_files.documents.documents.file_info import FileInfo
 from epstein_files.output.epstein_highlighter import highlighter
-from epstein_files.output.highlight_config import QUESTION_MARKS_TXT, styled_category
+from epstein_files.output.highlight_config import styled_category
 from epstein_files.output.html.builder import table_to_html
 from epstein_files.output.rich import build_table, console
 from epstein_files.people.interesting_people import PERSONS_OF_INTEREST
@@ -27,6 +27,7 @@ from epstein_files.util.constants import *
 from epstein_files.util.helpers.data_helpers import days_between, coerce_utc_strict, uniquify, uniq_sorted
 from epstein_files.util.helpers.debugging_helper import tz_debug_str
 from epstein_files.util.helpers.file_helper import FILENAME_LENGTH
+from epstein_files.util.helpers.rich_helpers import QUESTION_MARKS_TXT
 from epstein_files.util.helpers.string_helper import DATE_LENGTH, collapse_whitespace, indented
 from epstein_files.util.env import args, site_config
 from epstein_files.util.logging import logger

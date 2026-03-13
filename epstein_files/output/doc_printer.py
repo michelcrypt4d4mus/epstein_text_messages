@@ -20,6 +20,7 @@ from epstein_files.output.html.builder import (console_buffer_to_html, panel_to_
      text_to_div, unwrap_rich, write_templated_html)
 from epstein_files.output.html.elements import div_class, tag, to_em
 from epstein_files.output.rich import console, mobile_console, subtitle_panel
+from epstein_files.output.site.sites import SiteType
 from epstein_files.people.person import PEOPLE_BIOS, Person
 from epstein_files.people.names import *
 from epstein_files.util.env import args, site_config
@@ -205,9 +206,11 @@ class DocPrinter:
     def print_title_page_bottom(self) -> None:
         self._print_title_page_elements(title_page_bottom_elements(self.epstein_files))
 
-    def write_html(self, html_path: Path) -> None:
+    def write_html(self, html_path: Path | SiteType) -> Path:
         """Write the collection of html elements to a file."""
-        write_templated_html(self.html_elements, html_path)
+        output_path = html_path if isinstance(html_path, Path) else SiteType.real_html_build_path(html_path)
+        write_templated_html(self.html_elements, output_path)
+        return output_path
 
     def write_mobile_html(self, html_path: Path) -> None:
         write_templated_html(self.mobile_html_elements, html_path)

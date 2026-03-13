@@ -30,8 +30,9 @@ SOCIAL_PLATFORMS = {
 
 @dataclass
 class ExternalLink:
-    """Container for rich `Text` links with optional parenthetical comment."""
-
+    """
+    Container for rich `Text` links with optional parenthetical comment.
+    """
     url: str
     link_text: str = ''
     comment: str = ''

@@ -14,7 +14,9 @@ from epstein_files.documents.email import Email
 from epstein_files.documents.other_file import OtherFile
 from epstein_files.output.doc_printer import DocPrinter
 from epstein_files.output.html.builder import table_to_html, panel_to_div
-from epstein_files.output.site.sites import SAMPLE_HTML_PATH
+from epstein_files.output.site.sites import SiteType
+from epstein_files.output.output import write_html
+from epstein_files.people.contact import Contact
 from epstein_files.people.person import Person
 from epstein_files.util.helpers.data_helpers import flatten
 from epstein_files.util.helpers.file_helper import open_file_or_url
@@ -71,6 +73,8 @@ for panel in TEST_PANELS:
     printer.print_renderable(panel)
     printer.line(2)
 
+# print contacts
+Contact.print_all_biographies(printer)
 # Print docs
 printer.print_documents(sample_docs)
 
@@ -78,8 +82,9 @@ printer.print_documents(sample_docs)
 # all_emailers = sorted(epstein_files.emailers, key=lambda person: person.sort_key)
 # people_table = Person.emailer_info_table(all_emailers, all_emailers, show_epstein_total=False)
 # printer.html_elements.append(table_to_html(people_table))
-printer.write_html(SAMPLE_HTML_PATH)
-open_file_or_url(SAMPLE_HTML_PATH)
+write_html(SiteType.DEV_SAMPLE)
+html_path = printer.write_html(SiteType.DEV_SAMPLE)
+open_file_or_url(html_path)
 
 # for doc in sample_docs:
 #     doc.print()

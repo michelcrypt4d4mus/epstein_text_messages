@@ -1,4 +1,5 @@
 # NEXT RELEASE
+* `Contact` allows multiple biographical link urls
 * Rename `DocCfg.replace_text_with` to `display_text`
 
 ### 1.9.3

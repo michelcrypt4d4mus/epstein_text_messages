@@ -6,6 +6,7 @@ import os
 from rich.padding import Padding
 from rich.text import Text
 
+from epstein_files.util.constant.strings import QUESTION_MARKS
 from epstein_files.util.helpers.string_helper import starred_header
 
 left_indent_padding = lambda num_spaces: (0, 0, 0, num_spaces)
@@ -14,6 +15,7 @@ no_bold = lambda style: style.replace('bold', '').strip()
 suppress_output_console_kwargs = lambda: {'file': open(os.devnull, "wt")}
 vertically_pad = lambda obj, amount = 1: Padding(obj, (amount, 0, amount, 0))
 
+QUESTION_MARKS_TXT = Text(QUESTION_MARKS, style='grey50')
 WARNING_STYLE = 'bold black on white'
 
 
