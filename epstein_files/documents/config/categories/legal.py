@@ -1,5 +1,4 @@
-from epstein_files.documents.config.config_builder import (FBI_REPORT, JANE_DOE_V_USA, fbi_report, letter,
-     starr_letter)
+from epstein_files.documents.config.config_builder import JANE_DOE_V_USA, letter, starr_letter
 from epstein_files.documents.config.doc_cfg import DocCfg, EmailCfg
 from epstein_files.people.names import *
 from epstein_files.util.constant.strings import *

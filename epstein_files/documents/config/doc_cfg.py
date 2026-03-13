@@ -18,6 +18,7 @@ from epstein_files.util.constant.strings import *
 from epstein_files.util.env import args, site_config
 from epstein_files.util.helpers.data_helpers import CharRange, coerce_utc_strict, without_falsey
 from epstein_files.util.helpers.file_helper import is_doj_file
+from epstein_files.util.helpers.link_helper import ExternalLink
 from epstein_files.util.helpers.string_helper import collapse_whitespace, is_bool_prop, join_truthy, quote
 from epstein_files.util.logging import logger
 
@@ -136,7 +137,9 @@ class DocCfg:
         replace_text_with (str, optional): Replace the contents of this file with this string
         show_full_panel (bool, optional): set `is_interesting=True` and show in a full panel view, not in a table
         show_with_name (str, optional): if set this document will be displayed all with the person specified
-        truncate_to (int | tuple[int, int], optional): Number of characters to truncate this email to when displayed.
+        truncate_to (int | tuple[int, int], optional): Number of characters to truncate this email to when displayed
+        url (str, optional): URL with more info about this document
+        url_link_text (str, optiona): text to show when displaying the `url` link for this document
     """
     id: str
     attached_to_email_id: str | None = None
@@ -164,6 +167,8 @@ class DocCfg:
     show_full_panel: bool = False
     show_with_name: str = ''
     truncate_to: int | tuple[int, int] | None = None
+    url: str = ''
+    url_link_text: str = ''
 
     def __post_init__(self):
         if self.id in self.duplicate_ids:
@@ -269,6 +274,11 @@ class DocCfg:
             description = join_truthy(description, f"attached to email {self.attached_to_email_id}", sep=', ')
 
         return description
+
+    @property
+    def external_link(self) -> ExternalLink | None:
+        if self.url:
+            link = ExternalLink(self.url)
 
     @property
     def has_any_info(self) -> bool:

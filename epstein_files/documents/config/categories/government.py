@@ -1,5 +1,5 @@
 from epstein_files.documents.documents.categories import CONSTANT_CATEGORIES, Interesting, Neutral
-from epstein_files.documents.config.config_builder import FBI_REPORT, fbi_defense_witness, fbi_interview, fbi_tip, fbi_report, letter
+from epstein_files.documents.config.config_builder import fbi_defense_witness, fbi_interview, fbi_tip, fbi_report, letter
 from epstein_files.documents.config.doc_cfg import NO_TRUNCATE, DocCfg, EmailCfg
 from epstein_files.people.names import *
 from epstein_files.util.constant.strings import *
@@ -80,7 +80,7 @@ GOVERNMENT_CFGS = [
     fbi_interview('EFTA00038915', 'minor victim', 'claims Epstein knew she was 14'),
     fbi_interview('EFTA01246710', PERRY_LANG, "Epstein's chef claims Donald Trump came to Epstein's house for dinner", truncate_to=(6000, 7500)),
     fbi_interview('EFTA00101927', None, f'claims au pair of Glenn and {EVA_DUBIN} was held against her will'),
-    fbi_report('019352', f"{FBI_REPORT} containing clippings of various press items"),
+    fbi_report('019352', f"contains clippings of various press items about Epstein"),
     fbi_report('021434', is_valid_for_name_scan=False),
     fbi_report(
         '018872',

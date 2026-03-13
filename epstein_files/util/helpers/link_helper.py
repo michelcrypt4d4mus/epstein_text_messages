@@ -13,6 +13,7 @@ from epstein_files.util.helpers.rich_helpers import enclose, join_non_empty
 
 HTTPS = 'https://'
 LINK_REGEX = re.compile(r"^https?://.*")
+TLD_REGEX = re.compile(r"\.(com|co.uk|gov|net)$")
 
 EXTERNAL_LINK_STYLE = 'light_slate_grey bold'
 LINK_COMMENT_STYLE = 'color(195) dim italic'
@@ -75,7 +76,7 @@ class ExternalLink:
 
     @property
     def domain(self) -> str:
-        return urlsplit(self.url).hostname
+        return extract_domain(self.url)
 
     @property
     def domain_stem(self) -> str:
@@ -121,6 +122,13 @@ class ExternalLink:
 def coerce_https(url: str) -> str:
     """Prepend https:// if it's not there already."""
     return url if LINK_REGEX.match(url) else f"https://{url}"
+
+
+def extract_domain(url: str, strip_tld: bool = False) -> str:
+    if (domain := urlsplit(url).hostname):
+        return TLD_REGEX.sub('', domain) if strip_tld else domain
+    else:
+        raise ValueError(f"no hostname in URL '{url}'")
 
 
 def link_markup(
