@@ -29,6 +29,8 @@ INNER_PANEL_PADDING = padding_props(BORDER_HORIZONTAL_PADDING, BORDER_VERTICAL_P
 VERTICAL_MARGIN = to_em(1.9)  # Between elements
 BOTTOM_MARGIN_PROPS = {'margin-bottom': VERTICAL_MARGIN}
 
+PANEL_BODY_CSS_CLASS = 'no_expand document_body_container'
+
 # These are the props for the outer panel
 PANEL_BASE_PROPS = {
     "display": "inline-block",
@@ -94,15 +96,10 @@ def one_row_table_html(table: Table, css_props: CssPropsArg = None) -> str:
 
         header_span = rich_to_html(Text('', style=col1.header_style or '').append(header))
         header_div = div_class(header_span, 'document_panel_header', header_props)
-        # logger.debug(f"one_row_table_html() header_props: {header_props}\n\nborder_props: {border_props}\n\n")
 
-    body_div = div_class(
-        rich_to_html(Text('', style=col1.style).append(col1._cells[0])),
-        'no_expand document_body_container',
-        PANEL_BASE_PROPS
-    )
-
-    logger.debug(f"one_row_table_html() border_style='{table.border_style}'\n\nborder_css_props: {border_css_props(table.border_style)}")
+    body_html = rich_to_html(Text('', style=col1.style).append(col1._cells[0]))
+    body_div = div_class(body_html, PANEL_BODY_CSS_CLASS, PANEL_BASE_PROPS)
+    # logger.debug(f"one_row_table_html() border_style='{table.border_style}'\n\nborder_css_props: {border_css_props(table.border_style)}")
 
     return div_class(
         join_truthy(header_div, body_div, '\n'),
