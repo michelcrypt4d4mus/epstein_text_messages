@@ -151,7 +151,7 @@ LEGAL_CFGS = [
     ),
     fbi_report('021569'),
     fbi_report('EFTA01688746'),
-    fbi_report('EFTA00090314', f'tips about Jared Kushner, Ivanka Trump, Chabad, {ALAN_DERSHOWITZ}, etc.', is_interesting=True),
+    fbi_report('EFTA00090314', f'tips about {MASHA_DROKOVA}, Jared Kushner, Ivanka Trump, Chabad, {ALAN_DERSHOWITZ}, etc.', is_interesting=True),
     fbi_report(
         'EFTA00129085',
         'wiretap report linking phone number in John Gotti / Gambino / Michael Bilotti investigation to number in Epstein investigation',
