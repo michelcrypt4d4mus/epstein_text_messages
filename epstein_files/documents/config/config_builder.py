@@ -133,6 +133,10 @@ def fedex_invoice(id: str, date: str) -> DocCfg:
     return DocCfg(id=id, author='FedEx', date=date, replace_text_with='FedEx invoice')
 
 
+def fbi_tip(id: str, about: str, **kwargs) -> DocCfg:
+    return fbi_report(id, f"tip {about}", **kwargs)
+
+
 def fbi_report(id: str, description: str = FBI_REPORT, **kwargs) -> DocCfg:
     return DocCfg(id=id, author=FBI, category=Neutral.GOVERNMENT, description=description, **kwargs)
 

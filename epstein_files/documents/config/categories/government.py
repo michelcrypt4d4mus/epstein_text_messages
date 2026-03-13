@@ -1,5 +1,5 @@
 from epstein_files.documents.documents.categories import CONSTANT_CATEGORIES, Interesting, Neutral
-from epstein_files.documents.config.config_builder import FBI_REPORT, fbi_defense_witness, fbi_report, letter
+from epstein_files.documents.config.config_builder import FBI_REPORT, fbi_defense_witness, fbi_report, letter, fbi_tip
 from epstein_files.documents.config.doc_cfg import NO_TRUNCATE, DocCfg, EmailCfg
 from epstein_files.people.names import *
 from epstein_files.util.constant.strings import *
@@ -75,13 +75,8 @@ GOVERNMENT_CFGS = [
         author=FBI,
         description='interview re: Paolo Zampolli, Epstein assaults, and the possibility Epstein introduced Melania to Donald Trump',
     ),
-    # https://www.bbc.com/news/articles/c6271ngl014o
-    DocCfg(
-        id='EFTA01660676',
-        author=FBI,
-        description='tip about recently convicted rapists Tal and Oren Alexander at Epstein\'s house',
-        show_full_panel=True,
-    ),
+    fbi_tip('EFTA01660676', "about recently convicted rapists Tal and Oren Alexander at Epstein's house", comment='https://www.bbc.com/news/articles/c6271ngl014o', show_full_panel=True),
+    fbi_tip('EFTA00020490', 'from woman who thinks she encountered Epstein as a young girl'),
     DocCfg(id='EFTA00151754', author=FBI, description='delaration of Law Enforcement Officer for Victim of Trafficking', is_interesting=True),
     DocCfg(id='EFTA00222943', author=FBI, description=f"agent believes computers were removed from Epstein's residence"),
     DocCfg(id='EFTA00020506', author=FBI, description='"chauffeur told Epstein \'I have something on you, remember what I buried!\'"', show_full_panel=True),
