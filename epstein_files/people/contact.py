@@ -1,3 +1,4 @@
+import logging
 import re
 from dataclasses import dataclass, field, fields
 from typing import Literal, Self
@@ -5,10 +6,12 @@ from typing import Literal, Self
 from rich.text import Text
 
 from epstein_files.people.names import Name, constantize_name, extract_first_name, extract_last_name
-from epstein_files.util.constant.strings import INDENT_NEWLINE, INDENTED_JOIN, LAW_ENFORCEMENT, PartialName
+from epstein_files.util.constant.strings import INDENT_NEWLINE, INDENTED_JOIN, LAW_ENFORCEMENT, WIKIPEDIA, PartialName
+from epstein_files.util.constant.urls import wikipedia_url_for_name
 from epstein_files.util.env import args
-from epstein_files.util.helpers.data_helpers import constantize_names
-from epstein_files.util.helpers.link_helper import link_text_obj
+from epstein_files.util.helpers.data_helpers import constantize_names, listify
+from epstein_files.util.helpers.link_helper import ExternalLink, link_text_obj
+from epstein_files.util.helpers.rich_helpers import enclose
 from epstein_files.util.helpers.string_helper import as_pattern, indented, is_integer, quote, remove_question_marks, join_truthy
 from epstein_files.util.logging import logger
 
@@ -35,8 +38,8 @@ class Contact:
         is_interesting (bool): should a biographical entry be generated for this panel in the chronological view
         is_junk (bool): for junk email
         is_organization (bool): if this is a company or group, don't try to match first and last versions of its name
-        link_to_bio (str, optional): a link to some info about this entity
         match_partial (PartialName | None): whether to also match this entity's first and last names
+        url (str | list[str] | Literal['WIKIPEDIA'], optional): link(s) to info about this entity
     """
     name: str
     info: str = ''
@@ -49,13 +52,17 @@ class Contact:
     is_interesting: bool = True  # Eligible for bio panel
     is_junk: bool = False  # TODO: this sucks
     is_organization: bool = False
-    link_to_bio: str = ''
+    links: list[ExternalLink] = field(init=False)
     match_partial: PartialName | None = 'last'
+    url: str | list[str] | Literal['WIKIPEDIA'] = ''
     # jmail_url: str
 
     def __post_init__(self):
         if self.is_organization:
             self.match_partial = None
+
+        urls = [wikipedia_url_for_name(self.name) if url == WIKIPEDIA else url for url in  listify(self.url)]
+        self.links = [ExternalLink(url, self.name, link_style=self.bold_style) for url in urls]
 
         try:
             self.emailer_regex = re.compile(self.pattern, re.IGNORECASE)
@@ -69,25 +76,17 @@ class Contact:
             logger.fatal(f"failed to compile highlight_regex for {self.name}: {e}")
             raise e
 
-        # if 'Teodor' in self.name:
-        #     logger.warning(f"{self.name} emailer_regex: {self.emailer_regex.pattern}")
-        #     logger.warning(f"{self.name} highlight_regex: {self.highlight_regex.pattern}")
-
     @property
     def bio(self) -> Text:
         """Biographical info about this entity."""
         from epstein_files.output.epstein_highlighter import non_epstein_highlighter
-        txt = Text('')
-
-        if self.link_to_bio:
-            txt.append(link_text_obj(self.link_to_bio, self.name, self.bold_style))
-        else:
-            txt.append(self.name, style=self.style)
+        bio_txt = Text('').append(self.links[0].link if self.links else Text(self.name, self.style))
 
         if self.category:
-            txt.append(' [', style='dim').append(self.category.lower(), style=f'{self.style} dim').append(']', style='dim')
+            category_txt = Text(self.category.lower(), style=f'{self.style} dim')
+            bio_txt.append(enclose(category_txt, encloser='()', encloser_style='dim'))
 
-        return txt.append(' ').append(non_epstein_highlighter(Text(self.info, style='italic grey70')))
+        return bio_txt.append(' ').append(non_epstein_highlighter(Text(self.info, style='italic grey70')))
 
     @property
     def bold_style(self) -> str:
@@ -124,6 +123,11 @@ class Contact:
                 pattern += '?'
 
         return as_pattern(pattern)
+
+    @property
+    def url_slug(self) -> str:
+        """URL safe version of the name with spaces replaced by underscores."""
+        return self.name.replace(' ', '_')
 
     @property
     def _middle_initial(self) -> str:
@@ -184,6 +188,15 @@ class Contact:
 
         props.append(f'highlight_pattern=r"{self.highlight_pattern}"')
         return props
+
+    def _log(self, msg: str, level: int = logging.INFO) -> None:
+        """Log something prefixed by this person's name."""
+        msg = f"{type(self).__name__}('{self.name}'): {msg}"
+        logger.log(level, msg)
+
+    def _warn(self, msg: str) -> None:
+        """Log warning with prefix."""
+        self._log(msg, logging.WARNING)
 
     def __repr__(self) -> str:
         props = self._props_strs

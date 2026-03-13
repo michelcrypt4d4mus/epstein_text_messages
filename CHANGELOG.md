@@ -37,7 +37,7 @@
 * Make biographical panels sticky
 * `MessengerLogPdf` class for unstructured text message PDFs
 * `DocCfg` add `date_uncertain`, `is_valid_for_name_scan`, and `non_participants` fields
-* `Contact` now has `is_emailer`, `is_interesting`, `match_partial`, and `link_to_bio` props and `bio()` method for biographical panel
+* `Contact` now has `is_emailer`, `is_interesting`, `match_partial`, and `url` props and `bio()` method for biographical panel
 * `HighlightPatterns` class has `use_word_boundary` attribute, `"financical"` category is now `HighlightPatterns` not `HighlightedNames`
 
 ### 1.8.7

@@ -91,5 +91,9 @@ def test_repr():
 )"""
 
 
+def test_urls():
+    c = Contact('Nasir Jones')
+
+
 def _build_contact(**kwargs) -> Contact:
     return Contact(NAME, **kwargs)

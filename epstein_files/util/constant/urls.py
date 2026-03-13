@@ -142,12 +142,18 @@ epstein_web_doc_url = lambda file_stem: f"{DOC_LINK_BASE_URLS[EPSTEIN_WEB]}/{fil
 epstein_web_person_url = lambda person: f"{EPSTEIN_WEB_URL}/{parameterize(person)}"
 epstein_web_search_url = lambda s: f"{EPSTEIN_WEB_URL}/?ewmfileq={urllib.parse.quote(s)}&ewmfilepp=20"
 
+# Jmail
+search_jmail_url = lambda txt: f"{JMAIL_URL}/search?q={urllib.parse.quote(txt)}"
+
 # Roll Call
 rollcall_doc_url = lambda file_stem: build_doc_url(DOC_LINK_BASE_URLS[ROLLCALL], file_stem, 'title')
 
-# Jmail
-search_jmail_url = lambda txt: f"{JMAIL_URL}/search?q={urllib.parse.quote(txt)}"
+# Twitter
 search_twitter_url = lambda txt: f"{X_BASE_URL}/search?q={urllib.parse.quote(txt)}&src=typed_query&f=live"
+
+# Wikipedia
+wikipedia_url_for_name = lambda s: f"https://en.wikipedia.org/wiki/" + s.replace(' ', '_')
+
 
 PERSON_LINK_BUILDERS: dict[ExternalSite, Callable[[str], str]] = {
     EPSTEIN_MEDIA: epstein_media_person_url,
