@@ -75,13 +75,14 @@ class ExternalLink:
         return link
 
     @property
-    def domain(self) -> str:
-        return extract_domain(self.url)
+    def domain_link(self) -> Text:
+        """Returns a link using the TLD free domain as the `link_text`."""
+        return link_text_obj(self.url, self.domain(True), self.link_style)
 
     @property
     def domain_stem(self) -> str:
         """e.g. retrun 'github' for a github.com/blah URL."""
-        domain_pieces = self.domain.split('.')
+        domain_pieces = self.domain().split('.')
 
         if len(domain_pieces) == 2:
             return domain_pieces[0]
@@ -103,6 +104,9 @@ class ExternalLink:
     def url_link(self) -> Text:
         """Link that uses the short_url as link_text (overriding actual link_text property)."""
         return link_text_obj(self.url, self.short_url, self.link_style)
+
+    def domain(self, strip_tld: bool = False) -> str:
+        return extract_domain(self.url, strip_tld=strip_tld)
 
     def to_txt(self) -> Text:
         comment = Text('')
@@ -126,6 +130,7 @@ def coerce_https(url: str) -> str:
 
 def extract_domain(url: str, strip_tld: bool = False) -> str:
     if (domain := urlsplit(url).hostname):
+        domain = domain.removeprefix('www.')
         return TLD_REGEX.sub('', domain) if strip_tld else domain
     else:
         raise ValueError(f"no hostname in URL '{url}'")
