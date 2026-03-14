@@ -136,17 +136,17 @@ def panel_to_div(panel: Panel, css_props: OptionalCssProps) -> str:
     """
     css_props = css_props if css_props is not None else BOTTOM_MARGIN_PROPS                            # TODO: Default bottom margin seems wrong
     border_style = panel.border_style if panel.style == 'none' or not panel.style else panel.style     # TODO: what's up with the string 'none'??
-    color_css_props = HtmlStyle(panel.style).to_css
     inner_div_padding_dims = add_constant(unpack_dimensions(panel.padding or 0), MAKEUP_PADDING)
+    html_style = HtmlStyle(panel.style)
 
     inner_div_css = {
-        **color_css_props,
+        **html_style.to_css,
         **border_css_props(border_style),
         **dimensions_to_padding_css(inner_div_padding_dims),
     }
 
     outer_div_css = {
-        **color_css_props,
+        **html_style.to_css,
         **PANEL_BASE_PROPS,
         **css_props,
     }
