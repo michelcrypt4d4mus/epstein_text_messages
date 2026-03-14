@@ -1,11 +1,13 @@
 # NEXT RELEASE
-* `Contact` allows multiple biographical link urls
-* `Contact` has new fields `email_addresses` and `aliases`
-* Rename `DocCfg.replace_text_with` to `display_text`
+* rename `Contact` to `Entity`
+* `Entity` allows multiple biographical link urls
+* `Entity` has new fields `email_addresses` and `aliases`
 * `Person.is_uninteresting` is now `is_interesting`, fix logic to match
 * `Person` just maintains single list of `Document` objects, not separated by type
+* `DocCfg` rename `replace_text_with` to `display_text`
 * `DocCfg` don't copy `author_uncertain` to `author_reason`
 * `DocCfg` don't set `truncate_to = NO_TRUNCATE` if `is_interesting` is true, but do lazily return `NO_TRUNCATE` from `truncate_at()`
+* Fix bug where `Email._truncate_to_length()` was not being checked when printing emails
 
 ### 1.9.3
 * use the `DocPrinter` to build the title page so it correctly centers in the browser

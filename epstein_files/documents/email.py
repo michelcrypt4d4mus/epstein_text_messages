@@ -37,7 +37,7 @@ from epstein_files.util.constant.urls import URL_SIGNIFIERS
 from epstein_files.people.names import sort_names
 from epstein_files.util.constants import CONFIGS_BY_ID
 from epstein_files.util.env import args, site_config
-from epstein_files.util.helpers.data_helpers import (AMERICAN_TIME_REGEX, TIMEZONE_INFO, coerce_utc, flatten,
+from epstein_files.util.helpers.data_helpers import (AMERICAN_TIME_REGEX, TIMEZONE_INFO, CharRange, coerce_utc, flatten,
      prefix_keys, uniq_sorted, uniquify)
 from epstein_files.util.helpers.link_helper import link_text_obj
 from epstein_files.util.helpers.string_helper import capitalize_first, collapse_newlines, is_bool_prop, quote, strip_pdfalyzer_panels
@@ -384,7 +384,7 @@ class Email(Communication):
     @property
     def is_word_count_worthy(self) -> bool:
         """True if this file should be included in word counts."""
-        return not(self.is_fwded_article or self.is_mailing_list)
+        return not (self.is_fwded_article or self.is_mailing_list or self.is_duplicate)
 
     @property
     def metadata(self) -> Metadata:
@@ -405,7 +405,7 @@ class Email(Communication):
 
     @property
     def prettified_txt(self) -> Text:
-        """Overrides superclass.Cleaned up / formatted Text ready to be displayed."""
+        """Overrides superclass. Cleaned up / formatted Text ready to be displayed."""
         if self._config.char_range and self._config.char_range[0] > 0:
             if self._config.char_range[0] < self.email_parts.header_len:
                 self._warn(f"The excerpt appears to start in the email header which will may in duplicate header chars")
@@ -807,14 +807,14 @@ class Email(Communication):
         """Decide how many chars we should limit the dislpay of this email to."""
         quote_cutoff = self._idx_of_nth_quoted_reply()  # Trim if there's many quoted replies
         includes_truncate_term = next((term for term in TRUNCATE_TERMS if term in self.text), None)
-        num_chars: int
+        num_chars: int | None = None
 
-        if args.whole_file:
-            num_chars = len(self.text)
+        if args.whole_file or self._config.truncate_at == NO_TRUNCATE:
+            return None
         elif args.truncate:
             num_chars = args.truncate
-        elif (truncate_at := self._config.truncate_at):
-            num_chars = len(self.text) if truncate_at == NO_TRUNCATE else truncate_at
+        elif self._config.char_range:
+            return self._config.char_range[1]
         elif self.author in TRUNCATE_EMAILS_BY \
                 or any([self.is_from_or_to(n) for n in TRUNCATE_EMAILS_FROM_OR_TO]) \
                 or includes_truncate_term:
@@ -823,6 +823,7 @@ class Email(Communication):
             if quote_cutoff and quote_cutoff < DEFAULT_TRUNCATE_TO:
                 trimmed_words = self.text[quote_cutoff:].split()
 
+                # TODO this attempt to include <snipped> msgs in the truncated text kind of sucks
                 if '<...snipped' in trimmed_words[:NUM_WORDS_IN_LAST_QUOTE]:
                     num_trailing_words = 0
                 elif trimmed_words and trimmed_words[0] in ['From:', 'Sent:']:
@@ -835,28 +836,26 @@ class Email(Communication):
                     num_chars = quote_cutoff + len(last_quoted_text) + 1 # Give a hint of the next line
                 else:
                     num_chars = quote_cutoff
-            else:
-                # TODO: Added some padding to self.length because newlines may be added in prettification but this sucks
-                num_chars = min(self.length + 100, DEFAULT_TRUNCATE_TO)
+            elif self.length > DEFAULT_TRUNCATE_TO:
+                num_chars = DEFAULT_TRUNCATE_TO
 
             # Always print whole email for 1st email for actual people
-            if self.is_persons_first_email and num_chars < self.length and \
-                    not (self.is_duplicate or self.is_fwded_article or self.is_mailing_list):
-                self._log(f"{self} Overriding cutoff {num_chars} for first email")
-                num_chars = self.length + 100
+            if num_chars and self.is_persons_first_email and self.is_word_count_worthy:
+                self._log(f"Overriding cutoff {num_chars} for first email")
+                num_chars = None
 
         log_args = {
             'num_chars': num_chars,
-            'is_persons_first_email': self.is_persons_first_email,
             'author_truncate': self.author in TRUNCATE_EMAILS_BY,
             'is_fwded_article': self.is_fwded_article,
             'is_quote_cutoff': quote_cutoff == num_chars,
             'includes_truncate_term': json.dumps(includes_truncate_term) if includes_truncate_term else None,
             'quote_cutoff': quote_cutoff,
+            'is_persons_first_email': self.is_persons_first_email,
         }
 
         log_args_str = ', '.join([f"{k}={v}" for k, v in log_args.items() if v])
-        self._log(f"Truncate determination: {log_args_str}")
+        self._debug_log(f"Truncate determination: {log_args_str}")
         return num_chars
 
     def __bespoke_repair_house_oversight_emails(self) -> None:

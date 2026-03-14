@@ -217,10 +217,10 @@ class DocCfg(LoggingEntity):
         """`truncate_to` as `(0, truncate_to)` tuple if truncate_to is an `int`."""
         if args.whole_file or self.truncate_at in [None, NO_TRUNCATE]:
             return None
-        elif isinstance(self.truncate_at, int):
-            return (0, self.truncate_at)
         elif isinstance(self.truncate_at, tuple):
             return self.truncate_at
+        elif isinstance(self.truncate_at, int):
+            return (0, self.truncate_at)
         else:
             raise ValueError(f"{self.id} unknown truncate_at type ({type(self.truncate_at).__name__}, value={self.truncate_at})")
 
