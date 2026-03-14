@@ -23,7 +23,7 @@ from epstein_files.output.highlighted_names import HighlightedNames, HighlightPa
 from epstein_files.output.layout_elements.file_display import FileDisplay
 from epstein_files.output.rich import (GREY_NUMBERS, TABLE_TITLE_STYLE, build_table, console, join_texts,
      print_centered, print_special_note)
-from epstein_files.people.contact import Contact
+from epstein_files.people.contact import Entity
 from epstein_files.people.interesting_people import SPECIAL_NOTES
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constant.urls import *
@@ -58,7 +58,7 @@ PEOPLE_BIOS = {
 @dataclass(kw_only=True)
 class Person(LoggingEntity):
     """Collection of data about someone texting or emailing Epstein."""
-    contact: Contact = field(init=False)
+    contact: Entity = field(init=False)
     name: Name
     emails: list[Email] = field(default_factory=list)
     imessage_logs: list[MessengerLog] = field(default_factory=list)
@@ -67,7 +67,7 @@ class Person(LoggingEntity):
     _searched_for_highlight_group: bool = False
 
     def __post_init__(self):
-        self.contact = CONTACTS_DICT.get(str(self.name)) or Contact(name=cleanup_str(str(self.name)))
+        self.contact = CONTACTS_DICT.get(str(self.name)) or Entity(name=cleanup_str(str(self.name)))
         self.emails = Document.sort_by_timestamp(self.emails)
         self.imessage_logs = Document.sort_by_timestamp(self.imessage_logs)
 

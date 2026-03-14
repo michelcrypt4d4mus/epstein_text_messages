@@ -7,7 +7,7 @@ import re
 from abc import ABC
 from dataclasses import dataclass, field
 
-from epstein_files.people.contact import Contact
+from epstein_files.people.contact import Entity
 from epstein_files.people.names import Name, constantize_name
 from epstein_files.util.constant.strings import REGEX_STYLE_PREFIX
 from epstein_files.util.env import args
@@ -101,8 +101,8 @@ class HighlightedNames(HighlightPatterns):
         should_match_first_last_name (bool): if False don't match first/last/reversed versions of emailers
     """
     category: str = ''
-    contacts: list[Contact] = field(default_factory=list)
-    contacts_lookup: dict[Name, Contact] = field(default_factory=dict)
+    contacts: list[Entity] = field(default_factory=list)
+    contacts_lookup: dict[Name, Entity] = field(default_factory=dict)
     flags: re.RegexFlag = re.IGNORECASE
     should_match_first_last_name: bool = True  # TODO: this no longer does anything?
 
@@ -119,7 +119,7 @@ class HighlightedNames(HighlightPatterns):
         with_contacts_pattern = join_patterns([c.highlight_pattern for c in self.contacts] + self.patterns)
         self._pattern = fr"\b(({with_contacts_pattern})s?)\b"
         self.regex = self.compile_patterns(self._pattern)
-        self.contacts_lookup = Contact.build_name_lookup(self.contacts)
+        self.contacts_lookup = Entity.build_name_lookup(self.contacts)
 
         for contact in self.contacts:
             contact.category = self.category_str
@@ -173,7 +173,7 @@ class HighlightedNames(HighlightPatterns):
                 s += '[\n        '
                 s += repr(value).removeprefix('[').removesuffix(']').replace(', ', ',\n        ')
                 s += ',\n    ],'
-            elif isinstance(value, list) and value and isinstance(value[0], Contact):
+            elif isinstance(value, list) and value and isinstance(value[0], Entity):
                 s += '[\n        '
                 s += f"    {', '.join([c.name for c in value])}"
                 s += ',\n    ],'

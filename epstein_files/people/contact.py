@@ -29,7 +29,7 @@ SIMPLE_NAME_REGEX = re.compile(r"^[-\w, ]+$", re.IGNORECASE)
 
 
 @dataclass
-class Contact(LoggingEntity):
+class Entity(LoggingEntity):
     """
     Attributes:
         name (str): Person or organization name
@@ -231,7 +231,7 @@ class Contact(LoggingEntity):
         return '[\n' + indented([repr(contact) for contact in contact_infos], 4) + '\n],'
 
 
-def acronym(name: str, description: str = '', **kwargs) -> Contact:
+def acronym(name: str, description: str = '', **kwargs) -> Entity:
     """Like organization() but auto-generates a regex matching the org's initials."""
     initials = [word[0] for word in name.split() if word[0].isupper()]
     initials_pattern = ''.join([fr"{letter}\.?" for letter in initials])
@@ -245,7 +245,7 @@ def acronym(name: str, description: str = '', **kwargs) -> Contact:
 
 
 # TODO: make class method (?)
-def organization(name: str, description: str = '', emailer_pattern: str = '', **kwargs) -> Contact:
+def organization(name: str, description: str = '', emailer_pattern: str = '', **kwargs) -> Entity:
     if (suffix_match := COMPANY_SUFFIX_REGEX.match(name)) and not emailer_pattern:
         suffix = suffix_match.group(1)
         emailer_pattern = name.removesuffix(suffix)
@@ -262,10 +262,10 @@ def organization(name: str, description: str = '', emailer_pattern: str = '', **
         emailer_pattern += fr"({suffix})?"
 
     kwargs['is_emailer'] = kwargs.get('is_emailer', False)
-    return Contact(name, description, emailer_pattern, is_organization=True, **kwargs)
+    return Entity(name, description, emailer_pattern, is_organization=True, **kwargs)
 
 
-def epstein_co(name: str, emailer_pattern: str = '', description: str = '', **kwargs) -> Contact:
+def epstein_co(name: str, emailer_pattern: str = '', description: str = '', **kwargs) -> Entity:
     return organization(name, join_truthy('Epstein company', description), emailer_pattern, **kwargs)
 
 
@@ -274,7 +274,7 @@ def epstein_trust(
     emailer_pattern: str = '',
     beneficiaries: list[str] | None = None,
     trustees: list[str] | None = None,
-) -> Contact:
+) -> Entity:
     """One of Epstein's financial trust entities."""
     name = f"Jeffrey E. Epstein {name} Trust" if is_integer(name) else name
     beneficiary_str = ''
@@ -292,5 +292,5 @@ def epstein_trust(
     return organization(name, f'Epstein financial trust{beneficiary_str}', emailer_pattern)
 
 
-def law_enforcement(name: str, emailer_pattern: str = '', description: str = '') -> Contact:
+def law_enforcement(name: str, emailer_pattern: str = '', description: str = '') -> Entity:
     return organization(name, description or LAW_ENFORCEMENT, emailer_pattern, is_interesting=False)
