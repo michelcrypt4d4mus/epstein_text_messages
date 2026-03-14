@@ -2,6 +2,7 @@
 Methods to help with building various kinds of `DocCfg` or `EmailCfg` objects.
 """
 from dateutil.parser import parse
+from typing import TypeVar
 
 from epstein_files.documents.documents.categories import Category, Interesting, Neutral, Uninteresting
 from epstein_files.documents.config.doc_cfg import CommunicationCfg, DocCfg, DuplicateType, EmailCfg
@@ -22,7 +23,7 @@ SUBPOENA_REGEX = re.compile(r"GRAND JURY SUBPOENA")
 VALAR_CAPITAL_CALL_REGEX = re.compile(r"^Val[ao]r.{,190} Capital Call", re.MULTILINE | re.IGNORECASE | re.DOTALL)
 VI_DAILY_NEWS_REGEX = re.compile(r'virgin\s*is[kl][ai]nds\s*daily\s*news', re.IGNORECASE)
 
-FBI_REPORT = f"report on Epstein investigation"  # (redacted)
+EPSTEIN_INVESTIGATION = 'Epstein investigation'
 JANE_DOE_V_USA = 'Jane Doe #1 and Jane Doe #2 v. United States'
 LEDGERX_MSG = 'LedgerX was later acquired by FTX for $298 million'
 WOLFF_EPSTEIN_ARTICLE_DRAFT = f"draft of an unpublished article ca. 2014"
@@ -49,6 +50,14 @@ DESCRIPTIONS = {
     'EFTA00015532': "alleging Epstein tried to buy victim's silence",
 }
 
+# Don't join with "about" if the description starts with one of these words
+REPORT_ABOUT_PREFIXES = [
+    'contain',
+    # 'with',
+]
+
+Cfg = TypeVar('Cfg', bound=DocCfg)
+
 
 def build_cfg_from_text(doc: 'Document') -> DocCfg | None:
     """Scan the text to see if author, description, category, etc. can be derived from the contents."""
@@ -60,7 +69,7 @@ def build_cfg_from_text(doc: 'Document') -> DocCfg | None:
         return DocCfg(id=doc.file_id, **kwargs)  # TODO: setting id to nothing sucks
 
     if FBI_FILE_REGEX.search(text):
-        cfg = fbi_report(doc.file_id, 'memorandum or report')
+        cfg = fbi_report(doc.file_id)
     elif EVIDENCE_REGEX.search(text):
         cfg = _cfg(category=Neutral.LEGAL, description='photos of collected evidence')
     elif GRAND_JURY_REGEX.search(text[0:100]):
@@ -120,21 +129,29 @@ def blaine_letter(id: str, date: str, suffix: str = '', **kwargs) -> Communicati
     )
 
 
-def fbi_defense_witness(id: str, witness: str, date: str = '') -> DocCfg:
-    return DocCfg(
-        id=id,
-        author=FBI,
-        date=date,
-        description=f'Research and Key Findings for {witness}, defense witness for {GHISLAINE_MAXWELL}',
-    )
+def fbi_defense_witness(id: str, witness: Name, date: str = '') -> DocCfg:
+    description = f'Research and Key Findings for {witness or UNKNOWN}, defense witness for {GHISLAINE_MAXWELL}'
+    return _set_fbi_doc_fields(DocCfg(id=id, date=date, description=description))
+
+
+def fbi_interview(id: str, interviewee: Name, description: str = '', date: str = '', **kwargs) -> CommunicationCfg:
+    description = join_truthy(f"interview with {interviewee or UNKNOWN}", description, ', ')
+    cfg = CommunicationCfg(id=id, date=date, description=description, recipients=[interviewee], **kwargs)
+    return _set_fbi_doc_fields(cfg)
+
+
+def fbi_report(id: str, description: str = EPSTEIN_INVESTIGATION, **kwargs) -> DocCfg:
+    joiner = ', ' if any(description.startswith(word) for word in REPORT_ABOUT_PREFIXES) else ' about '
+    description = join_truthy('report', description, joiner)
+    return _set_fbi_doc_fields(DocCfg(id=id, description=description, **kwargs))
+
+
+def fbi_tip(id: str, about: str, **kwargs) -> DocCfg:
+    return _set_fbi_doc_fields(DocCfg(id=id, description=f"tip {about}", **kwargs))
 
 
 def fedex_invoice(id: str, date: str) -> DocCfg:
-    return DocCfg(id=id, author='FedEx', date=date, replace_text_with='FedEx invoice')
-
-
-def fbi_report(id: str, description: str = FBI_REPORT, **kwargs) -> DocCfg:
-    return DocCfg(id=id, author=FBI, category=Neutral.GOVERNMENT, description=description, **kwargs)
+    return DocCfg(id=id, author='FedEx', date=date, display_text='FedEx invoice')
 
 
 def immigration_letter(id: str, author: Name, date: str = '', description: str = '', show_with_name = '', **kwargs) -> CommunicationCfg:
@@ -161,7 +178,7 @@ def important_messages_pad(id: str, date: str = '') -> DocCfg:
     return DocCfg(
         id=id,
         date=date,
-        replace_text_with='"Important Message" formatted notepad with notes about missed phone calls etc.'
+        display_text='"Important Message" formatted notepad with notes about missed phone calls etc.'
     )
 
 
@@ -182,7 +199,7 @@ def phone_bill_cfg(id: str, author: str, dates: str = '', **kwargs) -> DocCfg:
         id=id,
         author=author,
         category=Uninteresting.PHONE_BILL,
-        replace_text_with=f"phone bill" + (f" covering {dates}" if dates else ''),
+        display_text=f"phone bill" + (f" covering {dates}" if dates else ''),
         **kwargs
     )
 
@@ -239,3 +256,10 @@ def wolff_draft_cfg(id: str, suffix: str = '', **kwargs) -> DocCfg:
         description=join_truthy(WOLFF_EPSTEIN_ARTICLE_DRAFT, suffix),
         **kwargs
     )
+
+
+def _set_fbi_doc_fields(cfg: Cfg) -> Cfg:
+    """Mutate `cfg` to set FBI related properties. Returns `cfg` argument for convenience."""
+    cfg.author = FBI
+    cfg.category = Neutral.GOVERNMENT
+    return cfg

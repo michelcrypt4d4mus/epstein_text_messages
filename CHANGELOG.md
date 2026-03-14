@@ -1,4 +1,8 @@
 # NEXT RELEASE
+* `Contact` allows multiple biographical link urls
+* Rename `DocCfg.replace_text_with` to `display_text`
+
+### 1.9.3
 * use the `DocPrinter` to build the title page so it correctly centers in the browser
 * `DocCfg.highlight_quote` now works with `Email`s too
 * `Document._config` method falls back to a dummy / empty `DocCfg` / `EmailCfg` / etc.
@@ -34,7 +38,7 @@
 * Make biographical panels sticky
 * `MessengerLogPdf` class for unstructured text message PDFs
 * `DocCfg` add `date_uncertain`, `is_valid_for_name_scan`, and `non_participants` fields
-* `Contact` now has `is_emailer`, `is_interesting`, `match_partial`, and `link_to_bio` props and `bio()` method for biographical panel
+* `Contact` now has `is_emailer`, `is_interesting`, `match_partial`, and `url` props and `bio()` method for biographical panel
 * `HighlightPatterns` class has `use_word_boundary` attribute, `"financical"` category is now `HighlightPatterns` not `HighlightedNames`
 
 ### 1.8.7

@@ -14,7 +14,9 @@ from epstein_files.documents.email import Email
 from epstein_files.documents.other_file import OtherFile
 from epstein_files.output.doc_printer import DocPrinter
 from epstein_files.output.html.builder import table_to_html, panel_to_div
-from epstein_files.output.site.sites import SAMPLE_HTML_PATH
+from epstein_files.output.site.sites import SiteType
+from epstein_files.output.output import write_html
+from epstein_files.people.contact import Contact
 from epstein_files.people.person import Person
 from epstein_files.util.helpers.data_helpers import flatten
 from epstein_files.util.helpers.file_helper import open_file_or_url
@@ -32,44 +34,41 @@ TEST_PANELS = [
 ]
 
 
-doc_sets_to_sample = [
-    # [o for o in epstein_files.other_files if o.config and o.config.show_full_panel],
-    # [d for d in epstein_files._documents if d.suppressed_txt],
-    # [o for o in epstein_files.other_files if o.config_description_txt],  # other file with description
-    # [o for o in epstein_files.other_files if 1000 < o.length < 5000 and not o.config_description_txt], # other files no desc
+def print_sample_people(num_people_to_print: int = 3):
+    """people panels and email history etc."""
+    good_sample_people = [p for p in epstein_files.emailers if 5 <= len(p.unique_emails) <= 15]
+
+    for i, person in enumerate(good_sample_people[0:num_people_to_print], 1):
+        person.print_emails(printer)
+
+
+def print_test_panels():
+    for panel in TEST_PANELS:
+        printer.print_renderable(panel)
+        printer.line(2)
+
+
+doc_types_to_sample = [
+    [o for o in epstein_files.other_files if o.config and o.config.show_full_panel],
+    [d for d in epstein_files._documents if d.suppressed_txt],
+    [o for o in epstein_files.other_files if o.config_description_txt],  # other file with description
+    [o for o in epstein_files.other_files if 1000 < o.length < 5000 and not o.config_description_txt], # other files no desc
     [e for e in epstein_files.emails if e.config_description_txt], # emails with description
-    # [d for d in epstein_files._documents if d.suppressed_txt],
-    # [e for e in epstein_files.emails if not e.config_description_txt],  # email no desc
-    # epstein_files.emails_with_attachments,
-    # epstein_files.imessage_logs,
+    [d for d in epstein_files._documents if d.suppressed_txt],
+    [e for e in epstein_files.emails if not e.config_description_txt],  # email no desc
+    epstein_files.emails_with_attachments,
+    epstein_files.imessage_logs,
 ]
 
-
-def print_sample_people():
-    """people panels and email history etc."""
-    num_people_printed = 0
-
-    for person in epstein_files.emailers:
-        if len(person.unique_emails) <= 5 or len(person.unique_emails) > 20:
-            continue
-
-        person.print_emails(printer)
-        num_people_printed += 1
-
-        if num_people_printed > 5:
-            logger.warning(f"Printed {num_people_printed} people, breaking loop")
-            break
-        else:
-            logger.warning(f"Printed person #{num_people_printed}")
-
-
 # sample_docs = [epstein_files.get_id('EFTA00034357')] + flatten([docs[:SAMPLE_SIZE] for docs in doc_sets_to_sample])
-sample_docs = flatten([docs[:SAMPLE_SIZE] for docs in doc_sets_to_sample])
+sample_docs = flatten([docs[:SAMPLE_SIZE] for docs in doc_types_to_sample])
 printer = DocPrinter(epstein_files=epstein_files)
 
-for panel in TEST_PANELS:
-    printer.print_renderable(panel)
-    printer.line(2)
+# print contacts
+# Contact.print_all_biographies(printer)
+
+# print some People and their emails
+print_sample_people()
 
 # Print docs
 printer.print_documents(sample_docs)
@@ -78,8 +77,6 @@ printer.print_documents(sample_docs)
 # all_emailers = sorted(epstein_files.emailers, key=lambda person: person.sort_key)
 # people_table = Person.emailer_info_table(all_emailers, all_emailers, show_epstein_total=False)
 # printer.html_elements.append(table_to_html(people_table))
-printer.write_html(SAMPLE_HTML_PATH)
-open_file_or_url(SAMPLE_HTML_PATH)
 
-# for doc in sample_docs:
-#     doc.print()
+html_path = printer.write_html(SiteType.DEV_SAMPLE)
+open_file_or_url(html_path)

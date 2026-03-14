@@ -62,6 +62,7 @@ SCREENSHOT = 'screenshot of'
 TEXT_MESSAGE = 'text message'
 TRANSLATION = 'translation of'
 VICTIM_DIARY = 'victim diary'
+WIKIPEDIA = 'WIKIPEDIA'
 
 # CLI args
 SUPPRESS_OUTPUT = '--suppress-output'
@@ -78,6 +79,7 @@ OTHER_FILE_CLASS = 'OtherFile'
 CVRA = "Crime Victims' Rights Act [CVRA]"
 JASTA = 'JASTA'
 JASTA_FULL = f"{JASTA} (Justice Against Sponsors of Terrorism Act)"
+MINOR_VICTIM = 'minor victim'
 
 # Organizations
 BROCKMAN_INC = 'Brockman, Inc.'

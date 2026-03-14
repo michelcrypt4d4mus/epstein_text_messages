@@ -19,17 +19,17 @@ from rich.panel import Panel
 from rich.text import Text
 from rich.table import Table
 
-from epstein_files.documents.config.doc_cfg import DEFAULT_TRUNCATE_TO, DUPE_TYPE_STRS, NO_TRUNCATE, DebugDict, EmailCfg, DocCfg, Metadata
+from epstein_files.documents.config.doc_cfg import DEFAULT_TRUNCATE_TO, DUPE_TYPE_STRS, DebugDict, EmailCfg, DocCfg, Metadata
 from epstein_files.documents.documents.file_info import FileInfo
 from epstein_files.documents.documents.search_result import MatchedLine
 from epstein_files.documents.emails.constants import DOJ_EMAIL_OCR_REPAIRS, FALLBACK_TIMESTAMP
 from epstein_files.documents.emails.email_header import DETECT_EMAIL_REGEX
-from epstein_files.output.epstein_highlighter import highlighter, non_epstein_highlighter, temp_highlighter
+from epstein_files.output.epstein_highlighter import non_epstein_highlighter
 from epstein_files.output.highlight_config import HIGHLIGHTED_CONTACTS, get_style_for_category, get_style_for_name
+from epstein_files.output.html.builder import VERTICAL_MARGIN_EMS
 from epstein_files.output.layout_elements.file_display import BasePanel, FileDisplay
-from epstein_files.output.html.builder import VERTICAL_MARGIN
 from epstein_files.output.rich import (INFO_STYLE, NA_TXT, SYMBOL_STYLE, add_cols_to_table, build_table, console,
-     hyperlink_text, join_texts, styled_key_value, prefix_with, snip_msg_txt, styled_dict, hyperlink_line)
+     styled_key_value, prefix_with, snip_msg_txt, styled_dict)
 from epstein_files.output.site.sites import EXTRACTS_BASE_URL
 from epstein_files.people.interesting_people import PERSONS_OF_INTEREST, UNINTERESTING_AUTHORS
 from epstein_files.people.names import Name
@@ -40,8 +40,9 @@ from epstein_files.util.helpers.data_helpers import (CharRange, coerce_utc, coer
      uniquify, uniq_sorted, without_falsey)
 from epstein_files.util.helpers.link_helper import link_text_obj
 from epstein_files.util.helpers.file_helper import coerce_file_path, file_size_str, file_size_to_str
-from epstein_files.util.helpers.string_helper import collapse_newlines, doublespace_lines, join_truthy, quote, snip_msg, timestamp_without_zero_hour
+from epstein_files.util.helpers.string_helper import collapse_newlines, doublespace_lines, join_truthy, quote, timestamp_without_zero_hour
 from epstein_files.util.logging import DOC_TYPE_STYLES, FILENAME_STYLE, logger
+from epstein_files.util.logging_entity import LoggingEntity
 
 CHECK_LINK_FOR_DETAILS = 'not shown here, check original PDF for details'
 CLOSE_PROPERTIES_CHAR = ']'
@@ -94,7 +95,7 @@ T = TypeVar('T', bound=str | Text)
 
 
 @dataclass
-class Document:
+class Document(LoggingEntity):
     """
     Base class for all Epstein Files documents.
 
@@ -176,10 +177,10 @@ class Document:
         return non_epstein_highlighter(Text(self.config_description, style)) if self.config_description else None
 
     @property
-    def config_replace_text_with(self) -> str | None:
+    def config_display_text(self) -> str | None:
         """Configured replacement text."""
-        if self.config and self.config.replace_text_with:
-            text = join_truthy(self.config.author, self.config.replace_text_with)
+        if self.config and self.config.display_text:
+            text = join_truthy(self.config.author, self.config.display_text)
 
             if len(text) < 300 and not text.startswith('photo'):
                 return f"(Text of {text} {CHECK_LINK_FOR_DETAILS})"
@@ -193,7 +194,7 @@ class Document:
     @property
     def display_text(self) -> str:
         """Config overrides what text should be displayed."""
-        return collapse_newlines(self._config.replace_text_with or self.text)
+        return collapse_newlines(self._config.display_text or self.text)
 
     @property
     def duplicate_file_txt(self) -> Text | None:
@@ -238,20 +239,12 @@ class Document:
     @property
     def html_margin_bottom(self) -> str:
         """Overloaded in `Email` for case of emails with attachments."""
-        return VERTICAL_MARGIN
+        return VERTICAL_MARGIN_EMS
 
     @property
     def info(self) -> list[Text]:
         """0 to 2 sentences containing the info_txt() as well as any configured description."""
         return without_falsey([self.subheader, self.config_description_txt])
-
-    @property
-    def is_attachment(self) -> bool:
-        return bool(self.config and self.config.attached_to_email_id)
-
-    @property
-    def is_attribution_uncertain(self) -> bool:
-        return bool(self.config and self.config.is_attribution_uncertain)
 
     @property
     def is_duplicate(self) -> bool:
@@ -270,21 +263,27 @@ class Document:
     @property
     def is_interesting(self) -> bool | None:
         """
-        If `self.config.is_of_interest` returns a bool use that, otherwise house oversight files are
-        interesting if they are empty and uninteresting authors are uninteresting.
-        Checking of `TEXTERS_OF_INTEREST` etc. is left to the relevant subclass in cases where this
-        function returns None.
+        If `self.config.is_of_interest` returns a boolean (not `None`) return that, otherwise:
+
+            1. this doc is attached to an `Email`:                             false     (the interestingness of the `Email` decides)
+            2. `self.author` in `UNINTERESTING_AUTHORS`:                       false
+            3. `HOUSE_OVERSIGHT_XXXXX` files with no author or `DocCfg`:      **TRUE**
+            4. the configured `show_with_name` in PERSONS_OF_INTEREST:        **TRUE**
+
+        `None` is returned if no decision is made so subclasses can append additional conditions.
         """
-        if self.config and (is_of_interest := self.config.is_of_interest) is not None:
+        if (is_of_interest := self._config.is_of_interest) is not None:
             return is_of_interest
-        elif self.is_attachment:
+        elif self._config.attached_to_email_id:
             return False
         elif self.author in UNINTERESTING_AUTHORS:
             return False
         elif self.file_info.is_house_oversight_file and not (self.author or self.config):
             return True
-        elif self.config and self.config.show_with_name in PERSONS_OF_INTEREST:
+        elif self._config.show_with_name in PERSONS_OF_INTEREST:
             return True
+        else:
+            return None
 
     @property
     def length(self) -> int:
@@ -315,11 +314,8 @@ class Document:
         """Time or date shown in the `title` of the enclosing `Panel` when printing this `Document`."""
         if self.timestamp is None or self.timestamp == FALLBACK_TIMESTAMP:
             return ''
-        elif self.config and self.config.timestamp:
-            if self.config.date_uncertain:
-                prefix = 'approximate'
-            else:
-                prefix = ''
+        elif self._config.timestamp:
+            prefix = 'approximate' if self._config.date_uncertain else ''
         else:
             prefix = 'inferred'
 
@@ -355,7 +351,7 @@ class Document:
         display_text = doublespace_lines(self.display_text)
         char_range = self._config.char_range or (0, self.length + 1)
         # TODO: do something better to give replacement_text have different style
-        style = INFO_STYLE if self.config_replace_text_with and len(self.config_replace_text_with) < 300 else ''
+        style = INFO_STYLE if self.config_display_text and len(self.config_display_text) < 300 else ''
         selected_txt = self._config.text_highlighter(Text(display_text, style))[char_range[0]:char_range[1]]  # array slice of `Text` obj preserves style
         pretty_txt = self._intro_txt(char_range[0]).append(selected_txt)
 
@@ -379,10 +375,8 @@ class Document:
 
     @property
     def timestamp(self) -> datetime | None:
-        if self.config and self.config.timestamp:
-            return self.config.timestamp
-        else:
-            return self.extracted_timestamp
+        """Configuration timestamp takes precedence over extracted / derived timestamp."""
+        return self._config.timestamp or self.extracted_timestamp
 
     @property
     def timestamp_sort_key(self) -> tuple[datetime, str, int]:
@@ -399,15 +393,12 @@ class Document:
     @property
     def uninteresting_txt(self) -> Text | None:
         """Text to print for uninteresting files."""
-        if self.config:
-            if self.config.attached_to_email_id:
-                return self._skipped_file_txt(f"attached to {self.config.attached_to_email_id}")
-            elif args._suppress_uninteresting and self.config.is_interesting is False:
-                return self._skipped_file_txt("uninteresting")
-
-    @property
-    def _class_name(self) -> str:
-        return type(self).__name__
+        if self._config.attached_to_email_id:
+            return self._skipped_file_txt(f"attached to {self._config.attached_to_email_id}")
+        elif args._suppress_uninteresting and self._config.is_interesting is False:
+            return self._skipped_file_txt("uninteresting")
+        else:
+            return None
 
     @property
     def _class_style(self) -> str:
@@ -416,6 +407,16 @@ class Document:
     @property
     def _debug_prefix(self) -> str:
         return underscore(self._class_name).lower()
+
+    @property
+    def _identifier(self) -> str:
+        """Required `LoggingEntity` abstract method."""
+        return self.file_id
+
+    @property
+    def _log_prefix(self) -> str:
+        """`Overload default LoggingEntity` method."""
+        return f"{self.file_id} {self._class_name}"
 
     @property
     def _summary(self) -> Text:
@@ -448,9 +449,6 @@ class Document:
 
     def colored_external_links(self) -> Text:
         return self.file_info.build_external_links(with_alt_links=True)
-
-    def debug_log(self, msg: str) -> None:
-        self.log(msg, logging.DEBUG)
 
     def excerpt_text(self, char_range: CharRange | None = None, text: str = '', style = '') -> Text:
         """Create an excerpt of `text`, add appropriate header/footer if truncated, and highlight it."""
@@ -498,14 +496,10 @@ class Document:
         pattern = patternize(_pattern)
         return [MatchedLine(line, i) for i, line in enumerate(self.lines) if pattern.search(line)]
 
-    def log(self, msg: str, level: int = logging.INFO) -> None:
-        """Log a message with with this document's filename as a prefix."""
-        logger.log(level, f"{self.file_id} {self._class_name} {msg}")
-
     def print(self, whole_file: bool = False) -> None:
         """Print this object for some suppression message."""
-        if self.is_attachment:
-            self.warn(f"is an attachment and self.print() was calleed")
+        if self._config.attached_to_email_id:
+            self._warn(f"is an attachment and self.print() was calleed")
             return
         elif (suppressed_txt := self.suppressed_txt):
             console.print(Padding(suppressed_txt, site_config.suppressed_file_padding()))
@@ -563,10 +557,6 @@ class Document:
     def truthy_props(self, prop_names: list[str]) -> DebugDict:
         """Return key/value pairs but only if the value is truthy."""
         return {prop: getattr(self, prop) for prop in prop_names if getattr(self, prop)}
-
-    def warn(self, msg: str) -> None:
-        """Print a warning message prefixed by info about this `Document`."""
-        self.log(msg, level=logging.WARNING)
 
     def _debug_dict(self, as_txt: bool = False, with_prefixes: bool = True) -> DebugDict | Text:
         """Merge information about this document from `DocCfg`, `FileInfo`, etc. objs."""
@@ -627,7 +617,7 @@ class Document:
         """Log first 'n' lines of self.text at 'level'. 'msg' can be optionally provided."""
         separator = '\n\n' if '\n' in msg else '. '
         msg = (msg + separator) if msg else ''
-        self.log(f"{msg}First {n} lines of {self.file_id}:\n\n{self.top_lines(n)}\n", level)
+        self._log(f"{msg}First {n} lines of {self.file_id}:\n\n{self.top_lines(n)}\n", level)
 
     def _numbered_lines(self) -> str:
         """For logging."""
@@ -665,10 +655,9 @@ class Document:
     def _intro_txt(self, cutoff: int) -> Text:
         """Truncation message if it's an excerpt."""
         if cutoff == 0:
-            return Text('')
+            return Text('')  # Empty Text object makes sure the whole string starts with default no-style
 
-        msg = f'trimmed first {cutoff:,} characters'
-        return snip_msg_txt(msg, EXCERPT_STYLE).append('...')
+        return snip_msg_txt(f'trimmed first {cutoff:,} characters', EXCERPT_STYLE).append('\n\n...')
 
     def _write_clean_text(self, output_path: Path) -> None:
         """Write self.text to 'output_path'. Used only for diffing files."""
@@ -680,14 +669,14 @@ class Document:
 
         with open(output_path, 'w') as f:
             f.write(self.text)
-            self.log(f"Wrote {self.length} chars of self.text to '{output_path}'.")
+            self._log(f"Wrote {self.length} chars of self.text to '{output_path}'.")
 
     @contextmanager
     def _write_tmp_file(self) -> Generator[Path, None, None]:
         with NamedTemporaryFile(dir=self.file_path.parent) as tmp_doc_file:
             tmp_path = Path(tmp_doc_file.name)
             self._write_clean_text(tmp_path)
-            self.log(f"created tmp file '{tmp_doc_file.name}' ({file_size_str(tmp_path)})")
+            self._log(f"created tmp file '{tmp_doc_file.name}' ({file_size_str(tmp_path)})")
             yield Path(tmp_doc_file.name)
 
     def __rich_console__(self, console: Console, options: ConsoleOptions) -> RenderResult:
@@ -712,6 +701,11 @@ class Document:
         table = build_table(title)
         cols = [{'name': first_col_name, 'min_width': 14}] + SUMMARY_TABLE_COLS
         add_cols_to_table(table, cols, 'right')
+        # logger.warning(f'\n\ntable.title_justify={table.title_justify}, type(title)={type(title).__name__}, title={table.title}')
+
+        # if isinstance(title, Text) and title.justify:
+        #     logger.warning(f'        title is Text obj, justify={title.justify}\n\n')
+
         return table
 
     @classmethod
@@ -725,7 +719,7 @@ class Document:
             'count': str(file_count),
             'author_count': NA_TXT if is_author_na else str(author_count),
             'no_author_count': NA_TXT if is_author_na else str(file_count - author_count),
-            'uncertain_author_count': NA_TXT if is_author_na else str(len([f for f in files if f.is_attribution_uncertain])),
+            'uncertain_author_count': NA_TXT if is_author_na else str(len([f for f in files if f._config.author_uncertain])),
             'bytes': file_size_to_str(sum([f.file_info.file_size for f in files])),
         }
 

@@ -19,6 +19,7 @@ from epstein_files.documents.document import Document
 from epstein_files.documents.documents.word_count import print_word_counts
 from epstein_files.documents.doj_file import DojFile
 from epstein_files.documents.email import Email
+from epstein_files.documents.emails.emailers import ALL_CONTACTS
 from epstein_files.documents.messenger_log import MessengerLog
 from epstein_files.documents.other_file import OtherFile
 from epstein_files.output.doc_printer import DocPrinter
@@ -28,6 +29,7 @@ from epstein_files.output.output import (print_curated_chronological, print_doj_
      print_email_device_signatures, print_emailers_info, print_json_metadata, show_urls, write_html)
 from epstein_files.output.rich import console, print_json, print_subtitle_panel, subtitle_panel
 from epstein_files.output.site.sites import SiteType, make_clean
+from epstein_files.people.contact import Contact
 from epstein_files.util.constant.strings import HOUSE_OVERSIGHT_NOV_2025_ID_REGEX
 from epstein_files.util.constants import ALL_CONFIGS
 from epstein_files.util.env import args, site_config
@@ -43,13 +45,16 @@ def epstein_generate() -> None:
     printer = DocPrinter(epstein_files=epstein_files)
     printer.print_title_page_top()
 
-    if args.all_emails_chrono or args.output_word_count or args.output_devices:
+    if args.all_emails_chrono or args.output_bios or args.output_devices or args.output_word_count:
         printer.print_color_key()
     else:
         printer.print_title_page_bottom()
 
     if args.colors_only:
         pass
+    elif args.output_bios:
+        printer.print_section_subtitle('Entities With Configured Biographical Info')
+        printer.print_renderable([Padding(c.bio_txt, site_config.contact_list_padding) for c in ALL_CONTACTS])
     elif args.output_devices:
         print_email_device_signatures(epstein_files)
     elif args.output_chrono:
@@ -78,9 +83,7 @@ def epstein_generate() -> None:
             printed_files = print_other_files_section(epstein_files, printer)
             timer.log_section_complete('OtherFile', epstein_files.other_files, printed_files)
 
-    logger.warning(f'after rendering block')
-    write_html(args.build)
-    printer.write_html(SiteType.real_html_build_path(args._site_type))
+    printer.write_html(args._site_type)
     logger.warning(f"Total time: {timer.seconds_since_start_str()}")
 
     if args.open_txt:
@@ -118,13 +121,13 @@ def epstein_grep():
             if (isinstance(doc, Email) and not args.output_emails) \
                     or (isinstance(doc, (DojFile, OtherFile)) and not args.output_other) \
                     or (isinstance(doc, MessengerLog) and not args.output_texts):
-                doc.log(f"{type(doc).__name__} Skipping search result...")
+                doc._log(f"{type(doc).__name__} Skipping search result...")
                 continue
             elif isinstance(doc, Email) and args.email_body:
                 lines = [l for l in search_result.lines if l.line_number > doc.header.num_header_rows]
 
                 if not lines:
-                    doc.log(f"None of the matches for '{search_term}' seem to be in the body of the email")
+                    doc._log(f"None of the matches for '{search_term}' seem to be in the body of the email")
                     continue
 
             if doc.is_duplicate:

@@ -1,5 +1,4 @@
-from epstein_files.documents.config.config_builder import (FBI_REPORT, JANE_DOE_V_USA, fbi_report, letter,
-     starr_letter)
+from epstein_files.documents.config.config_builder import JANE_DOE_V_USA, letter, starr_letter
 from epstein_files.documents.config.doc_cfg import DocCfg, EmailCfg
 from epstein_files.people.names import *
 from epstein_files.util.constant.strings import *
@@ -125,38 +124,6 @@ LEGAL_CFGS = [
     DocCfg(id='028540', author='SCOTUS', description=f"decision in Budha Ismail Jam et al. v. INTERNATIONAL FINANCE CORP"),
     DocCfg(id='012197', author='SDFL', description=f"response to {JAY_LEFKOWITZ} on Epstein Plea Agreement Compliance"),
     DocCfg(id='022277', description=f"text of National Labour Relations Board (NLRB) law", is_interesting=False),
-    fbi_report('019352', f"{FBI_REPORT} containing clippings of various press items"),
-    fbi_report('021434', is_valid_for_name_scan=False),
-    fbi_report(
-        '018872',
-        non_participants=[
-            BILL_GATES,
-            BILL_RICHARDSON,
-            EDUARDO_ROBLES,
-            'Eliot Spitzer',
-            GERALD_LEFCOURT,
-            GLENN_DUBIN,
-            JEAN_LUC_BRUNEL,
-            JOI_ITO,
-            LARRY_SUMMERS,
-            LAWRANCE_VISOSKI,  # Just bc his deposition comes soon after
-            MARK_EPSTEIN,
-            MARTIN_NOWAK,
-            MORTIMER_ZUCKERMAN,
-            PRINCE_ANDREW,
-            SECURITIES_AND_EXCHANGE_COMMISSION,
-            STEVEN_HOFFENBERG,
-            SVETLANA_POZHIDAEVA
-        ],
-    ),
-    fbi_report('021569'),
-    fbi_report('EFTA01688746'),
-    fbi_report('EFTA00090314', f'tips about Jared Kushner, Ivanka Trump, Chabad, {ALAN_DERSHOWITZ}, etc.', is_interesting=True),
-    fbi_report(
-        'EFTA00129085',
-        'wiretap report linking phone number in John Gotti / Gambino / Michael Bilotti investigation to number in Epstein investigation',
-        is_interesting=True,
-    ),
 
     # legal letters
     letter(
@@ -198,5 +165,5 @@ LEGAL_CFGS = [
     DocCfg(id='EFTA00796700', description=f"detailed notes on Epstein's relationship with {ALAN_DERSHOWITZ}", is_interesting=True),
     DocCfg(id='EFTA00143492', description=f"court filing in which a victim calls Giuffre lawyer {STANLEY_POTTINGER} an abuser"),
     DocCfg(id='EFTA00039817', description='notice of hearing', date='2021-04-19', duplicate_ids=['EFTA00039791'], is_interesting=False),
-    DocCfg(id='EFTA00005586', replace_text_with='completely redacted 69 pages labeled "Grand Jury - NY"'),
+    DocCfg(id='EFTA00005586', display_text='completely redacted 69 pages labeled "Grand Jury - NY"'),
 ]

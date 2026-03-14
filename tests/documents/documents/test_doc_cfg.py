@@ -11,12 +11,10 @@ from epstein_files.people.names import BLOCKCHAIN_CAPITAL, BOFA_MERRILL, JOI_ITO
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constants import CONFIGS_BY_ID
 
-BASE_TRUTHY_PROPS = {
-    'is_valid_for_name_scan': True,
-}
-
 ID = '123456'
 SKYPE_LOG = Neutral.SKYPE_LOG.replace('_', ' ')
+BASE_TRUTHY_PROPS = {'is_valid_for_name_scan': True}
+
 
 @pytest.fixture
 def academia_cfg() -> DocCfg:
@@ -182,10 +180,11 @@ def test_highlight_quote():
     assert quote_cfg.complete_description == '"somebody to scrub again"'
 
 
-def test_is_empty(academia_cfg, empty_doj_cfg, empty_house_cfg):
+def test_is_empty(academia_cfg, dummy_cfg, empty_doj_cfg, empty_house_cfg):
     assert not academia_cfg.is_empty
     assert empty_doj_cfg.is_empty
     assert empty_house_cfg.is_empty
+    assert dummy_cfg.is_empty
 
 
 def test_is_of_interest(

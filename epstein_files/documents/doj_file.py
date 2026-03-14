@@ -17,7 +17,7 @@ from epstein_files.util.logging import logger
 from epstein_files.util.helpers.data_helpers import coerce_utc_strict, prefix_keys
 from epstein_files.util.helpers.string_helper import strip_pdfalyzer_panels
 
-BAD_LINE_REGEX = re.compile(r"^SUBJECT TO PROTECTIVE ORDER PARAGRAPHS .*")
+BAD_LINE_REGEX = re.compile(r"^(SUBJECT TO PROTECTIVE ORDER PARAGRAPHS .*|UNCLASSIFIED)$")
 BAD_OCR_EMPTY_LENGTH = 150
 EMPTY_LENGTH = 15
 IGNORE_LINE_REGEX = re.compile(r"^(\d+\n?|[\s+❑]{2,})$")
@@ -325,7 +325,7 @@ class DojFile(OtherFile):
         number_only_line_count = len(self.lines) - len(non_number_lines)
 
         if number_only_line_count > 20:
-            self.warn(f"Reduced line count from {len(self.lines)} to {len(non_number_lines)} by stripping number only lines")
+            self._warn(f"Reduced line count from {len(self.lines)} to {len(non_number_lines)} by stripping number only lines")
             self._set_text(lines=non_number_lines)
 
     def _repair(self) -> None:

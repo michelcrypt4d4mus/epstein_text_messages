@@ -118,7 +118,6 @@ def tz_debug_str(dt: datetime) -> str:
     return f"{dt.isoformat()} (tzinfo={dt.tzinfo}, local={dt_local.isoformat()}, utc={dt_utc.isoformat()})"
 
 
-
 def _verify_filenames(epstein_files):
     doc_filenames = set([doc.file_path.name for doc in epstein_files.documents])
 

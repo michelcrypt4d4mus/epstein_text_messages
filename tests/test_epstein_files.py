@@ -47,7 +47,7 @@ def test_against_csv(epstein_files):
                         continue
                     elif all(isinstance(v, datetime) for v in [csv_val, doc_val]) and \
                             (days := abs(days_between(csv_val, doc_val))) <= 3:
-                        doc.warn(f"timestamps differ by {days - 1} days, just a warning ({doc_val} vs {csv_val})")
+                        doc._warn(f"timestamps differ by {days - 1} days, just a warning ({doc_val} vs {csv_val})")
                         continue
 
                     bad_docs.append(doc)
@@ -58,9 +58,9 @@ def test_against_csv(epstein_files):
 
                     if reloaded_prop == csv_val:
                         values_str += f", reloaded='{reloaded_prop}'"
-                        doc.warn(f"{mismatched_prop_str} in gzip but reloaded is OK ({values_str})")
+                        doc._warn(f"{mismatched_prop_str} in gzip but reloaded is OK ({values_str})")
                     else:
-                        doc.warn(f"{mismatched_prop_str} ({values_str})")
+                        doc._warn(f"{mismatched_prop_str} ({values_str})")
         else:
             print_subtitle_panel(f"CSV is missing {doc.file_id}", center=False)
             console.print(doc)

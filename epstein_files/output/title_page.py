@@ -14,7 +14,6 @@ from rich.text import Text
 from epstein_files.output.epstein_highlighter import highlighter
 from epstein_files.output.layout_elements.demi_table import build_demi_table
 from epstein_files.output.highlight_config import HIGHLIGHTED_NAMES
-from epstein_files.output.html.builder import unwrap_rich
 from epstein_files.output.rich import *
 from epstein_files.output.site.sites import SECTION_ANCHORS
 from epstein_files.output.site.site_config import MOBILE_WARNING_TXT
@@ -113,7 +112,7 @@ def print_other_page_link(epstein_files: 'EpsteinFiles') -> None:
 
 
 def section_header(msg: str, style: str = SECTION_HEADER_STYLE, is_centered: bool = False) -> Padding:
-    """Make an aligned, padded panel that's centered."""
+    """Make a padded Panel that's centered."""
     if args._site_type == SiteType.CURATED:
         console.line(2)
         print_section_links()

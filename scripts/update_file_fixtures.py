@@ -13,16 +13,16 @@ def update_text_dump() -> None:
 
         if output_file.exists():
             if (old_contents := output_file.read_text()) == doc.text:
-                doc.log(f"text matches '{output_file}', skipping...")
+                doc._log(f"text matches '{output_file}', skipping...")
                 continue
 
             num_diff_chars = doc.length - len(old_contents)
-            doc.warn(f"updating existing file at '{output_file}' with {num_diff_chars} new chars...")
+            doc._warn(f"updating existing file at '{output_file}' with {num_diff_chars} new chars...")
         else:
-            doc.warn(f"file doesn't exist, writing {len(doc.text)} chars to '{output_file}'...")
+            doc._warn(f"file doesn't exist, writing {len(doc.text)} chars to '{output_file}'...")
 
         output_file.write_text(doc.text)
 
 
-update_text_dump()
 write_files_csv()
+update_text_dump()

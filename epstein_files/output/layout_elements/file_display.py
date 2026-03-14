@@ -8,16 +8,18 @@ from rich.table import Table
 from rich.text import Text
 from rich.panel import Panel
 
-from epstein_files.output.html.builder import (PANEL_BASE_PROPS, VERTICAL_MARGIN, border_css_props, rich_to_html,
-     one_row_table_html, text_to_list, text_to_div, vertical_margin_props)
-from epstein_files.output.html.elements import BLACK_BACKGROUND, div_class, div_with_legend, div_tag, to_em, side_props
+from epstein_files.output.html.builder import (PANEL_BASE_PROPS, VERTICAL_MARGIN_EMS, border_css_props,
+     one_row_table_html, render_to_html, text_to_list, text_to_div, margin_vertical_css)
+from epstein_files.output.html.elements import div_class, div_with_legend, div_tag
+from epstein_files.output.html.positioned_rich import BLACK_BACKGROUND, PositionedRich, dimensions_to_margin_css, to_em
 from epstein_files.output.html.html_style import HtmlStyle
 from epstein_files.output.rich import join_texts
+from epstein_files.util.helpers.data_helpers import only_truthy
 
 JustifyMethod = Literal['center', 'left', 'right']
 
 BOTTOM_PADDING = 1
-SUBHEADER_VERTICAL_PADDING = to_em(0.3)
+SUBHEADER_VERTICAL_MARGIN = 0.3
 
 DOC_DIV_CSS_PROPS = {
     'display': 'flex',
@@ -36,16 +38,10 @@ class BasePanel:
     def is_list(self) -> bool:
         return isinstance(self.text, list)
 
-    def to_div(self, indents: tuple[int, int] | None = None) -> str:
+    def to_div(self, _margins: list[int | float] | None = None) -> str:
         """Create an HTML <div> string for this panel."""
-        indents = indents or (0, 0)
-        div_props = {}
-
-        if indents[0]:
-            div_props.update(side_props('margin', ['left'], to_em(indents[0])))
-
-        if indents[1]:
-            div_props.update(side_props('margin', ['right'], to_em(indents[1])))
+        margins = _margins or PositionedRich.zero_dimensions()
+        div_props = dimensions_to_margin_css(margins)
 
         # Handle MessengerLog / TextMessage list. # TODO this sucks
         if self.is_list:
@@ -53,13 +49,13 @@ class BasePanel:
             div_props.update({'word-wrap': 'break-word'})
             return div_class(html, BLACK_BACKGROUND, div_props)
 
-        html = rich_to_html(self.text)
+        html = render_to_html(self.text)
         div_props.update(PANEL_BASE_PROPS)
         div_props.update(border_css_props(self.border_style))
 
         # TODO: make the title 'dim'
         title = self.title.plain if self.title else ''
-        return div_with_legend(html, title, div_props, class_name=BLACK_BACKGROUND)
+        return div_with_legend(html, title, div_props)
 
     def __rich__(self) -> Panel:
         return Panel(
@@ -77,27 +73,34 @@ class FileDisplay:
     background_color: str = ''
     body_panel: BasePanel | Table
     file_info: BasePanel | None = None
-    indent: int = 0  # TODO: this should be a property of the BasePanel
+    indent: int | float = 0  # TODO: this should be a property of the BasePanel
     justify: JustifyMethod | None = None
-    margin_bottom: str = VERTICAL_MARGIN
+    margin_bottom: str = VERTICAL_MARGIN_EMS  # Margin below the entire agglomeration of elements, not just the body
     subheaders: list[Text] = field(default_factory=list)
 
     @property
-    def horizontal_body_margin(self) -> tuple[int, int]:
-        """(left, right)"""
-        return (self.margin[3], self.margin[1])
+    def body_margin(self) -> list[int | float]:
+        """Margin for the body. Top/bottom always zero currrently."""
+        padding = PositionedRich.zero_dimensions()
+
+        # Set subtle indent
+        if self.justify == 'right':
+            padding[1] = self.indent
+        else:
+            padding[3] = self.indent
+
+        return padding
 
     @property
-    def horizontal_body_margin_css_props(self) -> dict[str, str]:
-        """(left, right)"""
-        props = {}
+    def body_margin_horizontal(self) -> list[int | float]:
+        """Just left and right margin, vertical margins are zeroed out."""
+        margin_dimensions = self.body_margin
+        margin_dimensions[0] = margin_dimensions[2] = 0
+        return margin_dimensions
 
-        if self.horizontal_body_margin[0]:
-            props.update(side_props('margin', ['left'], to_em(self.horizontal_body_margin[0])))
-        if self.horizontal_body_margin[1]:
-            props.update(side_props('margin', ['right'], to_em(self.horizontal_body_margin[1])))
-
-        return props
+    @property
+    def horizontal_body_margin_css(self) -> dict[str, str]:
+        return dimensions_to_margin_css(self.body_margin_horizontal)
 
     @property
     def is_table(self) -> bool:
@@ -114,55 +117,46 @@ class FileDisplay:
 
         return subheaders
 
-    # TODO: rename body_margin?
-    @property
-    def margin(self) -> tuple[int, int, int, int]:
-        """Margin for the body."""
-        padding = [0, 0, 0, 0]
-
-        # Set subtle indent
-        if self.justify == 'right':
-            padding[1] = self.indent
-        else:
-            padding[3] = self.indent
-
-        return tuple(padding)
-
     @property
     def subheader_div(self) -> str:
         if not self.subheaders:
             return ''
 
         css_props = {
-            **self.horizontal_body_margin_css_props,
-            **vertical_margin_props(SUBHEADER_VERTICAL_PADDING),
+            **self.horizontal_body_margin_css,
+            **margin_vertical_css(SUBHEADER_VERTICAL_MARGIN),
         }
 
         return text_to_div(Text('\n').join(self.subheaders), css_props)
 
-    def align(self, element: RenderableType) -> RenderableType:
-        return Align(element, self.justify) if self.justify else element
-
     def to_html(self) -> str:
-        if self.is_table:
-            body_html = one_row_table_html(self.body_panel, self.horizontal_body_margin_css_props)
-        else:
-            body_html = self.body_panel.to_div(self.horizontal_body_margin)
-
-        elements = [self.file_info.to_div()] if self.file_info else []
-        elements.extend([self.subheader_div, body_html])
-
-        inner_html = '\n'.join(elements)
-        div_props = {**DOC_DIV_CSS_PROPS, 'margin-bottom': self.margin_bottom}
+        css_props = {
+            **DOC_DIV_CSS_PROPS,
+            'margin-bottom': self.margin_bottom,
+        }
 
         if self.background_color:
-            div_props.update(HtmlStyle(f"on {self.background_color}").to_css)
+            css_props.update(HtmlStyle(f"on {self.background_color}").to_css)
 
-        # Add more vertical margin before/after text messages
+        # Add more vertical margin before/after text messages  # TODO: this shouold be configured
         if isinstance(self.body_panel, BasePanel) and self.body_panel.is_list:
-            div_props.update(vertical_margin_props(to_em(2)))
+            css_props.update(margin_vertical_css(2))
 
-        return div_tag(inner_html, div_props)
+        if self.is_table:
+            body_html = one_row_table_html(self.body_panel, self.horizontal_body_margin_css)
+        else:
+            body_html = self.body_panel.to_div(self.body_margin_horizontal)
+
+        elements = [
+            self.file_info.to_div() if self.file_info else None,
+            self.subheader_div,
+            body_html,
+        ]
+
+        return div_tag(only_truthy(elements), css_props)
+
+    def _align(self, element: RenderableType) -> RenderableType:
+        return Align(element, self.justify) if self.justify else element
 
     def __rich_console__(self, console: Console, options: ConsoleOptions) -> RenderResult:
         """Default `Document` renderer (Email and MessengerLog override this)."""
@@ -171,9 +165,9 @@ class FileDisplay:
             self.body_panel.text.justify = self.justify
 
         indented_elemeents = [*self.justified_subheaders, self.body_panel]
-        indented_elemeents = [Padding(e, self.margin) for e in indented_elemeents]
+        indented_elemeents = [Padding(e, self.body_margin) for e in indented_elemeents]
         indented_elemeents[-1].bottom = BOTTOM_PADDING
         elements = ([self.file_info] if self.file_info else []) + indented_elemeents
 
         for element in elements:
-            yield self.align(element)
+            yield self._align(element)

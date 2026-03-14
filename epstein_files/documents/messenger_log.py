@@ -73,7 +73,7 @@ class MessengerLog(Communication):
         if not self.author:
             txt.append('with unknown counterparty')
         else:
-            txt.append(GUESSED_MSG if self.is_attribution_uncertain else CONFIRMED_MSG).append(' ')
+            txt.append(GUESSED_MSG if self._config.author_uncertain else CONFIRMED_MSG).append(' ')
             txt.append(Text(self.author, style=self.author_style + ' bold'))
 
         if self.phone_number:
@@ -133,7 +133,7 @@ class MessengerLog(Communication):
         return TextMessage(
             author=self.author if (is_phone_number or not author_str) else author_str,
             author_str=author_str if is_phone_number else '',  # Preserve phone numbers
-            is_id_confirmed=not self.is_attribution_uncertain,
+            is_id_confirmed=not self._config.author_uncertain,
             text=match.group(4).strip(),
             timestamp_str=match.group(2).strip(),
         )

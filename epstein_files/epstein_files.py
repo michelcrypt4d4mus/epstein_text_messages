@@ -165,9 +165,11 @@ class EpsteinFiles:
 
         return self._uninteresting_emailers
 
+    # TODO: should we exclude attachments???
     @property
     def unique_documents(self) -> Sequence[Document]:
-        return [d for d in self.non_duplicate_docs if not d.is_attachment]
+        """Excludes duplicates and email attachments."""
+        return [d for d in self.non_duplicate_docs if not d._config.attached_to_email_id]
 
     @property
     def unique_emails(self) -> list[Email]:
@@ -227,7 +229,7 @@ class EpsteinFiles:
         return signatures
 
     def email_recipient_counts(self) -> dict[Name, int]:
-        """Returns dict counting up how many emails were received by each person."""
+        """Returns dict with names as keys and number of emails received as values."""
         return {p.name: len(p.unique_emails_to) for p in self.emailers if len(p.unique_emails_to) > 0}
 
     def email_signature_substitution_counts(self) -> dict[str, int]:
@@ -241,11 +243,11 @@ class EpsteinFiles:
         return substitution_counts
 
     def emails_by(self, author: Name) -> list[Email]:
-        """All emails sent by `author` (including dupes)."""
+        """All emails sent by `author` (including dupes!)."""
         return Document.sort_by_timestamp([e for e in self.emails if e.author == author])
 
     def emails_for(self, name: Name) -> list[Email]:
-        """All emails to or from a given 'name' sorted chronologically (including dupes)."""
+        """All emails to or from 'name' sorted chronologically (including dupes!)."""
         emails = self.emails_by(name) + self.emails_to(name)
         emails += [e for e in self.emails if (e.config and name == e.config.show_with_name)]
 
@@ -255,7 +257,7 @@ class EpsteinFiles:
         return Document.sort_by_timestamp(Document.uniquify(emails))
 
     def emails_to(self, name: Name) -> list[Email]:
-        """All `Email`s sent to `name` (including dupes)."""
+        """All `Email`s sent to `name` (including dupes!)."""
         if name is None:
             emails = [e for e in self.emails if len(e.recipients) == 0 or None in e.recipients]
         else:
@@ -396,7 +398,7 @@ class EpsteinFiles:
                 duplicate_prop = getattr(doc, field_name)
 
                 if original_prop != duplicate_prop:
-                    doc.warn(f"Replacing {field_name} {duplicate_prop} with {original_prop} from duplicated '{original.file_id}'")
+                    doc._warn(f"Replacing {field_name} {duplicate_prop} with {original_prop} from duplicated '{original.file_id}'")
                     setattr(doc, field_name, original_prop)
 
     def _docs_by_id(self) -> Mapping[str, Document]:
@@ -439,7 +441,7 @@ class EpsteinFiles:
             if attachment.config.timestamp:  # Don't overwrite configured timestamps (think of a book or article attachment)
                 continue
             elif attachment.timestamp and attachment.timestamp != email.timestamp:
-                attachment.warn(f"Overwriting '{attachment.timestamp}' with {email}'s timestamp {email.timestamp}")
+                attachment._warn(f"Overwriting '{attachment.timestamp}' with {email}'s timestamp {email.timestamp}")
 
             attachment.extracted_timestamp = email.timestamp
 
@@ -471,7 +473,7 @@ class EpsteinFiles:
 
             if document.length == 0:
                 if document.file_id not in self._empty_file_ids:
-                    document.warn(f"Skipping empty file...")
+                    document._warn(f"Skipping empty file...")
                     self._empty_file_ids.add(document.file_id)
 
                 continue

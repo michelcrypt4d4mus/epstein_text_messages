@@ -13,6 +13,7 @@ from epstein_files.util.helpers.rich_helpers import enclose, join_non_empty
 
 HTTPS = 'https://'
 LINK_REGEX = re.compile(r"^https?://.*")
+TLD_REGEX = re.compile(r"\.(com|co.uk|gov|net)$")
 
 EXTERNAL_LINK_STYLE = 'light_slate_grey bold'
 LINK_COMMENT_STYLE = 'color(195) dim italic'
@@ -29,8 +30,9 @@ SOCIAL_PLATFORMS = {
 
 @dataclass
 class ExternalLink:
-    """Container for rich `Text` links with optional parenthetical comment."""
-
+    """
+    Container for rich `Text` links with optional parenthetical comment.
+    """
     url: str
     link_text: str = ''
     comment: str = ''
@@ -74,13 +76,14 @@ class ExternalLink:
         return link
 
     @property
-    def domain(self) -> str:
-        return urlsplit(self.url).hostname
+    def domain_link(self) -> Text:
+        """Returns a link using the TLD free domain as the `link_text`."""
+        return enclose(link_text_obj(self.url, self.domain(True), self.link_style), '[]')
 
     @property
     def domain_stem(self) -> str:
         """e.g. retrun 'github' for a github.com/blah URL."""
-        domain_pieces = self.domain.split('.')
+        domain_pieces = self.domain().split('.')
 
         if len(domain_pieces) == 2:
             return domain_pieces[0]
@@ -103,6 +106,9 @@ class ExternalLink:
         """Link that uses the short_url as link_text (overriding actual link_text property)."""
         return link_text_obj(self.url, self.short_url, self.link_style)
 
+    def domain(self, strip_tld: bool = False) -> str:
+        return extract_domain(self.url, strip_tld=strip_tld)
+
     def to_txt(self) -> Text:
         comment = Text('')
 
@@ -121,6 +127,14 @@ class ExternalLink:
 def coerce_https(url: str) -> str:
     """Prepend https:// if it's not there already."""
     return url if LINK_REGEX.match(url) else f"https://{url}"
+
+
+def extract_domain(url: str, strip_tld: bool = False) -> str:
+    if (domain := urlsplit(url).hostname):
+        domain = domain.removeprefix('www.')
+        return TLD_REGEX.sub('', domain) if strip_tld else domain
+    else:
+        raise ValueError(f"no hostname in URL '{url}'")
 
 
 def link_markup(

@@ -1,6 +1,10 @@
+"""
+slightly more abstract / higher level functions for turning rich objs to HTML
+"""
 from copy import deepcopy
+from contextlib import contextmanager
 from pathlib import Path
-from typing import Mapping
+from typing import Generator
 
 from rich.align import Align
 from rich.panel import Panel
@@ -11,9 +15,14 @@ from rich.table import Table
 from rich.text import Text
 
 from epstein_files.output.html.html_style import HtmlStyle
+from epstein_files.output.html.elements import _html_elements_to_str
 from epstein_files.output.html.elements import *
+# from epstein_files.output.html.positioned_rich import to_em, to_px, PositionedRich, unpack_dimensions
+from epstein_files.output.html.positioned_rich import *
+from epstein_files.output.rich import console
 from epstein_files.util.constant.html import CUSTOM_HTML_TEMPLATE, HTML_TERMINAL_THEME
-from epstein_files.util.helpers.data_helpers import listify, update_truthy
+from epstein_files.util.env import args
+from epstein_files.util.helpers.data_helpers import add_constant, listify, update_truthy
 from epstein_files.util.helpers.file_helper import log_file_write
 from epstein_files.util.helpers.string_helper import join_truthy
 from epstein_files.util.logging import logger
@@ -21,19 +30,29 @@ from epstein_files.util.logging import logger
 CSS = Path(__file__).parent.joinpath('page.css').read_text()
 BOX_BORDER_RADIUS = 4
 BOX_BORDER_WIDTH = 2
-PANEL_EXTRA_PADDINg = 0.5  # Accounts for the fact that there's 0.5 spaces between a and | "a | b" bc ansi
-BORDER_HORIZONTAL_PADDING = to_em(1)
-BORDER_VERTICAL_PADDING = to_em(PANEL_EXTRA_PADDINg)
-OUTPUT_PANEL_BORDER_PADDING = padding_props(BORDER_VERTICAL_PADDING, BORDER_VERTICAL_PADDING)  # Makes the inset border work
-INNER_PANEL_PADDING = padding_props(BORDER_HORIZONTAL_PADDING, BORDER_VERTICAL_PADDING)
-VERTICAL_MARGIN = to_em(1.9)  # Between elements
-BOTTOM_MARGIN_PROPS = {'margin-bottom': VERTICAL_MARGIN}
+MAX_RENDER_WIDTH = 1024
+VERTICAL_MARGIN_EMS = to_em(VERTICAL_MARGIN)
+BOTTOM_MARGIN_PROPS = {'margin-bottom': VERTICAL_MARGIN_EMS}
+
+# Makes the inset border work
+OUTER_PANEL_DIV_PADDING_CSS = dimensions_to_padding_css(
+    (
+        BORDER_VERTICAL_PADDING,
+        BORDER_VERTICAL_PADDING,
+    )
+)
+
+DEFAULT_HTML_RENDERER_KWARGS = {
+    'code_format': PRE_CONSOLE_TEMPLATE,
+    'inline_styles': True,
+    'theme': HTML_TERMINAL_THEME,
+}
 
 # These are the props for the outer panel
 PANEL_BASE_PROPS = {
     "display": "inline-block",
     'width': 'fit-content',
-    **OUTPUT_PANEL_BORDER_PADDING,
+    **OUTER_PANEL_DIV_PADDING_CSS,
 }
 
 PANEL_BORDER_PROPS = {
@@ -46,7 +65,6 @@ PANEL_BORDER_PROPS = {
 # TODO: refactor this into HtmlStyle
 def border_css_props(style: str | Style | None) -> dict[str, str]:
     """CSS props to make an HTML div with border-color set to `style` arg as a standard CSS RGB string."""
-    # logger.warning(f"border_css_props() style='{style}'")
 
     if style and (html_style := HtmlStyle(style)).foreground_color_hex:
         return {
@@ -58,18 +76,14 @@ def border_css_props(style: str | Style | None) -> dict[str, str]:
 
 
 def console_buffer_to_html(_console: Console, clear: bool = True) -> str:
-    """Export the current `console` write buffer to an HTML string."""
-    html = _console.export_html(
-        clear=clear,
-        code_format=PRE_CONSOLE_TEMPLATE,
-        inline_styles=True,
-        theme=HTML_TERMINAL_THEME,
-    )
-
-    return html.split(SPLITTER)[0]  # Strip cruft we need to have templated to get export_html() to work
+    """
+    Export the current `console` write buffer to an HTML string.
+    SPLITTER is used to strip off cruft that rich export_html() creates because it prints to variables we don't want.
+    """
+    return _console.export_html(clear=clear, **DEFAULT_HTML_RENDERER_KWARGS).split(SPLITTER)[0]
 
 
-def one_row_table_html(table: Table, css_props: CssPropsArg = None) -> str:
+def one_row_table_html(table: Table, css_props: OptionalCssProps = None) -> str:
     """
     Convert a one row/one column `Table` to HTML string in a way that looks like a normal panel div not a table.
     These kind of `Table`s are currently rendered by `Email` objs (the `config.description` is the "header").
@@ -92,17 +106,16 @@ def one_row_table_html(table: Table, css_props: CssPropsArg = None) -> str:
             **(HtmlStyle(table.header_style).to_css if table.header_style else {}),
         }
 
-        header_span = rich_to_html(Text('', style=col1.header_style or '').append(header))
+        header_span = render_to_html(Text('', style=col1.header_style or '').append(header))
         header_div = div_class(header_span, 'document_panel_header', header_props)
-        # logger.debug(f"one_row_table_html() header_props: {header_props}\n\nborder_props: {border_props}\n\n")
 
-    body_div = div_class(
-        rich_to_html(Text('', style=col1.style).append(col1._cells[0])),
-        'no_expand document_body_container',
-        PANEL_BASE_PROPS
-    )
+    body_html = render_to_html(Text('', style=col1.style).append(col1._cells[0]))
+    body_div = div_class(body_html, PANEL_BODY_CSS_CLASS, PANEL_BASE_PROPS)
 
-    logger.debug(f"one_row_table_html() border_style='{table.border_style}'\n\nborder_css_props: {border_css_props(table.border_style)}")
+    logger.warning(f"one_row_table_html(): border_style='{table.border_style}'")
+    logger.warning(f"                      css_props: {css_props}")
+    logger.warning(f"                      border_css_props: {border_css_props(table.border_style)}")
+    logger.warning(f"                      returning div with BLACK_BG__NO_EXPAND\n")
 
     return div_class(
         join_truthy(header_div, body_div, '\n'),
@@ -115,70 +128,80 @@ def one_row_table_html(table: Table, css_props: CssPropsArg = None) -> str:
     )
 
 
-def panel_to_div(panel: Panel, css_props: CssPropsArg) -> str:
-    """Convert a rich `Panel` to a div that looks the same."""
-    css_props = css_props if css_props is not None else BOTTOM_MARGIN_PROPS  # TODO: Default bottom margin seems wrong
-    # TODO: what's up with the string 'none'??
-    border_style = panel.border_style if panel.style == 'none' or not panel.style else panel.style
-
-    common_css_props = {
-        'box-sizing': 'border-box',
-        **HtmlStyle(panel.style).to_css,
-    }
+def panel_to_div(panel: Panel, css_props: OptionalCssProps) -> str:
+    """
+    Convert a rich `Panel` to a div that looks the same.
+    this requires two divs with padding between them to approximate the inset border of rich ansi
+    css_props are applied to the OUTER div.
+    """
+    css_props = css_props if css_props is not None else BOTTOM_MARGIN_PROPS                            # TODO: Default bottom margin seems wrong
+    border_style = panel.border_style if panel.style == 'none' or not panel.style else panel.style     # TODO: what's up with the string 'none'??
+    color_css_props = HtmlStyle(panel.style).to_css
+    inner_div_padding_dims = add_constant(unpack_dimensions(panel.padding or 0), MAKEUP_PADDING)
 
     inner_div_css = {
-        **common_css_props,
+        **color_css_props,
         **border_css_props(border_style),
-        **padding_tuple_to_props(unpack_padding(panel.padding or (0,)), 0.5),  # Panel.padding affects inner div only
+        **dimensions_to_padding_css(inner_div_padding_dims),
     }
 
     outer_div_css = {
-        **common_css_props,
+        **color_css_props,
         **PANEL_BASE_PROPS,
         **css_props,
     }
 
-    logger.debug(f"panel_to_div():\n         panel.style: '{panel.style}'\n  panel.border_style: '{panel.border_style}'\n  local border_style: '{border_style}'\n\ninner_div_css props: {inner_div_css}\n\nouter_div_css: {outer_div_css}\n")
-    inner_div = div_class(rich_to_html(panel.renderable), 'panel innerp', inner_div_css)
-    return div_class(inner_div, 'panel outerp', outer_div_css)
+    # Set the width but only on the inner div. outer div will adjust automatically based on its padding
+    if panel.width:
+        for prop in WIDTH_PROPS:
+            inner_div_css[prop] = to_em(panel.width - MAKEUP_PADDING)
+
+    logger.warning(f"panel_to_div(): panel.style='{panel.style}', panel.border_style='{panel.border_style}'\n\n   inner_div_css props: {inner_div_css}\n\n    outer_div_css: {outer_div_css}\n")
+    inner_div = div_class(render_at_css_width(panel.renderable), 'panel inner_panel', inner_div_css)
+    return div_class(inner_div, 'panel outer_panel', outer_div_css)
 
 
-def rich_to_html(
-    obj: RenderableType,
-    props: CssPropsArg = None,
-    minimize_width: bool = False,
-    maximize_width: bool = False,
-    html_console: Console = DEFAULT_HTML_CONSOLE,
-) -> str:
-    """Convert a rich `RenderableType` object to an HTML string."""
+def render_at_console_width(obj: RenderableType) -> str:
+    """render at the width currently used by the main rich.Console obj."""
+    return _render_at_width(obj, console.width)
+
+
+def render_max_width(obj: RenderableType) -> str:
+    """render obj to a <pre> block formatted entirely by rich monospace layout that is MAX_RENDER_WIDTH chars wide."""
+    return _render_at_width(obj, MAX_RENDER_WIDTH)
+
+
+def render_at_css_width(obj: RenderableType, props: OptionalCssProps = None) -> str:
+    """Convert CssProps to rich Padding units."""
     props = props or {}
-    html_console.print()
-    old_console_width = html_console.width
-    html_console.width = from_em(props.get('max-width') or props.get('width')) or html_console.width
+    css_width = from_em(props.get('max-width', props.get('width')))
 
-    if minimize_width:
-        measurement = html_console.measure(obj)
-        logger.debug(f"renderable has measurement: {measurement}")
-        html_console.width = measurement.minimum
-    elif maximize_width:
-        html_console.width = 1024
+    if css_width:
+        logger.warning(f"render_at_css_width() extracted width of {css_width} from `props` arg CSS:\n   {props}\n")
+    else:
+        logger.info(f"no width found in CSS when render_at_css_width() called, no point in using this function.")
 
-    if html_console.width != old_console_width:
-        logger.debug(f"Temporarily set console width to {html_console.width}")
-
-    html_console.print(obj, end='')
-    html_text = console_buffer_to_html(html_console)
-    html_console.width = old_console_width
-    return html_text
+    return _render_at_width(obj, css_width or HTML_RENDER_CONSOLE.width)
 
 
-def table_to_html(table: Table, css_props: CssPropsArg = None) -> str:
+def render_at_obj_width(obj: RenderableType) -> str:
+    """Render `obj` to a <pre> block with same width as `obj`."""
+    with _obj_width_renderer(obj) as _renderer:
+        return render_to_html(obj, _renderer)
+
+
+def render_to_html(obj: RenderableType, renderer_console: Console | None = None) -> str:
+    """Convert rich renderable to HTML <pre> str by printing it then calling `console.export_html()`."""
+    renderer_console = renderer_console or HTML_RENDER_CONSOLE
+    renderer_console.print(obj, end='')
+    return console_buffer_to_html(renderer_console)
+
+
+def table_to_html(table: Table, css_props: OptionalCssProps = None) -> str:
     """Convert a rich `Table` to an HTML table that looks the same."""
     css_props = css_props or {}
     col_styles = [col.style or '' for col in table.columns]
-    border_props = border_css_props(table.border_style)
     header_css_props = HtmlStyle(table.header_style).to_css if table.header_style else {}
-    row_props = {'border-bottom': '1px solid dimgray'} if table.show_lines else {}
 
     if table.title:
         title_txt = table.title.copy() if isinstance(table.title, Text) else Text(table.title)
@@ -186,11 +209,12 @@ def table_to_html(table: Table, css_props: CssPropsArg = None) -> str:
         if table.title_style:
             title_txt.stylize(table.title_style)
 
-        title_html = rich_to_html(title_txt)
+        title_html = render_to_html(title_txt)
     else:
         title_html = ''
 
-    cell_props = {**row_props, **(vertical_pad_props(to_em(0.5)) if table.show_lines else {})}
+    row_props = {'border-bottom': '1px solid dimgray'} if table.show_lines else {}
+    cell_props = {**row_props, **(padding_vertical_css(MAKEUP_PADDING) if table.show_lines else {})}
 
     headers = [
         _table_cell(
@@ -220,6 +244,7 @@ def table_to_html(table: Table, css_props: CssPropsArg = None) -> str:
         for i, _row in enumerate(table.rows)
     ]
 
+    # table.caption is the text at the bottom under the table, the footer kinda
     if table.caption:
         caption = table.caption if isinstance(table.caption, Text) else Text(table.caption)
         caption_style = HtmlStyle(table.caption_style or '')
@@ -227,52 +252,48 @@ def table_to_html(table: Table, css_props: CssPropsArg = None) -> str:
         caption_html = text_to_div(
             caption,
             {
-                'margin-top': to_em(0.4),
+                'margin-top': to_em(0.4),  # TODO: make this config
                 'text-align': 'center',
                 'width': '90%',
                 **css_props,
                 **caption_style.to_css,
                 **CENTERED
             }
-        )  # TODO: not always centered
+        )
     else:
         caption_html = ''
 
     rows = [headers, *rows] if table.show_header else rows
     html_rows = [div_class('\n'.join(row), 'row', row_props, role='row') for row in rows]
-    table_html = div_class('\n\n'.join(html_rows), 'table', border_props, role='table')
-    combined_html = '\n'.join([title_html, table_html, caption_html])
-    div_props = {**BOTTOM_MARGIN_PROPS, **(css_props)}
-    return div_class(combined_html, 'table_container', div_props)
+
+    # Do positioning and layout
+    table_html = div_class(
+        html_rows,
+        'table',
+        border_css_props(table.border_style),
+        role='table'
+    )
+
+    return div_class(
+        _html_elements_to_str([title_html, table_html, caption_html]),
+        'table_container',
+        {**BOTTOM_MARGIN_PROPS, **css_props},
+    )
 
 
-def text_to_div(txt: Text, css_props: CssPropsArg, class_name: str = BLACK_BG__NO_EXPAND) -> str:
+def text_to_div(txt: Text, css_props: OptionalCssProps, class_name: str = BLACK_BG__NO_EXPAND) -> str:
     """Wrap a line or block of text in a plain black background div."""
-    return div_class(rich_to_html(txt), class_name, css_props)
+    if css_props:
+        logger.warning(f"text_to_div() called with css_props arg:\n  {css_props}\n")
+
+    return div_class(render_at_css_width(txt), class_name, css_props)
 
 
-def text_to_list(elements: list[str] | list[Text], tag: HtmlListTag = 'ul', **kwargs) -> str:
+def text_to_list(textish: list[str] | list[Text], list_type: HtmlListTag = 'ul', **kwargs) -> str:
     """Convert a list of strings or a string with newlines in it to HTML list (<ul> or <ol> tag)."""
-    if elements and isinstance(elements[0], Text):
-        elements = [rich_to_html(txt, maximize_width=True) for txt in elements]
-        elements = [strip_outer_tag(t, 'pre') for t in elements]
-
-    return list_tag(elements, tag, **kwargs)
-
-
-def unwrap_rich(obj: RenderableType, css_props: CssPropsArg = None) -> tuple[RenderableType, CssPropsArg]:
-    """Convert `Align` and `Padding` to CSS and extract the inner renderable."""
-    css_props = css_props or {}
-
-    if isinstance(obj, Align):
-        return unwrap_rich(obj.renderable, {**css_props, **alignment_css(obj.align)})
-    elif isinstance(obj, Padding):
-        margin: PaddingDimensions = (obj.top, obj.right, obj.bottom, obj.left)
-        return unwrap_rich(obj.renderable, {**css_props, **margin_tuple_to_props(margin)})
-    else:
-        return obj, css_props
-    # elif isinstance(obj, Text) and obj.justify:
-    #     return obj, css_props  # TODO: maybe add alignment props for Text objs with justify prop??
+    txts = [Text(t) if isinstance(t, str) else t for t in textish]
+    html_elements = [strip_outer_tag(render_max_width(txt), 'pre') for txt in txts]
+    return build_html_list(html_elements, list_type, **kwargs)
 
 
 def write_templated_html(elements: list[str] | str, output_path: Path) -> Path:
@@ -291,6 +312,31 @@ def write_templated_html(elements: list[str] | str, output_path: Path) -> Path:
     return output_path
 
 
-def _table_cell(contents: RenderableType, props: CssPropsArg = None, extra_class: str = '') -> str:
-    cell_html = rich_to_html(contents, props)
+@contextmanager
+def tmp_console(tmp_width: int) -> Generator[Console, None, None]:
+    """safely use a rich console with temporary width for rendering rich -> HTML."""
+    old_console_width = HTML_RENDER_CONSOLE.width
+    HTML_RENDER_CONSOLE.width = tmp_width
+
+    try:
+        yield HTML_RENDER_CONSOLE
+    finally:
+        HTML_RENDER_CONSOLE.width = old_console_width
+
+
+@contextmanager
+def _obj_width_renderer(obj: RenderableType) -> Generator[Console, None, None]:
+    """temporarily set html_renderer.width to this object's width to constrain rich output."""
+    with tmp_console(HTML_RENDER_CONSOLE.measure(obj).minimum) as _tmp_console:
+        yield _tmp_console
+
+
+def _render_at_width(obj: RenderableType, width: int) -> str:
+    """render `obj` to HTML but temporarily change the console width."""
+    with tmp_console(width) as _renderer:
+        return render_to_html(obj, _renderer)
+
+
+def _table_cell(contents: RenderableType, props: OptionalCssProps = None, extra_class: str = '') -> str:
+    cell_html = render_at_css_width(contents, props)
     return div_class(cell_html, join_truthy(extra_class, 'column'), props, role='cell')

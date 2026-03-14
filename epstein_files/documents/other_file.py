@@ -18,8 +18,7 @@ from epstein_files.documents.config.config_builder import build_cfg_from_text
 from epstein_files.documents.config.doc_cfg import DocCfg, Metadata
 from epstein_files.documents.documents.file_info import FileInfo
 from epstein_files.output.epstein_highlighter import highlighter
-from epstein_files.output.highlight_config import QUESTION_MARKS_TXT, styled_category
-from epstein_files.output.html.builder import table_to_html
+from epstein_files.output.highlight_config import styled_category
 from epstein_files.output.rich import build_table, console
 from epstein_files.people.interesting_people import PERSONS_OF_INTEREST
 from epstein_files.util.constant.strings import *
@@ -27,6 +26,7 @@ from epstein_files.util.constants import *
 from epstein_files.util.helpers.data_helpers import days_between, coerce_utc_strict, uniquify, uniq_sorted
 from epstein_files.util.helpers.debugging_helper import tz_debug_str
 from epstein_files.util.helpers.file_helper import FILENAME_LENGTH
+from epstein_files.util.helpers.rich_helpers import QUESTION_MARKS_TXT
 from epstein_files.util.helpers.string_helper import DATE_LENGTH, collapse_whitespace, indented
 from epstein_files.util.env import args, site_config
 from epstein_files.util.logging import logger
@@ -124,8 +124,8 @@ class OtherFile(Document):
             if self.config.num_preview_chars:
                 num_chars = self.config.num_preview_chars
 
-            if self.config_replace_text_with:
-                text = self.config_replace_text_with
+            if self.config_display_text:
+                text = self.config_display_text
 
         if text.count('Page') > MIN_PAGES_TO_TRUNCATE_PREVIEW:
             num_chars = TRUNCATED_PREVIEW_LEN
@@ -137,7 +137,7 @@ class OtherFile(Document):
         txt = highlighter(escape(self.preview_chars))
 
         # TODO: should check self.length > len(self.preview_chars) but won't quite work with prettified text insertions
-        if self.length > site_config.other_files_preview_chars and not self.config_replace_text_with:
+        if self.length > site_config.other_files_preview_chars and not self.config_display_text:
             txt.append(f"... ({self.length - len(txt):,} more characters)", 'dim italic')
 
         return txt
@@ -167,7 +167,7 @@ class OtherFile(Document):
                     if len(timestamps) >= MAX_EXTRACTED_TIMESTAMPS:
                         break
             except ValueError as e:
-                self.warn(f"{e}\nError iterating over dateutil.find_dates(), using {len(timestamps)} timestamps found so far")
+                self._warn(f"{e}\nError iterating over dateutil.find_dates(), using {len(timestamps)} timestamps found so far")
 
         return self._choose_extracted_timestamp(timestamps)
 
@@ -194,7 +194,7 @@ class OtherFile(Document):
         if days_spanned > MAX_DAYS_SPANNED_TO_LOG_TOP_LINES:
             self._log_top_lines(10, msg=log_msg, level=logging.DEBUG)
         else:
-            self.debug_log(log_msg)
+            self._debug_log(log_msg)
 
         return timestamp
 
@@ -240,17 +240,6 @@ class OtherFile(Document):
             )
 
         return cls._mobilize_table(table) if args.mobile else table
-
-    @classmethod
-    def files_preview_table_html(
-        cls,
-        files: Sequence['OtherFile'],
-        title_pfx: str = '',
-        title: str | Text | None = '',
-        title_justify: str = '',
-        **kwargs
-    ) -> str:
-        return table_to_html(cls.files_preview_table(files, title_pfx, title, title_justify, **kwargs))
 
     @classmethod
     def _mobilize_table(cls, _table: Table) -> Table:

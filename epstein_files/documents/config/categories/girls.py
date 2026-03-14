@@ -216,6 +216,11 @@ GIRLS_CFGS = [
         truncate_to=800
     ),
     EmailCfg(
+        id='EFTA02470883',
+        recipients=[JESSICA_BANKS],
+        recipient_uncertain='uses "sooooooooo" a lot, same as this person and not like other girls',
+    ),
+    EmailCfg(
         id='EFTA00997627',
         highlight_quote='you will be introduced to more gorgeous Alicas, i promise',
         recipients=[MARIA_PRUSAKOVA],
@@ -223,9 +228,10 @@ GIRLS_CFGS = [
     ),
     EmailCfg(
         id='EFTA01857628',
-        recipients=[RENATA_BOLOTOVA],
-        recipient_uncertain='https://x.com/FlippersUpNow/status/2023457206109155345',
         description='"igrushki" means "toys" in Russian',
+        recipients=[RENATA_BOLOTOVA],
+        recipient_uncertain=True,
+        url='https://x.com/FlippersUpNow/status/2023457206109155345',
     ),
     EmailCfg(
         id='EFTA00857669',
@@ -236,7 +242,7 @@ GIRLS_CFGS = [
     EmailCfg(id='EFTA00738485', recipients=[STEVEN_VICTOR_MD], truncate_to=640),
     EmailCfg(
         id='EFTA02560884',
-        description=f"is Epstein drafting {SVETLANA_POZHIDAEVA}'s responses to {JOSHUA_FINK} {QUESTION_MARKS}",
+        description=f"is Epstein drafting {SVETLANA_POZHIDAEVA}'s romantic responses to {JOSHUA_FINK} {QUESTION_MARKS}",
         recipients=[SVETLANA_POZHIDAEVA],
         recipient_uncertain=f"{JOSHUA_FINK} texts",
     ),
@@ -257,7 +263,6 @@ GIRLS_CFGS = [
         description=f'very strange conversation about "Peter" (maybe {PETER_MANDELSON}?) and "mj" (maybe {HASSAN_JAMEEL}?)',
         is_interesting=True,
         recipients=[UNKNOWN_GIRL],
-        truncate_to=NO_TRUNCATE,
     ),
     EmailCfg(id='EFTA00897668', recipients=[UNKNOWN_GIRL], people=[JEAN_LUC_BRUNEL, JEFFREY_EPSTEIN, UNKNOWN_GIRL]),
     EmailCfg(id='EFTA00848644', recipients=[UNKNOWN_GIRL], is_interesting=True, description='"take a picture of your pussy"'),
@@ -272,9 +277,10 @@ GIRLS_CFGS = [
     EmailCfg(id='EFTA02276109', recipients=[YULIA_DOROKHINA], recipient_uncertain='"Yulia"'),
 
     # Descriptions
-    EmailCfg(id='EFTA00078209', description='allegations about Russian organized crime, sex trafficking', truncate_to=8500),
+    EmailCfg(id='EFTA00078209', description='allegations about Russian organized crime, sex trafficking', truncate_to=8_500),
     EmailCfg(id='EFTA01648951', description=f'allegations against Trump, {HOWARD_LUTNICK}, Glen Dubin, {LEON_BLACK}, {JES_STALEY}'),
     EmailCfg(id='EFTA00950368', description='"any [girl] friends for me?"', truncate_to=NO_TRUNCATE),
+    EmailCfg(id='EFTA01814983', description=f"Epstein and {NICOLE_JUNKERMANN} used to date", show_with_name=NICOLE_JUNKERMANN),
     EmailCfg(
         id='EFTA00883738',
         description=f'Epstein recruiter {DASHA_GRUPMAN} looking to spend $50,000 to rent a townhouse for "diplomats"',
@@ -291,13 +297,13 @@ GIRLS_CFGS = [
         description=f"{BORIS_NIKOLIC} encourages {KIMBAL_MUSK} to ditch his girlfriend for Epstein's girl {JENNIFER_KALIN} (and he says yes)",
         truncate_to=NO_TRUNCATE,
     ),
-    EmailCfg(id='EFTA02470883', recipients=[JESSICA_BANKS], recipient_uncertain='she uses "sooooooooo" a lot'),
     EmailCfg(
         id='EFTA00412260',
         author=LESLEY_GROFF,
         date='2012-05-25 19:51:20',
-        description=f'Epstein really wants "*your friend*" (emphasis {LESLEY_GROFF}\'s) to meet {PETER_MANDELSON}',
-        truncate_to=4_000,
+        description=f'emphasis quotes by {LESLEY_GROFF}',
+        highlight_quote='Jeffrey was asking if you and "your friend" could come by and meet Peter',
+        truncate_to=(6_700, 7_450),
     ),
 
     # Quotes
