@@ -13,7 +13,7 @@ def update_text_dump() -> None:
 
         if output_file.exists():
             if (old_contents := output_file.read_text()) == doc.text:
-                doc.log(f"text matches '{output_file}', skipping...")
+                doc._log(f"text matches '{output_file}', skipping...")
                 continue
 
             num_diff_chars = doc.length - len(old_contents)

@@ -102,11 +102,9 @@ div.table_container {
 }
 
 fieldset {
-    /* border: 10px solid transparent;
-    border-top-color: black; */
     background-color: black;
     box-sizing: border-box;
-    grid-area: 1 / 1; /* first row, first column */
+    grid-area: 1 / 1;  /* first row, first column, no idea if this does anything */
     /* padding: 20px; */
     width: inherit;
     z-index: 10;

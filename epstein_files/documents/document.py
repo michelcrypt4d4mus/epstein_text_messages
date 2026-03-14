@@ -19,17 +19,17 @@ from rich.panel import Panel
 from rich.text import Text
 from rich.table import Table
 
-from epstein_files.documents.config.doc_cfg import DEFAULT_TRUNCATE_TO, DUPE_TYPE_STRS, NO_TRUNCATE, DebugDict, EmailCfg, DocCfg, Metadata
+from epstein_files.documents.config.doc_cfg import DEFAULT_TRUNCATE_TO, DUPE_TYPE_STRS, DebugDict, EmailCfg, DocCfg, Metadata
 from epstein_files.documents.documents.file_info import FileInfo
 from epstein_files.documents.documents.search_result import MatchedLine
 from epstein_files.documents.emails.constants import DOJ_EMAIL_OCR_REPAIRS, FALLBACK_TIMESTAMP
 from epstein_files.documents.emails.email_header import DETECT_EMAIL_REGEX
-from epstein_files.output.epstein_highlighter import highlighter, non_epstein_highlighter, temp_highlighter
+from epstein_files.output.epstein_highlighter import non_epstein_highlighter
 from epstein_files.output.highlight_config import HIGHLIGHTED_CONTACTS, get_style_for_category, get_style_for_name
+from epstein_files.output.html.builder import VERTICAL_MARGIN_EMS
 from epstein_files.output.layout_elements.file_display import BasePanel, FileDisplay
-from epstein_files.output.html.builder import VERTICAL_MARGIN
 from epstein_files.output.rich import (INFO_STYLE, NA_TXT, SYMBOL_STYLE, add_cols_to_table, build_table, console,
-     hyperlink_text, join_texts, styled_key_value, prefix_with, snip_msg_txt, styled_dict, hyperlink_line)
+     styled_key_value, prefix_with, snip_msg_txt, styled_dict)
 from epstein_files.output.site.sites import EXTRACTS_BASE_URL
 from epstein_files.people.interesting_people import PERSONS_OF_INTEREST, UNINTERESTING_AUTHORS
 from epstein_files.people.names import Name
@@ -40,7 +40,7 @@ from epstein_files.util.helpers.data_helpers import (CharRange, coerce_utc, coer
      uniquify, uniq_sorted, without_falsey)
 from epstein_files.util.helpers.link_helper import link_text_obj
 from epstein_files.util.helpers.file_helper import coerce_file_path, file_size_str, file_size_to_str
-from epstein_files.util.helpers.string_helper import collapse_newlines, doublespace_lines, join_truthy, quote, snip_msg, timestamp_without_zero_hour
+from epstein_files.util.helpers.string_helper import collapse_newlines, doublespace_lines, join_truthy, quote, timestamp_without_zero_hour
 from epstein_files.util.logging import DOC_TYPE_STYLES, FILENAME_STYLE, logger
 from epstein_files.util.logging_entity import LoggingEntity
 
@@ -239,7 +239,7 @@ class Document(LoggingEntity):
     @property
     def html_margin_bottom(self) -> str:
         """Overloaded in `Email` for case of emails with attachments."""
-        return VERTICAL_MARGIN
+        return VERTICAL_MARGIN_EMS
 
     @property
     def info(self) -> list[Text]:
@@ -401,10 +401,6 @@ class Document(LoggingEntity):
             return None
 
     @property
-    def _class_name(self) -> str:
-        return type(self).__name__
-
-    @property
     def _class_style(self) -> str:
         return DOC_TYPE_STYLES[self._class_name]
 
@@ -413,8 +409,13 @@ class Document(LoggingEntity):
         return underscore(self._class_name).lower()
 
     @property
+    def _identifier(self) -> str:
+        """Required `LoggingEntity` abstract method."""
+        return self.file_id
+
+    @property
     def _log_prefix(self) -> str:
-        """`LoggingEntity` required abstract method."""
+        """`Overload default LoggingEntity` method."""
         return f"{self.file_id} {self._class_name}"
 
     @property
@@ -700,6 +701,11 @@ class Document(LoggingEntity):
         table = build_table(title)
         cols = [{'name': first_col_name, 'min_width': 14}] + SUMMARY_TABLE_COLS
         add_cols_to_table(table, cols, 'right')
+        # logger.warning(f'\n\ntable.title_justify={table.title_justify}, type(title)={type(title).__name__}, title={table.title}')
+
+        # if isinstance(title, Text) and title.justify:
+        #     logger.warning(f'        title is Text obj, justify={title.justify}\n\n')
+
         return table
 
     @classmethod

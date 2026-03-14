@@ -152,9 +152,13 @@ class FileInfo(LoggingEntity):
         return urls
 
     @property
-    def _log_prefix(self) -> str:
-        """LoggingEntity required method"""
+    def _identifier(self) -> str:
+        """LoggingEntity required abstract method"""
         return self.file_stem
+
+    @property
+    def _log_prefix(self) -> str:
+        return self._identifier
 
     def epsteinify_link(self, style: str = ARCHIVE_LINK_COLOR, link_txt: str = '') -> Text:
         return self._build_link(epsteinify_doc_url, style, link_txt)

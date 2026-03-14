@@ -29,7 +29,7 @@ from epstein_files.people.interesting_people import EMAILERS_OF_INTEREST_SET
 from epstein_files.output.epstein_highlighter import highlighter
 from epstein_files.output.highlight_config import HIGHLIGHTED_NAMES, get_style_for_name
 from epstein_files.output.html.builder import table_to_html
-from epstein_files.output.html.elements import to_em
+from epstein_files.output.html.positioned_rich import to_em
 from epstein_files.output.layout_elements.file_display import FileDisplay, JustifyMethod
 from epstein_files.output.rich import DEFAULT_TABLE_KWARGS, build_table, hyperlink_line, join_texts, styled_key_value
 from epstein_files.util.constant.strings import APPEARS_IN, ARCHIVE_LINK_COLOR, REDACTED, TIMESTAMP_DIM

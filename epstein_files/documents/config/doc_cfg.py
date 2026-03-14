@@ -119,7 +119,7 @@ class DocCfg(LoggingEntity):
         attached_to_email_id (str, optional): ID of `Email` object this document was an attachment of
         author (Name): Author of the document (if any)
         author_reason (str, optional): Optional explanation of why we are sure this email can be attributed to this author
-        author_uncertain (str | bool, optional): Like setting `author_reason` but `is_attribution_uncertain` will be False
+        author_uncertain (str | bool, optional): Like `author_reason` but for author attributions that aren't 100% confirmed
         background_color (str, optional): set `is_interesting=True` and show in full panel with background color
         category (str, optional): Type of file
         comment (str, optional): Info about this file not worth being in the description
@@ -479,8 +479,9 @@ class DocCfg(LoggingEntity):
         return type(self).__name__
 
     @property
-    def _log_prefix(self) -> str:
-        return f"{self._class_name}({self.id})"
+    def _identifier(self) -> str:
+        """Required `LoggingEntity` abstract method."""
+        return self.id
 
     def duplicate_cfgs(self) -> Generator[Self, None, None]:
         """Create synthetic `DocCfg` objects that set the 'duplicate_of_id' field to point back to this object."""

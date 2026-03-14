@@ -214,6 +214,7 @@ HIGHLIGHT_COUNTS = {
     "pa": 1,
     "page 1 of 45": 1,
     "pakastani": 1,
+    "parscale": 4,
     "president obama": 1,
     "properties": 1,
     "puerto rico": 1,

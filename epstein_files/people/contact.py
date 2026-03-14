@@ -17,6 +17,7 @@ from epstein_files.util.helpers.link_helper import ExternalLink, link_text_obj
 from epstein_files.util.helpers.rich_helpers import QUESTION_MARKS_TXT, enclose
 from epstein_files.util.helpers.string_helper import as_pattern, indented, is_integer, quote, remove_question_marks, join_truthy
 from epstein_files.util.logging import logger
+from epstein_files.util.logging_entity import LoggingEntity
 
 BIO_STYLE = 'italic grey70'
 MIN_LEN_FOR_OPTIONAL_LAST_CHAR = 5
@@ -29,7 +30,7 @@ SIMPLE_NAME_REGEX = re.compile(r"^[-\w, ]+$", re.IGNORECASE)
 
 
 @dataclass
-class Contact:
+class Contact(LoggingEntity):
     """
     Attributes:
         name (str): Person or organization name
@@ -124,6 +125,10 @@ class Contact:
         return as_pattern(pattern)
 
     @property
+    def _identifier(self) -> str:
+        return self.name
+
+    @property
     def _middle_initial(self) -> str:
         if len(self._names) != 3:
             return ''
@@ -150,7 +155,7 @@ class Contact:
                 name_patterns.append(as_pattern(last_name))
 
         if args._debug_highlight_patterns:
-            logger.debug(f"Contact('{self.name}') name_patterns: '{name_patterns}'")
+            self._debug_log(f"name_patterns: '{name_patterns}'")
 
         return name_patterns
 
@@ -187,19 +192,11 @@ class Contact:
     def _style_bold(self) -> str:
         return self.style if 'bold' in self.style else f"{self.style} bold".strip()
 
-    def _log(self, msg: str, level: int = logging.INFO) -> None:
-        """Log something prefixed by this person's name."""
-        logger.log(level, f"{type(self).__name__}('{self.name}'): {msg}")
-
     def _log_debug_info(self) -> None:
         """debugging method for styles."""
         from epstein_files.output.rich import console
         console.print(self.bio_txt, '\n', self.links[0], '\n',self.name_link, '\n')
         self._log(f'   repr: {repr(self.links[0])}\n    str: {self.links[0]}\n   name_link: {repr(self.name_link)}')
-
-    def _warn(self, msg: str) -> None:
-        """Log warning with prefix."""
-        self._log(msg, logging.WARNING)
 
     def __repr__(self) -> str:
         props = self._props_strs

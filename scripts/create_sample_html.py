@@ -34,6 +34,20 @@ TEST_PANELS = [
 ]
 
 
+def print_sample_people(num_people_to_print: int = 3):
+    """people panels and email history etc."""
+    good_sample_people = [p for p in epstein_files.emailers if 5 <= len(p.unique_emails) <= 15]
+
+    for i, person in enumerate(good_sample_people[0:num_people_to_print], 1):
+        person.print_emails(printer)
+
+
+def print_test_panels():
+    for panel in TEST_PANELS:
+        printer.print_renderable(panel)
+        printer.line(2)
+
+
 doc_types_to_sample = [
     [o for o in epstein_files.other_files if o.config and o.config.show_full_panel],
     [d for d in epstein_files._documents if d.suppressed_txt],
@@ -46,22 +60,9 @@ doc_types_to_sample = [
     epstein_files.imessage_logs,
 ]
 
-
-def print_sample_people(num_people_to_print: int = 5):
-    """people panels and email history etc."""
-    good_sample_people = [p for p in epstein_files.emailers if 5 <= len(p.unique_emails) <= 15]
-
-    for i, person in enumerate(good_sample_people[0:num_people_to_print], 1):
-        person.print_emails(printer)
-
-
 # sample_docs = [epstein_files.get_id('EFTA00034357')] + flatten([docs[:SAMPLE_SIZE] for docs in doc_sets_to_sample])
 sample_docs = flatten([docs[:SAMPLE_SIZE] for docs in doc_types_to_sample])
 printer = DocPrinter(epstein_files=epstein_files)
-
-for panel in TEST_PANELS:
-    printer.print_renderable(panel)
-    printer.line(2)
 
 # print contacts
 # Contact.print_all_biographies(printer)

@@ -19,7 +19,6 @@ from epstein_files.documents.config.doc_cfg import DocCfg, Metadata
 from epstein_files.documents.documents.file_info import FileInfo
 from epstein_files.output.epstein_highlighter import highlighter
 from epstein_files.output.highlight_config import styled_category
-from epstein_files.output.html.builder import table_to_html
 from epstein_files.output.rich import build_table, console
 from epstein_files.people.interesting_people import PERSONS_OF_INTEREST
 from epstein_files.util.constant.strings import *
@@ -241,17 +240,6 @@ class OtherFile(Document):
             )
 
         return cls._mobilize_table(table) if args.mobile else table
-
-    @classmethod
-    def files_preview_table_html(
-        cls,
-        files: Sequence['OtherFile'],
-        title_pfx: str = '',
-        title: str | Text | None = '',
-        title_justify: str = '',
-        **kwargs
-    ) -> str:
-        return table_to_html(cls.files_preview_table(files, title_pfx, title, title_justify, **kwargs))
 
     @classmethod
     def _mobilize_table(cls, _table: Table) -> Table:

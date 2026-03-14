@@ -16,20 +16,20 @@ from epstein_files.documents.email import Email
 from epstein_files.documents.messenger_log import MessengerLog
 from epstein_files.documents.other_file import OtherFile
 from epstein_files.output.layout_elements.file_display import BasePanel, FileDisplay
-from epstein_files.output.html.builder import (console_buffer_to_html, panel_to_div, rich_to_html, table_to_html,
-     text_to_div, unwrap_rich, write_templated_html)
-from epstein_files.output.html.elements import div_class, tag, to_em, vertical_spacer
-from epstein_files.output.rich import console, mobile_console, section_subtitle_panel
+from epstein_files.output.html.builder import (console_buffer_to_html, render_at_obj_width, panel_to_div,
+     render_to_html, text_to_div, tmp_console, write_templated_html, render_max_width)
+from epstein_files.output.html.elements import div_class, tag
+from epstein_files.output.html.positioned_rich import PositionedRich, to_em, unpack_dimensions, vertical_spacer
+from epstein_files.output.rich import console, section_subtitle_panel
 from epstein_files.output.site.sites import SiteType
-from epstein_files.people.person import PEOPLE_BIOS, Person
 from epstein_files.people.names import *
+from epstein_files.people.person import PEOPLE_BIOS, Person
 from epstein_files.util.env import args, site_config
 from epstein_files.util.helpers.data_helpers import listify, uniq_sorted
 from epstein_files.util.helpers.rich_helpers import vertically_pad
 from epstein_files.util.logging import logger
 from epstein_files.util.timer import Timer
 from epstein_files.output.title_page import color_key, title_page_top_elements, title_page_bottom_elements
-# page_title_elements
 
 OTHER_FILES_TABLE_MSG = Text("(non emails will appear in tables)", 'gray27 italic')
 EMPTY_LINE_HEIGHT = to_em(1.5)
@@ -63,7 +63,8 @@ class DocPrinter:
     _suppressed_docs_queue: list[Document] = field(default_factory=list)
 
     def __post_init__(self):
-        self.html_elements.append(self._html_so_far())  # Grab whatever's in the console buffer (usually title page)
+        # Initialize with conversion of what's in the console history buffer so far to HTML
+        self.html_elements.append(console_buffer_to_html(console, False))
 
     @property
     def printed_emails(self) -> list[Email]:
@@ -152,45 +153,49 @@ class DocPrinter:
         """All things being printed should come through here, which collects both terminal and HTML output as its written."""
         # _renderable = Align(_renderable, align) if align and not isinstance(_renderable, Align) else _renderable
         for renderable in listify(renderables):
-            rich_obj, css_props = unwrap_rich(renderable)
+            positioned = PositionedRich.from_unwrapped_obj(renderable)
 
             # Add html string for this renderable to self.html_elements
-            if isinstance(rich_obj, NewLine):
+            if isinstance(positioned.obj, NewLine):
                 self.line()
                 continue
-            elif isinstance(rich_obj, (Document, FileDisplay)):
-                doc_bios_html = self._build_biographies_panel_html(rich_obj.people) if isinstance(rich_obj, Document) else ''
-                self._append_element_with_bio_div(rich_obj.to_html(), doc_bios_html)
-                self.printed_objs.append(rich_obj)
-            elif isinstance(rich_obj, Table):
-                html_table = table_to_html(rich_obj, css_props)
+            elif isinstance(positioned.obj, (Document, FileDisplay)):
+                people = positioned.obj.people if isinstance(positioned.obj, Document) else []
+                doc_bios_html = self._build_biographies_panel_html(people)
+                self._append_element_with_bio_div(positioned.obj.to_html(), doc_bios_html)
+                self.printed_objs.append(positioned.obj)
+            elif isinstance(positioned.obj, Table):
+                html_table = positioned.to_html()  # TODO: currently the only type that delegates to the PositionedRich obj to get HTML
 
                 # this is a bad way to signify the table being printed is an OtherFiles table
                 if self._last_bio_panel:
                     self._append_element_with_bio_div(html_table)
                 else:
                     self.html_elements.append(html_table)
-            elif isinstance(rich_obj, Panel):
-                self.html_elements.append(panel_to_div(rich_obj, css_props))
-            elif isinstance(rich_obj, Text):
-                self.html_elements.append(text_to_div(rich_obj, css_props))
-            elif isinstance(rich_obj, BasePanel):
-                self.html_elements.append(rich_obj.to_div((site_config.info_indent, 0)))
-            elif '__rich__' in dir(rich_obj):
-                if (rendered_obj := rich_obj.__rich__()):
-                    if isinstance(rendered_obj, Text):
-                        element = text_to_div(rendered_obj, css_props)
-                    else:
-                        logger.warning(f"printinng possibly not fully supported object type {type(rich_obj).__name__}\n{rich_obj}")
-                        element = rich_to_html(rendered_obj)
+            elif isinstance(positioned.obj, Panel):
+                self.html_elements.append(panel_to_div(positioned.obj, positioned.css))
+            elif isinstance(positioned.obj, BasePanel):
+                margin = unpack_dimensions((site_config.info_indent, 0))  # TODO: this margin dimension should only exist on eone side if aligned
+                self.html_elements.append(positioned.obj.to_div(margin))
+            elif isinstance(positioned.obj, Text):
+                self.html_elements.append(text_to_div(positioned.obj, positioned.css))
 
-                    self.html_elements.append(element)
+            # TODO: if __rich__() exists we should call it up front...
+            elif '__rich__' in dir(positioned.obj):
+                if (rich_obj := positioned.obj.__rich__()):
+                    if isinstance(rich_obj, Text):
+                        element_html = text_to_div(rich_obj, positioned.css)
+                    else:
+                        logger.warning(f"printinng possibly not fully supported object type {type(positioned.obj).__name__}\n{positioned.obj}")
+                        element_html = render_to_html(rich_obj)
+
+                    self.html_elements.append(element_html)
                 else:
-                    logger.warning(f"__rich__() returned None for {rich_obj} ({type(rich_obj).__name__})")
-            elif isinstance(rich_obj, str):
-                self.html_elements.append(tag('p', rich_obj, css_props))
+                    logger.warning(f"__rich__() returned None for {positioned.obj} ({type(positioned.obj).__name__})")
+            elif isinstance(positioned.obj, str):
+                self.html_elements.append(tag('p', positioned.obj, positioned.css))
             else:
-                raise TypeError(f"renderable of unsupported type: {type(rich_obj).__name__}: {rich_obj}")
+                raise TypeError(f"renderable of unsupported type: {type(positioned.obj).__name__}: {positioned.obj}")
 
             # TODO: we print at end after HTML is generated so the bios panel will be cached first but that sucks
             # TODO: because build_biographies_panel_html() has the side effect of printing to the console.
@@ -254,9 +259,10 @@ class DocPrinter:
         """NOTE: Also prints to console!!"""
         if (bio_panel := self._biographical_panel(names)):
             self._print_other_files_queue()  # Clear the queue before new biographical panel
-            console.print(self._align_biographical_panel(bio_panel))
+            console.print(self._align_biographical_panel(bio_panel))  # TODO: has side effect of printing to console
+            panel_html = render_at_obj_width(bio_panel)
             self.printed_name_bios.update(names)
-            return div_class(rich_to_html(bio_panel, minimize_width=True), STICKY_BIO_CSS_CLASS)
+            return div_class(panel_html, STICKY_BIO_CSS_CLASS)
         else:
             return ''
 
@@ -267,13 +273,6 @@ class DocPrinter:
                 raise RuntimeError(f"last_bio_panel should be empty, instead it's:\n{self._last_bio_panel}")
             else:
                 self._last_bio_panel = bios_html
-
-    def _html_so_far(self, mobile: bool = False) -> str:
-        """Return everything currently in the console buffer as an HTML string."""
-        if mobile:
-            return console_buffer_to_html(mobile_console, False)
-        else:
-            return console_buffer_to_html(console, False)
 
     def _print_other_files_queue(self) -> None:
         """Print any queued OtherFile objects collected in a table."""
@@ -308,9 +307,4 @@ class DocPrinter:
     def _print_title_page_elements(self, renderables: list[RenderableType]) -> None:
         """"Centered and vertically paded Tables and Panels."""
         renderables = [vertically_pad(r) if isinstance(r, (Panel, Table)) else r for r in renderables]
-
-        for r in renderables:
-            obj, css_props = unwrap_rich(r)
-            logger.debug(f"Printing title page {type(obj).__name__} with css_props: {css_props}")
-
         self.print_centered(renderables)

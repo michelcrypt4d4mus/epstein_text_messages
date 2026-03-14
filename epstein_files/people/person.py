@@ -56,7 +56,7 @@ PEOPLE_BIOS = {
 
 
 @dataclass(kw_only=True)
-class Person:
+class Person(LoggingEntity):
     """Collection of data about someone texting or emailing Epstein."""
     contact: Contact = field(init=False)
     name: Name
@@ -324,6 +324,10 @@ class Person:
     @property
     def _email_info_style(self) -> str:
         return 'white' if (not self.style() or self.style() == DEFAULT) else self.style()
+
+    @property
+    def _identifier(self) -> str:
+        return self.name_str
 
     @property
     def _printable_emails(self):

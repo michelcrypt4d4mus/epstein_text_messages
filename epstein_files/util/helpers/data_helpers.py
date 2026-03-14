@@ -37,6 +37,10 @@ uniquify = lambda _list: list(set(_list))
 without_falsey = lambda _list: [e for e in _list if e]
 
 
+def add_constant(sequence: Sequence[int], constant: float | int) -> list[int | float]:
+    return [s + constant for s in sequence]
+
+
 def coerce_utc_strict(dt: datetime) -> datetime:
     if not dt:
         return None
@@ -94,6 +98,10 @@ def listify(listlike) -> list:
         return [listlike]
     else:
         return []
+
+
+def only_truthy(elements: Sequence[T]) -> list[T]:
+    return [e for e in elements if e]
 
 
 def ordinal_str(n: int) -> str:

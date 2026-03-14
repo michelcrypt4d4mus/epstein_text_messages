@@ -5130,6 +5130,7 @@ EFTA00014648,girls,,True,2021-11-19 00:00:00+00:00,,,"former employee ""understo
 EFTA00015532,legal,,,2026-01-14 00:00:00+00:00,,,legal filing in US v. Jeffrey Epstein alleging Epstein tried to buy victim's silence
 EFTA00016836,email,USANYS,,2020-01-15 20:20:25+00:00,USANYS,,
 EFTA00016884,money,,True,2014-11-18 00:00:00+00:00,,,Epstein's last will and testament
+EFTA00020490,government,FBI,True,2020-08-11 11:26:00+00:00,,,FBI tip from woman who thinks she encountered Epstein as a young girl
 EFTA00020506,government,FBI,True,2020-09-14 16:12:00+00:00,,,"FBI report about Epstein investigation, quote of interest: 'chauffeur also told Epstein ""I have something on you remember what I buried!""'"
 EFTA00020515,crypto,FBI,True,2020-10-19 16:11:00+00:00,,,FBI tip about Howard Lutnick and financial irregularities
 EFTA00022133,,,,2019-12-02 00:00:00+00:00,,,
@@ -5343,7 +5344,7 @@ EFTA00093702_9,email,Christopher Dilorio,,2021-08-16 20:55:00+00:00,SEC,,
 EFTA00096009,crypto,SDNY Cybercrimes,True,2019-07-11 14:31:21+00:00,USANYS,,SDNY Cybercrimes Epstein legal defense team requested bail hearing transcript of OneCoin fraudster Konstantin Ignatova
 EFTA00098456,letter,Paul G. Cassell,True,2026-01-28 00:00:00+00:00,,,"letter from Paul G. Cassell to Scotland Yard International Sex Trafficking by Jeffrey Epstein, contains court filings"
 EFTA00099424,money,,True,2017-07-08 23:00:00+00:00,,,"Epstein 2017 Trust (Eva Andersson Dubin, Darren Indyke, Richard Kahn)"
-EFTA00101927,government,FBI,True,2026-01-01 00:00:00+00:00,,,"FBI interview with (unknown), claims au pair of Glenn and Eva Dubin was held against her will"
+EFTA00101927,government,FBI,True,2026-01-01 00:00:00+00:00,,,"FBI interview with (unknown), claims Glenn and Eva Dubin's Swiss au pair was being held against her will"
 EFTA00103908,,,,2026-01-12 00:00:00+00:00,,,
 EFTA00104945,email,,False,2019-08-13 01:18:13+00:00,Andrew Stemmer;Erika Engelson;Justin Alfano;Vijay Dewan,,
 EFTA00105975,deposition,"<REDACTED> v. Estate of Jeffrey Epstein, Ghislaine Maxwell",,2026-01-19 00:00:00+00:00,,,"deposition of <REDACTED> v. Estate of Jeffrey Epstein, Ghislaine Maxwell Ghislaine Maxwell ""was relentless"""
@@ -5373,7 +5374,7 @@ EFTA00173569,government,FBI,True,2026-01-04 00:00:00+00:00,,,FBI report about ha
 EFTA00173881,crypto,US Secret Service,True,2025-01-30 17:48:18+00:00,Enterprise Vetting Center,,US Secret Service
 EFTA00173883,email,,True,2025-01-30 17:15:29+00:00,,,
 EFTA00173953,money,Organized Crime Drug Enforcement Task Force,True,2020-03-06 15:00:00+00:00,,,Organized Crime Drug Enforcement Task Force report on DEA investigations into Epstein related drug money laundering
-EFTA00174375,government,FBI,True,,,,"FBI interview with Luke D. Thorburn, lot of takes on Epstein, China, and Steve Bannon"
+EFTA00174375,government,FBI,True,,,,"FBI interview with Luke D. Thorburn, lots of takes on Epstein, China, and Steve Bannon"
 EFTA00177201,legal,Jane Doe #1 and Jane Doe #2 v. United States,True,2026-01-12 00:00:00+00:00,,,Jane Doe #1 and Jane Doe #2 v. United States: court docket and many filings
 EFTA00182657,,,,,,,
 EFTA00211168,legal,Jane Doe v. Donald Trump and Jeffrey Epstein,,2026-01-09 00:00:00+00:00,,,Jane Doe v. Donald Trump and Jeffrey Epstein: Epstein employee affidavit alleging sexual assaults
@@ -5456,7 +5457,7 @@ EFTA00401065,crypto,Lesley Groff,True,2012-11-20 18:18:17+00:00,,,Howard Lutnick
 EFTA00405784,email,Lesley Groff,,2012-09-07 18:47:59+00:00,Jeffrey Epstein,,
 EFTA00405795,email,Lesley Groff,False,2012-09-07 18:52:19+00:00,Brock Pierce,,Lesley Groff
 EFTA00405824,email,Lesley Groff,False,2012-09-07 22:22:37+00:00,Brock Pierce,Sent from my iPhone,
-EFTA00412260,girls,Lesley Groff,True,2012-05-25 19:51:20+00:00,,Sent from my iPhone,"Lesley Groff Epstein really wants ""*your friend*"" (emphasis Lesley Groff's) to meet Peter Mandelson"
+EFTA00412260,girls,Lesley Groff,True,2012-05-25 19:51:20+00:00,,Sent from my iPhone,"Lesley Groff emphasis quotes by Lesley Groff, quote of interest: 'Jeffrey was asking if you and ""your friend"" could come by and meet Peter'"
 EFTA00419464,email,Lesley Groff,,2012-02-16 16:25:43+00:00,Jeffrey Epstein,,
 EFTA00419465,email,Jeffrey Epstein,,2012-02-16 16:39:27+00:00,Lesley Groff,,
 EFTA00419486,email,,True,2012-02-16 17:46:29+00:00,,,
@@ -6080,6 +6081,7 @@ EFTA01010128,crypto,Jeffrey Epstein,True,2018-12-28 21:41:35+00:00,Masha Drokova
 EFTA01010171,crypto,Masha Drokova,True,2018-12-28 19:18:50+00:00,Jeffrey Epstein,Sent via Superhuman iOS,
 EFTA01010209,crypto,Jeffrey Epstein,False,2017-09-23 14:59:03+00:00,Austin Hill,,"Austin Hill calls Amir Taaki ""a bit crazy'"
 EFTA01013266,crypto,,True,2018-12-17 22:41:26+00:00,Jeffrey Epstein,,Maria Prusakova's Crypto PR Lab request for payment for Davos
+EFTA01013299,email,Nicole Junkermann,,2018-12-17 18:40:51+00:00,Jeffrey Epstein;Robert Lawrence Kuhn,,
 EFTA01013360,email,Brock Pierce,True,2018-12-17 13:42:08+00:00,Jeffrey Epstein,,
 EFTA01013413,email,Jeffrey Epstein,True,2018-12-16 21:45:47+00:00,Brock Pierce,,Reza Bundy is the founder of IronPlanet
 EFTA01013922,crypto,Jeffrey Epstein,True,2018-12-11 00:00:18+00:00,,,Crypto PR Lab business plan
@@ -6111,6 +6113,7 @@ EFTA01026858,email,Jeffrey Epstein,True,2017-09-12 19:32:11+00:00,Austin Hill,,
 EFTA01027134,email,Jeffrey Epstein,,2018-06-13 12:49:00+00:00,Andrew McCormack,,
 EFTA01027475,email,Jeffrey Epstein,True,2018-06-13 13:24:39+00:00,David Stern,,
 EFTA01028241,girls,Yulia Dorokhina,True,2019-01-28 21:53:35+00:00,Jeffrey Epstein,,Yulia Dorokhina (???)
+EFTA01028406,email,Robert Lawrence Kuhn,,2019-01-31 02:00:08+00:00,Jeffrey Epstein,,
 EFTA01028886,email,Jeffrey Epstein,True,2017-09-11 11:26:46+00:00,Austin Hill,,
 EFTA01028975,email,Jeffrey Epstein,,2019-02-05 20:54:30+00:00,Andrew McCormack,,
 EFTA01029015,email,Jeffrey Epstein,,2019-02-06 14:16:44+00:00,Richard Kahn,,
@@ -6443,6 +6446,7 @@ EFTA01806550,email,Leighton Candler,,2011-04-13 13:02:00+00:00,Jeffrey Epstein,S
 EFTA01809218,email,Myla Trestiza,,2015-03-30 20:35:00+00:00,MY Te Manu,Sent from Yahoo Mail for iPhone,
 EFTA01810372,reputation,Tyler Shears,False,2014-04-04 18:34:22+00:00,,,"reputation management Tyler Shears: invoice for reputation management work, attached to email EFTA01931256"
 EFTA01811230,girls,Jeffrey Epstein,True,2010-10-01 15:29:22+00:00,,Sent from my iPhone,"""Renat"" is probably Renata Bolotova, <REDACTED> might be ""Irina"" or Svetlana Pozhidaeva"
+EFTA01814983,girls,Jeffrey Epstein,True,2010-07-02 16:21:12+00:00,Eva Dubin,,Epstein and Nicole Junkermann used to date
 EFTA01816786,email,Jeffrey Epstein,,2009-07-29 13:29:20+00:00,William Murphy,,
 EFTA01816788,girls,Jeffrey Epstein,True,2010-08-12 16:41:03+00:00,Prince Andrew,,Russian girl for Prince Andrew
 EFTA01817903,girls,Jeffrey Epstein,True,2009-09-23 16:00:31+00:00,Jean Luc Brunel,,"Epstein, Brunel, and Sultan Ahmed Bin Sulayem sharing news of a Liberian sex scandal"
@@ -6972,7 +6976,7 @@ EFTA02557291,girls,Anastasiya Siroochenko,True,2012-07-14 05:17:00+00:00,Jeff,,p
 EFTA02557757,girls,Jeffrey Epstein,True,2012-08-03 03:35:00+00:00,Barbro C. Ehnbom,,"quote of interest: ""I have a girl Sana working half time/who by the way you'd like"""
 EFTA02559311,email,Jeffrey Epstein,True,2012-09-10 12:18:00+00:00,,,Epstein has some connection to the sovereign wealth fund of Kazakhstan
 EFTA02559808,girls,Eva Dubin,True,2012-09-07 21:12:00+00:00,Jeffrey Epstein,Sent from my Verizon Wireless BlackBerry,Eva Dubin delivering amphetamines (adderall) to Epstein
-EFTA02560884,girls,Jeffrey Epstein,True,2012-09-25 14:55:00+00:00,Svetlana Pozhidaeva,,is Epstein drafting Svetlana Pozhidaeva's responses to Joshua Fink (???)
+EFTA02560884,girls,Jeffrey Epstein,True,2012-09-25 14:55:00+00:00,Svetlana Pozhidaeva,,is Epstein drafting Svetlana Pozhidaeva's romantic responses to Joshua Fink (???)
 EFTA02561277,email,Kira Dikhtyar,True,2012-09-22 17:34:00+00:00,Jeffrey Epstein,,planning for Elon Musk gets a massage
 EFTA02561760,email,Renata Bolotova,True,2017-11-29 23:16:00+00:00,Jeffrey Epstein,,Renata Bolotova
 EFTA02565917,email,,True,2013-02-05 15:39:00+00:00,Jeffrey Epstein,,Hassan Mohammed Abdul Latif Jameel is a Saudi businessman and philanthropist
@@ -7137,7 +7141,7 @@ EFTA02724230,crypto,Jem Bendell,True,2012-09-14 12:11:49+00:00,Jeffrey Epstein,,
 EFTA02725909,crypto,,True,2016-01-01 00:00:00+00:00,,,"memo to NYDFS of NYC Bitcoin Exchange, Balaji Srinivisan & Andrew Farkas on board"
 EFTA02730265,email,Boris Nikolic,,2013-08-24 14:02:57+00:00,Jeffrey Epstein,Sent from my Windows Phone,
 EFTA02730267,government,FBI,True,2022-04-14 00:00:00+00:00,,,"FBI Research and Key Findings for Malcolm Grumbridge, defense witness for Ghislaine Maxwell"
-EFTA02730271,government,FBI,True,2022-03-22 00:00:00+00:00,,,"FBI Research and Key Findings for <REDACTED>, defense witness for Ghislaine Maxwell"
+EFTA02730271,government,FBI,True,2022-03-22 00:00:00+00:00,,,"FBI Research and Key Findings for (unknown), defense witness for Ghislaine Maxwell"
 EFTA02730274,government,,,2026-01-01 00:00:00+00:00,,,evidence inventory that appears to have since been deleted from the DOJ website
 EFTA02730468,email,USANYS,False,2019-07-11 08:25:00+00:00,USANYS,,USANYS
 EFTA02730469,email,,False,2011-03-23 06:54:00+00:00,,,

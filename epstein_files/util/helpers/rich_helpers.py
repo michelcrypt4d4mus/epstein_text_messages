@@ -1,9 +1,13 @@
 """
 Small methods for building rich text constructs.
 """
+from dataclasses import dataclass, field
 import os
+from typing import Self
 
-from rich.padding import Padding
+from rich.align import Align, AlignMethod
+from rich.console import RenderableType
+from rich.padding import Padding, PaddingDimensions
 from rich.text import Text
 
 from epstein_files.util.constant.strings import QUESTION_MARKS
