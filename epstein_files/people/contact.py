@@ -35,8 +35,10 @@ class Contact(LoggingEntity):
         name (str): Person or organization name
         info (str, optional): biographical info about this person
         emailer_pattern (str, optional): manually constructed regex pattern to match this person in email headers
+        aliases (list[str]): known aliases
         category (str, optional): category of this entity
         style (str, optional): style to use when printing this entity's name
+        email_addresses (list[str]): known email addresses
         emailer_regex (re.Pattern): pattern that matches this person's name in email headers
         highlight_regex (re.Pattern): pattern that matches this person's name in various variations for highlightihng
         is_emailer (bool): should email headers be scanned for this entity
@@ -49,8 +51,10 @@ class Contact(LoggingEntity):
     name: str
     info: str = ''
     emailer_pattern: str = ''
+    # Props after here not usually set by positional args
+    aliases: list[str] = field(default_factory=list)
     category: str = ''
-    style: str = ''  # NOTE: not usually set at instantiation time!
+    email_addresses: list[str] = field(default_factory=list)
     emailer_regex: re.Pattern = field(init=False)
     highlight_regex: re.Pattern = field(init=False)
     is_emailer: bool = True
@@ -58,6 +62,7 @@ class Contact(LoggingEntity):
     is_junk: bool = False  # TODO: this sucks
     is_organization: bool = False
     match_partial: PartialName | None = 'last'
+    style: str = ''  # NOTE: not usually set at instantiation time!
     url: str | list[str] | Literal['WIKIPEDIA'] = ''
     # jmail_url: str
 

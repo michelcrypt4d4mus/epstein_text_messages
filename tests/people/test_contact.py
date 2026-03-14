@@ -1,7 +1,8 @@
 from rich.text import Text
 
+from epstein_files.documents.emails.emailers import CONTACTS_DICT
 from epstein_files.people.contact import Contact, acronym, organization, epstein_co, epstein_trust
-from epstein_files.people.names import INTERNATIONAL_PEACE_INSTITUTE, JEAN_LUC_BRUNEL, JEFFREY_EPSTEIN, SULTAN_BIN_SULAYEM
+from epstein_files.people.names import *
 
 NAME = 'Nasir Jones'
 EMAILER_PATTERN = r"Nasir[-_.\s]*Jones?"
@@ -28,6 +29,10 @@ def test_acronym():
     assert ofac.emailer_pattern == r"O\.?F\.?A\.?C\.?|Office of Foreign Assets Control"
     occ = acronym('Office of the Comptroller of the Currency')
     assert occ.name == 'OCC'
+
+
+def test_bio():
+    yulia = CONTACTS_DICT[YULIA_DOROKHINA]
 
 
 def test_epstein_co():

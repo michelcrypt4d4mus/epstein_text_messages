@@ -1,5 +1,6 @@
 # NEXT RELEASE
 * `Contact` allows multiple biographical link urls
+* `Contact` has new fields `email_addresses` and `aliases`
 * Rename `DocCfg.replace_text_with` to `display_text`
 
 ### 1.9.3
