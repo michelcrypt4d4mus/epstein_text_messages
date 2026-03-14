@@ -63,13 +63,13 @@ class Person(LoggingEntity):
     """
     name: Name
     documents: list[Document]
-    is_uninteresting: bool = False
+    is_interesting: bool | None = None
     contact: Entity = field(init=False)
     _searched_for_highlight_group: bool = False
 
     def __post_init__(self):
         self.contact = CONTACTS_DICT.get(self.name_str, Entity(name=cleanup_str(self.name_str)))
-        self.documents = Document.sort_by_timestamp(self.emails)
+        self.documents = Document.sort_by_timestamp(self.documents)
 
     @property
     def biography_txt(self) -> Text | None:
@@ -90,7 +90,7 @@ class Person(LoggingEntity):
             return None
         elif self.category:
             return styled_category(self.category)
-        elif self.is_a_mystery or self.is_uninteresting:
+        elif self.is_a_mystery or self.is_interesting is False:
             return QUESTION_MARKS_TXT
 
     @property
@@ -189,7 +189,8 @@ class Person(LoggingEntity):
             if (info := self.highlighted_names_group.info_for(self.name)):
                 return info
 
-        if self.is_uninteresting and len(self.emails_by) == 0:
+        # A person who wrote no emails stil might be interesting if they received email directly from Epstein
+        if self.is_interesting is False and len(self.emails_by) == 0:
             if self.has_any_epstein_emails:
                 return UNINTERESTING_CC_INFO
             else:
@@ -203,7 +204,7 @@ class Person(LoggingEntity):
             return Text('(emails sent by Epstein to himself are here)', style=ALT_INFO_STYLE)
         elif self.category == Uninteresting.JUNK:
             return Text(f"({Uninteresting.JUNK} mail)", style='bright_black dim')
-        elif self.is_uninteresting and (self.info_str or '').startswith(UNINTERESTING_CC_INFO):
+        elif self.is_interesting is False and (self.info_str or '').startswith(UNINTERESTING_CC_INFO):
             if self.sole_cc:
                 return Text(f"(cc: from {self.sole_cc} only)", style='wheat4 dim')
             elif self.info_str == UNINTERESTING_CC_INFO:
@@ -235,7 +236,7 @@ class Person(LoggingEntity):
     @property
     def is_a_mystery(self) -> bool:
         """Return True if this is someone we theroetically could know more about."""
-        return self.is_unstyled and not (self.is_email_address or self.info_str or self.is_uninteresting)
+        return self.is_unstyled and not (self.is_email_address or self.info_str or self.is_interesting is False)
 
     @property
     def is_email_address(self) -> bool:
@@ -282,7 +283,7 @@ class Person(LoggingEntity):
     @property  # TODO: unused?
     def should_always_truncate(self) -> bool:
         """True if we want to truncate all emails to/from this user."""
-        return self.name in TRUNCATE_EMAILS_BY or self.is_uninteresting
+        return self.name in TRUNCATE_EMAILS_BY or self.is_interesting is False
 
     @property
     def show_with_emails_docs(self) -> list[OtherFile]:
@@ -460,7 +461,7 @@ class Person(LoggingEntity):
         if args.all_emails:
             footer += ')'
         else:
-            num_uninteresting = len([p for p in people if p.is_uninteresting])
+            num_uninteresting = len([p for p in people if p.is_interesting is False])
             footer += f". {num_uninteresting} uninteresting people not shown, check all emails page for details)"
 
         table = build_table(title, caption=footer)
@@ -481,7 +482,7 @@ class Person(LoggingEntity):
         #     people = highlighted[0:3]
 
         for person in people:
-            if person.is_uninteresting and not (args.emailers_info or args.all_emails):
+            if person.is_interesting is False and not (args.emailers_info or args.all_emails):
                 continue
 
             earliest_email_date = person.earliest_email_date
@@ -499,7 +500,7 @@ class Person(LoggingEntity):
 
             table.add_row(
                 Text(str(earliest_email_date), style=f"grey{GREY_NUMBERS[0 if is_selection else grey_idx]}"),
-                person.internal_link if is_on_page and not person.is_uninteresting else person.name_txt,
+                person.internal_link if is_on_page and person.is_interesting is not False else person.name_txt,
                 person.category_txt,
                 f"{len(person.unique_emails if show_epstein_total else person._unique_printable_emails)}",
                 str(len(person.unique_emails_by)) if len(person.unique_emails_by) > 0 else '',

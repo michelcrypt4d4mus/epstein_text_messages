@@ -2,6 +2,8 @@
 * `Contact` allows multiple biographical link urls
 * `Contact` has new fields `email_addresses` and `aliases`
 * Rename `DocCfg.replace_text_with` to `display_text`
+* `Person.is_uninteresting` is now `is_interesting`, fix logic to match
+* `Person` just maintains single list of `Document` objects, not separated by type
 
 ### 1.9.3
 * use the `DocPrinter` to build the title page so it correctly centers in the browser

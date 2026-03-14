@@ -317,7 +317,10 @@ class EpsteinFiles:
 
     def person_objs(self, names: list[Name]) -> list[Person]:
         """Construct Person objects for a list of names."""
-        return [Person(n, self.docs_for(n), is_uninteresting=n in self.uninteresting_emailers) for n in names]
+        return [
+            Person(name, self.docs_for(name), False if name in self.uninteresting_emailers else None)
+            for name in names
+        ]
 
     def load_new_files(self) -> None:
         """Load any new files detected in the hierarchy."""

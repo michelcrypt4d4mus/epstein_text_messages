@@ -57,7 +57,7 @@ def print_first_emails():
     for emailer in emailers:
         first_email = emailer.emails[0]
 
-        if emailer.is_uninteresting or first_email.is_fwded_article:
+        if emailer.is_interesting or first_email.is_fwded_article:
             continue
         elif first_email._truncate_to_length() >= first_email.length:
             logger.warning(f"User '{emailer.name}' first email is untruncated")
