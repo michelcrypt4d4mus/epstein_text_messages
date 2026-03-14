@@ -1,21 +1,20 @@
 import logging
 import re
 from dataclasses import dataclass, field, fields
-from pathlib import Path
 from typing import Literal, Self
 
 from rich.padding import Padding
 from rich.text import Text
 
-from epstein_files.output.site.sites import SiteType
 from epstein_files.people.names import Name, constantize_name, extract_first_name, extract_last_name
 from epstein_files.util.constant.strings import INDENT_NEWLINE, INDENTED_JOIN, LAW_ENFORCEMENT, WIKIPEDIA, PartialName
 from epstein_files.util.constant.urls import wikipedia_url_for_name
 from epstein_files.util.env import args, site_config
 from epstein_files.util.helpers.data_helpers import constantize_names, listify
-from epstein_files.util.helpers.link_helper import ExternalLink, link_text_obj
+from epstein_files.util.helpers.link_helper import ExternalLink
 from epstein_files.util.helpers.rich_helpers import QUESTION_MARKS_TXT, enclose
-from epstein_files.util.helpers.string_helper import as_pattern, indented, is_integer, quote, remove_question_marks, join_truthy
+from epstein_files.util.helpers.string_helper import (as_pattern, indented, is_integer, join_patterns,
+     join_truthy, quote, remove_question_marks)
 from epstein_files.util.logging import logger
 from epstein_files.util.logging_entity import LoggingEntity
 
@@ -101,7 +100,7 @@ class Contact(LoggingEntity):
         if self.is_junk:
             return self.pattern  # TODO: this sucks
 
-        return '|'.join(self._name_patterns)
+        return join_patterns(self._name_patterns)
 
     @property
     def name_link(self) -> Text:
@@ -235,7 +234,7 @@ def acronym(name: str, description: str = '', **kwargs) -> Contact:
     return organization(
         ''.join(initials),
         join_truthy(name, description, ', '),
-        '|'.join([initials_pattern, name]),
+        join_patterns([initials_pattern, name]),
         **kwargs
     )
 

@@ -10,7 +10,7 @@ from epstein_files.people.names import *
 from epstein_files.util.constant.strings import MONTHS, WEEKDAYS, REDACTED, RUSSIAN_WEEKDAYS
 from epstein_files.util.env import args
 from epstein_files.util.helpers.data_helpers import coerce_utc_strict
-from epstein_files.util.helpers.string_helper import or_equal_sign_char_group
+from epstein_files.util.helpers.string_helper import join_patterns, or_equal_sign_char_group
 from epstein_files.util.logging import logger
 
 FALLBACK_TIMESTAMP = coerce_utc_strict(parse("1/1/2051 12:01:01 AM"))
@@ -32,12 +32,12 @@ FORWARDED_MSG_PATTERNS = [
     r'Пересылаемое сообщение',  # Russian
 ]
 
-REPLY_ON_DAY_MONTH_PATTERN = fr"(\d+ )?(({'|'.join(ON_TIME_REPLY_PATTERNS)})\w*)"
-FORWARDED_LINE_PATTERN = fr"[- ]*{'|'.join(FORWARDED_MSG_PATTERNS)}"
+REPLY_ON_DAY_MONTH_PATTERN = fr"(\d+ )?(({join_patterns(ON_TIME_REPLY_PATTERNS)})\w*)"
+FORWARDED_LINE_PATTERN = fr"[- ]*{join_patterns(FORWARDED_MSG_PATTERNS)}"
 FORWARDED_TOO_MUCH_SPACE_REGEX = re.compile(fr"^({FORWARDED_LINE_PATTERN})\n\n", re.MULTILINE | re.IGNORECASE)
 REPLY_LINE_ENDING_PATTERN = r"[_ \n]((?-i:[AP]M)|[<_]|w?rote:?)"
 REPLY_NUMERIC_DATE_PATTERN = fr"\d+[-/.][\d\w]+[-/.]\d+"
-REPLY_ON_DATE_PATTERN = '|'.join([REPLY_NUMERIC_DATE_PATTERN, REPLY_ON_DAY_MONTH_PATTERN])
+REPLY_ON_DATE_PATTERN = join_patterns([REPLY_NUMERIC_DATE_PATTERN, REPLY_ON_DAY_MONTH_PATTERN])
 
 REPLY_PATTERNS = [
     fr"(?<!M)On ({REPLY_ON_DATE_PATTERN})[=., ].*{REPLY_LINE_ENDING_PATTERN}",
@@ -49,10 +49,10 @@ REPLY_PATTERNS = [
     r"[Il][Il] giorno .*scritto:",                      # Italian
     r"(Den .* folgende|(fre|lor|son)\. .* skrev .*):",  # Norwegian
     r"Dnia .*napisal\(a\):",                            # Polish
-    fr"({'|'.join(RUSSIAN_WEEKDAYS)}).*:",                # Russian
+    fr"({join_patterns(RUSSIAN_WEEKDAYS)}).*:",                # Russian
 ]
 
-REPLY_LINE_PATTERN = fr"^({QUOTE_INDENT_CHAR_GROUP}*({'|'.join(REPLY_PATTERNS)}))"
+REPLY_LINE_PATTERN = fr"^({QUOTE_INDENT_CHAR_GROUP}*({join_patterns(REPLY_PATTERNS)}))"
 REPLY_REGEX = re.compile(REPLY_LINE_PATTERN, re.IGNORECASE | re.MULTILINE)
 
 # Header fields
@@ -77,9 +77,10 @@ HEADER_FIELDS_PATTERNS = COMMON_HEADER_FIELDS + [
     'Inline-Images'
 ]
 
-HEADER_FIELDS_PATTERN = '|'.join(HEADER_FIELDS_PATTERNS)
+HEADER_FIELDS_PATTERN = join_patterns(HEADER_FIELDS_PATTERNS)
 HEADER_FIELD_COLON_PATTERN = fr"^({HEADER_FIELDS_PATTERN}):"
 HEADER_FIELD_COLON_REGEX = re.compile(HEADER_FIELD_COLON_PATTERN)
+# HEADER_REPAIR_REGEX = re.compile(fr"^({join_patterns(COMMON_HEADER_FIELDS)})[^:](.*)")
 
 FRENCH_HEADER_PATTERNS = [
     r"[AÀ]",
@@ -160,9 +161,9 @@ SIGNATURE_PATTERNS = [
     r"Typos,? misspellings courtesy of iPhone(\s*word & thought substitution|Send from my mobile...please excuse typos)?"
 ]
 
-DEVICE_PATTERN = fr"({'|'.join(SENT_FROM_DEVICE_PREFIXES)}).*({'|'.join(SENT_FROM_DEVICE_SUFFIXES)})"
+DEVICE_PATTERN = fr"({join_patterns(SENT_FROM_DEVICE_PREFIXES)}).*({join_patterns(SENT_FROM_DEVICE_SUFFIXES)})"
 EPSTEIN_TYPO_PREFIX = r"((Please forgive|Sorry for all the) typos.{1,4})"
-SENT_FROM_DEVICE_PATTERN = '|'.join([DEVICE_PATTERN] + SIGNATURE_PATTERNS)
+SENT_FROM_DEVICE_PATTERN = join_patterns([DEVICE_PATTERN] + SIGNATURE_PATTERNS)
 SENT_FROM_REGEX = re.compile(fr'^{EPSTEIN_TYPO_PREFIX}?({SENT_FROM_DEVICE_PATTERN})\.?( -*)?', re.MULTILINE | re.IGNORECASE)
 # print(SENT_FROM_REGEX.pattern)
 

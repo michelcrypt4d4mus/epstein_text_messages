@@ -22,7 +22,7 @@ from epstein_files.util.constant.urls import SUBSTACK_POST_INSIGHTSPOD_URL
 from epstein_files.util.env import args
 from epstein_files.util.helpers.data_helpers import flatten
 from epstein_files.util.helpers.rich_helpers import QUESTION_MARKS_TXT
-from epstein_files.util.helpers.string_helper import indented
+from epstein_files.util.helpers.string_helper import indented, join_patterns
 from epstein_files.util.logging import logger
 
 CIVIL_ATTORNEY = 'civil attorney'
@@ -2641,11 +2641,18 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             ),
             Contact('Krystyna Gwiazda', 'Russian girl'),
             Contact(
+                LASMA_KUHTARSKA,
+                'Latvian, co-founder of Dubai fintech co. Noda',
+                url='https://medium.com/authority-magazine/innovation-with-purpose-lasma-kuhtarska-of-noda-on-the-worlds-most-successful-purpose-driven-b7dc4d7b966a',
+            ),
+            Contact(
                 MARIA_PRUSAKOVA,
                 f"AKA Masha Prusso, former Olympic snowboarder, {CRYPTO_PR_LAB} co-founder, \"found ladies\" for Epstein",
                 r"Ma(sha|riy?a) (Prusa?(kova|so))",
-                # https://www.reddit.com/r/Epstein/comments/1qvsnqs/a_detailed_report_on_masha_prusso_aka_maria/
-                url='https://www.scamurai.io/p/epstein-files-suggest-ex-polygon',
+                url=[
+                    'https://www.scamurai.io/p/epstein-files-suggest-ex-polygon',
+                    'https://www.reddit.com/r/Epstein/comments/1qvsnqs/a_detailed_report_on_masha_prusso_aka_maria/',
+                ],
             ),
             Contact(
                 MASHA_DROKOVA,
@@ -3441,8 +3448,8 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         label='header_field',
         style='plum4',
         patterns=[
-            fr"^([>»•\s]{{,4}}({'|'.join(EMAIL_HEADER_FIELD_PATTERNS)}):|on behalf of)",
-            fr"^({'|'.join(FBI_REPORT_FIELDS)})",
+            fr"^([>»•\s]{{,4}}({join_patterns(EMAIL_HEADER_FIELD_PATTERNS)}):|on behalf of)",
+            fr"^({join_patterns(FBI_REPORT_FIELDS)})",
         ],
     ),
     HighlightPatterns(

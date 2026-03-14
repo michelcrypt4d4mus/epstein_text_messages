@@ -12,7 +12,7 @@ from epstein_files.people.names import Name, constantize_name
 from epstein_files.util.constant.strings import REGEX_STYLE_PREFIX
 from epstein_files.util.env import args
 from epstein_files.util.helpers.data_helpers import without_falsey
-from epstein_files.util.helpers.string_helper import as_pattern, capture_group_marker
+from epstein_files.util.helpers.string_helper import as_pattern, capture_group_marker, join_patterns
 from epstein_files.util.logging import logger
 
 
@@ -65,7 +65,7 @@ class HighlightPatterns(HighlightGroup):
             raise ValueError(f"No label provided for {repr(self)}")
 
         self.patterns = [as_pattern(p) for p in self.patterns]
-        self._pattern = '|'.join(self.patterns)
+        self._pattern = join_patterns(self.patterns)
 
         if self.use_word_boundary:
             self._pattern = fr"\b(({self._pattern})s?)\b"
@@ -116,7 +116,7 @@ class HighlightedNames(HighlightPatterns):
                 raise ValueError(f"No label provided for {repr(self)}")
 
         super().__post_init__()
-        with_contacts_pattern = '|'.join([c.highlight_pattern for c in self.contacts] + self.patterns)
+        with_contacts_pattern = join_patterns([c.highlight_pattern for c in self.contacts] + self.patterns)
         self._pattern = fr"\b(({with_contacts_pattern})s?)\b"
         self.regex = self.compile_patterns(self._pattern)
         self.contacts_lookup = Contact.build_name_lookup(self.contacts)

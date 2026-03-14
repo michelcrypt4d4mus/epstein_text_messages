@@ -40,7 +40,7 @@ from epstein_files.util.env import args, site_config
 from epstein_files.util.helpers.data_helpers import (AMERICAN_TIME_REGEX, TIMEZONE_INFO, coerce_utc, flatten,
      prefix_keys, uniq_sorted, uniquify)
 from epstein_files.util.helpers.link_helper import link_text_obj
-from epstein_files.util.helpers.string_helper import capitalize_first, collapse_newlines, is_bool_prop, strip_pdfalyzer_panels
+from epstein_files.util.helpers.string_helper import capitalize_first, collapse_newlines, is_bool_prop, quote, strip_pdfalyzer_panels
 from epstein_files.util.logging import logger
 
 # Email bod regexes
@@ -61,6 +61,7 @@ TIMESTAMP_LINE_REGEX = re.compile(r"\d+:\d+")
 # numbers
 MAX_NUM_HEADER_LINES = 14
 MAX_QUOTED_REPLIES = 1
+NUM_LINES_TO_REPAIR_HEADERS = 6
 NUM_WORDS_IN_LAST_QUOTE = 6
 
 # TODO: Copy display_text?
@@ -703,6 +704,10 @@ class Email(Communication):
 
     def _repair(self) -> None:
         """Repair particularly janky files. Note that OCR_REPAIRS are applied *after* other line adjustments."""
+        # for line in self.lines[0:NUM_LINES_TO_REPAIR_HEADERS]:
+        #     if HEADER_REPAIR_REGEX.match(line):
+        #         self._warn(f'reparable header line: {quote(line)}')
+
         super()._repair()
 
         # Apply custom repairs for DOJ files
