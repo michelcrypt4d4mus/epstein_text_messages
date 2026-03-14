@@ -60,7 +60,7 @@ class Communication(Document):
         cfg = super().config
 
         if cfg and not isinstance(cfg, CommunicationCfg):
-            self.warn(f"Found config that's the wrong type! {repr(cfg)}")
+            self._warn(f"Found config that's the wrong type! {repr(cfg)}")
             cfg = cast(CommunicationCfg, cfg)
 
         return cfg

@@ -175,7 +175,7 @@ class DocCfg(LoggingEntity):
         if self.id in self.duplicate_ids:
             raise ValueError(f"{self.id} is a duplicate of itself!")
         elif 'efta' in self.id:
-            logger.warning(f"{self.id} is lowercase")
+            self._warn(f"id should not be lowercase: '{self.id}'")
             self.id = self.id.upper()
 
         if self.highlight_quote:
@@ -201,6 +201,7 @@ class DocCfg(LoggingEntity):
     @classmethod
     def describe(cls, id: str, description: str, **kwargs) -> Self:
         """Alternate constructor for a config with a description."""
+        # TODO: VScode find / replace expression attempts to update DocCfg objs to use this method
         # TODO: find expression: (Doc|Email)Cfg\(id=('\w+'), description=(f?'.*?')\),
         # TODO:         replace: $1Cfg.describe($2, $3),
         return cls(id=id, description=description, **kwargs)
@@ -217,7 +218,7 @@ class DocCfg(LoggingEntity):
 
     @property
     def char_range(self) -> CharRange | None:
-        """`truncate_to` as (0, value) tuple if it's an int value."""
+        """`truncate_to` as `(0, truncate_to)` tuple if truncate_to is an `int`."""
         if args.whole_file or self.truncate_at in [None, NO_TRUNCATE]:
             return None
         elif isinstance(self.truncate_at, int):
@@ -291,20 +292,22 @@ class DocCfg(LoggingEntity):
 
     @property
     def external_link(self) -> ExternalLink | None:
+        """Link to more info about this document (almost unused)."""
         return ExternalLink(self.url, self.url_link_text) if self.url else None
 
     @property
     def external_link_txt(self) -> Text | None:
+        """Link to more info about this document (almost unused)."""
         return self.external_link.domain_link if self.external_link else None
 
     @property
     def has_any_info(self) -> bool:
-        """True if either author or description is set."""
+        """True if either `author` or `description` is truthy."""
         return bool(self.description or self.author)
 
     @property
     def text_highlighter(self) -> 'EpsteinHighlighter':
-        """Custom highlighter with `self.highlight_quote` pattern (if that prop is set)."""
+        """Use a custom highlighter that also colors `self.highlight_quote` string if set."""
         from epstein_files.output.epstein_highlighter import highlighter, temp_highlighter
 
         if self.highlighted_pattern:
@@ -314,11 +317,8 @@ class DocCfg(LoggingEntity):
 
     @property
     def highlighted_pattern(self) -> str | None:
+        """Regex pattern that matches `self.highlight_quote` string, allowing for line breaks etc."""
         return re.escape(self.highlight_quote).replace(r'\ ', r"\s+") if self.highlight_quote else None
-
-    @property
-    def is_attribution_uncertain(self) -> bool:
-        return bool(self.author_uncertain)
 
     @property
     def is_empty(self) -> bool:
@@ -361,18 +361,21 @@ class DocCfg(LoggingEntity):
                 [+] = interesting  /  - = uninteresting
 
             [+] is_interesting (+ is_in_chrono if --output-chrono in effect)
-            [+] highlight_quote
-            [+] INTERESTING_AUTHORS
+            [+] highlight_quote is set
+            [+] author in PERSONS_OF_INTEREST
+            [+] category is in Interesting enum
             [+] having no author/description *if* HOUSE_OVERSIGHT
              -  duplicates
              -  known email attachments
-             -  is_uninteresting
-             -  descriptions with UNINTERESTING_PREFIXES
-             -  finance category with any author
+             -  is_interesting == False (not None)
+             -  finance category with any author (more broadly "Neutral categories can check bespoke additional conditions")
+             -  category in Uninteresting enum
+             -  description text starts with one of UNINTERESTING_PREFIXES
+
         """
         if self.duplicate_of_id:
             return False
-        elif self.attached_to_email_id and (args.output_chrono or args.output_emails):
+        elif self.attached_to_email_id and (args.output_chrono or args.output_emails):  # TODO: not sure whether it's good always exclude attachments
             return False
         elif args.output_chrono and self.is_in_chrono is not None:
             return self.is_in_chrono
@@ -380,20 +383,18 @@ class DocCfg(LoggingEntity):
             return self.is_interesting
         elif self.highlight_quote:
             return True
-
-        # Author check  # NOTE: this only applies to configured authors or derived_cfg! so other files but not most emails
-        if self.author and self.author in PERSONS_OF_INTEREST:
+        # author related checks  # NOTE: this only applies to configured authors or derived_cfg! so other files but not most emails
+        elif self.author and self.author in PERSONS_OF_INTEREST:
             return True
         # category field checks
-        if is_interesting(self.category):
+        elif is_interesting(self.category):
             return True
         elif self.category == Category.FINANCE and self.author is not None:  # TODO: boothbay and other pitch decks should be of interest
             return False
         elif is_uninteresting(self.category):
             return False
-
         # description field checks
-        if any (self.description.startswith(pfx) for pfx in UNINTERESTING_PREFIXES):
+        elif any (self.description.startswith(pfx) for pfx in UNINTERESTING_PREFIXES):
             return False
 
         return None
@@ -403,13 +404,13 @@ class DocCfg(LoggingEntity):
         metadata = {k: v for k, v in asdict(self).items() if v and k not in NON_METADATA_FIELDS}
 
         if self.is_interesting is False:
-            metadata['is_interesting'] = False
+            metadata['is_interesting'] = False  # Configured False is valid signal
 
         return metadata
 
     @property
     def recipients_str(self) -> str:
-        """Overloaded in subclasses that support recipients."""
+        """Overloaded in subclasses that support recipients."""   # TODO: this shouldn't have to be here
         return ''
 
     # @property
@@ -499,7 +500,7 @@ class DocCfg(LoggingEntity):
         if not self.category:
             return
         elif not is_category(self.category):
-            logger.warning(f"'{self.category}' does not appear to be a valid category")
+            self._warn(f"'{self.category}' does not appear to be a valid category")
 
         if self.category == Category.FLIGHT_LOG and not self.display_text:
             self.display_text ='flight log'

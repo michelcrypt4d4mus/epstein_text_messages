@@ -222,6 +222,7 @@ DEBUG_PROPS = METADATA_FIELDS + [
 class Email(Communication):
     """
     Attributes:
+
         attached_docs (list[OtherFile]): any attachments that exist as `OtherFile` objects
         actual_text (str): Best effort at the text actually sent in this email, excluding quoted replies and forwards.
         derived_cfg (EmailCfg): EmailCfg that was built instead of coming from CONFIGS_BY_ID
@@ -230,6 +231,7 @@ class Email(Communication):
         sent_from_device (str, optional): "Sent from my iPhone" style signature (if it exists).
         signature_substitution_counts (dict[str, int]): Number of times a signature was replaced with
             <...snipped...> per name
+
         _line_merge_arguments (list[tuple[int] | tuple[int, int]]): preconfigured list of line merges that will fix up
             files from the HOUSE_OVERSIGHT_ collection in memory while leaving the source files untouched
         _was_split_up (bool, optional): True if this file Email was one of the big ones that was split into pieces
@@ -255,7 +257,7 @@ class Email(Communication):
 
         for signature, name in KNOWN_SIGNATURES.items():
             if self.has_unknown_participant and signature.lower() in self.text.lower():
-                self.warn(f"Found known signature for {name} in unattributed email.")
+                self._warn(f"Found known signature for {name} in unattributed email.")
 
     @property
     def attachment_file_ids(self) -> list[str]:
@@ -290,11 +292,16 @@ class Email(Communication):
                     extracted_cfg_val = getattr(extracted_from_cfg, prop)
                     setattr(self.derived_cfg, prop, derived_cfg_val or extracted_cfg_val)
 
-                self.log(f"Constructed synthetic config: {self.derived_cfg}")
+                self._log(f"Constructed synthetic config: {self.derived_cfg}")
 
             return self.derived_cfg or this_file_cfg
         else:
             return super().config
+
+    @property
+    def _config(self) -> EmailCfg:
+        # TODO: annoying to unnecessarily override superclass just to get python to understanding the types
+        return self.config or self.dummy_cfg()
 
     @property
     def display_text(self) -> str:
@@ -357,7 +364,7 @@ class Email(Communication):
 
     @property
     def is_interesting(self) -> bool | None:
-        """Junk emails are not interesting."""
+        """Junk emails are not interesting, configured value takes precedence, fallback to EMAILERS_OF_INTEREST check."""
         if self.is_mailing_list:
             return False
         elif (is_interesting := super().is_interesting) is not None:
@@ -376,15 +383,11 @@ class Email(Communication):
     @property
     def is_word_count_worthy(self) -> bool:
         """True if this file should be included in word counts."""
-        if self.is_fwded_article or self.is_mailing_list:
-            return False
-        else:
-            return True
+        return not(self.is_fwded_article or self.is_mailing_list)
 
     @property
     def metadata(self) -> Metadata:
-        metadata = super().metadata
-        metadata.update(self.truthy_props(METADATA_FIELDS))
+        metadata = {**super().metadata, **self.truthy_props(METADATA_FIELDS)}
 
         if not self.header.is_empty:
             metadata['header'] = self.header.as_dict()
@@ -402,11 +405,11 @@ class Email(Communication):
     @property
     def prettified_txt(self) -> Text:
         """Overrides superclass.Cleaned up / formatted Text ready to be displayed."""
-        # always show the email header even if there's a configurated truncate_to that trims it out
         if self._config.char_range and self._config.char_range[0] > 0:
             if self._config.char_range[0] < self.email_parts.header_len:
-                self.warn(f"The excerpt appears to start in the email header which will may in duplicate header chars")
+                self._warn(f"The excerpt appears to start in the email header which will may in duplicate header chars")
 
+            # always show the email header even if only a configured excerpt is being displayed
             return self.email_parts.header_txt.append('\n\n').append(super().prettified_txt)
         else:
             return super().prettified_txt
@@ -417,20 +420,19 @@ class Email(Communication):
 
     @property
     def subheader(self) -> Text:
-        prefix = 'fwded article' if self.is_fwded_article else 'email'
+        """String describing this email including author, recipients, and timestamp."""
         author_txt = self.author_txt
 
-        if self.config and self.config.is_attribution_uncertain:
+        if self._config.author_uncertain:
             author_txt += Text(f" {QUESTION_MARKS}", style=self.author_style)
 
+        prefix = 'fwded article' if self.is_fwded_article else 'email'
         return site_config.email_subheader(prefix, author_txt, self.recipients_txt(), self.timestamp)
 
     @property
     def subject(self) -> str:
-        if self.config and self.config.subject:
-            return self.config.subject
-        else:
-            return self.header.subject or ''
+        """String in the Subject: header line."""
+        return self._config.subject or self.header.subject or ''
 
     @property
     def uninteresting_txt(self) -> Text | None:
@@ -443,10 +445,10 @@ class Email(Communication):
 
     @property
     def _summary(self) -> Text:
-        """One line summary for logging only."""
+        """Append the recipients to Document._summary() and close the bracket."""
         txt = self._summary_with_author
 
-        if len(self.recipients) > 0:
+        if self.recipients:
             txt.append(', ').append(styled_key_value('recipients', self.recipients_txt()))
 
         return txt.append(CLOSE_PROPERTIES_CHAR)
@@ -487,14 +489,14 @@ class Email(Communication):
         # Remove self CCs but preserve self emails
         if not (self.is_note_to_self(recipients) or self.author is None):
             if self.author in self.recipients:
-                self.log(f"Removing email to self for {self.author}")
+                self._log(f"Removing email to self for {self.author}")
 
             recipients = [r for r in recipients if r != self.author]
 
         return sort_names(recipients)
 
     def extract_timestamp(self) -> datetime:
-        """Find the time this email was sent."""
+        """Find the time this email was sent by attempting to parse the headers."""
         if self.header.sent_at and (timestamp := _parse_email_timestamp(self.header.sent_at)):
             return timestamp
 
@@ -631,7 +633,7 @@ class Email(Communication):
             return self.text
 
         self._log_top_lines(20, "Raw text:", logging.DEBUG)
-        self.log(f"With {self.header.num_header_rows} header lines removed:\n{text[0:500]}\n\n", logging.DEBUG)
+        self._log(f"With {self.header.num_header_rows} header lines removed:\n{text[0:500]}\n\n", logging.DEBUG)
         reply_text_match = REPLY_TEXT_REGEX.search(text)
 
         if reply_text_match:
@@ -750,14 +752,14 @@ class Email(Communication):
                     pass
                 elif (subject.endswith(next_line) and next_line != subject) \
                         or (HEADER_FIELD_COLON_REGEX.search(next_next) and not HEADER_FIELD_COLON_REGEX.search(next_line)):
-                    self.log(f"Fixing broken subject line\n  line: '{line}'\n    next: '{next_line}'\n    next: '{next_next}'\nsubject='{subject}'\n")
+                    self._log(f"Fixing broken subject line\n  line: '{line}'\n    next: '{next_line}'\n    next: '{next_next}'\nsubject='{subject}'\n")
                     line += f" {next_line}"
                     i += 1
 
             new_lines.append(line)
             i += 1
 
-        self.debug_log(f"----after line repair---\n" + '\n'.join(new_lines[0:20]) + "\n---")
+        self._debug_log(f"----after line repair---\n" + '\n'.join(new_lines[0:20]) + "\n---")
         self._set_text(lines=new_lines)
 
     def _sent_from_device(self) -> str | None:
@@ -775,11 +777,11 @@ class Email(Communication):
     def _format_newlines_and_snip_signatures(self) -> None:
         """Add newlines before quoted replies, snip signatures and XML, etc.."""
         # Insert line breaks now unless header is broken, in which case we'll do it later after fixing header
-        # self.(f"text before _add_line_breaks:\n\n{self.text}\n---")
+        # self._debug_log(f"text before _add_line_breaks:\n\n{self.text}\n---")
         text = self.text if self.header.was_initially_empty else _add_line_breaks(self.text)
         text = REPLY_REGEX.sub(r'\n\1', text)  # Newlines between quoted replies
         text = FORWARDED_TOO_MUCH_SPACE_REGEX.sub(r'\1\n', text)
-        # self.warn(f"text after _add_line_breaks:\n\n{text}\n---")
+        # self._debug_log(f"text after _add_line_breaks:\n\n{text}\n---")
 
         for name, signature_regex in EMAIL_SIGNATURE_REGEXES.items():
             signature_replacement = f'<...snipped {name.lower()} email signature...>'
@@ -791,7 +793,7 @@ class Email(Communication):
         text, num_plists_stripped = XML_PLIST_REGEX.subn(XML_STRIPPED_MSG, text)
 
         if num_plists_stripped:
-            self.log(f"Replaced {num_plists_stripped} XML plists...")
+            self._log(f"Replaced {num_plists_stripped} XML plists...")
 
         self._set_text(text=collapse_newlines(text).strip())
         self._remove_bad_lines()  # TODO: we're currently calling this twice to handle lines with HTML garbage that turn into something matching BAD_LINE_REGEX
@@ -806,7 +808,7 @@ class Email(Communication):
             num_chars = len(self.text)
         elif args.truncate:
             num_chars = args.truncate
-        elif self.config and (truncate_at := self.config.truncate_at):
+        elif (truncate_at := self._config.truncate_at):
             if self.config.is_excerpt:
                 raise ValueError(f"Emails don't support truncate_to as a tuple")
 
@@ -838,7 +840,7 @@ class Email(Communication):
             # Always print whole email for 1st email for actual people
             if self.is_persons_first_email and num_chars < self.length and \
                     not (self.is_duplicate or self.is_fwded_article or self.is_mailing_list):
-                self.log(f"{self} Overriding cutoff {num_chars} for first email")
+                self._log(f"{self} Overriding cutoff {num_chars} for first email")
                 num_chars = self.length + 100
 
         log_args = {
@@ -852,7 +854,7 @@ class Email(Communication):
         }
 
         log_args_str = ', '.join([f"{k}={v}" for k, v in log_args.items() if v])
-        self.log(f"Truncate determination: {log_args_str}")
+        self._log(f"Truncate determination: {log_args_str}")
         return num_chars
 
     def __bespoke_repair_house_oversight_emails(self) -> None:
@@ -875,7 +877,7 @@ class Email(Communication):
             self._remove_line(3)
 
         if old_text != self.text:
-            self.log(f"Modified text, old:\n\n" + '\n'.join(old_text.split('\n')[0:12]) + '\n')
+            self._log(f"Modified text, old:\n\n" + '\n'.join(old_text.split('\n')[0:12]) + '\n')
             self._log_top_lines(12, 'Result of modifications')
 
     def __rich_console__(self, console: Console, options: ConsoleOptions) -> RenderResult:

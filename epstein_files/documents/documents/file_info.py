@@ -16,6 +16,7 @@ from epstein_files.util.helpers.file_helper import (coerce_file_stem, coerce_url
 from epstein_files.util.helpers.link_helper import link_text_obj, parenthesize
 from epstein_files.util.helpers.rich_helpers import no_bold
 from epstein_files.util.logging import logger
+from epstein_files.util.logging_entity import LoggingEntity
 
 FILE_PROPS = [
     'file_id',
@@ -28,9 +29,10 @@ FILE_PROPS = [
 
 
 @dataclass
-class FileInfo:
+class FileInfo(LoggingEntity):
     """
     Attributes:
+
         local_path (Path): local path of the document's underlying .txt file
         doj_2026_dataset_id (int, optional): DataSet number for DOJ files
         file_id (str): file_id (str): ID string - 6 numbers with zero padding for HOUSE_OVERSIGHT, full EFTAXXXXX for DOJ files
@@ -47,7 +49,7 @@ class FileInfo:
             if (data_set_match := DOJ_DATASET_ID_REGEX.search(str(self.local_path))):
                 self.doj_2026_dataset_id = int(data_set_match.group(1))
             else:
-                self.warn(f"Couldn't find a data set ID in path '{self.local_path}'! Cannot create valid links.")
+                self._warn(f"Couldn't find a data set ID in path '{self.local_path}'! Cannot create valid links.")
 
     @property
     def as_dict(self) -> dict[str, str | Path]:
@@ -84,7 +86,7 @@ class FileInfo:
         try:
             return file_size(self.local_path) if self.has_file else -1
         except FileNotFoundError as e:
-            self.warn(str(e))
+            self._warn(str(e))
             return -1
 
     @property
@@ -149,6 +151,11 @@ class FileInfo:
         urls = {k: (v if v.startswith('http') else f"https://{v}") for k, v in urls.items()}
         return urls
 
+    @property
+    def _log_prefix(self) -> str:
+        """LoggingEntity required method"""
+        return self.file_stem
+
     def epsteinify_link(self, style: str = ARCHIVE_LINK_COLOR, link_txt: str = '') -> Text:
         return self._build_link(epsteinify_doc_url, style, link_txt)
 
@@ -191,10 +198,6 @@ class FileInfo:
         base_txt = Text('', style='white' if with_alt_links else ARCHIVE_LINK_COLOR)
         return base_txt.append(join_texts(links))
 
-    def log(self, msg: str, level: int = logging.INFO):
-        """Log a message with with this document's filename as a prefix."""
-        logger.log(level, f"{self.file_stem} {msg}")
-
     def open(self) -> None:
         open_file_or_url(self.local_path)
 
@@ -203,10 +206,6 @@ class FileInfo:
             open_file_or_url(self.local_pdf_path)
         else:
             raise RuntimeError(f"No PDF for {self.file_stem}!")
-
-    def warn(self, msg: str) -> None:
-        """Print a warning message prefixed by info about this `file_id`."""
-        self.log(msg, level=logging.WARNING)
 
     def _build_link(self, fxn: Callable[[str], str], style: str = ARCHIVE_LINK_COLOR, link_txt: str = '') -> Text:
         return link_text_obj(fxn(self.url_slug), link_txt or self.file_stem, style)

@@ -168,7 +168,7 @@ class OtherFile(Document):
                     if len(timestamps) >= MAX_EXTRACTED_TIMESTAMPS:
                         break
             except ValueError as e:
-                self.warn(f"{e}\nError iterating over dateutil.find_dates(), using {len(timestamps)} timestamps found so far")
+                self._warn(f"{e}\nError iterating over dateutil.find_dates(), using {len(timestamps)} timestamps found so far")
 
         return self._choose_extracted_timestamp(timestamps)
 
@@ -195,7 +195,7 @@ class OtherFile(Document):
         if days_spanned > MAX_DAYS_SPANNED_TO_LOG_TOP_LINES:
             self._log_top_lines(10, msg=log_msg, level=logging.DEBUG)
         else:
-            self.debug_log(log_msg)
+            self._debug_log(log_msg)
 
         return timestamp
 

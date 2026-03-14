@@ -21,7 +21,7 @@ for id, row in load_files_csv().items():
 
     if doc_device != csv_device:
         doc_ids_to_fix.append(doc.file_id)
-        doc.warn(f"Extracted device doesn't match CSV!\n  doc: \"{doc_device}\"\n  csv: \"{csv_device}\"")
+        doc._warn(f"Extracted device doesn't match CSV!\n  doc: \"{doc_device}\"\n  csv: \"{csv_device}\"")
     else:
         console.print(f"{id} matches", style='green')
 

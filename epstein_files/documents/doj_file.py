@@ -325,7 +325,7 @@ class DojFile(OtherFile):
         number_only_line_count = len(self.lines) - len(non_number_lines)
 
         if number_only_line_count > 20:
-            self.warn(f"Reduced line count from {len(self.lines)} to {len(non_number_lines)} by stripping number only lines")
+            self._warn(f"Reduced line count from {len(self.lines)} to {len(non_number_lines)} by stripping number only lines")
             self._set_text(lines=non_number_lines)
 
     def _repair(self) -> None:

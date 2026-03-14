@@ -149,7 +149,7 @@ def rich_to_html(
     maximize_width: bool = False,
     html_console: Console = DEFAULT_HTML_CONSOLE,
 ) -> str:
-    """Convert a rich `RenderableType` object to an HTML string."""
+    """Convert a rich `RenderableType` object to an HTML string by exporting it through a rich Console."""
     props = props or {}
     html_console.print()
     old_console_width = html_console.width
@@ -162,8 +162,8 @@ def rich_to_html(
     elif maximize_width:
         html_console.width = 1024
 
-    if html_console.width != old_console_width:
-        logger.debug(f"Temporarily set console width to {html_console.width}")
+    # if html_console.width != old_console_width:
+    #     logger.debug(f"Temporarily set console width to {html_console.width}")
 
     html_console.print(obj, end='')
     html_text = console_buffer_to_html(html_console)

@@ -34,7 +34,7 @@ class DropsiteEmail(Email):
 
         for header in self.eml.keys():
             if header not in DEFAULT_EML_HEADERS:
-                self.warn(f"unexpected header {header}: '{self.eml[header]}'")
+                self._warn(f"unexpected header {header}: '{self.eml[header]}'")
 
         return EmailHeader(
             author=self.eml['from'],

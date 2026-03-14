@@ -60,17 +60,17 @@ class MessengerLogPdf(MessengerLog):
             elif self.file_id == 'EFTA00508054' and sender == 'Lawrence':
                 sender = LAWRENCE_KRAUSS
             elif not VALID_SENDER_REGEX.search(sender):
-                self.log(f"text message sender '{sender}' is not a valid name")
+                self._log(f"text message sender '{sender}' is not a valid name")
                 sender = None
 
             if JUNK_SUFFIX_REGEX.search(msg):
-                self.debug_log(f"Found junk suffixes in message, removing. msg:\n-----\n{msg}\n-----")
+                self._debug_log(f"Found junk suffixes in message, removing. msg:\n-----\n{msg}\n-----")
                 msg = JUNK_SUFFIX_REGEX.sub('', msg).strip()
 
                 if msg:
-                    self.debug_log(f"Text message stripped of junk suffixes:\n-----\n{msg}\n-----\n")
+                    self._debug_log(f"Text message stripped of junk suffixes:\n-----\n{msg}\n-----\n")
                 else:
-                    self.debug_log(f"Text stripped of junk suffixes is empty!")
+                    self._debug_log(f"Text stripped of junk suffixes is empty!")
 
             text_message = TextMessagePdf(
                 author=sender,
@@ -80,17 +80,17 @@ class MessengerLogPdf(MessengerLog):
             )
 
             if msgs and text_message == msgs[-1]:
-                self.log(f"Parsed TextMessage is the same as the last one, skipping...\n")
+                self._log(f"Parsed TextMessage is the same as the last one, skipping...\n")
                 continue
             else:
                 if msg:
-                    self.log(f'adding TextMsg: {text_message.__rich__().plain}')
-                    # self.log(f"Found sender='{sender}', timestamp_str='{timestamp_str}', msg={quote(msg)}")
+                    self._log(f'adding TextMsg: {text_message.__rich__().plain}')
+                    # self._log(f"Found sender='{sender}', timestamp_str='{timestamp_str}', msg={quote(msg)}")
                 else:
-                    self.warn(f"Skipping empty text message match from {sender} at {timestamp_str}...")
+                    self._warn(f"Skipping empty text message match from {sender} at {timestamp_str}...")
 
                 capture_group_msgs = [f"[{g}] '" + quote(match.group(g).replace('\n', ' ').strip()) + "'" for g in MATCH_GROUPS]
-                self.debug_log(f"[raw capture groups]\n\n{indented(capture_group_msgs, 8)}\n")
+                self._debug_log(f"[raw capture groups]\n\n{indented(capture_group_msgs, 8)}\n")
 
                 if not msg:
                     continue

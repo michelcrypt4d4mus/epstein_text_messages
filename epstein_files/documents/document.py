@@ -42,6 +42,7 @@ from epstein_files.util.helpers.link_helper import link_text_obj
 from epstein_files.util.helpers.file_helper import coerce_file_path, file_size_str, file_size_to_str
 from epstein_files.util.helpers.string_helper import collapse_newlines, doublespace_lines, join_truthy, quote, snip_msg, timestamp_without_zero_hour
 from epstein_files.util.logging import DOC_TYPE_STYLES, FILENAME_STYLE, logger
+from epstein_files.util.logging_entity import LoggingEntity
 
 CHECK_LINK_FOR_DETAILS = 'not shown here, check original PDF for details'
 CLOSE_PROPERTIES_CHAR = ']'
@@ -94,7 +95,7 @@ T = TypeVar('T', bound=str | Text)
 
 
 @dataclass
-class Document:
+class Document(LoggingEntity):
     """
     Base class for all Epstein Files documents.
 
@@ -246,14 +247,6 @@ class Document:
         return without_falsey([self.subheader, self.config_description_txt])
 
     @property
-    def is_attachment(self) -> bool:
-        return bool(self.config and self.config.attached_to_email_id)
-
-    @property
-    def is_attribution_uncertain(self) -> bool:
-        return bool(self.config and self.config.is_attribution_uncertain)
-
-    @property
     def is_duplicate(self) -> bool:
         return bool(self.duplicate_of_id)
 
@@ -270,21 +263,27 @@ class Document:
     @property
     def is_interesting(self) -> bool | None:
         """
-        If `self.config.is_of_interest` returns a bool use that, otherwise house oversight files are
-        interesting if they are empty and uninteresting authors are uninteresting.
-        Checking of `TEXTERS_OF_INTEREST` etc. is left to the relevant subclass in cases where this
-        function returns None.
+        If `self.config.is_of_interest` returns a boolean (not `None`) return that, otherwise:
+
+            1. this doc is attached to an `Email`:                             false     (the interestingness of the `Email` decides)
+            2. `self.author` in `UNINTERESTING_AUTHORS`:                       false
+            3. `HOUSE_OVERSIGHT_XXXXX` files with no author or `DocCfg`:      **TRUE**
+            4. the configured `show_with_name` in PERSONS_OF_INTEREST:        **TRUE**
+
+        `None` is returned if no decision is made so subclasses can append additional conditions.
         """
-        if self.config and (is_of_interest := self.config.is_of_interest) is not None:
+        if (is_of_interest := self._config.is_of_interest) is not None:
             return is_of_interest
-        elif self.is_attachment:
+        elif self._config.attached_to_email_id:
             return False
         elif self.author in UNINTERESTING_AUTHORS:
             return False
         elif self.file_info.is_house_oversight_file and not (self.author or self.config):
             return True
-        elif self.config and self.config.show_with_name in PERSONS_OF_INTEREST:
+        elif self._config.show_with_name in PERSONS_OF_INTEREST:
             return True
+        else:
+            return None
 
     @property
     def length(self) -> int:
@@ -315,11 +314,8 @@ class Document:
         """Time or date shown in the `title` of the enclosing `Panel` when printing this `Document`."""
         if self.timestamp is None or self.timestamp == FALLBACK_TIMESTAMP:
             return ''
-        elif self.config and self.config.timestamp:
-            if self.config.date_uncertain:
-                prefix = 'approximate'
-            else:
-                prefix = ''
+        elif self._config.timestamp:
+            prefix = 'approximate' if self._config.date_uncertain else ''
         else:
             prefix = 'inferred'
 
@@ -379,10 +375,8 @@ class Document:
 
     @property
     def timestamp(self) -> datetime | None:
-        if self.config and self.config.timestamp:
-            return self.config.timestamp
-        else:
-            return self.extracted_timestamp
+        """Configuration timestamp takes precedence over extracted / derived timestamp."""
+        return self._config.timestamp or self.extracted_timestamp
 
     @property
     def timestamp_sort_key(self) -> tuple[datetime, str, int]:
@@ -399,11 +393,12 @@ class Document:
     @property
     def uninteresting_txt(self) -> Text | None:
         """Text to print for uninteresting files."""
-        if self.config:
-            if self.config.attached_to_email_id:
-                return self._skipped_file_txt(f"attached to {self.config.attached_to_email_id}")
-            elif args._suppress_uninteresting and self.config.is_interesting is False:
-                return self._skipped_file_txt("uninteresting")
+        if self._config.attached_to_email_id:
+            return self._skipped_file_txt(f"attached to {self._config.attached_to_email_id}")
+        elif args._suppress_uninteresting and self._config.is_interesting is False:
+            return self._skipped_file_txt("uninteresting")
+        else:
+            return None
 
     @property
     def _class_name(self) -> str:
@@ -416,6 +411,11 @@ class Document:
     @property
     def _debug_prefix(self) -> str:
         return underscore(self._class_name).lower()
+
+    @property
+    def _log_prefix(self) -> str:
+        """`LoggingEntity` required abstract method."""
+        return f"{self.file_id} {self._class_name}"
 
     @property
     def _summary(self) -> Text:
@@ -448,9 +448,6 @@ class Document:
 
     def colored_external_links(self) -> Text:
         return self.file_info.build_external_links(with_alt_links=True)
-
-    def debug_log(self, msg: str) -> None:
-        self.log(msg, logging.DEBUG)
 
     def excerpt_text(self, char_range: CharRange | None = None, text: str = '', style = '') -> Text:
         """Create an excerpt of `text`, add appropriate header/footer if truncated, and highlight it."""
@@ -498,14 +495,10 @@ class Document:
         pattern = patternize(_pattern)
         return [MatchedLine(line, i) for i, line in enumerate(self.lines) if pattern.search(line)]
 
-    def log(self, msg: str, level: int = logging.INFO) -> None:
-        """Log a message with with this document's filename as a prefix."""
-        logger.log(level, f"{self.file_id} {self._class_name} {msg}")
-
     def print(self, whole_file: bool = False) -> None:
         """Print this object for some suppression message."""
-        if self.is_attachment:
-            self.warn(f"is an attachment and self.print() was calleed")
+        if self._config.attached_to_email_id:
+            self._warn(f"is an attachment and self.print() was calleed")
             return
         elif (suppressed_txt := self.suppressed_txt):
             console.print(Padding(suppressed_txt, site_config.suppressed_file_padding()))
@@ -563,10 +556,6 @@ class Document:
     def truthy_props(self, prop_names: list[str]) -> DebugDict:
         """Return key/value pairs but only if the value is truthy."""
         return {prop: getattr(self, prop) for prop in prop_names if getattr(self, prop)}
-
-    def warn(self, msg: str) -> None:
-        """Print a warning message prefixed by info about this `Document`."""
-        self.log(msg, level=logging.WARNING)
 
     def _debug_dict(self, as_txt: bool = False, with_prefixes: bool = True) -> DebugDict | Text:
         """Merge information about this document from `DocCfg`, `FileInfo`, etc. objs."""
@@ -627,7 +616,7 @@ class Document:
         """Log first 'n' lines of self.text at 'level'. 'msg' can be optionally provided."""
         separator = '\n\n' if '\n' in msg else '. '
         msg = (msg + separator) if msg else ''
-        self.log(f"{msg}First {n} lines of {self.file_id}:\n\n{self.top_lines(n)}\n", level)
+        self._log(f"{msg}First {n} lines of {self.file_id}:\n\n{self.top_lines(n)}\n", level)
 
     def _numbered_lines(self) -> str:
         """For logging."""
@@ -679,14 +668,14 @@ class Document:
 
         with open(output_path, 'w') as f:
             f.write(self.text)
-            self.log(f"Wrote {self.length} chars of self.text to '{output_path}'.")
+            self._log(f"Wrote {self.length} chars of self.text to '{output_path}'.")
 
     @contextmanager
     def _write_tmp_file(self) -> Generator[Path, None, None]:
         with NamedTemporaryFile(dir=self.file_path.parent) as tmp_doc_file:
             tmp_path = Path(tmp_doc_file.name)
             self._write_clean_text(tmp_path)
-            self.log(f"created tmp file '{tmp_doc_file.name}' ({file_size_str(tmp_path)})")
+            self._log(f"created tmp file '{tmp_doc_file.name}' ({file_size_str(tmp_path)})")
             yield Path(tmp_doc_file.name)
 
     def __rich_console__(self, console: Console, options: ConsoleOptions) -> RenderResult:
@@ -724,7 +713,7 @@ class Document:
             'count': str(file_count),
             'author_count': NA_TXT if is_author_na else str(author_count),
             'no_author_count': NA_TXT if is_author_na else str(file_count - author_count),
-            'uncertain_author_count': NA_TXT if is_author_na else str(len([f for f in files if f.is_attribution_uncertain])),
+            'uncertain_author_count': NA_TXT if is_author_na else str(len([f for f in files if f._config.author_uncertain])),
             'bytes': file_size_to_str(sum([f.file_info.file_size for f in files])),
         }
 

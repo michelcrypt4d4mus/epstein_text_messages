@@ -71,7 +71,7 @@ def write_files_csv():
 
             # if datetime.now().hour > 19 and doc.extracted_timestamp and str(doc.timestamp).endswith('00:00'):
             #     timestamp = timestamp - timedelta(days=1)
-            #     doc.warn(f"Rolling back timestamp written to CSV by one day to {timestamp.date()}...")
+            #     doc._warn(f"Rolling back timestamp written to CSV by one day to {timestamp.date()}...")
                 # timestamp.replace(tzinfo=timezone.utc)
                 # row['timestamp'] = timestamp.astimezone(timezone.utc)
 

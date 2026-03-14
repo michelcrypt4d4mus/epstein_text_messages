@@ -44,7 +44,7 @@ def split_up_dilorio_whistleblower_emails(dilorio_emails: list[Email]) -> list[E
             email.extracted_recipients = email.extracted_recipients or ['SEC']
 
             if not email.actual_text or email.lines[-1].startswith('Subject:'):
-                email.warn(f"skipping empty {email.author} email...")
+                email._warn(f"skipping empty {email.author} email...")
                 skipped.append(email)
                 continue
 

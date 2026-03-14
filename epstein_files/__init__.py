@@ -121,13 +121,13 @@ def epstein_grep():
             if (isinstance(doc, Email) and not args.output_emails) \
                     or (isinstance(doc, (DojFile, OtherFile)) and not args.output_other) \
                     or (isinstance(doc, MessengerLog) and not args.output_texts):
-                doc.log(f"{type(doc).__name__} Skipping search result...")
+                doc._log(f"{type(doc).__name__} Skipping search result...")
                 continue
             elif isinstance(doc, Email) and args.email_body:
                 lines = [l for l in search_result.lines if l.line_number > doc.header.num_header_rows]
 
                 if not lines:
-                    doc.log(f"None of the matches for '{search_term}' seem to be in the body of the email")
+                    doc._log(f"None of the matches for '{search_term}' seem to be in the body of the email")
                     continue
 
             if doc.is_duplicate:
