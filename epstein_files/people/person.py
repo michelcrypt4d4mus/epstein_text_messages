@@ -23,7 +23,7 @@ from epstein_files.output.highlighted_names import HighlightedNames, HighlightPa
 from epstein_files.output.layout_elements.file_display import FileDisplay
 from epstein_files.output.rich import (GREY_NUMBERS, TABLE_TITLE_STYLE, build_table, console, join_texts,
      print_centered, print_special_note)
-from epstein_files.people.contact import Entity
+from epstein_files.people.entity import Entity
 from epstein_files.people.interesting_people import SPECIAL_NOTES
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constant.urls import *
@@ -57,13 +57,16 @@ PEOPLE_BIOS = {
 
 @dataclass(kw_only=True)
 class Person(LoggingEntity):
-    """Collection of data about someone texting or emailing Epstein."""
+    """
+    Collects all known info and files connected to someone who is the author or recipient of at least one Epstein File
+    in one place along with methods to do things like format all that information for printing.
+    """
     contact: Entity = field(init=False)
     name: Name
     emails: list[Email] = field(default_factory=list)
     imessage_logs: list[MessengerLog] = field(default_factory=list)
-    other_files: list[OtherFile] = field(default_factory=list)
     is_uninteresting: bool = False
+    other_files: list[OtherFile] = field(default_factory=list)
     _searched_for_highlight_group: bool = False
 
     def __post_init__(self):

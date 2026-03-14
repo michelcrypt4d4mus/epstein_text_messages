@@ -15,7 +15,7 @@ from epstein_files.documents.documents.categories import (CATEGORY_STYLES, CATEG
 from epstein_files.documents.emails.constants import (EMAIL_HEADER_FIELD_PATTERNS, QUOTE_INDENT_CHAR_GROUP, REPLY_REGEX,
      SENT_FROM_REGEX, XML_STRIPPED_MSG)
 from epstein_files.output.highlighted_names import HighlightGroup, HighlightedNames, HighlightPatterns, ManualHighlight
-from epstein_files.people.contact import Entity, acronym, organization, epstein_co, epstein_trust, law_enforcement
+from epstein_files.people.entity import Entity, acronym, organization, epstein_co, epstein_trust, law_enforcement
 from epstein_files.people.names import *
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constant.urls import SUBSTACK_POST_INSIGHTSPOD_URL

@@ -1,7 +1,7 @@
 from rich.text import Text
 
 from epstein_files.documents.emails.emailers import CONTACTS_DICT
-from epstein_files.people.contact import Entity, acronym, organization, epstein_co, epstein_trust
+from epstein_files.people.entity import Entity, acronym, organization, epstein_co, epstein_trust
 from epstein_files.people.names import *
 
 NAME = 'Nasir Jones'

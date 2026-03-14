@@ -4,7 +4,7 @@ Constants and methods for identifying people in email headers.
 import re
 
 from epstein_files.output.highlight_config import HIGHLIGHTED_CONTACTS
-from epstein_files.people.contact import Entity, organization
+from epstein_files.people.entity import Entity, organization
 from epstein_files.people.names import *
 from epstein_files.util.constant.strings import REDACTED
 from epstein_files.util.helpers.data_helpers import escape_single_quotes, flatten
@@ -95,7 +95,6 @@ def extract_emailer_names(emailer_str: str) -> list[Name]:
             logger.info(f"Extracted {len(names_found)} names from semi-invalid '{emailer_str}': {names_found}...")
 
         return names_found
-
 
     names_found = [reverse_first_and_last_names(name) for name in (names_found or [emailer_str])]
     logger.debug(f"names_found in '{emailer_str}': {names_found}")

@@ -7,7 +7,7 @@ import re
 from abc import ABC
 from dataclasses import dataclass, field
 
-from epstein_files.people.contact import Entity
+from epstein_files.people.entity import Entity
 from epstein_files.people.names import Name, constantize_name
 from epstein_files.util.constant.strings import REGEX_STYLE_PREFIX
 from epstein_files.util.env import args

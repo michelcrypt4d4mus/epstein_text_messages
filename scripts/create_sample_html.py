@@ -16,7 +16,7 @@ from epstein_files.output.doc_printer import DocPrinter
 from epstein_files.output.html.builder import table_to_html, panel_to_div
 from epstein_files.output.site.sites import SiteType
 from epstein_files.output.output import write_html
-from epstein_files.people.contact import Entity
+from epstein_files.people.entity import Entity
 from epstein_files.people.person import Person
 from epstein_files.util.helpers.data_helpers import flatten
 from epstein_files.util.helpers.file_helper import open_file_or_url
