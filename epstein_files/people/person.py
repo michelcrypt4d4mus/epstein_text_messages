@@ -389,7 +389,6 @@ class Person(LoggingEntity):
 
         docs = Document.sort_by_timestamp(self._printable_emails + self.show_with_emails_docs)
         docs = [d.file_display(align='right') if isinstance(d, OtherFile) else d for d in docs]   # TODO this sucks
-        log_msg = f"Printing {len(docs)} documents for {self.name_str}..."
 
         # TODO this sucks
         for d in docs:
@@ -397,9 +396,7 @@ class Person(LoggingEntity):
                 d.indent = site_config.show_with_indent
 
         log_fxn = logger.warning if args.suppress_output else logger.debug
-        if args.suppress_output:
-            logger.warning(log_msg)
-
+        log_fxn(f"Printing {len(docs)} documents for {self.name_str}...")
         doc_printer.print_documents(docs)
         doc_printer.line(2)
         return self._printable_emails  # TODO: doesn't return FileDisplay objects that may have also been printed!
