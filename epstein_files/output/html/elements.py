@@ -68,6 +68,7 @@ def from_em(units: str | None) -> int | None:
 
 def build_html_list(elements: list[str], list_type: HtmlListTag = 'ul', **kwargs) -> str:
     txt_htmls = [tag('li', t) for t in elements]
+
     if not elements:
         logger.warning(f"No elements to make <{list_type}> for...")
         return ''

@@ -112,10 +112,10 @@ def one_row_table_html(table: Table, css_props: OptionalCssProps = None) -> str:
     body_html = render_to_html(Text('', style=col1.style).append(col1._cells[0]))
     body_div = div_class(body_html, PANEL_BODY_CSS_CLASS, PANEL_BASE_PROPS)
 
-    logger.warning(f"one_row_table_html(): border_style='{table.border_style}'")
-    logger.warning(f"                      css_props: {css_props}")
-    logger.warning(f"                      border_css_props: {border_css_props(table.border_style)}")
-    logger.warning(f"                      returning div with BLACK_BG__NO_EXPAND\n")
+    logger.debug(f"one_row_table_html(): border_style='{table.border_style}'")
+    logger.debug(f"                      css_props: {css_props}")
+    logger.debug(f"                      border_css_props: {border_css_props(table.border_style)}")
+    logger.debug(f"                      returning div with BLACK_BG__NO_EXPAND\n")
 
     return div_class(
         join_truthy(header_div, body_div, '\n'),
@@ -156,7 +156,7 @@ def panel_to_div(panel: Panel, css_props: OptionalCssProps) -> str:
         for prop in WIDTH_PROPS:
             inner_div_css[prop] = to_em(panel.width - MAKEUP_PADDING)
 
-    logger.warning(f"panel_to_div(): panel.style='{panel.style}', panel.border_style='{panel.border_style}'\n\n   inner_div_css props: {inner_div_css}\n\n    outer_div_css: {outer_div_css}\n")
+    logger.debug(f"panel_to_div(): panel.style='{panel.style}', panel.border_style='{panel.border_style}'\n\n   inner_div_css props: {inner_div_css}\n\n    outer_div_css: {outer_div_css}\n")
     inner_div = div_class(render_at_css_width(panel.renderable), 'panel inner_panel', inner_div_css)
     return div_class(inner_div, 'panel outer_panel', outer_div_css)
 
@@ -177,9 +177,9 @@ def render_at_css_width(obj: RenderableType, props: OptionalCssProps = None) -> 
     css_width = from_em(props.get('max-width', props.get('width')))
 
     if css_width:
-        logger.warning(f"render_at_css_width() extracted width of {css_width} from `props` arg CSS:\n   {props}\n")
+        logger.info(f"render_at_css_width() extracted width of {css_width} from `props` arg CSS:\n   {props}\n")
     else:
-        logger.info(f"no width found in CSS when render_at_css_width() called, no point in using this function.")
+        logger.debug(f"no width found in CSS when render_at_css_width() called, no point in using this function.")
 
     return _render_at_width(obj, css_width or HTML_RENDER_CONSOLE.width)
 
@@ -284,7 +284,7 @@ def table_to_html(table: Table, css_props: OptionalCssProps = None) -> str:
 def text_to_div(txt: Text, css_props: OptionalCssProps, class_name: str = BLACK_BG__NO_EXPAND) -> str:
     """Wrap a line or block of text in a plain black background div."""
     if css_props:
-        logger.warning(f"text_to_div() called with css_props arg:\n  {css_props}\n")
+        logger.info(f"text_to_div() called with css_props arg:\n  {css_props}\n")
 
     return div_class(render_at_css_width(txt), class_name, css_props)
 
