@@ -62,10 +62,10 @@ class Person(LoggingEntity):
     in one place along with methods to do things like format all that information for printing.
     """
     contact: Entity = field(init=False)
-    name: Name
     emails: list[Email] = field(default_factory=list)
     imessage_logs: list[MessengerLog] = field(default_factory=list)
     is_uninteresting: bool = False
+    name: Name
     other_files: list[OtherFile] = field(default_factory=list)
     _searched_for_highlight_group: bool = False
 
