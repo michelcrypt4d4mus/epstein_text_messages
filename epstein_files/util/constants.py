@@ -231,6 +231,7 @@ UNINTERESTING_EMAIL_IDS = [
     'EFTA01899565',
     # Ramsey Elkholy
     'EFTA02438522',  # visible elsewhere
+    'EFTA00658028',  # visible in EFTA00743526
     # Rasseck Bourgi
     'EFTA01990389',  # visible in EFTA01988194
     # Renata Bolotova

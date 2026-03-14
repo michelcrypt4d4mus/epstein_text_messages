@@ -196,6 +196,11 @@ class Document(LoggingEntity):
         return date_str(self.timestamp)
 
     @property
+    def char_range_to_display(self) -> CharRange | None:
+        """Index of first and last characters to show when printing this document."""
+        return self._config.char_range
+
+    @property
     def display_text(self) -> str:
         """Config overrides what text should be displayed."""
         return collapse_newlines(self._config.display_text or self.text)
@@ -351,15 +356,17 @@ class Document(LoggingEntity):
     @property
     def prettified_txt(self) -> Text:
         """Returns the string we want to print as the body of the document."""
-         # TODO: not ideal place for doublespace call
         display_text = doublespace_lines(self.display_text)
-        char_range = self._config.char_range or (0, self.length + 1)
         # TODO: do something better to give replacement_text have different style
         style = INFO_STYLE if self.config_display_text and len(self.config_display_text) < 300 else ''
-        selected_txt = self._config.text_highlighter(Text(display_text, style))[char_range[0]:char_range[1]]  # array slice of `Text` obj preserves style
+
+        # char range slice of Text late in the game here preserves Text highlighting at boundaries
+        char_range = self.char_range_to_display or (0, len(display_text))
+        selected_txt = self._config.text_highlighter(Text(display_text, style))[char_range[0]:char_range[1]]
         pretty_txt = self._intro_txt(char_range[0]).append(selected_txt)
 
-        if args.char_nums:    # For debugging/choosing truncation points
+        # For debugging/choosing truncation points only
+        if args.char_nums:
             pretty_txt = self._inject_line_numbers(pretty_txt, args.char_nums)
 
         if (footer_txt := self.trimmed_chars_txt(char_range[1])):

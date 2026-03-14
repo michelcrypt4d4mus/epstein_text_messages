@@ -803,8 +803,9 @@ class Email(Communication):
         self._set_text(text=collapse_newlines(text).strip())
         self._remove_bad_lines()  # TODO: we're currently calling this twice to handle lines with HTML garbage that turn into something matching BAD_LINE_REGEX
 
-    def _truncate_to_length(self) -> int | None:
-        """Decide how many chars we should limit the dislpay of this email to."""
+    @property
+    def char_range_to_display(self) -> CharRange | None:
+        """Override superclass to decide how many chars we should limit the dislpay of this email to."""
         quote_cutoff = self._idx_of_nth_quoted_reply()  # Trim if there's many quoted replies
         includes_truncate_term = next((term for term in TRUNCATE_TERMS if term in self.text), None)
         num_chars: int | None = None
@@ -814,7 +815,7 @@ class Email(Communication):
         elif args.truncate:
             num_chars = args.truncate
         elif self._config.char_range:
-            return self._config.char_range[1]
+            return self._config.char_range
         elif self.author in TRUNCATE_EMAILS_BY \
                 or any([self.is_from_or_to(n) for n in TRUNCATE_EMAILS_FROM_OR_TO]) \
                 or includes_truncate_term:
@@ -856,7 +857,7 @@ class Email(Communication):
 
         log_args_str = ', '.join([f"{k}={v}" for k, v in log_args.items() if v])
         self._debug_log(f"Truncate determination: {log_args_str}")
-        return num_chars
+        return None if num_chars is None else (0, num_chars)
 
     def __bespoke_repair_house_oversight_emails(self) -> None:
         """Apply destructive repairs to the underyling text programmtically because we don't want to edit the underlying file."""
