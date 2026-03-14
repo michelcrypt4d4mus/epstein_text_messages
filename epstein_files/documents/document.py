@@ -166,6 +166,10 @@ class Document(LoggingEntity):
         return self.config or self.dummy_cfg()
 
     @property
+    def colored_external_links(self) -> Text:
+        return self.file_info.build_external_links(with_alt_links=True)
+
+    @property
     def config_description(self) -> str:
         """Add parentheses to `self.config.description`."""
         return f"{self.config.description}" if self.config and self.config.description else ''
@@ -230,7 +234,7 @@ class Document(LoggingEntity):
     @property
     def file_id_panel(self) -> BasePanel:
         """The header panel printed before the body and subheaders with links and file ID etc."""
-        return BasePanel(border_style=self.border_style, text=self.colored_external_links())
+        return BasePanel(border_style=self.border_style, text=self.colored_external_links)
 
     @property
     def filename(self) -> str:
@@ -446,9 +450,6 @@ class Document(LoggingEntity):
             sentences += [Text('', style='italic').append(h) for h in self.info]
 
         return Panel(Group(*sentences), border_style=self._class_style, expand=False)
-
-    def colored_external_links(self) -> Text:
-        return self.file_info.build_external_links(with_alt_links=True)
 
     def excerpt_text(self, char_range: CharRange | None = None, text: str = '', style = '') -> Text:
         """Create an excerpt of `text`, add appropriate header/footer if truncated, and highlight it."""

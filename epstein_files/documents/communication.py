@@ -46,6 +46,11 @@ class Communication(Document):
         return no_bold(self.author_style)
 
     @property
+    def colored_external_links(self) -> Text:
+        """Overrides super() method to apply `self.author_style`."""
+        return self.file_info.build_external_links(self.recipient_style, with_alt_links=True)
+
+    @property
     def people(self) -> list[str]:
         """Names of people who either sent/received this email or are mentioned in it."""
         if self.config and self.config.people:  # TODO: this check also happens in superclass but still necessary here
@@ -107,10 +112,6 @@ class Communication(Document):
         """Append author information to `super().summary`, bracket is left open."""
         author_str = styled_key_value('author', Text(f"'{self.author_or_unknown}'", style=self.author_style))
         return super()._summary.append(', ').append(author_str)
-
-    def colored_external_links(self) -> Text:
-        """Overrides super() method to apply `self.author_style`."""
-        return self.file_info.build_external_links(self.recipient_style, with_alt_links=True)
 
     def extract_recipients(self) -> list[Name]:
         """Overload in subclasses"""
