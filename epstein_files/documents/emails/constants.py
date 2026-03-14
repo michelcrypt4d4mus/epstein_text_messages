@@ -10,50 +10,14 @@ from epstein_files.people.names import *
 from epstein_files.util.constant.strings import MONTHS, WEEKDAYS, REDACTED, RUSSIAN_WEEKDAYS
 from epstein_files.util.env import args
 from epstein_files.util.helpers.data_helpers import coerce_utc_strict
-from epstein_files.util.helpers.string_helper import join_patterns, or_equal_sign_char_group
+from epstein_files.util.helpers.string_helper import join_patterns, or_equal_sign_char_group, snip_msg
 from epstein_files.util.logging import logger
 
 FALLBACK_TIMESTAMP = coerce_utc_strict(parse("1/1/2051 12:01:01 AM"))
-XML_STRIPPED_MSG = '<...removed Apple XML plist...>'
 QUOTE_CHARS = '->»•'
 QUOTE_INDENT_CHAR_GROUP = fr'[{QUOTE_CHARS} ]'
 QUOTE_INDENT_GROUP_NEWLINES = fr'[{QUOTE_CHARS}\s]'
-
-# Reply line regexes
-ON_TIME_REPLY_PATTERNS = [
-    *[''.join(or_equal_sign_char_group(chr) for chr in month[:2]) for month in MONTHS],
-    *[''.join(or_equal_sign_char_group(chr) for chr in day[:3]) for day in WEEKDAYS]
-]
-
-FORWARDED_MSG_PATTERNS = [
-    r"Begin [Ff]orwarded [Mm]essage:?",
-    r"(Forwarded|Original)\s*[Mm]essa.e:?",
-    r"Message d'?origine",
-    r'Пересылаемое сообщение',  # Russian
-]
-
-REPLY_ON_DAY_MONTH_PATTERN = fr"(\d+ )?(({join_patterns(ON_TIME_REPLY_PATTERNS)})\w*)"
-FORWARDED_LINE_PATTERN = fr"[- ]*{join_patterns(FORWARDED_MSG_PATTERNS)}"
-FORWARDED_TOO_MUCH_SPACE_REGEX = re.compile(fr"^({FORWARDED_LINE_PATTERN})\n\n", re.MULTILINE | re.IGNORECASE)
-REPLY_LINE_ENDING_PATTERN = r"[_ \n]((?-i:[AP]M)|[<_]|w?rote:?)"
-REPLY_NUMERIC_DATE_PATTERN = fr"\d+[-/.][\d\w]+[-/.]\d+"
-REPLY_ON_DATE_PATTERN = join_patterns([REPLY_NUMERIC_DATE_PATTERN, REPLY_ON_DAY_MONTH_PATTERN])
-
-REPLY_PATTERNS = [
-    fr"(?<!M)On ({REPLY_ON_DATE_PATTERN})[=., ].*{REPLY_LINE_ENDING_PATTERN}",
-    FORWARDED_LINE_PATTERN,
-    r"At \d{2}:\d{2} [AP]M.*wrote:",
-    r"In a message dated \d+/\d+/\d+.*writes:",
-    r"Le .* a [eo](cr|m)it ?:?",                        # French
-    r"Am \d\d\.\d\d\..*schrieb.*",                      # German
-    r"[Il][Il] giorno .*scritto:",                      # Italian
-    r"(Den .* folgende|(fre|lor|son)\. .* skrev .*):",  # Norwegian
-    r"Dnia .*napisal\(a\):",                            # Polish
-    fr"({join_patterns(RUSSIAN_WEEKDAYS)}).*:",                # Russian
-]
-
-REPLY_LINE_PATTERN = fr"^({QUOTE_INDENT_CHAR_GROUP}*({join_patterns(REPLY_PATTERNS)}))"
-REPLY_REGEX = re.compile(REPLY_LINE_PATTERN, re.IGNORECASE | re.MULTILINE)
+XML_STRIPPED_MSG = snip_msg('removed Apple XML plist')
 
 # Header fields
 COMMON_HEADER_FIELDS = [
@@ -110,10 +74,46 @@ RUSSIAN_HEADER_PATTERNS = [
 FRENCH_HEADER_PATTERNS = [h + ' ?' for h in FRENCH_HEADER_PATTERNS]
 FOREIGN_HEADER_PATTERNS = FRENCH_HEADER_PATTERNS + GERMAN_HEADER_PATTERNS + RUSSIAN_HEADER_PATTERNS
 
-# TODO; parse [Il]nline-[Il]mages etc.
 EMAIL_HEADER_FIELD_PATTERNS = HEADER_FIELDS_PATTERNS + FOREIGN_HEADER_PATTERNS + [
-    r"[Il]nline-[Il]mages",
+    r"[Il]nline-[Il]mages",  # TODO; parse [Il]nline-[Il]mages etc.
 ]
+
+# Reply line regexes
+ON_TIME_REPLY_PATTERNS = [
+    *[''.join(or_equal_sign_char_group(chr) for chr in month[:2]) for month in MONTHS],
+    *[''.join(or_equal_sign_char_group(chr) for chr in day[:3]) for day in WEEKDAYS]
+]
+
+FORWARDED_MSG_PATTERNS = [
+    r"Begin [Ff]orwarded [Mm]essage:?",
+    r"(Forwarded|Original)\s*[Mm]essa.e:?",
+    r"Message d'?origine",
+    r'Пересылаемое сообщение',  # Russian
+]
+
+REPLY_ON_DAY_MONTH_PATTERN = fr"(\d+ )?(({join_patterns(ON_TIME_REPLY_PATTERNS)})\w*)"
+FORWARDED_LINE_PATTERN = fr"[- ]*{join_patterns(FORWARDED_MSG_PATTERNS)}"
+FORWARDED_TOO_MUCH_SPACE_REGEX = re.compile(fr"^({FORWARDED_LINE_PATTERN})\n\n", re.MULTILINE | re.IGNORECASE)
+REPLY_LINE_ENDING_PATTERN = r"[_ \n]((?-i:[AP]M)|[<_]|w?rote:?)"
+REPLY_NUMERIC_DATE_PATTERN = fr"\d+[-/.][\d\w]+[-/.]\d+"
+REPLY_ON_DATE_PATTERN = join_patterns([REPLY_NUMERIC_DATE_PATTERN, REPLY_ON_DAY_MONTH_PATTERN])
+
+REPLY_PATTERNS = [
+    fr"(?<!M)On ({REPLY_ON_DATE_PATTERN})[=., ].*{REPLY_LINE_ENDING_PATTERN}",
+    FORWARDED_LINE_PATTERN,
+    r"At \d{2}:\d{2} [AP]M.*wrote:",
+    r"In a message dated \d+/\d+/\d+.*writes:",
+    r"Le .* a [eo](cr|m)it ?:?",                        # French
+    r"Am \d\d\.\d\d\..*schrieb.*",                      # German
+    r"[Il][Il] giorno .*scritto:",                      # Italian
+    r"(Den .* folgende|(fre|lor|son)\. .* skrev .*):",  # Norwegian
+    r"Dnia .*napisal\(a\):",                            # Polish
+    fr"({join_patterns(RUSSIAN_WEEKDAYS)}).*:",                # Russian
+]
+
+REPLY_LINE_PATTERN = fr"^({QUOTE_INDENT_CHAR_GROUP}*({join_patterns(REPLY_PATTERNS)}))"
+REPLY_REGEX = re.compile(REPLY_LINE_PATTERN, re.IGNORECASE | re.MULTILINE)
+
 
 # DojFile specific repairs must be applied before checking doc.is_email
 DOJ_EMAIL_OCR_REPAIRS: dict[str | re.Pattern, str] = {
@@ -123,7 +123,8 @@ DOJ_EMAIL_OCR_REPAIRS: dict[str | re.Pattern, str] = {
     re.compile(r"^Fran:", re.MULTILINE): 'From:',
 }
 
-# "Sent from my iPhone" regexes
+
+# Device signatures ("Sent from my iPhone" regexes etc)
 SENT_FROM_DEVICE_PREFIXES = [
     r"Empower your Business",
     r"Envoy[ée] (avec|de mon)",
@@ -167,55 +168,8 @@ SENT_FROM_DEVICE_PATTERN = join_patterns([DEVICE_PATTERN] + SIGNATURE_PATTERNS)
 SENT_FROM_REGEX = re.compile(fr'^{EPSTEIN_TYPO_PREFIX}?({SENT_FROM_DEVICE_PATTERN})\.?( -*)?', re.MULTILINE | re.IGNORECASE)
 # print(SENT_FROM_REGEX.pattern)
 
-# Misc
-MAILING_LISTS = [
-    CAROLYN_RANGEL,
-    INTELLIGENCE_SQUARED,
-    JP_MORGAN_USGIO,
-    'middle.east.update@hotmail.com',
-]
 
-TRUNCATE_EMAILS_FROM_OR_TO = [
-    AMANDA_ENS,
-    ANTHONY_BARRETT,
-    DANIEL_SABBA,
-    DIANE_ZIMAN,
-    JOSCHA_BACH,
-    KATHERINE_KEATING,
-    LAWRANCE_VISOSKI,
-    LAWRENCE_KRAUSS,
-    LISA_NEW,
-    'Match.com',
-    MOSHE_HOFFMAN,
-    NILI_PRIELL_BARAK,
-    PAUL_KRASSNER,
-    PAUL_PROSPERI,
-    'Susan Edelman',
-    TERRY_KAFKA,
-]
-
-TRUNCATE_EMAILS_FROM = TRUNCATE_EMAILS_FROM_OR_TO + [
-    'Alan S Halperin',
-    'Alain Forget',
-    ARIANE_DE_ROTHSCHILD,
-    AZIZA_ALAHMADI,
-    BILL_SIEGEL,
-    DAVID_HAIG,
-    EDWARD_ROD_LARSEN,
-    JOHNNY_EL_HACHEM,
-    'Mark Green',
-    MELANIE_WALKER,
-    'Mitchell Bard',
-    PEGGY_SIEGAL,
-    ROBERT_LAWRENCE_KUHN,
-    ROBERT_TRIVERS,
-    'Skip Rimer',
-    'Steven Elkman',
-    STEVEN_PFEIFFER,
-    STEVEN_VICTOR_MD,
-    TERRY_KAFKA,
-]
-
+# Signatures
 EMAIL_SIGNATURE_REGEXES = {
     ALAN_DLUGASH: re.compile(r"Alan J\.? Dlugash LLC\n(767.*\n)?New York.*(\n(Tel|Cel|Fa[lx]|P:).*)*"),
     ANDREW_FARKAS: re.compile(r"This message, and any attachments hereto.{,1000}considered a legally binding", re.DOTALL),
@@ -276,8 +230,62 @@ EMAIL_SIGNATURE_REGEXES = {
     USANYS: re.compile(r"Southern District of New York\s+One Saint Andrew's Plaza\s+New York,?\s*New York 10007(\s+Tel)?"),
 }
 
+
+# Uninteresting emailers
+MAILING_LISTS = [
+    CAROLYN_RANGEL,
+    INTELLIGENCE_SQUARED,
+    JP_MORGAN_USGIO,
+    'middle.east.update@hotmail.com',
+]
+
+TRUNCATE_EMAILS_FROM_OR_TO = [
+    AMANDA_ENS,
+    ANTHONY_BARRETT,
+    DANIEL_SABBA,
+    DIANE_ZIMAN,
+    JOSCHA_BACH,
+    KATHERINE_KEATING,
+    LAWRANCE_VISOSKI,
+    LAWRENCE_KRAUSS,
+    LISA_NEW,
+    'Match.com',
+    MOSHE_HOFFMAN,
+    NILI_PRIELL_BARAK,
+    PAUL_KRASSNER,
+    PAUL_PROSPERI,
+    'Susan Edelman',
+    TERRY_KAFKA,
+]
+
+TRUNCATE_EMAILS_FROM = TRUNCATE_EMAILS_FROM_OR_TO + [
+    'Alan S Halperin',
+    'Alain Forget',
+    ARIANE_DE_ROTHSCHILD,
+    AZIZA_ALAHMADI,
+    BILL_SIEGEL,
+    DAVID_HAIG,
+    EDWARD_ROD_LARSEN,
+    JOHNNY_EL_HACHEM,
+    'Mark Green',
+    MELANIE_WALKER,
+    'Mitchell Bard',
+    PEGGY_SIEGAL,
+    ROBERT_LAWRENCE_KUHN,
+    ROBERT_TRIVERS,
+    'Skip Rimer',
+    'Steven Elkman',
+    STEVEN_PFEIFFER,
+    STEVEN_VICTOR_MD,
+    TERRY_KAFKA,
+]
+
 # Some emails have a lot of uninteresting CCs
-FLIGHT_IN_2012_PEOPLE: list[Name] = ['Francis Derby', JANUSZ_BANASIAK, 'Louella Rabuyo', 'Richard Barnnet']
+FLIGHT_IN_2012_PEOPLE: list[Name] = [
+    'Francis Derby',
+    'Louella Rabuyo',
+    'Richard Barnnet',
+]
 
 IRAN_DEAL_RECIPIENTS: list[Name] = [
     'Allen West',
@@ -366,7 +374,7 @@ UNINTERESTING_EMAILERS = FLIGHT_IN_2012_PEOPLE + IRAN_DEAL_RECIPIENTS + TRIVERS_
     'Nancy Portland',                        # Lawrence Krauss CC
     'Oliver Goodenough',                     # Robert Trivers CC
     'Peter Aldhous',                         # Lawrence Krauss CC
-    'Peter Green',  # Farkas emailer
+    'Peter Green',                           # Farkas emailer
     'Players2',                              # Hoffenberg CC
     'Police Code Enforcement',               # Kirk Blouin / John Page CC
     'Sam Harris',                            # Lawrence Krauss CC
@@ -379,6 +387,7 @@ UNINTERESTING_EMAILERS = FLIGHT_IN_2012_PEOPLE + IRAN_DEAL_RECIPIENTS + TRIVERS_
     'Travis Pangburn',                       # Random CC
     'Vahe Stepanian',                        # Random CC
 ]
+
 
 # These are long forwarded articles so we force a trim to 1,333 chars if these strings exist
 TRUNCATE_TERMS = [
