@@ -803,7 +803,7 @@ class Email(Communication):
         self._set_text(text=collapse_newlines(text).strip())
         self._remove_bad_lines()  # TODO: we're currently calling this twice to handle lines with HTML garbage that turn into something matching BAD_LINE_REGEX
 
-    def _truncate_to_length(self) -> int:
+    def _truncate_to_length(self) -> int | None:
         """Decide how many chars we should limit the dislpay of this email to."""
         quote_cutoff = self._idx_of_nth_quoted_reply()  # Trim if there's many quoted replies
         includes_truncate_term = next((term for term in TRUNCATE_TERMS if term in self.text), None)
@@ -814,9 +814,6 @@ class Email(Communication):
         elif args.truncate:
             num_chars = args.truncate
         elif (truncate_at := self._config.truncate_at):
-            if self.config.is_excerpt:
-                raise ValueError(f"Emails don't support truncate_to as a tuple")
-
             num_chars = len(self.text) if truncate_at == NO_TRUNCATE else truncate_at
         elif self.author in TRUNCATE_EMAILS_BY \
                 or any([self.is_from_or_to(n) for n in TRUNCATE_EMAILS_FROM_OR_TO]) \

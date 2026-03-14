@@ -178,22 +178,18 @@ class DocCfg(LoggingEntity):
             self._warn(f"id should not be lowercase: '{self.id}'")
             self.id = self.id.upper()
 
+        self.set_category(self.category)
+
         if self.highlight_quote:
             description_quote = collapse_whitespace(self.highlight_quote.replace('>', ''))
             self.description = join_truthy(self.description, f'quote of interest: {quote(description_quote)}', ', ')
             self.show_full_panel = True
-
-        self.truncate_to = self.truncate_to or (NO_TRUNCATE if self.is_interesting else self.truncate_to)
-        self.set_category(self.category)
 
         if self.background_color:
             self.show_full_panel = True
 
         if self.show_full_panel:
             self.is_interesting = True
-
-        if self.author_uncertain and isinstance(self.author_uncertain, str):
-            self.author_reason = self.author_uncertain  # Copy field
 
         if self.duplicate_of_id or self.duplicate_ids:
             self.dupe_type = self.dupe_type or SAME
@@ -428,6 +424,8 @@ class DocCfg(LoggingEntity):
         """The number of chars to show when printing this document."""
         if self.truncate_to:
             return self.truncate_to
+        elif self.is_interesting:
+            return NO_TRUNCATE
         elif self.category in SHORT_TRUNCATE_CATEGORIES:
             return SHORT_TRUNCATE_TO
 

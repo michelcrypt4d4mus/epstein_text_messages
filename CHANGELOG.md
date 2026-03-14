@@ -4,6 +4,8 @@
 * Rename `DocCfg.replace_text_with` to `display_text`
 * `Person.is_uninteresting` is now `is_interesting`, fix logic to match
 * `Person` just maintains single list of `Document` objects, not separated by type
+* `DocCfg` don't copy `author_uncertain` to `author_reason`
+* `DocCfg` don't set `truncate_to = NO_TRUNCATE` if `is_interesting` is true, but do lazily return `NO_TRUNCATE` from `truncate_at()`
 
 ### 1.9.3
 * use the `DocPrinter` to build the title page so it correctly centers in the browser
