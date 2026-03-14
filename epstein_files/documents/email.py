@@ -271,6 +271,62 @@ class Email(Communication):
         return self.header.all_attachments
 
     @property
+    def char_range_to_display(self) -> CharRange | None:
+        """Override superclass to decide how many chars we should limit the dislpay of this email to."""
+        quote_cutoff = self._idx_of_nth_quoted_reply()  # Trim if there's many quoted replies
+        includes_truncate_term = next((term for term in TRUNCATE_TERMS if term in self.text), None)
+        num_chars: int | None = None
+
+        if args.whole_file or self._config.truncate_at == NO_TRUNCATE:
+            return None
+        elif args.truncate:
+            num_chars = args.truncate
+        elif self._config.char_range:
+            return self._config.char_range
+        elif self.author in TRUNCATE_EMAILS_BY \
+                or any([self.is_from_or_to(n) for n in TRUNCATE_EMAILS_FROM_OR_TO]) \
+                or includes_truncate_term:
+            num_chars = min(quote_cutoff or DEFAULT_TRUNCATE_TO, SHORT_TRUNCATE_TO)
+        else:
+            if quote_cutoff and quote_cutoff < DEFAULT_TRUNCATE_TO:
+                trimmed_words = self.text[quote_cutoff:].split()
+
+                # TODO this attempt to include <snipped> msgs in the truncated text kind of sucks
+                if '<...snipped' in trimmed_words[:NUM_WORDS_IN_LAST_QUOTE]:
+                    num_trailing_words = 0
+                elif trimmed_words and trimmed_words[0] in ['From:', 'Sent:']:
+                    num_trailing_words = NUM_WORDS_IN_LAST_QUOTE
+                else:
+                    num_trailing_words = NUM_WORDS_IN_LAST_QUOTE
+
+                if trimmed_words:
+                    last_quoted_text = ' '.join(trimmed_words[:num_trailing_words])
+                    num_chars = quote_cutoff + len(last_quoted_text) + 1 # Give a hint of the next line
+                else:
+                    num_chars = quote_cutoff
+            elif self.length > DEFAULT_TRUNCATE_TO:
+                num_chars = DEFAULT_TRUNCATE_TO
+
+            # Always print whole email for 1st email for actual people
+            if num_chars and self.is_persons_first_email and self.is_word_count_worthy:
+                self._log(f"Overriding cutoff {num_chars} for first email")
+                num_chars = None
+
+        log_args = {
+            'num_chars': num_chars,
+            'author_truncate': self.author in TRUNCATE_EMAILS_BY,
+            'is_fwded_article': self.is_fwded_article,
+            'is_quote_cutoff': quote_cutoff == num_chars,
+            'includes_truncate_term': json.dumps(includes_truncate_term) if includes_truncate_term else None,
+            'quote_cutoff': quote_cutoff,
+            'is_persons_first_email': self.is_persons_first_email,
+        }
+
+        log_args_str = ', '.join([f"{k}={v}" for k, v in log_args.items() if v])
+        self._debug_log(f"Truncate determination: {log_args_str}")
+        return None if num_chars is None else (0, num_chars)
+
+    @property
     def config(self) -> EmailCfg | None:
         """Configured timestamp, if any."""
         if self.file_info.is_local_extract_file:
@@ -802,62 +858,6 @@ class Email(Communication):
 
         self._set_text(text=collapse_newlines(text).strip())
         self._remove_bad_lines()  # TODO: we're currently calling this twice to handle lines with HTML garbage that turn into something matching BAD_LINE_REGEX
-
-    @property
-    def char_range_to_display(self) -> CharRange | None:
-        """Override superclass to decide how many chars we should limit the dislpay of this email to."""
-        quote_cutoff = self._idx_of_nth_quoted_reply()  # Trim if there's many quoted replies
-        includes_truncate_term = next((term for term in TRUNCATE_TERMS if term in self.text), None)
-        num_chars: int | None = None
-
-        if args.whole_file or self._config.truncate_at == NO_TRUNCATE:
-            return None
-        elif args.truncate:
-            num_chars = args.truncate
-        elif self._config.char_range:
-            return self._config.char_range
-        elif self.author in TRUNCATE_EMAILS_BY \
-                or any([self.is_from_or_to(n) for n in TRUNCATE_EMAILS_FROM_OR_TO]) \
-                or includes_truncate_term:
-            num_chars = min(quote_cutoff or DEFAULT_TRUNCATE_TO, SHORT_TRUNCATE_TO)
-        else:
-            if quote_cutoff and quote_cutoff < DEFAULT_TRUNCATE_TO:
-                trimmed_words = self.text[quote_cutoff:].split()
-
-                # TODO this attempt to include <snipped> msgs in the truncated text kind of sucks
-                if '<...snipped' in trimmed_words[:NUM_WORDS_IN_LAST_QUOTE]:
-                    num_trailing_words = 0
-                elif trimmed_words and trimmed_words[0] in ['From:', 'Sent:']:
-                    num_trailing_words = NUM_WORDS_IN_LAST_QUOTE
-                else:
-                    num_trailing_words = NUM_WORDS_IN_LAST_QUOTE
-
-                if trimmed_words:
-                    last_quoted_text = ' '.join(trimmed_words[:num_trailing_words])
-                    num_chars = quote_cutoff + len(last_quoted_text) + 1 # Give a hint of the next line
-                else:
-                    num_chars = quote_cutoff
-            elif self.length > DEFAULT_TRUNCATE_TO:
-                num_chars = DEFAULT_TRUNCATE_TO
-
-            # Always print whole email for 1st email for actual people
-            if num_chars and self.is_persons_first_email and self.is_word_count_worthy:
-                self._log(f"Overriding cutoff {num_chars} for first email")
-                num_chars = None
-
-        log_args = {
-            'num_chars': num_chars,
-            'author_truncate': self.author in TRUNCATE_EMAILS_BY,
-            'is_fwded_article': self.is_fwded_article,
-            'is_quote_cutoff': quote_cutoff == num_chars,
-            'includes_truncate_term': json.dumps(includes_truncate_term) if includes_truncate_term else None,
-            'quote_cutoff': quote_cutoff,
-            'is_persons_first_email': self.is_persons_first_email,
-        }
-
-        log_args_str = ', '.join([f"{k}={v}" for k, v in log_args.items() if v])
-        self._debug_log(f"Truncate determination: {log_args_str}")
-        return None if num_chars is None else (0, num_chars)
 
     def __bespoke_repair_house_oversight_emails(self) -> None:
         """Apply destructive repairs to the underyling text programmtically because we don't want to edit the underlying file."""
