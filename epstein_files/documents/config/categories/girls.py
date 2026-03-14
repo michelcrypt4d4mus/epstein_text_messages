@@ -215,7 +215,11 @@ GIRLS_CFGS = [
         recipient_uncertain='https://www.reddit.com/r/Epstein/comments/1qwbn5i/trafficker_julia_santos/',
         truncate_to=800
     ),
-    EmailCfg(id='EFTA02470883', recipients=[JESSICA_BANKS], recipient_uncertain='she uses "sooooooooo" a lot'),
+    EmailCfg(
+        id='EFTA02470883',
+        recipients=[JESSICA_BANKS],
+        recipient_uncertain='uses "sooooooooo" a lot, same as this person and not like other girls',
+    ),
     EmailCfg(
         id='EFTA00997627',
         highlight_quote='you will be introduced to more gorgeous Alicas, i promise',
