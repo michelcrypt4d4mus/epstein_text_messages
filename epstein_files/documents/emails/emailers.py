@@ -67,6 +67,9 @@ for contact in ALL_CONTACTS:
     for email_address in contact.email_addresses:
         UNIQUE_IDENTIFIERS[email_address] = contact
 
+# file IDs that contain a unique signifier but do not involve that person
+UNIQ_IDENTIFIER_FALSE_ALARMS = ['EFTA00961792']
+
 
 def cleanup_str(s: str) -> str:
     return BAD_NAME_CHARS_REGEX.sub('', s.replace(REDACTED, '')).strip().strip('_').strip()

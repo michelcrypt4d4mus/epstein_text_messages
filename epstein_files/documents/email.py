@@ -23,7 +23,7 @@ from epstein_files.documents.emails.constants import *
 from epstein_files.documents.emails.email_parts import EmailParts
 from epstein_files.documents.emails.email_header import (EMAIL_SIMPLE_HEADER_REGEX,
      EMAIL_SIMPLE_HEADER_LINE_BREAK_REGEX, EmailHeader)
-from epstein_files.documents.emails.emailers import UNIQUE_IDENTIFIERS, extract_emailer_names
+from epstein_files.documents.emails.emailers import UNIQUE_IDENTIFIERS, UNIQ_IDENTIFIER_FALSE_ALARMS, extract_emailer_names
 from epstein_files.documents.other_file import OtherFile
 from epstein_files.people.interesting_people import EMAILERS_OF_INTEREST_SET
 from epstein_files.output.epstein_highlighter import highlighter
@@ -257,7 +257,7 @@ class Email(Communication):
         self.sent_from_device = self._sent_from_device()
 
         for identifier, contact in UNIQUE_IDENTIFIERS.items():
-            if identifier.lower() in self.text.lower() and contact.name not in self.participants:
+            if identifier.lower() in self.text.lower() and contact.name not in self.participants and self.file_id not in UNIQ_IDENTIFIER_FALSE_ALARMS:
                 self._warn(f"Found known identifier for {contact.name} in email where they are not an identified participant")
 
     @property
