@@ -126,7 +126,7 @@ class PositionedRich:
         """
         for margin_prop in self.margin_css.keys():
             if self.alignment_css.get(margin_prop):
-                logger.warning(f"{margin_prop} is set by both self.align='{self.align}' and self.margin={self.margin}, margin value wins out!")
+                logger.info(f"{margin_prop} is set by both self.align='{self.align}' and self.margin={self.margin}, margin value wins out!")
                 return True
 
     def to_html(self) -> str:
