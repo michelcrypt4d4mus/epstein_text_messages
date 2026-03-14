@@ -57,7 +57,7 @@ MISC_CFGS = [
         is_interesting=True,
     ),
     DocCfg(id='EFTA01103465', author=BEN_GOERTZEL, date='2013-12-02', description='funding proposal for AI labs in Africa etc.'),
-    DocCfg(id='EFTA01193705', description="Epstein's Automobiles, Boats, Aircraft, TelephoneNumbers, EmailAddresses, & Internet Related Information"),
+    DocCfg(id='EFTA01193705', description="Epstein's Automobiles, Boats, Aircraft, TelephoneNumbers, EmailAddresses, & Internet Accounts"),
     DocCfg(id='EFTA00165515', description="contractor describes Epstein's gun safes", show_full_panel=True),
     DocCfg(id='EFTA00266322', description=f"documents about pitches for non-profits in Australia, including to Effective Altruism"),
     DocCfg(id='EFTA00029538', description=f"{GHISLAINE_MAXWELL} provided school girl uniforms", show_full_panel=True),
