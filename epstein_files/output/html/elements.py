@@ -58,7 +58,7 @@ to_px = lambda pixels: f"{pixels}px" if isinstance(pixels, int) else pixels
 
 
 def alignment_css(align: AlignMethod) -> CssProps:
-    """left, right, center."""
+    """CSS margin- props to align things left, right, or center."""
     if align == 'center':
         return copy(CENTERED)
     elif align == 'left':

@@ -80,14 +80,11 @@ class FileInfo:
 
     @property
     def file_size(self) -> int:
+        """Returns -1 for files that exist in memory only (e.g. are result of splitting up concatenations of 100 emails)"""
         try:
-            return file_size(self.local_path)
+            return file_size(self.local_path) if self.has_file else -1
         except FileNotFoundError as e:
-            if self.has_file:
-                self.warn(str(e))
-            else:
-                self.log(f"no underlying file (but expected): {e}", logging.DEBUG)
-
+            self.warn(str(e))
             return -1
 
     @property

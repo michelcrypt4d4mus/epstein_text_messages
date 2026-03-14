@@ -21,6 +21,7 @@ from epstein_files.util.helpers.file_helper import is_doj_file
 from epstein_files.util.helpers.link_helper import ExternalLink
 from epstein_files.util.helpers.string_helper import collapse_whitespace, is_bool_prop, join_truthy, quote
 from epstein_files.util.logging import logger
+from epstein_files.util.logging_entity import LoggingEntity
 
 DebugDict = dict[str, bool | datetime | set | str | Path | None]
 DuplicateType = Literal['bounced', 'earlier', 'quoted', 'redacted', 'same']
@@ -106,7 +107,7 @@ SHORT_TRUNCATE_CATEGORIES = [
 
 
 @dataclass(kw_only=True)
-class DocCfg:
+class DocCfg(LoggingEntity):
     """
     Encapsulates info about files that needs to be manually configured because it cannot be programmatically inferred.
     Setting the `is_interesting` flag overrides all other considerations when determining a document's
@@ -213,6 +214,18 @@ class DocCfg:
         """Returns '???' for missing category."""
         from epstein_files.output.highlight_config import styled_category
         return styled_category(self.category)
+
+    @property
+    def char_range(self) -> CharRange | None:
+        """`truncate_to` as (0, value) tuple if it's an int value."""
+        if args.whole_file or self.truncate_at in [None, NO_TRUNCATE]:
+            return None
+        elif isinstance(self.truncate_at, int):
+            return (0, self.truncate_at)
+        elif isinstance(self.truncate_at, tuple):
+            return self.truncate_at
+        else:
+            raise ValueError(f"{self.id} unknown truncate_at type ({type(self.truncate_at).__name__}, value={self.truncate_at})")
 
     @property
     def complete_description(self) -> str:
@@ -406,7 +419,7 @@ class DocCfg:
     @property
     def timestamp(self) -> datetime | None:
         if self.date and (parsed_dt := coerce_utc_strict(parse(self.date))):
-            logger.debug(f"{self._class_name} [{self.id}] parsed {parsed_dt.isoformat()} from date='{self.date}'")
+            self._debug_log(f"parsed {parsed_dt.isoformat()} from date='{self.date}'")
             return parsed_dt
 
     @property
@@ -416,18 +429,6 @@ class DocCfg:
             return self.truncate_to
         elif self.category in SHORT_TRUNCATE_CATEGORIES:
             return SHORT_TRUNCATE_TO
-
-    @property
-    def char_range(self) -> CharRange | None:
-        """`truncate_to` as (0, value) tuple if it's an int value."""
-        if args.whole_file or self.truncate_at in [None, NO_TRUNCATE]:
-            return None
-        elif isinstance(self.truncate_at, int):
-            return (0, self.truncate_at)
-        elif isinstance(self.truncate_at, tuple):
-            return self.truncate_at
-        else:
-            raise ValueError(f"{self.id} unknown truncate_at type ({type(self.truncate_at).__name__}, value={self.truncate_at})")
 
     @property
     def truthy_props(self) -> dict[str, bool | str | None]:
@@ -475,6 +476,10 @@ class DocCfg:
     @property
     def _class_name(self) -> str:
         return type(self).__name__
+
+    @property
+    def _log_prefix(self) -> str:
+        return f"{self._class_name}({self.id})"
 
     def duplicate_cfgs(self) -> Generator[Self, None, None]:
         """Create synthetic `DocCfg` objects that set the 'duplicate_of_id' field to point back to this object."""
@@ -537,7 +542,7 @@ class DocCfg:
 
     def __repr__(self) -> str:
         props = self._props_strs()
-        type_str = f"{type(self).__name__}("
+        type_str = f"{self._class_name}("
         single_line_repr = type_str + ', '.join(props) + f')'
 
         if len(single_line_repr) < MAX_REPR_LINE_LENGTH or \

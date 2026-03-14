@@ -144,25 +144,25 @@ class FileDisplay:
         return Align(element, self.justify) if self.justify else element
 
     def to_html(self) -> str:
+        css_props = {
+            **DOC_DIV_CSS_PROPS,
+            'margin-bottom': self.margin_bottom,
+        }
+
+        if self.background_color:
+            css_props.update(HtmlStyle(f"on {self.background_color}").to_css)
+
+        # Add more vertical margin before/after text messages
+        if isinstance(self.body_panel, BasePanel) and self.body_panel.is_list:
+            css_props.update(vertical_margin_props(to_em(2)))
+
         if self.is_table:
             body_html = one_row_table_html(self.body_panel, self.horizontal_body_margin_css_props)
         else:
             body_html = self.body_panel.to_div(self.horizontal_body_margin)
 
         elements = [self.file_info.to_div()] if self.file_info else []
-        elements.extend([self.subheader_div, body_html])
-
-        inner_html = '\n'.join(elements)
-        div_props = {**DOC_DIV_CSS_PROPS, 'margin-bottom': self.margin_bottom}
-
-        if self.background_color:
-            div_props.update(HtmlStyle(f"on {self.background_color}").to_css)
-
-        # Add more vertical margin before/after text messages
-        if isinstance(self.body_panel, BasePanel) and self.body_panel.is_list:
-            div_props.update(vertical_margin_props(to_em(2)))
-
-        return div_tag(inner_html, div_props)
+        return div_tag(elements + [self.subheader_div, body_html], css_props)
 
     def __rich_console__(self, console: Console, options: ConsoleOptions) -> RenderResult:
         """Default `Document` renderer (Email and MessengerLog override this)."""

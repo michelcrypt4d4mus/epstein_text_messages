@@ -1,3 +1,4 @@
+import logging
 from dataclasses import dataclass, field
 from datetime import datetime, date
 from typing import Sequence
@@ -29,6 +30,7 @@ from epstein_files.util.constant.urls import *
 from epstein_files.util.constants import *
 from epstein_files.util.env import args, site_config
 from epstein_files.util.helpers.data_helpers import days_between, flatten, uniquify, without_falsey
+from epstein_files.util.logging_entity import LoggingEntity
 
 ALT_INFO_STYLE = 'medium_purple4'
 CC = 'cc:'
@@ -260,6 +262,11 @@ class Person:
     def name_txt(self) -> Text:
         return styled_name(self.name)
 
+    @property
+    def num_emails(self) -> int:
+        """Count of emails this person sent or received (excluding duplicates)."""
+        return len(self.unique_emails)
+
     @property  # TODO: unused?
     def should_always_truncate(self) -> bool:
         """True if we want to truncate all emails to/from this user."""
@@ -274,7 +281,7 @@ class Person:
         """Return name if this person sent 0 emails and received CC from only one that name."""
         email_authors = uniquify([e.author for e in self.emails_to])
 
-        if len(self.unique_emails) == 1 and len(email_authors) > 0:
+        if self.num_emails == 1 and len(email_authors) > 0:
             logger.info(f"sole author of email to '{self.name}' is '{email_authors[0]}'")
         else:
             logger.info(f"'{self.name}' email_authors '{email_authors[0]}'")
@@ -289,7 +296,7 @@ class Person:
     def sort_key(self) -> list[int | str]:
         """Key used to sort `Person` objects by the number of emails sent/received."""
         counts = [
-            len(self.unique_emails),
+            self.num_emails,
             -1 * int((self.info_str or '') == UNINTERESTING_CC_INFO_NO_CONTACT),
             -1 * int((self.info_str or '') == UNINTERESTING_CC_INFO),
             int(self.has_any_epstein_emails),
@@ -336,7 +343,7 @@ class Person:
             email_count = len(self._printable_emails)
             title_suffix = f"sent by {JEFFREY_EPSTEIN} to himself"
         else:
-            email_count = len(self.unique_emails)
+            email_count = self.num_emails
             num_days = self.email_conversation_length_in_days
             title_suffix = f"{TO_FROM} {self.name_str} starting {self.earliest_email_date} covering {num_days:,} days"
 
@@ -359,7 +366,6 @@ class Person:
         Print complete emails to or from a particular 'author' along with any specially marked docs
         configured with `show_with_name` of this user. Returns the Emails that were printed.
         """
-        logger.debug(f"print_emails() called for '{self.name}'")
         doc_printer.print_centered(self.email_info_panel())
 
         if self.biography_txt:
@@ -379,14 +385,16 @@ class Person:
 
         docs = Document.sort_by_timestamp(self._printable_emails + self.show_with_emails_docs)
         docs = [d.file_display(align='right') if isinstance(d, OtherFile) else d for d in docs]   # TODO this sucks
+        log_msg = f"Printing {len(docs)} documents for {self.name_str}..."
 
         # TODO this sucks
         for d in docs:
             if isinstance(d, FileDisplay):
                 d.indent = site_config.show_with_indent
 
+        log_fxn = logger.warning if args.suppress_output else logger.debug
         if args.suppress_output:
-            logger.warning(f"Printing {len(docs)} documents for {self.name_str}...")
+            logger.warning(log_msg)
 
         doc_printer.print_documents(docs)
         doc_printer.line(2)
