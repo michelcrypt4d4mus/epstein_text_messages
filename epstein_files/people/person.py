@@ -68,7 +68,7 @@ class Person(LoggingEntity):
     _searched_for_highlight_group: bool = False
 
     def __post_init__(self):
-        self.contact = CONTACTS_DICT.get(str(self.name)) or Entity(name=cleanup_str(str(self.name)))
+        self.contact = CONTACTS_DICT.get(self.name_str, Entity(name=cleanup_str(self.name_str)))
         self.documents = Document.sort_by_timestamp(self.emails)
 
     @property
