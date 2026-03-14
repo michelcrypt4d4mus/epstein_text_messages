@@ -730,6 +730,11 @@ class Document(LoggingEntity):
         return [v for v in cls.files_summary(files, author_na).values()]
 
     @classmethod
+    def filter_for_type(cls, docs: Sequence['Document']) -> list[Self]:
+        """Filter for Document objects of this class."""
+        return [d for d in docs if isinstance(d, cls)]
+
+    @classmethod
     def known_author_count(cls, docs: Sequence[Self]) -> int:
         """Number of elements of `docs` that have an author attribution."""
         return len([doc for doc in docs if doc.author])

@@ -176,6 +176,19 @@ class EpsteinFiles:
         """All `Email` objects except for duplicates."""
         return Document.without_dupes(self.emails)
 
+    def docs_for(self, name: Name) -> list[Document]:
+        """All documents with `name` as the author or a recipient (not just someone who is mentioned)."""
+        emails = self.emails_for(name)
+        imessage_logs = self.imessage_logs_for(name)
+
+        # OtherFile objects with author == None are not returned for name == None
+        if name is None:
+            other_files = []
+        else:
+            other_files = [f for f in self.other_files if name in [f.author, f._config.show_with_name]]
+
+        return Document.sort_by_timestamp(Document.uniquify(emails + imessage_logs + other_files))
+
     def docs_matching(self, pattern: re.Pattern | str, names: list[Name] | None = None) -> list[SearchResult]:
         """Find documents whose text matches `pattern` optionally limited to only docs involving `name`)."""
         documents = [d for d in self._documents if (not names) or d.author in names]
@@ -304,19 +317,7 @@ class EpsteinFiles:
 
     def person_objs(self, names: list[Name]) -> list[Person]:
         """Construct Person objects for a list of names."""
-        return [
-            Person(
-                name=name,
-                emails=self.emails_for(name),
-                imessage_logs=self.imessage_logs_for(name),
-                is_uninteresting=name in self.uninteresting_emailers,
-                other_files=[
-                    f for f in self.other_files
-                    if name and (name == f.author or (f.config and name == f.config.show_with_name))
-                ]
-            )
-            for name in names
-        ]
+        return [Person(n, self.docs_for(n), is_uninteresting=n in self.uninteresting_emailers) for n in names]
 
     def load_new_files(self) -> None:
         """Load any new files detected in the hierarchy."""

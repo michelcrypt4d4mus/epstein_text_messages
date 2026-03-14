@@ -55,24 +55,21 @@ PEOPLE_BIOS = {
 }
 
 
-@dataclass(kw_only=True)
+@dataclass
 class Person(LoggingEntity):
     """
-    Collects all known info and files connected to someone who is the author or recipient of at least one Epstein File
-    in one place along with methods to do things like format all that information for printing.
+    Collects all known info and files connected to someone who is the author or recipient
+    of at least one Epstein File with methods to work with that collection as a whole.
     """
-    contact: Entity = field(init=False)
-    emails: list[Email] = field(default_factory=list)
-    imessage_logs: list[MessengerLog] = field(default_factory=list)
-    is_uninteresting: bool = False
     name: Name
-    other_files: list[OtherFile] = field(default_factory=list)
+    documents: list[Document]
+    is_uninteresting: bool = False
+    contact: Entity = field(init=False)
     _searched_for_highlight_group: bool = False
 
     def __post_init__(self):
         self.contact = CONTACTS_DICT.get(str(self.name)) or Entity(name=cleanup_str(str(self.name)))
-        self.emails = Document.sort_by_timestamp(self.emails)
-        self.imessage_logs = Document.sort_by_timestamp(self.imessage_logs)
+        self.documents = Document.sort_by_timestamp(self.emails)
 
     @property
     def biography_txt(self) -> Text | None:
@@ -108,10 +105,6 @@ class Person(LoggingEntity):
         return sort_names([c for c in all_counterparties if c != self.name])
 
     @property
-    def email_conversation_length_in_days(self) -> int:
-        return days_between(self.emails[0].timestamp, self.emails[-1].timestamp)
-
-    @property
     def earliest_email_at(self) -> datetime:
         return self.emails[0].timestamp
 
@@ -120,12 +113,30 @@ class Person(LoggingEntity):
         return self.earliest_email_at.date()
 
     @property
+    def full_info_panel(self) -> Padding:
+        """Return a `Group` with the name of an emailer and a few tidbits of information about them below."""
+        elements: list[RenderableType] = [self.email_info_panel()]
+
+        if self.biography_txt:
+            elements.append(self.biography_txt)
+
+        return Padding(Group(*elements), (2, 0, 1, 0))
+
+    @property
     def last_email_at(self) -> datetime:
         return self.emails[-1].timestamp
 
     @property
     def last_email_date(self) -> date:
         return self.last_email_at.date()
+
+    @property
+    def email_conversation_length_in_days(self) -> int:
+        return days_between(self.emails[0].timestamp, self.emails[-1].timestamp)
+
+    @property
+    def emails(self) -> list[Email]:
+        return Email.filter_for_type(self.documents)
 
     @property
     def emails_by(self) -> list[Email]:
@@ -164,14 +175,12 @@ class Person(LoggingEntity):
             return self.highlight_group
 
     @property
-    def full_info_panel(self) -> Padding:
-        """Return a `Group` with the name of an emailer and a few tidbits of information about them below."""
-        elements: list[RenderableType] = [self.email_info_panel()]
+    def imessage_logs(self) -> list[MessengerLog]:
+        return MessengerLog.filter_for_type(self.documents)
 
-        if self.biography_txt:
-            elements.append(self.biography_txt)
-
-        return Padding(Group(*elements), (2, 0, 1, 0))
+    @property
+    def other_files(self) -> list[OtherFile]:
+        return OtherFile.filter_for_type(self.documents)
 
     @property
     def info_str(self) -> str | None:
