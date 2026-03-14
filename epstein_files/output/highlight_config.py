@@ -971,6 +971,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 r"Na[dď]i?a Marcinko(v[aá])?|nadja2102[@e]yahoo(\.?com)",
                 url='https://archive.ph/Qa6vU',  # https://www.nybooks.com/articles/2026/03/26/the-devil-himself-jeffrey-epstein-enright/
             ),
+            Contact('Natalia Molotkova', "Epstein's relationship manager at American Express", r"((Natalia|Natasha) )?Molotkova"),
             Contact(PERRY_LANG, f"Epstein's personal chef 1998-2002", r"(Adam )?Perry Lang"),
             Contact('Richard Barnett', "logistics for Epstein's properties", r"Rich(ard)? Barnett", match_partial=None),
             Contact('Sarah Kellen', "now Sarah Vickers, named co-conspirator", r"(Sarah )?(Kellen|Vickers)"),
