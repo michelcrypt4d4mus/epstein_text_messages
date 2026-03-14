@@ -1,5 +1,5 @@
 """
-Constants and methods for dentifying people in email headers.
+Constants and methods for identifying people in email headers.
 """
 import re
 
@@ -55,6 +55,17 @@ SUPPRESS_LOGS_FOR_AUTHORS = [
 ALL_CONTACTS = [c for c in HIGHLIGHTED_CONTACTS if c.is_emailer] + ADDITIONAL_CONTACTS
 CONTACTS_DICT = {c.name: c for c in ALL_CONTACTS}
 EMAILER_ID_REGEXES = {c.name: c.emailer_regex for c in ALL_CONTACTS}
+
+
+# Dictionary of string that usually signify an identity if present in email body
+UNIQUE_IDENTIFIERS = {
+    'tupos & abbrvtns': CONTACTS_DICT[LINDA_STONE],
+    'Typos, misspellings courtesy of iPhone': CONTACTS_DICT[LINDA_STONE],
+}
+
+for contact in ALL_CONTACTS:
+    for email_address in contact.email_addresses:
+        UNIQUE_IDENTIFIERS[email_address] = contact
 
 
 def cleanup_str(s: str) -> str:

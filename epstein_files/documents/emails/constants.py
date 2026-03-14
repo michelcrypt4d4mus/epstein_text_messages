@@ -166,7 +166,6 @@ DEVICE_PATTERN = fr"({join_patterns(SENT_FROM_DEVICE_PREFIXES)}).*({join_pattern
 EPSTEIN_TYPO_PREFIX = r"((Please forgive|Sorry for all the) typos.{1,4})"
 SENT_FROM_DEVICE_PATTERN = join_patterns([DEVICE_PATTERN] + SIGNATURE_PATTERNS)
 SENT_FROM_REGEX = re.compile(fr'^{EPSTEIN_TYPO_PREFIX}?({SENT_FROM_DEVICE_PATTERN})\.?( -*)?', re.MULTILINE | re.IGNORECASE)
-# print(SENT_FROM_REGEX.pattern)
 
 
 # Signatures
@@ -518,11 +517,6 @@ LINE_REPAIR_MERGES = {
     '033575': [[2, 4]],
     '033576': [[3]],
     '033583': [[2]],
-}
-
-KNOWN_SIGNATURES = {
-    'tupos & abbrvtns': LINDA_STONE,
-    'Typos, misspellings courtesy of iPhone': LINDA_STONE,
 }
 
 

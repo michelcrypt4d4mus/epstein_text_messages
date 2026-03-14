@@ -23,7 +23,7 @@ from epstein_files.documents.emails.constants import *
 from epstein_files.documents.emails.email_parts import EmailParts
 from epstein_files.documents.emails.email_header import (EMAIL_SIMPLE_HEADER_REGEX,
      EMAIL_SIMPLE_HEADER_LINE_BREAK_REGEX, EmailHeader)
-from epstein_files.documents.emails.emailers import extract_emailer_names
+from epstein_files.documents.emails.emailers import UNIQUE_IDENTIFIERS, extract_emailer_names
 from epstein_files.documents.other_file import OtherFile
 from epstein_files.people.interesting_people import EMAILERS_OF_INTEREST_SET
 from epstein_files.output.epstein_highlighter import highlighter
@@ -256,9 +256,9 @@ class Email(Communication):
         self.actual_text = self._extract_actual_text()
         self.sent_from_device = self._sent_from_device()
 
-        for signature, name in KNOWN_SIGNATURES.items():
-            if self.has_unknown_participant and signature.lower() in self.text.lower():
-                self._warn(f"Found known signature for {name} in unattributed email.")
+        for identifier, contact in UNIQUE_IDENTIFIERS.items():
+            if identifier.lower() in self.text.lower() and contact.name not in self.participants:
+                self._warn(f"Found known identifier for {contact.name} in email where they are not an identified participant")
 
     @property
     def attachment_file_ids(self) -> list[str]:
