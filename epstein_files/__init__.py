@@ -5,31 +5,28 @@ Reformat Epstein text message files for readability and count email senders.
     Run: 'EPSTEIN_DOCS_DIR=/path/to/TXT epstein_generate'
 """
 import sys
-from itertools import chain
 from subprocess import check_output
 
 from dotenv import load_dotenv
-load_dotenv()
 from rich.markup import escape
 from rich.padding import Padding
 from rich.panel import Panel
 from rich.text import Text
+load_dotenv()
 
 from epstein_files.epstein_files import EpsteinFiles, document_cls
 from epstein_files.documents.document import Document
-from epstein_files.documents.documents.categories import sort_categories
 from epstein_files.documents.documents.word_count import print_word_counts
 from epstein_files.documents.doj_file import DojFile
 from epstein_files.documents.email import Email
-from epstein_files.documents.emails.emailers import ALL_CONTACTS, CONTACT_CATEGORIES
 from epstein_files.documents.messenger_log import MessengerLog
 from epstein_files.documents.other_file import OtherFile
 from epstein_files.output.doc_printer import DocPrinter
 from epstein_files.output.epstein_highlighter import highlighter, temp_highlighter
 from epstein_files.output.output import (print_curated_chronological, print_doj_files, print_emails_section,
      print_json_files, print_stats, print_other_files_section, print_text_msgs_section, print_all_emails_chronological,
-     print_email_device_signatures, print_emailers_info, print_json_metadata, show_urls, write_html)
-from epstein_files.output.rich import console, print_json, print_subtitle_panel, subtitle_panel
+     print_email_device_signatures, print_emailers_info, print_json_metadata, show_urls)
+from epstein_files.output.rich import console, print_json, print_subtitle_panel
 from epstein_files.output.site.sites import SiteType, make_clean
 from epstein_files.util.constant.strings import HOUSE_OVERSIGHT_NOV_2025_ID_REGEX
 from epstein_files.util.constants import ALL_CONFIGS
@@ -54,15 +51,7 @@ def epstein_generate() -> None:
     if args.colors_only:
         pass
     elif args.output_bios:
-        printer.print_section_subtitle('Entities With Configured Biographical Info')
-
-        contacts = [
-            Padding(c.bio_txt, site_config.contact_list_padding)
-            for category in sort_categories([c for c in CONTACT_CATEGORIES.keys()])
-            for c in CONTACT_CATEGORIES[category]
-        ]
-
-        printer.print_renderable(contacts)
+        printer.print_biographies()
     elif args.output_devices:
         print_email_device_signatures(epstein_files)
     elif args.output_chrono:

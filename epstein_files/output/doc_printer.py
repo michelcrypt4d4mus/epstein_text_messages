@@ -11,8 +11,10 @@ from rich.text import Text
 
 from epstein_files.documents.communication import Communication
 from epstein_files.documents.document import Document
+from epstein_files.documents.documents.categories import sort_categories
 from epstein_files.documents.doj_file import DojFile
 from epstein_files.documents.email import Email
+from epstein_files.documents.emails.emailers import ALL_CONTACTS, CONTACT_CATEGORIES
 from epstein_files.documents.messenger_log import MessengerLog
 from epstein_files.documents.other_file import OtherFile
 from epstein_files.output.layout_elements.file_display import BasePanel, FileDisplay
@@ -97,6 +99,18 @@ class DocPrinter:
     def new_names_with_bios(self, names_or_doc: PeopleBiosArg) -> list[str]:
         """Return names that a) were not seen before and b) have configured biographical info."""
         return [n for n in self.new_names(names_or_doc) if PEOPLE_BIOS.get(n)]
+
+    def print_biographies(self) -> None:
+        """Print all the `Entity` objects that are configured in one big colored list."""
+        self.print_section_subtitle('Entities With Configured Biographical Info')
+
+        contacts = [
+            Padding(c.bio_txt, site_config.contact_list_padding)
+            for category in sort_categories([c for c in CONTACT_CATEGORIES.keys()])
+            for c in CONTACT_CATEGORIES[category]
+        ]
+
+        self.print_renderable(contacts)
 
     def print_centered(self, _renderables: RenderableType | list[RenderableType]):
         renderables = listify(_renderables)
