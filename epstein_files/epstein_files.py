@@ -115,6 +115,7 @@ class EpsteinFiles:
 
     @property
     def dropsite_emails(self) -> list[DropsiteEmail]:
+        """Older emails from the Dropsite News collection exist as .eml files instead of .txt files."""
         return [f for f in self.documents if isinstance(f, DropsiteEmail)]
 
     @property
@@ -132,6 +133,7 @@ class EpsteinFiles:
 
     @property
     def counterparties_dict(self) -> dict[Name, list[Name]]:
+        """Keys are names, values are lists of all the people who sent/received communication with that person."""
         return sort_dict_by_keys({p.name: p.counterparties for p in self.emailers})
 
     @property
@@ -196,25 +198,6 @@ class EpsteinFiles:
             other_files = [f for f in self.other_files if name in [f.author, f._config.show_with_name]]
 
         return Document.sort_by_timestamp(Document.uniquify(emails + imessage_logs + other_files))
-
-    def docs_matching(self, pattern: re.Pattern | str, names: list[Name] | None = None) -> list[SearchResult]:
-        """Find documents whose text matches `pattern` optionally limited to only docs involving `name`)."""
-        documents = [d for d in self._documents if (not names) or d.author in names]
-        results: list[SearchResult] = []
-
-        for doc in documents:
-            if doc.is_duplicate:
-                continue
-
-            lines = doc.lines_matching(pattern)
-
-            if args.min_line_length:
-                lines = [line for line in lines if len(line.line) > args.min_line_length]
-
-            if len(lines) > 0:
-                results.append(SearchResult(doc, lines))
-
-        return results
 
     def earliest_email_at(self, name: Name) -> datetime:
         """First email timestamp sent to or received by `name`."""
@@ -303,6 +286,25 @@ class EpsteinFiles:
             raise ValueError(f"No {required_type.__name__} found for {file_id} (found {doc})")
 
         return doc
+
+    def grep_documents(self, pattern: re.Pattern | str, names: list[Name] | None = None) -> list[SearchResult]:
+        """Find documents whose text matches `pattern` optionally limited to only docs involving `name`)."""
+        documents = [d for d in self._documents if (not names) or d.author in names]
+        results: list[SearchResult] = []
+
+        for doc in documents:
+            if doc.is_duplicate:
+                continue
+
+            lines = doc.lines_matching(pattern)
+
+            if args.min_line_length:
+                lines = [line for line in lines if len(line.line) > args.min_line_length]
+
+            if len(lines) > 0:
+                results.append(SearchResult(doc, lines))
+
+        return results
 
     def imessage_logs_for(self, name: Name) -> list[MessengerLog]:
         """Return `MessengerLog` objects where Epstein's counterparty is `name`."""

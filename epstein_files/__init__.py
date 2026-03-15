@@ -108,7 +108,7 @@ def epstein_grep():
 
     for search_term in args.positional_args:
         tmp_highlight = temp_highlighter(search_term, 'reverse')
-        search_results = epstein_files.docs_matching(search_term, args.names)
+        search_results = epstein_files.grep_documents(search_term, args.names)
         search_results = sorted(search_results, key=lambda sr: sr.document.timestamp_sort_key)
         print_subtitle_panel(f"Found {len(search_results)} documents matching '{search_term}'")
         last_document = None
