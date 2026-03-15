@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 # Print email ID + timestamp
+import logging
 import sys
 from collections import defaultdict
 
@@ -18,7 +19,7 @@ from epstein_files.output.highlighted_names import HighlightedNames
 from epstein_files.output.html.builder import table_to_html, write_templated_html
 from epstein_files.people.person import Person
 from epstein_files.people.names import *
-from epstein_files.util.constants import CONFIGS_BY_ID, EmailCfg
+from epstein_files.util.constants import CONFIGS_BY_ID, EmailCfg, UNINTERESTING_OTHER_FILE_IDS
 from epstein_files.util.helpers.data_helpers import *
 from epstein_files.util.helpers.debugging_helper import print_all_timestamps, print_file_counts
 from epstein_files.util.helpers.file_helper import open_file_or_url
@@ -31,10 +32,23 @@ num_missing_unknown_recipient = 0
 num_interesting = 0
 num_uninteresting = 0
 num_word_count_worthy = 0
-ids = []
+ids = UNINTERESTING_OTHER_FILE_IDS
 
 for i, email in enumerate(epstein_files.unique_emails):
-    # if email._config.recipients or not email.is_word_count_worthy or email.author == CHRISTOPHER_DILORIO:
+    if email.file_id in ids or email.recipients or email.is_mailing_list or email.file_id.startswith('023208'):
+        continue
+
+    msg = f"has no recipients ({email._summary})"
+
+    if email.header.is_to_redacted:
+        email._warn(f"is_to_redacted=True and {msg}")
+    else:
+        email._log(f"{msg}\n    ...but is_to_redacted=False!\n\n{email.header}\n", logging.ERROR)
+
+    console.print(email, '\n\n')
+    ids.append(email.file_id)
+    continue
+
     if i < 20:
         file_info = email.file_info
         console.line()
@@ -46,7 +60,7 @@ for i, email in enumerate(epstein_files.unique_emails):
     if email._config.recipients:
         continue
 
-    if email.header.is_to_redacted and None not in email.recipients_real:
+    if email.header.is_to_redacted and None not in email.recipients:
         if email.author == CHRISTOPHER_DILORIO:
             email._warn(f"skipping dilorio email...")
             continue
@@ -74,7 +88,7 @@ for i, email in enumerate(epstein_files.unique_emails):
 
 
 console.print(f'\n\n  Found {num_missing_unknown_recipient} emails that should have None as a recipient ({num_interesting} interesting, {num_uninteresting} uninteresting)')
-console.print(f"\nIDS to repair:\n\n" + ' '.join(ids) + '\n')
+print(f"\nIDS to repair:\n\n" + ' '.join(ids) + '\n')
 sys.exit()
 
 

@@ -209,6 +209,7 @@ METADATA_FIELDS = [
     'attachment_file_ids',
     'is_junk_mail',
     'is_mailing_list',
+    'extracted_recipients',
     'recipients',
     'sent_from_device',
 ]
@@ -551,8 +552,8 @@ class Email(Communication):
 
         # Add None to recipients if there's an empty From: or To: header
         if self.header.is_to_redacted and not self.has_unknown_recipient:
-            # TODO: SEC is filled in for Dilorio's split up emails after Email is fully instantiated
             if self.author != CHRISTOPHER_DILORIO:
+                # TODO: SEC is filled in for Dilorio's split up emails after Email is fully instantiated
                 self._warn(f"Appending {None} to recipient list because the To: field is empty")
                 recipients.append(None)
 
@@ -674,6 +675,7 @@ class Email(Communication):
     def _debug_props(self) -> DebugDict:
         props = super()._debug_props()
         local_props = self.truthy_props(DEBUG_PROPS)
+        local_props['extracted_recipients'] = self.extracted_recipients
 
         if not self.header.is_empty:
             local_props['header'] = self.header.as_dict()

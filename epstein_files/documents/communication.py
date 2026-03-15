@@ -72,7 +72,7 @@ class Communication(Document):
 
     @property
     def has_unknown_recipient(self) -> bool:
-        return None in (self.recipients or [None])
+        return None in self.recipients
 
     @property
     def is_recipient_uncertain(self) -> bool:
@@ -81,7 +81,7 @@ class Communication(Document):
     @property
     def participants(self) -> set[Name]:
         """Author + recipients (including a `None` if `self.recipients` is empty)."""
-        return set([self.author] + self.recipients_real)
+        return set([self.author] + self.recipients)
 
     @property
     def people(self) -> list[str]:
@@ -95,12 +95,6 @@ class Communication(Document):
     @property
     def recipients(self) -> list[Name]:
         return self._config.recipients or self.extracted_recipients
-
-    # TODO: this should be swapped in for self.recipients at some point but for now that would trigger printing of uninteresting emails
-    @property
-    def recipients_real(self) -> list[Name]:
-        """Return [None] if self.recipients is empty instead of empty list."""
-        return self.recipients or [None]
 
     @property
     def recipient_style(self) -> str:

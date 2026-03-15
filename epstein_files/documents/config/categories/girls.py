@@ -303,9 +303,11 @@ GIRLS_CFGS = [
     EmailCfg(
         id='EFTA00412260',
         author=LESLEY_GROFF,
+        comment='very broken file',
         date='2012-05-25 19:51:20',
         description=f'emphasis quotes by {LESLEY_GROFF}',
         highlight_quote='Jeffrey was asking if you and "your friend" could come by and meet Peter',
+        recipients=[None],
         truncate_to=(6_700, 7_450),
     ),
 

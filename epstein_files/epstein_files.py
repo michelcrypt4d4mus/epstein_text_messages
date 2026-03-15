@@ -253,7 +253,7 @@ class EpsteinFiles:
     def emails_for(self, name: Name) -> list[Email]:
         """All emails to or from 'name' sorted chronologically (including dupes!)."""
         emails = self.emails_by(name) + self.emails_to(name)
-        emails += [e for e in self.emails if (e.config and name == e.config.show_with_name)]
+        emails += [e for e in self.emails if name and name == e._config.show_with_name]  # Add show_with_name emails
 
         if len(emails) == 0:
             logger.warning(f"No emails found for '{name}'")
@@ -435,7 +435,7 @@ class EpsteinFiles:
     def _find_email_attachments_and_set_is_first_for_user(self) -> None:
         """Add documents with configured `attached_to_email_id` to the `Email`s they're attached to."""
         email_attachments = [f for f in self.other_files if f._config.attached_to_email_id]
-        logger.warning(f"Finding homes for {email_attachments} known email attachments...")
+        logger.warning(f"Finding homes for {len(email_attachments)} known email attachments...")
 
         for email in self.emails:
             email.attached_docs = []  # Remove all attachments before re-finding them in case it's a repair
@@ -448,7 +448,7 @@ class EpsteinFiles:
                 raise ValueError(f"Cannot attach {attachment.file_id} to duplicate email {email}")
 
             # Set the attachment timestamp to that of the email if the attachment has no configured timestamp
-            if attachment.timestamp and attachment.timestamp != email.timestamp and not attachment._config.timestamp:
+            if attachment.timestamp and (attachment.timestamp != email.timestamp) and not attachment._config.timestamp:
                 attachment._warn(f"Overwriting '{attachment.timestamp}' with {email}'s timestamp {email.timestamp}")
                 attachment.extracted_timestamp = email.timestamp
 
@@ -511,11 +511,12 @@ class EpsteinFiles:
 
     def _set_uninteresting_ccs(self) -> None:
         """Extract the recipients of emails configured has having uninteresting CCs or BCCs."""
-        for email in [e for e in self.emails if e.config and e.config.has_uninteresting_bccs]:
-            self._uninteresting_ccs += [bcc.lower() for bcc in cast(list[str], email.header.bcc)]
+        for email in self.emails:
+            if email._config.has_uninteresting_ccs:
+                self._uninteresting_ccs += email.recipients
 
-        for email in [e for e in self.emails if e.config and e.config.has_uninteresting_ccs]:
-            self._uninteresting_ccs += email.recipients
+            if email._config.has_uninteresting_bccs:
+                self._uninteresting_ccs += [bcc.lower() for bcc in cast(list[str], email.header.bcc)]
 
         self._uninteresting_ccs = uniq_sorted(self._uninteresting_ccs)
         logger.info(f"Extracted uninteresting_ccs: {self._uninteresting_ccs}")

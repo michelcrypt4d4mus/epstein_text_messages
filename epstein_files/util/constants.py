@@ -172,9 +172,6 @@ UNINTERESTING_EMAIL_IDS = [
     # Eric Roth
     '033386',
     # FBI
-    'EFTA00005705',
-    'EFTA00005716',
-    'EFTA00005717',
     'EFTA00039971',  # Attached 302 is missing?
     # Ganbat
     'EFTA02469375',
@@ -316,6 +313,13 @@ UNINTERESTING_EMAIL_IDS = [
     'EFTA02431535',  # visible in EFTA00888467
     'EFTA00363992',  # car rental
     'EFTA02187735',  # housekeeping
+]
+
+UNINTERESTING_OTHER_FILE_IDS = [
+    # FBI
+    'EFTA00005716',
+    'EFTA00005705',
+    'EFTA00005717',
 ]
 
 # Not uninteresting enough to be permanently marked as such but not good enough for --output-chrono
@@ -472,6 +476,7 @@ for category in CONSTANT_CATEGORIES:
     CATEGORY_CONFIGS.extend(category_cfgs)
 
 ALL_CONFIGS = CATEGORY_CONFIGS + EMAILS_CONFIG + TEXTS_CONFIG
+DocCfg.create_or_set_prop(UNINTERESTING_OTHER_FILE_IDS, ALL_CONFIGS, 'is_interesting', False)
 EmailCfg.create_or_set_prop(INTERESTING_EMAIL_IDS, ALL_CONFIGS, 'is_interesting', True)
 EmailCfg.create_or_set_prop(UNINTERESTING_EMAIL_IDS, ALL_CONFIGS, 'is_interesting', False)
 EmailCfg.create_or_set_prop(NOT_CHRONOLOGICAL_VIEW_IDS, ALL_CONFIGS, 'is_in_chrono', False)

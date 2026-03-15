@@ -174,8 +174,10 @@ def epstein_pdf_path():
 def epstein_show():
     """Show the color highlighted file. If --raw arg is passed, show the raw text of the file as well."""
     ids_with_attachments = set([c.attached_to_email_id for c in ALL_CONFIGS])
+    epstein_files: EpsteinFiles | None = None
     raw_docs: list[Document] = []
     console.line()
+    ids = []
 
     try:
         if args.names:
@@ -208,7 +210,13 @@ def epstein_show():
 
         logger.info(f"Found file IDs {ids} with types: {[doc._class_name for doc in docs]}")
     except FileNotFoundError as e:
-        exit_with_error(str(e))
+        epstein_files = epstein_files or EpsteinFiles.get_files()
+
+        if ids and (docs := epstein_files.get_ids(ids)):
+            console.line(2)
+            logger.error(f"Failed to find local file but found doc by id: {e}")
+        else:
+            exit_with_error(str(e))
     except Exception as e:
         console.print_exception()
         exit_with_error(str(e))
