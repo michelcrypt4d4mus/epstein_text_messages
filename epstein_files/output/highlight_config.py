@@ -972,7 +972,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 url='https://archive.ph/Qa6vU',  # https://www.nybooks.com/articles/2026/03/26/the-devil-himself-jeffrey-epstein-enright/
             ),
             Entity('Natalia Molotkova', "Epstein's relationship manager at American Express", r"((Natalia|Natasha) )?Molotkova"),
-            Entity(PERRY_LANG, f"Epstein's personal chef 1998-2002", r"(Adam )?Perry Lang"),
+            Entity(PERRY_LANG, f"Epstein's personal chef 1998-2002", r"(Adam )?Perry Lang", match_partial=None),
             Entity('Richard Barnett', "logistics for Epstein's properties", r"Rich(ard)? Barnett", match_partial=None),
             Entity('Sarah Kellen', "now Sarah Vickers, named co-conspirator", r"(Sarah )?(Kellen|Vickers)"),
             Entity('Sean J. Lancaster', "airplane reseller"),
@@ -1173,7 +1173,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 f"CEO of {PETER_MANDELSON}'s failed lobbying firm Global Counsel",
                 url=WIKIPEDIA,
             ),
-            Entity('Caroline Lang', "daughter of Jack Lang"),
+            Entity('Caroline Lang', "daughter of Jack Lang", match_partial=None),
             Entity(EDWARD_ROD_LARSEN, f"son of {TERJE_ROD_LARSEN}", match_partial=None),
             Entity('Fabrice Aidan', f"diplomat who worked with {TERJE_ROD_LARSEN}"),
             Entity('Jack Lang', "former French Minister of National Education", match_partial=None),

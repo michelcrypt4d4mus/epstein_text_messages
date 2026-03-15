@@ -89,7 +89,7 @@ def test_pattern():
 
 
 def test_repr():
-    assert repr(CONTACT_INFO) == r"""Contact(
+    assert repr(CONTACT_INFO) == r"""Entity(
     name=JEFFREY_EPSTEIN,
     info="one and only",
     emailer_pattern=r"Jeffrey Epstein|jeevacation",

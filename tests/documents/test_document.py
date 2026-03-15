@@ -10,10 +10,15 @@ def test_debug_dict(email):
 
     assert debug_dict == {
         'EmailCfg.author': 'Christina Galbraith',
-        'EmailCfg.author_reason': 'from "Christina media/PR"',
+        'EmailCfg.author_reason': 'from "Christina media/PR", "Dear Unik" for recipient',
         'EmailCfg.is_in_chrono': False,
         'EmailCfg.is_of_interest': True,
         'EmailCfg.is_valid_for_name_scan': True,
+        'EmailCfg.recipients': [
+            'Cecile de Jongh',
+            'Jeffrey Epstein',
+            'Unik',
+        ],
         'file_info.external_url': 'https://epstein.media/files/house_oversight_019446',
         'file_info.file_id': '019446',
         'file_info.file_size': 2923,
@@ -43,9 +48,10 @@ def test_debug_dict(email):
             CECILE_DE_JONGH,
             CHRISTINA_GALBRAITH,
             JEFFREY_EPSTEIN,
+            'Unik',
         ],
         'email.num_lines': 51,
-        'email.recipients': [CECILE_DE_JONGH, JEFFREY_EPSTEIN],
+        'email.recipients': [CECILE_DE_JONGH, JEFFREY_EPSTEIN, 'Unik'],
         'email.timestamp': coerce_utc_strict(datetime(2012, 6, 22, 23, 8)),
     }
 
