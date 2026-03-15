@@ -544,15 +544,13 @@ class Email(Communication):
             recipients: list[Name] = [JEFFREY_EPSTEIN]
 
         # Remove self CCs but preserve self emails
-        if not (self.is_note_to_self(recipients) or self.author is None):
-            if self.author in self.recipients:
-                self._log(f"Removing email to self for {self.author}")
-
+        if self.author is not None and self.author in self.recipients and not self.is_note_to_self(recipients):
+            self._log(f"Removing email to self for {self.author}")
             recipients = [r for r in recipients if r != self.author]
 
-        # TODO: maybe should also do this for Cc: but it's a bit trickier
-        if self.header.has_empty_to_header and None not in recipients:
+        if self.header.is_to_redacted and None not in recipients:
             self._warn(f"Appending {UNKNOWN} to recipient list because the To: field is empty")
+            recipients.append(None)
 
         return sort_names(recipients)
 

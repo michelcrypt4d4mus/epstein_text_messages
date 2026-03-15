@@ -119,14 +119,9 @@ class EmailHeader:
         return not any(v for v in self.as_dict().values())
 
     @property
-    def has_empty_cc_header(self) -> bool:
-        """True if the CC: field exists in the header but no names were found in it."""
-        return 'cc' in self.field_names and self._is_list_field_empty(self.cc)
-
-    @property
-    def has_empty_to_header(self) -> bool:
-        """True if it doesn't look like there's any valid data in To: header"""
-        return self._is_list_field_empty(self.to)
+    def is_to_redacted(self) -> bool:
+        """If To: or CC: exist but there's nothing in the field it's 99% of the time bc of redactions."""
+        return any(self._is_list_prop_empty(prop) for prop in ['cc', 'to'])
 
     @property
     def recipients(self) -> list[str]:
@@ -206,9 +201,10 @@ class EmailHeader:
 
         return '\n'.join([f"{k}: {v}" for k, v in header_fields.items()])
 
-    def _is_list_field_empty(self, field_value: list[str] | None) -> bool:
+    def _is_list_prop_empty(self, prop: str) -> bool:
         """Check if the field should be considered empty after stripping cruft off."""
-        return not bool(only_truthy([cleanup_str(name) for name in (field_value or [])]))
+        field_values = only_truthy([cleanup_str(name) for name in (getattr(self, prop) or [])])
+        return prop in self.field_names and len(field_values) == 0
 
     def __str__(self) -> str:
         return json.dumps(self.as_dict(truthy_only=False), sort_keys=True, indent=4)

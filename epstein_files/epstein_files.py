@@ -411,8 +411,9 @@ class EpsteinFiles:
     def _finalize_data_and_write_to_disk(self, new_docs: list[Document] | None = None) -> None:
         """Handle computation of fields related to uninterestingness, relationships between documents, etc."""
         new_docs = new_docs or []
-        # dilorio_files = [e.reload() for e in self._documents if e.author == CHRISTOPHER_DILORIO and e.file_info.has_file]
-        # new_docs += dilorio_files + split_up_dilorio(dilorio_files)
+        # Uncomment to re-split the big dilorio emails during a load or repair
+        dilorio_files = [e for e in self._documents if e.author == CHRISTOPHER_DILORIO and e.file_info.has_file]
+        new_docs += dilorio_files + split_up_dilorio_whistleblower_emails(dilorio_files)
 
         if new_docs:
             old_num_docs = len(self._documents)

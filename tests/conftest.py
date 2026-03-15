@@ -3,6 +3,7 @@ from typing import Callable, Mapping
 
 import pytest
 from dotenv import load_dotenv
+from rich.console import Console
 load_dotenv()
 # environ.setdefault('OVERWRITE_PICKLE', 'True')  # Set PICKLED=True to override this
 environ['INVOKED_BY_PYTEST'] = 'True'
@@ -11,6 +12,7 @@ from epstein_files.documents.doj_file import DojFile
 from epstein_files.documents.other_file import OtherFile
 from epstein_files.documents.email import Email
 from epstein_files.epstein_files import EpsteinFiles
+from epstein_files.output.rich import console as rich_console
 from epstein_files.util.helpers.file_helper import *
 
 FIXTURES_DIR = Path(__file__).parent.joinpath('fixtures', 'generated')
@@ -90,6 +92,12 @@ def house_extract_file_id(house_file_id) -> str:
 @pytest.fixture
 def house_extract_filename(house_extract_file_id) -> str:
     return f"{HOUSE_OVERSIGHT_PREFIX}{house_extract_file_id}.txt"
+
+
+# Just for convenience
+@pytest.fixture
+def console() -> Console:
+    return rich_console
 
 
 def assert_higher_counts(actual: Mapping[str | None, int], expected: Mapping[str | None, int]):
