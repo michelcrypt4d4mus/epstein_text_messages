@@ -23,13 +23,15 @@ from epstein_files.documents.config.doc_cfg import DEFAULT_TRUNCATE_TO, DUPE_TYP
 from epstein_files.documents.documents.file_info import FileInfo
 from epstein_files.documents.documents.search_result import MatchedLine
 from epstein_files.documents.emails.constants import DOJ_EMAIL_OCR_REPAIRS, FALLBACK_TIMESTAMP
+from epstein_files.documents.emails.emailers import get_entities
 from epstein_files.documents.emails.email_header import DETECT_EMAIL_REGEX
-from epstein_files.output.highlight_config import HIGHLIGHTED_CONTACTS, get_style_for_category, get_style_for_name
+from epstein_files.output.highlight_config import HIGHLIGHTED_ENTITIES, get_style_for_category, get_style_for_name
 from epstein_files.output.html.builder import VERTICAL_MARGIN_EMS
 from epstein_files.output.layout_elements.file_display import BasePanel, FileDisplay
 from epstein_files.output.rich import (INFO_STYLE, NA_TXT, SYMBOL_STYLE, add_cols_to_table, build_table, console,
      styled_key_value, prefix_with, snip_msg_txt, styled_dict)
 from epstein_files.output.site.sites import EXTRACTS_BASE_URL
+from epstein_files.people.entity import Entity
 from epstein_files.people.interesting_people import PERSONS_OF_INTEREST, UNINTERESTING_AUTHORS
 from epstein_files.people.names import Name
 from epstein_files.util.constant.strings import *
@@ -37,7 +39,7 @@ from epstein_files.util.constants import CONFIGS_BY_ID
 from epstein_files.util.env import args, site_config
 from epstein_files.util.external_link import link_text_obj
 from epstein_files.util.helpers.data_helpers import (CharRange, coerce_utc, coerce_utc_strict, date_str, patternize, prefix_keys,
-     uniquify, uniq_sorted, without_falsey)
+     listify, uniquify, uniq_sorted, without_falsey)
 from epstein_files.util.helpers.file_helper import coerce_file_path, file_size_str, file_size_to_str
 from epstein_files.util.helpers.string_helper import collapse_newlines, doublespace_lines, join_truthy, quote, timestamp_without_zero_hour
 from epstein_files.util.logging import DOC_TYPE_STYLES, FILENAME_STYLE, logger
@@ -90,6 +92,7 @@ METADATA_FIELDS = [
     'timestamp',
 ]
 
+EntityScanArg = list[Entity] | Entity | list[str] | str | None
 T = TypeVar('T', bound=str | Text)
 
 
@@ -320,22 +323,13 @@ class Document(LoggingEntity):
         return join_truthy(prefix, f"{date_or_time}: {timestamp_without_zero_hour(self.timestamp)}")
 
     @property
-    def people(self) -> list[str]:
-        """Names of people who either sent/received this email or are mentioned in it."""
-        people = [self.author] if self.author else []
-        text_to_scan = self.display_text
+    def entities(self) -> list[Entity]:
+        """Every configured name that is either the author or appears in the text or description."""
+        return self.entity_scan()
 
-        # `DocCfg.people` prop overrides everything.
-        if self._config.people:
-            return self._config.people
-        elif not self._config.is_valid_for_name_scan:
-            return people
-        elif self._config.description:  # Make sure to scan the description too
-            text_to_scan = f"{self._config.description}\n{text_to_scan}"
-
-        # Use `Contact` regexes to scan for the presence of people's names in `self.text`
-        people.extend([c.name for c in HIGHLIGHTED_CONTACTS if c.highlight_regex.search(text_to_scan)])
-        return uniq_sorted([p for p in people if p not in self._config.non_participants])
+    @property
+    def entity_names(self) -> list[str]:
+        return [e.name for e in self.entities]
 
     @property
     def prettified_txt(self) -> Text:
@@ -441,6 +435,33 @@ class Document(LoggingEntity):
             sentences += [Text('', style='italic').append(h) for h in self.info]
 
         return Panel(Group(*sentences), border_style=self._class_style, expand=False)
+
+    def entity_scan(self, exclude: EntityScanArg = None, include: EntityScanArg = None) -> list[Entity]:
+        """
+        Find people and companies associated with this document.
+
+        Args:
+            `exclude` (EntityScanArg, optional): optimization to avoid expensive rescans of names whose bio we already printed.
+            `include` (EntityScanArg, optional): additional names to include (used by subclass overrides)
+        """
+        entity_names = [self.author] if self.author else []
+
+        # DocCfg.people prop overrides everything. config.is_valid_for_name_scan means don't scan text
+        if self._config.people:
+            return get_entities(self._config.people)
+        elif not self._config.is_valid_for_name_scan:
+            return get_entities(entity_names)
+
+        text_to_scan = join_truthy(self._config.description, self.display_text, '\n')
+        exclude = coerce_entity_names(exclude) + self._config.non_participants
+
+        contacts_in_text = [
+            c for c in HIGHLIGHTED_ENTITIES
+            if c.name not in exclude and c.highlight_regex.search(text_to_scan)
+        ]
+
+        entity_names.extend([c.name for c in contacts_in_text])
+        return get_entities(entity_names + coerce_entity_names(include))
 
     def excerpt_text(self, char_range: CharRange | None = None, text: str = '', style = '') -> Text:
         """Create an excerpt of `text`, add appropriate header/footer if truncated, and highlight it."""
@@ -759,3 +780,10 @@ class Document(LoggingEntity):
 
 
 DocumentType = TypeVar('DocumentType', bound=Document)
+
+
+def coerce_entity_names(_arg: EntityScanArg) -> list[str]:
+    if not _arg:
+        return []
+
+    return [e.name if isinstance(e, Entity) else e for e in listify(_arg)]

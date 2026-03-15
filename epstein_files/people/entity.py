@@ -51,6 +51,7 @@ class Entity(LoggingEntity):
         is_organization (bool): if this is a company or group, don't try to match first and last versions of its name
         match_partial (PartialName | None): whether to also match this entity's first and last names
         style (str, optional): style to use when printing this entity's name
+        unique_phraseologies (list[str], optional): turns of phrase known to be unique to this person
         url (str | list[str] | Literal['WIKIPEDIA'], optional): link(s) to info about this entity
     """
     name: str
@@ -68,6 +69,7 @@ class Entity(LoggingEntity):
     is_organization: bool = False
     match_partial: PartialName | None = 'last'
     style: str = ''  # NOTE: not usually set at instantiation time!
+    unique_phraseologies: list[str] = field(default_factory=list)
     url: str | list[str] | Literal['WIKIPEDIA'] = ''
     _urls: list[str] = field(init=False)
     # jmail_url: str
@@ -103,6 +105,7 @@ class Entity(LoggingEntity):
         else:
             return Text('')
 
+    # TODO: add known email addresses
     @property
     def bio_txt(self) -> Text:
         """Biographical info about this entity with links etc."""
@@ -129,6 +132,11 @@ class Entity(LoggingEntity):
             return self.pattern  # TODO: this sucks
 
         return join_patterns(self._name_patterns)
+
+    @property
+    def identifying_strings(self) -> list[str]:
+        """Strings that indicate a document is likely tied to this entity."""
+        return self.email_addresses + self.unique_phraseologies
 
     @property
     def name_with_link(self) -> Text:
@@ -230,6 +238,15 @@ class Entity(LoggingEntity):
     @property
     def _style_dim(self) -> str:
         return self.style if 'dim' in self.style else f'{self.style} dim'
+
+    def __eq__(self, other: Self):
+        if not isinstance(other, Self):
+            return NotImplemented
+
+        return self.name == other.name
+
+    def __hash__(self):
+        return hash(self.name)
 
     def __repr__(self) -> str:
         props = self._props_strs

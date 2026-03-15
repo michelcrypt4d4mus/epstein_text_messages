@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from epstein_files.people.names import CECILE_DE_JONGH, CHRISTINA_GALBRAITH, JEFFREY_EPSTEIN
+from epstein_files.people.names import *
 from epstein_files.util.helpers.data_helpers import coerce_utc_strict
 
 
@@ -55,6 +55,13 @@ def test_debug_dict(email):
         'email.recipients': [CECILE_DE_JONGH, JEFFREY_EPSTEIN, 'Unik'],
         'email.timestamp': coerce_utc_strict(datetime(2012, 6, 22, 23, 8)),
     }
+
+
+def test_entities(get_doj_file):
+    doc = get_doj_file('EFTA01582043')
+    assert doc.entity_names == [CANTOR_FITZGERALD, DEUTSCHE_BANK, SDNY]
+    entity_names = [e.name for e in doc.entity_scan(exclude=[SDNY])]
+    assert entity_names == [CANTOR_FITZGERALD, DEUTSCHE_BANK]
 
 
 def test_is_doj_file(doj_file, messenger_log):

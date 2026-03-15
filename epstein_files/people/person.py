@@ -14,7 +14,7 @@ from epstein_files.documents.communication import Communication
 from epstein_files.documents.document import Document
 from epstein_files.documents.documents.categories import Uninteresting
 from epstein_files.documents.email import BCC_LISTS, TRUNCATE_EMAILS_BY, MAILING_LISTS, Email
-from epstein_files.documents.emails.emailers import CONTACTS_DICT, cleanup_str
+from epstein_files.documents.emails.emailers import ENTITIES_DICT, cleanup_str, get_entity
 from epstein_files.documents.messenger_log import MessengerLog
 from epstein_files.documents.other_file import OtherFile
 from epstein_files.output.highlight_config import (HIGHLIGHTED_NAMES, QUESTION_MARKS_TXT, get_highlight_group_for_name,
@@ -41,6 +41,7 @@ EMAILER_INFO_TITLE = 'Email Conversations Will Appear'
 UNINTERESTING_CC_INFO = "cc: or bcc: recipient only"
 UNINTERESTING_CC_INFO_NO_CONTACT = f"{UNINTERESTING_CC_INFO}, no direct contact with Epstein"
 
+# TODO: get rid of this
 PEOPLE_BIOS = {
     contact.name: contact.bio_txt
     for highlighted_group in HIGHLIGHTED_NAMES
@@ -58,11 +59,11 @@ class Person(LoggingEntity):
     name: Name
     documents: list[Document]
     is_interesting: bool | None = None
-    contact: Entity = field(init=False)
+    contact: Entity = field(init=False)  # TODO: rename 'entity'
     _searched_for_highlight_group: bool = False
 
     def __post_init__(self):
-        self.contact = CONTACTS_DICT.get(self.name_str, Entity(name=cleanup_str(self.name_str)))
+        self.contact = get_entity(self.name_str)
         self.documents = Document.sort_by_timestamp(self.documents)
 
     @property

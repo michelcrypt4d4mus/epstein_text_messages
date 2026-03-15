@@ -98,7 +98,15 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 url='https://www.theatlantic.com/science/archive/2018/10/lawrence-krauss-sexual-misconduct-me-too-arizona-state/573844/',
             ),
             Entity('Lee Smolin', 'physicist'),
-            Entity(LINDA_STONE, f"ex-Microsoft, {MIT_MEDIA_LAB}", match_partial=None),
+            Entity(
+                LINDA_STONE,
+                f"ex-Microsoft, {MIT_MEDIA_LAB}, name oddly always redacted",
+                match_partial=None,
+                unique_phraseologies=[
+                    'tupos & abbrvtns',
+                    'Typos, misspellings courtesy of iPhone',
+                ],
+            ),
             Entity(MARK_TRAMO, "professor of neurology at UCLA"),
             Entity('Marvin Minsky', 'mathematician, early AI researcher'),
             Entity('Nancy Dahl', f"wife of {LAWRENCE_KRAUSS}"),
@@ -701,7 +709,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 url='https://cryptadamus.substack.com/p/of-tech-bros-and-trumpers',
             ),
             organization('Alphabit', 'crypto fund'),
-            organization('BGC', f"{CANTOR} related firm of {HOWARD_LUTNICK}", r"BGC( (International|Partners))?"),
+            organization('BGC', f"{CANTOR_FITZGERALD} related firm of {HOWARD_LUTNICK}", r"BGC( (International|Partners))?"),
             organization('Bioptix', 'old name of RIOT Blockchain from when it was a biotech company'),
             organization('Bitfinex', f"crypto exchange run by the same people that run Tether"),
             organization('BitFury', 'Dutch bitcoin mining company founded by Valery Vavilov and Mark Dollar'),
@@ -719,7 +727,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 url='https://en.wikipedia.org/wiki/BTC-e',
             ),
             organization(
-                CANTOR,
+                CANTOR_FITZGERALD,
                 f"Howard Lutnick's financial firm",
                 r"Cantor(,? (Fitzgerald|Opportunities|Ventures?))?",
                 url='https://cryptadamus.substack.com/p/trumps-transition-team-is-tethered',
@@ -801,7 +809,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             ),
             organization('OneCoin', 'massive $10 billion crypto + multi-level marketing fraud created by Ruja Ignatova'),
             organization('Pantera Capital', "silicon valley crypto fund of Dan Morehead"),
-            organization('Parabridge International Services', f'entity associated with {CANTOR}'),
+            organization('Parabridge International Services', f'entity associated with {CANTOR_FITZGERALD}'),
             organization('PayPay', 'bitcoin debit card', r"PayPay( Card)?"),
             organization('Polymarket', 'blockchain based gambling site ("prediction market")'),
             organization('Ribbit Capital', 'crypto friendly venture fund'),
@@ -3555,7 +3563,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
 ]
 
 HIGHLIGHTED_NAMES = [hg for hg in HIGHLIGHT_GROUPS if isinstance(hg, HighlightedNames)]
-HIGHLIGHTED_CONTACTS = flatten([hn.contacts for hn in HIGHLIGHTED_NAMES])
+HIGHLIGHTED_ENTITIES = flatten([hn.contacts for hn in HIGHLIGHTED_NAMES])
 
 
 def get_contact(name: str) -> Entity | None:
@@ -3614,5 +3622,5 @@ def _print_highlighted_names_repr() -> None:
 
 
 if args._debug_highlight_patterns:
-    for c in HIGHLIGHTED_CONTACTS:
+    for c in HIGHLIGHTED_ENTITIES:
         print(repr(c))

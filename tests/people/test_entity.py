@@ -1,6 +1,6 @@
 from rich.text import Text
 
-from epstein_files.documents.emails.emailers import CONTACTS_DICT
+from epstein_files.documents.emails.emailers import ENTITIES_DICT
 from epstein_files.people.entity import Entity, acronym, organization, epstein_co, epstein_trust
 from epstein_files.people.names import *
 
@@ -32,8 +32,8 @@ def test_acronym():
 
 
 def test_bio():
-    yulia = CONTACTS_DICT[YULIA_DOROKHINA]
-    brock = CONTACTS_DICT[BROCK_PIERCE]
+    yulia = ENTITIES_DICT[YULIA_DOROKHINA]
+    brock = ENTITIES_DICT[BROCK_PIERCE]
     assert brock.bio_txt.plain == 'Brock Pierce [crypto] Bannon partner, Tether co-founder, friend of Yair Netanyahu, sex crime history (more)'
 
 

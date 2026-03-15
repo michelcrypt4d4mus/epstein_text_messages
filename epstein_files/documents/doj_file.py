@@ -26,7 +26,6 @@ MIN_VALID_LENGTH = 10
 SINGLE_IMAGE_NO_TEXT = 'no text found in image(s)'
 WORD_REGEX = re.compile(r"[A-Za-z]{3,}")
 
-
 # From EFTA00000020 to EFTA00000344 there doesn't seem to be any text
 BAD_OCR_ID_RANGES = [
     range(20, 345),
