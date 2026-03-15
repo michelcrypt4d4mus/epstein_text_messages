@@ -32,6 +32,7 @@ def test_debug_dict(email):
         ],
         'email.author': 'Christina Galbraith',
         'email.category': 'email',
+        'email.extracted_recipients': [],
         'email.header': {
             'attachments': 'DSC_0418.JPG; DSC_0419.JPG; DSC_0424.JPG; Cefotaj Business Plan Final 5-18-11(1).docx',
             'author': 'Jeffrey Epstein <jeffreyepsteinorg©gmail.com >',
