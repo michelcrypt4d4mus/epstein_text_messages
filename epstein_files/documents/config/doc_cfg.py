@@ -227,12 +227,11 @@ class DocCfg(LoggingEntity):
     @property
     def complete_description(self) -> str:
         """String that summarizes what is known about this document."""
-        # Set preamble to category if there's no author or description or CATEGORY_PREAMBLES entry
+        author = f"{self.author} {QUESTION_MARKS}" if self.author and self.author_uncertain else self.author
         preamble = CATEGORY_PREAMBLES.get(self.category) or ''
         preamble_separator = ''
         author_separator = ''
         description = ''
-        author = f"{self.author} {QUESTION_MARKS}" if self.author and self.author_uncertain else self.author
 
         # If description is set at all in one of these if/else checks must be fully constructed
         if self.display_text and not self.description:
