@@ -1,4 +1,6 @@
 # NEXT RELEASE
+* Use `Entity` objs instead of names in important places
+* Optimize `Document.entity_scan()` with `exclude` argument to prevent expensive rescans for people already printed
 
 ### 1.9.4
 * rename `Contact` to `Entity`
