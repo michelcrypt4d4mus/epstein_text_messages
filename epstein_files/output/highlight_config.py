@@ -327,7 +327,6 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         category=TECH_BRO,
         contacts=[
             Entity(BILL_GATES, "ex-Microsoft, Gates Foundation, bgC3"),
-            Entity('Dick Henriques', 'CFO of Bill and Melinda Gates Foundation'),
             Entity(
                 BORIS_NIKOLIC,
                 f"biotech partner of {BILL_GATES} in bgC3 / Bill Gates Ventures, Epstein estate executor",
@@ -335,6 +334,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 match_partial='both',
                 url='https://www.wsj.com/articles/how-epstein-inserted-himself-in-a-split-between-bill-gates-and-a-top-gates-adviser-6d8fca69',
             ),
+            Entity('Dick Henriques', 'CFO of Bill and Melinda Gates Foundation'),
         ],
         patterns=[
             r"BG",
@@ -449,7 +449,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             ),
             Entity(
                 MILES_GUO,
-                "crime boss from Chinese intelligence world, friend of Steve Bannon who was arrested on Guo's yacht",
+                "organized crime boss connected to Chinese intelligence, friend of Steve Bannon (who was arrested on Guo's yacht)",
                 r"Miles (Guo|Kwok)|Guo Wengui",
                 aliases=['Miles Kwok', 'Guo Wengui'],
                 match_partial=None,

@@ -18,7 +18,9 @@ from epstein_files.util.helpers.string_helper import (as_pattern, indented, is_i
 from epstein_files.util.logging import logger
 from epstein_files.util.logging_entity import LoggingEntity
 
-BIO_STYLE = 'italic grey70'
+AKA_STYLE = 'grey39 italic'
+BIO_COLOR = 'grey70'
+BIO_STYLE = f'italic {BIO_COLOR}'
 MIN_LEN_FOR_OPTIONAL_LAST_CHAR = 5
 
 LINK_JOIN_STYLE = 'grey23 bold'
@@ -101,7 +103,7 @@ class Entity(LoggingEntity):
         """Biographical info about this entity with links etc."""
         from epstein_files.output.epstein_highlighter import non_epstein_highlighter
         bio_pieces: list[Textish] = [Text('').append(self.name_with_link)]
-        bio_pieces.extend([Text("aka ", BIO_STYLE).append(enclose(Text(alias, self.style))) for alias in self.aliases])
+        bio_pieces.extend([Text('').append('aka ', AKA_STYLE).append(Text(alias, self.style)) for alias in self.aliases])
 
         if self.category:
             category_txt = Text(self.category.lower(), style=self._style_dim)
