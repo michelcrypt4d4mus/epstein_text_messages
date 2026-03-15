@@ -1657,7 +1657,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             law_enforcement(FBI),
             law_enforcement('Manhattan DA'),
             law_enforcement('NY FBI'),
-            law_enforcement(OFFICE_OF_THE_DEPUTY_ATTORNEY_GENERAL, r"\bODAG\b"),
+            law_enforcement(OFFICE_OF_THE_DEPUTY_ATTORNEY_GENERAL, r"\bODAG\b", is_emailer=True),
             law_enforcement('Police Code Enforcement', description=f"{PALM_BEACH} buildings code enforcement"),
             law_enforcement(SDNY),
             law_enforcement('USAHUB-USAJournal111'),
