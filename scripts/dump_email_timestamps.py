@@ -35,6 +35,14 @@ ids = []
 
 for i, email in enumerate(epstein_files.unique_emails):
     # if email._config.recipients or not email.is_word_count_worthy or email.author == CHRISTOPHER_DILORIO:
+    if i < 20:
+        file_info = email.file_info
+        console.line()
+        console.print(f"[{file_info.file_id}] OLD external_link_txt: {file_info.external_link_txt}")
+        console.print(f"[{file_info.file_id}] NEW     external_link: {file_info.external_link().link}")
+        console.print(f"[{file_info.file_id}] NEW          __rich__: {file_info.external_link()}")
+        console.line()
+
     if email._config.recipients:
         continue
 

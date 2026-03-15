@@ -167,6 +167,7 @@ class Document(LoggingEntity):
 
     @property
     def colored_external_links(self) -> Text:
+        """Collection of links to official and unofficial for this file concatenated into one `Text` object."""
         return self.file_info.build_external_links(with_alt_links=True)
 
     @property
