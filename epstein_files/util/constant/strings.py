@@ -2,6 +2,7 @@ import re
 from typing import Literal
 
 # Types
+OcrRepair = dict[str | re.Pattern, str]
 PartialName = Literal['both', 'first', 'last']
 
 # Categories

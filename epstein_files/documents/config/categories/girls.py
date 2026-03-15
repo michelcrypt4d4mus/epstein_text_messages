@@ -261,6 +261,11 @@ GIRLS_CFGS = [
         recipient_uncertain=True,
     ),
     EmailCfg(
+        id='EFTA02447019',
+        recipients=[SVETLANA_POZHIDAEVA],
+        author_reason='https://www.wsj.com/us-news/epstein-victim-svetlana-pozhidaeva-22f2ebf6',
+    ),
+    EmailCfg(
         id='EFTA00888467',
         description=f'very strange conversation about "Peter" (maybe {PETER_MANDELSON}?) and "mj" (maybe {HASSAN_JAMEEL}?)',
         is_interesting=True,
@@ -309,6 +314,12 @@ GIRLS_CFGS = [
         highlight_quote='Jeffrey was asking if you and "your friend" could come by and meet Peter',
         recipients=[None],
         truncate_to=(6_700, 7_450),
+    ),
+    EmailCfg(
+        id='EFTA00438431',
+        description=f"visa invitation for {KARYNA_SHULIAK} to visit {QUESTION_MARKS}",
+        recipients=[LESLEY_GROFF],
+        show_with_name=KARYNA_SHULIAK,
     ),
 
     # Quotes

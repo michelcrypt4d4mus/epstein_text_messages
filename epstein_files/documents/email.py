@@ -15,7 +15,7 @@ from rich.table import Table
 from rich.text import Text
 
 from epstein_files.documents.communication import Communication
-from epstein_files.documents.document import CLOSE_PROPERTIES_CHAR, EXCERPT_STYLE
+from epstein_files.documents.document import CLOSE_PROPERTIES_CHAR, EXCERPT_STYLE, EntityScanArg, coerce_entity_names
 from epstein_files.documents.documents.categories import Uninteresting
 from epstein_files.documents.config.doc_cfg import DEFAULT_TRUNCATE_TO, NO_TRUNCATE, SHORT_TRUNCATE_TO, DebugDict, EmailCfg, Metadata
 from epstein_files.documents.doj_file import DojFile
@@ -23,8 +23,9 @@ from epstein_files.documents.emails.constants import *
 from epstein_files.documents.emails.email_parts import EmailParts
 from epstein_files.documents.emails.email_header import (EMAIL_SIMPLE_HEADER_REGEX,
      EMAIL_SIMPLE_HEADER_LINE_BREAK_REGEX, EmailHeader)
-from epstein_files.documents.emails.emailers import UNIQUE_IDENTIFIERS, UNIQ_IDENTIFIER_FALSE_ALARMS, extract_emailer_names
+from epstein_files.documents.emails.emailers import IDENTIFYING_STRINGS, UNIQ_IDENTIFIER_FALSE_ALARMS, extract_emailer_names
 from epstein_files.documents.other_file import OtherFile
+from epstein_files.people.entity import Entity
 from epstein_files.people.interesting_people import EMAILERS_OF_INTEREST_SET
 from epstein_files.people.names import sort_names
 from epstein_files.output.epstein_highlighter import highlighter
@@ -33,7 +34,7 @@ from epstein_files.output.html.builder import table_to_html
 from epstein_files.output.html.positioned_rich import to_em
 from epstein_files.output.layout_elements.file_display import FileDisplay, JustifyMethod
 from epstein_files.output.rich import DEFAULT_TABLE_KWARGS, build_table, styled_key_value
-from epstein_files.util.constant.strings import APPEARS_IN, ARCHIVE_LINK_COLOR, REDACTED, TIMESTAMP_DIM
+from epstein_files.util.constant.strings import APPEARS_IN, ARCHIVE_LINK_COLOR, REDACTED, TIMESTAMP_DIM, OcrRepair
 from epstein_files.util.constant.urls import URL_SIGNIFIERS
 from epstein_files.util.constants import CONFIGS_BY_ID
 from epstein_files.util.env import args, site_config
@@ -90,7 +91,7 @@ REPLY_SPLITTERS = [f"{field}:" for field in COMMON_HEADER_FIELDS] + [
     'Begin forwarded message',
 ]
 
-OCR_REPAIRS: dict[str | re.Pattern, str] = {
+OCR_REPAIRS: OcrRepair = {
     # '­': '-',
     # '‐': '-',
     '-­‐': '-',  # TODO: weird hyphens in 027004 and other files that rich doesn't handle well
@@ -156,7 +157,6 @@ OCR_REPAIRS: dict[str | re.Pattern, str] = {
     # links
     'classified-intelligence-\nmichael-flynn-trump': 'classified-intelligence-michael-flynn-trump',
     'on-accusers-rose-\nmcgowan/ ': 'on-accusers-rose-\nmcgowan/\n',
-    'the-truth-\nabout-the-bitcoin-foundation/ )': 'the-truth-about-the-bitcoin-foundation/ )\n',
     'woody-allen-jeffrey-epsteins-\nsociety-friends-close-ranks/ ---': 'woody-allen-jeffrey-epsteins-society-friends-close_ranks/\n',
     ' https://www.theguardian.com/world/2017/may/29/close-friend-trump-thomas-barrack-\nalleged-tax-evasion-italy-sardinia?CMP=share btn fb': '\nhttps://www.theguardian.com/world/2017/may/29/close-friend-trump-thomas-barrack-alleged-tax-evasion-italy-sardinia?CMP=share_btn_fb',
     'search-for-secret-putin-\nfortune.html': 'search-for-secret-putin-fortune.html',
@@ -166,17 +166,9 @@ OCR_REPAIRS: dict[str | re.Pattern, str] = {
     re.compile(r" http ?://www. ?dailymail. ?co ?.uk/news/article-\d+/Troub ?led-woman-history-drug-\n?us ?e-\n?.*html"): '\nhttp://www.dailymail.co.uk/news/article-3914012/Troubled-woman-history-drug-use-claimed-assaulted-Donald-Trump-Jeffrey-Epstein-sex-party-age-13-FABRICATED-story.html',
     re.compile(r"http.*steve-bannon-trump-tower-\n?interview-\n?trumps-\n?strategist-plots-\n?new-political-movement-948747"): "\nhttp://www.hollywoodreporter.com/news/steve-bannon-trump-tower-interview-trumps-strategist-plots-new-political-movement-948747",
     # Subject lines
-    r"Arrested in\nInauguration Day Riot": "Arrested in Inauguration Day Riot",
-    r"avoids testimony from alleged\nvictims": "avoids testimony from alleged victims",
-    r"It's a first, but the buyer's\nanonymous": "It's a first, but the buyer's anonymous",
-    r"but\nwatchdogs say probe is tainted": "watchdogs say probe is tainted",
-    r"Christmas comes\nearly for most of macro": "Christmas comes early for most of macro",            # 023717
-    r"but majority still made good\nmoney because": "but majority still made good money because",      # 023717
-    r"COVER UP SEX ABUSE CRIMES\nBY THE WHITE HOUSE": "COVER UP SEX ABUSE CRIMES BY THE WHITE HOUSE",
     r'Priebus, used\nprivate email accounts for': 'Priebus, used private email accounts for',
-    r"War on the Investigations\nEncircling Him": "War on the Investigations Encircling Him",
+    r"avoids testimony from alleged\nvictims": "avoids testimony from alleged victims",
     r"Subject; RE": "Subject: RE",
-    r"straining relations between UK and\nAmerica": "straining relations between UK and America",
     re.compile(r"as Putin Mayhem\sTests\sPresident's\sGrip\son\sGOP"): "as Putin Mayhem Tests President's Grip on GOP",
     re.compile(r"deadline re Mr Bradley Edwards vs Mr\s*Jeffrey Epstein", re.I): "deadline re Mr Bradley Edwards vs Mr Jeffrey Epstein",
     re.compile(r"Following Plea That Implicated Trump -\s*https://www.npr.org/676040070", re.I): "Following Plea That Implicated Trump - https://www.npr.org/676040070",
@@ -258,7 +250,7 @@ class Email(Communication):
         self.actual_text = self._extract_actual_text()
         self.sent_from_device = self._sent_from_device()
 
-        for identifier, contact in UNIQUE_IDENTIFIERS.items():
+        for identifier, contact in IDENTIFYING_STRINGS.items():
             if identifier.lower() in self.text.lower() and contact.name not in self.participants and self.file_id not in UNIQ_IDENTIFIER_FALSE_ALARMS:
                 self._warn(f"Found known identifier for {contact.name} in email where they are not an identified participant")
 
@@ -457,11 +449,6 @@ class Email(Communication):
         return metadata
 
     @property
-    def people(self) -> list[str]:
-        """Includes people in attachments."""
-        return uniq_sorted(super().people + flatten([ad.people for ad in self.attached_docs]))
-
-    @property
     def prettified_txt(self) -> Text:
         """Overrides superclass. Cleaned up / formatted Text ready to be displayed."""
         if self._config.char_range and self._config.char_range[0] > 0:
@@ -511,6 +498,11 @@ class Email(Communication):
             txt.append(', ').append(styled_key_value('recipients', self.recipients_txt()))
 
         return txt.append(CLOSE_PROPERTIES_CHAR)
+
+    def entity_scan(self, exclude: EntityScanArg = None, include: EntityScanArg = None) -> list[Entity]:
+        """Overrides superclass to append names from email attachments."""
+        attachment_entities = flatten([ad.entities for ad in self.attached_docs])
+        return super().entity_scan(exclude, coerce_entity_names(attachment_entities) + coerce_entity_names(include))
 
     def extract_author(self) -> Name:
         """Overloads superclass method, called at instantiation time."""
@@ -730,39 +722,9 @@ class Email(Communication):
             if i >= n:
                 return match.end() + header_offset - 1
 
-    def _merge_lines(self, idx1: int, idx2: int | None = None) -> None:
-        """Combine lines numbered 'idx' and 'idx2' into a single line (idx2 defaults to idx + 1)."""
-        if idx2 is None:
-            self._line_merge_arguments.append((idx1,))
-            idx2 = idx1 + 1
-        else:
-            self._line_merge_arguments.append((idx1, idx2))
-
-        if idx2 < idx1:
-            lines = self.lines[0:idx2] + self.lines[idx2 + 1:idx1] + [self.lines[idx1] + ' ' + self.lines[idx2]] + self.lines[idx1 + 1:]
-        elif idx2 == idx1:
-            raise RuntimeError(f"idx2 ({idx2}) must be greater or less than idx ({idx1})")
-        else:
-            lines = self.lines[0:idx1]
-
-            if idx2 == (idx1 + 1):
-                lines += [self.lines[idx1] + ' ' + self.lines[idx1 + 1]] + self.lines[idx1 + 2:]
-            else:
-                lines += [self.lines[idx1] + ' ' + self.lines[idx2]] + self.lines[idx1 + 1:idx2] + self.lines[idx2 + 1:]
-
-        self._set_text(lines=lines)
-
     def _remove_bad_lines(self) -> None:
         """Get rid of crufty lines matching `BAD_LINE_REGEX`"""
         self._set_text(lines=[line for line in self.lines if not BAD_LINE_REGEX.match(line)])
-
-    def _remove_line(self, idx: int) -> None:
-        """Remove a line from `self.lines`."""
-        num_lines = idx * 2
-        self._log_top_lines(num_lines, msg=f'before removal of line {idx}')
-        del self.lines[idx]
-        self._set_text(lines=self.lines)
-        self._log_top_lines(num_lines, msg=f'after removal of line {idx}')
 
     def _repair(self) -> None:
         """Repair particularly janky files. Note that OCR_REPAIRS are applied *after* other line adjustments."""
@@ -783,6 +745,11 @@ class Email(Communication):
         self._remove_bad_lines()
         self.__bespoke_repair_house_oversight_emails()
         self._set_text(text=self.repair_ocr_text(OCR_REPAIRS, self.text))
+
+        if self.file_id in SINGLE_EMAIL_OCR_REPAIRS:
+            self._debug_log('applying bespoke OCR repairs')
+            self._set_text(text=self.repair_ocr_text(SINGLE_EMAIL_OCR_REPAIRS[self.file_id], self.text))
+
         self._repair_links_and_quoted_subjects()
         self._format_newlines_and_snip_signatures()
 
@@ -871,7 +838,7 @@ class Email(Communication):
 
         if self.file_id in LINE_REPAIR_MERGES:
             for merge_args in LINE_REPAIR_MERGES[self.file_id]:
-                self._merge_lines(*merge_args)
+                self.__merge_lines(*merge_args)
 
         if self.file_id in ['025233']:
             self.lines[4] = f"Attachments: {self.lines[4]}"
@@ -879,14 +846,44 @@ class Email(Communication):
         elif self.file_id == '029977':
             self._set_text(text=self.text.replace('Sent 9/28/2012 2:41:02 PM', 'Sent: 9/28/2012 2:41:02 PM'))
         elif self.file_id == '025041':
-            self._remove_line(4)
-            self._remove_line(4)
+            self.__remove_line(4)
+            self.__remove_line(4)
         elif self.file_id == '029692':
-            self._remove_line(3)
+            self.__remove_line(3)
 
         if old_text != self.text:
             self._log(f"Modified text, old:\n\n" + '\n'.join(old_text.split('\n')[0:12]) + '\n')
             self._log_top_lines(12, 'Result of modifications')
+
+    def __merge_lines(self, idx1: int, idx2: int | None = None) -> None:
+        """Combine lines numbered 'idx' and 'idx2' into a single line (idx2 defaults to idx + 1)."""
+        if idx2 is None:
+            self._line_merge_arguments.append((idx1,))
+            idx2 = idx1 + 1
+        else:
+            self._line_merge_arguments.append((idx1, idx2))
+
+        if idx2 < idx1:
+            lines = self.lines[0:idx2] + self.lines[idx2 + 1:idx1] + [self.lines[idx1] + ' ' + self.lines[idx2]] + self.lines[idx1 + 1:]
+        elif idx2 == idx1:
+            raise RuntimeError(f"idx2 ({idx2}) must be greater or less than idx ({idx1})")
+        else:
+            lines = self.lines[0:idx1]
+
+            if idx2 == (idx1 + 1):
+                lines += [self.lines[idx1] + ' ' + self.lines[idx1 + 1]] + self.lines[idx1 + 2:]
+            else:
+                lines += [self.lines[idx1] + ' ' + self.lines[idx2]] + self.lines[idx1 + 1:idx2] + self.lines[idx2 + 1:]
+
+        self._set_text(lines=lines)
+
+    def __remove_line(self, idx: int) -> None:
+        """Remove a line from `self.lines`."""
+        num_lines = idx * 2
+        self._log_top_lines(num_lines, msg=f'before removal of line {idx}')
+        del self.lines[idx]
+        self._set_text(lines=self.lines)
+        self._log_top_lines(num_lines, msg=f'after removal of line {idx}')
 
     def __rich_console__(self, console: Console, options: ConsoleOptions) -> RenderResult:
         prettified_txt = self.prettified_txt

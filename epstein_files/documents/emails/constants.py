@@ -7,7 +7,7 @@ from copy import copy
 from dateutil.parser import parse
 
 from epstein_files.people.names import *
-from epstein_files.util.constant.strings import MONTHS, WEEKDAYS, REDACTED, RUSSIAN_WEEKDAYS
+from epstein_files.util.constant.strings import MONTHS, WEEKDAYS, REDACTED, RUSSIAN_WEEKDAYS, OcrRepair
 from epstein_files.util.env import args
 from epstein_files.util.helpers.data_helpers import coerce_utc_strict
 from epstein_files.util.helpers.string_helper import join_patterns, or_equal_sign_char_group, snip_msg
@@ -185,12 +185,14 @@ EMAIL_SIGNATURE_REGEXES = {
     'W Bradford Stephens': re.compile(r"This email \(including.*\n(please.*\n)?it.*\nand do not.*\n(does.*\n)?constitute.*\ninvestment.*\n(info.*\n)?contained.*\nthe.*\s*(sender.*\n)?update.*\nthis.*(\nemail.*)?"),
     BROCK_PIERCE: re.compile(r"[>» ]*Best regards,\n[>» ]*Brock( Pierce)?|IMPORTANT NOTICE: This.*\n(individual.*\nthat is.*\nlaw.*\nemployee.*\nrecipient.*|may contain info.*\nreader of this.*)|(Mobile?:?.*\n)?(Skype:.*\n)?E:?.*\n(W:.*\n)?(Follow me.*\n)?Co-invest.*(\nLinked.*)?"),
     'Cantor Fitzgerald': re.compile(r"CONFIDENTIAL: This e-mail, including its contents and attachments.{,1300}by\s+th.\s+Operations\s+Department\.?", re.DOTALL),
+    "Christine O'Neill": re.compile(r"^President\n(I |Financial S).{,300}secure email system\.?", re.DOTALL | re.MULTILINE),
     DANIEL_SIAD: re.compile(r"Confidentiality Notice: The information contained in this electronic message is PRIVILEGED and confidential information intended only for the use of the individual entity or entities named as recipient or recipients. If the reader is not the intended recipient, be hereby notified that any dissemination, distribution or copy of this communication is strictly prohibited. If you have received this communication in error, please notify me immediately by electronic mail or by telephone and permanently delete this message from your computer system. Thank you.".replace(' ', r'\s*'), re.IGNORECASE),
     DANNY_FROST: re.compile(r"Danny Frost\nDirector.*\nManhattan District.*\n212.*", re.IGNORECASE),
     DARREN_INDYKE: re.compile(r"DARREN K. INDYKE.*?\**\nThe information contained in this communication.*?Darren K.[\n\s]+?[Il]ndyke(, PLLC)? — All rights reserved\.? ?\n\*{50,120}(\n\**)?", re.DOTALL),
     DAVID_FISZEL: re.compile(r"This e-mail and any file.*\nmail and/or any file.*\nmail or any.*\nreceived.*\nmisdirected.*"),
     DAVID_INGRAM: re.compile(r"Thank you in advance.*\nDavid Ingram.*\nCorrespondent\nReuters.*\nThomson.*(\n(Office|Mobile|Reuters.com).*)*"),
     DAVID_STERN: re.compile(r"This message is confidential. It.{300,420}Asia Gateway.{,50}nor endorsed by it\.?", re.DOTALL),
+    DEUTSCHE_BANK: re.compile(r"(Associate.{,5})?Derivative Documentation.{,200}(nan Desai|Group ID :)|DBOI Global Services.{,220}(527-6650|Jaipur, India)", re.DOTALL),
     DEEPAK_CHOPRA: re.compile(fr"({DEEPAK_CHOPRA}( MD)?\n)?2013 Costa Del Mar Road\nCarlsbad, CA 92009(\n(Chopra Foundation|Super Genes: Unlock.*))?(\nJiyo)?(\nChopra Center for Wellbeing)?(\nHome: Where Everyone is Welcome)?"),
     EDUARDO_ROBLES: re.compile(r"(• )?email:.*\n(• )?email:\n(• )?website: www.creativekingdom.com\n(• )?address: 5th Floor Office No:504 Aspect Tower,\nBusiness Bay, Dubai United Arab Emirates."),
     'Erika Kellerhals': re.compile(r"Notice: This communica.ion may contain privileged or other confidential.{,310}delete the copy you recei.ed. Thank you.?", re.DOTALL),
@@ -224,6 +226,7 @@ EMAIL_SIGNATURE_REGEXES = {
     'Susan Edelman': re.compile(r'Susan Edel.*\nReporter\n1211.*\n917.*\nsedelman.*', re.IGNORECASE),
     TERRY_KAFKA: re.compile(r"((>|I) )?Terry B.? Kafka.*\n(> )?Impact Outdoor.*\n(> )?5454.*\n(> )?Dallas.*\n((> )?c?ell.*\n)?(> )?Impactoutdoor.*(\n(> )?cell.*)?", re.IGNORECASE),
     TOM_PRITZKER: re.compile(r"The contents of this email message.*\ncontain confidential.*\n(not )?the intended.*\n(error|please).*\n(you )?(are )?not the.*\n(this )?message.*"),
+    'Tourmaline Partners': re.compile(r'This e-mail and any files transmitted with it.{,1200}\nprohibited\.', re.DOTALL),
     TONJA_HADDAD_COLEMAN: re.compile(fr"Tonja Haddad Coleman.*\nTonja Haddad.*\nAdvocate Building\n315 SE 7th.*(\nSuite.*)?\nFort Lauderdale.*(\n({REDACTED} )?facsimile)?(\nwww.tonjahaddad.com?)?(\nPlease add this efiling.*\nThe information.*\nyou are not.*\nyou are not.*)?", re.IGNORECASE),
     UNKNOWN: re.compile(r"(This message is directed to and is for the use of the above-noted addressee only.*\nhereon\.)", re.DOTALL),
     USANYS: re.compile(r"Southern District of New York\s+One Saint Andrew's Plaza\s+New York,?\s*New York 10007(\s+Tel)?"),
@@ -422,6 +425,22 @@ TRUNCATE_TERMS = [
     'The US trade war against China: The view from Beijing',  # Robert Kuhn / Groff
     'This much we know - the Fall elections are shaping up',  # Juleanna Glover / Bannon
 ]
+
+
+# Bespoke OCR repairs that apply to one email
+SINGLE_EMAIL_OCR_REPAIRS: dict[str, OcrRepair] = {
+    '026360': {'the-truth-\nabout-the-bitcoin-foundation/ )': 'the-truth-about-the-bitcoin-foundation/ )\n'},
+    '026652': {r"Arrested in\nInauguration Day Riot": "Arrested in Inauguration Day Riot"},
+    '031822': {r"but\nwatchdogs say probe is tainted": "watchdogs say probe is tainted"},
+    '023635': {r"Christmas comes\nearly for most of macro": "Christmas comes early for most of macro"},
+    '023717': {r"Christmas comes\nearly for most of macro": "Christmas comes early for most of macro"},
+    '023717': {r"but majority still made good\nmoney because": "but majority still made good money because"},
+    '026852': {r"COVER UP SEX ABUSE CRIMES\nBY THE WHITE HOUSE": "COVER UP SEX ABUSE CRIMES BY THE WHITE HOUSE"},
+    '031343': {r"War on the Investigations\nEncircling Him": "War on the Investigations Encircling Him"},
+    'EFTA00039967': {r"straining relations between UK and\nAmerica": "straining relations between UK and America"},
+    'EFTA01409449': {re.compile(r'[{f]cid:ima..\d\d\d.{,30}([1}]|\n|$)', re.IGNORECASE | re.MULTILINE): ''},
+    'EFTA00703417': {r"It's a first, but the buyer's\nanonymous": "It's a first, but the buyer's anonymous"},
+}
 
 # Arguments to Email._merge_lines(). Note the line repair happens *after* 'Importance: High' is removed
 LINE_REPAIR_MERGES = {

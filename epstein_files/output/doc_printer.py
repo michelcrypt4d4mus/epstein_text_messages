@@ -14,7 +14,7 @@ from epstein_files.documents.document import Document
 from epstein_files.documents.documents.categories import sort_categories
 from epstein_files.documents.doj_file import DojFile
 from epstein_files.documents.email import Email
-from epstein_files.documents.emails.emailers import ALL_CONTACTS, CONTACT_CATEGORIES
+from epstein_files.documents.emails.emailers import ENTITY_CATEGORIES, get_entities
 from epstein_files.documents.messenger_log import MessengerLog
 from epstein_files.documents.other_file import OtherFile
 from epstein_files.output.layout_elements.file_display import BasePanel, FileDisplay
@@ -24,8 +24,9 @@ from epstein_files.output.html.elements import div_class, tag
 from epstein_files.output.html.positioned_rich import PositionedRich, to_em, unpack_dimensions, vertical_spacer
 from epstein_files.output.rich import console, section_subtitle_panel
 from epstein_files.output.site.sites import SiteType
+from epstein_files.people.entity import Entity
 from epstein_files.people.names import *
-from epstein_files.people.person import PEOPLE_BIOS, Person
+from epstein_files.people.person import Person
 from epstein_files.util.env import args, site_config
 from epstein_files.util.helpers.data_helpers import listify, uniq_sorted
 from epstein_files.util.helpers.rich_helpers import vertically_pad
@@ -39,7 +40,7 @@ EMPTY_LINE_DIV = f'<div style="height: {EMPTY_LINE_HEIGHT}"></div>'
 STICKY_BIO_CSS_CLASS = 'sticky_person_bio_panel'
 
 PrintableObj = Document | FileDisplay
-PeopleBiosArg = list[str] | PrintableObj
+PeopleBiosArg = list[str] | list[Entity] | PrintableObj
 
 
 @dataclass(kw_only=True)
@@ -52,20 +53,20 @@ class DocPrinter:
         collect_other_files_to_tables (bool, optional): OtherFiles will be collected into small tables if they are sequential
         html_elements (list[str]): HTML for all objects printed so far
         printed_docs (list[Document]): all Documents that have been printed so far
-        printed_name_bios (set[str]): all the names for which biographical information has been printed already
+        printed_name_bios (set[Entity]): all the names for which biographical information has been printed already
 
     """
     epstein_files: 'EpsteinFiles'
     collect_other_files_to_tables: bool = True
     html_elements: list[str] = field(default_factory=list)
-    printed_name_bios: set[str] = field(default_factory=set)
+    printed_name_bios: set[Entity] = field(default_factory=set)
     printed_objs: list[PrintableObj] = field(default_factory=list)
     _last_bio_panel = ''
     _other_files_queue: list[OtherFile] = field(default_factory=list)
     _suppressed_docs_queue: list[Document] = field(default_factory=list)
 
     def __post_init__(self):
-        # Initialize with conversion of what's in the console history buffer so far to HTML
+        """Initialize with HTML of what's been printed to the console history buffer up to this point."""
         self.html_elements.append(console_buffer_to_html(console, False))
 
     @property
@@ -85,32 +86,32 @@ class DocPrinter:
         self.html_elements.append(vertical_spacer(num))
         console.line(num)
 
-    def new_names(self, names_or_doc: PeopleBiosArg) -> list[str]:
+    def new_entities(self, names_or_doc: PeopleBiosArg) -> list[Entity]:
         """List of names found in relation to the documents that have not been encountered before."""
-        if isinstance(names_or_doc, FileDisplay):
+        if isinstance(names_or_doc, FileDisplay) or not names_or_doc:
             return []
         elif isinstance(names_or_doc, Document):
-            names = names_or_doc.people
+            entities = names_or_doc.entity_scan(exclude=list(self.printed_name_bios))
         else:
-            names = names_or_doc
+            entities = get_entities(names_or_doc)
 
-        return [n for n in names if n not in self.printed_name_bios]
+        return [e for e in entities if e not in self.printed_name_bios]
 
-    def new_names_with_bios(self, names_or_doc: PeopleBiosArg) -> list[str]:
+    def new_entities_with_bios(self, names_or_doc: PeopleBiosArg) -> list[Entity]:
         """Return names that a) were not seen before and b) have configured biographical info."""
-        return [n for n in self.new_names(names_or_doc) if PEOPLE_BIOS.get(n)]
+        return [n for n in self.new_entities(names_or_doc) if n.has_bio]
 
     def print_biographies(self) -> None:
         """Print all the `Entity` objects that are configured in one big colored list."""
         self.print_section_subtitle('Entities With Configured Biographical Info')
 
-        contacts = [
+        entity_bios = [
             Padding(c.bio_txt, site_config.contact_list_padding)
-            for category in sort_categories([c for c in CONTACT_CATEGORIES.keys()])
-            for c in CONTACT_CATEGORIES[category]
+            for category in sort_categories([c for c in ENTITY_CATEGORIES.keys()])
+            for c in ENTITY_CATEGORIES[category]
         ]
 
-        self.print_renderable(contacts)
+        self.print_renderable(entity_bios)
 
     def print_centered(self, _renderables: RenderableType | list[RenderableType]):
         renderables = listify(_renderables)
@@ -147,8 +148,8 @@ class DocPrinter:
 
             # Collect sequences of otherFile objects into a table
             if isinstance(doc, OtherFile) and doc.is_valid_for_table and self.collect_other_files_to_tables:
-                if (new_names := self.new_names_with_bios(doc)):
-                    self._cache_biographies_panel(new_names)
+                if (new_entities := self.new_entities_with_bios(doc)):
+                    self._cache_biographies_panel(new_entities)
 
                 self._other_files_queue.append(doc)
                 continue
@@ -165,7 +166,6 @@ class DocPrinter:
 
     def print_renderable(self, renderables: RenderableType | list[RenderableType]) -> None:
         """All things being printed should come through here, which collects both terminal and HTML output as its written."""
-        # _renderable = Align(_renderable, align) if align and not isinstance(_renderable, Align) else _renderable
         for renderable in listify(renderables):
             positioned = PositionedRich.from_unwrapped_obj(renderable)
 
@@ -174,8 +174,7 @@ class DocPrinter:
                 self.line()
                 continue
             elif isinstance(positioned.obj, (Document, FileDisplay)):
-                people = positioned.obj.people if isinstance(positioned.obj, Document) else []
-                doc_bios_html = self._build_biographies_panel_html(people)
+                doc_bios_html = self._build_biographies_panel_html(self.new_entities_with_bios(positioned.obj))
                 self._append_element_with_bio_div(positioned.obj.to_html(), doc_bios_html)
                 self.printed_objs.append(positioned.obj)
             elif isinstance(positioned.obj, Table):
@@ -247,12 +246,11 @@ class DocPrinter:
         element = '\n'.join([bio_panel, element])
         self.html_elements.append(div_class(element, 'doc_container'))
 
-    def _biographical_panel(self, _names: list[str]) -> Panel | None:
+    def _biographical_panel(self, _entities: list[Entity]) -> Panel | None:
         """Panel showing biographical info for a list of names."""
-        names = uniq_sorted(self.new_names_with_bios(_names))
-
-        if (bios := [Text('', justify='right').append(PEOPLE_BIOS[n]) for n in names if PEOPLE_BIOS.get(n)]):
-            logger.debug(f"Creating bios panel for {len(names)} new names (of {len(_names)} _names), names={names}")
+        if (entities := self.new_entities_with_bios(_entities)):
+            bios = [Text('', justify='right').append(e.bio_txt) for e in entities if e.has_bio]
+            logger.debug(f"Creating bios panel for {len(entities)} new names (out of {len(_entities)} _entities)")
 
             return Panel(
                 Group(*bios),
@@ -266,20 +264,20 @@ class DocPrinter:
         else:
             return None
 
-    def _build_biographies_panel_html(self, names: list[str]) -> str:
+    def _build_biographies_panel_html(self, entities: list[Entity]) -> str:
         """NOTE: Also prints to console!!"""
-        if (bio_panel := self._biographical_panel(names)):
+        if (bio_panel := self._biographical_panel(entities)):
             self._print_other_files_queue()  # Clear the queue before new biographical panel
             console.print(self._align_biographical_panel(bio_panel))  # TODO: has side effect of printing to console
             panel_html = render_at_obj_width(bio_panel)
-            self.printed_name_bios.update(names)
+            self.printed_name_bios.update(entities)
             return div_class(panel_html, STICKY_BIO_CSS_CLASS)
         else:
             return ''
 
-    def _cache_biographies_panel(self, names: list[str]) -> None:
+    def _cache_biographies_panel(self, entities: list[Entity]) -> None:
         """The html string of the bios panel is cached in `self.last_bio_panel`."""
-        if (bios_html := self._build_biographies_panel_html(names)):
+        if (bios_html := self._build_biographies_panel_html(entities)):
             if self._last_bio_panel:
                 raise RuntimeError(f"last_bio_panel should be empty, instead it's:\n{self._last_bio_panel}")
             else:

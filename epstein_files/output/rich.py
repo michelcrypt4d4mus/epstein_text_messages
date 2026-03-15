@@ -62,19 +62,6 @@ THEME_STYLES = {
     **{hg.theme_style_name: hg.style for hg in HIGHLIGHT_GROUPS},
 }
 
-RAINBOW = [
-    'royal_blue1',
-    'medium_purple',
-    'light_coral',
-    'light_slate_gray',
-    'dark_goldenrod',
-    'wheat4',
-    'white',
-    'medium_orchid',
-    'deep_pink1',
-    'navajo_white1',
-]
-
 RICH_THEME = Theme(THEME_STYLES)
 
 # Instantiate console object
@@ -114,6 +101,7 @@ def add_cols_to_table(table: Table, cols: list[str | dict], justify: str = 'cent
 
 
 def bool_txt(b: bool | None, match_width: bool = False) -> Text:
+    """Colored True or False Text obj."""
     txt = Text('')
 
     if b is False:

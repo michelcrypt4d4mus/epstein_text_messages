@@ -98,7 +98,15 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 url='https://www.theatlantic.com/science/archive/2018/10/lawrence-krauss-sexual-misconduct-me-too-arizona-state/573844/',
             ),
             Entity('Lee Smolin', 'physicist'),
-            Entity(LINDA_STONE, f"ex-Microsoft, {MIT_MEDIA_LAB}", match_partial=None),
+            Entity(
+                LINDA_STONE,
+                f"ex-Microsoft, {MIT_MEDIA_LAB}, name oddly always redacted",
+                match_partial=None,
+                unique_phraseologies=[
+                    'tupos & abbrvtns',
+                    'Typos, misspellings courtesy of iPhone',
+                ],
+            ),
             Entity(MARK_TRAMO, "professor of neurology at UCLA"),
             Entity('Marvin Minsky', 'mathematician, early AI researcher'),
             Entity('Nancy Dahl', f"wife of {LAWRENCE_KRAUSS}"),
@@ -701,7 +709,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 url='https://cryptadamus.substack.com/p/of-tech-bros-and-trumpers',
             ),
             organization('Alphabit', 'crypto fund'),
-            organization('BGC', f"{CANTOR} related firm of {HOWARD_LUTNICK}", r"BGC( (International|Partners))?"),
+            organization('BGC', f"{CANTOR_FITZGERALD} related firm of {HOWARD_LUTNICK}", r"BGC( (International|Partners))?"),
             organization('Bioptix', 'old name of RIOT Blockchain from when it was a biotech company'),
             organization('Bitfinex', f"crypto exchange run by the same people that run Tether"),
             organization('BitFury', 'Dutch bitcoin mining company founded by Valery Vavilov and Mark Dollar'),
@@ -719,7 +727,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 url='https://en.wikipedia.org/wiki/BTC-e',
             ),
             organization(
-                CANTOR,
+                CANTOR_FITZGERALD,
                 f"Howard Lutnick's financial firm",
                 r"Cantor(,? (Fitzgerald|Opportunities|Ventures?))?",
                 url='https://cryptadamus.substack.com/p/trumps-transition-team-is-tethered',
@@ -801,7 +809,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             ),
             organization('OneCoin', 'massive $10 billion crypto + multi-level marketing fraud created by Ruja Ignatova'),
             organization('Pantera Capital', "silicon valley crypto fund of Dan Morehead"),
-            organization('Parabridge International Services', f'entity associated with {CANTOR}'),
+            organization('Parabridge International Services', f'entity associated with {CANTOR_FITZGERALD}'),
             organization('PayPay', 'bitcoin debit card', r"PayPay( Card)?"),
             organization('Polymarket', 'blockchain based gambling site ("prediction market")'),
             organization('Ribbit Capital', 'crypto friendly venture fund'),
@@ -957,7 +965,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Entity(ERIC_ROTH, "jet decorator at International Jet", match_partial=None),
             Entity(GWENDOLYN_BECK, "Epstein fund manager in the 90s, ran for Congress", match_partial='first'),
             Entity('Harry Beller', "one of Epstein's accountants"),
-            Entity('Ike Groff', f"maybe brother or husband of {LESLEY_GROFF}?", is_organization=True, match_partial=None),
+            Entity('Ike Groff', f"maybe brother or husband of {LESLEY_GROFF}?", match_partial=None),
             Entity(JANUSZ_BANASIAK, "Epstein's house manager", r"Janu[is]z Banasiak", match_partial='both'),
             Entity('John Allessi', "Epstein's houseman"),
             Entity(JEAN_HUGUEN, "interior design at Alberto Pinto Cabinet", r"Jean[\s.]Huguen"),
@@ -1383,7 +1391,8 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Entity('John Paulson', f"hedge fund guy, Trump donor"),
             Entity('Jonathan Rowland', f"Banque Havilland", match_partial=None),
             Entity('Kamila Bobinska', f"Argan Capital Advisors, Dots Ventures, Movens Capital, ex-{DEUTSCHE_BANK}"),
-            Entity('Laurie Cameron', "currency trading"),
+            Entity('Kumar Sambhav', f"{DEUTSCHE_BANK} technical writer {QUESTION_MARKS}"),
+            Entity('Laurie Cameron', "currency trading", match_partial=None),
             Entity(
                 LEON_BLACK,
                 'Apollo CEO, paid Epstein more than $150 million for "tax advice", serious allegations by multiple Epstein victims',
@@ -1631,6 +1640,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             acronym('Office of Foreign Assets Control', 'agency in charge of sanctions'),
             acronym('Office of the Comptroller of the Currency'),
             acronym('Office of Government Ethics'),
+            acronym(ORGANIZED_CRIME_DRUG_ENFORCEMENT_TASK_FORCE),
             acronym('United States Citizenship and Immigration Services'),
             organization('BaFin', "German financial regulator, tried to arrest journalists who exposed Wirecard's fraud"),
             organization('FINRA', "Financial Industry Regulatory Authority", r"(www\.)?FINRA(\.org)?|Financial Industry Regulatory Authority",),
@@ -1647,11 +1657,11 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             law_enforcement(FBI),
             law_enforcement('Manhattan DA'),
             law_enforcement('NY FBI'),
-            law_enforcement(OFFICE_OF_THE_DEPUTY_ATTORNEY_GENERAL, r"\bODAG\b"),
+            law_enforcement(OFFICE_OF_THE_DEPUTY_ATTORNEY_GENERAL, r"\bODAG\b", is_emailer=True),
             law_enforcement('Police Code Enforcement', description=f"{PALM_BEACH} buildings code enforcement"),
             law_enforcement(SDNY),
             law_enforcement('USAHUB-USAJournal111'),
-            law_enforcement(USANYS),
+            law_enforcement(USANYS, is_emailer=True),
             law_enforcement('USMS'),
         ],
         patterns=[
@@ -1792,6 +1802,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Bangalore",
             r"Hardeep( Pur[ei]e)?",
             r"Indian?",
+            r"Jaipur",
             r"Mombasa",
             r"Modi",
             r"Mumbai",
@@ -2696,14 +2707,18 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 match_partial='both',
                 url='https://en.wikipedia.org/wiki/Ruslana_Korshunova',
             ),
-            Entity(SANITA, "Russian girl who blew upat Epstein when he suggeted a massage"),
+            Entity(SANITA, "hero who blew up at Epstein when he suggeted a massage"),
             Entity(
                 SVETLANA_POZHIDAEVA,
                 f"Epstein assistant, went to FSB feeder school MGIMO, visa recommended by {SERGEY_BELYAKOV} (FSB) & {DAVID_BLAINE}",
                 r"Sophia Platt|((Svet)?Lana )?Pozhidaeva|\b(Lana|Svet)\b|p\.selana|Selana P\b|Svetlan(?! Pudina)",
                 aliases=['Sophia Platt'],
                 match_partial=None,
-                url='https://dossier.center/jeffreyepsteinrusconnect-en/',
+                url=[
+                    'https://dossier.center/jeffreyepsteinrusconnect-en/',
+                    'https://www.wsj.com/us-news/epstein-victim-svetlana-pozhidaeva-22f2ebf6',
+                    # 'https://archive.ph/0nVfp',
+                ],
             ),
             Entity(
                 YULIA_DOROKHINA,
@@ -3548,7 +3563,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
 ]
 
 HIGHLIGHTED_NAMES = [hg for hg in HIGHLIGHT_GROUPS if isinstance(hg, HighlightedNames)]
-HIGHLIGHTED_CONTACTS = flatten([hn.contacts for hn in HIGHLIGHTED_NAMES])
+HIGHLIGHTED_ENTITIES = flatten([hn.contacts for hn in HIGHLIGHTED_NAMES])
 
 
 def get_contact(name: str) -> Entity | None:
@@ -3607,5 +3622,5 @@ def _print_highlighted_names_repr() -> None:
 
 
 if args._debug_highlight_patterns:
-    for c in HIGHLIGHTED_CONTACTS:
+    for c in HIGHLIGHTED_ENTITIES:
         print(repr(c))

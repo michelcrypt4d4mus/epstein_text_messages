@@ -1,6 +1,6 @@
 from rich.text import Text
 
-from epstein_files.documents.emails.emailers import CONTACTS_DICT
+from epstein_files.documents.emails.emailers import ENTITIES_DICT
 from epstein_files.people.entity import Entity, acronym, organization, epstein_co, epstein_trust
 from epstein_files.people.names import *
 
@@ -32,7 +32,9 @@ def test_acronym():
 
 
 def test_bio():
-    yulia = CONTACTS_DICT[YULIA_DOROKHINA]
+    yulia = ENTITIES_DICT[YULIA_DOROKHINA]
+    brock = ENTITIES_DICT[BROCK_PIERCE]
+    assert brock.bio_txt.plain == 'Brock Pierce [crypto] Bannon partner, Tether co-founder, friend of Yair Netanyahu, sex crime history (more)'
 
 
 def test_epstein_co():
@@ -81,6 +83,8 @@ def test_organization():
     assert organization('Butterfly, Inc.').emailer_pattern == r"Butterfly(,? Inc\.?)?"
     coatue = organization('Coatue Management', 'VC fund')
     assert coatue.emailer_pattern == r'Coatue( Management)?'
+    usanys = organization(USANYS)
+    assert usanys.emailer_regex.pattern == 'USANYS'
 
 
 def test_pattern():
@@ -102,9 +106,9 @@ def test_repr():
 
 def test_urls():
     c = Entity('Nasir Jones', url='WIKIPEDIA')
-    assert c.links[0].url == WIKIPEDIA_URL
+    assert c._urls[0] == WIKIPEDIA_URL
     c = Entity('Nasir Jones', url=['WIKIPEDIA', URL])
-    assert c.links[0].url == WIKIPEDIA_URL
+    assert c._urls[0] == WIKIPEDIA_URL
     c = Entity('Nasir Jones', url=[URL, 'WIKIPEDIA'])
     assert c.name_with_link == Text.from_markup(f'[link={URL}][bold underline]Nasir Jones[/bold underline][/link]')
 

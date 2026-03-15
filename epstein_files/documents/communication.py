@@ -5,10 +5,11 @@ from typing import cast
 
 from rich.text import Text
 
-from epstein_files.documents.document import CLOSE_PROPERTIES_CHAR, Document
+from epstein_files.documents.document import CLOSE_PROPERTIES_CHAR, Document, EntityScanArg, coerce_entity_names
 from epstein_files.documents.config.doc_cfg import CommunicationCfg
 from epstein_files.output.highlight_config import get_style_for_name, styled_name
 from epstein_files.output.rich import styled_key_value
+from epstein_files.people.entity import Entity
 from epstein_files.people.names import UNKNOWN, Name
 from epstein_files.util.helpers.data_helpers import uniq_sorted
 from epstein_files.util.helpers.rich_helpers import no_bold
@@ -80,10 +81,9 @@ class Communication(Document):
         return set([self.author] + self.recipients)
 
     @property
-    def people(self) -> list[str]:
-        """Names of people who either sent/received this communication or are mentioned in it (not including `None`!)."""
-        people = self._config.people or (super().people + [p for p in self.participants if p])
-        return uniq_sorted([p for p in people if p])
+    def participant_names(self) -> list[str]:
+        """`self.participants` without None / unknown."""
+        return sorted([p for p in self.participants if p])
 
     @property
     def recipients(self) -> list[Name]:
@@ -107,6 +107,10 @@ class Communication(Document):
         """Append author information to `super().summary`, bracket is left open."""
         author_str = styled_key_value('author', Text(f"'{self.author_or_unknown}'", style=self.author_style))
         return super()._summary.append(', ').append(author_str)
+
+    def entity_scan(self, exclude: EntityScanArg = None, include: EntityScanArg = None) -> list[Entity]:
+        """Overrides superclass to append `self.recipients`."""
+        return super().entity_scan(exclude, self.participant_names + coerce_entity_names(include))
 
     def extract_recipients(self) -> list[Name]:
         """Overload in subclasses"""

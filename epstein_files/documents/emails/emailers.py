@@ -3,11 +3,11 @@ Constants and methods for identifying people in email headers.
 """
 import re
 
-from epstein_files.output.highlight_config import HIGHLIGHTED_CONTACTS
+from epstein_files.output.highlight_config import HIGHLIGHTED_ENTITIES
 from epstein_files.people.entity import Entity, organization
 from epstein_files.people.names import *
 from epstein_files.util.constant.strings import REDACTED
-from epstein_files.util.helpers.data_helpers import escape_single_quotes, flatten, groupby
+from epstein_files.util.helpers.data_helpers import escape_single_quotes, flatten, groupby, uniq_sorted
 from epstein_files.util.logging import logger
 
 BAD_EMAILER_REGEX = re.compile(r'^(>|11111111)|agreed|ok(?!asha)|sexy|re:|fwd:|LIMITED PARTNERS|Multiple Senders|((sent|attachments|subject|importance).*|.*(january|201\d|hysterical|i have|image0|so that people|article 1.?|PROSPECTIVE INVESTORS|momminnemummin|These conspiracy theories|your state|undisclosed|www\.theguardian|talk in|it was a|what do|cc:|call (back|me)|afiaata|[IM]{4,}).*)$', re.IGNORECASE)
@@ -51,22 +51,20 @@ SUPPRESS_LOGS_FOR_AUTHORS = [
     'undisclosed-recipients:',
 ]
 
-# Collect all regexes and contacts
-ALL_CONTACTS = [c for c in HIGHLIGHTED_CONTACTS if c.is_emailer] + ADDITIONAL_CONTACTS
-CONTACTS_DICT = {c.name: c for c in ALL_CONTACTS}
-CONTACT_CATEGORIES = groupby(ALL_CONTACTS, lambda contact: contact.category)
-EMAILER_ID_REGEXES = {c.name: c.emailer_regex for c in ALL_CONTACTS}
+# Collect all configured entities into various data structures
+CONFIGURED_ENTITIES = HIGHLIGHTED_ENTITIES + ADDITIONAL_CONTACTS
+EMAILER_REGEXES = {c.name: c.emailer_regex for c in CONFIGURED_ENTITIES if c.is_emailer}
+ENTITY_CATEGORIES = groupby(CONFIGURED_ENTITIES, lambda contact: contact.category)
+ENTITIES_DICT = {c.name: c for c in CONFIGURED_ENTITIES}
+UNCONFIGURED_ENTITIES_ENCOUNTERED = {}
+assert len(CONFIGURED_ENTITIES) == len(ENTITIES_DICT), f"{len(CONFIGURED_ENTITIES)} entities but only {len(ENTITIES_DICT)} names!"
 
+# Strings that usually signify an identity if present in email body
+IDENTIFYING_STRINGS = {}
 
-# Dictionary of string that usually signify an identity if present in email body
-UNIQUE_IDENTIFIERS = {
-    'tupos & abbrvtns': CONTACTS_DICT[LINDA_STONE],
-    'Typos, misspellings courtesy of iPhone': CONTACTS_DICT[LINDA_STONE],
-}
-
-for contact in ALL_CONTACTS:
-    for email_address in contact.email_addresses:
-        UNIQUE_IDENTIFIERS[email_address] = contact
+for contact in CONFIGURED_ENTITIES:
+    for identifier in contact.identifying_strings:
+        IDENTIFYING_STRINGS[identifier] = contact
 
 # file IDs that contain a unique signifier but do not involve that person
 UNIQ_IDENTIFIER_FALSE_ALARMS = ['EFTA00961792']
@@ -90,7 +88,7 @@ def extract_emailer_names(emailer_str: str) -> list[Name]:
     elif emailer_str.lower() in ['sa', 's a']:
         return [SHAHER_ABDULHAK_BESHER]
 
-    names_found: list[Name] = [name for name, regex in EMAILER_ID_REGEXES.items() if regex.search(emailer_str)]
+    names_found: list[Name] = [name for name, regex in EMAILER_REGEXES.items() if regex.search(emailer_str)]
 
     if len(emailer_str) <= 2 or BAD_EMAILER_REGEX.match(emailer_str) or TIME_REGEX.match(emailer_str):
         if len(names_found) == 0 and emailer_str not in SUPPRESS_LOGS_FOR_AUTHORS:
@@ -103,3 +101,21 @@ def extract_emailer_names(emailer_str: str) -> list[Name]:
     names_found = [reverse_first_and_last_names(name) for name in (names_found or [emailer_str])]
     logger.debug(f"names_found in '{emailer_str}': {names_found}")
     return names_found
+
+
+def get_entity(name: str | Entity) -> Entity:
+    if isinstance(name, Entity):
+        return name
+    elif name in ENTITIES_DICT:
+        return ENTITIES_DICT[name]
+    elif name not in UNCONFIGURED_ENTITIES_ENCOUNTERED:
+        logger.warning(f"Encountered unconfigured entity name '{name}'")
+        UNCONFIGURED_ENTITIES_ENCOUNTERED[name] = Entity(name)
+
+    return UNCONFIGURED_ENTITIES_ENCOUNTERED[name]
+
+
+def get_entities(_names: Sequence[str | Entity]) -> list[Entity]:
+    """Also uniquifies."""
+    names = [n.name if isinstance(n, Entity) else n for n in _names]
+    return [get_entity(name) for name in uniq_sorted(names)]

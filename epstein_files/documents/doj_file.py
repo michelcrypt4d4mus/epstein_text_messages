@@ -12,9 +12,10 @@ from epstein_files.documents.config.doc_cfg import DebugDict
 from epstein_files.documents.emails.constants import DOJ_EMAIL_OCR_REPAIRS, FALLBACK_TIMESTAMP
 from epstein_files.documents.other_file import OtherFile
 from epstein_files.output.layout_elements.left_bar_panel import LeftBarPanel
-from epstein_files.output.rich import RAINBOW, wrap_in_markup_style
+from epstein_files.output.rich import wrap_in_markup_style
 from epstein_files.util.logging import logger
 from epstein_files.util.helpers.data_helpers import coerce_utc_strict, prefix_keys
+from epstein_files.util.helpers.rich_helpers import RAINBOW
 from epstein_files.util.helpers.string_helper import strip_pdfalyzer_panels
 
 BAD_LINE_REGEX = re.compile(r"^(SUBJECT TO PROTECTIVE ORDER PARAGRAPHS .*|UNCLASSIFIED)$")
@@ -24,7 +25,6 @@ IGNORE_LINE_REGEX = re.compile(r"^(\d+\n?|[\s+❑]{2,})$")
 MIN_VALID_LENGTH = 10
 SINGLE_IMAGE_NO_TEXT = 'no text found in image(s)'
 WORD_REGEX = re.compile(r"[A-Za-z]{3,}")
-
 
 # From EFTA00000020 to EFTA00000344 there doesn't seem to be any text
 BAD_OCR_ID_RANGES = [

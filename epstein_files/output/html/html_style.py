@@ -6,10 +6,14 @@ from epstein_files.output.rich import CONSOLE_KWARGS, RICH_THEME
 from epstein_files.util.constant.html import FONT_FAMILY, HTML_TERMINAL_THEME
 from epstein_files.util.logging import logger
 
+BOLD = Style(bold=True)
+NOT_BOLD = Style(bold=False)
+
 
 @dataclass
 class HtmlStyle:
     """Converts rich `Style` objects and style strings to HTML RGB codes."""
+
     _style: Style | str | None
     style: Style = field(init=False)
 
@@ -37,6 +41,11 @@ class HtmlStyle:
             return ''
 
     @property
+    def bold(self) -> Style:
+        """self.style but bold."""
+        return self.style.combine([BOLD])
+
+    @property
     def foreground_color_hex(self) -> str:
         if self.style.reverse:
             if self.style.bgcolor:
@@ -47,6 +56,11 @@ class HtmlStyle:
             return self.style.color.get_truecolor(HTML_TERMINAL_THEME).hex
         else:
             return ''
+
+    @property
+    def not_bold(self) -> Style:
+        """self.style but not bold."""
+        return self.style.combine([NOT_BOLD])
 
     @property
     def to_css(self) -> dict[str, str]:

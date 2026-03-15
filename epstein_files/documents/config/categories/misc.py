@@ -6,7 +6,7 @@ from epstein_files.people.names import *
 from epstein_files.util.constant.strings import *
 
 FEMALE_HEALTH_COMPANY = 'Female Health Company (FHC)'
-LUTNICKS_CANTOR = f"Howard Lutnick's {CANTOR}"
+LUTNICKS_CANTOR = f"Howard Lutnick's {CANTOR_FITZGERALD}"
 
 
 MISC_CFGS = [
