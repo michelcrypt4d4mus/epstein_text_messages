@@ -18,9 +18,8 @@ def non_article_with_fwd_text(get_email) -> Email:
     return get_email('012197_4')
 
 
-def test_attached_docs(get_email):
-    email_with_attached: Email = get_email('029299')
-    assert len(email_with_attached.attached_docs) == 3
+def test_attached_docs(email_with_attachments):
+        assert len(email_with_attachments.attached_docs) == 3
 
 
 def test_author_and_border_style(attributed_email):

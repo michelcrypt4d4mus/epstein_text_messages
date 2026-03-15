@@ -41,13 +41,23 @@ def epstein_files() -> EpsteinFiles:
 
 
 @pytest.fixture
-def house_file_id_int() -> int:
-    return 12345
+def house_extract_file_id(house_file_id) -> str:
+    return f"{house_file_id}_1"
+
+
+@pytest.fixture
+def house_extract_filename(house_extract_file_id) -> str:
+    return f"{HOUSE_OVERSIGHT_PREFIX}{house_extract_file_id}.txt"
 
 
 @pytest.fixture
 def house_file_id(house_file_id_int) -> str:
     return f"0{house_file_id_int}"
+
+
+@pytest.fixture
+def house_file_id_int() -> int:
+    return 12345
 
 
 @pytest.fixture
@@ -60,6 +70,12 @@ def house_filename(house_file_stem) -> str:
     return f"{house_file_stem}.txt"
 
 
+@pytest.fixture
+def split_up_big_email(get_email) -> Email:
+    return get_email('EFTA00039689')
+
+
+# get_[CLASS]() fixtures return a function to retrieve files from the pickled EpsteinFiles by ID
 @pytest.fixture
 def get_doj_file(epstein_files) -> Callable[[str], DojFile]:
     def _get_doj_file(id: str):
@@ -84,23 +100,14 @@ def get_other_file(epstein_files) -> Callable[[str], OtherFile]:
     return _get_other_file
 
 
-@pytest.fixture
-def house_extract_file_id(house_file_id) -> str:
-    return f"{house_file_id}_1"
+def assert_higher_counts(actual: Mapping[str | None, int], expected: Mapping[str | None, int]):
+    for key, count in actual.items():
+        assert key in expected, f"{key} with {count} is in actual results but not in expected"
+        assert count >= expected[key], f"Expected {expected[key]} for {key}, found {count}"
 
-
-@pytest.fixture
-def house_extract_filename(house_extract_file_id) -> str:
-    return f"{HOUSE_OVERSIGHT_PREFIX}{house_extract_file_id}.txt"
 
 
 # Just for convenience
 @pytest.fixture
 def console() -> Console:
     return rich_console
-
-
-def assert_higher_counts(actual: Mapping[str | None, int], expected: Mapping[str | None, int]):
-    for key, count in actual.items():
-        assert key in expected, f"{key} with {count} is in actual results but not in expected"
-        assert count >= expected[key], f"Expected {expected[key]} for {key}, found {count}"

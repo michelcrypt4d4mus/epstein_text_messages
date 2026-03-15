@@ -11,25 +11,25 @@ DOJ_FILE_ID = 'EFTA00005783'
 MESSENGER_LOG_ID = '027133'
 
 
+# OtherFiles
 @pytest.fixture
 def blockchain_capital_coinbase_nda(get_doj_file) -> DojFile:
     return get_doj_file('EFTA01082451')
 
 
-# DOJ files
 @pytest.fixture
 def doj_file() -> DojFile:
-    return DojFile.from_file_id(DOJ_FILE_ID)
-
-
-@pytest.fixture
-def doj_email_file() -> DojFile:
-    return DojFile.from_file_id('EFTA00039689')
+    return DojFile.from_file_id(DOJ_FILE_ID)  # Redacted handwritten note
 
 
 @pytest.fixture
 def email() -> Email:
     return Email.from_file_id('019446')
+
+
+@pytest.fixture
+def email_with_attachments(get_email) -> Email:
+    return get_email('029299')
 
 
 @pytest.fixture

@@ -101,6 +101,11 @@ class EpsteinFiles:
         return [d for d in self._documents if not (isinstance(d, Email) and d._was_split_up)]
 
     @property
+    def docs_by_id(self) -> Mapping[str, Document]:
+        """dict with file IDs as keys and Document objs as values."""
+        return {doc.file_id: doc for doc in self.documents}
+
+    @property
     def doj_files(self) -> list[DojFile]:
         """Only returns DojFile type. Emails derived from DOJ files are not included."""
         return [f for f in self.other_files if isinstance(f, DojFile)]
