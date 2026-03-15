@@ -156,7 +156,6 @@ OCR_REPAIRS: OcrRepair = {
     # links
     'classified-intelligence-\nmichael-flynn-trump': 'classified-intelligence-michael-flynn-trump',
     'on-accusers-rose-\nmcgowan/ ': 'on-accusers-rose-\nmcgowan/\n',
-    'the-truth-\nabout-the-bitcoin-foundation/ )': 'the-truth-about-the-bitcoin-foundation/ )\n',
     'woody-allen-jeffrey-epsteins-\nsociety-friends-close-ranks/ ---': 'woody-allen-jeffrey-epsteins-society-friends-close_ranks/\n',
     ' https://www.theguardian.com/world/2017/may/29/close-friend-trump-thomas-barrack-\nalleged-tax-evasion-italy-sardinia?CMP=share btn fb': '\nhttps://www.theguardian.com/world/2017/may/29/close-friend-trump-thomas-barrack-alleged-tax-evasion-italy-sardinia?CMP=share_btn_fb',
     'search-for-secret-putin-\nfortune.html': 'search-for-secret-putin-fortune.html',
@@ -166,17 +165,9 @@ OCR_REPAIRS: OcrRepair = {
     re.compile(r" http ?://www. ?dailymail. ?co ?.uk/news/article-\d+/Troub ?led-woman-history-drug-\n?us ?e-\n?.*html"): '\nhttp://www.dailymail.co.uk/news/article-3914012/Troubled-woman-history-drug-use-claimed-assaulted-Donald-Trump-Jeffrey-Epstein-sex-party-age-13-FABRICATED-story.html',
     re.compile(r"http.*steve-bannon-trump-tower-\n?interview-\n?trumps-\n?strategist-plots-\n?new-political-movement-948747"): "\nhttp://www.hollywoodreporter.com/news/steve-bannon-trump-tower-interview-trumps-strategist-plots-new-political-movement-948747",
     # Subject lines
-    r"Arrested in\nInauguration Day Riot": "Arrested in Inauguration Day Riot",
-    r"avoids testimony from alleged\nvictims": "avoids testimony from alleged victims",
-    r"It's a first, but the buyer's\nanonymous": "It's a first, but the buyer's anonymous",
-    r"but\nwatchdogs say probe is tainted": "watchdogs say probe is tainted",
-    r"Christmas comes\nearly for most of macro": "Christmas comes early for most of macro",            # 023717
-    r"but majority still made good\nmoney because": "but majority still made good money because",      # 023717
-    r"COVER UP SEX ABUSE CRIMES\nBY THE WHITE HOUSE": "COVER UP SEX ABUSE CRIMES BY THE WHITE HOUSE",
     r'Priebus, used\nprivate email accounts for': 'Priebus, used private email accounts for',
-    r"War on the Investigations\nEncircling Him": "War on the Investigations Encircling Him",
+    r"avoids testimony from alleged\nvictims": "avoids testimony from alleged victims",
     r"Subject; RE": "Subject: RE",
-    r"straining relations between UK and\nAmerica": "straining relations between UK and America",
     re.compile(r"as Putin Mayhem\sTests\sPresident's\sGrip\son\sGOP"): "as Putin Mayhem Tests President's Grip on GOP",
     re.compile(r"deadline re Mr Bradley Edwards vs Mr\s*Jeffrey Epstein", re.I): "deadline re Mr Bradley Edwards vs Mr Jeffrey Epstein",
     re.compile(r"Following Plea That Implicated Trump -\s*https://www.npr.org/676040070", re.I): "Following Plea That Implicated Trump - https://www.npr.org/676040070",
@@ -202,12 +193,6 @@ OCR_REPAIRS: OcrRepair = {
     'AVG°': 'AVGO',
     'Saw Matt C with DTF at golf': 'Saw Matt C with DJT at golf',
     re.compile(r"[i. ]*Privileged[- ]*Redacted[i. ]*"): '<PRIVILEGED - REDACTED>',
-}
-
-SINGLE_EMAIL_OCR_REPAIRS: dict[str, OcrRepair] = {
-    'EFTA01409449': {
-        re.compile(r'[{f]cid:ima..\d\d\d.{,30}([1}]|\n|$)', re.IGNORECASE | re.MULTILINE): '',
-    },
 }
 
 METADATA_FIELDS = [

@@ -7,7 +7,7 @@ from copy import copy
 from dateutil.parser import parse
 
 from epstein_files.people.names import *
-from epstein_files.util.constant.strings import MONTHS, WEEKDAYS, REDACTED, RUSSIAN_WEEKDAYS
+from epstein_files.util.constant.strings import MONTHS, WEEKDAYS, REDACTED, RUSSIAN_WEEKDAYS, OcrRepair
 from epstein_files.util.env import args
 from epstein_files.util.helpers.data_helpers import coerce_utc_strict
 from epstein_files.util.helpers.string_helper import join_patterns, or_equal_sign_char_group, snip_msg
@@ -388,6 +388,20 @@ UNINTERESTING_EMAILERS = FLIGHT_IN_2012_PEOPLE + IRAN_DEAL_RECIPIENTS + TRIVERS_
     'Vahe Stepanian',                        # Random CC
 ]
 
+
+SINGLE_EMAIL_OCR_REPAIRS: dict[str, OcrRepair] = {
+    '026360': {'the-truth-\nabout-the-bitcoin-foundation/ )': 'the-truth-about-the-bitcoin-foundation/ )\n'},
+    '026652': {r"Arrested in\nInauguration Day Riot": "Arrested in Inauguration Day Riot"},
+    '031822': {r"but\nwatchdogs say probe is tainted": "watchdogs say probe is tainted"},
+    '023635': {r"Christmas comes\nearly for most of macro": "Christmas comes early for most of macro"},
+    '023717': {r"Christmas comes\nearly for most of macro": "Christmas comes early for most of macro"},
+    '023717': {r"but majority still made good\nmoney because": "but majority still made good money because"},
+    '026852': {r"COVER UP SEX ABUSE CRIMES\nBY THE WHITE HOUSE": "COVER UP SEX ABUSE CRIMES BY THE WHITE HOUSE"},
+    '031343': {r"War on the Investigations\nEncircling Him": "War on the Investigations Encircling Him"},
+    'EFTA00039967': {r"straining relations between UK and\nAmerica": "straining relations between UK and America"},
+    'EFTA01409449': {re.compile(r'[{f]cid:ima..\d\d\d.{,30}([1}]|\n|$)', re.IGNORECASE | re.MULTILINE): ''},
+    'EFTA00703417': {r"It's a first, but the buyer's\nanonymous": "It's a first, but the buyer's anonymous"},
+}
 
 # These are long forwarded articles so we force a trim to 1,333 chars if these strings exist
 TRUNCATE_TERMS = [
