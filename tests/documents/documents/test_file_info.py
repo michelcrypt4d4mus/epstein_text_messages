@@ -21,6 +21,8 @@ def oversight_file_location():
 def test_external_link(doj_file_location, oversight_file_location):
     for file_info in [doj_file_location, oversight_file_location]:
         assert file_info.external_link().link == file_info.external_link_txt()
+        assert file_info.external_link('red').link == file_info.external_link_txt('red')
+        assert file_info.external_link('red bold').link == file_info.external_link_txt('red bold')
 
 
 def test_external_url(doj_file_location, extract_location, oversight_file_location):
