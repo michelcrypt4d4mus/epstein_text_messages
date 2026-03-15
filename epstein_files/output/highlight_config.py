@@ -957,7 +957,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Entity(ERIC_ROTH, "jet decorator at International Jet", match_partial=None),
             Entity(GWENDOLYN_BECK, "Epstein fund manager in the 90s, ran for Congress", match_partial='first'),
             Entity('Harry Beller', "one of Epstein's accountants"),
-            Entity('Ike Groff', f"maybe brother or husband of {LESLEY_GROFF}?", is_organization=True, match_partial=None),
+            Entity('Ike Groff', f"maybe brother or husband of {LESLEY_GROFF}?", match_partial=None),
             Entity(JANUSZ_BANASIAK, "Epstein's house manager", r"Janu[is]z Banasiak", match_partial='both'),
             Entity('John Allessi', "Epstein's houseman"),
             Entity(JEAN_HUGUEN, "interior design at Alberto Pinto Cabinet", r"Jean[\s.]Huguen"),
@@ -1651,7 +1651,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             law_enforcement('Police Code Enforcement', description=f"{PALM_BEACH} buildings code enforcement"),
             law_enforcement(SDNY),
             law_enforcement('USAHUB-USAJournal111'),
-            law_enforcement(USANYS),
+            law_enforcement(USANYS, is_emailer=True),
             law_enforcement('USMS'),
         ],
         patterns=[

@@ -317,5 +317,5 @@ def epstein_trust(
     return organization(name, f'Epstein financial trust{beneficiary_str}', emailer_pattern)
 
 
-def law_enforcement(name: str, emailer_pattern: str = '', description: str = '') -> Entity:
-    return organization(name, description or LAW_ENFORCEMENT, emailer_pattern, is_interesting=False)
+def law_enforcement(name: str, emailer_pattern: str = '', description: str = '', **kwargs) -> Entity:
+    return organization(name, description or LAW_ENFORCEMENT, emailer_pattern, is_interesting=False, **kwargs)

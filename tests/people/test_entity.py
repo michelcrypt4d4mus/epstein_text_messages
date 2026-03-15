@@ -33,6 +33,8 @@ def test_acronym():
 
 def test_bio():
     yulia = CONTACTS_DICT[YULIA_DOROKHINA]
+    brock = CONTACTS_DICT[BROCK_PIERCE]
+    assert brock.bio_txt.plain == 'Brock Pierce [crypto] Bannon partner, Tether co-founder, friend of Yair Netanyahu, sex crime history (more)'
 
 
 def test_epstein_co():
@@ -81,6 +83,8 @@ def test_organization():
     assert organization('Butterfly, Inc.').emailer_pattern == r"Butterfly(,? Inc\.?)?"
     coatue = organization('Coatue Management', 'VC fund')
     assert coatue.emailer_pattern == r'Coatue( Management)?'
+    usanys = organization(USANYS)
+    assert usanys.emailer_regex.pattern == 'USANYS'
 
 
 def test_pattern():
