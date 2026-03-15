@@ -278,6 +278,7 @@ class DocCfg(LoggingEntity):
 
             description = join_truthy(preamble_author, author_description)
 
+        # TODO: this sucks
         if self.author == INSIGHTS_POD:
             description = join_truthy(description, f"from {ZUBAIR_AND_ANYA}")
 
