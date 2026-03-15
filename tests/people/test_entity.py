@@ -1,7 +1,8 @@
 from rich.text import Text
 
-from epstein_files.people.contact import Contact, acronym, organization, epstein_co, epstein_trust
-from epstein_files.people.names import INTERNATIONAL_PEACE_INSTITUTE, JEAN_LUC_BRUNEL, JEFFREY_EPSTEIN, SULTAN_BIN_SULAYEM
+from epstein_files.documents.emails.emailers import CONTACTS_DICT
+from epstein_files.people.entity import Entity, acronym, organization, epstein_co, epstein_trust
+from epstein_files.people.names import *
 
 NAME = 'Nasir Jones'
 EMAILER_PATTERN = r"Nasir[-_.\s]*Jones?"
@@ -9,7 +10,7 @@ HIGHLIGHT_PATTERN = fr"{EMAILER_PATTERN}|Jones,?[-_.\s]*Nasir"
 URL = 'https://nasir.jones/ill'
 WIKIPEDIA_URL = 'https://en.wikipedia.org/wiki/Nasir_Jones'
 
-CONTACT_INFO = Contact(
+CONTACT_INFO = Entity(
     name=JEFFREY_EPSTEIN,
     emailer_pattern=r"Jeffrey Epstein|jeevacation",
     info="one and only"
@@ -30,6 +31,10 @@ def test_acronym():
     assert occ.name == 'OCC'
 
 
+def test_bio():
+    yulia = CONTACTS_DICT[YULIA_DOROKHINA]
+
+
 def test_epstein_co():
     zorro = epstein_co('Zorro', description='for New Mexico ranch')
     assert zorro.info == f"Epstein company for New Mexico ranch"
@@ -48,7 +53,7 @@ def test_epstein_trust():
 
 
 def test_highlight_pattern():
-    def assert_highlight_pattern_suffix(c: Contact, suffix: str):
+    def assert_highlight_pattern_suffix(c: Entity, suffix: str):
         assert c.emailer_regex.pattern == EMAILER_PATTERN
         assert c.highlight_pattern == fr"{HIGHLIGHT_PATTERN}|{suffix}"
 
@@ -56,15 +61,15 @@ def test_highlight_pattern():
     assert_highlight_pattern_suffix(_build_contact(match_partial='both'), 'Nasir|Jones')
     assert_highlight_pattern_suffix(_build_contact(match_partial='first'), 'Nasir')
 
-    jean_luc = Contact(JEAN_LUC_BRUNEL, match_partial='both')
+    jean_luc = Entity(JEAN_LUC_BRUNEL, match_partial='both')
     assert jean_luc.highlight_pattern == r'Jean[-_.\s]*Luc[-_.\s]*Brunel?|Brunel,?[-_.\s]*Jean[-_.\s]*Luc|Jean[-_.\s]*Luc|Brunel'
 
 
 def test_middle_initial():
     assert CONTACT_INFO._middle_initial == ''
-    assert Contact('Robert Dow Critton')._middle_initial == ''
-    assert Contact('Robert D Critton')._middle_initial == 'D'
-    critton = Contact('Robert D. Critton')
+    assert Entity('Robert Dow Critton')._middle_initial == ''
+    assert Entity('Robert D Critton')._middle_initial == 'D'
+    critton = Entity('Robert D. Critton')
     assert critton._middle_initial == 'D'
     assert critton.emailer_regex.pattern == r"Robert[-_.\s]*(D\.?[-_.\s]*)?Critton?"
 
@@ -80,11 +85,11 @@ def test_organization():
 
 def test_pattern():
     assert _build_contact().pattern == EMAILER_PATTERN
-    assert Contact('Robert D Critton').pattern == r"Robert[-_.\s]*(D\.?[-_.\s]*)?Critton?"
+    assert Entity('Robert D Critton').pattern == r"Robert[-_.\s]*(D\.?[-_.\s]*)?Critton?"
 
 
 def test_repr():
-    assert repr(CONTACT_INFO) == r"""Contact(
+    assert repr(CONTACT_INFO) == r"""Entity(
     name=JEFFREY_EPSTEIN,
     info="one and only",
     emailer_pattern=r"Jeffrey Epstein|jeevacation",
@@ -96,13 +101,13 @@ def test_repr():
 
 
 def test_urls():
-    c = Contact('Nasir Jones', url='WIKIPEDIA')
+    c = Entity('Nasir Jones', url='WIKIPEDIA')
     assert c.links[0].url == WIKIPEDIA_URL
-    c = Contact('Nasir Jones', url=['WIKIPEDIA', URL])
+    c = Entity('Nasir Jones', url=['WIKIPEDIA', URL])
     assert c.links[0].url == WIKIPEDIA_URL
-    c = Contact('Nasir Jones', url=[URL, 'WIKIPEDIA'])
+    c = Entity('Nasir Jones', url=[URL, 'WIKIPEDIA'])
     assert c.name_link == Text.from_markup(f'[link={URL}][bold underline]Nasir Jones[/bold underline][/link]')
 
 
-def _build_contact(**kwargs) -> Contact:
-    return Contact(NAME, **kwargs)
+def _build_contact(**kwargs) -> Entity:
+    return Entity(NAME, **kwargs)

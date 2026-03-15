@@ -23,7 +23,7 @@ from epstein_files.documents.emails.constants import *
 from epstein_files.documents.emails.email_parts import EmailParts
 from epstein_files.documents.emails.email_header import (EMAIL_SIMPLE_HEADER_REGEX,
      EMAIL_SIMPLE_HEADER_LINE_BREAK_REGEX, EmailHeader)
-from epstein_files.documents.emails.emailers import extract_emailer_names
+from epstein_files.documents.emails.emailers import UNIQUE_IDENTIFIERS, UNIQ_IDENTIFIER_FALSE_ALARMS, extract_emailer_names
 from epstein_files.documents.other_file import OtherFile
 from epstein_files.people.interesting_people import EMAILERS_OF_INTEREST_SET
 from epstein_files.output.epstein_highlighter import highlighter
@@ -37,10 +37,10 @@ from epstein_files.util.constant.urls import URL_SIGNIFIERS
 from epstein_files.people.names import sort_names
 from epstein_files.util.constants import CONFIGS_BY_ID
 from epstein_files.util.env import args, site_config
-from epstein_files.util.helpers.data_helpers import (AMERICAN_TIME_REGEX, TIMEZONE_INFO, coerce_utc, flatten,
+from epstein_files.util.helpers.data_helpers import (AMERICAN_TIME_REGEX, TIMEZONE_INFO, CharRange, coerce_utc, flatten,
      prefix_keys, uniq_sorted, uniquify)
 from epstein_files.util.helpers.link_helper import link_text_obj
-from epstein_files.util.helpers.string_helper import capitalize_first, collapse_newlines, is_bool_prop, strip_pdfalyzer_panels
+from epstein_files.util.helpers.string_helper import capitalize_first, collapse_newlines, is_bool_prop, quote, strip_pdfalyzer_panels
 from epstein_files.util.logging import logger
 
 # Email bod regexes
@@ -61,6 +61,7 @@ TIMESTAMP_LINE_REGEX = re.compile(r"\d+:\d+")
 # numbers
 MAX_NUM_HEADER_LINES = 14
 MAX_QUOTED_REPLIES = 1
+NUM_LINES_TO_REPAIR_HEADERS = 6
 NUM_WORDS_IN_LAST_QUOTE = 6
 
 # TODO: Copy display_text?
@@ -80,6 +81,7 @@ JUNK_EMAILERS = [
 
 BCC_LISTS = JUNK_EMAILERS + MAILING_LISTS
 TRUNCATE_EMAILS_BY = BCC_LISTS + TRUNCATE_EMAILS_FROM
+EMAILERS_TO_ALWAYS_TRUNCATE = set(BCC_LISTS + TRUNCATE_EMAILS_BY)
 REWRITTEN_HEADER_MSG = "(janky OCR header fields were prettified, check source if something seems off)"
 
 # TODO: add other forward patterns
@@ -207,6 +209,7 @@ METADATA_FIELDS = [
     'attachment_file_ids',
     'is_junk_mail',
     'is_mailing_list',
+    'extracted_recipients',
     'recipients',
     'sent_from_device',
 ]
@@ -255,9 +258,9 @@ class Email(Communication):
         self.actual_text = self._extract_actual_text()
         self.sent_from_device = self._sent_from_device()
 
-        for signature, name in KNOWN_SIGNATURES.items():
-            if self.has_unknown_participant and signature.lower() in self.text.lower():
-                self._warn(f"Found known signature for {name} in unattributed email.")
+        for identifier, contact in UNIQUE_IDENTIFIERS.items():
+            if identifier.lower() in self.text.lower() and contact.name not in self.participants and self.file_id not in UNIQ_IDENTIFIER_FALSE_ALARMS:
+                self._warn(f"Found known identifier for {contact.name} in email where they are not an identified participant")
 
     @property
     def attachment_file_ids(self) -> list[str]:
@@ -268,6 +271,62 @@ class Email(Communication):
     def attachments(self) -> list[str]:
         """Strings in the Attachments: and Inline-Images: fields in the header, split by semicolon."""
         return self.header.all_attachments
+
+    @property
+    def char_range_to_display(self) -> CharRange | None:
+        """Override superclass to decide how many chars we should limit the dislpay of this email to."""
+        quote_cutoff = self._idx_of_nth_quoted_reply()  # Trim if there's many quoted replies
+        includes_truncate_term = next((term for term in TRUNCATE_TERMS if term in self.text), None)
+        num_chars: int | None = None
+
+        if args.whole_file or self._config.truncate_at == NO_TRUNCATE:
+            return None
+        elif args.truncate:
+            num_chars = args.truncate
+        elif self._config.char_range:
+            return self._config.char_range
+        elif self.author in TRUNCATE_EMAILS_BY \
+                or any([self.is_from_or_to(n) for n in TRUNCATE_EMAILS_FROM_OR_TO]) \
+                or includes_truncate_term:
+            num_chars = min(quote_cutoff or DEFAULT_TRUNCATE_TO, SHORT_TRUNCATE_TO)
+        else:
+            if quote_cutoff and quote_cutoff < DEFAULT_TRUNCATE_TO:
+                trimmed_words = self.text[quote_cutoff:].split()
+
+                # TODO this attempt to include <snipped> msgs in the truncated text kind of sucks
+                if '<...snipped' in trimmed_words[:NUM_WORDS_IN_LAST_QUOTE]:
+                    num_trailing_words = 0
+                elif trimmed_words and trimmed_words[0] in ['From:', 'Sent:']:
+                    num_trailing_words = NUM_WORDS_IN_LAST_QUOTE
+                else:
+                    num_trailing_words = NUM_WORDS_IN_LAST_QUOTE
+
+                if trimmed_words:
+                    last_quoted_text = ' '.join(trimmed_words[:num_trailing_words])
+                    num_chars = quote_cutoff + len(last_quoted_text) + 1 # Give a hint of the next line
+                else:
+                    num_chars = quote_cutoff
+            elif self.length > DEFAULT_TRUNCATE_TO:
+                num_chars = DEFAULT_TRUNCATE_TO
+
+            # Always print whole email for 1st email for actual people
+            if num_chars and self.is_persons_first_email and self.is_word_count_worthy:
+                self._log(f"Overriding cutoff {num_chars} for first email")
+                num_chars = None
+
+        log_args = {
+            'num_chars': num_chars,
+            'author_truncate': self.author in TRUNCATE_EMAILS_BY,
+            'is_fwded_article': self.is_fwded_article,
+            'is_quote_cutoff': quote_cutoff == num_chars,
+            'includes_truncate_term': json.dumps(includes_truncate_term) if includes_truncate_term else None,
+            'quote_cutoff': quote_cutoff,
+            'is_persons_first_email': self.is_persons_first_email,
+        }
+
+        log_args_str = ', '.join([f"{k}={v}" for k, v in log_args.items() if v])
+        self._debug_log(f"Truncate determination: {log_args_str}")
+        return None if num_chars is None else (0, num_chars)
 
     @property
     def config(self) -> EmailCfg | None:
@@ -383,7 +442,7 @@ class Email(Communication):
     @property
     def is_word_count_worthy(self) -> bool:
         """True if this file should be included in word counts."""
-        return not(self.is_fwded_article or self.is_mailing_list)
+        return not (self.is_fwded_article or self.is_mailing_list or self.is_duplicate)
 
     @property
     def metadata(self) -> Metadata:
@@ -404,7 +463,7 @@ class Email(Communication):
 
     @property
     def prettified_txt(self) -> Text:
-        """Overrides superclass.Cleaned up / formatted Text ready to be displayed."""
+        """Overrides superclass. Cleaned up / formatted Text ready to be displayed."""
         if self._config.char_range and self._config.char_range[0] > 0:
             if self._config.char_range[0] < self.email_parts.header_len:
                 self._warn(f"The excerpt appears to start in the email header which will may in duplicate header chars")
@@ -487,11 +546,16 @@ class Email(Communication):
             recipients: list[Name] = [JEFFREY_EPSTEIN]
 
         # Remove self CCs but preserve self emails
-        if not (self.is_note_to_self(recipients) or self.author is None):
-            if self.author in self.recipients:
-                self._log(f"Removing email to self for {self.author}")
-
+        if self.author is not None and self.author in self.recipients and not self.is_note_to_self(recipients):
+            self._log(f"Removing email to self for {self.author}")
             recipients = [r for r in recipients if r != self.author]
+
+        # Add None to recipients if there's an empty From: or To: header
+        if self.header.is_to_redacted and not self.has_unknown_recipient:
+            if self.author != CHRISTOPHER_DILORIO:
+                # TODO: SEC is filled in for Dilorio's split up emails after Email is fully instantiated
+                self._warn(f"Appending {None} to recipient list because the To: field is empty")
+                recipients.append(None)
 
         return sort_names(recipients)
 
@@ -611,6 +675,7 @@ class Email(Communication):
     def _debug_props(self) -> DebugDict:
         props = super()._debug_props()
         local_props = self.truthy_props(DEBUG_PROPS)
+        local_props['extracted_recipients'] = self.extracted_recipients
 
         if not self.header.is_empty:
             local_props['header'] = self.header.as_dict()
@@ -703,6 +768,10 @@ class Email(Communication):
 
     def _repair(self) -> None:
         """Repair particularly janky files. Note that OCR_REPAIRS are applied *after* other line adjustments."""
+        # for line in self.lines[0:NUM_LINES_TO_REPAIR_HEADERS]:
+        #     if HEADER_REPAIR_REGEX.match(line):
+        #         self._warn(f'reparable header line: {quote(line)}')
+
         super()._repair()
 
         # Apply custom repairs for DOJ files
@@ -797,65 +866,6 @@ class Email(Communication):
 
         self._set_text(text=collapse_newlines(text).strip())
         self._remove_bad_lines()  # TODO: we're currently calling this twice to handle lines with HTML garbage that turn into something matching BAD_LINE_REGEX
-
-    def _truncate_to_length(self) -> int:
-        """Decide how many chars we should limit the dislpay of this email to."""
-        quote_cutoff = self._idx_of_nth_quoted_reply()  # Trim if there's many quoted replies
-        includes_truncate_term = next((term for term in TRUNCATE_TERMS if term in self.text), None)
-        num_chars: int
-
-        if args.whole_file:
-            num_chars = len(self.text)
-        elif args.truncate:
-            num_chars = args.truncate
-        elif (truncate_at := self._config.truncate_at):
-            if self.config.is_excerpt:
-                raise ValueError(f"Emails don't support truncate_to as a tuple")
-
-            num_chars = len(self.text) if truncate_at == NO_TRUNCATE else truncate_at
-        elif self.author in TRUNCATE_EMAILS_BY \
-                or any([self.is_from_or_to(n) for n in TRUNCATE_EMAILS_FROM_OR_TO]) \
-                or includes_truncate_term:
-            num_chars = min(quote_cutoff or DEFAULT_TRUNCATE_TO, SHORT_TRUNCATE_TO)
-        else:
-            if quote_cutoff and quote_cutoff < DEFAULT_TRUNCATE_TO:
-                trimmed_words = self.text[quote_cutoff:].split()
-
-                if '<...snipped' in trimmed_words[:NUM_WORDS_IN_LAST_QUOTE]:
-                    num_trailing_words = 0
-                elif trimmed_words and trimmed_words[0] in ['From:', 'Sent:']:
-                    num_trailing_words = NUM_WORDS_IN_LAST_QUOTE
-                else:
-                    num_trailing_words = NUM_WORDS_IN_LAST_QUOTE
-
-                if trimmed_words:
-                    last_quoted_text = ' '.join(trimmed_words[:num_trailing_words])
-                    num_chars = quote_cutoff + len(last_quoted_text) + 1 # Give a hint of the next line
-                else:
-                    num_chars = quote_cutoff
-            else:
-                # TODO: Added some padding to self.length because newlines may be added in prettification but this sucks
-                num_chars = min(self.length + 100, DEFAULT_TRUNCATE_TO)
-
-            # Always print whole email for 1st email for actual people
-            if self.is_persons_first_email and num_chars < self.length and \
-                    not (self.is_duplicate or self.is_fwded_article or self.is_mailing_list):
-                self._log(f"{self} Overriding cutoff {num_chars} for first email")
-                num_chars = self.length + 100
-
-        log_args = {
-            'num_chars': num_chars,
-            'is_persons_first_email': self.is_persons_first_email,
-            'author_truncate': self.author in TRUNCATE_EMAILS_BY,
-            'is_fwded_article': self.is_fwded_article,
-            'is_quote_cutoff': quote_cutoff == num_chars,
-            'includes_truncate_term': json.dumps(includes_truncate_term) if includes_truncate_term else None,
-            'quote_cutoff': quote_cutoff,
-        }
-
-        log_args_str = ', '.join([f"{k}={v}" for k, v in log_args.items() if v])
-        self._log(f"Truncate determination: {log_args_str}")
-        return num_chars
 
     def __bespoke_repair_house_oversight_emails(self) -> None:
         """Apply destructive repairs to the underyling text programmtically because we don't want to edit the underlying file."""

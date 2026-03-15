@@ -172,6 +172,13 @@ class FileInfo(LoggingEntity):
     def rollcall_link(self, style: str = ARCHIVE_LINK_COLOR, link_txt: str = '') -> Text:
         return self._build_link(rollcall_doc_url, style, link_txt)
 
+    def external_link(self, style: str = '', id_only: bool = False) -> ExternalLink:
+        return ExternalLink(
+            self.external_url,
+            self.file_id if (id_only or self.is_eml_file) else self.file_stem,
+            link_style=no_bold(style),
+        )
+
     def external_link_markup(self, style: str = '', id_only: bool = False) -> str:
         link_txt = self.file_id if id_only else self.file_stem
         return link_markup(self.external_url, link_txt, style=no_bold(style))
@@ -192,10 +199,6 @@ class FileInfo(LoggingEntity):
             else:
                 links.append(self.epsteinify_link(style=ALT_LINK_STYLE, link_txt=EPSTEINIFY))
                 links.append(self.epstein_web_link(style=ALT_LINK_STYLE, link_txt=EPSTEIN_WEB))
-
-                # TODO: pass the Document so we can reinstate this?
-                # if self._class_name == 'Email':
-                #     links.append(self.rollcall_link(style=ALT_LINK_STYLE, link_txt=ROLLCALL))
 
         links = links if site_config.max_alt_links is None else links[0:site_config.max_alt_links + 1]
         links = [links[0]] + [parenthesize(link) for link in links[1:]]

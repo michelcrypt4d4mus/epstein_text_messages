@@ -126,6 +126,8 @@ UNINTERESTING_EMAIL_IDS = [
     '030983',
     '030958',
     '026477',
+    # Bella Klein
+    'EFTA02253705',
     # Ben Goertzel
     'EFTA01745739',
     # Brock
@@ -170,9 +172,6 @@ UNINTERESTING_EMAIL_IDS = [
     # Eric Roth
     '033386',
     # FBI
-    'EFTA00005705',
-    'EFTA00005716',
-    'EFTA00005717',
     'EFTA00039971',  # Attached 302 is missing?
     # Ganbat
     'EFTA02469375',
@@ -211,6 +210,7 @@ UNINTERESTING_EMAIL_IDS = [
     'EFTA02238841',
     # Karyna Shuliak
     'EFTA02318365',
+    'EFTA00554702',
     # Krassner
     '033345',
     # Leon Black related
@@ -224,6 +224,8 @@ UNINTERESTING_EMAIL_IDS = [
     # Maria Prusakova
     'EFTA01772533',
     'EFTA01740489',
+    # Martin Weinberg
+    '030149',
     # Peter Thiel
     'EFTA01003336',
     # Philip Rosedale
@@ -231,6 +233,7 @@ UNINTERESTING_EMAIL_IDS = [
     'EFTA01899565',
     # Ramsey Elkholy
     'EFTA02438522',  # visible elsewhere
+    'EFTA00658028',  # visible in EFTA00743526
     # Rasseck Bourgi
     'EFTA01990389',  # visible in EFTA01988194
     # Renata Bolotova
@@ -241,11 +244,14 @@ UNINTERESTING_EMAIL_IDS = [
     'EFTA02696764',
     'EFTA00927986',
     'EFTA00667874',
+    # Scott Link
+    '022998',
     # Svetlana
     'EFTA01772677',
     # Tyler Shears
     'EFTA02511281',
     # USANYS / DOJ
+    'EFTA00039420',
     'EFTA00039799',
     'EFTA02730469',
     'EFTA02730471',
@@ -309,6 +315,13 @@ UNINTERESTING_EMAIL_IDS = [
     'EFTA02187735',  # housekeeping
 ]
 
+UNINTERESTING_OTHER_FILE_IDS = [
+    # FBI
+    'EFTA00005716',
+    'EFTA00005705',
+    'EFTA00005717',
+]
+
 # Not uninteresting enough to be permanently marked as such but not good enough for --output-chrono
 NOT_CHRONOLOGICAL_VIEW_IDS = [cfg.id for cfg in FLIGHT_LOG_CFGS] + [
     # Karim Wade
@@ -366,6 +379,8 @@ NOT_CHRONOLOGICAL_VIEW_IDS = [cfg.id for cfg in FLIGHT_LOG_CFGS] + [
     'EFTA00329334',
     # Renata Bolotova
     'EFTA00667441',
+    # Sean Lancaster
+    '033155',
     # Tyler Shears
     'EFTA02372294',
     '028965',
@@ -461,6 +476,7 @@ for category in CONSTANT_CATEGORIES:
     CATEGORY_CONFIGS.extend(category_cfgs)
 
 ALL_CONFIGS = CATEGORY_CONFIGS + EMAILS_CONFIG + TEXTS_CONFIG
+DocCfg.create_or_set_prop(UNINTERESTING_OTHER_FILE_IDS, ALL_CONFIGS, 'is_interesting', False)
 EmailCfg.create_or_set_prop(INTERESTING_EMAIL_IDS, ALL_CONFIGS, 'is_interesting', True)
 EmailCfg.create_or_set_prop(UNINTERESTING_EMAIL_IDS, ALL_CONFIGS, 'is_interesting', False)
 EmailCfg.create_or_set_prop(NOT_CHRONOLOGICAL_VIEW_IDS, ALL_CONFIGS, 'is_in_chrono', False)

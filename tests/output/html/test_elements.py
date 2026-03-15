@@ -1,21 +1,22 @@
 from epstein_files.output.html.elements import *
+from epstein_files.output.html.positioned_rich import *
 
 CODE_TEMPLATE_TEST = """<code style="font-family: inherit">{code}</code>"""
 PRE_TEMPLATE_TEST = f"""<pre>{CODE_TEMPLATE_TEST}</pre>"""
 
 
-def test_padding_tuple_to_props():
-    assert padding_tuple_to_props(1) == {f'padding-{side}': '1em' for side in ALL_SIDES}
-    assert padding_tuple_to_props((1,)) == {f'padding-{side}': '1em' for side in ALL_SIDES}
-    assert padding_tuple_to_props((1, 0)) == {f'padding-{side}': '1em' for side in VERTICAL_SIDES}
-    assert padding_tuple_to_props((0, 1)) == {f'padding-{side}': '1em' for side in HORIZONTAL_SIDES}
+def test_dimensions_to_padding_css():
+    assert dimensions_to_padding_css(1) == {f'padding-{side}': '1em' for side in ALL_SIDES}
+    assert dimensions_to_padding_css((1,)) == {f'padding-{side}': '1em' for side in ALL_SIDES}
+    assert dimensions_to_padding_css((1, 0)) == {f'padding-{side}': '1em' for side in VERTICAL_SIDES}
+    assert dimensions_to_padding_css((0, 1)) == {f'padding-{side}': '1em' for side in HORIZONTAL_SIDES}
 
-    assert padding_tuple_to_props((1, 2)) == {
+    assert dimensions_to_padding_css((1, 2)) == {
         **{f'padding-{side}': '2em' for side in HORIZONTAL_SIDES},
         **{f'padding-{side}': '1em' for side in VERTICAL_SIDES},
     }
 
-    assert padding_tuple_to_props((1, 2, 3, 4)) == {
+    assert dimensions_to_padding_css((1, 2, 3, 4)) == {
         'padding-top': '1em',
         'padding-right': '2em',
         'padding-bottom': '3em',

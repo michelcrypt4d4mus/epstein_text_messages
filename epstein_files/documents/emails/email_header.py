@@ -4,11 +4,12 @@ from dataclasses import asdict, dataclass, field
 
 from epstein_files.documents.config.doc_cfg import EmailCfg, Metadata
 from epstein_files.documents.emails.constants import EMAIL_HEADER_FIELD_PATTERNS, HEADER_FIELDS_PATTERN
-from epstein_files.documents.emails.emailers import BAD_EMAILER_REGEX, TIME_REGEX
+from epstein_files.documents.emails.emailers import BAD_EMAILER_REGEX, TIME_REGEX, cleanup_str
 from epstein_files.util.constant.strings import AUTHOR
 from epstein_files.people.names import UNKNOWN
 from epstein_files.util.constants import CONFIGS_BY_ID
-from epstein_files.util.helpers.string_helper import indented, join_truthy
+from epstein_files.util.helpers.data_helpers import only_truthy
+from epstein_files.util.helpers.string_helper import indented, join_patterns, join_truthy
 from epstein_files.util.logging import logger
 
 ON_BEHALF_OF = 'on behalf of'
@@ -17,7 +18,7 @@ EMAILER_FIELDS = [AUTHOR] + TO_FIELDS
 
 DETECT_EMAIL_REGEX = re.compile(r'^(.*\n){0,2}(From|Subject):')  # IDed 140 emails out of 3777 DOJ files with just 'From:' match
 HEADER_REGEX_STR = fr"(((?:(?:{HEADER_FIELDS_PATTERN}):|on behalf of ?)(?! +(by |from my|via )).*\n){{3,}})"
-EMAIL_HEADER_FIELDS_PATTERN = '|'.join(EMAIL_HEADER_FIELD_PATTERNS)
+EMAIL_HEADER_FIELDS_PATTERN = join_patterns(EMAIL_HEADER_FIELD_PATTERNS)
 EMAIL_SIMPLE_HEADER_REGEX = re.compile(rf'^{HEADER_REGEX_STR}')
 EMAIL_SIMPLE_HEADER_LINE_BREAK_REGEX = re.compile(fr"(((?:(?:{EMAIL_HEADER_FIELDS_PATTERN}):|on behalf of ?)(?! +(by |from my|via )).*\n){{3,}})")
 EMAIL_PRE_FORWARD_REGEX = re.compile(r"(.{3,2000}?)" + HEADER_REGEX_STR, re.DOTALL)  # Match up to the next email header section
@@ -118,6 +119,11 @@ class EmailHeader:
         return not any(v for v in self.as_dict().values())
 
     @property
+    def is_to_redacted(self) -> bool:
+        """If To: or CC: exist but there's nothing in the field it's 99% of the time bc of redactions."""
+        return any(self._is_list_prop_empty(prop) for prop in ['cc', 'to'])
+
+    @property
     def recipients(self) -> list[str]:
         return (self.to or []) + (self.cc or []) + (self.bcc or [])
 
@@ -194,6 +200,11 @@ class EmailHeader:
                 header_fields[field_name.title()] = getattr(self, field_name) or ''
 
         return '\n'.join([f"{k}: {v}" for k, v in header_fields.items()])
+
+    def _is_list_prop_empty(self, prop: str) -> bool:
+        """Check if the field should be considered empty after stripping cruft off."""
+        field_values = only_truthy([cleanup_str(name) for name in (getattr(self, prop) or [])])
+        return prop in self.field_names and len(field_values) == 0
 
     def __str__(self) -> str:
         return json.dumps(self.as_dict(truthy_only=False), sort_keys=True, indent=4)

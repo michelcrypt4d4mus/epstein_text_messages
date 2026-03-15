@@ -132,3 +132,9 @@ def test_signatures(epstein_files):
 
     for signature in ["Sent from my BlackBerry 10 smartphone."]:
         assert devices_to_authors[signature] == set(DEVICE_SIGNATURE_TO_AUTHORS[signature])
+
+
+def test_big_files_were_split_up(epstein_files, split_up_big_email):
+    assert split_up_big_email.file_id not in epstein_files.docs_by_id
+    assert split_up_big_email._was_split_up is True
+    assert split_up_big_email.reload()._was_split_up is False

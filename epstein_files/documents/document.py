@@ -166,6 +166,11 @@ class Document(LoggingEntity):
         return self.config or self.dummy_cfg()
 
     @property
+    def colored_external_links(self) -> Text:
+        """Collection of links to official and unofficial for this file concatenated into one `Text` object."""
+        return self.file_info.build_external_links(with_alt_links=True)
+
+    @property
     def config_description(self) -> str:
         """Add parentheses to `self.config.description`."""
         return f"{self.config.description}" if self.config and self.config.description else ''
@@ -190,6 +195,11 @@ class Document(LoggingEntity):
     @property
     def date_str(self) -> str | None:
         return date_str(self.timestamp)
+
+    @property
+    def char_range_to_display(self) -> CharRange | None:
+        """Index of first and last characters to show when printing this document."""
+        return self._config.char_range
 
     @property
     def display_text(self) -> str:
@@ -230,7 +240,7 @@ class Document(LoggingEntity):
     @property
     def file_id_panel(self) -> BasePanel:
         """The header panel printed before the body and subheaders with links and file ID etc."""
-        return BasePanel(border_style=self.border_style, text=self.colored_external_links())
+        return BasePanel(border_style=self.border_style, text=self.colored_external_links)
 
     @property
     def filename(self) -> str:
@@ -347,15 +357,17 @@ class Document(LoggingEntity):
     @property
     def prettified_txt(self) -> Text:
         """Returns the string we want to print as the body of the document."""
-         # TODO: not ideal place for doublespace call
         display_text = doublespace_lines(self.display_text)
-        char_range = self._config.char_range or (0, self.length + 1)
         # TODO: do something better to give replacement_text have different style
         style = INFO_STYLE if self.config_display_text and len(self.config_display_text) < 300 else ''
-        selected_txt = self._config.text_highlighter(Text(display_text, style))[char_range[0]:char_range[1]]  # array slice of `Text` obj preserves style
+
+        # char range slice of Text late in the game here preserves Text highlighting at boundaries
+        char_range = self.char_range_to_display or (0, len(display_text))
+        selected_txt = self._config.text_highlighter(Text(display_text, style))[char_range[0]:char_range[1]]
         pretty_txt = self._intro_txt(char_range[0]).append(selected_txt)
 
-        if args.char_nums:    # For debugging/choosing truncation points
+        # For debugging/choosing truncation points only
+        if args.char_nums:
             pretty_txt = self._inject_line_numbers(pretty_txt, args.char_nums)
 
         if (footer_txt := self.trimmed_chars_txt(char_range[1])):
@@ -446,9 +458,6 @@ class Document(LoggingEntity):
             sentences += [Text('', style='italic').append(h) for h in self.info]
 
         return Panel(Group(*sentences), border_style=self._class_style, expand=False)
-
-    def colored_external_links(self) -> Text:
-        return self.file_info.build_external_links(with_alt_links=True)
 
     def excerpt_text(self, char_range: CharRange | None = None, text: str = '', style = '') -> Text:
         """Create an excerpt of `text`, add appropriate header/footer if truncated, and highlight it."""
@@ -727,6 +736,11 @@ class Document(LoggingEntity):
     def file_summary_row(cls, files: Sequence[Self], author_na: bool = False) -> Sequence[str | Text]:
         """Turn the values in the `cls.files_info()` dict into a list so they can be used as a table row."""
         return [v for v in cls.files_summary(files, author_na).values()]
+
+    @classmethod
+    def filter_for_type(cls, docs: Sequence['Document']) -> list[Self]:
+        """Filter for Document objects of this class."""
+        return [d for d in docs if isinstance(d, cls)]
 
     @classmethod
     def known_author_count(cls, docs: Sequence[Self]) -> int:

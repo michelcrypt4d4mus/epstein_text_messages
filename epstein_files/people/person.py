@@ -13,7 +13,7 @@ from rich.text import Text
 from epstein_files.documents.communication import Communication
 from epstein_files.documents.document import Document
 from epstein_files.documents.documents.categories import Uninteresting
-from epstein_files.documents.email import TRUNCATE_EMAILS_BY, MAILING_LISTS, JUNK_EMAILERS, Email
+from epstein_files.documents.email import BCC_LISTS, TRUNCATE_EMAILS_BY, MAILING_LISTS, Email
 from epstein_files.documents.emails.emailers import CONTACTS_DICT, cleanup_str
 from epstein_files.documents.messenger_log import MessengerLog
 from epstein_files.documents.other_file import OtherFile
@@ -22,8 +22,8 @@ from epstein_files.output.highlight_config import (HIGHLIGHTED_NAMES, QUESTION_M
 from epstein_files.output.highlighted_names import HighlightedNames, HighlightPatterns, ManualHighlight
 from epstein_files.output.layout_elements.file_display import FileDisplay
 from epstein_files.output.rich import (GREY_NUMBERS, TABLE_TITLE_STYLE, build_table, console, join_texts,
-     print_centered, print_special_note)
-from epstein_files.people.contact import Contact
+     print_special_note)
+from epstein_files.people.entity import Entity
 from epstein_files.people.interesting_people import SPECIAL_NOTES
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constant.urls import *
@@ -41,12 +41,6 @@ EMAILER_INFO_TITLE = 'Email Conversations Will Appear'
 UNINTERESTING_CC_INFO = "cc: or bcc: recipient only"
 UNINTERESTING_CC_INFO_NO_CONTACT = f"{UNINTERESTING_CC_INFO}, no direct contact with Epstein"
 
-INVALID_FOR_EPSTEIN_WEB = JUNK_EMAILERS + MAILING_LISTS + [
-    'ACT for America',
-    'BS Stern',
-    UNKNOWN,
-]
-
 PEOPLE_BIOS = {
     contact.name: contact.bio_txt
     for highlighted_group in HIGHLIGHTED_NAMES
@@ -55,21 +49,21 @@ PEOPLE_BIOS = {
 }
 
 
-@dataclass(kw_only=True)
+@dataclass
 class Person(LoggingEntity):
-    """Collection of data about someone texting or emailing Epstein."""
-    contact: Contact = field(init=False)
+    """
+    Collects all known info and files connected to someone who is the author or recipient
+    of at least one Epstein File with methods to work with that collection as a whole.
+    """
     name: Name
-    emails: list[Email] = field(default_factory=list)
-    imessage_logs: list[MessengerLog] = field(default_factory=list)
-    other_files: list[OtherFile] = field(default_factory=list)
-    is_uninteresting: bool = False
+    documents: list[Document]
+    is_interesting: bool | None = None
+    contact: Entity = field(init=False)
     _searched_for_highlight_group: bool = False
 
     def __post_init__(self):
-        self.contact = CONTACTS_DICT.get(str(self.name)) or Contact(name=cleanup_str(str(self.name)))
-        self.emails = Document.sort_by_timestamp(self.emails)
-        self.imessage_logs = Document.sort_by_timestamp(self.imessage_logs)
+        self.contact = CONTACTS_DICT.get(self.name_str, Entity(name=cleanup_str(self.name_str)))
+        self.documents = Document.sort_by_timestamp(self.documents)
 
     @property
     def biography_txt(self) -> Text | None:
@@ -90,7 +84,7 @@ class Person(LoggingEntity):
             return None
         elif self.category:
             return styled_category(self.category)
-        elif self.is_a_mystery or self.is_uninteresting:
+        elif self.is_a_mystery or self.is_interesting is False:
             return QUESTION_MARKS_TXT
 
     @property
@@ -105,10 +99,6 @@ class Person(LoggingEntity):
         return sort_names([c for c in all_counterparties if c != self.name])
 
     @property
-    def email_conversation_length_in_days(self) -> int:
-        return days_between(self.emails[0].timestamp, self.emails[-1].timestamp)
-
-    @property
     def earliest_email_at(self) -> datetime:
         return self.emails[0].timestamp
 
@@ -117,12 +107,30 @@ class Person(LoggingEntity):
         return self.earliest_email_at.date()
 
     @property
+    def full_info_panel(self) -> Padding:
+        """Return a `Group` with the name of an emailer and a few tidbits of information about them below."""
+        elements: list[RenderableType] = [self.email_info_panel()]
+
+        if self.biography_txt:
+            elements.append(self.biography_txt)
+
+        return Padding(Group(*elements), (2, 0, 1, 0))
+
+    @property
     def last_email_at(self) -> datetime:
         return self.emails[-1].timestamp
 
     @property
     def last_email_date(self) -> date:
         return self.last_email_at.date()
+
+    @property
+    def email_conversation_length_in_days(self) -> int:
+        return days_between(self.emails[0].timestamp, self.emails[-1].timestamp)
+
+    @property
+    def emails(self) -> list[Email]:
+        return Email.filter_for_type(self.documents)
 
     @property
     def emails_by(self) -> list[Email]:
@@ -161,14 +169,12 @@ class Person(LoggingEntity):
             return self.highlight_group
 
     @property
-    def full_info_panel(self) -> Padding:
-        """Return a `Group` with the name of an emailer and a few tidbits of information about them below."""
-        elements: list[RenderableType] = [self.email_info_panel()]
+    def imessage_logs(self) -> list[MessengerLog]:
+        return MessengerLog.filter_for_type(self.documents)
 
-        if self.biography_txt:
-            elements.append(self.biography_txt)
-
-        return Padding(Group(*elements), (2, 0, 1, 0))
+    @property
+    def other_files(self) -> list[OtherFile]:
+        return OtherFile.filter_for_type(self.documents)
 
     @property
     def info_str(self) -> str | None:
@@ -177,7 +183,8 @@ class Person(LoggingEntity):
             if (info := self.highlighted_names_group.info_for(self.name)):
                 return info
 
-        if self.is_uninteresting and len(self.emails_by) == 0:
+        # A person who wrote no emails stil might be interesting if they received email directly from Epstein
+        if self.is_interesting is False and len(self.emails_by) == 0:
             if self.has_any_epstein_emails:
                 return UNINTERESTING_CC_INFO
             else:
@@ -191,7 +198,7 @@ class Person(LoggingEntity):
             return Text('(emails sent by Epstein to himself are here)', style=ALT_INFO_STYLE)
         elif self.category == Uninteresting.JUNK:
             return Text(f"({Uninteresting.JUNK} mail)", style='bright_black dim')
-        elif self.is_uninteresting and (self.info_str or '').startswith(UNINTERESTING_CC_INFO):
+        elif self.is_interesting is False and (self.info_str or '').startswith(UNINTERESTING_CC_INFO):
             if self.sole_cc:
                 return Text(f"(cc: from {self.sole_cc} only)", style='wheat4 dim')
             elif self.info_str == UNINTERESTING_CC_INFO:
@@ -223,7 +230,7 @@ class Person(LoggingEntity):
     @property
     def is_a_mystery(self) -> bool:
         """Return True if this is someone we theroetically could know more about."""
-        return self.is_unstyled and not (self.is_email_address or self.info_str or self.is_uninteresting)
+        return self.is_unstyled and not (self.is_email_address or self.info_str or self.is_interesting is False)
 
     @property
     def is_email_address(self) -> bool:
@@ -236,7 +243,7 @@ class Person(LoggingEntity):
             return False
         elif self.is_email_address or '/' in self.name or QUESTION_MARKS in self.name:
             return False
-        elif self.name in INVALID_FOR_EPSTEIN_WEB:
+        elif self.name in BCC_LISTS:
             return False
 
         return True
@@ -270,7 +277,7 @@ class Person(LoggingEntity):
     @property  # TODO: unused?
     def should_always_truncate(self) -> bool:
         """True if we want to truncate all emails to/from this user."""
-        return self.name in TRUNCATE_EMAILS_BY or self.is_uninteresting
+        return self.name in TRUNCATE_EMAILS_BY or self.is_interesting is False
 
     @property
     def show_with_emails_docs(self) -> list[OtherFile]:
@@ -397,7 +404,7 @@ class Person(LoggingEntity):
 
         log_fxn = logger.warning if args.suppress_output else logger.debug
         log_fxn(f"Printing {len(docs)} documents for {self.name_str}...")
-        doc_printer.print_documents(docs)
+        doc_printer.print_documents(docs, log_pfx=f"[{self.name}]")
         doc_printer.line(2)
         return self._printable_emails  # TODO: doesn't return FileDisplay objects that may have also been printed!
 
@@ -448,7 +455,7 @@ class Person(LoggingEntity):
         if args.all_emails:
             footer += ')'
         else:
-            num_uninteresting = len([p for p in people if p.is_uninteresting])
+            num_uninteresting = len([p for p in people if p.is_interesting is False])
             footer += f". {num_uninteresting} uninteresting people not shown, check all emails page for details)"
 
         table = build_table(title, caption=footer)
@@ -469,7 +476,7 @@ class Person(LoggingEntity):
         #     people = highlighted[0:3]
 
         for person in people:
-            if person.is_uninteresting and not (args.emailers_info or args.all_emails):
+            if person.is_interesting is False and not (args.emailers_info or args.all_emails):
                 continue
 
             earliest_email_date = person.earliest_email_date
@@ -487,7 +494,7 @@ class Person(LoggingEntity):
 
             table.add_row(
                 Text(str(earliest_email_date), style=f"grey{GREY_NUMBERS[0 if is_selection else grey_idx]}"),
-                person.internal_link if is_on_page and not person.is_uninteresting else person.name_txt,
+                person.internal_link if is_on_page and person.is_interesting is not False else person.name_txt,
                 person.category_txt,
                 f"{len(person.unique_emails if show_epstein_total else person._unique_printable_emails)}",
                 str(len(person.unique_emails_by)) if len(person.unique_emails_by) > 0 else '',

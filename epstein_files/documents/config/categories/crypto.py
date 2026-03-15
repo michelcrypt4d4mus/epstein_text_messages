@@ -62,7 +62,8 @@ CRYPTO_CFGS = [
     EmailCfg(id='EFTA02639760', description='Epstein pushing cryptocurrency on Bill Gates'),
     # Bitmain
     EmailCfg(id='EFTA01004576'),
-    # Blockstream
+
+    # Blockstream / Austin Hill
     DocCfg(id='EFTA00797613', description='Alphabit crypto fund pitch deck', attached_to_email_id='EFTA00955063'),
     EmailCfg(id='EFTA02229342', author=AUSTIN_HILL),
     EmailCfg(
@@ -92,6 +93,8 @@ CRYPTO_CFGS = [
     EmailCfg(id='EFTA01010209', description=f"{AUSTIN_HILL} calls {AMIR_TAAKI} \"a bit crazy\'"),
     EmailCfg(id='EFTA01788532', description=f"{AUSTIN_HILL} asking about Jeffrey Katzenberg's contact info"),
     EmailCfg(id='EFTA02515798', recipients=[LINDA_STONE], description='Epstein confirms he invested in Blockstream'),  # response to EFTA02515756
+    EmailCfg(id='EFTA00870717', recipients=[LINDA_STONE], duplicate_ids=['EFTA01932706']),
+
     # Blockchain Capital / Brock Pierce / Crypto Currency Partners
     DocCfg(id='024271', author=BLOCKCHAIN_CAPITAL, description="pitch deck", date='2015-10-01'),
     EmailCfg(
@@ -277,7 +280,7 @@ CRYPTO_CFGS = [
     EmailCfg(id='EFTA00401065', description=f'{HOWARD_LUTNICK} visit to the island', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA00398853', description=f'{HOWARD_LUTNICK} visit to the island', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA00873540', description=f'{HOWARD_LUTNICK} and {PRINCE_ANDREW}'),
-    EmailCfg(id='EFTA00443752', description=f"invitation from {HOWARD_LUTNICK}"),
+    EmailCfg(id='EFTA00443752', description=f"invitation from {HOWARD_LUTNICK}", recipients=[JEFFREY_EPSTEIN, 'Matthew Gilbert']),
     EmailCfg(id='EFTA00957552', description=f'thank you note for a $50,000 donation in honor of Tether banker {HOWARD_LUTNICK}'),
     EmailCfg(id='EFTA00970606', show_with_name=HOWARD_LUTNICK),
     EmailCfg(id='EFTA01778423', show_with_name=HOWARD_LUTNICK),

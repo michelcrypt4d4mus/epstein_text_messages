@@ -46,13 +46,9 @@ class Communication(Document):
         return no_bold(self.author_style)
 
     @property
-    def people(self) -> list[str]:
-        """Names of people who either sent/received this email or are mentioned in it."""
-        if self.config and self.config.people:  # TODO: this check also happens in superclass but still necessary here
-            return self.config.people
-
-        people = super().people + [p for p in self.participants if p]
-        return uniq_sorted(people)
+    def colored_external_links(self) -> Text:
+        """Overrides super() method to apply `self.author_style`."""
+        return self.file_info.build_external_links(self.recipient_style, with_alt_links=True)
 
     @property
     def config(self) -> CommunicationCfg | None:
@@ -66,12 +62,17 @@ class Communication(Document):
         return cfg
 
     @property
+    def _config(self) -> CommunicationCfg:
+        # TODO: annoying to unnecessarily override superclass just to get python to understanding the types
+        return self.config or self.dummy_cfg()
+
+    @property
     def has_unknown_participant(self) -> bool:
         return None in self.participants
 
     @property
     def has_unknown_recipient(self) -> bool:
-        return None in (self.recipients or [None])
+        return None in self.recipients
 
     @property
     def is_recipient_uncertain(self) -> bool:
@@ -79,15 +80,21 @@ class Communication(Document):
 
     @property
     def participants(self) -> set[Name]:
-        """Author + recipients including a `None` if `self.recipients` is empty."""
-        return set([self.author] + (self.recipients or [None]))
+        """Author + recipients (including a `None` if `self.recipients` is empty)."""
+        return set([self.author] + self.recipients)
+
+    @property
+    def people(self) -> list[str]:
+        """Names of people who either sent/received this email or are mentioned in it."""
+        if self.config and self.config.people:  # TODO: this check also happens in superclass but still necessary here
+            return self.config.people
+
+        people = super().people + [p for p in self.participants if p]
+        return uniq_sorted(people)
 
     @property
     def recipients(self) -> list[Name]:
-        if self.config and self.config.recipients:
-            return self.config.recipients
-        else:
-            return self.extracted_recipients
+        return self._config.recipients or self.extracted_recipients
 
     @property
     def recipient_style(self) -> str:
@@ -107,10 +114,6 @@ class Communication(Document):
         """Append author information to `super().summary`, bracket is left open."""
         author_str = styled_key_value('author', Text(f"'{self.author_or_unknown}'", style=self.author_style))
         return super()._summary.append(', ').append(author_str)
-
-    def colored_external_links(self) -> Text:
-        """Overrides super() method to apply `self.author_style`."""
-        return self.file_info.build_external_links(self.recipient_style, with_alt_links=True)
 
     def extract_recipients(self) -> list[Name]:
         """Overload in subclasses"""

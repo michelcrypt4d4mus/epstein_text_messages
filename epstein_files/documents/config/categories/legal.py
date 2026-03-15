@@ -166,4 +166,7 @@ LEGAL_CFGS = [
     DocCfg(id='EFTA00143492', description=f"court filing in which a victim calls Giuffre lawyer {STANLEY_POTTINGER} an abuser"),
     DocCfg(id='EFTA00039817', description='notice of hearing', date='2021-04-19', duplicate_ids=['EFTA00039791'], is_interesting=False),
     DocCfg(id='EFTA00005586', display_text='completely redacted 69 pages labeled "Grand Jury - NY"'),
+
+    # emails
+    EmailCfg(id='EFTA00039794', recipients=['Michael Danchuk', USANYS]),
 ]

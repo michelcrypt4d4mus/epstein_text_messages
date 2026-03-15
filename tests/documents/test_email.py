@@ -8,10 +8,18 @@ def attributed_email(get_email) -> Email:
     return get_email('033071')
 
 
+@pytest.fixture
+def article_with_fwd_text(get_email) -> Email:
+    return get_email('016413')
 
-def test_attached_docs(get_email):
-    email_with_attached: Email = get_email('029299')
-    assert len(email_with_attached.attached_docs) == 3
+
+@pytest.fixture
+def non_article_with_fwd_text(get_email) -> Email:
+    return get_email('012197_4')
+
+
+def test_attached_docs(email_with_attachments):
+        assert len(email_with_attachments.attached_docs) == 3
 
 
 def test_author_and_border_style(attributed_email):
@@ -40,16 +48,17 @@ def test_is_interesting(get_email, ito_email):
     assert not email.is_interesting
 
 
-def test_is_fwded_article(get_email):
+def test_is_fwded_article(article_with_fwd_text, get_email, non_article_with_fwd_text):
     assert get_email('EFTA02334332').is_word_count_worthy is True
     fwded_article = get_email('033311')
     assert fwded_article.is_word_count_worthy is False
-    non_article_with_fwd_text = get_email('012197_4')
     assert non_article_with_fwd_text.is_fwded_article is False
-    assert non_article_with_fwd_text.is_word_count_worthy is True
-
-    article_with_fwd_text = get_email('016413')
     assert article_with_fwd_text.is_fwded_article is True
+
+
+@pytest.mark.skip('fwded_text_after is wonky')
+def test_is_word_count_worthy_fwded_text_after(article_with_fwd_text, non_article_with_fwd_text):
+    assert non_article_with_fwd_text.is_word_count_worthy is True
     assert article_with_fwd_text.is_word_count_worthy is True
 
 

@@ -178,22 +178,18 @@ class DocCfg(LoggingEntity):
             self._warn(f"id should not be lowercase: '{self.id}'")
             self.id = self.id.upper()
 
+        self.set_category(self.category)
+
         if self.highlight_quote:
             description_quote = collapse_whitespace(self.highlight_quote.replace('>', ''))
             self.description = join_truthy(self.description, f'quote of interest: {quote(description_quote)}', ', ')
             self.show_full_panel = True
-
-        self.truncate_to = self.truncate_to or (NO_TRUNCATE if self.is_interesting else self.truncate_to)
-        self.set_category(self.category)
 
         if self.background_color:
             self.show_full_panel = True
 
         if self.show_full_panel:
             self.is_interesting = True
-
-        if self.author_uncertain and isinstance(self.author_uncertain, str):
-            self.author_reason = self.author_uncertain  # Copy field
 
         if self.duplicate_of_id or self.duplicate_ids:
             self.dupe_type = self.dupe_type or SAME
@@ -221,10 +217,10 @@ class DocCfg(LoggingEntity):
         """`truncate_to` as `(0, truncate_to)` tuple if truncate_to is an `int`."""
         if args.whole_file or self.truncate_at in [None, NO_TRUNCATE]:
             return None
-        elif isinstance(self.truncate_at, int):
-            return (0, self.truncate_at)
         elif isinstance(self.truncate_at, tuple):
             return self.truncate_at
+        elif isinstance(self.truncate_at, int):
+            return (0, self.truncate_at)
         else:
             raise ValueError(f"{self.id} unknown truncate_at type ({type(self.truncate_at).__name__}, value={self.truncate_at})")
 
@@ -428,6 +424,8 @@ class DocCfg(LoggingEntity):
         """The number of chars to show when printing this document."""
         if self.truncate_to:
             return self.truncate_to
+        elif self.is_interesting:
+            return NO_TRUNCATE
         elif self.category in SHORT_TRUNCATE_CATEGORIES:
             return SHORT_TRUNCATE_TO
 
@@ -458,10 +456,6 @@ class DocCfg(LoggingEntity):
                     props['category_txt'] = category_txt
             else:
                 props['category_txt'] = category_txt
-
-        # Remove duplicated / copied field
-        if (author_uncertain := props.get('author_uncertain')) and author_uncertain == props.get('author_reason'):
-            props.pop('author_reason')
 
         if self.timestamp:
             props['timestamp'] = self.timestamp

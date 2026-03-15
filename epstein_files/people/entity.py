@@ -1,21 +1,20 @@
 import logging
 import re
 from dataclasses import dataclass, field, fields
-from pathlib import Path
 from typing import Literal, Self
 
 from rich.padding import Padding
 from rich.text import Text
 
-from epstein_files.output.site.sites import SiteType
 from epstein_files.people.names import Name, constantize_name, extract_first_name, extract_last_name
 from epstein_files.util.constant.strings import INDENT_NEWLINE, INDENTED_JOIN, LAW_ENFORCEMENT, WIKIPEDIA, PartialName
 from epstein_files.util.constant.urls import wikipedia_url_for_name
 from epstein_files.util.env import args, site_config
 from epstein_files.util.helpers.data_helpers import constantize_names, listify
-from epstein_files.util.helpers.link_helper import ExternalLink, link_text_obj
+from epstein_files.util.helpers.link_helper import ExternalLink
 from epstein_files.util.helpers.rich_helpers import QUESTION_MARKS_TXT, enclose
-from epstein_files.util.helpers.string_helper import as_pattern, indented, is_integer, quote, remove_question_marks, join_truthy
+from epstein_files.util.helpers.string_helper import (as_pattern, indented, is_integer, join_patterns,
+     join_truthy, quote, remove_question_marks)
 from epstein_files.util.logging import logger
 from epstein_files.util.logging_entity import LoggingEntity
 
@@ -30,14 +29,16 @@ SIMPLE_NAME_REGEX = re.compile(r"^[-\w, ]+$", re.IGNORECASE)
 
 
 @dataclass
-class Contact(LoggingEntity):
+class Entity(LoggingEntity):
     """
     Attributes:
         name (str): Person or organization name
         info (str, optional): biographical info about this person
         emailer_pattern (str, optional): manually constructed regex pattern to match this person in email headers
+        aliases (list[str]): known aliases
         category (str, optional): category of this entity
         style (str, optional): style to use when printing this entity's name
+        email_addresses (list[str]): known email addresses
         emailer_regex (re.Pattern): pattern that matches this person's name in email headers
         highlight_regex (re.Pattern): pattern that matches this person's name in various variations for highlightihng
         is_emailer (bool): should email headers be scanned for this entity
@@ -50,8 +51,10 @@ class Contact(LoggingEntity):
     name: str
     info: str = ''
     emailer_pattern: str = ''
+    # Props after here not usually set by positional args
+    aliases: list[str] = field(default_factory=list)
     category: str = ''
-    style: str = ''  # NOTE: not usually set at instantiation time!
+    email_addresses: list[str] = field(default_factory=list)
     emailer_regex: re.Pattern = field(init=False)
     highlight_regex: re.Pattern = field(init=False)
     is_emailer: bool = True
@@ -59,6 +62,7 @@ class Contact(LoggingEntity):
     is_junk: bool = False  # TODO: this sucks
     is_organization: bool = False
     match_partial: PartialName | None = 'last'
+    style: str = ''  # NOTE: not usually set at instantiation time!
     url: str | list[str] | Literal['WIKIPEDIA'] = ''
     # jmail_url: str
 
@@ -75,7 +79,8 @@ class Contact(LoggingEntity):
 
     @property
     def links(self) -> list[ExternalLink]:
-        urls = [wikipedia_url_for_name(self.name) if url == WIKIPEDIA else url for url in  listify(self.url)]
+        """All configured biographical info URLs wrapped in ExternalLink objects."""
+        urls = [wikipedia_url_for_name(self.name) if url == WIKIPEDIA else url for url in listify(self.url)]
         return [ExternalLink(url, self.name, link_style=self._style_bold) for url in urls]
 
     @property
@@ -87,6 +92,9 @@ class Contact(LoggingEntity):
         if self.category:
             category_txt = Text(self.category.lower(), style=f'{self.style} dim')
             bio_txt.append(enclose(category_txt, encloser='[]', encloser_style='dim'))
+
+        if (alt_links := self.links[1:]):
+            pass
 
         biography = Text(self.info, style=BIO_STYLE) if self.info else QUESTION_MARKS_TXT
         return bio_txt.append(' ').append(non_epstein_highlighter(biography))
@@ -101,7 +109,7 @@ class Contact(LoggingEntity):
         if self.is_junk:
             return self.pattern  # TODO: this sucks
 
-        return '|'.join(self._name_patterns)
+        return join_patterns(self._name_patterns)
 
     @property
     def name_link(self) -> Text:
@@ -227,7 +235,7 @@ class Contact(LoggingEntity):
         return '[\n' + indented([repr(contact) for contact in contact_infos], 4) + '\n],'
 
 
-def acronym(name: str, description: str = '', **kwargs) -> Contact:
+def acronym(name: str, description: str = '', **kwargs) -> Entity:
     """Like organization() but auto-generates a regex matching the org's initials."""
     initials = [word[0] for word in name.split() if word[0].isupper()]
     initials_pattern = ''.join([fr"{letter}\.?" for letter in initials])
@@ -235,13 +243,13 @@ def acronym(name: str, description: str = '', **kwargs) -> Contact:
     return organization(
         ''.join(initials),
         join_truthy(name, description, ', '),
-        '|'.join([initials_pattern, name]),
+        join_patterns([initials_pattern, name]),
         **kwargs
     )
 
 
 # TODO: make class method (?)
-def organization(name: str, description: str = '', emailer_pattern: str = '', **kwargs) -> Contact:
+def organization(name: str, description: str = '', emailer_pattern: str = '', **kwargs) -> Entity:
     if (suffix_match := COMPANY_SUFFIX_REGEX.match(name)) and not emailer_pattern:
         suffix = suffix_match.group(1)
         emailer_pattern = name.removesuffix(suffix)
@@ -258,10 +266,10 @@ def organization(name: str, description: str = '', emailer_pattern: str = '', **
         emailer_pattern += fr"({suffix})?"
 
     kwargs['is_emailer'] = kwargs.get('is_emailer', False)
-    return Contact(name, description, emailer_pattern, is_organization=True, **kwargs)
+    return Entity(name, description, emailer_pattern, is_organization=True, **kwargs)
 
 
-def epstein_co(name: str, emailer_pattern: str = '', description: str = '', **kwargs) -> Contact:
+def epstein_co(name: str, emailer_pattern: str = '', description: str = '', **kwargs) -> Entity:
     return organization(name, join_truthy('Epstein company', description), emailer_pattern, **kwargs)
 
 
@@ -270,7 +278,7 @@ def epstein_trust(
     emailer_pattern: str = '',
     beneficiaries: list[str] | None = None,
     trustees: list[str] | None = None,
-) -> Contact:
+) -> Entity:
     """One of Epstein's financial trust entities."""
     name = f"Jeffrey E. Epstein {name} Trust" if is_integer(name) else name
     beneficiary_str = ''
@@ -288,5 +296,5 @@ def epstein_trust(
     return organization(name, f'Epstein financial trust{beneficiary_str}', emailer_pattern)
 
 
-def law_enforcement(name: str, emailer_pattern: str = '', description: str = '') -> Contact:
+def law_enforcement(name: str, emailer_pattern: str = '', description: str = '') -> Entity:
     return organization(name, description or LAW_ENFORCEMENT, emailer_pattern, is_interesting=False)

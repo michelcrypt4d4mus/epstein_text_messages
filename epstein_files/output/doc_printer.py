@@ -109,13 +109,13 @@ class DocPrinter:
     def print_color_key(self) -> None:
         self.print_centered(color_key())
 
-    def print_documents(self, docs: Sequence[Document | FileDisplay]) -> None:
+    def print_documents(self, docs: Sequence[Document | FileDisplay], log_pfx: str = '') -> None:
         """
         # sequential suppression msgs + OtherFiles collect in queues to be printed
         # when obj of another type shows up OR (for OtherFiles) if there's new names for a biography panel
         """
         suppressed_docs: list[Document] = []
-        processed_suppressed_docs_queue = lambda: suppressed_docs.extend(self._print_suppression_msgs_queue())
+        process_suppressed_docs_queue = lambda: suppressed_docs.extend(self._print_suppression_msgs_queue())
         timer = Timer()
 
         if (should_log_in_intervals := (len(docs) > 1000)):
@@ -129,7 +129,7 @@ class DocPrinter:
                 self._suppressed_docs_queue.append(doc)
                 continue
 
-            processed_suppressed_docs_queue()
+            process_suppressed_docs_queue()
 
             # Collect sequences of otherFile objects into a table
             if isinstance(doc, OtherFile) and doc.is_valid_for_table and self.collect_other_files_to_tables:
@@ -145,9 +145,9 @@ class DocPrinter:
             if should_log_in_intervals and (i % 100 == 0):
                 timer.print_at_checkpoint(f"Printed {i:,} objs of {len(docs):,} ({len(suppressed_docs):,} suppressed)")
 
-        processed_suppressed_docs_queue()
+        process_suppressed_docs_queue()
         self._print_other_files_queue()
-        timer.print_at_checkpoint(f"Finished printing {len(docs):,} objs ({len(suppressed_docs):,} suppressed)")
+        timer.print_at_checkpoint(f"{log_pfx}Finished printing {len(docs):,} objs ({len(suppressed_docs):,} suppressed)")
 
     def print_renderable(self, renderables: RenderableType | list[RenderableType]) -> None:
         """All things being printed should come through here, which collects both terminal and HTML output as its written."""

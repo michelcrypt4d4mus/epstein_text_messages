@@ -258,6 +258,7 @@ JULIA_SANTOS = 'Julia Santos'
 KARYNA_SHULIAK = 'Karyna Shuliak'
 KIMBAL_MUSK = 'Kimbal Musk'
 KIRA_DIKHTYAR = 'Kira Dikhtyar'
+LASMA_KUHTARSKA = 'Lasma Kuhtarska'
 LAURA_A_MENNINGER = 'Laura A. Menninger'
 LORENZO_DE_MEDICI = 'Lorenzo de Medici'
 LUKE_D_THORBURN = 'Luke D. Thorburn'
@@ -475,9 +476,11 @@ def extract_last_name(name: str) -> str:
         return first_last_names[-1]
 
 
-def reverse_first_and_last_names(name: str) -> str:
+def reverse_first_and_last_names(name: Name) -> Name:
     """If there's a comma in the name in the style 'Lastname, Firstname', reverse it and remove comma."""
-    if '@' in name:
+    if name is None:
+        return None
+    elif '@' in name:
         return name.lower()
 
     if ', ' in name:

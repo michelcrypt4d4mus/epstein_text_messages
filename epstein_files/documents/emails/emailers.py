@@ -1,10 +1,10 @@
 """
-Constants and methods for dentifying people in email headers.
+Constants and methods for identifying people in email headers.
 """
 import re
 
 from epstein_files.output.highlight_config import HIGHLIGHTED_CONTACTS
-from epstein_files.people.contact import Contact, organization
+from epstein_files.people.entity import Entity, organization
 from epstein_files.people.names import *
 from epstein_files.util.constant.strings import REDACTED
 from epstein_files.util.helpers.data_helpers import escape_single_quotes, flatten
@@ -17,32 +17,32 @@ TIME_REGEX = re.compile(r'^((\d{1,2}/\d{1,2}/\d{2,4}|Thursday|Monday|Tuesday|Wed
 # Unhighlighted / uncategorized emailers we don't know much about but need regexes to identify
 ADDITIONAL_CONTACTS = [
     # Custom regex
-    Contact('BS Stern', emailer_pattern=r"BS Ste(m|rn)"),
-    Contact(INTELLIGENCE_SQUARED, emailer_pattern=r"intelligence\s*squared"),
-    Contact('Matthew Schafer', emailer_pattern=r"matthew\.?schafer?"),
-    Contact(MICHAEL_BUCHHOLTZ, emailer_pattern=r"Michael.*Buchholtz"),
-    Contact(SAMUEL_LEFF, emailer_pattern=r"Sam(uel)?(/Walli)? Leff"),
-    Contact(THANU_BOONYAWATANA, emailer_pattern=r"Thanu (BOONYAWATANA|Cnx)"),
+    Entity('BS Stern', emailer_pattern=r"BS Ste(m|rn)"),
+    Entity(INTELLIGENCE_SQUARED, emailer_pattern=r"intelligence\s*squared"),
+    Entity('Matthew Schafer', emailer_pattern=r"matthew\.?schafer?"),
+    Entity(MICHAEL_BUCHHOLTZ, emailer_pattern=r"Michael.*Buchholtz"),
+    Entity(SAMUEL_LEFF, emailer_pattern=r"Sam(uel)?(/Walli)? Leff"),
+    Entity(THANU_BOONYAWATANA, emailer_pattern=r"Thanu (BOONYAWATANA|Cnx)"),
     # No custom regex
-    Contact('Amanda Kirby'),
-    Contact('Anne Boyles', match_partial=None),
-    Contact('Ariane Dwyer'),
-    Contact('Brittany Henderson'),
-    Contact('Danny Goldberg', match_partial=None),
-    Contact('Jeff Pagliuca'),
-    Contact(JOHN_PAGE, match_partial=None),
-    Contact('Julie Shample'),
-    Contact('Kathleen Ruderman'),
-    Contact('Kevin Bright', match_partial=None),
-    Contact('Larry Cohen', match_partial=None),
-    Contact('Lawrence Delson'),
-    Contact('Michael Simmons', match_partial=None),
-    Contact('middle.east.update@hotmail.com'),
-    Contact('Nancy Cain'),
-    Contact('Nancy Portland', match_partial=None),
-    Contact(OLIVER_GOODENOUGH),
-    Contact('Peter Green', match_partial=None),
-    Contact('Sarah Mapes'),
+    Entity('Amanda Kirby'),
+    Entity('Anne Boyles', match_partial=None),
+    Entity('Ariane Dwyer'),
+    Entity('Brittany Henderson'),
+    Entity('Danny Goldberg', match_partial=None),
+    Entity('Jeff Pagliuca'),
+    Entity(JOHN_PAGE, match_partial=None),
+    Entity('Julie Shample'),
+    Entity('Kathleen Ruderman'),
+    Entity('Kevin Bright', match_partial=None),
+    Entity('Larry Cohen', match_partial=None),
+    Entity('Lawrence Delson'),
+    Entity('Michael Simmons', match_partial=None),
+    Entity('middle.east.update@hotmail.com'),
+    Entity('Nancy Cain'),
+    Entity('Nancy Portland', match_partial=None),
+    Entity(OLIVER_GOODENOUGH),
+    Entity('Peter Green', match_partial=None),
+    Entity('Sarah Mapes'),
 ]
 
 SUPPRESS_LOGS_FOR_AUTHORS = [
@@ -55,6 +55,20 @@ SUPPRESS_LOGS_FOR_AUTHORS = [
 ALL_CONTACTS = [c for c in HIGHLIGHTED_CONTACTS if c.is_emailer] + ADDITIONAL_CONTACTS
 CONTACTS_DICT = {c.name: c for c in ALL_CONTACTS}
 EMAILER_ID_REGEXES = {c.name: c.emailer_regex for c in ALL_CONTACTS}
+
+
+# Dictionary of string that usually signify an identity if present in email body
+UNIQUE_IDENTIFIERS = {
+    'tupos & abbrvtns': CONTACTS_DICT[LINDA_STONE],
+    'Typos, misspellings courtesy of iPhone': CONTACTS_DICT[LINDA_STONE],
+}
+
+for contact in ALL_CONTACTS:
+    for email_address in contact.email_addresses:
+        UNIQUE_IDENTIFIERS[email_address] = contact
+
+# file IDs that contain a unique signifier but do not involve that person
+UNIQ_IDENTIFIER_FALSE_ALARMS = ['EFTA00961792']
 
 
 def cleanup_str(s: str) -> str:
@@ -84,7 +98,6 @@ def extract_emailer_names(emailer_str: str) -> list[Name]:
             logger.info(f"Extracted {len(names_found)} names from semi-invalid '{emailer_str}': {names_found}...")
 
         return names_found
-
 
     names_found = [reverse_first_and_last_names(name) for name in (names_found or [emailer_str])]
     logger.debug(f"names_found in '{emailer_str}': {names_found}")

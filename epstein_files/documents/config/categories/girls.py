@@ -34,6 +34,8 @@ GIRLS_CFGS = [
         description=f"allegations of sexual assault by {JEAN_LUC_BRUNEL}",
         date='2020-07-08',
     ),
+
+    # Communications
     CommunicationCfg(
         id='EFTA01612733',
         author=MARIA_PRUSAKOVA,
@@ -51,7 +53,7 @@ GIRLS_CFGS = [
     ),
     letter('EFTA00078198', 'Marsh Law Firm', [USANYS], "allegations of sexual abuse at Epstein's house", '2020-11-10'),
 
-    # Author emails
+    # Authors
     EmailCfg(
         id='EFTA02339926',
         author=JULIA_SANTOS,
@@ -115,7 +117,6 @@ GIRLS_CFGS = [
     ),
     EmailCfg(id='032375', author=MARIA_PRUSAKOVA, author_reason=PRUSAKOVA_BERKELY, truncate_to=295),
     EmailCfg(id='033246', author=MARIA_PRUSAKOVA, author_reason='Kind regards/Cordialement in signature'),
-    EmailCfg(id='EFTA00719146', recipients=[MARIA_PRUSAKOVA], recipient_uncertain='Clifford Chance, could be Miranda'),
     EmailCfg(id='EFTA01990879', author=MARIA_PRUSAKOVA, author_uncertain='Clifford Chance, could be Miranda'),
     EmailCfg(id='EFTA01990168', author=MARIA_PRUSAKOVA, author_uncertain='"experiments"', is_interesting=True),
     EmailCfg(id='EFTA00671662', author='Miranda', author_reason='quoted signature', description="yet another girl finder"),
@@ -226,6 +227,7 @@ GIRLS_CFGS = [
         recipients=[MARIA_PRUSAKOVA],
         recipient_uncertain='Kind regards/Cordialement in signature',
     ),
+    EmailCfg(id='EFTA00719146', recipients=[MARIA_PRUSAKOVA], recipient_uncertain='Clifford Chance, could be Miranda'),
     EmailCfg(
         id='EFTA01857628',
         description='"igrushki" means "toys" in Russian',
@@ -281,6 +283,7 @@ GIRLS_CFGS = [
     EmailCfg(id='EFTA01648951', description=f'allegations against Trump, {HOWARD_LUTNICK}, Glen Dubin, {LEON_BLACK}, {JES_STALEY}'),
     EmailCfg(id='EFTA00950368', description='"any [girl] friends for me?"', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA01814983', description=f"Epstein and {NICOLE_JUNKERMANN} used to date", show_with_name=NICOLE_JUNKERMANN),
+    EmailCfg(id='EFTA02209622', description=f'travel itinerary for {LASMA_KUHTARSKA}', show_with_name=LASMA_KUHTARSKA),
     EmailCfg(
         id='EFTA00883738',
         description=f'Epstein recruiter {DASHA_GRUPMAN} looking to spend $50,000 to rent a townhouse for "diplomats"',
@@ -300,9 +303,11 @@ GIRLS_CFGS = [
     EmailCfg(
         id='EFTA00412260',
         author=LESLEY_GROFF,
+        comment='very broken file',
         date='2012-05-25 19:51:20',
         description=f'emphasis quotes by {LESLEY_GROFF}',
         highlight_quote='Jeffrey was asking if you and "your friend" could come by and meet Peter',
+        recipients=[None],
         truncate_to=(6_700, 7_450),
     ),
 
@@ -336,6 +341,7 @@ GIRLS_CFGS = [
         description="so who's \"the model\"?", highlight_quote='suspend any billing from now on until further notification from you or the model',
         is_interesting=True,
     ),
+    EmailCfg(id='EFTA00971793', highlight_quote='Attached is resume of Lutnick nanny', description=f"why does Epstein need a nanny?"),
     EmailCfg(id='EFTA01965732', highlight_quote='facilictating his illicit trysts, with married women, to being asked to provide adderall fro bridge tournamnts'),
     EmailCfg(id='EFTA01768670', highlight_quote='find girls for the agency', description=f'but {BORIS_NIKOLIC} is a "biotech investor"...'),
     EmailCfg(id='EFTA01905320', highlight_quote='girls and i are going to see elon musk at space x tomorrow', is_interesting=True),

@@ -177,7 +177,7 @@ def test_descriptions(get_other_file, id, category, description):
 
 def test_highlight_quote():
     quote_cfg = EmailCfg(id=ID, highlight_quote='somebody to\nscrub > again')
-    assert quote_cfg.complete_description == '"somebody to scrub again"'
+    assert quote_cfg.complete_description == 'quote of interest: "somebody to scrub again"'
 
 
 def test_is_empty(academia_cfg, dummy_cfg, empty_doj_cfg, empty_house_cfg):

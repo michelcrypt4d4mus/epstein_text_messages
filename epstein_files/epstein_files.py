@@ -6,8 +6,9 @@ import sys
 from collections import defaultdict
 from dataclasses import dataclass, field
 from datetime import datetime
+from os import environ
 from pathlib import Path
-from typing import Mapping, Sequence, Type, cast
+from typing import Mapping, Sequence, Type, TypeVar, cast
 
 from rich.table import Table
 from rich.text import Text
@@ -18,16 +19,16 @@ from epstein_files.documents.config.manual_config import create_configs
 from epstein_files.documents.document import Document
 from epstein_files.documents.documents.search_result import SearchResult
 from epstein_files.documents.doj_file import DojFile
-from epstein_files.documents.email import Email
+from epstein_files.documents.email import EMAILERS_TO_ALWAYS_TRUNCATE, Email
 from epstein_files.documents.emails.constants import UNINTERESTING_EMAILERS
 from epstein_files.documents.emails.dropsite_email import DropsiteEmail
-from epstein_files.documents.emails.util import split_up_leon_black, split_up_dilorio_whistleblower_emails
+from epstein_files.documents.emails.util import split_up_multi_email_files
 from epstein_files.documents.json_file import JsonFile
 from epstein_files.documents.messenger_log import MSG_REGEX, MessengerLog
 from epstein_files.documents.messenger_log_pdf import IMESSAGE_PDF_IDS, MessengerLogPdf
 from epstein_files.documents.other_file import OtherFile
 from epstein_files.output.rich import TABLE_TITLE_STYLE, console
-from epstein_files.people.person import INVALID_FOR_EPSTEIN_WEB, PEOPLE_BIOS, Person
+from epstein_files.people.person import PEOPLE_BIOS, Person
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constants import *
 from epstein_files.util.env import args, logger
@@ -39,6 +40,8 @@ from epstein_files.util.timer import Timer
 PROPS_TO_COPY = ['author', 'timestamp']
 EMAIL_PROPS_TO_COPY = ['recipients']
 SLOW_FILE_SECONDS = 1.0
+
+DocType = TypeVar('DocType', bound=Document)
 
 
 @dataclass
@@ -54,17 +57,16 @@ class EpsteinFiles:
 
     # Derived fields
     _documents: list[Document] = field(default_factory=list)
-    timer: Timer = field(default_factory=lambda: Timer())
-    uninteresting_ccs: list[Name] = field(default_factory=list)
+    _docs_by_id: dict[str, Document] = field(default_factory=dict)
     _empty_file_ids: set[str] = field(default_factory=set)
     _emailers: list[Person] = field(default_factory=list)
+    _uninteresting_ccs: list[Name] = field(default_factory=list)
 
     def __post_init__(self):
         """Iterate through files and build appropriate objects."""
         self.file_paths = sorted(all_txt_paths(), reverse=True)
         self._documents = self._load_file_paths(self.file_paths)
-        self._documents += split_up_dilorio_whistleblower_emails(self.emails_by(CHRISTOPHER_DILORIO))
-        self._documents += split_up_leon_black(self.get_id(LEON_BLACK_EMAIL_ID))
+        self._documents += self._split_up_big_emails()
         self._finalize_data_and_write_to_disk()
 
     @classmethod
@@ -101,12 +103,19 @@ class EpsteinFiles:
         return [d for d in self._documents if not (isinstance(d, Email) and d._was_split_up)]
 
     @property
+    def docs_by_id(self) -> Mapping[str, Document]:
+        """dict with file IDs as keys and Document objs as values."""
+        self._docs_by_id = self._docs_by_id or {doc.file_id: doc for doc in self._documents}
+        return self._docs_by_id
+
+    @property
     def doj_files(self) -> list[DojFile]:
         """Only returns DojFile type. Emails derived from DOJ files are not included."""
         return [f for f in self.other_files if isinstance(f, DojFile)]
 
     @property
     def dropsite_emails(self) -> list[DropsiteEmail]:
+        """Older emails from the Dropsite News collection exist as .eml files instead of .txt files."""
         return [f for f in self.documents if isinstance(f, DropsiteEmail)]
 
     @property
@@ -124,6 +133,7 @@ class EpsteinFiles:
 
     @property
     def counterparties_dict(self) -> dict[Name, list[Name]]:
+        """Keys are names, values are lists of all the people who sent/received communication with that person."""
         return sort_dict_by_keys({p.name: p.counterparties for p in self.emailers})
 
     @property
@@ -161,7 +171,7 @@ class EpsteinFiles:
     def uninteresting_emailers(self) -> list[Name]:
         """Emailers whom we don't want to print a separate section for because they're just CCed."""
         if '_uninteresting_emailers' not in vars(self):
-            self._uninteresting_emailers = uniq_sorted(UNINTERESTING_EMAILERS + self.uninteresting_ccs)
+            self._uninteresting_emailers = uniq_sorted(UNINTERESTING_EMAILERS + self._uninteresting_ccs)
 
         return self._uninteresting_emailers
 
@@ -176,24 +186,18 @@ class EpsteinFiles:
         """All `Email` objects except for duplicates."""
         return Document.without_dupes(self.emails)
 
-    def docs_matching(self, pattern: re.Pattern | str, names: list[Name] | None = None) -> list[SearchResult]:
-        """Find documents whose text matches `pattern` optionally limited to only docs involving `name`)."""
-        documents = [d for d in self._documents if (not names) or d.author in names]
-        results: list[SearchResult] = []
+    def docs_for(self, name: Name) -> list[Document]:
+        """All documents with `name` as the author or a recipient (not just someone who is mentioned)."""
+        emails = self.emails_for(name)
+        imessage_logs = self.imessage_logs_for(name)
 
-        for doc in documents:
-            if doc.is_duplicate:
-                continue
+        # OtherFile objects with author == None are not returned for name == None
+        if name is None:
+            other_files = []
+        else:
+            other_files = [f for f in self.other_files if name in [f.author, f._config.show_with_name]]
 
-            lines = doc.lines_matching(pattern)
-
-            if args.min_line_length:
-                lines = [line for line in lines if len(line.line) > args.min_line_length]
-
-            if len(lines) > 0:
-                results.append(SearchResult(doc, lines))
-
-        return results
+        return Document.sort_by_timestamp(Document.uniquify(emails + imessage_logs + other_files))
 
     def earliest_email_at(self, name: Name) -> datetime:
         """First email timestamp sent to or received by `name`."""
@@ -249,7 +253,7 @@ class EpsteinFiles:
     def emails_for(self, name: Name) -> list[Email]:
         """All emails to or from 'name' sorted chronologically (including dupes!)."""
         emails = self.emails_by(name) + self.emails_to(name)
-        emails += [e for e in self.emails if (e.config and name == e.config.show_with_name)]
+        emails += [e for e in self.emails if name and name == e._config.show_with_name]  # Add show_with_name emails
 
         if len(emails) == 0:
             logger.warning(f"No emails found for '{name}'")
@@ -267,22 +271,40 @@ class EpsteinFiles:
 
     def get_ids(self, ids: list[str], rebuild: bool = False) -> Sequence[Document]:
         """Get `Document` objects for `file_ids`. If `rebuild` is True then rebuild `Document` from .txt file."""
-        docs = [d for d in self._documents if d.file_id in ids]
+        docs = [self.docs_by_id[id] for id in ids]
 
         if len(docs) != len(ids):
-            logger.warning(f"{len(ids)} file IDs provided but only {len(docs)} documents found! ids: {ids}")
+            logger.error(f"{len(ids)} file IDs provided but only {len(docs)} documents found! ids: {ids}")
 
-        return [d.reload() if rebuild else d for d in docs]
+        return [doc.reload() if rebuild else doc for doc in docs]
 
-    def get_id(self, file_id: str, rebuild: bool = False, required_type: Type[Document] = Document) -> Document:
+    def get_id(self, file_id: str, rebuild: bool = False, required_type: Type[DocType] = Document) -> DocType:
         """Singular ID version of `get_ids()` but with option to require a type of document subclass."""
         doc = self.get_ids([file_id], rebuild)[0]
 
-        if required_type:
-            if not isinstance(doc, required_type):
-                raise ValueError(f"No {required_type.__name__} found for {file_id} (found {doc})")
+        if not isinstance(doc, required_type):
+            raise ValueError(f"No {required_type.__name__} found for {file_id} (found {doc})")
 
         return doc
+
+    def grep_documents(self, pattern: re.Pattern | str, names: list[Name] | None = None) -> list[SearchResult]:
+        """Find documents whose text matches `pattern` optionally limited to only docs involving `name`)."""
+        documents = [d for d in self._documents if (not names) or d.author in names]
+        results: list[SearchResult] = []
+
+        for doc in documents:
+            if doc.is_duplicate:
+                continue
+
+            lines = doc.lines_matching(pattern)
+
+            if args.min_line_length:
+                lines = [line for line in lines if len(line.line) > args.min_line_length]
+
+            if len(lines) > 0:
+                results.append(SearchResult(doc, lines))
+
+        return results
 
     def imessage_logs_for(self, name: Name) -> list[MessengerLog]:
         """Return `MessengerLog` objects where Epstein's counterparty is `name`."""
@@ -305,16 +327,7 @@ class EpsteinFiles:
     def person_objs(self, names: list[Name]) -> list[Person]:
         """Construct Person objects for a list of names."""
         return [
-            Person(
-                name=name,
-                emails=self.emails_for(name),
-                imessage_logs=self.imessage_logs_for(name),
-                is_uninteresting=name in self.uninteresting_emailers,
-                other_files=[
-                    f for f in self.other_files
-                    if name and (name == f.author or (f.config and name == f.config.show_with_name))
-                ]
-            )
+            Person(name, self.docs_for(name), False if name in self.uninteresting_emailers else None)
             for name in names
         ]
 
@@ -331,16 +344,6 @@ class EpsteinFiles:
 
         self._finalize_data_and_write_to_disk(new_docs)
 
-    def reload_doj_files(self) -> None:
-        """Reload only the DOJ PDF extracts (keep HOUSE_OVERSIGHT stuff unchanged)."""
-        def doj_file_counts_str():
-            return f"(have {len(self.all_doj_files)}, {len(self.doj_files)} non-email)"
-
-        timer = Timer()
-        logger.warning(f"Reloading all DOJ files {doj_file_counts_str()}...")
-        self._finalize_data_and_write_to_disk(self._load_file_paths(doj_txt_paths()))
-        timer.print_at_checkpoint(f"Reloaded {len(self.doj_files)} DOJ files {doj_file_counts_str()}")
-
     def overview_table(self) -> Table:
         """Table showing file counts by type."""
         title = Text('Files Overview ', TABLE_TITLE_STYLE)
@@ -351,6 +354,16 @@ class EpsteinFiles:
         table.add_row('JSON Data', *Document.file_summary_row(self.json_files, True))
         table.add_row('Other', *Document.file_summary_row(self.non_json_other_files))
         return table
+
+    def reload_doj_files(self) -> None:
+        """Reload only the DOJ PDF extracts (keep HOUSE_OVERSIGHT stuff unchanged)."""
+        def doj_file_counts_str():
+            return f"(have {len(self.all_doj_files)}, {len(self.doj_files)} non-email)"
+
+        timer = Timer()
+        logger.warning(f"Reloading all DOJ files {doj_file_counts_str()}...")
+        self._finalize_data_and_write_to_disk(self._load_file_paths(doj_txt_paths()))
+        timer.print_at_checkpoint(f"Reloaded {len(self.doj_files)} DOJ files {doj_file_counts_str()}")
 
     def repair_ids(self, ids: list[str]) -> None:
         """Reload the `ids` and save updated pickle file (also loads new files)."""
@@ -371,20 +384,20 @@ class EpsteinFiles:
             doc_paths += new_paths
 
         logger.warning(msg)
-        self._finalize_new_docs_if_approved(self._load_file_paths(doc_paths))
+        repaired_docs = self._load_file_paths(doc_paths)
 
-    def save_to_disk(self) -> None:
-        """Write a pickled version of this `EpsteinFiles` object with all documents etc."""
-        with gzip.open(args.pickle_path, 'wb') as file:
-            pickle.dump(self, file)
-            logger.warning(f"Pickled data to '{args.pickle_path}' ({file_size_str(args.pickle_path)})...")
+        if environ.get('RESPLIT_BIG_EMAILS'):
+            repaired_docs += self._split_up_big_emails()
+            logger.warning(f"  (RESPLIT_BIG_EMAILS so now have {len(repaired_docs)} repaired_docs)")
+
+        self._finalize_new_docs_if_approved(repaired_docs)
 
     def unknown_recipient_ids(self) -> list[str]:
         """IDs of emails whose recipient is not known."""
         return sorted([e.file_id for e in self.emails if None in e.recipients or not e.recipients])
 
     def _copy_duplicate_doc_properties(self) -> None:
-        """Ensure dupe emails have the properties of the emails they duplicate to capture any repairs, config etc."""
+        """Ensure dupe docs have the properties of the docs they duplicate to capture any repairs, config etc."""
         for doc in self.documents:
             if not doc.duplicate_of_id:
                 continue
@@ -401,14 +414,9 @@ class EpsteinFiles:
                     doc._warn(f"Replacing {field_name} {duplicate_prop} with {original_prop} from duplicated '{original.file_id}'")
                     setattr(doc, field_name, original_prop)
 
-    def _docs_by_id(self) -> Mapping[str, Document]:
-        return {doc.file_id: doc for doc in self._documents}
-
     def _finalize_data_and_write_to_disk(self, new_docs: list[Document] | None = None) -> None:
         """Handle computation of fields related to uninterestingness, relationships between documents, etc."""
         new_docs = new_docs or []
-        # dilorio_files = [e.reload() for e in self._documents if e.author == CHRISTOPHER_DILORIO and e.file_info.has_file]
-        # new_docs += dilorio_files + split_up_dilorio(dilorio_files)
 
         if new_docs:
             old_num_docs = len(self._documents)
@@ -422,42 +430,39 @@ class EpsteinFiles:
         self._emailers = self.person_objs(flatten([e.participants for e in self.emails]))
         self._find_email_attachments_and_set_is_first_for_user()
         self._documents = Document.sort_by_timestamp(self._documents)
-        self.save_to_disk()
+        self._save_to_disk()
 
     def _find_email_attachments_and_set_is_first_for_user(self) -> None:
-        email_attachments = [f for f in self.other_files if f.config and f.config.attached_to_email_id]
+        """Add documents with configured `attached_to_email_id` to the `Email`s they're attached to."""
+        email_attachments = [f for f in self.other_files if f._config.attached_to_email_id]
+        logger.warning(f"Finding homes for {len(email_attachments)} known email attachments...")
 
         for email in self.emails:
-            email.attached_docs = []  # Remove all attachments before re-finding them if it's a repair
+            email.attached_docs = []  # Remove all attachments before re-finding them in case it's a repair
 
         for attachment in email_attachments:
-            email: Email = self.get_id(attachment.config.attached_to_email_id, required_type=Email)
+            email = self.get_id(attachment._config.attached_to_email_id, required_type=Email)
+            email.attached_docs.append(attachment)
 
             if email.is_duplicate:
                 raise ValueError(f"Cannot attach {attachment.file_id} to duplicate email {email}")
 
-            email.attached_docs.append(attachment)
-
-            if attachment.config.timestamp:  # Don't overwrite configured timestamps (think of a book or article attachment)
-                continue
-            elif attachment.timestamp and attachment.timestamp != email.timestamp:
+            # Set the attachment timestamp to that of the email if the attachment has no configured timestamp
+            if attachment.timestamp and (attachment.timestamp != email.timestamp) and not attachment._config.timestamp:
                 attachment._warn(f"Overwriting '{attachment.timestamp}' with {email}'s timestamp {email.timestamp}")
+                attachment.extracted_timestamp = email.timestamp
 
-            attachment.extracted_timestamp = email.timestamp
-
-        # Set the is_persons_first_email flag on the earliest Email we have for each person.
+        # Set the is_persons_first_email flag on the earliest Email we have for each person (sent or received)
         for emailer in self.emailers:
-            if emailer.name in INVALID_FOR_EPSTEIN_WEB or len(emailer.unique_emails) == 0:
-                continue
-
-            emailer.unique_emails[0].is_persons_first_email = True
+            if emailer.name not in EMAILERS_TO_ALWAYS_TRUNCATE and emailer.unique_emails:
+                emailer.unique_emails[0].is_persons_first_email = True
 
     def _finalize_new_docs_if_approved(self, new_docs: list[Document]) -> None:
         """Same as _finalize_data_and_write_to_disk() but prints new docs and asks for permission."""
         if len(new_docs) < 100:
-            console.print(*new_docs)
+            console.print(*new_docs)  # Print for user review
         else:
-            logger.warning(f"Not showing the {len(new_docs)} repaired documents...")
+            logger.warning(f"Too many new documents to show previews!")
 
         logger.warning(f"Finalizing {len(new_docs)} files: {[d.file_id for d in new_docs]}")
         ask_to_proceed("Looks good?")
@@ -491,24 +496,43 @@ class EpsteinFiles:
     def _new_files(self) -> list[Path]:
         """Find any files that don't exist in the collection. Has side effect of setting `self.file_paths`."""
         self.file_paths = sorted(all_txt_paths(), reverse=True)
-        current_doc_ids = [id for id in self._docs_by_id().keys()] + list(self._empty_file_ids)
+        current_doc_ids = [id for id in self.docs_by_id.keys()] + list(self._empty_file_ids)
 
         return [
             p for p in self.file_paths
             if extract_file_id(p) not in current_doc_ids
         ]
 
+    def _save_to_disk(self) -> None:
+        """Write a pickled version of this `EpsteinFiles` object with all documents etc."""
+        with gzip.open(args.pickle_path, 'wb') as file:
+            pickle.dump(self, file)
+            logger.warning(f"Pickled data to '{args.pickle_path}' ({file_size_str(args.pickle_path)})...")
+
     def _set_uninteresting_ccs(self) -> None:
         """Extract the recipients of emails configured has having uninteresting CCs or BCCs."""
-        for email in [e for e in self.emails if e.config and e.config.has_uninteresting_bccs]:
-            self.uninteresting_ccs += [bcc.lower() for bcc in cast(list[str], email.header.bcc)]
+        for email in self.emails:
+            if email._config.has_uninteresting_ccs:
+                self._uninteresting_ccs += email.recipients
 
-        for email in [e for e in self.emails if e.config and e.config.has_uninteresting_ccs]:
-            self.uninteresting_ccs += email.recipients
+            if email._config.has_uninteresting_bccs:
+                self._uninteresting_ccs += [bcc.lower() for bcc in cast(list[str], email.header.bcc)]
 
-        self.uninteresting_ccs = uniq_sorted(self.uninteresting_ccs)
-        logger.info(f"Extracted uninteresting_ccs: {self.uninteresting_ccs}")
+        self._uninteresting_ccs = uniq_sorted(self._uninteresting_ccs)
+        logger.info(f"Extracted uninteresting_ccs: {self._uninteresting_ccs}")
 
+    def _split_up_big_emails(self) -> list[Email]:
+        """Find the big emails that we want to split up into smaller emails."""
+        big_emails = [e for e in self._documents if isinstance(e, Email) and e._was_split_up]
+
+        big_emails = big_emails or [
+            *self.emails_by(CHRISTOPHER_DILORIO),
+            *[self.get_id(LEON_BLACK_EMAIL_ID, required_type=Email)]
+        ]
+
+        new_emails = split_up_multi_email_files(big_emails)
+        logger.warning(f"Split up {len(big_emails)} into {len(new_emails)} smaller emails...")
+        return new_emails
 
 def document_cls(doc: Document) -> Type[Document]:
     """Find the appropriate `Document` subclass for this file based on the contents."""

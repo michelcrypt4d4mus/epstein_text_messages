@@ -29,6 +29,7 @@ collapse_spaces = lambda s: MULTISPACE_REGEX.sub(' ', s)
 collapse_whitespace = lambda s: WHITESPACE_REGEX.sub(' ', s).strip()
 is_bool_prop = lambda prop: prop.startswith('is_')
 is_integer = lambda s: bool(INTEGER_REGEX.match(s))
+join_patterns = lambda patterns: '|'.join(patterns)
 iso_timestamp = lambda dt: dt.isoformat().replace('T', ' ')
 strip_pdfalyzer_panels = lambda s: PDFALYZER_IMAGE_PANEL_REGEX.sub('', s)
 

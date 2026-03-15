@@ -65,11 +65,12 @@ MONEY_CFGS = [
     DocCfg(id='EFTA00299927', description=f"estate plan for {JAMES_CAYNE} found in Epstein's possession"),
     DocCfg(id='EFTA01265973', description="large transfers around time of Epstein arrest", show_full_panel=True),
     DocCfg(id='EFTA01087311', description=f'{LEON_BLACK} Family Partners cash projections'),
+    DocCfg(id='EFTA01366011', description=f"memo requesting $3,000 payment to {LASMA_KUHTARSKA}", show_with_name=LASMA_KUHTARSKA),
     DocCfg(id='EFTA01086463', description=f"{MORTIMER_ZUCKERMAN}'s art collection valuations", is_valid_for_name_scan=False),
     DocCfg(id='EFTA00007781', description='paychecks signed by Epstein deposited at Colonial Bank', date='2005-08-12'),
     DocCfg(id='EFTA01273102', description=f"payment from Epstein to {RENATA_BOLOTOVA}'s father's account at Sberbank"),
     DocCfg(id='EFTA00238499', description='wire transfer to Signature Bank account'),
-    DocCfg(id='EFTA00000476', display_text='photo of JEFFREY EPSTEIN CASH DISBURSEMENTS for the month 2006-09', date='2006-09-01'),
+    DocCfg(id='EFTA00000476', display_text='photo of JEFFREY EPSTEIN CASH DISBURSEMENTS', date='2006-09-01'),
 
     # Emails
     EmailCfg(id='EFTA00037187', is_interesting=True),

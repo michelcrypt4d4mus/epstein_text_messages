@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 # Print email ID + timestamp
+import logging
 import sys
 from collections import defaultdict
 
@@ -18,7 +19,7 @@ from epstein_files.output.highlighted_names import HighlightedNames
 from epstein_files.output.html.builder import table_to_html, write_templated_html
 from epstein_files.people.person import Person
 from epstein_files.people.names import *
-from epstein_files.util.constants import CONFIGS_BY_ID, EmailCfg
+from epstein_files.util.constants import CONFIGS_BY_ID, EmailCfg, UNINTERESTING_OTHER_FILE_IDS
 from epstein_files.util.helpers.data_helpers import *
 from epstein_files.util.helpers.debugging_helper import print_all_timestamps, print_file_counts
 from epstein_files.util.helpers.file_helper import open_file_or_url
@@ -27,20 +28,69 @@ from epstein_files.util.logging import logger
 from epstein_files.output.rich import bool_txt, console, highlighter, print_subtitle_panel
 
 
-# Show biggest files
-for i, email in enumerate(epstein_files.emails):
-    if not email.is_word_count_worthy:
+num_missing_unknown_recipient = 0
+num_interesting = 0
+num_uninteresting = 0
+num_word_count_worthy = 0
+ids = UNINTERESTING_OTHER_FILE_IDS
+
+for i, email in enumerate(epstein_files.unique_emails):
+    if email.file_id in ids or email.recipients or email.is_mailing_list or email.file_id.startswith('023208'):
         continue
 
-    if (emojis := extract_emojis(email.actual_text)):
-        # console.print(email._summary)
-        console.print(email)
-        print(f"   found emojis: {emojis}")
-        # console.line()
-        # print(f"----- actual text {email.file_id} -----\n{email.actual_text}\n--------------end actual text-------------\n")
-        console.line(2)
+    msg = f"has no recipients ({email._summary})"
 
+    if email.header.is_to_redacted:
+        email._warn(f"is_to_redacted=True and {msg}")
+    else:
+        email._log(f"{msg}\n    ...but is_to_redacted=False!\n\n{email.header}\n", logging.ERROR)
+
+    console.print(email, '\n\n')
+    ids.append(email.file_id)
+    continue
+
+    if i < 20:
+        file_info = email.file_info
+        console.line()
+        console.print(f"[{file_info.file_id}] OLD external_link_txt: {file_info.external_link_txt}")
+        console.print(f"[{file_info.file_id}] NEW     external_link: {file_info.external_link().link}")
+        console.print(f"[{file_info.file_id}] NEW          __rich__: {file_info.external_link()}")
+        console.line()
+
+    if email._config.recipients:
+        continue
+
+    if email.header.is_to_redacted and None not in email.recipients:
+        if email.author == CHRISTOPHER_DILORIO:
+            email._warn(f"skipping dilorio email...")
+            continue
+
+        ids.append(email.file_id)
+        num_missing_unknown_recipient += 1
+        num_word_count_worthy += int(email.is_word_count_worthy)
+        email._warn(f"empty To: header but None is not in recipients_real (is_interesting={email.is_interesting})")
+
+        if email.is_interesting is False:
+            email._warn(f"considered uninteresting...")
+            console.print(email._summary, '\n')
+            num_interesting += 1
+            continue
+        elif email.is_interesting is True:
+            num_interesting += 1
+            email._warn(f"not showing contents because it's already considered interesting...")
+            console.print(email._summary, '\n')
+            continue
+
+        console.line()
+        console.print(email)
+        console.print(email.header)
+        console.line()
+
+
+console.print(f'\n\n  Found {num_missing_unknown_recipient} emails that should have None as a recipient ({num_interesting} interesting, {num_uninteresting} uninteresting)')
+print(f"\nIDS to repair:\n\n" + ' '.join(ids) + '\n')
 sys.exit()
+
 
 
 for email in epstein_files.unique_emails:
@@ -57,7 +107,7 @@ def print_first_emails():
     for emailer in emailers:
         first_email = emailer.emails[0]
 
-        if emailer.is_uninteresting or first_email.is_fwded_article:
+        if emailer.is_interesting or first_email.is_fwded_article:
             continue
         elif first_email._truncate_to_length() >= first_email.length:
             logger.warning(f"User '{emailer.name}' first email is untruncated")

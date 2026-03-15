@@ -29,7 +29,6 @@ from epstein_files.output.output import (print_curated_chronological, print_doj_
      print_email_device_signatures, print_emailers_info, print_json_metadata, show_urls, write_html)
 from epstein_files.output.rich import console, print_json, print_subtitle_panel, subtitle_panel
 from epstein_files.output.site.sites import SiteType, make_clean
-from epstein_files.people.contact import Contact
 from epstein_files.util.constant.strings import HOUSE_OVERSIGHT_NOV_2025_ID_REGEX
 from epstein_files.util.constants import ALL_CONFIGS
 from epstein_files.util.env import args, site_config
@@ -109,7 +108,7 @@ def epstein_grep():
 
     for search_term in args.positional_args:
         tmp_highlight = temp_highlighter(search_term, 'reverse')
-        search_results = epstein_files.docs_matching(search_term, args.names)
+        search_results = epstein_files.grep_documents(search_term, args.names)
         search_results = sorted(search_results, key=lambda sr: sr.document.timestamp_sort_key)
         print_subtitle_panel(f"Found {len(search_results)} documents matching '{search_term}'")
         last_document = None
@@ -175,8 +174,10 @@ def epstein_pdf_path():
 def epstein_show():
     """Show the color highlighted file. If --raw arg is passed, show the raw text of the file as well."""
     ids_with_attachments = set([c.attached_to_email_id for c in ALL_CONFIGS])
+    epstein_files: EpsteinFiles | None = None
     raw_docs: list[Document] = []
     console.line()
+    ids = []
 
     try:
         if args.names:
@@ -209,7 +210,13 @@ def epstein_show():
 
         logger.info(f"Found file IDs {ids} with types: {[doc._class_name for doc in docs]}")
     except FileNotFoundError as e:
-        exit_with_error(str(e))
+        epstein_files = epstein_files or EpsteinFiles.get_files()
+
+        if ids and (docs := epstein_files.get_ids(ids)):
+            console.line(2)
+            logger.error(f"Failed to find local file but found doc by id: {e}")
+        else:
+            exit_with_error(str(e))
     except Exception as e:
         console.print_exception()
         exit_with_error(str(e))
