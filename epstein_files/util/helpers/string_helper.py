@@ -10,23 +10,24 @@ from inflection import underscore
 from epstein_files.util.constant.strings import QUESTION_MARKS_REGEX
 
 EMOJI_REGEX = re.compile(r"(?:^|\s)([:;=][-^]?[oODP()]|[oO()][-^]?[:=])(?=$|\s)")
-PDFALYZER_IMAGE_PANEL_REGEX = re.compile(r"\n╭─* Page \d+, Image \d+.*?╯\n?", re.DOTALL)
+INTEGER_REGEX = re.compile(r'^\d+$')
 MULTINEWLINE_REGEX = re.compile(r"\n{2,}")
 MULTISPACE_REGEX = re.compile(" +")
-INTEGER_REGEX = re.compile(r'^\d+$')
+PDFALYZER_IMAGE_PANEL_REGEX = re.compile(r"\n╭─* Page \d+, Image \d+.*?╯\n?", re.DOTALL)
 TIMESTAMP_SECONDS_REGEX = re.compile(r":\d{2}(\.\d+)?([-+]\d{2}:\d{2})?$")
 WHITESPACE_REGEX = re.compile(r"\s{2,}|\t|\n", re.MULTILINE)
 
 WHITESPACE_CHAR = r"[-_.\s]*"
 DATE_LENGTH = len('2025-05-05')
-DOUBLESPACE_IF_LINE_LEN_OVER = 120
-DOUBLESPACE_IF_LONG_LINE_PCT = 0.4
+DOUBLESPACE_IF_LINE_LEN_OVER = 130
+DOUBLESPACE_IF_LONG_LINE_PCT = 0.5
 
 capitalize_first = lambda s: s[0].upper() + s[1:]
 capture_group_marker = lambda label: fr"?P<{label}>"
 collapse_newlines = lambda text: MULTINEWLINE_REGEX.sub('\n\n', text)
 collapse_spaces = lambda s: MULTISPACE_REGEX.sub(' ', s)
 collapse_whitespace = lambda s: WHITESPACE_REGEX.sub(' ', s).strip()
+constantize = lambda s: underscore(s.upper())
 is_bool_prop = lambda prop: prop.startswith('is_')
 is_integer = lambda s: bool(INTEGER_REGEX.match(s))
 join_patterns = lambda patterns: '|'.join(patterns)
@@ -41,10 +42,6 @@ def as_pattern(s: str) -> str:
     """Replace spaces with regex pattern for whitespace."""
     s = collapse_spaces(s)
     return s if '?<!' in s else s.replace(' ', WHITESPACE_CHAR)
-
-
-def constantize(s: str) -> str:
-    return underscore(s.upper())
 
 
 def doublespace_lines(s: str) -> str:
@@ -87,10 +84,7 @@ def join_truthy(prefix: str | None, suffix: str | None, sep: str = '') -> str:
 
 
 def prop_str(prop: Any) -> Any:
-    if isinstance(prop, (datetime, str)):
-        return quote(str(prop))
-    else:
-        return str(prop)
+    return quote(str(prop)) if isinstance(prop, (datetime, str)) else str(prop)
 
 
 def quote(s: str, try_single_quote_first: bool = False) -> str:
@@ -120,10 +114,6 @@ def starred_header(msg: str, num_stars: int = 7, num_spaces: int = 2) -> str:
 
 
 def timestamp_without_seconds(dt: datetime) -> str:
-    # print(self.timestamp)
-    # m = TIMESTAMP_SECONDS_REGEX.search(str(self.timestamp))
-    # print(f"\nmatch: {m}\n")
-    # import pdb;pdb.set_trace()
     return TIMESTAMP_SECONDS_REGEX.sub('', str(dt))
 
 
