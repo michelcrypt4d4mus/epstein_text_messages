@@ -50,7 +50,7 @@ def join_non_empty(*txts, sep: str | Text = ' ') -> Text:
 
 def join_texts(
     txts: Sequence[Textish],
-    join: str = ' ',
+    join: str | Text = ' ',
     encloser: str = '',
     encloser_style: str = 'wheat4',
 ) -> Text:

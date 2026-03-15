@@ -21,6 +21,7 @@ from epstein_files.util.logging_entity import LoggingEntity
 BIO_STYLE = 'italic grey70'
 MIN_LEN_FOR_OPTIONAL_LAST_CHAR = 5
 
+LINK_JOIN_STYLE = 'grey23 bold'
 MGMT_PATTERN = r"M(ana)?ge?m(en)?t"
 MGMT_REGEX = re.compile(MGMT_PATTERN)
 COMPANY_SUFFIX_REGEX = re.compile(fr".*?(,? (Inc\.?|LLC|{MGMT_PATTERN}))$")
@@ -85,13 +86,13 @@ class Entity(LoggingEntity):
 
     @property
     def alt_links(self) -> list[ExternalLink]:
-        return [ExternalLink(url, f'more{i}', link_style='grey39') for i, url in enumerate(self._urls[1:], 2)]
+        return [ExternalLink(url, f'more', link_style=self.style) for i, url in enumerate(self._urls[1:], 2)]
 
     @property
     def alt_links_txt(self) -> Text:
         """Alternate links parenthesized and concatenated into one Text object."""
         if self.alt_links:
-            return parenthesize(join_texts(self.alt_links, '|'), 'grey23')
+            return enclose(join_texts(self.alt_links, Text('/', LINK_JOIN_STYLE)), '()', LINK_JOIN_STYLE)
         else:
             return Text('')
 
@@ -100,14 +101,14 @@ class Entity(LoggingEntity):
         """Biographical info about this entity with links etc."""
         from epstein_files.output.epstein_highlighter import non_epstein_highlighter
         bio_pieces: list[Textish] = [Text('').append(self.name_with_link)]
+        bio_pieces.extend([Text("aka ", BIO_STYLE).append(enclose(Text(alias, self.style))) for alias in self.aliases])
 
         if self.category:
-            category_txt = Text(self.category.lower(), style=f'{self.style} dim')
+            category_txt = Text(self.category.lower(), style=self._style_dim)
             bio_pieces.append(enclose(category_txt, encloser='[]', encloser_style='dim'))
 
-        bio_pieces.append(self.alt_links_txt)
-        bio_pieces.extend([Text("aka ", BIO_STYLE).append(enclose(Text(alias, self.style), "''")) for alias in self.aliases])
         bio_pieces.append(non_epstein_highlighter(Text(self.info, BIO_STYLE)) if self.info else QUESTION_MARKS_TXT)
+        bio_pieces.append(self.alt_links_txt)
         return join_texts(bio_pieces)
 
     @property
