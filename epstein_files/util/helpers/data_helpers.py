@@ -6,14 +6,13 @@ import re
 from copy import copy
 from datetime import datetime, timezone
 from dateutil import tz
-from typing import Any, Mapping, Sequence, TypeVar
+from typing import Any, Callable, Mapping, Sequence, TypeVar
 
 from epstein_files.people import names
 from epstein_files.util.env import args
 from epstein_files.util.logging import logger
 
 CharRange = tuple[int, int]
-T = TypeVar('T')
 
 ISO_DATE_REGEX = re.compile(r'\d{4}-\d{2}(-\d{2})?')
 CONSTANT_VAR_REGEX = re.compile(r"^[A-Z_]+$")
@@ -35,6 +34,9 @@ days_between_str = lambda dt1, dt2: f"{days_between(dt1, dt2)} day" + ('s' if da
 timestamp_str = lambda dt: dt.isoformat()[0:19]
 uniquify = lambda _list: list(set(_list))
 without_falsey = lambda _list: [e for e in _list if e]
+
+T = TypeVar('T')
+U = TypeVar('U')
 
 
 def add_constant(sequence: Sequence[int], constant: float | int) -> list[int | float]:
@@ -79,6 +81,11 @@ def flatten(_list: Sequence[list[T] | set[T]]) -> list[T]:
         return list(set().union(*_list))
     else:
         return list(itertools.chain.from_iterable(_list))
+
+
+def groupby(objs: Sequence[T], key: Callable[[T], U]) -> dict[U, list[T]]:
+    """itertools.groupby() has annoying return type."""
+    return {k: list(v) for k, v in itertools.groupby(objs, key=key)}
 
 
 def json_safe(d: dict) -> dict:

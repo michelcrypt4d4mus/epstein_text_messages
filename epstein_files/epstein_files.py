@@ -6,6 +6,7 @@ import sys
 from collections import defaultdict
 from dataclasses import dataclass, field
 from datetime import datetime
+from os import environ
 from pathlib import Path
 from typing import Mapping, Sequence, Type, cast
 
@@ -21,7 +22,7 @@ from epstein_files.documents.doj_file import DojFile
 from epstein_files.documents.email import Email
 from epstein_files.documents.emails.constants import UNINTERESTING_EMAILERS
 from epstein_files.documents.emails.dropsite_email import DropsiteEmail
-from epstein_files.documents.emails.util import split_up_leon_black, split_up_dilorio_whistleblower_emails
+from epstein_files.documents.emails.util import split_up_multi_email_files
 from epstein_files.documents.json_file import JsonFile
 from epstein_files.documents.messenger_log import MSG_REGEX, MessengerLog
 from epstein_files.documents.messenger_log_pdf import IMESSAGE_PDF_IDS, MessengerLogPdf
@@ -63,8 +64,7 @@ class EpsteinFiles:
         """Iterate through files and build appropriate objects."""
         self.file_paths = sorted(all_txt_paths(), reverse=True)
         self._documents = self._load_file_paths(self.file_paths)
-        self._documents += split_up_dilorio_whistleblower_emails(self.emails_by(CHRISTOPHER_DILORIO))
-        self._documents += split_up_leon_black(self.get_id(LEON_BLACK_EMAIL_ID))
+        self._documents += self._split_up_big_emails()
         self._finalize_data_and_write_to_disk()
 
     @classmethod
@@ -375,7 +375,13 @@ class EpsteinFiles:
             doc_paths += new_paths
 
         logger.warning(msg)
-        self._finalize_new_docs_if_approved(self._load_file_paths(doc_paths))
+        repaired_docs = self._load_file_paths(doc_paths)
+
+        if environ.get('RESPLIT_BIG_EMAILS'):
+            repaired_docs += self._split_up_big_emails()
+            logger.warning(f"  (RESPLIT_BIG_EMAILS so now have {len(repaired_docs)} repaired_docs)")
+
+        self._finalize_new_docs_if_approved(repaired_docs)
 
     def save_to_disk(self) -> None:
         """Write a pickled version of this `EpsteinFiles` object with all documents etc."""
@@ -386,6 +392,19 @@ class EpsteinFiles:
     def unknown_recipient_ids(self) -> list[str]:
         """IDs of emails whose recipient is not known."""
         return sorted([e.file_id for e in self.emails if None in e.recipients or not e.recipients])
+
+    def _split_up_big_emails(self) -> list[Email]:
+        """Find the big emails that we want to split up into smaller emails."""
+        big_emails = [e for e in self._documents if isinstance(e, Email) and e._was_split_up]
+
+        big_emails = big_emails or [
+            *self.emails_by(CHRISTOPHER_DILORIO),
+            *self.get_ids([LEON_BLACK_EMAIL_ID])
+        ]
+
+        new_emails = split_up_multi_email_files(big_emails)
+        logger.warning(f"Split up {len(big_emails)} into {len(new_emails)} smaller emails...")
+        return new_emails
 
     def _copy_duplicate_doc_properties(self) -> None:
         """Ensure dupe emails have the properties of the emails they duplicate to capture any repairs, config etc."""
@@ -411,9 +430,6 @@ class EpsteinFiles:
     def _finalize_data_and_write_to_disk(self, new_docs: list[Document] | None = None) -> None:
         """Handle computation of fields related to uninterestingness, relationships between documents, etc."""
         new_docs = new_docs or []
-        # Uncomment to re-split the big dilorio emails during a load or repair
-        dilorio_files = [e for e in self._documents if e.author == CHRISTOPHER_DILORIO and e.file_info.has_file]
-        new_docs += dilorio_files + split_up_dilorio_whistleblower_emails(dilorio_files)
 
         if new_docs:
             old_num_docs = len(self._documents)
@@ -460,9 +476,9 @@ class EpsteinFiles:
     def _finalize_new_docs_if_approved(self, new_docs: list[Document]) -> None:
         """Same as _finalize_data_and_write_to_disk() but prints new docs and asks for permission."""
         if len(new_docs) < 100:
-            console.print(*new_docs)
+            console.print(*new_docs)  # Print for user review
         else:
-            logger.warning(f"Not showing the {len(new_docs)} repaired documents...")
+            logger.warning(f"Too many new documents to show previews!")
 
         logger.warning(f"Finalizing {len(new_docs)} files: {[d.file_id for d in new_docs]}")
         ask_to_proceed("Looks good?")

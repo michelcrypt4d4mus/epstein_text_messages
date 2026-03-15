@@ -4,27 +4,41 @@ from datetime import datetime
 from epstein_files.documents.document import Document
 from epstein_files.documents.email import Email
 from epstein_files.output.rich import console
-from epstein_files.people.names import JEFFREY_EPSTEIN, LEON_BLACK, MELANIE_SPINELLA, sort_names
+from epstein_files.people.names import CHRISTOPHER_DILORIO, JEFFREY_EPSTEIN, LEON_BLACK, MELANIE_SPINELLA, sort_names
 from epstein_files.util.constant.strings import LEON_BLACK_EMAIL_ID
 from epstein_files.util.env import args
+from epstein_files.util.helpers.data_helpers import groupby
 from epstein_files.util.logging import logger
 
 DILORIO_SPLIT = '\nFrom: Chris'
 LEON_BLACK_EMAIL_REGEX = re.compile(r"^(From: .{,50}\nDate:|Date: ).*?(?=(From|Date|\Z))", re.DOTALL | re.MULTILINE)
 LEON_BLACK_FWD_REGEX = re.compile(r"^-+(Forwarded|Original) message-+", re.MULTILINE)
-TO_LEON_REGEX = re.compile(r"^Leon,", re.MULTILINE)
+LEON_BLACK_OCR_REPAIRS = {re.compile('^ate: ', re.MULTILINE): 'Date: '}
 TO_JEFFREY_REGEX = re.compile(r"^Jeffrey-", re.MULTILINE)
-
-LEON_BLACK_OCR_REPAIRS = {
-    re.compile('^ate: ', re.MULTILINE): 'Date: ',
-}
+TO_LEON_REGEX = re.compile(r"^Leon,", re.MULTILINE)
 
 
-def split_up_dilorio_whistleblower_emails(dilorio_emails: list[Email]) -> list[Email]:
+def split_up_multi_email_files(big_emails: list[Email]) -> list[Email]:
     """
-    1. Create multiple `Email`s from huge Dilorio email files (each Dilorio file is actually many smaller emails concatenated).
-    2. Mark the original big email with `_was_split_up=True`.
+    Some files have 100+ emails concatenated into one file so we split them up in a bespoke way.
+    Has side effect of setting `_was_split_up=True` for all `big_emails` which removes them from
+    `EpsteinFiles.documents` list so they can only be accessed through `EpsteinFiles._documents`.
     """
+    author_emails = groupby(big_emails, lambda e: e.author)
+    authors = sort_names([name for name in author_emails.keys()])
+    assert authors == [None, CHRISTOPHER_DILORIO], f"Unexpected author in big_emails: {authors}"
+
+    for big_email in big_emails:
+        big_email._was_split_up = True
+
+    return [
+        *_split_up_dilorio_whistleblower_emails(author_emails[CHRISTOPHER_DILORIO]),
+        *_split_up_leon_black(author_emails[None]),
+    ]
+
+
+def _split_up_dilorio_whistleblower_emails(dilorio_emails: list[Email]) -> list[Email]:
+    """Dilorio is some kind of finance whistleblower. his emails are not Epstein related but very interesting."""
     sub_emails = []
     skipped = []
 
@@ -34,7 +48,6 @@ def split_up_dilorio_whistleblower_emails(dilorio_emails: list[Email]) -> list[E
             for i, t in enumerate(big_email.text.split(DILORIO_SPLIT))
         ]
 
-        big_email._was_split_up = True
         logger.warning(f"Parsing {big_email} into {len(texts)} sub emails...")
 
         for i, text in enumerate(texts, 1):
@@ -54,11 +67,11 @@ def split_up_dilorio_whistleblower_emails(dilorio_emails: list[Email]) -> list[E
     return _uniquify_by_timestamp(sub_emails, dilorio_emails, 'dilorio', len(skipped))
 
 
-def split_up_leon_black(big_email: Email) -> list[Email]:
-    """Create emails from gigantic Leon Black emails and mark the big email with `_was_split_up`."""
-    if big_email.file_id != LEON_BLACK_EMAIL_ID:
-        raise ValueError(f"wrong Leon Black email")
-
+def _split_up_leon_black(big_emails: list[Email]) -> list[Email]:
+    """Create emails from gigantic Leon Black email."""
+    assert len(big_emails) == 1, f"have {len(big_emails)} Leon Black emails, should have 1"
+    big_email = big_emails[0]
+    assert big_email.file_id == LEON_BLACK_EMAIL_ID, f"wrong Leon Black email {big_email.file_id}"
     big_text = big_email.repair_ocr_text(LEON_BLACK_OCR_REPAIRS, big_email.text)
     emails: list[Email] = []
     skipped = []
@@ -69,17 +82,12 @@ def split_up_leon_black(big_email: Email) -> list[Email]:
         new_file_stem = _new_file_stem(big_email, i)
 
         if LEON_BLACK_FWD_REGEX.search(text):
-            logger.warning(f"Fwded email detected, appending next email...")
+            logger.warning(f"Fwded email detected in Leon Black email body, appending next email...")
             fwded_email_text = fwded_email_text + text
             continue
         else:
             email_text = fwded_email_text + text
             fwded_email_text = ''
-
-        if len(email_text) < 80:
-            logger.warning(f"Skipping {new_file_stem} because it's too short...")
-            skipped.append(email_text)
-            continue
 
         email = Email(big_email.file_path.parent.joinpath(new_file_stem), text=email_text)
         text_to_scan_for_recipients = email.actual_text[:120]
@@ -107,7 +115,6 @@ def split_up_leon_black(big_email: Email) -> list[Email]:
 
         emails.append(email)
 
-    big_email._was_split_up = True
     return _uniquify_by_timestamp(emails, [big_email], LEON_BLACK, len(skipped))
 
 

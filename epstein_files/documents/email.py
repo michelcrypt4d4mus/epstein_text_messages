@@ -548,9 +548,12 @@ class Email(Communication):
             self._log(f"Removing email to self for {self.author}")
             recipients = [r for r in recipients if r != self.author]
 
-        if self.header.is_to_redacted and None not in recipients:
-            self._warn(f"Appending {UNKNOWN} to recipient list because the To: field is empty")
-            recipients.append(None)
+        # Add None to recipients if there's an empty From: or To: header
+        if self.header.is_to_redacted and not self.has_unknown_recipient:
+            # TODO: SEC is filled in for Dilorio's split up emails after Email is fully instantiated
+            if self.author != CHRISTOPHER_DILORIO:
+                self._warn(f"Appending {None} to recipient list because the To: field is empty")
+                recipients.append(None)
 
         return sort_names(recipients)
 
