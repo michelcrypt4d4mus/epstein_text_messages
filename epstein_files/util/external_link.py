@@ -7,13 +7,13 @@ from urllib.parse import urlsplit
 
 from dataclasses import dataclass
 from rich.text import Text
-from typing import Self
 
 from epstein_files.util.constant.strings import ARCHIVE_LINK_COLOR, ARCHIVE_ALT_LINK_STYLE, ARCHIVE_LINK_COLOR
 from epstein_files.util.helpers.rich_helpers import enclose, join_non_empty
 
 HTTPS = 'https://'
 LINK_REGEX = re.compile(r"^https?://.*")
+LINK_HREF_LINE_REGEX = re.compile(r"^([>• ]*)(http\S+)(.*)")
 TLD_REGEX = re.compile(r"\.(com|co.uk|gov|net)$")
 
 EXTERNAL_LINK_STYLE = 'light_slate_grey bold'
@@ -144,6 +144,22 @@ def extract_domain(url: str, strip_tld: bool = False) -> str:
         return TLD_REGEX.sub('', domain) if strip_tld else domain
     else:
         raise ValueError(f"no hostname in URL '{url}'")
+
+
+def hyperlink_line(line: str) -> Text:
+    """Handles single line only. Add [link] tags if appropriate."""
+    if (match := LINK_HREF_LINE_REGEX.match(line)):
+        link = match.group(2)
+        txt = Text(match.group(1))
+        txt.append(Text.from_markup(f"[link={link}]{link}[/link]"))
+        return txt.append(match.group(3))
+    else:
+        return Text(line)
+
+
+def hyperlink_text(text: str) -> Text:
+    """Add rich Text hyperlinks to a string with newlines in it."""
+    return join_texts([hyperlink_line(line) for line in text.split('\n')], '\n')
 
 
 def join_texts(

@@ -1,9 +1,18 @@
-from epstein_files.util.external_link import ExternalLink, extract_domain
+from rich.text import Text
+
+from epstein_files.util.external_link import ExternalLink, extract_domain, hyperlink_line
 from epstein_files.util.constant.urls import GH_PROJECT_URL, SUBSTACK_POST_TXT_MESSAGES_URL, SUBSTACK_POST_INSIGHTSPOD_URL, MASTODON_POST_URL
 
 BBC_DOMAIN = 'bbc.co.uk'
 BBC_URL = f'https://www.{BBC_DOMAIN}/news/world-africa-32020574'
 BBC_LINK = ExternalLink(BBC_URL)
+URL = 'https://foo.bar'
+
+
+def test_create_hyperlinks():
+    assert hyperlink_line('foobar') == Text('foobar')
+    assert hyperlink_line(URL) == Text.from_markup(f"[link={URL}]{URL}[/link]")
+    assert hyperlink_line(f"> {URL} blah") == Text('> ').append(Text.from_markup(f"[link={URL}]{URL}[/link]")).append(' blah')
 
 
 def test_external_link():
