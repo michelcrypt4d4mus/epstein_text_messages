@@ -36,4 +36,5 @@ RESUMÉ_CFGS = [
     DocCfg(id='015671', author='Robin Solomon', description=RESUME_OF, date='2015-06-02'),  # She left Mount Sinai at some point in 2015,
     DocCfg(id='015672', author='Robin Solomon', description=RESUME_OF, date='2015-06-02'),  # She left Mount Sinai at some point in 2015,
     DocCfg(id='029623', description=f'bio of Kathleen Harrington, Founding Partner, C/H Global Strategies'),
+    DocCfg(id='EFTA00522933', author='Maria Macaraeg', description="applied to be housekeeper for Epstein", is_interesting=False),
 ]
