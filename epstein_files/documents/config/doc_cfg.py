@@ -228,7 +228,7 @@ class DocCfg(LoggingEntity):
     def complete_description(self) -> str:
         """String that summarizes what is known about this document."""
         author = f"{self.author} {QUESTION_MARKS}" if self.author and self.author_uncertain else self.author
-        preamble = CATEGORY_PREAMBLES.get(self.category) or ''
+        preamble = CATEGORY_PREAMBLES.get(self.category, '')
         preamble_separator = ''
         author_separator = ''
         description = ''
