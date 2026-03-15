@@ -204,11 +204,6 @@ class Document(LoggingEntity):
             return self._skipped_file_txt(Text(f"{DUPE_TYPE_STRS[self.config.dupe_type]} ").append(link))
 
     @property
-    def duplicate_of_id(self) -> str | None:
-        if self.config and self.config.duplicate_of_id:
-            return self.config.duplicate_of_id
-
-    @property
     def empty_file_txt(self) -> Text | None:
         """Overridden in DojFile."""
         pass
@@ -247,7 +242,7 @@ class Document(LoggingEntity):
 
     @property
     def is_duplicate(self) -> bool:
-        return bool(self.duplicate_of_id)
+        return bool(self._config.duplicate_of_id)
 
     @property
     def is_email(self) -> bool:
@@ -382,8 +377,8 @@ class Document(LoggingEntity):
     @property
     def timestamp_sort_key(self) -> tuple[datetime, str, int]:
         """Sort by timestamp, file_id, then whether or not it's a duplicate file."""
-        if self.duplicate_of_id:
-            sort_id = self.duplicate_of_id
+        if self._config.duplicate_of_id:
+            sort_id = self._config.duplicate_of_id
             dupe_idx = 1
         else:
             sort_id = self.file_id
@@ -433,8 +428,8 @@ class Document(LoggingEntity):
         txt.append(' [').append(styled_key_value('size', Text(str(self.length), style='aquamarine1')))
         txt.append(", ").append(styled_key_value('lines', self.num_lines))
 
-        if self.config and self.config.duplicate_of_id:
-            txt.append(", ").append(styled_key_value('dupe_of', Text(self.config.duplicate_of_id, style='cyan dim')))
+        if self._config.duplicate_of_id:
+            txt.append(", ").append(styled_key_value('dupe_of', Text(self._config.duplicate_of_id, style='cyan dim')))
 
         return txt
 

@@ -583,8 +583,8 @@ class Email(Communication):
 
         no_timestamp_msg = f"No timestamp found in '{self.file_path.name}'"
 
-        if self.is_duplicate:
-            logger.warning(f"{no_timestamp_msg} but timestamp should be copied from {self.duplicate_of_id}")
+        if self._config.duplicate_of_id:
+            logger.warning(f"{no_timestamp_msg} but timestamp should be copied from {self._config.duplicate_of_id}")
         else:
             logger.error(f"{no_timestamp_msg}, top lines:\n" + '\n'.join(self.lines[0:MAX_NUM_HEADER_LINES + 10]))
 
