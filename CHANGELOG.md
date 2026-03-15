@@ -1,4 +1,6 @@
 # NEXT RELEASE
+
+### 1.9.4
 * rename `Contact` to `Entity`
 * `Entity` allows multiple biographical link urls
 * `Entity` has new fields `email_addresses` and `aliases`
