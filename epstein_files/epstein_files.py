@@ -434,7 +434,6 @@ class EpsteinFiles:
         self._emailers = self.person_objs(flatten([e.participants for e in self.emails]))
         self._find_email_attachments_and_set_is_first_for_user()
         self._documents = Document.sort_by_timestamp(self._documents)
-        self._docs_by_id = {doc.file_id: doc for doc in self._documents}
         self.save_to_disk()
 
     def _find_email_attachments_and_set_is_first_for_user(self) -> None:
