@@ -11,10 +11,10 @@ from rich.panel import Panel
 from epstein_files.output.html.builder import (PANEL_BASE_PROPS, VERTICAL_MARGIN_EMS, border_css_props,
      one_row_table_html, render_to_html, text_to_list, text_to_div, margin_vertical_css)
 from epstein_files.output.html.elements import div_class, div_with_legend, div_tag
-from epstein_files.output.html.positioned_rich import BLACK_BACKGROUND, PositionedRich, dimensions_to_margin_css, to_em
 from epstein_files.output.html.html_style import HtmlStyle
-from epstein_files.output.rich import join_texts
+from epstein_files.output.html.positioned_rich import BLACK_BACKGROUND, PositionedRich, dimensions_to_margin_css
 from epstein_files.util.helpers.data_helpers import only_truthy
+from epstein_files.util.helpers.link_helper import join_texts
 
 JustifyMethod = Literal['center', 'left', 'right']
 

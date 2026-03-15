@@ -23,6 +23,7 @@ from epstein_files.util.constant.strings import *
 from epstein_files.util.constant.urls import *
 from epstein_files.util.env import args, site_config
 from epstein_files.util.helpers.data_helpers import json_safe, sort_dict
+from epstein_files.util.helpers.link_helper import join_texts
 from epstein_files.util.helpers.rich_helpers import enclose, left_indent_padding, suppress_output_console_kwargs
 from epstein_files.util.helpers.string_helper import snip_msg
 from epstein_files.util.logging import logger
@@ -167,22 +168,6 @@ def hyperlink_text(text: str) -> Text:
 def indent_txt(txt: str | Text, spaces: int = 4, prefix: str = '') -> Text:
     indent = Text(' ' * spaces).append(prefix)
     return indent + Text(f"\n{indent}").join(txt.split('\n'))
-
-
-def join_texts(
-    _txts: Sequence[str | ExternalLink | Text],
-    join: str = ' ',
-    encloser: str = '',
-    encloser_style: str = 'wheat4'
-) -> Text:
-    """Join a collection of `Text` objs into one, similar to standard `str.join()`."""
-    txts = [t.to_txt() if isinstance(t, ExternalLink) else t for t in _txts]
-    txt = Text('')
-
-    for i, _txt in enumerate(txts):
-        txt.append(join if i >= 1 else '').append(enclose(_txt, encloser, encloser_style))
-
-    return txt
 
 
 # TODO: unused

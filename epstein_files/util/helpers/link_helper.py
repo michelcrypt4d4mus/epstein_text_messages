@@ -2,6 +2,7 @@
 Functions that build rich Text links.
 """
 import re
+from typing import Self, Sequence
 from urllib.parse import urlsplit
 
 from dataclasses import dataclass
@@ -120,6 +121,14 @@ class ExternalLink:
 
         return join_non_empty(self.link, comment)
 
+    @classmethod
+    def parenthesized_links(cls, _links: list[Self | Text], base_style: str = 'white') -> Text:
+        """Concatenate a collection of links and wrap in parentheses."""
+        links = [link if isinstance(link, Text) else link.link for link in _links]
+        links = [parenthesize(link) for link in links]
+        txt = Text('', style=base_style)
+        return txt.append(join_texts(links))
+
     def __rich__(self) -> Text:
         return self.to_txt()
 
@@ -135,6 +144,22 @@ def extract_domain(url: str, strip_tld: bool = False) -> str:
         return TLD_REGEX.sub('', domain) if strip_tld else domain
     else:
         raise ValueError(f"no hostname in URL '{url}'")
+
+
+def join_texts(
+    _txts: Sequence[str | ExternalLink | Text],
+    join: str = ' ',
+    encloser: str = '',
+    encloser_style: str = 'wheat4'
+) -> Text:
+    """Join a collection of `Text` objs into one, similar to standard `str.join()`."""
+    txts = [t.to_txt() if isinstance(t, ExternalLink) else t for t in _txts]
+    txt = Text('')
+
+    for i, _txt in enumerate(txts):
+        txt.append(join if i >= 1 else '').append(enclose(_txt, encloser, encloser_style))
+
+    return txt
 
 
 def link_markup(

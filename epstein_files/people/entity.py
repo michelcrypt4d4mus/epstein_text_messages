@@ -37,7 +37,6 @@ class Entity(LoggingEntity):
         emailer_pattern (str, optional): manually constructed regex pattern to match this person in email headers
         aliases (list[str]): known aliases
         category (str, optional): category of this entity
-        style (str, optional): style to use when printing this entity's name
         email_addresses (list[str]): known email addresses
         emailer_regex (re.Pattern): pattern that matches this person's name in email headers
         highlight_regex (re.Pattern): pattern that matches this person's name in various variations for highlightihng
@@ -46,6 +45,7 @@ class Entity(LoggingEntity):
         is_junk (bool): for junk email
         is_organization (bool): if this is a company or group, don't try to match first and last versions of its name
         match_partial (PartialName | None): whether to also match this entity's first and last names
+        style (str, optional): style to use when printing this entity's name
         url (str | list[str] | Literal['WIKIPEDIA'], optional): link(s) to info about this entity
     """
     name: str

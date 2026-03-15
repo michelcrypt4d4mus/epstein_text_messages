@@ -26,20 +26,20 @@ from epstein_files.documents.emails.email_header import (EMAIL_SIMPLE_HEADER_REG
 from epstein_files.documents.emails.emailers import UNIQUE_IDENTIFIERS, UNIQ_IDENTIFIER_FALSE_ALARMS, extract_emailer_names
 from epstein_files.documents.other_file import OtherFile
 from epstein_files.people.interesting_people import EMAILERS_OF_INTEREST_SET
+from epstein_files.people.names import sort_names
 from epstein_files.output.epstein_highlighter import highlighter
 from epstein_files.output.highlight_config import HIGHLIGHTED_NAMES, get_style_for_name
 from epstein_files.output.html.builder import table_to_html
 from epstein_files.output.html.positioned_rich import to_em
 from epstein_files.output.layout_elements.file_display import FileDisplay, JustifyMethod
-from epstein_files.output.rich import DEFAULT_TABLE_KWARGS, build_table, hyperlink_line, join_texts, styled_key_value
+from epstein_files.output.rich import DEFAULT_TABLE_KWARGS, build_table, styled_key_value
 from epstein_files.util.constant.strings import APPEARS_IN, ARCHIVE_LINK_COLOR, REDACTED, TIMESTAMP_DIM
 from epstein_files.util.constant.urls import URL_SIGNIFIERS
-from epstein_files.people.names import sort_names
 from epstein_files.util.constants import CONFIGS_BY_ID
 from epstein_files.util.env import args, site_config
 from epstein_files.util.helpers.data_helpers import (AMERICAN_TIME_REGEX, TIMEZONE_INFO, CharRange, coerce_utc, flatten,
      prefix_keys, uniq_sorted, uniquify, without_falsey)
-from epstein_files.util.helpers.link_helper import link_text_obj
+from epstein_files.util.helpers.link_helper import join_texts, link_text_obj
 from epstein_files.util.helpers.string_helper import capitalize_first, collapse_newlines, is_bool_prop, quote, strip_pdfalyzer_panels
 from epstein_files.util.logging import logger
 
