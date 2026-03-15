@@ -108,15 +108,8 @@ class OtherFile(Document):
     @property
     def preview_chars(self) -> str:
         """Text at start of file stripped of newlines for display in tables and other cramped settings."""
-        num_chars = site_config.other_files_preview_chars
-        text = self.text
-
-        if self.config:
-            if self.config.num_preview_chars:
-                num_chars = self.config.num_preview_chars
-
-            if self.config_display_text:
-                text = self.config_display_text
+        num_chars = self._config.num_preview_chars or site_config.other_files_preview_chars
+        text = (self.config_display_text or self.text)[0:num_chars]
 
         if text.count('Page') > MIN_PAGES_TO_TRUNCATE_PREVIEW:
             num_chars = TRUNCATED_PREVIEW_LEN
