@@ -529,8 +529,7 @@ class Email(Communication):
             if header.is_empty and not self.file_info.is_doj_file:
                 header.repair_empty_header(self.lines)
         else:
-            log_level = logging.INFO if self.config else logging.WARNING
-            self._log_top_lines(msg='No email header match found!', level=log_level)
+            self._log_top_lines(msg='No email header found!', level=logging.INFO if self.config else logging.WARNING)
             header = EmailHeader(field_names=[])
 
         logger.debug(f"{self.file_id} extracted header\n\n{header}\n")
