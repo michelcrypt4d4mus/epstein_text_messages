@@ -116,8 +116,8 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 STEVEN_VICTOR_MD,
                 "dermatologist who treated Epstein's girls",
                 r"Steven? Victor( M\.?D\.?)?|Dr\.? Victor",
+                match_partial=None,
                 url='https://www.nytimes.com/2026/02/28/us/jeffrey-epstein-doctors.html?unlocked_article_code=1.PlA.f4B2.BgLoXD-aVKkw&smid=url-share',
-                match_partial=None
             ),
             Entity('Valeria Chomsky', f"wife of {NOAM_CHOMSKY}", match_partial='both'),
             Entity(
@@ -265,8 +265,8 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Entity(
                 'Donna Air',
                 'British actress and TV presenter',
-                url='https://graziadaily.co.uk/life/tv-and-film/donna-air/',
                 match_partial=None,
+                url='https://graziadaily.co.uk/life/tv-and-film/donna-air/',
             ),
             Entity('Errol Morris', 'documentary film maker, films about Robert McNamara, Donald Rumsfeld, and Bannon', match_partial=None),
             Entity(ETIENNE_BINANT, f"art advisor {QUESTION_MARKS}"),
@@ -332,8 +332,8 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 BORIS_NIKOLIC,
                 f"biotech partner of {BILL_GATES} in bgC3 / Bill Gates Ventures, Epstein estate executor",
                 r"(boris )?nikolic?",
+                match_partial='both',
                 url='https://www.wsj.com/articles/how-epstein-inserted-himself-in-a-split-between-bill-gates-and-a-top-gates-adviser-6d8fca69',
-                match_partial='both'
             ),
         ],
         patterns=[
@@ -558,21 +558,21 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 ADAM_BACK,
                 f"co-founder of {BLOCKSTREAM}, bitcoin core developer, Tether defender, currently denying Epstein connections",
                 r"((Andy|Adam) )Back?",
-                url='https://www.dlnews.com/articles/people-culture/blockstream-founder-denies-relationship-with-jeffrey-epstein/',
                 match_partial=None,
+                url='https://www.dlnews.com/articles/people-culture/blockstream-founder-denies-relationship-with-jeffrey-epstein/',
             ),
             Entity(
                 AMIR_TAAKI,
                 f"bitcoin bro, co-founder of Intersango with {DONALD_NORMAN} (and {BROCK_PIERCE}?)",
                 r"Amir(?! Stemhell)( Taaki)|genjix",
+                match_partial='last',
                 url='https://www.axios.com/2023/12/14/customers-of-dead-bitcoin-exchange-demand-refunds',
-                match_partial='last'
             ),
             Entity(
                 'Andrew Larkin',
                 f'insider trading charges from SEC related to online gambling, friend of {AUSTIN_HILL}',
-                url='https://www.sec.gov/enforcement-litigation/litigation-releases/lr-25422',
                 match_partial=None,
+                url='https://www.sec.gov/enforcement-litigation/litigation-releases/lr-25422',
             ),
             Entity(
                 ANTHONY_SCARAMUCCI,
@@ -584,8 +584,8 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Entity(
                 ARIANNA_SIMPSON,
                 f"a16z crypto booster of the Axie Infinity disaster, Autonomous Partners",
-                url='https://www.bloomberg.com/news/features/2022-06-10/axie-infinity-axs-crypto-game-promised-nft-riches-gave-ruin',
                 match_partial=None,
+                url='https://www.bloomberg.com/news/features/2022-06-10/axie-infinity-axs-crypto-game-promised-nft-riches-gave-ruin',
             ),
             Entity(
                 AUSTIN_HILL,
@@ -597,8 +597,8 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Entity(
                 'Ben Horowitz',
                 'co-founder of crypto heavy venture fund a16z, Trump convert',
+                match_partial=None,
                 url='https://cryptadamus.substack.com/p/of-tech-bros-and-trumpers',
-                match_partial=None
             ),
             Entity(
                 'Blythe Masters',
@@ -617,9 +617,11 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 BROCK_PIERCE,
                 "Bannon partner, Tether co-founder, friend of Yair Netanyahu, sex crime history",
                 r"Brock(?!man)( Pierce)?",
-                # https://cryptadamus.substack.com/i/149639184/den-of-brockiquity
-                url='https://protos.com/brock-pierces-dark-and-disturbing-friendship-with-jeffrey-epstein/',
                 match_partial='first',
+                url=[
+                    'https://protos.com/brock-pierces-dark-and-disturbing-friendship-with-jeffrey-epstein/',
+                    'https://cryptadamus.substack.com/i/149639184/den-of-brockiquity',
+                ],
             ),
             Entity(BRYAN_BISHOP, "executive at LedgerX and Polymath fund", match_partial=None),
             Entity('Cory Fields', 'bitcoin developer', match_partial=None),
@@ -627,8 +629,8 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Entity(
                 DONALD_NORMAN,
                 f"co-founder of early British crypto exchange Intersango with {AMIR_TAAKI}",
+                match_partial=None,
                 url='https://www.axios.com/2023/12/14/customers-of-dead-bitcoin-exchange-demand-refunds',
-                match_partial=None
             ),
             Entity(ED_BOYLE, f"Medici Bank", r"Ed Boy(el|le)", match_partial=None),
             Entity('Erik Svenson', BLOCKSTREAM),
@@ -662,8 +664,11 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 'Marc Andreessen',
                 'co-founder of crypto heavy venture fund a16z, Trump convert',
                 r"adreeson|(Marc\s*)?(?<!Gavin )Andreess?en(?!\s+Horowitz)|pmarca",
-                url='https://cryptadamus.substack.com/p/of-tech-bros-and-trumpers',
                 match_partial=None,
+                url=[
+                    'https://cryptadamus.substack.com/p/of-tech-bros-and-trumpers',
+                    'https://www.infinitescroll.us/p/marc-andreessen-as-avatar-for-societal',
+                ],
             ),
             Entity('Matthew Gilbert', 'assistant to Howard Lutnick', match_partial=None),
             Entity("Matthew Roszak", 'co-founder of Bloq, accusations of insider trading'),
@@ -889,8 +894,8 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Entity(
                 'Greg Craig',
                 'former Obama White House counsel, worked w/Paul Manafort in Ukraine, acquitted of charges',
-                url='https://www.politico.com/story/2019/05/13/rick-gates-roger-stone-greg-craig-1318870',
                 match_partial=None,
+                url='https://www.politico.com/story/2019/05/13/rick-gates-roger-stone-greg-craig-1318870',
             ),
             Entity('Janis Hartley', f'assistant to Governor Bill Richardson {QUESTION_MARKS}', match_partial=None),
             Entity(PAUL_PROSPERI, "friend of Bill Clinton"),
@@ -1185,8 +1190,8 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Entity(
                 'Martine Vik Magnussen',
                 f'murdered by son of {SHAHER_ABDULHAK_BESHER}',
+                match_partial=None,
                 url='https://en.wikipedia.org/wiki/Murder_of_Martine_Vik_Magnussen',
-                match_partial=None
             ),
             Entity(
                 MIROSLAV_LAJCAK,
@@ -1370,8 +1375,8 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Entity(
                 JIDE_ZEITLIN,
                 f"former partner at {GOLDMAN_SACHS}, Kate Spade, #MeToo allegations",
-                url='https://www.propublica.org/article/the-bizarre-fall-of-the-ceo-of-coach-and-kate-spades-parent-company',
                 match_partial='both',
+                url='https://www.propublica.org/article/the-bizarre-fall-of-the-ceo-of-coach-and-kate-spades-parent-company',
             ),
             Entity('Ira Zicherman', f"former {BEAR_STEARNS} exec, co-trustee of J. Epstein Foundation with Ghislaine"),
             Entity(JAMES_CAYNE, f"CEO of {BEAR_STEARNS}, executor of Epstein's will"),
@@ -1383,8 +1388,8 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 LEON_BLACK,
                 'Apollo CEO, paid Epstein more than $150 million for "tax advice", serious allegations by multiple Epstein victims',
                 r"Leon\s*Black?|(?<!Marc )Leon(?! (Botstein|Jaworski|Wieseltier))",
-                url='https://x.com/kevinnbass/status/2027255769595302219',
                 match_partial=None,
+                url='https://x.com/kevinnbass/status/2027255769595302219',
             ),
             Entity(MELANIE_SPINELLA, f"representative of {LEON_BLACK}", r"M?elanie Spine[Il]{2}a"),
             Entity(MICHAEL_FOWLER, f"{ATORUS} / Red Dot Trade fund co-founder", match_partial=None),
@@ -1401,8 +1406,8 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 PAUL_MORRIS,
                 f"Epstein's primary private banker at JP Morgan then {DEUTSCHE_BANK}",
                 r"morris, paul|Paul Morris",
-                url='https://fortune.com/2025/10/08/deutsche-bank-and-jeffrey-epstein-ghost/',
                 match_partial=None,
+                url='https://fortune.com/2025/10/08/deutsche-bank-and-jeffrey-epstein-ghost/',
             ),
             Entity('Paul Tudor Jones', "hedge fund guy, Robin Hood Foundation founder", match_partial='first'),
             Entity('Skip Rimer', "Michael Milken's Milken Institute"),
@@ -1521,23 +1526,23 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 JENNIE_SAUNDERS,
                 f'co-founder of Core Club, {DANGENE_AND_JENNIE_ENTERPRISE}, accused of recruiting underage girls',
                 r"Core Club|(Dangene and )?Jennie (Enterprise?s?|Saunders)",
-                url='https://www.crainsnewyork.com/real-estate/core-club-founder-jennie-enterprise-exchanged-thousands-emails-jeffrey-epstein',
                 match_partial=None,
+                url='https://www.crainsnewyork.com/real-estate/core-club-founder-jennie-enterprise-exchanged-thousands-emails-jeffrey-epstein',
             ),
             Entity('Jill Iscol', 'heiress, philanthropist, IF Hummingbird Foundation'),
             Entity(
                 JONATHAN_FARKAS,
                 f"son of {ANDREW_FARKAS}, heir to department store fortune, spouse of Trump's ambassador to Malta",
                 r"Jonath[ao]n Fark(a|u)(s|il)",
-                url='https://www.yahoo.com/news/articles/jeffrey-please-help-humiliating-emails-032309827.html',
                 match_partial=None,
+                url='https://www.yahoo.com/news/articles/jeffrey-please-help-humiliating-emails-032309827.html',
             ),
             Entity(
                 JOSHUA_FINK,
                 f"son of Blackrock CEO Larry Fink (world's largest money manager), dated {SVETLANA_POZHIDAEVA}",
                 r"Josh(ua)? Fink",
+                match_partial=None,
                 url='https://nypost.com/2012/06/01/fink-kid-is-a-big-fat-loser/',
-                match_partial=None
             ),
             Entity('linkspirit', "Skype username of someone Epstein communicated with"),
             Entity(
@@ -1566,9 +1571,9 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         contacts=[
             Entity(ALISON_J_NATHAN, "judge in SDNY", r"Alison( J\.?)? Nathan|Nathan NYSD Chambers?", match_partial=None),
             Entity(
-                name=ANN_MARIE_VILLAFANA,
-                info="Southern District of Florida (SDFL) U.S. Attorney",
-                emailer_pattern=r"Villafana, Ann Marie|(A(\.|nn) Marie )?Villafa(c|n|ri)a",
+                ANN_MARIE_VILLAFANA,
+                "Southern District of Florida (SDFL) U.S. Attorney",
+                r"Villafana, Ann Marie|(A(\.|nn) Marie )?Villafa(c|n|ri)a",
             ),
             Entity(AUDREY_STRAUSS, "USA Attorney", r"Audrey Strauss|Strauss, Audrey", match_partial=None),
             Entity(
@@ -1614,8 +1619,8 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Entity(
                 'Regina Dugan',  # EFTA02009735
                 'Google, Motorola, former head of DARPA',
-                url='https://www.engadget.com/2012-03-12-darpa-director-exits-agency-for-google-assumes-mysterious-role.html',
                 match_partial=None,
+                url='https://www.engadget.com/2012-03-12-darpa-director-exits-agency-for-google-assumes-mysterious-role.html',
             ),
             acronym('Confidential Human Source', 'FBI speak for a tipster'),
             acronym('Foreign Corrupt Practices Act'),
@@ -1732,7 +1737,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         label=HARVARD,
         style='light_goldenrod3',
         contacts=[
-            Entity('Donald Rubin', "Professor of Statistics", match_partial=None),
+            Entity('Donald Rubin', "professor of statistics", match_partial=None),
             Entity('Henry Rosovsky', f'emeritus dean of {HARVARD}', r"(Henry )?Rosovs(k|lc)y"),
             Entity('Kelly Friendly', f"longtime aide and spokesperson of {LARRY_SUMMERS}", match_partial=None),
             Entity(
@@ -1862,8 +1867,8 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 'Conchita Sarnoff',
                 'journalist Epstein attempted to bribe',
                 r"Con[cs]hita( Sarnoff)?",
-                url='https://conchitasarnoff.com/',
                 match_partial='both',
+                url='https://conchitasarnoff.com/',
             ),
             Entity('Chris Cuomo', 'newscaster, brother of NY governor Andrew Cuomo', r"Chris(topher)? Cuomo", match_partial=None),
             Entity(
@@ -1916,10 +1921,13 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Entity('Tim Zagat', "Zagat restaurant guide CEO"),
             Entity(
                 'Vicky Ward',
-                "2003 reporting on Epstein's crimes was spiked by editors but in 2011 she wrote about how wonderful Epstein + Ghislaine were",
+                "2003 reporting on Epstein's crimes was spiked by editors, 2011 reported on how wonderful Epstein + Ghislaine were",
                 r"Vick[iy] Ward",
-                url='https://www.npr.org/2019/08/22/753390385/a-dead-cat-a-lawyers-call-and-a-5-figure-donation-how-media-fell-short-on-epstei',
                 match_partial=None,
+                url=[
+                    'https://www.npr.org/2019/08/22/753390385/a-dead-cat-a-lawyers-call-and-a-5-figure-donation-how-media-fell-short-on-epstei',
+                    'https://www.vanityfair.com/news/2011/03/notes-on-new-yorks-oddest-couple-jeffrey-epstein-and-ghislaine-maxwell',
+                ],
             ),
             organization('Effective Altruism', 'cult popular with tech CEOs who want an excuse for hoarding money (e.g. SBF of FTX)'),
             organization('Futurism', f'odd outlet that seems hooked up with {MASHA_DROKOVA}'),
@@ -2332,6 +2340,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 match_partial='both',
                 url='https://en.wikipedia.org/wiki/Girl_Model',
             ),
+            organization('2morrow'),
             organization('Elite Models', 'well known modeling agency'),
             organization('Icarine', f"agency with connections to {JEAN_LUC_BRUNEL}"),
             organization('ID Models', "Paolo Zampolli's modeling agency"),
@@ -2355,7 +2364,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         contacts=[
             Entity(
                 AL_SECKEL,
-                "Isabel Maxwell's husband, Mindshift conference organizer, mysterious death",
+                "Isabel Maxwell's husband, Mindshift Conference organizer, mysterious death",
                 url='https://www.tabletmag.com/sections/news/articles/the-illusionist-al-seckel',
             ),
             Entity('Barnaby Marsh', "co-founder of philanthropy services company Saint Partners", match_partial=None),
