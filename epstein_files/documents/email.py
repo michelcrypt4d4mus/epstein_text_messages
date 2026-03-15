@@ -81,6 +81,7 @@ JUNK_EMAILERS = [
 
 BCC_LISTS = JUNK_EMAILERS + MAILING_LISTS
 TRUNCATE_EMAILS_BY = BCC_LISTS + TRUNCATE_EMAILS_FROM
+EMAILERS_TO_ALWAYS_TRUNCATE = set(BCC_LISTS + TRUNCATE_EMAILS_BY)
 REWRITTEN_HEADER_MSG = "(janky OCR header fields were prettified, check source if something seems off)"
 
 # TODO: add other forward patterns

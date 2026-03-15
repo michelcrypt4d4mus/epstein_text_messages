@@ -19,7 +19,7 @@ from epstein_files.documents.config.manual_config import create_configs
 from epstein_files.documents.document import Document
 from epstein_files.documents.documents.search_result import SearchResult
 from epstein_files.documents.doj_file import DojFile
-from epstein_files.documents.email import Email
+from epstein_files.documents.email import EMAILERS_TO_ALWAYS_TRUNCATE, Email
 from epstein_files.documents.emails.constants import UNINTERESTING_EMAILERS
 from epstein_files.documents.emails.dropsite_email import DropsiteEmail
 from epstein_files.documents.emails.util import split_up_multi_email_files
@@ -28,7 +28,7 @@ from epstein_files.documents.messenger_log import MSG_REGEX, MessengerLog
 from epstein_files.documents.messenger_log_pdf import IMESSAGE_PDF_IDS, MessengerLogPdf
 from epstein_files.documents.other_file import OtherFile
 from epstein_files.output.rich import TABLE_TITLE_STYLE, console
-from epstein_files.people.person import INVALID_FOR_EPSTEIN_WEB, PEOPLE_BIOS, Person
+from epstein_files.people.person import PEOPLE_BIOS, Person
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constants import *
 from epstein_files.util.env import args, logger
@@ -433,32 +433,29 @@ class EpsteinFiles:
         self._save_to_disk()
 
     def _find_email_attachments_and_set_is_first_for_user(self) -> None:
-        email_attachments = [f for f in self.other_files if f.config and f.config.attached_to_email_id]
+        """Add documents with configured `attached_to_email_id` to the `Email`s they're attached to."""
+        email_attachments = [f for f in self.other_files if f._config.attached_to_email_id]
+        logger.warning(f"Finding homes for {email_attachments} known email attachments...")
 
         for email in self.emails:
-            email.attached_docs = []  # Remove all attachments before re-finding them if it's a repair
+            email.attached_docs = []  # Remove all attachments before re-finding them in case it's a repair
 
         for attachment in email_attachments:
-            email: Email = self.get_id(attachment.config.attached_to_email_id, required_type=Email)
+            email = self.get_id(attachment._config.attached_to_email_id, required_type=Email)
+            email.attached_docs.append(attachment)
 
             if email.is_duplicate:
                 raise ValueError(f"Cannot attach {attachment.file_id} to duplicate email {email}")
 
-            email.attached_docs.append(attachment)
-
-            if attachment.config.timestamp:  # Don't overwrite configured timestamps (think of a book or article attachment)
-                continue
-            elif attachment.timestamp and attachment.timestamp != email.timestamp:
+            # Set the attachment timestamp to that of the email if the attachment has no configured timestamp
+            if attachment.timestamp and attachment.timestamp != email.timestamp and not attachment._config.timestamp:
                 attachment._warn(f"Overwriting '{attachment.timestamp}' with {email}'s timestamp {email.timestamp}")
+                attachment.extracted_timestamp = email.timestamp
 
-            attachment.extracted_timestamp = email.timestamp
-
-        # Set the is_persons_first_email flag on the earliest Email we have for each person.
+        # Set the is_persons_first_email flag on the earliest Email we have for each person (sent or received)
         for emailer in self.emailers:
-            if emailer.name in INVALID_FOR_EPSTEIN_WEB or len(emailer.unique_emails) == 0:
-                continue
-
-            emailer.unique_emails[0].is_persons_first_email = True
+            if emailer.name not in EMAILERS_TO_ALWAYS_TRUNCATE and emailer.unique_emails:
+                emailer.unique_emails[0].is_persons_first_email = True
 
     def _finalize_new_docs_if_approved(self, new_docs: list[Document]) -> None:
         """Same as _finalize_data_and_write_to_disk() but prints new docs and asks for permission."""

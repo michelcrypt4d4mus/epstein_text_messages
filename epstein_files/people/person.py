@@ -13,7 +13,7 @@ from rich.text import Text
 from epstein_files.documents.communication import Communication
 from epstein_files.documents.document import Document
 from epstein_files.documents.documents.categories import Uninteresting
-from epstein_files.documents.email import TRUNCATE_EMAILS_BY, MAILING_LISTS, JUNK_EMAILERS, Email
+from epstein_files.documents.email import BCC_LISTS, TRUNCATE_EMAILS_BY, MAILING_LISTS, Email
 from epstein_files.documents.emails.emailers import CONTACTS_DICT, cleanup_str
 from epstein_files.documents.messenger_log import MessengerLog
 from epstein_files.documents.other_file import OtherFile
@@ -22,7 +22,7 @@ from epstein_files.output.highlight_config import (HIGHLIGHTED_NAMES, QUESTION_M
 from epstein_files.output.highlighted_names import HighlightedNames, HighlightPatterns, ManualHighlight
 from epstein_files.output.layout_elements.file_display import FileDisplay
 from epstein_files.output.rich import (GREY_NUMBERS, TABLE_TITLE_STYLE, build_table, console, join_texts,
-     print_centered, print_special_note)
+     print_special_note)
 from epstein_files.people.entity import Entity
 from epstein_files.people.interesting_people import SPECIAL_NOTES
 from epstein_files.util.constant.strings import *
@@ -40,12 +40,6 @@ MIN_AUTHOR_PANEL_WIDTH = 80
 EMAILER_INFO_TITLE = 'Email Conversations Will Appear'
 UNINTERESTING_CC_INFO = "cc: or bcc: recipient only"
 UNINTERESTING_CC_INFO_NO_CONTACT = f"{UNINTERESTING_CC_INFO}, no direct contact with Epstein"
-
-INVALID_FOR_EPSTEIN_WEB = JUNK_EMAILERS + MAILING_LISTS + [
-    'ACT for America',
-    'BS Stern',
-    UNKNOWN,
-]
 
 PEOPLE_BIOS = {
     contact.name: contact.bio_txt
@@ -249,7 +243,7 @@ class Person(LoggingEntity):
             return False
         elif self.is_email_address or '/' in self.name or QUESTION_MARKS in self.name:
             return False
-        elif self.name in INVALID_FOR_EPSTEIN_WEB:
+        elif self.name in BCC_LISTS:
             return False
 
         return True
