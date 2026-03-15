@@ -235,9 +235,6 @@ class DocPrinter:
 
         return write_templated_html(self.html_elements, output_path)
 
-    # def write_mobile_html(self, html_path: Path) -> None:
-    #     write_templated_html(self.mobile_html_elements, html_path)
-
     def _align_biographical_panel(self, panel: Panel) -> Align:
         return Align(Padding(panel, site_config.character_bio_padding), 'right')
 

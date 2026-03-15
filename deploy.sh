@@ -103,11 +103,9 @@ $GENERATE_CMD --output-chrono
 print_deploy_step "Building curated chronological mobile page..."
 $GENERATE_MOBILE_CMD --output-chrono
 
-print_deploy_step "Copying curated custom HTML chronological pages into place..."
-cp docs/real_html_index.html docs/index.html
-cp docs/real_html_mobile_chronological.html docs/mobile_chronological.html
-
 # Fast pages
+print_deploy_step "Building email signatures page..."
+$GENERATE_CMD --output-bios
 print_deploy_step "Building email signatures page..."
 $GENERATE_CMD --output-devices
 print_deploy_step "Building text messages page... "
@@ -118,6 +116,11 @@ print_deploy_step "Building JSON metadata page..."
 $GENERATE_CMD --json-metadata
 print_deploy_step "Building other files table page..."
 $GENERATE_CMD --all-other-files
+
+print_deploy_step "Copying a few custom HTML pages into place..."
+cp docs/real_html_index.html docs/index.html
+cp docs/real_html_mobile_chronological.html docs/mobile_chronological.html
+cp docs/real_html_biographies.html docs/biographies.html
 
 # Slower pages
 print_deploy_step "Building curated page..."
