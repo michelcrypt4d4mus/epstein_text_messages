@@ -339,6 +339,7 @@ GIRLS_CFGS = [
         description="so who's \"the model\"?", highlight_quote='suspend any billing from now on until further notification from you or the model',
         is_interesting=True,
     ),
+    EmailCfg(id='EFTA00971793', highlight_quote='Attached is resume of Lutnick nanny', description=f"why does Epstein need a nanny?"),
     EmailCfg(id='EFTA01965732', highlight_quote='facilictating his illicit trysts, with married women, to being asked to provide adderall fro bridge tournamnts'),
     EmailCfg(id='EFTA01768670', highlight_quote='find girls for the agency', description=f'but {BORIS_NIKOLIC} is a "biotech investor"...'),
     EmailCfg(id='EFTA01905320', highlight_quote='girls and i are going to see elon musk at space x tomorrow', is_interesting=True),

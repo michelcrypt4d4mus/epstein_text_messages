@@ -38,7 +38,7 @@ for i, email in enumerate(epstein_files.unique_emails):
     if email._config.recipients:
         continue
 
-    if email.header.has_empty_to_header and None not in email.recipients_real:
+    if (email.header.has_empty_to_header or email.header.has_empty_cc_header) and None not in email.recipients_real:
         if email.author == CHRISTOPHER_DILORIO:
             email._warn(f"skipping dilorio email...")
             continue

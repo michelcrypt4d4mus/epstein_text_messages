@@ -630,7 +630,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Entity(ED_BOYLE, f"Medici Bank", r"Ed Boy(el|le)", match_partial=None),
             Entity('Erik Svenson', BLOCKSTREAM),
             Entity(FRANCESCA_HALL, f"'Assistant/Calendar Queen to The BlockStream team' / {AUSTIN_HILL}", match_partial=None),
-            Entity('Fred Ehrsam', "co-founder of Coinbase"),
+            Entity('Fred Ehrsam', "co-founder of Coinbase", match_partial=None),
             Entity(
                 GAVIN_ANDRESEN,
                 'core bitcoin developer',

@@ -211,6 +211,7 @@ UNINTERESTING_EMAIL_IDS = [
     'EFTA02238841',
     # Karyna Shuliak
     'EFTA02318365',
+    'EFTA00554702',
     # Krassner
     '033345',
     # Leon Black related
@@ -224,6 +225,8 @@ UNINTERESTING_EMAIL_IDS = [
     # Maria Prusakova
     'EFTA01772533',
     'EFTA01740489',
+    # Martin Weinberg
+    '030149',
     # Peter Thiel
     'EFTA01003336',
     # Philip Rosedale
@@ -247,6 +250,7 @@ UNINTERESTING_EMAIL_IDS = [
     # Tyler Shears
     'EFTA02511281',
     # USANYS / DOJ
+    'EFTA00039420',
     'EFTA00039799',
     'EFTA02730469',
     'EFTA02730471',
@@ -367,6 +371,8 @@ NOT_CHRONOLOGICAL_VIEW_IDS = [cfg.id for cfg in FLIGHT_LOG_CFGS] + [
     'EFTA00329334',
     # Renata Bolotova
     'EFTA00667441',
+    # Sean Lancaster
+    '033155',
     # Tyler Shears
     'EFTA02372294',
     '028965',
