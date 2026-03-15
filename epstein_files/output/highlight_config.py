@@ -2696,14 +2696,18 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 match_partial='both',
                 url='https://en.wikipedia.org/wiki/Ruslana_Korshunova',
             ),
-            Entity(SANITA, "Russian girl who blew upat Epstein when he suggeted a massage"),
+            Entity(SANITA, "hero who blew up at Epstein when he suggeted a massage"),
             Entity(
                 SVETLANA_POZHIDAEVA,
                 f"Epstein assistant, went to FSB feeder school MGIMO, visa recommended by {SERGEY_BELYAKOV} (FSB) & {DAVID_BLAINE}",
                 r"Sophia Platt|((Svet)?Lana )?Pozhidaeva|\b(Lana|Svet)\b|p\.selana|Selana P\b|Svetlan(?! Pudina)",
                 aliases=['Sophia Platt'],
                 match_partial=None,
-                url='https://dossier.center/jeffreyepsteinrusconnect-en/',
+                url=[
+                    'https://dossier.center/jeffreyepsteinrusconnect-en/',
+                    'https://www.wsj.com/us-news/epstein-victim-svetlana-pozhidaeva-22f2ebf6',
+                    # 'https://archive.ph/0nVfp',
+                ],
             ),
             Entity(
                 YULIA_DOROKHINA,

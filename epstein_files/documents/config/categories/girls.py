@@ -261,6 +261,11 @@ GIRLS_CFGS = [
         recipient_uncertain=True,
     ),
     EmailCfg(
+        id='EFTA02447019',
+        recipients=[SVETLANA_POZHIDAEVA],
+        author_reason='https://www.wsj.com/us-news/epstein-victim-svetlana-pozhidaeva-22f2ebf6',
+    ),
+    EmailCfg(
         id='EFTA00888467',
         description=f'very strange conversation about "Peter" (maybe {PETER_MANDELSON}?) and "mj" (maybe {HASSAN_JAMEEL}?)',
         is_interesting=True,
