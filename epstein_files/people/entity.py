@@ -11,7 +11,7 @@ from epstein_files.util.constant.strings import INDENT_NEWLINE, INDENTED_JOIN, L
 from epstein_files.util.constant.urls import wikipedia_url_for_name
 from epstein_files.util.env import args, site_config
 from epstein_files.util.helpers.data_helpers import constantize_names, listify
-from epstein_files.util.helpers.link_helper import ExternalLink
+from epstein_files.util.external_link import ExternalLink
 from epstein_files.util.helpers.rich_helpers import QUESTION_MARKS_TXT, enclose
 from epstein_files.util.helpers.string_helper import (as_pattern, indented, is_integer, join_patterns,
      join_truthy, quote, remove_question_marks)

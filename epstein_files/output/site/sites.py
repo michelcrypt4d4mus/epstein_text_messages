@@ -10,7 +10,7 @@ from rich.text import Text
 
 from epstein_files.util.constant.strings import (AUX_SITE_LINK_STYLE, CHRONOLOGICAL, DOJ_2026_TRANCHE,
      EPSTEIN_FILES_NOV_2025, HOUSE_OVERSIGHT_TRANCHE)
-from epstein_files.util.helpers.link_helper import link_text_obj, parenthesize
+from epstein_files.util.external_link import link_text_obj, parenthesize
 from epstein_files.util.logging import logger
 
 HTML_DIR = Path('docs')

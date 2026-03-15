@@ -1,4 +1,4 @@
-from epstein_files.util.helpers.link_helper import ExternalLink, extract_domain
+from epstein_files.util.external_link import ExternalLink, extract_domain
 from epstein_files.util.constant.urls import GH_PROJECT_URL, SUBSTACK_POST_TXT_MESSAGES_URL, SUBSTACK_POST_INSIGHTSPOD_URL, MASTODON_POST_URL
 
 BBC_DOMAIN = 'bbc.co.uk'

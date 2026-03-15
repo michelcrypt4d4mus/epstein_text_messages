@@ -23,7 +23,7 @@ from epstein_files.util.constant.strings import *
 from epstein_files.util.constant.urls import *
 from epstein_files.util.env import args, site_config
 from epstein_files.util.helpers.data_helpers import json_safe, sort_dict
-from epstein_files.util.helpers.link_helper import join_texts
+from epstein_files.util.external_link import join_texts
 from epstein_files.util.helpers.rich_helpers import enclose, left_indent_padding, suppress_output_console_kwargs
 from epstein_files.util.helpers.string_helper import snip_msg
 from epstein_files.util.logging import logger

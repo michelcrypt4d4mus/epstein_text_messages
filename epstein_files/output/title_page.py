@@ -22,7 +22,7 @@ from epstein_files.util.constant.strings import *
 from epstein_files.util.constant.urls import *
 from epstein_files.util.constants import HEADER_ABBREVIATIONS
 from epstein_files.util.env import args, site_config
-from epstein_files.util.helpers.link_helper import SUBSTACK_POST_LINK_STYLE, join_texts, link_markup, link_text_obj, parenthesize
+from epstein_files.util.external_link import SUBSTACK_POST_LINK_STYLE, join_texts, link_markup, link_text_obj, parenthesize
 from epstein_files.util.helpers.rich_helpers import starred_header_txt, vertically_pad
 from epstein_files.util.helpers.string_helper import starred_header
 from epstein_files.util.logging import logger

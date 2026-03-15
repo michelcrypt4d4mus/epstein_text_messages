@@ -29,7 +29,7 @@ from epstein_files.util.constant.urls import *
 from epstein_files.util.constants import *
 from epstein_files.util.env import args, site_config
 from epstein_files.util.helpers.data_helpers import days_between, flatten, uniquify, without_falsey
-from epstein_files.util.helpers.link_helper import join_texts
+from epstein_files.util.external_link import join_texts
 from epstein_files.util.logging_entity import LoggingEntity
 
 ALT_INFO_STYLE = 'medium_purple4'

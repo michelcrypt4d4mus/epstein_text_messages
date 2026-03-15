@@ -39,7 +39,7 @@ from epstein_files.util.constants import CONFIGS_BY_ID
 from epstein_files.util.env import args, site_config
 from epstein_files.util.helpers.data_helpers import (AMERICAN_TIME_REGEX, TIMEZONE_INFO, CharRange, coerce_utc, flatten,
      prefix_keys, uniq_sorted, uniquify, without_falsey)
-from epstein_files.util.helpers.link_helper import join_texts, link_text_obj
+from epstein_files.util.external_link import join_texts, link_text_obj
 from epstein_files.util.helpers.string_helper import capitalize_first, collapse_newlines, is_bool_prop, quote, strip_pdfalyzer_panels
 from epstein_files.util.logging import logger
 

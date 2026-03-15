@@ -13,7 +13,7 @@ from epstein_files.util.env import DOJ_PDFS_20260130_DIR, site_config
 from epstein_files.util.helpers.file_helper import (coerce_file_stem, coerce_url_slug, extract_file_id,
      extract_efta_id, file_size, file_size_to_str, is_doj_file, is_house_oversight_file, is_local_extract_file,
      open_file_or_url)
-from epstein_files.util.helpers.link_helper import join_texts, link_text_obj, parenthesize
+from epstein_files.util.external_link import join_texts, link_text_obj, parenthesize
 from epstein_files.util.helpers.rich_helpers import no_bold
 from epstein_files.util.logging import logger
 from epstein_files.util.logging_entity import LoggingEntity

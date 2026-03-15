@@ -24,7 +24,6 @@ from epstein_files.documents.documents.file_info import FileInfo
 from epstein_files.documents.documents.search_result import MatchedLine
 from epstein_files.documents.emails.constants import DOJ_EMAIL_OCR_REPAIRS, FALLBACK_TIMESTAMP
 from epstein_files.documents.emails.email_header import DETECT_EMAIL_REGEX
-from epstein_files.output.epstein_highlighter import non_epstein_highlighter
 from epstein_files.output.highlight_config import HIGHLIGHTED_CONTACTS, get_style_for_category, get_style_for_name
 from epstein_files.output.html.builder import VERTICAL_MARGIN_EMS
 from epstein_files.output.layout_elements.file_display import BasePanel, FileDisplay
@@ -36,9 +35,9 @@ from epstein_files.people.names import Name
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constants import CONFIGS_BY_ID
 from epstein_files.util.env import args, site_config
+from epstein_files.util.external_link import link_text_obj
 from epstein_files.util.helpers.data_helpers import (CharRange, coerce_utc, coerce_utc_strict, date_str, patternize, prefix_keys,
      uniquify, uniq_sorted, without_falsey)
-from epstein_files.util.helpers.link_helper import link_text_obj
 from epstein_files.util.helpers.file_helper import coerce_file_path, file_size_str, file_size_to_str
 from epstein_files.util.helpers.string_helper import collapse_newlines, doublespace_lines, join_truthy, quote, timestamp_without_zero_hour
 from epstein_files.util.logging import DOC_TYPE_STYLES, FILENAME_STYLE, logger

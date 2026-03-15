@@ -9,7 +9,7 @@ from rich.padding import PaddingDimensions
 from rich.text import Text
 
 from epstein_files.util.constant.strings import SUBHEADER_STYLE, TIMESTAMP_STYLE
-from epstein_files.util.helpers.link_helper import link_markup
+from epstein_files.util.external_link import link_markup
 from epstein_files.util.helpers.string_helper import capitalize_first, iso_timestamp, starred_header
 
 ALL_OTHER_FILES_MULTIPLIER = 1.5  # applied when --all-other-files is in use

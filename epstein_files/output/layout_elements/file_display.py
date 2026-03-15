@@ -14,7 +14,7 @@ from epstein_files.output.html.elements import div_class, div_with_legend, div_t
 from epstein_files.output.html.html_style import HtmlStyle
 from epstein_files.output.html.positioned_rich import BLACK_BACKGROUND, PositionedRich, dimensions_to_margin_css
 from epstein_files.util.helpers.data_helpers import only_truthy
-from epstein_files.util.helpers.link_helper import join_texts
+from epstein_files.util.external_link import join_texts
 
 JustifyMethod = Literal['center', 'left', 'right']
 
