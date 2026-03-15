@@ -150,7 +150,7 @@ def print_emails_section(epstein_files: EpsteinFiles, doc_printer: DocPrinter) -
         doc_printer.print_documents(Document.sort_by_timestamp(extra_emails))
 
     print_email_device_signatures(epstein_files)
-    fwded_articles = [e for e in doc_printer.printed_emails if e.config and e.is_fwded_article]
+    fwded_articles = [e for e in doc_printer.printed_emails if e.is_fwded_article]
     log_msg = f"Rewrote {len(Email.rewritten_header_ids)} of {len(doc_printer.printed_emails)} email headers"
     logger.warning(f"  -> {log_msg}, {len(fwded_articles)} of the Emails printed were forwarded articles.")
 

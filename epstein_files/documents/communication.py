@@ -27,7 +27,7 @@ class Communication(Document):
 
     def __post_init__(self):
         super().__post_init__()
-        self.extracted_recipients = [] if self.config and self.config.recipients else self.extract_recipients()
+        self.extracted_recipients = [] if self._config.recipients else self.extract_recipients()
 
     @property
     def author_or_unknown(self) -> str:
@@ -75,22 +75,15 @@ class Communication(Document):
         return None in self.recipients
 
     @property
-    def is_recipient_uncertain(self) -> bool:
-        return bool(self.config and self.config.recipient_uncertain)
-
-    @property
     def participants(self) -> set[Name]:
-        """Author + recipients (including a `None` if `self.recipients` is empty)."""
+        """Author + recipients (including `None` if relevant)."""
         return set([self.author] + self.recipients)
 
     @property
     def people(self) -> list[str]:
-        """Names of people who either sent/received this email or are mentioned in it."""
-        if self.config and self.config.people:  # TODO: this check also happens in superclass but still necessary here
-            return self.config.people
-
-        people = super().people + [p for p in self.participants if p]
-        return uniq_sorted(people)
+        """Names of people who either sent/received this communication or are mentioned in it (not including `None`!)."""
+        people = self._config.people or (super().people + [p for p in self.participants if p])
+        return uniq_sorted([p for p in people if p])
 
     @property
     def recipients(self) -> list[Name]:

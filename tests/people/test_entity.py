@@ -106,7 +106,7 @@ def test_urls():
     c = Entity('Nasir Jones', url=['WIKIPEDIA', URL])
     assert c.links[0].url == WIKIPEDIA_URL
     c = Entity('Nasir Jones', url=[URL, 'WIKIPEDIA'])
-    assert c.name_link == Text.from_markup(f'[link={URL}][bold underline]Nasir Jones[/bold underline][/link]')
+    assert c.name_with_link == Text.from_markup(f'[link={URL}][bold underline]Nasir Jones[/bold underline][/link]')
 
 
 def _build_contact(**kwargs) -> Entity:

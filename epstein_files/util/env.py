@@ -145,7 +145,9 @@ if is_html_script:
             else:
                 args._site_type = SiteType.CURATED_MOBILE  # This isn't great; requires args be correct to build
         else:
-            if args.all_doj_files:
+            if args.output_bios:
+                args._site_type = SiteType.BIOGRAPHIES
+            elif args.all_doj_files:
                 args._site_type = SiteType.DOJ_FILES
             elif args.all_emails:
                 args._site_type = SiteType.EMAILS
@@ -157,8 +159,6 @@ if is_html_script:
                 args._site_type = SiteType.OTHER_FILES_TABLE
             elif args.json_metadata:
                 args._site_type = SiteType.JSON_METADATA
-            elif args.output_bios:
-                args._site_type = SiteType.CONTACT_BIOS
             elif args.output_chrono:
                 args._site_type = SiteType.CHRONOLOGICAL
             elif args.output_devices:

@@ -18,7 +18,7 @@ from epstein_files.util.constant.strings import *
 from epstein_files.util.env import args, site_config
 from epstein_files.util.helpers.data_helpers import CharRange, coerce_utc_strict, without_falsey
 from epstein_files.util.helpers.file_helper import is_doj_file
-from epstein_files.util.helpers.link_helper import ExternalLink
+from epstein_files.util.external_link import ExternalLink
 from epstein_files.util.helpers.string_helper import collapse_whitespace, is_bool_prop, join_truthy, quote
 from epstein_files.util.logging import logger
 from epstein_files.util.logging_entity import LoggingEntity
@@ -227,12 +227,11 @@ class DocCfg(LoggingEntity):
     @property
     def complete_description(self) -> str:
         """String that summarizes what is known about this document."""
-        # Set preamble to category if there's no author or description or CATEGORY_PREAMBLES entry
-        preamble = CATEGORY_PREAMBLES.get(self.category) or ''
+        author = f"{self.author} {QUESTION_MARKS}" if self.author and self.author_uncertain else self.author
+        preamble = CATEGORY_PREAMBLES.get(self.category, '')
         preamble_separator = ''
         author_separator = ''
         description = ''
-        author = f"{self.author} {QUESTION_MARKS}" if self.author and self.author_uncertain else self.author
 
         # If description is set at all in one of these if/else checks must be fully constructed
         if self.display_text and not self.description:
@@ -278,6 +277,7 @@ class DocCfg(LoggingEntity):
 
             description = join_truthy(preamble_author, author_description)
 
+        # TODO: this sucks
         if self.author == INSIGHTS_POD:
             description = join_truthy(description, f"from {ZUBAIR_AND_ANYA}")
 
@@ -285,6 +285,14 @@ class DocCfg(LoggingEntity):
             description = join_truthy(description, f"attached to email {self.attached_to_email_id}", sep=', ')
 
         return description
+
+    @property
+    def description_txt(self) -> Text | None:
+        """Add parentheses to `self.config.description`."""
+        if self.complete_description:
+            from epstein_files.output.epstein_highlighter import non_epstein_highlighter
+            style = 'bright_white italic' if site_config.email_info_in_subtitle else INFO_STYLE
+            return non_epstein_highlighter(Text(self.complete_description, style))
 
     @property
     def external_link(self) -> ExternalLink | None:

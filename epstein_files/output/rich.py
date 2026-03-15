@@ -23,6 +23,7 @@ from epstein_files.util.constant.strings import *
 from epstein_files.util.constant.urls import *
 from epstein_files.util.env import args, site_config
 from epstein_files.util.helpers.data_helpers import json_safe, sort_dict
+from epstein_files.util.external_link import join_texts
 from epstein_files.util.helpers.rich_helpers import enclose, left_indent_padding, suppress_output_console_kwargs
 from epstein_files.util.helpers.string_helper import snip_msg
 from epstein_files.util.logging import logger
@@ -32,11 +33,7 @@ SUBTITLE_PADDING = (1, 0, 1, 0)
 GREY_NUMBERS = [58, 39, 39, 35, 30, 27, 23, 23, 19, 19, 15, 15, 15]
 VALID_GREYS = [0, 3, 7, 11, 15, 19, 23, 27, 30, 35, 37, 39, 42, 46, 50, 53, 54, 58, 62, 63, 66, 69, 70, 74, 78, 82, 84, 85, 89, 93]
 
-LINK_HREF_LINE_REGEX = re.compile(r"^([>• ]*)(http\S+)(.*)")
-
 DATASET_MSG_STYLE = 'gray74'
-# INFO_STYLE = 'light_goldenrod2 italic'
-INFO_STYLE = 'gray50 italic'
 KEY_STYLE = 'dim'
 KEY_STYLE_ALT = 'light_steel_blue3'
 LAST_TIMESTAMP_STYLE = 'wheat4'
@@ -148,43 +145,9 @@ def build_table(
     return table
 
 
-def hyperlink_line(line: str) -> Text:
-    """Handles single line only. Add [link] tags if appropriate."""
-    if (match := LINK_HREF_LINE_REGEX.match(line)):
-        logger.debug(f"Creating hyperlink for '{line}'")
-        link = match.group(2)
-        txt = Text(match.group(1))
-        txt.append(Text.from_markup(f"[link={link}]{link}[/link]"))
-        return txt.append(match.group(3))
-    else:
-        return Text(line)
-
-
-def hyperlink_text(text: str) -> Text:
-    """Add rich Text hyperlinks to a string with newlines in it."""
-    lines = [hyperlink_line(line) for line in text.split('\n')]
-    return join_texts(lines, '\n')
-
-
 def indent_txt(txt: str | Text, spaces: int = 4, prefix: str = '') -> Text:
     indent = Text(' ' * spaces).append(prefix)
     return indent + Text(f"\n{indent}").join(txt.split('\n'))
-
-
-def join_texts(
-    _txts: Sequence[str | ExternalLink | Text],
-    join: str = ' ',
-    encloser: str = '',
-    encloser_style: str = 'wheat4'
-) -> Text:
-    """Join a collection of `Text` objs into one, similar to standard `str.join()`."""
-    txts = [t.to_txt() if isinstance(t, ExternalLink) else t for t in _txts]
-    txt = Text('')
-
-    for i, _txt in enumerate(txts):
-        txt.append(join if i >= 1 else '').append(enclose(_txt, encloser, encloser_style))
-
-    return txt
 
 
 # TODO: unused

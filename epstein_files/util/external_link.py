@@ -2,17 +2,18 @@
 Functions that build rich Text links.
 """
 import re
+from typing import Self, Sequence
 from urllib.parse import urlsplit
 
 from dataclasses import dataclass
 from rich.text import Text
-from typing import Self
 
 from epstein_files.util.constant.strings import ARCHIVE_LINK_COLOR, ARCHIVE_ALT_LINK_STYLE, ARCHIVE_LINK_COLOR
-from epstein_files.util.helpers.rich_helpers import enclose, join_non_empty
+from epstein_files.util.helpers.rich_helpers import TextCast, enclose, join_non_empty, join_texts, parenthesize
 
 HTTPS = 'https://'
 LINK_REGEX = re.compile(r"^https?://.*")
+LINK_HREF_LINE_REGEX = re.compile(r"^([>• ]*)(http\S+)(.*)")
 TLD_REGEX = re.compile(r"\.(com|co.uk|gov|net)$")
 
 EXTERNAL_LINK_STYLE = 'light_slate_grey bold'
@@ -29,7 +30,7 @@ SOCIAL_PLATFORMS = {
 
 
 @dataclass
-class ExternalLink:
+class ExternalLink(TextCast):
     """
     Container for rich `Text` links with optional parenthetical comment.
     """
@@ -42,6 +43,9 @@ class ExternalLink:
     parentheses_style: str = LINK_COMMENT_PARENTHESES_STYLE
 
     def __post_init__(self):
+        if self.comment_url and not self.comment:
+            raise ValueError(f"comment_url='{self.comment_url}' but no actual comment to attach it to.")
+
         self.url = coerce_https(self.url)
         self.comment_url = coerce_https(self.comment_url) if self.comment_url else self.comment_url
 
@@ -109,7 +113,14 @@ class ExternalLink:
     def domain(self, strip_tld: bool = False) -> str:
         return extract_domain(self.url, strip_tld=strip_tld)
 
-    def to_txt(self) -> Text:
+    @classmethod
+    def parenthesized_links(cls, _links: Sequence[Self | Text], base_style: str = 'white') -> Text:
+        """Concatenate a collection of links and wrap in parentheses."""
+        links = [link if isinstance(link, Text) else link.link for link in _links]
+        links = [parenthesize(link) for link in links]
+        return Text('', style=base_style).append(join_texts(links))
+
+    def __rich__(self) -> Text:
         comment = Text('')
 
         if self.comment_url:
@@ -119,9 +130,6 @@ class ExternalLink:
             comment = enclose(Text(self.comment, self.comment_style), '()', self.parentheses_style)
 
         return join_non_empty(self.link, comment)
-
-    def __rich__(self) -> Text:
-        return self.to_txt()
 
 
 def coerce_https(url: str) -> str:
@@ -135,6 +143,22 @@ def extract_domain(url: str, strip_tld: bool = False) -> str:
         return TLD_REGEX.sub('', domain) if strip_tld else domain
     else:
         raise ValueError(f"no hostname in URL '{url}'")
+
+
+def hyperlink_line(line: str) -> Text:
+    """Handles single line only. Add [link] tags if appropriate."""
+    if (match := LINK_HREF_LINE_REGEX.match(line)):
+        link = match.group(2)
+        txt = Text(match.group(1))
+        txt.append(Text.from_markup(f"[link={link}]{link}[/link]"))
+        return txt.append(match.group(3))
+    else:
+        return Text(line)
+
+
+def hyperlink_text(text: str) -> Text:
+    """Add rich Text hyperlinks to a string with newlines in it."""
+    return join_texts([hyperlink_line(line) for line in text.split('\n')], '\n')
 
 
 def link_markup(
@@ -151,8 +175,3 @@ def link_markup(
 
 def link_text_obj(url: str, link_text: str = '', style: str = ARCHIVE_LINK_COLOR) -> Text:
     return Text.from_markup(link_markup(url, link_text, style))
-
-
-def parenthesize(msg: str | Text, parentheses_style: str = '') -> Text:
-    txt = Text(msg) if isinstance(msg, str) else msg
-    return Text('(', style=parentheses_style).append(txt).append(')')

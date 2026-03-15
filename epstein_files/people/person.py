@@ -21,8 +21,7 @@ from epstein_files.output.highlight_config import (HIGHLIGHTED_NAMES, QUESTION_M
      get_style_for_name, styled_category, styled_name)
 from epstein_files.output.highlighted_names import HighlightedNames, HighlightPatterns, ManualHighlight
 from epstein_files.output.layout_elements.file_display import FileDisplay
-from epstein_files.output.rich import (GREY_NUMBERS, TABLE_TITLE_STYLE, build_table, console, join_texts,
-     print_special_note)
+from epstein_files.output.rich import GREY_NUMBERS, TABLE_TITLE_STYLE, build_table, console, print_special_note
 from epstein_files.people.entity import Entity
 from epstein_files.people.interesting_people import SPECIAL_NOTES
 from epstein_files.util.constant.strings import *
@@ -30,6 +29,7 @@ from epstein_files.util.constant.urls import *
 from epstein_files.util.constants import *
 from epstein_files.util.env import args, site_config
 from epstein_files.util.helpers.data_helpers import days_between, flatten, uniquify, without_falsey
+from epstein_files.util.external_link import join_texts
 from epstein_files.util.logging_entity import LoggingEntity
 
 ALT_INFO_STYLE = 'medium_purple4'
@@ -281,7 +281,8 @@ class Person(LoggingEntity):
 
     @property
     def show_with_emails_docs(self) -> list[OtherFile]:
-        return [f for f in self.other_files if (f.config and self.name == f.config.show_with_name)]
+        """OtherFile objects that should be displayed in the emails section(s)."""
+        return [f for f in self.other_files if self.name and self.name == f._config.show_with_name]
 
     @property
     def sole_cc(self) -> str | None:

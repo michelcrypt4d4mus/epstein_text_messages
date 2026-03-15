@@ -75,15 +75,6 @@ class OtherFile(Document):
         return super().config or self.derived_cfg
 
     @property
-    def config_description(self) -> str:
-        """Overloads superclass property."""
-        if self.config and self.config.complete_description:
-            pfx = 'Excerpt of ' if self.config.is_excerpt else ''
-            return f"{pfx}{self.config.complete_description}"
-        else:
-            return ''
-
-    @property
     def category_txt(self) -> Text:
         """Returns '???' for missing category."""
         # TODO: create synthetic DocCfg so we don't have to handle QUESTION_MARKS return here
@@ -102,7 +93,7 @@ class OtherFile(Document):
     @property
     def is_valid_for_table(self) -> bool:
         """Return True if this file is OK to put in a table in the curated chronological views."""
-        return not (self.config and (self.config.is_excerpt or self.config.show_full_panel))
+        return not (self._config.is_excerpt or self._config.show_full_panel)
 
     @property
     def metadata(self) -> Metadata:
@@ -117,15 +108,8 @@ class OtherFile(Document):
     @property
     def preview_chars(self) -> str:
         """Text at start of file stripped of newlines for display in tables and other cramped settings."""
-        num_chars = site_config.other_files_preview_chars
-        text = self.text
-
-        if self.config:
-            if self.config.num_preview_chars:
-                num_chars = self.config.num_preview_chars
-
-            if self.config_display_text:
-                text = self.config_display_text
+        num_chars = self._config.num_preview_chars or site_config.other_files_preview_chars
+        text = (self.config_display_text or self.text)[0:num_chars]
 
         if text.count('Page') > MIN_PAGES_TO_TRUNCATE_PREVIEW:
             num_chars = TRUNCATED_PREVIEW_LEN
@@ -151,7 +135,8 @@ class OtherFile(Document):
         """Return configured timestamp or value extracted by scanning text with datefinder."""
         timestamps: list[datetime] = []
 
-        if self.config and any([s in self.config_description for s in SKIP_TIMESTAMP_EXTRACT]):
+        # NOTE: this is a lame optimization for speed
+        if any([s in self._config.complete_description for s in SKIP_TIMESTAMP_EXTRACT]):
             return None
 
         with warnings.catch_warnings():

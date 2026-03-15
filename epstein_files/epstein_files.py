@@ -399,10 +399,10 @@ class EpsteinFiles:
     def _copy_duplicate_doc_properties(self) -> None:
         """Ensure dupe docs have the properties of the docs they duplicate to capture any repairs, config etc."""
         for doc in self.documents:
-            if not doc.duplicate_of_id:
+            if not doc._config.duplicate_of_id:
                 continue
 
-            original = self.get_id(doc.duplicate_of_id)
+            original = self.get_id(doc._config.duplicate_of_id)
             props_to_copy = (EMAIL_PROPS_TO_COPY + PROPS_TO_COPY) if isinstance(doc, Email) else PROPS_TO_COPY
             props_to_copy = [f"extracted_{prop}" for prop in props_to_copy]
 

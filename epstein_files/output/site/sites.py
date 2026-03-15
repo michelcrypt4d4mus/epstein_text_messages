@@ -10,7 +10,7 @@ from rich.text import Text
 
 from epstein_files.util.constant.strings import (AUX_SITE_LINK_STYLE, CHRONOLOGICAL, DOJ_2026_TRANCHE,
      EPSTEIN_FILES_NOV_2025, HOUSE_OVERSIGHT_TRANCHE)
-from epstein_files.util.helpers.link_helper import link_text_obj, parenthesize
+from epstein_files.util.external_link import link_text_obj, parenthesize
 from epstein_files.util.logging import logger
 
 HTML_DIR = Path('docs')
@@ -31,7 +31,7 @@ MOBILE_SUFFIX = '_mobile'
 
 
 class SiteType(StrEnum):
-    CONTACT_BIOS = auto()
+    BIOGRAPHIES = auto()
     CURATED = auto()
     CURATED_MOBILE = auto()
     CHRONOLOGICAL = CHRONOLOGICAL
@@ -147,10 +147,11 @@ HTML_BUILD_FILENAMES = {
 # NOTE: Order matters, it's the order the links are shown in the header
 # Colons are used to break and parenthesize display
 SITE_DESCRIPTIONS = {
-    SiteType.CURATED:               f"curated:by my interests, files grouped by type",
-    SiteType.CHRONOLOGICAL:         f"curated chronological:all types intermingled",
-    SiteType.EMAILS:                f"emailers:all emails grouped by counterparty",
+    SiteType.CHRONOLOGICAL:         f"chronological curated:all types intermingled",
+    SiteType.CURATED:               f"emailers curated:emails grouped by person of interest",
+    SiteType.EMAILS:                f"emailers:all emails grouped by person",
     SiteType.EMAILS_CHRONOLOGICAL:  f"emails chronological:all emails chronological order",
+    SiteType.BIOGRAPHIES:           f"people:one line biographies with some links",
     SiteType.DEVICE_SIGNATURES:     f"signatures:email signatures/emojis and who uses them",
     SiteType.TEXT_MESSAGES:         f"text messages:{HOUSE_OVERSIGHT_TRANCHE}",
     SiteType.CURATED_MOBILE:        f"mobile:an attempt at mobile compatibility",

@@ -24,7 +24,6 @@ from epstein_files.documents.documents.file_info import FileInfo
 from epstein_files.documents.documents.search_result import MatchedLine
 from epstein_files.documents.emails.constants import DOJ_EMAIL_OCR_REPAIRS, FALLBACK_TIMESTAMP
 from epstein_files.documents.emails.email_header import DETECT_EMAIL_REGEX
-from epstein_files.output.epstein_highlighter import non_epstein_highlighter
 from epstein_files.output.highlight_config import HIGHLIGHTED_CONTACTS, get_style_for_category, get_style_for_name
 from epstein_files.output.html.builder import VERTICAL_MARGIN_EMS
 from epstein_files.output.layout_elements.file_display import BasePanel, FileDisplay
@@ -36,9 +35,9 @@ from epstein_files.people.names import Name
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constants import CONFIGS_BY_ID
 from epstein_files.util.env import args, site_config
+from epstein_files.util.external_link import link_text_obj
 from epstein_files.util.helpers.data_helpers import (CharRange, coerce_utc, coerce_utc_strict, date_str, patternize, prefix_keys,
      uniquify, uniq_sorted, without_falsey)
-from epstein_files.util.helpers.link_helper import link_text_obj
 from epstein_files.util.helpers.file_helper import coerce_file_path, file_size_str, file_size_to_str
 from epstein_files.util.helpers.string_helper import collapse_newlines, doublespace_lines, join_truthy, quote, timestamp_without_zero_hour
 from epstein_files.util.logging import DOC_TYPE_STYLES, FILENAME_STYLE, logger
@@ -171,21 +170,10 @@ class Document(LoggingEntity):
         return self.file_info.build_external_links(with_alt_links=True)
 
     @property
-    def config_description(self) -> str:
-        """Add parentheses to `self.config.description`."""
-        return f"{self.config.description}" if self.config and self.config.description else ''
-
-    @property
-    def config_description_txt(self) -> Text | None:
-        """Add parentheses to `self.config.description`."""
-        style = 'bright_white italic' if site_config.email_info_in_subtitle else INFO_STYLE
-        return non_epstein_highlighter(Text(self.config_description, style)) if self.config_description else None
-
-    @property
     def config_display_text(self) -> str | None:
         """Configured replacement text."""
-        if self.config and self.config.display_text:
-            text = join_truthy(self.config.author, self.config.display_text)
+        if self._config.display_text:
+            text = join_truthy(self._config.author, self._config.display_text)
 
             if len(text) < 300 and not text.startswith('photo'):
                 return f"(Text of {text} {CHECK_LINK_FOR_DETAILS})"
@@ -213,11 +201,6 @@ class Document(LoggingEntity):
             # TODO: this link is incorrect for DOJ files
             link = link_text_obj(FileInfo.url_for_id(self.file_info.url_slug), self.file_id, 'royal_blue1')
             return self._skipped_file_txt(Text(f"{DUPE_TYPE_STRS[self.config.dupe_type]} ").append(link))
-
-    @property
-    def duplicate_of_id(self) -> str | None:
-        if self.config and self.config.duplicate_of_id:
-            return self.config.duplicate_of_id
 
     @property
     def empty_file_txt(self) -> Text | None:
@@ -254,11 +237,11 @@ class Document(LoggingEntity):
     @property
     def info(self) -> list[Text]:
         """0 to 2 sentences containing the info_txt() as well as any configured description."""
-        return without_falsey([self.subheader, self.config_description_txt])
+        return without_falsey([self.subheader, self._config.description_txt])
 
     @property
     def is_duplicate(self) -> bool:
-        return bool(self.duplicate_of_id)
+        return bool(self._config.duplicate_of_id)
 
     @property
     def is_email(self) -> bool:
@@ -393,8 +376,8 @@ class Document(LoggingEntity):
     @property
     def timestamp_sort_key(self) -> tuple[datetime, str, int]:
         """Sort by timestamp, file_id, then whether or not it's a duplicate file."""
-        if self.duplicate_of_id:
-            sort_id = self.duplicate_of_id
+        if self._config.duplicate_of_id:
+            sort_id = self._config.duplicate_of_id
             dupe_idx = 1
         else:
             sort_id = self.file_id
@@ -444,8 +427,8 @@ class Document(LoggingEntity):
         txt.append(' [').append(styled_key_value('size', Text(str(self.length), style='aquamarine1')))
         txt.append(", ").append(styled_key_value('lines', self.num_lines))
 
-        if self.config and self.config.duplicate_of_id:
-            txt.append(", ").append(styled_key_value('dupe_of', Text(self.config.duplicate_of_id, style='cyan dim')))
+        if self._config.duplicate_of_id:
+            txt.append(", ").append(styled_key_value('dupe_of', Text(self._config.duplicate_of_id, style='cyan dim')))
 
         return txt
 

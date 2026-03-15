@@ -1,17 +1,18 @@
 """
 Small methods for building rich text constructs.
 """
-from dataclasses import dataclass, field
 import os
-from typing import Self
+from abc import ABC, abstractmethod
+from typing import Sequence
 
-from rich.align import Align, AlignMethod
-from rich.console import RenderableType
-from rich.padding import Padding, PaddingDimensions
+from rich.padding import Padding
 from rich.text import Text
 
 from epstein_files.util.constant.strings import QUESTION_MARKS
 from epstein_files.util.helpers.string_helper import starred_header
+
+QUESTION_MARKS_TXT = Text(QUESTION_MARKS, style='grey50')
+WARNING_STYLE = 'bold black on white'
 
 left_indent_padding = lambda num_spaces: (0, 0, 0, num_spaces)
 left_indent = lambda obj, num_spaces: Padding(obj, left_indent_padding(num_spaces))
@@ -19,8 +20,15 @@ no_bold = lambda style: style.replace('bold', '').strip()
 suppress_output_console_kwargs = lambda: {'file': open(os.devnull, "wt")}
 vertically_pad = lambda obj, amount = 1: Padding(obj, (amount, 0, amount, 0))
 
-QUESTION_MARKS_TXT = Text(QUESTION_MARKS, style='grey50')
-WARNING_STYLE = 'bold black on white'
+
+class TextCast(ABC):
+    """Abstract class for things that implement a __rich__() method to retun `Text`."""
+
+    @abstractmethod
+    def __rich__(self) -> Text:
+        pass
+
+Textish = Text | TextCast | str
 
 
 def enclose(txt: str | Text, encloser: str = '', encloser_style: str = 'wheat4') -> Text:
@@ -40,6 +48,35 @@ def join_non_empty(*txts, sep: str | Text = ' ') -> Text:
     return sep.join([t for t in txts if len(t) > 0])
 
 
+def join_texts(
+    txts: Sequence[Textish],
+    join: str | Text = ' ',
+    encloser: str = '',
+    encloser_style: str = 'wheat4',
+) -> Text:
+    """Join a collection of `Text` objs into one, similar to standard `str.join()`. Skips 0 length stuff."""
+    txt = Text('')
+
+    for i, t in enumerate(txts):
+        if len((_txt := to_txt(t))) > 0:
+            txt.append(join if i >= 1 else '').append(enclose(_txt, encloser, encloser_style))
+
+    return txt
+
+
+def parenthesize(msg: Textish, parentheses_style: str = '') -> Text:
+    return Text('(', style=parentheses_style).append(to_txt(msg)).append(')')
+
+
 def starred_header_txt(msg: str, num_stars: int = 7, num_spaces: int = 2, style: str = WARNING_STYLE) -> Text:
     """String like '  *** Title Msg ***  '."""
     return Text(starred_header(msg, num_stars, num_spaces), style)
+
+
+def to_txt(textish: Textish) -> Text:
+    if isinstance(textish, Text):
+        return textish
+    elif isinstance(textish, str):
+        return Text(textish)
+    else:
+        return textish.__rich__()

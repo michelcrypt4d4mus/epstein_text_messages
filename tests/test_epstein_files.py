@@ -135,6 +135,7 @@ def test_signatures(epstein_files):
 
 
 def test_big_files_were_split_up(epstein_files, split_up_big_email):
-    assert split_up_big_email.file_id not in epstein_files.docs_by_id
+    all_doc_ids = [doc.file_id for doc in epstein_files.documents]
+    assert split_up_big_email.file_id not in all_doc_ids
     assert split_up_big_email._was_split_up is True
     assert split_up_big_email.reload()._was_split_up is False

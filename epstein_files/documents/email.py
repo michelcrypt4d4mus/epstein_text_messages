@@ -26,20 +26,20 @@ from epstein_files.documents.emails.email_header import (EMAIL_SIMPLE_HEADER_REG
 from epstein_files.documents.emails.emailers import UNIQUE_IDENTIFIERS, UNIQ_IDENTIFIER_FALSE_ALARMS, extract_emailer_names
 from epstein_files.documents.other_file import OtherFile
 from epstein_files.people.interesting_people import EMAILERS_OF_INTEREST_SET
+from epstein_files.people.names import sort_names
 from epstein_files.output.epstein_highlighter import highlighter
 from epstein_files.output.highlight_config import HIGHLIGHTED_NAMES, get_style_for_name
 from epstein_files.output.html.builder import table_to_html
 from epstein_files.output.html.positioned_rich import to_em
 from epstein_files.output.layout_elements.file_display import FileDisplay, JustifyMethod
-from epstein_files.output.rich import DEFAULT_TABLE_KWARGS, build_table, hyperlink_line, join_texts, styled_key_value
+from epstein_files.output.rich import DEFAULT_TABLE_KWARGS, build_table, styled_key_value
 from epstein_files.util.constant.strings import APPEARS_IN, ARCHIVE_LINK_COLOR, REDACTED, TIMESTAMP_DIM
 from epstein_files.util.constant.urls import URL_SIGNIFIERS
-from epstein_files.people.names import sort_names
 from epstein_files.util.constants import CONFIGS_BY_ID
 from epstein_files.util.env import args, site_config
 from epstein_files.util.helpers.data_helpers import (AMERICAN_TIME_REGEX, TIMEZONE_INFO, CharRange, coerce_utc, flatten,
-     prefix_keys, uniq_sorted, uniquify)
-from epstein_files.util.helpers.link_helper import link_text_obj
+     prefix_keys, uniq_sorted, uniquify, without_falsey)
+from epstein_files.util.external_link import join_texts, link_text_obj
 from epstein_files.util.helpers.string_helper import capitalize_first, collapse_newlines, is_bool_prop, quote, strip_pdfalyzer_panels
 from epstein_files.util.logging import logger
 
@@ -515,8 +515,8 @@ class Email(Communication):
     def extract_author(self) -> Name:
         """Overloads superclass method, called at instantiation time."""
         if self.header.author:
-            authors = extract_emailer_names(self.header.author)
-            return authors[0] if (len(authors) > 0 and authors[0]) else None
+            authors = without_falsey(extract_emailer_names(self.header.author))
+            return authors[0] if authors else None
 
     def extract_header(self) -> EmailHeader:
         """Extract an `EmailHeader` from the OCR text."""
@@ -529,8 +529,7 @@ class Email(Communication):
             if header.is_empty and not self.file_info.is_doj_file:
                 header.repair_empty_header(self.lines)
         else:
-            log_level = logging.INFO if self.config else logging.WARNING
-            self._log_top_lines(msg='No email header match found!', level=log_level)
+            self._log_top_lines(msg='No email header found!', level=logging.INFO if self.config else logging.WARNING)
             header = EmailHeader(field_names=[])
 
         logger.debug(f"{self.file_id} extracted header\n\n{header}\n")
@@ -538,8 +537,7 @@ class Email(Communication):
 
     def extract_recipients(self) -> list[Name]:
         """Scan the To:, BCC: and CC: fields for known names, falling back to raw strings if no names identified."""
-        recipients = flatten([extract_emailer_names(r) for r in self.header.recipients])
-        recipients = uniquify(recipients)
+        recipients = uniquify(flatten([extract_emailer_names(r) for r in self.header.recipients]))
 
         # Assume mailing list emails are to Epstein
         if self.author in BCC_LISTS and (self.is_note_to_self(recipients) or not recipients):
@@ -583,8 +581,8 @@ class Email(Communication):
 
         no_timestamp_msg = f"No timestamp found in '{self.file_path.name}'"
 
-        if self.is_duplicate:
-            logger.warning(f"{no_timestamp_msg} but timestamp should be copied from {self.duplicate_of_id}")
+        if self._config.duplicate_of_id:
+            logger.warning(f"{no_timestamp_msg} but timestamp should be copied from {self._config.duplicate_of_id}")
         else:
             logger.error(f"{no_timestamp_msg}, top lines:\n" + '\n'.join(self.lines[0:MAX_NUM_HEADER_LINES + 10]))
 
@@ -593,7 +591,7 @@ class Email(Communication):
     def file_display(self, align: JustifyMethod | None = None) -> FileDisplay:
         """Allows for proper right vs. left justify."""
         return FileDisplay(
-            body_panel=self._body_as_table(self.prettified_txt, self.config_description_txt),
+            body_panel=self._body_as_table(self.prettified_txt, self._config.description_txt),
             file_info=self.file_id_panel,
             indent=site_config.info_indent,
             justify=align,
@@ -614,7 +612,7 @@ class Email(Communication):
 
         names = [
             Text(r if len(recipients) <= max_full_names else extract_last_name(r), get_style_for_name(r)) + \
-                (Text(f" {QUESTION_MARKS}", get_style_for_name(r)) if self.is_recipient_uncertain else Text(''))
+                (Text(f" {QUESTION_MARKS}", get_style_for_name(r)) if self._config.recipient_uncertain else Text(''))
             for r in recipients
         ]
 
@@ -635,12 +633,12 @@ class Email(Communication):
 
         attachments_table_title = f"| Email Attachments for {self.file_info.url_slug}:" # ╏┇┣
 
-        if (doc := self.attached_docs[0]).config and doc.config.show_full_panel:
+        if (doc := self.attached_docs[0])._config.show_full_panel:
             if len(self.attached_docs) > 1:
                 raise ValueError(f"Can't show more than one panelized attachment for {self}!")
 
             table = Table(title=attachments_table_title, title_justify='left')
-            table.add_column(doc.config.description)
+            table.add_column(doc._config.description)
             table.add_row(highlighter(Text(self.attached_docs[0].text, EXCERPT_STYLE)))
             return table
         else:
@@ -687,8 +685,8 @@ class Email(Communication):
 
     def _extract_actual_text(self) -> str:
         """The text that comes before likely quoted replies and forwards etc."""
-        if self.config and self.config.actual_text is not None:
-            return self.config.actual_text
+        if self._config.actual_text is not None:
+            return self._config.actual_text
 
         text = '\n'.join(self.text.split('\n')[self.header.num_header_rows:]).strip()
 
@@ -895,9 +893,9 @@ class Email(Communication):
         max_line_len = max(*[len(line) for line in prettified_txt.split('\n')])
         panel_subtitle = None
 
-        if self.config_description_txt and site_config.email_info_in_subtitle:
-            max_line_len = max(max_line_len, len(self.config_description_txt.plain))
-            panel_subtitle = Text('').append(self.config_description_txt)
+        if self._config.description_txt and site_config.email_info_in_subtitle:
+            max_line_len = max(max_line_len, len(self._config.description_txt.plain))
+            panel_subtitle = Text('').append(self._config.description_txt)
             panel_subtitle.justify = 'right'
 
         if args.panelize_emails:

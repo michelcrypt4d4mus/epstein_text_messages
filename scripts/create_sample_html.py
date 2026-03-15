@@ -51,11 +51,11 @@ def print_test_panels():
 doc_types_to_sample = [
     [o for o in epstein_files.other_files if o.config and o.config.show_full_panel],
     [d for d in epstein_files._documents if d.suppressed_txt],
-    [o for o in epstein_files.other_files if o.config_description_txt],  # other file with description
-    [o for o in epstein_files.other_files if 1000 < o.length < 5000 and not o.config_description_txt], # other files no desc
-    [e for e in epstein_files.emails if e.config_description_txt], # emails with description
+    [o for o in epstein_files.other_files if o._config.description_txt],  # other file with description
+    [o for o in epstein_files.other_files if 1000 < o.length < 5000 and not o._config.description_txt], # other files no desc
+    [e for e in epstein_files.emails if e._config.description_txt], # emails with description
     [d for d in epstein_files._documents if d.suppressed_txt],
-    [e for e in epstein_files.emails if not e.config_description_txt],  # email no desc
+    [e for e in epstein_files.emails if not e._config.description_txt],  # email no desc
     epstein_files.emails_with_attachments,
     epstein_files.imessage_logs,
 ]
