@@ -171,7 +171,15 @@ GOVERNMENT_CFGS = [
     EmailCfg(id='EFTA00039971', author=FBI, recipients=[USANYS], recipient_uncertain=True),
     EmailCfg(id='EFTA00037683', description=f"tip that the murder of DC Madam Jeanne Palfrey might be connected to Epstein's network"),
 
-    # USANYS emails
+    # DOJ / USANYS emails
+    EmailCfg(id='EFTA00039967', author='DOJ London', recipients=[USANYS]),
+    EmailCfg(
+        id='EFTA00039660',
+        author='DOJ Chief Psychologist',
+        description="report on Epstein's psychological state in jail",
+        is_interesting=True,
+        recipients=[USANYS],
+    ),
     EmailCfg(id='EFTA00040145', date='2021-11-09 17:24:30', is_interesting=False),
     EmailCfg(
         id='EFTA02731689',
