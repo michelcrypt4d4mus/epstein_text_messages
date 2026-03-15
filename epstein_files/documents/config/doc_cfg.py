@@ -289,10 +289,10 @@ class DocCfg(LoggingEntity):
     @property
     def description_txt(self) -> Text | None:
         """Add parentheses to `self.config.description`."""
-        if self.description:
+        if self.complete_description:
             from epstein_files.output.epstein_highlighter import non_epstein_highlighter
             style = 'bright_white italic' if site_config.email_info_in_subtitle else INFO_STYLE
-            return non_epstein_highlighter(Text(self.description, style))
+            return non_epstein_highlighter(Text(self.complete_description, style))
 
     @property
     def external_link(self) -> ExternalLink | None:
