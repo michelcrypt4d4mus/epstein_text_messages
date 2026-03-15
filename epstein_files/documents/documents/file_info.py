@@ -189,21 +189,23 @@ class FileInfo(LoggingEntity):
 
     def build_external_links(self, style: str = '', with_alt_links: bool = False, id_only: bool = False) -> Text:
         """Returns colored links to epstein.media and alternates in a Text object."""
-        links = [self.external_link_txt(style, id_only)]
+        alt_links = []
 
         if with_alt_links and not self.is_eml_file:
             if self.doj_2026_dataset_id:
                 jmail_url = jmail_doj_2026_file_url(self.doj_2026_dataset_id, self.file_id)
                 jmail_link = link_text_obj(jmail_url, JMAIL, style=f"{style} dim" if style else ARCHIVE_LINK_COLOR)
-                links.append(jmail_link)
+                alt_links.append(jmail_link)
             else:
-                links.append(self.epsteinify_link(style=ALT_LINK_STYLE, link_txt=EPSTEINIFY))
-                links.append(self.epstein_web_link(style=ALT_LINK_STYLE, link_txt=EPSTEIN_WEB))
+                alt_links.append(self.epsteinify_link(style=ALT_LINK_STYLE, link_txt=EPSTEINIFY))
+                alt_links.append(self.epstein_web_link(style=ALT_LINK_STYLE, link_txt=EPSTEIN_WEB))
 
-        links = links if site_config.max_alt_links is None else links[0:site_config.max_alt_links + 1]
-        links = [links[0]] + [parenthesize(link) for link in links[1:]]
+        if site_config.max_alt_links is None:
+            alt_links = alt_links[0:site_config.max_alt_links]
+
+        alt_links = ExternalLink.parenthesized_links(alt_links)
         base_txt = Text('', style='white' if with_alt_links else ARCHIVE_LINK_COLOR)
-        return base_txt.append(join_texts(links))
+        return base_txt.append(join_texts([self.external_link_txt(style, id_only), *alt_links]))
 
     def open(self) -> None:
         open_file_or_url(self.local_path)

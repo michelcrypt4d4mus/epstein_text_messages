@@ -43,6 +43,9 @@ class ExternalLink(TextCast):
     parentheses_style: str = LINK_COMMENT_PARENTHESES_STYLE
 
     def __post_init__(self):
+        if self.comment_url and not self.comment:
+            raise ValueError(f"comment_url='{self.comment_url}' but no actual comment to attach it to.")
+
         self.url = coerce_https(self.url)
         self.comment_url = coerce_https(self.comment_url) if self.comment_url else self.comment_url
 
@@ -127,7 +130,6 @@ class ExternalLink(TextCast):
             comment = enclose(Text(self.comment, self.comment_style), '()', self.parentheses_style)
 
         return join_non_empty(self.link, comment)
-
 
 
 def coerce_https(url: str) -> str:
