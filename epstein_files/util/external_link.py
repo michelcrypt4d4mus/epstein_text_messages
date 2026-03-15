@@ -9,7 +9,7 @@ from dataclasses import dataclass
 from rich.text import Text
 
 from epstein_files.util.constant.strings import ARCHIVE_LINK_COLOR, ARCHIVE_ALT_LINK_STYLE, ARCHIVE_LINK_COLOR
-from epstein_files.util.helpers.rich_helpers import enclose, join_non_empty
+from epstein_files.util.helpers.rich_helpers import TextCast, enclose, join_non_empty, join_texts, parenthesize
 
 HTTPS = 'https://'
 LINK_REGEX = re.compile(r"^https?://.*")
@@ -30,7 +30,7 @@ SOCIAL_PLATFORMS = {
 
 
 @dataclass
-class ExternalLink:
+class ExternalLink(TextCast):
     """
     Container for rich `Text` links with optional parenthetical comment.
     """
@@ -110,7 +110,14 @@ class ExternalLink:
     def domain(self, strip_tld: bool = False) -> str:
         return extract_domain(self.url, strip_tld=strip_tld)
 
-    def to_txt(self) -> Text:
+    @classmethod
+    def parenthesized_links(cls, _links: list[Self | Text], base_style: str = 'white') -> Text:
+        """Concatenate a collection of links and wrap in parentheses."""
+        links = [link if isinstance(link, Text) else link.link for link in _links]
+        links = [parenthesize(link) for link in links]
+        return Text('', style=base_style).append(join_texts(links))
+
+    def __rich__(self) -> Text:
         comment = Text('')
 
         if self.comment_url:
@@ -121,16 +128,6 @@ class ExternalLink:
 
         return join_non_empty(self.link, comment)
 
-    @classmethod
-    def parenthesized_links(cls, _links: list[Self | Text], base_style: str = 'white') -> Text:
-        """Concatenate a collection of links and wrap in parentheses."""
-        links = [link if isinstance(link, Text) else link.link for link in _links]
-        links = [parenthesize(link) for link in links]
-        txt = Text('', style=base_style)
-        return txt.append(join_texts(links))
-
-    def __rich__(self) -> Text:
-        return self.to_txt()
 
 
 def coerce_https(url: str) -> str:
@@ -162,22 +159,6 @@ def hyperlink_text(text: str) -> Text:
     return join_texts([hyperlink_line(line) for line in text.split('\n')], '\n')
 
 
-def join_texts(
-    _txts: Sequence[str | ExternalLink | Text],
-    join: str = ' ',
-    encloser: str = '',
-    encloser_style: str = 'wheat4'
-) -> Text:
-    """Join a collection of `Text` objs into one, similar to standard `str.join()`."""
-    txts = [t.to_txt() if isinstance(t, ExternalLink) else t for t in _txts]
-    txt = Text('')
-
-    for i, _txt in enumerate(txts):
-        txt.append(join if i >= 1 else '').append(enclose(_txt, encloser, encloser_style))
-
-    return txt
-
-
 def link_markup(
     url: str,
     link_text: str = '',
@@ -192,8 +173,3 @@ def link_markup(
 
 def link_text_obj(url: str, link_text: str = '', style: str = ARCHIVE_LINK_COLOR) -> Text:
     return Text.from_markup(link_markup(url, link_text, style))
-
-
-def parenthesize(msg: str | Text, parentheses_style: str = '') -> Text:
-    txt = Text(msg) if isinstance(msg, str) else msg
-    return Text('(', style=parentheses_style).append(txt).append(')')
