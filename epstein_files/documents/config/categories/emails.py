@@ -139,16 +139,6 @@ EMAILS_CONFIG = [
     EmailCfg(id='031560', author=DAVID_SCHOEN, author_reason='signature'),
     EmailCfg(id='026287', author=DAVID_SCHOEN, author_reason='signature'),
     EmailCfg(id='033419', author=DAVID_SCHOEN, author_reason='signature'),
-    EmailCfg(
-        id='EFTA02442672',
-        author=DAVID_STERN,
-        author_reason=f"{ASIA_GATEWAY} + 'D.' in signature",
-        description="Bank Leumi would get in trouble for helping Americans avoid taxes a few years after this",
-    ),
-    EmailCfg(id='EFTA01775500', author=DAVID_STERN, author_reason='in quoted reply', description=f'"PA" is probably {PRINCE_ANDREW}'),
-    EmailCfg(id='EFTA01862308', author=DAVID_STERN, author_uncertain='timing + David rowland'),
-    EmailCfg(id='EFTA02410642', description=f'"PA" is probably {PRINCE_ANDREW}'),
-    EmailCfg(id='EFTA02570707', author=DAVID_STERN, author_uncertain='in quoted reply', truncate_to=NO_TRUNCATE),
     EmailCfg(id='031460', author=EDWARD_JAY_EPSTEIN, author_reason='quoted reply has edwardjayepstein.com', is_fwded_article=True),
     EmailCfg(
         id='030475',
@@ -330,7 +320,6 @@ EMAILS_CONFIG = [
     EmailCfg(id='027063', recipients=[ANTHONY_BARRETT]),
     EmailCfg(id='030764', recipients=[ARIANE_DE_ROTHSCHILD], author_reason='reply'),
     EmailCfg(id='026431', recipients=[ARIANE_DE_ROTHSCHILD], author_reason='reply'),
-    EmailCfg(id='EFTA00825164', recipients=[ARIANE_DE_ROTHSCHILD], author_reason='reply'),
     EmailCfg(id='032876', recipients=[CECILIA_STEEN], author_reason='unredacted in 032267'),
     EmailCfg(id='026466', recipients=[DIANE_ZIMAN], author_reason='Quoted reply'),
     EmailCfg(id='031607', recipients=[EDWARD_JAY_EPSTEIN], is_fwded_article=True, author_reason='quoted reply has edwardjayepstein.com'),
@@ -423,7 +412,6 @@ EMAILS_CONFIG = [
     EmailCfg(id='029344', actual_text='I thought of you when I read this article. Was this your idea? Alan', is_fwded_article=True),
     EmailCfg(id='032358', actual_text=REDACTED),
     # description
-    EmailCfg(id='030430', description=f"{STEVE_BANNON} was involved in the Biosphere project"),
     EmailCfg(id='031036', description=f'{BARBRO_C_EHNBOM} related donation / Swedish girls discussion', is_interesting=True),
     EmailCfg(id='030737', description='Bannon says there is a "crazed jihad" against Epstein', is_interesting=True),
     EmailCfg(id='030738', description='Bannon tells Epstein "somebody big has u in the gunsights"', is_interesting=True),
@@ -446,6 +434,8 @@ EMAILS_CONFIG = [
     EmailCfg(id='030745', description="planning a public statement for Ghislaine", truncate_to=NO_TRUNCATE),
     EmailCfg(id='031320', description=f'routing Gratitude foundation money through {PEGGY_SIEGAL}', is_interesting=True),
     EmailCfg(id='016693', description='signed "MM"'),
+    EmailCfg(id='030430', description=f"{STEVE_BANNON} was involved in the Biosphere project"),
+    EmailCfg(id='029979', description=f"wife of Epstein's house manager {JANUSZ_BANASIAK} working directly for Donald Trump", is_interesting=True, truncate_to=600),
     EmailCfg(id='023627', description=WOLFF_EPSTEIN_ARTICLE_DRAFT, is_fwded_article=True, is_interesting=True, truncate_to=16800),
     EmailCfg(id='028524', description='Zach Braff op-ed on Woody Allen in NYT', is_fwded_article=True, is_interesting=False),
     EmailCfg(id='031206', duplicate_ids=['031227']),
@@ -787,6 +777,16 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA01947908', author=CHRISTINA_GALBRAITH, author_reason='"Christina" appears in EFTA01950559'),
     EmailCfg(id='EFTA01940349', author=CHRISTINA_GALBRAITH, author_uncertain='subject matter'),
     EmailCfg(id='EFTA01747822', author=DARREN_INDYKE, author_reason='reply'),
+    EmailCfg(
+        id='EFTA02442672',
+        author=DAVID_STERN,
+        author_reason=f"{ASIA_GATEWAY} + 'D.' in signature",
+        description="Bank Leumi would get in trouble for helping Americans avoid taxes a few years after this",
+    ),
+    EmailCfg(id='EFTA01775500', author=DAVID_STERN, author_reason='in quoted reply', description=f'"PA" is probably {PRINCE_ANDREW}'),
+    EmailCfg(id='EFTA01862308', author=DAVID_STERN, author_uncertain='timing + David rowland'),
+    EmailCfg(id='EFTA02570707', author=DAVID_STERN, author_uncertain='in quoted reply', truncate_to=NO_TRUNCATE),
+    EmailCfg(id='EFTA02410642', description=f'"PA" is probably {PRINCE_ANDREW} plus a meeting with {NICOLE_JUNKERMANN}', show_with_name=NICOLE_JUNKERMANN),
     EmailCfg(id='EFTA00039967', author='DOJ London', recipients=[USANYS]),
     EmailCfg(
         id='EFTA00039660',
@@ -1101,6 +1101,7 @@ EMAILS_CONFIG = [
         recipients=[ANDREW_FARKAS],
     ),
     EmailCfg(id='EFTA02068282', recipients=[ANDREW_MCCORMACK]),
+    EmailCfg(id='EFTA00825164', recipients=[ARIANE_DE_ROTHSCHILD], author_reason='reply'),
     EmailCfg(id='EFTA01913311', recipients=[CHRISTINA_GALBRAITH], duplicate_ids=['EFTA00994273']),
     EmailCfg(id='EFTA01950559', recipients=[CHRISTINA_GALBRAITH], recipient_uncertain='"Christina" in thread'),
     EmailCfg(id='EFTA01745739', recipients=[CHRISTINA_GALBRAITH, JEFFREY_EPSTEIN], author_reason='topic, cell: in redacted sig'),
@@ -1264,6 +1265,7 @@ EMAILS_CONFIG = [
         description=f"ICE has an immigration hold on a man who might have important info about the Epstein case",
         is_interesting=True,
     ),
+
     # Descriptions
     EmailCfg(
         id='EFTA00339256',
