@@ -33,7 +33,7 @@ from epstein_files.output.html.builder import table_to_html
 from epstein_files.output.html.positioned_rich import to_em
 from epstein_files.output.layout_elements.file_display import FileDisplay, JustifyMethod
 from epstein_files.output.rich import DEFAULT_TABLE_KWARGS, build_table, styled_key_value
-from epstein_files.util.constant.strings import APPEARS_IN, ARCHIVE_LINK_COLOR, REDACTED, TIMESTAMP_DIM
+from epstein_files.util.constant.strings import APPEARS_IN, ARCHIVE_LINK_COLOR, REDACTED, TIMESTAMP_DIM, OcrRepair
 from epstein_files.util.constant.urls import URL_SIGNIFIERS
 from epstein_files.util.constants import CONFIGS_BY_ID
 from epstein_files.util.env import args, site_config
@@ -90,7 +90,7 @@ REPLY_SPLITTERS = [f"{field}:" for field in COMMON_HEADER_FIELDS] + [
     'Begin forwarded message',
 ]
 
-OCR_REPAIRS: dict[str | re.Pattern, str] = {
+OCR_REPAIRS: OcrRepair = {
     # '­': '-',
     # '‐': '-',
     '-­‐': '-',  # TODO: weird hyphens in 027004 and other files that rich doesn't handle well
@@ -202,6 +202,12 @@ OCR_REPAIRS: dict[str | re.Pattern, str] = {
     'AVG°': 'AVGO',
     'Saw Matt C with DTF at golf': 'Saw Matt C with DJT at golf',
     re.compile(r"[i. ]*Privileged[- ]*Redacted[i. ]*"): '<PRIVILEGED - REDACTED>',
+}
+
+SINGLE_EMAIL_OCR_REPAIRS: dict[str, OcrRepair] = {
+    'EFTA01409449': {
+        re.compile(r'[{f]cid:ima..\d\d\d.{,30}([1}]|\n|$)', re.IGNORECASE | re.MULTILINE): '',
+    },
 }
 
 METADATA_FIELDS = [
@@ -783,6 +789,11 @@ class Email(Communication):
         self._remove_bad_lines()
         self.__bespoke_repair_house_oversight_emails()
         self._set_text(text=self.repair_ocr_text(OCR_REPAIRS, self.text))
+
+        if self.file_id in SINGLE_EMAIL_OCR_REPAIRS:
+            self._debug_log('applying bespoke OCR repairs')
+            self._set_text(text=self.repair_ocr_text(SINGLE_EMAIL_OCR_REPAIRS[self.file_id], self.text))
+
         self._repair_links_and_quoted_subjects()
         self._format_newlines_and_snip_signatures()
 

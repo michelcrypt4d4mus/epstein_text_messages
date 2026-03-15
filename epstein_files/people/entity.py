@@ -4,8 +4,10 @@ from dataclasses import dataclass, field, fields
 from typing import Literal, Self
 
 from rich.padding import Padding
+from rich.style import Style
 from rich.text import Text
 
+# from epstein_files.output.html.html_style import HtmlStyle
 from epstein_files.people.names import Name, constantize_name, extract_first_name, extract_last_name
 from epstein_files.util.constant.strings import INDENT_NEWLINE, INDENTED_JOIN, LAW_ENFORCEMENT, WIKIPEDIA, PartialName
 from epstein_files.util.constant.urls import wikipedia_url_for_name
@@ -86,6 +88,9 @@ class Entity(LoggingEntity):
             self._log(f"failed to compile emailer or highlight regex: {e}", logging.ERROR)
             raise e
 
+        if self.category:
+            self._warn(f"has category '{self.category}' at instantiation time (style='{self.style}')")
+
     @property
     def alt_links(self) -> list[ExternalLink]:
         return [ExternalLink(url, f'more', link_style=self.style) for i, url in enumerate(self._urls[1:], 2)]
@@ -131,7 +136,7 @@ class Entity(LoggingEntity):
         if self._urls:
             return ExternalLink(self._urls[0], self.name, link_style=self._style_bold).link
         else:
-            return Text(self.name, self.style)
+            return Text(self.name, self._style_bold)
 
     @property
     def pattern(self) -> str:
@@ -151,6 +156,7 @@ class Entity(LoggingEntity):
 
     @property
     def _identifier(self) -> str:
+        """`LoggingEntity` abstract method implementation."""
         return self.name
 
     @property
@@ -218,14 +224,12 @@ class Entity(LoggingEntity):
         return self.style if 'bold' in self.style else f"{self.style} bold".strip()
 
     @property
+    def _style_no_bold(self) -> str:
+        return self.style.replace('bold' )
+
+    @property
     def _style_dim(self) -> str:
         return self.style if 'dim' in self.style else f'{self.style} dim'
-
-    def _log_debug_info(self) -> None:
-        """debugging method for styles."""
-        from epstein_files.output.rich import console
-        console.print(self.bio_txt, '\n', self.links[0], '\n',self.name_with_link, '\n')
-        self._log(f'   repr: {repr(self.links[0])}\n    str: {self.links[0]}\n   name_link: {repr(self.name_with_link)}')
 
     def __repr__(self) -> str:
         props = self._props_strs
@@ -244,11 +248,6 @@ class Entity(LoggingEntity):
     def build_name_lookup(cls, contacts: list[Self]) -> dict[Name, Self]:
         """Dict of `Contact` objects keyed by contact name."""
         return {c.name: c for c in contacts}
-
-    @classmethod
-    def print_all_biographies(cls, doc_printer: 'DocPrinter') -> None:
-        from epstein_files.documents.emails.emailers import ALL_CONTACTS
-        doc_printer.print_renderable([Padding(c.bio_txt, site_config.info_padding()) for c in ALL_CONTACTS])
 
     @classmethod
     def _repr_string(cls, contact_infos: list[Self]) -> str:

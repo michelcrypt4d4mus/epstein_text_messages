@@ -25,7 +25,7 @@ MONEY_CFGS = [
     ),
     DocCfg(
         id='EFTA00173953',
-        author='Organized Crime Drug Enforcement Task Force',
+        author=ORGANIZED_CRIME_DRUG_ENFORCEMENT_TASK_FORCE,
         description='report on DEA investigations into Epstein related drug money laundering',
     ),
     DocCfg(
@@ -74,6 +74,11 @@ MONEY_CFGS = [
 
     # Emails
     EmailCfg(id='EFTA00037187', is_interesting=True),
+    EmailCfg(
+        id='EFTA01409449',
+        description=f"{DEUTSCHE_BANK} employees scrubbing Epstein's name off his TWTR (Twitter) trades",
+        is_interesting=True,
+    ),
     EmailCfg(
         id='EFTA00461557',
         author=LESLEY_GROFF,

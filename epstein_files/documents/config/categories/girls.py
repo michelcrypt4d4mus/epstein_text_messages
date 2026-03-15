@@ -315,6 +315,12 @@ GIRLS_CFGS = [
         recipients=[None],
         truncate_to=(6_700, 7_450),
     ),
+    EmailCfg(
+        id='EFTA00438431',
+        description=f"visa invitation for {KARYNA_SHULIAK} to visit {QUESTION_MARKS}",
+        recipients=[LESLEY_GROFF],
+        show_with_name=KARYNA_SHULIAK,
+    ),
 
     # Quotes
     EmailCfg(

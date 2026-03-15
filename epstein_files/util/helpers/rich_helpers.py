@@ -14,6 +14,19 @@ from epstein_files.util.helpers.string_helper import starred_header
 QUESTION_MARKS_TXT = Text(QUESTION_MARKS, style='grey50')
 WARNING_STYLE = 'bold black on white'
 
+RAINBOW = [
+    'royal_blue1',
+    'medium_purple',
+    'light_coral',
+    'light_slate_gray',
+    'dark_goldenrod',
+    'wheat4',
+    'white',
+    'medium_orchid',
+    'deep_pink1',
+    'navajo_white1',
+]
+
 left_indent_padding = lambda num_spaces: (0, 0, 0, num_spaces)
 left_indent = lambda obj, num_spaces: Padding(obj, left_indent_padding(num_spaces))
 no_bold = lambda style: style.replace('bold', '').strip()
