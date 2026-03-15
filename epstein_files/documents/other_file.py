@@ -93,7 +93,7 @@ class OtherFile(Document):
     @property
     def is_valid_for_table(self) -> bool:
         """Return True if this file is OK to put in a table in the curated chronological views."""
-        return not (self.config and (self.config.is_excerpt or self.config.show_full_panel))
+        return not (self._config.is_excerpt or self._config.show_full_panel)
 
     @property
     def metadata(self) -> Metadata:

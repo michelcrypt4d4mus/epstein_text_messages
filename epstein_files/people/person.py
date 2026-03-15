@@ -281,7 +281,8 @@ class Person(LoggingEntity):
 
     @property
     def show_with_emails_docs(self) -> list[OtherFile]:
-        return [f for f in self.other_files if (f.config and self.name == f.config.show_with_name)]
+        """OtherFile objects that should be displayed in the emails section(s)."""
+        return [f for f in self.other_files if self.name and self.name == f._config.show_with_name]
 
     @property
     def sole_cc(self) -> str | None:

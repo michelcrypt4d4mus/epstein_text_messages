@@ -173,8 +173,8 @@ class Document(LoggingEntity):
     @property
     def config_display_text(self) -> str | None:
         """Configured replacement text."""
-        if self.config and self.config.display_text:
-            text = join_truthy(self.config.author, self.config.display_text)
+        if self._config.display_text:
+            text = join_truthy(self._config.author, self._config.display_text)
 
             if len(text) < 300 and not text.startswith('photo'):
                 return f"(Text of {text} {CHECK_LINK_FOR_DETAILS})"

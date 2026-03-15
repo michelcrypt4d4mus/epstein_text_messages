@@ -76,17 +76,14 @@ class Communication(Document):
 
     @property
     def participants(self) -> set[Name]:
-        """Author + recipients (including a `None` if `self.recipients` is empty)."""
+        """Author + recipients (including `None` if relevant)."""
         return set([self.author] + self.recipients)
 
     @property
     def people(self) -> list[str]:
-        """Names of people who either sent/received this email or are mentioned in it."""
-        if self.config and self.config.people:  # TODO: this check also happens in superclass but still necessary here
-            return self.config.people
-
-        people = super().people + [p for p in self.participants if p]
-        return uniq_sorted(people)
+        """Names of people who either sent/received this communication or are mentioned in it (not including `None`!)."""
+        people = self._config.people or (super().people + [p for p in self.participants if p])
+        return uniq_sorted([p for p in people if p])
 
     @property
     def recipients(self) -> list[Name]:

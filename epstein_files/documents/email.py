@@ -635,12 +635,12 @@ class Email(Communication):
 
         attachments_table_title = f"| Email Attachments for {self.file_info.url_slug}:" # ╏┇┣
 
-        if (doc := self.attached_docs[0]).config and doc.config.show_full_panel:
+        if (doc := self.attached_docs[0])._config.show_full_panel:
             if len(self.attached_docs) > 1:
                 raise ValueError(f"Can't show more than one panelized attachment for {self}!")
 
             table = Table(title=attachments_table_title, title_justify='left')
-            table.add_column(doc.config.description)
+            table.add_column(doc._config.description)
             table.add_row(highlighter(Text(self.attached_docs[0].text, EXCERPT_STYLE)))
             return table
         else:
@@ -687,8 +687,8 @@ class Email(Communication):
 
     def _extract_actual_text(self) -> str:
         """The text that comes before likely quoted replies and forwards etc."""
-        if self.config and self.config.actual_text is not None:
-            return self.config.actual_text
+        if self._config.actual_text is not None:
+            return self._config.actual_text
 
         text = '\n'.join(self.text.split('\n')[self.header.num_header_rows:]).strip()
 

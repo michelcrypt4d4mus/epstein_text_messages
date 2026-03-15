@@ -159,8 +159,8 @@ EMAILS_CONFIG = [
     EmailCfg(id='026024', author=JEAN_HUGUEN, author_reason='signature'),
     EmailCfg(id='021823', author=JEAN_LUC_BRUNEL, author_reason='reply', truncate_to=900),
     EmailCfg(id='031624', author=JEFFREY_EPSTEIN),
-    EmailCfg(id='018726', author=JEFFREY_EPSTEIN, recipients=[None], date='2018-06-08 08:36:00'),
     EmailCfg(id='032283', author=JEFFREY_EPSTEIN, date='2016-09-14 08:04:00'),
+    EmailCfg(id='018726', author=JEFFREY_EPSTEIN, recipients=[None], date='2018-06-08 08:36:00'),
     EmailCfg(id='026943', author=JEFFREY_EPSTEIN, recipients=[RICHARD_KAHN], date='2019-05-22 05:47:00'),
     EmailCfg(
         id='032214',
