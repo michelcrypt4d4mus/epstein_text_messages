@@ -90,8 +90,8 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA01744418', author=ARIANE_DE_ROTHSCHILD, author_reason='signature'),
     EmailCfg(
         id='029504',
-        author='Audrey/Aubrey Raimbault (???)',
-        author_reason='based on "GMI" in signature, a company registered by "Aubrey Raimbault"',
+        author='Audrey/Aubrey Raimbault',
+        author_uncertain='based on "GMI" in signature, a company registered by "Aubrey Raimbault"',
     ),
     EmailCfg(
         id='033316',

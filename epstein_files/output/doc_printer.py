@@ -66,7 +66,7 @@ class DocPrinter:
     _suppressed_docs_queue: list[Document] = field(default_factory=list)
 
     def __post_init__(self):
-        # Initialize with conversion of what's in the console history buffer so far to HTML
+        """Initialize with HTML of what's been printed to the console history buffer up to this point."""
         self.html_elements.append(console_buffer_to_html(console, False))
 
     @property
@@ -91,7 +91,7 @@ class DocPrinter:
         if isinstance(names_or_doc, FileDisplay) or not names_or_doc:
             return []
         elif isinstance(names_or_doc, Document):
-            entities = names_or_doc.entities
+            entities = names_or_doc.entity_scan(exclude=list(self.printed_name_bios))
         else:
             entities = get_entities(names_or_doc)
 
@@ -174,8 +174,7 @@ class DocPrinter:
                 self.line()
                 continue
             elif isinstance(positioned.obj, (Document, FileDisplay)):
-                people = positioned.obj.entities if isinstance(positioned.obj, Document) else []
-                doc_bios_html = self._build_biographies_panel_html(people)
+                doc_bios_html = self._build_biographies_panel_html(self.new_entities_with_bios(positioned.obj))
                 self._append_element_with_bio_div(positioned.obj.to_html(), doc_bios_html)
                 self.printed_objs.append(positioned.obj)
             elif isinstance(positioned.obj, Table):
