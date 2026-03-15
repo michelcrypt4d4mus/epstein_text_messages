@@ -402,7 +402,7 @@ class Person(LoggingEntity):
             if isinstance(d, FileDisplay):
                 d.indent = site_config.show_with_indent
 
-        doc_printer.print_documents(docs, log_pfx=f"[{self.name}] ")
+        doc_printer.print_documents(docs, log_sfx=f"[{self.name}]")
         doc_printer.line(2)
         return self._printable_emails  # TODO: doesn't return FileDisplay objects that may have also been printed!
 

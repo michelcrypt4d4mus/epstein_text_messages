@@ -109,7 +109,7 @@ class DocPrinter:
     def print_color_key(self) -> None:
         self.print_centered(color_key())
 
-    def print_documents(self, docs: Sequence[Document | FileDisplay], log_pfx: str = '') -> None:
+    def print_documents(self, docs: Sequence[Document | FileDisplay], log_sfx: str = '') -> None:
         """
         # sequential suppression msgs + OtherFiles collect in queues to be printed
         # when obj of another type shows up OR (for OtherFiles) if there's new names for a biography panel
@@ -119,7 +119,7 @@ class DocPrinter:
         timer = Timer()
 
         if (should_log_in_intervals := (len(docs) > 1000)):
-            logger.info(f"{type(self).__name__}.print_documents() called with {len(docs):,} objects...")
+            logger.info(f"{type(self).__name__}.print_documents() called with {len(docs):,} objects {log_sfx}")
 
         for i, doc in enumerate(docs, 1):
             logger.debug(f"Printing {doc}")
@@ -143,11 +143,11 @@ class DocPrinter:
             self.print_renderable(doc)
 
             if should_log_in_intervals and (i % 100 == 0):
-                timer.print_at_checkpoint(f"Printed {i:,} objs of {len(docs):,} ({len(suppressed_docs):,} suppressed)")
+                timer.print_at_checkpoint(f"Printed {i:,} objs of {len(docs):,} ({len(suppressed_docs):,} suppressed) {log_sfx}")
 
         process_suppressed_docs_queue()
         self._print_other_files_queue()
-        timer.print_at_checkpoint(f"{log_pfx}Finished printing {len(docs):,} objs ({len(suppressed_docs):,} suppressed)")
+        timer.print_at_checkpoint(f"Finished printing {len(docs):,} objs ({len(suppressed_docs):,} suppressed) {log_sfx}")
 
     def print_renderable(self, renderables: RenderableType | list[RenderableType]) -> None:
         """All things being printed should come through here, which collects both terminal and HTML output as its written."""
