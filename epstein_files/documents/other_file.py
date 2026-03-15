@@ -75,15 +75,6 @@ class OtherFile(Document):
         return super().config or self.derived_cfg
 
     @property
-    def config_description(self) -> str:
-        """Overloads superclass property."""
-        if self.config and self.config.complete_description:
-            pfx = 'Excerpt of ' if self.config.is_excerpt else ''
-            return f"{pfx}{self.config.complete_description}"
-        else:
-            return ''
-
-    @property
     def category_txt(self) -> Text:
         """Returns '???' for missing category."""
         # TODO: create synthetic DocCfg so we don't have to handle QUESTION_MARKS return here
@@ -151,7 +142,8 @@ class OtherFile(Document):
         """Return configured timestamp or value extracted by scanning text with datefinder."""
         timestamps: list[datetime] = []
 
-        if self.config and any([s in self.config_description for s in SKIP_TIMESTAMP_EXTRACT]):
+        # NOTE: this is a lame optimization for speed
+        if any([s in self._config.complete_description for s in SKIP_TIMESTAMP_EXTRACT]):
             return None
 
         with warnings.catch_warnings():

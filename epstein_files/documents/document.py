@@ -171,15 +171,11 @@ class Document(LoggingEntity):
         return self.file_info.build_external_links(with_alt_links=True)
 
     @property
-    def config_description(self) -> str:
-        """Add parentheses to `self.config.description`."""
-        return f"{self.config.description}" if self.config and self.config.description else ''
-
-    @property
     def config_description_txt(self) -> Text | None:
         """Add parentheses to `self.config.description`."""
-        style = 'bright_white italic' if site_config.email_info_in_subtitle else INFO_STYLE
-        return non_epstein_highlighter(Text(self.config_description, style)) if self.config_description else None
+        if self._config.description:
+            style = 'bright_white italic' if site_config.email_info_in_subtitle else INFO_STYLE
+            return non_epstein_highlighter(Text(self._config.description, style))
 
     @property
     def config_display_text(self) -> str | None:
