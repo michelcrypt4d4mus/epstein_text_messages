@@ -344,16 +344,6 @@ class EpsteinFiles:
 
         self._finalize_data_and_write_to_disk(new_docs)
 
-    def reload_doj_files(self) -> None:
-        """Reload only the DOJ PDF extracts (keep HOUSE_OVERSIGHT stuff unchanged)."""
-        def doj_file_counts_str():
-            return f"(have {len(self.all_doj_files)}, {len(self.doj_files)} non-email)"
-
-        timer = Timer()
-        logger.warning(f"Reloading all DOJ files {doj_file_counts_str()}...")
-        self._finalize_data_and_write_to_disk(self._load_file_paths(doj_txt_paths()))
-        timer.print_at_checkpoint(f"Reloaded {len(self.doj_files)} DOJ files {doj_file_counts_str()}")
-
     def overview_table(self) -> Table:
         """Table showing file counts by type."""
         title = Text('Files Overview ', TABLE_TITLE_STYLE)
@@ -364,6 +354,16 @@ class EpsteinFiles:
         table.add_row('JSON Data', *Document.file_summary_row(self.json_files, True))
         table.add_row('Other', *Document.file_summary_row(self.non_json_other_files))
         return table
+
+    def reload_doj_files(self) -> None:
+        """Reload only the DOJ PDF extracts (keep HOUSE_OVERSIGHT stuff unchanged)."""
+        def doj_file_counts_str():
+            return f"(have {len(self.all_doj_files)}, {len(self.doj_files)} non-email)"
+
+        timer = Timer()
+        logger.warning(f"Reloading all DOJ files {doj_file_counts_str()}...")
+        self._finalize_data_and_write_to_disk(self._load_file_paths(doj_txt_paths()))
+        timer.print_at_checkpoint(f"Reloaded {len(self.doj_files)} DOJ files {doj_file_counts_str()}")
 
     def repair_ids(self, ids: list[str]) -> None:
         """Reload the `ids` and save updated pickle file (also loads new files)."""
@@ -392,18 +392,12 @@ class EpsteinFiles:
 
         self._finalize_new_docs_if_approved(repaired_docs)
 
-    def save_to_disk(self) -> None:
-        """Write a pickled version of this `EpsteinFiles` object with all documents etc."""
-        with gzip.open(args.pickle_path, 'wb') as file:
-            pickle.dump(self, file)
-            logger.warning(f"Pickled data to '{args.pickle_path}' ({file_size_str(args.pickle_path)})...")
-
     def unknown_recipient_ids(self) -> list[str]:
         """IDs of emails whose recipient is not known."""
         return sorted([e.file_id for e in self.emails if None in e.recipients or not e.recipients])
 
     def _copy_duplicate_doc_properties(self) -> None:
-        """Ensure dupe emails have the properties of the emails they duplicate to capture any repairs, config etc."""
+        """Ensure dupe docs have the properties of the docs they duplicate to capture any repairs, config etc."""
         for doc in self.documents:
             if not doc.duplicate_of_id:
                 continue
@@ -436,7 +430,7 @@ class EpsteinFiles:
         self._emailers = self.person_objs(flatten([e.participants for e in self.emails]))
         self._find_email_attachments_and_set_is_first_for_user()
         self._documents = Document.sort_by_timestamp(self._documents)
-        self.save_to_disk()
+        self._save_to_disk()
 
     def _find_email_attachments_and_set_is_first_for_user(self) -> None:
         email_attachments = [f for f in self.other_files if f.config and f.config.attached_to_email_id]
@@ -511,6 +505,12 @@ class EpsteinFiles:
             p for p in self.file_paths
             if extract_file_id(p) not in current_doc_ids
         ]
+
+    def _save_to_disk(self) -> None:
+        """Write a pickled version of this `EpsteinFiles` object with all documents etc."""
+        with gzip.open(args.pickle_path, 'wb') as file:
+            pickle.dump(self, file)
+            logger.warning(f"Pickled data to '{args.pickle_path}' ({file_size_str(args.pickle_path)})...")
 
     def _set_uninteresting_ccs(self) -> None:
         """Extract the recipients of emails configured has having uninteresting CCs or BCCs."""
