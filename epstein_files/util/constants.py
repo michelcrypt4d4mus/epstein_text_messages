@@ -126,6 +126,8 @@ UNINTERESTING_EMAIL_IDS = [
     '030983',
     '030958',
     '026477',
+    # Bella Klein
+    'EFTA02253705',
     # Ben Goertzel
     'EFTA01745739',
     # Brock
@@ -245,6 +247,8 @@ UNINTERESTING_EMAIL_IDS = [
     'EFTA02696764',
     'EFTA00927986',
     'EFTA00667874',
+    # Scott Link
+    '022998',
     # Svetlana
     'EFTA01772677',
     # Tyler Shears

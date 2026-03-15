@@ -79,7 +79,8 @@ class Entity(LoggingEntity):
 
     @property
     def links(self) -> list[ExternalLink]:
-        urls = [wikipedia_url_for_name(self.name) if url == WIKIPEDIA else url for url in  listify(self.url)]
+        """All configured biographical info URLs wrapped in ExternalLink objects."""
+        urls = [wikipedia_url_for_name(self.name) if url == WIKIPEDIA else url for url in listify(self.url)]
         return [ExternalLink(url, self.name, link_style=self._style_bold) for url in urls]
 
     @property
@@ -91,6 +92,9 @@ class Entity(LoggingEntity):
         if self.category:
             category_txt = Text(self.category.lower(), style=f'{self.style} dim')
             bio_txt.append(enclose(category_txt, encloser='[]', encloser_style='dim'))
+
+        if (alt_links := self.links[1:]):
+            pass
 
         biography = Text(self.info, style=BIO_STYLE) if self.info else QUESTION_MARKS_TXT
         return bio_txt.append(' ').append(non_epstein_highlighter(biography))
