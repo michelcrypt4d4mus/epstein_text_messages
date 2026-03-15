@@ -8,7 +8,7 @@ from dataclasses import dataclass, field
 from datetime import datetime
 from os import environ
 from pathlib import Path
-from typing import Mapping, Sequence, Type, cast
+from typing import Mapping, Sequence, Type, TypeVar, cast
 
 from rich.table import Table
 from rich.text import Text
@@ -41,6 +41,8 @@ PROPS_TO_COPY = ['author', 'timestamp']
 EMAIL_PROPS_TO_COPY = ['recipients']
 SLOW_FILE_SECONDS = 1.0
 
+DocType = TypeVar('DocType', bound=Document)
+
 
 @dataclass
 class EpsteinFiles:
@@ -55,10 +57,10 @@ class EpsteinFiles:
 
     # Derived fields
     _documents: list[Document] = field(default_factory=list)
-    timer: Timer = field(default_factory=lambda: Timer())
-    uninteresting_ccs: list[Name] = field(default_factory=list)
+    _docs_by_id: dict[str, Document] = field(default_factory=dict)
     _empty_file_ids: set[str] = field(default_factory=set)
     _emailers: list[Person] = field(default_factory=list)
+    _uninteresting_ccs: list[Name] = field(default_factory=list)
 
     def __post_init__(self):
         """Iterate through files and build appropriate objects."""
@@ -103,7 +105,8 @@ class EpsteinFiles:
     @property
     def docs_by_id(self) -> Mapping[str, Document]:
         """dict with file IDs as keys and Document objs as values."""
-        return {doc.file_id: doc for doc in self.documents}
+        self._docs_by_id = self._docs_by_id or {doc.file_id: doc for doc in self._documents}
+        return self._docs_by_id
 
     @property
     def doj_files(self) -> list[DojFile]:
@@ -166,7 +169,7 @@ class EpsteinFiles:
     def uninteresting_emailers(self) -> list[Name]:
         """Emailers whom we don't want to print a separate section for because they're just CCed."""
         if '_uninteresting_emailers' not in vars(self):
-            self._uninteresting_emailers = uniq_sorted(UNINTERESTING_EMAILERS + self.uninteresting_ccs)
+            self._uninteresting_emailers = uniq_sorted(UNINTERESTING_EMAILERS + self._uninteresting_ccs)
 
         return self._uninteresting_emailers
 
@@ -285,20 +288,19 @@ class EpsteinFiles:
 
     def get_ids(self, ids: list[str], rebuild: bool = False) -> Sequence[Document]:
         """Get `Document` objects for `file_ids`. If `rebuild` is True then rebuild `Document` from .txt file."""
-        docs = [d for d in self._documents if d.file_id in ids]
+        docs = [self.docs_by_id[id] for id in ids]
 
         if len(docs) != len(ids):
-            logger.warning(f"{len(ids)} file IDs provided but only {len(docs)} documents found! ids: {ids}")
+            logger.error(f"{len(ids)} file IDs provided but only {len(docs)} documents found! ids: {ids}")
 
-        return [d.reload() if rebuild else d for d in docs]
+        return [doc.reload() if rebuild else doc for doc in docs]
 
-    def get_id(self, file_id: str, rebuild: bool = False, required_type: Type[Document] = Document) -> Document:
+    def get_id(self, file_id: str, rebuild: bool = False, required_type: Type[DocType] = Document) -> DocType:
         """Singular ID version of `get_ids()` but with option to require a type of document subclass."""
         doc = self.get_ids([file_id], rebuild)[0]
 
-        if required_type:
-            if not isinstance(doc, required_type):
-                raise ValueError(f"No {required_type.__name__} found for {file_id} (found {doc})")
+        if not isinstance(doc, required_type):
+            raise ValueError(f"No {required_type.__name__} found for {file_id} (found {doc})")
 
         return doc
 
@@ -398,19 +400,6 @@ class EpsteinFiles:
         """IDs of emails whose recipient is not known."""
         return sorted([e.file_id for e in self.emails if None in e.recipients or not e.recipients])
 
-    def _split_up_big_emails(self) -> list[Email]:
-        """Find the big emails that we want to split up into smaller emails."""
-        big_emails = [e for e in self._documents if isinstance(e, Email) and e._was_split_up]
-
-        big_emails = big_emails or [
-            *self.emails_by(CHRISTOPHER_DILORIO),
-            *self.get_ids([LEON_BLACK_EMAIL_ID])
-        ]
-
-        new_emails = split_up_multi_email_files(big_emails)
-        logger.warning(f"Split up {len(big_emails)} into {len(new_emails)} smaller emails...")
-        return new_emails
-
     def _copy_duplicate_doc_properties(self) -> None:
         """Ensure dupe emails have the properties of the emails they duplicate to capture any repairs, config etc."""
         for doc in self.documents:
@@ -429,9 +418,6 @@ class EpsteinFiles:
                     doc._warn(f"Replacing {field_name} {duplicate_prop} with {original_prop} from duplicated '{original.file_id}'")
                     setattr(doc, field_name, original_prop)
 
-    def _docs_by_id(self) -> Mapping[str, Document]:
-        return {doc.file_id: doc for doc in self._documents}
-
     def _finalize_data_and_write_to_disk(self, new_docs: list[Document] | None = None) -> None:
         """Handle computation of fields related to uninterestingness, relationships between documents, etc."""
         new_docs = new_docs or []
@@ -448,6 +434,7 @@ class EpsteinFiles:
         self._emailers = self.person_objs(flatten([e.participants for e in self.emails]))
         self._find_email_attachments_and_set_is_first_for_user()
         self._documents = Document.sort_by_timestamp(self._documents)
+        self._docs_by_id = {doc.file_id: doc for doc in self._documents}
         self.save_to_disk()
 
     def _find_email_attachments_and_set_is_first_for_user(self) -> None:
@@ -517,7 +504,7 @@ class EpsteinFiles:
     def _new_files(self) -> list[Path]:
         """Find any files that don't exist in the collection. Has side effect of setting `self.file_paths`."""
         self.file_paths = sorted(all_txt_paths(), reverse=True)
-        current_doc_ids = [id for id in self._docs_by_id().keys()] + list(self._empty_file_ids)
+        current_doc_ids = [id for id in self.docs_by_id.keys()] + list(self._empty_file_ids)
 
         return [
             p for p in self.file_paths
@@ -527,14 +514,26 @@ class EpsteinFiles:
     def _set_uninteresting_ccs(self) -> None:
         """Extract the recipients of emails configured has having uninteresting CCs or BCCs."""
         for email in [e for e in self.emails if e.config and e.config.has_uninteresting_bccs]:
-            self.uninteresting_ccs += [bcc.lower() for bcc in cast(list[str], email.header.bcc)]
+            self._uninteresting_ccs += [bcc.lower() for bcc in cast(list[str], email.header.bcc)]
 
         for email in [e for e in self.emails if e.config and e.config.has_uninteresting_ccs]:
-            self.uninteresting_ccs += email.recipients
+            self._uninteresting_ccs += email.recipients
 
-        self.uninteresting_ccs = uniq_sorted(self.uninteresting_ccs)
-        logger.info(f"Extracted uninteresting_ccs: {self.uninteresting_ccs}")
+        self._uninteresting_ccs = uniq_sorted(self._uninteresting_ccs)
+        logger.info(f"Extracted uninteresting_ccs: {self._uninteresting_ccs}")
 
+    def _split_up_big_emails(self) -> list[Email]:
+        """Find the big emails that we want to split up into smaller emails."""
+        big_emails = [e for e in self._documents if isinstance(e, Email) and e._was_split_up]
+
+        big_emails = big_emails or [
+            *self.emails_by(CHRISTOPHER_DILORIO),
+            *[self.get_id(LEON_BLACK_EMAIL_ID, required_type=Email)]
+        ]
+
+        new_emails = split_up_multi_email_files(big_emails)
+        logger.warning(f"Split up {len(big_emails)} into {len(new_emails)} smaller emails...")
+        return new_emails
 
 def document_cls(doc: Document) -> Type[Document]:
     """Find the appropriate `Document` subclass for this file based on the contents."""
