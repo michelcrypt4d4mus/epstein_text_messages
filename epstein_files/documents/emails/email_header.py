@@ -4,10 +4,11 @@ from dataclasses import asdict, dataclass, field
 
 from epstein_files.documents.config.doc_cfg import EmailCfg, Metadata
 from epstein_files.documents.emails.constants import EMAIL_HEADER_FIELD_PATTERNS, HEADER_FIELDS_PATTERN
-from epstein_files.documents.emails.emailers import BAD_EMAILER_REGEX, TIME_REGEX
+from epstein_files.documents.emails.emailers import BAD_EMAILER_REGEX, TIME_REGEX, cleanup_str
 from epstein_files.util.constant.strings import AUTHOR
 from epstein_files.people.names import UNKNOWN
 from epstein_files.util.constants import CONFIGS_BY_ID
+from epstein_files.util.helpers.data_helpers import only_truthy
 from epstein_files.util.helpers.string_helper import indented, join_patterns, join_truthy
 from epstein_files.util.logging import logger
 
@@ -118,6 +119,16 @@ class EmailHeader:
         return not any(v for v in self.as_dict().values())
 
     @property
+    def has_empty_cc_header(self) -> bool:
+        """True if the CC: field exists in the header but no names were found in it."""
+        return 'cc' in self.field_names and self._is_list_field_empty(self.cc)
+
+    @property
+    def has_empty_to_header(self) -> bool:
+        """True if it doesn't look like there's any valid data in To: header"""
+        return self._is_list_field_empty(self.to)
+
+    @property
     def recipients(self) -> list[str]:
         return (self.to or []) + (self.cc or []) + (self.bcc or [])
 
@@ -194,6 +205,10 @@ class EmailHeader:
                 header_fields[field_name.title()] = getattr(self, field_name) or ''
 
         return '\n'.join([f"{k}: {v}" for k, v in header_fields.items()])
+
+    def _is_list_field_empty(self, field_value: list[str] | None) -> bool:
+        """Check if the field should be considered empty after stripping cruft off."""
+        return not bool(only_truthy([cleanup_str(name) for name in (field_value or [])]))
 
     def __str__(self) -> str:
         return json.dumps(self.as_dict(truthy_only=False), sort_keys=True, indent=4)

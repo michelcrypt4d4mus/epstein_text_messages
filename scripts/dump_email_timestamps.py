@@ -27,20 +27,48 @@ from epstein_files.util.logging import logger
 from epstein_files.output.rich import bool_txt, console, highlighter, print_subtitle_panel
 
 
-# Show biggest files
-for i, email in enumerate(epstein_files.emails):
-    if not email.is_word_count_worthy:
+num_missing_unknown_recipient = 0
+num_interesting = 0
+num_uninteresting = 0
+num_word_count_worthy = 0
+ids = []
+
+for i, email in enumerate(epstein_files.unique_emails):
+    # if email._config.recipients or not email.is_word_count_worthy or email.author == CHRISTOPHER_DILORIO:
+    if email._config.recipients:
         continue
 
-    if (emojis := extract_emojis(email.actual_text)):
-        # console.print(email._summary)
-        console.print(email)
-        print(f"   found emojis: {emojis}")
-        # console.line()
-        # print(f"----- actual text {email.file_id} -----\n{email.actual_text}\n--------------end actual text-------------\n")
-        console.line(2)
+    if email.header.has_empty_to_header and None not in email.recipients_real:
+        if email.author == CHRISTOPHER_DILORIO:
+            email._warn(f"skipping dilorio email...")
+            continue
 
+        ids.append(email.file_id)
+        num_missing_unknown_recipient += 1
+        num_word_count_worthy += int(email.is_word_count_worthy)
+        email._warn(f"empty To: header but None is not in recipients_real (is_interesting={email.is_interesting})")
+
+        if email.is_interesting is False:
+            email._warn(f"considered uninteresting...")
+            console.print(email._summary, '\n')
+            num_interesting += 1
+            continue
+        elif email.is_interesting is True:
+            num_interesting += 1
+            email._warn(f"not showing contents because it's already considered interesting...")
+            console.print(email._summary, '\n')
+            continue
+
+        console.line()
+        console.print(email)
+        console.print(email.header)
+        console.line()
+
+
+console.print(f'\n\n  Found {num_missing_unknown_recipient} emails that should have None as a recipient ({num_interesting} interesting, {num_uninteresting} uninteresting)')
+console.print(f"\nIDS to repair:\n\n" + ' '.join(ids) + '\n')
 sys.exit()
+
 
 
 for email in epstein_files.unique_emails:

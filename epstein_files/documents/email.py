@@ -550,6 +550,10 @@ class Email(Communication):
 
             recipients = [r for r in recipients if r != self.author]
 
+        # TODO: maybe should also do this for Cc: but it's a bit trickier
+        if self.header.has_empty_to_header and None not in recipients:
+            self._warn(f"Appending {UNKNOWN} to recipient list because the To: field is empty")
+
         return sort_names(recipients)
 
     def extract_timestamp(self) -> datetime:

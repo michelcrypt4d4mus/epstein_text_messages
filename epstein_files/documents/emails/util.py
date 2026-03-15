@@ -42,6 +42,7 @@ def split_up_dilorio_whistleblower_emails(dilorio_emails: list[Email]) -> list[E
             email = Email(big_email.file_path.parent.joinpath(new_file_stem), text=text)
             email.extracted_author = big_email.author
             email.extracted_recipients = email.extracted_recipients or ['SEC']
+            email.header.to = email.header.to or ['SEC']  # avoids email being considered as having unknown recipient
 
             if not email.actual_text or email.lines[-1].startswith('Subject:'):
                 email._warn(f"skipping empty {email.author} email...")

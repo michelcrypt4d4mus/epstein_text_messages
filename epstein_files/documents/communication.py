@@ -51,15 +51,6 @@ class Communication(Document):
         return self.file_info.build_external_links(self.recipient_style, with_alt_links=True)
 
     @property
-    def people(self) -> list[str]:
-        """Names of people who either sent/received this email or are mentioned in it."""
-        if self.config and self.config.people:  # TODO: this check also happens in superclass but still necessary here
-            return self.config.people
-
-        people = super().people + [p for p in self.participants if p]
-        return uniq_sorted(people)
-
-    @property
     def config(self) -> CommunicationCfg | None:
         """Configured timestamp, if any."""
         cfg = super().config
@@ -69,6 +60,11 @@ class Communication(Document):
             cfg = cast(CommunicationCfg, cfg)
 
         return cfg
+
+    @property
+    def _config(self) -> CommunicationCfg:
+        # TODO: annoying to unnecessarily override superclass just to get python to understanding the types
+        return self.config or self.dummy_cfg()
 
     @property
     def has_unknown_participant(self) -> bool:
@@ -84,15 +80,27 @@ class Communication(Document):
 
     @property
     def participants(self) -> set[Name]:
-        """Author + recipients including a `None` if `self.recipients` is empty."""
-        return set([self.author] + (self.recipients or [None]))
+        """Author + recipients (including a `None` if `self.recipients` is empty)."""
+        return set([self.author] + self.recipients_real)
+
+    @property
+    def people(self) -> list[str]:
+        """Names of people who either sent/received this email or are mentioned in it."""
+        if self.config and self.config.people:  # TODO: this check also happens in superclass but still necessary here
+            return self.config.people
+
+        people = super().people + [p for p in self.participants if p]
+        return uniq_sorted(people)
 
     @property
     def recipients(self) -> list[Name]:
-        if self.config and self.config.recipients:
-            return self.config.recipients
-        else:
-            return self.extracted_recipients
+        return self._config.recipients or self.extracted_recipients
+
+    # TODO: this should be swapped in for self.recipients at some point but for now that would trigger printing of uninteresting emails
+    @property
+    def recipients_real(self) -> list[Name]:
+        """Return [None] if self.recipients is empty instead of empty list."""
+        return self.recipients or [None]
 
     @property
     def recipient_style(self) -> str:
