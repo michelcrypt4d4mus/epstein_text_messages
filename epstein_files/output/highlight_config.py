@@ -12,8 +12,8 @@ from epstein_files.documents.config.categories.government import FBI_REPORT_FIEL
 from epstein_files.documents.config.categories.legal import EPSTEIN_V_ROTHSTEIN_EDWARDS
 from epstein_files.documents.documents.categories import (CATEGORY_STYLES, CATEGORY_STYLE_MAPPING,
      DEFAULT_CATEGORY_STYLE, Interesting, Neutral, Uninteresting)
-from epstein_files.documents.emails.constants import (EMAIL_HEADER_FIELD_PATTERNS, QUOTE_INDENT_CHAR_GROUP, REPLY_REGEX,
-     SENT_FROM_REGEX, XML_STRIPPED_MSG)
+from epstein_files.documents.emails.constants import (EMAIL_HEADER_FIELD_PATTERNS, QUOTE_INDENT_CHAR_GROUP,
+     REPLY_REGEX, SENT_FROM_REGEX, XML_STRIPPED_MSG)
 from epstein_files.output.highlighted_names import HighlightGroup, HighlightedNames, HighlightPatterns, ManualHighlight
 from epstein_files.people.entity import Entity, acronym, organization, epstein_co, epstein_trust, law_enforcement
 from epstein_files.people.names import *
@@ -158,9 +158,9 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Mayo Clinic",
             r"MIT",
             r"Murray Gell-Mann",
-            r"NYU",
             r"New York University",
             r"Norman Finkelstein",
+            r"NYU",
             r"Oxford(?! Analytica)",
             r"PhD",
             r"physics",
@@ -1638,7 +1638,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             organization('FinCEN', 'Financial Crimes Enforcement Network', r"(Director (of )?)?(Financial Crimes Enforcement Network|FinCEN)"),
             organization(
                 SECURITIES_AND_EXCHANGE_COMMISSION,
-                "US markets regulator",
+                "US financial markets regulator",
                 r"sec\.?gov|Securities (&|and) Exchange Commission",
             ),
             law_enforcement(BUREAU_OF_PRISONS, r"bop\.gov|(Federal )?Bureau of Prisons"),
@@ -1824,7 +1824,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             ),
             organization(
                 'Hapoalim',
-                f"largest bank in Israel, convicted of enabling tax evasion, fraud, and money laundering",
+                "largest bank in Israel, convicted of enabling tax evasion, fraud, and money laundering",
                 url='https://www.justice.gov/usao-edny/pr/bank-hapoalim-agrees-pay-more-30-million-its-role-money-laundering-conspiracy-involving',
             ),
             organization("Mizrahi Bank", '3rd largest bank in Israel'),
@@ -1911,9 +1911,10 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Entity('Kia Kokalitcheva', 'US venture capital news at Pitchbook'),
             Entity(LANDON_THOMAS, "New York Times financial reporter", r"lando[nr] thomas( jr)?|thomas jr.?, lando[nr]"),
             Entity(
-                name=MICHAEL_WOLFF,
-                info="author of \"Fire and Fury: Inside the Trump White House\"",
-                emailer_pattern=r"Michael Wol(f[ef]e?|i)|Wolff",
+                MICHAEL_WOLFF,
+                'author of "Fire and Fury: Inside the Trump White House", advised Epstein on PR strategy',
+                r"Michael Wol(f[ef]e?|i)|Wolff",
+                url='https://www.aljazeera.com/news/2025/11/14/epstein-emails-with-author-wolff-raise-journalism-ethics-questions-experts',
             ),
             Entity(PAUL_KRASSNER, "60s counterculture guy, Merry Prankster", r"Pa\s?ul Krassner"),
             Entity('Peter Aldhous', "Buzzfeed science reporter"),
@@ -2622,10 +2623,10 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         style='color(161)',
         contacts=[
             Entity('Aksana Samy', QUESTION_MARKS),
-            Entity('Alena Davydenkova', 'Russian girl'),
-            Entity('Alisa Khayrutdinova', 'Russian girl'),
+            Entity('Alena Davydenkova', 'girl'),
+            Entity('Alisa Khayrutdinova', 'girl'),
             Entity('Alysia Riabenkova', 'Russian painter', r"Alesia|Alysia( Riabenkova)?|Riabenkova"),
-            Entity(ANASTASIYA_SIROOCHENKO, '', r"Anastasiya( Siro(chenko)?)?"),
+            Entity(ANASTASIYA_SIROOCHENKO, 'girl', r"Anastasiya( Siro(chenko)?)?"),
             Entity(ANNA_KASATKINA, 'Russian girl'),
             Entity(ALEKSANDRA_KARPOVA, f"{CRYPTO_PR_LAB} co-founder", r"Aleksandra Karpova"),
             Entity(DASHA_GRUPMAN, 'recruiter of girls for Epstein', r"Da(ry|sh)a Grupman"),
@@ -2635,8 +2636,8 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Entity(
                 JULIA_SANTOS,  # TODO: Jmail says her email is julia.santos@hbs.edu
                 "recruiter of girls from Ukraine for Epstein, possibly Harvard Business School student",
-                url='https://www.reddit.com/r/Epstein/comments/1qwbn5i/trafficker_julia_santos/',
                 match_partial=None,
+                url='https://www.reddit.com/r/Epstein/comments/1qwbn5i/trafficker_julia_santos/',
             ),
             Entity(
                 KARYNA_SHULIAK,
@@ -2670,7 +2671,6 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 url=[
                     'https://www.scamurai.io/p/epstein-files-suggest-ex-polygon',
                     'https://www.reddit.com/r/Epstein/comments/1qvsnqs/a_detailed_report_on_masha_prusso_aka_maria/',
-                    'https://www.reddit.com/r/Epstein/comments/1qvsnqs/a_detailed_report_on_masha_prusso_aka_maria/',
                 ],
             ),
             Entity(
@@ -2687,14 +2687,14 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 "former model, fund manager at New York State Insurance Fund",
                 r"Renata Bolotova|Rena B|Renata Bo\w+|renbolotova|Ренат[ау]|Болотова",
                 aliases=['Рената Болотова'],
+                match_partial='both',
                 url='https://x.com/Cryptadamist/status/1996965537478566063',
-                match_partial='both'
             ),
             Entity(
                 'Ruslana Korshunova',
                 "Russian model who visited Epstein's island before falling to her death in 2008",
-                url='https://en.wikipedia.org/wiki/Ruslana_Korshunova',
                 match_partial='both',
+                url='https://en.wikipedia.org/wiki/Ruslana_Korshunova',
             ),
             Entity(SANITA, "Russian girl who blew upat Epstein when he suggeted a massage"),
             Entity(
@@ -2780,7 +2780,11 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 r"Kotick, Bobby|Bobby Kotick",
                 url='https://www.gamespot.com/articles/epstein-files-reveal-gaming-connections-plans-to-buy-activision-stock/1100-6537858/',
             ),
-            Entity(CHAMATH_PALIHAPITIYA, f"{ALL_IN_PODCAST}, Facebook, crypto enthusiast, SPAC grifter, Trump convert", match_partial='both'),
+            Entity(
+                CHAMATH_PALIHAPITIYA,
+                f"{ALL_IN_PODCAST}, Facebook, crypto enthusiast, SPAC grifter, Trump convert",
+                match_partial='both'
+            ),
             Entity(
                 CHRIS_POOLE,
                 'founder of 4chan, the discussion board where QAnon originated',
@@ -2826,8 +2830,8 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 KIMBAL_MUSK,
                 f"brother of {ELON_MUSK}, dated Epstein's girl {JENNIFER_KALIN}",
                 r"Kimball?( Musk)?",
-                url='https://www.theguardian.com/us-news/2026/feb/10/jeffrey-epstein-tesla-kimbal-musk',
                 match_partial='first',
+                url='https://www.theguardian.com/us-news/2026/feb/10/jeffrey-epstein-tesla-kimbal-musk',
             ),
             Entity(MASAYOSHI_SON, 'CEO of Softbank, often referred to as "Masa"', r"Masa(yoshi)?(\sSon)?", match_partial='first'),
             Entity(MELANIE_PHILLIPS, f'girlfriend of {STEVEN_SINOFSKY}', match_partial=None),
@@ -2850,14 +2854,14 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 VINCENZO_IOZZO,
                 "CEO of the identity-security company SlashID",
                 r"Vincenzo [IL]ozzo",
-                url='https://techcrunch.com/2026/02/12/hacker-linked-to-epstein-removed-from-black-hat-cyber-conference-website/',
                 match_partial='both',
+                url='https://techcrunch.com/2026/02/12/hacker-linked-to-epstein-removed-from-black-hat-cyber-conference-website/',
             ),
             Entity(
                 ZUBAIR_KHAN,
                 f"InsightsPod social media work on 2016 US election for Epstein, Islamabad/Dubai, friend of {MARIA_PRUSAKOVA}, Tranchulas cybersecurity",
-                url=SUBSTACK_POST_INSIGHTSPOD_URL,
                 match_partial='both',
+                url=SUBSTACK_POST_INSIGHTSPOD_URL,
             ),
             organization('Accel Partners', 'venture capital firm', r"Accel( Partners)?"),
             organization('bgC3', 'renamed "Bill Gates Ventures" in 2018'),
@@ -3256,8 +3260,8 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Entity(
                 'Robert Maxwell',
                 f"father of Ghislaine, British / Russian / Israeli agent, financial fraudster, mysterious death",
-                url='https://en.wikipedia.org/wiki/Robert_Maxwell',
                 match_partial=None,
+                url='https://en.wikipedia.org/wiki/Robert_Maxwell',
             ),
             Entity('Scott Borgenson', f"boyfriend (and lawyer?) of {GHISLAINE_MAXWELL}"),
             Entity('Ted Waitt', f"boyfriend of {GHISLAINE_MAXWELL}, guest at Chelsea Clinton wedding"),
@@ -3305,8 +3309,8 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 PRINCE_ANDREW,
                 "British royal family",
                 r"Prince Andrew|The Duke",
-                url='https://www.cnn.com/world/live-news/andrew-mountbatten-windsor-arrested-uk-police-02-19-26',
                 match_partial=None,
+                url='https://www.cnn.com/world/live-news/andrew-mountbatten-windsor-arrested-uk-police-02-19-26',
             )
         ],
         patterns=[
