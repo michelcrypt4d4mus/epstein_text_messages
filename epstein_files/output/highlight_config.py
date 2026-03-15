@@ -1057,7 +1057,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         style='purple',
         contacts=[
             Entity(ALAN_DLUGASH, 'tax partner at Paneth and Shrone', r"Alan (J.? )?Dlugash"),
-            Entity('Alan S Halperin', "partner at Paul, Weiss"),
+            Entity('Alan S Halperin', "partner at Paul, Weiss", r"Alan.{8}Halperin"),
             Entity(ALAN_DERSHOWITZ, f"{HARVARD} Law School professor", r"(alan.{1,7})?dershowi(lz?|t?z)|AlanDersh"),
             Entity(ARDA_BESKARDES, "NYC immigration attorney allegedly involved in sex-trafficking operations"),
             Entity('Bebe Avdiu', f'legal assistant to {DARREN_INDYKE}'),
