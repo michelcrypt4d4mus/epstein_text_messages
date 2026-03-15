@@ -593,7 +593,7 @@ class Email(Communication):
     def file_display(self, align: JustifyMethod | None = None) -> FileDisplay:
         """Allows for proper right vs. left justify."""
         return FileDisplay(
-            body_panel=self._body_as_table(self.prettified_txt, self.config_description_txt),
+            body_panel=self._body_as_table(self.prettified_txt, self._config.description_txt),
             file_info=self.file_id_panel,
             indent=site_config.info_indent,
             justify=align,
@@ -895,9 +895,9 @@ class Email(Communication):
         max_line_len = max(*[len(line) for line in prettified_txt.split('\n')])
         panel_subtitle = None
 
-        if self.config_description_txt and site_config.email_info_in_subtitle:
-            max_line_len = max(max_line_len, len(self.config_description_txt.plain))
-            panel_subtitle = Text('').append(self.config_description_txt)
+        if self._config.description_txt and site_config.email_info_in_subtitle:
+            max_line_len = max(max_line_len, len(self._config.description_txt.plain))
+            panel_subtitle = Text('').append(self._config.description_txt)
             panel_subtitle.justify = 'right'
 
         if args.panelize_emails:

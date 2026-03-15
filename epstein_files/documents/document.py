@@ -171,13 +171,6 @@ class Document(LoggingEntity):
         return self.file_info.build_external_links(with_alt_links=True)
 
     @property
-    def config_description_txt(self) -> Text | None:
-        """Add parentheses to `self.config.description`."""
-        if self._config.description:
-            style = 'bright_white italic' if site_config.email_info_in_subtitle else INFO_STYLE
-            return non_epstein_highlighter(Text(self._config.description, style))
-
-    @property
     def config_display_text(self) -> str | None:
         """Configured replacement text."""
         if self.config and self.config.display_text:
@@ -250,7 +243,7 @@ class Document(LoggingEntity):
     @property
     def info(self) -> list[Text]:
         """0 to 2 sentences containing the info_txt() as well as any configured description."""
-        return without_falsey([self.subheader, self.config_description_txt])
+        return without_falsey([self.subheader, self._config.description_txt])
 
     @property
     def is_duplicate(self) -> bool:

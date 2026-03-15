@@ -35,8 +35,6 @@ VALID_GREYS = [0, 3, 7, 11, 15, 19, 23, 27, 30, 35, 37, 39, 42, 46, 50, 53, 54, 
 LINK_HREF_LINE_REGEX = re.compile(r"^([>• ]*)(http\S+)(.*)")
 
 DATASET_MSG_STYLE = 'gray74'
-# INFO_STYLE = 'light_goldenrod2 italic'
-INFO_STYLE = 'gray50 italic'
 KEY_STYLE = 'dim'
 KEY_STYLE_ALT = 'light_steel_blue3'
 LAST_TIMESTAMP_STYLE = 'wheat4'
