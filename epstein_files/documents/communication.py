@@ -27,7 +27,7 @@ class Communication(Document):
 
     def __post_init__(self):
         super().__post_init__()
-        self.extracted_recipients = [] if self.config and self.config.recipients else self.extract_recipients()
+        self.extracted_recipients = [] if self._config.recipients else self.extract_recipients()
 
     @property
     def author_or_unknown(self) -> str:
@@ -73,10 +73,6 @@ class Communication(Document):
     @property
     def has_unknown_recipient(self) -> bool:
         return None in self.recipients
-
-    @property
-    def is_recipient_uncertain(self) -> bool:
-        return bool(self.config and self.config.recipient_uncertain)
 
     @property
     def participants(self) -> set[Name]:

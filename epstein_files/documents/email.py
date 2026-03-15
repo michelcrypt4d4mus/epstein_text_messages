@@ -614,7 +614,7 @@ class Email(Communication):
 
         names = [
             Text(r if len(recipients) <= max_full_names else extract_last_name(r), get_style_for_name(r)) + \
-                (Text(f" {QUESTION_MARKS}", get_style_for_name(r)) if self.is_recipient_uncertain else Text(''))
+                (Text(f" {QUESTION_MARKS}", get_style_for_name(r)) if self._config.recipient_uncertain else Text(''))
             for r in recipients
         ]
 
