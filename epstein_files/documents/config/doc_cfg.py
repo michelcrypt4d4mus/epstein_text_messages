@@ -457,10 +457,6 @@ class DocCfg(LoggingEntity):
             else:
                 props['category_txt'] = category_txt
 
-        # Remove duplicated / copied field
-        if (author_uncertain := props.get('author_uncertain')) and author_uncertain == props.get('author_reason'):
-            props.pop('author_reason')
-
         if self.timestamp:
             props['timestamp'] = self.timestamp
 
