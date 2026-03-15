@@ -10,7 +10,7 @@ from epstein_files.util.constant.strings import *
 
 DEFAULT_CATEGORY_STYLE = 'wheat4'
 SOCIAL_STYLE = 'khaki3'
-
+RUSSIAN_GIRL = 'russian girl'
 
 class Interesting(StrEnum):
     CRYPTO = auto()
@@ -102,6 +102,29 @@ is_uninteresting = lambda category: _is_in_enum(category, Uninteresting)
 
 def is_category(s: str) -> bool:
     return any(fxn(s) for fxn in [is_interesting, is_neutral, is_uninteresting])
+
+
+def sort_categories(categories: list[str]) -> list[str]:
+    """Sort by interestingness + alphabetical."""
+    def sort_key(category) -> tuple[int, str]:
+        if is_interesting(category):
+            value = 10
+        elif category == RUSSIAN_GIRL:
+            value = 8
+        elif category == TECH_BRO:
+            value = 6
+        elif (category or Uninteresting.JUNK) == Uninteresting.JUNK:
+            value = -5
+        elif is_neutral(category):
+            value = 5
+        elif is_uninteresting(category):
+            value = 0
+        else:
+            value = 2
+
+        return (-1 * value, category.lower())
+
+    return sorted(categories, key=sort_key)
 
 
 def _is_in_enum(category: str, e: Type[StrEnum]) -> bool:

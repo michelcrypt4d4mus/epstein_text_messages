@@ -5,6 +5,7 @@ Reformat Epstein text message files for readability and count email senders.
     Run: 'EPSTEIN_DOCS_DIR=/path/to/TXT epstein_generate'
 """
 import sys
+from itertools import chain
 from subprocess import check_output
 
 from dotenv import load_dotenv
@@ -16,10 +17,11 @@ from rich.text import Text
 
 from epstein_files.epstein_files import EpsteinFiles, document_cls
 from epstein_files.documents.document import Document
+from epstein_files.documents.documents.categories import sort_categories
 from epstein_files.documents.documents.word_count import print_word_counts
 from epstein_files.documents.doj_file import DojFile
 from epstein_files.documents.email import Email
-from epstein_files.documents.emails.emailers import ALL_CONTACTS
+from epstein_files.documents.emails.emailers import ALL_CONTACTS, CONTACT_CATEGORIES
 from epstein_files.documents.messenger_log import MessengerLog
 from epstein_files.documents.other_file import OtherFile
 from epstein_files.output.doc_printer import DocPrinter
@@ -53,7 +55,14 @@ def epstein_generate() -> None:
         pass
     elif args.output_bios:
         printer.print_section_subtitle('Entities With Configured Biographical Info')
-        printer.print_renderable([Padding(c.bio_txt, site_config.contact_list_padding) for c in ALL_CONTACTS])
+
+        contacts = [
+            Padding(c.bio_txt, site_config.contact_list_padding)
+            for category in sort_categories([c for c in CONTACT_CATEGORIES.keys()])
+            for c in CONTACT_CATEGORIES[category]
+        ]
+
+        printer.print_renderable(contacts)
     elif args.output_devices:
         print_email_device_signatures(epstein_files)
     elif args.output_chrono:

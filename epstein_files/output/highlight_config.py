@@ -11,7 +11,7 @@ from rich.text import Text
 from epstein_files.documents.config.categories.government import FBI_REPORT_FIELDS
 from epstein_files.documents.config.categories.legal import EPSTEIN_V_ROTHSTEIN_EDWARDS
 from epstein_files.documents.documents.categories import (CATEGORY_STYLES, CATEGORY_STYLE_MAPPING,
-     DEFAULT_CATEGORY_STYLE, Interesting, Neutral, Uninteresting)
+     DEFAULT_CATEGORY_STYLE, RUSSIAN_GIRL, Interesting, Neutral, Uninteresting)
 from epstein_files.documents.emails.constants import (EMAIL_HEADER_FIELD_PATTERNS, QUOTE_INDENT_CHAR_GROUP,
      REPLY_REGEX, SENT_FROM_REGEX, XML_STRIPPED_MSG)
 from epstein_files.output.highlighted_names import HighlightGroup, HighlightedNames, HighlightPatterns, ManualHighlight
@@ -2619,7 +2619,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         ],
     ),
     HighlightedNames(
-        label='russian girl',
+        label=RUSSIAN_GIRL,
         style='color(161)',
         contacts=[
             Entity('Aksana Samy', QUESTION_MARKS),
