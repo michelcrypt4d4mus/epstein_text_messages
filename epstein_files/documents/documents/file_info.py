@@ -203,9 +203,9 @@ class FileInfo(LoggingEntity):
         if site_config.max_alt_links is None:
             alt_links = alt_links[0:site_config.max_alt_links]
 
-        alt_links = ExternalLink.parenthesized_links(alt_links)
+        alt_links_txt = ExternalLink.parenthesized_links(alt_links)
         base_txt = Text('', style='white' if with_alt_links else ARCHIVE_LINK_COLOR)
-        return base_txt.append(join_texts([self.external_link_txt(style, id_only), *alt_links]))
+        return base_txt.append(join_texts([self.external_link_txt(style, id_only), alt_links_txt]))
 
     def open(self) -> None:
         open_file_or_url(self.local_path)

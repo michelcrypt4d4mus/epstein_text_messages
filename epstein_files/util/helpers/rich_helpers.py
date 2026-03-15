@@ -52,13 +52,14 @@ def join_texts(
     txts: Sequence[Textish],
     join: str = ' ',
     encloser: str = '',
-    encloser_style: str = 'wheat4'
+    encloser_style: str = 'wheat4',
 ) -> Text:
-    """Join a collection of `Text` objs into one, similar to standard `str.join()`."""
+    """Join a collection of `Text` objs into one, similar to standard `str.join()`. Skips 0 length stuff."""
     txt = Text('')
 
-    for i, _txt in enumerate(txts):
-        txt.append(join if i >= 1 else '').append(enclose(to_txt(_txt), encloser, encloser_style))
+    for i, t in enumerate(txts):
+        if len((_txt := to_txt(t))) > 0:
+            txt.append(join if i >= 1 else '').append(enclose(_txt, encloser, encloser_style))
 
     return txt
 

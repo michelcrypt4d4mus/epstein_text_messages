@@ -10,9 +10,9 @@ from epstein_files.people.names import Name, constantize_name, extract_first_nam
 from epstein_files.util.constant.strings import INDENT_NEWLINE, INDENTED_JOIN, LAW_ENFORCEMENT, WIKIPEDIA, PartialName
 from epstein_files.util.constant.urls import wikipedia_url_for_name
 from epstein_files.util.env import args, site_config
-from epstein_files.util.helpers.data_helpers import constantize_names, listify
 from epstein_files.util.external_link import ExternalLink
-from epstein_files.util.helpers.rich_helpers import QUESTION_MARKS_TXT, enclose
+from epstein_files.util.helpers.data_helpers import constantize_names, listify
+from epstein_files.util.helpers.rich_helpers import QUESTION_MARKS_TXT, Textish, enclose, join_texts, parenthesize
 from epstein_files.util.helpers.string_helper import (as_pattern, indented, is_integer, join_patterns,
      join_truthy, quote, remove_question_marks)
 from epstein_files.util.logging import logger
@@ -53,7 +53,7 @@ class Entity(LoggingEntity):
     emailer_pattern: str = ''
     # Props after here not usually set by positional args
     aliases: list[str] = field(default_factory=list)
-    category: str = ''
+    category: str = ''  # NOTE: not usually set at instantiation time!
     email_addresses: list[str] = field(default_factory=list)
     emailer_regex: re.Pattern = field(init=False)
     highlight_regex: re.Pattern = field(init=False)
@@ -64,11 +64,17 @@ class Entity(LoggingEntity):
     match_partial: PartialName | None = 'last'
     style: str = ''  # NOTE: not usually set at instantiation time!
     url: str | list[str] | Literal['WIKIPEDIA'] = ''
+    _urls: list[str] = field(init=False)
     # jmail_url: str
 
     def __post_init__(self):
         if self.is_organization:
             self.match_partial = None
+
+        self._urls = [
+            wikipedia_url_for_name(self.name) if url == WIKIPEDIA else url
+            for url in listify(self.url)
+        ]
 
         try:
             self.emailer_regex = re.compile(self.pattern, re.IGNORECASE)
@@ -78,26 +84,31 @@ class Entity(LoggingEntity):
             raise e
 
     @property
-    def links(self) -> list[ExternalLink]:
-        """All configured biographical info URLs wrapped in ExternalLink objects."""
-        urls = [wikipedia_url_for_name(self.name) if url == WIKIPEDIA else url for url in listify(self.url)]
-        return [ExternalLink(url, self.name, link_style=self._style_bold) for url in urls]
+    def alt_links(self) -> list[ExternalLink]:
+        return [ExternalLink(url, f'more{i}', link_style='grey39') for i, url in enumerate(self._urls[1:], 2)]
+
+    @property
+    def alt_links_txt(self) -> Text:
+        """Alternate links parenthesized and concatenated into one Text object."""
+        if self.alt_links:
+            return parenthesize(join_texts(self.alt_links, '|'), 'grey23')
+        else:
+            return Text('')
 
     @property
     def bio_txt(self) -> Text:
         """Biographical info about this entity with links etc."""
         from epstein_files.output.epstein_highlighter import non_epstein_highlighter
-        bio_txt = Text('').append(self.name_link).append(' ')
+        bio_pieces: list[Textish] = [Text('').append(self.name_with_link)]
 
         if self.category:
             category_txt = Text(self.category.lower(), style=f'{self.style} dim')
-            bio_txt.append(enclose(category_txt, encloser='[]', encloser_style='dim'))
+            bio_pieces.append(enclose(category_txt, encloser='[]', encloser_style='dim'))
 
-        if (alt_links := self.links[1:]):
-            pass
-
-        biography = Text(self.info, style=BIO_STYLE) if self.info else QUESTION_MARKS_TXT
-        return bio_txt.append(' ').append(non_epstein_highlighter(biography))
+        bio_pieces.append(self.alt_links_txt)
+        bio_pieces.extend([Text("aka ", BIO_STYLE).append(enclose(Text(alias, self.style), "''")) for alias in self.aliases])
+        bio_pieces.append(non_epstein_highlighter(Text(self.info, BIO_STYLE)) if self.info else QUESTION_MARKS_TXT)
+        return join_texts(bio_pieces)
 
     @property
     def has_bio(self) -> bool:
@@ -112,9 +123,12 @@ class Entity(LoggingEntity):
         return join_patterns(self._name_patterns)
 
     @property
-    def name_link(self) -> Text:
+    def name_with_link(self) -> Text:
         """Colored name with hyperlink if applicable (otherwise just colored name)."""
-        return self.links[0].link if self.links else Text(self.name, self.style)
+        if self._urls:
+            return ExternalLink(self._urls[0], self.name, link_style=self._style_bold).link
+        else:
+            return Text(self.name, self.style)
 
     @property
     def pattern(self) -> str:
@@ -200,11 +214,15 @@ class Entity(LoggingEntity):
     def _style_bold(self) -> str:
         return self.style if 'bold' in self.style else f"{self.style} bold".strip()
 
+    @property
+    def _style_dim(self) -> str:
+        return self.style if 'dim' in self.style else f'{self.style} dim'
+
     def _log_debug_info(self) -> None:
         """debugging method for styles."""
         from epstein_files.output.rich import console
-        console.print(self.bio_txt, '\n', self.links[0], '\n',self.name_link, '\n')
-        self._log(f'   repr: {repr(self.links[0])}\n    str: {self.links[0]}\n   name_link: {repr(self.name_link)}')
+        console.print(self.bio_txt, '\n', self.links[0], '\n',self.name_with_link, '\n')
+        self._log(f'   repr: {repr(self.links[0])}\n    str: {self.links[0]}\n   name_link: {repr(self.name_with_link)}')
 
     def __repr__(self) -> str:
         props = self._props_strs

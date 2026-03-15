@@ -2646,10 +2646,12 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             ),
             Entity(
                 MARIA_PRUSAKOVA,
-                f"AKA Masha Prusso, former Olympic snowboarder, {CRYPTO_PR_LAB} co-founder, \"found ladies\" for Epstein",
+                f"former Olympic snowboarder, {CRYPTO_PR_LAB} co-founder, \"found ladies\" for Epstein",
                 r"Ma(sha|riy?a) (Prusa?(kova|so))",
+                aliases=['Masha Prusso'],
                 url=[
                     'https://www.scamurai.io/p/epstein-files-suggest-ex-polygon',
+                    'https://www.reddit.com/r/Epstein/comments/1qvsnqs/a_detailed_report_on_masha_prusso_aka_maria/',
                     'https://www.reddit.com/r/Epstein/comments/1qvsnqs/a_detailed_report_on_masha_prusso_aka_maria/',
                 ],
             ),

@@ -114,7 +114,7 @@ class ExternalLink(TextCast):
         return extract_domain(self.url, strip_tld=strip_tld)
 
     @classmethod
-    def parenthesized_links(cls, _links: list[Self | Text], base_style: str = 'white') -> Text:
+    def parenthesized_links(cls, _links: Sequence[Self | Text], base_style: str = 'white') -> Text:
         """Concatenate a collection of links and wrap in parentheses."""
         links = [link if isinstance(link, Text) else link.link for link in _links]
         links = [parenthesize(link) for link in links]
