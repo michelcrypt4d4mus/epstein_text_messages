@@ -38,7 +38,7 @@ from epstein_files.people.names import sort_names
 from epstein_files.util.constants import CONFIGS_BY_ID
 from epstein_files.util.env import args, site_config
 from epstein_files.util.helpers.data_helpers import (AMERICAN_TIME_REGEX, TIMEZONE_INFO, CharRange, coerce_utc, flatten,
-     prefix_keys, uniq_sorted, uniquify)
+     prefix_keys, uniq_sorted, uniquify, without_falsey)
 from epstein_files.util.helpers.link_helper import link_text_obj
 from epstein_files.util.helpers.string_helper import capitalize_first, collapse_newlines, is_bool_prop, quote, strip_pdfalyzer_panels
 from epstein_files.util.logging import logger
@@ -515,8 +515,8 @@ class Email(Communication):
     def extract_author(self) -> Name:
         """Overloads superclass method, called at instantiation time."""
         if self.header.author:
-            authors = extract_emailer_names(self.header.author)
-            return authors[0] if (len(authors) > 0 and authors[0]) else None
+            authors = without_falsey(extract_emailer_names(self.header.author))
+            return authors[0] if authors else None
 
     def extract_header(self) -> EmailHeader:
         """Extract an `EmailHeader` from the OCR text."""
@@ -537,8 +537,7 @@ class Email(Communication):
 
     def extract_recipients(self) -> list[Name]:
         """Scan the To:, BCC: and CC: fields for known names, falling back to raw strings if no names identified."""
-        recipients = flatten([extract_emailer_names(r) for r in self.header.recipients])
-        recipients = uniquify(recipients)
+        recipients = uniquify(flatten([extract_emailer_names(r) for r in self.header.recipients]))
 
         # Assume mailing list emails are to Epstein
         if self.author in BCC_LISTS and (self.is_note_to_self(recipients) or not recipients):
