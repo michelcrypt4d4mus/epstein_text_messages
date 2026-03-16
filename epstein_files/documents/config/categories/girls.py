@@ -1,4 +1,4 @@
-from epstein_files.documents.documents.categories import Interesting, Neutral
+from epstein_files.documents.documents.categories import Interesting, Neutral, Uninteresting
 from epstein_files.documents.config.config_builder import letter
 from epstein_files.documents.config.doc_cfg import NO_TRUNCATE, CommunicationCfg, DocCfg, EmailCfg
 from epstein_files.util.helpers.string_helper import join_truthy, quote
@@ -18,6 +18,16 @@ GIRLS_CFGS = [
     EmailCfg(id='030609', duplicate_ids=['030495']),
 
     # DOJ Files
+    DocCfg(
+        id='EFTA01334058',
+        author='New York Post',
+        category=Uninteresting.ARTICLE,
+        date='2005-01-14',
+        description="article about Epstein's attempt to buy IMG Models",
+        is_in_chrono=False,
+        is_interesting=True,
+        truncate_to=1_200,
+    ),
     DocCfg(id='EFTA02701609', author=GIANNI_SERAZZI, description='2morrow business plan', date='2014-09-30', date_uncertain=True),
     DocCfg(id='EFTA01078143', author=GIANNI_SERAZZI, description='2morrow modeling pitch deck', date='2014-09-30', date_uncertain=True),
     DocCfg(id='EFTA00306033', author=SERGEY_BELYAKOV, description='Epstein Russian visa', show_full_panel=True),
