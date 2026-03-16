@@ -2,7 +2,6 @@
 import json
 from copy import deepcopy
 from datetime import datetime
-from os import devnull
 from pathlib import Path
 from typing import Mapping, Sequence
 
@@ -23,8 +22,7 @@ from epstein_files.util.constant.strings import *
 from epstein_files.util.constant.urls import *
 from epstein_files.util.env import args, site_config
 from epstein_files.util.helpers.data_helpers import json_safe, sort_dict
-from epstein_files.util.external_link import join_texts
-from epstein_files.util.helpers.rich_helpers import enclose, left_indent_padding, suppress_output_console_kwargs
+from epstein_files.util.helpers.rich_helpers import RAINBOW, left_indent_padding, suppress_output_console_kwargs
 from epstein_files.util.helpers.string_helper import snip_msg
 from epstein_files.util.logging import logger
 
@@ -64,16 +62,16 @@ THEME_STYLES = {
 
 RICH_THEME = Theme(THEME_STYLES)
 
+
 # Instantiate console object
 CONSOLE_KWARGS = {
     'color_system': '256',
     'highlighter': highlighter,
-    'record': args.build,
+    'record': True, # args.build,
     'safe_box': True,
     'theme': RICH_THEME,
     'width': args.width,
 }
-
 
 if args.suppress_output:
     logger.warning(f"Suppressing terminal output because args.suppress_output={args.suppress_output}...")
@@ -219,16 +217,6 @@ def section_subtitle_panel(msg: str, style: str = SUBTITLE_STYLE) -> Padding:
     return Padding(subtitle_panel(msg, style), site_config.subtitle_margins)
 
 
-def subtitle_panel(msg: str, style: str = SUBTITLE_STYLE) -> Panel:
-    """`Panel`  for important text, like name of a subsection."""
-    return Panel(
-        Text.from_markup(msg, justify='center'),
-        padding=site_config.subtitle_padding,
-        style=style,
-        width=site_config.subtitle_width,
-    )
-
-
 def styled_dict(
     d: Mapping[str, bool | datetime | str | Path | Text | None],
     key_style: str = KEY_STYLE,
@@ -254,7 +242,7 @@ def styled_dict(
 
 def styled_key_value(
     key: str,
-    val: bool | datetime | int | str | Path | Text | None,
+    val: bool | datetime | int | str | Path | Text | list | None,
     key_style: str = KEY_STYLE,
     indent: int = 0,
     sep='='
@@ -268,6 +256,11 @@ def styled_key_value(
     elif isinstance(val, Text):
         val_txt = val
     elif isinstance(val, list):
+        from epstein_files.people.entity import Entity
+
+        if val and isinstance(val[0], Entity):
+            val = [str(e) for e in val]
+
         val_txt = highlighter(json.dumps(val))
     elif isinstance(val, bool):
         val_txt = bool_txt(val)
@@ -307,6 +300,16 @@ def styled_key_value(
     txt = Text('').append(f"{key:>{indent}}", style=key_style)
     txt.append(sep, style=SYMBOL_STYLE).append(val_txt)
     return txt
+
+
+def subtitle_panel(msg: str, style: str = SUBTITLE_STYLE) -> Panel:
+    """`Panel`  for important text, like name of a subsection."""
+    return Panel(
+        Text.from_markup(msg, justify='center'),
+        padding=site_config.subtitle_padding,
+        style=style,
+        width=site_config.subtitle_width,
+    )
 
 
 def wrap_in_markup_style(msg: str, style: str | None = None) -> str:

@@ -152,7 +152,7 @@ rollcall_doc_url = lambda file_stem: build_doc_url(DOC_LINK_BASE_URLS[ROLLCALL],
 search_twitter_url = lambda txt: f"{X_BASE_URL}/search?q={urllib.parse.quote(txt)}&src=typed_query&f=live"
 
 # Wikipedia
-wikipedia_url_for_name = lambda s: f"https://en.wikipedia.org/wiki/" + s.replace(' ', '_')
+wikipedi_url = lambda s: f"https://en.wikipedia.org/wiki/" + s.replace(' ', '_')
 
 
 PERSON_LINK_BUILDERS: dict[ExternalSite, Callable[[str], str]] = {

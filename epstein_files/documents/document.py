@@ -73,7 +73,6 @@ SUMMARY_TABLE_COLS: list[str | dict] = [
 DEBUG_PROPS = [
     'is_interesting',
     'num_lines',
-    'people',
     'timestamp',
 ]
 
@@ -81,7 +80,6 @@ DEBUG_PROPS_TRUTHY_ONLY = [
     AUTHOR,
     'category',
     'is_empty',
-    'people',
 ]
 
 METADATA_FIELDS = [
@@ -594,6 +592,7 @@ class Document(LoggingEntity):
         """Collects props of this object only (not the config or locations)."""
         props = {k: getattr(self, k) for k in DEBUG_PROPS}
         props.update(self.truthy_props(DEBUG_PROPS_TRUTHY_ONLY))
+        props['entities'] = [e.name for e in self.entities]
 
         if self.file_info.file_size > 100 * 1024:
             props['file_size_str'] = self.file_info.file_size_str

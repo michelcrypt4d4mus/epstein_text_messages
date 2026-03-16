@@ -219,7 +219,7 @@ class EpsteinFiles:
         signatures = defaultdict(set)
 
         for email in [e for e in self.unique_emails if e.sent_from_device]:
-            signatures[email.author_or_unknown].add(email.sent_from_device)
+            signatures[email.author_str].add(email.sent_from_device)
 
         return signatures
 
@@ -228,7 +228,7 @@ class EpsteinFiles:
         signatures = defaultdict(set)
 
         for email in [e for e in self.unique_emails if e.sent_from_device]:
-            signatures[email.sent_from_device].add(email.author_or_unknown)
+            signatures[email.sent_from_device].add(email.author_str)
 
         return signatures
 

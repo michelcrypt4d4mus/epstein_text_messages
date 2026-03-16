@@ -59,7 +59,7 @@ class DocPrinter:
     epstein_files: 'EpsteinFiles'
     collect_other_files_to_tables: bool = True
     html_elements: list[str] = field(default_factory=list)
-    printed_name_bios: set[Entity] = field(default_factory=set)
+    printed_entity_bios: set[Entity] = field(default_factory=set)
     printed_objs: list[PrintableObj] = field(default_factory=list)
     _last_bio_panel = ''
     _other_files_queue: list[OtherFile] = field(default_factory=list)
@@ -70,6 +70,11 @@ class DocPrinter:
         self.html_elements.append(console_buffer_to_html(console, False))
 
     @property
+    def printed_docs(self) -> list[Document]:
+        # TODO: get rid of FileDisplay object printing
+        return [e for e in self.printed_objs if isinstance(e, Document)]
+
+    @property
     def printed_emails(self) -> list[Email]:
         return [e for e in self.printed_objs if isinstance(e, Email)]
 
@@ -77,25 +82,21 @@ class DocPrinter:
     def printed_file_displays(self) -> list[FileDisplay]:
         return [e for e in self.printed_objs if isinstance(e, FileDisplay)]
 
-    @property
-    def printed_docs(self) -> list[Document]:
-        return [e for e in self.printed_objs if isinstance(e, Document)]
-
     def line(self, num: int = 1) -> None:
         """Print blank lines to HTML and terminal, similar to `console.line()`."""
         self.html_elements.append(vertical_spacer(num))
         console.line(num)
 
     def new_entities(self, names_or_doc: PeopleBiosArg) -> list[Entity]:
-        """List of names found in relation to the documents that have not been encountered before."""
+        """List of names found in relation to `names_or_doc` that have not been biographically printed before."""
         if isinstance(names_or_doc, FileDisplay) or not names_or_doc:
             return []
         elif isinstance(names_or_doc, Document):
-            entities = names_or_doc.entity_scan(exclude=list(self.printed_name_bios))
+            entities = names_or_doc.entity_scan(exclude=list(self.printed_entity_bios))
         else:
             entities = get_entities(names_or_doc)
 
-        return [e for e in entities if e not in self.printed_name_bios]
+        return [e for e in entities if e not in self.printed_entity_bios]
 
     def new_entities_with_bios(self, names_or_doc: PeopleBiosArg) -> list[Entity]:
         """Return names that a) were not seen before and b) have configured biographical info."""
@@ -270,7 +271,7 @@ class DocPrinter:
             self._print_other_files_queue()  # Clear the queue before new biographical panel
             console.print(self._align_biographical_panel(bio_panel))  # TODO: has side effect of printing to console
             panel_html = render_at_obj_width(bio_panel)
-            self.printed_name_bios.update(entities)
+            self.printed_entity_bios.update(entities)
             return div_class(panel_html, STICKY_BIO_CSS_CLASS)
         else:
             return ''

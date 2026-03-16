@@ -1,17 +1,19 @@
 from dataclasses import dataclass, field
 
 from rich.style import Style
+from rich.theme import Theme
 
-from epstein_files.output.rich import CONSOLE_KWARGS, RICH_THEME
-from epstein_files.util.constant.html import FONT_FAMILY, HTML_TERMINAL_THEME
+from epstein_files.util.constant.html import HTML_TERMINAL_THEME
 from epstein_files.util.logging import logger
 
 BOLD = Style(bold=True)
+DIM = Style(dim=True)
 NOT_BOLD = Style(bold=False)
+DEFAULT_THEME = Theme()
 
 
 @dataclass
-class HtmlStyle:
+class RichStyle:
     """Converts rich `Style` objects and style strings to HTML RGB codes."""
 
     _style: Style | str | None
@@ -21,12 +23,13 @@ class HtmlStyle:
         if isinstance(self._style, Style):
             self.style = self._style
         else:
-            if self._style == 'dim':
-                self._style = f"white {self._style}"  # Coerce gray if just 'dim'
-            elif self._style is None:
+            if self._style is None or self._style == 'none':
                 self._style = ''
+            elif self._style == 'dim':
+                self._style = f"white {self._style}"  # Coerce gray if just 'dim'
 
-            self.style = RICH_THEME.styles.get(self._style) or Style.parse(self._style)
+            # logger.warning(f"About to parse _style='{self._style}', {type(self._style)}")
+            self.style = DEFAULT_THEME.styles.get(self._style, Style.parse(self._style))
 
     @property
     def background_color_hex(self) -> str:
@@ -43,7 +46,11 @@ class HtmlStyle:
     @property
     def bold(self) -> Style:
         """self.style but bold."""
-        return self.style.combine([BOLD])
+        return Style.combine([self.style, BOLD])
+
+    @property
+    def dim(self) -> Style:
+        return Style.combine([self.style, DIM])
 
     @property
     def foreground_color_hex(self) -> str:
@@ -60,7 +67,7 @@ class HtmlStyle:
     @property
     def not_bold(self) -> Style:
         """self.style but not bold."""
-        return self.style.combine([NOT_BOLD])
+        return Style.combine([self.style, NOT_BOLD])
 
     @property
     def to_css(self) -> dict[str, str]:

@@ -2,6 +2,7 @@
 Constants and methods for identifying people in email headers.
 """
 import re
+from collections import defaultdict
 
 from epstein_files.output.highlight_config import HIGHLIGHTED_ENTITIES
 from epstein_files.people.entity import Entity, organization

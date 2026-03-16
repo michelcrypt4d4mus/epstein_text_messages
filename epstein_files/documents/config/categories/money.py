@@ -25,8 +25,9 @@ MONEY_CFGS = [
     ),
     DocCfg(
         id='EFTA00173953',
-        author=ORGANIZED_CRIME_DRUG_ENFORCEMENT_TASK_FORCE,
-        description='report on DEA investigations into Epstein related drug money laundering',
+        author=OCDETF,
+        description='report on investigations of Epstein related drug money laundering',
+        is_very_interesting=True,
     ),
     DocCfg(
         id='EFTA01681865',

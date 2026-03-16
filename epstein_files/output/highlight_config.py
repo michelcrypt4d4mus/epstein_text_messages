@@ -20,10 +20,13 @@ from epstein_files.people.names import *
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constant.urls import SUBSTACK_POST_INSIGHTSPOD_URL
 from epstein_files.util.env import args
-from epstein_files.util.helpers.data_helpers import flatten
+from epstein_files.util.helpers.data_helpers import flatten, sort_dict
 from epstein_files.util.helpers.rich_helpers import QUESTION_MARKS_TXT
 from epstein_files.util.helpers.string_helper import indented, join_patterns
 from epstein_files.util.logging import logger
+
+DATE_PATTERN = r"\d{1,4}[-/]\d{1,2}[-/]\d{2,4}"
+TIME_PATTERN = r"\d{1,2}:\d{2}:\d{2}( [AP]M)?"
 
 CIVIL_ATTORNEY = 'civil attorney'
 CRIMINAL_DEFENSE_ATTORNEY = 'criminal defense attorney'
@@ -39,9 +42,6 @@ WIGDOR_ATTORNEY = f"Wigdor LLP lawyer in {LEON_BLACK} lawsuit"
 
 FINANCIAL_COLOR = 'dark_sea_green2'
 VICTIM_COLOR = 'orchid1'
-
-DATE_PATTERN = r"\d{1,4}[-/]\d{1,2}[-/]\d{2,4}"
-TIME_PATTERN = r"\d{1,2}:\d{2}:\d{2}( [AP]M)?"
 
 debug_console = Console(color_system='256')
 
@@ -452,7 +452,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Entity('Desmond Shum', f'Hong Kong financier, friend of {PETER_MANDELSON}', match_partial='both', url=WIKIPEDIA),
             Entity(
                 GINO_YU,
-                f"professor / game designer / AI researcher in Hong Kong, friend of {MASHA_DROKOVA}, did PR for Epstein",
+                f"AI researcher/professor in Hong Kong, did PR for Epstein, friend of {MASHA_DROKOVA}?",
                 match_partial=None,
             ),
             Entity(
@@ -535,7 +535,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Modafanil",
             r"narco(tic)?",
             r"murder(e[dr]|ing)?",
-            r"organized crime",
+            r"organized crime(?! drug enforcement)",
             r"Provigil",
             r"(securities )?fraud(ulent)?",
             r"suicide",
@@ -1141,6 +1141,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         contacts=[
             organization(CLIFFORD_CHANCE, f'law firm where {MARIA_PRUSAKOVA} did an internship in Paris'),
             organization('Latham & Watkins', f'law firm where {KATHRYN_RUEMMLER} worked', r"Latham (&|and) Watkins"),
+            organization('Sadis Goldberg LLP', 'law firm'),
         ],
         patterns=[
             r"(Leon )?Jaworski",
@@ -1652,14 +1653,16 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 r"sec\.?gov|Securities (&|and) Exchange Commission",
             ),
             law_enforcement(BUREAU_OF_PRISONS, r"bop\.gov|(Federal )?Bureau of Prisons"),
+            law_enforcement('DOJ Chief Psychologist'),
             law_enforcement('DOJ Inspector General'),
             law_enforcement('DOJ London'),
-            law_enforcement(FBI),
+            law_enforcement(FBI, emailer_pattern=r"(?<!NY )((?-i:FBI)|fbi\.s?gov)", is_emailer=True),
             law_enforcement('Manhattan DA'),
-            law_enforcement('NY FBI'),
+            law_enforcement('NY FBI', is_emailer=True),
             law_enforcement(OFFICE_OF_THE_DEPUTY_ATTORNEY_GENERAL, r"\bODAG\b", is_emailer=True),
             law_enforcement('Police Code Enforcement', description=f"{PALM_BEACH} buildings code enforcement"),
             law_enforcement(SDNY),
+            law_enforcement("SDNY Cybercrimes", is_emailer=True),
             law_enforcement('USAHUB-USAJournal111'),
             law_enforcement(USANYS, is_emailer=True),
             law_enforcement('USMS'),
@@ -2091,12 +2094,12 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         style='dark_khaki',
         contacts=[
             Entity(BOB_CROWE, "partner at Nelson Mullins", r"[BR]ob Crowe", match_partial=None),
+            Entity('Elisabeth Feliho', f'Nelson Mullins Riley, worked on getting {KARIM_WADE} out of jail'),
             Entity('Joshua Cooper Ramo', "co-CEO of Henry Kissinger Associates"),
             Entity(OLIVIER_COLOM, f"Epstein's banker at {EDMOND_DE_ROTHSCHILD} (Suisse) SA Bank", r"Colom, Olivier?|Olivier Colom"),
             Entity('Paul Keating', "former prime minister of Australia", match_partial=None),
             Entity('Stanley Rosenberg', "former President of the Massachusetts Senate", match_partial=None),
             Entity('Vinoda Basnayake', f'Nelson Mullins Riley, worked on getting {KARIM_WADE} out of jail'),
-            Entity('Elisabeth Feliho', f'Nelson Mullins Riley, worked on getting {KARIM_WADE} out of jail'),
             acronym('Center for Strategic and International Studies', 'pro-war American think tank'),
         ],
         patterns=[
@@ -2145,13 +2148,13 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Entity(
                 AZIZA_ALAHMADI,
                 f"Abu Dhabi Department of Culture & Tourism, assistant of {RAAFAT_ALSABBAGH}",
-                url='https://x.com/DropSiteNews/status/2019199114534350961',
                 match_partial='both',
+                url='https://x.com/DropSiteNews/status/2019199114534350961',
             ),
             Entity(
-                name=FAWZI_SIAM,
-                info="sharia auditor in Qatar, friend of Sheikh Jabor Al-Thani",
-                emailer_pattern=r"Fawzi.Siam?",
+                FAWZI_SIAM,
+                "sharia auditor in Qatar, friend of Sheikh Jabor Al-Thani",
+                r"Fawzi.Siam?",
                 match_partial='first',
             ),
             Entity('Hamad bin Khalifa al-Thani', 'emir of Qatar', match_partial=None),
@@ -2177,14 +2180,14 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Entity(
                 'Rakhat Aliyev',
                 'corrupt Kazakh politician',
+                match_partial='both',
                 url='https://www.bbc.com/news/world-europe-32253434',
-                match_partial='both'
             ),
             Entity(
                 RAAFAT_ALSABBAGH,
                 "Saudi royal advisor",
-                url='https://publish.obsidian.md/findingtruth/Modern+Day+Locations/Asia/Asian+Important+People/Raafat+Al-Sabbagh',
                 match_partial='both',
+                url='https://publish.obsidian.md/findingtruth/Modern+Day+Locations/Asia/Asian+Important+People/Raafat+Al-Sabbagh',
             ),
             Entity(
                 SHAHER_ABDULHAK_BESHER,
@@ -2494,9 +2497,9 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         style='indian_red',
         contacts=[
             Entity(
-                name=ARIANE_DE_ROTHSCHILD,
-                info=f"heiress, runs the bank {EDMOND_DE_ROTHSCHILD} (Suisse) SA",
-                emailer_pattern=r"AdeR|(A(\.|riane) (de )?)?Roths?h?ch?il[cd]|Ariane(?! Dwyer)",
+                ARIANE_DE_ROTHSCHILD,
+                f"heiress, runs the bank {EDMOND_DE_ROTHSCHILD} (Suisse) SA",
+                r"AdeR|(A(\.|riane) (de )?)?Roths?h?ch?il[cd]|Ariane(?! Dwyer)",
             ),
             Entity(JOHNNY_EL_HACHEM, f"{EDMOND_DE_ROTHSCHILD} Private Equity", r"el hachem johnny|johnny el hachem"),
             organization(EDMOND_DE_ROTHSCHILD, f"Swiss bank"),
@@ -2696,7 +2699,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Entity(
                 RENATA_BOLOTOVA,
                 "former model, fund manager at New York State Insurance Fund",
-                r"Renata Bolotova|Rena B|Renata Bo\w+|renbolotova|Ренат[ау]|Болотова",
+                r"Renata Bolotova|Rena B|Renata Bo\w+|renbolotova|Ренат[ау]|Болотова|Болякина",
                 aliases=['Рената Болотова'],
                 match_partial='both',
                 url='https://x.com/Cryptadamist/status/1996965537478566063',
@@ -3363,17 +3366,17 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
 
     # HighlightedText not HighlightedNames bc of word boundary (\b) issue with '#', '(', etc.
     HighlightPatterns(
-        label='metoo',
-        style=VICTIM_COLOR,
-        patterns=[r"#metoo"]
-    ),
-    HighlightPatterns(
         label='dollars',
         style=FINANCIAL_COLOR,
         patterns=[
             r"\$[\dO,.]+(\s*(bn|[bm](illl?ion|m)?|k|thousand))?( dollars?)?",
             r"[\d,.]+\s*[bm]illl?ion( dollars?)?( loan)?",
         ]
+    ),
+    HighlightPatterns(
+        label='metoo',
+        style=VICTIM_COLOR,
+        patterns=[r"#metoo"]
     ),
     HighlightPatterns(
         label='unknown',

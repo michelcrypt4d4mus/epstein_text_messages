@@ -8,7 +8,6 @@ from rich import box
 from rich.padding import Padding
 from rich.panel import Panel
 
-from epstein_files.documents.communication import Communication
 from epstein_files.documents.document import Document
 from epstein_files.documents.doj_file import DojFile
 from epstein_files.documents.email import Email
@@ -17,11 +16,10 @@ from epstein_files.documents.other_file import FIRST_FEW_LINES, OtherFile
 from epstein_files.epstein_files import EpsteinFiles
 from epstein_files.output.doc_printer import DocPrinter
 from epstein_files.output.epstein_highlighter import highlighter
-from epstein_files.output.highlight_config import get_style_for_name
 from epstein_files.output.rich import *
 from epstein_files.output.site.sites import (AUTHORS_USING_SIGNATURES, EMAILERS_TABLE_PNG_PATH,
      FILES_THAT_ARE_NEITHER_EMAILS_NOR, HIS_EMAILS, HIS_TEXT_MESSAGES, HTML_DIR, SELECTIONS_FROM)
-from epstein_files.output.title_page import print_color_key, print_other_page_link, section_header
+from epstein_files.output.title_page import print_other_page_link, section_header
 from epstein_files.people.interesting_people import EMAILERS_TO_PRINT
 from epstein_files.people.names import *
 from epstein_files.people.person import Person
@@ -33,12 +31,13 @@ from epstein_files.util.helpers.file_helper import file_size_str, log_file_write
 from epstein_files.util.helpers.string_helper import extract_emojis
 from epstein_files.util.logging import logger, exit_with_error
 
+DEVICE_SIGNATURE_PADDING = (1, 0)
+PRINT_COLOR_KEY_EVERY_N_EMAILS = 150
+
 OTHER_INTERESTING_EMAILS_SUBTITLE = 'Other Interesting Emails\n(these emails have been flagged as being of particular interest)'
 CONVERSATIONS_SORTED_BY_TXT = Text("(conversations sorted chronologically based on timestamp of the first text message)", 'dim')
 DEVICE_SIGNATURE_SUBTITLE = f"Email [italic]Sent from \\[DEVICE][/italic] Signature Breakdown"
 DEVICE_SIGNATURE = 'Device Signature'
-DEVICE_SIGNATURE_PADDING = (1, 0)
-PRINT_COLOR_KEY_EVERY_N_EMAILS = 150
 
 
 def print_curated_chronological(epstein_files: EpsteinFiles, doc_printer: DocPrinter) -> list[Document]:
@@ -302,7 +301,7 @@ def print_email_device_signatures(epstein_files: EpsteinFiles) -> None:
             author_emojis[email.author].update(emojis)
 
             for emoji in emojis:
-                emoji_authors[emoji].add(email.author or UNKNOWN)
+                emoji_authors[emoji].add(email.author_str)
 
     console.line()
     print_subtitle_panel("Emoji Usage")

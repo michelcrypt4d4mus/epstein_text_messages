@@ -10,6 +10,8 @@ FBI_REPORT_FIELDS = [
     'Drafted By',
     'Date/Time Received',
     'Details',
+    'SentinelCaseld',
+    'SentToSentinel',
 ]
 
 

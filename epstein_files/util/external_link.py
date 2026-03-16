@@ -2,10 +2,11 @@
 Functions that build rich Text links.
 """
 import re
+from dataclasses import dataclass
 from typing import Self, Sequence
 from urllib.parse import urlsplit
 
-from dataclasses import dataclass
+from rich.style import Style
 from rich.text import Text
 
 from epstein_files.util.constant.strings import ARCHIVE_LINK_COLOR, ARCHIVE_ALT_LINK_STYLE, ARCHIVE_LINK_COLOR
@@ -38,8 +39,8 @@ class ExternalLink(TextCast):
     link_text: str = ''
     comment: str = ''
     comment_url: str = ''
-    comment_style: str = LINK_COMMENT_STYLE
-    link_style: str = EXTERNAL_LINK_STYLE
+    comment_style: str | Style = LINK_COMMENT_STYLE
+    link_style: str | Style = EXTERNAL_LINK_STYLE
     parentheses_style: str = LINK_COMMENT_PARENTHESES_STYLE
 
     def __post_init__(self):
@@ -48,6 +49,9 @@ class ExternalLink(TextCast):
 
         self.url = coerce_https(self.url)
         self.comment_url = coerce_https(self.comment_url) if self.comment_url else self.comment_url
+        # TODO: shouldn't need to convert, better to work with Style objs sometimes
+        self.link_style = str(self.link_style)
+        self.comment_style = str(self.comment_style)
 
     @classmethod
     def official_link(cls, url: str, link_text: str, comment: str, comment_url: str, **kwargs) -> Self:

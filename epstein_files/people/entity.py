@@ -1,5 +1,6 @@
 import logging
 import re
+from collections import defaultdict
 from dataclasses import dataclass, field, fields
 from typing import Literal, Self
 
@@ -7,10 +8,10 @@ from rich.padding import Padding
 from rich.style import Style
 from rich.text import Text
 
-# from epstein_files.output.html.html_style import HtmlStyle
+from epstein_files.output.html.rich_style import RichStyle
 from epstein_files.people.names import Name, constantize_name, extract_first_name, extract_last_name
 from epstein_files.util.constant.strings import INDENT_NEWLINE, INDENTED_JOIN, LAW_ENFORCEMENT, WIKIPEDIA, PartialName
-from epstein_files.util.constant.urls import wikipedia_url_for_name
+from epstein_files.util.constant.urls import wikipedi_url
 from epstein_files.util.env import args, site_config
 from epstein_files.util.external_link import ExternalLink
 from epstein_files.util.helpers.data_helpers import constantize_names, listify
@@ -59,7 +60,6 @@ class Entity(LoggingEntity):
     emailer_pattern: str = ''
     # Props after here not usually set by positional args
     aliases: list[str] = field(default_factory=list)
-    category: str = ''  # NOTE: not usually set at instantiation time!
     email_addresses: list[str] = field(default_factory=list)
     emailer_regex: re.Pattern = field(init=False)
     highlight_regex: re.Pattern = field(init=False)
@@ -68,20 +68,27 @@ class Entity(LoggingEntity):
     is_junk: bool = False  # TODO: this sucks
     is_organization: bool = False
     match_partial: PartialName | None = 'last'
-    style: str = ''  # NOTE: not usually set at instantiation time!
     unique_phraseologies: list[str] = field(default_factory=list)
     url: str | list[str] | Literal['WIKIPEDIA'] = ''
+    # NOTE: not set at instantiation time
+    category: str = ''
+    _style: RichStyle = field(default_factory=lambda: RichStyle(None))
     _urls: list[str] = field(init=False)
     # jmail_url: str
+
+    @property
+    def style(self) -> str:
+        return str(self._style.style)
+
+    @style.setter
+    def style(self, val: str | Style | None):
+        self._style = RichStyle(val)
 
     def __post_init__(self):
         if self.is_organization:
             self.match_partial = None
 
-        self._urls = [
-            wikipedia_url_for_name(self.name) if url == WIKIPEDIA else url
-            for url in listify(self.url)
-        ]
+        self._urls = [wikipedi_url(self.name) if url == WIKIPEDIA else url for url in listify(self.url)]
 
         try:
             self.emailer_regex = re.compile(self.pattern, re.IGNORECASE)
@@ -114,7 +121,7 @@ class Entity(LoggingEntity):
         bio_pieces.extend([Text('').append('aka ', AKA_STYLE).append(Text(alias, self.style)) for alias in self.aliases])
 
         if self.category:
-            category_txt = Text(self.category.lower(), style=self._style_dim)
+            category_txt = Text(self.category.lower(), style=self._style.dim)
             bio_pieces.append(enclose(category_txt, encloser='[]', encloser_style='dim'))
 
         bio_pieces.append(non_epstein_highlighter(Text(self.info, BIO_STYLE)) if self.info else QUESTION_MARKS_TXT)
@@ -142,9 +149,9 @@ class Entity(LoggingEntity):
     def name_with_link(self) -> Text:
         """Colored name with hyperlink if applicable (otherwise just colored name)."""
         if self._urls:
-            return ExternalLink(self._urls[0], self.name, link_style=self._style_bold).link
+            return ExternalLink(self._urls[0], self.name, link_style=self._style.bold).link
         else:
-            return Text(self.name, self._style_bold)
+            return Text(self.name, self._style.not_bold)
 
     @property
     def pattern(self) -> str:
@@ -180,18 +187,20 @@ class Entity(LoggingEntity):
     def _name_patterns(self) -> list[str]:
         """['Firstname', 'Lastname', 'Lastname, Firstname'."""
         name_patterns = [self.pattern]
+        name = remove_question_marks(self.name)  # TODO: this sucks
 
-        if ' ' in self.name and self.match_partial is not None:
-            name = remove_question_marks(self.name)  # TODO: this sucks
-            first_name = extract_first_name(name)
-            last_name = extract_last_name(name)
-            name_patterns.append(as_pattern(f"{last_name},? {first_name}"))  # Reversed name
+        if self.match_partial is None or ' ' not in self.name:
+            return name_patterns
 
-            if self.match_partial in ['both', 'first'] and SIMPLE_NAME_REGEX.match(first_name):
-                name_patterns.append(as_pattern(first_name))
+        first_name = extract_first_name(name)
+        last_name = extract_last_name(name)
+        name_patterns.append(as_pattern(f"{last_name},? {first_name}"))  # TODO: maybe reversed name should be included by default?
 
-            if self.match_partial in ['both', 'last'] and SIMPLE_NAME_REGEX.match(last_name):
-                name_patterns.append(as_pattern(last_name))
+        if self.match_partial in ['both', 'first'] and SIMPLE_NAME_REGEX.match(first_name):
+            name_patterns.append(as_pattern(first_name))
+
+        if self.match_partial in ['both', 'last'] and SIMPLE_NAME_REGEX.match(last_name):
+            name_patterns.append(as_pattern(last_name))
 
         if args._debug_highlight_patterns:
             self._debug_log(f"name_patterns: '{name_patterns}'")
@@ -205,16 +214,14 @@ class Entity(LoggingEntity):
     @property
     def _props_strs(self) -> list[str]:
         props = []
-
-        def add_prop(f, value):
-            if self.emailer_pattern:
-                props.append(f"{f.name}={value}")
-            else:
-                props.append(value)
+        # if there's no self.emailer_pattern this obj was probably instantiated with positional args only
+        add_prop = lambda f, value: props.append(f"{f}={value}" if self.emailer_pattern else value)
 
         for _field in fields(self):
             if _field.name == 'name':
-                add_prop(_field, constantize_name(getattr(self, _field.name)))
+                add_prop(_field.name, constantize_name(getattr(self, _field.name)))
+            elif _field.name == '_style':
+                add_prop('style', quote(self.style))
             elif (value := getattr(self, _field.name)) and not _field.name.endswith('regex'):
                 if _field.name.endswith('pattern'):
                     value = f'r"{value}"'
@@ -222,18 +229,18 @@ class Entity(LoggingEntity):
                     value = quote(constantize_names(str(value)))
                     value = ('f' + value) if '{' in value else value
 
-                add_prop(_field, value)
+                add_prop(_field.name, value)
 
         props.append(f'highlight_pattern=r"{self.highlight_pattern}"')
         return props
 
     @property
-    def _style_bold(self) -> str:
-        return self.style if 'bold' in self.style else f"{self.style} bold".strip()
+    def _style_bold(self) -> Style:
+        return self._style.not_bold
 
     @property
-    def _style_no_bold(self) -> str:
-        return self.style.replace('bold' )
+    def _style_no_bold(self) -> Style:
+        return self._style.bold
 
     @property
     def _style_dim(self) -> str:
@@ -260,6 +267,9 @@ class Entity(LoggingEntity):
             repr_str = type_str + ', '.join(props) + ')'
 
         return repr_str
+
+    def __str__(self) -> str:
+        return self.name
 
     @classmethod
     def build_name_lookup(cls, contacts: list[Self]) -> dict[Name, Self]:

@@ -485,6 +485,7 @@ SIGNATURE_SUBSTITUTION_COUNTS = {
     'Bradford Stephens': 9,
     BROCK_PIERCE: 117,
     'Cantor Fitzgerald': 5,
+    "Christine O'Neill": 5,
     DANIEL_SIAD: 5,
     "Danny Frost": 8,
     DARREN_INDYKE: 47,
