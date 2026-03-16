@@ -1,3 +1,5 @@
+from copy import deepcopy
+
 from rich.text import Text
 
 from epstein_files.documents.emails.emailers import ENTITIES_DICT
@@ -93,13 +95,17 @@ def test_pattern():
 
 
 def test_repr():
-    assert repr(CONTACT_INFO) == r"""Entity(
+    jee = deepcopy(CONTACT_INFO)
+    jee.style = 'bright_red'
+
+    assert repr(jee) == r"""Entity(
     name=JEFFREY_EPSTEIN,
     info="one and only",
     emailer_pattern=r"Jeffrey Epstein|jeevacation",
     is_emailer="True",
     is_interesting="True",
     match_partial="last",
+    style="bright_red",
     highlight_pattern=r"Jeffrey[-_.\s]*Epstein|jeevacation|Epstein,?[-_.\s]*Jeffrey|Epstein",
 )"""
 

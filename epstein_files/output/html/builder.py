@@ -14,11 +14,11 @@ from rich.style import Style
 from rich.table import Table
 from rich.text import Text
 
-from epstein_files.output.html.html_style import HtmlStyle
 from epstein_files.output.html.elements import _html_elements_to_str
 from epstein_files.output.html.elements import *
 # from epstein_files.output.html.positioned_rich import to_em, to_px, PositionedRich, unpack_dimensions
 from epstein_files.output.html.positioned_rich import *
+from epstein_files.output.html.rich_style import RichStyle
 from epstein_files.output.rich import console
 from epstein_files.util.constant.html import CUSTOM_HTML_TEMPLATE, HTML_TERMINAL_THEME
 from epstein_files.util.env import args
@@ -62,11 +62,11 @@ PANEL_BORDER_PROPS = {
 }
 
 
-# TODO: refactor this into HtmlStyle
+# TODO: refactor this into RichStyle
 def border_css_props(style: str | Style | None) -> dict[str, str]:
     """CSS props to make an HTML div with border-color set to `style` arg as a standard CSS RGB string."""
 
-    if style and (html_style := HtmlStyle(style)).foreground_color_hex:
+    if style and (html_style := RichStyle(style)).foreground_color_hex:
         return {
             "border-color": html_style.foreground_color_hex,
             **PANEL_BORDER_PROPS
@@ -101,9 +101,9 @@ def one_row_table_html(table: Table, css_props: OptionalCssProps = None) -> str:
             raise ValueError(f"invalid header type {type(col1.header).__name__} {col1.header}")
 
         header_props = {
-            'border-bottom-color': HtmlStyle(table.border_style).foreground_color_hex,
+            'border-bottom-color': RichStyle(table.border_style).foreground_color_hex,
             'text-align': header.justify or 'left',
-            **(HtmlStyle(table.header_style).to_css if table.header_style else {}),
+            **(RichStyle(table.header_style).to_css if table.header_style else {}),
         }
 
         header_span = render_to_html(Text('', style=col1.header_style or '').append(header))
@@ -137,7 +137,7 @@ def panel_to_div(panel: Panel, css_props: OptionalCssProps) -> str:
     css_props = css_props if css_props is not None else BOTTOM_MARGIN_PROPS                            # TODO: Default bottom margin seems wrong
     border_style = panel.border_style if panel.style == 'none' or not panel.style else panel.style     # TODO: what's up with the string 'none'??
     inner_div_padding_dims = add_constant(unpack_dimensions(panel.padding or 0), MAKEUP_PADDING)
-    html_style = HtmlStyle(panel.style)
+    html_style = RichStyle(panel.style)
 
     inner_div_css = {
         **html_style.to_css,
@@ -201,7 +201,7 @@ def table_to_html(table: Table, css_props: OptionalCssProps = None) -> str:
     """Convert a rich `Table` to an HTML table that looks the same."""
     css_props = css_props or {}
     col_styles = [col.style or '' for col in table.columns]
-    header_css_props = HtmlStyle(table.header_style).to_css if table.header_style else {}
+    header_css_props = RichStyle(table.header_style).to_css if table.header_style else {}
 
     if table.title:
         title_txt = table.title.copy() if isinstance(table.title, Text) else Text(table.title)
@@ -247,7 +247,7 @@ def table_to_html(table: Table, css_props: OptionalCssProps = None) -> str:
     # table.caption is the text at the bottom under the table, the footer kinda
     if table.caption:
         caption = table.caption if isinstance(table.caption, Text) else Text(table.caption)
-        caption_style = HtmlStyle(table.caption_style or '')
+        caption_style = RichStyle(table.caption_style or '')
 
         caption_html = text_to_div(
             caption,
