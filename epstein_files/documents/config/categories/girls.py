@@ -228,7 +228,7 @@ GIRLS_CFGS = [
     ),
     EmailCfg(
         id='EFTA02470883',
-        recipients=[JESSICA_BANKS],
+        recipients=[YULIA_DOROKHINA],
         recipient_uncertain='uses "sooooooooo" a lot, same as this person and not like other girls',
     ),
     EmailCfg(
