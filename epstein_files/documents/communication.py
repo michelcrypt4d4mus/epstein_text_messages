@@ -31,7 +31,7 @@ class Communication(Document):
         self.extracted_recipients = [] if self._config.recipients else self.extract_recipients()
 
     @property
-    def author_or_unknown(self) -> str:
+    def author_str(self) -> str:
         return self.author or UNKNOWN
 
     @property
@@ -105,7 +105,7 @@ class Communication(Document):
     @property
     def _summary_with_author(self) -> Text:
         """Append author information to `super().summary`, bracket is left open."""
-        author_str = styled_key_value('author', Text(f"'{self.author_or_unknown}'", style=self.author_style))
+        author_str = styled_key_value('author', Text(f"'{self.author_str}'", style=self.author_style))
         return super()._summary.append(', ').append(author_str)
 
     def entity_scan(self, exclude: EntityScanArg = None, include: EntityScanArg = None) -> list[Entity]:

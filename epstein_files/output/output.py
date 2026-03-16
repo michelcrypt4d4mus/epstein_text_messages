@@ -302,7 +302,7 @@ def print_email_device_signatures(epstein_files: EpsteinFiles) -> None:
             author_emojis[email.author].update(emojis)
 
             for emoji in emojis:
-                emoji_authors[emoji].add(email.author or UNKNOWN)
+                emoji_authors[emoji].add(email.author_str)
 
     console.line()
     print_subtitle_panel("Emoji Usage")
