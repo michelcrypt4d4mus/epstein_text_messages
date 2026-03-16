@@ -32,6 +32,12 @@ def test_debug_dict(email):
         ],
         'email.author': 'Christina Galbraith',
         'email.category': 'email',
+        'email.entities': [
+            CECILE_DE_JONGH,
+            CHRISTINA_GALBRAITH,
+            JEFFREY_EPSTEIN,
+            'Unik',
+        ],
         'email.extracted_recipients': [],
         'email.header': {
             'attachments': 'DSC_0418.JPG; DSC_0419.JPG; DSC_0424.JPG; Cefotaj Business Plan Final 5-18-11(1).docx',
@@ -45,12 +51,6 @@ def test_debug_dict(email):
         },
         'email.is_interesting': True,
         'email.is_word_count_worthy': True,
-        'email.people': [
-            CECILE_DE_JONGH,
-            CHRISTINA_GALBRAITH,
-            JEFFREY_EPSTEIN,
-            'Unik',
-        ],
         'email.num_lines': 51,
         'email.recipients': [CECILE_DE_JONGH, JEFFREY_EPSTEIN, 'Unik'],
         'email.timestamp': coerce_utc_strict(datetime(2012, 6, 22, 23, 8)),

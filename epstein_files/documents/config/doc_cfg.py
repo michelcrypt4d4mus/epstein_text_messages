@@ -452,6 +452,9 @@ class DocCfg(LoggingEntity):
             else:
                 props['is_of_interest'] = self.is_of_interest
 
+        if self.is_very_interesting is False:
+            del props['is_very_interesting']
+
         if self.complete_description:
             description_pieces = without_falsey([self.author, self.description])
 
