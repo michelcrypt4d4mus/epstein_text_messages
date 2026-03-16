@@ -2,7 +2,7 @@ import logging
 import re
 from collections import defaultdict
 from dataclasses import dataclass, field, fields
-from typing import Literal, Self
+from typing import ClassVar, Literal, Self
 
 from rich.padding import Padding
 from rich.style import Style
@@ -49,7 +49,6 @@ class Entity(LoggingEntity):
         is_emailer (bool): should email headers be scanned for this entity
         is_interesting (bool): should a biographical entry be generated for this panel in the chronological view
         is_junk (bool): for junk email
-        is_organization (bool): if this is a company or group, don't try to match first and last versions of its name
         match_partial (PartialName | None): whether to also match this entity's first and last names
         style (str, optional): style to use when printing this entity's name
         unique_phraseologies (list[str], optional): turns of phrase known to be unique to this person
@@ -66,7 +65,6 @@ class Entity(LoggingEntity):
     is_emailer: bool = True
     is_interesting: bool = True  # Eligible for bio panel
     is_junk: bool = False  # TODO: this sucks
-    is_organization: bool = False
     match_partial: PartialName | None = 'last'
     unique_phraseologies: list[str] = field(default_factory=list)
     url: str | list[str] | Literal['WIKIPEDIA'] = ''
@@ -75,6 +73,9 @@ class Entity(LoggingEntity):
     _style: RichStyle = field(default_factory=lambda: RichStyle(None))
     _urls: list[str] = field(init=False)
     # jmail_url: str
+
+    # Class variables
+    DEFAULT_PATTERN_SFX: ClassVar[str] = '?'
 
     @property
     def style(self) -> str:
@@ -85,9 +86,6 @@ class Entity(LoggingEntity):
         self._style = RichStyle(val)
 
     def __post_init__(self):
-        if self.is_organization:
-            self.match_partial = None
-
         self._urls = [wikipedi_url(self.name) if url == WIKIPEDIA else url for url in listify(self.url)]
 
         try:
@@ -164,8 +162,8 @@ class Entity(LoggingEntity):
             else:
                 pattern = self.name
 
-            if len(self.name) >= MIN_LEN_FOR_OPTIONAL_LAST_CHAR and not self.is_organization:
-                pattern += '?'
+            if len(self.name) >= MIN_LEN_FOR_OPTIONAL_LAST_CHAR:
+                pattern += self.DEFAULT_PATTERN_SFX
 
         return as_pattern(join_patterns([pattern, *self.email_addresses]))
 
@@ -289,15 +287,47 @@ class Entity(LoggingEntity):
         return '[\n' + indented([repr(contact) for contact in contact_infos], 4) + '\n],'
 
 
+@dataclass
+class Organization(Entity):
+    # Different defaults
+    is_emailer: bool = False
+    match_partial: PartialName | None = None
+    # Additional properties
+    belongs_to: str = ''
+
+    DEFAULT_PATTERN_SFX: ClassVar[str] = ''
+
+    def __post_init__(self):
+        if (suffix_match := COMPANY_SUFFIX_REGEX.match(self.name)) and not self.emailer_pattern:
+            suffix = suffix_match.group(1)
+            emailer_pattern = self.name.removesuffix(suffix)
+
+            if not MGMT_REGEX.search(suffix):
+                if suffix.startswith(','):
+                    suffix = suffix.replace(',', ',?')
+                else:
+                    suffix = f",?{suffix}"
+
+            if suffix.endswith('.'):
+                suffix = suffix.replace('.', r'\.?')
+
+            self.emailer_pattern += fr"{emailer_pattern}({suffix})?"
+
+        if self.belongs_to:
+            self.info = join_truthy(f"{self.belongs_to} entity", self.info)
+
+        return super().__post_init__()
+
+
 EntityScanArg = list[Entity] | Entity | list[str] | str | None
 
 
-def acronym(name: str, info: str = '', **kwargs) -> Entity:
-    """Like organization() but auto-generates a regex matching the org's initials."""
+def acronym(name: str, info: str = '', **kwargs) -> Organization:
+    """Auto-generates a regex matching the org's initials."""
     initials = [word[0] for word in name.split() if word[0].isupper()]
     initials_pattern = ''.join([fr"{letter}\.?" for letter in initials])
 
-    return organization(
+    return Organization(
         ''.join(initials),
         join_truthy(name, info, ', '),
         join_patterns([initials_pattern, name]),
@@ -305,8 +335,8 @@ def acronym(name: str, info: str = '', **kwargs) -> Entity:
     )
 
 
-def epstein_co(name: str, emailer_pattern: str = '', info: str = '', **kwargs) -> Entity:
-    return organization(name, join_truthy('Epstein company', info), emailer_pattern, **kwargs)
+def epstein_co(name: str, emailer_pattern: str = '', info: str = '', **kwargs) -> Organization:
+    return Organization(name, join_truthy('Epstein company', info), emailer_pattern, **kwargs)
 
 
 def epstein_trust(
@@ -314,7 +344,7 @@ def epstein_trust(
     emailer_pattern: str = '',
     beneficiaries: list[str] | None = None,
     trustees: list[str] | None = None,
-) -> Entity:
+) -> Organization:
     """One of Epstein's financial trust entities."""
     name = f"Jeffrey E. Epstein {name} Trust" if is_integer(name) else name
     beneficiary_str = ''
@@ -329,49 +359,23 @@ def epstein_trust(
         beneficiary_str = join_truthy(beneficiary_str, f"trustees: " + ', '.join(trustees), ', ')
 
     beneficiary_str = f", {beneficiary_str}" if beneficiary_str else ''
-    return organization(name, f'Epstein financial trust{beneficiary_str}', emailer_pattern)
+    return Organization(name, f'Epstein financial trust{beneficiary_str}', emailer_pattern)
 
 
-def law_enforcement(name: str, emailer_pattern: str = '', info: str = '', **kwargs) -> Entity:
-    return organization(name, info or LAW_ENFORCEMENT, emailer_pattern, is_interesting=False, **kwargs)
+def law_enforcement(name: str, emailer_pattern: str = '', info: str = '', **kwargs) -> Organization:
+    return Organization(name, info or LAW_ENFORCEMENT, emailer_pattern, is_interesting=False, **kwargs)
 
 
-# TODO: make class method (?)
-def organization(name: str, info: str = '', emailer_pattern: str = '', **kwargs) -> Entity:
-    if (suffix_match := COMPANY_SUFFIX_REGEX.match(name)) and not emailer_pattern:
-        suffix = suffix_match.group(1)
-        emailer_pattern = name.removesuffix(suffix)
-
-        if not MGMT_REGEX.search(suffix):
-            if suffix.startswith(','):
-                suffix = suffix.replace(',', ',?')
-            else:
-                suffix = f",?{suffix}"
-
-        if suffix.endswith('.'):
-            suffix = suffix.replace('.', r'\.?')
-
-        emailer_pattern += fr"({suffix})?"
-
-    kwargs['is_emailer'] = kwargs.get('is_emailer', False)
-
-    try:
-        return Entity(name, info, emailer_pattern, is_organization=True, **kwargs)
-    except Exception as e:
-        logger.error(f"Failed to build entity for {name}")
-        raise e
-
-
-def publication(name: str, emailer_pattern: str = '', **kwargs) -> Entity:
+def publication(name: str, emailer_pattern: str = '', **kwargs) -> Organization:
     """Convenience method for WSJ, New York Times, etc."""
     # Make sure not to match 'Daily News' to 'Virgin Islands Daily News' / 'Palm Beach Daily News'
     if name.startswith('Daily'):
         emailer_pattern = fr"(?<!(Beach|lands)\s){emailer_pattern or name}"
 
-    return organization(name, emailer_pattern=emailer_pattern, is_interesting=False, **kwargs)
+    return Organization(name, emailer_pattern=emailer_pattern, is_interesting=False, **kwargs)
 
 
-def the_publication(name: str, emailer_pattern: str = '', **kwargs) -> Entity:
+def the_publication(name: str, emailer_pattern: str = '', **kwargs) -> Organization:
     """Publication that starts with 'The'."""
     emailer_pattern = emailer_pattern or name
     pattern = fr"({emailer_pattern})" if '|' in emailer_pattern else emailer_pattern

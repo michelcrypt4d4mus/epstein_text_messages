@@ -6,7 +6,7 @@ from collections import Counter
 from typing import Optional
 
 from epstein_files.output.highlight_config import HIGHLIGHTED_ENTITIES
-from epstein_files.people.entity import Entity, organization
+from epstein_files.people.entity import Entity, Organization
 from epstein_files.people.names import *
 from epstein_files.util.constant.strings import REDACTED
 from epstein_files.util.helpers.data_helpers import escape_single_quotes, flatten, groupby, uniq_sorted, without_falsey
