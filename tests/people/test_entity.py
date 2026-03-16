@@ -40,7 +40,7 @@ def test_bio():
 
 
 def test_epstein_co():
-    zorro = epstein_co('Zorro', description='for New Mexico ranch')
+    zorro = epstein_co('Zorro', info='for New Mexico ranch')
     assert zorro.info == f"Epstein company for New Mexico ranch"
 
 

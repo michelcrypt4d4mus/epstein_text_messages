@@ -56,7 +56,7 @@ class Entity(LoggingEntity):
         url (str | list[str] | Literal['WIKIPEDIA'], optional): link(s) to info about this entity
     """
     name: str
-    info: str = ''
+    info: str = ''  # TODO: rename "note" for consistency w/DocCfg
     emailer_pattern: str = ''
     # Props after here not usually set by positional args
     aliases: list[str] = field(default_factory=list)
@@ -292,21 +292,21 @@ class Entity(LoggingEntity):
 EntityScanArg = list[Entity] | Entity | list[str] | str | None
 
 
-def acronym(name: str, description: str = '', **kwargs) -> Entity:
+def acronym(name: str, info: str = '', **kwargs) -> Entity:
     """Like organization() but auto-generates a regex matching the org's initials."""
     initials = [word[0] for word in name.split() if word[0].isupper()]
     initials_pattern = ''.join([fr"{letter}\.?" for letter in initials])
 
     return organization(
         ''.join(initials),
-        join_truthy(name, description, ', '),
+        join_truthy(name, info, ', '),
         join_patterns([initials_pattern, name]),
         **kwargs
     )
 
 
-def epstein_co(name: str, emailer_pattern: str = '', description: str = '', **kwargs) -> Entity:
-    return organization(name, join_truthy('Epstein company', description), emailer_pattern, **kwargs)
+def epstein_co(name: str, emailer_pattern: str = '', info: str = '', **kwargs) -> Entity:
+    return organization(name, join_truthy('Epstein company', info), emailer_pattern, **kwargs)
 
 
 def epstein_trust(
@@ -332,12 +332,12 @@ def epstein_trust(
     return organization(name, f'Epstein financial trust{beneficiary_str}', emailer_pattern)
 
 
-def law_enforcement(name: str, emailer_pattern: str = '', description: str = '', **kwargs) -> Entity:
-    return organization(name, description or LAW_ENFORCEMENT, emailer_pattern, is_interesting=False, **kwargs)
+def law_enforcement(name: str, emailer_pattern: str = '', info: str = '', **kwargs) -> Entity:
+    return organization(name, info or LAW_ENFORCEMENT, emailer_pattern, is_interesting=False, **kwargs)
 
 
 # TODO: make class method (?)
-def organization(name: str, description: str = '', emailer_pattern: str = '', **kwargs) -> Entity:
+def organization(name: str, info: str = '', emailer_pattern: str = '', **kwargs) -> Entity:
     if (suffix_match := COMPANY_SUFFIX_REGEX.match(name)) and not emailer_pattern:
         suffix = suffix_match.group(1)
         emailer_pattern = name.removesuffix(suffix)
@@ -356,7 +356,7 @@ def organization(name: str, description: str = '', emailer_pattern: str = '', **
     kwargs['is_emailer'] = kwargs.get('is_emailer', False)
 
     try:
-        return Entity(name, description, emailer_pattern, is_organization=True, **kwargs)
+        return Entity(name, info, emailer_pattern, is_organization=True, **kwargs)
     except Exception as e:
         logger.error(f"Failed to build entity for {name}")
         raise e
