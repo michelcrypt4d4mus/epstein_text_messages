@@ -3,6 +3,7 @@ from dataclasses import dataclass, field
 from epstein_files.documents.config.doc_cfg import DocCfg
 from epstein_files.people.names import *
 from epstein_files.util.constant.strings import *
+from epstein_files.util.helpers.data_helpers import without_falsey
 
 
 @dataclass(kw_only=True)
@@ -38,6 +39,11 @@ class CommunicationCfg(DocCfg):
             return False
         else:
             return super().is_of_interest
+
+    @property
+    def names(self) -> list[str]:
+        """Names configured for this document. Overloaded in subclass to add recipients."""
+        return super().names + without_falsey(self.recipients)
 
     @property
     def recipients_str(self) -> str:

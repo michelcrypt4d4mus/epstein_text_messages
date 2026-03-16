@@ -9,7 +9,7 @@ from epstein_files.documents.emails.emailers import BAD_EMAILER_REGEX, TIME_REGE
 from epstein_files.util.constant.strings import AUTHOR
 from epstein_files.people.names import UNKNOWN
 from epstein_files.util.constants import CONFIGS_BY_ID
-from epstein_files.util.helpers.data_helpers import only_truthy
+from epstein_files.util.helpers.data_helpers import without_falsey
 from epstein_files.util.helpers.string_helper import indented, join_patterns, join_truthy
 from epstein_files.util.logging import logger
 
@@ -204,7 +204,7 @@ class EmailHeader:
 
     def _is_list_prop_empty(self, prop: str) -> bool:
         """Check if the field should be considered empty after stripping cruft off."""
-        field_values = only_truthy([cleanup_str(name) for name in (getattr(self, prop) or [])])
+        field_values = without_falsey([cleanup_str(name) for name in (getattr(self, prop) or [])])
         return prop in self.field_names and len(field_values) == 0
 
     def __str__(self) -> str:

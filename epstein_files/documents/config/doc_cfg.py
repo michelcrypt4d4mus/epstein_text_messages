@@ -332,11 +332,6 @@ class DocCfg(LoggingEntity):
         return re.escape(self.highlight_quote).replace(r'\ ', r"\s+") if self.highlight_quote else None
 
     @property
-    def is_empty(self) -> bool:
-        has_truthy_field = any([v for k, v in asdict(self).items() if k not in ['id', 'is_valid_for_name_scan']])
-        return self.is_valid_for_name_scan is True and not has_truthy_field
-
-    @property
     def is_description_a_title(self) -> bool:
         """True if first char is uppercase or a quote."""
         if not (self.author and self.note):
@@ -352,6 +347,11 @@ class DocCfg(LoggingEntity):
     @property
     def is_doj_file(self) -> bool:
         return is_doj_file(self.id)
+
+    @property
+    def is_empty(self) -> bool:
+        has_truthy_field = any([v for k, v in asdict(self).items() if k not in ['id', 'is_valid_for_name_scan']])
+        return self.is_valid_for_name_scan is True and not has_truthy_field
 
     @property
     def is_excerpt(self) -> bool:
@@ -420,13 +420,14 @@ class DocCfg(LoggingEntity):
         return metadata
 
     @property
+    def names(self) -> list[str]:
+        """Names configured for this document. Overloaded in subclass to add recipients."""
+        return [self.author] if self.author else []
+
+    @property
     def recipients_str(self) -> str:
         """Overloaded in subclasses that support recipients."""   # TODO: this shouldn't have to be here
         return ''
-
-    # @property
-    # def table_preview_len(self) -> int | None:
-    #     """Number of chars to show in an `OtherFile` table view."""
 
     @property
     def timestamp(self) -> datetime | None:
