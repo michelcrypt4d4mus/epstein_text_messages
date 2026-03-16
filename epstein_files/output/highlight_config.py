@@ -3125,7 +3125,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"USVI",
             r"U(nited |\.)?S(tates|\.)? Virgin Islands",
             r"(?<!stein |vis-a-)VI(?!s-a-)",
-            r"Virgin Is(al|la)nd?s",
+            r"Virgin Is(al|la)nd?s(?! Daily)",
             r"(West )?Palm Beach( County)?(?! (Daily|Police|Post))",
         ],
     ),
