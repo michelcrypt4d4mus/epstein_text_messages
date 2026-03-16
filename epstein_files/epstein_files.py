@@ -22,7 +22,7 @@ from epstein_files.documents.doj_file import DojFile
 from epstein_files.documents.email import EMAILERS_TO_ALWAYS_TRUNCATE, Email
 from epstein_files.documents.emails.constants import UNINTERESTING_EMAILERS
 from epstein_files.documents.emails.dropsite_email import DropsiteEmail
-from epstein_files.documents.emails.util import split_up_multi_email_files
+from epstein_files.documents.emails.multi_email_files import split_up_multi_email_files
 from epstein_files.documents.json_file import JsonFile
 from epstein_files.documents.messenger_log import MSG_REGEX, MessengerLog
 from epstein_files.documents.messenger_log_pdf import IMESSAGE_PDF_IDS, MessengerLogPdf
