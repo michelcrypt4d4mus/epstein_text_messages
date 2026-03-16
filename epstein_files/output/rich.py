@@ -67,7 +67,7 @@ RICH_THEME = Theme(THEME_STYLES)
 CONSOLE_KWARGS = {
     'color_system': '256',
     'highlighter': highlighter,
-    'record': args.build,
+    'record': True, # args.build,
     'safe_box': True,
     'theme': RICH_THEME,
     'width': args.width,
