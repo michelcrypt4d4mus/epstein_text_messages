@@ -1656,7 +1656,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             law_enforcement('DOJ Chief Psychologist'),
             law_enforcement('DOJ Inspector General'),
             law_enforcement('DOJ London'),
-            law_enforcement(FBI, emailer_pattern=r"(?<!NY )((?-i:FBI)|fbi\.s?gov)?", is_emailer=True),
+            law_enforcement(FBI, emailer_pattern=r"(?<!NY )((?-i:FBI)|fbi\.s?gov)", is_emailer=True),
             law_enforcement('Manhattan DA'),
             law_enforcement('NY FBI', is_emailer=True),
             law_enforcement(OFFICE_OF_THE_DEPUTY_ATTORNEY_GENERAL, r"\bODAG\b", is_emailer=True),
