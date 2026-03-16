@@ -166,11 +166,6 @@ def render_at_console_width(obj: RenderableType) -> str:
     return _render_at_width(obj, console.width)
 
 
-def render_max_width(obj: RenderableType) -> str:
-    """render obj to a <pre> block formatted entirely by rich monospace layout that is MAX_RENDER_WIDTH chars wide."""
-    return _render_at_width(obj, MAX_RENDER_WIDTH)
-
-
 def render_at_css_width(obj: RenderableType, props: OptionalCssProps = None) -> str:
     """Convert CssProps to rich Padding units."""
     props = props or {}
@@ -188,6 +183,11 @@ def render_at_obj_width(obj: RenderableType) -> str:
     """Render `obj` to a <pre> block with same width as `obj`."""
     with _obj_width_renderer(obj) as _renderer:
         return render_to_html(obj, _renderer)
+
+
+def render_max_width(obj: RenderableType) -> str:
+    """render obj to a <pre> block formatted entirely by rich monospace layout that is MAX_RENDER_WIDTH chars wide."""
+    return _render_at_width(obj, MAX_RENDER_WIDTH)
 
 
 def render_to_html(obj: RenderableType, renderer_console: Console | None = None) -> str:
