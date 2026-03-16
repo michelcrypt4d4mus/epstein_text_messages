@@ -2537,14 +2537,14 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Entity('Dasha Zhukova', "art collector, daughter of Alexander Zhukov"),
             Entity(
                 'Dmitry Rybolovlev',
-                f"oligarch, purchased {DONALD_TRUMP}'s house",
+                f"oligarch who purchased {DONALD_TRUMP}'s house at a possibly inflated price",
                 r"Rybolo(o?l?ev|vlev)",
-                url='https://en.wikipedia.org/wiki/Dmitry_Rybolovlev',
+                url=['https://www.nytimes.com/2018/09/07/arts/design/dmitry-rybolovlev-monaco-investigation.html'],
             ),
             Entity('Igor Zinoviev', f"Epstein's bodyguard, MMA fighter"),
             Entity('Len Blavatnik', 'oligarch', url=WIKIPEDIA),
             Entity('Mikhail Prokhorov', 'Russian-Israeli oligarch', url=WIKIPEDIA),
-            Entity('Mikheil Saakashvili', 'president of Georgia', r"Mikh[ae]il Saakashvili"),
+            Entity('Mikheil Saakashvili', 'former president of Georgia', r"Mikh[ae]il Saakashvili", url=WIKIPEDIA),
             Entity('Nicholas Kovarsky', f"friend of {SERGEY_BELYAKOV}", r"Nic(k|holas) Kovarsky"),
             Entity('Oleg Boyko', 'oligarch'),
             Entity(
@@ -2552,8 +2552,12 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 'oligarch with underage sex scandal history',
                 url='https://www.themoscowtimes.com/2025/06/19/investigative-report-alleges-links-between-billionaire-deripaska-and-prostitution-ring-involving-minors-a89503',
             ),
-            Entity('Ruben Vardanyan', 'Armenian oligarch, former minister of breakawy province of Artsakh'),
-            Entity('Semion Mogilevich', 'infamous Russian mafia boss'),
+            Entity(
+                'Ruben Vardanyan',
+                'Armenian oligarch, former minister of breakawy province of Artsakh',
+                url='https://en.wikipedia.org/wiki/Ruben_Vardanyan_(politician)',
+            ),
+            Entity('Semion Mogilevich', 'infamous Russian mafia boss', url=WIKIPEDIA),
             Entity(
                 "Serguei Beloussov",
                 'technologist',
