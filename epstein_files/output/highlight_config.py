@@ -25,6 +25,9 @@ from epstein_files.util.helpers.rich_helpers import QUESTION_MARKS_TXT
 from epstein_files.util.helpers.string_helper import indented, join_patterns
 from epstein_files.util.logging import logger
 
+DATE_PATTERN = r"\d{1,4}[-/]\d{1,2}[-/]\d{2,4}"
+TIME_PATTERN = r"\d{1,2}:\d{2}:\d{2}( [AP]M)?"
+
 CIVIL_ATTORNEY = 'civil attorney'
 CRIMINAL_DEFENSE_ATTORNEY = 'criminal defense attorney'
 CRIMINAL_DEFENSE_2008 = f"Epstein {CRIMINAL_DEFENSE_ATTORNEY} on 2008 case"
@@ -39,9 +42,6 @@ WIGDOR_ATTORNEY = f"Wigdor LLP lawyer in {LEON_BLACK} lawsuit"
 
 FINANCIAL_COLOR = 'dark_sea_green2'
 VICTIM_COLOR = 'orchid1'
-
-DATE_PATTERN = r"\d{1,4}[-/]\d{1,2}[-/]\d{2,4}"
-TIME_PATTERN = r"\d{1,2}:\d{2}:\d{2}( [AP]M)?"
 
 debug_console = Console(color_system='256')
 
