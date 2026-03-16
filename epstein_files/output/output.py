@@ -33,12 +33,13 @@ from epstein_files.util.helpers.file_helper import file_size_str, log_file_write
 from epstein_files.util.helpers.string_helper import extract_emojis
 from epstein_files.util.logging import logger, exit_with_error
 
+DEVICE_SIGNATURE_PADDING = (1, 0)
+PRINT_COLOR_KEY_EVERY_N_EMAILS = 150
+
 OTHER_INTERESTING_EMAILS_SUBTITLE = 'Other Interesting Emails\n(these emails have been flagged as being of particular interest)'
 CONVERSATIONS_SORTED_BY_TXT = Text("(conversations sorted chronologically based on timestamp of the first text message)", 'dim')
 DEVICE_SIGNATURE_SUBTITLE = f"Email [italic]Sent from \\[DEVICE][/italic] Signature Breakdown"
 DEVICE_SIGNATURE = 'Device Signature'
-DEVICE_SIGNATURE_PADDING = (1, 0)
-PRINT_COLOR_KEY_EVERY_N_EMAILS = 150
 
 
 def print_curated_chronological(epstein_files: EpsteinFiles, doc_printer: DocPrinter) -> list[Document]:
