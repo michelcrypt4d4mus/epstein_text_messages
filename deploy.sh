@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 # Use --pickled arg to use pickled data file, otherwise pickled data will always be overwritten
 #
-#   - NO_DOJ=true to skip the DOJ files page build
 #   - ONLY_MOBILE=true for only mobile sites
 #   - ONLY_TEXTS=true to skip build/deploy of full emails site.
 #   - TAG_RELEASE=true to upload the pkl.gz file to the repo and deploy DOJ files site
