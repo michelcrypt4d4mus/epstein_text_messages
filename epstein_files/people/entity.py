@@ -354,7 +354,12 @@ def organization(name: str, description: str = '', emailer_pattern: str = '', **
         emailer_pattern += fr"({suffix})?"
 
     kwargs['is_emailer'] = kwargs.get('is_emailer', False)
-    return Entity(name, description, emailer_pattern, is_organization=True, **kwargs)
+
+    try:
+        return Entity(name, description, emailer_pattern, is_organization=True, **kwargs)
+    except Exception as e:
+        logger.error(f"Failed to build entity for {name}")
+        raise e
 
 
 def publication(name: str, emailer_pattern: str = '', **kwargs) -> Entity:

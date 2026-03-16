@@ -1854,6 +1854,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 url='https://www.justice.gov/usao-edny/pr/bank-hapoalim-agrees-pay-more-30-million-its-role-money-laundering-conspiracy-involving',
             ),
             organization("Mizrahi Bank", '3rd largest bank in Israel'),
+            the_publication(SHIMON_POST.removeprefix('The ')),
         ],
         patterns=[
             r"AIPAC",
@@ -1869,7 +1870,6 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"(Benjamin|Binyamin|Yair )?Netanyahu",
             r"(Sheldon )?Adelson",
             r"Tel Aviv",
-            r"(The )?Shimon Post",
             r"Yitzhak", r"Rabin",
             r"YIVO",
             r"Yoni Koren",
@@ -1976,7 +1976,6 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             publication('Fortune Magazine'),
             publication('JetGala'),
             publication('Politico'),
-            publication(SHIMON_POST),
             publication(THE_REAL_DEAL),
             the_publication('Boston Globe'),
             the_publication(DAILY_MAIL),

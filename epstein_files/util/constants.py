@@ -227,6 +227,8 @@ UNINTERESTING_EMAIL_IDS = [
     'EFTA01740489',
     # Martin Weinberg
     '030149',
+    # Nadia Marcinko
+    'EFTA02409863',
     # Peter Thiel
     'EFTA01003336',
     # Philip Rosedale

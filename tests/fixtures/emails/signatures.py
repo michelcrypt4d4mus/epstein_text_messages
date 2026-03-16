@@ -493,6 +493,7 @@ SIGNATURE_SUBSTITUTION_COUNTS = {
     "David Ingram": 9,
     DAVID_STERN: 2,
     DEEPAK_CHOPRA: 19,
+    DEUTSCHE_BANK: 12,
     EDUARDO_ROBLES: 6,
     'Erika Kellerhals': 1,
     FAITH_KATES: 1,
