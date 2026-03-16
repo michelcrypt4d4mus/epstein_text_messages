@@ -62,6 +62,7 @@ THEME_STYLES = {
 
 RICH_THEME = Theme(THEME_STYLES)
 
+
 # Instantiate console object
 CONSOLE_KWARGS = {
     'color_system': '256',
@@ -71,7 +72,6 @@ CONSOLE_KWARGS = {
     'theme': RICH_THEME,
     'width': args.width,
 }
-
 
 if args.suppress_output:
     logger.warning(f"Suppressing terminal output because args.suppress_output={args.suppress_output}...")
