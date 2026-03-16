@@ -1308,7 +1308,7 @@ file_id,category,author,is_interesting,timestamp,recipients_str,sent_from_device
 029500,email,Joi Ito,False,2016-05-10 15:44:04+00:00,Jeffrey Epstein,Sent from my iPhone,
 029501,email,Alan Dershowitz,,2016-06-30 14:45:27+00:00,Gerald Lefcourt;Jeffrey Epstein;Martin Weinberg,Sent from my iPhone,
 029503,email,Deepak Chopra,,2016-07-17 19:26:43+00:00,Jeffrey Epstein,,
-029504,email,Audrey/Aubrey Raimbault (???),,2019-07-10 08:00:00+00:00,Jeffrey Epstein,,Audrey/Aubrey Raimbault (???)
+029504,email,Audrey/Aubrey Raimbault,,2019-07-10 08:00:00+00:00,Jeffrey Epstein,,Audrey/Aubrey Raimbault (???)
 029505,email,Kathryn Ruemmler,False,2018-05-28 22:56:02+00:00,Jeffrey Epstein,,
 029509,email,Deepak Chopra,False,2018-06-06 11:32:09+00:00,Jeffrey Epstein,,
 029516,email,Mark Tramo,,2018-10-14 17:16:21+00:00,Jeffrey Epstein,,
@@ -5373,7 +5373,7 @@ EFTA00165515,misc,,True,,,,contractor describes Epstein's gun safes
 EFTA00173569,government,FBI,True,2026-01-04 00:00:00+00:00,,,FBI report about hack of FBI Epstein files repository by foreign actor
 EFTA00173881,crypto,US Secret Service,True,2025-01-30 17:48:18+00:00,Enterprise Vetting Center,,US Secret Service
 EFTA00173883,email,,True,2025-01-30 17:15:29+00:00,None,,
-EFTA00173953,money,Organized Crime Drug Enforcement Task Force,True,2020-03-06 15:00:00+00:00,,,Organized Crime Drug Enforcement Task Force report on DEA investigations into Epstein related drug money laundering
+EFTA00173953,money,OCDETF,True,2020-03-06 15:00:00+00:00,,,OCDETF report on investigations of Epstein related drug money laundering
 EFTA00174375,government,FBI,True,2026-01-17 00:00:00+00:00,,,"FBI interview with Luke D. Thorburn, lots of takes on Epstein, China, and Steve Bannon"
 EFTA00177201,legal,Jane Doe #1 and Jane Doe #2 v. United States,True,2026-01-14 00:00:00+00:00,,,Jane Doe #1 and Jane Doe #2 v. United States: court docket and many filings
 EFTA00182657,,,,,,,
@@ -5473,7 +5473,7 @@ EFTA00434111,email,,True,2011-05-01 17:00:20+00:00,Janis Hartley,,
 EFTA00434306,crypto,,True,2011-04-26 00:00:00+00:00,,,calendar reminder for call with Howard Lutnick
 EFTA00436142,email,Lesley Groff,,2011-04-04 19:43:54+00:00,Jeffrey Epstein,,
 EFTA00436468,crypto,,True,2011-03-24 17:08:20+00:00,Jeffrey Epstein,,call with Howard Lutnick after he goes overseas
-EFTA00438431,email,Abdullah Al Maari,,2016-11-02 10:15:55+00:00,,,
+EFTA00438431,girls,Abdullah Al Maari,True,2016-11-02 10:15:55+00:00,Lesley Groff,,visa invitation for Karyna Shuliak to visit (???)
 EFTA00443752,crypto,Christopher Petrock,True,2017-01-24 22:33:43+00:00,Jeffrey Epstein;Matthew Gilbert,,invitation from Howard Lutnick
 EFTA00456303,email,Amir Stemhell,,2017-07-28 17:35:06+00:00,Armand,Sent from Yahoo Mail on Android,
 EFTA00460312,girls,Lesley Groff,True,2017-10-04 16:22:14+00:00,Julia Santos,Sent from my iPhone,
@@ -6310,7 +6310,7 @@ EFTA01388354,crypto,Vahe Stepanian,True,2018-03-14 17:51:56+00:00,Paul Barrett;S
 EFTA01388422,email,Mike Novogratz,,2018-09-21 13:29:41+00:00,Davide-A Sferrazza;Devin Anderson;Martin Zeman;Paul Barrett;Stewart Oldfield;Xavier Avila,,
 EFTA01401059,crypto,,True,2014-09-09 00:00:00+00:00,,,Deutsche Bank wire transfer receipt for Epstein's investment in Blockstream
 EFTA01402630,money,,True,2026-01-12 00:00:00+00:00,,,transactions by Epstein's Southern Financial LLC
-EFTA01409449,email,Kumar Sambhav,,2015-02-18 18:14:46+00:00,Vahe Stepanian;prabhuling-c.kottalagi@db.com;sanjay.mehta@db.com;sowmya-d r sowmya-d.r@db.com,,
+EFTA01409449,money,Kumar Sambhav,True,2015-02-18 18:14:46+00:00,Vahe Stepanian;prabhuling-c.kottalagi@db.com;sanjay.mehta@db.com;sowmya-d r sowmya-d.r@db.com,,Deutsche Bank employees scrubbing Epstein's name off his TWTR (Twitter) trades
 EFTA01413294,money,,True,2016-12-16 00:00:00+00:00,,,compliance report on payment from Epstein to Sberbank account of Nikolay Aleksandrovich Gyrov
 EFTA01434500,crypto,Stewart Oldfield  ›,True,2018-03-14 21:48:54+00:00,Vahe Stepanian,,everyone assumes Epstein's banker Paul Barrett will want to know about the blockchain event
 EFTA01435885,,,,2017-04-04 00:00:00+00:00,,,
@@ -6875,6 +6875,7 @@ EFTA02439633,email,Story Cowles,,2009-07-06 11:13:26+00:00,Jeffrey Epstein,Sent 
 EFTA02441035,girls,Steven Victor MD,True,2009-08-11 18:47:29+00:00,Jeffrey Epstein,,Steven Victor MD complaints about free medical treatment for Epstein's girls
 EFTA02442672,email,David Stern,True,2009-05-20 15:42:17+00:00,Jeffrey Epstein,,David Stern Bank Leumi would get in trouble for helping Americans avoid taxes a few years after this
 EFTA02443850,email,William Murphy,,2009-06-18 15:26:22+00:00,Jeffrey Epstein,,
+EFTA02447019,girls,Jeffrey Epstein,True,2016-10-29 15:52:00+00:00,Svetlana Pozhidaeva,,
 EFTA02447091,email,Richard Kahn,,2011-10-01 00:00:00+00:00,Jeffrey Epstein,,
 EFTA02448712,email,Hamad bin Jassim al-Thani,True,2016-10-10 19:14:00+00:00,Jeffrey Epstein,,
 EFTA02449477,girls,unknown girl,True,2018-05-04 20:04:00+00:00,Jeffrey Epstein,,unknown girl argument about finding girls for Epstein
