@@ -8,7 +8,6 @@ from rich import box
 from rich.padding import Padding
 from rich.panel import Panel
 
-from epstein_files.documents.communication import Communication
 from epstein_files.documents.document import Document
 from epstein_files.documents.doj_file import DojFile
 from epstein_files.documents.email import Email
@@ -17,7 +16,6 @@ from epstein_files.documents.other_file import FIRST_FEW_LINES, OtherFile
 from epstein_files.epstein_files import EpsteinFiles
 from epstein_files.output.doc_printer import DocPrinter
 from epstein_files.output.epstein_highlighter import highlighter
-from epstein_files.output.highlight_config import get_style_for_name
 from epstein_files.output.rich import *
 from epstein_files.output.site.sites import (AUTHORS_USING_SIGNATURES, EMAILERS_TABLE_PNG_PATH,
      FILES_THAT_ARE_NEITHER_EMAILS_NOR, HIS_EMAILS, HIS_TEXT_MESSAGES, HTML_DIR, SELECTIONS_FROM)
