@@ -220,17 +220,12 @@ class Entity(LoggingEntity):
     @property
     def _props_strs(self) -> list[str]:
         props = []
-
-        def add_prop(f, value):
-            if self.emailer_pattern:  # if there's no self.emailer_pattern it was probably instantiated with positional args only
-                prop_name = f if isinstance(f, str) else f.name
-                props.append(f"{prop_name}={value}")
-            else:
-                props.append(value)
+        # if there's no self.emailer_pattern this obj was probably instantiated with positional args only
+        add_prop = lambda f, value: props.append(f"{f}={value}" if self.emailer_pattern else value)
 
         for _field in fields(self):
             if _field.name == 'name':
-                add_prop(_field, constantize_name(getattr(self, _field.name)))
+                add_prop(_field.name, constantize_name(getattr(self, _field.name)))
             elif _field.name == '_style':
                 add_prop('style', quote(self.style))
             elif (value := getattr(self, _field.name)) and not _field.name.endswith('regex'):
@@ -240,7 +235,7 @@ class Entity(LoggingEntity):
                     value = quote(constantize_names(str(value)))
                     value = ('f' + value) if '{' in value else value
 
-                add_prop(_field, value)
+                add_prop(_field.name, value)
 
         props.append(f'highlight_pattern=r"{self.highlight_pattern}"')
         return props
