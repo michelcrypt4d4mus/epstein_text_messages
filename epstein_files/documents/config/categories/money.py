@@ -94,4 +94,5 @@ MONEY_CFGS = [
     ),
     EmailCfg(id='EFTA00371120', description=f"Epstein appears to invest in {ATORUS}"),
     EmailCfg(id='EFTA00652799', description=f'Epstein calls Ari Glass "a bit sketchy" despite investing ~$50 million in his fund Boothbay'),
+    EmailCfg(id='EFTA01388422', description='Nadean Novogratz is probably the sister-in-law of crypto ponzi billionaire Mike Novogratz'),
 ]
