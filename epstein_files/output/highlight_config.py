@@ -535,7 +535,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Modafanil",
             r"narco(tic)?",
             r"murder(e[dr]|ing)?",
-            r"organized crime",
+            r"organized crime(?! drug enforcement)",
             r"Provigil",
             r"(securities )?fraud(ulent)?",
             r"suicide",
