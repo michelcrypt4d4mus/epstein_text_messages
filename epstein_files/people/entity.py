@@ -1,5 +1,6 @@
 import logging
 import re
+from collections import defaultdict
 from dataclasses import dataclass, field, fields
 from typing import Literal, Self
 
@@ -10,7 +11,7 @@ from rich.text import Text
 # from epstein_files.output.html.html_style import HtmlStyle
 from epstein_files.people.names import Name, constantize_name, extract_first_name, extract_last_name
 from epstein_files.util.constant.strings import INDENT_NEWLINE, INDENTED_JOIN, LAW_ENFORCEMENT, WIKIPEDIA, PartialName
-from epstein_files.util.constant.urls import wikipedia_url_for_name
+from epstein_files.util.constant.urls import wikipedi_url
 from epstein_files.util.env import args, site_config
 from epstein_files.util.external_link import ExternalLink
 from epstein_files.util.helpers.data_helpers import constantize_names, listify
@@ -78,10 +79,7 @@ class Entity(LoggingEntity):
         if self.is_organization:
             self.match_partial = None
 
-        self._urls = [
-            wikipedia_url_for_name(self.name) if url == WIKIPEDIA else url
-            for url in listify(self.url)
-        ]
+        self._urls = [wikipedi_url(self.name) if url == WIKIPEDIA else url for url in listify(self.url)]
 
         try:
             self.emailer_regex = re.compile(self.pattern, re.IGNORECASE)
@@ -92,6 +90,8 @@ class Entity(LoggingEntity):
 
         if self.category:
             self._warn(f"has category '{self.category}' at instantiation time (style='{self.style}')")
+        if self.style:
+            self._warn(f"has style '{self.category}' at instantiation time (style='{self.style}')")
 
     @property
     def alt_links(self) -> list[ExternalLink]:
@@ -338,3 +338,6 @@ def epstein_trust(
 
 def law_enforcement(name: str, emailer_pattern: str = '', description: str = '', **kwargs) -> Entity:
     return organization(name, description or LAW_ENFORCEMENT, emailer_pattern, is_interesting=False, **kwargs)
+
+
+_DEBUG_EXCLUDED_PARTIAL_NAMES = defaultdict(int)
