@@ -10,8 +10,7 @@ TEXT_MSG_CFGS = [
         author=MELANIE_WALKER,
         author_uncertain=True,
         description=f'conversation about crypto philanthropy and Bill Gates being drunk all the time',
-        is_interesting=True,
-        truncate_to=(250, 3500)
+        truncate_to=(250, 3_500),
     ),
     DocCfg(id='EFTA01618381', author=RENATA_BOLOTOVA, description=f'iMessage screenshots', author_uncertain='sneaky'),
     DocCfg(id='EFTA01622387', author=RENATA_BOLOTOVA, description=f'iMessage screenshots', author_uncertain='sneaky'),
@@ -22,13 +21,14 @@ TEXT_MSG_CFGS = [
         id='EFTA02731576',
         description=f"making contemporaneous accusations",
         recipients=[LEON_BLACK],
-        show_full_panel=True
+        show_full_panel=True,
     ),
     CommunicationCfg(id='EFTA01611042', author=ED_BOYLE, recipients=[None, MARIA_PRUSAKOVA]),
     CommunicationCfg(id='EFTA02731525', author=LEON_BLACK, author_uncertain=True, show_full_panel=True),
+    # TODO: convert to MessengerLogPdf
     CommunicationCfg(
         id='EFTA01612665',
-        description='sender is "stressed about finding girls", Epstein gives advice on how to find them',
-        is_interesting=True
+        description='Epstein gives advice on how to recruit girls',
+        highlight_quote="stressed about finding girls. It's hard",
     ),
 ]

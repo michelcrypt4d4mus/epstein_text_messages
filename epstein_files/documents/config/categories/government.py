@@ -112,7 +112,12 @@ GOVERNMENT_CFGS = [
     fbi_interview('EFTA00174375', LUKE_D_THORBURN, f"lots of takes on Epstein, China, and {STEVE_BANNON}"),
     fbi_interview('EFTA00081226', MINOR_VICTIM),
     fbi_interview('EFTA00038915', MINOR_VICTIM, 'claims Epstein knew she was 14'),
-    fbi_interview('EFTA01246710', PERRY_LANG, "Epstein's chef claims Donald Trump came to Epstein's house for dinner", truncate_to=(6000, 7500)),
+    fbi_interview(
+        'EFTA01246710',
+        PERRY_LANG,
+        "Epstein's chef claims Donald Trump came to Epstein's house for dinner",
+        truncate_to=(6_000, 7_500),
+    ),
     fbi_interview('EFTA00101927', None, f"claims Glenn and {EVA_DUBIN}'s Swiss au pair was being held against her will"),
     fbi_interview('EFTA00159321', None, f'covers {PAOLO_ZAMPOLLI}, Epstein, and the possibility Epstein introduced Melania to Donald Trump'),
     # FBI reports
