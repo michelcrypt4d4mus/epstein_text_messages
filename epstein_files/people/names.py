@@ -355,6 +355,7 @@ MIT_MEDIA_LAB = 'MIT Media Lab'
 MOUNT_SINAI = 'Mount Sinai'
 NEXT_MANAGEMENT = 'Next Management LLC'
 NOBEL_CHARITABLE_TRUST = 'Nobel Charitable Trust'
+OCDETF = 'OCDETF'
 OFFICE_OF_THE_DEPUTY_ATTORNEY_GENERAL = 'Office of the Deputy Attorney General'
 ORGANIZED_CRIME_DRUG_ENFORCEMENT_TASK_FORCE = 'Organized Crime Drug Enforcement Task Force'
 OSBORNE_LLP = f"{IAN_OSBORNE} & Partners"  # Ian Osborne's PR firm
