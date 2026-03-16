@@ -443,7 +443,7 @@ class Document(LoggingEntity):
             `exclude` (EntityScanArg, optional): optimization to avoid expensive rescans if bio was already printed.
             `include` (EntityScanArg, optional): additional names to include (used by subclass overrides)
         """
-        entities = get_entities([self.author] + self._config.entity_names + coerce_entities(include))
+        entities = get_entities([self.author] + self._config.entity_names + self._coerce_entities(include))
         excluded_names = Entity.coerce_entity_names(exclude) + self._config.non_participants
 
         if self._config.entity_names or not self._config.is_valid_for_name_scan:
@@ -456,7 +456,7 @@ class Document(LoggingEntity):
             if c.name not in excluded_names and c.highlight_regex.search(text_to_scan)  # excluded 1st to avoid expensive scans
         ]
 
-        return coerce_entities(entities)
+        return self._coerce_entities(entities)
 
     def excerpt_text(self, char_range: CharRange | None = None, text: str = '', style = '') -> Text:
         """Create an excerpt of `text`, add appropriate header/footer if truncated, and highlight it."""
@@ -504,18 +504,10 @@ class Document(LoggingEntity):
         pattern = patternize(_pattern)
         return [MatchedLine(line, i) for i, line in enumerate(self.lines) if pattern.search(line)]
 
-    def print(self, whole_file: bool = False) -> None:
-        """Print this object for some suppression message."""
-        if self._config.attached_to_email_id:
-            self._warn(f"is an attachment and self.print() was calleed")
-            return
-        elif (suppressed_txt := self.suppressed_txt):
-            console.print(Padding(suppressed_txt, site_config.suppressed_file_padding()))
-            return
-
-        # TODO: this approach to forcing whole_file sucks
+    def print_untruncated(self) -> None:
+        """Temporarily set args.whole_file to True and print."""
         old_whole_file_arg = args.whole_file
-        args.whole_file = args.whole_file or whole_file
+        args.whole_file = True
         console.print(self)
         args.whole_file = old_whole_file_arg
 
@@ -565,6 +557,10 @@ class Document(LoggingEntity):
     def truthy_props(self, prop_names: list[str]) -> DebugDict:
         """Return key/value pairs but only if the value is truthy."""
         return {prop: getattr(self, prop) for prop in prop_names if getattr(self, prop)}
+
+    def _coerce_entities(self, _arg: EntityScanArg) -> list[Entity]:
+        """Turn strings into Entity objects."""
+        return get_entities(Entity.coerce_entity_names(_arg), self)
 
     def _debug_dict(self, as_txt: bool = False, with_prefixes: bool = True) -> DebugDict | Text:
         """Merge information about this document from `DocCfg`, `FileInfo`, etc. objs."""
@@ -776,7 +772,3 @@ class Document(LoggingEntity):
 
 
 DocumentType = TypeVar('DocumentType', bound=Document)
-
-
-def coerce_entities(_arg: EntityScanArg) -> list[Entity]:
-    return get_entities(Entity.coerce_entity_names(_arg))

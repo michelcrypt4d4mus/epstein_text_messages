@@ -2,6 +2,7 @@
 Constants and methods for identifying people in email headers.
 """
 import re
+from typing import Optional
 
 from epstein_files.output.highlight_config import HIGHLIGHTED_ENTITIES
 from epstein_files.people.entity import Entity, organization
@@ -105,19 +106,20 @@ def extract_emailer_names(emailer_str: str) -> list[Name]:
     return names_found
 
 
-def get_entity(name: str | Entity) -> Entity:
+def get_entity(name: str | Entity, doc: Optional['Document'] = None) -> Entity:
     if isinstance(name, Entity):
         return name
     elif name in ENTITIES_DICT:
         return ENTITIES_DICT[name]
     elif name not in UNCONFIGURED_ENTITIES_ENCOUNTERED:
-        logger.warning(f"Encountered unconfigured entity name '{name}'")
+        log = doc._warn if doc else logger.warning
+        log(f"Encountered unconfigured entity name '{name}'")
         UNCONFIGURED_ENTITIES_ENCOUNTERED[name] = Entity(name)
 
     return UNCONFIGURED_ENTITIES_ENCOUNTERED[name]
 
 
-def get_entities(_names: Sequence[Name | Entity]) -> list[Entity]:
+def get_entities(_names: Sequence[Name | Entity], doc: Optional['Document'] = None) -> list[Entity]:
     """Also uniquifies and removes None / empty string."""
     names = Entity.coerce_entity_names(without_falsey(_names))
-    return [get_entity(name) for name in uniq_sorted(names)]
+    return [get_entity(name, doc) for name in uniq_sorted(names)]

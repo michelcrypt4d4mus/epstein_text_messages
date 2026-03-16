@@ -11,7 +11,6 @@ from rich.text import Text
 
 from epstein_files.documents.document import Document
 from epstein_files.documents.config.doc_cfg import DocCfg, EmailCfg
-from epstein_files.documents.doj_file import DojFile
 from epstein_files.documents.email import Email
 from epstein_files.output.rich import console, print_subtitle_panel
 from epstein_files.util.constants import CONFIGS_BY_ID
@@ -62,16 +61,16 @@ def create_configs(docs: Sequence[Document]) -> Sequence[DocCfg]:
 
         console.line()
         print_subtitle_panel('whole file', center=False)
-        doc.print(whole_file=True)
+        doc.print_untruncated()
 
         if isinstance(doc, Email):
             cfg = EmailCfg(id=doc.file_id)
             doc_props = DOC_PROPS + EMAIL_PROPS
 
-            if (num_chars := doc._truncate_to_length()) < len(doc.text):
+            if (char_range := doc.char_range_to_display):
                 console.line()
-                print_subtitle_panel(f'truncated view (num_chars={num_chars}, length={doc.length})', center=False)
-                doc.print()
+                print_subtitle_panel(f'truncated view (char_range={char_range}, length={doc.length})', center=False)
+                console.print(doc)
         else:
             cfg = DocCfg(id=doc.file_id)
             doc_props = DOC_PROPS
@@ -99,7 +98,6 @@ def create_configs(docs: Sequence[Document]) -> Sequence[DocCfg]:
                 _ask_for_value(cfg, prop, doc, doc_val)
 
         cfgs.append(cfg)
-
 
     _insert_configs(cfgs)
     return cfgs
@@ -135,10 +133,10 @@ def _ask_for_value(cfg: DocCfg, prop: str, doc: Document, doc_val: list[str] | s
     # Keep asking until a good value is found
     if is_truncate_prop:
         CONFIGS_BY_ID[doc.file_id] = cfg
-        doc.print()
+        console.print(doc)
 
         if not Confirm.ask("looks good?"):
-            doc.print(whole_file=True)
+            doc.print_untruncated()
             return _ask_for_value(cfg, prop, doc, doc_val)
 
 
