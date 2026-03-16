@@ -1987,7 +1987,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             the_publication(NYT),
             the_publication(PALM_BEACH_DAILY_NEWS),
             the_publication(PALM_BEACH_POST),
-            the_publication(VI_DAILY_NEWS),
+            the_publication(VI_DAILY_NEWS, r"Virgin Is(al|la)nd?s Daily News"),
             the_publication(WAPO, r"Wa(shington )?Po(st)?")
         ],
         patterns=[
@@ -3125,7 +3125,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"USVI",
             r"U(nited |\.)?S(tates|\.)? Virgin Islands",
             r"(?<!stein |vis-a-)VI(?!s-a-)",
-            r"(The )?Virgin Is(al|la)nd?s( Daily News)?",  # TODO: Hard to make this work right
+            r"Virgin Is(al|la)nd?s",
             r"(West )?Palm Beach( County)?(?! (Daily|Police|Post))",
         ],
     ),

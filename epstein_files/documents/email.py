@@ -544,7 +544,7 @@ class Email(Communication):
             recipients: list[Name] = [JEFFREY_EPSTEIN]
 
         # Remove self CCs but preserve self emails
-        if self.author is not None and self.author in self.recipients and not self.is_note_to_self(recipients):
+        if self.author and self.author in recipients and not self.is_note_to_self(recipients):
             self._log(f"Removing email to self for {self.author}")
             recipients = [r for r in recipients if r != self.author]
 

@@ -1,6 +1,7 @@
 import pytest
 
 from epstein_files.documents.email import JUNK_EMAILERS, Email
+from epstein_files.people.names import *
 
 
 @pytest.fixture
@@ -19,7 +20,7 @@ def non_article_with_fwd_text(get_email) -> Email:
 
 
 def test_attached_docs(email_with_attachments):
-        assert len(email_with_attachments.attached_docs) == 3
+    assert len(email_with_attachments.attached_docs) == 3
 
 
 def test_author_and_border_style(attributed_email):
@@ -32,6 +33,12 @@ def test_broken_header_repair(get_email):
     broken_email = get_email('032213')
     assert broken_email.actual_text == 'https://www.thedailybeast.com/how-close-is-donald-trump-to-a-psychiatric-breakdown?ref=home\n<...snipped jeffrey epstein email signature...>'
     assert broken_email.header.num_header_rows == 5
+
+
+def test_extract_recipients(get_email):
+    email_to_self: Email = get_email('EFTA01917209').reload()
+    assert email_to_self.author == BROCK_PIERCE
+    assert BROCK_PIERCE not in email_to_self.recipients
 
 
 def test_info_sentences(get_email):

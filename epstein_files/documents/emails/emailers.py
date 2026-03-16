@@ -2,6 +2,7 @@
 Constants and methods for identifying people in email headers.
 """
 import re
+from collections import Counter
 from typing import Optional
 
 from epstein_files.output.highlight_config import HIGHLIGHTED_ENTITIES
@@ -60,7 +61,11 @@ EMAILER_REGEXES = {c.name: c.emailer_regex for c in CONFIGURED_ENTITIES if c.is_
 ENTITY_CATEGORIES = groupby(CONFIGURED_ENTITIES, lambda contact: contact.category)
 ENTITIES_DICT = {c.name: c for c in CONFIGURED_ENTITIES}
 UNCONFIGURED_ENTITIES_ENCOUNTERED = {}
-assert len(CONFIGURED_ENTITIES) == len(ENTITIES_DICT), f"{len(CONFIGURED_ENTITIES)} entities but only {len(ENTITIES_DICT)} names!"
+
+if len(CONFIGURED_ENTITIES) != len(ENTITIES_DICT):
+    counts = Counter([c.name for c in CONFIGURED_ENTITIES])
+    more_than_one = [k for k, v in counts.items() if v > 1]
+    raise ValueError(f"{len(CONFIGURED_ENTITIES)} entities but only {len(ENTITIES_DICT)} names! Bad names: {more_than_one}")
 
 
 # Strings that usually signify an identity if present in email body
