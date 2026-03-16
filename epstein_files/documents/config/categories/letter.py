@@ -9,9 +9,9 @@ LETTER_CFGS = [
         id='026011',
         author='Gennady Mashtalyar',
         date='2016-06-24',  # date is based on Brexit reference but he could be backtesting,
-        description=f"about algorithmic trading",
+        note=f"about algorithmic trading",
     ),
-    CommunicationCfg(id='026134', recipients=['George'], description=f'about opportunities to buy banks in Ukraine'),
+    CommunicationCfg(id='026134', recipients=['George'], note=f'about opportunities to buy banks in Ukraine'),
     blaine_letter(id='019086', date='2015-05-27', suffix='naming various Putin puppet regimes', show_full_panel=True),
     blaine_letter(id='019474', date='2015-05-29'),
     blaine_letter(id='019476', date='2015-06-01'),
@@ -22,7 +22,7 @@ LETTER_CFGS = [
     immigration_letter('EFTA01086449', ARIANE_DE_ROTHSCHILD),
     immigration_letter('EFTA01143800', None, show_with_name=SVETLANA_POZHIDAEVA),
     immigration_letter('EFTA00537633', MARK_ZEFF, '2012-03-19', 'about SLK Designs, someone in interior design industry'),
-    EmailCfg(id='EFTA02652017', description="inquiry about someone's immigration asylum application", is_interesting=True),
+    EmailCfg(id='EFTA02652017', note="inquiry about someone's immigration asylum application", is_interesting=True),
 
     # DOJ files
     CommunicationCfg(id='EFTA00007609', recipients=['Alberto'], duplicate_ids=['EFTA00007582']),

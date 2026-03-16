@@ -26,11 +26,11 @@ def attached_doc(junk_email_cfg) -> DocCfg:
 
 @pytest.fixture
 def blockchain_cap_cfg() -> DocCfg:
-    return _oversight_cfg(Interesting.CRYPTO, author=BLOCKCHAIN_CAPITAL, description="investor report")
+    return _oversight_cfg(Interesting.CRYPTO, author=BLOCKCHAIN_CAPITAL, note="investor report")
 
 @pytest.fixture
 def book_cfg() -> DocCfg:
-    return _oversight_cfg(Uninteresting.BOOK, author='Elon Musk', description="Illmatic")
+    return _oversight_cfg(Uninteresting.BOOK, author='Elon Musk', note="Illmatic")
 
 @pytest.fixture
 def dummy_cfg() -> DocCfg:
@@ -46,7 +46,7 @@ def empty_house_cfg() -> DocCfg:
 
 @pytest.fixture
 def finance_report() -> DocCfg:
-    return _oversight_cfg(Neutral.FINANCE, author=BOFA_MERRILL, description="Grapes")
+    return _oversight_cfg(Neutral.FINANCE, author=BOFA_MERRILL, note="Grapes")
 
 @pytest.fixture
 def fwded_article() -> EmailCfg:
@@ -68,7 +68,7 @@ def junk_email_cfg() -> EmailCfg:
 
 @pytest.fixture
 def legal_cfg() -> DocCfg:
-    return _oversight_cfg(Neutral.LEGAL, author='clinton v. trump', description='case law')
+    return _oversight_cfg(Neutral.LEGAL, author='clinton v. trump', note='case law')
 
 @pytest.fixture
 def skype_author(skype_cfg) -> CommunicationCfg:
@@ -96,7 +96,7 @@ def UN_cfg() -> DocCfg:
 
 @pytest.fixture
 def uninteresting_description() -> DocCfg:
-    return _doj_cfg(Neutral.LEGAL, description=CVRA + " law stuff")
+    return _doj_cfg(Neutral.LEGAL, note=CVRA + " law stuff")
 
 
 def test_category_txt(blockchain_cap_cfg, empty_house_cfg, junk_doc_cfg, legal_cfg, skype_cfg):

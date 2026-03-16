@@ -36,7 +36,7 @@ SKYPE_LOG_CFGS = [
         id='EFTA01623342',
         author=ANNA_KASATKINA,
         author_uncertain='https://www.reddit.com/r/Epstein/comments/1qwbn5i/trafficker_julia_santos/',
-        description='recruiting russian girls',
+        note='recruiting russian girls',
         is_interesting=True,
     ),
 ]

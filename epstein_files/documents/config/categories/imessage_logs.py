@@ -62,10 +62,10 @@ UNCONFIRMED_TEXTS_CONFIG = [
     TextCfg(id='027148', author=MELANIE_WALKER),
     TextCfg(id='027440', author=MICHAEL_WOLFF, author_uncertain='AI says Trump book/journalism project'),
     TextCfg(id='027568', author=STEVE_BANNON),
-    TextCfg(id='027695', author=STEVE_BANNON, description='"kazak daughter the key" may be about Dariga Nazarbayeva (low confidence)'),
+    TextCfg(id='027695', author=STEVE_BANNON, note='"kazak daughter the key" may be about Dariga Nazarbayeva (low confidence)'),
     TextCfg(id='027594', author=STEVE_BANNON),
     TextCfg(id='027549', author=STEVE_BANNON),
-    TextCfg(id='027764', author=STEVE_BANNON, description=f"includes discussion of Facebook's attempt at crypto called Libra", is_interesting=True),
+    TextCfg(id='027764', author=STEVE_BANNON, note=f"includes discussion of Facebook's attempt at crypto called Libra", is_interesting=True),
     TextCfg(id='027585', author=STEVE_BANNON, author_uncertain='references Tokyo trip'),
     TextCfg(id='027434', author=STEVE_BANNON, author_uncertain='references Maher appearance'),
     TextCfg(id='027428', author=STEVE_BANNON, author_uncertain='references HBJ meeting on 9/28 from other Bannon/Epstein convo'),
@@ -84,7 +84,7 @@ UNCONFIRMED_TEXTS_CONFIG = [
     TextCfg(id='027406', author=STEVE_BANNON, author_uncertain='AI says Trump and New York Times coverage'),
     TextCfg(id='027655', author=STEVE_BANNON, author_uncertain='AI says Trump and New York Times coverage'),
     TextCfg(id='027722', author=STEVE_BANNON, author_uncertain='AI says Trump and New York Times coverage', duplicate_ids=['027720']),
-    TextCfg(id='027735', author=STEVE_BANNON, author_uncertain='AI says Trump and New York Times coverage', description=f"Bannon just returned from Kazakhstan"),
+    TextCfg(id='027735', author=STEVE_BANNON, author_uncertain='AI says Trump and New York Times coverage', note=f"Bannon just returned from Kazakhstan"),
     TextCfg(id='027794', author=STEVE_BANNON, author_uncertain='AI says Trump and New York Times coverage'),
     TextCfg(id='025368', author=STEVE_BANNON, author_uncertain='AI', is_interesting=True, comment='obama slander'),
     TextCfg(id='025707', author=STEVE_BANNON, author_uncertain='AI', is_interesting=True, comment='mentions thiel, dubai'),
@@ -95,7 +95,7 @@ UNCONFIRMED_TEXTS_CONFIG = [
         id='029744',
         author=STEVE_BANNON,
         author_uncertain='AI says Trump + NYT coverage',
-        description='contains discussion of Chinese criminal Miles Guo AKA Miles Kwok',
+        note='contains discussion of Chinese criminal Miles Guo AKA Miles Kwok',
         entity_names=[MILES_GUO],
         is_very_interesting=True,
     ),
@@ -106,7 +106,7 @@ UNCONFIRMED_TEXTS_CONFIG = [
     # DOJ PDFs
     TextCfg(
         id='EFTA00508054',
-        description=f'Multiple counterparties, at least some Bannon. Epstein brings up the suicide of Ruslana Korshunova whom he "knew very well".'
+        note=f'Multiple counterparties, at least some Bannon. Epstein brings up the suicide of Ruslana Korshunova whom he "knew very well".'
     ),
 ]
 

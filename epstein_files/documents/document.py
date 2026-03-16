@@ -449,7 +449,7 @@ class Document(LoggingEntity):
         if self._config.entity_names or not self._config.is_valid_for_name_scan:
             return [e for e in entities if e.name not in excluded_names]
 
-        text_to_scan = join_truthy(self._config.description, self.display_text, '\n')
+        text_to_scan = join_truthy(self._config.note, self.display_text, '\n')
 
         entities += [
             c for c in HIGHLIGHTED_ENTITIES

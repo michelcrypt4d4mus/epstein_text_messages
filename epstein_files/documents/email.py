@@ -40,6 +40,7 @@ from epstein_files.util.constants import CONFIGS_BY_ID
 from epstein_files.util.env import args, site_config
 from epstein_files.util.helpers.data_helpers import (AMERICAN_TIME_REGEX, TIMEZONE_INFO, CharRange, coerce_utc, flatten,
      prefix_keys, uniq_sorted, uniquify, without_falsey)
+from epstein_files.util.helpers.rich_helpers import enclose
 from epstein_files.util.external_link import join_texts, link_text_obj
 from epstein_files.util.helpers.string_helper import capitalize_first, collapse_newlines, is_bool_prop, quote, strip_pdfalyzer_panels
 from epstein_files.util.logging import logger
@@ -332,7 +333,7 @@ class Email(Communication):
 
                 # Add "appears in [SOURCE]" pfx to description for docs extract ed from others (e.g. huge Dilorio emails)
                 if (extracted_from_description := extracted_from_cfg.complete_description):
-                    self.derived_cfg.description = f"{APPEARS_IN} {extracted_from_description}"
+                    self.derived_cfg.note = f"{APPEARS_IN} {extracted_from_description}"
 
                 for prop in DERIVED_CFG_PROPS_TO_COPY:
                     derived_cfg_val = getattr(self.derived_cfg, prop)
@@ -473,7 +474,12 @@ class Email(Communication):
             author_txt += Text(f" {QUESTION_MARKS}", style=self.author_style)
 
         prefix = 'fwded article' if self.is_fwded_article else 'email'
-        return site_config.email_subheader(prefix, author_txt, self.recipients_txt(), self.timestamp)
+        txt = site_config.email_subheader(prefix, author_txt, self.recipients_txt(), self.timestamp)
+
+        if self._config.external_link_txt:
+            txt = self._config.external_link_txt.append(' ').append(txt)
+
+        return txt
 
     @property
     def subject(self) -> str:
@@ -631,7 +637,7 @@ class Email(Communication):
                 raise ValueError(f"Can't show more than one panelized attachment for {self}!")
 
             table = Table(title=attachments_table_title, title_justify='left')
-            table.add_column(doc._config.description)
+            table.add_column(doc._config.note)
             table.add_row(highlighter(Text(self.attached_docs[0].text, EXCERPT_STYLE)))
             return table
         else:
