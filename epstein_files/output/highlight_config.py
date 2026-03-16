@@ -1141,6 +1141,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         contacts=[
             organization(CLIFFORD_CHANCE, f'law firm where {MARIA_PRUSAKOVA} did an internship in Paris'),
             organization('Latham & Watkins', f'law firm where {KATHRYN_RUEMMLER} worked', r"Latham (&|and) Watkins"),
+            organization('Sadis Goldberg LLP', 'law firm'),
         ],
         patterns=[
             r"(Leon )?Jaworski",
@@ -1652,6 +1653,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 r"sec\.?gov|Securities (&|and) Exchange Commission",
             ),
             law_enforcement(BUREAU_OF_PRISONS, r"bop\.gov|(Federal )?Bureau of Prisons"),
+            law_enforcement('DOJ Chief Psychologist'),
             law_enforcement('DOJ Inspector General'),
             law_enforcement('DOJ London'),
             law_enforcement(FBI, emailer_pattern=r"(?<!NY )((?-i:FBI)|fbi\.s?gov)?", is_emailer=True),
@@ -1660,6 +1662,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             law_enforcement(OFFICE_OF_THE_DEPUTY_ATTORNEY_GENERAL, r"\bODAG\b", is_emailer=True),
             law_enforcement('Police Code Enforcement', description=f"{PALM_BEACH} buildings code enforcement"),
             law_enforcement(SDNY),
+            law_enforcement("SDNY Cybercrimes", is_emailer=True),
             law_enforcement('USAHUB-USAJournal111'),
             law_enforcement(USANYS, is_emailer=True),
             law_enforcement('USMS'),

@@ -73,7 +73,7 @@ SUMMARY_TABLE_COLS: list[str | dict] = [
 DEBUG_PROPS = [
     'is_interesting',
     'num_lines',
-    'people',
+    'entities',
     'timestamp',
 ]
 
@@ -81,7 +81,6 @@ DEBUG_PROPS_TRUTHY_ONLY = [
     AUTHOR,
     'category',
     'is_empty',
-    'people',
 ]
 
 METADATA_FIELDS = [

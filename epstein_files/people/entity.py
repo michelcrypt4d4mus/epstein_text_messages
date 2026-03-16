@@ -261,6 +261,9 @@ class Entity(LoggingEntity):
 
         return repr_str
 
+    def __str__(self) -> str:
+        return self.name
+
     @classmethod
     def build_name_lookup(cls, contacts: list[Self]) -> dict[Name, Self]:
         """Dict of `Contact` objects keyed by contact name."""
