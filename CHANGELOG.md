@@ -1,4 +1,6 @@
 # NEXT RELEASE
+* refactor CommunicationCfg and EmailCfg to their own files
+* refactor CommunicationCfg and EmailCfg to their own files
 
 # 1.10.0
 * Rename `DocCfg.description` to `note`

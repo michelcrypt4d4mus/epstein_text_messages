@@ -1,5 +1,6 @@
+from epstein_files.documents.config.communication_cfg import CommunicationCfg
 from epstein_files.documents.config.config_builder import blaine_letter, immigration_letter
-from epstein_files.documents.config.doc_cfg import CommunicationCfg, EmailCfg
+from epstein_files.documents.config.email_cfg import EmailCfg
 from epstein_files.people.names import *
 
 

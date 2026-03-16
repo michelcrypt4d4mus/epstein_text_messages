@@ -2,7 +2,8 @@
 Finance related documents not specifically about Epstein's money.
 """
 from epstein_files.documents.documents.categories import Interesting, Neutral
-from epstein_files.documents.config.doc_cfg import GOLDMAN_INVESTMENT_MGMT, DocCfg, EmailCfg
+from epstein_files.documents.config.doc_cfg import GOLDMAN_INVESTMENT_MGMT, DocCfg
+from epstein_files.documents.config.email_cfg import EmailCfg
 from epstein_files.people.names import *
 from epstein_files.util.constant.strings import *
 

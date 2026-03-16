@@ -30,7 +30,8 @@ from epstein_files.documents.config.categories.skype_log import SKYPE_LOG_CFGS
 from epstein_files.documents.config.categories.social import SOCIAL_CFGS, TWEET_CFGS
 from epstein_files.documents.config.categories.text_msg import TEXT_MSG_CFGS
 from epstein_files.documents.config.config_builder import victim_diary
-from epstein_files.documents.config.doc_cfg import DocCfg, EmailCfg
+from epstein_files.documents.config.doc_cfg import DocCfg
+from epstein_files.documents.config.email_cfg import EmailCfg
 from epstein_files.documents.documents.categories import CONSTANT_CATEGORIES, Interesting, Neutral
 from epstein_files.people.names import *
 from epstein_files.util.constant.strings import *

@@ -5,7 +5,9 @@ from dateutil.parser import parse
 from typing import TypeVar
 
 from epstein_files.documents.documents.categories import Category, Interesting, Neutral, Uninteresting
-from epstein_files.documents.config.doc_cfg import CommunicationCfg, DocCfg, DuplicateType, EmailCfg
+from epstein_files.documents.config.communication_cfg import CommunicationCfg
+from epstein_files.documents.config.doc_cfg import DocCfg, DuplicateType
+from epstein_files.documents.config.email_cfg import EmailCfg
 from epstein_files.people.names import *
 from epstein_files.util.helpers.string_helper import has_line_starting_with, join_truthy
 from epstein_files.util.logging import logger

@@ -10,7 +10,8 @@ from rich.table import Table
 from rich.text import Text
 
 from epstein_files.documents.document import Document
-from epstein_files.documents.config.doc_cfg import DocCfg, EmailCfg
+from epstein_files.documents.config.doc_cfg import DocCfg
+from epstein_files.documents.config.email_cfg import EmailCfg
 from epstein_files.documents.email import Email
 from epstein_files.output.rich import console, print_subtitle_panel
 from epstein_files.util.constants import CONFIGS_BY_ID

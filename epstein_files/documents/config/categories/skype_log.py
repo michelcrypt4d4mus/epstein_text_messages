@@ -1,7 +1,7 @@
 """
 Skype conversation logs.
 """
-from epstein_files.documents.config.doc_cfg import CommunicationCfg
+from epstein_files.documents.config.communication_cfg import CommunicationCfg
 from epstein_files.people.names import *
 from epstein_files.util.constant.strings import *
 

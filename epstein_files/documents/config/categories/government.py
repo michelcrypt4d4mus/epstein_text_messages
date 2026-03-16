@@ -1,5 +1,6 @@
 from epstein_files.documents.config.config_builder import fbi_defense_witness, fbi_interview, fbi_tip, fbi_report, letter
-from epstein_files.documents.config.doc_cfg import NO_TRUNCATE, SHORT_TRUNCATE_TO, DocCfg, EmailCfg
+from epstein_files.documents.config.doc_cfg import NO_TRUNCATE, SHORT_TRUNCATE_TO, DocCfg
+from epstein_files.documents.config.email_cfg import EmailCfg
 from epstein_files.people.names import *
 from epstein_files.util.constant.strings import MINOR_VICTIM, REDACTED
 from epstein_files.util.helpers.string_helper import join_truthy, quote

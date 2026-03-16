@@ -1,5 +1,6 @@
 from epstein_files.documents.config.config_builder import JANE_DOE_V_USA, letter, starr_letter
-from epstein_files.documents.config.doc_cfg import DocCfg, EmailCfg
+from epstein_files.documents.config.doc_cfg import DocCfg
+from epstein_files.documents.config.email_cfg import EmailCfg
 from epstein_files.people.names import *
 from epstein_files.util.constant.strings import *
 from epstein_files.util.helpers.string_helper import join_truthy, quote

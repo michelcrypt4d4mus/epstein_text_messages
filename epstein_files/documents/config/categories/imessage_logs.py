@@ -2,7 +2,7 @@
 Custom configurations for iMessage logs.
 """
 from epstein_files.documents.documents.categories import Interesting
-from epstein_files.documents.config.doc_cfg import TextCfg
+from epstein_files.documents.config.communication_cfg import TextCfg
 from epstein_files.people.names import *
 
 PARTICIPANTS_FIELD = 'Participants: field'

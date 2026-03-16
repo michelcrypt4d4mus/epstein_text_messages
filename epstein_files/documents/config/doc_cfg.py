@@ -1,5 +1,4 @@
 import json
-from collections import defaultdict
 from copy import deepcopy
 from dataclasses import asdict, dataclass, field, fields
 from datetime import datetime
@@ -469,9 +468,9 @@ class DocCfg(LoggingEntity):
             if category_txt.plain == props.get('category'):
                 props.pop('category')  # Leave only the colored version of category_txt
 
-            # Only add ??? for non-email, non immesage
+            # Only add ??? for non-email, non immesage. # TODO: this sucks
             if category_txt.plain == QUESTION_MARKS:
-                if not isinstance(self, CommunicationCfg):
+                if 'recipients' not in dir(self):
                     props['category_txt'] = category_txt
             else:
                 props['category_txt'] = category_txt
@@ -599,86 +598,3 @@ class DocCfg(LoggingEntity):
 
         for cfg in cfgs:
             cfg.set_category(cfg.category or category)
-
-
-@dataclass(kw_only=True)
-class CommunicationCfg(DocCfg):
-    """
-    Manual config is always required for MessengerLog author attribution. It's also often needed for Email
-    files to handle the terrible OCR text that Congress provided which messes up a lot of the email headers.
-
-    Attributes:
-        is_fwded_article (bool, optional): `True` if this is a newspaper article someone fwded. Used to exclude articles from word counting.
-        recipients (list[Name]): Who received the communication
-        recipient_uncertain (bool | str, optional): Optional explanation of why this recipient was attributed, but uncertainly
-    """
-    is_fwded_article: bool | None = None
-    recipients: list[Name] = field(default_factory=list)
-    recipient_uncertain: bool | str = ''
-
-    def __post_init__(self):
-        super().__post_init__()
-
-        if not isinstance(self.recipients, list):
-            raise ValueError(f"{self.id} recipients is not a list: {self.recipients}")
-
-        if self.is_fwded_article:
-            self.is_valid_for_name_scan = False
-
-        self.recipients = sort_names(self.recipients)
-
-    @property
-    def is_of_interest(self) -> bool | None:
-        """Fwded articles are not interesting."""
-        if self.is_fwded_article and not self.is_interesting:
-            return False
-        else:
-            return super().is_of_interest
-
-    @property
-    def recipients_str(self) -> str:
-        return ', '.join([r or UNKNOWN for r in self.recipients])
-
-    def __repr__(self) -> str:
-        return super().__repr__()
-
-
-@dataclass(kw_only=True)
-class EmailCfg(CommunicationCfg):
-    """
-    Attributes:
-        actual_text (str, optional): In dire cases of broken OCR we just configure the body of the email as a string.
-        fwded_text_after (str, optional): If set, any text after this is a fwd of an article or similar.
-        has_uninteresting_ccs (bool): If `True` this email's CC: recipients will be marked as 'uninteresting'.
-        has_uninteresting_bccs (bool): If `True` this email's BCC: recipients will be marked as 'uninteresting'.
-        subject (str, optional): Subject line.
-    """
-    actual_text: str | None = None
-    fwded_text_after: str | None = None
-    has_uninteresting_ccs: bool = False
-    has_uninteresting_bccs: bool = False
-    subject: str | None = None
-
-    def __post_init__(self):
-        super().__post_init__()
-
-        if self.fwded_text_after:
-            self.is_valid_for_name_scan = False
-
-    @property
-    def truncate_at(self) -> int | CharRange | None:
-        if super().truncate_at:
-            return super().truncate_at
-        elif self.is_fwded_article or self.fwded_text_after:
-            return SHORT_TRUNCATE_TO
-
-    # This is necessary because for some dumb reason @dataclass(repr=False) doesn't cut it
-    def __repr__(self) -> str:
-        return super().__repr__()
-
-
-@dataclass(kw_only=True)
-class TextCfg(CommunicationCfg):
-    # This is necessary because for some dumb reason @dataclass(repr=False) doesn't cut it
-    def __repr__(self) -> str:
-        return super().__repr__()
