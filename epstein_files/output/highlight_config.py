@@ -1099,7 +1099,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Entity(DAVID_SCHOEN, "Epstein criminal defense attorney after 2019 arrest"),
             Entity(DEBBIE_FEIN, f"Epstein {EPSTEIN_V_ROTHSTEIN_EDWARDS_ATTORNEY}"),
             Entity('Edward Cuccia', f"worked on {KARYNA_SHULIAK}'s immigration case", match_partial=None),
-            Entity('Erika Kellerhals', "attorney in St. Thomas"),
+            Entity('Erika Kellerhals', f"Epstein attorney in {VIRGIN_ISLANDS}"),
             Entity(FRED_HADDAD, "co-founder of Heck's in West Virginia", match_partial=None),
             Entity(GERALD_LEFCOURT, f"friend of {ALAN_DERSHOWITZ}", r"Gerald (B\.? )?Lefcourt"),
             Entity('Howard Rubenstein', "Epstein's former spokesman"),
@@ -1189,7 +1189,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         contacts=[
             Entity('Alastair Campbell', 'journalist, spokesman for Tony Blair', match_partial='first'),
             Entity('Alistair Darling', 'former UK Chancellor of the Exchequer under Gordon Brown'),
-            Entity(ANDRZEJ_DUDA, "former president of Poland"),
+            Entity(ANDRZEJ_DUDA, "former president of Poland", match_partial=None),
             Entity(
                 BARBRO_C_EHNBOM,
                 "Swedish pharmaceuticals, SALSS, alleged recruiter of girls",
@@ -1197,11 +1197,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 email_addresses=['behnbom@aol.com'],
                 url='https://www.reddit.com/r/TrueAnon/comments/1pn8pdj/episode_509_jeffreys_bbb/'
             ),
-            Entity(
-                'Benjamin Wegg-Prosser',
-                f"CEO of {PETER_MANDELSON}'s failed lobbying firm Global Counsel",
-                url=WIKIPEDIA,
-            ),
+            Entity('Benjamin Wegg-Prosser', f"CEO of {PETER_MANDELSON}'s failed lobbying firm Global Counsel", url=WIKIPEDIA),
             Entity('Caroline Lang', "daughter of Jack Lang", match_partial=None),
             Entity(EDWARD_ROD_LARSEN, f"son of {TERJE_ROD_LARSEN}", match_partial=None),
             Entity('Fabrice Aidan', f"diplomat who worked with {TERJE_ROD_LARSEN}"),
