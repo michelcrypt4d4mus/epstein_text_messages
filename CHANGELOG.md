@@ -1,4 +1,6 @@
 # NEXT RELEASE
+
+# 1.10.0
 * Rename `DocCfg.description` to `note`
 * Add configured per document link URLs as prefix to file subheaders
 * Use `Entity` objs instead of names in important places
