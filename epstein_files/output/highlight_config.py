@@ -2127,8 +2127,8 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 GANBAT_CHULUUNKHUU,
                 "corrupt Mongolian politician who was later wanted by Interpol",
                 r"Ganbat(@| Ch(uluunkhuu)?)?|gambahtss?",
-                url='https://news.mn/en/227194/',
                 match_partial='both',
+                url='https://news.mn/en/227194/',
             ),
             Entity('Khaltmaagiin Battulga', "former president of Mongolia", match_partial='both'),
             Entity(PUREVSUREN_LUNDEG, "Mongolian ambassador to the UN", r"Purevsuren( Lundeg)?", match_partial='both'),
@@ -2151,6 +2151,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 'Adnan Khashoggi',
                 'arms dealer involved in the Iran-Contra scandal, Epstein\'s former employer',
                 r"kasshohgi|Kh?ashoggi",
+                url=WIKIPEDIA,
             ),
             Entity(
                 ANAS_ALRASHEED,
@@ -2178,7 +2179,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 url=WIKIPEDIA,
             ),
             Entity('Hayel Besher', f"relative of {SHAHER_ABDULHAK_BESHER} {QUESTION_MARKS}"),
-            Entity('Kairat Kelimbetov', 'deputy prime minister of Kazakhstan', url=WIKIPEDIA, match_partial='both'),
+            Entity('Kairat Kelimbetov', 'deputy prime minister of Kazakhstan', match_partial='both', url=WIKIPEDIA),
             Entity("Mohammed bin Salman", 'prince of Saudi Arabia', r"Mohammed bin Salman|MBS", aliases=['MBS'], match_partial=None),
             Entity('Mohammed bin Zayed', 'ruler of Abu Dhabi', r"Mohamed bin Zayed|MBZ", aliases=['MBZ'], match_partial=None),
             Entity(
@@ -2188,8 +2189,8 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 aliases=['MBN'],
                 match_partial=None,
             ),
-            Entity('Nursultan Nazarbayev', 'former president of Kazakhstan', match_partial='both'),
-            Entity('Dariga Nazarbayeva', 'daughter of Nursultan Nazarbayev'),
+            Entity('Nursultan Nazarbayev', 'former president of Kazakhstan', match_partial='both', url=WIKIPEDIA),
+            Entity('Dariga Nazarbayeva', 'daughter of Nursultan Nazarbayev', url=WIKIPEDIA),
             Entity(
                 'Rakhat Aliyev',
                 'corrupt Kazakh politician',
@@ -2208,9 +2209,14 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 r"\b(Shaher( Abdulhak Besher)?)\b",  # NOTE: Shaher has custom handling for "S A" in emailers.py
                 url='https://en.wikipedia.org/wiki/Murder_of_Martine_Vik_Magnussen',
             ),
-            Entity('Timur Kulibayev', 'businessman from Kazakhstan'),
+            Entity('Timur Kulibayev', 'businessman from Kazakhstan', url=WIKIPEDIA),
             organization('GCC', 'Gulf Cooperation Council', r"GCC|Gulf Cooperation Council"),
-            organization('Halkbank', 'Turkish bank charged with evading sanctions on Iran, pardoned by Trump', r"Halk Bank(asi)?"),
+            organization(
+                'Halkbank',
+                'Turkish bank charged with evading sanctions on Iran, "pardoned" by Trump in 2026',
+                r"Halk Bank(asi)?",
+                url='https://www.aljazeera.com/economy/2026/3/10/us-to-end-prosecution-of-turkiyes-halkbank-over-alleged-business-with-iran',
+            ),
             organization('Rayyan Bank', 'Islamic bank based in Qatar'),
         ],
         patterns=[
