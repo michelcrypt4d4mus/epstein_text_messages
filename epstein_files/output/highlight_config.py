@@ -604,7 +604,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Entity(
                 AUSTIN_HILL,
                 f"{BLOCKSTREAM} co-founder with {ADAM_BACK}, Brudder Ventures",
-                r"Austin\s*(Hill|@blockstream.com)",
+                email_addresses=['austin@blockstream.com'],
                 match_partial='first'  # TODO: questionable
             ),
             Entity('Barry Silbert', f"founder of Digital Currency Group with {LARRY_SUMMERS} on the board, ZCash booster"),
@@ -992,7 +992,8 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Entity(
                 NADIA_MARCINKO,
                 'Lolita Express pilot, FKA Nadia Marcinkova',
-                r"Na[dď]i?a Marcinko(v[aá])?|nadja2102[@e]yahoo(\.?com)",
+                r"Na[dď]i?a Marcinko(v[aá])?",
+                email_addresses=['nadja2102@yahoo.com'],
                 url='https://archive.ph/Qa6vU',  # https://www.nybooks.com/articles/2026/03/26/the-devil-himself-jeffrey-epstein-enright/
             ),
             Entity('Natalia Molotkova', "Epstein's relationship manager at American Express", r"((Natalia|Natasha) )?Molotkova"),
@@ -1012,8 +1013,9 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         style=EPSTEIN_COLOR,
         contacts=[
             Entity(
-                name=JEFFREY_EPSTEIN,
-                emailer_pattern=r"j?ee[vy]acatio[mn]?[©@baeoq]?g?(mail.com)?|Epstine|\bJEE?\b|Jefff?(rey)? (Edward )?E((sp|ps)tein?)?( VI Foundation)?|jeeproject@yahoo.com|J Jep|Jeffery Edwards?|(?<!(ark L.|rd Jay|Edward) )Epstein(,? Jeffrey( Edward)?)?|Jeffrey Epst.*comj?|littlestjeff@yahoo|zorroranch@aol",
+                JEFFREY_EPSTEIN,
+                emailer_pattern=r"j?ee[vy]acatio[mn]?(@|[baeoq])?g?(mail.com)?|Epstine|\bJEE?\b|Jefff?(rey)? (Edward )?E((sp|ps)tein?)?( VI Foundation)?|J Jep|Jeffery Edwards?|(?<!(ark L.|rd Jay|Edward) )Epstein(,? Jeffrey( Edward)?)?|Jeffrey Epst.*comj?",
+                email_addresses=['jeeproject@yahoo.com', 'littlestjeff@yahoo', 'zorroranch@aol'],
                 match_partial=None,
             ),
             Entity(MARK_EPSTEIN, "brother of Jeffrey", r"Mark (L\.? )?(Epstein|Lloyd)", match_partial=None),
@@ -1129,7 +1131,8 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Entity(
                 TONJA_HADDAD_COLEMAN,
                 f"civil attorney Epstein v. Scott Rothstein, {BRAD_EDWARDS}, & L.M.",
-                r"To(nj|rl)a Haddad Coleman|haddadfm@aol.com",
+                r"To(nj|rl)a Haddad Coleman",
+                email_addresses=['haddadfm@aol.com'],
                 match_partial='first',
             )
         ],
@@ -1190,7 +1193,8 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Entity(
                 BARBRO_C_EHNBOM,
                 "Swedish pharmaceuticals, SALSS, alleged recruiter of girls",
-                r"behnbom@aol.com|(Barbro\s.*)?Ehnbom|Barbro",
+                r"(Barbro\s.*)?Ehnbom|Barbro",
+                email_addresses=['behnbom@aol.com'],
                 url='https://www.reddit.com/r/TrueAnon/comments/1pn8pdj/episode_509_jeffreys_bbb/'
             ),
             Entity(
@@ -1534,7 +1538,8 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Entity(
                 DAVID_STERN,
                 f"Epstein's partner in various businesses including Asia Gateway Ltd.",
-                r"David Ste(m|rn?)|ds[@®]witangroup",
+                r"David Ste(m|rn?)",
+                email_addresses=['ds@witangroup'],
                 match_partial=None
             ),
             Entity('Douglas Leese', 'British arms dealer / defense contractor'),
@@ -1614,7 +1619,8 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Entity(
                 name=DANNY_FROST,
                 info="Director of Communications at Manhattan District Attorney",
-                emailer_pattern=r"Frost, Danny|frostd@dany.nyc.gov|Danny Frost",
+                emailer_pattern=r"Frost, Danny|Danny Frost",
+                email_addresses=['frostd@dany.nyc.gov'],
                 match_partial=None,
             ),
             Entity('Florence Hutner', "New York Office of Chief Medical Examiner", match_partial=None),
@@ -1925,7 +1931,8 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Entity(
                 JULIE_K_BROWN,
                 'blew the lid on the 2006 Epstein sweetheart deal',
-                r"Julie (K.? )?Brown|jbrown@miamiherald.com",
+                r"Julie (K.? )?Brown",
+                email_addresses=['brown@miamiherald.com'],
                 match_partial=None,
             ),
             Entity('Kia Kokalitcheva', 'US venture capital news at Pitchbook'),
@@ -2333,7 +2340,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 match_partial='both',
                 url='https://en.wikipedia.org/wiki/Jean-Luc_Brunel',
             ),
-            Entity(JEFF_FULLER, f"president of {JEAN_LUC_MC2} USA", r"jeff@mc2mm.com|Jeff Fuller", match_partial=None),
+            Entity(JEFF_FULLER, f"president of {JEAN_LUC_MC2} USA", email_addresses=['jeff@mc2mm.com'], match_partial=None),
             Entity(MANUELA_MARTINEZ, "Mega Partners (Brazilian agency)", r"Manuela (- Mega Partners|Martinez)", match_partial=None),
             Entity(MARIANA_IDZKOWSKA, 'Polish model, island visitor', r"Mariana [Il]d[źi]kowska?"),
             Entity('Michael Sanka', f"{JEAN_LUC_MC2} {QUESTION_MARKS}"),
@@ -2525,13 +2532,8 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         style='red bold',
         contacts=[
             Entity('Alexei Navalny', 'assassinated Russian opposition leader', r"Ale(ksandr|xei) Navalni?y"),
-            Entity('Alisher Usmanov', 'Uzbeki oligarch with alleged ties to Putin, organized crime'),
+            Entity('Alisher Usmanov', 'Uzbeki oligarch with alleged ties to Putin, organized crime', url=WIKIPEDIA),
             Entity('Andrey Vavilov', 'former Russian finance minister accused of stealing $230 million and other frauds'),
-            Entity(
-                ANYA_RASULOVA,
-                f'Uzbeki co-founder of {INSIGHTS_POD}, social media work for Epstein during 2016 US election',
-                url=SUBSTACK_POST_INSIGHTSPOD_URL,
-            ),
             Entity('Dasha Zhukova', "art collector, daughter of Alexander Zhukov"),
             Entity(
                 'Dmitry Rybolovlev',
@@ -2540,8 +2542,8 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 url='https://en.wikipedia.org/wiki/Dmitry_Rybolovlev',
             ),
             Entity('Igor Zinoviev', f"Epstein's bodyguard, MMA fighter"),
-            Entity('Len Blavatnik', 'oligarch', url='https://en.wikipedia.org/wiki/Len_Blavatnik'),
-            Entity('Mikhail Prokhorov', 'Russian-Israeli oligarch', url='https://en.wikipedia.org/wiki/Mikhail_Prokhorov'),
+            Entity('Len Blavatnik', 'oligarch', url=WIKIPEDIA),
+            Entity('Mikhail Prokhorov', 'Russian-Israeli oligarch', url=WIKIPEDIA),
             Entity('Mikheil Saakashvili', 'president of Georgia', r"Mikh[ae]il Saakashvili"),
             Entity('Nicholas Kovarsky', f"friend of {SERGEY_BELYAKOV}", r"Nic(k|holas) Kovarsky"),
             Entity('Oleg Boyko', 'oligarch'),
@@ -2556,6 +2558,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 "Serguei Beloussov",
                 'technologist',
                 r"Serg Bell|Serguei Beloussov",
+                aliases=['Serg Bell'],
                 url='https://en.wikipedia.org/wiki/Serg_Bell',
             ),
             Entity(
@@ -2569,19 +2572,21 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 r"Sergey Belyako|Беляков Сергей|Сергей Беляков|Cepre(ct|il) [6BES][\w.]+|6(er|of)no\w+ [CE]\w+",
                 url='https://dossier.center/jeffreyepsteinrusconnect-en/',
             ),
-            Entity('Sergey Lavrov', 'foreign minister under Putin'),
+            Entity('Sergey Lavrov', 'foreign minister under Putin', url=WIKIPEDIA),
             Entity('Svetlana Pudina', 'assistant to Vladislav Doronin'),
             Entity(
                 UMAR_DZHABRAILOV,
-                f'oligarch who called {GHISLAINE_MAXWELL} his "soulmate", death by "suicide" 2026-03-02',
+                f'Chechen oligarch who called {GHISLAINE_MAXWELL} his "soulmate", died by "suicide" March 2026',
                 r"Umar D(j|zh)abrailov",
-                # https://jamestown.org/kadyrovs-chechen-network-in-moscow-2/
-                url='https://nypost.com/2026/03/02/world-news/russian-mogul-who-called-ghislaine-maxwell-his-soulmate-found-dead/',
                 match_partial='both',
+                url=[
+                    'https://nypost.com/2026/03/02/world-news/russian-mogul-who-called-ghislaine-maxwell-his-soulmate-found-dead/',
+                    '# https://jamestown.org/kadyrovs-chechen-network-in-moscow-2/',
+                ]
             ),
-            Entity('Viktor Yanukovych', 'pro-Putin former president of Ukraine', r"Vi[ck]tor Yanukovych"),
-            Entity('Vitaly Churkin', 'Russian ambassador to the United Nations'),
-            Entity('Vladislav Doronin', f'oligarch, dated {NAOMI_CAMPBELL}'),
+            Entity('Viktor Yanukovych', 'pro-Putin former president of Ukraine', r"Vi[ck]tor Yanukovych", url=WIKIPEDIA),
+            Entity('Vitaly Churkin', 'Russian ambassador to the United Nations', url=WIKIPEDIA),
+            Entity('Vladislav Doronin', f'oligarch, dated {NAOMI_CAMPBELL}', url=WIKIPEDIA),
             Entity(
                 YURI_MILNER,
                 f'Russian-Israeli investor whom Epstein says is managing "Russian gangster money"',
@@ -2651,12 +2656,17 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         style='color(161)',
         contacts=[
             Entity('Aksana Samy', QUESTION_MARKS),
+            Entity(ALEKSANDRA_KARPOVA, f"{CRYPTO_PR_LAB} co-founder", r"Aleksandra Karpova"),
             Entity('Alena Davydenkova', 'girl'),
             Entity('Alisa Khayrutdinova', 'girl'),
             Entity('Alysia Riabenkova', 'Russian painter', r"Alesia|Alysia( Riabenkova)?|Riabenkova"),
             Entity(ANASTASIYA_SIROOCHENKO, 'girl', r"Anastasiya( Siro(chenko)?)?"),
             Entity(ANNA_KASATKINA, 'Russian girl'),
-            Entity(ALEKSANDRA_KARPOVA, f"{CRYPTO_PR_LAB} co-founder", r"Aleksandra Karpova"),
+            Entity(
+                ANYA_RASULOVA,
+                f'co-founder of {INSIGHTS_POD} from Uzbekistan, did social media work for Epstein during 2016 US election',
+                url=SUBSTACK_POST_INSIGHTSPOD_URL,
+            ),
             Entity(DASHA_GRUPMAN, 'recruiter of girls for Epstein', r"Da(ry|sh)a Grupman"),
             Entity('Ekaterina Gusarova', f'Instagram model {QUESTION_MARKS}', r"(Ekaterina|Katya)? Gusm?arova", aliases=['Katya']),
             Entity('Irina Vodolazova', 'Russian model', match_partial='both'),
@@ -2688,12 +2698,12 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Entity('Krystyna Gwiazda', 'Russian girl'),
             Entity(
                 LASMA_KUHTARSKA,
-                'Latvian, co-founder of Dubai based fintech co. Noda',
+                'Latvian co-founder of Dubai based fintech company Noda',
                 url='https://medium.com/authority-magazine/innovation-with-purpose-lasma-kuhtarska-of-noda-on-the-worlds-most-successful-purpose-driven-b7dc4d7b966a',
             ),
             Entity(
                 MARIA_PRUSAKOVA,
-                f"former Olympic snowboarder, {CRYPTO_PR_LAB} co-founder, \"found ladies\" for Epstein",
+                f"former Olympic snowboarder, {CRYPTO_PR_LAB} co-founder, long time recruiter for Epstein",
                 r"Ma(sha|riy?a) (Prusa?(kova|so))",
                 aliases=['Masha Prusso'],
                 url=[
@@ -3370,7 +3380,8 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Entity(
                 SULTAN_BIN_SULAYEM,
                 "chairman of ports in Dubai, CEO of DP World, resigned over Epstein ties",
-                r"Sultan (Ahmed )?bin Sulaye?m?|ssulayem[©@a](aol|etisalat\.?blackberry).com",
+                r"Sultan (Ahmed )?bin Sulaye?m?",
+                email_addresses=['ssulayem@aol.com', 'ssulayem@etisalat.blackberry.com'],
                 url='https://www.bbc.com/news/articles/ce82xgd2g3yo',
             )
         ],

@@ -167,7 +167,7 @@ class Entity(LoggingEntity):
             if len(self.name) >= MIN_LEN_FOR_OPTIONAL_LAST_CHAR and not self.is_organization:
                 pattern += '?'
 
-        return as_pattern(pattern)
+        return as_pattern(join_patterns([pattern, *self.email_addresses]))
 
     @property
     def _identifier(self) -> str:
