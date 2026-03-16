@@ -2165,6 +2165,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 match_partial='both',
                 url='https://x.com/DropSiteNews/status/2019199114534350961',
             ),
+            Entity('Dariga Nazarbayeva', 'daughter of Nursultan Nazarbayev', url=WIKIPEDIA),
             Entity(
                 FAWZI_SIAM,
                 "sharia auditor in Qatar, friend of Sheikh Jabor Al-Thani",
@@ -2190,7 +2191,6 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 match_partial=None,
             ),
             Entity('Nursultan Nazarbayev', 'former president of Kazakhstan', match_partial='both', url=WIKIPEDIA),
-            Entity('Dariga Nazarbayeva', 'daughter of Nursultan Nazarbayev', url=WIKIPEDIA),
             Entity(
                 'Rakhat Aliyev',
                 'corrupt Kazakh politician',
