@@ -1,5 +1,6 @@
 from dataclasses import dataclass, field
 
+from rich.errors import StyleSyntaxError
 from rich.style import Style
 from rich.theme import Theme
 
@@ -28,8 +29,12 @@ class RichStyle:
             elif self._style == 'dim':
                 self._style = f"white {self._style}"  # Coerce gray if just 'dim'
 
-            # logger.warning(f"About to parse _style='{self._style}', {type(self._style)}")
-            self.style = DEFAULT_THEME.styles.get(self._style, Style.parse(self._style))
+            try:
+                self.style = DEFAULT_THEME.styles.get(self._style, Style.parse(self._style))
+            except StyleSyntaxError as e:
+                logger.warning(f"Failed to parse style '{self._style}', attempting to resolve w/imports...")
+                from epstein_files.output.rich import RICH_THEME
+                self.style = RICH_THEME.styles[self._style]
 
     @property
     def background_color_hex(self) -> str:
