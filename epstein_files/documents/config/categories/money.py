@@ -70,8 +70,8 @@ MONEY_CFGS = [
     DocCfg(id='EFTA01086463', description=f"{MORTIMER_ZUCKERMAN}'s art collection valuations", is_valid_for_name_scan=False),
     DocCfg(id='EFTA00007781', description='paychecks signed by Epstein deposited at Colonial Bank', date='2005-08-12'),
     DocCfg(id='EFTA01273102', description=f"payment from Epstein to {RENATA_BOLOTOVA}'s father's account at Sberbank"),
+    DocCfg(id='EFTA00000476', display_text='photo of JEFFREY EPSTEIN CASH DISBURSEMENTS', date='2006-09-01', is_interesting=False),
     DocCfg(id='EFTA00238499', description='wire transfer to Signature Bank account'),
-    DocCfg(id='EFTA00000476', display_text='photo of JEFFREY EPSTEIN CASH DISBURSEMENTS', date='2006-09-01'),
 
     # Emails
     EmailCfg(id='EFTA00037187', is_interesting=True),
