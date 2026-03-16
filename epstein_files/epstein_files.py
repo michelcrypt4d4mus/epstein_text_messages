@@ -105,6 +105,7 @@ class EpsteinFiles:
     @property
     def docs_by_id(self) -> Mapping[str, Document]:
         """dict with file IDs as keys and Document objs as values."""
+        self._docs_by_id = self._docs_by_id or {doc.file_id: doc for doc in self._documents}
         return self._docs_by_id
 
     @property

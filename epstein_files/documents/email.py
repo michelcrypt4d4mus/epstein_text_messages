@@ -549,9 +549,9 @@ class Email(Communication):
 
         # Add None to recipients if there's an empty From: or To: header
         if self.header.is_to_redacted and not self.has_unknown_recipient:
+            # TODO: SEC is filled in for Dilorio's split up emails after Email is fully instantiated
             if self.author != CHRISTOPHER_DILORIO:
-                # TODO: SEC is filled in for Dilorio's split up emails after Email is fully instantiated
-                self._warn(f"Appending {None} to recipient list because the To: field is empty")
+                self._log(f"Appending {None} to recipient list because the To: field is empty")
                 recipients.append(None)
 
         return sort_names(recipients)
