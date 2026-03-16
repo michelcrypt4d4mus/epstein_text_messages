@@ -452,7 +452,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Entity('Desmond Shum', f'Hong Kong financier, friend of {PETER_MANDELSON}', match_partial='both', url=WIKIPEDIA),
             Entity(
                 GINO_YU,
-                f"professor / game designer / AI researcher in Hong Kong, friend of {MASHA_DROKOVA}, did PR for Epstein",
+                f"AI researcher/professor in Hong Kong, did PR for Epstein, friend of {MASHA_DROKOVA}?",
                 match_partial=None,
             ),
             Entity(
@@ -2094,12 +2094,12 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         style='dark_khaki',
         contacts=[
             Entity(BOB_CROWE, "partner at Nelson Mullins", r"[BR]ob Crowe", match_partial=None),
+            Entity('Elisabeth Feliho', f'Nelson Mullins Riley, worked on getting {KARIM_WADE} out of jail'),
             Entity('Joshua Cooper Ramo', "co-CEO of Henry Kissinger Associates"),
             Entity(OLIVIER_COLOM, f"Epstein's banker at {EDMOND_DE_ROTHSCHILD} (Suisse) SA Bank", r"Colom, Olivier?|Olivier Colom"),
             Entity('Paul Keating', "former prime minister of Australia", match_partial=None),
             Entity('Stanley Rosenberg', "former President of the Massachusetts Senate", match_partial=None),
             Entity('Vinoda Basnayake', f'Nelson Mullins Riley, worked on getting {KARIM_WADE} out of jail'),
-            Entity('Elisabeth Feliho', f'Nelson Mullins Riley, worked on getting {KARIM_WADE} out of jail'),
             acronym('Center for Strategic and International Studies', 'pro-war American think tank'),
         ],
         patterns=[
@@ -2148,13 +2148,13 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Entity(
                 AZIZA_ALAHMADI,
                 f"Abu Dhabi Department of Culture & Tourism, assistant of {RAAFAT_ALSABBAGH}",
-                url='https://x.com/DropSiteNews/status/2019199114534350961',
                 match_partial='both',
+                url='https://x.com/DropSiteNews/status/2019199114534350961',
             ),
             Entity(
-                name=FAWZI_SIAM,
-                info="sharia auditor in Qatar, friend of Sheikh Jabor Al-Thani",
-                emailer_pattern=r"Fawzi.Siam?",
+                FAWZI_SIAM,
+                "sharia auditor in Qatar, friend of Sheikh Jabor Al-Thani",
+                r"Fawzi.Siam?",
                 match_partial='first',
             ),
             Entity('Hamad bin Khalifa al-Thani', 'emir of Qatar', match_partial=None),
@@ -2180,14 +2180,14 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Entity(
                 'Rakhat Aliyev',
                 'corrupt Kazakh politician',
+                match_partial='both',
                 url='https://www.bbc.com/news/world-europe-32253434',
-                match_partial='both'
             ),
             Entity(
                 RAAFAT_ALSABBAGH,
                 "Saudi royal advisor",
-                url='https://publish.obsidian.md/findingtruth/Modern+Day+Locations/Asia/Asian+Important+People/Raafat+Al-Sabbagh',
                 match_partial='both',
+                url='https://publish.obsidian.md/findingtruth/Modern+Day+Locations/Asia/Asian+Important+People/Raafat+Al-Sabbagh',
             ),
             Entity(
                 SHAHER_ABDULHAK_BESHER,
@@ -2497,9 +2497,9 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         style='indian_red',
         contacts=[
             Entity(
-                name=ARIANE_DE_ROTHSCHILD,
-                info=f"heiress, runs the bank {EDMOND_DE_ROTHSCHILD} (Suisse) SA",
-                emailer_pattern=r"AdeR|(A(\.|riane) (de )?)?Roths?h?ch?il[cd]|Ariane(?! Dwyer)",
+                ARIANE_DE_ROTHSCHILD,
+                f"heiress, runs the bank {EDMOND_DE_ROTHSCHILD} (Suisse) SA",
+                r"AdeR|(A(\.|riane) (de )?)?Roths?h?ch?il[cd]|Ariane(?! Dwyer)",
             ),
             Entity(JOHNNY_EL_HACHEM, f"{EDMOND_DE_ROTHSCHILD} Private Equity", r"el hachem johnny|johnny el hachem"),
             organization(EDMOND_DE_ROTHSCHILD, f"Swiss bank"),
