@@ -217,16 +217,6 @@ def section_subtitle_panel(msg: str, style: str = SUBTITLE_STYLE) -> Padding:
     return Padding(subtitle_panel(msg, style), site_config.subtitle_margins)
 
 
-def subtitle_panel(msg: str, style: str = SUBTITLE_STYLE) -> Panel:
-    """`Panel`  for important text, like name of a subsection."""
-    return Panel(
-        Text.from_markup(msg, justify='center'),
-        padding=site_config.subtitle_padding,
-        style=style,
-        width=site_config.subtitle_width,
-    )
-
-
 def styled_dict(
     d: Mapping[str, bool | datetime | str | Path | Text | None],
     key_style: str = KEY_STYLE,
@@ -310,6 +300,16 @@ def styled_key_value(
     txt = Text('').append(f"{key:>{indent}}", style=key_style)
     txt.append(sep, style=SYMBOL_STYLE).append(val_txt)
     return txt
+
+
+def subtitle_panel(msg: str, style: str = SUBTITLE_STYLE) -> Panel:
+    """`Panel`  for important text, like name of a subsection."""
+    return Panel(
+        Text.from_markup(msg, justify='center'),
+        padding=site_config.subtitle_padding,
+        style=style,
+        width=site_config.subtitle_width,
+    )
 
 
 def wrap_in_markup_style(msg: str, style: str | None = None) -> str:
