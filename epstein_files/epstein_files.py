@@ -105,7 +105,6 @@ class EpsteinFiles:
     @property
     def docs_by_id(self) -> Mapping[str, Document]:
         """dict with file IDs as keys and Document objs as values."""
-        self._docs_by_id = self._docs_by_id or {doc.file_id: doc for doc in self._documents}
         return self._docs_by_id
 
     @property
@@ -430,6 +429,7 @@ class EpsteinFiles:
         self._emailers = self.person_objs(flatten([e.participants for e in self.emails]))
         self._find_email_attachments_and_set_is_first_for_user()
         self._documents = Document.sort_by_timestamp(self._documents)
+        self._docs_by_id = {doc.file_id: doc for doc in self._documents}
         self._save_to_disk()
 
     def _find_email_attachments_and_set_is_first_for_user(self) -> None:
