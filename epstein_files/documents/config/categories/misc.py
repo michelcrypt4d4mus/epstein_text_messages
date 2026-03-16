@@ -60,7 +60,11 @@ MISC_CFGS = [
     DocCfg(id='EFTA01193705', description="list of Epstein's known email addresses, internet accounts, cars, boats, airplanes, and telephone numbers"),
     DocCfg(id='EFTA00165515', description="contractor describes Epstein's gun safes", show_full_panel=True),
     DocCfg(id='EFTA00266322', description=f"documents about pitches for non-profits in Australia, including to Effective Altruism"),
-    DocCfg(id='EFTA00029538', description=f"{GHISLAINE_MAXWELL} provided school girl uniforms", show_full_panel=True),
+    DocCfg(
+        id='EFTA00029538',
+        description=f"{GHISLAINE_MAXWELL} investigation",
+        highlight_quote="the defendant provided Minor Victim-3 with a schoolgirl uniform",
+    ),
     DocCfg(id='EFTA00005783', description='heavily redacted handwritten note, 30+ completely redacted pages', date='2019-08-29'),
     DocCfg(id='EFTA00005386', description='heavily redacted photo album, lot of photos of girls'),
     DocCfg(id='EFTA01063691', description='inventory of address books and Skype logs seized from Epstein computers'),

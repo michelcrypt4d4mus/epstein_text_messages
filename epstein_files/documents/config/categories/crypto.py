@@ -161,7 +161,7 @@ CRYPTO_CFGS = [
     DocCfg(id='EFTA00295126', author=CRYPTO_PR_LAB, description="accounting statement", show_full_panel=True),
     DocCfg(id='EFTA01299820', author=CRYPTO_PR_LAB, description="bank transfer", date='2018-12-18'),
     DocCfg(id='EFTA00309271', author=CRYPTO_PR_LAB, description='financial statement'),
-    DocCfg(id='EFTA01613759', author=CRYPTO_PR_LAB, description="letter of intent of acquisitionfrom Transform Group"),
+    DocCfg(id='EFTA01613759', author=CRYPTO_PR_LAB, description="letter of intent of acquisition from Transform Group"),
     DocCfg(id='EFTA01613762', author=CRYPTO_PR_LAB, description=f"WhatsApp convo with {MARIA_PRUSAKOVA}", date='2019-05-21'),
     DocCfg(id='EFTA01612721', author=CRYPTO_PR_LAB, description=f"WhatsApp convo with {MARIA_PRUSAKOVA}", date='2019-05-21'),
     EmailCfg(id='033255', description=f"{MASHA_DROKOVA}'s friend Dylan Love suggests he could quote Epstein explaining \"proper implementation of crypto might solve financial corruption issues\""),

@@ -975,7 +975,7 @@ EMAILS_CONFIG = [
         description=f"email about sham marriage visa issues, possibly from {RENATA_BOLOTOVA}'s spouse",
         is_interesting=True,
     ),
-    DocCfg(id='EFTA02312343_1', attached_to_email_id='EFTA02312343', description='translation of visa email', show_full_panel=True),
+    DocCfg(id='EFTA02312343_1', description='translation of visa email', attached_to_email_id='EFTA02312343'),
     EmailCfg(
         id='EFTA00708783',
         author=RENATA_BOLOTOVA,
