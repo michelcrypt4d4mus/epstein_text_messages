@@ -1927,8 +1927,8 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Entity(
                 JULIE_K_BROWN,
                 'blew the lid on the 2006 Epstein sweetheart deal',
-                r"Julie (K.? )?Brown",
-                email_addresses=['brown@miamiherald.com'],
+                r"Julie (K.? )?Brown|brown@miamiherald.com",
+                email_addresses=['jbrown@miamiherald.com'],
                 match_partial=None,
             ),
             Entity('Kia Kokalitcheva', 'US venture capital news at Pitchbook'),
