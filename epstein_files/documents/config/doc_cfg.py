@@ -30,6 +30,7 @@ Metadata = dict[str, bool | datetime | int | str | None | list[str | None] | dic
 DEFAULT_TRUNCATE_TO = 4000
 SHORT_TRUNCATE_TO = int(DEFAULT_TRUNCATE_TO / 3)
 NO_TRUNCATE = -1
+QUOTE_PREFIX = 'note quote'
 SAME = 'same'
 
 MAX_REPR_LINE_LENGTH = 135
@@ -188,7 +189,7 @@ class DocCfg(LoggingEntity):
 
             if self.highlight_quote:
                 description_quote = collapse_whitespace(self.highlight_quote.replace('>', ''))
-                self.description = join_truthy(self.description, f'quote of interest: {quote(description_quote)}', ', ')
+                self.description = join_truthy(self.description, f'{QUOTE_PREFIX}: {quote(description_quote)}', ', ')
 
         # show_full_panel sets is_very_interesting=True
         if self.show_full_panel:

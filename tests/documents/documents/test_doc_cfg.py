@@ -4,7 +4,7 @@ from copy import deepcopy
 from rich.text import Text
 
 from epstein_files.documents.documents.categories import Interesting, Neutral, Uninteresting
-from epstein_files.documents.config.doc_cfg import CommunicationCfg, DocCfg, EmailCfg
+from epstein_files.documents.config.doc_cfg import QUOTE_PREFIX, CommunicationCfg, DocCfg, EmailCfg
 from epstein_files.documents.other_file import OtherFile
 from epstein_files.output.highlight_config import QUESTION_MARKS_TXT
 from epstein_files.people.names import BLOCKCHAIN_CAPITAL, BOFA_MERRILL, JOI_ITO, Name
@@ -177,7 +177,7 @@ def test_descriptions(get_other_file, id, category, description):
 
 def test_highlight_quote():
     quote_cfg = EmailCfg(id=ID, highlight_quote='somebody to\nscrub > again')
-    assert quote_cfg.complete_description == 'quote of interest: "somebody to scrub again"'
+    assert quote_cfg.complete_description == f'{QUOTE_PREFIX}: "somebody to scrub again"'
 
 
 def test_is_empty(academia_cfg, dummy_cfg, empty_doj_cfg, empty_house_cfg):
