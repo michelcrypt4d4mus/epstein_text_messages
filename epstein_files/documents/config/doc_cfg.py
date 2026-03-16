@@ -30,7 +30,7 @@ Metadata = dict[str, bool | datetime | int | str | None | list[str | None] | dic
 DEFAULT_TRUNCATE_TO = 4000
 SHORT_TRUNCATE_TO = int(DEFAULT_TRUNCATE_TO / 3)
 NO_TRUNCATE = -1
-QUOTE_PREFIX = 'note quote'
+QUOTE_PREFIX = 'see quote'
 SAME = 'same'
 
 MAX_REPR_LINE_LENGTH = 135
@@ -183,8 +183,8 @@ class DocCfg(LoggingEntity):
 
         self.set_category(self.category)
 
-        # background_color and highlight_quote set show_full_panel to true
-        if self.background_color or self.highlight_quote:
+        # background_color, highlight_quote, or a tuple truncate_to set show_full_panel to true
+        if self.background_color or self.highlight_quote or isinstance(self.truncate_to, tuple):
             self.show_full_panel = True
 
             if self.highlight_quote:
