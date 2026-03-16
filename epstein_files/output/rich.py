@@ -254,7 +254,7 @@ def styled_dict(
 
 def styled_key_value(
     key: str,
-    val: bool | datetime | int | str | Path | Text | None,
+    val: bool | datetime | int | str | Path | Text | list | None,
     key_style: str = KEY_STYLE,
     indent: int = 0,
     sep='='
@@ -268,6 +268,11 @@ def styled_key_value(
     elif isinstance(val, Text):
         val_txt = val
     elif isinstance(val, list):
+        from epstein_files.people.entity import Entity
+
+        if val and isinstance(val[0], Entity):
+            val = [str(e) for e in val]
+
         val_txt = highlighter(json.dumps(val))
     elif isinstance(val, bool):
         val_txt = bool_txt(val)
