@@ -2,7 +2,6 @@
 Constants and methods for identifying people in email headers.
 """
 import re
-from collections import defaultdict
 
 from epstein_files.output.highlight_config import HIGHLIGHTED_ENTITIES
 from epstein_files.people.entity import Entity, organization
@@ -37,6 +36,7 @@ ADDITIONAL_CONTACTS = [
     Entity('Kevin Bright', match_partial=None),
     Entity('Larry Cohen', match_partial=None),
     Entity('Lawrence Delson'),
+    Entity('Martin Zeman'),
     Entity('Michael Simmons', match_partial=None),
     Entity('middle.east.update@hotmail.com'),
     Entity('Nancy Cain'),
@@ -44,6 +44,7 @@ ADDITIONAL_CONTACTS = [
     Entity(OLIVER_GOODENOUGH),
     Entity('Peter Green', match_partial=None),
     Entity('Sarah Mapes'),
+    Entity('Stewart Oldfield'),
 ]
 
 SUPPRESS_LOGS_FOR_AUTHORS = [
