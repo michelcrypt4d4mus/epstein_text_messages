@@ -1,4 +1,4 @@
-from epstein_files.documents.config.config_builder import fedex_invoice, important_messages_pad
+from epstein_files.documents.config.config_builder import fedex_invoice, important_messages_pad, press_release
 from epstein_files.documents.config.doc_cfg import DocCfg
 from epstein_files.documents.documents.categories import Interesting, Neutral
 from epstein_files.documents.doj_files.full_text import EFTA00009622_TEXT
@@ -10,8 +10,9 @@ LUTNICKS_CANTOR = f"Howard Lutnick's {CANTOR_FITZGERALD}"
 
 
 MISC_CFGS = [
-    DocCfg(id='029326', category=Neutral.PRESSER, author=EPSTEIN_FOUNDATION, date='2013-02-15'),
-    DocCfg(id='026565', category=Neutral.PRESSER, author=EPSTEIN_FOUNDATION, comment=f'maybe a draft of 029326', date='2013-02-15'),
+    press_release('015462', 'Nautilus Education', note=f'magazine issue for Epstein foundation {QUESTION_MARKS}', is_interesting=True),
+    press_release('029326', EPSTEIN_FOUNDATION, '2013-02-15'),
+    press_release('026565', EPSTEIN_FOUNDATION, '2013-02-15', comment=f'maybe a draft of 029326'),
     DocCfg(id='022494', author='DOJ', note=f'Foreign Corrupt Practices Act (FCPA) Resource Guide'),
     DocCfg(id='023096', author=EPSTEIN_FOUNDATION, note=f'blog post', date='2012-11-15'),
     DocCfg(id='027071', author=FEMALE_HEALTH_COMPANY, note=f"brochure requesting donations for female condoms in Uganda"),
@@ -30,16 +31,16 @@ MISC_CFGS = [
         date='2016-09-01',
         note=f"mostly empty {JASTA} (Justice Against Sponsors of Terrorism Act) doc referencing suit against Saudis",
     ),
-    DocCfg(
-        id='033338',
-        category=Neutral.PRESSER,
-        date='2000-06-07',
-        note=f"end of {DONALD_TRUMP} & {NICHOLAS_RIBIS} working relationship at Trump's casino",
-        is_interesting=True,
-    ),
     DocCfg(id='029328', note=f"Rafanelli Events promotional deck", is_interesting=False),
     DocCfg(id='029475', note=f'{VIRGIN_ISLANDS} Twin City Mobile Integrated Health Services (TCMIH) proposal/request for donation', is_interesting=False),
     DocCfg(id='029448', note=f"weird short essay titled 'President Obama and Self-Deception'"),
+    press_release(
+        '033338',
+        NICHOLAS_RIBIS,
+        '2000-06-07',
+        f"end of {DONALD_TRUMP} & {NICHOLAS_RIBIS} working relationship at Trump's casino",
+        is_interesting=True,
+    ),
 
     # DOJ files
     DocCfg(

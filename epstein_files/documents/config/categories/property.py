@@ -1,4 +1,5 @@
 from epstein_files.documents.documents.categories import Neutral
+from epstein_files.documents.config.config_builder import press_release
 from epstein_files.documents.config.doc_cfg import DocCfg
 from epstein_files.people.names import THE_REAL_DEAL
 from epstein_files.util.constant.strings import (PALM_BEACH, PALM_BEACH_CODE_ENFORCEMENT, PALM_BEACH_TSV,
@@ -8,14 +9,6 @@ REAL_DEAL_ARTICLE = 'article by Keith Larsen'
 
 
 PROPERTY_CFGS = [
-    DocCfg(
-        id='026759',
-        author='Great Bay Condominium Owners Association',
-        category=Neutral.PRESSER,
-        note=f'Hurricane Irma damage',
-        date='2017-09-13',
-        is_interesting=False,
-    ),
     DocCfg(id='016602', author=PALM_BEACH_CODE_ENFORCEMENT, note='board minutes', date='2008-04-17'),
     DocCfg(id='016554', author=PALM_BEACH_CODE_ENFORCEMENT, note='board minutes', date='2008-07-17', duplicate_ids=['016616', '016574']),
     DocCfg(id='016636', author=PALM_BEACH_WATER_COMMITTEE, note=f"Meeting on January 29, 2009"),
@@ -38,4 +31,5 @@ PROPERTY_CFGS = [
         note=f"{VIRGIN_ISLANDS} property deal pitch deck, building will be leased to the U.S. govt GSA",
         date='2014-06-01',
     ),
+    press_release('026759', 'Great Bay Condominium Owners Association', '2017-09-13', 'Hurricane Irma damage', is_interesting=False),
 ]

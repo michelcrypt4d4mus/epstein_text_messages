@@ -206,6 +206,10 @@ def phone_bill_cfg(id: str, author: str, dates: str = '', **kwargs) -> DocCfg:
     )
 
 
+def press_release(id: str, author: Name, date: str = '', note: str = '', **kwargs) -> DocCfg:
+    return DocCfg(id=id, author=author, category=Neutral.PRESSER, date=date, note=note, **kwargs)
+
+
 def shaher_murder_email(id: str, note: str = '', **kwargs) -> EmailCfg:
     return EmailCfg(
         id=id,

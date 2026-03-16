@@ -305,27 +305,6 @@ def acronym(name: str, description: str = '', **kwargs) -> Entity:
     )
 
 
-# TODO: make class method (?)
-def organization(name: str, description: str = '', emailer_pattern: str = '', **kwargs) -> Entity:
-    if (suffix_match := COMPANY_SUFFIX_REGEX.match(name)) and not emailer_pattern:
-        suffix = suffix_match.group(1)
-        emailer_pattern = name.removesuffix(suffix)
-
-        if not MGMT_REGEX.search(suffix):
-            if suffix.startswith(','):
-                suffix = suffix.replace(',', ',?')
-            else:
-                suffix = f",?{suffix}"
-
-        if suffix.endswith('.'):
-            suffix = suffix.replace('.', r'\.?')
-
-        emailer_pattern += fr"({suffix})?"
-
-    kwargs['is_emailer'] = kwargs.get('is_emailer', False)
-    return Entity(name, description, emailer_pattern, is_organization=True, **kwargs)
-
-
 def epstein_co(name: str, emailer_pattern: str = '', description: str = '', **kwargs) -> Entity:
     return organization(name, join_truthy('Epstein company', description), emailer_pattern, **kwargs)
 
@@ -355,3 +334,40 @@ def epstein_trust(
 
 def law_enforcement(name: str, emailer_pattern: str = '', description: str = '', **kwargs) -> Entity:
     return organization(name, description or LAW_ENFORCEMENT, emailer_pattern, is_interesting=False, **kwargs)
+
+
+# TODO: make class method (?)
+def organization(name: str, description: str = '', emailer_pattern: str = '', **kwargs) -> Entity:
+    if (suffix_match := COMPANY_SUFFIX_REGEX.match(name)) and not emailer_pattern:
+        suffix = suffix_match.group(1)
+        emailer_pattern = name.removesuffix(suffix)
+
+        if not MGMT_REGEX.search(suffix):
+            if suffix.startswith(','):
+                suffix = suffix.replace(',', ',?')
+            else:
+                suffix = f",?{suffix}"
+
+        if suffix.endswith('.'):
+            suffix = suffix.replace('.', r'\.?')
+
+        emailer_pattern += fr"({suffix})?"
+
+    kwargs['is_emailer'] = kwargs.get('is_emailer', False)
+    return Entity(name, description, emailer_pattern, is_organization=True, **kwargs)
+
+
+def publication(name: str, emailer_pattern: str = '', **kwargs) -> Entity:
+    """Convenience method for WSJ, New York Times, etc."""
+    # Make sure not to match 'Daily News' to 'Virgin Islands Daily News' / 'Palm Beach Daily News'
+    if name.startswith('Daily'):
+        emailer_pattern = fr"(?<!(Beach|lands)\s){emailer_pattern or name}"
+
+    return organization(name, emailer_pattern=emailer_pattern, is_interesting=False, **kwargs)
+
+
+def the_publication(name: str, emailer_pattern: str = '', **kwargs) -> Entity:
+    """Publication that starts with 'The'."""
+    emailer_pattern = emailer_pattern or name
+    pattern = fr"({emailer_pattern})" if '|' in emailer_pattern else emailer_pattern
+    return publication(name, fr"(The )?{pattern}", **kwargs)

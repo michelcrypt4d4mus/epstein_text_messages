@@ -62,7 +62,6 @@ ARTICLE_CFGS = [
         truncate_to=(13_500, 16_000),
     ),
     DocCfg(id='031198', author='Morning News USA', note=f"article about identify of Jane Doe in {JANE_DOE_V_EPSTEIN_TRUMP}"),
-    DocCfg(id='015462', author='Nautilus Education', note=f'magazine (?) issue'),
     DocCfg(id='031972', author=NYT, note=f"article about #MeToo allegations against {LAWRENCE_KRAUSS}", date='2018-03-07'),
     DocCfg(id='032435', author=NYT, note=f'article about Chinese butlers'),
     DocCfg(id='029452', author=NYT, note=f"article about {PETER_THIEL}"),

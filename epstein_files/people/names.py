@@ -391,7 +391,7 @@ PALM_BEACH_POST = f'{PALM_BEACH} Post'
 SHIMON_POST = 'The Shimon Post'
 THE_REAL_DEAL = 'The Real Deal'
 VI_DAILY_NEWS = f'{VIRGIN_ISLANDS} Daily News'
-WAPO = 'WaPo'
+WAPO = 'Washington Post'
 
 
 # Names to color white in the word counts

@@ -16,7 +16,7 @@ BAD_NAME_CHARS_REGEX = re.compile(r"[\"'\[\]*><•=()‹?]")
 TIME_REGEX = re.compile(r'^((\d{1,2}/\d{1,2}/\d{2,4}|Thursday|Monday|Tuesday|Wednesday|Friday|Saturday|Sunday)|\d{4} ).*')
 
 # Unhighlighted / uncategorized emailers we don't know much about but need regexes to identify
-ADDITIONAL_CONTACTS = [
+ADDITIONAL_EMAILERS = [
     # Custom regex
     Entity('BS Stern', emailer_pattern=r"BS Ste(m|rn)"),
     Entity(INTELLIGENCE_SQUARED, emailer_pattern=r"intelligence\s*squared"),
@@ -55,12 +55,13 @@ SUPPRESS_LOGS_FOR_AUTHORS = [
 ]
 
 # Collect all configured entities into various data structures
-CONFIGURED_ENTITIES = HIGHLIGHTED_ENTITIES + ADDITIONAL_CONTACTS
+CONFIGURED_ENTITIES = HIGHLIGHTED_ENTITIES + ADDITIONAL_EMAILERS
 EMAILER_REGEXES = {c.name: c.emailer_regex for c in CONFIGURED_ENTITIES if c.is_emailer}
 ENTITY_CATEGORIES = groupby(CONFIGURED_ENTITIES, lambda contact: contact.category)
 ENTITIES_DICT = {c.name: c for c in CONFIGURED_ENTITIES}
 UNCONFIGURED_ENTITIES_ENCOUNTERED = {}
 assert len(CONFIGURED_ENTITIES) == len(ENTITIES_DICT), f"{len(CONFIGURED_ENTITIES)} entities but only {len(ENTITIES_DICT)} names!"
+
 
 # Strings that usually signify an identity if present in email body
 IDENTIFYING_STRINGS = {}
