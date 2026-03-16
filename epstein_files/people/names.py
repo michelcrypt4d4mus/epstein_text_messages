@@ -289,6 +289,7 @@ YULIA_DOROKHINA = 'Yulia Dorokhina'
 YURI_MILNER = 'Yuri Milner'
 
 # No communications but name is in the files
+ALINA_PUSCAU = 'Alina Pușcău'
 BEN_LAWSKY = 'Ben Lawsky'
 BILL_GATES = 'Bill Gates'
 CHAMATH_PALIHAPITIYA = 'Chamath Palihapitiya'

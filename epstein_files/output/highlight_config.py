@@ -265,6 +265,12 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Entity('Barry Josephson', "American film producer"),  #, editor FamilySecurityMatters.org"),
             Entity(BILL_SIEGEL, "documentary film producer and director", match_partial=None),
             Entity('Bobby Slayton', 'comedian and actor'),
+            Entity(
+                'Brett Ratner',
+                'director of "Melania", blacklisted from film industry for #MeToo reasons',
+                match_partial=None,
+                url='https://www.motherjones.com/politics/2026/01/melania-trump-documentary-brett-ratner-metoo/',
+            ),
             Entity(DAVID_BLAINE, "famous magician", url=WIKIPEDIA),
             Entity('Camille Lang', "Sotheby's auction house", match_partial=None),
             Entity('Caroline Sophie', "Sotheby's auction house", match_partial=None),
@@ -2293,6 +2299,12 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 'Aleksandra Rastovic',
                 'model, received FedEx packages from Epstein',
                 r"Ale(ks|x)(andra)? Rasto[uv]ic|superaleksandra",
+            ),
+            Entity(
+                ALINA_PUSCAU,
+                "Victoria's Secret model, dated Epstein, engaged to Brett Ratner at one point",
+                r"Alin[ae] P(asca|ușcă)u",
+                url=WIKIPEDIA,
             ),
             Entity(
                 ANTOINE_VERGLAS,
