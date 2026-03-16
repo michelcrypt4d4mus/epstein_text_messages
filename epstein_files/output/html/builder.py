@@ -166,11 +166,6 @@ def render_at_console_width(obj: RenderableType) -> str:
     return _render_at_width(obj, console.width)
 
 
-def render_max_width(obj: RenderableType) -> str:
-    """render obj to a <pre> block formatted entirely by rich monospace layout that is MAX_RENDER_WIDTH chars wide."""
-    return _render_at_width(obj, MAX_RENDER_WIDTH)
-
-
 def render_at_css_width(obj: RenderableType, props: OptionalCssProps = None) -> str:
     """Convert CssProps to rich Padding units."""
     props = props or {}
@@ -188,6 +183,11 @@ def render_at_obj_width(obj: RenderableType) -> str:
     """Render `obj` to a <pre> block with same width as `obj`."""
     with _obj_width_renderer(obj) as _renderer:
         return render_to_html(obj, _renderer)
+
+
+def render_max_width(obj: RenderableType) -> str:
+    """render obj to a <pre> block formatted entirely by rich monospace layout that is MAX_RENDER_WIDTH chars wide."""
+    return _render_at_width(obj, MAX_RENDER_WIDTH)
 
 
 def render_to_html(obj: RenderableType, renderer_console: Console | None = None) -> str:
@@ -296,6 +296,18 @@ def text_to_list(textish: list[str] | list[Text], list_type: HtmlListTag = 'ul',
     return build_html_list(html_elements, list_type, **kwargs)
 
 
+@contextmanager
+def tmp_console(tmp_width: int) -> Generator[Console, None, None]:
+    """safely use a rich console with temporary width for rendering rich -> HTML."""
+    old_console_width = HTML_RENDER_CONSOLE.width
+    HTML_RENDER_CONSOLE.width = tmp_width
+
+    try:
+        yield HTML_RENDER_CONSOLE
+    finally:
+        HTML_RENDER_CONSOLE.width = old_console_width
+
+
 def write_templated_html(elements: list[str] | str, output_path: Path) -> Path:
     """Render a collection of HTML elements to an HTML file. Returns file that was written."""
     body = '\n\n'.join(listify(elements))
@@ -310,18 +322,6 @@ def write_templated_html(elements: list[str] | str, output_path: Path) -> Path:
     output_path.write_text(html)
     log_file_write(output_path)
     return output_path
-
-
-@contextmanager
-def tmp_console(tmp_width: int) -> Generator[Console, None, None]:
-    """safely use a rich console with temporary width for rendering rich -> HTML."""
-    old_console_width = HTML_RENDER_CONSOLE.width
-    HTML_RENDER_CONSOLE.width = tmp_width
-
-    try:
-        yield HTML_RENDER_CONSOLE
-    finally:
-        HTML_RENDER_CONSOLE.width = old_console_width
 
 
 @contextmanager

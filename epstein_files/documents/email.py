@@ -15,7 +15,7 @@ from rich.table import Table
 from rich.text import Text
 
 from epstein_files.documents.communication import Communication
-from epstein_files.documents.document import CLOSE_PROPERTIES_CHAR, EXCERPT_STYLE, EntityScanArg, coerce_entity_names
+from epstein_files.documents.document import CLOSE_PROPERTIES_CHAR, EXCERPT_STYLE
 from epstein_files.documents.documents.categories import Uninteresting
 from epstein_files.documents.config.doc_cfg import DEFAULT_TRUNCATE_TO, NO_TRUNCATE, SHORT_TRUNCATE_TO, DebugDict, EmailCfg, Metadata
 from epstein_files.documents.doj_file import DojFile
@@ -25,7 +25,7 @@ from epstein_files.documents.emails.email_header import (EMAIL_SIMPLE_HEADER_REG
      EMAIL_SIMPLE_HEADER_LINE_BREAK_REGEX, EmailHeader)
 from epstein_files.documents.emails.emailers import IDENTIFYING_STRINGS, UNIQ_IDENTIFIER_FALSE_ALARMS, extract_emailer_names
 from epstein_files.documents.other_file import OtherFile
-from epstein_files.people.entity import Entity
+from epstein_files.people.entity import Entity, EntityScanArg
 from epstein_files.people.interesting_people import EMAILERS_OF_INTEREST_SET
 from epstein_files.people.names import sort_names
 from epstein_files.output.epstein_highlighter import highlighter
@@ -40,6 +40,7 @@ from epstein_files.util.constants import CONFIGS_BY_ID
 from epstein_files.util.env import args, site_config
 from epstein_files.util.helpers.data_helpers import (AMERICAN_TIME_REGEX, TIMEZONE_INFO, CharRange, coerce_utc, flatten,
      prefix_keys, uniq_sorted, uniquify, without_falsey)
+from epstein_files.util.helpers.rich_helpers import enclose
 from epstein_files.util.external_link import join_texts, link_text_obj
 from epstein_files.util.helpers.string_helper import capitalize_first, collapse_newlines, is_bool_prop, quote, strip_pdfalyzer_panels
 from epstein_files.util.logging import logger
@@ -332,7 +333,7 @@ class Email(Communication):
 
                 # Add "appears in [SOURCE]" pfx to description for docs extract ed from others (e.g. huge Dilorio emails)
                 if (extracted_from_description := extracted_from_cfg.complete_description):
-                    self.derived_cfg.description = f"{APPEARS_IN} {extracted_from_description}"
+                    self.derived_cfg.note = f"{APPEARS_IN} {extracted_from_description}"
 
                 for prop in DERIVED_CFG_PROPS_TO_COPY:
                     derived_cfg_val = getattr(self.derived_cfg, prop)
@@ -473,7 +474,12 @@ class Email(Communication):
             author_txt += Text(f" {QUESTION_MARKS}", style=self.author_style)
 
         prefix = 'fwded article' if self.is_fwded_article else 'email'
-        return site_config.email_subheader(prefix, author_txt, self.recipients_txt(), self.timestamp)
+        txt = site_config.email_subheader(prefix, author_txt, self.recipients_txt(), self.timestamp)
+
+        if self._config.external_link_txt:
+            txt = self._config.external_link_txt.append(' ').append(txt)
+
+        return txt
 
     @property
     def subject(self) -> str:
@@ -502,7 +508,8 @@ class Email(Communication):
     def entity_scan(self, exclude: EntityScanArg = None, include: EntityScanArg = None) -> list[Entity]:
         """Overrides superclass to append names from email attachments."""
         attachment_entities = flatten([ad.entities for ad in self.attached_docs])
-        return super().entity_scan(exclude, coerce_entity_names(attachment_entities) + coerce_entity_names(include))
+        include = Entity.coerce_entity_names(attachment_entities) + Entity.coerce_entity_names(include)
+        return super().entity_scan(exclude, include)
 
     def extract_author(self) -> Name:
         """Overloads superclass method, called at instantiation time."""
@@ -542,9 +549,9 @@ class Email(Communication):
 
         # Add None to recipients if there's an empty From: or To: header
         if self.header.is_to_redacted and not self.has_unknown_recipient:
+            # TODO: SEC is filled in for Dilorio's split up emails after Email is fully instantiated
             if self.author != CHRISTOPHER_DILORIO:
-                # TODO: SEC is filled in for Dilorio's split up emails after Email is fully instantiated
-                self._warn(f"Appending {None} to recipient list because the To: field is empty")
+                self._log(f"Appending {None} to recipient list because the To: field is empty")
                 recipients.append(None)
 
         return sort_names(recipients)
@@ -630,7 +637,7 @@ class Email(Communication):
                 raise ValueError(f"Can't show more than one panelized attachment for {self}!")
 
             table = Table(title=attachments_table_title, title_justify='left')
-            table.add_column(doc._config.description)
+            table.add_column(doc._config.note)
             table.add_row(highlighter(Text(self.attached_docs[0].text, EXCERPT_STYLE)))
             return table
         else:

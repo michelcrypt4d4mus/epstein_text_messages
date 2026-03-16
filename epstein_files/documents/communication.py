@@ -5,11 +5,11 @@ from typing import cast
 
 from rich.text import Text
 
-from epstein_files.documents.document import CLOSE_PROPERTIES_CHAR, Document, EntityScanArg, coerce_entity_names
+from epstein_files.documents.document import CLOSE_PROPERTIES_CHAR, Document
 from epstein_files.documents.config.doc_cfg import CommunicationCfg
 from epstein_files.output.highlight_config import get_style_for_name, styled_name
 from epstein_files.output.rich import styled_key_value
-from epstein_files.people.entity import Entity
+from epstein_files.people.entity import Entity, EntityScanArg
 from epstein_files.people.names import UNKNOWN, Name
 from epstein_files.util.helpers.data_helpers import uniq_sorted
 from epstein_files.util.helpers.rich_helpers import no_bold
@@ -110,7 +110,8 @@ class Communication(Document):
 
     def entity_scan(self, exclude: EntityScanArg = None, include: EntityScanArg = None) -> list[Entity]:
         """Overrides superclass to append `self.recipients`."""
-        return super().entity_scan(exclude, self.participant_names + coerce_entity_names(include))
+        include = self.participant_names + Entity.coerce_entity_names(include)
+        return super().entity_scan(exclude, include)
 
     def extract_recipients(self) -> list[Name]:
         """Overload in subclasses"""

@@ -7,7 +7,7 @@ from typing import Any
 
 from inflection import underscore
 
-from epstein_files.util.constant.strings import QUESTION_MARKS_REGEX
+from epstein_files.util.constant.strings import AMPERSAND_CHAR_GROUP, QUESTION_MARKS_REGEX
 
 EMOJI_REGEX = re.compile(r"(?:^|\s)([:;=][-^]?[oODP()]|[oO()][-^]?[:=])(?=$|\s)")
 INTEGER_REGEX = re.compile(r'^\d+$')
@@ -39,8 +39,8 @@ or_equal_sign_char_group = lambda s: f"[{s}=]"  # DataSet 11 has a lot of random
 
 
 def as_pattern(s: str) -> str:
-    """Replace spaces with regex pattern for whitespace."""
-    s = collapse_spaces(s)
+    """Replace spaces with regex pattern for whitespace and ampersands with common OCR fails."""
+    s = collapse_spaces(s).replace('@', AMPERSAND_CHAR_GROUP)
     return s if '?<!' in s else s.replace(' ', WHITESPACE_CHAR)
 
 

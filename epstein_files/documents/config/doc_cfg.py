@@ -30,6 +30,7 @@ Metadata = dict[str, bool | datetime | int | str | None | list[str | None] | dic
 DEFAULT_TRUNCATE_TO = 4000
 SHORT_TRUNCATE_TO = int(DEFAULT_TRUNCATE_TO / 3)
 NO_TRUNCATE = -1
+QUOTE_PREFIX = 'see quote'
 SAME = 'same'
 
 MAX_REPR_LINE_LENGTH = 135
@@ -122,7 +123,7 @@ class DocCfg(LoggingEntity):
         author_uncertain (str | bool, optional): Like `author_reason` but for author attributions that aren't 100% confirmed
         background_color (str, optional): set `is_interesting=True` and show in full panel with background color
         category (str, optional): Type of file
-        comment (str, optional): Info about this file not worth being in the description
+        comment (str, optional): Info about this file not worth being in the `note`
         date (str, optional): Parsed to a datetime by timestamp() if it exists
         display_text (str, optional): Replace the contents of this file with this string when it's displayed
         dupe_type (DuplicateType | None): The type of duplicate this file is or its 'duplicate_ids' are
@@ -135,6 +136,7 @@ class DocCfg(LoggingEntity):
         is_valid_for_name_scan (bool): should text of this doc be scanned for names to create biographical panels
         is_very_interesting (bool): extra special
         non_participants (list[str]): hacky way to avoid false detection of these names
+        note (str, optional): description of what's in this file
         num_preview_chars (int, optional): customize number of preview_chars shown in `OtherFile` tables
         people (list[str]): override `Document.people()` with a fixed set of names (meaning no scan of the text)
         show_full_panel (bool, optional): set `is_interesting=True` and show in a full panel view, not in a table
@@ -153,11 +155,11 @@ class DocCfg(LoggingEntity):
     comment: str = ''
     date: str = ''
     date_uncertain: str | bool = False
-    description: str = ''
     display_text: str = ''
     dupe_type: DuplicateType | None = None
     duplicate_ids: list[str] = field(default_factory=list)
     duplicate_of_id: str | None = None
+    entity_names: list[str] = field(default_factory=list)
     highlight_quote: str = ''
     is_interesting: bool | None = None  # NOTE: if True emails will not be truncated!
     is_very_interesting: bool = False
@@ -165,8 +167,8 @@ class DocCfg(LoggingEntity):
     is_synthetic: bool | None = None
     is_valid_for_name_scan: bool = True
     non_participants: list[str] = field(default_factory=list)  # TODO: this sucks
+    note: str = ''
     num_preview_chars: int | None = None
-    people: list[str] = field(default_factory=list)
     show_full_panel: bool = False
     show_with_name: str = ''
     truncate_to: int | tuple[int, int] | None = None
@@ -182,30 +184,31 @@ class DocCfg(LoggingEntity):
 
         self.set_category(self.category)
 
-        if self.is_very_interesting:
-            self.is_interesting = True
-
-        if self.highlight_quote:
-            description_quote = collapse_whitespace(self.highlight_quote.replace('>', ''))
-            self.description = join_truthy(self.description, f'quote of interest: {quote(description_quote)}', ', ')
+        # background_color, highlight_quote, or a tuple truncate_to set show_full_panel to true
+        if self.background_color or self.highlight_quote or isinstance(self.truncate_to, tuple):
             self.show_full_panel = True
 
-        if self.background_color:
-            self.show_full_panel = True
+            if self.highlight_quote:
+                description_quote = collapse_whitespace(self.highlight_quote.replace('>', ''))
+                self.note = join_truthy(self.note, f'{QUOTE_PREFIX}: {quote(description_quote)}', ', ')
 
+        # show_full_panel sets is_very_interesting=True
         if self.show_full_panel:
+            self.is_very_interesting = True
+
+        if self.is_very_interesting:
             self.is_interesting = True
 
         if self.duplicate_of_id or self.duplicate_ids:
             self.dupe_type = self.dupe_type or SAME
 
     @classmethod
-    def describe(cls, id: str, description: str, **kwargs) -> Self:
+    def describe(cls, id: str, note: str, **kwargs) -> Self:
         """Alternate constructor for a config with a description."""
         # TODO: VScode find / replace expression attempts to update DocCfg objs to use this method
-        # TODO: find expression: (Doc|Email)Cfg\(id=('\w+'), description=(f?'.*?')\),
+        # TODO: find expression: (Doc|Email)Cfg\(id=('\w+'), note=(f?'.*?')\),
         # TODO:         replace: $1Cfg.describe($2, $3),
-        return cls(id=id, description=description, **kwargs)
+        return cls(id=id, note=note, **kwargs)
 
     @property
     def author_str(self) -> str:
@@ -239,11 +242,11 @@ class DocCfg(LoggingEntity):
         description = ''
 
         # If description is set at all in one of these if/else checks must be fully constructed
-        if self.display_text and not self.description:
+        if self.display_text and not self.note:
             return ''
         if self.category == Uninteresting.BOOK or \
-                (self.category == Uninteresting.ACADEMIA and self.author and self.description):
-            description = join_truthy(self.description, author, ' by ')  # note reversed args
+                (self.category == Uninteresting.ACADEMIA and self.author and self.note):
+            description = join_truthy(self.note, author, ' by ')  # note reversed args
             description = join_truthy(preamble, description)
         elif self.category == Neutral.FINANCE and self.is_description_a_title:
             author_separator = ' report: '
@@ -259,12 +262,12 @@ class DocCfg(LoggingEntity):
                 recipients_sep = ' to '
 
             description = join_truthy(description, recipients, recipients_sep)
-            description = join_truthy(description, self.description)
+            description = join_truthy(description, self.note)
         elif self.category == Neutral.SKYPE_LOG:
             author = JEFFREY_EPSTEIN if self.recipients_str and not author else author
             preamble_separator = ' of conversation with '
         elif self.category == Neutral.PRESSER:
-            description = join_truthy(preamble, self.description, ' announcing ')  # note reversed args
+            description = join_truthy(preamble, self.note, ' announcing ')  # note reversed args
             description = join_truthy(author, description)
         elif self.category == Interesting.REPUTATION or (self.category == Neutral.LEGAL and 'v.' in self.author_str):
             author_separator = ': '
@@ -275,7 +278,7 @@ class DocCfg(LoggingEntity):
         # Construct standard description from pieces if a custom one has not been created yet
         if not description:
             preamble_author = join_truthy(preamble, author, preamble_separator)
-            author_description = join_truthy(author, self.description, author_separator)
+            author_description = join_truthy(author, self.note, author_separator)
 
             if author and preamble_author.endswith(author) and author_description.startswith(author):
                 preamble_author = preamble_author.removesuffix(author).strip()
@@ -312,7 +315,7 @@ class DocCfg(LoggingEntity):
     @property
     def has_any_info(self) -> bool:
         """True if either `author` or `description` is truthy."""
-        return bool(self.description or self.author)
+        return bool(self.note or self.author)
 
     @property
     def text_highlighter(self) -> 'EpsteinHighlighter':
@@ -337,14 +340,14 @@ class DocCfg(LoggingEntity):
     @property
     def is_description_a_title(self) -> bool:
         """True if first char is uppercase or a quote."""
-        if not (self.author and self.description):
+        if not (self.author and self.note):
             return False
         elif self.category not in [Category.ACADEMIA, Category.BOOK, Category.FINANCE]:
             return False
         elif self.category == Category.FINANCE and self.author not in FINANCIAL_REPORTS_AUTHORS:
             return False
 
-        first_char = self.description[0]
+        first_char = self.note[0]
         return first_char.isupper() or first_char in ["'", '"']
 
     @property
@@ -403,7 +406,7 @@ class DocCfg(LoggingEntity):
         elif is_uninteresting(self.category):
             return False
         # description field checks
-        elif any (self.description.startswith(pfx) for pfx in UNINTERESTING_PREFIXES):
+        elif any (self.note.startswith(pfx) for pfx in UNINTERESTING_PREFIXES):
             return False
 
         return None
@@ -456,7 +459,7 @@ class DocCfg(LoggingEntity):
             del props['is_very_interesting']
 
         if self.complete_description:
-            description_pieces = without_falsey([self.author, self.description])
+            description_pieces = without_falsey([self.author, self.note])
 
             # Avoid showing complete_description if it's just the author or description and other prop doesn't exist
             if len(description_pieces) != 1 or description_pieces[0] != self.complete_description:
@@ -516,7 +519,7 @@ class DocCfg(LoggingEntity):
         if self.category == Category.FLIGHT_LOG and not self.display_text:
             self.display_text ='flight log'
 
-        self.description = quote(self.description) if self.is_description_a_title else self.description
+        self.note = quote(self.note) if self.is_description_a_title else self.note
 
     def _props_strs(self) -> list[str]:
         props = []

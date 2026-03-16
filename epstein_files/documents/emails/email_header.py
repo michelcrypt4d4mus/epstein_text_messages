@@ -91,7 +91,7 @@ class EmailHeader:
 
             field_names.append(key)
 
-            if key == 'reply_to':
+            if key == 'reply_to' and value != 'AlterNet':
                 logger.warning(f"Found value for Reply-To field: '{value}'")
 
             if key in TO_FIELDS:

@@ -50,7 +50,7 @@ DESCRIPTIONS = {
     'EFTA00015532': "alleging Epstein tried to buy victim's silence",
 }
 
-# Don't join with "about" if the description starts with one of these words
+# Don't join with "about" if the note starts with one of these words
 REPORT_ABOUT_PREFIXES = [
     'contain',
     # 'with',
@@ -60,7 +60,7 @@ Cfg = TypeVar('Cfg', bound=DocCfg)
 
 
 def build_cfg_from_text(doc: 'Document') -> DocCfg | None:
-    """Scan the text to see if author, description, category, etc. can be derived from the contents."""
+    """Scan the text to see if author, note, category, etc. can be derived from the contents."""
     text = doc.text
     lines = text.split('\n')
     cfg = None
@@ -71,37 +71,37 @@ def build_cfg_from_text(doc: 'Document') -> DocCfg | None:
     if FBI_FILE_REGEX.search(text):
         cfg = fbi_report(doc.file_id)
     elif EVIDENCE_REGEX.search(text):
-        cfg = _cfg(category=Neutral.LEGAL, description='photos of collected evidence')
+        cfg = _cfg(category=Neutral.LEGAL, note='photos of collected evidence')
     elif GRAND_JURY_REGEX.search(text[0:100]):
-        cfg = _cfg(category=Neutral.LEGAL, description='grand jury proceedings')
+        cfg = _cfg(category=Neutral.LEGAL, note='grand jury proceedings')
     elif 'LedgerX' in text[0:500]:
-        cfg = _cfg(category=Interesting.CRYPTO, description=LEDGERX_MSG)
+        cfg = _cfg(category=Interesting.CRYPTO, note=LEDGERX_MSG)
     elif LSJE_FORM_REGEX.search(text):
         cfg = _cfg(
             category=Neutral.BUSINESS,
             date=EMERGENCY_CONTACT_DATES.get(doc.file_id, ''),
-            description="emergency contact form for employee of Epstein's LSJE",
+            note="emergency contact form for employee of Epstein's LSJE",
         )
     elif SUBPOENA_REGEX.search(text):
-        cfg = _cfg(category=Neutral.LEGAL, description='grand jury subpoena or response')
+        cfg = _cfg(category=Neutral.LEGAL, note='grand jury subpoena or response')
     elif VI_DAILY_NEWS_REGEX.search(text):
         cfg = _cfg(category=Uninteresting.ARTICLE, author=VI_DAILY_NEWS)
     elif has_line_starting_with(text, [VALAR_GLOBAL_FUND, VALAR_VENTURES.upper()], 2):
         cfg = valar_cfg(doc.file_id, text=text)
     elif SOUTHERN_FINANCIAL_REGEX.match(text):
-        cfg = _cfg(category=Interesting.MONEY, description="transactions by Epstein's Southern Financial LLC")
+        cfg = _cfg(category=Interesting.MONEY, note="transactions by Epstein's Southern Financial LLC")
     elif DEUTSCHE_SOUTHERN_REGEX.match(text):
-        cfg = _cfg(category=Interesting.MONEY, description=f"{DEUTSCHE_BANK} statement for Epstein's Southern Trust Company")
+        cfg = _cfg(category=Interesting.MONEY, note=f"{DEUTSCHE_BANK} statement for Epstein's Southern Trust Company")
     elif VALAR_CAPITAL_CALL_REGEX.search(text):
         cfg = valar_cfg(doc.file_id, 'requesting money previously promised by Epstein to invest in a new opportunity')
     elif (case_match := LEGAL_FILING_REGEX.search(text)):
         case_name = CASE_IDS.get(case_match.group(1), f"case {case_match.group(1)}")
-        description = join_truthy(f"legal filing in {case_name}", DESCRIPTIONS.get(doc.file_id, ''))
-        cfg = _cfg(category=Neutral.LEGAL, description=description)
+        note = join_truthy(f"legal filing in {case_name}", DESCRIPTIONS.get(doc.file_id, ''))
+        cfg = _cfg(category=Neutral.LEGAL, note=note)
     elif len(text) < 2600 and HARD_DRIVE_REGEX.search(text):
-        cfg = _cfg(category=Neutral.MISC, description='photo of a hard drive')
+        cfg = _cfg(category=Neutral.MISC, note='photo of a hard drive')
     elif lines[0].lower().strip() == 'valuation report':
-        cfg = _cfg(category=Interesting.MONEY, description="valuations of Epstein's investments", is_interesting=True)
+        cfg = _cfg(category=Interesting.MONEY, note="valuations of Epstein's investments", is_interesting=True)
 
         try:
             cfg.date = str(parse(lines[1]))
@@ -115,7 +115,7 @@ def build_cfg_from_text(doc: 'Document') -> DocCfg | None:
 
 
 def binant_redacted(id: str, truncate_to: int = 700) -> EmailCfg:
-    return EmailCfg(id=id, truncate_to=truncate_to, description=f"redacted discussion of art advisor {ETIENNE_BINANT}")
+    return EmailCfg(id=id, truncate_to=truncate_to, note=f"redacted discussion of art advisor {ETIENNE_BINANT}")
 
 
 def blaine_letter(id: str, date: str, suffix: str = '', **kwargs) -> CommunicationCfg:
@@ -123,51 +123,51 @@ def blaine_letter(id: str, date: str, suffix: str = '', **kwargs) -> Communicati
         id,
         DAVID_BLAINE,
         date=date,
-        description=join_truthy(f"recommending genius visa for a Epstein's assistant {SVETLANA_POZHIDAEVA}", suffix),
+        note=join_truthy(f"recommending genius visa for a Epstein's assistant {SVETLANA_POZHIDAEVA}", suffix),
         show_with_name=SVETLANA_POZHIDAEVA,
         **kwargs
     )
 
 
 def fbi_defense_witness(id: str, witness: Name, date: str = '') -> DocCfg:
-    description = f'Research and Key Findings for {witness or UNKNOWN}, defense witness for {GHISLAINE_MAXWELL}'
-    return _set_fbi_doc_fields(DocCfg(id=id, date=date, description=description))
+    note = f'Research and Key Findings for {witness or UNKNOWN}, defense witness for {GHISLAINE_MAXWELL}'
+    return _set_fbi_doc_fields(DocCfg(id=id, date=date, note=note))
 
 
-def fbi_interview(id: str, interviewee: Name, description: str = '', date: str = '', **kwargs) -> CommunicationCfg:
-    description = join_truthy(f"interview with {interviewee or UNKNOWN}", description, ', ')
-    cfg = CommunicationCfg(id=id, date=date, description=description, recipients=[interviewee], **kwargs)
+def fbi_interview(id: str, interviewee: Name, note: str = '', date: str = '', **kwargs) -> CommunicationCfg:
+    note = join_truthy(f"interview with {interviewee or UNKNOWN}", note, ', ')
+    cfg = CommunicationCfg(id=id, date=date, note=note, recipients=[interviewee], **kwargs)
     return _set_fbi_doc_fields(cfg)
 
 
-def fbi_report(id: str, description: str = EPSTEIN_INVESTIGATION, **kwargs) -> DocCfg:
-    joiner = ', ' if any(description.startswith(word) for word in REPORT_ABOUT_PREFIXES) else ' about '
-    description = join_truthy('report', description, joiner)
-    return _set_fbi_doc_fields(DocCfg(id=id, description=description, **kwargs))
+def fbi_report(id: str, note: str = EPSTEIN_INVESTIGATION, **kwargs) -> DocCfg:
+    joiner = ', ' if any(note.startswith(word) for word in REPORT_ABOUT_PREFIXES) else ' about '
+    note = join_truthy('report', note, joiner)
+    return _set_fbi_doc_fields(DocCfg(id=id, note=note, **kwargs))
 
 
 def fbi_tip(id: str, about: str, **kwargs) -> DocCfg:
-    return _set_fbi_doc_fields(DocCfg(id=id, description=f"tip {about}", **kwargs))
+    return _set_fbi_doc_fields(DocCfg(id=id, note=f"tip {about}", **kwargs))
 
 
 def fedex_invoice(id: str, date: str) -> DocCfg:
     return DocCfg(id=id, author='FedEx', date=date, display_text='FedEx invoice')
 
 
-def immigration_letter(id: str, author: Name, date: str = '', description: str = '', show_with_name = '', **kwargs) -> CommunicationCfg:
+def immigration_letter(id: str, author: Name, date: str = '', note: str = '', show_with_name = '', **kwargs) -> CommunicationCfg:
     """`show_with_name` is who the letter is about."""
     person_recommended_for_visa = show_with_name or 'someone'
     suffix = f"recommending \"genius\" visa for {person_recommended_for_visa}"
 
-    if person_recommended_for_visa not in description:
-        description = join_truthy(description, suffix)
+    if person_recommended_for_visa not in note:
+        note = join_truthy(note, suffix)
 
     return letter(
         id,
         author=author,
         date=date,
-        description=description,
         is_interesting=True,
+        note=note,
         recipients=['INS'],
         show_with_name=show_with_name,
         **kwargs
@@ -182,13 +182,13 @@ def important_messages_pad(id: str, date: str = '') -> DocCfg:
     )
 
 
-def letter(id: str, author: Name, recipients: list[Name], description: str, date: str = '', **kwargs) -> CommunicationCfg:
+def letter(id: str, author: Name, recipients: list[Name], note: str, date: str = '', **kwargs) -> CommunicationCfg:
     return CommunicationCfg(
         id=id,
         author=author,
         category=Category.LETTER,
         date=date,
-        description=description,
+        note=note,
         recipients=recipients,
         **kwargs
     )
@@ -204,11 +204,11 @@ def phone_bill_cfg(id: str, author: str, dates: str = '', **kwargs) -> DocCfg:
     )
 
 
-def shaher_murder_email(id: str, description: str = '', **kwargs) -> EmailCfg:
+def shaher_murder_email(id: str, note: str = '', **kwargs) -> EmailCfg:
     return EmailCfg(
         id=id,
-        description=join_truthy(description, f"discussion of the murder of Martine Vik Magnussen by {SHAHER_ABDULHAK_BESHER}'s son Farouk"),
-        is_interesting=True,
+        is_very_interesting=True,
+        note=join_truthy(note, f"discussion of the murder of Martine Vik Magnussen by {SHAHER_ABDULHAK_BESHER}'s son Farouk"),
         **kwargs
     )
 
@@ -218,33 +218,33 @@ def starr_letter(id: str, date: str, duplicate_ids: list[str], dupe_type: Duplic
         id=id,
         author=KEN_STARR,
         date=date,
-        description="requesting lenient treatment for Epstein",
         duplicate_ids=duplicate_ids,
         dupe_type=dupe_type,
+        note="requesting lenient treatment for Epstein",
         recipients=['Judge Mark Filip'],
         **kwargs
     )
 
 
-def valar_cfg(id: str, description: str = '', text: str = '') -> DocCfg:
+def valar_cfg(id: str, note: str = '', text: str = '') -> DocCfg:
     return DocCfg(
         id=id,
-        category=Interesting.CRYPTO,  # TODO: not really crypto?
         author=VALAR_VENTURES,
+        category=Interesting.CRYPTO,  # TODO: not really crypto?
         date='2015-06-30' if '6/30/2015' in text else '',
-        description=description or f"is a fintech focused {PETER_THIEL} fund Epstein was invested in",
+        note=note or f"is a fintech focused {PETER_THIEL} fund Epstein was invested in",
     )
 
 
-def victim_diary(id: str, description: str) -> DocCfg:
-    return DocCfg(id=id, category=Interesting.DIARY, description=description, show_full_panel=True)
+def victim_diary(id: str, note: str) -> DocCfg:
+    return DocCfg(id=id, category=Interesting.DIARY, note=note, show_full_panel=True)
 
 
-def whistleblower_cfg(id, description: str = '') -> EmailCfg:
+def whistleblower_cfg(id, note: str = '') -> EmailCfg:
     return EmailCfg(
         id=id,
-        description=join_truthy('SEC whistleblower email', description, ', '),
         is_interesting=True,
+        note=join_truthy('SEC whistleblower email', note, ', '),
     )
 
 
@@ -253,7 +253,7 @@ def wolff_draft_cfg(id: str, suffix: str = '', **kwargs) -> DocCfg:
         id=id,
         author=MICHAEL_WOLFF,
         date='2014-08-31' if 'show_with_name' in kwargs else '2014-09-01',  # Very approximate, make excerpt show first
-        description=join_truthy(WOLFF_EPSTEIN_ARTICLE_DRAFT, suffix),
+        note=join_truthy(WOLFF_EPSTEIN_ARTICLE_DRAFT, suffix),
         **kwargs
     )
 

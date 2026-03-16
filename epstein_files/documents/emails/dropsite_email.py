@@ -7,7 +7,6 @@ from epstein_files.documents.emails.email_header import EmailHeader
 from epstein_files.documents.email import Email
 from epstein_files.util.logging import logger
 from epstein_files.util.constant.strings import AUTHOR
-from epstein_files.util.helpers.string_helper import collapse_newlines
 
 HEADERS_TO_CHECK = ['Authentication-Results', 'Content-Transfer-Encoding', 'Content-Type', 'DKIM-Signature', 'DomainKey-Signature', 'Received', 'References', 'X-Mailer']
 DEFAULT_EML_HEADERS = HEADERS_TO_CHECK + ['Date', 'From', 'Subject', 'To', 'MIME-Version', 'Content-Length']
