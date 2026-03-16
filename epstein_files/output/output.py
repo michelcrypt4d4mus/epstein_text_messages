@@ -19,7 +19,7 @@ from epstein_files.output.epstein_highlighter import highlighter
 from epstein_files.output.rich import *
 from epstein_files.output.site.sites import (AUTHORS_USING_SIGNATURES, EMAILERS_TABLE_PNG_PATH,
      FILES_THAT_ARE_NEITHER_EMAILS_NOR, HIS_EMAILS, HIS_TEXT_MESSAGES, HTML_DIR, SELECTIONS_FROM)
-from epstein_files.output.title_page import print_color_key, print_other_page_link, section_header
+from epstein_files.output.title_page import print_other_page_link, section_header
 from epstein_files.people.interesting_people import EMAILERS_TO_PRINT
 from epstein_files.people.names import *
 from epstein_files.people.person import Person
