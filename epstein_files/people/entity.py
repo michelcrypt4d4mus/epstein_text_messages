@@ -205,12 +205,6 @@ class Entity(LoggingEntity):
         if args._debug_highlight_patterns:
             self._debug_log(f"name_patterns: '{name_patterns}'")
 
-        # TODO: get rid of this
-        if self.match_partial == 'first':
-            _DEBUG_EXCLUDED_PARTIAL_NAMES[last_name] += 1
-        elif self.match_partial == 'last':
-            _DEBUG_EXCLUDED_PARTIAL_NAMES[first_name] += 1
-
         return name_patterns
 
     @property
@@ -351,6 +345,3 @@ def epstein_trust(
 
 def law_enforcement(name: str, emailer_pattern: str = '', description: str = '', **kwargs) -> Entity:
     return organization(name, description or LAW_ENFORCEMENT, emailer_pattern, is_interesting=False, **kwargs)
-
-
-_DEBUG_EXCLUDED_PARTIAL_NAMES = defaultdict(int)

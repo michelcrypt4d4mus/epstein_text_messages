@@ -15,7 +15,7 @@ from epstein_files.documents.documents.categories import (CATEGORY_STYLES, CATEG
 from epstein_files.documents.emails.constants import (EMAIL_HEADER_FIELD_PATTERNS, QUOTE_INDENT_CHAR_GROUP,
      REPLY_REGEX, SENT_FROM_REGEX, XML_STRIPPED_MSG)
 from epstein_files.output.highlighted_names import HighlightGroup, HighlightedNames, HighlightPatterns, ManualHighlight
-from epstein_files.people.entity import Entity, acronym, organization, epstein_co, epstein_trust, law_enforcement, _DEBUG_EXCLUDED_PARTIAL_NAMES
+from epstein_files.people.entity import Entity, acronym, organization, epstein_co, epstein_trust, law_enforcement
 from epstein_files.people.names import *
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constant.urls import SUBSTACK_POST_INSIGHTSPOD_URL
@@ -3627,11 +3627,3 @@ def _print_highlighted_names_repr() -> None:
 if args._debug_highlight_patterns:
     for c in HIGHLIGHTED_ENTITIES:
         print(repr(c))
-
-if args.debug and args.stats:
-    print(f"\n\n ********** unmatchable partial name counts ***********\n")
-
-    for k, v in sort_dict(_DEBUG_EXCLUDED_PARTIAL_NAMES):
-        print(f"{k:<20}: {v}")
-
-    print('\n\n')
