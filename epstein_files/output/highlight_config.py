@@ -3366,17 +3366,17 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
 
     # HighlightedText not HighlightedNames bc of word boundary (\b) issue with '#', '(', etc.
     HighlightPatterns(
-        label='metoo',
-        style=VICTIM_COLOR,
-        patterns=[r"#metoo"]
-    ),
-    HighlightPatterns(
         label='dollars',
         style=FINANCIAL_COLOR,
         patterns=[
             r"\$[\dO,.]+(\s*(bn|[bm](illl?ion|m)?|k|thousand))?( dollars?)?",
             r"[\d,.]+\s*[bm]illl?ion( dollars?)?( loan)?",
         ]
+    ),
+    HighlightPatterns(
+        label='metoo',
+        style=VICTIM_COLOR,
+        patterns=[r"#metoo"]
     ),
     HighlightPatterns(
         label='unknown',
