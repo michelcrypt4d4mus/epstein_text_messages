@@ -2073,6 +2073,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 "Peter Mandelson's Brazilian partner",
                 r"Reinaldo Avila( da Silva)?",
                 match_partial=None,
+                url='https://www.theguardian.com/politics/2026/jan/30/jeffrey-esptein-sent-money-peter-mandelson-husband-after-prison-release-emails-reveal',
             ),
         ],
         patterns=[
