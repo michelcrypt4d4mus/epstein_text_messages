@@ -683,7 +683,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Entity(
                 'Mike Novogratz',
                 'CEO of Galaxy Digital, reportedly made a billion dollars in the Terra/Luna ponzi',
-                r"(Mi(chael|ke) )?Novogratz",
+                r"(?<!Nadean )(Mi(chael|ke) )?Novogratz",
             ),
             Entity('Ross Ulbricht', 'founder of infamous online drug market Silk Road, pardoned by Trump'),
             Entity(
