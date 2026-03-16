@@ -526,6 +526,7 @@ SIGNATURE_SUBSTITUTION_COUNTS = {
     TERRY_KAFKA: 10,
     TOM_PRITZKER: 17,
     TONJA_HADDAD_COLEMAN: 9,
+    'Tourmaline Partners': 7,
     USANYS: 2,
     'W Bradford Stephens': 2,
 }
