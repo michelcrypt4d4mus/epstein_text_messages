@@ -2400,7 +2400,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         contacts=[
             Entity(
                 AL_SECKEL,
-                "Isabel Maxwell's husband, Mindshift Conference organizer, mysterious death",
+                "Isabel Maxwell's husband, Mindshift Conference organizer, mysterious death (possibly faked)",
                 url='https://www.tabletmag.com/sections/news/articles/the-illusionist-al-seckel',
             ),
             Entity('Barnaby Marsh', "co-founder of philanthropy services company Saint Partners", match_partial=None),
