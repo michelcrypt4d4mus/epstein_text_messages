@@ -15,7 +15,7 @@ from rich.table import Table
 from rich.text import Text
 
 from epstein_files.documents.communication import Communication
-from epstein_files.documents.document import CLOSE_PROPERTIES_CHAR, EXCERPT_STYLE, EntityScanArg, coerce_entity_names
+from epstein_files.documents.document import CLOSE_PROPERTIES_CHAR, EXCERPT_STYLE
 from epstein_files.documents.documents.categories import Uninteresting
 from epstein_files.documents.config.doc_cfg import DEFAULT_TRUNCATE_TO, NO_TRUNCATE, SHORT_TRUNCATE_TO, DebugDict, EmailCfg, Metadata
 from epstein_files.documents.doj_file import DojFile
@@ -25,7 +25,7 @@ from epstein_files.documents.emails.email_header import (EMAIL_SIMPLE_HEADER_REG
      EMAIL_SIMPLE_HEADER_LINE_BREAK_REGEX, EmailHeader)
 from epstein_files.documents.emails.emailers import IDENTIFYING_STRINGS, UNIQ_IDENTIFIER_FALSE_ALARMS, extract_emailer_names
 from epstein_files.documents.other_file import OtherFile
-from epstein_files.people.entity import Entity
+from epstein_files.people.entity import Entity, EntityScanArg
 from epstein_files.people.interesting_people import EMAILERS_OF_INTEREST_SET
 from epstein_files.people.names import sort_names
 from epstein_files.output.epstein_highlighter import highlighter
@@ -502,7 +502,8 @@ class Email(Communication):
     def entity_scan(self, exclude: EntityScanArg = None, include: EntityScanArg = None) -> list[Entity]:
         """Overrides superclass to append names from email attachments."""
         attachment_entities = flatten([ad.entities for ad in self.attached_docs])
-        return super().entity_scan(exclude, coerce_entity_names(attachment_entities) + coerce_entity_names(include))
+        include = Entity.coerce_entity_names(attachment_entities) + Entity.coerce_entity_names(include)
+        return super().entity_scan(exclude, include)
 
     def extract_author(self) -> Name:
         """Overloads superclass method, called at instantiation time."""

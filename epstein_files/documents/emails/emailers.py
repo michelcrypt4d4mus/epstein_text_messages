@@ -7,7 +7,7 @@ from epstein_files.output.highlight_config import HIGHLIGHTED_ENTITIES
 from epstein_files.people.entity import Entity, organization
 from epstein_files.people.names import *
 from epstein_files.util.constant.strings import REDACTED
-from epstein_files.util.helpers.data_helpers import escape_single_quotes, flatten, groupby, uniq_sorted
+from epstein_files.util.helpers.data_helpers import escape_single_quotes, flatten, groupby, uniq_sorted, without_falsey
 from epstein_files.util.logging import logger
 
 BAD_EMAILER_REGEX = re.compile(r'^(>|11111111)|agreed|ok(?!asha)|sexy|re:|fwd:|LIMITED PARTNERS|Multiple Senders|((sent|attachments|subject|importance).*|.*(january|201\d|hysterical|i have|image0|so that people|article 1.?|PROSPECTIVE INVESTORS|momminnemummin|These conspiracy theories|your state|undisclosed|www\.theguardian|talk in|it was a|what do|cc:|call (back|me)|afiaata|[IM]{4,}).*)$', re.IGNORECASE)
@@ -117,7 +117,7 @@ def get_entity(name: str | Entity) -> Entity:
     return UNCONFIGURED_ENTITIES_ENCOUNTERED[name]
 
 
-def get_entities(_names: Sequence[str | Entity]) -> list[Entity]:
-    """Also uniquifies."""
-    names = [n.name if isinstance(n, Entity) else n for n in _names]
+def get_entities(_names: Sequence[Name | Entity]) -> list[Entity]:
+    """Also uniquifies and removes None / empty string."""
+    names = Entity.coerce_entity_names(without_falsey(_names))
     return [get_entity(name) for name in uniq_sorted(names)]

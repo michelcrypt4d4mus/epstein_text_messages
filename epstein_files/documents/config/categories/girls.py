@@ -58,7 +58,8 @@ GIRLS_CFGS = [
     ),
     CommunicationCfg(
         id='EFTA01616933',
-        description='"now im finding pussy for you" / "no one can beat your pussy network"',  # TODO: should be highlight_quote
+        description='"no one can beat your pussy network"',
+        highlight_quote='now im finding pussy for you',
         show_full_panel=True,
     ),
     letter('EFTA00078198', 'Marsh Law Firm', [USANYS], "allegations of sexual abuse at Epstein's house", '2020-11-10'),
@@ -281,7 +282,7 @@ GIRLS_CFGS = [
         is_interesting=True,
         recipients=[UNKNOWN_GIRL],
     ),
-    EmailCfg(id='EFTA00897668', recipients=[UNKNOWN_GIRL], people=[JEAN_LUC_BRUNEL, JEFFREY_EPSTEIN, UNKNOWN_GIRL]),
+    EmailCfg(id='EFTA00897668', recipients=[UNKNOWN_GIRL], entity_names=[JEAN_LUC_BRUNEL, JEFFREY_EPSTEIN, UNKNOWN_GIRL]),
     EmailCfg(id='EFTA00848644', recipients=[UNKNOWN_GIRL], is_interesting=True, description='"take a picture of your pussy"'),
     EmailCfg(
         id='EFTA01026268',

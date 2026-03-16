@@ -277,9 +277,19 @@ class Entity(LoggingEntity):
         return {c.name: c for c in contacts}
 
     @classmethod
+    def coerce_entity_names(cls, _arg: 'EntityScanArg') -> list[str]:
+        if not _arg:
+            return []
+
+        return [e.name if isinstance(e, cls) else e for e in listify(_arg)]
+
+    @classmethod
     def _repr_string(cls, contact_infos: list[Self]) -> str:
         """Print a list of `Contact` objects to a python string that can recreate them when executed."""
         return '[\n' + indented([repr(contact) for contact in contact_infos], 4) + '\n],'
+
+
+EntityScanArg = list[Entity] | Entity | list[str] | str | None
 
 
 def acronym(name: str, description: str = '', **kwargs) -> Entity:

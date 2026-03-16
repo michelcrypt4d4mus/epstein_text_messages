@@ -31,7 +31,7 @@ from epstein_files.output.layout_elements.file_display import BasePanel, FileDis
 from epstein_files.output.rich import (INFO_STYLE, NA_TXT, SYMBOL_STYLE, add_cols_to_table, build_table, console,
      styled_key_value, prefix_with, snip_msg_txt, styled_dict)
 from epstein_files.output.site.sites import EXTRACTS_BASE_URL
-from epstein_files.people.entity import Entity
+from epstein_files.people.entity import Entity, EntityScanArg
 from epstein_files.people.interesting_people import PERSONS_OF_INTEREST, UNINTERESTING_AUTHORS
 from epstein_files.people.names import Name
 from epstein_files.util.constant.strings import *
@@ -90,7 +90,6 @@ METADATA_FIELDS = [
     'timestamp',
 ]
 
-EntityScanArg = list[Entity] | Entity | list[str] | str | None
 T = TypeVar('T', bound=str | Text)
 
 
@@ -437,29 +436,27 @@ class Document(LoggingEntity):
     def entity_scan(self, exclude: EntityScanArg = None, include: EntityScanArg = None) -> list[Entity]:
         """
         Find people and companies associated with this document.
+        `config.entity_names` overrides everything.
+        `config.is_valid_for_name_scan` means don't scan text.
 
         Args:
-            `exclude` (EntityScanArg, optional): optimization to avoid expensive rescans of names whose bio we already printed.
+            `exclude` (EntityScanArg, optional): optimization to avoid expensive rescans if bio was already printed.
             `include` (EntityScanArg, optional): additional names to include (used by subclass overrides)
         """
-        entity_names = [self.author] if self.author else []
+        entities = get_entities([self.author] + self._config.entity_names + coerce_entities(include))
+        excluded_names = Entity.coerce_entity_names(exclude) + self._config.non_participants
 
-        # DocCfg.people prop overrides everything. config.is_valid_for_name_scan means don't scan text
-        if self._config.people:
-            return get_entities(self._config.people)
-        elif not self._config.is_valid_for_name_scan:
-            return get_entities(entity_names)
+        if self._config.entity_names or not self._config.is_valid_for_name_scan:
+            return [e for e in entities if e.name not in excluded_names]
 
         text_to_scan = join_truthy(self._config.description, self.display_text, '\n')
-        exclude = coerce_entity_names(exclude) + self._config.non_participants
 
-        contacts_in_text = [
+        entities += [
             c for c in HIGHLIGHTED_ENTITIES
-            if c.name not in exclude and c.highlight_regex.search(text_to_scan)
+            if c.name not in excluded_names and c.highlight_regex.search(text_to_scan)  # excluded 1st to avoid expensive scans
         ]
 
-        entity_names.extend([c.name for c in contacts_in_text])
-        return get_entities(entity_names + coerce_entity_names(include))
+        return coerce_entities(entities)
 
     def excerpt_text(self, char_range: CharRange | None = None, text: str = '', style = '') -> Text:
         """Create an excerpt of `text`, add appropriate header/footer if truncated, and highlight it."""
@@ -781,8 +778,5 @@ class Document(LoggingEntity):
 DocumentType = TypeVar('DocumentType', bound=Document)
 
 
-def coerce_entity_names(_arg: EntityScanArg) -> list[str]:
-    if not _arg:
-        return []
-
-    return [e.name if isinstance(e, Entity) else e for e in listify(_arg)]
+def coerce_entities(_arg: EntityScanArg) -> list[Entity]:
+    return get_entities(Entity.coerce_entity_names(_arg))

@@ -158,6 +158,7 @@ class DocCfg(LoggingEntity):
     dupe_type: DuplicateType | None = None
     duplicate_ids: list[str] = field(default_factory=list)
     duplicate_of_id: str | None = None
+    entity_names: list[str] = field(default_factory=list)
     highlight_quote: str = ''
     is_interesting: bool | None = None  # NOTE: if True emails will not be truncated!
     is_very_interesting: bool = False
@@ -166,7 +167,6 @@ class DocCfg(LoggingEntity):
     is_valid_for_name_scan: bool = True
     non_participants: list[str] = field(default_factory=list)  # TODO: this sucks
     num_preview_chars: int | None = None
-    people: list[str] = field(default_factory=list)
     show_full_panel: bool = False
     show_with_name: str = ''
     truncate_to: int | tuple[int, int] | None = None
@@ -182,18 +182,19 @@ class DocCfg(LoggingEntity):
 
         self.set_category(self.category)
 
-        if self.is_very_interesting:
-            self.is_interesting = True
-
-        if self.highlight_quote:
-            description_quote = collapse_whitespace(self.highlight_quote.replace('>', ''))
-            self.description = join_truthy(self.description, f'quote of interest: {quote(description_quote)}', ', ')
+        # background_color and highlight_quote set show_full_panel to true
+        if self.background_color or self.highlight_quote:
             self.show_full_panel = True
 
-        if self.background_color:
-            self.show_full_panel = True
+            if self.highlight_quote:
+                description_quote = collapse_whitespace(self.highlight_quote.replace('>', ''))
+                self.description = join_truthy(self.description, f'quote of interest: {quote(description_quote)}', ', ')
 
+        # show_full_panel sets is_very_interesting=True
         if self.show_full_panel:
+            self.is_very_interesting = True
+
+        if self.is_very_interesting:
             self.is_interesting = True
 
         if self.duplicate_of_id or self.duplicate_ids:
