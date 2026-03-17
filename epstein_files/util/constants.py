@@ -373,6 +373,7 @@ NOT_CHRONOLOGICAL_VIEW_IDS = [cfg.id for cfg in FLIGHT_LOG_CFGS] + [
     '011908_6',
     # Jabor
     # Joi Ito
+    '024256',
     'EFTA01058627',
     # Lesley Groff
     'EFTA02266060',

@@ -168,7 +168,7 @@ def immigration_letter(id: str, author: Name, date: str = '', note: str = '', sh
         id,
         author=author,
         date=date,
-        is_interesting=True,
+        is_very_interesting=True,
         note=note,
         recipients=['INS'],
         show_with_name=show_with_name,

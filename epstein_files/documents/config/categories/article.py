@@ -171,8 +171,8 @@ ARTICLE_CFGS = [
         id='EFTA02711825',
         author='Techonomy',
         author_uncertain='either this or EFTA01139627 are referenced in email EFTA01745739',
-        note='article titled "Artificial Intelligence Ignites in Ethiopia"',
         is_interesting=True,
+        note='article titled "Artificial Intelligence Ignites in Ethiopia"',
     ),
     DocCfg(
         id='EFTA01139627',
@@ -180,7 +180,7 @@ ARTICLE_CFGS = [
         author_uncertain='either this or EFTA02711825 are referenced in email EFTA01745739',
         date='2014-08-15',
         date_uncertain=f'using date of {BEN_GOERTZEL} email',
-        note='article about iCog Labs titled "A Harvard Financier, Jeffrey Epstein, Advances Artificial Intelligence in Ethiopia"',
         is_interesting=True,
+        note='article about iCog Labs titled "A Harvard Financier, Jeffrey Epstein, Advances Artificial Intelligence in Ethiopia"',
     ),
 ]
