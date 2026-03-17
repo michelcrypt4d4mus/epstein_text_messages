@@ -279,7 +279,7 @@ def write_html(output_path: Path | SiteType | None, **kwargs) -> Path | None:
         output_path = SiteType.html_output_path(output_path)
 
     if args.write_txt:
-        output_path = HTML_DIR.joinpath(f"{output_path}.txt")
+        output_path = HTML_DIR.joinpath(f"{output_path.stem}.txt")
         console.save_text(str(output_path))
     else:
         console.save_html(

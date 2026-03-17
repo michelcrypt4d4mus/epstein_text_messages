@@ -226,19 +226,13 @@ class DocPrinter:
 
     def write_html(self, write_to: Path | SiteType) -> Path:
         """Export custom HTML, trigger rich export_html() if `SiteType` given, returns custom HTML path."""
-        if isinstance(write_to, SiteType):
+        if isinstance(write_to, Path):
+            output_path = write_to
+            logger.warning(f"Not exporting rich.console to HTML directly (only custom)...")
+        else:
             from epstein_files.output.output import write_html
-
-            if args.names:
-                names = sorted(['unknown' if n is None else n for n in args.names])
-                write_to = HTML_DIR.joinpath('__'.join(names).replace(' ', '_').lower() + '.html')
-            else:
-                write_to = SiteType.html_output_path(write_to)
-
             write_html(write_to)
             output_path = SiteType.custom_html_build_path(write_to)
-        else:
-            output_path = write_to
 
         return write_templated_html(self.html_elements, output_path)
 

@@ -77,14 +77,17 @@ class SiteType(StrEnum):
         return {k: v for k, v in cls.all_links().items() if not cls.is_mobile(k)}
 
     @classmethod
-    def html_output_path(cls, site_type: 'SiteType') -> Path:
+    def html_output_path(cls, _site: 'SiteType') -> Path:
         """Defaults to `[site_type].html` if not configured in `HTML_BUILD_FILENAMES`."""
-
-        if site_type == cls.NAMES:
+        if _site == cls.NAMES:
             from epstein_files.util.env import args
-            site_type = '__'.join(sorted(args.names)).replace(' ', '_').lower()
+            site = 'only_names__'
+            names = sorted(['unknown' if n is None else n for n in args.names])
+            site += '__'.join(sorted(names)).replace(' ', '_').lower()
+        else:
+            site = _site
 
-        return HTML_DIR.joinpath(HTML_BUILD_FILENAMES.get(site_type, f"{site_type}.html"))
+        return HTML_DIR.joinpath(HTML_BUILD_FILENAMES.get(site, f"{site}.html"))
 
     @classmethod
     def html_output_path_mobile(cls, site_type: 'SiteType') -> Path:

@@ -105,7 +105,6 @@ logger.info(f"site_config set to {site_config.__name__}...")
 
 args.debug = args.deep_debug or args.debug or is_env_var_set('DEBUG')
 args._debug_highlight_patterns = (args.colors_only and args.debug)
-args._site_type = SiteType.CURATED  # TODO: not ideal
 
 # args.names = [name.title() for name in args.names] if args.names and args.names[0][0].islower() else args.names
 args.names = [None if n == 'None' else n.strip() for n in (args.names or [])]
@@ -114,6 +113,11 @@ args.output_other = args.output_other or args.all_other_files or args.uninterest
 args.output_texts = args.output_texts or args.all_texts
 args.overwrite_pickle = args.overwrite_pickle or (is_env_var_set('OVERWRITE_PICKLE') and not is_env_var_set('PICKLED'))
 args.width = site_config.width if is_html_script else None
+
+if args.names:
+    args._site_type = SiteType.NAMES
+else:
+    args._site_type = SiteType.CURATED  #  TODO: just a default but not ideal
 
 truthy_args = {k: v for k, v in vars(args).items() if v}
 any_output_selected = any(is_output_arg(k) for k in truthy_args.keys())
@@ -138,6 +142,8 @@ if is_html_script:
 
     if 'sample_html' in parser.prog:
         args._site_type = SiteType.SAMPLE
+    elif args._site_type == SiteType.NAMES:  # --name args overrides other considerations
+        pass
     elif args.mobile:
         if args.output_chrono:
             args._site_type = SiteType.CHRONOLOGICAL_MOBILE
@@ -145,9 +151,7 @@ if is_html_script:
             logger.warning(f"Mobile site type couldn't be conclusively determined, settings to {SiteType.CURATED_MOBILE}...")
             args._site_type = SiteType.CURATED_MOBILE  # This isn't great; requires args be correct to build
     else:
-        if args.names:
-            args._site_type = SiteType.NAMES  # --name args overrides other considerations
-        elif args.colors_only:
+        if args.colors_only:
             args._site_type = SiteType.COLORS_ONLY
             args.build = args.build or BUILD_TRUE_BUT_UNSPECIFIED
         elif args.output_bios:
@@ -206,6 +210,7 @@ elif args.suppress_logs:
 elif not env_log_level:
     set_log_level(logging.WARNING)
 
+logger.info(f"args._site_type='{args._site_type}'")
 logger.debug(f'Log level set to {logger.level}...')
 args_str = ',\n'.join([f"{k}={v}" for k, v in vars(args).items() if v])
 logger.debug(f"'{parser.prog}' script invoked\n{args_str}")

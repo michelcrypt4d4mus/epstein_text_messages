@@ -82,11 +82,11 @@ ENTITIES_DICT = {c.name: c for c in CONFIGURED_ENTITIES}
 
 for name in UNINTERESTING_EMAILERS:
     if (entity := ENTITIES_DICT.get(name)):
-        entity._log(f"Found UNINTERESTING_EMAILER, setting is_interesting=False...")  # TODO: doesn't mean much right now
+        entity._debug_log(f"Found UNINTERESTING_EMAILER, setting is_interesting=False...")  # TODO: doesn't mean much right now
         entity.is_interesting = False
     else:
         CONFIGURED_ENTITIES.append(Entity(name, is_interesting=False, match_partial=None))
-        CONFIGURED_ENTITIES[-1]._log(f"Created new Entity for UNINTERESTING_EMAILER entry...")
+        CONFIGURED_ENTITIES[-1]._debug_log(f"Created new Entity for UNINTERESTING_EMAILER entry...")
 
 ENTITIES_DICT = {c.name: c for c in CONFIGURED_ENTITIES}
 EMAILER_REGEXES = {c.name: c.emailer_regex for c in CONFIGURED_ENTITIES if c.is_emailer}
