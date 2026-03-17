@@ -22,6 +22,7 @@ from epstein_files.output.highlight_config import (HIGHLIGHTED_NAMES, QUESTION_M
 from epstein_files.output.highlighted_names import HighlightedNames, HighlightPatterns, ManualHighlight
 from epstein_files.output.layout_elements.file_display import FileDisplay
 from epstein_files.output.rich import GREY_NUMBERS, TABLE_TITLE_STYLE, build_table, console, print_special_note
+from epstein_files.output.site.internal_links import TO_FROM
 from epstein_files.people.entity import Entity
 from epstein_files.people.interesting_people import SPECIAL_NOTES
 from epstein_files.util.constant.strings import *
