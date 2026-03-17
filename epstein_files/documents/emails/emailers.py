@@ -135,7 +135,7 @@ def extract_emailer_names(emailer_str: str) -> list[Name]:
         return []
     elif raw_names == [REDACTED] or raw_names == [UNKNOWN]:
         return [None]
-    elif emailer_str.lower() in ['j', 'jeffrey']:
+    elif emailer_str.lower() in ['j', 'jeff', 'jeffrey']:
         return [JEFFREY_EPSTEIN]
     elif emailer_str.lower() in ['sa', 's a']:
         return [SHAHER_ABDULHAK_BESHER]

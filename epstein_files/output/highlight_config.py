@@ -409,6 +409,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Organization('Junkermann Group', JUNKERMANN_FUND),
             Organization('Lockheed Martin', 'American military contractor'),
             Organization('NJF Capital', JUNKERMANN_FUND, r"NJF( Capital)?"),
+            Organization('WizzAir', email_addresses=['noreply@wizzair.com'], is_interesting=False, is_emailer=True),
         ],
         patterns=[
             r"Arthur Klein",
@@ -515,6 +516,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"RMB",
             r"Shang?hai",
             r"Tianjin",
+            r"Tsinghua( University)?",
             r"V-?Nee",
             r"(?<!Article\s)Xi(aomi)?", r"Jinping",
         ],
@@ -1401,6 +1403,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 f"IMAX chairman, head of {LEON_BLACK}'s {ELYSIUM_MANAGEMENT}",
                 url='https://www.cnn.com/2026/02/21/business/apollo-epstein-wall-street',
             ),
+            Entity("Christine O'Neill", f"coordinated Ike Groff investment in Mangrove Partners", r"Chris(tine)? O'?Neill?"),
             Entity(
                 "D.B. Zwirn",
                 'hedge fund manager whose fund collapsed in 2008 with investments from Epstein and Glenn Dubin',
@@ -1418,7 +1421,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 f"{PRINCE_ANDREW}'s trusted money man at Banque Havilland whom Epstein does not trust",
                 match_partial=None,
             ),
-            Entity('Ted Forstmann', "private equity, founder of Forstmann Little & co."),
+            Entity(NATHANIEL_AUGUST, 'fund manager of Mangrove Partners'),
             Entity(
                 JES_STALEY,
                 "former CEO of Barclays, allegations by multiple Epstein victims",
@@ -1470,6 +1473,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Entity('Stewart Oldfield', f"worked on Epstein related accounts at {DEUTSCHE_BANK}"),
             Entity('Stephen Schwarzman', 'CEO of Blackstone', r"(Ste(phen|ve) )?Schwart?z?man"),
             Entity(TANCREDI_MARCHIOLO, "hedge fund manager, Bremner Capital Management", match_partial='both'),
+            Entity('Ted Forstmann', "private equity, founder of Forstmann Little & co."),
             Entity('Vahe Stepanian', "Cetera Financial Group", match_partial='both'),
             Entity(VINIT_SAHNI, f"analyst at {DEUTSCHE_BANK} and {GOLDMAN_SACHS}", match_partial='both'),
             Organization(
@@ -1478,6 +1482,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 r"Atorus( International)?",
                 aliases=['Red Dot Trade Finance'],
             ),
+            Organization('Bayerische Landesbank', 'publicly owned bank in Bavaria', url=WIKIPEDIA),
             Organization(
                 'Banque Havilland',
                 f"Rowland family private bank in Luxembourg used by {PRINCE_ANDREW}, charter revoked in 2024 for money laundering",
@@ -1502,6 +1507,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Organization('Goldman Sachs', emailer_pattern=r"Goldman( Sachs)?", is_interesting=False),
             Organization('Julius Baer', 'Swiss bank'),
             Organization('Lazard', 'UK financial advisory and asset management firm'),
+            Organization('Mangrove Partners', 'shockingly high performing fund', belongs_to=NATHANIEL_AUGUST),
             Organization('Qarmin', f"high frequency trading operation {QUESTION_MARKS}"),
             Organization('Silvergate Bank', 'crypto friendly bank that failed after the FTX crisis', r"Silver Gate( Bank)?"),
             Organization('Third Lake', "family office managing the Wanek family fortune"),
@@ -1523,7 +1529,6 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Andrew Nikou",
             r"Apollo",
             r"Bank of Scotland",
-            r"Bayerische Landesbank", # TODO bio?
             r"(Bernie )?Madoff",
             r"Black(rock|stone)",
             r"B of A",
@@ -1576,7 +1581,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         contacts=[
             Entity(
                 ANDREW_FARKAS,
-                "heir to Alexander's department store fortune who has claimed he barely knew Epstein",
+                "heir to Alexander's department store fortune, recently claimed he barely knew Epstein",
                 r"Andrew (L\.? )?Farkas|Farkas, Andrew( L\.?)?",
                 url='https://www.nytimes.com/2026/02/09/nyregion/farkas-epstein-lawsuit-ties.html',
             ),
@@ -1733,6 +1738,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             law_enforcement('SDFL', 'federal prosecutors covering South Florida', is_interesting=True),
             law_enforcement("SDNY Cybercrimes", is_emailer=True),
             law_enforcement('USAHUB', emailer_pattern=r"USAJournal111"),
+            law_enforcement('USAMA Victim Assistance', is_emailer=True),
             law_enforcement(USANYS, is_emailer=True),
             law_enforcement('US Secret Service'),
             # TODO: These are in UNINTERESTING_AUTHORS but that should be configured here

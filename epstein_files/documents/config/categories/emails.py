@@ -862,6 +862,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00461202', author=LESLEY_GROFF),
     EmailCfg(id='EFTA02246744', author=LESLEY_GROFF),
     EmailCfg(id='EFTA02102384', author=LESLEY_GROFF),
+    EmailCfg(id='EFTA02040938', author=LESLEY_GROFF, note='cancelling a planned trip to Tsinghua University', is_interesting=True),
     EmailCfg(id='EFTA02067245', author=LESLEY_GROFF, note=VALAR_MEETING, is_interesting=True, author_uncertain=True, truncate_to=600),
     EmailCfg(id='EFTA02068490', author=LESLEY_GROFF, note=VALAR_MEETING, is_interesting=True, author_uncertain=True, truncate_to=540),
     EmailCfg(id='EFTA02067872', author=LESLEY_GROFF, note=VALAR_MEETING, author_uncertain=True),
