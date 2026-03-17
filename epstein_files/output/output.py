@@ -205,7 +205,7 @@ def print_other_files_section(epstein_files: EpsteinFiles, doc_printer: DocPrint
     doc_printer.print_renderable(header_panel)
     print_other_page_link(epstein_files)  # TODO: not in custom HTML
     doc_printer.print_renderable(_section_summary_table(category_table))
-    console.print(other_files_preview_table)
+    doc_printer.print_renderable(other_files_preview_table)
     return files
 
 
@@ -260,7 +260,6 @@ def show_urls() -> None:
         urls = SiteType.all_urls()
 
     console.print(Padding(styled_dict(urls), (1)))
-
 
 
 def write_html(output_path: Path | SiteType | None, **kwargs) -> Path | None:
