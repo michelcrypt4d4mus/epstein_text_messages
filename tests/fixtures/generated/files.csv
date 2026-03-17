@@ -194,7 +194,7 @@ file_id,category,author,is_interesting,timestamp,recipients_str,sent_from_device
 019218,email,Harry Fisch,,2017-01-25 16:15:19+00:00,Jeffrey Epstein,Sent from my iPhone,
 019219,email,Kathryn Ruemmler,,2017-02-11 13:37:47+00:00,Jeffrey Epstein,Sent from my iPad,
 019233,politics,Freedom House,False,2017-06-02 00:00:00+00:00,,,"Freedom House 'Breaking Down Democracy: Goals, Strategies, and Methods of Modern Authoritarians'"
-019297,letter,Alan Dershowitz's lawyer Andrew G. Celli,True,2018-02-09 00:00:00+00:00,,,"letter from Alan Dershowitz's lawyer Andrew G. Celli to Laura A. Menninger, Paul G. Cassell, Sigrid S. McCawley, Stanley Pottinger threatening sanctions re: Virginia Giuffre v. Ghislaine Maxwell"
+019297,letter,Andrew G. Celli,True,2018-02-09 00:00:00+00:00,,,"letter from Andrew G. Celli to Laura A. Menninger, Paul G. Cassell, Sigrid S. McCawley, Stanley Pottinger threatening sanctions re: Virginia Giuffre v. Ghislaine Maxwell"
 019300,girls,Svetlana Pozhidaeva,True,2019-04-05 00:00:00+00:00,,,Svetlana Pozhidaeva Women Empowerment (WE) conference f. Kathryn Ruemmler
 019302,email,Steve Bannon,True,2018-07-22 23:27:26+00:00,Jeffrey Epstein,Sent via BlackBerry by AT&T,
 019305,email,Steve Bannon,True,2018-07-22 23:58:18+00:00,Jeffrey Epstein,Sent via BlackBerry by AT&T,
@@ -237,7 +237,7 @@ file_id,category,author,is_interesting,timestamp,recipients_str,sent_from_device
 020446,email,Robert Trivers,,2018-10-11 17:34:33+00:00,Jeffrey Epstein,,
 020447,misc,Working Group on Chinese Influence Activities in the US,,2019-03-16 00:00:00+00:00,,,Working Group on Chinese Influence Activities in the US Promoting Constructive Vigilance
 020660,email,Robert Trivers,,2018-12-22 20:21:20+00:00,Jeffrey Epstein,,
-020662,letter,Mishcon de Reya (Alan Dershowitz's UK lawyers),True,2018-12-18 00:00:00+00:00,,,letter from Mishcon de Reya (Alan Dershowitz's UK lawyers) to Daily Mail threatening libel lawsuit
+020662,letter,Mishcon de Reya,True,2018-12-18 00:00:00+00:00,,,letter from Mishcon de Reya to Daily Mail threatening libel lawsuit
 020666,email,Terry Kafka,,2019-03-07 16:21:42+00:00,Jeffrey Epstein,Sent from my iPhone,Terry Kafka
 020815,email,Steve Bannon,True,2018-05-13 11:02:26+00:00,Jeffrey Epstein,Sent via BlackBerry by AT&T,
 020822,email,Jay Lefkowitz,,2011-03-07 19:11:08+00:00,Darren Indyke;Jeffrey Epstein,,
@@ -973,7 +973,7 @@ file_id,category,author,is_interesting,timestamp,recipients_str,sent_from_device
 026786,email,Richard Kahn,,2018-01-26 17:29:23+00:00,Jeffrey Epstein,,
 026787,email,Kathryn Ruemmler,,2018-02-24 03:36:08+00:00,Jeffrey Epstein,,
 026788,email,Carolyn Rangel,False,2018-03-13 16:21:17+00:00,Jeffrey Epstein,,
-026793,letter,Mintz Fraade (Steven Hoffenberg's lawyers),True,2018-03-23 00:00:00+00:00,,,letter from Mintz Fraade (Steven Hoffenberg's lawyers) to Darren Indyke offering to take over Epstein's business and resolve his legal issues
+026793,letter,Mintz Fraade,True,2018-03-23 00:00:00+00:00,,,letter from Mintz Fraade to Darren Indyke offering to take over Epstein's business and resolve his legal issues
 026794,finance,Deutsche Bank,False,2020-03-16 00:00:00+00:00,,,"Deutsche Bank report: ""Global Political and Regulatory Risk in 2015/2016"""
 026825,conference,Deutsche Bank,False,2015-03-16 00:00:00+00:00,,,Deutsche Bank Asset & Wealth Management featured speaker bios
 026827,politics,Scowcroft Group,False,2015-11-14 00:00:00+00:00,,,Scowcroft Group report on ISIS
@@ -1093,7 +1093,7 @@ file_id,category,author,is_interesting,timestamp,recipients_str,sent_from_device
 027777,messengerlog,Larry Summers,,2019-06-14 13:45:35+00:00,,,
 027792,messengerlog,,True,2019-05-13 13:07:17+00:00,,,
 027794,messengerlog,Steve Bannon,True,2019-06-14 13:26:08+00:00,,,
-028281,arts,Wolfe Von Lenkiewicz & Victoria Golembiovskaya,False,2010-10-13 00:00:00+00:00,,,"Wolfe Von Lenkiewicz & Victoria Golembiovskaya art show flier for ""The House Of The Nobleman"""
+028281,arts,"Wolfe Von Lenkiewicz, Victoria Golembiovskaya",False,2010-10-13 00:00:00+00:00,,,"Wolfe Von Lenkiewicz, Victoria Golembiovskaya art show flier for ""The House Of The Nobleman"""
 028326,json,,False,2018-09-24 18:30:02+00:00,,,
 028336,json,,False,2018-09-25 00:07:41+00:00,,,
 028347,json,,False,2018-09-24 18:06:16+00:00,,,
@@ -1171,7 +1171,7 @@ file_id,category,author,is_interesting,timestamp,recipients_str,sent_from_device
 028957,email,Leah Reis-Dennis,,2015-12-08 15:33:09+00:00,Jeffrey Epstein;Lisa New,,
 028960,email,Noam Chomsky,,2015-12-24 17:37:14+00:00,Jeffrey Epstein,,
 028964,email,Joi Ito,True,2016-03-20 19:33:11+00:00,Jeffrey Epstein;Martin Nowak,,
-028965,letter,Martin Weinberg,True,2015-04-24 00:00:00+00:00,,,letter from Martin Weinberg to ABC / Good Morning America threatening libel lawsuit
+028965,letter,Martin Weinberg,True,2015-04-24 00:00:00+00:00,,,letter from Martin Weinberg to Good Morning America threatening libel lawsuit against ABC
 028974,email,Moshe Hoffman,,2016-05-03 16:51:28+00:00,Jeffrey Epstein,,
 028976,email,Lisa New,,2016-05-04 18:25:26+00:00,Jeffrey Epstein,,
 028977,email,Michael Wolff,,2016-05-25 11:12:16+00:00,Jeffrey Epstein,,
@@ -1397,7 +1397,7 @@ file_id,category,author,is_interesting,timestamp,recipients_str,sent_from_device
 029914,email,Peter Mandelson,True,2011-01-22 15:00:54+00:00,Jeffrey Epstein,,Epstein and Lord Mandelson discuss Russian investments
 029918,politics,Colorado legislator Diana DeGette's campaign,False,2012-09-27 00:00:00+00:00,,,Colorado legislator Diana DeGette's campaign bio
 029923,email,,True,2014-01-20 16:26:13+00:00,Jeffrey Epstein,Sent via BlackBerry by AT&T,
-029925,article,The New Yorker,False,2011-12-12 00:00:00+00:00,,,The New Yorker article about the placebo effect by Michael Specter
+029925,article,New Yorker,False,2011-12-12 00:00:00+00:00,,,New Yorker article about the placebo effect by Michael Specter
 029932,article,The Shimon Post,False,2011-07-03 00:00:00+00:00,,,The Shimon Post selection of articles about the mideast
 029958,email,Gwendolyn Beck,,2016-02-03 13:15:33+00:00,Jeffrey Epstein;Lesley Groff,,Gwendolyn Beck
 029959,email,Gwendolyn Beck,,2016-05-18 14:42:38+00:00,Jeffrey Epstein,,Gwendolyn Beck
@@ -5533,6 +5533,7 @@ EFTA00589797,letter,Terje Rød-Larsen,True,2015-05-02 00:00:00+00:00,,,"letter f
 EFTA00590685,misc,,False,2016-03-23 22:11:58+00:00,,,attached to email EFTA00830911
 EFTA00590940,legal,Jane Doe #1 and Jane Doe #2 v. United States,True,2026-01-20 00:00:00+00:00,,,Jane Doe #1 and Jane Doe #2 v. United States: interview with minor victim
 EFTA00591045,crypto,Valar Ventures,False,2014-11-15 16:10:28+00:00,,,"Valar Ventures pitch deck, attached to email EFTA01001339"
+EFTA00591276,letter,Susman Godfrey,True,2010-01-14 00:00:00+00:00,,,"letter from Susman Godfrey to Fortress Investment Group concerning Jeepers, the children's theme park owned by Epstein, see quote: ""I represent Jeepers, Inc., Financial Trust Company, Inc., and Jeffrey Epstein"""
 EFTA00591691,crypto,Valar Ventures,True,2026-01-16 00:00:00+00:00,,,Valar Ventures contract
 EFTA00591792,crypto,Valar Ventures,True,2017-08-03 00:00:00+00:00,,,Valar Ventures requesting money previously promised by Epstein to invest in a new opportunity
 EFTA00593085,crypto,Valar Ventures,True,2017-03-03 00:00:00+00:00,,,Valar Ventures requesting money previously promised by Epstein to invest in a new opportunity
@@ -5547,6 +5548,7 @@ EFTA00604942,crypto,Blockchain Capital,True,2015-10-01 00:00:00+00:00,,,Blockcha
 EFTA00605699,crypto,,True,2014-05-05 17:04:00+00:00,,,Epstein crypto fund Kyara Investment II LLC incorporation papers
 EFTA00605854,crypto,Valar Ventures,True,2015-06-30 00:00:00+00:00,,,Valar Ventures is a fintech focused Peter Thiel fund Epstein was invested in
 EFTA00605996,crypto,,False,2026-01-10 00:00:00+00:00,,,Wedbush BUY rating on Digital Currency Group GBTC
+EFTA00606411,money,,True,2017-01-01 00:00:00+00:00,,,
 EFTA00608737,crypto,Valar Ventures,True,2017-05-05 00:00:00+00:00,,,Valar Ventures requesting money previously promised by Epstein to invest in a new opportunity
 EFTA00609489,crypto,Valar Ventures,True,2015-06-30 00:00:00+00:00,,,Valar Ventures is a fintech focused Peter Thiel fund Epstein was invested in
 EFTA00611806,finance,Adam Campbell,False,2013-01-16 00:00:00+00:00,,,"Adam Campbell CEA, LLC High Liquidity Trading Program presentation"
@@ -5564,6 +5566,7 @@ EFTA00626844,email,Hamad bin Jassim al-Thani,True,2017-07-02 08:55:46+00:00,Jeff
 EFTA00627622,email,,True,2017-07-04 14:25:04+00:00,Ganbat Chuluunkhuu,,
 EFTA00627776,email,Mariana Idźkowska,,2014-12-25 01:15:18+00:00,Jeffrey Epstein,,
 EFTA00629471,crypto,John Brockman,True,2011-06-11 14:38:20+00:00,Jeffrey Epstein,,John Brockman John Brockman reaching out to bitcoin core dev Gavin Andresen on behalf of Epstein
+EFTA00629657,money,Ada Clapp,True,2015-12-29 21:56:43+00:00,Brad Wechsler;Jeffrey Epstein;Joe Avantario;John Castrucci;Richard Joslin,Sent from my Verizon Wireless BlackBerry,arranging Leon Black's finances
 EFTA00630134,email,Karim Wade,True,2016-07-31 20:49:45+00:00,Jeffrey Epstein,,Epstein recommends Signal encrypted messenger to allegedly corrupt Senegalese politician Karim Wade
 EFTA00630785,crypto,Jem Bendell,True,2012-09-11 19:39:45+00:00,April Rinne;Boris Nikolic;Jeffrey Epstein,,alternative currencies discussion
 EFTA00631080,email,Richard Kahn,,2015-10-30 21:20:57+00:00,Jeffrey Epstein,,
@@ -5816,6 +5819,7 @@ EFTA00840591,email,Jeffrey Epstein,,2015-11-17 04:57:07+00:00,Lesley Groff,,
 EFTA00840747,email,David Stern,True,2018-04-05 19:00:19+00:00,Jeffrey Epstein,,
 EFTA00840767,email,Bryan Bishop,True,2015-11-12 17:29:05+00:00,Jeffrey Epstein;Jeremy Rubin;Joi Ito,,
 EFTA00842748,email,Madars Virza,True,2018-04-02 20:28:52+00:00,Jeffrey Epstein,,
+EFTA00843009,email,Jeffrey Epstein,,2015-10-21 10:44:22+00:00,Richard Joslin 1,,
 EFTA00843178,email,David Stern,True,2018-04-03 13:53:02+00:00,Jeffrey Epstein,,
 EFTA00843456,email,Richard Kahn,,2018-04-03 16:03:55+00:00,Jeffrey Epstein,,
 EFTA00844780,crypto,Boris Nikolic,True,2015-10-01 06:03:56+00:00,Jeffrey Epstein,,
@@ -6232,7 +6236,7 @@ EFTA01108807,deposition,Jane Doe,,2010-02-09 00:00:00+00:00,,,deposition of Jane
 EFTA01110414,crypto,,True,2016-03-16 00:00:00+00:00,,,LedgerX was later acquired by FTX for $298 million
 EFTA01111057,money,Mortimer Zuckerman,True,2014-07-10 00:00:00+00:00,,,Mortimer Zuckerman Mortimer B. Zuckerman Management Trust
 EFTA01112265,legal,Brad Edwards & Paul G. Cassell v. Alan Dershowitz,True,2017-06-20 00:00:00+00:00,,,Brad Edwards & Paul G. Cassell v. Alan Dershowitz: interview with minor victim
-EFTA01114145,academia,Ben Goertzel and Gino Yu,False,2011-06-01 00:00:00+00:00,,,"""OpenCog AGI Toddler Project"" by Ben Goertzel and Gino Yu"
+EFTA01114145,academia,"Ben Goertzel, Gino Yu",False,2011-06-01 00:00:00+00:00,,,"""OpenCog AGI Toddler Project"" by Ben Goertzel, Gino Yu"
 EFTA01114164,academia,Ben Goertzel,False,2011-01-01 00:00:00+00:00,,,"""OpenCog Road Map 2011-2023"" by Ben Goertzel"
 EFTA01116280,crypto,,True,2014-05-06 10:01:38+00:00,,,Epstein crypto fund Kyara Investment I LLC (Physical Graph Corporation) operating agreement with edits
 EFTA01118143,money,,True,2014-10-31 00:00:00+00:00,,,valuations of Epstein's investments
@@ -6281,6 +6285,7 @@ EFTA01246710,government,FBI,True,2026-01-05 00:00:00+00:00,,,"FBI interview with
 EFTA01249207,crypto,FBI,True,2021-03-17 00:00:00+00:00,,,FBI tip linking American commerce secretary and Tether asset custodian Howard Lutnick to Ponzi schemes and Russian money
 EFTA01249210,crypto,FBI,True,2021-04-23 13:26:00+00:00,,,FBI tip linking American commerce secretary and Tether asset custodian Howard Lutnick to Ponzi schemes and Russian money
 EFTA01249591,government,FBI,True,2020-07-10 00:29:00+00:00,,,FBI report about allegations against Henry Jarecki
+EFTA01255549,,,,2026-01-02 00:00:00+00:00,,,
 EFTA01255984,,,,2020-03-16 00:00:00+00:00,,,
 EFTA01265973,money,,True,2019-07-15 00:00:00+00:00,,,large transfers around time of Epstein arrest
 EFTA01266204,money,,True,2019-08-08 00:00:00+00:00,,,"Epstein The 1953 Trust (Darren Indyke, Richard Kahn)"
@@ -6317,6 +6322,7 @@ EFTA01409449,money,Kumar Sambhav,True,2015-02-18 18:14:46+00:00,Vahe Stepanian;p
 EFTA01413294,money,,True,2016-12-16 00:00:00+00:00,,,compliance report on payment from Epstein to Sberbank account of Nikolay Aleksandrovich Gyrov
 EFTA01434500,crypto,Stewart Oldfield,True,2018-03-14 21:48:54+00:00,Vahe Stepanian,,everyone assumes Epstein's banker Paul Barrett will want to know about the blockchain event
 EFTA01435885,,,,2017-04-04 00:00:00+00:00,,,
+EFTA01478313,money,,True,2016-03-31 00:00:00+00:00,,,list of investments (maybe of Leon Black)
 EFTA01480663,,,,,,,
 EFTA01500597,,,,2013-08-30 00:00:00+00:00,,,
 EFTA01579877,,,,2011-07-28 13:55:00+00:00,,,
@@ -6334,7 +6340,7 @@ EFTA01613731,crypto,,True,2019-05-17 19:12:12+00:00,,,WhatsApp log Medici Bank c
 EFTA01613759,crypto,Crypto PR Lab,True,2019-05-24 00:00:00+00:00,,,Crypto PR Lab letter of intent of acquisition from Transform Group
 EFTA01613762,crypto,,True,2019-05-21 00:00:00+00:00,,,WhatsApp log of conversation with Maria Prusakova about Crypto PR Lab
 EFTA01616597,,,,2011-10-07 11:57:55+00:00,,,
-EFTA01616933,girls,,True,,,,"Skype log ""no one can beat your pussy network"", see quote: ""now im finding pussy for you"""
+EFTA01616933,girls,,True,2019-04-08 00:00:00+00:00,,,"Skype log ""no one can beat your pussy network"", see quote: ""now im finding pussy for you"""
 EFTA01617727,misc,,True,2019-06-30 00:00:00+00:00,,,Skype log
 EFTA01618339,,,,2015-12-07 22:39:46+00:00,,,
 EFTA01618370,,,,2016-02-25 18:41:28+00:00,,,
@@ -6642,6 +6648,7 @@ EFTA02040938,email,,True,2016-09-28 10:57:34+00:00,Jack Jinhan;Nannan,,
 EFTA02040952,email,Sergey Belyakov,True,2016-10-06 14:43:35+00:00,Lesley Groff,Отправлено с iPhone,
 EFTA02041142,email,Sergey Belyakov,True,2016-10-06 14:57:26+00:00,Lesley Groff,,
 EFTA02048499,email,,True,2016-06-23 21:03:50+00:00,Lesley Groff,Sent from Yahoo Mail for iPhone,
+EFTA02049364,girls,,True,2016-06-20 18:02:06+00:00,Bella Klein;Richard Kahn,,Epstein arranging for healthcare for five girls
 EFTA02053321,email,Ike Groff,True,2016-04-18 16:21:10+00:00,None,,
 EFTA02060931,email,Lesley Groff,,2016-02-03 23:35:01+00:00,Alisa Bekins,Sent from my iPhone,Lesley Groff (???)
 EFTA02062130,email,,True,2016-01-15 21:37:54+00:00,Nili Priell Barak,,Nili Priell Barak installing cameras at Epstein's house

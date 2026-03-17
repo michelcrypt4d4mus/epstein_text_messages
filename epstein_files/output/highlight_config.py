@@ -1048,7 +1048,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 f"corporate vehicle set up by Epstein and {DAVID_STERN}, presumably to manage money of wealthy Chinese",
                 r"Asia\s*Gateway(\s*L(imited|td))?",
             ),
-            Entity('Narrow Inc.', f"{LEON_BLACK} entity arranged by Epstein and Ada Clapp", r"Narrow Inc", match_partial=None),
+            Entity('Narrow Inc.', f"{LEON_BLACK} entity arranged by Epstein and {ADA_CLAPP}", r"Narrow Inc", match_partial=None),
             epstein_co('FT Real Estate'),
             epstein_co('Harlequin Dane LLC'),
             epstein_co('Island Grounds Inc.'),
@@ -1100,7 +1100,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         label=LAWYER,  # Epstein's lawyers
         style='purple',
         contacts=[
-            Entity('Ada Clapp', f"Chief Legal Officer of {LEON_BLACK}'s {ELYSIUM_MANAGEMENT}"),
+            Entity(ADA_CLAPP, f"Chief Legal Officer of {LEON_BLACK}'s {ELYSIUM_MANAGEMENT}"),
             Entity(ALAN_DLUGASH, 'tax partner at Paneth and Shrone', r"Alan (J.? )?Dlugash"),
             Entity('Alan S. Halperin', "partner at Paul, Weiss", r"(Alan.{8})?Halperin(, Alan S)?"),
             Entity(ALAN_DERSHOWITZ, f"{HARVARD} Law School professor", r"(alan.{1,7})?dershowi(lz?|t?z)|AlanDersh"),
