@@ -1050,7 +1050,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             epstein_co('Harlequin Dane LLC'),
             epstein_co('Island Grounds Inc.'),
             epstein_co('Hyperion Air', r"Hyperion( Air)?"),
-            epstein_co('Jeepers Inc.'),
+            epstein_co('Jeepers Inc.', info="children's amusement park", url='https://x.com/arthurcolle/status/2019348601890119886'),
             # epstein_co('JEGE LLC'),
             epstein_co('JEGE, Inc.'),
             epstein_co('Laurel Inc.'),
@@ -1396,6 +1396,12 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 f"IMAX chairman, head of {LEON_BLACK}'s family office Elysium Management",
                 url='https://www.cnn.com/2026/02/21/business/apollo-epstein-wall-street',
             ),
+            Entity(
+                "D.B. Zwirn",
+                'hedge fund manager, investments from Epstein and Glenn Dubin',
+                r"D\.?B\.? Zwirn",
+                url='https://www.bloomberg.com/news/features/2026-02-13/how-jeffrey-epstein-got-into-hedge-funds-billionaire-dubins-helped',
+            ),
             Entity(DANIEL_SABBA, f"{UBS} Investment Bank"),
             Entity(
                 DAVID_FISZEL,
@@ -1477,6 +1483,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 f'fund run by Ari Glass whom Epstein called "a bit sketchy" but invested $50 million with',
                 r"Booth\s*bay(\s(Fund\sManagement|(Absolute|Enhanced|Multi)( Return)?( Strateg(ies|y))?( Fund)?))?",
             ),
+            Organization('D.B. Zwirn Special Opportunities Fund', 'hedge fund'),
             Organization(
                 DEUTSCHE_BANK,
                 'favoured bank of Jeffrey Epstein, the Trump family, and Russian money launderers',
@@ -1520,7 +1527,6 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Conrad B",
             r"Credit Suisse",
             r"DAF",
-            r"D\.?B\.? Zwirn",
             r"Drexel",
             r"Electron Capital( Partners)?",
             r"Fenner",
