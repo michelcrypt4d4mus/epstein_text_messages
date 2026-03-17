@@ -2911,7 +2911,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Entity('Auren Hoffman', "CEO of SafeGraph (mobile device location data co.), LiveRamp", match_partial=None),
             Entity(
                 BOBBY_KOTICK,
-                'CEO of video game titan Activision Blizzard ("Call of Duty", "World of Warcraft", etc.)',
+                'CEO of video game titan Activision Blizzard (Call of Duty, World of Warcraft, etc.)',
                 r"Kotick, Bobby|Bobby Kotick",
                 url='https://www.gamespot.com/articles/epstein-files-reveal-gaming-connections-plans-to-buy-activision-stock/1100-6537858/',
             ),
@@ -2999,8 +2999,16 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 match_partial='both',
                 url=SUBSTACK_POST_INSIGHTSPOD_URL,
             ),
+
+            # Organizations
             Organization('Accel Partners', 'venture capital firm', r"Accel( Partners)?"),
             Organization('bgC3', 'renamed "Bill Gates Ventures" in 2018'),
+            Organization(
+                'Blizzard Entertainment',
+                f'maker of huge video games like World of Warcraft and Call of Duty run by {BOBBY_KOTICK}',
+                r"Activision Blizzard|Blizzard Entertainment",
+                is_emailer=True,
+            ),
             Organization(
                 'Coatue Management',
                 "VC fund founded by Philippe Laffont possibly invested in by Epstein",
@@ -3078,19 +3086,16 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Organization.well_known('T-Mobile'),
         ],
         patterns=[
-            r"Activision( Blizzard)?",
             r"AG?I",
             r"(?-i:A)pple",
             r"Artificial (General )?Intelligence",
-            r"Blizzard Entertainment",
             r"Cash App?",
             r"Cisco",
             r"cyber( (security|space))?",
             r"deep learning",
             r"Dropbox",
             r"Facebook",
-            r"fintech",
-            r"Google",
+            r"Google( search(es)?)?",
             r"Instagram",
             r"(?-i:I)ntel",
             r"Microsoft",
@@ -3546,6 +3551,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"donor advised fund",
             r"EBITDA",
             r"equities",
+            r"fintech",
             r"hedge fund",
             r"(?<!Kyara\s)invest(ment|or)s?(\sadvis[eo]r[sy]?)?",
             r"(junk )?bond",
@@ -3566,6 +3572,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"(income )?tax(e[ds])?( code)?",
             r"(?-i:VAT)",
             r"Wall Street(?! Jour)",
+            r"warrants",
         ]
     ),
     HighlightPatterns(
@@ -3637,11 +3644,11 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         ],
     ),
      HighlightPatterns(
-        label='header_field',
+        label='header_field',  # email_header (or FBI)
         style='plum4',
         patterns=[
             fr"^([>»•\s]{{,4}}({join_patterns(EMAIL_HEADER_FIELD_PATTERNS)}):|on behalf of)",
-            fr"^({join_patterns(FBI_REPORT_FIELDS)})",
+            fr"^({join_patterns(FBI_REPORT_FIELDS)}):",
         ],
     ),
     HighlightPatterns(
