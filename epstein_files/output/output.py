@@ -147,7 +147,7 @@ def print_emails_section(epstein_files: EpsteinFiles, printer: DocPrinter) -> No
         printer.print_section_subtitle(OTHER_INTERESTING_EMAILS_SUBTITLE)
         printer.print_documents(Document.sort_by_timestamp(extra_emails))
 
-    print_email_device_signatures(epstein_files)
+    print_signatures_and_emojis(epstein_files, printer)
     fwded_articles = [e for e in printer.printed_emails if e.is_fwded_article]
     log_msg = f"Rewrote {len(Email.rewritten_header_ids)} of {len(printer.printed_emails)} email headers"
     logger.warning(f"  -> {log_msg}, {len(fwded_articles)} of the Emails printed were forwarded articles.")
@@ -210,6 +210,26 @@ def print_other_files_section(epstein_files: EpsteinFiles, printer: DocPrinter) 
     return files
 
 
+def print_signatures_and_emojis(epstein_files: EpsteinFiles, printer: DocPrinter) -> None:
+    """Print device signatures and emojis and who used them."""
+    printer.print_section_subtitle(DEVICE_SIGNATURE_SUBTITLE)
+    printer.print_renderable(_signature_table(epstein_files.email_device_signatures_to_authors(), (DEVICE_SIGNATURE, AUTHOR), ', '))
+    printer.print_renderable(_signature_table(epstein_files.email_authors_to_device_signatures(), (AUTHOR, DEVICE_SIGNATURE)))
+    author_emojis = defaultdict(set)
+    emoji_authors = defaultdict(set)
+
+    for email in [e for e in epstein_files.emails if e.is_word_count_worthy]:
+        if (emojis := extract_emojis(email.actual_text)):
+            author_emojis[email.author].update(emojis)
+
+            for emoji in emojis:
+                emoji_authors[emoji].add(email.author_str)
+
+    printer.line()
+    printer.print_section_subtitle("Emoji Usage")
+    printer.print_centered(_signature_table(emoji_authors, ('Emoji', AUTHOR)))
+
+
 def print_stats(epstein_files: EpsteinFiles) -> None:
     """Used to generate fixture data for `pytest`."""
     console.print('\n\n\n', Panel('JSON Stats Dump', expand=True, style='reverse bold'), '\n')
@@ -267,7 +287,7 @@ def show_urls() -> None:
 def write_html(output_path: Path | Site | None, **kwargs) -> Path | None:
     """
     Write all `console` output to HTML in `output_path` (if provided).
-    if `args.write_txt` is set colored ANSI `.txt` files will be written instead.
+    If `args.write_txt` is set colored ANSI `.txt` files will be written instead.
     Returns the path that was written (if any).
     """
     if not output_path:
@@ -290,25 +310,6 @@ def write_html(output_path: Path | Site | None, **kwargs) -> Path | None:
 
     log_file_write(output_path)
     return output_path
-
-
-def print_email_device_signatures(epstein_files: EpsteinFiles) -> None:
-    print_subtitle_panel(DEVICE_SIGNATURE_SUBTITLE)
-    console.print(_signature_table(epstein_files.email_device_signatures_to_authors(), (DEVICE_SIGNATURE, AUTHOR), ', '))
-    console.print(_signature_table(epstein_files.email_authors_to_device_signatures(), (AUTHOR, DEVICE_SIGNATURE)))
-    author_emojis = defaultdict(set)
-    emoji_authors = defaultdict(set)
-
-    for email in [e for e in epstein_files.emails if e.is_word_count_worthy]:
-        if (emojis := extract_emojis(email.actual_text)):
-            author_emojis[email.author].update(emojis)
-
-            for emoji in emojis:
-                emoji_authors[emoji].add(email.author_str)
-
-    console.line()
-    print_subtitle_panel("Emoji Usage")
-    print_centered(_signature_table(emoji_authors, ('Emoji', AUTHOR)))
 
 
 def _section_summary_table(table: Table) -> Align:
