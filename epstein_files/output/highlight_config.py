@@ -2759,7 +2759,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             ),
             Entity(DASHA_GRUPMAN, 'recruiter of girls for Epstein', r"Da(ry|sh)a Grupman"),
             Entity('Ekaterina Gusarova', f'Instagram model {QUESTION_MARKS}', r"(Ekaterina|Katya)? Gusm?arova", aliases=['Katya']),
-            Entity("Gul'sum Osmanova", QUESTION_MARKS, email_addresses=['g.a.osmanova@gmail.com']),
+            Entity("Gul'sum Osmanova", QUESTION_MARKS, r"(Gul'?sum )?Osmanova", email_addresses=['g.a.osmanova@gmail.com']),
             Entity('Irina Vodolazova', 'Russian model', match_partial='both'),
             Entity(JESSICA_BANKS, f'Russian speaker, un-Russian last name, co-founder of {QUESTION_MARKS}', match_partial=None),
             Entity(
