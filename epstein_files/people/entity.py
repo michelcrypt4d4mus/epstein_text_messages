@@ -300,6 +300,9 @@ class Organization(Entity):
     DEFAULT_PATTERN_SFX: ClassVar[str] = ''
 
     def __post_init__(self):
+        if self.emailer_pattern:
+            self.is_emailer = True
+
         if (suffix_match := COMPANY_SUFFIX_REGEX.match(self.name)) and not self.emailer_pattern:
             suffix = suffix_match.group(1)
             emailer_pattern = self.name.removesuffix(suffix)
