@@ -15,7 +15,7 @@ from epstein_files.output.epstein_highlighter import highlighter
 from epstein_files.output.layout_elements.demi_table import build_demi_table
 from epstein_files.output.highlight_config import HIGHLIGHTED_NAMES
 from epstein_files.output.rich import *
-from epstein_files.output.site.sites import SECTION_ANCHORS
+from epstein_files.output.site.internal_links import SECTION_ANCHORS
 from epstein_files.output.site.site_config import MOBILE_WARNING_TXT
 from epstein_files.people.names import UNKNOWN
 from epstein_files.util.constant.strings import *
