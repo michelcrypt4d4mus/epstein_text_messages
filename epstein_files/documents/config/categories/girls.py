@@ -48,7 +48,6 @@ GIRLS_CFGS = [
     ),
 
     # Communications
-    # TODO: convert to MessengerLogPdf
     CommunicationCfg(
         id='EFTA01612665',
         note='Epstein gives advice on how to recruit girls',
@@ -69,6 +68,7 @@ GIRLS_CFGS = [
     letter('EFTA00078198', 'Marsh Law Firm', [USANYS], "allegations of sexual abuse at Epstein's house", '2020-11-10'),
     skype_log(
         id='EFTA01616933',
+        date='2019-04-08',
         note='"no one can beat your pussy network"',
         highlight_quote='now im finding pussy for you',
     ),

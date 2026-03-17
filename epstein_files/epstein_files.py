@@ -567,4 +567,4 @@ for cfg in CONFIGS_BY_ID.values():
             continue
 
         if name not in ENTITIES_DICT and ' v. ' not in name and ',' not in name:
-            cfg._warn(f"Configured name has no Entity object: {quote(name)}")
+            cfg._log(f"Configured name has no Entity object: {quote(name)}")
