@@ -2,7 +2,7 @@ import json
 from collections import defaultdict
 from os import unlink
 from subprocess import CalledProcessError, check_output
-from typing import cast
+from typing import TypeVar
 
 from rich import box
 from rich.padding import Padding
@@ -40,24 +40,24 @@ CONVERSATIONS_SORTED_BY_TXT = Text("(conversations sorted chronologically based 
 DEVICE_SIGNATURE_SUBTITLE = f"Email [italic]Sent from \\[DEVICE][/italic] Signature Breakdown"
 DEVICE_SIGNATURE = 'Device Signature'
 
+T = TypeVar('T')
+
 
 def print_curated_chronological(epstein_files: EpsteinFiles, printer: DocPrinter) -> list[Document]:
     """Print only interesting files of all types in chronological order."""
+    logger.warning(f'Printing curated chronological site...')
     should_print = lambda doc: doc.is_interesting if not args.invert_chrono else not doc.is_interesting
     docs = [d for d in epstein_files.unique_documents if should_print(d)]
-
-    if args.max_records:
-        docs = docs[:args.max_records]
-
     printer.print_section_subtitle('Selected Files of Interest in Chronological Order')
-    printer.print_documents(docs)
+    printer.print_documents(_max_records(docs))
     return printer.printed_docs
 
 
 def print_doj_files(epstein_files: EpsteinFiles, printer: DocPrinter) -> list[DojFile]:
     """Doesn't print DojFiles that are actually Emails, that's handled in print_emails()."""
     printer.collect_other_files_to_tables = False
-    printer.print_documents(Document.without_dupes(epstein_files.doj_files))
+    docs = Document.without_dupes(epstein_files.doj_files)
+    printer.print_documents(_max_records(docs))
     return epstein_files.doj_files
 
 
@@ -119,11 +119,7 @@ def print_emails_section(epstein_files: EpsteinFiles, printer: DocPrinter) -> No
         emailers_to_print = all_emailers if args.all_emails else epstein_files.person_objs(EMAILERS_TO_PRINT)
         printer.print_renderable(_section_summary_table(Person.emailer_info_table(all_emailers, emailers_to_print)))
 
-    if args.max_records:
-        logger.warning(f"Truncating to args.max_records={args.max_records} people")
-        emailers_to_print = emailers_to_print[0:args.max_records]
-
-    for person in emailers_to_print:
+    for person in _max_records(emailers_to_print):
         if person.name in epstein_files.uninteresting_emailers and not args.names:
             continue
 
@@ -352,3 +348,12 @@ def _verify_all_emails_were_printed(epstein_files: EpsteinFiles, already_printed
 
     if not missed_an_email:
         logger.warning(f"All {len(epstein_files.emails):,} emails printed at least once.")
+
+
+def _max_records(docs: list[T]) -> list[T]:
+    """Truncate number of Documents if `args.max_records` is specified."""
+    if args.max_records and args.max_records < len(docs):
+        logger.warning(f"Truncating to args.max_records={args.max_records} objects...")
+        return docs[0:args.max_records]
+    else:
+        return docs

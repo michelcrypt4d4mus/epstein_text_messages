@@ -57,7 +57,6 @@ def epstein_generate() -> None:
     elif args.output_devices:
         print_signatures_and_emojis(epstein_files, printer)
     elif args.output_chrono:
-        logger.warning(f'Printing chronological site...')
         print_curated_chronological(epstein_files, printer)
         timer.log_section_complete('Document', epstein_files.unique_documents, printer.printed_docs)
     elif args.output_word_count:
