@@ -226,4 +226,5 @@ def use_custom_html() -> None:
     for site in DEPLOY_CUSTOM_HTML_SITES:
         from_path = SiteType.custom_html_build_path(site)
         to_path = SiteType.html_output_path(site)
-        logger.warning(f"Copying '{from_path}' to '{to_path}'...")
+        logger.warning(f"Copying/overwriting '{from_path}' to '{to_path}'...")
+        shutil.copy2(from_path, to_path)
