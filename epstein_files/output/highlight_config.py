@@ -1710,8 +1710,10 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 "US financial markets regulator",
                 r"sec\.?gov|Securities (&|and) Exchange Commission",
             ),
-            acronym(OFFICE_OF_THE_DEPUTY_ATTORNEY_GENERAL, emailer_pattern=r"\bODAG\b"),
+            acronym('New York Dept. of Financial Services', "America's second most important financial regulator"),
+            acronym(OFFICE_OF_THE_DEPUTY_ATTORNEY_GENERAL, emailer_pattern=r"\bODAG\b", is_interesting=False),
             acronym('Southern District of New York', 'federal prosecutors covering New York City'),
+            acronym('Tip Complaint or Referral', "form used for whistleblower tips"),
             acronym('United States Marshals Service', is_emailer=True),
             law_enforcement(BUREAU_OF_PRISONS, r"bop\.gov|(Federal )?Bureau of Prisons"),
             law_enforcement('DHS'),
@@ -1730,7 +1732,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             law_enforcement('SCOTUS'),
             law_enforcement('SDFL', 'federal prosecutors covering South Florida', is_interesting=True),
             law_enforcement("SDNY Cybercrimes", is_emailer=True),
-            law_enforcement('USAHUB-USAJournal111'),
+            law_enforcement('USAHUB', emailer_pattern=r"USAJournal111"),
             law_enforcement(USANYS, is_emailer=True),
             law_enforcement('US Secret Service'),
             # TODO: These are in UNINTERESTING_AUTHORS but that should be configured here
@@ -1745,7 +1747,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"(Andrew )?(McCabe|Natsios)",
             r"(Assistant )?State Attorney",
             r"Attorneys? General",
-            r"Bank Secrecy Act",
+            r"Bank Secrecy Act",  # TODO: acronym?
             r'Barbara Burns',  # AUSA
             r"((Bob|Robert) )?Mueller",
             r"BSA",
@@ -1784,7 +1786,6 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"NIH",
             r"NPA",
             r"NS(A|C)",
-            r"NYDFS",
             r"NYPD",
             r"PBPD",
             r"police",
@@ -1798,7 +1799,6 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"State Dep(artmen)?t",
             r"(Peter? )?Strzok",
             r"Supreme Court",
-            r"TCR",
             r"Treasury (Dep(artmen)?t|Secretary)",
             r"TSA",
             r"U\.?S\.? attorney",
@@ -1817,7 +1817,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         label=HARVARD,
         style='light_goldenrod3',
         contacts=[
-            Entity('Donald Rubin', "professor of statistics", match_partial=None),
+            Entity('Donald Rubin', "statistics professor", match_partial=None),
             Entity('Henry Rosovsky', f'emeritus dean of {HARVARD}', r"(Henry )?Rosovs(k|lc)y"),
             Entity('Kelly Friendly', f"longtime aide and spokesperson of {LARRY_SUMMERS}", match_partial=None),
             Entity(
@@ -1856,7 +1856,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         label='India',
         style='bright_green',
         contacts=[
-            Entity(ANIL_AMBANI, "billionaire chairman of Reliance Group", r"Anil.Ambani"),
+            Entity(ANIL_AMBANI, "billionaire chairman of Reliance Group", r"Anil.Ambani", url=WIKIPEDIA),
             Organization(
                 'InsightsPod',
                 f"{ZUBAIR_KHAN} and {ANYA_RASULOVA}'s company recommended by {MARIA_PRUSAKOVA}, did social media work for Epstein during the 2016 election",
