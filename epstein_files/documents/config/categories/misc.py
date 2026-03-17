@@ -1,6 +1,6 @@
 from epstein_files.documents.config.config_builder import fedex_invoice, important_messages_pad, press_release
 from epstein_files.documents.config.doc_cfg import DocCfg
-from epstein_files.documents.config.communication_cfg import iMessage_screenshot
+from epstein_files.documents.config.communication_cfg import iMessage_screenshot, skype_log
 from epstein_files.documents.documents.categories import Interesting, Neutral
 from epstein_files.documents.doj_files.full_text import EFTA00009622_TEXT
 from epstein_files.people.names import *
@@ -118,4 +118,23 @@ MISC_CFGS = [
     iMessage_screenshot(id='033434', author=BRAD_EDWARDS, author_uncertain=f"labeled 'Edwards'", is_interesting=False),
     important_messages_pad('EFTA01719859', '2005-10-03'),
     important_messages_pad('EFTA01682477', '2005-04-01'),
+    skype_log('032210', recipients=['linkspirit'], is_interesting=True),
+    skype_log('018224', recipients=['linkspirit', LAWRENCE_KRAUSS], is_interesting=True),  # we don't know who linkspirit is yet
+    skype_log('EFTA01617727'),
+    skype_log(
+        id='EFTA00507334',
+        recipients=[
+            'Aleksandra Eriksson',
+            ANASTASIYA_SIROOCHENKO,
+            'Catherine',
+            DANIEL_SIAD,
+            DAVID_STERN,
+            EMAD_HANNA,
+            'Jade Huang',
+            NADIA_MARCINKO,
+            'sexysearch2010',
+            'sophiembh'
+        ],
+    ),
+    skype_log('EFTA01613143', author=MELANIE_WALKER, date='2017-06-24'),
 ]

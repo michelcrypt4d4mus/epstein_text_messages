@@ -1,5 +1,6 @@
 from pathlib import Path
 
+from epstein_files.documents.config.communication_cfg import CommunicationCfg, skype_log
 from epstein_files.documents.config.doc_cfg import DocCfg
 from epstein_files.documents.config.email_cfg import EmailCfg
 from epstein_files.people.names import *
@@ -66,5 +67,8 @@ ACADEMIA_CFGS = [
     DocCfg(id='EFTA01114164', author=BEN_GOERTZEL, note='OpenCog Road Map 2011-2023', date='2011-01-01', date_uncertain=True),
     DocCfg(id='EFTA01114145', author=f"{BEN_GOERTZEL} and {GINO_YU}", note="OpenCog AGI Toddler Project", date='2011-06-01', date_uncertain=True),
     EmailCfg(id='EFTA00954900', note=f'Epstein donation to {MOUNT_SINAI}'),
-    EmailCfg(id='EFTA00955864', note=f'Epstein donation to {MOUNT_SINAI}', is_interesting=False)
+    EmailCfg(id='EFTA00955864', note=f'Epstein donation to {MOUNT_SINAI}', is_interesting=False),
+    skype_log('032206', recipients=[LAWRENCE_KRAUSS], is_interesting=False),
+    skype_log('032208', recipients=[LAWRENCE_KRAUSS], is_interesting=False),
+    skype_log('032209', recipients=[LAWRENCE_KRAUSS], is_interesting=False),
 ]

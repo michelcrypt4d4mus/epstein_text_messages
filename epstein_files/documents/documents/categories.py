@@ -31,7 +31,6 @@ class Neutral(StrEnum):
     MISC = auto()
     PRESSER = auto()
     RESUMÉ = auto()
-    SKYPE_LOG = auto()
 
 class Uninteresting(StrEnum):
     ACADEMIA = auto()
@@ -65,7 +64,6 @@ CATEGORY_STYLE_MAPPING = {
     Neutral.DEPOSITION: VICTIM_LAWYER,
     Neutral.LEGAL: LAWYER,
     Neutral.PRESSER: PUBLICIST,
-    Neutral.SKYPE_LOG: TECH_BRO,
     Uninteresting.ARTICLE: JOURNALIST,
     Uninteresting.BOOK: JOURNALIST,
     Uninteresting.CONFERENCE: ACADEMIA,

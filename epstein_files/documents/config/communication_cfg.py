@@ -55,9 +55,7 @@ class CommunicationCfg(DocCfg):
 
     @property
     def category_txt(self) -> Text:
-        """Returns '???' for missing category."""
-        from epstein_files.output.highlight_config import styled_category
-
+        """Overloads superclass to return `self.platform`."""
         if self.platform and self.platform in PLATFORM_STYLES:
             return Text(self.platform.lower(), PLATFORM_STYLES[self.platform])
         else:

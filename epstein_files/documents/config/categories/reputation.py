@@ -1,3 +1,4 @@
+from epstein_files.documents.config.communication_cfg import skype_log
 from epstein_files.documents.config.doc_cfg import DocCfg
 from epstein_files.documents.config.email_cfg import EmailCfg
 from epstein_files.people.names import *
@@ -25,4 +26,7 @@ REPUTATION_CFGS = [
         is_interesting=True,
         attached_to_email_id='EFTA01931256'
     ),
+    skype_log('EFTA01217787', recipients=[TYLER_SHEARS, HANNA_TRAFF], is_interesting=True),
+    skype_log('EFTA01217703', recipients=[ATHENA_ZELCOVICH, JOSCHA_BACH, LAWRENCE_KRAUSS, TYLER_SHEARS]),
+    skype_log('EFTA01217736', recipients=[ATHENA_ZELCOVICH, TYLER_SHEARS]),
 ]

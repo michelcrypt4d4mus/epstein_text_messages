@@ -2377,7 +2377,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 r"Antoine Verg[li]as",
                 url='https://www.vanityfair.com/news/story/melania-trump-epstein-files',
             ),
-            Entity(ATHENA_ZELCOVICH, 'actress', url='https://www.imdb.com/name/nm5631006/'),
+            Entity(ATHENA_ZELCOVICH, 'actress', r"Athe(na )?Zelco(vich)?", url='https://www.imdb.com/name/nm5631006/'), # Skype: athezelco
             Entity(
                 DANIEL_SIAD,
                 'model scout funded by Epstein to recruit in eastern Europe',
