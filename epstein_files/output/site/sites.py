@@ -201,6 +201,7 @@ class PageSections(StrEnum):
     OTHER_FILES = auto()
     TEXT_MESSAGES = auto()
 
+
 # Search terms that take you to the desired section via magic URL comment arg
 SECTION_ANCHORS = {
     PageSections.EMAILS: SELECTIONS_FROM + HIS_EMAILS,
@@ -214,10 +215,14 @@ def make_clean() -> None:
     """Delete all build artifacts."""
     for site in Site:
         for build_file in [Site.html_output_path(site), Site.custom_html_build_path(site)]:
-            for file in [build_file, Path(f"{build_file}.txt")]:
-                if file.exists():
-                    logger.warning(f"Removing build file '{file}'...")
-                    file.unlink()
+            if site == Site.NAMES:
+                paths = [f for f in build_file.parent.glob(f"{build_file.stem}*.html")]
+            else:
+                paths = [build_file, Path(f"{build_file}.txt")]
+
+            for file in [f for f in paths if f.exists()]:
+                logger.warning(f"Removing build file '{file}'...")
+                file.unlink()
 
 
 def use_custom_html() -> None:
