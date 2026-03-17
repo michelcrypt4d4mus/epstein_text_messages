@@ -199,13 +199,17 @@ def print_other_files_section(epstein_files: EpsteinFiles, doc_printer: DocPrint
     files = Document.sort_by_timestamp(files)
     title_pfx = '' if args.all_other_files else 'Selected '
     category_table = OtherFile.summary_table(files, title_pfx=title_pfx)
-    other_files_preview_table = OtherFile.files_preview_table(files, title_pfx=title_pfx)
-
     header_panel = section_header(f"{FIRST_FEW_LINES} of {len(files)} {title_pfx}{FILES_THAT_ARE_NEITHER_EMAILS_NOR}")
     doc_printer.print_renderable(header_panel)
     print_other_page_link(epstein_files)  # TODO: not in custom HTML
     doc_printer.print_renderable(_section_summary_table(category_table))
-    doc_printer.print_renderable(other_files_preview_table)
+
+    # If --all-other-files is enables, print the biographical panels, otherwise just print a big table
+    if args.all_other_files:
+        doc_printer.print_documents(files)
+    else:
+        doc_printer.print_renderable(OtherFile.files_preview_table(files, title_pfx=title_pfx))
+
     return files
 
 

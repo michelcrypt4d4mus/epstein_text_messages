@@ -1,4 +1,5 @@
 # NEXT RELEASE
+* If --all-other-files is enables, print the biographical panels, otherwise just print a big table
 * add `platform` property to `CommunicationCfg`
 * Refactor `CommunicationCfg` and `EmailCfg` to their own files
 * `DocCfg.is_interesting` can be an `int` for the most interesting docs, replaces `DocCfg.is_very_interesting`
