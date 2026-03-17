@@ -1100,6 +1100,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Entity(ALAN_DLUGASH, 'tax partner at Paneth and Shrone', r"Alan (J.? )?Dlugash"),
             Entity('Alan S. Halperin', "partner at Paul, Weiss", r"(Alan.{8})?Halperin(, Alan S)?"),
             Entity(ALAN_DERSHOWITZ, f"{HARVARD} Law School professor", r"(alan.{1,7})?dershowi(lz?|t?z)|AlanDersh"),
+            Entity('Andrew G. Celli', f"{ALAN_DERSHOWITZ}'s lawyer", match_partial=None),
             Entity(ARDA_BESKARDES, "NYC immigration attorney allegedly involved in sex-trafficking operations"),
             Entity('Bebe Avdiu', f'legal assistant to {DARREN_INDYKE}'),
             Entity(
@@ -1149,7 +1150,8 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 r"To(nj|rl)a Haddad Coleman",
                 email_addresses=['haddadfm@aol.com'],
                 match_partial='first',
-            )
+            ),
+            Organization('Mishcon de Reya', f"{ALAN_DERSHOWITZ}'s UK lawyers"),
         ],
         patterns=[
             r"dersh",

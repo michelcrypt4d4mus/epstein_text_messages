@@ -23,7 +23,7 @@ ARTS_CFGS = [
     ),
     DocCfg(
         id='028281',
-        author='Wolfe Von Lenkiewicz & Victoria Golembiovskaya',
+        author='Wolfe Von Lenkiewicz, Victoria Golembiovskaya',
         date='2010-10-13',
         note=f'art show flier for "The House Of The Nobleman"',
     ),
