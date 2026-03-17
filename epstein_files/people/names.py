@@ -205,6 +205,7 @@ WOODY_ALLEN = 'Woody Allen'
 ZUBAIR_KHAN = 'Zubair Khan'
 
 # DOJ files emails
+ADA_CLAPP = 'Ada Clapp'
 ADAM_BACK = 'Adam Back'
 ALEKSANDRA_KARPOVA = 'Aleksandra Karpova'
 ALISON_J_NATHAN = 'Alison J. Nathan'

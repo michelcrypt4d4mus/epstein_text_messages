@@ -3,7 +3,7 @@ Crypto and virtual currency / fintech related files
 """
 from epstein_files.documents.config.categories.finance import GOLDMAN_INVESTMENT_MGMT
 from epstein_files.documents.config.config_builder import whistleblower_cfg
-from epstein_files.documents.config.communication_cfg import CommunicationCfg, iMessage_log, iMessage_screenshot, whatsapp_log
+from epstein_files.documents.config.communication_cfg import CommunicationCfg, imessage_log, imessage_screenshot, whatsapp_log
 from epstein_files.documents.config.doc_cfg import DEFAULT_TRUNCATE_TO, NO_TRUNCATE, SHORT_TRUNCATE_TO, DocCfg
 from epstein_files.documents.config.email_cfg import EmailCfg
 from epstein_files.people.names import *
@@ -195,7 +195,7 @@ CRYPTO_CFGS = [
     # Crypto PR Lab / Medici Bank
     DocCfg(id='EFTA00805569', note='Mercantile Global Holdings, San Juan Mercantile Bank & Trust, Noble Bank + Signature Bank + BitGo'),
     DocCfg(id='EFTA01088079', note="someone's thoughts on bitcoin"),
-    iMessage_screenshot(id='EFTA01611042', author=ED_BOYLE, recipients=[None, MARIA_PRUSAKOVA]),
+    imessage_screenshot(id='EFTA01611042', author=ED_BOYLE, recipients=[None, MARIA_PRUSAKOVA]),
     whatsapp_log(id='EFTA01613731', note='Medici Bank conversation on Whatsapp'),
     EmailCfg(id='EFTA00495372', note=f'discussion of Medici Bank, a new successor to Noble Bank as a crypto bank', is_interesting=10),
     EmailCfg(
@@ -390,7 +390,7 @@ CRYPTO_CFGS = [
     DocCfg(id='EFTA00811666', note='asset valuations of Epstein\'s holdings, includes "Coinbase via grat"', date='2018-01-31'),
     DocCfg(id='EFTA01734786', note='LedgerX Series B pitch deck'),
     DocCfg(id='EFTA00605996', note='Wedbush BUY rating on Digital Currency Group GBTC', is_interesting=False),
-    iMessage_log(
+    imessage_log(
         id='EFTA01620764',
         author=MELANIE_WALKER,
         author_uncertain=True,

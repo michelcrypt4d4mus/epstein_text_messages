@@ -157,7 +157,7 @@ def test_complete_description(
     assert legal_cfg.complete_description == f"clinton v. trump: case law"
     # Letters
     assert CONFIGS_BY_ID['025704'].complete_description == 'letter from Ken Starr to Judge Mark Filip requesting lenient treatment for Epstein'
-    assert CONFIGS_BY_ID['028965'].complete_description == 'letter from Martin Weinberg to ABC / Good Morning America threatening libel lawsuit'
+    assert CONFIGS_BY_ID['028965'].complete_description == 'letter from Martin Weinberg to Good Morning America threatening libel lawsuit against ABC'
     # Skype
     assert skype_cfg.complete_description == 'Skype log'
     # Skype with author

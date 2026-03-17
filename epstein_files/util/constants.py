@@ -325,6 +325,8 @@ UNINTERESTING_OTHER_FILE_IDS = [
 
 # Not uninteresting enough to be permanently marked as such but not good enough for --output-chrono
 NOT_CHRONOLOGICAL_VIEW_IDS = [cfg.id for cfg in FLIGHT_LOG_CFGS] + [
+    'EFTA00507334',  # skype log w/lots of people
+    'EFTA00751119',  # Valdson
     # Karim Wade
     'EFTA01063216',  # canceled trip
     'EFTA01738267',  # canceled trip

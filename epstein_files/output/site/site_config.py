@@ -92,7 +92,7 @@ class SiteConfig(MobileConfig):
     subtitle_margins: ClassVar[PaddingDimensions] = (2, 0, 2, 0)
     subtitle_padding: ClassVar[PaddingDimensions] = (0, 3)
     subtitle_width: ClassVar[int | None] = 70
-    suppressed_file_indent: ClassVar[int] = 0
+    suppressed_file_indent: ClassVar[int] = 1
     width: ClassVar[int] = DEFAULT_WIDTH
 
     @classmethod

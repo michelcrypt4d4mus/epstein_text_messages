@@ -154,5 +154,5 @@ def uniquify(_list: Sequence[T]) -> list[T]:
     return list(set(_list))
 
 
-def without_falsey(elements: Sequence[T]) -> list[T]:
+def without_falsey(elements: Sequence[T | None]) -> list[T]:
     return [e for e in elements if e]

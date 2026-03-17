@@ -1,6 +1,7 @@
 """
 HTML file paths and URLs for files built by `epstein_generate`.
 """
+import shutil
 from enum import auto, StrEnum
 from pathlib import Path
 from typing import Self
@@ -26,12 +27,14 @@ ATTRIBUTIONS_URL = f'{GH_MASTER_URL}/epstein_files/util/constants.py'
 EXTRACTS_BASE_URL = f'{GH_MASTER_URL}/emails_extracted_from_legal_filings'
 BASE_URL = f"{GH_PAGES_BASE_URL}/{GH_REPO_NAME}"
 
+CUSTOM_HTML_PREFIX = 'real_html_'
 TO_FROM = 'to/from'
 MOBILE_SUFFIX = '_mobile'
 
 
 class SiteType(StrEnum):
     BIOGRAPHIES = auto()
+    COLORS_ONLY = auto()
     CURATED = auto()
     CURATED_MOBILE = auto()
     CHRONOLOGICAL = CHRONOLOGICAL
@@ -41,7 +44,9 @@ class SiteType(StrEnum):
     EMAILS = auto()
     EMAILS_CHRONOLOGICAL = auto()
     JSON_METADATA = auto()
+    NAMES = auto()
     OTHER_FILES_TABLE = auto()
+    SAMPLE = auto()
     TEXT_MESSAGES = auto()
     WORD_COUNT = auto()
     # Dev sites
@@ -57,6 +62,16 @@ class SiteType(StrEnum):
         return {site_type: SiteType.link_txt(site_type) for site_type in SITE_DESCRIPTIONS}
 
     @classmethod
+    def custom_html_build_path(cls, site_type: 'SiteType | Path') -> Path:
+        """Path for the templated custom HTML version of the page."""
+        if isinstance(site_type, Path):
+            basename = site_type.name
+        else:
+            basename = cls.html_output_path(site_type).name
+
+        return HTML_DIR.joinpath(f'{CUSTOM_HTML_PREFIX}{basename}')
+
+    @classmethod
     def directory_links(cls) -> dict['SiteType', Text]:
         """Everything but mobile."""
         return {k: v for k, v in cls.all_links().items() if not cls.is_mobile(k)}
@@ -64,6 +79,11 @@ class SiteType(StrEnum):
     @classmethod
     def html_output_path(cls, site_type: 'SiteType') -> Path:
         """Defaults to `[site_type].html` if not configured in `HTML_BUILD_FILENAMES`."""
+
+        if site_type == cls.NAMES:
+            from epstein_files.util.env import args
+            site_type = '__'.join(sorted(args.names)).replace(' ', '_').lower()
+
         return HTML_DIR.joinpath(HTML_BUILD_FILENAMES.get(site_type, f"{site_type}.html"))
 
     @classmethod
@@ -121,11 +141,6 @@ class SiteType(StrEnum):
         return site_type.endswith(MOBILE_SUFFIX)
 
     @classmethod
-    def real_html_build_path(cls, site_type: 'SiteType') -> Path:
-        """Path for the templated custom HTML version of the page."""
-        return HTML_DIR.joinpath(f'real_html_{cls.html_output_path(site_type).name}')
-
-    @classmethod
     def _is_lesser_site(cls, site_type: Self) -> bool:
         return site_type in [cls.DOJ_FILES, cls.JSON_METADATA]  #+ [cls.JSON_FILES]
 
@@ -162,6 +177,15 @@ SITE_DESCRIPTIONS = {
     SiteType.JSON_METADATA:         f"metadata:author bios, attribution explanations",
 }
 
+# These are site types where the custom HTML is good enough to deploy
+DEPLOY_CUSTOM_HTML_SITES = [
+    SiteType.BIOGRAPHIES,
+    SiteType.CHRONOLOGICAL,
+    SiteType.CHRONOLOGICAL_MOBILE,
+    SiteType.EMAILS_CHRONOLOGICAL,
+    SiteType.OTHER_FILES_TABLE,
+]
+
 
 ###########################################
 ########  Internal sections links  ########
@@ -190,9 +214,17 @@ SECTION_ANCHORS = {
 def make_clean() -> None:
     """Delete all build artifacts."""
     for site_type in SiteType:
-        build_file = SiteType.html_output_path(site_type)
+        for build_file in [SiteType.html_output_path(site_type), SiteType.custom_html_build_path(site_type)]:
+            for file in [build_file, Path(f"{build_file}.txt")]:
+                if file.exists():
+                    logger.warning(f"Removing build file '{file}'...")
+                    file.unlink()
 
-        for file in [build_file, Path(f"{build_file}.txt")]:
-            if file.exists():
-                logger.warning(f"Removing build file '{file}'...")
-                file.unlink()
+
+def use_custom_html() -> None:
+    """Overwrite normal rich html export with custom HTML for all DEPLOY_CUSTOM_HTML_SITES."""
+    for site in DEPLOY_CUSTOM_HTML_SITES:
+        from_path = SiteType.custom_html_build_path(site)
+        to_path = SiteType.html_output_path(site)
+        logger.warning(f"Copying/overwriting '{from_path}' to '{to_path}'...")
+        shutil.copy2(from_path, to_path)

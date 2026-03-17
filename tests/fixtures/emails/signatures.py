@@ -205,6 +205,7 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
         "Sent via BlackBerry by AT&T",
         'Sent via BlackBerry from T-Mobile',
     ],
+    ADA_CLAPP: ['Sent from my Verizon Wireless BlackBerry'],
     ALAN_DERSHOWITZ: [
         "Sent from my Verizon Wireless BlackBerry",
         "Sent from my iPhone"

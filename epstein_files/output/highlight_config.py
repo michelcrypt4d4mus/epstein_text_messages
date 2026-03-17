@@ -169,7 +169,6 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"MIT",
             r"Murray Gell-Mann",
             r"New York University",
-            r"Norman Finkelstein",
             r"NYU",
             r"Oxford(?! Analytica)",
             r"PhD",
@@ -468,11 +467,14 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             ),
             Entity(
                 MILES_GUO,
-                "organized crime boss connected to Chinese intelligence, friend of Steve Bannon (who was arrested on Guo's yacht)",
+                "organized crime boss connected to Chinese intelligence, friend of Steve Bannon who was arrested on his yacht)",
                 r"Miles (Guo|Kwok)|Guo Wengui",
                 aliases=['Miles Kwok', 'Guo Wengui'],
                 match_partial=None,
-                url='https://www.newyorker.com/magazine/2022/10/24/how-a-tycoon-linked-to-chinese-intelligence-became-a-darling-of-trump-republicans',
+                url=[
+                    'https://www.newyorker.com/magazine/2022/10/24/how-a-tycoon-linked-to-chinese-intelligence-became-a-darling-of-trump-republicans',
+                    'https://www.pbs.org/newshour/nation/chinese-businessman-and-bannon-business-partner-arrested-in-1-billion-fraud-conspiracy',
+                ],
             ),
             Entity(
                 'Stanley Ho',
@@ -1046,7 +1048,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 f"corporate vehicle set up by Epstein and {DAVID_STERN}, presumably to manage money of wealthy Chinese",
                 r"Asia\s*Gateway(\s*L(imited|td))?",
             ),
-            Entity('Narrow Inc.', f"{LEON_BLACK} entity arranged by Epstein and Ada Clapp", r"Narrow Inc", match_partial=None),
+            Entity('Narrow Inc.', f"{LEON_BLACK} entity arranged by Epstein and {ADA_CLAPP}", r"Narrow Inc", match_partial=None),
             epstein_co('FT Real Estate'),
             epstein_co('Harlequin Dane LLC'),
             epstein_co('Island Grounds Inc.'),
@@ -1098,7 +1100,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         label=LAWYER,  # Epstein's lawyers
         style='purple',
         contacts=[
-            Entity('Ada Clapp', f"Chief Legal Officer of {LEON_BLACK}'s {ELYSIUM_MANAGEMENT}"),
+            Entity(ADA_CLAPP, f"Chief Legal Officer of {LEON_BLACK}'s {ELYSIUM_MANAGEMENT}"),
             Entity(ALAN_DLUGASH, 'tax partner at Paneth and Shrone', r"Alan (J.? )?Dlugash"),
             Entity('Alan S. Halperin', "partner at Paul, Weiss", r"(Alan.{8})?Halperin(, Alan S)?"),
             Entity(ALAN_DERSHOWITZ, f"{HARVARD} Law School professor", r"(alan.{1,7})?dershowi(lz?|t?z)|AlanDersh"),
@@ -1578,6 +1580,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 r"Andrew (L\.? )?Farkas|Farkas, Andrew( L\.?)?",
                 url='https://www.nytimes.com/2026/02/09/nyregion/farkas-epstein-lawsuit-ties.html',
             ),
+            Entity('Allison Lutnick', f'wife of {HOWARD_LUTNICK}', match_partial=None),
             Entity(
                 DAVID_STERN,
                 f"Epstein's partner in various businesses including Asia Gateway Ltd.",
@@ -2757,7 +2760,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             ),
             Entity(DASHA_GRUPMAN, 'recruiter of girls for Epstein', r"Da(ry|sh)a Grupman"),
             Entity('Ekaterina Gusarova', f'Instagram model {QUESTION_MARKS}', r"(Ekaterina|Katya)? Gusm?arova", aliases=['Katya']),
-            Entity("Gul'sum Osmanova", QUESTION_MARKS, email_addresses=['g.a.osmanova@gmail.com']),
+            Entity("Gul'sum Osmanova", QUESTION_MARKS, r"(Gul'?sum )?Osmanova", email_addresses=['g.a.osmanova@gmail.com']),
             Entity('Irina Vodolazova', 'Russian model', match_partial='both'),
             Entity(JESSICA_BANKS, f'Russian speaker, un-Russian last name, co-founder of {QUESTION_MARKS}', match_partial=None),
             Entity(

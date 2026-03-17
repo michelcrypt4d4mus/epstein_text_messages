@@ -180,9 +180,11 @@ def print_json_files(epstein_files: EpsteinFiles):
 def print_json_metadata(epstein_files: EpsteinFiles) -> None:
     """Print all our `DocCfg` and derived info about authorship etc."""
     if args.build:
-        with open(args.build, 'wt') as f:
+        output_path = SiteType.html_output_path(SiteType.JSON_METADATA)
+
+        with open(output_path, 'wt') as f:
             f.write(epstein_files.json_metadata())
-            log_file_write(args.build)
+            log_file_write(output_path)
     else:
         console.print_json(epstein_files.json_metadata(), indent=4, sort_keys=True)
 
@@ -197,13 +199,17 @@ def print_other_files_section(epstein_files: EpsteinFiles, doc_printer: DocPrint
     files = Document.sort_by_timestamp(files)
     title_pfx = '' if args.all_other_files else 'Selected '
     category_table = OtherFile.summary_table(files, title_pfx=title_pfx)
-    other_files_preview_table = OtherFile.files_preview_table(files, title_pfx=title_pfx)
-
     header_panel = section_header(f"{FIRST_FEW_LINES} of {len(files)} {title_pfx}{FILES_THAT_ARE_NEITHER_EMAILS_NOR}")
     doc_printer.print_renderable(header_panel)
     print_other_page_link(epstein_files)  # TODO: not in custom HTML
     doc_printer.print_renderable(_section_summary_table(category_table))
-    console.print(other_files_preview_table)
+
+    # If --all-other-files is enables, print the biographical panels, otherwise just print a big table
+    if args.all_other_files:
+        doc_printer.print_documents(files)
+    else:
+        doc_printer.print_renderable(OtherFile.files_preview_table(files, title_pfx=title_pfx))
+
     return files
 
 
@@ -260,7 +266,6 @@ def show_urls() -> None:
     console.print(Padding(styled_dict(urls), (1)))
 
 
-
 def write_html(output_path: Path | SiteType | None, **kwargs) -> Path | None:
     """
     Write all `console` output to HTML in `output_path` (if provided).
@@ -268,7 +273,7 @@ def write_html(output_path: Path | SiteType | None, **kwargs) -> Path | None:
     Returns the path that was written (if any).
     """
     if not output_path:
-        logger.warning(f"Not writing HTML because args.build={args.build}.")
+        logger.warning(f"Not writing HTML (args.build={args.build}, args._site_type={args._site_type}.")
         return
     elif isinstance(output_path, SiteType):
         output_path = SiteType.html_output_path(output_path)

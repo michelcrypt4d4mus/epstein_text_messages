@@ -1,6 +1,6 @@
 from epstein_files.documents.config.config_builder import fedex_invoice, important_messages_pad, press_release
 from epstein_files.documents.config.doc_cfg import DocCfg
-from epstein_files.documents.config.communication_cfg import iMessage_screenshot, skype_log
+from epstein_files.documents.config.communication_cfg import imessage_screenshot, skype_log
 from epstein_files.documents.documents.categories import Interesting, Neutral
 from epstein_files.documents.doj_files.full_text import EFTA00009622_TEXT
 from epstein_files.people.names import *
@@ -115,7 +115,7 @@ MISC_CFGS = [
     # Misc
     fedex_invoice('EFTA00217072', '2005-06-20'),
     fedex_invoice('EFTA00217080', '2005-06-27'),
-    iMessage_screenshot(id='033434', author=BRAD_EDWARDS, author_uncertain=f"labeled 'Edwards'", is_interesting=False),
+    imessage_screenshot(id='033434', author=BRAD_EDWARDS, author_uncertain=f"labeled 'Edwards'", is_interesting=False),
     important_messages_pad('EFTA01719859', '2005-10-03'),
     important_messages_pad('EFTA01682477', '2005-04-01'),
     skype_log('032210', recipients=['linkspirit'], is_interesting=True),

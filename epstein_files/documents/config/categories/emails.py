@@ -1312,7 +1312,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA01958867', note=f'"Mr. T" is {PRINCE_ANDREW}, "Howard" is {HOWARD_LUTNICK}'),
     EmailCfg(id='EFTA00771388', note=f"{NAOMI_CAMPBELL} seems to have made some introductions to Russian oligarchs"),
     EmailCfg(id='EFTA00754450', note='"PA" is probably Prince Andrew', duplicate_ids=['EFTA02418244']),
-    EmailCfg(id='EFTA02415612', note='party invite from Doronin', is_interesting=True),
+    EmailCfg(id='EFTA02415612', note='party invite from oligarch Vladislav Doronin', is_interesting=True),
     EmailCfg(id='EFTA02087543', note="password for Epstein's RingCentral home security system", is_interesting=True, truncate_to=500),
     EmailCfg(id='EFTA01003346', note=f"{PETER_THIEL} tells Epstein to invest in his fund", is_interesting=True),
     EmailCfg(id='EFTA02014739', note='phishing attack on a Yahoo account "jeffrey.epstein"', is_interesting=True, truncate_to=700),
