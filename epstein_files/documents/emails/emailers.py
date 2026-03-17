@@ -47,7 +47,26 @@ ADDITIONAL_EMAILERS = [
     Entity(OLIVER_GOODENOUGH),
     Entity('Peter Green', match_partial=None),
     Entity('Sarah Mapes'),
-    Entity('Stewart Oldfield'),
+    # Krassner CCs
+    Entity('Caryl Ratner', match_partial=None, is_interesting=False),
+    Entity('Barb Cowles', match_partial=None, is_interesting=False),
+    Entity('Bob Fass', match_partial=None, is_interesting=False),
+    Entity('Daniel Dawson', match_partial=None, is_interesting=False),
+    Entity('Holly Krassner Dawson', match_partial=None, is_interesting=False),
+    Entity('Lee Quarnstrom', match_partial=None, is_interesting=False),
+    Entity('Linda W. Grossman', match_partial=None, is_interesting=False),
+    Entity('Lynnie Tofte Fass', match_partial=None, is_interesting=False),
+    Entity('Marie Moneysmith', match_partial=None, is_interesting=False),
+    Entity('Tom', match_partial=None, is_interesting=False),
+    Entity('Harry Shearer', match_partial=None, is_interesting=False),
+    Entity('Jay Levin', match_partial=None, is_interesting=False),
+    Entity('Lanny Swerdlow', match_partial=None, is_interesting=False),
+    Entity('Larry Sloman', match_partial=None, is_interesting=False),
+    Entity('W&K', match_partial=None, is_interesting=False),
+    Entity('Walli Leff', match_partial=None, is_interesting=False),
+    Entity('Mrisman02', match_partial=None, is_interesting=False),
+    Entity('Nick Kazan', match_partial=None, is_interesting=False),
+    Entity('Rebecca Risman', match_partial=None, is_interesting=False),
 ]
 
 SUPPRESS_LOGS_FOR_AUTHORS = [

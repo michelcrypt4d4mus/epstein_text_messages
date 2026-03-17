@@ -48,7 +48,6 @@ GIRLS_CFGS = [
     ),
 
     # Communications
-    # TODO: convert to MessengerLogPdf
     CommunicationCfg(
         id='EFTA01612665',
         note='Epstein gives advice on how to recruit girls',
@@ -69,6 +68,7 @@ GIRLS_CFGS = [
     letter('EFTA00078198', 'Marsh Law Firm', [USANYS], "allegations of sexual abuse at Epstein's house", '2020-11-10'),
     skype_log(
         id='EFTA01616933',
+        date='2019-04-08',
         note='"no one can beat your pussy network"',
         highlight_quote='now im finding pussy for you',
     ),
@@ -324,6 +324,7 @@ GIRLS_CFGS = [
     EmailCfg(id='EFTA01648951', note=f'allegations against Trump, {HOWARD_LUTNICK}, Glen Dubin, {LEON_BLACK}, {JES_STALEY}'),
     EmailCfg(id='EFTA00950368', note='"any [girl] friends for me?"', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA01814983', note=f"Epstein and {NICOLE_JUNKERMANN} used to date", show_with_name=NICOLE_JUNKERMANN),
+    EmailCfg(id='EFTA02049364', note='Epstein arranging for healthcare for five girls', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA02209622', note=f'travel itinerary for {LASMA_KUHTARSKA}', show_with_name=LASMA_KUHTARSKA),
     EmailCfg(
         id='EFTA00883738',

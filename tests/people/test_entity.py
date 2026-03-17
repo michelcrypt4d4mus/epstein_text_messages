@@ -80,7 +80,7 @@ def test_middle_initial():
     assert critton.emailer_regex.pattern == r"Robert[-_.\s]*(D\.?[-_.\s]*)?Critton?"
 
 
-def test_Organization():
+def test_organization():
     jege = Organization('Jege LLC')
     assert jege.emailer_pattern == r"Jege(,? LLC)?"
     assert jege.match_partial is None
@@ -101,6 +101,7 @@ def test_Organization():
 def test_pattern():
     assert _build_contact().pattern == EMAILER_PATTERN
     assert Entity('Robert D Critton').pattern == r"Robert[-_.\s]*(D\.?[-_.\s]*)?Critton?"
+    assert Entity('Alan J. Dlugash').pattern == r"Alan[-_.\s]*(J\.?[-_.\s]*)?Dlugash?"
 
 
 def test_repr():
