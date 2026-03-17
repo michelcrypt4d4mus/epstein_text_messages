@@ -4,17 +4,17 @@ from copy import deepcopy
 from rich.text import Text
 
 from epstein_files.documents.documents.categories import Interesting, Neutral, Uninteresting
-from epstein_files.documents.config.communication_cfg import CommunicationCfg
+from epstein_files.documents.config.communication_cfg import CommunicationCfg, Platform
 from epstein_files.documents.config.doc_cfg import QUOTE_PREFIX, DocCfg
 from epstein_files.documents.config.email_cfg import EmailCfg
 from epstein_files.documents.other_file import OtherFile
 from epstein_files.output.highlight_config import QUESTION_MARKS_TXT
-from epstein_files.people.names import BLOCKCHAIN_CAPITAL, BOFA_MERRILL, JOI_ITO, Name
+from epstein_files.people.names import BLOCKCHAIN_CAPITAL, BOFA_MERRILL, JOI_ITO, MARIA_PRUSAKOVA, Name
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constants import CONFIGS_BY_ID
 
 ID = '123456'
-SKYPE_LOG = Neutral.SKYPE_LOG.replace('_', ' ')
+SKYPE_LOG = 'Skype log'
 BASE_TRUTHY_PROPS = {'is_valid_for_name_scan': True}
 
 
@@ -80,7 +80,7 @@ def skype_author(skype_cfg) -> CommunicationCfg:
 
 @pytest.fixture
 def skype_cfg() -> CommunicationCfg:
-    return CommunicationCfg(id=ID, category=Neutral.SKYPE_LOG)
+    return CommunicationCfg(id=ID, platform=Platform.SKYPE)
 
 @pytest.fixture
 def skype_recipients(skype_cfg) -> CommunicationCfg:
@@ -106,6 +106,10 @@ def very_interesting_cfg(legal_cfg) -> DocCfg:
     cfg.is_interesting = 10
     return cfg
 
+@pytest.fixture
+def whatsapp_cfg() -> CommunicationCfg:
+    return CONFIGS_BY_ID['EFTA01613762']
+
 
 def test_category_txt(blockchain_cap_cfg, empty_house_cfg, junk_doc_cfg, legal_cfg, skype_cfg):
     assert blockchain_cap_cfg.category_txt.style == 'orange1 bold'
@@ -129,7 +133,8 @@ def test_complete_description(
     skype_cfg,
     skype_author,
     skype_recipients,
-    tweet_cfg
+    tweet_cfg,
+    whatsapp_cfg
 ):
     assert attached_doc.complete_description == f"attached to email {junk_email_cfg.id}"
     assert blockchain_cap_cfg.complete_description == "Blockchain Capital investor report"
@@ -142,6 +147,8 @@ def test_complete_description(
     assert finance_report.complete_description == f"{BOFA_MERRILL} report: \"Grapes\""
     # Harvard
     assert harvard_poetry_cfg.complete_description == 'Harvard poetry stuff from Lisa New'
+    # iMessage
+    assert CONFIGS_BY_ID['033434'].complete_description == 'iMessage from Brad Edwards (???) screenshot(s)'
     # Junk
     assert junk_doc_cfg.complete_description == ''
     junk_doc_cfg.note = 'junk mail'
@@ -152,7 +159,7 @@ def test_complete_description(
     assert CONFIGS_BY_ID['025704'].complete_description == 'letter from Ken Starr to Judge Mark Filip requesting lenient treatment for Epstein'
     assert CONFIGS_BY_ID['028965'].complete_description == 'letter from Martin Weinberg to ABC / Good Morning America threatening libel lawsuit'
     # Skype
-    assert skype_cfg.complete_description == SKYPE_LOG
+    assert skype_cfg.complete_description == 'Skype log'
     # Skype with author
     assert skype_author.complete_description == f"{SKYPE_LOG} of conversation with linkspirit"
     skype_author.note = 'something'
@@ -166,6 +173,8 @@ def test_complete_description(
     assert tweet_cfg.complete_description == 'Tweet by Klippenstein'
     tweet_cfg.note = 'libelous'
     assert tweet_cfg.complete_description == 'Tweet by Klippenstein libelous'
+    # whatsapp
+    assert whatsapp_cfg.complete_description == 'WhatsApp log of conversation with Maria Prusakova about Crypto PR Lab'
 
 
 @pytest.mark.parametrize(

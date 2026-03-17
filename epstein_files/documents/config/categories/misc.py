@@ -1,5 +1,6 @@
 from epstein_files.documents.config.config_builder import fedex_invoice, important_messages_pad, press_release
 from epstein_files.documents.config.doc_cfg import DocCfg
+from epstein_files.documents.config.communication_cfg import iMessage_screenshot
 from epstein_files.documents.documents.categories import Interesting, Neutral
 from epstein_files.documents.doj_files.full_text import EFTA00009622_TEXT
 from epstein_files.people.names import *
@@ -42,6 +43,7 @@ MISC_CFGS = [
     ),
 
     # DOJ files
+    DocCfg(id='EFTA01611898', note=f"screenshot of recent contacts in an iPhone"),
     DocCfg(
         id='EFTA00034357',
         author=BUREAU_OF_PRISONS,
@@ -110,10 +112,10 @@ MISC_CFGS = [
     DocCfg(id='EFTA00590685', attached_to_email_id='EFTA00830911'),
     # Dates
     DocCfg(id='EFTA02025218', date='2011-09-09'),
-    # FedEx
+    # Misc
     fedex_invoice('EFTA00217072', '2005-06-20'),
     fedex_invoice('EFTA00217080', '2005-06-27'),
-    # Message pads
+    iMessage_screenshot(id='033434', author=BRAD_EDWARDS, author_uncertain=f"labeled 'Edwards'", is_interesting=False),
     important_messages_pad('EFTA01719859', '2005-10-03'),
     important_messages_pad('EFTA01682477', '2005-04-01'),
 ]

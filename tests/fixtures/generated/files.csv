@@ -172,7 +172,7 @@ file_id,category,author,is_interesting,timestamp,recipients_str,sent_from_device
 018085,article,The Shimon Post,False,2011-06-07 00:00:00+00:00,,,The Shimon Post selection of articles about the mideast
 018119,email,Jeffrey Epstein,,2011-09-22 04:48:35+00:00,Sultan Ahmed Bin Sulayem,,
 018197,email,Jeffrey Epstein,False,2013-02-15 16:52:58+00:00,Larry Summers,,
-018224,skype_log,,True,2019-06-01 11:54:45.300000+00:00,,,"skype log of conversation with Lawrence Krauss, linkspirit"
+018224,skype_log,,True,2019-06-01 11:54:45.300000+00:00,,,"Skype log of conversation with Lawrence Krauss, linkspirit"
 018232,book,Joshua Cooper Ramo,False,2015-03-11 00:00:00+00:00,,,"book titled ""The Seventh Sense: Power, Fortune & Survival in the Age of Networks"" by Joshua Cooper Ramo"
 018438,book,Clarisse Thorn,False,2012-05-14 00:00:00+00:00,,,"book titled ""The S&M Feminist"" by Clarisse Thorn"
 018703,arts,Andres Serrano,False,2016-06-16 00:00:00+00:00,,,Andres Serrano artist statement about Trump objects
@@ -662,17 +662,17 @@ file_id,category,author,is_interesting,timestamp,recipients_str,sent_from_device
 025347,email,Reid Weingarten,,2012-10-16 01:00:27+00:00,Jeffrey Epstein,,
 025349,email,Jeffrey Epstein,,2017-06-02 07:46:46+00:00,Larry Summers,,
 025353,letter,Ken Starr,True,2008-05-19 00:00:00+00:00,,,letter from Ken Starr to Judge Mark Filip requesting lenient treatment for Epstein
-025363,messengerlog,Steve Bannon,True,2018-06-22 06:32:55+00:00,,,Steve Bannon (???)
-025368,messengerlog,Steve Bannon,True,2018-09-07 04:11:13+00:00,,,Steve Bannon (???)
-025400,messengerlog,Steve Bannon,True,2018-10-03 02:56:05+00:00,,,Steve Bannon (???)
+025363,messengerlog,Steve Bannon,True,2018-06-22 06:32:55+00:00,,,
+025368,messengerlog,Steve Bannon,True,2018-09-07 04:11:13+00:00,,,
+025400,messengerlog,Steve Bannon,True,2018-10-03 02:56:05+00:00,,,
 025403,messengerlog,,True,2018-11-29 08:43:11+00:00,,,
-025408,messengerlog,Steve Bannon,True,2019-02-03 19:34:17+00:00,,,Steve Bannon (???)
+025408,messengerlog,Steve Bannon,True,2019-02-03 19:34:17+00:00,,,
 025423,messengerlog,,True,2019-02-25 17:04:24+00:00,,,
 025426,messengerlog,,True,2019-02-25 18:17:38+00:00,,,
-025429,messengerlog,Stacey Plaskett,True,2019-02-27 04:55:00+00:00,,,Stacey Plaskett
-025436,messengerlog,Celina Dubin,,2019-02-24 12:18:52+00:00,,,Celina Dubin (???)
-025452,messengerlog,Steve Bannon,True,2019-05-09 17:55:44+00:00,,,Steve Bannon (???)
-025479,messengerlog,Steve Bannon,True,2019-06-02 04:32:25+00:00,,,Steve Bannon (???)
+025429,messengerlog,Stacey Plaskett,True,2019-02-27 04:55:00+00:00,,,
+025436,messengerlog,Celina Dubin,,2019-02-24 12:18:52+00:00,,,
+025452,messengerlog,Steve Bannon,True,2019-05-09 17:55:44+00:00,,,
+025479,messengerlog,Steve Bannon,True,2019-06-02 04:32:25+00:00,,,
 025511,email,Lisa New,,2014-12-02 18:29:16+00:00,Jeffrey Epstein,,
 025514,email,Lisa New,,2014-12-02 19:15:11+00:00,Jeffrey Epstein,,
 025517,email,Steve Bannon,True,2018-03-11 19:39:40+00:00,Jeffrey Epstein,,
@@ -704,8 +704,8 @@ file_id,category,author,is_interesting,timestamp,recipients_str,sent_from_device
 025663,crypto,Goldman Sachs Investment Management Division,True,2017-11-15 00:00:00+00:00,,,Goldman Sachs Investment Management Division An Overview of the Current State of Cryptocurrencies and Blockchain
 025699,email,digest-noreply@quora.com,False,2019-07-04 09:34:40+00:00,Jeffrey Epstein,,
 025704,letter,Ken Starr,True,2008-05-27 00:00:00+00:00,,,letter from Ken Starr to Judge Mark Filip requesting lenient treatment for Epstein
-025707,messengerlog,Steve Bannon,True,2018-08-17 08:53:05+00:00,,,Steve Bannon (???)
-025734,messengerlog,Steve Bannon,True,2018-08-25 04:31:18+00:00,,,Steve Bannon (???)
+025707,messengerlog,Steve Bannon,True,2018-08-17 08:53:05+00:00,,,
+025734,messengerlog,Steve Bannon,True,2018-08-25 04:31:18+00:00,,,
 025763,finance,S&P,False,2014-08-05 00:00:00+00:00,,,"S&P report: ""Economic Research: How Increasing Income Inequality Is Dampening U.S. Growth"""
 025790,email,Tonja Haddad Coleman,,2015-01-29 20:33:35+00:00,Darren Indyke;Jack Goldberger;Jeffrey Epstein,,
 025792,email,digest-noreply@quora.com,False,2019-07-14 19:03:52+00:00,Jeffrey Epstein,,
@@ -1036,63 +1036,63 @@ file_id,category,author,is_interesting,timestamp,recipients_str,sent_from_device
 027097,email,Jeffrey Epstein,,2012-01-12 16:57:10+00:00,Lawrance Visoski,,
 027099,email,Jeffrey Epstein,,2012-08-27 11:05:23+00:00,Sultan Ahmed Bin Sulayem,,
 027126,email,Jeffrey Epstein,True,2013-09-16 11:15:03+00:00,Ehud Barak,,
-027128,messengerlog,Soon-Yi Previn,,2017-01-20 02:49:13+00:00,,,Soon-Yi Previn
-027133,messengerlog,Melanie Walker,,2017-01-27 07:51:01+00:00,,,Melanie Walker (???)
-027141,messengerlog,Melanie Walker,,2017-01-28 05:04:40+00:00,,,Melanie Walker (???)
-027148,messengerlog,Melanie Walker,,2017-02-17 10:43:34+00:00,,,Melanie Walker (???)
-027165,crypto,Melanie Walker,True,2017-02-19 12:59:45+00:00,,,Melanie Walker
-027184,messengerlog,Melanie Walker,,2017-02-25 03:53:05+00:00,,,Melanie Walker (???)
-027214,messengerlog,Melanie Walker,,2017-03-17 04:34:29+00:00,,,Melanie Walker (???)
-027217,messengerlog,Soon-Yi Previn,,2017-03-19 09:10:08+00:00,,,Soon-Yi Previn
-027221,messengerlog,Anil Ambani,True,2017-03-29 03:13:27+00:00,,,Anil Ambani (???)
-027225,messengerlog,Anil Ambani,True,2017-04-09 00:50:22+00:00,,,Anil Ambani
-027232,messengerlog,Melanie Walker,,2017-04-20 06:29:02+00:00,,,Melanie Walker (???)
-027244,messengerlog,Soon-Yi Previn,,2017-06-30 04:39:58+00:00,,,Soon-Yi Previn
-027248,messengerlog,Melanie Walker,,2017-09-27 10:18:07+00:00,,,Melanie Walker
+027128,messengerlog,Soon-Yi Previn,,2017-01-20 02:49:13+00:00,,,
+027133,messengerlog,Melanie Walker,,2017-01-27 07:51:01+00:00,,,
+027141,messengerlog,Melanie Walker,,2017-01-28 05:04:40+00:00,,,
+027148,messengerlog,Melanie Walker,,2017-02-17 10:43:34+00:00,,,
+027165,crypto,Melanie Walker,True,2017-02-19 12:59:45+00:00,,,
+027184,messengerlog,Melanie Walker,,2017-02-25 03:53:05+00:00,,,
+027214,messengerlog,Melanie Walker,,2017-03-17 04:34:29+00:00,,,
+027217,messengerlog,Soon-Yi Previn,,2017-03-19 09:10:08+00:00,,,
+027221,messengerlog,Anil Ambani,True,2017-03-29 03:13:27+00:00,,,
+027225,messengerlog,Anil Ambani,True,2017-04-09 00:50:22+00:00,,,
+027232,messengerlog,Melanie Walker,,2017-04-20 06:29:02+00:00,,,
+027244,messengerlog,Soon-Yi Previn,,2017-06-30 04:39:58+00:00,,,
+027248,messengerlog,Melanie Walker,,2017-09-27 10:18:07+00:00,,,
 027250,messengerlog,,True,2017-10-09 09:15:23+00:00,,,
-027255,messengerlog,Terje Rød-Larsen,,2018-01-25 04:15:20+00:00,,,Terje Rød-Larsen
-027257,messengerlog,Soon-Yi Previn,,2018-03-14 04:23:32+00:00,,,Soon-Yi Previn
-027260,messengerlog,Steve Bannon,True,2018-04-03 10:52:31+00:00,,,Steve Bannon (???)
+027255,messengerlog,Terje Rød-Larsen,,2018-01-25 04:15:20+00:00,,,
+027257,messengerlog,Soon-Yi Previn,,2018-03-14 04:23:32+00:00,,,
+027260,messengerlog,Steve Bannon,True,2018-04-03 10:52:31+00:00,,,
 027275,messengerlog,,True,2018-04-10 04:09:05+00:00,,,
-027278,messengerlog,Terje Rød-Larsen,True,2018-06-09 14:38:08+00:00,,,Terje Rød-Larsen
-027281,messengerlog,Steve Bannon,True,2018-06-09 15:17:04+00:00,,,Steve Bannon (???)
-027307,messengerlog,Steve Bannon,True,2018-07-01 04:15:04+00:00,,,Steve Bannon
+027278,messengerlog,Terje Rød-Larsen,True,2018-06-09 14:38:08+00:00,,,
+027281,messengerlog,Steve Bannon,True,2018-06-09 15:17:04+00:00,,,
+027307,messengerlog,Steve Bannon,True,2018-07-01 04:15:04+00:00,,,
 027330,messengerlog,,True,2018-07-17 08:18:23+00:00,,,
 027332,messengerlog,,True,2018-07-23 02:02:16+00:00,,,
-027333,messengerlog,Anthony Scaramucci,True,2018-07-23 08:17:08+00:00,,,Anthony Scaramucci
-027346,messengerlog,Steve Bannon,True,2018-07-24 13:30:44+00:00,,,Steve Bannon (???)
-027365,messengerlog,Steve Bannon,True,2018-07-31 03:36:05+00:00,,,Steve Bannon (???)
-027374,messengerlog,Steve Bannon,True,2018-08-01 06:52:44+00:00,,,Steve Bannon (???)
-027396,messengerlog,Anthony Scaramucci,True,2018-08-20 14:35:02+00:00,,,Anthony Scaramucci (???)
-027401,messengerlog,Eva Dubin,,2018-08-19 10:13:21+00:00,,,Eva Dubin (???)
-027406,messengerlog,Steve Bannon,True,2018-09-17 05:47:56+00:00,,,Steve Bannon (???)
-027428,messengerlog,Steve Bannon,True,2018-09-26 11:51:48+00:00,,,Steve Bannon (???)
-027434,messengerlog,Steve Bannon,True,2018-09-28 19:29:13+00:00,,,Steve Bannon (???)
-027440,messengerlog,Michael Wolff,True,2018-10-02 07:17:28+00:00,,,Michael Wolff (???)
-027445,messengerlog,Steve Bannon,True,2018-10-08 23:07:32+00:00,,,Steve Bannon (???)
+027333,messengerlog,Anthony Scaramucci,True,2018-07-23 08:17:08+00:00,,,
+027346,messengerlog,Steve Bannon,True,2018-07-24 13:30:44+00:00,,,
+027365,messengerlog,Steve Bannon,True,2018-07-31 03:36:05+00:00,,,
+027374,messengerlog,Steve Bannon,True,2018-08-01 06:52:44+00:00,,,
+027396,messengerlog,Anthony Scaramucci,True,2018-08-20 14:35:02+00:00,,,
+027401,messengerlog,Eva Dubin,,2018-08-19 10:13:21+00:00,,,
+027406,messengerlog,Steve Bannon,True,2018-09-17 05:47:56+00:00,,,
+027428,messengerlog,Steve Bannon,True,2018-09-26 11:51:48+00:00,,,
+027434,messengerlog,Steve Bannon,True,2018-09-28 19:29:13+00:00,,,
+027440,messengerlog,Michael Wolff,True,2018-10-02 07:17:28+00:00,,,
+027445,messengerlog,Steve Bannon,True,2018-10-08 23:07:32+00:00,,,
 027452,messengerlog,,True,2018-10-23 04:16:16+00:00,,,
-027455,messengerlog,Steve Bannon,True,2018-09-29 12:11:39+00:00,,,Steve Bannon (???)
-027460,messengerlog,Steve Bannon,True,2018-11-11 18:24:28+00:00,,,Steve Bannon
-027515,messengerlog,Miroslav Lajčák,,2018-11-12 03:45:44+00:00,,,Miroslav Lajčák
-027536,messengerlog,Steve Bannon,True,2018-12-01 05:04:14+00:00,,,Steve Bannon (???)
-027549,messengerlog,Steve Bannon,True,2018-12-05 07:35:08+00:00,,,Steve Bannon (???)
-027568,messengerlog,Steve Bannon,True,2019-02-01 21:36:19+00:00,,,Steve Bannon (???)
-027576,messengerlog,Melanie Walker,,2019-02-04 05:06:46+00:00,,,Melanie Walker (???)
+027455,messengerlog,Steve Bannon,True,2018-09-29 12:11:39+00:00,,,
+027460,messengerlog,Steve Bannon,True,2018-11-11 18:24:28+00:00,,,
+027515,messengerlog,Miroslav Lajčák,,2018-11-12 03:45:44+00:00,,,
+027536,messengerlog,Steve Bannon,True,2018-12-01 05:04:14+00:00,,,
+027549,messengerlog,Steve Bannon,True,2018-12-05 07:35:08+00:00,,,
+027568,messengerlog,Steve Bannon,True,2019-02-01 21:36:19+00:00,,,
+027576,messengerlog,Melanie Walker,,2019-02-04 05:06:46+00:00,,,
 027583,messengerlog,,True,2019-02-27 02:55:29+00:00,,,
-027585,messengerlog,Steve Bannon,False,2019-03-05 04:24:58+00:00,,,Steve Bannon (???)
-027594,messengerlog,Steve Bannon,True,2019-03-09 16:16:31+00:00,,,Steve Bannon (???)
-027650,messengerlog,Joi Ito,True,2018-12-02 11:15:13+00:00,,,Joi Ito
-027655,messengerlog,Steve Bannon,True,2019-04-30 03:29:13+00:00,,,Steve Bannon (???)
-027695,messengerlog,Steve Bannon,True,2019-05-07 15:21:59+00:00,,,"Steve Bannon (???) ""kazak daughter the key"" may be about Dariga Nazarbayeva (low confidence)"
-027707,messengerlog,Steve Bannon,True,2019-05-21 14:15:13+00:00,,,Steve Bannon (???)
-027722,messengerlog,Steve Bannon,True,2019-05-23 03:21:07+00:00,,,Steve Bannon (???)
-027735,messengerlog,Steve Bannon,True,2019-05-23 19:06:17+00:00,,,Steve Bannon (???) Bannon just returned from Kazakhstan
-027762,messengerlog,Andrzej Duda or entourage,,2019-06-12 12:55:49+00:00,,,Andrzej Duda or entourage (???)
-027764,messengerlog,Steve Bannon,True,2019-06-11 20:59:38+00:00,,,Steve Bannon (???) includes discussion of Facebook's attempt at crypto called Libra
-027774,messengerlog,Andrzej Duda or entourage,,2019-06-12 12:55:49+00:00,,,Andrzej Duda or entourage (???)
-027777,messengerlog,Larry Summers,,2019-06-14 13:45:35+00:00,,,Larry Summers
+027585,messengerlog,Steve Bannon,False,2019-03-05 04:24:58+00:00,,,
+027594,messengerlog,Steve Bannon,True,2019-03-09 16:16:31+00:00,,,
+027650,messengerlog,Joi Ito,True,2018-12-02 11:15:13+00:00,,,
+027655,messengerlog,Steve Bannon,True,2019-04-30 03:29:13+00:00,,,
+027695,messengerlog,Steve Bannon,True,2019-05-07 15:21:59+00:00,,,"""kazak daughter the key"" may be about Dariga Nazarbayeva (low confidence)"
+027707,messengerlog,Steve Bannon,True,2019-05-21 14:15:13+00:00,,,
+027722,messengerlog,Steve Bannon,True,2019-05-23 03:21:07+00:00,,,
+027735,messengerlog,Steve Bannon,True,2019-05-23 19:06:17+00:00,,,Bannon just returned from Kazakhstan
+027762,messengerlog,Andrzej Duda or entourage,,2019-06-12 12:55:49+00:00,,,
+027764,messengerlog,Steve Bannon,True,2019-06-11 20:59:38+00:00,,,includes discussion of Facebook's attempt at crypto called Libra
+027774,messengerlog,Andrzej Duda or entourage,,2019-06-12 12:55:49+00:00,,,
+027777,messengerlog,Larry Summers,,2019-06-14 13:45:35+00:00,,,
 027792,messengerlog,,True,2019-05-13 13:07:17+00:00,,,
-027794,messengerlog,Steve Bannon,True,2019-06-14 13:26:08+00:00,,,Steve Bannon (???)
+027794,messengerlog,Steve Bannon,True,2019-06-14 13:26:08+00:00,,,
 028281,arts,Wolfe Von Lenkiewicz & Victoria Golembiovskaya,False,2010-10-13 00:00:00+00:00,,,"Wolfe Von Lenkiewicz & Victoria Golembiovskaya art show flier for ""The House Of The Nobleman"""
 028326,json,,False,2018-09-24 18:30:02+00:00,,,
 028336,json,,False,2018-09-25 00:07:41+00:00,,,
@@ -1363,7 +1363,7 @@ file_id,category,author,is_interesting,timestamp,recipients_str,sent_from_device
 029684,email,Jeffrey Epstein,True,2013-01-29 12:06:15+00:00,Mohamed Waheed Hassan,,
 029689,email,Jeffrey Epstein,False,2013-02-14 20:45:53+00:00,Larry Summers,,
 029692,email,Jeffrey Epstein,False,2013-02-14 20:47:12+00:00,Larry Summers,,
-029744,messengerlog,Steve Bannon,True,2018-12-05 04:09:01+00:00,,,Steve Bannon (???) contains discussion of Chinese criminal Miles Guo AKA Miles Kwok
+029744,messengerlog,Steve Bannon,True,2018-12-05 04:09:01+00:00,,,contains discussion of Chinese criminal Miles Guo AKA Miles Kwok
 029752,email,Jokeland,False,2015-05-09 19:17:32+00:00,Jeffrey Epstein,,
 029766,email,Lesley Groff,,2011-04-03 14:08:00+00:00,Darren Indyke;Jeffrey Epstein,,
 029773,email,Stephanie,,2011-03-04 23:15:40+00:00,Jeffrey Epstein;Peggy Siegal,,
@@ -1752,9 +1752,9 @@ file_id,category,author,is_interesting,timestamp,recipients_str,sent_from_device
 031038,email,Jeffrey Epstein,True,2012-06-05 13:01:03+00:00,None,,
 031039,email,Jeffrey Epstein,True,2013-12-15 01:07:51+00:00,None,,
 031040,email,Jeffrey Epstein,True,2013-12-15 12:59:34+00:00,None,,
-031042,messengerlog,Anil Ambani,True,2018-01-26 02:05:50+00:00,,,Anil Ambani
-031045,messengerlog,Steve Bannon,True,2018-08-24 03:30:17+00:00,,,Steve Bannon (???)
-031054,messengerlog,Anthony Scaramucci,True,2018-08-24 07:10:15+00:00,,,Anthony Scaramucci
+031042,messengerlog,Anil Ambani,True,2018-01-26 02:05:50+00:00,,,
+031045,messengerlog,Steve Bannon,True,2018-08-24 03:30:17+00:00,,,
+031054,messengerlog,Anthony Scaramucci,True,2018-08-24 07:10:15+00:00,,,
 031059,json,,False,2018-09-24 21:08:57.136000+00:00,,,
 031088,email,Faith Kates,,2010-12-17 13:13:39+00:00,Jeffrey Epstein,,
 031089,email,Jeffrey Epstein,,2010-10-28 16:16:11+00:00,Faith Kates,,
@@ -1777,7 +1777,7 @@ file_id,category,author,is_interesting,timestamp,recipients_str,sent_from_device
 031170,article,Virgin Islands Daily News,False,2019-03-06 00:00:00+00:00,,,Virgin Islands Daily News article
 031171,article,Virgin Islands Daily News,False,2019-02-06 00:00:00+00:00,,,Virgin Islands Daily News article
 031172,email,Jeffrey Epstein,,2012-03-01 13:41:00+00:00,Cecile de Jongh,,
-031173,messengerlog,Arda Beskardes,,2019-02-19 07:59:43+00:00,,,Arda Beskardes
+031173,messengerlog,Arda Beskardes,,2019-02-19 07:59:43+00:00,,,
 031174,email,Kelly Friendly,,2014-01-04 18:05:00+00:00,Jeffrey Epstein,Sent from my iPhone,
 031177,email,Jeffrey Epstein,True,2010-07-16 16:47:00+00:00,Daniel Siad,,
 031178,json,,False,2019-03-16 00:00:00+00:00,,,
@@ -2044,10 +2044,10 @@ file_id,category,author,is_interesting,timestamp,recipients_str,sent_from_device
 032162,email,Jeffrey Epstein,,2014-10-30 02:50:38+00:00,Nili Priell Barak,,
 032171,article,The Shimon Post,False,2011-06-26 00:00:00+00:00,,,The Shimon Post selection of articles about the mideast
 032204,email,,True,2019-06-01 12:36:57+00:00,Jeffrey Epstein,,
-032206,skype_log,,False,2017-08-24 19:14:01+00:00,,,skype log of conversation with Lawrence Krauss
-032208,skype_log,,False,2017-07-11 23:42:34+00:00,,,skype log of conversation with Lawrence Krauss
-032209,skype_log,,False,2017-07-05 23:01:43+00:00,,,skype log of conversation with Lawrence Krauss
-032210,skype_log,,True,2019-04-05 15:57:08+00:00,,,skype log of conversation with linkspirit
+032206,skype_log,,False,2017-08-24 19:14:01+00:00,,,Skype log of conversation with Lawrence Krauss
+032208,skype_log,,False,2017-07-11 23:42:34+00:00,,,Skype log of conversation with Lawrence Krauss
+032209,skype_log,,False,2017-07-05 23:01:43+00:00,,,Skype log of conversation with Lawrence Krauss
+032210,skype_log,,True,2019-04-05 15:57:08+00:00,,,Skype log of conversation with linkspirit
 032212,email,Miroslav Lajčák,,2018-03-24 21:55:46+00:00,Jeffrey Epstein,,Miroslav Lajčák
 032213,email,Jeffrey Epstein,False,2018-03-24 10:39:13+00:00,None,,
 032214,email,Jeffrey Epstein,,2018-03-24 22:07:32+00:00,Miroslav Lajčák,,Jeffrey Epstein
@@ -2649,7 +2649,7 @@ file_id,category,author,is_interesting,timestamp,recipients_str,sent_from_device
 033251,email,Lawrance Visoski,,2017-09-16 19:57:47+00:00,Darren Indyke;Jeffrey Epstein;Richard Kahn,,
 033252,email,Robert Lawrence Kuhn,,2017-09-25 07:06:34+00:00,Jeffrey Epstein,,
 033253,article,Robert Lawrence Kuhn,False,2017-09-25 07:06:34+00:00,,,"Robert Lawrence Kuhn BBC article about Rohingya in Myanmar, attached to email 033252"
-033255,crypto,Lesley Groff,True,2017-09-28 20:27:09+00:00,Jeffrey Epstein,,"Masha Drokova's friend Dylan Love suggests he could quote Epstein explaining ""proper implementation of crypto might solve financial corruption issues"""
+033255,crypto,Lesley Groff,True,2017-09-28 20:27:09+00:00,Jeffrey Epstein,,"Masha Drokova's friend Dylan Love suggests he could quote Epstein, see quote: ""proper implementation of cryptocurrency might solve financial corruption issues"""
 033256,email,Richard Kahn,,2017-10-04 16:24:27+00:00,Jeffrey Epstein,,
 033257,email,Paul Krassner,,2017-10-16 17:12:25+00:00,Jeffrey Epstein,,
 033259,email,Richard Kahn,,2017-11-17 02:32:27+00:00,Jeffrey Epstein,,
@@ -2779,7 +2779,7 @@ file_id,category,author,is_interesting,timestamp,recipients_str,sent_from_device
 033431,email,Reid Weingarten,,2019-02-21 13:54:02+00:00,Jeffrey Epstein,Sent from my BlackBerry 10 smartphone.,
 033432,tweet,Alan Dershowitz,False,2019-05-02 00:00:00+00:00,,,Tweet by Alan Dershowitz about Virginia Giuffre / David Boies
 033433,tweet,Alan Dershowitz,False,2019-03-02 00:00:00+00:00,,,Tweet by Alan Dershowitz about Virginia Giuffre / David Boies
-033434,text_msg,,True,,,,text message screenshot of iMessage chat labeled 'Edwards'
+033434,misc,Brad Edwards,False,,,,iMessage from Brad Edwards (???) screenshot(s)
 033435,email,Larry Summers,,2019-03-17 13:45:22+00:00,Jeffrey Epstein,Sent from my iPad,
 033437,email,Larry Summers,,2019-03-17 15:48:09+00:00,Jeffrey Epstein,Sent from my iPad,
 033440,email,Larry Summers,,2019-03-17 16:24:05+00:00,Jeffrey Epstein,Sent from my iPhone,
@@ -5503,7 +5503,7 @@ EFTA00494141,email,Lesley Groff,False,2019-04-29 18:53:11+00:00,Madars Virza,,
 EFTA00494858,email,Lesley Groff,,2019-05-16 17:00:05+00:00,Jeffrey Epstein,Sent from my iPhone,Lesley Groff (???)
 EFTA00495349,crypto,Maria Prusakova,True,2019-05-18 23:10:21+00:00,Ed Boyle;Jeffrey Epstein;Lorenzo de Medici,,Maria Prusakova Ed Boyle / Medici Bank
 EFTA00495372,crypto,,True,2019-05-19 21:42:55+00:00,None;Jeffrey Epstein,,"discussion of Medici Bank, a new successor to Noble Bank as a crypto bank"
-EFTA00507334,skype_log,,,2010-05-30 18:29:25+00:00,,,"skype log of conversation with Aleksandra Eriksson, Anastasiya Siroochenko, Catherine, Daniel Siad, David Stern, Emad Hanna, Jade Huang, Nadia Marcinko, sexysearch2010, sophiembh"
+EFTA00507334,skype_log,,True,2010-05-30 18:29:25+00:00,,,"Skype log of conversation with Aleksandra Eriksson, Anastasiya Siroochenko, Catherine, Daniel Siad, David Stern, Emad Hanna, Jade Huang, Nadia Marcinko, sexysearch2010, sophiembh"
 EFTA00507626,,,,2026-01-01 00:00:00+00:00,,,
 EFTA00508054,messengerlogpdf,,True,2019-06-03 14:01:14+00:00,,,"Multiple counterparties, at least some Bannon. Epstein brings up the suicide of Ruslana Korshunova whom he ""knew very well""."
 EFTA00511333,,,,2017-11-09 02:38:48+00:00,,,
@@ -5563,7 +5563,7 @@ EFTA00626220,crypto,Brock Pierce,True,2014-11-12 00:26:47+00:00,Jeffrey Epstein,
 EFTA00626844,email,Hamad bin Jassim al-Thani,True,2017-07-02 08:55:46+00:00,Jeffrey Epstein,,
 EFTA00627622,email,,True,2017-07-04 14:25:04+00:00,Ganbat Chuluunkhuu,,
 EFTA00627776,email,Mariana Idźkowska,,2014-12-25 01:15:18+00:00,Jeffrey Epstein,,
-EFTA00629471,crypto,John Brockman,True,2011-06-11 14:38:20+00:00,Jeffrey Epstein,,John Brockman
+EFTA00629471,crypto,John Brockman,True,2011-06-11 14:38:20+00:00,Jeffrey Epstein,,John Brockman John Brockman reaching out to bitcoin core dev Gavin Andresen on behalf of Epstein
 EFTA00630134,email,Karim Wade,True,2016-07-31 20:49:45+00:00,Jeffrey Epstein,,Epstein recommends Signal encrypted messenger to allegedly corrupt Senegalese politician Karim Wade
 EFTA00630785,crypto,Jem Bendell,True,2012-09-11 19:39:45+00:00,April Rinne;Boris Nikolic;Jeffrey Epstein,,alternative currencies discussion
 EFTA00631080,email,Richard Kahn,,2015-10-30 21:20:57+00:00,Jeffrey Epstein,,
@@ -5823,7 +5823,7 @@ EFTA00845330,email,Greg Wyler,True,2018-03-29 13:14:51+00:00,David Stern;Jeffrey
 EFTA00845913,email,Brock Pierce,True,2015-09-17 18:01:00+00:00,Jeffrey Epstein,,
 EFTA00847613,email,Jeffrey Epstein,True,2018-03-24 21:43:03+00:00,Steve Bannon,,
 EFTA00848188,email,David Stern,True,2018-03-26 08:06:54+00:00,Jeffrey Epstein,,
-EFTA00848644,girls,Jeffrey Epstein,True,2015-08-15 23:05:09+00:00,unknown girl,,"""take a picture of your pussy"""
+EFTA00848644,girls,Jeffrey Epstein,True,2015-08-15 23:05:09+00:00,unknown girl,,"see quote: ""take a selfie of your pussy and send"""
 EFTA00849560,email,Richard Kahn,,2015-08-03 21:15:27+00:00,Jeffrey Epstein,,
 EFTA00849957,email,Madars Virza,True,2018-03-27 23:50:20+00:00,Jeffrey Epstein;Steve Bannon,,
 EFTA00850130,email,Jeffrey Epstein,True,2015-07-29 10:45:12+00:00,Sergey Belyakov,,
@@ -5835,7 +5835,7 @@ EFTA00855280,email,Jeffrey Epstein,True,2018-03-20 11:56:51+00:00,None,,
 EFTA00855566,girls,Kira Dikhtyar,True,2015-06-01 22:49:07+00:00,Jeffrey Epstein,Sent from AOL Mobile Mail,introducing Sanita
 EFTA00855567,email,,True,2015-06-01 22:49:07+00:00,None,,
 EFTA00857165,email,Jeffrey Epstein,,2015-05-12 17:02:07+00:00,Seth Lloyd,,
-EFTA00857669,girls,Jeffrey Epstein,True,2015-05-04 15:13:50+00:00,Sanita,,Sanita is maybe the only great girl with right thinking
+EFTA00857669,girls,Jeffrey Epstein,True,2015-05-04 15:13:50+00:00,Sanita,,Sanita is maybe the only great girl with right thinking in the entire Epstein files
 EFTA00858688,email,Sergey Belyakov,True,2015-04-23 03:07:33+00:00,Jeffrey Epstein,,Sergey Belyakov Epstein introduces Ehud Barak to Sergey Belyakov
 EFTA00859299,email,Jeffrey Epstein,,2018-03-19 01:24:49+00:00,John Brockman,,
 EFTA00861107,email,Richard Kahn,,2015-03-28 18:58:32+00:00,Jeffrey Epstein,,
@@ -6268,9 +6268,9 @@ EFTA01193705,misc,,,2013-12-16 00:00:00+00:00,,,"list of Epstein's known email a
 EFTA01203276,crypto,Valar Ventures,True,2016-01-05 20:15:00+00:00,,,Valar Ventures requesting money previously promised by Epstein to invest in a new opportunity
 EFTA01205265,email,Richard Kahn,,2015-08-03 21:15:27+00:00,Jeffrey Epstein,,
 EFTA01205267,crypto,Valar Ventures,True,2015-06-30 00:00:00+00:00,,,Valar Ventures is a fintech focused Peter Thiel fund Epstein was invested in
-EFTA01217703,skype_log,,,2014-05-13 22:32:18+00:00,,,"skype log of conversation with Athena Zelcovich, Joscha Bach, Lawrence Krauss"
-EFTA01217736,skype_log,,,2014-05-26 19:52:08+00:00,,,"skype log of conversation with Athena Zelcovich, Tyler Shears"
-EFTA01217787,skype_log,,True,2014-08-22 20:12:59+00:00,,,"skype log of conversation with Hanna Traff, Tyler Shears"
+EFTA01217703,skype_log,,True,2014-05-13 22:32:18+00:00,,,"Skype log of conversation with Athena Zelcovich, Joscha Bach, Lawrence Krauss"
+EFTA01217736,skype_log,,True,2014-05-26 19:52:08+00:00,,,"Skype log of conversation with Athena Zelcovich, Tyler Shears"
+EFTA01217787,skype_log,,True,2014-08-22 20:12:59+00:00,,,"Skype log of conversation with Hanna Traff, Tyler Shears"
 EFTA01218267,messengerlogpdf,,True,2015-07-13 09:31:44+00:00,,,
 EFTA01222951,money,,True,2019-02-12 00:00:00+00:00,,,credit card expenses for Carlos L Rodriguez using Plum Card
 EFTA01227877,government,,True,2018-06-25 00:00:00+00:00,,,multi entry visa for the Russian Federation
@@ -6322,24 +6322,24 @@ EFTA01500597,,,,2013-08-30 00:00:00+00:00,,,
 EFTA01579877,,,,2011-07-28 13:55:00+00:00,,,
 EFTA01582043,crypto,,True,2006-08-01 00:00:00+00:00,,,Deutsche Bank / Cantor Fitzgerald transaction
 EFTA01583819,money,,True,,,,Epstein had control of James Cayne's assets
-EFTA01611042,text_msg,Ed Boyle,True,,,,"text message from Ed Boyle to (unknown), Maria Prusakova"
-EFTA01611898,text_msg,,True,,,,text message screenshot of recent contacts in an iPhone
-EFTA01612665,text_msg,,True,2017-07-02 22:31:49+00:00,,,"text message Epstein gives advice on how to recruit girls, see quote: ""stressed about finding girls. It's hard"""
-EFTA01612721,crypto,Crypto PR Lab,True,2019-05-21 00:00:00+00:00,,,Crypto PR Lab WhatsApp convo with Maria Prusakova
-EFTA01612733,girls,Maria Prusakova,True,2025-07-30 00:00:00+00:00,,,"Maria Prusakova (???) says being Epstein's lawyer would be ""way better than supplying ladies"", also discusses Medici Bank"
+EFTA01611042,crypto,Ed Boyle,True,,,,"iMessage from Ed Boyle to (unknown), Maria Prusakova screenshot(s)"
+EFTA01611898,misc,,,,,,screenshot of recent contacts in an iPhone
+EFTA01612665,girls,,True,2017-07-02 22:31:49+00:00,,,"Epstein gives advice on how to recruit girls, see quote: ""stressed about finding girls. It's hard"""
+EFTA01612721,crypto,,True,2019-05-21 00:00:00+00:00,,,WhatsApp log of conversation with Maria Prusakova about Crypto PR Lab
+EFTA01612733,girls,Maria Prusakova,True,2025-07-30 00:00:00+00:00,,,"WhatsApp log of conversation with Maria Prusakova (???) saying being Epstein's lawyer would be preferable to recruiting, discusses Medici Bank, see quote: ""way better than supplying you ladies"""
 EFTA01612888,crypto,"Kevin Peterson, Bammohan Deeduvanu, Pradip Kanjamala, and Kelly Boles",True,2026-01-16 00:00:00+00:00,,,"Kevin Peterson, Bammohan Deeduvanu, Pradip Kanjamala, and Kelly Boles A Blockchain-Based Approach to Health Information Exchange Networks"
-EFTA01613143,skype_log,Melanie Walker,,2017-06-24 00:00:00+00:00,,,skype log of conversation with Melanie Walker
+EFTA01613143,skype_log,Melanie Walker,True,2017-06-24 00:00:00+00:00,,,Skype log of conversation with Melanie Walker
 EFTA01613714,,,,2019-05-16 23:35:50+00:00,,,
-EFTA01613731,crypto,,True,2019-05-17 19:12:12+00:00,,,Medici Bank conversation on Whatsapp
+EFTA01613731,crypto,,True,2019-05-17 19:12:12+00:00,,,WhatsApp log Medici Bank conversation on Whatsapp
 EFTA01613759,crypto,Crypto PR Lab,True,2019-05-24 00:00:00+00:00,,,Crypto PR Lab letter of intent of acquisition from Transform Group
-EFTA01613762,crypto,Crypto PR Lab,True,2019-05-21 00:00:00+00:00,,,Crypto PR Lab WhatsApp convo with Maria Prusakova
+EFTA01613762,crypto,,True,2019-05-21 00:00:00+00:00,,,WhatsApp log of conversation with Maria Prusakova about Crypto PR Lab
 EFTA01616597,,,,2011-10-07 11:57:55+00:00,,,
-EFTA01616933,girls,,True,,,,"""no one can beat your pussy network"", see quote: ""now im finding pussy for you"""
-EFTA01617727,skype_log,,,2019-06-30 00:00:00+00:00,,,skype log
+EFTA01616933,girls,,True,,,,"Skype log ""no one can beat your pussy network"", see quote: ""now im finding pussy for you"""
+EFTA01617727,skype_log,,True,2019-06-30 00:00:00+00:00,,,Skype log
 EFTA01618339,,,,2015-12-07 22:39:46+00:00,,,
 EFTA01618370,,,,2016-02-25 18:41:28+00:00,,,
-EFTA01618381,text_msg,Renata Bolotova,True,2016-04-16 19:02:00+00:00,,,text message from Renata Bolotova (???) iMessage screenshots
-EFTA01618400,text_msg,Renata Bolotova,True,2026-01-01 00:00:00+00:00,,,text message from Renata Bolotova (???) iMessage screenshots
+EFTA01618381,girls,Renata Bolotova,True,2016-04-16 19:02:00+00:00,,,"iMessage from Renata Bolotova (???) screenshot(s), see quote: ""how many new girls are there in the island W you now?"""
+EFTA01618400,girls,Renata Bolotova,True,2026-01-01 00:00:00+00:00,,,iMessage from Renata Bolotova (???) screenshot(s)
 EFTA01618426,,,,2026-01-01 01:08:02+00:00,,,
 EFTA01618440,,,,2026-01-11 22:19:34+00:00,,,
 EFTA01618446,,,,2017-08-24 17:18:45+00:00,,,
@@ -6347,10 +6347,10 @@ EFTA01618454,,,,2017-10-26 20:38:45+00:00,,,
 EFTA01618464,,,,2018-01-11 00:00:00+00:00,,,
 EFTA01618472,,,,2018-03-05 00:00:00+00:00,,,
 EFTA01618483,,,,2018-08-21 00:28:06+00:00,,,
-EFTA01618494,text_msg,Renata Bolotova,True,2018-09-03 00:00:00+00:00,,,text message from Renata Bolotova (???) iMessage screenshots
-EFTA01620764,text_msg,Melanie Walker,True,2017-11-19 02:45:36+00:00,,,text message from Melanie Walker (???) conversation about crypto philanthropy and Bill Gates being drunk all the time
-EFTA01622387,text_msg,Renata Bolotova,True,2016-07-10 16:05:29+00:00,,,text message from Renata Bolotova (???) iMessage screenshots
-EFTA01623342,skype_log,Anna Kasatkina,True,2017-01-15 22:59:27+00:00,,,skype log of conversation with Anna Kasatkina (???) recruiting russian girls
+EFTA01618494,girls,Renata Bolotova,True,2018-09-03 00:00:00+00:00,,,iMessage from Renata Bolotova (???) screenshot(s)
+EFTA01620764,crypto,Melanie Walker,True,2017-11-19 02:45:36+00:00,,,iMessage from Melanie Walker (???) to Jeffrey Epstein about crypto philanthropy and Bill Gates being drunk all the time
+EFTA01622387,girls,Renata Bolotova,True,2016-07-10 16:05:29+00:00,,,iMessage from Renata Bolotova (???) screenshot(s)
+EFTA01623342,girls,Anna Kasatkina,True,2017-01-15 22:59:27+00:00,,,Skype log of conversation with Anna Kasatkina (???) recruiting russian girls
 EFTA01628970,misc,,,,,,
 EFTA01648951,girls,NY FBI,True,2025-07-24 13:40:38+00:00,NY FBI,,"allegations against Trump, Howard Lutnick, Glen Dubin, Leon Black, Jes Staley"
 EFTA01653121,letter,FBI,True,2022-06-28 00:00:00+00:00,,,letter from FBI to USCIS regarding an individual's cooperation in the investigation of Epstein and Maxwell
@@ -7112,7 +7112,7 @@ EFTA02650051,email,Jeffrey Epstein,True,2018-05-30 11:38:00+00:00,Steve Bannon,,
 EFTA02650447,email,Gia Leese,,2017-05-09 15:43:00+00:00,Jeffrey Epstein,,
 EFTA02650611,email,Jeffrey Epstein,,2018-05-30 12:16:00+00:00,Tom Pritzker,,
 EFTA02651157,email,Jeffrey Epstein,,2017-07-06 17:12:00+00:00,Richard Kahn,,
-EFTA02652017,letter,,True,2017-04-21 15:06:00+00:00,Jeffrey Epstein,,letter inquiry about someone's immigration asylum application
+EFTA02652017,letter,,True,2017-04-21 15:06:00+00:00,Jeffrey Epstein,,inquiry about someone's immigration asylum application
 EFTA02654255,email,Howard Lutnick,True,2018-05-28 17:01:00+00:00,Jeffrey Epstein,Sent from my iPhone,
 EFTA02659812,email,Vincenzo Iozzo,True,2017-02-14 20:09:00+00:00,Jeffrey Epstein,Sent from my iphone,
 EFTA02659832,email,Jeffrey Epstein,True,2017-02-14 20:46:00+00:00,Vincenzo Iozzo,,
@@ -7208,13 +7208,13 @@ EFTA02731515,email,Jeanne M. Christensen,,2024-03-07 21:20:52+00:00,USANYS,,
 EFTA02731517,email,Jeanne M. Christensen,True,2024-03-11 16:34:00+00:00,None;Douglas Wigdor;Meredith Firetog,,
 EFTA02731521,,,,,,,
 EFTA02731524,,,,2020-03-18 00:00:00+00:00,,,
-EFTA02731525,text_msg,Leon Black,True,,,,text message from Leon Black (???)
+EFTA02731525,girls,Leon Black,True,,,,iMessage from Leon Black (???) screenshot(s)
 EFTA02731526,email,,False,2021-05-27 16:44:55+00:00,None,,
 EFTA02731528,government,USANYS,,2021-05-06 09:39:15+00:00,USANYS,,USANYS (???)
 EFTA02731529,,,,2017-03-16 00:00:00+00:00,,,
 EFTA02731552,government,FBI,True,2021-05-26 16:12:00+00:00,USANYS,,FBI
 EFTA02731556,,,,2013-04-16 00:00:00+00:00,,,
-EFTA02731576,text_msg,,True,,,,text message to Leon Black making contemporaneous accusations
+EFTA02731576,girls,,True,,,,iMessage to Leon Black making contemporaneous accusations
 EFTA02731577,email,USANYS,,2024-10-16 00:00:00+00:00,USANYS,,
 EFTA02731578,government,USANYS,True,2021-05-28 10:00:00+00:00,None,,USANYS
 EFTA02731582,email,FBI,,2023-07-03 17:24:39+00:00,USANYS,,

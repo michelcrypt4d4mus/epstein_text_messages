@@ -1,7 +1,7 @@
 from dataclasses import asdict, dataclass, field, fields
 
 from epstein_files.documents.config.doc_cfg import SHORT_TRUNCATE_TO, CharRange
-from epstein_files.documents.config.communication_cfg import CommunicationCfg
+from epstein_files.documents.config.communication_cfg import CommunicationCfg, Platform
 
 
 @dataclass(kw_only=True)
@@ -14,6 +14,7 @@ class EmailCfg(CommunicationCfg):
         has_uninteresting_bccs (bool): If `True` this email's BCC: recipients will be marked as 'uninteresting'.
         subject (str, optional): Email subject line.
     """
+    platform: Platform = Platform.EMAIL
     actual_text: str | None = None
     fwded_text_after: str | None = None
     has_uninteresting_ccs: bool = False
@@ -32,6 +33,15 @@ class EmailCfg(CommunicationCfg):
             return super().truncate_at
         elif self.is_fwded_article or self.fwded_text_after:
             return SHORT_TRUNCATE_TO
+
+    @property
+    def truthy_props(self) -> dict[str, bool | str | None]:
+        props = super().truthy_props
+
+        if props.get('platform') == Platform.EMAIL:
+            del props['platform']
+
+        return props
 
     # This is necessary because for some dumb reason @dataclass(repr=False) doesn't cut it
     def __repr__(self) -> str:

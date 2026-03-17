@@ -3,6 +3,7 @@ Crypto and virtual currency / fintech related files
 """
 from epstein_files.documents.config.categories.finance import GOLDMAN_INVESTMENT_MGMT
 from epstein_files.documents.config.config_builder import whistleblower_cfg
+from epstein_files.documents.config.communication_cfg import CommunicationCfg, iMessage_log, iMessage_screenshot, whatsapp_log
 from epstein_files.documents.config.doc_cfg import DEFAULT_TRUNCATE_TO, NO_TRUNCATE, SHORT_TRUNCATE_TO, DocCfg
 from epstein_files.documents.config.email_cfg import EmailCfg
 from epstein_files.people.names import *
@@ -167,8 +168,8 @@ CRYPTO_CFGS = [
     DocCfg(id='EFTA01299820', author=CRYPTO_PR_LAB, note="bank transfer", date='2018-12-18'),
     DocCfg(id='EFTA00309271', author=CRYPTO_PR_LAB, note='financial statement'),
     DocCfg(id='EFTA01613759', author=CRYPTO_PR_LAB, note="letter of intent of acquisition from Transform Group"),
-    DocCfg(id='EFTA01613762', author=CRYPTO_PR_LAB, note=f"WhatsApp convo with {MARIA_PRUSAKOVA}", date='2019-05-21'),
-    DocCfg(id='EFTA01612721', author=CRYPTO_PR_LAB, note=f"WhatsApp convo with {MARIA_PRUSAKOVA}", date='2019-05-21'),
+    whatsapp_log('EFTA01613762', recipients=[MARIA_PRUSAKOVA], note=f"about {CRYPTO_PR_LAB}", date='2019-05-21'),
+    whatsapp_log('EFTA01612721', recipients=[MARIA_PRUSAKOVA], note=f"about {CRYPTO_PR_LAB}", date='2019-05-21'),
     EmailCfg(
         id='033255',
         highlight_quote='proper implementation of cryptocurrency might solve financial corruption issues',
@@ -192,9 +193,10 @@ CRYPTO_CFGS = [
         note=f'{MARIA_PRUSAKOVA} says she is starting a crypto company with {ZUBAIR_KHAN}',
     ),
     # Crypto PR Lab / Medici Bank
-    DocCfg(id='EFTA01613731', note='Medici Bank conversation on Whatsapp'),
     DocCfg(id='EFTA00805569', note='Mercantile Global Holdings, San Juan Mercantile Bank & Trust, Noble Bank + Signature Bank + BitGo'),
     DocCfg(id='EFTA01088079', note="someone's thoughts on bitcoin"),
+    iMessage_screenshot(id='EFTA01611042', author=ED_BOYLE, recipients=[None, MARIA_PRUSAKOVA]),
+    whatsapp_log(id='EFTA01613731', note='Medici Bank conversation on Whatsapp'),
     EmailCfg(id='EFTA00495372', note=f'discussion of Medici Bank, a new successor to Noble Bank as a crypto bank', is_interesting=10),
     EmailCfg(
         id='EFTA01030070',
@@ -388,6 +390,14 @@ CRYPTO_CFGS = [
     DocCfg(id='EFTA00811666', note='asset valuations of Epstein\'s holdings, includes "Coinbase via grat"', date='2018-01-31'),
     DocCfg(id='EFTA01734786', note='LedgerX Series B pitch deck'),
     DocCfg(id='EFTA00605996', note='Wedbush BUY rating on Digital Currency Group GBTC', is_interesting=False),
+    iMessage_log(
+        id='EFTA01620764',
+        author=MELANIE_WALKER,
+        author_uncertain=True,
+        note=f'about crypto philanthropy and Bill Gates being drunk all the time',
+        recipients=[JEFFREY_EPSTEIN],
+        truncate_to=(250, 3_500),
+    ),
     EmailCfg(id='EFTA00867030', author='Kathy', note='discussion of a crypto token based on GDAX (whatever that means)'),
     EmailCfg(id='EFTA01060993', note=f"Epstein says he knows \"a few\" guys who hold over $50 million in bitcoin", is_interesting=True),
     EmailCfg(id='EFTA01915234', note='discussion of crypto regulations', is_interesting=True),

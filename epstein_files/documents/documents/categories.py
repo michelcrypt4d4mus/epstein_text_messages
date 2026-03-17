@@ -20,7 +20,6 @@ class Interesting(StrEnum):
     MONEY = auto()
     REPUTATION = auto()
     SOCIAL = auto()
-    TEXT_MSG = auto()
 
 class Neutral(StrEnum):
     BUSINESS = auto()
@@ -63,7 +62,6 @@ class Category(StrEnum):
 CATEGORY_STYLE_MAPPING = {
     Interesting.MONEY: Neutral.FINANCE,
     Interesting.REPUTATION: PUBLICIST,
-    Interesting.TEXT_MSG: TECH_BRO,
     Neutral.DEPOSITION: VICTIM_LAWYER,
     Neutral.LEGAL: LAWYER,
     Neutral.PRESSER: PUBLICIST,

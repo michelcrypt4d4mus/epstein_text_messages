@@ -5,7 +5,7 @@ from dateutil.parser import parse
 from typing import TypeVar
 
 from epstein_files.documents.documents.categories import Category, Interesting, Neutral, Uninteresting
-from epstein_files.documents.config.communication_cfg import CommunicationCfg
+from epstein_files.documents.config.communication_cfg import CommunicationCfg, Platform
 from epstein_files.documents.config.doc_cfg import DocCfg, DuplicateType
 from epstein_files.documents.config.email_cfg import EmailCfg
 from epstein_files.people.names import *
@@ -184,14 +184,15 @@ def important_messages_pad(id: str, date: str = '') -> DocCfg:
     )
 
 
-def letter(id: str, author: Name, recipients: list[Name], note: str, date: str = '', **kwargs) -> CommunicationCfg:
+def letter(id: str, author: Name = None, recipients: list[Name] | None = None, note: str = '', date: str = '', **kwargs) -> CommunicationCfg:
     return CommunicationCfg(
         id=id,
         author=author,
-        category=Category.LETTER,
+        category=Category.LETTER,  # TODO this is a platform not a category
         date=date,
         note=note,
-        recipients=recipients,
+        platform=Platform.LETTER,
+        recipients=recipients or [],
         **kwargs
     )
 

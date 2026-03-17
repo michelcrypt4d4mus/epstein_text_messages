@@ -89,14 +89,11 @@ NON_METADATA_FIELDS = [
 # Categories where we want to include the category name at start of the description string
 CATEGORY_PREAMBLES = {
     Interesting.DIARY: VICTIM_DIARY,
-    Interesting.LETTER: 'letter',
     Interesting.REPUTATION: REPUTATION_MGMT,
-    Interesting.TEXT_MSG: 'text message',
     Neutral.DEPOSITION: 'deposition of',
     Neutral.FLIGHT_LOG: Neutral.FLIGHT_LOG.replace('_', ' '),
     Neutral.PRESSER: Neutral.PRESSER.replace('_', ' '),
     Neutral.RESUMÉ: 'professional resumé',
-    Neutral.SKYPE_LOG: Neutral.SKYPE_LOG.replace('_', ' '),
     Uninteresting.BOOK: 'book titled',
     Uninteresting.TWEET: Uninteresting.TWEET.title(),
 }
@@ -190,7 +187,7 @@ class DocCfg(LoggingEntity):
                 self.note = join_truthy(self.note, f'{QUOTE_PREFIX}: {quote(description_quote)}', ', ')
 
         # show_full_panel sets is_interesting=10
-        if self.show_full_panel:
+        if self.show_full_panel and self.is_interesting is not False:
             self.is_interesting = 10
 
         if self.duplicate_of_id or self.duplicate_ids:
@@ -236,22 +233,6 @@ class DocCfg(LoggingEntity):
             description = join_truthy(preamble, description)
         elif self.category == Neutral.FINANCE and self._is_description_a_title:
             author_separator = ' report: '
-        elif self.category in [Interesting.LETTER, Interesting.TEXT_MSG, Neutral.SKYPE_LOG]:
-            recipients = self.recipients_str
-
-            if self.category == Neutral.SKYPE_LOG:
-                description = preamble
-                recipients = join_truthy(author, recipients, ', ')
-                recipients_sep = ' of conversation with '
-            else:
-                description = join_truthy(preamble, author, ' from ')
-                recipients_sep = ' to '
-
-            description = join_truthy(description, recipients, recipients_sep)
-            description = join_truthy(description, self.note)
-        elif self.category == Neutral.SKYPE_LOG:
-            author = JEFFREY_EPSTEIN if self.recipients_str and not author else author
-            preamble_separator = ' of conversation with '
         elif self.category == Neutral.PRESSER:
             description = join_truthy(preamble, self.note, ' announcing ')  # note reversed args
             description = join_truthy(author, description)
@@ -401,11 +382,6 @@ class DocCfg(LoggingEntity):
     def names(self) -> list[str]:
         """Names configured for this document. Overloaded in subclass to add recipients."""
         return [self.author] if self.author else []
-
-    @property
-    def recipients_str(self) -> str:
-        """Overloaded in subclasses that support recipients."""   # TODO: this shouldn't have to be here
-        return ''
 
     @property
     def timestamp(self) -> datetime | None:
