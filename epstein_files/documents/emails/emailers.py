@@ -115,6 +115,13 @@ for contact in CONFIGURED_ENTITIES:
 IDENTIFIER_FALSE_ALARMS = ['EFTA00961792']
 
 
+# Elements of this list will not trigger warnings in get_entity
+NO_WARNING_NAMES = [
+    'Unik',
+    'Vlad',
+]
+
+
 def cleanup_str(s: str) -> str:
     return BAD_NAME_CHARS_REGEX.sub('', s.replace(REDACTED, '')).strip().strip('_').strip()
 
@@ -160,8 +167,10 @@ def get_entity(name: str | Entity, doc: Optional['Document'] = None) -> Entity:
     elif name in CONFIGURED_NON_ENTITIES:
         return CONFIGURED_NON_ENTITIES[name]  # Avoids spurious warnings
     elif name not in UNCONFIGURED_ENTITIES_ENCOUNTERED:
-        log = doc._warn if doc else logger.warning
-        log(f"Encountered unconfigured entity name '{name}'")
+        if name not in NO_WARNING_NAMES:
+            log = doc._warn if doc else logger.warning
+            log(f"Encountered unconfigured entity name '{name}'")
+
         UNCONFIGURED_ENTITIES_ENCOUNTERED[name] = Entity(name)
 
     return UNCONFIGURED_ENTITIES_ENCOUNTERED[name]

@@ -1,7 +1,7 @@
 import logging
 import re
 from dataclasses import dataclass, field, fields
-from typing import ClassVar, Literal, Self
+from typing import ClassVar, Literal, Self, Sequence
 
 from rich.padding import Padding
 from rich.style import Style
@@ -332,7 +332,7 @@ class Organization(Entity):
         return cls(name, is_interesting=False, **kwargs)
 
 
-EntityScanArg = list[Entity] | Entity | list[str] | str | None
+EntityScanArg = Sequence[Entity | str] | Entity | str | None
 
 
 def acronym(name: str, info: str = '', **kwargs) -> Organization:
