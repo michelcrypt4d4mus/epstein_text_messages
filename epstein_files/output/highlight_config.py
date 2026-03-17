@@ -1711,7 +1711,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 r"sec\.?gov|Securities (&|and) Exchange Commission",
             ),
             acronym('New York Dept. of Financial Services', "America's second most important financial regulator"),
-            acronym(OFFICE_OF_THE_DEPUTY_ATTORNEY_GENERAL, emailer_pattern=r"\bODAG\b", is_interesting=False),
+            acronym(OFFICE_OF_THE_DEPUTY_ATTORNEY_GENERAL, is_emailer=True, is_interesting=False),
             acronym('Southern District of New York', 'federal prosecutors covering New York City'),
             acronym('Tip Complaint or Referral', "form used for whistleblower tips"),
             acronym('United States Marshals Service', is_emailer=True),

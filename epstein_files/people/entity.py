@@ -339,16 +339,16 @@ def acronym(name: str, info: str = '', **kwargs) -> Organization:
     """Auto-generates a regex matching the org's initials."""
     initials = [word[0] for word in name.split() if word[0].isupper()]
     initials_pattern = ''.join([fr"{letter}\.?" for letter in initials])
+    emailer_pattern = join_patterns([initials_pattern, name])
 
-    if 'emailer_pattern' in kwargs:
-        is_emailer = True
-    else:
-        is_emailer = _pop_kwarg(kwargs, 'is_emailer', False)
+    # Force word boundary in front to prevent spurious matches (can't force at end bc of period)
+    if (is_emailer := _pop_kwarg(kwargs, 'is_emailer', False)):
+        emailer_pattern = fr"\b({emailer_pattern})"
 
     return Organization(
         ''.join(initials),
         join_truthy(name, info, ', '),
-        join_patterns([initials_pattern, name]),
+        emailer_pattern,
         is_emailer=is_emailer,
         **kwargs
     )
