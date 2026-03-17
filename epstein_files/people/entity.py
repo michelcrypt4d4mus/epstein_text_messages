@@ -1,6 +1,5 @@
 import logging
 import re
-from collections import defaultdict
 from dataclasses import dataclass, field, fields
 from typing import ClassVar, Literal, Self
 
@@ -57,6 +56,7 @@ class Entity(LoggingEntity):
     name: str
     info: str = ''  # TODO: rename "note" for consistency w/DocCfg
     emailer_pattern: str = ''
+
     # Props after here not usually set by positional args
     aliases: list[str] = field(default_factory=list)
     email_addresses: list[str] = field(default_factory=list)
@@ -68,7 +68,8 @@ class Entity(LoggingEntity):
     match_partial: PartialName | None = 'last'
     unique_phraseologies: list[str] = field(default_factory=list)
     url: str | list[str] | Literal['WIKIPEDIA'] = ''
-    # NOTE: not set at instantiation time
+
+    # NOTE: not usually set at instantiation time
     category: str = ''
     _style: RichStyle = field(default_factory=lambda: RichStyle(None))
     _urls: list[str] = field(init=False)
@@ -287,7 +288,7 @@ class Entity(LoggingEntity):
         return '[\n' + indented([repr(contact) for contact in contact_infos], 4) + '\n],'
 
 
-@dataclass
+@dataclass(eq=False)
 class Organization(Entity):
     # Different defaults
     is_emailer: bool = False
@@ -320,12 +321,6 @@ class Organization(Entity):
                 self.info = f"{self.belongs_to} organization"
 
         return super().__post_init__()
-
-    def __eq__(self, other: Entity):
-        return self.name == other.name
-
-    def __hash__(self):
-        return super().__hash__()
 
     @classmethod
     def well_known(cls, name: str, **kwargs) -> Self:
