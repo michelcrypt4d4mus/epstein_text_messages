@@ -26,7 +26,7 @@ ACADEMIA_CFGS = [
     DocCfg(id='029155', author=ROBERT_TRIVERS, note=f'response sent to the Gruterites ({GORDON_GETTY} fans)', date='2018-03-19'),
     DocCfg(
         id='033323',
-        author=f"{ROBERT_TRIVERS} and Nathan H. Lents",
+        author=f"{ROBERT_TRIVERS}, Nathan H. Lents",
         note=f"'Does Trump Fit the Evolutionary Role of Narcissistic Sociopath?' (draft)",
         date='2018-12-07',
     ),

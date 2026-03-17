@@ -994,6 +994,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Entity(LESLEY_GROFF, "unindicted co-conspirator, assistant who managed Epstein's calendar", r"Lesl(ey|ie) (K(\.|atherine)? )?Gro(ff)?"),
             Entity('Linda Pinto', "interior design at Alberto Pinto Cabinet"),
             Entity(LYN_FONTANILLA, "Filipino housekeeper", r"L.nn? Fontanilla"),
+            Entity('Maria Macaraeg', 'applied for housekeeper/nanny job'),
             Entity(MERWIN_DELA_CRUZ, "housekeeper", r"Merwin"),
             Entity(
                 'Myla Trestiza',
@@ -3328,8 +3329,9 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 r"Marc[.\s]+(Kensington|Leon)|Kensington2",
                 match_partial=None,
             ),
+            Organization("Integra Realty Resources"),
             Organization('Ossa Properties', f"{MARK_EPSTEIN} company"),
-            Organization('Park Partners NYC', emailer_patter=r"Park Partners"),
+            Organization('Park Partners NYC', emailer_pattern=r"Park Partners"),
         ],
         patterns=[
             r"((five star|Hyatt) )?hotel( room)?",
