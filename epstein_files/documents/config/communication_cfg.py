@@ -118,12 +118,12 @@ class TextCfg(CommunicationCfg):
         return super().__repr__()
 
 
-def iMessage_log(id: str, **kwargs) -> CommunicationCfg:
+def imessage_log(id: str, **kwargs) -> CommunicationCfg:
     return CommunicationCfg(id=id, platform=Platform.IMESSAGE, **kwargs)
 
 
-def iMessage_screenshot(id: str, **kwargs) -> CommunicationCfg:
-    return iMessage_log(id=id, note='screenshot(s)', **kwargs)
+def imessage_screenshot(id: str, **kwargs) -> CommunicationCfg:
+    return imessage_log(id=id, note='screenshot(s)', **kwargs)
 
 
 def skype_log(id: str, **kwargs) -> CommunicationCfg:

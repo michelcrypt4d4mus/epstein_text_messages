@@ -1,5 +1,5 @@
 from epstein_files.documents.documents.categories import Interesting, Neutral, Uninteresting
-from epstein_files.documents.config.communication_cfg import CommunicationCfg, Platform, iMessage_log, iMessage_screenshot, skype_log, whatsapp_log
+from epstein_files.documents.config.communication_cfg import CommunicationCfg, Platform, imessage_log, imessage_screenshot, skype_log, whatsapp_log
 from epstein_files.documents.config.config_builder import letter
 from epstein_files.documents.config.doc_cfg import NO_TRUNCATE, DocCfg
 from epstein_files.documents.config.email_cfg import EmailCfg
@@ -53,18 +53,18 @@ GIRLS_CFGS = [
         note='Epstein gives advice on how to recruit girls',
         highlight_quote="stressed about finding girls. It's hard",
     ),
-    iMessage_log(
+    imessage_log(
         id='EFTA02731576',
         is_interesting=10,
         note=f"making contemporaneous accusations",
         recipients=[LEON_BLACK],
         show_full_panel=True,
     ),
-    iMessage_screenshot('EFTA02731525', author=LEON_BLACK, author_uncertain=True),
-    iMessage_screenshot('EFTA01618381', author=RENATA_BOLOTOVA, author_uncertain='sneaky', highlight_quote='how many new girls are there in the island W you now?'),
-    iMessage_screenshot('EFTA01622387', author=RENATA_BOLOTOVA, author_uncertain='sneaky'),
-    iMessage_screenshot('EFTA01618494', author=RENATA_BOLOTOVA, author_uncertain='sneaky'),
-    iMessage_screenshot('EFTA01618400', author=RENATA_BOLOTOVA, author_uncertain='sneaky'),
+    imessage_screenshot('EFTA02731525', author=LEON_BLACK, author_uncertain=True),
+    imessage_screenshot('EFTA01618381', author=RENATA_BOLOTOVA, author_uncertain='sneaky', highlight_quote='how many new girls are there in the island W you now?'),
+    imessage_screenshot('EFTA01622387', author=RENATA_BOLOTOVA, author_uncertain='sneaky'),
+    imessage_screenshot('EFTA01618494', author=RENATA_BOLOTOVA, author_uncertain='sneaky'),
+    imessage_screenshot('EFTA01618400', author=RENATA_BOLOTOVA, author_uncertain='sneaky'),
     letter('EFTA00078198', 'Marsh Law Firm', [USANYS], "allegations of sexual abuse at Epstein's house", '2020-11-10'),
     skype_log(
         id='EFTA01616933',
