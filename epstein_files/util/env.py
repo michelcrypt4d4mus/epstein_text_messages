@@ -105,7 +105,6 @@ logger.info(f"site_config set to {site_config.__name__}...")
 
 args.debug = args.deep_debug or args.debug or is_env_var_set('DEBUG')
 args._debug_highlight_patterns = (args.colors_only and args.debug)
-args._site_type = SiteType.CURATED  # TODO: not ideal
 
 # args.names = [name.title() for name in args.names] if args.names and args.names[0][0].islower() else args.names
 args.names = [None if n == 'None' else n.strip() for n in (args.names or [])]
@@ -114,6 +113,11 @@ args.output_other = args.output_other or args.all_other_files or args.uninterest
 args.output_texts = args.output_texts or args.all_texts
 args.overwrite_pickle = args.overwrite_pickle or (is_env_var_set('OVERWRITE_PICKLE') and not is_env_var_set('PICKLED'))
 args.width = site_config.width if is_html_script else None
+
+if args.names:
+    args._site = Site.NAMES
+else:
+    args._site = Site.CURATED  #  TODO: just a default but not ideal
 
 truthy_args = {k: v for k, v in vars(args).items() if v}
 any_output_selected = any(is_output_arg(k) for k in truthy_args.keys())
@@ -137,42 +141,42 @@ if is_html_script:
         exit_with_error(f"{parser.prog} does not accept positional arguments (receeived {args.positional_args})")
 
     if 'sample_html' in parser.prog:
-        args._site_type = SiteType.SAMPLE
+        args._site = Site.SAMPLE
+    elif args._site == Site.NAMES:  # --name args overrides other considerations
+        pass
     elif args.mobile:
         if args.output_chrono:
-            args._site_type = SiteType.CHRONOLOGICAL_MOBILE
+            args._site = Site.CHRONOLOGICAL_MOBILE
         else:
-            logger.warning(f"Mobile site type couldn't be conclusively determined, settings to {SiteType.CURATED_MOBILE}...")
-            args._site_type = SiteType.CURATED_MOBILE  # This isn't great; requires args be correct to build
+            logger.warning(f"Mobile site type couldn't be conclusively determined, settings to {Site.CURATED_MOBILE}...")
+            args._site = Site.CURATED_MOBILE  # This isn't great; requires args be correct to build
     else:
-        if args.names:
-            args._site_type = SiteType.NAMES  # --name args overrides other considerations
-        elif args.colors_only:
-            args._site_type = SiteType.COLORS_ONLY
+        if args.colors_only:
+            args._site = Site.COLORS_ONLY
             args.build = args.build or BUILD_TRUE_BUT_UNSPECIFIED
         elif args.output_bios:
-            args._site_type = SiteType.BIOGRAPHIES
+            args._site = Site.BIOGRAPHIES
         elif args.all_doj_files:
-            args._site_type = SiteType.DOJ_FILES
+            args._site = Site.DOJ_FILES
         elif args.all_emails:
-            args._site_type = SiteType.EMAILS
+            args._site = Site.EMAILS
         elif args.all_emails_chrono:
-            args._site_type = SiteType.EMAILS_CHRONOLOGICAL
+            args._site = Site.EMAILS_CHRONOLOGICAL
         elif args.all_texts:
-            args._site_type = SiteType.TEXT_MESSAGES
+            args._site = Site.TEXT_MESSAGES
         elif args.all_other_files:
-            args._site_type = SiteType.OTHER_FILES_TABLE
+            args._site = Site.OTHER_FILES_TABLE
         elif args.json_metadata:
-            args._site_type = SiteType.JSON_METADATA
+            args._site = Site.JSON_METADATA
         elif args.output_chrono:
-            args._site_type = SiteType.CHRONOLOGICAL
+            args._site = Site.CHRONOLOGICAL
         elif args.output_devices:
-            args._site_type = SiteType.DEVICE_SIGNATURES
+            args._site = Site.DEVICE_SIGNATURES
         elif args.output_word_count:
-            args._site_type = SiteType.WORD_COUNT
+            args._site = Site.WORD_COUNT
         else:
-            logger.warning(f"Site type couldn't be conclusively determined, settings to {SiteType.CURATED}...")
-            args._site_type = SiteType.CURATED
+            logger.warning(f"Site type couldn't be conclusively determined, settings to {Site.CURATED}...")
+            args._site = Site.CURATED
 elif parser.prog.startswith('epstein_') and not args.positional_args and not args.names:
     exit_with_error(f"{parser.prog} requires positional arguments but got none!")
 
@@ -206,6 +210,7 @@ elif args.suppress_logs:
 elif not env_log_level:
     set_log_level(logging.WARNING)
 
+logger.info(f"args._site='{args._site}'")
 logger.debug(f'Log level set to {logger.level}...')
 args_str = ',\n'.join([f"{k}={v}" for k, v in vars(args).items() if v])
 logger.debug(f"'{parser.prog}' script invoked\n{args_str}")

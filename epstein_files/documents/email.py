@@ -24,7 +24,7 @@ from epstein_files.documents.emails.constants import *
 from epstein_files.documents.emails.email_parts import EmailParts
 from epstein_files.documents.emails.email_header import (EMAIL_SIMPLE_HEADER_REGEX,
      EMAIL_SIMPLE_HEADER_LINE_BREAK_REGEX, EmailHeader)
-from epstein_files.documents.emails.emailers import IDENTIFYING_STRINGS, UNIQ_IDENTIFIER_FALSE_ALARMS, extract_emailer_names
+from epstein_files.documents.emails.emailers import IDENTIFYING_REGEXES, IDENTIFIER_FALSE_ALARMS, extract_emailer_names
 from epstein_files.documents.other_file import OtherFile
 from epstein_files.people.entity import Entity, EntityScanArg
 from epstein_files.people.interesting_people import EMAILERS_OF_INTEREST_SET
@@ -100,15 +100,15 @@ OCR_REPAIRS: OcrRepair = {
     re.compile('»'): '>>',
     re.compile(r'grnail\.com'): 'gmail.com',
     'Newsmax. corn': 'Newsmax.com',
-    re.compile(r"^(From|To)(: )?[_1.]{5,}", re.MULTILINE): rf"\1: {REDACTED}",  # Redacted email addresses
     # These 3 must come in this order!
     re.compile(r'([/vkT]|Ai|li|(I|7)v)rote:'): 'wrote:',
     re.compile(r"([<.=_HIM][<>.=_HIM14]{5,}[<>.=_HIM]|MOMMINNEMUMMIN) *(wrote:?)?"): rf"{REDACTED} \2",
     re.compile(r"([,<>_]|AM|PM)\n(>)? ?wrote:?"): r'\1\2 wrote:',
     # Headers
+    re.compile(r"^From "): 'From: ',  # first line only
+    re.compile(r"^(From|To)(: )?[_1.]{5,}", re.MULTILINE): rf"\1: {REDACTED}",  # Redacted email addresses
     re.compile(r"I ?(od|nl)ine-Images:"): 'Inline-Images:',
     re.compile(r"^((?:B?cc|To):.*)\n(>?;.*)", re.IGNORECASE | re.MULTILINE): r'\1 \2',
-    re.compile(r"^From "): 'From: ',
     re.compile(r"^(Sent|Subject) (?![Ff]rom|on|using|[Rr]emote|[Vv]ia|with)", re.MULTILINE): r'\1: ',
     re.compile(r"^Subject[.•]{,2} ", re.MULTILINE): 'Subject: ',
     re.compile(r"^(Forwarded|Original) Message$", re.IGNORECASE | re.MULTILINE): r"--- \1 Message ---",  # Make forward lines match our highlight
@@ -140,9 +140,6 @@ OCR_REPAIRS: OcrRepair = {
     re.compile(r"[ijlp']ee[vy]acation[©@a(&,P ]{1,3}g?mail.com"): 'jeevacation@gmail.com',
     'gyahoo.com': '@yahoo.com',
     # Signatures
-    re.compile(r'Blac[il]cBerry'): 'BlackBerry',
-    'BlackBerry by AT &T': 'BlackBerry by AT&T',
-    'BlackBerry from T- Mobile': 'BlackBerry from T-Mobile',
     'Envoy& de': 'Envoyé de',
     'Envoye avec BlackBerry° d': 'Envoye avec BlackBerry® d',
     'from Samsung Mob.le': 'from Samsung Mobile',
@@ -150,6 +147,9 @@ OCR_REPAIRS: OcrRepair = {
     'Mail for i Phone': 'Mail for iPhone',
     'Sent from Mabfl': 'Sent from Mobile',  # NADIA_MARCINKO signature bad OCR
     'twitter glhsummers': 'twitter @lhsummers',
+    re.compile(r'Blac[il]cBerry'): 'BlackBerry',
+    'BlackBerry by AT &T': 'BlackBerry by AT&T',  # Must come after previous
+    'BlackBerry from T- Mobile': 'BlackBerry from T-Mobile',
     re.compile(r"[cC]o-authored with i ?Phone auto-correct"): "Co-authored with iPhone auto-correct",
     re.compile(r"from my ['!()=]([Pp]hone)"): r'from my i\1',
     re.compile(r'from my BlackBerry[0°] wireless device'): 'from my BlackBerry® wireless device',
@@ -162,8 +162,8 @@ OCR_REPAIRS: OcrRepair = {
     'woody-allen-jeffrey-epsteins-\nsociety-friends-close-ranks/ ---': 'woody-allen-jeffrey-epsteins-society-friends-close_ranks/\n',
     ' https://www.theguardian.com/world/2017/may/29/close-friend-trump-thomas-barrack-\nalleged-tax-evasion-italy-sardinia?CMP=share btn fb': '\nhttps://www.theguardian.com/world/2017/may/29/close-friend-trump-thomas-barrack-alleged-tax-evasion-italy-sardinia?CMP=share_btn_fb',
     'search-for-secret-putin-\nfortune.html': 'search-for-secret-putin-fortune.html',
-    re.compile(r"[h=][t=][t=][p=]://"): 'http://',
-    re.compile(r"([h=][t=][t=][op=][s=]|Imps )://"): 'https://',
+    re.compile(r"[h=][t=][t=][p=]://\s*"): 'http://',
+    re.compile(r"([h=][t=][t=][op=][s=]|Imps )://\s*"): 'https://',
     re.compile(r'timestopics/people/t/landon jr thomas/inde\n?x\n?\.\n?h\n?tml'): 'timestopics/people/t/landon_jr_thomas/index.html',
     re.compile(r" http ?://www. ?dailymail. ?co ?.uk/news/article-\d+/Troub ?led-woman-history-drug-\n?us ?e-\n?.*html"): '\nhttp://www.dailymail.co.uk/news/article-3914012/Troubled-woman-history-drug-use-claimed-assaulted-Donald-Trump-Jeffrey-Epstein-sex-party-age-13-FABRICATED-story.html',
     re.compile(r"http.*steve-bannon-trump-tower-\n?interview-\n?trumps-\n?strategist-plots-\n?new-political-movement-948747"): "\nhttp://www.hollywoodreporter.com/news/steve-bannon-trump-tower-interview-trumps-strategist-plots-new-political-movement-948747",
@@ -196,6 +196,7 @@ OCR_REPAIRS: OcrRepair = {
     'AVG°': 'AVGO',
     'Saw Matt C with DTF at golf': 'Saw Matt C with DJT at golf',
     re.compile(r"[i. ]*Privileged[- ]*Redacted[i. ]*"): '<PRIVILEGED - REDACTED>',
+    re.compile(r"SONY ?(Court|Judge|(, |/)NY)", re.IGNORECASE): r'SDNY \1',
 }
 
 METADATA_FIELDS = [
@@ -221,14 +222,14 @@ class Email(Communication):
     Attributes:
 
         attached_docs (list[OtherFile]): any attachments that exist as `OtherFile` objects
-        actual_text (str): Best effort at the text actually sent in this email, excluding quoted replies and forwards.
-        derived_cfg (EmailCfg): EmailCfg that was built instead of coming from CONFIGS_BY_ID
-        header (EmailHeader): Header data extracted from the text (from/to/sent/subject etc).
-        is_persons_first_email (bool): is this the first email we have for this person, whether sender or recipient?
+        actual_text (str): Best effort at the text *actually* sent in this email excluding quoted replies and forwards
+        derived_cfg (EmailCfg): EmailCfg that was built instead of coming from `CONFIGS_BY_ID`
+        is_persons_first_email (bool): is this the first email we have for any of the participants (sender + recipients)
         sent_from_device (str, optional): "Sent from my iPhone" style signature (if it exists).
         signature_substitution_counts (dict[str, int]): Number of times a signature was replaced with
             <...snipped...> per name
 
+        _header (EmailHeader): Header data extracted from the text (from/to/sent/subject etc).
         _line_merge_arguments (list[tuple[int] | tuple[int, int]]): preconfigured list of line merges that will fix up
             files from the HOUSE_OVERSIGHT_ collection in memory while leaving the source files untouched
         _was_split_up (bool, optional): True if this file Email was one of the big ones that was split into pieces
@@ -252,8 +253,9 @@ class Email(Communication):
         self.actual_text = self._extract_actual_text()
         self.sent_from_device = self._sent_from_device()
 
-        for identifier, contact in IDENTIFYING_STRINGS.items():
-            if identifier.lower() in self.text.lower() and contact.name not in self.participants and self.file_id not in UNIQ_IDENTIFIER_FALSE_ALARMS:
+        # Scan for any identifiers we may have missed that could unredact this email
+        for regex, contact in IDENTIFYING_REGEXES.items():
+            if regex.search(self.text) and contact.name not in self.participants and self.file_id not in IDENTIFIER_FALSE_ALARMS:
                 self._warn(f"Found known identifier for {contact.name} in email where they are not an identified participant")
 
     @property

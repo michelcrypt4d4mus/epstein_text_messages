@@ -14,7 +14,7 @@ from epstein_files.documents.email import Email
 from epstein_files.documents.other_file import OtherFile
 from epstein_files.output.doc_printer import DocPrinter
 from epstein_files.output.html.builder import table_to_html, panel_to_div
-from epstein_files.output.site.sites import SiteType
+from epstein_files.output.site.sites import Site
 from epstein_files.output.output import write_html
 from epstein_files.people.entity import Entity
 from epstein_files.people.person import Person
@@ -78,5 +78,5 @@ printer.print_documents(sample_docs)
 # people_table = Person.emailer_info_table(all_emailers, all_emailers, show_epstein_total=False)
 # printer.html_elements.append(table_to_html(people_table))
 
-html_path = printer.write_html(SiteType.DEV_SAMPLE)
+html_path = printer.write_html(Site.DEV_SAMPLE)
 open_file_or_url(html_path)

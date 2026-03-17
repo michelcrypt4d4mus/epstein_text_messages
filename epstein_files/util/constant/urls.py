@@ -5,7 +5,7 @@ from typing import Callable, Literal
 from inflection import parameterize
 from rich.text import Text
 
-from epstein_files.output.site.sites import GH_PROJECT_URL, TO_FROM, SiteType
+from epstein_files.output.site.sites import GH_PROJECT_URL, TO_FROM, Site
 from epstein_files.util.env import args
 from epstein_files.util.constant.strings import TEXT_LINK
 from epstein_files.util.helpers.file_helper import coerce_file_stem
@@ -205,16 +205,16 @@ def internal_person_link_url(name: str) -> str:
     return internal_link_url(f"{TO_FROM} {remove_question_marks(name)}")
 
 
-def other_site_type() -> SiteType:
-    return SiteType.CURATED if args._site_type != SiteType.CURATED else SiteType.EMAILS
+def other_site() -> Site:
+    return Site.CURATED if args._site != Site.CURATED else Site.EMAILS
 
 
 def other_site_url() -> str:
-    return SiteType.get_url(other_site_type())
+    return Site.get_url(other_site())
 
 
 def this_site_url() -> str:
-    return SiteType.get_url(args._site_type)
+    return Site.get_url(args._site)
 
 
 THE_OTHER_PAGE_MARKUP = link_markup(other_site_url(), 'the other page', style='light_slate_grey bold')

@@ -8,6 +8,7 @@ from tests.fixtures.fixture_csvs import load_files_csv, write_files_csv
 
 
 def update_text_dump() -> None:
+    """Dump the `text` property of all `Document`s to temporary fixtures."""
     for doc in epstein_files.documents:
         output_file = FILE_TEXT_DUMP_DIR.joinpath(doc.file_id)
 

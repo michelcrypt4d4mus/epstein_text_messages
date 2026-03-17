@@ -1,7 +1,7 @@
 import logging
 import re
 from dataclasses import dataclass, field, fields
-from typing import ClassVar, Literal, Self
+from typing import ClassVar, Literal, Self, Sequence
 
 from rich.padding import Padding
 from rich.style import Style
@@ -62,7 +62,7 @@ class Entity(LoggingEntity):
     email_addresses: list[str] = field(default_factory=list)
     emailer_regex: re.Pattern = field(init=False)
     highlight_regex: re.Pattern = field(init=False)
-    is_emailer: bool = True
+    is_emailer: bool | None = True
     is_interesting: bool = True  # Eligible for bio panel
     is_junk: bool = False  # TODO: this sucks
     match_partial: PartialName | None = 'last'
@@ -142,7 +142,7 @@ class Entity(LoggingEntity):
     @property
     def identifying_strings(self) -> list[str]:
         """Strings that indicate a document is likely tied to this entity."""
-        return self.email_addresses + self.unique_phraseologies
+        return self.unique_phraseologies + (self.email_addresses if self.is_emailer else [])
 
     @property
     def name_with_link(self) -> Text:
@@ -292,7 +292,7 @@ class Entity(LoggingEntity):
 @dataclass(eq=False)
 class Organization(Entity):
     # Different defaults
-    is_emailer: bool = False
+    is_emailer: bool | None = None
     match_partial: PartialName | None = None
     # Additional properties
     belongs_to: str = ''
@@ -300,7 +300,7 @@ class Organization(Entity):
     DEFAULT_PATTERN_SFX: ClassVar[str] = ''
 
     def __post_init__(self):
-        if self.emailer_pattern:
+        if self.emailer_pattern and self.is_emailer is not False:
             self.is_emailer = True
 
         if (suffix_match := COMPANY_SUFFIX_REGEX.match(self.name)) and not self.emailer_pattern:
@@ -332,18 +332,24 @@ class Organization(Entity):
         return cls(name, is_interesting=False, **kwargs)
 
 
-EntityScanArg = list[Entity] | Entity | list[str] | str | None
+EntityScanArg = Sequence[Entity | str] | Entity | str | None
 
 
 def acronym(name: str, info: str = '', **kwargs) -> Organization:
     """Auto-generates a regex matching the org's initials."""
     initials = [word[0] for word in name.split() if word[0].isupper()]
     initials_pattern = ''.join([fr"{letter}\.?" for letter in initials])
+    emailer_pattern = join_patterns([initials_pattern, name])
+
+    # Force word boundary in front to prevent spurious matches (can't force at end bc of period)
+    if (is_emailer := _pop_kwarg(kwargs, 'is_emailer', False)):
+        emailer_pattern = fr"\b({emailer_pattern})"
 
     return Organization(
         ''.join(initials),
         join_truthy(name, info, ', '),
-        join_patterns([initials_pattern, name]),
+        emailer_pattern,
+        is_emailer=is_emailer,
         **kwargs
     )
 
@@ -376,7 +382,15 @@ def epstein_trust(
 
 
 def law_enforcement(name: str, emailer_pattern: str = '', info: str = '', **kwargs) -> Organization:
-    return Organization(name, info or LAW_ENFORCEMENT, emailer_pattern, is_interesting=False, **kwargs)
+    is_interesting = _pop_kwarg(kwargs, 'is_interesting', False)
+
+    return Organization(
+        name,
+        info or LAW_ENFORCEMENT,
+        emailer_pattern,
+        is_interesting=is_interesting,
+        **kwargs
+    )
 
 
 def publication(name: str, emailer_pattern: str = '', **kwargs) -> Organization:
@@ -393,3 +407,8 @@ def the_publication(name: str, emailer_pattern: str = '', **kwargs) -> Organizat
     emailer_pattern = emailer_pattern or name
     pattern = fr"({emailer_pattern})" if '|' in emailer_pattern else emailer_pattern
     return publication(name, fr"(The )?{pattern}", **kwargs)
+
+
+def _pop_kwarg(kwargs: dict, key: str, default: bool = False) -> bool:
+    """Pop a kwarg and return if it exists, elese return `default`."""
+    return kwargs.pop(key) if key in kwargs else default

@@ -409,6 +409,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Organization('Junkermann Group', JUNKERMANN_FUND),
             Organization('Lockheed Martin', 'American military contractor'),
             Organization('NJF Capital', JUNKERMANN_FUND, r"NJF( Capital)?"),
+            Organization('WizzAir', email_addresses=['noreply@wizzair.com'], is_interesting=False, is_emailer=True),
         ],
         patterns=[
             r"Arthur Klein",
@@ -515,6 +516,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"RMB",
             r"Shang?hai",
             r"Tianjin",
+            r"Tsinghua( University)?",
             r"V-?Nee",
             r"(?<!Article\s)Xi(aomi)?", r"Jinping",
         ],
@@ -1401,6 +1403,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 f"IMAX chairman, head of {LEON_BLACK}'s {ELYSIUM_MANAGEMENT}",
                 url='https://www.cnn.com/2026/02/21/business/apollo-epstein-wall-street',
             ),
+            Entity("Christine O'Neill", f"coordinated Ike Groff investment in Mangrove Partners", r"Chris(tine)? O'?Neill?"),
             Entity(
                 "D.B. Zwirn",
                 'hedge fund manager whose fund collapsed in 2008 with investments from Epstein and Glenn Dubin',
@@ -1418,7 +1421,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 f"{PRINCE_ANDREW}'s trusted money man at Banque Havilland whom Epstein does not trust",
                 match_partial=None,
             ),
-            Entity('Ted Forstmann', "private equity, founder of Forstmann Little & co."),
+            Entity(NATHANIEL_AUGUST, 'fund manager of Mangrove Partners'),
             Entity(
                 JES_STALEY,
                 "former CEO of Barclays, allegations by multiple Epstein victims",
@@ -1470,6 +1473,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Entity('Stewart Oldfield', f"worked on Epstein related accounts at {DEUTSCHE_BANK}"),
             Entity('Stephen Schwarzman', 'CEO of Blackstone', r"(Ste(phen|ve) )?Schwart?z?man"),
             Entity(TANCREDI_MARCHIOLO, "hedge fund manager, Bremner Capital Management", match_partial='both'),
+            Entity('Ted Forstmann', "private equity, founder of Forstmann Little & co."),
             Entity('Vahe Stepanian', "Cetera Financial Group", match_partial='both'),
             Entity(VINIT_SAHNI, f"analyst at {DEUTSCHE_BANK} and {GOLDMAN_SACHS}", match_partial='both'),
             Organization(
@@ -1478,6 +1482,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 r"Atorus( International)?",
                 aliases=['Red Dot Trade Finance'],
             ),
+            Organization('Bayerische Landesbank', 'publicly owned bank in Bavaria', url=WIKIPEDIA),
             Organization(
                 'Banque Havilland',
                 f"Rowland family private bank in Luxembourg used by {PRINCE_ANDREW}, charter revoked in 2024 for money laundering",
@@ -1502,6 +1507,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Organization('Goldman Sachs', emailer_pattern=r"Goldman( Sachs)?", is_interesting=False),
             Organization('Julius Baer', 'Swiss bank'),
             Organization('Lazard', 'UK financial advisory and asset management firm'),
+            Organization('Mangrove Partners', 'shockingly high performing fund', belongs_to=NATHANIEL_AUGUST),
             Organization('Qarmin', f"high frequency trading operation {QUESTION_MARKS}"),
             Organization('Silvergate Bank', 'crypto friendly bank that failed after the FTX crisis', r"Silver Gate( Bank)?"),
             Organization('Third Lake', "family office managing the Wanek family fortune"),
@@ -1523,7 +1529,6 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Andrew Nikou",
             r"Apollo",
             r"Bank of Scotland",
-            r"Bayerische Landesbank", # TODO bio?
             r"(Bernie )?Madoff",
             r"Black(rock|stone)",
             r"B of A",
@@ -1576,7 +1581,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         contacts=[
             Entity(
                 ANDREW_FARKAS,
-                "heir to Alexander's department store fortune who has claimed he barely knew Epstein",
+                "heir to Alexander's department store fortune, recently claimed he barely knew Epstein",
                 r"Andrew (L\.? )?Farkas|Farkas, Andrew( L\.?)?",
                 url='https://www.nytimes.com/2026/02/09/nyregion/farkas-epstein-lawsuit-ties.html',
             ),
@@ -1710,28 +1715,31 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 "US financial markets regulator",
                 r"sec\.?gov|Securities (&|and) Exchange Commission",
             ),
+            acronym('New York Dept. of Financial Services', "America's second most important financial regulator"),
+            acronym(OFFICE_OF_THE_DEPUTY_ATTORNEY_GENERAL, is_emailer=True, is_interesting=False),
+            acronym('Southern District of New York', 'federal prosecutors covering New York City'),
+            acronym('Tip Complaint or Referral', "form used for whistleblower tips"),
+            acronym('United States Marshals Service', is_emailer=True),
             law_enforcement(BUREAU_OF_PRISONS, r"bop\.gov|(Federal )?Bureau of Prisons"),
             law_enforcement('DHS'),
             law_enforcement(DOJ),
-            law_enforcement('DOJ Chief Psychologist'),
+            law_enforcement('DOJ Chief Psychologist', is_emailer=True),
             law_enforcement('DOJ Inspector General'),
-            law_enforcement('DOJ London'),
+            law_enforcement('DOJ London', is_emailer=True),
             law_enforcement(FBI, emailer_pattern=r"(?<!NY )((?-i:FBI)|fbi\.s?gov)"),
             law_enforcement(FRENCH_MINISTRY_OF_JUSTICE),
             law_enforcement('Judge Mark Filip'),
-            law_enforcement('Manhattan DA'),
+            law_enforcement('Manhattan DA', is_emailer=True),
             law_enforcement('NY FBI', is_emailer=True),
             law_enforcement("US Office of Government Information Services"),
-            law_enforcement(OFFICE_OF_THE_DEPUTY_ATTORNEY_GENERAL, r"\bODAG\b"),
             law_enforcement(PALM_BEACH_POLICE),
             law_enforcement('Police Code Enforcement', info=f"{PALM_BEACH} buildings code enforcement"),
             law_enforcement('SCOTUS'),
-            law_enforcement(SDNY),  # TODO: acronym?
-            law_enforcement('SDFL'),
+            law_enforcement('SDFL', 'federal prosecutors covering South Florida', is_interesting=True),
             law_enforcement("SDNY Cybercrimes", is_emailer=True),
-            law_enforcement('USAHUB-USAJournal111'),
+            law_enforcement('USAHUB', emailer_pattern=r"USAJournal111"),
+            law_enforcement('USAMA Victim Assistance', is_emailer=True),
             law_enforcement(USANYS, is_emailer=True),
-            law_enforcement('USMS'),
             law_enforcement('US Secret Service'),
             # TODO: These are in UNINTERESTING_AUTHORS but that should be configured here
             law_enforcement(PALM_BEACH_CODE_ENFORCEMENT),
@@ -1745,7 +1753,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"(Andrew )?(McCabe|Natsios)",
             r"(Assistant )?State Attorney",
             r"Attorneys? General",
-            r"Bank Secrecy Act",
+            r"Bank Secrecy Act",  # TODO: acronym?
             r'Barbara Burns',  # AUSA
             r"((Bob|Robert) )?Mueller",
             r"BSA",
@@ -1784,7 +1792,6 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"NIH",
             r"NPA",
             r"NS(A|C)",
-            r"NYDFS",
             r"NYPD",
             r"PBPD",
             r"police",
@@ -1798,7 +1805,6 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"State Dep(artmen)?t",
             r"(Peter? )?Strzok",
             r"Supreme Court",
-            r"TCR",
             r"Treasury (Dep(artmen)?t|Secretary)",
             r"TSA",
             r"U\.?S\.? attorney",
@@ -1817,7 +1823,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         label=HARVARD,
         style='light_goldenrod3',
         contacts=[
-            Entity('Donald Rubin', "professor of statistics", match_partial=None),
+            Entity('Donald Rubin', "statistics professor", match_partial=None),
             Entity('Henry Rosovsky', f'emeritus dean of {HARVARD}', r"(Henry )?Rosovs(k|lc)y"),
             Entity('Kelly Friendly', f"longtime aide and spokesperson of {LARRY_SUMMERS}", match_partial=None),
             Entity(
@@ -1856,7 +1862,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         label='India',
         style='bright_green',
         contacts=[
-            Entity(ANIL_AMBANI, "billionaire chairman of Reliance Group", r"Anil.Ambani"),
+            Entity(ANIL_AMBANI, "billionaire chairman of Reliance Group", r"Anil.Ambani", url=WIKIPEDIA),
             Organization(
                 'InsightsPod',
                 f"{ZUBAIR_KHAN} and {ANYA_RASULOVA}'s company recommended by {MARIA_PRUSAKOVA}, did social media work for Epstein during the 2016 election",
@@ -1989,6 +1995,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 'blew the lid on the 2006 Epstein sweetheart deal',
                 r"Julie (K.? )?Brown|brown@miamiherald.com",
                 email_addresses=['jbrown@miamiherald.com'],
+                is_emailer=False,
                 match_partial=None,
             ),
             Entity('Kia Kokalitcheva', 'US venture capital news at Pitchbook'),
@@ -2466,7 +2473,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Organization('ID Models', "Paolo Zampolli's modeling agency"),
             Organization('Karin Models', f'agency in Paris with connections to {JEAN_LUC_BRUNEL}'),
             Organization('Kate Spade', 'American maker of luxury handbags'),
-            Organization(MC2_MODEL_MGMT, f"{JEAN_LUC_BRUNEL} and Epstein's modeling agency", r"MC2( Model Management)?"),
+            Organization(MC2_MODEL_MGMT, f"{JEAN_LUC_BRUNEL} and Epstein's modeling agency", r"MC2( Model Management)?", is_emailer=False),
             Organization('Next Models', f"modeling agency co-founded by {FAITH_KATES}"),
             Organization('One Model Management', 'agency'),
             Organization('Scoop Models', 'agency in Copenhagen'),
@@ -2910,7 +2917,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Entity('Auren Hoffman', "CEO of SafeGraph (mobile device location data co.), LiveRamp", match_partial=None),
             Entity(
                 BOBBY_KOTICK,
-                'CEO of video game titan Activision Blizzard ("Call of Duty", "World of Warcraft", etc.)',
+                'CEO of video game titan Activision Blizzard (Call of Duty, World of Warcraft, etc.)',
                 r"Kotick, Bobby|Bobby Kotick",
                 url='https://www.gamespot.com/articles/epstein-files-reveal-gaming-connections-plans-to-buy-activision-stock/1100-6537858/',
             ),
@@ -2998,8 +3005,16 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 match_partial='both',
                 url=SUBSTACK_POST_INSIGHTSPOD_URL,
             ),
+
+            # Organizations
             Organization('Accel Partners', 'venture capital firm', r"Accel( Partners)?"),
             Organization('bgC3', 'renamed "Bill Gates Ventures" in 2018'),
+            Organization(
+                'Blizzard Entertainment',
+                f'maker of huge video games like World of Warcraft and Call of Duty run by {BOBBY_KOTICK}',
+                r"Activision Blizzard|Blizzard Entertainment",
+                is_emailer=True,
+            ),
             Organization(
                 'Coatue Management',
                 "VC fund founded by Philippe Laffont possibly invested in by Epstein",
@@ -3077,19 +3092,16 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Organization.well_known('T-Mobile'),
         ],
         patterns=[
-            r"Activision( Blizzard)?",
             r"AG?I",
             r"(?-i:A)pple",
             r"Artificial (General )?Intelligence",
-            r"Blizzard Entertainment",
             r"Cash App?",
             r"Cisco",
             r"cyber( (security|space))?",
             r"deep learning",
             r"Dropbox",
             r"Facebook",
-            r"fintech",
-            r"Google",
+            r"Google( search(es)?)?",
             r"Instagram",
             r"(?-i:I)ntel",
             r"Microsoft",
@@ -3311,7 +3323,12 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 r"Rothstein,? Rosenfeldt,? Adler",
                 url='https://en.wikipedia.org/wiki/Scott_W._Rothstein',
             ),
-            Organization('Wigdor Law', f"sued {LEON_BLACK} alleging crimes at Epstein's properties", r"Wigdor(Law)?( LLP)?"),
+            Organization(
+                'Wigdor Law',
+                f"sued {LEON_BLACK} alleging crimes at Epstein's properties",
+                r"Wigdor(Law)?( LLP)?",
+                is_emailer=False,
+            ),
         ],
         patterns=[
             r"(Mi(chael|ke) )?Avenatti",
@@ -3540,6 +3557,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"donor advised fund",
             r"EBITDA",
             r"equities",
+            r"fintech",
             r"hedge fund",
             r"(?<!Kyara\s)invest(ment|or)s?(\sadvis[eo]r[sy]?)?",
             r"(junk )?bond",
@@ -3560,6 +3578,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"(income )?tax(e[ds])?( code)?",
             r"(?-i:VAT)",
             r"Wall Street(?! Jour)",
+            r"warrants",
         ]
     ),
     HighlightPatterns(
@@ -3631,11 +3650,11 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         ],
     ),
      HighlightPatterns(
-        label='header_field',
+        label='header_field',  # email_header (or FBI)
         style='plum4',
         patterns=[
             fr"^([>»•\s]{{,4}}({join_patterns(EMAIL_HEADER_FIELD_PATTERNS)}):|on behalf of)",
-            fr"^({join_patterns(FBI_REPORT_FIELDS)})",
+            fr"^({join_patterns(FBI_REPORT_FIELDS)}):",
         ],
     ),
     HighlightPatterns(

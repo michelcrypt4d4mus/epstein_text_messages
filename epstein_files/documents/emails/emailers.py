@@ -12,6 +12,7 @@ from epstein_files.people.entity import Entity, Organization
 from epstein_files.people.names import *
 from epstein_files.util.constant.strings import REDACTED
 from epstein_files.util.helpers.data_helpers import escape_single_quotes, flatten, groupby, uniq_sorted, without_falsey
+from epstein_files.util.helpers.string_helper import as_pattern
 from epstein_files.util.logging import logger
 
 BAD_EMAILER_REGEX = re.compile(r'^(>|11111111)|agreed|ok(?!asha)|sexy|re:|fwd:|LIMITED PARTNERS|Multiple Senders|((sent|attachments|subject|importance).*|.*(january|201\d|hysterical|i have|image0|so that people|article 1.?|PROSPECTIVE INVESTORS|momminnemummin|These conspiracy theories|your state|undisclosed|www\.theguardian|talk in|it was a|what do|cc:|call (back|me)|afiaata|[IM]{4,}).*)$', re.IGNORECASE)
@@ -58,7 +59,7 @@ ADDITIONAL_EMAILERS = [
     Entity('Linda W. Grossman', match_partial=None, is_interesting=False),
     Entity('Lynnie Tofte Fass', match_partial=None, is_interesting=False),
     Entity('Marie Moneysmith', match_partial=None, is_interesting=False),
-    Entity('Tom', match_partial=None, is_interesting=False),
+    Entity('Tom', match_partial=None, is_interesting=False, is_emailer=False),
     Entity('Harry Shearer', match_partial=None, is_interesting=False),
     Entity('Jay Levin', match_partial=None, is_interesting=False),
     Entity('Lanny Swerdlow', match_partial=None, is_interesting=False),
@@ -82,17 +83,20 @@ ENTITIES_DICT = {c.name: c for c in CONFIGURED_ENTITIES}
 
 for name in UNINTERESTING_EMAILERS:
     if (entity := ENTITIES_DICT.get(name)):
-        entity._log(f"Found UNINTERESTING_EMAILER, setting is_interesting=False...")  # TODO: doesn't mean much right now
+        entity._debug_log(f"Found UNINTERESTING_EMAILER, setting is_interesting=False...")  # TODO: doesn't mean much right now
         entity.is_interesting = False
     else:
         CONFIGURED_ENTITIES.append(Entity(name, is_interesting=False, match_partial=None))
-        CONFIGURED_ENTITIES[-1]._log(f"Created new Entity for UNINTERESTING_EMAILER entry...")
+        CONFIGURED_ENTITIES[-1]._debug_log(f"Created new Entity for UNINTERESTING_EMAILER entry...")
 
 ENTITIES_DICT = {c.name: c for c in CONFIGURED_ENTITIES}
 EMAILER_REGEXES = {c.name: c.emailer_regex for c in CONFIGURED_ENTITIES if c.is_emailer}
 ENTITY_CATEGORIES = groupby(CONFIGURED_ENTITIES, lambda contact: contact.category)
 ENTITIES_DICT = {c.name: c for c in CONFIGURED_ENTITIES}  # Rebuild with new
-UNCONFIGURED_ENTITIES_ENCOUNTERED = {}
+
+# TODO: dict of names that are configured but have no Entity. This is filled in in epstein_files.py which sucks.
+CONFIGURED_NON_ENTITIES: dict[str, Entity] = {}
+UNCONFIGURED_ENTITIES_ENCOUNTERED: dict[str, Entity] = {}
 
 if len(CONFIGURED_ENTITIES) != len(ENTITIES_DICT):
     counts = Counter([c.name for c in CONFIGURED_ENTITIES])
@@ -101,14 +105,21 @@ if len(CONFIGURED_ENTITIES) != len(ENTITIES_DICT):
 
 
 # Strings that usually signify an identity if present in email body
-IDENTIFYING_STRINGS = {}
+IDENTIFYING_REGEXES = {}
 
 for contact in CONFIGURED_ENTITIES:
     for identifier in contact.identifying_strings:
-        IDENTIFYING_STRINGS[identifier] = contact
+        IDENTIFYING_REGEXES[re.compile(as_pattern(identifier), re.IGNORECASE)] = contact
 
 # file IDs that contain a unique signifier but do not involve that person
-UNIQ_IDENTIFIER_FALSE_ALARMS = ['EFTA00961792']
+IDENTIFIER_FALSE_ALARMS = ['EFTA00961792']
+
+
+# Elements of this list will not trigger warnings in get_entity
+NO_WARNING_NAMES = [
+    'Unik',
+    'Vlad',
+]
 
 
 def cleanup_str(s: str) -> str:
@@ -124,10 +135,14 @@ def extract_emailer_names(emailer_str: str) -> list[Name]:
         return []
     elif raw_names == [REDACTED] or raw_names == [UNKNOWN]:
         return [None]
-    elif emailer_str.lower() in ['j', 'jeffrey']:
+    elif emailer_str.lower() in ['j', 'jeff', 'jeffrey']:
         return [JEFFREY_EPSTEIN]
     elif emailer_str.lower() in ['sa', 's a']:
         return [SHAHER_ABDULHAK_BESHER]
+
+    for name in EMAILER_REGEXES.keys():
+        if name == 'Tom':
+            print(f"\n\n Tom: {EMAILER_REGEXES[name]}\n\n")
 
     names_found: list[Name] = [name for name, regex in EMAILER_REGEXES.items() if regex.search(emailer_str)]
 
@@ -149,9 +164,13 @@ def get_entity(name: str | Entity, doc: Optional['Document'] = None) -> Entity:
         return name
     elif name in ENTITIES_DICT:
         return ENTITIES_DICT[name]
+    elif name in CONFIGURED_NON_ENTITIES:
+        return CONFIGURED_NON_ENTITIES[name]  # Avoids spurious warnings
     elif name not in UNCONFIGURED_ENTITIES_ENCOUNTERED:
-        log = doc._warn if doc else logger.warning
-        log(f"Encountered unconfigured entity name '{name}'")
+        if name not in NO_WARNING_NAMES:
+            log = doc._warn if doc else logger.warning
+            log(f"Encountered unconfigured entity name '{name}'")
+
         UNCONFIGURED_ENTITIES_ENCOUNTERED[name] = Entity(name)
 
     return UNCONFIGURED_ENTITIES_ENCOUNTERED[name]

@@ -4,6 +4,7 @@ Reformat Epstein text message files for readability and count email senders.
 
     Run: 'EPSTEIN_DOCS_DIR=/path/to/TXT epstein_generate'
 """
+import itertools
 import sys
 from pathlib import Path
 from subprocess import check_output
@@ -28,7 +29,7 @@ from epstein_files.output.output import (print_curated_chronological, print_doj_
      print_json_files, print_stats, print_other_files_section, print_text_msgs_section, print_all_emails_chronological,
      print_email_device_signatures, print_emailers_info, print_json_metadata, show_urls)
 from epstein_files.output.rich import console, print_json, print_subtitle_panel
-from epstein_files.output.site.sites import SiteType, make_clean, use_custom_html
+from epstein_files.output.site.sites import Site, make_clean, use_custom_html
 from epstein_files.util.constant.strings import HOUSE_OVERSIGHT_NOV_2025_ID_REGEX
 from epstein_files.util.constants import ALL_CONFIGS
 from epstein_files.util.env import BUILD_TRUE_BUT_UNSPECIFIED, args, site_config
@@ -43,6 +44,7 @@ def epstein_generate() -> None:
     timer, epstein_files = _load_files_and_check_early_exit_args()
     printer = DocPrinter(epstein_files=epstein_files)
     printer.print_title_page_top()
+    printed_docs = []
 
     if args.all_emails_chrono or args.output_bios or args.output_devices or args.output_word_count:
         printer.print_color_key()
@@ -57,7 +59,7 @@ def epstein_generate() -> None:
         print_email_device_signatures(epstein_files)
     elif args.output_chrono:
         logger.warning(f'output chrono')
-        printed_docs = print_curated_chronological(epstein_files, printer)
+        printed_docs += print_curated_chronological(epstein_files, printer)
         timer.log_section_complete('Document', epstein_files.unique_documents, printed_docs)
     elif args.output_word_count:
         print_word_counts(epstein_files)
@@ -67,28 +69,33 @@ def epstein_generate() -> None:
         timer.log_section_complete('DojFile', epstein_files.doj_files, printed_doj_files)
     else:
         if args.output_emails:
-            printed_emails = print_emails_section(epstein_files, printer)
-            timer.log_section_complete('Email', epstein_files.emails, printed_emails)
+            printed_docs += print_emails_section(epstein_files, printer)
+            timer.log_section_complete('Email', epstein_files.emails, printed_docs)
         elif args.all_emails_chrono:
-            printed_emails = print_all_emails_chronological(epstein_files, printer)
-            timer.log_section_complete('Chronological Email', epstein_files.emails, printed_emails)
+            printed_docs += print_all_emails_chronological(epstein_files, printer)
+            timer.log_section_complete('Chronological Email', epstein_files.emails, printed_docs)
 
         if args.output_texts:
             printed_logs = print_text_msgs_section(epstein_files, printer)
             timer.log_section_complete('MessengerLog', epstein_files.imessage_logs, printed_logs)
+            printed_docs += printed_logs
 
         if args.output_other:
             printed_files = print_other_files_section(epstein_files, printer)
             timer.log_section_complete('OtherFile', epstein_files.other_files, printed_files)
+            printed_docs += printed_files
+
+        if args.names:
+            Document._print_ids(printed_docs, 'args.names')
 
     if args.build:
-        write_html_arg = args._site_type if args.build == BUILD_TRUE_BUT_UNSPECIFIED else Path(args.build)
+        write_html_arg = args._site if args.build == BUILD_TRUE_BUT_UNSPECIFIED else Path(args.build)
         printer.write_html(write_html_arg)
 
     logger.warning(f"Total time: {timer.seconds_since_start_str()}")
 
     if args.open_txt:
-        open_file_or_url(SiteType.custom_html_build_path(args._site_type))
+        open_file_or_url(Site.custom_html_build_path(args._site))
 
     if args.stats:
         print_stats(epstein_files)  # Used for building pytest checks

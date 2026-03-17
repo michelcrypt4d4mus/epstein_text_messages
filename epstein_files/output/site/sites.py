@@ -28,11 +28,12 @@ EXTRACTS_BASE_URL = f'{GH_MASTER_URL}/emails_extracted_from_legal_filings'
 BASE_URL = f"{GH_PAGES_BASE_URL}/{GH_REPO_NAME}"
 
 CUSTOM_HTML_PREFIX = 'real_html_'
+NAMES_PREFIX = 'only_names_'
 TO_FROM = 'to/from'
 MOBILE_SUFFIX = '_mobile'
 
 
-class SiteType(StrEnum):
+class Site(StrEnum):
     BIOGRAPHIES = auto()
     COLORS_ONLY = auto()
     CURATED = auto()
@@ -54,49 +55,51 @@ class SiteType(StrEnum):
 
     @classmethod
     def all_urls(cls) -> dict[Self, str]:
-        return {site_type: cls.get_url(site_type) for site_type in cls}
+        return {site: cls.get_url(site) for site in cls}
 
     @classmethod
-    def all_links(cls) -> dict['SiteType', Text]:
+    def all_links(cls) -> dict['Site', Text]:
         """Use `SITE_DESCRIPTIONS` dict because it's ordered and also omits unpublished site types."""
-        return {site_type: SiteType.link_txt(site_type) for site_type in SITE_DESCRIPTIONS}
+        return {site: Site.link_txt(site) for site in SITE_DESCRIPTIONS}
 
     @classmethod
-    def custom_html_build_path(cls, site_type: 'SiteType | Path') -> Path:
+    def custom_html_build_path(cls, site: 'Site | Path') -> Path:
         """Path for the templated custom HTML version of the page."""
-        filename = site_type.name if isinstance(site_type, Path) else cls.html_output_path(site_type).name
+        filename = site.name if isinstance(site, Path) else cls.html_output_path(site).name
         return HTML_DIR.joinpath(f'{CUSTOM_HTML_PREFIX}{filename}')
 
     @classmethod
-    def directory_links(cls) -> dict['SiteType', Text]:
+    def directory_links(cls) -> dict['Site', Text]:
         """Everything but mobile."""
         return {k: v for k, v in cls.all_links().items() if not cls.is_mobile(k)}
 
     @classmethod
-    def html_output_path(cls, site_type: 'SiteType') -> Path:
-        """Defaults to `[site_type].html` if not configured in `HTML_BUILD_FILENAMES`."""
-
-        if site_type == cls.NAMES:
+    def html_output_path(cls, _site: 'Site') -> Path:
+        """Defaults to `[site].html` if not configured in `HTML_BUILD_FILENAMES`."""
+        if _site == cls.NAMES:
             from epstein_files.util.env import args
-            site_type = '__'.join(sorted(args.names)).replace(' ', '_').lower()
+            names = sorted(['unknown' if n is None else n for n in args.names])
+            site = NAMES_PREFIX + '__'.join(sorted(names)).replace(' ', '_').lower()
+        else:
+            site = _site
 
-        return HTML_DIR.joinpath(HTML_BUILD_FILENAMES.get(site_type, f"{site_type}.html"))
+        return HTML_DIR.joinpath(HTML_BUILD_FILENAMES.get(site, f"{site}.html"))
 
     @classmethod
-    def html_output_path_mobile(cls, site_type: 'SiteType') -> Path:
-        output_path = cls.html_output_path(site_type)
+    def html_output_path_mobile(cls, site: 'Site') -> Path:
+        output_path = cls.html_output_path(site)
         return output_path.parent.joinpath(output_path.name.replace('.html', '_mobile.html'))
 
     @classmethod
-    def get_url(cls, site_type: 'SiteType') -> str:
-        return f"{BASE_URL}/{cls.html_output_path(site_type).name}"
+    def get_url(cls, site: 'Site') -> str:
+        return f"{BASE_URL}/{cls.html_output_path(site).name}"
 
     @classmethod
-    def get_mobile_redirect_url(cls, site_type: Self) -> str:
+    def get_mobile_redirect_url(cls, site: Self) -> str:
         """Mobile defaults to chronological."""
-        if SiteType.is_mobile(site_type):
-            return cls.get_url(site_type)
-        elif site_type == cls.CURATED:
+        if Site.is_mobile(site):
+            return cls.get_url(site)
+        elif site == cls.CURATED:
             redirect_type = cls.CURATED_MOBILE
         else:
             redirect_type = cls.CHRONOLOGICAL_MOBILE  # TODO: the curated site is breaking iPhone simulator so no redirect for now
@@ -104,82 +107,82 @@ class SiteType(StrEnum):
         return cls.get_url(redirect_type)
 
     @classmethod
-    def is_chronoligical(cls, site_type: Self) -> bool:
-        return CHRONOLOGICAL in site_type
+    def is_chronoligical(cls, site: Self) -> bool:
+        return CHRONOLOGICAL in site
 
     @classmethod
-    def is_mobile(cls, site_type: 'SiteType') -> bool:
-        return site_type.endswith(MOBILE_SUFFIX)
+    def is_mobile(cls, site: Self) -> bool:
+        return site.endswith(MOBILE_SUFFIX)
 
     @classmethod
-    def link_txt(cls, site_type: Self) -> Text:
-        description = SITE_DESCRIPTIONS[site_type]
+    def link_txt(cls, site: Self) -> Text:
+        description = SITE_DESCRIPTIONS[site]
         extra_info = ''
 
-        if cls._is_lesser_site(site_type):
+        if cls._is_lesser_site(site):
             style = 'gray30'# 'light_pink4'
         else:
             style = AUX_SITE_LINK_STYLE
 
         if ':' in description:
-            description, extra_info = SITE_DESCRIPTIONS[site_type].split(':')
+            description, extra_info = SITE_DESCRIPTIONS[site].split(':')
             extra_info = Text(escape(extra_info), style=f'plum4 italic')
             extra_info = Text(' ').append(parenthesize(extra_info, 'color(147) dim'))
 
-        style_mod = '' if cls._is_lesser_site(site_type) else 'bold'
-        link = link_text_obj(SiteType.get_url(site_type), escape(description), f"{style} {style_mod}")
+        style_mod = '' if cls._is_lesser_site(site) else 'bold'
+        link = link_text_obj(Site.get_url(site), escape(description), f"{style} {style_mod}")
         return link.append(extra_info)
 
     @classmethod
-    def mobile_compatible_types(cls) -> list['SiteType']:
+    def mobile_compatible_types(cls) -> list['Site']:
         """Site types that have a valid mobile equivalent."""
-        mobile_site_types = [site for site in cls if cls.is_mobile(site)]
-        return [site.removesuffix(MOBILE_SUFFIX) for site in mobile_site_types]
+        mobile_sites = [site for site in cls if cls.is_mobile(site)]
+        return [site.removesuffix(MOBILE_SUFFIX) for site in mobile_sites]
 
     @classmethod
-    def _is_lesser_site(cls, site_type: Self) -> bool:
-        return site_type in [cls.DOJ_FILES, cls.JSON_METADATA]  #+ [cls.JSON_FILES]
+    def _is_lesser_site(cls, site: Self) -> bool:
+        return site in [cls.DOJ_FILES, cls.JSON_METADATA]  #+ [cls.JSON_FILES]
 
 
 # TODO: purge repo of old files for space:
 #  - curated_chronological.html
 HTML_BUILD_FILENAMES = {
-    SiteType.EMAILS_CHRONOLOGICAL:  f'chronological_emails.html',
-    SiteType.CHRONOLOGICAL:         f"index.html",
-    SiteType.CHRONOLOGICAL_MOBILE:  f"mobile_chronological.html",
-    SiteType.DOJ_FILES:             f'doj_2026-01-30_non_email_files.html',
-    SiteType.EMAILS:                f'emails_grouped_by_counterparty.html',
-    SiteType.JSON_METADATA:         f'metadata.json',
-    SiteType.TEXT_MESSAGES:         f'text_messages_{EPSTEIN_FILES_NOV_2025}.html',
-    SiteType.WORD_COUNT:            f'communication_word_count.html',
+    Site.EMAILS_CHRONOLOGICAL:  f'chronological_emails.html',
+    Site.CHRONOLOGICAL:         f"index.html",
+    Site.CHRONOLOGICAL_MOBILE:  f"mobile_chronological.html",
+    Site.DOJ_FILES:             f'doj_2026-01-30_non_email_files.html',
+    Site.EMAILS:                f'emails_grouped_by_counterparty.html',
+    Site.JSON_METADATA:         f'metadata.json',
+    Site.TEXT_MESSAGES:         f'text_messages_{EPSTEIN_FILES_NOV_2025}.html',
+    Site.WORD_COUNT:            f'communication_word_count.html',
 #     SiteType.EPSTEIN_WORD_COUNT: 'epstein_texts_and_emails_word_count.html'),
 }
 
 # NOTE: Order matters, it's the order the links are shown in the header
 # Colons are used to break and parenthesize display
 SITE_DESCRIPTIONS = {
-    SiteType.CHRONOLOGICAL:         f"chronological curated:all types intermingled",
-    SiteType.CURATED:               f"emailers curated:emails grouped by person of interest",
-    SiteType.EMAILS:                f"emailers:all emails grouped by person",
-    SiteType.EMAILS_CHRONOLOGICAL:  f"emails chronological:all emails chronological order",
-    SiteType.BIOGRAPHIES:           f"people:one line biographies with some links",
-    SiteType.DEVICE_SIGNATURES:     f"signatures:email signatures/emojis and who uses them",
-    SiteType.TEXT_MESSAGES:         f"text messages:{HOUSE_OVERSIGHT_TRANCHE}",
-    SiteType.CURATED_MOBILE:        f"mobile:an attempt at mobile compatibility",
-    SiteType.CHRONOLOGICAL_MOBILE:  f"chrono mobile:another attempt at mobile compatibility",
-    SiteType.OTHER_FILES_TABLE:     f"other:files that are not emails or texts",
-    SiteType.WORD_COUNT:            f"word count:of Epstein's communications",
-    SiteType.DOJ_FILES:             f"doj files:raw OCR text {DOJ_2026_TRANCHE}",
-    SiteType.JSON_METADATA:         f"metadata:author bios, attribution explanations",
+    Site.CHRONOLOGICAL:         f"chronological curated:all types intermingled",
+    Site.CURATED:               f"emailers curated:emails grouped by person of interest",
+    Site.EMAILS:                f"emailers:all emails grouped by person",
+    Site.EMAILS_CHRONOLOGICAL:  f"emails chronological:all emails chronological order",
+    Site.BIOGRAPHIES:           f"people:one line biographies with some links",
+    Site.DEVICE_SIGNATURES:     f"signatures:email signatures/emojis and who uses them",
+    Site.TEXT_MESSAGES:         f"text messages:{HOUSE_OVERSIGHT_TRANCHE}",
+    Site.CURATED_MOBILE:        f"mobile:an attempt at mobile compatibility",
+    Site.CHRONOLOGICAL_MOBILE:  f"chrono mobile:another attempt at mobile compatibility",
+    Site.OTHER_FILES_TABLE:     f"other:files that are not emails or texts",
+    Site.WORD_COUNT:            f"word count:of Epstein's communications",
+    Site.DOJ_FILES:             f"doj files:raw OCR text {DOJ_2026_TRANCHE}",
+    Site.JSON_METADATA:         f"metadata:author bios, attribution explanations",
 }
 
 # These are site types where the custom HTML is good enough to deploy
 DEPLOY_CUSTOM_HTML_SITES = [
-    SiteType.BIOGRAPHIES,
-    SiteType.CHRONOLOGICAL,
-    SiteType.CHRONOLOGICAL_MOBILE,
-    SiteType.EMAILS_CHRONOLOGICAL,
-    SiteType.OTHER_FILES_TABLE,
+    Site.BIOGRAPHIES,
+    Site.CHRONOLOGICAL,
+    Site.CHRONOLOGICAL_MOBILE,
+    Site.EMAILS_CHRONOLOGICAL,
+    Site.OTHER_FILES_TABLE,
 ]
 
 
@@ -209,8 +212,8 @@ SECTION_ANCHORS = {
 
 def make_clean() -> None:
     """Delete all build artifacts."""
-    for site_type in SiteType:
-        for build_file in [SiteType.html_output_path(site_type), SiteType.custom_html_build_path(site_type)]:
+    for site in Site:
+        for build_file in [Site.html_output_path(site), Site.custom_html_build_path(site)]:
             for file in [build_file, Path(f"{build_file}.txt")]:
                 if file.exists():
                     logger.warning(f"Removing build file '{file}'...")
@@ -220,7 +223,7 @@ def make_clean() -> None:
 def use_custom_html() -> None:
     """Overwrite normal rich html export with custom HTML for all DEPLOY_CUSTOM_HTML_SITES."""
     for site in DEPLOY_CUSTOM_HTML_SITES:
-        from_path = SiteType.custom_html_build_path(site)
-        to_path = SiteType.html_output_path(site)
+        from_path = Site.custom_html_build_path(site)
+        to_path = Site.html_output_path(site)
         logger.warning(f"Copying/overwriting '{from_path}' to '{to_path}'...")
         shutil.copy2(from_path, to_path)

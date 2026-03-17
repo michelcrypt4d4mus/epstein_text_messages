@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 from rich.terminal_theme import TerminalTheme
 
-from epstein_files.output.site.sites import SiteType
+from epstein_files.output.site.sites import Site
 from epstein_files.util.env import args
 from epstein_files.util.helpers.string_helper import indented
 
@@ -45,7 +45,7 @@ class HtmlTemplate:
             return """
     <script type="text/javascript">
         if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {{
-            window.location.href = """ + f'"{SiteType.get_mobile_redirect_url(args._site_type)}";' + """
+            window.location.href = """ + f'"{Site.get_mobile_redirect_url(args._site)}";' + """
         }}
     </script>"""
 
