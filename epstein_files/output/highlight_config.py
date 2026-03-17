@@ -1106,7 +1106,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Entity(
                 BENNET_MOSKOWITZ,
                 "represented the Epstein estate executors",
-                r"Moskowitz.*Bennet|Bennet.*Moskowitz",
+                r"Moskowitz.{,12}Bennet|Bennet.{,12}Moskowitz",
                 match_partial=None,
             ),
             Entity(BRAD_KARP, "head of the law firm Paul Weiss", r"Brad (S.? )?Karp|Karp, Brad", match_partial=None),
