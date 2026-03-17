@@ -3,7 +3,7 @@ Crypto and virtual currency / fintech related files
 """
 from epstein_files.documents.config.categories.finance import GOLDMAN_INVESTMENT_MGMT
 from epstein_files.documents.config.config_builder import whistleblower_cfg
-from epstein_files.documents.config.doc_cfg import DEFAULT_TRUNCATE_TO, NO_TRUNCATE, SHORT_TRUNCATE_TO, DocCfg
+from epstein_files.documents.config.doc_cfg import DEFAULT_TRUNCATE_TO, NO_TRUNCATE, DocCfg
 from epstein_files.documents.config.email_cfg import EmailCfg
 from epstein_files.people.names import *
 from epstein_files.util.constant.strings import *
@@ -53,7 +53,7 @@ CRYPTO_CFGS = [
     EmailCfg(id='026255', note='Epstein requests help with "coin issues" and "prohibitions foreign donor" (sic)', is_very_interesting=True),
     EmailCfg(id='EFTA02521522'),
     EmailCfg(id='EFTA02524752', note=f'{STEVE_BANNON} "is thinking of combining crypto with his politcial movement"', show_with_name=STEVE_BANNON),
-    EmailCfg(id='EFTA01020383', note='Epstein emails Bannon a quote about the use of crypto to evade capital controls'),
+    EmailCfg(id='EFTA01020383', note='Epstein emails Bannon a quote about the use of crypto to evade capital controls' is_very_interesting=True,),
     EmailCfg(id='EFTA00874793', note=f'Bannon says that they need to stop EU regulation of crypto scams "dead in its tracks"', is_very_interesting=True),
     EmailCfg(id='EFTA02517572', note=f'Bannon says that they need to stop EU regulation of crypto scams "dead in its tracks"'),
     EmailCfg(id='EFTA00881711', note=f"Bannon and Epstein discuss bitcoin and crypto donations", is_very_interesting=True),
@@ -70,24 +70,29 @@ CRYPTO_CFGS = [
         id='EFTA02406818',
         author=AUSTIN_HILL,
         author_reason='unique email signature',
+        is_very_interesting=True,
         note=f"{AUSTIN_HILL} asks Epstein about how the Treasury Dept. will treat dollar backed stablecoins like Tether",
     ),
     EmailCfg(
         id='EFTA00955063',
+        is_very_interesting=True,
         note=f'{AUSTIN_HILL} explains that some crypto funds are engaged in fraudulent wash trading (the attached Excel sheet listing those funds has not been found)',
-        is_interesting=True,
     ),
     EmailCfg(
         id='EFTA00673841',
-        note="@pmarca is Marc Andreessen (a16z)",
         highlight_quote='business, Bitcoin, personal & esoteric mind games that we play',
+        note="@pmarca is Marc Andreessen (a16z)",
         truncate_to=NO_TRUNCATE,
     ),
     EmailCfg(id='EFTA02529170', note=f"Blockstream set up a special company to invest in an Asian ride hailing service"),
     EmailCfg(id='EFTA01917402', note=f'discussion of Epstein investment in Blockstream funneled through {JOI_ITO}', is_very_interesting=True),
-    EmailCfg(id='EFTA00999897', note=f"Epstein claims he's a fan of {ADAM_BACK} (who has recently claimed he had nothing to do with Epstein)"),
-    EmailCfg(id='EFTA01915883', note=f"{JOI_ITO} doesn't trust {AUSTIN_HILL} (for good reason)"),
-    EmailCfg(id='EFTA00988395', note=f'"Andy Back" is probably Blockstream bitcoin dev {ADAM_BACK}', duplicate_ids=['EFTA01928856']),
+    EmailCfg(
+        id='EFTA00999897',
+        is_very_interesting=True,
+        note=f"Epstein claims he's a fan of {ADAM_BACK} (who has recently claimed he had nothing to do with Epstein)",
+    ),
+    EmailCfg(id='EFTA01915883', note=f"{JOI_ITO} doesn't trust {AUSTIN_HILL} (for good reason)", is_very_interesting=True),
+    EmailCfg(id='EFTA00988395', note=f'"Andy Back" is probably Blockstream bitcoin dev {ADAM_BACK}', is_very_interesting=True, duplicate_ids=['EFTA01928856']),
     EmailCfg(id='EFTA01925969', note=f"{AUSTIN_HILL} and {ADAM_BACK} and some women plan a trip to Epstein's island", is_very_interesting=True),
     EmailCfg(id='EFTA00929418', note=f"Epstein forwards information from {AUSTIN_HILL} about fraudulent crypto trading operations to {PAUL_BARRETT}"),
     EmailCfg(id='EFTA01010209', note=f"{AUSTIN_HILL} calls {AMIR_TAAKI} \"a bit crazy\'"),
