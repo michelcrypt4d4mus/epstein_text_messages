@@ -36,6 +36,7 @@ def test_debug_dict(email):
             CECILE_DE_JONGH,
             CHRISTINA_GALBRAITH,
             JEFFREY_EPSTEIN,
+            EPSTEIN_VI_FOUNDATION,
             'Unik',
         ],
         'email.extracted_recipients': [],

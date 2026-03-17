@@ -223,6 +223,7 @@ HIGHLIGHT_COUNTS = {
     "reverse mortgages": 1,
     "russia": 2,
     "russian": 8,
+    "s&p": 1,
     "san juan": 1,
     "santa monica": 1,
     "sar": 6,

@@ -95,7 +95,7 @@ def test_Organization():
     northward = Organization('NorthwardEducation')
     assert northward.emailer_regex.pattern == 'NorthwardEducation'
     thielcap = Organization('ThielCapital', belongs_to=PETER_THIEL)
-    assert thielcap.info == f"{PETER_THIEL} entity"
+    assert thielcap.info == f"{PETER_THIEL} organization"
 
 
 def test_pattern():

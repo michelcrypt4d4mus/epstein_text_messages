@@ -83,7 +83,7 @@ file_id,category,author,is_interesting,timestamp,recipients_str,sent_from_device
 014622,finance,BofA / Merrill Lynch,False,2017-01-03 00:00:00+00:00,,,"BofA / Merrill Lynch report: ""Top 10 US Ideas Quarterly"""
 014652,legal,Virginia Giuffre v. Ghislaine Maxwell,,2015-04-22 00:00:00+00:00,,,Virginia Giuffre v. Ghislaine Maxwell: Complaint
 014695,email,Amanda Ens,,2017-01-27 20:03:49+00:00,Jeffrey Epstein;Richard Kahn,,
-014697,academia,Lawrence Krauss's ASU Origins Project,False,2017-03-16 00:00:00+00:00,,,"report: ""Challenges of AI: Envisioning and Addressing Adverse Outcomes"" by Lawrence Krauss's ASU Origins Project"
+014697,academia,ASU Origins Project,False,2017-03-16 00:00:00+00:00,,,"report: ""Challenges of AI: Envisioning and Addressing Adverse Outcomes"" by ASU Origins Project"
 014717,email,Amanda Ens,,2017-03-16 18:27:30+00:00,Jeffrey Epstein;Richard Kahn,,
 014721,finance,BofA / Merrill Lynch,False,2017-02-13 00:00:00+00:00,,,"BofA / Merrill Lynch report: ""Cause and Effect Fade the Trump Risk Premium"""
 014731,finance,BofA / Merrill Lynch,False,2016-11-16 00:00:00+00:00,,,"BofA / Merrill Lynch report: ""Global Rates, FX & EM 2017 Year Ahead"""
@@ -147,7 +147,7 @@ file_id,category,author,is_interesting,timestamp,recipients_str,sent_from_device
 017088,book,Alan Dershowitz,False,2012-04-02 00:00:00+00:00,,,"book titled ""Taking the Stand: My Life in the Law"" (draft) by Alan Dershowitz"
 017488,deposition,Scott Rothstein,,2012-06-22 00:00:00+00:00,,,"deposition of Scott Rothstein from Epstein v. Scott Rothstein, Brad Edwards, & L.M."
 017523,email,Barbro C. Ehnbom,,2012-08-18 16:11:07+00:00,Jeffrey Epstein,Sent from iPad,
-017524,conference,Barbro C. Ehnbom's Swedish American Life Science Summit (SALSS),False,2012-08-18 00:00:00+00:00,,,"Barbro C. Ehnbom's Swedish American Life Science Summit (SALSS) 2012 program, attached to email 017523"
+017524,conference,Swedish American Life Science Summit,False,2012-08-18 00:00:00+00:00,,,"Swedish American Life Science Summit 2012 program, attached to email 017523"
 017526,conference,,False,2012-06-16 00:00:00+00:00,,,Intellectual Jazz conference brochure f. David Blaine
 017574,email,Lisa Randall,,2012-11-28 16:17:19+00:00,Jeffrey Epstein,,
 017581,email,Lisa Randall,,2012-11-28 17:28:55+00:00,Jeffrey Epstein,Sent from my Verizon Wireless BlackBerry,Lisa Randall
@@ -429,8 +429,8 @@ file_id,category,author,is_interesting,timestamp,recipients_str,sent_from_device
 023101,email,,True,2016-10-16 22:34:07+00:00,Jeffrey Epstein,Sent from my iPhone,
 023102,article,Litigation Daily,False,2015-09-04 00:00:00+00:00,,,Litigation Daily article about Reid Weingarten
 023107,email,editorialstaff@flipboard.com,False,2019-07-16 20:00:39+00:00,Jeffrey Epstein,,
-023120,conference,Lawrence Krauss's ASU Origins Project,False,,,,"Lawrence Krauss's ASU Origins Project 'Strange Bedfellows' list of invitees f. Johnny Depp, Woody Allen, Obama, and more"
-023123,conference,Lawrence Krauss's ASU Origins Project,False,,,,"Lawrence Krauss's ASU Origins Project 'Strange Bedfellows' list of invitees f. Johnny Depp, Woody Allen, Obama, and more (old draft)"
+023120,conference,ASU Origins Project,False,,,,"ASU Origins Project 'Strange Bedfellows' list of invitees f. Johnny Depp, Woody Allen, Obama, and more"
+023123,conference,ASU Origins Project,False,,,,"ASU Origins Project 'Strange Bedfellows' list of invitees f. Johnny Depp, Woody Allen, Obama, and more (old draft)"
 023125,article,Virgin Islands Daily News,False,2019-02-16 00:00:00+00:00,,,Virgin Islands Daily News
 023126,email,Darren Indyke,False,2019-05-10 23:01:49+00:00,Jeffrey Epstein;Martin Weinberg,,
 023133,politics,"Terje Rød-Larsen, Nur Laiq, Fabrice Aidan",False,2014-12-09 00:00:00+00:00,,,"Terje Rød-Larsen, Nur Laiq, Fabrice Aidan The Search for Peace in the Arab-Israeli Conflict"
@@ -960,7 +960,7 @@ file_id,category,author,is_interesting,timestamp,recipients_str,sent_from_device
 026678,junk,,False,2017-06-29 00:00:00+00:00,,,fragment of image metadata (???)
 026679,finance,Invesco,False,2017-04-17 00:00:00+00:00,,,"Invesco report: ""Global Sovereign Asset Management Study 2017"""
 026731,academia,Lord Martin Rees,False,2020-03-16 00:00:00+00:00,,,speech at first inaugural Cornell Carl Sagan Lecture by Lord Martin Rees
-026747,conference,Barbro C. Ehnbom's Swedish American Life Science Summit (SALSS),False,2017-08-23 00:00:00+00:00,,,"Barbro C. Ehnbom's Swedish American Life Science Summit (SALSS) 2017 program, attached to email 031215"
+026747,conference,Swedish American Life Science Summit,False,2017-08-23 00:00:00+00:00,,,"Swedish American Life Science Summit 2017 program, attached to email 031215"
 026751,email,Masha Drokova,True,2017-08-07 21:23:29+00:00,Jeffrey Epstein,,
 026754,email,Landon Thomas Jr,,2017-08-23 18:31:58+00:00,Jeffrey Epstein;Owen Blicksilver,,
 026755,email,Jeffrey Epstein,False,2017-09-05 22:18:41+00:00,Jeffrey Epstein,,
@@ -1064,7 +1064,7 @@ file_id,category,author,is_interesting,timestamp,recipients_str,sent_from_device
 027365,messengerlog,Steve Bannon,True,2018-07-31 03:36:05+00:00,,,Steve Bannon (???)
 027374,messengerlog,Steve Bannon,True,2018-08-01 06:52:44+00:00,,,Steve Bannon (???)
 027396,messengerlog,Anthony Scaramucci,True,2018-08-20 14:35:02+00:00,,,Anthony Scaramucci (???)
-027401,messengerlog,Eva (Dubin?),,2018-08-19 10:13:21+00:00,,,Eva (Dubin?)
+027401,messengerlog,Eva Dubin,,2018-08-19 10:13:21+00:00,,,Eva Dubin (???)
 027406,messengerlog,Steve Bannon,True,2018-09-17 05:47:56+00:00,,,Steve Bannon (???)
 027428,messengerlog,Steve Bannon,True,2018-09-26 11:51:48+00:00,,,Steve Bannon (???)
 027434,messengerlog,Steve Bannon,True,2018-09-28 19:29:13+00:00,,,Steve Bannon (???)
@@ -1202,8 +1202,8 @@ file_id,category,author,is_interesting,timestamp,recipients_str,sent_from_device
 029096,email,Joi Ito,False,2017-06-01 12:37:55+00:00,Jeffrey Epstein,,
 029098,email,Martin Nowak,True,2017-07-25 12:57:37+00:00,Jeffrey Epstein,,Masha Drokova's skype contact is in Moscow
 029100,email,Masha Drokova,True,2017-07-30 18:18:25+00:00,Jeffrey Epstein,,
-029102,resumé,Nerio Alessandri (Founder and Chairman of Technogym S.p.A. Italy),,2016-03-16 00:00:00+00:00,,,professional resumé of Nerio Alessandri (Founder and Chairman of Technogym S.p.A. Italy) Harvard Business School application letter
-029104,resumé,Nerio Alessandri (Founder and Chairman of Technogym S.p.A. Italy),,2016-03-16 00:00:00+00:00,,,professional resumé of Nerio Alessandri (Founder and Chairman of Technogym S.p.A. Italy) Harvard Business School application letter
+029102,resumé,Nerio Alessandri,,2016-03-16 00:00:00+00:00,,,professional resumé of Nerio Alessandri Harvard Business School application letter
+029104,resumé,Nerio Alessandri,,2016-03-16 00:00:00+00:00,,,professional resumé of Nerio Alessandri Harvard Business School application letter
 029106,email,Larry Summers,,2017-10-11 15:04:05+00:00,Jeffrey Epstein,Sent from my iPad,
 029108,email,Larry Summers,,2017-10-27 14:59:48+00:00,Jeffrey Epstein,Sent from my iPad,
 029111,email,Joi Ito,True,2017-11-22 18:14:38+00:00,Jeffrey Epstein,Sent from my iPhone,
@@ -1397,7 +1397,7 @@ file_id,category,author,is_interesting,timestamp,recipients_str,sent_from_device
 029914,email,Peter Mandelson,True,2011-01-22 15:00:54+00:00,Jeffrey Epstein,,Epstein and Lord Mandelson discuss Russian investments
 029918,politics,Colorado legislator Diana DeGette's campaign,False,2012-09-27 00:00:00+00:00,,,Colorado legislator Diana DeGette's campaign bio
 029923,email,,True,2014-01-20 16:26:13+00:00,Jeffrey Epstein,Sent via BlackBerry by AT&T,
-029925,article,New Yorker,False,2011-12-12 00:00:00+00:00,,,New Yorker article about the placebo effect by Michael Specter
+029925,article,The New Yorker,False,2011-12-12 00:00:00+00:00,,,The New Yorker article about the placebo effect by Michael Specter
 029932,article,The Shimon Post,False,2011-07-03 00:00:00+00:00,,,The Shimon Post selection of articles about the mideast
 029958,email,Gwendolyn Beck,,2016-02-03 13:15:33+00:00,Jeffrey Epstein;Lesley Groff,,Gwendolyn Beck
 029959,email,Gwendolyn Beck,,2016-05-18 14:42:38+00:00,Jeffrey Epstein,,Gwendolyn Beck
@@ -1442,7 +1442,7 @@ file_id,category,author,is_interesting,timestamp,recipients_str,sent_from_device
 030129,email,Kathryn Ruemmler,,2014-09-21 04:55:16+00:00,Jeffrey Epstein,,
 030135,email,Kathryn Ruemmler,,2014-09-21 13:02:01+00:00,Jeffrey Epstein,,
 030141,email,Kathryn Ruemmler,,2019-02-02 00:56:59+00:00,Jeffrey Epstein,,
-030142,misc,Kathryn Ruemmler & Ken Starr,,2016-09-01 00:00:00+00:00,,,Kathryn Ruemmler & Ken Starr mostly empty JASTA (Justice Against Sponsors of Terrorism Act) doc referencing suit against Saudis
+030142,misc,"Kathryn Ruemmler, Ken Starr",,2016-09-01 00:00:00+00:00,,,"Kathryn Ruemmler, Ken Starr mostly empty JASTA (Justice Against Sponsors of Terrorism Act) doc referencing suit against Saudis"
 030149,email,Martin Weinberg,False,2019-05-29 17:19:07+00:00,None;Jeffrey Epstein,,
 030152,email,Daniel Siad,True,2010-07-24 13:32:05+00:00,Jeffrey Epstein,,
 030154,email,Jeffrey Epstein,False,2010-07-24 16:13:00+00:00,Daniel Siad,,
@@ -2705,7 +2705,7 @@ file_id,category,author,is_interesting,timestamp,recipients_str,sent_from_device
 033314,email,Robert Trivers,,2018-06-28 00:27:50+00:00,Jeffrey Epstein,,
 033315,email,Kathryn Ruemmler,,2018-07-17 00:29:07+00:00,Jeffrey Epstein,,
 033316,email,Aziza Alahmadi,,2018-09-18 20:17:46+00:00,Jeffrey Epstein,,Aziza Alahmadi
-033323,academia,Robert Trivers and Nathan H. Lents,False,2018-12-07 00:00:00+00:00,,,'Does Trump Fit the Evolutionary Role of Narcissistic Sociopath?' (draft) by Robert Trivers and Nathan H. Lents
+033323,academia,"Robert Trivers, Nathan H. Lents",False,2018-12-07 00:00:00+00:00,,,"'Does Trump Fit the Evolutionary Role of Narcissistic Sociopath?' (draft) by Robert Trivers, Nathan H. Lents"
 033326,email,Richard Kahn,,2018-10-24 22:27:45+00:00,Jeffrey Epstein,,
 033327,email,Richard Kahn,,2018-11-08 20:46:41+00:00,Jeffrey Epstein,,
 033328,email,Aziza Alahmadi,,2018-11-21 07:26:45+00:00,Jeffrey Epstein,Sent from my iPhone,Aziza Alahmadi
@@ -5532,7 +5532,7 @@ EFTA00584696,crypto,,True,2014-09-04 00:00:00+00:00,,,Epstein crypto fund Kyara 
 EFTA00589797,letter,Terje Rød-Larsen,True,2015-05-02 00:00:00+00:00,,,"letter from Terje Rød-Larsen to INS recommending ""genius"" visa for someone"
 EFTA00590685,misc,,False,2016-03-23 22:11:58+00:00,,,attached to email EFTA00830911
 EFTA00590940,legal,Jane Doe #1 and Jane Doe #2 v. United States,True,2026-01-20 00:00:00+00:00,,,Jane Doe #1 and Jane Doe #2 v. United States: interview with minor victim
-EFTA00591045,crypto,Peter Thiel's Valar Ventures fund,False,2014-11-15 16:10:28+00:00,,,"Peter Thiel's Valar Ventures fund pitch deck, attached to email EFTA01001339"
+EFTA00591045,crypto,Valar Ventures,False,2014-11-15 16:10:28+00:00,,,"Valar Ventures pitch deck, attached to email EFTA01001339"
 EFTA00591691,crypto,Valar Ventures,True,2026-01-16 00:00:00+00:00,,,Valar Ventures contract
 EFTA00591792,crypto,Valar Ventures,True,2017-08-03 00:00:00+00:00,,,Valar Ventures requesting money previously promised by Epstein to invest in a new opportunity
 EFTA00593085,crypto,Valar Ventures,True,2017-03-03 00:00:00+00:00,,,Valar Ventures requesting money previously promised by Epstein to invest in a new opportunity
@@ -5542,7 +5542,7 @@ EFTA00597484,crypto,Valar Ventures,True,2015-09-30 00:00:00+00:00,,,Valar Ventur
 EFTA00597489,crypto,Valar Ventures,True,2015-09-30 00:00:00+00:00,,,Valar Ventures is a fintech focused Peter Thiel fund Epstein was invested in
 EFTA00599617,money,,True,2017-07-31 00:00:00+00:00,,,valuations of Epstein's investments
 EFTA00603348,crypto,,True,2018-04-18 00:00:00+00:00,,,Electric Coin Company created the untraceable crypto ZCash funded by Larry Summers's DCG
-EFTA00603445,crypto,Honeycomb Asset Management (Spotify and Tencent investors),True,2026-01-02 00:00:00+00:00,,,Honeycomb Asset Management (Spotify and Tencent investors) July 2017 report
+EFTA00603445,crypto,Honeycomb Asset Management,True,2026-01-02 00:00:00+00:00,,,Honeycomb Asset Management July 2017 report
 EFTA00604942,crypto,Blockchain Capital,True,2015-10-01 00:00:00+00:00,,,Blockchain Capital Investor Update
 EFTA00605699,crypto,,True,2014-05-05 17:04:00+00:00,,,Epstein crypto fund Kyara Investment II LLC incorporation papers
 EFTA00605854,crypto,Valar Ventures,True,2015-06-30 00:00:00+00:00,,,Valar Ventures is a fintech focused Peter Thiel fund Epstein was invested in
@@ -5742,14 +5742,14 @@ EFTA00785160,,,,2019-05-19 14:27:36+00:00,,,
 EFTA00796700,legal,,True,2025-05-18 00:00:00+00:00,,,detailed notes on Epstein's relationship with Alan Dershowitz
 EFTA00797613,crypto,,False,2017-11-16 08:36:50+00:00,,,"Alphabit crypto fund pitch deck, attached to email EFTA00955063"
 EFTA00797937,crypto,John Pfeffer,True,2017-12-24 00:00:00+00:00,,,John Pfeffer An (Institutional) Investor's Take on Cryptoassets
-EFTA00803405,crypto,,True,2018-03-16 00:00:00+00:00,,,Honeycomb Asset Management fund brochure
-EFTA00803459,crypto,Honeycomb Asset Management (Spotify and Tencent investors),True,2026-01-20 00:00:00+00:00,,,Honeycomb Asset Management (Spotify and Tencent investors) January 2019 report
-EFTA00803464,crypto,Honeycomb Asset Management (Spotify and Tencent investors),True,2018-07-17 00:00:00+00:00,,,Honeycomb Asset Management (Spotify and Tencent investors) July 2018 report
-EFTA00803491,crypto,Honeycomb Asset Management (Spotify and Tencent investors),True,2026-01-26 00:00:00+00:00,,,Honeycomb Asset Management (Spotify and Tencent investors) deck
+EFTA00803405,money,Honeycomb Asset Management,True,2018-03-16 00:00:00+00:00,,,Honeycomb Asset Management fund brochure
+EFTA00803459,crypto,Honeycomb Asset Management,True,2026-01-20 00:00:00+00:00,,,Honeycomb Asset Management January 2019 report
+EFTA00803464,crypto,Honeycomb Asset Management,True,2018-07-17 00:00:00+00:00,,,Honeycomb Asset Management July 2018 report
+EFTA00803491,crypto,Honeycomb Asset Management,True,2026-01-26 00:00:00+00:00,,,Honeycomb Asset Management deck
 EFTA00805569,crypto,,True,2019-05-16 00:00:00+00:00,,,"Mercantile Global Holdings, San Juan Mercantile Bank & Trust, Noble Bank + Signature Bank + BitGo"
 EFTA00805860,crypto,,True,2026-01-06 00:00:00+00:00,,,Joi Ito's Neoteny 3 fund investor update / portfolio
 EFTA00808277,crypto,Valar Ventures,True,2026-01-02 00:00:00+00:00,,,Valar Ventures contract
-EFTA00810239,crypto,Peter Thiel's Valar Ventures fund,True,2018-01-16 00:00:00+00:00,,,Peter Thiel's Valar Ventures fund pitch deck
+EFTA00810239,crypto,Valar Ventures,True,2018-01-16 00:00:00+00:00,,,Valar Ventures pitch deck
 EFTA00810285,,,,2026-01-02 00:00:00+00:00,,,
 EFTA00810306,crypto,Valar Ventures,True,2018-03-31 00:00:00+00:00,,,Valar Ventures is a fintech focused Peter Thiel fund Epstein was invested in
 EFTA00810311,crypto,Valar Ventures,True,2017-10-20 00:00:00+00:00,,,Valar Ventures requesting money previously promised by Epstein to invest in a new opportunity
@@ -5764,9 +5764,9 @@ EFTA00810360,crypto,Valar Ventures,True,2018-01-17 00:00:00+00:00,,,Valar Ventur
 EFTA00810361,crypto,Valar Ventures,True,2018-03-01 00:00:00+00:00,,,Valar Ventures requesting money previously promised by Epstein to invest in a new opportunity
 EFTA00810362,crypto,Valar Ventures,True,2026-01-01 00:00:00+00:00,,,Valar Ventures investor questionnaire
 EFTA00810400,crypto,Valar Ventures,True,2019-01-01 00:00:00+00:00,,,Valar Ventures is a fintech focused Peter Thiel fund Epstein was invested in
-EFTA00810474,crypto,Peter Thiel's Valar Ventures fund,True,2026-01-01 00:00:00+00:00,,,Peter Thiel's Valar Ventures fund Fall 2018 Update
+EFTA00810474,crypto,Valar Ventures,True,2026-01-01 00:00:00+00:00,,,Valar Ventures Fall 2018 Update
 EFTA00810509,,,,2018-04-16 00:00:00+00:00,,,
-EFTA00810510,crypto,Peter Thiel's Valar Ventures fund,True,2026-01-24 00:00:00+00:00,,,Peter Thiel's Valar Ventures fund Fall 2016 Update
+EFTA00810510,crypto,Valar Ventures,True,2026-01-24 00:00:00+00:00,,,Valar Ventures Fall 2016 Update
 EFTA00811130,crypto,Perkins Coie,True,2018-03-22 00:00:00+00:00,,,Perkins Coie tax opinion on ZCash tokens
 EFTA00811479,money,,True,2017-03-31 00:00:00+00:00,,,valuations of Epstein's investments
 EFTA00811490,crypto,Valar Ventures,True,2020-01-15 00:00:00+00:00,,,Valar Ventures requesting money previously promised by Epstein to invest in a new opportunity
@@ -6268,9 +6268,9 @@ EFTA01193705,misc,,,2013-12-16 00:00:00+00:00,,,"list of Epstein's known email a
 EFTA01203276,crypto,Valar Ventures,True,2016-01-05 20:15:00+00:00,,,Valar Ventures requesting money previously promised by Epstein to invest in a new opportunity
 EFTA01205265,email,Richard Kahn,,2015-08-03 21:15:27+00:00,Jeffrey Epstein,,
 EFTA01205267,crypto,Valar Ventures,True,2015-06-30 00:00:00+00:00,,,Valar Ventures is a fintech focused Peter Thiel fund Epstein was invested in
-EFTA01217703,skype_log,,,2014-05-13 22:32:18+00:00,,,"skype log of conversation with Joscha Bach, Lawrence Krauss, actress Athena Zelcovich"
-EFTA01217736,skype_log,,,2014-05-26 19:52:08+00:00,,,"skype log of conversation with Tyler Shears, actress Athena Zelcovich"
-EFTA01217787,skype_log,,True,2014-08-22 20:12:59+00:00,,,"skype log of conversation with Hanna Traff at Spotify, Tyler Shears"
+EFTA01217703,skype_log,,,2014-05-13 22:32:18+00:00,,,"skype log of conversation with Athena Zelcovich, Joscha Bach, Lawrence Krauss"
+EFTA01217736,skype_log,,,2014-05-26 19:52:08+00:00,,,"skype log of conversation with Athena Zelcovich, Tyler Shears"
+EFTA01217787,skype_log,,True,2014-08-22 20:12:59+00:00,,,"skype log of conversation with Hanna Traff, Tyler Shears"
 EFTA01218267,messengerlogpdf,,True,2015-07-13 09:31:44+00:00,,,
 EFTA01222951,money,,True,2019-02-12 00:00:00+00:00,,,credit card expenses for Carlos L Rodriguez using Plum Card
 EFTA01227877,government,,True,2018-06-25 00:00:00+00:00,,,multi entry visa for the Russian Federation
