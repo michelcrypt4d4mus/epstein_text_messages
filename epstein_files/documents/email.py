@@ -100,15 +100,15 @@ OCR_REPAIRS: OcrRepair = {
     re.compile('»'): '>>',
     re.compile(r'grnail\.com'): 'gmail.com',
     'Newsmax. corn': 'Newsmax.com',
-    re.compile(r"^(From|To)(: )?[_1.]{5,}", re.MULTILINE): rf"\1: {REDACTED}",  # Redacted email addresses
     # These 3 must come in this order!
     re.compile(r'([/vkT]|Ai|li|(I|7)v)rote:'): 'wrote:',
     re.compile(r"([<.=_HIM][<>.=_HIM14]{5,}[<>.=_HIM]|MOMMINNEMUMMIN) *(wrote:?)?"): rf"{REDACTED} \2",
     re.compile(r"([,<>_]|AM|PM)\n(>)? ?wrote:?"): r'\1\2 wrote:',
     # Headers
+    re.compile(r"^From "): 'From: ',  # first line only
+    re.compile(r"^(From|To)(: )?[_1.]{5,}", re.MULTILINE): rf"\1: {REDACTED}",  # Redacted email addresses
     re.compile(r"I ?(od|nl)ine-Images:"): 'Inline-Images:',
     re.compile(r"^((?:B?cc|To):.*)\n(>?;.*)", re.IGNORECASE | re.MULTILINE): r'\1 \2',
-    re.compile(r"^From "): 'From: ',
     re.compile(r"^(Sent|Subject) (?![Ff]rom|on|using|[Rr]emote|[Vv]ia|with)", re.MULTILINE): r'\1: ',
     re.compile(r"^Subject[.•]{,2} ", re.MULTILINE): 'Subject: ',
     re.compile(r"^(Forwarded|Original) Message$", re.IGNORECASE | re.MULTILINE): r"--- \1 Message ---",  # Make forward lines match our highlight
@@ -140,9 +140,6 @@ OCR_REPAIRS: OcrRepair = {
     re.compile(r"[ijlp']ee[vy]acation[©@a(&,P ]{1,3}g?mail.com"): 'jeevacation@gmail.com',
     'gyahoo.com': '@yahoo.com',
     # Signatures
-    re.compile(r'Blac[il]cBerry'): 'BlackBerry',
-    'BlackBerry by AT &T': 'BlackBerry by AT&T',
-    'BlackBerry from T- Mobile': 'BlackBerry from T-Mobile',
     'Envoy& de': 'Envoyé de',
     'Envoye avec BlackBerry° d': 'Envoye avec BlackBerry® d',
     'from Samsung Mob.le': 'from Samsung Mobile',
@@ -150,6 +147,9 @@ OCR_REPAIRS: OcrRepair = {
     'Mail for i Phone': 'Mail for iPhone',
     'Sent from Mabfl': 'Sent from Mobile',  # NADIA_MARCINKO signature bad OCR
     'twitter glhsummers': 'twitter @lhsummers',
+    re.compile(r'Blac[il]cBerry'): 'BlackBerry',
+    'BlackBerry by AT &T': 'BlackBerry by AT&T',  # Must come after previous
+    'BlackBerry from T- Mobile': 'BlackBerry from T-Mobile',
     re.compile(r"[cC]o-authored with i ?Phone auto-correct"): "Co-authored with iPhone auto-correct",
     re.compile(r"from my ['!()=]([Pp]hone)"): r'from my i\1',
     re.compile(r'from my BlackBerry[0°] wireless device'): 'from my BlackBerry® wireless device',
@@ -162,8 +162,8 @@ OCR_REPAIRS: OcrRepair = {
     'woody-allen-jeffrey-epsteins-\nsociety-friends-close-ranks/ ---': 'woody-allen-jeffrey-epsteins-society-friends-close_ranks/\n',
     ' https://www.theguardian.com/world/2017/may/29/close-friend-trump-thomas-barrack-\nalleged-tax-evasion-italy-sardinia?CMP=share btn fb': '\nhttps://www.theguardian.com/world/2017/may/29/close-friend-trump-thomas-barrack-alleged-tax-evasion-italy-sardinia?CMP=share_btn_fb',
     'search-for-secret-putin-\nfortune.html': 'search-for-secret-putin-fortune.html',
-    re.compile(r"[h=][t=][t=][p=]://"): 'http://',
-    re.compile(r"([h=][t=][t=][op=][s=]|Imps )://"): 'https://',
+    re.compile(r"[h=][t=][t=][p=]://\s*"): 'http://',
+    re.compile(r"([h=][t=][t=][op=][s=]|Imps )://\s*"): 'https://',
     re.compile(r'timestopics/people/t/landon jr thomas/inde\n?x\n?\.\n?h\n?tml'): 'timestopics/people/t/landon_jr_thomas/index.html',
     re.compile(r" http ?://www. ?dailymail. ?co ?.uk/news/article-\d+/Troub ?led-woman-history-drug-\n?us ?e-\n?.*html"): '\nhttp://www.dailymail.co.uk/news/article-3914012/Troubled-woman-history-drug-use-claimed-assaulted-Donald-Trump-Jeffrey-Epstein-sex-party-age-13-FABRICATED-story.html',
     re.compile(r"http.*steve-bannon-trump-tower-\n?interview-\n?trumps-\n?strategist-plots-\n?new-political-movement-948747"): "\nhttp://www.hollywoodreporter.com/news/steve-bannon-trump-tower-interview-trumps-strategist-plots-new-political-movement-948747",
