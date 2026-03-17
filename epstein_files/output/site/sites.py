@@ -64,12 +64,8 @@ class SiteType(StrEnum):
     @classmethod
     def custom_html_build_path(cls, site_type: 'SiteType | Path') -> Path:
         """Path for the templated custom HTML version of the page."""
-        if isinstance(site_type, Path):
-            basename = site_type.name
-        else:
-            basename = cls.html_output_path(site_type).name
-
-        return HTML_DIR.joinpath(f'{CUSTOM_HTML_PREFIX}{basename}')
+        filename = site_type.name if isinstance(site_type, Path) else cls.html_output_path(site_type).name
+        return HTML_DIR.joinpath(f'{CUSTOM_HTML_PREFIX}{filename}')
 
     @classmethod
     def directory_links(cls) -> dict['SiteType', Text]:
@@ -109,7 +105,11 @@ class SiteType(StrEnum):
 
     @classmethod
     def is_chronoligical(cls, site_type: Self) -> bool:
-        return site_type.startswith(CHRONOLOGICAL)
+        return CHRONOLOGICAL in site_type
+
+    @classmethod
+    def is_mobile(cls, site_type: 'SiteType') -> bool:
+        return site_type.endswith(MOBILE_SUFFIX)
 
     @classmethod
     def link_txt(cls, site_type: Self) -> Text:
@@ -135,10 +135,6 @@ class SiteType(StrEnum):
         """Site types that have a valid mobile equivalent."""
         mobile_site_types = [site for site in cls if cls.is_mobile(site)]
         return [site.removesuffix(MOBILE_SUFFIX) for site in mobile_site_types]
-
-    @classmethod
-    def is_mobile(cls, site_type: 'SiteType') -> bool:
-        return site_type.endswith(MOBILE_SUFFIX)
 
     @classmethod
     def _is_lesser_site(cls, site_type: Self) -> bool:
