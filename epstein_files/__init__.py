@@ -86,7 +86,7 @@ def epstein_generate() -> None:
             printed_docs += printed_files
 
         if args.names:
-            print(f"\n\n IDs printed for args.names:\n\n{[doc.file_id for doc in printed_docs]}\n")
+            Document._print_ids(printed_docs, 'args.names')
 
     if args.build:
         write_html_arg = args._site if args.build == BUILD_TRUE_BUT_UNSPECIFIED else Path(args.build)

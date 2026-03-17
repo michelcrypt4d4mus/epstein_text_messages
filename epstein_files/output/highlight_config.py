@@ -1710,6 +1710,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 "US financial markets regulator",
                 r"sec\.?gov|Securities (&|and) Exchange Commission",
             ),
+            acronym('United States Marshals Service', is_emailer=True),
             law_enforcement(BUREAU_OF_PRISONS, r"bop\.gov|(Federal )?Bureau of Prisons"),
             law_enforcement('DHS'),
             law_enforcement(DOJ),
@@ -1731,7 +1732,6 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             law_enforcement("SDNY Cybercrimes", is_emailer=True),
             law_enforcement('USAHUB-USAJournal111'),
             law_enforcement(USANYS, is_emailer=True),
-            law_enforcement('USMS'),
             law_enforcement('US Secret Service'),
             # TODO: These are in UNINTERESTING_AUTHORS but that should be configured here
             law_enforcement(PALM_BEACH_CODE_ENFORCEMENT),
@@ -3311,7 +3311,12 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 r"Rothstein,? Rosenfeldt,? Adler",
                 url='https://en.wikipedia.org/wiki/Scott_W._Rothstein',
             ),
-            Organization('Wigdor Law', f"sued {LEON_BLACK} alleging crimes at Epstein's properties", r"Wigdor(Law)?( LLP)?"),
+            Organization(
+                'Wigdor Law',
+                f"sued {LEON_BLACK} alleging crimes at Epstein's properties",
+                r"Wigdor(Law)?( LLP)?",
+                is_emailer=False,
+            ),
         ],
         patterns=[
             r"(Mi(chael|ke) )?Avenatti",

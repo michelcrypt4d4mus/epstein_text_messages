@@ -744,6 +744,15 @@ class Document(LoggingEntity):
         """Number of elements of `docs` that have an author attribution."""
         return len([doc for doc in docs if doc.author])
 
+    @classmethod
+    def _print_ids(cls, docs: Sequence[Self], msg: str = '') -> None:
+        """Debug method to print raw string of IDs suitable for copy/paste."""
+        print(f"\n\n IDs for {msg}:\n\n{' '.join([doc.file_id for doc in docs])}\n")
+
+    ########################
+    #### STATIC METHODS ####
+    ########################
+
     @staticmethod
     def count_by_month(docs: Sequence['DocumentType']) -> Counter[str | None]:
         return Counter([d.timestamp.date().isoformat()[0:7] if d.timestamp else None for d in docs])

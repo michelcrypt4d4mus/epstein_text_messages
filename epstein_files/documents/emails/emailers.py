@@ -58,7 +58,7 @@ ADDITIONAL_EMAILERS = [
     Entity('Linda W. Grossman', match_partial=None, is_interesting=False),
     Entity('Lynnie Tofte Fass', match_partial=None, is_interesting=False),
     Entity('Marie Moneysmith', match_partial=None, is_interesting=False),
-    Entity('Tom', match_partial=None, is_interesting=False),
+    Entity('Tom', match_partial=None, is_interesting=False, is_emailer=False),
     Entity('Harry Shearer', match_partial=None, is_interesting=False),
     Entity('Jay Levin', match_partial=None, is_interesting=False),
     Entity('Lanny Swerdlow', match_partial=None, is_interesting=False),
@@ -130,8 +130,8 @@ def extract_emailer_names(emailer_str: str) -> list[Name]:
         return [SHAHER_ABDULHAK_BESHER]
 
     for name in EMAILER_REGEXES.keys():
-        if name == 'CHS':
-            print(f"\n\n CHS: {EMAILER_REGEXES[name]}\n\n")
+        if name == 'Tom':
+            print(f"\n\n Tom: {EMAILER_REGEXES[name]}\n\n")
 
     names_found: list[Name] = [name for name, regex in EMAILER_REGEXES.items() if regex.search(emailer_str)]
 
