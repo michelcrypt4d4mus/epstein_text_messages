@@ -35,7 +35,7 @@ MONEY_CFGS = [
         id='EFTA01681865',
         author=DEUTSCHE_BANK,
         note="explanations of all of Epstein's large payments prepared for DOJ",
-        is_interesting=True,
+        is_interesting=10,
     ),
     DocCfg(
         id='EFTA01361270',
@@ -52,7 +52,7 @@ MONEY_CFGS = [
     ),
     DocCfg(id='EFTA01285411', note=f"bank statement for Epstein's {SOUTHERN_TRUST_COMPANY} showing $82 million balance"),
     DocCfg(id='EFTA01222951', note=f"credit card expenses for Carlos L Rodriguez using Plum Card", date='2019-02-12'),
-    DocCfg(id='EFTA00016884', note="Epstein's last will and testament", date='2014-11-18'),
+    DocCfg(id='EFTA00016884', note="Epstein's last will and testament", date='2014-11-18', is_interesting=10),
     DocCfg(
         id='EFTA00089546',
         note=f"Epstein last will and testament codicil naming {JAMES_CAYNE} an executor",
@@ -80,7 +80,7 @@ MONEY_CFGS = [
     EmailCfg(
         id='EFTA01409449',
         note=f"{DEUTSCHE_BANK} employees scrubbing Epstein's name off his TWTR (Twitter) trades",
-        is_interesting=True,
+        is_interesting=10,
     ),
     EmailCfg(
         id='EFTA00461557',
@@ -94,6 +94,7 @@ MONEY_CFGS = [
         author_uncertain=True,
         note=f"Ike Groff invests $250,000 in Mangrove Partners managed by Nathaniel August",
     ),
+    EmailCfg(id='EFTA00629657', note=f"arranging {LEON_BLACK}'s finances"),
     EmailCfg(id='EFTA00371120', note=f"Epstein appears to invest in {ATORUS}"),
     EmailCfg(id='EFTA00652799', note=f'Epstein calls Ari Glass "a bit sketchy" despite investing ~$50 million in his fund Boothbay'),
     EmailCfg(id='EFTA01388422', note='Nadean Novogratz is probably the sister-in-law of crypto ponzi billionaire Mike Novogratz'),
