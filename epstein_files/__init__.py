@@ -5,6 +5,7 @@ Reformat Epstein text message files for readability and count email senders.
     Run: 'EPSTEIN_DOCS_DIR=/path/to/TXT epstein_generate'
 """
 import sys
+from pathlib import Path
 from subprocess import check_output
 
 from dotenv import load_dotenv
@@ -30,7 +31,7 @@ from epstein_files.output.rich import console, print_json, print_subtitle_panel
 from epstein_files.output.site.sites import SiteType, make_clean
 from epstein_files.util.constant.strings import HOUSE_OVERSIGHT_NOV_2025_ID_REGEX
 from epstein_files.util.constants import ALL_CONFIGS
-from epstein_files.util.env import args, site_config
+from epstein_files.util.env import BUILD_TRUE_BUT_UNSPECIFIED, args, site_config
 from epstein_files.util.helpers.data_helpers import flatten, uniquify
 from epstein_files.util.helpers.document_helper import diff_documents
 from epstein_files.util.helpers.file_helper import extract_file_id, is_local_extract_file, open_file_or_url
@@ -80,7 +81,10 @@ def epstein_generate() -> None:
             printed_files = print_other_files_section(epstein_files, printer)
             timer.log_section_complete('OtherFile', epstein_files.other_files, printed_files)
 
-    printer.write_html(args._site_type)
+    if args.build:
+        write_html_arg = args._site_type if args.build == BUILD_TRUE_BUT_UNSPECIFIED else Path(args.build)
+        printer.write_html(write_html_arg)
+
     logger.warning(f"Total time: {timer.seconds_since_start_str()}")
 
     if args.open_txt:

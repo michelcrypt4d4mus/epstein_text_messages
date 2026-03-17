@@ -33,6 +33,7 @@ MOBILE_SUFFIX = '_mobile'
 
 class SiteType(StrEnum):
     BIOGRAPHIES = auto()
+    COLORS_ONLY = auto()
     CURATED = auto()
     CURATED_MOBILE = auto()
     CHRONOLOGICAL = CHRONOLOGICAL
@@ -44,6 +45,7 @@ class SiteType(StrEnum):
     JSON_METADATA = auto()
     NAMES = auto()
     OTHER_FILES_TABLE = auto()
+    SAMPLE = auto()
     TEXT_MESSAGES = auto()
     WORD_COUNT = auto()
     # Dev sites
@@ -76,6 +78,11 @@ class SiteType(StrEnum):
     @classmethod
     def html_output_path(cls, site_type: 'SiteType') -> Path:
         """Defaults to `[site_type].html` if not configured in `HTML_BUILD_FILENAMES`."""
+
+        if site_type == cls.NAMES:
+            from epstein_files.util.env import args
+            site_type = '__'.join(sorted(args.names)).replace(' ', '_').lower()
+
         return HTML_DIR.joinpath(HTML_BUILD_FILENAMES.get(site_type, f"{site_type}.html"))
 
     @classmethod

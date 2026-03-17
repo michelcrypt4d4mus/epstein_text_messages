@@ -180,9 +180,11 @@ def print_json_files(epstein_files: EpsteinFiles):
 def print_json_metadata(epstein_files: EpsteinFiles) -> None:
     """Print all our `DocCfg` and derived info about authorship etc."""
     if args.build:
-        with open(args.build, 'wt') as f:
+        output_path = SiteType.html_output_path(SiteType.JSON_METADATA)
+
+        with open(output_path, 'wt') as f:
             f.write(epstein_files.json_metadata())
-            log_file_write(args.build)
+            log_file_write(output_path)
     else:
         console.print_json(epstein_files.json_metadata(), indent=4, sort_keys=True)
 
@@ -268,7 +270,7 @@ def write_html(output_path: Path | SiteType | None, **kwargs) -> Path | None:
     Returns the path that was written (if any).
     """
     if not output_path:
-        logger.warning(f"Not writing HTML because args.build={args.build}.")
+        logger.warning(f"Not writing HTML (args.build={args.build}, args._site_type={args._site_type}.")
         return
     elif isinstance(output_path, SiteType):
         output_path = SiteType.html_output_path(output_path)

@@ -224,20 +224,21 @@ class DocPrinter:
     def print_title_page_bottom(self) -> None:
         self._print_title_page_elements(title_page_bottom_elements(self.epstein_files))
 
-    def write_html(self, html_path: Path | SiteType) -> Path:
+    def write_html(self, write_to: Path | SiteType) -> Path:
         """Export custom HTML, trigger rich export_html() if `SiteType` given, returns custom HTML path."""
-        if isinstance(html_path, SiteType):
+        if isinstance(write_to, SiteType):
             from epstein_files.output.output import write_html
 
             if args.names:
-                html_path = HTML_DIR.joinpath('__'.join(args.names).replace(' ', '_').lower() + '.html')
+                names = sorted(['unknown' if n is None else n for n in args.names])
+                write_to = HTML_DIR.joinpath('__'.join(names).replace(' ', '_').lower() + '.html')
             else:
-                html_path = SiteType.html_output_path(html_path)
+                write_to = SiteType.html_output_path(write_to)
 
-            write_html(html_path)
-            output_path = SiteType.custom_html_build_path(html_path)
+            write_html(write_to)
+            output_path = SiteType.custom_html_build_path(write_to)
         else:
-            output_path = html_path
+            output_path = write_to
 
         return write_templated_html(self.html_elements, output_path)
 

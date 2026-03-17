@@ -11,7 +11,7 @@ from epstein_files.util.constant.strings import SUPPRESS_OUTPUT
 from epstein_files.util.helpers.env_helpers import get_env_dir
 from epstein_files.util.logging import env_log_level, exit_with_error, logger, set_log_level
 
-DEFAULT_FILE = 'default_file'
+BUILD_TRUE_BUT_UNSPECIFIED = 'default_file'  # default value if --build is specified without an arg
 EPSTEIN_GENERATE = 'epstein_generate'
 HTML_SCRIPTS = [EPSTEIN_GENERATE]
 PICKLED_PATH = Path("the_epstein_files.local.pkl.gz")
@@ -45,7 +45,7 @@ output.add_argument('--all-emails', '-ae', action='store_true', help='all the em
 output.add_argument('--all-emails-chrono', '-aec', action='store_true', help='all emails in chronological order')
 output.add_argument('--all-other-files', '-ao', action='store_true', help='all the non-email, non-text msg files instead of just the interesting ones')
 output.add_argument('--all-texts', '-at', action='store_true', help='all the text messages instead of just the interesting ones')
-parser.add_argument('--build', '-b', nargs="?", default=None, const=DEFAULT_FILE, help='write output to HTML file')
+parser.add_argument('--build', '-b', nargs="?", default=None, const=BUILD_TRUE_BUT_UNSPECIFIED, help='write output to HTML file')
 output.add_argument('--emailers-info', '-ei', action='store_true', help='write a .png of the eeailers info table')
 output.add_argument('--json-files', action='store_true', help='pretty print all the raw JSON data files in the collection and exit')
 output.add_argument('--json-metadata', '-jm', action='store_true', help='dump JSON metadata for all files and exit')
@@ -74,7 +74,7 @@ scripts.add_argument('--raw', action='store_true', help='show raw contents of fi
 scripts.add_argument('--whole-file', '-wf', action='store_true', help='print whole files')
 
 debug = parser.add_argument_group('DEBUG')
-debug.add_argument('--char-nums', '-cn', nargs="?", default=None, const=1000, type=int, help='inject char nums every N chars')
+debug.add_argument('--char-nums', '-cn', nargs="?", default=None, const=100, type=int, help='inject char nums every N chars')
 debug.add_argument('--colors-only', '-c', action='store_true', help='print header with color key table and links and exit')
 debug.add_argument('--constantize', action='store_true', help='constantize names when printing repr() of objects')
 debug.add_argument('--debug', '-d', action='store_true', help='set debug level to INFO')
@@ -100,14 +100,9 @@ else:
 
 is_html_script = parser.prog in HTML_SCRIPTS or 'html' in parser.prog
 site_config = MobileConfig if args.mobile else SiteConfig
-args._site_type = SiteType.CURATED
 
 args.debug = args.deep_debug or args.debug or is_env_var_set('DEBUG')
 args._debug_highlight_patterns = (args.colors_only and args.debug)
-
-if args.colors_only:
-    args.build = HTML_DIR.joinpath('colors_only.html')
-    args._site_type = SiteType.CURATED
 
 # args.names = [name.title() for name in args.names] if args.names and args.names[0][0].islower() else args.names
 args.names = [None if n == 'None' else n.strip() for n in (args.names or [])]
@@ -129,7 +124,7 @@ if not (any_output_selected or args.all_emails_chrono or args.emailers_info or a
 
 if (args.output_chrono or args.all_emails_chrono or args.output_emails) and not args.build:
     logger.warning(f"--output-chrono requires --build to export new HTML, setting...")
-    args.build = DEFAULT_FILE
+    args.build = BUILD_TRUE_BUT_UNSPECIFIED
 
 if is_html_script:
     if args.repair:
@@ -138,42 +133,47 @@ if is_html_script:
     elif args.positional_args:
         exit_with_error(f"{parser.prog} does not accept positional arguments (receeived {args.positional_args})")
 
-    if args.build == DEFAULT_FILE:
-        if args.mobile:
-            if args.output_chrono:
-                args._site_type = SiteType.CHRONOLOGICAL_MOBILE
-            else:
-                args._site_type = SiteType.CURATED_MOBILE  # This isn't great; requires args be correct to build
+    if 'sample_html' in parser.prog:
+        args._site_type = SiteType.SAMPLE
+    elif args.mobile:
+        if args.output_chrono:
+            args._site_type = SiteType.CHRONOLOGICAL_MOBILE
         else:
-            if args.names:
-                args._site_type = SiteType.NAMES
-            elif args.output_bios:
-                args._site_type = SiteType.BIOGRAPHIES
-            elif args.all_doj_files:
-                args._site_type = SiteType.DOJ_FILES
-            elif args.all_emails:
-                args._site_type = SiteType.EMAILS
-            elif args.all_emails_chrono:
-                args._site_type = SiteType.EMAILS_CHRONOLOGICAL
-            elif args.all_texts:
-                args._site_type = SiteType.TEXT_MESSAGES
-            elif args.all_other_files:
-                args._site_type = SiteType.OTHER_FILES_TABLE
-            elif args.json_metadata:
-                args._site_type = SiteType.JSON_METADATA
-            elif args.output_chrono:
-                args._site_type = SiteType.CHRONOLOGICAL
-            elif args.output_devices:
-                args._site_type = SiteType.DEVICE_SIGNATURES
-            elif args.output_word_count:
-                args._site_type = SiteType.WORD_COUNT
-
-        args.build = SiteType.html_output_path(args._site_type)
-    elif 'sample_html' in parser.prog:
-        args.build = SAMPLE_HTML_PATH
+            logger.warning(f"Mobile site type couldn't be conclusively determined, settings to {SiteType.CURATED_MOBILE}...")
+            args._site_type = SiteType.CURATED_MOBILE  # This isn't great; requires args be correct to build
+    else:
+        if args.names:
+            args._site_type = SiteType.NAMES  # --name args overrides other considerations
+        elif args.colors_only:
+            args._site_type = SiteType.COLORS_ONLY
+            args.build = args.build or BUILD_TRUE_BUT_UNSPECIFIED
+        elif args.output_bios:
+            args._site_type = SiteType.BIOGRAPHIES
+        elif args.all_doj_files:
+            args._site_type = SiteType.DOJ_FILES
+        elif args.all_emails:
+            args._site_type = SiteType.EMAILS
+        elif args.all_emails_chrono:
+            args._site_type = SiteType.EMAILS_CHRONOLOGICAL
+        elif args.all_texts:
+            args._site_type = SiteType.TEXT_MESSAGES
+        elif args.all_other_files:
+            args._site_type = SiteType.OTHER_FILES_TABLE
+        elif args.json_metadata:
+            args._site_type = SiteType.JSON_METADATA
+        elif args.output_chrono:
+            args._site_type = SiteType.CHRONOLOGICAL
+        elif args.output_devices:
+            args._site_type = SiteType.DEVICE_SIGNATURES
+        elif args.output_word_count:
+            args._site_type = SiteType.WORD_COUNT
+        else:
+            logger.warning(f"Site type couldn't be conclusively determined, settings to {SiteType.CURATED}...")
+            args._site_type = SiteType.CURATED
 elif parser.prog.startswith('epstein_') and not args.positional_args and not args.names:
     exit_with_error(f"{parser.prog} requires positional arguments but got none!")
 
+# More preview chars in OtherFile table if it's --all-other-files
 if args.all_other_files:
     site_config.other_files_preview_chars = int(site_config.other_files_preview_chars * ALL_OTHER_FILES_MULTIPLIER)
 
