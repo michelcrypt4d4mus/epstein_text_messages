@@ -165,7 +165,7 @@ class DocPrinter:
         self._print_other_files_queue()
         timer.print_at_checkpoint(f"Finished printing {len(docs):,} objs ({len(suppressed_docs):,} suppressed) {log_sfx}")
 
-    def print_renderable(self, renderables: RenderableType | list[RenderableType]) -> None:
+    def print_renderable(self, renderables: RenderableType | Sequence[RenderableType]) -> None:
         """All things being printed should come through here, which collects both terminal and HTML output as its written."""
         for renderable in listify(renderables):
             positioned = PositionedRich.from_unwrapped_obj(renderable)
@@ -230,9 +230,9 @@ class DocPrinter:
             output_path = write_to
             logger.warning(f"Not exporting rich.console to HTML directly (only custom)...")
         else:
+            output_path = SiteType.custom_html_build_path(write_to)
             from epstein_files.output.output import write_html
             write_html(write_to)
-            output_path = SiteType.custom_html_build_path(write_to)
 
         return write_templated_html(self.html_elements, output_path)
 
