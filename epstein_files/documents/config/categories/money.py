@@ -1,6 +1,7 @@
 """
 Epstein money related files. This category makes is_interesting = True.
 """
+from epstein_files.documents.config.config_builder import letter
 from epstein_files.documents.config.doc_cfg import DEFAULT_TRUNCATE_TO, DocCfg
 from epstein_files.documents.config.email_cfg import EmailCfg
 from epstein_files.people.names import *
@@ -76,6 +77,17 @@ MONEY_CFGS = [
     DocCfg(id='EFTA00000476', display_text='photo of JEFFREY EPSTEIN CASH DISBURSEMENTS', date='2006-09-01', is_interesting=False),
     DocCfg(id='EFTA00238499', note='wire transfer to Signature Bank account'),
     DocCfg(id='EFTA00606411', display_text='proposed jet ownership structure flowchart', date='2017-01-01', date_uncertain='guess'),
+
+    # Jeepers, Inc.
+    EmailCfg(id='EFTA01424585', note=f"{DEUTSCHE_BANK} AML review of Jeepers, Inc."),
+    letter(
+        'EFTA00591276',
+        'Susman Godfrey',
+        ['Fortress Investment Group'],
+        highlight_quote='I represent Jeepers, Inc., Financial Trust Company, Inc., and Jeffrey Epstein',
+        note="concerning Jeepers, the children's theme park owned by Epstein",
+        truncate_to=(500, 1_800),
+    ),
 
     # Emails
     EmailCfg(id='EFTA00037187', is_interesting=True),

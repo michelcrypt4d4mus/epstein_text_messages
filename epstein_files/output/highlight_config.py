@@ -1158,7 +1158,8 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 email_addresses=['haddadfm@aol.com'],
                 match_partial='first',
             ),
-            Organization('Mishcon de Reya', f"{ALAN_DERSHOWITZ}'s UK lawyers"),
+            Organization('Susman Godfrey', "law firm representing Epstein as president of Jeepers, Inc. in litigation against D.B. Zwirn"),
+            Organization('Mishcon de Reya', f"{ALAN_DERSHOWITZ}'s UK law firm"),
         ],
         patterns=[
             r"dersh",
