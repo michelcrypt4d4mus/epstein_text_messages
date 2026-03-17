@@ -12,6 +12,7 @@ from epstein_files.people.entity import Entity, Organization
 from epstein_files.people.names import *
 from epstein_files.util.constant.strings import REDACTED
 from epstein_files.util.helpers.data_helpers import escape_single_quotes, flatten, groupby, uniq_sorted, without_falsey
+from epstein_files.util.helpers.string_helper import as_pattern
 from epstein_files.util.logging import logger
 
 BAD_EMAILER_REGEX = re.compile(r'^(>|11111111)|agreed|ok(?!asha)|sexy|re:|fwd:|LIMITED PARTNERS|Multiple Senders|((sent|attachments|subject|importance).*|.*(january|201\d|hysterical|i have|image0|so that people|article 1.?|PROSPECTIVE INVESTORS|momminnemummin|These conspiracy theories|your state|undisclosed|www\.theguardian|talk in|it was a|what do|cc:|call (back|me)|afiaata|[IM]{4,}).*)$', re.IGNORECASE)
@@ -101,14 +102,14 @@ if len(CONFIGURED_ENTITIES) != len(ENTITIES_DICT):
 
 
 # Strings that usually signify an identity if present in email body
-IDENTIFYING_STRINGS = {}
+IDENTIFYING_REGEXES = {}
 
 for contact in CONFIGURED_ENTITIES:
     for identifier in contact.identifying_strings:
-        IDENTIFYING_STRINGS[identifier] = contact
+        IDENTIFYING_REGEXES[re.compile(as_pattern(identifier), re.IGNORECASE)] = contact
 
 # file IDs that contain a unique signifier but do not involve that person
-UNIQ_IDENTIFIER_FALSE_ALARMS = ['EFTA00961792']
+IDENTIFIER_FALSE_ALARMS = ['EFTA00961792']
 
 
 def cleanup_str(s: str) -> str:

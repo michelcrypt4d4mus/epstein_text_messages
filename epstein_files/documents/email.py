@@ -24,7 +24,7 @@ from epstein_files.documents.emails.constants import *
 from epstein_files.documents.emails.email_parts import EmailParts
 from epstein_files.documents.emails.email_header import (EMAIL_SIMPLE_HEADER_REGEX,
      EMAIL_SIMPLE_HEADER_LINE_BREAK_REGEX, EmailHeader)
-from epstein_files.documents.emails.emailers import IDENTIFYING_STRINGS, UNIQ_IDENTIFIER_FALSE_ALARMS, extract_emailer_names
+from epstein_files.documents.emails.emailers import IDENTIFYING_REGEXES, IDENTIFIER_FALSE_ALARMS, extract_emailer_names
 from epstein_files.documents.other_file import OtherFile
 from epstein_files.people.entity import Entity, EntityScanArg
 from epstein_files.people.interesting_people import EMAILERS_OF_INTEREST_SET
@@ -222,14 +222,14 @@ class Email(Communication):
     Attributes:
 
         attached_docs (list[OtherFile]): any attachments that exist as `OtherFile` objects
-        actual_text (str): Best effort at the text actually sent in this email, excluding quoted replies and forwards.
-        derived_cfg (EmailCfg): EmailCfg that was built instead of coming from CONFIGS_BY_ID
-        header (EmailHeader): Header data extracted from the text (from/to/sent/subject etc).
-        is_persons_first_email (bool): is this the first email we have for this person, whether sender or recipient?
+        actual_text (str): Best effort at the text *actually* sent in this email excluding quoted replies and forwards
+        derived_cfg (EmailCfg): EmailCfg that was built instead of coming from `CONFIGS_BY_ID`
+        is_persons_first_email (bool): is this the first email we have for any of the participants (sender + recipients)
         sent_from_device (str, optional): "Sent from my iPhone" style signature (if it exists).
         signature_substitution_counts (dict[str, int]): Number of times a signature was replaced with
             <...snipped...> per name
 
+        _header (EmailHeader): Header data extracted from the text (from/to/sent/subject etc).
         _line_merge_arguments (list[tuple[int] | tuple[int, int]]): preconfigured list of line merges that will fix up
             files from the HOUSE_OVERSIGHT_ collection in memory while leaving the source files untouched
         _was_split_up (bool, optional): True if this file Email was one of the big ones that was split into pieces
@@ -253,8 +253,9 @@ class Email(Communication):
         self.actual_text = self._extract_actual_text()
         self.sent_from_device = self._sent_from_device()
 
-        for identifier, contact in IDENTIFYING_STRINGS.items():
-            if identifier.lower() in self.text.lower() and contact.name not in self.participants and self.file_id not in UNIQ_IDENTIFIER_FALSE_ALARMS:
+        # Scan for any identifiers we may have missed that could unredact this email
+        for regex, contact in IDENTIFYING_REGEXES.items():
+            if regex.search(self.text) and contact.name not in self.participants and self.file_id not in IDENTIFIER_FALSE_ALARMS:
                 self._warn(f"Found known identifier for {contact.name} in email where they are not an identified participant")
 
     @property

@@ -29,6 +29,7 @@ from epstein_files.documents.messenger_log import MSG_REGEX, MessengerLog
 from epstein_files.documents.messenger_log_pdf import IMESSAGE_PDF_IDS, MessengerLogPdf
 from epstein_files.documents.other_file import OtherFile
 from epstein_files.output.rich import TABLE_TITLE_STYLE, console
+from epstein_files.people.entity import Entity
 from epstein_files.people.person import PEOPLE_BIOS, Person
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constants import *
@@ -561,10 +562,18 @@ def _sorted_metadata(docs: Sequence[Document]) -> list[Metadata]:
     return [json_safe(d.metadata) for d in Document.sort_by_id(docs)]
 
 
+# Find author/recipients that we configured but that have no Entity so we can suppress warnings about them
+CONFIGURED_NON_ENTITIES = {}
+
 for cfg in CONFIGS_BY_ID.values():
     for name in cfg.names:
-        if isinstance(cfg, EmailCfg) and (cfg.has_uninteresting_ccs or cfg.has_uninteresting_bccs):
+        if name in ENTITIES_DICT or name in CONFIGURED_NON_ENTITIES:
             continue
 
-        if name not in ENTITIES_DICT and ' v. ' not in name and ',' not in name:
-            cfg._log(f"Configured name has no Entity object: {quote(name)}")
+        CONFIGURED_NON_ENTITIES[name] = Entity(name)
+        log_msg = f"Configured name has no Entity object: {quote(name)}"
+
+        if ',' in name or isinstance(cfg, EmailCfg) and (cfg.has_uninteresting_ccs or cfg.has_uninteresting_bccs):
+            cfg._debug_log(log_msg)
+        else:
+            cfg._log(log_msg)

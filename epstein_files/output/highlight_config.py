@@ -1989,6 +1989,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 'blew the lid on the 2006 Epstein sweetheart deal',
                 r"Julie (K.? )?Brown|brown@miamiherald.com",
                 email_addresses=['jbrown@miamiherald.com'],
+                is_emailer=False,
                 match_partial=None,
             ),
             Entity('Kia Kokalitcheva', 'US venture capital news at Pitchbook'),

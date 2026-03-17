@@ -142,7 +142,7 @@ class Entity(LoggingEntity):
     @property
     def identifying_strings(self) -> list[str]:
         """Strings that indicate a document is likely tied to this entity."""
-        return self.email_addresses + self.unique_phraseologies
+        return self.unique_phraseologies + (self.email_addresses if self.is_emailer else [])
 
     @property
     def name_with_link(self) -> Text:
