@@ -1398,7 +1398,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             ),
             Entity(
                 "D.B. Zwirn",
-                'hedge fund manager, investments from Epstein and Glenn Dubin',
+                'hedge fund manager whose fund collapsed in 2008 with investments from Epstein and Glenn Dubin',
                 r"D\.?B\.? Zwirn",
                 url='https://www.bloomberg.com/news/features/2026-02-13/how-jeffrey-epstein-got-into-hedge-funds-billionaire-dubins-helped',
             ),
@@ -1483,7 +1483,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 f'fund run by Ari Glass whom Epstein called "a bit sketchy" but invested $50 million with',
                 r"Booth\s*bay(\s(Fund\sManagement|(Absolute|Enhanced|Multi)( Return)?( Strateg(ies|y))?( Fund)?))?",
             ),
-            Organization('D.B. Zwirn Special Opportunities Fund', 'hedge fund'),
+            Organization('D.B. Zwirn Special Opportunities Fund', 'hedge fund that failed in 2008'),
             Organization(
                 DEUTSCHE_BANK,
                 'favoured bank of Jeffrey Epstein, the Trump family, and Russian money launderers',
