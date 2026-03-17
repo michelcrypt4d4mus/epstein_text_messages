@@ -379,7 +379,7 @@ def publication(name: str, emailer_pattern: str = '', **kwargs) -> Organization:
     """Convenience method for WSJ, New York Times, etc."""
     # Make sure not to match 'Daily News' to 'Virgin Islands Daily News' / 'Palm Beach Daily News'
     if name.startswith('Daily'):
-        emailer_pattern = fr"(?<!(Beach|lands)\s){emailer_pattern or name}"
+        emailer_pattern = fr"(?<!(Beach|lands)\s){as_pattern(emailer_pattern or name)}"
 
     return Organization(name, emailer_pattern=emailer_pattern, is_interesting=False, **kwargs)
 
