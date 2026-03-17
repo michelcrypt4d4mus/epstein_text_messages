@@ -1393,7 +1393,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Entity('Ben Bram', 'Watermill Trading'),
             Entity(
                 BRAD_WECHSLER,
-                f"IMAX chairman, head of {LEON_BLACK}'s personal investment vehicle",
+                f"IMAX chairman, head of {LEON_BLACK}'s family office Elysium Management",
                 url='https://www.cnn.com/2026/02/21/business/apollo-epstein-wall-street',
             ),
             Entity(DANIEL_SABBA, f"{UBS} Investment Bank"),
