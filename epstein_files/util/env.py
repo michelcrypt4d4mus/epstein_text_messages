@@ -37,6 +37,7 @@ parser.add_argument('--make-clean', action='store_true', help='delete all HTML b
 parser.add_argument('--name', '-n', action='append', dest='names', help='specify the name(s) whose communications should be output')
 parser.add_argument('--overwrite-pickle', '-op', action='store_true', help='re-parse the files and ovewrite cached data')
 parser.add_argument('--pickle-path', '-fp', help='path to load saved data from', default=PICKLED_PATH)
+parser.add_argument('--use-custom-html', action='store_true', help='overwrite rich html exports with custom HTML exports')
 
 # Any output arg that doesn't start with --all is curated, meaning uninteresting documents will be suppressed
 output = parser.add_argument_group('OUTPUT', 'Options used by epstein_generate.')

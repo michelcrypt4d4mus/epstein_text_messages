@@ -1,6 +1,7 @@
 """
 HTML file paths and URLs for files built by `epstein_generate`.
 """
+import shutil
 from enum import auto, StrEnum
 from pathlib import Path
 from typing import Self
@@ -176,6 +177,15 @@ SITE_DESCRIPTIONS = {
     SiteType.JSON_METADATA:         f"metadata:author bios, attribution explanations",
 }
 
+# These are site types where the custom HTML is good enough to deploy
+DEPLOY_CUSTOM_HTML_SITES = [
+    SiteType.BIOGRAPHIES,
+    SiteType.CHRONOLOGICAL,
+    SiteType.CHRONOLOGICAL_MOBILE,
+    SiteType.EMAILS_CHRONOLOGICAL,
+    SiteType.OTHER_FILES_TABLE,
+]
+
 
 ###########################################
 ########  Internal sections links  ########
@@ -204,9 +214,16 @@ SECTION_ANCHORS = {
 def make_clean() -> None:
     """Delete all build artifacts."""
     for site_type in SiteType:
-        build_file = SiteType.html_output_path(site_type)
+        for build_file in [SiteType.html_output_path(site_type), SiteType.custom_html_build_path(site_type)]:
+            for file in [build_file, Path(f"{build_file}.txt")]:
+                if file.exists():
+                    logger.warning(f"Removing build file '{file}'...")
+                    file.unlink()
 
-        for file in [build_file, Path(f"{build_file}.txt")]:
-            if file.exists():
-                logger.warning(f"Removing build file '{file}'...")
-                file.unlink()
+
+def use_custom_html() -> None:
+    """Overwrite normal rich html export with custom HTML for all DEPLOY_CUSTOM_HTML_SITES."""
+    for site in DEPLOY_CUSTOM_HTML_SITES:
+        from_path = SiteType.custom_html_build_path(site)
+        to_path = SiteType.html_output_path(site)
+        logger.warning(f"Copying '{from_path}' to '{to_path}'...")

@@ -20,6 +20,7 @@ else
     exit 1
 fi
 
+
 print_deploy_step() {
     echo -e ""
     clr_cyan "$1"
@@ -50,6 +51,11 @@ commit_gh_pages_changes() {
     print_deploy_step "Committing changes to gh_pages..."
     git commit -am"Update HTML"
     git push origin gh_pages --quiet
+}
+
+copy_custom_html() {
+    print_deploy_step "Copying custom HTML pages into place..."
+    epstein_generate --use-custom-html
 }
 
 
@@ -116,11 +122,6 @@ $GENERATE_CMD --json-metadata
 print_deploy_step "Building other files table page..."
 $GENERATE_CMD --all-other-files
 
-print_deploy_step "Copying a few custom HTML pages into place..."
-cp docs/real_html_index.html docs/index.html
-cp docs/real_html_mobile_chronological.html docs/mobile_chronological.html
-cp docs/real_html_biographies.html docs/biographies.html
-
 # Slower pages
 print_deploy_step "Building curated page..."
 $GENERATE_CMD
@@ -130,6 +131,7 @@ $GENERATE_MOBILE_CMD
 if [ -n "$ONLY_MOBILE" ]; then
     commit_gh_pages_changes
     print_deploy_step "ONLY_MOBILE in effect, exiting after building mobile pages..."
+    copy_custom_html
     exit
 fi
 
@@ -140,8 +142,6 @@ else
     $GENERATE_CMD --all-emails
     print_deploy_step "Building emails chronological page..."
     $GENERATE_CMD --all-emails-chrono
-    print_deploy_step "Copying custom HTML chrono emails page into place..."
-    cp docs/real_html_chronological_emails.html docs/chronological_emails.html
 fi
 
 # Only build DOJ files site if TAG_RELEASE=true
@@ -154,8 +154,8 @@ fi
 
 
 # Commit changes
+copy_custom_html
 commit_gh_pages_changes
 print_deploy_step "Deployed URLs:"
 epstein_generate --show-urls
-
 git checkout master

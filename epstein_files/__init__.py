@@ -28,7 +28,7 @@ from epstein_files.output.output import (print_curated_chronological, print_doj_
      print_json_files, print_stats, print_other_files_section, print_text_msgs_section, print_all_emails_chronological,
      print_email_device_signatures, print_emailers_info, print_json_metadata, show_urls)
 from epstein_files.output.rich import console, print_json, print_subtitle_panel
-from epstein_files.output.site.sites import SiteType, make_clean
+from epstein_files.output.site.sites import SiteType, make_clean, use_custom_html
 from epstein_files.util.constant.strings import HOUSE_OVERSIGHT_NOV_2025_ID_REGEX
 from epstein_files.util.constants import ALL_CONFIGS
 from epstein_files.util.env import BUILD_TRUE_BUT_UNSPECIFIED, args, site_config
@@ -258,6 +258,8 @@ def _load_files_and_check_early_exit_args() -> tuple[Timer, EpsteinFiles]:
         make_clean()
     elif args.show_urls:
         show_urls()
+    elif args.use_custom_html:
+        use_custom_html()
     else:
         timer = Timer()
         epstein_files = EpsteinFiles.get_files(timer)
