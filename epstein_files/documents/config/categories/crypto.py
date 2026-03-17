@@ -10,7 +10,6 @@ from epstein_files.util.constant.strings import *
 from epstein_files.util.helpers.string_helper import join_truthy, quote
 
 BEN_LAWSKY_NYDFS = f'head of NY Dept of Financial Services {BEN_LAWSKY}'
-HONEYCOMB_FUND = 'Honeycomb Asset Management (Spotify and Tencent investors)'
 KYARA_FUND = f"Epstein crypto fund {KYARA_INVESTMENT}"
 RIOT_BLOCKCHAIN_DESCRIPTION = 'RIOT Blockchain (FKA "Bioptix") is a sketchy bitcoin miner in Texas'
 VALAR_FUND = f"{PETER_THIEL}'s {VALAR_VENTURES} fund"
@@ -210,10 +209,10 @@ CRYPTO_CFGS = [
         is_interesting=True,
     ),
     # Honeycomb
-    DocCfg(id='EFTA00803491', author=HONEYCOMB_FUND, note="deck", is_interesting=True),
-    DocCfg(id='EFTA00803459', author=HONEYCOMB_FUND, note="January 2019 report", is_interesting=True),
-    DocCfg(id='EFTA00603445', author=HONEYCOMB_FUND, note="July 2017 report", is_interesting=True),
-    DocCfg(id='EFTA00803464', author=HONEYCOMB_FUND, note="July 2018 report", date='2018-07-17', is_interesting=True),
+    DocCfg(id='EFTA00803491', author=HONEYCOMB_ASSET_MANAGEMENT, note="deck", is_interesting=True),
+    DocCfg(id='EFTA00803459', author=HONEYCOMB_ASSET_MANAGEMENT, note="January 2019 report", is_interesting=True),
+    DocCfg(id='EFTA00603445', author=HONEYCOMB_ASSET_MANAGEMENT, note="July 2017 report", is_interesting=True),
+    DocCfg(id='EFTA00803464', author=HONEYCOMB_ASSET_MANAGEMENT, note="July 2018 report", date='2018-07-17', is_interesting=True),
     # Howard Lutnick
     DocCfg(id='EFTA01582043', note=f"{DEUTSCHE_BANK} / {CANTOR_FITZGERALD} transaction"),
     DocCfg(id='EFTA01230639', date='2012-12-22', date_uncertain=True, show_full_panel=True),
@@ -442,7 +441,6 @@ CRYPTO_CFGS = [
     # ZCash / Madars Virza
     DocCfg(id='EFTA00811130', author=PERKINS_COIE, note='tax opinion on ZCash tokens'),
     DocCfg(id='EFTA00603348', note=f"Electric Coin Company created the untraceable crypto ZCash funded by {LARRY_SUMMERS}'s DCG"),
-    DocCfg(id='EFTA00803405', note=f"Honeycomb Asset Management fund brochure", truncate_to=DEFAULT_TRUNCATE_TO),
     EmailCfg(id='EFTA02282357', author=DAPHNE_WALLACE, author_uncertain='could be Lesley'),
     EmailCfg(id='EFTA02283028', author=DAPHNE_WALLACE, author_uncertain='could be Lesley'),
     EmailCfg(id='EFTA02620980', note=f"{MADARS_VIRZA} says Tether was created to avoid anti-money laundering laws"),

@@ -563,5 +563,5 @@ def _sorted_metadata(docs: Sequence[Document]) -> list[Metadata]:
 
 for cfg in CONFIGS_BY_ID.values():
     for name in cfg.names:
-        if name not in ENTITIES_DICT:
-            cfg._warn(f"Configured name has no Entity object: '{name}'")
+        if name not in ENTITIES_DICT and ' v. ' not in name and ',' not in name:
+            cfg._warn(f"Configured name has no Entity object: {quote(name)}")

@@ -170,7 +170,7 @@ class Entity(LoggingEntity):
     @property
     def _identifier(self) -> str:
         """`LoggingEntity` abstract method implementation."""
-        return self.name
+        return quote(self.name)
 
     @property
     def _middle_initial(self) -> str:
@@ -314,9 +314,17 @@ class Organization(Entity):
             self.emailer_pattern += fr"{emailer_pattern}({suffix})?"
 
         if self.belongs_to:
-            self.info = join_truthy(f"{self.belongs_to} entity", self.info)
+            if self.info:
+                self.info = join_truthy(f"{self.belongs_to}", self.info)
+            else:
+                self.info = f"{self.belongs_to} organization"
 
         return super().__post_init__()
+
+    @classmethod
+    def well_known(cls, name: str, **kwargs) -> Self:
+        """Alternate constructor that sets is_interesting to False."""
+        return cls(name, is_interesting=False, **kwargs)
 
 
 EntityScanArg = list[Entity] | Entity | list[str] | str | None

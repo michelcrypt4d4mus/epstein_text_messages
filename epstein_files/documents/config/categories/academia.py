@@ -10,7 +10,7 @@ ACADEMIA_CFGS = [
     DocCfg(id='027004', author=JOSCHA_BACH, note=f"The Computational Structure of Mental Representation", date='2013-02-26'),
     DocCfg(
         id='014697',
-        author=LAWRENCE_KRAUSS_ASU_ORIGINS,
+        author=ASU_ORIGINS_PROJECT,
         note=f'report: "Challenges of AI: Envisioning and Addressing Adverse Outcomes"',
         duplicate_ids=['011284']
     ),

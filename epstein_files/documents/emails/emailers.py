@@ -5,6 +5,7 @@ import re
 from collections import Counter
 from typing import Optional
 
+from epstein_files.documents.emails.constants import UNINTERESTING_EMAILERS
 from epstein_files.output.highlight_config import HIGHLIGHTED_ENTITIES
 from epstein_files.people.entity import Entity, Organization
 from epstein_files.people.names import *
@@ -57,9 +58,20 @@ SUPPRESS_LOGS_FOR_AUTHORS = [
 
 # Collect all configured entities into various data structures
 CONFIGURED_ENTITIES = HIGHLIGHTED_ENTITIES + ADDITIONAL_EMAILERS
+ENTITIES_DICT = {c.name: c for c in CONFIGURED_ENTITIES}
+
+for name in UNINTERESTING_EMAILERS:
+    if (entity := ENTITIES_DICT.get(name)):
+        entity._log(f"Found UNINTERESTING_EMAILER, setting is_interesting=False...")  # TODO: doesn't mean much right now
+        entity.is_interesting = False
+    else:
+        CONFIGURED_ENTITIES.append(Entity(name, is_interesting=False, match_partial=None))
+        CONFIGURED_ENTITIES[-1]._warn(f"Created new Entity for UNINTERESTING_EMAILER entry...")
+
+ENTITIES_DICT = {c.name: c for c in CONFIGURED_ENTITIES}
 EMAILER_REGEXES = {c.name: c.emailer_regex for c in CONFIGURED_ENTITIES if c.is_emailer}
 ENTITY_CATEGORIES = groupby(CONFIGURED_ENTITIES, lambda contact: contact.category)
-ENTITIES_DICT = {c.name: c for c in CONFIGURED_ENTITIES}
+ENTITIES_DICT = {c.name: c for c in CONFIGURED_ENTITIES}  # Rebuild with new
 UNCONFIGURED_ENTITIES_ENCOUNTERED = {}
 
 if len(CONFIGURED_ENTITIES) != len(ENTITIES_DICT):

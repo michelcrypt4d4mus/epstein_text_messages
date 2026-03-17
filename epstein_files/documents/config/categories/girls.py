@@ -36,13 +36,13 @@ GIRLS_CFGS = [
     DocCfg(id='EFTA00014648', note='former employee "understood that all the girls were school girls"', show_full_panel=True),
     DocCfg(
         id='EFTA00077200',
-        author='French Ministry of Justice',
+        author=FRENCH_MINISTRY_OF_JUSTICE,
         date='2020-07-08',
         note=f'allegations that {JEAN_LUC_BRUNEL} drugged a model and Epstein + Ghislaine assaulted a minor',
     ),
     DocCfg(
         id='EFTA00079597',
-        author='French Ministry of Justice',
+        author=FRENCH_MINISTRY_OF_JUSTICE,
         note=f"allegations of sexual assault by {JEAN_LUC_BRUNEL}",
         date='2020-07-08',
     ),

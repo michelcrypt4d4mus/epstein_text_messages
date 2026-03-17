@@ -8,7 +8,6 @@ from epstein_files.documents.documents.categories import Interesting, Neutral
 from epstein_files.people.names import *
 from epstein_files.util.constant.strings import *
 
-BOFA_WEALTH_MGMT = f'{BOFA} Wealth Management'
 DEUTSCHE_BANK_TAX_TOPICS = f'{DEUTSCHE_BANK} Wealth Management Tax Topics'
 JP_MORGAN_EYE_ON_THE_MARKET = f"Eye On The Market"
 UBS_CIO_REPORT = 'CIO Monthly Extended report'

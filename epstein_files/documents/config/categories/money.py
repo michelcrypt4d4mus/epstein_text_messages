@@ -1,7 +1,7 @@
 """
 Epstein money related files. This category makes is_interesting = True.
 """
-from epstein_files.documents.config.doc_cfg import DocCfg
+from epstein_files.documents.config.doc_cfg import DEFAULT_TRUNCATE_TO, DocCfg
 from epstein_files.documents.config.email_cfg import EmailCfg
 from epstein_files.people.names import *
 from epstein_files.util.constant.strings import *
@@ -17,6 +17,7 @@ MONEY_CFGS = [
     DocCfg(id='024003', note=f"New Leaf Ventures ($375 million biotech fund) private placement memorandum"),
 
     # DOJ files
+    DocCfg(id='EFTA00803405', author=HONEYCOMB_ASSET_MANAGEMENT, note="fund brochure", truncate_to=DEFAULT_TRUNCATE_TO),
     DocCfg(
         id='EFTA01413294',
         comment='related to EFTA01357341, efta01363125, + more based on Vavilov Street address',

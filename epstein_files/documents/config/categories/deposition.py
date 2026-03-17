@@ -7,8 +7,8 @@ from epstein_files.util.constant.strings import *
 
 DEPOSITION_CFGS = [
     DocCfg(id='021824', author=PAUL_G_CASSELL, note=f"from {EDWARDS_V_DERSHOWITZ}"),
-    DocCfg(id='013463', author='Scott Rothstein', note=f"from {JANE_DOE_V_EPSTEIN_TRUMP}", date='2010-03-23'),
-    DocCfg(id='017488', author='Scott Rothstein', note=f"from {EPSTEIN_V_ROTHSTEIN_EDWARDS}", date='2012-06-22'),
+    DocCfg(id='013463', author=SCOTT_ROTHSTEIN, note=f"from {JANE_DOE_V_EPSTEIN_TRUMP}", date='2010-03-23'),
+    DocCfg(id='017488', author=SCOTT_ROTHSTEIN, note=f"from {EPSTEIN_V_ROTHSTEIN_EDWARDS}", date='2012-06-22'),
     # DOJ
     DocCfg(id='EFTA00615804', author=ALAN_DERSHOWITZ, date='2016-01-12', note='pages 334-461 (heavily redacted)'),
     DocCfg(

@@ -352,7 +352,6 @@ TRIVERS_CCS: list[Name] = [
 
 # No point in ever displaying these; their emails show up elsewhere because they're mostly CC recipients
 UNINTERESTING_EMAILERS = FLIGHT_IN_2012_PEOPLE + IRAN_DEAL_RECIPIENTS + TRIVERS_CCS + [
-    'Alan Rogers',                           # Random CC
     'Andrew Friendly',                       # Presumably some relation of Kelly Friendly
     'Ariane Dwyer',                          # Daniel Sabba CC
     'Cheryl Kleen',                          # One email from Anne Boyles is displayed under Anne Boyles
@@ -385,7 +384,6 @@ UNINTERESTING_EMAILERS = FLIGHT_IN_2012_PEOPLE + IRAN_DEAL_RECIPIENTS + TRIVERS_
     'Sean T Lehane',                         # Random CC
     'Stephen Rubin',                         # Random CC
     THANU_BOONYAWATANA,                      # Eduardo Robles CC
-    'Tim Kane',                              # Random CC
     'Travis Pangburn',                       # Random CC
     'Vahe Stepanian',                        # Random CC
 ]
