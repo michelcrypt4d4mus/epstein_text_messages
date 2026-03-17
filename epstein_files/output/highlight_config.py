@@ -1580,6 +1580,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 r"Andrew (L\.? )?Farkas|Farkas, Andrew( L\.?)?",
                 url='https://www.nytimes.com/2026/02/09/nyregion/farkas-epstein-lawsuit-ties.html',
             ),
+            Entity('Allison Lutnick', f'wife of {HOWARD_LUTNICK}', match_partial=None),
             Entity(
                 DAVID_STERN,
                 f"Epstein's partner in various businesses including Asia Gateway Ltd.",
