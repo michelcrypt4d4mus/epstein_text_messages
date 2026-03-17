@@ -747,6 +747,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 'largest American crypto exchange, early investment from Epstein',
                 url='https://protos.com/the-context-159-%e2%81%89%ef%b8%8f-epstein-a-convicted-pedo-invested-in-coinbase/',
             ),
+            Organization('Coin Team', QUESTION_MARKS),
             Organization(
                 CRYPTO_CURRENCY_PARTNERS_II,
                 f'crypto fund set up by Epstein and {BROCK_PIERCE} as a sidecar to {BLOCKCHAIN_CAPITAL}',
@@ -759,17 +760,17 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 url='https://x.com/CryptoPRLab',
             ),
             Organization(
-                'Digital Currency Initiative',
-                f"crypto part of {MIT_MEDIA_LAB}",
-                r"Digital (Assets?|Currenc(ies|y)) Initiative",
-                url='https://www.dci.mit.edu/',
-            ),
-            Organization(
                 'Digital Currency Group',
                 'formerly the most import crypto VC fund in the US, rekt in FTXplosion',
                 r"DCG|Digital Currency Group",
                 aliases=['DCG'],
                 url='https://www.cnbc.com/2025/01/17/crypto-firm-dcg-to-pay-sec-38point5-million-for-misleading-investors.html',
+            ),
+            Organization(
+                'Digital Currency Initiative',
+                f"crypto part of {MIT_MEDIA_LAB}",
+                r"Digital (Assets?|Currenc(ies|y)) Initiative",
+                url='https://www.dci.mit.edu/',
             ),
             Organization(
                 'Draper Fisher Jurvetson',
