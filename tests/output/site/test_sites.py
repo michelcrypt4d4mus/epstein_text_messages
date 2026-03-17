@@ -17,3 +17,16 @@ def test_html_output_path():
     args.names = ['epstein', 'ghislaine']
     assert Site.html_output_path(Site.NAMES) == HTML_DIR.joinpath(f'{NAMES_PREFIX}epstein__ghislaine.html')
     args.names = old_args_names
+
+
+def test_mobile_chronological():
+    for site in Site:
+        if CHRONOLOGICAL in site:
+            assert Site.is_chronoligical(site), f"chronological site {site} is not considered chronological!"
+        else:
+            assert not Site.is_chronoligical(site), f"non-chronological site {site} is considered chronological!"
+
+        if 'mobile' in site:
+            assert Site.is_mobile(site), f"mobile site {site} is not considered mobile!"
+        else:
+            assert not Site.is_mobile(site), f"non-mobile site {site} is considered mobile!"
