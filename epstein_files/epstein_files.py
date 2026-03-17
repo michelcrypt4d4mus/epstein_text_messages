@@ -22,7 +22,7 @@ from epstein_files.documents.doj_file import DojFile
 from epstein_files.documents.email import EMAILERS_TO_ALWAYS_TRUNCATE, Email
 from epstein_files.documents.emails.constants import UNINTERESTING_EMAILERS
 from epstein_files.documents.emails.dropsite_email import DropsiteEmail
-from epstein_files.documents.emails.emailers import ENTITIES_DICT
+from epstein_files.documents.emails.emailers import CONFIGURED_NON_ENTITIES, ENTITIES_DICT
 from epstein_files.documents.emails.multi_email_files import split_up_multi_email_files
 from epstein_files.documents.json_file import JsonFile
 from epstein_files.documents.messenger_log import MSG_REGEX, MessengerLog
@@ -563,14 +563,13 @@ def _sorted_metadata(docs: Sequence[Document]) -> list[Metadata]:
 
 
 # Find author/recipients that we configured but that have no Entity so we can suppress warnings about them
-CONFIGURED_NON_ENTITIES = {}
-
+# TODO: this populates the var in emailers.py which sucks but there's circular import issues
 for cfg in CONFIGS_BY_ID.values():
     for name in cfg.names:
         if name in ENTITIES_DICT or name in CONFIGURED_NON_ENTITIES:
             continue
 
-        CONFIGURED_NON_ENTITIES[name] = Entity(name)
+        CONFIGURED_NON_ENTITIES[name] = Entity(name, is_emailer=False, is_interesting=False)
         log_msg = f"Configured name has no Entity object: {quote(name)}"
 
         if ',' in name or isinstance(cfg, EmailCfg) and (cfg.has_uninteresting_ccs or cfg.has_uninteresting_bccs):

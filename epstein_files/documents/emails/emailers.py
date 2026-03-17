@@ -93,7 +93,10 @@ ENTITIES_DICT = {c.name: c for c in CONFIGURED_ENTITIES}
 EMAILER_REGEXES = {c.name: c.emailer_regex for c in CONFIGURED_ENTITIES if c.is_emailer}
 ENTITY_CATEGORIES = groupby(CONFIGURED_ENTITIES, lambda contact: contact.category)
 ENTITIES_DICT = {c.name: c for c in CONFIGURED_ENTITIES}  # Rebuild with new
-UNCONFIGURED_ENTITIES_ENCOUNTERED = {}
+
+# TODO: dict of names that are configured but have no Entity. This is filled in in epstein_files.py which sucks.
+CONFIGURED_NON_ENTITIES: dict[str, Entity] = {}
+UNCONFIGURED_ENTITIES_ENCOUNTERED: dict[str, Entity] = {}
 
 if len(CONFIGURED_ENTITIES) != len(ENTITIES_DICT):
     counts = Counter([c.name for c in CONFIGURED_ENTITIES])
@@ -154,6 +157,8 @@ def get_entity(name: str | Entity, doc: Optional['Document'] = None) -> Entity:
         return name
     elif name in ENTITIES_DICT:
         return ENTITIES_DICT[name]
+    elif name in CONFIGURED_NON_ENTITIES:
+        return CONFIGURED_NON_ENTITIES[name]  # Avoids spurious warnings
     elif name not in UNCONFIGURED_ENTITIES_ENCOUNTERED:
         log = doc._warn if doc else logger.warning
         log(f"Encountered unconfigured entity name '{name}'")
