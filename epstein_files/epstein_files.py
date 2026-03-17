@@ -314,6 +314,9 @@ class EpsteinFiles:
 
     def json_metadata(self) -> str:
         """Create a JSON string containing metadata for all the files."""
+        def _sorted_metadata(docs: Sequence[Document]) -> list[Metadata]:
+            return [json_safe(d.metadata) for d in Document.sort_by_id(docs)]
+
         metadata = {
             'files': {
                 Email.__name__: _sorted_metadata(self.emails),
@@ -325,13 +328,6 @@ class EpsteinFiles:
         }
 
         return json.dumps(metadata, indent=4, sort_keys=True)
-
-    def person_objs(self, names: list[Name]) -> list[Person]:
-        """Construct Person objects for a list of names."""
-        return [
-            Person(name, self.docs_for(name), False if name in self.uninteresting_emailers else None)
-            for name in names
-        ]
 
     def load_new_files(self) -> None:
         """Load any new files detected in the hierarchy."""
@@ -356,6 +352,13 @@ class EpsteinFiles:
         table.add_row('JSON Data', *Document.file_summary_row(self.json_files, True))
         table.add_row('Other', *Document.file_summary_row(self.non_json_other_files))
         return table
+
+    def person_objs(self, names: list[Name]) -> list[Person]:
+        """Construct Person objects for a list of names."""
+        return [
+            Person(name, self.docs_for(name), False if name in self.uninteresting_emailers else None)
+            for name in names
+        ]
 
     def reload_doj_files(self) -> None:
         """Reload only the DOJ PDF extracts (keep HOUSE_OVERSIGHT stuff unchanged)."""
@@ -393,10 +396,6 @@ class EpsteinFiles:
             logger.warning(f"  (RESPLIT_BIG_EMAILS so now have {len(repaired_docs)} repaired_docs)")
 
         self._finalize_new_docs_if_approved(repaired_docs)
-
-    def unknown_recipient_ids(self) -> list[str]:
-        """IDs of emails whose recipient is not known."""
-        return sorted([e.file_id for e in self.emails if None in e.recipients or not e.recipients])
 
     def _copy_duplicate_doc_properties(self) -> None:
         """Ensure dupe docs have the properties of the docs they duplicate to capture any repairs, config etc."""
@@ -556,10 +555,6 @@ def document_cls(doc: Document) -> Type[Document]:
         return MessengerLog
     else:
         return OtherFile
-
-
-def _sorted_metadata(docs: Sequence[Document]) -> list[Metadata]:
-    return [json_safe(d.metadata) for d in Document.sort_by_id(docs)]
 
 
 # Find author/recipients that we configured but that have no Entity so we can suppress warnings about them

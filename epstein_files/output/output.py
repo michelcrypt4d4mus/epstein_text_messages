@@ -41,7 +41,7 @@ DEVICE_SIGNATURE_SUBTITLE = f"Email [italic]Sent from \\[DEVICE][/italic] Signat
 DEVICE_SIGNATURE = 'Device Signature'
 
 
-def print_curated_chronological(epstein_files: EpsteinFiles, doc_printer: DocPrinter) -> list[Document]:
+def print_curated_chronological(epstein_files: EpsteinFiles, printer: DocPrinter) -> list[Document]:
     """Print only interesting files of all types in chronological order."""
     should_print = lambda doc: doc.is_interesting if not args.invert_chrono else not doc.is_interesting
     docs = [d for d in epstein_files.unique_documents if should_print(d)]
@@ -49,34 +49,33 @@ def print_curated_chronological(epstein_files: EpsteinFiles, doc_printer: DocPri
     if args.max_records:
         docs = docs[:args.max_records]
 
-    doc_printer.print_section_subtitle('Selected Files of Interest in Chronological Order')
-    doc_printer.print_documents(docs)
-    return doc_printer.printed_docs
+    printer.print_section_subtitle('Selected Files of Interest in Chronological Order')
+    printer.print_documents(docs)
+    return printer.printed_docs
 
 
-def print_doj_files(epstein_files: EpsteinFiles, doc_printer: DocPrinter) -> list[DojFile]:
+def print_doj_files(epstein_files: EpsteinFiles, printer: DocPrinter) -> list[DojFile]:
     """Doesn't print DojFiles that are actually Emails, that's handled in print_emails()."""
-    doc_printer.collect_other_files_to_tables = False
-    doc_printer.print_documents(Document.without_dupes(epstein_files.doj_files))
+    printer.collect_other_files_to_tables = False
+    printer.print_documents(Document.without_dupes(epstein_files.doj_files))
     return epstein_files.doj_files
 
 
-def print_all_emails_chronological(epstein_files: EpsteinFiles, doc_printer: DocPrinter) -> list[Email]:
+def print_all_emails_chronological(epstein_files: EpsteinFiles, printer: DocPrinter) -> list[Email]:
     """Print all non-mailing list emails in chronological order."""
     emails = Document.sort_by_timestamp([e for e in epstein_files.unique_emails if not e.is_mailing_list])
     title = f'Table of All {len(emails):,} Non-Junk Emails in Chronological Order (actual emails below)'
     table = Email.build_emails_table(emails, title=title, show_length=True)
-    doc_printer.print_renderable(Padding(table, (2, 0)))
-    doc_printer.print_section_subtitle('The Chronologically Ordered Emails')
-    doc_printer.print_documents(emails)
-    return doc_printer.printed_emails
+    printer.print_renderable(Padding(table, (2, 0)))
+    printer.print_section_subtitle('The Chronologically Ordered Emails')
+    printer.print_documents(emails)
+    return printer.printed_emails
 
 
 def print_emailers_info(epstein_files: EpsteinFiles) -> None:
     """Print tbe summary table of everyone who sent or received an email to a .png file."""
-    # TODO: kinda sucks to have to use a DocPrinter just for the color key
-    doc_printer = DocPrinter(epstein_files=epstein_files)
-    doc_printer.print_color_key()
+    printer = DocPrinter(epstein_files=epstein_files)
+    printer.print_color_key()
     console.line()
     all_emailers = sorted(epstein_files.emailers, key=lambda person: person.sort_key)
     console.print(Person.emailer_info_table(all_emailers, show_epstein_total=True))
@@ -89,8 +88,7 @@ def print_emailers_info(epstein_files: EpsteinFiles) -> None:
     console.save_svg(svg_path, theme=HTML_TERMINAL_THEME, title="Epstein Emailers")
     log_file_write(svg_path)
 
-    try:
-        # Inkscape is better at converting svg to png
+    try:  # Inkscape is better at converting svg to png
         inkscape_cmd_args = ['inkscape', f'--export-filename={EMAILERS_TABLE_PNG_PATH}', svg_path]
         logger.warning(f"Running inkscape cmd: {' '.join(inkscape_cmd_args)}")
         check_output(inkscape_cmd_args)
@@ -103,14 +101,14 @@ def print_emailers_info(epstein_files: EpsteinFiles) -> None:
     unlink(svg_path)
 
 
-def print_emails_section(epstein_files: EpsteinFiles, doc_printer: DocPrinter) -> list[Email]:
+def print_emails_section(epstein_files: EpsteinFiles, printer: DocPrinter) -> None:
     """Prints emails, returns emails that were printed (may return dupes if printed for both author and recipient)."""
     section_header_panel = section_header((SELECTIONS_FROM if not args.all_emails else '') + HIS_EMAILS)
-    doc_printer.print_renderable(section_header_panel)
+    printer.print_renderable(section_header_panel)
+    num_emails_printed_since_last_color_key = 0
 
     all_emailers = sorted(epstein_files.emailers, key=lambda person: person.earliest_email_at)
     all_emails = Person.emails_from_people(all_emailers)
-    num_emails_printed_since_last_color_key = 0
 
     if args.names:
         try:
@@ -119,7 +117,7 @@ def print_emails_section(epstein_files: EpsteinFiles, doc_printer: DocPrinter) -
             exit_with_error(str(e))
     else:
         emailers_to_print = all_emailers if args.all_emails else epstein_files.person_objs(EMAILERS_TO_PRINT)
-        doc_printer.print_renderable(_section_summary_table(Person.emailer_info_table(all_emailers, emailers_to_print)))
+        printer.print_renderable(_section_summary_table(Person.emailer_info_table(all_emailers, emailers_to_print)))
 
     if args.max_records:
         logger.warning(f"Truncating to args.max_records={args.max_records} people")
@@ -129,35 +127,33 @@ def print_emails_section(epstein_files: EpsteinFiles, doc_printer: DocPrinter) -
         if person.name in epstein_files.uninteresting_emailers and not args.names:
             continue
 
-        printed_person_emails = person.print_emails(doc_printer)
+        printed_person_emails = person.print_emails(printer)
         num_emails_printed_since_last_color_key += len(printed_person_emails)
 
         # Print color key every once in a while
         if num_emails_printed_since_last_color_key > PRINT_COLOR_KEY_EVERY_N_EMAILS:
-            doc_printer.print_color_key()
+            printer.print_color_key()
             num_emails_printed_since_last_color_key = 0
 
     if args.names:
-        return doc_printer.printed_emails
+        return
 
     # Print other interesting emails
-    printed_email_ids = [email.file_id for email in doc_printer.printed_docs]
+    printed_email_ids = [email.file_id for email in printer.printed_docs]
     extra_emails = [e for e in all_emails if e.is_interesting and e.file_id not in printed_email_ids]
 
     if len(extra_emails) > 0:
         logger.warning(f"Found {len(extra_emails)} additional interesting emails by less interesting people...")
-        doc_printer.print_section_subtitle(OTHER_INTERESTING_EMAILS_SUBTITLE)
-        doc_printer.print_documents(Document.sort_by_timestamp(extra_emails))
+        printer.print_section_subtitle(OTHER_INTERESTING_EMAILS_SUBTITLE)
+        printer.print_documents(Document.sort_by_timestamp(extra_emails))
 
     print_email_device_signatures(epstein_files)
-    fwded_articles = [e for e in doc_printer.printed_emails if e.is_fwded_article]
-    log_msg = f"Rewrote {len(Email.rewritten_header_ids)} of {len(doc_printer.printed_emails)} email headers"
+    fwded_articles = [e for e in printer.printed_emails if e.is_fwded_article]
+    log_msg = f"Rewrote {len(Email.rewritten_header_ids)} of {len(printer.printed_emails)} email headers"
     logger.warning(f"  -> {log_msg}, {len(fwded_articles)} of the Emails printed were forwarded articles.")
 
     if args.all_emails:
-        _verify_all_emails_were_printed(epstein_files, doc_printer.printed_emails)
-
-    return doc_printer.printed_emails
+        _verify_all_emails_were_printed(epstein_files, printer.printed_emails)
 
 
 # NOTE: the JSON files from Nov. 2025 are completely uninteresting
@@ -190,7 +186,7 @@ def print_json_metadata(epstein_files: EpsteinFiles) -> None:
         console.print_json(epstein_files.json_metadata(), indent=4, sort_keys=True)
 
 
-def print_other_files_section(epstein_files: EpsteinFiles, doc_printer: DocPrinter) -> list[OtherFile]:
+def print_other_files_section(epstein_files: EpsteinFiles, printer: DocPrinter) -> list[OtherFile]:
     """Prints a table of `OtherFile` and returns the objects that were printed."""
     if args.uninteresting:
         files = [f for f in epstein_files.other_files if not f.is_interesting]
@@ -201,15 +197,15 @@ def print_other_files_section(epstein_files: EpsteinFiles, doc_printer: DocPrint
     title_pfx = '' if args.all_other_files else 'Selected '
     category_table = OtherFile.summary_table(files, title_pfx=title_pfx)
     header_panel = section_header(f"{FIRST_FEW_LINES} of {len(files)} {title_pfx}{FILES_THAT_ARE_NEITHER_EMAILS_NOR}")
-    doc_printer.print_renderable(header_panel)
+    printer.print_renderable(header_panel)
     print_other_page_link(epstein_files)  # TODO: not in custom HTML
-    doc_printer.print_renderable(_section_summary_table(category_table))
+    printer.print_renderable(_section_summary_table(category_table))
 
     # If --all-other-files is enables, print the biographical panels, otherwise just print a big table
     if args.all_other_files:
-        doc_printer.print_documents(files)
+        printer.print_documents(files)
     else:
-        doc_printer.print_renderable(OtherFile.files_preview_table(files, title_pfx=title_pfx))
+        printer.print_renderable(OtherFile.files_preview_table(files, title_pfx=title_pfx))
 
     return files
 
@@ -223,7 +219,9 @@ def print_stats(epstein_files: EpsteinFiles) -> None:
     print_json(epstein_files.email_signature_substitution_counts(), "Email signature_substitution_countss", skip_falsey=True)
     print_json(dict_sets_to_lists(epstein_files.email_authors_to_device_signatures()), "Email author device signatures")
     print_json(dict_sets_to_lists(epstein_files.email_device_signatures_to_authors()), "Email authors by device")
-    print_json(epstein_files.unknown_recipient_ids(), "Unknown Recipient IDs")
+
+    unknown_recipient_ids = sorted([e.file_id for e in epstein_files.emails if None in e.recipients or not e.recipients])
+    print_json(epstein_files, "Unknown Recipient IDs")
     print_json(Document.count_by_month(epstein_files.documents), "All documents count by month")
     print_json(sorted([f.file_id for f in epstein_files.interesting_other_files]), "Interesting OtherFile IDs")
     print_json(highlighter.highlight_counts, f"Highlight Counts")
@@ -231,7 +229,7 @@ def print_stats(epstein_files: EpsteinFiles) -> None:
     highlighter.print_highlight_counts(console)
 
 
-def print_text_msgs_section(epstein_files: EpsteinFiles, doc_printer: DocPrinter) -> list[MessengerLog]:
+def print_text_msgs_section(epstein_files: EpsteinFiles, printer: DocPrinter) -> list[MessengerLog]:
     """Print `MessengerLog` objects and return objects that were printed."""
     if args.names:
         imessage_logs = [log for log in epstein_files.imessage_logs if log.author in args.names]
@@ -243,13 +241,13 @@ def print_text_msgs_section(epstein_files: EpsteinFiles, doc_printer: DocPrinter
         return imessage_logs
 
     section_header_panel = section_header((SELECTIONS_FROM if not args.all_texts else '') + HIS_TEXT_MESSAGES)
-    doc_printer.print_renderable(section_header_panel)
-    doc_printer.print_renderable(Align.center(CONVERSATIONS_SORTED_BY_TXT))
+    printer.print_renderable(section_header_panel)
+    printer.print_renderable(Align.center(CONVERSATIONS_SORTED_BY_TXT))
 
     if not args.names:
-        doc_printer.print_renderable(_section_summary_table(MessengerLog.summary_table(imessage_logs)))
+        printer.print_renderable(_section_summary_table(MessengerLog.summary_table(imessage_logs)))
 
-    doc_printer.print_documents(imessage_logs)
+    printer.print_documents(imessage_logs)
     return imessage_logs
 
 
