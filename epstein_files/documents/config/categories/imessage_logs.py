@@ -97,7 +97,7 @@ UNCONFIRMED_TEXTS_CONFIG = [
         author_uncertain='AI says Trump + NYT coverage',
         note='contains discussion of Chinese criminal Miles Guo AKA Miles Kwok',
         entity_names=[MILES_GUO],
-        is_very_interesting=True,
+        is_interesting=10,
     ),
     TextCfg(id='031045', author=STEVE_BANNON, author_uncertain='AI says Trump and New York Times coverage'),
     TextCfg(id='027275', is_interesting=True, comment='"Crypto- Kerry- Qatar -sessions"'),

@@ -29,7 +29,7 @@ MONEY_CFGS = [
         id='EFTA00173953',
         author=OCDETF,
         note='report on investigations of Epstein related drug money laundering',
-        is_very_interesting=True,
+        is_interesting=10,
     ),
     DocCfg(
         id='EFTA01681865',

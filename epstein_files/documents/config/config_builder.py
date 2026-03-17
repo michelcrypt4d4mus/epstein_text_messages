@@ -168,7 +168,7 @@ def immigration_letter(id: str, author: Name, date: str = '', note: str = '', sh
         id,
         author=author,
         date=date,
-        is_very_interesting=True,
+        is_interesting=10,
         note=note,
         recipients=['INS'],
         show_with_name=show_with_name,
@@ -213,7 +213,7 @@ def press_release(id: str, author: Name, date: str = '', note: str = '', **kwarg
 def shaher_murder_email(id: str, note: str = '', **kwargs) -> EmailCfg:
     return EmailCfg(
         id=id,
-        is_very_interesting=True,
+        is_interesting=10,
         note=join_truthy(note, f"discussion of the murder of Martine Vik Magnussen by {SHAHER_ABDULHAK_BESHER}'s son Farouk"),
         **kwargs
     )

@@ -100,6 +100,12 @@ def UN_cfg() -> DocCfg:
 def uninteresting_description() -> DocCfg:
     return _doj_cfg(Neutral.LEGAL, note=CVRA + " law stuff")
 
+@pytest.fixture
+def very_interesting_cfg(legal_cfg) -> DocCfg:
+    cfg = deepcopy(legal_cfg)
+    cfg.is_interesting = 10
+    return cfg
+
 
 def test_category_txt(blockchain_cap_cfg, empty_house_cfg, junk_doc_cfg, legal_cfg, skype_cfg):
     assert blockchain_cap_cfg.category_txt.style == 'orange1 bold'
@@ -125,17 +131,17 @@ def test_complete_description(
     skype_recipients,
     tweet_cfg
 ):
-    # assert attached_doc.complete_description == f"attached to email {junk_email_cfg.id}"
-    # assert blockchain_cap_cfg.complete_description == "Blockchain Capital investor report"
-    # assert book_cfg.complete_description == 'book titled "Illmatic" by Elon Musk'
-    # # Empty
-    # assert empty_house_cfg.complete_description == ''
-    # empty_house_cfg.attached_to_email_id = junk_email_cfg.id
-    # assert empty_house_cfg.complete_description == f"attached to email {junk_email_cfg.id}"
-    # # Finance
-    # assert finance_report.complete_description == f"{BOFA_MERRILL} report: \"Grapes\""
-    # # Harvard
-    # assert harvard_poetry_cfg.complete_description == 'Harvard poetry stuff from Lisa New'
+    assert attached_doc.complete_description == f"attached to email {junk_email_cfg.id}"
+    assert blockchain_cap_cfg.complete_description == "Blockchain Capital investor report"
+    assert book_cfg.complete_description == 'book titled "Illmatic" by Elon Musk'
+    # Empty
+    assert empty_house_cfg.complete_description == ''
+    empty_house_cfg.attached_to_email_id = junk_email_cfg.id
+    assert empty_house_cfg.complete_description == f"attached to email {junk_email_cfg.id}"
+    # Finance
+    assert finance_report.complete_description == f"{BOFA_MERRILL} report: \"Grapes\""
+    # Harvard
+    assert harvard_poetry_cfg.complete_description == 'Harvard poetry stuff from Lisa New'
     # Junk
     assert junk_doc_cfg.complete_description == ''
     junk_doc_cfg.note = 'junk mail'
@@ -203,10 +209,12 @@ def test_is_of_interest(
     legal_cfg,
     skype_cfg,
     uninteresting_description,
-    UN_cfg
+    UN_cfg,
+    very_interesting_cfg
 ):
     assert academia_cfg.is_of_interest is False
     assert blockchain_cap_cfg.is_of_interest is True
+    assert blockchain_cap_cfg.is_very_interesting is False
     assert empty_doj_cfg.is_of_interest is None
     assert empty_house_cfg.is_of_interest is None
     assert finance_report.is_of_interest is False
@@ -219,6 +227,11 @@ def test_is_of_interest(
     assert skype_cfg.is_of_interest is None
     assert UN_cfg.is_of_interest is True
     assert uninteresting_description.is_of_interest is False
+    assert very_interesting_cfg.is_of_interest is True
+
+
+def test_is_very_interesting(very_interesting_cfg):
+    assert very_interesting_cfg.is_very_interesting is True
 
 
 def test_truthy_props(legal_cfg, dummy_cfg, fwded_article):

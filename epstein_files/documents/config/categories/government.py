@@ -60,7 +60,7 @@ GOVERNMENT_CFGS = [
     bop_doc('EFTA00109654', 'roster of inmates at Metropolitan Correctional Center', '2019-08-08'),
     bop_doc('EFTA00108533', 'roster of inmates at Metropolitan Correctional Center', '2019-07-23'),
     bop_doc('EFTA00108552', 'roster of inmates at Metropolitan Correctional Center', '2019-07-23'),
-    bop_doc('EFTA00039025', "report on death of Jeffrey Epstein", '2023-06-22', is_very_interesting=True),
+    bop_doc('EFTA00039025', "report on death of Jeffrey Epstein", '2023-06-22', is_interesting=10),
     bop_doc(
         'EFTA00034275',
         "initial form about Epstein's suicide attempt",
