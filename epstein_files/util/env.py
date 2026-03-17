@@ -11,7 +11,7 @@ from epstein_files.util.constant.strings import SUPPRESS_OUTPUT
 from epstein_files.util.helpers.env_helpers import get_env_dir
 from epstein_files.util.logging import env_log_level, exit_with_error, logger, set_log_level
 
-BUILD_TRUE_BUT_UNSPECIFIED = 'default_file'  # default value if --build is specified without an arg
+BUILD_TO_DEFAULT = 'default_file'  # default value if --build is specified without an arg
 EPSTEIN_GENERATE = 'epstein_generate'
 HTML_SCRIPTS = [EPSTEIN_GENERATE]
 PICKLED_PATH = Path("the_epstein_files.local.pkl.gz")
@@ -46,7 +46,7 @@ output.add_argument('--all-emails', '-ae', action='store_true', help='all the em
 output.add_argument('--all-emails-chrono', '-aec', action='store_true', help='all emails in chronological order')
 output.add_argument('--all-other-files', '-ao', action='store_true', help='all the non-email, non-text msg files instead of just the interesting ones')
 output.add_argument('--all-texts', '-at', action='store_true', help='all the text messages instead of just the interesting ones')
-parser.add_argument('--build', '-b', nargs="?", default=None, const=BUILD_TRUE_BUT_UNSPECIFIED, help='write output to HTML file')
+parser.add_argument('--build', '-b', nargs="?", default=None, const=BUILD_TO_DEFAULT, help='write output to HTML file')
 output.add_argument('--emailers-info', '-ei', action='store_true', help='write a .png of the eeailers info table')
 output.add_argument('--json-files', action='store_true', help='pretty print all the raw JSON data files in the collection and exit')
 output.add_argument('--json-metadata', '-jm', action='store_true', help='dump JSON metadata for all files and exit')
@@ -101,7 +101,6 @@ else:
 
 is_html_script = parser.prog in HTML_SCRIPTS or 'html' in parser.prog
 site_config = MobileConfig if args.mobile else SiteConfig
-logger.info(f"site_config set to {site_config.__name__}...")
 
 args.debug = args.deep_debug or args.debug or is_env_var_set('DEBUG')
 args._debug_highlight_patterns = (args.colors_only and args.debug)
@@ -131,7 +130,7 @@ if not (any_output_selected or args.all_emails_chrono or args.emailers_info or a
 
 if (args.output_chrono or args.all_emails_chrono or args.output_emails) and not args.build:
     logger.warning(f"--output-chrono requires --build to export new HTML, setting...")
-    args.build = BUILD_TRUE_BUT_UNSPECIFIED
+    args.build = BUILD_TO_DEFAULT
 
 if is_html_script:
     if args.repair:
@@ -153,7 +152,7 @@ if is_html_script:
     else:
         if args.colors_only:
             args._site = Site.COLORS_ONLY
-            args.build = args.build or BUILD_TRUE_BUT_UNSPECIFIED
+            args.build = args.build or BUILD_TO_DEFAULT
         elif args.output_bios:
             args._site = Site.BIOGRAPHIES
         elif args.all_doj_files:
@@ -215,3 +214,4 @@ logger.debug(f'Log level set to {logger.level}...')
 args_str = ',\n'.join([f"{k}={v}" for k, v in vars(args).items() if v])
 logger.debug(f"'{parser.prog}' script invoked\n{args_str}")
 logger.debug(f"Reading Epstein documents from '{DOCS_DIR}'...")
+logger.info(f"site_config set to {site_config.__name__}...")

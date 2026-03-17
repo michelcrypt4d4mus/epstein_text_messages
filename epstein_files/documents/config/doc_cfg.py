@@ -337,7 +337,6 @@ class DocCfg(LoggingEntity):
              -  finance category with any author (more broadly "Neutral categories can check bespoke additional conditions")
              -  category in Uninteresting enum
              -  description text starts with one of UNINTERESTING_PREFIXES
-
         """
         if self.duplicate_of_id:
             return False
