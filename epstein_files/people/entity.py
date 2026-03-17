@@ -48,7 +48,7 @@ class Entity(LoggingEntity):
         is_emailer (bool): should email headers be scanned for this entity
         is_interesting (bool): should a biographical entry be generated for this panel in the chronological view
         is_junk (bool): for junk email
-        match_partial (PartialName | None): whether to also match this entity's first and last names
+        match_partial (PartialName | None): whether to also match this entity's first and/or last names
         style (str, optional): style to use when printing this entity's name
         unique_phraseologies (list[str], optional): turns of phrase known to be unique to this person
         url (str | list[str] | Literal['WIKIPEDIA'], optional): link(s) to info about this entity
@@ -57,7 +57,7 @@ class Entity(LoggingEntity):
     info: str = ''  # TODO: rename "note" for consistency w/DocCfg
     emailer_pattern: str = ''
 
-    # Props after here not usually set by positional args
+    # Props after here not set by positional args
     aliases: list[str] = field(default_factory=list)
     email_addresses: list[str] = field(default_factory=list)
     emailer_regex: re.Pattern = field(init=False)
@@ -111,7 +111,7 @@ class Entity(LoggingEntity):
         else:
             return Text('')
 
-    # TODO: add known email addresses
+    # TODO: add known email addresses?
     @property
     def bio_txt(self) -> Text:
         """Biographical info about this entity with links etc."""
@@ -175,6 +175,7 @@ class Entity(LoggingEntity):
 
     @property
     def _middle_initial(self) -> str:
+        """Returns 'J' for 'Albert J. Gomez'."""
         if len(self._names) != 3:
             return ''
         elif MIDDLE_INITIAL_REGEX.match(self._names[1]):
