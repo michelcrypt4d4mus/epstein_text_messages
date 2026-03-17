@@ -169,7 +169,6 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"MIT",
             r"Murray Gell-Mann",
             r"New York University",
-            r"Norman Finkelstein",
             r"NYU",
             r"Oxford(?! Analytica)",
             r"PhD",
@@ -468,11 +467,14 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             ),
             Entity(
                 MILES_GUO,
-                "organized crime boss connected to Chinese intelligence, friend of Steve Bannon (who was arrested on Guo's yacht)",
+                "organized crime boss connected to Chinese intelligence, friend of Steve Bannon who was arrested on his yacht)",
                 r"Miles (Guo|Kwok)|Guo Wengui",
                 aliases=['Miles Kwok', 'Guo Wengui'],
                 match_partial=None,
-                url='https://www.newyorker.com/magazine/2022/10/24/how-a-tycoon-linked-to-chinese-intelligence-became-a-darling-of-trump-republicans',
+                url=[
+                    'https://www.newyorker.com/magazine/2022/10/24/how-a-tycoon-linked-to-chinese-intelligence-became-a-darling-of-trump-republicans',
+                    'https://www.pbs.org/newshour/nation/chinese-businessman-and-bannon-business-partner-arrested-in-1-billion-fraud-conspiracy',
+                ],
             ),
             Entity(
                 'Stanley Ho',

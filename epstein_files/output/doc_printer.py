@@ -23,7 +23,7 @@ from epstein_files.output.html.builder import (console_buffer_to_html, render_at
 from epstein_files.output.html.elements import div_class, tag
 from epstein_files.output.html.positioned_rich import PositionedRich, to_em, unpack_dimensions, vertical_spacer
 from epstein_files.output.rich import console, section_subtitle_panel
-from epstein_files.output.site.sites import SiteType
+from epstein_files.output.site.sites import HTML_DIR, SiteType
 from epstein_files.people.entity import Entity
 from epstein_files.people.names import *
 from epstein_files.people.person import Person
@@ -228,8 +228,14 @@ class DocPrinter:
         """Export custom HTML, trigger rich export_html() if `SiteType` given, returns custom HTML path."""
         if isinstance(html_path, SiteType):
             from epstein_files.output.output import write_html
-            write_html(SiteType.html_output_path(html_path))
-            output_path = SiteType.real_html_build_path(html_path)
+
+            if args.names:
+                html_path = HTML_DIR.joinpath('__'.join(args.names).replace(' ', '_').lower() + '.html')
+            else:
+                html_path = SiteType.html_output_path(html_path)
+
+            write_html(html_path)
+            output_path = SiteType.custom_html_build_path(html_path)
         else:
             output_path = html_path
 

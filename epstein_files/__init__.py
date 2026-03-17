@@ -84,7 +84,7 @@ def epstein_generate() -> None:
     logger.warning(f"Total time: {timer.seconds_since_start_str()}")
 
     if args.open_txt:
-        open_file_or_url(SiteType.real_html_build_path(args._site_type))
+        open_file_or_url(SiteType.custom_html_build_path(args._site_type))
 
     if args.stats:
         print_stats(epstein_files)  # Used for building pytest checks

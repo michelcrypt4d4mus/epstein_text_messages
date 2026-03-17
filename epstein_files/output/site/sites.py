@@ -26,6 +26,7 @@ ATTRIBUTIONS_URL = f'{GH_MASTER_URL}/epstein_files/util/constants.py'
 EXTRACTS_BASE_URL = f'{GH_MASTER_URL}/emails_extracted_from_legal_filings'
 BASE_URL = f"{GH_PAGES_BASE_URL}/{GH_REPO_NAME}"
 
+CUSTOM_HTML_PREFIX = 'real_html_'
 TO_FROM = 'to/from'
 MOBILE_SUFFIX = '_mobile'
 
@@ -41,6 +42,7 @@ class SiteType(StrEnum):
     EMAILS = auto()
     EMAILS_CHRONOLOGICAL = auto()
     JSON_METADATA = auto()
+    NAMES = auto()
     OTHER_FILES_TABLE = auto()
     TEXT_MESSAGES = auto()
     WORD_COUNT = auto()
@@ -55,6 +57,16 @@ class SiteType(StrEnum):
     def all_links(cls) -> dict['SiteType', Text]:
         """Use `SITE_DESCRIPTIONS` dict because it's ordered and also omits unpublished site types."""
         return {site_type: SiteType.link_txt(site_type) for site_type in SITE_DESCRIPTIONS}
+
+    @classmethod
+    def custom_html_build_path(cls, site_type: 'SiteType | Path') -> Path:
+        """Path for the templated custom HTML version of the page."""
+        if isinstance(site_type, Path):
+            basename = site_type.name
+        else:
+            basename = cls.html_output_path(site_type).name
+
+        return HTML_DIR.joinpath(f'{CUSTOM_HTML_PREFIX}{basename}')
 
     @classmethod
     def directory_links(cls) -> dict['SiteType', Text]:
@@ -119,11 +131,6 @@ class SiteType(StrEnum):
     @classmethod
     def is_mobile(cls, site_type: 'SiteType') -> bool:
         return site_type.endswith(MOBILE_SUFFIX)
-
-    @classmethod
-    def real_html_build_path(cls, site_type: 'SiteType') -> Path:
-        """Path for the templated custom HTML version of the page."""
-        return HTML_DIR.joinpath(f'real_html_{cls.html_output_path(site_type).name}')
 
     @classmethod
     def _is_lesser_site(cls, site_type: Self) -> bool:

@@ -145,7 +145,9 @@ if is_html_script:
             else:
                 args._site_type = SiteType.CURATED_MOBILE  # This isn't great; requires args be correct to build
         else:
-            if args.output_bios:
+            if args.names:
+                args._site_type = SiteType.NAMES
+            elif args.output_bios:
                 args._site_type = SiteType.BIOGRAPHIES
             elif args.all_doj_files:
                 args._site_type = SiteType.DOJ_FILES
