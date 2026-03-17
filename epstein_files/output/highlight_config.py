@@ -1301,7 +1301,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Europe(an)?( Union)?",
             r"Finland",
             r'Florence',
-            r"Fr(ance|ench)",
+            r"Fr(ance|ench(?! Ministry of Justice))",
             r"Geneva",
             r"Germany?",
             r"Gibralt[ae]r",
