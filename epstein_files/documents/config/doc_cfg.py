@@ -193,19 +193,8 @@ class DocCfg(LoggingEntity):
         if self.show_full_panel:
             self.is_interesting = 10
 
-        if self.is_very_interesting:
-            self.is_interesting = True
-
         if self.duplicate_of_id or self.duplicate_ids:
             self.dupe_type = self.dupe_type or SAME
-
-    @classmethod
-    def describe(cls, id: str, note: str, **kwargs) -> Self:
-        """Alternate constructor for a config with a description."""
-        # TODO: VScode find / replace expression attempts to update DocCfg objs to use this method
-        # TODO: find expression: (Doc|Email)Cfg\(id=('\w+'), note=(f?'.*?')\),
-        # TODO:         replace: $1Cfg.describe($2, $3),
-        return cls(id=id, note=note, **kwargs)
 
     @property
     def author_str(self) -> str:
@@ -245,7 +234,7 @@ class DocCfg(LoggingEntity):
                 (self.category == Uninteresting.ACADEMIA and self.author and self.note):
             description = join_truthy(self.note, author, ' by ')  # note reversed args
             description = join_truthy(preamble, description)
-        elif self.category == Neutral.FINANCE and self.is_description_a_title:
+        elif self.category == Neutral.FINANCE and self._is_description_a_title:
             author_separator = ' report: '
         elif self.category in [Interesting.LETTER, Interesting.TEXT_MSG, Neutral.SKYPE_LOG]:
             recipients = self.recipients_str
@@ -328,19 +317,6 @@ class DocCfg(LoggingEntity):
     def highlighted_pattern(self) -> str | None:
         """Regex pattern that matches `self.highlight_quote` string, allowing for line breaks etc."""
         return re.escape(self.highlight_quote).replace(r'\ ', r"\s+") if self.highlight_quote else None
-
-    @property
-    def is_description_a_title(self) -> bool:
-        """True if first char is uppercase or a quote."""
-        if not (self.author and self.note):
-            return False
-        elif self.category not in [Category.ACADEMIA, Category.BOOK, Category.FINANCE]:
-            return False
-        elif self.category == Category.FINANCE and self.author not in FINANCIAL_REPORTS_AUTHORS:
-            return False
-
-        first_char = self.note[0]
-        return first_char.isupper() or first_char in ["'", '"']
 
     @property
     def is_doj_file(self) -> bool:
@@ -495,6 +471,19 @@ class DocCfg(LoggingEntity):
         """Required `LoggingEntity` abstract method."""
         return self.id
 
+    @property
+    def _is_description_a_title(self) -> bool:
+        """True if first char is uppercase or a quote."""
+        if not (self.author and self.note):
+            return False
+        elif self.category not in [Category.ACADEMIA, Category.BOOK, Category.FINANCE]:
+            return False
+        elif self.category == Category.FINANCE and self.author not in FINANCIAL_REPORTS_AUTHORS:
+            return False
+
+        first_char = self.note[0]
+        return first_char.isupper() or first_char in ["'", '"']
+
     def duplicate_cfgs(self) -> Generator[Self, None, None]:
         """Create synthetic `DocCfg` objects that set the 'duplicate_of_id' field to point back to this object."""
         for id in self.duplicate_ids:
@@ -518,7 +507,7 @@ class DocCfg(LoggingEntity):
         if self.category == Category.FLIGHT_LOG and not self.display_text:
             self.display_text ='flight log'
 
-        self.note = quote(self.note) if self.is_description_a_title else self.note
+        self.note = quote(self.note) if self._is_description_a_title else self.note
 
     def _props_strs(self) -> list[str]:
         props = []

@@ -169,7 +169,11 @@ CRYPTO_CFGS = [
     DocCfg(id='EFTA01613759', author=CRYPTO_PR_LAB, note="letter of intent of acquisition from Transform Group"),
     DocCfg(id='EFTA01613762', author=CRYPTO_PR_LAB, note=f"WhatsApp convo with {MARIA_PRUSAKOVA}", date='2019-05-21'),
     DocCfg(id='EFTA01612721', author=CRYPTO_PR_LAB, note=f"WhatsApp convo with {MARIA_PRUSAKOVA}", date='2019-05-21'),
-    EmailCfg(id='033255', note=f"{MASHA_DROKOVA}'s friend Dylan Love suggests he could quote Epstein explaining \"proper implementation of crypto might solve financial corruption issues\""),
+    EmailCfg(
+        id='033255',
+        highlight_quote='proper implementation of cryptocurrency might solve financial corruption issues',
+        note=f"{MASHA_DROKOVA}'s friend Dylan Love suggests he could quote Epstein",
+    ),
     EmailCfg(id='EFTA01013266', note=f"{MARIA_PRUSAKOVA}'s {CRYPTO_PR_LAB} request for payment for Davos", is_interesting=10),
     EmailCfg(id='EFTA02285514', note=f"Medici Bank and {MARIA_PRUSAKOVA} meeting", is_interesting=10),
     EmailCfg(id='EFTA01013922', note=f"{CRYPTO_PR_LAB} business plan", is_interesting=10),
