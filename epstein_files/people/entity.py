@@ -321,6 +321,12 @@ class Organization(Entity):
 
         return super().__post_init__()
 
+    def __eq__(self, other: Entity):
+        return self.name == other.name
+
+    def __hash__(self):
+        return super().__hash__()
+
     @classmethod
     def well_known(cls, name: str, **kwargs) -> Self:
         """Alternate constructor that sets is_interesting to False."""
