@@ -10,11 +10,13 @@ from rich.panel import Panel
 
 from epstein_files.output.html.builder import (PANEL_BASE_PROPS, VERTICAL_MARGIN_EMS, border_css_props,
      one_row_table_html, render_to_html, text_to_list, text_to_div, margin_vertical_css)
-from epstein_files.output.html.elements import div_class, div_with_legend, div_tag
+from epstein_files.output.html.elements import CssProps, div_class, div_with_legend, div_tag
 from epstein_files.output.html.rich_style import RichStyle
 from epstein_files.output.html.positioned_rich import BLACK_BACKGROUND, PositionedRich, dimensions_to_margin_css
-from epstein_files.util.helpers.data_helpers import without_falsey
+from epstein_files.util.env import site_config
+from epstein_files.output.rich import indent_txt
 from epstein_files.util.external_link import join_texts
+from epstein_files.util.helpers.data_helpers import without_falsey
 
 JustifyMethod = Literal['center', 'left', 'right']
 
@@ -30,41 +32,63 @@ DOC_DIV_CSS_PROPS = {
 @dataclass(kw_only=True)
 class BasePanel:
     border_style: str
-    text: Text | list[Text]
+    text: Text
     title: Text | None = None
     title_justify: JustifyMethod = 'right'
 
-    @property
-    def is_list(self) -> bool:
-        return isinstance(self.text, list)
-
-    def to_div(self, _margins: list[int | float] | None = None) -> str:
+    def to_div(self, margins: list[int | float] | None = None) -> str:
         """Create an HTML <div> string for this panel."""
-        margins = _margins or PositionedRich.zero_dimensions()
-        div_props = dimensions_to_margin_css(margins)
-
-        # Handle MessengerLog / TextMessage list. # TODO this sucks
-        if self.is_list:
-            html = text_to_list(self.text, class_name='no_bullets')
-            div_props.update({'word-wrap': 'break-word'})
-            return div_class(html, BLACK_BACKGROUND, div_props)
-
-        html = render_to_html(self.text)
-        div_props.update(PANEL_BASE_PROPS)
-        div_props.update(border_css_props(self.border_style))
+        div_props = {
+            **self._base_div_css(margins),
+            **PANEL_BASE_PROPS,
+            **border_css_props(self.border_style)
+        }
 
         # TODO: make the title 'dim'
         title = self.title.plain if self.title else ''
+        html = render_to_html(self.text)
         return div_with_legend(html, title, div_props)
+
+    def _base_div_css(self, margins: list[int | float] | None = None) -> CssProps:
+        return dimensions_to_margin_css(margins or PositionedRich.zero_dimensions())
 
     def __rich__(self) -> Panel:
         return Panel(
-            join_texts(self.text, '\n') if self.is_list else self.text,
+            self.text,
             border_style=self.border_style,
             expand=False,
             title=self.title,
             title_align=self.title_justify,
         )
+
+
+@dataclass(kw_only=True)
+class ListPanel(BasePanel):
+    text: list[Text]
+
+    def to_div(self, margins: list[int | float] | None = None) -> str:
+        """Create an HTML <div> string for this panel."""
+        div_props = {
+            **self._base_div_css(margins),
+            'word-wrap': 'break-word',
+        }
+
+        html = text_to_list(self.text, class_name='no_bullets')
+        return div_class(html, BLACK_BACKGROUND, div_props)
+
+    def __rich__(self) -> Panel | Text:
+        txts = join_texts(self.text, '\n')
+
+        if self.border_style or self.title:
+            return Panel(
+                txts,
+                border_style=self.border_style,
+                expand=False,
+                title=self.title,
+                title_align=self.title_justify,
+            )
+        else:
+            return indent_txt(txts, site_config.suppressed_file_indent)
 
 
 @dataclass(kw_only=True)
@@ -139,7 +163,7 @@ class FileDisplay:
             css_props.update(RichStyle(f"on {self.background_color}").to_css)
 
         # Add more vertical margin before/after text messages  # TODO: this shouold be configured
-        if isinstance(self.body_panel, BasePanel) and self.body_panel.is_list:
+        if isinstance(self.body_panel, ListPanel):
             css_props.update(margin_vertical_css(2))
 
         if self.is_table:
