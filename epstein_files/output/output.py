@@ -219,7 +219,6 @@ def print_stats(epstein_files: EpsteinFiles) -> None:
     print_json(epstein_files.email_signature_substitution_counts(), "Email signature_substitution_countss", skip_falsey=True)
     print_json(dict_sets_to_lists(epstein_files.email_authors_to_device_signatures()), "Email author device signatures")
     print_json(dict_sets_to_lists(epstein_files.email_device_signatures_to_authors()), "Email authors by device")
-
     unknown_recipient_ids = sorted([e.file_id for e in epstein_files.emails if None in e.recipients or not e.recipients])
     print_json(epstein_files, "Unknown Recipient IDs")
     print_json(Document.count_by_month(epstein_files.documents), "All documents count by month")
