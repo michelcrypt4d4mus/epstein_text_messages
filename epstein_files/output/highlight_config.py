@@ -1386,6 +1386,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         style='green',
         contacts=[
             Entity(AMANDA_ENS, "Citigroup", r"ens, amanda?|Amanda.Ens", match_partial=None),
+            Entity('Andrew Gallivan', f"manager at {DEUTSCHE_BANK}"),
             Entity(
                 'Ari Glass',
                 f'Boothbay manager whom Epstein called "a bit sketchy" but invested $50 million with',
