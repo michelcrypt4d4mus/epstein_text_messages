@@ -147,7 +147,7 @@ LEGAL_CFGS = [
         recipients=['Daily Mail'],
     ),
     letter('010560', GLORIA_ALLRED, [SCOTT_J_LINK], "alleging abuse of a girl from Kansas", '2019-06-19'),
-    letter('028965', MARTIN_WEINBERG, ['ABC / Good Morning America'], "threatening libel lawsuit", duplicate_ids=['028928']),
+    letter('028965', MARTIN_WEINBERG, ['Good Morning America'], "threatening libel lawsuit against ABC", duplicate_ids=['028928']),
     letter('031447', MARTIN_WEINBERG, ['Melanie Ann Pustay', "Sean O'Neill"], "re: Epstein FOIA request", '2015-08-19'),
     starr_letter('025353', '2008-05-19', ['010723', '019224'], 'redacted', non_participants=[LANDON_THOMAS]),
     starr_letter('025704', '2008-05-27', ['010732', '019221'], 'redacted'),
