@@ -78,6 +78,8 @@ class CommunicationCfg(DocCfg):
 
             description = join_truthy(description, recipients, recipients_sep)
             return join_truthy(description, self.note)
+        elif self.platform == Platform.EMAIL and not self.note:
+            return ''
         else:
             return super().complete_description
 

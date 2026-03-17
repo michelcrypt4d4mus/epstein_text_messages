@@ -46,6 +46,9 @@ def test_info_sentences(get_email):
     assert len(email.info) == 1
     email_with_description = get_email('031278')
     assert len(email_with_description.info) == 1
+    assert email_with_description._config.description_txt is not None
+    email: Email = get_email('EFTA00901581')
+    assert email._config.description_txt is None
 
 
 def test_is_interesting(get_email, ito_email):
