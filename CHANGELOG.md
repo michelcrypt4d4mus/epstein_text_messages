@@ -1,4 +1,9 @@
 # NEXT RELEASE
+* add `platform` property to `CommunicationCfg`
+* Refactor `CommunicationCfg` and `EmailCfg` to their own files
+* `DocCfg.is_interesting` can be an `int` for the most interesting docs, replaces `DocCfg.is_very_interesting`
+
+# 1.10.0
 * Rename `DocCfg.description` to `note`
 * Add configured per document link URLs as prefix to file subheaders
 * Use `Entity` objs instead of names in important places

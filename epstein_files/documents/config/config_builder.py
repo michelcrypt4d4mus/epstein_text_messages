@@ -5,7 +5,9 @@ from dateutil.parser import parse
 from typing import TypeVar
 
 from epstein_files.documents.documents.categories import Category, Interesting, Neutral, Uninteresting
-from epstein_files.documents.config.doc_cfg import CommunicationCfg, DocCfg, DuplicateType, EmailCfg
+from epstein_files.documents.config.communication_cfg import CommunicationCfg, Platform
+from epstein_files.documents.config.doc_cfg import DocCfg, DuplicateType
+from epstein_files.documents.config.email_cfg import EmailCfg
 from epstein_files.people.names import *
 from epstein_files.util.helpers.string_helper import has_line_starting_with, join_truthy
 from epstein_files.util.logging import logger
@@ -166,7 +168,7 @@ def immigration_letter(id: str, author: Name, date: str = '', note: str = '', sh
         id,
         author=author,
         date=date,
-        is_interesting=True,
+        is_interesting=10,
         note=note,
         recipients=['INS'],
         show_with_name=show_with_name,
@@ -182,14 +184,15 @@ def important_messages_pad(id: str, date: str = '') -> DocCfg:
     )
 
 
-def letter(id: str, author: Name, recipients: list[Name], note: str, date: str = '', **kwargs) -> CommunicationCfg:
+def letter(id: str, author: Name = None, recipients: list[Name] | None = None, note: str = '', date: str = '', **kwargs) -> CommunicationCfg:
     return CommunicationCfg(
         id=id,
         author=author,
-        category=Category.LETTER,
+        category=Category.LETTER,  # TODO this is a platform not a category
         date=date,
         note=note,
-        recipients=recipients,
+        platform=Platform.LETTER,
+        recipients=recipients or [],
         **kwargs
     )
 
@@ -204,10 +207,14 @@ def phone_bill_cfg(id: str, author: str, dates: str = '', **kwargs) -> DocCfg:
     )
 
 
+def press_release(id: str, author: Name, date: str = '', note: str = '', **kwargs) -> DocCfg:
+    return DocCfg(id=id, author=author, category=Neutral.PRESSER, date=date, note=note, **kwargs)
+
+
 def shaher_murder_email(id: str, note: str = '', **kwargs) -> EmailCfg:
     return EmailCfg(
         id=id,
-        is_very_interesting=True,
+        is_interesting=10,
         note=join_truthy(note, f"discussion of the murder of Martine Vik Magnussen by {SHAHER_ABDULHAK_BESHER}'s son Farouk"),
         **kwargs
     )

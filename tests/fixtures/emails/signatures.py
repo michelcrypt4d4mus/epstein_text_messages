@@ -493,6 +493,7 @@ SIGNATURE_SUBSTITUTION_COUNTS = {
     "David Ingram": 9,
     DAVID_STERN: 2,
     DEEPAK_CHOPRA: 19,
+    DEUTSCHE_BANK: 12,
     EDUARDO_ROBLES: 6,
     'Erika Kellerhals': 1,
     FAITH_KATES: 1,
@@ -525,6 +526,7 @@ SIGNATURE_SUBSTITUTION_COUNTS = {
     TERRY_KAFKA: 10,
     TOM_PRITZKER: 17,
     TONJA_HADDAD_COLEMAN: 9,
+    'Tourmaline Partners': 7,
     USANYS: 2,
     'W Bradford Stephens': 2,
 }

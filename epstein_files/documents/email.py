@@ -17,7 +17,8 @@ from rich.text import Text
 from epstein_files.documents.communication import Communication
 from epstein_files.documents.document import CLOSE_PROPERTIES_CHAR, EXCERPT_STYLE
 from epstein_files.documents.documents.categories import Uninteresting
-from epstein_files.documents.config.doc_cfg import DEFAULT_TRUNCATE_TO, NO_TRUNCATE, SHORT_TRUNCATE_TO, DebugDict, EmailCfg, Metadata
+from epstein_files.documents.config.doc_cfg import DEFAULT_TRUNCATE_TO, NO_TRUNCATE, SHORT_TRUNCATE_TO, DebugDict, Metadata
+from epstein_files.documents.config.email_cfg import EmailCfg
 from epstein_files.documents.doj_file import DojFile
 from epstein_files.documents.emails.constants import *
 from epstein_files.documents.emails.email_parts import EmailParts
@@ -543,7 +544,7 @@ class Email(Communication):
             recipients: list[Name] = [JEFFREY_EPSTEIN]
 
         # Remove self CCs but preserve self emails
-        if self.author is not None and self.author in self.recipients and not self.is_note_to_self(recipients):
+        if self.author and self.author in recipients and not self.is_note_to_self(recipients):
             self._log(f"Removing email to self for {self.author}")
             recipients = [r for r in recipients if r != self.author]
 

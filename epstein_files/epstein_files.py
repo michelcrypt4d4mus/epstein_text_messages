@@ -22,6 +22,7 @@ from epstein_files.documents.doj_file import DojFile
 from epstein_files.documents.email import EMAILERS_TO_ALWAYS_TRUNCATE, Email
 from epstein_files.documents.emails.constants import UNINTERESTING_EMAILERS
 from epstein_files.documents.emails.dropsite_email import DropsiteEmail
+from epstein_files.documents.emails.emailers import ENTITIES_DICT
 from epstein_files.documents.emails.multi_email_files import split_up_multi_email_files
 from epstein_files.documents.json_file import JsonFile
 from epstein_files.documents.messenger_log import MSG_REGEX, MessengerLog
@@ -535,6 +536,7 @@ class EpsteinFiles:
         logger.warning(f"Split up {len(big_emails)} into {len(new_emails)} smaller emails...")
         return new_emails
 
+
 def document_cls(doc: Document) -> Type[Document]:
     """Find the appropriate `Document` subclass for this file based on the contents."""
     if doc.length == 0:
@@ -557,3 +559,12 @@ def document_cls(doc: Document) -> Type[Document]:
 
 def _sorted_metadata(docs: Sequence[Document]) -> list[Metadata]:
     return [json_safe(d.metadata) for d in Document.sort_by_id(docs)]
+
+
+for cfg in CONFIGS_BY_ID.values():
+    for name in cfg.names:
+        if isinstance(cfg, EmailCfg) and (cfg.has_uninteresting_ccs or cfg.has_uninteresting_bccs):
+            continue
+
+        if name not in ENTITIES_DICT and ' v. ' not in name and ',' not in name:
+            cfg._warn(f"Configured name has no Entity object: {quote(name)}")

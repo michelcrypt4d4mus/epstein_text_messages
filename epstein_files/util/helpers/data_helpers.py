@@ -33,7 +33,6 @@ days_between = lambda dt1, dt2: (dt2 - dt1).days + 1
 days_between_str = lambda dt1, dt2: f"{days_between(dt1, dt2)} day" + ('s' if days_between(dt1, dt2) > 1 else '')
 timestamp_str = lambda dt: dt.isoformat()[0:19]
 uniquify = lambda _list: list(set(_list))
-without_falsey = lambda _list: [e for e in _list if e]
 
 T = TypeVar('T')
 U = TypeVar('U')
@@ -107,10 +106,6 @@ def listify(listlike) -> list:
         return []
 
 
-def only_truthy(elements: Sequence[T]) -> list[T]:
-    return [e for e in elements if e]
-
-
 def ordinal_str(n: int) -> str:
     if 11 <= (n % 100) <= 13:
         suffix = 'th'
@@ -151,10 +146,13 @@ def update_truthy(old_dict: dict[str, T], new_dict: dict[str, T]) -> None:
             old_dict[k] = v
 
 
-
 def uniq_sorted(_list: Sequence[T], reverse: bool = False) -> list[T]:
     return sorted(uniquify(_list), reverse=reverse)
 
 
 def uniquify(_list: Sequence[T]) -> list[T]:
     return list(set(_list))
+
+
+def without_falsey(elements: Sequence[T]) -> list[T]:
+    return [e for e in elements if e]

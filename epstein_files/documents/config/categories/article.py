@@ -62,7 +62,6 @@ ARTICLE_CFGS = [
         truncate_to=(13_500, 16_000),
     ),
     DocCfg(id='031198', author='Morning News USA', note=f"article about identify of Jane Doe in {JANE_DOE_V_EPSTEIN_TRUMP}"),
-    DocCfg(id='015462', author='Nautilus Education', note=f'magazine (?) issue'),
     DocCfg(id='031972', author=NYT, note=f"article about #MeToo allegations against {LAWRENCE_KRAUSS}", date='2018-03-07'),
     DocCfg(id='032435', author=NYT, note=f'article about Chinese butlers'),
     DocCfg(id='029452', author=NYT, note=f"article about {PETER_THIEL}"),
@@ -73,7 +72,6 @@ ARTICLE_CFGS = [
     DocCfg(id='023097', author=NYT, note=f"column about The Aristocrats by Frank Rich 'The Greatest Dirty Joke Ever Told'"),
     DocCfg(id='033365', author=NYT, note=f'column about trade war with China by Kevin Rudd'),
     DocCfg(id='019439', author=NYT, note=f"column about the Clintons and money by Maureen Dowd", date='2013-08-17'),
-    DocCfg(id='EFTA00040076', author=NYT, note=f"article about Epstein's death", date='2019-07-08'),
     DocCfg(id='029925', author='New Yorker', note=f"article about the placebo effect by Michael Specter"),
     DocCfg(id='013435', author=PALM_BEACH_DAILY_NEWS, note=f"article about Epstein's address book", date='2011-03-11'),
     DocCfg(id='013440', author=PALM_BEACH_DAILY_NEWS, note=f"article about Epstein's gag order", date='2011-07-13'),
@@ -168,12 +166,13 @@ ARTICLE_CFGS = [
     DocCfg(id='031794', note=f"very short French magazine clipping"),
 
     # DOJ files
+    DocCfg(id='EFTA00040076', author=NYT, note=f"article about Epstein's death", date='2019-07-08'),
     DocCfg(
         id='EFTA02711825',
         author='Techonomy',
         author_uncertain='either this or EFTA01139627 are referenced in email EFTA01745739',
-        note='article titled "Artificial Intelligence Ignites in Ethiopia"',
         is_interesting=True,
+        note='article titled "Artificial Intelligence Ignites in Ethiopia"',
     ),
     DocCfg(
         id='EFTA01139627',
@@ -181,7 +180,7 @@ ARTICLE_CFGS = [
         author_uncertain='either this or EFTA02711825 are referenced in email EFTA01745739',
         date='2014-08-15',
         date_uncertain=f'using date of {BEN_GOERTZEL} email',
-        note='article about iCog Labs titled "A Harvard Financier, Jeffrey Epstein, Advances Artificial Intelligence in Ethiopia"',
         is_interesting=True,
+        note='article about iCog Labs titled "A Harvard Financier, Jeffrey Epstein, Advances Artificial Intelligence in Ethiopia"',
     ),
 ]

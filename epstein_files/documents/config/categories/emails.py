@@ -5,7 +5,8 @@ from epstein_files.documents.config.categories.crypto import VALAR_FUND
 from epstein_files.documents.documents.categories import Interesting, Neutral
 from epstein_files.documents.config.config_builder import (WOLFF_EPSTEIN_ARTICLE_DRAFT,
      binant_redacted, shaher_murder_email)
-from epstein_files.documents.config.doc_cfg import DEFAULT_TRUNCATE_TO, NO_TRUNCATE, SHORT_TRUNCATE_TO, DocCfg, EmailCfg
+from epstein_files.documents.config.doc_cfg import DEFAULT_TRUNCATE_TO, NO_TRUNCATE, SHORT_TRUNCATE_TO, DocCfg
+from epstein_files.documents.config.email_cfg import EmailCfg
 from epstein_files.documents.emails.constants import FLIGHT_IN_2012_PEOPLE, IRAN_DEAL_RECIPIENTS, TRIVERS_CCS
 from epstein_files.util.helpers.string_helper import join_truthy, quote
 from epstein_files.people.names import *

@@ -36,6 +36,7 @@ def test_debug_dict(email):
             CECILE_DE_JONGH,
             CHRISTINA_GALBRAITH,
             JEFFREY_EPSTEIN,
+            EPSTEIN_VI_FOUNDATION,
             'Unik',
         ],
         'email.extracted_recipients': [],
@@ -59,9 +60,9 @@ def test_debug_dict(email):
 
 def test_entities(get_doj_file):
     doc = get_doj_file('EFTA01582043')
-    assert doc.entity_names == [CANTOR_FITZGERALD, DEUTSCHE_BANK, SDNY]
+    assert doc.entity_names == [CANTOR_FITZGERALD, DEUTSCHE_BANK, JP_MORGAN, SDNY]
     entity_names = [e.name for e in doc.entity_scan(exclude=[SDNY])]
-    assert entity_names == [CANTOR_FITZGERALD, DEUTSCHE_BANK]
+    assert entity_names == [CANTOR_FITZGERALD, DEUTSCHE_BANK, JP_MORGAN]
 
 
 def test_is_doj_file(doj_file, messenger_log):

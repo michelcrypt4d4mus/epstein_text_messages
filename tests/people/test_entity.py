@@ -1,9 +1,10 @@
 from copy import deepcopy
 
+import pytest
 from rich.text import Text
 
 from epstein_files.documents.emails.emailers import ENTITIES_DICT
-from epstein_files.people.entity import Entity, acronym, organization, epstein_co, epstein_trust
+from epstein_files.people.entity import Entity, Organization, acronym, epstein_co, epstein_trust
 from epstein_files.people.names import *
 
 NAME = 'Nasir Jones'
@@ -40,13 +41,14 @@ def test_bio():
 
 
 def test_epstein_co():
-    zorro = epstein_co('Zorro', note='for New Mexico ranch')
+    zorro = epstein_co('Zorro', info='for New Mexico ranch')
     assert zorro.info == f"Epstein company for New Mexico ranch"
 
 
 def test_epstein_trust():
     butterfly = epstein_trust('Butterfly Trust', beneficiaries=['Karyna'])
     assert butterfly.info == 'Epstein financial trust, sole beneficiary Karyna'
+    assert butterfly.match_partial is None
     butterfly = epstein_trust('Butterfly Trust', beneficiaries=['Karyna', 'Dave'])
     assert butterfly.info == "Epstein financial trust, beneficiaries Karyna, Dave"
     year_trust = epstein_trust('2012', trustees=['Bob', 'Dylan'])
@@ -78,15 +80,22 @@ def test_middle_initial():
     assert critton.emailer_regex.pattern == r"Robert[-_.\s]*(D\.?[-_.\s]*)?Critton?"
 
 
-def test_organization():
-    assert organization('Jege LLC').emailer_pattern == r"Jege(,? LLC)?"
-    assert organization('Jege, LLC').emailer_pattern == r"Jege(,? LLC)?"
-    assert organization('Butterfly Inc').emailer_pattern == r"Butterfly(,? Inc)?"
-    assert organization('Butterfly, Inc.').emailer_pattern == r"Butterfly(,? Inc\.?)?"
-    coatue = organization('Coatue Management', 'VC fund')
+def test_Organization():
+    jege = Organization('Jege LLC')
+    assert jege.emailer_pattern == r"Jege(,? LLC)?"
+    assert jege.match_partial is None
+    assert jege.is_emailer is False
+    assert Organization('Jege, LLC').emailer_pattern == r"Jege(,? LLC)?"
+    assert Organization('Butterfly Inc').emailer_pattern == r"Butterfly(,? Inc)?"
+    assert Organization('Butterfly, Inc.').emailer_pattern == r"Butterfly(,? Inc\.?)?"
+    assert Organization(USANYS).emailer_regex.pattern == 'USANYS'
+    coatue = Organization('Coatue Management', 'VC fund')
+    assert coatue.match_partial is None
     assert coatue.emailer_pattern == r'Coatue( Management)?'
-    usanys = organization(USANYS)
-    assert usanys.emailer_regex.pattern == 'USANYS'
+    northward = Organization('NorthwardEducation')
+    assert northward.emailer_regex.pattern == 'NorthwardEducation'
+    thielcap = Organization('ThielCapital', belongs_to=PETER_THIEL)
+    assert thielcap.info == f"{PETER_THIEL} organization"
 
 
 def test_pattern():

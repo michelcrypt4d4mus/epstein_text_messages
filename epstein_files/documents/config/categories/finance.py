@@ -1,12 +1,13 @@
 """
 Finance related documents not specifically about Epstein's money.
 """
+from epstein_files.documents.config.config_builder import fedex_invoice, important_messages_pad, press_release
+from epstein_files.documents.config.doc_cfg import GOLDMAN_INVESTMENT_MGMT, DocCfg
+from epstein_files.documents.config.email_cfg import EmailCfg
 from epstein_files.documents.documents.categories import Interesting, Neutral
-from epstein_files.documents.config.doc_cfg import GOLDMAN_INVESTMENT_MGMT, DocCfg, EmailCfg
 from epstein_files.people.names import *
 from epstein_files.util.constant.strings import *
 
-BOFA_WEALTH_MGMT = f'{BOFA} Wealth Management'
 DEUTSCHE_BANK_TAX_TOPICS = f'{DEUTSCHE_BANK} Wealth Management Tax Topics'
 JP_MORGAN_EYE_ON_THE_MARKET = f"Eye On The Market"
 UBS_CIO_REPORT = 'CIO Monthly Extended report'
@@ -86,9 +87,9 @@ FINANCE_CFGS = [
     DocCfg(id='025247', author=UBS, note=UBS_CIO_REPORT, date='2012-10-25'),
     DocCfg(id='026584', note="article about tax implications of disregarded entities", date='2009-07-01', is_interesting=True),
     DocCfg(id='024817', note="Cowen's CBD / Cannabis report", date='2019-02-25', is_interesting=True),
-    DocCfg(
-        id='012048',
-        category=Neutral.PRESSER,
+    press_release(
+        '012048',
+        None,
         note=f"Rockefeller Partners with Gregory J. Fleming to Create Independent Financial Services Firm and other articles",
         is_interesting=False,
     ),

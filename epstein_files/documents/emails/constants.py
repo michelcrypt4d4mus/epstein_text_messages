@@ -108,7 +108,8 @@ REPLY_PATTERNS = [
     r"[Il][Il] giorno .*scritto:",                      # Italian
     r"(Den .* folgende|(fre|lor|son)\. .* skrev .*):",  # Norwegian
     r"Dnia .*napisal\(a\):",                            # Polish
-    fr"({join_patterns(RUSSIAN_WEEKDAYS)}).*:",                # Russian
+    fr"({join_patterns(RUSSIAN_WEEKDAYS)}).*:",         # Russian
+    r"^.* написал(\([аa]\))?:$",                        # Russian
 ]
 
 REPLY_LINE_PATTERN = fr"^({QUOTE_INDENT_CHAR_GROUP}*({join_patterns(REPLY_PATTERNS)}))"
@@ -352,7 +353,6 @@ TRIVERS_CCS: list[Name] = [
 
 # No point in ever displaying these; their emails show up elsewhere because they're mostly CC recipients
 UNINTERESTING_EMAILERS = FLIGHT_IN_2012_PEOPLE + IRAN_DEAL_RECIPIENTS + TRIVERS_CCS + [
-    'Alan Rogers',                           # Random CC
     'Andrew Friendly',                       # Presumably some relation of Kelly Friendly
     'Ariane Dwyer',                          # Daniel Sabba CC
     'Cheryl Kleen',                          # One email from Anne Boyles is displayed under Anne Boyles
@@ -360,6 +360,7 @@ UNINTERESTING_EMAILERS = FLIGHT_IN_2012_PEOPLE + IRAN_DEAL_RECIPIENTS + TRIVERS_
     'Dan Fleuette',                          # Sean Bannon CC
     'Danny Goldberg',                        # Paul Krassner CC
     GERALD_LEFCOURT,                         # Single CC
+    'George Krassner',                       # Krassner CC
     GORDON_GETTY,                            # Random CC
     'Grant J. Smith',                        # Ken Jenne CC
     JEFF_FULLER,                             # Jean Luc Brunel CC
@@ -385,7 +386,6 @@ UNINTERESTING_EMAILERS = FLIGHT_IN_2012_PEOPLE + IRAN_DEAL_RECIPIENTS + TRIVERS_
     'Sean T Lehane',                         # Random CC
     'Stephen Rubin',                         # Random CC
     THANU_BOONYAWATANA,                      # Eduardo Robles CC
-    'Tim Kane',                              # Random CC
     'Travis Pangburn',                       # Random CC
     'Vahe Stepanian',                        # Random CC
 ]

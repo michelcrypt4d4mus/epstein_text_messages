@@ -56,7 +56,7 @@ class OtherFile(Document):
     File that is not an email, an iMessage log, or JSON data.
 
     Attributes:
-        derived_cfg (DocCfg, optional): a DocCfg object derived from contents of the file
+        derived_cfg (DocCfg, optional): `DocCfg` object derived from contents of the file instead of being configured
     """
     derived_cfg: DocCfg | None = None
 
@@ -73,12 +73,6 @@ class OtherFile(Document):
     @property
     def config(self) -> DocCfg | None:
         return super().config or self.derived_cfg
-
-    @property
-    def category_txt(self) -> Text:
-        """Returns '???' for missing category."""
-        # TODO: create synthetic DocCfg so we don't have to handle QUESTION_MARKS return here
-        return styled_category(self.category) if self.category else QUESTION_MARKS_TXT
 
     @property
     def is_interesting(self) -> bool | None:
@@ -219,7 +213,7 @@ class OtherFile(Document):
 
             table.add_row(
                 Group(*link_and_info),
-                Group(date_txt, file.category_txt, Text(file.file_info.file_size_str, style='wheat4 dim')),
+                Group(date_txt, file._config.category_txt, Text(file.file_info.file_size_str, style='wheat4 dim')),
                 preview_text,
                 style=row_style
             )

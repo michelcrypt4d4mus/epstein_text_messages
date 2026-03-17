@@ -2,7 +2,7 @@
 Custom configurations for iMessage logs.
 """
 from epstein_files.documents.documents.categories import Interesting
-from epstein_files.documents.config.doc_cfg import TextCfg
+from epstein_files.documents.config.communication_cfg import TextCfg
 from epstein_files.people.names import *
 
 PARTICIPANTS_FIELD = 'Participants: field'
@@ -18,7 +18,7 @@ CONFIRMED_TEXTS_CONFIG = [
     TextCfg(id='031054', author=ANTHONY_SCARAMUCCI, author_reason="Scaramucci's phone number is at top of raw file"),
     TextCfg(id='027333', author=ANTHONY_SCARAMUCCI, author_reason="Scaramucci's phone number is in one of the messages"),
     TextCfg(id='031173', author=ARDA_BESKARDES, author_reason=PARTICIPANTS_FIELD),
-    TextCfg(id='027401', author=EVA, author_reason=PARTICIPANTS_FIELD),
+    TextCfg(id='027401', author=EVA_DUBIN, author_uncertain=PARTICIPANTS_FIELD),
     TextCfg(id='027650', author=JOI_ITO, author_reason=PARTICIPANTS_FIELD),
     TextCfg(id='027777', author=LARRY_SUMMERS, author_reason=PARTICIPANTS_FIELD),
     TextCfg(id='027515', author=MIROSLAV_LAJCAK, author_reason='https://x.com/ImDrinknWyn/status/1990210266114789713'),
@@ -97,7 +97,7 @@ UNCONFIRMED_TEXTS_CONFIG = [
         author_uncertain='AI says Trump + NYT coverage',
         note='contains discussion of Chinese criminal Miles Guo AKA Miles Kwok',
         entity_names=[MILES_GUO],
-        is_very_interesting=True,
+        is_interesting=10,
     ),
     TextCfg(id='031045', author=STEVE_BANNON, author_uncertain='AI says Trump and New York Times coverage'),
     TextCfg(id='027275', is_interesting=True, comment='"Crypto- Kerry- Qatar -sessions"'),

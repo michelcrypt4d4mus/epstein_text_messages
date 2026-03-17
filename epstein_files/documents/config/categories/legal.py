@@ -1,5 +1,6 @@
 from epstein_files.documents.config.config_builder import JANE_DOE_V_USA, letter, starr_letter
-from epstein_files.documents.config.doc_cfg import DocCfg, EmailCfg
+from epstein_files.documents.config.doc_cfg import DocCfg
+from epstein_files.documents.config.email_cfg import EmailCfg
 from epstein_files.people.names import *
 from epstein_files.util.constant.strings import *
 from epstein_files.util.helpers.string_helper import join_truthy, quote
@@ -7,7 +8,7 @@ from epstein_files.util.helpers.string_helper import join_truthy, quote
 # Legal cases
 BRUNEL_V_EPSTEIN = f"{JEAN_LUC_BRUNEL} v. {JEFFREY_EPSTEIN} and Tyler McDonald d/b/a YI.org"
 EDWARDS_V_DERSHOWITZ = f"{BRAD_EDWARDS} & {PAUL_G_CASSELL} v. {ALAN_DERSHOWITZ}"
-EPSTEIN_V_ROTHSTEIN_EDWARDS = f"Epstein v. Scott Rothstein, {BRAD_EDWARDS}, & L.M."
+EPSTEIN_V_ROTHSTEIN_EDWARDS = f"Epstein v. {SCOTT_ROTHSTEIN}, {BRAD_EDWARDS}, & L.M."
 GIUFFRE_V_DERSHOWITZ = f"{VIRGINIA_GIUFFRE} v. {ALAN_DERSHOWITZ}"
 GIUFFRE_V_EPSTEIN = f"{VIRGINIA_GIUFFRE} v. {JEFFREY_EPSTEIN}"
 GIUFFRE_V_MAXWELL = f"{VIRGINIA_GIUFFRE} v. {GHISLAINE_MAXWELL}"
@@ -146,7 +147,7 @@ LEGAL_CFGS = [
         recipients=['Daily Mail'],
     ),
     letter('010560', GLORIA_ALLRED, [SCOTT_J_LINK], "alleging abuse of a girl from Kansas", '2019-06-19'),
-    letter('028965', MARTIN_WEINBERG, ['ABC / Good Morning America'], "threatening libel lawsuit", duplicate_ids=['028928']),
+    letter('028965', MARTIN_WEINBERG, ['Good Morning America'], "threatening libel lawsuit against ABC", duplicate_ids=['028928']),
     letter('031447', MARTIN_WEINBERG, ['Melanie Ann Pustay', "Sean O'Neill"], "re: Epstein FOIA request", '2015-08-19'),
     starr_letter('025353', '2008-05-19', ['010723', '019224'], 'redacted', non_participants=[LANDON_THOMAS]),
     starr_letter('025704', '2008-05-27', ['010732', '019221'], 'redacted'),

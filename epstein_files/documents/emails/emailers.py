@@ -2,9 +2,12 @@
 Constants and methods for identifying people in email headers.
 """
 import re
+from collections import Counter
+from typing import Optional
 
+from epstein_files.documents.emails.constants import UNINTERESTING_EMAILERS
 from epstein_files.output.highlight_config import HIGHLIGHTED_ENTITIES
-from epstein_files.people.entity import Entity, organization
+from epstein_files.people.entity import Entity, Organization
 from epstein_files.people.names import *
 from epstein_files.util.constant.strings import REDACTED
 from epstein_files.util.helpers.data_helpers import escape_single_quotes, flatten, groupby, uniq_sorted, without_falsey
@@ -15,7 +18,7 @@ BAD_NAME_CHARS_REGEX = re.compile(r"[\"'\[\]*><•=()‹?]")
 TIME_REGEX = re.compile(r'^((\d{1,2}/\d{1,2}/\d{2,4}|Thursday|Monday|Tuesday|Wednesday|Friday|Saturday|Sunday)|\d{4} ).*')
 
 # Unhighlighted / uncategorized emailers we don't know much about but need regexes to identify
-ADDITIONAL_CONTACTS = [
+ADDITIONAL_EMAILERS = [
     # Custom regex
     Entity('BS Stern', emailer_pattern=r"BS Ste(m|rn)"),
     Entity(INTELLIGENCE_SQUARED, emailer_pattern=r"intelligence\s*squared"),
@@ -54,12 +57,28 @@ SUPPRESS_LOGS_FOR_AUTHORS = [
 ]
 
 # Collect all configured entities into various data structures
-CONFIGURED_ENTITIES = HIGHLIGHTED_ENTITIES + ADDITIONAL_CONTACTS
+CONFIGURED_ENTITIES = HIGHLIGHTED_ENTITIES + ADDITIONAL_EMAILERS
+ENTITIES_DICT = {c.name: c for c in CONFIGURED_ENTITIES}
+
+for name in UNINTERESTING_EMAILERS:
+    if (entity := ENTITIES_DICT.get(name)):
+        entity._log(f"Found UNINTERESTING_EMAILER, setting is_interesting=False...")  # TODO: doesn't mean much right now
+        entity.is_interesting = False
+    else:
+        CONFIGURED_ENTITIES.append(Entity(name, is_interesting=False, match_partial=None))
+        CONFIGURED_ENTITIES[-1]._log(f"Created new Entity for UNINTERESTING_EMAILER entry...")
+
+ENTITIES_DICT = {c.name: c for c in CONFIGURED_ENTITIES}
 EMAILER_REGEXES = {c.name: c.emailer_regex for c in CONFIGURED_ENTITIES if c.is_emailer}
 ENTITY_CATEGORIES = groupby(CONFIGURED_ENTITIES, lambda contact: contact.category)
-ENTITIES_DICT = {c.name: c for c in CONFIGURED_ENTITIES}
+ENTITIES_DICT = {c.name: c for c in CONFIGURED_ENTITIES}  # Rebuild with new
 UNCONFIGURED_ENTITIES_ENCOUNTERED = {}
-assert len(CONFIGURED_ENTITIES) == len(ENTITIES_DICT), f"{len(CONFIGURED_ENTITIES)} entities but only {len(ENTITIES_DICT)} names!"
+
+if len(CONFIGURED_ENTITIES) != len(ENTITIES_DICT):
+    counts = Counter([c.name for c in CONFIGURED_ENTITIES])
+    more_than_one = [k for k, v in counts.items() if v > 1]
+    raise ValueError(f"{len(CONFIGURED_ENTITIES)} entities but only {len(ENTITIES_DICT)} names! Bad names: {more_than_one}")
+
 
 # Strings that usually signify an identity if present in email body
 IDENTIFYING_STRINGS = {}
@@ -105,19 +124,20 @@ def extract_emailer_names(emailer_str: str) -> list[Name]:
     return names_found
 
 
-def get_entity(name: str | Entity) -> Entity:
+def get_entity(name: str | Entity, doc: Optional['Document'] = None) -> Entity:
     if isinstance(name, Entity):
         return name
     elif name in ENTITIES_DICT:
         return ENTITIES_DICT[name]
     elif name not in UNCONFIGURED_ENTITIES_ENCOUNTERED:
-        logger.warning(f"Encountered unconfigured entity name '{name}'")
+        log = doc._warn if doc else logger.warning
+        log(f"Encountered unconfigured entity name '{name}'")
         UNCONFIGURED_ENTITIES_ENCOUNTERED[name] = Entity(name)
 
     return UNCONFIGURED_ENTITIES_ENCOUNTERED[name]
 
 
-def get_entities(_names: Sequence[Name | Entity]) -> list[Entity]:
+def get_entities(_names: Sequence[Name | Entity], doc: Optional['Document'] = None) -> list[Entity]:
     """Also uniquifies and removes None / empty string."""
     names = Entity.coerce_entity_names(without_falsey(_names))
-    return [get_entity(name) for name in uniq_sorted(names)]
+    return [get_entity(name, doc) for name in uniq_sorted(names)]

@@ -1,6 +1,8 @@
 from epstein_files.documents.documents.categories import Interesting, Neutral, Uninteresting
+from epstein_files.documents.config.communication_cfg import CommunicationCfg, Platform, iMessage_log, iMessage_screenshot, skype_log, whatsapp_log
 from epstein_files.documents.config.config_builder import letter
-from epstein_files.documents.config.doc_cfg import NO_TRUNCATE, CommunicationCfg, DocCfg, EmailCfg
+from epstein_files.documents.config.doc_cfg import NO_TRUNCATE, DocCfg
+from epstein_files.documents.config.email_cfg import EmailCfg
 from epstein_files.util.helpers.string_helper import join_truthy, quote
 from epstein_files.people.names import *
 from epstein_files.util.constant.strings import *
@@ -34,35 +36,56 @@ GIRLS_CFGS = [
     DocCfg(id='EFTA00014648', note='former employee "understood that all the girls were school girls"', show_full_panel=True),
     DocCfg(
         id='EFTA00077200',
-        author='French Ministry of Justice',
+        author=FRENCH_MINISTRY_OF_JUSTICE,
         date='2020-07-08',
         note=f'allegations that {JEAN_LUC_BRUNEL} drugged a model and Epstein + Ghislaine assaulted a minor',
     ),
     DocCfg(
         id='EFTA00079597',
-        author='French Ministry of Justice',
+        author=FRENCH_MINISTRY_OF_JUSTICE,
         note=f"allegations of sexual assault by {JEAN_LUC_BRUNEL}",
         date='2020-07-08',
     ),
 
     # Communications
+    # TODO: convert to MessengerLogPdf
     CommunicationCfg(
-        id='EFTA01612733',
-        author=MARIA_PRUSAKOVA,
-        author_uncertain=True,
-        comment='WhatsApp',
-        # highlight_quote='way better than supplying ladies',
-        # TODO: highlight_quote
-        note=f'says being Epstein\'s lawyer would be "way better than supplying ladies", also discusses Medici Bank',
+        id='EFTA01612665',
+        note='Epstein gives advice on how to recruit girls',
+        highlight_quote="stressed about finding girls. It's hard",
+    ),
+    iMessage_log(
+        id='EFTA02731576',
+        is_interesting=10,
+        note=f"making contemporaneous accusations",
+        recipients=[LEON_BLACK],
         show_full_panel=True,
     ),
-    CommunicationCfg(
+    iMessage_screenshot('EFTA02731525', author=LEON_BLACK, author_uncertain=True),
+    iMessage_screenshot('EFTA01618381', author=RENATA_BOLOTOVA, author_uncertain='sneaky', highlight_quote='how many new girls are there in the island W you now?'),
+    iMessage_screenshot('EFTA01622387', author=RENATA_BOLOTOVA, author_uncertain='sneaky'),
+    iMessage_screenshot('EFTA01618494', author=RENATA_BOLOTOVA, author_uncertain='sneaky'),
+    iMessage_screenshot('EFTA01618400', author=RENATA_BOLOTOVA, author_uncertain='sneaky'),
+    letter('EFTA00078198', 'Marsh Law Firm', [USANYS], "allegations of sexual abuse at Epstein's house", '2020-11-10'),
+    skype_log(
         id='EFTA01616933',
         note='"no one can beat your pussy network"',
         highlight_quote='now im finding pussy for you',
-        show_full_panel=True,
     ),
-    letter('EFTA00078198', 'Marsh Law Firm', [USANYS], "allegations of sexual abuse at Epstein's house", '2020-11-10'),
+    skype_log(
+        id='EFTA01623342',
+        author=ANNA_KASATKINA,
+        author_uncertain='https://www.reddit.com/r/Epstein/comments/1qwbn5i/trafficker_julia_santos/',
+        note='recruiting russian girls',
+        url='https://www.reddit.com/r/Epstein/comments/1qwbn5i/trafficker_julia_santos/',
+    ),
+    whatsapp_log(
+        id='EFTA01612733',
+        author=MARIA_PRUSAKOVA,
+        author_uncertain=True,
+        highlight_quote='way better than supplying you ladies',
+        note=f'saying being Epstein\'s lawyer would be preferable to recruiting, discusses Medici Bank',
+    ),
 
     # Authors
     EmailCfg(
@@ -86,8 +109,8 @@ GIRLS_CFGS = [
         id='033178',
         author=MARIA_PRUSAKOVA,
         author_reason=PRUSAKOVA_BERKELY,
+        is_interesting=10,
         note=f'Masha Prusso asks about {ZUBAIR_KHAN}, discusses recruiting girls for Epstein',
-        is_interesting=True,
     ),
     EmailCfg(
         id='EFTA00669538',
@@ -101,7 +124,7 @@ GIRLS_CFGS = [
         author=MARIA_PRUSAKOVA,
         date='2012-01-31 9:16 PM',
         note=f'raunchy email mentioning "Sasha Grey guy", note {BORIS_NIKOLIC} and bgC3 in SMTP info at end',
-        is_interesting=True,
+        is_interesting=10,
         recipients=[JEFFREY_EPSTEIN],
     ),
     EmailCfg(
@@ -137,19 +160,21 @@ GIRLS_CFGS = [
         id='EFTA00659941',
         author=SVETLANA_POZHIDAEVA,
         author_reason='https://tommycarstensen.com/epstein/findings.html#victim-diary-names-multiple-men',
+        is_interesting=10,
         note=f'{SVETLANA_POZHIDAEVA} forwarding her intimate conversations with {JOSHUA_FINK} to Epstein (to what end?)',
-        is_interesting=True,
     ),
     EmailCfg(
         id='EFTA01844498',
         author=SVETLANA_POZHIDAEVA,
         author_reason='Josh Fink, BlackBerry signature',
+        is_interesting=10,
         note=f"jealous boyfriend {JOSHUA_FINK} accuses Svetlana had an affair with Navalny {QUESTION_MARKS}",
     ),
     EmailCfg(
         id='EFTA01870453',
         author=SVETLANA_POZHIDAEVA,
         author_uncertain=f"{JOSHUA_FINK} texts",
+        is_interesting=10,
         note=f'{JOSHUA_FINK} and {SVETLANA_POZHIDAEVA} discuss an abortion ("You have known you are preg for a week")',
     ),
     EmailCfg(
@@ -164,15 +189,15 @@ GIRLS_CFGS = [
         id='EFTA01991293',
         author=SVETLANA_POZHIDAEVA,
         author_reason=f"convo about {JOSHUA_FINK} breakup",
+        is_interesting=10,
         note=f'did {ELON_MUSK} date {SVETLANA_POZHIDAEVA} after she blackmailed {JOSHUA_FINK}? ("he asked 6 times if Elon [gave] me anything")',
-        is_interesting=True,
     ),
     EmailCfg(
         id='EFTA01998247',
         author=SVETLANA_POZHIDAEVA,
         author_uncertain='device signature',
         note=f'trying to recruit {ELON_MUSK}?',
-        is_interesting=True,
+        is_interesting=10,
         show_with_name=ELON_MUSK,
     ),
     EmailCfg(
@@ -182,15 +207,15 @@ GIRLS_CFGS = [
         truncate_to=(900, 1_600),
     ),
     EmailCfg(id='EFTA01772677', author=SVETLANA_POZHIDAEVA, author_uncertain='device signature'),
-    EmailCfg(id='EFTA01877224', author=SVETLANA_POZHIDAEVA, author_uncertain=f"{JOSHUA_FINK} texts"),
-    EmailCfg(id='EFTA00937507', author=SVETLANA_POZHIDAEVA, author_uncertain=f"{JOSHUA_FINK} texts"),
+    EmailCfg(id='EFTA01877224', author=SVETLANA_POZHIDAEVA, author_uncertain=f"{JOSHUA_FINK} texts", is_interesting=10),
+    EmailCfg(id='EFTA00937507', author=SVETLANA_POZHIDAEVA, author_uncertain=f"{JOSHUA_FINK} texts", is_interesting=10),
     EmailCfg(id='EFTA02431535', author=UNKNOWN_GIRL),
     EmailCfg(id='EFTA01875607', author=UNKNOWN_GIRL),
     EmailCfg(id='EFTA00901581', author=UNKNOWN_GIRL),
-    EmailCfg(id='EFTA02449477', author=UNKNOWN_GIRL, note='argument about finding girls for Epstein', truncate_to=NO_TRUNCATE),
-    EmailCfg(id='EFTA01782788', author=UNKNOWN_GIRL, highlight_quote='"I need 21-24, wiling to travel and work hard"', truncate_to=NO_TRUNCATE),
+    EmailCfg(id='EFTA02449477', author=UNKNOWN_GIRL, note='argument about finding girls for Epstein', is_interesting=10, truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA02027844', author=UNKNOWN_GIRL, note='permission to "fuck someone with a condom"', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA00763537', author=UNKNOWN_GIRL, highlight_quote="19 but I look younger than her"),
+    EmailCfg(id='EFTA01782788', author=UNKNOWN_GIRL, highlight_quote='I need 21-24, wiling to travel and work hard', truncate_to=NO_TRUNCATE),
     EmailCfg(
         id='EFTA01024118',
         author=YULIA_DOROKHINA,
@@ -227,11 +252,7 @@ GIRLS_CFGS = [
         recipient_uncertain='https://www.reddit.com/r/Epstein/comments/1qwbn5i/trafficker_julia_santos/',
         truncate_to=800
     ),
-    EmailCfg(
-        id='EFTA02470883',
-        recipients=[YULIA_DOROKHINA],
-        recipient_uncertain='uses "sooooooooo" a lot, same as this person and not like other girls',
-    ),
+    EmailCfg(id='EFTA02470883', recipients=[YULIA_DOROKHINA]),
     EmailCfg(
         id='EFTA00997627',
         highlight_quote='you will be introduced to more gorgeous Alicas, i promise',
@@ -248,13 +269,14 @@ GIRLS_CFGS = [
     ),
     EmailCfg(
         id='EFTA00857669',
-        note=f"{SANITA} is maybe the only great girl with right thinking",
+        note=f"{SANITA} is maybe the only great girl with right thinking in the entire Epstein files",
         recipients=[SANITA],
         truncate_to=NO_TRUNCATE,
     ),
     EmailCfg(id='EFTA00738485', recipients=[STEVEN_VICTOR_MD], truncate_to=640),
     EmailCfg(
         id='EFTA02560884',
+        is_interesting=10,
         note=f"is Epstein drafting {SVETLANA_POZHIDAEVA}'s romantic responses to {JOSHUA_FINK} {QUESTION_MARKS}",
         recipients=[SVETLANA_POZHIDAEVA],
         recipient_uncertain=f"{JOSHUA_FINK} texts",
@@ -262,11 +284,13 @@ GIRLS_CFGS = [
     EmailCfg(
         id='EFTA02543909',
         author_reason='p.selena@yahoo.com in replies',
+        is_interesting=10,
         note=f'{SVETLANA_POZHIDAEVA}\'s relationship with "J" ({JOSHUA_FINK}?) and "B" {QUESTION_MARKS}',
         recipients=[SVETLANA_POZHIDAEVA],
     ),
     EmailCfg(
         id='EFTA00937556',
+        is_interesting=10,
         note=f"looks like Epstein coaching {SVETLANA_POZHIDAEVA} on how to respond to {JOSHUA_FINK}",
         recipients=[SVETLANA_POZHIDAEVA],
         recipient_uncertain=True,
@@ -283,13 +307,14 @@ GIRLS_CFGS = [
         recipients=[UNKNOWN_GIRL],
     ),
     EmailCfg(id='EFTA00897668', recipients=[UNKNOWN_GIRL], entity_names=[JEAN_LUC_BRUNEL, JEFFREY_EPSTEIN, UNKNOWN_GIRL]),
-    EmailCfg(id='EFTA00848644', recipients=[UNKNOWN_GIRL], is_very_interesting=True, note='"take a picture of your pussy"'),
+    EmailCfg(id='EFTA00848644', recipients=[UNKNOWN_GIRL], highlight_quote='take a selfie of your pussy and send'),
     EmailCfg(
         id='EFTA01026268',
         author_reason='juliador89®mail.ru is unredacted',
+        is_interesting=10,
         note=f"Epstein pressuring {YULIA_DOROKHINA} to find girls in Russia and send him nude pics and videos",
         recipients=[YULIA_DOROKHINA],
-        truncate_to=3100,
+        truncate_to=3_100,
     ),
     EmailCfg(id='EFTA01024839', recipients=[YULIA_DOROKHINA], recipient_uncertain='part of thread'),
     EmailCfg(id='EFTA02276109', recipients=[YULIA_DOROKHINA], recipient_uncertain='"Yulia"'),
@@ -356,13 +381,13 @@ GIRLS_CFGS = [
     EmailCfg(
         id='EFTA02415420',
         highlight_quote="I have a friend of Putin,s",
-        is_very_interesting=True,
+        is_interesting=10,
     ),
     EmailCfg(
         id='EFTA02555750',
         highlight_quote='suspend any billing from now on until further notification from you or the model',
         note=f"who's \"the model\" {JEAN_LUC_BRUNEL} is billing {JOSHUA_FINK} for?",
-        is_very_interesting=True,
+        is_interesting=10,
     ),
     EmailCfg(id='EFTA00971793', highlight_quote='Attached is resume of Lutnick nanny', note=f"why does Epstein need a nanny?"),
     EmailCfg(id='EFTA01965732', highlight_quote='facilictating his illicit trysts, with married women, to being asked to provide adderall fro bridge tournamnts'),
@@ -443,17 +468,17 @@ GIRLS_CFGS = [
         truncate_to=1500,
     ),
     EmailCfg(id='EFTA02142175', note=f"{DARREN_INDYKE} meeting {JEAN_LUC_BRUNEL} at Karin Models office"),
-    EmailCfg(id='EFTA01840103', note="Epstein apparently suggesting amphetamines (adderall)", is_very_interesting=True),
+    EmailCfg(id='EFTA01840103', note="Epstein apparently suggesting amphetamines (adderall)", is_interesting=10),
     EmailCfg(id='EFTA01987855', note=f'Epstein, Brunel, and {SULTAN_BIN_SULAYEM} very interested in a Liberian sex scandal'),
-    EmailCfg(id='EFTA01817903', note=f'Epstein, Brunel, and {SULTAN_BIN_SULAYEM} sharing news of a Liberian sex scandal', is_very_interesting=True),
+    EmailCfg(id='EFTA01817903', note=f'Epstein, Brunel, and {SULTAN_BIN_SULAYEM} sharing news of a Liberian sex scandal', is_interesting=10),
     EmailCfg(id='EFTA01818540', note=f'Epstein forwarding news of the Liberian sex scandal to {JES_STALEY}'),
     EmailCfg(id='EFTA01140210', note='Epstein asks about fake Instagram followers'),
     EmailCfg(id='EFTA00937981', note=f"Epstein looking for {JOSHUA_FINK} (again)"),
     EmailCfg(id='EFTA00668344', note=f"Epstein looking for {JOSHUA_FINK} (again)"),
     EmailCfg(id='EFTA01856467', note=f"Epstein looking for {JOSHUA_FINK} (again)", truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA01854125', note=f'Epstein says to {HENRY_JARECKI} "you torture, and mistreat each" girl'),
-    EmailCfg(id='EFTA01936438', note=f'Epstein\'s standard password might be "MVEMJSNUP"', is_very_interesting=True),
-    EmailCfg(id='EFTA02559808', note=f"{EVA_DUBIN} delivering amphetamines (adderall) to Epstein", is_very_interesting=True, truncate_to=200),
+    EmailCfg(id='EFTA01936438', note=f'Epstein\'s standard password might be "MVEMJSNUP"', is_interesting=10),
+    EmailCfg(id='EFTA02559808', note=f"{EVA_DUBIN} delivering amphetamines (adderall) to Epstein", is_interesting=10, truncate_to=200),
     EmailCfg(id='EFTA01953412', note=f'{EVA_DUBIN} suggests Epstein endow "The Epstein Floor For Women" at Mt. Sinai'),
     EmailCfg(id='EFTA00658028', note=f'{FAITH_KATES} trying to get a modeling contract for "Regina"?'),
     EmailCfg(id='EFTA00855566', note=f"introducing {SANITA}", truncate_to=NO_TRUNCATE),
