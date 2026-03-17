@@ -339,7 +339,11 @@ def acronym(name: str, info: str = '', **kwargs) -> Organization:
     """Auto-generates a regex matching the org's initials."""
     initials = [word[0] for word in name.split() if word[0].isupper()]
     initials_pattern = ''.join([fr"{letter}\.?" for letter in initials])
-    is_emailer = kwargs.pop('is_emailer') if 'is_emailer' in kwargs else False
+
+    if 'emailer_pattern' in kwargs:
+        is_emailer = True
+    else:
+        is_emailer = _pop_kwarg(kwargs, 'is_emailer', False)
 
     return Organization(
         ''.join(initials),
@@ -378,7 +382,15 @@ def epstein_trust(
 
 
 def law_enforcement(name: str, emailer_pattern: str = '', info: str = '', **kwargs) -> Organization:
-    return Organization(name, info or LAW_ENFORCEMENT, emailer_pattern, is_interesting=False, **kwargs)
+    is_interesting = _pop_kwarg(kwargs, 'is_interesting', False)
+
+    return Organization(
+        name,
+        info or LAW_ENFORCEMENT,
+        emailer_pattern,
+        is_interesting=is_interesting,
+        **kwargs
+    )
 
 
 def publication(name: str, emailer_pattern: str = '', **kwargs) -> Organization:
@@ -395,3 +407,8 @@ def the_publication(name: str, emailer_pattern: str = '', **kwargs) -> Organizat
     emailer_pattern = emailer_pattern or name
     pattern = fr"({emailer_pattern})" if '|' in emailer_pattern else emailer_pattern
     return publication(name, fr"(The )?{pattern}", **kwargs)
+
+
+def _pop_kwarg(kwargs: dict, key: str, default: bool = False) -> bool:
+    """Pop a kwarg and return if it exists, elese return `default`."""
+    return kwargs.pop(key) if key in kwargs else default
