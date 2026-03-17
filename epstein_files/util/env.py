@@ -104,6 +104,7 @@ site_config = MobileConfig if args.mobile else SiteConfig
 
 args.debug = args.deep_debug or args.debug or is_env_var_set('DEBUG')
 args._debug_highlight_patterns = (args.colors_only and args.debug)
+args._site_type = SiteType.CURATED  # TODO: not ideal
 
 # args.names = [name.title() for name in args.names] if args.names and args.names[0][0].islower() else args.names
 args.names = [None if n == 'None' else n.strip() for n in (args.names or [])]
