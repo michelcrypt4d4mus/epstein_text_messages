@@ -29,9 +29,9 @@ SKYPE_LOG_CFGS = [
         ],
     ),
     CommunicationCfg(id='EFTA01613143', author=MELANIE_WALKER, date='2017-06-24'),
-    CommunicationCfg(id='EFTA01217787', recipients=[TYLER_SHEARS, 'Hanna Traff at Spotify'], is_interesting=True),
-    CommunicationCfg(id='EFTA01217703', recipients=['actress Athena Zelcovich', JOSCHA_BACH, LAWRENCE_KRAUSS]),
-    CommunicationCfg(id='EFTA01217736', recipients=['actress Athena Zelcovich', TYLER_SHEARS]),
+    CommunicationCfg(id='EFTA01217787', recipients=[TYLER_SHEARS, HANNA_TRAFF], is_interesting=True),
+    CommunicationCfg(id='EFTA01217703', recipients=[ATHENA_ZELCOVICH, JOSCHA_BACH, LAWRENCE_KRAUSS]),
+    CommunicationCfg(id='EFTA01217736', recipients=[ATHENA_ZELCOVICH, TYLER_SHEARS]),
     CommunicationCfg(
         id='EFTA01623342',
         author=ANNA_KASATKINA,

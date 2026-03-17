@@ -359,6 +359,7 @@ UNINTERESTING_EMAILERS = FLIGHT_IN_2012_PEOPLE + IRAN_DEAL_RECIPIENTS + TRIVERS_
     'Dan Fleuette',                          # Sean Bannon CC
     'Danny Goldberg',                        # Paul Krassner CC
     GERALD_LEFCOURT,                         # Single CC
+    'George Krassner',                       # Krassner CC
     GORDON_GETTY,                            # Random CC
     'Grant J. Smith',                        # Ken Jenne CC
     JEFF_FULLER,                             # Jean Luc Brunel CC

@@ -66,7 +66,7 @@ for name in UNINTERESTING_EMAILERS:
         entity.is_interesting = False
     else:
         CONFIGURED_ENTITIES.append(Entity(name, is_interesting=False, match_partial=None))
-        CONFIGURED_ENTITIES[-1]._warn(f"Created new Entity for UNINTERESTING_EMAILER entry...")
+        CONFIGURED_ENTITIES[-1]._log(f"Created new Entity for UNINTERESTING_EMAILER entry...")
 
 ENTITIES_DICT = {c.name: c for c in CONFIGURED_ENTITIES}
 EMAILER_REGEXES = {c.name: c.emailer_regex for c in CONFIGURED_ENTITIES if c.is_emailer}

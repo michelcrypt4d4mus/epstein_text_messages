@@ -563,5 +563,8 @@ def _sorted_metadata(docs: Sequence[Document]) -> list[Metadata]:
 
 for cfg in CONFIGS_BY_ID.values():
     for name in cfg.names:
+        if isinstance(cfg, EmailCfg) and (cfg.has_uninteresting_ccs or cfg.has_uninteresting_bccs):
+            continue
+
         if name not in ENTITIES_DICT and ' v. ' not in name and ',' not in name:
             cfg._warn(f"Configured name has no Entity object: {quote(name)}")

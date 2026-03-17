@@ -263,7 +263,7 @@ CRYPTO_CFGS = [
         author='US Secret Service',
         recipients=['Enterprise Vetting Center'],
         show_with_name=HOWARD_LUTNICK,
-        truncate_to=800
+        truncate_to=800,
     ),
     EmailCfg(
         id='EFTA00873541',
@@ -414,17 +414,17 @@ CRYPTO_CFGS = [
     EmailCfg(id='EFTA01005117', note='announcement that the Stellar blockchain is Sharia compliant'),
     # Steven Sinofsky / a16z
     EmailCfg(id='EFTA01804670', highlight_quote='Andreessen really into this whole virtual money space', truncate_to=700),
-    # Valar
+    # Valar Ventures
     DocCfg(
         id='EFTA00591045',
         attached_to_email_id='EFTA01001339',
-        author=VALAR_FUND,
+        author=VALAR_VENTURES,
         note='pitch deck',
         non_participants=[MASAYOSHI_SON],
     ),
-    DocCfg(id='EFTA00810239', author=VALAR_FUND, note='pitch deck'),
-    DocCfg(id='EFTA00810510', author=VALAR_FUND, note='Fall 2016 Update'),
-    DocCfg(id='EFTA00810474', author=VALAR_FUND, note='Fall 2018 Update'),
+    DocCfg(id='EFTA00810239', author=VALAR_VENTURES, note='pitch deck'),
+    DocCfg(id='EFTA00810510', author=VALAR_VENTURES, note='Fall 2016 Update'),
+    DocCfg(id='EFTA00810474', author=VALAR_VENTURES, note='Fall 2018 Update'),
     DocCfg(id='EFTA01121910', author=VALAR_VENTURES, note="contract", truncate_to=DEFAULT_TRUNCATE_TO),
     DocCfg(id='EFTA00808277', author=VALAR_VENTURES, note="contract", truncate_to=DEFAULT_TRUNCATE_TO),
     DocCfg(id='EFTA01088484', author=VALAR_VENTURES, note="contract", truncate_to=DEFAULT_TRUNCATE_TO),

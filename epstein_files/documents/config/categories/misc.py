@@ -5,7 +5,6 @@ from epstein_files.documents.doj_files.full_text import EFTA00009622_TEXT
 from epstein_files.people.names import *
 from epstein_files.util.constant.strings import *
 
-FEMALE_HEALTH_COMPANY = 'Female Health Company (FHC)'
 LUTNICKS_CANTOR = f"Howard Lutnick's {CANTOR_FITZGERALD}"
 
 
@@ -27,7 +26,7 @@ MISC_CFGS = [
     DocCfg(id='023644', note=f"interview with Mohammed bin Salman", date='2016-04-25', is_interesting=False),
     DocCfg(
         id='030142',
-        author=f"{KATHRYN_RUEMMLER} & {KEN_STARR}",
+        author=f"{KATHRYN_RUEMMLER}, {KEN_STARR}",
         date='2016-09-01',
         note=f"mostly empty {JASTA} (Justice Against Sponsors of Terrorism Act) doc referencing suit against Saudis",
     ),
