@@ -25,6 +25,7 @@ def test_acronym():
     assert ipi.name == 'IPI'
     assert ipi.info == INTERNATIONAL_PEACE_INSTITUTE
     assert ipi.emailer_pattern == r"I\.?P\.?I\.?|International Peace Institute"
+    assert ipi.is_emailer is False
     ipi = acronym(INTERNATIONAL_PEACE_INSTITUTE, 'Terje org')
     assert ipi.info == f"{INTERNATIONAL_PEACE_INSTITUTE}, Terje org"
     ofac = acronym('Office of Foreign Assets Control')
@@ -84,7 +85,7 @@ def test_organization():
     jege = Organization('Jege LLC')
     assert jege.emailer_pattern == r"Jege(,? LLC)?"
     assert jege.match_partial is None
-    assert jege.is_emailer is False
+    assert jege.is_emailer is None
     assert Organization('Jege, LLC').emailer_pattern == r"Jege(,? LLC)?"
     assert Organization('Butterfly Inc').emailer_pattern == r"Butterfly(,? Inc)?"
     assert Organization('Butterfly, Inc.').emailer_pattern == r"Butterfly(,? Inc\.?)?"

@@ -1421,7 +1421,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 f"{PRINCE_ANDREW}'s trusted money man at Banque Havilland whom Epstein does not trust",
                 match_partial=None,
             ),
-            Entity(NATHANIEL_AUGUST, 'fund manager of Mangrove Partners'),
+            Entity(NATHANIEL_AUGUST, 'fund manager of Mangrove Partners', match_partial=None),
             Entity(
                 JES_STALEY,
                 "former CEO of Barclays, allegations by multiple Epstein victims",
