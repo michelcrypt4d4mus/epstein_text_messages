@@ -30,6 +30,7 @@ dict_key_list = lambda d: [k for k in d.keys()]
 escape_double_quotes = lambda text: text.replace('"', r'\"')
 escape_single_quotes = lambda text: text.replace("'", r"\'")
 days_between = lambda dt1, dt2: (dt2 - dt1).days + 1
+days_between_abs = lambda dt1, dt2: abs(days_between(dt1, dt2))
 days_between_str = lambda dt1, dt2: f"{days_between(dt1, dt2)} day" + ('s' if days_between(dt1, dt2) > 1 else '')
 timestamp_str = lambda dt: dt.isoformat()[0:19]
 uniquify = lambda _list: list(set(_list))

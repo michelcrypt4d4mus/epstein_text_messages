@@ -129,6 +129,10 @@ def extract_emailer_names(emailer_str: str) -> list[Name]:
     elif emailer_str.lower() in ['sa', 's a']:
         return [SHAHER_ABDULHAK_BESHER]
 
+    for name in EMAILER_REGEXES.keys():
+        if name == 'CHS':
+            print(f"\n\n CHS: {EMAILER_REGEXES[name]}\n\n")
+
     names_found: list[Name] = [name for name, regex in EMAILER_REGEXES.items() if regex.search(emailer_str)]
 
     if len(emailer_str) <= 2 or BAD_EMAILER_REGEX.match(emailer_str) or TIME_REGEX.match(emailer_str):

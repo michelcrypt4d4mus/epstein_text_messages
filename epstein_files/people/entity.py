@@ -62,7 +62,7 @@ class Entity(LoggingEntity):
     email_addresses: list[str] = field(default_factory=list)
     emailer_regex: re.Pattern = field(init=False)
     highlight_regex: re.Pattern = field(init=False)
-    is_emailer: bool = True
+    is_emailer: bool | None = True
     is_interesting: bool = True  # Eligible for bio panel
     is_junk: bool = False  # TODO: this sucks
     match_partial: PartialName | None = 'last'
@@ -292,7 +292,7 @@ class Entity(LoggingEntity):
 @dataclass(eq=False)
 class Organization(Entity):
     # Different defaults
-    is_emailer: bool = False
+    is_emailer: bool | None = None
     match_partial: PartialName | None = None
     # Additional properties
     belongs_to: str = ''
@@ -300,7 +300,7 @@ class Organization(Entity):
     DEFAULT_PATTERN_SFX: ClassVar[str] = ''
 
     def __post_init__(self):
-        if self.emailer_pattern:
+        if self.emailer_pattern and self.is_emailer is not False:
             self.is_emailer = True
 
         if (suffix_match := COMPANY_SUFFIX_REGEX.match(self.name)) and not self.emailer_pattern:
@@ -339,11 +339,13 @@ def acronym(name: str, info: str = '', **kwargs) -> Organization:
     """Auto-generates a regex matching the org's initials."""
     initials = [word[0] for word in name.split() if word[0].isupper()]
     initials_pattern = ''.join([fr"{letter}\.?" for letter in initials])
+    is_emailer = kwargs.pop('is_emailer') if 'is_emailer' in kwargs else False
 
     return Organization(
         ''.join(initials),
         join_truthy(name, info, ', '),
         join_patterns([initials_pattern, name]),
+        is_emailer=is_emailer,
         **kwargs
     )
 

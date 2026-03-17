@@ -11,14 +11,14 @@ from epstein_files.documents.other_file import OtherFile
 from epstein_files.output.rich import console, print_subtitle_panel
 from epstein_files.people.names import *
 from epstein_files.util.constants import CONFIGS_BY_ID
-from epstein_files.util.helpers.data_helpers import days_between, uniquify
+from epstein_files.util.helpers.data_helpers import days_between_abs, uniquify
 from epstein_files.util.helpers.file_helper import diff_files
 from epstein_files.util.helpers.string_helper import prop_str
 
 from .conftest import FILE_TEXT_DUMP_DIR, assert_higher_counts
 from .fixtures.emails.signatures import AUTHORS_TO_DEVICE_SIGNATURES, DEVICE_SIGNATURE_TO_AUTHORS, SIGNATURE_SUBSTITUTION_COUNTS
 from .fixtures.messenger_logs.author_counts import IMESSAGE_LOG_IDS, MESSENGER_LOG_AUTHOR_COUNTS
-from .fixtures.fixture_csvs import CFG_PROPS, EMAIL_PROPS, load_files_csv
+from .fixtures.fixture_csvs import CFG_PROPS, EMAIL_PROPS, is_timestamp_different, load_files_csv
 
 COMMON_DEVICE_SIGNATURES = [
     set(["Sent from my iPad"]),
@@ -45,10 +45,10 @@ def test_against_csv(epstein_files):
 
                     if doc_val == csv_val:
                         continue
-                    elif all(isinstance(v, datetime) for v in [csv_val, doc_val]) and \
-                            (days := abs(days_between(csv_val, doc_val))) <= 3:
-                        doc._warn(f"timestamps differ by {days - 1} days, just a warning ({doc_val} vs {csv_val})")
-                        continue
+                    elif all(isinstance(v, datetime) for v in [csv_val, doc_val]):
+                        if isinstance((has_timestamp_diff := is_timestamp_different(csv_val, doc_val)), str):
+                            doc._warn(has_timestamp_diff)
+                            continue
 
                     bad_docs.append(doc)
                     repair_ids.append(doc.file_id)
