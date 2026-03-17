@@ -1097,7 +1097,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         label=LAWYER,  # Epstein's lawyers
         style='purple',
         contacts=[
-            Entity('Ada Clapp', 'Elysium Management Chief Legal Officer'),
+            Entity('Ada Clapp', f"Chief Legal Officer of {LEON_BLACK}'s {ELYSIUM_MANAGEMENT}"),
             Entity(ALAN_DLUGASH, 'tax partner at Paneth and Shrone', r"Alan (J.? )?Dlugash"),
             Entity('Alan S. Halperin', "partner at Paul, Weiss", r"(Alan.{8})?Halperin(, Alan S)?"),
             Entity(ALAN_DERSHOWITZ, f"{HARVARD} Law School professor", r"(alan.{1,7})?dershowi(lz?|t?z)|AlanDersh"),
@@ -1394,7 +1394,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Entity('Ben Bram', 'Watermill Trading'),
             Entity(
                 BRAD_WECHSLER,
-                f"IMAX chairman, head of {LEON_BLACK}'s family office Elysium Management",
+                f"IMAX chairman, head of {LEON_BLACK}'s {ELYSIUM_MANAGEMENT}",
                 url='https://www.cnn.com/2026/02/21/business/apollo-epstein-wall-street',
             ),
             Entity(
@@ -1460,8 +1460,10 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 url='https://fortune.com/2025/10/08/deutsche-bank-and-jeffrey-epstein-ghost/',
             ),
             Entity('Paul Tudor Jones', "hedge fund guy, Robin Hood Foundation founder", match_partial='first'),
+            Entity('Richard Joslin', f"CFO of {LEON_BLACK}'s {ELYSIUM_MANAGEMENT}"),
             Entity('Skip Rimer', "Michael Milken's Milken Institute"),
             Entity('Steven Elkman', f"{DEUTSCHE_BANK}"),
+            Entity('Stewart Oldfield', f"worked on Epstein related accounts at {DEUTSCHE_BANK}"),
             Entity('Stephen Schwarzman', 'CEO of Blackstone', r"(Ste(phen|ve) )?Schwart?z?man"),
             Entity(TANCREDI_MARCHIOLO, "hedge fund manager, Bremner Capital Management", match_partial='both'),
             Entity('Vahe Stepanian', "Cetera Financial Group", match_partial='both'),
@@ -1491,7 +1493,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 r"Deutsche? (Asset|(Post)?Bank)|\bDB\b(?!\s+Zw)",
                 url='https://www.ft.com/content/b1d9e8c4-1874-4c82-941d-9a2e1512bc4c',
             ),
-            Organization('Elysium Management', f"family office manages {LEON_BLACK}'s money"),
+            Organization(ELYSIUM_MANAGEMENT, f"family office managing {LEON_BLACK}'s money", belongs_to=LEON_BLACK),
             Organization("FirstBank", 'Puerto Rican bank used by Epstein', r"First Bank( of Puerto Rico)?"),
             Organization('Goldman Sachs', emailer_pattern=r"Goldman( Sachs)?", is_interesting=False),
             Organization('Julius Baer', 'Swiss bank'),

@@ -47,7 +47,6 @@ ADDITIONAL_EMAILERS = [
     Entity(OLIVER_GOODENOUGH),
     Entity('Peter Green', match_partial=None),
     Entity('Sarah Mapes'),
-    Entity('Stewart Oldfield'),
     # Krassner CCs
     Entity('Caryl Ratner', match_partial=None, is_interesting=False),
     Entity('Barb Cowles', match_partial=None, is_interesting=False),

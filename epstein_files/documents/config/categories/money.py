@@ -80,6 +80,7 @@ MONEY_CFGS = [
 
     # Jeepers, Inc.
     EmailCfg(id='EFTA01424585', note=f"{DEUTSCHE_BANK} AML review of Jeepers, Inc."),
+    EmailCfg(id='EFTA01416658'),
     letter(
         'EFTA00591276',
         'Susman Godfrey',
