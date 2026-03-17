@@ -50,6 +50,7 @@ MONEY_CFGS = [
         note='Mortimer B. Zuckerman Management Trust',
         non_participants=['Marla Maples'],
     ),
+    DocCfg(id='EFTA01478313', note=f'list of investments (maybe of {LEON_BLACK})', date='2016-03-31'),
     DocCfg(id='EFTA01285411', note=f"bank statement for Epstein's {SOUTHERN_TRUST_COMPANY} showing $82 million balance"),
     DocCfg(id='EFTA01222951', note=f"credit card expenses for Carlos L Rodriguez using Plum Card", date='2019-02-12'),
     DocCfg(id='EFTA00016884', note="Epstein's last will and testament", date='2014-11-18', is_interesting=10),
