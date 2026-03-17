@@ -136,9 +136,13 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             ),
             Entity(YUKO_BARNABY, f"{MIT_MEDIA_LAB} Assistant to the Director", r"Y[ou]ko Ba(m|rn)(aby)?(?! Marsh)", match_partial=None),
             Entity(WHITFIELD_DIFFIE, f"MIT cryptographer and mathematician", r"whitfield.{,3}diffie?", match_partial='both'),
+            # Orgs
             Organization('ASU Origins Project', belongs_to=LAWRENCE_KRAUSS),
-            Organization('Dalton', 'NYC private high school where Epstein got his first job after lying about his credentials'),
-            Organization('iCog Labs', f'AI co. in Addis Ababa founded by {BEN_GOERTZEL} and Getnet Assefa Gesaw (funded by Epstein?)'),
+            Organization(
+                'Dalton',
+                'NYC private high school where Epstein got his first job after lying about his credentials',
+                url='https://www.npr.org/2019/07/19/742725946/a-young-jeffrey-epstein-made-an-impression-on-his-high-school-students',
+            ),
             Organization(
                 MIT_MEDIA_LAB,
                 f"once great research institute overtaken by get rich quick schemes under {JOI_ITO}",
@@ -3028,6 +3032,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 'venture fund invested in Tencent, Epstein invested in Spotify through them',
                 r"Honeycomb( (Offshore Fund|Partners)( (LP|Ltd))?)?",
             ),
+            Organization('iCog Labs', f'AI co. in Addis Ababa founded by {BEN_GOERTZEL} and Getnet Assefa Gesaw (funded by Epstein?)'),
             Organization('Jawbone', f'wireless earpiece company invested in by Epstein and {IAN_OSBORNE}'),
             Organization('LinkedIn', "LinkedIn", r"Linked[Il]n( Updates)?", is_emailer=True, is_interesting=False),
             Organization('Match.com', 'dating site', r"match\.com|matchmail", is_emailer=True),
