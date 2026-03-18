@@ -38,6 +38,7 @@ JEAN_LUC_MC2 = f"{JEAN_LUC_BRUNEL}'s {MC2_MODEL_MGMT}"
 JUNKERMANN_FUND = f"{NICOLE_JUNKERMANN}'s fund, invested in China, online poker, Russian owned European bank Revolut"
 ROTHSTEIN_ROSENFELDT_ADLER_ATTORNEY = f"{ROTHSTEIN_ROSENFELDT_ADLER} attorney"
 THIELS_VALAR = f"{PETER_THIEL}'s {VALAR_VENTURES}"
+VICTIM_EVIDENCE = 'victim, gave evidence against Epstein'
 WIGDOR_ATTORNEY = f"Wigdor LLP lawyer in {LEON_BLACK} lawsuit"
 
 FINANCIAL_COLOR = 'dark_sea_green2'
@@ -1753,7 +1754,11 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             law_enforcement('USAHUB', emailer_pattern=r"USAJournal111"),
             law_enforcement('USAMA Victim Assistance', is_emailer=True),
             law_enforcement(USANYS, is_emailer=True),
+            law_enforcement('US Attorney'),
+            law_enforcement('US District Court'),
             law_enforcement('US Secret Service'),
+            law_enforcement('US Congress'),
+            law_enforcement('US Senate'),
             Organization('BaFin', "German financial regulator, tried to arrest journalists who exposed Wirecard's fraud"),
             Organization('FINRA', "Financial Industry Regulatory Authority", r"(www\.)?FINRA(\.org)?|Financial Industry Regulatory Authority",),
             Organization('INS', "US Immigration and Naturalization Service", r"(?-i:INS)"),
@@ -1785,6 +1790,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"CFTC?",
             r"CIA",
             r"CIS",
+            r"congress(man|woman|person)",
             r"Criminal Division",
             r"CTR",  # Currency Transaction Report
             r"CVRA",
@@ -1810,6 +1816,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"((Judge|Mark) )?(Carney|Filip)",
             r"(Judge )?(Kenneth )?(A\.? )?Marra",
             r"(Justice|Treasury) Dep(t|artment)",
+            r"Jeffrey Sloman",  # USAO florida
             r"(Kirk )?Blouin",
             r"(Kurt )?(L\.? )?Gottschall",
             r"(Lann?a )?Belohlavek",
@@ -1825,6 +1832,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Public Corruption Unit",
             r"SAR",
             r"SD(FL|NY)",
+            r"senator",
             r"(?-i:SEC)( filing)?",
             r"Southern District( of (Florida|New York))?",
             r"State Dep(artmen)?t",
@@ -1832,9 +1840,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Supreme Court",
             r"Treasury (Dep(artmen)?t|Secretary)",
             r"TSA",
-            r"U\.?S\.? attorney",
             r"USAID",
-            r"UNITED STATES DISTRICT COURT?",
             r"US (AF|Army|Air Force)",
             r"USAO",
             r"USSS",
@@ -3258,6 +3264,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         entities=[
             Entity('Aleksandra Eriksson', QUESTION_MARKS),
             Entity("Audrey/Aubrey Raimbault", 'appears in flight logs'),
+            Entity('Brittany Beale', VICTIM_EVIDENCE),
             Entity("Jane Doe", match_partial=None),
             Entity(
                 JENNIFER_KALIN,
@@ -3266,7 +3273,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             ),
             Entity('Jeanne Palfrey', '"The DC Madam", murdered'),
             Entity('Jennifer Aros', 'abused by Epstein starting at age 14', url='https://x.com/epsteinsearchin/status/2031730091827544180'),
-            Entity('Jennifer Laduke', 'victim'),
+            Entity('Jennifer Laduke', VICTIM_EVIDENCE),
             Entity('Justina Auškelytė', 'Julliard student from Latvia', r"Justina Au[fšs]kelyt[eė]", url=DITE_ANATA_JUILLIARD_URL),
             Entity(KATHERINE_KEATING, "daughter of former Australian prime minister Paul Keating", match_partial=None),
             Entity('Lucrezia Camponovo', QUESTION_MARKS),
@@ -3274,8 +3281,10 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Entity(MINOR_VICTIM, match_partial=None),
             Entity(PAULA_HEIL_FISHER, "Epstein's ex-girlfriend who works in opera now", match_partial=None),
             # Contact('Regina E. Frangul', f'Amex travel agent {QUESTION_MARKS}'),
+            Entity('Saige Gonzalez', VICTIM_EVIDENCE, match_partial=None),
             Entity('Samantha Rose Stein', 'wombkind.com', url='https://x.com/SteinSamantha', match_partial=None),
             Entity('Sasha Grey', 'porn star', match_partial=None, url=WIKIPEDIA),
+            Entity('Tatum Miller', VICTIM_EVIDENCE, match_partial=None),
             Entity('Tiffany Doe', match_partial=None),
             Entity(UNKNOWN_GIRL, match_partial=None),
             Entity(
@@ -3634,6 +3643,8 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             fr"^{CASE_ID_REGEX.pattern}.*",
             CASE_ID_REGEX.pattern,
             r"(civil )?litigation",
+            r"constitution(al(ly)?)?",
+            r"de novo",
             r"deposition",
             r"EDGAR (Filing|Search)",  # SEC database is EDGAR
             r"(federal|state) judge",
@@ -3643,6 +3654,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Notary Public",
             r"Page \d+ of \d+",
             r"testimony",
+            r"(eye)?witness(es)?",
         ]
     ),
     HighlightPatterns(

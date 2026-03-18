@@ -208,7 +208,7 @@ def make_clean() -> None:
 
 
 def use_custom_html() -> None:
-    """Overwrite normal rich html export with custom HTML for all DEPLOY_CUSTOM_HTML_SITES."""
+    """Overwrite normal rich html export with custom HTML for all `DEPLOY_CUSTOM_HTML_SITES`."""
     for site in DEPLOY_CUSTOM_HTML_SITES:
         from_path = Site.custom_html_build_path(site)
         to_path = Site.html_output_path(site)
