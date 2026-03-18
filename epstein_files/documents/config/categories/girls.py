@@ -221,6 +221,8 @@ GIRLS_CFGS = [
         author_uncertain='"Svet" in unredacted reply',
         truncate_to=(900, 1_600),
     ),
+    EmailCfg(id='EFTA01024246', note=f"invoice from {SVETLANA_POZHIDAEVA}'s WE Talks", show_with_name=SVETLANA_POZHIDAEVA),
+    EmailCfg(id='EFTA02634573', author=SVETLANA_POZHIDAEVA, note='updating Epstein on Women Empowerment'),
     EmailCfg(id='EFTA01772677', author=SVETLANA_POZHIDAEVA, author_uncertain='device signature'),
     EmailCfg(id='EFTA01877224', author=SVETLANA_POZHIDAEVA, author_uncertain=f"{JOSHUA_FINK} texts", is_interesting=10),
     EmailCfg(id='EFTA00937507', author=SVETLANA_POZHIDAEVA, author_uncertain=f"{JOSHUA_FINK} texts", is_interesting=10),

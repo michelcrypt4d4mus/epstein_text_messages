@@ -2758,6 +2758,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Organization(
                 'Women Empowerment',
                 f"organization started by Epstein's assistant {SVETLANA_POZHIDAEVA}",
+                r"Women Empowerment|We Talk(s| Enterprises)",
                 aliases=['WE Talks'],
                 url='https://www.thedailybeast.com/billionaire-pedophile-jeffrey-epstein-funded-womens-empowerment-entrepreneur-lana-pozhidaeva/'
             ),
