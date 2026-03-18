@@ -506,6 +506,8 @@ def check_no_overlapping_configs():
     encountered_file_ids = set()
 
     for cfg in ALL_CONFIGS:
+        logger.warning(f"processing cfg {cfg.id}")
+
         if cfg.duplicate_of_id:
             assert cfg.duplicate_of_id != cfg.id, f"Bad config! {cfg}"
 
