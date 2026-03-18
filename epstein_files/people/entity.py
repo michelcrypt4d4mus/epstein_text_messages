@@ -10,9 +10,9 @@ from rich.text import Text
 from epstein_files.output.html.rich_style import RichStyle
 from epstein_files.people.names import Name, constantize_name, extract_first_name, extract_last_name
 from epstein_files.util.constant.strings import INDENT_NEWLINE, INDENTED_JOIN, LAW_ENFORCEMENT, WIKIPEDIA, PartialName
-from epstein_files.util.constant.urls import wikipedi_url
+from epstein_files.util.constant.urls import EPSTEINIFY, PERSON_LINK_BUILDERS, EpsteinSite, wikipedia_url
 from epstein_files.util.env import args, site_config
-from epstein_files.util.external_link import ExternalLink
+from epstein_files.util.external_link import ExternalLink, link_text_obj
 from epstein_files.util.helpers.data_helpers import constantize_names, listify
 from epstein_files.util.helpers.rich_helpers import QUESTION_MARKS_TXT, Textish, enclose, join_texts, parenthesize
 from epstein_files.util.helpers.string_helper import (as_pattern, indented, is_integer, join_patterns,
@@ -87,7 +87,7 @@ class Entity(LoggingEntity):
         self._style = RichStyle(val)
 
     def __post_init__(self):
-        self._urls = [wikipedi_url(self.name) if url == WIKIPEDIA else url for url in listify(self.url)]
+        self._urls = [wikipedia_url(self.name) if url == WIKIPEDIA else url for url in listify(self.url)]
 
         try:
             self.emailer_regex = re.compile(self.pattern, re.IGNORECASE)
@@ -101,6 +101,7 @@ class Entity(LoggingEntity):
 
     @property
     def alt_links(self) -> list[ExternalLink]:
+        """Links beyond the first one (which is usually attached to the name)."""
         return [ExternalLink(url, f'more', link_style=self.style) for i, url in enumerate(self._urls[1:], 2)]
 
     @property
@@ -127,6 +128,13 @@ class Entity(LoggingEntity):
         bio_pieces.append(self.alt_links_txt)
         return join_texts(bio_pieces)
 
+    # TODO: rename this somehting that means "non_custom_external_links"
+    @property
+    def epstein_sites_all_links(self) -> Text:
+        """Collection of links to sites that have biographies of the Epstein network like epsteinify, Jmail search, etc."""
+        links = [self.epstein_site_link(site) for site in PERSON_LINK_BUILDERS]
+        return Text('', justify='center', style='dim').append(join_texts(links, join=' / '))
+
     @property
     def has_bio(self) -> bool:
         return bool(self.is_interesting and self.info)
@@ -143,6 +151,15 @@ class Entity(LoggingEntity):
     def identifying_strings(self) -> list[str]:
         """Strings that indicate a document is likely tied to this entity."""
         return self.unique_phraseologies + (self.email_addresses if self.is_emailer else [])
+
+    @property
+    def is_email_address(self) -> bool:
+        return '@' in (self.name or '')
+
+    @property
+    def is_linkable(self) -> bool:
+        """Return True if it's likely that EpsteinWeb has a page for this name."""
+        return not (self.is_email_address or '/' in self.name)
 
     @property
     def name_with_link(self) -> Text:
@@ -245,6 +262,14 @@ class Entity(LoggingEntity):
     @property
     def _style_dim(self) -> str:
         return self.style if 'dim' in self.style else f'{self.style} dim'
+
+    def epstein_site_link(self, site: EpsteinSite = EPSTEINIFY, link_text: str | None = None) -> ExternalLink:
+        """Link to epsteinify.com, EpsteinWeb, or similar for this name."""
+        return ExternalLink(self.epstein_site_url(site), link_text or site, link_style=self.style)
+
+    def epstein_site_url(self, site: EpsteinSite = EPSTEINIFY) -> str:
+        """URL pointing to info about this entity on one of the Epstein sites like epsteinify.com."""
+        return PERSON_LINK_BUILDERS[site](self.name)
 
     def __eq__(self, other: Self):
         if not isinstance(other, Self):

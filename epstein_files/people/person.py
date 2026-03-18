@@ -74,6 +74,7 @@ class Person(DocTypesMixin, LoggingEntity):
 
     @property
     def category(self) -> str | None:
+        """Categories are configured with the `HighlightedGroups`."""
         if self.highlighted_names_group:
             category = self.highlighted_names_group.category or self.highlighted_names_group.label
 
@@ -124,12 +125,6 @@ class Person(DocTypesMixin, LoggingEntity):
         ]
 
     @property
-    def external_links_line(self) -> Text:
-        """Collection of links to sites that have biographies of the Epstein network."""
-        links = [self.external_link_txt(site) for site in PERSON_LINK_BUILDERS]
-        return Text('', justify='center', style='dim').append(join_texts(links, join=' / '))
-
-    @property
     def has_any_epstein_emails(self) -> bool:
         """True if any emails sent to or received from Jeffrey Epstein."""
         contacts = [e.author for e in self.emails] + flatten([e.recipients for e in self.emails])
@@ -172,8 +167,8 @@ class Person(DocTypesMixin, LoggingEntity):
         elif self.category == Uninteresting.JUNK:
             return Text(f"({Uninteresting.JUNK} mail)", style='bright_black dim')
         elif self.is_interesting is False and (self.info_str or '').startswith(UNINTERESTING_CC_INFO):
-            if self.sole_cc:
-                return Text(f"(cc: from {self.sole_cc} only)", style='wheat4 dim')
+            if self.sole_cc_author:
+                return Text(f"(cc: from {self.sole_cc_author} only)", style='wheat4 dim')
             elif self.info_str == UNINTERESTING_CC_INFO:
                 return Text(f"({self.info_str})", style='wheat4 dim')
             else:
@@ -203,36 +198,12 @@ class Person(DocTypesMixin, LoggingEntity):
     @property
     def is_a_mystery(self) -> bool:
         """Return True if this is someone we theroetically could know more about."""
-        return self.is_unstyled and not (self.is_email_address or self.info_str or self.is_interesting is False)
-
-    @property
-    def is_email_address(self) -> bool:
-        return '@' in (self.name or '')
-
-    @property
-    def is_linkable(self) -> bool:
-        """Return True if it's likely that EpsteinWeb has a page for this name."""
-        if self.name is None or ' ' not in self.name:
-            return False
-        elif self.is_email_address or '/' in self.name or QUESTION_MARKS in self.name:
-            return False
-        elif self.name in BCC_LISTS:
-            return False
-
-        return True
+        return self.is_unstyled and not (self.entity.is_email_address or self.info_str or self.is_interesting is False)
 
     @property
     def is_unstyled(self) -> bool:
         """True if there's no highlight group for this name."""
         return self.style() == DEFAULT_NAME_STYLE
-
-    @property
-    def name_link(self) -> Text:
-        """Will only link if it's worth linking, otherwise just a Text object."""
-        if not self.is_linkable:
-            return self.name_txt
-        else:
-            return Text.from_markup(link_markup(self.external_link(), self.name_str, self.style()))
 
     @property
     def name_str(self) -> str:
@@ -242,19 +213,19 @@ class Person(DocTypesMixin, LoggingEntity):
     def name_txt(self) -> Text:
         return styled_name(self.name)
 
+    @property
+    def other_files_shown_with_emails(self) -> list[OtherFile]:
+        """OtherFile objects that should be displayed in the emails section(s)."""
+        return [f for f in self.other_files if self.name == f._config.show_with_name]
+
     @property  # TODO: unused?
     def should_always_truncate(self) -> bool:
         """True if we want to truncate all emails to/from this user."""
         return self.name in TRUNCATE_EMAILS_BY or self.is_interesting is False
 
     @property
-    def show_with_emails_docs(self) -> list[OtherFile]:
-        """OtherFile objects that should be displayed in the emails section(s)."""
-        return [f for f in self.other_files if self.name == f._config.show_with_name]
-
-    @property
-    def sole_cc(self) -> str | None:
-        """Return name if this person sent 0 emails and received CC from only one that name."""
+    def sole_cc_author(self) -> str | None:
+        """Return a name if this person sent 0 emails (total) and received CCs from only that one name."""
         email_authors = uniquify([e.author for e in self.emails_to])
 
         if self.num_emails == 1 and len(email_authors) > 0:
@@ -328,15 +299,6 @@ class Person(DocTypesMixin, LoggingEntity):
         panel_style = f"black on {self._email_info_style} bold"
         return Panel(Text(title, justify='center'), width=width, style=panel_style)
 
-    def external_link(self, site: ExternalSite = EPSTEINIFY) -> str:
-        return PERSON_LINK_BUILDERS[site](self.name_str)
-
-    def external_link_txt(self, site: ExternalSite = EPSTEINIFY, link_str: str | None = None) -> Text:
-        if self.name is None:
-            return Text('')
-
-        return link_text_obj(self.external_link(site), link_str or site, style=self.style())
-
     def print_emails(self, printer: 'DocPrinter') -> list[Email]:
         """
         Print complete emails to or from a particular 'author' along with any specially marked docs
@@ -359,7 +321,7 @@ class Person(DocTypesMixin, LoggingEntity):
             # TODO: DocPrinter doesn't render HTML for the special notes
             print_special_note(SPECIAL_NOTES[self.name])
 
-        docs = Document.sort_by_timestamp(self._printable_emails + self.show_with_emails_docs)
+        docs = Document.sort_by_timestamp(self._printable_emails + self.other_files_shown_with_emails)
         docs = [d.file_display(align='right') if isinstance(d, OtherFile) else d for d in docs]   # TODO this sucks
 
         # TODO this sucks
@@ -376,7 +338,8 @@ class Person(DocTypesMixin, LoggingEntity):
 
     def _emails_table(self) -> Align | Padding:
         """Build a table of this person's emails summary (timestamps, subject liness, etc)."""
-        caption = self.external_links_line if self.is_linkable else None
+        # TODO: i don't think captions render in custom HTML correctly
+        caption = self.entity.epstein_sites_all_links if self.entity.is_linkable else None
         table = Email.build_emails_table(self._unique_printable_emails, self.name, caption=caption)
         padded_table = Padding(table, (0, 5, 0, 5))
         logger.debug(f"built emails table for '{self.name}' with {len(table.columns)} cols and {table.row_count} rows")

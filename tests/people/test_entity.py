@@ -13,11 +13,14 @@ HIGHLIGHT_PATTERN = fr"{EMAILER_PATTERN}|Jones,?[-_.\s]*Nasir"
 URL = 'https://nasir.jones/ill'
 WIKIPEDIA_URL = 'https://en.wikipedia.org/wiki/Nasir_Jones'
 
-CONTACT_INFO = Entity(
-    name=JEFFREY_EPSTEIN,
-    emailer_pattern=r"Jeffrey Epstein|jeevacation",
-    info="one and only"
-)
+
+@pytest.fixture
+def epstein() -> Entity:
+    return Entity(
+        name=JEFFREY_EPSTEIN,
+        emailer_pattern=r"Jeffrey Epstein|jeevacation",
+        info="one and only"
+    )
 
 
 def test_acronym():
@@ -59,6 +62,11 @@ def test_epstein_trust():
     assert year_trust.info == 'Epstein financial trust, sole beneficiary Karyna, trustees: Bob, Dylan'
 
 
+def test_epstein_site_links(epstein):
+    assert epstein.epstein_site_link().url == 'https://epsteinify.com/?name=Jeffrey%20Epstein'
+    assert epstein.epstein_sites_all_links.plain == 'epstein.media / EpsteinWeb / epsteinify / Jmail / search X'
+
+
 def test_highlight_pattern():
     def assert_highlight_pattern_suffix(c: Entity, suffix: str):
         assert c.emailer_regex.pattern == EMAILER_PATTERN
@@ -73,7 +81,7 @@ def test_highlight_pattern():
 
 
 def test_middle_initial():
-    assert CONTACT_INFO._middle_initial == ''
+    assert epstein._middle_initial == ''
     assert Entity('Robert Dow Critton')._middle_initial == ''
     assert Entity('Robert D Critton')._middle_initial == 'D'
     critton = Entity('Robert D. Critton')
@@ -106,7 +114,7 @@ def test_pattern():
 
 
 def test_repr():
-    jee = deepcopy(CONTACT_INFO)
+    jee = deepcopy(epstein)
     jee.style = 'bright_red'
 
     assert repr(jee) == r"""Entity(

@@ -28,7 +28,7 @@ OVERSIGHT_DRIVE_URL = 'https://drive.google.com/drive/folders/1hTNH5woIRio578onL
 
 
 # External site names
-ExternalSite = Literal['epstein.media', 'epsteinify', 'EpsteinWeb', 'Jmail', 'RollCall', 'search X']
+EpsteinSite = Literal['epstein.media', 'epsteinify', 'EpsteinWeb', 'Jmail', 'RollCall', 'search X']
 
 EPSTEIN_MEDIA = 'epstein.media'
 EPSTEIN_WEB = 'EpsteinWeb'
@@ -43,7 +43,7 @@ EPSTEIN_MEDIA_URL = f'https://{EPSTEIN_MEDIA}'
 EPSTEIN_WEB_URL = 'https://epsteinweb.org'
 JMAIL_URL = 'https://jmail.world'
 
-DOC_LINK_BASE_URLS: dict[ExternalSite, str] = {
+DOC_LINK_BASE_URLS: dict[EpsteinSite, str] = {
     EPSTEIN_MEDIA: f"{EPSTEIN_MEDIA_URL}/files/",
     EPSTEIN_WEB: f'{EPSTEIN_WEB_URL}/wp-content/uploads/epstein_evidence/images/',
     EPSTEINIFY: f"{EPSTEINIFY_URL}/document/",
@@ -153,10 +153,10 @@ rollcall_doc_url = lambda file_stem: build_doc_url(DOC_LINK_BASE_URLS[ROLLCALL],
 search_twitter_url = lambda txt: f"{X_BASE_URL}/search?q={urllib.parse.quote(txt)}&src=typed_query&f=live"
 
 # Wikipedia
-wikipedi_url = lambda s: f"https://en.wikipedia.org/wiki/" + s.replace(' ', '_')
+wikipedia_url = lambda s: f"https://en.wikipedia.org/wiki/" + s.replace(' ', '_')
 
 
-PERSON_LINK_BUILDERS: dict[ExternalSite, Callable[[str], str]] = {
+PERSON_LINK_BUILDERS: dict[EpsteinSite, Callable[[str], str]] = {
     EPSTEIN_MEDIA: epstein_media_person_url,
     EPSTEIN_WEB: epstein_web_person_url,
     EPSTEINIFY: epsteinify_name_url,
@@ -187,12 +187,12 @@ def jmail_doj_2026_file_url(dataset_id: int, file_stem: str) -> str:
     return f"{JMAIL_URL}/drive/vol{dataset_id:05}-{file_stem.lower()}-pdf"
 
 
-def external_doc_link_markup(site: ExternalSite, filename_or_id: int | str, style: str = TEXT_LINK) -> str:
+def external_doc_link_markup(site: EpsteinSite, filename_or_id: int | str, style: str = TEXT_LINK) -> str:
     url = build_doc_url(DOC_LINK_BASE_URLS[site], filename_or_id)
     return link_markup(url, coerce_file_stem(filename_or_id), style)
 
 
-def external_doc_link_txt(site: ExternalSite, filename_or_id: int | str, style: str = TEXT_LINK) -> Text:
+def external_doc_link_txt(site: EpsteinSite, filename_or_id: int | str, style: str = TEXT_LINK) -> Text:
     return Text.from_markup(external_doc_link_markup(site, filename_or_id, style))
 
 
