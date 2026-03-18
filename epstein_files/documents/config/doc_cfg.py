@@ -29,11 +29,12 @@ Metadata = dict[str, bool | datetime | int | str | None | list[str | None] | dic
 DEFAULT_TRUNCATE_TO = 4000
 SHORT_TRUNCATE_TO = int(DEFAULT_TRUNCATE_TO / 3)
 NO_TRUNCATE = -1
+MAX_REPR_LINE_LENGTH = 135
+
+CHECK_LINK_FOR_DETAILS = 'not shown here, check original PDF for details'
 QUOTE_PREFIX = 'see quote'
 SAME = 'same'
 
-MAX_REPR_LINE_LENGTH = 135
-GOLDMAN_INVESTMENT_MGMT = f'{GOLDMAN_SACHS} Investment Management Division'
 ZUBAIR_AND_ANYA = f"{ZUBAIR_KHAN} and Anya Rasulova"
 
 # Authors of financial report pablum
@@ -268,6 +269,17 @@ class DocCfg(LoggingEntity):
             from epstein_files.output.epstein_highlighter import non_epstein_highlighter
             style = 'bright_white italic' if site_config.email_info_in_subtitle else INFO_STYLE
             return non_epstein_highlighter(Text(self.complete_description, style))
+
+    @property
+    def display_preview_txt(self) -> Text | None:
+        """Override for the `OtherFile`s table preview column."""
+        if self.display_text:
+            text = join_truthy(self.author, self.display_text)
+
+            if len(text) < 300 and not text.startswith('photo'):
+                return Text(f"(Text of {text} {CHECK_LINK_FOR_DETAILS})", 'dim italic')
+            else:
+                return Text(text)
 
     @property
     def external_link(self) -> ExternalLink | None:

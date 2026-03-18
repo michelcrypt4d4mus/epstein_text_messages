@@ -47,7 +47,6 @@ from epstein_files.util.helpers.string_helper import collapse_newlines, doublesp
 from epstein_files.util.logging import DOC_TYPE_STYLES, FILENAME_STYLE, logger
 from epstein_files.util.logging_entity import LoggingEntity
 
-CHECK_LINK_FOR_DETAILS = 'not shown here, check original PDF for details'
 CLOSE_PROPERTIES_CHAR = ']'
 HOUSE_OVERSIGHT = HOUSE_OVERSIGHT_PREFIX.replace('_', ' ').strip()
 MIN_DOCUMENT_ID = 10477
@@ -174,17 +173,6 @@ class Document(LoggingEntity):
     def colored_external_links(self) -> Text:
         """Collection of links to official and unofficial for this file concatenated into one `Text` object."""
         return self.file_info.build_external_links(with_alt_links=True)
-
-    @property
-    def config_display_text(self) -> str | None:
-        """Configured replacement text."""
-        if self._config.display_text:
-            text = join_truthy(self._config.author, self._config.display_text)
-
-            if len(text) < 300 and not text.startswith('photo'):
-                return f"(Text of {text} {CHECK_LINK_FOR_DETAILS})"
-            else:
-                return text
 
     @property
     def date_str(self) -> str | None:
@@ -339,7 +327,7 @@ class Document(LoggingEntity):
         """Returns the string we want to print as the body of the document."""
         display_text = doublespace_lines(self.display_text)
         # TODO: do something better to give replacement_text have different style
-        style = INFO_STYLE if self.config_display_text and len(self.config_display_text) < 300 else ''
+        style = INFO_STYLE if self._config.display_text and len(self._config.display_text) < 300 else ''
 
         # char range slice of Text late in the game here preserves Text highlighting at boundaries
         char_range = self.char_range_to_display or (0, len(display_text))
