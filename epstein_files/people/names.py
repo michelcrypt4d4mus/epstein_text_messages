@@ -357,6 +357,7 @@ HEDOSOPHIA = 'Hedosophia'
 HONEYCOMB_ASSET_MANAGEMENT = 'Honeycomb Asset Management'
 INSIGHTS_POD = f"InsightsPod"  # Zubair bots
 INTERNATIONAL_PEACE_INSTITUTE = 'International Peace Institute'
+JEEPERS_INC = 'Jeepers, Inc.'
 JP_MORGAN = 'JP Morgan'
 KYARA_INVESTMENT = 'Kyara Investment'
 ASU_ORIGINS_PROJECT = 'ASU Origins Project'

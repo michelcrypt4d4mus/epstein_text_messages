@@ -1492,7 +1492,10 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Entity(TANCREDI_MARCHIOLO, "hedge fund manager, Bremner Capital Management", match_partial='both'),
             Entity('Ted Forstmann', "private equity, founder of Forstmann Little & co."),
             Entity('Vahe Stepanian', "Cetera Financial Group", match_partial='both'),
+            Entity('Vaishali Mehta', f'Head of Anti-Money Laundering Business Risk at {DEUTSCHE_BANK}', r"Vaishali.{,5}Mehta"),
             Entity(VINIT_SAHNI, f"analyst at {DEUTSCHE_BANK} and {GOLDMAN_SACHS}", match_partial='both'),
+
+            # Organizations
             Organization(
                 ATORUS,
                 'fund of Michael Fowler / Joshua Levy apparently invested in by Epstein',
@@ -1515,8 +1518,8 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Organization('D.B. Zwirn Special Opportunities Fund', 'hedge fund that failed in 2008'),
             Organization(
                 DEUTSCHE_BANK,
-                'favoured bank of Jeffrey Epstein, the Trump family, and Russian money launderers',
-                r"Deutsche? (Asset|(Post)?Bank)|\bDB\b(?!\s+Zw)",
+                'favoured bank of Epstein, the Trump family, and Russian money launderers',
+                r"Deutsche? (Asset|(Post)?[BD]ank)|\bDB\b(?!\s+Zw)",
                 url='https://www.ft.com/content/b1d9e8c4-1874-4c82-941d-9a2e1512bc4c',
             ),
             Organization('Enso Capital Management', belongs_to=JOSHUA_FINK, is_interesting=False),
