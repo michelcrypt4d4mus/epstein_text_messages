@@ -23,6 +23,11 @@ div.table {
     z-index: 10;
 }
 
+div.table_title {
+    margin-bottom: 3px;
+    z-index: 10;
+}
+
 /* this is really more of a cell than a column */
 div.column {
     border-left: 1px solid dimgray;

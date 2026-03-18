@@ -209,7 +209,13 @@ def table_to_html(table: Table, css_props: OptionalCssProps = None) -> str:
         if table.title_style:
             title_txt.stylize(table.title_style)
 
-        title_html = render_to_html(title_txt)
+        title_justify = 'center' if table.title_justify in ['default', 'full'] else table.title_justify
+        title_css = alignment_css(title_justify)
+
+        if title_justify == 'center':
+            title_css['text-align'] = 'center'
+
+        title_html = div_class(render_to_html(title_txt), 'table_title', title_css)
     else:
         title_html = ''
 
