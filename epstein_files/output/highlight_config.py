@@ -703,6 +703,11 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 'CEO of Galaxy Digital, reportedly made a billion dollars in the Terra/Luna ponzi',
                 r"(?<!Nadean )(Mi(chael|ke) )?Novogratz",
             ),
+            Entity(
+                'Nadean Novogratz',
+                "ex-Goldman, onboarded Epstein's Southern Financial for trading, possibly sister-in-law of Mike Novogratz",
+                match_partial=None,
+            ),
             Entity('Ross Ulbricht', 'founder of infamous online drug market Silk Road, pardoned by Trump'),
             Entity(
                 'Steve Jurvetson',

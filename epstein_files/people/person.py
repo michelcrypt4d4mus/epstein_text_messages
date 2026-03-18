@@ -40,6 +40,8 @@ MAX_NAME_COL_WIDTH = 24
 MAX_INFO_COL_WIDTH = len("Epstein's Russian assistant who was recommended for a visa by Sergei Belyakov")
 MIN_AUTHOR_PANEL_WIDTH = 80
 EMAILER_INFO_TITLE = 'Email Conversations Will Appear'
+SOLE_CC_STYLE = 'wheat4 dim'
+SOLE_CC_NO_CONTACT_STYLE = 'plum4 dim'
 UNINTERESTING_CC_INFO = "cc: or bcc: recipient only"
 UNINTERESTING_CC_INFO_NO_CONTACT = f"{UNINTERESTING_CC_INFO}, no direct contact with Epstein"
 
@@ -49,6 +51,13 @@ PEOPLE_BIOS = {
     for highlighted_group in HIGHLIGHTED_NAMES
     for contact in highlighted_group.entities
     if contact.has_bio
+}
+
+# Preconfigured special cases
+TABLE_TXTS = {
+    None: Text('(emails whose author or recipient could not be determined)', style=ALT_INFO_STYLE),
+    JEFFREY_EPSTEIN: Text('(emails sent by Epstein to himself are here)', style=ALT_INFO_STYLE),
+    Uninteresting.JUNK: Text(f"({Uninteresting.JUNK} mail)", style='bright_black dim'),
 }
 
 
@@ -64,22 +73,64 @@ class Person(DocTypesMixin, LoggingEntity):
     _searched_for_highlight_group: bool = False
 
     def __post_init__(self):
-        self.entity = get_entity(self.name or '')
         self._documents = Document.sort_by_timestamp(self.documents)
+        self._populate_entity()
+
+    def _populate_entity(self) -> None:
+        """Construct a fallback `Entity` for unconfigured names."""
+        self.entity = get_entity(self.name or '')
+
+        if self.entity.info:
+            return
+
+        # Fallback to style and category from regex match on string
+        if (highlight_group := get_highlight_group_for_name(self.name)):
+            self.entity.style = self.entity.style or highlight_group.style
+
+            if isinstance(highlight_group, HighlightedNames):
+                self.entity.category = self.entity.category or highlight_group.category_str
+
+        # Set Entity's info + style for uninteresting CCs
+        if len(self.emails_by) == 0 and self.is_interesting is False:
+            if self.entity.style:
+                self.entity._debug_log(f'already has style {self.entity.style}')
+
+            # A person who wrote no emails stil might be interesting if they received email directly from Epstein
+            if (lone_sender := self.sole_cc_author):
+                info = f"cc: from {lone_sender} only"
+                self.entity.style = self.entity.style or SOLE_CC_STYLE
+            if self.has_any_epstein_emails:
+                info = UNINTERESTING_CC_INFO
+                self.entity.style = self.entity.style or SOLE_CC_STYLE
+            else:
+                info = UNINTERESTING_CC_INFO_NO_CONTACT
+                self.entity.style = self.entity.style or SOLE_CC_NO_CONTACT_STYLE
+
+            self.entity.info = f"({info})"
+        elif self.name in MAILING_LISTS:
+            self.entity.info = '(mailing list)'
+            self.entity.style = self.entity.style or 'pale_turquoise4 dim'
+        elif self.is_a_mystery or self.entity.style:
+            self.entity.info = QUESTION_MARKS
+            self.entity.style = self.entity.style or 'honeydew2 bold'
+            self.entity.style = self.entity._style.dim
+
+        if not self.entity.info:
+            self.entity._warn(f"no entity info determinable...")
 
     @property
     def header_panel_bio_txt(self) -> Text | None:
+        """The text that appears as the bio line in the header panel for a person's emails."""
         if self.info_with_category:
             return Text(f"({self.info_with_category})", justify='center', style=f"{self._email_info_style} italic")
 
     @property
-    def category(self) -> str | None:
+    def category(self) -> str:
         """Categories are configured with the `HighlightedGroups`."""
-        if self.highlighted_names_group:
-            category = self.highlighted_names_group.category or self.highlighted_names_group.label
+        if self.entity.category and self.entity.category == self.name:
+            self._warn(f"category same as name")
 
-            if category != self.name and category != 'paula':  # TODO: this sucks
-                return category
+        return self.entity.category
 
     @property
     def category_txt(self) -> Text | None:
@@ -131,64 +182,9 @@ class Person(DocTypesMixin, LoggingEntity):
         return JEFFREY_EPSTEIN in contacts
 
     @property
-    def highlight_group(self) -> HighlightedNames | HighlightPatterns | ManualHighlight | None:
-        """Highlight group of any kind that matches this name."""
-        if '_highlight_group' not in dir(self):
-            self._highlight_group = get_highlight_group_for_name(self.name)
-
-        return self._highlight_group
-
-    @property
-    def highlighted_names_group(self) -> HighlightedNames | None:
-        """`HighlightedNames` (class with biographical info field) only."""
-        if isinstance(self.highlight_group, HighlightedNames):
-            return self.highlight_group
-
-    @property
-    def info_str(self) -> str | None:
-        """Description of this person - name, configured biographical text, etc."""
-        if self.name and self.highlighted_names_group:
-            if (info := self.highlighted_names_group.info_for(self.name)):
-                return info
-
-        # A person who wrote no emails stil might be interesting if they received email directly from Epstein
-        if self.is_interesting is False and len(self.emails_by) == 0:
-            if self.has_any_epstein_emails:
-                return UNINTERESTING_CC_INFO
-            else:
-                return UNINTERESTING_CC_INFO_NO_CONTACT
-
-    @property
-    def info_txt(self) -> Text | None:
-        if self.name is None:
-            return Text('(emails whose author or recipient could not be determined)', style=ALT_INFO_STYLE)
-        elif self.name == JEFFREY_EPSTEIN:
-            return Text('(emails sent by Epstein to himself are here)', style=ALT_INFO_STYLE)
-        elif self.category == Uninteresting.JUNK:
-            return Text(f"({Uninteresting.JUNK} mail)", style='bright_black dim')
-        elif self.is_interesting is False and (self.info_str or '').startswith(UNINTERESTING_CC_INFO):
-            if self.sole_cc_author:
-                return Text(f"(cc: from {self.sole_cc_author} only)", style='wheat4 dim')
-            elif self.info_str == UNINTERESTING_CC_INFO:
-                return Text(f"({self.info_str})", style='wheat4 dim')
-            else:
-                return Text(f"({self.info_str})", style='plum4 dim')
-        elif self.is_a_mystery:
-            return Text(QUESTION_MARKS, style='honeydew2 bold')
-        elif self.info_str is None:
-            if self.name in MAILING_LISTS:
-                return Text('(mailing list)', style=f"pale_turquoise4 dim")
-            elif self.category:
-                return Text(QUESTION_MARKS, style=self.style())
-            else:
-                return None
-        else:
-            return Text(self.info_str, style=self.style(allow_bold=False))
-
-    @property
     def info_with_category(self) -> str:
         """Configured biographical info (if any) preceded by configured category (if any)."""
-        return ', '.join(without_falsey([self.category, self.info_str]))
+        return ', '.join(without_falsey([self.category, self.entity.info]))
 
     @property
     def internal_link(self) -> Text:
@@ -198,12 +194,7 @@ class Person(DocTypesMixin, LoggingEntity):
     @property
     def is_a_mystery(self) -> bool:
         """Return True if this is someone we theroetically could know more about."""
-        return self.is_unstyled and not (self.entity.is_email_address or self.info_str or self.is_interesting is False)
-
-    @property
-    def is_unstyled(self) -> bool:
-        """True if there's no highlight group for this name."""
-        return self.style() == DEFAULT_NAME_STYLE
+        return not (self.entity.is_email_address or self.entity.info or self.is_interesting is False)
 
     @property
     def name_str(self) -> str:
@@ -241,11 +232,11 @@ class Person(DocTypesMixin, LoggingEntity):
 
     @property
     def sort_key(self) -> list[int | str]:
-        """Key used to sort `Person` objects by the number of emails sent/received."""
+        """Key used to sort `Person` objects by the number of emails sent/received + interestingness."""
         counts = [
             self.num_emails,
-            -1 * int((self.info_str or '') == UNINTERESTING_CC_INFO_NO_CONTACT),
-            -1 * int((self.info_str or '') == UNINTERESTING_CC_INFO),
+            -1 * int(UNINTERESTING_CC_INFO_NO_CONTACT in self.entity.info),
+            -1 * int(UNINTERESTING_CC_INFO in self.entity.info),
             int(self.has_any_epstein_emails),
         ]
 
@@ -255,6 +246,18 @@ class Person(DocTypesMixin, LoggingEntity):
             return [self.name_str] + counts
         else:
             return counts + [self.name_str]
+
+    @property
+    def table_txt(self) -> Text | None:
+        """Text that appears next to this name in tables of emailers."""
+        self._populate_entity()
+        for table_txt_key in [self.name, self.category]:
+            if table_txt_key in TABLE_TXTS:
+                return TABLE_TXTS[table_txt_key]     # Return preconfigured in some cases
+
+        # TODO: this sucks
+        style = self.entity._style.dim if self.entity.info.startswith('(') else self.entity._style.not_bold
+        return Text(self.entity.info, style)
 
     @property
     def unique_emails_by(self) -> list[Email]:
@@ -424,7 +427,7 @@ class Person(DocTypesMixin, LoggingEntity):
                 str(len(person.unique_emails_by)) if len(person.unique_emails_by) > 0 else '',
                 str(len(person.unique_emails_to)) if len(person.unique_emails_to) > 0 else '',
                 f"{person.email_conversation_length_in_days}",
-                person.info_txt or '',
+                person.table_txt or '',
                 style='' if show_epstein_total or is_on_page else 'dim',
             )
 

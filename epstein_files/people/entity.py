@@ -13,7 +13,7 @@ from epstein_files.util.constant.strings import INDENT_NEWLINE, INDENTED_JOIN, L
 from epstein_files.util.constant.urls import EPSTEINIFY, PERSON_LINK_BUILDERS, EpsteinSite, wikipedia_url
 from epstein_files.util.env import args, site_config
 from epstein_files.util.external_link import ExternalLink, link_text_obj
-from epstein_files.util.helpers.data_helpers import constantize_names, listify
+from epstein_files.util.helpers.data_helpers import constantize_names, listify, without_falsey
 from epstein_files.util.helpers.rich_helpers import QUESTION_MARKS_TXT, Textish, enclose, join_texts, parenthesize
 from epstein_files.util.helpers.string_helper import (as_pattern, indented, is_integer, join_patterns,
      join_truthy, quote, remove_question_marks)
@@ -80,7 +80,8 @@ class Entity(LoggingEntity):
 
     @property
     def style(self) -> str:
-        return str(self._style.style)
+        style_str = str(self._style.style)
+        return '' if style_str == 'none' else style_str
 
     @style.setter
     def style(self, val: str | Style | None):
@@ -151,6 +152,11 @@ class Entity(LoggingEntity):
     def identifying_strings(self) -> list[str]:
         """Strings that indicate a document is likely tied to this entity."""
         return self.unique_phraseologies + (self.email_addresses if self.is_emailer else [])
+
+    @property
+    def info_with_category(self) -> str:
+        """String lik 'category, info'."""
+        return ', '.join(without_falsey([self.category, self.info]))
 
     @property
     def is_email_address(self) -> bool:

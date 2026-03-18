@@ -98,6 +98,7 @@ class HighlightedNames(HighlightPatterns):
         category (str): optional string to use as an override for `self.label` in some contexts
         entities (list[Entity]): optional `Entity` objects that will provide highlight regexes
         entities_by_name (dict[Name, Entity]): lookup dictionary for `Entity` objects
+        flags (re.RegexFlag, optional): flags to use when compiling regexes
     """
     category: str = ''
     entities: list[Entity] = field(default_factory=list)

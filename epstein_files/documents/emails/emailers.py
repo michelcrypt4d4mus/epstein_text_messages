@@ -89,10 +89,9 @@ for name in UNINTERESTING_EMAILERS:
         CONFIGURED_ENTITIES.append(Entity(name, is_interesting=False, match_partial=None))
         CONFIGURED_ENTITIES[-1]._debug_log(f"Created new Entity for UNINTERESTING_EMAILER entry...")
 
-ENTITIES_DICT = {c.name: c for c in CONFIGURED_ENTITIES}
+ENTITIES_DICT = {c.name: c for c in CONFIGURED_ENTITIES}  # Rebuild with any new uninteresting mailers
 EMAILER_REGEXES = {c.name: c.emailer_regex for c in CONFIGURED_ENTITIES if c.is_emailer}
 ENTITY_CATEGORIES = groupby(CONFIGURED_ENTITIES, lambda entity: entity.category)
-ENTITIES_DICT = {c.name: c for c in CONFIGURED_ENTITIES}  # Rebuild with new
 
 # TODO: dict of names that are configured but have no Entity. This is filled in in epstein_files.py which sucks.
 CONFIGURED_NON_ENTITIES: dict[str, Entity] = {}
@@ -117,6 +116,9 @@ IDENTIFIER_FALSE_ALARMS = ['EFTA00961792']
 
 # Elements of this list will not trigger warnings in get_entity
 NO_WARNING_NAMES = [
+    '',
+    'American Express Travel',
+    # 'Leo',
     'Unik',
     'Vlad',
 ]
@@ -167,7 +169,7 @@ def get_entity(name: str | Entity, doc: Optional['Document'] = None) -> Entity:
     elif name in CONFIGURED_NON_ENTITIES:
         return CONFIGURED_NON_ENTITIES[name]  # Avoids spurious warnings
     elif name not in UNCONFIGURED_ENTITIES_ENCOUNTERED:
-        if name not in NO_WARNING_NAMES:
+        if name not in NO_WARNING_NAMES and '@' not in name:
             log = doc._warn if doc else logger.warning
             log(f"Encountered unconfigured entity name '{name}'")
 
