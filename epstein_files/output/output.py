@@ -264,7 +264,7 @@ def print_text_msgs_section(epstein_files: EpsteinFiles, printer: DocPrinter) ->
 
     if not imessage_logs:
         logger.warning(f"No MessengerLog found for {args.names}")
-        return []
+        return
 
     if not args.names:
         printer.print(_section_summary_table(MessengerLog.summary_table(imessage_logs)))
