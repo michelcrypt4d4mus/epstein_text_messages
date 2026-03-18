@@ -42,6 +42,7 @@ from epstein_files.util.external_link import link_text_obj
 from epstein_files.util.helpers.data_helpers import (CharRange, coerce_utc, coerce_utc_strict, date_str, patternize, prefix_keys,
      listify, uniquify, uniq_sorted, without_falsey)
 from epstein_files.util.helpers.file_helper import coerce_file_path, file_size_str, file_size_to_str
+from epstein_files.util.helpers.rich_helpers import TextVar
 from epstein_files.util.helpers.string_helper import collapse_newlines, doublespace_lines, join_truthy, quote, timestamp_without_zero_hour
 from epstein_files.util.logging import DOC_TYPE_STYLES, FILENAME_STYLE, logger
 from epstein_files.util.logging_entity import LoggingEntity
@@ -140,6 +141,10 @@ class Document(LoggingEntity):
     @property
     def author(self) -> Name:
         return self._config.author or self.extracted_author
+
+    @property
+    def author_style(self) -> str:
+        return get_style_for_name(self.author)
 
     @property
     def border_style(self) -> str:
@@ -381,6 +386,7 @@ class Document(LoggingEntity):
     def uninteresting_txt(self) -> Text | None:
         """Text to print for uninteresting files."""
         if self._config.attached_to_email_id:
+            self._warn(f"returning email attachment uninteresting_txt, probably shouldn't be called...")
             return self._skipped_file_txt(f"attached to {self._config.attached_to_email_id}")
         elif args._suppress_uninteresting and self._config.is_interesting is False:
             return self._skipped_file_txt("uninteresting")
@@ -598,12 +604,12 @@ class Document(LoggingEntity):
         txt_lines = styled_dict(self._debug_dict(), sep=': ')
         return prefix_with(txt_lines, ' ', pfx_style='grey', indent=2)
 
-    def _inject_line_numbers(self, text: T, interval: int) -> T:
+    def _inject_line_numbers(self, text: TextVar, interval: int) -> TextVar:
         """Inject character numbers markers into `text`. For debugging only."""
         idx = interval
         new_text = text[:idx]
 
-        def line_marker(i: int) -> T:
+        def line_marker(i: int) -> TextVar:
             marker_str = f'\n\n ------ {idx} ------ \n\n'
             return Text(marker_str) if isinstance(text, Text) else marker_str
 
@@ -655,7 +661,7 @@ class Document(LoggingEntity):
         self.lines = [line.strip() if self.STRIP_WHITESPACE else line for line in self.text.split('\n')]
 
     def _skipped_file_txt(self, reason: str | Text) -> Text:
-        txt = Text(f"Skipping ", f"{INFO_STYLE} dim").append(self.external_link_txt)
+        txt = Text(f"Skipping ", f"{INFO_STYLE} dim").append(self.file_info.external_link_txt(self.author_style))
         return txt.append(" because it's ").append(reason)
 
     def _intro_txt(self, cutoff: int) -> Text:

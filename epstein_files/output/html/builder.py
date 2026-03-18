@@ -172,7 +172,7 @@ def render_at_css_width(obj: RenderableType, props: OptionalCssProps = None) -> 
     css_width = from_em(props.get('max-width', props.get('width')))
 
     if css_width:
-        logger.info(f"render_at_css_width() extracted width of {css_width} from `props` arg CSS:\n   {props}\n")
+        logger.debug(f"render_at_css_width() extracted width of {css_width} from `props` arg CSS:\n   {props}\n")
     else:
         logger.debug(f"no width found in CSS when render_at_css_width() called, no point in using this function.")
 
@@ -284,7 +284,7 @@ def table_to_html(table: Table, css_props: OptionalCssProps = None) -> str:
 def text_to_div(txt: Text, css_props: OptionalCssProps, class_name: str = BLACK_BG__NO_EXPAND) -> str:
     """Wrap a line or block of text in a plain black background div."""
     if css_props:
-        logger.info(f"text_to_div() called with css_props arg:\n  {css_props}\n")
+        logger.debug(f"text_to_div() called with css_props arg:\n  {css_props}\n")
 
     return div_class(render_at_css_width(txt), class_name, css_props)
 

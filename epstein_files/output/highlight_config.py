@@ -3017,7 +3017,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Entity(
                 ZUBAIR_KHAN,
                 f"InsightsPod social media work on 2016 US election for Epstein, Islamabad/Dubai, friend of {MARIA_PRUSAKOVA}, Tranchulas cybersecurity",
-                match_partial='both',
+                match_partial='first',
                 url=SUBSTACK_POST_INSIGHTSPOD_URL,
             ),
 

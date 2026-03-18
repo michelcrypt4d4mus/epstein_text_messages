@@ -31,6 +31,7 @@ from epstein_files.people.person import Person
 from epstein_files.util.env import args, site_config
 from epstein_files.util.helpers.data_helpers import listify, uniq_sorted, without_falsey
 from epstein_files.util.helpers.rich_helpers import vertically_pad
+from epstein_files.util.helpers.string_helper import quote
 from epstein_files.util.logging import logger
 from epstein_files.util.timer import Timer
 from epstein_files.output.title_page import color_key, title_page_top_elements, title_page_bottom_elements
@@ -140,10 +141,9 @@ class DocPrinter(DocTypesMixin):
             logger.info(f"{type(self).__name__}.print_documents() called with {len(docs):,} objects {log_sfx}")
 
         for i, doc in enumerate(docs, 1):
-            logger.debug(f"Printing {doc}")
-
             # Handle sequences of uninteresting or otherwise suppressed docs
             if isinstance(doc, Document) and doc.suppressed_txt:
+                self._log_state(doc, f"suppressing {quote(doc.suppressed_txt.plain)}")
                 self._suppressed_docs_queue.append(doc)
                 continue
 
@@ -152,11 +152,14 @@ class DocPrinter(DocTypesMixin):
             # Collect sequences of otherFile objects into a table
             if self.collect_other_files_to_tables and isinstance(doc, OtherFile) and doc.is_valid_for_table:
                 if (new_entities := self.new_entities_with_bios(doc)):
+                    doc._log(f"Caching biographic panel for new entities: {[str(e) for e in new_entities]}")
                     self._cache_biographies_panel(new_entities)
 
+                self._log_state(doc, f"queueing other file for table")
                 self._other_files_queue.append(doc)
                 continue
 
+            self._log_state(doc, f"triggering print of other files queue")
             self._print_other_files_queue()
             self.print(doc)
 
@@ -281,6 +284,16 @@ class DocPrinter(DocTypesMixin):
                 raise RuntimeError(f"last_bio_panel should be empty, instead it's:\n{self._last_bio_panel}")
             else:
                 self._last_bio_panel = bios_html
+
+    def _log_state(self, doc: FileDisplay | Document, msg: str = '') -> None:
+        supressed_ids = [f.file_id for f in self._suppressed_docs_queue]
+        other_files_queue_ids = [f.file_id for f in self._other_files_queue]
+        queues_str = f"(suppressed queue: {supressed_ids}, other files queue: {other_files_queue_ids})"
+
+        if isinstance(doc, FileDisplay):
+            logger.info(f"{doc} {msg} {queues_str}")
+        else:
+            doc._log(f"{msg} {queues_str}")
 
     def _print_other_files_queue(self) -> None:
         """Print any queued OtherFile objects collected in a table."""

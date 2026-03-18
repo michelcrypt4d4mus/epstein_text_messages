@@ -250,8 +250,7 @@ class DojFile(OtherFile):
     def empty_file_txt(self) -> Text | None:
         """One line of linked text to show if this file doesn't seem to have any OCR text."""
         if self.is_empty or self.is_bad_ocr:
-            link_txt = Text('').append(Text.from_markup(super().external_link_markup))
-            return link_txt.append(f" is a {SINGLE_IMAGE_NO_TEXT}")
+            return self._skipped_file_txt(SINGLE_IMAGE_NO_TEXT)
 
     @property
     def external_link_markup(self) -> str:
