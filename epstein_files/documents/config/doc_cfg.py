@@ -294,13 +294,12 @@ class DocCfg(LoggingEntity):
     def note_txt(self) -> Text | None:
         """Add formatting to `self.complete_description`."""
         if self.complete_description:
-            from epstein_files.output.epstein_highlighter import non_epstein_highlighter
-            style = 'bright_white italic' if site_config.email_info_in_subtitle else INFO_STYLE
-            txt = Text(self.complete_description, style)
+            txt = Text(self.complete_description, NOTE_STYLE)
 
             if self.external_link_txt:
                 txt.append(' ').append(self.external_link_txt)
 
+            from epstein_files.output.epstein_highlighter import non_epstein_highlighter
             return non_epstein_highlighter(txt)
 
     @property

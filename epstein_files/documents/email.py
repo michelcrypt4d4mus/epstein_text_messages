@@ -402,11 +402,8 @@ class Email(Communication):
 
     @property
     def info(self) -> list[Text]:
-        """Overloads superclass to avoid returning config_description because that's now in the Panel title."""
-        if site_config.email_info_in_subtitle:
-            return [self.subheader]
-        else:
-            return super().info
+        """Overloads superclass to avoid returning config.note because that's now in the Panel title."""
+        return [self.subheader]
 
     @property
     def is_fwded_article(self) -> bool:
@@ -661,7 +658,7 @@ class Email(Communication):
             show_header=bool(description)
         )
 
-        if description and site_config.email_info_in_subtitle:
+        if description:
             description = Text('', justify='right').append(description)
 
         panel.add_column(description or '')
@@ -896,7 +893,7 @@ class Email(Communication):
         max_line_len = max(*[len(line) for line in prettified_txt.split('\n')])
         note_txt = None
 
-        if self._config.note_txt and site_config.email_info_in_subtitle:
+        if self._config.note_txt:
             max_line_len = max(max_line_len, len(self._config.note_txt.plain))
             note_txt = Text('').append(self._config.note_txt)
             note_txt.justify = 'right'
