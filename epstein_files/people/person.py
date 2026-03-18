@@ -270,6 +270,7 @@ class Person(DocTypesMixin, LoggingEntity):
 
     @property
     def _identifier(self) -> str:
+        """`LoggingEntity` mixin."""
         return self.name_str
 
     @property
