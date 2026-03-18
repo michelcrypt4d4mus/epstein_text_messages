@@ -1413,7 +1413,6 @@ EMAILS_CONFIG = [
         is_interesting=True,
         truncate_to=NO_TRUNCATE,
     ),
-    EmailCfg(id='EFTA02641374', is_interesting=True),
     # EmailCfg(id='EFTA02641374', is_interesting=True),
     EmailCfg(id='EFTA01848168', show_with_name=CHRIS_POOLE),
     EmailCfg(id='EFTA01849797', show_with_name=CHRIS_POOLE),
