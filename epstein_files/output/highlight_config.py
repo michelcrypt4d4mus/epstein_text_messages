@@ -3043,6 +3043,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 r"Honeycomb( (Offshore Fund|Partners)( (LP|Ltd))?)?",
             ),
             Organization('iCog Labs', f'AI co. in Addis Ababa founded by {BEN_GOERTZEL} and Getnet Assefa Gesaw (funded by Epstein?)'),
+            Organization('Intellectual Ventures'),  # Nathan Myhrvold
             Organization('Jawbone', f'wireless earpiece company invested in by Epstein and {IAN_OSBORNE}'),
             Organization('LinkedIn', "LinkedIn", r"Linked[Il]n( Updates)?", is_emailer=True, is_interesting=False),
             Organization('Match.com', 'dating site', r"match\.com|matchmail", is_emailer=True),
@@ -3294,7 +3295,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"prostitut(e|ion)",
             r"pussy",
             r"Regina(?! Dugan)",
-            r"(rough )?sex(ual(ity)?| (machine|toy))?",
+            r"(rough )?sex(ual(ity)?| (machine|scandal|toy))?",
             r"(rubber )?penis(es)?",
             r"(?-i:S)anctum",
             r'sexysearch2010',
