@@ -483,15 +483,13 @@ class Document(LoggingEntity):
 
     def file_display(self, align: JustifyMethod | None = None) -> FileDisplay:
         """Allows for proper right vs. left justify."""
-        body = BasePanel(
-            border_style=self.border_style,
-            text=self.prettified_txt,
-            title=Text(f"({self.panel_title_timestamp})", style='dim') if self.panel_title_timestamp else None,
-        )
-
         return FileDisplay(
-            background_color=self.config.background_color if self.config else '',
-            body_panel=body,
+            background_color=self._config.background_color,
+            body_panel=BasePanel(
+                border_style=self.border_style,
+                text=self.prettified_txt,
+                title=Text(f"({self.panel_title_timestamp})", style='dim') if self.panel_title_timestamp else None,
+            ),
             document=self,
             file_info=self.file_id_panel,
             indent=site_config.info_indent,
@@ -711,11 +709,6 @@ class Document(LoggingEntity):
         table = build_table(title)
         cols = [{'name': first_col_name, 'min_width': 14}] + SUMMARY_TABLE_COLS
         add_cols_to_table(table, cols, 'right')
-        # logger.warning(f'\n\ntable.title_justify={table.title_justify}, type(title)={type(title).__name__}, title={table.title}')
-
-        # if isinstance(title, Text) and title.justify:
-        #     logger.warning(f'        title is Text obj, justify={title.justify}\n\n')
-
         return table
 
     @classmethod
