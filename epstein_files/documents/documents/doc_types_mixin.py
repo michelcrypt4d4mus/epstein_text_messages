@@ -1,7 +1,9 @@
 from abc import ABC, abstractmethod
 from dataclasses import dataclass, field
+from datetime import date, datetime
 from typing import Mapping, Sequence
 
+from epstein_files.documents.communication import Communication
 from epstein_files.documents.document import Document
 from epstein_files.documents.doj_file import DojFile
 from epstein_files.documents.email import Email
@@ -13,6 +15,7 @@ from epstein_files.documents.other_file import OtherFile
 
 @dataclass
 class DocTypesMixin(ABC):
+    """Mixin for classes that maintain a list of `Document`s and want to sift by type."""
     _documents: list[Document] = field(default_factory=list)
     _docs_by_id: dict[str, Document] = field(default_factory=dict)
 
@@ -20,6 +23,11 @@ class DocTypesMixin(ABC):
     def all_doj_files(self) -> Sequence[DojFile | Email]:
         """All files with the filename EFTAXXXXXX, including those that were turned into `Email` objs."""
         return [d for d in self.documents if d.file_info.is_doj_file]
+
+    @property
+    def communications(self) -> Sequence[Communication]:
+        """This person's `MessengerLog` and `Email` object."""
+        return self.imessage_logs + self.emails
 
     @property
     def docs_by_id(self) -> Mapping[str, Document]:
@@ -34,20 +42,28 @@ class DocTypesMixin(ABC):
     @property
     def doj_files(self) -> list[DojFile]:
         """Only returns DojFile type. Emails derived from DOJ files are not included."""
-        return [f for f in self.other_files if isinstance(f, DojFile)]
+        return DojFile.filter_for_type(self.other_files)
 
     @property
     def dropsite_emails(self) -> list[DropsiteEmail]:
         """Older emails from the Dropsite News collection exist as .eml files instead of .txt files."""
-        return [f for f in self.documents if isinstance(f, DropsiteEmail)]
+        return DropsiteEmail.filter_for_type(self.emails)
+
+    @property
+    def earliest_email_at(self) -> datetime:
+        return self.emails[0].timestamp
+
+    @property
+    def earliest_email_date(self) -> date:
+        return self.earliest_email_at.date()
 
     @property
     def emails(self) -> list[Email]:
-        return [d for d in self.documents if isinstance(d, Email)]
+        return Email.filter_for_type(self.documents)
 
     @property
     def imessage_logs(self) -> list[MessengerLog]:
-        return [d for d in self.documents if isinstance(d, MessengerLog)]
+        return MessengerLog.filter_for_type(self.documents)
 
     @property
     def interesting_other_files(self) -> Sequence[OtherFile]:
@@ -57,7 +73,15 @@ class DocTypesMixin(ABC):
     @property
     def json_files(self) -> list[JsonFile]:
         """JSON files from the November document dump, mostly Apple ads related."""
-        return [d for d in self.other_files if isinstance(d, JsonFile)]
+        return JsonFile.filter_for_type(self.other_files)
+
+    @property
+    def last_email_at(self) -> datetime:
+        return self.emails[-1].timestamp
+
+    @property
+    def last_email_date(self) -> date:
+        return self.last_email_at.date()
 
     @property
     def local_extracts(self) -> Sequence[Document]:
@@ -75,7 +99,7 @@ class DocTypesMixin(ABC):
 
     @property
     def other_files(self) -> Sequence[OtherFile]:
-        return [d for d in self.documents if isinstance(d, OtherFile)]
+        return OtherFile.filter_for_type(self.documents)
 
     @property
     def unique_documents(self) -> Sequence[Document]:

@@ -119,16 +119,8 @@ class EpsteinFiles(DocTypesMixin):
 
     def docs_for(self, name: Name) -> list[Document]:
         """All documents with `name` as the author or a recipient (not just someone who is mentioned)."""
-        emails = self.emails_for(name)
-        imessage_logs = self.imessage_logs_for(name)
-
-        # OtherFile objects with author == None are not returned for name == None
-        if name is None:
-            other_files = []
-        else:
-            other_files = [f for f in self.other_files if name in [f.author, f._config.show_with_name]]
-
-        return Document.sort_by_timestamp(Document.uniquify(emails + imessage_logs + other_files))
+        docs = flatten([fxn(name) for fxn in [self.emails_for, self.imessage_logs_for, self.other_files_for]])
+        return Document.sort_by_timestamp(Document.uniquify(docs))
 
     def email_author_counts(self) -> dict[Name, int]:
         """Returns dict counting up how many emails were written by each person."""
@@ -263,6 +255,13 @@ class EpsteinFiles(DocTypesMixin):
 
         self._finalize_data_and_write_to_disk(new_docs)
 
+    def other_files_for(self, name: Name) -> list[OtherFile]:
+        """Get files with author `name` or that are marked `show_with_name`."""
+        if name is None:
+            return []
+        else:
+            return [f for f in self.other_files if name in [f.author, f._config.show_with_name]]
+
     def overview_table(self) -> Table:
         """Table showing file counts by type."""
         title = Text('Files Overview ', TABLE_TITLE_STYLE)
@@ -278,8 +277,8 @@ class EpsteinFiles(DocTypesMixin):
         """Construct Person objects for a list of names."""
         return [
             Person(
-                name,
-                self.docs_for(name),
+                name=name,
+                _documents=self.docs_for(name),
                 is_interesting=False if name in self.uninteresting_emailers else None
             )
             for name in names

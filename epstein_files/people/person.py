@@ -13,6 +13,7 @@ from rich.text import Text
 from epstein_files.documents.communication import Communication
 from epstein_files.documents.document import Document
 from epstein_files.documents.documents.categories import Uninteresting
+from epstein_files.documents.documents.doc_types_mixin import DocTypesMixin
 from epstein_files.documents.email import BCC_LISTS, TRUNCATE_EMAILS_BY, MAILING_LISTS, Email
 from epstein_files.documents.emails.emailers import ENTITIES_DICT, cleanup_str, get_entity
 from epstein_files.documents.messenger_log import MessengerLog
@@ -52,13 +53,12 @@ PEOPLE_BIOS = {
 
 
 @dataclass
-class Person(LoggingEntity):
+class Person(DocTypesMixin, LoggingEntity):
     """
     Collects all known info and files connected to someone who is the author or recipient
     of at least one Epstein File with methods to work with that collection as a whole.
     """
-    name: Name
-    documents: list[Document]
+    name: Name = None
     is_interesting: bool | None = None
     contact: Entity = field(init=False)  # TODO: rename 'entity'
     _searched_for_highlight_group: bool = False
@@ -90,23 +90,10 @@ class Person(LoggingEntity):
             return QUESTION_MARKS_TXT
 
     @property
-    def communications(self) -> Sequence[Communication]:
-        """This person's `MessengerLog` and `Email` object."""
-        return self.imessage_logs + self.emails
-
-    @property
     def counterparties(self) -> list[Name]:
         """All text and email counterparties for this person."""
         all_counterparties = flatten([c.participants for c in self.communications])
         return sort_names([c for c in all_counterparties if c != self.name])
-
-    @property
-    def earliest_email_at(self) -> datetime:
-        return self.emails[0].timestamp
-
-    @property
-    def earliest_email_date(self) -> date:
-        return self.earliest_email_at.date()
 
     @property
     def full_info_panel(self) -> Padding:
@@ -119,20 +106,8 @@ class Person(LoggingEntity):
         return Padding(Group(*elements), (2, 0, 1, 0))
 
     @property
-    def last_email_at(self) -> datetime:
-        return self.emails[-1].timestamp
-
-    @property
-    def last_email_date(self) -> date:
-        return self.last_email_at.date()
-
-    @property
     def email_conversation_length_in_days(self) -> int:
         return days_between(self.emails[0].timestamp, self.emails[-1].timestamp)
-
-    @property
-    def emails(self) -> list[Email]:
-        return Email.filter_for_type(self.documents)
 
     @property
     def emails_by(self) -> list[Email]:
@@ -169,14 +144,6 @@ class Person(LoggingEntity):
         """`HighlightedNames` (class with biographical info field) only."""
         if isinstance(self.highlight_group, HighlightedNames):
             return self.highlight_group
-
-    @property
-    def imessage_logs(self) -> list[MessengerLog]:
-        return MessengerLog.filter_for_type(self.documents)
-
-    @property
-    def other_files(self) -> list[OtherFile]:
-        return OtherFile.filter_for_type(self.documents)
 
     @property
     def info_str(self) -> str | None:
@@ -318,10 +285,6 @@ class Person(LoggingEntity):
             return [self.name_str] + counts
         else:
             return counts + [self.name_str]
-
-    @property
-    def unique_emails(self) -> Sequence[Email]:
-        return Document.without_dupes(self.emails)
 
     @property
     def unique_emails_by(self) -> list[Email]:
