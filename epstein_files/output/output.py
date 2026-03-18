@@ -141,7 +141,10 @@ def print_emails_section(epstein_files: EpsteinFiles, printer: DocPrinter) -> No
         return
 
     # Print other interesting emails
-    extra_emails = [e for e in epstein_files.unique_emails if e.is_interesting and e.file_id not in printer.printed_ids]
+    extra_emails = [
+        e for e in epstein_files.unique_emails
+        if e.is_interesting and e.file_id not in printer.printed_ids
+    ]
 
     if len(extra_emails) > 0:
         logger.warning(f"Found {len(extra_emails)} additional interesting emails by less interesting people...")
