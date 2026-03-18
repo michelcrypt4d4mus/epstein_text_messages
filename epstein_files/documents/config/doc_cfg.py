@@ -11,6 +11,7 @@ from rich.text import Text
 
 from epstein_files.documents.documents.categories import (Category, Interesting, Neutral, Uninteresting,
      is_category, is_interesting, is_uninteresting)
+from epstein_files.output.site.site_config import MobileConfig
 from epstein_files.people.interesting_people import PERSONS_OF_INTEREST
 from epstein_files.people.names import *
 from epstein_files.util.constant.strings import *
@@ -276,7 +277,7 @@ class DocCfg(LoggingEntity):
         if self.display_text:
             text = join_truthy(self.author, self.display_text)
 
-            if len(text) < 300 and not text.startswith('photo'):
+            if self.has_replacement_text:
                 return Text(f"(Text of {text} {CHECK_LINK_FOR_DETAILS})", 'dim italic')
             else:
                 return Text(text)
@@ -295,6 +296,16 @@ class DocCfg(LoggingEntity):
     def has_any_info(self) -> bool:
         """True if either `author` or `description` is truthy."""
         return bool(self.note or self.author)
+
+    @property
+    def has_replacement_text(self) -> bool:
+        """`display_text` longer than other_files_preview_chars is considered a drop in replacement, not a short description."""
+        return bool(self.display_text and len(self.display_text) > MobileConfig.other_files_preview_chars)
+
+    @property
+    def replacement_description(self) -> str:
+        """Returns a string if `self.display_text` exists and is not too long."""
+        return self.display_text if self.display_text and not self.has_replacement_text else ''
 
     @property
     def text_highlighter(self) -> 'EpsteinHighlighter':
