@@ -43,7 +43,7 @@ def test_extract_recipients(get_email):
 
 def test_info_sentences(get_email):
     email = get_email('026290')
-    assert len(email.info) == 1
+    assert len(email.subheaders) == 1
     email_with_description = get_email('031278')
     assert len(email_with_description.info) == 1
     assert email_with_description._config.note_txt is not None

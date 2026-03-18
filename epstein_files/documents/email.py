@@ -401,9 +401,9 @@ class Email(Communication):
             return super().html_margin_bottom
 
     @property
-    def info(self) -> list[Text]:
+    def subheaders(self) -> list[Text]:
         """Overloads superclass to avoid returning config.note because that's now in the Panel title."""
-        return [self.subheader]
+        return [self.subheader_info]
 
     @property
     def is_fwded_article(self) -> bool:
@@ -467,7 +467,7 @@ class Email(Communication):
         return ';'.join([str(r) for r in self.recipients])
 
     @property
-    def subheader(self) -> Text:
+    def subheader_info(self) -> Text:
         """String describing this email including author, recipients, and timestamp."""
         author_txt = self.author_txt
 
@@ -591,7 +591,7 @@ class Email(Communication):
             indent=site_config.info_indent,
             justify=align,
             margin_bottom=self.html_margin_bottom,
-            subheaders=self.info,
+            subheaders=self.subheaders,
         )
 
     def is_from_or_to(self, name: str) -> bool:

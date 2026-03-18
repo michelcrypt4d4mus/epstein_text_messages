@@ -234,11 +234,6 @@ class Document(LoggingEntity):
         return VERTICAL_MARGIN_EMS
 
     @property
-    def info(self) -> list[Text]:
-        """0 to 2 sentences containing the info_txt() as well as any configured description."""
-        return without_falsey([self.subheader, self._config.note_txt])
-
-    @property
     def is_duplicate(self) -> bool:
         return bool(self._config.duplicate_of_id)
 
@@ -349,14 +344,19 @@ class Document(LoggingEntity):
         return pretty_txt
 
     @property
+    def subheader_info(self) -> Text | None:
+        """Secondary info about this file (description, recipients, etc). Overload in subclasses."""
+        return None
+
+    @property
+    def subheaders(self) -> list[Text]:
+        """0 to 2 sentences containing the `subheader_info` and any configured `note` text."""
+        return without_falsey([self.subheader_info, self._config.note_txt])
+
+    @property
     def suppressed_txt(self) -> Text | None:
         """`Text` object to print if this documents is suppressed for various reasons."""
         return self.uninteresting_txt or self.duplicate_file_txt or self.empty_file_txt
-
-    @property
-    def subheader(self) -> Text | None:
-        """Secondary info about this file (description, recipients, etc). Overload in subclasses."""
-        return None
 
     @property
     def timestamp(self) -> datetime | None:
@@ -425,11 +425,11 @@ class Document(LoggingEntity):
 
     @property
     def _summary_panel(self) -> Panel:
-        """Panelized description() with info_txt(). Used in search results not in production HTML."""
+        """Panelized `subheaders`. Used in search results not in production HTML."""
         sentences = [self._summary]
 
         if self._INCLUDE_DESCRIPTION_IN_SUMMARY_PANEL:
-            sentences += [Text('', style='italic').append(h) for h in self.info]
+            sentences += [Text('', style='italic').append(h) for h in self.subheaders]
 
         return Panel(Group(*sentences), border_style=self._class_style, expand=False)
 
@@ -496,7 +496,7 @@ class Document(LoggingEntity):
             indent=site_config.info_indent,
             justify=align,
             margin_bottom=self.html_margin_bottom,
-            subheaders=self.info,
+            subheaders=self.subheaders,
         )
 
     def lines_matching(self, _pattern: re.Pattern | str) -> list[MatchedLine]:
@@ -539,7 +539,7 @@ class Document(LoggingEntity):
 
     def rich_header(self) -> Group:
         """Panel + subheaders with filename linking to raw file plus any additional info about the file."""
-        padded_info = [Padding(sentence, site_config.info_padding()) for sentence in self.info]
+        padded_info = [Padding(sentence, site_config.info_padding()) for sentence in self.subheaders]
         return Group(*([self.file_id_panel] + padded_info))
 
     def top_lines(self, n: int = 10) -> str:

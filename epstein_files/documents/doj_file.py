@@ -257,9 +257,9 @@ class DojFile(OtherFile):
         return wrap_in_markup_style(super().external_link_markup, self.border_style)
 
     @property
-    def info(self) -> list[Text]:
+    def subheaders(self) -> list[Text]:
         """Overloads superclass to adjust formatting."""
-        return [Text(' ').append(sentence) for sentence in super().info]
+        return [Text(' ').append(sentence) for sentence in super().subheaders]
 
     @property
     def is_bad_ocr(self) -> bool:

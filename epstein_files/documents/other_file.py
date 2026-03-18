@@ -216,7 +216,7 @@ class OtherFile(Document):
             else:
                 preview_text = file.preview_txt
                 row_style = ''
-                link_and_info += file.info
+                link_and_info += file.subheaders
 
             table.add_row(
                 Group(*link_and_info),
