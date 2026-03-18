@@ -212,5 +212,9 @@ def use_custom_html() -> None:
     for site in DEPLOY_CUSTOM_HTML_SITES:
         from_path = Site.custom_html_build_path(site)
         to_path = Site.html_output_path(site)
-        logger.warning(f"Copying/overwriting '{from_path}' to '{to_path}'...")
-        shutil.copy2(from_path, to_path)
+
+        if from_path.exists():
+            logger.warning(f"Copying/overwriting '{from_path}' to '{to_path}'...")
+            shutil.copy2(from_path, to_path)
+        else:
+            logger.error(f"No custom HTML file found at '{from_path}'")
