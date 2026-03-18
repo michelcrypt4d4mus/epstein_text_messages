@@ -165,14 +165,12 @@ def epstein_grep():
 def epstein_pdf_path():
     """Print the path to PDF with ID specified in first positional argument."""
     file_id = args.positional_args[0]
-    assert file_id, "No ID provided!"
     assert file_id.startswith('EFTA'), f"{file_id} doesn't look like a valid EFTA file id..."
-    document = EpsteinFiles.get_files().get_id(file_id)
 
-    if not (document and document.file_info.local_pdf_path):
-        logger.error(f"No PDF path found for {file_id}")
-
-    print(document.file_info.local_pdf_path)
+    if (document := EpsteinFiles.get_files().get_id(file_id)) and document.file_info.local_pdf_path:
+        print(document.file_info.local_pdf_path)
+    else:
+        exit_with_error(f"No PDF path found for file ID '{file_id}'")
 
 
 def epstein_show():
