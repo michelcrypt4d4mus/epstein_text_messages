@@ -60,11 +60,11 @@ class Person(DocTypesMixin, LoggingEntity):
     """
     name: Name = None
     is_interesting: bool | None = None
-    contact: Entity = field(init=False)  # TODO: rename 'entity'
+    entity: Entity = field(init=False)  # TODO: rename 'entity'
     _searched_for_highlight_group: bool = False
 
     def __post_init__(self):
-        self.contact = get_entity(self.name_str)
+        self.entity = get_entity(self.name_str)
         self._documents = Document.sort_by_timestamp(self.documents)
 
     @property
@@ -242,11 +242,6 @@ class Person(DocTypesMixin, LoggingEntity):
     def name_txt(self) -> Text:
         return styled_name(self.name)
 
-    @property
-    def num_emails(self) -> int:
-        """Count of emails this person sent or received (excluding duplicates)."""
-        return len(self.unique_emails)
-
     @property  # TODO: unused?
     def should_always_truncate(self) -> bool:
         """True if we want to truncate all emails to/from this user."""
@@ -255,7 +250,7 @@ class Person(DocTypesMixin, LoggingEntity):
     @property
     def show_with_emails_docs(self) -> list[OtherFile]:
         """OtherFile objects that should be displayed in the emails section(s)."""
-        return [f for f in self.other_files if self.name and self.name == f._config.show_with_name]
+        return [f for f in self.other_files if self.name == f._config.show_with_name]
 
     @property
     def sole_cc(self) -> str | None:

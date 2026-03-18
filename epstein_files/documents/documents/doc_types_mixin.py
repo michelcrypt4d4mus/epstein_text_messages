@@ -98,6 +98,10 @@ class DocTypesMixin(ABC):
         return [doc for doc in self.other_files if not isinstance(doc, JsonFile)]
 
     @property
+    def num_emails(self) -> int:
+        return len(self.unique_emails)
+
+    @property
     def other_files(self) -> Sequence[OtherFile]:
         return OtherFile.filter_for_type(self.documents)
 
