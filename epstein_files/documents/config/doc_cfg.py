@@ -274,13 +274,9 @@ class DocCfg(LoggingEntity):
     @property
     def display_preview_txt(self) -> Text | None:
         """Override for the `OtherFile`s table preview column."""
-        if self.display_text:
-            text = join_truthy(self.author, self.display_text)
-
-            if self.has_replacement_text:
-                return Text(f"(Text of {text} {CHECK_LINK_FOR_DETAILS})", 'dim italic')
-            else:
-                return Text(text)
+        if self.replacement_preview_text:
+            text = join_truthy(self.author, self.replacement_preview_text)
+            return Text(f"(Text of {text} {CHECK_LINK_FOR_DETAILS})", 'dim italic')
 
     @property
     def external_link(self) -> ExternalLink | None:
@@ -298,14 +294,14 @@ class DocCfg(LoggingEntity):
         return bool(self.note or self.author)
 
     @property
-    def has_replacement_text(self) -> bool:
+    def has_full_ocr_text_replacement(self) -> bool:
         """`display_text` longer than other_files_preview_chars is considered a drop in replacement, not a short description."""
         return bool(self.display_text and len(self.display_text) > MobileConfig.other_files_preview_chars)
 
     @property
-    def replacement_description(self) -> str:
+    def replacement_preview_text(self) -> str:
         """Returns a string if `self.display_text` exists and is not too long."""
-        return self.display_text if self.display_text and not self.has_replacement_text else ''
+        return self.display_text if self.display_text and not self.has_full_ocr_text_replacement else ''
 
     @property
     def text_highlighter(self) -> 'EpsteinHighlighter':

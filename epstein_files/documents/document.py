@@ -327,7 +327,7 @@ class Document(LoggingEntity):
         """Returns the string we want to print as the body of the document."""
         display_text = doublespace_lines(self.display_text)
         # TODO: do something better to give replacement_text have different style
-        style = INFO_STYLE if self._config.has_replacement_text else ''
+        style = INFO_STYLE if self._config.has_full_ocr_text_replacement else ''
 
         # char range slice of Text late in the game here preserves Text highlighting at boundaries
         char_range = self.char_range_to_display or (0, len(display_text))

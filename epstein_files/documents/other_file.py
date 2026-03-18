@@ -102,8 +102,8 @@ class OtherFile(Document):
     @property
     def preview_chars(self) -> str:
         """Text at start of file stripped of newlines for display in tables and other cramped settings."""
-        if self._config.replacement_description:
-            return self._config.replacement_description
+        if self._config.replacement_preview_text:
+            return self._config.replacement_preview_text
 
         # TODO: config.num_preview_chars is never used
         num_chars = self._config.num_preview_chars or site_config.other_files_preview_chars
@@ -116,7 +116,7 @@ class OtherFile(Document):
 
     @property
     def preview_txt(self) -> Text:
-        if self._config.display_preview_txt and not self._config.has_replacement_text:
+        if self._config.display_preview_txt and not self._config.has_full_ocr_text_replacement:
             return self._config.display_preview_txt
 
         txt = highlighter(escape(self.preview_chars))

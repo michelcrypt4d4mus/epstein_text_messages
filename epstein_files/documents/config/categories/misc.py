@@ -102,6 +102,7 @@ MISC_CFGS = [
     DocCfg(id='EFTA00004070', display_text="photos of Epstein with handwritten caption that didn't OCR well"),
     DocCfg(id='EFTA02731260', display_text='notebook full of handwritten love letters with terrible OCR text'),
     DocCfg(id='EFTA00006100', display_text='Palm Beach Police fax machine activity log 2005-12-28 to 2006-01-04'),
+    DocCfg(id='EFTA00001487', display_text="architectural drawing of one floor of Epstein's NYC residence"),
     DocCfg(
         id='EFTA00003149',
         date='2016-01-01',
