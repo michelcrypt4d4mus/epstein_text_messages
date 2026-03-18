@@ -492,7 +492,7 @@ class Document(LoggingEntity):
             ),
             document=self,
             file_info=self.file_id_panel,
-            indent=site_config.info_indent,
+            indent=site_config.indents.info,
             justify=align,
             margin_bottom=self.html_margin_bottom,
             subheaders=self.subheaders,

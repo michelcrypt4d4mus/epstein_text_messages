@@ -199,7 +199,7 @@ class DocPrinter(DocTypesMixin):
             elif isinstance(positioned.obj, Panel):
                 self.html_elements.append(panel_to_div(positioned.obj, positioned.css))
             elif isinstance(positioned.obj, BasePanel):
-                margin = unpack_dimensions((site_config.info_indent, 0))  # TODO: this margin dimension should only exist on eone side if aligned
+                margin = unpack_dimensions((site_config.indents.info, 0))  # TODO: this margin dimension should only exist on eone side if aligned
                 self.html_elements.append(positioned.obj.to_div(margin))
             elif isinstance(positioned.obj, Text):
                 self.html_elements.append(text_to_div(positioned.obj, positioned.css))
@@ -313,7 +313,7 @@ class DocPrinter(DocTypesMixin):
             self.line()
 
         table = OtherFile.files_preview_table(self._other_files_queue, title=table_title, title_justify='center')
-        self.print(Padding(table, (0, 0, 1, site_config.other_files_table_indent)))
+        self.print(Padding(table, (0, 0, 1, site_config.indents.other_files_table)))
         self._documents.extend(self._other_files_queue)
         self._other_files_queue = []
 

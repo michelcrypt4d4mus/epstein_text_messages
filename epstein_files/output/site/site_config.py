@@ -23,32 +23,46 @@ MOBILE_WARNING_TXT = Text.from_markup(MOBILE_WARNING)
 MOBILE_WARNING_TXT.stylize('dim')
 
 
+@dataclass(kw_only=True)
+class IndentCfg:
+    """
+    show_with (int): Indent for `show_with_name` files
+    """
+    email_attachment: int
+    email_body: int
+    info: int
+    other_files_table: int
+    show_with: int
+    supressed_msg: int
+
+
 # TODO: another thing that changes based on mobile is id_only for link texts
 @dataclass
 class MobileConfig:
-    """
-    show_with_indent (int): Indent for `show_with_name` files
-    """
     abbreviations_width: ClassVar[int | None] = None
     character_bio_padding: ClassVar[tuple[int, int, int, int]] = (0, 0, 1, 2)
     contact_list_padding: ClassVar[PaddingDimensions] = (0, 0, 0, 1)
-    email_attachment_indent: ClassVar[int] = 6
-    info_indent: ClassVar[int] = 1
     max_alt_links: ClassVar[int | None] = 1
     not_all_files_warning: ClassVar[str] = starred_header(NOT_ALL_FILES_MSG, num_spaces=1, num_stars=1)
     num_color_key_cols: ClassVar[int] = 2
     other_files_preview_chars: ClassVar[int] = 300
-    other_files_table_indent: ClassVar[int] = 0
     section_header_padding: ClassVar[PaddingDimensions] = (2, 1, 1, 1)
-    show_with_indent: ClassVar[int] = 0
     show_emailer_tables: ClassVar[bool] = False
     site_glossary_horizontal_padding: ClassVar[int] = 2
     social_link_separator: ClassVar[str] = ' '
     subtitle_margins: ClassVar[PaddingDimensions] = (2, 1, 1, 1)
     subtitle_padding: ClassVar[PaddingDimensions] = (0, 1)
     subtitle_width: ClassVar[int | None] = None
-    suppressed_file_indent: ClassVar[int] = 0
     width: ClassVar[int] = 52
+
+    indents: ClassVar[IndentCfg] = IndentCfg(
+        email_attachment=6,
+        email_body=0,
+        info=1,
+        other_files_table=0,
+        show_with=0,
+        supressed_msg=0,
+    )
 
     @classmethod
     def format_text_msg_time(cls, dt: datetime) -> str:
@@ -56,7 +70,7 @@ class MobileConfig:
 
     @classmethod
     def info_padding(cls) -> PaddingDimensions:
-        return (0, 0, 0, cls.info_indent)
+        return (0, 0, 0, cls.indents.info)
 
     @classmethod
     def email_subheader(cls, email_type: str, author: Text, recipients: Text, timestamp: datetime | Text) -> Text:
@@ -73,30 +87,34 @@ class MobileConfig:
 
     @classmethod
     def suppressed_file_padding(cls) -> tuple[int, int, int, int]:
-        return (0, 0, 0, cls.suppressed_file_indent)
+        return (0, 0, 0, cls.indents.supressed_msg)
 
 
 class SiteConfig(MobileConfig):
     abbreviations_width: ClassVar[int | None] = 62
     character_bio_padding: ClassVar[tuple[int, int, int, int]] = (0, 1, 0, 0)
     contact_list_padding: ClassVar[PaddingDimensions] = (0, 0, 0, 5)
-    email_attachment_indent: ClassVar[int] = 12
-    info_indent: ClassVar[int] = 1
     max_alt_links: ClassVar[int | None] = None
     not_all_files_warning: ClassVar[str] = starred_header(NOT_ALL_FILES_MSG, num_spaces=6, num_stars=14)
     num_color_key_cols: ClassVar[int] = 5
     other_files_preview_chars: ClassVar[int] = 900
-    other_files_table_indent: ClassVar[int] = 2
     section_header_padding: ClassVar[PaddingDimensions] = (2, 25, 1, 25)
     show_emailer_tables: ClassVar[bool] = True
-    show_with_indent: ClassVar[int] = 30
     site_glossary_horizontal_padding: ClassVar[int] = 5
     social_link_separator: ClassVar[str] = '  /  '
     subtitle_margins: ClassVar[PaddingDimensions] = (2, 0, 2, 0)
     subtitle_padding: ClassVar[PaddingDimensions] = (0, 3)
     subtitle_width: ClassVar[int | None] = 70
-    suppressed_file_indent: ClassVar[int] = 1
     width: ClassVar[int] = DEFAULT_WIDTH
+
+    indents: ClassVar[IndentCfg] = IndentCfg(
+        email_attachment=12,
+        email_body=1,
+        info=1,
+        other_files_table=2,
+        show_with=30,
+        supressed_msg=1,
+    )
 
     @classmethod
     def format_text_msg_time(cls, dt: datetime) -> str:

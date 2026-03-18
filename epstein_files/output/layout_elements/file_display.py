@@ -88,7 +88,7 @@ class ListPanel(BasePanel):
                 title_align=self.title_justify,
             )
         else:
-            return indent_txt(txts, site_config.suppressed_file_indent)
+            return indent_txt(txts, site_config.indents.supressed_msg)
 
 
 @dataclass(kw_only=True)
