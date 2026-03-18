@@ -31,8 +31,7 @@ def test_info_str(anne_boyles, john_page, sultan):
     assert sultan.entity.info == SULAYEM_DESCRIPTION
     assert sultan.entity.info_with_category == f'mideast, {SULAYEM_DESCRIPTION}'
 
-    assert john_page.entity.info_with_category == ''
-    assert john_page.entity.info is None
+    assert john_page.entity.info_with_category == '(???)'
+    assert john_page.entity.info == '(???)'
 
-    assert anne_boyles.category_txt.plain == QUESTION_MARKS
-    assert anne_boyles.info_txt.plain == QUESTION_MARKS
+    assert anne_boyles.category_txt is None
