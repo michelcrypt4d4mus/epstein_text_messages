@@ -37,6 +37,7 @@ print_deploy_step "Building emailer info .png... $PICKLE_ARG"
 $GENERATE_CMD --emailers-info $PICKLE_ARG
 
 if [ -n "$TAG_RELEASE" ]; then
+    export TAG_RELEASE
     print_deploy_step "Copying 'the_epstein_files.local.pkl.gz' to 'the_epstein_files.pkl.gz'..."
     scripts/validate_pkl.py
     cp ./the_epstein_files.local.pkl.gz ./the_epstein_files.pkl.gz
