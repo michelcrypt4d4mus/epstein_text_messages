@@ -388,7 +388,7 @@ UNINTERESTING_EMAILERS = FLIGHT_IN_2012_PEOPLE + IRAN_DEAL_RECIPIENTS + TRIVERS_
     THANU_BOONYAWATANA,                      # Eduardo Robles CC
     'Travis Pangburn',                       # Random CC
     'Vahe Stepanian',                        # Random CC
-    'ebankingebxs.com',                      # forgot password
+    'ebankingebxs.com',                      # forgot password email
 ]
 
 
