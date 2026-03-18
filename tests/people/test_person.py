@@ -1,7 +1,7 @@
 import pytest
 
-from epstein_files.people.person import Person
 from epstein_files.people.names import *
+from epstein_files.people.person import Person
 from epstein_files.util.constant.strings import QUESTION_MARKS
 
 SULAYEM_DESCRIPTION = 'chairman of ports in Dubai, CEO of DP World, resigned over Epstein ties'
