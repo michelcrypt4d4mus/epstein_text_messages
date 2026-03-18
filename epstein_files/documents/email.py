@@ -119,6 +119,7 @@ OCR_REPAIRS: OcrRepair = {
     re.compile(r"\n[<>I ]*wrote:"): ' wrote:',
     # HTML garbage
     '&lt;': '<',
+    '<mime-attachment.gif>': '',
     re.compile(r'(fi|[&S5d])gt;'): '>',
     re.compile(r'[</=]{,3}(cl|d)?iv>|&[=n]bs[=p];|<=span>|=C\d+\b'): '',
     re.compile(r'^O= ', re.MULTILINE): 'On ',

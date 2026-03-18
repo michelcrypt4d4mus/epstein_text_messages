@@ -18,7 +18,7 @@ from epstein_files.output.highlighted_names import HighlightGroup, HighlightedNa
 from epstein_files.people.entity import Entity, Organization, acronym, epstein_co, epstein_trust, law_enforcement, publication, the_publication
 from epstein_files.people.names import *
 from epstein_files.util.constant.strings import *
-from epstein_files.util.constant.urls import SUBSTACK_POST_INSIGHTSPOD_URL
+from epstein_files.util.constant.urls import SUBSTACK_POST_INSIGHTSPOD_URL, SVETLANA_NEWSGROUND
 from epstein_files.util.env import args
 from epstein_files.util.helpers.data_helpers import flatten, sort_dict
 from epstein_files.util.helpers.rich_helpers import QUESTION_MARKS_TXT
@@ -1409,6 +1409,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         style='green',
         entities=[
             Entity(AMANDA_ENS, "Citigroup", r"ens, amanda?|Amanda.Ens", match_partial=None),
+            Entity('Amanda Kirby', f"associate at {DEUTSCHE_BANK}", match_partial=None),
             Entity('Andrew Gallivan', f"manager at {DEUTSCHE_BANK}"),
             Entity('Anthony Cuti', 'accountant at Rothstein Kass'),
             Entity(
@@ -1440,7 +1441,6 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 f"{PRINCE_ANDREW}'s trusted money man at Banque Havilland whom Epstein does not trust",
                 match_partial=None,
             ),
-            Entity(NATHANIEL_AUGUST, 'fund manager of Mangrove Partners', match_partial=None),
             Entity(
                 JES_STALEY,
                 "former CEO of Barclays, allegations by multiple Epstein victims",
@@ -1459,6 +1459,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Entity('Jonathan Rowland', f"Banque Havilland", match_partial=None),
             Entity('Kamila Bobinska', f"Argan Capital Advisors, Dots Ventures, Movens Capital, ex-{DEUTSCHE_BANK}"),
             Entity('Kumar Sambhav', f"{DEUTSCHE_BANK} technical writer {QUESTION_MARKS}"),
+            Entity('Larry Fink', f"CEO of Blackrock (world's largest money manager), father of {JOSHUA_FINK}", match_partial=None),
             Entity('Laurie Cameron', "currency trading", match_partial=None),
             Entity(
                 LEON_BLACK,
@@ -1476,6 +1477,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 r"Mortimer( B\.?)? Zuckerman",
                 url='https://prospect.org/2026/02/26/newspapers-did-not-kill-themselves-jeffrey-epstein-mort-zuckerman-daily-news/',
             ),
+            Entity(NATHANIEL_AUGUST, 'fund manager of Mangrove Partners', match_partial=None),
             Entity(NORMAN_D_RAU, "managing director at Morgan Stanley", match_partial=None),
             Entity(PAUL_BARRETT, r"Alpha Group Capital", r"Paul Barre(d|tt)|Barrett,? Paul( S)?", match_partial=None),
             Entity(
@@ -1543,6 +1545,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Organization.well_known(JP_MORGAN),
             Organization.well_known('Morgan Stanley'),
             Organization.well_known('S&P'),
+            Organization.well_known('Standard Chartered'),
             Organization.well_known(UBS),
             acronym("Grantor Retained Annuity Trust", "tax shelter structure favoured by Epstein"),
         ],
@@ -2666,6 +2669,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             ),
             Entity('Elena Bolyakina', f"visited {PETER_THIEL} with {SERGEY_BELYAKOV}"),
             Entity('Igor Zinoviev', f"Epstein's bodyguard, MMA fighter"),
+            Entity('Irina Pozhidaeva', f'mother of {SVETLANA_POZHIDAEVA}', match_partial=None),
             Entity('Len Blavatnik', 'oligarch', url=WIKIPEDIA),
             Entity('Mikhail Prokhorov', 'Russian-Israeli oligarch', url=WIKIPEDIA),
             Entity('Mikheil Saakashvili', 'former president of Georgia', r"Mikh[ae]il Saakashvili", url=WIKIPEDIA),
@@ -2682,6 +2686,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 url='https://en.wikipedia.org/wiki/Ruben_Vardanyan_(politician)',
             ),
             Entity('Semion Mogilevich', 'infamous Russian mafia boss', url=WIKIPEDIA),
+            Entity('Sergey Pozhidaev', f"brother of {SVETLANA_POZHIDAEVA}", match_partial=None),
             Entity(
                 "Serguei Beloussov",
                 'technologist',
@@ -2721,17 +2726,27 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 match_partial='both',
                 url='https://www.nytimes.com/2017/11/05/world/yuri-milner-facebook-twitter-russia.html',
             ),
+            Entity(
+                'Yuri Pozhidaev',
+                f'father of {SVETLANA_POZHIDAEVA}, former (?) FSB officer, Technopromexport (Rostec), RZD International',
+                match_partial=None,
+                url=SVETLANA_NEWSGROUND,
+            ),
             Entity('Yury Molodtsov', f"assistant to {MASHA_DROKOVA} {QUESTION_MARKS}"),
+
             # Orgs
+            acronym('St. Petersburg International Economic Forum', f"{SERGEY_BELYAKOV} conference, attended by {SVETLANA_POZHIDAEVA}"),
             Organization('Alfa-Bank', 'largest private bank in Russia, often used by FSB', r"Alfa( Bank)?", url=WIKIPEDIA),
             Organization('Apoletto', f"VC firm associated with {YURI_MILNER}"),
             Organization('Buryat', "Mongol ethnic group native to southeastern Siberia", r"Buryat[is]?"),
             Organization('Day One Ventures', f"silicon valley venture fund run by {MASHA_DROKOVA}"),
+            Organization('Education Advance', f"nonprofit set up by {SVETLANA_POZHIDAEVA} with $55,000 from Epstein", url='https://www.thedailybeast.com/billionaire-pedophile-jeffrey-epstein-funded-womens-empowerment-entrepreneur-lana-pozhidaeva/'),
             Organization(
                 'Quantum Wave Fund',
                 f"venture fund associated with {MASHA_DROKOVA} focused on quantum stuff",
                 r"(Quantum Wave|QWave) (Capital|Fund)",
             ),
+            Organization('Raiffeisenbank', f"Russian bank to which Epstein wired $237,270 for {SVETLANA_POZHIDAEVA}'s family"),
             Organization('Runa Capital', 'fund of Serguei Beloussov with investment from Steve Jurvetson and Frank Creer'),
             Organization('Sberbank', 'Russian bank', url=WIKIPEDIA),
             Organization(
@@ -2740,7 +2755,13 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 r"Wire\s?card( Bank)?",
                 url='https://www.newyorker.com/magazine/2023/03/06/how-the-biggest-fraud-in-german-history-unravelled',
             ),
-            Organization('Women Empowerment', f"organization started by Epstein's assistant {SVETLANA_POZHIDAEVA}"),
+            Organization(
+                'Women Empowerment',
+                f"organization started by Epstein's assistant {SVETLANA_POZHIDAEVA}",
+                r"Women Empowerment|We Talk(s| Enterprises)",
+                aliases=['WE Talks'],
+                url='https://www.thedailybeast.com/billionaire-pedophile-jeffrey-epstein-funded-womens-empowerment-entrepreneur-lana-pozhidaeva/'
+            ),
         ],
         patterns=[
             r"Bel[ao]rus(sian)?",
@@ -2869,11 +2890,12 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Entity(
                 SVETLANA_POZHIDAEVA,
                 f"Epstein assistant, went to FSB feeder school MGIMO, visa recommended by {SERGEY_BELYAKOV} (FSB) & {DAVID_BLAINE}",
-                r"Sophia Platt|((Svet)?Lana )?Pozhidaeva|\b(Lana|Svet)\b|p\.selana|Selana P\b|Svetlan(?! Pudina)",
+                r"Sophia Platt|((Svet)?Lana )?Pozhidaeva|\b(Lana|Svet)\b|p\.selana|Sel[ae]na P\b|Svetlan(?! Pudina)",
                 aliases=['Sophia Platt'],
                 match_partial=None,
                 url=[
                     'https://dossier.center/jeffreyepsteinrusconnect-en/',
+                    SVETLANA_NEWSGROUND,
                     'https://www.wsj.com/us-news/epstein-victim-svetlana-pozhidaeva-22f2ebf6',
                     # 'https://archive.ph/0nVfp',
                 ],
