@@ -4,7 +4,6 @@ Reformat Epstein text message files for readability and count email senders.
 
     Run: 'EPSTEIN_DOCS_DIR=/path/to/TXT epstein_generate'
 """
-import itertools
 import sys
 from pathlib import Path
 from subprocess import check_output
