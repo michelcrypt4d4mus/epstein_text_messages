@@ -54,6 +54,7 @@ def _split_up_dilorio_whistleblower_emails(dilorio_emails: list[Email]) -> list[
             new_file_stem = _new_file_stem(big_email, i)
             email = Email(big_email.file_path.parent.joinpath(new_file_stem), text=text)
             email.extracted_author = big_email.author
+            email.extracted_recipients = [] if email.extracted_recipients == ['Rnignc Lapnai PP'] else email.extracted_recipients
             email.extracted_recipients = email.extracted_recipients or ['SEC']
             email.header.to = email.header.to or ['SEC']  # avoids email being considered as having unknown recipient
 

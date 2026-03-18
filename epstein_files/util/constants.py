@@ -170,6 +170,8 @@ UNINTERESTING_EMAIL_IDS = [
     '030154',
     # Eric Roth
     '033386',
+    # exsbank
+    'EFTA02166987',
     # FBI
     'EFTA00039971',  # Attached 302 is missing?
     # Ganbat
@@ -332,6 +334,8 @@ NOT_CHRONOLOGICAL_VIEW_IDS = [cfg.id for cfg in FLIGHT_LOG_CFGS] + [
     'EFTA01738267',  # canceled trip
     # Ehud barak
     '032336',
+    # Peter Mandelson
+    '029914',
     '033338',
     'EFTA00582504',
     '024432',
@@ -469,10 +473,8 @@ NOT_CHRONOLOGICAL_VIEW_IDS = [cfg.id for cfg in FLIGHT_LOG_CFGS] + [
 CATEGORY_CONFIGS: list[DocCfg] = []
 
 for category in CONSTANT_CATEGORIES:
-    var_name = f"{category.upper()}{CFGS_SUFFIX}"
-
-    if var_name not in locals():
-        logger.warning(f"Document config variable '{var_name}' is not defined!")
+    if (var_name := f"{category.upper()}{CFGS_SUFFIX}") not in locals():
+        logger.error(f"Document config variable '{var_name}' is not defined!")
         continue
 
     category_cfgs = locals()[var_name]

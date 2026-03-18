@@ -64,7 +64,9 @@ class CommunicationCfg(DocCfg):
     @property
     def complete_description(self) -> str:
         """Add platform to superclass return value."""
-        if self.platform and self.platform != Platform.EMAIL:
+        if self.platform == Platform.EMAIL:
+            return self.note
+        elif self.platform:
             author = f"{self.author} {QUESTION_MARKS}" if self.author and self.author_uncertain else self.author
             recipients = self.recipients_str
 
@@ -78,8 +80,6 @@ class CommunicationCfg(DocCfg):
 
             description = join_truthy(description, recipients, recipients_sep)
             return join_truthy(description, self.note)
-        elif self.platform == Platform.EMAIL and not self.note:
-            return ''
         else:
             return super().complete_description
 

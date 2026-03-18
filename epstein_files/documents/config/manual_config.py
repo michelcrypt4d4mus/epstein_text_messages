@@ -61,7 +61,7 @@ def create_configs(docs: Sequence[Document]) -> Sequence[DocCfg]:
             continue
 
         console.line()
-        print_subtitle_panel('whole file', center=False)
+        print_subtitle_panel('whole file')
         doc.print_untruncated()
 
         if isinstance(doc, Email):

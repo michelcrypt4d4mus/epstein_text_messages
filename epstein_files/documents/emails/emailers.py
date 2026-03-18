@@ -50,9 +50,9 @@ ADDITIONAL_EMAILERS = [
     Entity('Peter Green', match_partial=None),
     Entity('Sarah Mapes'),
     # Krassner CCs
-    Entity('Caryl Ratner', match_partial=None, is_interesting=False),
     Entity('Barb Cowles', match_partial=None, is_interesting=False),
     Entity('Bob Fass', match_partial=None, is_interesting=False),
+    Entity('Caryl Ratner', match_partial=None, is_interesting=False),
     Entity('Daniel Dawson', match_partial=None, is_interesting=False),
     Entity('Holly Krassner Dawson', match_partial=None, is_interesting=False),
     Entity('Lee Quarnstrom', match_partial=None, is_interesting=False),
@@ -120,6 +120,7 @@ NO_WARNING_NAMES = [
     # 'Leo',
     'Unik',
     'Vlad',
+    'karen',
 ]
 
 

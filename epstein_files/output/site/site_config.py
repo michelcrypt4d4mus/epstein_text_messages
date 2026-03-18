@@ -10,7 +10,7 @@ from rich.text import Text
 
 from epstein_files.util.constant.strings import SUBHEADER_STYLE, TIMESTAMP_STYLE
 from epstein_files.util.external_link import link_markup
-from epstein_files.util.helpers.string_helper import capitalize_first, iso_timestamp, starred_header
+from epstein_files.util.helpers.string_helper import capitalize_first, iso_timestamp, starred_header, timestamp_human
 
 ALL_OTHER_FILES_MULTIPLIER = 1.5  # applied when --all-other-files is in use
 DEFAULT_WIDTH = 150
@@ -63,7 +63,12 @@ class MobileConfig:
     def email_subheader(cls, email_type: str, author: Text, recipients: Text, timestamp: datetime | Text) -> Text:
         prefix = f"{capitalize_first(email_type)} from " if email_type != 'email' else ''
         txt = Text(prefix, SUBHEADER_STYLE).append(author)
-        timestamp = timestamp if isinstance(timestamp, Text) else Text(' at ').append(str(timestamp), TIMESTAMP_STYLE)
+
+        if isinstance(timestamp, Text):
+            timestamp = timestamp
+        else:
+            timestamp = Text(' at ').append(timestamp_human(timestamp), TIMESTAMP_STYLE)
+
         txt.append(' to ').append(recipients).append(timestamp)
         return txt
 
@@ -105,5 +110,5 @@ class SiteConfig(MobileConfig):
             f"OCR text of {email_type}",
             author,
             recipients,
-            Text(f" probably sent at ").append(str(timestamp), style=TIMESTAMP_STYLE)
+            Text(f" probably sent at ").append(timestamp_human(timestamp), style=TIMESTAMP_STYLE)
         )

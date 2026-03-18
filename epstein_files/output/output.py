@@ -43,7 +43,18 @@ DEVICE_SIGNATURE = 'Device Signature'
 T = TypeVar('T')
 
 
-def print_curated_chronological(epstein_files: EpsteinFiles, printer: DocPrinter) -> list[Document]:
+def print_all_emails_chronological(epstein_files: EpsteinFiles, printer: DocPrinter) -> None:
+    """Print all non-mailing list emails in chronological order."""
+    emails = Document.sort_by_timestamp([e for e in epstein_files.unique_emails if not e.is_mailing_list])
+    emails = _max_records(emails)
+    title = f'Table of All {len(emails):,} Non-Junk Emails in Chronological Order (actual emails below)'
+    table = Email.build_emails_table(emails, title=title, show_length=True)
+    printer.print(Padding(table, (2, 0)))
+    printer.print_section_subtitle('The Chronologically Ordered Emails')
+    printer.print_documents(emails)
+
+
+def print_curated_chronological(epstein_files: EpsteinFiles, printer: DocPrinter) -> None:
     """Print only interesting files of all types in chronological order."""
     logger.warning(f'Printing curated chronological site...')
 
@@ -56,26 +67,13 @@ def print_curated_chronological(epstein_files: EpsteinFiles, printer: DocPrinter
     docs = [d for d in epstein_files.unique_documents if should_print(d)]
     printer.print_section_subtitle('Selected Files of Interest in Chronological Order')
     printer.print_documents(_max_records(docs))
-    return printer.printed_docs
 
 
-def print_doj_files(epstein_files: EpsteinFiles, printer: DocPrinter) -> list[DojFile]:
+def print_doj_files(epstein_files: EpsteinFiles, printer: DocPrinter) -> None:
     """Doesn't print DojFiles that are actually Emails, that's handled in print_emails()."""
     printer.collect_other_files_to_tables = False
     docs = Document.without_dupes(epstein_files.doj_files)
     printer.print_documents(_max_records(docs))
-    return epstein_files.doj_files
-
-
-def print_all_emails_chronological(epstein_files: EpsteinFiles, printer: DocPrinter) -> None:
-    """Print all non-mailing list emails in chronological order."""
-    emails = Document.sort_by_timestamp([e for e in epstein_files.unique_emails if not e.is_mailing_list])
-    emails = _max_records(emails)
-    title = f'Table of All {len(emails):,} Non-Junk Emails in Chronological Order (actual emails below)'
-    table = Email.build_emails_table(emails, title=title, show_length=True)
-    printer.print(Padding(table, (2, 0)))
-    printer.print_section_subtitle('The Chronologically Ordered Emails')
-    printer.print_documents(emails)
 
 
 def print_emailers_info(epstein_files: EpsteinFiles) -> None:
@@ -161,7 +159,7 @@ def print_emails_section(epstein_files: EpsteinFiles, printer: DocPrinter) -> No
 
 
 # NOTE: the JSON files from Nov. 2025 are completely uninteresting
-def print_json_files(epstein_files: EpsteinFiles):
+def print_json_files(epstein_files: EpsteinFiles) -> None:
     """Print all the `JsonFile` objects to a unified JSON file."""
     if args.build:
         json_data = {jf.file_info.url_slug: jf.json_data() for jf in epstein_files.json_files}
@@ -251,7 +249,7 @@ def print_stats(epstein_files: EpsteinFiles) -> None:
     highlighter.print_highlight_counts(console)
 
 
-def print_text_msgs_section(epstein_files: EpsteinFiles, printer: DocPrinter) -> list[MessengerLog]:
+def print_text_msgs_section(epstein_files: EpsteinFiles, printer: DocPrinter) -> None:
     """Print `MessengerLog` objects and return objects that were printed."""
     section_header_panel = section_header((SELECTIONS_FROM if not args.all_texts else '') + HIS_TEXT_MESSAGES)
     printer.print(section_header_panel)
@@ -266,13 +264,12 @@ def print_text_msgs_section(epstein_files: EpsteinFiles, printer: DocPrinter) ->
 
     if not imessage_logs:
         logger.warning(f"No MessengerLog found for {args.names}")
-        return []
+        return
 
     if not args.names:
         printer.print(_section_summary_table(MessengerLog.summary_table(imessage_logs)))
 
     printer.print_documents(imessage_logs)
-    return imessage_logs
 
 
 def show_urls() -> None:
