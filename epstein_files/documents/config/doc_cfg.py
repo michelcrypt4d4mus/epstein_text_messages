@@ -482,6 +482,9 @@ class DocCfg(LoggingEntity):
         if self.category == Category.FLIGHT_LOG and not self.display_text:
             self.display_text ='flight log'
 
+        if self.category == Uninteresting.BOOK:
+            self.is_valid_for_name_scan = False
+
         self.note = quote(self.note) if self._is_description_a_title else self.note
 
     def _props_strs(self) -> list[str]:

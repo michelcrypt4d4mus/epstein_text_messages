@@ -80,7 +80,7 @@ GOVERNMENT_CFGS = [
     bop_policy_doc('EFTA00039227', 'Inmate Discipline Program Statement'),
     bop_policy_doc('EFTA00039295', 'Inmate Telephone Privileges Program Statement'),
     bop_policy_doc('EFTA00039312', 'Program Statement / Memo about BOP Pharmacy Program'),
-    bop_policy_doc('EFTA00039351', 'Program Statement / Memo about BOP Pharmacy Program'),
+    bop_policy_doc('EFTA00039351', 'Program Statement / Memo about BOP Pharmacy Program', date='2004-11-17'),
     bop_policy_doc('EFTA00039156', 'Standards of Employee Conduct'),
     DocCfg(
         id='EFTA01125108',

@@ -204,7 +204,7 @@ def print_other_files_section(epstein_files: EpsteinFiles, printer: DocPrinter) 
 
     # If --all-other-files is enables, print the biographical panels, otherwise just print a big table
     if args.all_other_files:
-        printer.print_documents(files)
+        printer.print_documents(files, suppressed_as_normal=True)
     else:
         printer.print_centered(OtherFile.files_preview_table(files, title_pfx=title_pfx))
 

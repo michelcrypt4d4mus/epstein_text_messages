@@ -1,5 +1,6 @@
 from dataclasses import dataclass, field
 from pathlib import Path
+from typing import Sequence
 
 from rich import box
 from rich.align import Align, AlignMethod
@@ -13,21 +14,18 @@ from epstein_files.documents.communication import Communication
 from epstein_files.documents.document import Document
 from epstein_files.documents.documents.categories import sort_categories
 from epstein_files.documents.documents.doc_types_mixin import DocTypesMixin
-from epstein_files.documents.doj_file import DojFile
 from epstein_files.documents.email import Email
 from epstein_files.documents.emails.emailers import ENTITY_CATEGORIES, get_entities
 from epstein_files.documents.messenger_log import MessengerLog
 from epstein_files.documents.other_file import OtherFile
 from epstein_files.output.layout_elements.file_display import BasePanel, FileDisplay, ListPanel
 from epstein_files.output.html.builder import (console_buffer_to_html, render_at_obj_width, panel_to_div,
-     render_to_html, text_to_div, tmp_console, write_templated_html, render_max_width)
+     render_to_html, text_to_div, write_templated_html)
 from epstein_files.output.html.elements import div_class, tag
 from epstein_files.output.html.positioned_rich import PositionedRich, to_em, unpack_dimensions, vertical_spacer
 from epstein_files.output.rich import console, section_subtitle_panel
-from epstein_files.output.site.sites import HTML_DIR, Site
+from epstein_files.output.site.sites import Site
 from epstein_files.people.entity import Entity
-from epstein_files.people.names import *
-from epstein_files.people.person import Person
 from epstein_files.util.env import args, site_config
 from epstein_files.util.helpers.data_helpers import listify, uniq_sorted, without_falsey
 from epstein_files.util.helpers.rich_helpers import vertically_pad
@@ -128,10 +126,19 @@ class DocPrinter(DocTypesMixin):
     def print_color_key(self) -> None:
         self.print_centered(color_key())
 
-    def print_documents(self, docs: Sequence[Document | FileDisplay], log_sfx: str = '') -> None:
+    def print_documents(
+        self,
+        docs: Sequence[PrintableObj],
+        suppressed_as_normal: bool = False,
+        log_sfx: str = '',
+    ) -> None:
         """
-        # sequential suppression msgs + OtherFiles collect in queues to be printed
-        # when obj of another type shows up OR (for OtherFiles) if there's new names for a biography panel
+        Sequential suppression msgs + OtherFiles collect in queues to be printed when
+        an obj of another type shows up or if there's new names for a biography panel.
+
+        Args:
+            docs (Sequence[PrintableObj]): objs to print
+            suppressed_as_normal (bool, optional): if True docs with suppression msgs will be treated like normal Documents
         """
         suppressed_docs: list[Document] = []
         process_suppressed_docs_queue = lambda: suppressed_docs.extend(self._print_suppression_msgs_queue())
@@ -142,7 +149,7 @@ class DocPrinter(DocTypesMixin):
 
         for i, doc in enumerate(docs, 1):
             # Handle sequences of uninteresting or otherwise suppressed docs
-            if isinstance(doc, Document) and doc.suppressed_txt:
+            if isinstance(doc, Document) and doc.suppressed_txt and not suppressed_as_normal:
                 self._log_state(doc, f"suppressing {quote(doc.suppressed_txt.plain)}")
                 self._suppressed_docs_queue.append(doc)
                 continue
@@ -179,7 +186,7 @@ class DocPrinter(DocTypesMixin):
             if isinstance(positioned.obj, NewLine):
                 self.line()
                 continue
-            elif isinstance(positioned.obj, (Document, FileDisplay)):
+            elif isinstance(positioned.obj, PrintableObj):
                 doc_bios_html = self._build_biographies_panel_html(self.new_entities_with_bios(positioned.obj))
                 self._append_element_with_bio_div(positioned.obj.to_html(), doc_bios_html)
                 self._documents.append(positioned.obj)  # TODO: stop appending FileDisplay objs
@@ -285,7 +292,7 @@ class DocPrinter(DocTypesMixin):
             else:
                 self._last_bio_panel = bios_html
 
-    def _log_state(self, doc: FileDisplay | Document, msg: str = '') -> None:
+    def _log_state(self, doc: PrintableObj, msg: str = '') -> None:
         supressed_ids = [f.file_id for f in self._suppressed_docs_queue]
         other_files_queue_ids = [f.file_id for f in self._other_files_queue]
         queues_str = f"(suppressed queue: {supressed_ids}, other files queue: {other_files_queue_ids})"
