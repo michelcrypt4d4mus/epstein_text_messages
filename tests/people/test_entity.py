@@ -13,11 +13,14 @@ HIGHLIGHT_PATTERN = fr"{EMAILER_PATTERN}|Jones,?[-_.\s]*Nasir"
 URL = 'https://nasir.jones/ill'
 WIKIPEDIA_URL = 'https://en.wikipedia.org/wiki/Nasir_Jones'
 
-CONTACT_INFO = Entity(
-    name=JEFFREY_EPSTEIN,
-    emailer_pattern=r"Jeffrey Epstein|jeevacation",
-    info="one and only"
-)
+
+@pytest.fixture
+def epstein() -> Entity:
+    return Entity(
+        name=JEFFREY_EPSTEIN,
+        emailer_pattern=r"Jeffrey Epstein|jeevacation",
+        info="one and only"
+    )
 
 
 def test_acronym():
@@ -25,6 +28,7 @@ def test_acronym():
     assert ipi.name == 'IPI'
     assert ipi.info == INTERNATIONAL_PEACE_INSTITUTE
     assert ipi.emailer_pattern == r"I\.?P\.?I\.?|International Peace Institute"
+    assert ipi.is_emailer is False
     ipi = acronym(INTERNATIONAL_PEACE_INSTITUTE, 'Terje org')
     assert ipi.info == f"{INTERNATIONAL_PEACE_INSTITUTE}, Terje org"
     ofac = acronym('Office of Foreign Assets Control')
@@ -43,6 +47,11 @@ def test_bio():
 def test_epstein_co():
     zorro = epstein_co('Zorro', info='for New Mexico ranch')
     assert zorro.info == f"Epstein company for New Mexico ranch"
+
+
+def test_epstein_site_links(epstein):
+    assert epstein.epstein_site_link().url == 'https://epsteinify.com/?name=Jeffrey%20Epstein'
+    assert epstein.epstein_sites_all_links.plain == 'epstein.media / EpsteinWeb / epsteinify / Jmail / search X'
 
 
 def test_epstein_trust():
@@ -71,8 +80,8 @@ def test_highlight_pattern():
     assert jean_luc.highlight_pattern == r'Jean[-_.\s]*Luc[-_.\s]*Brunel?|Brunel,?[-_.\s]*Jean[-_.\s]*Luc|Jean[-_.\s]*Luc|Brunel'
 
 
-def test_middle_initial():
-    assert CONTACT_INFO._middle_initial == ''
+def test_middle_initial(epstein):
+    assert epstein._middle_initial == ''
     assert Entity('Robert Dow Critton')._middle_initial == ''
     assert Entity('Robert D Critton')._middle_initial == 'D'
     critton = Entity('Robert D. Critton')
@@ -84,7 +93,7 @@ def test_organization():
     jege = Organization('Jege LLC')
     assert jege.emailer_pattern == r"Jege(,? LLC)?"
     assert jege.match_partial is None
-    assert jege.is_emailer is False
+    assert jege.is_emailer is None
     assert Organization('Jege, LLC').emailer_pattern == r"Jege(,? LLC)?"
     assert Organization('Butterfly Inc').emailer_pattern == r"Butterfly(,? Inc)?"
     assert Organization('Butterfly, Inc.').emailer_pattern == r"Butterfly(,? Inc\.?)?"
@@ -104,10 +113,9 @@ def test_pattern():
     assert Entity('Alan J. Dlugash').pattern == r"Alan[-_.\s]*(J\.?[-_.\s]*)?Dlugash?"
 
 
-def test_repr():
-    jee = deepcopy(CONTACT_INFO)
+def test_repr(epstein):
+    jee = deepcopy(epstein)
     jee.style = 'bright_red'
-
     assert repr(jee) == r"""Entity(
     name=JEFFREY_EPSTEIN,
     info="one and only",

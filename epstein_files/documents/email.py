@@ -77,9 +77,9 @@ DERIVED_CFG_PROPS_TO_COPY = [
 
 # Junk mail
 JUNK_EMAILERS = [
-    contact.name
+    entity.name
     for junk_hg in HIGHLIGHTED_NAMES if junk_hg.label == Uninteresting.JUNK
-    for contact in junk_hg.contacts
+    for entity in junk_hg.entities
 ]
 
 BCC_LISTS = JUNK_EMAILERS + MAILING_LISTS
@@ -106,7 +106,8 @@ OCR_REPAIRS: OcrRepair = {
     re.compile(r"([,<>_]|AM|PM)\n(>)? ?wrote:?"): r'\1\2 wrote:',
     # Headers
     re.compile(r"^From "): 'From: ',  # first line only
-    re.compile(r"^(From|To)(: )?[_1.]{5,}", re.MULTILINE): rf"\1: {REDACTED}",  # Redacted email addresses
+    re.compile(r"^((From|To):? ?)[_1.]{5,}", re.MULTILINE): rf"\1: {REDACTED}",  # Redacted email addresses
+    re.compile(fr"^(From|To) ?{REDACTED}", re.MULTILINE): fr"\1: {REDACTED}",
     re.compile(r"I ?(od|nl)ine-Images:"): 'Inline-Images:',
     re.compile(r"^((?:B?cc|To):.*)\n(>?;.*)", re.IGNORECASE | re.MULTILINE): r'\1 \2',
     re.compile(r"^(Sent|Subject) (?![Ff]rom|on|using|[Rr]emote|[Vv]ia|with)", re.MULTILINE): r'\1: ',

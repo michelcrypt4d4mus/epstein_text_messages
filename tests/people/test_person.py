@@ -27,14 +27,14 @@ def eva(epstein_files) -> Person:
     return epstein_files.person_objs([EVA_DUBIN])[0]
 
 
-def test_info_str(anne_boyles, john_page, eva, sultan):
+def test_info_str(anne_boyles, john_page, sultan):
     assert sultan.highlight_group is not None
-    assert sultan.info_str == SULAYEM_DESCRIPTION
-    assert sultan.info_with_category == f'mideast, {SULAYEM_DESCRIPTION}'
+    assert sultan.entity.info == SULAYEM_DESCRIPTION
+    assert sultan.entity.info_with_category == f'mideast, {SULAYEM_DESCRIPTION}'
 
     assert john_page.highlight_group is None
-    assert john_page.info_with_category == ''
-    assert john_page.info_str is None
+    assert john_page.entity.info_with_category == ''
+    assert john_page.entity.info is None
 
     assert anne_boyles.category_txt.plain == QUESTION_MARKS
     assert anne_boyles.info_txt.plain == QUESTION_MARKS

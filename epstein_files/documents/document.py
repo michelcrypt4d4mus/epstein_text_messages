@@ -754,31 +754,31 @@ class Document(LoggingEntity):
     ########################
 
     @staticmethod
-    def count_by_month(docs: Sequence['DocumentType']) -> Counter[str | None]:
+    def count_by_month(docs: Sequence['DocType']) -> Counter[str | None]:
         return Counter([d.timestamp.date().isoformat()[0:7] if d.timestamp else None for d in docs])
 
     @staticmethod
-    def sort_by_id(docs: Sequence['DocumentType']) -> list['DocumentType']:
+    def sort_by_id(docs: Sequence['DocType']) -> list['DocType']:
         return sorted(docs, key=lambda d: d.file_id)
 
     @staticmethod
-    def sort_by_length(docs: Sequence['DocumentType']) -> list['DocumentType']:
+    def sort_by_length(docs: Sequence['DocType']) -> list['DocType']:
         return sorted(docs, key=lambda d: d.file_info.file_size, reverse=True)
 
     @staticmethod
-    def sort_by_timestamp(docs: Sequence['DocumentType']) -> list['DocumentType']:
+    def sort_by_timestamp(docs: Sequence['DocType']) -> list['DocType']:
         return sorted(docs, key=lambda doc: doc.timestamp_sort_key)
 
     @staticmethod
-    def uniquify(documents: Sequence['DocumentType']) -> Sequence['DocumentType']:
+    def uniquify(documents: Sequence['DocType']) -> Sequence['DocType']:
         """Uniquify by file_id."""
         id_map = {doc.file_id: doc for doc in documents}
         return [doc for doc in id_map.values()]
 
     @staticmethod
-    def without_dupes(docs: Sequence['DocumentType']) -> list['DocumentType']:
+    def without_dupes(docs: Sequence['DocType']) -> list['DocType']:
         """Remove any duplicate documents."""
         return [doc for doc in docs if not doc.is_duplicate]
 
 
-DocumentType = TypeVar('DocumentType', bound=Document)
+DocType = TypeVar('DocType', bound=Document)

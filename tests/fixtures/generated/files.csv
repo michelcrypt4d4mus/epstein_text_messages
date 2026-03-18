@@ -23,7 +23,7 @@ file_id,category,author,is_interesting,timestamp,recipients_str,sent_from_device
 011908_2,email,Abi Schwinck,True,2015-01-16 05:16:00+00:00,Jean Luc Brunel;Jeff Fuller;pink@mc2mm.com,,
 011908_3,email,Manuela Martinez,True,2014-10-17 21:36:00+00:00,Jean Luc Brunel,,
 011908_4,email,Vladimir Yudashkin,True,2014-10-17 10:46:00+00:00,Jean Luc Brunel,,
-011908_6,email,lorraine@mc2mm.com,True,2010-08-27 20:49:00+00:00,Jean Luc Brunel;Jeff Fuller;MC2 Model Management;pink@mc2mm.com,,
+011908_6,email,lorraine@mc2mm.com,True,2010-08-27 20:49:00+00:00,Jean Luc Brunel;Jeff Fuller;pink@mc2mm.com,,
 011908_7,email,Jeff Fuller,True,2014-11-12 11:49:00+00:00,Jean Luc Brunel,,
 012037,email,Jeffrey Epstein,,2016-08-15 12:09:58+00:00,Kathryn Ruemmler,,
 012044,email,Jeffrey Epstein,,2016-12-09 15:56:27+00:00,Amanda Ens,,
@@ -5140,7 +5140,7 @@ EFTA00023557,deposition,victim,,2026-01-16 00:00:00+00:00,,,deposition of victim
 EFTA00024275,misc,,,2026-01-17 00:00:00+00:00,,,large Wexner funded payments to OB-GYN
 EFTA00027019,,,,2019-08-06 00:00:00+00:00,,,
 EFTA00029538,misc,,True,,,,"Ghislaine Maxwell investigation, see quote: ""the defendant provided Minor Victim-3 with a schoolgirl uniform"""
-EFTA00031006,email,USANYS,,2019-08-16 19:36:47+00:00,Office of the Deputy Attorney General,,
+EFTA00031006,email,USANYS,,2019-08-16 19:36:47+00:00,ODAG,,
 EFTA00034275,government,Bureau of Prisons,False,2019-07-23 00:00:00+00:00,,,Bureau of Prisons initial form about Epstein's suicide attempt
 EFTA00034357,misc,Bureau of Prisons,True,2019-08-10 00:00:00+00:00,,,Bureau of Prisons internal message about discovery of Epstein's body
 EFTA00035921,government,Bureau of Prisons,,2019-08-06 00:00:00+00:00,,,Bureau of Prisons Lieutenant's Logs
@@ -5177,7 +5177,7 @@ EFTA00039790,email,USANYS,,2021-04-16 22:09:33+00:00,USANYS,,
 EFTA00039794,legal,Jack Scarola,,2021-04-19 16:33:18+00:00,Michael Danchuk;USANYS,,
 EFTA00039796,email,SDNY,,2021-04-19 18:37:10+00:00,USANYS,,
 EFTA00039797,email,USANYS,,2021-04-20 01:04:39+00:00,USANYS,,
-EFTA00039798,email,Office of the Deputy Attorney General,,2019-03-01 15:15:50+00:00,USANYS,,
+EFTA00039798,email,ODAG,,2019-03-01 15:15:50+00:00,USANYS,,
 EFTA00039799,email,,False,2019-02-24 20:18:01+00:00,None,Sent from my iPhone,
 EFTA00039802,email,,False,2018-12-06 13:38:20+00:00,,Sent from my iPhone,
 EFTA00039813,government,USANYS,,2021-04-20 21:32:54+00:00,Brad Edwards;Brittany Henderson,,
@@ -5202,7 +5202,7 @@ EFTA00039867,email,,False,2020-11-12 15:06:42+00:00,None,,
 EFTA00039868,government,USANYS,,2020-11-12 18:59:52+00:00,USANYS,,
 EFTA00039872,government,USANYS,,2020-11-16 17:35:53+00:00,USANYS,,
 EFTA00039875,email,USANYS,,2020-11-16 18:06:58+00:00,Bobbi C. Sternheim,,
-EFTA00039878,email,,False,2020-11-17 13:59:24+00:00,Bureau of Prisons;USAHUB-USAJournal111;USANYS,,
+EFTA00039878,email,,False,2020-11-17 13:59:24+00:00,Bureau of Prisons;USAHUB;USANYS,,
 EFTA00039879,government,USANYS,,2020-11-18 14:25:39+00:00,USANYS,,
 EFTA00039880,,,,,,,
 EFTA00039881,,,,,,,
@@ -5213,7 +5213,7 @@ EFTA00039885,email,,True,2019-09-17 20:30:38+00:00,FBI,,
 EFTA00039886,government,USANYS,,2019-05-14 22:13:53+00:00,NY FBI,,
 EFTA00039888,email,Alex Conlon,,2019-05-14 16:49:00+00:00,Alexandra Elenowitz-Hess,,
 EFTA00039890,government,USANYS,False,2019-05-31 14:13:27+00:00,None;NY FBI,,
-EFTA00039892,email,USANYS,,2019-05-15 15:20:46+00:00,Office of the Deputy Attorney General,,
+EFTA00039892,email,USANYS,,2019-05-15 15:20:46+00:00,ODAG,,
 EFTA00039893,email,USANYS,False,2019-06-03 15:28:51+00:00,USANYS,,
 EFTA00039894,email,,False,2020-08-06 11:42:36+00:00,None,,
 EFTA00039895,legal,,,2026-01-27 00:00:00+00:00,,,legal filing in New York Times v. Bureau of Prisons
@@ -5231,7 +5231,7 @@ EFTA00039983,government,USANYS,,2019-09-10 14:47:16+00:00,USANYS,,
 EFTA00039985,email,Florence Hutner,,2019-09-11 14:19:37+00:00,USANYS,,
 EFTA00039989,email,USANYS,True,2019-09-12 11:57:01+00:00,USANYS,Sent from my iPhone,ICE has an immigration hold on a man who might have important info about the Epstein case
 EFTA00039995,government,USANYS,False,2019-09-12 14:41:06+00:00,,,
-EFTA00039996,email,USMS,,2019-09-12 20:37:55+00:00,USMS l USMS cas,,
+EFTA00039996,email,USMS,,2019-09-12 20:37:55+00:00,USMS,,
 EFTA00039998,,,,2026-01-02 00:00:00+00:00,,,
 EFTA00040006,government,DOJ,True,2019-08-27 00:00:00+00:00,,,DOJ Personal History of Defendant Jeffrey Epstein + grand jury indictment
 EFTA00040076,article,New York Times,False,2019-07-08 00:00:00+00:00,,,New York Times article about Epstein's death
@@ -6318,7 +6318,7 @@ EFTA01373818,email,Daphne Cales,,2017-06-12 11:48:27+00:00,Cynthia Rodriguez;She
 EFTA01387770,,,,,,,
 EFTA01388197,crypto,Deutsche Bank,False,2018-04-03 00:00:00+00:00,,,"Deutsche Bank bitcoin and blockchain symposium, attached to email EFTA01388354"
 EFTA01388354,crypto,Vahe Stepanian,True,2018-03-14 17:51:56+00:00,Martin Zeman;Paul Barrett;Stewart Oldfield,,invitation to Deutsche Bank blockchain event with Mike Novogratz
-EFTA01388422,money,GRAT,True,2018-09-21 13:29:41+00:00,Davide-A Sferrazza;Devin Anderson;Martin Zeman;Paul Barrett;Stewart Oldfield;Xavier Avila,,Nadean Novogratz is probably the sister-in-law of crypto ponzi billionaire Mike Novogratz
+EFTA01388422,money,Nadean Novogratz,True,2018-09-21 13:29:41+00:00,Davide-A Sferrazza;Devin Anderson;Martin Zeman;Paul Barrett;Stewart Oldfield;Xavier Avila,,Nadean Novogratz is probably the sister-in-law of crypto ponzi billionaire Mike Novogratz
 EFTA01401059,crypto,,True,2014-09-09 00:00:00+00:00,,,Deutsche Bank wire transfer receipt for Epstein's investment in Blockstream
 EFTA01402630,money,,True,2026-01-12 00:00:00+00:00,,,transactions by Epstein's Southern Financial LLC
 EFTA01409449,money,Kumar Sambhav,True,2015-02-18 18:14:46+00:00,Deutsche Bank;Vahe Stepanian,,Deutsche Bank employees scrubbing Epstein's name off his TWTR (Twitter) trades
@@ -6648,7 +6648,7 @@ EFTA02035756,crypto,Al Seckel,True,2010-12-24 14:12:50+00:00,Jeffrey Epstein,,Al
 EFTA02036490,email,Maria Prusakova,True,2012-06-15 12:50:06+00:00,Jeffrey Epstein,,
 EFTA02037504,crypto,Boris Nikolic,True,2011-01-18 04:17:13+00:00,Jeffrey Epstein,,
 EFTA02038002,email,Maria Prusakova,True,2011-10-29 16:39:14+00:00,Jeffrey Epstein,,
-EFTA02040938,email,,True,2016-09-28 10:57:34+00:00,Jack Jinhan;Nannan,,
+EFTA02040938,email,Lesley Groff,True,2016-09-28 10:57:34+00:00,Jack Jinliang;Nannan;Zhang Jian,,Lesley Groff cancelling a planned trip to Tsinghua University
 EFTA02040952,email,Sergey Belyakov,True,2016-10-06 14:43:35+00:00,Lesley Groff,Отправлено с iPhone,
 EFTA02041142,email,Sergey Belyakov,True,2016-10-06 14:57:26+00:00,Lesley Groff,,
 EFTA02048499,email,,True,2016-06-23 21:03:50+00:00,Lesley Groff,Sent from Yahoo Mail for iPhone,
@@ -6703,11 +6703,11 @@ EFTA02179653,email,,True,2011-11-18 23:06:12+00:00,Lesley Groff,,
 EFTA02179829,email,Chris Poole,True,2011-11-19 01:12:42+00:00,None;Lesley Groff,,
 EFTA02179926,email,Chris Poole,True,2011-11-15 06:48:22+00:00,None,,
 EFTA02187735,email,,False,2011-06-27 13:49:12+00:00,Lesley Groff,,
-EFTA02189550,money,Ike Groff,True,2011-04-19 00:00:00+00:00,Chris ONeil,Sent via BlackBerry by AT&T,"Ike Groff (???) Ike Groff invests $250,000 in Mangrove Partners managed by Nathaniel August"
+EFTA02189550,money,Ike Groff,True,2011-04-19 00:00:00+00:00,Christine O'Neill,Sent via BlackBerry by AT&T,"Ike Groff (???) Ike Groff invests $250,000 in Mangrove Partners managed by Nathaniel August"
 EFTA02189747,email,Janis Hartley,,2011-05-01 17:16:19+00:00,Lesley Groff,,
 EFTA02191245,email,,True,2011-04-04 08:00:00+00:00,None,,
 EFTA02193580,email,,True,2018-11-01 17:08:44+00:00,Aziza Alahmadi,,
-EFTA02209622,girls,noreply@wizzair.com,True,2017-04-09 17:16:40+00:00,None,,travel itinerary for Lasma Kuhtarska
+EFTA02209622,girls,WizzAir,True,2017-04-09 17:16:40+00:00,None,,flight to Riga for Lasma Kuhtarska
 EFTA02210223,email,Bebe Avdiu,True,2017-04-11 16:04:06+00:00,None;Jeffrey Epstein,,
 EFTA02217672,girls,Lesley Groff,True,2017-06-23 13:53:58+00:00,Jeffrey Epstein,Sent from my iPhone,"David L. Neuhauser is raising money for a Joshua Fink fund, promises Epstein he won't reveal they're talking"
 EFTA02220616,email,Lesley Groff,True,2017-08-31 19:40:10+00:00,Julia Santos;Valdson Vieira Cotrin,Sent from my iPhone,
@@ -6994,7 +6994,7 @@ EFTA02551185,girls,Sam Jaradeh,True,2012-02-13 22:01:00+00:00,Boris Nikolic;Jeff
 EFTA02555750,girls,Jean Luc Brunel,True,2012-06-07 18:37:00+00:00,Jeffrey Epstein,,"who's ""the model"" Jean Luc Brunel is billing Joshua Fink for?, see quote: ""suspend any billing from now on until further notification from you or the model"""
 EFTA02556318,email,Jean Luc Brunel,True,2012-05-30 13:19:00+00:00,Jeffrey Epstein,,
 EFTA02556702,email,Shaher Abdulhak Besher,,2012-06-26 13:16:00+00:00,Jeffrey Epstein,Empower your Business with BlackBerry® and Mobile Solutions from Etisalat,
-EFTA02557291,girls,Anastasiya Siroochenko,True,2012-07-14 05:17:00+00:00,Jeff,,possibly recruiting girls
+EFTA02557291,girls,Anastasiya Siroochenko,True,2012-07-14 05:17:00+00:00,Jeffrey Epstein,,possibly recruiting girls
 EFTA02557757,girls,Jeffrey Epstein,True,2012-08-03 03:35:00+00:00,Barbro C. Ehnbom,,"see quote: ""I have a girl Sana working half time/who by the way you'd like"""
 EFTA02559311,email,Jeffrey Epstein,True,2012-09-10 12:18:00+00:00,None,,Epstein has some connection to the sovereign wealth fund of Kazakhstan
 EFTA02559808,girls,Eva Dubin,True,2012-09-07 21:12:00+00:00,Jeffrey Epstein,Sent from my Verizon Wireless BlackBerry,Eva Dubin delivering amphetamines (adderall) to Epstein
@@ -7146,7 +7146,7 @@ EFTA02690885,finance,ATorus,False,2026-01-04 00:00:00+00:00,,,ATorus pitch deck
 EFTA02694762,email,Karim Wade,True,2011-11-05 11:06:00+00:00,Jeffrey Epstein,Envoye avec BlackBerry® d'Orange,
 EFTA02696764,email,Renata Bolotova,False,2015-03-05 21:28:00+00:00,Jeffrey Epstein,,
 EFTA02697209,email,Karim Wade,True,2012-03-23 01:00:00+00:00,Jeffrey Epstein,Envoye avec BlackBerry® d'Orange,
-EFTA02699752,email,David Stern,True,2012-07-10 10:38:00+00:00,Jeff,,
+EFTA02699752,email,David Stern,True,2012-07-10 10:38:00+00:00,Jeffrey Epstein,,
 EFTA02701609,girls,Gianni Serazzi,True,2014-09-30 00:00:00+00:00,,,Gianni Serazzi 2morrow business plan
 EFTA02702141,girls,Elon Musk,True,2012-10-04 13:11:00+00:00,Jeffrey Epstein,,
 EFTA02703885,crypto,Linda Stone,True,2014-06-25 00:08:00+00:00,Jeffrey Epstein;Jeremy Rubin;Joi Ito;Lesley Groff,i Phone feature: Tupos & Abbrvtns,Linda Stone Linda Stone introducing Epstein to Jeremy Rubin

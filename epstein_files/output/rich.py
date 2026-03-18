@@ -191,7 +191,7 @@ def print_special_note(note: str | Text) -> None:
     print_centered(Padding(Panel(note, expand=True, padding=(1, 3), style='reverse'), (0, 0, 2, 0)))
 
 
-def print_subtitle_panel(msg: str, style: str = SUBTITLE_STYLE, center: bool = True) -> None:
+def print_subtitle_panel(msg: str, style: str = SUBTITLE_STYLE) -> None:
     """A reverse color panel to put at the top of sections."""
     console.print(subtitle_panel(msg, style))
 

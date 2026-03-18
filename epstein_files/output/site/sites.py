@@ -29,7 +29,6 @@ BASE_URL = f"{GH_PAGES_BASE_URL}/{GH_REPO_NAME}"
 
 CUSTOM_HTML_PREFIX = 'real_html_'
 NAMES_PREFIX = 'only_names_'
-TO_FROM = 'to/from'
 MOBILE_SUFFIX = '_mobile'
 
 
@@ -184,31 +183,6 @@ DEPLOY_CUSTOM_HTML_SITES = [
     Site.EMAILS_CHRONOLOGICAL,
     Site.OTHER_FILES_TABLE,
 ]
-
-
-###########################################
-########  Internal sections links  ########
-###########################################
-AUTHORS_USING_SIGNATURES = 'Authors Seen Using Email Signatures'
-SELECTIONS_FROM = 'Selections from '
-HIS_EMAILS = 'His Emails'
-HIS_TEXT_MESSAGES = 'His Text Messages'
-FILES_THAT_ARE_NEITHER_EMAILS_NOR = 'Files That Are Neither Emails Nor Text Messages'
-
-class PageSections(StrEnum):
-    EMAILS = auto()
-    EMAIL_SIGNATURES = auto()
-    OTHER_FILES = auto()
-    TEXT_MESSAGES = auto()
-
-
-# Search terms that take you to the desired section via magic URL comment arg
-SECTION_ANCHORS = {
-    PageSections.EMAILS: SELECTIONS_FROM + HIS_EMAILS,
-    PageSections.EMAIL_SIGNATURES: AUTHORS_USING_SIGNATURES,
-    PageSections.TEXT_MESSAGES: SELECTIONS_FROM + HIS_TEXT_MESSAGES,
-    PageSections.OTHER_FILES: FILES_THAT_ARE_NEITHER_EMAILS_NOR,
-}
 
 
 def make_clean() -> None:

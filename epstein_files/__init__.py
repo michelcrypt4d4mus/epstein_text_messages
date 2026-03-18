@@ -27,12 +27,12 @@ from epstein_files.output.doc_printer import DocPrinter
 from epstein_files.output.epstein_highlighter import highlighter, temp_highlighter
 from epstein_files.output.output import (print_curated_chronological, print_doj_files, print_emails_section,
      print_json_files, print_stats, print_other_files_section, print_text_msgs_section, print_all_emails_chronological,
-     print_email_device_signatures, print_emailers_info, print_json_metadata, show_urls)
+     print_signatures_and_emojis, print_emailers_info, print_json_metadata, show_urls)
 from epstein_files.output.rich import console, print_json, print_subtitle_panel
 from epstein_files.output.site.sites import Site, make_clean, use_custom_html
 from epstein_files.util.constant.strings import HOUSE_OVERSIGHT_NOV_2025_ID_REGEX
 from epstein_files.util.constants import ALL_CONFIGS
-from epstein_files.util.env import BUILD_TRUE_BUT_UNSPECIFIED, args, site_config
+from epstein_files.util.env import BUILD_TO_DEFAULT, args, site_config
 from epstein_files.util.helpers.data_helpers import flatten, uniquify
 from epstein_files.util.helpers.document_helper import diff_documents
 from epstein_files.util.helpers.file_helper import extract_file_id, is_local_extract_file, open_file_or_url
@@ -44,7 +44,6 @@ def epstein_generate() -> None:
     timer, epstein_files = _load_files_and_check_early_exit_args()
     printer = DocPrinter(epstein_files=epstein_files)
     printer.print_title_page_top()
-    printed_docs = []
 
     if args.all_emails_chrono or args.output_bios or args.output_devices or args.output_word_count:
         printer.print_color_key()
@@ -56,11 +55,10 @@ def epstein_generate() -> None:
     elif args.output_bios:
         printer.print_biographies()
     elif args.output_devices:
-        print_email_device_signatures(epstein_files)
+        print_signatures_and_emojis(epstein_files, printer)
     elif args.output_chrono:
-        logger.warning(f'output chrono')
-        printed_docs += print_curated_chronological(epstein_files, printer)
-        timer.log_section_complete('Document', epstein_files.unique_documents, printed_docs)
+        print_curated_chronological(epstein_files, printer)
+        timer.log_section_complete('Document', epstein_files.unique_documents, printer.printed_docs)
     elif args.output_word_count:
         print_word_counts(epstein_files)
         timer.print_at_checkpoint(f"Finished counting words")
@@ -69,30 +67,28 @@ def epstein_generate() -> None:
         timer.log_section_complete('DojFile', epstein_files.doj_files, printed_doj_files)
     else:
         if args.output_emails:
-            printed_docs += print_emails_section(epstein_files, printer)
-            timer.log_section_complete('Email', epstein_files.emails, printed_docs)
+            print_emails_section(epstein_files, printer)
+            timer.log_section_complete('Email', epstein_files.emails, printer.printed_docs)
         elif args.all_emails_chrono:
-            printed_docs += print_all_emails_chronological(epstein_files, printer)
-            timer.log_section_complete('Chronological Email', epstein_files.emails, printed_docs)
+            print_all_emails_chronological(epstein_files, printer)
+            timer.log_section_complete('Chronological Email', epstein_files.emails, printer.printed_docs)
 
         if args.output_texts:
             printed_logs = print_text_msgs_section(epstein_files, printer)
             timer.log_section_complete('MessengerLog', epstein_files.imessage_logs, printed_logs)
-            printed_docs += printed_logs
 
         if args.output_other:
             printed_files = print_other_files_section(epstein_files, printer)
             timer.log_section_complete('OtherFile', epstein_files.other_files, printed_files)
-            printed_docs += printed_files
-
-        if args.names:
-            Document._print_ids(printed_docs, 'args.names')
 
     if args.build:
-        write_html_arg = args._site if args.build == BUILD_TRUE_BUT_UNSPECIFIED else Path(args.build)
+        write_html_arg = args._site if args.build == BUILD_TO_DEFAULT else Path(args.build)
         printer.write_html(write_html_arg)
 
     logger.warning(f"Total time: {timer.seconds_since_start_str()}")
+
+    if args.names:
+        Document._print_ids(printer.printed_docs, 'args.names')
 
     if args.open_txt:
         open_file_or_url(Site.custom_html_build_path(args._site))

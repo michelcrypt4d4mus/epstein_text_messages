@@ -44,7 +44,7 @@ def print_sample_people(num_people_to_print: int = 3):
 
 def print_test_panels():
     for panel in TEST_PANELS:
-        printer.print_renderable(panel)
+        printer.print(panel)
         printer.line(2)
 
 
@@ -65,7 +65,7 @@ sample_docs = flatten([docs[:SAMPLE_SIZE] for docs in doc_types_to_sample])
 printer = DocPrinter(epstein_files=epstein_files)
 
 # print contacts
-# Contact.print_all_biographies(printer)
+# Entity.print_all_biographies(printer)
 
 # print some People and their emails
 print_sample_people()

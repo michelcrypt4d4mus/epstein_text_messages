@@ -11,7 +11,7 @@ from epstein_files.people.entity import Entity
 from epstein_files.people.names import Name, constantize_name
 from epstein_files.util.constant.strings import REGEX_STYLE_PREFIX
 from epstein_files.util.env import args
-from epstein_files.util.helpers.data_helpers import without_falsey
+from epstein_files.util.helpers.data_helpers import build_name_lookup, without_falsey
 from epstein_files.util.helpers.string_helper import as_pattern, capture_group_marker, join_patterns
 from epstein_files.util.logging import logger
 
@@ -95,35 +95,34 @@ class HighlightedNames(HighlightPatterns):
     Constructor must be called with either an 'emailers' arg or a 'pattern' arg (or both).
 
     Attributes:
-        category (str): optional string to use as an override for self.label in some contexts
-        contacts (list[ContactInfo]): optional `ContactInfo` objects with names and regexes
-        contacts_lookup (dict[Name, ContactInfo]): lookup dictionary for `ContactInfo` objects
-        should_match_first_last_name (bool): if False don't match first/last/reversed versions of emailers
+        category (str): optional string to use as an override for `self.label` in some contexts
+        entities (list[Entity]): optional `Entity` objects that will provide highlight regexes
+        entities_by_name (dict[Name, Entity]): lookup dictionary for `Entity` objects
+        flags (re.RegexFlag, optional): flags to use when compiling regexes
     """
     category: str = ''
-    contacts: list[Entity] = field(default_factory=list)
-    contacts_lookup: dict[Name, Entity] = field(default_factory=dict)
+    entities: list[Entity] = field(default_factory=list)
+    entities_by_name: dict[Name, Entity] = field(init=False)
     flags: re.RegexFlag = re.IGNORECASE
-    should_match_first_last_name: bool = True  # TODO: this no longer does anything?
 
     def __post_init__(self):
-        if not (self.patterns or self.contacts):
+        if not (self.patterns or self.entities):
             raise ValueError(f"Must provide either 'contacts' or 'patterns' arg.")
         elif not self.label:
-            if len(self.contacts) == 1 and self.contacts[0].name:
-                self.label = self.contacts[0].name
+            if len(self.entities) == 1 and self.entities[0].name:
+                self.label = self.entities[0].name
             else:
                 raise ValueError(f"No label provided for {repr(self)}")
 
         super().__post_init__()
-        with_contacts_pattern = join_patterns([c.highlight_pattern for c in self.contacts] + self.patterns)
+        with_contacts_pattern = join_patterns([c.highlight_pattern for c in self.entities] + self.patterns)
         self._pattern = fr"\b(({with_contacts_pattern})s?)\b"
         self.regex = self.compile_patterns(self._pattern)
-        self.contacts_lookup = Entity.build_name_lookup(self.contacts)
+        self.entities_by_name = build_name_lookup(self.entities)
 
-        for contact in self.contacts:
-            contact.category = self.category_str
-            contact.style = self.style
+        for entity in self.entities:
+            entity.category = self.category_str
+            entity.style = self.style
 
         if args._debug_highlight_patterns:
             logger.debug(repr(self))
@@ -132,7 +131,7 @@ class HighlightedNames(HighlightPatterns):
     def category_str(self) -> str:
         if self.category:
             return self.category
-        elif len(self.contacts) == 1 and self.label == self.contacts[0].name:
+        elif len(self.entities) == 1 and self.label == self.entities[0].name:
             return ''
         else:
             return self.label.replace('_', ' ')
@@ -141,12 +140,12 @@ class HighlightedNames(HighlightPatterns):
         """Label and additional info for 'name' if 'name' is in `self.contacts`."""
         info_pieces = [self.category_str] if include_category else []
 
-        if (contact := self.contacts_lookup.get(name)):
+        if (entity := self.entities_by_name.get(name)):
             # Don't prefix with category if category is in the info string
-            if info_pieces and info_pieces[0] in contact.info:
-                info_pieces = [contact.info]
+            if info_pieces and info_pieces[0] in entity.info:
+                info_pieces = [entity.info]
             else:
-                info_pieces.append(contact.info)
+                info_pieces.append(entity.info)
 
         info_pieces = without_falsey(info_pieces)
         return ', '.join(info_pieces) if info_pieces else None
@@ -154,10 +153,10 @@ class HighlightedNames(HighlightPatterns):
     def __repr__(self) -> str:
         s = f"{type(self).__name__}("
 
-        for property in ['label', 'style', 'category', 'patterns', 'contacts', '_pattern']:
+        for property in ['label', 'style', 'category', 'patterns', 'entities', '_pattern']:
             value = getattr(self, property)
 
-            if not value or (property == 'label' and len(self.contacts) == 1 and not self.patterns):
+            if not value or (property == 'label' and len(self.entities) == 1 and not self.patterns):
                 continue
 
             s += f"\n    {property}="

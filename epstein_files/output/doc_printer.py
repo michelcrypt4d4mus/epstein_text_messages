@@ -12,6 +12,7 @@ from rich.text import Text
 from epstein_files.documents.communication import Communication
 from epstein_files.documents.document import Document
 from epstein_files.documents.documents.categories import sort_categories
+from epstein_files.documents.documents.doc_types_mixin import DocTypesMixin
 from epstein_files.documents.doj_file import DojFile
 from epstein_files.documents.email import Email
 from epstein_files.documents.emails.emailers import ENTITY_CATEGORIES, get_entities
@@ -44,7 +45,7 @@ PeopleBiosArg = list[str] | list[Entity] | PrintableObj
 
 
 @dataclass(kw_only=True)
-class DocPrinter:
+class DocPrinter(DocTypesMixin):
     """
     Handles printing collections of documents with biographical info panels interspersed.
 
@@ -54,13 +55,11 @@ class DocPrinter:
         html_elements (list[str]): HTML for all objects printed so far
         printed_docs (list[Document]): all Documents that have been printed so far
         printed_name_bios (set[Entity]): all the names for which biographical information has been printed already
-
     """
     epstein_files: 'EpsteinFiles'
     collect_other_files_to_tables: bool = True
     html_elements: list[str] = field(default_factory=list)
     printed_entity_bios: set[Entity] = field(default_factory=set)
-    printed_objs: list[PrintableObj] = field(default_factory=list)
     _last_bio_panel = ''
     _other_files_queue: list[OtherFile] = field(default_factory=list)
     _suppressed_docs_queue: list[Document] = field(default_factory=list)
@@ -71,16 +70,19 @@ class DocPrinter:
 
     @property
     def printed_docs(self) -> list[Document]:
-        # TODO: get rid of FileDisplay object printing
-        return [e for e in self.printed_objs if isinstance(e, Document)]
+        return Document.filter_for_type(self._documents)  # TODO: necessary because of FileDisplay objs
 
     @property
     def printed_emails(self) -> list[Email]:
-        return [e for e in self.printed_objs if isinstance(e, Email)]
+        return self.emails
 
     @property
     def printed_file_displays(self) -> list[FileDisplay]:
-        return [e for e in self.printed_objs if isinstance(e, FileDisplay)]
+        return [e for e in self._documents if isinstance(e, FileDisplay)]
+
+    @property
+    def printed_ids(self) -> list[str]:
+        return [f.file_id for f in self.printed_docs]
 
     def line(self, num: int = 1) -> None:
         """Print blank lines to HTML and terminal, similar to `console.line()`."""
@@ -112,7 +114,7 @@ class DocPrinter:
             for c in ENTITY_CATEGORIES[category]
         ]
 
-        self.print_renderable(entity_bios)
+        self.print(entity_bios)
 
     def print_centered(self, _renderables: RenderableType | list[RenderableType]):
         renderables = listify(_renderables)
@@ -120,7 +122,7 @@ class DocPrinter:
         if any(isinstance(r, Align) for r in renderables):
             logger.warning(f"wrapping an Align in another Align...")
 
-        self.print_renderable([Align.center(obj) for obj in listify(renderables)])
+        self.print([Align.center(obj) for obj in listify(renderables)])
 
     def print_color_key(self) -> None:
         self.print_centered(color_key())
@@ -148,7 +150,7 @@ class DocPrinter:
             process_suppressed_docs_queue()
 
             # Collect sequences of otherFile objects into a table
-            if isinstance(doc, OtherFile) and doc.is_valid_for_table and self.collect_other_files_to_tables:
+            if self.collect_other_files_to_tables and isinstance(doc, OtherFile) and doc.is_valid_for_table:
                 if (new_entities := self.new_entities_with_bios(doc)):
                     self._cache_biographies_panel(new_entities)
 
@@ -156,7 +158,7 @@ class DocPrinter:
                 continue
 
             self._print_other_files_queue()
-            self.print_renderable(doc)
+            self.print(doc)
 
             if should_log_in_intervals and (i % 100 == 0):
                 timer.print_at_checkpoint(f"Printed {i:,} objs of {len(docs):,} ({len(suppressed_docs):,} suppressed) {log_sfx}")
@@ -165,7 +167,7 @@ class DocPrinter:
         self._print_other_files_queue()
         timer.print_at_checkpoint(f"Finished printing {len(docs):,} objs ({len(suppressed_docs):,} suppressed) {log_sfx}")
 
-    def print_renderable(self, renderables: RenderableType | Sequence[RenderableType]) -> None:
+    def print(self, renderables: RenderableType | Sequence[RenderableType]) -> None:
         """All things being printed should come through here, which collects both terminal and HTML output as its written."""
         for renderable in listify(renderables):
             positioned = PositionedRich.from_unwrapped_obj(renderable)
@@ -177,7 +179,7 @@ class DocPrinter:
             elif isinstance(positioned.obj, (Document, FileDisplay)):
                 doc_bios_html = self._build_biographies_panel_html(self.new_entities_with_bios(positioned.obj))
                 self._append_element_with_bio_div(positioned.obj.to_html(), doc_bios_html)
-                self.printed_objs.append(positioned.obj)
+                self._documents.append(positioned.obj)  # TODO: stop appending FileDisplay objs
             elif isinstance(positioned.obj, Table):
                 html_table = positioned.to_html()  # TODO: currently the only type that delegates to the PositionedRich obj to get HTML
 
@@ -193,25 +195,20 @@ class DocPrinter:
                 self.html_elements.append(positioned.obj.to_div(margin))
             elif isinstance(positioned.obj, Text):
                 self.html_elements.append(text_to_div(positioned.obj, positioned.css))
-
-            # TODO: if __rich__() exists we should call it up front...
-            elif '__rich__' in dir(positioned.obj):
-                if (rich_obj := positioned.obj.__rich__()):
-                    if isinstance(rich_obj, Text):
-                        element_html = text_to_div(rich_obj, positioned.css)
-                    else:
-                        logger.warning(f"printinng possibly not fully supported object type {type(positioned.obj).__name__}\n{positioned.obj}")
-                        element_html = render_to_html(rich_obj)
-
-                    self.html_elements.append(element_html)
+            elif '__rich__' in dir(positioned.obj) and (rich_obj := positioned.obj.__rich__()):
+                if isinstance(rich_obj, Text):
+                    element_html = text_to_div(rich_obj, positioned.css)
                 else:
-                    logger.warning(f"__rich__() returned None for {positioned.obj} ({type(positioned.obj).__name__})")
+                    logger.warning(f"printinng possibly not fully supported object type {type(positioned.obj).__name__}\n{positioned.obj}")
+                    element_html = render_to_html(rich_obj)
+
+                self.html_elements.append(element_html)
             elif isinstance(positioned.obj, str):
                 self.html_elements.append(tag('p', positioned.obj, positioned.css))
             else:
                 raise TypeError(f"renderable of unsupported type: {type(positioned.obj).__name__}: {positioned.obj}")
 
-            # TODO: we print at end after HTML is generated so the bios panel will be cached first but that sucks
+            # TODO: console.print at end after HTML is generated so the bios panel will be cached first
             # TODO: because build_biographies_panel_html() has the side effect of printing to the console.
             console.print(renderable)
 
@@ -298,8 +295,8 @@ class DocPrinter:
             self.line()
 
         table = OtherFile.files_preview_table(self._other_files_queue, title=table_title, title_justify='center')
-        self.print_renderable(Padding(table, (0, 0, 1, site_config.other_files_table_indent)))
-        self.printed_objs.extend(self._other_files_queue)
+        self.print(Padding(table, (0, 0, 1, site_config.other_files_table_indent)))
+        self._documents.extend(self._other_files_queue)
         self._other_files_queue = []
 
     def _print_suppression_msgs_queue(self) -> list[Document]:
@@ -309,7 +306,7 @@ class DocPrinter:
 
         suppressed_txts = without_falsey([d.suppressed_txt for d in self._suppressed_docs_queue])
         msgs_panel = ListPanel(border_style='', text=suppressed_txts)
-        self.print_renderable(msgs_panel)
+        self.print(msgs_panel)
         console.line()  # TODO this isn't happening in HTML output
 
         processed_suppressed_docs = self._suppressed_docs_queue

@@ -49,56 +49,11 @@ for i, email in enumerate(epstein_files.unique_emails):
     ids.append(email.file_id)
     continue
 
-    if i < 20:
-        file_info = email.file_info
-        console.line()
-        console.print(f"[{file_info.file_id}] OLD external_link_txt: {file_info.external_link_txt}")
-        console.print(f"[{file_info.file_id}] NEW     external_link: {file_info.external_link().link}")
-        console.print(f"[{file_info.file_id}] NEW          __rich__: {file_info.external_link()}")
-        console.line()
-
-    if email._config.recipients:
-        continue
-
-    if email.header.is_to_redacted and None not in email.recipients:
-        if email.author == CHRISTOPHER_DILORIO:
-            email._warn(f"skipping dilorio email...")
-            continue
-
-        ids.append(email.file_id)
-        num_missing_unknown_recipient += 1
-        num_word_count_worthy += int(email.is_word_count_worthy)
-        email._warn(f"empty To: header but None is not in recipients_real (is_interesting={email.is_interesting})")
-
-        if email.is_interesting is False:
-            email._warn(f"considered uninteresting...")
-            console.print(email._summary, '\n')
-            num_interesting += 1
-            continue
-        elif email.is_interesting is True:
-            num_interesting += 1
-            email._warn(f"not showing contents because it's already considered interesting...")
-            console.print(email._summary, '\n')
-            continue
-
-        console.line()
-        console.print(email)
-        console.print(email.header)
-        console.line()
-
 
 console.print(f'\n\n  Found {num_missing_unknown_recipient} emails that should have None as a recipient ({num_interesting} interesting, {num_uninteresting} uninteresting)')
 print(f"\nIDS to repair:\n\n" + ' '.join(ids) + '\n')
 sys.exit()
 
-
-
-for email in epstein_files.unique_emails:
-    if email.is_persons_first_email:
-        print(f"{email}, is_persons_first_email={email.is_persons_first_email}")
-
-
-sys.exit()
 
 
 def print_first_emails():
@@ -121,34 +76,6 @@ def print_first_emails():
 
 print_first_emails()
 sys.exit()
-
-
-def print_partial_names_used_in_regexes():
-    names = []
-    partial_name_counts = defaultdict(int)
-
-    for highlight in HIGHLIGHT_GROUPS:
-        if type(highlight) != HighlightedNames:
-            continue
-        elif not highlight.should_match_first_last_name:
-            continue
-
-        for name in highlight.contacts:
-            for partial_name in [n.lower() for n in [extract_first_name(name), extract_last_name(name)]]:
-                partial_name_counts[partial_name] += 1
-
-                if partial_name not in NAMES_TO_NOT_PARTIALLY_MATCH:
-                    names.append(partial_name)
-                    print(f"name='{name}', partial_name='{partial_name}'")
-
-    print('\n'.join(sorted(names)))
-    print(f"\n\n")
-
-    for name, count in partial_name_counts.items():
-        if count > 1:
-            print(f"partial name '{name}' appears {count} times")
-
-    sys.exit()
 
 
 print_partial_names_used_in_regexes()

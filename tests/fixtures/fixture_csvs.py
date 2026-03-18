@@ -82,7 +82,7 @@ def write_files_csv():
     timer = Timer()
     rows = []
 
-    for doc in Document.sort_by_id(epstein_files.non_duplicate_docs):
+    for doc in Document.sort_by_id(epstein_files.unique_documents):
         row = {k: getattr(doc, k) for k in ROOT_PROPS}
         old_timestamp = (rows_by_id.get(doc.file_id) or {}).get('timestamp')
         has_timestamp_diff = is_timestamp_different(doc.timestamp, old_timestamp)

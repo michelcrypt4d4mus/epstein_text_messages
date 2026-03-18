@@ -16,7 +16,8 @@ from yaralyzer.util.helpers.interaction_helper import ask_to_proceed
 
 from epstein_files.documents.config.doc_cfg import Metadata
 from epstein_files.documents.config.manual_config import create_configs
-from epstein_files.documents.document import Document
+from epstein_files.documents.document import Document, DocType
+from epstein_files.documents.documents.doc_types_mixin import DocTypesMixin
 from epstein_files.documents.documents.search_result import SearchResult
 from epstein_files.documents.doj_file import DojFile
 from epstein_files.documents.email import EMAILERS_TO_ALWAYS_TRUNCATE, Email
@@ -43,23 +44,17 @@ PROPS_TO_COPY = ['author', 'timestamp']
 EMAIL_PROPS_TO_COPY = ['recipients']
 SLOW_FILE_SECONDS = 1.0
 
-DocType = TypeVar('DocType', bound=Document)
-
 
 @dataclass
-class EpsteinFiles:
+class EpsteinFiles(DocTypesMixin):
     """
     Attributes:
         file_paths (list[Path]): paths to Epstein related text documents
         documents (list[Document]): all parsed Documents except the emails with was_split_up flag
-        timer (Timer): for logging only
-        uninteresting_ccs (list[Name]): names of tangential people who were just CCed once or similar
+        _uninteresting_ccs (list[Name]): names of tangential people who were just CCed once or similar
     """
     file_paths: list[Path] = field(init=False)
-
     # Derived fields
-    _documents: list[Document] = field(default_factory=list)
-    _docs_by_id: dict[str, Document] = field(default_factory=dict)
     _empty_file_ids: set[str] = field(default_factory=set)
     _emailers: list[Person] = field(default_factory=list)
     _uninteresting_ccs: list[Name] = field(default_factory=list)
@@ -96,33 +91,14 @@ class EpsteinFiles:
         return epstein_files
 
     @property
-    def all_doj_files(self) -> Sequence[DojFile | Email]:
-        """All files with the filename EFTAXXXXXX, including those that were turned into `Email` objs."""
-        return [d for d in self.documents if d.file_info.is_doj_file]
+    def counterparties_dict(self) -> dict[Name, list[Name]]:
+        """Keys are names, values are lists of all the people who sent/received communication with that person."""
+        return sort_dict_by_keys({p.name: p.counterparties for p in self.emailers})
 
     @property
     def documents(self) -> Sequence[Document]:
+        """Overloads mixing @property to exclude split up big files."""
         return [d for d in self._documents if not (isinstance(d, Email) and d._was_split_up)]
-
-    @property
-    def docs_by_id(self) -> Mapping[str, Document]:
-        """dict with file IDs as keys and Document objs as values."""
-        self._docs_by_id = self._docs_by_id or {doc.file_id: doc for doc in self._documents}
-        return self._docs_by_id
-
-    @property
-    def doj_files(self) -> list[DojFile]:
-        """Only returns DojFile type. Emails derived from DOJ files are not included."""
-        return [f for f in self.other_files if isinstance(f, DojFile)]
-
-    @property
-    def dropsite_emails(self) -> list[DropsiteEmail]:
-        """Older emails from the Dropsite News collection exist as .eml files instead of .txt files."""
-        return [f for f in self.documents if isinstance(f, DropsiteEmail)]
-
-    @property
-    def emails(self) -> list[Email]:
-        return [d for d in self.documents if isinstance(d, Email)]
 
     @property
     def emails_with_attachments(self) -> list[Email]:
@@ -134,42 +110,6 @@ class EpsteinFiles:
         return self._emailers
 
     @property
-    def counterparties_dict(self) -> dict[Name, list[Name]]:
-        """Keys are names, values are lists of all the people who sent/received communication with that person."""
-        return sort_dict_by_keys({p.name: p.counterparties for p in self.emailers})
-
-    @property
-    def imessage_logs(self) -> list[MessengerLog]:
-        return [d for d in self.documents if isinstance(d, MessengerLog)]
-
-    @property
-    def json_files(self) -> list[JsonFile]:
-        """JSON files from the November document dump, mostly Apple ads related."""
-        return [d for d in self.other_files if isinstance(d, JsonFile)]
-
-    @property
-    def interesting_other_files(self) -> Sequence[OtherFile]:
-        """`OtherFile` objects that have been deemed of interest."""
-        return [f for f in self.other_files if f.is_interesting]
-
-    @property
-    def local_extracts(self) -> Sequence[Document]:
-        """Returns documents that are locally derived from source files."""
-        return [d for d in self.documents if d.file_info.is_local_extract_file]
-
-    @property
-    def non_duplicate_docs(self) -> Sequence[Document]:
-        return Document.without_dupes(self.documents)
-
-    @property
-    def non_json_other_files(self) -> list[OtherFile]:
-        return [doc for doc in self.other_files if not isinstance(doc, JsonFile)]
-
-    @property
-    def other_files(self) -> Sequence[OtherFile]:
-        return [d for d in self.documents if isinstance(d, OtherFile)]
-
-    @property
     def uninteresting_emailers(self) -> list[Name]:
         """Emailers whom we don't want to print a separate section for because they're just CCed."""
         if '_uninteresting_emailers' not in vars(self):
@@ -177,37 +117,10 @@ class EpsteinFiles:
 
         return self._uninteresting_emailers
 
-    # TODO: should we exclude attachments???
-    @property
-    def unique_documents(self) -> Sequence[Document]:
-        """Excludes duplicates and email attachments."""
-        return [d for d in self.non_duplicate_docs if not d._config.attached_to_email_id]
-
-    @property
-    def unique_emails(self) -> list[Email]:
-        """All `Email` objects except for duplicates."""
-        return Document.without_dupes(self.emails)
-
     def docs_for(self, name: Name) -> list[Document]:
         """All documents with `name` as the author or a recipient (not just someone who is mentioned)."""
-        emails = self.emails_for(name)
-        imessage_logs = self.imessage_logs_for(name)
-
-        # OtherFile objects with author == None are not returned for name == None
-        if name is None:
-            other_files = []
-        else:
-            other_files = [f for f in self.other_files if name in [f.author, f._config.show_with_name]]
-
-        return Document.sort_by_timestamp(Document.uniquify(emails + imessage_logs + other_files))
-
-    def earliest_email_at(self, name: Name) -> datetime:
-        """First email timestamp sent to or received by `name`."""
-        return self.emails_for(name)[0].timestamp
-
-    def last_email_at(self, name: Name) -> datetime:
-        """Last email timestamp sent to or received by `name`."""
-        return self.emails_for(name)[-1].timestamp
+        docs = flatten([fxn(name) for fxn in [self.emails_for, self.imessage_logs_for, self.other_files_for]])
+        return Document.sort_by_timestamp(Document.uniquify(docs))
 
     def email_author_counts(self) -> dict[Name, int]:
         """Returns dict counting up how many emails were written by each person."""
@@ -314,6 +227,9 @@ class EpsteinFiles:
 
     def json_metadata(self) -> str:
         """Create a JSON string containing metadata for all the files."""
+        def _sorted_metadata(docs: Sequence[Document]) -> list[Metadata]:
+            return [json_safe(d.metadata) for d in Document.sort_by_id(docs)]
+
         metadata = {
             'files': {
                 Email.__name__: _sorted_metadata(self.emails),
@@ -325,13 +241,6 @@ class EpsteinFiles:
         }
 
         return json.dumps(metadata, indent=4, sort_keys=True)
-
-    def person_objs(self, names: list[Name]) -> list[Person]:
-        """Construct Person objects for a list of names."""
-        return [
-            Person(name, self.docs_for(name), False if name in self.uninteresting_emailers else None)
-            for name in names
-        ]
 
     def load_new_files(self) -> None:
         """Load any new files detected in the hierarchy."""
@@ -346,6 +255,13 @@ class EpsteinFiles:
 
         self._finalize_data_and_write_to_disk(new_docs)
 
+    def other_files_for(self, name: Name) -> list[OtherFile]:
+        """Get files with author `name` or that are marked `show_with_name`."""
+        if name is None:
+            return []
+        else:
+            return [f for f in self.other_files if name in [f.author, f._config.show_with_name]]
+
     def overview_table(self) -> Table:
         """Table showing file counts by type."""
         title = Text('Files Overview ', TABLE_TITLE_STYLE)
@@ -356,6 +272,17 @@ class EpsteinFiles:
         table.add_row('JSON Data', *Document.file_summary_row(self.json_files, True))
         table.add_row('Other', *Document.file_summary_row(self.non_json_other_files))
         return table
+
+    def person_objs(self, names: list[Name]) -> list[Person]:
+        """Construct Person objects for a list of names."""
+        return [
+            Person(
+                name=name,
+                _documents=self.docs_for(name),
+                is_interesting=False if name in self.uninteresting_emailers else None
+            )
+            for name in names
+        ]
 
     def reload_doj_files(self) -> None:
         """Reload only the DOJ PDF extracts (keep HOUSE_OVERSIGHT stuff unchanged)."""
@@ -393,10 +320,6 @@ class EpsteinFiles:
             logger.warning(f"  (RESPLIT_BIG_EMAILS so now have {len(repaired_docs)} repaired_docs)")
 
         self._finalize_new_docs_if_approved(repaired_docs)
-
-    def unknown_recipient_ids(self) -> list[str]:
-        """IDs of emails whose recipient is not known."""
-        return sorted([e.file_id for e in self.emails if None in e.recipients or not e.recipients])
 
     def _copy_duplicate_doc_properties(self) -> None:
         """Ensure dupe docs have the properties of the docs they duplicate to capture any repairs, config etc."""
@@ -437,11 +360,11 @@ class EpsteinFiles:
 
     def _find_email_attachments_and_set_is_first_for_user(self) -> None:
         """Add documents with configured `attached_to_email_id` to the `Email`s they're attached to."""
-        email_attachments = [f for f in self.other_files if f._config.attached_to_email_id]
-        logger.warning(f"Finding homes for {len(email_attachments)} known email attachments...")
-
         for email in self.emails:
             email.attached_docs = []  # Remove all attachments before re-finding them in case it's a repair
+
+        email_attachments = [f for f in self.other_files if f._config.attached_to_email_id]
+        logger.warning(f"Finding homes for {len(email_attachments)} known email attachments...")
 
         for attachment in email_attachments:
             email = self.get_id(attachment._config.attached_to_email_id, required_type=Email)
@@ -464,10 +387,11 @@ class EpsteinFiles:
         """Same as _finalize_data_and_write_to_disk() but prints new docs and asks for permission."""
         if len(new_docs) < 100:
             console.print(*new_docs)  # Print for user review
+            logger.warning(f"Finalizing {len(new_docs)} files...")
         else:
-            logger.warning(f"Too many new documents to show previews!")
+            logger.warning(f"Too many new documents ({len(new_docs)}) to show previews...")
 
-        logger.warning(f"Finalizing {len(new_docs)} files: {[d.file_id for d in new_docs]}")
+        Document._print_ids(new_docs, 'newly loaded or repaired by EpsteinFiles')
         ask_to_proceed("Looks good?")
         self._finalize_data_and_write_to_disk(new_docs)
 
@@ -556,10 +480,6 @@ def document_cls(doc: Document) -> Type[Document]:
         return MessengerLog
     else:
         return OtherFile
-
-
-def _sorted_metadata(docs: Sequence[Document]) -> list[Metadata]:
-    return [json_safe(d.metadata) for d in Document.sort_by_id(docs)]
 
 
 # Find author/recipients that we configured but that have no Entity so we can suppress warnings about them
