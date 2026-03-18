@@ -471,10 +471,8 @@ NOT_CHRONOLOGICAL_VIEW_IDS = [cfg.id for cfg in FLIGHT_LOG_CFGS] + [
 CATEGORY_CONFIGS: list[DocCfg] = []
 
 for category in CONSTANT_CATEGORIES:
-    var_name = f"{category.upper()}{CFGS_SUFFIX}"
-
-    if var_name not in locals():
-        logger.warning(f"Document config variable '{var_name}' is not defined!")
+    if (var_name := f"{category.upper()}{CFGS_SUFFIX}") not in locals():
+        logger.error(f"Document config variable '{var_name}' is not defined!")
         continue
 
     category_cfgs = locals()[var_name]
