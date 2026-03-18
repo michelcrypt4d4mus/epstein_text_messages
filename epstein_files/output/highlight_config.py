@@ -413,6 +413,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Organization('Junkermann Group', JUNKERMANN_FUND),
             Organization('Lockheed Martin', 'American military contractor'),
             Organization('NJF Capital', JUNKERMANN_FUND, r"NJF( Capital)?"),
+            Organization('Western Union', 'international money transmitter', emailer_pattern=r"Western Union( Financial)?"),
             Organization('WizzAir', email_addresses=['noreply@wizzair.com'], is_interesting=False, is_emailer=True),
         ],
         patterns=[
@@ -3273,6 +3274,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         ],
         patterns=[
             r"abortion",
+            r"adult video( warehouse)?",
             r"ballerina",
             r"Beautify and the Beast",
             r"butt plug",
@@ -3536,7 +3538,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         category=MIDEAST
     ),
 
-    # HighlightedText not HighlightedNames bc of word boundary (\b) issue with '#', '(', etc.
+    # HighlightedPatterns not HighlightedNames bc of word boundary (\b) issue with '#', '(', etc.
     HighlightPatterns(
         label='dollars',
         style=FINANCIAL_COLOR,
