@@ -191,8 +191,7 @@ def print_other_files_section(epstein_files: EpsteinFiles, printer: DocPrinter) 
     files = _max_records(Document.sort_by_timestamp(files))
     title_pfx = '' if args.all_other_files else 'Selected '
     category_table = OtherFile.summary_table(files, title_pfx=title_pfx)
-    header_panel = section_header(f"{FIRST_FEW_LINES} of {len(files)} {title_pfx}{FILES_THAT_ARE_NEITHER_EMAILS_NOR}")
-    printer.print_renderable(header_panel)
+    printer.print_section_subtitle(f"{FIRST_FEW_LINES} of {len(files)} {title_pfx}{FILES_THAT_ARE_NEITHER_EMAILS_NOR}")
     print_other_page_link(epstein_files)  # TODO: not in custom HTML
     printer.print_renderable(_section_summary_table(category_table))
 
@@ -200,7 +199,7 @@ def print_other_files_section(epstein_files: EpsteinFiles, printer: DocPrinter) 
     if args.all_other_files:
         printer.print_documents(files)
     else:
-        printer.print_renderable(OtherFile.files_preview_table(files, title_pfx=title_pfx))
+        printer.print_centered(OtherFile.files_preview_table(files, title_pfx=title_pfx))
 
     return files
 
