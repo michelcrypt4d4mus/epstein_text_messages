@@ -17,6 +17,7 @@ from yaralyzer.util.helpers.interaction_helper import ask_to_proceed
 from epstein_files.documents.config.doc_cfg import Metadata
 from epstein_files.documents.config.manual_config import create_configs
 from epstein_files.documents.document import Document, DocType
+from epstein_files.documents.documents.doc_types_mixin import DocTypesMixin
 from epstein_files.documents.documents.search_result import SearchResult
 from epstein_files.documents.doj_file import DojFile
 from epstein_files.documents.email import EMAILERS_TO_ALWAYS_TRUNCATE, Email
@@ -45,19 +46,15 @@ SLOW_FILE_SECONDS = 1.0
 
 
 @dataclass
-class EpsteinFiles:
+class EpsteinFiles(DocTypesMixin):
     """
     Attributes:
         file_paths (list[Path]): paths to Epstein related text documents
         documents (list[Document]): all parsed Documents except the emails with was_split_up flag
-        timer (Timer): for logging only
-        uninteresting_ccs (list[Name]): names of tangential people who were just CCed once or similar
+        _uninteresting_ccs (list[Name]): names of tangential people who were just CCed once or similar
     """
     file_paths: list[Path] = field(init=False)
-
     # Derived fields
-    _documents: list[Document] = field(default_factory=list)
-    _docs_by_id: dict[str, Document] = field(default_factory=dict)
     _empty_file_ids: set[str] = field(default_factory=set)
     _emailers: list[Person] = field(default_factory=list)
     _uninteresting_ccs: list[Name] = field(default_factory=list)
@@ -94,33 +91,14 @@ class EpsteinFiles:
         return epstein_files
 
     @property
-    def all_doj_files(self) -> Sequence[DojFile | Email]:
-        """All files with the filename EFTAXXXXXX, including those that were turned into `Email` objs."""
-        return [d for d in self.documents if d.file_info.is_doj_file]
+    def counterparties_dict(self) -> dict[Name, list[Name]]:
+        """Keys are names, values are lists of all the people who sent/received communication with that person."""
+        return sort_dict_by_keys({p.name: p.counterparties for p in self.emailers})
 
     @property
     def documents(self) -> Sequence[Document]:
+        """Overloads mixing @property to exclude split up big files."""
         return [d for d in self._documents if not (isinstance(d, Email) and d._was_split_up)]
-
-    @property
-    def docs_by_id(self) -> Mapping[str, Document]:
-        """dict with file IDs as keys and Document objs as values."""
-        self._docs_by_id = self._docs_by_id or {doc.file_id: doc for doc in self._documents}
-        return self._docs_by_id
-
-    @property
-    def doj_files(self) -> list[DojFile]:
-        """Only returns DojFile type. Emails derived from DOJ files are not included."""
-        return [f for f in self.other_files if isinstance(f, DojFile)]
-
-    @property
-    def dropsite_emails(self) -> list[DropsiteEmail]:
-        """Older emails from the Dropsite News collection exist as .eml files instead of .txt files."""
-        return [f for f in self.documents if isinstance(f, DropsiteEmail)]
-
-    @property
-    def emails(self) -> list[Email]:
-        return [d for d in self.documents if isinstance(d, Email)]
 
     @property
     def emails_with_attachments(self) -> list[Email]:
@@ -132,59 +110,12 @@ class EpsteinFiles:
         return self._emailers
 
     @property
-    def counterparties_dict(self) -> dict[Name, list[Name]]:
-        """Keys are names, values are lists of all the people who sent/received communication with that person."""
-        return sort_dict_by_keys({p.name: p.counterparties for p in self.emailers})
-
-    @property
-    def imessage_logs(self) -> list[MessengerLog]:
-        return [d for d in self.documents if isinstance(d, MessengerLog)]
-
-    @property
-    def json_files(self) -> list[JsonFile]:
-        """JSON files from the November document dump, mostly Apple ads related."""
-        return [d for d in self.other_files if isinstance(d, JsonFile)]
-
-    @property
-    def interesting_other_files(self) -> Sequence[OtherFile]:
-        """`OtherFile` objects that have been deemed of interest."""
-        return [f for f in self.other_files if f.is_interesting]
-
-    @property
-    def local_extracts(self) -> Sequence[Document]:
-        """Returns documents that are locally derived from source files."""
-        return [d for d in self.documents if d.file_info.is_local_extract_file]
-
-    @property
-    def non_duplicate_docs(self) -> Sequence[Document]:
-        return Document.without_dupes(self.documents)
-
-    @property
-    def non_json_other_files(self) -> list[OtherFile]:
-        return [doc for doc in self.other_files if not isinstance(doc, JsonFile)]
-
-    @property
-    def other_files(self) -> Sequence[OtherFile]:
-        return [d for d in self.documents if isinstance(d, OtherFile)]
-
-    @property
     def uninteresting_emailers(self) -> list[Name]:
         """Emailers whom we don't want to print a separate section for because they're just CCed."""
         if '_uninteresting_emailers' not in vars(self):
             self._uninteresting_emailers = uniq_sorted(UNINTERESTING_EMAILERS + self._uninteresting_ccs)
 
         return self._uninteresting_emailers
-
-    # TODO: should we exclude attachments???
-    @property
-    def unique_documents(self) -> Sequence[Document]:
-        """Excludes duplicates and email attachments."""
-        return [d for d in self.non_duplicate_docs if not d._config.attached_to_email_id]
-
-    @property
-    def unique_emails(self) -> list[Email]:
-        """All `Email` objects except for duplicates."""
-        return Document.without_dupes(self.emails)
 
     def docs_for(self, name: Name) -> list[Document]:
         """All documents with `name` as the author or a recipient (not just someone who is mentioned)."""
