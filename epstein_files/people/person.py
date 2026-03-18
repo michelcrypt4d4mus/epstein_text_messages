@@ -338,20 +338,20 @@ class Person(DocTypesMixin, LoggingEntity):
 
         return link_text_obj(self.external_link(site), link_str or site, style=self.style())
 
-    def print_emails(self, doc_printer: 'DocPrinter') -> list[Email]:
+    def print_emails(self, printer: 'DocPrinter') -> list[Email]:
         """
         Print complete emails to or from a particular 'author' along with any specially marked docs
         configured with `show_with_name` of this user. Returns the Emails that were printed.
         """
-        doc_printer.print_centered(self.email_info_panel())
+        printer.print_centered(self.email_info_panel())
 
         if self.biography_txt:
-            doc_printer.print_centered(self.biography_txt)
+            printer.print_centered(self.biography_txt)
 
-        doc_printer.line()
+        printer.line()
 
         if site_config.show_emailer_tables:
-            doc_printer.print_centered(self._emails_table())
+            printer.print_centered(self._emails_table())
 
         if self.category == Uninteresting.JUNK:
             logger.warning(f"Not printing junk emailer '{self.name}'")  # Junk emailers only get a table
@@ -368,8 +368,8 @@ class Person(DocTypesMixin, LoggingEntity):
             if isinstance(d, FileDisplay):
                 d.indent = site_config.show_with_indent
 
-        doc_printer.print_documents(docs, log_sfx=f"[{self.name}]")
-        doc_printer.line(2)
+        printer.print_documents(docs, log_sfx=f"[{self.name}]")
+        printer.line(2)
         return self._printable_emails  # TODO: doesn't return FileDisplay objects that may have also been printed!
 
     def style(self, allow_bold: bool = True) -> str:
