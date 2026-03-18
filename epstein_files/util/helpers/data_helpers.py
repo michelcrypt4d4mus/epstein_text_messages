@@ -10,6 +10,7 @@ from typing import Any, Callable, Mapping, Sequence, TypeVar
 
 from epstein_files.people import names
 from epstein_files.util.env import args
+from epstein_files.util.helpers.string_helper import timestamp_str
 from epstein_files.util.logging import logger
 
 CharRange = tuple[int, int]
@@ -32,7 +33,6 @@ escape_single_quotes = lambda text: text.replace("'", r"\'")
 days_between = lambda dt1, dt2: (dt2 - dt1).days + 1
 days_between_abs = lambda dt1, dt2: abs(days_between(dt1, dt2))
 days_between_str = lambda dt1, dt2: f"{days_between(dt1, dt2)} day" + ('s' if days_between(dt1, dt2) > 1 else '')
-timestamp_str = lambda dt: dt.isoformat()[0:19]
 uniquify = lambda _list: list(set(_list))
 
 T = TypeVar('T')

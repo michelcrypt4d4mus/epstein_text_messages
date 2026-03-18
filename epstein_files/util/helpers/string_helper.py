@@ -33,6 +33,8 @@ is_integer = lambda s: bool(INTEGER_REGEX.match(s))
 join_patterns = lambda patterns: '|'.join(patterns)
 iso_timestamp = lambda dt: dt.isoformat().replace('T', ' ')
 strip_pdfalyzer_panels = lambda s: PDFALYZER_IMAGE_PANEL_REGEX.sub('', s)
+timestamp_str = lambda dt: dt.isoformat()[0:19]
+timestamp_human = lambda dt: timestamp_str(dt).replace('T', ' ')
 
 # regexes
 or_equal_sign_char_group = lambda s: f"[{s}=]"  # DataSet 11 has a lot of random '=' replacing characters

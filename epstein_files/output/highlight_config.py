@@ -1515,7 +1515,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 r"Deutsche? (Asset|(Post)?Bank)|\bDB\b(?!\s+Zw)",
                 url='https://www.ft.com/content/b1d9e8c4-1874-4c82-941d-9a2e1512bc4c',
             ),
-            Organization('Enso Capital Management', belongs_to=JOSHUA_FINK),
+            Organization('Enso Capital Management', belongs_to=JOSHUA_FINK, is_interesting=False),
             Organization(ELYSIUM_MANAGEMENT, f"family office managing {LEON_BLACK}'s money", belongs_to=LEON_BLACK),
             Organization("FirstBank", 'Puerto Rican bank used by Epstein', r"First Bank( of Puerto Rico)?"),
             Organization('Goldman Sachs', emailer_pattern=r"Goldman( Sachs)?", is_interesting=False),
