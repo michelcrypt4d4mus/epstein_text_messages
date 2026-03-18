@@ -206,6 +206,7 @@ EMAIL_SIGNATURE_REGEXES = {
     JEFFREY_EPSTEIN: re.compile(r"(([* =0,]+|please .ote.{,6})\s+)?([>»•]+ )*[T=]h[e=][ =]inf[o=].ma[t=][i=][o=][n=] [c=][o=][n=][t=]a[i=]ne. i. t..s..ommunic.ti.{,600}all\s+([>»] )*.t.a.hm..t..([>»\s]+copyright\s+.[ae]ll\s+[r=][i=][g=][h=][t=][s=]\s+[r=][e=][s=][e=][r=][v=][e=][d=]?)?", re.DOTALL),
     JES_STALEY: re.compile(r"This email is confidential and subject to important.{,250}disclosures/email\.?", re.DOTALL),
     JESSICA_CADWELL: re.compile(r"(f.*\n)?Certified Para.*\nFlorida.*\nBURMAN.*\n515.*\nSuite.*\nWest Palm.*(\nTel:.*)?(\nEmail:.*)?", re.IGNORECASE),
+    JOSHUA_FINK: re.compile(r"(\*{,80}\s+)?This e-mail and any attachments thereto.{,650}will be provided upon request\.", re.DOTALL),
     KEN_JENNE: re.compile(r"Ken Jenne\nRothstein.*\n401 E.*\nFort Lauderdale.*", re.IGNORECASE),
     LARRY_SUMMERS: re.compile(r"Please direc. all scheduling.{,150}\nwww.la(n|rr)ysummer..\w{3,5}(<.{,6}[>»])?(\s*<http.{,30}/?[>»])?", re.IGNORECASE | re.DOTALL),
     LAWRENCE_KRAUSS: re.compile(r"Lawrence (M. )?Krauss\n(Director.*\n)?(Co-director.*\n)?Foundation.*\nSchool.*\n(Co-director.*\n)?(and Director.*\n)?Arizona.*(\nResearch.*\nOri.*\n(krauss.*\n)?origins.*)?", re.IGNORECASE),
