@@ -82,6 +82,10 @@ class DocPrinter:
     def printed_file_displays(self) -> list[FileDisplay]:
         return [e for e in self.printed_objs if isinstance(e, FileDisplay)]
 
+    @property
+    def printed_ids(self) -> list[str]:
+        return [f.file_id for f in self.printed_docs]
+
     def line(self, num: int = 1) -> None:
         """Print blank lines to HTML and terminal, similar to `console.line()`."""
         self.html_elements.append(vertical_spacer(num))

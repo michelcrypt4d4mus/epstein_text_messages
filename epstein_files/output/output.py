@@ -102,13 +102,13 @@ def print_emailers_info(epstein_files: EpsteinFiles) -> None:
 
 
 def print_emails_section(epstein_files: EpsteinFiles, printer: DocPrinter) -> None:
-    """Prints emails, returns emails that were printed (may return dupes if printed for both author and recipient)."""
-    section_header_panel = section_header((SELECTIONS_FROM if not args.all_emails else '') + HIS_EMAILS)
-    printer.print_renderable(section_header_panel)
-    num_emails_printed_since_last_color_key = 0
-
+    """
+    Print emails grouped by participant with summary tables.
+    Emails can be printed more than once (e.g. in the sender's section and each recipient's).
+    """
+    printer.print_renderable(section_header((SELECTIONS_FROM if not args.all_emails else '') + HIS_EMAILS))
     all_emailers = sorted(epstein_files.emailers, key=lambda person: person.earliest_email_at)
-    all_emails = Person.emails_from_people(all_emailers)
+    num_since_color_key = 0
 
     if args.names:
         try:
@@ -120,23 +120,22 @@ def print_emails_section(epstein_files: EpsteinFiles, printer: DocPrinter) -> No
         printer.print_renderable(_section_summary_table(Person.emailer_info_table(all_emailers, emailers_to_print)))
 
     for person in _max_records(emailers_to_print):
-        if person.name in epstein_files.uninteresting_emailers and not args.names:
+        if person.is_interesting is False and not args.names:
+            logger.warning(f"Skipping person with is_interesting=False '{person.name}'")
             continue
 
-        printed_person_emails = person.print_emails(printer)
-        num_emails_printed_since_last_color_key += len(printed_person_emails)
+        printed_emails = person.print_emails(printer)
 
         # Print color key every once in a while
-        if num_emails_printed_since_last_color_key > PRINT_COLOR_KEY_EVERY_N_EMAILS:
+        if (num_since_color_key := num_since_color_key + len(printed_emails)) > PRINT_COLOR_KEY_EVERY_N_EMAILS:
             printer.print_color_key()
-            num_emails_printed_since_last_color_key = 0
+            num_since_color_key = 0
 
     if args.names:
         return
 
     # Print other interesting emails
-    printed_email_ids = [email.file_id for email in printer.printed_docs]
-    extra_emails = [e for e in all_emails if e.is_interesting and e.file_id not in printed_email_ids]
+    extra_emails = [e for e in epstein_files.unique_emails if e.is_interesting and e.file_id not in printer.printed_ids]
 
     if len(extra_emails) > 0:
         logger.warning(f"Found {len(extra_emails)} additional interesting emails by less interesting people...")
@@ -189,7 +188,7 @@ def print_other_files_section(epstein_files: EpsteinFiles, printer: DocPrinter) 
     else:
         files = [f for f in epstein_files.other_files if args.all_other_files or f.is_interesting]
 
-    files = Document.sort_by_timestamp(files)
+    files = _max_records(Document.sort_by_timestamp(files))
     title_pfx = '' if args.all_other_files else 'Selected '
     category_table = OtherFile.summary_table(files, title_pfx=title_pfx)
     header_panel = section_header(f"{FIRST_FEW_LINES} of {len(files)} {title_pfx}{FILES_THAT_ARE_NEITHER_EMAILS_NOR}")
@@ -246,6 +245,10 @@ def print_stats(epstein_files: EpsteinFiles) -> None:
 
 def print_text_msgs_section(epstein_files: EpsteinFiles, printer: DocPrinter) -> list[MessengerLog]:
     """Print `MessengerLog` objects and return objects that were printed."""
+    section_header_panel = section_header((SELECTIONS_FROM if not args.all_texts else '') + HIS_TEXT_MESSAGES)
+    printer.print_renderable(section_header_panel)
+    printer.print_renderable(Align.center(CONVERSATIONS_SORTED_BY_TXT))
+
     if args.names:
         imessage_logs = [log for log in epstein_files.imessage_logs if log.author in args.names]
     else:
@@ -253,11 +256,9 @@ def print_text_msgs_section(epstein_files: EpsteinFiles, printer: DocPrinter) ->
 
     if not imessage_logs:
         logger.warning(f"No MessengerLog found for {args.names}")
-        return imessage_logs
+        return []
 
-    section_header_panel = section_header((SELECTIONS_FROM if not args.all_texts else '') + HIS_TEXT_MESSAGES)
-    printer.print_renderable(section_header_panel)
-    printer.print_renderable(Align.center(CONVERSATIONS_SORTED_BY_TXT))
+    imessage_logs = _max_records(imessage_logs)
 
     if not args.names:
         printer.print_renderable(_section_summary_table(MessengerLog.summary_table(imessage_logs)))

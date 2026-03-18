@@ -201,14 +201,6 @@ class EpsteinFiles:
 
         return Document.sort_by_timestamp(Document.uniquify(emails + imessage_logs + other_files))
 
-    def earliest_email_at(self, name: Name) -> datetime:
-        """First email timestamp sent to or received by `name`."""
-        return self.emails_for(name)[0].timestamp
-
-    def last_email_at(self, name: Name) -> datetime:
-        """Last email timestamp sent to or received by `name`."""
-        return self.emails_for(name)[-1].timestamp
-
     def email_author_counts(self) -> dict[Name, int]:
         """Returns dict counting up how many emails were written by each person."""
         return {
@@ -356,7 +348,11 @@ class EpsteinFiles:
     def person_objs(self, names: list[Name]) -> list[Person]:
         """Construct Person objects for a list of names."""
         return [
-            Person(name, self.docs_for(name), False if name in self.uninteresting_emailers else None)
+            Person(
+                name,
+                self.docs_for(name),
+                is_interesting=False if name in self.uninteresting_emailers else None
+            )
             for name in names
         ]
 
@@ -436,11 +432,11 @@ class EpsteinFiles:
 
     def _find_email_attachments_and_set_is_first_for_user(self) -> None:
         """Add documents with configured `attached_to_email_id` to the `Email`s they're attached to."""
-        email_attachments = [f for f in self.other_files if f._config.attached_to_email_id]
-        logger.warning(f"Finding homes for {len(email_attachments)} known email attachments...")
-
         for email in self.emails:
             email.attached_docs = []  # Remove all attachments before re-finding them in case it's a repair
+
+        email_attachments = [f for f in self.other_files if f._config.attached_to_email_id]
+        logger.warning(f"Finding homes for {len(email_attachments)} known email attachments...")
 
         for attachment in email_attachments:
             email = self.get_id(attachment._config.attached_to_email_id, required_type=Email)
@@ -463,10 +459,11 @@ class EpsteinFiles:
         """Same as _finalize_data_and_write_to_disk() but prints new docs and asks for permission."""
         if len(new_docs) < 100:
             console.print(*new_docs)  # Print for user review
+            logger.warning(f"Finalizing {len(new_docs)} files...")
         else:
-            logger.warning(f"Too many new documents to show previews!")
+            logger.warning(f"Too many new documents ({len(new_docs)}) to show previews...")
 
-        logger.warning(f"Finalizing {len(new_docs)} files: {[d.file_id for d in new_docs]}")
+        Document._print_ids(new_docs, 'newly loaded or repaired by EpsteinFiles')
         ask_to_proceed("Looks good?")
         self._finalize_data_and_write_to_disk(new_docs)
 
