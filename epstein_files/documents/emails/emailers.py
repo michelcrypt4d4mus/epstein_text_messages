@@ -113,8 +113,7 @@ for entity in CONFIGURED_ENTITIES:
 # file IDs that contain a unique signifier but do not involve that person
 IDENTIFIER_FALSE_ALARMS = ['EFTA00961792']
 
-
-# Elements of this list will not trigger warnings in get_entity
+# Elements of this list will not trigger warnings in get_entity when they are found missing
 NO_WARNING_NAMES = [
     '',
     'American Express Travel',

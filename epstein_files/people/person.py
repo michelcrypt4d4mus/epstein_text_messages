@@ -76,48 +76,6 @@ class Person(DocTypesMixin, LoggingEntity):
         self._documents = Document.sort_by_timestamp(self.documents)
         self._populate_entity()
 
-    def _populate_entity(self) -> None:
-        """Construct a fallback `Entity` for unconfigured names."""
-        self.entity = get_entity(self.name or '')
-
-        if self.entity.info:
-            return
-
-        # Fallback to style and category from regex match on string
-        if (highlight_group := get_highlight_group_for_name(self.name)):
-            self.entity.style = self.entity.style or highlight_group.style
-
-            if isinstance(highlight_group, HighlightedNames):
-                self.entity.category = self.entity.category or highlight_group.category_str
-
-        # Set Entity's info + style for uninteresting CCs
-        if len(self.emails_by) == 0 and self.is_interesting is False:
-            if self.entity.style:
-                self.entity._debug_log(f'already has style {self.entity.style}')
-
-            # A person who wrote no emails stil might be interesting if they received email directly from Epstein
-            if (lone_sender := self.sole_cc_author):
-                info = f"cc: from {lone_sender} only"
-                self.entity.style = self.entity.style or SOLE_CC_STYLE
-            if self.has_any_epstein_emails:
-                info = UNINTERESTING_CC_INFO
-                self.entity.style = self.entity.style or SOLE_CC_STYLE
-            else:
-                info = UNINTERESTING_CC_INFO_NO_CONTACT
-                self.entity.style = self.entity.style or SOLE_CC_NO_CONTACT_STYLE
-
-            self.entity.info = f"({info})"
-        elif self.name in MAILING_LISTS:
-            self.entity.info = '(mailing list)'
-            self.entity.style = self.entity.style or 'pale_turquoise4 dim'
-        elif self.is_a_mystery or self.entity.style:
-            self.entity.info = QUESTION_MARKS
-            self.entity.style = self.entity.style or 'honeydew2 bold'
-            self.entity.style = self.entity._style.dim
-
-        if not self.entity.info:
-            self.entity._warn(f"no entity info determinable...")
-
     @property
     def header_panel_bio_txt(self) -> Text | None:
         """The text that appears as the bio line in the header panel for a person's emails."""
@@ -348,6 +306,48 @@ class Person(DocTypesMixin, LoggingEntity):
         padded_table = Padding(table, (0, 5, 0, 5))
         logger.debug(f"built emails table for '{self.name}' with {len(table.columns)} cols and {table.row_count} rows")
         return padded_table
+
+    def _populate_entity(self) -> None:
+        """Construct a fallback `Entity` for unconfigured names."""
+        self.entity = get_entity(self.name or '')
+
+        if self.entity.info:
+            return
+
+        # Fallback to style and category from regex match on string
+        if (highlight_group := get_highlight_group_for_name(self.name)):
+            self.entity.style = self.entity.style or highlight_group.style
+
+            if isinstance(highlight_group, HighlightedNames):
+                self.entity.category = self.entity.category or highlight_group.category_str
+
+        # Set Entity's info + style for uninteresting CCs
+        if len(self.emails_by) == 0 and self.is_interesting is False:
+            if self.entity.style:
+                self.entity._debug_log(f'already has style {self.entity.style}')
+
+            # A person who wrote no emails stil might be interesting if they received email directly from Epstein
+            if (lone_sender := self.sole_cc_author):
+                info = f"cc: from {lone_sender} only"
+                self.entity.style = self.entity.style or SOLE_CC_STYLE
+            if self.has_any_epstein_emails:
+                info = UNINTERESTING_CC_INFO
+                self.entity.style = self.entity.style or SOLE_CC_STYLE
+            else:
+                info = UNINTERESTING_CC_INFO_NO_CONTACT
+                self.entity.style = self.entity.style or SOLE_CC_NO_CONTACT_STYLE
+
+            self.entity.info = f"({info})"
+        elif self.name in MAILING_LISTS:
+            self.entity.info = '(mailing list)'
+            self.entity.style = self.entity.style or 'pale_turquoise4 dim'
+        elif self.is_a_mystery or self.entity.style:
+            self.entity.info = QUESTION_MARKS
+            self.entity.style = self.entity.style or 'honeydew2 bold'
+            self.entity.style = self.entity._style.dim
+
+        if not self.entity.info:
+            self.entity._warn(f"no entity info determinable...")
 
     def __str__(self):
         return f"{self.name_str}"
