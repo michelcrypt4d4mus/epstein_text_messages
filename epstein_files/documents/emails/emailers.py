@@ -120,6 +120,7 @@ NO_WARNING_NAMES = [
     # 'Leo',
     'Unik',
     'Vlad',
+    'karen',
 ]
 
 

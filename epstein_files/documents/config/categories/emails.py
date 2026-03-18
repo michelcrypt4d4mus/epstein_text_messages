@@ -408,6 +408,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='031451', is_interesting=True, highlight_quote='would you like photso of donald and girls in bikinis in my kitchen'),
     EmailCfg(id='031596', is_interesting=True, highlight_quote='would you like photso of donald and girls in bikinis in my kitchen', truncate_to=500),
     EmailCfg(id='031601', is_interesting=True, highlight_quote='Old gf i gave to donald', truncate_to=2000),
+    EmailCfg(id='EFTA02641374', highlight_quote='the mongolians are also going after you.  shame on you'),
     EmailCfg(id='EFTA00832976', is_interesting=True, highlight_quote="i represent the rothschilds"),
     # actual_text
     EmailCfg(id='029344', actual_text='I thought of you when I read this article. Was this your idea? Alan', is_fwded_article=True),
@@ -1379,6 +1380,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00398724', truncate_to=700),
     EmailCfg(id='EFTA00362171', truncate_to=1096),
     EmailCfg(id='EFTA02606529', truncate_to=1500),
+    EmailCfg(id='EFTA02143419', truncate_to=1500),
     EmailCfg(id='EFTA00836570', truncate_to=1600),
     EmailCfg(id='EFTA00859299', truncate_to=2000),
     EmailCfg(id='EFTA00681240', truncate_to=2000),

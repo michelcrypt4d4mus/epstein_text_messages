@@ -215,7 +215,8 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Entity('Miles Alexander', "Operations Manager Michaelhouse Balgowan KwaZulu-Natal South Africa", match_partial=None),
             Entity('Macky Sall', "prime minister of Senegal, defeated Abdoulaye Wade", match_partial=None),
             Entity('Okey Enelamah', f"Nigerian trade minister"),
-            Entity(RASSECK_BOURGI, f"{KARIM_WADE}'s lawyer", r"(Rasseck|Ute) Bourgi", match_partial='both'),
+            Entity(RASSECK_BOURGI, f"{KARIM_WADE}'s lawyer", r"(Rasseck|Ute) Bourgi?", match_partial='both'),
+            Entity('Ute Bourgi', f"wife of {RASSECK_BOURGI}", match_partial=None),
             Entity('Yoweri Museveni', 'president of Uganda', match_partial='both'),
             Entity(
                 'Willis Knuckles',
@@ -470,6 +471,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 f"AI researcher/professor in Hong Kong, did PR for Epstein, friend of {MASHA_DROKOVA}?",
                 match_partial=None,
             ),
+            Entity('Jack Jinliang'),
             Entity(
                 MILES_GUO,
                 "organized crime boss connected to Chinese intelligence, friend of Steve Bannon who was arrested on his yacht)",
@@ -481,6 +483,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                     'https://www.pbs.org/newshour/nation/chinese-businessman-and-bannon-business-partner-arrested-in-1-billion-fraud-conspiracy',
                 ],
             ),
+            Entity('Nannan'),
             Entity(
                 'Stanley Ho',
                 'gambling magnate connected to / possible head of organized crime group',
@@ -1081,8 +1084,9 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             epstein_co('SCI JEP'),
             epstein_co('Southern Country International'),
             epstein_co('Thomas World Air'),
-            epstein_co('Zorro Management'),
             epstein_co('Zorro Development Corp'),
+            epstein_co('Zorro Management'),
+            epstein_co('Zorro Ranch', "Epstein property in New Mexico"),
             epstein_trust('2007'),
             epstein_trust('2012', trustees=[ANDREW_FARKAS, DARREN_INDYKE, JES_STALEY]),
             epstein_trust('2014', trustees=[DARREN_INDYKE, DAVID_MITCHELL, JES_STALEY]),
@@ -1401,6 +1405,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         entities=[
             Entity(AMANDA_ENS, "Citigroup", r"ens, amanda?|Amanda.Ens", match_partial=None),
             Entity('Andrew Gallivan', f"manager at {DEUTSCHE_BANK}"),
+            Entity('Anthony Cuti', 'accountant at Rothstein Kass'),
             Entity(
                 'Ari Glass',
                 f'Boothbay manager whom Epstein called "a bit sketchy" but invested $50 million with',
@@ -2241,6 +2246,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         label=MIDEAST,
         style='dark_sea_green4',
         entities=[
+            Entity('Abdullah Al Maari', f"wrote on behalf of {AZIZA_ALAHMADI} about visa for Epstein girls"),
             Entity(
                 'Adnan Khashoggi',
                 'arms dealer involved in the Iran-Contra scandal, Epstein\'s former employer',
@@ -3321,6 +3327,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Entity(JACK_SCAROLA, "Searcy Denney Scarola Barnhart & Shipley attorney"),
             Entity(KEN_JENNE, ROTHSTEIN_ROSENFELDT_ADLER_ATTORNEY),
             Entity(LAURA_A_MENNINGER, 'Haddon, Morgan and Foreman P.C.'),
+            Entity('Meredith Firetog', f"Wigdor Law {QUESTION_MARKS}"),
             Entity(PAUL_G_CASSELL, 'professor at University of Utah, victim advocate'),
             Entity(SCOTT_ROTHSTEIN, f"{ROTHSTEIN_ROSENFELDT_ADLER_ATTORNEY}, ran massive Ponzi scheme", match_partial=None),
             Entity(STANLEY_POTTINGER, f"{VIRGINIA_GIUFFRE} legal team while working for Epstein", r"(J\.? )?(Stan(ley)? )?Pottinger"),
@@ -3548,6 +3555,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         style=FINANCIAL_COLOR,
         use_word_boundary=True,
         patterns=[
+            r"1040",
             r"accountant",
             r"accounting firm",
             r"American Express",
@@ -3570,6 +3578,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"hedge fund",
             r"(?<!Kyara\s)invest(ment|or)s?(\sadvis[eo]r[sy]?)?",
             r"(junk )?bond",
+            r"K-[12]",
             r"Managing Director",
             r"Mastercard",
             r"money",

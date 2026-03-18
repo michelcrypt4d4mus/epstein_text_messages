@@ -170,6 +170,8 @@ UNINTERESTING_EMAIL_IDS = [
     '030154',
     # Eric Roth
     '033386',
+    # exsbank
+    'EFTA02166987',
     # FBI
     'EFTA00039971',  # Attached 302 is missing?
     # Ganbat
