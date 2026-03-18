@@ -8,7 +8,7 @@ from rich.style import Style
 from rich.text import Text
 
 from epstein_files.output.html.rich_style import RichStyle
-from epstein_files.people.names import Name, constantize_name, extract_first_name, extract_last_name
+from epstein_files.people.names import UNKNOWN, Name, constantize_name, extract_first_name, extract_last_name
 from epstein_files.util.constant.strings import INDENT_NEWLINE, INDENTED_JOIN, LAW_ENFORCEMENT, WIKIPEDIA, PartialName
 from epstein_files.util.constant.urls import EPSTEINIFY, PERSON_LINK_BUILDERS, EpsteinSite, wikipedia_url
 from epstein_files.util.env import args, site_config
@@ -19,6 +19,7 @@ from epstein_files.util.helpers.string_helper import (as_pattern, indented, is_i
      join_truthy, quote, remove_question_marks)
 from epstein_files.util.logging import logger
 from epstein_files.util.logging_entity import LoggingEntity
+from epstein_files.util.constant.urls import internal_person_link_url
 
 AKA_STYLE = 'grey39 italic'
 BIO_COLOR = 'grey70'
@@ -159,8 +160,13 @@ class Entity(LoggingEntity):
         return ', '.join(without_falsey([self.category, self.info]))
 
     @property
+    def internal_link(self) -> Text:
+        """Kind of like an anchor link to the section of the page containing these emails."""
+        return link_text_obj(internal_person_link_url(self.name), self.name, self.style)
+
+    @property
     def is_email_address(self) -> bool:
-        return '@' in (self.name or '')
+        return '@' in self.name
 
     @property
     def is_linkable(self) -> bool:

@@ -70,17 +70,12 @@ class Person(DocTypesMixin, LoggingEntity):
     name: Name = None
     is_interesting: bool | None = None
     entity: Entity = field(init=False)  # TODO: rename 'entity'
+    is_configured_entity: bool = False  # True if Entity is configured, False if it's derived for e.g. uninteresting CCs
     _searched_for_highlight_group: bool = False
 
     def __post_init__(self):
         self._documents = Document.sort_by_timestamp(self.documents)
         self._populate_entity()
-
-    @property
-    def header_panel_bio_txt(self) -> Text | None:
-        """The text that appears as the bio line in the header panel for a person's emails."""
-        if self.info_with_category:
-            return Text(f"({self.info_with_category})", justify='center', style=f"{self._email_info_style} italic")
 
     @property
     def category(self) -> str:
@@ -140,14 +135,10 @@ class Person(DocTypesMixin, LoggingEntity):
         return JEFFREY_EPSTEIN in contacts
 
     @property
-    def info_with_category(self) -> str:
-        """Configured biographical info (if any) preceded by configured category (if any)."""
-        return ', '.join(without_falsey([self.category, self.entity.info]))
-
-    @property
-    def internal_link(self) -> Text:
-        """Kind of like an anchor link to the section of the page containing these emails."""
-        return link_text_obj(internal_person_link_url(self.name_str), self.name_str, style=self.style())
+    def header_panel_bio_txt(self) -> Text | None:
+        """The text that appears as the bio line in the header panel for a person's emails."""
+        if self.is_configured_entity and self.entity.info_with_category:
+            return Text(f"({self.entity.info_with_category})", justify='center', style=f"{self._email_info_style} italic")
 
     @property
     def is_a_mystery(self) -> bool:
@@ -160,7 +151,7 @@ class Person(DocTypesMixin, LoggingEntity):
 
     @property
     def name_txt(self) -> Text:
-        return styled_name(self.name)
+        return styled_name(self.name_str)
 
     @property
     def other_files_shown_with_emails(self) -> list[OtherFile]:
@@ -209,7 +200,7 @@ class Person(DocTypesMixin, LoggingEntity):
     def table_txt(self) -> Text | None:
         """Text that appears next to this name in tables of emailers."""
         self._populate_entity()
-        for table_txt_key in [self.name, self.category]:
+        for table_txt_key in [self.name, self.entity.category]:
             if table_txt_key in TABLE_TXTS:
                 return TABLE_TXTS[table_txt_key]     # Return preconfigured in some cases
 
@@ -257,7 +248,7 @@ class Person(DocTypesMixin, LoggingEntity):
             title_suffix = f"{TO_FROM} {self.name_str} starting {self.earliest_email_date} covering {num_days:,} days"
 
         title = f"Found {email_count} emails {title_suffix}"
-        width = max(MIN_AUTHOR_PANEL_WIDTH, len(title) + 4, len(self.info_with_category) + 8)
+        width = max(MIN_AUTHOR_PANEL_WIDTH, len(title) + 4, len(self.entity.info_with_category) + 8)
         panel_style = f"black on {self._email_info_style} bold"
         return Panel(Text(title, justify='center'), width=width, style=panel_style)
 
@@ -309,9 +300,10 @@ class Person(DocTypesMixin, LoggingEntity):
 
     def _populate_entity(self) -> None:
         """Construct a fallback `Entity` for unconfigured names."""
-        self.entity = get_entity(self.name or '')
+        self.entity = get_entity(self.name or UNKNOWN)
 
         if self.entity.info:
+            self.is_configured_entity = True
             return
 
         # Fallback to style and category from regex match on string
@@ -421,7 +413,7 @@ class Person(DocTypesMixin, LoggingEntity):
 
             table.add_row(
                 Text(str(earliest_email_date), style=f"grey{GREY_NUMBERS[0 if is_selection else grey_idx]}"),
-                person.internal_link if is_on_page and person.is_interesting is not False else person.name_txt,
+                person.entity.internal_link if is_on_page and person.is_interesting is not False else person.name_txt,
                 person.category_txt,
                 f"{len(person.unique_emails if show_epstein_total else person._unique_printable_emails)}",
                 str(len(person.unique_emails_by)) if len(person.unique_emails_by) > 0 else '',

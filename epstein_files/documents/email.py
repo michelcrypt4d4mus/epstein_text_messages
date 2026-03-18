@@ -106,7 +106,8 @@ OCR_REPAIRS: OcrRepair = {
     re.compile(r"([,<>_]|AM|PM)\n(>)? ?wrote:?"): r'\1\2 wrote:',
     # Headers
     re.compile(r"^From "): 'From: ',  # first line only
-    re.compile(r"^(From|To)(: )?[_1.]{5,}", re.MULTILINE): rf"\1: {REDACTED}",  # Redacted email addresses
+    re.compile(r"^((From|To):? ?)[_1.]{5,}", re.MULTILINE): rf"\1: {REDACTED}",  # Redacted email addresses
+    re.compile(fr"^(From|To) ?{REDACTED}", re.MULTILINE): fr"\1: {REDACTED}",
     re.compile(r"I ?(od|nl)ine-Images:"): 'Inline-Images:',
     re.compile(r"^((?:B?cc|To):.*)\n(>?;.*)", re.IGNORECASE | re.MULTILINE): r'\1 \2',
     re.compile(r"^(Sent|Subject) (?![Ff]rom|on|using|[Rr]emote|[Vv]ia|with)", re.MULTILINE): r'\1: ',

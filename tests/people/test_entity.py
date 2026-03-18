@@ -80,7 +80,7 @@ def test_highlight_pattern():
     assert jean_luc.highlight_pattern == r'Jean[-_.\s]*Luc[-_.\s]*Brunel?|Brunel,?[-_.\s]*Jean[-_.\s]*Luc|Jean[-_.\s]*Luc|Brunel'
 
 
-def test_middle_initial():
+def test_middle_initial(epstein):
     assert epstein._middle_initial == ''
     assert Entity('Robert Dow Critton')._middle_initial == ''
     assert Entity('Robert D Critton')._middle_initial == 'D'
@@ -113,10 +113,9 @@ def test_pattern():
     assert Entity('Alan J. Dlugash').pattern == r"Alan[-_.\s]*(J\.?[-_.\s]*)?Dlugash?"
 
 
-def test_repr():
+def test_repr(epstein):
     jee = deepcopy(epstein)
     jee.style = 'bright_red'
-
     assert repr(jee) == r"""Entity(
     name=JEFFREY_EPSTEIN,
     info="one and only",
