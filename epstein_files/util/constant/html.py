@@ -39,7 +39,7 @@ class HtmlTemplate:
 </html>"""
 
     def js_redirect(self) -> str:
-        if args.mobile:
+        if args.mobile or args.names:
             return ''
         else:
             return """

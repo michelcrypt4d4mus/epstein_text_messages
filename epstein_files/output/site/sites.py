@@ -95,7 +95,7 @@ class Site(StrEnum):
     @classmethod
     def get_mobile_redirect_url(cls, site: Self) -> str:
         """Mobile defaults to chronological."""
-        if Site.is_mobile(site):
+        if cls.is_mobile(site) or site == cls.NAMES:
             return cls.get_url(site)
         elif site == cls.CURATED:
             redirect_type = cls.CURATED_MOBILE
