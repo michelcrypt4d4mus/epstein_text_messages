@@ -2247,7 +2247,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         label=MIDEAST,
         style='dark_sea_green4',
         entities=[
-            Entity('Abdullah Al Maari', f"wrote on behalf of {AZIZA_ALAHMADI} about visa for Epstein girls"),
+            Entity('Abdullah Al Maari', f"works with {AZIZA_ALAHMADI} {QUESTION_MARKS}"),
             Entity(
                 'Adnan Khashoggi',
                 'arms dealer involved in the Iran-Contra scandal, Epstein\'s former employer',
@@ -2426,7 +2426,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 r"Antoine Verg[li]as",
                 url='https://www.vanityfair.com/news/story/melania-trump-epstein-files',
             ),
-            Entity(ATHENA_ZELCOVICH, 'actress', r"Athe(na )?Zelco(vich)?", url='https://www.imdb.com/name/nm5631006/'), # Skype: athezelco
+            Entity(ATHENA_ZELCOVICH, 'actress', r"Athe(na )?Zelco(vich)?", url='https://www.imdb.com/name/nm5631006/'),  # Skype: athezelco
             Entity(
                 DANIEL_SIAD,
                 'model scout funded by Epstein to recruit in eastern Europe',
@@ -2452,7 +2452,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Entity(MANUELA_MARTINEZ, "Mega Partners (Brazilian agency)", r"Manuela (- Mega Partners|Martinez)", match_partial=None),
             Entity(MARIANA_IDZKOWSKA, 'Polish model, island visitor', r"Mariana [Il]d[źi]kowska?"),
             Entity('Michael Sanka', f"{JEAN_LUC_MC2} {QUESTION_MARKS}"),
-            Entity(NAOMI_CAMPBELL, 'supermodel', match_partial=None),
+            Entity(NAOMI_CAMPBELL, 'supermodel', match_partial=None, url=WIKIPEDIA),
             Entity(
                 'Ofer Raphaeli',
                 f'founder of the Israeli branch of {JEAN_LUC_MC2}',
@@ -2472,7 +2472,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             ),
             # Contact('Regina', f'model, Epstein and {FAITH_KATES} tried to get her a contract'),
             Entity('Vladimir Yudashkin', "director of the 1 Mother Agency"),
-            Entity('Yfke Sturm', 'model from Holland', url='https://en.wikipedia.org/wiki/Yfke_Sturm', match_partial='both'),
+            Entity('Yfke Sturm', 'model from Holland', match_partial='both', url=WIKIPEDIA),
             Entity('lorraine@mc2mm.com', JEAN_LUC_MC2),
             Entity('pink@mc2mm.com', JEAN_LUC_MC2, r"^Pink$|pink@mc2mm\.com"),
             Entity(
@@ -2482,6 +2482,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 match_partial='both',
                 url='https://en.wikipedia.org/wiki/Girl_Model',
             ),
+            # Orgs
             Organization('2morrow'),
             Organization('Elite Models', 'well known modeling agency'),
             Organization('Icarine', f"agency with connections to {JEAN_LUC_BRUNEL}"),
@@ -2520,15 +2521,10 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 url='https://www.businessinsider.com/profile-ian-osborne-cofounder-chamath-palihapitiya-social-capital-hedosophia-spac-2021-5'
             ),
             Entity('Lila Walker', f"assistant to {PEGGY_SIEGAL}", match_partial=None),
-            Entity(MATTHEW_HILTZIK, "crisis PR at Hiltzik Strategies", r"(Matt(hew)? )?Hiltzi[gk]"),
+            Entity(MATTHEW_HILTZIK, "crisis PR at Hiltzik Strategies", r"(Matt(hew)? )?Hiltzi[gk]", url=WIKIPEDIA),
             Entity(MICHAEL_SITRICK, "crisis PR", r"(Mi(chael|ke).{0,5})?[CS]itrick"),
             Entity('Owen Blicksilver', "OBPR, Inc."),
-            Entity(
-                PEGGY_SIEGAL,
-                "socialite, movie promoter",
-                r"Peggy Sieg[ae]l?",
-                url='https://en.wikipedia.org/wiki/Peggy_Siegal',
-            ),
+            Entity(PEGGY_SIEGAL, "socialite, movie promoter", r"Peggy Sieg[ae]l?", url=WIKIPEDIA),
             Entity('R. Couri Hay', 'PR (?)'),
             Entity(ROSS_GOW, "Acuity Reputation Management", r"Ross(acuity)? Gow|(ross@)?acuity reputation(\.com)?"),
             Entity(
@@ -2557,15 +2553,15 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 r"(Alex(ander)? )?Acosta",
                 url='https://www.npr.org/2019/07/12/739881163/alexander-acosta-steps-down-as-labor-secretary-amid-epstein-controversy',
             ),
-            Entity('Betsy Devos', 'heir to the Amway multi-level marketing fortune, brother of Erik Prince, Trump education secretary', match_partial=None),
+            Entity('Betsy Devos', 'heir to the Amway multi-level marketing fortune, brother of Erik Prince, Trump education secretary', match_partial=None, url=WIKIPEDIA),
             Entity('Chris Christie', 'former governor of New Jersey, Trump 1.0 transition team head', r"(Chris\s+)?Christie"),
             Entity('Darrell Issa', 'congressman described as a Russian agent by other Republicans, helped form SpaceX'),
             Entity('Don McGahn', 'White House Counsel to Trump 1.0'),
             Entity('Elliott Broidy', 'fundraiser, impregnated / paid off / paid for an abortion for a Playboy Playmate he had affair with'),
-            Entity('Juleanna Glover', "CEO of D.C. public affairs advisory firm Ridgely|Walsh"),
-            Entity(RUDY_GIULIANI, 'disbarred former mayor of NYC'),
-            Entity(TULSI_GABBARD, 'former Democrat, National Security Advisor under Trump 2.0'),
-            Entity('Nikki Haley', match_partial='both'),
+            Entity('Juleanna Glover', "CEO of powerful DC lobbying firm Ridgely|Walsh", url=WIKIPEDIA),
+            Entity(RUDY_GIULIANI, 'disbarred former mayor of NYC', url=WIKIPEDIA),
+            Entity(TULSI_GABBARD, 'former Democrat, National Security Advisor under Trump 2.0', url=WIKIPEDIA),
+            Entity('Nikki Haley', match_partial='both', url=WIKIPEDIA),
         ],
         patterns=[
             r"Alberto Gonzale[sz]",
@@ -2703,11 +2699,12 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Entity(
                 YURI_MILNER,
                 f'Russian-Israeli investor whom Epstein says is managing "Russian gangster money"',
-                url='https://www.nytimes.com/2017/11/05/world/yuri-milner-facebook-twitter-russia.html',
                 match_partial='both',
+                url='https://www.nytimes.com/2017/11/05/world/yuri-milner-facebook-twitter-russia.html',
             ),
             Entity('Yury Molodtsov', f"assistant to {MASHA_DROKOVA} {QUESTION_MARKS}"),
-            Organization('Alfa Bank', 'Russian bank often used by FSB', r"Alfa( Bank)?"),
+            # Orgs
+            Organization('Alfa-Bank', 'largest private bank in Russia, often used by FSB', r"Alfa( Bank)?", url=WIKIPEDIA),
             Organization('Apoletto', f"VC firm associated with {YURI_MILNER}"),
             Organization('Buryat', "Mongol ethnic group native to southeastern Siberia", r"Buryat[is]?"),
             Organization('Day One Ventures', f"silicon valley venture fund run by {MASHA_DROKOVA}"),
@@ -2728,6 +2725,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         ],
         patterns=[
             r"Bel[ao]rus(sian)?",
+            r"Chech(en|nyan?)",
             r"Chernobyl",
             r"Crimea",
             r"(Dmitry )?(Kiselyov|Medvedev)",
