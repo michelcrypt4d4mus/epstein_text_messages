@@ -339,9 +339,6 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"shirley maclaine",
             r"Sotheby's",
             r"Zach Braff",
-            # Video games
-            r"Call of Duty",
-            r"World of Warcraft",
         ],
     ),
     HighlightedNames(
@@ -3140,6 +3137,9 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Uber",
             r"WhatsApp",
             r"(?-i:Y)ahoo",
+            # Video games
+            r"Call of Duty",
+            r"World of Warcraft",
         ],
     ),
     # aquamarine1
