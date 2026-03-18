@@ -76,10 +76,6 @@ class DocPrinter(DocTypesMixin):
         return self.emails
 
     @property
-    def printed_file_displays(self) -> list[FileDisplay]:
-        return [e for e in self._documents if isinstance(e, FileDisplay)]
-
-    @property
     def printed_ids(self) -> list[str]:
         return [f.file_id for f in self.printed_docs]
 
@@ -139,6 +135,7 @@ class DocPrinter(DocTypesMixin):
         Args:
             docs (Sequence[PrintableObj]): objs to print
             suppressed_as_normal (bool, optional): if True docs with suppression msgs will be treated like normal Documents
+            log_sfx (str, optional): just for log messages
         """
         suppressed_docs: list[Document] = []
         process_suppressed_docs_queue = lambda: suppressed_docs.extend(self._print_suppression_msgs_queue())
@@ -189,7 +186,8 @@ class DocPrinter(DocTypesMixin):
             elif isinstance(positioned.obj, PrintableObj):
                 doc_bios_html = self._build_biographies_panel_html(self.new_entities_with_bios(positioned.obj))
                 self._append_element_with_bio_div(positioned.obj.to_html(), doc_bios_html)
-                self._documents.append(positioned.obj)  # TODO: stop appending FileDisplay objs
+                doc = positioned.obj.document if isinstance(positioned.obj, FileDisplay) else positioned.obj
+                self._documents.append(doc)
             elif isinstance(positioned.obj, Table):
                 html_table = positioned.to_html()  # TODO: currently the only type that delegates to the PositionedRich obj to get HTML
 

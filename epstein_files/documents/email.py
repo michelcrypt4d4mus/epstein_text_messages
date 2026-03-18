@@ -587,6 +587,7 @@ class Email(Communication):
         """Allows for proper right vs. left justify."""
         return FileDisplay(
             body_panel=self._body_as_table(),
+            document=self,
             file_info=self.file_id_panel,
             indent=site_config.info_indent,
             justify=align,
