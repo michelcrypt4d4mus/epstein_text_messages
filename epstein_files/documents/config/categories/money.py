@@ -19,6 +19,7 @@ MONEY_CFGS = [
 
     # DOJ files
     DocCfg(id='EFTA00803405', author=HONEYCOMB_ASSET_MANAGEMENT, note="fund brochure", truncate_to=DEFAULT_TRUNCATE_TO),
+    DocCfg(id='EFTA00006069', author='NES LLC', note='W-2 tax form issued for employee whom Epstein paid $185,323 in 2005', date='2006-01-01'),
     DocCfg(
         id='EFTA01413294',
         comment='related to EFTA01357341, efta01363125, + more based on Vavilov Street address',
@@ -110,6 +111,8 @@ MONEY_CFGS = [
         author_uncertain=True,
         note=f"Ike Groff invests $250,000 in Mangrove Partners managed by Nathaniel August",
     ),
+    EmailCfg(id='EFTA01375243', note=f"{DEUTSCHE_BANK} anti-money laundering team flags Epstein's $237k transfer to {SVETLANA_POZHIDAEVA}'s family"),
+    EmailCfg(id='EFTA00382048', note=f'setting up an ISDA (special account for high volume traders) with {DEUTSCHE_BANK}'),
     EmailCfg(id='EFTA00629657', note=f"arranging {LEON_BLACK}'s finances"),
     EmailCfg(id='EFTA00371120', note=f"Epstein appears to invest in {ATORUS}"),
     EmailCfg(id='EFTA00652799', note=f'Epstein calls Ari Glass "a bit sketchy" despite investing ~$50 million in his fund Boothbay'),

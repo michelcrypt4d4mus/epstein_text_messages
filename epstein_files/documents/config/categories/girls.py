@@ -7,6 +7,7 @@ from epstein_files.documents.config.email_cfg import EmailCfg
 from epstein_files.output.highlight_config import DITE_ANATA_JUILLIARD_URL
 from epstein_files.people.names import *
 from epstein_files.util.constant.strings import *
+from epstein_files.util.constant.urls import SVETLANA_NEWSGROUND
 from epstein_files.util.helpers.string_helper import join_truthy, quote
 from epstein_files.util.logging import logger
 
@@ -35,6 +36,15 @@ GIRLS_CFGS = [
     DocCfg(id='EFTA02701609', author=GIANNI_SERAZZI, note='2morrow business plan', date='2014-09-30', date_uncertain=True),
     DocCfg(id='EFTA01078143', author=GIANNI_SERAZZI, note='2morrow modeling pitch deck', date='2014-09-30', date_uncertain=True),
     DocCfg(id='EFTA00306033', author=SERGEY_BELYAKOV, note='Epstein Russian visa', show_full_panel=True),
+    DocCfg(
+        id='EFTA01366289',
+        author='Butterfly Trust',
+        date='2015-03-30',
+        is_interesting=20,
+        note=f"transfer of $237,270 to {SVETLANA_POZHIDAEVA}'s father Raiffeisenbank from account at Standard Chartered Bank",
+        show_full_panel=True,
+        show_with_name=SVETLANA_POZHIDAEVA,
+    ),
     DocCfg(id='EFTA00014648', note='former employee "understood that all the girls were school girls"', show_full_panel=True),
     DocCfg(id='EFTA00022133', note='table showing a list of Epstein accusations collection from public press reporting'),
     DocCfg(
@@ -213,6 +223,27 @@ GIRLS_CFGS = [
     EmailCfg(id='EFTA01772677', author=SVETLANA_POZHIDAEVA, author_uncertain='device signature'),
     EmailCfg(id='EFTA01877224', author=SVETLANA_POZHIDAEVA, author_uncertain=f"{JOSHUA_FINK} texts", is_interesting=10),
     EmailCfg(id='EFTA00937507', author=SVETLANA_POZHIDAEVA, author_uncertain=f"{JOSHUA_FINK} texts", is_interesting=10),
+    EmailCfg(
+        id='EFTA01744405',
+        author=SVETLANA_POZHIDAEVA,
+        is_interesting=10,
+        note=f"{SVETLANA_POZHIDAEVA} discusses her father (an FSB officer) and 'Josh' (presumably {JOSHUA_FINK})",
+        url=SVETLANA_NEWSGROUND,
+    ),
+    EmailCfg(
+        id='EFTA02475964',
+        note=f"Epstein thanks {SVETLANA_POZHIDAEVA}'s father, a former (?) FSB officer",
+        is_interesting=20,
+        recipients=[SVETLANA_POZHIDAEVA],
+        url=SVETLANA_NEWSGROUND,
+    ),
+    EmailCfg(
+        id='EFTA02480401',
+        highlight_quote='i re=iewed payment of 237,270 for svet family',
+        is_interesting=20,
+        note=f'"svet family" is {SVETLANA_POZHIDAEVA}\'s family in Russia',
+        show_with_name=SVETLANA_POZHIDAEVA,
+    ),
     EmailCfg(id='EFTA02431535', author=UNKNOWN_GIRL),
     EmailCfg(id='EFTA01875607', author=UNKNOWN_GIRL),
     EmailCfg(id='EFTA00901581', author=UNKNOWN_GIRL),
@@ -432,6 +463,7 @@ GIRLS_CFGS = [
     EmailCfg(id='EFTA01995972', highlight_quote='you are meeting elon tmr for lunch'),
     EmailCfg(id='EFTA01998027', highlight_quote="What day/night will be the wildest party on your island?", is_interesting=True),
     EmailCfg(id='EFTA01930501', highlight_quote="Your littlest girl was a little naughty"),
+    EmailCfg(id='EFTA01926961', author=SVETLANA_POZHIDAEVA, highlight_quote="If you take too many more trips to Russia, I'm going to assume that you're FSB/ KGB by your parents"),
     EmailCfg(id='DropSite 2006-05-29 1329', highlight_quote='I am giving the little girl a modeling\n> lesson'),
 
     # Josh Fink
@@ -480,6 +512,10 @@ GIRLS_CFGS = [
         is_interesting=True,
         truncate_to=1500,
     ),
+    EmailCfg(id='EFTA01849371', note=f"{SVETLANA_POZHIDAEVA} meets Larry Fink", truncate_to=500),
+    # EmailCfg(id='EFTA01849371', note=f"{SVETLANA_POZHIDAEVA} meets Nat Rothschild", show_with_name=SVETLANA_POZHIDAEVA),
+    EmailCfg(id='EFTA02605514', author=SVETLANA_POZHIDAEVA, note=f"{SVETLANA_POZHIDAEVA} meets {BILL_GATES}"),
+    EmailCfg(id='EFTA01895036', note=f"Epstein invites {ELON_MUSK} to Paris", highlight_quote='svetlana will be in paris 17-20'),
     EmailCfg(id='EFTA02142175', note=f"{DARREN_INDYKE} meeting {JEAN_LUC_BRUNEL} at Karin Models office"),
     EmailCfg(id='EFTA01840103', note="Epstein apparently suggesting amphetamines (adderall)", is_interesting=10),
     EmailCfg(id='EFTA01987855', note=f'Epstein, Brunel, and {SULTAN_BIN_SULAYEM} very interested in a Liberian sex scandal'),
