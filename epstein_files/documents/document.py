@@ -236,7 +236,7 @@ class Document(LoggingEntity):
     @property
     def info(self) -> list[Text]:
         """0 to 2 sentences containing the info_txt() as well as any configured description."""
-        return without_falsey([self.subheader, self._config.description_txt])
+        return without_falsey([self.subheader, self._config.note_txt])
 
     @property
     def is_duplicate(self) -> bool:

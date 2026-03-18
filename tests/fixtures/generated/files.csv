@@ -358,14 +358,14 @@ file_id,category,author,is_interesting,timestamp,recipients_str,sent_from_device
 022771,email,,True,2016-01-20 03:46:00+00:00,Jeffrey Epstein,,
 022773,email,,True,2016-01-21 00:19:00+00:00,Jeffrey Epstein,,
 022776,email,,True,2016-01-22 14:28:00+00:00,Jeffrey Epstein,,
-022780,flight_log,,True,2003-07-03 00:00:00+00:00,,,
+022780,flight_log,,True,2003-07-03 00:00:00+00:00,,,flight log
 022801,email,,True,2016-02-15 15:25:00+00:00,Jeffrey Epstein,,
 022805,email,Landon Thomas Jr,,2017-11-07 14:26:43+00:00,Jeffrey Epstein,,
 022806,email,Landon Thomas Jr,,2017-11-07 15:00:15+00:00,Jeffrey Epstein,,
 022808,email,Landon Thomas Jr,,2017-11-08 13:48:26+00:00,Jeffrey Epstein,,
 022811,article,Law.com,False,2018-01-09 00:00:00+00:00,,,Law.com Sarah Ransome Identifies Herself in Epstein Sex Trafficking Case
 022815,email,Brad Edwards,,2018-04-06 15:49:11+00:00,Jeffrey Epstein,,
-022816,flight_log,,True,,,,
+022816,flight_log,,True,,,,flight log
 022817,email,Martin Weinberg,,2018-08-13 19:30:44+00:00,Jeffrey Epstein,Sent from my iPhone,
 022819,email,Kathryn Ruemmler,,2018-08-14 14:09:34+00:00,Jeffrey Epstein,,
 022822,email,Martin Weinberg,,2018-08-17 14:48:49+00:00,Jeffrey Epstein,,
@@ -2866,7 +2866,7 @@ EFTA00000046,,,,,,,
 EFTA00000048,,,,,,,
 EFTA00000049,,,,,,,
 EFTA00000050,,,,2014-01-04 00:00:00+00:00,,,
-EFTA00000052,,,,2004-07-01 00:00:00+00:00,,,
+EFTA00000052,,,,,,,
 EFTA00000053,,,,,,,
 EFTA00000054,,,,,,,
 EFTA00000055,,,,,,,
@@ -3100,7 +3100,7 @@ EFTA00000471,,,,,,,
 EFTA00000472,,,,,,,
 EFTA00000473,,,,,,,
 EFTA00000475,,,,,,,
-EFTA00000476,money,,False,2006-09-01 00:00:00+00:00,,,
+EFTA00000476,money,,False,2006-09-01 00:00:00+00:00,,,photo of JEFFREY EPSTEIN CASH DISBURSEMENTS
 EFTA00000478,,,,,,,
 EFTA00000479,,,,,,,
 EFTA00000480,,,,2026-01-01 00:00:00+00:00,,,
@@ -3124,7 +3124,7 @@ EFTA00000510,,,,,,,
 EFTA00000511,,,,,,,
 EFTA00000512,,,,,,,
 EFTA00000514,,,,,,,
-EFTA00000516,,,,2026-01-01 00:00:00+00:00,,,
+EFTA00000516,,,,,,,
 EFTA00000521,,,,,,,
 EFTA00000523,,,,,,,
 EFTA00000524,,,,,,,
@@ -3146,7 +3146,7 @@ EFTA00000547,,,,,,,
 EFTA00000548,,,,,,,
 EFTA00000550,,,,,,,
 EFTA00000553,,,,,,,
-EFTA00000554,,,,2007-04-07 00:00:00+00:00,,,
+EFTA00000554,,,,,,,
 EFTA00000555,,,,,,,
 EFTA00000556,,,,,,,
 EFTA00000560,,,,,,,
@@ -3194,7 +3194,7 @@ EFTA00000619,,,,,,,
 EFTA00000621,,,,,,,
 EFTA00000628,,,,,,,
 EFTA00000632,,,,,,,
-EFTA00000635,,,,2026-01-01 00:00:00+00:00,,,
+EFTA00000635,,,,,,,
 EFTA00000636,,,,,,,
 EFTA00000638,,,,,,,
 EFTA00000639,,,,,,,
@@ -3447,7 +3447,7 @@ EFTA00001026,,,,,,,
 EFTA00001028,,,,,,,
 EFTA00001029,,,,,,,
 EFTA00001030,,,,,,,
-EFTA00001031,,,,2004-01-04 00:00:00+00:00,,,
+EFTA00001031,,,,,,,
 EFTA00001035,,,,,,,
 EFTA00001036,,,,,,,
 EFTA00001039,,,,,,,
@@ -3721,7 +3721,7 @@ EFTA00001483,,,,,,,
 EFTA00001484,,,,,,,
 EFTA00001485,,,,,,,
 EFTA00001486,,,,,,,
-EFTA00001487,,,,2007-07-03 00:00:00+00:00,,,
+EFTA00001487,misc,,,2007-07-03 00:00:00+00:00,,,architectural drawing of one floor of Epstein's NYC residence
 EFTA00001488,,,,,,,
 EFTA00001489,,,,,,,
 EFTA00001490,,,,,,,
@@ -3886,7 +3886,7 @@ EFTA00001714,,,,,,,
 EFTA00001715,,,,,,,
 EFTA00001717,,,,,,,
 EFTA00001718,,,,,,,
-EFTA00001720,,,,2004-01-01 00:00:00+00:00,,,
+EFTA00001720,,,,,,,
 EFTA00001721,,,,,,,
 EFTA00001722,,,,,,,
 EFTA00001723,,,,,,,
@@ -3934,13 +3934,13 @@ EFTA00001797,,,,,,,
 EFTA00001798,,,,,,,
 EFTA00001799,,,,,,,
 EFTA00001802,,,,,,,
-EFTA00001803,,,,2026-01-04 00:00:00+00:00,,,
+EFTA00001803,,,,,,,
 EFTA00001805,,,,,,,
 EFTA00001806,,,,,,,
 EFTA00001807,,,,2026-01-04 00:00:00+00:00,,,
 EFTA00001808,,,,,,,
 EFTA00001809,,,,,,,
-EFTA00001811,,,,2007-01-04 00:00:00+00:00,,,
+EFTA00001811,,,,,,,
 EFTA00001815,,,,,,,
 EFTA00001817,,,,,,,
 EFTA00001818,,,,2026-01-07 00:00:00+00:00,,,
@@ -3955,12 +3955,12 @@ EFTA00001838,,,,,,,
 EFTA00001839,,,,,,,
 EFTA00001840,,,,,,,
 EFTA00001841,,,,,,,
-EFTA00001843,,,,2026-01-03 00:00:00+00:00,,,
+EFTA00001843,,,,,,,
 EFTA00001844,,,,,,,
 EFTA00001845,,,,,,,
-EFTA00001846,,,,2004-01-04 00:00:00+00:00,,,
+EFTA00001846,,,,,,,
 EFTA00001847,,,,,,,
-EFTA00001848,,,,2026-01-09 00:00:00+00:00,,,
+EFTA00001848,,,,,,,
 EFTA00001849,,,,,,,
 EFTA00001850,,,,,,,
 EFTA00001854,,,,,,,
@@ -4017,10 +4017,10 @@ EFTA00001932,,,,,,,
 EFTA00001934,,,,,,,
 EFTA00001935,,,,,,,
 EFTA00001936,,,,,,,
-EFTA00001937,,,,2004-07-05 00:00:00+00:00,,,
+EFTA00001937,,,,,,,
 EFTA00001938,,,,,,,
 EFTA00001939,,,,,,,
-EFTA00001940,,,,2004-05-01 00:00:00+00:00,,,
+EFTA00001940,,,,,,,
 EFTA00001941,,,,,,,
 EFTA00001942,,,,,,,
 EFTA00001943,,,,,,,
@@ -4104,7 +4104,7 @@ EFTA00002054,,,,,,,
 EFTA00002055,,,,,,,
 EFTA00002056,,,,,,,
 EFTA00002060,,,,,,,
-EFTA00002061,,,,2019-03-16 00:00:00+00:00,,,
+EFTA00002061,,,,,,,
 EFTA00002062,,,,,,,
 EFTA00002064,,,,,,,
 EFTA00002066,,,,,,,
@@ -4134,8 +4134,8 @@ EFTA00002106,,,,,,,
 EFTA00002107,,,,,,,
 EFTA00002108,,,,,,,
 EFTA00002109,,,,,,,
-EFTA00002110,,,,2026-01-07 00:00:00+00:00,,,
-EFTA00002111,,,,2026-01-01 00:00:00+00:00,,,
+EFTA00002110,,,,,,,
+EFTA00002111,,,,,,,
 EFTA00002113,,,,,,,
 EFTA00002116,,,,,,,
 EFTA00002117,,,,,,,
@@ -4173,7 +4173,7 @@ EFTA00002166,,,,,,,
 EFTA00002167,,,,,,,
 EFTA00002168,,,,,,,
 EFTA00002171,,,,,,,
-EFTA00002172,,,,2026-01-02 00:00:00+00:00,,,
+EFTA00002172,,,,,,,
 EFTA00002173,,,,,,,
 EFTA00002176,,,,,,,
 EFTA00002178,,,,2019-03-16 00:00:00+00:00,,,
@@ -4194,7 +4194,7 @@ EFTA00002203,,,,,,,
 EFTA00002204,,,,,,,
 EFTA00002205,,,,,,,
 EFTA00002206,,,,,,,
-EFTA00002207,,,,2026-01-04 00:00:00+00:00,,,
+EFTA00002207,,,,,,,
 EFTA00002208,,,,,,,
 EFTA00002210,,,,,,,
 EFTA00002211,,,,,,,
@@ -4284,7 +4284,7 @@ EFTA00002337,,,,,,,
 EFTA00002338,,,,,,,
 EFTA00002339,,,,,,,
 EFTA00002340,,,,,,,
-EFTA00002342,,,,2005-02-06 00:00:00+00:00,,,
+EFTA00002342,,,,,,,
 EFTA00002346,,,,,,,
 EFTA00002347,,,,,,,
 EFTA00002348,,,,,,,
@@ -4372,7 +4372,7 @@ EFTA00002508,,,,,,,
 EFTA00002509,,,,,,,
 EFTA00002510,,,,,,,
 EFTA00002511,,,,,,,
-EFTA00002512,,,,2001-06-09 00:00:00+00:00,,,
+EFTA00002512,,,,,,,
 EFTA00002513,misc,,,,,,photo of a hard drive
 EFTA00002514,misc,,,,,,photo of a hard drive
 EFTA00002515,misc,,,,,,photo of a hard drive
@@ -4395,7 +4395,7 @@ EFTA00002532,,,,,,,
 EFTA00002534,,,,,,,
 EFTA00002536,misc,,,,,,photo of a hard drive
 EFTA00002537,,,,,,,
-EFTA00002538,,,,2026-01-04 00:00:00+00:00,,,
+EFTA00002538,,,,,,,
 EFTA00002539,,,,2011-01-01 00:00:00+00:00,,,
 EFTA00002541,,,,,,,
 EFTA00002542,,,,,,,
@@ -4527,7 +4527,7 @@ EFTA00002780,,,,,,,
 EFTA00002782,,,,,,,
 EFTA00002783,,,,,,,
 EFTA00002784,,,,,,,
-EFTA00002786,,,,2004-01-01 00:00:00+00:00,,,
+EFTA00002786,,,,,,,
 EFTA00002787,,,,,,,
 EFTA00002788,,,,,,,
 EFTA00002791,,,,,,,
@@ -4549,7 +4549,7 @@ EFTA00002810,,,,,,,
 EFTA00002811,,,,,,,
 EFTA00002812,,,,,,,
 EFTA00002813,,,,,,,
-EFTA00002814,,,,2026-01-04 00:00:00+00:00,,,
+EFTA00002814,,,,,,,
 EFTA00002815,,,,,,,
 EFTA00002816,,,,,,,
 EFTA00002818,,,,,,,
@@ -4561,7 +4561,7 @@ EFTA00002825,,,,,,,
 EFTA00002826,,,,,,,
 EFTA00002827,,,,,,,
 EFTA00002828,,,,,,,
-EFTA00002830,,,,2004-04-04 00:00:00+00:00,,,
+EFTA00002830,,,,,,,
 EFTA00002831,,,,,,,
 EFTA00002835,,,,,,,
 EFTA00002836,,,,,,,
@@ -4779,7 +4779,7 @@ EFTA00003157,,,,,,,
 EFTA00003158,,,,2026-01-04 00:00:00+00:00,,,
 EFTA00003858,legal,,,2026-01-23 00:00:00+00:00,,,photos of collected evidence
 EFTA00003862,,,,,,,
-EFTA00003868,,,,2005-06-03 00:00:00+00:00,,,
+EFTA00003868,government,Palm Beach Police,,2005-06-03 00:00:00+00:00,,,photo lineup featuring Epstein
 EFTA00003919,legal,,,,,,photos of collected evidence
 EFTA00003921,legal,,,,,,photos of collected evidence
 EFTA00003923,legal,,,,,,photos of collected evidence
@@ -4805,7 +4805,7 @@ EFTA00004057,,,,,,,
 EFTA00004060,,,,2026-01-02 00:00:00+00:00,,,
 EFTA00004064,legal,,,2020-07-27 00:00:00+00:00,,,photos of collected evidence
 EFTA00004066,legal,,,2020-07-27 00:00:00+00:00,,,photos of collected evidence
-EFTA00004070,misc,,,2026-01-15 00:00:00+00:00,,,
+EFTA00004070,misc,,,2026-01-15 00:00:00+00:00,,,photos of Epstein with handwritten caption that didn't OCR well
 EFTA00004100,,,,,,,
 EFTA00004105,,,,2025-03-16 00:00:00+00:00,,,
 EFTA00004157,,,,,,,
@@ -4818,7 +4818,7 @@ EFTA00004248,,,,,,,
 EFTA00004250,legal,,,2026-01-09 00:00:00+00:00,,,photos of collected evidence
 EFTA00004348,legal,,,2026-01-09 00:00:00+00:00,,,photos of collected evidence
 EFTA00004448,legal,,,2026-01-09 00:00:00+00:00,,,photos of collected evidence
-EFTA00004477,misc,,True,2026-01-04 00:00:00+00:00,,,
+EFTA00004477,misc,,True,2026-01-04 00:00:00+00:00,,,"Epstein 50th birthday photo book 12 ""THAIS, MOSCOW GIRLS, AFRICA, HAWAII, [REDACTED] [REDACTED], Zorro, [REDACTED] [REDACTED] [REDACTED], CRACK WHOLE PROPOSAL, BALI/THAILAND/ASIA, RUSSIA, [REDACTED], [REDACTED], NUDES, YOGAL GIRLS"
 EFTA00004577,legal,,,2026-01-02 00:00:00+00:00,,,photos of collected evidence
 EFTA00004663,legal,,,2026-01-22 00:00:00+00:00,,,photos of collected evidence
 EFTA00004763,legal,,,2026-01-03 00:00:00+00:00,,,photos of collected evidence
@@ -4832,7 +4832,7 @@ EFTA00005284,legal,,,2026-01-16 00:00:00+00:00,,,photos of collected evidence
 EFTA00005381,,,,,,,
 EFTA00005386,misc,,,2006-01-01 00:00:00+00:00,,,"heavily redacted photo album, lot of photos of girls"
 EFTA00005486,,,,,,,
-EFTA00005495,,,,2026-01-02 00:00:00+00:00,,,
+EFTA00005495,,,,,,,
 EFTA00005524,,,,,,,
 EFTA00005536,,,,,,,
 EFTA00005538,,,,,,,
@@ -4840,9 +4840,9 @@ EFTA00005561,legal,,,2020-07-27 00:00:00+00:00,,,photos of collected evidence
 EFTA00005563,,,,,,,
 EFTA00005567,,,,,,,
 EFTA00005568,,,,,,,
-EFTA00005569,government,Palm Beach Police,,2005-03-17 00:00:00+00:00,,,
+EFTA00005569,government,Palm Beach Police,,2005-03-17 00:00:00+00:00,,,photo lineup featuring Epstein
 EFTA00005578,legal,,,2020-07-22 00:00:00+00:00,,,grand jury proceedings
-EFTA00005586,legal,,,,,,
+EFTA00005586,legal,,,,,,"completely redacted 69 pages labeled ""Grand Jury - NY"""
 EFTA00005705,,,False,2010-12-10 00:00:00+00:00,,,
 EFTA00005707,,,,2011-03-21 00:00:00+00:00,,,
 EFTA00005711,,,,2011-03-17 00:00:00+00:00,,,
@@ -4860,7 +4860,7 @@ EFTA00005832,,,,2026-01-04 00:00:00+00:00,,,
 EFTA00005848,,,,2019-07-02 21:55:00+00:00,,,
 EFTA00005855,,,,2026-01-02 00:00:00+00:00,,,
 EFTA00005878,,,,,,,
-EFTA00005899,,,,2026-01-06 00:00:00+00:00,,,
+EFTA00005899,,,,,,,
 EFTA00005910,,,,,,,
 EFTA00005924,,,,2026-01-01 00:00:00+00:00,,,
 EFTA00005932,,,,2026-01-02 00:00:00+00:00,,,
@@ -4878,10 +4878,10 @@ EFTA00006055,,,,2015-05-16 00:00:00+00:00,,,
 EFTA00006066,,,,2026-01-02 00:00:00+00:00,,,
 EFTA00006069,,,,2005-03-16 00:00:00+00:00,,,
 EFTA00006072,,,,2026-01-18 00:00:00+00:00,,,
-EFTA00006085,,,,2007-03-16 00:00:00+00:00,,,
+EFTA00006085,misc,Broward Center for the Performing Arts,,2007-03-16 00:00:00+00:00,,,Front of House Managers Report including ticket sales
 EFTA00006093,legal,,,2026-01-08 00:00:00+00:00,,,grand jury subpoena or response
 EFTA00006099,,,,,,,
-EFTA00006100,misc,,,2006-03-16 14:36:47+00:00,,,
+EFTA00006100,misc,,,2006-03-16 14:36:47+00:00,,,Palm Beach Police fax machine activity log 2005-12-28 to 2006-01-04
 EFTA00006104,,,,,,,
 EFTA00006107,,,,2026-01-04 00:00:00+00:00,,,
 EFTA00006109,,,,,,,
@@ -4895,23 +4895,23 @@ EFTA00006378,,,,2000-03-10 00:00:00+00:00,,,
 EFTA00006380,,,,2026-01-01 00:00:00+00:00,,,
 EFTA00006383,,,,,,,
 EFTA00006385,,,,,,,
-EFTA00006387,phone_bill,T-Mobile,False,2026-01-08 00:00:00+00:00,,,
-EFTA00006487,phone_bill,T-Mobile,False,2026-01-03 00:00:00+00:00,,,
-EFTA00006587,phone_bill,T-Mobile,False,2026-01-03 00:00:00+00:00,,,
-EFTA00006687,phone_bill,T-Mobile,False,2026-01-08 15:17:00+00:00,,,
-EFTA00006770,phone_bill,MetroPCS,False,2026-01-22 00:00:00+00:00,,,
-EFTA00006870,phone_bill,MetroPCS,False,2026-01-26 22:33:29+00:00,,,
-EFTA00006970,phone_bill,MetroPCS,False,2026-01-09 00:00:00+00:00,,,
-EFTA00007070,phone_bill,MetroPCS,False,2026-01-23 12:53:05+00:00,,,
+EFTA00006387,phone_bill,T-Mobile,False,2026-01-08 00:00:00+00:00,,,phone bill covering 2006-06-15 to 2006-07-23
+EFTA00006487,phone_bill,T-Mobile,False,2026-01-03 00:00:00+00:00,,,phone bill covering 2006
+EFTA00006587,phone_bill,T-Mobile,False,2026-01-03 00:00:00+00:00,,,phone bill covering 2006-09-04 to 2016-10-15
+EFTA00006687,phone_bill,T-Mobile,False,2026-01-08 15:17:00+00:00,,,phone bill covering 2006-10-31 to 2006-12-25
+EFTA00006770,phone_bill,MetroPCS,False,2026-01-22 00:00:00+00:00,,,phone bill covering 2006-02-01 to 2006-06-16
+EFTA00006870,phone_bill,MetroPCS,False,2026-01-26 22:33:29+00:00,,,phone bill covering 2006-02-09 to 2006-07
+EFTA00006970,phone_bill,MetroPCS,False,2026-01-09 00:00:00+00:00,,,phone bill covering 2006-04-15 to 2006-07-16
+EFTA00007070,phone_bill,MetroPCS,False,2026-01-23 12:53:05+00:00,,,phone bill covering 2006
 EFTA00007086,,,,,,,
 EFTA00007087,legal,,,2007-08-16 00:00:00+00:00,,,grand jury proceedings
 EFTA00007091,,,,2026-01-10 00:00:00+00:00,,,
 EFTA00007097,legal,,,2026-01-24 00:00:00+00:00,,,grand jury proceedings
 EFTA00007157,government,,,2026-01-02 00:00:00+00:00,,,victim list and police log
-EFTA00007253,phone_bill,T-Mobile,False,2007-03-23 00:00:00+00:00,,,
-EFTA00007301,phone_bill,T-Mobile,False,2007-03-23 00:00:00+00:00,,,
-EFTA00007401,phone_bill,T-Mobile,False,2026-01-05 00:00:00+00:00,,,
-EFTA00007501,phone_bill,T-Mobile,False,2026-01-21 00:00:00+00:00,,,
+EFTA00007253,phone_bill,T-Mobile,False,2007-03-23 00:00:00+00:00,,,phone bill
+EFTA00007301,phone_bill,T-Mobile,False,2007-03-23 00:00:00+00:00,,,phone bill covering Blackberry phone logs for 2005
+EFTA00007401,phone_bill,T-Mobile,False,2026-01-05 00:00:00+00:00,,,phone bill covering 2004-08-25 to 2005-07-13
+EFTA00007501,phone_bill,T-Mobile,False,2026-01-21 00:00:00+00:00,,,phone bill covering 2005
 EFTA00007543,legal,,,2026-01-13 00:00:00+00:00,,,photos of collected evidence
 EFTA00007546,legal,,,2020-07-27 00:00:00+00:00,,,photos of collected evidence
 EFTA00007550,,,,2026-01-15 00:00:00+00:00,,,
@@ -4924,7 +4924,7 @@ EFTA00007563,,,,,,,
 EFTA00007565,legal,,,,,,photos of collected evidence
 EFTA00007570,legal,,,2020-07-27 00:00:00+00:00,,,photos of collected evidence
 EFTA00007576,legal,,,2020-07-27 00:00:00+00:00,,,photos of collected evidence
-EFTA00007585,,,,2005-05-17 00:00:00+00:00,,,
+EFTA00007585,misc,,,2005-05-17 00:00:00+00:00,,,various fedex receipts and realtor notes
 EFTA00007600,,,,2026-01-04 00:00:00+00:00,,,
 EFTA00007606,,,,2011-11-11 00:00:00+00:00,,,
 EFTA00007609,letter,,True,,,,letter to Alberto
@@ -4949,7 +4949,7 @@ EFTA00007686,,,,2026-01-04 00:00:00+00:00,,,
 EFTA00007688,,,,,,,
 EFTA00007689,,,,,,,
 EFTA00007692,,,,,,,
-EFTA00007693,,,,2005-09-20 09:31:00+00:00,,,
+EFTA00007693,misc,,,2005-09-20 09:31:00+00:00,,,"driving directions from Epstein's house to <REDACTED>, flight details for Sandy Berger"
 EFTA00007703,,,,,,,
 EFTA00007704,legal,,,2011-11-11 00:00:00+00:00,,,photos of collected evidence
 EFTA00007714,legal,,,2026-01-01 00:00:00+00:00,,,photos of collected evidence
@@ -4987,16 +4987,16 @@ EFTA00007998,legal,,,2026-01-16 00:00:00+00:00,,,photos of collected evidence
 EFTA00008008,legal,,,2013-12-02 00:00:00+00:00,,,photos of collected evidence
 EFTA00008015,legal,,,2020-07-27 00:00:00+00:00,,,photos of collected evidence
 EFTA00008018,legal,,,2020-07-27 00:00:00+00:00,,,photos of collected evidence
-EFTA00008020,book,,False,2026-01-01 00:00:00+00:00,,,
-EFTA00008120,book,,False,2026-01-28 00:00:00+00:00,,,
-EFTA00008220,book,,False,2026-01-08 00:00:00+00:00,,,
-EFTA00008320,book,,False,2015-12-14 00:00:00+00:00,,,
+EFTA00008020,book,,False,2026-01-01 00:00:00+00:00,,,"""Massage for Dummies"""
+EFTA00008120,book,,False,2026-01-28 00:00:00+00:00,,,"""Part II: The Art of Receiving a Massage"""
+EFTA00008220,book,,False,2026-01-08 00:00:00+00:00,,,"""Massage book: Chapter 11: Putting the Moves Together"""
+EFTA00008320,book,,False,2015-12-14 00:00:00+00:00,,,"""Massage for Dummies (???)"""
 EFTA00008409,,,,,,,
 EFTA00008410,,,,,,,
 EFTA00008411,,,,,,,
 EFTA00008412,,,,,,,
 EFTA00008413,,,,,,,
-EFTA00008415,,,,2026-01-09 00:00:00+00:00,,,
+EFTA00008415,,,,,,,
 EFTA00008416,,,,,,,
 EFTA00008417,,,,2008-10-20 00:00:00+00:00,,,
 EFTA00008418,,,,,,,
@@ -5019,11 +5019,11 @@ EFTA00008437,,,,,,,
 EFTA00008438,,,,,,,
 EFTA00008439,,,,,,,
 EFTA00008440,,,,,,,
-EFTA00008441,,,,2019-04-04 00:00:00+00:00,,,
+EFTA00008441,,,,,,,
 EFTA00008442,,,,,,,
 EFTA00008443,,,,,,,
 EFTA00008444,,,,,,,
-EFTA00008445,,,,2026-01-04 00:00:00+00:00,,,
+EFTA00008445,,,,,,,
 EFTA00008446,,,,,,,
 EFTA00008447,,,,,,,
 EFTA00008448,,,,,,,
@@ -5047,14 +5047,14 @@ EFTA00008469,,,,,,,
 EFTA00008470,,,,,,,
 EFTA00008471,,,,,,,
 EFTA00008472,,,,,,,
-EFTA00008473,,,,2004-01-04 00:00:00+00:00,,,
+EFTA00008473,,,,,,,
 EFTA00008474,,,,2021-06-21 00:00:00+00:00,,,
-EFTA00008475,,,,2026-01-01 00:00:00+00:00,,,
+EFTA00008475,,,,,,,
 EFTA00008476,,,,,,,
 EFTA00008477,,,,,,,
 EFTA00008478,,,,,,,
 EFTA00008479,,,,,,,
-EFTA00008480,,,,2026-01-04 00:00:00+00:00,,,
+EFTA00008480,,,,,,,
 EFTA00008481,,,,2002-03-11 00:00:00+00:00,,,
 EFTA00008482,,,,2026-01-01 00:00:00+00:00,,,
 EFTA00008483,,,,,,,
@@ -5067,34 +5067,34 @@ EFTA00008489,,,,,,,
 EFTA00008490,,,,,,,
 EFTA00008491,,,,,,,
 EFTA00008492,,,,,,,
-EFTA00008493,,,,2000-04-06 00:00:00+00:00,,,
+EFTA00008493,,,,,,,
 EFTA00008494,,,,,,,
 EFTA00008495,,,,,,,
 EFTA00008496,,,,,,,
-EFTA00008497,,,,2026-01-04 00:00:00+00:00,,,
+EFTA00008497,,,,,,,
 EFTA00008499,,,,,,,
 EFTA00008500,,,,,,,
 EFTA00008501,,,,,,,
 EFTA00008502,,,,,,,
-EFTA00008503,,,,2026-01-04 00:00:00+00:00,,,
+EFTA00008503,,,,,,,
 EFTA00008504,,,,,,,
 EFTA00008506,,,,,,,
 EFTA00008507,,,,,,,
 EFTA00008508,,,,,,,
-EFTA00008511,,,,2026-01-04 00:00:00+00:00,,,
+EFTA00008511,,,,,,,
 EFTA00008512,,,,,,,
 EFTA00008513,,,,,,,
-EFTA00008514,,,,2026-01-04 00:00:00+00:00,,,
+EFTA00008514,,,,,,,
 EFTA00008515,,,,,,,
 EFTA00008516,,,,,,,
 EFTA00008518,,,,,,,
-EFTA00008519,,,,2026-01-01 00:00:00+00:00,,,
+EFTA00008519,,,,,,,
 EFTA00008520,,,,,,,
 EFTA00008521,,,,,,,
 EFTA00008522,,,,,,,
 EFTA00008525,,,,,,,
 EFTA00008526,,,,,,,
-EFTA00008527,,,,2026-01-04 00:00:00+00:00,,,
+EFTA00008527,,,,,,,
 EFTA00008529,legal,,,2026-01-03 13:06:00+00:00,,,grand jury proceedings
 EFTA00008585,legal,,,2026-01-03 00:00:00+00:00,,,grand jury proceedings
 EFTA00008599,,,,2026-01-11 00:00:00+00:00,,,
@@ -5113,14 +5113,14 @@ EFTA00009116,deposition,Alex Acosta,True,2020-04-30 00:00:00+00:00,,,deposition 
 EFTA00009229,deposition,Alex Acosta,True,2020-04-30 00:00:00+00:00,,,deposition of Alex Acosta pages 1-100
 EFTA00009329,deposition,Alex Acosta,True,2020-04-30 00:00:00+00:00,,,deposition of Alex Acosta pages 101-200
 EFTA00009428,,,,2026-01-11 00:00:00+00:00,,,
-EFTA00009440,,,,2007-05-28 00:00:00+00:00,,,
+EFTA00009440,legal,,,2007-05-28 00:00:00+00:00,,,"FBI agent testimony on subpoenas of JP Morgan, Western Union, Adult Video Warehouse"
 EFTA00009448,,,,2026-01-13 00:00:00+00:00,,,
 EFTA00009478,,,,2026-01-13 00:00:00+00:00,,,
 EFTA00009502,,,,2026-01-13 00:00:00+00:00,,,
 EFTA00009512,,,,2026-01-16 00:00:00+00:00,,,
 EFTA00009550,,,,2026-01-17 00:00:00+00:00,,,
 EFTA00009586,,,,2007-04-24 00:00:00+00:00,,,
-EFTA00009622,misc,,True,2006-07-19 00:00:00+00:00,,,handwritten notes from a victim interview transcribed by Claude AI
+EFTA00009622,girls,,True,2006-07-19 00:00:00+00:00,,,handwritten notes from a victim interview transcribed by Claude AI
 EFTA00009632,,,,2008-05-08 00:00:00+00:00,,,
 EFTA00009654,,,,2021-11-24 00:00:00+00:00,,,
 EFTA00009658,legal,,,2026-01-09 00:00:00+00:00,,,legal filing in US v. Jeffrey Epstein
@@ -5134,7 +5134,7 @@ EFTA00019348,government,Bureau of Prisons,True,2019-08-02 00:00:00+00:00,,,"Bure
 EFTA00020490,government,FBI,True,2020-08-11 11:26:00+00:00,,,FBI tip from woman who thinks she encountered Epstein as a young girl
 EFTA00020506,government,FBI,True,2020-09-14 16:12:00+00:00,,,"FBI report about Epstein investigation, see quote: 'chauffeur also told Epstein ""I have something on you remember what I buried!""'"
 EFTA00020515,crypto,FBI,True,2020-10-19 16:11:00+00:00,,,FBI tip about Howard Lutnick and financial irregularities
-EFTA00022133,,,,2019-12-02 00:00:00+00:00,,,
+EFTA00022133,girls,,True,2019-12-02 00:00:00+00:00,,,table showing a list of Epstein accusations collection from public press reporting
 EFTA00023055,government,FBI,True,2007-01-16 00:00:00+00:00,,,FBI evidence of notes left about newly recruited underage girls by girls giving massages
 EFTA00023557,deposition,victim,,2026-01-16 00:00:00+00:00,,,deposition of victim who says Ghislaine Maxwell and Epstein pay for nudes
 EFTA00024275,misc,,,2026-01-17 00:00:00+00:00,,,large Wexner funded payments to OB-GYN
@@ -5150,14 +5150,14 @@ EFTA00037683,government,USANYS,,2020-07-29 16:21:44+00:00,USANYS,,tip that the m
 EFTA00038915,government,FBI,True,2007-08-13 00:00:00+00:00,,,"FBI interview with minor victim, claims Epstein knew she was 14"
 EFTA00039025,government,Bureau of Prisons,True,2023-06-22 00:00:00+00:00,,,Bureau of Prisons report on death of Jeffrey Epstein
 EFTA00039153,government,Bureau of Prisons,,2019-01-06 00:00:00+00:00,,,"Bureau of Prisons List of Exhibits, Chapter 2"
-EFTA00039156,government,Bureau of Prisons,,2026-01-02 00:00:00+00:00,,,
+EFTA00039156,government,Bureau of Prisons,,2026-01-02 00:00:00+00:00,,,Standards of Employee Conduct
 EFTA00039190,government,Bureau of Prisons,False,2016-11-23 00:00:00+00:00,,,Bureau of Prisons Special Housing Units
 EFTA00039208,,,,2026-01-04 00:00:00+00:00,,,
-EFTA00039227,government,Bureau of Prisons,,2026-01-14 00:00:00+00:00,,,
+EFTA00039227,government,Bureau of Prisons,,2026-01-14 00:00:00+00:00,,,Inmate Discipline Program Statement
 EFTA00039282,,,,2020-11-18 00:00:00+00:00,,,
-EFTA00039295,government,Bureau of Prisons,,2026-01-06 00:00:00+00:00,,,
-EFTA00039312,government,Bureau of Prisons,,2026-01-01 00:00:00+00:00,,,
-EFTA00039351,government,Bureau of Prisons,,2003-09-10 00:00:00+00:00,,,
+EFTA00039295,government,Bureau of Prisons,,2026-01-06 00:00:00+00:00,,,Inmate Telephone Privileges Program Statement
+EFTA00039312,government,Bureau of Prisons,,2026-01-01 00:00:00+00:00,,,Program Statement / Memo about BOP Pharmacy Program
+EFTA00039351,government,Bureau of Prisons,,2003-09-10 00:00:00+00:00,,,Program Statement / Memo about BOP Pharmacy Program
 EFTA00039356,,,,2019-09-17 00:00:00+00:00,,,
 EFTA00039357,email,Bureau of Prisons,,2019-08-12 08:58:00+00:00,DOJ Inspector General,,
 EFTA00039367,,,,2026-01-02 00:00:00+00:00,,,
@@ -5321,7 +5321,7 @@ EFTA00093702_52,email,Christopher Dilorio,,2020-07-30 06:33:00+00:00,SEC,,
 EFTA00093702_53,email,Christopher Dilorio,,2020-07-28 07:48:00+00:00,SEC,,
 EFTA00093702_54,email,Christopher Dilorio,,2020-07-23 05:59:00+00:00,SEC,,
 EFTA00093702_55,email,Christopher Dilorio,,2020-07-22 08:44:00+00:00,SEC,,
-EFTA00093702_56,email,Christopher Dilorio,,2020-07-14 15:31:00+00:00,Rnignc Lapnai PP,,
+EFTA00093702_56,email,Christopher Dilorio,,2020-07-14 15:31:00+00:00,SEC,,
 EFTA00093702_57,email,Christopher Dilorio,,2020-07-14 12:34:00+00:00,SEC,,
 EFTA00093702_58,email,Christopher Dilorio,,2020-07-13 10:50:00+00:00,SEC,,
 EFTA00093702_59,email,Christopher Dilorio,,2020-07-08 09:35:00+00:00,SEC,,
@@ -5348,7 +5348,7 @@ EFTA00098456,letter,Paul G. Cassell,True,2026-01-28 00:00:00+00:00,,,"letter fro
 EFTA00099424,money,,True,2017-07-08 23:00:00+00:00,,,"Epstein 2017 Trust (Eva Andersson Dubin, Darren Indyke, Richard Kahn)"
 EFTA00101927,government,FBI,True,2026-01-01 00:00:00+00:00,,,"FBI interview with (unknown), claims Glenn and Eva Dubin's Swiss au pair was being held against her will"
 EFTA00103908,,,,2026-01-16 00:00:00+00:00,,,
-EFTA00104945,email,,False,2019-08-13 01:18:13+00:00,Alfa Bank;Andrew Stemmer;Erika Engelson;Justin Alfano;Vijay Dewan,,
+EFTA00104945,email,,False,2019-08-13 01:18:13+00:00,Alfa-Bank;Andrew Stemmer;Erika Engelson;Justin Alfano;Vijay Dewan,,
 EFTA00105975,deposition,"<REDACTED> v. Estate of Jeffrey Epstein, Ghislaine Maxwell",,2026-01-19 00:00:00+00:00,,,"deposition of <REDACTED> v. Estate of Jeffrey Epstein, Ghislaine Maxwell Ghislaine Maxwell ""was relentless"""
 EFTA00108533,government,Bureau of Prisons,,2019-07-23 00:00:00+00:00,,,Bureau of Prisons roster of inmates at Metropolitan Correctional Center
 EFTA00108552,government,Bureau of Prisons,,2019-07-23 00:00:00+00:00,,,Bureau of Prisons roster of inmates at Metropolitan Correctional Center
@@ -5356,7 +5356,7 @@ EFTA00109001,email,,True,2019-09-06 06:09:00+00:00,None,,
 EFTA00109163,government,Bureau of Prisons,True,2019-08-08 00:00:00+00:00,,,Bureau of Prisons Metropolitan Correctional Center forms showing Konstantin Ignatov
 EFTA00109654,government,Bureau of Prisons,,2019-08-08 00:00:00+00:00,,,Bureau of Prisons roster of inmates at Metropolitan Correctional Center
 EFTA00109783,government,Bureau of Prisons,,2019-08-03 00:00:00+00:00,,,Bureau of Prisons prisoner assignments
-EFTA00120459,government,Bureau of Prisons,,2019-08-09 00:00:00+00:00,,,
+EFTA00120459,government,Bureau of Prisons,,2019-08-09 00:00:00+00:00,,,handwritten log of prisoner movements
 EFTA00120617,government,Bureau of Prisons,,2019-07-30 00:00:00+00:00,,,"Bureau of Prisons ""Prisoner Remand or Order to Deliver"" forms"
 EFTA00128379,government,,True,2019-01-06 00:00:00+00:00,,,analysis of two of Epstein's desktop computers
 EFTA00128987,crypto,,True,2026-01-07 00:00:00+00:00,,,suspicious activity report (SAR) about Kushner co. crypto payments to suspicious Russian person
@@ -5380,8 +5380,8 @@ EFTA00174375,government,FBI,True,2026-01-17 00:00:00+00:00,,,"FBI interview with
 EFTA00177201,legal,Jane Doe #1 and Jane Doe #2 v. United States,True,2026-01-16 00:00:00+00:00,,,Jane Doe #1 and Jane Doe #2 v. United States: court docket and many filings
 EFTA00182657,,,,,,,
 EFTA00211168,legal,Jane Doe v. Donald Trump and Jeffrey Epstein,,2026-01-09 00:00:00+00:00,,,Jane Doe v. Donald Trump and Jeffrey Epstein: Epstein employee affidavit alleging sexual assaults
-EFTA00217072,misc,FedEx,,2005-06-20 00:00:00+00:00,,,
-EFTA00217080,misc,FedEx,,2005-06-27 00:00:00+00:00,,,
+EFTA00217072,misc,FedEx,,2005-06-20 00:00:00+00:00,,,invoice
+EFTA00217080,misc,FedEx,,2005-06-27 00:00:00+00:00,,,invoice
 EFTA00222943,government,FBI,True,2007-07-16 00:00:00+00:00,,,FBI report about agent believes computers were removed from Epstein's residence
 EFTA00238496,email,,True,2017-02-28 19:07:23+00:00,Ghislaine Maxwell;Juliana Shkreli;Molly Ladd,,
 EFTA00238499,money,,True,,,,wire transfer to Signature Bank account
@@ -5548,7 +5548,7 @@ EFTA00604942,crypto,Blockchain Capital,True,2015-10-01 00:00:00+00:00,,,Blockcha
 EFTA00605699,crypto,,True,2014-05-05 17:04:00+00:00,,,Epstein crypto fund Kyara Investment II LLC incorporation papers
 EFTA00605854,crypto,Valar Ventures,True,2015-06-30 00:00:00+00:00,,,Valar Ventures is a fintech focused Peter Thiel fund Epstein was invested in
 EFTA00605996,crypto,,False,2026-01-10 00:00:00+00:00,,,Wedbush BUY rating on Digital Currency Group GBTC
-EFTA00606411,money,,True,2017-01-01 00:00:00+00:00,,,
+EFTA00606411,money,,True,2017-01-01 00:00:00+00:00,,,proposed jet ownership structure flowchart
 EFTA00608737,crypto,Valar Ventures,True,2017-05-05 00:00:00+00:00,,,Valar Ventures requesting money previously promised by Epstein to invest in a new opportunity
 EFTA00609489,crypto,Valar Ventures,True,2015-06-30 00:00:00+00:00,,,Valar Ventures is a fintech focused Peter Thiel fund Epstein was invested in
 EFTA00611806,finance,Adam Campbell,False,2013-01-16 00:00:00+00:00,,,"Adam Campbell CEA, LLC High Liquidity Trading Program presentation"
@@ -5559,7 +5559,7 @@ EFTA00615804,deposition,Alan Dershowitz,,2016-01-12 00:00:00+00:00,,,deposition 
 EFTA00617222,crypto,Valar Ventures,True,2020-09-01 00:00:00+00:00,,,Valar Ventures requesting money previously promised by Epstein to invest in a new opportunity
 EFTA00621239,crypto,Crypto Currency Partners II,True,2014-10-01 00:00:00+00:00,,,Crypto Currency Partners II investor report
 EFTA00621739,money,,True,2017-05-31 00:00:00+00:00,,,valuations of Epstein's investments
-EFTA00623147,flight_log,David Rodgers,,2016-06-30 00:00:00+00:00,,,
+EFTA00623147,flight_log,David Rodgers,,2016-06-30 00:00:00+00:00,,,flight log
 EFTA00625796,email,,True,2011-09-14 10:58:10+00:00,Jeffrey Epstein,,
 EFTA00626220,crypto,Brock Pierce,True,2014-11-12 00:26:47+00:00,Jeffrey Epstein,,"setting up ""sidecar fund"" with Brock Pierce / Crypto Currency Partners II"
 EFTA00626844,email,Hamad bin Jassim al-Thani,True,2017-07-02 08:55:46+00:00,Jeffrey Epstein,,
@@ -6324,7 +6324,7 @@ EFTA01402630,money,,True,2026-01-12 00:00:00+00:00,,,transactions by Epstein's S
 EFTA01409449,money,Kumar Sambhav,True,2015-02-18 18:14:46+00:00,Deutsche Bank;Vahe Stepanian,,Deutsche Bank employees scrubbing Epstein's name off his TWTR (Twitter) trades
 EFTA01413294,money,,True,2016-12-16 00:00:00+00:00,,,compliance report on payment from Epstein to Sberbank account of Nikolay Aleksandrovich Gyrov
 EFTA01416658,money,Stewart Oldfield,True,2018-07-03 00:00:00+00:00,Andrew Gallivan,,"see quote: ""Southern Financial — one of the most complicated client situations I've seen"""
-EFTA01424585,money,Vaishali-P Mehta,True,2051-01-01 00:01:01+00:00,Andrew Gallivan;Joseph Sabbagh;Mark Gonzalez;Stewart Oldfield,,"Deutsche Bank AML review of Jeepers, Inc."
+EFTA01424585,money,Vaishali-P Mehta,True,2051-01-01 00:01:01+00:00,Andrew Gallivan;Joseph Sabbagh;Mark Gonzalez;Stewart Oldfield,,"Deutsche Bank anti-money laundering review of ""high risk"" Jeepers, Inc."
 EFTA01434500,crypto,Stewart Oldfield,True,2018-03-14 21:48:54+00:00,Vahe Stepanian,,everyone assumes Epstein's banker Paul Barrett will want to know about the blockchain event
 EFTA01435885,,,,2017-04-04 00:00:00+00:00,,,
 EFTA01478313,money,,True,2016-03-31 00:00:00+00:00,,,list of investments (maybe of Leon Black)
@@ -6362,17 +6362,17 @@ EFTA01618494,girls,Renata Bolotova,True,2018-09-03 00:00:00+00:00,,,iMessage fro
 EFTA01620764,crypto,Melanie Walker,True,2017-11-19 02:45:36+00:00,,,iMessage from Melanie Walker (???) to Jeffrey Epstein about crypto philanthropy and Bill Gates being drunk all the time
 EFTA01622387,girls,Renata Bolotova,True,2016-07-10 16:05:29+00:00,,,iMessage from Renata Bolotova (???) screenshot(s)
 EFTA01623342,girls,Anna Kasatkina,True,2017-01-15 22:59:27+00:00,,,Skype log of conversation with Anna Kasatkina (???) recruiting russian girls
-EFTA01628970,misc,,,,,,
+EFTA01628970,misc,,,,,,redacted pictures of naked women
 EFTA01648951,girls,NY FBI,True,2025-07-24 13:40:38+00:00,NY FBI,,"allegations against Trump, Howard Lutnick, Glen Dubin, Leon Black, Jes Staley"
 EFTA01653121,letter,FBI,True,2022-06-28 00:00:00+00:00,,,letter from FBI to USCIS regarding an individual's cooperation in the investigation of Epstein and Maxwell
 EFTA01660651,girls,,True,2025-08-07 15:41:01+00:00,None,,list of Trump accusers
 EFTA01660676,government,FBI,True,2019-08-08 13:23:00+00:00,,,FBI tip about recently convicted rapists Tal and Oren Alexander at Epstein's house
 EFTA01660679,government,USANYS,,2025-08-07 16:08:14+00:00,FBI,,
 EFTA01681865,money,Deutsche Bank,True,2026-01-11 00:00:00+00:00,,,Deutsche Bank explanations of all of Epstein's large payments prepared for DOJ
-EFTA01682477,misc,,,2005-04-01 00:00:00+00:00,,,
+EFTA01682477,misc,,,2005-04-01 00:00:00+00:00,,,"""Important Message"" formatted notepad with notes about missed phone calls etc."
 EFTA01684300,crypto,FBI,True,2024-08-01 00:00:00+00:00,,,"FBI evidence list w/tip about Howard Lutnick, Cantor Fitzgerald, and BGC from an employee who had already blown the whistle successfully"
 EFTA01688746,government,FBI,True,2026-01-25 00:00:00+00:00,,,FBI report about Epstein investigation
-EFTA01719859,misc,,,2005-10-03 00:00:00+00:00,,,
+EFTA01719859,misc,,,2005-10-03 00:00:00+00:00,,,"""Important Message"" formatted notepad with notes about missed phone calls etc."
 EFTA01731217,government,FBI,True,2026-01-07 00:00:00+00:00,,,FBI requesting INS allow Nadia Marcinko be allowed to stay in the US because of an ongoing sex-trafficking case
 EFTA01731288,email,Lesley Groff,True,2014-10-07 20:50:28+00:00,Renata Bolotova,,
 EFTA01731638,email,Jeffrey Epstein,True,2014-12-02 11:03:00+00:00,Brock Pierce,,
@@ -6492,7 +6492,7 @@ EFTA01851738,email,Christina Galbraith,True,2014-07-27 17:10:37+00:00,Ben Goertz
 EFTA01852443,crypto,Katherine Keating,True,2011-11-20 15:10:00+00:00,Jeffrey Epstein,,
 EFTA01852975,email,Lesley Groff,,2011-11-22 12:56:31+00:00,Jeffrey Epstein,Sent from my iPhone,
 EFTA01854125,girls,Jeffrey Epstein,True,2011-09-09 09:19:14+00:00,Henry Jarecki,,"Epstein says to Henry Jarecki ""you torture, and mistreat each"" girl"
-EFTA01854384,email,Jeffrey psten,True,2011-08-31 22:38:16+00:00,Karim Wade,,Karim Wade asks if Epstein is free to meet the president (of Senegal?)
+EFTA01854384,email,Jeffrey Epstein,True,2011-08-31 22:38:16+00:00,Karim Wade,,Karim Wade asks if Epstein is free to meet the president (of Senegal?)
 EFTA01856467,girls,Peter Mandelson,True,2011-08-01 06:01:03+00:00,Jeffrey Epstein,,Epstein looking for Joshua Fink (again)
 EFTA01856718,email,Jeffrey Epstein,True,2011-09-20 22:49:36+00:00,Ian Osborne,,
 EFTA01857628,girls,Jeffrey Epstein,True,2011-09-27 10:39:41+00:00,Renata Bolotova,,"""igrushki"" means ""toys"" in Russian"
@@ -6503,7 +6503,7 @@ EFTA01862308,email,David Stern,False,2011-06-30 06:21:14+00:00,Jeffrey Epstein,,
 EFTA01862563,email,Jeffrey Epstein,True,2011-06-11 12:24:09+00:00,None;John Brockman,,
 EFTA01866387,email,Jeffrey Epstein,,2011-06-06 11:54:00+00:00,John Brockman,,
 EFTA01868066,girls,,True,2011-03-28 20:33:42+00:00,Jeffrey Epstein,Sent via BlackBerry from T-Mobile,impersonating [someone] talking to Joshua Fink
-EFTA01870453,girls,Svetlana Pozhidaeva,True,2011-04-05 16:51:26+00:00,Jeffrey Epstein,Sent via BlackBerry from T-Mobile,"Joshua Fink and Svetlana Pozhidaeva discuss an abortion (""You have known you are preg for a week"")"
+EFTA01870453,girls,Svetlana Pozhidaeva,True,2011-04-05 16:51:26+00:00,Jeffrey Epstein,Sent via BlackBerry from T-Mobile,"Svetlana Pozhidaeva fwds a discussion about an abortion to Epstein, see quote: ""You have known you are preg for a week"""
 EFTA01875607,girls,unknown girl,True,2012-08-15 17:15:28+00:00,Jeffrey Epstein,,
 EFTA01877084,girls,Jean Luc Brunel,True,2012-06-07 18:51:08+00:00,Jeffrey Epstein,,"Epstein and Jean Luc Brunel ""managing"" Joshua Fink's relationship with Svetlana Pozhidaeva"
 EFTA01877224,girls,Svetlana Pozhidaeva,True,2012-06-08 20:15:01+00:00,Jeffrey Epstein,Sent via BlackBerry from T-Mobile,
@@ -6602,7 +6602,7 @@ EFTA01973594,email,Boris Nikolic,,2013-05-17 21:37:34+00:00,Jeffrey Epstein,Sent
 EFTA01974412,email,LinkedIn,,2013-04-29 15:18:36+00:00,Jeffrey Epstein,,
 EFTA01974447,girls,Jeffrey Epstein,True,2013-05-08 23:21:23+00:00,Thorbjørn Jagland,,"see quote: ""I know you are going to meet putin on the 20th"""
 EFTA01977800,email,Vincenzo Iozzo,True,2014-08-13 18:53:49+00:00,Jeffrey Epstein,Sent from my Iphone,
-EFTA01978227,email,Jeffrey Epstein,,2012-11-13 13:27:07+00:00,Ute Bourg,,Epstein arranging tour of Harvard for Rasseck Bourgi's daughter
+EFTA01978227,email,Jeffrey Epstein,True,2012-11-13 13:27:07+00:00,Rasseck Bourgi;Ute Bourgi,,Epstein arranging tour of Harvard for Rasseck Bourgi's daughter
 EFTA01979689,email,Jeffrey Epstein,True,2010-11-05 13:03:23+00:00,David Stern,,
 EFTA01979701,email,Jeffrey Epstein,,2010-10-29 15:09:50+00:00,Prince Andrew,,
 EFTA01983108,email,Amir Taaki,False,2011-07-07 22:33:38+00:00,Jeffrey Epstein,,
@@ -6610,7 +6610,7 @@ EFTA01985762,email,Renata Bolotova,True,2012-01-24 09:35:00+00:00,Jeffrey Epstei
 EFTA01986756,email,Melanie Phillips,,2012-05-15 12:05:22+00:00,Jeffrey Epstein,,
 EFTA01987283,email,David Stern,True,2011-02-28 10:04:31+00:00,Jeffrey Epstein,,
 EFTA01987383,email,Lesley Groff,False,2011-11-11 23:04:32+00:00,Jeffrey Epstein;Jojo Fontanilla;Lyn Fontanilla,,
-EFTA01987855,girls,Ssulayem  ssulayem©aol.com,False,2009-09-23 11:56:00+00:00,Jeffrey Epstein;Sultan Ahmed Bin Sulayem,Sent from my iPhone,"Epstein, Brunel, and Sultan Ahmed Bin Sulayem very interested in a Liberian sex scandal"
+EFTA01987855,girls,Sultan Ahmed Bin Sulayem,False,2009-09-23 11:56:00+00:00,Jeffrey Epstein,Sent from my iPhone,"Epstein, Brunel, and Sultan Ahmed Bin Sulayem very interested in a Liberian sex scandal"
 EFTA01988194,email,Rasseck Bourgi,True,2012-11-04 13:45:34+00:00,Jeffrey Epstein,,"Rasseck Bourgi using his wife's email ""because it is a private email"" to ask for favours re: Harvard"
 EFTA01990096,email,Boris Nikolic,,2011-08-05 23:07:29+00:00,Jeffrey Epstein,,
 EFTA01990168,girls,Maria Prusakova,True,2011-12-04 12:50:08+00:00,Jeffrey Epstein,Sent from my iPad,
@@ -7186,7 +7186,7 @@ EFTA02731168,,,,2020-04-16 00:00:00+00:00,,,
 EFTA02731200,government,DOJ,True,2020-04-14 00:00:00+00:00,,,DOJ memo about potential prosecution of Epstein's assistant
 EFTA02731226,government,DOJ,True,2021-03-14 00:00:00+00:00,,,DOJ memo seeking authorization to charge Ghislaine Maxwell with additional offenses
 EFTA02731254,,,,2025-05-02 20:12:00+00:00,,,
-EFTA02731260,misc,,,2026-01-21 00:00:00+00:00,,,
+EFTA02731260,misc,,,2026-01-21 00:00:00+00:00,,,notebook full of handwritten love letters with terrible OCR text
 EFTA02731341,,,,2026-01-10 00:00:00+00:00,,,
 EFTA02731361,,,,2026-01-28 00:00:00+00:00,,,
 EFTA02731393,,,,2026-01-11 00:00:00+00:00,,,

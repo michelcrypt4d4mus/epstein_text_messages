@@ -46,13 +46,13 @@ def test_info_sentences(get_email):
     assert len(email.info) == 1
     email_with_description = get_email('031278')
     assert len(email_with_description.info) == 1
-    assert email_with_description._config.description_txt is not None
+    assert email_with_description._config.note_txt is not None
     email: Email = get_email('EFTA00901581')
-    assert email._config.description_txt is None
+    assert email._config.note_txt is None
     svet = get_email('EFTA01870453')
     assert len(svet.info) == 1
     assert svet.info[0].plain == 'OCR text of email from Svetlana Pozhidaeva (???) to Jeffrey Epstein probably sent at 2011-04-05 16:51:26'
-    assert svet._config.description_txt.plain == 'Joshua Fink and Svetlana Pozhidaeva discuss an abortion ("You have known you are preg for a week")'
+    assert svet._config.note_txt.plain == 'Svetlana Pozhidaeva fwds a discussion about an abortion to Epstein, see quote: "You have known you are preg for a week"'
 
 
 def test_is_interesting(get_email, ito_email):

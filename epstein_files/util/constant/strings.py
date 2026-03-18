@@ -85,6 +85,8 @@ MINOR_VICTIM = 'minor victim'
 
 # Organizations
 BROCKMAN_INC = 'Brockman, Inc.'
+GOLDMAN_SACHS = 'Goldman Sachs'
+GOLDMAN_INVESTMENT_MGMT = f'{GOLDMAN_SACHS} Investment Management Division'
 HARVARD = 'Harvard'
 HARVARD_POETRY = f'{HARVARD} poetry stuff from Lisa New'  # TODO: name be here?
 PALM_BEACH_CODE_ENFORCEMENT = f'{PALM_BEACH} Code Enforcement'

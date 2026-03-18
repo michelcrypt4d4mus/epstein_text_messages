@@ -27,8 +27,8 @@ for doc in epstein_files.unique_documents:
 
         txt = bool_txt(doc.is_interesting, match_width=True).append(': ').append(doc._summary)
 
-        if doc.config_description_txt:
-            txt.append(' ').append(doc.config_description_txt)
+        if doc._config.note_txt:
+            txt.append(' ').append(doc._config.note_txt)
 
         console.print(txt)
 
