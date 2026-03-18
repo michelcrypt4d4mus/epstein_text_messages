@@ -2,7 +2,6 @@ from epstein_files.documents.config.config_builder import fedex_invoice, importa
 from epstein_files.documents.config.doc_cfg import DocCfg
 from epstein_files.documents.config.communication_cfg import imessage_screenshot, skype_log
 from epstein_files.documents.documents.categories import Interesting, Neutral
-from epstein_files.documents.doj_files.full_text import EFTA00009622_TEXT
 from epstein_files.people.names import *
 from epstein_files.util.constant.strings import *
 
@@ -43,7 +42,13 @@ MISC_CFGS = [
     ),
 
     # DOJ files
-    DocCfg(id='EFTA01611898', note=f"screenshot of recent contacts in an iPhone"),
+    DocCfg(
+        id='EFTA00003149',
+        date='2016-01-01',
+        date_uncertain='complete guess',
+        note=f"{LITTLE_SAINT_JAMES} staff list",
+        show_full_panel=True,
+    ),
     DocCfg(
         id='EFTA00034357',
         author=BUREAU_OF_PRISONS,
@@ -59,6 +64,7 @@ MISC_CFGS = [
         is_interesting=True,
     ),
     DocCfg(id='EFTA01103465', author=BEN_GOERTZEL, date='2013-12-02', note='funding proposal for AI labs in Africa etc.'),
+    DocCfg(id='EFTA00006085', author='Broward Center for the Performing Arts', display_text='Front of House Managers Report including ticket sales'),
     DocCfg(id='EFTA00007585', note='various fedex receipts and realtor notes', date='2005-09-20'),
     DocCfg(id='EFTA01193705', note="list of Epstein's known email addresses, internet accounts, cars, boats, airplanes, and telephone numbers"),
     DocCfg(id='EFTA00165515', note="contractor describes Epstein's gun safes", show_full_panel=True),
@@ -69,47 +75,34 @@ MISC_CFGS = [
         highlight_quote="the defendant provided Minor Victim-3 with a schoolgirl uniform",
     ),
     DocCfg(id='EFTA00005783', note='heavily redacted handwritten note, 30+ completely redacted pages', date='2019-08-29'),
-    DocCfg(id='EFTA00005386', note='heavily redacted photo album, lot of photos of girls'),
     DocCfg(id='EFTA01063691', note='inventory of address books and Skype logs seized from Epstein computers'),
     DocCfg(id='EFTA00024275', note='large Wexner funded payments to OB-GYN'),
     DocCfg(id='EFTA00728783', note='list of names and phone numbers'),
     DocCfg(id='EFTA00298379', note='RSVP list for Yom Kippur dinner', date='2010-09-18'),
+    DocCfg(id='EFTA01611898', note=f"screenshot of recent contacts in an iPhone"),
     # Urramoor
     DocCfg(
         id='EFTA01107738',
         note=f"creation of {CANTOR_URRAMOOR} with Mr. T's (Prince Andrew?) Urramoor and {LUTNICKS_CANTOR}",
-        is_interesting=True,
+        is_interesting=10,
     ),
     DocCfg(
         id='EFTA01141453',
         note=f"referral agreement between Mr. T's (Prince Andrew?) Urramoor and {LUTNICKS_CANTOR}",
-        is_interesting=True,
+        is_interesting=10,
     ),
     # Replacement text
-    DocCfg(
-        id='EFTA00009622',
-        date='2006-07-19',
-        note='handwritten notes from a victim interview transcribed by Claude AI',
-        is_interesting=True,
-        display_text=EFTA00009622_TEXT,
-    ),
     DocCfg(
         id='EFTA00004477',
         is_interesting=True,
         display_text='Epstein 50th birthday photo book 12 "THAIS, MOSCOW GIRLS, AFRICA, HAWAII, [REDACTED] [REDACTED], Zorro, [REDACTED] [REDACTED] [REDACTED], CRACK WHOLE PROPOSAL, BALI/THAILAND/ASIA, RUSSIA, [REDACTED], [REDACTED], NUDES, YOGAL GIRLS',
     ),
+    DocCfg(id='EFTA00001487', display_text="architectural drawing of one floor of Epstein's NYC residence"),
+    DocCfg(id='EFTA00005386', display_text='heavily redacted photo album, lot of photos of girls'),
     DocCfg(id='EFTA01628970', display_text='redacted pictures of naked women'),
     DocCfg(id='EFTA00004070', display_text="photos of Epstein with handwritten caption that didn't OCR well"),
     DocCfg(id='EFTA02731260', display_text='notebook full of handwritten love letters with terrible OCR text'),
     DocCfg(id='EFTA00006100', display_text='Palm Beach Police fax machine activity log 2005-12-28 to 2006-01-04'),
-    DocCfg(id='EFTA00001487', display_text="architectural drawing of one floor of Epstein's NYC residence"),
-    DocCfg(
-        id='EFTA00003149',
-        date='2016-01-01',
-        date_uncertain='complete guess',
-        note=f"{LITTLE_SAINT_JAMES} staff list",
-        show_full_panel=True,
-    ),
     # Attachments
     DocCfg(id='EFTA00590685', attached_to_email_id='EFTA00830911'),
     # Dates

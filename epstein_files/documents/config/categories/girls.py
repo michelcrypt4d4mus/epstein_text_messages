@@ -1,4 +1,5 @@
 from epstein_files.documents.documents.categories import Interesting, Neutral, Uninteresting
+from epstein_files.documents.doj_files.full_text import EFTA00009622_TEXT
 from epstein_files.documents.config.communication_cfg import CommunicationCfg, Platform, imessage_log, imessage_screenshot, skype_log, whatsapp_log
 from epstein_files.documents.config.config_builder import letter
 from epstein_files.documents.config.doc_cfg import NO_TRUNCATE, DocCfg
@@ -331,6 +332,13 @@ GIRLS_CFGS = [
         id='EFTA00883738',
         note=f'Epstein recruiter {DASHA_GRUPMAN} looking to spend $50,000 to rent a townhouse for "diplomats"',
         show_with_name=DASHA_GRUPMAN,
+    ),
+    DocCfg(
+        id='EFTA00009622',
+        date='2006-07-19',
+        note='handwritten notes from a victim interview transcribed by Claude AI',
+        is_interesting=True,
+        display_text=EFTA00009622_TEXT,
     ),
     EmailCfg(
         id='EFTA00577409',
