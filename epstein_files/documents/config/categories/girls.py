@@ -4,9 +4,10 @@ from epstein_files.documents.config.communication_cfg import CommunicationCfg, P
 from epstein_files.documents.config.config_builder import letter
 from epstein_files.documents.config.doc_cfg import NO_TRUNCATE, DocCfg
 from epstein_files.documents.config.email_cfg import EmailCfg
-from epstein_files.util.helpers.string_helper import join_truthy, quote
+from epstein_files.output.highlight_config import DITE_ANATA_JUILLIARD_URL
 from epstein_files.people.names import *
 from epstein_files.util.constant.strings import *
+from epstein_files.util.helpers.string_helper import join_truthy, quote
 from epstein_files.util.logging import logger
 
 PRUSAKOVA_BERKELY = 'Epstein paid for Prusakova to go to Berkeley'
@@ -329,6 +330,7 @@ GIRLS_CFGS = [
     EmailCfg(id='EFTA01814983', note=f"Epstein and {NICOLE_JUNKERMANN} used to date", show_with_name=NICOLE_JUNKERMANN),
     EmailCfg(id='EFTA02049364', note='Epstein arranging for healthcare for five girls', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA02209622', note=f'flight to Riga for {LASMA_KUHTARSKA}', show_with_name=LASMA_KUHTARSKA, truncate_to=600),
+    EmailCfg(id='EFTA00968086', note='request for help for a Juilliard student', url=DITE_ANATA_JUILLIARD_URL),
     EmailCfg(
         id='EFTA00883738',
         note=f'Epstein recruiter {DASHA_GRUPMAN} looking to spend $50,000 to rent a townhouse for "diplomats"',
