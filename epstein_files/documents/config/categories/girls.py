@@ -174,8 +174,9 @@ GIRLS_CFGS = [
         id='EFTA01870453',
         author=SVETLANA_POZHIDAEVA,
         author_uncertain=f"{JOSHUA_FINK} texts",
+        highlight_quote="You have known you are preg for a week",
         is_interesting=10,
-        note=f'{JOSHUA_FINK} and {SVETLANA_POZHIDAEVA} discuss an abortion ("You have known you are preg for a week")',
+        note=f'{SVETLANA_POZHIDAEVA} fwds a discussion about an abortion to Epstein',
     ),
     EmailCfg(
         id='EFTA01894879',

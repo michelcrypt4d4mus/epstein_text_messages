@@ -490,6 +490,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 url='https://www.theguardian.com/business/2020/may/26/stanley-ho-the-billionaire-macao-casino-tycoon-dies-aged-98',
             ),
             Entity('Wang Qishan', 'former vice president of China, head of China Construction Bank'),
+            Entity('Zhang Jian'),
         ],
         patterns=[
             r"Ali.?baba",
@@ -3583,6 +3584,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"fintech",
             r"hedge fund",
             r"(income )?tax(e[ds])?( code)?",
+            r"ISDA",
             r"(?<!Kyara\s)invest(ment|or)s?(\sadvis[eo]r[sy]?)?",
             r"(junk )?bond",
             r"K-[12]",
