@@ -269,7 +269,12 @@ class DocCfg(LoggingEntity):
         if self.complete_description:
             from epstein_files.output.epstein_highlighter import non_epstein_highlighter
             style = 'bright_white italic' if site_config.email_info_in_subtitle else INFO_STYLE
-            return non_epstein_highlighter(Text(self.complete_description, style))
+            txt = Text(self.complete_description, style)
+
+            if self.external_link_txt:
+                txt.append(' ').append(self.external_link_txt)
+
+            return non_epstein_highlighter(txt)
 
     @property
     def display_preview_txt(self) -> Text | None:

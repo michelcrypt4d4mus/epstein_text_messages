@@ -478,12 +478,7 @@ class Email(Communication):
             author_txt += Text(f" {QUESTION_MARKS}", style=self.author_style)
 
         prefix = 'fwded article' if self.is_fwded_article else 'email'
-        txt = site_config.email_subheader(prefix, author_txt, self.recipients_txt(), self.timestamp)
-
-        if self._config.external_link_txt:
-            txt = self._config.external_link_txt.append(' ').append(txt)
-
-        return txt
+        return site_config.email_subheader(prefix, author_txt, self.recipients_txt(), self.timestamp)
 
     @property
     def subject(self) -> str:
@@ -899,17 +894,17 @@ class Email(Communication):
     def __rich_console__(self, console: Console, options: ConsoleOptions) -> RenderResult:
         prettified_txt = self.prettified_txt
         max_line_len = max(*[len(line) for line in prettified_txt.split('\n')])
-        panel_subtitle = None
+        note_txt = None
 
         if self._config.description_txt and site_config.email_info_in_subtitle:
             max_line_len = max(max_line_len, len(self._config.description_txt.plain))
-            panel_subtitle = Text('').append(self._config.description_txt)
-            panel_subtitle.justify = 'right'
+            note_txt = Text('').append(self._config.description_txt)
+            note_txt.justify = 'right'
 
         if args.panelize_emails:
-            body = self._body_as_panel(prettified_txt, panel_subtitle)
+            body = self._body_as_panel(prettified_txt, note_txt)
         else:
-            body = self._body_as_table(prettified_txt, panel_subtitle)
+            body = self._body_as_table(prettified_txt, note_txt)
 
         yield self.rich_header()
         body_bottom_padding = 0 if self.attached_docs else 1
