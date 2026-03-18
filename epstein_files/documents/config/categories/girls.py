@@ -33,6 +33,7 @@ GIRLS_CFGS = [
         is_interesting=True,
         truncate_to=1_200,
     ),
+    DocCfg(id='EFTA01297974', f"DOJ queries OffshoreLeaks database for {SVETLANA_POZHIDAEVA}'s mother"),
     DocCfg(id='EFTA02701609', author=GIANNI_SERAZZI, note='2morrow business plan', date='2014-09-30', date_uncertain=True),
     DocCfg(id='EFTA01078143', author=GIANNI_SERAZZI, note='2morrow modeling pitch deck', date='2014-09-30', date_uncertain=True),
     DocCfg(id='EFTA00306033', author=SERGEY_BELYAKOV, note='Epstein Russian visa', show_full_panel=True),

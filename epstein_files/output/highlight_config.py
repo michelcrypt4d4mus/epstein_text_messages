@@ -2686,6 +2686,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 url='https://en.wikipedia.org/wiki/Ruben_Vardanyan_(politician)',
             ),
             Entity('Semion Mogilevich', 'infamous Russian mafia boss', url=WIKIPEDIA),
+            Entity('Sergey Pozhidaev', f"brother of {SVETLANA_POZHIDAEVA}", match_partial=None),
             Entity(
                 "Serguei Beloussov",
                 'technologist',
@@ -2754,7 +2755,12 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 r"Wire\s?card( Bank)?",
                 url='https://www.newyorker.com/magazine/2023/03/06/how-the-biggest-fraud-in-german-history-unravelled',
             ),
-            Organization('Women Empowerment', f"organization started by Epstein's assistant {SVETLANA_POZHIDAEVA}"),
+            Organization(
+                'Women Empowerment',
+                f"organization started by Epstein's assistant {SVETLANA_POZHIDAEVA}",
+                aliases=['WE Talks'],
+                url='https://www.thedailybeast.com/billionaire-pedophile-jeffrey-epstein-funded-womens-empowerment-entrepreneur-lana-pozhidaeva/'
+            ),
         ],
         patterns=[
             r"Bel[ao]rus(sian)?",
