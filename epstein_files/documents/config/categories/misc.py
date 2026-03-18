@@ -59,6 +59,7 @@ MISC_CFGS = [
         is_interesting=True,
     ),
     DocCfg(id='EFTA01103465', author=BEN_GOERTZEL, date='2013-12-02', note='funding proposal for AI labs in Africa etc.'),
+    DocCfg(id='EFTA00007585', note='various fedex receipts and realtor notes', date='2005-09-20'),
     DocCfg(id='EFTA01193705', note="list of Epstein's known email addresses, internet accounts, cars, boats, airplanes, and telephone numbers"),
     DocCfg(id='EFTA00165515', note="contractor describes Epstein's gun safes", show_full_panel=True),
     DocCfg(id='EFTA00266322', note=f"documents about pitches for non-profits in Australia, including to Effective Altruism"),
@@ -112,6 +113,7 @@ MISC_CFGS = [
     DocCfg(id='EFTA00590685', attached_to_email_id='EFTA00830911'),
     # Dates
     DocCfg(id='EFTA02025218', date='2011-09-09'),
+    DocCfg(id='EFTA00007693', note="driving directions from Epstein's house to <REDACTED>, flight details for Sandy Berger"),
     # Misc
     fedex_invoice('EFTA00217072', '2005-06-20'),
     fedex_invoice('EFTA00217080', '2005-06-27'),

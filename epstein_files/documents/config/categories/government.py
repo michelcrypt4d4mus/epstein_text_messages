@@ -170,6 +170,7 @@ GOVERNMENT_CFGS = [
     DocCfg(id='EFTA00084614', author=PALM_BEACH_POLICE, note='incident report detailing the investigation into Jeffrey Epstein'),
     DocCfg(id='EFTA00007893', author=PALM_BEACH_POLICE, note=f"receipts, notes, bank statements of {GHISLAINE_MAXWELL}"),
     DocCfg(id='EFTA00005569', author=PALM_BEACH_POLICE, display_text='photo lineup featuring Epstein', date='2005-03-17'),
+    DocCfg(id='EFTA00003868', author=PALM_BEACH_POLICE, display_text='photo lineup featuring Epstein', date='2006-08-09'),
     DocCfg(id='EFTA01227877', note='multi entry visa for the Russian Federation', date='2018-06-25', show_full_panel=True),
     DocCfg(id='EFTA00128379', note='analysis of two of Epstein\'s desktop computers', date='2019-01-06', is_interesting=True),
     DocCfg(id='EFTA02730274', note='evidence inventory that appears to have since been deleted from the DOJ website'),
