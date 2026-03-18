@@ -8,7 +8,7 @@ set -e
 source .env
 
 THIS_DIR=$(dirname -- "$(readlink -f -- "$0";)";)
-source "$THIS_DIR/bash_lib/shared.sh"
+source "$THIS_DIR/scripts/bash_lib/shared.sh"
 
 
 # Preparation (check branch, clean build artifacts, etc.)
