@@ -586,7 +586,7 @@ class Email(Communication):
     def file_display(self, align: JustifyMethod | None = None) -> FileDisplay:
         """Allows for proper right vs. left justify."""
         return FileDisplay(
-            body_panel=self._body_as_table(self.prettified_txt, self._config.note_txt),
+            body_panel=self._body_as_table(),
             file_info=self.file_id_panel,
             indent=site_config.info_indent,
             justify=align,
@@ -617,7 +617,7 @@ class Email(Communication):
         html = super().to_html()
 
         if (attachments_table := self._attached_docs_table()):
-            indent_props = {'margin-left': to_em(site_config.attachment_indent)}
+            indent_props = {'margin-left': to_em(site_config.email_attachment_indent)}
             html += table_to_html(attachments_table, indent_props)
 
         return html
@@ -639,30 +639,19 @@ class Email(Communication):
         else:
             return OtherFile.files_preview_table(self.attached_docs, title=attachments_table_title)
 
-    def _body_as_panel(self, text: str | Text, description: Text | None = None) -> Panel:
-        """Renders the info info text in the panel's bottom border."""
-        return Panel(
-            text,
-            border_style=self.border_style,
-            expand=False,
-            title=Text(' ').join(description.split(' ')) if description else None,  # split then join makes rich color subtitle correctly
-            title_align='right',
-        )
-
-    def _body_as_table(self, text: str | Text, description: Text | None = None) -> Table:
+    def _body_as_table(self) -> Table:
         """Renders the info text as a top row in a table-ish view."""
+        note_txt = Text('', justify='right').append(self._config.note_txt) if self._config.note_txt else ''
+
         panel = Table(
             border_style=self.border_style,
             box=box.ROUNDED,
             header_style='on gray11',
-            show_header=bool(description)
+            show_header=bool(note_txt),
         )
 
-        if description:
-            description = Text('', justify='right').append(description)
-
-        panel.add_column(description or '')
-        panel.add_row(text)
+        panel.add_column(note_txt)
+        panel.add_row(self.prettified_txt)
         return panel
 
     def _debug_props(self) -> DebugDict:
@@ -889,26 +878,13 @@ class Email(Communication):
         self._log_top_lines(num_lines, msg=f'after removal of line {idx}')
 
     def __rich_console__(self, console: Console, options: ConsoleOptions) -> RenderResult:
-        prettified_txt = self.prettified_txt
-        max_line_len = max(*[len(line) for line in prettified_txt.split('\n')])
-        note_txt = None
-
-        if self._config.note_txt:
-            max_line_len = max(max_line_len, len(self._config.note_txt.plain))
-            note_txt = Text('').append(self._config.note_txt)
-            note_txt.justify = 'right'
-
-        if args.panelize_emails:
-            body = self._body_as_panel(prettified_txt, note_txt)
-        else:
-            body = self._body_as_table(prettified_txt, note_txt)
-
         yield self.rich_header()
+        body = self._body_as_table()
         body_bottom_padding = 0 if self.attached_docs else 1
         yield Padding(body, (0, 0, body_bottom_padding, site_config.other_files_table_indent))
 
         if (attachments_table := self._attached_docs_table()):
-            yield Padding(attachments_table, (0, 0, 1, site_config.attachment_indent))
+            yield Padding(attachments_table, (0, 0, 1, site_config.email_attachment_indent))
 
     @classmethod
     def dummy_cfg(cls) -> EmailCfg:
