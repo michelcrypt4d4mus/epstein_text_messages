@@ -310,6 +310,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             acronym('Independent Filmmaker Project'),
         ],
         patterns=[
+            r"Arnold Schwarzenegger",
             r"(Art )?Spiegelman",
             r"artis(an|t)",
             r"Artspace",
@@ -2714,7 +2715,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 r"(Quantum Wave|QWave) (Capital|Fund)",
             ),
             Organization('Runa Capital', 'fund of Serguei Beloussov with investment from Steve Jurvetson and Frank Creer'),
-            Organization('Sberbank', 'Russian bank'),
+            Organization('Sberbank', 'Russian bank', url=WIKIPEDIA),
             Organization(
                 'Wirecard',
                 f"largest financial fraud in German history, connections to FSB and crypto, CFO Jan Marsalek is a fugitive in Russia",
@@ -2937,7 +2938,8 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Entity(
                 CHAMATH_PALIHAPITIYA,
                 f"{ALL_IN_PODCAST}, Facebook, crypto enthusiast, SPAC grifter, Trump convert",
-                match_partial='both'
+                match_partial='both',
+                url=WIKIPEDIA,
             ),
             Entity(
                 CHRIS_POOLE,
@@ -2945,7 +2947,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 r"mmot|Chris Poole?|(?-i:Moot)",
                 aliases=['"moot"'],
                 match_partial=None,
-                url='https://4chan.org/'
+                url=['https://4chan.org/', WIKIPEDIA],
             ),
             Entity('Danny Hillis', "computer scientist, artificial intelligence researcher", r"Dan(iel|ny) Hillis?"),
             Entity(
@@ -2972,14 +2974,14 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Entity(HONGBO_ROBERT_BAO, THIELS_VALAR, r"Hong,? Robert Bao|Hongbo( Robert)? Bao"),
             Entity(HOSAIN_RAHMAN, 'CEO of Jawbone', match_partial='first'),
             Entity(IAN_ODONNELL, THIELS_VALAR, r"Ian O'?Donnell|O'?Donnell, Ian"),
-            Entity('Jack Dorsey', 'co-founder of Twitter and Block (FKA Square)'),
+            Entity('Jack Dorsey', 'co-founder of Twitter and Block (FKA Square)', url=WIKIPEDIA),
             Entity(JAMES_FITZGERALD, f"co-founder of {THIELS_VALAR}", r"James Fitz[g\s]eral?d?", match_partial=None),
             Entity('James Meisken', 'biotech at Delos'),
             Entity(
                 JASON_CALACANIS,
                 f'{ALL_IN_PODCAST} with David Sacks and {CHAMATH_PALIHAPITIYA}, Uber investor',
                 r"Jason (.{12})?Calacanis",
-                url='https://en.wikipedia.org/wiki/Jason_Calacanis',
+                url=WIKIPEDIA,
             ),
             Entity(
                 KIMBAL_MUSK,
@@ -3027,6 +3029,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 f'maker of huge video games like World of Warcraft and Call of Duty run by {BOBBY_KOTICK}',
                 r"Activision Blizzard|Blizzard Entertainment",
                 is_emailer=True,
+                url=WIKIPEDIA,
             ),
             Organization(
                 'Coatue Management',
@@ -3045,17 +3048,20 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Organization('Intellectual Ventures'),  # Nathan Myhrvold
             Organization('Jawbone', f'wireless earpiece company invested in by Epstein and {IAN_OSBORNE}'),
             Organization('LinkedIn', "LinkedIn", r"Linked[Il]n( Updates)?", is_emailer=True, is_interesting=False),
-            Organization('Match.com', 'dating site', r"match\.com|matchmail", is_emailer=True),
+            Organization('Match.com', 'dating site', r"match\.com|matchmail", is_emailer=True, is_interesting=False),
             Organization('Mozilla', 'maker of the Firefox browser', r"Mozilla( Corp(oration)?)?"),
             Organization('MySpace', "early social media, Epstein's creeptastic account data was lost", r"(www\.?)myspace(\.?com)?"),
             Organization('Number26', f'fintech frontend for Wirecard Bank, renamed "N26"', r"N(umber)?26"),
             Organization('Pandora', is_interesting=False, is_emailer=True),
-            Organization('Parler', 'twitter clone on which the January 6th attacks were coordinated', r"(?-i:P)arler"),
+            Organization('Parler', 'twitter clone on which the January 6th attacks were coordinated', r"(?-i:P)arler", url=WIKIPEDIA),
             Organization(
                 'Second Life',
                 f"virtual world with early attempt at virtual currency the Linden Dollar",
                 r"Second Life",
-                url='https://law.stanford.edu/stanford-lawyer/articles/this-is-not-a-game-law-and-order-in-virtual-worlds/',
+                url=[
+                    'https://law.stanford.edu/stanford-lawyer/articles/this-is-not-a-game-law-and-order-in-virtual-worlds/',
+                    WIKIPEDIA,
+                ],
             ),
             Organization('Softbank Vision Fund', "Masayohsi Son's fund focused on tech, AI, WeWork", r"Softbank|(Softbank )?Vision Fund"),
             Organization('Tarana Wireless', 'broadband provider', r"Tarana( (Technology|Wireless))?"),
@@ -3066,6 +3072,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 f"{PETER_THIEL} affiliated fintech venture fund",
                 r"V[ae]lar( (Global Fund|Ventures?))?",
                 is_emailer=True,
+                url=WIKIPEDIA,
             ),
             Organization('Wearality', f"startup invested in by Epstein and {JOI_ITO}", r"Wearality( Corporation)?"),
             Organization(
@@ -3146,10 +3153,10 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 r"(Alan )?Weiss?e?lberg",
                 url='https://manhattanda.org/d-a-bragg-allen-weisselberg-sentenced-to-5-months-in-jail/',
             ),
-            Entity('Brad Parscale', "Trump campaign social media manager", r"(Brad(ley)? )Parscale"),
+            Entity('Brad Parscale', "Trump campaign social media manager", r"(Brad(ley)? )Parscale", url=WIKIPEDIA),
             Entity('Bruce Moskowitz', "'Trump's health guy' according to Epstein", match_partial=None),
             Entity(DONALD_TRUMP, r"(Donald\s+(J\.\s+)?)?Trump(ism| (Org(anization)?|Properties)( LLC)?)?|Donald J. Tramp"),
-            Entity('Marla Maples', 'ex-wife of Donald Trump', match_partial='both'),
+            Entity('Marla Maples', 'ex-wife of Donald Trump', match_partial='both', url=WIKIPEDIA),
             Entity(
                 'Melania',
                 "...Trump?",
@@ -3168,16 +3175,12 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 'Trump campaign manager, partner of Roger Stone, worked for Russians in Ukraine, convicted of financial fraud',
                 url='https://en.wikipedia.org/wiki/Trials_of_Paul_Manafort',
             ),
-            Entity(
-                "Rebekah Mercer",
-                'daughter of algorithmic trading billionaire Robert Mercer',
-                url="https://en.wikipedia.org/wiki/Rebekah_Mercer",
-            ),
+            Entity("Rebekah Mercer", 'daughter of algorithmic trading billionaire Robert Mercer', url=WIKIPEDIA),
             Entity(
                 'Roger Stone',
                 "infamous political trickster with a tattoo of Nixon's face on his back",
-                url='https://en.wikipedia.org/wiki/Roger_Stone',
                 match_partial=None,
+                url=WIKIPEDIA,
             ),
             Organization("Trump Properties LLC"),
         ],
@@ -3366,7 +3369,6 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Organization('Biosphere', f'closed loop science experiment to mimic the earth in the 90s overseen by {STEVE_BANNON}'),
         ],
         patterns=[
-            r"Arnold Schwarzenegger",
             r"(American )?Dharma",
         ],
     ),
