@@ -43,6 +43,8 @@ WIGDOR_ATTORNEY = f"Wigdor LLP lawyer in {LEON_BLACK} lawsuit"
 FINANCIAL_COLOR = 'dark_sea_green2'
 VICTIM_COLOR = 'orchid1'
 
+DITE_ANATA_JUILLIARD_URL = 'https://usatoday.com/story/news/politics/2026/02/19/jeffrey-epstein-emails-files-power-for-benefit/88701802007/'
+
 debug_console = Console(color_system='256')
 
 
@@ -2434,6 +2436,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 'model scout funded by Epstein to recruit in eastern Europe',
                 url='https://en.wikipedia.org/wiki/Daniel_Siad#Connection_to_Epstein_and_Brunel',
             ),
+            Entity('Dite Anata', 'model, holistic sanctuary enjoyoor', url=DITE_ANATA_JUILLIARD_URL),
             Entity(
                 FAITH_KATES,
                 "Next Models co-founder",
@@ -3255,6 +3258,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             ),
             Entity('Jeanne Palfrey', '"The DC Madam", murdered'),
             Entity('Jennifer Aros', 'abused by Epstein starting at age 14', url='https://x.com/epsteinsearchin/status/2031730091827544180'),
+            Entity('Justina Auškelytė', 'Julliard student from Latvia', r"Justina Au[fšs]kelyt[eė]", url=DITE_ANATA_JUILLIARD_URL),
             Entity(KATHERINE_KEATING, "daughter of former Australian prime minister Paul Keating", match_partial=None),
             Entity('Lucrezia Camponovo', QUESTION_MARKS),
             Entity('Miranda', f'appears to have done an internship at {CLIFFORD_CHANCE} with {MARIA_PRUSAKOVA}?'),
