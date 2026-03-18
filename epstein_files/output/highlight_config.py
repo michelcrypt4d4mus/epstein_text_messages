@@ -281,7 +281,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Entity('Camille Lang', "Sotheby's auction house", match_partial=None),
             Entity('Caroline Sophie', "Sotheby's auction house", match_partial=None),
             Entity('David Brenner', "American comedian and actor"),
-            Entity('David Geffen', 'record label and film studio owner'),
+            Entity('David Geffen', 'record label and film studio owner', url=WIKIPEDIA),
             Entity(
                 'Donna Air',
                 'British actress and TV presenter',
@@ -298,8 +298,8 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Entity('Michael Ovitz', 'former president of Disney'),
             Entity('Nick Jarecki', "American filmmaker", match_partial=None),
             Entity('Richard Merkin', "painter, illustrator and arts educator"),
-            Entity(STEVEN_PFEIFFER, "Associate Director at Independent Filmmaker Project (IFP)"),
             Entity('Steven Gaydos', "American screenwriter and journalist"),
+            Entity(STEVEN_PFEIFFER, "Associate Director at Independent Filmmaker Project (IFP)"),
             Entity('Tommy Mattolla', 'former CEO of Sony, ex-husband of Mariah Carey'),
             Entity('Val Kilmer', 'famous movie actor', match_partial=None),
             Entity(WOODY_ALLEN, f'filmmaker who married his adopted daughter {SOON_YI_PREVIN}', match_partial='first'),
