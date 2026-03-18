@@ -49,6 +49,11 @@ def test_epstein_co():
     assert zorro.info == f"Epstein company for New Mexico ranch"
 
 
+def test_epstein_site_links(epstein):
+    assert epstein.epstein_site_link().url == 'https://epsteinify.com/?name=Jeffrey%20Epstein'
+    assert epstein.epstein_sites_all_links.plain == 'epstein.media / EpsteinWeb / epsteinify / Jmail / search X'
+
+
 def test_epstein_trust():
     butterfly = epstein_trust('Butterfly Trust', beneficiaries=['Karyna'])
     assert butterfly.info == 'Epstein financial trust, sole beneficiary Karyna'
@@ -60,11 +65,6 @@ def test_epstein_trust():
     assert year_trust.info == 'Epstein financial trust, trustees: Bob, Dylan'
     year_trust = epstein_trust('2012', trustees=['Bob', 'Dylan'], beneficiaries=['Karyna'])
     assert year_trust.info == 'Epstein financial trust, sole beneficiary Karyna, trustees: Bob, Dylan'
-
-
-def test_epstein_site_links(epstein):
-    assert epstein.epstein_site_link().url == 'https://epsteinify.com/?name=Jeffrey%20Epstein'
-    assert epstein.epstein_sites_all_links.plain == 'epstein.media / EpsteinWeb / epsteinify / Jmail / search X'
 
 
 def test_highlight_pattern():

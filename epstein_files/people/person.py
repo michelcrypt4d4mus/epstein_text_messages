@@ -1,7 +1,7 @@
 import logging
 from dataclasses import dataclass, field
 from datetime import datetime, date
-from typing import Sequence
+from typing import Sequence, Self
 
 from rich.align import Align
 from rich.console import Group, RenderableType
@@ -348,14 +348,15 @@ class Person(DocTypesMixin, LoggingEntity):
     def __str__(self):
         return f"{self.name_str}"
 
-    @staticmethod
+    @classmethod
     def emailer_info_table(
-        people: list['Person'],
-        highlighted: list['Person'] | None = None,
-        show_epstein_total: bool = False
+        cls,
+        people: list[Self],
+        highlighted: list[Self] | None = None,
+        show_epstein_total: bool = False  # TODO: this sucks
     ) -> Table:
         """
-        Table of info about emailers.
+        Table of info about people's emails.
 
         Args:
             people (list[Person]): Everyone who sent or received an email in the files.
@@ -396,10 +397,6 @@ class Person(DocTypesMixin, LoggingEntity):
         current_year = 1990
         current_year_month = current_year * 12
         grey_idx = 0
-
-        # TODO: iPhone simulator seems to barf on the big table
-        # if args.mobile:
-        #     people = highlighted[0:3]
 
         for person in people:
             if person.is_interesting is False and not (args.emailers_info or args.all_emails):
