@@ -65,7 +65,7 @@ class Person(DocTypesMixin, LoggingEntity):
 
     def __post_init__(self):
         self.contact = get_entity(self.name_str)
-        self.documents = Document.sort_by_timestamp(self.documents)
+        self._documents = Document.sort_by_timestamp(self.documents)
 
     @property
     def biography_txt(self) -> Text | None:
