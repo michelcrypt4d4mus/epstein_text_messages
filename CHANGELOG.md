@@ -1,4 +1,5 @@
 # NEXT RELEASE
+* `--build-dir` argument
 * new `--use-custom-html` arg, `--all-other-files` site now includes biographical panels
 * If --all-other-files is enables, print the biographical panels, otherwise just print a big table
 * add `platform` property to `CommunicationCfg`

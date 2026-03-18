@@ -19,7 +19,7 @@ from epstein_files.output.epstein_highlighter import highlighter
 from epstein_files.output.rich import *
 from epstein_files.output.site.internal_links import (AUTHORS_USING_SIGNATURES, FILES_THAT_ARE_NEITHER_EMAILS_NOR,
      HIS_EMAILS, HIS_TEXT_MESSAGES, SELECTIONS_FROM)
-from epstein_files.output.site.sites import EMAILERS_TABLE_PNG_PATH, HTML_DIR
+from epstein_files.output.site.sites import EMAILERS_TABLE_PNG_PATH, HtmlDir
 from epstein_files.output.title_page import print_other_page_link, section_header
 from epstein_files.people.interesting_people import EMAILERS_TO_PRINT
 from epstein_files.people.names import *
@@ -299,7 +299,7 @@ def write_html(output_path: Path | Site | None, **kwargs) -> Path | None:
         output_path = Site.html_output_path(output_path)
 
     if args.write_txt:
-        output_path = HTML_DIR.joinpath(f"{output_path.stem}.txt")
+        output_path = HtmlDir.build_path(f"{output_path.stem}.txt")
         console.save_text(str(output_path))
     else:
         console.save_html(

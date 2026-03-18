@@ -4,6 +4,7 @@ from os import environ
 from pathlib import Path
 
 from rich_argparse_plus import RichHelpFormatterPlus
+from yaralyzer.util.cli_option_validators import DirValidator
 
 from epstein_files.output.site.site_config import ALL_OTHER_FILES_MULTIPLIER, DEFAULT_WIDTH, MobileConfig, SiteConfig
 from epstein_files.output.site.sites import *
@@ -46,7 +47,8 @@ output.add_argument('--all-emails', '-ae', action='store_true', help='all the em
 output.add_argument('--all-emails-chrono', '-aec', action='store_true', help='all emails in chronological order')
 output.add_argument('--all-other-files', '-ao', action='store_true', help='all the non-email, non-text msg files instead of just the interesting ones')
 output.add_argument('--all-texts', '-at', action='store_true', help='all the text messages instead of just the interesting ones')
-parser.add_argument('--build', '-b', nargs="?", default=None, const=BUILD_TO_DEFAULT, help='write output to HTML file')
+output.add_argument('--build', '-b', nargs="?", default=None, const=BUILD_TO_DEFAULT, help='write output to HTML file')
+output.add_argument('--build-dir', default=DEFAULT_HTML_DIR, type=DirValidator(), help='dir to render HTML etc. to')
 output.add_argument('--emailers-info', '-ei', action='store_true', help='write a .png of the eeailers info table')
 output.add_argument('--json-files', action='store_true', help='pretty print all the raw JSON data files in the collection and exit')
 output.add_argument('--json-metadata', '-jm', action='store_true', help='dump JSON metadata for all files and exit')
@@ -101,6 +103,10 @@ else:
 
 is_html_script = parser.prog in HTML_SCRIPTS or 'html' in parser.prog
 site_config = MobileConfig if args.mobile else SiteConfig
+HtmlDir.HTML_DIR = args.build_dir or HtmlDir.HTML_DIR
+
+if args.build_dir and not args.build:
+    args.build = BUILD_TO_DEFAULT
 
 args.debug = args.deep_debug or args.debug or is_env_var_set('DEBUG')
 args._debug_highlight_patterns = (args.colors_only and args.debug)
