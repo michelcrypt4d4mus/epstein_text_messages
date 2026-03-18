@@ -47,7 +47,7 @@ UNINTERESTING_CC_INFO_NO_CONTACT = f"{UNINTERESTING_CC_INFO}, no direct contact 
 PEOPLE_BIOS = {
     contact.name: contact.bio_txt
     for highlighted_group in HIGHLIGHTED_NAMES
-    for contact in highlighted_group.contacts
+    for contact in highlighted_group.entities
     if contact.has_bio
 }
 
@@ -64,11 +64,11 @@ class Person(DocTypesMixin, LoggingEntity):
     _searched_for_highlight_group: bool = False
 
     def __post_init__(self):
-        self.entity = get_entity(self.name_str)
+        self.entity = get_entity(self.name or '')
         self._documents = Document.sort_by_timestamp(self.documents)
 
     @property
-    def biography_txt(self) -> Text | None:
+    def header_panel_bio_txt(self) -> Text | None:
         if self.info_with_category:
             return Text(f"({self.info_with_category})", justify='center', style=f"{self._email_info_style} italic")
 
@@ -101,8 +101,8 @@ class Person(DocTypesMixin, LoggingEntity):
         """Return a `Group` with the name of an emailer and a few tidbits of information about them below."""
         elements: list[RenderableType] = [self.email_info_panel()]
 
-        if self.biography_txt:
-            elements.append(self.biography_txt)
+        if self.header_panel_bio_txt:
+            elements.append(self.header_panel_bio_txt)
 
         return Padding(Group(*elements), (2, 0, 1, 0))
 
@@ -307,8 +307,8 @@ class Person(DocTypesMixin, LoggingEntity):
         """
         printer.print_centered(self.email_info_panel())
 
-        if self.biography_txt:
-            printer.print_centered(self.biography_txt)
+        if self.header_panel_bio_txt:
+            printer.print_centered(self.header_panel_bio_txt)
 
         printer.line()
 

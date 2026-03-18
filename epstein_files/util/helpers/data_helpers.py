@@ -43,6 +43,11 @@ def add_constant(sequence: Sequence[int], constant: float | int) -> list[int | f
     return [s + constant for s in sequence]
 
 
+def build_name_lookup(objs: list[T]) -> dict[names.Name, T]:
+    """Dict of objects keyed by `name` property."""
+    return {c.name: c for c in objs}
+
+
 def coerce_utc_strict(dt: datetime) -> datetime:
     if not dt:
         return None

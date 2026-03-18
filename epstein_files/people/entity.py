@@ -69,7 +69,7 @@ class Entity(LoggingEntity):
     unique_phraseologies: list[str] = field(default_factory=list)
     url: str | list[str] | Literal['WIKIPEDIA'] = ''
 
-    # NOTE: not usually set at instantiation time
+    # NOTE: category is usually set by a `HighlightedNames` that holds this `Entity`
     category: str = ''
     _style: RichStyle = field(default_factory=lambda: RichStyle(None))
     _urls: list[str] = field(init=False)
@@ -297,11 +297,6 @@ class Entity(LoggingEntity):
         return self.name
 
     @classmethod
-    def build_name_lookup(cls, contacts: list[Self]) -> dict[Name, Self]:
-        """Dict of `Contact` objects keyed by contact name."""
-        return {c.name: c for c in contacts}
-
-    @classmethod
     def coerce_entity_names(cls, _arg: 'EntityScanArg') -> list[str]:
         if not _arg:
             return []
@@ -310,7 +305,7 @@ class Entity(LoggingEntity):
 
     @classmethod
     def _repr_string(cls, contact_infos: list[Self]) -> str:
-        """Print a list of `Contact` objects to a python string that can recreate them when executed."""
+        """Print a list of `Entity` objects to a python string that can recreate them when executed."""
         return '[\n' + indented([repr(contact) for contact in contact_infos], 4) + '\n],'
 
 

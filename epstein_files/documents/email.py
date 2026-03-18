@@ -77,9 +77,9 @@ DERIVED_CFG_PROPS_TO_COPY = [
 
 # Junk mail
 JUNK_EMAILERS = [
-    contact.name
+    entity.name
     for junk_hg in HIGHLIGHTED_NAMES if junk_hg.label == Uninteresting.JUNK
-    for contact in junk_hg.contacts
+    for entity in junk_hg.entities
 ]
 
 BCC_LISTS = JUNK_EMAILERS + MAILING_LISTS

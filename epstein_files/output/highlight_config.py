@@ -64,7 +64,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
     HighlightedNames(
         label=Uninteresting.ACADEMIA,
         style='light_goldenrod2',
-        contacts=[
+        entities=[
             Entity(BEN_GOERTZEL, 'AI researcher, Humanity+ chairman, iCog Labs, funded by Epstein'),
             Entity('Brian Greene', 'physicist at Columbia University', match_partial=None),
             Entity('Daniel Kahneman', "Nobel economic sciences laureate and cognitivie psychologist (?)", r"Dan(iel|ny) Kahneman"),
@@ -200,7 +200,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
     HighlightedNames(
         label='Africa',
         style='light_pink4',
-        contacts=[
+        entities=[
             Entity('Abdoulaye Wade', f"former president of Senegal, father of {KARIM_WADE}", match_partial='first'),
             Entity('Ellen Johnson-Sirleaf', 'president of Liberia'),
             Entity('Goodluck Jonathan', 'president of Nigeria', match_partial=None),
@@ -265,7 +265,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
     HighlightedNames(
         label=ARTS,
         style='wheat4',
-        contacts=[
+        entities=[
             Entity(ANDRES_SERRANO, '"Piss Christ" artist', url=WIKIPEDIA),
             Entity('Barry Josephson', "American film producer"),  #, editor FamilySecurityMatters.org"),
             Entity(BILL_SIEGEL, "documentary film producer and director", match_partial=None),
@@ -346,7 +346,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         label=BILL_GATES,
         style='turquoise4',
         category=TECH_BRO,
-        contacts=[
+        entities=[
             Entity(BILL_GATES, "ex-Microsoft, Gates Foundation, bgC3"),
             Entity(
                 BORIS_NIKOLIC,
@@ -370,7 +370,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
     HighlightedNames(
         label=BUSINESS,
         style='spring_green4',
-        contacts=[
+        entities=[
             Entity(ALIREZA_ITTIHADIEH, "CEO Freestream Aircraft Limited", r"Alireza.[Il]ttihadieh", match_partial='both'),
             Entity(BARRY_J_COHEN, emailer_pattern=r"barry ((j.?|james) )?cohen?", match_partial=None),
             Entity('Barry Zelin', 'Axiom Capital', url='https://epsteingraph.com/people/barry-w-zelin'),
@@ -457,7 +457,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
     HighlightedNames(
         label='China',
         style='bright_red',
-        contacts=[
+        entities=[
             Entity(
                 'Angela Ho',
                 'daughter of Chinese gambling / organized crime kingpin Stanley Ho',
@@ -528,7 +528,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
     HighlightedNames(
         label='crime',
         style='salmon1',
-        contacts=[
+        entities=[
             Entity('John Gotti', 'boss of the Gambino crime family'),
             Entity('Anthony Trentacosta', 'Gambino crime family'),
             Entity('Michael Bilotti', 'murderer', r"Michael (A\.? )?Bilotti"),
@@ -564,7 +564,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         category=Interesting.CRYPTO,
         label=JOI_ITO,
         style='gold1',
-        contacts=[
+        entities=[
             Entity(
                 JOI_ITO,
                 "head of {MIT_MEDIA_LAB} and MIT Digital Currency Initiative, co-founded VC funds with Epstein",
@@ -579,7 +579,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
     HighlightedNames(
         label=Interesting.CRYPTO,
         style='orange1 bold',
-        contacts=[
+        entities=[
             Entity(
                 ADAM_BACK,
                 f"co-founder of {BLOCKSTREAM}, bitcoin core developer, Tether defender, currently denying Epstein connections",
@@ -903,7 +903,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
     HighlightedNames(
         label='deepak',
         style='dark_sea_green4',
-        contacts=[
+        entities=[
             Entity(CAROLYN_RANGEL, f"{DEEPAK_CHOPRA}'s assistant {'(???)'}"),
             Entity(DEEPAK_CHOPRA, "woo woo")
         ],
@@ -911,7 +911,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
     HighlightedNames(
         label='Democrat',
         style='sky_blue1',
-        contacts=[
+        entities=[
             Entity('Alex Mayorkas', 'future DHS secretary', r"Al(i|ex) Mayorkas"),
             Entity('Andrew Cuomo', 'governor of New York'),
             Entity(BILL_RICHARDSON, 'former governor of New Mexico', r"(Governor )?(Bill )?Richardson", url=WIKIPEDIA),
@@ -963,7 +963,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
     HighlightedNames(
         label='Dubins',
         style='medium_orchid1',
-        contacts=[
+        entities=[
             Entity(CELINA_DUBIN, f"daughter of Glenn &{EVA_DUBIN}, called Epstein 'unc'", match_partial=None),
             Entity(
                 EVA_DUBIN,
@@ -979,7 +979,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
     HighlightedNames(
         label='employee',
         style='light_slate_blue',
-        contacts=[
+        entities=[
             Entity('Adriana Ross', 'named co-conspirator', match_partial=None),
             Entity('Alfredo Rodriguez', "Epstein's butler, stole Epstein's black book", match_partial=None),
             Entity(BELLA_KLEIN, "one of Epstein's accountants", match_partial=None),
@@ -1033,7 +1033,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
     HighlightedNames(
         label=JEE,
         style=EPSTEIN_COLOR,
-        contacts=[
+        entities=[
             Entity(
                 JEFFREY_EPSTEIN,
                 emailer_pattern=r"j?ee[vy]acatio[mn]?(@|[baeoq])?g?(mail.com)?|Epstine|\bJEE?\b|Jefff?(rey)? (Edward )?E((sp|ps)tein?)?( VI Foundation)?|J Jep|Jeffery Edwards?|(?<!(ark L.|rd Jay|Edward) )Epstein(,? Jeffrey( Edward)?)?|Jeffrey Epst.*comj?",
@@ -1047,7 +1047,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
     HighlightedNames(
         label='Epstein',
         style=EPSTEIN_COLOR,
-        contacts=[
+        entities=[
             Entity('sultan175', f"Epstein's account name on Match.com", is_emailer=False),
             Organization(
                 f"{ASIA_GATEWAY} Limited",
@@ -1105,7 +1105,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
     HighlightedNames(
         label=LAWYER,  # Epstein's lawyers
         style='purple',
-        contacts=[
+        entities=[
             Entity(ADA_CLAPP, f"Chief Legal Officer of {LEON_BLACK}'s {ELYSIUM_MANAGEMENT}"),
             Entity(ALAN_DLUGASH, 'tax partner at Paneth and Shrone', r"Alan (J.? )?Dlugash"),
             Entity('Alan S. Halperin', "partner at Paul, Weiss", r"(Alan.{8})?Halperin(, Alan S)?"),
@@ -1181,7 +1181,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
     HighlightedNames(
         label='law firm',  # Non-Epstein affiliated
         style='medium_purple3',
-        contacts=[
+        entities=[
             Organization(CLIFFORD_CHANCE, f'law firm where {MARIA_PRUSAKOVA} did an internship in Paris'),
             Organization('Latham & Watkins', f'law firm where {KATHRYN_RUEMMLER} worked', r"Latham (&|and) Watkins"),
             Organization('Sadis Goldberg LLP', 'law firm'),
@@ -1197,7 +1197,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         label=ESTATE_EXECUTOR,
         style='purple3 bold',
         category=LAWYER,
-        contacts=[
+        entities=[
             Entity(
                 DARREN_INDYKE,
                 "Epstein's lawyer and estate executor",
@@ -1220,7 +1220,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
     HighlightedNames(
         label='Europe',
         style='light_sky_blue3',
-        contacts=[
+        entities=[
             Entity('Alastair Campbell', 'journalist, spokesman for Tony Blair', match_partial='first'),
             Entity('Alistair Darling', 'former UK Chancellor of the Exchequer under Gordon Brown'),
             Entity(ANDRZEJ_DUDA, "former president of Poland", match_partial=None),
@@ -1393,7 +1393,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
     HighlightedNames(
         label=Neutral.FINANCE,
         style='green',
-        contacts=[
+        entities=[
             Entity(AMANDA_ENS, "Citigroup", r"ens, amanda?|Amanda.Ens", match_partial=None),
             Entity('Andrew Gallivan', f"manager at {DEUTSCHE_BANK}"),
             Entity(
@@ -1582,7 +1582,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
     HighlightedNames(
         label=FRIEND,
         style='tan',
-        contacts=[
+        entities=[
             Entity(
                 ANDREW_FARKAS,
                 "heir to Alexander's department store fortune, recently claimed he barely knew Epstein",
@@ -1644,7 +1644,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
     HighlightedNames(
         label=Neutral.GOVERNMENT,
         style='color(24) bold',
-        contacts=[
+        entities=[
             Entity(ALISON_J_NATHAN, "judge in SDNY", r"Alison( J\.?)? Nathan|Nathan NYSD Chambers?", match_partial=None),
             Entity(
                 ANN_MARIE_VILLAFANA,
@@ -1826,7 +1826,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
     HighlightedNames(
         label=HARVARD,
         style='light_goldenrod3',
-        contacts=[
+        entities=[
             Entity('Donald Rubin', "statistics professor", match_partial=None),
             Entity('Henry Rosovsky', f'emeritus dean of {HARVARD}', r"(Henry )?Rosovs(k|lc)y"),
             Entity('Kelly Friendly', f"longtime aide and spokesperson of {LARRY_SUMMERS}", match_partial=None),
@@ -1865,7 +1865,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
     HighlightedNames(
         label='India',
         style='bright_green',
-        contacts=[
+        entities=[
             Entity(ANIL_AMBANI, "billionaire chairman of Reliance Group", r"Anil.Ambani", url=WIKIPEDIA),
             Organization(
                 'InsightsPod',
@@ -1892,7 +1892,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
     HighlightedNames(
         label='Israel',
         style='dodger_blue2',
-        contacts=[
+        entities=[
             Entity(
                 EHUD_BARAK,
                 "former prime minister of Israel, Epstein business partner",
@@ -1950,7 +1950,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
     HighlightedNames(
         label=JOURNALIST,
         style='bright_yellow',
-        contacts=[
+        entities=[
             Entity('Adam Bly', "editor of SEED magazine"),
             Entity('Alain Forget', "author of \"How To Get Out Of This World ALIVE\"", match_partial=None),
             Entity('Alex Yablon', "New York Magazine fact checker (?)"),
@@ -2143,19 +2143,18 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
     HighlightedNames(
         label=Uninteresting.JUNK,
         style='gray46',
-        contacts=[
+        entities=[
             Entity('asmallworld@travel.asmallworld.net'),
             Entity('digest-noreply@quora.com'),
             Entity('editorialstaff@flipboard.com'),
             Entity('How To Academy', is_junk=True),
             Entity('Jokeland')
         ],
-        should_match_first_last_name=False,
     ),
     HighlightedNames(
         label='Latin America',
         style='yellow',
-        contacts=[
+        entities=[
             Entity('Edgar Zambrano', 'Venezuelan politician'),
             Entity(
                 REINALDO_AVILA_DA_SILVA,
@@ -2195,7 +2194,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
     HighlightedNames(
         label=LOBBYIST,
         style='dark_khaki',
-        contacts=[
+        entities=[
             Entity(BOB_CROWE, "partner at Nelson Mullins", r"[BR]ob Crowe", match_partial=None),
             Entity('Elisabeth Feliho', f'Nelson Mullins Riley, worked on getting {KARIM_WADE} out of jail'),
             Entity('Joshua Cooper Ramo', "co-CEO of Henry Kissinger Associates"),
@@ -2212,7 +2211,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
     HighlightedNames(
         label='Mongolia',
         style='light_coral',
-        contacts=[
+        entities=[
             Entity(
                 GANBAT_CHULUUNKHUU,
                 "corrupt Mongolian politician who was later wanted by Interpol",
@@ -2236,7 +2235,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
     HighlightedNames(
         label=MIDEAST,
         style='dark_sea_green4',
-        contacts=[
+        entities=[
             Entity(
                 'Adnan Khashoggi',
                 'arms dealer involved in the Iran-Contra scandal, Epstein\'s former employer',
@@ -2396,7 +2395,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
     HighlightedNames(
         label='modeling',
         style='pale_violet_red1',
-        contacts=[
+        entities=[
             Entity('Abi Schwinck', f"{JEAN_LUC_MC2} {QUESTION_MARKS}"),
             Entity(
                 'Aleksandra Rastovic',
@@ -2494,7 +2493,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
     HighlightedNames(
         label=PUBLICIST,
         style='orange_red1',
-        contacts=[
+        entities=[
             Entity(
                 AL_SECKEL,
                 "Isabel Maxwell's husband, Mindshift Conference organizer, mysterious death (possibly faked)",
@@ -2539,7 +2538,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
     HighlightedNames(
         label='Republican',
         style='dark_red bold',
-        contacts=[
+        entities=[
             Entity(
                 'Alex Acosta',
                 "approved Epstein's 2007 sweetheart deal as US attorney, nominated to be Trump's Labor Secretary, resigned over Epstein",
@@ -2613,7 +2612,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
     HighlightedNames(
         label='Rothschild',
         style='indian_red',
-        contacts=[
+        entities=[
             Entity(
                 ARIANE_DE_ROTHSCHILD,
                 f"heiress, runs the bank {EDMOND_DE_ROTHSCHILD} (Suisse) SA",
@@ -2627,7 +2626,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
     HighlightedNames(
         label='Russia',
         style='red bold',
-        contacts=[
+        entities=[
             Entity('Alexei Navalny', 'assassinated Russian opposition leader', r"Ale(ksandr|xei) Navalni?y"),
             Entity('Alisher Usmanov', 'Uzbeki oligarch with alleged ties to Putin, organized crime', url=WIKIPEDIA),
             Entity('Andrey Vavilov', 'former Russian finance minister accused of stealing $230 million and other frauds'),
@@ -2756,7 +2755,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
     HighlightedNames(
         label=RUSSIAN_GIRL,
         style='color(161)',
-        contacts=[
+        entities=[
             Entity('Aksana Samy', QUESTION_MARKS),
             Entity(ALEKSANDRA_KARPOVA, f"{CRYPTO_PR_LAB} co-founder", r"Aleksandra Karpova"),
             Entity('Alena Davydenkova', 'girl'),
@@ -2874,7 +2873,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
     HighlightedNames(
         label='Asia',
         style='light_salmon3 bold',
-        contacts=[
+        entities=[
             Entity(
                 MOHAMED_WAHEED_HASSAN,
                 "former president of the Maldives",
@@ -2914,7 +2913,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
     HighlightedNames(
         label=TECH_BRO,
         style='bright_cyan',
-        contacts=[
+        entities=[
             Entity('Alisa Bekins', f"{PETER_THIEL}'s assistant"),
             Entity(ANDREW_MCCORMACK, f"co-founder of {THIELS_VALAR}", r"Andrew McCorm(ack?)?"),
             Entity("Andy Rubin", "ex-Microsoft, ex-Google, fired for #MeToo reasons", match_partial=None),
@@ -3091,7 +3090,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         label='techco',
         style='color(117)',
         category=TECH_BRO,
-        contacts=[
+        entities=[
             Organization.well_known('FedEx'),
             Organization.well_known('MetroPCS'),
             Organization.well_known('T-Mobile'),
@@ -3129,7 +3128,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
     HighlightedNames(
         label='Trump',
         style='red3 bold',
-        contacts=[
+        entities=[
             Entity(
                 'Alan Weisselberg',
                 f"Donald Trump's accountant",
@@ -3192,7 +3191,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
     HighlightedNames(
         label='USVI',
         style='sea_green1',
-        contacts=[
+        entities=[
             Entity(CECILE_DE_JONGH, "Virgin Islands first lady 2007-2015, Epstein office manager"),
             Entity(KENNETH_E_MAPP, "Virgin Islands Governor"),
             Entity('Michael Harrigan', 'Deputy Superintendent of Schools for St. Thomas / St. John districts of the Virgin Islands', match_partial=None),
@@ -3227,7 +3226,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
     HighlightedNames(
         label=Interesting.GIRLS,
         style=VICTIM_COLOR,
-        contacts=[
+        entities=[
             Entity('Aleksandra Eriksson', QUESTION_MARKS),
             Entity("Audrey/Aubrey Raimbault", 'appears in flight logs'),
             Entity("Jane Doe", match_partial=None),
@@ -3306,7 +3305,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
     HighlightedNames(
         label=VICTIM_LAWYER,
         style='medium_orchid1',
-        contacts=[
+        entities=[
             Entity('Alan P. Fraade', f'lawyer for {STEVEN_HOFFENBERG}'),
             Entity(BRAD_EDWARDS, ROTHSTEIN_ROSENFELDT_ADLER_ATTORNEY, r"Brad(ley)?( J(.?|ames))? Edwards", match_partial=None),
             Entity('David Boies', 'Boies, Schiller, & Flexner', r"(David )?Bo[il]es(,? Schiller( & Flexner)?)?"),
@@ -3344,7 +3343,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         label=STEVE_BANNON,
         style='color(58)',
         category='Republican',
-        contacts=[
+        entities=[
             Entity(SEAN_BANNON, f"{STEVE_BANNON}'s brother", r"sean bannon?", match_partial=None),
             Entity(
                 STEVE_BANNON,
@@ -3362,7 +3361,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
     HighlightedNames(
         label=REAL_ESTATE,
         style='spring_green3',
-        contacts=[
+        entities=[
             Entity('André Balazs', 'hotelier, CEO of André Balazs Properties', r"Andre Bala(sz|zs)"),
             Entity('Anthony Barrett', "Ossa Properties (Mark Epstein company)", match_partial=None),
             Entity('Daniel Rosenberg', 'real estate developer', match_partial=None),
@@ -3398,7 +3397,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
     ),
     # Individuals
     HighlightedNames(
-        contacts=[
+        entities=[
             Entity(
                 STEVEN_HOFFENBERG,
                 "Epstein's partner in Towers Financial Ponzi scheme, did 18 years in prison",
@@ -3413,7 +3412,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         label='Ghislaine',
         style='deep_pink3',
         category='Epstein',
-        contacts=[
+        entities=[
             Entity(BOBBI_C_STERNHEIM, f"{GHISLAINE_MAXWELL}'s {CRIMINAL_DEFENSE_ATTORNEY}"),
             Entity(
                 CHRISTIAN_EVERDELL,
@@ -3444,7 +3443,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         ],
     ),
     HighlightedNames(
-        contacts=[
+        entities=[
             Entity(
                 HAMAD_BIN_JASSIM,
                 "former Qatari prime minister, planned Sharia crypto with Epstein",
@@ -3458,7 +3457,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         style='spring_green1',
     ),
     HighlightedNames(
-        contacts=[
+        entities=[
             Entity(
                 KATHRYN_RUEMMLER,
                 "former Obama legal counsel",
@@ -3470,12 +3469,12 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         category=FRIEND
     ),
     HighlightedNames(
-        contacts=[Entity(MELANIE_WALKER, f"doctor, friend of {BILL_GATES}", match_partial=None)],
+        entities=[Entity(MELANIE_WALKER, f"doctor, friend of {BILL_GATES}", match_partial=None)],
         style='pale_violet_red1',
         category=FRIEND
     ),
     HighlightedNames(
-        contacts=[
+        entities=[
             Entity(
                 PRINCE_ANDREW,
                 "British royal family",
@@ -3493,7 +3492,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         category='Europe',
     ),
     HighlightedNames(
-        contacts=[
+        entities=[
             Entity(
                 SOON_YI_PREVIN,
                 f"former adopted daughter of / now married to {WOODY_ALLEN}",
@@ -3505,7 +3504,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         category=ARTS
     ),
     HighlightedNames(
-        contacts=[
+        entities=[
             Entity(
                 SULTAN_BIN_SULAYEM,
                 "chairman of ports in Dubai, CEO of DP World, resigned over Epstein ties",
@@ -3722,12 +3721,12 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
 ]
 
 HIGHLIGHTED_NAMES = [hg for hg in HIGHLIGHT_GROUPS if isinstance(hg, HighlightedNames)]
-HIGHLIGHTED_ENTITIES = flatten([hn.contacts for hn in HIGHLIGHTED_NAMES])
+HIGHLIGHTED_ENTITIES = flatten([hn.entities for hn in HIGHLIGHTED_NAMES])
 
 
-def get_contact(name: str) -> Entity | None:
+def get_entity(name: str) -> Entity | None:
     if (group := get_highlight_group_for_name(name)) and isinstance(group, HighlightedNames):
-        return group.contacts_lookup.get(name)
+        return group.entities_by_name.get(name)
 
 
 def get_highlight_group_for_name(name: str | None) -> HighlightGroup | None:

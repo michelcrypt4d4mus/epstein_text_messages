@@ -91,7 +91,7 @@ for name in UNINTERESTING_EMAILERS:
 
 ENTITIES_DICT = {c.name: c for c in CONFIGURED_ENTITIES}
 EMAILER_REGEXES = {c.name: c.emailer_regex for c in CONFIGURED_ENTITIES if c.is_emailer}
-ENTITY_CATEGORIES = groupby(CONFIGURED_ENTITIES, lambda contact: contact.category)
+ENTITY_CATEGORIES = groupby(CONFIGURED_ENTITIES, lambda entity: entity.category)
 ENTITIES_DICT = {c.name: c for c in CONFIGURED_ENTITIES}  # Rebuild with new
 
 # TODO: dict of names that are configured but have no Entity. This is filled in in epstein_files.py which sucks.
@@ -107,9 +107,9 @@ if len(CONFIGURED_ENTITIES) != len(ENTITIES_DICT):
 # Strings that usually signify an identity if present in email body
 IDENTIFYING_REGEXES = {}
 
-for contact in CONFIGURED_ENTITIES:
-    for identifier in contact.identifying_strings:
-        IDENTIFYING_REGEXES[re.compile(as_pattern(identifier), re.IGNORECASE)] = contact
+for entity in CONFIGURED_ENTITIES:
+    for identifier in entity.identifying_strings:
+        IDENTIFYING_REGEXES[re.compile(as_pattern(identifier), re.IGNORECASE)] = entity
 
 # file IDs that contain a unique signifier but do not involve that person
 IDENTIFIER_FALSE_ALARMS = ['EFTA00961792']
