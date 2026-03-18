@@ -210,6 +210,7 @@ __marimo__/
 # not ignored on gh_pages branch
 docs/*.html
 docs/*.json
+docs/tmp/*
 
 social_media_post_with_url.txt
 /scripts/epstein_files/**/*

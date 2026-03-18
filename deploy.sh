@@ -2,10 +2,14 @@
 # Use --pickled arg to use pickled data file, otherwise pickled data will always be overwritten
 #
 #   - ONLY_MOBILE=true for only mobile sites
-#   - ONLY_TEXTS=true to skip build/deploy of full emails site.
+#   - ONLY_CURATED=true to skip build/deploy of full emails site.
 #   - TAG_RELEASE=true to upload the pkl.gz file to the repo and deploy DOJ files site
 set -e
 source .env
+
+SCRIPT_DIR=$(dirname -- "$(readlink -f -- "$0";)";)
+echo -e "SCRIPT_DIR=$SCRIPT_DIR"
+exit
 
 CURRENT_BRANCH=$(git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/')
 PICKLE_ARG=$([[ $1 == '--pickled' ]] && echo "" || echo "--overwrite-pickle")
@@ -135,7 +139,7 @@ if [ -n "$ONLY_MOBILE" ]; then
     exit
 fi
 
-if [ -n "$ONLY_TEXTS" ]; then
+if [ -n "$ONLY_CURATED" ]; then
     print_deploy_step "Skipping build of emails pages..."
 else
     print_deploy_step "Building all emails page..."
