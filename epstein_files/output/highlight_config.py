@@ -3176,7 +3176,11 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             ),
             Entity('Brad Parscale', "Trump campaign social media manager", r"(Brad(ley)? )Parscale", url=WIKIPEDIA),
             Entity('Bruce Moskowitz', "'Trump's health guy' according to Epstein", match_partial=None),
-            Entity(DONALD_TRUMP, r"(Donald\s+(J\.\s+)?)?Trump(ism| (Org(anization)?|Properties)( LLC)?)?|Donald J. Tramp"),
+            Entity(
+                DONALD_TRUMP,
+                emailer_pattern=r"(Donald\s+(J\.\s+)?)?Trump(ism| (Org(anization)?|Properties)( LLC)?)?|Donald J. Tramp",
+                is_interesting=False,
+            ),
             Entity('Marla Maples', 'ex-wife of Donald Trump', match_partial='both', url=WIKIPEDIA),
             Entity(
                 'Melania',
