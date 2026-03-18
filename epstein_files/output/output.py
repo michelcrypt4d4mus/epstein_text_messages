@@ -257,10 +257,10 @@ def print_text_msgs_section(epstein_files: EpsteinFiles, printer: DocPrinter) ->
     printer.print(section_header_panel)
     printer.print(Align.center(CONVERSATIONS_SORTED_BY_TXT))
 
-    imessage_logs = [
-        log for log in epstein_files.imessage_logs
-        if args.all_texts or log.is_interesting or log.author in args.names
-    ]
+    if args.names:
+        imessage_logs = [log for log in epstein_files.imessage_logs if log.author in args.names]
+    else:
+        imessage_logs = [log for log in epstein_files.imessage_logs if args.all_texts or log.is_interesting]
 
     imessage_logs = _max_records(imessage_logs)
 
