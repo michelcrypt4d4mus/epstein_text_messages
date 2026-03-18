@@ -158,6 +158,7 @@ class PositionedRich:
         return [0, 0, 0, 0]
 
 
+# TODO: should this also set text-align?
 def alignment_css(align: AlignMethod) -> CssProps:
     """CSS margin-auto props to align things left, right, or center."""
     if align == 'center':

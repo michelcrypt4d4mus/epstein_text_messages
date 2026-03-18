@@ -5,11 +5,12 @@ set -e
 THIS_DIR=$(dirname -- "$(readlink -f -- "$0";)";)
 source "$THIS_DIR/bash_lib/shared.sh"
 
-BUILD_DIR=docs/tmp
+BUILD_DIR=${1:-docs/}
 GENERATE_CMD="$GENERATE_CMD --build-dir $BUILD_DIR"
 
 
 # Build pages
+print_deploy_step "Building pages to BUILD_DIR '$BUILD_DIR'"
 print_deploy_step "Building curated chronological page with '$GENERATE_CMD'..."
 $GENERATE_CMD --output-chrono
 print_deploy_step "Building curated chronological mobile page..."

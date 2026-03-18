@@ -7,7 +7,7 @@ GENERATE_MOBILE_CMD="$GENERATE_CMD --mobile"
 LIB_DIR=$(dirname -- "$(readlink -f -- "$0";)";)
 SCRIPT_DIR=$(realpath "$LIB_DIR/..")
 
-echo -e "shared.sh LIB_DIR=$LIB_DIR, SCRIPT_DIR=$SCRIPT_DIR"
+# echo -e "shared.sh LIB_DIR=$LIB_DIR, SCRIPT_DIR=$SCRIPT_DIR"
 
 if [ -n "$BASH_COLORS_PATH" ]; then
     source "$BASH_COLORS_PATH"
