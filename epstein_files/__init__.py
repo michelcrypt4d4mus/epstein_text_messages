@@ -63,8 +63,8 @@ def epstein_generate() -> None:
         print_word_counts(epstein_files)
         timer.print_at_checkpoint(f"Finished counting words")
     elif args.all_doj_files:
-        printed_doj_files = print_doj_files(epstein_files, printer)
-        timer.log_section_complete('DojFile', epstein_files.doj_files, printed_doj_files)
+        print_doj_files(epstein_files, printer)
+        timer.log_section_complete('DojFile', epstein_files.doj_files, printer.printed_docs)
     else:
         if args.output_emails:
             print_emails_section(epstein_files, printer)
@@ -74,18 +74,15 @@ def epstein_generate() -> None:
             timer.log_section_complete('Chronological Email', epstein_files.emails, printer.printed_docs)
 
         if args.output_texts:
-            printed_logs = print_text_msgs_section(epstein_files, printer)
-            timer.log_section_complete('MessengerLog', epstein_files.imessage_logs, printed_logs)
+            print_text_msgs_section(epstein_files, printer)
+            timer.log_section_complete('MessengerLog', epstein_files.imessage_logs, printer.imessage_logs)
 
         if args.output_other:
-            printed_files = print_other_files_section(epstein_files, printer)
-            timer.log_section_complete('OtherFile', epstein_files.other_files, printed_files)
+            print_other_files_section(epstein_files, printer)
+            timer.log_section_complete('OtherFile', epstein_files.other_files, printer.other_files)
 
     if args.build:
-        write_html_arg = args._site if args.build == BUILD_TO_DEFAULT else Path(args.build)
-        printer.write_html(write_html_arg)
-
-    logger.warning(f"Total time: {timer.seconds_since_start_str()}")
+        printer.write_html(args._site if args.build == BUILD_TO_DEFAULT else Path(args.build))
 
     if args.names:
         Document._print_ids(printer.printed_docs, 'args.names')
@@ -95,6 +92,8 @@ def epstein_generate() -> None:
 
     if args.stats:
         print_stats(epstein_files)  # Used for building pytest checks
+
+    logger.warning(f"Total time: {timer.seconds_since_start_str()}")
 
 
 def epstein_diff():
