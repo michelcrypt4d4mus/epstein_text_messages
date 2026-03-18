@@ -227,8 +227,8 @@ class DocCfg(LoggingEntity):
         description = ''
 
         # If description is set at all in one of these if/else checks must be fully constructed
-        if self.display_text and not self.note:
-            return ''
+        if self.display_text and not self.has_full_ocr_text_replacement:
+            return join_truthy(self.display_text, self.note, ', ')
         if self.category == Uninteresting.BOOK or \
                 (self.category == Uninteresting.ACADEMIA and self.author and self.note):
             description = join_truthy(self.note, author, ' by ')  # note reversed args
@@ -264,14 +264,6 @@ class DocCfg(LoggingEntity):
         return description
 
     @property
-    def description_txt(self) -> Text | None:
-        """Add parentheses to `self.config.description`."""
-        if self.complete_description:
-            from epstein_files.output.epstein_highlighter import non_epstein_highlighter
-            style = 'bright_white italic' if site_config.email_info_in_subtitle else INFO_STYLE
-            return non_epstein_highlighter(Text(self.complete_description, style))
-
-    @property
     def display_preview_txt(self) -> Text | None:
         """Override for the `OtherFile`s table preview column."""
         if self.replacement_preview_text:
@@ -297,6 +289,18 @@ class DocCfg(LoggingEntity):
     def has_full_ocr_text_replacement(self) -> bool:
         """`display_text` longer than other_files_preview_chars is considered a drop in replacement, not a short description."""
         return bool(self.display_text and len(self.display_text) > MobileConfig.other_files_preview_chars)
+
+    @property
+    def note_txt(self) -> Text | None:
+        """Add formatting to `self.complete_description`."""
+        if self.complete_description:
+            txt = Text(self.complete_description, NOTE_STYLE)
+
+            if self.external_link_txt:
+                txt.append(' ').append(self.external_link_txt)
+
+            from epstein_files.output.epstein_highlighter import non_epstein_highlighter
+            return non_epstein_highlighter(txt)
 
     @property
     def replacement_preview_text(self) -> str:

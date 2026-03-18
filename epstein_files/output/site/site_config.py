@@ -30,10 +30,9 @@ class MobileConfig:
     show_with_indent (int): Indent for `show_with_name` files
     """
     abbreviations_width: ClassVar[int | None] = None
-    attachment_indent: ClassVar[int] = 6
     character_bio_padding: ClassVar[tuple[int, int, int, int]] = (0, 0, 1, 2)
     contact_list_padding: ClassVar[PaddingDimensions] = (0, 0, 0, 1)
-    email_info_in_subtitle: ClassVar[bool] = False
+    email_attachment_indent: ClassVar[int] = 6
     info_indent: ClassVar[int] = 1
     max_alt_links: ClassVar[int | None] = 1
     not_all_files_warning: ClassVar[str] = starred_header(NOT_ALL_FILES_MSG, num_spaces=1, num_stars=1)
@@ -79,10 +78,9 @@ class MobileConfig:
 
 class SiteConfig(MobileConfig):
     abbreviations_width: ClassVar[int | None] = 62
-    attachment_indent: ClassVar[int] = 12
     character_bio_padding: ClassVar[tuple[int, int, int, int]] = (0, 1, 0, 0)
     contact_list_padding: ClassVar[PaddingDimensions] = (0, 0, 0, 5)
-    email_info_in_subtitle: ClassVar[bool] = True
+    email_attachment_indent: ClassVar[int] = 12
     info_indent: ClassVar[int] = 1
     max_alt_links: ClassVar[int | None] = None
     not_all_files_warning: ClassVar[str] = starred_header(NOT_ALL_FILES_MSG, num_spaces=6, num_stars=14)

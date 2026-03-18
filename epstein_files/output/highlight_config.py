@@ -43,6 +43,8 @@ WIGDOR_ATTORNEY = f"Wigdor LLP lawyer in {LEON_BLACK} lawsuit"
 FINANCIAL_COLOR = 'dark_sea_green2'
 VICTIM_COLOR = 'orchid1'
 
+DITE_ANATA_JUILLIARD_URL = 'https://usatoday.com/story/news/politics/2026/02/19/jeffrey-epstein-emails-files-power-for-benefit/88701802007/'
+
 debug_console = Console(color_system='256')
 
 
@@ -1490,7 +1492,10 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Entity(TANCREDI_MARCHIOLO, "hedge fund manager, Bremner Capital Management", match_partial='both'),
             Entity('Ted Forstmann', "private equity, founder of Forstmann Little & co."),
             Entity('Vahe Stepanian', "Cetera Financial Group", match_partial='both'),
+            Entity('Vaishali Mehta', f'Head of Anti-Money Laundering Business Risk at {DEUTSCHE_BANK}', r"Vaishali.{,5}Mehta"),
             Entity(VINIT_SAHNI, f"analyst at {DEUTSCHE_BANK} and {GOLDMAN_SACHS}", match_partial='both'),
+
+            # Organizations
             Organization(
                 ATORUS,
                 'fund of Michael Fowler / Joshua Levy apparently invested in by Epstein',
@@ -1513,8 +1518,8 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Organization('D.B. Zwirn Special Opportunities Fund', 'hedge fund that failed in 2008'),
             Organization(
                 DEUTSCHE_BANK,
-                'favoured bank of Jeffrey Epstein, the Trump family, and Russian money launderers',
-                r"Deutsche? (Asset|(Post)?Bank)|\bDB\b(?!\s+Zw)",
+                'favoured bank of Epstein, the Trump family, and Russian money launderers',
+                r"Deutsche? (Asset|(Post)?[BD]ank)|\bDB\b(?!\s+Zw)",
                 url='https://www.ft.com/content/b1d9e8c4-1874-4c82-941d-9a2e1512bc4c',
             ),
             Organization('Enso Capital Management', belongs_to=JOSHUA_FINK, is_interesting=False),
@@ -2434,6 +2439,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 'model scout funded by Epstein to recruit in eastern Europe',
                 url='https://en.wikipedia.org/wiki/Daniel_Siad#Connection_to_Epstein_and_Brunel',
             ),
+            Entity('Dite Anata', 'model, holistic sanctuary enjoyoor', url=DITE_ANATA_JUILLIARD_URL),
             Entity(
                 FAITH_KATES,
                 "Next Models co-founder",
@@ -3255,6 +3261,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             ),
             Entity('Jeanne Palfrey', '"The DC Madam", murdered'),
             Entity('Jennifer Aros', 'abused by Epstein starting at age 14', url='https://x.com/epsteinsearchin/status/2031730091827544180'),
+            Entity('Justina Auškelytė', 'Julliard student from Latvia', r"Justina Au[fšs]kelyt[eė]", url=DITE_ANATA_JUILLIARD_URL),
             Entity(KATHERINE_KEATING, "daughter of former Australian prime minister Paul Keating", match_partial=None),
             Entity('Lucrezia Camponovo', QUESTION_MARKS),
             Entity('Miranda', f'appears to have done an internship at {CLIFFORD_CHANCE} with {MARIA_PRUSAKOVA}?'),

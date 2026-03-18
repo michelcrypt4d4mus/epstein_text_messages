@@ -79,7 +79,8 @@ MONEY_CFGS = [
     DocCfg(id='EFTA00606411', display_text='proposed jet ownership structure flowchart', date='2017-01-01', date_uncertain='guess'),
 
     # Jeepers, Inc.
-    EmailCfg(id='EFTA01424585', note=f"{DEUTSCHE_BANK} AML review of Jeepers, Inc."),
+    DocCfg(id='EFTA01286368', author=DEUTSCHE_BANK, note=f'bank statements showing receipt of $2 million from {JEEPERS_INC}'),
+    EmailCfg(id='EFTA01424585', note=f'{DEUTSCHE_BANK} anti-money laundering review of "high risk" {JEEPERS_INC}'),
     EmailCfg(id='EFTA01416658', highlight_quote="Southern Financial — one of the most complicated client situations I've seen", truncate_to=3_600),
     letter(
         'EFTA00591276',

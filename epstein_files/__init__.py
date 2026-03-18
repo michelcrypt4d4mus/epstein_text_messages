@@ -51,6 +51,13 @@ def epstein_generate() -> None:
 
     if args.colors_only:
         pass
+    elif args.names:
+        printer.collect_other_files_to_tables = False
+
+        for person in epstein_files.person_objs(args.names):
+            printer.print_section_subtitle(f"{person.name_str} ({person.num_docs} documents)")
+            printer.print_documents(person.unique_documents, True)
+            logger.warning(f"Printed {person.num_docs} for {person.name_str}")
     elif args.output_bios:
         printer.print_biographies()
     elif args.output_devices:

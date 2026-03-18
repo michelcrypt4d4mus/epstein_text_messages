@@ -38,6 +38,7 @@ DEFAULT_NAME_STYLE = 'grey23'
 EPSTEIN_COLOR = 'blue1'
 EXCERPT_STYLE = 'italic cornsilk1'
 INFO_STYLE = 'gray50 italic'
+NOTE_STYLE = 'bright_white italic'
 SUBHEADER_STYLE = 'dim gray54 italic'
 TEXT_LINK = 'text_link'
 TIMESTAMP_STYLE = 'turquoise4'
@@ -85,6 +86,8 @@ MINOR_VICTIM = 'minor victim'
 
 # Organizations
 BROCKMAN_INC = 'Brockman, Inc.'
+GOLDMAN_SACHS = 'Goldman Sachs'
+GOLDMAN_INVESTMENT_MGMT = f'{GOLDMAN_SACHS} Investment Management Division'
 HARVARD = 'Harvard'
 HARVARD_POETRY = f'{HARVARD} poetry stuff from Lisa New'  # TODO: name be here?
 PALM_BEACH_CODE_ENFORCEMENT = f'{PALM_BEACH} Code Enforcement'

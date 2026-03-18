@@ -64,7 +64,7 @@ class MessengerLog(Communication):
         return metadata
 
     @property
-    def subheader(self) -> Text | None:
+    def subheader_info(self) -> Text | None:
         ended_at = END_DATES.get(self.file_id) or self.messages[-1].parse_timestamp()
         num_days_str = days_between_str(self.timestamp, ended_at)
         txt = Text(f"(iMessage log covers {num_days_str} starting ", style='dim')
@@ -106,7 +106,7 @@ class MessengerLog(Communication):
                 text=[msg.__rich__() for msg in self.messages],
             ),
             file_info=self.file_id_panel,
-            subheaders=self.info,
+            subheaders=self.subheaders,
             indent=1,  # TODO: shouldn't always be 1?
         )
 
