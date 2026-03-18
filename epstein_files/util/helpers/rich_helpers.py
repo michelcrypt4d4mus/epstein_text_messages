@@ -3,7 +3,7 @@ Small methods for building rich text constructs.
 """
 import os
 from abc import ABC, abstractmethod
-from typing import Sequence
+from typing import Sequence, TypeVar
 
 from rich.padding import Padding
 from rich.text import Text
@@ -42,6 +42,7 @@ class TextCast(ABC):
         pass
 
 Textish = Text | TextCast | str
+TextVar = TypeVar('TextVar', bound=Text | str)
 
 
 def enclose(txt: str | Text, encloser: str = '', encloser_style: str = 'wheat4') -> Text:

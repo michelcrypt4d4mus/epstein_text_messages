@@ -22,7 +22,7 @@ from epstein_files.util.helpers.data_helpers import flatten
 from epstein_files.util.helpers.file_helper import open_file_or_url
 from epstein_files.util.logging import logger
 
-SAMPLE_SIZE = 3
+SAMPLE_SIZE = 2
 
 TEST_PANELS = [
     Panel('bright_red', style='bright_red'),
@@ -63,15 +63,17 @@ doc_types_to_sample = [
 # sample_docs = [epstein_files.get_id('EFTA00034357')] + flatten([docs[:SAMPLE_SIZE] for docs in doc_sets_to_sample])
 sample_docs = flatten([docs[:SAMPLE_SIZE] for docs in doc_types_to_sample])
 printer = DocPrinter(epstein_files=epstein_files)
+printer.print_title_page_top()
+printer.print_title_page_bottom()
 
 # print contacts
 # Entity.print_all_biographies(printer)
 
 # print some People and their emails
-print_sample_people()
+# print_sample_people()
 
 # Print docs
-printer.print_documents(sample_docs)
+# printer.print_documents(sample_docs)
 
 # Print big emailers summary table
 # all_emailers = sorted(epstein_files.emailers, key=lambda person: person.sort_key)

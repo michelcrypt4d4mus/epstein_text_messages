@@ -138,6 +138,7 @@ BAD_OCR_FILE_IDS = [
     'EFTA00002859',
     'EFTA00000514',
     'EFTA00000516',
+    'EFTA00001720',
     'EFTA00000531',
     'EFTA00000587',
     'EFTA00000635',
@@ -155,7 +156,6 @@ BAD_OCR_FILE_IDS = [
     'EFTA00008497',
     'EFTA00001031',
     'EFTA00005495',
-    'EFTA00002830',
     'EFTA00001937',
     'EFTA00008496',
     'EFTA00008441',
@@ -250,8 +250,7 @@ class DojFile(OtherFile):
     def empty_file_txt(self) -> Text | None:
         """One line of linked text to show if this file doesn't seem to have any OCR text."""
         if self.is_empty or self.is_bad_ocr:
-            link_txt = Text('').append(Text.from_markup(super().external_link_markup))
-            return link_txt.append(f" is a {SINGLE_IMAGE_NO_TEXT}")
+            return self._skipped_file_txt(SINGLE_IMAGE_NO_TEXT)
 
     @property
     def external_link_markup(self) -> str:
@@ -301,6 +300,12 @@ class DojFile(OtherFile):
     def external_links_txt(self, _style: str = '', with_alt_links: bool = True) -> Text:
         """Overrides super() method to apply self.border_style."""
         return self.file_info.build_external_links(self.border_style, with_alt_links=with_alt_links)
+
+    def extract_timestamp(self) -> datetime | None:
+        if self.file_id in BAD_OCR_FILE_IDS:
+            return None
+        else:
+            return super().extract_timestamp()
 
     def _debug_props(self) -> DebugDict:
         props = super()._debug_props()

@@ -19,7 +19,7 @@ from rich.panel import Panel
 from rich.text import Text
 from rich.table import Table
 
-from epstein_files.documents.config.doc_cfg import DEFAULT_TRUNCATE_TO, DUPE_TYPE_STRS, DebugDict, DocCfg, Metadata
+from epstein_files.documents.config.doc_cfg import DEFAULT_TRUNCATE_TO, DUPE_TYPE_STRS, NO_TRUNCATE, DebugDict, DocCfg, Metadata
 from epstein_files.documents.config.email_cfg import EmailCfg
 from epstein_files.documents.documents.file_info import FileInfo
 from epstein_files.documents.documents.search_result import MatchedLine
@@ -37,16 +37,16 @@ from epstein_files.people.interesting_people import PERSONS_OF_INTEREST, UNINTER
 from epstein_files.people.names import Name
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constants import CONFIGS_BY_ID
-from epstein_files.util.env import args, site_config
+from epstein_files.util.env import args, site_config, temporary_args
 from epstein_files.util.external_link import link_text_obj
 from epstein_files.util.helpers.data_helpers import (CharRange, coerce_utc, coerce_utc_strict, date_str, patternize, prefix_keys,
      listify, uniquify, uniq_sorted, without_falsey)
 from epstein_files.util.helpers.file_helper import coerce_file_path, file_size_str, file_size_to_str
+from epstein_files.util.helpers.rich_helpers import TextVar
 from epstein_files.util.helpers.string_helper import collapse_newlines, doublespace_lines, join_truthy, quote, timestamp_without_zero_hour
 from epstein_files.util.logging import DOC_TYPE_STYLES, FILENAME_STYLE, logger
 from epstein_files.util.logging_entity import LoggingEntity
 
-CHECK_LINK_FOR_DETAILS = 'not shown here, check original PDF for details'
 CLOSE_PROPERTIES_CHAR = ']'
 HOUSE_OVERSIGHT = HOUSE_OVERSIGHT_PREFIX.replace('_', ' ').strip()
 MIN_DOCUMENT_ID = 10477
@@ -142,6 +142,10 @@ class Document(LoggingEntity):
         return self._config.author or self.extracted_author
 
     @property
+    def author_style(self) -> str:
+        return get_style_for_name(self.author)
+
+    @property
     def border_style(self) -> str:
         """Should be overloaded in subclasses."""
         return 'white'
@@ -171,24 +175,18 @@ class Document(LoggingEntity):
         return self.file_info.build_external_links(with_alt_links=True)
 
     @property
-    def config_display_text(self) -> str | None:
-        """Configured replacement text."""
-        if self._config.display_text:
-            text = join_truthy(self._config.author, self._config.display_text)
-
-            if len(text) < 300 and not text.startswith('photo'):
-                return f"(Text of {text} {CHECK_LINK_FOR_DETAILS})"
-            else:
-                return text
-
-    @property
     def date_str(self) -> str | None:
         return date_str(self.timestamp)
 
     @property
     def char_range_to_display(self) -> CharRange | None:
         """Index of first and last characters to show when printing this document."""
-        return self._config.char_range
+        if args.whole_file or self._config.truncate_at == NO_TRUNCATE:
+            return None
+        elif args.truncate:
+            return (0, args.truncate)
+        elif self._config.char_range:
+            return self._config.char_range
 
     @property
     def display_text(self) -> str:
@@ -334,7 +332,7 @@ class Document(LoggingEntity):
         """Returns the string we want to print as the body of the document."""
         display_text = doublespace_lines(self.display_text)
         # TODO: do something better to give replacement_text have different style
-        style = INFO_STYLE if self.config_display_text and len(self.config_display_text) < 300 else ''
+        style = INFO_STYLE if self._config.has_full_ocr_text_replacement else ''
 
         # char range slice of Text late in the game here preserves Text highlighting at boundaries
         char_range = self.char_range_to_display or (0, len(display_text))
@@ -381,6 +379,7 @@ class Document(LoggingEntity):
     def uninteresting_txt(self) -> Text | None:
         """Text to print for uninteresting files."""
         if self._config.attached_to_email_id:
+            self._warn(f"returning email attachment uninteresting_txt, probably shouldn't be called...")
             return self._skipped_file_txt(f"attached to {self._config.attached_to_email_id}")
         elif args._suppress_uninteresting and self._config.is_interesting is False:
             return self._skipped_file_txt("uninteresting")
@@ -505,12 +504,16 @@ class Document(LoggingEntity):
         pattern = patternize(_pattern)
         return [MatchedLine(line, i) for i, line in enumerate(self.lines) if pattern.search(line)]
 
+    def print_truncated_to(self, truncate_to: int) -> None:
+        """Temporarily set args.truncate and print."""
+        tmp_args = {'whole_file': True} if truncate_to == NO_TRUNCATE else {'truncate': truncate_to}
+
+        with temporary_args(tmp_args) as args:
+            console.print(self)
+
     def print_untruncated(self) -> None:
         """Temporarily set args.whole_file to True and print."""
-        old_whole_file_arg = args.whole_file
-        args.whole_file = True
-        console.print(self)
-        args.whole_file = old_whole_file_arg
+        self.print_truncated_to(NO_TRUNCATE)
 
     def raw_text(self) -> str:
         """Reload the raw data from the underlying file and return it."""
@@ -598,12 +601,12 @@ class Document(LoggingEntity):
         txt_lines = styled_dict(self._debug_dict(), sep=': ')
         return prefix_with(txt_lines, ' ', pfx_style='grey', indent=2)
 
-    def _inject_line_numbers(self, text: T, interval: int) -> T:
+    def _inject_line_numbers(self, text: TextVar, interval: int) -> TextVar:
         """Inject character numbers markers into `text`. For debugging only."""
         idx = interval
         new_text = text[:idx]
 
-        def line_marker(i: int) -> T:
+        def line_marker(i: int) -> TextVar:
             marker_str = f'\n\n ------ {idx} ------ \n\n'
             return Text(marker_str) if isinstance(text, Text) else marker_str
 
@@ -655,7 +658,7 @@ class Document(LoggingEntity):
         self.lines = [line.strip() if self.STRIP_WHITESPACE else line for line in self.text.split('\n')]
 
     def _skipped_file_txt(self, reason: str | Text) -> Text:
-        txt = Text(f"Skipping ", f"{INFO_STYLE} dim").append(self.external_link_txt)
+        txt = Text(f"Skipping ", f"{INFO_STYLE} dim").append(self.file_info.external_link_txt(self.author_style))
         return txt.append(" because it's ").append(reason)
 
     def _intro_txt(self, cutoff: int) -> Text:

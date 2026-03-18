@@ -1,9 +1,13 @@
 import logging
-from argparse import ArgumentParser
+from argparse import ArgumentParser, Namespace
+from contextlib import contextmanager
+from copy import deepcopy
 from os import environ
 from pathlib import Path
+from typing import Generator, Mapping
 
 from rich_argparse_plus import RichHelpFormatterPlus
+from yaralyzer.util.cli_option_validators import DirValidator
 
 from epstein_files.output.site.site_config import ALL_OTHER_FILES_MULTIPLIER, DEFAULT_WIDTH, MobileConfig, SiteConfig
 from epstein_files.output.site.sites import *
@@ -33,6 +37,8 @@ is_output_arg = lambda arg: any([arg.startswith(pfx) for pfx in ['all', 'colors_
 
 RichHelpFormatterPlus.choose_theme('morning_glory')
 parser = ArgumentParser(description="Parse epstein OCR docs and generate HTML pages.", formatter_class=RichHelpFormatterPlus)
+parser.add_argument('--build', '-b', nargs="?", default=None, const=BUILD_TO_DEFAULT, help='write output to HTML file')
+parser.add_argument('--build-dir', default=DEFAULT_HTML_DIR, type=DirValidator(), help='dir to render HTML etc. to')
 parser.add_argument('--make-clean', action='store_true', help='delete all HTML build artifact and write latest URLs to .urls.env')
 parser.add_argument('--name', '-n', action='append', dest='names', help='specify the name(s) whose communications should be output')
 parser.add_argument('--overwrite-pickle', '-op', action='store_true', help='re-parse the files and ovewrite cached data')
@@ -46,7 +52,6 @@ output.add_argument('--all-emails', '-ae', action='store_true', help='all the em
 output.add_argument('--all-emails-chrono', '-aec', action='store_true', help='all emails in chronological order')
 output.add_argument('--all-other-files', '-ao', action='store_true', help='all the non-email, non-text msg files instead of just the interesting ones')
 output.add_argument('--all-texts', '-at', action='store_true', help='all the text messages instead of just the interesting ones')
-parser.add_argument('--build', '-b', nargs="?", default=None, const=BUILD_TO_DEFAULT, help='write output to HTML file')
 output.add_argument('--emailers-info', '-ei', action='store_true', help='write a .png of the eeailers info table')
 output.add_argument('--json-files', action='store_true', help='pretty print all the raw JSON data files in the collection and exit')
 output.add_argument('--json-metadata', '-jm', action='store_true', help='dump JSON metadata for all files and exit')
@@ -101,6 +106,10 @@ else:
 
 is_html_script = parser.prog in HTML_SCRIPTS or 'html' in parser.prog
 site_config = MobileConfig if args.mobile else SiteConfig
+HtmlDir.HTML_DIR = args.build_dir or HtmlDir.HTML_DIR
+
+if args.build_dir and not args.build:
+    args.build = BUILD_TO_DEFAULT
 
 args.debug = args.deep_debug or args.debug or is_env_var_set('DEBUG')
 args._debug_highlight_patterns = (args.colors_only and args.debug)
@@ -215,3 +224,21 @@ args_str = ',\n'.join([f"{k}={v}" for k, v in vars(args).items() if v])
 logger.debug(f"'{parser.prog}' script invoked\n{args_str}")
 logger.debug(f"Reading Epstein documents from '{DOCS_DIR}'...")
 logger.info(f"site_config set to {site_config.__name__}...")
+
+
+@contextmanager
+def temporary_args(tmp_args: Mapping[str, str | bool | int]) -> Generator[Namespace, None, None]:
+    """Run some code with temporarily adjusted values in `args`."""
+    old_args = deepcopy(args)
+
+    for k, v in tmp_args.items():
+        if k not in vars(args):
+            raise ValueError(f"'{k}' is not a valid arg name!")
+
+        setattr(args, k, v)
+
+    try:
+        yield args
+    finally:
+        for k, v in vars(old_args).items():
+            setattr(args, k, v)

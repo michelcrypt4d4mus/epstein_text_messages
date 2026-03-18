@@ -1,7 +1,10 @@
 # NEXT RELEASE
-* new `--use-custom-html` arg, `--all-other-files` site now includes biographical panels
+* `--truncate` now applies to `OtherFile` too via `temporary_args()` context
+* fix table title text justification
+* `--build-dir` argument
+* New `--use-custom-html` arg, `--all-other-files` site now includes biographical panels
 * If --all-other-files is enables, print the biographical panels, otherwise just print a big table
-* add `platform` property to `CommunicationCfg`
+* Add `platform` property to `CommunicationCfg`
 * Refactor `CommunicationCfg` and `EmailCfg` to their own files
 * `DocCfg.is_interesting` can be an `int` for the most interesting docs, replaces `DocCfg.is_very_interesting`
 

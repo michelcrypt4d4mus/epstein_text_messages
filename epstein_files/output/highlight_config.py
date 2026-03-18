@@ -413,6 +413,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Organization('Junkermann Group', JUNKERMANN_FUND),
             Organization('Lockheed Martin', 'American military contractor'),
             Organization('NJF Capital', JUNKERMANN_FUND, r"NJF( Capital)?"),
+            Organization('Western Union', 'international money transmitter', emailer_pattern=r"Western Union( Financial)?"),
             Organization('WizzAir', email_addresses=['noreply@wizzair.com'], is_interesting=False, is_emailer=True),
         ],
         patterns=[
@@ -490,6 +491,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 url='https://www.theguardian.com/business/2020/may/26/stanley-ho-the-billionaire-macao-casino-tycoon-dies-aged-98',
             ),
             Entity('Wang Qishan', 'former vice president of China, head of China Construction Bank'),
+            Entity('Zhang Jian'),
         ],
         patterns=[
             r"Ali.?baba",
@@ -3016,7 +3018,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Entity(
                 ZUBAIR_KHAN,
                 f"InsightsPod social media work on 2016 US election for Epstein, Islamabad/Dubai, friend of {MARIA_PRUSAKOVA}, Tranchulas cybersecurity",
-                match_partial='both',
+                match_partial='first',
                 url=SUBSTACK_POST_INSIGHTSPOD_URL,
             ),
 
@@ -3272,6 +3274,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         ],
         patterns=[
             r"abortion",
+            r"adult video( warehouse)?",
             r"ballerina",
             r"Beautify and the Beast",
             r"butt plug",
@@ -3535,7 +3538,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         category=MIDEAST
     ),
 
-    # HighlightedText not HighlightedNames bc of word boundary (\b) issue with '#', '(', etc.
+    # HighlightedPatterns not HighlightedNames bc of word boundary (\b) issue with '#', '(', etc.
     HighlightPatterns(
         label='dollars',
         style=FINANCIAL_COLOR,
@@ -3583,6 +3586,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"fintech",
             r"hedge fund",
             r"(income )?tax(e[ds])?( code)?",
+            r"ISDA",
             r"(?<!Kyara\s)invest(ment|or)s?(\sadvis[eo]r[sy]?)?",
             r"(junk )?bond",
             r"K-[12]",

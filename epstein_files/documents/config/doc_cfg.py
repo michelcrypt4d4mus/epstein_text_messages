@@ -11,6 +11,7 @@ from rich.text import Text
 
 from epstein_files.documents.documents.categories import (Category, Interesting, Neutral, Uninteresting,
      is_category, is_interesting, is_uninteresting)
+from epstein_files.output.site.site_config import MobileConfig
 from epstein_files.people.interesting_people import PERSONS_OF_INTEREST
 from epstein_files.people.names import *
 from epstein_files.util.constant.strings import *
@@ -29,11 +30,12 @@ Metadata = dict[str, bool | datetime | int | str | None | list[str | None] | dic
 DEFAULT_TRUNCATE_TO = 4000
 SHORT_TRUNCATE_TO = int(DEFAULT_TRUNCATE_TO / 3)
 NO_TRUNCATE = -1
+MAX_REPR_LINE_LENGTH = 135
+
+CHECK_LINK_FOR_DETAILS = 'not shown here, check original PDF for details'
 QUOTE_PREFIX = 'see quote'
 SAME = 'same'
 
-MAX_REPR_LINE_LENGTH = 135
-GOLDMAN_INVESTMENT_MGMT = f'{GOLDMAN_SACHS} Investment Management Division'
 ZUBAIR_AND_ANYA = f"{ZUBAIR_KHAN} and Anya Rasulova"
 
 # Authors of financial report pablum
@@ -270,6 +272,13 @@ class DocCfg(LoggingEntity):
             return non_epstein_highlighter(Text(self.complete_description, style))
 
     @property
+    def display_preview_txt(self) -> Text | None:
+        """Override for the `OtherFile`s table preview column."""
+        if self.replacement_preview_text:
+            text = join_truthy(self.author, self.replacement_preview_text)
+            return Text(f"(Text of {text} {CHECK_LINK_FOR_DETAILS})", 'dim italic')
+
+    @property
     def external_link(self) -> ExternalLink | None:
         """Link to more info about this document (almost unused)."""
         return ExternalLink(self.url, self.url_link_text) if self.url else None
@@ -283,6 +292,16 @@ class DocCfg(LoggingEntity):
     def has_any_info(self) -> bool:
         """True if either `author` or `description` is truthy."""
         return bool(self.note or self.author)
+
+    @property
+    def has_full_ocr_text_replacement(self) -> bool:
+        """`display_text` longer than other_files_preview_chars is considered a drop in replacement, not a short description."""
+        return bool(self.display_text and len(self.display_text) > MobileConfig.other_files_preview_chars)
+
+    @property
+    def replacement_preview_text(self) -> str:
+        """Returns a string if `self.display_text` exists and is not too long."""
+        return self.display_text if self.display_text and not self.has_full_ocr_text_replacement else ''
 
     @property
     def text_highlighter(self) -> 'EpsteinHighlighter':
@@ -481,6 +500,9 @@ class DocCfg(LoggingEntity):
 
         if self.category == Category.FLIGHT_LOG and not self.display_text:
             self.display_text ='flight log'
+
+        if self.category == Uninteresting.BOOK:
+            self.is_valid_for_name_scan = False
 
         self.note = quote(self.note) if self._is_description_a_title else self.note
 

@@ -14,9 +14,8 @@ from epstein_files.util.constant.strings import (AUX_SITE_LINK_STYLE, CHRONOLOGI
 from epstein_files.util.external_link import link_text_obj, parenthesize
 from epstein_files.util.logging import logger
 
-HTML_DIR = Path('docs')
-EMAILERS_TABLE_PNG_PATH = HTML_DIR.joinpath('emailers_info_table.png')
-SAMPLE_HTML_PATH = HTML_DIR.joinpath('sample.html')
+DEFAULT_HTML_DIR = Path('docs')
+EMAILERS_TABLE_PNG_PATH = DEFAULT_HTML_DIR.joinpath('emailers_info_table.png')
 
 # Github URLs
 GH_REPO_NAME = 'epstein_text_messages'
@@ -65,7 +64,7 @@ class Site(StrEnum):
     def custom_html_build_path(cls, site: 'Site | Path') -> Path:
         """Path for the templated custom HTML version of the page."""
         filename = site.name if isinstance(site, Path) else cls.html_output_path(site).name
-        return HTML_DIR.joinpath(f'{CUSTOM_HTML_PREFIX}{filename}')
+        return HtmlDir.build_path(f'{CUSTOM_HTML_PREFIX}{filename}')
 
     @classmethod
     def directory_links(cls) -> dict['Site', Text]:
@@ -82,7 +81,7 @@ class Site(StrEnum):
         else:
             site = _site
 
-        return HTML_DIR.joinpath(HTML_BUILD_FILENAMES.get(site, f"{site}.html"))
+        return HtmlDir.build_path(HTML_BUILD_FILENAMES.get(site, f"{site}.html"))
 
     @classmethod
     def html_output_path_mobile(cls, site: 'Site') -> Path:
@@ -141,6 +140,15 @@ class Site(StrEnum):
     @classmethod
     def _is_lesser_site(cls, site: Self) -> bool:
         return site in [cls.DOJ_FILES, cls.JSON_METADATA]  #+ [cls.JSON_FILES]
+
+
+class HtmlDir:
+    """Container to hold state of HTML_DIR value because we can't add class vars to `Site` enum."""
+    HTML_DIR = DEFAULT_HTML_DIR
+
+    @classmethod
+    def build_path(cls, filename: str) -> Path:
+        return cls.HTML_DIR.joinpath(filename)
 
 
 # TODO: purge repo of old files for space:

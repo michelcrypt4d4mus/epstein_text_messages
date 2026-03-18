@@ -1,7 +1,6 @@
 """
 Crypto and virtual currency / fintech related files
 """
-from epstein_files.documents.config.categories.finance import GOLDMAN_INVESTMENT_MGMT
 from epstein_files.documents.config.config_builder import whistleblower_cfg
 from epstein_files.documents.config.communication_cfg import CommunicationCfg, imessage_log, imessage_screenshot, whatsapp_log
 from epstein_files.documents.config.doc_cfg import DEFAULT_TRUNCATE_TO, NO_TRUNCATE, SHORT_TRUNCATE_TO, DocCfg

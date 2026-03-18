@@ -35,10 +35,6 @@ class Communication(Document):
         return self.author or UNKNOWN
 
     @property
-    def author_style(self) -> str:
-        return get_style_for_name(self.author)
-
-    @property
     def author_txt(self) -> Text:
         return styled_name(self.author)
 

@@ -1,4 +1,5 @@
 from epstein_files.documents.documents.categories import Interesting, Neutral, Uninteresting
+from epstein_files.documents.doj_files.full_text import EFTA00009622_TEXT
 from epstein_files.documents.config.communication_cfg import CommunicationCfg, Platform, imessage_log, imessage_screenshot, skype_log, whatsapp_log
 from epstein_files.documents.config.config_builder import letter
 from epstein_files.documents.config.doc_cfg import NO_TRUNCATE, DocCfg
@@ -34,6 +35,7 @@ GIRLS_CFGS = [
     DocCfg(id='EFTA01078143', author=GIANNI_SERAZZI, note='2morrow modeling pitch deck', date='2014-09-30', date_uncertain=True),
     DocCfg(id='EFTA00306033', author=SERGEY_BELYAKOV, note='Epstein Russian visa', show_full_panel=True),
     DocCfg(id='EFTA00014648', note='former employee "understood that all the girls were school girls"', show_full_panel=True),
+    DocCfg(id='EFTA00022133', note='table showing a list of Epstein accusations collection from public press reporting'),
     DocCfg(
         id='EFTA00077200',
         author=FRENCH_MINISTRY_OF_JUSTICE,
@@ -174,8 +176,9 @@ GIRLS_CFGS = [
         id='EFTA01870453',
         author=SVETLANA_POZHIDAEVA,
         author_uncertain=f"{JOSHUA_FINK} texts",
+        highlight_quote="You have known you are preg for a week",
         is_interesting=10,
-        note=f'{JOSHUA_FINK} and {SVETLANA_POZHIDAEVA} discuss an abortion ("You have known you are preg for a week")',
+        note=f'{SVETLANA_POZHIDAEVA} fwds a discussion about an abortion to Epstein',
     ),
     EmailCfg(
         id='EFTA01894879',
@@ -330,6 +333,13 @@ GIRLS_CFGS = [
         id='EFTA00883738',
         note=f'Epstein recruiter {DASHA_GRUPMAN} looking to spend $50,000 to rent a townhouse for "diplomats"',
         show_with_name=DASHA_GRUPMAN,
+    ),
+    DocCfg(
+        id='EFTA00009622',
+        date='2006-07-19',
+        note='handwritten notes from a victim interview transcribed by Claude AI',
+        is_interesting=True,
+        display_text=EFTA00009622_TEXT,
     ),
     EmailCfg(
         id='EFTA00577409',

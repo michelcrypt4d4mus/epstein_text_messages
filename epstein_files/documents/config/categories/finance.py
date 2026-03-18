@@ -1,8 +1,8 @@
 """
 Finance related documents not specifically about Epstein's money.
 """
-from epstein_files.documents.config.config_builder import fedex_invoice, important_messages_pad, press_release
-from epstein_files.documents.config.doc_cfg import GOLDMAN_INVESTMENT_MGMT, DocCfg
+from epstein_files.documents.config.config_builder import press_release
+from epstein_files.documents.config.doc_cfg import DocCfg
 from epstein_files.documents.config.email_cfg import EmailCfg
 from epstein_files.documents.documents.categories import Interesting, Neutral
 from epstein_files.people.names import *

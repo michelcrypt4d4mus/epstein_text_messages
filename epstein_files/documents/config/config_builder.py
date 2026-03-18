@@ -153,7 +153,7 @@ def fbi_tip(id: str, about: str, **kwargs) -> DocCfg:
 
 
 def fedex_invoice(id: str, date: str) -> DocCfg:
-    return DocCfg(id=id, author='FedEx', date=date, display_text='FedEx invoice')
+    return DocCfg(id=id, author='FedEx', date=date, display_text='invoice')
 
 
 def immigration_letter(id: str, author: Name, date: str = '', note: str = '', show_with_name = '', **kwargs) -> CommunicationCfg:

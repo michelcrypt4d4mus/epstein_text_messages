@@ -43,7 +43,9 @@ padding_horizontal_css = lambda ems: dimensions_to_padding_css((0, ems))
 padding_vertical_css = lambda ems: dimensions_to_padding_css((ems, 0))
 
 # CSS constants
-CENTERED = {'margin-left': 'auto', 'margin-right': 'auto'}
+LEFT_JUSTIFIED = {'margin-right': 'auto'}
+RIGHT_JUSTIFIED = {'margin-left': 'auto'}
+CENTERED = {**LEFT_JUSTIFIED, **RIGHT_JUSTIFIED}
 VERTICAL_MARGIN = 1.9
 
 # CSS classes
@@ -156,14 +158,17 @@ class PositionedRich:
         return [0, 0, 0, 0]
 
 
+# TODO: should this also set text-align?
 def alignment_css(align: AlignMethod) -> CssProps:
     """CSS margin-auto props to align things left, right, or center."""
     if align == 'center':
         return dict(CENTERED)
     elif align == 'left':
-        return {'margin-right': 'auto'}
+        return dict(LEFT_JUSTIFIED)
     elif align == 'right':
-        return {'margin-left': 'auto'}
+        return dict(RIGHT_JUSTIFIED)
+    elif not align:
+        return {}
     else:
         raise ValueError(f"unknown alignment value: '{align}'")
 
