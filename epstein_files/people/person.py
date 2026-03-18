@@ -280,7 +280,7 @@ class Person(DocTypesMixin, LoggingEntity):
         # TODO this sucks
         for d in docs:
             if isinstance(d, FileDisplay):
-                d.indent = site_config.show_with_indent
+                d.indent = site_config.indents.show_with
 
         printer.print_documents(docs, log_sfx=f"[{self.name}]")
         printer.line(2)

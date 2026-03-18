@@ -589,7 +589,7 @@ class Email(Communication):
             body_panel=self._body_as_table(),
             document=self,
             file_info=self.file_id_panel,
-            indent=site_config.info_indent,
+            indent=site_config.indents.info,
             justify=align,
             margin_bottom=self.html_margin_bottom,
             subheaders=self.subheaders,
@@ -618,7 +618,7 @@ class Email(Communication):
         html = super().to_html()
 
         if (attachments_table := self._attached_docs_table()):
-            indent_props = {'margin-left': to_em(site_config.email_attachment_indent)}
+            indent_props = {'margin-left': to_em(site_config.indents.email_attachment)}
             html += table_to_html(attachments_table, indent_props)
 
         return html
@@ -880,12 +880,11 @@ class Email(Communication):
 
     def __rich_console__(self, console: Console, options: ConsoleOptions) -> RenderResult:
         yield self.rich_header()
-        body = self._body_as_table()
         body_bottom_padding = 0 if self.attached_docs else 1
-        yield Padding(body, (0, 0, body_bottom_padding, site_config.other_files_table_indent))
+        yield Padding(self._body_as_table(), (0, 0, body_bottom_padding, site_config.indents.other_files_table))
 
         if (attachments_table := self._attached_docs_table()):
-            yield Padding(attachments_table, (0, 0, 1, site_config.email_attachment_indent))
+            yield Padding(attachments_table, (0, 0, 1, site_config.indents.email_attachment))
 
     @classmethod
     def dummy_cfg(cls) -> EmailCfg:
