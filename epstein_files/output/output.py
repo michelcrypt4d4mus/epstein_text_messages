@@ -243,7 +243,7 @@ def print_stats(epstein_files: EpsteinFiles) -> None:
     print_json(dict_sets_to_lists(epstein_files.email_authors_to_device_signatures()), "Email author device signatures")
     print_json(dict_sets_to_lists(epstein_files.email_device_signatures_to_authors()), "Email authors by device")
     unknown_recipient_ids = sorted([e.file_id for e in epstein_files.emails if None in e.recipients or not e.recipients])
-    print_json(epstein_files, "Unknown Recipient IDs")
+    print_json(unknown_recipient_ids, "Unknown Recipient IDs")
     print_json(Document.count_by_month(epstein_files.documents), "All documents count by month")
     print_json(sorted([f.file_id for f in epstein_files.interesting_other_files]), "Interesting OtherFile IDs")
     print_json(highlighter.highlight_counts, f"Highlight Counts")
@@ -257,16 +257,16 @@ def print_text_msgs_section(epstein_files: EpsteinFiles, printer: DocPrinter) ->
     printer.print_renderable(section_header_panel)
     printer.print_renderable(Align.center(CONVERSATIONS_SORTED_BY_TXT))
 
-    if args.names:
-        imessage_logs = [log for log in epstein_files.imessage_logs if log.author in args.names]
-    else:
-        imessage_logs = [log for log in epstein_files.imessage_logs if (args.all_texts or log.is_interesting)]
+    imessage_logs = [
+        log for log in epstein_files.imessage_logs
+        if args.all_texts or log.is_interesting or log.author in args.names
+    ]
+
+    imessage_logs = _max_records(imessage_logs)
 
     if not imessage_logs:
         logger.warning(f"No MessengerLog found for {args.names}")
         return []
-
-    imessage_logs = _max_records(imessage_logs)
 
     if not args.names:
         printer.print_renderable(_section_summary_table(MessengerLog.summary_table(imessage_logs)))
