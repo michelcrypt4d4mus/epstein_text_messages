@@ -8,8 +8,13 @@ SULAYEM_DESCRIPTION = 'chairman of ports in Dubai, CEO of DP World, resigned ove
 
 
 @pytest.fixture(scope='session')
-def sultan(epstein_files) -> Person:
-    return epstein_files.person_objs([SULTAN_BIN_SULAYEM])[0]
+def anne_boyles(epstein_files) -> Person:
+    return epstein_files.person_objs(['Anne Boyles'])[0]
+
+
+@pytest.fixture(scope='session')
+def eva(epstein_files) -> Person:
+    return epstein_files.person_objs([EVA_DUBIN])[0]
 
 
 @pytest.fixture(scope='session')
@@ -18,13 +23,8 @@ def john_page(epstein_files) -> Person:
 
 
 @pytest.fixture(scope='session')
-def anne_boyles(epstein_files) -> Person:
-    return epstein_files.person_objs(['Anne Boyles'])[0]
-
-
-@pytest.fixture(scope='session')
-def eva(epstein_files) -> Person:
-    return epstein_files.person_objs([EVA_DUBIN])[0]
+def sultan(epstein_files) -> Person:
+    return epstein_files.person_objs([SULTAN_BIN_SULAYEM])[0]
 
 
 def test_info_str(anne_boyles, john_page, sultan):

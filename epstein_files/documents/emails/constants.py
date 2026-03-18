@@ -372,10 +372,9 @@ UNINTERESTING_EMAILERS = FLIGHT_IN_2012_PEOPLE + IRAN_DEAL_RECIPIENTS + TRIVERS_
     'Mark Albert',                           # Random CC
     'Matthew Schafer',                       # Random CC
     MICHAEL_BUCHHOLTZ,                       # Terry Kafka CC
-    'Nancy Dahl',                            # covered by Lawrence Krauss (her husband)
     'Michael Simmons',                       # Random CC
+    'Nancy Dahl',                            # covered by Lawrence Krauss (her husband)
     'Nancy Portland',                        # Lawrence Krauss CC
-    'Oliver Goodenough',                     # Robert Trivers CC
     'Peter Aldhous',                         # Lawrence Krauss CC
     'Peter Green',                           # Farkas emailer
     'Players2',                              # Hoffenberg CC
