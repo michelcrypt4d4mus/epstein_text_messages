@@ -4,7 +4,7 @@ import pytest
 from rich.text import Text
 
 from epstein_files.documents.emails.emailers import ENTITIES_DICT
-from epstein_files.people.entity import Entity, Organization, acronym, epstein_co, epstein_trust
+from epstein_files.people.entity import Entity, Organization, acronym, epstein_co, epstein_trust, law_enforcement
 from epstein_files.people.names import *
 
 NAME = 'Nasir Jones'
@@ -78,6 +78,15 @@ def test_highlight_pattern():
 
     jean_luc = Entity(JEAN_LUC_BRUNEL, match_partial='both')
     assert jean_luc.highlight_pattern == r'Jean[-_.\s]*Luc[-_.\s]*Brunel?|Brunel,?[-_.\s]*Jean[-_.\s]*Luc|Jean[-_.\s]*Luc|Brunel'
+
+
+def test_law_enforcment():
+    usao = law_enforcement('US Attorney')
+    assert usao.is_emailer is False
+    assert usao.highlight_regex.pattern == r'\b(U(\.|nited)?[-_.\s]*S(\.|tates)?[-_.\s]*Attorney)\b'
+    assert usao.highlight_regex.match('US Attorney')
+    assert usao.highlight_regex.match('U.S. Attorney')
+    assert usao.highlight_regex.match('United States Attorney')
 
 
 def test_middle_initial(epstein):

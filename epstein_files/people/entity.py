@@ -415,11 +415,16 @@ def epstein_trust(
 
 def law_enforcement(name: str, emailer_pattern: str = '', info: str = '', **kwargs) -> Organization:
     is_interesting = _pop_kwarg(kwargs, 'is_interesting', False)
+    is_emailer = _pop_kwarg(kwargs, 'is_emailer', False)
+
+    if name.startswith('US ') and not emailer_pattern:
+        emailer_pattern = r"U(\.|nited)? S(\.|tates)? " + name.removeprefix('US ')
 
     return Organization(
         name,
         info or LAW_ENFORCEMENT,
         emailer_pattern,
+        is_emailer=is_emailer,
         is_interesting=is_interesting,
         **kwargs
     )

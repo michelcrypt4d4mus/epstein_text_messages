@@ -1832,7 +1832,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Supreme Court",
             r"Treasury (Dep(artmen)?t|Secretary)",
             r"TSA",
-            r"U\.?S\.? attorney",
+            r"U\.?S\.? attorney(('s )?Office)?",
             r"USAID",
             r"UNITED STATES DISTRICT COURT?",
             r"US (AF|Army|Air Force)",
