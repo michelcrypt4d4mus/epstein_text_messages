@@ -105,6 +105,7 @@ class MessengerLog(Communication):
                 border_style=self.border_style,
                 text=[msg.__rich__() for msg in self.messages],
             ),
+            document=self,
             file_info=self.file_id_panel,
             subheaders=self.subheaders,
             indent=1,  # TODO: shouldn't always be 1?

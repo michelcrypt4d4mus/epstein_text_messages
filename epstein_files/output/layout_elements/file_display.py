@@ -96,6 +96,7 @@ class FileDisplay:
     """Allows for proper right vs. left justify of a Document display."""
     background_color: str = ''
     body_panel: BasePanel | Table
+    document: 'Document'
     file_info: BasePanel | None = None
     indent: int | float = 0  # TODO: this should be a property of the BasePanel
     justify: JustifyMethod | None = None
