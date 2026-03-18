@@ -44,7 +44,7 @@ def print_sample_people(num_people_to_print: int = 3):
 
 def print_test_panels():
     for panel in TEST_PANELS:
-        printer.print_renderable(panel)
+        printer.print(panel)
         printer.line(2)
 
 

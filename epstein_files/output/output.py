@@ -73,7 +73,7 @@ def print_all_emails_chronological(epstein_files: EpsteinFiles, printer: DocPrin
     emails = _max_records(emails)
     title = f'Table of All {len(emails):,} Non-Junk Emails in Chronological Order (actual emails below)'
     table = Email.build_emails_table(emails, title=title, show_length=True)
-    printer.print_renderable(Padding(table, (2, 0)))
+    printer.print(Padding(table, (2, 0)))
     printer.print_section_subtitle('The Chronologically Ordered Emails')
     printer.print_documents(emails)
 
@@ -112,7 +112,7 @@ def print_emails_section(epstein_files: EpsteinFiles, printer: DocPrinter) -> No
     Print emails grouped by participant with summary tables.
     Emails can be printed more than once (e.g. in the sender's section and each recipient's).
     """
-    printer.print_renderable(section_header((SELECTIONS_FROM if not args.all_emails else '') + HIS_EMAILS))
+    printer.print(section_header((SELECTIONS_FROM if not args.all_emails else '') + HIS_EMAILS))
     all_emailers = sorted(epstein_files.emailers, key=lambda person: person.earliest_email_at)
     num_since_color_key = 0
 
@@ -123,7 +123,7 @@ def print_emails_section(epstein_files: EpsteinFiles, printer: DocPrinter) -> No
             exit_with_error(str(e))
     else:
         emailers_to_print = all_emailers if args.all_emails else epstein_files.person_objs(EMAILERS_TO_PRINT)
-        printer.print_renderable(_section_summary_table(Person.emailer_info_table(all_emailers, emailers_to_print)))
+        printer.print(_section_summary_table(Person.emailer_info_table(all_emailers, emailers_to_print)))
 
     for person in _max_records(emailers_to_print):
         if person.is_interesting is False and not args.names:
@@ -202,7 +202,7 @@ def print_other_files_section(epstein_files: EpsteinFiles, printer: DocPrinter) 
     category_table = OtherFile.summary_table(files, title_pfx=title_pfx)
     printer.print_section_subtitle(f"{FIRST_FEW_LINES} of {len(files)} {title_pfx}{FILES_THAT_ARE_NEITHER_EMAILS_NOR}")
     print_other_page_link(epstein_files)  # TODO: not in custom HTML
-    printer.print_renderable(_section_summary_table(category_table))
+    printer.print(_section_summary_table(category_table))
 
     # If --all-other-files is enables, print the biographical panels, otherwise just print a big table
     if args.all_other_files:
@@ -216,8 +216,8 @@ def print_other_files_section(epstein_files: EpsteinFiles, printer: DocPrinter) 
 def print_signatures_and_emojis(epstein_files: EpsteinFiles, printer: DocPrinter) -> None:
     """Print device signatures and emojis and who used them."""
     printer.print_section_subtitle(DEVICE_SIGNATURE_SUBTITLE)
-    printer.print_renderable(_signature_table(epstein_files.email_device_signatures_to_authors(), (DEVICE_SIGNATURE, AUTHOR), ', '))
-    printer.print_renderable(_signature_table(epstein_files.email_authors_to_device_signatures(), (AUTHOR, DEVICE_SIGNATURE)))
+    printer.print(_signature_table(epstein_files.email_device_signatures_to_authors(), (DEVICE_SIGNATURE, AUTHOR), ', '))
+    printer.print(_signature_table(epstein_files.email_authors_to_device_signatures(), (AUTHOR, DEVICE_SIGNATURE)))
     author_emojis = defaultdict(set)
     emoji_authors = defaultdict(set)
 
@@ -254,8 +254,8 @@ def print_stats(epstein_files: EpsteinFiles) -> None:
 def print_text_msgs_section(epstein_files: EpsteinFiles, printer: DocPrinter) -> list[MessengerLog]:
     """Print `MessengerLog` objects and return objects that were printed."""
     section_header_panel = section_header((SELECTIONS_FROM if not args.all_texts else '') + HIS_TEXT_MESSAGES)
-    printer.print_renderable(section_header_panel)
-    printer.print_renderable(Align.center(CONVERSATIONS_SORTED_BY_TXT))
+    printer.print(section_header_panel)
+    printer.print(Align.center(CONVERSATIONS_SORTED_BY_TXT))
 
     imessage_logs = [
         log for log in epstein_files.imessage_logs
@@ -269,7 +269,7 @@ def print_text_msgs_section(epstein_files: EpsteinFiles, printer: DocPrinter) ->
         return []
 
     if not args.names:
-        printer.print_renderable(_section_summary_table(MessengerLog.summary_table(imessage_logs)))
+        printer.print(_section_summary_table(MessengerLog.summary_table(imessage_logs)))
 
     printer.print_documents(imessage_logs)
     return imessage_logs
@@ -344,10 +344,10 @@ def _signature_table(keyed_sets: dict[str, set[str]], cols: tuple[str, str], joi
     return Padding(table, DEVICE_SIGNATURE_PADDING)
 
 
-def _verify_all_emails_were_printed(epstein_files: EpsteinFiles, already_printed_emails: list[Email]) -> None:
+def _verify_all_emails_were_printed(epstein_files: EpsteinFiles, printed_emails: list[Email]) -> None:
     """Log warnings if some emails were never printed."""
-    email_ids_that_were_printed = set([email.file_id for email in already_printed_emails])
-    logger.warning(f"Printed {len(already_printed_emails):,} emails of {len(email_ids_that_were_printed):,} unique file IDs.")
+    email_ids_that_were_printed = set([email.file_id for email in printed_emails])
+    logger.warning(f"Printed {len(printed_emails):,} emails of {len(email_ids_that_were_printed):,} unique file IDs.")
     missed_an_email = False
 
     for email in epstein_files.unique_emails:
