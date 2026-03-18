@@ -107,14 +107,17 @@ class Person(DocTypesMixin, LoggingEntity):
 
     @property
     def email_conversation_length_in_days(self) -> int:
+        """Number of days between earliest and most recent emails."""
         return days_between(self.emails[0].timestamp, self.emails[-1].timestamp)
 
     @property
     def emails_by(self) -> list[Email]:
+        """Emails written by this person."""
         return [e for e in self.emails if self.name == e.author]
 
     @property
     def emails_to(self) -> list[Email]:
+        """Emails sent to this person."""
         return [
             e for e in self.emails
             if self.name in e.recipients or (self.name is None and len(e.recipients) == 0)
@@ -122,6 +125,7 @@ class Person(DocTypesMixin, LoggingEntity):
 
     @property
     def external_links_line(self) -> Text:
+        """Collection of links to sites that have biographies of the Epstein network."""
         links = [self.external_link_txt(site) for site in PERSON_LINK_BUILDERS]
         return Text('', justify='center', style='dim').append(join_texts(links, join=' / '))
 
