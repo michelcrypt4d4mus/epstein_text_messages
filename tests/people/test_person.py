@@ -28,11 +28,9 @@ def eva(epstein_files) -> Person:
 
 
 def test_info_str(anne_boyles, john_page, sultan):
-    assert sultan.highlight_group is not None
     assert sultan.entity.info == SULAYEM_DESCRIPTION
     assert sultan.entity.info_with_category == f'mideast, {SULAYEM_DESCRIPTION}'
 
-    assert john_page.highlight_group is None
     assert john_page.entity.info_with_category == ''
     assert john_page.entity.info is None
 

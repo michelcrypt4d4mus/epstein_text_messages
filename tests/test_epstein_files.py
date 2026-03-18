@@ -62,7 +62,7 @@ def test_against_csv(epstein_files):
                     else:
                         doc._warn(f"{mismatched_prop_str} ({values_str})")
         else:
-            print_subtitle_panel(f"CSV is missing {doc.file_id}", center=False)
+            print_subtitle_panel(f"CSV is missing {doc.file_id}")
             console.print(doc)
             bad_docs.append(doc)
             continue
