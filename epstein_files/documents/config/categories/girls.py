@@ -35,6 +35,7 @@ GIRLS_CFGS = [
     DocCfg(id='EFTA01078143', author=GIANNI_SERAZZI, note='2morrow modeling pitch deck', date='2014-09-30', date_uncertain=True),
     DocCfg(id='EFTA00306033', author=SERGEY_BELYAKOV, note='Epstein Russian visa', show_full_panel=True),
     DocCfg(id='EFTA00014648', note='former employee "understood that all the girls were school girls"', show_full_panel=True),
+    DocCfg(id='EFTA00022133', note='table showing a list of Epstein accusations collection from public press reporting'),
     DocCfg(
         id='EFTA00077200',
         author=FRENCH_MINISTRY_OF_JUSTICE,

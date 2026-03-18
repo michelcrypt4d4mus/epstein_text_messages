@@ -3,6 +3,8 @@
 import logging
 import sys
 from collections import defaultdict
+from contextlib import contextmanager
+from copy import deepcopy
 
 from rich.markup import escape
 from rich.panel import Panel
@@ -20,6 +22,7 @@ from epstein_files.output.html.builder import table_to_html, write_templated_htm
 from epstein_files.people.person import Person
 from epstein_files.people.names import *
 from epstein_files.util.constants import CONFIGS_BY_ID, EmailCfg, UNINTERESTING_OTHER_FILE_IDS
+from epstein_files.util.env import args
 from epstein_files.util.helpers.data_helpers import *
 from epstein_files.util.helpers.debugging_helper import print_all_timestamps, print_file_counts
 from epstein_files.util.helpers.file_helper import open_file_or_url
@@ -34,24 +37,12 @@ num_uninteresting = 0
 num_word_count_worthy = 0
 ids = UNINTERESTING_OTHER_FILE_IDS
 
-for i, email in enumerate(epstein_files.unique_emails):
-    if email.file_id in ids or email.recipients or email.is_mailing_list or email.file_id.startswith('023208'):
-        continue
 
-    msg = f"has no recipients ({email._summary})"
-
-    if email.header.is_to_redacted:
-        email._warn(f"is_to_redacted=True and {msg}")
-    else:
-        email._log(f"{msg}\n    ...but is_to_redacted=False!\n\n{email.header}\n", logging.ERROR)
-
-    console.print(email, '\n\n')
-    ids.append(email.file_id)
-    continue
+for doc in epstein_files.other_files:
+    if doc._config.note.startswith('grand jury'):
+        doc.print_truncated_to(3000)
 
 
-console.print(f'\n\n  Found {num_missing_unknown_recipient} emails that should have None as a recipient ({num_interesting} interesting, {num_uninteresting} uninteresting)')
-print(f"\nIDS to repair:\n\n" + ' '.join(ids) + '\n')
 sys.exit()
 
 

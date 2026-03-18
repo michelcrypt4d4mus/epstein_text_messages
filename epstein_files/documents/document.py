@@ -19,7 +19,7 @@ from rich.panel import Panel
 from rich.text import Text
 from rich.table import Table
 
-from epstein_files.documents.config.doc_cfg import DEFAULT_TRUNCATE_TO, DUPE_TYPE_STRS, DebugDict, DocCfg, Metadata
+from epstein_files.documents.config.doc_cfg import DEFAULT_TRUNCATE_TO, DUPE_TYPE_STRS, NO_TRUNCATE, DebugDict, DocCfg, Metadata
 from epstein_files.documents.config.email_cfg import EmailCfg
 from epstein_files.documents.documents.file_info import FileInfo
 from epstein_files.documents.documents.search_result import MatchedLine
@@ -37,7 +37,7 @@ from epstein_files.people.interesting_people import PERSONS_OF_INTEREST, UNINTER
 from epstein_files.people.names import Name
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constants import CONFIGS_BY_ID
-from epstein_files.util.env import args, site_config
+from epstein_files.util.env import args, site_config, temporary_args
 from epstein_files.util.external_link import link_text_obj
 from epstein_files.util.helpers.data_helpers import (CharRange, coerce_utc, coerce_utc_strict, date_str, patternize, prefix_keys,
      listify, uniquify, uniq_sorted, without_falsey)
@@ -181,7 +181,12 @@ class Document(LoggingEntity):
     @property
     def char_range_to_display(self) -> CharRange | None:
         """Index of first and last characters to show when printing this document."""
-        return self._config.char_range
+        if args.whole_file or self._config.truncate_at == NO_TRUNCATE:
+            return None
+        elif args.truncate:
+            return (0, args.truncate)
+        elif self._config.char_range:
+            return self._config.char_range
 
     @property
     def display_text(self) -> str:
@@ -499,12 +504,16 @@ class Document(LoggingEntity):
         pattern = patternize(_pattern)
         return [MatchedLine(line, i) for i, line in enumerate(self.lines) if pattern.search(line)]
 
+    def print_truncated_to(self, truncate_to: int) -> None:
+        """Temporarily set args.truncate and print."""
+        tmp_args = {'whole_file': True} if truncate_to == NO_TRUNCATE else {'truncate': truncate_to}
+
+        with temporary_args(tmp_args) as args:
+            console.print(self)
+
     def print_untruncated(self) -> None:
         """Temporarily set args.whole_file to True and print."""
-        old_whole_file_arg = args.whole_file
-        args.whole_file = True
-        console.print(self)
-        args.whole_file = old_whole_file_arg
+        self.print_truncated_to(NO_TRUNCATE)
 
     def raw_text(self) -> str:
         """Reload the raw data from the underlying file and return it."""

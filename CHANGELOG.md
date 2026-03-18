@@ -1,4 +1,5 @@
 # NEXT RELEASE
+* --truncate now applies to OtherFile too, temporary_args() context
 * fix table title text justification
 * `--build-dir` argument
 * new `--use-custom-html` arg, `--all-other-files` site now includes biographical panels
