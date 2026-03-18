@@ -16,7 +16,7 @@ from yaralyzer.util.helpers.interaction_helper import ask_to_proceed
 
 from epstein_files.documents.config.doc_cfg import Metadata
 from epstein_files.documents.config.manual_config import create_configs
-from epstein_files.documents.document import Document
+from epstein_files.documents.document import Document, DocType
 from epstein_files.documents.documents.search_result import SearchResult
 from epstein_files.documents.doj_file import DojFile
 from epstein_files.documents.email import EMAILERS_TO_ALWAYS_TRUNCATE, Email
@@ -42,8 +42,6 @@ from epstein_files.util.timer import Timer
 PROPS_TO_COPY = ['author', 'timestamp']
 EMAIL_PROPS_TO_COPY = ['recipients']
 SLOW_FILE_SECONDS = 1.0
-
-DocType = TypeVar('DocType', bound=Document)
 
 
 @dataclass
