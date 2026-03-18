@@ -8,7 +8,8 @@ set -e
 source .env
 
 THIS_DIR=$(dirname -- "$(readlink -f -- "$0";)";)
-source "$THIS_DIR/scripts/bash_lib/shared.sh"
+REPO_SCRIPTS_DIR="$THIS_DIR/scripts"
+source "$REPO_SCRIPTS_DIR/bash_lib/shared.sh"
 
 
 # Preparation (check branch, clean build artifacts, etc.)
@@ -53,7 +54,7 @@ fi
 # Switch to gh_pages branch and run build_pages.sh
 git checkout gh_pages
 git merge --no-edit master --quiet
-"$THIS_DIR/build_pages.sh"
+"$REPO_SCRIPTS_DIR/build_pages.sh"
 
 # Commit changes
 copy_custom_html
