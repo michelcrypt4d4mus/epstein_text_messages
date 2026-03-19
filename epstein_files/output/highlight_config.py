@@ -1885,6 +1885,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         style='light_goldenrod3',
         entities=[
             Entity('Donald Rubin', "statistics professor", match_partial=None),
+            Entity('George Church', 'geneticist', match_partial=None),
             Entity('Henry Rosovsky', f'emeritus dean of {HARVARD}', r"(Henry )?Rosovs(k|lc)y"),
             Entity('Kelly Friendly', f"longtime aide and spokesperson of {LARRY_SUMMERS}", match_partial=None),
             Entity(
