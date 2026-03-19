@@ -19,8 +19,8 @@ from rich.panel import Panel
 from rich.text import Text
 from rich.table import Table
 
-from epstein_files.documents.config.doc_cfg import (DOC_CHAR_RANGE, EMAIL_TRUNCATE_TO, DUPE_TYPE_STRS,
-     NO_TRUNCATE, DebugDict, DocCfg, Metadata)
+from epstein_files.documents.config.doc_cfg import (AUTO_QUOTE_NUM_CHARS, DOC_CHAR_RANGE, EMAIL_TRUNCATE_TO,
+     DUPE_TYPE_STRS, NO_TRUNCATE, WHOLE_FILE_CHAR_RANGE, DebugDict, DocCfg, Metadata)
 from epstein_files.documents.config.email_cfg import EmailCfg
 from epstein_files.documents.documents.file_info import FileInfo
 from epstein_files.documents.documents.search_result import MatchedLine
@@ -189,8 +189,19 @@ class Document(LoggingEntity):
     @property
     def char_range_to_display(self) -> CharRange | None:
         """Index of first and last characters to show when printing this document."""
-        if self._config.char_range:
-            return self._config.char_range
+        if (char_range := self._config.char_range) and char_range == 'auto':
+            self._warn(f"Computing auto range for highlighted quote..")
+            quote_regex = re.compile(self._config.highlighted_pattern, re.IGNORECASE)
+
+            if (quote_match := quote_regex.search(self.text)):
+                self._debug_log(f"auto truncate quote_match: {quote_match}")
+                start_idx = max(quote_match.start() - AUTO_QUOTE_NUM_CHARS, 0)
+                return (start_idx, quote_match.end() + AUTO_QUOTE_NUM_CHARS)
+            else:
+                logger.error(f"Couldn't locate quote {quote(self._config.highlight_quote)} in text!")
+                return WHOLE_FILE_CHAR_RANGE
+        else:
+            return char_range
 
     @property
     def display_text(self) -> str:
@@ -348,7 +359,7 @@ class Document(LoggingEntity):
     @property
     def subheaders(self) -> list[Text]:
         """0 to 2 sentences containing the `subheader_info` and any configured `note` text."""
-        return without_falsey([self.subheader_info, self._config.note_txt])
+        return without_falsey([self.subheader_info, self._config.note_txt()])
 
     @property
     def suppressed_txt(self) -> Text | None:
@@ -489,7 +500,7 @@ class Document(LoggingEntity):
             'file_id': self.file_info.external_link(FILENAME_STYLE, id_only=True).link,
             'type': Text('').append(self._class_name, style=self._class_style),
             'author': self.author_txt,
-            'note': self._config.note_txt,
+            'note': self._config.note_txt(False),
         }
 
         if self.timestamp:

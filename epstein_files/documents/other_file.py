@@ -210,7 +210,9 @@ class OtherFile(Document):
             else:
                 preview_text = file.preview_txt
                 row_style = ''
-                link_and_info += file.subheaders
+
+                if (note_txt := file._config.note_txt(include_category=False)):
+                    link_and_info.append(note_txt)
 
             table.add_row(
                 Group(*link_and_info),

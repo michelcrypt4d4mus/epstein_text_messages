@@ -30,7 +30,7 @@ from epstein_files.documents.config.categories.social import SOCIAL_CFGS, TWEET_
 from epstein_files.documents.config.config_builder import victim_diary
 from epstein_files.documents.config.doc_cfg import DocCfg
 from epstein_files.documents.config.email_cfg import EmailCfg
-from epstein_files.documents.documents.categories import CONSTANT_CATEGORIES, Interesting, Neutral
+from epstein_files.documents.documents.categories import Category, Interesting, Neutral, Uninteresting
 from epstein_files.people.names import *
 from epstein_files.util.constant.strings import *
 from epstein_files.util.helpers.string_helper import join_truthy, quote
@@ -471,11 +471,19 @@ NOT_CHRONOLOGICAL_VIEW_IDS = [cfg.id for cfg in FLIGHT_LOG_CFGS] + [
     # '024185', # UN
 ]
 
+# These are the categories we expect to see as a [category]_CFGS variable in constants.py
+CATEGORIES_WITH_CFGS_VAR = [
+    c for c in Category if c not in [
+        Neutral.BUSINESS,
+        Neutral.PRESSER,
+        Uninteresting.JSON,
+    ]
+]
 
 # Build config list by combining [BLAH]_CFGS variables and setting category to [BLAH] for each
 CATEGORY_CONFIGS: list[DocCfg] = []
 
-for category in CONSTANT_CATEGORIES:
+for category in CATEGORIES_WITH_CFGS_VAR:
     if (var_name := f"{category.upper()}{CFGS_SUFFIX}") not in locals():
         logger.error(f"Document config variable '{var_name}' is not defined!")
         continue

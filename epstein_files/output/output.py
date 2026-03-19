@@ -58,7 +58,7 @@ T = TypeVar('T')
 def print_annotated_only(epstein_files: EpsteinFiles, printer: DocPrinter):
     docs = [
         d for d in epstein_files.unique_documents
-        if d._config.note_txt and d.is_interesting and d._config.is_in_chrono is not False
+        if d._config.note_txt(include_category=False) and d.is_interesting and d._config.is_in_chrono is not False
     ]
 
     logger.warning(f"Found {len(docs)} annotated documents...")
@@ -224,7 +224,7 @@ def print_document_notes(epstein_files: EpsteinFiles, printer: DocPrinter) -> No
     )
 
     for doc in epstein_files.unique_documents:
-        if not (doc.is_interesting and doc._config.note_txt):
+        if not (doc.is_interesting and doc._config.note_txt(include_category=False)):
             continue
 
         info = doc.formatted_info()
@@ -232,7 +232,7 @@ def print_document_notes(epstein_files: EpsteinFiles, printer: DocPrinter) -> No
         table.add_row(*row)
         notes.append(join_texts(row))
 
-    table._no_pad = True  # hacky af
+    table._no_pad = True  # TODO: hacky af mark so the table is rendered w/out internal padding
     printer.print(table)
     logger.warning(f"Printed {len(notes)} interesting documents with configured notes...")
 

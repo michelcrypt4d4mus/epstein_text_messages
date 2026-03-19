@@ -63,9 +63,6 @@ def doublespace_lines(s: str) -> str:
 
 def doublespace_numbered_lists(s: str) -> str:
     if contains_numbered_list(s):
-        for match in NUMBERED_LIST_ITEM_REGEX.finditer(s):
-            print(f". match: {match}, group1: {match.group(1)}")
-
         return NUMBERED_LIST_ITEM_REGEX.sub(r"\n\1", s)
     else:
         return s

@@ -471,8 +471,13 @@ class Email(Communication):
         if self._config.author_uncertain:
             author_txt += Text(f" {QUESTION_MARKS}", style=self.author_style)
 
-        prefix = 'fwded article' if self.is_fwded_article else 'email'
-        return site_config.email_subheader(prefix, author_txt, self.recipients_txt(), self.timestamp)
+        return site_config.email_subheader(
+            'fwded article' if self.is_fwded_article else 'email',
+            author_txt,
+            self.recipients_txt(),
+            self.timestamp,
+            self._config.category_bracketed
+        )
 
     @property
     def subject(self) -> str:
@@ -617,7 +622,9 @@ class Email(Communication):
 
     def _body_as_table(self) -> Table:
         """Renders the info text as a top row in a table-ish view."""
-        note_txt = Text('', justify='right').append(self._config.note_txt) if self._config.note_txt else ''
+        # The configured note is the column "header" in a one column table.
+        note_txt = self._config.note_txt()
+        note_txt = Text('', justify='right').append(note_txt) if note_txt else ''
 
         panel = Table(
             border_style=self.border_style,

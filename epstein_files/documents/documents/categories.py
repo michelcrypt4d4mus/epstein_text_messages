@@ -82,14 +82,6 @@ CATEGORY_STYLES = {
     Uninteresting.TWEET: SOCIAL_STYLE,
 }
 
-# These are the categories we expect to see as OTHER_FILES_[category] variables for in constants.py
-CONSTANT_CATEGORIES = [
-    c for c in Category if c not in [
-        Neutral.BUSINESS,
-        Neutral.PRESSER,
-        Uninteresting.JSON,
-    ]
-]
 
 is_interesting = lambda category: _is_in_enum(category, Interesting)
 is_neutral = lambda category: _is_in_enum(category, Neutral)
