@@ -40,7 +40,7 @@ class Site(StrEnum):
     CHRONOLOGICAL_MOBILE = f"{CHRONOLOGICAL}_mobile"
     DEVICE_SIGNATURES = auto()
     DOJ_FILES = auto()
-    EMAILS = auto()
+    EMAILERS = auto()
     EMAILS_CHRONOLOGICAL = auto()
     JSON_METADATA = auto()
     NAMES = auto()
@@ -158,7 +158,7 @@ HTML_BUILD_FILENAMES = {
     Site.CHRONOLOGICAL:         f"index.html",
     Site.CHRONOLOGICAL_MOBILE:  f"mobile_chronological.html",
     Site.DOJ_FILES:             f'doj_2026-01-30_non_email_files.html',
-    Site.EMAILS:                f'emails_grouped_by_counterparty.html',
+    Site.EMAILERS:                f'emails_grouped_by_counterparty.html',
     Site.JSON_METADATA:         f'metadata.json',
     Site.TEXT_MESSAGES:         f'text_messages_{EPSTEIN_FILES_NOV_2025}.html',
     Site.WORD_COUNT:            f'communication_word_count.html',
@@ -170,7 +170,7 @@ HTML_BUILD_FILENAMES = {
 SITE_DESCRIPTIONS = {
     Site.CHRONOLOGICAL:         f"chronological curated:all types intermingled",
     Site.CURATED:               f"emailers curated:emails grouped by person of interest",
-    Site.EMAILS:                f"emailers:all emails grouped by person",
+    Site.EMAILERS:                f"emailers:all emails grouped by person",
     Site.EMAILS_CHRONOLOGICAL:  f"emails chronological:all emails chronological order",
     Site.BIOGRAPHIES:           f"people:one line biographies with some links",
     Site.DEVICE_SIGNATURES:     f"signatures:email signatures/emojis and who uses them",

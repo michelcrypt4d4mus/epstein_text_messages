@@ -160,13 +160,12 @@ if is_html_script:
     else:
         if args.colors_only:
             args._site = Site.COLORS_ONLY
-            args.build = args.build or BUILD_TO_DEFAULT
         elif args.output_bios:
             args._site = Site.BIOGRAPHIES
         elif args.all_doj_files:
             args._site = Site.DOJ_FILES
         elif args.all_emails:
-            args._site = Site.EMAILS
+            args._site = Site.EMAILERS
         elif args.all_emails_chrono:
             args._site = Site.EMAILS_CHRONOLOGICAL
         elif args.all_texts:
@@ -183,7 +182,6 @@ if is_html_script:
             args._site = Site.WORD_COUNT
         else:
             logger.warning(f"Site type couldn't be conclusively determined, settings to {Site.CURATED}...")
-            args._site = Site.CURATED
 elif parser.prog.startswith('epstein_') and not args.positional_args and not args.names:
     exit_with_error(f"{parser.prog} requires positional arguments but got none!")
 
@@ -217,7 +215,7 @@ elif args.suppress_logs:
 elif not env_log_level:
     set_log_level(logging.WARNING)
 
-logger.info(f"args._site='{args._site}'")
+logger.warning(f"Building site '{args._site}' to '{Site.html_output_path(args._site)}'\n")
 logger.debug(f'Log level set to {logger.level}...')
 args_str = ',\n'.join([f"{k}={v}" for k, v in vars(args).items() if v])
 logger.debug(f"'{parser.prog}' script invoked\n{args_str}")

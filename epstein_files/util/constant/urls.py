@@ -208,7 +208,7 @@ def internal_person_link_url(name: str) -> str:
 
 
 def other_site() -> Site:
-    return Site.CURATED if args._site != Site.CURATED else Site.EMAILS
+    return Site.CURATED if args._site != Site.CURATED else Site.EMAILERS
 
 
 def other_site_url() -> str:

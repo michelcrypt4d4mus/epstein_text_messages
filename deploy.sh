@@ -49,7 +49,7 @@ fi
 
 
 # Switch to gh_pages branch and run build_pages.sh
-git checkout gh_pages
+git checkout $GH_PAGES_BRANCH
 git merge --no-edit master --quiet
 "$REPO_SCRIPTS_DIR/build_pages.sh"
 

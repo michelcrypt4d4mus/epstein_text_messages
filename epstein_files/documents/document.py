@@ -39,10 +39,10 @@ from epstein_files.util.constant.strings import *
 from epstein_files.util.constants import CONFIGS_BY_ID
 from epstein_files.util.env import args, site_config, temporary_args
 from epstein_files.util.external_link import link_text_obj
-from epstein_files.util.helpers.data_helpers import (CharRange, coerce_utc, coerce_utc_strict, date_str, patternize, prefix_keys,
+from epstein_files.util.helpers.data_helpers import (coerce_utc, coerce_utc_strict, date_str, patternize, prefix_keys,
      listify, uniquify, uniq_sorted, without_falsey)
 from epstein_files.util.helpers.file_helper import coerce_file_path, file_size_str, file_size_to_str
-from epstein_files.util.helpers.rich_helpers import TextVar
+from epstein_files.util.helpers.rich_helpers import CharRange, TextVar, extract_range
 from epstein_files.util.helpers.string_helper import collapse_newlines, doublespace_lines, join_truthy, quote, timestamp_without_zero_hour
 from epstein_files.util.logging import DOC_TYPE_STYLES, FILENAME_STYLE, logger
 from epstein_files.util.logging_entity import LoggingEntity
@@ -181,12 +181,8 @@ class Document(LoggingEntity):
     @property
     def char_range_to_display(self) -> CharRange | None:
         """Index of first and last characters to show when printing this document."""
-        if args.whole_file or self._config.truncate_at == NO_TRUNCATE:
-            return None
-        elif args.truncate:
-            return (0, args.truncate)
-        elif self._config.char_range:
-            return self._config.char_range
+        if self._config.char_range:
+            return self._config.char_range  # TODO: non emails shouldn't always print full length, maybe add default?
 
     @property
     def display_text(self) -> str:
@@ -331,7 +327,8 @@ class Document(LoggingEntity):
 
         # char range slice of Text late in the game here preserves Text highlighting at boundaries
         char_range = self.char_range_to_display or (0, len(display_text))
-        selected_txt = self._config.text_highlighter(Text(display_text, style))[char_range[0]:char_range[1]]
+        selected_txt = self._config.text_highlighter(Text(display_text, style))
+        selected_txt = extract_range(selected_txt, char_range)
         pretty_txt = self._intro_txt(char_range[0]).append(selected_txt)
 
         # For debugging/choosing truncation points only
@@ -457,21 +454,6 @@ class Document(LoggingEntity):
         ]
 
         return self._coerce_entities(entities)
-
-    def excerpt_text(self, char_range: CharRange | None = None, text: str = '', style = '') -> Text:
-        """Create an excerpt of `text`, add appropriate header/footer if truncated, and highlight it."""
-        char_range = char_range or (0, len(text))
-        text = doublespace_lines(text or self.text)        # TODO: not ideal place for doublespace call
-        excerpt_txt = self._intro_txt(char_range[0])
-        excerpt_txt.append(Text(text, style)[char_range[0]:char_range[1]])  # array slice of `Text` obj preserves style
-
-        if args.char_nums:    # For debugging/choosing truncation points
-            excerpt_txt = self._inject_line_numbers(excerpt_txt, args.char_nums)
-
-        if (footer_txt := self.trimmed_chars_txt(char_range[1])):
-            excerpt_txt.append('...\n\n').append(footer_txt)
-
-        return self._config.text_highlighter(excerpt_txt)
 
     def extract_author(self) -> Name:
         """Extended in `Email` subclass to pull from headers etc."""
