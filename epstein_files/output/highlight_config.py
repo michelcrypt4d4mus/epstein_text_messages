@@ -1113,6 +1113,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         ],
         patterns=[
             r"(?-i:The Prof)",
+            r"jeffreyepsteinscience(\.?com)?",
             r"Zorro( Ranch)?",
         ],
     ),
@@ -2822,7 +2823,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Entity('Ekaterina Gusarova', f'Instagram model {QUESTION_MARKS}', r"(Ekaterina|Katya)? Gusm?arova", aliases=['Katya']),
             Entity("Gul'sum Osmanova", QUESTION_MARKS, r"(Gul'?sum )?Osmanova", email_addresses=['g.a.osmanova@gmail.com']),
             Entity('Irina Vodolazova', 'Russian model', match_partial='both'),
-            Entity(JESSICA_BANKS, f'Russian speaker, un-Russian last name, co-founder of {QUESTION_MARKS}', match_partial=None),
+            Entity(JESSICA_BANKS, f'co-founder of {QUESTION_MARKS}', match_partial=None),
             Entity(
                 JULIA_SANTOS,  # TODO: Jmail says her email is julia.santos@hbs.edu
                 "recruiter of girls from Ukraine for Epstein, possibly Harvard Business School student",
