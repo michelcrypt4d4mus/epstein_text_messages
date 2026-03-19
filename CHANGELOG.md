@@ -1,5 +1,6 @@
 # NEXT RELEASE
-* --output-notes argument and site
+* `--output-notes` argument and site
+* Auto doublespace numbered lists
 
 ### 1.10.1
 * `--truncate` now applies to `OtherFile` too via `temporary_args()` context
