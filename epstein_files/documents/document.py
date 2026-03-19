@@ -195,8 +195,6 @@ class Document(LoggingEntity):
     @property
     def display_text(self) -> str:
         """Config overrides what text should be displayed."""
-        text = collapse_newlines(self._config.display_text or self.text)
-        print(f"\nDOCUMENT collapse_newlines\n{text}\n")
         return collapse_newlines(self._config.display_text or self.text)
 
     @property
