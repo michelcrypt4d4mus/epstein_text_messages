@@ -175,9 +175,12 @@ class DocPrinter(DocTypesMixin):
             if should_log_in_intervals and (i % 100 == 0):
                 timer.print_at_checkpoint(f"Printed {i:,} objs of {len(docs):,} ({len(suppressed_docs):,} suppressed) {log_sfx}")
 
+        # Clear the queues of any stragglers
         process_suppressed_docs_queue()
         self._print_other_files_queue()
-        timer.print_at_checkpoint(f"Finished printing {len(docs):,} objs ({len(suppressed_docs):,} suppressed) {log_sfx}")
+
+        if args.suppress_output:
+            timer.print_at_checkpoint(f"Finished printing {len(docs):,} objs ({len(suppressed_docs):,} suppressed) {log_sfx}")
 
     def print(self, renderables: RenderableType | Sequence[RenderableType]) -> None:
         """All things being printed should come through here, which collects both terminal and HTML output as its written."""
