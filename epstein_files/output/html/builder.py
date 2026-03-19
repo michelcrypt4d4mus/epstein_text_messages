@@ -317,10 +317,8 @@ def tmp_console(tmp_width: int) -> Generator[Console, None, None]:
 
 def write_templated_html(elements: list[str] | str, output_path: Path) -> Path:
     """Render a collection of HTML elements to an HTML file. Returns file that was written."""
-    body = '\n\n'.join(listify(elements))
-
     html = str(CUSTOM_HTML_TEMPLATE).format(
-        code=body,
+        code='\n\n'.join(listify(elements)),
         stylesheet=CSS,
         background=HTML_TERMINAL_THEME.background_color.hex,
         foreground=HTML_TERMINAL_THEME.foreground_color.hex,
