@@ -367,6 +367,7 @@ GIRLS_CFGS = [
     EmailCfg(id='EFTA00078209', note='allegations about Russian organized crime, sex trafficking', truncate_to=8_500),
     EmailCfg(id='EFTA01648951', note=f'allegations against Trump, {HOWARD_LUTNICK}, Glen Dubin, {LEON_BLACK}, {JES_STALEY}'),
     EmailCfg(id='EFTA00950368', note='"any [girl] friends for me?"', truncate_to=NO_TRUNCATE),
+    EmailCfg(id='EFTA00363992', note=f"car rental for {MARIANA_IDZKOWSKA}", show_with_name=MARIANA_IDZKOWSKA),
     EmailCfg(id='EFTA01814983', note=f"Epstein and {NICOLE_JUNKERMANN} used to date", show_with_name=NICOLE_JUNKERMANN),
     EmailCfg(id='EFTA02049364', note='Epstein arranging for healthcare for five girls', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA02209622', note=f'flight to Riga for {LASMA_KUHTARSKA}', show_with_name=LASMA_KUHTARSKA, truncate_to=600),

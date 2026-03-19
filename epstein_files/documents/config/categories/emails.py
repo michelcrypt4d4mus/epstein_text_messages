@@ -1273,8 +1273,6 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA01175429', note=f"Andrey Vavilov offers to buy Epstein's house for $100 million"),
     EmailCfg(id='EFTA00756577', note=f"{BEN_GOERTZEL} congratulates Epstein on getting out of jail", is_interesting=True, truncate_to=2500),
     EmailCfg(id='EFTA00322570', note=f'booking flight for {REDACTED} from Hong Kong to NYC'),
-    EmailCfg(id='EFTA00363992', note=f"car rental for {MARIANA_IDZKOWSKA}"),
-    EmailCfg(id='EFTA02630431', note=f"{CARBYNE} is an Israeli company invested in by Epstein, {NICOLE_JUNKERMANN}, & {EHUD_BARAK}"),
     EmailCfg(id='EFTA02573653', note=f'discussion of {PRINCE_ANDREW}\'s Urramoor, "Howard" is probably {HOWARD_LUTNICK} which Urramoor partnered with'),
     EmailCfg(id='EFTA02629771', note=f"discussion of {RENATA_BOLOTOVA}'s employment at IPI", is_interesting=True),
     EmailCfg(id='EFTA00671263', note="Eagle's View Capital Management September 2017 Performance Update"),
