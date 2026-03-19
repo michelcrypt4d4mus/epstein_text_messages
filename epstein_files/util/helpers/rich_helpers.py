@@ -74,7 +74,7 @@ def join_texts(
     txt = Text('')
 
     for i, t in enumerate(txts):
-        if len((_txt := to_txt(t))) > 0:
+        if t and len((_txt := to_txt(t))) > 0:
             txt.append(join if i >= 1 else '').append(enclose(_txt, encloser, encloser_style))
 
     return txt

@@ -491,16 +491,6 @@ class Email(Communication):
 
             return uninteresting_txt
 
-    @property
-    def _summary(self) -> Text:
-        """Append the recipients to Document._summary() and close the bracket."""
-        txt = self._summary_with_author
-
-        if self.recipients:
-            txt.append(', ').append(styled_key_value('recipients', self.recipients_txt()))
-
-        return txt.append(CLOSE_PROPERTIES_CHAR)
-
     def entity_scan(self, exclude: EntityScanArg = None, include: EntityScanArg = None) -> list[Entity]:
         """Overrides superclass to append names from email attachments."""
         attachment_entities = flatten([ad.entities for ad in self.attached_docs])
@@ -601,18 +591,6 @@ class Email(Communication):
 
     def is_note_to_self(self, recipients: list[Name] | None = None) -> bool:
         return (recipients if recipients is not None else self.recipients) == [self.author]
-
-    def recipients_txt(self, max_full_names: int = 2) -> Text:
-        """Comma separated colored names (last name only if more than `max_full_names` recipients)."""
-        recipients = [r or UNKNOWN for r in self.recipients] if len(self.recipients) > 0 else [UNKNOWN]
-
-        names = [
-            Text(r if len(recipients) <= max_full_names else extract_last_name(r), get_style_for_name(r)) + \
-                (Text(f" {QUESTION_MARKS}", get_style_for_name(r)) if self._config.recipient_uncertain else Text(''))
-            for r in recipients
-        ]
-
-        return join_texts(names, join=', ')
 
     def to_html(self) -> str:
         html = super().to_html()

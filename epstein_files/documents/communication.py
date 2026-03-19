@@ -10,9 +10,10 @@ from epstein_files.documents.config.communication_cfg import CommunicationCfg
 from epstein_files.output.highlight_config import get_style_for_name, styled_name
 from epstein_files.output.rich import styled_key_value
 from epstein_files.people.entity import Entity, EntityScanArg
-from epstein_files.people.names import UNKNOWN, Name
+from epstein_files.people.names import UNKNOWN, Name, extract_last_name
+from epstein_files.util.constant.strings import QUESTION_MARKS
 from epstein_files.util.helpers.data_helpers import uniq_sorted
-from epstein_files.util.helpers.rich_helpers import no_bold
+from epstein_files.util.helpers.rich_helpers import no_bold, join_texts
 from epstein_files.util.helpers.string_helper import timestamp_without_seconds
 
 
@@ -29,14 +30,6 @@ class Communication(Document):
     def __post_init__(self):
         super().__post_init__()
         self.extracted_recipients = [] if self._config.recipients else self.extract_recipients()
-
-    @property
-    def author_str(self) -> str:
-        return self.author or UNKNOWN
-
-    @property
-    def author_txt(self) -> Text:
-        return styled_name(self.author)
 
     @property
     def border_style(self) -> str:
@@ -96,13 +89,13 @@ class Communication(Document):
     @property
     def _summary(self) -> Text:
         """One line summary mostly for logging."""
-        return self._summary_with_author.append(CLOSE_PROPERTIES_CHAR)
+        txt = super()._summary
+        txt = txt[0:len(txt) - 1]
 
-    @property
-    def _summary_with_author(self) -> Text:
-        """Append author information to `super().summary`, bracket is left open."""
-        author_str = styled_key_value('author', Text(f"'{self.author_str}'", style=self.author_style))
-        return super()._summary.append(', ').append(author_str)
+        if self.recipients:
+            txt.append(', ').append(styled_key_value('recipients', self.recipients_txt()))
+
+        return txt.append(CLOSE_PROPERTIES_CHAR)
 
     def entity_scan(self, exclude: EntityScanArg = None, include: EntityScanArg = None) -> list[Entity]:
         """Overrides superclass to append `self.recipients`."""
@@ -111,7 +104,19 @@ class Communication(Document):
 
     def extract_recipients(self) -> list[Name]:
         """Overload in subclasses"""
+
         return []
+    def recipients_txt(self, max_full_names: int = 2) -> Text:
+        """Comma separated colored names (last name only if more than `max_full_names` recipients)."""
+        recipients = [r or UNKNOWN for r in self.recipients] if len(self.recipients) > 0 else [UNKNOWN]
+
+        names = [
+            Text(r if len(recipients) <= max_full_names else extract_last_name(r), get_style_for_name(r)) + \
+                (Text(f" {QUESTION_MARKS}", get_style_for_name(r)) if self._config.recipient_uncertain else Text(''))
+            for r in recipients
+        ]
+
+        return join_texts(names, join=', ')
 
     @classmethod
     def default_category(cls) -> str:

@@ -26,7 +26,7 @@ from epstein_files.documents.documents.search_result import MatchedLine
 from epstein_files.documents.emails.constants import DOJ_EMAIL_OCR_REPAIRS, FALLBACK_TIMESTAMP
 from epstein_files.documents.emails.emailers import get_entities
 from epstein_files.documents.emails.email_header import DETECT_EMAIL_REGEX
-from epstein_files.output.highlight_config import HIGHLIGHTED_ENTITIES, get_style_for_category, get_style_for_name
+from epstein_files.output.highlight_config import HIGHLIGHTED_ENTITIES, get_style_for_category, get_style_for_name, styled_name
 from epstein_files.output.html.builder import VERTICAL_MARGIN_EMS
 from epstein_files.output.layout_elements.file_display import BasePanel, FileDisplay
 from epstein_files.output.rich import (INFO_STYLE, NA_TXT, SYMBOL_STYLE, add_cols_to_table, build_table, console,
@@ -34,7 +34,7 @@ from epstein_files.output.rich import (INFO_STYLE, NA_TXT, SYMBOL_STYLE, add_col
 from epstein_files.output.site.sites import EXTRACTS_BASE_URL
 from epstein_files.people.entity import Entity, EntityScanArg
 from epstein_files.people.interesting_people import PERSONS_OF_INTEREST, UNINTERESTING_AUTHORS
-from epstein_files.people.names import Name
+from epstein_files.people.names import UNKNOWN, Name
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constants import CONFIGS_BY_ID
 from epstein_files.util.env import args, site_config, temporary_args
@@ -42,8 +42,8 @@ from epstein_files.util.external_link import link_text_obj
 from epstein_files.util.helpers.data_helpers import (coerce_utc, coerce_utc_strict, date_str, patternize, prefix_keys,
      listify, uniquify, uniq_sorted, without_falsey)
 from epstein_files.util.helpers.file_helper import coerce_file_path, file_size_str, file_size_to_str
-from epstein_files.util.helpers.rich_helpers import CharRange, TextVar, extract_range
-from epstein_files.util.helpers.string_helper import collapse_newlines, doublespace_lines, join_truthy, quote, timestamp_without_zero_hour
+from epstein_files.util.helpers.rich_helpers import CharRange, TextVar, enclose, extract_range, join_texts
+from epstein_files.util.helpers.string_helper import collapse_newlines, doublespace_lines, iso_date, join_truthy, quote, timestamp_without_zero_hour
 from epstein_files.util.logging import DOC_TYPE_STYLES, FILENAME_STYLE, logger
 from epstein_files.util.logging_entity import LoggingEntity
 
@@ -146,6 +146,14 @@ class Document(LoggingEntity):
         return get_style_for_name(self.author)
 
     @property
+    def author_str(self) -> str:
+        return self.author or UNKNOWN
+
+    @property
+    def author_txt(self) -> Text:
+        return styled_name(self.author)
+
+    @property
     def border_style(self) -> str:
         """Should be overloaded in subclasses."""
         return 'white'
@@ -201,15 +209,6 @@ class Document(LoggingEntity):
     def empty_file_txt(self) -> Text | None:
         """Overridden in DojFile."""
         pass
-
-    @property
-    def external_link_markup(self) -> str:
-        """Rich markup string with link to source document."""
-        return self.file_info.external_link_markup(get_style_for_name(self.author) if self.author else '')
-
-    @property
-    def external_link_txt(self) -> Text:
-        return Text.from_markup(self.external_link_markup)
 
     @property
     def file_id(self) -> str:
@@ -404,21 +403,19 @@ class Document(LoggingEntity):
     @property
     def _summary(self) -> Text:
         """Summary of this file for logging. Subclasses should extend with a method that closes the open '['."""
-        txt = Text('').append(self._class_name, style=self._class_style)
-        txt.append(f" {self.file_id}", style=FILENAME_STYLE)
-
-        if self.timestamp:
-            timestamp_str = timestamp_without_zero_hour(self.timestamp)
-            txt.append(' (', style=SYMBOL_STYLE)
-            txt.append(f"{timestamp_str}", style=TIMESTAMP_DIM).append(')', style=SYMBOL_STYLE)
-
+        info = self._formatted_info()
+        txt = join_texts([info.get(k) for k in ['type', 'file_id', 'timestamp_parens']])
         txt.append(' [').append(styled_key_value('size', Text(str(self.length), style='aquamarine1')))
         txt.append(", ").append(styled_key_value('lines', self.num_lines))
 
         if self._config.duplicate_of_id:
             txt.append(", ").append(styled_key_value('dupe_of', Text(self._config.duplicate_of_id, style='cyan dim')))
 
-        return txt
+        if self.author:
+            author_str = styled_key_value('author', self.author_txt)
+            txt.append(', ').append(author_str)
+
+        return txt.append(CLOSE_PROPERTIES_CHAR)
 
     @property
     def _summary_panel(self) -> Panel:
@@ -429,6 +426,31 @@ class Document(LoggingEntity):
             sentences += [Text('', style='italic').append(h) for h in self.subheaders]
 
         return Panel(Group(*sentences), border_style=self._class_style, expand=False)
+
+    def _formatted_info(self) -> dict[str, Text]:
+        """Summary info about this document stylized and ready to work with."""
+        info = {
+            'file_id': self.file_info.external_link(FILENAME_STYLE, id_only=True).link,
+            'type': Text('').append(self._class_name, style=self._class_style),
+            'author': self.author_txt,
+            'note': self._config.note_txt,
+        }
+
+        if self._class_name in ['DropsiteEmail', 'MessengerLogPdf']:
+            cls_name = 'Email' if self._class_name == 'DropsiteEmail' else 'MessengerLog'
+            self._warn(f'short_type')
+            info['short_type'] = Text(cls_name, self._class_style)
+        else:
+            info['short_type'] = info['type']
+
+        if self.timestamp:
+            timestamp_txt = Text(timestamp_without_zero_hour(self.timestamp), TIMESTAMP_DIM)
+            info['timestamp'] = timestamp_txt
+            info['date'] = timestamp_txt[0:10]
+            info['timestamp_parens'] = enclose(timestamp_txt, '()', SYMBOL_STYLE)
+            info['date_parens'] = enclose(timestamp_txt[0:10], '()', SYMBOL_STYLE)
+
+        return info
 
     def entity_scan(self, exclude: EntityScanArg = None, include: EntityScanArg = None) -> list[Entity]:
         """

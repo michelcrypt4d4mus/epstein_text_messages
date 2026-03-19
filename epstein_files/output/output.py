@@ -7,6 +7,7 @@ from typing import TypeVar
 from rich import box
 from rich.padding import Padding
 from rich.panel import Panel
+from rich.table import Table
 
 from epstein_files.documents.document import Document
 from epstein_files.documents.doj_file import DojFile
@@ -29,6 +30,7 @@ from epstein_files.util.constant.strings import AUTHOR
 from epstein_files.util.env import args
 from epstein_files.util.helpers.data_helpers import dict_sets_to_lists, uniq_sorted
 from epstein_files.util.helpers.file_helper import file_size_str, log_file_write
+from epstein_files.util.helpers.rich_helpers import join_texts
 from epstein_files.util.helpers.string_helper import extract_emojis
 from epstein_files.util.logging import logger, exit_with_error
 
@@ -39,6 +41,16 @@ OTHER_INTERESTING_EMAILS_SUBTITLE = 'Other Interesting Emails\n(these emails hav
 CONVERSATIONS_SORTED_BY_TXT = Text("(conversations sorted chronologically based on timestamp of the first text message)", 'dim')
 DEVICE_SIGNATURE_SUBTITLE = f"Email [italic]Sent from \\[DEVICE][/italic] Signature Breakdown"
 DEVICE_SIGNATURE = 'Device Signature'
+
+NOTES_TABLE_COLS = [
+    {'name': 'ID', 'justify': 'left'},
+    {'name': 'Type', 'justify': 'left'},
+    {'name': 'Date', 'justify': 'left', 'style': TIMESTAMP_DIM},
+    {'name': 'Author', 'justify': 'left', 'max_width': 20},
+    # {'name': 'To', 'justify': 'left', 'min_width': min_width, 'max_width': max_width + 2},
+    {'name': 'Note', 'justify': 'left', 'min_width': 35, 'style'},
+]
+
 
 T = TypeVar('T')
 
@@ -186,6 +198,30 @@ def print_json_metadata(epstein_files: EpsteinFiles) -> None:
             log_file_write(output_path)
     else:
         console.print_json(epstein_files.json_metadata(), indent=4, sort_keys=True)
+
+
+def print_document_notes(epstein_files: EpsteinFiles, printer: DocPrinter) -> None:
+    notes: list[Text] = []
+
+    table = build_table(
+        "Notes from The Epstein Files",
+        cols=NOTES_TABLE_COLS,
+        border_style=DEFAULT_TABLE_KWARGS['border_style'],
+        header_style="bold",
+        highlight=False,
+    )
+
+    for doc in epstein_files.unique_documents:
+        if not (doc.is_interesting and doc._config.note_txt):
+            continue
+
+        info = doc._formatted_info()
+        row = [info.get(k, '') for k in ['file_id', 'short_type', 'date', 'author', 'note']]
+        table.add_row(*row)
+        notes.append(join_texts(row))
+
+    printer.print(table)
+    logger.warning(f"Printed {len(notes)} interesting documents with configured notes...")
 
 
 def print_other_files_section(epstein_files: EpsteinFiles, printer: DocPrinter) -> list[OtherFile]:

@@ -39,11 +39,12 @@ class Site(StrEnum):
     CHRONOLOGICAL = CHRONOLOGICAL
     CHRONOLOGICAL_MOBILE = f"{CHRONOLOGICAL}_mobile"
     DEVICE_SIGNATURES = auto()
+    DOCUMENT_NOTES = auto()
     DOJ_FILES = auto()
     EMAILERS = auto()
     EMAILS_CHRONOLOGICAL = auto()
     JSON_METADATA = auto()
-    NAMES = auto()
+    NAMES = auto()  # Not a single site, depends on the --name argument
     OTHER_FILES_TABLE = auto()
     SAMPLE = auto()
     TEXT_MESSAGES = auto()
@@ -158,7 +159,7 @@ HTML_BUILD_FILENAMES = {
     Site.CHRONOLOGICAL:         f"index.html",
     Site.CHRONOLOGICAL_MOBILE:  f"mobile_chronological.html",
     Site.DOJ_FILES:             f'doj_2026-01-30_non_email_files.html',
-    Site.EMAILERS:                f'emails_grouped_by_counterparty.html',
+    Site.EMAILERS:              f'emails_grouped_by_counterparty.html',
     Site.JSON_METADATA:         f'metadata.json',
     Site.TEXT_MESSAGES:         f'text_messages_{EPSTEIN_FILES_NOV_2025}.html',
     Site.WORD_COUNT:            f'communication_word_count.html',
@@ -170,7 +171,7 @@ HTML_BUILD_FILENAMES = {
 SITE_DESCRIPTIONS = {
     Site.CHRONOLOGICAL:         f"chronological curated:all types intermingled",
     Site.CURATED:               f"emailers curated:emails grouped by person of interest",
-    Site.EMAILERS:                f"emailers:all emails grouped by person",
+    Site.EMAILERS:              f"emailers:all emails grouped by person",
     Site.EMAILS_CHRONOLOGICAL:  f"emails chronological:all emails chronological order",
     Site.BIOGRAPHIES:           f"people:one line biographies with some links",
     Site.DEVICE_SIGNATURES:     f"signatures:email signatures/emojis and who uses them",
@@ -178,6 +179,7 @@ SITE_DESCRIPTIONS = {
     Site.CURATED_MOBILE:        f"mobile:an attempt at mobile compatibility",
     Site.CHRONOLOGICAL_MOBILE:  f"chrono mobile:another attempt at mobile compatibility",
     Site.OTHER_FILES_TABLE:     f"other:files that are not emails or texts",
+    Site.DOCUMENT_NOTES:        f"notes:on the most interesting files",
     Site.WORD_COUNT:            f"word count:of Epstein's communications",
     Site.DOJ_FILES:             f"doj files:raw OCR text {DOJ_2026_TRANCHE}",
     Site.JSON_METADATA:         f"metadata:author bios, attribution explanations",
@@ -188,6 +190,7 @@ DEPLOY_CUSTOM_HTML_SITES = [
     Site.BIOGRAPHIES,
     Site.CHRONOLOGICAL,
     Site.CHRONOLOGICAL_MOBILE,
+    Site.DOCUMENT_NOTES,
     Site.EMAILS_CHRONOLOGICAL,
     Site.OTHER_FILES_TABLE,
 ]

@@ -15,6 +15,8 @@ print_deploy_step "Building curated chronological mobile page..."
 $GENERATE_MOBILE_CMD --output-chrono
 
 # Fast pages
+print_deploy_step "Building notes pages..."
+$GENERATE_CMD --output-notes
 print_deploy_step "Building email signatures page..."
 $GENERATE_CMD --output-bios
 print_deploy_step "Building email signatures page..."

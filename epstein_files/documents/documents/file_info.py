@@ -173,11 +173,16 @@ class FileInfo(LoggingEntity):
         return self._build_link(rollcall_doc_url, style, link_txt)
 
     def external_link(self, style: str = '', id_only: bool = False) -> ExternalLink:
-        return ExternalLink(
-            self.external_url,
-            self.file_id if (id_only or self.is_eml_file) else self.file_stem,
-            link_style=no_bold(style),
-        )
+        if id_only or self.is_eml_file:
+            if self.is_eml_file:
+                pieces = self.file_id.split()
+                file_id = '_'.join([pieces[0], pieces[2]])  # TODO: this sucks
+            else:
+                file_id = self.file_id
+        else:
+            file_id = self.file_stem
+
+        return ExternalLink(self.external_url, file_id, link_style=no_bold(style))
 
     def external_link_markup(self, style: str = '', id_only: bool = False) -> str:
         link_txt = self.file_id if id_only else self.file_stem

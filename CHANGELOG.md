@@ -1,4 +1,5 @@
 # NEXT RELEASE
+* --output-notes argument and site
 
 ### 1.10.1
 * `--truncate` now applies to `OtherFile` too via `temporary_args()` context

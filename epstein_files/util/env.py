@@ -60,6 +60,7 @@ output.add_argument('--output-bios', '-bios', action='store_true', help='output 
 output.add_argument('--output-chrono', '-oc', action='store_true', help='output curated files of all types in chronological order')
 output.add_argument('--output-devices', '-od', action='store_true', help='output "Sent from my iPhone" style device signature')
 output.add_argument('--output-emails', '-oe', action='store_true', help='generate emails section')
+output.add_argument('--output-notes', '-on', action='store_true', help='output list of notes for all documents with them')
 output.add_argument('--output-other', '-oo', action='store_true', help='generate other files section')
 output.add_argument('--output-texts', '-ot', action='store_true', help='generate text messages section')
 output.add_argument('--output-word-count', '-ow', action='store_true', help='generate table of most frequently used words')
@@ -174,6 +175,8 @@ if is_html_script:
             args._site = Site.OTHER_FILES_TABLE
         elif args.json_metadata:
             args._site = Site.JSON_METADATA
+        elif args.output_notes:
+            args._site = Site.DOCUMENT_NOTES
         elif args.output_chrono:
             args._site = Site.CHRONOLOGICAL
         elif args.output_devices:
