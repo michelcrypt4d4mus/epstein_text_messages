@@ -361,7 +361,6 @@ class Email(Communication):
     def display_text(self) -> str:
         """Config overrides what text should be displayed."""
         return str(self.email_parts)
-        return collapse_newlines(self._config.display_text or self.text)
 
     @property
     def header(self) -> EmailHeader:

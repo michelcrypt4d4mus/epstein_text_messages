@@ -69,12 +69,13 @@ def join_texts(
     join: str | Text = ' ',
     encloser: str = '',
     encloser_style: str = 'wheat4',
+    allow_falsey: bool = False
 ) -> Text:
     """Join a collection of `Text` objs into one, similar to standard `str.join()`. Skips 0 length stuff."""
     txt = Text('')
 
     for i, t in enumerate(txts):
-        if t and len((_txt := to_txt(t))) > 0:
+        if len(_txt := to_txt(t)) > 0 or allow_falsey:
             txt.append(join if i >= 1 else '').append(enclose(_txt, encloser, encloser_style))
 
     return txt
@@ -100,10 +101,12 @@ def starred_header_txt(msg: str, num_stars: int = 7, num_spaces: int = 2, style:
     return Text(starred_header(msg, num_stars, num_spaces), style)
 
 
-def to_txt(textish: Textish) -> Text:
+def to_txt(textish: Textish | None) -> Text:
     if isinstance(textish, Text):
         return textish
     elif isinstance(textish, str):
         return Text(textish)
+    elif textish is None:
+        return Text('')
     else:
         return textish.__rich__()

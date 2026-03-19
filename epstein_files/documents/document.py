@@ -195,6 +195,8 @@ class Document(LoggingEntity):
     @property
     def display_text(self) -> str:
         """Config overrides what text should be displayed."""
+        text = collapse_newlines(self._config.display_text or self.text)
+        print(f"\nDOCUMENT collapse_newlines\n{text}\n")
         return collapse_newlines(self._config.display_text or self.text)
 
     @property
@@ -564,7 +566,7 @@ class Document(LoggingEntity):
 
     def trimmed_chars_msg(self, truncate_to: int) -> Text | None:
         """Link to source URL that will replace the text after the truncation point."""
-        if truncate_to < len(self.text) and not self.display_text:  # replacement text should not appear if display_text override is configured
+        if truncate_to < len(self.text) and not self._config.display_text:  # replacement text should not appear if display_text override is configured
             msg = f"trimmed to {truncate_to:,} characters of {self.length:,}, " \
                   f"read the rest at {self.file_info.external_link_markup(self.author_style)}"
 

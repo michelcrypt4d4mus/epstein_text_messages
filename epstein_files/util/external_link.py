@@ -162,7 +162,8 @@ def hyperlink_line(line: str) -> Text:
 
 def hyperlink_text(text: str) -> Text:
     """Add rich Text hyperlinks to a string with newlines in it."""
-    return join_texts([hyperlink_line(line) for line in text.split('\n')], '\n')
+    lines = [hyperlink_line(line) for line in text.split('\n')]
+    return join_texts(lines, '\n', allow_falsey=True)
 
 
 def link_markup(
