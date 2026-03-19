@@ -11,7 +11,6 @@ from epstein_files.util.constant.strings import *
 from epstein_files.util.helpers.string_helper import join_truthy, quote
 
 SHIMON_POST_ARTICLE = f'selection of articles about the mideast'
-VALAR_FUND = f"{PETER_THIEL}'s {VALAR_VENTURES} fund"
 
 
 ARTICLE_CFGS = [

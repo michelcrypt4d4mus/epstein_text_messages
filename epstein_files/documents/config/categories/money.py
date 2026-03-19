@@ -1,6 +1,7 @@
 """
 Epstein money related files. This category makes is_interesting = True.
 """
+from epstein_files.documents.config.categories.crypto import VALAR_FUND
 from epstein_files.documents.config.config_builder import letter
 from epstein_files.documents.config.doc_cfg import DEFAULT_TRUNCATE_TO, DocCfg
 from epstein_files.documents.config.email_cfg import EmailCfg
@@ -118,6 +119,7 @@ MONEY_CFGS = [
         note=f"Ike Groff invests $250,000 in Mangrove Partners managed by Nathaniel August",
     ),
     EmailCfg(id='EFTA01375243', note=f"{DEUTSCHE_BANK} anti-money laundering team flags Epstein's $237k transfer to {SVETLANA_POZHIDAEVA}'s family"),
+    EmailCfg(id='EFTA00836182', note=f'email to investors in {VALAR_FUND}'),
     EmailCfg(id='EFTA00382048', note=f'setting up an ISDA (special account for high volume traders) with {DEUTSCHE_BANK}'),
     EmailCfg(id='EFTA00629657', note=f"arranging {LEON_BLACK}'s finances"),
     EmailCfg(id='EFTA00371120', note=f"Epstein appears to invest in {ATORUS}"),

@@ -1280,7 +1280,6 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00671263', note="Eagle's View Capital Management September 2017 Performance Update"),
     EmailCfg(id='EFTA00932166', note=f"discussion of {MARK_ZEFF}'s letter of visa recommendation for South African girl in EFTA00537633"),  # TODO: make it an attachment?
     EmailCfg(id='EFTA00537622', author='Kathleen Gallagher', note=f"discussion of {MARK_ZEFF}'s letter of visa recommendation for South African girl in EFTA00537633"),  # TODO: make it an attachment?
-    EmailCfg(id='EFTA00836182', note=f'email to investors in {VALAR_FUND}'),
     EmailCfg(id='EFTA00877726', note=f'Epstein and {DAVID_STERN} discuss plans to manage money for wealthy Chinese'),
     EmailCfg(id='EFTA00941197', note=f'Epstein appears to be helping with an investment in Jawbone by {HEDOSOPHIA}'),
     EmailCfg(id='EFTA02592748', note=f"Epstein asks {BROCK_PIERCE} for a favour related to someone named 'Sue'", truncate_to=300),
@@ -1360,8 +1359,8 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00373948', duplicate_ids=['EFTA02113506']),
     EmailCfg(id='EFTA00494141', duplicate_ids=['EFTA02284036'], is_interesting=False),
     EmailCfg(id='EFTA01890312', duplicate_ids=['EFTA00712715'], truncate_to=400),
-    EmailCfg(id='EFTA00915302', duplicate_ids=['EFTA01860910', 'EFTA01986221', 'EFTA01776411', 'EFTA02691069']),
     EmailCfg(id='EFTA01776613', duplicate_ids=['EFTA01860812', 'EFTA00915297', 'EFTA02691059']),
+    EmailCfg(id='EFTA00915302', duplicate_ids=['EFTA01860910', 'EFTA01986221', 'EFTA01776411', 'EFTA02691069']),
 
     # Truncations
     EmailCfg(id='EFTA00982094', truncate_to=250),
@@ -1410,7 +1409,7 @@ EMAILS_CONFIG = [
     #### MAGIC COMMENT FOR MANUAL CONFIG ####
     EmailCfg(
         id='EFTA02581361',
-        note='Epstein funded a conference in Cuba that Gino Yu put together with $100k',
+        note=f'Epstein funded a conference in Cuba that {GINO_YU} put together with $100,000',
         is_interesting=True,
         truncate_to=NO_TRUNCATE,
     ),
