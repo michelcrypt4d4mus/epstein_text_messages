@@ -19,7 +19,8 @@ from rich.panel import Panel
 from rich.text import Text
 from rich.table import Table
 
-from epstein_files.documents.config.doc_cfg import DEFAULT_TRUNCATE_TO, DUPE_TYPE_STRS, NO_TRUNCATE, DebugDict, DocCfg, Metadata
+from epstein_files.documents.config.doc_cfg import (DOC_CHAR_RANGE, EMAIL_TRUNCATE_TO, DUPE_TYPE_STRS,
+     NO_TRUNCATE, DebugDict, DocCfg, Metadata)
 from epstein_files.documents.config.email_cfg import EmailCfg
 from epstein_files.documents.documents.file_info import FileInfo
 from epstein_files.documents.documents.search_result import MatchedLine
@@ -38,7 +39,7 @@ from epstein_files.people.names import UNKNOWN, Name
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constants import CONFIGS_BY_ID
 from epstein_files.util.env import args, site_config, temporary_args
-from epstein_files.util.external_link import link_text_obj
+from epstein_files.util.external_link import hyperlink_text, link_text_obj
 from epstein_files.util.helpers.data_helpers import (coerce_utc, coerce_utc_strict, date_str, patternize, prefix_keys,
      listify, uniquify, uniq_sorted, without_falsey)
 from epstein_files.util.helpers.file_helper import coerce_file_path, file_size_str, file_size_to_str
@@ -49,7 +50,6 @@ from epstein_files.util.logging_entity import LoggingEntity
 
 CLOSE_PROPERTIES_CHAR = ']'
 HOUSE_OVERSIGHT = HOUSE_OVERSIGHT_PREFIX.replace('_', ' ').strip()
-MIN_DOCUMENT_ID = 10477
 
 FILENAME_MATCH_STYLES = [
     'dark_green',
@@ -190,7 +190,7 @@ class Document(LoggingEntity):
     def char_range_to_display(self) -> CharRange | None:
         """Index of first and last characters to show when printing this document."""
         if self._config.char_range:
-            return self._config.char_range  # TODO: non emails shouldn't always print full length, maybe add default?
+            return self._config.char_range
 
     @property
     def display_text(self) -> str:
@@ -209,6 +209,15 @@ class Document(LoggingEntity):
     def empty_file_txt(self) -> Text | None:
         """Overridden in DojFile."""
         pass
+
+    @property
+    def entities(self) -> list[Entity]:
+        """Every configured name that is either the author or appears in the text or description."""
+        return self.entity_scan()
+
+    @property
+    def entity_names(self) -> list[str]:
+        return [e.name for e in self.entities]
 
     @property
     def file_id(self) -> str:
@@ -309,25 +318,17 @@ class Document(LoggingEntity):
         return join_truthy(prefix, f"{date_or_time}: {timestamp_without_zero_hour(self.timestamp)}")
 
     @property
-    def entities(self) -> list[Entity]:
-        """Every configured name that is either the author or appears in the text or description."""
-        return self.entity_scan()
-
-    @property
-    def entity_names(self) -> list[str]:
-        return [e.name for e in self.entities]
-
-    @property
     def prettified_txt(self) -> Text:
         """Returns the string we want to print as the body of the document."""
-        display_text = doublespace_lines(self.display_text)
-        # TODO: do something better to give replacement_text have different style
-        style = INFO_STYLE if self._config.has_full_ocr_text_replacement else ''
+        display_txt = hyperlink_text(doublespace_lines(self.display_text))
+
+        if self.text_style:
+            display_txt.stylize(self.text_style)
 
         # char range slice of Text late in the game here preserves Text highlighting at boundaries
-        char_range = self.char_range_to_display or (0, len(display_text))
-        selected_txt = self._config.text_highlighter(Text(display_text, style))
-        selected_txt = extract_range(selected_txt, char_range)
+        display_txt = self._config.text_highlighter(display_txt)
+        char_range = self.char_range_to_display or DOC_CHAR_RANGE
+        selected_txt = extract_range(display_txt, char_range)
         pretty_txt = self._intro_txt(char_range[0]).append(selected_txt)
 
         # For debugging/choosing truncation points only
@@ -353,6 +354,11 @@ class Document(LoggingEntity):
     def suppressed_txt(self) -> Text | None:
         """`Text` object to print if this documents is suppressed for various reasons."""
         return self.uninteresting_txt or self.duplicate_file_txt or self.empty_file_txt
+
+    @property
+    def text_style(self) -> str:
+        """Alternate body text style for excerpts."""
+        return INFO_STYLE if self._config.has_full_ocr_text_replacement else ''
 
     @property
     def timestamp(self) -> datetime | None:
@@ -550,7 +556,7 @@ class Document(LoggingEntity):
 
     def top_lines(self, n: int = 10) -> str:
         """First n lines."""
-        return '\n'.join(self.lines[0:n])[:DEFAULT_TRUNCATE_TO]
+        return '\n'.join(self.lines[0:n])[:EMAIL_TRUNCATE_TO]
 
     def to_html(self) -> str:
         # TODO: this does not include the timestamp for OtherFiles!

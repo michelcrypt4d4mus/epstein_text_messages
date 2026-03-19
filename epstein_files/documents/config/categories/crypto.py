@@ -3,7 +3,7 @@ Crypto and virtual currency / fintech related files
 """
 from epstein_files.documents.config.config_builder import whistleblower_cfg
 from epstein_files.documents.config.communication_cfg import CommunicationCfg, imessage_log, imessage_screenshot, whatsapp_log
-from epstein_files.documents.config.doc_cfg import DEFAULT_TRUNCATE_TO, NO_TRUNCATE, SHORT_TRUNCATE_TO, DocCfg
+from epstein_files.documents.config.doc_cfg import EMAIL_TRUNCATE_TO, NO_TRUNCATE, SHORT_TRUNCATE_TO, DocCfg
 from epstein_files.documents.config.email_cfg import EmailCfg
 from epstein_files.people.names import *
 from epstein_files.util.constant.strings import *
@@ -117,7 +117,7 @@ CRYPTO_CFGS = [
     DocCfg(id='EFTA00621239', author=CRYPTO_CURRENCY_PARTNERS_II, note=f"investor report", date='2014-10-01'),
     DocCfg(id='EFTA01089526', author=CRYPTO_CURRENCY_PARTNERS_II, note=f"investor report", date='2014-08-01', attached_to_email_id='EFTA00997803'),
     DocCfg(id='EFTA01089485', author=CRYPTO_CURRENCY_PARTNERS_II, note=f"investor report", date='2014-09-01', attached_to_email_id='EFTA00693621'),
-    DocCfg(id='EFTA01093509', author=CRYPTO_CURRENCY_PARTNERS_II, note=f"partnership draft", truncate_to=DEFAULT_TRUNCATE_TO * 2),
+    DocCfg(id='EFTA01093509', author=CRYPTO_CURRENCY_PARTNERS_II, note=f"partnership draft", truncate_to=EMAIL_TRUNCATE_TO * 2),
     DocCfg(id='EFTA01093444', author=CRYPTO_CURRENCY_PARTNERS_II, note='application form', attached_to_email_id='EFTA00626220'),  #EFTA02708994
     DocCfg(id='EFTA01093471', author=CRYPTO_CURRENCY_PARTNERS_II, note='operating agreement', attached_to_email_id='EFTA00626220'),
     DocCfg(id='EFTA01126582', author=EXPRESSCOIN, note=f"pitch deck for {BROCK_PIERCE} co.", attached_to_email_id='EFTA00990186'),
@@ -156,7 +156,7 @@ CRYPTO_CFGS = [
     ),
     DocCfg(id='EFTA01401059', note=f"{DEUTSCHE_BANK} wire transfer receipt for Epstein's investment in {BLOCKSTREAM}"),
     DocCfg(id='EFTA01092555', author=COINBASE, note='certificate of incorporation', date='2013-12-12', truncate_to=SHORT_TRUNCATE_TO),
-    DocCfg(id='EFTA01120975', author=COINBASE, note='Series B stock purchase', date='2013-12-12', truncate_to=DEFAULT_TRUNCATE_TO),
+    DocCfg(id='EFTA01120975', author=COINBASE, note='Series B stock purchase', date='2013-12-12', truncate_to=EMAIL_TRUNCATE_TO),
     DocCfg(id='EFTA01121035', author=COINBASE, note='Series C preferred stock purchase', date='2014-10-24'),
     EmailCfg(id='EFTA02606117', comment='Coinbase valuation'),
     EmailCfg(id='EFTA02608112', comment='Coinbase valuation'),
@@ -445,11 +445,11 @@ CRYPTO_CFGS = [
     DocCfg(id='EFTA00810239', author=VALAR_VENTURES, note='pitch deck'),
     DocCfg(id='EFTA00810510', author=VALAR_VENTURES, note='Fall 2016 Update'),
     DocCfg(id='EFTA00810474', author=VALAR_VENTURES, note='Fall 2018 Update'),
-    DocCfg(id='EFTA01121910', author=VALAR_VENTURES, note="contract", truncate_to=DEFAULT_TRUNCATE_TO),
-    DocCfg(id='EFTA00808277', author=VALAR_VENTURES, note="contract", truncate_to=DEFAULT_TRUNCATE_TO),
-    DocCfg(id='EFTA01088484', author=VALAR_VENTURES, note="contract", truncate_to=DEFAULT_TRUNCATE_TO),
-    DocCfg(id='EFTA00591691', author=VALAR_VENTURES, note="contract", truncate_to=DEFAULT_TRUNCATE_TO),
-    DocCfg(id='EFTA00810362', author=VALAR_VENTURES, note="investor questionnaire", truncate_to=DEFAULT_TRUNCATE_TO),
+    DocCfg(id='EFTA01121910', author=VALAR_VENTURES, note="contract", truncate_to=EMAIL_TRUNCATE_TO),
+    DocCfg(id='EFTA00808277', author=VALAR_VENTURES, note="contract", truncate_to=EMAIL_TRUNCATE_TO),
+    DocCfg(id='EFTA01088484', author=VALAR_VENTURES, note="contract", truncate_to=EMAIL_TRUNCATE_TO),
+    DocCfg(id='EFTA00591691', author=VALAR_VENTURES, note="contract", truncate_to=EMAIL_TRUNCATE_TO),
+    DocCfg(id='EFTA00810362', author=VALAR_VENTURES, note="investor questionnaire", truncate_to=EMAIL_TRUNCATE_TO),
     EmailCfg(id='EFTA01001339', note=f"{PETER_THIEL} introduces Epstein to the {VALAR_VENTURES} founders"),
     # Vincenzo
     EmailCfg(id='EFTA00637023', note=f"discussion of getting around money laundering laws in places like Myanmar + Mongolia"),

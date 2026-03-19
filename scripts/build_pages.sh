@@ -1,5 +1,9 @@
 #!/bin/bash
-# Build the various HTML pages to a temp dir.
+# Build the various HTML pages to a temp dir. Env var options:
+#
+#   - ONLY_CURATED=true to skip build/deploy of full emails site
+#   - ONLY_MOBILE=true for only mobile sites
+#   - TAG_RELEASE=true to deploy DOJ files site
 set -e
 THIS_DIR=$(dirname -- "$(readlink -f -- "$0";)";)
 source "$THIS_DIR/bash_lib/shared.sh"

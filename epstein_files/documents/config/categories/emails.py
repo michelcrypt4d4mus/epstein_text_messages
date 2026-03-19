@@ -5,7 +5,7 @@ from epstein_files.documents.config.categories.crypto import VALAR_FUND
 from epstein_files.documents.documents.categories import Interesting, Neutral
 from epstein_files.documents.config.config_builder import (WOLFF_EPSTEIN_ARTICLE_DRAFT,
      binant_redacted, shaher_murder_email)
-from epstein_files.documents.config.doc_cfg import DEFAULT_TRUNCATE_TO, NO_TRUNCATE, SHORT_TRUNCATE_TO, DocCfg
+from epstein_files.documents.config.doc_cfg import EMAIL_TRUNCATE_TO, NO_TRUNCATE, SHORT_TRUNCATE_TO, DocCfg
 from epstein_files.documents.config.email_cfg import EmailCfg
 from epstein_files.documents.emails.constants import FLIGHT_IN_2012_PEOPLE, IRAN_DEAL_RECIPIENTS, TRIVERS_CCS
 from epstein_files.util.helpers.string_helper import join_truthy, quote
@@ -1323,11 +1323,17 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA02339109', note=f'someone named Sue needs help (probably a sham marriage to {BROCK_PIERCE}, see later emails)'),
     EmailCfg(id='EFTA02309843', note=f'{STEVE_BANNON} meets {EHUD_BARAK} over some "Jew food"', is_interesting=True),
     EmailCfg(id='EFTA01764152', note=f"thoughts on {STEVEN_SINOFSKY} joining a16z (which he later did)"),
+    EmailCfg(id='EFTA00582508', note=f'{UMAR_DZHABRAILOV} was found dead in his Moscow penthouse in March 2026', is_interesting=10),
     EmailCfg(id='EFTA00532500', note=f"visa applications for Russia, Belarus, and Kazakhstan", is_interesting=True, truncate_to=420),
     EmailCfg(id='EFTA02412854', note=f'who\'s "D>>>" and what does he have to be careful about?'),
     EmailCfg(id='EFTA02353279', note=f'why is a frenchman like {JEAN_LUC_BRUNEL} "normally in Israel"?'),
     EmailCfg(id='EFTA02633194', note=f'{NICOLE_JUNKERMANN} quotes an appraisal by "FSB (Russians)"', is_interesting=True),
-    EmailCfg(id='EFTA00826876', note=f"Epstein offers to help pay for {PETER_THIEL}'s lawsuit against Gawker"),
+    EmailCfg(
+        id='EFTA00826876',
+        highlight_quote='I would have gladly share your expenses for the gawker suit',
+        note=f"{PETER_THIEL} backed Hulk Hogan's lawsuit that destroyed Gawker",
+        is_interesting=10
+    ),
     EmailCfg(
         id='EFTA01882985',
         note=f'Epstein: "yuri money is russian gangster money, Usmanov" ("Steve" is likely {STEVEN_SINOFSKY})',
@@ -1383,7 +1389,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00681240', truncate_to=2000),
     EmailCfg(id='EFTA00669647', truncate_to=2500),
     EmailCfg(id='EFTA02374977', truncate_to=2500),
-    EmailCfg(id='EFTA00700415', truncate_to=DEFAULT_TRUNCATE_TO),
+    EmailCfg(id='EFTA00700415', truncate_to=EMAIL_TRUNCATE_TO),
     EmailCfg(id='EFTA00869828', truncate_to=SHORT_TRUNCATE_TO),
     EmailCfg(id='EFTA00875591', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA00959952', truncate_to=NO_TRUNCATE),

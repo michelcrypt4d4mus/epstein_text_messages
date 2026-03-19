@@ -28,8 +28,10 @@ DebugDict = dict[str, bool | datetime | set | str | Path | None]
 DuplicateType = Literal['bounced', 'earlier', 'quoted', 'redacted', 'same']
 Metadata = dict[str, bool | datetime | int | str | None | list[str | None] | dict[str, bool | str]]
 
-DEFAULT_TRUNCATE_TO = 4000
-SHORT_TRUNCATE_TO = int(DEFAULT_TRUNCATE_TO / 3)
+DOC_CHAR_RANGE = (0, 12_000)
+EMAIL_TRUNCATE_TO = int(DOC_CHAR_RANGE[1] / 3)
+SHORT_TRUNCATE_TO = int(EMAIL_TRUNCATE_TO / 3)
+WHOLE_FILE_CHAR_RANGE = (0, 10_000_000_000)
 NO_TRUNCATE = -1
 MAX_REPR_LINE_LENGTH = 135
 
@@ -175,6 +177,8 @@ class DocCfg(LoggingEntity):
     def __post_init__(self):
         if self.id in self.duplicate_ids:
             raise ValueError(f"{self.id} is a duplicate of itself!")
+        elif self.truncate_to is not None and not isinstance(self.truncate_to, (int, tuple)):
+            raise ValueError(f"{self.id} truncate_to ({type(self.truncate_to).__name__}, value={self.truncate_to})")
         elif 'efta' in self.id:
             self._warn(f"id should not be lowercase: '{self.id}'")
             self.id = self.id.upper()
@@ -211,14 +215,19 @@ class DocCfg(LoggingEntity):
         """`truncate_to` as `(0, truncate_to)` tuple if truncate_to is an `int`."""
         if args.truncate:
             return (0, args.truncate)
-        elif args.whole_file or self.truncate_at in [None, NO_TRUNCATE]:
-            return None
-        elif isinstance(self.truncate_at, tuple):
-            return self.truncate_at
-        elif isinstance(self.truncate_at, int):
-            return (0, self.truncate_at)
+        elif args.whole_file or self.truncate_to == NO_TRUNCATE:
+            return WHOLE_FILE_CHAR_RANGE
+        elif self.truncate_to is None:
+            if self.is_interesting:
+                return WHOLE_FILE_CHAR_RANGE
+            elif self.category in SHORT_TRUNCATE_CATEGORIES:
+                return (0, SHORT_TRUNCATE_TO)
+            else:
+                return None
+        elif isinstance(self.truncate_to, tuple):
+            return self.truncate_to
         else:
-            raise ValueError(f"{self.id} unknown truncate_at type ({type(self.truncate_at).__name__}, value={self.truncate_at})")
+            return (0, self.truncate_to)
 
     @property
     def complete_description(self) -> str:
@@ -423,16 +432,6 @@ class DocCfg(LoggingEntity):
         if self.date and (parsed_dt := coerce_utc_strict(parse(self.date))):
             self._debug_log(f"parsed {parsed_dt.isoformat()} from date='{self.date}'")
             return parsed_dt
-
-    @property
-    def truncate_at(self) -> int | CharRange | None:
-        """The number of chars to show when printing this document."""
-        if self.truncate_to:
-            return self.truncate_to
-        elif self.is_interesting:
-            return NO_TRUNCATE
-        elif self.category in SHORT_TRUNCATE_CATEGORIES:
-            return SHORT_TRUNCATE_TO
 
     @property
     def truthy_props(self) -> dict[str, bool | str | None]:

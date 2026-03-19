@@ -49,6 +49,7 @@ def print_test_panels():
 
 
 doc_types_to_sample = [
+    [e for e in epstein_files.emails if 'https' in e.text[0:1500]],
     [o for o in epstein_files.other_files if o.config and o.config.show_full_panel],
     [d for d in epstein_files._documents if d.suppressed_txt],
     [o for o in epstein_files.other_files if o._config.note_txt],  # other file with description
@@ -59,12 +60,14 @@ doc_types_to_sample = [
     epstein_files.imessage_logs,
 ]
 
+sample_docs = Document.uniquify(flatten([docs[:SAMPLE_SIZE] for docs in doc_types_to_sample]))
 printer = DocPrinter(epstein_files=epstein_files)
+
+# print header
 printer.print_title_page_top()
 printer.print_title_page_bottom()
 
 # Print docs
-sample_docs = flatten([docs[:SAMPLE_SIZE] for docs in doc_types_to_sample])
 printer.print_documents(sample_docs)
 
 # print some People and their emails
