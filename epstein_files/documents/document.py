@@ -346,7 +346,7 @@ class Document(LoggingEntity):
         if args.char_nums:
             pretty_txt = self._inject_line_numbers(pretty_txt, args.char_nums)
 
-        if (footer_txt := self.trimmed_chars_msg(char_range[1])):
+        if (footer_txt := self._trimmed_chars_msg(char_range[1])):
             pretty_txt.append('...\n\n').append(footer_txt)
 
         return pretty_txt
@@ -578,14 +578,6 @@ class Document(LoggingEntity):
         # TODO: this does not include the timestamp for OtherFiles!
         return self.make_layout().to_html()
 
-    def trimmed_chars_msg(self, truncate_to: int) -> Text | None:
-        """Link to source URL that will replace the text after the truncation point."""
-        if truncate_to < len(self.text) and not self._config.display_text:  # replacement text should not appear if display_text override is configured
-            msg = f"trimmed to {truncate_to:,} characters of {self.length:,}, " \
-                  f"read the rest at {self.file_info.external_link_markup(self.author_style)}"
-
-            return snip_msg_txt(msg)
-
     def truthy_props(self, prop_names: list[str]) -> DebugDict:
         """Return key/value pairs but only if the value is truthy."""
         return {prop: getattr(self, prop) for prop in prop_names if getattr(self, prop)}
@@ -695,6 +687,14 @@ class Document(LoggingEntity):
             return Text('')  # Empty Text object makes sure the whole string starts with default no-style
 
         return snip_msg_txt(f'trimmed first {cutoff:,} characters', EXCERPT_STYLE).append('\n\n...')
+
+    def _trimmed_chars_msg(self, truncate_to: int) -> Text | None:
+        """Link to source URL that will replace the text after the truncation point."""
+        if truncate_to < len(self.text) and not self._config.display_text:  # replacement text should not appear if display_text override is configured
+            msg = f"trimmed to {truncate_to:,} characters of {self.length:,}, " \
+                  f"read the rest at {self.file_info.external_link_markup(self.author_style)}"
+
+            return snip_msg_txt(msg)
 
     def _write_clean_text(self, output_path: Path) -> None:
         """Write self.text to 'output_path'. Used only for diffing files."""
