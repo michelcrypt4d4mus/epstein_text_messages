@@ -3,7 +3,7 @@
 #
 #   - ONLY_CURATED=true to skip build/deploy of full emails site.
 #   - ONLY_MOBILE=true for only mobile sites
-#   - TAG_RELEASE=true to upload the pkl.gz file to the repo and deploy DOJ files site
+#   - TAG_RELEASE=true to deploy DOJ files site and upload the pkl.gz file to the repo
 set -e
 source .env
 
@@ -51,6 +51,10 @@ fi
 # Switch to gh_pages branch and run build_pages.sh
 git checkout $GH_PAGES_BRANCH
 git merge --no-edit master --quiet
+
+export ONLY_CURATED
+export ONLY_MOBILE
+export TAG_RELEASE
 "$REPO_SCRIPTS_DIR/build_pages.sh"
 
 # Commit changes

@@ -17,7 +17,7 @@ from rich.text import Text
 from epstein_files.documents.communication import Communication
 from epstein_files.documents.document import CLOSE_PROPERTIES_CHAR, EXCERPT_STYLE
 from epstein_files.documents.documents.categories import Uninteresting
-from epstein_files.documents.config.doc_cfg import DEFAULT_TRUNCATE_TO, NO_TRUNCATE, SHORT_TRUNCATE_TO, DebugDict, Metadata
+from epstein_files.documents.config.doc_cfg import EMAIL_TRUNCATE_TO, NO_TRUNCATE, SHORT_TRUNCATE_TO, DebugDict, Metadata
 from epstein_files.documents.config.email_cfg import EmailCfg
 from epstein_files.documents.doj_file import DojFile
 from epstein_files.documents.emails.constants import *
@@ -33,7 +33,7 @@ from epstein_files.output.epstein_highlighter import highlighter
 from epstein_files.output.highlight_config import HIGHLIGHTED_NAMES, get_style_for_name
 from epstein_files.output.html.builder import table_to_html
 from epstein_files.output.html.positioned_rich import to_em
-from epstein_files.output.layout_elements.file_display import FileDisplay, JustifyMethod
+from epstein_files.output.layout_elements.file_display import Layout, JustifyMethod
 from epstein_files.output.rich import DEFAULT_TABLE_KWARGS, build_table, styled_key_value
 from epstein_files.util.constant.strings import APPEARS_IN, ARCHIVE_LINK_COLOR, REDACTED, TIMESTAMP_DIM, OcrRepair
 from epstein_files.util.constant.urls import URL_SIGNIFIERS
@@ -273,10 +273,8 @@ class Email(Communication):
     @property
     def char_range_to_display(self) -> CharRange | None:
         """Override superclass to decide how many chars we should limit the dislpay of this email to."""
-        if args.whole_file or self._config.truncate_at == NO_TRUNCATE:
-            return None
-        elif self._config.char_range:
-            return self._config.char_range
+        if super().char_range_to_display:
+            return super().char_range_to_display
 
         quote_cutoff = self._idx_of_nth_quoted_reply()  # Trim if there's many quoted replies
         includes_truncate_term = next((term for term in TRUNCATE_TERMS if term in self.text), None)
@@ -285,9 +283,9 @@ class Email(Communication):
         if self.author in TRUNCATE_EMAILS_BY \
                 or any([self.is_from_or_to(n) for n in TRUNCATE_EMAILS_FROM_OR_TO]) \
                 or includes_truncate_term:
-            num_chars = min(quote_cutoff or DEFAULT_TRUNCATE_TO, SHORT_TRUNCATE_TO)
+            num_chars = min(quote_cutoff or EMAIL_TRUNCATE_TO, SHORT_TRUNCATE_TO)
         else:
-            if quote_cutoff and quote_cutoff < DEFAULT_TRUNCATE_TO:
+            if quote_cutoff and quote_cutoff < EMAIL_TRUNCATE_TO:
                 trimmed_words = self.text[quote_cutoff:].split()
 
                 # TODO this attempt to include <snipped> msgs in the truncated text kind of sucks
@@ -303,8 +301,8 @@ class Email(Communication):
                     num_chars = quote_cutoff + len(last_quoted_text) + 1 # Give a hint of the next line
                 else:
                     num_chars = quote_cutoff
-            elif self.length > DEFAULT_TRUNCATE_TO:
-                num_chars = DEFAULT_TRUNCATE_TO
+            elif self.length > EMAIL_TRUNCATE_TO:
+                num_chars = EMAIL_TRUNCATE_TO
 
             # Always print whole email for 1st email for actual people
             if num_chars and self.is_persons_first_email and self.is_word_count_worthy:
@@ -363,7 +361,6 @@ class Email(Communication):
     def display_text(self) -> str:
         """Config overrides what text should be displayed."""
         return str(self.email_parts)
-        return collapse_newlines(self._config.display_text or self.text)
 
     @property
     def header(self) -> EmailHeader:
@@ -453,11 +450,11 @@ class Email(Communication):
     @property
     def prettified_txt(self) -> Text:
         """Overrides superclass. Cleaned up / formatted Text ready to be displayed."""
+        # always show the email header even if only a configured truncate_to excerpt is being displayed
         if self._config.char_range and self._config.char_range[0] > 0:
             if self._config.char_range[0] < self.email_parts.header_len:
                 self._warn(f"The excerpt appears to start in the email header which will may in duplicate header chars")
 
-            # always show the email header even if only a configured excerpt is being displayed
             return self.email_parts.header_txt.append('\n\n').append(super().prettified_txt)
         else:
             return super().prettified_txt
@@ -573,9 +570,9 @@ class Email(Communication):
 
         return FALLBACK_TIMESTAMP
 
-    def file_display(self, align: JustifyMethod | None = None) -> FileDisplay:
+    def make_layout(self, align: JustifyMethod | None = None) -> Layout:
         """Allows for proper right vs. left justify."""
-        return FileDisplay(
+        return Layout(
             body_panel=self._body_as_table(),
             document=self,
             file_info=self.file_id_panel,

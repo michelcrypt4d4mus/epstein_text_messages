@@ -193,6 +193,7 @@ HIGHLIGHT_COUNTS = {
     "lawyer": 1,
     "leon black": 1,
     "liechtenstein": 1,
+    'litigation': 13,
     "madoff": 10,
     "marriage": 1,
     "merrill": 1,

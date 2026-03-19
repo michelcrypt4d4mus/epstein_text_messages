@@ -16,6 +16,7 @@ from epstein_files.documents.messenger_log import MessengerLog
 from epstein_files.documents.other_file import FIRST_FEW_LINES, OtherFile
 from epstein_files.epstein_files import EpsteinFiles
 from epstein_files.output.doc_printer import DocPrinter
+from epstein_files.output.layout_elements.file_display import Layout
 from epstein_files.output.epstein_highlighter import highlighter
 from epstein_files.output.rich import *
 from epstein_files.output.site.internal_links import (AUTHORS_USING_SIGNATURES, FILES_THAT_ARE_NEITHER_EMAILS_NOR,
@@ -63,6 +64,21 @@ def print_all_emails_chronological(epstein_files: EpsteinFiles, printer: DocPrin
     printer.print(Padding(table, (2, 0)))
     printer.print_section_subtitle('The Chronologically Ordered Emails')
     printer.print_documents(emails)
+
+
+def print_annotated_only(epstein_files: EpsteinFiles, printer: DocPrinter):
+    docs = [
+        d for d in epstein_files.unique_documents
+        if d._config.note_txt and d.is_interesting and d._config.is_in_chrono is not False
+    ]
+
+    logger.warning(f"Found {len(docs)} annotated documents...")
+
+    for doc in docs:
+        if isinstance(doc, OtherFile) and doc._config.show_full_panel:
+            doc = doc.make_layout('right')
+
+        printer.print_documents([doc])
 
 
 def print_curated_chronological(epstein_files: EpsteinFiles, printer: DocPrinter) -> None:

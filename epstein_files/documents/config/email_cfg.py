@@ -29,11 +29,12 @@ class EmailCfg(CommunicationCfg):
             self.is_valid_for_name_scan = False
 
     @property
-    def truncate_at(self) -> int | CharRange | None:
-        if super().truncate_at:
-            return super().truncate_at
+    def char_range(self) -> CharRange | None:
+        """`truncate_to` as `(0, truncate_to)` tuple if truncate_to is an `int`."""
+        if super().char_range:
+            return super().char_range
         elif self.is_fwded_article or self.fwded_text_after:
-            return SHORT_TRUNCATE_TO
+            return (0, SHORT_TRUNCATE_TO)
 
     @property
     def truthy_props(self) -> dict[str, bool | str | None]:

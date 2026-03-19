@@ -447,6 +447,7 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
         "Sent from my iPhone",
     ],
     SVETLANA_POZHIDAEVA: [
+        'Envoye de mon iPhone',
         'Sent via BlackBerry from T-Mobile',
     ],
     TERJE_ROD_LARSEN: [
