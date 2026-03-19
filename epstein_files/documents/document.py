@@ -460,7 +460,7 @@ class Document(LoggingEntity):
         """Should be implemented in subclasses."""
         return None
 
-    def build_file_display(self, align: JustifyMethod | None = None) -> Layout:
+    def make_layout(self, align: JustifyMethod | None = None) -> Layout:
         """Allows for proper right vs. left justify."""
         return Layout(
             background_color=self._config.background_color,
@@ -554,7 +554,7 @@ class Document(LoggingEntity):
 
     def to_html(self) -> str:
         # TODO: this does not include the timestamp for OtherFiles!
-        return self.build_file_display().to_html()
+        return self.make_layout().to_html()
 
     def trimmed_chars_msg(self, truncate_to: int) -> Text | None:
         """Link to source URL that will replace the text after the truncation point."""
@@ -696,7 +696,7 @@ class Document(LoggingEntity):
 
     def __rich_console__(self, console: Console, options: ConsoleOptions) -> RenderResult:
         """Default `Document` renderer (Email and MessengerLog override this)."""
-        yield self.build_file_display()
+        yield self.make_layout()
 
     def __str__(self) -> str:
         return self._summary.plain

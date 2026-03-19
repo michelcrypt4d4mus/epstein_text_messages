@@ -16,6 +16,7 @@ from epstein_files.documents.messenger_log import MessengerLog
 from epstein_files.documents.other_file import FIRST_FEW_LINES, OtherFile
 from epstein_files.epstein_files import EpsteinFiles
 from epstein_files.output.doc_printer import DocPrinter
+from epstein_files.output.layout_elements.file_display import Layout
 from epstein_files.output.epstein_highlighter import highlighter
 from epstein_files.output.rich import *
 from epstein_files.output.site.internal_links import (AUTHORS_USING_SIGNATURES, FILES_THAT_ARE_NEITHER_EMAILS_NOR,
@@ -70,7 +71,8 @@ def print_annotated_only(epstein_files: EpsteinFiles, printer: DocPrinter):
     logger.warning(f"Found {len(docs)} annotated documents...")
 
     for doc in docs:
-        if doc._config.show_full_panel:
+        if isinstance(doc, OtherFile) and doc._config.show_full_panel:
+            doc = doc.make_layout('right')
 
         printer.print_documents([doc])
 

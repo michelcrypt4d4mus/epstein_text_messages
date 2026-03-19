@@ -98,7 +98,7 @@ class MessengerLog(Communication):
 
         raise RuntimeError(f"{self}: No timestamp found!")
 
-    def build_file_display(self, align: JustifyMethod | None = None) -> Layout:
+    def make_layout(self, align: JustifyMethod | None = None) -> Layout:
         """`FileDisplay` object that controls how this object is presented."""
         return Layout(
             body_panel=ListPanel(

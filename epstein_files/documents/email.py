@@ -573,7 +573,7 @@ class Email(Communication):
 
         return FALLBACK_TIMESTAMP
 
-    def build_file_display(self, align: JustifyMethod | None = None) -> Layout:
+    def make_layout(self, align: JustifyMethod | None = None) -> Layout:
         """Allows for proper right vs. left justify."""
         return Layout(
             body_panel=self._body_as_table(),

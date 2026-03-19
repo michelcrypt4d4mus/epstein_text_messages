@@ -276,7 +276,7 @@ class Person(DocTypesMixin, LoggingEntity):
 
         docs = Document.sort_by_timestamp(self._printable_emails + self.show_with_name_docs)
         # Wrap `OtherFile` in FileDisplay so we can right-justify it NOTE this sucks?
-        docs = [d.build_file_display(align='right') if isinstance(d, OtherFile) else d for d in docs]
+        docs = [d.make_layout(align='right') if isinstance(d, OtherFile) else d for d in docs]
 
         # TODO this sucks
         for d in docs:
