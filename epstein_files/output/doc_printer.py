@@ -35,6 +35,7 @@ from epstein_files.util.timer import Timer
 from epstein_files.output.title_page import color_key, title_page_top_elements, title_page_bottom_elements
 
 OTHER_FILES_TABLE_MSG = Text("(non emails will appear in tables)", 'gray27 italic')
+OTHER_FILES_TABLE_BORDER_STYLE = 'gray30'
 EMPTY_LINE_HEIGHT = to_em(1.5)
 EMPTY_LINE_DIV = f'<div style="height: {EMPTY_LINE_HEIGHT}"></div>'
 STICKY_BIO_CSS_CLASS = 'sticky_person_bio_panel'
@@ -163,7 +164,6 @@ class DocPrinter(DocTypesMixin):
                 self._other_files_queue.append(doc)
                 continue
 
-            self._log_state(doc, f"triggering print of other files queue")
             self._print_other_files_queue()
             self.print(doc)
 
@@ -300,22 +300,24 @@ class DocPrinter(DocTypesMixin):
         else:
             doc._log(f"{msg} {queues_str}")
 
+    @property
+    def _other_files_table_title(self) -> Text | None:
+        """Title only printed with first table."""
+        return None if any(isinstance(d, OtherFile) for d in self.printed_docs) else OTHER_FILES_TABLE_MSG
+
     def _print_other_files_queue(self) -> None:
         """Print any queued OtherFile objects collected in a table."""
         if not self._other_files_queue:
             return
 
-        # Title is only on the first OtherFiles table printed
-        if any(isinstance(d, OtherFile) for d in self.printed_docs):
-            table_title = None
-        else:
-            table_title = OTHER_FILES_TABLE_MSG
+        if (table_title := self._other_files_table_title):
             self.line()
 
         table = OtherFile.files_preview_table(self._other_files_queue, title=table_title, title_justify='center')
-        table.border_style = 'gray30'
+        table.border_style = OTHER_FILES_TABLE_BORDER_STYLE
         self.print(Padding(table, (0, 0, 1, site_config.indents.other_files_table)))
         self._documents.extend(self._other_files_queue)
+        logger.debug(f"printed {len(self._other_files_queue)} objs in _other_files_queue")
         self._other_files_queue = []
 
     def _print_suppression_msgs_queue(self) -> list[Document]:
