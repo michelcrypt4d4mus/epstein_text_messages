@@ -416,7 +416,7 @@ class DocCfg(LoggingEntity):
         elif self.category == Uninteresting.BOOK:
             return (0, int(site_config.other_files_preview_chars / 2))
         else:
-            return None
+            return (0, site_config.other_files_preview_chars)
 
     @property
     def timestamp(self) -> datetime | None:
