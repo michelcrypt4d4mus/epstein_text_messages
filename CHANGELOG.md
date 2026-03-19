@@ -1,4 +1,6 @@
 # NEXT RELEASE
+
+### 1.10.1
 * `--truncate` now applies to `OtherFile` too via `temporary_args()` context
 * fix table title text justification
 * `--build-dir` argument
