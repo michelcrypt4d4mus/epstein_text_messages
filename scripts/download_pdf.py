@@ -1,9 +1,4 @@
 #!/usr/bin/env python
-import logging
-import re
-from pathlib import Path
-
-from scripts.use_pickled import console
 from epstein_files.people.names import *
 from epstein_files.util.constant.urls import download_jmail_pdf
 from epstein_files.util.env import args
@@ -20,5 +15,3 @@ elif not INTEGER_REGEX.match(args.positional_args[1]):
 file_id = extract_file_id(args.positional_args[0])
 data_set_id = int(args.positional_args[1])
 download_jmail_pdf(file_id, data_set_id)
-
-# download_jmail_pdf('EFTA00709313', 9)
