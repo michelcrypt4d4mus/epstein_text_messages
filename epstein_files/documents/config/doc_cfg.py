@@ -194,12 +194,12 @@ class DocCfg(LoggingEntity):
 
         # background_color, highlight_quote, or a tuple truncate_to set show_full_panel to true
         if self.background_color or self.highlight_quote or isinstance(self.truncate_to, tuple):
-            self.show_full_panel = True
+            self.show_full_panel = True  # TODO: this is immediately set back to False in EmailCfg which sucks
 
             if self.highlight_quote:
-                description_quote = collapse_whitespace(self.highlight_quote.replace('>', ''))
+                quote_note = collapse_whitespace(self.highlight_quote.replace('>', ''))
                 joiner = ' ' if self.note.endswith('?') else ', '
-                self.note = join_truthy(self.note, f'{QUOTE_PREFIX}: {quote(description_quote)}', joiner)
+                self.note = join_truthy(self.note, f'{QUOTE_PREFIX}: {quote(quote_note)}', joiner)
 
         # show_full_panel sets is_interesting=10
         if self.show_full_panel and self.is_interesting is not False:
