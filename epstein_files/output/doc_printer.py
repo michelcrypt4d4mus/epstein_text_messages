@@ -313,6 +313,7 @@ class DocPrinter(DocTypesMixin):
             self.line()
 
         table = OtherFile.files_preview_table(self._other_files_queue, title=table_title, title_justify='center')
+        table.border_style = 'gray30'
         self.print(Padding(table, (0, 0, 1, site_config.indents.other_files_table)))
         self._documents.extend(self._other_files_queue)
         self._other_files_queue = []

@@ -9,7 +9,7 @@ from epstein_files.documents.config.communication_cfg import CommunicationCfg, P
 from epstein_files.documents.config.doc_cfg import DocCfg, DuplicateType
 from epstein_files.documents.config.email_cfg import EmailCfg
 from epstein_files.people.names import *
-from epstein_files.util.helpers.string_helper import has_line_starting_with, join_truthy
+from epstein_files.util.helpers.string_helper import as_pattern, has_line_starting_with, join_truthy
 from epstein_files.util.logging import logger
 
 # Inferred category config regexes
@@ -61,6 +61,22 @@ REPORT_ABOUT_PREFIXES = [
 Cfg = TypeVar('Cfg', bound=DocCfg)
 
 
+def us_versus_regex(name: str) -> re.Pattern:
+    """Build pattern for e.g. 'U.S. v. Ghislaine Maxwell' detection."""
+    first_name = extract_first_name(name)
+    last_name = extract_last_name(name)
+    pattern = fr"United States( of America)?( -?v-?\.?)?.{{,40}}({first_name} )?{last_name}"
+    pattern = as_pattern(pattern)
+    # logger.debug(f"{name}: '{pattern}'")
+    return re.compile(pattern, re.IGNORECASE | re.DOTALL)
+
+
+PROSECUTION_REGEXES = {
+    f"U.S. v. {name}": us_versus_regex(name)
+    for name in [GHISLAINE_MAXWELL, JEFFREY_EPSTEIN]
+}
+
+
 def build_cfg_from_text(doc: 'Document') -> DocCfg | None:
     """Scan the text to see if author, note, category, etc. can be derived from the contents."""
     text = doc.text
@@ -75,7 +91,14 @@ def build_cfg_from_text(doc: 'Document') -> DocCfg | None:
     elif EVIDENCE_REGEX.search(text):
         cfg = _cfg(category=Neutral.LEGAL, note='photos of collected evidence')
     elif GRAND_JURY_REGEX.search(text[0:100]):
-        cfg = _cfg(category=Neutral.LEGAL, note='grand jury proceedings')
+        case_matched = ''
+
+        for case_name, regex in PROSECUTION_REGEXES.items():
+            if regex.search(doc.text):
+                case_matched = case_name
+                break
+
+        cfg = _cfg(category=Neutral.LEGAL, note=join_truthy('grand jury proceedings', case_matched, ' in '))
     elif 'LedgerX' in text[0:500]:
         cfg = _cfg(category=Interesting.CRYPTO, note=LEDGERX_MSG)
     elif LSJE_FORM_REGEX.search(text):

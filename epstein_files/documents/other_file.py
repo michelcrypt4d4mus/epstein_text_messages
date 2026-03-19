@@ -26,7 +26,7 @@ from epstein_files.util.constants import *
 from epstein_files.util.helpers.data_helpers import days_between, coerce_utc_strict, uniquify, uniq_sorted
 from epstein_files.util.helpers.debugging_helper import tz_debug_str
 from epstein_files.util.helpers.file_helper import FILENAME_LENGTH
-from epstein_files.util.helpers.rich_helpers import QUESTION_MARKS_TXT
+from epstein_files.util.helpers.rich_helpers import extract_range
 from epstein_files.util.helpers.string_helper import DATE_LENGTH, collapse_whitespace, indented
 from epstein_files.util.env import args, site_config
 from epstein_files.util.logging import logger
@@ -105,14 +105,13 @@ class OtherFile(Document):
         if self._config.replacement_preview_text:
             return self._config.replacement_preview_text
 
-        # TODO: config.num_preview_chars is never used
-        num_chars = self._config.num_preview_chars or site_config.other_files_preview_chars
-        text = self.display_text[0:num_chars]
+        text = extract_range(self.display_text, self._config.char_range_as_table_row)
 
+        # Hacky way to avoid some files that are just "Page 1 Page 2 Page 3" etc in the preview table
         if text.count('Page') > MIN_PAGES_TO_TRUNCATE_PREVIEW:
-            num_chars = TRUNCATED_PREVIEW_LEN
+            text = extract_range(text, (0, TRUNCATED_PREVIEW_LEN))
 
-        return collapse_whitespace(text)[0:num_chars]
+        return collapse_whitespace(text)
 
     @property
     def preview_txt(self) -> Text:
@@ -126,11 +125,6 @@ class OtherFile(Document):
             txt.append(f"... ({self.length - len(txt):,} more characters)", 'dim italic')
 
         return txt
-
-    @property
-    def _summary(self) -> Text:
-        """One line summary mostly for logging."""
-        return super()._summary.append(CLOSE_PROPERTIES_CHAR)
 
     def extract_timestamp(self) -> datetime | None:
         """Return configured timestamp or value extracted by scanning text with datefinder."""

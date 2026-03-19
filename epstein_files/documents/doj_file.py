@@ -253,10 +253,6 @@ class DojFile(OtherFile):
             return self._skipped_file_txt(SINGLE_IMAGE_NO_TEXT)
 
     @property
-    def external_link_markup(self) -> str:
-        return wrap_in_markup_style(super().external_link_markup, self.border_style)
-
-    @property
     def subheaders(self) -> list[Text]:
         """Overloads superclass to adjust formatting."""
         return [Text(' ').append(sentence) for sentence in super().subheaders]

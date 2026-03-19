@@ -13,8 +13,6 @@ from epstein_files.util.env import args
 from epstein_files.util.helpers.string_helper import timestamp_str
 from epstein_files.util.logging import logger
 
-CharRange = tuple[int, int]
-
 ISO_DATE_REGEX = re.compile(r'\d{4}-\d{2}(-\d{2})?')
 CONSTANT_VAR_REGEX = re.compile(r"^[A-Z_]+$")
 ALL_NAMES = [v for k, v in vars(names).items() if isinstance(v, str) and CONSTANT_VAR_REGEX.match(k)]

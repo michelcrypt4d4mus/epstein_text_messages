@@ -6,7 +6,7 @@ from abc import ABC, abstractmethod
 from typing import Sequence, TypeVar
 
 from rich.padding import Padding
-from rich.text import Text
+from rich.text import Text, TextType
 
 from epstein_files.util.constant.strings import QUESTION_MARKS
 from epstein_files.util.helpers.string_helper import starred_header
@@ -41,8 +41,10 @@ class TextCast(ABC):
     def __rich__(self) -> Text:
         pass
 
-Textish = Text | TextCast | str
-TextVar = TypeVar('TextVar', bound=Text | str)
+
+CharRange = tuple[int, int]
+Textish = TextType | TextCast
+TextVar = TypeVar('TextVar', bound=TextType)
 
 
 def enclose(txt: str | Text, encloser: str = '', encloser_style: str = 'wheat4') -> Text:
@@ -72,7 +74,7 @@ def join_texts(
     txt = Text('')
 
     for i, t in enumerate(txts):
-        if len((_txt := to_txt(t))) > 0:
+        if t and len((_txt := to_txt(t))) > 0:
             txt.append(join if i >= 1 else '').append(enclose(_txt, encloser, encloser_style))
 
     return txt
@@ -80,6 +82,17 @@ def join_texts(
 
 def parenthesize(msg: Textish, parentheses_style: str = '') -> Text:
     return Text('(', style=parentheses_style).append(to_txt(msg)).append(')')
+
+
+def extract_range(txt: TextVar, _char_range: CharRange | int | None) -> TextVar:
+    if isinstance(_char_range, tuple):
+        char_range = _char_range
+    elif isinstance(_char_range, int):
+        char_range = (0, _char_range)
+    else:
+        char_range = (0, len(txt))
+
+    return txt[char_range[0]: char_range[1]]
 
 
 def starred_header_txt(msg: str, num_stars: int = 7, num_spaces: int = 2, style: str = WARNING_STYLE) -> Text:

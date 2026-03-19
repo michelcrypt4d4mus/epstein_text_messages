@@ -1,7 +1,8 @@
 from dataclasses import asdict, dataclass, field, fields
 
-from epstein_files.documents.config.doc_cfg import SHORT_TRUNCATE_TO, CharRange
+from epstein_files.documents.config.doc_cfg import SHORT_TRUNCATE_TO
 from epstein_files.documents.config.communication_cfg import CommunicationCfg, Platform
+from epstein_files.util.helpers.rich_helpers import CharRange
 
 
 @dataclass(kw_only=True)

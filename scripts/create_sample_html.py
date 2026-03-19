@@ -54,31 +54,29 @@ doc_types_to_sample = [
     [o for o in epstein_files.other_files if o._config.note_txt],  # other file with description
     [o for o in epstein_files.other_files if 1000 < o.length < 5000 and not o._config.note_txt], # other files no desc
     [e for e in epstein_files.emails if e._config.note_txt], # emails with description
-    [d for d in epstein_files._documents if d.suppressed_txt],
     [e for e in epstein_files.emails if not e._config.note_txt],  # email no desc
     epstein_files.emails_with_attachments,
     epstein_files.imessage_logs,
 ]
 
-# sample_docs = [epstein_files.get_id('EFTA00034357')] + flatten([docs[:SAMPLE_SIZE] for docs in doc_sets_to_sample])
-sample_docs = flatten([docs[:SAMPLE_SIZE] for docs in doc_types_to_sample])
 printer = DocPrinter(epstein_files=epstein_files)
 printer.print_title_page_top()
 printer.print_title_page_bottom()
 
-# print contacts
-# Entity.print_all_biographies(printer)
+# Print docs
+sample_docs = flatten([docs[:SAMPLE_SIZE] for docs in doc_types_to_sample])
+printer.print_documents(sample_docs)
 
 # print some People and their emails
 # print_sample_people()
 
-# Print docs
-# printer.print_documents(sample_docs)
+#Print big emailers summary table
+all_emailers = sorted(epstein_files.emailers, key=lambda person: person.sort_key)
+people_table = Person.emailer_info_table(all_emailers, all_emailers, show_epstein_total=False)
+printer.html_elements.append(table_to_html(people_table))
 
-# Print big emailers summary table
-# all_emailers = sorted(epstein_files.emailers, key=lambda person: person.sort_key)
-# people_table = Person.emailer_info_table(all_emailers, all_emailers, show_epstein_total=False)
-# printer.html_elements.append(table_to_html(people_table))
+# print contacts
+# Entity.print_all_biographies(printer)
 
 html_path = printer.write_html(Site.DEV_SAMPLE)
 open_file_or_url(html_path)

@@ -39,9 +39,9 @@ from epstein_files.util.constant.strings import APPEARS_IN, ARCHIVE_LINK_COLOR, 
 from epstein_files.util.constant.urls import URL_SIGNIFIERS
 from epstein_files.util.constants import CONFIGS_BY_ID
 from epstein_files.util.env import args, site_config
-from epstein_files.util.helpers.data_helpers import (AMERICAN_TIME_REGEX, TIMEZONE_INFO, CharRange, coerce_utc, flatten,
+from epstein_files.util.helpers.data_helpers import (AMERICAN_TIME_REGEX, TIMEZONE_INFO, coerce_utc, flatten,
      prefix_keys, uniq_sorted, uniquify, without_falsey)
-from epstein_files.util.helpers.rich_helpers import enclose
+from epstein_files.util.helpers.rich_helpers import CharRange
 from epstein_files.util.external_link import join_texts, link_text_obj
 from epstein_files.util.helpers.string_helper import capitalize_first, collapse_newlines, is_bool_prop, quote, strip_pdfalyzer_panels
 from epstein_files.util.logging import logger
@@ -273,17 +273,16 @@ class Email(Communication):
     @property
     def char_range_to_display(self) -> CharRange | None:
         """Override superclass to decide how many chars we should limit the dislpay of this email to."""
+        if args.whole_file or self._config.truncate_at == NO_TRUNCATE:
+            return None
+        elif self._config.char_range:
+            return self._config.char_range
+
         quote_cutoff = self._idx_of_nth_quoted_reply()  # Trim if there's many quoted replies
         includes_truncate_term = next((term for term in TRUNCATE_TERMS if term in self.text), None)
         num_chars: int | None = None
 
-        if args.whole_file or self._config.truncate_at == NO_TRUNCATE:
-            return None
-        elif args.truncate:
-            num_chars = args.truncate
-        elif self._config.char_range:
-            return self._config.char_range
-        elif self.author in TRUNCATE_EMAILS_BY \
+        if self.author in TRUNCATE_EMAILS_BY \
                 or any([self.is_from_or_to(n) for n in TRUNCATE_EMAILS_FROM_OR_TO]) \
                 or includes_truncate_term:
             num_chars = min(quote_cutoff or DEFAULT_TRUNCATE_TO, SHORT_TRUNCATE_TO)
@@ -492,16 +491,6 @@ class Email(Communication):
 
             return uninteresting_txt
 
-    @property
-    def _summary(self) -> Text:
-        """Append the recipients to Document._summary() and close the bracket."""
-        txt = self._summary_with_author
-
-        if self.recipients:
-            txt.append(', ').append(styled_key_value('recipients', self.recipients_txt()))
-
-        return txt.append(CLOSE_PROPERTIES_CHAR)
-
     def entity_scan(self, exclude: EntityScanArg = None, include: EntityScanArg = None) -> list[Entity]:
         """Overrides superclass to append names from email attachments."""
         attachment_entities = flatten([ad.entities for ad in self.attached_docs])
@@ -602,18 +591,6 @@ class Email(Communication):
 
     def is_note_to_self(self, recipients: list[Name] | None = None) -> bool:
         return (recipients if recipients is not None else self.recipients) == [self.author]
-
-    def recipients_txt(self, max_full_names: int = 2) -> Text:
-        """Comma separated colored names (last name only if more than `max_full_names` recipients)."""
-        recipients = [r or UNKNOWN for r in self.recipients] if len(self.recipients) > 0 else [UNKNOWN]
-
-        names = [
-            Text(r if len(recipients) <= max_full_names else extract_last_name(r), get_style_for_name(r)) + \
-                (Text(f" {QUESTION_MARKS}", get_style_for_name(r)) if self._config.recipient_uncertain else Text(''))
-            for r in recipients
-        ]
-
-        return join_texts(names, join=', ')
 
     def to_html(self) -> str:
         html = super().to_html()

@@ -1,17 +1,21 @@
 import re
 import urllib.parse
+from pathlib import Path
 from typing import Callable, Literal
 
+import requests
 from inflection import parameterize
 from rich.text import Text
+from yaralyzer.util.helpers.interaction_helper import ask_to_proceed
 
 from epstein_files.output.site.internal_links import TO_FROM
 from epstein_files.output.site.sites import GH_PROJECT_URL, Site
 from epstein_files.util.env import args
 from epstein_files.util.constant.strings import TEXT_LINK
-from epstein_files.util.helpers.file_helper import coerce_file_stem
 from epstein_files.util.external_link import SUBSTACK_POST_LINK_STYLE, ExternalLink, link_markup, link_text_obj
+from epstein_files.util.helpers.file_helper import coerce_file_stem, local_doj_file_path, log_file_write
 from epstein_files.util.helpers.string_helper import remove_question_marks
+from epstein_files.util.logging import logger
 
 # DOJ docs
 DOJ_2026_URL = 'https://www.justice.gov/epstein/doj-disclosures'
@@ -43,6 +47,7 @@ EPSTEINIFY_URL = f'https://{EPSTEINIFY}.com'
 EPSTEIN_MEDIA_URL = f'https://{EPSTEIN_MEDIA}'
 EPSTEIN_WEB_URL = 'https://epsteinweb.org'
 JMAIL_URL = 'https://jmail.world'
+JMAIL_RAW_URL = 'https://assets.getkino.com/documents'
 
 DOC_LINK_BASE_URLS: dict[EpsteinSite, str] = {
     EPSTEIN_MEDIA: f"{EPSTEIN_MEDIA_URL}/files/",
@@ -123,6 +128,7 @@ CRYPTADAMUS_SOCIAL_LINKS = [
 ]
 
 # Misc
+PDF_MIME_TYPE = {'Accept': 'application/pdf'}
 URL_SIGNIFIERS = ['?amp', 'amp?', 'cd=', 'click', 'CMP=', 'contentId', 'ft=', 'gclid', 'htm', 'mp=', 'keywords=', 'Id=', 'module=', 'mpweb', 'nlid=', 'ref=', 'smid=', 'sp=', 'usg=', 'utm']
 
 
@@ -183,6 +189,25 @@ def doj_2026_link_markup(dataset_id, file_stem: str, style: str = TEXT_LINK) -> 
     return link_markup(url, file_stem, style)
 
 
+def download_jmail_pdf(file_id: str, data_set_id: int) -> Path:
+    url = f"{JMAIL_RAW_URL}/{file_id}.pdf"
+    output_path = local_doj_file_path(file_id, data_set_id)
+
+    if output_path.exists():
+        ask_to_proceed(f"File '{output_path}' already exists. Overwrite?")
+
+    logger.warning(f"Downloading '{url}' to '{output_path}'...")
+    response = requests.get(url, headers=PDF_MIME_TYPE, stream=True)
+    response.raw.decode_content = True
+
+    with open(output_path, 'wb') as f:
+        for chunk in response.iter_content(chunk_size=100 * 1024):
+            f.write(chunk)
+
+    log_file_write(output_path)
+    return output_path
+
+
 def jmail_doj_2026_file_url(dataset_id: int, file_stem: str) -> str:
     """Link to Jmail backup of DOJ file."""
     return f"{JMAIL_URL}/drive/vol{dataset_id:05}-{file_stem.lower()}-pdf"
@@ -208,7 +233,7 @@ def internal_person_link_url(name: str) -> str:
 
 
 def other_site() -> Site:
-    return Site.CURATED if args._site != Site.CURATED else Site.EMAILS
+    return Site.CURATED if args._site != Site.CURATED else Site.EMAILERS
 
 
 def other_site_url() -> str:

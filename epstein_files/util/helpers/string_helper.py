@@ -31,6 +31,7 @@ constantize = lambda s: underscore(s.upper())
 is_bool_prop = lambda prop: prop.startswith('is_')
 is_integer = lambda s: bool(INTEGER_REGEX.match(s))
 join_patterns = lambda patterns: '|'.join(patterns)
+iso_date = lambda dt: dt.isoformat()[0:10]
 iso_timestamp = lambda dt: dt.isoformat().replace('T', ' ')
 strip_pdfalyzer_panels = lambda s: PDFALYZER_IMAGE_PANEL_REGEX.sub('', s)
 timestamp_str = lambda dt: dt.isoformat()[0:19]

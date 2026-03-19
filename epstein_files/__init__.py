@@ -24,7 +24,7 @@ from epstein_files.documents.messenger_log import MessengerLog
 from epstein_files.documents.other_file import OtherFile
 from epstein_files.output.doc_printer import DocPrinter
 from epstein_files.output.epstein_highlighter import highlighter, temp_highlighter
-from epstein_files.output.output import (print_curated_chronological, print_doj_files, print_emails_section,
+from epstein_files.output.output import (print_curated_chronological, print_document_notes, print_doj_files, print_emails_section,
      print_json_files, print_stats, print_other_files_section, print_text_msgs_section, print_all_emails_chronological,
      print_signatures_and_emojis, print_emailers_info, print_json_metadata, show_urls)
 from epstein_files.output.rich import console, print_json, print_subtitle_panel
@@ -44,7 +44,7 @@ def epstein_generate() -> None:
     printer = DocPrinter(epstein_files=epstein_files)
     printer.print_title_page_top()
 
-    if args.all_emails_chrono or args.output_bios or args.output_devices or args.output_word_count:
+    if args.output_bios or args.output_devices or args.output_notes or args.output_word_count:
         printer.print_color_key()
     else:
         printer.print_title_page_bottom()
@@ -71,6 +71,9 @@ def epstein_generate() -> None:
     elif args.all_doj_files:
         print_doj_files(epstein_files, printer)
         timer.log_section_complete('DojFile', epstein_files.doj_files, printer.printed_docs)
+    elif args.output_notes:
+        print_document_notes(epstein_files, printer)
+        timer.log_section_complete('DojFile', epstein_files.unique_documents, printer.printed_docs)
     else:
         if args.output_emails:
             print_emails_section(epstein_files, printer)

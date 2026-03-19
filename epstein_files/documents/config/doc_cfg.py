@@ -16,9 +16,10 @@ from epstein_files.people.interesting_people import PERSONS_OF_INTEREST
 from epstein_files.people.names import *
 from epstein_files.util.constant.strings import *
 from epstein_files.util.env import args, site_config
-from epstein_files.util.helpers.data_helpers import CharRange, coerce_utc_strict, without_falsey
+from epstein_files.util.helpers.data_helpers import coerce_utc_strict, without_falsey
 from epstein_files.util.helpers.file_helper import is_doj_file
 from epstein_files.util.external_link import ExternalLink
+from epstein_files.util.helpers.rich_helpers import CharRange
 from epstein_files.util.helpers.string_helper import collapse_whitespace, is_bool_prop, join_truthy, quote
 from epstein_files.util.logging import logger
 from epstein_files.util.logging_entity import LoggingEntity
@@ -208,7 +209,9 @@ class DocCfg(LoggingEntity):
     @property
     def char_range(self) -> CharRange | None:
         """`truncate_to` as `(0, truncate_to)` tuple if truncate_to is an `int`."""
-        if args.whole_file or self.truncate_at in [None, NO_TRUNCATE]:
+        if args.truncate:
+            return (0, args.truncate)
+        elif args.whole_file or self.truncate_at in [None, NO_TRUNCATE]:
             return None
         elif isinstance(self.truncate_at, tuple):
             return self.truncate_at
@@ -404,6 +407,16 @@ class DocCfg(LoggingEntity):
     def names(self) -> list[str]:
         """Names configured for this document. Overloaded in subclass to add recipients."""
         return [self.author] if self.author else []
+
+    @property
+    def char_range_as_table_row(self) -> tuple[int, int] | None:
+        """The char range that should be shown in `OtherFile` rollup tables."""
+        if self.num_preview_chars:
+            return (0, self.num_preview_chars)
+        elif self.category == Uninteresting.BOOK:
+            return (0, int(site_config.other_files_preview_chars / 2))
+        else:
+            return (0, site_config.other_files_preview_chars)
 
     @property
     def timestamp(self) -> datetime | None:
