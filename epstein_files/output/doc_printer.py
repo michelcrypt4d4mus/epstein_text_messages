@@ -93,7 +93,7 @@ class DocPrinter(DocTypesMixin):
     def new_entities(self, names_or_doc: PeopleBiosArg) -> list[Entity]:
         """List of names found in relation to `names_or_doc` that have not been biographically printed before."""
         if isinstance(names_or_doc, Layout) or not names_or_doc:
-            return []
+            return self.new_entities(names_or_doc.document)
         elif isinstance(names_or_doc, Document):
             entities = names_or_doc.entity_scan(exclude=list(self.printed_entity_bios))
         else:
