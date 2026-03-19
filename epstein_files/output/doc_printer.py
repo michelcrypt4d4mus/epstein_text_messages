@@ -18,7 +18,7 @@ from epstein_files.documents.email import Email
 from epstein_files.documents.emails.emailers import ENTITY_CATEGORIES, get_entities
 from epstein_files.documents.messenger_log import MessengerLog
 from epstein_files.documents.other_file import OtherFile
-from epstein_files.output.layout_elements.file_display import BasePanel, FileDisplay, ListPanel
+from epstein_files.output.layout_elements.file_display import BasePanel, Layout, ListPanel
 from epstein_files.output.html.builder import (console_buffer_to_html, render_at_obj_width, panel_to_div,
      render_to_html, text_to_div, write_templated_html)
 from epstein_files.output.html.elements import div_class, tag
@@ -40,7 +40,7 @@ EMPTY_LINE_HEIGHT = to_em(1.5)
 EMPTY_LINE_DIV = f'<div style="height: {EMPTY_LINE_HEIGHT}"></div>'
 STICKY_BIO_CSS_CLASS = 'sticky_person_bio_panel'
 
-PrintableObj = Document | FileDisplay
+PrintableObj = Document | Layout
 PeopleBiosArg = list[str] | list[Entity] | PrintableObj
 
 
@@ -92,7 +92,7 @@ class DocPrinter(DocTypesMixin):
 
     def new_entities(self, names_or_doc: PeopleBiosArg) -> list[Entity]:
         """List of names found in relation to `names_or_doc` that have not been biographically printed before."""
-        if isinstance(names_or_doc, FileDisplay) or not names_or_doc:
+        if isinstance(names_or_doc, Layout) or not names_or_doc:
             return []
         elif isinstance(names_or_doc, Document):
             entities = names_or_doc.entity_scan(exclude=list(self.printed_entity_bios))
@@ -191,7 +191,7 @@ class DocPrinter(DocTypesMixin):
             elif isinstance(positioned.obj, PrintableObj):
                 doc_bios_html = self._build_biographies_panel_html(self.new_entities_with_bios(positioned.obj))
                 self._append_element_with_bio_div(positioned.obj.to_html(), doc_bios_html)
-                doc = positioned.obj.document if isinstance(positioned.obj, FileDisplay) else positioned.obj
+                doc = positioned.obj.document if isinstance(positioned.obj, Layout) else positioned.obj
                 self._documents.append(doc)
             elif isinstance(positioned.obj, Table):
                 html_table = positioned.to_html()  # TODO: currently the only type that delegates to the PositionedRich obj to get HTML
@@ -300,7 +300,7 @@ class DocPrinter(DocTypesMixin):
         other_files_queue_ids = [f.file_id for f in self._other_files_queue]
         queues_str = f"(suppressed queue: {supressed_ids}, other files queue: {other_files_queue_ids})"
 
-        if isinstance(doc, FileDisplay):
+        if isinstance(doc, Layout):
             logger.info(f"{doc} {msg} {queues_str}")
         else:
             doc._log(f"{msg} {queues_str}")

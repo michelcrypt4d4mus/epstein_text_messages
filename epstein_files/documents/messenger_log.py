@@ -12,7 +12,7 @@ from epstein_files.documents.config.doc_cfg import Metadata
 from epstein_files.documents.emails.constants import FALLBACK_TIMESTAMP
 from epstein_files.documents.imessage.text_message import TextMessage
 from epstein_files.output.epstein_highlighter import highlighter
-from epstein_files.output.layout_elements.file_display import FileDisplay, ListPanel, JustifyMethod
+from epstein_files.output.layout_elements.file_display import Layout, ListPanel, JustifyMethod
 from epstein_files.output.highlight_config import styled_name
 from epstein_files.output.rich import LAST_TIMESTAMP_STYLE, build_table
 from epstein_files.people.interesting_people import PERSONS_OF_INTEREST
@@ -98,9 +98,9 @@ class MessengerLog(Communication):
 
         raise RuntimeError(f"{self}: No timestamp found!")
 
-    def file_display(self, align: JustifyMethod | None = None) -> FileDisplay:
+    def build_file_display(self, align: JustifyMethod | None = None) -> Layout:
         """`FileDisplay` object that controls how this object is presented."""
-        return FileDisplay(
+        return Layout(
             body_panel=ListPanel(
                 border_style=self.border_style,
                 text=[msg.__rich__() for msg in self.messages],

@@ -33,7 +33,7 @@ from epstein_files.output.epstein_highlighter import highlighter
 from epstein_files.output.highlight_config import HIGHLIGHTED_NAMES, get_style_for_name
 from epstein_files.output.html.builder import table_to_html
 from epstein_files.output.html.positioned_rich import to_em
-from epstein_files.output.layout_elements.file_display import FileDisplay, JustifyMethod
+from epstein_files.output.layout_elements.file_display import Layout, JustifyMethod
 from epstein_files.output.rich import DEFAULT_TABLE_KWARGS, build_table, styled_key_value
 from epstein_files.util.constant.strings import APPEARS_IN, ARCHIVE_LINK_COLOR, REDACTED, TIMESTAMP_DIM, OcrRepair
 from epstein_files.util.constant.urls import URL_SIGNIFIERS
@@ -573,9 +573,9 @@ class Email(Communication):
 
         return FALLBACK_TIMESTAMP
 
-    def file_display(self, align: JustifyMethod | None = None) -> FileDisplay:
+    def build_file_display(self, align: JustifyMethod | None = None) -> Layout:
         """Allows for proper right vs. left justify."""
-        return FileDisplay(
+        return Layout(
             body_panel=self._body_as_table(),
             document=self,
             file_info=self.file_id_panel,

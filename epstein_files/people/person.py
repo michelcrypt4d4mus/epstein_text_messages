@@ -21,7 +21,7 @@ from epstein_files.documents.other_file import OtherFile
 from epstein_files.output.highlight_config import (HIGHLIGHTED_NAMES, QUESTION_MARKS_TXT, get_highlight_group_for_name,
      get_style_for_name, styled_category, styled_name)
 from epstein_files.output.highlighted_names import HighlightedNames, HighlightPatterns, ManualHighlight
-from epstein_files.output.layout_elements.file_display import FileDisplay
+from epstein_files.output.layout_elements.file_display import Layout
 from epstein_files.output.rich import GREY_NUMBERS, TABLE_TITLE_STYLE, build_table, console, print_special_note
 from epstein_files.output.site.internal_links import TO_FROM
 from epstein_files.people.entity import Entity
@@ -154,7 +154,7 @@ class Person(DocTypesMixin, LoggingEntity):
         return styled_name(self.name_str)
 
     @property
-    def other_files_shown_with_emails(self) -> list[OtherFile]:
+    def show_with_name_docs(self) -> list[OtherFile]:
         """OtherFile objects that should be displayed in the emails section(s)."""
         return [f for f in self.other_files if self.name == f._config.show_with_name]
 
@@ -272,14 +272,15 @@ class Person(DocTypesMixin, LoggingEntity):
             return self._printable_emails
         elif self.name in SPECIAL_NOTES:
             # TODO: DocPrinter doesn't render HTML for the special notes
-            print_special_note(SPECIAL_NOTES[self.name])
+            printer.print(SPECIAL_NOTES[self.name])
 
-        docs = Document.sort_by_timestamp(self._printable_emails + self.other_files_shown_with_emails)
-        docs = [d.file_display(align='right') if isinstance(d, OtherFile) else d for d in docs]   # TODO this sucks
+        docs = Document.sort_by_timestamp(self._printable_emails + self.show_with_name_docs)
+        # Wrap `OtherFile` in FileDisplay so we can right-justify it NOTE this sucks?
+        docs = [d.build_file_display(align='right') if isinstance(d, OtherFile) else d for d in docs]
 
         # TODO this sucks
         for d in docs:
-            if isinstance(d, FileDisplay):
+            if isinstance(d, Layout):
                 d.indent = site_config.indents.show_with
 
         printer.print_documents(docs, log_sfx=f"[{self.name}]")

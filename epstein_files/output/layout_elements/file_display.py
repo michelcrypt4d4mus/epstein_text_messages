@@ -92,7 +92,7 @@ class ListPanel(BasePanel):
 
 
 @dataclass(kw_only=True)
-class FileDisplay:
+class Layout:
     """Allows for proper right vs. left justify of a Document display."""
     background_color: str = ''
     body_panel: BasePanel | Table

@@ -28,7 +28,7 @@ from epstein_files.documents.emails.emailers import get_entities
 from epstein_files.documents.emails.email_header import DETECT_EMAIL_REGEX
 from epstein_files.output.highlight_config import HIGHLIGHTED_ENTITIES, get_style_for_category, get_style_for_name, styled_name
 from epstein_files.output.html.builder import VERTICAL_MARGIN_EMS
-from epstein_files.output.layout_elements.file_display import BasePanel, FileDisplay
+from epstein_files.output.layout_elements.file_display import BasePanel, Layout
 from epstein_files.output.rich import (INFO_STYLE, NA_TXT, SYMBOL_STYLE, add_cols_to_table, build_table, console,
      styled_key_value, prefix_with, snip_msg_txt, styled_dict)
 from epstein_files.output.site.sites import EXTRACTS_BASE_URL
@@ -334,7 +334,7 @@ class Document(LoggingEntity):
         if args.char_nums:
             pretty_txt = self._inject_line_numbers(pretty_txt, args.char_nums)
 
-        if (footer_txt := self.trimmed_chars_txt(char_range[1])):
+        if (footer_txt := self.trimmed_chars_msg(char_range[1])):
             pretty_txt.append('...\n\n').append(footer_txt)
 
         return pretty_txt
@@ -460,9 +460,9 @@ class Document(LoggingEntity):
         """Should be implemented in subclasses."""
         return None
 
-    def file_display(self, align: JustifyMethod | None = None) -> FileDisplay:
+    def build_file_display(self, align: JustifyMethod | None = None) -> Layout:
         """Allows for proper right vs. left justify."""
-        return FileDisplay(
+        return Layout(
             background_color=self._config.background_color,
             body_panel=BasePanel(
                 border_style=self.border_style,
@@ -554,15 +554,14 @@ class Document(LoggingEntity):
 
     def to_html(self) -> str:
         # TODO: this does not include the timestamp for OtherFiles!
-        return self.file_display().to_html()
+        return self.build_file_display().to_html()
 
-    def trimmed_chars_txt(self, truncate_to: int) -> Text | None:
-        """String with link to source URL that will replace the text after the truncation point."""
-        if truncate_to >= len(self.text):
-            return None
-        else:
+    def trimmed_chars_msg(self, truncate_to: int) -> Text | None:
+        """Link to source URL that will replace the text after the truncation point."""
+        if truncate_to < len(self.text) and not self.display_text:  # replacement text should not appear if display_text override is configured
             msg = f"trimmed to {truncate_to:,} characters of {self.length:,}, " \
                   f"read the rest at {self.file_info.external_link_markup(self.author_style)}"
+
             return snip_msg_txt(msg)
 
     def truthy_props(self, prop_names: list[str]) -> DebugDict:
@@ -697,7 +696,7 @@ class Document(LoggingEntity):
 
     def __rich_console__(self, console: Console, options: ConsoleOptions) -> RenderResult:
         """Default `Document` renderer (Email and MessengerLog override this)."""
-        yield self.file_display()
+        yield self.build_file_display()
 
     def __str__(self) -> str:
         return self._summary.plain

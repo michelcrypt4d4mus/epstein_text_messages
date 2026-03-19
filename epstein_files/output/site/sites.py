@@ -170,6 +170,7 @@ HTML_BUILD_FILENAMES = {
 # NOTE: Order matters, it's the order the links are shown in the header
 # Colons are used to break and parenthesize display
 SITE_DESCRIPTIONS = {
+    Site.ANNOTATED:             r"annotated:the cream of the crop",
     Site.CHRONOLOGICAL:         f"chronological curated:all types intermingled",
     Site.CURATED:               f"emailers curated:emails grouped by person of interest",
     Site.EMAILERS:              f"emailers:all emails grouped by person",
@@ -188,6 +189,7 @@ SITE_DESCRIPTIONS = {
 
 # These are site types where the custom HTML is good enough to deploy
 DEPLOY_CUSTOM_HTML_SITES = [
+    Site.ANNOTATED,
     Site.BIOGRAPHIES,
     Site.CHRONOLOGICAL,
     Site.CHRONOLOGICAL_MOBILE,
