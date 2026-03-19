@@ -28,6 +28,7 @@ from epstein_files.util.helpers.string_helper import join_truthy
 from epstein_files.util.logging import logger
 
 CSS = Path(__file__).parent.joinpath('page.css').read_text()
+DEFAULT_HTML_TABLE_BORDER_STYLE = 'dim grey11'
 BOX_BORDER_RADIUS = 4
 BOX_BORDER_WIDTH = 2
 MAX_RENDER_WIDTH = 1024
@@ -196,26 +197,16 @@ def table_to_html(table: Table, css_props: OptionalCssProps = None) -> str:
     """Convert a rich `Table` to an HTML table that looks the same."""
     css_props = css_props or {}
     col_styles = [col.style or '' for col in table.columns]
+    border_style = RichStyle(table.border_style or DEFAULT_HTML_TABLE_BORDER_STYLE)
+    border_color_css = {'border-color': border_style.foreground_color_hex, 'border-style': 'solid'}
     header_css_props = RichStyle(table.header_style).to_css if table.header_style else {}
 
-    if table.title:
-        title_txt = table.title.copy() if isinstance(table.title, Text) else Text(table.title)
+    # TODO: seems like we could just use border_color_css?
+    if not table.show_lines:
+        header_css_props['border-bottom-color'] = border_style.foreground_color_hex
+        header_css_props['border-bottom-width'] = to_px(1)
+        header_css_props['border-bottom-style'] = 'solid'
 
-        if table.title_style:
-            title_txt.stylize(table.title_style)
-
-        title_justify = 'center' if table.title_justify in ['default', 'full'] else table.title_justify
-        title_css = alignment_css(title_justify)
-
-        if title_justify == 'center':
-            title_css['text-align'] = 'center'
-
-        title_html = div_class(render_to_html(title_txt), 'table_title', title_css)
-    else:
-        title_html = ''
-
-    border_style = RichStyle(table.border_style or 'dim grey11')
-    border_color_css = {'border-color': border_style.foreground_color_hex, 'border-style': 'solid'}
     row_props = {'border-bottom-width': '1px', **border_color_css} if table.show_lines else {}
 
     cell_props = {
@@ -282,7 +273,7 @@ def table_to_html(table: Table, css_props: OptionalCssProps = None) -> str:
     )
 
     return div_class(
-        _html_elements_to_str([title_html, table_html, caption_html]),
+        _html_elements_to_str([_table_title_html(table), table_html, caption_html]),
         'table_container',
         {**BOTTOM_MARGIN_PROPS, **css_props},
     )
@@ -345,3 +336,22 @@ def _render_at_width(obj: RenderableType, width: int) -> str:
 def _table_cell(contents: RenderableType, props: OptionalCssProps = None, extra_class: str = '') -> str:
     cell_html = render_at_css_width(contents, props)
     return div_class(cell_html, join_truthy(extra_class, 'column'), props, role='cell')
+
+
+def _table_title_html(table: Table) -> str:
+    """Create HTML to render a table's title (line above the border)."""
+    if table.title is None or len(table.title) == 0:
+        return ''
+
+    title_txt = table.title.copy() if isinstance(table.title, Text) else Text(table.title)
+
+    if table.title_style:
+        title_txt.stylize(table.title_style)
+
+    title_justify = 'center' if table.title_justify in ['default', 'full'] else table.title_justify
+    title_css = alignment_css(title_justify)
+
+    if title_justify == 'center':
+        title_css['text-align'] = 'center'
+
+    return div_class(render_to_html(title_txt), 'table_title', title_css)
