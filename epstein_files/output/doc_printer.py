@@ -80,6 +80,11 @@ class DocPrinter(DocTypesMixin):
     def printed_ids(self) -> list[str]:
         return [f.file_id for f in self.printed_docs]
 
+    @property
+    def _other_files_table_title(self) -> Text | None:
+        """Title only printed with first table."""
+        return None if any(isinstance(d, OtherFile) for d in self.printed_docs) else OTHER_FILES_TABLE_MSG
+
     def line(self, num: int = 1) -> None:
         """Print blank lines to HTML and terminal, similar to `console.line()`."""
         self.html_elements.append(vertical_spacer(num))
@@ -299,11 +304,6 @@ class DocPrinter(DocTypesMixin):
             logger.info(f"{doc} {msg} {queues_str}")
         else:
             doc._log(f"{msg} {queues_str}")
-
-    @property
-    def _other_files_table_title(self) -> Text | None:
-        """Title only printed with first table."""
-        return None if any(isinstance(d, OtherFile) for d in self.printed_docs) else OTHER_FILES_TABLE_MSG
 
     def _print_other_files_queue(self) -> None:
         """Print any queued OtherFile objects collected in a table."""
