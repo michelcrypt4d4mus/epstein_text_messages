@@ -18,7 +18,6 @@ REPUTATION_CFGS = [
     EmailCfg(id='022219', note=AL_SECKEL_BILL_FIGHT, truncate_to=2404),
 
     # DOJ files
-    EmailCfg(id='EFTA01830035', note=AL_SECKEL_BILL_FIGHT),
     DocCfg(
         id='EFTA01810372',
         author=TYLER_SHEARS,
@@ -29,4 +28,6 @@ REPUTATION_CFGS = [
     skype_log('EFTA01217787', recipients=[TYLER_SHEARS, HANNA_TRAFF], is_interesting=True),
     skype_log('EFTA01217703', recipients=[ATHENA_ZELCOVICH, JOSCHA_BACH, LAWRENCE_KRAUSS, TYLER_SHEARS]),
     skype_log('EFTA01217736', recipients=[ATHENA_ZELCOVICH, TYLER_SHEARS]),
+    EmailCfg(id='EFTA01830035', note=AL_SECKEL_BILL_FIGHT),
+    EmailCfg(id='EFTA00751527', recipients=['Jessica']),
 ]

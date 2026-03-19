@@ -8,7 +8,7 @@ from rich.text import Text
 from epstein_files.util.constant.strings import (DOJ_FILE_STEM_REGEX, DOJ_FILE_NAME_REGEX, EFTA_PREFIX,
      HOUSE_OVERSIGHT_NOV_2025_FILE_NAME_REGEX, HOUSE_OVERSIGHT_NOV_2025_FILE_STEM_REGEX,
      HOUSE_OVERSIGHT_NOV_2025_ID_REGEX, HOUSE_OVERSIGHT_PREFIX, LOCAL_EXTRACT_REGEX)
-from epstein_files.util.env import DOCS_DIR, DOJ_TXTS_20260130_DIR, DROPSITE_EMLS_DIR
+from epstein_files.util.env import DOCS_DIR, DOJ_PDFS_20260130_DIR, DOJ_TXTS_20260130_DIR, DROPSITE_EMLS_DIR
 from epstein_files.util.logging import logger
 
 PROJECT_DIR = Path(__file__).parent.parent.parent.parent
@@ -87,6 +87,11 @@ def diff_files(file1: str | Path, file2: str | Path, print_to_console: bool = Tr
         _print_colored_diff_output(diff_result, [file1, file2])
 
     return diff_result
+
+
+def local_doj_file_path(id: str, data_set_id: int) -> Path:
+    """Build a path to a DOj PDF on the local filesystem."""
+    return DOJ_PDFS_20260130_DIR.joinpath(f"DataSet {data_set_id}", f"{id}.pdf")
 
 
 def extract_efta_id(file_id: str) -> int:

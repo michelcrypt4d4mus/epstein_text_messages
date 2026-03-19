@@ -1,4 +1,7 @@
+from epstein_files.documents.email import Email
 from epstein_files.util.helpers.file_helper import *
+
+DOJ_ID = 'EFTA01001153'
 
 
 def test_build_filename_for_id():
@@ -31,3 +34,8 @@ def test_coerce_url_slug(doj_file_id, doj_filename, doj_local_file_id, house_fil
     assert coerce_url_slug(doj_file_id) == doj_file_id
     assert coerce_url_slug(doj_filename) == doj_file_id
     assert coerce_url_slug(doj_local_file_id) == doj_file_id
+
+
+def test_local_doj_file_path(get_email):
+    email: Email = get_email(DOJ_ID)
+    assert email.file_info.local_pdf_path == local_doj_file_path(DOJ_ID, 9)
