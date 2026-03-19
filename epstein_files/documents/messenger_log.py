@@ -18,6 +18,7 @@ from epstein_files.output.rich import LAST_TIMESTAMP_STYLE, build_table
 from epstein_files.people.interesting_people import PERSONS_OF_INTEREST
 from epstein_files.people.names import JEFFREY_EPSTEIN, Name
 from epstein_files.util.constant.strings import AUTHOR, TIMESTAMP_STYLE
+from epstein_files.util.env import site_config
 from epstein_files.util.helpers.data_helpers import coerce_utc_strict, days_between, days_between_str, flatten, sort_dict
 from epstein_files.util.helpers.string_helper import iso_timestamp
 from epstein_files.util.logging import logger
@@ -98,7 +99,7 @@ class MessengerLog(Communication):
 
         raise RuntimeError(f"{self}: No timestamp found!")
 
-    def make_layout(self, align: JustifyMethod | None = None) -> Layout:
+    def make_layout(self, justify: JustifyMethod = 'default', indent: int = site_config.indents.email_body) -> Layout:
         """`FileDisplay` object that controls how this object is presented."""
         return Layout(
             body_panel=ListPanel(
@@ -107,8 +108,9 @@ class MessengerLog(Communication):
             ),
             document=self,
             file_info=self.file_id_panel,
+            indent=indent,
+            justify=justify,
             subheaders=self.subheaders,
-            indent=1,  # TODO: shouldn't always be 1?
         )
 
     def first_message_at(self, name: Name) -> datetime:

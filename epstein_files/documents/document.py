@@ -466,7 +466,7 @@ class Document(LoggingEntity):
         """Should be implemented in subclasses."""
         return None
 
-    def make_layout(self, align: JustifyMethod | None = None) -> Layout:
+    def make_layout(self, justify: JustifyMethod = 'default', indent: int = site_config.indents.info) -> Layout:
         """Allows for proper right vs. left justify."""
         return Layout(
             background_color=self._config.background_color,
@@ -477,8 +477,8 @@ class Document(LoggingEntity):
             ),
             document=self,
             file_info=self.file_id_panel,
-            indent=site_config.indents.info,
-            justify=align,
+            indent=indent,
+            justify=justify,
             margin_bottom=self.html_margin_bottom,
             subheaders=self.subheaders,
         )
@@ -515,6 +515,11 @@ class Document(LoggingEntity):
         """Find lines in this file matching a regex pattern."""
         pattern = patternize(_pattern)
         return [MatchedLine(line, i) for i, line in enumerate(self.lines) if pattern.search(line)]
+
+    @property
+    def participants(self) -> set[Name]:
+        """Author if exists. Overridden in subclasses."""
+        return set([self.author] if self.author else [])
 
     def print_truncated_to(self, truncate_to: int) -> None:
         """Temporarily set args.truncate and print."""

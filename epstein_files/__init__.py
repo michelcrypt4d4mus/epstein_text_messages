@@ -55,9 +55,13 @@ def epstein_generate() -> None:
         printer.collect_other_files_to_tables = False
 
         for person in epstein_files.person_objs(args.names):
-            printer.print_section_subtitle(f"{person.name_str} ({person.num_docs} documents)")
-            printer.print_documents(person.unique_documents, True)
-            logger.warning(f"Printed {person.num_docs} for {person.name_str}")
+            # TODO: this is a hack to show emails table with --name if --all-emails is also set
+            if args.all_emails:
+                person.print_emails(printer)
+            else:
+                printer.print_section_subtitle(f"{person.name_str} ({person.num_docs} documents)")
+                printer.print_documents(person.unique_documents, True)
+                logger.warning(f"Printed {person.num_docs} for {person.name_str}")
     elif args.output_annotated:
         print_annotated_only(epstein_files, printer)
     elif args.output_bios:

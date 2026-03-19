@@ -34,6 +34,7 @@ class IndentCfg:
     other_files_table: int
     show_with: int
     supressed_msg: int
+    text_msgs: int
 
 
 # TODO: another thing that changes based on mobile is id_only for link texts
@@ -62,6 +63,7 @@ class MobileConfig:
         other_files_table=0,
         show_with=0,
         supressed_msg=0,
+        text_msgs=0,
     )
 
     @classmethod
@@ -112,8 +114,9 @@ class SiteConfig(MobileConfig):
         email_body=1,
         info=1,
         other_files_table=2,
-        show_with=30,
+        show_with=8,
         supressed_msg=1,
+        text_msgs=2,
     )
 
     @classmethod

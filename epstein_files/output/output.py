@@ -65,11 +65,6 @@ def print_annotated_only(epstein_files: EpsteinFiles, printer: DocPrinter):
     printer.print_section_subtitle('The Documents Worthy of Being Annotated')
     printer.print_documents(docs)
 
-    # for doc in docs:
-        # TODO: right justify doesn't play nice with the biographical panel
-        # if isinstance(doc, OtherFile) and doc._config.show_full_panel:
-        #     doc = doc.make_layout('right')
-
 
 def print_all_emails_chronological(epstein_files: EpsteinFiles, printer: DocPrinter) -> None:
     """Print all non-mailing list emails in chronological order."""

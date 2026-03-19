@@ -570,14 +570,14 @@ class Email(Communication):
 
         return FALLBACK_TIMESTAMP
 
-    def make_layout(self, align: JustifyMethod | None = None) -> Layout:
+    def make_layout(self, justify: JustifyMethod = 'default', indent: int = site_config.indents.email_body) -> Layout:
         """Allows for proper right vs. left justify."""
         return Layout(
             body_panel=self._body_as_table(),
             document=self,
             file_info=self.file_id_panel,
-            indent=site_config.indents.info,
-            justify=align,
+            indent=indent,
+            justify=justify,
             margin_bottom=self.html_margin_bottom,
             subheaders=self.subheaders,
         )

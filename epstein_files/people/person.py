@@ -153,15 +153,15 @@ class Person(DocTypesMixin, LoggingEntity):
     def name_txt(self) -> Text:
         return styled_name(self.name_str)
 
-    @property
-    def show_with_name_docs(self) -> list[OtherFile]:
-        """OtherFile objects that should be displayed in the emails section(s)."""
-        return [f for f in self.other_files if self.name == f._config.show_with_name]
-
     @property  # TODO: unused?
     def should_always_truncate(self) -> bool:
         """True if we want to truncate all emails to/from this user."""
         return self.name in TRUNCATE_EMAILS_BY or self.is_interesting is False
+
+    @property
+    def show_with_name_docs(self) -> list[OtherFile]:
+        """OtherFile objects that should be displayed in the emails section(s)."""
+        return [f for f in self.other_files if self.name == f._config.show_with_name]
 
     @property
     def sole_cc_author(self) -> str | None:
@@ -226,21 +226,21 @@ class Person(DocTypesMixin, LoggingEntity):
         return self.name_str
 
     @property
-    def _printable_emails(self):
+    def _printable_docs(self) -> Sequence[Document]:
         """For Epstein we only want to print emails he sent to himself."""
         if self.name == JEFFREY_EPSTEIN:
             return [e for e in self.emails if e.is_note_to_self()]
         else:
-            return self.emails
+            return self.documents
 
     @property
-    def _unique_printable_emails(self):
-        return Document.without_dupes(self._printable_emails)
+    def _unique_printable_docs(self) -> Sequence[Document]:
+        return Document.without_dupes(self._printable_docs)
 
     def email_info_panel(self) -> Panel:
         """Just the person's name on the colored background with email counts."""
         if self.name == JEFFREY_EPSTEIN:
-            email_count = len(self._printable_emails)
+            email_count = len(self._printable_docs)
             title_suffix = f"sent by {JEFFREY_EPSTEIN} to himself"
         else:
             email_count = self.num_emails
@@ -252,11 +252,12 @@ class Person(DocTypesMixin, LoggingEntity):
         panel_style = f"black on {self._email_info_style} bold"
         return Panel(Text(title, justify='center'), width=width, style=panel_style)
 
-    def print_emails(self, printer: 'DocPrinter') -> list[Email]:
+    def print_emails(self, printer: 'DocPrinter') -> Sequence[Document]:
         """
         Print complete emails to or from a particular 'author' along with any specially marked docs
         configured with `show_with_name` of this user. Returns the Emails that were printed.
         """
+        self._warn(f"Printing {len(self.emails)} emails and {len(self.other_files)} other files")
         printer.print_centered(self.email_info_panel())
 
         if self.header_panel_bio_txt:
@@ -269,23 +270,21 @@ class Person(DocTypesMixin, LoggingEntity):
 
         if self.category == Uninteresting.JUNK:
             logger.warning(f"Not printing junk emailer '{self.name}'")  # Junk emailers only get a table
-            return self._printable_emails
+            return self._printable_docs
         elif self.name in SPECIAL_NOTES:
             # TODO: DocPrinter doesn't render HTML for the special notes
             printer.print(SPECIAL_NOTES[self.name])
 
-        docs = Document.sort_by_timestamp(self._printable_emails + self.show_with_name_docs)
-        # Wrap `OtherFile` in FileDisplay so we can right-justify it NOTE this sucks?
-        docs = [d.make_layout(align='right') if isinstance(d, OtherFile) else d for d in docs]
-
-        # TODO this sucks
-        for d in docs:
-            if isinstance(d, Layout):
-                d.indent = site_config.indents.show_with
+        # Wrap `OtherFile` and non-participating emails here bc of show_with_name in Layout to indent
+        docs = [
+            d.make_layout(indent=site_config.indents.show_with)
+            if isinstance(d, OtherFile) or (self.name and self.name not in d.participants) else d
+            for d in Document.sort_by_timestamp(self._unique_printable_docs)
+        ]
 
         printer.print_documents(docs, log_sfx=f"[{self.name}]")
         printer.line(2)
-        return self._printable_emails  # TODO: doesn't return FileDisplay objects that may have also been printed!
+        return self._printable_docs  # TODO: doesn't return FileDisplay objects that may have also been printed!
 
     def style(self, allow_bold: bool = True) -> str:
         return get_style_for_name(self.name, allow_bold=allow_bold)
@@ -294,7 +293,7 @@ class Person(DocTypesMixin, LoggingEntity):
         """Build a table of this person's emails summary (timestamps, subject liness, etc)."""
         # TODO: i don't think captions render in custom HTML correctly
         caption = self.entity.epstein_sites_all_links if self.entity.is_linkable else None
-        table = Email.build_emails_table(self._unique_printable_emails, self.name, caption=caption)
+        table = Email.build_emails_table(self._unique_printable_docs, self.name, caption=caption)
         padded_table = Padding(table, (0, 5, 0, 5))
         logger.debug(f"built emails table for '{self.name}' with {len(table.columns)} cols and {table.row_count} rows")
         return padded_table
@@ -416,7 +415,7 @@ class Person(DocTypesMixin, LoggingEntity):
                 Text(str(earliest_email_date), style=f"grey{GREY_NUMBERS[0 if is_selection else grey_idx]}"),
                 person.entity.internal_link if is_on_page and person.is_interesting is not False else person.name_txt,
                 person.category_txt,
-                f"{len(person.unique_emails if show_epstein_total else person._unique_printable_emails)}",
+                f"{len(person.unique_emails if show_epstein_total else person._unique_printable_docs)}",
                 str(len(person.unique_emails_by)) if len(person.unique_emails_by) > 0 else '',
                 str(len(person.unique_emails_to)) if len(person.unique_emails_to) > 0 else '',
                 f"{person.email_conversation_length_in_days}",

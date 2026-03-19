@@ -2,7 +2,7 @@ from dataclasses import dataclass, field
 from typing import Literal
 
 from rich.align import Align
-from rich.console import Console, ConsoleOptions, RenderResult, RenderableType
+from rich.console import Console, ConsoleOptions, JustifyMethod, RenderResult, RenderableType
 from rich.padding import Padding
 from rich.table import Table
 from rich.text import Text
@@ -17,8 +17,6 @@ from epstein_files.util.env import site_config
 from epstein_files.output.rich import indent_txt
 from epstein_files.util.external_link import join_texts
 from epstein_files.util.helpers.data_helpers import without_falsey
-
-JustifyMethod = Literal['center', 'left', 'right']
 
 BOTTOM_PADDING = 1
 SUBHEADER_VERTICAL_MARGIN = 0.3
@@ -102,6 +100,9 @@ class Layout:
     justify: JustifyMethod | None = None
     margin_bottom: str = VERTICAL_MARGIN_EMS  # Margin below the entire agglomeration of elements, not just the body
     subheaders: list[Text] = field(default_factory=list)
+
+    def __post_init__(self):
+        self.justify = None if self.justify in ['default', 'full'] else self.justify
 
     @property
     def body_margin(self) -> list[int | float]:
