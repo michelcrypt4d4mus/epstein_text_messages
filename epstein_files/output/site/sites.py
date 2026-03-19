@@ -32,6 +32,7 @@ MOBILE_SUFFIX = '_mobile'
 
 
 class Site(StrEnum):
+    ANNOTATED = auto()       # only things with `note`s.
     BIOGRAPHIES = auto()
     COLORS_ONLY = auto()
     CURATED = auto()

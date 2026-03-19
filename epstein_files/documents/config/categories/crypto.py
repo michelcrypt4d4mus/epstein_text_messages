@@ -458,6 +458,7 @@ CRYPTO_CFGS = [
     EmailCfg(id='EFTA02584771', note=f"discussion of decentralized prediction markets (e.g. Polymarket)", is_interesting=10),
     EmailCfg(id='EFTA01008242', note='Epstein passes on an investment in Radius'),
     EmailCfg(id='EFTA00995269', note=f"Epstein suggests Monaco and Vatican City as good places for crypto"),
+    EmailCfg(id='EFTA02598396', note=f'Epstein is too ethical and law abiding to invest in a crypto project {VINCENZO_IOZZO}\' brings him'),
     # ZCash / Madars Virza
     DocCfg(id='EFTA00811130', author=PERKINS_COIE, note='tax opinion on ZCash tokens'),
     DocCfg(id='EFTA00603348', note=f"Electric Coin Company created the untraceable crypto ZCash funded by {LARRY_SUMMERS}'s DCG"),

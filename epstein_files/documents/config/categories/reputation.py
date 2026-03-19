@@ -25,7 +25,7 @@ REPUTATION_CFGS = [
         is_interesting=True,
         attached_to_email_id='EFTA01931256'
     ),
-    skype_log('EFTA01217787', recipients=[TYLER_SHEARS, HANNA_TRAFF], is_interesting=True),
+    skype_log('EFTA01217787', recipients=[TYLER_SHEARS, HANNA_TRAFF]),
     skype_log('EFTA01217703', recipients=[ATHENA_ZELCOVICH, JOSCHA_BACH, LAWRENCE_KRAUSS, TYLER_SHEARS]),
     skype_log('EFTA01217736', recipients=[ATHENA_ZELCOVICH, TYLER_SHEARS], truncate_to=(5000, 5800)),
     EmailCfg(id='EFTA01830035', note=AL_SECKEL_BILL_FIGHT),

@@ -20,7 +20,12 @@ MONEY_CFGS = [
 
     # DOJ files
     DocCfg(id='EFTA00803405', author=HONEYCOMB_ASSET_MANAGEMENT, note="fund brochure", truncate_to=DEFAULT_TRUNCATE_TO),
-    DocCfg(id='EFTA00006069', author='NES LLC', note='W-2 tax form issued for employee whom Epstein paid $185,323 in 2005', date='2006-01-01'),
+    DocCfg(
+        id='EFTA00006069',
+        author='NES LLC',
+        display_text='W-2 tax form issued for <REDACTED> employee whom Epstein paid $185,323 in 2005',
+        date='2006-01-01'
+    ),
     DocCfg(
         id='EFTA01413294',
         comment='related to EFTA01357341, efta01363125, + more based on Vavilov Street address',
@@ -74,7 +79,7 @@ MONEY_CFGS = [
     DocCfg(id='EFTA01087311', note=f'{LEON_BLACK} Family Partners cash projections'),
     DocCfg(id='EFTA01366011', note=f"memo requesting $3,000 payment to {LASMA_KUHTARSKA}", show_with_name=LASMA_KUHTARSKA),
     DocCfg(id='EFTA01086463', note=f"{MORTIMER_ZUCKERMAN}'s art collection valuations", is_valid_for_name_scan=False),
-    DocCfg(id='EFTA00007781', note='paychecks signed by Epstein deposited at Colonial Bank', date='2005-08-12'),
+    DocCfg(id='EFTA00007781', display_text='paychecks signed by Epstein deposited at Colonial Bank', date='2005-08-12'),
     DocCfg(id='EFTA01273102', note=f"payment from Epstein to {RENATA_BOLOTOVA}'s father's account at Sberbank"),
     EmailCfg(id='EFTA00994380', highlight_quote='please confirm $500 to Sergey Pozhidaev', truncate_to=500),
     DocCfg(id='EFTA00000476', display_text='photo of JEFFREY EPSTEIN CASH DISBURSEMENTS', date='2006-09-01', is_interesting=False),

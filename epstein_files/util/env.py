@@ -57,6 +57,7 @@ output.add_argument('--json-files', action='store_true', help='pretty print all 
 output.add_argument('--json-metadata', '-jm', action='store_true', help='dump JSON metadata for all files and exit')
 output.add_argument('--mobile', '-mob', action='store_true', help='build a mobile version of the site')
 output.add_argument('--output-bios', '-bios', action='store_true', help='output one line biographies + links for all Contacts')
+output.add_argument('--output-annotated', '-oa', action='store_true', help='output curated files of all types in chronological order')
 output.add_argument('--output-chrono', '-oc', action='store_true', help='output curated files of all types in chronological order')
 output.add_argument('--output-devices', '-od', action='store_true', help='output "Sent from my iPhone" style device signature')
 output.add_argument('--output-emails', '-oe', action='store_true', help='generate emails section')
@@ -163,6 +164,8 @@ if is_html_script:
             args._site = Site.COLORS_ONLY
         elif args.output_bios:
             args._site = Site.BIOGRAPHIES
+        elif args.output_annotated:
+            args._site = Site.ANNOTATED
         elif args.all_doj_files:
             args._site = Site.DOJ_FILES
         elif args.all_emails:

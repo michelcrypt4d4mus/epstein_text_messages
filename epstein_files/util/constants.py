@@ -321,6 +321,7 @@ UNINTERESTING_EMAIL_IDS = [
 
 UNINTERESTING_OTHER_FILE_IDS = [
     # FBI
+    'EFTA01217787',
     'EFTA00005716',
     'EFTA00005705',
     'EFTA00005717',
@@ -483,10 +484,10 @@ for category in CONSTANT_CATEGORIES:
     CATEGORY_CONFIGS.extend(category_cfgs)
 
 ALL_CONFIGS = CATEGORY_CONFIGS + EMAILS_CONFIG + TEXTS_CONFIG
-DocCfg.create_or_set_prop(UNINTERESTING_OTHER_FILE_IDS, ALL_CONFIGS, 'is_interesting', False)
-EmailCfg.create_or_set_prop(INTERESTING_EMAIL_IDS, ALL_CONFIGS, 'is_interesting', True)
-EmailCfg.create_or_set_prop(UNINTERESTING_EMAIL_IDS, ALL_CONFIGS, 'is_interesting', False)
-EmailCfg.create_or_set_prop(NOT_CHRONOLOGICAL_VIEW_IDS, ALL_CONFIGS, 'is_in_chrono', False)
+DocCfg.update_or_create_cfgs(UNINTERESTING_OTHER_FILE_IDS, ALL_CONFIGS, 'is_interesting', False)
+EmailCfg.update_or_create_cfgs(INTERESTING_EMAIL_IDS, ALL_CONFIGS, 'is_interesting', True)
+EmailCfg.update_or_create_cfgs(UNINTERESTING_EMAIL_IDS, ALL_CONFIGS, 'is_interesting', False)
+EmailCfg.update_or_create_cfgs(NOT_CHRONOLOGICAL_VIEW_IDS, ALL_CONFIGS, 'is_in_chrono', False)
 CONFIGS_BY_ID = {cfg.id: cfg for cfg in ALL_CONFIGS}
 
 # Add synthetic Cfg objects for duplicate docs with same props as the DocCfg they are a duplicate of

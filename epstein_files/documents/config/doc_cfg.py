@@ -577,21 +577,23 @@ class DocCfg(LoggingEntity):
             return repr_str
 
     @classmethod
-    def create_or_set_prop(cls, ids: list[str], existing_cfgs: Sequence['DocCfg'], prop: str, val: Any) -> None:
+    def update_or_create_cfgs(cls, ids: list[str], manual_cfgs: Sequence['DocCfg'], prop: str, new_val: Any) -> None:
         """If a record exists in `existing_cfgs` update it, otherwise create new and append."""
-        cfg_dict = {cfg.id: cfg for cfg in existing_cfgs}
+        cfg_dict = {cfg.id: cfg for cfg in manual_cfgs}
         created = updated = 0
 
         for id in ids:
-            if (cfg := cfg_dict.get(id)):
-                assert getattr(cfg, prop) is None, f"Can't overwrite existing '{prop}' value for {cfg}"
-                setattr(cfg, prop, val)
+            if (manual_cfg := cfg_dict.get(id)):
+                if (manual_val := getattr(manual_cfg, prop)) and manual_val != new_val:
+                    manual_cfg._warn(f"overwriting manual '{prop}' value '{manual_val}' with '{new_val}' from configured list")
+
+                setattr(manual_cfg, prop, new_val)
                 updated += 1
             else:
-                existing_cfgs.append(cls(id=id, **{prop: val}))
+                manual_cfgs.append(cls(id=id, **{prop: new_val}))
                 created += 1
 
-        logger.info(f"Created {created} {cls.__name__} with {prop}={val}, updated {updated} existing.")
+        logger.info(f"Created {created} {cls.__name__} with {prop}={new_val}, updated {updated} existing.")
 
     @classmethod
     def set_categories(cls, cfgs: Sequence['DocCfg'], category: str | Path) -> None:

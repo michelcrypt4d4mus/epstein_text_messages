@@ -65,6 +65,12 @@ def print_all_emails_chronological(epstein_files: EpsteinFiles, printer: DocPrin
     printer.print_documents(emails)
 
 
+def print_annotated_only(epstein_files: EpsteinFiles, printer: DocPrinter):
+    docs = [d for d in epstein_files.unique_documents if d._config.note_txt and d.is_interesting]
+    logger.warning(f"Found {len(docs)} annotated documents...")
+    printer.print(docs)
+
+
 def print_curated_chronological(epstein_files: EpsteinFiles, printer: DocPrinter) -> None:
     """Print only interesting files of all types in chronological order."""
     logger.warning(f'Printing curated chronological site...')

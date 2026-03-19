@@ -833,7 +833,7 @@ EMAILS_CONFIG = [
         note=f'Nicole Junkermann / {VALAR_VENTURES} meeting',
         duplicate_ids=['EFTA02089447'],
         is_interesting=True,
-        truncate_to=1_002,
+        truncate_to=500,
     ),
     EmailCfg(
         id='EFTA00383023',
@@ -1389,7 +1389,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00959952', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA01010114', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA01903448', truncate_to=NO_TRUNCATE),
-    EmailCfg(id='EFTA00661348', truncate_to=NO_TRUNCATE),
+    EmailCfg(id='EFTA00661348', note='epstein asking Sinofssky for information on the Coinbase IPO', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA02378915', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA00676383', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA02628058', truncate_to=NO_TRUNCATE),
