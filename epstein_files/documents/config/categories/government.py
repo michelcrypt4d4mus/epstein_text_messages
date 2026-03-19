@@ -1,4 +1,4 @@
-from epstein_files.documents.config.config_builder import fbi_defense_witness, fbi_interview, fbi_tip, fbi_report, letter
+from epstein_files.documents.config.config_builder import fbi_defense_witness, fbi_interview, fbi_tip, fbi_report, grand_jury, letter
 from epstein_files.documents.config.doc_cfg import NO_TRUNCATE, SHORT_TRUNCATE_TO, DocCfg
 from epstein_files.documents.config.email_cfg import EmailCfg
 from epstein_files.people.names import *
@@ -154,7 +154,12 @@ GOVERNMENT_CFGS = [
     ),
     fbi_report('EFTA01688746'),
     fbi_report('EFTA00151754', 'declaration of Law Enforcement Officer for Victim of Trafficking', is_interesting=True),
-    fbi_report('EFTA00222943', "agent believes computers were removed from Epstein's residence"),
+    # fbi_report('EFTA00222943', "agent believes computers were removed from Epstein's residence"),
+    grand_jury(
+        'EFTA00222943',
+        note='FBI agent testimony',
+        highlight_quote="I believe that certain items were purposely removed from Mr. Epstein's home in anticipation of an execution of a search warrant",
+    ),
     fbi_report('EFTA01249591', f"allegations against {HENRY_JARECKI}", show_full_panel=True),
     fbi_report('EFTA00173569', 'hack of FBI Epstein files repository by foreign actor', is_interesting=True),
     fbi_report('EFTA00020506', highlight_quote='chauffeur also told Epstein "I have something on you remember what I buried!"'),

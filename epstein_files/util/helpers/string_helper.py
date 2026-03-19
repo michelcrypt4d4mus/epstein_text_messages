@@ -13,6 +13,8 @@ EMOJI_REGEX = re.compile(r"(?:^|\s)([:;=][-^]?[oODP()]|[oO()][-^]?[:=])(?=$|\s)"
 INTEGER_REGEX = re.compile(r'^\d+$')
 MULTINEWLINE_REGEX = re.compile(r"\n{2,}")
 MULTISPACE_REGEX = re.compile(" +")
+HAS_NUMBERED_LIST_REGEX = re.compile(r"^2\. .{,1500}\n3\. ", re.DOTALL | re.MULTILINE)
+NUMBERED_LIST_ITEM_REGEX = re.compile(r"^(\d+\. .{,1500}?)(?=\n\d+\.|\Z)", re.DOTALL | re.MULTILINE)
 PDFALYZER_IMAGE_PANEL_REGEX = re.compile(r"\n╭─* Page \d+, Image \d+.*?╯\n?", re.DOTALL)
 TIMESTAMP_SECONDS_REGEX = re.compile(r":\d{2}(\.\d+)?([-+]\d{2}:\d{2})?$")
 WHITESPACE_REGEX = re.compile(r"\s{2,}|\t|\n", re.MULTILINE)
@@ -28,6 +30,7 @@ collapse_newlines = lambda text: MULTINEWLINE_REGEX.sub('\n\n', text)
 collapse_spaces = lambda s: MULTISPACE_REGEX.sub(' ', s)
 collapse_whitespace = lambda s: WHITESPACE_REGEX.sub(' ', s).strip()
 constantize = lambda s: underscore(s.upper())
+contains_numbered_list = lambda s: bool(HAS_NUMBERED_LIST_REGEX.search(s))
 is_bool_prop = lambda prop: prop.startswith('is_')
 is_integer = lambda s: bool(INTEGER_REGEX.match(s))
 join_patterns = lambda patterns: '|'.join(patterns)
@@ -48,12 +51,22 @@ def as_pattern(s: str) -> str:
 
 
 def doublespace_lines(s: str) -> str:
-    """Doublespace \n chars if s has a high pct of long lines."""
+    """Doublespace \n chars if s has a high pct of long lines, doublespace numbered lists."""
     lines = s.split('\n')
     long_lines = [line for line in lines if len(line) > DOUBLESPACE_IF_LINE_LEN_OVER]
 
     if (len(long_lines) / len(lines)) > DOUBLESPACE_IF_LONG_LINE_PCT:
-        return s.replace('\n', '\n\n')
+        s = s.replace('\n', '\n\n')
+
+    return doublespace_numbered_lists(s)
+
+
+def doublespace_numbered_lists(s: str) -> str:
+    if contains_numbered_list(s):
+        for match in NUMBERED_LIST_ITEM_REGEX.finditer(s):
+            print(f". match: {match}, group1: {match.group(1)}")
+
+        return NUMBERED_LIST_ITEM_REGEX.sub(r"\n\1", s)
     else:
         return s
 

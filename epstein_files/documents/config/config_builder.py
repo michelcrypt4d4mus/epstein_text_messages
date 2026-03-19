@@ -98,7 +98,7 @@ def build_cfg_from_text(doc: 'Document') -> DocCfg | None:
                 case_matched = case_name
                 break
 
-        cfg = _cfg(category=Neutral.LEGAL, note=join_truthy('grand jury proceedings', case_matched, ' in '))
+        cfg = grand_jury(doc.file_id, case_matched)
     elif 'LedgerX' in text[0:500]:
         cfg = _cfg(category=Interesting.CRYPTO, note=LEDGERX_MSG)
     elif LSJE_FORM_REGEX.search(text):
@@ -177,6 +177,11 @@ def fbi_tip(id: str, about: str, **kwargs) -> DocCfg:
 
 def fedex_invoice(id: str, date: str) -> DocCfg:
     return DocCfg(id=id, author='FedEx', date=date, display_text='invoice')
+
+
+def grand_jury(id: str, case_name: str = '', note: str = '', **kwargs) -> DocCfg:
+    note_pfx = join_truthy('grand jury proceedings', case_name, ' in ')
+    return DocCfg(id=id, category=Neutral.LEGAL, note=join_truthy(note_pfx, note), **kwargs)
 
 
 def immigration_letter(id: str, author: Name, date: str = '', note: str = '', show_with_name = '', **kwargs) -> CommunicationCfg:
