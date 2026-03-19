@@ -561,7 +561,7 @@ class Document(LoggingEntity):
         if truncate_to >= len(self.text):
             return None
         else:
-            msg = f"trimmed to {truncate_to:,} characters of {self.length:,}, read the rest at {self.external_link_markup}"
+            msg = f"trimmed to {truncate_to:,} characters of {self.length:,}, read the rest at {self.file_info.external_link_markup}"
             return snip_msg_txt(msg)
 
     def truthy_props(self, prop_names: list[str]) -> DebugDict:

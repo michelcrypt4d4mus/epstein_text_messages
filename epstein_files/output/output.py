@@ -205,7 +205,7 @@ def print_document_notes(epstein_files: EpsteinFiles, printer: DocPrinter) -> No
     table = build_table(
         "Notes from The Epstein Files",
         cols=NOTES_TABLE_COLS,
-        border_style=DEFAULT_TABLE_KWARGS['border_style'],
+        border_style='grey11',
         header_style="bold",
         highlight=False,
         show_lines=True,

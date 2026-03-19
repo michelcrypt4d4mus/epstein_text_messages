@@ -112,11 +112,6 @@ def one_row_table_html(table: Table, css_props: OptionalCssProps = None) -> str:
     body_html = render_to_html(Text('', style=col1.style).append(col1._cells[0]))
     body_div = div_class(body_html, PANEL_BODY_CSS_CLASS, PANEL_BASE_PROPS)
 
-    logger.debug(f"one_row_table_html(): border_style='{table.border_style}'")
-    logger.debug(f"                      css_props: {css_props}")
-    logger.debug(f"                      border_css_props: {border_css_props(table.border_style)}")
-    logger.debug(f"                      returning div with BLACK_BG__NO_EXPAND\n")
-
     return div_class(
         join_truthy(header_div, body_div, '\n'),
         BLACK_BG__NO_EXPAND,
@@ -219,7 +214,9 @@ def table_to_html(table: Table, css_props: OptionalCssProps = None) -> str:
     else:
         title_html = ''
 
-    row_props = {'border-bottom': '1px solid dimgray'} if table.show_lines else {}
+    border_style = RichStyle(table.border_style or 'dim grey11')
+    border_color_css = {'border-color': border_style.foreground_color_hex, 'border-style': 'solid'}
+    row_props = {'border-bottom-width': '1px', **border_color_css} if table.show_lines else {}
 
     cell_props = {
         **row_props,
