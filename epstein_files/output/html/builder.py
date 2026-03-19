@@ -220,7 +220,11 @@ def table_to_html(table: Table, css_props: OptionalCssProps = None) -> str:
         title_html = ''
 
     row_props = {'border-bottom': '1px solid dimgray'} if table.show_lines else {}
-    cell_props = {**row_props, **(padding_vertical_css(MAKEUP_PADDING) if table.show_lines else {})}
+
+    cell_props = {
+        **row_props,
+        **(padding_vertical_css(MAKEUP_PADDING) if table.show_lines and '_no_pad' not in dir(table) else {})  # TODO: hacky af
+    }
 
     headers = [
         _table_cell(

@@ -403,7 +403,7 @@ class Document(LoggingEntity):
     @property
     def _summary(self) -> Text:
         """Summary of this file for logging. Subclasses should extend with a method that closes the open '['."""
-        info = self._formatted_info()
+        info = self.formatted_info()
         txt = join_texts([info.get(k) for k in ['type', 'file_id', 'timestamp_parens']])
         txt.append(' [').append(styled_key_value('size', Text(str(self.length), style='aquamarine1')))
         txt.append(", ").append(styled_key_value('lines', self.num_lines))
@@ -426,31 +426,6 @@ class Document(LoggingEntity):
             sentences += [Text('', style='italic').append(h) for h in self.subheaders]
 
         return Panel(Group(*sentences), border_style=self._class_style, expand=False)
-
-    def _formatted_info(self) -> dict[str, Text]:
-        """Summary info about this document stylized and ready to work with."""
-        info = {
-            'file_id': self.file_info.external_link(FILENAME_STYLE, id_only=True).link,
-            'type': Text('').append(self._class_name, style=self._class_style),
-            'author': self.author_txt,
-            'note': self._config.note_txt,
-        }
-
-        if self._class_name in ['DropsiteEmail', 'MessengerLogPdf']:
-            cls_name = 'Email' if self._class_name == 'DropsiteEmail' else 'MessengerLog'
-            self._warn(f'short_type')
-            info['short_type'] = Text(cls_name, self._class_style)
-        else:
-            info['short_type'] = info['type']
-
-        if self.timestamp:
-            timestamp_txt = Text(timestamp_without_zero_hour(self.timestamp), TIMESTAMP_DIM)
-            info['timestamp'] = timestamp_txt
-            info['date'] = timestamp_txt[0:10]
-            info['timestamp_parens'] = enclose(timestamp_txt, '()', SYMBOL_STYLE)
-            info['date_parens'] = enclose(timestamp_txt[0:10], '()', SYMBOL_STYLE)
-
-        return info
 
     def entity_scan(self, exclude: EntityScanArg = None, include: EntityScanArg = None) -> list[Entity]:
         """
@@ -501,6 +476,34 @@ class Document(LoggingEntity):
             margin_bottom=self.html_margin_bottom,
             subheaders=self.subheaders,
         )
+
+    def formatted_info(self) -> dict[str, Text]:
+        """Summary info about this document stylized and ready to work with."""
+        info = {
+            'file_id': self.file_info.external_link(FILENAME_STYLE, id_only=True).link,
+            'type': Text('').append(self._class_name, style=self._class_style),
+            'author': self.author_txt,
+            'note': self._config.note_txt,
+        }
+
+        if self.timestamp:
+            timestamp_txt = Text(timestamp_without_zero_hour(self.timestamp), TIMESTAMP_DIM)
+            info['timestamp'] = timestamp_txt
+            info['date'] = timestamp_txt[0:10]
+            info['timestamp_parens'] = enclose(timestamp_txt, '()', SYMBOL_STYLE)
+            info['date_parens'] = enclose(timestamp_txt[0:10], '()', SYMBOL_STYLE)
+
+        if self._class_name == 'DropsiteEmail':
+            short_type_str = 'Email'
+        elif self._class_name.startswith('MessengerLog'):
+            short_type_str = 'Text'
+        elif self._class_name == 'OtherFile':
+            short_type_str = 'Other'
+        else:
+            short_type_str = self._class_name
+
+        info['short_type'] = Text(short_type_str, self._class_style)
+        return info
 
     def lines_matching(self, _pattern: re.Pattern | str) -> list[MatchedLine]:
         """Find lines in this file matching a regex pattern."""

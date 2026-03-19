@@ -48,9 +48,8 @@ NOTES_TABLE_COLS = [
     {'name': 'Date', 'justify': 'left', 'style': TIMESTAMP_DIM},
     {'name': 'Author', 'justify': 'left', 'max_width': 20},
     # {'name': 'To', 'justify': 'left', 'min_width': min_width, 'max_width': max_width + 2},
-    {'name': 'Note', 'justify': 'left', 'min_width': 35, 'style'},
+    {'name': 'Note', 'justify': 'left', 'min_width': 32},
 ]
-
 
 T = TypeVar('T')
 
@@ -209,17 +208,19 @@ def print_document_notes(epstein_files: EpsteinFiles, printer: DocPrinter) -> No
         border_style=DEFAULT_TABLE_KWARGS['border_style'],
         header_style="bold",
         highlight=False,
+        show_lines=True,
     )
 
     for doc in epstein_files.unique_documents:
         if not (doc.is_interesting and doc._config.note_txt):
             continue
 
-        info = doc._formatted_info()
+        info = doc.formatted_info()
         row = [info.get(k, '') for k in ['file_id', 'short_type', 'date', 'author', 'note']]
         table.add_row(*row)
         notes.append(join_texts(row))
 
+    table._no_pad = True  # hacky af
     printer.print(table)
     logger.warning(f"Printed {len(notes)} interesting documents with configured notes...")
 
