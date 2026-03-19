@@ -28,7 +28,7 @@ DebugDict = dict[str, bool | datetime | set | str | Path | None]
 DuplicateType = Literal['bounced', 'earlier', 'quoted', 'redacted', 'same']
 Metadata = dict[str, bool | datetime | int | str | None | list[str | None] | dict[str, bool | str]]
 
-AUTO_QUOTE_NUM_CHARS = 1_500  # Number of chars before and after highlight_quote for auto truncation
+AUTO_QUOTE_NUM_CHARS = 1_600  # Number of chars before and after highlight_quote for auto truncation
 DOC_CHAR_RANGE = (0, 12_000)
 EMAIL_TRUNCATE_TO = int(DOC_CHAR_RANGE[1] / 3)
 SHORT_TRUNCATE_TO = int(EMAIL_TRUNCATE_TO / 3)
