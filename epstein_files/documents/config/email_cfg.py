@@ -1,8 +1,9 @@
 from dataclasses import asdict, dataclass, field, fields
+from typing import ClassVar
 
 from epstein_files.documents.config.doc_cfg import SHORT_TRUNCATE_TO
 from epstein_files.documents.config.communication_cfg import CommunicationCfg, Platform
-from epstein_files.util.helpers.rich_helpers import CharRange
+from epstein_files.util.helpers.rich_helpers import CharRangeAuto
 
 
 @dataclass(kw_only=True)
@@ -22,14 +23,20 @@ class EmailCfg(CommunicationCfg):
     has_uninteresting_bccs: bool = False
     subject: str | None = None
 
+    PREFIX_NOTE_WITH_CATEGORY: ClassVar[bool] = False
+
     def __post_init__(self):
         super().__post_init__()
+
+        if self.show_full_panel:
+            self._debug_log(f"show_full_panel=True, overriding because unecessary")  # TODO: this sucks
+            self.show_full_panel = False
 
         if self.fwded_text_after:
             self.is_valid_for_name_scan = False
 
     @property
-    def char_range(self) -> CharRange | None:
+    def char_range(self) -> CharRangeAuto | None:
         """`truncate_to` as `(0, truncate_to)` tuple if truncate_to is an `int`."""
         if super().char_range:
             return super().char_range

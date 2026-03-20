@@ -41,6 +41,15 @@ def add_constant(sequence: Sequence[int], constant: float | int) -> list[int | f
     return [s + constant for s in sequence]
 
 
+def add_lists(arr1: list[int | float] | None, arr2: list[int | float] | None) -> list[int | float]:
+    if arr1 is None and arr2:
+        return arr2
+    elif arr2 is None:
+        return arr1
+    else:
+        return [_val + arr2[i] for i, _val in enumerate(arr1)]
+
+
 def build_name_lookup(objs: list[T]) -> dict[names.Name, T]:
     """Dict of objects keyed by `name` property."""
     return {c.name: c for c in objs}

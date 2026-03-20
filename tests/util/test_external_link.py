@@ -19,7 +19,7 @@ def test_external_link():
     assert ExternalLink('foobar.com').url == 'https://foobar.com'
     assert ExternalLink('http://foobar.com').url == 'http://foobar.com'
     assert ExternalLink('https://foobar.com').url == 'https://foobar.com'
-    assert BBC_LINK.domain_link.plain == '[bbc]'
+    assert BBC_LINK.domain_link(bracketed=True).plain == '[bbc]'
 
 
 def test_extract_domain():

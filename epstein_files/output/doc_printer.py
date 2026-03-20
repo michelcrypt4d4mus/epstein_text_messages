@@ -18,7 +18,7 @@ from epstein_files.documents.email import Email
 from epstein_files.documents.emails.emailers import ENTITY_CATEGORIES, get_entities
 from epstein_files.documents.messenger_log import MessengerLog
 from epstein_files.documents.other_file import OtherFile
-from epstein_files.output.layout_elements.file_display import BasePanel, Layout, ListPanel
+from epstein_files.output.layout_elements.layout import BasePanel, Layout, ListPanel
 from epstein_files.output.html.builder import (console_buffer_to_html, render_at_obj_width, panel_to_div,
      render_to_html, text_to_div, write_templated_html)
 from epstein_files.output.html.elements import div_class, tag
@@ -26,7 +26,7 @@ from epstein_files.output.html.positioned_rich import PositionedRich, to_em, unp
 from epstein_files.output.rich import console, section_subtitle_panel
 from epstein_files.output.site.sites import Site
 from epstein_files.people.entity import Entity
-from epstein_files.util.env import args, site_config
+from epstein_files.util.env import SLOW_FILE_SECONDS, args, site_config
 from epstein_files.util.helpers.data_helpers import listify, uniq_sorted, without_falsey
 from epstein_files.util.helpers.rich_helpers import vertically_pad
 from epstein_files.util.helpers.string_helper import quote
@@ -51,13 +51,11 @@ class DocPrinter(DocTypesMixin):
 
     Args:
         epstein_files (EpsteinFiles): the data
-        collect_other_files_to_tables (bool, optional): OtherFiles will be collected into small tables if they are sequential
         html_elements (list[str]): HTML for all objects printed so far
         printed_docs (list[Document]): all Documents that have been printed so far
         printed_name_bios (set[Entity]): all the names for which biographical information has been printed already
     """
     epstein_files: 'EpsteinFiles'
-    collect_other_files_to_tables: bool = True
     html_elements: list[str] = field(default_factory=list)
     printed_entity_bios: set[Entity] = field(default_factory=set)
     _last_bio_panel = ''
@@ -92,8 +90,10 @@ class DocPrinter(DocTypesMixin):
 
     def new_entities(self, names_or_doc: PeopleBiosArg) -> list[Entity]:
         """List of names found in relation to `names_or_doc` that have not been biographically printed before."""
-        if isinstance(names_or_doc, Layout) or not names_or_doc:
+        if not names_or_doc:
             return []
+        elif isinstance(names_or_doc, Layout):
+            return self.new_entities(names_or_doc.document)
         elif isinstance(names_or_doc, Document):
             entities = names_or_doc.entity_scan(exclude=list(self.printed_entity_bios))
         else:
@@ -110,9 +110,10 @@ class DocPrinter(DocTypesMixin):
         self.print_section_subtitle('Entities With Configured Biographical Info')
 
         entity_bios = [
-            Padding(c.bio_txt, site_config.contact_list_padding)
+            Padding(entity.bio_txt, site_config.contact_list_padding)
             for category in sort_categories([c for c in ENTITY_CATEGORIES.keys()])
-            for c in ENTITY_CATEGORIES[category]
+            for entity in ENTITY_CATEGORIES[category]
+            if entity.is_interesting
         ]
 
         self.print(entity_bios)
@@ -131,8 +132,9 @@ class DocPrinter(DocTypesMixin):
     def print_documents(
         self,
         docs: Sequence[PrintableObj],
-        suppressed_as_normal: bool = False,
-        log_sfx: str = '',
+        collect_other_files_to_tables: bool = True,
+        show_suppressed: bool = False,
+        log_sfx: str = ''
     ) -> None:
         """
         Sequential suppression msgs + OtherFiles collect in queues to be printed when
@@ -140,27 +142,31 @@ class DocPrinter(DocTypesMixin):
 
         Args:
             docs (Sequence[PrintableObj]): objs to print
-            suppressed_as_normal (bool, optional): if True docs with suppression msgs will be treated like normal Documents
+            show_suppressed (bool, optional): if True docs with suppression msgs will be treated like normal Documents
+            collect_other_files_to_tables (bool, optional): OtherFiles will be collected into small tables if they are sequential
             log_sfx (str, optional): just for log messages
         """
         suppressed_docs: list[Document] = []
         process_suppressed_docs_queue = lambda: suppressed_docs.extend(self._print_suppression_msgs_queue())
         timer = Timer()
+        logger.info(f"print_documents() called with {len(docs)} docs")
 
         if (should_log_in_intervals := (len(docs) > 1000)):
             logger.info(f"{type(self).__name__}.print_documents() called with {len(docs):,} objects {log_sfx}")
 
         for i, doc in enumerate(docs, 1):
             # Handle sequences of uninteresting or otherwise suppressed docs
-            if isinstance(doc, Document) and doc.suppressed_txt and not suppressed_as_normal:
+            if isinstance(doc, Document) and doc.suppressed_txt and not show_suppressed:
                 self._log_state(doc, f"suppressing {quote(doc.suppressed_txt.plain)}")
                 self._suppressed_docs_queue.append(doc)
                 continue
 
+            doc_timer = Timer()
+            logger.info(f"Processing doc {doc}")
             process_suppressed_docs_queue()
 
             # Collect sequences of otherFile objects into a table
-            if self.collect_other_files_to_tables and isinstance(doc, OtherFile) and doc.is_valid_for_table:
+            if collect_other_files_to_tables and isinstance(doc, OtherFile) and doc.is_valid_for_table:
                 if (new_entities := self.new_entities_with_bios(doc)):
                     doc._log(f"Caching biographic panel for new entities: {[str(e) for e in new_entities]}")
                     self._cache_biographies_panel(new_entities)
@@ -170,14 +176,28 @@ class DocPrinter(DocTypesMixin):
                 continue
 
             self._print_other_files_queue()
+
+            # Change the layout for OtherFile (indented, file info panel offset intward)
+            if isinstance(doc, OtherFile):
+                doc = doc.make_layout(indent=site_config.indents.show_with)
+
+                if doc.file_info:
+                    doc.file_info_indent = doc.file_info.indent = 2
+
             self.print(doc)
 
             if should_log_in_intervals and (i % 100 == 0):
                 timer.print_at_checkpoint(f"Printed {i:,} objs of {len(docs):,} ({len(suppressed_docs):,} suppressed) {log_sfx}")
+            elif doc_timer.seconds_since_start() > SLOW_FILE_SECONDS:
+                slow_id = doc.file_id if isinstance(doc, Document) else doc.document.file_id
+                doc_timer.print_at_checkpoint(f"{slow_id} slow layout processing...")
 
+        # Clear the queues of any stragglers
         process_suppressed_docs_queue()
         self._print_other_files_queue()
-        timer.print_at_checkpoint(f"Finished printing {len(docs):,} objs ({len(suppressed_docs):,} suppressed) {log_sfx}")
+
+        if args.suppress_output:
+            timer.print_at_checkpoint(f"Finished printing {len(docs):,} objs ({len(suppressed_docs):,} suppressed) {log_sfx}")
 
     def print(self, renderables: RenderableType | Sequence[RenderableType]) -> None:
         """All things being printed should come through here, which collects both terminal and HTML output as its written."""

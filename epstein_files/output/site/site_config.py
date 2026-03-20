@@ -8,8 +8,9 @@ from typing import ClassVar
 from rich.padding import PaddingDimensions
 from rich.text import Text
 
-from epstein_files.util.constant.strings import SUBHEADER_STYLE, TIMESTAMP_STYLE
+from epstein_files.util.constant.strings import SUBHEADER_ITALIC, SUBHEADER_STYLE, TIMESTAMP_STYLE
 from epstein_files.util.external_link import link_markup
+from epstein_files.util.helpers.rich_helpers import enclose
 from epstein_files.util.helpers.string_helper import capitalize_first, iso_timestamp, starred_header, timestamp_human
 
 ALL_OTHER_FILES_MULTIPLIER = 1.5  # applied when --all-other-files is in use
@@ -34,6 +35,7 @@ class IndentCfg:
     other_files_table: int
     show_with: int
     supressed_msg: int
+    text_msgs: int
 
 
 # TODO: another thing that changes based on mobile is id_only for link texts
@@ -62,6 +64,7 @@ class MobileConfig:
         other_files_table=0,
         show_with=0,
         supressed_msg=0,
+        text_msgs=0,
     )
 
     @classmethod
@@ -73,9 +76,17 @@ class MobileConfig:
         return (0, 0, 0, cls.indents.info)
 
     @classmethod
-    def email_subheader(cls, email_type: str, author: Text, recipients: Text, timestamp: datetime | Text) -> Text:
+    def email_subheader(
+        cls,
+        email_type: str,
+        author: Text,
+        recipients: Text,
+        timestamp: datetime | Text,
+        category: Text | None = None
+    ) -> Text:
         prefix = f"{capitalize_first(email_type)} from " if email_type != 'email' else ''
-        txt = Text(prefix, SUBHEADER_STYLE).append(author)
+        txt = Text('', SUBHEADER_STYLE).append(category.append(' ') if category else Text(''))
+        txt.append(prefix, SUBHEADER_ITALIC).append(author)
 
         if isinstance(timestamp, Text):
             timestamp = timestamp
@@ -112,8 +123,9 @@ class SiteConfig(MobileConfig):
         email_body=1,
         info=1,
         other_files_table=2,
-        show_with=30,
+        show_with=8,
         supressed_msg=1,
+        text_msgs=2,
     )
 
     @classmethod
@@ -121,10 +133,18 @@ class SiteConfig(MobileConfig):
         return iso_timestamp(dt)
 
     @classmethod
-    def email_subheader(cls, email_type: str, author: Text, recipients: Text, timestamp: datetime) -> Text:
+    def email_subheader(
+        cls,
+        email_type: str,
+        author: Text,
+        recipients: Text,
+        timestamp: datetime,
+        category: Text | None = None
+    ) -> Text:
         return super().email_subheader(
             f"OCR text of {email_type}",
             author,
             recipients,
-            Text(f" probably sent at ").append(timestamp_human(timestamp), style=TIMESTAMP_STYLE)
+            Text(f" probably sent at ").append(timestamp_human(timestamp), style=TIMESTAMP_STYLE),
+            category,
         )

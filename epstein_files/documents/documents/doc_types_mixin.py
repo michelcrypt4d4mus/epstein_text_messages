@@ -62,6 +62,10 @@ class DocTypesMixin(ABC):
         return Email.filter_for_type(self.documents)
 
     @property
+    def emails_with_attachments(self) -> list[Email]:
+        return [e for e in self.emails if e.attached_docs]
+
+    @property
     def imessage_logs(self) -> list[MessengerLog]:
         return MessengerLog.filter_for_type(self.documents)
 
@@ -91,7 +95,7 @@ class DocTypesMixin(ABC):
     @property
     def non_attachments(self) -> Sequence[OtherFile]:
         """Exclude `OtherFile` objs that are attached to `Email` objects."""
-        return [d for d in self.other_files if not d._config.attached_to_email_id]
+        return [d for d in self.other_files if not d.is_email_attachment]
 
     @property
     def non_json_other_files(self) -> list[OtherFile]:
@@ -113,6 +117,10 @@ class DocTypesMixin(ABC):
     def unique_documents(self) -> Sequence[Document]:
         """Excludes duplicates and email attachments."""
         return Document.without_dupes(self.documents)
+
+    @property
+    def unique_doj_files(self) -> Sequence[DojFile]:
+        return Document.without_dupes(self.doj_files)
 
     @property
     def unique_emails(self) -> list[Email]:

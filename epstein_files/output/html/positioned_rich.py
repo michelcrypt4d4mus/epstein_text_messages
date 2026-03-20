@@ -8,6 +8,7 @@ from rich.padding import Padding, PaddingDimensions
 from rich.table import Table
 from rich.text import Text
 
+from epstein_files.util.helpers.data_helpers import add_lists
 from epstein_files.util.logging import logger
 
 CssUnit = int | str
@@ -71,7 +72,7 @@ class PositionedRich:
             positioned.align = obj.align
             return cls.from_unwrapped_obj(obj.renderable, positioned)
         elif isinstance(obj, Padding):
-            positioned.margin = [obj.top, obj.right, obj.bottom, obj.left]
+            positioned.margin = add_lists(positioned.margin, [obj.top, obj.right, obj.bottom, obj.left])
             return cls.from_unwrapped_obj(obj.renderable, positioned)
         else:
             positioned.obj = obj  # End recursion and set self.obj if obj is not an Align or Padding

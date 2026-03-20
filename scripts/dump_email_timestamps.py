@@ -39,8 +39,8 @@ ids = UNINTERESTING_OTHER_FILE_IDS
 
 
 for doc in epstein_files.other_files:
-    if doc._config.note.startswith('grand jury'):
-        doc.print_truncated_to(3000)
+    if doc._config.highlight_quote and not doc._config.truncate_to:
+        console.print(doc)
 
 
 sys.exit()

@@ -18,7 +18,6 @@ from epstein_files.documents.config.categories.girls import GIRLS_CFGS
 from epstein_files.documents.config.categories.government import GOVERNMENT_CFGS
 from epstein_files.documents.config.categories.junk import JUNK_CFGS
 from epstein_files.documents.config.categories.legal import LEGAL_CFGS
-from epstein_files.documents.config.categories.letter import LETTER_CFGS
 from epstein_files.documents.config.categories.misc import MISC_CFGS
 from epstein_files.documents.config.categories.money import MONEY_CFGS
 from epstein_files.documents.config.categories.phone_bill import PHONE_BILL_CFGS
@@ -30,7 +29,7 @@ from epstein_files.documents.config.categories.social import SOCIAL_CFGS, TWEET_
 from epstein_files.documents.config.config_builder import victim_diary
 from epstein_files.documents.config.doc_cfg import DocCfg
 from epstein_files.documents.config.email_cfg import EmailCfg
-from epstein_files.documents.documents.categories import CONSTANT_CATEGORIES, Interesting, Neutral
+from epstein_files.documents.documents.categories import Category, Interesting, Neutral, Uninteresting
 from epstein_files.people.names import *
 from epstein_files.util.constant.strings import *
 from epstein_files.util.helpers.string_helper import join_truthy, quote
@@ -329,6 +328,7 @@ UNINTERESTING_OTHER_FILE_IDS = [
 
 # Not uninteresting enough to be permanently marked as such but not good enough for --output-chrono
 NOT_CHRONOLOGICAL_VIEW_IDS = [cfg.id for cfg in FLIGHT_LOG_CFGS] + [
+    'EFTA00006069',  # W-2 for employee
     'EFTA00507334',  # skype log w/lots of people
     'EFTA00751119',  # Valdson
     # Karim Wade
@@ -339,6 +339,9 @@ NOT_CHRONOLOGICAL_VIEW_IDS = [cfg.id for cfg in FLIGHT_LOG_CFGS] + [
     # Peter Mandelson
     '029914',
     '033338',
+    # Ike Groff
+    'EFTA02189550',
+    #
     'EFTA00582504',
     '024432',
     '019352',
@@ -470,11 +473,19 @@ NOT_CHRONOLOGICAL_VIEW_IDS = [cfg.id for cfg in FLIGHT_LOG_CFGS] + [
     # '024185', # UN
 ]
 
+# These are the categories we expect to see as a [category]_CFGS variable in constants.py
+CATEGORIES_WITH_CFGS_VAR = [
+    c for c in Category if c not in [
+        Neutral.BUSINESS,
+        Neutral.PRESSER,
+        Uninteresting.JSON,
+    ]
+]
 
 # Build config list by combining [BLAH]_CFGS variables and setting category to [BLAH] for each
 CATEGORY_CONFIGS: list[DocCfg] = []
 
-for category in CONSTANT_CATEGORIES:
+for category in CATEGORIES_WITH_CFGS_VAR:
     if (var_name := f"{category.upper()}{CFGS_SUFFIX}") not in locals():
         logger.error(f"Document config variable '{var_name}' is not defined!")
         continue

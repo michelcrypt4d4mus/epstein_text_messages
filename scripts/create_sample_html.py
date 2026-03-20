@@ -39,7 +39,7 @@ def print_sample_people(num_people_to_print: int = 3):
     good_sample_people = [p for p in epstein_files.emailers if 5 <= len(p.unique_emails) <= 15]
 
     for i, person in enumerate(good_sample_people[0:num_people_to_print], 1):
-        person.print_emails(printer)
+        person.print_docs(printer)
 
 
 def print_test_panels():
@@ -49,6 +49,7 @@ def print_test_panels():
 
 
 doc_types_to_sample = [
+    [d for d in epstein_files.documents if d._config.background_color],
     [e for e in epstein_files.emails if 'https' in e.text[0:1500]],
     [o for o in epstein_files.other_files if o.config and o.config.show_full_panel],
     [d for d in epstein_files._documents if d.suppressed_txt],

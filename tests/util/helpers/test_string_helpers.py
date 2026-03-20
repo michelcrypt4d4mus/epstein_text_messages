@@ -1,11 +1,36 @@
-from epstein_files.util.helpers.string_helper import as_pattern, extract_emojis, has_line_starting_with, indented
+from epstein_files.util.helpers.string_helper import doublespace_numbered_lists, as_pattern, extract_emojis, has_line_starting_with, indented
 
 EMAIL_TEXT = ">From: umar ovk.ru\n>To:\n>Subject:"
+
+NUMBERED_LIST = """
+Lorem Ipsum ipsum dipsum
+Lorem Ipsum ipsum dipsum
+1. Solo no goes
+2. Unmoving
+3. Sorry
+4. For All
+5. the fish"""
 
 
 def test_as_pattern():
     assert as_pattern('nas - illmatic') == r'nas[-_.\s]*-[-_.\s]*illmatic'
     assert as_pattern('nas     illmatic') == r"nas[-_.\s]*illmatic"
+
+
+def test_doublespace_numbered_lists():
+    assert doublespace_numbered_lists(NUMBERED_LIST) == """
+Lorem Ipsum ipsum dipsum
+Lorem Ipsum ipsum dipsum
+
+1. Solo no goes
+
+2. Unmoving
+
+3. Sorry
+
+4. For All
+
+5. the fish"""
 
 
 def test_extract_emojis():

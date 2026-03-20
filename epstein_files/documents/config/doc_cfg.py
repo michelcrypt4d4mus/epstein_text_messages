@@ -3,7 +3,7 @@ from copy import deepcopy
 from dataclasses import asdict, dataclass, field, fields
 from datetime import datetime
 from pathlib import Path
-from typing import Any, Generator, Literal, Self, Sequence
+from typing import Any, ClassVar, Generator, Literal, Self, Sequence
 
 from dateutil import tz
 from dateutil.parser import parse
@@ -19,7 +19,7 @@ from epstein_files.util.env import args, site_config
 from epstein_files.util.helpers.data_helpers import coerce_utc_strict, without_falsey
 from epstein_files.util.helpers.file_helper import is_doj_file
 from epstein_files.util.external_link import ExternalLink
-from epstein_files.util.helpers.rich_helpers import CharRange
+from epstein_files.util.helpers.rich_helpers import CharRangeAuto, enclose
 from epstein_files.util.helpers.string_helper import collapse_whitespace, is_bool_prop, join_truthy, quote
 from epstein_files.util.logging import logger
 from epstein_files.util.logging_entity import LoggingEntity
@@ -28,11 +28,13 @@ DebugDict = dict[str, bool | datetime | set | str | Path | None]
 DuplicateType = Literal['bounced', 'earlier', 'quoted', 'redacted', 'same']
 Metadata = dict[str, bool | datetime | int | str | None | list[str | None] | dict[str, bool | str]]
 
+AUTO_QUOTE_NUM_CHARS = 1_600  # Number of chars before and after highlight_quote for auto truncation
 DOC_CHAR_RANGE = (0, 12_000)
 EMAIL_TRUNCATE_TO = int(DOC_CHAR_RANGE[1] / 3)
 SHORT_TRUNCATE_TO = int(EMAIL_TRUNCATE_TO / 3)
 WHOLE_FILE_CHAR_RANGE = (0, 10_000_000_000)
 NO_TRUNCATE = -1
+AUTO_TRUNCATE = -2
 MAX_REPR_LINE_LENGTH = 135
 
 CHECK_LINK_FOR_DETAILS = 'not shown here, check original PDF for details'
@@ -94,7 +96,6 @@ NON_METADATA_FIELDS = [
 # Categories where we want to include the category name at start of the description string
 CATEGORY_PREAMBLES = {
     Interesting.DIARY: VICTIM_DIARY,
-    Interesting.REPUTATION: REPUTATION_MGMT,
     Neutral.DEPOSITION: 'deposition of',
     Neutral.FLIGHT_LOG: Neutral.FLIGHT_LOG.replace('_', ' '),
     Neutral.PRESSER: Neutral.PRESSER.replace('_', ' '),
@@ -104,7 +105,9 @@ CATEGORY_PREAMBLES = {
 }
 
 SHORT_TRUNCATE_CATEGORIES = [
+    Uninteresting.ACADEMIA,
     Uninteresting.ARTICLE,
+    Uninteresting.BOOK,
 ]
 
 
@@ -174,11 +177,16 @@ class DocCfg(LoggingEntity):
     url: str = ''
     url_link_text: str = ''
 
+    # Class var overridden by EmailCfg (email notes are shown in header bar so they prefix the subheader instead)
+    PREFIX_NOTE_WITH_CATEGORY: ClassVar[bool] = True
+
     def __post_init__(self):
         if self.id in self.duplicate_ids:
             raise ValueError(f"{self.id} is a duplicate of itself!")
         elif self.truncate_to is not None and not isinstance(self.truncate_to, (int, tuple)):
             raise ValueError(f"{self.id} truncate_to ({type(self.truncate_to).__name__}, value={self.truncate_to})")
+        elif self.truncate_to == AUTO_TRUNCATE and not self.highlight_quote:
+            raise ValueError(f"{self.id} auto truncation requires a configured highlight_quote")
         elif 'efta' in self.id:
             self._warn(f"id should not be lowercase: '{self.id}'")
             self.id = self.id.upper()
@@ -187,13 +195,14 @@ class DocCfg(LoggingEntity):
 
         # background_color, highlight_quote, or a tuple truncate_to set show_full_panel to true
         if self.background_color or self.highlight_quote or isinstance(self.truncate_to, tuple):
-            self.show_full_panel = True
+            self.show_full_panel = True  # TODO: this is immediately set back to False in EmailCfg which sucks
 
             if self.highlight_quote:
-                description_quote = collapse_whitespace(self.highlight_quote.replace('>', ''))
-                self.note = join_truthy(self.note, f'{QUOTE_PREFIX}: {quote(description_quote)}', ', ')
+                quote_note = collapse_whitespace(self.highlight_quote.replace('>', ''))
+                joiner = ' ' if self.note.endswith('?') else ', '
+                self.note = join_truthy(self.note, f'{QUOTE_PREFIX}: {quote(quote_note)}', joiner)
 
-        # show_full_panel sets is_interesting=10
+        # show_full_panel (and highlight_quote) set is_interesting=10
         if self.show_full_panel and self.is_interesting is not False:
             self.is_interesting = 10
 
@@ -205,18 +214,25 @@ class DocCfg(LoggingEntity):
         return self.author or ''
 
     @property
+    def category_bracketed(self) -> Text | None:
+        """Bracketed version of category (if there is one)."""
+        return enclose(self.category_txt, '[]') if self.category else None
+
+    @property
     def category_txt(self) -> Text:
         """Returns '???' for missing category."""
         from epstein_files.output.highlight_config import styled_category
         return styled_category(self.category)
 
     @property
-    def char_range(self) -> CharRange | None:
+    def char_range(self) -> CharRangeAuto | None:
         """`truncate_to` as `(0, truncate_to)` tuple if truncate_to is an `int`."""
         if args.truncate:
             return (0, args.truncate)
         elif args.whole_file or self.truncate_to == NO_TRUNCATE:
             return WHOLE_FILE_CHAR_RANGE
+        elif self.truncate_to == AUTO_TRUNCATE:
+            return 'auto'
         elif self.truncate_to is None:
             if self.is_interesting:
                 return WHOLE_FILE_CHAR_RANGE
@@ -250,7 +266,7 @@ class DocCfg(LoggingEntity):
         elif self.category == Neutral.PRESSER:
             description = join_truthy(preamble, self.note, ' announcing ')  # note reversed args
             description = join_truthy(author, description)
-        elif self.category == Interesting.REPUTATION or (self.category == Neutral.LEGAL and 'v.' in self.author_str):
+        elif self.category == Neutral.LEGAL and 'v.' in self.author_str:
             author_separator = ': '
         elif self.category in [Category.RESUMÉ, Category.TWEET]:
             preamble_separator = 'of' if self.category == Category.RESUMÉ else 'by'
@@ -290,7 +306,7 @@ class DocCfg(LoggingEntity):
     @property
     def external_link_txt(self) -> Text | None:
         """Link to more info about this document (almost unused)."""
-        return self.external_link.domain_link if self.external_link else None
+        return self.external_link.domain_link(bracketed=True) if self.external_link else None
 
     @property
     def has_any_info(self) -> bool:
@@ -302,17 +318,23 @@ class DocCfg(LoggingEntity):
         """`display_text` longer than other_files_preview_chars is considered a drop in replacement, not a short description."""
         return bool(self.display_text and len(self.display_text) > MobileConfig.other_files_preview_chars)
 
-    @property
-    def note_txt(self) -> Text | None:
+    def note_txt(self, include_category: bool = True) -> Text | None:
         """Add formatting to `self.complete_description`."""
+        if include_category and self.PREFIX_NOTE_WITH_CATEGORY and self.category_bracketed:
+            txt = self.category_bracketed.append(' ')
+        else:
+            txt = None
+
         if self.complete_description:
-            txt = Text(self.complete_description, NOTE_STYLE)
+            txt = (txt or Text('')).append(self.complete_description, NOTE_STYLE)
+        else:
+            return txt
 
-            if self.external_link_txt:
-                txt.append(' ').append(self.external_link_txt)
+        if self.external_link_txt:
+            txt.append(' ').append(self.external_link_txt)
 
-            from epstein_files.output.epstein_highlighter import non_epstein_highlighter
-            return non_epstein_highlighter(txt)
+        from epstein_files.output.epstein_highlighter import non_epstein_highlighter
+        return non_epstein_highlighter(txt)
 
     @property
     def replacement_preview_text(self) -> str:
@@ -422,7 +444,7 @@ class DocCfg(LoggingEntity):
         """The char range that should be shown in `OtherFile` rollup tables."""
         if self.num_preview_chars:
             return (0, self.num_preview_chars)
-        elif self.category == Uninteresting.BOOK:
+        elif self.category in SHORT_TRUNCATE_CATEGORIES:
             return (0, int(site_config.other_files_preview_chars / 2))
         else:
             return (0, site_config.other_files_preview_chars)

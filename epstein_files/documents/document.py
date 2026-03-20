@@ -19,8 +19,8 @@ from rich.panel import Panel
 from rich.text import Text
 from rich.table import Table
 
-from epstein_files.documents.config.doc_cfg import (DOC_CHAR_RANGE, EMAIL_TRUNCATE_TO, DUPE_TYPE_STRS,
-     NO_TRUNCATE, DebugDict, DocCfg, Metadata)
+from epstein_files.documents.config.doc_cfg import (AUTO_QUOTE_NUM_CHARS, DOC_CHAR_RANGE, EMAIL_TRUNCATE_TO,
+     DUPE_TYPE_STRS, NO_TRUNCATE, WHOLE_FILE_CHAR_RANGE, DebugDict, DocCfg, Metadata)
 from epstein_files.documents.config.email_cfg import EmailCfg
 from epstein_files.documents.documents.file_info import FileInfo
 from epstein_files.documents.documents.search_result import MatchedLine
@@ -29,7 +29,7 @@ from epstein_files.documents.emails.emailers import get_entities
 from epstein_files.documents.emails.email_header import DETECT_EMAIL_REGEX
 from epstein_files.output.highlight_config import HIGHLIGHTED_ENTITIES, get_style_for_category, get_style_for_name, styled_name
 from epstein_files.output.html.builder import VERTICAL_MARGIN_EMS
-from epstein_files.output.layout_elements.file_display import BasePanel, Layout
+from epstein_files.output.layout_elements.layout import BasePanel, Layout
 from epstein_files.output.rich import (INFO_STYLE, NA_TXT, SYMBOL_STYLE, add_cols_to_table, build_table, console,
      styled_key_value, prefix_with, snip_msg_txt, styled_dict)
 from epstein_files.output.site.sites import EXTRACTS_BASE_URL
@@ -50,6 +50,7 @@ from epstein_files.util.logging_entity import LoggingEntity
 
 CLOSE_PROPERTIES_CHAR = ']'
 HOUSE_OVERSIGHT = HOUSE_OVERSIGHT_PREFIX.replace('_', ' ').strip()
+DOC_PANEL_BG_COLOR = 'grey7'
 
 FILENAME_MATCH_STYLES = [
     'dark_green',
@@ -189,8 +190,19 @@ class Document(LoggingEntity):
     @property
     def char_range_to_display(self) -> CharRange | None:
         """Index of first and last characters to show when printing this document."""
-        if self._config.char_range:
-            return self._config.char_range
+        if (char_range := self._config.char_range) and char_range == 'auto':
+            self._warn(f"Computing auto range for highlighted quote..")
+            quote_regex = re.compile(self._config.highlighted_pattern, re.IGNORECASE)
+
+            if (quote_match := quote_regex.search(self.text)):
+                self._debug_log(f"auto truncate quote_match: {quote_match}")
+                start_idx = max(quote_match.start() - AUTO_QUOTE_NUM_CHARS, 0)
+                return (start_idx, quote_match.end() + AUTO_QUOTE_NUM_CHARS)
+            else:
+                logger.error(f"Couldn't locate quote {quote(self._config.highlight_quote)} in text!")
+                return WHOLE_FILE_CHAR_RANGE
+        else:
+            return char_range
 
     @property
     def display_text(self) -> str:
@@ -238,6 +250,11 @@ class Document(LoggingEntity):
         return VERTICAL_MARGIN_EMS
 
     @property
+    def is_email_attachment(self) -> bool:
+        """True if this `Document` appears in an `Email` object's `attached_docs` list."""
+        return bool(self._config.attached_to_email_id)
+
+    @property
     def is_duplicate(self) -> bool:
         return bool(self._config.duplicate_of_id)
 
@@ -265,7 +282,7 @@ class Document(LoggingEntity):
         """
         if (is_of_interest := self._config.is_of_interest) is not None:
             return is_of_interest
-        elif self._config.attached_to_email_id:
+        elif self.is_email_attachment:
             return False
         elif self.author in UNINTERESTING_AUTHORS:
             return False
@@ -335,7 +352,7 @@ class Document(LoggingEntity):
         if args.char_nums:
             pretty_txt = self._inject_line_numbers(pretty_txt, args.char_nums)
 
-        if (footer_txt := self.trimmed_chars_msg(char_range[1])):
+        if (footer_txt := self._trimmed_chars_msg(char_range[1])):
             pretty_txt.append('...\n\n').append(footer_txt)
 
         return pretty_txt
@@ -348,7 +365,7 @@ class Document(LoggingEntity):
     @property
     def subheaders(self) -> list[Text]:
         """0 to 2 sentences containing the `subheader_info` and any configured `note` text."""
-        return without_falsey([self.subheader_info, self._config.note_txt])
+        return without_falsey([self.subheader_info, self._config.note_txt()])
 
     @property
     def suppressed_txt(self) -> Text | None:
@@ -466,19 +483,25 @@ class Document(LoggingEntity):
         """Should be implemented in subclasses."""
         return None
 
-    def make_layout(self, align: JustifyMethod | None = None) -> Layout:
+    def make_layout(
+        self,
+        justify: JustifyMethod = 'default',
+        indent: int = 0,
+        background_color: str = ''
+    ) -> Layout:
         """Allows for proper right vs. left justify."""
         return Layout(
-            background_color=self._config.background_color,
+            background_color=self._config.background_color or background_color or DOC_PANEL_BG_COLOR,
             body_panel=BasePanel(
                 border_style=self.border_style,
                 text=self.prettified_txt,
                 title=Text(f"({self.panel_title_timestamp})", style='dim') if self.panel_title_timestamp else None,
             ),
+            body_indent=site_config.indents.info,
             document=self,
             file_info=self.file_id_panel,
-            indent=site_config.indents.info,
-            justify=align,
+            indent=indent,
+            justify=justify,
             margin_bottom=self.html_margin_bottom,
             subheaders=self.subheaders,
         )
@@ -489,7 +512,7 @@ class Document(LoggingEntity):
             'file_id': self.file_info.external_link(FILENAME_STYLE, id_only=True).link,
             'type': Text('').append(self._class_name, style=self._class_style),
             'author': self.author_txt,
-            'note': self._config.note_txt,
+            'note': self._config.note_txt(False),
         }
 
         if self.timestamp:
@@ -515,6 +538,11 @@ class Document(LoggingEntity):
         """Find lines in this file matching a regex pattern."""
         pattern = patternize(_pattern)
         return [MatchedLine(line, i) for i, line in enumerate(self.lines) if pattern.search(line)]
+
+    @property
+    def participants(self) -> set[Name]:
+        """Author if exists. Overridden in subclasses."""
+        return set([self.author] if self.author else [])
 
     def print_truncated_to(self, truncate_to: int) -> None:
         """Temporarily set args.truncate and print."""
@@ -561,14 +589,6 @@ class Document(LoggingEntity):
     def to_html(self) -> str:
         # TODO: this does not include the timestamp for OtherFiles!
         return self.make_layout().to_html()
-
-    def trimmed_chars_msg(self, truncate_to: int) -> Text | None:
-        """Link to source URL that will replace the text after the truncation point."""
-        if truncate_to < len(self.text) and not self._config.display_text:  # replacement text should not appear if display_text override is configured
-            msg = f"trimmed to {truncate_to:,} characters of {self.length:,}, " \
-                  f"read the rest at {self.file_info.external_link_markup(self.author_style)}"
-
-            return snip_msg_txt(msg)
 
     def truthy_props(self, prop_names: list[str]) -> DebugDict:
         """Return key/value pairs but only if the value is truthy."""
@@ -679,6 +699,14 @@ class Document(LoggingEntity):
             return Text('')  # Empty Text object makes sure the whole string starts with default no-style
 
         return snip_msg_txt(f'trimmed first {cutoff:,} characters', EXCERPT_STYLE).append('\n\n...')
+
+    def _trimmed_chars_msg(self, truncate_to: int) -> Text | None:
+        """Link to source URL that will replace the text after the truncation point."""
+        if truncate_to < len(self.text) and not self._config.display_text:  # replacement text should not appear if display_text override is configured
+            msg = f"trimmed to {truncate_to:,} characters of {self.length:,}, " \
+                  f"read the rest at {self.file_info.external_link_markup(self.author_style)}"
+
+            return snip_msg_txt(msg)
 
     def _write_clean_text(self, output_path: Path) -> None:
         """Write self.text to 'output_path'. Used only for diffing files."""

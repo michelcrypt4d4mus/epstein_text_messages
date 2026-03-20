@@ -111,6 +111,11 @@ def test_no_files_after_2025(epstein_files):
     assert len(bad_docs) == 0
 
 
+def test_other_files_for(epstein_files):
+    svet_files = epstein_files.other_files_for(SVETLANA_POZHIDAEVA)
+    assert len(svet_files) == 9
+
+
 def test_signature_substitutions(epstein_files):
     substitution_counts = epstein_files.email_signature_substitution_counts()
     assert_higher_counts(substitution_counts, SIGNATURE_SUBSTITUTION_COUNTS)

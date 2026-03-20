@@ -12,12 +12,13 @@ from epstein_files.documents.config.doc_cfg import Metadata
 from epstein_files.documents.emails.constants import FALLBACK_TIMESTAMP
 from epstein_files.documents.imessage.text_message import TextMessage
 from epstein_files.output.epstein_highlighter import highlighter
-from epstein_files.output.layout_elements.file_display import Layout, ListPanel, JustifyMethod
+from epstein_files.output.layout_elements.layout import Layout, ListPanel, JustifyMethod
 from epstein_files.output.highlight_config import styled_name
 from epstein_files.output.rich import LAST_TIMESTAMP_STYLE, build_table
 from epstein_files.people.interesting_people import PERSONS_OF_INTEREST
 from epstein_files.people.names import JEFFREY_EPSTEIN, Name
 from epstein_files.util.constant.strings import AUTHOR, TIMESTAMP_STYLE
+from epstein_files.util.env import site_config
 from epstein_files.util.helpers.data_helpers import coerce_utc_strict, days_between, days_between_str, flatten, sort_dict
 from epstein_files.util.helpers.string_helper import iso_timestamp
 from epstein_files.util.logging import logger
@@ -98,17 +99,25 @@ class MessengerLog(Communication):
 
         raise RuntimeError(f"{self}: No timestamp found!")
 
-    def make_layout(self, align: JustifyMethod | None = None) -> Layout:
+    def make_layout(
+        self,
+        justify: JustifyMethod = 'default',
+        indent: int = 0,
+        background_color: str = ''
+    ) -> Layout:
         """`FileDisplay` object that controls how this object is presented."""
         return Layout(
+            background_color=self._config.background_color or background_color,
+            body_indent=site_config.indents.info,
             body_panel=ListPanel(
                 border_style=self.border_style,
                 text=[msg.__rich__() for msg in self.messages],
             ),
             document=self,
             file_info=self.file_id_panel,
+            indent=indent,
+            justify=justify,
             subheaders=self.subheaders,
-            indent=1,  # TODO: shouldn't always be 1?
         )
 
     def first_message_at(self, name: Name) -> datetime:

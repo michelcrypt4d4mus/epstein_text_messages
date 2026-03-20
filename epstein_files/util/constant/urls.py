@@ -127,6 +127,15 @@ CRYPTADAMUS_SOCIAL_LINKS = [
     ExternalLink.social_link(GH_PROJECT_URL),
 ]
 
+# biographical links
+DITE_ANATA_JUILLIARD_URL = 'https://usatoday.com/story/news/politics/2026/02/19/jeffrey-epstein-emails-files-power-for-benefit/88701802007/'
+
+EPSTEIN_DOCTORS_LINKS = [
+    'https://www.nytimes.com/2026/02/28/us/jeffrey-epstein-doctors.html?unlocked_article_code=1.PlA.f4B2.BgLoXD-aVKkw&smid=url-share',
+    'https://www.bloomberg.com/news/features/2026-02-28/epstein-emails-show-reliance-on-eva-dubin-mount-sinai-in-doj-files',
+]
+
+
 # Misc
 PDF_MIME_TYPE = {'Accept': 'application/pdf'}
 URL_SIGNIFIERS = ['?amp', 'amp?', 'cd=', 'click', 'CMP=', 'contentId', 'ft=', 'gclid', 'htm', 'mp=', 'keywords=', 'Id=', 'module=', 'mpweb', 'nlid=', 'ref=', 'smid=', 'sp=', 'usg=', 'utm']
@@ -160,7 +169,7 @@ rollcall_doc_url = lambda file_stem: build_doc_url(DOC_LINK_BASE_URLS[ROLLCALL],
 search_twitter_url = lambda txt: f"{X_BASE_URL}/search?q={urllib.parse.quote(txt)}&src=typed_query&f=live"
 
 # Wikipedia
-wikipedia_url = lambda s: f"https://en.wikipedia.org/wiki/" + s.replace(' ', '_')
+wikipedia_url = lambda s: f"https://en.wikipedia.org/wiki/" + s.replace(' ', '_').replace('-', '_')
 
 
 PERSON_LINK_BUILDERS: dict[EpsteinSite, Callable[[str], str]] = {

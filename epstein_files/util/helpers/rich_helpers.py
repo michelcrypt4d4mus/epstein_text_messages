@@ -3,7 +3,7 @@ Small methods for building rich text constructs.
 """
 import os
 from abc import ABC, abstractmethod
-from typing import Sequence, TypeVar
+from typing import Literal, Sequence, TypeVar
 
 from rich.padding import Padding
 from rich.text import Text, TextType
@@ -41,7 +41,7 @@ class TextCast(ABC):
     def __rich__(self) -> Text:
         pass
 
-
+CharRangeAuto = tuple[int, int] | Literal['auto']
 CharRange = tuple[int, int]
 Textish = TextType | TextCast
 TextVar = TypeVar('TextVar', bound=TextType)

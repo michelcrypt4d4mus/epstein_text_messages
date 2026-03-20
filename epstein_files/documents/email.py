@@ -33,7 +33,7 @@ from epstein_files.output.epstein_highlighter import highlighter
 from epstein_files.output.highlight_config import HIGHLIGHTED_NAMES, get_style_for_name
 from epstein_files.output.html.builder import table_to_html
 from epstein_files.output.html.positioned_rich import to_em
-from epstein_files.output.layout_elements.file_display import Layout, JustifyMethod
+from epstein_files.output.layout_elements.layout import Layout, JustifyMethod
 from epstein_files.output.rich import DEFAULT_TABLE_KWARGS, build_table, styled_key_value
 from epstein_files.util.constant.strings import APPEARS_IN, ARCHIVE_LINK_COLOR, REDACTED, TIMESTAMP_DIM, OcrRepair
 from epstein_files.util.constant.urls import URL_SIGNIFIERS
@@ -471,8 +471,13 @@ class Email(Communication):
         if self._config.author_uncertain:
             author_txt += Text(f" {QUESTION_MARKS}", style=self.author_style)
 
-        prefix = 'fwded article' if self.is_fwded_article else 'email'
-        return site_config.email_subheader(prefix, author_txt, self.recipients_txt(), self.timestamp)
+        return site_config.email_subheader(
+            'fwded article' if self.is_fwded_article else 'email',
+            author_txt,
+            self.recipients_txt(),
+            self.timestamp,
+            self._config.category_bracketed
+        )
 
     @property
     def subject(self) -> str:
@@ -570,14 +575,28 @@ class Email(Communication):
 
         return FALLBACK_TIMESTAMP
 
-    def make_layout(self, align: JustifyMethod | None = None) -> Layout:
+    def make_layout(
+        self,
+        justify: JustifyMethod = 'default',
+        indent: int = site_config.indents.info,
+        background_color: str = ''
+    ) -> Layout:
         """Allows for proper right vs. left justify."""
+        table = self._body_as_table()
+        table_bg = self._config.background_color or background_color
+
+        if table_bg:
+            bg_style = f"on {table_bg}" if table_bg else table.style
+            self._debug_log(f"setting table bg to '{bg_style}'")
+            table.rows[0].style = bg_style
+
         return Layout(
-            body_panel=self._body_as_table(),
+            background_color=self._config.background_color or background_color,
+            body_panel=table,
             document=self,
             file_info=self.file_id_panel,
-            indent=site_config.indents.info,
-            justify=align,
+            body_indent=indent,
+            justify=justify,
             margin_bottom=self.html_margin_bottom,
             subheaders=self.subheaders,
         )
@@ -616,17 +635,19 @@ class Email(Communication):
             return OtherFile.files_preview_table(self.attached_docs, title=attachments_table_title)
 
     def _body_as_table(self) -> Table:
-        """Renders the info text as a top row in a table-ish view."""
-        note_txt = Text('', justify='right').append(self._config.note_txt) if self._config.note_txt else ''
+        """Single column table that looks like a panel. Renders note as top row in a table-ish view."""
+        if (note_txt := self._config.note_txt()):  # The configured note is the column "header" in a one column table.
+            note_txt = Text('', justify='right').append(note_txt)
 
         panel = Table(
             border_style=self.border_style,
             box=box.ROUNDED,
             header_style='on gray11',
             show_header=bool(note_txt),
+            style=f"on {self._config.background_color}" if self._config.background_color else '',
         )
 
-        panel.add_column(note_txt)
+        panel.add_column(note_txt or '')
         panel.add_row(self.prettified_txt)
         return panel
 

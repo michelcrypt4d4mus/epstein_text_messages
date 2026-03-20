@@ -16,7 +16,7 @@ from epstein_files.documents.messenger_log import MessengerLog
 from epstein_files.documents.other_file import FIRST_FEW_LINES, OtherFile
 from epstein_files.epstein_files import EpsteinFiles
 from epstein_files.output.doc_printer import DocPrinter
-from epstein_files.output.layout_elements.file_display import Layout
+from epstein_files.output.layout_elements.layout import Layout
 from epstein_files.output.epstein_highlighter import highlighter
 from epstein_files.output.rich import *
 from epstein_files.output.site.internal_links import (AUTHORS_USING_SIGNATURES, FILES_THAT_ARE_NEITHER_EMAILS_NOR,
@@ -55,6 +55,17 @@ NOTES_TABLE_COLS = [
 T = TypeVar('T')
 
 
+def print_annotated_only(epstein_files: EpsteinFiles, printer: DocPrinter):
+    docs = [
+        d for d in epstein_files.unique_documents
+        if d._config.note_txt(include_category=False) and d.is_interesting and d._config.is_in_chrono is not False
+    ]
+
+    logger.warning(f"Found {len(docs)} annotated documents...")
+    printer.print_section_subtitle('Epstein Documents Worthy of Being Annotated')
+    printer.print_documents(docs)
+
+
 def print_all_emails_chronological(epstein_files: EpsteinFiles, printer: DocPrinter) -> None:
     """Print all non-mailing list emails in chronological order."""
     emails = Document.sort_by_timestamp([e for e in epstein_files.unique_emails if not e.is_mailing_list])
@@ -66,41 +77,26 @@ def print_all_emails_chronological(epstein_files: EpsteinFiles, printer: DocPrin
     printer.print_documents(emails)
 
 
-def print_annotated_only(epstein_files: EpsteinFiles, printer: DocPrinter):
-    docs = [
-        d for d in epstein_files.unique_documents
-        if d._config.note_txt and d.is_interesting and d._config.is_in_chrono is not False
-    ]
-
-    logger.warning(f"Found {len(docs)} annotated documents...")
-
-    for doc in docs:
-        if isinstance(doc, OtherFile) and doc._config.show_full_panel:
-            doc = doc.make_layout('right')
-
-        printer.print_documents([doc])
-
-
-def print_curated_chronological(epstein_files: EpsteinFiles, printer: DocPrinter) -> None:
+def print_chronological(epstein_files: EpsteinFiles, printer: DocPrinter) -> None:
     """Print only interesting files of all types in chronological order."""
-    logger.warning(f'Printing curated chronological site...')
-
     def should_print(doc: Document) -> bool:
-        if doc._config.attached_to_email_id:
+        if args.all_chrono:
+            return True
+        if doc.is_email_attachment:
             return False
         else:
             return bool(doc.is_interesting if not args.invert_chrono else not doc.is_interesting)
 
     docs = [d for d in epstein_files.unique_documents if should_print(d)]
+    logger.warning(f'Printing {len(docs)} documents chronologically...')
     printer.print_section_subtitle('Selected Files of Interest in Chronological Order')
     printer.print_documents(_max_records(docs))
 
 
 def print_doj_files(epstein_files: EpsteinFiles, printer: DocPrinter) -> None:
-    """Doesn't print DojFiles that are actually Emails, that's handled in print_emails()."""
-    printer.collect_other_files_to_tables = False
-    docs = Document.without_dupes(epstein_files.doj_files)
-    printer.print_documents(_max_records(docs))
+    """Doesn't print `DojFiles` that are actually Emails, that's handled in `print_emails_section()`."""
+    docs = _max_records(list(epstein_files.unique_doj_files))
+    printer.print_documents(docs, collect_other_files_to_tables=False)
 
 
 def print_emailers_info(epstein_files: EpsteinFiles) -> None:
@@ -139,31 +135,21 @@ def print_emails_section(epstein_files: EpsteinFiles, printer: DocPrinter) -> No
     """
     printer.print(section_header((SELECTIONS_FROM if not args.all_emails else '') + HIS_EMAILS))
     all_emailers = sorted(epstein_files.emailers, key=lambda person: person.earliest_email_at)
+    emailers_to_print = all_emailers if args.all_emails else epstein_files.person_objs(EMAILERS_TO_PRINT)
+    printer.print(_section_summary_table(Person.emailer_info_table(all_emailers, emailers_to_print)))
     num_since_color_key = 0
 
-    if args.names:
-        try:
-            emailers_to_print = epstein_files.person_objs(args.names)
-        except Exception as e:
-            exit_with_error(str(e))
-    else:
-        emailers_to_print = all_emailers if args.all_emails else epstein_files.person_objs(EMAILERS_TO_PRINT)
-        printer.print(_section_summary_table(Person.emailer_info_table(all_emailers, emailers_to_print)))
-
     for person in _max_records(emailers_to_print):
-        if person.is_interesting is False and not args.names:
+        if person.is_interesting is False:
             logger.warning(f"Skipping person with is_interesting=False '{person.name}'")
             continue
 
-        printed_emails = person.print_emails(printer)
+        printed_docs = person.print_docs(printer)
 
         # Print color key every once in a while
-        if (num_since_color_key := num_since_color_key + len(printed_emails)) > PRINT_COLOR_KEY_EVERY_N_EMAILS:
+        if (num_since_color_key := num_since_color_key + len(printed_docs)) > PRINT_COLOR_KEY_EVERY_N_EMAILS:
             printer.print_color_key()
             num_since_color_key = 0
-
-    if args.names:
-        return
 
     # Print other interesting emails
     extra_emails = [
@@ -228,7 +214,7 @@ def print_document_notes(epstein_files: EpsteinFiles, printer: DocPrinter) -> No
     )
 
     for doc in epstein_files.unique_documents:
-        if not (doc.is_interesting and doc._config.note_txt):
+        if not (doc.is_interesting and doc._config.note_txt(include_category=False)):
             continue
 
         info = doc.formatted_info()
@@ -236,7 +222,7 @@ def print_document_notes(epstein_files: EpsteinFiles, printer: DocPrinter) -> No
         table.add_row(*row)
         notes.append(join_texts(row))
 
-    table._no_pad = True  # hacky af
+    table._no_pad = True  # TODO: hacky af mark so the table is rendered w/out internal padding
     printer.print(table)
     logger.warning(f"Printed {len(notes)} interesting documents with configured notes...")
 
@@ -257,7 +243,7 @@ def print_other_files_section(epstein_files: EpsteinFiles, printer: DocPrinter) 
 
     # If --all-other-files is enables, print the biographical panels, otherwise just print a big table
     if args.all_other_files:
-        printer.print_documents(files, suppressed_as_normal=True)
+        printer.print_documents(files, show_suppressed=True)
     else:
         printer.print_centered(OtherFile.files_preview_table(files, title_pfx=title_pfx))
 
@@ -307,13 +293,7 @@ def print_text_msgs_section(epstein_files: EpsteinFiles, printer: DocPrinter) ->
     section_header_panel = section_header((SELECTIONS_FROM if not args.all_texts else '') + HIS_TEXT_MESSAGES)
     printer.print(section_header_panel)
     printer.print(Align.center(CONVERSATIONS_SORTED_BY_TXT))
-
-    if args.names:
-        imessage_logs = [log for log in epstein_files.imessage_logs if log.author in args.names]
-    else:
-        imessage_logs = [log for log in epstein_files.imessage_logs if args.all_texts or log.is_interesting]
-
-    imessage_logs = _max_records(imessage_logs)
+    imessage_logs = _max_records([d for d in epstein_files.imessage_logs if args.all_texts or d.is_interesting])
 
     if not imessage_logs:
         logger.warning(f"No MessengerLog found for {args.names}")

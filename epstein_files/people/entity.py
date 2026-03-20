@@ -1,4 +1,3 @@
-import logging
 import re
 from dataclasses import dataclass, field, fields
 from typing import ClassVar, Literal, Self, Sequence
@@ -9,7 +8,7 @@ from rich.text import Text
 
 from epstein_files.output.html.rich_style import RichStyle
 from epstein_files.people.names import UNKNOWN, Name, constantize_name, extract_first_name, extract_last_name
-from epstein_files.util.constant.strings import INDENT_NEWLINE, INDENTED_JOIN, LAW_ENFORCEMENT, WIKIPEDIA, PartialName
+from epstein_files.util.constant.strings import INDENT_NEWLINE, INDENTED_JOIN, JOURNALISM_STYLE, LAW_ENFORCEMENT, WIKIPEDIA, PartialName
 from epstein_files.util.constant.urls import EPSTEINIFY, PERSON_LINK_BUILDERS, EpsteinSite, wikipedia_url
 from epstein_files.util.env import args, site_config
 from epstein_files.util.external_link import ExternalLink, link_text_obj
@@ -91,28 +90,33 @@ class Entity(LoggingEntity):
     def __post_init__(self):
         self._urls = [wikipedia_url(self.name) if url == WIKIPEDIA else url for url in listify(self.url)]
 
+        if not all(url.startswith('http') for url in self._urls):
+            self._error(f"Bad URL configured: {self._urls}")
+
         try:
             self.emailer_regex = re.compile(self.pattern, re.IGNORECASE)
             self.highlight_regex = re.compile(fr"\b({self.highlight_pattern})\b", re.IGNORECASE)
         except re.error as e:
-            self._log(f"failed to compile emailer or highlight regex: {e}", logging.ERROR)
+            self._error(f"failed to compile emailer or highlight regex: {e}")
             raise e
 
         if self.category:
             self._warn(f"has category '{self.category}' at instantiation time (style='{self.style}')")
 
+    @classmethod
+    def anon(cls, name: str) -> Self:
+        """Alternate convenience constructor for names like 'Jane Doe'."""
+        return cls(name, match_partial=None, is_interesting=False, is_emailer=False)
+
     @property
     def alt_links(self) -> list[ExternalLink]:
         """Links beyond the first one (which is usually attached to the name)."""
-        return [ExternalLink(url, f'more', link_style=self.style) for i, url in enumerate(self._urls[1:], 2)]
+        return self.links()[1:]
 
     @property
     def alt_links_txt(self) -> Text:
         """Alternate links parenthesized and concatenated into one Text object."""
-        if self.alt_links:
-            return enclose(join_texts(self.alt_links, Text('/', LINK_JOIN_STYLE)), '()', LINK_JOIN_STYLE)
-        else:
-            return Text('')
+        return self._joined_links(self.alt_links)
 
     # TODO: add known email addresses?
     @property
@@ -127,7 +131,7 @@ class Entity(LoggingEntity):
             bio_pieces.append(enclose(category_txt, encloser='[]', encloser_style='dim'))
 
         bio_pieces.append(non_epstein_highlighter(Text(self.info, BIO_STYLE)) if self.info else QUESTION_MARKS_TXT)
-        bio_pieces.append(self.alt_links_txt)
+        bio_pieces.append(self.links_txt(include_wikipedia=False))
         return join_texts(bio_pieces)
 
     # TODO: rename this somehting that means "non_custom_external_links"
@@ -282,6 +286,22 @@ class Entity(LoggingEntity):
     def epstein_site_url(self, site: EpsteinSite = EPSTEINIFY) -> str:
         """URL pointing to info about this entity on one of the Epstein sites like epsteinify.com."""
         return PERSON_LINK_BUILDERS[site](self.name)
+
+    def links(self) -> list[ExternalLink]:
+        """All configured links from the `url` property."""
+        return [
+            ExternalLink(url, 'link' + (str(i) if i > 1 else ''), link_style=JOURNALISM_STYLE)
+            for i, url in enumerate(self._urls, 1)
+        ]
+
+    def links_txt(self, include_wikipedia: bool = True) -> Text:
+        """All links concatenated into one Text object."""
+        links = [link.domain_link() for link in self.links() if include_wikipedia or WIKIPEDIA not in link.url]
+        return self._joined_links(links)
+
+    def _joined_links(self, links: Sequence[ExternalLink | Text]) -> Text:
+        """Join links to '[link/link/link]' Text."""
+        return enclose(join_texts(links, Text('/', LINK_JOIN_STYLE)), '[]', LINK_JOIN_STYLE) if links else Text('')
 
     def __eq__(self, other: Self):
         if not isinstance(other, Self):

@@ -19,6 +19,11 @@ def non_article_with_fwd_text(get_email) -> Email:
     return get_email('012197_4')
 
 
+@pytest.fixture
+def email_with_category_but_no_note(get_email) -> Email:
+    return get_email('EFTA00738485')
+
+
 def test_attached_docs(email_with_attachments):
     assert len(email_with_attachments.attached_docs) == 3
 
@@ -41,18 +46,12 @@ def test_extract_recipients(get_email):
     assert BROCK_PIERCE not in email_to_self.recipients
 
 
-def test_info_sentences(get_email):
+def test_subheaders(get_email):
     email = get_email('026290')
     assert len(email.subheaders) == 1
     email_with_description = get_email('031278')
     assert len(email_with_description.subheaders) == 1
     assert email_with_description._config.note_txt is not None
-    email: Email = get_email('EFTA00901581')
-    assert email._config.note_txt is None
-    svet = get_email('EFTA01870453')
-    assert len(svet.subheaders) == 1
-    assert svet.subheaders[0].plain == 'OCR text of email from Svetlana Pozhidaeva (???) to Jeffrey Epstein probably sent at 2011-04-05 16:51:26'
-    assert svet._config.note_txt.plain == 'Svetlana Pozhidaeva fwds a discussion about an abortion to Epstein, see quote: "You have known you are preg for a week"'
 
 
 def test_is_interesting(get_email, ito_email):
@@ -78,6 +77,21 @@ def test_is_word_count_worthy_fwded_text_after(article_with_fwd_text, non_articl
 
 def test_junk_emailers():
     assert len(JUNK_EMAILERS) == 5
+
+
+def test_note(get_email, email_with_category_but_no_note):
+    email: Email = get_email('EFTA00901581')
+    assert email._config.note_txt() is None
+    assert len(email_with_category_but_no_note.subheaders) == 1
+    assert email_with_category_but_no_note.subheaders[0].plain.startswith('[girls]')
+    assert not email_with_category_but_no_note._body_as_table().columns[0].header
+    svet = get_email('EFTA01870453')
+    assert len(svet.subheaders) == 1
+    assert svet.subheaders[0].plain == \
+        '[girls] OCR text of email from Svetlana Pozhidaeva (???) to Jeffrey Epstein probably sent at 2011-04-05 16:51:26'
+    assert svet._config.note_txt(include_category=False).plain == \
+        'Svetlana Pozhidaeva fwds a discussion about an abortion to Epstein, see quote: "You have known you are preg for a week"'
+
 
 
 def test_timestamp(attributed_email):

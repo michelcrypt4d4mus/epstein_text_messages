@@ -34,7 +34,7 @@ from epstein_files.people.entity import Entity
 from epstein_files.people.person import PEOPLE_BIOS, Person
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constants import *
-from epstein_files.util.env import args, logger
+from epstein_files.util.env import SLOW_FILE_SECONDS, args, logger
 from epstein_files.util.helpers.data_helpers import flatten, json_safe, sort_dict_by_keys, uniquify, uniq_sorted
 from epstein_files.util.helpers.file_helper import all_txt_paths, doj_txt_paths, extract_file_id, file_size_str
 from epstein_files.util.timer import Timer
@@ -42,7 +42,6 @@ from epstein_files.util.timer import Timer
 # Lists of properties to copy into duplicate documents (will be preceded with 'extracted_')
 PROPS_TO_COPY = ['author', 'timestamp']
 EMAIL_PROPS_TO_COPY = ['recipients']
-SLOW_FILE_SECONDS = 1.0
 
 
 @dataclass
@@ -56,7 +55,7 @@ class EpsteinFiles(DocTypesMixin):
     file_paths: list[Path] = field(init=False)
     # Derived fields
     _empty_file_ids: set[str] = field(default_factory=set)
-    _emailers: list[Person] = field(default_factory=list)
+    _people: list[Person] = field(default_factory=list)
     _uninteresting_ccs: list[Name] = field(default_factory=list)
 
     def __post_init__(self):
@@ -101,13 +100,13 @@ class EpsteinFiles(DocTypesMixin):
         return [d for d in self._documents if not (isinstance(d, Email) and d._was_split_up)]
 
     @property
-    def emails_with_attachments(self) -> list[Email]:
-        return [e for e in self.emails if e.attached_docs]
-
-    @property
     def emailers(self) -> list[Person]:
         """All the people who sent or received an email."""
-        return self._emailers
+        return [p for p in self._people if p.emails]
+
+    @property
+    def people(self) -> list[Person]:
+        return self._people
 
     @property
     def uninteresting_emailers(self) -> list[Name]:
@@ -352,7 +351,8 @@ class EpsteinFiles(DocTypesMixin):
 
         self._set_uninteresting_ccs()
         self._copy_duplicate_doc_properties()
-        self._emailers = self.person_objs(flatten([e.participants for e in self.emails]))
+        self._people = self.person_objs(flatten([d.participants for d in self.documents]))
+        logger.warning(f"Saving {len(self._people)} Person objects ({len(self.emailers)} emailers)...")
         self._find_email_attachments_and_set_is_first_for_user()
         self._documents = Document.sort_by_timestamp(self._documents)
         self._docs_by_id = {doc.file_id: doc for doc in self._documents}
@@ -363,10 +363,11 @@ class EpsteinFiles(DocTypesMixin):
         for email in self.emails:
             email.attached_docs = []  # Remove all attachments before re-finding them in case it's a repair
 
-        email_attachments = [f for f in self.other_files if f._config.attached_to_email_id]
+        email_attachments = [f for f in self.other_files if f.is_email_attachment]
         logger.warning(f"Finding homes for {len(email_attachments)} known email attachments...")
 
         for attachment in email_attachments:
+            assert attachment._config.attached_to_email_id is not None
             email = self.get_id(attachment._config.attached_to_email_id, required_type=Email)
             email.attached_docs.append(attachment)
 

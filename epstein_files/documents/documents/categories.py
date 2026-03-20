@@ -16,7 +16,6 @@ class Interesting(StrEnum):
     CRYPTO = auto()
     DIARY = auto()
     GIRLS = auto()
-    LETTER = auto()
     MONEY = auto()
     REPUTATION = auto()
     SOCIAL = auto()
@@ -72,7 +71,7 @@ CATEGORY_STYLE_MAPPING = {
 }
 
 CATEGORY_STYLES = {
-    Interesting.LETTER: 'plum4',
+    'letter': 'plum4',
     Interesting.SOCIAL: SOCIAL_STYLE,
     Neutral.FLIGHT_LOG: EPSTEIN_COLOR,
     Neutral.MISC: 'navajo_white1',
@@ -82,14 +81,6 @@ CATEGORY_STYLES = {
     Uninteresting.TWEET: SOCIAL_STYLE,
 }
 
-# These are the categories we expect to see as OTHER_FILES_[category] variables for in constants.py
-CONSTANT_CATEGORIES = [
-    c for c in Category if c not in [
-        Neutral.BUSINESS,
-        Neutral.PRESSER,
-        Uninteresting.JSON,
-    ]
-]
 
 is_interesting = lambda category: _is_in_enum(category, Interesting)
 is_neutral = lambda category: _is_in_enum(category, Neutral)
@@ -107,7 +98,7 @@ def sort_categories(categories: list[str]) -> list[str]:
             value = 10
         elif category == RUSSIAN_GIRL:
             value = 8
-        elif category == TECH_BRO:
+        elif category == TECH:
             value = 6
         elif (category or Uninteresting.JUNK) == Uninteresting.JUNK:
             value = -5
