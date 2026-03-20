@@ -1467,6 +1467,7 @@ HIGHLIGHTED_NAMES = [
             ),
             Entity('Paul Tudor Jones', "hedge fund guy, Robin Hood Foundation founder", match_partial='first'),
             Entity('Richard Joslin', f"CFO of {LEON_BLACK}'s {ELYSIUM_MANAGEMENT}"),
+            Entity('Scott Shay', f"future CEO of America's largest crypto bank (until it failed in 2023) Signature Bank {QUESTION_MARKS}", match_partial=None),
             Entity('Skip Rimer', "Michael Milken's Milken Institute"),
             Entity('Steven Elkman', f"{DEUTSCHE_BANK}"),
             Entity('Stewart Oldfield', f"worked on Epstein related accounts at {DEUTSCHE_BANK}"),
@@ -1569,7 +1570,6 @@ HIGHLIGHTED_NAMES = [
             r"(Ray )?Dalio",
             r"(Richard )?LeFrak",
             r"Rockefeller(?! University)( Foundation)?",
-            r"Scott Shay",
             r"SBNY",
             r"Serageldin",
             r"Signature Bank",
@@ -1623,7 +1623,7 @@ HIGHLIGHTED_NAMES = [
             Entity('linkspirit', "Skype username of someone Epstein communicated with"),
             Entity(
                 'Perry Bard',
-                f"{PALM_BEACH} chiropractor whose phone number came up in Epstein victim investigations",
+                f"{PALM_BEACH} chiropractor, phone number came up in Epstein victim investigations, left $3 million in Epstein's will",
                 match_partial=None,
             ),
             Entity('Peter Thomas Roth', "student of Epstein at Dalton, skincare company founder", match_partial=None),
@@ -2900,6 +2900,7 @@ HIGHLIGHTED_NAMES = [
                 f"former Olympic snowboarder, {CRYPTO_PR_LAB} co-founder, long time recruiter for Epstein",
                 r"Ma(sha|riy?a) (Prusa?(kova|so))",
                 aliases=['Masha Prusso'],
+                email_addresses=['maryfrommoscow@hotmail.com'],
                 url=[
                     'https://www.scamurai.io/p/epstein-files-suggest-ex-polygon',
                     'https://www.reddit.com/r/Epstein/comments/1qvsnqs/a_detailed_report_on_masha_prusso_aka_maria/',
@@ -3356,8 +3357,8 @@ HIGHLIGHTED_NAMES = [
             Entity('Justina Auškelytė', 'Julliard student from Latvia', r"Justina Au[fšs]kelyt[eė]", url=DITE_ANATA_JUILLIARD_URL),
             Entity(KATHERINE_KEATING, "daughter of former Australian prime minister Paul Keating", match_partial=None),
             Entity(
-                'Lola Mignon',
-                'recruited girls in paris',
+                LOLA_MIGNON,
+                'pseudonym, attended Penn, recruited girls in paris',
                 r"Lola M(ignon)?",
                 match_partial=None,
                 url=[

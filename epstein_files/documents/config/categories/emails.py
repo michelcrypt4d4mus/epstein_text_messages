@@ -1086,7 +1086,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00858688', author=SERGEY_BELYAKOV, note=f"Epstein introduces {EHUD_BARAK} to {SERGEY_BELYAKOV}"),
     EmailCfg(id='EFTA00704085', author=SERGEY_BELYAKOV, author_reason='response to EFTA00835324'),
     EmailCfg(id='EFTA01767424', author=SHAHER_ABDULHAK_BESHER, author_reason='"sincerely shaher"'),
-    EmailCfg(id='EFTA00658903', author=SHAHER_ABDULHAK_BESHER, note='Epsteing serving as intermediary during Yemen negotiations'),
+    EmailCfg(id='EFTA00658903', author=SHAHER_ABDULHAK_BESHER, note='Epstein serving as intermediary during Yemen negotiations'),
     EmailCfg(id='EFTA00039663', author=STACEY_RICHMAN, recipients=[USANYS], author_reason='unredacted in EFTA00039662'),
     EmailCfg(id='EFTA00721168', author=STEVEN_SINOFSKY, author_uncertain='Sinofsky in previous To: field'),
     EmailCfg(id='EFTA00664619', author=SUE, author_reason='"Dear Sue"'),

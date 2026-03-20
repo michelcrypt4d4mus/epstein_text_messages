@@ -506,6 +506,8 @@ GIRLS_CFGS = [
         recipients=[NADIA_MARCINKO],
         recipient_uncertain='https://archive.ph/Qa6vU',  # https://www.nybooks.com/articles/2026/03/26/the-devil-himself-jeffrey-epstein-enright/
     ),
+    EmailCfg(id='EFTA02515671', highlight_quote='she met this Congressman recently who, from what I unde=stood gives her everything, a private driver, bodyguard'),
+    EmailCfg(id='EFTA01888497', highlight_quote="I think I am perverted"),
     EmailCfg(id='EFTA00971793', highlight_quote='Attached is resume of Lutnick nanny', note=f"why does Epstein need a nanny?"),
     EmailCfg(id='EFTA01965732', highlight_quote='facilictating his illicit trysts, with married women, to being asked to provide adderall fro bridge tournamnts'),
     EmailCfg(id='EFTA01768670', highlight_quote='find girls for the agency', note=f'but {BORIS_NIKOLIC} is a "biotech investor"...'),
