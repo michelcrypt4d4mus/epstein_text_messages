@@ -33,7 +33,7 @@ US_PHONE_PATTERN = r"\d{3}\s*\d{3}(-|\s*)\d{4}"
 
 CALL_LINE_REGEXES = [
     re.compile(r"^\d{6}\s+[A-Z0-9]{5}\s+(?P<phone>\d{3}\s*\d{3}\s*\d{4})\s+.*"),
-    re.compile(r"\d+ ?\.?\s+\d{1,2}/\d{1,2}\s+\d{1,2}:\d{2}[ap]m\s*(?P<location>[\w ]*?)\s+(?P<phone>\d{3} \d{3}-\d{4}|\d{7,})[^\d].*"),
+    re.compile(r"\d+ ?\.?\s+\d{1,2}/\d{1,2}\s+\d{1,2}:\d{2}[ap]m\s*(?P<location>[\w ]*?)\s+(?P<phone>\d{3} \d{3}-\d{4}|\d{7,})[^\d]*.*"),
     re.compile(fr"^(?P<phone>{INTL_PHONE_PATTERN}|{US_PHONE_PATTERN})$"),
     re.compile(fr".*(?P<phone>{US_PHONE_PATTERN}) PRI.*"),
 ]
