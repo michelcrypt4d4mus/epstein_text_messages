@@ -584,9 +584,11 @@ HIGHLIGHTED_NAMES = [
         label='crime',
         style='salmon1',
         entities=[
-            Entity('John Gotti', 'boss of the Gambino crime family'),
             Entity('Anthony Trentacosta', 'Gambino crime family'),
+            Entity('Efrain Reyes', "Epstein's cellmate at MCC", match_partial=None),
+            Entity('John Gotti', 'boss of the Gambino crime family'),
             Entity('Michael Bilotti', 'murderer', r"Michael (A\.? )?Bilotti"),
+            Entity('Nicholas Tartaglione', "former NYPD convicted of drug trafficking and murder, Epstein cell mate at MCC"),
             Organization(
                 'Aubin Securities',
                 'Ponzi scheme run by U.S. marine Christopher Aubin',
@@ -1732,6 +1734,8 @@ HIGHLIGHTED_NAMES = [
                 f"{PALM_BEACH_POLICE} chief who first caught Epstein",
                 url='https://www.bbc.com/news/articles/cx2407jrn83o',
             ),
+            Entity('Michael Thomas', "MCC 'guard of interest' at time of Epstein's death, fired", match_partial=None),
+            Entity('Tova Noel', "MCC 'guard of interest' at time of Epstein's death, fired", match_partial=None),
             Entity('Paula Speer', "court reporter", match_partial=None),
             Entity(
                 'Regina Dugan',  # EFTA02009735
