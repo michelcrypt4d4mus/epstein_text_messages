@@ -57,6 +57,7 @@ class EpsteinFiles(DocTypesMixin):
     # Derived fields
     _empty_file_ids: set[str] = field(default_factory=set)
     _emailers: list[Person] = field(default_factory=list)
+    _people: list[Person] = field(default_factory=list)
     _uninteresting_ccs: list[Name] = field(default_factory=list)
 
     def __post_init__(self):
@@ -353,6 +354,8 @@ class EpsteinFiles(DocTypesMixin):
         self._set_uninteresting_ccs()
         self._copy_duplicate_doc_properties()
         self._emailers = self.person_objs(flatten([e.participants for e in self.emails]))
+        self._people = self.person_objs(flatten([d.participants for d in self.documents]))
+        logger.warning(f"Saving {len(self._people)} ({len(self._emailers)} emailers)...")
         self._find_email_attachments_and_set_is_first_for_user()
         self._documents = Document.sort_by_timestamp(self._documents)
         self._docs_by_id = {doc.file_id: doc for doc in self._documents}
@@ -363,10 +366,11 @@ class EpsteinFiles(DocTypesMixin):
         for email in self.emails:
             email.attached_docs = []  # Remove all attachments before re-finding them in case it's a repair
 
-        email_attachments = [f for f in self.other_files if f._config.attached_to_email_id]
+        email_attachments = [f for f in self.other_files if f.is_email_attachment]
         logger.warning(f"Finding homes for {len(email_attachments)} known email attachments...")
 
         for attachment in email_attachments:
+            assert attachment._config.attached_to_email_id is not None
             email = self.get_id(attachment._config.attached_to_email_id, required_type=Email)
             email.attached_docs.append(attachment)
 

@@ -91,7 +91,7 @@ class DocTypesMixin(ABC):
     @property
     def non_attachments(self) -> Sequence[OtherFile]:
         """Exclude `OtherFile` objs that are attached to `Email` objects."""
-        return [d for d in self.other_files if not d._config.attached_to_email_id]
+        return [d for d in self.other_files if not d.is_email_attachment]
 
     @property
     def non_json_other_files(self) -> list[OtherFile]:

@@ -82,7 +82,7 @@ def print_curated_chronological(epstein_files: EpsteinFiles, printer: DocPrinter
     logger.warning(f'Printing curated chronological site...')
 
     def should_print(doc: Document) -> bool:
-        if doc._config.attached_to_email_id:doc._config.attached_to_email_id
+        if doc.is_email_attachment:
             return False
         else:
             return bool(doc.is_interesting if not args.invert_chrono else not doc.is_interesting)
@@ -134,31 +134,21 @@ def print_emails_section(epstein_files: EpsteinFiles, printer: DocPrinter) -> No
     """
     printer.print(section_header((SELECTIONS_FROM if not args.all_emails else '') + HIS_EMAILS))
     all_emailers = sorted(epstein_files.emailers, key=lambda person: person.earliest_email_at)
+    emailers_to_print = all_emailers if args.all_emails else epstein_files.person_objs(EMAILERS_TO_PRINT)
+    printer.print(_section_summary_table(Person.emailer_info_table(all_emailers, emailers_to_print)))
     num_since_color_key = 0
 
-    if args.names:
-        try:
-            emailers_to_print = epstein_files.person_objs(args.names)
-        except Exception as e:
-            exit_with_error(str(e))
-    else:
-        emailers_to_print = all_emailers if args.all_emails else epstein_files.person_objs(EMAILERS_TO_PRINT)
-        printer.print(_section_summary_table(Person.emailer_info_table(all_emailers, emailers_to_print)))
-
     for person in _max_records(emailers_to_print):
-        if person.is_interesting is False and not args.names:
+        if person.is_interesting is False:
             logger.warning(f"Skipping person with is_interesting=False '{person.name}'")
             continue
 
-        printed_emails = person.print_docs(printer)
+        printed_docs = person.print_docs(printer)
 
         # Print color key every once in a while
-        if (num_since_color_key := num_since_color_key + len(printed_emails)) > PRINT_COLOR_KEY_EVERY_N_EMAILS:
+        if (num_since_color_key := num_since_color_key + len(printed_docs)) > PRINT_COLOR_KEY_EVERY_N_EMAILS:
             printer.print_color_key()
             num_since_color_key = 0
-
-    if args.names:
-        return
 
     # Print other interesting emails
     extra_emails = [
@@ -302,13 +292,7 @@ def print_text_msgs_section(epstein_files: EpsteinFiles, printer: DocPrinter) ->
     section_header_panel = section_header((SELECTIONS_FROM if not args.all_texts else '') + HIS_TEXT_MESSAGES)
     printer.print(section_header_panel)
     printer.print(Align.center(CONVERSATIONS_SORTED_BY_TXT))
-
-    if args.names:
-        imessage_logs = [log for log in epstein_files.imessage_logs if log.author in args.names]
-    else:
-        imessage_logs = [log for log in epstein_files.imessage_logs if args.all_texts or log.is_interesting]
-
-    imessage_logs = _max_records(imessage_logs)
+    imessage_logs = _max_records([d for d in epstein_files.imessage_logs if args.all_texts or d.is_interesting])
 
     if not imessage_logs:
         logger.warning(f"No MessengerLog found for {args.names}")

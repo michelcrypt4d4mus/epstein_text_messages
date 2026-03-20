@@ -249,6 +249,11 @@ class Document(LoggingEntity):
         return VERTICAL_MARGIN_EMS
 
     @property
+    def is_email_attachment(self) -> bool:
+        """True if this `Document` appears in an `Email` object's `attached_docs` list."""
+        return bool(self._config.attached_to_email_id)
+
+    @property
     def is_duplicate(self) -> bool:
         return bool(self._config.duplicate_of_id)
 
@@ -276,7 +281,7 @@ class Document(LoggingEntity):
         """
         if (is_of_interest := self._config.is_of_interest) is not None:
             return is_of_interest
-        elif self._config.attached_to_email_id:
+        elif self.is_email_attachment:
             return False
         elif self.author in UNINTERESTING_AUTHORS:
             return False
