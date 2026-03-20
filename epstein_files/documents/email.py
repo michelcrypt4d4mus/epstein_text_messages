@@ -575,11 +575,24 @@ class Email(Communication):
 
         return FALLBACK_TIMESTAMP
 
-    def make_layout(self, justify: JustifyMethod = 'default', indent: int = site_config.indents.email_body) -> Layout:
+    def make_layout(
+        self,
+        justify: JustifyMethod = 'default',
+        indent: int = site_config.indents.info,
+        background_color: str = ''
+    ) -> Layout:
         """Allows for proper right vs. left justify."""
+        table = self._body_as_table()
+        table_bg = self._config.background_color or background_color
+
+        if table_bg:
+            bg_style = f"on {table_bg}" if table_bg else table.style
+            self._debug_log(f"setting table bg to '{bg_style}'")
+            table.rows[0].style = bg_style
+
         return Layout(
-            background_color=self._config.background_color,
-            body_panel=self._body_as_table(),
+            background_color=self._config.background_color or background_color,
+            body_panel=table,
             document=self,
             file_info=self.file_id_panel,
             indent=indent,

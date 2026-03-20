@@ -99,10 +99,15 @@ class MessengerLog(Communication):
 
         raise RuntimeError(f"{self}: No timestamp found!")
 
-    def make_layout(self, justify: JustifyMethod = 'default', indent: int = site_config.indents.email_body) -> Layout:
+    def make_layout(
+        self,
+        justify: JustifyMethod = 'default',
+        indent: int = site_config.indents.info,
+        background_color: str = ''
+    ) -> Layout:
         """`FileDisplay` object that controls how this object is presented."""
         return Layout(
-            background_color=self._config.background_color,
+            background_color=self._config.background_color or background_color,
             body_panel=ListPanel(
                 border_style=self.border_style,
                 text=[msg.__rich__() for msg in self.messages],

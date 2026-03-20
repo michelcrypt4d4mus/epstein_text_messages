@@ -40,6 +40,7 @@ MAX_NAME_COL_WIDTH = 24
 MAX_INFO_COL_WIDTH = len("Epstein's Russian assistant who was recommended for a visa by Sergei Belyakov")
 MIN_AUTHOR_PANEL_WIDTH = 80
 EMAILER_INFO_TITLE = 'Email Conversations Will Appear'
+NON_PARCICIPANT_BG_CLR = 'grey7'
 SOLE_CC_STYLE = 'wheat4 dim'
 SOLE_CC_NO_CONTACT_STYLE = 'plum4 dim'
 UNINTERESTING_CC_INFO = "cc: or bcc: recipient only"
@@ -277,10 +278,14 @@ class Person(DocTypesMixin, LoggingEntity):
 
         # Wrap `OtherFile` and non-participating emails here bc of show_with_name in Layout to indent
         docs = [
-            d.make_layout(indent=site_config.indents.show_with)
-            if isinstance(d, OtherFile) or (self.name and self.name not in d.participants) else d
+            d.make_layout(background_color=NON_PARCICIPANT_BG_CLR, justify='right') \
+                if (self.name and self.name not in d.participants) \
+                else d
             for d in Document.sort_by_timestamp(self._unique_printable_docs)
         ]
+
+        if (right_justified := [d for d in docs if isinstance(d, Layout)]):
+            self._warn(f"Right justified {len(right_justified)} documents...")
 
         printer.print_documents(docs, collect_other_files_to_tables=False, log_sfx=f"[{self.name}]")
         printer.line(2)

@@ -34,7 +34,7 @@ from epstein_files.people.entity import Entity
 from epstein_files.people.person import PEOPLE_BIOS, Person
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constants import *
-from epstein_files.util.env import args, logger
+from epstein_files.util.env import SLOW_FILE_SECONDS, args, logger
 from epstein_files.util.helpers.data_helpers import flatten, json_safe, sort_dict_by_keys, uniquify, uniq_sorted
 from epstein_files.util.helpers.file_helper import all_txt_paths, doj_txt_paths, extract_file_id, file_size_str
 from epstein_files.util.timer import Timer
@@ -42,7 +42,6 @@ from epstein_files.util.timer import Timer
 # Lists of properties to copy into duplicate documents (will be preceded with 'extracted_')
 PROPS_TO_COPY = ['author', 'timestamp']
 EMAIL_PROPS_TO_COPY = ['recipients']
-SLOW_FILE_SECONDS = 1.0
 
 
 @dataclass

@@ -50,6 +50,7 @@ from epstein_files.util.logging_entity import LoggingEntity
 
 CLOSE_PROPERTIES_CHAR = ']'
 HOUSE_OVERSIGHT = HOUSE_OVERSIGHT_PREFIX.replace('_', ' ').strip()
+DOC_PANEL_BG_COLOR = 'grey7'
 
 FILENAME_MATCH_STYLES = [
     'dark_green',
@@ -482,10 +483,15 @@ class Document(LoggingEntity):
         """Should be implemented in subclasses."""
         return None
 
-    def make_layout(self, justify: JustifyMethod = 'default', indent: int = site_config.indents.info) -> Layout:
+    def make_layout(
+        self,
+        justify: JustifyMethod = 'default',
+        indent: int = site_config.indents.info,
+        background_color: str = ''
+    ) -> Layout:
         """Allows for proper right vs. left justify."""
         return Layout(
-            background_color=self._config.background_color,
+            background_color=self._config.background_color or background_color or DOC_PANEL_BG_COLOR,
             body_panel=BasePanel(
                 border_style=self.border_style,
                 text=self.prettified_txt,

@@ -111,7 +111,7 @@ class Layout:
     body_panel: BasePanel | Table
     document: 'Document'
     file_info: BasePanel | None = None
-    indent: int | float = 0  # TODO: this should be a property of the BasePanel
+    indent: int | float = 0
     justify: JustifyMethod | None = None
     margin_bottom: str = VERTICAL_MARGIN_EMS  # Margin below the entire agglomeration of elements, not just the body
     subheaders: list[Text] = field(default_factory=list)
@@ -213,3 +213,6 @@ class Layout:
 
         for element in elements:
             yield self._align(element)
+
+    def __str__(self) -> str:
+        return f"{type(self).__name__}('{self.document.file_id}')"

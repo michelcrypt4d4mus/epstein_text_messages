@@ -26,7 +26,7 @@ from epstein_files.output.html.positioned_rich import PositionedRich, to_em, unp
 from epstein_files.output.rich import console, section_subtitle_panel
 from epstein_files.output.site.sites import Site
 from epstein_files.people.entity import Entity
-from epstein_files.util.env import args, site_config
+from epstein_files.util.env import SLOW_FILE_SECONDS, args, site_config
 from epstein_files.util.helpers.data_helpers import listify, uniq_sorted, without_falsey
 from epstein_files.util.helpers.rich_helpers import vertically_pad
 from epstein_files.util.helpers.string_helper import quote
@@ -149,6 +149,7 @@ class DocPrinter(DocTypesMixin):
         suppressed_docs: list[Document] = []
         process_suppressed_docs_queue = lambda: suppressed_docs.extend(self._print_suppression_msgs_queue())
         timer = Timer()
+        logger.info(f"print_documents() called with {len(docs)} docs")
 
         if (should_log_in_intervals := (len(docs) > 1000)):
             logger.info(f"{type(self).__name__}.print_documents() called with {len(docs):,} objects {log_sfx}")
@@ -160,6 +161,8 @@ class DocPrinter(DocTypesMixin):
                 self._suppressed_docs_queue.append(doc)
                 continue
 
+            doc_timer = Timer()
+            logger.info(f"Processing doc {doc}")
             process_suppressed_docs_queue()
 
             # Collect sequences of otherFile objects into a table
@@ -173,10 +176,14 @@ class DocPrinter(DocTypesMixin):
                 continue
 
             self._print_other_files_queue()
+            doc = doc.make_layout(indent=site_config.indents.show_with) if isinstance(doc, OtherFile) else doc
             self.print(doc)
 
             if should_log_in_intervals and (i % 100 == 0):
                 timer.print_at_checkpoint(f"Printed {i:,} objs of {len(docs):,} ({len(suppressed_docs):,} suppressed) {log_sfx}")
+            elif doc_timer.seconds_since_start() > SLOW_FILE_SECONDS:
+                slow_id = doc.file_id if isinstance(doc, Document) else doc.document.file_id
+                doc_timer.print_at_checkpoint(f"{slow_id} slow layout processing...")
 
         # Clear the queues of any stragglers
         process_suppressed_docs_queue()
