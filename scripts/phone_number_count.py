@@ -28,7 +28,7 @@ ACCOUNT_REGEX = re.compile(fr"^{TEL_LINE_PATTERN}\s*{BILLING_LINE_PATTERN}.*$", 
 CALL_REGEX = re.compile(r"^\d{6}\s+[A-Z0-9]{5}\s+(?P<phone_number>\d{3}\s*\d{3}\s*\d{4})\s+.*")
 CALL_REGEX2 = re.compile(r"\d+ ?\.?\s+\d{1,2}/\d{1,2}\s+\d{1,2}:\d{2}[ap]m\s*(?P<location>[\w ]*?)\s+(?P<phone_number>\d{3} \d{3}-\d{4}|\d{7,})[^\d].*")
 CALL_REGEX3 = re.compile(r"^(?P<phone_number>\d{3} \d{3}-\d{4}|\d{11,14})$")
-JUNK_LINE = re.compile(r"^(CARRIER|EFTA|PhCnt|ACCOUNT NUM|YRMODY|Case #).*")
+JUNK_LINE = re.compile(r"^(CARRIER|EFTA|PhCnt|ACCOUNT NUM|YRMODY|These charges|Case #).*")
 
 RAW_OCR_URL = f"{BASE_DEPLOY_URL}/{PHONE_LOG_FILE_ID}.txt"
 RAW_OCR_LINK = ExternalLink(RAW_OCR_URL, f"Raw OCR .txt for {PHONE_LOG_FILE_ID}.pdf")
