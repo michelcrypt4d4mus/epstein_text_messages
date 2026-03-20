@@ -57,6 +57,7 @@ GOVERNMENT_CFGS = [
     bop_doc('EFTA00039153', 'List of Exhibits, Chapter 2', '2019-01-06'),
     bop_doc('EFTA00109163', 'Metropolitan Correctional Center forms showing Konstantin Ignatov', '2019-08-08', is_interesting=True),
     bop_doc('EFTA00120617', '"Prisoner Remand or Order to Deliver" forms', '2019-07-30'),
+    bop_doc('EFTA00036136', 'memo about camera project'),
     bop_doc('EFTA00109654', 'roster of inmates at Metropolitan Correctional Center', '2019-08-08'),
     bop_doc('EFTA00108533', 'roster of inmates at Metropolitan Correctional Center', '2019-07-23'),
     bop_doc('EFTA00108552', 'roster of inmates at Metropolitan Correctional Center', '2019-07-23'),
@@ -115,6 +116,12 @@ GOVERNMENT_CFGS = [
         quote("Only one hard drive of the camera system was working at the time of [Epstein's death]"),
         '2020-03-12',
         highlight_quote='advised that he knew that by replacing both hard drives, the system would be wiped'
+    ),
+    fbi_interview(
+        'EFTA00126948',
+        f'{BUREAU_OF_PRISONS} personnel',
+        highlight_quote='EPSTEIN claimed that his cellmate, NICHOLAS TARTAGLIONE, tried to take his life',
+        truncate_to=(4_250, 5_500),
     ),
     fbi_interview('EFTA02858481', 'Jennifer Aros', 'Epstein victim'),
     fbi_interview('EFTA00174375', LUKE_D_THORBURN, f"lots of takes on Epstein, China, and {STEVE_BANNON}"),
@@ -210,6 +217,7 @@ GOVERNMENT_CFGS = [
         show_full_panel=True,
         truncate_to=NO_TRUNCATE,  # TODO this shouldn't be necessary?
     ),
+    EmailCfg(id='EFTA00036630', author=BUREAU_OF_PRISONS, recipients=[BUREAU_OF_PRISONS], note='about cameras'),
     EmailCfg(id='EFTA02730483', author=FBI, date='2023-07-11T08:25:00', date_uncertain='actually reply timestamp'),
     EmailCfg(id='EFTA02731552', author=FBI, recipients=[USANYS], date='2021-05-26 16:12:00', recipient_uncertain=True),
     EmailCfg(id='EFTA00039971', author=FBI, recipients=[USANYS], recipient_uncertain=True),
