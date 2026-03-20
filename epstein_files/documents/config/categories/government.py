@@ -237,6 +237,7 @@ GOVERNMENT_CFGS = [
     EmailCfg(id='EFTA00040141', author=USANYS),
     EmailCfg(id='EFTA02731644', author=USANYS),
     EmailCfg(id='EFTA00040144', author=USANYS),
+    EmailCfg(id='EFTA00019169', author=FBI, author_uncertain=True, recipients=[USANYS], recipient_uncertain=True),
     EmailCfg(id='EFTA00039995', author=USANYS, is_interesting=False),
     EmailCfg(id='EFTA00039813', author=USANYS),
     EmailCfg(id='EFTA00039890', author=USANYS, is_interesting=False),

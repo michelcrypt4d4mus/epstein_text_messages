@@ -1956,6 +1956,7 @@ HIGHLIGHTED_NAMES = [
                 r"(ehud|e?h) barac?k|\behud",
                 url=WIKIPEDIA,
             ),
+            Entity('Eytan Raff', "chairman of Bank Leumi ca. money laundering trouble time", match_partial=None),
             Entity('Mitchell Bard', "director of the American-Israeli Cooperative Enterprise (AICE)", match_partial=None),
             Entity(NILI_PRIELL_BARAK, f"wife of {EHUD_BARAK}", r"Nili Priell?", match_partial=None),
             Organization(
@@ -3021,6 +3022,7 @@ HIGHLIGHTED_NAMES = [
             r"Bangkok",
             r"Burm(a|ese)",
             r"Cambodian?",
+            r"Chiang Mai",
             r"Filipino",
             r"Hanoi",
             r"Indonesian?",
@@ -3505,6 +3507,7 @@ HIGHLIGHTED_NAMES = [
             Entity(LAURA_A_MENNINGER, 'Haddon, Morgan and Foreman P.C.'),
             Entity('Meredith Firetog', f"Wigdor Law {QUESTION_MARKS}"),
             Entity(PAUL_G_CASSELL, 'professor at University of Utah, victim advocate'),
+            Entity('Robert Josefsberg', 'represented Australian victim (Giuffre?)'),
             Entity(SCOTT_ROTHSTEIN, f"{ROTHSTEIN_ROSENFELDT_ADLER_ATTORNEY}, ran massive Ponzi scheme", match_partial=None),
             Entity(STANLEY_POTTINGER, f"{VIRGINIA_GIUFFRE} legal team while working for Epstein", r"(J\.? )?(Stan(ley)? )?Pottinger"),
             Organization('Marsh Law Firm', 'victim counsel'),

@@ -84,7 +84,7 @@ GIRLS_CFGS = [
         show_with_name=SVETLANA_POZHIDAEVA,
     ),
     DocCfg(id='EFTA00014648', note='former employee "understood that all the girls were school girls"', show_full_panel=True),
-    DocCfg(id='EFTA00022133', note='table showing a list of Epstein accusations collection from public press reporting'),
+    DocCfg(id='EFTA00022133', note='table listing Epstein accusations collated from the press and court hearings'),
     DocCfg(
         id='EFTA00077200',
         author=FRENCH_MINISTRY_OF_JUSTICE,
@@ -595,7 +595,7 @@ GIRLS_CFGS = [
     EmailCfg(id='EFTA01840103', note="Epstein apparently suggesting amphetamines (adderall)", is_interesting=10),
     EmailCfg(id='EFTA01987855', note=f'Epstein, Brunel, and {SULTAN_BIN_SULAYEM} very interested in a Liberian sex scandal'),
     EmailCfg(id='EFTA01817903', note=f'Epstein, Brunel, and {SULTAN_BIN_SULAYEM} sharing news of a Liberian sex scandal', is_interesting=10),
-    EmailCfg(id='EFTA01818540', note=f'Epstein forwarding news of the Liberian sex scandal to {JES_STALEY}'),
+    EmailCfg(id='EFTA01818540', note=f'Epstein forwarding news of the Liberian sex scandal to {JES_STALEY}', truncate_to=415),
     EmailCfg(id='EFTA01140210', note='Epstein asks about fake Instagram followers'),
     EmailCfg(id='EFTA00937981', note=f"Epstein looking for {JOSHUA_FINK} (again)", is_interesting=10),
     EmailCfg(id='EFTA00668344', note=f"Epstein looking for {JOSHUA_FINK} (again)", is_interesting=10),
