@@ -69,7 +69,7 @@ class CallCounter:
         return [n for n in self.call_counts_by_source.keys()]
 
     def record_call(self, source: str, destination: str, billing: str) -> None:
-        # logger.debug(f"Found call from '{source}' to '{destination}' billing '{billing}'")
+        logger.debug(f"Found call from '{source}' to '{destination}' billing '{billing}'")
         source = cleanup_phone_number(source)
         destination = cleanup_phone_number(destination)
         self.calls.append((source, destination, billing))
