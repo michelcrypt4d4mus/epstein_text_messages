@@ -163,6 +163,9 @@ GIRLS_CFGS = [
     EmailCfg(id='EFTA01781620', author=KIRA_DIKHTYAR, author_uncertain='"Sent from AOL Mobile Mail" in chain'),
     EmailCfg(id='EFTA01805304', author=KIRA_DIKHTYAR, author_reason='Jmail', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA01766199', author=KIRA_DIKHTYAR, author_reason='reply', truncate_to=NO_TRUNCATE),
+    EmailCfg(id='EFTA01969878'),
+    EmailCfg(id='EFTA01759826', highlight_quote='especially if you find me interesing girls there', truncate_to=NO_TRUNCATE),
+    EmailCfg(id='EFTA01981669', truncate_to=NO_TRUNCATE),
     EmailCfg(
         id='033178',
         author=MARIA_PRUSAKOVA,

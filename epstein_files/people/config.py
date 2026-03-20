@@ -683,6 +683,7 @@ HIGHLIGHTED_NAMES = [
             Entity(
                 'Nadean Novogratz',
                 "ex-Goldman, onboarded Epstein's Southern Financial for trading, possibly sister-in-law of Mike Novogratz",
+                email_addresses=['nadean.novogratz@db.com'],
                 match_partial=None,
             ),
             Entity('Ross Ulbricht', 'founder of infamous online drug market Silk Road, pardoned by Trump'),
@@ -3353,6 +3354,16 @@ HIGHLIGHTED_NAMES = [
             Entity('Jennifer Laduke', VICTIM_EVIDENCE),
             Entity('Justina Auškelytė', 'Julliard student from Latvia', r"Justina Au[fšs]kelyt[eė]", url=DITE_ANATA_JUILLIARD_URL),
             Entity(KATHERINE_KEATING, "daughter of former Australian prime minister Paul Keating", match_partial=None),
+            Entity(
+                'Lola Mignon',
+                'recruited girls in paris',
+                r"Lola M(ignon)?",
+                match_partial=None,
+                url=[
+                    'https://tommycarstensen.com/epstein/people/lola-mignon.html',
+                    'https://www.reddit.com/r/Epstein/comments/1rygx6j/an_austrian_lawyer_recruited_victims_for/',
+                ],
+            ),
             Entity('Lucrezia Camponovo', QUESTION_MARKS),
             Entity('Miranda', f'appears to have done an internship at {CLIFFORD_CHANCE} with {MARIA_PRUSAKOVA}?'),
             Entity(PAULA_HEIL_FISHER, "Epstein's ex-girlfriend who works in opera now", match_partial=None),
