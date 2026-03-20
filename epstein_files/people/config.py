@@ -2229,14 +2229,6 @@ HIGHLIGHTED_NAMES = [
         style='sandy_brown',
         entities=[
             Entity('Bernard Kruger', "Epstein's doctor", match_partial=None),
-            Entity(
-                EVA_DUBIN,
-                f"Epstein's ex-gf now married to {GLENN_DUBIN}, doctor at {MOUNT_SINAI}",
-                r"Eva( Anderss?on)? Dubin",
-                aliases=['Eva Andersson'],
-                match_partial=None,
-                url=EPSTEIN_DOCTORS_LINKS,
-            ),
             Entity('James Watson', 'one of the discoverers of DNA', match_partial=None),
             Entity(
                 MELANIE_WALKER,
@@ -3343,6 +3335,14 @@ HIGHLIGHTED_NAMES = [
             Entity("Audrey/Aubrey Raimbault", 'appears in flight logs'),
             Entity('Brittany Beale', VICTIM_EVIDENCE),
             Entity(CELINA_DUBIN, f"daughter of Glenn &{EVA_DUBIN}, called Epstein 'unc'", match_partial=None),
+            Entity(
+                EVA_DUBIN,
+                f"Epstein's ex-gf now married to {GLENN_DUBIN}, doctor at {MOUNT_SINAI}",
+                r"Eva( Anderss?on)? Dubin",
+                aliases=['Eva Andersson'],
+                match_partial=None,
+                url=EPSTEIN_DOCTORS_LINKS,
+            ),
             Entity(
                 JENNIFER_KALIN,
                 f"involved in an alleged sham marriage to {KARYNA_SHULIAK}, dated {KIMBAL_MUSK}",
