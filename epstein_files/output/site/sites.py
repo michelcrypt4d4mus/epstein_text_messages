@@ -24,7 +24,7 @@ GH_PROJECT_URL = f'https://github.com/michelcrypt4d4mus/{GH_REPO_NAME}'
 GH_MASTER_URL = f"{GH_PROJECT_URL}/blob/master"
 ATTRIBUTIONS_URL = f'{GH_MASTER_URL}/epstein_files/util/constants.py'
 EXTRACTS_BASE_URL = f'{GH_MASTER_URL}/emails_extracted_from_legal_filings'
-BASE_URL = f"{GH_PAGES_BASE_URL}/{GH_REPO_NAME}"
+BASE_DEPLOY_URL = f"{GH_PAGES_BASE_URL}/{GH_REPO_NAME}"
 
 CUSTOM_HTML_PREFIX = 'real_html_'
 NAMES_PREFIX = 'only_names_'
@@ -92,7 +92,7 @@ class Site(StrEnum):
 
     @classmethod
     def get_url(cls, site: 'Site') -> str:
-        return f"{BASE_URL}/{cls.html_output_path(site).name}"
+        return f"{BASE_DEPLOY_URL}/{cls.html_output_path(site).name}"
 
     @classmethod
     def get_mobile_redirect_url(cls, site: Self) -> str:
