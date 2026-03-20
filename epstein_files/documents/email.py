@@ -622,10 +622,9 @@ class Email(Communication):
             return OtherFile.files_preview_table(self.attached_docs, title=attachments_table_title)
 
     def _body_as_table(self) -> Table:
-        """Renders the info text as a top row in a table-ish view."""
-        # The configured note is the column "header" in a one column table.
-        note_txt = self._config.note_txt()
-        note_txt = Text('', justify='right').append(note_txt) if note_txt else ''
+        """Single column table that looks like a panel. Renders note as top row in a table-ish view."""
+        if (note_txt := self._config.note_txt()):  # The configured note is the column "header" in a one column table.
+            note_txt = Text('', justify='right').append(note_txt)
 
         panel = Table(
             border_style=self.border_style,
@@ -635,7 +634,7 @@ class Email(Communication):
             style=f"on {self._config.background_color}" if self._config.background_color else '',
         )
 
-        panel.add_column(note_txt)
+        panel.add_column(note_txt or '')
         panel.add_row(self.prettified_txt)
         return panel
 
