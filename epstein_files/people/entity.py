@@ -101,18 +101,20 @@ class Entity(LoggingEntity):
         if self.category:
             self._warn(f"has category '{self.category}' at instantiation time (style='{self.style}')")
 
+    @classmethod
+    def anon(cls, name: str) -> Self:
+        """Alternate convenience constructor for names like 'Jane Doe'."""
+        return cls(name, match_partial=None, is_interesting=False, is_emailer=False)
+
     @property
     def alt_links(self) -> list[ExternalLink]:
         """Links beyond the first one (which is usually attached to the name)."""
-        return [ExternalLink(url, f'link', link_style=JOURNALISM_STYLE) for i, url in enumerate(self._urls[1:], 2)]
+        return self.links()[1:]
 
     @property
     def alt_links_txt(self) -> Text:
         """Alternate links parenthesized and concatenated into one Text object."""
-        if self.alt_links:
-            return enclose(join_texts(self.alt_links, Text('/', LINK_JOIN_STYLE)), '[]', LINK_JOIN_STYLE)
-        else:
-            return Text('')
+        return self._joined_links(self.alt_links)
 
     # TODO: add known email addresses?
     @property
@@ -127,7 +129,7 @@ class Entity(LoggingEntity):
             bio_pieces.append(enclose(category_txt, encloser='[]', encloser_style='dim'))
 
         bio_pieces.append(non_epstein_highlighter(Text(self.info, BIO_STYLE)) if self.info else QUESTION_MARKS_TXT)
-        bio_pieces.append(self.alt_links_txt)
+        bio_pieces.append(self.links_txt(include_wikipedia=False))
         return join_texts(bio_pieces)
 
     # TODO: rename this somehting that means "non_custom_external_links"
@@ -282,6 +284,22 @@ class Entity(LoggingEntity):
     def epstein_site_url(self, site: EpsteinSite = EPSTEINIFY) -> str:
         """URL pointing to info about this entity on one of the Epstein sites like epsteinify.com."""
         return PERSON_LINK_BUILDERS[site](self.name)
+
+    def links(self) -> list[ExternalLink]:
+        """All configured links from the `url` property."""
+        return [
+            ExternalLink(url, 'link' + (str(i) if i > 1 else ''), link_style=JOURNALISM_STYLE)
+            for i, url in enumerate(self._urls, 1)
+        ]
+
+    def links_txt(self, include_wikipedia: bool = True) -> Text:
+        """All links concatenated into one Text object."""
+        links = [link for link in self.links() if include_wikipedia or WIKIPEDIA not in link.url]
+        return self._joined_links(links)
+
+    def _joined_links(self, links: list[ExternalLink]) -> Text:
+        """Join links to '[link/link/link]' Text."""
+        return enclose(join_texts(links, Text('/', LINK_JOIN_STYLE)), '[]', LINK_JOIN_STYLE) if links else Text('')
 
     def __eq__(self, other: Self):
         if not isinstance(other, Self):
