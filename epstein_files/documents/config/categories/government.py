@@ -170,7 +170,7 @@ GOVERNMENT_CFGS = [
     fbi_report(
         'EFTA00164480',
         'Epstein death investigation (Powerpoint slides)',
-        background_color='dark_red',
+        # background_color='dark_red',
         date='2019-09-01',
         date_uncertain='after death, before scheduled interviews Oct. 18th',
         is_interesting=True,
