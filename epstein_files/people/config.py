@@ -2594,7 +2594,7 @@ HIGHLIGHTED_NAMES = [
                 f"reputation management, worked on with {CHRISTINA_GALBRAITH}",
                 r"T[vy]ler Shears",
             ),
-            Organization(HEDOSOPHIA, f"{IAN_OSBORNE} VC fund, invested in Alibaba, launched SPACs with Chamath advised by Epstein"),
+            Organization(HEDOSOPHIA, f"{IAN_OSBORNE} VC fund, invested in Alibaba, launched infamous SPACs with Chamath advised by Epstein"),
             Organization('Wagging Tail Entertainment', f"{PEGGY_SIEGAL} company"),
         ],
         patterns=[
