@@ -11,8 +11,10 @@ from rich.text import Text
 
 from epstein_files.util.constant.strings import ARCHIVE_LINK_COLOR, ARCHIVE_ALT_LINK_STYLE, ARCHIVE_LINK_COLOR
 from epstein_files.util.helpers.rich_helpers import TextCast, enclose, join_non_empty, join_texts, parenthesize
+from epstein_files.util.logging import logger
 
 HTTPS = 'https://'
+BARE_URL_REGEX = re.compile(r"^[-\w.]+(/|\Z)")  # bare = 'missing https'
 LINK_REGEX = re.compile(r"^https?://.*")
 LINK_HREF_LINE_REGEX = re.compile(r"^([>• ]*)(http\S+)(.*)")
 TLD_REGEX = re.compile(r"\.(com|co.uk|gov|net)$")
@@ -85,7 +87,7 @@ class ExternalLink(TextCast):
 
     @property
     def domain_link(self) -> Text:
-        """Returns a link using the TLD free domain as the `link_text`."""
+        """Returns a link using the TLD free domain as the `link_text`, e.g. '[wsj]' for a link to wsj.com."""
         return enclose(link_text_obj(self.url, self.domain(True), self.link_style), '[]')
 
     @property
@@ -138,7 +140,12 @@ class ExternalLink(TextCast):
 
 def coerce_https(url: str) -> str:
     """Prepend https:// if it's not there already."""
-    return url if LINK_REGEX.match(url) else f"https://{url}"
+    if LINK_REGEX.match(url):
+        return url
+    elif not BARE_URL_REGEX.match(url):
+        logger.warning(f'prepending https to "{url}" but looks invalid...')
+
+    return f"https://{url}"
 
 
 def extract_domain(url: str, strip_tld: bool = False) -> str:
@@ -162,8 +169,7 @@ def hyperlink_line(line: str) -> Text:
 
 def hyperlink_text(text: str) -> Text:
     """Add rich Text hyperlinks to a string with newlines in it."""
-    lines = [hyperlink_line(line) for line in text.split('\n')]
-    return join_texts(lines, '\n', allow_falsey=True)
+    return join_texts([hyperlink_line(line) for line in text.split('\n')], '\n', allow_falsey=True)
 
 
 def link_markup(
