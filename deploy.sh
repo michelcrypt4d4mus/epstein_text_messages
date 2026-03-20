@@ -54,6 +54,7 @@ git merge --no-edit master --quiet
 
 export ONLY_CURATED
 export ONLY_MOBILE
+export SKIP_CHRONO
 export TAG_RELEASE
 "$REPO_SCRIPTS_DIR/build_pages.sh"
 
