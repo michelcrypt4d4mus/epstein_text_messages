@@ -179,7 +179,7 @@ class DocPrinter(DocTypesMixin):
 
             # Change the layout for OtherFile (indented, file info panel offset intward)
             if isinstance(doc, OtherFile):
-                doc = doc.make_layout(indent=site_config.indents.show_with)
+                doc = doc.make_layout(background_color='gray19', indent=site_config.indents.show_with)
 
                 if doc.file_info:
                     doc.file_info_indent = doc.file_info.indent = 2
