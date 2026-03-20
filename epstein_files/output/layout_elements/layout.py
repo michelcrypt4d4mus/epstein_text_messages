@@ -195,6 +195,10 @@ class Layout:
             **margin_vertical_css(SUBHEADER_VERTICAL_MARGIN),
         }
 
+        # <fieldset> has weird margin spacing, this eliminates extra space between subheader and panel
+        if not isinstance(self.body_panel, Table) and 'margin-bottom' in css_props:
+            del css_props['margin-bottom']
+
         return text_to_div(Text('\n').join(self.subheaders), css_props)
 
     def to_html(self) -> str:
