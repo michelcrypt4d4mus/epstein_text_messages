@@ -920,8 +920,8 @@ file_id,category,author,is_interesting,timestamp,recipients_str,sent_from_device
 026571,email,,True,2012-11-02 14:34:45+00:00,Jeffrey Epstein,,
 026572,finance,JP Morgan,False,2012-11-09 00:00:00+00:00,,,"JP Morgan report: ""Global Asset Allocation report"""
 026580,email,Cecile de Jongh,False,2013-01-29 16:46:00+00:00,Jeffrey Epstein,,
-026582,reputation,,True,,,,"reputation management Epstein's internet search results at start of reputation repair campaign, maybe from Ian Osborne & Partners"
-026583,reputation,,True,2011-04-01 00:00:00+00:00,,,reputation management Google search results for 'Jeffrey Epstein' with analysis (Ian Osborne & Partners?)
+026582,reputation,,True,,,,"Epstein's internet search results at start of reputation repair campaign, maybe from Ian Osborne & Partners"
+026583,reputation,,True,2011-04-01 00:00:00+00:00,,,Google search results for 'Jeffrey Epstein' with analysis (Ian Osborne & Partners?)
 026584,finance,,True,2009-07-01 00:00:00+00:00,,,article about tax implications of disregarded entities
 026598,article,LA Times,False,2013-03-27 00:00:00+00:00,,,LA Times op-ed about why America needs a Ministry of Culture
 026601,email,Skip Rimer,True,2013-04-25 16:20:39+00:00,None;Jeffrey Epstein,,
@@ -1279,7 +1279,7 @@ file_id,category,author,is_interesting,timestamp,recipients_str,sent_from_device
 029340,article,MarketWatch,False,2014-03-16 00:00:00+00:00,,,"MarketWatch article about estate taxes, particularly Epstein's favoured GRATs"
 029342,email,Lesley Groff,,2013-05-07 17:55:30+00:00,Jeffrey Epstein,,
 029344,email,Alan S. Halperin,False,2014-07-02 10:51:32+00:00,Jeffrey Epstein,,
-029350,reputation,,False,2013-10-29 16:27:36+00:00,,,"reputation management Microsoft Bing search results for Epstein with sex offender at top, attached to email EFTA00675542"
+029350,reputation,,False,2013-10-29 16:27:36+00:00,,,"Microsoft Bing search results for Epstein with sex offender at top, attached to email EFTA00675542"
 029351,junk,,False,2013-07-26 00:00:00+00:00,,,joke about Obama
 029352,junk,,False,2013-07-26 00:00:00+00:00,,,joke about Obama
 029353,junk,,False,2013-07-26 00:00:00+00:00,,,joke about Obama
@@ -1525,7 +1525,7 @@ file_id,category,author,is_interesting,timestamp,recipients_str,sent_from_device
 030417,email,Eva Dubin,,2011-03-08 23:49:00+00:00,Jeffrey Epstein,,
 030420,email,Stephen Hanson,,2011-03-09 01:51:00+00:00,Jeffrey Epstein,Sent from Steve Hanson's Blackberry,
 030423,email,Intelligence Squared,False,2011-04-28 12:31:12+00:00,Jeffrey Epstein,,
-030426,reputation,Ian Osborne,True,2011-06-14 00:00:00+00:00,,,reputation management Ian Osborne: reputation repair proposal citing Michael Milken
+030426,reputation,Ian Osborne,True,2011-06-14 00:00:00+00:00,,,Ian Osborne Epstein reputation repair proposal citing Michael Milken
 030429,email,Tyler Shears,True,2014-03-20 18:19:00+00:00,Christina Galbraith;Jeffrey Epstein,,
 030430,email,John Brockman,,2017-02-06 20:34:19+00:00,Jeffrey Epstein,,Steve Bannon was involved in the Biosphere project
 030431,email,Michael Wolff,,2018-03-24 01:37:40+00:00,Jeffrey Epstein,,
@@ -1554,10 +1554,10 @@ file_id,category,author,is_interesting,timestamp,recipients_str,sent_from_device
 030493,email,Jeffrey Epstein,,2010-01-28 10:29:00+00:00,Boris Nikolic,,
 030501,email,Jeffrey Epstein,,2010-01-28 11:21:00+00:00,Jes Staley,,
 030502,email,Jeffrey Epstein,,2010-01-28 14:46:00+00:00,Boris Nikolic,,
-030506,email,Jeffrey Epstein,,2010-11-03 14:40:00+00:00,Paula Heil Fisher,Sorry for all the typos .Sent from my iPhone,
-030507,email,Jeffrey Epstein,,2010-11-03 14:43:00+00:00,Paula Heil Fisher,Sorry for all the typos .Sent from my iPhone,
-030508,email,Jeffrey Epstein,,2010-11-03 14:53:00+00:00,Paula Heil Fisher,Sorry for all the typos .Sent from my iPhone,
-030509,email,Jeffrey Epstein,,2010-11-03 15:07:00+00:00,Paula Heil Fisher,Sorry for all the typos .Sent from my iPhone,
+030506,email,Jeffrey Epstein,,2010-11-03 14:40:00+00:00,Celina Dubin,Sorry for all the typos .Sent from my iPhone,
+030507,email,Jeffrey Epstein,,2010-11-03 14:43:00+00:00,Celina Dubin,Sorry for all the typos .Sent from my iPhone,
+030508,email,Jeffrey Epstein,,2010-11-03 14:53:00+00:00,Celina Dubin,Sorry for all the typos .Sent from my iPhone,
+030509,email,Jeffrey Epstein,,2010-11-03 15:07:00+00:00,Celina Dubin,Sorry for all the typos .Sent from my iPhone,
 030510,email,Jeffrey Epstein,,2010-11-15 19:13:00+00:00,Jes Staley,,
 030511,email,Jeffrey Epstein,,2011-03-06 08:51:00+00:00,Prince Andrew,,
 030512,email,Jeffrey Epstein,,2011-03-07 16:42:11+00:00,Ghislaine Maxwell,,
@@ -1570,7 +1570,7 @@ file_id,category,author,is_interesting,timestamp,recipients_str,sent_from_device
 030570,email,Jeffrey Epstein,,2011-05-04 10:51:00+00:00,Jes Staley,,
 030571,email,Jeffrey Epstein,,2011-07-27 17:17:00+00:00,Jes Staley,,
 030572,email,Jeffrey Epstein,,2011-08-02 20:40:00+00:00,Paula Heil Fisher,,
-030573,reputation,,True,2011-02-25 00:00:00+00:00,,,"reputation management Epstein's unflattering Google search results, maybe screenshot by Al Seckel or Ian Osborne & Partners"
+030573,reputation,,True,2011-02-25 00:00:00+00:00,,,"Epstein's unflattering Google search results, maybe screenshot by Al Seckel or Ian Osborne & Partners"
 030574,email,Jeffrey Epstein,,2014-02-26 17:08:53+00:00,Melanie Spinella,,
 030587,email,Jeffrey Epstein,,2011-03-07 17:03:12+00:00,Peggy Siegal,,
 030589,email,Jeffrey Epstein,,2011-03-04 16:31:00+00:00,Jay Lefkowitz;Martin Weinberg,,
@@ -1698,7 +1698,7 @@ file_id,category,author,is_interesting,timestamp,recipients_str,sent_from_device
 030871,email,Paul Krassner,,2017-07-21 04:13:33+00:00,Jeffrey Epstein,,
 030873,email,Michael Wolff,,2017-10-09 13:18:25+00:00,Jeffrey Epstein,,
 030874,email,,True,2017-10-12 18:36:24+00:00,Jeffrey Epstein,,
-030875,reputation,,True,2014-02-08 00:00:00+00:00,,,reputation management Epstein's Wikipedia page
+030875,reputation,,True,2014-02-08 00:00:00+00:00,,,Epstein's Wikipedia page
 030878,email,Richard Kahn,False,2018-09-15 01:09:39+00:00,Jeffrey Epstein,,
 030880,email,Michael Wolff,,2019-03-11 20:08:25+00:00,Jeffrey Epstein,,
 030881,email,,True,2013-09-22 14:08:00+00:00,Jeffrey Epstein,,
@@ -5487,7 +5487,7 @@ EFTA00462025,email,Lesley Groff,True,2017-10-26 11:29:23+00:00,Austin Hill,Sent 
 EFTA00462608,email,Austin Hill,True,2017-11-08 23:48:57+00:00,Lesley Groff,,
 EFTA00462693,crypto,Jeffrey Epstein,True,2017-11-09 17:33:59+00:00,Lesley Groff,,Epstein gets a table for 10 at the dinner honouring Howard Lutnick
 EFTA00464411,email,Lesley Groff,,2017-11-17 20:22:26+00:00,Richard Kahn,,
-EFTA00465926,email,,True,2017-12-29 20:09:56+00:00,None;Bella Klein,,possible immigration fraud with a fake round trip ticket
+EFTA00465926,girls,,True,2017-12-29 20:09:56+00:00,None;Bella Klein,,"Paris, possible immigration fraud, see quote: ""we will cancel this ticket prior to departure"""
 EFTA00468081,email,American Express Travel,,2018-01-25 19:10:56+00:00,Lesley Groff,,
 EFTA00468404,email,Bebe Avdiu,,2018-01-29 18:21:31+00:00,Lesley Groff,,
 EFTA00469073,email,Lesley Groff,True,2018-02-08 19:44:24+00:00,Masha Drokova,,
@@ -6403,6 +6403,7 @@ EFTA01744405,girls,Svetlana Pozhidaeva,True,2015-12-10 23:44:02+00:00,Jeffrey Ep
 EFTA01744418,email,Ariane de Rothschild,,2015-12-18 11:42:27+00:00,Jeffrey Epstein,,
 EFTA01744455,email,Karim Wade,True,2016-09-25 19:28:00+00:00,Jeffrey Epstein,,
 EFTA01744769,email,Larry Summers,,2016-09-01 15:18:38+00:00,Jeffrey Epstein,Sent from my iPhone,
+EFTA01745253,email,Peter Attia,True,2015-06-24 19:08:16+00:00,Jeffrey Epstein,,"see quote: ""The life you lead is so outrageous, and yet I can't tell a soul"""
 EFTA01745650,girls,Kira Dikhtyar,True,2015-04-26 18:47:00+00:00,Jeffrey Epstein,Sent from AOL Mobile Mail,"Sanita is big mad at Epstein and ""makes lists"" which is freaking everyone out"
 EFTA01745739,email,Ben Goertzel,False,2015-08-26 02:38:01+00:00,Christina Galbraith;Jeffrey Epstein,,
 EFTA01746399,email,Joi Ito,True,2015-04-22 19:02:00+00:00,Jeffrey Epstein,,
@@ -6481,7 +6482,7 @@ EFTA01805070,email,Valar Ventures,,2016-12-07 14:38:00+00:00,Jeffrey Epstein,,
 EFTA01805304,girls,Kira Dikhtyar,True,2016-03-06 00:52:00+00:00,Jeffrey Epstein,,
 EFTA01806550,email,Leighton Candler,,2011-04-13 13:02:00+00:00,Jeffrey Epstein,Sent from my BlackBerry Wireless Device,
 EFTA01809218,email,Myla Trestiza,,2015-03-30 20:35:00+00:00,MY Te Manu,Sent from Yahoo Mail for iPhone,
-EFTA01810372,reputation,Tyler Shears,False,2014-04-04 18:34:22+00:00,,,"reputation management Tyler Shears: invoice for reputation management work, attached to email EFTA01931256"
+EFTA01810372,reputation,Tyler Shears,False,2014-04-04 18:34:22+00:00,,,"Tyler Shears invoice for reputation management work, attached to email EFTA01931256"
 EFTA01811230,girls,Jeffrey Epstein,True,2010-10-01 15:29:22+00:00,None,Sent from my iPhone,"""Renat"" is probably Renata Bolotova, <REDACTED> might be ""Irina"" or Svetlana Pozhidaeva"
 EFTA01814983,girls,Jeffrey Epstein,True,2010-07-02 16:21:12+00:00,Eva Dubin,,Epstein and Nicole Junkermann used to date
 EFTA01816786,email,Jeffrey Epstein,,2009-07-29 13:29:20+00:00,William Murphy,,
@@ -6670,7 +6671,7 @@ EFTA02025218,misc,,,2011-09-09 00:00:00+00:00,,,
 EFTA02025944,email,Renata Bolotova,True,2012-01-23 06:00:00+00:00,Jeffrey Epstein,,
 EFTA02026255,email,,True,2012-05-20 16:30:07+00:00,Jeffrey Epstein,,
 EFTA02027091,email,Jennifer Jacquet,True,2012-05-26 17:59:05+00:00,Jeffrey Epstein,,
-EFTA02027844,girls,unknown girl,True,2012-04-01 21:31:24+00:00,Jeffrey Epstein,Sent from my iPad,"permission to ""fuck someone with a condom"""
+EFTA02027844,girls,unknown girl,True,2012-04-01 21:31:24+00:00,Jeffrey Epstein,Sent from my iPad,"asking permission to, see quote: ""fuck someone with a condom"""
 EFTA02035756,crypto,Al Seckel,True,2010-12-24 14:12:50+00:00,Jeffrey Epstein,,Al Seckel introduces Epstein to Bannon business partner Brock Pierce of Tether/Blockchain Capital
 EFTA02036490,email,Maria Prusakova,True,2012-06-15 12:50:06+00:00,Jeffrey Epstein,,
 EFTA02037504,crypto,Boris Nikolic,True,2011-01-18 04:17:13+00:00,Jeffrey Epstein,,
