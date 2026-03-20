@@ -343,7 +343,7 @@ class Document(LoggingEntity):
         else:
             display_text = self.display_text
 
-        display_txt = hyperlink_text(doublespace_lines(self.display_text))
+        display_txt = hyperlink_text(doublespace_lines(display_text))
 
         if self.text_style:
             display_txt.stylize(self.text_style)
