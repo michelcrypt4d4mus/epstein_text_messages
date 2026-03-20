@@ -4,12 +4,12 @@ from epstein_files.documents.config.communication_cfg import CommunicationCfg, P
 from epstein_files.documents.config.config_builder import letter
 from epstein_files.documents.config.doc_cfg import NO_TRUNCATE, DocCfg
 from epstein_files.documents.config.email_cfg import EmailCfg
-from epstein_files.output.highlight_config import DITE_ANATA_JUILLIARD_URL
 from epstein_files.people.names import *
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constant.urls import SVETLANA_NEWSGROUND
 from epstein_files.util.helpers.string_helper import join_truthy, quote
 from epstein_files.util.logging import logger
+from epstein_files.util.constant.urls import DITE_ANATA_JUILLIARD_URL
 
 PRUSAKOVA_BERKELY = 'Epstein paid for Prusakova to go to Berkeley'
 WOMEN_EMPOWERMENT = f"Women Empowerment (WE) conference"

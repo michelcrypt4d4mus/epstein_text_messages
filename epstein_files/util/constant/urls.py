@@ -128,6 +128,8 @@ CRYPTADAMUS_SOCIAL_LINKS = [
 ]
 
 # biographical links
+DITE_ANATA_JUILLIARD_URL = 'https://usatoday.com/story/news/politics/2026/02/19/jeffrey-epstein-emails-files-power-for-benefit/88701802007/'
+
 EPSTEIN_DOCTORS_LINKS = [
     'https://www.nytimes.com/2026/02/28/us/jeffrey-epstein-doctors.html?unlocked_article_code=1.PlA.f4B2.BgLoXD-aVKkw&smid=url-share',
     'https://www.bloomberg.com/news/features/2026-02-28/epstein-emails-show-reliance-on-eva-dubin-mount-sinai-in-doj-files',
