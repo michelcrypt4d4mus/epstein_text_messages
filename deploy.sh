@@ -44,7 +44,7 @@ if any_uncommitted_changes; then
     git commit -am"Update .png"
     git push origin master --quiet
 else
-    print_msg "  No changes to emailers .png file..."
+    print_warning "  No changes to emailers .png file..."
 fi
 
 
@@ -54,6 +54,7 @@ git merge --no-edit master --quiet
 
 export ONLY_CURATED
 export ONLY_MOBILE
+export SKIP_CHRONO
 export TAG_RELEASE
 "$REPO_SCRIPTS_DIR/build_pages.sh"
 
