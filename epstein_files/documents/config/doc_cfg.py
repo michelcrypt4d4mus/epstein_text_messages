@@ -96,7 +96,6 @@ NON_METADATA_FIELDS = [
 # Categories where we want to include the category name at start of the description string
 CATEGORY_PREAMBLES = {
     Interesting.DIARY: VICTIM_DIARY,
-    Interesting.REPUTATION: REPUTATION_MGMT,
     Neutral.DEPOSITION: 'deposition of',
     Neutral.FLIGHT_LOG: Neutral.FLIGHT_LOG.replace('_', ' '),
     Neutral.PRESSER: Neutral.PRESSER.replace('_', ' '),
@@ -267,7 +266,7 @@ class DocCfg(LoggingEntity):
         elif self.category == Neutral.PRESSER:
             description = join_truthy(preamble, self.note, ' announcing ')  # note reversed args
             description = join_truthy(author, description)
-        elif self.category == Interesting.REPUTATION or (self.category == Neutral.LEGAL and 'v.' in self.author_str):
+        elif self.category == Neutral.LEGAL and 'v.' in self.author_str:
             author_separator = ': '
         elif self.category in [Category.RESUMÉ, Category.TWEET]:
             preamble_separator = 'of' if self.category == Category.RESUMÉ else 'by'

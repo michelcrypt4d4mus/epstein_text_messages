@@ -8,7 +8,14 @@ AL_SECKEL_BILL_FIGHT = f"{AL_SECKEL} and Epstein fight about the bill for reputa
 
 
 REPUTATION_CFGS = [
-    DocCfg(id='030426', author=IAN_OSBORNE, note=f"reputation repair proposal citing Michael Milken", date='2011-06-14'),
+    DocCfg(
+        id='030426',
+        author=IAN_OSBORNE,
+        date='2011-06-14',
+        is_interesting=10,
+        note=f"Epstein reputation repair proposal citing Michael Milken",
+        show_full_panel=True,
+    ),
     DocCfg(id='026582', note=f"Epstein's internet search results at start of reputation repair campaign, maybe from {OSBORNE_LLP}"),
     DocCfg(id='030573', note=f"Epstein's unflattering Google search results, maybe screenshot by {AL_SECKEL} or {OSBORNE_LLP}"),
     DocCfg(id='030875', note=f"Epstein's Wikipedia page", date='2014-02-08'),  # Date is based on tyler shears; seckel was 2010

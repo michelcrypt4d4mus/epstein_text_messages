@@ -339,6 +339,9 @@ NOT_CHRONOLOGICAL_VIEW_IDS = [cfg.id for cfg in FLIGHT_LOG_CFGS] + [
     # Peter Mandelson
     '029914',
     '033338',
+    # Ike Groff
+    'EFTA02189550',
+    #
     'EFTA00582504',
     '024432',
     '019352',

@@ -318,7 +318,7 @@ HIGHLIGHTED_NAMES = [
         style='turquoise4',
         category=TECH,
         entities=[
-            Entity(BILL_GATES, "ex-Microsoft, Gates Foundation, bgC3"),
+            Entity(BILL_GATES, "ex-Microsoft, Gates Foundation, bgC3", r"(Bill )?Gates( Foundation)?"),
             Entity(
                 BORIS_NIKOLIC,
                 f"biotech partner of {BILL_GATES} in bgC3 / Bill Gates Ventures, Epstein estate executor",
@@ -1370,7 +1370,7 @@ HIGHLIGHTED_NAMES = [
             r"Tommy Robinson",
             r"(Tony )Blair",
             r"United Kingdom",
-            r"U\.K\.",
+            r"U\.?K\.?",
             r"Ukrai?n(e|ian)",
             r"Vatican( City)?",
             r"Venice",
