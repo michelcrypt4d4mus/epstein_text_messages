@@ -11,7 +11,7 @@ from epstein_files.documents.document import Document
 from epstein_files.output.epstein_highlighter import highlighter
 from epstein_files.output.output import write_html
 from epstein_files.output.rich import print_subtitle_panel
-from epstein_files.output.site.sites import BASE_DEPLOY_URL, PHONE_LOG_FILE_ID, Site
+from epstein_files.output.site.sites import BASE_DEPLOY_URL, PHONE_LOG_FILE_ID, PROJECT_LINK, Site
 from epstein_files.util.helpers.file_helper import open_file_or_url
 from epstein_files.util.helpers.string_helper import as_pattern
 from epstein_files.util.logging import logger
@@ -81,6 +81,9 @@ class CallCounter:
             logger.warning(f"Found {len(self.calls)} on {len(self.call_counts_by_source)} Epstein phone numbers so far...")
 
     def print(self) -> None:
+        console.print(PROJECT_LINK.link)
+        console.line()
+
         msg = f"Found {len(self.call_counts_by_source)} Epstein phone numbers" + \
               f" making {len(self.call_counts):,} phone calls" + \
               f" to {len(self.call_counts):,} unique numbers"
