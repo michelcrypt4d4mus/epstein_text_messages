@@ -1,4 +1,3 @@
-import logging
 import re
 from dataclasses import dataclass, field, fields
 from typing import ClassVar, Literal, Self, Sequence
@@ -91,11 +90,14 @@ class Entity(LoggingEntity):
     def __post_init__(self):
         self._urls = [wikipedia_url(self.name) if url == WIKIPEDIA else url for url in listify(self.url)]
 
+        if not all(url.startswith('http') for url in self._urls):
+            self._error(f"Bad URL configured: {self._urls}")
+
         try:
             self.emailer_regex = re.compile(self.pattern, re.IGNORECASE)
             self.highlight_regex = re.compile(fr"\b({self.highlight_pattern})\b", re.IGNORECASE)
         except re.error as e:
-            self._log(f"failed to compile emailer or highlight regex: {e}", logging.ERROR)
+            self._error(f"failed to compile emailer or highlight regex: {e}")
             raise e
 
         if self.category:

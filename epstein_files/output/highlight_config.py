@@ -2470,7 +2470,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             ),
             Entity(
                 ALINA_PUSCAU,
-                "Victoria's Secret model, dated Epstein, engaged to Brett Ratner at one point",
+                "Victoria's Secret model, dated Epstein, was engaged to Brett Ratner",
                 r"Alin[ae] P(asca|ușcă)u",
                 url=WIKIPEDIA,
             ),
@@ -2480,7 +2480,12 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 r"Antoine Verg[li]as",
                 url='https://www.vanityfair.com/news/story/melania-trump-epstein-files',
             ),
-            Entity(ATHENA_ZELCOVICH, 'actress', r"Athe(na )?Zelco(vich)?", url='https://www.imdb.com/name/nm5631006/'),  # Skype: athezelco
+            Entity(
+                ATHENA_ZELCOVICH,
+                'actress', r"Athe(na )?Zelco(vich)?",
+                email_addresses=['athezelco'],  # actually a skype handle
+                url='https://www.imdb.com/name/nm5631006/',
+            ),
             Entity(
                 DANIEL_SIAD,
                 'model scout funded by Epstein to recruit in eastern Europe',
@@ -2532,7 +2537,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Entity('pink@mc2mm.com', JEAN_LUC_MC2, r"^Pink$|pink@mc2mm\.com"),
             Entity(
                 'Tigran Khachatrian',
-                'model scout, appears in "Girl Model" documentary',
+                f'model scout, worked with {DANIEL_SIAD}, appears in "Girl Model" documentary',
                 r"Tigrane?( Khachatrian)?",
                 match_partial='both',
                 url='https://en.wikipedia.org/wiki/Girl_Model',
@@ -2573,7 +2578,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 IAN_OSBORNE,
                 f"PR for Epstein, runs {HEDOSOPHIA} which launched SPACs with {CHAMATH_PALIHAPITIYA} advised by Epstein",
                 r"[Il]an Osbou?(rn|m)e",
-                url='https://www.businessinsider.com/profile-ian-osborne-cofounder-chamath-palihapitiya-social-capital-hedosophia-spac-2021-5'
+                url='https://www.businessinsider.com/profile-ian-osborne-cofounder-chamath-palihapitiya-social-capital-hedosophia-spac-2021-5',
             ),
             Entity('Lila Walker', f"assistant to {PEGGY_SIEGAL}", match_partial=None),
             Entity(MATTHEW_HILTZIK, "crisis PR at Hiltzik Strategies", r"(Matt(hew)? )?Hiltzi[gk]", url=WIKIPEDIA),

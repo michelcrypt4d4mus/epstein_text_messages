@@ -26,6 +26,9 @@ class LoggingEntity(ABC):
     def _debug_log(self, msg: str) -> None:
         self._log(msg, logging.DEBUG)
 
+    def _error(self, msg: str) -> None:
+        self._log(msg, logging.ERROR)
+
     def _log(self, msg: str, level: int = logging.INFO) -> None:
         logger.log(level, f"{self._log_prefix} {msg}")
 
