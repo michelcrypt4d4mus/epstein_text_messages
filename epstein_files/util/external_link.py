@@ -17,7 +17,7 @@ HTTPS = 'https://'
 BARE_URL_REGEX = re.compile(r"^[-\w.]+(/|\Z)")  # bare = 'missing https'
 LINK_REGEX = re.compile(r"^https?://.*")
 LINK_HREF_LINE_REGEX = re.compile(r"^([>• ]*)(http\S+)(.*)")
-TLD_REGEX = re.compile(r"\.(com|co.uk|edu|gov|net|org)$")
+TLD_REGEX = re.compile(r"\.(com|co.(nz|uk)|edu|fr|gov|io|net|org|ph)$")
 
 EXTERNAL_LINK_STYLE = 'light_slate_grey bold'
 LINK_COMMENT_STYLE = 'color(195) dim italic'
@@ -32,14 +32,22 @@ SOCIAL_PLATFORMS = {
 }
 
 SHORT_LINKS = {
+    'aljazeera.com': 'alj',
     'bloomberg.com': 'bbg',
+    'businessinsider.com': 'bi',
+    'dossier.center': 'dossier',
+    'graziadaily': 'grazia',
     'newyorker.com': 'nyer',
     'justice.gov': 'doj',
+    'lunch.publishersmarketplace': 'publ',
     'nytimes.com': 'nyt',
     'nypost.com': 'nyp',
+    'reddit.com': 'rddt',
+    'stanford.edu': 'stanford',
     'substack.com': 'sbstk',
-    'theguardian.com': 'guardian',
-    'theatlantic.com': 'atlantic',
+    'tabletmag': 'tablet',
+    'usatoday.com': 'usa',
+    'vanityfair.com': 'vf',
     'wikipedia': 'wiki',
 }
 
@@ -106,7 +114,7 @@ class ExternalLink(TextCast):
                 link_text = shorthand
                 break
 
-        link_text = link_text or self.domain(True)
+        link_text = link_text or self.domain(True).removeprefix('the')
         link = link_text_obj(self.url, link_text, self.link_style)
         return enclose(link, '[]') if bracketed else link
 
