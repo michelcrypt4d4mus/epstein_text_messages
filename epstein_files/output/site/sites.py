@@ -29,6 +29,7 @@ BASE_DEPLOY_URL = f"{GH_PAGES_BASE_URL}/{GH_REPO_NAME}"
 CUSTOM_HTML_PREFIX = 'real_html_'
 NAMES_PREFIX = 'only_names_'
 MOBILE_SUFFIX = '_mobile'
+PHONE_LOG_FILE_ID = 'EFTA01242527'
 
 
 class Site(StrEnum):
@@ -47,6 +48,7 @@ class Site(StrEnum):
     JSON_METADATA = auto()
     NAMES = auto()  # Not a single site, depends on the --name argument
     OTHER_FILES_TABLE = auto()
+    PHONE_NUMBERS = auto()
     SAMPLE = auto()
     TEXT_MESSAGES = auto()
     WORD_COUNT = auto()
@@ -162,6 +164,7 @@ HTML_BUILD_FILENAMES = {
     Site.DOJ_FILES:             f'doj_2026-01-30_non_email_files.html',
     Site.EMAILERS:              f'emails_grouped_by_counterparty.html',
     Site.JSON_METADATA:         f'metadata.json',
+    Site.PHONE_NUMBERS:         f'{PHONE_LOG_FILE_ID}_phone_calls.html',
     Site.TEXT_MESSAGES:         f'text_messages_{EPSTEIN_FILES_NOV_2025}.html',
     Site.WORD_COUNT:            f'communication_word_count.html',
 #     SiteType.EPSTEIN_WORD_COUNT: 'epstein_texts_and_emails_word_count.html'),
@@ -182,6 +185,7 @@ SITE_DESCRIPTIONS = {
     Site.CHRONOLOGICAL_MOBILE:  f"chrono mobile:another attempt at mobile compatibility",
     Site.OTHER_FILES_TABLE:     f"other:files that are not emails or texts",
     Site.DOCUMENT_NOTES:        f"notes:on the most interesting files",
+    Site.PHONE_NUMBERS:         f"phone numbers:called by Epstein's phones",
     Site.WORD_COUNT:            f"word count:of Epstein's communications",
     Site.DOJ_FILES:             f"doj files:raw OCR text {DOJ_2026_TRANCHE}",
     Site.JSON_METADATA:         f"metadata:author bios, attribution explanations",
