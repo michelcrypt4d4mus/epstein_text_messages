@@ -23,6 +23,7 @@ DOJ_SEARCH_URL = 'https://www.justice.gov/epstein/search'
 
 # External URLs
 CARSTENSEN_URL = 'https://tommycarstensen.com/epstein'
+CARSTENSEN_PEOPLE_URL = f"{CARSTENSEN_URL}/people"
 COFFEEZILLA_ARCHIVE_URL = 'https://journaliststudio.google.com/pinpoint/search?collection=061ce61c9e70bdfd'
 COURIER_NEWSROOM_ARCHIVE_URL = 'https://journaliststudio.google.com/pinpoint/search?collection=092314e384a58618'
 DOJ_2026_FILE_BASE_URL = "https://www.justice.gov/epstein/files/DataSet%20"
@@ -186,6 +187,17 @@ def build_doc_url(base_url: str, filename_or_id: int | str, case: Literal['lower
     file_stem = file_stem.lower() if case == 'lower' or EPSTEIN_MEDIA in base_url else file_stem
     file_stem = file_stem.title() if case == 'title' else file_stem
     return f"{base_url}{file_stem}"
+
+
+def carstensen_person_url(name: str) -> str:
+    name_parts = name.replace('.', '').removeprefix('Dr ').split()
+
+    if len(name_parts) > 3:
+        return ''
+    elif len(name_parts) == 3 and len(name_parts[1]) == 1:
+        name = f"{name_parts[0]} {name_parts[2]}"
+
+    return f"{CARSTENSEN_PEOPLE_URL}/{name.replace(' ', '-')}.html".lower()
 
 
 def doj_2026_file_url(dataset_id: int, file_stem: str) -> str:
