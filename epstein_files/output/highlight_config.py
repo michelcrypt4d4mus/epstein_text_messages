@@ -2279,7 +2279,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         entities=[
             Entity(
                 GANBAT_CHULUUNKHUU,
-                "corrupt Mongolian politician who was later wanted by Interpol",
+                "Mongolian politician, corruption, wanted by Interpol",
                 r"Ganbat(@| Ch(uluunkhuu)?)?|gambahtss?",
                 match_partial='both',
                 url='https://news.mn/en/227194/',
@@ -2327,14 +2327,14 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 r"Fawzi.Siam?",
                 match_partial='first',
             ),
-            Entity('Hamad bin Khalifa al-Thani', 'emir of Qatar', match_partial=None),
+            Entity('Hamad bin Khalifa al-Thani', 'emir of Qatar', match_partial=None, url=WIKIPEDIA),
             Entity(
                 HASSAN_JAMEEL,
                 'scion of Saudi family, Abdul Latif Jameel',
                 r"Hassan (Mohammed )?(Abdul )?(.atif )?Jameel",
                 url=WIKIPEDIA,
             ),
-            Entity('Hayel Besher', f"relative of {SHAHER_ABDULHAK_BESHER} {QUESTION_MARKS}"),
+            Entity('Hayel Besher', f"relative of {SHAHER_ABDULHAK_BESHER} {QUESTION_MARKS}", match_partial=None),
             Entity('Kairat Kelimbetov', 'former governor of the central bank of Kazakhstan', match_partial='both', url=WIKIPEDIA),
             Entity("Mohammed bin Salman", 'prince of Saudi Arabia', r"Mohammed bin Salman|MBS", aliases=['MBS'], match_partial=None),
             Entity('Mohammed bin Zayed', 'ruler of Abu Dhabi', r"Mohamed bin Zayed|MBZ", aliases=['MBZ'], match_partial=None),
