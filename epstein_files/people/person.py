@@ -239,7 +239,7 @@ class Person(DocTypesMixin, LoggingEntity):
         return Document.without_dupes(self._printable_docs)
 
     @property
-    def _unique_printable_emails(self) -> Seuqnce[Email]:
+    def _unique_printable_emails(self) -> Sequence[Email]:
         return Email.filter_for_type(self._unique_printable_docs)
 
     def email_info_panel(self) -> Panel:
