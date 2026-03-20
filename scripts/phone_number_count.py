@@ -28,7 +28,7 @@ ACCOUNT_REGEX = re.compile(fr"^{TEL_LINE_PATTERN}\s*{BILLING_LINE_PATTERN}.*$", 
 CALL_REGEX = re.compile(r"^\d{6}\s+[A-Z0-9]{5}\s+(?P<phone_number>\d{3}\s*\d{3}\s*\d{4})\s+.*")
 CALL_REGEX2 = re.compile(r"\d+ ?\.?\s+\d{1,2}/\d{1,2}\s+\d{1,2}:\d{2}[ap]m\s*(?P<location>[\w ]*?)\s+(?P<phone_number>\d{3} \d{3}-\d{4}|\d{7,})[^\d].*")
 CALL_REGEX3 = re.compile(r"^(?P<phone_number>\d{3} \d{3}-\d{4}|\d{11,14})$")
-JUNK_LINE = re.compile(r"^(CARRIER|EFTA|PhCnt|ACCOUNT NUM|YRMODY|These charges|Case #).*")
+JUNK_LINE = re.compile(r"^(Billing questions|CARRIER|EFTA|PhCnt|ACCOUNT NUM|YRMODY|Previously Billed|These charges|Case #).*|^.{,6}(Monthly Charge|verizon\.com)", re.IGNORECASE)
 
 RAW_OCR_URL = f"{BASE_DEPLOY_URL}/{PHONE_LOG_FILE_ID}.txt"
 RAW_OCR_LINK = ExternalLink(RAW_OCR_URL, f"Raw OCR .txt for {PHONE_LOG_FILE_ID}.pdf")
@@ -58,7 +58,7 @@ def format_phone_number(number: str) -> str:
 @dataclass
 class CallCounter:
     billing_numbers: set[str] = field(default_factory=set)
-    calls: list[tuple[str, str]] = field(default_factory=list)
+    calls: list[tuple[str, str, str]] = field(default_factory=list)
     call_counts: dict[str, int] = field(default_factory=lambda: defaultdict(int))
     call_counts_by_source: dict[str, dict[str, int]] = field(default_factory=lambda: defaultdict(lambda: defaultdict(int)))
 
@@ -70,7 +70,7 @@ class CallCounter:
         # logger.debug(f"Found call from '{source}' to '{destination}' billing '{billing}'")
         source = cleanup_phone_number(source)
         destination = cleanup_phone_number(destination)
-        self.calls.append((source, destination))
+        self.calls.append((source, destination, billing))
         self.call_counts[destination] += 1
         self.call_counts_by_source[source][destination] += 1
         self.billing_numbers.add(cleanup_phone_number(billing))
