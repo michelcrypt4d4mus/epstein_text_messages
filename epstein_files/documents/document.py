@@ -337,6 +337,12 @@ class Document(LoggingEntity):
     @property
     def prettified_txt(self) -> Text:
         """Returns the string we want to print as the body of the document."""
+        # pre-truncate very long files
+        if self._config.category in ['book']: # TODO; use enum
+            display_text = self.display_text[:EMAIL_TRUNCATE_TO]
+        else:
+            display_text = self.display_text
+
         display_txt = hyperlink_text(doublespace_lines(self.display_text))
 
         if self.text_style:
