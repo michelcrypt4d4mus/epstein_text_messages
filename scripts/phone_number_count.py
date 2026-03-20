@@ -61,7 +61,7 @@ current_epstein_number = ''
 class CallCounter:
     billing_numbers: set[str] = field(default_factory=set)
     calls: list[tuple[str, str, str]] = field(default_factory=list)
-    call_counts: dict[str, int] = field(default_factory=lambda: defaultdict(int))
+    call_counts: dict[str, int] = field(default_factory=lambda: defaultdict(int))  # by destination number
     call_counts_by_source: dict[str, dict[str, int]] = field(default_factory=lambda: defaultdict(lambda: defaultdict(int)))
 
     @property
@@ -85,7 +85,7 @@ class CallCounter:
         console.line()
 
         msg = f"Found {len(self.call_counts_by_source)} Epstein phone numbers" + \
-              f" making {len(self.call_counts):,} phone calls" + \
+              f" making {len(self.calls):,} phone calls" + \
               f" to {len(self.call_counts):,} unique numbers"
 
         console.print(msg)
