@@ -679,6 +679,7 @@ HIGHLIGHTED_NAMES = [
                 'Mike Novogratz',
                 'CEO of Galaxy Digital, reportedly made a billion dollars in the Terra/Luna ponzi',
                 r"(?<!Nadean )(Mi(chael|ke) )?Novogratz",
+                match_partial=None,
             ),
             Entity(
                 'Nadean Novogratz',
