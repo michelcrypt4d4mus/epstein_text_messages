@@ -44,7 +44,7 @@ if any_uncommitted_changes; then
     git commit -am"Update .png"
     git push origin master --quiet
 else
-    print_msg "  No changes to emailers .png file..."
+    print_warning "  No changes to emailers .png file..."
 fi
 
 
