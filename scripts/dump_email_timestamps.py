@@ -38,10 +38,11 @@ num_word_count_worthy = 0
 ids = UNINTERESTING_OTHER_FILE_IDS
 
 
-for doc in epstein_files.unique_emails:
-    if not doc.recipients:
-        console.print(doc, '\n')
-        print_text_block(doc.actual_text, 'actual_text')
+for doc in epstein_files.unique_other_files:
+    if doc._config.truncate_to and not doc._config.show_full_panel:
+        console.print(f"{doc.file_id} has truncate_to set to {doc._config.truncate_to}", doc._summary, '\n')
+        console.print(doc)
+        console.line(2)
 
 sys.exit()
 

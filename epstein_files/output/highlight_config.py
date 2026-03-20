@@ -118,6 +118,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"(?-i:VAT)",
             r"Wall Street(?! Jour)",
             r"warrants",
+            r"wire transfer",
         ]
     ),
     HighlightPatterns(

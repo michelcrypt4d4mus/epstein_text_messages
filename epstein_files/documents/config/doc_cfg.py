@@ -144,7 +144,7 @@ class DocCfg(LoggingEntity):
         people (list[str]): override `Document.people()` with a fixed set of names (meaning no scan of the text)
         show_full_panel (bool, optional): set `is_interesting=True` and show in a full panel view, not in a table
         show_with_name (str, optional): if set this document will be displayed all with the person specified
-        truncate_to (int | tuple[int, int], optional): Number of characters to truncate this email to when displayed
+        truncate_to (int | tuple[int, int], optional): Limite characters displayed, also sets `show_full_panel=True`
         url (str, optional): URL with more info about this document
         url_link_text (str, optiona): text to show when displaying the `url` link for this document
     """
@@ -205,6 +205,9 @@ class DocCfg(LoggingEntity):
         # show_full_panel (and highlight_quote) set is_interesting=10
         if self.show_full_panel and self.is_interesting is not False:
             self.is_interesting = 10
+
+        if self.truncate_to and not self.show_full_panel:
+            self.show_full_panel = True
 
         if self.duplicate_of_id or self.duplicate_ids:
             self.dupe_type = self.dupe_type or SAME

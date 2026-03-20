@@ -19,7 +19,7 @@ MONEY_CFGS = [
     DocCfg(id='024003', note=f"New Leaf Ventures ($375 million biotech fund) private placement memorandum"),
 
     # DOJ files
-    DocCfg(id='EFTA00803405', author=HONEYCOMB_ASSET_MANAGEMENT, note="fund brochure", truncate_to=EMAIL_TRUNCATE_TO),
+    DocCfg(id='EFTA00803405', author=HONEYCOMB_ASSET_MANAGEMENT, note="fund brochure"),
     DocCfg(
         id='EFTA00006069',
         author='NES LLC',
@@ -71,8 +71,8 @@ MONEY_CFGS = [
     DocCfg(
         id='EFTA00257211',
         date='2005-04-05',
-        is_interesting=10,
-        note=f"call log shows Bank Hapoalim director Scott Shay selling Epstein investment ideas weeks after Hapoalim money laundering issues, also Steve Cohen and Barry Diller",
+        is_interesting=20,
+        note=f"call log shows Bank Hapoalim director / future crypto bank SBNY founder Scott Shay selling Epstein investment ideas weeks after Hapoalim money laundering issues, also Steve Cohen and Barry Diller",
         truncate_to=7_700,
     ),
     DocCfg(id='EFTA01266380', note="Epstein's 2014 Trust with bequests"),

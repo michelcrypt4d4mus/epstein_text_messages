@@ -126,3 +126,8 @@ class DocTypesMixin(ABC):
     def unique_emails(self) -> list[Email]:
         """All `Email` objects except for duplicates."""
         return Document.without_dupes(self.emails)
+
+    @property
+    def unique_other_files(self) -> list[OtherFile]:
+        """All `Email` objects except for duplicates."""
+        return Document.without_dupes(self.other_files)
