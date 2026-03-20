@@ -2747,7 +2747,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 match_partial='both',
                 url=[
                     'https://nypost.com/2026/03/02/world-news/russian-mogul-who-called-ghislaine-maxwell-his-soulmate-found-dead/',
-                    '# https://jamestown.org/kadyrovs-chechen-network-in-moscow-2/',
+                    'https://jamestown.org/kadyrovs-chechen-network-in-moscow-2/',
                 ]
             ),
             Entity('Viktor Yanukovych', 'pro-Putin former president of Ukraine', r"Vi[ck]tor Yanukovych", url=WIKIPEDIA),
