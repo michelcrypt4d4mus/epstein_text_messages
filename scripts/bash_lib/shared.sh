@@ -72,5 +72,5 @@ print_deploy_step() {
         msg="$msg '$(clr_green $2)'"
     fi
 
-    echo -e "$msg..."
+    echo -e "\n$msg..."
 }
