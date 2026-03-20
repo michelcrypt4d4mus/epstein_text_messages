@@ -2,6 +2,7 @@ from epstein_files.documents.config.config_builder import fedex_invoice, importa
 from epstein_files.documents.config.doc_cfg import DocCfg
 from epstein_files.documents.config.communication_cfg import imessage_screenshot, skype_log
 from epstein_files.documents.documents.categories import Interesting, Neutral
+from epstein_files.output.site.sites import Site
 from epstein_files.people.names import *
 from epstein_files.util.constant.strings import *
 
@@ -69,6 +70,13 @@ MISC_CFGS = [
         id='EFTA00029538',
         note=f"{GHISLAINE_MAXWELL} investigation",
         highlight_quote="the defendant provided Minor Victim-3 with a schoolgirl uniform",
+    ),
+    DocCfg(
+        id='EFTA01242527',
+        display_text='3,000 pages of Epstein phone logs, call to Scott Shay at Hyperion Partners, see link for call counts',
+        is_interesting=True,
+        is_valid_for_name_scan=False,
+        url=Site.get_url(Site.PHONE_NUMBERS),
     ),
     DocCfg(id='EFTA00165515', note="contractor describes Epstein's gun safes", show_full_panel=True),
     DocCfg(id='EFTA00266322', note=f"documents about pitches for non-profits in Australia, including to Effective Altruism"),

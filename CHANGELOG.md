@@ -4,6 +4,7 @@
 * Auto doublespace numbered lists
 * `'auto` option for truncation of `highlight_quote` documents
 * Add `[category]` prefixes to subheaders
+* Phone Numbers site
 
 ### 1.10.1
 * `--truncate` now applies to `OtherFile` too via `temporary_args()` context

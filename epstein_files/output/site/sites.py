@@ -11,7 +11,7 @@ from rich.text import Text
 
 from epstein_files.util.constant.strings import (AUX_SITE_LINK_STYLE, CHRONOLOGICAL, DOJ_2026_TRANCHE,
      EPSTEIN_FILES_NOV_2025, HOUSE_OVERSIGHT_TRANCHE)
-from epstein_files.util.external_link import link_text_obj, parenthesize
+from epstein_files.util.external_link import ExternalLink, link_text_obj, parenthesize
 from epstein_files.util.logging import logger
 
 DEFAULT_HTML_DIR = Path('docs')
@@ -25,6 +25,7 @@ GH_MASTER_URL = f"{GH_PROJECT_URL}/blob/master"
 ATTRIBUTIONS_URL = f'{GH_MASTER_URL}/epstein_files/util/constants.py'
 EXTRACTS_BASE_URL = f'{GH_MASTER_URL}/emails_extracted_from_legal_filings'
 BASE_DEPLOY_URL = f"{GH_PAGES_BASE_URL}/{GH_REPO_NAME}"
+PROJECT_LINK = ExternalLink(BASE_DEPLOY_URL, f"Michel de Cryptadamus Epstein Investigations")
 
 CUSTOM_HTML_PREFIX = 'real_html_'
 NAMES_PREFIX = 'only_names_'

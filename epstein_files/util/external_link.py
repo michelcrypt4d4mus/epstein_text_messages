@@ -148,6 +148,10 @@ class ExternalLink(TextCast):
     def domain(self, strip_tld: bool = False) -> str:
         return extract_domain(self.url, strip_tld=strip_tld)
 
+    def link_with_text(self, link_text: str) -> Text:
+        """Build a link with alternate text."""
+        return link_text_obj(self.url, link_text, self.link_style)
+
     @classmethod
     def parenthesized_links(cls, _links: Sequence[Self | Text], base_style: str = 'white') -> Text:
         """Concatenate a collection of links and wrap in parentheses."""
