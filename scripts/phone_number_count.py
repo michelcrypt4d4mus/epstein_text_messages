@@ -42,6 +42,10 @@ epstein_phone_numbers_found = 0
 calls_found = 0
 
 
+def cleanup_phone_number(number: str) -> str:
+    return number.replace('-', '').replace(' ', '').strip()
+
+
 def format_phone_number(number: str) -> str:
     if len(number) == 10:
         return f"{number[0:3]}-{number[3:6]}-{number[6:]}"
@@ -53,6 +57,7 @@ def format_phone_number(number: str) -> str:
 
 @dataclass
 class CallCounter:
+    billing_numbers: set[str] = field(default_factory=set)
     calls: list[tuple[str, str]] = field(default_factory=list)
     call_counts: dict[str, int] = field(default_factory=lambda: defaultdict(int))
     call_counts_by_source: dict[str, dict[str, int]] = field(default_factory=lambda: defaultdict(lambda: defaultdict(int)))
@@ -61,13 +66,14 @@ class CallCounter:
     def epstein_phone_numbers(self) -> list[str]:
         return [n for n in self.call_counts_by_source.keys()]
 
-    def record_call(self, source: str, destination: str) -> None:
-        source = source.replace('-', '').replace(' ', '').strip()
-        destination = destination.replace('-', '').replace(' ', '').strip()
+    def record_call(self, source: str, destination: str, billing: str) -> None:
+        # logger.debug(f"Found call from '{source}' to '{destination}' billing '{billing}'")
+        source = cleanup_phone_number(source)
+        destination = cleanup_phone_number(destination)
         self.calls.append((source, destination))
         self.call_counts[destination] += 1
         self.call_counts_by_source[source][destination] += 1
-        logger.debug(f"Found call from '{source}' to '{destination}'")
+        self.billing_numbers.add(cleanup_phone_number(billing))
 
         if len(self.calls) % 1000 == 0:
             logger.warning(f"Found {len(self.calls)} on {len(self.call_counts_by_source)} Epstein phone numbers so far...")
@@ -77,28 +83,35 @@ class CallCounter:
         console.line()
         self._print_indented(Text(f"Source PDF: ").append(doc.file_info.external_link_txt()))
         self._print_indented(RAW_OCR_LINK.link)
-        console.line(1)
-        console.print(f"Epstein's phone numbers:")
+        console.print(f"\nEpstein's phone numbers:")
 
         for number in self.epstein_phone_numbers:
             count = len([c for c in self.calls if c[0] == number])
             self._print_call_count(number, count)
 
+        console.print(f"\nEpstein's billing numbers:")
+
+        for number in self.billing_numbers:
+            count = len([c for c in self.calls if c[2] == number])
+            self._print_call_count(number, count)
+
+        self._print_call_counts(f"Total Call Counts in {PHONE_LOG_FILE_ID} (imperfect count)", self.call_counts)
+
+        for epstein_number, call_counts_by_source_number in self.call_counts_by_source.items():
+            self._print_call_counts(
+                f"Calls from Epstein phone {format_phone_number(epstein_number)}",
+                call_counts_by_source_number
+            )
+
+        open_file_or_url(write_html(Site.PHONE_NUMBERS))
+
+    def _print_call_counts(self, title: str, counts: dict[str, int]) -> None:
         console.line(2)
-        print_subtitle_panel(f"Total Call Counts in {PHONE_LOG_FILE_ID} (imperfect count)")
+        print_subtitle_panel(title)
         console.line()
 
         for number, count in sort_dict(self.call_counts):
             self._print_call_count(number, count)
-
-        for epstein_number, call_counts_by_source_number in self.call_counts_by_source.items():
-            console.line(2)
-            print_subtitle_panel(f"From Epstein phone {format_phone_number(epstein_number)}")
-
-            for number, count in sort_dict(call_counts_by_source_number):
-                self._print_call_count(number, count)
-
-        open_file_or_url(write_html(Site.PHONE_NUMBERS))
 
     def _print_call_count(self, number: str, count: int) -> None:
         self._print_indented(f"{format_phone_number(number)}: {count:,} calls")
@@ -139,7 +152,7 @@ for line in doc.raw_text().split('\n'):
             current_phone_number = epstein_phone
     elif (m := CALL_REGEX.match(line)) or (m := CALL_REGEX2.match(line)) or (m := CALL_REGEX3.match(line)):
         to_number = m.group('phone_number')
-        counter.record_call(current_billing_number, to_number)
+        counter.record_call(current_phone_number, to_number, current_billing_number)
     else:
         if JUNK_LINE.match(line) or len(line) <= 4:
             logger.info(f"junk line: '{line}'")
