@@ -203,7 +203,7 @@ class DocCfg(LoggingEntity):
                 joiner = ' ' if self.note.endswith('?') else ', '
                 self.note = join_truthy(self.note, f'{QUOTE_PREFIX}: {quote(quote_note)}', joiner)
 
-        # show_full_panel sets is_interesting=10
+        # show_full_panel (and highlight_quote) set is_interesting=10
         if self.show_full_panel and self.is_interesting is not False:
             self.is_interesting = 10
 

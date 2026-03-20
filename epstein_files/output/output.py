@@ -62,7 +62,7 @@ def print_annotated_only(epstein_files: EpsteinFiles, printer: DocPrinter):
     ]
 
     logger.warning(f"Found {len(docs)} annotated documents...")
-    printer.print_section_subtitle('The Documents Worthy of Being Annotated')
+    printer.print_section_subtitle('Epstein Documents Worthy of Being Annotated')
     printer.print_documents(docs)
 
 
