@@ -9,7 +9,7 @@ from rich.text import Text
 
 from epstein_files.output.html.rich_style import RichStyle
 from epstein_files.people.names import UNKNOWN, Name, constantize_name, extract_first_name, extract_last_name
-from epstein_files.util.constant.strings import INDENT_NEWLINE, INDENTED_JOIN, LAW_ENFORCEMENT, WIKIPEDIA, PartialName
+from epstein_files.util.constant.strings import INDENT_NEWLINE, INDENTED_JOIN, JOURNALISM_STYLE, LAW_ENFORCEMENT, WIKIPEDIA, PartialName
 from epstein_files.util.constant.urls import EPSTEINIFY, PERSON_LINK_BUILDERS, EpsteinSite, wikipedia_url
 from epstein_files.util.env import args, site_config
 from epstein_files.util.external_link import ExternalLink, link_text_obj
@@ -104,13 +104,13 @@ class Entity(LoggingEntity):
     @property
     def alt_links(self) -> list[ExternalLink]:
         """Links beyond the first one (which is usually attached to the name)."""
-        return [ExternalLink(url, f'more', link_style=self.style) for i, url in enumerate(self._urls[1:], 2)]
+        return [ExternalLink(url, f'link', link_style=JOURNALISM_STYLE) for i, url in enumerate(self._urls[1:], 2)]
 
     @property
     def alt_links_txt(self) -> Text:
         """Alternate links parenthesized and concatenated into one Text object."""
         if self.alt_links:
-            return enclose(join_texts(self.alt_links, Text('/', LINK_JOIN_STYLE)), '()', LINK_JOIN_STYLE)
+            return enclose(join_texts(self.alt_links, Text('/', LINK_JOIN_STYLE)), '[]', LINK_JOIN_STYLE)
         else:
             return Text('')
 

@@ -2013,7 +2013,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
     # ),
     HighlightedNames(
         label=JOURNALIST,
-        style='bright_yellow',
+        style=JOURNALISM_STYLE,
         entities=[
             Entity('Adam Bly', "editor of SEED magazine"),
             Entity('Alain Forget', "author of \"How To Get Out Of This World ALIVE\"", match_partial=None),
