@@ -30,12 +30,14 @@ print_deploy_step "Building email signatures page..."
 $GENERATE_CMD --output-bios
 print_deploy_step "Building email signatures page..."
 $GENERATE_CMD --output-devices
-print_deploy_step "Building text messages page... "
+print_deploy_step "Building text messages page..."
 $GENERATE_CMD --all-texts
 print_deploy_step "Building word counts page..."
 $GENERATE_CMD --output-word-count --width 125
 print_deploy_step "Building JSON metadata page..."
 $GENERATE_CMD --json-metadata
+print_deploy_step "Building --output-notes..."
+$GENERATE_CMD --output-notes
 print_deploy_step "Building other files table page..."
 $GENERATE_CMD --all-other-files
 

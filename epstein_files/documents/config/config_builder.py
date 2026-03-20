@@ -149,7 +149,7 @@ def fbi_defense_witness(id: str, witness: Name, date: str = '') -> DocCfg:
 
 
 def fbi_interview(id: str, interviewee: Name, note: str = '', date: str = '', **kwargs) -> CommunicationCfg:
-    note = join_truthy(f"interview with {interviewee or UNKNOWN}", note, ', ')
+    note = join_truthy(f"interview of {interviewee or UNKNOWN}", note, ', ')
     cfg = CommunicationCfg(id=id, date=date, note=note, recipients=[interviewee], **kwargs)
     return _set_fbi_doc_fields(cfg)
 

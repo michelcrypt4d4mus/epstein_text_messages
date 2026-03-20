@@ -82,7 +82,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Amex",
             r"alterna[tv]i[tv]e finance",
             r"((anti )?money )?launder(s?|ers?|ing)?( money)?",
-            r"(?<!(alfa|ture|hase|rahi|sche|sica)\s)bank(?!\s+(of|secrecy))",
+            r"(?<!(alfa|ture|hase|rahi|sche|sica)\s)bank(?!\s+(Leumi|of|secrecy))",
             r"Black Sc?holes",
             r"brokerage",
             r"capital controls",
@@ -118,6 +118,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"(?-i:VAT)",
             r"Wall Street(?! Jour)",
             r"warrants",
+            r"wire transfer",
         ]
     ),
     HighlightPatterns(

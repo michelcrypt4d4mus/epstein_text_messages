@@ -3,7 +3,7 @@ from dataclasses import dataclass, field
 from datetime import datetime
 from typing import ClassVar, Self
 
-from rich.console import Console, ConsoleOptions, RenderableType, RenderResult
+from rich.console import RenderResult
 from rich.padding import Padding
 from rich.panel import Panel
 from rich.text import Text
@@ -15,7 +15,7 @@ from epstein_files.output.layout_elements.left_bar_panel import LeftBarPanel
 from epstein_files.output.rich import wrap_in_markup_style
 from epstein_files.util.logging import logger
 from epstein_files.util.helpers.data_helpers import coerce_utc_strict, prefix_keys
-from epstein_files.util.helpers.rich_helpers import RAINBOW
+from epstein_files.util.helpers.rich_helpers import RAINBOW, no_bold
 from epstein_files.util.helpers.string_helper import strip_pdfalyzer_panels
 
 BAD_LINE_REGEX = re.compile(r"^(SUBJECT TO PROTECTIVE ORDER PARAGRAPHS .*|UNCLASSIFIED)$")
@@ -240,7 +240,9 @@ class DojFile(OtherFile):
     @property
     def border_style(self) -> str:
         """Use a rainbow to make sure each printed object has different color for those before and after."""
-        if self._border_style is None:
+        if self.author:
+            return no_bold(self.author_style)
+        elif self._border_style is None:
             self._border_style = RAINBOW[int(self.border_style_rainbow_idx % len(RAINBOW))]
             type(self).border_style_rainbow_idx += 1
 

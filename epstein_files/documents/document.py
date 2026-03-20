@@ -29,7 +29,8 @@ from epstein_files.documents.emails.emailers import get_entities
 from epstein_files.documents.emails.email_header import DETECT_EMAIL_REGEX
 from epstein_files.output.highlight_config import HIGHLIGHTED_ENTITIES, get_style_for_category, get_style_for_name, styled_name
 from epstein_files.output.html.builder import VERTICAL_MARGIN_EMS
-from epstein_files.output.layout_elements.layout import BasePanel, Layout
+from epstein_files.output.layout_elements.base_panel import BasePanel
+from epstein_files.output.layout_elements.layout import Layout
 from epstein_files.output.rich import (INFO_STYLE, NA_TXT, SYMBOL_STYLE, add_cols_to_table, build_table, console,
      styled_key_value, prefix_with, snip_msg_txt, styled_dict)
 from epstein_files.output.site.sites import EXTRACTS_BASE_URL
@@ -344,9 +345,12 @@ class Document(LoggingEntity):
 
         # pre-truncate very long files for speed
         if char_range and char_range[1] > 0:
-            display_text = self.display_text[:char_range[1] + 500]  # Add extra chars
+            display_text = self.display_text[:char_range[1] + 500]  # Add a few chars headroom to work with
 
-        display_txt = hyperlink_text(doublespace_lines(display_text))
+        if not args.no_doublespace:
+            display_text = doublespace_lines(display_text)
+
+        display_txt = hyperlink_text(display_text)
 
         if self.text_style:
             display_txt.stylize(self.text_style)

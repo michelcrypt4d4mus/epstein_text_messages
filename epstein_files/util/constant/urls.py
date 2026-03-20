@@ -23,18 +23,21 @@ DOJ_SEARCH_URL = 'https://www.justice.gov/epstein/search'
 
 # External URLs
 CARSTENSEN_URL = 'https://tommycarstensen.com/epstein'
+CARSTENSEN_PEOPLE_URL = f"{CARSTENSEN_URL}/people"
 COFFEEZILLA_ARCHIVE_URL = 'https://journaliststudio.google.com/pinpoint/search?collection=061ce61c9e70bdfd'
 COURIER_NEWSROOM_ARCHIVE_URL = 'https://journaliststudio.google.com/pinpoint/search?collection=092314e384a58618'
 DOJ_2026_FILE_BASE_URL = "https://www.justice.gov/epstein/files/DataSet%20"
 EPSTEIN_DOCS_URL = 'https://epstein-docs.github.io'
 OVERSIGHT_REPUBS_PRESSER_URL = 'https://oversight.house.gov/release/oversight-committee-releases-additional-epstein-estate-documents/'
 OVERSIGHT_DRIVE_URL = 'https://drive.google.com/drive/folders/1hTNH5woIRio578onLGElkTWofUSWRoH_'
+STANDARD_WORKS_URL = 'https://standardworks.ai/public-archives/epstein-files/'
 # Articles
 SVETLANA_NEWSGROUND = 'https://thenewsground.com/epstein-insider-revealed-as-daughter-of-fsb-translator-who-held-sensitive-russian-government-security-jobs/'
 
 # External site names
-EpsteinSite = Literal['epstein.media', 'epsteinify', 'EpsteinWeb', 'Jmail', 'RollCall', 'search X']
+EpsteinSite = Literal['Carstensen', 'epstein.media', 'epsteinify', 'EpsteinWeb', 'Jmail', 'RollCall', 'search X']
 
+CARSTENSEN = 'Carstensen'
 EPSTEIN_MEDIA = 'epstein.media'
 EPSTEIN_WEB = 'EpsteinWeb'
 EPSTEINIFY = 'epsteinify'
@@ -172,20 +175,20 @@ search_twitter_url = lambda txt: f"{X_BASE_URL}/search?q={urllib.parse.quote(txt
 wikipedia_url = lambda s: f"https://en.wikipedia.org/wiki/" + s.replace(' ', '_').replace('-', '_')
 
 
-PERSON_LINK_BUILDERS: dict[EpsteinSite, Callable[[str], str]] = {
-    EPSTEIN_MEDIA: epstein_media_person_url,
-    EPSTEIN_WEB: epstein_web_person_url,
-    EPSTEINIFY: epsteinify_name_url,
-    JMAIL: search_jmail_url,
-    TWITTER: search_twitter_url,
-}
-
-
 def build_doc_url(base_url: str, filename_or_id: int | str, case: Literal['lower', 'title'] | None = None) -> str:
     file_stem = coerce_file_stem(filename_or_id)
     file_stem = file_stem.lower() if case == 'lower' or EPSTEIN_MEDIA in base_url else file_stem
     file_stem = file_stem.title() if case == 'title' else file_stem
     return f"{base_url}{file_stem}"
+
+
+def carstensen_person_url(name: str) -> str:
+    name_parts = name.replace('.', '').removeprefix('Dr ').split()
+
+    if len(name_parts) > 3 or (len(name_parts) == 3 and len(name_parts[1]) == 1):
+        name = f"{name_parts[0]} {name_parts[-1]}"
+
+    return f"{CARSTENSEN_PEOPLE_URL}/{name.replace(' ', '-')}.html".lower()
 
 
 def doj_2026_file_url(dataset_id: int, file_stem: str) -> str:
@@ -255,3 +258,13 @@ def this_site_url() -> str:
 
 THE_OTHER_PAGE_MARKUP = link_markup(other_site_url(), 'the other page', style='light_slate_grey bold')
 THE_OTHER_PAGE_TXT = Text.from_markup(THE_OTHER_PAGE_MARKUP)
+
+
+PERSON_LINK_BUILDERS: dict[EpsteinSite, Callable[[str], str]] = {
+    CARSTENSEN: carstensen_person_url,
+    EPSTEIN_MEDIA: epstein_media_person_url,
+    EPSTEIN_WEB: epstein_web_person_url,
+    EPSTEINIFY: epsteinify_name_url,
+    JMAIL: search_jmail_url,
+    TWITTER: search_twitter_url,
+}

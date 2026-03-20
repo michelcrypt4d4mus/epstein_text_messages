@@ -143,7 +143,6 @@ def title_page_bottom_elements(epstein_files: 'EpsteinFiles') -> list[Renderable
         Text('External Links', style=TABLE_TITLE_STYLE),
         *[link for link in sorted(EXTERNAL_LINKS, key=lambda link: -len(link.__rich__()))],
         epstein_files.overview_table(),
-        NewLine(),
         color_key(),
         Text.from_markup(f"(if you think there's an attribution error or can deanonymize an {UNKNOWN} contact {CRYPTADAMUS_X_LINK_MARKUP})", style='grey46'),
         Text.from_markup(f"(thanks to {link_markup('https://x.com/ImDrinknWyn', '@ImDrinknWyn', 'dodger_blue3')} + others for help attributing redacted emails)"),

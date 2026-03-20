@@ -19,7 +19,7 @@ MONEY_CFGS = [
     DocCfg(id='024003', note=f"New Leaf Ventures ($375 million biotech fund) private placement memorandum"),
 
     # DOJ files
-    DocCfg(id='EFTA00803405', author=HONEYCOMB_ASSET_MANAGEMENT, note="fund brochure", truncate_to=EMAIL_TRUNCATE_TO),
+    DocCfg(id='EFTA00803405', author=HONEYCOMB_ASSET_MANAGEMENT, note="fund brochure"),
     DocCfg(
         id='EFTA00006069',
         author='NES LLC',
@@ -68,12 +68,25 @@ MONEY_CFGS = [
         date='2007-09-20',
         non_participants=[JOI_ITO],
     ),
+    DocCfg(
+        id='EFTA00257211',
+        date='2005-04-05',
+        is_interesting=20,
+        note=f"call log shows Bank Hapoalim director / future crypto bank SBNY founder Scott Shay selling Epstein investment ideas weeks after Hapoalim money laundering issues, also Steve Cohen and Barry Diller",
+        truncate_to=7_700,
+    ),
     DocCfg(id='EFTA01266380', note="Epstein's 2014 Trust with bequests"),
     DocCfg(id='EFTA01282282', note=f"Epstein Butterfly Trust (sole beneficiary {KARYNA_SHULIAK})"),
     DocCfg(id='EFTA01583819', note=f"Epstein had control of {JAMES_CAYNE}'s assets"),
     DocCfg(id='EFTA00099424', note=f"Epstein 2017 Trust (Eva Andersson Dubin, {DARREN_INDYKE}, {RICHARD_KAHN})"),
     DocCfg(id='EFTA01266457', note=f"Epstein 2018 Trust ({KATHRYN_RUEMMLER}, {DARREN_INDYKE}, {RICHARD_KAHN})"),
-    DocCfg(id='EFTA01266204', note=f"Epstein The 1953 Trust ({DARREN_INDYKE}, {RICHARD_KAHN})", date='2019-08-08'),
+    DocCfg(
+        id='EFTA01266204',
+        note=f"Epstein The 1953 Trust ({DARREN_INDYKE}, {RICHARD_KAHN}) amendment 2 days before death",
+        date='2019-08-08',
+        is_interesting=20,
+        truncate_to=(5_500, 15_000),
+    ),
     DocCfg(id='EFTA00299927', note=f"estate plan for {JAMES_CAYNE} found in Epstein's possession"),
     DocCfg(id='EFTA01265973', note="large transfers around time of Epstein arrest", show_full_panel=True),
     DocCfg(id='EFTA01087311', note=f'{LEON_BLACK} Family Partners cash projections'),
@@ -106,6 +119,7 @@ MONEY_CFGS = [
 
     # Emails
     EmailCfg(id='EFTA00037187', is_interesting=True),
+    EmailCfg(id='EFTA00994380', highlight_quote='please confirm $500 to Sergey Pozhidaev', truncate_to=500),
     EmailCfg(
         id='EFTA01409449',
         note=f"{DEUTSCHE_BANK} employees scrubbing Epstein's name off his TWTR (Twitter) trades",
@@ -123,7 +137,7 @@ MONEY_CFGS = [
         author_uncertain=True,
         note=f"Ike Groff invests $250,000 in Mangrove Partners managed by Nathaniel August",
     ),
-    EmailCfg(id='EFTA00994380', highlight_quote='please confirm $500 to Sergey Pozhidaev', truncate_to=500),
+    EmailCfg(id='EFTA01435454', note=f"{DEUTSCHE_BANK} finally sets up a trading account for Epstein's Southern Financial"),
     EmailCfg(id='EFTA02630431', note=f"{CARBYNE} is an Israeli company invested in by Epstein, {NICOLE_JUNKERMANN}, & {EHUD_BARAK}"),
     EmailCfg(id='EFTA01375243', note=f"{DEUTSCHE_BANK} anti-money laundering team flags Epstein's $237k transfer to {SVETLANA_POZHIDAEVA}'s family"),
     EmailCfg(id='EFTA00836182', note=f'email to investors in {VALAR_FUND}'),

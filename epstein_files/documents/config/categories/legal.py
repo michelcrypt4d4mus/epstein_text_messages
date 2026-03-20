@@ -1,5 +1,5 @@
 from epstein_files.documents.config.config_builder import JANE_DOE_V_USA, letter, starr_letter
-from epstein_files.documents.config.doc_cfg import DocCfg
+from epstein_files.documents.config.doc_cfg import AUTO_TRUNCATE, DocCfg
 from epstein_files.documents.config.email_cfg import EmailCfg
 from epstein_files.people.names import *
 from epstein_files.util.constant.strings import *
@@ -105,6 +105,13 @@ LEGAL_CFGS = [
     DocCfg(id='032321', author=JANE_DOE_V_EPSTEIN_TRUMP, note=f"Notice of Initial Conference", date='2016-10-04'),
     DocCfg(id='010735', author=JANE_DOE_V_USA, note=f"Dershowitz Reply in Support of Motion for Limited Intervention", date='2015-02-02'),
     DocCfg(id='014084', author=JANE_DOE_V_USA, note=f"Jane Doe Response to Dershowitz's Motion for Limited Intervention", date='2015-03-24'),
+    DocCfg(
+        id='EFTA00020729',
+        author=JANE_DOE_V_USA, note=f"declaration of {VIRGINIA_GIUFFRE} claiming threats",
+        date='2015-02-06',
+        highlight_quote='a call from this supposed FBI Agent made me very scared',
+        truncate_to=AUTO_TRUNCATE,
+    ),
     DocCfg(id='023361', author=JASTA_SAUDI_LAWSUIT, note=f"legal text and court documents", date='2012-01-20'),
     DocCfg(id='017830', author=JASTA_SAUDI_LAWSUIT, note=f"legal text and court documents"),
     DocCfg(id='017904', author=JASTA_SAUDI_LAWSUIT, note=f"Westlaw search results", date='2019-01-01'),

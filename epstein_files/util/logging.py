@@ -66,6 +66,10 @@ def exit_with_error(msg: str) -> None:
     sys.exit(1)
 
 
+def print_text_block(s: str, label: str) -> None:
+    print(f"\n-------- {label} ----------\n{s}\n-------- end {label} --------\n\n")
+
+
 def set_log_level(log_level: int | str) -> None:
     for lg in [logger] + logger.handlers:
         lg.setLevel(log_level)

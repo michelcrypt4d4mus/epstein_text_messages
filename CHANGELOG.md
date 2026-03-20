@@ -1,4 +1,5 @@
 # NEXT RELEASE
+* `truncate_to` config forces `show_full_panel=True`
 * `--output-notes` argument and site
 * Auto doublespace numbered lists
 * `'auto` option for truncation of `highlight_quote` documents

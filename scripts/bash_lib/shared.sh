@@ -19,6 +19,7 @@ else
     exit 1
 fi
 
+
 print_error() {
     echo -e "\n    $ERROR_PFX $(clr_cyan "$1") $(clr_magenta "$2")\n"
 }
@@ -72,5 +73,5 @@ print_deploy_step() {
         msg="$msg '$(clr_green $2)'"
     fi
 
-    echo -e "$msg..."
+    echo -e "\n$msg..."
 }
