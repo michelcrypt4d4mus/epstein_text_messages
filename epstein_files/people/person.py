@@ -238,6 +238,10 @@ class Person(DocTypesMixin, LoggingEntity):
     def _unique_printable_docs(self) -> Sequence[Document]:
         return Document.without_dupes(self._printable_docs)
 
+    @property
+    def _unique_printable_emails(self) -> Seuqnce[Email]:
+        return Email.filter_for_type(self._unique_printable_docs)
+
     def email_info_panel(self) -> Panel:
         """Just the person's name on the colored background with email counts."""
         if self.name == JEFFREY_EPSTEIN:
@@ -298,7 +302,7 @@ class Person(DocTypesMixin, LoggingEntity):
         """Build a table of this person's emails summary (timestamps, subject liness, etc)."""
         # TODO: i don't think captions render in custom HTML correctly
         caption = self.entity.epstein_sites_all_links if self.entity.is_linkable else None
-        table = Email.build_emails_table(self._unique_printable_docs, self.name, caption=caption)
+        table = Email.build_emails_table(self._unique_printable_emails, self.name, caption=caption)
         padded_table = Padding(table, (0, 5, 0, 5))
         logger.debug(f"built emails table for '{self.name}' with {len(table.columns)} cols and {table.row_count} rows")
         return padded_table
