@@ -14,7 +14,7 @@ GENERATE_CMD="$GENERATE_CMD --build-dir $BUILD_DIR"
 print_deploy_step "Building pages to BUILD_DIR '$BUILD_DIR'"
 
 
-if [[ -n $SKIP_CHRONO ]]; then
+if [[ -z $SKIP_CHRONO ]]; then
     print_deploy_step "Building curated chronological page with '$GENERATE_CMD'..."
     $GENERATE_CMD --output-chrono
     print_deploy_step "Building curated chronological mobile page..."
