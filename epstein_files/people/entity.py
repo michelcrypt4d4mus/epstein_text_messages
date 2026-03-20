@@ -296,10 +296,10 @@ class Entity(LoggingEntity):
 
     def links_txt(self, include_wikipedia: bool = True) -> Text:
         """All links concatenated into one Text object."""
-        links = [link for link in self.links() if include_wikipedia or WIKIPEDIA not in link.url]
+        links = [link.domain_link() for link in self.links() if include_wikipedia or WIKIPEDIA not in link.url]
         return self._joined_links(links)
 
-    def _joined_links(self, links: list[ExternalLink]) -> Text:
+    def _joined_links(self, links: Sequence[ExternalLink | Text]) -> Text:
         """Join links to '[link/link/link]' Text."""
         return enclose(join_texts(links, Text('/', LINK_JOIN_STYLE)), '[]', LINK_JOIN_STYLE) if links else Text('')
 

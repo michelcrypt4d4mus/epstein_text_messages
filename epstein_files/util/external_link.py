@@ -17,7 +17,7 @@ HTTPS = 'https://'
 BARE_URL_REGEX = re.compile(r"^[-\w.]+(/|\Z)")  # bare = 'missing https'
 LINK_REGEX = re.compile(r"^https?://.*")
 LINK_HREF_LINE_REGEX = re.compile(r"^([>• ]*)(http\S+)(.*)")
-TLD_REGEX = re.compile(r"\.(com|co.uk|gov|net)$")
+TLD_REGEX = re.compile(r"\.(com|co.uk|edu|gov|net|org)$")
 
 EXTERNAL_LINK_STYLE = 'light_slate_grey bold'
 LINK_COMMENT_STYLE = 'color(195) dim italic'
@@ -29,6 +29,18 @@ SUBSTACK_POST_LINK_STYLE = 'bright_cyan'
 SOCIAL_PLATFORMS = {
     'universeodon': 'mastodon',
     'x.com': 'twitter',
+}
+
+SHORT_LINKS = {
+    'bloomberg.com': 'bbg',
+    'newyorker.com': 'nyer',
+    'justice.gov': 'doj',
+    'nytimes.com': 'nyt',
+    'nypost.com': 'nyp',
+    'substack.com': 'sbstk',
+    'theguardian.com': 'guardian',
+    'theatlantic.com': 'atlantic',
+    'wikipedia': 'wiki',
 }
 
 
@@ -85,10 +97,18 @@ class ExternalLink(TextCast):
         link.link_text = f"@{link.link_text or link.domain_stem}"
         return link
 
-    @property
-    def domain_link(self) -> Text:
+    def domain_link(self, bracketed: bool = False) -> Text:
         """Returns a link using the TLD free domain as the `link_text`, e.g. '[wsj]' for a link to wsj.com."""
-        return enclose(link_text_obj(self.url, self.domain(True), self.link_style), '[]')
+        link_text = ''
+
+        for domain, shorthand in SHORT_LINKS.items():
+            if domain in self.url:
+                link_text = shorthand
+                break
+
+        link_text = link_text or self.domain(True)
+        link = link_text_obj(self.url, link_text, self.link_style)
+        return enclose(link, '[]') if bracketed else link
 
     @property
     def domain_stem(self) -> str:
@@ -175,14 +195,14 @@ def hyperlink_text(text: str) -> Text:
 def link_markup(
     url: str,
     link_text: str = '',
-    style: str | None = ARCHIVE_LINK_COLOR,
+    style: str | Style | None = ARCHIVE_LINK_COLOR,
     underline: bool = True
 ) -> str:
     """Create a rich markup string that can be turned to colored/linked `Text` with `Text.from_markup()`."""
     link_text = link_text or url.removeprefix('https://')
-    style = ((style or '') + (' underline' if underline else '')).strip()
+    style = ((str(style or '')) + (' underline' if underline else '')).strip()
     return f"[link={url}][{style}]{link_text}[/{style}][/link]"
 
 
-def link_text_obj(url: str, link_text: str = '', style: str = ARCHIVE_LINK_COLOR) -> Text:
+def link_text_obj(url: str, link_text: str = '', style: str | Style = ARCHIVE_LINK_COLOR) -> Text:
     return Text.from_markup(link_markup(url, link_text, style))
