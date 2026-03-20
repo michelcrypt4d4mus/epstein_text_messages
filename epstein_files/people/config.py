@@ -3384,7 +3384,7 @@ HIGHLIGHTED_NAMES = [
             r"dancer",
             r"dildo",
             r"(?<!drug )(child\s*)?(sex\s*)?traffi?c?k(ers?|ing)",
-            r"Dubin",
+            r"(?<!enn\s)Dubin",
             r"Ellaina As?tras?",
             r"((blonde?|fresh|hot|naughty|new|pretty|school|underage|young) )*girl( friend)?",
             r"gyn(eco(logist|nomist)|o)",
