@@ -347,7 +347,10 @@ class Document(LoggingEntity):
         if char_range and char_range[1] > 0:
             display_text = self.display_text[:char_range[1] + 500]  # Add a few chars headroom to work with
 
-        display_txt = hyperlink_text(doublespace_lines(display_text))
+        if not args.no_doublespace:
+            display_text = doublespace_lines(display_text)
+
+        display_txt = hyperlink_text(display_text)
 
         if self.text_style:
             display_txt.stylize(self.text_style)

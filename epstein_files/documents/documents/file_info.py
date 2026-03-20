@@ -24,6 +24,7 @@ FILE_PROPS = [
     'filename',
     'is_doj_file',
     'is_local_extract_file',
+    'jdrive_url',
     'url_slug',
 ]
 
@@ -127,6 +128,10 @@ class FileInfo(LoggingEntity):
         return is_local_extract_file(self.filename)
 
     @property
+    def jdrive_url(self) -> str:
+        return jmail_doj_2026_file_url(self.doj_2026_dataset_id, self.file_id) if self.doj_2026_dataset_id else ''
+
+    @property
     def local_pdf_path(self) -> Path | None:
         """Path to the source PDF (only applies to DOJ files that were manually extracted)."""
         if self.is_doj_file and DOJ_PDFS_20260130_DIR:
@@ -160,6 +165,24 @@ class FileInfo(LoggingEntity):
     def _log_prefix(self) -> str:
         return self._identifier
 
+    def build_external_links(self, style: str = '', with_alt_links: bool = False, id_only: bool = False) -> Text:
+        """Returns colored links to epstein.media and alternates in a Text object."""
+        alt_links = []
+
+        if with_alt_links and not self.is_eml_file:
+            if (jmail_link := self.jdrive_link(style)):
+                alt_links.append(jmail_link)
+            else:
+                alt_links.append(self.epsteinify_link(style=ALT_LINK_STYLE, link_txt=EPSTEINIFY))
+                alt_links.append(self.epstein_web_link(style=ALT_LINK_STYLE, link_txt=EPSTEIN_WEB))
+
+        if site_config.max_alt_links is None:
+            alt_links = alt_links[0:site_config.max_alt_links]
+
+        alt_links_txt = ExternalLink.parenthesized_links(alt_links)
+        base_txt = Text('', style='white' if with_alt_links else ARCHIVE_LINK_COLOR)
+        return base_txt.append(join_texts([self.external_link_txt(style, id_only), alt_links_txt]))
+
     def epsteinify_link(self, style: str = ARCHIVE_LINK_COLOR, link_txt: str = '') -> Text:
         return self._build_link(epsteinify_doc_url, style, link_txt)
 
@@ -168,9 +191,6 @@ class FileInfo(LoggingEntity):
 
     def epstein_web_link(self, style: str = ARCHIVE_LINK_COLOR, link_txt: str = '') -> Text:
         return self._build_link(epstein_web_doc_url, style, link_txt)
-
-    def rollcall_link(self, style: str = ARCHIVE_LINK_COLOR, link_txt: str = '') -> Text:
-        return self._build_link(rollcall_doc_url, style, link_txt)
 
     def external_link(self, style: str = '', id_only: bool = False) -> ExternalLink:
         if id_only or self.is_eml_file:
@@ -189,28 +209,16 @@ class FileInfo(LoggingEntity):
         return link_markup(self.external_url, link_txt, style=no_bold(style))
 
     def external_link_txt(self, style: str = '', id_only: bool = False) -> Text:
-        id_only = id_only or self.is_eml_file
-        return Text.from_markup(self.external_link_markup(style, id_only))
+        return Text.from_markup(self.external_link_markup(style, id_only or self.is_eml_file))
 
-    def build_external_links(self, style: str = '', with_alt_links: bool = False, id_only: bool = False) -> Text:
-        """Returns colored links to epstein.media and alternates in a Text object."""
-        alt_links = []
+    def jdrive_link(self, style: str = '') -> Text | None:
+        if (url := self.jdrive_url):
+            return link_text_obj(url, JMAIL, style=f"{style} dim" if style else ARCHIVE_LINK_COLOR)
+        else:
+            return None
 
-        if with_alt_links and not self.is_eml_file:
-            if self.doj_2026_dataset_id:
-                jmail_url = jmail_doj_2026_file_url(self.doj_2026_dataset_id, self.file_id)
-                jmail_link = link_text_obj(jmail_url, JMAIL, style=f"{style} dim" if style else ARCHIVE_LINK_COLOR)
-                alt_links.append(jmail_link)
-            else:
-                alt_links.append(self.epsteinify_link(style=ALT_LINK_STYLE, link_txt=EPSTEINIFY))
-                alt_links.append(self.epstein_web_link(style=ALT_LINK_STYLE, link_txt=EPSTEIN_WEB))
-
-        if site_config.max_alt_links is None:
-            alt_links = alt_links[0:site_config.max_alt_links]
-
-        alt_links_txt = ExternalLink.parenthesized_links(alt_links)
-        base_txt = Text('', style='white' if with_alt_links else ARCHIVE_LINK_COLOR)
-        return base_txt.append(join_texts([self.external_link_txt(style, id_only), alt_links_txt]))
+    def rollcall_link(self, style: str = ARCHIVE_LINK_COLOR, link_txt: str = '') -> Text:
+        return self._build_link(rollcall_doc_url, style, link_txt)
 
     def open(self) -> None:
         open_file_or_url(self.local_path)

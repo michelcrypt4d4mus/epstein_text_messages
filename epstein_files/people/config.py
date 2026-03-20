@@ -2158,7 +2158,7 @@ HIGHLIGHTED_NAMES = [
             r"Fortune Magazine",
             r"Fox News(\.com)?",
             r"FrontPage Magazine",
-            r"FT",
+            r"FT(?! Real)",
             r"(George )?Stephanopoulus",
             r"Ger(ald|ry) Baker",
             r"Hollywood Reporter",
