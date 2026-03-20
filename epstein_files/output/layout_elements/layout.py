@@ -30,10 +30,19 @@ DOC_DIV_CSS_PROPS = {
 @dataclass(kw_only=True)
 class BasePanel:
     """Basically for a <div>."""
+    background_color: str = ''
     border_style: str
     text: Text
     title: Text | None = None
     title_justify: JustifyMethod = 'right'
+
+    @property
+    def color_css(self) -> CssProps:
+        return RichStyle(self.style).to_css if self.style else {}
+
+    @property
+    def style(self) -> str:
+        return f"on {self.background_color}" if self.background_color else ''
 
     def to_div(self, margins: list[int | float] | None = None, css: OptionalCssProps = None) -> str:
         """Create an HTML <div> string for this panel."""
@@ -41,6 +50,7 @@ class BasePanel:
             **self._base_div_css(margins),
             **PANEL_BASE_PROPS,
             **border_css_props(self.border_style),
+            **self.color_css,
             **(css or {}),
         }
 
@@ -57,6 +67,7 @@ class BasePanel:
             self.text,
             border_style=self.border_style,
             expand=False,
+            style=self.style,
             title=self.title,
             title_align=self.title_justify,
         )
@@ -107,6 +118,10 @@ class Layout:
 
     def __post_init__(self):
         self.justify = None if self.justify in ['default', 'full'] else self.justify
+
+        # copy background color to panel
+        if self.background_color and isinstance(self.body_panel, BasePanel) and not self.body_panel.background_color:
+            self.body_panel.background_color = self.background_color
 
     @property
     def body_margin(self) -> list[int | float]:
@@ -172,12 +187,7 @@ class Layout:
         if self.is_table:
             body_html = one_row_table_html(self.body_panel, self.horizontal_body_margin_css)
         else:
-            if self.background_color:
-                body_panel_css = RichStyle(f"on {self.background_color}").to_css
-            else:
-                body_panel_css = {}
-
-            body_html = self.body_panel.to_div(self.body_margin_horizontal, css=body_panel_css)
+            body_html = self.body_panel.to_div(self.body_margin_horizontal)
 
         elements = [
             self.file_info.to_div() if self.file_info else None,

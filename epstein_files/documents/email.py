@@ -578,6 +578,7 @@ class Email(Communication):
     def make_layout(self, justify: JustifyMethod = 'default', indent: int = site_config.indents.email_body) -> Layout:
         """Allows for proper right vs. left justify."""
         return Layout(
+            background_color=self._config.background_color,
             body_panel=self._body_as_table(),
             document=self,
             file_info=self.file_id_panel,
@@ -631,6 +632,7 @@ class Email(Communication):
             box=box.ROUNDED,
             header_style='on gray11',
             show_header=bool(note_txt),
+            style=f"on {self._config.background_color}" if self._config.background_color else '',
         )
 
         panel.add_column(note_txt)
