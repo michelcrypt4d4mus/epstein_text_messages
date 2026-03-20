@@ -30,6 +30,7 @@ DOJ_2026_FILE_BASE_URL = "https://www.justice.gov/epstein/files/DataSet%20"
 EPSTEIN_DOCS_URL = 'https://epstein-docs.github.io'
 OVERSIGHT_REPUBS_PRESSER_URL = 'https://oversight.house.gov/release/oversight-committee-releases-additional-epstein-estate-documents/'
 OVERSIGHT_DRIVE_URL = 'https://drive.google.com/drive/folders/1hTNH5woIRio578onLGElkTWofUSWRoH_'
+STANDARD_WORKS_URL = 'https://standardworks.ai/public-archives/epstein-files/'
 # Articles
 SVETLANA_NEWSGROUND = 'https://thenewsground.com/epstein-insider-revealed-as-daughter-of-fsb-translator-who-held-sensitive-russian-government-security-jobs/'
 
