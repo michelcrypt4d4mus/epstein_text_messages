@@ -190,7 +190,9 @@ class Document(LoggingEntity):
     @property
     def char_range_to_display(self) -> CharRange | None:
         """Index of first and last characters to show when printing this document."""
-        if (char_range := self._config.char_range) and char_range == 'auto':
+        char_range = self._config.char_range
+
+        if char_range == 'auto':
             self._warn(f"Computing auto range for highlighted quote..")
             quote_regex = re.compile(self._config.highlighted_pattern, re.IGNORECASE)
 
@@ -337,11 +339,12 @@ class Document(LoggingEntity):
     @property
     def prettified_txt(self) -> Text:
         """Returns the string we want to print as the body of the document."""
-        # pre-truncate very long files
-        if self._config.category in ['book']: # TODO; use enum
-            display_text = self.display_text[:EMAIL_TRUNCATE_TO]
-        else:
-            display_text = self.display_text
+        char_range = self.char_range_to_display or DOC_CHAR_RANGE
+        display_text = self.display_text
+
+        # pre-truncate very long files for speed
+        if char_range and char_range[1] > 0:
+            display_text = self.display_text[:char_range[1] + 500]  # Add extra chars
 
         display_txt = hyperlink_text(doublespace_lines(display_text))
 
@@ -350,7 +353,6 @@ class Document(LoggingEntity):
 
         # char range slice of Text late in the game here preserves Text highlighting at boundaries
         display_txt = self._config.text_highlighter(display_txt)
-        char_range = self.char_range_to_display or DOC_CHAR_RANGE
         selected_txt = extract_range(display_txt, char_range)
         pretty_txt = self._intro_txt(char_range[0]).append(selected_txt)
 
