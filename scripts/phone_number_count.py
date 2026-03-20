@@ -24,11 +24,17 @@ BILLING_LINE_PATTERN = r"Billing (#|l?[Ii]t?) (?P<billing_number>\d{10})"
 TEL_LINE_REGEX = re.compile(TEL_LINE_PATTERN)
 BILLING_LINE_REGEX = re.compile(BILLING_LINE_PATTERN)
 ACCOUNT_REGEX = re.compile(fr"^{TEL_LINE_PATTERN}\s*{BILLING_LINE_PATTERN}.*$", re.IGNORECASE)
-
-CALL_REGEX = re.compile(r"^\d{6}\s+[A-Z0-9]{5}\s+(?P<phone_number>\d{3}\s*\d{3}\s*\d{4})\s+.*")
-CALL_REGEX2 = re.compile(r"\d+ ?\.?\s+\d{1,2}/\d{1,2}\s+\d{1,2}:\d{2}[ap]m\s*(?P<location>[\w ]*?)\s+(?P<phone_number>\d{3} \d{3}-\d{4}|\d{7,})[^\d].*")
-CALL_REGEX3 = re.compile(r"^(?P<phone_number>\d{3} \d{3}-\d{4}|\d{11,14})$")
 JUNK_LINE = re.compile(r"^(Billing questions|CARRIER|EFTA|PhCnt|ACCOUNT NUM|YRMODY|Previously Billed|These charges|Case #).*|^.{,6}(Monthly Charge|verizon\.com)", re.IGNORECASE)
+
+INTL_PHONE_PATTERN = r"\d{11,14}"
+US_PHONE_PATTERN = r"\d{3}\s*\d{3}(-|\s*)\d{4}"
+
+CALL_LINE_REGEXES = [
+    re.compile(r"^\d{6}\s+[A-Z0-9]{5}\s+(?P<phone_number>\d{3}\s*\d{3}\s*\d{4})\s+.*"),
+    re.compile(r"\d+ ?\.?\s+\d{1,2}/\d{1,2}\s+\d{1,2}:\d{2}[ap]m\s*(?P<location>[\w ]*?)\s+(?P<phone_number>\d{3} \d{3}-\d{4}|\d{7,})[^\d].*"),
+    re.compile(fr"^(?P<phone_number>{INTL_PHONE_PATTERN}|{US_PHONE_PATTERN})$"),
+    re.compile(fr".*(?P<phone_number>{US_PHONE_PATTERN}) PRI.*"),
+]
 
 RAW_OCR_URL = f"{BASE_DEPLOY_URL}/{PHONE_LOG_FILE_ID}.txt"
 RAW_OCR_LINK = ExternalLink(RAW_OCR_URL, f"Raw OCR .txt for {PHONE_LOG_FILE_ID}.pdf")
@@ -150,9 +156,8 @@ for line in doc.raw_text().split('\n'):
             logger.warning(f"New account phone number encountered: {epstein_phone}")
             epstein_phone_numbers_found += 1
             current_phone_number = epstein_phone
-    elif (m := CALL_REGEX.match(line)) or (m := CALL_REGEX2.match(line)) or (m := CALL_REGEX3.match(line)):
-        to_number = m.group('phone_number')
-        counter.record_call(current_phone_number, to_number, current_billing_number)
+    elif (m := next((regex.match(line) for regex in CALL_LINE_REGEXES), None)):
+        counter.record_call(current_phone_number, m.group('phone_number'), current_billing_number)
     else:
         if JUNK_LINE.match(line) or len(line) <= 4:
             logger.info(f"junk line: '{line}'")

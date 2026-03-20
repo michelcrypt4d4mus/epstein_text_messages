@@ -1305,7 +1305,8 @@ HIGHLIGHTED_NAMES = [
             ),
             Entity('Benjamin Wegg-Prosser', f"CEO of {PETER_MANDELSON}'s failed lobbying firm Global Counsel", url=WIKIPEDIA),
             Entity('Caroline Lang', "daughter of Jack Lang", match_partial=None),
-            Entity(EDWARD_ROD_LARSEN, f"son of {TERJE_ROD_LARSEN}", match_partial=None),
+            Entity('Emma Rød Larsesn', f'relation of {TERJE_ROD_LARSEN}', r"Emma R[oø]e?d Larsen", match_partial=None),
+            Entity(EDWARD_ROD_LARSEN, f"son of {TERJE_ROD_LARSEN}", r"Edward R[oø]e?d Larsen", match_partial=None),
             Entity('Fabrice Aidan', f"diplomat who worked with {TERJE_ROD_LARSEN}"),
             Entity('Jack Lang', "former French Minister of National Education", match_partial=None),
             Entity(
@@ -1912,7 +1913,7 @@ HIGHLIGHTED_NAMES = [
             Entity(
                 MARTIN_NOWAK,
                 "professor of mathematics and biology",
-                r"(Martin.*?)?No[vw]ak|Nowak, Martin",
+                r"(Martin.*?)?No[vw]ac?k|Nowak, Martin",
                 url='https://www.thecrimson.com/article/2026/2/25/nowak-leave-epstein/',
             ),
             Entity(MOSHE_HOFFMAN, "behavioral and evolutionary economics", match_partial=None),
