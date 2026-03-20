@@ -452,6 +452,12 @@ GIRLS_CFGS = [
         truncate_to=NO_TRUNCATE,
     ),
     EmailCfg(
+        id='EFTA00465926',
+        highlight_quote='we will cancel this ticket prior to departure',
+        note='Paris, possible immigration fraud',
+        truncate_to=700
+    ),
+    EmailCfg(
         id='EFTA01022353',
         highlight_quote='she said she was 14-15 yo',
         note='(George Models is basically a porn site)',
