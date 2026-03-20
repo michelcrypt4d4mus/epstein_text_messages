@@ -1657,6 +1657,13 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Entity('Philip Kafka', f"president of Prince Concepts (son of {TERRY_KAFKA}?)", match_partial=None),
             Entity('Rob Goldsamt', 'CEO of Basic Care Networks'),
             Entity('Sam Jaradeh', f"business partner of {BORIS_NIKOLIC}"),
+            Entity(
+                SOON_YI_PREVIN,
+                f"former adopted daughter and current wife of {WOODY_ALLEN}",
+                r"Soon Yi Previn?",
+                match_partial='both',
+                url=WIKIPEDIA,
+            ),
             Entity(STEPHEN_HANSON, emailer_pattern=r"ste(phen|ve) hanson?|Shanson900"),
             Entity(TERRY_KAFKA, "CEO of Impact Outdoor (highway billboards), lifelong friend of Epstein", match_partial=None),
             Entity(TOM_BARRACK, "long time friend of Trump", url=WIKIPEDIA),
@@ -2319,6 +2326,14 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 r"Fawzi.Siam?",
                 match_partial='first',
             ),
+            Entity(
+                HAMAD_BIN_JASSIM,
+                "former Qatari prime minister, planned Sharia crypto with Epstein",
+                r"[ji]abor y?|labor y|HBJ|Hamad bin Jassim( al-Thani)?",
+                aliases=['HBJ'],
+                match_partial=None,
+                url='https://en.wikipedia.org/wiki/Hamad_bin_Jassim_bin_Jaber_Al_Thani',
+            ),
             Entity('Hamad bin Khalifa al-Thani', 'emir of Qatar', match_partial=None, url=WIKIPEDIA),
             Entity(
                 HASSAN_JAMEEL,
@@ -2355,6 +2370,13 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 "Yemeni billionaire whose son fled London after murdering Martine Vik Magnussen",
                 r"\b(Shaher( Abdulhak Besher)?)\b",  # NOTE: Shaher has custom handling for "S A" in emailers.py
                 url='https://en.wikipedia.org/wiki/Murder_of_Martine_Vik_Magnussen',
+            ),
+            Entity(
+                SULTAN_BIN_SULAYEM,
+                "chairman of ports in Dubai, CEO of DP World, resigned over Epstein ties",
+                r"Sultan (Ahmed )?bin Sulaye?m?",
+                email_addresses=['ssulayem@aol.com', 'ssulayem@etisalat.blackberry.com'],
+                url='https://www.bbc.com/news/articles/ce82xgd2g3yo',
             ),
             Entity('Timur Kulibayev', 'businessman from Kazakhstan', url=WIKIPEDIA),
             Organization('GCC', 'Gulf Cooperation Council', r"GCC|Gulf Cooperation Council"),
@@ -3571,20 +3593,12 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             ),
         ],
     ),
-    HighlightedNames(
-        entities=[
-            Entity(
-                HAMAD_BIN_JASSIM,
-                "former Qatari prime minister, planned Sharia crypto with Epstein",
-                r"[ji]abor y?|labor y|HBJ|Hamad bin Jassim( al-Thani)?",
-                aliases=['HBJ'],
-                match_partial=None,
-                url='https://en.wikipedia.org/wiki/Hamad_bin_Jassim_bin_Jaber_Al_Thani',
-            ),
-        ],
-        category=MIDEAST,
-        style='spring_green1',
-    ),
+    # HighlightedNames(
+    #     entities=[
+    #     ],
+    #     category=MIDEAST,
+    #     style='spring_green1',
+    # ),
     HighlightedNames(
         entities=[
             Entity(
@@ -3615,32 +3629,10 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         style='dodger_blue1',
         category='Europe',
     ),
-    HighlightedNames(
-        entities=[
-            Entity(
-                SOON_YI_PREVIN,
-                f"former adopted daughter of / now married to {WOODY_ALLEN}",
-                r"Soon Yi Previn?",
-                match_partial='both',
-                url=WIKIPEDIA,
-            ),
-        ],
-        style='hot_pink',
-        category=ARTS
-    ),
-    HighlightedNames(
-        entities=[
-            Entity(
-                SULTAN_BIN_SULAYEM,
-                "chairman of ports in Dubai, CEO of DP World, resigned over Epstein ties",
-                r"Sultan (Ahmed )?bin Sulaye?m?",
-                email_addresses=['ssulayem@aol.com', 'ssulayem@etisalat.blackberry.com'],
-                url='https://www.bbc.com/news/articles/ce82xgd2g3yo',
-            )
-        ],
-        style='green1',
-        category=MIDEAST
-    ),
+    # HighlightedNames(
+    #     entities=[],
+    #     style='hot_pink',
+    # ),
 
     # HighlightedPatterns not HighlightedNames bc of word boundary (\b) issue with '#', '(', etc.
     HighlightPatterns(
