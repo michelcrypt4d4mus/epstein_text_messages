@@ -1319,7 +1319,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA02014739', note='phishing attack on a Yahoo account "jeffrey.epstein"', is_interesting=True, truncate_to=700),
     EmailCfg(id='EFTA02561277', note=f"planning for {ELON_MUSK} gets a massage", is_interesting=True),
     EmailCfg(id='EFTA00364437', note='planning a trip to the Ivory Coast', is_interesting=True, truncate_to=2_000),
-    EmailCfg(id='EFTA00465926', note='possible immigration fraud with a fake round trip ticket'),
+    EmailCfg(id='EFTA00465926', highlight_quote='we will cancel this ticket prior to departure', note='possible immigration fraud'),
     EmailCfg(id='EFTA00758140', note="possibly about Sarah Ferguson?"),
     EmailCfg(id='EFTA01013413', note='Reza Bundy is the founder of IronPlanet'),
     EmailCfg(id='EFTA02339109', note=f'someone named Sue needs help (probably a sham marriage to {BROCK_PIERCE}, see later emails)'),
