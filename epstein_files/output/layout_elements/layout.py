@@ -10,7 +10,7 @@ from rich.panel import Panel
 
 from epstein_files.output.html.builder import (PANEL_BASE_PROPS, VERTICAL_MARGIN_EMS, border_css_props,
      one_row_table_html, render_to_html, text_to_list, text_to_div, margin_vertical_css)
-from epstein_files.output.html.elements import CssProps, div_class, div_with_legend, div_tag
+from epstein_files.output.html.elements import CssProps, OptionalCssProps, div_class, div_with_legend, div_tag
 from epstein_files.output.html.rich_style import RichStyle
 from epstein_files.output.html.positioned_rich import BLACK_BACKGROUND, PositionedRich, dimensions_to_margin_css
 from epstein_files.util.env import site_config
@@ -29,17 +29,19 @@ DOC_DIV_CSS_PROPS = {
 
 @dataclass(kw_only=True)
 class BasePanel:
+    """Basically for a <div>."""
     border_style: str
     text: Text
     title: Text | None = None
     title_justify: JustifyMethod = 'right'
 
-    def to_div(self, margins: list[int | float] | None = None) -> str:
+    def to_div(self, margins: list[int | float] | None = None, css: OptionalCssProps = None) -> str:
         """Create an HTML <div> string for this panel."""
         div_props = {
             **self._base_div_css(margins),
             **PANEL_BASE_PROPS,
-            **border_css_props(self.border_style)
+            **border_css_props(self.border_style),
+            **(css or {}),
         }
 
         # TODO: make the title 'dim'
@@ -62,13 +64,15 @@ class BasePanel:
 
 @dataclass(kw_only=True)
 class ListPanel(BasePanel):
+    """For <ul> / <ol>."""
     text: list[Text]
 
-    def to_div(self, margins: list[int | float] | None = None) -> str:
+    def to_div(self, margins: list[int | float] | None = None, css: OptionalCssProps = None) -> str:
         """Create an HTML <div> string for this panel."""
         div_props = {
             **self._base_div_css(margins),
             'word-wrap': 'break-word',
+            **(css or {}),
         }
 
         html = text_to_list(self.text, class_name='no_bullets')
@@ -156,22 +160,24 @@ class Layout:
         return text_to_div(Text('\n').join(self.subheaders), css_props)
 
     def to_html(self) -> str:
-        css_props = {
+        container_css = {
             **DOC_DIV_CSS_PROPS,
             'margin-bottom': self.margin_bottom,
         }
 
-        if self.background_color:
-            css_props.update(RichStyle(f"on {self.background_color}").to_css)
-
         # Add more vertical margin before/after text messages  # TODO: this shouold be configured
         if isinstance(self.body_panel, ListPanel):
-            css_props.update(margin_vertical_css(2))
+            container_css.update(margin_vertical_css(2))
 
         if self.is_table:
             body_html = one_row_table_html(self.body_panel, self.horizontal_body_margin_css)
         else:
-            body_html = self.body_panel.to_div(self.body_margin_horizontal)
+            if self.background_color:
+                body_panel_css = RichStyle(f"on {self.background_color}").to_css
+            else:
+                body_panel_css = {}
+
+            body_html = self.body_panel.to_div(self.body_margin_horizontal, css=body_panel_css)
 
         elements = [
             self.file_info.to_div() if self.file_info else None,
@@ -179,7 +185,7 @@ class Layout:
             body_html,
         ]
 
-        return div_tag(without_falsey(elements), css_props)
+        return div_tag(without_falsey(elements), container_css)
 
     def _align(self, element: RenderableType) -> RenderableType:
         return Align(element, self.justify) if self.justify else element

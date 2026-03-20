@@ -49,6 +49,7 @@ def print_test_panels():
 
 
 doc_types_to_sample = [
+    [d for d in epstein_files.documents if d._config.background_color],
     [e for e in epstein_files.emails if 'https' in e.text[0:1500]],
     [o for o in epstein_files.other_files if o.config and o.config.show_full_panel],
     [d for d in epstein_files._documents if d.suppressed_txt],
