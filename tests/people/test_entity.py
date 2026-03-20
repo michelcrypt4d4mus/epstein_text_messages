@@ -41,7 +41,8 @@ def test_acronym():
 def test_bio():
     yulia = ENTITIES_DICT[YULIA_DOROKHINA]
     brock = ENTITIES_DICT[BROCK_PIERCE]
-    assert brock.bio_txt.plain == 'Brock Pierce [crypto] Bannon partner, Tether co-founder, friend of Yair Netanyahu, sex crime history (more)'
+    assert brock.bio_txt.plain == \
+        'Brock Pierce [crypto] sex crime history, Bannon partner at IGN, Tether co-founder, friend of Yair Netanyahu [protos/sbstk/wiki]'
 
 
 def test_epstein_co():
