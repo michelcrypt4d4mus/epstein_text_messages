@@ -18,34 +18,25 @@ from epstein_files.util.logging import logger
 from epstein_files.util.external_link import ExternalLink
 from epstein_files.util.helpers.data_helpers import sort_dict
 
+RAW_OCR_URL = f"{BASE_DEPLOY_URL}/{PHONE_LOG_FILE_ID}.txt"
+RAW_OCR_LINK = ExternalLink(RAW_OCR_URL, f"Raw OCR .txt extracted from {PHONE_LOG_FILE_ID}.pdf")
 
-TEL_LINE_PATTERN = r"Telephone ([1#IiN]|It)\s*(?P<phone_number>\d{10})"
+TEL_LINE_PATTERN = r"Telephone ([1#IiN]|It)\s*(?P<phone>\d{10})"
 BILLING_LINE_PATTERN = r"Billing (#|l?[Ii]t?) (?P<billing_number>\d{10})"
 TEL_LINE_REGEX = re.compile(TEL_LINE_PATTERN)
 BILLING_LINE_REGEX = re.compile(BILLING_LINE_PATTERN)
 ACCOUNT_REGEX = re.compile(fr"^{TEL_LINE_PATTERN}\s*{BILLING_LINE_PATTERN}.*$", re.IGNORECASE)
-JUNK_LINE = re.compile(r"^(Billing questions|CARRIER|EFTA|PhCnt|ACCOUNT NUM|YRMODY|Previously Billed|These charges|Case #).*|^.{,6}(Monthly Charge|verizon\.com)", re.IGNORECASE)
+JUNK_LINE = re.compile(r"^(Billing questions|CARRIER|EFTA|PhCnt|ACCOUNT NUM|YRMODY|Call Region|DKVerizon|\*\*For detail|Fund Surcharg|If you have any|Initial|Local Calls|Long Distance Important|Municipal|Previously Billed|Screen Cnt|(Sub )?Total|To State/Local|These charges|Case #).*|^.{,6}(Federal Access|Monthly Charge|verizon\.com)", re.IGNORECASE)
 
 INTL_PHONE_PATTERN = r"\d{11,14}"
 US_PHONE_PATTERN = r"\d{3}\s*\d{3}(-|\s*)\d{4}"
 
 CALL_LINE_REGEXES = [
-    re.compile(r"^\d{6}\s+[A-Z0-9]{5}\s+(?P<phone_number>\d{3}\s*\d{3}\s*\d{4})\s+.*"),
-    re.compile(r"\d+ ?\.?\s+\d{1,2}/\d{1,2}\s+\d{1,2}:\d{2}[ap]m\s*(?P<location>[\w ]*?)\s+(?P<phone_number>\d{3} \d{3}-\d{4}|\d{7,})[^\d].*"),
-    re.compile(fr"^(?P<phone_number>{INTL_PHONE_PATTERN}|{US_PHONE_PATTERN})$"),
-    re.compile(fr".*(?P<phone_number>{US_PHONE_PATTERN}) PRI.*"),
+    re.compile(r"^\d{6}\s+[A-Z0-9]{5}\s+(?P<phone>\d{3}\s*\d{3}\s*\d{4})\s+.*"),
+    re.compile(r"\d+ ?\.?\s+\d{1,2}/\d{1,2}\s+\d{1,2}:\d{2}[ap]m\s*(?P<location>[\w ]*?)\s+(?P<phone>\d{3} \d{3}-\d{4}|\d{7,})[^\d].*"),
+    re.compile(fr"^(?P<phone>{INTL_PHONE_PATTERN}|{US_PHONE_PATTERN})$"),
+    re.compile(fr".*(?P<phone>{US_PHONE_PATTERN}) PRI.*"),
 ]
-
-RAW_OCR_URL = f"{BASE_DEPLOY_URL}/{PHONE_LOG_FILE_ID}.txt"
-RAW_OCR_LINK = ExternalLink(RAW_OCR_URL, f"Raw OCR .txt for {PHONE_LOG_FILE_ID}.pdf")
-
-call_counts = defaultdict(int)
-call_counts_by_source_number = defaultdict(lambda: defaultdict(int))
-doc = epstein_files.get_id(PHONE_LOG_FILE_ID)
-current_billing_number = ''
-current_phone_number = ''
-epstein_phone_numbers_found = 0
-calls_found = 0
 
 
 def cleanup_phone_number(number: str) -> str:
@@ -59,6 +50,11 @@ def format_phone_number(number: str) -> str:
         return f"+{number}"
     else:
         return number
+
+
+doc = epstein_files.get_id(PHONE_LOG_FILE_ID)
+current_billing_number = ''
+current_epstein_number = ''
 
 
 @dataclass
@@ -85,10 +81,13 @@ class CallCounter:
             logger.warning(f"Found {len(self.calls)} on {len(self.call_counts_by_source)} Epstein phone numbers so far...")
 
     def print(self) -> None:
-        console.print(f"Found {len(self.call_counts_by_source)} Epstein phone numbers calling {len(self.call_counts)} other numbers.")
-        console.line()
-        self._print_indented(Text(f"Source PDF: ").append(doc.file_info.external_link_txt()))
+        msg = f"Found {len(self.call_counts_by_source)} Epstein phone numbers" + \
+              f" making {len(self.call_counts):,} phone calls" + \
+              f" to {len(self.call_counts):,} unique numbers"
+
+        console.print(msg)
         self._print_indented(RAW_OCR_LINK.link)
+        self._print_indented(Text(f"Source PDF: ", style='dim').append(doc.file_info.external_link_txt()))
         console.print(f"\nEpstein's phone numbers:")
 
         for number in self.epstein_phone_numbers:
@@ -116,7 +115,7 @@ class CallCounter:
         print_subtitle_panel(title)
         console.line()
 
-        for number, count in sort_dict(self.call_counts):
+        for number, count in sort_dict(counts):
             self._print_call_count(number, count)
 
     def _print_call_count(self, number: str, count: int) -> None:
@@ -132,13 +131,12 @@ for line in doc.raw_text().split('\n'):
     line = line.strip()
 
     if (m := ACCOUNT_REGEX.match(line)):
-        epstein_phone = m.group('phone_number')
+        epstein_phone = m.group('phone')
         billing = m.group('billing_number')
 
-        if epstein_phone != current_phone_number:
+        if epstein_phone != current_epstein_number:
             logger.warning(f"New account phone number encountered: {epstein_phone}")
-            epstein_phone_numbers_found += 1
-            current_phone_number = epstein_phone
+            current_epstein_number = epstein_phone
 
         if billing != current_billing_number:
             logger.warning(f"New account billing number encountered: {billing}")
@@ -150,14 +148,13 @@ for line in doc.raw_text().split('\n'):
             logger.warning(f"New account billing number encountered: {billing}")
             current_billing_number = billing
     elif (m := TEL_LINE_REGEX.match(line)):
-        epstein_phone = m.group('phone_number')
+        epstein_phone = m.group('phone')
 
-        if epstein_phone != current_phone_number:
+        if epstein_phone != current_epstein_number:
             logger.warning(f"New account phone number encountered: {epstein_phone}")
-            epstein_phone_numbers_found += 1
-            current_phone_number = epstein_phone
-    elif (m := next((regex.match(line) for regex in CALL_LINE_REGEXES), None)):
-        counter.record_call(current_phone_number, m.group('phone_number'), current_billing_number)
+            current_epstein_number = epstein_phone
+    elif (m := next((regex.match(line) for regex in CALL_LINE_REGEXES if regex.match(line)), None)):
+        counter.record_call(current_epstein_number, m.group('phone'), current_billing_number)
     else:
         if JUNK_LINE.match(line) or len(line) <= 4:
             logger.info(f"junk line: '{line}'")
