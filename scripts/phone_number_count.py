@@ -86,11 +86,11 @@ class CallCounter:
 
         msg = f"Found {len(self.call_counts_by_source)} Epstein phone numbers" + \
               f" making {len(self.calls):,} phone calls" + \
-              f" to {len(self.call_counts):,} unique numbers"
+              f" to {len(self.call_counts):,} unique numbers in "
 
-        console.print(msg)
+        console.print(highlighter(msg).append(doc.file_info.external_link_txt()).append(' PDF'))
         self._print_indented(RAW_OCR_LINK.link)
-        self._print_indented(Text(f"Source PDF: ", style='dim').append(doc.file_info.external_link_txt()))
+        self._print_indented(Text(f"Source: ", style='dim').append(doc.file_info.external_link_txt()))
         console.print(f"\nEpstein's phone numbers:")
 
         for number in self.epstein_phone_numbers:
