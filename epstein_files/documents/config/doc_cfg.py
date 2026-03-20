@@ -106,7 +106,9 @@ CATEGORY_PREAMBLES = {
 }
 
 SHORT_TRUNCATE_CATEGORIES = [
+    Uninteresting.ACADEMIA,
     Uninteresting.ARTICLE,
+    Uninteresting.BOOK,
 ]
 
 
@@ -443,7 +445,7 @@ class DocCfg(LoggingEntity):
         """The char range that should be shown in `OtherFile` rollup tables."""
         if self.num_preview_chars:
             return (0, self.num_preview_chars)
-        elif self.category == Uninteresting.BOOK:
+        elif self.category in :
             return (0, int(site_config.other_files_preview_chars / 2))
         else:
             return (0, site_config.other_files_preview_chars)

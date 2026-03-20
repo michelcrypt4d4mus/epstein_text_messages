@@ -47,6 +47,7 @@ parser.add_argument('--use-custom-html', action='store_true', help='overwrite ri
 
 # Any output arg that doesn't start with --all is curated, meaning uninteresting documents will be suppressed
 output = parser.add_argument_group('OUTPUT', 'Options used by epstein_generate.')
+output.add_argument('--all-chrono', '-ac', action='store_true', help='all file types chronologically')
 output.add_argument('--all-doj-files', '-ad', action='store_true', help='all the DOJ files from 2026-01-30')
 output.add_argument('--all-emails', '-ae', action='store_true', help='all the emails instead of just the interesting ones')
 output.add_argument('--all-emails-chrono', '-aec', action='store_true', help='all emails in chronological order')
@@ -117,6 +118,7 @@ args._debug_highlight_patterns = (args.colors_only and args.debug)
 
 # args.names = [name.title() for name in args.names] if args.names and args.names[0][0].islower() else args.names
 args.names = [None if n == 'None' else n.strip() for n in (args.names or [])]
+args.output_chrono = args.output_chrono or args.all_chrono
 args.output_emails = args.output_emails or args.all_emails
 args.output_other = args.output_other or args.all_other_files or args.uninteresting
 args.output_texts = args.output_texts or args.all_texts

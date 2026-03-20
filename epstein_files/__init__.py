@@ -24,7 +24,7 @@ from epstein_files.documents.messenger_log import MessengerLog
 from epstein_files.documents.other_file import OtherFile
 from epstein_files.output.doc_printer import DocPrinter
 from epstein_files.output.epstein_highlighter import highlighter, temp_highlighter
-from epstein_files.output.output import (print_curated_chronological, print_document_notes, print_doj_files, print_emails_section,
+from epstein_files.output.output import (print_chronological, print_document_notes, print_doj_files, print_emails_section,
      print_json_files, print_stats, print_other_files_section, print_text_msgs_section, print_all_emails_chronological,
      print_signatures_and_emojis, print_emailers_info, print_json_metadata, show_urls, print_annotated_only)
 from epstein_files.output.rich import console, print_json, print_subtitle_panel
@@ -65,7 +65,7 @@ def epstein_generate() -> None:
     elif args.output_devices:
         print_signatures_and_emojis(epstein_files, printer)
     elif args.output_chrono:
-        print_curated_chronological(epstein_files, printer)
+        print_chronological(epstein_files, printer)
         timer.log_section_complete('Document', epstein_files.unique_documents, printer.printed_docs)
     elif args.output_word_count:
         print_word_counts(epstein_files)
