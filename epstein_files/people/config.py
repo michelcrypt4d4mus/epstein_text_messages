@@ -347,11 +347,13 @@ HIGHLIGHTED_NAMES = [
             ),
             Entity(
                 'Scott Shay',
-                f"future CEO of America's largest crypto bank (until it failed in 2023) Signature Bank {QUESTION_MARKS}",
+                f"Bank Hapoalim, Hyperion Partners, future head of largest US crypto bank Signature Bank (SBNY)",
                 match_partial=None,
+                url='https://www.cnbc.com/2023/03/13/signature-bank-third-biggest-bank-failure-in-us-history.html',
             ),
             Entity('Stewart Oldfield', f"worked on Epstein related accounts at {DEUTSCHE_BANK}"),
             Entity('Vaishali Mehta', f'Head of Anti-Money Laundering Business Risk at {DEUTSCHE_BANK}', r"Vaishali.{,5}Mehta"),
+
             # Organizations
             Organization('Bayerische Landesbank', 'publicly owned bank in Bavaria', url=WIKIPEDIA),
             Organization(
@@ -371,9 +373,9 @@ HIGHLIGHTED_NAMES = [
             Organization('Silvergate Bank', 'crypto friendly bank that failed after the FTX crisis', r"Silver Gate( Bank)?"),
             Organization(
                 'Signature Bank',
-                'crypto friendly bank w/Ivanka on the board, became 3rd biggest bank failure in US history after FTXplosion',
+                'crypto friendly bank, Ivanka Trump on board, 3rd biggest bank failure in US history after FTX',
                 r"Signature Bank|SBNY",
-                url='https://www.cnbc.com/2023/03/13/signature-bank-third-biggest-bank-failure-in-us-history.html'
+                url='https://www.cnbc.com/2023/03/13/signature-bank-third-biggest-bank-failure-in-us-history.html',
             ),
         ],
         patterns=[
@@ -1550,6 +1552,7 @@ HIGHLIGHTED_NAMES = [
             Organization('Enso Capital Management', belongs_to=JOSHUA_FINK, is_interesting=False),
             Organization(ELYSIUM_MANAGEMENT, f"family office managing {LEON_BLACK}'s money", belongs_to=LEON_BLACK),
             Organization('Goldman Sachs', emailer_pattern=r"Goldman( Sachs)?", is_interesting=False),
+            Organization('Hyperion Partners', 'Scott Shay, maybe related to Epstein co. Hyperion Air?'),
             Organization('Julius Baer', 'Swiss bank'),
             Organization('Lazard', 'UK financial advisory and asset management firm'),
             Organization('Mangrove Partners', 'shockingly high performing fund', belongs_to=NATHANIEL_AUGUST),
