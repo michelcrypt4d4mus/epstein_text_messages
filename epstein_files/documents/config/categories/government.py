@@ -109,7 +109,13 @@ GOVERNMENT_CFGS = [
     fbi_defense_witness('EFTA02730477', 'Roderic Alexander', '2022-01-19'),
     fbi_defense_witness('EFTA02730271', None, '2022-03-22'),
     # FBI interviews
-    fbi_interview('EFTA00064309', 'MCC camera technician', quote("Only one hard drive of the camera system was working at the time of [Epstein's death]")),
+    fbi_interview(
+        'EFTA00064309',
+        'MCC camera technician',
+        quote("Only one hard drive of the camera system was working at the time of [Epstein's death]"),
+        '2020-03-12',
+        highlight_quote='advised that he knew that by replacing both hard drives, the system would be wiped'
+    ),
     fbi_interview('EFTA02858481', 'Jennifer Aros', 'Epstein victim'),
     fbi_interview('EFTA00174375', LUKE_D_THORBURN, f"lots of takes on Epstein, China, and {STEVE_BANNON}"),
     fbi_interview('EFTA00081226', MINOR_VICTIM),
