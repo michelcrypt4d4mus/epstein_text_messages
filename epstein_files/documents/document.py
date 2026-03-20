@@ -486,7 +486,7 @@ class Document(LoggingEntity):
     def make_layout(
         self,
         justify: JustifyMethod = 'default',
-        indent: int = site_config.indents.info,
+        indent: int = 0,
         background_color: str = ''
     ) -> Layout:
         """Allows for proper right vs. left justify."""
@@ -497,6 +497,7 @@ class Document(LoggingEntity):
                 text=self.prettified_txt,
                 title=Text(f"({self.panel_title_timestamp})", style='dim') if self.panel_title_timestamp else None,
             ),
+            body_indent=site_config.indents.info,
             document=self,
             file_info=self.file_id_panel,
             indent=indent,

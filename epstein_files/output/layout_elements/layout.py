@@ -108,6 +108,7 @@ class ListPanel(BasePanel):
 class Layout:
     """Allows for proper right vs. left justify of a Document display."""
     background_color: str = ''
+    body_indent: int | float = 0
     body_panel: BasePanel | Table
     document: 'Document'
     file_info: BasePanel | None = None
@@ -130,11 +131,23 @@ class Layout:
 
         # Set subtle indent
         if self.justify == 'right':
-            padding[1] = self.indent
+            padding[1] = self.body_indent
         else:
-            padding[3] = self.indent
+            padding[3] = self.body_indent
 
         return padding
+
+    @property
+    def container_margin(self) -> list[int | float]:
+        margin = PositionedRich.zero_dimensions()
+
+        # Set subtle indent
+        if self.justify == 'right':
+            margin[1] = self.indent
+        else:
+            margin[3] = self.indent
+
+        return margin
 
     @property
     def body_margin_horizontal(self) -> list[int | float]:
@@ -178,6 +191,7 @@ class Layout:
         container_css = {
             **DOC_DIV_CSS_PROPS,
             'margin-bottom': self.margin_bottom,
+            **dimensions_to_margin_css(self.container_margin),
         }
 
         # Add more vertical margin before/after text messages  # TODO: this shouold be configured
@@ -212,6 +226,7 @@ class Layout:
         elements = ([self.file_info] if self.file_info else []) + indented_elemeents
 
         for element in elements:
+            element = Padding(element, self.container_margin) if self.indent else element
             yield self._align(element)
 
     def __str__(self) -> str:

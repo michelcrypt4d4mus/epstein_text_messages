@@ -102,12 +102,13 @@ class MessengerLog(Communication):
     def make_layout(
         self,
         justify: JustifyMethod = 'default',
-        indent: int = site_config.indents.info,
+        indent: int = 0,
         background_color: str = ''
     ) -> Layout:
         """`FileDisplay` object that controls how this object is presented."""
         return Layout(
             background_color=self._config.background_color or background_color,
+            body_indent=site_config.indents.info,
             body_panel=ListPanel(
                 border_style=self.border_style,
                 text=[msg.__rich__() for msg in self.messages],

@@ -595,7 +595,7 @@ class Email(Communication):
             body_panel=table,
             document=self,
             file_info=self.file_id_panel,
-            indent=indent,
+            body_indent=indent,
             justify=justify,
             margin_bottom=self.html_margin_bottom,
             subheaders=self.subheaders,
