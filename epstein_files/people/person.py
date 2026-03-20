@@ -21,7 +21,7 @@ from epstein_files.documents.other_file import OtherFile
 from epstein_files.output.highlight_config import (HIGHLIGHTED_NAMES, QUESTION_MARKS_TXT, get_highlight_group_for_name,
      get_style_for_name, styled_category, styled_name)
 from epstein_files.output.highlighted_names import HighlightedNames, HighlightPatterns, ManualHighlight
-from epstein_files.output.layout_elements.file_display import Layout
+from epstein_files.output.layout_elements.layout import Layout
 from epstein_files.output.rich import GREY_NUMBERS, TABLE_TITLE_STYLE, build_table, console, print_special_note
 from epstein_files.output.site.internal_links import TO_FROM
 from epstein_files.people.entity import Entity

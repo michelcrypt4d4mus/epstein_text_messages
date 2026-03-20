@@ -12,7 +12,7 @@ from epstein_files.documents.config.doc_cfg import Metadata
 from epstein_files.documents.emails.constants import FALLBACK_TIMESTAMP
 from epstein_files.documents.imessage.text_message import TextMessage
 from epstein_files.output.epstein_highlighter import highlighter
-from epstein_files.output.layout_elements.file_display import Layout, ListPanel, JustifyMethod
+from epstein_files.output.layout_elements.layout import Layout, ListPanel, JustifyMethod
 from epstein_files.output.highlight_config import styled_name
 from epstein_files.output.rich import LAST_TIMESTAMP_STYLE, build_table
 from epstein_files.people.interesting_people import PERSONS_OF_INTEREST
