@@ -68,6 +68,13 @@ MONEY_CFGS = [
         date='2007-09-20',
         non_participants=[JOI_ITO],
     ),
+    DocCfg(
+        id='EFTA00257211',
+        date='2005-04-05',
+        is_interesting=10,
+        note=f"call log shows Bank Hapoalim director Scott Shay selling Epstein investment ideas weeks after Hapoalim money laundering issues, also Steve Cohen and Barry Diller",
+        truncate_to=7_700,
+    ),
     DocCfg(id='EFTA01266380', note="Epstein's 2014 Trust with bequests"),
     DocCfg(id='EFTA01282282', note=f"Epstein Butterfly Trust (sole beneficiary {KARYNA_SHULIAK})"),
     DocCfg(id='EFTA01583819', note=f"Epstein had control of {JAMES_CAYNE}'s assets"),

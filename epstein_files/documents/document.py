@@ -345,7 +345,7 @@ class Document(LoggingEntity):
 
         # pre-truncate very long files for speed
         if char_range and char_range[1] > 0:
-            display_text = self.display_text[:char_range[1] + 500]  # Add extra chars
+            display_text = self.display_text[:char_range[1] + 500]  # Add a few chars headroom to work with
 
         display_txt = hyperlink_text(doublespace_lines(display_text))
 
