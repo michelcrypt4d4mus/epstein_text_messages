@@ -98,7 +98,7 @@ def sort_categories(categories: list[str]) -> list[str]:
             value = 10
         elif category == RUSSIAN_GIRL:
             value = 8
-        elif category == TECH_BRO:
+        elif category == TECH:
             value = 6
         elif (category or Uninteresting.JUNK) == Uninteresting.JUNK:
             value = -5

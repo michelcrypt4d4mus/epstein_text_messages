@@ -344,7 +344,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
     HighlightedNames(
         label=BILL_GATES,
         style='turquoise4',
-        category=TECH_BRO,
+        category=TECH,
         entities=[
             Entity(BILL_GATES, "ex-Microsoft, Gates Foundation, bgC3"),
             Entity(
@@ -3039,7 +3039,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         ],
     ),
     HighlightedNames(
-        label=TECH_BRO,
+        label=TECH,
         style='bright_cyan',
         entities=[
             Entity('Alisa Bekins', f"{PETER_THIEL}'s assistant"),
@@ -3224,7 +3224,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
     HighlightedNames(
         label='techco',
         style='color(117)',
-        category=TECH_BRO,
+        category=TECH,
         entities=[
             Organization.well_known('FedEx'),
             Organization.well_known('MetroPCS'),
@@ -3595,7 +3595,6 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
     ),
     # HighlightedNames(
     #     entities=[
-    #     ],
     #     category=MIDEAST,
     #     style='spring_green1',
     # ),

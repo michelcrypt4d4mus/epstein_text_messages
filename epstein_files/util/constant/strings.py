@@ -18,7 +18,7 @@ PUBLICIST = 'publicist'
 REAL_ESTATE = 'real estate'
 REPUTATION = 'reputation'
 REPUTATION_MGMT = f'{REPUTATION} management'
-TECH_BRO = 'tech'
+TECH = 'tech'
 
 # Locations
 PALM_BEACH = 'Palm Beach'
