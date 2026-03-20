@@ -127,6 +127,13 @@ CRYPTADAMUS_SOCIAL_LINKS = [
     ExternalLink.social_link(GH_PROJECT_URL),
 ]
 
+# biographical links
+EPSTEIN_DOCTORS_LINKS = [
+    'https://www.nytimes.com/2026/02/28/us/jeffrey-epstein-doctors.html?unlocked_article_code=1.PlA.f4B2.BgLoXD-aVKkw&smid=url-share',
+    'https://www.bloomberg.com/news/features/2026-02-28/epstein-emails-show-reliance-on-eva-dubin-mount-sinai-in-doj-files',
+]
+
+
 # Misc
 PDF_MIME_TYPE = {'Accept': 'application/pdf'}
 URL_SIGNIFIERS = ['?amp', 'amp?', 'cd=', 'click', 'CMP=', 'contentId', 'ft=', 'gclid', 'htm', 'mp=', 'keywords=', 'Id=', 'module=', 'mpweb', 'nlid=', 'ref=', 'smid=', 'sp=', 'usg=', 'utm']

@@ -18,7 +18,7 @@ from epstein_files.output.highlighted_names import HighlightGroup, HighlightedNa
 from epstein_files.people.entity import Entity, Organization, acronym, epstein_co, epstein_trust, law_enforcement, publication, the_publication
 from epstein_files.people.names import *
 from epstein_files.util.constant.strings import *
-from epstein_files.util.constant.urls import SUBSTACK_POST_INSIGHTSPOD_URL, SVETLANA_NEWSGROUND
+from epstein_files.util.constant.urls import EPSTEIN_DOCTORS_LINKS, SUBSTACK_POST_INSIGHTSPOD_URL, SVETLANA_NEWSGROUND
 from epstein_files.util.env import args
 from epstein_files.util.helpers.data_helpers import flatten, sort_dict
 from epstein_files.util.helpers.rich_helpers import QUESTION_MARKS_TXT
@@ -91,7 +91,6 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 "The Penrose Institute, Sunlight Aerospace, claims to be inventor of the eSIM",
                 url='https://www.sunlightx.com/james-tagg'
             ),
-            Entity('James Watson', 'one of the discoverers of DNA', match_partial=None),
             Entity(JEM_BENDELL, 'board member of Community Forge, provider of alternative currency software', match_partial='both'),
             Entity(JOSCHA_BACH, "cognitive science / AI research", match_partial='both'),
             Entity(
@@ -114,23 +113,14 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Entity('Marvin Minsky', 'mathematician, early AI researcher'),
             Entity('Mira Bach', f"wife of {JOSCHA_BACH}", match_partial=None),
             Entity('Nancy Dahl', f"wife of {LAWRENCE_KRAUSS}"),
-            Entity(NEAL_KASSELL, "professor of neurosurgery at University of Virginia"),
             Entity('Neri Oxman', f"MIT, wife of Bill Ackman", match_partial='both'),
             Entity('Nicholas Christakis', f"Yale professor of Social and Natural Science"),
             Entity(NOAM_CHOMSKY, "professor of linguistics at MIT", match_partial='both'),
-            Entity('Norman Finkelstein', "scholar, well known critic of Israel", match_partial=None),
-            Entity(PETER_ATTIA, "longevity medicine"),
+            Entity('Norman Finkelstein', f"scholar, well known critic of Israel, sworn enemy of {ALAN_DERSHOWITZ}", match_partial=None),
             Entity(ROBERT_TRIVERS, "evolutionary biology", r"tri[vy]ersr@gmail|Robert Trivers?"),
             Entity(ROGER_SCHANK, "AI pioneer, Teachers College, Columbia University, deceased"),
             Entity('Sandy Pentland', MIT_MEDIA_LAB, r"((Alex|Sandy) )?Pentland"),
             Entity(SETH_LLOYD, "professor of mechanical engineering at MIT", match_partial=None),
-            Entity(
-                STEVEN_VICTOR_MD,
-                "dermatologist who treated Epstein's girls",
-                r"Steven? Victor( M\.?D\.?)?|Dr\.? Victor",
-                match_partial=None,
-                url='https://www.nytimes.com/2026/02/28/us/jeffrey-epstein-doctors.html?unlocked_article_code=1.PlA.f4B2.BgLoXD-aVKkw&smid=url-share',
-            ),
             Entity('Valeria Chomsky', f"wife of {NOAM_CHOMSKY}", match_partial='both'),
             Entity(
                 'Victoria Stodden',
@@ -151,7 +141,6 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 f"once great research institute overtaken by get rich quick schemes under {JOI_ITO}",
                 r"(MIT )?Media Lab",
             ),
-            Organization(MOUNT_SINAI, f"hospital in NYC where {EVA_DUBIN} works", r"Mount Sinai( Hospital)"),
             Organization('Novamente LLC'),
             Organization('OpenCog', f'AI research in Hong Kong overseen by {BEN_GOERTZEL} and funded in part by Epstein'),
         ],
@@ -985,22 +974,13 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Vernon Jordan",
         ],
     ),
-    HighlightedNames(
-        label='Dubins',
-        style='medium_orchid1',
-        entities=[
-            Entity(CELINA_DUBIN, f"daughter of Glenn &{EVA_DUBIN}, called Epstein 'unc'", match_partial=None),
-            Entity(
-                EVA_DUBIN,
-                f"Epstein's ex-girlfriend now married to {GLENN_DUBIN}, doctor at {MOUNT_SINAI}",
-                r"Eva( Anderss?on)? Dubin",
-                aliases=['Eva Andersson'],
-                match_partial=None,
-            ),
-            Entity(GLENN_DUBIN, "Highbridge Capital Management, married to Epstein's ex-gf Eva", match_partial='first'),
-        ],
-        patterns=[r"Dubin"],
-    ),
+    # HighlightedNames(
+    #     label='Dubins',
+    #     style='medium_orchid1',
+    #     entities=[
+    #     ],
+    #     patterns=[r"Dubin"],
+    # ),
     HighlightedNames(
         label='employee',
         style='light_slate_blue',
@@ -1009,19 +989,10 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Entity('Alberto Pinto', 'interior designer', match_partial=None),
             Entity('Alfredo Rodriguez', "Epstein's butler, stole Epstein's black book", match_partial=None),
             Entity(BELLA_KLEIN, "one of Epstein's accountants", match_partial=None),
-            Entity('Bernard Kruger', "Epstein's doctor", match_partial=None),
             Entity('Brice Gordon', 'property manager', match_partial=None),
             Entity(CECILIA_STEEN, f'Epstein assistant, moved to Dubai to work for money launderers (?)'),
             Entity(DAPHNE_WALLACE, "LSJE accountant", r"Da.hne Wallace", match_partial=None),
             Entity(DAVID_RODGERS, "Epstein's pilot", match_partial=None),
-            Entity(
-                'Dr. Stephen R. Alexander',
-                f"Epstein's sex-addiction specialist {QUESTION_MARKS}",
-                r'drsra|Ste(ph|v)en.{,8}Alexander',
-                email_addresses=['drsra@bellsouth.net'],
-                match_partial=None,
-                url='https://www.reddit.com/r/Epstein/comments/1r14loh/who_is_drsra_talking_about_a_trump_campaing_in/',
-            ),
             Entity(EDUARDO_ROBLES, "home builder at Creative Kingdom Dubai", r"Ed(uardo)? Robles", match_partial=None),
             Entity(ERIC_ROTH, "jet decorator at International Jet", match_partial=None),
             Entity(GWENDOLYN_BECK, "Epstein fund manager in the 90s, ran for Congress", match_partial='first'),
@@ -1473,6 +1444,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
                 f"{PRINCE_ANDREW}'s trusted money man at Banque Havilland whom Epstein does not trust",
                 match_partial=None,
             ),
+            Entity(GLENN_DUBIN, "Highbridge Capital Management, married to Epstein's ex-gf Eva", match_partial='first'),
             Entity(
                 JES_STALEY,
                 "former CEO of Barclays, allegations by multiple Epstein victims",
@@ -2274,28 +2246,48 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         ],
     ),
     HighlightedNames(
-        label='Mongolia',
-        style='light_coral',
+        label='medical',
+        style='sandy_brown',
         entities=[
+            Entity('Bernard Kruger', "Epstein's doctor", match_partial=None),
             Entity(
-                GANBAT_CHULUUNKHUU,
-                "Mongolian politician, corruption, wanted by Interpol",
-                r"Ganbat(@| Ch(uluunkhuu)?)?|gambahtss?",
-                match_partial='both',
-                url='https://news.mn/en/227194/',
+                EVA_DUBIN,
+                f"Epstein's ex-gf now married to {GLENN_DUBIN}, doctor at {MOUNT_SINAI}",
+                r"Eva( Anderss?on)? Dubin",
+                aliases=['Eva Andersson'],
+                match_partial=None,
+                url=EPSTEIN_DOCTORS_LINKS,
             ),
-            Entity('Khaltmaagiin Battulga', "former president of Mongolia", match_partial='both'),
-            Entity(PUREVSUREN_LUNDEG, "Mongolian ambassador to the UN", r"Purevsuren( Lundeg)?", match_partial='both'),
+            Entity('James Watson', 'one of the discoverers of DNA', match_partial=None),
+            Entity(
+                MELANIE_WALKER,
+                f"neurosurgeon, Gates Foundation, Epstein science advisor",
+                match_partial=None,
+                url='https://neurosurgery.uw.edu/bio/melanie-walker-md',
+            ),
+            Entity(NEAL_KASSELL, "professor of neurosurgery at University of Virginia"),
+            Entity(PETER_ATTIA, "longevity medicine"),
+            Entity(
+                'Stephen R. Alexander',
+                f"Epstein's sex-addiction therapist {QUESTION_MARKS}",
+                r'drsra|Ste(ph|v)en.{,8}Alexander',
+                email_addresses=['drsra@bellsouth.net'],
+                match_partial=None,
+                url='https://www.reddit.com/r/Epstein/comments/1r14loh/who_is_drsra_talking_about_a_trump_campaing_in/',
+            ),
+            Entity(
+                STEVEN_VICTOR_MD,
+                "dermatologist who treated Epstein's girls",
+                r"Steven? Victor( M\.?D\.?)?|Dr\.? Victor",
+                match_partial=None,
+                url=EPSTEIN_DOCTORS_LINKS,
+            ),
+            Organization(MOUNT_SINAI, f"hospital in NYC where {EVA_DUBIN} works", r"Mount Sinai( Hospital)"),
         ],
         patterns=[
-            r"Batzaya",
-            r"Enkhbajar",
-            r"Kosov(ar|o)",
-            r"Moldovan?",  # because it's between russia + EU
-            r"Mongolian?",
-            r"(President )?Elbe[gk]dorj",
-            r"Ulaan Ba?atar",
-        ]
+            r"hospital",
+            r"(neuro)?surge(on|ry)",
+        ],
     ),
     HighlightedNames(
         label=MIDEAST,
@@ -2520,7 +2512,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             ),
             Entity(
                 PAOLO_ZAMPOLLI,
-                'ID Models, allegedly tried to buy Elite Models w/Epstein, $ for passports scandal in Dominica, introduced Melania to Donald (?)',
+                'ID Models, Elite Models deal w/Epstein, $ for passports scandal in Dominica, appointed Special Envoy by Trump',
                 r"(Paolo )?Z[ae]mpoll?i",
                 url='https://dominicanewsonline.com/news/homepage/news/the-zampolli-matter-more-fuel-for-where-de-money-gone-campaign/',
             ),
@@ -2562,6 +2554,30 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"noah\s*models(.com)?",
             r"Victoria's Secret",
         ],
+    ),
+    HighlightedNames(
+        label='Mongolia',
+        style='light_coral',
+        entities=[
+            Entity(
+                GANBAT_CHULUUNKHUU,
+                "Mongolian politician, corruption, wanted by Interpol",
+                r"Ganbat(@| Ch(uluunkhuu)?)?|gambahtss?",
+                match_partial='both',
+                url='https://news.mn/en/227194/',
+            ),
+            Entity('Khaltmaagiin Battulga', "former president of Mongolia", match_partial='both'),
+            Entity(PUREVSUREN_LUNDEG, "Mongolian ambassador to the UN", r"Purevsuren( Lundeg)?", match_partial='both'),
+        ],
+        patterns=[
+            r"Batzaya",
+            r"Enkhbajar",
+            r"Kosov(ar|o)",
+            r"Moldovan?",  # because it's between russia + EU
+            r"Mongolian?",
+            r"(President )?Elbe[gk]dorj",
+            r"Ulaan Ba?atar",
+        ]
     ),
     HighlightedNames(
         label=PUBLICIST,
@@ -3332,6 +3348,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Entity('Aleksandra Eriksson', QUESTION_MARKS),
             Entity("Audrey/Aubrey Raimbault", 'appears in flight logs'),
             Entity('Brittany Beale', VICTIM_EVIDENCE),
+            Entity(CELINA_DUBIN, f"daughter of Glenn &{EVA_DUBIN}, called Epstein 'unc'", match_partial=None),
             Entity(
                 JENNIFER_KALIN,
                 f"involved in an alleged sham marriage to {KARYNA_SHULIAK}, dated {KIMBAL_MUSK}",
@@ -3373,6 +3390,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"dancer",
             r"dildo",
             r"(?<!drug )(child\s*)?(sex\s*)?traffi?c?k(ers?|ing)",
+            r"Dubin",
             r"Ellaina As?tras?",
             r"((blonde?|fresh|hot|naughty|new|pretty|school|underage|young) )*girl( friend)?",
             r"gyn(eco(logist|nomist)|o)",
@@ -3577,11 +3595,6 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             ),
         ],
         style='magenta2',
-        category=FRIEND
-    ),
-    HighlightedNames(
-        entities=[Entity(MELANIE_WALKER, f"doctor, friend of {BILL_GATES}", match_partial=None)],
-        style='pale_violet_red1',
         category=FRIEND
     ),
     HighlightedNames(
