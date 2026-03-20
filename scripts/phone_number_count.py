@@ -6,6 +6,8 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Optional
 
+from rich.text import Text
+
 from scripts.use_pickled import console, epstein_files
 from epstein_files.people.names import *
 from epstein_files.people.entity import Entity, Organization, law_enforcement, epstein_co
@@ -83,6 +85,7 @@ class CallCounter:
 
     def print(self) -> None:
         console.print(f"Found {len(self.call_counts_by_source)} Epstein phone numbers calling {len(self.call_counts)} other numbers.")
+        console.print(Text(f"Source PDF: ").append(doc.file_info.external_link_txt()))
         console.print(RAW_OCR_LINK)
         console.line(2)
         print_subtitle_panel(f"Total Call Counts in {FILE_ID} (imperfect count)")
