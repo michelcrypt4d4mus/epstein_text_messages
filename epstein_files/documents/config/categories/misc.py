@@ -1,4 +1,4 @@
-from epstein_files.documents.config.config_builder import fedex_invoice, important_messages_pad, press_release
+from epstein_files.documents.config.config_builder import fedex_invoice, important_messages_pad, letter, press_release
 from epstein_files.documents.config.doc_cfg import DocCfg
 from epstein_files.documents.config.communication_cfg import imessage_screenshot, skype_log
 from epstein_files.documents.documents.categories import Interesting, Neutral
@@ -109,12 +109,20 @@ MISC_CFGS = [
     # Dates
     DocCfg(id='EFTA02025218', date='2011-09-09'),
     DocCfg(id='EFTA00007693', note="driving directions from Epstein's house to <REDACTED>, flight details for Sandy Berger"),
+
     # Misc
     fedex_invoice('EFTA00217072', '2005-06-20'),
     fedex_invoice('EFTA00217080', '2005-06-27'),
     imessage_screenshot(id='033434', author=BRAD_EDWARDS, author_uncertain=f"labeled 'Edwards'", is_interesting=False),
     important_messages_pad('EFTA01719859', '2005-10-03'),
     important_messages_pad('EFTA01682477', '2005-04-01'),
+    letter(
+        id='026011',
+        author='Gennady Mashtalyar',
+        date='2016-06-24',  # date is based on Brexit reference but he could be backtesting,
+        note=f"about algorithmic trading",
+    ),
+    letter(id='EFTA00007609', recipients=['Alberto Pinto'], duplicate_ids=['EFTA00007582']),
     skype_log('032210', recipients=['linkspirit'], is_interesting=True),
     skype_log('018224', recipients=['linkspirit', LAWRENCE_KRAUSS], is_interesting=True),  # we don't know who linkspirit is yet
     skype_log('EFTA01617727'),

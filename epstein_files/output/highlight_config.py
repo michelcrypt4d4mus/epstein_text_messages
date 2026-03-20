@@ -1005,6 +1005,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         style='light_slate_blue',
         entities=[
             Entity('Adriana Ross', 'named co-conspirator', match_partial=None),
+            Entity('Alberto Pinto', 'interior designer', match_partial=None),
             Entity('Alfredo Rodriguez', "Epstein's butler, stole Epstein's black book", match_partial=None),
             Entity(BELLA_KLEIN, "one of Epstein's accountants", match_partial=None),
             Entity('Bernard Kruger', "Epstein's doctor", match_partial=None),

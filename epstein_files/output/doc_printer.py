@@ -110,9 +110,10 @@ class DocPrinter(DocTypesMixin):
         self.print_section_subtitle('Entities With Configured Biographical Info')
 
         entity_bios = [
-            Padding(c.bio_txt, site_config.contact_list_padding)
+            Padding(entity.bio_txt, site_config.contact_list_padding)
             for category in sort_categories([c for c in ENTITY_CATEGORIES.keys()])
-            for c in ENTITY_CATEGORIES[category]
+            for entity in ENTITY_CATEGORIES[category]
+            if entity.is_interesting
         ]
 
         self.print(entity_bios)

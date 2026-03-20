@@ -143,17 +143,6 @@ def binant_redacted(id: str, truncate_to: int = 700) -> EmailCfg:
     return EmailCfg(id=id, truncate_to=truncate_to, note=f"redacted discussion of art advisor {ETIENNE_BINANT}")
 
 
-def blaine_letter(id: str, date: str, suffix: str = '', **kwargs) -> CommunicationCfg:
-    return immigration_letter(
-        id,
-        DAVID_BLAINE,
-        date=date,
-        note=join_truthy(f"recommending genius visa for a Epstein's assistant {SVETLANA_POZHIDAEVA}", suffix),
-        show_with_name=SVETLANA_POZHIDAEVA,
-        **kwargs
-    )
-
-
 def fbi_defense_witness(id: str, witness: Name, date: str = '') -> DocCfg:
     note = f'Research and Key Findings for {witness or UNKNOWN}, defense witness for {GHISLAINE_MAXWELL}'
     return _set_fbi_doc_fields(DocCfg(id=id, date=date, note=note))
@@ -184,39 +173,15 @@ def grand_jury(id: str, case_name: str = '', note: str = '', **kwargs) -> DocCfg
     return DocCfg(id=id, category=Neutral.LEGAL, note=join_truthy(note_pfx, note), **kwargs)
 
 
-def immigration_letter(id: str, author: Name, date: str = '', note: str = '', show_with_name = '', **kwargs) -> CommunicationCfg:
-    """`show_with_name` is who the letter is about."""
-    person_recommended_for_visa = show_with_name or 'someone'
-    suffix = f"recommending \"genius\" visa for {person_recommended_for_visa}"
-
-    if person_recommended_for_visa not in note:
-        note = join_truthy(note, suffix)
-
-    return letter(
-        id,
-        author=author,
-        date=date,
-        is_interesting=10,
-        note=note,
-        recipients=['INS'],
-        show_with_name=show_with_name,
-        **kwargs
-    )
-
-
 def important_messages_pad(id: str, date: str = '') -> DocCfg:
-    return DocCfg(
-        id=id,
-        date=date,
-        display_text='"Important Message" formatted notepad with notes about missed phone calls etc.'
-    )
+    display_text = '"Important Message" formatted notepad with notes about missed phone calls etc.'
+    return DocCfg(id=id, date=date, display_text=display_text)
 
 
 def letter(id: str, author: Name = None, recipients: list[Name] | None = None, note: str = '', date: str = '', **kwargs) -> CommunicationCfg:
     return CommunicationCfg(
         id=id,
         author=author,
-        category=Category.LETTER,  # TODO this is a platform not a category
         date=date,
         note=note,
         platform=Platform.LETTER,

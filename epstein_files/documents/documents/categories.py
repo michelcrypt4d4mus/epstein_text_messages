@@ -16,7 +16,6 @@ class Interesting(StrEnum):
     CRYPTO = auto()
     DIARY = auto()
     GIRLS = auto()
-    LETTER = auto()
     MONEY = auto()
     REPUTATION = auto()
     SOCIAL = auto()
@@ -72,7 +71,7 @@ CATEGORY_STYLE_MAPPING = {
 }
 
 CATEGORY_STYLES = {
-    Interesting.LETTER: 'plum4',
+    'letter': 'plum4',
     Interesting.SOCIAL: SOCIAL_STYLE,
     Neutral.FLIGHT_LOG: EPSTEIN_COLOR,
     Neutral.MISC: 'navajo_white1',

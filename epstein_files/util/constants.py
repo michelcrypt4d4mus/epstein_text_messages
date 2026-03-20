@@ -18,7 +18,6 @@ from epstein_files.documents.config.categories.girls import GIRLS_CFGS
 from epstein_files.documents.config.categories.government import GOVERNMENT_CFGS
 from epstein_files.documents.config.categories.junk import JUNK_CFGS
 from epstein_files.documents.config.categories.legal import LEGAL_CFGS
-from epstein_files.documents.config.categories.letter import LETTER_CFGS
 from epstein_files.documents.config.categories.misc import MISC_CFGS
 from epstein_files.documents.config.categories.money import MONEY_CFGS
 from epstein_files.documents.config.categories.phone_bill import PHONE_BILL_CFGS

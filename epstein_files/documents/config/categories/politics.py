@@ -1,6 +1,7 @@
 """
 Politics related files. By default uninteresting.
 """
+from epstein_files.documents.config.config_builder import letter
 from epstein_files.documents.config.doc_cfg import DocCfg
 from epstein_files.people.names import *
 from epstein_files.util.constant.strings import *
@@ -46,4 +47,6 @@ POLITICS_CFGS = [
     ),
     DocCfg(id='010617', note=TRUMP_DISCLOSURES, date='2017-01-20', is_interesting=True, attached_to_email_id='033091'),
     DocCfg(id='016699', note=TRUMP_DISCLOSURES, date='2017-01-20', is_interesting=True, attached_to_email_id='033091'),
+    letter(id='EFTA02731023', author='Senator Ron Wyden', recipients=[LEON_BLACK], is_interesting=False),
+    letter(id='EFTA02731018', author='Senator Ron Wyden', recipients=['Marc Rowan'], is_interesting=False),
 ]

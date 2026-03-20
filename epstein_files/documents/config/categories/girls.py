@@ -15,6 +15,37 @@ PRUSAKOVA_BERKELY = 'Epstein paid for Prusakova to go to Berkeley'
 WOMEN_EMPOWERMENT = f"Women Empowerment (WE) conference"
 
 
+def immigration_letter(id: str, author: Name, date: str = '', note: str = '', show_with_name = '', **kwargs) -> CommunicationCfg:
+    """`show_with_name` is who the letter is about."""
+    person_recommended_for_visa = show_with_name or 'someone'
+    suffix = f"recommending \"genius\" visa for {person_recommended_for_visa}"
+
+    if person_recommended_for_visa not in note:
+        note = join_truthy(note, suffix)
+
+    return letter(
+        id,
+        author=author,
+        date=date,
+        is_interesting=10,
+        note=note,
+        recipients=['INS'],
+        show_with_name=show_with_name,
+        **kwargs
+    )
+
+
+def blaine_letter(id: str, date: str, suffix: str = '', **kwargs) -> CommunicationCfg:
+    return immigration_letter(
+        id,
+        DAVID_BLAINE,
+        date=date,
+        note=join_truthy(f"recommending genius visa for a Epstein's assistant {SVETLANA_POZHIDAEVA}", suffix),
+        show_with_name=SVETLANA_POZHIDAEVA,
+        **kwargs
+    )
+
+
 GIRLS_CFGS = [
     DocCfg(id='019300', author=SVETLANA_POZHIDAEVA, note=f'{WOMEN_EMPOWERMENT} f. {KATHRYN_RUEMMLER}', date='2019-04-05', show_full_panel=True),
     DocCfg(id='022267', author=SVETLANA_POZHIDAEVA, note=f'{WOMEN_EMPOWERMENT} founder essay about growing the seminar business'),
@@ -577,4 +608,24 @@ GIRLS_CFGS = [
     EmailCfg(id='EFTA00964428', comment=JULIA_SANTOS + ' Valdson'),
     EmailCfg(id='EFTA02398135', comment=JULIA_SANTOS + ' "Sochi"'),
     EmailCfg(id='EFTA00766770'),
+
+    # Immigration
+    EmailCfg(id='EFTA02652017', note="inquiry about someone's immigration asylum application", is_interesting=True),
+    blaine_letter('019086', date='2015-05-27', suffix='naming various Putin puppet regimes', show_full_panel=True),
+    blaine_letter('019474', date='2015-05-29'),
+    blaine_letter('019476', date='2015-06-01'),
+    immigration_letter(
+        'EFTA00314931',
+        TERJE_ROD_LARSEN,
+        '2017-06-08',
+        'speaking for the International Peace Institute',
+        comment='PR job description + size of redaction is probably Drokova',
+        show_with_name=MASHA_DROKOVA,
+    ),
+    immigration_letter('EFTA02389172', 'Michael Harrigan'),
+    immigration_letter('EFTA00308104', MARTIN_NOWAK, '2017-06-06', f'possibly about {MASHA_DROKOVA} visa', show_with_name=MASHA_DROKOVA),
+    immigration_letter('EFTA00589797', TERJE_ROD_LARSEN, '2015-05-02'),
+    immigration_letter('EFTA01086449', ARIANE_DE_ROTHSCHILD),
+    immigration_letter('EFTA01143800', None, show_with_name=SVETLANA_POZHIDAEVA),
+    immigration_letter('EFTA00537633', MARK_ZEFF, '2012-03-19', 'about SLK Designs, someone in interior design industry'),
 ]
