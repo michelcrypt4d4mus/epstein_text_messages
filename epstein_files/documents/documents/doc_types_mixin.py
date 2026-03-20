@@ -115,6 +115,10 @@ class DocTypesMixin(ABC):
         return Document.without_dupes(self.documents)
 
     @property
+    def unique_doj_files(self) -> Sequence[DojFile]:
+        return Document.without_dupes(self.doj_files)
+
+    @property
     def unique_emails(self) -> list[Email]:
         """All `Email` objects except for duplicates."""
         return Document.without_dupes(self.emails)

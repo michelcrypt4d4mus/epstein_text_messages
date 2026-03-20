@@ -202,7 +202,7 @@ DEPLOY_CUSTOM_HTML_SITES = [
 def make_clean() -> None:
     """Delete all build artifacts."""
     for site in Site:
-        for build_file in [Site.html_output_path(site), Site.custom_html_build_path(site)]:
+        for build_file in [Site.html_output_path(site)]: #, Site.custom_html_build_path(site)]:
             if site == Site.NAMES:
                 paths = [f for f in build_file.parent.glob(f"{build_file.stem}*.html")]
             else:

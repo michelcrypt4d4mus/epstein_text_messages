@@ -39,7 +39,7 @@ def print_sample_people(num_people_to_print: int = 3):
     good_sample_people = [p for p in epstein_files.emailers if 5 <= len(p.unique_emails) <= 15]
 
     for i, person in enumerate(good_sample_people[0:num_people_to_print], 1):
-        person.print_emails(printer)
+        person.print_docs(printer)
 
 
 def print_test_panels():

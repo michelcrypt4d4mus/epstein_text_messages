@@ -51,13 +51,11 @@ class DocPrinter(DocTypesMixin):
 
     Args:
         epstein_files (EpsteinFiles): the data
-        collect_other_files_to_tables (bool, optional): OtherFiles will be collected into small tables if they are sequential
         html_elements (list[str]): HTML for all objects printed so far
         printed_docs (list[Document]): all Documents that have been printed so far
         printed_name_bios (set[Entity]): all the names for which biographical information has been printed already
     """
     epstein_files: 'EpsteinFiles'
-    collect_other_files_to_tables: bool = True
     html_elements: list[str] = field(default_factory=list)
     printed_entity_bios: set[Entity] = field(default_factory=set)
     _last_bio_panel = ''
@@ -133,8 +131,9 @@ class DocPrinter(DocTypesMixin):
     def print_documents(
         self,
         docs: Sequence[PrintableObj],
-        suppressed_as_normal: bool = False,
-        log_sfx: str = '',
+        collect_other_files_to_tables: bool = True,
+        show_suppressed: bool = False,
+        log_sfx: str = ''
     ) -> None:
         """
         Sequential suppression msgs + OtherFiles collect in queues to be printed when
@@ -142,7 +141,8 @@ class DocPrinter(DocTypesMixin):
 
         Args:
             docs (Sequence[PrintableObj]): objs to print
-            suppressed_as_normal (bool, optional): if True docs with suppression msgs will be treated like normal Documents
+            show_suppressed (bool, optional): if True docs with suppression msgs will be treated like normal Documents
+            collect_other_files_to_tables (bool, optional): OtherFiles will be collected into small tables if they are sequential
             log_sfx (str, optional): just for log messages
         """
         suppressed_docs: list[Document] = []
@@ -154,7 +154,7 @@ class DocPrinter(DocTypesMixin):
 
         for i, doc in enumerate(docs, 1):
             # Handle sequences of uninteresting or otherwise suppressed docs
-            if isinstance(doc, Document) and doc.suppressed_txt and not suppressed_as_normal:
+            if isinstance(doc, Document) and doc.suppressed_txt and not show_suppressed:
                 self._log_state(doc, f"suppressing {quote(doc.suppressed_txt.plain)}")
                 self._suppressed_docs_queue.append(doc)
                 continue
@@ -162,7 +162,7 @@ class DocPrinter(DocTypesMixin):
             process_suppressed_docs_queue()
 
             # Collect sequences of otherFile objects into a table
-            if self.collect_other_files_to_tables and isinstance(doc, OtherFile) and doc.is_valid_for_table:
+            if collect_other_files_to_tables and isinstance(doc, OtherFile) and doc.is_valid_for_table:
                 if (new_entities := self.new_entities_with_bios(doc)):
                     doc._log(f"Caching biographic panel for new entities: {[str(e) for e in new_entities]}")
                     self._cache_biographies_panel(new_entities)

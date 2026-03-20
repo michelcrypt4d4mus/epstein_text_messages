@@ -252,7 +252,7 @@ class Person(DocTypesMixin, LoggingEntity):
         panel_style = f"black on {self._email_info_style} bold"
         return Panel(Text(title, justify='center'), width=width, style=panel_style)
 
-    def print_emails(self, printer: 'DocPrinter') -> Sequence[Document]:
+    def print_docs(self, printer: 'DocPrinter') -> Sequence[Document]:
         """
         Print complete emails to or from a particular 'author' along with any specially marked docs
         configured with `show_with_name` of this user. Returns the Emails that were printed.
@@ -282,7 +282,7 @@ class Person(DocTypesMixin, LoggingEntity):
             for d in Document.sort_by_timestamp(self._unique_printable_docs)
         ]
 
-        printer.print_documents(docs, log_sfx=f"[{self.name}]")
+        printer.print_documents(docs, collect_other_files_to_tables=False, log_sfx=f"[{self.name}]")
         printer.line(2)
         return self._printable_docs  # TODO: doesn't return FileDisplay objects that may have also been printed!
 

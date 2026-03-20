@@ -82,7 +82,7 @@ def print_curated_chronological(epstein_files: EpsteinFiles, printer: DocPrinter
     logger.warning(f'Printing curated chronological site...')
 
     def should_print(doc: Document) -> bool:
-        if doc._config.attached_to_email_id:
+        if doc._config.attached_to_email_id:doc._config.attached_to_email_id
             return False
         else:
             return bool(doc.is_interesting if not args.invert_chrono else not doc.is_interesting)
@@ -93,10 +93,9 @@ def print_curated_chronological(epstein_files: EpsteinFiles, printer: DocPrinter
 
 
 def print_doj_files(epstein_files: EpsteinFiles, printer: DocPrinter) -> None:
-    """Doesn't print DojFiles that are actually Emails, that's handled in print_emails()."""
-    printer.collect_other_files_to_tables = False
-    docs = Document.without_dupes(epstein_files.doj_files)
-    printer.print_documents(_max_records(docs))
+    """Doesn't print `DojFiles` that are actually Emails, that's handled in `print_emails_section()`."""
+    docs = _max_records(list(epstein_files.unique_doj_files))
+    printer.print_documents(docs, collect_other_files_to_tables=False)
 
 
 def print_emailers_info(epstein_files: EpsteinFiles) -> None:
@@ -151,7 +150,7 @@ def print_emails_section(epstein_files: EpsteinFiles, printer: DocPrinter) -> No
             logger.warning(f"Skipping person with is_interesting=False '{person.name}'")
             continue
 
-        printed_emails = person.print_emails(printer)
+        printed_emails = person.print_docs(printer)
 
         # Print color key every once in a while
         if (num_since_color_key := num_since_color_key + len(printed_emails)) > PRINT_COLOR_KEY_EVERY_N_EMAILS:
@@ -253,7 +252,7 @@ def print_other_files_section(epstein_files: EpsteinFiles, printer: DocPrinter) 
 
     # If --all-other-files is enables, print the biographical panels, otherwise just print a big table
     if args.all_other_files:
-        printer.print_documents(files, suppressed_as_normal=True)
+        printer.print_documents(files, show_suppressed=True)
     else:
         printer.print_centered(OtherFile.files_preview_table(files, title_pfx=title_pfx))
 
