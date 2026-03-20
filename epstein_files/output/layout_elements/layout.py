@@ -3,7 +3,7 @@ from typing import Literal
 
 from rich.align import Align
 from rich.console import Console, ConsoleOptions, JustifyMethod, RenderResult, RenderableType
-from rich.padding import Padding
+from rich.padding import Padding, PaddingDimensions
 from rich.table import Table
 from rich.text import Text
 from rich.panel import Panel
@@ -12,7 +12,7 @@ from epstein_files.output.html.builder import (PANEL_BASE_PROPS, VERTICAL_MARGIN
      one_row_table_html, render_to_html, text_to_list, text_to_div, margin_vertical_css)
 from epstein_files.output.html.elements import CssProps, OptionalCssProps, div_class, div_with_legend, div_tag
 from epstein_files.output.html.rich_style import RichStyle
-from epstein_files.output.html.positioned_rich import BLACK_BACKGROUND, PositionedRich, dimensions_to_margin_css
+from epstein_files.output.html.positioned_rich import BLACK_BACKGROUND, PositionedRich, dimensions_to_margin_css, margin_horizontal_css
 from epstein_files.util.env import site_config
 from epstein_files.output.rich import indent_txt
 from epstein_files.util.external_link import join_texts
@@ -32,6 +32,7 @@ class BasePanel:
     """Basically for a <div>."""
     background_color: str = ''
     border_style: str
+    indent: int | float = 0
     text: Text
     title: Text | None = None
     title_justify: JustifyMethod = 'right'
@@ -51,19 +52,19 @@ class BasePanel:
             **PANEL_BASE_PROPS,
             **border_css_props(self.border_style),
             **self.color_css,
+            **(margin_horizontal_css(self.indent) if self.indent else {}),
             **(css or {}),
         }
 
         # TODO: make the title 'dim'
         title = self.title.plain if self.title else ''
-        html = render_to_html(self.text)
-        return div_with_legend(html, title, div_props)
+        return div_with_legend(render_to_html(self.text), title, div_props)
 
     def _base_div_css(self, margins: list[int | float] | None = None) -> CssProps:
         return dimensions_to_margin_css(margins or PositionedRich.zero_dimensions())
 
-    def __rich__(self) -> Panel:
-        return Panel(
+    def __rich__(self) -> Panel | Padding:
+        panel = Panel(
             self.text,
             border_style=self.border_style,
             expand=False,
@@ -71,6 +72,11 @@ class BasePanel:
             title=self.title,
             title_align=self.title_justify,
         )
+
+        if self.indent:
+            return Padding(panel, (0, int(self.indent)))
+        else:
+            return panel
 
 
 @dataclass(kw_only=True)
@@ -112,6 +118,7 @@ class Layout:
     body_panel: BasePanel | Table
     document: 'Document'
     file_info: BasePanel | None = None
+    file_info_indent: int | float = 0
     indent: int | float = 0
     justify: JustifyMethod | None = None
     margin_bottom: str = VERTICAL_MARGIN_EMS  # Margin below the entire agglomeration of elements, not just the body
@@ -123,6 +130,9 @@ class Layout:
         # copy background color to panel
         if self.background_color and isinstance(self.body_panel, BasePanel) and not self.body_panel.background_color:
             self.body_panel.background_color = self.background_color
+
+        if self.file_info_indent:
+            self.file_info.indent = self.file_info_indent
 
     @property
     def body_margin(self) -> list[int | float]:

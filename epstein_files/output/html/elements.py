@@ -40,6 +40,16 @@ WIDTH_PROPS = ['max-width', 'width']
 HTML_RENDER_CONSOLE = Console(**HTML_CONSOLE_KWARGS)
 
 
+def build_html_list(elements: list[str], list_type: HtmlListTag = 'ul', **kwargs) -> str:
+    txt_htmls = [tag('li', t) for t in elements]
+
+    if not elements:
+        logger.warning(f"No elements to make <{list_type}> for...")
+        return ''
+
+    return tag(list_type, '\n'.join(txt_htmls), **kwargs)
+
+
 def div_tag(contents: HtmlElements, css_props: OptionalCssProps = None, **kwargs) -> str:
     return tag('div', contents, css_props, **kwargs)
 
@@ -64,16 +74,6 @@ def from_em(units: str | None) -> int | None:
         return None
 
     return int(units.removesuffix('em'))
-
-
-def build_html_list(elements: list[str], list_type: HtmlListTag = 'ul', **kwargs) -> str:
-    txt_htmls = [tag('li', t) for t in elements]
-
-    if not elements:
-        logger.warning(f"No elements to make <{list_type}> for...")
-        return ''
-
-    return tag(list_type, '\n'.join(txt_htmls), **kwargs)
 
 
 def strip_outer_tag(_html: str, tag: str) -> str:

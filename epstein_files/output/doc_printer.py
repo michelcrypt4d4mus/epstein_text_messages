@@ -176,7 +176,14 @@ class DocPrinter(DocTypesMixin):
                 continue
 
             self._print_other_files_queue()
-            doc = doc.make_layout(indent=site_config.indents.show_with) if isinstance(doc, OtherFile) else doc
+
+            # Change the layout for OtherFile (indented, file info panel offset intward)
+            if isinstance(doc, OtherFile):
+                doc = doc.make_layout(indent=site_config.indents.show_with)
+
+                if doc.file_info:
+                    doc.file_info_indent = doc.file_info.indent = 2
+
             self.print(doc)
 
             if should_log_in_intervals and (i % 100 == 0):
