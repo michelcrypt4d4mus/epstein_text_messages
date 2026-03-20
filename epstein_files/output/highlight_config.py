@@ -3453,7 +3453,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Entity(SEAN_BANNON, f"{STEVE_BANNON}'s brother", r"sean bannon?", match_partial=None),
             Entity(
                 STEVE_BANNON,
-                f"{BROCK_PIERCE} biz partner (video game gold), Trump campaign manager, memecoin grifter, Epstein bestie",
+                f"Epstein bestie, Trump campaign manager, {BROCK_PIERCE} biz partner (IGN), memecoin grifter",
                 r"steve banno[nr]?",
                 url='https://cryptadamus.substack.com/p/the-epsteincrypto-timeline-is-alarming',
             ),
