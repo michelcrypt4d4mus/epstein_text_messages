@@ -91,6 +91,7 @@ GLENN_DUBIN = 'Glenn Dubin'
 GORDON_GETTY = 'Gordon Getty'
 GWENDOLYN_BECK = 'Gwendolyn Beck'         # https://www.lbc.co.uk/article/who-gwendolyn-beck-epstein-andrew-5HjdN66_2/
 HAMAD_BIN_JASSIM = 'Hamad bin Jassim al-Thani'
+HEATHER_GRAY = 'Heather Gray'
 HEATHER_MANN = 'Heather Mann'
 IAN_OSBORNE = 'Ian Osborne'
 INTELLIGENCE_SQUARED = 'Intelligence Squared'

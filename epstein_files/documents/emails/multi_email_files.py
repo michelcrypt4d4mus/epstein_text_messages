@@ -4,7 +4,7 @@ from datetime import datetime
 from epstein_files.documents.document import Document
 from epstein_files.documents.email import Email
 from epstein_files.output.rich import console
-from epstein_files.people.names import ADA_CLAPP, CHRISTOPHER_DILORIO, JEFFREY_EPSTEIN, LEON_BLACK, MELANIE_SPINELLA, sort_names
+from epstein_files.people.names import ADA_CLAPP, CHRISTOPHER_DILORIO, HEATHER_GRAY, JEFFREY_EPSTEIN, LEON_BLACK, MELANIE_SPINELLA, sort_names
 from epstein_files.util.constant.strings import LEON_BLACK_EMAIL_ID
 from epstein_files.util.env import args
 from epstein_files.util.helpers.data_helpers import groupby
@@ -92,6 +92,10 @@ def _split_up_leon_black(big_emails: list[Email]) -> list[Email]:
 
         email = Email(big_email.file_path.parent.joinpath(new_file_stem), text=email_text)
         text_to_scan_for_recipients = email.actual_text[:120]
+
+        if email.actual_text.strip().endswith("\nHeather"):
+            email.extracted_author = HEATHER_GRAY
+            email.extracted_recipients = [JEFFREY_EPSTEIN]
 
         if (TO_LEON_REGEX.search(email.text) and LEON_BLACK not in email.extracted_recipients) \
                 or email.extracted_recipients == [MELANIE_SPINELLA]:

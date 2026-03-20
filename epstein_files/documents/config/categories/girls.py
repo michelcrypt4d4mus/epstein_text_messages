@@ -211,6 +211,13 @@ GIRLS_CFGS = [
         note='boyfriend named Christian mentioned',
         is_interesting=True,
     ),
+    EmailCfg(
+        id='EFTA02351139',
+        author=MARIA_PRUSAKOVA,
+        author_uncertain=PRUSAKOVA_BERKELY,
+        highlight_quote='ok, no more over 24! Sorry for that.',
+        truncate_to=3_200,
+    ),
     EmailCfg(id='032375', author=MARIA_PRUSAKOVA, author_reason=PRUSAKOVA_BERKELY, truncate_to=295),
     EmailCfg(id='033246', author=MARIA_PRUSAKOVA, author_reason='Kind regards/Cordialement in signature'),
     EmailCfg(id='EFTA01990879', author=MARIA_PRUSAKOVA, author_uncertain='Clifford Chance, could be Miranda'),

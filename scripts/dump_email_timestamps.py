@@ -27,7 +27,7 @@ from epstein_files.util.helpers.data_helpers import *
 from epstein_files.util.helpers.debugging_helper import print_all_timestamps, print_file_counts
 from epstein_files.util.helpers.file_helper import open_file_or_url
 from epstein_files.util.helpers.string_helper import extract_emojis, quote
-from epstein_files.util.logging import logger
+from epstein_files.util.logging import logger, print_text_block
 from epstein_files.output.rich import bool_txt, console, highlighter, print_subtitle_panel
 
 
@@ -38,10 +38,10 @@ num_word_count_worthy = 0
 ids = UNINTERESTING_OTHER_FILE_IDS
 
 
-for doc in epstein_files.other_files:
-    if doc._config.highlight_quote and not doc._config.truncate_to:
-        console.print(doc)
-
+for doc in epstein_files.unique_emails:
+    if not doc.recipients:
+        console.print(doc, '\n')
+        print_text_block(doc.actual_text, 'actual_text')
 
 sys.exit()
 

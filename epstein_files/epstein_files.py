@@ -168,10 +168,6 @@ class EpsteinFiles(DocTypesMixin):
         """All emails to or from 'name' sorted chronologically (including dupes!)."""
         emails = self.emails_by(name) + self.emails_to(name)
         emails += [e for e in self.emails if name and name == e._config.show_with_name]  # Add show_with_name emails
-
-        if len(emails) == 0:
-            logger.warning(f"No emails found for '{name}'")
-
         return Document.sort_by_timestamp(Document.uniquify(emails))
 
     def emails_to(self, name: Name) -> list[Email]:
