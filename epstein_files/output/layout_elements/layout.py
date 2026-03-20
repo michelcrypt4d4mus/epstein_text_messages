@@ -13,6 +13,8 @@ from epstein_files.output.html.builder import (PANEL_BASE_PROPS, VERTICAL_MARGIN
 from epstein_files.output.html.elements import CssProps, OptionalCssProps, div_class, div_with_legend, div_tag
 from epstein_files.output.html.rich_style import RichStyle
 from epstein_files.output.html.positioned_rich import BLACK_BACKGROUND, PositionedRich, dimensions_to_margin_css, margin_horizontal_css
+from epstein_files.output.layout_elements.base_panel import BasePanel
+from epstein_files.output.layout_elements.list_panel import ListPanel
 from epstein_files.util.env import site_config
 from epstein_files.output.rich import indent_txt
 from epstein_files.util.external_link import join_texts
@@ -25,89 +27,6 @@ DOC_DIV_CSS_PROPS = {
     'display': 'flex',
     'flex-direction': 'column',
 }
-
-
-@dataclass(kw_only=True)
-class BasePanel:
-    """Basically for a <div>."""
-    background_color: str = ''
-    border_style: str
-    indent: int | float = 0
-    text: Text
-    title: Text | None = None
-    title_justify: JustifyMethod = 'right'
-
-    @property
-    def color_css(self) -> CssProps:
-        return RichStyle(self.style).to_css if self.style else {}
-
-    @property
-    def style(self) -> str:
-        return f"on {self.background_color}" if self.background_color else ''
-
-    def to_div(self, margins: list[int | float] | None = None, css: OptionalCssProps = None) -> str:
-        """Create an HTML <div> string for this panel."""
-        div_props = {
-            **self._base_div_css(margins),
-            **PANEL_BASE_PROPS,
-            **border_css_props(self.border_style),
-            **self.color_css,
-            **(margin_horizontal_css(self.indent) if self.indent else {}),
-            **(css or {}),
-        }
-
-        # TODO: make the title 'dim'
-        title = self.title.plain if self.title else ''
-        return div_with_legend(render_to_html(self.text), title, div_props)
-
-    def _base_div_css(self, margins: list[int | float] | None = None) -> CssProps:
-        return dimensions_to_margin_css(margins or PositionedRich.zero_dimensions())
-
-    def __rich__(self) -> Panel | Padding:
-        panel = Panel(
-            self.text,
-            border_style=self.border_style,
-            expand=False,
-            style=self.style,
-            title=self.title,
-            title_align=self.title_justify,
-        )
-
-        if self.indent:
-            return Padding(panel, (0, int(self.indent)))
-        else:
-            return panel
-
-
-@dataclass(kw_only=True)
-class ListPanel(BasePanel):
-    """For <ul> / <ol>."""
-    text: list[Text]
-
-    def to_div(self, margins: list[int | float] | None = None, css: OptionalCssProps = None) -> str:
-        """Create an HTML <div> string for this panel."""
-        div_props = {
-            **self._base_div_css(margins),
-            'word-wrap': 'break-word',
-            **(css or {}),
-        }
-
-        html = text_to_list(self.text, class_name='no_bullets')
-        return div_class(html, BLACK_BACKGROUND, div_props)
-
-    def __rich__(self) -> Panel | Text:
-        txts = join_texts(self.text, '\n')
-
-        if self.border_style or self.title:
-            return Panel(
-                txts,
-                border_style=self.border_style,
-                expand=False,
-                title=self.title,
-                title_align=self.title_justify,
-            )
-        else:
-            return indent_txt(txts, site_config.indents.supressed_msg)
 
 
 @dataclass(kw_only=True)

@@ -11,3 +11,4 @@ def test_carstensen_url():
     assert carstensen_person_url('Stephen Alexander') == 'https://tommycarstensen.com/epstein/people/stephen-alexander.html'
     assert carstensen_person_url('Stephen D. Alexander') == 'https://tommycarstensen.com/epstein/people/stephen-alexander.html'
     assert carstensen_person_url('Dr. Stephen D. Alexander') == 'https://tommycarstensen.com/epstein/people/stephen-alexander.html'
+    assert carstensen_person_url('Shaher Under Over Abdullhak') == 'https://tommycarstensen.com/epstein/people/shaher-abdullhak.html'
