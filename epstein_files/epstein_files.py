@@ -56,7 +56,6 @@ class EpsteinFiles(DocTypesMixin):
     file_paths: list[Path] = field(init=False)
     # Derived fields
     _empty_file_ids: set[str] = field(default_factory=set)
-    _emailers: list[Person] = field(default_factory=list)
     _people: list[Person] = field(default_factory=list)
     _uninteresting_ccs: list[Name] = field(default_factory=list)
 
@@ -102,13 +101,13 @@ class EpsteinFiles(DocTypesMixin):
         return [d for d in self._documents if not (isinstance(d, Email) and d._was_split_up)]
 
     @property
-    def emails_with_attachments(self) -> list[Email]:
-        return [e for e in self.emails if e.attached_docs]
-
-    @property
     def emailers(self) -> list[Person]:
         """All the people who sent or received an email."""
-        return self._emailers
+        return [p for p in self._people if p.emails]
+
+    @property
+    def people(self) -> list[Person]:
+        return self._people
 
     @property
     def uninteresting_emailers(self) -> list[Name]:
@@ -353,9 +352,8 @@ class EpsteinFiles(DocTypesMixin):
 
         self._set_uninteresting_ccs()
         self._copy_duplicate_doc_properties()
-        self._emailers = self.person_objs(flatten([e.participants for e in self.emails]))
         self._people = self.person_objs(flatten([d.participants for d in self.documents]))
-        logger.warning(f"Saving {len(self._people)} ({len(self._emailers)} emailers)...")
+        logger.warning(f"Saving {len(self._people)} Person objects ({len(self.emailers)} emailers)...")
         self._find_email_attachments_and_set_is_first_for_user()
         self._documents = Document.sort_by_timestamp(self._documents)
         self._docs_by_id = {doc.file_id: doc for doc in self._documents}

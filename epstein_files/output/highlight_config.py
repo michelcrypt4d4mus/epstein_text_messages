@@ -656,12 +656,13 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             ),
             Entity(
                 BROCK_PIERCE,
-                "Bannon partner, Tether co-founder, friend of Yair Netanyahu, sex crime history",
+                "sex crime history, Bannon partner, Tether co-founder, friend of Yair Netanyahu",
                 r"Brock(?!man)( Pierce)?",
                 match_partial='first',
                 url=[
                     'https://protos.com/brock-pierces-dark-and-disturbing-friendship-with-jeffrey-epstein/',
                     'https://cryptadamus.substack.com/i/149639184/den-of-brockiquity',
+                    'https://en.wikipedia.org/wiki/An_Open_Secret',
                 ],
             ),
             Entity(BRYAN_BISHOP, "executive at LedgerX and Polymath fund", match_partial=None),
@@ -1016,7 +1017,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             Entity(
                 'Dr. Stephen R. Alexander',
                 f"Epstein's sex-addiction specialist {QUESTION_MARKS}",
-                r'drsra|Steven.{,8}Alexander',
+                r'drsra|Ste(ph|v)en.{,8}Alexander',
                 email_addresses=['drsra@bellsouth.net'],
                 match_partial=None,
                 url='https://www.reddit.com/r/Epstein/comments/1r14loh/who_is_drsra_talking_about_a_trump_campaing_in/',

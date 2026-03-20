@@ -62,6 +62,10 @@ class DocTypesMixin(ABC):
         return Email.filter_for_type(self.documents)
 
     @property
+    def emails_with_attachments(self) -> list[Email]:
+        return [e for e in self.emails if e.attached_docs]
+
+    @property
     def imessage_logs(self) -> list[MessengerLog]:
         return MessengerLog.filter_for_type(self.documents)
 
