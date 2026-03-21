@@ -1205,7 +1205,7 @@ HIGHLIGHTED_NAMES = [
             epstein_trust('Haze Trust'),
             epstein_trust('Southern Financial Company', r"Southern Financial( (Co(mpany)?|LLC))?"),
             epstein_trust('Southern Trust'),
-            epstein_trust('The 1953 Trust', beneficiaries=[DARREN_INDYKE, RICHARD_KAHN]),
+            epstein_trust('The 1953 Trust', trustees=[DARREN_INDYKE, RICHARD_KAHN]),
             epstein_trust('The Sweater Trust', r"(The )?Sweater Trust"),
             Organization('Little Saint James Island', emailer_pattern=r'Little S(ain)?t\.? James( Island)?'),
             Organization('Mort, Inc.', 'Epstein company', r"Mort,? Inc\.?"),
