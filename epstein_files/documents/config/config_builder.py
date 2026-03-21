@@ -206,6 +206,7 @@ def passenger_manifest(id: str, date: str, showing: str = '', **kwargs) -> DocCf
         author=JEGE_INC,
         date=date,
         note=join_truthy("flight manifest", showing, ' showing '),
+        show_full_panel=True,
         **kwargs
     )
 
