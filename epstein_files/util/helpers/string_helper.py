@@ -17,10 +17,15 @@ PDFALYZER_IMAGE_PANEL_REGEX = re.compile(r"\n╭─* Page \d+, Image \d+.*?╯\n
 TIMESTAMP_SECONDS_REGEX = re.compile(r":\d{2}(\.\d+)?([-+]\d{2}:\d{2})?$")
 WHITESPACE_REGEX = re.compile(r"\s{2,}|\t|\n", re.MULTILINE)
 
-HAS_LETTER_LIST_REGEX = re.compile(r"^a[.)] .{,1900}\nb[.)] ", re.DOTALL | re.IGNORECASE | re.MULTILINE)
-LETTER_LIST_ITEM_REGEX = re.compile(r"^([a-z][.)] .{,1900}?)(?=\n[a-z][.)] |\Z)", re.DOTALL | re.IGNORECASE | re.MULTILINE)
-HAS_NUMBERED_LIST_REGEX = re.compile(r"^2\. .{,1900}\n3\. ", re.DOTALL | re.MULTILINE)
-NUMBERED_LIST_ITEM_REGEX = re.compile(r"^(\d+\. .{,1900}?)(?=\n\d+\.|\Z)", re.DOTALL | re.MULTILINE)
+# Auto doublespacing
+DOUBLESPACE_LIST_MIN_LEN = 100
+DOUBLESPACE_LIST_MAX_LEN = 1_900
+LIST_ELEMENT_PATTERN = fr".{{{DOUBLESPACE_LIST_MIN_LEN},{DOUBLESPACE_LIST_MAX_LEN}}}"
+LIST_REGEX_FLAGS = re.DOTALL | re.IGNORECASE | re.MULTILINE
+HAS_LETTER_LIST_REGEX = re.compile(fr"^a[.)] {LIST_ELEMENT_PATTERN}\nb[.)] ", LIST_REGEX_FLAGS)
+LETTER_LIST_ITEM_REGEX = re.compile(fr"^([a-z][.)] {LIST_ELEMENT_PATTERN}?)(?=\n[a-z][.)] |\Z)", LIST_REGEX_FLAGS)
+HAS_NUMBERED_LIST_REGEX = re.compile(fr"^2\. {LIST_ELEMENT_PATTERN}\n3\. ", LIST_REGEX_FLAGS)
+NUMBERED_LIST_ITEM_REGEX = re.compile(fr"^(\d+\. {LIST_ELEMENT_PATTERN}?)(?=\n\d+\.|\Z)", LIST_REGEX_FLAGS)
 SECTION_LIST_REGEX = re.compile(r"[^\n](\nSection \d)")
 
 WHITESPACE_CHAR = r"[-_.\s]*"
@@ -73,7 +78,7 @@ def doublespace_lists(s: str) -> str:
     if contains_letter_list(s):
         s = LETTER_LIST_ITEM_REGEX.sub(r"\n\1", s)
 
-    return SECTION_LIST_REGEX.sub(r"\n\1", s)
+    return SECTION_LIST_REGEX.sub(r"\n\n\1", s)
 
 
 def extract_emojis(s: str) -> list[str]:
