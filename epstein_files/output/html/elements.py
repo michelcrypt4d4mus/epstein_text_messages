@@ -1,20 +1,17 @@
 import re
 from copy import copy
-from dataclasses import dataclass, field
 from os import devnull
-from pathlib import Path
 from typing import Literal, Mapping
 
-from rich.align import AlignMethod
 from rich.console import Console, RenderableType
 from rich.panel import Panel
 from rich.padding import PaddingDimensions
 from rich.style import Style
 from rich.text import Text
 
-from epstein_files.output.html.positioned_rich import PositionedRich, unpack_dimensions, CssProps, OptionalCssProps
-from epstein_files.output.rich import CONSOLE_KWARGS, RICH_THEME
-from epstein_files.util.constant.html import FONT_FAMILY, HTML_TERMINAL_THEME
+from epstein_files.output.html.positioned_rich import OptionalCssProps
+from epstein_files.output.rich import CONSOLE_KWARGS
+from epstein_files.util.constant.html import FONT_FAMILY
 from epstein_files.util.helpers.data_helpers import listify, sort_dict_by_keys
 from epstein_files.util.helpers.string_helper import quote
 from epstein_files.util.logging import logger
