@@ -370,6 +370,8 @@ class Organization(Entity):
                 suffix = suffix.replace('.', r'\.?')
 
             self.emailer_pattern += fr"{emailer_pattern}({suffix})?"
+        elif self.name.startswith('UAB ') and not self.emailer_pattern:
+            self.emailer_pattern = self.name.removeprefix('UAB ')
 
         if self.belongs_to:
             if self.info:
