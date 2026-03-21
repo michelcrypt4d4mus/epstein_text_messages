@@ -566,7 +566,7 @@ GIRLS_CFGS = [
     EmailCfg(id='EFTA00950394', highlight_quote='how old will you go?'),
     EmailCfg(id='EFTA02499884', highlight_quote='I gave another girl to kimball and he is thrilled', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA02557757', highlight_quote="I have a girl Sana working half time/who by the way you'd like"),
-    EmailCfg(id='EFTA00771856', highlight_quote="I know 23 is on the old side for you", is_interesting=10),
+    EmailCfg(id='EFTA00771856', highlight_quote="I know 23 is on the old side for you", is_interesting=10, note=quote("she's 23 but oozes sex")),
     EmailCfg(id='EFTA01974447', highlight_quote='I know you are going to meet putin on the 20th', is_interesting=10),
     EmailCfg(id='EFTA01767237', highlight_quote='is 24 too old for you?', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA00854166', highlight_quote='kazak contract will be ready for your review', is_interesting=10, truncate_to=1100),
