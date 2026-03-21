@@ -1787,7 +1787,7 @@ HIGHLIGHTED_NAMES = [
                 match_partial=None,
             ),
             Entity('Florence Hutner', "New York Office of Chief Medical Examiner", match_partial=None),
-            Entity('Gary Gensler', 'future head of the SEC'),
+            Entity('Gary Gensler', 'ex-Goldman Sachs, future SEC Chair under Biden, taught MIT course on blockchain'),
             Entity("Geoff Ling", "director of DARPA Biological Technologies Office", r"Geoff(rey)? Ling", match_partial=None),
             Entity('Justin Alfano', f"American {LAW_ENFORCEMENT}"),
             Entity(
@@ -1980,6 +1980,7 @@ HIGHLIGHTED_NAMES = [
             ),
             Entity(MOSHE_HOFFMAN, "behavioral and evolutionary economics", match_partial=None),
             Entity('Steve Kosslyn', "neuroscientist, Active Learning Sciences"),
+            Organization('The Crimson', 'student newspaper'),
         ],
         patterns=[
             r"Cambridge",

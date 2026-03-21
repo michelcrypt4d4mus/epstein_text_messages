@@ -334,9 +334,11 @@ CRYPTO_CFGS = [
     EmailCfg(id='EFTA02703885', author=LINDA_STONE, author_reason='sig', note=f"{LINDA_STONE} introducing Epstein to {JEREMY_RUBIN}"),
     EmailCfg(id='EFTA02505439', note=f'summary of {KYARA_INVESTMENT} shell companies with {JOI_ITO}', is_interesting=10),
     EmailCfg(id='EFTA01973301', recipients=[LINDA_STONE], author_reason='signature'),
-    EmailCfg(id='EFTA00473175', truncate_to=1000),
+    EmailCfg(id='EFTA00473175', truncate_to=1_000),
     # Kushner
     DocCfg(id='EFTA00128987', note='suspicious activity report (SAR) about Kushner co. crypto payments to suspicious Russian person'),
+    # Larry Summers
+    EmailCfg(id='EFTA01062556', is_interesting=10, note="Epstein and Gary Gensler meeting about crypto", truncate_to=1_000),
     # Masha Drokova
     EmailCfg(
         id='EFTA01003115',

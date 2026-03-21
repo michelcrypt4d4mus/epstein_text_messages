@@ -463,13 +463,15 @@ class Email(Communication):
             if char_range == 'auto':
                 char_range = self.char_range_to_display
 
-            if char_range[0] > 0 and char_range[0] < self.email_parts.header_len:
+            if char_range[0] > self.email_parts.header_len:
+                return self.email_parts.header_txt.append('\n\n').append(body_txt)
+            elif char_range[0] > 0 and char_range[0] < self.email_parts.header_len:
                 intro_txt_len = len(self._intro_txt(char_range[0]))
                 offset = intro_txt_len + (self.email_parts.header_len - char_range[0])
                 self._warn(f"excerpt starts in the header, will may in duplicate header chars (offset={offset})")
                 return self.email_parts.header_txt.append(body_txt[offset:])
             else:
-                return self.email_parts.header_txt.append('\n\n').append(body_txt)
+                return body_txt
         else:
             return super().prettified_txt
 
