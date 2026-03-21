@@ -87,12 +87,6 @@ MONEY_CFGS = [
         note='compliance report on payment from Epstein to Sberbank account of Nikolay Aleksandrovich Gyrov',
     ),
     DocCfg(
-        id='EFTA00173953',
-        author=OCDETF,
-        note='report on investigations of Epstein related drug money laundering',
-        is_interesting=10,
-    ),
-    DocCfg(
         id='EFTA01111057',
         author=MORTIMER_ZUCKERMAN,
         date='2014-07-10',

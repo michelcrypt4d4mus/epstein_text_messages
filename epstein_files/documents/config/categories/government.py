@@ -70,6 +70,13 @@ GOVERNMENT_CFGS = [
         note=f"approved mail list during Epstein's 2009 incarceration in {PALM_BEACH}",
         show_full_panel=True,
     ),
+    DocCfg(
+        id='EFTA00173953',
+        author=OCDETF,
+        date='2015-05-18',
+        note='report on investigations of Epstein related drug money laundering',
+        truncate_to=(7_700, 12_600),
+    ),
     bop_doc('EFTA00109783', 'prisoner assignments', '2019-08-03'),
     bop_doc('EFTA00035921', "Lieutenant's Logs", '2019-08-06'),
     bop_doc('EFTA00039153', 'List of Exhibits, Chapter 2', '2019-01-06'),
