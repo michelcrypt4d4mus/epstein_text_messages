@@ -61,10 +61,10 @@ def doublespace_lines(s: str) -> str:
     if (len(long_lines) / len(lines)) > DOUBLESPACE_IF_LONG_LINE_PCT:
         s = s.replace('\n', '\n\n')
 
-    return doublespace_numbered_lists(s)
+    return doublespace_lists(s)
 
 
-def doublespace_numbered_lists(s: str) -> str:
+def doublespace_lists(s: str) -> str:
     if contains_numbered_list(s):
         s = NUMBERED_LIST_ITEM_REGEX.sub(r"\n\1", s)
 
