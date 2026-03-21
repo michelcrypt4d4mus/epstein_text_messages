@@ -27,7 +27,6 @@ from epstein_files.util.logging import logger
 
 DATE_PATTERN = r"\d{1,4}[-/]\d{1,2}[-/]\d{2,4}"
 TIME_PATTERN = r"\d{1,2}:\d{2}:\d{2}( [AP]M)?"
-
 FINANCIAL_COLOR = 'dark_sea_green2'
 
 debug_console = Console(color_system='256')
@@ -94,6 +93,8 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"donor advised fund",
             r"EBITDA",
             r"equities",
+            r"executor",
+            r"estate",
             r"fintech",
             r"hedge fund",
             r"(income )?tax(e[ds])?( code)?",
@@ -115,6 +116,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"sovereign (wealth )?fund",
             r"stock market",
             r"Trust(ee| Estate)s?",
+            r"Trust Agreement",
             r"(?-i:VAT)",
             r"Wall Street(?! Jour)",
             r"warrants",

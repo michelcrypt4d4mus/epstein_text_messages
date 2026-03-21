@@ -1211,7 +1211,7 @@ HIGHLIGHTED_NAMES = [
             epstein_trust('Haze Trust'),
             epstein_trust('Southern Financial Company', r"Southern Financial( (Co(mpany)?|LLC))?"),
             epstein_trust('Southern Trust'),
-            epstein_trust('The 1953 Trust', trustees=[DARREN_INDYKE, RICHARD_KAHN]),
+            epstein_trust(THE_1953_TRUST, trustees=[DARREN_INDYKE, RICHARD_KAHN]),
             epstein_trust('The Sweater Trust', r"(The )?Sweater Trust"),
             Organization('Little Saint James Island', emailer_pattern=r'Little S(ain)?t\.? James( Island)?'),
             Organization('Mort, Inc.', 'Epstein company', r"Mort,? Inc\.?"),
@@ -1332,6 +1332,7 @@ HIGHLIGHTED_NAMES = [
             Entity(EMAD_HANNA, f"Project controller for {RICHARD_KAHN}'s HBRK Associates", match_partial=None),
             Entity(HENRY_JARECKI, 'philanthropist, previous metals guy, owned neighboring island', match_partial=None),
             Entity("Michelle Fern Saipher", f"wife of {DARREN_INDYKE}", r"Michelle( F(ern|\.)?)? Saipher"),
+            Entity(PAUL_HOFFMAN, "alternate executor of Epstein' estate", match_partial=None),
             Entity(
                 RICHARD_KAHN,
                 "Epstein's accountant and estate executor",

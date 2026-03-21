@@ -35,7 +35,7 @@ POLITICS_CFGS = [
         note=f'The Search for Peace in the Arab-Israeli Conflict',
     ),
     DocCfg(id='033468', note=f'{ARTICLE_DRAFT} Rod Rosenstein', date='2018-09-24'),
-    DocCfg(id='025849', author=US_ORG, note=quote('Building a Bridge Between FOIA Requesters & Agencies')),
+    DocCfg(id='025849', author=US_GIS, note=quote('Building a Bridge Between FOIA Requesters & Agencies')),
     # CommunicationCfg(id='031670', author="General Mike Flynn's lawyers", recipients=['Sen. Mark Warner & Richard Burr'], description=f"about subpoena"),
     DocCfg(id='031670', note=f"letter from General Mike Flynn's lawyers to senators Mark Warner & Richard Burr about subpoena"),
     DocCfg(
