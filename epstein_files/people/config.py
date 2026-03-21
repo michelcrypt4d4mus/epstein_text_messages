@@ -2586,11 +2586,12 @@ HIGHLIGHTED_NAMES = [
             Entity(
                 'Ofer Raphaeli',
                 f'founder of the Israeli branch of {JEAN_LUC_MC2}',
+                match_partial=None,
                 url='https://www.jpost.com/international/article-887415',
             ),
             Entity(
                 PAOLO_ZAMPOLLI,
-                'ID Models, Elite Models deal w/Epstein, $ for passports scandal in Dominica, appointed Special Envoy by Trump',
+                'ID Models, introduced Trump to Melania, Elite Models deal w/Epstein, $ for passports scandal in Dominica, current Trump Special Envoy',
                 r"(Paolo )?Z[ae]mpoll?i",
                 url='https://dominicanewsonline.com/news/homepage/news/the-zampolli-matter-more-fuel-for-where-de-money-gone-campaign/',
             ),
