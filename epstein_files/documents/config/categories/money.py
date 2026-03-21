@@ -14,6 +14,7 @@ from epstein_files.util.helpers.string_helper import join_truthy
 MONEY_OCR_REPAIRS: OcrRepair = {
     re.compile(r"to[ ,]*if[\n ](s?he)[\n ]survives me"): fr"to {REDACTED}, if \1 survives me",
     re.compile(r"[\n ]if[\n ](s?he)[\n ]survives me"): r" if \1 survives me",
+    re.compile(r"I give to[\s,]+if (s?he) survives me"): fr"I give to {REDACTED}, if \1 survives me",
 }
 
 
