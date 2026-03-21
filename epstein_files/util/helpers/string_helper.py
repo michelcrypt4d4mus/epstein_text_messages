@@ -20,18 +20,18 @@ WHITESPACE_REGEX = re.compile(r"\s{2,}|\t|\n", re.MULTILINE)
 # Auto doublespacing
 DOUBLESPACE_LIST_MIN_LEN = 100
 DOUBLESPACE_LIST_MAX_LEN = 1_900
-LIST_ELEMENT_PATTERN = fr".{{{DOUBLESPACE_LIST_MIN_LEN},{DOUBLESPACE_LIST_MAX_LEN}}}"
+LIST_ELEMENT_PATTERN = fr".{{{DOUBLESPACE_LIST_MIN_LEN},{DOUBLESPACE_LIST_MAX_LEN}}}?"
 LIST_REGEX_FLAGS = re.DOTALL | re.IGNORECASE | re.MULTILINE
 HAS_LETTER_LIST_REGEX = re.compile(fr"^a[.)] {LIST_ELEMENT_PATTERN}\nb[.)] ", LIST_REGEX_FLAGS)
-LETTER_LIST_ITEM_REGEX = re.compile(fr"^([a-z][.)] {LIST_ELEMENT_PATTERN}?)(?=\n[a-z][.)] |\Z)", LIST_REGEX_FLAGS)
+LETTER_LIST_ITEM_REGEX = re.compile(fr"^([a-z][.)] {LIST_ELEMENT_PATTERN})(?=\n[a-z][.)] |\Z)", LIST_REGEX_FLAGS)
 HAS_NUMBERED_LIST_REGEX = re.compile(fr"^2\. {LIST_ELEMENT_PATTERN}\n3\. ", LIST_REGEX_FLAGS)
-NUMBERED_LIST_ITEM_REGEX = re.compile(fr"^(\d+\. {LIST_ELEMENT_PATTERN}?)(?=\n\d+\.|\Z)", LIST_REGEX_FLAGS)
+NUMBERED_LIST_ITEM_REGEX = re.compile(fr"^(\d+\. {LIST_ELEMENT_PATTERN})(?=\n\d+\.|\Z)", LIST_REGEX_FLAGS)
 SECTION_LIST_REGEX = re.compile(r"[^\n](\nSection \d)")
 
-WHITESPACE_CHAR = r"[-_.\s]*"
 DATE_LENGTH = len('2025-05-05')
 DOUBLESPACE_IF_LINE_LEN_OVER = 130
 DOUBLESPACE_IF_LONG_LINE_PCT = 0.5
+WHITESPACE_CHAR = r"[-_.\s]*"
 
 capitalize_first = lambda s: s[0].upper() + s[1:]
 capture_group_marker = lambda label: fr"?P<{label}>"

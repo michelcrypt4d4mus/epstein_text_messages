@@ -108,7 +108,7 @@ MONEY_CFGS = [
         note=f"call log shows Bank Hapoalim director / future crypto bank SBNY founder Scott Shay selling Epstein investment ideas weeks after Hapoalim money laundering issues, also Steve Cohen and Barry Diller",
         truncate_to=7_700,
     ),
-    DocCfg(id='EFTA01266380', note="Epstein's 2014 Trust with bequests"),
+    DocCfg(id='EFTA01266380', note="Epstein's 2014 Trust with bequests", truncate_to=(4_500, 13_000)),
     DocCfg(id='EFTA01583819', note=f"Epstein had control of {JAMES_CAYNE}'s assets"),
     DocCfg(id='EFTA00099424', note=f"Epstein 2017 Trust (Eva Andersson Dubin, {DARREN_INDYKE}, {RICHARD_KAHN})"),
     DocCfg(id='EFTA01266457', note=f"Epstein 2018 Trust ({KATHRYN_RUEMMLER}, {DARREN_INDYKE}, {RICHARD_KAHN})"),
