@@ -243,6 +243,7 @@ HIGHLIGHTED_NAMES = [
                 url='https://www.motherjones.com/politics/2026/01/melania-trump-documentary-brett-ratner-metoo/',
             ),
             Entity(DAVID_BLAINE, "famous magician", url=WIKIPEDIA),
+            Entity(DAVID_COPPERFIELD, "famous magician, allegations of sexual assault", url=WIKIPEDIA),
             Entity('Camille Lang', "Sotheby's auction house", match_partial=None),
             Entity('Caroline Sophie', "Sotheby's auction house", match_partial=None),
             Entity('David Brenner', "American comedian and actor"),

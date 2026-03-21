@@ -46,6 +46,10 @@ def doj_memo(id: str, note: str, date: str = '', **kwargs) -> DocCfg:
     return memo(id, DOJ, note, date, **kwargs)
 
 
+def fbi_internal(id: str, **kwargs) -> EmailCfg:
+    return EmailCfg(id=id, author=FBI, recipients=[FBI], **kwargs)
+
+
 GOVERNMENT_CFGS = [
     DocCfg(
         id='024117',
@@ -234,14 +238,6 @@ GOVERNMENT_CFGS = [
         show_full_panel=True,
         truncate_to=NO_TRUNCATE,  # TODO this shouldn't be necessary?
     ),
-    EmailCfg(
-        id='EFTA01657299',
-        author=FBI,
-        highlight_quote='Brunel uses MC2 as a legitimate transport agency of underage girls into America for purposes of sex',
-        note=f'interview with {JEAN_LUC_BRUNEL} partner Sergio Cordero',
-        recipients=[FBI],
-        truncate_to=(10_200, 14_500),
-    ),
     EmailCfg(id='EFTA00036630', author=BUREAU_OF_PRISONS, recipients=[BUREAU_OF_PRISONS], note='about cameras'),
     EmailCfg(id='EFTA00019169', author=FBI, author_uncertain=True, recipients=[USANYS], recipient_uncertain=True),
     EmailCfg(id='EFTA02730483', author=FBI, date='2023-07-11T08:25:00', date_uncertain='actually reply timestamp'),
@@ -249,13 +245,18 @@ GOVERNMENT_CFGS = [
     EmailCfg(id='EFTA00039971', author=FBI, recipients=[USANYS], recipient_uncertain=True),
     EmailCfg(id='EFTA00163507', author=FBI, note="quotes from Epstein's cellmate", is_interesting=True),
     EmailCfg(id='EFTA00037683', note=f"tip that the murder of DC Madam Jeanne Palfrey might be connected to Epstein's network"),
-    EmailCfg(
-        id='EFTA00037690',
-        author=FBI,
-        highlight_quote='seems to be a conduit for money paid to female victims',
-        note=BUTTERFLY_TRUST,
-        recipients=[FBI],
+    fbi_internal(
+        'EFTA00172840',
+        highlight_quote=f'FBI opened an investigation on {DAVID_COPPERFIELD} in relationship to a rape of a young female',
+        note=f'case closed by prosecutors "weak and intimidated by the financial resources of Copperfield"',
     ),
+    fbi_internal(
+        'EFTA01657299',
+        highlight_quote='Brunel uses MC2 as a legitimate transport agency of underage girls into America for purposes of sex',
+        note=f'interview with {JEAN_LUC_BRUNEL} partner Sergio Cordero',
+        truncate_to=(10_200, 14_500),
+    ),
+    fbi_internal('EFTA00037690', highlight_quote='seems to be a conduit for money paid to female victims', note=BUTTERFLY_TRUST),
 
     # DOJ / USANYS emails
     EmailCfg(id='EFTA00039967', author='DOJ London', recipients=[USANYS]),
