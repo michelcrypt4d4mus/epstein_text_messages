@@ -439,9 +439,10 @@ HIGHLIGHTED_NAMES = [
             Entity(FILIPA_PEROVIC, f"now Filipa Fink (married to {JOSHUA_FINK}), Coatue Management"),
             Entity('Jeanne Houweling', f'CEO of Adfin, a company Epstein and {HOWARD_LUTNICK} invested in'),
             Entity(
-                'Les Wexner',
+                LES_WEXNER,
                 "CEO of Victoria's Secret, Abercrombie & Fitch, gave Epstein a house and power of attorney",
-                r"(Les(lie)? )?Wexner",
+                r"(Les(lie)? )?Wexner(?! Children('s)? Trust)",
+                match_partial=None,
                 url='https://en.wikipedia.org/wiki/Les_Wexner#Jeffrey_Epstein_association',
             ),
             Entity('Mitchell Baker', "founder of Mozilla", match_partial=None),
@@ -472,6 +473,7 @@ HIGHLIGHTED_NAMES = [
             Organization('Lockheed Martin', 'American military contractor'),
             Organization('NJF Capital', JUNKERMANN_FUND, r"NJF( Capital)?"),
             Organization('Western Union', 'international money transmitter', emailer_pattern=r"Western Union( Financial)?"),
+            Organization("Wexner Children's Trust", emailer_pattern="Wexner Children's Trust( I*)?", belongs_to=LES_WEXNER),
             Organization('WizzAir', email_addresses=['noreply@wizzair.com'], is_interesting=False, is_emailer=True),
         ],
         patterns=[
@@ -1391,6 +1393,7 @@ HIGHLIGHTED_NAMES = [
             Entity(
                 VALDAS_PETREIKIS,
                 f"Lithuanian businessman",
+                match_partial='both',
                 url='https://www.aa.com.tr/en/world/latest-release-of-epstein-files-shows-links-to-several-prominent-lithuanian-figures/3817879',
             ),
             Entity('Viktor Yushchenko', 'former president of Ukraine'),
@@ -3671,7 +3674,7 @@ HIGHLIGHTED_NAMES = [
             Entity(
                 GHISLAINE_MAXWELL,
                 "Epstein's girlfriend, daughter of the spy Robert Maxwell",
-                r"g max(1@ellmax.com|well)?|Ghislai?ne|Maxwell",
+                r"g max(1@ellmax.com|well)?|Ghislai?ne( Noelle)?( Marion)?( Maxwell)?|Maxwell",
                 url=WIKIPEDIA,
             ),
             Entity('Isabel Maxwell', f"sister of Ghislaine, wife of {AL_SECKEL}", r"Isabel( Sylvia)? Maxwell", match_partial=None),
