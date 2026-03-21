@@ -115,6 +115,7 @@ MONEY_CFGS = [
     DocCfg(id='EFTA01086463', note=f"{MORTIMER_ZUCKERMAN}'s art collection valuations", is_valid_for_name_scan=False),
     DocCfg(id='EFTA01273102', note=f"payment from Epstein to {RENATA_BOLOTOVA}'s father's account at Sberbank"),
     DocCfg(id='EFTA00238499', note='wire transfer to Signature Bank account'),
+    deutsche_bank_doc('EFTA00166317', "statement for Epstein's account 690519", date='2016-05-30'),
     deutsche_bank_doc('EFTA01361270', f"$60,000 transfer from {SOUTHERN_TRUST_COMPANY} to {BEN_GOERTZEL}'s Novamente", date='2014-01-02'),
     deutsche_bank_doc('EFTA00101280', f"Epstein's {DEUTSCHE_BANK} accounts", show_full_panel=True),
     deutsche_bank_doc('EFTA01681865', "explanations of all of Epstein's large payments prepared for DOJ", '2019-09-12', is_interesting=20),
