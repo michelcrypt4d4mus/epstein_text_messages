@@ -19,6 +19,11 @@ MONEY_OCR_REPAIRS: OcrRepair = {
 }
 
 
+def cabinet_inventory(id: str, container: str, **kwargs) -> DocCfg:
+    """Assumes created 1. by police 2. on Epstein's arrest in 2019, either/both of which may not be true."""
+    return inventory(id, container, date='2019-07-06', date_uncertain='assumption', show_full_panel=True, **kwargs)
+
+
 def deutsche_bank_doc(id: str, note: str, date: str = '', **kwargs) -> DocCfg:
     return DocCfg(id=id, author=DEUTSCHE_BANK, date=date, note=note, **kwargs)
 
@@ -138,8 +143,8 @@ MONEY_CFGS = [
     epstein_will('EFTA00099424', '2017-01-30', [EVA_DUBIN, DARREN_INDYKE, RICHARD_KAHN], '2017', truncate_to=(4_600, 14_000)),
     epstein_will('EFTA00016884', '2014-11-18', [DARREN_INDYKE, JES_STALEY, DAVID_MITCHELL, LARRY_SUMMERS], truncate_to=2_500),
     epstein_will('EFTA01266380', '2014-11-18', [DARREN_INDYKE, JES_STALEY, DAVID_MITCHELL], '2014', truncate_to=(4_500, 13_000)),
-    inventory('EFTA00299850', 'FILE CABINET ONE'),
-    inventory('EFTA00299927', 'FILE CABINET TWO', f"{JAMES_CAYNE} estate plan"),
+    cabinet_inventory('EFTA00299850', 'FILE CABINET ONE'),
+    cabinet_inventory('EFTA00299927', 'FILE CABINET TWO', note=f"{JAMES_CAYNE} estate plan"),
     memo('EFTA01366011', DARREN_INDYKE, f"$3,000 expense reimbursement for {LASMA_KUHTARSKA}", show_with_name=LASMA_KUHTARSKA),  # TODO: to "marjorie"
 
     # Jeepers, Inc.
