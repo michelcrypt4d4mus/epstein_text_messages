@@ -376,7 +376,7 @@ GIRLS_CFGS = [
     EmailCfg(
         id='EFTA01889182',
         is_interesting=10,
-        note=f'the "Olympic snowboarder" is {MARIA_PRUSAKOVA} who seems to have entered Epstein world at this time',
+        note=f'"Olympic snowboarder" is {MARIA_PRUSAKOVA} who seems to have entered Epstein world at this time',
         recipients=[MIRANDA_MAKO],
         recipient_uncertain=True,
     ),
