@@ -77,7 +77,7 @@ GIRLS_CFGS = [
     DocCfg(id='EFTA00306033', author=SERGEY_BELYAKOV, note='Epstein Russian visa', show_full_panel=True),
     DocCfg(
         id='EFTA01366289',
-        author='Butterfly Trust',
+        author=BUTTERFLY_TRUST,
         date='2015-03-30',
         is_interesting=20,
         note=f"transfer of $237,270 to {SVETLANA_POZHIDAEVA}'s father Raiffeisenbank from account at Standard Chartered Bank",

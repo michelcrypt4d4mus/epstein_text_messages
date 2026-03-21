@@ -23,9 +23,11 @@ from epstein_files.util.constant.urls import internal_person_link_url
 AKA_STYLE = 'grey39 italic'
 BIO_COLOR = 'grey70'
 BIO_STYLE = f'italic {BIO_COLOR}'
+LINK_JOIN_STYLE = 'grey23 bold'
+
 MIN_LEN_FOR_OPTIONAL_LAST_CHAR = 5
 
-LINK_JOIN_STYLE = 'grey23 bold'
+ALL_CAPS_REGEX = re.compile(r"^[A-Z]{1,2}$")
 MGMT_PATTERN = r"M(ana)?ge?m(en)?t"
 MGMT_REGEX = re.compile(MGMT_PATTERN)
 COMPANY_SUFFIX_REGEX = re.compile(fr".*?(,? (Inc\.?|LLC|{MGMT_PATTERN}))$")
@@ -392,7 +394,11 @@ EntityScanArg = Sequence[Entity | str] | Entity | str | None
 
 def acronym(name: str, info: str = '', **kwargs) -> Organization:
     """Auto-generates a regex matching the org's initials."""
-    initials = [word[0] for word in name.split() if word[0].isupper()]
+    initials = [
+        word if ALL_CAPS_REGEX.match(word) else word[0]
+        for word in name.split() if word[0].isupper()
+    ]
+
     initials_pattern = ''.join([fr"{letter}\.?" for letter in initials])
     emailer_pattern = join_patterns([initials_pattern, name])
 

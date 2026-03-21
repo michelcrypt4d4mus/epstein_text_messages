@@ -9,7 +9,7 @@ from epstein_files.documents.config.doc_cfg import QUOTE_PREFIX, DocCfg
 from epstein_files.documents.config.email_cfg import EmailCfg
 from epstein_files.documents.other_file import OtherFile
 from epstein_files.output.highlight_config import QUESTION_MARKS_TXT
-from epstein_files.people.names import BLOCKCHAIN_CAPITAL, BOFA_MERRILL, JOI_ITO, MARIA_PRUSAKOVA, Name
+from epstein_files.people.names import *
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constants import CONFIGS_BY_ID
 
@@ -190,6 +190,11 @@ def test_descriptions(get_other_file, id, category, description):
     file = get_other_file(id)
     assert file.config.category == category
     assert file.config.complete_description == description
+
+
+def test_epstein_will():
+    assert CONFIGS_BY_ID['EFTA00089546'].note == f"Epstein last will and testament codicil naming {JAMES_CAYNE} as executor"
+    assert CONFIGS_BY_ID['EFTA00016884'].note == f"Epstein last will and testament"
 
 
 def test_highlight_quote():

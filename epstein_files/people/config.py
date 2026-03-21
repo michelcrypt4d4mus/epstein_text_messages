@@ -360,17 +360,18 @@ HIGHLIGHTED_NAMES = [
             Entity(VINIT_SAHNI, f"analyst at {DEUTSCHE_BANK} and {GOLDMAN_SACHS}", match_partial='both'),
 
             # Organizations
-            Organization.well_known(JP_MORGAN),
+            acronym(f"{DEUTSCHE_BANK} AG New York"),
             Organization.well_known(BOFA_MERRILL),
             Organization.well_known(BOFA_WEALTH_MGMT),
-            Organization.well_known('Deutsche Bank Wealth Management Tax Topics'),
-            Organization('Bayerische Landesbank', 'publicly owned bank in Bavaria', url=WIKIPEDIA),
+            Organization.well_known(f'{DEUTSCHE_BANK} Wealth Management Tax Topics'),
+            Organization.well_known(JP_MORGAN),
             Organization(
                 'Banque Havilland',
                 f"Rowland family private bank in Luxembourg used by {PRINCE_ANDREW}, charter revoked in 2024 for money laundering",
-                r"(Banque )?Havilland",
+                r"(Banque )?Havill?and",
                 url=WIKIPEDIA,
             ),
+            Organization('Bayerische Landesbank', 'publicly owned bank in Bavaria', url=WIKIPEDIA),
             Organization(
                 DEUTSCHE_BANK,
                 'favoured bank of Epstein, the Trump family, and Russian money launderers',
@@ -1200,7 +1201,7 @@ HIGHLIGHTED_NAMES = [
             epstein_trust('2014', trustees=[DARREN_INDYKE, DAVID_MITCHELL, JES_STALEY]),
             epstein_trust('2017', trustees=[DARREN_INDYKE, EVA_DUBIN, RICHARD_KAHN]),
             epstein_trust('2018', trustees=[DARREN_INDYKE, EVA_DUBIN, KATHRYN_RUEMMLER]),
-            epstein_trust('Butterfly Trust', beneficiaries=[KARYNA_SHULIAK]),
+            epstein_trust(BUTTERFLY_TRUST, beneficiaries=[KARYNA_SHULIAK]),
             epstein_trust('Caterpillar Trust', r"(2017 )?Caterpillar Trust"),
             epstein_trust('C.O.U.Q. Foundation', r"C\.?O\.?U\.?Q\.?( Foundation)?"),  # charity account
             epstein_trust('Enhanced Education'),
