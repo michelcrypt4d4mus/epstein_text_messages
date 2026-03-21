@@ -2581,7 +2581,7 @@ HIGHLIGHTED_NAMES = [
             Entity(JEFF_FULLER, f"president of {JEAN_LUC_MC2} USA", email_addresses=['jeff@mc2mm.com'], match_partial=None),
             Entity(MANUELA_MARTINEZ, "Mega Partners (Brazilian agency)", r"Manuela (- Mega Partners|Martinez)", match_partial=None),
             Entity(MARIANA_IDZKOWSKA, 'Polish model, island visitor', r"Mariana [Il]d[źi]kowska?"),
-            Entity('Michael Sanka', f"{JEAN_LUC_MC2} {QUESTION_MARKS}"),
+            Entity('Michael Sanka', f"{JEAN_LUC_MC2} {QUESTION_MARKS}", match_partial=None),
             Entity(NAOMI_CAMPBELL, 'supermodel', match_partial=None, url=WIKIPEDIA),
             Entity(
                 'Ofer Raphaeli',
