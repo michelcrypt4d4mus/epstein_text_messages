@@ -338,7 +338,8 @@ CRYPTO_CFGS = [
     # Kushner
     DocCfg(id='EFTA00128987', note='suspicious activity report (SAR) about Kushner co. crypto payments to suspicious Russian person'),
     # Larry Summers
-    EmailCfg(id='EFTA01062556', is_interesting=10, note="Epstein and Gary Gensler meeting about crypto", truncate_to=1_000),
+    EmailCfg(id='EFTA01062556', is_interesting=10, note=f"{LARRY_SUMMERS} gives Epstein his thoughts on Gary Gensler", truncate_to=780),
+    EmailCfg(id='EFTA00818073', is_interesting=10, note="Epstein and Gary Gensler meeting about crypto", truncate_to=250),
     # Masha Drokova
     EmailCfg(
         id='EFTA01003115',
