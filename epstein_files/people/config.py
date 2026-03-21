@@ -10,7 +10,8 @@ from rich.text import Text
 from epstein_files.documents.config.categories.legal import EPSTEIN_V_ROTHSTEIN_EDWARDS
 from epstein_files.documents.documents.categories import RUSSIAN_GIRL, Interesting, Neutral, Uninteresting
 from epstein_files.output.highlighted_names import HighlightedNames
-from epstein_files.people.entity import Entity, Organization, acronym, epstein_co, epstein_trust, law_enforcement, publication, the_publication
+from epstein_files.people.entity import (Entity, Organization, acronym, epstein_co, epstein_trust,
+     island_employee, law_enforcement, publication, the_publication)
 from epstein_files.people.names import *
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constant.urls import DITE_ANATA_JUILLIARD_URL, EPSTEIN_DOCTORS_LINKS, SUBSTACK_POST_INSIGHTSPOD_URL, SVETLANA_NEWSGROUND
@@ -349,6 +350,7 @@ HIGHLIGHTED_NAMES = [
                 'Scott Shay',
                 f"Bank Hapoalim, Hyperion Partners, future head of largest US crypto bank Signature Bank (SBNY)",
                 match_partial=None,
+                phone_numbers=['5167456644', '6464087001'],
                 url='https://www.cnbc.com/2023/03/13/signature-bank-third-biggest-bank-failure-in-us-history.html',
             ),
             Entity('Stewart Oldfield', f"worked on Epstein related accounts at {DEUTSCHE_BANK}"),
@@ -1087,6 +1089,39 @@ HIGHLIGHTED_NAMES = [
             Entity('Una Pascal', f"{SOUTHERN_TRUST_COMPANY} accountant", match_partial=None),
             Entity('Valdson Vieira Cotrin', f"Paris driver, annual trip to Brasil", r"(Cotrin )?Valdson( Contrin)?", match_partial='both'),
             Entity('William Murphy', f"sysadmin at {RICHARD_KAHN}'s HBRK, did tech stuff for Epstein and Epstein used his name on Skype", match_partial=None),
+            island_employee('Allangie Clifton', 'construction'),
+            island_employee('Benford B. Lewis', 'construction'),
+            island_employee('Michael R. Groves', 'boats'),
+            island_employee('Phillip Blaize', 'boats'),
+            island_employee('Brian K. Bates', 'maintenance'),
+            island_employee('John Werntz', 'maintenance'),
+            island_employee('Josue A. BrIto', 'engineering'),
+            island_employee('Karl Henry', 'engineering'),
+            island_employee('Pierre Jules', 'construction'),
+            island_employee('Thomas J Melnick', 'construction supervisor'),
+            island_employee('Bill Adams', 'construction supervisor'),
+            island_employee('Anthony Jules', 'landscaper'),
+            island_employee('Basillia Morales-Mercado', 'housekeeper'),
+            island_employee('Cuthbert Titre', 'pool maintenance'),
+            island_employee('Danny Etienne', 'assistant electrician'),
+            island_employee('Danny Vicars', 'electrician'),
+            island_employee('Dupson Donissaint', 'landscaper'),
+            island_employee('Ednor Montina', 'building maintenance'),
+            island_employee('Gerry Francis Titre', 'painter'),
+            island_employee('Gusneme Dalce', 'landscaper'),
+            island_employee('Guy Vicars', 'building maintenance'),
+            island_employee('Hilian J. Bedminister', 'painter'),
+            island_employee('Justina de la Cruz', 'housekeeper'),
+            island_employee('Maria Rosario', 'housekeeper'),
+            island_employee('Peter St. Omer', 'landscaping foreman'),
+            island_employee('Pierressaint Onel', 'landscaper'),
+            island_employee('Renol Mede', 'landscaper'),
+            island_employee('Reyna Amparo', 'housekeeper'),
+            island_employee('Sheridon Emanuel Elizee', 'engineering'),
+            island_employee('Arran B McGinnis', 'engineering'),
+            island_employee('Carlos L. Rodrigue', 'boat captain'),
+            island_employee('Casey Johnson', 'boat captain'),
+            island_employee('William B. Hague', 'engineering'),
         ],
     ),
     HighlightedNames(
@@ -1278,6 +1313,7 @@ HIGHLIGHTED_NAMES = [
             ),
             Entity(EMAD_HANNA, f"Project controller for {RICHARD_KAHN}'s HBRK Associates", match_partial=None),
             Entity(HENRY_JARECKI, 'philanthropist, previous metals guy, owned neighboring island', match_partial=None),
+            Entity("Michelle Fern Saipher", f"wife of {DARREN_INDYKE}", r"Michelle( Fern)? Saipher"),
             Entity(
                 RICHARD_KAHN,
                 "Epstein's accountant and estate executor",

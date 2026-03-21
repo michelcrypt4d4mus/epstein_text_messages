@@ -81,6 +81,7 @@ MISC_CFGS = [
     DocCfg(id='EFTA00165515', note="contractor describes Epstein's gun safes", show_full_panel=True),
     DocCfg(id='EFTA00266322', note=f"documents about pitches for non-profits in Australia, including to Effective Altruism"),
     DocCfg(id='EFTA00005783', note='heavily redacted handwritten note, 30+ completely redacted pages', date='2019-08-29'),
+    DocCfg(id='EFTA02697975', note='island employee list', show_full_panel=True),
     DocCfg(id='EFTA01063691', note='inventory of address books and Skype logs seized from Epstein computers'),
     DocCfg(id='EFTA00299850', note='inventory of the contents of "FILE CABINET ONE, DRAWER ONE"'),
     DocCfg(id='EFTA00024275', note='large Wexner funded payments to OB-GYN'),
