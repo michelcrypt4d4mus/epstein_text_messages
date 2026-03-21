@@ -408,6 +408,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='031451', highlight_quote='would you like photso of donald and girls in bikinis in my kitchen'),
     EmailCfg(id='031596', highlight_quote='would you like photso of donald and girls in bikinis in my kitchen', truncate_to=500),
     EmailCfg(id='031601', highlight_quote='Old gf i gave to donald', truncate_to=2000),
+    EmailCfg(id='EFTA00904611', highlight_quote="Be careful , zampoli is trouble . Lots", note=f"Epstein's thoughts on {PAOLO_ZAMPOLLI}"),
     EmailCfg(id='EFTA01745253', highlight_quote="The life you lead is so outrageous, and yet I can't tell a soul"),
     EmailCfg(id='EFTA02641374', highlight_quote='the mongolians are also going after you.  shame on you'),
     EmailCfg(id='EFTA00832976', highlight_quote="i represent the rothschilds"),

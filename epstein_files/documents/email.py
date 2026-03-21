@@ -41,7 +41,7 @@ from epstein_files.util.constants import CONFIGS_BY_ID
 from epstein_files.util.env import args, site_config
 from epstein_files.util.helpers.data_helpers import (AMERICAN_TIME_REGEX, TIMEZONE_INFO, coerce_utc, flatten,
      prefix_keys, uniq_sorted, uniquify, without_falsey)
-from epstein_files.util.helpers.rich_helpers import CharRange
+from epstein_files.util.helpers.rich_helpers import CharRange, no_italic
 from epstein_files.util.external_link import join_texts, link_text_obj
 from epstein_files.util.helpers.string_helper import capitalize_first, collapse_newlines, is_bool_prop, quote, strip_pdfalyzer_panels
 from epstein_files.util.logging import logger
@@ -364,6 +364,11 @@ class Email(Communication):
         return str(self.email_parts)
 
     @property
+    def excerpt_style(self) -> str:
+        """Style when a hand picked excerpt is being displayed. Overloaded in subclasses."""
+        return no_italic(EXCERPT_STYLE)
+
+    @property
     def header(self) -> EmailHeader:
         self._header = self._header or self.extract_header()
         return self._header
@@ -452,6 +457,7 @@ class Email(Communication):
     def prettified_txt(self) -> Text:
         """Overrides superclass to always show the email header even if config truncates it."""
         if (char_range := self._config.char_range):
+            body_txt = super().prettified_txt
             offset = 0
 
             if char_range == 'auto':
@@ -459,10 +465,11 @@ class Email(Communication):
 
             if char_range[0] > 0 and char_range[0] < self.email_parts.header_len:
                 intro_txt_len = len(self._intro_txt(char_range[0]))
-                offset = intro_txt_len + (self.email_parts.header_len - char_range[0]) + 1
-                self._warn(f"excerpt start in the header, will may in duplicate header chars (offset={offset})")
-
-            return self.email_parts.header_txt.append('\n\n').append(super().prettified_txt[offset:])
+                offset = intro_txt_len + (self.email_parts.header_len - char_range[0])
+                self._warn(f"excerpt starts in the header, will may in duplicate header chars (offset={offset})")
+                return self.email_parts.header_txt.append(body_txt[offset:])
+            else:
+                return body_txt
         else:
             return super().prettified_txt
 
