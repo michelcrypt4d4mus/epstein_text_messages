@@ -1198,7 +1198,7 @@ HIGHLIGHTED_NAMES = [
             epstein_trust('Southern Trust'),
             epstein_trust('The 1953 Trust', beneficiaries=[DARREN_INDYKE, RICHARD_KAHN]),
             epstein_trust('The Sweater Trust', r"(The )?Sweater Trust"),
-            Organization('Little Saint James Island', r'Little S(ain)?t\.? James( Island)?'),
+            Organization('Little Saint James Island', emailer_pattern=r'Little S(ain)?t\.? James( Island)?'),
             Organization('Mort, Inc.', 'Epstein company', r"Mort,? Inc\.?"),
         ],
         patterns=[
@@ -3344,6 +3344,7 @@ HIGHLIGHTED_NAMES = [
             ),
             Entity('Brad Parscale', "Trump campaign social media manager", r"(Brad(ley)? )Parscale", url=WIKIPEDIA),
             Entity('Bruce Moskowitz', "'Trump's health guy' according to Epstein", match_partial=None),
+            Entity('Dan Bongino', 'MAGA podcaster, short-lived FBI deputy chief'),
             Entity(
                 DONALD_TRUMP,
                 emailer_pattern=r"(Donald\s+(J\.\s+)?)?Trump(ism| (Org(anization)?|Properties)( LLC)?)?|Donald J. Tramp",

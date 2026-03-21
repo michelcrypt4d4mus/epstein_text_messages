@@ -221,6 +221,7 @@ GOVERNMENT_CFGS = [
     EmailCfg(id='EFTA02730483', author=FBI, date='2023-07-11T08:25:00', date_uncertain='actually reply timestamp'),
     EmailCfg(id='EFTA02731552', author=FBI, recipients=[USANYS], date='2021-05-26 16:12:00', recipient_uncertain=True),
     EmailCfg(id='EFTA00039971', author=FBI, recipients=[USANYS], recipient_uncertain=True),
+    EmailCfg(id='EFTA00163507', author=FBI, note="quotes from Epstein's cellmate", is_interesting=True),
     EmailCfg(id='EFTA00037683', note=f"tip that the murder of DC Madam Jeanne Palfrey might be connected to Epstein's network"),
 
     # DOJ / USANYS emails
@@ -278,6 +279,7 @@ GOVERNMENT_CFGS = [
     EmailCfg(id='EFTA02731643', author=USANYS, author_uncertain=True),
     EmailCfg(id='EFTA02731501', author=USANYS, author_uncertain=True),
     EmailCfg(id='EFTA02731633', author=USANYS, author_uncertain=True),
+    EmailCfg(id='EFTA00019925', author=USANYS, recipients=[USANYS], note="death of Epstein's cellmate Efrain Reyes"),
     EmailCfg(id='EFTA01660679', author=USANYS, author_uncertain=True, recipients=[FBI], recipient_uncertain=True),
     EmailCfg(id='EFTA02731699', author=USANYS, author_uncertain=True, recipients=[FBI], date='2021-05-27 10:19:00'),
     EmailCfg(id='EFTA00040121', author=USANYS, recipients=[ATT_COURT_APPEARANCE_TEAM]),
