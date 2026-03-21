@@ -626,9 +626,9 @@ GIRLS_CFGS = [
     ),
     EmailCfg(
         id='EFTA02434682',
-        note=f"Epstein and {JEAN_LUC_BRUNEL} courting a finance bro with women",
-        is_interesting=True,
-        truncate_to=1500,
+        note=f"textbook example of Epstein and {JEAN_LUC_BRUNEL} using girls to close deals",
+        is_interesting=10,
+        truncate_to=1_500,
     ),
     EmailCfg(id='EFTA01849371', note=f"{SVETLANA_POZHIDAEVA} meets Larry Fink", truncate_to=500),
     # EmailCfg(id='EFTA01849371', note=f"{SVETLANA_POZHIDAEVA} meets Nat Rothschild", show_with_name=SVETLANA_POZHIDAEVA),
