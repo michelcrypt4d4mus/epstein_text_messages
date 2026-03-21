@@ -1,7 +1,7 @@
 # NEXT RELEASE
 * `truncate_to` config forces `show_full_panel=True`
 * `--output-notes` argument and site
-* Auto doublespace numbered lists
+* Auto doublespace numbered lists and letter lists
 * `'auto` option for truncation of `highlight_quote` documents
 * Add `[category]` prefixes to subheaders
 * Phone Numbers site
