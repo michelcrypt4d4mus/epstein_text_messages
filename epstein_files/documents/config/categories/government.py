@@ -138,6 +138,14 @@ GOVERNMENT_CFGS = [
         "Epstein's chef claims Donald Trump came to Epstein's house for dinner",
         truncate_to=(6_000, 7_500),
     ),
+    EmailCfg(
+        id='EFTA01657299',
+        author=FBI,
+        recipients=[FBI],
+        note=f'interview with {JEAN_LUC_BRUNEL} Sergio Cordero',
+        highlight_quote='Brunel uses MC2 as a legitimate transport agency of underage girls into America for purposes of sex',
+        truncate_to=AUTO,
+    ),
     fbi_interview('EFTA00101927', None, f"claims Glenn and {EVA_DUBIN}'s Swiss au pair was being held against her will"),
     fbi_interview('EFTA00159321', None, f'covers {PAOLO_ZAMPOLLI}, Epstein, and the possibility Epstein introduced Melania to Donald Trump'),
     # FBI reports

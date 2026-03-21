@@ -392,6 +392,7 @@ HIGHLIGHTED_NAMES = [
             r"Jamie D(imon)?",
             r"j\.?p\.? morgan(\.?com| Chase)?( Bank)?",
             r"JPMC?",
+            JP_MORGAN_USGIO,
         ],
     ),
     HighlightedNames(
@@ -1656,7 +1657,6 @@ HIGHLIGHTED_NAMES = [
             r"Stone Ridge",
             r"Susquehanna",
             r"Teneo Capital",
-            r"us.gio@jpmorgan.com",
         ],
     ),
     HighlightedNames(
@@ -2602,6 +2602,7 @@ HIGHLIGHTED_NAMES = [
                 match_partial='both',
                 url='https://ramseyelkholyny.com/',
             ),
+            Entity('Sergio Cordero', f"modeling agent {MC2_MODEL_MGMT}, business partner of {JEAN_LUC_BRUNEL}", match_partial=None),
             # Contact('Regina', f'model, Epstein and {FAITH_KATES} tried to get her a contract'),
             Entity('Vladimir Yudashkin', "director of the 1 Mother Agency"),
             Entity('Yfke Sturm', 'model from Holland', match_partial='both', url=WIKIPEDIA),
