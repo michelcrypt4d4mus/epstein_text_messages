@@ -44,7 +44,7 @@ def epstein_will(
         executors = sorted(executors)
         note += f" naming {', '.join(executors)} as {executor_label}" + ('s' if len(executors) > 1 else '')
 
-    return DocCfg(id=id, date=date, is_interesting=10, note=note, **kwargs)
+    return DocCfg(id=id, date=date, is_interesting=20, note=note, show_full_panel=True, **kwargs)
 
 
 def sar(id: str, author: str, note: str = '') -> DocCfg:
@@ -107,13 +107,6 @@ MONEY_CFGS = [
     ),
     DocCfg(id='EFTA01478313', note=f'list of investments (maybe of {LEON_BLACK})', date='2016-03-31'),
     DocCfg(id='EFTA01222951', note=f"credit card expenses for Carlos L Rodriguez using Plum Card", date='2019-02-12'),
-    DocCfg(
-        id='EFTA00257211',
-        date='2005-04-05',
-        is_interesting=20,
-        note=f"call log shows Bank Hapoalim director / future crypto bank SBNY founder Scott Shay selling Epstein investment ideas weeks after Hapoalim money laundering issues, also Steve Cohen and Barry Diller",
-        truncate_to=7_700,
-    ),
     DocCfg(id='EFTA01583819', note=f"Epstein had control of {JAMES_CAYNE}'s assets"),
     DocCfg(id='EFTA00099424', note=f"Epstein 2017 Trust ({EVA_DUBIN}, {DARREN_INDYKE}, {RICHARD_KAHN})"),
     DocCfg(id='EFTA01266457', note=f"Epstein 2018 Trust ({KATHRYN_RUEMMLER}, {DARREN_INDYKE}, {RICHARD_KAHN})"),

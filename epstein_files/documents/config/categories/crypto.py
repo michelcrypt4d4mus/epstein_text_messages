@@ -349,6 +349,13 @@ CRYPTO_CFGS = [
     EmailCfg(id='EFTA01010128'),
     # Misc
     DocCfg(
+        id='EFTA00257211',
+        date='2005-04-05',
+        is_interesting=20,
+        note=f"call log shows Bank Hapoalim director / future crypto bank SBNY founder Scott Shay selling Epstein investment ideas weeks after Hapoalim money laundering issues, also Steve Cohen and Barry Diller",
+        truncate_to=7_700,
+    ),
+    DocCfg(
         id='EFTA02005667',
         author='Clearstone',
         date='2011-02-01',
