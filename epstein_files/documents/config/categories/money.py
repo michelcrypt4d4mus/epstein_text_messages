@@ -1,20 +1,33 @@
 """
 Epstein money related files. This category makes is_interesting = True.
 """
+import re
+
 from epstein_files.documents.config.categories.crypto import VALAR_FUND
-from epstein_files.documents.config.config_builder import letter
+from epstein_files.documents.config.config_builder import inventory, letter
 from epstein_files.documents.config.doc_cfg import DocCfg
 from epstein_files.documents.config.email_cfg import EmailCfg
 from epstein_files.people.names import *
 from epstein_files.util.constant.strings import *
 from epstein_files.util.helpers.string_helper import join_truthy
 
+MONEY_OCR_REPAIRS: OcrRepair = {
+    re.compile(r"to[ ,]*if[\n ](s?he)[\n ]survives me"): fr"to {REDACTED}, if \1 survives me",
+    re.compile(r"[\n ]if[\n ](s?he)[\n ]survives me"): r" if \1 survives me",
+}
 
-def deutsche_bank(id: str, note: str, date: str = '', **kwargs) -> DocCfg:
+
+def deutsche_bank_doc(id: str, note: str, date: str = '', **kwargs) -> DocCfg:
     return DocCfg(id=id, author=DEUTSCHE_BANK, date=date, note=note, **kwargs)
 
 
-def epstein_will(id: str, date: str = '', executors: list[str] | None = None, note: str = '', **kwargs) -> DocCfg:
+def epstein_will(
+    id: str,
+    date: str = '',
+    executors: list[str] | None = None,
+    note: str = '',
+    **kwargs
+) -> DocCfg:
     note = join_truthy(f"Epstein last will and testament", note)
 
     if executors:
@@ -44,12 +57,15 @@ MONEY_CFGS = [
     letter(id='026134', recipients=['George'], note=f'about opportunities to buy banks in Ukraine'),
 
     # DOJ files
+    DocCfg(id='EFTA00007781', display_text='paychecks signed by Epstein deposited at Colonial Bank', date='2005-08-12'),
+    DocCfg(id='EFTA00000476', display_text='photo of JEFFREY EPSTEIN CASH DISBURSEMENTS', date='2006-09-01', is_interesting=False),
+    DocCfg(id='EFTA00606411', display_text='proposed jet ownership structure flowchart', date='2017-01-01', date_uncertain='guess'),
     DocCfg(id='EFTA01282282', author=BUTTERFLY_TRUST, note=f"almost completely redacted list of beneficiaries"),
     DocCfg(id='EFTA00803405', author=HONEYCOMB_ASSET_MANAGEMENT, note="fund brochure"),
     DocCfg(
         id='EFTA00006069',
         author='NES LLC',
-        display_text='W-2 tax form issued for <REDACTED> employee whom Epstein paid $185,323 in 2005',
+        display_text='W-2 tax form issued for <REDACTED> employee whom Epstein paid $185,323',
         date='2006-01-01'
     ),
     DocCfg(
@@ -65,9 +81,10 @@ MONEY_CFGS = [
         note='report on investigations of Epstein related drug money laundering',
         is_interesting=10,
     ),
-    deutsche_bank('EFTA01681865', "explanations of all of Epstein's large payments prepared for DOJ", '2019-09-12', is_interesting=20),
-    deutsche_bank('EFTA00101280', f"Epstein's {DEUTSCHE_BANK} accounts", show_full_panel=True),
-    deutsche_bank('EFTA01361270', f"$60,000 transfer from {SOUTHERN_TRUST_COMPANY} to {BEN_GOERTZEL}'s Novamente", date='2014-01-02'),
+    deutsche_bank_doc('EFTA01361270', f"$60,000 transfer from {SOUTHERN_TRUST_COMPANY} to {BEN_GOERTZEL}'s Novamente", date='2014-01-02'),
+    deutsche_bank_doc('EFTA00101280', f"Epstein's {DEUTSCHE_BANK} accounts", show_full_panel=True),
+    deutsche_bank_doc('EFTA01681865', "explanations of all of Epstein's large payments prepared for DOJ", '2019-09-12', is_interesting=20),
+    deutsche_bank_doc('EFTA01285411', f"statement for Epstein's {SOUTHERN_TRUST_COMPANY} showing $82 million balance"),
     DocCfg(
         id='EFTA01111057',
         author=MORTIMER_ZUCKERMAN,
@@ -82,7 +99,6 @@ MONEY_CFGS = [
         note=f'due diligence report on {MC2_MODEL_MGMT}',
     ),
     DocCfg(id='EFTA01478313', note=f'list of investments (maybe of {LEON_BLACK})', date='2016-03-31'),
-    DocCfg(id='EFTA01285411', note=f"bank statement for Epstein's {SOUTHERN_TRUST_COMPANY} showing $82 million balance"),
     DocCfg(id='EFTA01222951', note=f"credit card expenses for Carlos L Rodriguez using Plum Card", date='2019-02-12'),
     DocCfg(
         id='EFTA00257211',
@@ -97,23 +113,21 @@ MONEY_CFGS = [
     DocCfg(id='EFTA01266457', note=f"Epstein 2018 Trust ({KATHRYN_RUEMMLER}, {DARREN_INDYKE}, {RICHARD_KAHN})"),
     DocCfg(
         id='EFTA01266204',
-        note=f"Epstein The 1953 Trust ({DARREN_INDYKE}, {RICHARD_KAHN}) amendment 2 days before death",
+        note=f"Epstein The 1953 Trust ({DARREN_INDYKE}, {RICHARD_KAHN}) bequest amendment 2 days before death",
         date='2019-08-08',
         is_interesting=20,
         truncate_to=(5_500, 15_000),
     ),
-    DocCfg(id='EFTA00299927', note=f"estate plan for {JAMES_CAYNE} found in Epstein's possession"),
     DocCfg(id='EFTA01265973', note="large transfers around time of Epstein arrest", show_full_panel=True),
     DocCfg(id='EFTA01087311', note=f'{LEON_BLACK} Family Partners cash projections'),
     DocCfg(id='EFTA01366011', note=f"memo requesting $3,000 payment to {LASMA_KUHTARSKA}", show_with_name=LASMA_KUHTARSKA),
     DocCfg(id='EFTA01086463', note=f"{MORTIMER_ZUCKERMAN}'s art collection valuations", is_valid_for_name_scan=False),
-    DocCfg(id='EFTA00007781', display_text='paychecks signed by Epstein deposited at Colonial Bank', date='2005-08-12'),
     DocCfg(id='EFTA01273102', note=f"payment from Epstein to {RENATA_BOLOTOVA}'s father's account at Sberbank"),
-    DocCfg(id='EFTA00000476', display_text='photo of JEFFREY EPSTEIN CASH DISBURSEMENTS', date='2006-09-01', is_interesting=False),
     DocCfg(id='EFTA00238499', note='wire transfer to Signature Bank account'),
-    DocCfg(id='EFTA00606411', display_text='proposed jet ownership structure flowchart', date='2017-01-01', date_uncertain='guess'),
     epstein_will('EFTA00016884', '2014-11-18'),
     epstein_will('EFTA00089546', '2007-09-20', [JAMES_CAYNE], 'codicil', non_participants=[JOI_ITO]),
+    inventory('EFTA00299850', 'FILE CABINET ONE'),
+    inventory('EFTA00299927', 'FILE CABINET TWO', f"{JAMES_CAYNE} estate plan"),
 
     # Jeepers, Inc.
     DocCfg(id='EFTA01286368', author=DEUTSCHE_BANK, note=f'bank statements showing receipt of $2 million from {JEEPERS_INC}'),

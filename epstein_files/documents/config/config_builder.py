@@ -178,6 +178,12 @@ def important_messages_pad(id: str, date: str = '') -> DocCfg:
     return DocCfg(id=id, date=date, display_text=display_text)
 
 
+def inventory(id: str, container: str, includes: str = '', **kwargs) -> DocCfg:
+    note = f"inventory of the contents of {container}"
+    note = join_truthy(note, includes, ', includes ')
+    return DocCfg(id=id, note=note, **kwargs)
+
+
 def letter(id: str, author: Name = None, recipients: list[Name] | None = None, note: str = '', date: str = '', **kwargs) -> CommunicationCfg:
     return CommunicationCfg(
         id=id,

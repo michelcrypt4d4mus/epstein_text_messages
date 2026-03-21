@@ -19,9 +19,11 @@ from rich.panel import Panel
 from rich.text import Text
 from rich.table import Table
 
+from epstein_files.documents.config.categories.money import MONEY_OCR_REPAIRS
 from epstein_files.documents.config.doc_cfg import (AUTO_QUOTE_NUM_CHARS, DOC_CHAR_RANGE, EMAIL_TRUNCATE_TO,
      DUPE_TYPE_STRS, NO_TRUNCATE, WHOLE_FILE_CHAR_RANGE, DebugDict, DocCfg, Metadata)
 from epstein_files.documents.config.email_cfg import EmailCfg
+from epstein_files.documents.documents.categories import Interesting
 from epstein_files.documents.documents.file_info import FileInfo
 from epstein_files.documents.documents.search_result import MatchedLine
 from epstein_files.documents.emails.constants import DOJ_EMAIL_OCR_REPAIRS, FALLBACK_TIMESTAMP
@@ -60,7 +62,7 @@ FILENAME_MATCH_STYLES = [
     'spring_green4',
 ]
 
-OCR_REPAIRS = {
+OCR_REPAIRS: OcrRepair = {
     re.compile(r'\.corn\b'): '.com',
     re.compile('ln(adequate|dyke)'): r'In\1',
     'Nil Priell': 'Nili Priell',
@@ -701,6 +703,11 @@ class Document(LoggingEntity):
             line.strip() if self.STRIP_WHITESPACE else line for line in text.split('\n')
             if not (line.startswith(HOUSE_OVERSIGHT) or line.startswith(EFTA_PREFIX))
         ]
+
+        if self._config.category == Interesting.MONEY:
+            self._warn(f"applying MONEY_OCR_REPAIRS")
+            text = self.repair_ocr_text(MONEY_OCR_REPAIRS, '\n'.join(lines))
+            lines = text.split('\n')
 
         self._set_text(text=collapse_newlines('\n'.join(lines)))
 
