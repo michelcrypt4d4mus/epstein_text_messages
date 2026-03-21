@@ -2724,7 +2724,7 @@ HIGHLIGHTED_NAMES = [
             r"(Bob )?Corker",
             r"(Brett )?Kavanau?gh",
             r"Broidy",
-            r"(?<!Merwin\sDela\s)(Ted\s+)?Cruz",
+            r"(?<!(e|\s)la\s)(Ted\s+)?Cruz",
             r"Devin Nunes",
             r"Erik Prince",
             r"Gary Cohn",
