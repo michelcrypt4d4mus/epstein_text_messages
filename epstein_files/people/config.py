@@ -1165,6 +1165,7 @@ HIGHLIGHTED_NAMES = [
         label='Epstein',
         style=EPSTEIN_COLOR,
         entities=[
+            Entity('358 El Brillo Way', "Epstein's address in Palm Beach", match_partial=None),
             Entity('sultan175', f"Epstein's account name on Match.com", is_emailer=False),
             Organization(
                 f"{ASIA_GATEWAY} Limited",
