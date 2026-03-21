@@ -1048,7 +1048,7 @@ HIGHLIGHTED_NAMES = [
             Entity('Carluz N. Toylo', 'employee'),
             Entity(CECILIA_STEEN, f'Epstein assistant, moved to Dubai to work for money launderers (?)'),
             Entity(DAPHNE_WALLACE, "LSJE accountant", r"Da.hne Wallace", match_partial=None),
-            Entity(DAVID_RODGERS, "Epstein's pilot", match_partial=None),
+            Entity(DAVID_RODGERS, "Epstein's pilot", r"David Rod?gers?", match_partial=None),
             Entity(EDUARDO_ROBLES, "home builder at Creative Kingdom Dubai", r"Ed(uardo)? Robles", match_partial=None),
             Entity(ERIC_ROTH, "jet decorator at International Jet", match_partial=None),
             Entity(GWENDOLYN_BECK, "Epstein fund manager in the 90s, ran for Congress", match_partial='first'),
@@ -1321,7 +1321,7 @@ HIGHLIGHTED_NAMES = [
             Entity(
                 RICHARD_KAHN,
                 "Epstein's accountant and estate executor",
-                r"rich(ard)? kahn?",
+                r"rich(ard)?( D(avid|\.)?)? kahn?",
                 url='https://en.wikipedia.org/wiki/Estate_of_Jeffrey_Epstein',
             ),
         ],

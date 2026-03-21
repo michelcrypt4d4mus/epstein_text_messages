@@ -354,9 +354,9 @@ class Document(LoggingEntity):
         char_range = self.char_range_to_display or DOC_CHAR_RANGE
         display_chars = self.display_text
 
-        # pre-truncate very long files for speed
+        # pre-truncate very long files for speed with a few chars headroom to work with
         if char_range and char_range[1] > 0:
-            display_chars = extract_range(display_chars, char_range[1] + 200)  # a few chars headroom to work with
+            display_chars = extract_range(display_chars, char_range[1] + 200)
 
         # Avoid trying to add hyperlinks etc. to huge files
         if len(display_chars) < MAX_LEN_FOR_HYPERLINKS:
