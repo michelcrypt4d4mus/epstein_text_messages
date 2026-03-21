@@ -7,6 +7,7 @@ from epstein_files.documents.config.categories.crypto import VALAR_FUND
 from epstein_files.documents.config.config_builder import inventory, letter
 from epstein_files.documents.config.doc_cfg import DocCfg
 from epstein_files.documents.config.email_cfg import EmailCfg
+from epstein_files.people.entity import epstein_trust_name
 from epstein_files.people.names import *
 from epstein_files.util.constant.strings import *
 from epstein_files.util.helpers.string_helper import join_truthy
@@ -33,7 +34,7 @@ def epstein_will(
     note = join_truthy(f"Epstein last will and testament", note)
 
     if trust:
-        note += f" bequests of {trust}"
+        note += f" bequests of {epstein_trust_name(trust)}"
         executor_label = 'trustee'
     else:
         executor_label = 'executor'
@@ -115,7 +116,7 @@ MONEY_CFGS = [
         note=f"call log shows Bank Hapoalim director / future crypto bank SBNY founder Scott Shay selling Epstein investment ideas weeks after Hapoalim money laundering issues, also Steve Cohen and Barry Diller",
         truncate_to=7_700,
     ),
-    epstein_will('EFTA01266380', '2014-11-18', '2014 Trust', [DARREN_INDYKE, JES_STALEY, DAVID_MITCHELL], truncate_to=(4_500, 13_000)),
+    epstein_will('EFTA01266380', '2014-11-18', '2014', [DARREN_INDYKE, JES_STALEY, DAVID_MITCHELL], truncate_to=(4_500, 13_000)),
     DocCfg(id='EFTA01583819', note=f"Epstein had control of {JAMES_CAYNE}'s assets"),
     DocCfg(id='EFTA00099424', note=f"Epstein 2017 Trust (Eva Andersson Dubin, {DARREN_INDYKE}, {RICHARD_KAHN})"),
     DocCfg(id='EFTA01266457', note=f"Epstein 2018 Trust ({KATHRYN_RUEMMLER}, {DARREN_INDYKE}, {RICHARD_KAHN})"),
