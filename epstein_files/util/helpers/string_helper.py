@@ -13,13 +13,14 @@ EMOJI_REGEX = re.compile(r"(?:^|\s)([:;=][-^]?[oODP()]|[oO()][-^]?[:=])(?=$|\s)"
 INTEGER_REGEX = re.compile(r'^\d+$')
 MULTINEWLINE_REGEX = re.compile(r"\n{2,}")
 MULTISPACE_REGEX = re.compile(" +")
+PDFALYZER_IMAGE_PANEL_REGEX = re.compile(r"\n╭─* Page \d+, Image \d+.*?╯\n?", re.DOTALL)
+TIMESTAMP_SECONDS_REGEX = re.compile(r":\d{2}(\.\d+)?([-+]\d{2}:\d{2})?$")
+WHITESPACE_REGEX = re.compile(r"\s{2,}|\t|\n", re.MULTILINE)
+
 HAS_LETTER_LIST_REGEX = re.compile(r"^a[.)] .{,1900}\nb[.)] ", re.DOTALL | re.IGNORECASE | re.MULTILINE)
 LETTER_LIST_ITEM_REGEX = re.compile(r"^([a-z][.)] .{,1900}?)(?=\n[a-z][.)] |\Z)", re.DOTALL | re.IGNORECASE | re.MULTILINE)
 HAS_NUMBERED_LIST_REGEX = re.compile(r"^2\. .{,1900}\n3\. ", re.DOTALL | re.MULTILINE)
 NUMBERED_LIST_ITEM_REGEX = re.compile(r"^(\d+\. .{,1900}?)(?=\n\d+\.|\Z)", re.DOTALL | re.MULTILINE)
-PDFALYZER_IMAGE_PANEL_REGEX = re.compile(r"\n╭─* Page \d+, Image \d+.*?╯\n?", re.DOTALL)
-TIMESTAMP_SECONDS_REGEX = re.compile(r":\d{2}(\.\d+)?([-+]\d{2}:\d{2})?$")
-WHITESPACE_REGEX = re.compile(r"\s{2,}|\t|\n", re.MULTILINE)
 
 WHITESPACE_CHAR = r"[-_.\s]*"
 DATE_LENGTH = len('2025-05-05')
