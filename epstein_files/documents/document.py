@@ -52,6 +52,7 @@ from epstein_files.util.logging_entity import LoggingEntity
 CLOSE_PROPERTIES_CHAR = ']'
 HOUSE_OVERSIGHT = HOUSE_OVERSIGHT_PREFIX.replace('_', ' ').strip()
 DOC_PANEL_BG_COLOR = 'grey7'
+MAX_LEN_FOR_HYPERLINKS = 20_000
 
 FILENAME_MATCH_STYLES = [
     'dark_green',
@@ -357,10 +358,14 @@ class Document(LoggingEntity):
         if char_range and char_range[1] > 0:
             display_chars = extract_range(display_chars, char_range[1] + 200)  # a few chars headroom to work with
 
-        if not args.no_doublespace:
-            display_chars = doublespace_lines(display_chars)
+        # Avoid trying to add hyperlinks etc. to huge files
+        if len(display_chars) < MAX_LEN_FOR_HYPERLINKS:
+            if not args.no_doublespace:
+                display_chars = doublespace_lines(display_chars)
 
-        display_txt = hyperlink_text(display_chars)
+            display_txt = hyperlink_text(display_chars)
+        else:
+            display_txt = Text(display_chars)
 
         if self.text_style:
             display_txt.stylize(self.text_style)
