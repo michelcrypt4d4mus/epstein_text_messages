@@ -355,7 +355,7 @@ class Document(LoggingEntity):
 
         # pre-truncate very long files for speed
         if char_range and char_range[1] > 0:
-            display_chars = extract_range(display_chars, (char_range[0] - 200, char_range[1] + 200))  # a few chars headroom to work with
+            display_chars = extract_range(display_chars, char_range[1] + 200)  # a few chars headroom to work with
 
         if not args.no_doublespace:
             display_chars = doublespace_lines(display_chars)
