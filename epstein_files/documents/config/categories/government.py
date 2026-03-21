@@ -138,14 +138,6 @@ GOVERNMENT_CFGS = [
         "Epstein's chef claims Donald Trump came to Epstein's house for dinner",
         truncate_to=(6_000, 7_500),
     ),
-    EmailCfg(
-        id='EFTA01657299',
-        author=FBI,
-        recipients=[FBI],
-        note=f'interview with {JEAN_LUC_BRUNEL} Sergio Cordero',
-        highlight_quote='Brunel uses MC2 as a legitimate transport agency of underage girls into America for purposes of sex',
-        truncate_to=AUTO,
-    ),
     fbi_interview('EFTA00101927', None, f"claims Glenn and {EVA_DUBIN}'s Swiss au pair was being held against her will"),
     fbi_interview('EFTA00159321', None, f'covers {PAOLO_ZAMPOLLI}, Epstein, and the possibility Epstein introduced Melania to Donald Trump'),
     # FBI reports
@@ -230,6 +222,14 @@ GOVERNMENT_CFGS = [
         note=f'background check on Tim Draper and {MASHA_DROKOVA}',
         show_full_panel=True,
         truncate_to=NO_TRUNCATE,  # TODO this shouldn't be necessary?
+    ),
+    EmailCfg(
+        id='EFTA01657299',
+        author=FBI,
+        highlight_quote='Brunel uses MC2 as a legitimate transport agency of underage girls into America for purposes of sex',
+        note=f'interview with {JEAN_LUC_BRUNEL} partner Sergio Cordero',
+        recipients=[FBI],
+        truncate_to=(10_200, 14_500),
     ),
     EmailCfg(id='EFTA00036630', author=BUREAU_OF_PRISONS, recipients=[BUREAU_OF_PRISONS], note='about cameras'),
     EmailCfg(id='EFTA02730483', author=FBI, date='2023-07-11T08:25:00', date_uncertain='actually reply timestamp'),
