@@ -226,7 +226,7 @@ elif args.suppress_logs:
 elif not env_log_level:
     set_log_level(logging.WARNING)
 
-logger.warning(f"Building site '{args._site}' to '{Site.html_output_path(args._site)}'\n")
+logger.warning(f"Building site '{args._site}' to '{Site.html_output_path(args._site)}'")
 logger.debug(f'Log level set to {logger.level}...')
 args_str = ',\n'.join([f"{k}={v}" for k, v in vars(args).items() if v])
 logger.debug(f"'{parser.prog}' script invoked\n{args_str}")
