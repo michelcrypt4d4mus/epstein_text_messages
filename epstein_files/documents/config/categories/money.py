@@ -108,7 +108,7 @@ MONEY_CFGS = [
     DocCfg(id='EFTA01478313', note=f'list of investments (maybe of {LEON_BLACK})', date='2016-03-31'),
     DocCfg(id='EFTA01222951', note=f"credit card expenses for Carlos L Rodriguez using Plum Card", date='2019-02-12'),
     DocCfg(id='EFTA01583819', note=f"Epstein had control of {JAMES_CAYNE}'s assets"),
-    DocCfg(id='EFTA01266457', note=f"Epstein 2018 Trust ({KATHRYN_RUEMMLER}, {DARREN_INDYKE}, {RICHARD_KAHN})"),
+    # DocCfg(id='EFTA01266457', note=f"Epstein 2018 Trust ({KATHRYN_RUEMMLER}, {DARREN_INDYKE}, {RICHARD_KAHN})"),
     DocCfg(id='EFTA01265973', note="large transfers around time of Epstein arrest", show_full_panel=True),
     DocCfg(id='EFTA01087311', note=f'{LEON_BLACK} Family Partners cash projections'),
     DocCfg(id='EFTA01086463', note=f"{MORTIMER_ZUCKERMAN}'s art collection valuations", is_valid_for_name_scan=False),
@@ -119,6 +119,13 @@ MONEY_CFGS = [
     deutsche_bank_doc('EFTA00101280', f"Epstein's {DEUTSCHE_BANK} accounts", show_full_panel=True),
     deutsche_bank_doc('EFTA01681865', "explanations of all of Epstein's large payments prepared for DOJ", '2019-09-12', is_interesting=20),
     deutsche_bank_doc('EFTA01285411', f"statement for Epstein's {SOUTHERN_TRUST_COMPANY} showing $82 million balance"),
+    epstein_will(
+        'EFTA01266457',
+        '2018-05-08',
+        [DARREN_INDYKE, RICHARD_KAHN, KATHRYN_RUEMMLER],
+        '2018',
+        truncate_to=(4_500, 17_000),
+    ),
     epstein_will(
         'EFTA01266204',
         '2019-08-08',

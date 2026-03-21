@@ -705,7 +705,7 @@ class Document(LoggingEntity):
         ]
 
         if self._config.category == Interesting.MONEY:
-            self._warn(f"applying MONEY_OCR_REPAIRS")
+            self._debug_log(f"applying MONEY_OCR_REPAIRS")
             text = self.repair_ocr_text(MONEY_OCR_REPAIRS, '\n'.join(lines))
             lines = text.split('\n')
 
