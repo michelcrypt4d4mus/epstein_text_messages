@@ -273,6 +273,7 @@ HIGHLIGHTED_NAMES = [
             Entity('Richard Merkin', "painter, illustrator and arts educator"),
             Entity('Steven Gaydos', "American screenwriter and journalist"),
             Entity(STEVEN_PFEIFFER, "Associate Director at Independent Filmmaker Project (IFP)"),
+            Entity(STEVE_TISCH, f'owner of the New York Giants football team'),
             Entity('Tommy Mattolla', 'former CEO of Sony, ex-husband of Mariah Carey'),
             Entity('Val Kilmer', 'famous movie actor', match_partial=None),
             Entity(WOODY_ALLEN, f'filmmaker who married his adopted daughter {SOON_YI_PREVIN}', match_partial='first', url=WIKIPEDIA),
@@ -1093,6 +1094,7 @@ HIGHLIGHTED_NAMES = [
             Entity('Sarah Kellen', "now Sarah Vickers, named co-conspirator", r"(Sarah )?(Kellen|Vickers)"),
             Entity('Sean J. Lancaster', "airplane reseller"),
             Entity('Steve Griffis', 'building employee', r"Steve (Griffis|\(from downstairs)", aliases=['Steve from downstairs']),
+            Entity(STEVE_SCULLY, f"Epstein island employee 1999-2005, quit after seeing young girls", match_partial=None),
             Entity(
                 STORY_COWLES,
                 "Epstein's male assistant, named co-conspirator, nephew of Emilia and Pepe Fanjul",
@@ -1572,7 +1574,7 @@ HIGHLIGHTED_NAMES = [
                 url='https://prospect.org/2026/02/26/newspapers-did-not-kill-themselves-jeffrey-epstein-mort-zuckerman-daily-news/',
             ),
             Entity(NATHANIEL_AUGUST, 'fund manager of Mangrove Partners', match_partial=None),
-            Entity(PAUL_BARRETT, r"Alpha Group Capital", r"Paul Barre(d|tt)|Barrett,? Paul( S)?", match_partial=None),
+            Entity(PAUL_BARRETT, r"Alpha Group Capital", r"Paul Barre(d|tt?)|Barrett,? Paul( S)?", match_partial=None),
             Entity('Paul Tudor Jones', "hedge fund guy, Robin Hood Foundation founder", match_partial='first'),
             Entity('Richard Joslin', f"CFO of {LEON_BLACK}'s {ELYSIUM_MANAGEMENT}"),
             Entity('Skip Rimer', "Michael Milken's Milken Institute"),
@@ -1590,6 +1592,7 @@ HIGHLIGHTED_NAMES = [
             Entity('Stephen Schwarzman', 'CEO of Blackstone', r"(Ste(phen|ve) )?Schwart?z?man"),
             Entity(TANCREDI_MARCHIOLO, "hedge fund manager, Bremner Capital Management", match_partial='both'),
             Entity('Ted Forstmann', "private equity, founder of Forstmann Little & co."),
+            Entity('Ted Serure', f"Enhanced Education account manager at {DEUTSCHE_BANK}"),
             Entity('Vahe Stepanian', "Cetera Financial Group", match_partial='both'),
 
             # Organizations
@@ -2963,7 +2966,7 @@ HIGHLIGHTED_NAMES = [
                 url=SUBSTACK_POST_INSIGHTSPOD_URL,
             ),
             Entity(DASHA_GRUPMAN, 'recruiter of girls for Epstein', r"Da(ry|sh)a Grupman"),
-            Entity('Ekaterina Gusarova', f'Instagram model {QUESTION_MARKS}', r"(Ekaterina|Katya)? Gusm?arova", aliases=['Katya']),
+            Entity(EKATERINA_GUSAROVA, f'Instagram model {QUESTION_MARKS}', r"(Ekaterina|Katya)? Gusm?arova", aliases=['Katya']),
             Entity("Gul'sum Osmanova", QUESTION_MARKS, r"(Gul'?sum )?Osmanova", email_addresses=['g.a.osmanova@gmail.com']),
             Entity('Irina Vodolazova', 'Russian model', match_partial='both'),
             Entity(JESSICA_BANKS, f'co-founder of {QUESTION_MARKS}', match_partial=None),

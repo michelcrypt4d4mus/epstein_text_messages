@@ -491,6 +491,25 @@ GIRLS_CFGS = [
         show_with_name=KARYNA_SHULIAK,
     ),
 
+    # Katya Gusarova
+    EmailCfg(
+        id='EFTA00959489',
+        highlight_quote='she is a little freaked by the age difference',
+        note=f'girl is {EKATERINA_GUSAROVA}',
+        show_with_name=EKATERINA_GUSAROVA,
+    ),
+    EmailCfg(
+        id='EFTA00921172',
+        highlight_quote="We had sex,I did massage for u non-stop,I took a bath with u and your girls even ,if I don't like it",
+    ),
+    EmailCfg(
+        id='EFTA02037406',
+        note=f"{STEVE_TISCH}, {EKATERINA_GUSAROVA}, {JEAN_LUC_BRUNEL} attending",
+        show_with_name=EKATERINA_GUSAROVA,
+    ),
+    EmailCfg(id='EFTA00695655', author=EKATERINA_GUSAROVA, comment='related to EFTA00680327'),
+    EmailCfg(id='EFTA00680327', highlight_quote="Steve Tisch didn't email me yet"),
+
     # Quotes
     EmailCfg(
         id='EFTA02504370',
