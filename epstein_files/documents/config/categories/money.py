@@ -148,6 +148,7 @@ MONEY_CFGS = [
     memo('EFTA01366011', DARREN_INDYKE, f"$3,000 expense reimbursement for {LASMA_KUHTARSKA}", show_with_name=LASMA_KUHTARSKA),  # TODO: to "marjorie"
 
     # Jeepers, Inc.
+    DocCfg(id='EFTA01255549', note=f'due diligence on {JEEPERS_INC} amusement park owned by Epstein', date='2018-09-27'),
     DocCfg(id='EFTA01286368', author=DEUTSCHE_BANK, note=f'bank statements showing receipt of $2 million from {JEEPERS_INC}'),
     EmailCfg(id='EFTA01424585', note=f'{DEUTSCHE_BANK} anti-money laundering review of "high risk" {JEEPERS_INC}'),
     EmailCfg(

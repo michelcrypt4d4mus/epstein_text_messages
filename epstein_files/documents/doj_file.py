@@ -17,7 +17,7 @@ from epstein_files.util.helpers.data_helpers import coerce_utc_strict, prefix_ke
 from epstein_files.util.helpers.rich_helpers import RAINBOW, no_bold
 from epstein_files.util.helpers.string_helper import strip_pdfalyzer_panels
 
-BAD_LINE_REGEX = re.compile(r"^(SUBJECT TO PROTECTIVE ORDER PARAGRAPHS .*|UNCLASSIFIED(//FO(LI|U)[O0])?)$")
+BAD_LINE_REGEX = re.compile(r"^(SUBJECT TO PROTECTIVE ORDER PARAGRAPHS .*|SDNY_GM_\d+|UNCLASSIFIED(//FO(LI|U)[O0])?)$")
 BAD_OCR_EMPTY_LENGTH = 150
 EMPTY_LENGTH = 15
 IGNORE_LINE_REGEX = re.compile(r"^(\d+\n?|[\s+❑]{2,})$")

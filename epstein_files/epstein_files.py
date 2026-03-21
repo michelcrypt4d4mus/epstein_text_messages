@@ -36,7 +36,7 @@ from epstein_files.util.constant.strings import *
 from epstein_files.util.constants import *
 from epstein_files.util.env import SLOW_FILE_SECONDS, args, logger
 from epstein_files.util.helpers.data_helpers import flatten, json_safe, sort_dict_by_keys, uniquify, uniq_sorted
-from epstein_files.util.helpers.file_helper import all_txt_paths, doj_txt_paths, extract_file_id, file_size_str
+from epstein_files.util.helpers.file_helper import all_txt_paths, doj_txt_paths, extract_file_id, file_size_str, modified_at
 from epstein_files.util.timer import Timer
 
 # Lists of properties to copy into duplicate documents (will be preceded with 'extracted_')
@@ -306,6 +306,10 @@ class EpsteinFiles(DocTypesMixin):
         if (new_paths := self._new_files()):
             msg +=  f" (also loading {len(new_paths)} new files)"
             doc_paths += new_paths
+
+        if (updated_paths := [p for p in all_txt_paths() if modified_at(p) > modified_at(args.pickle_path)]):
+            msg += f" (also reloading {len(updated_paths)} files modified since last pickle save)"
+            doc_paths += updated_paths
 
         logger.warning(msg)
         repaired_docs = self._load_file_paths(doc_paths)

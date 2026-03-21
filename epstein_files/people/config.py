@@ -1638,7 +1638,7 @@ HIGHLIGHTED_NAMES = [
             Organization.well_known('Goldman Sachs Investment Management Division'),
             Organization.well_known('Invesco'),
             Organization.well_known('Morgan Stanley'),
-            Organization.well_known('S&P'),
+            Organization.well_known('S&P', emailer_pattern=r"S&P(\s*500)?"),
             Organization.well_known('Standard Chartered'),
             Organization.well_known(UBS),
             acronym("Grantor Retained Annuity Trust", "tax shelter structure favoured by Epstein"),
