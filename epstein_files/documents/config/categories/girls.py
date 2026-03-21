@@ -1,6 +1,6 @@
 from epstein_files.documents.documents.categories import Interesting, Neutral, Uninteresting
 from epstein_files.documents.doj_files.full_text import EFTA00009622_TEXT
-from epstein_files.documents.config.communication_cfg import CommunicationCfg, imessage_log, imessage_screenshot, skype_log, whatsapp_log
+from epstein_files.documents.config.communication_cfg import CommunicationCfg, TextCfg, imessage_log, imessage_screenshot, skype_log, whatsapp_log
 from epstein_files.documents.config.config_builder import letter
 from epstein_files.documents.config.doc_cfg import NO_TRUNCATE, DocCfg
 from epstein_files.documents.config.email_cfg import EmailCfg
@@ -684,6 +684,14 @@ GIRLS_CFGS = [
     EmailCfg(id='EFTA00964428', comment=JULIA_SANTOS + ' Valdson'),
     EmailCfg(id='EFTA02398135', comment=JULIA_SANTOS + ' "Sochi"'),
     EmailCfg(id='EFTA00766770'),
+
+    # Text msg
+    TextCfg(
+        id='EFTA00509258',
+        highlight_quote="The kid » couldn't have done bikini wax cause hair are « too short",
+        note=f'grooming a new girl with a "pornhub introduction"',
+        recipients=['Harry Fish', 'Karin', EVA_DUBIN, TERJE_ROD_LARSEN],
+    ),
 
     # Immigration
     EmailCfg(id='EFTA02652017', note="inquiry about someone's immigration asylum application", is_interesting=True),

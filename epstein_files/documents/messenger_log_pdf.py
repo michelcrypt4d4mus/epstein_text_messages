@@ -5,13 +5,13 @@ from datetime import datetime
 
 from epstein_files.documents.messenger_log import MessengerLog
 from epstein_files.documents.imessage.text_message import TextMessage
-from epstein_files.people.names import JEFFREY_EPSTEIN, LAWRENCE_KRAUSS, STEVE_BANNON
+from epstein_files.people.names import JEFFREY_EPSTEIN, LAWRENCE_KRAUSS, STEVE_BANNON, TERJE_ROD_LARSEN
 from epstein_files.util.env import args
 from epstein_files.util.helpers.data_helpers import coerce_utc
 from epstein_files.util.logging import logger
 from epstein_files.util.helpers.string_helper import collapse_whitespace, indented, quote
 
-BRACKET_NUM_PATTERN = r"\s*\[?[\dIl]+\]?\s*"
+BRACKET_NUM_PATTERN = r"\s*\[?[\dIl]*\]?\s*"
 DATE_PATTERN = r"(?P<timestamp>\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2})\s+\(?UTC\)?" + fr"(?:{BRACKET_NUM_PATTERN})?"
 SENDER_PATTERN = r"\s*Sender:(?P<sender>.*?)Participants:?(?P<participants>(\s*?|.*?\))$)"
 MSG_REGEX = re.compile(fr'iMessage\s+(?:{BRACKET_NUM_PATTERN})?{DATE_PATTERN}{SENDER_PATTERN}(?P<msg>.*?)(?=iMessage|NYCO24362|SMS)', re.DOTALL | re.M)
@@ -59,6 +59,8 @@ class MessengerLogPdf(MessengerLog):
                 sender = STEVE_BANNON
             elif self.file_id == 'EFTA00508054' and sender == 'Lawrence':
                 sender = LAWRENCE_KRAUSS
+            elif sender == 'Terje':
+                sender = TERJE_ROD_LARSEN
             elif not VALID_SENDER_REGEX.search(sender):
                 self._log(f"text message sender '{sender}' is not a valid name")
                 sender = None
