@@ -3520,7 +3520,7 @@ HIGHLIGHTED_NAMES = [
             r"ballerina",
             r"Beautify and the Beast",
             r"butt plug",
-            r"(child )?porn(ography)?",
+            r"(child )?porn(hub|ography)?",
             r"Cinderella",
             r"condom",
             r"dancer",
