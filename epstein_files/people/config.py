@@ -1323,11 +1323,11 @@ HIGHLIGHTED_NAMES = [
             ),
             Entity(EMAD_HANNA, f"Project controller for {RICHARD_KAHN}'s HBRK Associates", match_partial=None),
             Entity(HENRY_JARECKI, 'philanthropist, previous metals guy, owned neighboring island', match_partial=None),
-            Entity("Michelle Fern Saipher", f"wife of {DARREN_INDYKE}", r"Michelle( Fern)? Saipher"),
+            Entity("Michelle Fern Saipher", f"wife of {DARREN_INDYKE}", r"Michelle( F(ern|\.)?)? Saipher"),
             Entity(
                 RICHARD_KAHN,
                 "Epstein's accountant and estate executor",
-                r"rich(ard)?( D(avid|\.)?)? kahn?",
+                r"Rich(ard)? (D(avid|\.)? )?Kahn?",
                 url='https://en.wikipedia.org/wiki/Estate_of_Jeffrey_Epstein',
             ),
         ],
@@ -1388,8 +1388,15 @@ HIGHLIGHTED_NAMES = [
                 r"(Thor.{3,8})?Jag[il]and?",
                 url='https://www.bbc.com/news/articles/c5yqr8eggvwo',
             ),
+            Entity(VALDAS_PETREIKIS, f"Lithuanian businessman"),
             Entity('Viktor Yushchenko', 'former president of Ukraine'),
             Entity('Viktor Orban', 'prime minister of Hungary', r"(Vi(c|k)tor )?Orbah?n"),
+            acronym('European Central Bank'),
+            acronym(
+                INTERNATIONAL_PEACE_INSTITUTE,
+                "gave jobs to Epstein's girls",
+                url='https://apnews.com/article/jeffrey-epstein-kevin-rudd-oslo-crime-think-tanks-ca62b1c799d2cb3bb346afcf4dfec355',
+            ),
             Organization('AfD', 'right wing German political party'),
             Organization('Global Counsel', f"failed strategic consultancy / lobbying firm of {PETER_MANDELSON}"),
             Organization(
@@ -1402,12 +1409,6 @@ HIGHLIGHTED_NAMES = [
             ),
             Organization('Zug', "city in Switzerland known as a hub for crypto and dodgy finance"),
             Organization.well_known('Nobel Charitable Trust'),
-            acronym('European Central Bank'),
-            acronym(
-                INTERNATIONAL_PEACE_INSTITUTE,
-                "gave jobs to Epstein's girls",
-                url='https://apnews.com/article/jeffrey-epstein-kevin-rudd-oslo-crime-think-tanks-ca62b1c799d2cb3bb346afcf4dfec355',
-            ),
         ],
         patterns=[
             r"Aegean( Sea)?",
@@ -1549,7 +1550,7 @@ HIGHLIGHTED_NAMES = [
             Entity(
                 LEON_BLACK,
                 'Apollo CEO, paid Epstein more than $150 million for "tax advice", serious allegations by multiple Epstein victims',
-                r"Leon\s*Black?|(?<!Marc )Leon(?! (Botstein|Jaworski|Wieseltier))",
+                r"Leon\s*(D\.? )?Black?|(?<!Marc )Leon(?!\s(Botstein|Jaworski|Wieseltier))",
                 match_partial=None,
                 url='https://x.com/kevinnbass/status/2027255769595302219',
             ),
@@ -2562,7 +2563,7 @@ HIGHLIGHTED_NAMES = [
                 'model scout funded by Epstein to recruit in eastern Europe',
                 url='https://en.wikipedia.org/wiki/Daniel_Siad#Connection_to_Epstein_and_Brunel',
             ),
-            Entity('Dite Anata', 'model, holistic sanctuary enjoyoor', url=DITE_ANATA_JUILLIARD_URL),
+            Entity('Dite Anata', 'model, holistic sanctuary enjoyoor', aliases=['Dite Antanaityte'], url=DITE_ANATA_JUILLIARD_URL),
             Entity(
                 FAITH_KATES,
                 "Next Models co-founder",
@@ -3446,7 +3447,7 @@ HIGHLIGHTED_NAMES = [
             Entity(
                 EVA_DUBIN,
                 f"Epstein's ex-gf now married to {GLENN_DUBIN}, doctor at {MOUNT_SINAI}",
-                r"Eva( Anderss?on)? Dubin",
+                r"Eva( Birgitta)?( Anderss?on)? Dubin",
                 aliases=['Eva Andersson'],
                 match_partial=None,
                 url=EPSTEIN_DOCTORS_LINKS,
@@ -3610,7 +3611,7 @@ HIGHLIGHTED_NAMES = [
             Entity(
                 DAVID_MITCHELL,
                 "New York real estate developer, Mitchell Holdings",
-                r"David( J\.?)? Mitchell",
+                r"David (J\.? )?Mitchell",
                 match_partial=None,
             ),
             Entity(GERALD_BARTON, "Maryland property developer Landmark Land Company", r"(?<!Wes )Barton"),
@@ -3668,7 +3669,7 @@ HIGHLIGHTED_NAMES = [
                 r"g max(1@ellmax.com|well)?|Ghislai?ne|Maxwell",
                 url=WIKIPEDIA,
             ),
-            Entity('Isabel Maxwell', f"sister of Ghislaine, wife of {AL_SECKEL}", match_partial=None),
+            Entity('Isabel Maxwell', f"sister of Ghislaine, wife of {AL_SECKEL}", r"Isabel( Sylvia)? Maxwell", match_partial=None),
             Entity(
                 'Robert Maxwell',
                 f"father of Ghislaine, British / Russian / Israeli agent, financial fraudster, mysterious death",

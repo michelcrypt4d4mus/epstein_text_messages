@@ -134,7 +134,6 @@ MISC_CFGS = [
     letter(id='EFTA00007609', recipients=['Alberto Pinto'], duplicate_ids=['EFTA00007582']),
     skype_log('032210', recipients=['linkspirit'], is_interesting=True),
     skype_log('018224', recipients=['linkspirit', LAWRENCE_KRAUSS], is_interesting=True),  # we don't know who linkspirit is yet
-    skype_log('EFTA01617727'),
     skype_log(
         id='EFTA00507334',
         recipients=[
@@ -151,4 +150,6 @@ MISC_CFGS = [
         ],
     ),
     skype_log('EFTA01613143', author=MELANIE_WALKER, date='2017-06-24'),
+    skype_log('EFTA01616004', recipients=[VALDAS_PETREIKIS]),
+    skype_log('EFTA01617727'),
 ]

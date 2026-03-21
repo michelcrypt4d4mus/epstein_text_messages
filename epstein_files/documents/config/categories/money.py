@@ -3,10 +3,20 @@ Epstein money related files. This category makes is_interesting = True.
 """
 from epstein_files.documents.config.categories.crypto import VALAR_FUND
 from epstein_files.documents.config.config_builder import letter
-from epstein_files.documents.config.doc_cfg import EMAIL_TRUNCATE_TO, DocCfg
+from epstein_files.documents.config.doc_cfg import DocCfg
 from epstein_files.documents.config.email_cfg import EmailCfg
 from epstein_files.people.names import *
 from epstein_files.util.constant.strings import *
+from epstein_files.util.helpers.string_helper import join_truthy
+
+
+def sar(id: str, author: str, note: str = '') -> DocCfg:
+    return DocCfg(
+        id=id,
+        author=author,
+        note=join_truthy("Suspicious Activity Report (SAR)", note, ' about '),
+        show_full_panel=True,
+    )
 
 
 MONEY_CFGS = [
@@ -155,4 +165,5 @@ MONEY_CFGS = [
     EmailCfg(id='EFTA01802355', note=f'{MC2_MODEL_MGMT} line of credit'),
     EmailCfg(id='EFTA01870235', note=f'{MC2_MODEL_MGMT} line of credit repayment'),
     EmailCfg(id='EFTA01942664', note=f'payment from {MC2_MODEL_MGMT}'),
+    sar('EFTA01648787', JP_MORGAN, "$1.1 billion in Epstein transfers"),
 ]
