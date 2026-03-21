@@ -601,6 +601,15 @@ class DocCfg(LoggingEntity):
             return repr_str
 
     @classmethod
+    def set_categories(cls, cfgs: Sequence['DocCfg'], category: str | Path) -> None:
+        """Set the `category` property for all `cfgs`."""
+        category = category.stem if isinstance(category, Path) else category
+        logger.debug(f"Setting category for {len(cfgs)} configs to '{category}'")
+
+        for cfg in cfgs:
+            cfg.set_category(cfg.category or category)
+
+    @classmethod
     def update_or_create_cfgs(cls, ids: list[str], manual_cfgs: Sequence['DocCfg'], prop: str, new_val: Any) -> None:
         """If a record exists in `existing_cfgs` update it, otherwise create new and append."""
         cfg_dict = {cfg.id: cfg for cfg in manual_cfgs}
@@ -618,12 +627,3 @@ class DocCfg(LoggingEntity):
                 created += 1
 
         logger.info(f"Created {created} {cls.__name__} with {prop}={new_val}, updated {updated} existing.")
-
-    @classmethod
-    def set_categories(cls, cfgs: Sequence['DocCfg'], category: str | Path) -> None:
-        """Set the `category` property for all `cfgs`."""
-        category = category.stem if isinstance(category, Path) else category
-        logger.debug(f"Setting category for {len(cfgs)} configs to '{category}'")
-
-        for cfg in cfgs:
-            cfg.set_category(cfg.category or category)
