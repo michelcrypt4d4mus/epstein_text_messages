@@ -5,7 +5,6 @@ from datetime import datetime
 
 from epstein_files.documents.messenger_log import MessengerLog
 from epstein_files.documents.imessage.text_message import TextMessage
-from epstein_files.output.rich import console
 from epstein_files.people.names import JEFFREY_EPSTEIN, LAWRENCE_KRAUSS, STEVE_BANNON
 from epstein_files.util.env import args
 from epstein_files.util.helpers.data_helpers import coerce_utc

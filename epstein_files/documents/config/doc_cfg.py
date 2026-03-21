@@ -16,9 +16,9 @@ from epstein_files.people.interesting_people import PERSONS_OF_INTEREST
 from epstein_files.people.names import *
 from epstein_files.util.constant.strings import *
 from epstein_files.util.env import args, site_config
+from epstein_files.util.external_link import ExternalLink
 from epstein_files.util.helpers.data_helpers import coerce_utc_strict, without_falsey
 from epstein_files.util.helpers.file_helper import is_doj_file
-from epstein_files.util.external_link import ExternalLink
 from epstein_files.util.helpers.rich_helpers import CharRangeAuto, enclose
 from epstein_files.util.helpers.string_helper import collapse_whitespace, is_bool_prop, join_truthy, quote
 from epstein_files.util.logging import logger
@@ -370,7 +370,7 @@ class DocCfg(LoggingEntity):
 
     @property
     def is_excerpt(self) -> bool:
-        return isinstance(self.truncate_to, tuple)
+        return isinstance(self.truncate_to, tuple) or self.truncate_to == AUTO
 
     @property
     def is_house_file(self) -> bool:

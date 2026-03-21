@@ -16,11 +16,11 @@ class EmailCfg(CommunicationCfg):
         has_uninteresting_bccs (bool): If `True` this email's BCC: recipients will be marked as 'uninteresting'.
         subject (str, optional): Email subject line.
     """
-    platform: Platform = Platform.EMAIL
     actual_text: str | None = None
     fwded_text_after: str | None = None
     has_uninteresting_ccs: bool = False
     has_uninteresting_bccs: bool = False
+    platform: Platform = Platform.EMAIL  # Different default
     subject: str | None = None
 
     PREFIX_NOTE_WITH_CATEGORY: ClassVar[bool] = False

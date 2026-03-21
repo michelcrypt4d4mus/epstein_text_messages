@@ -6,14 +6,13 @@ from datetime import datetime, timezone
 from typing import ClassVar, Sequence
 
 import datefinder
-import dateutil
 from rich.console import Group
 from rich.markup import escape
 from rich.panel import Panel
 from rich.table import Table
 from rich.text import Text
 
-from epstein_files.documents.document import CLOSE_PROPERTIES_CHAR, Document
+from epstein_files.documents.document import Document
 from epstein_files.documents.config.config_builder import build_cfg_from_text
 from epstein_files.documents.config.doc_cfg import DocCfg, Metadata
 from epstein_files.documents.documents.file_info import FileInfo
@@ -23,12 +22,12 @@ from epstein_files.output.rich import build_table, console
 from epstein_files.people.interesting_people import PERSONS_OF_INTEREST
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constants import *
+from epstein_files.util.env import args, site_config
 from epstein_files.util.helpers.data_helpers import days_between, coerce_utc_strict, uniquify, uniq_sorted
 from epstein_files.util.helpers.debugging_helper import tz_debug_str
 from epstein_files.util.helpers.file_helper import FILENAME_LENGTH
 from epstein_files.util.helpers.rich_helpers import extract_range
 from epstein_files.util.helpers.string_helper import DATE_LENGTH, collapse_whitespace, indented
-from epstein_files.util.env import args, site_config
 from epstein_files.util.logging import logger
 
 FIRST_FEW_LINES = 'First Few Lines'
