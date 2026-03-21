@@ -54,7 +54,7 @@ LINK_LINE_REGEX = re.compile(r"^[>• ]*htt")
 LINK_LINE2_REGEX = re.compile(r"^[-\w.%&=/]{5,}$")
 QUOTED_REPLY_LINE_REGEX = re.compile(r'(\nFrom:(.*)|wrote:)\n', re.IGNORECASE)
 REPLY_TEXT_REGEX = re.compile(rf"^(.*?){REPLY_LINE_PATTERN}", re.DOTALL | re.IGNORECASE | re.MULTILINE)
-XML_PLIST_REGEX = re.compile(r"[<=]?\?xml version.*</(plist|xml)>", re.DOTALL)
+XML_PLIST_REGEX = re.compile(r"[<0=oO?]?xml version.{,500}</(plist|xml)>", re.DOTALL)
 
 # Timestamp regexes
 BAD_TIMEZONE_REGEX = re.compile(fr'\((UTC|GMT\+\d\d:\d\d)\)|{REDACTED}')

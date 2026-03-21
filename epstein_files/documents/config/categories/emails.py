@@ -882,6 +882,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00384399', author=LESLEY_GROFF, author_uncertain=True),
     EmailCfg(id='EFTA02254640', author=LESLEY_GROFF, author_uncertain=True),
     EmailCfg(id='EFTA00397335', author=LESLEY_GROFF, author_uncertain=True),
+    EmailCfg(id='EFTA00488887', author=LESLEY_GROFF, author_uncertain=True),
     EmailCfg(id='EFTA02266060', author=LESLEY_GROFF, author_uncertain=True),
     EmailCfg(id='EFTA00552880', author=LESLEY_GROFF, author_uncertain=True),
     EmailCfg(id='EFTA00494858', author=LESLEY_GROFF, author_uncertain=True),
