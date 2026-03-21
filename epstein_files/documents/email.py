@@ -469,7 +469,7 @@ class Email(Communication):
                 self._warn(f"excerpt starts in the header, will may in duplicate header chars (offset={offset})")
                 return self.email_parts.header_txt.append(body_txt[offset:])
             else:
-                return body_txt
+                return self.email_parts.header_txt.append('\n\n').append(body_txt)
         else:
             return super().prettified_txt
 
@@ -821,7 +821,7 @@ class Email(Communication):
         # self._debug_log(f"text after _add_line_breaks:\n\n{text}\n---")
 
         for name, signature_regex in EMAIL_SIGNATURE_REGEXES.items():
-            signature_replacement = f'<...snipped {name.lower()} email signature...>'
+            signature_replacement = snip_msg(f'snipped {name.lower()} email signature')
             text, num_replaced = signature_regex.subn(signature_replacement, text)
             self.signature_substitution_counts[name] = self.signature_substitution_counts.get(name, 0)
             self.signature_substitution_counts[name] += num_replaced

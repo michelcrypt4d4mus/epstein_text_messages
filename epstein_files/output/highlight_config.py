@@ -53,8 +53,8 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         label='dollars',
         style=FINANCIAL_COLOR,
         patterns=[
-            r"\$[\dO,.]+(\s*(bn|[bm](illl?ion|m)?|k|thousand))?( dollars?)?",
-            r"[\d,.]+\s*[bm]illl?ion( dollars?)?( loan)?",
+            r"[€$£][\dO,.]+(\s*(bn|[bm](illl?ion|m)?|k|thousand))?( dollars?)?",
+            r"[\dO,.]+\s*(GBP|euros?|[bm]illl?ion( (dollars|euros)?)?( loan)?)",
         ]
     ),
     HighlightPatterns(
@@ -97,7 +97,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"estate",
             r"fintech",
             r"hedge fund",
-            r"(income )?tax(e[ds])?( code)?",
+            r"(income )?tax(e[ds])?( (abatement|code|return))?",
             r"ISDA",
             r"(?<!Kyara\s)invest(ment|or)s?(\sadvis[eo]r[sy]?)?",
             r"(junk )?bond",

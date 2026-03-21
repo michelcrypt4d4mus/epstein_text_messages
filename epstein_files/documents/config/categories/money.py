@@ -198,6 +198,6 @@ MONEY_CFGS = [
     EmailCfg(id='EFTA01802355', note=f'{MC2_MODEL_MGMT} line of credit'),
     EmailCfg(id='EFTA01870235', note=f'{MC2_MODEL_MGMT} line of credit repayment'),
     EmailCfg(id='EFTA01942664', note=f'payment from {MC2_MODEL_MGMT}'),
-    EmailCfg(id='EFTA01816514', note=f"list of Epstein's outstanding invoices"),
+    EmailCfg(id='EFTA01816514', note=f"$854,598 line of credit for {MC2_MODEL_MGMT}", non_participants=['Gary Gensler'], truncate_to=(2_200, 2_900)),
     sar('EFTA01648787', JP_MORGAN, "$1.1 billion in Epstein transfers"),
 ]

@@ -123,7 +123,7 @@ class SiteConfig(MobileConfig):
         email_body=1,
         info=1,
         other_files_table=2,
-        show_with=8,
+        show_with=5,
         supressed_msg=1,
         text_msgs=2,
     )

@@ -1059,7 +1059,7 @@ HIGHLIGHTED_NAMES = [
             Entity('Carluz N. Toylo', 'employee'),
             Entity(CECILIA_STEEN, f'Epstein assistant, moved to Dubai to work for money launderers (?)'),
             Entity(DAPHNE_WALLACE, "LSJE accountant", r"Da.hne Wallace", match_partial=None),
-            Entity(DAVID_RODGERS, "Epstein's pilot", r"David Rod?gers?", match_partial=None),
+            Entity(DAVID_RODGERS, "Epstein's pilot", r"Dav(e|id) Rod?gers?", match_partial=None),
             Entity(EDUARDO_ROBLES, "home builder at Creative Kingdom Dubai", r"Ed(uardo)? Robles", match_partial=None),
             Entity(ERIC_ROTH, "jet decorator at International Jet", match_partial=None),
             Entity(GWENDOLYN_BECK, "Epstein fund manager in the 90s, ran for Congress", match_partial='first'),
@@ -2727,7 +2727,7 @@ HIGHLIGHTED_NAMES = [
         entities=[
             Entity(
                 'Alex Acosta',
-                "approved Epstein's 2007 sweetheart deal as US attorney, nominated to be Trump's Labor Secretary, resigned over Epstein",
+                "oversaw Epstein's 2007 sweetheart deal, Labor Secretary under Trump, resigned over Epstein",
                 r"(Alex(ander)? )?Acosta",
                 url='https://www.npr.org/2019/07/12/739881163/alexander-acosta-steps-down-as-labor-secretary-amid-epstein-controversy',
             ),
