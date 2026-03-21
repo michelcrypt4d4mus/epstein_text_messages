@@ -232,7 +232,6 @@ GOVERNMENT_CFGS = [
     DocCfg(id='EFTA02730274', note='evidence inventory that appears to have since been deleted from the DOJ website'),
     DocCfg(id='EFTA00263284', note='notes about deceit and sexual manipulation by Australian professor Vincent Bulone', is_interesting=True),
     DocCfg(id='EFTA00001884', note='photo of letter from Virgin Islands DOJ to Epstein', date='2019-03-14'),
-    DocCfg(id='EFTA00074744', note="USVI court filing about Epstein will and estate"),
     DocCfg(id='EFTA00007157', note='victim list and police log'),
     letter('EFTA01653121', FBI, ['USCIS'], "regarding an individual's cooperation in the investigation of Epstein and Maxwell"),
     letter('EFTA00098456', PAUL_G_CASSELL, ['Scotland Yard'], 'International Sex Trafficking by Jeffrey Epstein, contains court filings'),
