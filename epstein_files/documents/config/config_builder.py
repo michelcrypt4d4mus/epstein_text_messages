@@ -200,6 +200,16 @@ def memo(id: str, author: str, note: str, date: str = '', **kwargs) -> DocCfg:
     return DocCfg(id=id, author=author, date=date, note=join_truthy("memo", note, ' about '), **kwargs)
 
 
+def passenger_manifest(id: str, date: str, showing: str = '', **kwargs) -> DocCfg:
+    return DocCfg(
+        id=id,
+        author=JEGE_INC,
+        date=date,
+        note=join_truthy("flight manifest", showing, ' showing '),
+        **kwargs
+    )
+
+
 def phone_bill_cfg(id: str, author: str, dates: str = '', **kwargs) -> DocCfg:
     return DocCfg(
         id=id,

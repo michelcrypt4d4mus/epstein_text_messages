@@ -426,7 +426,6 @@ def epstein_trust(
     trustees: list[str] | None = None,
 ) -> Organization:
     """One of Epstein's financial trust entities."""
-    name = f"Jeffrey E. Epstein {name} Trust" if is_integer(name) else name
     beneficiary_str = ''
 
     if beneficiaries:
@@ -439,7 +438,11 @@ def epstein_trust(
         beneficiary_str = join_truthy(beneficiary_str, f"trustees: " + ', '.join(trustees), ', ')
 
     beneficiary_str = f", {beneficiary_str}" if beneficiary_str else ''
-    return Organization(name, f'Epstein financial trust{beneficiary_str}', emailer_pattern)
+    return Organization(epstein_trust_name(name), f'Epstein financial trust{beneficiary_str}', emailer_pattern)
+
+
+def epstein_trust_name(name: str) -> str:
+    return f"Jeffrey E. Epstein {name} Trust" if is_integer(name) else name
 
 
 def island_employee(name: str, job_title: str) -> Entity:

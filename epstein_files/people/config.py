@@ -3370,6 +3370,7 @@ HIGHLIGHTED_NAMES = [
                 emailer_pattern=r"(Donald\s+(J\.\s+)?)?Trump(ism| (Org(anization)?|Properties)( LLC)?)?|Donald J. Tramp",
                 is_interesting=False,
             ),
+            Entity(JOHN_PHELAN, 'current US Secretary of the Navy', url=WIKIPEDIA),
             Entity('Marla Maples', 'ex-wife of Donald Trump', match_partial='both', url=WIKIPEDIA),
             Entity(
                 'Melania',
