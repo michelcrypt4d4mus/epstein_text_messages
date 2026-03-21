@@ -1566,6 +1566,7 @@ HIGHLIGHTED_NAMES = [
                 'Steve Cohen',
                 'SAC capital, beat the insider trading charges that his managers didn\'t',
                 r"SAC Capital|Steven?( A\.)? Cohen",
+                match_partial=None,
                 url=[
                     'https://www.newyorker.com/magazine/2017/01/16/when-the-feds-went-after-the-hedge-fund-legend-steven-a-cohen',
                     'https://en.wikipedia.org/wiki/Steve_Cohen_(businessman)',
