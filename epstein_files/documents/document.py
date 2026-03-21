@@ -55,6 +55,7 @@ CLOSE_PROPERTIES_CHAR = ']'
 HOUSE_OVERSIGHT = HOUSE_OVERSIGHT_PREFIX.replace('_', ' ').strip()
 DOC_PANEL_BG_COLOR = 'grey7'
 MAX_LEN_FOR_HYPERLINKS = 20_000
+TRIM_MSG_JOIN = '\n'
 
 FILENAME_MATCH_STYLES = [
     'dark_green',
@@ -382,7 +383,7 @@ class Document(LoggingEntity):
             pretty_txt = self._inject_line_numbers(pretty_txt, args.char_nums)
 
         if (footer_txt := self._trimmed_chars_msg(char_range[1])):
-            pretty_txt.append('...\n\n').append(footer_txt)
+            pretty_txt.append('...' + TRIM_MSG_JOIN).append(footer_txt)
 
         return pretty_txt
 
@@ -679,7 +680,7 @@ class Document(LoggingEntity):
         if cutoff == 0:
             return Text('')  # Empty Text object makes sure the whole string starts with default no-style
 
-        return snip_msg_txt(f'trimmed first {cutoff:,} characters', self.excerpt_style).append('\n\n...')
+        return snip_msg_txt(f'trimmed first {cutoff:,} characters', self.excerpt_style).append(TRIM_MSG_JOIN + '...')
 
     def _load_file(self) -> str:
         """Remove BOM and HOUSE OVERSIGHT lines, strip whitespace."""
