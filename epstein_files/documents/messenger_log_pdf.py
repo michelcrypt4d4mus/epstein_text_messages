@@ -11,7 +11,7 @@ from epstein_files.util.helpers.data_helpers import coerce_utc
 from epstein_files.util.logging import logger
 from epstein_files.util.helpers.string_helper import collapse_whitespace, indented, quote
 
-BRACKET_NUM_PATTERN = r"\s*\[?\d\]?\s*"
+BRACKET_NUM_PATTERN = r"\s*\[?[\dIl]+\]?\s*"
 DATE_PATTERN = r"(?P<timestamp>\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2})\s+\(?UTC\)?" + fr"(?:{BRACKET_NUM_PATTERN})?"
 SENDER_PATTERN = r"\s*Sender:(?P<sender>.*?)Participants:?(?P<participants>(\s*?|.*?\))$)"
 MSG_REGEX = re.compile(fr'iMessage\s+(?:{BRACKET_NUM_PATTERN})?{DATE_PATTERN}{SENDER_PATTERN}(?P<msg>.*?)(?=iMessage|NYCO24362|SMS)', re.DOTALL | re.M)
@@ -33,6 +33,7 @@ IMESSAGE_PDF_IDS = [
     'EFTA00781689',
     'EFTA00508054',  # TODO: needs review, might be missing messages
     'EFTA01218267',
+    'EFTA00509258',
     # 'EFTA01613143',  # TODO: Doesn't parse well
 ]
 
