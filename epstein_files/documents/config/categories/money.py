@@ -58,6 +58,12 @@ MONEY_CFGS = [
         note='Mortimer B. Zuckerman Management Trust',
         non_participants=['Marla Maples'],
     ),
+    DocCfg(
+        id='EFTA01480940',
+        author=JP_MORGAN,
+        highlight_quote='two outstanding federal tax liens totaling $593,789',
+        note=f'due diligence report on {MC2_MODEL_MGMT}',
+    ),
     DocCfg(id='EFTA01478313', note=f'list of investments (maybe of {LEON_BLACK})', date='2016-03-31'),
     DocCfg(id='EFTA01285411', note=f"bank statement for Epstein's {SOUTHERN_TRUST_COMPANY} showing $82 million balance"),
     DocCfg(id='EFTA01222951', note=f"credit card expenses for Carlos L Rodriguez using Plum Card", date='2019-02-12'),
@@ -146,4 +152,7 @@ MONEY_CFGS = [
     EmailCfg(id='EFTA00371120', note=f"Epstein appears to invest in {ATORUS}"),
     EmailCfg(id='EFTA00652799', note=f'Epstein calls Ari Glass "a bit sketchy" despite investing ~$50 million in his fund Boothbay'),
     EmailCfg(id='EFTA01388422', note='Nadean Novogratz is probably the sister-in-law of crypto ponzi billionaire Mike Novogratz'),
+    EmailCfg(id='EFTA01802355', note=f'{MC2_MODEL_MGMT} line of credit'),
+    EmailCfg(id='EFTA01870235', note=f'{MC2_MODEL_MGMT} line of credit repayment'),
+    EmailCfg(id='EFTA01942664', note=f'payment from {MC2_MODEL_MGMT}'),
 ]
