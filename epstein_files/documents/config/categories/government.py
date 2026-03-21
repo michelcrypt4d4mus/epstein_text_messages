@@ -140,7 +140,7 @@ GOVERNMENT_CFGS = [
         "Epstein's chef claims Donald Trump came to Epstein's house for dinner",
         truncate_to=(6_000, 7_500),
     ),
-    fbi_interview('EFTA00090602', STEVE_SCULLY, date='2019-08-09', is_interesting=10),
+    fbi_interview('EFTA00090602', STEVE_SCULLY, date='2019-08-09', show_full_panel=True),
     fbi_interview('EFTA00101927', None, f"claims Glenn and {EVA_DUBIN}'s Swiss au pair was being held against her will"),
     fbi_interview('EFTA00159321', None, f'covers {PAOLO_ZAMPOLLI}, Epstein, and the possibility Epstein introduced Melania to Donald Trump'),
     # FBI reports

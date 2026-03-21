@@ -507,8 +507,9 @@ GIRLS_CFGS = [
         note=f"{STEVE_TISCH}, {EKATERINA_GUSAROVA}, {JEAN_LUC_BRUNEL} attending",
         show_with_name=EKATERINA_GUSAROVA,
     ),
+    EmailCfg(id='EFTA00657216', highlight_quote='Is Katya coming over?', note=f'"Katya" is {EKATERINA_GUSAROVA}'),
     EmailCfg(id='EFTA00695655', author=EKATERINA_GUSAROVA, comment='related to EFTA00680327'),
-    EmailCfg(id='EFTA00680327', highlight_quote="Steve Tisch didn't email me yet"),
+    EmailCfg(id='EFTA00680327', highlight_quote="Steve Tisch didn't email me yet", truncate_to=1_000),
 
     # Quotes
     EmailCfg(

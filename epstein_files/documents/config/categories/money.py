@@ -55,6 +55,7 @@ MONEY_CFGS = [
         note="explanations of all of Epstein's large payments prepared for DOJ",
         is_interesting=10,
     ),
+    DocCfg(id='EFTA00101280', author=DEUTSCHE_BANK, note=f"Epstein's {DEUTSCHE_BANK} accounts", show_full_panel=True),
     DocCfg(
         id='EFTA01361270',
         author=DEUTSCHE_BANK,
