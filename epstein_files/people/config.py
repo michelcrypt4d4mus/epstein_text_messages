@@ -286,11 +286,11 @@ HIGHLIGHTED_NAMES = [
             Entity('Tommy Mottolla', 'former CEO of Sony, ex-husband of Mariah Carey', r"Tommy M[ao]ttoll?a"),
             Entity('Val Kilmer', 'famous movie actor', match_partial=None, url=WIKIPEDIA),
             Entity(WOODY_ALLEN, f'filmmaker who married his adopted daughter {SOON_YI_PREVIN}', match_partial='first', url=WIKIPEDIA),
+            acronym('Ultimate Fighting Championship', is_emailer=True),
+            acronym('Independent Filmmaker Project'),
             Organization('Boom Boom Room', '"models and bottles" style club in NYC'),
             Organization('Mercury Films', is_interesting=False),
             Organization('Phaidon', 'titan of art book publishing', url=WIKIPEDIA),
-            acronym('Ultimate Fighting Championship', is_emailer=True),
-            acronym('Independent Filmmaker Project'),
         ],
         patterns=[
             r"Arnold Schwarzenegger",
@@ -1614,6 +1614,7 @@ HIGHLIGHTED_NAMES = [
             Entity('Vahe Stepanian', "Cetera Financial Group", match_partial='both'),
 
             # Organizations
+            acronym("Grantor Retained Annuity Trust", "tax shelter structure favoured by Epstein"),
             Organization(
                 ATORUS,
                 'fund of Michael Fowler / Joshua Levy apparently invested in by Epstein',
@@ -1650,7 +1651,6 @@ HIGHLIGHTED_NAMES = [
             Organization.well_known('S&P', emailer_pattern=r"S&P(\s*500)?"),
             Organization.well_known('Standard Chartered'),
             Organization.well_known(UBS),
-            acronym("Grantor Retained Annuity Trust", "tax shelter structure favoured by Epstein"),
         ],
         patterns=[
             r"Ace Greenberg",
