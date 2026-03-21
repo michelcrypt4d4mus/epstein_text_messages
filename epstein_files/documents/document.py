@@ -52,6 +52,7 @@ from epstein_files.util.logging_entity import LoggingEntity
 CLOSE_PROPERTIES_CHAR = ']'
 HOUSE_OVERSIGHT = HOUSE_OVERSIGHT_PREFIX.replace('_', ' ').strip()
 DOC_PANEL_BG_COLOR = 'grey7'
+MAX_LEN_FOR_HYPERLINKS = 20_000
 
 FILENAME_MATCH_STYLES = [
     'dark_green',
@@ -235,6 +236,11 @@ class Document(LoggingEntity):
         return [e.name for e in self.entities]
 
     @property
+    def excerpt_style(self) -> str:
+        """Style when a hand picked excerpt is being displayed. Overloaded in subclasses."""
+        return EXCERPT_STYLE
+
+    @property
     def file_id(self) -> str:
         return self.file_info.file_id
 
@@ -338,19 +344,28 @@ class Document(LoggingEntity):
         return join_truthy(prefix, f"{date_or_time}: {timestamp_without_zero_hour(self.timestamp)}")
 
     @property
+    def participants(self) -> set[Name]:
+        """Author if exists. Overridden in subclasses."""
+        return set([self.author] if self.author else [])
+
+    @property
     def prettified_txt(self) -> Text:
         """Returns the string we want to print as the body of the document."""
         char_range = self.char_range_to_display or DOC_CHAR_RANGE
-        display_text = self.display_text
+        display_chars = self.display_text
 
-        # pre-truncate very long files for speed
+        # pre-truncate very long files for speed with a few chars headroom to work with
         if char_range and char_range[1] > 0:
-            display_text = self.display_text[:char_range[1] + 500]  # Add a few chars headroom to work with
+            display_chars = extract_range(display_chars, char_range[1] + 200)
 
-        if not args.no_doublespace:
-            display_text = doublespace_lines(display_text)
+        # Avoid trying to add hyperlinks etc. to huge files
+        if len(display_chars) < MAX_LEN_FOR_HYPERLINKS:
+            if not args.no_doublespace:
+                display_chars = doublespace_lines(display_chars)
 
-        display_txt = hyperlink_text(display_text)
+            display_txt = hyperlink_text(display_chars)
+        else:
+            display_txt = Text(display_chars)
 
         if self.text_style:
             display_txt.stylize(self.text_style)
@@ -551,11 +566,6 @@ class Document(LoggingEntity):
         pattern = patternize(_pattern)
         return [MatchedLine(line, i) for i, line in enumerate(self.lines) if pattern.search(line)]
 
-    @property
-    def participants(self) -> set[Name]:
-        """Author if exists. Overridden in subclasses."""
-        return set([self.author] if self.author else [])
-
     def print_truncated_to(self, truncate_to: int) -> None:
         """Temporarily set args.truncate and print."""
         tmp_args = {'whole_file': True} if truncate_to == NO_TRUNCATE else {'truncate': truncate_to}
@@ -662,6 +672,13 @@ class Document(LoggingEntity):
 
         return new_text
 
+    def _intro_txt(self, cutoff: int) -> Text:
+        """Truncation message if it's an excerpt."""
+        if cutoff == 0:
+            return Text('')  # Empty Text object makes sure the whole string starts with default no-style
+
+        return snip_msg_txt(f'trimmed first {cutoff:,} characters', self.excerpt_style).append('\n\n...')
+
     def _load_file(self) -> str:
         """Remove BOM and HOUSE OVERSIGHT lines, strip whitespace."""
         return self.raw_text()
@@ -704,13 +721,6 @@ class Document(LoggingEntity):
     def _skipped_file_txt(self, reason: str | Text) -> Text:
         txt = Text(f"Skipping ", f"{INFO_STYLE} dim").append(self.file_info.external_link_txt(self.author_style))
         return txt.append(" because it's ").append(reason)
-
-    def _intro_txt(self, cutoff: int) -> Text:
-        """Truncation message if it's an excerpt."""
-        if cutoff == 0:
-            return Text('')  # Empty Text object makes sure the whole string starts with default no-style
-
-        return snip_msg_txt(f'trimmed first {cutoff:,} characters', EXCERPT_STYLE).append('\n\n...')
 
     def _trimmed_chars_msg(self, truncate_to: int) -> Text | None:
         """Link to source URL that will replace the text after the truncation point."""

@@ -27,12 +27,6 @@ RAINBOW = [
     'navajo_white1',
 ]
 
-left_indent_padding = lambda num_spaces: (0, 0, 0, num_spaces)
-left_indent = lambda obj, num_spaces: Padding(obj, left_indent_padding(num_spaces))
-no_bold = lambda style: style.replace('bold', '').strip()
-suppress_output_console_kwargs = lambda: {'file': open(os.devnull, "wt")}
-vertically_pad = lambda obj, amount = 1: Padding(obj, (amount, 0, amount, 0))
-
 
 class TextCast(ABC):
     """Abstract class for things that implement a __rich__() method to retun `Text`."""
@@ -41,10 +35,18 @@ class TextCast(ABC):
     def __rich__(self) -> Text:
         pass
 
+
 CharRangeAuto = tuple[int, int] | Literal['auto']
 CharRange = tuple[int, int]
 Textish = TextType | TextCast
 TextVar = TypeVar('TextVar', bound=TextType)
+
+left_indent_padding = lambda num_spaces: (0, 0, 0, num_spaces)
+left_indent = lambda obj, num_spaces: Padding(obj, left_indent_padding(num_spaces))
+no_bold = lambda style: style.replace('bold', '').strip()
+no_italic = lambda style: style.replace('italic', '').strip()
+suppress_output_console_kwargs = lambda: {'file': open(os.devnull, "wt")}
+vertically_pad = lambda obj, amount = 1: Padding(obj, (amount, 0, amount, 0))
 
 
 def enclose(txt: str | Text, encloser: str = '', encloser_style: str = 'wheat4') -> Text:
@@ -87,7 +89,7 @@ def parenthesize(msg: Textish, parentheses_style: str = '') -> Text:
 
 def extract_range(txt: TextVar, _char_range: CharRange | int | None) -> TextVar:
     if isinstance(_char_range, tuple):
-        char_range = _char_range
+        char_range = (max(_char_range[0], 0), _char_range[1])
     elif isinstance(_char_range, int):
         char_range = (0, _char_range)
     else:

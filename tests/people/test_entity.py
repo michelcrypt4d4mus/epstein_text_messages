@@ -52,7 +52,7 @@ def test_epstein_co():
 
 def test_epstein_site_links(epstein):
     assert epstein.epstein_site_link().url == 'https://epsteinify.com/?name=Jeffrey%20Epstein'
-    assert epstein.epstein_sites_all_links.plain == 'epstein.media / EpsteinWeb / epsteinify / Jmail / search X'
+    assert epstein.epstein_sites_all_links.plain == 'Carstensen / epstein.media / EpsteinWeb / epsteinify / Jmail / search X'
 
 
 def test_epstein_trust():

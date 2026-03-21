@@ -1,6 +1,6 @@
 from epstein_files.documents.documents.categories import Interesting, Neutral, Uninteresting
 from epstein_files.documents.doj_files.full_text import EFTA00009622_TEXT
-from epstein_files.documents.config.communication_cfg import CommunicationCfg, Platform, imessage_log, imessage_screenshot, skype_log, whatsapp_log
+from epstein_files.documents.config.communication_cfg import CommunicationCfg, imessage_log, imessage_screenshot, skype_log, whatsapp_log
 from epstein_files.documents.config.config_builder import letter
 from epstein_files.documents.config.doc_cfg import NO_TRUNCATE, DocCfg
 from epstein_files.documents.config.email_cfg import EmailCfg
@@ -12,6 +12,7 @@ from epstein_files.util.logging import logger
 from epstein_files.util.constant.urls import DITE_ANATA_JUILLIARD_URL
 
 PRUSAKOVA_BERKELY = 'Epstein paid for Prusakova to go to Berkeley'
+PRUSAKOVA_REDDIT_URL = 'https://www.reddit.com/r/Epstein/comments/1qvsnqs/a_detailed_report_on_masha_prusso_aka_maria/'
 WOMEN_EMPOWERMENT = f"Women Empowerment (WE) conference"
 
 
@@ -218,11 +219,25 @@ GIRLS_CFGS = [
         highlight_quote='ok, no more over 24! Sorry for that.',
         truncate_to=3_200,
     ),
+    EmailCfg(
+        id='EFTA02030653',
+        author=MARIA_PRUSAKOVA,
+        author_uncertain=PRUSAKOVA_REDDIT_URL,
+        highlight_quote='you are interested in me only because I found pretty girls for you?',
+        truncate_to=AUTO,
+    ),
+    EmailCfg(
+        id='EFTA01844887',
+        author=MARIA_PRUSAKOVA,
+        author_uncertain=PRUSAKOVA_REDDIT_URL,
+        highlight_quote="to work as escort girl, to go for dinners, be someone's company and maybe have sex for the agency",
+        truncate_to=AUTO,
+    ),
     EmailCfg(id='032375', author=MARIA_PRUSAKOVA, author_reason=PRUSAKOVA_BERKELY, truncate_to=295),
     EmailCfg(id='033246', author=MARIA_PRUSAKOVA, author_reason='Kind regards/Cordialement in signature'),
     EmailCfg(id='EFTA01990879', author=MARIA_PRUSAKOVA, author_uncertain='Clifford Chance, could be Miranda'),
     EmailCfg(id='EFTA01990168', author=MARIA_PRUSAKOVA, author_uncertain='"experiments"', is_interesting=True),
-    EmailCfg(id='EFTA00671662', author='Miranda', author_reason='quoted signature', note="yet another girl finder"),
+    EmailCfg(id='EFTA00671662', author=MIRANDA_MAKO, author_reason='quoted signature "Miranda"', note="yet another girl finder"),
     EmailCfg(id='EFTA01047249', author=NADIA_MARCINKO, author_reason='Miro', url='https://archive.ph/Qa6vU#selection-1621.160-1621.184'),
     EmailCfg(id='EFTA02441035', author=STEVEN_VICTOR_MD, note="complaints about free medical treatment for Epstein's girls"),
     EmailCfg(
@@ -358,6 +373,13 @@ GIRLS_CFGS = [
         recipient_uncertain='Kind regards/Cordialement in signature',
     ),
     EmailCfg(id='EFTA00719146', recipients=[MARIA_PRUSAKOVA], recipient_uncertain='Clifford Chance, could be Miranda'),
+    EmailCfg(
+        id='EFTA01889182',
+        is_interesting=10,
+        note=f'the "Olympic snowboarder" is {MARIA_PRUSAKOVA} who seems to have entered Epstein world at this time',
+        recipients=[MIRANDA_MAKO],
+        recipient_uncertain=True,
+    ),
     EmailCfg(
         id='EFTA01857628',
         is_interesting=10,

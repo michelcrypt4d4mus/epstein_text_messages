@@ -1,18 +1,22 @@
 from epstein_files.documents.config.config_builder import fbi_defense_witness, fbi_interview, fbi_tip, fbi_report, grand_jury, letter
-from epstein_files.documents.config.doc_cfg import AUTO_TRUNCATE, NO_TRUNCATE, SHORT_TRUNCATE_TO, DocCfg
+from epstein_files.documents.config.doc_cfg import NO_TRUNCATE, SHORT_TRUNCATE_TO, DocCfg
 from epstein_files.documents.config.email_cfg import EmailCfg
 from epstein_files.people.names import *
-from epstein_files.util.constant.strings import MINOR_VICTIM, REDACTED
+from epstein_files.util.constant.strings import AUTO, MINOR_VICTIM, REDACTED
 from epstein_files.util.helpers.string_helper import join_truthy, quote
 from epstein_files.util.logging import logger
 
 FBI_REPORT_FIELDS = [
+    'Approved By',
     'Case ID #',
+    'Contact',
     'Drafted By',
     'Date/Time Received',
     'Details',
+    'Precedence',
     'SentinelCaseld',
     'SentToSentinel',
+    'Title',
 ]
 
 
@@ -52,6 +56,7 @@ GOVERNMENT_CFGS = [
         note=f"approved mail list during Epstein's 2009 incarceration in {PALM_BEACH}",
         show_full_panel=True,
     ),
+    bop_doc('EFTA00143071', 'memo about Epstein and his cellmate Efrain Reyes', is_interesting=True),
     bop_doc('EFTA00109783', 'prisoner assignments', '2019-08-03'),
     bop_doc('EFTA00035921', "Lieutenant's Logs", '2019-08-06'),
     bop_doc('EFTA00039153', 'List of Exhibits, Chapter 2', '2019-01-06'),
@@ -181,7 +186,7 @@ GOVERNMENT_CFGS = [
         'EFTA00222943',
         note='FBI agent testimony',
         highlight_quote="I believe that certain items were purposely removed from Mr. Epstein's home in anticipation of an execution of a search warrant",
-        truncate_to=AUTO_TRUNCATE,
+        truncate_to=AUTO,
     ),
     fbi_report('EFTA01249591', f"allegations against {HENRY_JARECKI}", show_full_panel=True),
     fbi_report('EFTA00173569', 'hack of FBI Epstein files repository by foreign actor', is_interesting=True),
@@ -193,6 +198,7 @@ GOVERNMENT_CFGS = [
         show_full_panel=True,
         url='https://www.bbc.com/news/articles/c6271ngl014o',
     ),
+    fbi_tip('EFTA00108851', f"from {STEVEN_HOFFENBERG} re: Epstein and the murder of Arthur Shapiro", truncate_to=(1_700, 2_600)),
     fbi_tip('EFTA00020490', 'from woman who thinks she encountered Epstein as a young girl'),
     fbi_tip('EFTA00090314', f'about {MASHA_DROKOVA}, Jared Kushner, Ivanka Trump, Chabad, {ALAN_DERSHOWITZ}, etc.', is_interesting=True),
     DocCfg(id='EFTA00084614', author=PALM_BEACH_POLICE, note='incident report detailing the investigation into Jeffrey Epstein'),
@@ -217,10 +223,19 @@ GOVERNMENT_CFGS = [
         show_full_panel=True,
         truncate_to=NO_TRUNCATE,  # TODO this shouldn't be necessary?
     ),
+    EmailCfg(
+        id='EFTA01657299',
+        author=FBI,
+        highlight_quote='Brunel uses MC2 as a legitimate transport agency of underage girls into America for purposes of sex',
+        note=f'interview with {JEAN_LUC_BRUNEL} partner Sergio Cordero',
+        recipients=[FBI],
+        truncate_to=(10_200, 14_500),
+    ),
     EmailCfg(id='EFTA00036630', author=BUREAU_OF_PRISONS, recipients=[BUREAU_OF_PRISONS], note='about cameras'),
     EmailCfg(id='EFTA02730483', author=FBI, date='2023-07-11T08:25:00', date_uncertain='actually reply timestamp'),
     EmailCfg(id='EFTA02731552', author=FBI, recipients=[USANYS], date='2021-05-26 16:12:00', recipient_uncertain=True),
     EmailCfg(id='EFTA00039971', author=FBI, recipients=[USANYS], recipient_uncertain=True),
+    EmailCfg(id='EFTA00163507', author=FBI, note="quotes from Epstein's cellmate", is_interesting=True),
     EmailCfg(id='EFTA00037683', note=f"tip that the murder of DC Madam Jeanne Palfrey might be connected to Epstein's network"),
 
     # DOJ / USANYS emails
@@ -278,6 +293,7 @@ GOVERNMENT_CFGS = [
     EmailCfg(id='EFTA02731643', author=USANYS, author_uncertain=True),
     EmailCfg(id='EFTA02731501', author=USANYS, author_uncertain=True),
     EmailCfg(id='EFTA02731633', author=USANYS, author_uncertain=True),
+    EmailCfg(id='EFTA00019925', author=USANYS, recipients=[USANYS], note="death of Epstein's cellmate Efrain Reyes"),
     EmailCfg(id='EFTA01660679', author=USANYS, author_uncertain=True, recipients=[FBI], recipient_uncertain=True),
     EmailCfg(id='EFTA02731699', author=USANYS, author_uncertain=True, recipients=[FBI], date='2021-05-27 10:19:00'),
     EmailCfg(id='EFTA00040121', author=USANYS, recipients=[ATT_COURT_APPEARANCE_TEAM]),

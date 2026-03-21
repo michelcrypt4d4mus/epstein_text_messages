@@ -41,7 +41,7 @@ from epstein_files.util.constants import CONFIGS_BY_ID
 from epstein_files.util.env import args, site_config
 from epstein_files.util.helpers.data_helpers import (AMERICAN_TIME_REGEX, TIMEZONE_INFO, coerce_utc, flatten,
      prefix_keys, uniq_sorted, uniquify, without_falsey)
-from epstein_files.util.helpers.rich_helpers import CharRange
+from epstein_files.util.helpers.rich_helpers import CharRange, no_italic
 from epstein_files.util.external_link import join_texts, link_text_obj
 from epstein_files.util.helpers.string_helper import capitalize_first, collapse_newlines, is_bool_prop, quote, strip_pdfalyzer_panels
 from epstein_files.util.logging import logger
@@ -54,7 +54,7 @@ LINK_LINE_REGEX = re.compile(r"^[>• ]*htt")
 LINK_LINE2_REGEX = re.compile(r"^[-\w.%&=/]{5,}$")
 QUOTED_REPLY_LINE_REGEX = re.compile(r'(\nFrom:(.*)|wrote:)\n', re.IGNORECASE)
 REPLY_TEXT_REGEX = re.compile(rf"^(.*?){REPLY_LINE_PATTERN}", re.DOTALL | re.IGNORECASE | re.MULTILINE)
-XML_PLIST_REGEX = re.compile(r"[<=]?\?xml version.*</(plist|xml)>", re.DOTALL)
+XML_PLIST_REGEX = re.compile(r"[<0=oO?]?xml version.{,500}</(plist|xml)>", re.DOTALL)
 
 # Timestamp regexes
 BAD_TIMEZONE_REGEX = re.compile(fr'\((UTC|GMT\+\d\d:\d\d)\)|{REDACTED}')
@@ -364,6 +364,11 @@ class Email(Communication):
         return str(self.email_parts)
 
     @property
+    def excerpt_style(self) -> str:
+        """Style when a hand picked excerpt is being displayed. Overloaded in subclasses."""
+        return no_italic(EXCERPT_STYLE)
+
+    @property
     def header(self) -> EmailHeader:
         self._header = self._header or self.extract_header()
         return self._header
@@ -450,13 +455,21 @@ class Email(Communication):
 
     @property
     def prettified_txt(self) -> Text:
-        """Overrides superclass. Cleaned up / formatted Text ready to be displayed."""
-        # always show the email header even if only a configured truncate_to excerpt is being displayed
-        if self._config.char_range and self._config.char_range[0] > 0:
-            if self._config.char_range[0] < self.email_parts.header_len:
-                self._warn(f"The excerpt appears to start in the email header which will may in duplicate header chars")
+        """Overrides superclass to always show the email header even if config truncates it."""
+        if (char_range := self._config.char_range):
+            body_txt = super().prettified_txt
+            offset = 0
 
-            return self.email_parts.header_txt.append('\n\n').append(super().prettified_txt)
+            if char_range == 'auto':
+                char_range = self.char_range_to_display
+
+            if char_range[0] > 0 and char_range[0] < self.email_parts.header_len:
+                intro_txt_len = len(self._intro_txt(char_range[0]))
+                offset = intro_txt_len + (self.email_parts.header_len - char_range[0])
+                self._warn(f"excerpt starts in the header, will may in duplicate header chars (offset={offset})")
+                return self.email_parts.header_txt.append(body_txt[offset:])
+            else:
+                return body_txt
         else:
             return super().prettified_txt
 

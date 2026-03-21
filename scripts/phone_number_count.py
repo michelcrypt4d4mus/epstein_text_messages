@@ -69,7 +69,7 @@ class CallCounter:
         return [n for n in self.call_counts_by_source.keys()]
 
     def record_call(self, source: str, destination: str, billing: str) -> None:
-        # logger.debug(f"Found call from '{source}' to '{destination}' billing '{billing}'")
+        logger.debug(f"Found call from '{source}' to '{destination}' billing '{billing}'")
         source = cleanup_phone_number(source)
         destination = cleanup_phone_number(destination)
         self.calls.append((source, destination, billing))
@@ -86,11 +86,11 @@ class CallCounter:
 
         msg = f"Found {len(self.call_counts_by_source)} Epstein phone numbers" + \
               f" making {len(self.calls):,} phone calls" + \
-              f" to {len(self.call_counts):,} unique numbers"
+              f" to {len(self.call_counts):,} unique numbers in "
 
-        console.print(msg)
+        console.print(highlighter(msg).append(doc.file_info.external_link_txt()).append(' PDF'))
         self._print_indented(RAW_OCR_LINK.link)
-        self._print_indented(Text(f"Source PDF: ", style='dim').append(doc.file_info.external_link_txt()))
+        self._print_indented(Text(f"Source: ", style='dim').append(doc.file_info.external_link_txt()))
         console.print(f"\nEpstein's phone numbers:")
 
         for number in self.epstein_phone_numbers:

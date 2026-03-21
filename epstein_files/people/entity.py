@@ -66,6 +66,7 @@ class Entity(LoggingEntity):
     is_interesting: bool = True  # Eligible for bio panel
     is_junk: bool = False  # TODO: this sucks
     match_partial: PartialName | None = 'last'
+    phone_numbers: list[str] = field(default_factory=list)
     unique_phraseologies: list[str] = field(default_factory=list)
     url: str | list[str] | Literal['WIKIPEDIA'] = ''
 
@@ -369,6 +370,8 @@ class Organization(Entity):
                 suffix = suffix.replace('.', r'\.?')
 
             self.emailer_pattern += fr"{emailer_pattern}({suffix})?"
+        elif self.name.startswith('UAB ') and not self.emailer_pattern:
+            self.emailer_pattern = self.name.removeprefix('UAB ')
 
         if self.belongs_to:
             if self.info:
@@ -431,6 +434,10 @@ def epstein_trust(
 
     beneficiary_str = f", {beneficiary_str}" if beneficiary_str else ''
     return Organization(name, f'Epstein financial trust{beneficiary_str}', emailer_pattern)
+
+
+def island_employee(name: str, job_title: str) -> Entity:
+    return Entity(name, f"{job_title} at the island", match_partial=None)
 
 
 def law_enforcement(name: str, emailer_pattern: str = '', info: str = '', **kwargs) -> Organization:

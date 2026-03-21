@@ -3,10 +3,20 @@ Epstein money related files. This category makes is_interesting = True.
 """
 from epstein_files.documents.config.categories.crypto import VALAR_FUND
 from epstein_files.documents.config.config_builder import letter
-from epstein_files.documents.config.doc_cfg import EMAIL_TRUNCATE_TO, DocCfg
+from epstein_files.documents.config.doc_cfg import DocCfg
 from epstein_files.documents.config.email_cfg import EmailCfg
 from epstein_files.people.names import *
 from epstein_files.util.constant.strings import *
+from epstein_files.util.helpers.string_helper import join_truthy
+
+
+def sar(id: str, author: str, note: str = '') -> DocCfg:
+    return DocCfg(
+        id=id,
+        author=author,
+        note=join_truthy("Suspicious Activity Report (SAR)", note, ' about '),
+        show_full_panel=True,
+    )
 
 
 MONEY_CFGS = [
@@ -57,6 +67,12 @@ MONEY_CFGS = [
         date='2014-07-10',
         note='Mortimer B. Zuckerman Management Trust',
         non_participants=['Marla Maples'],
+    ),
+    DocCfg(
+        id='EFTA01480940',
+        author=JP_MORGAN,
+        highlight_quote='two outstanding federal tax liens totaling $593,789',
+        note=f'due diligence report on {MC2_MODEL_MGMT}',
     ),
     DocCfg(id='EFTA01478313', note=f'list of investments (maybe of {LEON_BLACK})', date='2016-03-31'),
     DocCfg(id='EFTA01285411', note=f"bank statement for Epstein's {SOUTHERN_TRUST_COMPANY} showing $82 million balance"),
@@ -146,4 +162,9 @@ MONEY_CFGS = [
     EmailCfg(id='EFTA00371120', note=f"Epstein appears to invest in {ATORUS}"),
     EmailCfg(id='EFTA00652799', note=f'Epstein calls Ari Glass "a bit sketchy" despite investing ~$50 million in his fund Boothbay'),
     EmailCfg(id='EFTA01388422', note='Nadean Novogratz is probably the sister-in-law of crypto ponzi billionaire Mike Novogratz'),
+    EmailCfg(id='EFTA01802355', note=f'{MC2_MODEL_MGMT} line of credit'),
+    EmailCfg(id='EFTA01870235', note=f'{MC2_MODEL_MGMT} line of credit repayment'),
+    EmailCfg(id='EFTA01942664', note=f'payment from {MC2_MODEL_MGMT}'),
+    EmailCfg(id='EFTA01816514', note=f"list of Epstein's outstanding invoices"),
+    sar('EFTA01648787', JP_MORGAN, "$1.1 billion in Epstein transfers"),
 ]

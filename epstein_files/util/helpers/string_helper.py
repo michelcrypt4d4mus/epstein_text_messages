@@ -13,11 +13,14 @@ EMOJI_REGEX = re.compile(r"(?:^|\s)([:;=][-^]?[oODP()]|[oO()][-^]?[:=])(?=$|\s)"
 INTEGER_REGEX = re.compile(r'^\d+$')
 MULTINEWLINE_REGEX = re.compile(r"\n{2,}")
 MULTISPACE_REGEX = re.compile(" +")
-HAS_NUMBERED_LIST_REGEX = re.compile(r"^2\. .{,1500}\n3\. ", re.DOTALL | re.MULTILINE)
-NUMBERED_LIST_ITEM_REGEX = re.compile(r"^(\d+\. .{,1500}?)(?=\n\d+\.|\Z)", re.DOTALL | re.MULTILINE)
 PDFALYZER_IMAGE_PANEL_REGEX = re.compile(r"\n╭─* Page \d+, Image \d+.*?╯\n?", re.DOTALL)
 TIMESTAMP_SECONDS_REGEX = re.compile(r":\d{2}(\.\d+)?([-+]\d{2}:\d{2})?$")
 WHITESPACE_REGEX = re.compile(r"\s{2,}|\t|\n", re.MULTILINE)
+
+HAS_LETTER_LIST_REGEX = re.compile(r"^a[.)] .{,1900}\nb[.)] ", re.DOTALL | re.IGNORECASE | re.MULTILINE)
+LETTER_LIST_ITEM_REGEX = re.compile(r"^([a-z][.)] .{,1900}?)(?=\n[a-z][.)] |\Z)", re.DOTALL | re.IGNORECASE | re.MULTILINE)
+HAS_NUMBERED_LIST_REGEX = re.compile(r"^2\. .{,1900}\n3\. ", re.DOTALL | re.MULTILINE)
+NUMBERED_LIST_ITEM_REGEX = re.compile(r"^(\d+\. .{,1900}?)(?=\n\d+\.|\Z)", re.DOTALL | re.MULTILINE)
 
 WHITESPACE_CHAR = r"[-_.\s]*"
 DATE_LENGTH = len('2025-05-05')
@@ -30,6 +33,7 @@ collapse_newlines = lambda text: MULTINEWLINE_REGEX.sub('\n\n', text)
 collapse_spaces = lambda s: MULTISPACE_REGEX.sub(' ', s)
 collapse_whitespace = lambda s: WHITESPACE_REGEX.sub(' ', s).strip()
 constantize = lambda s: underscore(s.upper())
+contains_letter_list = lambda s: bool(HAS_LETTER_LIST_REGEX.search(s))
 contains_numbered_list = lambda s: bool(HAS_NUMBERED_LIST_REGEX.search(s))
 is_bool_prop = lambda prop: prop.startswith('is_')
 is_integer = lambda s: bool(INTEGER_REGEX.match(s))
@@ -58,14 +62,17 @@ def doublespace_lines(s: str) -> str:
     if (len(long_lines) / len(lines)) > DOUBLESPACE_IF_LONG_LINE_PCT:
         s = s.replace('\n', '\n\n')
 
-    return doublespace_numbered_lists(s)
+    return doublespace_lists(s)
 
 
-def doublespace_numbered_lists(s: str) -> str:
+def doublespace_lists(s: str) -> str:
     if contains_numbered_list(s):
-        return NUMBERED_LIST_ITEM_REGEX.sub(r"\n\1", s)
-    else:
-        return s
+        s = NUMBERED_LIST_ITEM_REGEX.sub(r"\n\1", s)
+
+    if contains_letter_list(s):
+        s = LETTER_LIST_ITEM_REGEX.sub(r"\n\1", s)
+
+    return s
 
 
 def extract_emojis(s: str) -> list[str]:

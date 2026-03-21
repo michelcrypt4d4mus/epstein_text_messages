@@ -34,7 +34,6 @@ EMAIL_TRUNCATE_TO = int(DOC_CHAR_RANGE[1] / 3)
 SHORT_TRUNCATE_TO = int(EMAIL_TRUNCATE_TO / 3)
 WHOLE_FILE_CHAR_RANGE = (0, 10_000_000_000)
 NO_TRUNCATE = -1
-AUTO_TRUNCATE = -2
 MAX_REPR_LINE_LENGTH = 135
 
 CHECK_LINK_FOR_DETAILS = 'not shown here, check original PDF for details'
@@ -173,7 +172,7 @@ class DocCfg(LoggingEntity):
     num_preview_chars: int | None = None
     show_full_panel: bool = False
     show_with_name: str = ''
-    truncate_to: int | tuple[int, int] | None = None
+    truncate_to: CharRangeAuto | int | None = None
     url: str = ''
     url_link_text: str = ''
 
@@ -183,10 +182,11 @@ class DocCfg(LoggingEntity):
     def __post_init__(self):
         if self.id in self.duplicate_ids:
             raise ValueError(f"{self.id} is a duplicate of itself!")
+        elif self.truncate_to == AUTO:
+            if not self.highlight_quote:
+                raise ValueError(f"{self.id} auto truncation requires a configured highlight_quote")
         elif self.truncate_to is not None and not isinstance(self.truncate_to, (int, tuple)):
             raise ValueError(f"{self.id} truncate_to ({type(self.truncate_to).__name__}, value={self.truncate_to})")
-        elif self.truncate_to == AUTO_TRUNCATE and not self.highlight_quote:
-            raise ValueError(f"{self.id} auto truncation requires a configured highlight_quote")
         elif 'efta' in self.id:
             self._warn(f"id should not be lowercase: '{self.id}'")
             self.id = self.id.upper()
@@ -234,8 +234,8 @@ class DocCfg(LoggingEntity):
             return (0, args.truncate)
         elif args.whole_file or self.truncate_to == NO_TRUNCATE:
             return WHOLE_FILE_CHAR_RANGE
-        elif self.truncate_to == AUTO_TRUNCATE:
-            return 'auto'
+        elif self.truncate_to == AUTO:
+            return AUTO
         elif self.truncate_to is None:
             if self.is_interesting:
                 return WHOLE_FILE_CHAR_RANGE

@@ -242,6 +242,7 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
         "Sent from my iPad",
         "Sent from my iPhone"
     ],
+    BUREAU_OF_PRISONS: ['Sent from my Verizon, Samsung Galaxy smartphone'],
     CECILE_DE_JONGH: ["Sent from my iPhone and misspellings courtesy of iPhone."],
     CECILIA_STEEN: [
         "Sent from my iPad"

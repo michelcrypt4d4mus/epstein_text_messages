@@ -1,4 +1,4 @@
-from epstein_files.util.helpers.string_helper import doublespace_numbered_lists, as_pattern, extract_emojis, has_line_starting_with, indented
+from epstein_files.util.helpers.string_helper import doublespace_lists, as_pattern, extract_emojis, has_line_starting_with, indented
 
 EMAIL_TEXT = ">From: umar ovk.ru\n>To:\n>Subject:"
 
@@ -18,7 +18,7 @@ def test_as_pattern():
 
 
 def test_doublespace_numbered_lists():
-    assert doublespace_numbered_lists(NUMBERED_LIST) == """
+    assert doublespace_lists(NUMBERED_LIST) == """
 Lorem Ipsum ipsum dipsum
 Lorem Ipsum ipsum dipsum
 
