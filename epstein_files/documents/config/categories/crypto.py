@@ -143,7 +143,7 @@ CRYPTO_CFGS = [
     EmailCfg(
         id='EFTA02436105',
         is_interesting=10,
-        note="one of Epstein's goals in life was to make a lot of money in virtual currency",
+        note="one of Epstein's goals in life in the year bitcoin was created was to make a lot of money in virtual currency",
     ),
     # Coinbase
     DocCfg(

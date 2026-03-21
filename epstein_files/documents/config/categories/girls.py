@@ -51,6 +51,8 @@ GIRLS_CFGS = [
     DocCfg(id='019300', author=SVETLANA_POZHIDAEVA, note=f'{WOMEN_EMPOWERMENT} f. {KATHRYN_RUEMMLER}', date='2019-04-05', show_full_panel=True),
     DocCfg(id='022267', author=SVETLANA_POZHIDAEVA, note=f'{WOMEN_EMPOWERMENT} founder essay about growing the seminar business'),
     DocCfg(id='022407', author=SVETLANA_POZHIDAEVA, note=f'{WOMEN_EMPOWERMENT} seminar pitch deck'),
+    EmailCfg(id='031177', highlight_quote="in Ibiza so invited a lots of girls from Russia all models"),
+    EmailCfg(id='030152', highlight_quote=f"model scout Tigrane apparently used to work for Trump Models"),
     EmailCfg(id='025874', note=f"possibly about {VIRGINIA_GIUFFRE} {QUESTION_MARKS}"),
     EmailCfg(id='030609', duplicate_ids=['030495']),
 
@@ -666,7 +668,7 @@ GIRLS_CFGS = [
     EmailCfg(id='EFTA00572157', note='translation: "Congratulations on the new addition!!! What did you name the little miracle?" (seems to be about a cat)'),
     EmailCfg(id='EFTA00631762', note="visa problems for Epstein's South African friend"),
     EmailCfg(id='EFTA00376832', show_with_name=MARIANA_IDZKOWSKA),
-    EmailCfg(id='EFTA00743526', truncate_to=NO_TRUNCATE),
+    EmailCfg(id='EFTA00743526', note=f"Epstein and {RAMSEY_ELKHOLY} trying to get a Next Models contract for Regina", truncate_to=(800, 2_160)),
     EmailCfg(id='EFTA02664956', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA00689698', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA02702141', truncate_to=NO_TRUNCATE, comment=ELON_MUSK),

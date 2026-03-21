@@ -822,7 +822,7 @@ EMAILS_CONFIG = [
     ),
     EmailCfg(id='EFTA02640711', author=HAMAD_BIN_JASSIM, note='Jabor Y / HBJ home address', is_interesting=True),
     EmailCfg(id='EFTA02334332', author=JASON_CALACANIS),
-    EmailCfg(id='EFTA02434805', author=JEAN_LUC_BRUNEL, author_uncertain='reply', note='what lawyers offices got sealed?'),
+    EmailCfg(id='EFTA02434805', author=JEAN_LUC_BRUNEL, author_uncertain='reply', note="what lawyers' offices got sealed?"),
     EmailCfg(
         id='EFTA00838218',
         author=JULIA_SANTOS,
