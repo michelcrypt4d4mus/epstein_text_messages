@@ -7,12 +7,16 @@ from epstein_files.util.helpers.string_helper import join_truthy, quote
 from epstein_files.util.logging import logger
 
 FBI_REPORT_FIELDS = [
+    'Approved By',
     'Case ID #',
+    'Contact',
     'Drafted By',
     'Date/Time Received',
     'Details',
+    'Precedence',
     'SentinelCaseld',
     'SentToSentinel',
+    'Title',
 ]
 
 
@@ -52,6 +56,7 @@ GOVERNMENT_CFGS = [
         note=f"approved mail list during Epstein's 2009 incarceration in {PALM_BEACH}",
         show_full_panel=True,
     ),
+    bop_doc('EFTA00143071', 'memo about Epstein and his cellmate Efrain Reyes', is_interesting=True),
     bop_doc('EFTA00109783', 'prisoner assignments', '2019-08-03'),
     bop_doc('EFTA00035921', "Lieutenant's Logs", '2019-08-06'),
     bop_doc('EFTA00039153', 'List of Exhibits, Chapter 2', '2019-01-06'),
@@ -193,6 +198,7 @@ GOVERNMENT_CFGS = [
         show_full_panel=True,
         url='https://www.bbc.com/news/articles/c6271ngl014o',
     ),
+    fbi_tip('EFTA00108851', f"from {STEVEN_HOFFENBERG} re: Epstein and the murder of Arthur Shapiro", truncate_to=(1_700, 2_600)),
     fbi_tip('EFTA00020490', 'from woman who thinks she encountered Epstein as a young girl'),
     fbi_tip('EFTA00090314', f'about {MASHA_DROKOVA}, Jared Kushner, Ivanka Trump, Chabad, {ALAN_DERSHOWITZ}, etc.', is_interesting=True),
     DocCfg(id='EFTA00084614', author=PALM_BEACH_POLICE, note='incident report detailing the investigation into Jeffrey Epstein'),
