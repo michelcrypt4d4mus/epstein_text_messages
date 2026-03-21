@@ -356,8 +356,13 @@ HIGHLIGHTED_NAMES = [
             ),
             Entity('Stewart Oldfield', f"worked on Epstein related accounts at {DEUTSCHE_BANK}"),
             Entity('Vaishali Mehta', f'Head of Anti-Money Laundering Business Risk at {DEUTSCHE_BANK}', r"Vaishali.{,5}Mehta"),
+            Entity(VINIT_SAHNI, f"analyst at {DEUTSCHE_BANK} and {GOLDMAN_SACHS}", match_partial='both'),
 
             # Organizations
+            Organization.well_known(JP_MORGAN),
+            Organization.well_known(BOFA_MERRILL),
+            Organization.well_known(BOFA_WEALTH_MGMT),
+            Organization.well_known('Deutsche Bank Wealth Management Tax Topics'),
             Organization('Bayerische Landesbank', 'publicly owned bank in Bavaria', url=WIKIPEDIA),
             Organization(
                 'Banque Havilland',
@@ -365,7 +370,6 @@ HIGHLIGHTED_NAMES = [
                 r"(Banque )?Havilland",
                 url=WIKIPEDIA,
             ),
-            Entity(VINIT_SAHNI, f"analyst at {DEUTSCHE_BANK} and {GOLDMAN_SACHS}", match_partial='both'),
             Organization(
                 DEUTSCHE_BANK,
                 'favoured bank of Epstein, the Trump family, and Russian money launderers',
@@ -393,6 +397,7 @@ HIGHLIGHTED_NAMES = [
             r"j\.?p\.? morgan(\.?com| Chase)?( Bank)?",
             r"JPMC?",
             JP_MORGAN_USGIO,
+            r"Merrill( Lynch)?",
         ],
     ),
     HighlightedNames(
@@ -1608,13 +1613,9 @@ HIGHLIGHTED_NAMES = [
                 url=WIKIPEDIA,
             ),
             Organization('Third Lake', "family office managing the Wanek family fortune"),
-            Organization.well_known(BOFA_MERRILL),
-            Organization.well_known(BOFA_WEALTH_MGMT),
-            Organization.well_known('Deutsche Bank Wealth Management Tax Topics'),
             Organization.well_known("Ernst & Young"),
             Organization.well_known('Goldman Sachs Investment Management Division'),
             Organization.well_known('Invesco'),
-            Organization.well_known(JP_MORGAN),
             Organization.well_known('Morgan Stanley'),
             Organization.well_known('S&P'),
             Organization.well_known('Standard Chartered'),
@@ -1643,7 +1644,6 @@ HIGHLIGHTED_NAMES = [
             r"(Jimmy )?Cayne",
             r"Joon Yun",
             r"Lehman( Brothers)?",
-            r"Merrill( Lynch)?",
             r"(Michael )?Cembalest",
             r"MLPF&S",
             r"moneyland",
