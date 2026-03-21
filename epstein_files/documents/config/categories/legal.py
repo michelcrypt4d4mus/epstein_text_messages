@@ -1,5 +1,5 @@
 from epstein_files.documents.config.config_builder import JANE_DOE_V_USA, letter, starr_letter
-from epstein_files.documents.config.doc_cfg import AUTO_TRUNCATE, DocCfg
+from epstein_files.documents.config.doc_cfg import DocCfg
 from epstein_files.documents.config.email_cfg import EmailCfg
 from epstein_files.people.names import *
 from epstein_files.util.constant.strings import *
@@ -110,7 +110,7 @@ LEGAL_CFGS = [
         author=JANE_DOE_V_USA, note=f"declaration of {VIRGINIA_GIUFFRE} claiming threats",
         date='2015-02-06',
         highlight_quote='a call from this supposed FBI Agent made me very scared',
-        truncate_to=AUTO_TRUNCATE,
+        truncate_to=AUTO,
     ),
     DocCfg(id='023361', author=JASTA_SAUDI_LAWSUIT, note=f"legal text and court documents", date='2012-01-20'),
     DocCfg(id='017830', author=JASTA_SAUDI_LAWSUIT, note=f"legal text and court documents"),

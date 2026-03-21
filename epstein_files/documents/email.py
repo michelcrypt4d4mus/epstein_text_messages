@@ -452,11 +452,22 @@ class Email(Communication):
     def prettified_txt(self) -> Text:
         """Overrides superclass. Cleaned up / formatted Text ready to be displayed."""
         # always show the email header even if only a configured truncate_to excerpt is being displayed
-        if self._config.char_range and self._config.char_range[0] > 0:
-            if self._config.char_range[0] < self.email_parts.header_len:
-                self._warn(f"The excerpt appears to start in the email header which will may in duplicate header chars")
+        if (char_range := self._config.char_range):
+            offset = 0
 
-            return self.email_parts.header_txt.append('\n\n').append(super().prettified_txt)
+            if char_range == 'auto':
+                char_range = self.char_range_to_display
+
+            if char_range[0] > 0 and char_range[0] < self.email_parts.header_len:
+                intro_txt_len = len(self._intro_txt(char_range[0]))
+                offset = intro_txt_len + (self.email_parts.header_len - char_range[0]) + 1
+                self._warn(f"excerpt start in the header, will may in duplicate header chars (offset={offset})")
+
+            # from epstein_files.output.rich import console
+            # console.line(2)
+            # console.print(super().prettified_txt)
+            # console.line(2)
+            return self.email_parts.header_txt.append('\n\n').append(super().prettified_txt[offset:])
         else:
             return super().prettified_txt
 
