@@ -240,6 +240,20 @@ GOVERNMENT_CFGS = [
     EmailCfg(id='EFTA00039971', author=FBI, recipients=[USANYS], recipient_uncertain=True),
     EmailCfg(id='EFTA00163507', author=FBI, note="quotes from Epstein's cellmate", is_interesting=True),
     EmailCfg(id='EFTA00037683', note=f"tip that the murder of DC Madam Jeanne Palfrey might be connected to Epstein's network"),
+    # EmailCfg(
+    #     id='EFTA00037690',
+    #     author=BUREAU_OF_PRISONS,
+    #     author_uncertain=True,
+    #     recipients=[BUREAU_OF_PRISONS],
+    #     recipient_uncertain=True,
+    # ),
+    EmailCfg(
+        id='EFTA00037690',
+        author=FBI,
+        highlight_quote='seems to be a conduit for money paid to female victims',
+        note='Butterfly Trust',
+        recipients=[FBI],
+    ),
 
     # DOJ / USANYS emails
     EmailCfg(id='EFTA00039967', author='DOJ London', recipients=[USANYS]),
