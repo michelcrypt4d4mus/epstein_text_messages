@@ -67,6 +67,7 @@ OCR_REPAIRS: OcrRepair = {
     re.compile(r'\.corn\b'): '.com',
     re.compile('ln(adequate|dyke)'): r'In\1',
     'Nil Priell': 'Nili Priell',
+    re.compile(r"EFTA\d{8}( *\n){3,}"): '',
 }
 
 SUMMARY_TABLE_COLS: list[str | dict] = [

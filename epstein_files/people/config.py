@@ -4,7 +4,6 @@ email sendersa and recipients in email headers.
 """
 import re
 
-from rich.console import Console
 from rich.text import Text
 
 from epstein_files.documents.config.categories.legal import EPSTEIN_V_ROTHSTEIN_EDWARDS
@@ -14,7 +13,8 @@ from epstein_files.people.entity import (Entity, Organization, acronym, epstein_
      island_employee, law_enforcement, publication, the_publication)
 from epstein_files.people.names import *
 from epstein_files.util.constant.strings import *
-from epstein_files.util.constant.urls import DITE_ANATA_JUILLIARD_URL, EPSTEIN_DOCTORS_LINKS, JULIA_SANTOS_REDDIT_URL, SUBSTACK_POST_INSIGHTSPOD_URL, SVETLANA_NEWSGROUND
+from epstein_files.util.constant.urls import (DITE_ANATA_JUILLIARD_URL, EPSTEIN_DOCTORS_LINKS, JULIA_SANTOS_REDDIT_URL,
+     SUBSTACK_POST_INSIGHTSPOD_URL, SVETLANA_NEWSGROUND)
 from epstein_files.util.env import args
 from epstein_files.util.helpers.data_helpers import flatten, sort_dict
 from epstein_files.util.helpers.string_helper import indented, join_patterns
@@ -242,18 +242,20 @@ HIGHLIGHTED_NAMES = [
                 match_partial=None,
                 url='https://www.motherjones.com/politics/2026/01/melania-trump-documentary-brett-ratner-metoo/',
             ),
-            Entity(DAVID_BLAINE, "famous magician", url=WIKIPEDIA),
-            Entity(DAVID_COPPERFIELD, "famous magician, allegations of sexual assault", url=WIKIPEDIA),
             Entity('Camille Lang', "Sotheby's auction house", match_partial=None),
             Entity('Caroline Sophie', "Sotheby's auction house", match_partial=None),
-            Entity('David Brenner', "American comedian and actor"),
+            Entity(DAVID_BLAINE, "famous magician", url=WIKIPEDIA),
+            Entity(DAVID_COPPERFIELD, "famous magician, allegations of sexual assault", url=WIKIPEDIA),
+            Entity('David Brenner', "American comedian and actor", url=WIKIPEDIA),
             Entity('David Geffen', 'record label and film studio owner', url=WIKIPEDIA),
+            Entity('Diane von Furstenberg', 'Belgian fashion designer', url=WIKIPEDIA),
             Entity(
                 'Donna Air',
                 'British actress and TV presenter',
                 match_partial=None,
                 url='https://graziadaily.co.uk/life/tv-and-film/donna-air/',
             ),
+            Entity('Donny Deutsch', 'television personality', match_partial=None),
             Entity('Errol Morris', 'documentary film maker, films about Robert McNamara, Donald Rumsfeld, and Bannon', match_partial=None),
             Entity(ETIENNE_BINANT, f"art advisor {QUESTION_MARKS}"),
             Entity('Frederic Fekkai', f"hairdresser Epstein liked his girls to use"),
@@ -264,23 +266,29 @@ HIGHLIGHTED_NAMES = [
                 match_partial=None,
                 url=WIKIPEDIA,
             ),
+            Entity('Jane Fonda', 'actress, fitness instructor, activist', url=WIKIPEDIA),
+            Entity('Jimmy Buffet', f'"Margaritaville" singer, retirement home executive', url=WIKIPEDIA),
+            Entity('Jim Wiatt', 'CEO of talent agency William Morris (WMA)', url='https://en.wikipedia.org/wiki/William_Morris_Agency', match_partial=None),
+            Entity('Julian Schnabel', 'artist and filmmaker', url=WIKIPEDIA),
             Entity('Larry Gagosian', 'famous art dealer', url=WIKIPEDIA),
             Entity(MARK_ZEFF, f'MARKZEFF, interior designer {QUESTION_MARKS}', match_partial=None),
             Entity('Marla Prather', f'art curator at MoMA, wife of {MORTIMER_ZUCKERMAN}'),
             Entity('Martha Stewart', match_partial=None, is_interesting=False),
-            Entity('Michael Ovitz', 'former president of Disney'),
+            Entity('Michael Ovitz', 'former president of Disney', url=WIKIPEDIA),
             Entity('Nick Jarecki', "American filmmaker", match_partial=None),
             Entity('Richard Merkin', "painter, illustrator and arts educator"),
-            Entity('Robert Redford', 'famous actor'),
+            Entity('Robert Redford', 'famous actor', url=WIKIPEDIA),
+            Entity('Salman Rushdie', 'author, subject of an official Iranian fatwa for heresy', url=WIKIPEDIA),
             Entity('Steven Gaydos', "American screenwriter and journalist"),
             Entity(STEVEN_PFEIFFER, "Associate Director at Independent Filmmaker Project (IFP)"),
             Entity(STEVE_TISCH, f'owner of the New York Giants football team', r"Steve Tisc(h|ft)"),
-            Entity('Tommy Mattolla', 'former CEO of Sony, ex-husband of Mariah Carey'),
-            Entity('Val Kilmer', 'famous movie actor', match_partial=None),
+            Entity('Tom Ford', 'fashion designer', match_partial=None, url=WIKIPEDIA),
+            Entity('Tommy Mottolla', 'former CEO of Sony, ex-husband of Mariah Carey', r"Tommy M[ao]ttoll?a"),
+            Entity('Val Kilmer', 'famous movie actor', match_partial=None, url=WIKIPEDIA),
             Entity(WOODY_ALLEN, f'filmmaker who married his adopted daughter {SOON_YI_PREVIN}', match_partial='first', url=WIKIPEDIA),
             Organization('Boom Boom Room', '"models and bottles" style club in NYC'),
             Organization('Mercury Films', is_interesting=False),
-            Organization('Phaidon', 'titan of art book publishing'),
+            Organization('Phaidon', 'titan of art book publishing', url=WIKIPEDIA),
             acronym('Ultimate Fighting Championship', is_emailer=True),
             acronym('Independent Filmmaker Project'),
         ],
@@ -1003,6 +1011,7 @@ HIGHLIGHTED_NAMES = [
                 url='https://www.politico.com/story/2019/05/13/rick-gates-roger-stone-greg-craig-1318870',
             ),
             Entity('Janis Hartley', f'assistant to Governor Bill Richardson {QUESTION_MARKS}', match_partial=None),
+            Entity('Joel Klein', 'chancellor of the NYC Dept. of Education', match_partial=None),
             Entity('Mark Middleton', "Clinton assistant, arranged Epstein's White House visits, suicide 2022", match_partial=None),
             Entity(PAUL_PROSPERI, "friend of Bill Clinton"),
             Entity('Senator Ron Wyden'),
@@ -1809,6 +1818,7 @@ HIGHLIGHTED_NAMES = [
                 match_partial=None,
                 url='https://www.engadget.com/2012-03-12-darpa-director-exits-agency-for-google-assumes-mysterious-role.html',
             ),
+            Entity("Valerie Plame-Wilson", f"CIA agent at the center of The Plame Affair", url='https://en.wikipedia.org/wiki/Plame_affair'),
             acronym('Confidential Human Source', 'FBI speak for a tipster'),
             acronym('Foreign Corrupt Practices Act'),
             acronym('Justice Against Sponsors of Terrorism Act', 'law permitting 9/11 survivors to sue Saudi Arabia'),
@@ -2066,6 +2076,7 @@ HIGHLIGHTED_NAMES = [
             r"Tel Aviv",
             r"Yitzhak", r"Rabin",
             r"YIVO",
+            r"Yom Kippur",
             r"Yoni Koren",
             r"zionists?",
         ],
@@ -2534,7 +2545,7 @@ HIGHLIGHTED_NAMES = [
             r"Persian?( Gulf)?",
             r"Riya(dh|nd)",
             r"Saddam",
-            r"Salman",
+            r"Salman(?! Rushdie)",
             r"Saudi( Arabian?)?",
             r"Shariah?",
             r"SHC",
@@ -2739,7 +2750,7 @@ HIGHLIGHTED_NAMES = [
             Entity('Don McGahn', 'White House Counsel to Trump 1.0'),
             Entity('Elliott Broidy', 'fundraiser, impregnated / paid off / paid for an abortion for a Playboy Playmate he had affair with'),
             Entity('Juleanna Glover', "CEO of powerful DC lobbying firm Ridgely|Walsh", url=WIKIPEDIA),
-            Entity(RUDY_GIULIANI, 'disbarred former mayor of NYC', url=WIKIPEDIA),
+            Entity(RUDY_GIULIANI, 'disbarred former mayor of NYC', r"Rud(olph|y)( W\.?)? Giuliani", url=WIKIPEDIA),
             Entity(TULSI_GABBARD, 'former Democrat, National Security Advisor under Trump 2.0', url=WIKIPEDIA),
             Entity('Nikki Haley', match_partial='both', url=WIKIPEDIA),
         ],

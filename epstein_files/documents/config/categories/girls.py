@@ -52,7 +52,7 @@ GIRLS_CFGS = [
     DocCfg(id='022267', author=SVETLANA_POZHIDAEVA, note=f'{WOMEN_EMPOWERMENT} founder essay about growing the seminar business'),
     DocCfg(id='022407', author=SVETLANA_POZHIDAEVA, note=f'{WOMEN_EMPOWERMENT} seminar pitch deck'),
     EmailCfg(id='031177', highlight_quote="in Ibiza so invited a lots of girls from Russia all models"),
-    EmailCfg(id='030152', highlight_quote=f"model scout Tigrane apparently used to work for Trump Models"),
+    EmailCfg(id='030152', note=f"model scout Tigrane apparently used to work for Trump Models"),
     EmailCfg(id='025874', note=f"possibly about {VIRGINIA_GIUFFRE} {QUESTION_MARKS}"),
     EmailCfg(id='030609', duplicate_ids=['030495']),
 
