@@ -190,6 +190,10 @@ def letter(id: str, author: Name = None, recipients: list[Name] | None = None, n
     )
 
 
+def memo(id: str, author: str, note: str, date: str = '', **kwargs) -> DocCfg:
+    return DocCfg(id=id, author=author, date=date, note=join_truthy("memo", note, ' about '), **kwargs)
+
+
 def phone_bill_cfg(id: str, author: str, dates: str = '', **kwargs) -> DocCfg:
     return DocCfg(
         id=id,

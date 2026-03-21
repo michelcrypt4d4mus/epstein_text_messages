@@ -1,4 +1,4 @@
-from epstein_files.documents.config.config_builder import fbi_defense_witness, fbi_interview, fbi_tip, fbi_report, grand_jury, letter
+from epstein_files.documents.config.config_builder import fbi_defense_witness, fbi_interview, fbi_tip, fbi_report, grand_jury, letter, memo
 from epstein_files.documents.config.doc_cfg import NO_TRUNCATE, SHORT_TRUNCATE_TO, DocCfg
 from epstein_files.documents.config.email_cfg import EmailCfg
 from epstein_files.people.names import *
@@ -22,20 +22,28 @@ FBI_REPORT_FIELDS = [
 ]
 
 
-def bop_doc(id: str, description: str = '', date: str = '', display_text: str = '', **kwargs) -> DocCfg:
+def bop_doc(id: str, note: str = '', date: str = '', display_text: str = '', **kwargs) -> DocCfg:
     return DocCfg(
         id=id,
         author=BUREAU_OF_PRISONS,
-        note=description,
+        note=note,
         date=date,
         display_text=display_text,
         **kwargs
     )
 
 
+def bop_memo(id: str, note: str, date: str = '', **kwargs) -> DocCfg:
+    return memo(id, BUREAU_OF_PRISONS, note, date, **kwargs)
+
+
 def bop_policy_doc(id: str, display_text: str, date: str = '') -> DocCfg:
     """Bureau of prison brochures, poliicy statements, etc."""
     return bop_doc(id, date=date, display_text=display_text)
+
+
+def doj_memo(id: str, note: str, date: str = '', **kwargs) -> DocCfg:
+    return memo(id, DOJ, note, date, **kwargs)
 
 
 GOVERNMENT_CFGS = [
@@ -58,13 +66,11 @@ GOVERNMENT_CFGS = [
         note=f"approved mail list during Epstein's 2009 incarceration in {PALM_BEACH}",
         show_full_panel=True,
     ),
-    bop_doc('EFTA00143071', 'memo about Epstein and his cellmate Efrain Reyes', is_interesting=True),
     bop_doc('EFTA00109783', 'prisoner assignments', '2019-08-03'),
     bop_doc('EFTA00035921', "Lieutenant's Logs", '2019-08-06'),
     bop_doc('EFTA00039153', 'List of Exhibits, Chapter 2', '2019-01-06'),
     bop_doc('EFTA00109163', 'Metropolitan Correctional Center forms showing Konstantin Ignatov', '2019-08-08', is_interesting=True),
     bop_doc('EFTA00120617', '"Prisoner Remand or Order to Deliver" forms', '2019-07-30'),
-    bop_doc('EFTA00036136', 'memo about camera project'),
     bop_doc('EFTA00109654', 'roster of inmates at Metropolitan Correctional Center', '2019-08-08'),
     bop_doc('EFTA00108533', 'roster of inmates at Metropolitan Correctional Center', '2019-07-23'),
     bop_doc('EFTA00108552', 'roster of inmates at Metropolitan Correctional Center', '2019-07-23'),
@@ -84,6 +90,8 @@ GOVERNMENT_CFGS = [
         truncate_to=(7_500, 12_500),
     ),
     bop_doc('EFTA00039190', 'Special Housing Units', '2016-11-23', is_interesting=False),
+    bop_memo('EFTA00036136', 'camera project'),
+    bop_memo('EFTA00143071', 'Epstein and his cellmate Efrain Reyes', is_interesting=True),
     bop_policy_doc('EFTA00120459', 'handwritten log of prisoner movements', date='2019-08-09'),
     bop_policy_doc('EFTA00039227', 'Inmate Discipline Program Statement'),
     bop_policy_doc('EFTA00039295', 'Inmate Telephone Privileges Program Statement'),
@@ -104,12 +112,12 @@ GOVERNMENT_CFGS = [
         note='Powerpoint summary of Child Sex Trafficking Task Force Epstein investigation',
         is_interesting=True,
     ),
-    DocCfg(id='EFTA02731200', author=DOJ, note="memo about potential prosecution of Epstein's assistant"),
-    DocCfg(id='EFTA02731082', author=DOJ, note="memo about investigation into Epstein's co-conspirators"),
+    doj_memo('EFTA02731200', "potential prosecution of Epstein's assistant"),
+    doj_memo('EFTA02731082', "investigation into Epstein's co-conspirators"),
+    doj_memo('EFTA02731226', f"charging {GHISLAINE_MAXWELL} with additional offenses", '2021-03-14'),
     DocCfg(id='EFTA02730741', author=DOJ, date='2025-05-01', date_uncertain=True, note="Evidence list for 50D-NY-3027571 Filtering On 'Type(s): 1B'"),
     DocCfg(id='EFTA02730486', author=DOJ, date='2025-05-01', date_uncertain=True, note="Evidence list for 50D-NY-3027571 Filtering On '1A'"),
     DocCfg(id='EFTA00040006', author=DOJ, date='2019-08-27', note='Personal History of Defendant Jeffrey Epstein + grand jury indictment'),
-    DocCfg(id='EFTA02731226', author=DOJ, date='2021-03-14', note=f'memo seeking authorization to charge {GHISLAINE_MAXWELL} with additional offenses'),
     DocCfg(id='EFTA00023055', author=FBI, note="evidence of notes left about newly recruited underage girls by girls giving massages"),
     DocCfg(id='EFTA01731217', author=FBI, note=f'requesting INS allow {NADIA_MARCINKO} be allowed to stay in the US because of an ongoing sex-trafficking case', is_interesting=True),
     DocCfg(id='EFTA00247131', author=FBI, note='search warrant for New York house', date='2019-07-07'),
@@ -130,16 +138,17 @@ GOVERNMENT_CFGS = [
         highlight_quote='EPSTEIN claimed that his cellmate, NICHOLAS TARTAGLIONE, tried to take his life',
         truncate_to=(4_250, 5_500),
     ),
-    fbi_interview('EFTA02858481', 'Jennifer Aros', 'Epstein victim'),
-    fbi_interview('EFTA00174375', LUKE_D_THORBURN, f"lots of takes on Epstein, China, and {STEVE_BANNON}"),
-    fbi_interview('EFTA00081226', MINOR_VICTIM),
-    fbi_interview('EFTA00038915', MINOR_VICTIM, 'claims Epstein knew she was 14'),
     fbi_interview(
         'EFTA01246710',
         PERRY_LANG,
         "Epstein's chef claims Donald Trump came to Epstein's house for dinner",
+        is_interesting=10,
         truncate_to=(6_000, 7_500),
     ),
+    fbi_interview('EFTA02858481', 'Jennifer Aros', 'Epstein victim'),
+    fbi_interview('EFTA00174375', LUKE_D_THORBURN, f"lots of takes on Epstein, China, and {STEVE_BANNON}"),
+    fbi_interview('EFTA00081226', MINOR_VICTIM),
+    fbi_interview('EFTA00038915', MINOR_VICTIM, 'claims Epstein knew she was 14'),
     fbi_interview('EFTA00090602', STEVE_SCULLY, date='2019-08-09', show_full_panel=True),
     fbi_interview('EFTA00101927', None, f"claims Glenn and {EVA_DUBIN}'s Swiss au pair was being held against her will"),
     fbi_interview('EFTA00159321', None, f'covers {PAOLO_ZAMPOLLI}, Epstein, and the possibility Epstein introduced Melania to Donald Trump'),
@@ -184,7 +193,6 @@ GOVERNMENT_CFGS = [
         is_interesting=True,
     ),
     fbi_report('EFTA00151754', 'declaration of Law Enforcement Officer for Victim of Trafficking', is_interesting=True),
-    # fbi_report('EFTA00222943', "agent believes computers were removed from Epstein's residence"),
     grand_jury(
         'EFTA00222943',
         note='FBI agent testimony',
@@ -241,13 +249,6 @@ GOVERNMENT_CFGS = [
     EmailCfg(id='EFTA00039971', author=FBI, recipients=[USANYS], recipient_uncertain=True),
     EmailCfg(id='EFTA00163507', author=FBI, note="quotes from Epstein's cellmate", is_interesting=True),
     EmailCfg(id='EFTA00037683', note=f"tip that the murder of DC Madam Jeanne Palfrey might be connected to Epstein's network"),
-    # EmailCfg(
-    #     id='EFTA00037690',
-    #     author=BUREAU_OF_PRISONS,
-    #     author_uncertain=True,
-    #     recipients=[BUREAU_OF_PRISONS],
-    #     recipient_uncertain=True,
-    # ),
     EmailCfg(
         id='EFTA00037690',
         author=FBI,
