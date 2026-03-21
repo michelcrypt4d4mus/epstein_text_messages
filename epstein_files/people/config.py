@@ -354,7 +354,7 @@ HIGHLIGHTED_NAMES = [
                 phone_numbers=['5167456644', '6464087001'],
                 url='https://www.cnbc.com/2023/03/13/signature-bank-third-biggest-bank-failure-in-us-history.html',
             ),
-            Entity('Stewart Oldfield', f"worked on Epstein related accounts at {DEUTSCHE_BANK}"),
+            Entity('Stewart Oldfield', f"worked on Epstein related accounts at {DEUTSCHE_BANK}", r"Stewart Oldfiel?d"),
             Entity('Vaishali Mehta', f'Head of Anti-Money Laundering Business Risk at {DEUTSCHE_BANK}', r"Vaishali.{,5}Mehta"),
             Entity(VINIT_SAHNI, f"analyst at {DEUTSCHE_BANK} and {GOLDMAN_SACHS}", match_partial='both'),
 
