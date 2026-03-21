@@ -132,6 +132,7 @@ CRYPTADAMUS_SOCIAL_LINKS = [
 
 # biographical links
 DITE_ANATA_JUILLIARD_URL = 'https://usatoday.com/story/news/politics/2026/02/19/jeffrey-epstein-emails-files-power-for-benefit/88701802007/'
+JULIA_SANTOS_REDDIT_URL = 'https://www.reddit.com/r/Epstein/comments/1qwbn5i/trafficker_julia_santos/'
 
 EPSTEIN_DOCTORS_LINKS = [
     'https://www.nytimes.com/2026/02/28/us/jeffrey-epstein-doctors.html?unlocked_article_code=1.PlA.f4B2.BgLoXD-aVKkw&smid=url-share',

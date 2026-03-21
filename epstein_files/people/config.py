@@ -14,7 +14,7 @@ from epstein_files.people.entity import (Entity, Organization, acronym, epstein_
      island_employee, law_enforcement, publication, the_publication)
 from epstein_files.people.names import *
 from epstein_files.util.constant.strings import *
-from epstein_files.util.constant.urls import DITE_ANATA_JUILLIARD_URL, EPSTEIN_DOCTORS_LINKS, SUBSTACK_POST_INSIGHTSPOD_URL, SVETLANA_NEWSGROUND
+from epstein_files.util.constant.urls import DITE_ANATA_JUILLIARD_URL, EPSTEIN_DOCTORS_LINKS, JULIA_SANTOS_REDDIT_URL, SUBSTACK_POST_INSIGHTSPOD_URL, SVETLANA_NEWSGROUND
 from epstein_files.util.env import args
 from epstein_files.util.helpers.data_helpers import flatten, sort_dict
 from epstein_files.util.helpers.string_helper import indented, join_patterns
@@ -2980,7 +2980,7 @@ HIGHLIGHTED_NAMES = [
                 JULIA_SANTOS,  # TODO: Jmail says her email is julia.santos@hbs.edu
                 "recruiter of girls from Ukraine for Epstein, possibly Harvard Business School student",
                 match_partial=None,
-                url='https://www.reddit.com/r/Epstein/comments/1qwbn5i/trafficker_julia_santos/',
+                url=JULIA_SANTOS_REDDIT_URL,
             ),
             Entity(
                 KARYNA_SHULIAK,

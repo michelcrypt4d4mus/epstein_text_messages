@@ -6,7 +6,7 @@ from epstein_files.documents.config.doc_cfg import NO_TRUNCATE, DocCfg
 from epstein_files.documents.config.email_cfg import EmailCfg
 from epstein_files.people.names import *
 from epstein_files.util.constant.strings import *
-from epstein_files.util.constant.urls import SVETLANA_NEWSGROUND
+from epstein_files.util.constant.urls import JULIA_SANTOS_REDDIT_URL, SVETLANA_NEWSGROUND
 from epstein_files.util.helpers.string_helper import join_truthy, quote
 from epstein_files.util.logging import logger
 from epstein_files.util.constant.urls import DITE_ANATA_JUILLIARD_URL
@@ -135,7 +135,7 @@ GIRLS_CFGS = [
         author_uncertain=True,
         is_interesting=15,
         note='recruiting russian girls',
-        url='https://www.reddit.com/r/Epstein/comments/1qwbn5i/trafficker_julia_santos/',
+        url=JULIA_SANTOS_REDDIT_URL,
     ),
     whatsapp_log(
         id='EFTA01612733',
@@ -149,7 +149,7 @@ GIRLS_CFGS = [
     EmailCfg(
         id='EFTA02339926',
         author=JULIA_SANTOS,
-        author_uncertain='https://www.reddit.com/r/Epstein/comments/1qwbn5i/trafficker_julia_santos/',
+        author_uncertain=JULIA_SANTOS_REDDIT_URL,
         highlight_quote='very sweet and might be naughty t=o',
     ),
     EmailCfg(
@@ -164,9 +164,9 @@ GIRLS_CFGS = [
     EmailCfg(id='EFTA01781620', author=KIRA_DIKHTYAR, author_uncertain='"Sent from AOL Mobile Mail" in chain'),
     EmailCfg(id='EFTA01805304', author=KIRA_DIKHTYAR, author_reason='Jmail', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA01766199', author=KIRA_DIKHTYAR, author_reason='reply', truncate_to=NO_TRUNCATE),
-    EmailCfg(id='EFTA01969878', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA01890941', is_interesting=5),
     EmailCfg(id='EFTA01759826', highlight_quote='especially if you find me interesing girls there', truncate_to=NO_TRUNCATE),
+    EmailCfg(id='EFTA01969878', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA01981669', truncate_to=NO_TRUNCATE),
     EmailCfg(
         id='033178',
@@ -362,7 +362,7 @@ GIRLS_CFGS = [
     EmailCfg(
         id='EFTA02223525',
         recipients=[ANNA_KASATKINA, BELLA_KLEIN, JANUSZ_BANASIAK],
-        recipient_uncertain='https://www.reddit.com/r/Epstein/comments/1qwbn5i/trafficker_julia_santos/',
+        recipient_uncertain=JULIA_SANTOS_REDDIT_URL,
         truncate_to=800
     ),
     EmailCfg(id='EFTA02470883', recipients=[YULIA_DOROKHINA]),
