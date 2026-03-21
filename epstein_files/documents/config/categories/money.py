@@ -26,8 +26,8 @@ def deutsche_bank_doc(id: str, note: str, date: str = '', **kwargs) -> DocCfg:
 def epstein_will(
     id: str,
     date: str = '',
-    trust: str = '',
     executors: list[str] | None = None,
+    trust: str = '',
     note: str = '',
     **kwargs
 ) -> DocCfg:
@@ -40,6 +40,7 @@ def epstein_will(
         executor_label = 'executor'
 
     if executors:
+        executors = sorted(executors)
         note += f" with {', '.join(executors)} as {executor_label}" + ('s' if len(executors) > 1 else '')
 
     return DocCfg(id=id, date=date, is_interesting=10, note=note, **kwargs)
@@ -116,7 +117,6 @@ MONEY_CFGS = [
         note=f"call log shows Bank Hapoalim director / future crypto bank SBNY founder Scott Shay selling Epstein investment ideas weeks after Hapoalim money laundering issues, also Steve Cohen and Barry Diller",
         truncate_to=7_700,
     ),
-    epstein_will('EFTA01266380', '2014-11-18', '2014', [DARREN_INDYKE, JES_STALEY, DAVID_MITCHELL], truncate_to=(4_500, 13_000)),
     DocCfg(id='EFTA01583819', note=f"Epstein had control of {JAMES_CAYNE}'s assets"),
     DocCfg(id='EFTA00099424', note=f"Epstein 2017 Trust (Eva Andersson Dubin, {DARREN_INDYKE}, {RICHARD_KAHN})"),
     DocCfg(id='EFTA01266457', note=f"Epstein 2018 Trust ({KATHRYN_RUEMMLER}, {DARREN_INDYKE}, {RICHARD_KAHN})"),
@@ -133,8 +133,9 @@ MONEY_CFGS = [
     DocCfg(id='EFTA01086463', note=f"{MORTIMER_ZUCKERMAN}'s art collection valuations", is_valid_for_name_scan=False),
     DocCfg(id='EFTA01273102', note=f"payment from Epstein to {RENATA_BOLOTOVA}'s father's account at Sberbank"),
     DocCfg(id='EFTA00238499', note='wire transfer to Signature Bank account'),
-    epstein_will('EFTA00016884', '2014-11-18'),
-    epstein_will('EFTA00089546', '2007-09-20', '', [JAMES_CAYNE], 'codicil', non_participants=[JOI_ITO]),
+    epstein_will('EFTA00016884', '2014-11-18', [DARREN_INDYKE, JES_STALEY, DAVID_MITCHELL, LARRY_SUMMERS], truncate_to=2_500),
+    epstein_will('EFTA01266380', '2014-11-18', [DARREN_INDYKE, JES_STALEY, DAVID_MITCHELL], '2014', truncate_to=(4_500, 13_000)),
+    epstein_will('EFTA00089546', '2007-09-20', [JAMES_CAYNE], note='codicil', non_participants=[JOI_ITO]),
     inventory('EFTA00299850', 'FILE CABINET ONE'),
     inventory('EFTA00299927', 'FILE CABINET TWO', f"{JAMES_CAYNE} estate plan"),
 

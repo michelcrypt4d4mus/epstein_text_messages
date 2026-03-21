@@ -26,6 +26,8 @@ HAS_LETTER_LIST_REGEX = re.compile(fr"^a[.)] {LIST_ELEMENT_PATTERN}\nb[.)] ", LI
 LETTER_LIST_ITEM_REGEX = re.compile(fr"^([a-z][.)] {LIST_ELEMENT_PATTERN})(?=\n[a-z][.)] |\Z)", LIST_REGEX_FLAGS)
 HAS_NUMBERED_LIST_REGEX = re.compile(fr"^2\. {LIST_ELEMENT_PATTERN}\n3\. ", LIST_REGEX_FLAGS)
 NUMBERED_LIST_ITEM_REGEX = re.compile(fr"^(\d+\. {LIST_ELEMENT_PATTERN})(?=\n\d+\.|\Z)", LIST_REGEX_FLAGS)
+ORDINAL_PATTERN = '|'.join([o.upper() for o in 'first second third fourth fifth sixth seventh eighth ninth tenth'.split()])
+ORDINAL_LIST_REGEX = re.compile(fr"^(({ORDINAL_PATTERN}): .*?)(?=(\n{ORDINAL_PATTERN}:|\Z))", re.DOTALL | re.MULTILINE)
 SECTION_LIST_REGEX = re.compile(r"[^\n](\nSection \d)")
 
 DATE_LENGTH = len('2025-05-05')
@@ -78,7 +80,8 @@ def doublespace_lists(s: str) -> str:
     if contains_letter_list(s):
         s = LETTER_LIST_ITEM_REGEX.sub(r"\n\1", s)
 
-    return SECTION_LIST_REGEX.sub(r"\n\n\1", s)
+    s = SECTION_LIST_REGEX.sub(r"\n\n\1", s)
+    return ORDINAL_LIST_REGEX.sub(r"\n\1", s)
 
 
 def extract_emojis(s: str) -> list[str]:
