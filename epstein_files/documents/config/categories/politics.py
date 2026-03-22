@@ -3,6 +3,7 @@ Politics related files. By default uninteresting.
 """
 from epstein_files.documents.config.config_builder import letter, passenger_manifest
 from epstein_files.documents.config.doc_cfg import DocCfg
+from epstein_files.documents.config.email_cfg import EmailCfg
 from epstein_files.people.names import *
 from epstein_files.util.constant.strings import *
 from epstein_files.util.helpers.string_helper import join_truthy, quote
@@ -50,4 +51,13 @@ POLITICS_CFGS = [
     letter(id='EFTA02731023', author='Senator Ron Wyden', recipients=[LEON_BLACK], is_interesting=False),
     letter(id='EFTA02731018', author='Senator Ron Wyden', recipients=['Marc Rowan'], is_interesting=False),
     passenger_manifest('007300', '2006-03-03', f"current US Navy Secretary Navy {JOHN_PHELAN} and {JEAN_LUC_BRUNEL}"),
+
+    # Emails
+    EmailCfg(id='029679', highlight_quote='his driver MAtt was the bag man', note="(re: Trump)"),
+    EmailCfg(id='026505', highlight_quote='I know how dirty donald is'),
+    EmailCfg(id='031659', highlight_quote='i have met some very bad people „ none as bad as trump'),
+    EmailCfg(id='031326', highlight_quote='that dog that hasn\'t barked is trump'),
+    EmailCfg(id='031451', highlight_quote='would you like photso of donald and girls in bikinis in my kitchen'),
+    EmailCfg(id='031596', highlight_quote='would you like photso of donald and girls in bikinis in my kitchen', truncate_to=500),
+    EmailCfg(id='031601', highlight_quote='Old gf i gave to donald', truncate_to=2_000),
 ]

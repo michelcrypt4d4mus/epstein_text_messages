@@ -292,6 +292,7 @@ CRYPTO_CFGS = [
     EmailCfg(id='EFTA00401065', note=f'{HOWARD_LUTNICK} visit to the island', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA00398853', note=f'{HOWARD_LUTNICK} visit to the island', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA00873540', note=f'{HOWARD_LUTNICK} and {PRINCE_ANDREW}'),
+    EmailCfg(id='EFTA02191245', note=f"interesting that calls with {HOWARD_LUTNICK} seem to start shortly after Epstein discovers bitcoin"),
     EmailCfg(id='EFTA00443752', note=f"invitation from {HOWARD_LUTNICK}", recipients=[JEFFREY_EPSTEIN, 'Matthew Gilbert']),
     EmailCfg(id='EFTA00957552', note=f'thank you note for a $50,000 donation in honor of Tether banker {HOWARD_LUTNICK}', is_interesting=10),
     EmailCfg(id='EFTA00970606', show_with_name=HOWARD_LUTNICK),

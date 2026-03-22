@@ -343,6 +343,10 @@ NOT_CHRONOLOGICAL_VIEW_IDS = [cfg.id for cfg in FLIGHT_LOG_CFGS] + [
     'EFTA02434790',
     # FBI
     'EFTA00019169',
+    # Ben Goertzel
+    'EFTA00756577',
+    # David Stern
+    'EFTA00756817',
     #
     'EFTA00582504',
     '024432',
@@ -394,12 +398,18 @@ NOT_CHRONOLOGICAL_VIEW_IDS = [cfg.id for cfg in FLIGHT_LOG_CFGS] + [
     'EFTA00329334',
     # Renata Bolotova
     'EFTA00667441',
+    'EFTA01811230',
     # Sean Lancaster
     '033155',
     # Tyler Shears
     'EFTA02372294',
     '028965',
-    # --- #
+    # unknown girl
+    'EFTA00897668',
+    # Al Seckel
+    'EFTA00709313',
+    'EFTA00751523',
+    #
     'EFTA02048499',
     'EFTA00322570',
     'EFTA02001536',
