@@ -690,7 +690,6 @@ EMAILS_CONFIG = [
     EmailCfg(id='030725', is_interesting=True, comment='David Stern in Moscow'),
     EmailCfg(id='030245', is_interesting=True, comment='Epstein rationalizes his behavior in an open letter to the world'),
     EmailCfg(id='032906', is_interesting=True, comment='David Blaine email'),
-    EmailCfg(id='029609', is_interesting=True, comment='Joi Ito'),
     EmailCfg(id='030222', is_interesting=True, comment='Ross Gow / Ghislaine correspondence'),
     EmailCfg(id='029545', is_interesting=True, comment='Tyler Shears reputation'),
     EmailCfg(id='025812', is_interesting=True, comment='Tyler Shears reputation', note="Epstein's unhappy with his Google search results"),
@@ -966,12 +965,6 @@ EMAILS_CONFIG = [
         note="Epstein calls Swedish billionaire Johan Eliasch \"not the brightest bulb\"",
         truncate_to=1000
     ),
-    EmailCfg(
-        id='EFTA02312343',
-        note=f"email about sham marriage visa issues, possibly from {RENATA_BOLOTOVA}'s spouse",
-        is_interesting=True,
-    ),
-    DocCfg(id='EFTA02312343_1', note='translation of visa email', attached_to_email_id='EFTA02312343'),
     EmailCfg(
         id='EFTA00708783',
         author=RENATA_BOLOTOVA,

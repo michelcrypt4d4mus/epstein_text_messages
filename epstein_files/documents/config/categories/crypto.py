@@ -342,6 +342,7 @@ CRYPTO_CFGS = [
     EmailCfg(id='028847', note=f"the announcement of a hunt for Putin's money seems to greatly concern Epstein and {JOI_ITO}"),
     EmailCfg(id='026360', note=f"{JOI_ITO} writes to Epstein to thank him for providing funding for the bitcoin core development team"),
     EmailCfg(id='025603', note=f"Epstein funnels money from {ANDREW_FARKAS} to {MIT_MEDIA_LAB} / {JOI_ITO}", truncate_to=850),
+    EmailCfg(id='029609', highlight_quote=f"We were able to keep the {LEON_BLACK} money"),
     DocCfg(id='EFTA00805860', note=f"{JOI_ITO}'s Neoteny 3 fund investor update / portfolio"),
     DocCfg(id='EFTA01118268', note=f"{JOI_ITO}'s Neoteny 3 fund investor update", date='2015-06-30'),
     DocCfg(id='EFTA01116280', note=f"{KYARA_FUND} I LLC (Physical Graph Corporation) operating agreement with edits"),

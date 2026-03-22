@@ -720,6 +720,12 @@ GIRLS_CFGS = [
     ),
 
     # Immigration
+    EmailCfg(
+        id='EFTA02312343',
+        note=f"email about sham marriage visa issues, possibly from {RENATA_BOLOTOVA}'s spouse",
+        is_interesting=10,
+    ),
+    DocCfg(id='EFTA02312343_1', note='translation of visa email', attached_to_email_id='EFTA02312343', show_full_panel=True),
     EmailCfg(id='EFTA02652017', note="inquiry about someone's immigration asylum application", is_interesting=True),
     blaine_letter('019086', date='2015-05-27', suffix='naming various Putin puppet regimes', show_full_panel=True),
     blaine_letter('019474', date='2015-05-29'),

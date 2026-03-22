@@ -175,7 +175,7 @@ MONEY_CFGS = [
     ),
 
     # Emails
-    EmailCfg(id='EFTA00037187', is_interesting=True),
+    EmailCfg(id='EFTA00037187', note=f"Epstein's {DEUTSCHE_BANK} banker Paul Morris lawyers up immediately when contacted by the FBI", is_interesting=5),
     EmailCfg(id='EFTA00994380', highlight_quote='please confirm $500 to Sergey Pozhidaev', truncate_to=500),
     EmailCfg(
         id='EFTA01409449',
@@ -202,7 +202,7 @@ MONEY_CFGS = [
         is_interesting=10,
         truncate_to=400,
     ),
-    EmailCfg(id='EFTA00080250', note=f"{LEON_BLACK} / Rothschild Group {DEUTSCHE_BANK} transactions", is_interesting=10),
+    EmailCfg(id='EFTA00080250', note=f"{LEON_BLACK} / Rothschild Group {DEUTSCHE_BANK} transactions, source of some of Epstein's wealth", is_interesting=10),
     EmailCfg(id='EFTA02633194', note=f'{NICOLE_JUNKERMANN} quotes an appraisal by "FSB (Russians)"', is_interesting=10),
     EmailCfg(id='EFTA01435454', note=f"{DEUTSCHE_BANK} finally sets up a trading account for Epstein's Southern Financial"),
     EmailCfg(id='EFTA02630431', note=f"{CARBYNE} is an Israeli company invested in by Epstein, {NICOLE_JUNKERMANN}, & {EHUD_BARAK}"),
