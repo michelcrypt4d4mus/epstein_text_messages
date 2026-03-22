@@ -193,7 +193,7 @@ def test_descriptions(get_other_file, id, category, description):
 
 
 def test_epstein_will():
-    assert CONFIGS_BY_ID['EFTA00089546'].note == f"Epstein last will and testament codicil naming {JAMES_CAYNE} as executor"
+    assert CONFIGS_BY_ID['EFTA00089546'].note == f"Epstein last will and testament codicil naming {HENRY_JARECKI}, James Cayne, Paul Hoffman as executors"
     assert CONFIGS_BY_ID['EFTA00016884'].note == f"Epstein last will and testament"
 
 
