@@ -43,7 +43,7 @@ OTHER_FILES_TABLE_BORDER_STYLE = 'gray30'
 STICKY_BIO_CSS_CLASS = 'sticky_person_bio_panel'
 
 PrintableObj = Document | Layout
-PeopleBiosArg = list[str] | list[Entity] | PrintableObj
+PeopleBiosArg = PrintableObj | list[Entity] | list[str]
 
 
 @dataclass(kw_only=True)
@@ -58,7 +58,7 @@ class DocPrinter(DocTypesMixin):
         printed_entity_bios (set[Entity]): all the names for which biographical information has been printed already
         _last_bio_panel (str): cached HTML for the last panel of biographical details, used to build divs
         _other_files_queue (list[OtherFile]): queue to collect `OtherFile`s into tables
-        _suppressed_docs_queue (list[Document]): queue to collect objects whose printing is suppressed (dupes, uninteresting, etc)
+        _suppressed_docs_queue (list[Document]): queue of docs whose display is suppressed (dupes, etc)
     """
     epstein_files: 'EpsteinFiles'
     html_elements: list[str] = field(default_factory=list)
