@@ -144,7 +144,7 @@ MONEY_CFGS = [
         '2007-09-20',
         [HENRY_JARECKI, JAMES_CAYNE, PAUL_HOFFMAN],
         note='codicil',
-        non_participants=[JOI_ITO],
+        # non_participants=[JOI_ITO],
         truncate_to=(12_750, 14_500),
     ),
     epstein_will('EFTA00099424', '2017-01-30', [EVA_DUBIN, DARREN_INDYKE, RICHARD_KAHN], '2017', truncate_to=(4_600, 14_000)),
@@ -217,6 +217,7 @@ MONEY_CFGS = [
     EmailCfg(id='EFTA01942664', note=f'payment from {MC2_MODEL_MGMT}'),
     EmailCfg(
         id='EFTA01816514',
+        comment='Different Gary, different Gensler',
         non_participants=['Gary Gensler'],
         note=f"discussion of open invoices includes $854,598 line of credit for {MC2_MODEL_MGMT}",
         truncate_to=(2_200, 2_900),

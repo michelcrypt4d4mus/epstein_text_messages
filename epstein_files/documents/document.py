@@ -484,16 +484,17 @@ class Document(LoggingEntity):
             `include` (EntityScanArg, optional): additional names to include (used by subclass overrides)
         """
         entities = get_entities([self.author] + self._config.entity_names + self._coerce_entities(include))
-        excluded_names = Entity.coerce_entity_names(exclude) + self._config.non_participants
+        excluded_names = set(Entity.coerce_entity_names(exclude) + self._config.non_participants)
 
         if self._config.entity_names or not self._config.is_valid_for_name_scan:
             return [e for e in entities if e.name not in excluded_names]
 
-        text_to_scan = join_truthy(self._config.note, self.display_text, '\n')
+        text_to_scan = join_truthy(self._config.note, self.display_text, '\n')  # Include configured note
 
         entities += [
             c for c in HIGHLIGHTED_ENTITIES
-            if c.name not in excluded_names and c.highlight_regex.search(text_to_scan)  # excluded 1st to avoid expensive scans
+            # check excluded list first to avoid expensive rescans
+            if c.name not in excluded_names and c.is_scannable and c.highlight_regex.search(text_to_scan)
         ]
 
         return self._coerce_entities(entities)
