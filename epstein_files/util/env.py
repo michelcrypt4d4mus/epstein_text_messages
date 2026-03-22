@@ -67,6 +67,8 @@ output.add_argument('--output-emails', '-oe', action='store_true', help='generat
 output.add_argument('--output-notes', '-on', action='store_true', help='output list of notes for all documents with them')
 output.add_argument('--output-other', '-oo', action='store_true', help='generate other files section')
 output.add_argument('--output-texts', '-ot', action='store_true', help='generate text messages section')
+output.add_argument('--output-top10', '-top10', action='store_true', help='only the highest scoring documents')
+output.add_argument('--almost-top10', '-a10', action='store_true', help='almost the highest scoring documents')
 output.add_argument('--output-word-count', '-ow', action='store_true', help='generate table of most frequently used words')
 output.add_argument('--sort-alphabetical', action='store_true', help='sort tables alphabetically intead of by count')
 output.add_argument(SUPPRESS_OUTPUT, action='store_true', help='no output to terminal (use with --build)')
@@ -121,7 +123,7 @@ args._debug_highlight_patterns = (args.colors_only and args.debug)
 
 # args.names = [name.title() for name in args.names] if args.names and args.names[0][0].islower() else args.names
 args.names = [None if n == 'None' else n.strip() for n in (args.names or [])]
-args.output_chrono = args.output_chrono or args.all_chrono
+args.output_chrono = args.output_chrono or args.all_chrono or args.output_top10
 args.output_emails = args.output_emails or args.all_emails
 args.output_other = args.output_other or args.all_other_files or args.uninteresting
 args.output_texts = args.output_texts or args.all_texts
@@ -185,6 +187,8 @@ if is_html_script:
             args._site = Site.JSON_METADATA
         elif args.output_notes:
             args._site = Site.DOCUMENT_NOTES
+        elif args.output_top10:
+            args._site = Site.MOST_INTERESTING
         elif args.output_chrono:
             args._site = Site.CHRONOLOGICAL
         elif args.output_devices:

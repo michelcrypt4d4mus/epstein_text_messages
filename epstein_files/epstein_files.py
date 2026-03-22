@@ -300,8 +300,10 @@ class EpsteinFiles(DocTypesMixin):
             doc_paths = [d.file_path for d in self._documents if d.file_id in ids]
             msg = f"Repairing {len(ids)} file IDs"
 
-            if len(doc_paths) != len(ids):
+            if len(doc_paths) < len(ids):
                 raise RuntimeError(f"{len(ids)} specified but only {len(doc_paths)} Document objects found!")
+            elif len(doc_paths) > len(ids):
+                logger.error(f"Dupes encountered: found {len(doc_paths)} files for {len(ids)} IDs")
 
         if (new_paths := self._new_files()):
             msg +=  f" (also loading {len(new_paths)} new files)"
@@ -398,6 +400,10 @@ class EpsteinFiles(DocTypesMixin):
 
     def _load_file_paths(self, file_paths: list[Path]) -> list[Document]:
         """Load a list of file paths into a list of `Document` object subclasses."""
+        if (uniq_paths := len(uniq_sorted(file_paths))) != len(file_paths):
+            logger.error(f"Shouldn't need to de-duplicate file_paths but only {uniq_paths} uniq out of {len(file_paths)}")
+            file_paths = uniq_sorted(file_paths)
+
         docs: list[Document] = []
 
         for file_path in file_paths:

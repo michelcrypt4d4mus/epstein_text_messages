@@ -47,6 +47,7 @@ class Site(StrEnum):
     EMAILERS = auto()
     EMAILS_CHRONOLOGICAL = auto()
     JSON_METADATA = auto()
+    MOST_INTERESTING = auto()
     NAMES = auto()  # Not a single site, depends on the --name argument
     OTHER_FILES_TABLE = auto()
     PHONE_NUMBERS = auto()
@@ -174,7 +175,8 @@ HTML_BUILD_FILENAMES = {
 # NOTE: Order matters, it's the order the links are shown in the header
 # Colons are used to break and parenthesize display
 SITE_DESCRIPTIONS = {
-    Site.ANNOTATED:             r"annotated:the cream of the crop",
+    # Site.ANNOTATED:             r"annotated:the cream of the crop",
+    Site.MOST_INTERESTING:      f"most interesting:the cream of the crop",
     Site.CHRONOLOGICAL:         f"chronological curated:all types intermingled",
     Site.CURATED:               f"emailers curated:emails grouped by person of interest",
     Site.EMAILERS:              f"emailers:all emails grouped by person",
