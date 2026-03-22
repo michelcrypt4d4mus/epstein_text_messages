@@ -15,7 +15,8 @@ from epstein_files.documents.other_file import OtherFile
 
 @dataclass
 class DocTypesMixin(ABC):
-    """Mixin for classes that maintain a list of `Document`s and want to sift by type."""
+    """Mixin for classes that maintain a list of `Document` objects and want to sift by type."""
+
     _documents: list[Document] = field(default_factory=list)
     _docs_by_id: dict[str, Document] = field(default_factory=dict)
 

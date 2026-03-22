@@ -87,9 +87,7 @@ FLIGHT_LOG_CFGS = [
 ]
 
 # Interesting / uninteresting
-INTERESTING_EMAIL_IDS = [
-    '033096',
-    'EFTA02516264',
+MOST_INTERESTING_EMAIL_IDS = [
 ]
 
 # These emails will be suppressed in the curated views
@@ -105,6 +103,7 @@ UNINTERESTING_EMAIL_IDS = [
     'EFTA02229342',
     'EFTA01005712',
     'EFTA01005715',
+    'EFTA01750836',
     'EFTA02228570',
     # Bannon
     'EFTA02517956',
@@ -247,6 +246,8 @@ UNINTERESTING_EMAIL_IDS = [
     'EFTA02696764',
     'EFTA00927986',
     'EFTA00667874',
+    'EFTA00995559',
+    'EFTA01748575',
     # Scott Link
     '022998',
     # Svetlana
@@ -314,6 +315,7 @@ UNINTERESTING_EMAIL_IDS = [
     'EFTA02431535',  # visible in EFTA00888467
     'EFTA00363992',  # car rental
     'EFTA02187735',  # housekeeping
+    'EFTA00364437',  # ivory coast
 ]
 
 UNINTERESTING_OTHER_FILE_IDS = [
@@ -329,16 +331,37 @@ NOT_CHRONOLOGICAL_VIEW_IDS = [cfg.id for cfg in FLIGHT_LOG_CFGS] + [
     'EFTA00006069',  # W-2 for employee
     'EFTA00507334',  # skype log w/lots of people
     'EFTA00751119',  # Valdson
+    # Austin Hill
+    'EFTA01917472',
     # Karim Wade
     'EFTA01063216',  # canceled trip
     'EFTA01738267',  # canceled trip
+    'EFTA00677266',
     # Ehud barak
     '032336',
+    # Brock
+    'EFTA02590000',
     # Peter Mandelson
     '029914',
     '033338',
     # Ike Groff
     'EFTA02189550',
+    # Daniel Siad
+    'EFTA02434790',
+    # FBI
+    'EFTA00019169',
+    # Ben Goertzel
+    'EFTA00756577',
+    'EFTA00995144',
+    # David Stern
+    'EFTA00756817',
+    'EFTA01775500',
+    # Jeremy Rubin
+    'EFTA00367406',
+    # MC2
+    'EFTA01870235',
+    # Story Cowles
+    'EFTA00563586',
     #
     'EFTA00582504',
     '024432',
@@ -369,11 +392,18 @@ NOT_CHRONOLOGICAL_VIEW_IDS = [cfg.id for cfg in FLIGHT_LOG_CFGS] + [
     '022234',
     '030470',
     '030222',
+    # Chris Poole
+    'EFTA02175423',
+    'EFTA02179653',
+    'EFTA02179926',
     # Christina Galbraith
     'EFTA00941810',
     # '031826',
     '031826',
     '019446',  #Haiti jacmel
+    # Ian Osbourne
+    'EFTA01856718',
+    'EFTA00718804',
     # Jean Luc visa etc
     'EFTA02515416',
     'EFTA02516675',
@@ -382,20 +412,45 @@ NOT_CHRONOLOGICAL_VIEW_IDS = [cfg.id for cfg in FLIGHT_LOG_CFGS] + [
     # Joi Ito
     '024256',
     'EFTA01058627',
+    'EFTA02387540',
     # Lesley Groff
     'EFTA02266060',
+    # Maria Prusakova / Miranda
+    'EFTA01775280',
+    'EFTA01990879',
+    'EFTA00719146',
+    'EFTA02026255',
     # Deepak
     'EFTA02342230',
+    # Gulsum
+    'EFTA01840139',
     # Misc
     'EFTA00329334',
     # Renata Bolotova
     'EFTA00667441',
+    'EFTA01811230',
+    'EFTA01985762',
+    'EFTA01843319',
+    'EFTA02018237',  # maybe about visa/ IPI?
     # Sean Lancaster
     '033155',
     # Tyler Shears
     'EFTA02372294',
+    'EFTA01851487',
+    'EFTA02518357',
     '028965',
-    # --- #
+    # unknown girl
+    'EFTA00897668',
+    'EFTA00625796',
+    # Al Seckel
+    'EFTA00709313',
+    'EFTA00751523',
+    # Jacquet
+    'EFTA02027091',
+    # Vincenzo
+    'EFTA01749028',
+    'EFTA01747994',
+    #
     'EFTA02048499',
     'EFTA00322570',
     'EFTA02001536',
@@ -468,6 +523,9 @@ NOT_CHRONOLOGICAL_VIEW_IDS = [cfg.id for cfg in FLIGHT_LOG_CFGS] + [
     '030986',
     '029583',
     '017827',
+    # unknown
+    '030244',
+    '028757',
     # '024185', # UN
 ]
 
@@ -494,7 +552,7 @@ for category in CATEGORIES_WITH_CFGS_VAR:
 
 ALL_CONFIGS = CATEGORY_CONFIGS + EMAILS_CONFIG + TEXTS_CONFIG
 DocCfg.update_or_create_cfgs(UNINTERESTING_OTHER_FILE_IDS, ALL_CONFIGS, 'is_interesting', False)
-EmailCfg.update_or_create_cfgs(INTERESTING_EMAIL_IDS, ALL_CONFIGS, 'is_interesting', True)
+EmailCfg.update_or_create_cfgs(MOST_INTERESTING_EMAIL_IDS, ALL_CONFIGS, 'is_interesting', 10)
 EmailCfg.update_or_create_cfgs(UNINTERESTING_EMAIL_IDS, ALL_CONFIGS, 'is_interesting', False)
 EmailCfg.update_or_create_cfgs(NOT_CHRONOLOGICAL_VIEW_IDS, ALL_CONFIGS, 'is_in_chrono', False)
 CONFIGS_BY_ID = {cfg.id: cfg for cfg in ALL_CONFIGS}

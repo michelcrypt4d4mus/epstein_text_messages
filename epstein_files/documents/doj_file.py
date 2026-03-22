@@ -12,13 +12,12 @@ from epstein_files.documents.config.doc_cfg import DebugDict
 from epstein_files.documents.emails.constants import DOJ_EMAIL_OCR_REPAIRS, FALLBACK_TIMESTAMP
 from epstein_files.documents.other_file import OtherFile
 from epstein_files.output.layout_elements.left_bar_panel import LeftBarPanel
-from epstein_files.output.rich import wrap_in_markup_style
 from epstein_files.util.logging import logger
 from epstein_files.util.helpers.data_helpers import coerce_utc_strict, prefix_keys
 from epstein_files.util.helpers.rich_helpers import RAINBOW, no_bold
 from epstein_files.util.helpers.string_helper import strip_pdfalyzer_panels
 
-BAD_LINE_REGEX = re.compile(r"^(SUBJECT TO PROTECTIVE ORDER PARAGRAPHS .*|UNCLASSIFIED)$")
+BAD_LINE_REGEX = re.compile(r"^(SUBJECT TO PROTECTIVE ORDER PARAGRAPHS .*|SDNY_GM_\d+|UNCLASSIFIED(//FO(LI|U)[O0])?)$")
 BAD_OCR_EMPTY_LENGTH = 150
 EMPTY_LENGTH = 15
 IGNORE_LINE_REGEX = re.compile(r"^(\d+\n?|[\s+❑]{2,})$")

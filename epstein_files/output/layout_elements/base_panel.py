@@ -8,9 +8,9 @@ from rich.text import Text
 from rich.panel import Panel
 
 from epstein_files.output.html.builder import PANEL_BASE_PROPS, border_css_props, render_to_html
-from epstein_files.output.html.elements import CssProps, OptionalCssProps, div_class, div_with_legend, div_tag
+from epstein_files.output.html.elements import OptionalCssProps, div_class, div_with_legend, div_tag
 from epstein_files.output.html.rich_style import RichStyle
-from epstein_files.output.html.positioned_rich import PositionedRich, dimensions_to_margin_css, margin_horizontal_css
+from epstein_files.output.html.positioned_rich import CssProps, PositionedRich, dimensions_to_margin_css, margin_horizontal_css
 from epstein_files.util.env import site_config
 from epstein_files.util.external_link import join_texts
 from epstein_files.util.helpers.data_helpers import without_falsey

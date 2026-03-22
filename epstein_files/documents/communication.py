@@ -7,7 +7,7 @@ from rich.text import Text
 
 from epstein_files.documents.document import CLOSE_PROPERTIES_CHAR, Document
 from epstein_files.documents.config.communication_cfg import CommunicationCfg
-from epstein_files.output.highlight_config import get_style_for_name, styled_name
+from epstein_files.output.highlight_config import get_style_for_name
 from epstein_files.output.rich import styled_key_value
 from epstein_files.people.entity import Entity, EntityScanArg
 from epstein_files.people.names import UNKNOWN, Name, extract_last_name

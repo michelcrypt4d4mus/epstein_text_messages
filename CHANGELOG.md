@@ -1,4 +1,6 @@
 # NEXT RELEASE
+* INDEX_HTML_SITE chooses what is built as index.html main landing page
+* New --output-top10 and --almost-top10 args
 * `truncate_to` config forces `show_full_panel=True`
 * `--output-notes` argument and site
 * Auto doublespace numbered lists and letter lists

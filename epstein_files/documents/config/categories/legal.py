@@ -165,12 +165,14 @@ LEGAL_CFGS = [
     DocCfg(id='EFTA00590940', author=JANE_DOE_V_USA, note='interview with minor victim', is_interesting=True),
     DocCfg(id='EFTA01081391', author=JANE_DOE_V_USA, note='interview with minor victim', is_interesting=True),
     DocCfg(id='EFTA00727684', author=f"{REDACTED} v. {JEFFREY_EPSTEIN}", note='sworn testimony, list of co-conspirators'),
-    DocCfg(id='EFTA00009440', note='FBI agent testimony on subpoenas of JP Morgan, Western Union, Adult Video Warehouse'),
-    DocCfg(id='EFTA00796700', note=f"detailed notes on Epstein's relationship with {ALAN_DERSHOWITZ}", is_interesting=True),
     DocCfg(id='EFTA00143492', note=f"court filing in which a victim calls Giuffre lawyer {STANLEY_POTTINGER} an abuser"),
+    DocCfg(id='EFTA00796700', note=f"detailed notes on Epstein's relationship with {ALAN_DERSHOWITZ}", is_interesting=True),
+    DocCfg(id='EFTA00009440', note='FBI agent testimony on subpoenas of JP Morgan, Western Union, Adult Video Warehouse'),
     DocCfg(id='EFTA00039817', note='notice of hearing', date='2021-04-19', duplicate_ids=['EFTA00039791'], is_interesting=False),
+    DocCfg(id='EFTA00074744', note="USVI court filing about Epstein will and estate"),
     DocCfg(id='EFTA00005586', display_text='completely redacted 69 pages labeled "Grand Jury - NY"'),
 
     # emails
     EmailCfg(id='EFTA00039794', recipients=['Michael Danchuk', USANYS]),
+    EmailCfg(id='EFTA00039816', is_interesting=False),
 ]

@@ -1,4 +1,4 @@
-from epstein_files.documents.config.config_builder import fedex_invoice, important_messages_pad, letter, press_release
+from epstein_files.documents.config.config_builder import fedex_invoice, important_messages_pad, inventory, letter, press_release
 from epstein_files.documents.config.doc_cfg import DocCfg
 from epstein_files.documents.config.communication_cfg import imessage_screenshot, skype_log
 from epstein_files.documents.documents.categories import Interesting, Neutral
@@ -82,8 +82,7 @@ MISC_CFGS = [
     DocCfg(id='EFTA00266322', note=f"documents about pitches for non-profits in Australia, including to Effective Altruism"),
     DocCfg(id='EFTA00005783', note='heavily redacted handwritten note, 30+ completely redacted pages', date='2019-08-29'),
     DocCfg(id='EFTA02697975', note='island employee list', show_full_panel=True),
-    DocCfg(id='EFTA01063691', note='inventory of address books and Skype logs seized from Epstein computers'),
-    DocCfg(id='EFTA00299850', note='inventory of the contents of "FILE CABINET ONE, DRAWER ONE"'),
+    inventory('EFTA01063691', 'address books and Skype logs seized from Epstein computers'),
     DocCfg(id='EFTA00024275', note='large Wexner funded payments to OB-GYN'),
     DocCfg(id='EFTA01193705', note="list of Epstein's known email addresses, internet accounts, cars, boats, airplanes, and telephone numbers"),
     DocCfg(id='EFTA00728783', note='list of names and phone numbers'),

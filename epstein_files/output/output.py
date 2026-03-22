@@ -1,5 +1,5 @@
 import json
-from collections import defaultdict
+from collections import Counter, defaultdict
 from os import unlink
 from subprocess import CalledProcessError, check_output
 from typing import TypeVar
@@ -82,13 +82,32 @@ def print_chronological(epstein_files: EpsteinFiles, printer: DocPrinter) -> Non
     def should_print(doc: Document) -> bool:
         if args.all_chrono:
             return True
-        if doc.is_email_attachment:
+        elif doc.is_email_attachment:
             return False
+        elif args.output_most_interesting:
+            if (doc._config.is_interesting or 0) > 1:
+                doc._warn(f'--top10 doc._config.is_interesting: {doc._config.is_interesting} ')
+                return True
+            else:
+                return False
+        elif args.almost_most_interesting:
+            return doc._config.is_interesting is True and doc._config.is_in_chrono is not False
         else:
             return bool(doc.is_interesting if not args.invert_chrono else not doc.is_interesting)
 
     docs = [d for d in epstein_files.unique_documents if should_print(d)]
-    logger.warning(f'Printing {len(docs)} documents chronologically...')
+    doc_ids = uniq_sorted([d.file_id for d in docs])
+
+    if len(doc_ids) != len(docs):
+        dupe_ids = [k for k, v in Counter([d.file_id for d in docs]).items() if v > 1]
+        logger.info(f"\ndupe_ids: {dupe_ids}\n")
+        dupe_docs = [d for d in epstein_files._documents if d.file_id in dupe_ids]
+        logger.error(f"Found {len(dupe_docs)} dupe docs...")
+        logger.error(f"Printing {len(docs)} documents chronologically but only {len(doc_ids)} uniq IDs! Dupes:\n\n{dupe_ids}\n")
+        Document._print_ids(dupe_docs)
+    else:
+        logger.warning(f'Printing {len(docs)} documents chronologically...')
+
     printer.print_section_subtitle('Selected Files of Interest in Chronological Order')
     printer.print_documents(_max_records(docs))
 

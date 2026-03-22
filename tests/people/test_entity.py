@@ -36,6 +36,8 @@ def test_acronym():
     assert ofac.emailer_pattern == r"O\.?F\.?A\.?C\.?|Office of Foreign Assets Control"
     occ = acronym('Office of the Comptroller of the Currency')
     assert occ.name == 'OCC'
+    dbagny = acronym("Deutsche Bank AG New York")
+    assert dbagny.name == 'DBAGNY'
 
 
 def test_bio():
@@ -56,10 +58,10 @@ def test_epstein_site_links(epstein):
 
 
 def test_epstein_trust():
-    butterfly = epstein_trust('Butterfly Trust', beneficiaries=['Karyna'])
+    butterfly = epstein_trust(BUTTERFLY_TRUST, beneficiaries=['Karyna'])
     assert butterfly.info == 'Epstein financial trust, sole beneficiary Karyna'
     assert butterfly.match_partial is None
-    butterfly = epstein_trust('Butterfly Trust', beneficiaries=['Karyna', 'Dave'])
+    butterfly = epstein_trust(BUTTERFLY_TRUST, beneficiaries=['Karyna', 'Dave'])
     assert butterfly.info == "Epstein financial trust, beneficiaries Karyna, Dave"
     year_trust = epstein_trust('2012', trustees=['Bob', 'Dylan'])
     assert year_trust.name == 'Jeffrey E. Epstein 2012 Trust'

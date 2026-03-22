@@ -1,4 +1,5 @@
 import re
+from datetime import datetime
 from pathlib import Path
 from subprocess import check_output, run
 
@@ -24,6 +25,11 @@ DIFF_PFXES = ['<', '>']
 KB = 1024
 MB = KB * KB
 
+# File stat helpers
+file_size = lambda file_path: Path(file_path).stat().st_size
+modified_at = lambda file_path: datetime.fromtimestamp(Path(file_path).stat().st_mtime)
+
+# Document path helpers
 all_txt_paths = lambda: doj_txt_paths() + oversight_txt_paths() + dropsite_eml_paths()
 doj_txt_paths = lambda: [f for f in DOJ_TXTS_20260130_DIR.glob('**/*.txt')] if DOJ_TXTS_20260130_DIR else []
 dropsite_eml_paths = lambda: [f for f in DROPSITE_EMLS_DIR.glob('*.eml')]
@@ -117,9 +123,6 @@ def extract_file_id(filename_or_id: int | str | Path) -> str:
     else:
         logger.error(f"filename_str='{filename_str}', HOUSE_FILE_ID_REGEX='{HOUSE_FILE_ID_REGEX.pattern}'")
         raise RuntimeError(f"Failed to extract file ID from '{filename_or_id}' (type: {type(filename_or_id).__name__}!")
-
-
-file_size = lambda file_path: Path(file_path).stat().st_size
 
 
 def file_size_str(file_path: str | Path, digits: int | None = None):

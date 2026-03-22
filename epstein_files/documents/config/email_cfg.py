@@ -5,6 +5,8 @@ from epstein_files.documents.config.doc_cfg import SHORT_TRUNCATE_TO
 from epstein_files.documents.config.communication_cfg import CommunicationCfg, Platform
 from epstein_files.util.helpers.rich_helpers import CharRangeAuto
 
+SNEAKY_DOG = '"sneaky dog"'
+
 
 @dataclass(kw_only=True)
 class EmailCfg(CommunicationCfg):
@@ -16,11 +18,11 @@ class EmailCfg(CommunicationCfg):
         has_uninteresting_bccs (bool): If `True` this email's BCC: recipients will be marked as 'uninteresting'.
         subject (str, optional): Email subject line.
     """
-    platform: Platform = Platform.EMAIL
     actual_text: str | None = None
     fwded_text_after: str | None = None
     has_uninteresting_ccs: bool = False
     has_uninteresting_bccs: bool = False
+    platform: Platform = Platform.EMAIL  # Different default
     subject: str | None = None
 
     PREFIX_NOTE_WITH_CATEGORY: ClassVar[bool] = False

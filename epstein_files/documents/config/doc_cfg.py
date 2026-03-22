@@ -16,9 +16,9 @@ from epstein_files.people.interesting_people import PERSONS_OF_INTEREST
 from epstein_files.people.names import *
 from epstein_files.util.constant.strings import *
 from epstein_files.util.env import args, site_config
+from epstein_files.util.external_link import ExternalLink
 from epstein_files.util.helpers.data_helpers import coerce_utc_strict, without_falsey
 from epstein_files.util.helpers.file_helper import is_doj_file
-from epstein_files.util.external_link import ExternalLink
 from epstein_files.util.helpers.rich_helpers import CharRangeAuto, enclose
 from epstein_files.util.helpers.string_helper import collapse_whitespace, is_bool_prop, join_truthy, quote
 from epstein_files.util.logging import logger
@@ -28,7 +28,7 @@ DebugDict = dict[str, bool | datetime | set | str | Path | None]
 DuplicateType = Literal['bounced', 'earlier', 'quoted', 'redacted', 'same']
 Metadata = dict[str, bool | datetime | int | str | None | list[str | None] | dict[str, bool | str]]
 
-AUTO_QUOTE_NUM_CHARS = 1_600  # Number of chars before and after highlight_quote for auto truncation
+AUTO_QUOTE_NUM_CHARS = 400 if args.output_most_interesting else 1_600  # Number of chars before and after highlight_quote for auto truncation
 DOC_CHAR_RANGE = (0, 12_000)
 EMAIL_TRUNCATE_TO = int(DOC_CHAR_RANGE[1] / 3)
 SHORT_TRUNCATE_TO = int(EMAIL_TRUNCATE_TO / 3)
@@ -203,7 +203,7 @@ class DocCfg(LoggingEntity):
                 self.note = join_truthy(self.note, f'{QUOTE_PREFIX}: {quote(quote_note)}', joiner)
 
         # show_full_panel (and highlight_quote) set is_interesting=10
-        if self.show_full_panel and self.is_interesting is not False:
+        if self.show_full_panel and self.is_interesting not in [True, False]:
             self.is_interesting = 10
 
         if self.truncate_to and not self.show_full_panel:
@@ -370,7 +370,7 @@ class DocCfg(LoggingEntity):
 
     @property
     def is_excerpt(self) -> bool:
-        return isinstance(self.truncate_to, tuple)
+        return isinstance(self.truncate_to, tuple) or self.truncate_to == AUTO
 
     @property
     def is_house_file(self) -> bool:
@@ -601,6 +601,15 @@ class DocCfg(LoggingEntity):
             return repr_str
 
     @classmethod
+    def set_categories(cls, cfgs: Sequence['DocCfg'], category: str | Path) -> None:
+        """Set the `category` property for all `cfgs`."""
+        category = category.stem if isinstance(category, Path) else category
+        logger.debug(f"Setting category for {len(cfgs)} configs to '{category}'")
+
+        for cfg in cfgs:
+            cfg.set_category(cfg.category or category)
+
+    @classmethod
     def update_or_create_cfgs(cls, ids: list[str], manual_cfgs: Sequence['DocCfg'], prop: str, new_val: Any) -> None:
         """If a record exists in `existing_cfgs` update it, otherwise create new and append."""
         cfg_dict = {cfg.id: cfg for cfg in manual_cfgs}
@@ -618,12 +627,3 @@ class DocCfg(LoggingEntity):
                 created += 1
 
         logger.info(f"Created {created} {cls.__name__} with {prop}={new_val}, updated {updated} existing.")
-
-    @classmethod
-    def set_categories(cls, cfgs: Sequence['DocCfg'], category: str | Path) -> None:
-        """Set the `category` property for all `cfgs`."""
-        category = category.stem if isinstance(category, Path) else category
-        logger.debug(f"Setting category for {len(cfgs)} configs to '{category}'")
-
-        for cfg in cfgs:
-            cfg.set_category(cfg.category or category)

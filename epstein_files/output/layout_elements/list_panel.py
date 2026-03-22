@@ -1,20 +1,14 @@
 from dataclasses import dataclass, field
-from typing import Literal
 
-from rich.align import Align
-from rich.console import Console, ConsoleOptions, JustifyMethod, RenderResult, RenderableType
-from rich.padding import Padding, PaddingDimensions
-from rich.table import Table
 from rich.text import Text
 from rich.panel import Panel
 
 from epstein_files.output.html.builder import text_to_list
-from epstein_files.output.html.elements import CssProps, OptionalCssProps, div_class
-from epstein_files.output.layout_elements.base_panel import BasePanel
-from epstein_files.output.html.rich_style import RichStyle
+from epstein_files.output.html.elements import OptionalCssProps, div_class
 from epstein_files.output.html.positioned_rich import BLACK_BACKGROUND
-from epstein_files.util.env import site_config
+from epstein_files.output.layout_elements.base_panel import BasePanel
 from epstein_files.output.rich import indent_txt
+from epstein_files.util.env import site_config
 from epstein_files.util.external_link import join_texts
 from epstein_files.util.helpers.data_helpers import without_falsey
 

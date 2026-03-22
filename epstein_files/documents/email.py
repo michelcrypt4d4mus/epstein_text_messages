@@ -15,15 +15,15 @@ from rich.table import Table
 from rich.text import Text
 
 from epstein_files.documents.communication import Communication
-from epstein_files.documents.document import CLOSE_PROPERTIES_CHAR, EXCERPT_STYLE
+from epstein_files.documents.document import EXCERPT_STYLE
 from epstein_files.documents.documents.categories import Uninteresting
-from epstein_files.documents.config.doc_cfg import EMAIL_TRUNCATE_TO, NO_TRUNCATE, SHORT_TRUNCATE_TO, DebugDict, Metadata
+from epstein_files.documents.config.doc_cfg import EMAIL_TRUNCATE_TO, SHORT_TRUNCATE_TO, DebugDict, Metadata
 from epstein_files.documents.config.email_cfg import EmailCfg
 from epstein_files.documents.doj_file import DojFile
 from epstein_files.documents.emails.constants import *
 from epstein_files.documents.emails.email_parts import EmailParts
-from epstein_files.documents.emails.email_header import (EMAIL_SIMPLE_HEADER_REGEX,
-     EMAIL_SIMPLE_HEADER_LINE_BREAK_REGEX, EmailHeader)
+from epstein_files.documents.emails.email_header import (EMAIL_SIMPLE_HEADER_REGEX, EMAIL_SIMPLE_HEADER_LINE_BREAK_REGEX,
+     EmailHeader)
 from epstein_files.documents.emails.emailers import IDENTIFYING_REGEXES, IDENTIFIER_FALSE_ALARMS, extract_emailer_names
 from epstein_files.documents.other_file import OtherFile
 from epstein_files.people.entity import Entity, EntityScanArg
@@ -34,13 +34,13 @@ from epstein_files.output.highlight_config import HIGHLIGHTED_NAMES, get_style_f
 from epstein_files.output.html.builder import table_to_html
 from epstein_files.output.html.positioned_rich import to_em
 from epstein_files.output.layout_elements.layout import Layout, JustifyMethod
-from epstein_files.output.rich import DEFAULT_TABLE_KWARGS, build_table, styled_key_value
-from epstein_files.util.constant.strings import APPEARS_IN, ARCHIVE_LINK_COLOR, REDACTED, TIMESTAMP_DIM, OcrRepair
+from epstein_files.output.rich import DEFAULT_TABLE_KWARGS, build_table
+from epstein_files.util.constant.strings import APPEARS_IN, ARCHIVE_LINK_COLOR, AUTO, REDACTED, TIMESTAMP_DIM, OcrRepair
 from epstein_files.util.constant.urls import URL_SIGNIFIERS
 from epstein_files.util.constants import CONFIGS_BY_ID
 from epstein_files.util.env import args, site_config
 from epstein_files.util.helpers.data_helpers import (AMERICAN_TIME_REGEX, TIMEZONE_INFO, coerce_utc, flatten,
-     prefix_keys, uniq_sorted, uniquify, without_falsey)
+     prefix_keys, uniquify, without_falsey)
 from epstein_files.util.helpers.rich_helpers import CharRange, no_italic
 from epstein_files.util.external_link import join_texts, link_text_obj
 from epstein_files.util.helpers.string_helper import capitalize_first, collapse_newlines, is_bool_prop, quote, strip_pdfalyzer_panels
@@ -121,6 +121,7 @@ OCR_REPAIRS: OcrRepair = {
     # HTML garbage
     '&lt;': '<',
     '<mime-attachment.gif>': '',
+    re.compile(r'<=[8R]>'): '',
     re.compile(r'(fi|[&S5d])gt;'): '>',
     re.compile(r'[</=]{,3}(cl|d)?iv>|&[=n]bs[=p];|<=span>|=C\d+\b'): '',
     re.compile(r'^O= ', re.MULTILINE): 'On ',
@@ -460,10 +461,12 @@ class Email(Communication):
             body_txt = super().prettified_txt
             offset = 0
 
-            if char_range == 'auto':
+            if char_range == AUTO:
                 char_range = self.char_range_to_display
 
-            if char_range[0] > 0 and char_range[0] < self.email_parts.header_len:
+            if char_range[0] > self.email_parts.header_len:
+                return self.email_parts.header_txt.append('\n\n').append(body_txt)
+            elif char_range[0] > 0 and char_range[0] < self.email_parts.header_len:
                 intro_txt_len = len(self._intro_txt(char_range[0]))
                 offset = intro_txt_len + (self.email_parts.header_len - char_range[0])
                 self._warn(f"excerpt starts in the header, will may in duplicate header chars (offset={offset})")
@@ -821,7 +824,7 @@ class Email(Communication):
         # self._debug_log(f"text after _add_line_breaks:\n\n{text}\n---")
 
         for name, signature_regex in EMAIL_SIGNATURE_REGEXES.items():
-            signature_replacement = f'<...snipped {name.lower()} email signature...>'
+            signature_replacement = snip_msg(f'snipped {name.lower()} email signature')
             text, num_replaced = signature_regex.subn(signature_replacement, text)
             self.signature_substitution_counts[name] = self.signature_substitution_counts.get(name, 0)
             self.signature_substitution_counts[name] += num_replaced

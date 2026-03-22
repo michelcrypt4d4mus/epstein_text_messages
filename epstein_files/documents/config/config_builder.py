@@ -178,6 +178,12 @@ def important_messages_pad(id: str, date: str = '') -> DocCfg:
     return DocCfg(id=id, date=date, display_text=display_text)
 
 
+def inventory(id: str, container: str, note: str = '', **kwargs) -> DocCfg:
+    note = f"inventory of the contents of {container}"
+    note = join_truthy(note, note, ', includes ')
+    return DocCfg(id=id, note=note, **kwargs)
+
+
 def letter(id: str, author: Name = None, recipients: list[Name] | None = None, note: str = '', date: str = '', **kwargs) -> CommunicationCfg:
     return CommunicationCfg(
         id=id,
@@ -186,6 +192,21 @@ def letter(id: str, author: Name = None, recipients: list[Name] | None = None, n
         note=note,
         platform=Platform.LETTER,
         recipients=recipients or [],
+        **kwargs
+    )
+
+
+def memo(id: str, author: str, note: str, date: str = '', **kwargs) -> DocCfg:
+    return DocCfg(id=id, author=author, date=date, note=join_truthy("memo", note, ' about '), **kwargs)
+
+
+def passenger_manifest(id: str, date: str, showing: str = '', **kwargs) -> DocCfg:
+    return DocCfg(
+        id=id,
+        author=JEGE_INC,
+        date=date,
+        note=join_truthy("flight manifest", showing, ' showing '),
+        show_full_panel=True,
         **kwargs
     )
 
@@ -208,6 +229,7 @@ def shaher_murder_email(id: str, note: str = '', **kwargs) -> EmailCfg:
     return EmailCfg(
         id=id,
         is_interesting=10,
+        non_participants=[JOI_ITO],
         note=join_truthy(note, f"discussion of the murder of Martine Vik Magnussen by {SHAHER_ABDULHAK_BESHER}'s son Farouk"),
         **kwargs
     )
@@ -239,13 +261,6 @@ def valar_cfg(id: str, note: str = '', text: str = '') -> DocCfg:
 def victim_diary(id: str, note: str) -> DocCfg:
     return DocCfg(id=id, category=Interesting.DIARY, note=note, show_full_panel=True)
 
-
-def whistleblower_cfg(id, note: str = '') -> EmailCfg:
-    return EmailCfg(
-        id=id,
-        is_interesting=True,
-        note=join_truthy('SEC whistleblower email', note, ', '),
-    )
 
 
 def wolff_draft_cfg(id: str, suffix: str = '', **kwargs) -> DocCfg:

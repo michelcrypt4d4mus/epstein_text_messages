@@ -8,7 +8,17 @@ from epstein_files.documents.email import Email
 from epstein_files.util.logging import logger
 from epstein_files.util.constant.strings import AUTHOR
 
-HEADERS_TO_CHECK = ['Authentication-Results', 'Content-Transfer-Encoding', 'Content-Type', 'DKIM-Signature', 'DomainKey-Signature', 'Received', 'References', 'X-Mailer']
+HEADERS_TO_CHECK = [
+    'Authentication-Results',
+    'Content-Transfer-Encoding',
+    'Content-Type',
+    'DKIM-Signature',
+    'DomainKey-Signature',
+    'Received',
+    'References',
+    'X-Mailer',
+]
+
 DEFAULT_EML_HEADERS = HEADERS_TO_CHECK + ['Date', 'From', 'Subject', 'To', 'MIME-Version', 'Content-Length']
 HEADER_FIELDS = [AUTHOR, 'sent_at', 'to', 'subject']
 

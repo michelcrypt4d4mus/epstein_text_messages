@@ -10,9 +10,9 @@ from rich.panel import Panel
 
 from epstein_files.output.html.builder import (PANEL_BASE_PROPS, VERTICAL_MARGIN_EMS, border_css_props,
      one_row_table_html, render_to_html, text_to_list, text_to_div, margin_vertical_css)
-from epstein_files.output.html.elements import CssProps, OptionalCssProps, div_class, div_with_legend, div_tag
+from epstein_files.output.html.elements import OptionalCssProps, div_class, div_with_legend, div_tag
 from epstein_files.output.html.rich_style import RichStyle
-from epstein_files.output.html.positioned_rich import BLACK_BACKGROUND, PositionedRich, dimensions_to_margin_css, margin_horizontal_css
+from epstein_files.output.html.positioned_rich import PositionedRich, dimensions_to_margin_css
 from epstein_files.output.layout_elements.base_panel import BasePanel
 from epstein_files.output.layout_elements.list_panel import ListPanel
 from epstein_files.util.env import site_config

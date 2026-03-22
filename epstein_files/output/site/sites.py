@@ -47,6 +47,7 @@ class Site(StrEnum):
     EMAILERS = auto()
     EMAILS_CHRONOLOGICAL = auto()
     JSON_METADATA = auto()
+    MOST_INTERESTING = auto()
     NAMES = auto()  # Not a single site, depends on the --name argument
     OTHER_FILES_TABLE = auto()
     PHONE_NUMBERS = auto()
@@ -83,6 +84,8 @@ class Site(StrEnum):
             from epstein_files.util.env import args
             names = sorted(['unknown' if n is None else n for n in args.names])
             site = NAMES_PREFIX + '__'.join(sorted(names)).replace(' ', '_').lower()
+        elif _site == INDEX_HTML_SITE:
+            site = 'index'
         else:
             site = _site
 
@@ -156,11 +159,12 @@ class HtmlDir:
         return cls.HTML_DIR.joinpath(filename)
 
 
+INDEX_HTML_SITE = Site.MOST_INTERESTING
+
 # TODO: purge repo of old files for space:
 #  - curated_chronological.html
 HTML_BUILD_FILENAMES = {
     Site.EMAILS_CHRONOLOGICAL:  f'chronological_emails.html',
-    Site.CHRONOLOGICAL:         f"index.html",
     Site.CHRONOLOGICAL_MOBILE:  f"mobile_chronological.html",
     Site.DOJ_FILES:             f'doj_2026-01-30_non_email_files.html',
     Site.EMAILERS:              f'emails_grouped_by_counterparty.html',
@@ -174,7 +178,8 @@ HTML_BUILD_FILENAMES = {
 # NOTE: Order matters, it's the order the links are shown in the header
 # Colons are used to break and parenthesize display
 SITE_DESCRIPTIONS = {
-    Site.ANNOTATED:             r"annotated:the cream of the crop",
+    # Site.ANNOTATED:             r"annotated:the cream of the crop",
+    Site.MOST_INTERESTING:      f"most interesting:the cream of the crop",
     Site.CHRONOLOGICAL:         f"chronological curated:all types intermingled",
     Site.CURATED:               f"emailers curated:emails grouped by person of interest",
     Site.EMAILERS:              f"emailers:all emails grouped by person",
@@ -201,6 +206,7 @@ DEPLOY_CUSTOM_HTML_SITES = [
     Site.DOCUMENT_NOTES,
     Site.EMAILS_CHRONOLOGICAL,
     Site.OTHER_FILES_TABLE,
+    Site.MOST_INTERESTING
 ]
 
 

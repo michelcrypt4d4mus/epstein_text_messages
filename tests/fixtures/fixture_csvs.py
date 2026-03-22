@@ -69,7 +69,7 @@ def is_timestamp_different(dt1: datetime | None, dt2: datetime | None) -> bool |
     elif all(isinstance(t, datetime) for t in timestamps):
         if dt1 == dt2:
             return False
-        elif (days := days_between_abs(dt1, dt1)) <= 3:
+        elif (days := days_between_abs(dt1, dt2)) <= 3:
             return f"timestamps differ by acceptable range of {days - 1} days ({dt1} vs {dt2}), using old timestamp"
         else:
             return True

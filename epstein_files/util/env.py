@@ -59,6 +59,7 @@ output.add_argument('--emailers-info', '-ei', action='store_true', help='write a
 output.add_argument('--json-files', action='store_true', help='pretty print all the raw JSON data files in the collection and exit')
 output.add_argument('--json-metadata', '-jm', action='store_true', help='dump JSON metadata for all files and exit')
 output.add_argument('--mobile', '-mob', action='store_true', help='build a mobile version of the site')
+output.add_argument('--output-most-interesting', '-top10', action='store_true', help='only the highest scoring documents')
 output.add_argument('--output-bios', '-bios', action='store_true', help='output one line biographies + links for all Contacts')
 output.add_argument('--output-annotated', '-oa', action='store_true', help='output curated files of all types in chronological order')
 output.add_argument('--output-chrono', '-oc', action='store_true', help='output curated files of all types in chronological order')
@@ -85,6 +86,7 @@ scripts.add_argument('--raw', action='store_true', help='show raw contents of fi
 scripts.add_argument('--whole-file', '-wf', action='store_true', help='print whole files')
 
 debug = parser.add_argument_group('DEBUG')
+output.add_argument('--almost-most-interesting', '-a10', action='store_true', help='almost the highest scoring documents')
 debug.add_argument('--char-nums', '-cn', nargs="?", default=None, const=100, type=int, help='inject char nums every N chars')
 debug.add_argument('--colors-only', '-c', action='store_true', help='print header with color key table and links and exit')
 debug.add_argument('--constantize', action='store_true', help='constantize names when printing repr() of objects')
@@ -121,7 +123,7 @@ args._debug_highlight_patterns = (args.colors_only and args.debug)
 
 # args.names = [name.title() for name in args.names] if args.names and args.names[0][0].islower() else args.names
 args.names = [None if n == 'None' else n.strip() for n in (args.names or [])]
-args.output_chrono = args.output_chrono or args.all_chrono
+args.output_chrono = args.output_chrono or args.all_chrono or args.output_most_interesting or args.almost_most_interesting
 args.output_emails = args.output_emails or args.all_emails
 args.output_other = args.output_other or args.all_other_files or args.uninteresting
 args.output_texts = args.output_texts or args.all_texts
@@ -169,7 +171,7 @@ if is_html_script:
             args._site = Site.COLORS_ONLY
         elif args.output_bios:
             args._site = Site.BIOGRAPHIES
-        elif args.output_annotated:
+        elif args.output_annotated or args.almost_most_interesting:
             args._site = Site.ANNOTATED
         elif args.all_doj_files:
             args._site = Site.DOJ_FILES
@@ -185,6 +187,8 @@ if is_html_script:
             args._site = Site.JSON_METADATA
         elif args.output_notes:
             args._site = Site.DOCUMENT_NOTES
+        elif args.output_most_interesting:
+            args._site = Site.MOST_INTERESTING
         elif args.output_chrono:
             args._site = Site.CHRONOLOGICAL
         elif args.output_devices:

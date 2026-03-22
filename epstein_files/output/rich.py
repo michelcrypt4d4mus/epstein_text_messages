@@ -43,6 +43,7 @@ SYMBOL_STYLE = 'grey70'
 TABLE_BORDER_STYLE = 'grey46'
 TABLE_TITLE_STYLE = f"gray54 italic"
 TITLE_STYLE = 'black on white'  # color(103)'
+TRIMMED_MSG_STYLE = 'dim italic'
 
 DEFAULT_TABLE_KWARGS = {
     'border_style': TABLE_BORDER_STYLE,
@@ -209,7 +210,7 @@ def quote_txt(t: Text | str, try_double_quote_first: bool = False, style: str = 
 def snip_msg_txt(msg: str, style: str = '') -> Text:
     """Make it like <...msg...>. Uses markup in case there are links in `msg`"""
     txt = Text('', style=style)
-    return txt.append(Text.from_markup(wrap_in_markup_style(snip_msg(msg), 'dim')))
+    return txt.append(Text.from_markup(wrap_in_markup_style(snip_msg(msg), TRIMMED_MSG_STYLE)))
 
 
 def section_subtitle_panel(msg: str, style: str = SUBTITLE_STYLE) -> Padding:

@@ -16,7 +16,6 @@ from rich.text import Text
 
 from epstein_files.output.html.elements import _html_elements_to_str
 from epstein_files.output.html.elements import *
-# from epstein_files.output.html.positioned_rich import to_em, to_px, PositionedRich, unpack_dimensions
 from epstein_files.output.html.positioned_rich import *
 from epstein_files.output.html.rich_style import RichStyle
 from epstein_files.output.rich import console
