@@ -1,7 +1,7 @@
 import logging
 from abc import ABC, abstractmethod
 from dataclasses import dataclass, field
-from epstein_files.util.logging import logger
+from epstein_files.util.logging import exit_with_error, logger
 
 
 class LoggingEntity(ABC):
@@ -29,8 +29,14 @@ class LoggingEntity(ABC):
     def _error(self, msg: str) -> None:
         self._log(msg, logging.ERROR)
 
+    def _exit_with_error(self, msg: str, e: Exception | None = None) -> None:
+        exit_with_error(self._log_msg(msg), e)
+
     def _log(self, msg: str, level: int = logging.INFO) -> None:
-        logger.log(level, f"{self._log_prefix} {msg}")
+        logger.log(level, self._log_msg(msg))
+
+    def _log_msg(self, msg: str) -> str:
+        return f"{self._log_prefix} {msg}"
 
     def _warn(self, msg: str) -> None:
         self._log(msg, logging.WARNING)

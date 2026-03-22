@@ -230,10 +230,10 @@ def epstein_show():
             console.line(2)
             logger.error(f"Failed to find local file but found doc by id: {e}")
         else:
-            exit_with_error(str(e))
+            exit_with_error(exc=e)
     except Exception as e:
         console.print_exception()
-        exit_with_error(str(e))
+        exit_with_error(exc=e)
 
     for doc in docs:
         if args.open_pdf and doc.file_info.is_doj_file:
