@@ -49,6 +49,7 @@ class Entity(LoggingEntity):
         highlight_regex (re.Pattern): pattern that matches this person's name in various variations for highlightihng
         is_emailer (bool): should email headers be scanned for this entity
         is_interesting (bool): should a biographical entry be generated for this panel in the chronological view
+        is_scannable (bool): set to False for a few people whose names are easy to match (e.g. Larry Summers)
         is_junk (bool): for junk email
         match_partial (PartialName | None): whether to also match this entity's first and/or last names
         style (str, optional): style to use when printing this entity's name
@@ -67,6 +68,7 @@ class Entity(LoggingEntity):
     is_emailer: bool | None = True
     is_interesting: bool = True  # Eligible for bio panel
     is_junk: bool = False  # TODO: this sucks
+    is_scannable: bool = True
     match_partial: PartialName | None = 'last'
     phone_numbers: list[str] = field(default_factory=list)
     unique_phraseologies: list[str] = field(default_factory=list)

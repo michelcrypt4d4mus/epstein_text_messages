@@ -1,4 +1,5 @@
 # NEXT RELEASE
+* Entity.is_scannable property
 * INDEX_HTML_SITE chooses what is built as index.html main landing page
 * New --output-top10 and --almost-top10 args
 * `truncate_to` config forces `show_full_panel=True`
