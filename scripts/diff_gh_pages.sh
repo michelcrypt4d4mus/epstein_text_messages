@@ -1,1 +1,1 @@
-git diff gh_pages -- . ':(exclude)docs/*.html' ':(exclude)docs/*.json'
+git diff gh_pages -- . ':(exclude)docs/*.html' ':(exclude)docs/*.json' ':(exclude)docs/*.txt'
