@@ -332,6 +332,7 @@ NOT_CHRONOLOGICAL_VIEW_IDS = [cfg.id for cfg in FLIGHT_LOG_CFGS] + [
     # Karim Wade
     'EFTA01063216',  # canceled trip
     'EFTA01738267',  # canceled trip
+    'EFTA00677266',
     # Ehud barak
     '032336',
     # Peter Mandelson
@@ -347,6 +348,11 @@ NOT_CHRONOLOGICAL_VIEW_IDS = [cfg.id for cfg in FLIGHT_LOG_CFGS] + [
     'EFTA00756577',
     # David Stern
     'EFTA00756817',
+    'EFTA01775500',
+    # MC2
+    'EFTA01870235',
+    # Story Cowles
+    'EFTA00563586',
     #
     'EFTA00582504',
     '024432',
@@ -406,6 +412,7 @@ NOT_CHRONOLOGICAL_VIEW_IDS = [cfg.id for cfg in FLIGHT_LOG_CFGS] + [
     '028965',
     # unknown girl
     'EFTA00897668',
+    'EFTA00625796',
     # Al Seckel
     'EFTA00709313',
     'EFTA00751523',

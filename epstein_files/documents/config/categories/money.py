@@ -195,7 +195,7 @@ MONEY_CFGS = [
     EmailCfg(id='EFTA00371120', note=f"Epstein appears to invest in {ATORUS}"),
     EmailCfg(id='EFTA00652799', note=f'Epstein calls Ari Glass "a bit sketchy" despite investing ~$50 million in his fund Boothbay'),
     EmailCfg(id='EFTA01388422', note='Nadean Novogratz is probably the sister-in-law of crypto ponzi billionaire Mike Novogratz'),
-    EmailCfg(id='EFTA01802355', note=f'{MC2_MODEL_MGMT} line of credit'),
+    EmailCfg(id='EFTA01802355', note=f'{MC2_MODEL_MGMT} line of credit and other people owes money to or is owed money by'),
     EmailCfg(id='EFTA01870235', note=f'{MC2_MODEL_MGMT} IRS woes and line of credit repayment'),
     EmailCfg(id='EFTA01942664', note=f'payment from {MC2_MODEL_MGMT}'),
     EmailCfg(

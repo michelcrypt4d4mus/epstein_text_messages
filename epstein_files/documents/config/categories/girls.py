@@ -565,7 +565,6 @@ GIRLS_CFGS = [
     EmailCfg(id='EFTA01768670', highlight_quote='find girls for the agency', note=f'but {BORIS_NIKOLIC} is a "biotech investor"...'),
     EmailCfg(id='EFTA01905320', highlight_quote='girls and i are going to see elon musk at space x tomorrow'),
     EmailCfg(id='EFTA01803353', highlight_quote='having problems with regina', note='(Ramsey?)'),
-    EmailCfg(id='EFTA01858707', highlight_quote='How is the marriage plan going'),
     EmailCfg(id='EFTA00950394', highlight_quote='how old will you go?'),
     EmailCfg(id='EFTA02499884', highlight_quote='I gave another girl to kimball and he is thrilled', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA02557757', highlight_quote="I have a girl Sana working half time/who by the way you'd like"),
@@ -618,6 +617,12 @@ GIRLS_CFGS = [
         show_with_name=JOSHUA_FINK,
         is_interesting=True,
     ),
+    EmailCfg(
+        id='EFTA01858707',
+        author=SVETLANA_POZHIDAEVA,
+        highlight_quote='How is the marriage plan going',
+        note=f'"JF" is {JOSHUA_FINK}',
+    ),
 
     # Descriptions
     EmailCfg(
@@ -664,7 +669,12 @@ GIRLS_CFGS = [
     EmailCfg(id='EFTA01816788', note=f"Russian girl for {PRINCE_ANDREW}"),
     EmailCfg(id='EFTA00876739', note=f'scouting girls in Ukraine {QUESTION_MARKS}'),
     EmailCfg(id='EFTA00901905', note="smoking in the house oh no!"),
-    EmailCfg(id='EFTA00914505', note=f'{SVETLANA_POZHIDAEVA} and {JOSHUA_FINK}...', duplicate_ids=['EFTA01999588']),
+    EmailCfg(
+        id='EFTA00914505',
+        duplicate_ids=['EFTA01999588'],
+        note=f"Epstein can't go to \"nats\" but (because?) {SVETLANA_POZHIDAEVA} and {JOSHUA_FINK} will be there",
+        show_with_name=SVETLANA_POZHIDAEVA,
+    ),
     EmailCfg(id='EFTA01798715', note=f"{SVETLANA_POZHIDAEVA} taking an interest in {JOSHUA_FINK}'s investments in Eritrea in between hair gigs"),
     EmailCfg(id='EFTA00572157', note='translation: "Congratulations on the new addition!!! What did you name the little miracle?" (seems to be about a cat)'),
     EmailCfg(id='EFTA00631762', note="visa problems for Epstein's South African friend"),

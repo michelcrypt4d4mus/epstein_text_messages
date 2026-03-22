@@ -129,11 +129,12 @@ HIGHLIGHTED_NAMES = [
             r"Columbia( (Business School|University))?",
             r"cryptographer",
             r"(Francis )?Crick",
+            r"GMAT",
             r"green card",
             r"(?-i:GRE)",
             r"(Karl )?Marx",
             r"(Lord )?Martin Rees",
-            r"(?-i:LSAT)",
+            r"LSAT",
             r"Massachusetts Institute of Technology",
             r"Mayo Clinic",
             r"MIT",
@@ -1319,7 +1320,11 @@ HIGHLIGHTED_NAMES = [
         label='law firm',  # Non-Epstein affiliated
         style='medium_purple3',
         entities=[
-            Organization(CLIFFORD_CHANCE, f'law firm where {MARIA_PRUSAKOVA} did an internship in Paris'),
+            Organization(
+                CLIFFORD_CHANCE,
+                f'law firm where {MARIA_PRUSAKOVA} (and {MIRANDA_MAKO}?) did an internship in Paris',
+                r"Clifford Chance|(?-i:C)lifford(?! (Graham|Pick|Sosin|Stoll|Wright))",
+            ),
             Organization('Latham & Watkins', f'law firm where {KATHRYN_RUEMMLER} worked', r"Latham (&|and) Watkins"),
             Organization('Sadis Goldberg LLP', 'law firm'),
         ],
@@ -1514,6 +1519,7 @@ HIGHLIGHTED_NAMES = [
             r"Portug(al|uese)",
             r"Prague",
             r"Riga",
+            r"Rome",
             r"Rotterdam",
             r"San Marino",
             r"Schengen( (Area|Visa))?",
@@ -1528,6 +1534,7 @@ HIGHLIGHTED_NAMES = [
             r"Swi(ss|tzerland)",
             r"Tommy Robinson",
             r"(Tony )Blair",
+            r"Trieste",
             r"United Kingdom",
             r"U\.?K\.?",
             r"Ukrai?n(e|ian)",
@@ -2934,7 +2941,7 @@ HIGHLIGHTED_NAMES = [
             ),
         ],
         patterns=[
-            r"Bel[ao]rus(sian)?",
+            r"Bel[ao]rus(sian?)?",
             r"Chech(en|nyan?)",
             r"Chernobyl",
             r"Crimea",
@@ -3061,9 +3068,10 @@ HIGHLIGHTED_NAMES = [
             Entity('Sasha Volkova', 'girl'),
             Entity(
                 SVETLANA_POZHIDAEVA,
-                f"Epstein assistant, went to FSB feeder school MGIMO, visa recommended by {SERGEY_BELYAKOV} (FSB) & {DAVID_BLAINE}",
+                f"Epstein assistant, FSB feeder school (MGIMO) student, visa recommended by {SERGEY_BELYAKOV} (FSB) & {DAVID_BLAINE}",
                 r"Sophia Platt|((Svet)?Lana )?Pozhidaeva|\b(Lana|Svet)\b|p\.selana|Sel[ae]na P\b|Svetlan(?! Pudina)",
                 aliases=['Sophia Platt'],
+                email_addresses=['p.selana@yahoo.com'],
                 match_partial=None,
                 url=[
                     'https://dossier.center/jeffreyepsteinrusconnect-en/',

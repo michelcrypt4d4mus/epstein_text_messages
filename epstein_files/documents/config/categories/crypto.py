@@ -297,6 +297,10 @@ CRYPTO_CFGS = [
     EmailCfg(id='EFTA00957552', note=f'thank you note for a $50,000 donation in honor of Tether banker {HOWARD_LUTNICK}', is_interesting=10),
     EmailCfg(id='EFTA00970606', show_with_name=HOWARD_LUTNICK),
     EmailCfg(id='EFTA01778423', show_with_name=HOWARD_LUTNICK),
+    # Jason Calacanis
+    EmailCfg(id='EFTA02540384', note='Epstein asks for an intro to the bitcoin team he would go on to fund', is_interesting=20),
+    EmailCfg(id='EFTA00914512', note=f"{JASON_CALACANIS} happy to hang out with Epstein right after he got out of jail"),
+    EmailCfg(id='EFTA00640616'),
     # Jem Bendell
     EmailCfg(
         id='EFTA01005603',
@@ -497,6 +501,8 @@ CRYPTO_CFGS = [
         note=f"{JOHN_BROCKMAN} reaching out to bitcoin core dev {GAVIN_ANDRESEN} on behalf of Epstein",
         truncate_to=3_000,
     ),
+    EmailCfg(id='EFTA00432350', note=f"Epstein wants to fly bitcoin bro {AMIR_TAAKI} to NYC for a meeting", duplicate_ids=['EFTA02187050']),
+    EmailCfg(id='EFTA01862563', note=f"Epstein still trying to track down the bitcoin development team"),
     EmailCfg(id='EFTA01762201', highlight_quote='indoctrinating kids into an economy', show_with_name=BOBBY_KOTICK),
     EmailCfg(id='EFTA02414991', note=f"Epstein signs up for World of Warcraft", is_interesting=10, truncate_to=350),
     EmailCfg(id='EFTA01434500', note=f"everyone assumes Epstein's banker {PAUL_BARRETT} will want to know about the blockchain event"),

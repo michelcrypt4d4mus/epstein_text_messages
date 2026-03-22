@@ -26,6 +26,7 @@ HAS_LETTER_LIST_REGEX = re.compile(fr"^a[.)] {LIST_ELEMENT_PATTERN}\nb[.)] ", LI
 LETTER_LIST_ITEM_REGEX = re.compile(fr"^([a-z][.)] {LIST_ELEMENT_PATTERN})(?=\n[a-z][.)] |\Z)", LIST_REGEX_FLAGS)
 HAS_NUMBERED_LIST_REGEX = re.compile(fr"^2\. {LIST_ELEMENT_PATTERN}\n3\. ", LIST_REGEX_FLAGS)
 NUMBERED_LIST_ITEM_REGEX = re.compile(fr"^(\d+\. {LIST_ELEMENT_PATTERN})(?=\n\d+\.|\Z)", LIST_REGEX_FLAGS)
+BULLET_LIST_REGEX = re.compile(fr"^(• {LIST_ELEMENT_PATTERN})(?=\n• |\Z)", LIST_REGEX_FLAGS)
 ORDINAL_PATTERN = '|'.join([o.upper() for o in 'first second third fourth fifth sixth seventh eighth ninth tenth'.split()])
 ORDINAL_LIST_REGEX = re.compile(fr"^(({ORDINAL_PATTERN}): .*?)(?=(\n{ORDINAL_PATTERN}:|\Z))", re.DOTALL | re.MULTILINE)
 SECTION_LIST_REGEX = re.compile(r"[^\n](\nSection \d)")
@@ -81,6 +82,7 @@ def doublespace_lists(s: str) -> str:
         s = LETTER_LIST_ITEM_REGEX.sub(r"\n\1", s)
 
     s = SECTION_LIST_REGEX.sub(r"\n\n\1", s)
+    # s = BULLET_LIST_REGEX.sub(r"\n\1", s)
     return ORDINAL_LIST_REGEX.sub(r"\n\1", s)
 
 
