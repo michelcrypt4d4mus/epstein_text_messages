@@ -62,6 +62,7 @@ GIRLS_CFGS = [
         author='New York Post',
         category=Uninteresting.ARTICLE,
         date='2005-01-14',
+        non_participants=['Casey Johnson', 'John Gotti', LES_WEXNER],  # TODO: maybe scan_only_excerpt arg?
         note="press snippets about Epstein's attempt to buy IMG Models as well as his relationships with Brett Ratner and Alina Pascau",
         # is_in_chrono=False,
         is_interesting=5,

@@ -388,7 +388,7 @@ class Organization(Entity):
     @classmethod
     def well_known(cls, name: str, **kwargs) -> Self:
         """Alternate constructor that sets is_interesting to False."""
-        return cls(name, is_interesting=False, **kwargs)
+        return cls(name, is_interesting=False, is_scannable=False, **kwargs)
 
 
 EntityScanArg = Sequence[Entity | str] | Entity | str | None
@@ -468,20 +468,26 @@ def law_enforcement(name: str, emailer_pattern: str = '', info: str = '', **kwar
     )
 
 
-def publication(name: str, emailer_pattern: str = '', **kwargs) -> Organization:
+def publication(name: str, emailer_pattern: str = '', is_scannable: bool = False, **kwargs) -> Organization:
     """Convenience method for WSJ, New York Times, etc."""
     # Make sure not to match 'Daily News' to 'Virgin Islands Daily News' / 'Palm Beach Daily News'
     if name.startswith('Daily'):
         emailer_pattern = fr"(?<!(Beach|lands)\s){as_pattern(emailer_pattern or name)}"
 
-    return Organization(name, emailer_pattern=emailer_pattern, is_interesting=False, **kwargs)
+    return Organization(
+        name,
+        emailer_pattern=emailer_pattern,
+        is_interesting=False,
+        is_scannable=is_scannable,
+        **kwargs
+    )
 
 
-def the_publication(name: str, emailer_pattern: str = '', **kwargs) -> Organization:
+def the_publication(name: str, emailer_pattern: str = '', is_scannable: bool = False, **kwargs) -> Organization:
     """Publication that starts with 'The'."""
     emailer_pattern = emailer_pattern or name
     pattern = fr"({emailer_pattern})" if '|' in emailer_pattern else emailer_pattern
-    return publication(name, fr"(The )?{pattern}", **kwargs)
+    return publication(name, fr"(The )?{pattern}", is_scannable=is_scannable, **kwargs)
 
 
 def _pop_kwarg(kwargs: dict, key: str, default: bool = False) -> bool:
