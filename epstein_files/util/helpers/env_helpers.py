@@ -4,6 +4,8 @@ from pathlib import Path
 
 from epstein_files.util.logging import exit_with_error, logger
 
+is_env_var_set = lambda s: len(environ.get(s) or '') > 0
+
 
 def get_env_dir(env_var_name: str, must_exist: bool = True) -> Path | None:
     if (dir := environ.get(env_var_name)):
