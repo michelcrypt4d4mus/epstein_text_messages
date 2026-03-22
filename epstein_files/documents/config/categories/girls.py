@@ -629,7 +629,7 @@ GIRLS_CFGS = [
         id='EFTA01907281',
         note=f"Epstein asks about {JOSHUA_FINK}, pretends it's because {TANCREDI_MARCHIOLO} asked *him* (Epstein asked Marchiolo)",
         show_with_name=JOSHUA_FINK,
-        is_interesting=True,
+        is_interesting=10,
     ),
     EmailCfg(
         id='EFTA01858707',

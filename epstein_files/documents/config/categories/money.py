@@ -17,6 +17,12 @@ MONEY_OCR_REPAIRS: OcrRepair = {
     re.compile(r"to[ ,]*if[\n ](s?he)[\n ]survives me"): fr"to {REDACTED}, if \1 survives me",
     re.compile(r"[\n ]if[\n ](s?he)[\n ]survives me"): r" if \1 survives me",
     re.compile(r"I give to[\s,]+if (s?he) survives me"): fr"I give to {REDACTED}, if \1 survives me",
+    re.compile(r"DB-SDN ?Y-\n(\d{6,7})"): fr"DB-SDNY \1 ",
+    'c/o\nApollo Management\nSouthern Trust Company,\nInc.\n':  'c/o Apollo Management Southern Trust Company, Inc.',
+    'Southern Trust Company,\nInc.\n$': 'Southern Trust Company, Inc $',
+    'Black do\nApollo Management': 'Black c/o Apollo Management',
+    re.compile(r'Boothbay Absolute Strategies\nFund LP\n\$'): "Boothbay Absolute Strategies Fund LP $",
+
 }
 
 
@@ -190,6 +196,14 @@ MONEY_CFGS = [
         author_uncertain=True,
         note=f"Ike Groff invests $250,000 in Mangrove Partners managed by Nathaniel August",
     ),
+    EmailCfg(
+        id='030727',
+        note='Epstein requesting help for Russia, discussion of unknown dead Chinese shareholder',
+        is_interesting=10,
+        truncate_to=400,
+    ),
+    EmailCfg(id='EFTA00080250', note=f"{LEON_BLACK} / Rothschild Group {DEUTSCHE_BANK} transactions", is_interesting=10),
+    EmailCfg(id='EFTA02633194', note=f'{NICOLE_JUNKERMANN} quotes an appraisal by "FSB (Russians)"', is_interesting=10),
     EmailCfg(id='EFTA01435454', note=f"{DEUTSCHE_BANK} finally sets up a trading account for Epstein's Southern Financial"),
     EmailCfg(id='EFTA02630431', note=f"{CARBYNE} is an Israeli company invested in by Epstein, {NICOLE_JUNKERMANN}, & {EHUD_BARAK}"),
     EmailCfg(id='EFTA01375243', note=f"{DEUTSCHE_BANK} anti-money laundering team flags Epstein's $237k transfer to {SVETLANA_POZHIDAEVA}'s family"),

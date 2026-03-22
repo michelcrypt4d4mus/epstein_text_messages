@@ -3,6 +3,7 @@ from epstein_files.documents.config.doc_cfg import DocCfg
 from epstein_files.documents.config.email_cfg import EmailCfg
 from epstein_files.people.names import *
 from epstein_files.util.constant.strings import *
+from epstein_files.util.constant.urls import SUBSTACK_POST_INSIGHTSPOD_URL
 
 DERSH_GIUFFRE_TWEET = f"about {VIRGINIA_GIUFFRE}"
 
@@ -28,14 +29,16 @@ SOCIAL_CFGS = [
         note=f"{ZUBAIR_KHAN} says social media vibes are good for Trump in last week before the 2016 election",
         dupe_type='quoted',
         duplicate_ids=['032283'],
-        is_interesting=True,
+        is_interesting=10,
+        url=SUBSTACK_POST_INSIGHTSPOD_URL,
     ),
     EmailCfg(
         id='032325',
         note=f"{ZUBAIR_KHAN} predicts Trump winning in 2016",
         dupe_type='quoted',
         duplicate_ids=['026014'],
-        is_interesting=True,
+        is_interesting=10,
+        url=SUBSTACK_POST_INSIGHTSPOD_URL,
     ),
     EmailCfg(
         id='EFTA00719854',
@@ -46,7 +49,7 @@ SOCIAL_CFGS = [
     EmailCfg(
         id='EFTA00922824',
         note=f"Epstein meets with {CHRIS_POOLE} (founder of 4chan) the day the infamous /pol/ board is created",
-        is_interesting=True,
+        is_interesting=20,
         show_with_name=CHRIS_POOLE,
     ),
 ]

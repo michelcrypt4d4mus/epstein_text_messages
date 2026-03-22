@@ -87,9 +87,7 @@ FLIGHT_LOG_CFGS = [
 ]
 
 # Interesting / uninteresting
-INTERESTING_EMAIL_IDS = [
-    '033096',
-    'EFTA02516264',
+MOST_INTERESTING_EMAIL_IDS = [
 ]
 
 # These emails will be suppressed in the curated views
@@ -554,7 +552,7 @@ for category in CATEGORIES_WITH_CFGS_VAR:
 
 ALL_CONFIGS = CATEGORY_CONFIGS + EMAILS_CONFIG + TEXTS_CONFIG
 DocCfg.update_or_create_cfgs(UNINTERESTING_OTHER_FILE_IDS, ALL_CONFIGS, 'is_interesting', False)
-EmailCfg.update_or_create_cfgs(INTERESTING_EMAIL_IDS, ALL_CONFIGS, 'is_interesting', True)
+EmailCfg.update_or_create_cfgs(MOST_INTERESTING_EMAIL_IDS, ALL_CONFIGS, 'is_interesting', 10)
 EmailCfg.update_or_create_cfgs(UNINTERESTING_EMAIL_IDS, ALL_CONFIGS, 'is_interesting', False)
 EmailCfg.update_or_create_cfgs(NOT_CHRONOLOGICAL_VIEW_IDS, ALL_CONFIGS, 'is_in_chrono', False)
 CONFIGS_BY_ID = {cfg.id: cfg for cfg in ALL_CONFIGS}

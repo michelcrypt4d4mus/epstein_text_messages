@@ -1,7 +1,7 @@
 """
 Crypto and virtual currency / fintech related files
 """
-from epstein_files.documents.config.config_builder import whistleblower_cfg
+# from epstein_files.documents.config.config_builder import
 from epstein_files.documents.config.communication_cfg import CommunicationCfg, imessage_log, imessage_screenshot, whatsapp_log
 from epstein_files.documents.config.doc_cfg import EMAIL_TRUNCATE_TO, NO_TRUNCATE, DocCfg
 from epstein_files.documents.config.email_cfg import EmailCfg
@@ -15,6 +15,14 @@ BEN_LAWSKY_NYDFS = f'head of NY Dept of Financial Services {BEN_LAWSKY}'
 KYARA_FUND = f"Epstein crypto fund {KYARA_INVESTMENT}"
 RIOT_BLOCKCHAIN_DESCRIPTION = 'RIOT Blockchain (FKA "Bioptix") is a sketchy bitcoin miner in Texas'
 VALAR_FUND = f"{PETER_THIEL}'s {VALAR_VENTURES} fund"
+
+
+def whistleblower_cfg(id, note: str = '', **kwargs) -> EmailCfg:
+    return EmailCfg(
+        id=id,
+        is_interesting=True,
+        note=join_truthy('SEC whistleblower email', note, ', '),
+    )
 
 
 # This category is automatically 'interesting', see OtherFile class
@@ -54,7 +62,7 @@ CRYPTO_CFGS = [
     EmailCfg(id='030781', note="Esptein says the crypto coin issues they're having are 'US based'"),
     EmailCfg(id='026255', note='Epstein requests help with "coin issues" and "prohibitions foreign donor" (sic)', is_interesting=10),
     EmailCfg(id='EFTA02521522'),
-    EmailCfg(id='EFTA02524752', note=f'{STEVE_BANNON} "is thinking of combining crypto with his politcial movement"', show_with_name=STEVE_BANNON),
+    EmailCfg(id='EFTA02524752', note=f'{STEVE_BANNON} "is thinking of combining crypto with his politcial movement"', show_with_name=STEVE_BANNON, is_interesting=5),
     EmailCfg(id='EFTA01020383', note='Epstein emails Bannon a quote about the use of crypto to evade capital controls', is_interesting=10),
     EmailCfg(id='EFTA00874793', note=f'Bannon says that they need to stop EU regulation of crypto scams "dead in its tracks"', is_interesting=10),
     EmailCfg(id='EFTA02517572', note=f'Bannon says that they need to stop EU regulation of crypto scams "dead in its tracks"'),
@@ -218,12 +226,17 @@ CRYPTO_CFGS = [
     EmailCfg(
         id='EFTA02494305',
         note=f"planning a crypto exchange in Belarus, {DAVID_STERN}'s \"Chinese guys\" can't do it because of the PRC's crackdown on crypto",
+        is_interesting=30,
     ),
-    EmailCfg(id='EFTA00886763', note=f"documents are being prepared to license Epstein and {DAVID_STERN}'s crypto exchange in Belarus"),
+    EmailCfg(
+        id='EFTA00886763',
+        note=f"documents are being prepared to license Epstein and {DAVID_STERN}'s crypto exchange in Belarus",
+        is_interesting=30
+    ),
     EmailCfg(
         id='EFTA02494000',
         note=f'Epstein says a crypto exchange in Belarus could be "very useful", {DAVID_STERN}\'s Chinese guys could have brought "significant volume"',
-        is_interesting=10,
+        is_interesting=30,
     ),
     # Honeycomb
     DocCfg(id='EFTA00803491', author=HONEYCOMB_ASSET_MANAGEMENT, note="deck"),
@@ -237,7 +250,7 @@ CRYPTO_CFGS = [
     DocCfg(
         id='EFTA00020515',
         author=FBI,
-        is_interesting=10,
+        is_interesting=20,
         note='tip about Howard Lutnick and financial irregularities',
     ),
     DocCfg(
@@ -257,6 +270,7 @@ CRYPTO_CFGS = [
     DocCfg(
         id='EFTA01733746',
         date='2011-05-18',
+        is_interesting=10,
         note=f'schedule showing "drinks" with {HOWARD_LUTNICK}',
         is_valid_for_name_scan=False,
         show_full_panel=True,
@@ -272,6 +286,7 @@ CRYPTO_CFGS = [
     DocCfg(
         id='EFTA01684300',
         author=FBI,
+        is_interesting=6,
         note=f'evidence list w/tip about {HOWARD_LUTNICK}, Cantor Fitzgerald, and BGC from an employee who had already blown the whistle successfully',
         truncate_to=(77_000, 77_300),
     ),
@@ -319,7 +334,7 @@ CRYPTO_CFGS = [
     EmailCfg(id='EFTA02724230', note='alternative currencies discussion', truncate_to=NO_TRUNCATE),
     # Jeremy Rubin
     EmailCfg(id='EFTA02466979', note='"AID Coin"'),
-    EmailCfg(id='EFTA02476156', note=f"Epstein offers {JEREMY_RUBIN} a job working on bitcoin", url=JEREMY_RUBIN_DLNEWS_URL),
+    EmailCfg(id='EFTA02476156', note=f"Epstein offers {JEREMY_RUBIN} a job working on bitcoin", url=JEREMY_RUBIN_DLNEWS_URL, is_interesting=10),
     EmailCfg(id='EFTA02343669', note='rumours that people are using bitcoin to exfiltrate capital from China', is_interesting=10),
     # Joi Ito / Kyara
     DocCfg(id='024256', author=JOI_ITO, note=f"Internet & Society: The Technologies and Politics of Control"),
@@ -567,18 +582,20 @@ CRYPTO_CFGS = [
         is_interesting=True,
     ),
     EmailCfg(id='EFTA00899331', truncate_to=NO_TRUNCATE),
+
+    # whistleblower
+    whistleblower_cfg('EFTA00093702_21', f"{RIOT_BLOCKCHAIN_DESCRIPTION}, Trumper Barry Honig is involved", is_interesting=10),
+    whistleblower_cfg('EFTA00093702_26', f"{RIOT_BLOCKCHAIN_DESCRIPTION}, Trumper Barry Honig is involved", is_interesting=10),
+    whistleblower_cfg('EFTA00093702_30', f"{RIOT_BLOCKCHAIN_DESCRIPTION}, Trumper Barry Honig is involved", is_interesting=10),
 ]
 
 # Chris Dilorio emails
 WHISTLEBLOWER_IDS = {
     'EFTA00093702_37': '',
     'EFTA00093702_13': '',
-    'EFTA00093702_21': RIOT_BLOCKCHAIN_DESCRIPTION,
-    'EFTA00093702_30': f"Signature Bank failed in 2023, {RIOT_BLOCKCHAIN_DESCRIPTION}",
     'EFTA00093702_29': RIOT_BLOCKCHAIN_DESCRIPTION,
     'EFTA00093702_28': RIOT_BLOCKCHAIN_DESCRIPTION,
     'EFTA00093702_27': RIOT_BLOCKCHAIN_DESCRIPTION,
-    'EFTA00093702_26': RIOT_BLOCKCHAIN_DESCRIPTION,
 }
 
 

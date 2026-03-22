@@ -1209,6 +1209,7 @@ HIGHLIGHTED_NAMES = [
             epstein_co('Laurel, Inc.', r"Laurel,? Inc\.?"),
             epstein_co('Liquid Funding', url='https://craigunger.substack.com/p/jeffrey-epsteins-really-big-short'),
             epstein_co('Maple, Inc.', info='in Virgin Islands'),
+            epstein_co('Narrow Holdings'),
             epstein_co('Nautilus Education', r"(?-i:N)autilus( Education)?"),
             epstein_co('Neptune, LLC'),
             epstein_co('NES LLC'),

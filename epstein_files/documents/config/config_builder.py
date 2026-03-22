@@ -262,13 +262,6 @@ def victim_diary(id: str, note: str) -> DocCfg:
     return DocCfg(id=id, category=Interesting.DIARY, note=note, show_full_panel=True)
 
 
-def whistleblower_cfg(id, note: str = '') -> EmailCfg:
-    return EmailCfg(
-        id=id,
-        is_interesting=True,
-        note=join_truthy('SEC whistleblower email', note, ', '),
-    )
-
 
 def wolff_draft_cfg(id: str, suffix: str = '', **kwargs) -> DocCfg:
     return DocCfg(
