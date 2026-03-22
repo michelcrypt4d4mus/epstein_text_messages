@@ -68,7 +68,7 @@ SCREENSHOT = 'screenshot of'
 TEXT_MESSAGE = 'text message'
 TRANSLATION = 'translation of'
 VICTIM_DIARY = 'victim diary'
-WIKIPEDIA = 'WIKIPEDIA'
+WIKIPEDIA = 'wikipedia'
 
 # CLI args
 SUPPRESS_OUTPUT = '--suppress-output'
