@@ -2178,7 +2178,12 @@ HIGHLIGHTED_NAMES = [
             Entity('Peter Aldhous', "Buzzfeed science reporter"),
             Entity('Susan Edelman', "New York Post reporter", match_partial=None),
             Entity('Tim Zagat', "Zagat restaurant guide CEO"),
-            Entity('Tina Brown', "editor of The New Yorker, Vanity Fair, Daily Beast, declined Epstein's invitations", url=WIKIPEDIA),
+            Entity(
+                'Tina Brown',
+                "editor of The New Yorker, Vanity Fair, Daily Beast, declined Epstein's invitations",
+                match_partial=None,
+                url='https://nypost.com/2025/11/18/us-news/tina-brown-recalls-turning-down-invite-to-epstein-party-what-the-hell-is-this-the-predators-ball/',
+            ),
             Entity(
                 'Vicky Ward',
                 "2003 reporting on Epstein's crimes was spiked by editors, 2011 reported on how wonderful Epstein + Ghislaine were",
