@@ -34,7 +34,7 @@ from epstein_files.util.helpers.data_helpers import dict_sets_to_lists, uniq_sor
 from epstein_files.util.helpers.file_helper import file_size_str, log_file_write
 from epstein_files.util.helpers.rich_helpers import join_texts
 from epstein_files.util.helpers.string_helper import extract_emojis
-from epstein_files.util.logging import logger, exit_with_error
+from epstein_files.util.logging import logger
 
 DEVICE_SIGNATURE_PADDING = (1, 0)
 PRINT_COLOR_KEY_EVERY_N_EMAILS = 150
