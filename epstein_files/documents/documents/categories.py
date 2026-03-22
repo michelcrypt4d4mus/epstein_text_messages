@@ -55,6 +55,7 @@ class Category(StrEnum):
     def __str__(self):
         return str(self.value)
 
+CategoryType = Interesting | Neutral | Uninteresting
 
 # These categories map to highlighted group labels for the purposes of coloring
 CATEGORY_STYLE_MAPPING = {

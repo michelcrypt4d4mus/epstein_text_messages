@@ -27,7 +27,6 @@ from epstein_files.util.helpers.string_helper import snip_msg
 from epstein_files.util.logging import logger
 
 NA_TXT = Text(NA, style='dim')
-SUBTITLE_PADDING = (1, 0, 1, 0)
 GREY_NUMBERS = [58, 39, 39, 35, 30, 27, 23, 23, 19, 19, 15, 15, 15]
 VALID_GREYS = [0, 3, 7, 11, 15, 19, 23, 27, 30, 35, 37, 39, 42, 46, 50, 53, 54, 58, 62, 63, 66, 69, 70, 74, 78, 82, 84, 85, 89, 93]
 
@@ -55,7 +54,6 @@ DEFAULT_TABLE_KWARGS = {
 THEME_STYLES = {
     DEFAULT: 'wheat4',
     TEXT_LINK: 'deep_sky_blue4 underline',
-    # f"{REGEX_STYLE_PREFIX}.{HIGHLIGHTED_QUOTE}": 'on gray27',
     f"{REGEX_STYLE_PREFIX}.{HIGHLIGHTED_QUOTE}": 'honeydew2 italic on gray15',
     f"{REGEX_STYLE_PREFIX}.reverse": 'reverse',
     **{hg.theme_style_name: hg.style for hg in HIGHLIGHT_GROUPS},
