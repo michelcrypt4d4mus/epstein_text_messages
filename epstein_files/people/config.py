@@ -2226,6 +2226,7 @@ HIGHLIGHTED_NAMES = [
             the_publication(PALM_BEACH_POST),
             the_publication(VI_DAILY_NEWS, r"Virgin Is(al|la)nd?s Daily News"),
             the_publication(WAPO, r"Wa(shington )?Po(st)?"),
+            Organization('Conde Nast', 'magazine publisher behind Vanity Fair, New Yoerk, Vogue, GQ, Wired, and mnay more'),
             Organization('Effective Altruism', 'cult popular with tech CEOs who want an excuse for hoarding money (e.g. SBF of FTX)'),
             Organization('Futurism', f'odd outlet that seems hooked up with {MASHA_DROKOVA}'),
             Organization('Gawker', f'independent news site killed by a Hulk Hogan lawsuit funded by {PETER_THIEL}'),

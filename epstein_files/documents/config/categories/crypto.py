@@ -158,7 +158,7 @@ CRYPTO_CFGS = [
     EmailCfg(
         id='EFTA02436105',
         is_interesting=10,
-        note="one of Epstein's goals in life in the year bitcoin was created was to make a lot of money in virtual currency",
+        note="one of Epstein's goals in life as of the year bitcoin was created was to make a lot of money in virtual currency",
     ),
     # Coinbase
     DocCfg(
@@ -384,7 +384,7 @@ CRYPTO_CFGS = [
         id='EFTA00257211',
         date='2005-04-05',
         is_interesting=20,
-        note=f"call log shows Bank Hapoalim director / future crypto bank SBNY founder Scott Shay selling Epstein investment ideas 4 weeks after Hapoalim money laundering issues, also Steve Cohen and Barry Diller",
+        note=f"call log shows Bank Hapoalim director / future crypto bank SBNY founder Scott Shay selling Epstein investment ideas 4 weeks after Bank Hapoalim was busted for money laundering, also Steve Cohen and Barry Diller",
         truncate_to=(1_240, 1_500) if args.output_most_interesting else 7_700,
         url=HAPOALIM_BUST_URL,
     ),
