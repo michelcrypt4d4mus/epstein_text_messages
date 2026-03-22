@@ -80,13 +80,13 @@ GOVERNMENT_CFGS = [
     ),
     bop_doc(
         'EFTA00034357',
+        "internal message about discovery of Epstein's body",
         '2019-08-10',
-        f"internal message about discovery of Epstein's body",
         background_color='red',
     ),
     bop_doc(
         'EFTA00034275',
-        "initial form about Epstein's suicide attempt",
+        "initial form filed about Epstein's suicide attempt",
         '2019-07-23',
         comment='visible in EFTA00019348',
         is_interesting=False,

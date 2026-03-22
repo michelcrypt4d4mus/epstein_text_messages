@@ -191,6 +191,12 @@ class DocCfg(LoggingEntity):
             self._warn(f"id should not be lowercase: '{self.id}'")
             self.id = self.id.upper()
 
+        if self.date:
+            try:
+                self.timestamp
+            except Exception as e:
+                self._exit_with_error(f"Failed to parse configured date '{self.date}'", e)
+
         self.set_category(self.category)
 
         # background_color, highlight_quote, or a tuple truncate_to set show_full_panel to true
@@ -605,9 +611,9 @@ class DocCfg(LoggingEntity):
 
         for cfg in cfgs:
             if cfg.category and cfg.category != category:
-                cfg._warn(f"Would overwrite current category '{cfg.category}' with '{category}'")
+                cfg._log(f"Overwriting current category '{cfg.category}' with '{category}'")
 
-            cfg.set_category(cfg.category or category)
+            cfg.set_category(category)
 
     @classmethod
     def update_or_create_cfgs(cls, ids: list[str], manual_cfgs: Sequence['DocCfg'], prop: str, new_val: Any) -> None:

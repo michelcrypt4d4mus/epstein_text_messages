@@ -13,7 +13,7 @@ def get_env_dir(env_var_name: str, must_exist: bool = True) -> Path | None:
         if dir.is_dir():
             return dir
         elif must_exist:
-            exit_with_error(f"Required {error_msg}.\n")
+            exit_with_error(f"Required {error_msg}.")
         else:
             logger.warning(f"Optional {error_msg}. Some features will be unavailable.")
             return None

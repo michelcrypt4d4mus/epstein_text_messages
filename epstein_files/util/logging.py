@@ -61,10 +61,14 @@ env_log_level_str = environ.get(LOG_LEVEL_ENV_VAR) or None
 env_log_level = None
 
 
-def exit_with_error(msg: str) -> None:
+def exit_with_error(msg: str = '', exc: Exception | None = None) -> None:
     print('')
-    logger.error(msg + '\n')
+    logger.fatal(f"{msg}{exception_suffix(exc)}\n")
     sys.exit(1)
+
+
+def exception_suffix(e: Exception | None = None) -> str:
+    return f" ({type(e).__name__}: {e})" if e else ''
 
 
 def print_text_block(s: str, label: str) -> None:

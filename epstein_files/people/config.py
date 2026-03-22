@@ -940,8 +940,11 @@ HIGHLIGHTED_NAMES = [
             Organization('Stellar', 'blockchain architecture alternative to bitcoin and ethereum', r"stellar\.org"),
             Organization(
                 'Tether',
-                f"$180 billion stablecoin founded by {BROCK_PIERCE}, beloved by drug cartel + rogue nuclear states, cash managed by {HOWARD_LUTNICK}",
-                url='https://cryptadamus.substack.com/p/trumps-transition-team-is-tethered'
+                f"$185 billion stablecoin founded by {BROCK_PIERCE} beloved by drug cartels and Iranians, cash managed by {HOWARD_LUTNICK}",
+                url=[
+                    'https://cryptadamus.substack.com/p/trumps-transition-team-is-tethered',
+                    'https://www.bloomberg.com/news/features/2021-10-07/crypto-mystery-where-s-the-69-billion-backing-the-stablecoin-tether',
+                ],
             ),
             Organization(
                 'Zerocoin',
