@@ -1,6 +1,7 @@
 #!/bin/bash
-# Build the various HTML pages to a temp dir. Env var options:
+# Build the various HTML pages. First argument is the --build-dir (if provided).
 #
+# Env var options:
 #   - ONLY_CURATED=true to skip build/deploy of full emails site
 #   - ONLY_MOBILE=true for only mobile sites
 #   - SKIP_CHRONO=true to skip chrono builds

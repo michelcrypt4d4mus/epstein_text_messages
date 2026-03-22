@@ -209,7 +209,7 @@ class DocCfg(LoggingEntity):
                 self.note = join_truthy(self.note, f'{QUOTE_PREFIX}: {quote(quote_note)}', joiner)
 
         # show_full_panel (and highlight_quote) set is_interesting=10
-        if self.show_full_panel and self.is_interesting not in [True, False]:
+        if self.show_full_panel and self.is_interesting is None:
             self.is_interesting = 10
 
         if self.truncate_to and not self.show_full_panel:
@@ -393,7 +393,6 @@ class DocCfg(LoggingEntity):
                 [+] = interesting  /  - = uninteresting
 
             [+] is_interesting (+ is_in_chrono if --output-chrono in effect)
-            [+] highlight_quote is set
             [+] author in PERSONS_OF_INTEREST
             [+] category is in Interesting enum
             [+] having no author/description *if* HOUSE_OVERSIGHT
@@ -412,8 +411,6 @@ class DocCfg(LoggingEntity):
             return self.is_in_chrono
         elif self.is_interesting is not None:
             return bool(self.is_interesting)
-        elif self.highlight_quote:
-            return True
         # author related checks  # NOTE: this only applies to configured authors or derived_cfg! so other files but not most emails
         elif self.author and self.author in PERSONS_OF_INTEREST:
             return True
