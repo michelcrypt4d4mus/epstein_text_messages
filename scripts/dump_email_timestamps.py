@@ -19,6 +19,7 @@ from epstein_files.documents.other_file import OtherFile
 from epstein_files.output.highlight_config import HIGHLIGHT_GROUPS, get_style_for_name
 from epstein_files.output.highlighted_names import HighlightedNames
 from epstein_files.output.html.builder import table_to_html, write_templated_html
+from epstein_files.output.doc_printer import DocPrinter
 from epstein_files.people.person import Person
 from epstein_files.people.names import *
 from epstein_files.util.constants import CONFIGS_BY_ID, EmailCfg, UNINTERESTING_OTHER_FILE_IDS
@@ -31,17 +32,9 @@ from epstein_files.util.logging import logger, print_text_block
 from epstein_files.output.rich import bool_txt, console, highlighter, print_subtitle_panel
 
 
-num_missing_unknown_recipient = 0
-num_interesting = 0
-num_uninteresting = 0
-num_word_count_worthy = 0
-ids = UNINTERESTING_OTHER_FILE_IDS
-
-for doc in epstein_files.unique_documents:
-    if doc._config.truncate_to == 'auto':
-        console.print(f"{doc.file_id} has truncate_to set to {doc._config.truncate_to}", doc._summary, '\n')
-        console.print(doc)
-        console.line(2)
+printer = DocPrinter(epstein_files=epstein_files)
+money_docs = [d for d in epstein_files.documents if d.category == 'money' and d._config.show_full_panel]
+printer.print_documents(money_docs)
 
 sys.exit()
 

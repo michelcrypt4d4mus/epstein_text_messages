@@ -11,6 +11,7 @@ from yaralyzer.util.helpers.env_helper import console_width_possibilities
 from epstein_files.util.constant.strings import *
 
 FILENAME_STYLE = 'gray27'
+RICH_COLOR_SYSTEM = '256'  # Setting to 'truecolor' makes terminal unable to print hex/rgb() colors
 
 DOC_TYPE_STYLES = {
     DOCUMENT_CLASS: 'grey69',
@@ -41,7 +42,7 @@ class LogHighlighter(ReprHighlighter):
 
 
 log_console = Console(
-    color_system='256',
+    color_system=RICH_COLOR_SYSTEM,
     stderr=True,
     theme=Theme(LOG_THEME),
     width=max(console_width_possibilities())
