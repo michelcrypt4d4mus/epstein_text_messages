@@ -35,6 +35,7 @@ SHORT_LINKS = {
     'aljazeera.com': 'alj',
     'bloomberg.com': 'bbg',
     'businessinsider.com': 'bi',
+    'cryptadamus.substack': 'thechronicles',
     'dossier.center': 'dossier',
     'graziadaily': 'grazia',
     'newyorker.com': 'nyer',
