@@ -13,7 +13,7 @@ from rich.text import Text
 from epstein_files.documents.communication import Communication
 from epstein_files.documents.document import Document
 from epstein_files.documents.documents.categories import sort_categories
-from epstein_files.documents.documents.doc_types_mixin import DocTypesMixin
+from epstein_files.documents.documents.doc_list import DocList
 from epstein_files.documents.email import Email
 from epstein_files.documents.emails.emailers import ENTITY_CATEGORIES, get_entities
 from epstein_files.documents.messenger_log import MessengerLog
@@ -24,9 +24,10 @@ from epstein_files.output.html.builder import (console_buffer_to_html, render_at
      render_to_html, text_to_div, write_templated_html)
 from epstein_files.output.html.elements import div_class, tag
 from epstein_files.output.html.positioned_rich import PositionedRich, to_em, unpack_dimensions, vertical_spacer
-from epstein_files.output.rich import console, section_subtitle_panel
+from epstein_files.output.rich import CATEGORY_BG_STYLES, console, section_subtitle_panel
 from epstein_files.output.site.sites import Site
 from epstein_files.people.entity import Entity
+from epstein_files.util.constant.strings import DEFAULT
 from epstein_files.util.env import SLOW_FILE_SECONDS, args, site_config
 from epstein_files.util.helpers.data_helpers import listify, uniq_sorted, without_falsey
 from epstein_files.util.helpers.rich_helpers import vertically_pad
@@ -35,26 +36,29 @@ from epstein_files.util.logging import logger
 from epstein_files.util.timer import Timer
 from epstein_files.output.title_page import color_key, title_page_top_elements, title_page_bottom_elements
 
-OTHER_FILES_TABLE_MSG = Text("(non emails will appear in tables)", 'gray27 italic')
-OTHER_FILES_TABLE_BORDER_STYLE = 'gray30'
 EMPTY_LINE_HEIGHT = to_em(1.5)
 EMPTY_LINE_DIV = f'<div style="height: {EMPTY_LINE_HEIGHT}"></div>'
+OTHER_FILES_TABLE_MSG = Text("(non emails will appear in tables)", 'gray27 italic')
+OTHER_FILES_TABLE_BORDER_STYLE = 'gray30'
 STICKY_BIO_CSS_CLASS = 'sticky_person_bio_panel'
 
 PrintableObj = Document | Layout
-PeopleBiosArg = list[str] | list[Entity] | PrintableObj
+PeopleBiosArg = PrintableObj | list[Entity] | list[str]
 
 
 @dataclass(kw_only=True)
-class DocPrinter(DocTypesMixin):
+class DocPrinter(DocList):
     """
     Handles printing collections of documents with biographical info panels interspersed.
+    `DocTypesMixin._documents` holds the list of `Document` objects that have been printed/processed.
 
     Args:
         epstein_files (EpsteinFiles): the data
         html_elements (list[str]): HTML for all objects printed so far
-        printed_docs (list[Document]): all Documents that have been printed so far
-        printed_name_bios (set[Entity]): all the names for which biographical information has been printed already
+        printed_entity_bios (set[Entity]): all the names for which biographical information has been printed already
+        _last_bio_panel (str): cached HTML for the last panel of biographical details, used to build divs
+        _other_files_queue (list[OtherFile]): queue to collect `OtherFile`s into tables
+        _suppressed_docs_queue (list[Document]): queue of docs whose display is suppressed (dupes, etc)
     """
     epstein_files: 'EpsteinFiles'
     html_elements: list[str] = field(default_factory=list)
@@ -69,7 +73,8 @@ class DocPrinter(DocTypesMixin):
 
     @property
     def printed_docs(self) -> list[Document]:
-        return Document.filter_for_type(self._documents)  # TODO: necessary because of FileDisplay objs
+        """All `Document`s that have been printed so far."""
+        return self._documents
 
     @property
     def printed_emails(self) -> list[Email]:
@@ -77,7 +82,7 @@ class DocPrinter(DocTypesMixin):
 
     @property
     def printed_ids(self) -> list[str]:
-        return [f.file_id for f in self.printed_docs]
+        return self.document_ids
 
     @property
     def _other_files_table_title(self) -> Text | None:
@@ -85,7 +90,7 @@ class DocPrinter(DocTypesMixin):
         return None if any(isinstance(d, OtherFile) for d in self.printed_docs) else OTHER_FILES_TABLE_MSG
 
     def line(self, num: int = 1) -> None:
-        """Print blank lines to HTML and terminal, similar to `console.line()`."""
+        """Print blank line(s) to HTML and terminal similar to `console.line()`."""
         self.html_elements.append(vertical_spacer(num))
         console.line(num)
 
@@ -180,7 +185,8 @@ class DocPrinter(DocTypesMixin):
 
             # Change the layout for OtherFile (indented, file info panel offset intward)
             if isinstance(doc, OtherFile):
-                doc = doc.make_layout(background_color='gray19', indent=site_config.indents.show_with)
+                bg_color = CATEGORY_BG_STYLES[doc.category]
+                doc = doc.make_layout(background_color=bg_color, indent=site_config.indents.show_with)
 
                 if doc.file_info:
                     doc.file_info_indent = doc.file_info.indent = 1
@@ -213,7 +219,7 @@ class DocPrinter(DocTypesMixin):
                 doc_bios_html = self._build_biographies_panel_html(self.new_entities_with_bios(positioned.obj))
                 self._append_element_with_bio_div(positioned.obj.to_html(), doc_bios_html)
                 doc = positioned.obj.document if isinstance(positioned.obj, Layout) else positioned.obj
-                self._documents.append(doc)
+                self._documents.append(doc)  # Append to DocList list
             elif isinstance(positioned.obj, Table):
                 html_table = positioned.to_html()  # TODO: currently the only type that delegates to the PositionedRich obj to get HTML
 
@@ -225,7 +231,7 @@ class DocPrinter(DocTypesMixin):
             elif isinstance(positioned.obj, Panel):
                 self.html_elements.append(panel_to_div(positioned.obj, positioned.css))
             elif isinstance(positioned.obj, BasePanel):
-                margin = unpack_dimensions((site_config.indents.info, 0))  # TODO: this margin dimension should only exist on eone side if aligned
+                margin = unpack_dimensions((site_config.indents.info, 0))  # TODO: this margin dimension should only exist on one side if aligned
                 self.html_elements.append(positioned.obj.to_div(margin))
             elif isinstance(positioned.obj, Text):
                 self.html_elements.append(text_to_div(positioned.obj, positioned.css))
@@ -336,13 +342,13 @@ class DocPrinter(DocTypesMixin):
 
         table = OtherFile.files_preview_table(self._other_files_queue, title=table_title, title_justify='center')
         table.border_style = OTHER_FILES_TABLE_BORDER_STYLE
-        self.print(Padding(table, (0, 0, 1, site_config.indents.other_files_table)))
-        self._documents.extend(self._other_files_queue)
+        self.print(Padding(table, site_config.other_files_table_padding()))
         logger.debug(f"printed {len(self._other_files_queue)} objs in _other_files_queue")
+        self._documents.extend(self._other_files_queue)  # Append to DocList list
         self._other_files_queue = []
 
     def _print_suppression_msgs_queue(self) -> list[Document]:
-        """Print any suppression messages. Returns Documents whose suppression msg was printed."""
+        """Print the suppression messages for docs in the queue, Return `Document`s whose message was printed."""
         if not self._suppressed_docs_queue:
             return []
 

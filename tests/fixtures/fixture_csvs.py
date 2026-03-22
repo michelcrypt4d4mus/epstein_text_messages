@@ -9,6 +9,7 @@ from dateutil.parser import parse
 
 from scripts.use_pickled import console, epstein_files
 from epstein_files.documents.document import Document
+from epstein_files.documents.documents.doc_list import DocList
 from epstein_files.documents.email import Email
 from epstein_files.util.helpers.data_helpers import days_between_abs
 from epstein_files.util.helpers.file_helper import file_size_str
@@ -82,7 +83,7 @@ def write_files_csv():
     timer = Timer()
     rows = []
 
-    for doc in Document.sort_by_id(epstein_files.unique_documents):
+    for doc in DocList.sort_by_id(epstein_files.unique_documents):
         row = {k: getattr(doc, k) for k in ROOT_PROPS}
         old_timestamp = (rows_by_id.get(doc.file_id) or {}).get('timestamp')
         has_timestamp_diff = is_timestamp_different(doc.timestamp, old_timestamp)

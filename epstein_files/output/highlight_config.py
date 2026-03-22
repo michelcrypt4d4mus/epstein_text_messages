@@ -9,7 +9,6 @@ from rich.console import Console
 from rich.text import Text
 
 from epstein_files.documents.config.categories.government import FBI_REPORT_FIELDS
-from epstein_files.documents.config.categories.legal import EPSTEIN_V_ROTHSTEIN_EDWARDS
 from epstein_files.documents.documents.categories import (CATEGORY_STYLES, CATEGORY_STYLE_MAPPING,
      DEFAULT_CATEGORY_STYLE)
 from epstein_files.documents.emails.constants import (EMAIL_HEADER_FIELD_PATTERNS, QUOTE_INDENT_CHAR_GROUP,
@@ -28,8 +27,6 @@ from epstein_files.util.logging import logger
 DATE_PATTERN = r"\d{1,4}[-/]\d{1,2}[-/]\d{2,4}"
 TIME_PATTERN = r"\d{1,2}:\d{2}:\d{2}( [AP]M)?"
 FINANCIAL_COLOR = 'dark_sea_green2'
-
-debug_console = Console(color_system='256')
 
 
 HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
@@ -139,10 +136,12 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"EDGAR (Filing|Search)",  # SEC database is EDGAR
             r"(federal|state) judge",
             r"General Counsel",
+            r"green card",
             r"law partner",
             r"lawyer",
             r"Notary Public",
             r"Page \d+ of \d+",
+            r"passport",
             r"testimony",
             r"(eye)?witness(es)?",
         ]

@@ -1360,7 +1360,7 @@ HIGHLIGHTED_NAMES = [
                 url='https://en.wikipedia.org/wiki/Estate_of_Jeffrey_Epstein',
             ),
             Entity(EMAD_HANNA, f"Project controller for {RICHARD_KAHN}'s HBRK Associates", match_partial=None),
-            Entity(HENRY_JARECKI, 'philanthropist, previous metals guy, owned neighboring island', match_partial=None),
+            Entity(HENRY_JARECKI, 'philanthropist, previous metals guy, owned neighboring island', r"(Dr\.?|Henry) Jarecki", match_partial=None),
             Entity("Michelle Fern Saipher", f"wife of {DARREN_INDYKE}", r"Michelle( F(ern|\.)?)? Saipher"),
             Entity(PAUL_HOFFMAN, "alternate executor of Epstein' estate", match_partial=None),
             Entity(
@@ -1578,8 +1578,11 @@ HIGHLIGHTED_NAMES = [
             Entity(
                 "D.B. Zwirn",
                 'hedge fund manager whose fund collapsed in 2008 with investments from Epstein and Glenn Dubin',
-                r"D\.?B\.? Zwirn",
-                url='https://www.bloomberg.com/news/features/2026-02-13/how-jeffrey-epstein-got-into-hedge-funds-billionaire-dubins-helped',
+                r"D\.?B\.? Zwirn(?! Special Opportunities Fund)",
+                url=[
+                    'https://www.bloomberg.com/news/features/2026-02-13/how-jeffrey-epstein-got-into-hedge-funds-billionaire-dubins-helped',
+                    'https://www.reuters.com/article/world/db-zwirn-to-liquidate-4-billion-in-assets-idUSN22604774/',
+                ],
             ),
             Entity(GLENN_DUBIN, "Highbridge Capital Management, married to Epstein's ex-gf Eva", match_partial='first'),
             Entity(HEATHER_GRAY, f"Leon Black family office {ELYSIUM_MANAGEMENT}", match_partial=None),
@@ -2175,7 +2178,12 @@ HIGHLIGHTED_NAMES = [
             Entity('Peter Aldhous', "Buzzfeed science reporter"),
             Entity('Susan Edelman', "New York Post reporter", match_partial=None),
             Entity('Tim Zagat', "Zagat restaurant guide CEO"),
-            Entity('Tina Brown', "editor of The New Yorker, Vanity Fair, Daily Beast, declined Epstein's invitations", url=WIKIPEDIA),
+            Entity(
+                'Tina Brown',
+                "editor of The New Yorker, Vanity Fair, Daily Beast, declined Epstein's invitations",
+                match_partial=None,
+                url='https://nypost.com/2025/11/18/us-news/tina-brown-recalls-turning-down-invite-to-epstein-party-what-the-hell-is-this-the-predators-ball/',
+            ),
             Entity(
                 'Vicky Ward',
                 "2003 reporting on Epstein's crimes was spiked by editors, 2011 reported on how wonderful Epstein + Ghislaine were",
@@ -2226,6 +2234,7 @@ HIGHLIGHTED_NAMES = [
             the_publication(PALM_BEACH_POST),
             the_publication(VI_DAILY_NEWS, r"Virgin Is(al|la)nd?s Daily News"),
             the_publication(WAPO, r"Wa(shington )?Po(st)?"),
+            Organization('Conde Nast', 'magazine publisher behind Vanity Fair, New Yoerk, Vogue, GQ, Wired, and mnay more'),
             Organization('Effective Altruism', 'cult popular with tech CEOs who want an excuse for hoarding money (e.g. SBF of FTX)'),
             Organization('Futurism', f'odd outlet that seems hooked up with {MASHA_DROKOVA}'),
             Organization('Gawker', f'independent news site killed by a Hulk Hogan lawsuit funded by {PETER_THIEL}'),
@@ -3090,9 +3099,9 @@ HIGHLIGHTED_NAMES = [
                 email_addresses=['p.selana@yahoo.com'],
                 match_partial=None,
                 url=[
-                    'https://dossier.center/jeffreyepsteinrusconnect-en/',
                     SVETLANA_NEWSGROUND,
-                    'https://www.wsj.com/us-news/epstein-victim-svetlana-pozhidaeva-22f2ebf6',
+                    'https://dossier.center/jeffreyepsteinrusconnect-en/',
+                    # 'https://www.wsj.com/us-news/epstein-victim-svetlana-pozhidaeva-22f2ebf6',
                     # 'https://archive.ph/0nVfp',
                 ],
             ),

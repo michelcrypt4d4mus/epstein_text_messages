@@ -2,10 +2,11 @@ import re
 from datetime import datetime
 
 from epstein_files.documents.document import Document
+from epstein_files.documents.documents.doc_list import DocList
 from epstein_files.documents.email import Email
 from epstein_files.output.rich import console
 from epstein_files.people.names import ADA_CLAPP, CHRISTOPHER_DILORIO, HEATHER_GRAY, JEFFREY_EPSTEIN, LEON_BLACK, MELANIE_SPINELLA, sort_names
-from epstein_files.util.constant.strings import LEON_BLACK_EMAIL_ID
+from epstein_files.util.constant.strings import LEON_BLACK_EMAIL_ID, OcrRepair
 from epstein_files.util.env import args
 from epstein_files.util.helpers.data_helpers import groupby
 from epstein_files.util.logging import logger
@@ -13,7 +14,7 @@ from epstein_files.util.logging import logger
 DILORIO_SPLIT = '\nFrom: Chris'
 LEON_BLACK_EMAIL_REGEX = re.compile(r"^(From: .{,50}\nDate:|Date: ).*?(?=(From|Date|\Z))", re.DOTALL | re.MULTILINE)
 LEON_BLACK_FWD_REGEX = re.compile(r"^-+(Forwarded|Original) message-+", re.MULTILINE)
-LEON_BLACK_OCR_REPAIRS = {re.compile('^ate: ', re.MULTILINE): 'Date: '}
+LEON_BLACK_OCR_REPAIRS: OcrRepair = {re.compile('^ate: ', re.MULTILINE): 'Date: '}
 TO_JEFFREY_REGEX = re.compile(r"^Jeffrey-", re.MULTILINE)
 TO_LEON_REGEX = re.compile(r"^Leon,", re.MULTILINE)
 
@@ -127,6 +128,7 @@ def _new_file_stem(email: Email, i: int) -> str:
     return email.file_info.file_stem + f'_{i}.txt'
 
 
+# TODO: move to DocList?
 def _uniquify_by_timestamp(emails: list[Email], from_emails: list[Email], label: str, num_skipped: int = 0) -> list[Email]:
     """Uniquify by timestamp to eliminate dupes."""
     # Validate timestamps
@@ -134,7 +136,7 @@ def _uniquify_by_timestamp(emails: list[Email], from_emails: list[Email], label:
         if email.timestamp is None or email.timestamp > Email.MAX_TIMESTAMP:
             raise ValueError(f"{email} bad timestamp in extracted email: {email.timestamp}")
 
-    email_at_timestamp = {e.timestamp: e for e in Document.sort_by_id(emails)}
+    email_at_timestamp = {e.timestamp: e for e in DocList.sort_by_id(emails)}
 
     logger.warning(
         f"Created {len(emails)} ({len(email_at_timestamp)} unique) Emails from {len(from_emails)} {label} emails" \

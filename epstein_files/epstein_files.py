@@ -17,7 +17,7 @@ from yaralyzer.util.helpers.interaction_helper import ask_to_proceed
 from epstein_files.documents.config.doc_cfg import Metadata
 from epstein_files.documents.config.manual_config import create_configs
 from epstein_files.documents.document import Document, DocType
-from epstein_files.documents.documents.doc_types_mixin import DocTypesMixin
+from epstein_files.documents.documents.doc_list import DocList
 from epstein_files.documents.documents.search_result import SearchResult
 from epstein_files.documents.doj_file import DojFile
 from epstein_files.documents.email import EMAILERS_TO_ALWAYS_TRUNCATE, Email
@@ -45,7 +45,7 @@ EMAIL_PROPS_TO_COPY = ['recipients']
 
 
 @dataclass
-class EpsteinFiles(DocTypesMixin):
+class EpsteinFiles(DocList):
     """
     Attributes:
         file_paths (list[Path]): paths to Epstein related text documents
@@ -119,7 +119,7 @@ class EpsteinFiles(DocTypesMixin):
     def docs_for(self, name: Name) -> list[Document]:
         """All documents with `name` as the author or a recipient (not just someone who is mentioned)."""
         docs = flatten([fxn(name) for fxn in [self.emails_for, self.imessage_logs_for, self.other_files_for]])
-        return Document.sort_by_timestamp(Document.uniquify(docs))
+        return DocList.sort_by_timestamp(DocList.uniquify_by_id(docs))
 
     def email_author_counts(self) -> dict[Name, int]:
         """Returns dict counting up how many emails were written by each person."""
@@ -162,13 +162,13 @@ class EpsteinFiles(DocTypesMixin):
 
     def emails_by(self, author: Name) -> list[Email]:
         """All emails sent by `author` (including dupes!)."""
-        return Document.sort_by_timestamp([e for e in self.emails if e.author == author])
+        return DocList.sort_by_timestamp([e for e in self.emails if e.author == author])
 
     def emails_for(self, name: Name) -> list[Email]:
         """All emails to or from 'name' sorted chronologically (including dupes!)."""
         emails = self.emails_by(name) + self.emails_to(name)
         emails += [e for e in self.emails if name and name == e._config.show_with_name]  # Add show_with_name emails
-        return Document.sort_by_timestamp(Document.uniquify(emails))
+        return DocList.sort_by_timestamp(DocList.uniquify_by_id(emails))
 
     def emails_to(self, name: Name) -> list[Email]:
         """All `Email`s sent to `name` (including dupes!)."""
@@ -177,7 +177,7 @@ class EpsteinFiles(DocTypesMixin):
         else:
             emails = [e for e in self.emails if name in e.recipients]
 
-        return Document.sort_by_timestamp(emails)
+        return DocList.sort_by_timestamp(emails)
 
     def get_ids(self, ids: list[str], rebuild: bool = False) -> Sequence[Document]:
         """Get `Document` objects for `file_ids`. If `rebuild` is True then rebuild `Document` from .txt file."""
@@ -223,7 +223,7 @@ class EpsteinFiles(DocTypesMixin):
     def json_metadata(self) -> str:
         """Create a JSON string containing metadata for all the files."""
         def _sorted_metadata(docs: Sequence[Document]) -> list[Metadata]:
-            return [json_safe(d.metadata) for d in Document.sort_by_id(docs)]
+            return [json_safe(d.metadata) for d in DocList.sort_by_id(docs)]
 
         metadata = {
             'files': {
@@ -261,11 +261,11 @@ class EpsteinFiles(DocTypesMixin):
         """Table showing file counts by type."""
         title = Text('Files Overview ', TABLE_TITLE_STYLE)
         title.append('(last updated: ', 'dim').append(datetime.now().date().isoformat(), 'cyan').append(')', 'dim')
-        table = Document.files_summary_table(title, 'File Type')
-        table.add_row('Emails', *Document.file_summary_row(self.emails))
-        table.add_row('iMessage Logs', *Document.file_summary_row(self.imessage_logs))
-        table.add_row('JSON Data', *Document.file_summary_row(self.json_files, True))
-        table.add_row('Other', *Document.file_summary_row(self.non_json_other_files))
+        table = DocList.files_summary_table(title, 'File Type')
+        table.add_row('Emails', *DocList.file_summary_row(self.emails))
+        table.add_row('iMessage Logs', *DocList.file_summary_row(self.imessage_logs))
+        table.add_row('JSON Data', *DocList.file_summary_row(self.json_files, True))
+        table.add_row('Other', *DocList.file_summary_row(self.non_json_other_files))
         return table
 
     def person_objs(self, names: list[Name]) -> list[Person]:
@@ -356,8 +356,8 @@ class EpsteinFiles(DocTypesMixin):
         self._people = self.person_objs(flatten([d.participants for d in self.documents]))
         logger.warning(f"Saving {len(self._people)} Person objects ({len(self.emailers)} emailers)...")
         self._find_email_attachments_and_set_is_first_for_user()
-        self._documents = Document.sort_by_timestamp(self._documents)
-        self._docs_by_id = {doc.file_id: doc for doc in self._documents}
+        self._documents = type(self).sort_by_timestamp(self._documents)
+        self.docs_by_id  # Trigger cache
         self._save_to_disk()
 
     def _find_email_attachments_and_set_is_first_for_user(self) -> None:
@@ -394,7 +394,7 @@ class EpsteinFiles(DocTypesMixin):
         else:
             logger.warning(f"Too many new documents ({len(new_docs)}) to show previews...")
 
-        Document._print_ids(new_docs, 'newly loaded or repaired by EpsteinFiles')
+        DocList.print_doc_ids(new_docs, 'newly loaded or repaired by EpsteinFiles')
         ask_to_proceed("Looks good?")
         self._finalize_data_and_write_to_disk(new_docs)
 

@@ -53,6 +53,12 @@ POLITICS_CFGS = [
     passenger_manifest('007300', '2006-03-03', f"current US Navy Secretary Navy {JOHN_PHELAN} and {JEAN_LUC_BRUNEL}", truncate_to=650),
 
     # Emails
+    EmailCfg(
+        id='EFTA02605815',
+        comment=KATHRYN_RUEMMLER,
+        highlight_quote="Am totally tricked out by Uncle Jeffrey today! Jeffrey boots, handbag, and w=tch!",
+        is_interesting=10,
+    ),
     EmailCfg(id='029679', highlight_quote='his driver MAtt was the bag man', note="(re: Trump)"),
     EmailCfg(id='026505', highlight_quote='I know how dirty donald is'),
     EmailCfg(id='031659', highlight_quote='i have met some very bad people „ none as bad as trump'),

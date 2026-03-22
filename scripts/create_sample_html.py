@@ -10,12 +10,13 @@ from rich.text import Text
 
 from scripts.use_pickled import console, epstein_files
 from epstein_files.documents.document import Document
+from epstein_files.documents.documents.doc_list import DocList
 from epstein_files.documents.email import Email
 from epstein_files.documents.other_file import OtherFile
 from epstein_files.output.doc_printer import DocPrinter
 from epstein_files.output.html.builder import table_to_html, panel_to_div
 from epstein_files.output.site.sites import Site
-from epstein_files.output.output import write_html
+from epstein_files.output.rich import CATEGORY_BG_STYLES
 from epstein_files.people.entity import Entity
 from epstein_files.people.person import Person
 from epstein_files.util.helpers.data_helpers import flatten
@@ -49,7 +50,8 @@ def print_test_panels():
 
 
 doc_types_to_sample = [
-    [d for d in epstein_files.documents if d._config.background_color],
+    [d for d in epstein_files.documents if d._config.background_color], # Configured BG
+    [d for d in epstein_files.other_files if d.category in CATEGORY_BG_STYLES],  # BG by category
     [e for e in epstein_files.emails if 'https' in e.text[0:1500]],
     [o for o in epstein_files.other_files if o.config and o.config.show_full_panel],
     [d for d in epstein_files._documents if d.suppressed_txt],
@@ -61,7 +63,7 @@ doc_types_to_sample = [
     epstein_files.imessage_logs,
 ]
 
-sample_docs = Document.uniquify(flatten([docs[:SAMPLE_SIZE] for docs in doc_types_to_sample]))
+sample_docs = DocList.uniquify_by_id(flatten([docs[:SAMPLE_SIZE] for docs in doc_types_to_sample]))
 printer = DocPrinter(epstein_files=epstein_files)
 
 # print header

@@ -10,7 +10,8 @@ def test_custom_html_build_path():
 
 
 def test_html_output_path():
-    assert Site.html_output_path(Site.CHRONOLOGICAL) == DEFAULT_HTML_DIR.joinpath('index.html')
+    assert Site.html_output_path(Site.MOST_INTERESTING) == DEFAULT_HTML_DIR.joinpath('index.html')
+    assert Site.html_output_path(Site.CHRONOLOGICAL) == DEFAULT_HTML_DIR.joinpath('chronological.html')
     assert Site.html_output_path(Site.DEVICE_SIGNATURES) == DEFAULT_HTML_DIR.joinpath('device_signatures.html')
 
     old_args_names = args.names

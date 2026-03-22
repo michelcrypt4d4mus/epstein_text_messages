@@ -10,6 +10,7 @@ from rich.panel import Panel
 from rich.table import Table
 
 from epstein_files.documents.document import Document
+from epstein_files.documents.documents.doc_list import DocList
 from epstein_files.documents.doj_file import DojFile
 from epstein_files.documents.email import Email
 from epstein_files.documents.messenger_log import MessengerLog
@@ -68,7 +69,7 @@ def print_annotated_only(epstein_files: EpsteinFiles, printer: DocPrinter):
 
 def print_all_emails_chronological(epstein_files: EpsteinFiles, printer: DocPrinter) -> None:
     """Print all non-mailing list emails in chronological order."""
-    emails = Document.sort_by_timestamp([e for e in epstein_files.unique_emails if not e.is_mailing_list])
+    emails = DocList.sort_by_timestamp([e for e in epstein_files.unique_emails if not e.is_mailing_list])
     emails = _max_records(emails)
     title = f'Table of All {len(emails):,} Non-Junk Emails in Chronological Order (actual emails below)'
     table = Email.build_emails_table(emails, title=title, show_length=True)
@@ -85,8 +86,8 @@ def print_chronological(epstein_files: EpsteinFiles, printer: DocPrinter) -> Non
         elif doc.is_email_attachment:
             return False
         elif args.output_most_interesting:
-            if (doc._config.is_interesting or 0) > 1:
-                doc._warn(f'--top10 doc._config.is_interesting: {doc._config.is_interesting} ')
+            if (doc._config.is_interesting or 0) > 1 and doc._config.is_in_chrono is not False:
+                doc._debug_log(f'_config.is_interesting value: {doc._config.is_interesting} ')
                 return True
             else:
                 return False
@@ -96,18 +97,8 @@ def print_chronological(epstein_files: EpsteinFiles, printer: DocPrinter) -> Non
             return bool(doc.is_interesting if not args.invert_chrono else not doc.is_interesting)
 
     docs = [d for d in epstein_files.unique_documents if should_print(d)]
-    doc_ids = uniq_sorted([d.file_id for d in docs])
-
-    if len(doc_ids) != len(docs):
-        dupe_ids = [k for k, v in Counter([d.file_id for d in docs]).items() if v > 1]
-        logger.info(f"\ndupe_ids: {dupe_ids}\n")
-        dupe_docs = [d for d in epstein_files._documents if d.file_id in dupe_ids]
-        logger.error(f"Found {len(dupe_docs)} dupe docs...")
-        logger.error(f"Printing {len(docs)} documents chronologically but only {len(doc_ids)} uniq IDs! Dupes:\n\n{dupe_ids}\n")
-        Document._print_ids(dupe_docs)
-    else:
-        logger.warning(f'Printing {len(docs)} documents chronologically...')
-
+    docs = DocList.uniquify_by_id(docs, allow_dupes=False)
+    logger.warning(f'Printing {len(docs)} documents chronologically...')
     printer.print_section_subtitle('Selected Files of Interest in Chronological Order')
     printer.print_documents(_max_records(docs))
 
@@ -179,7 +170,7 @@ def print_emails_section(epstein_files: EpsteinFiles, printer: DocPrinter) -> No
     if len(extra_emails) > 0:
         logger.warning(f"Found {len(extra_emails)} additional interesting emails by less interesting people...")
         printer.print_section_subtitle(OTHER_INTERESTING_EMAILS_SUBTITLE)
-        printer.print_documents(Document.sort_by_timestamp(extra_emails))
+        printer.print_documents(DocList.sort_by_timestamp(extra_emails))
 
     print_signatures_and_emojis(epstein_files, printer)
     fwded_articles = [e for e in printer.printed_emails if e.is_fwded_article]
@@ -253,7 +244,7 @@ def print_other_files_section(epstein_files: EpsteinFiles, printer: DocPrinter) 
     else:
         files = [f for f in epstein_files.non_attachments if args.all_other_files or f.is_interesting]
 
-    files = _max_records(Document.sort_by_timestamp(files))
+    files = _max_records(DocList.sort_by_timestamp(files))
     title_pfx = '' if args.all_other_files else 'Selected '
     category_table = OtherFile.summary_table(files, title_pfx=title_pfx)
     printer.print_section_subtitle(f"{FIRST_FEW_LINES} of {len(files)} {title_pfx}{FILES_THAT_ARE_NEITHER_EMAILS_NOR}")
@@ -300,7 +291,7 @@ def print_stats(epstein_files: EpsteinFiles) -> None:
     print_json(dict_sets_to_lists(epstein_files.email_device_signatures_to_authors()), "Email authors by device")
     unknown_recipient_ids = sorted([e.file_id for e in epstein_files.emails if None in e.recipients or not e.recipients])
     print_json(unknown_recipient_ids, "Unknown Recipient IDs")
-    print_json(Document.count_by_month(epstein_files.documents), "All documents count by month")
+    print_json(epstein_files.count_by_month(), "All documents count by month")
     print_json(sorted([f.file_id for f in epstein_files.interesting_other_files]), "Interesting OtherFile IDs")
     print_json(highlighter.highlight_counts, f"Highlight Counts")
     print_json(epstein_files.counterparties_dict, f"Counterparties")
@@ -408,8 +399,10 @@ def _verify_all_emails_were_printed(epstein_files: EpsteinFiles, printed_emails:
         logger.warning(f"All {len(epstein_files.emails):,} emails printed at least once.")
 
 
-def _max_records(docs: list[T]) -> list[T]:
+def _max_records(docs: Sequence[T]) -> list[T]:
     """Truncate number of Documents if `args.max_records` is specified."""
+    docs = list(docs)
+
     if args.max_records and args.max_records < len(docs):
         logger.warning(f"Truncating to args.max_records={args.max_records} objects...")
         return docs[0:args.max_records]

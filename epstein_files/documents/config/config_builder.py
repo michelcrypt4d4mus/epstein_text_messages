@@ -179,9 +179,8 @@ def important_messages_pad(id: str, date: str = '') -> DocCfg:
 
 
 def inventory(id: str, container: str, note: str = '', **kwargs) -> DocCfg:
-    note = f"inventory of the contents of {container}"
-    note = join_truthy(note, note, ', includes ')
-    return DocCfg(id=id, note=note, **kwargs)
+    container = f"inventory of the contents of {container}"
+    return DocCfg(id=id, note=join_truthy(container, note, ', includes '), **kwargs)
 
 
 def letter(id: str, author: Name = None, recipients: list[Name] | None = None, note: str = '', date: str = '', **kwargs) -> CommunicationCfg:

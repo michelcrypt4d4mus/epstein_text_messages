@@ -10,6 +10,7 @@ from rich.table import Table
 from rich.text import Text
 
 from epstein_files.documents.document import Document
+from epstein_files.documents.documents.doc_list import DocList
 from epstein_files.documents.config.doc_cfg import DocCfg
 from epstein_files.documents.config.email_cfg import EmailCfg
 from epstein_files.documents.email import Email
@@ -40,7 +41,7 @@ CFG_PROPS = [
 
 def create_configs(docs: Sequence[Document]) -> Sequence[DocCfg]:
     """Manually review and create `DocCfg` objects for new files."""
-    console.print(*Document.sort_by_timestamp(docs))
+    console.print(*DocList.sort_by_timestamp(docs))
     cfgs = []
     what_to_do = Prompt.ask(QUESTION.append(f" [y/n/{ALL}/IDs]", style='magenta'))
 

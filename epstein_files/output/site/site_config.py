@@ -97,6 +97,10 @@ class MobileConfig:
         return txt
 
     @classmethod
+    def other_files_table_padding(cls) -> tuple[int, int, int, int]:
+        return (0, 0, 1, cls.indents.other_files_table)
+
+    @classmethod
     def suppressed_file_padding(cls) -> tuple[int, int, int, int]:
         return (0, 0, 0, cls.indents.supressed_msg)
 

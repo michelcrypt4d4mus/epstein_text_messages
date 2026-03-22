@@ -304,7 +304,7 @@ class DocCfg(LoggingEntity):
     @property
     def external_link(self) -> ExternalLink | None:
         """Link to more info about this document (almost unused)."""
-        return ExternalLink(self.url, self.url_link_text) if self.url else None
+        return ExternalLink(self.url, self.url_link_text, link_style=JOURNALISM_STYLE) if self.url else None
 
     @property
     def external_link_txt(self) -> Text | None:
@@ -607,6 +607,9 @@ class DocCfg(LoggingEntity):
         logger.debug(f"Setting category for {len(cfgs)} configs to '{category}'")
 
         for cfg in cfgs:
+            if cfg.category and cfg.category != category:
+                cfg._warn(f"Would overwrite current category '{cfg.category}' with '{category}'")
+
             cfg.set_category(cfg.category or category)
 
     @classmethod
