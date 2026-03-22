@@ -171,13 +171,15 @@ MONEY_CFGS = [
     EmailCfg(id='EFTA00994380', highlight_quote='please confirm $500 to Sergey Pozhidaev', truncate_to=500),
     EmailCfg(
         id='EFTA01409449',
-        note=f"{DEUTSCHE_BANK} employees scrubbing Epstein's name off his TWTR (Twitter) trades",
-        is_interesting=10,
+        note=f"{DEUTSCHE_BANK} employees scrubbing Epstein's name off his Souther Financial account (and its TWTR (Twitter) trades)",
+        is_interesting=20,
+        truncate_to=(10_800, 14_500),
     ),
     EmailCfg(
         id='EFTA00461557',
         author=LESLEY_GROFF,
         author_uncertain='schedule',
+        is_interesting=10,
         note=f"{ARIANE_DE_ROTHSCHILD} and {SERGEY_BELYAKOV} visiting at the same time",
     ),
     EmailCfg(

@@ -3389,7 +3389,7 @@ HIGHLIGHTED_NAMES = [
             r"SkyNet",
             r"Skyp(ed?|ing)",
             r"Tim Cook",
-            r"Twitter",
+            r"Twi?tt?e?r",
             r"Uber",
             r"WhatsApp",
             r"Wikipedia",

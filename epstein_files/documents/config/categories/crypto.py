@@ -440,7 +440,7 @@ CRYPTO_CFGS = [
     EmailCfg(id='EFTA02591998', note='Epstein spoke to Vladimir Putin about digital currency', is_interesting=10),
     # SEC / NYDFS
     EmailCfg(id='EFTA00668932', note=f"pressing Farkas for a meeting with {BEN_LAWSKY_NYDFS}"),
-    EmailCfg(id='EFTA01747752', note=f"Farkas delivering {BEN_LAWSKY_NYDFS}", truncate_to=700),
+    EmailCfg(id='EFTA01747752', note=f"Farkas delivering {BEN_LAWSKY_NYDFS}", is_interesting=20, truncate_to=700),
     EmailCfg(
         id='EFTA02588398',
         highlight_quote='spent some time at tresury with the bitcoin task force',
@@ -483,7 +483,7 @@ CRYPTO_CFGS = [
     DocCfg(id='EFTA01088484', author=VALAR_VENTURES, note="contract"),
     DocCfg(id='EFTA00591691', author=VALAR_VENTURES, note="contract"),
     DocCfg(id='EFTA00810362', author=VALAR_VENTURES, note="investor questionnaire"),
-    EmailCfg(id='EFTA01001339', note=f"{PETER_THIEL} introduces Epstein to the {VALAR_VENTURES} founders"),
+    EmailCfg(id='EFTA01001339', note=f"{PETER_THIEL} introduces Epstein to the {VALAR_VENTURES} founders", is_interesting=10),
     # Vincenzo
     EmailCfg(id='EFTA00637023', note=f"discussion of getting around money laundering laws in places like Myanmar + Mongolia"),
     EmailCfg(id='EFTA02588723', note=f'discussion of crypto food stamps debit cards', is_interesting=10),

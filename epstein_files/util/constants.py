@@ -451,6 +451,7 @@ NOT_CHRONOLOGICAL_VIEW_IDS = [cfg.id for cfg in FLIGHT_LOG_CFGS] + [
     'EFTA02027091',
     # Vincenzo
     'EFTA01749028',
+    'EFTA01747994',
     #
     'EFTA02048499',
     'EFTA00322570',
