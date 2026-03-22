@@ -13,7 +13,7 @@ from rich.text import Text
 from epstein_files.documents.communication import Communication
 from epstein_files.documents.document import Document
 from epstein_files.documents.documents.categories import sort_categories
-from epstein_files.documents.documents.doc_types_mixin import DocTypesMixin
+from epstein_files.documents.documents.doc_list import DocList
 from epstein_files.documents.email import Email
 from epstein_files.documents.emails.emailers import ENTITY_CATEGORIES, get_entities
 from epstein_files.documents.messenger_log import MessengerLog
@@ -47,7 +47,7 @@ PeopleBiosArg = PrintableObj | list[Entity] | list[str]
 
 
 @dataclass(kw_only=True)
-class DocPrinter(DocTypesMixin):
+class DocPrinter(DocList):
     """
     Handles printing collections of documents with biographical info panels interspersed.
     `DocTypesMixin._documents` holds the list of `Document` objects that have been printed/processed.
@@ -90,7 +90,7 @@ class DocPrinter(DocTypesMixin):
         return None if any(isinstance(d, OtherFile) for d in self.printed_docs) else OTHER_FILES_TABLE_MSG
 
     def line(self, num: int = 1) -> None:
-        """Print blank lines to HTML and terminal, similar to `console.line()`."""
+        """Print blank line(s) to HTML and terminal similar to `console.line()`."""
         self.html_elements.append(vertical_spacer(num))
         console.line(num)
 
@@ -219,7 +219,7 @@ class DocPrinter(DocTypesMixin):
                 doc_bios_html = self._build_biographies_panel_html(self.new_entities_with_bios(positioned.obj))
                 self._append_element_with_bio_div(positioned.obj.to_html(), doc_bios_html)
                 doc = positioned.obj.document if isinstance(positioned.obj, Layout) else positioned.obj
-                self._documents.append(doc)  # Append to DocTypeMixin list
+                self._documents.append(doc)  # Append to DocList list
             elif isinstance(positioned.obj, Table):
                 html_table = positioned.to_html()  # TODO: currently the only type that delegates to the PositionedRich obj to get HTML
 
@@ -231,7 +231,7 @@ class DocPrinter(DocTypesMixin):
             elif isinstance(positioned.obj, Panel):
                 self.html_elements.append(panel_to_div(positioned.obj, positioned.css))
             elif isinstance(positioned.obj, BasePanel):
-                margin = unpack_dimensions((site_config.indents.info, 0))  # TODO: this margin dimension should only exist on eone side if aligned
+                margin = unpack_dimensions((site_config.indents.info, 0))  # TODO: this margin dimension should only exist on one side if aligned
                 self.html_elements.append(positioned.obj.to_div(margin))
             elif isinstance(positioned.obj, Text):
                 self.html_elements.append(text_to_div(positioned.obj, positioned.css))
@@ -344,7 +344,7 @@ class DocPrinter(DocTypesMixin):
         table.border_style = OTHER_FILES_TABLE_BORDER_STYLE
         self.print(Padding(table, site_config.other_files_table_padding()))
         logger.debug(f"printed {len(self._other_files_queue)} objs in _other_files_queue")
-        self._documents.extend(self._other_files_queue)  # Append to DocTypeMixin list
+        self._documents.extend(self._other_files_queue)  # Append to DocList list
         self._other_files_queue = []
 
     def _print_suppression_msgs_queue(self) -> list[Document]:

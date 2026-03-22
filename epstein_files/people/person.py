@@ -13,9 +13,9 @@ from rich.text import Text
 from epstein_files.documents.communication import Communication
 from epstein_files.documents.document import Document
 from epstein_files.documents.documents.categories import Uninteresting
-from epstein_files.documents.documents.doc_types_mixin import DocTypesMixin
+from epstein_files.documents.documents.doc_list import DocList
 from epstein_files.documents.email import BCC_LISTS, TRUNCATE_EMAILS_BY, MAILING_LISTS, Email
-from epstein_files.documents.emails.emailers import ENTITIES_DICT, cleanup_str, get_entity
+from epstein_files.documents.emails.emailers import ENTITIES_DICT, get_entity
 from epstein_files.documents.messenger_log import MessengerLog
 from epstein_files.documents.other_file import OtherFile
 from epstein_files.output.highlight_config import (HIGHLIGHTED_NAMES, QUESTION_MARKS_TXT, get_highlight_group_for_name,
@@ -63,7 +63,7 @@ TABLE_TXTS = {
 
 
 @dataclass
-class Person(DocTypesMixin, LoggingEntity):
+class Person(DocList, LoggingEntity):
     """
     Collects all known info and files connected to someone who is the author or recipient
     of at least one Epstein File with methods to work with that collection as a whole.
@@ -75,7 +75,7 @@ class Person(DocTypesMixin, LoggingEntity):
     _searched_for_highlight_group: bool = False
 
     def __post_init__(self):
-        self._documents = Document.sort_by_timestamp(self.documents)
+        self._documents = DocList.sort_by_timestamp(self.documents)
         self._populate_entity()
 
     @property
@@ -169,7 +169,7 @@ class Person(DocTypesMixin, LoggingEntity):
         """Return a name if this person sent 0 emails (total) and received CCs from only that one name."""
         email_authors = uniquify([e.author for e in self.emails_to])
 
-        if self.num_emails == 1 and len(email_authors) > 0:
+        if self.num_unique_emails == 1 and len(email_authors) > 0:
             logger.info(f"sole author of email to '{self.name}' is '{email_authors[0]}'")
         else:
             logger.info(f"'{self.name}' email_authors '{email_authors[0]}'")
@@ -184,7 +184,7 @@ class Person(DocTypesMixin, LoggingEntity):
     def sort_key(self) -> list[int | str]:
         """Key used to sort `Person` objects by the number of emails sent/received + interestingness."""
         counts = [
-            self.num_emails,
+            self.num_unique_emails,
             -1 * int(UNINTERESTING_CC_INFO_NO_CONTACT in self.entity.info),
             -1 * int(UNINTERESTING_CC_INFO in self.entity.info),
             int(self.has_any_epstein_emails),
@@ -201,6 +201,7 @@ class Person(DocTypesMixin, LoggingEntity):
     def table_txt(self) -> Text | None:
         """Text that appears next to this name in tables of emailers."""
         self._populate_entity()
+
         for table_txt_key in [self.name, self.entity.category]:
             if table_txt_key in TABLE_TXTS:
                 return TABLE_TXTS[table_txt_key]     # Return preconfigured in some cases
@@ -211,11 +212,11 @@ class Person(DocTypesMixin, LoggingEntity):
 
     @property
     def unique_emails_by(self) -> list[Email]:
-        return Document.without_dupes(self.emails_by)
+        return list(self.without_dupes(self.emails_by))
 
     @property
     def unique_emails_to(self) -> list[Email]:
-        return Document.without_dupes(self.emails_to)
+        return list(self.without_dupes(self.emails_to))
 
     @property
     def _email_info_style(self) -> str:
@@ -236,7 +237,7 @@ class Person(DocTypesMixin, LoggingEntity):
 
     @property
     def _unique_printable_docs(self) -> Sequence[Document]:
-        return Document.without_dupes(self._printable_docs)
+        return self.without_dupes(self._printable_docs)
 
     @property
     def _unique_printable_emails(self) -> Sequence[Email]:
@@ -248,7 +249,7 @@ class Person(DocTypesMixin, LoggingEntity):
             email_count = len(self._printable_docs)
             title_suffix = f"sent by {JEFFREY_EPSTEIN} to himself"
         else:
-            email_count = self.num_emails
+            email_count = self.num_unique_emails
             num_days = self.email_conversation_length_in_days
             title_suffix = f"{TO_FROM} {self.name_str} starting {self.earliest_email_date} covering {num_days:,} days"
 
@@ -285,7 +286,7 @@ class Person(DocTypesMixin, LoggingEntity):
             d.make_layout(background_color=NON_PARCICIPANT_BG_CLR, justify='right') \
                 if (self.name and self.name not in d.participants) \
                 else d
-            for d in Document.sort_by_timestamp(self._unique_printable_docs)
+            for d in DocList.sort_by_timestamp(self._unique_printable_docs)
         ]
 
         if (right_justified := [d for d in docs if isinstance(d, Layout)]):
@@ -371,7 +372,7 @@ class Person(DocTypesMixin, LoggingEntity):
         highlighted = highlighted or people
         highlighted_names = [p.name for p in highlighted]
         is_selection = len(people) != len(highlighted) or args.emailers_info
-        all_emails = Person.emails_from_people(people)
+        all_emails = Person.unique_emails_for(people)
         email_authors = [p for p in people if p.emails_by and p.name]
         attributed_emails = [email for email in all_emails if email.author]
 
@@ -437,14 +438,14 @@ class Person(DocTypesMixin, LoggingEntity):
             new_table.add_column(table.columns[1].header)
             new_table.add_column(table.columns[2].header)
 
-            for i, row in enumerate(table.rows):
+            for i, _row in enumerate(table.rows):
                 new_table.add_row(table.columns[1]._cells[i], table.columns[2]._cells[i])
 
             return new_table
 
         return table
 
-    @staticmethod
-    def emails_from_people(people: list['Person']) -> Sequence[Email]:
+    @classmethod
+    def unique_emails_for(cls, people: list['Person']) -> Sequence[Email]:
         """Collect all unique emails from a list of `Person` objects."""
-        return Document.uniquify(flatten([list(p.unique_emails) for p in people]))
+        return cls.uniquify_by_id(flatten([list(p.unique_emails) for p in people]))

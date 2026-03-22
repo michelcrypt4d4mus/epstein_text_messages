@@ -47,7 +47,7 @@ from epstein_files.util.helpers.data_helpers import (coerce_utc, coerce_utc_stri
      listify, uniquify, uniq_sorted, without_falsey)
 from epstein_files.util.helpers.file_helper import coerce_file_path, file_size_str, file_size_to_str
 from epstein_files.util.helpers.rich_helpers import CharRange, TextVar, enclose, extract_range, join_texts
-from epstein_files.util.helpers.string_helper import collapse_newlines, doublespace_lines, iso_date, join_truthy, quote, timestamp_without_zero_hour
+from epstein_files.util.helpers.string_helper import collapse_newlines, doublespace_lines, join_truthy, quote, timestamp_without_zero_hour
 from epstein_files.util.logging import DOC_TYPE_STYLES, FILENAME_STYLE, logger
 from epstein_files.util.logging_entity import LoggingEntity
 
@@ -69,14 +69,6 @@ OCR_REPAIRS: OcrRepair = {
     'Nil Priell': 'Nili Priell',
     re.compile(r"EFTA\d{8}( *\n){3,}"): '',
 }
-
-SUMMARY_TABLE_COLS: list[str | dict] = [
-    'Count',
-    {'name': 'Has Author', 'style': 'honeydew2'},
-    {'name': 'No Author', 'style': 'wheat4'},
-    {'name': 'Uncertain Author', 'style': 'royal_blue1 dim'},
-    {'name': 'Size', 'justify': 'right', 'style': 'dim'},
-]
 
 DEBUG_PROPS = [
     'is_interesting',
@@ -776,78 +768,9 @@ class Document(LoggingEntity):
         return DocCfg(id='DUMMY')
 
     @classmethod
-    def files_summary_table(cls, title: str | Text, first_col_name: str) -> Table:
-        """Empty table with appropriate cols for summarizing groups of files."""
-        table = build_table(title)
-        cols = [{'name': first_col_name, 'min_width': 14}] + SUMMARY_TABLE_COLS
-        add_cols_to_table(table, cols, 'right')
-        return table
-
-    @classmethod
-    def files_summary(cls, files: Sequence[Self], is_author_na: bool = False) -> dict[str, str | Text]:
-        """Summary info about a group of files."""
-        file_count = len(files)
-        author_count = cls.known_author_count(files)
-
-        # NOTE: Order matters!
-        return {
-            'count': str(file_count),
-            'author_count': NA_TXT if is_author_na else str(author_count),
-            'no_author_count': NA_TXT if is_author_na else str(file_count - author_count),
-            'uncertain_author_count': NA_TXT if is_author_na else str(len([f for f in files if f._config.author_uncertain])),
-            'bytes': file_size_to_str(sum([f.file_info.file_size for f in files])),
-        }
-
-    @classmethod
-    def file_summary_row(cls, files: Sequence[Self], author_na: bool = False) -> Sequence[str | Text]:
-        """Turn the values in the `cls.files_info()` dict into a list so they can be used as a table row."""
-        return [v for v in cls.files_summary(files, author_na).values()]
-
-    @classmethod
     def filter_for_type(cls, docs: Sequence['Document']) -> list[Self]:
         """Filter for Document objects of this class."""
         return [d for d in docs if isinstance(d, cls)]
-
-    @classmethod
-    def known_author_count(cls, docs: Sequence[Self]) -> int:
-        """Number of elements of `docs` that have an author attribution."""
-        return len([doc for doc in docs if doc.author])
-
-    @classmethod
-    def _print_ids(cls, docs: Sequence[Self], msg: str = '') -> None:
-        """Debug method to print raw string of IDs suitable for copy/paste."""
-        print(f"\n\n IDs for {msg}:\n\n{' '.join([doc.file_id for doc in docs])}\n")
-
-    ########################
-    #### STATIC METHODS ####
-    ########################
-
-    @staticmethod
-    def count_by_month(docs: Sequence['DocType']) -> Counter[str | None]:
-        return Counter([d.timestamp.date().isoformat()[0:7] if d.timestamp else None for d in docs])
-
-    @staticmethod
-    def sort_by_id(docs: Sequence['DocType']) -> list['DocType']:
-        return sorted(docs, key=lambda d: d.file_id)
-
-    @staticmethod
-    def sort_by_length(docs: Sequence['DocType']) -> list['DocType']:
-        return sorted(docs, key=lambda d: d.file_info.file_size, reverse=True)
-
-    @staticmethod
-    def sort_by_timestamp(docs: Sequence['DocType']) -> list['DocType']:
-        return sorted(docs, key=lambda doc: doc.timestamp_sort_key)
-
-    @staticmethod
-    def uniquify(documents: Sequence['DocType']) -> Sequence['DocType']:
-        """Uniquify by file_id."""
-        id_map = {doc.file_id: doc for doc in documents}
-        return [doc for doc in id_map.values()]
-
-    @staticmethod
-    def without_dupes(docs: Sequence['DocType']) -> list['DocType']:
-        """Remove any duplicate documents."""
-        return [doc for doc in docs if not doc.is_duplicate]
 
 
 DocType = TypeVar('DocType', bound=Document)

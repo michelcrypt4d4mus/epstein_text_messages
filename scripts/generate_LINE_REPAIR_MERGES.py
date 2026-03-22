@@ -7,7 +7,7 @@ from epstein_files.util.helpers.data_helpers import all_elements_same
 
 print("LINE_REPAIR_MERGES = {")
 
-for email in Document.sort_by_id(epstein_files.emails):
+for email in DocList.sort_by_id(epstein_files.emails):
     if not email._line_merge_arguments:
         continue
 

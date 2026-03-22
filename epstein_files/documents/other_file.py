@@ -223,6 +223,21 @@ class OtherFile(Document):
         return cls._mobilize_table(table) if args.mobile else table
 
     @classmethod
+    def summary_table(cls, files: Sequence['OtherFile'], title_pfx: str = '') -> Table:
+        """Table showing file count by category."""
+        from epstein_files.documents.documents.doc_list import DocList
+        categories = uniquify([f.category for f in files])
+        categories = sorted(categories, key=lambda c: -len([f for f in files if f.category == c]))
+        table = DocList.files_summary_table(f'{title_pfx}Other Files Summary', 'Category')
+
+        for category in categories:
+            category_files = [f for f in files if f.category == category]
+            table.add_row(styled_category(category), *DocList.file_summary_row(category_files))
+
+        table.columns = table.columns[:-2] + [table.columns[-1]]  # Removee unknown author col
+        return table
+
+    @classmethod
     def _mobilize_table(cls, _table: Table) -> Table:
         """Make a mobile version of the `files_preview_table()`."""
         table = build_table(_table.title, copy_props_from=_table)
@@ -241,18 +256,4 @@ class OtherFile(Document):
                 style=row.style
             )
 
-        return table
-
-    @classmethod
-    def summary_table(cls, files: Sequence['OtherFile'], title_pfx: str = '') -> Table:
-        """Table showing file count by category."""
-        categories = uniquify([f.category for f in files])
-        categories = sorted(categories, key=lambda c: -len([f for f in files if f.category == c]))
-        table = cls.files_summary_table(f'{title_pfx}Other Files Summary', 'Category')
-
-        for category in categories:
-            category_files = [f for f in files if f.category == category]
-            table.add_row(styled_category(category), *cls.file_summary_row(category_files))
-
-        table.columns = table.columns[:-2] + [table.columns[-1]]  # Removee unknown author col
         return table

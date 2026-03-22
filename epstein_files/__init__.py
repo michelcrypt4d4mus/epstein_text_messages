@@ -17,6 +17,7 @@ load_dotenv()
 
 from epstein_files.epstein_files import EpsteinFiles, document_cls
 from epstein_files.documents.document import Document
+from epstein_files.documents.documents.doc_list import DocList
 from epstein_files.documents.documents.word_count import print_word_counts
 from epstein_files.documents.doj_file import DojFile
 from epstein_files.documents.email import Email
@@ -56,7 +57,7 @@ def epstein_generate() -> None:
             if args.all_emails:  # TODO: hack to show emails table with --name if --all-emails is also set
                 person.print_docs(printer)
             else:
-                printer.print_section_subtitle(f"{person.name_str} ({person.num_docs} documents)")
+                printer.print_section_subtitle(f"{person.name_str} ({person.num_unique_docs} documents)")
                 printer.print_documents(person.unique_documents, collect_other_files_to_tables=False, show_suppressed=True)
     elif args.output_annotated:
         print_annotated_only(epstein_files, printer)
@@ -96,7 +97,7 @@ def epstein_generate() -> None:
         printer.write_html(args._site if args.build == BUILD_TO_DEFAULT else Path(args.build))
 
     if args.names:
-        Document._print_ids(printer.printed_docs, 'args.names')
+        printer.print_ids(f'Document IDs found for {len(args.names)} args.names')
 
     if args.open_txt:
         open_file_or_url(Site.custom_html_build_path(args._site))
@@ -216,7 +217,7 @@ def epstein_show():
 
         if any(doc.file_info.has_file for doc in raw_docs):
             # Rebuild the Document objs so we can see result of latest processing
-            docs = Document.sort_by_timestamp([document_cls(doc)(doc.file_path) for doc in raw_docs])
+            docs = DocList.sort_by_timestamp([document_cls(doc)(doc.file_path) for doc in raw_docs])
         else:
             logger.warning(f"Not reloading derived documents")
             docs = raw_docs

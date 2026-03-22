@@ -3,10 +3,11 @@ Helpers for dealing with various kinds of data.
 """
 import itertools
 import re
+from collections import Counter
 from copy import copy
 from datetime import datetime, timezone
 from dateutil import tz
-from typing import Any, Callable, Mapping, Sequence, TypeVar
+from typing import Any, Callable, Hashable, Iterable, Mapping, Sequence, TypeVar
 
 from epstein_files.people import names
 from epstein_files.util.env import args
@@ -79,6 +80,11 @@ def constantize_names(s: str) -> str:
         s = s.replace(name, f"{{{names.constantize_name(name)}}}")
 
     return s
+
+
+def count_dupes(objs: Sequence[T]) -> dict[T, int]:
+    """Return a dict with only the objects that appear more than once in `objs` and their counts."""
+    return {k: v for k, v in Counter(objs).items() if v > 1}
 
 
 def dict_sets_to_lists(d: dict[str, set]) -> dict[str, list]:
@@ -165,6 +171,17 @@ def uniq_sorted(_list: Sequence[T], reverse: bool = False) -> list[T]:
 
 def uniquify(_list: Sequence[T]) -> list[T]:
     return list(set(_list))
+
+
+def warn_on_dupes(objs: Sequence[T]) -> dict[T, int]:
+    """Same as count_dupes() but with a warning."""
+    if (dupe_counts := count_dupes(objs)):
+        dupes = uniq_sorted([dupe for dupe in dupe_counts.keys()])
+        logger.error(f"Found {len(dupes)} dupes out of {len(objs)} objs:\n\n{dupe_counts}\n")
+        logger.error(f"Raw dupes:\n\n" + ' '.join(dupes) + '\n')
+        return dupe_counts
+    else:
+        return {}
 
 
 def without_falsey(elements: Sequence[T | None]) -> list[T]:
