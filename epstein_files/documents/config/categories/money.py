@@ -170,7 +170,7 @@ MONEY_CFGS = [
         ['Fortress Investment Group'],
         highlight_quote='I represent Jeepers, Inc., Financial Trust Company, Inc., and Jeffrey Epstein',
         note="concerning Jeepers, the children's theme park owned by Epstein",
-        truncate_to=(500, 1_800),
+        truncate_to=(552, 1_300),
     ),
 
     # Emails

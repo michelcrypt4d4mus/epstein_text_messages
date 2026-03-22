@@ -1578,7 +1578,7 @@ HIGHLIGHTED_NAMES = [
             Entity(
                 "D.B. Zwirn",
                 'hedge fund manager whose fund collapsed in 2008 with investments from Epstein and Glenn Dubin',
-                r"D\.?B\.? Zwirn",
+                r"D\.?B\.? Zwirn(?! Special Opportunities Fund)",
                 url=[
                     'https://www.bloomberg.com/news/features/2026-02-13/how-jeffrey-epstein-got-into-hedge-funds-billionaire-dubins-helped',
                     'https://www.reuters.com/article/world/db-zwirn-to-liquidate-4-billion-in-assets-idUSN22604774/',
