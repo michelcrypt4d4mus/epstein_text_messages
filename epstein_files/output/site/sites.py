@@ -84,6 +84,8 @@ class Site(StrEnum):
             from epstein_files.util.env import args
             names = sorted(['unknown' if n is None else n for n in args.names])
             site = NAMES_PREFIX + '__'.join(sorted(names)).replace(' ', '_').lower()
+        elif _site == INDEX_HTML_SITE:
+            site = 'index'
         else:
             site = _site
 
@@ -157,11 +159,12 @@ class HtmlDir:
         return cls.HTML_DIR.joinpath(filename)
 
 
+INDEX_HTML_SITE = Site.MOST_INTERESTING
+
 # TODO: purge repo of old files for space:
 #  - curated_chronological.html
 HTML_BUILD_FILENAMES = {
     Site.EMAILS_CHRONOLOGICAL:  f'chronological_emails.html',
-    Site.CHRONOLOGICAL:         f"index.html",
     Site.CHRONOLOGICAL_MOBILE:  f"mobile_chronological.html",
     Site.DOJ_FILES:             f'doj_2026-01-30_non_email_files.html',
     Site.EMAILERS:              f'emails_grouped_by_counterparty.html',
