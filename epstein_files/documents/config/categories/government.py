@@ -75,7 +75,7 @@ GOVERNMENT_CFGS = [
         author=OCDETF,
         date='2015-05-18',
         is_interesting=20,
-        note='report on investigations of Epstein related drug money laundering',
+        note=f"heavily redacted report on Epstein's potential involvement in Caribbean drug money laundering, {MARIANA_IDZKOWSKA}'s name is unredacted",
         truncate_to=(7_700, 12_600),
     ),
     bop_doc('EFTA00035921', "Lieutenant's Logs", '2019-08-06'),

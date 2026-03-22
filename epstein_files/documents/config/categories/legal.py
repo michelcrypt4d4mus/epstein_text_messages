@@ -174,4 +174,5 @@ LEGAL_CFGS = [
 
     # emails
     EmailCfg(id='EFTA00039794', recipients=['Michael Danchuk', USANYS]),
+    EmailCfg(id='EFTA00039816', is_interesting=False),
 ]

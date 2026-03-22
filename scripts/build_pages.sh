@@ -24,7 +24,7 @@ else
 fi
 
 # Fast pages
-print_deploy_step "Building top 10 page..."
+print_deploy_step "Building --output-most-interesting..."
 $GENERATE_CMD --output-most-interesting
 print_deploy_step "Building notes pages..."
 $GENERATE_CMD --output-notes
