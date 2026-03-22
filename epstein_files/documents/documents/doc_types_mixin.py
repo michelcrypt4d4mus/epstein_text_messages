@@ -37,7 +37,12 @@ class DocTypesMixin(ABC):
         return self._docs_by_id
 
     @property
+    def document_ids(self) -> list[str]:
+        return [d.file_id for d in self.documents]
+
+    @property
     def documents(self) -> Sequence[Document]:
+        """Can be overloaded in subclasses to apply any necessary filters."""
         return self._documents
 
     @property

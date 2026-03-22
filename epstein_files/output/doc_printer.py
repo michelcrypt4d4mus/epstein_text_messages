@@ -50,12 +50,15 @@ PeopleBiosArg = list[str] | list[Entity] | PrintableObj
 class DocPrinter(DocTypesMixin):
     """
     Handles printing collections of documents with biographical info panels interspersed.
+    `DocTypesMixin._documents` holds the list of `Document` objects that have been printed/processed.
 
     Args:
         epstein_files (EpsteinFiles): the data
         html_elements (list[str]): HTML for all objects printed so far
-        printed_docs (list[Document]): all Documents that have been printed so far
-        printed_name_bios (set[Entity]): all the names for which biographical information has been printed already
+        printed_entity_bios (set[Entity]): all the names for which biographical information has been printed already
+        _last_bio_panel (str): cached HTML for the last panel of biographical details, used to build divs
+        _other_files_queue (list[OtherFile]): queue to collect `OtherFile`s into tables
+        _suppressed_docs_queue (list[Document]): queue to collect objects whose printing is suppressed (dupes, uninteresting, etc)
     """
     epstein_files: 'EpsteinFiles'
     html_elements: list[str] = field(default_factory=list)
@@ -70,7 +73,8 @@ class DocPrinter(DocTypesMixin):
 
     @property
     def printed_docs(self) -> list[Document]:
-        return Document.filter_for_type(self._documents)  # TODO: necessary because of FileDisplay objs
+        """All `Document`s that have been printed so far."""
+        return self._documents
 
     @property
     def printed_emails(self) -> list[Email]:
@@ -78,7 +82,7 @@ class DocPrinter(DocTypesMixin):
 
     @property
     def printed_ids(self) -> list[str]:
-        return [f.file_id for f in self.printed_docs]
+        return self.document_ids
 
     @property
     def _other_files_table_title(self) -> Text | None:
@@ -215,7 +219,7 @@ class DocPrinter(DocTypesMixin):
                 doc_bios_html = self._build_biographies_panel_html(self.new_entities_with_bios(positioned.obj))
                 self._append_element_with_bio_div(positioned.obj.to_html(), doc_bios_html)
                 doc = positioned.obj.document if isinstance(positioned.obj, Layout) else positioned.obj
-                self._documents.append(doc)
+                self._documents.append(doc)  # Append to DocTypeMixin list
             elif isinstance(positioned.obj, Table):
                 html_table = positioned.to_html()  # TODO: currently the only type that delegates to the PositionedRich obj to get HTML
 
@@ -338,13 +342,13 @@ class DocPrinter(DocTypesMixin):
 
         table = OtherFile.files_preview_table(self._other_files_queue, title=table_title, title_justify='center')
         table.border_style = OTHER_FILES_TABLE_BORDER_STYLE
-        self.print(Padding(table, (0, 0, 1, site_config.indents.other_files_table)))
-        self._documents.extend(self._other_files_queue)
+        self.print(Padding(table, site_config.other_files_table_padding()))
         logger.debug(f"printed {len(self._other_files_queue)} objs in _other_files_queue")
+        self._documents.extend(self._other_files_queue)  # Append to DocTypeMixin list
         self._other_files_queue = []
 
     def _print_suppression_msgs_queue(self) -> list[Document]:
-        """Print any suppression messages. Returns Documents whose suppression msg was printed."""
+        """Print the suppression messages for docs in the queue, Return `Document`s whose message was printed."""
         if not self._suppressed_docs_queue:
             return []
 
