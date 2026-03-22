@@ -35,7 +35,7 @@ from epstein_files.output.html.builder import table_to_html
 from epstein_files.output.html.positioned_rich import to_em
 from epstein_files.output.layout_elements.layout import Layout, JustifyMethod
 from epstein_files.output.rich import DEFAULT_TABLE_KWARGS, build_table
-from epstein_files.util.constant.strings import APPEARS_IN, ARCHIVE_LINK_COLOR, REDACTED, TIMESTAMP_DIM, OcrRepair
+from epstein_files.util.constant.strings import APPEARS_IN, ARCHIVE_LINK_COLOR, AUTO, REDACTED, TIMESTAMP_DIM, OcrRepair
 from epstein_files.util.constant.urls import URL_SIGNIFIERS
 from epstein_files.util.constants import CONFIGS_BY_ID
 from epstein_files.util.env import args, site_config
@@ -461,7 +461,7 @@ class Email(Communication):
             body_txt = super().prettified_txt
             offset = 0
 
-            if char_range == 'auto':
+            if char_range == AUTO:
                 char_range = self.char_range_to_display
 
             if char_range[0] > self.email_parts.header_len:

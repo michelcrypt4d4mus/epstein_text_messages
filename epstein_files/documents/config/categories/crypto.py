@@ -7,7 +7,8 @@ from epstein_files.documents.config.doc_cfg import EMAIL_TRUNCATE_TO, NO_TRUNCAT
 from epstein_files.documents.config.email_cfg import EmailCfg
 from epstein_files.people.names import *
 from epstein_files.util.constant.strings import *
-from epstein_files.util.constant.urls import JEREMY_RUBIN_DLNEWS_URL
+from epstein_files.util.env import args
+from epstein_files.util.constant.urls import HAPOALIM_BUST_URL, JEREMY_RUBIN_DLNEWS_URL
 from epstein_files.util.helpers.string_helper import join_truthy, quote
 
 BEN_LAWSKY_NYDFS = f'head of NY Dept of Financial Services {BEN_LAWSKY}'
@@ -367,8 +368,9 @@ CRYPTO_CFGS = [
         id='EFTA00257211',
         date='2005-04-05',
         is_interesting=20,
-        note=f"call log shows Bank Hapoalim director / future crypto bank SBNY founder Scott Shay selling Epstein investment ideas weeks after Hapoalim money laundering issues, also Steve Cohen and Barry Diller",
-        truncate_to=7_700,
+        note=f"call log shows Bank Hapoalim director / future crypto bank SBNY founder Scott Shay selling Epstein investment ideas 4 weeks after Hapoalim money laundering issues, also Steve Cohen and Barry Diller",
+        truncate_to=(1_240, 1_500) if args.output_most_interesting else 7_700,
+        url=HAPOALIM_BUST_URL,
     ),
     DocCfg(
         id='EFTA02005667',

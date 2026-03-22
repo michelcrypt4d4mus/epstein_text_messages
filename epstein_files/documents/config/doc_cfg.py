@@ -28,7 +28,7 @@ DebugDict = dict[str, bool | datetime | set | str | Path | None]
 DuplicateType = Literal['bounced', 'earlier', 'quoted', 'redacted', 'same']
 Metadata = dict[str, bool | datetime | int | str | None | list[str | None] | dict[str, bool | str]]
 
-AUTO_QUOTE_NUM_CHARS = 1_600  # Number of chars before and after highlight_quote for auto truncation
+AUTO_QUOTE_NUM_CHARS = 400 if args.output_most_interesting else 1_600  # Number of chars before and after highlight_quote for auto truncation
 DOC_CHAR_RANGE = (0, 12_000)
 EMAIL_TRUNCATE_TO = int(DOC_CHAR_RANGE[1] / 3)
 SHORT_TRUNCATE_TO = int(EMAIL_TRUNCATE_TO / 3)
@@ -203,7 +203,7 @@ class DocCfg(LoggingEntity):
                 self.note = join_truthy(self.note, f'{QUOTE_PREFIX}: {quote(quote_note)}', joiner)
 
         # show_full_panel (and highlight_quote) set is_interesting=10
-        if self.show_full_panel and self.is_interesting is not False:
+        if self.show_full_panel and self.is_interesting not in [True, False]:
             self.is_interesting = 10
 
         if self.truncate_to and not self.show_full_panel:

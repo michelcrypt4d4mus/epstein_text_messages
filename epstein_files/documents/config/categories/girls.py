@@ -63,8 +63,8 @@ GIRLS_CFGS = [
         category=Uninteresting.ARTICLE,
         date='2005-01-14',
         note="press snippets about Epstein's attempt to buy IMG Models as well as his relationships with Brett Ratner and Alina Pascau",
-        is_in_chrono=False,
-        is_interesting=True,
+        # is_in_chrono=False,
+        is_interesting=5,
         truncate_to=1_200,
     ),
     DocCfg(
@@ -597,7 +597,7 @@ GIRLS_CFGS = [
     EmailCfg(id='EFTA01998027', highlight_quote="What day/night will be the wildest party on your island?"),
     EmailCfg(id='EFTA01930501', highlight_quote="Your littlest girl was a little naughty"),
     EmailCfg(id='EFTA01926961', author=SVETLANA_POZHIDAEVA, highlight_quote="If you take too many more trips to Russia, I'm going to assume that you're FSB/ KGB by your parents"),
-    EmailCfg(id='DropSite 2006-05-29 1329', highlight_quote='I am giving the little girl a modeling\n> lesson'),
+    EmailCfg(id='DropSite 2006-05-29 1329', highlight_quote='I am giving the little girl a modeling\n> lesson', is_interesting=True),
 
     # Josh Fink
     EmailCfg(
@@ -606,7 +606,7 @@ GIRLS_CFGS = [
         # author_uncertain=f"{JOSHUA_FINK} + Sent from Blackberry",
         note=f'impersonating [someone] talking to {JOSHUA_FINK}, "Dana" could be typo of "Lana" ({SVETLANA_POZHIDAEVA})',
         duplicate_ids=['EFTA01995523'],
-        is_interesting=True,
+        is_interesting=20,
     ),
     EmailCfg(
         id='EFTA01877084',

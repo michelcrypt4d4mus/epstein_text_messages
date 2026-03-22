@@ -1589,7 +1589,7 @@ HIGHLIGHTED_NAMES = [
                 url='https://www.propublica.org/article/the-bizarre-fall-of-the-ceo-of-coach-and-kate-spades-parent-company',
             ),
             Entity('Ira Zicherman', f"former {BEAR_STEARNS} exec, co-trustee of J. Epstein Foundation with Ghislaine"),
-            Entity(JAMES_CAYNE, f"CEO of {BEAR_STEARNS}, executor of Epstein's will", r"J(ames|immy)( E\.?)? Ca[vy]ne"),
+            Entity(JAMES_CAYNE, f"CEO of {BEAR_STEARNS} when it collapsed in 2008, executor of Epstein's will", r"J(ames|immy)( E\.?)? Ca[vy]ne", aliases=["Jimmy Cayne"], url=WIKIPEDIA),
             Entity('John Paulson', f"hedge fund guy, Trump donor", match_partial=None),
             Entity('Kamila Bobinska', f"Argan Capital Advisors, Dots Ventures, Movens Capital, ex-{DEUTSCHE_BANK}"),
             Entity('Larry Fink', f"CEO of Blackrock (world's largest money manager), father of {JOSHUA_FINK}", match_partial=None),
@@ -1640,7 +1640,7 @@ HIGHLIGHTED_NAMES = [
                 r"Atorus( International)?",
                 aliases=['Red Dot Trade Finance'],
             ),
-            Organization(BEAR_STEARNS, 'investment bank where Epstein got his first job in finance, failed in 2008', r"Bear Stea?rns"),
+            Organization(BEAR_STEARNS, 'wall st. firm that first hired Epstein (and fired him for malfeasance), collapsed in 2008', r"Bear Stea?rns"),
             Organization(
                 'Boothbay',
                 f'fund run by Ari Glass whom Epstein called "a bit sketchy" but invested $50 million with',

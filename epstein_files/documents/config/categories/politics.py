@@ -50,7 +50,7 @@ POLITICS_CFGS = [
     DocCfg(id='016699', note=TRUMP_DISCLOSURES, date='2017-01-20', is_interesting=True, attached_to_email_id='033091'),
     letter(id='EFTA02731023', author='Senator Ron Wyden', recipients=[LEON_BLACK], is_interesting=False),
     letter(id='EFTA02731018', author='Senator Ron Wyden', recipients=['Marc Rowan'], is_interesting=False),
-    passenger_manifest('007300', '2006-03-03', f"current US Navy Secretary Navy {JOHN_PHELAN} and {JEAN_LUC_BRUNEL}"),
+    passenger_manifest('007300', '2006-03-03', f"current US Navy Secretary Navy {JOHN_PHELAN} and {JEAN_LUC_BRUNEL}", truncate_to=650),
 
     # Emails
     EmailCfg(id='029679', highlight_quote='his driver MAtt was the bag man', note="(re: Trump)"),

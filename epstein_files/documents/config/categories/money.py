@@ -5,11 +5,12 @@ import re
 
 from epstein_files.documents.config.categories.crypto import VALAR_FUND
 from epstein_files.documents.config.config_builder import inventory, letter, memo
-from epstein_files.documents.config.doc_cfg import DocCfg
+from epstein_files.documents.config.doc_cfg import NO_TRUNCATE, DocCfg
 from epstein_files.documents.config.email_cfg import EmailCfg
 from epstein_files.people.entity import epstein_trust_name
 from epstein_files.people.names import *
 from epstein_files.util.constant.strings import *
+from epstein_files.util.env import args
 from epstein_files.util.helpers.string_helper import join_truthy
 
 MONEY_OCR_REPAIRS: OcrRepair = {
@@ -103,6 +104,7 @@ MONEY_CFGS = [
         author=JP_MORGAN,
         highlight_quote='two outstanding federal tax liens totaling $593,789',
         note=f'due diligence report on {MC2_MODEL_MGMT}',
+        truncate_to=500 if args.output_most_interesting else NO_TRUNCATE
     ),
     DocCfg(id='EFTA01478313', note=f'list of investments (maybe of {LEON_BLACK})', date='2016-03-31'),
     DocCfg(id='EFTA01222951', note=f"credit card expenses for Carlos L Rodriguez using Plum Card", date='2019-02-12'),
