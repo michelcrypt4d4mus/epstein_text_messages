@@ -163,7 +163,7 @@ GOVERNMENT_CFGS = [
         is_interesting=10,
         truncate_to=(6_000, 7_500),
     ),
-    fbi_interview('EFTA02858481', 'Jennifer Aros', 'Epstein victim', '2019-08-22'),
+    fbi_interview('EFTA02858481', 'Jennifer Aros', 'Epstein victim and Trump accuser', '2019-08-07', is_interesting=True),
     fbi_interview('EFTA00174375', LUKE_D_THORBURN, f"lots of takes on Epstein, China, and {STEVE_BANNON}"),
     fbi_interview('EFTA00081226', MINOR_VICTIM),
     fbi_interview('EFTA00038915', MINOR_VICTIM, 'claims Epstein knew she was 14'),
