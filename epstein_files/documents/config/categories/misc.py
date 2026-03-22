@@ -51,13 +51,6 @@ MISC_CFGS = [
         show_full_panel=True,
     ),
     DocCfg(
-        id='EFTA00034357',
-        author=BUREAU_OF_PRISONS,
-        date='2019-08-10',
-        note=f"internal message about discovery of Epstein's body",
-        background_color='red'
-    ),
-    DocCfg(
         id='EFTA01063811',
         date='2014-08-07',
         date_uncertain=True,
