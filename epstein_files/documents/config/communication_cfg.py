@@ -60,7 +60,9 @@ class CommunicationCfg(DocCfg):
     @property
     def category_txt(self) -> Text:
         """Overloads superclass to return `self.platform`."""
-        if self.platform and self.platform in PLATFORM_STYLES:
+        if self.category:
+            return super().category_txt
+        elif self.platform and self.platform in PLATFORM_STYLES:
             return Text(self.platform.lower(), PLATFORM_STYLES[self.platform])
         else:
             return super().category_txt

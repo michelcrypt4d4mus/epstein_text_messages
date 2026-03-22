@@ -607,6 +607,9 @@ class DocCfg(LoggingEntity):
         logger.debug(f"Setting category for {len(cfgs)} configs to '{category}'")
 
         for cfg in cfgs:
+            if cfg.category and cfg.category != category:
+                cfg._warn(f"Would overwrite current category '{cfg.category}' with '{category}'")
+
             cfg.set_category(cfg.category or category)
 
     @classmethod
