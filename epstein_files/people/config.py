@@ -1579,7 +1579,10 @@ HIGHLIGHTED_NAMES = [
                 "D.B. Zwirn",
                 'hedge fund manager whose fund collapsed in 2008 with investments from Epstein and Glenn Dubin',
                 r"D\.?B\.? Zwirn",
-                url='https://www.bloomberg.com/news/features/2026-02-13/how-jeffrey-epstein-got-into-hedge-funds-billionaire-dubins-helped',
+                url=[
+                    'https://www.bloomberg.com/news/features/2026-02-13/how-jeffrey-epstein-got-into-hedge-funds-billionaire-dubins-helped',
+                    'https://www.reuters.com/article/world/db-zwirn-to-liquidate-4-billion-in-assets-idUSN22604774/',
+                ],
             ),
             Entity(GLENN_DUBIN, "Highbridge Capital Management, married to Epstein's ex-gf Eva", match_partial='first'),
             Entity(HEATHER_GRAY, f"Leon Black family office {ELYSIUM_MANAGEMENT}", match_partial=None),
