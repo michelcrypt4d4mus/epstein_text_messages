@@ -39,4 +39,5 @@ REPUTATION_CFGS = [
     EmailCfg(id='EFTA00751527', note=f"more details of {AL_SECKEL}'s approach to online reputation repair", recipients=[JEFFREY_EPSTEIN, JESSICA_BANKS], author_reason='visible in EFTA00751523'),
     EmailCfg(id='EFTA01830035', note=AL_SECKEL_BILL_FIGHT),
     EmailCfg(id='EFTA00751523', truncate_to=2_100),
+    EmailCfg(id='EFTA01913311', recipients=[CHRISTINA_GALBRAITH], duplicate_ids=['EFTA00994273'], note='login/password for jeffreyepsteinnet@gmail.com', is_interesting=20),
 ]

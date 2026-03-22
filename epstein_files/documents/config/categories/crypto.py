@@ -3,10 +3,11 @@ Crypto and virtual currency / fintech related files
 """
 from epstein_files.documents.config.config_builder import whistleblower_cfg
 from epstein_files.documents.config.communication_cfg import CommunicationCfg, imessage_log, imessage_screenshot, whatsapp_log
-from epstein_files.documents.config.doc_cfg import EMAIL_TRUNCATE_TO, NO_TRUNCATE, SHORT_TRUNCATE_TO, DocCfg
+from epstein_files.documents.config.doc_cfg import EMAIL_TRUNCATE_TO, NO_TRUNCATE, DocCfg
 from epstein_files.documents.config.email_cfg import EmailCfg
 from epstein_files.people.names import *
 from epstein_files.util.constant.strings import *
+from epstein_files.util.constant.urls import JEREMY_RUBIN_DLNEWS_URL
 from epstein_files.util.helpers.string_helper import join_truthy, quote
 
 BEN_LAWSKY_NYDFS = f'head of NY Dept of Financial Services {BEN_LAWSKY}'
@@ -39,7 +40,7 @@ CRYPTO_CFGS = [
         recipients=[CHRISTINA_GALBRAITH],
         truncate_to=1_000,
     ),
-    EmailCfg(id='EFTA01852443'),
+    EmailCfg(id='EFTA01852443', note=f'Epstein asking if an "access group" (lobbyists?) works on alternative currencies'),
     EmailCfg(id='EFTA01754301'),
     EmailCfg(id='EFTA02361956', author=LINDA_STONE, author_reason='signature'),
     EmailCfg(id='EFTA02575430', note='alternative currencies group'),
@@ -91,9 +92,11 @@ CRYPTO_CFGS = [
         is_interesting=10,
         note=f"Epstein claims he's a fan of {ADAM_BACK} (who has recently claimed he had nothing to do with Epstein)",
     ),
-    EmailCfg(id='EFTA01915883', note=f"{JOI_ITO} doesn't trust {AUSTIN_HILL} (for good reason)", is_interesting=10),
+    EmailCfg(id='EFTA00869867', note=f"discussion of crypto regulations, sending a letter to {BEN_LAWSKY_NYDFS}"),
+    EmailCfg(id='EFTA01915883', is_interesting=10, note=f"Epstein doesn't trust {AUSTIN_HILL} (for good reason)", comment='stellar note in next email'),
     EmailCfg(id='EFTA00988395', note=f'"Andy Back" is probably Blockstream bitcoin dev {ADAM_BACK}', is_interesting=10, duplicate_ids=['EFTA01928856']),
     EmailCfg(id='EFTA01925969', note=f"{AUSTIN_HILL} and {ADAM_BACK} and some women plan a trip to Epstein's island", is_interesting=10),
+    EmailCfg(id='EFTA00994706', note=f"{AUSTIN_HILL} spewing classic crypto bro nonsense about crypto enabling charitable work", is_interesting=20),
     EmailCfg(id='EFTA00929418', note=f"Epstein forwards information from {AUSTIN_HILL} about fraudulent crypto trading operations to {PAUL_BARRETT}"),
     EmailCfg(id='EFTA01010209', note=f"{AUSTIN_HILL} calls {AMIR_TAAKI} \"a bit crazy\'"),
     EmailCfg(id='EFTA01788532', note=f"{AUSTIN_HILL} asking about Jeffrey Katzenberg's contact info"),
@@ -122,6 +125,7 @@ CRYPTO_CFGS = [
     DocCfg(id='EFTA01093471', author=CRYPTO_CURRENCY_PARTNERS_II, note='operating agreement', attached_to_email_id='EFTA00626220'),
     DocCfg(id='EFTA01126582', author=EXPRESSCOIN, note=f"pitch deck for {BROCK_PIERCE} co.", attached_to_email_id='EFTA00990186'),
     DocCfg(id='EFTA01125964', author=EXPRESSCOIN, note=f"pitch deck for {BROCK_PIERCE} co.", attached_to_email_id='EFTA00985076'),
+    EmailCfg(id='EFTA01917209', note='early bitcoin conference speaker list'),
     EmailCfg(id='EFTA02465656', note=f"{BROCK_PIERCE} describes investment in video game items company"),
     EmailCfg(id='EFTA00673123', note=f"{BROCK_PIERCE} and Epstein invested in Coinbase which would turn out to be extremely lucrative", duplicate_ids=['EFTA02371875']),
     EmailCfg(id='EFTA01051074', note=f'{BROCK_PIERCE} arranging meeting between Bannon and Epstein (in Doha?)'),
@@ -129,10 +133,12 @@ CRYPTO_CFGS = [
     EmailCfg(id='EFTA00999392', note=f"{BROCK_PIERCE} discussing a possibly sham marriage to someone named Sue for immigration purposes"),
     EmailCfg(id='EFTA02514539', note=f"{BROCK_PIERCE} has tax problems (hasn't filed a tax return in 5 years)", is_interesting=True),
     EmailCfg(id='EFTA00658457', note=f'{BROCK_PIERCE} says they will not invest in Bitfury', truncate_to=700),
-    EmailCfg(id='EFTA00998595', note=f'{BROCK_PIERCE} and Epstein discuss structure of crypto investments'),
+    EmailCfg(id='EFTA00998595', note=f'{BROCK_PIERCE} and Epstein discuss structure of crypto investments', truncate_to=1800),
     EmailCfg(id='EFTA01000882', note=f"{BROCK_PIERCE} asks for Epstein's permission to disclose his name to Coinbase team", is_interesting=10),
     EmailCfg(id='EFTA00664424', note=f"{BROCK_PIERCE} suggests {LARRY_SUMMERS} could get involved with Tether and Noble Bank"),
+    EmailCfg(id='EFTA00681240', note=f"Epstein appears to talk shit about {BROCK_PIERCE}'s Nasdaq adjacent plans", truncate_to=2000),
     EmailCfg(id='EFTA01139067', note=f'Epstein tells Farkas he has not invested in {CRYPTO_CURRENCY_PARTNERS_II}', is_interesting=True),
+    EmailCfg(id='EFTA01840666', note="Michael Milkin, like all great grifters, is very interested in crypto"),
     EmailCfg(id='EFTA00752383', note=f"Mindshift conference attendee list including {BROCK_PIERCE}", is_interesting=10),
     EmailCfg(id='EFTA00626220', note=f'setting up "sidecar fund" with {BROCK_PIERCE} / {CRYPTO_CURRENCY_PARTNERS_II}'),
     # Boris Nikolic
@@ -312,6 +318,7 @@ CRYPTO_CFGS = [
     EmailCfg(id='EFTA02724230', note='alternative currencies discussion', truncate_to=NO_TRUNCATE),
     # Jeremy Rubin
     EmailCfg(id='EFTA02466979', note='"AID Coin"'),
+    EmailCfg(id='EFTA02476156', note=f"Epstein offers {JEREMY_RUBIN} a job working on bitcoin", url=JEREMY_RUBIN_DLNEWS_URL),
     EmailCfg(id='EFTA02343669', note='rumours that people are using bitcoin to exfiltrate capital from China', is_interesting=10),
     # Joi Ito / Kyara
     DocCfg(id='024256', author=JOI_ITO, note=f"Internet & Society: The Technologies and Politics of Control"),
@@ -412,6 +419,8 @@ CRYPTO_CFGS = [
         recipients=[JEFFREY_EPSTEIN],
         truncate_to=(250, 3_500),
     ),
+    EmailCfg(id='EFTA00635399', note=f"Paypal's crypto foray didn't last long (no one wanted to actually use bitcoin to buy things)"),
+    EmailCfg(id='EFTA01849532', note=f"Epstein is looking for crypto business plans to invest in"),
     EmailCfg(id='EFTA00867030', author='Kathy', note='discussion of a crypto token based on GDAX (whatever that means)'),
     EmailCfg(id='EFTA01060993', note=f"Epstein says he knows \"a few\" guys who hold over $50 million in bitcoin", is_interesting=True),
     EmailCfg(id='EFTA01915234', note='discussion of crypto regulations', is_interesting=True),
@@ -422,6 +431,9 @@ CRYPTO_CFGS = [
     EmailCfg(id='EFTA00830911', note='fundraising email for LedgerX which was later acquired by FTX for $298 million'),
     EmailCfg(id='EFTA01750652', note=f"discussion of using blockchains in the repo markets", is_interesting=10),
     EmailCfg(id='EFTA02002675', note=f"{JASON_CALACANIS} passes Epstein the names of the bitcoin core developers", is_interesting=10),
+    EmailCfg(id='EFTA01916343', highlight_quote='If i could short bitcoin i would'),
+    # Peter Thiel
+    EmailCfg(id='EFTA01916226', note=f"{PETER_THIEL} is concerned about the government attempting to regulate bitcoin", truncate_to=NO_TRUNCATE),
     # Reid Hoffman
     EmailCfg(id='EFTA00820371', note='bank digital currencies article', is_interesting=True),
     # Russia
@@ -429,11 +441,16 @@ CRYPTO_CFGS = [
     # SEC / NYDFS
     EmailCfg(id='EFTA00668932', note=f"pressing Farkas for a meeting with {BEN_LAWSKY_NYDFS}"),
     EmailCfg(id='EFTA01747752', note=f"Farkas delivering {BEN_LAWSKY_NYDFS}", truncate_to=700),
-    EmailCfg(id='EFTA02588398', note=f"Epstein went to the Treasury Dept of the US to talk about bitcoin", is_interesting=10),
+    EmailCfg(
+        id='EFTA02588398',
+        highlight_quote='spent some time at tresury with the bitcoin task force',
+        note=f"Epstein went to the Treasury Dept of the US to talk about bitcoin",
+        is_interesting=20,
+    ),
     EmailCfg(id='EFTA00987194', note=f"Epstein proposes {BEN_LAWSKY_NYDFS} get rid of sales tax on bitcoin", is_interesting=10),
     EmailCfg(id='EFTA02591315', note=f"{ANDREW_FARKAS} arranging for Epstein to meet {BEN_LAWSKY_NYDFS}", is_interesting=10, truncate_to=1_900),
     EmailCfg(id='EFTA01002518', note=f"confirmation that Epstein did indeed meet {BEN_LAWSKY_NYDFS} to discuss a 'high yield product'", is_interesting=10),
-    EmailCfg(id='EFTA02587320', author=KATHRYN_RUEMMLER, note=f"Kathy Ruemmler, crypto bro-ette", is_interesting=10),
+    EmailCfg(id='EFTA02587320', author=KATHRYN_RUEMMLER, note=f"Kathy Ruemmler and Epstein attempt to coopt the regulation of crypto", is_interesting=20),
     EmailCfg(
         id='EFTA00357845',
         note=f"Epstein and {KATHRYN_RUEMMLER} meet with {BEN_LAWSKY_NYDFS} to discuss bitcoin",
@@ -448,6 +465,7 @@ CRYPTO_CFGS = [
     EmailCfg(id='EFTA02396341', note='the Sharia Coin gambit', is_interesting=10),
     EmailCfg(id='EFTA01005117', note='announcement that the Stellar blockchain is Sharia compliant', is_interesting=10),
     # Steven Sinofsky / a16z
+    EmailCfg(id='EFTA00721168', author=STEVEN_SINOFSKY, author_uncertain='Sinofsky in previous To: field', is_interesting=False),
     EmailCfg(id='EFTA01804670', highlight_quote='Andreessen really into this whole virtual money space', truncate_to=700, is_interesting=10),
     # Valar Ventures
     DocCfg(
@@ -474,6 +492,8 @@ CRYPTO_CFGS = [
     EmailCfg(id='EFTA01008242', note='Epstein passes on an investment in Radius'),
     EmailCfg(id='EFTA00995269', note=f"Epstein suggests Monaco and Vatican City as good places for crypto"),
     EmailCfg(id='EFTA02598396', note=f'Epstein is too ethical and law abiding to invest in a crypto project {VINCENZO_IOZZO}\' brings him'),
+    EmailCfg(id='EFTA02517850', note=f"apparently {VINCENZO_IOZZO} visited Zorro Ranch"),
+    EmailCfg(id='EFTA01977800', note=f"Vincenzo looking for things in the financial markets [that be better with crypto]"),
     # ZCash / Madars Virza
     DocCfg(id='EFTA00811130', author=PERKINS_COIE, note='tax opinion on ZCash tokens'),
     DocCfg(id='EFTA00603348', note=f"Electric Coin Company created the untraceable crypto ZCash funded by {LARRY_SUMMERS}'s DCG"),

@@ -229,6 +229,7 @@ def shaher_murder_email(id: str, note: str = '', **kwargs) -> EmailCfg:
     return EmailCfg(
         id=id,
         is_interesting=10,
+        non_participants=[JOI_ITO],
         note=join_truthy(note, f"discussion of the murder of Martine Vik Magnussen by {SHAHER_ABDULHAK_BESHER}'s son Farouk"),
         **kwargs
     )

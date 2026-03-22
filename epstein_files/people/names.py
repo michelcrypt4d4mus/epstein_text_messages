@@ -247,6 +247,7 @@ FAWZI_SIAM = 'Fawzi Siam'
 GANBAT_CHULUUNKHUU = 'Ganbat Chuluunkhuu'
 GAVIN_ANDRESEN = 'Gavin Andresen'
 GIANNI_SERAZZI = 'Gianni Serazzi'
+GULSUM_OSMANOVA = "Gul'sum Osmanova"
 GREG_WYLER = 'Greg Wyler'
 HANNA_TRAFF = 'Hanna Traff'
 HASSAN_JAMEEL = 'Hassan Jameel'
