@@ -304,7 +304,7 @@ class DocCfg(LoggingEntity):
     @property
     def external_link(self) -> ExternalLink | None:
         """Link to more info about this document (almost unused)."""
-        return ExternalLink(self.url, self.url_link_text) if self.url else None
+        return ExternalLink(self.url, self.url_link_text, link_style=JOURNALISM_STYLE) if self.url else None
 
     @property
     def external_link_txt(self) -> Text | None:
