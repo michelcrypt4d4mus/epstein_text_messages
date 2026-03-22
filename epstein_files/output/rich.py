@@ -1,5 +1,6 @@
 # Rich reference: https://rich.readthedocs.io/en/latest/reference.html
 import json
+from collections import defaultdict
 from copy import deepcopy
 from datetime import datetime
 from pathlib import Path
@@ -15,6 +16,7 @@ from rich.table import Table
 from rich.text import Text
 from rich.theme import Theme
 
+from epstein_files.documents.documents.categories import CategoryType
 from epstein_files.output.epstein_highlighter import highlighter
 from epstein_files.output.highlight_config import HIGHLIGHT_GROUPS
 from epstein_files.output.site.site_config import MobileConfig
@@ -26,9 +28,10 @@ from epstein_files.util.helpers.rich_helpers import RAINBOW, left_indent_padding
 from epstein_files.util.helpers.string_helper import snip_msg
 from epstein_files.util.logging import logger
 
-NA_TXT = Text(NA, style='dim')
+CATEGORY_BG_STYLES: dict[CategoryType, str] = defaultdict(lambda: 'gray19')
 GREY_NUMBERS = [58, 39, 39, 35, 30, 27, 23, 23, 19, 19, 15, 15, 15]
 VALID_GREYS = [0, 3, 7, 11, 15, 19, 23, 27, 30, 35, 37, 39, 42, 46, 50, 53, 54, 58, 62, 63, 66, 69, 70, 74, 78, 82, 84, 85, 89, 93]
+NA_TXT = Text(NA, style='dim')
 
 DATASET_MSG_STYLE = 'gray74'
 KEY_STYLE = 'dim'
@@ -43,6 +46,10 @@ TABLE_BORDER_STYLE = 'grey46'
 TABLE_TITLE_STYLE = f"gray54 italic"
 TITLE_STYLE = 'black on white'  # color(103)'
 TRIMMED_MSG_STYLE = 'dim italic'
+
+CATEGORY_BG_STYLES.update({
+    # Interesting.MONEY: 'dark_green',
+})
 
 DEFAULT_TABLE_KWARGS = {
     'border_style': TABLE_BORDER_STYLE,

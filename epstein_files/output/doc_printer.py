@@ -1,4 +1,3 @@
-from collections import defaultdict
 from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Sequence
@@ -13,7 +12,7 @@ from rich.text import Text
 
 from epstein_files.documents.communication import Communication
 from epstein_files.documents.document import Document
-from epstein_files.documents.documents.categories import CategoryType, Interesting, Uninteresting, sort_categories
+from epstein_files.documents.documents.categories import sort_categories
 from epstein_files.documents.documents.doc_types_mixin import DocTypesMixin
 from epstein_files.documents.email import Email
 from epstein_files.documents.emails.emailers import ENTITY_CATEGORIES, get_entities
@@ -25,7 +24,7 @@ from epstein_files.output.html.builder import (console_buffer_to_html, render_at
      render_to_html, text_to_div, write_templated_html)
 from epstein_files.output.html.elements import div_class, tag
 from epstein_files.output.html.positioned_rich import PositionedRich, to_em, unpack_dimensions, vertical_spacer
-from epstein_files.output.rich import console, section_subtitle_panel
+from epstein_files.output.rich import CATEGORY_BG_STYLES, console, section_subtitle_panel
 from epstein_files.output.site.sites import Site
 from epstein_files.people.entity import Entity
 from epstein_files.util.constant.strings import DEFAULT
@@ -42,11 +41,6 @@ EMPTY_LINE_DIV = f'<div style="height: {EMPTY_LINE_HEIGHT}"></div>'
 OTHER_FILES_TABLE_MSG = Text("(non emails will appear in tables)", 'gray27 italic')
 OTHER_FILES_TABLE_BORDER_STYLE = 'gray30'
 STICKY_BIO_CSS_CLASS = 'sticky_person_bio_panel'
-OTHER_FILE_BG_STYLES: dict[CategoryType, str] = defaultdict(lambda: 'gray19')
-
-OTHER_FILE_BG_STYLES.update({
-    # Interesting.MONEY: 'dark_green',
-})
 
 PrintableObj = Document | Layout
 PeopleBiosArg = list[str] | list[Entity] | PrintableObj
@@ -187,7 +181,7 @@ class DocPrinter(DocTypesMixin):
 
             # Change the layout for OtherFile (indented, file info panel offset intward)
             if isinstance(doc, OtherFile):
-                bg_color = OTHER_FILE_BG_STYLES[doc.category]
+                bg_color = CATEGORY_BG_STYLES[doc.category]
                 doc = doc.make_layout(background_color=bg_color, indent=site_config.indents.show_with)
 
                 if doc.file_info:
