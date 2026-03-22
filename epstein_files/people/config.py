@@ -3084,6 +3084,7 @@ HIGHLIGHTED_NAMES = [
                 url='https://davidzmorris.substack.com/p/i-found-epstein-i-just-didnt-realize',
             ),
             Entity('Masha Manyuk', 'owner of Linea12 modeling / escort agency in Kiev'),
+            Entity(MIRANDA_MAKO, f'Epstein recruiter, internship at {CLIFFORD_CHANCE} with {MARIA_PRUSAKOVA}?'),
             Entity(OLGA_PONOMAR_BECKER, QUESTION_MARKS),
             Entity(
                 RENATA_BOLOTOVA,
@@ -3557,7 +3558,6 @@ HIGHLIGHTED_NAMES = [
                 ],
             ),
             Entity('Lucrezia Camponovo', QUESTION_MARKS),
-            Entity('Miranda', f'appears to have done an internship at {CLIFFORD_CHANCE} with {MARIA_PRUSAKOVA}?'),
             Entity(PAULA_HEIL_FISHER, "Epstein's ex-girlfriend who works in opera now", match_partial=None),
             # Contact('Regina E. Frangul', f'Amex travel agent {QUESTION_MARKS}'),
             Entity('Saige Gonzalez', VICTIM_EVIDENCE, match_partial=None),
