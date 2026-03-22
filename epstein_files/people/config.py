@@ -3099,9 +3099,9 @@ HIGHLIGHTED_NAMES = [
                 email_addresses=['p.selana@yahoo.com'],
                 match_partial=None,
                 url=[
-                    'https://dossier.center/jeffreyepsteinrusconnect-en/',
                     SVETLANA_NEWSGROUND,
-                    'https://www.wsj.com/us-news/epstein-victim-svetlana-pozhidaeva-22f2ebf6',
+                    'https://dossier.center/jeffreyepsteinrusconnect-en/',
+                    # 'https://www.wsj.com/us-news/epstein-victim-svetlana-pozhidaeva-22f2ebf6',
                     # 'https://archive.ph/0nVfp',
                 ],
             ),

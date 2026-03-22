@@ -284,17 +284,17 @@ GOVERNMENT_CFGS = [
     EmailCfg(
         id='EFTA02731689',
         author=USANYS,
-        date='2023-06-09 20:14:00',
         author_uncertain=True,
+        date='2023-06-09 20:14:00',
         recipients=[USANYS],
         truncate_to=SHORT_TRUNCATE_TO,
     ),
     EmailCfg(
         id='EFTA00277089',
         author=USANYS,
-        recipients=[USANYS],
+        duplicate_ids=['EFTA00151184'],
         note="tip for the FBI / DOJ that Swedish billionaire Johan Eliasch may be connected to Epstein's crimes",
-        duplicate_ids=['EFTA00151184']
+        recipients=[USANYS],
     ),
     EmailCfg(
         id='EFTA00157083',
