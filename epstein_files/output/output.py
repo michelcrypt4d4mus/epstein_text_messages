@@ -86,7 +86,7 @@ def print_chronological(epstein_files: EpsteinFiles, printer: DocPrinter) -> Non
         elif doc.is_email_attachment:
             return False
         elif args.output_most_interesting:
-            if (doc._config.is_interesting or 0) > 1:
+            if (doc._config.is_interesting or 0) > 1 and doc._config.is_in_chrono is not False:
                 doc._debug_log(f'_config.is_interesting value: {doc._config.is_interesting} ')
                 return True
             else:
