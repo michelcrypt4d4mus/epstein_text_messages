@@ -1286,7 +1286,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA01060612', note=f"Epstein plots against the JASTA bill"),
     EmailCfg(id='EFTA00630134', note=f'Epstein recommends Signal encrypted messenger to {ALLEGED_KARIM_WADE}', is_interesting=True),
     EmailCfg(id='EFTA00955694', note=f"Epstein thanks {ELON_MUSK} for the SpaceX tour that Musk has said never happened", is_interesting=True),
-    EmailCfg(id='EFTA00758094', note='guest list includes Cyrus Vance, Jimmy Buffet, Harvey Weinstein, and more', is_interesting=10),
+    EmailCfg(id='EFTA00758094', note='guest list includes Cyrus Vance, Valerie Plame-Wilson, Harvey Weinstein, and more', is_interesting=10),
     EmailCfg(id='EFTA02565917', note='Hassan Mohammed Abdul Latif Jameel is a Saudi businessman and philanthropist'),
     EmailCfg(id='EFTA02277132', note='hotel booking in Kiev'),
     EmailCfg(id='EFTA00927227', note=f"{IAN_OSBORNE} pitches his new venture fund {HEDOSOPHIA} to Epstein", is_interesting=True),
