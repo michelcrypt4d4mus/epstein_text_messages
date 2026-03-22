@@ -315,7 +315,6 @@ UNINTERESTING_EMAIL_IDS = [
     'EFTA02431535',  # visible in EFTA00888467
     'EFTA00363992',  # car rental
     'EFTA02187735',  # housekeeping
-    'EFTA00364437',  # ivory coast
 ]
 
 UNINTERESTING_OTHER_FILE_IDS = [
@@ -526,6 +525,7 @@ NOT_CHRONOLOGICAL_VIEW_IDS = [cfg.id for cfg in FLIGHT_LOG_CFGS] + [
     # unknown
     '030244',
     '028757',
+    'EFTA00364437',  # ivory coast
     # '024185', # UN
 ]
 

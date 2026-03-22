@@ -1737,7 +1737,7 @@ HIGHLIGHTED_NAMES = [
             Entity(
                 JENNIE_SAUNDERS,
                 f'co-founder of Core Club, {DANGENE_AND_JENNIE_ENTERPRISE}, accused of recruiting underage girls',
-                r"Core Club|(Dangene and )?Jennie (Enterprise?s?|Saunders)",
+                r"Core Club|Dangene and Jennie( Enterprise?s?)?|Jennie (Enterprise?s?|Saunders)",
                 match_partial=None,
                 url='https://www.crainsnewyork.com/real-estate/core-club-founder-jennie-enterprise-exchanged-thousands-emails-jeffrey-epstein',
             ),
