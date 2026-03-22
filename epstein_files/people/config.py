@@ -1361,10 +1361,22 @@ HIGHLIGHTED_NAMES = [
                 DARREN_INDYKE,
                 "Epstein's lawyer and estate executor",
                 r"darren$|Darren (K(\.|eith)? )?[il]n[dq]_?yke?|dkiesq",
-                url='https://en.wikipedia.org/wiki/Estate_of_Jeffrey_Epstein',
+                url=[
+                    'https://en.wikipedia.org/wiki/Estate_of_Jeffrey_Epstein',
+                    'https://finance.yahoo.com/news/jeffrey-epstein-lawyers-darren-indyke-jeffrey-schantz-164305188.html',
+                ]
             ),
-            Entity(EMAD_HANNA, f"Project controller for {RICHARD_KAHN}'s HBRK Associates", match_partial=None),
-            Entity(HENRY_JARECKI, 'philanthropist, previous metals guy, owned neighboring island', r"(Dr\.?|Henry) Jarecki", match_partial=None),
+            Entity(EMAD_HANNA, f"project controller for {RICHARD_KAHN}'s HBRK Associates", match_partial=None),
+            Entity(
+                HENRY_JARECKI,
+                'owner of neighboring island, psychiatrist, precious metals trader, film producer',
+                r"(Dr\.?|Henry) Jarecki",
+                match_partial=None,
+                url=[
+                    'https://www.hollywoodreporter.com/news/general-news/nicholas-jareckis-jeffrey-epstein-1236511097/',
+                    WIKIPEDIA,
+                ],
+            ),
             Entity("Michelle Fern Saipher", f"wife of {DARREN_INDYKE}", r"Michelle( F(ern|\.)?)? Saipher"),
             Entity(PAUL_HOFFMAN, "alternate executor of Epstein' estate", match_partial=None),
             Entity(
