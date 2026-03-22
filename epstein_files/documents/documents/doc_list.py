@@ -220,11 +220,11 @@ class DocList:
         return [doc for doc in docs if not doc.is_duplicate]
 
     @classmethod
-    def uniquify_by_id(cls, docs: Sequence['DocType'], _warn_on_dupes: bool = False) -> Sequence['DocType']:
+    def uniquify_by_id(cls, docs: Sequence['DocType'], allow_dupes: bool = True) -> Sequence['DocType']:
         """Uniquify by file_id."""
         id_map = {doc.file_id: doc for doc in docs}
 
-        if _warn_on_dupes and (dupe_counts := warn_on_dupes([d.file_id for d in docs])):
+        if not allow_dupes and (dupe_counts := warn_on_dupes([d.file_id for d in docs])):
             print(f"\n\n Duplicate IDs found:\n\n{' '.join([id for id in dupe_counts.keys()])}\n")
 
         return [doc for doc in id_map.values()]

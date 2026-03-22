@@ -87,7 +87,7 @@ def print_chronological(epstein_files: EpsteinFiles, printer: DocPrinter) -> Non
             return False
         elif args.output_most_interesting:
             if (doc._config.is_interesting or 0) > 1:
-                doc._warn(f'--top10 doc._config.is_interesting: {doc._config.is_interesting} ')
+                doc._debug_log(f'_config.is_interesting value: {doc._config.is_interesting} ')
                 return True
             else:
                 return False
@@ -97,7 +97,7 @@ def print_chronological(epstein_files: EpsteinFiles, printer: DocPrinter) -> Non
             return bool(doc.is_interesting if not args.invert_chrono else not doc.is_interesting)
 
     docs = [d for d in epstein_files.unique_documents if should_print(d)]
-    docs = DocList.uniquify_by_id(docs, warn_on_dupes=True)
+    docs = DocList.uniquify_by_id(docs, allow_dupes=False)
     logger.warning(f'Printing {len(docs)} documents chronologically...')
     printer.print_section_subtitle('Selected Files of Interest in Chronological Order')
     printer.print_documents(_max_records(docs))

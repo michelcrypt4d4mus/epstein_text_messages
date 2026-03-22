@@ -16,7 +16,7 @@ from rich.table import Table
 from rich.text import Text
 from rich.theme import Theme
 
-from epstein_files.documents.documents.categories import CategoryType, Interesting
+from epstein_files.documents.documents.categories import CategoryType, Interesting, Neutral, Uninteresting
 from epstein_files.output.epstein_highlighter import highlighter
 from epstein_files.output.highlight_config import HIGHLIGHT_GROUPS
 from epstein_files.output.site.site_config import MobileConfig
@@ -50,6 +50,8 @@ CATEGORY_BG_STYLES: dict[CategoryType, str] = defaultdict(lambda: 'gray19')
 
 CATEGORY_BG_STYLES.update({
     Interesting.MONEY: '#081a0d',
+    Neutral.GOVERNMENT: '#060a2e',
+    Neutral.LEGAL: '#1e0421',
 })
 
 DEFAULT_TABLE_KWARGS = {

@@ -11,6 +11,7 @@ from rich.text import Text
 from epstein_files.documents.config.doc_cfg import DebugDict
 from epstein_files.documents.emails.constants import DOJ_EMAIL_OCR_REPAIRS, FALLBACK_TIMESTAMP
 from epstein_files.documents.other_file import OtherFile
+from epstein_files.output.highlight_config import get_style_for_category
 from epstein_files.output.layout_elements.left_bar_panel import LeftBarPanel
 from epstein_files.util.logging import logger
 from epstein_files.util.helpers.data_helpers import coerce_utc_strict, prefix_keys
@@ -241,6 +242,8 @@ class DojFile(OtherFile):
         """Use a rainbow to make sure each printed object has different color for those before and after."""
         if self.author:
             return no_bold(self.author_style)
+        elif (category_style := get_style_for_category(self.category)):
+            return no_bold(category_style)
         elif self._border_style is None:
             self._border_style = RAINBOW[int(self.border_style_rainbow_idx % len(RAINBOW))]
             type(self).border_style_rainbow_idx += 1
