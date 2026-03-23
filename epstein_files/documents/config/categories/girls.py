@@ -1,6 +1,7 @@
 from epstein_files.documents.documents.categories import Interesting, Neutral, Uninteresting
 from epstein_files.documents.doj_files.full_text import EFTA00009622_TEXT
-from epstein_files.documents.config.communication_cfg import CommunicationCfg, TextCfg, imessage_log, imessage_screenshot, skype_log, whatsapp_log
+from epstein_files.documents.config.communication_cfg import (CommunicationCfg, TextCfg, imessage_log,
+     imessage_screenshot, skype_log, whatsapp_log)
 from epstein_files.documents.config.config_builder import letter
 from epstein_files.documents.config.doc_cfg import NO_TRUNCATE, DocCfg
 from epstein_files.documents.config.email_cfg import SNEAKY_DOG, EmailCfg
@@ -107,6 +108,13 @@ GIRLS_CFGS = [
         date='2016-06-01',
         date_uncertain='near her move to Berkley',
         note='application letter to UC Berkeley',
+    ),
+    DocCfg(
+        id='EFTA00276977',
+        date='2021-07-21',
+        highlight_quote="I have fear around her (Gm) Gm is extremely dangerous person behavior I’ve seen sociopathic fear if she not convicted",
+        note='handwritten notes from interview with Emma Sergeant describing being introduced to Trump by Epstein and Maxwell',
+        truncate_to=(6_400, 7_800),
     ),
 
     # Communications

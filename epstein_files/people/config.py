@@ -3576,6 +3576,7 @@ HIGHLIGHTED_NAMES = [
             Entity("Audrey/Aubrey Raimbault", 'appears in flight logs'),
             Entity('Brittany Beale', VICTIM_EVIDENCE),
             Entity(CELINA_DUBIN, f"daughter of Glenn &{EVA_DUBIN}, called Epstein 'unc'", match_partial=None),
+            Entity('Emma Sergeant', 'French artist / socialite introduced to Ghislaine by Robert Hanson'),
             Entity(
                 EVA_DUBIN,
                 f"Epstein's ex-gf now married to {GLENN_DUBIN}, doctor at {MOUNT_SINAI}",
