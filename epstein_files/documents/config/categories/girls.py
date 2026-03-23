@@ -378,6 +378,7 @@ GIRLS_CFGS = [
         recipients=[MARIA_PRUSAKOVA],
         recipient_uncertain='Kind regards/Cordialement in signature',
     ),
+    EmailCfg(id='EFTA01904318', recipients=[MARIA_PRUSAKOVA], recipient_uncertain='https://www.reddit.com/r/Epstein/comments/1qvsnqs/a_detailed_report_on_masha_prusso_aka_maria/'),
     EmailCfg(id='EFTA00719146', recipients=[MARIA_PRUSAKOVA], recipient_uncertain='Clifford Chance, could be Miranda'),
     EmailCfg(
         id='EFTA01889182',

@@ -3114,6 +3114,7 @@ HIGHLIGHTED_NAMES = [
                 url=[
                     'https://www.scamurai.io/p/epstein-files-suggest-ex-polygon',
                     'https://www.reddit.com/r/Epstein/comments/1qvsnqs/a_detailed_report_on_masha_prusso_aka_maria/',
+                    'https://www.reddit.com/r/globalboostcoin/comments/1qsv9up/breaking_web3_community_seems_to_be_funded_by/',
                     'https://www.olympedia.org/athletes/109974',
                     'https://web.archive.org/web/20260202130053/https://www.mashaprusso.com/',
                 ],
