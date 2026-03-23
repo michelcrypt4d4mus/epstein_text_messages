@@ -1437,6 +1437,12 @@ HIGHLIGHTED_NAMES = [
             Entity('Emma Rød Larsesn', f'relation of {TERJE_ROD_LARSEN}', r"Emma R[oø]e?d Larsen", match_partial=None),
             Entity(EDWARD_ROD_LARSEN, f"son of {TERJE_ROD_LARSEN}", r"Edward R[oø]e?d Larsen", match_partial=None),
             Entity('Fabrice Aidan', f"diplomat who worked with {TERJE_ROD_LARSEN}"),
+            Entity(
+                'Geir Frantzen',
+                'vice president of Norway Seafoods',
+                url='https://www.tv2.no/nyheter/norske-geir-til-epstein-la-oss-motes-og-ha-det-goy/18562802/',
+                match_partial='both',
+            ),
             Entity('Jack Lang', "former French Minister of National Education", match_partial=None),
             Entity(
                 'Martine Vik Magnussen',

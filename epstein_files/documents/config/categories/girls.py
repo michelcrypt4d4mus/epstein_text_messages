@@ -606,6 +606,7 @@ GIRLS_CFGS = [
     EmailCfg(id='EFTA02515671', highlight_quote='she met this Congressman recently who, from what I unde=stood gives her everything, a private driver, bodyguard', is_interesting=True),
     EmailCfg(id='EFTA00366629', highlight_quote='stunning girls to bring over drinks when your next available'),
     EmailCfg(id='EFTA01895036', highlight_quote='svetlana will be in paris 17-20', note=f"Epstein invites {ELON_MUSK} to Paris"),
+    EmailCfg(id='EFTA02415943', highlight_quote='tell geir, she is serious , not a toy, . toys are also availble'),
     EmailCfg(id='EFTA02387676', highlight_quote="thats the closest i get to karyna providing me new pussy"),
     EmailCfg(id='EFTA00908180', highlight_quote='two cinderellas', is_interesting=True),
     EmailCfg(id='EFTA01930285', highlight_quote='ukraine upheaval should provide many opportunites'),
