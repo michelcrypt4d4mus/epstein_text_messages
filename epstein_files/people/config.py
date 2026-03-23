@@ -13,8 +13,8 @@ from epstein_files.people.entity import (Entity, Organization, acronym, epstein_
      island_employee, law_enforcement, publication, the_publication)
 from epstein_files.people.names import *
 from epstein_files.util.constant.strings import *
-from epstein_files.util.constant.urls import (DITE_ANATA_JUILLIARD_URL, EPSTEIN_DOCTORS_LINKS, JULIA_SANTOS_REDDIT_URL,
-     SUBSTACK_POST_INSIGHTSPOD_URL, SVETLANA_NEWSGROUND)
+from epstein_files.util.constant.urls import (DITE_ANATA_JUILLIARD_URL, EPSTEIN_DOCTORS_LINKS,
+     JULIA_SANTOS_REDDIT_URL, SUBSTACK_POST_INSIGHTSPOD_URL, SVETLANA_NEWSGROUND)
 from epstein_files.util.env import args
 from epstein_files.util.helpers.data_helpers import flatten, sort_dict
 from epstein_files.util.helpers.string_helper import indented, join_patterns
@@ -122,7 +122,7 @@ HIGHLIGHTED_NAMES = [
             r"Andy Lippman",  # Media Lab
             r"Arizona State University",
             r"Bard ((Early )?College|High School|Schools)",
-            r"biolog(y|i(es|st))",
+            r"(plant )?biolog(y|i(es|st))",
             r"Brotherton",
             r"Carl Sagan",
             r"chemist(ry)?",
@@ -144,7 +144,6 @@ HIGHLIGHTED_NAMES = [
             r"Oxford(?! Analytica)",
             r"PhD",
             r"physics",
-            r"plant biology",
             r"Praluent",
             r"Princeton( University)?",
             r"Regeneron",
@@ -156,7 +155,7 @@ HIGHLIGHTED_NAMES = [
             r"(Ste(ph|v)en )?Hawking",
             r"(Steven? )?Pinker",
             r"Texas A&M",
-            r"(?-i:TED)x?",
+            r"(?-i:TED)x?( Talk)?",
             r"Tulane",
             r"UCLA",
             r"Uni(versity)? of Cumbria",
@@ -183,13 +182,14 @@ HIGHLIGHTED_NAMES = [
             Entity('Okey Enelamah', f"Nigerian trade minister"),
             Entity(RASSECK_BOURGI, f"{KARIM_WADE}'s lawyer", r"(Rasseck|Ute) Bourgi?", match_partial='both'),
             Entity('Ute Bourgi', f"wife of {RASSECK_BOURGI}", match_partial=None),
-            Entity('Yoweri Museveni', 'president of Uganda', match_partial='both'),
             Entity(
                 'Willis Knuckles',
                 f'Liberian politician whose sex scandal Epstein, Brunel, and {SULTAN_BIN_SULAYEM} seem interested in',
                 match_partial=None,
                 url=WIKIPEDIA,
             ),
+            Entity('Yoweri Museveni', 'president of Uganda', match_partial='both'),
+            # Orgs
             Organization('Econet Wireless', 'African mobile phone company', r"Econet( Wireless)?"),
             Organization('Glencore', 'Swiss mining company'),
         ],
@@ -236,7 +236,7 @@ HIGHLIGHTED_NAMES = [
         style='wheat4',
         entities=[
             Entity(ANDRES_SERRANO, '"Piss Christ" artist', url=WIKIPEDIA),
-            Entity('Barry Josephson', "American film producer"),  #, editor FamilySecurityMatters.org"),
+            Entity('Barry Josephson', "American film producer", url=WIKIPEDIA),  #, editor FamilySecurityMatters.org"),
             Entity(BILL_SIEGEL, "documentary film producer and director", match_partial=None),
             Entity('Bobby Slayton', 'comedian and actor'),
             Entity(
@@ -271,7 +271,12 @@ HIGHLIGHTED_NAMES = [
             ),
             Entity('Jane Fonda', 'actress, fitness instructor, activist', url=WIKIPEDIA),
             Entity('Jimmy Buffet', f'"Margaritaville" singer, retirement home executive', url=WIKIPEDIA),
-            Entity('Jim Wiatt', 'CEO of talent agency William Morris (WMA)', url='https://en.wikipedia.org/wiki/William_Morris_Agency', match_partial=None),
+            Entity(
+                'Jim Wiatt',
+                'CEO of talent agency William Morris (WMA)',
+                match_partial=None,
+                url='https://en.wikipedia.org/wiki/William_Morris_Agency',
+            ),
             Entity('Julian Schnabel', 'artist and filmmaker', url=WIKIPEDIA),
             Entity('Larry Gagosian', 'famous art dealer', url=WIKIPEDIA),
             Entity(MARK_ZEFF, f'MARKZEFF, interior designer {QUESTION_MARKS}', match_partial=None),
@@ -1362,8 +1367,9 @@ HIGHLIGHTED_NAMES = [
                 "Epstein's lawyer and estate executor",
                 r"darren$|Darren (K(\.|eith)? )?[il]n[dq]_?yke?|dkiesq",
                 url=[
-                    'https://en.wikipedia.org/wiki/Estate_of_Jeffrey_Epstein',
+                    'https://www.bbc.com/news/articles/cdjm7rxjxneo',
                     'https://finance.yahoo.com/news/jeffrey-epstein-lawyers-darren-indyke-jeffrey-schantz-164305188.html',
+                    'https://en.wikipedia.org/wiki/Estate_of_Jeffrey_Epstein',
                 ]
             ),
             Entity(EMAD_HANNA, f"project controller for {RICHARD_KAHN}'s HBRK Associates", match_partial=None),
@@ -1383,7 +1389,10 @@ HIGHLIGHTED_NAMES = [
                 RICHARD_KAHN,
                 "Epstein's accountant and estate executor",
                 r"Rich(ard)? (D(avid|\.)? )?Kahn?",
-                url='https://en.wikipedia.org/wiki/Estate_of_Jeffrey_Epstein',
+                url=[
+                    'https://www.bbc.com/news/articles/cdjm7rxjxneo',
+                    'https://en.wikipedia.org/wiki/Estate_of_Jeffrey_Epstein',
+                ]
             ),
         ],
         patterns=[
@@ -1449,15 +1458,16 @@ HIGHLIGHTED_NAMES = [
                 match_partial='both',
                 url='https://www.aa.com.tr/en/world/latest-release-of-epstein-files-shows-links-to-several-prominent-lithuanian-figures/3817879',
             ),
-            Entity('Viktor Yushchenko', 'former president of Ukraine'),
-            Entity('Viktor Orban', 'prime minister of Hungary', r"(Vi(c|k)tor )?Orbah?n"),
+            Entity('Viktor Yushchenko', 'former president of Ukraine', url=WIKIPEDIA),
+            Entity('Viktor Orban', 'prime minister of Hungary', r"(Vi(c|k)tor )?Orbah?n", url=WIKIPEDIA),
             acronym('European Central Bank'),
             acronym(
                 INTERNATIONAL_PEACE_INSTITUTE,
                 "gave jobs to Epstein's girls",
                 url='https://apnews.com/article/jeffrey-epstein-kevin-rudd-oslo-crime-think-tanks-ca62b1c799d2cb3bb346afcf4dfec355',
             ),
-            Organization('AfD', 'right wing German political party'),
+            Organization.well_known('Nobel Charitable Trust'),
+            Organization('AfD', 'right wing German political party', url='https://en.wikipedia.org/wiki/Alternative_for_Germany'),
             Organization('Global Counsel', f"failed strategic consultancy / lobbying firm of {PETER_MANDELSON}"),
             Organization(
                 SWEDISH_LIFE_SCIENCES_SUMMIT,
@@ -1469,7 +1479,6 @@ HIGHLIGHTED_NAMES = [
             ),
             Organization('UAB Fors Projektai', belongs_to=VALDAS_PETREIKIS),
             Organization('Zug', "city in Switzerland known as a hub for crypto and dodgy finance"),
-            Organization.well_known('Nobel Charitable Trust'),
         ],
         patterns=[
             r"Aegean( Sea)?",
@@ -1600,7 +1609,7 @@ HIGHLIGHTED_NAMES = [
                     'https://www.reuters.com/article/world/db-zwirn-to-liquidate-4-billion-in-assets-idUSN22604774/',
                 ],
             ),
-            Entity(GLENN_DUBIN, "Highbridge Capital Management, married to Epstein's ex-gf Eva", match_partial='first'),
+            Entity(GLENN_DUBIN, "Highbridge Capital Management, married to Epstein's ex-gf Eva", match_partial='first', url=WIKIPEDIA),
             Entity(HEATHER_GRAY, f"Leon Black family office {ELYSIUM_MANAGEMENT}", match_partial=None),
             Entity(
                 JIDE_ZEITLIN,
@@ -1609,10 +1618,16 @@ HIGHLIGHTED_NAMES = [
                 url='https://www.propublica.org/article/the-bizarre-fall-of-the-ceo-of-coach-and-kate-spades-parent-company',
             ),
             Entity('Ira Zicherman', f"former {BEAR_STEARNS} exec, co-trustee of J. Epstein Foundation with Ghislaine"),
-            Entity(JAMES_CAYNE, f"CEO of {BEAR_STEARNS} when it collapsed in 2008, executor of Epstein's will", r"J(ames|immy)( E\.?)? Ca[vy]ne", aliases=["Jimmy Cayne"], url=WIKIPEDIA),
-            Entity('John Paulson', f"hedge fund guy, Trump donor", match_partial=None),
+            Entity(
+                JAMES_CAYNE,
+                f"CEO of {BEAR_STEARNS} when it collapsed in 2008, executor of Epstein's will",
+                r"J(ames|immy)( E\.?)? Ca[vy]ne",
+                aliases=["Jimmy Cayne"],
+                url=WIKIPEDIA,
+            ),
+            Entity('John Paulson', f"hedge fund guy, Trump donor", match_partial=None, url=WIKIPEDIA),
             Entity('Kamila Bobinska', f"Argan Capital Advisors, Dots Ventures, Movens Capital, ex-{DEUTSCHE_BANK}"),
-            Entity('Larry Fink', f"CEO of Blackrock (world's largest money manager), father of {JOSHUA_FINK}", match_partial=None),
+            Entity('Larry Fink', f"CEO of Blackrock (world's largest money manager), father of {JOSHUA_FINK}", match_partial=None, url=WIKIPEDIA),
             Entity('Laurie Cameron', "currency trading", match_partial=None),
             Entity(
                 LEON_BLACK,
@@ -1623,7 +1638,7 @@ HIGHLIGHTED_NAMES = [
             ),
             Entity(MELANIE_SPINELLA, f"representative of {LEON_BLACK}", r"M?elanie Spine[Il]{2}a"),
             Entity(MICHAEL_FOWLER, f"{ATORUS} / Red Dot Trade fund co-founder", match_partial=None),
-            Entity('Michael Milken', 'infamous junk bond king who went to prison in the 1980s', r"(Mi(chael|ke) )?Milken( Conference|Institute)?"),
+            Entity('Michael Milken', 'infamous junk bond king who went to prison in the 1980s', r"(Mi(chael|ke) )?Milken( Conference|Institute)?", url=WIKIPEDIA),
             Entity(
                 MORTIMER_ZUCKERMAN,
                 "business partner of Epstein, publisher of New York Daily News and US News & World Report",
@@ -1632,13 +1647,13 @@ HIGHLIGHTED_NAMES = [
             ),
             Entity(NATHANIEL_AUGUST, 'fund manager of Mangrove Partners', match_partial=None),
             Entity(PAUL_BARRETT, r"Alpha Group Capital", r"Paul Barre(d|tt?)|Barrett,? Paul( S)?", match_partial=None),
-            Entity('Paul Tudor Jones', "hedge fund guy, Robin Hood Foundation founder", match_partial='first'),
+            Entity('Paul Tudor Jones', "hedge funder, Robin Hood Foundation founder", match_partial='first', url=WIKIPEDIA),
             Entity('Richard Joslin', f"CFO of {LEON_BLACK}'s {ELYSIUM_MANAGEMENT}"),
             Entity('Skip Rimer', "Michael Milken's Milken Institute"),
             Entity('Steven Elkman', f"{DEUTSCHE_BANK}"),
             Entity(
                 'Steve Cohen',
-                'SAC capital, beat the insider trading charges that his managers didn\'t',
+                'NY Mets baseball team owner, SAC capital, beat the insider trading charges that his managers didn\'t',
                 r"SAC Capital|Steven?( A\.)? Cohen",
                 match_partial=None,
                 url=[
@@ -1646,7 +1661,7 @@ HIGHLIGHTED_NAMES = [
                     'https://en.wikipedia.org/wiki/Steve_Cohen_(businessman)',
                 ],
             ),
-            Entity('Stephen Schwarzman', 'CEO of Blackstone', r"(Ste(phen|ve) )?Schwart?z?man"),
+            Entity('Stephen Schwarzman', 'CEO of Blackstone', r"(Ste(phen|ve) )?Schwart?z?man", url=WIKIPEDIA),
             Entity(TANCREDI_MARCHIOLO, "hedge fund manager, Bremner Capital Management", match_partial='both'),
             Entity('Ted Forstmann', "private equity, founder of Forstmann Little & co.", r"T(ed(dy)|heodore?) Forstmann?"),
             Entity('Ted Serure', f"Enhanced Education account manager at {DEUTSCHE_BANK}"),
