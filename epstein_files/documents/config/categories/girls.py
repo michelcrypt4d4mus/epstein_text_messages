@@ -113,7 +113,7 @@ GIRLS_CFGS = [
         id='EFTA00276977',
         date='2021-07-21',
         highlight_quote="I have fear around her (Gm) Gm is extremely dangerous person behavior I’ve seen sociopathic fear if she not convicted",
-        note='handwritten notes from interview with Emma Sergeant describing being introduced to Trump by Epstein and Maxwell',
+        note='notes from Emma Sergeant interview, describes being introduced to Trump by Epstein & Maxwell',
         truncate_to=(6_400, 7_800),
     ),
 
