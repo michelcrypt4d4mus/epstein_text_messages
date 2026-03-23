@@ -13,8 +13,8 @@ from epstein_files.people.entity import (Entity, Organization, acronym, epstein_
      island_employee, law_enforcement, publication, the_publication)
 from epstein_files.people.names import *
 from epstein_files.util.constant.strings import *
-from epstein_files.util.constant.urls import (DITE_ANATA_JUILLIARD_URL, EPSTEIN_DOCTORS_LINKS, JULIA_SANTOS_REDDIT_URL,
-     SUBSTACK_POST_INSIGHTSPOD_URL, SVETLANA_NEWSGROUND)
+from epstein_files.util.constant.urls import (DITE_ANATA_JUILLIARD_URL, EPSTEIN_DOCTORS_LINKS,
+     JULIA_SANTOS_REDDIT_URL, SUBSTACK_POST_INSIGHTSPOD_URL, SVETLANA_NEWSGROUND)
 from epstein_files.util.env import args
 from epstein_files.util.helpers.data_helpers import flatten, sort_dict
 from epstein_files.util.helpers.string_helper import indented, join_patterns
@@ -182,13 +182,14 @@ HIGHLIGHTED_NAMES = [
             Entity('Okey Enelamah', f"Nigerian trade minister"),
             Entity(RASSECK_BOURGI, f"{KARIM_WADE}'s lawyer", r"(Rasseck|Ute) Bourgi?", match_partial='both'),
             Entity('Ute Bourgi', f"wife of {RASSECK_BOURGI}", match_partial=None),
-            Entity('Yoweri Museveni', 'president of Uganda', match_partial='both'),
             Entity(
                 'Willis Knuckles',
                 f'Liberian politician whose sex scandal Epstein, Brunel, and {SULTAN_BIN_SULAYEM} seem interested in',
                 match_partial=None,
                 url=WIKIPEDIA,
             ),
+            Entity('Yoweri Museveni', 'president of Uganda', match_partial='both'),
+            # Orgs
             Organization('Econet Wireless', 'African mobile phone company', r"Econet( Wireless)?"),
             Organization('Glencore', 'Swiss mining company'),
         ],
@@ -270,7 +271,12 @@ HIGHLIGHTED_NAMES = [
             ),
             Entity('Jane Fonda', 'actress, fitness instructor, activist', url=WIKIPEDIA),
             Entity('Jimmy Buffet', f'"Margaritaville" singer, retirement home executive', url=WIKIPEDIA),
-            Entity('Jim Wiatt', 'CEO of talent agency William Morris (WMA)', url='https://en.wikipedia.org/wiki/William_Morris_Agency', match_partial=None),
+            Entity(
+                'Jim Wiatt',
+                'CEO of talent agency William Morris (WMA)',
+                match_partial=None,
+                url='https://en.wikipedia.org/wiki/William_Morris_Agency',
+            ),
             Entity('Julian Schnabel', 'artist and filmmaker', url=WIKIPEDIA),
             Entity('Larry Gagosian', 'famous art dealer', url=WIKIPEDIA),
             Entity(MARK_ZEFF, f'MARKZEFF, interior designer {QUESTION_MARKS}', match_partial=None),
