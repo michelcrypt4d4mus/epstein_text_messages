@@ -59,6 +59,11 @@ POLITICS_CFGS = [
         highlight_quote="Am totally tricked out by Uncle Jeffrey today! Jeffrey boots, handbag, and w=tch!",
         is_interesting=10,
     ),
+    EmailCfg(
+        id='025879',
+        note="internal email from Epstein's island manager to Epstein's lawyer saying Bill Clinton was never on the island",
+        is_interesting=True
+    ),
     EmailCfg(id='029679', highlight_quote='his driver MAtt was the bag man', note="(re: Trump)"),
     EmailCfg(id='026505', highlight_quote='I know how dirty donald is'),
     EmailCfg(id='031659', highlight_quote='i have met some very bad people „ none as bad as trump'),

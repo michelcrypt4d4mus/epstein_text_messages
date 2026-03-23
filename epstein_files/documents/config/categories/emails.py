@@ -662,14 +662,8 @@ EMAILS_CONFIG = [
     EmailCfg(id='030015', fwded_text_after='Bill Clinton reportedly'),
     EmailCfg(id='026312', fwded_text_after='Steve Bannon trying to get on disgraced'),
     EmailCfg(id='031742', fwded_text_after="Trump's former campaign manager Paul Manafort"),
-    EmailCfg(id='028925', note=f'{JOI_ITO} plays down Epstein\'s "bad press"', truncate_to=NO_TRUNCATE),
     EmailCfg(id='029773', fwded_text_after='Omar Quadhafi', duplicate_ids=['012685']),
     EmailCfg(id='012197_4', fwded_text_after='Thanks -- Jay', is_fwded_article=False),
-    EmailCfg(
-        id='025879',
-        note="internal email from Epstein's island manager to Epstein's lawyer saying Bill Clinton was never on the island",
-        is_interesting=True
-    ),
     EmailCfg(id='026449', note="comments about Trump's 'former bridge girl and toy'", is_interesting=True),
     EmailCfg(id='032842', note='discussion of "stealing" a casino in Atlantic City', is_interesting=True),
     EmailCfg(id='033377', note="Epstein says he knows Russian oligarch Oleg Deripaska", is_interesting=10),

@@ -3706,7 +3706,7 @@ HIGHLIGHTED_NAMES = [
         entities=[
             Entity('Alan P. Fraade', f'lawyer for {STEVEN_HOFFENBERG}'),
             Entity(BRAD_EDWARDS, ROTHSTEIN_ROSENFELDT_ADLER_ATTORNEY, r"Brad(ley)?( J(.?|ames))? Edwards", match_partial=None),
-            Entity('David Boies', 'Boies, Schiller, & Flexner', r"(David )?Bo[il]es(,? Schiller( & Flexner)?)?"),
+            Entity('David Boies', BOIES_SCHILLER_FLEXNER, r"(David )?Bo[il]es(,? Schiller( & Flexner)?)?"),
             Entity(DOUGLAS_WIGDOR, WIGDOR_ATTORNEY, r"Doug(las)? (H\.?)? Wigdor", match_partial=None),
             Entity(GLORIA_ALLRED, "victim's lawyer on many well known sexual harassment cases"),
             Entity('Grant J. Smith', ROTHSTEIN_ROSENFELDT_ADLER_ATTORNEY, match_partial=None),
@@ -3720,6 +3720,8 @@ HIGHLIGHTED_NAMES = [
             Entity('Robert Josefsberg', 'represented Australian victim (Giuffre?)'),
             Entity(SCOTT_ROTHSTEIN, f"{ROTHSTEIN_ROSENFELDT_ADLER_ATTORNEY}, ran massive Ponzi scheme", match_partial=None),
             Entity(STANLEY_POTTINGER, f"{VIRGINIA_GIUFFRE} legal team while working for Epstein", r"(J\.? )?(Stan(ley)? )?Pottinger"),
+            Entity('Sigrid McCawley', BOIES_SCHILLER_FLEXNER, r"Sigrid McCawle[vy]"),
+            Organization(BOIES_SCHILLER_FLEXNER),
             Organization('Marsh Law Firm', 'victim counsel'),
             Organization('Mintz Fraade', f'law firm working for {STEVEN_HOFFENBERG}'),
             Organization(
