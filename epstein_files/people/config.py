@@ -236,7 +236,7 @@ HIGHLIGHTED_NAMES = [
         style='wheat4',
         entities=[
             Entity(ANDRES_SERRANO, '"Piss Christ" artist', url=WIKIPEDIA),
-            Entity('Barry Josephson', "American film producer"),  #, editor FamilySecurityMatters.org"),
+            Entity('Barry Josephson', "American film producer", url=WIKIPEDIA),  #, editor FamilySecurityMatters.org"),
             Entity(BILL_SIEGEL, "documentary film producer and director", match_partial=None),
             Entity('Bobby Slayton', 'comedian and actor'),
             Entity(

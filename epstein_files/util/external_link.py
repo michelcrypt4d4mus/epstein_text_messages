@@ -38,7 +38,7 @@ SHORT_LINKS = {
     'cryptadamus.substack': 'thechronicles',
     'dossier.center': 'dossier',
     'graziadaily': 'grazia',
-    'hollywoodreporter': 'hllywd',
+    'hollywoodreporter': 'hollywood',
     'justice.gov': 'DOJ',
     'instagram.com': 'insta',
     'lunch.publishersmarketplace': 'publ',
@@ -53,6 +53,7 @@ SHORT_LINKS = {
     'usatoday.com': 'usa',
     'vanityfair.com': 'vf',
     'wikipedia': 'wiki',
+    'yahoo.com': 'yahoo',
 }
 
 
