@@ -8,6 +8,7 @@ from typing import Any
 from inflection import underscore
 
 from epstein_files.util.constant.strings import AMPERSAND_CHAR_GROUP, QUESTION_MARKS_REGEX
+from epstein_files.util.logging import logger, print_text_block
 
 EMOJI_REGEX = re.compile(r"(?:^|\s)([:;=][-^]?[oODP()]|[oO()][-^]?[:=])(?=$|\s)")
 INTEGER_REGEX = re.compile(r'^\d+$')
@@ -20,6 +21,7 @@ WHITESPACE_REGEX = re.compile(r"\s{2,}|\t|\n", re.MULTILINE)
 # Auto doublespacing
 DOUBLESPACE_LIST_MIN_LEN = 100
 DOUBLESPACE_LIST_MAX_LEN = 1_900
+DOUBLESPACE_PARAGRAPH_MIN_AVG_LEN = 80
 LIST_ELEMENT_PATTERN = fr".{{{DOUBLESPACE_LIST_MIN_LEN},{DOUBLESPACE_LIST_MAX_LEN}}}?"
 LIST_REGEX_FLAGS = re.DOTALL | re.IGNORECASE | re.MULTILINE
 HAS_LETTER_LIST_REGEX = re.compile(fr"^a[.)] {LIST_ELEMENT_PATTERN}\nb[.)] ", LIST_REGEX_FLAGS)
@@ -75,6 +77,8 @@ def doublespace_lines(s: str) -> str:
 
 
 def doublespace_lists(s: str) -> str:
+    s = doublespace_paragraphs(s)
+
     if contains_numbered_list(s):
         s = NUMBERED_LIST_ITEM_REGEX.sub(r"\n\1", s)
 
@@ -82,8 +86,36 @@ def doublespace_lists(s: str) -> str:
         s = LETTER_LIST_ITEM_REGEX.sub(r"\n\1", s)
 
     s = SECTION_LIST_REGEX.sub(r"\n\n\1", s)
-    # s = BULLET_LIST_REGEX.sub(r"\n\1", s)
+    s = BULLET_LIST_REGEX.sub(r"\n\1", s)
     return ORDINAL_LIST_REGEX.sub(r"\n\1", s)
+
+
+def doublespace_paragraphs(s: str):
+    lines = s.split('\n')
+    line_lengths = [len(line) for line in lines]
+    avg_line_length = int(sum(line_lengths) / len(lines))
+
+    if avg_line_length < DOUBLESPACE_PARAGRAPH_MIN_AVG_LEN:
+        return s
+
+    logger.warning(f"{len(lines)} lines with average length {avg_line_length}\nlengths: {sorted(line_lengths)}")
+    new_lines = []
+
+    for i, line in enumerate(lines):
+        new_lines.append(line)
+
+        if i < (len(lines) - 1) and line.endswith('.') and len(line) < avg_line_length:
+            msg = f"short line with period ({len(line)} chars) vs. average in doc of {avg_line_length}"
+
+            if len(next_line := lines[i + 1]) > avg_line_length:
+                logger.warning(f"{msg}, inserting line break!")
+                new_lines.append('')
+            else:
+                logger.warning(f"skipping {msg}...")
+
+    s = '\n'.join(new_lines)
+    print_text_block(s, 'doublespaced paragraphs')
+    return s
 
 
 def extract_emojis(s: str) -> list[str]:
