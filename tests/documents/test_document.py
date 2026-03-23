@@ -60,9 +60,8 @@ def test_debug_dict(email):
 
 def test_entities(get_doj_file):
     doc = get_doj_file('EFTA01582043')
-    assert doc.entity_names == [CANTOR_FITZGERALD, DEUTSCHE_BANK, JP_MORGAN, SDNY]
-    entity_names = [e.name for e in doc.entity_scan(exclude=[SDNY])]
-    assert entity_names == [CANTOR_FITZGERALD, DEUTSCHE_BANK, JP_MORGAN]
+    assert doc.entity_names == [CANTOR_FITZGERALD, DEUTSCHE_BANK, SDNY]
+    assert [e.name for e in doc.entity_scan(exclude=[SDNY])] == [CANTOR_FITZGERALD, DEUTSCHE_BANK]
 
 
 def test_is_doj_file(doj_file, messenger_log):

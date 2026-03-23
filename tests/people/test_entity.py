@@ -6,6 +6,7 @@ from rich.text import Text
 from epstein_files.documents.emails.emailers import ENTITIES_DICT
 from epstein_files.people.entity import Entity, Organization, acronym, epstein_co, epstein_trust, law_enforcement
 from epstein_files.people.names import *
+from epstein_files.util.constant.strings import WIKIPEDIA
 
 NAME = 'Nasir Jones'
 EMAILER_PATTERN = r"Nasir[-_.\s]*Jones?"
@@ -45,7 +46,7 @@ def test_bio():
     brock = ENTITIES_DICT[BROCK_PIERCE]
 
     assert brock.bio_txt.plain == \
-        'Brock Pierce [crypto] sex crime history, Bannon partner at IGN, Tether co-founder, friend of Yair Netanyahu [protos/sbstk/wiki]'
+        'Brock Pierce [crypto] sex crime history, Bannon partner at IGN, Tether co-founder, friend of Yair Netanyahu [protos/chronicles/wiki]'
 
 
 def test_epstein_co():
@@ -141,6 +142,7 @@ def test_repr(epstein):
     emailer_pattern=r"Jeffrey Epstein|jeevacation",
     is_emailer="True",
     is_interesting="True",
+    is_scannable="True",
     match_partial="last",
     style="bright_red",
     highlight_pattern=r"Jeffrey[-_.\s]*Epstein|jeevacation|Epstein,?[-_.\s]*Jeffrey|Epstein",
@@ -148,11 +150,11 @@ def test_repr(epstein):
 
 
 def test_urls():
-    c = Entity('Nasir Jones', url='WIKIPEDIA')
+    c = Entity('Nasir Jones', url=WIKIPEDIA)
     assert c._urls[0] == WIKIPEDIA_URL
-    c = Entity('Nasir Jones', url=['WIKIPEDIA', URL])
+    c = Entity('Nasir Jones', url=[WIKIPEDIA, URL])
     assert c._urls[0] == WIKIPEDIA_URL
-    c = Entity('Nasir Jones', url=[URL, 'WIKIPEDIA'])
+    c = Entity('Nasir Jones', url=[URL, WIKIPEDIA])
     assert c.name_with_link == Text.from_markup(f'[link={URL}][bold underline]Nasir Jones[/bold underline][/link]')
 
 
