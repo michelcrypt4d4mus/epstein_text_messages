@@ -300,8 +300,8 @@ CRYPTO_CFGS = [
     ),
     EmailCfg(
         id='EFTA00873541',
-        is_interesting=10,
-        note=f"Epstein says his neighbor {HOWARD_LUTNICK} (recently seen with {PRINCE_ANDREW}) is smart",
+        is_interesting=20,
+        note=f'Epstein says his neighbor {HOWARD_LUTNICK} (recently seen with {PRINCE_ANDREW}) is "smart"',
         show_with_name=HOWARD_LUTNICK,
     ),
     EmailCfg(id='EFTA02374900', note=f'article about {HOWARD_LUTNICK} real estate purchase'),

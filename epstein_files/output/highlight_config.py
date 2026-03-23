@@ -196,7 +196,14 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"(\b|\+)[\d+]{10,12}\b",
         ],
     ),
-     HighlightPatterns(
+    HighlightPatterns(
+        label='page_number',
+        style='wheat4',
+        patterns=[
+            r"^Page \d+$",
+        ],
+    ),
+    HighlightPatterns(
         label='header_field',  # email_header (or FBI)
         style='plum4',
         patterns=[
