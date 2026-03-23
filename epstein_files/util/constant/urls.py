@@ -206,12 +206,16 @@ def doj_2026_link_markup(dataset_id, file_stem: str, style: str = TEXT_LINK) -> 
     return link_markup(url, file_stem, style)
 
 
-def download_jmail_pdf(file_id: str, data_set_id: int) -> Path:
+def download_jmail_pdf(file_id: str, data_set_id: int, overwrite: bool | Literal['ask'] = 'ask') -> Path:
     url = f"{JMAIL_RAW_URL}/{file_id}.pdf"
     output_path = local_doj_file_path(file_id, data_set_id)
 
-    if output_path.exists():
-        ask_to_proceed(f"File '{output_path}' already exists. Overwrite?")
+    if output_path.exists() and overwrite is not True:
+        if overwrite == 'ask':
+            ask_to_proceed(f"File '{output_path}' already exists. Overwrite?")
+        else:
+            logger.warning(f"Not overwriting '{output_path}'...")
+            return output_path
 
     logger.warning(f"Downloading '{url}' to '{output_path}'...")
     response = requests.get(url, headers=PDF_MIME_TYPE, stream=True)
