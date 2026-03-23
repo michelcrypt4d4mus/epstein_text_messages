@@ -7,13 +7,11 @@ from epstein_files.documents.config.doc_cfg import NO_TRUNCATE, DocCfg
 from epstein_files.documents.config.email_cfg import SNEAKY_DOG, EmailCfg
 from epstein_files.people.names import *
 from epstein_files.util.constant.strings import *
-from epstein_files.util.constant.urls import JULIA_SANTOS_REDDIT_URL, SVETLANA_NEWSGROUND
+from epstein_files.util.constant.urls import DITE_ANATA_JUILLIARD_URL, JULIA_SANTOS_REDDIT_URL, PRUSAKOVA_REDDIT_URL, SVETLANA_NEWSGROUND
 from epstein_files.util.helpers.string_helper import join_truthy, quote
 from epstein_files.util.logging import logger
-from epstein_files.util.constant.urls import DITE_ANATA_JUILLIARD_URL
 
 PRUSAKOVA_BERKELY = 'Epstein paid for Prusakova to go to Berkeley'
-PRUSAKOVA_REDDIT_URL = 'https://www.reddit.com/r/Epstein/comments/1qvsnqs/a_detailed_report_on_masha_prusso_aka_maria/'
 WOMEN_EMPOWERMENT = f"Women Empowerment (WE) conference"
 
 
@@ -403,7 +401,7 @@ GIRLS_CFGS = [
         recipients=[MARIA_PRUSAKOVA],
         recipient_uncertain='Kind regards/Cordialement in signature',
     ),
-    EmailCfg(id='EFTA01904318', recipients=[MARIA_PRUSAKOVA], recipient_uncertain='https://www.reddit.com/r/Epstein/comments/1qvsnqs/a_detailed_report_on_masha_prusso_aka_maria/'),
+    EmailCfg(id='EFTA01904318', recipients=[MARIA_PRUSAKOVA], recipient_uncertain=PRUSAKOVA_REDDIT_URL),
     EmailCfg(id='EFTA00719146', recipients=[MARIA_PRUSAKOVA], recipient_uncertain='Clifford Chance, could be Miranda'),
     EmailCfg(
         id='EFTA01889182',

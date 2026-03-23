@@ -14,7 +14,7 @@ from epstein_files.people.entity import (Entity, Organization, acronym, epstein_
 from epstein_files.people.names import *
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constant.urls import (DITE_ANATA_JUILLIARD_URL, DROPSITE_EPSTEIN_CAMERAS_URL, EPSTEIN_DOCTORS_LINKS,
-     JULIA_SANTOS_REDDIT_URL, SUBSTACK_POST_INSIGHTSPOD_URL, SVETLANA_NEWSGROUND)
+     JULIA_SANTOS_REDDIT_URL, PRUSAKOVA_REDDIT_URL, SUBSTACK_POST_INSIGHTSPOD_URL, SVETLANA_NEWSGROUND)
 from epstein_files.util.env import args
 from epstein_files.util.helpers.data_helpers import flatten, sort_dict
 from epstein_files.util.helpers.string_helper import indented, join_patterns
@@ -3140,7 +3140,7 @@ HIGHLIGHTED_NAMES = [
                 ],
                 url=[
                     'https://www.scamurai.io/p/epstein-files-suggest-ex-polygon',
-                    'https://www.reddit.com/r/Epstein/comments/1qvsnqs/a_detailed_report_on_masha_prusso_aka_maria/',
+                    PRUSAKOVA_REDDIT_URL,
                     'https://www.reddit.com/r/globalboostcoin/comments/1qsv9up/breaking_web3_community_seems_to_be_funded_by/',
                     'https://www.olympedia.org/athletes/109974',
                     'https://web.archive.org/web/20260202130053/https://www.mashaprusso.com/',

@@ -136,6 +136,7 @@ DROPSITE_EPSTEIN_CAMERAS_URL = 'https://www.dropsitenews.com/p/israeli-governmen
 HAPOALIM_BUST_URL = 'https://www.haaretz.com/2005-03-07/ty-article/24-arrested-accounts-frozen-in-massive-money-laundering-probe-at-hapoalim/0000017f-e682-d97e-a37f-f7e744980000'
 JULIA_SANTOS_REDDIT_URL = 'https://www.reddit.com/r/Epstein/comments/1qwbn5i/trafficker_julia_santos/'
 JEREMY_RUBIN_DLNEWS_URL = 'https://www.dlnews.com/articles/people-culture/epstein-files-reveal-desire-to-steer-bitcoin-via-its-developers/'
+PRUSAKOVA_REDDIT_URL = 'https://www.reddit.com/r/Epstein/comments/1qvsnqs/a_detailed_report_on_masha_prusso_aka_maria/'
 
 EPSTEIN_DOCTORS_LINKS = [
     'https://www.nytimes.com/2026/02/28/us/jeffrey-epstein-doctors.html?unlocked_article_code=1.PlA.f4B2.BgLoXD-aVKkw&smid=url-share',
