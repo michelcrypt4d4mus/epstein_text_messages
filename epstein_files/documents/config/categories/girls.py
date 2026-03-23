@@ -112,8 +112,8 @@ GIRLS_CFGS = [
     DocCfg(
         id='EFTA00276977',
         date='2021-07-21',
-        highlight_quote="I have fear around her (Gm) Gm is extremely dangerous person behavior I’ve seen sociopathic fear if she not convicted",
-        note='notes from Emma Sergeant interview, describes being introduced to Trump by Epstein & Maxwell',
+        highlight_quote="I have fear around her (Gm) Gm is extremely dangerous person behavior I’ve seen sociopathic",
+        note='notes from Emma Sergeant interview describing being introduced to Trump by Epstein & Maxwell',
         truncate_to=(6_400, 7_800),
     ),
 
