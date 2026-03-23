@@ -216,6 +216,8 @@ MONEY_CFGS = [
     EmailCfg(id='EFTA01802355', note=f'{MC2_MODEL_MGMT} line of credit and other people owes money to or is owed money by'),
     EmailCfg(id='EFTA01870235', note=f'{MC2_MODEL_MGMT} IRS woes and line of credit repayment'),
     EmailCfg(id='EFTA01942664', note=f'payment from {MC2_MODEL_MGMT}'),
+    EmailCfg(id='EFTA00552943', note=f"purchase of {BIN_ENNAKHILL}"),
+    EmailCfg(id='EFTA00552220', note=f"purchase of {BIN_ENNAKHILL} (by {KARYNA_SHULIAK}??)", is_interesting=7),
     EmailCfg(
         id='EFTA01816514',
         comment='Different Gary, different Gensler',
