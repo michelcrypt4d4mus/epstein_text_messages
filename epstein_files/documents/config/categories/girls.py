@@ -622,7 +622,6 @@ GIRLS_CFGS = [
     EmailCfg(id='EFTA01995972', highlight_quote='you are meeting elon tmr for lunch', is_interesting=20),
     EmailCfg(id='EFTA01998027', highlight_quote="What day/night will be the wildest party on your island?", is_interesting=20),
     EmailCfg(id='EFTA01930501', highlight_quote="Your littlest girl was a little naughty"),
-    EmailCfg(id='EFTA01926961', author=SVETLANA_POZHIDAEVA, highlight_quote="If you take too many more trips to Russia, I'm going to assume that you're FSB/ KGB by your parents"),
     EmailCfg(id='DropSite 2006-05-29 1329', highlight_quote='I am giving the little girl a modeling\n> lesson', is_interesting=True),
 
     # Josh Fink

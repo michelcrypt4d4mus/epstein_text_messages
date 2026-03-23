@@ -42,6 +42,7 @@ pdfalyzer = {extras = ["extract"], version = "^1.19.6"}
 
 # pdfalyzer = {path = "../../pdfalyzer", develop = true, extras=["extract"]}
 # yaralyzer = {path = "../../yaralyzer", develop = true}
+bs4 = "^0.0.2"
 
 
 [tool.poetry.group.dev.dependencies]
