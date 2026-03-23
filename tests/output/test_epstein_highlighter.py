@@ -74,6 +74,7 @@ HIGHLIGHT_COUNTS = {
     "bannon": 1,
     "barr": 3,
     "bear stearns": 1,
+    'billionaire': 2,
     "blackstone": 3,
     "boca raton": 1,
     "boothbay": 1,

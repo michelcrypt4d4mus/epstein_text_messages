@@ -1,24 +1,15 @@
 """
 Custom configurations for emails of no particular category.
 """
-from epstein_files.documents.config.categories.crypto import VALAR_FUND
 from epstein_files.documents.documents.categories import Interesting, Neutral
-from epstein_files.documents.config.config_builder import (WOLFF_EPSTEIN_ARTICLE_DRAFT,
-     binant_redacted, shaher_murder_email)
-from epstein_files.documents.config.doc_cfg import EMAIL_TRUNCATE_TO, NO_TRUNCATE, SHORT_TRUNCATE_TO, DocCfg
+from epstein_files.documents.config.config_builder import WOLFF_EPSTEIN_ARTICLE_DRAFT
+from epstein_files.documents.config.doc_cfg import EMAIL_TRUNCATE_TO, NO_TRUNCATE, SHORT_TRUNCATE_TO
 from epstein_files.documents.config.email_cfg import SNEAKY_DOG, EmailCfg
 from epstein_files.documents.emails.constants import FLIGHT_IN_2012_PEOPLE, IRAN_DEAL_RECIPIENTS, TRIVERS_CCS
-from epstein_files.util.helpers.string_helper import join_truthy, quote
 from epstein_files.people.names import *
 from epstein_files.util.constant.strings import *
-
-OTHER_FILES_PFX = 'OTHER_FILES_'
-PARTICIPANTS_FIELD = 'Participants: field'
-
-
-########################################################################################################
-################################################ EMAILS ################################################
-########################################################################################################
+from epstein_files.util.constant.urls import DROPSITE_EPSTEIN_CAMERAS_URL
+from epstein_files.util.helpers.string_helper import join_truthy, quote
 
 # Atribution reasons
 BOLOTOVA_REASON = 'Same signature style as 029020 ("--" followed by "Sincerely Renata Bolotova")'
@@ -34,6 +25,20 @@ SINCERELY_SNEAKY = f'{SNEAKY_DOG} + "Sincerely"'
 ALLEGED_KARIM_WADE = f"allegedly corrupt Senegalese politician {KARIM_WADE}"
 IS_IT_ROGER_STONE = "is the 'roger' Epstein is trying to meet Roger Stone?"
 VALAR_MEETING = f"meeting with {PETER_THIEL}'s {VALAR_VENTURES} fund"
+
+
+def binant_redacted(id: str, truncate_to: int = 700) -> EmailCfg:
+    return EmailCfg(id=id, truncate_to=truncate_to, note=f"redacted discussion of art advisor {ETIENNE_BINANT}")
+
+
+def shaher_murder_email(id: str, note: str = '', **kwargs) -> EmailCfg:
+    return EmailCfg(
+        id=id,
+        is_interesting=10,
+        non_participants=[JOI_ITO],
+        note=join_truthy(note, f"discussion of the murder of Martine Vik Magnussen by {SHAHER_ABDULHAK_BESHER}'s son Farouk"),
+        **kwargs
+    )
 
 
 EMAILS_CONFIG = [
@@ -1206,7 +1211,7 @@ EMAILS_CONFIG = [
         is_interesting=6,
         note=f'{IAN_OSBORNE} calls Greg Craig "my guy", offers to help with visa for woman Epstein "prefers not be part of my file"',
     ),
-    EmailCfg(id='EFTA02062130', is_interesting=10, note=f'{NILI_PRIELL_BARAK} installing cameras at Epstein\'s house'),
+    EmailCfg(id='EFTA02062130', is_interesting=10, note=f'{NILI_PRIELL_BARAK} installing cameras at Epstein\'s house', url=DROPSITE_EPSTEIN_CAMERAS_URL),
     EmailCfg(id='EFTA02730481', date='2023-07-07T11:01:00', date_uncertain='actually reply timestamp'),
     EmailCfg(id='EFTA02731577', date='2024-10-16T00:00:00', date_uncertain='actually reply timestamp'),
     # Generated basd on OtherFile.extract_timestamp()

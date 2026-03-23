@@ -458,7 +458,7 @@ class DocCfg(LoggingEntity):
     @property
     def timestamp(self) -> datetime | None:
         if self.date and (parsed_dt := coerce_utc_strict(parse(self.date))):
-            self._debug_log(f"parsed {parsed_dt.isoformat()} from date='{self.date}'")
+            # self._debug_log(f"parsed {parsed_dt.isoformat()} from date='{self.date}'")
             return parsed_dt
 
     @property

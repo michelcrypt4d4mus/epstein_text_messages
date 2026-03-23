@@ -13,7 +13,7 @@ from epstein_files.people.entity import (Entity, Organization, acronym, epstein_
      island_employee, law_enforcement, publication, the_publication)
 from epstein_files.people.names import *
 from epstein_files.util.constant.strings import *
-from epstein_files.util.constant.urls import (DITE_ANATA_JUILLIARD_URL, EPSTEIN_DOCTORS_LINKS,
+from epstein_files.util.constant.urls import (DITE_ANATA_JUILLIARD_URL, DROPSITE_EPSTEIN_CAMERAS_URL, EPSTEIN_DOCTORS_LINKS,
      JULIA_SANTOS_REDDIT_URL, SUBSTACK_POST_INSIGHTSPOD_URL, SVETLANA_NEWSGROUND)
 from epstein_files.util.env import args
 from epstein_files.util.helpers.data_helpers import flatten, sort_dict
@@ -58,7 +58,6 @@ HIGHLIGHTED_NAMES = [
                 r"(Dr\.?|Elkhonon) Goldberg",
                 match_partial='first',
             ),
-            Entity('Harry Fisch', "men's health expert at New York-Presbyterian / Weill Cornell (?)"),
             Entity(
                 JAMES_TAGG,
                 "The Penrose Institute, Sunlight Aerospace, claims to be inventor of the eSIM",
@@ -83,14 +82,14 @@ HIGHLIGHTED_NAMES = [
                 ],
             ),
             Entity(MARK_TRAMO, "professor of neurology at UCLA"),
-            Entity('Marvin Minsky', 'mathematician, early AI researcher'),
+            Entity('Marvin Minsky', 'mathematician, early AI researcher', url=WIKIPEDIA),
             Entity('Mira Bach', f"wife of {JOSCHA_BACH}", match_partial=None),
-            Entity('Misha Gromov', f"geometer and group theorist", r"Misha Gr[ao]m(an)?ov"),
+            Entity('Misha Gromov', f"geometer and group theorist", r"Misha Gr[ao]m(an)?ov", url='https://en.wikipedia.org/wiki/Mikhael_Gromov_(mathematician)'),
             Entity('Nancy Dahl', f"wife of {LAWRENCE_KRAUSS}"),
-            Entity('Neri Oxman', f"MIT, wife of Bill Ackman", match_partial='both'),
+            Entity('Neri Oxman', f"MIT, wife of Bill Ackman", match_partial='both', url=WIKIPEDIA),
             Entity('Nicholas Christakis', f"Yale professor of Social and Natural Science"),
             Entity(NOAM_CHOMSKY, "professor of linguistics at MIT", match_partial='both'),
-            Entity('Norman Finkelstein', f"scholar, well known critic of Israel, sworn enemy of {ALAN_DERSHOWITZ}", match_partial=None),
+            Entity('Norman Finkelstein', f"scholar, well known critic of Israel, sworn enemy of {ALAN_DERSHOWITZ}", match_partial=None, url=WIKIPEDIA),
             Entity(ROBERT_TRIVERS, "evolutionary biology", r"tri[vy]ersr@gmail|Robert Trivers?"),
             Entity(ROGER_SCHANK, "AI pioneer, Teachers College, Columbia University, deceased"),
             Entity('Sandy Pentland', MIT_MEDIA_LAB, r"((Alex|Sandy) )?Pentland"),
@@ -261,7 +260,7 @@ HIGHLIGHTED_NAMES = [
             Entity('Donny Deutsch', 'television personality', match_partial=None),
             Entity('Errol Morris', 'documentary film maker, films about Robert McNamara, Donald Rumsfeld, and Bannon', match_partial=None),
             Entity(ETIENNE_BINANT, f"art advisor {QUESTION_MARKS}"),
-            Entity('Frederic Fekkai', f"hairdresser Epstein liked his girls to use"),
+            Entity('Frederic Fekkai', f"hairdresser Epstein liked his girls to use", url=WIKIPEDIA),
             Entity(
                 'Harvey Weinstein',
                 "film producer convicted of rape",
@@ -399,7 +398,7 @@ HIGHLIGHTED_NAMES = [
             Organization('Silvergate Bank', 'crypto friendly bank that failed after the FTX crisis', r"Silver Gate( Bank)?"),
             Organization(
                 'Signature Bank',
-                'crypto friendly bank, Ivanka Trump on board, 3rd biggest bank failure in US history after FTX',
+                'crypto friendly bank, 3rd biggest bank failure in US history, Ivanka Trump on the board',
                 r"Signature Bank|SBNY",
                 url='https://www.cnbc.com/2023/03/13/signature-bank-third-biggest-bank-failure-in-us-history.html',
             ),
@@ -460,7 +459,7 @@ HIGHLIGHTED_NAMES = [
             Entity(
                 LES_WEXNER,
                 "CEO of Victoria's Secret, Abercrombie & Fitch, gave Epstein a house and power of attorney",
-                r"(Les(lie)? )?Wexner(?! Children('s)? Trust)",
+                r"(Les(lie)? )?Wexner(?! (Children('s)? Trust|Foundation))",
                 match_partial=None,
                 url='https://en.wikipedia.org/wiki/Les_Wexner#Jeffrey_Epstein_association',
             ),
@@ -482,7 +481,7 @@ HIGHLIGHTED_NAMES = [
                 url=WIKIPEDIA,
             ),
             Entity('Sam Belzberg', "Canadian businessman"),
-            Entity(STEVE_WYNN, f'gambling magnate, possible dispute with {MILES_GUO}', match_partial=None),
+            Entity(STEVE_WYNN, f'gambling magnate, possible dispute with {MILES_GUO}', match_partial=None, url=WIKIPEDIA),
             Entity(TOM_PRITZKER, "chairman of The Pritzker Organization and Hyatt Hotels"),
             Organization('501c3', 'IRS code for a non-profit entity'),
             Organization(ATT_COURT_APPEARANCE_TEAM, "AT&T", is_interesting=False),
@@ -493,6 +492,12 @@ HIGHLIGHTED_NAMES = [
             Organization('NJF Capital', JUNKERMANN_FUND, r"NJF( Capital)?"),
             Organization('Western Union', 'international money transmitter', emailer_pattern=r"Western Union( Financial)?"),
             Organization("Wexner Children's Trust", emailer_pattern="Wexner Children's Trust( I*)?", belongs_to=LES_WEXNER),
+            Organization(
+                'Wexner Foundation',
+                f"pro-Israel charity of {LES_WEXNER} where Epstein had decision making authority",
+                belongs_to=LES_WEXNER,
+                url='https://www.dropsitenews.com/p/jeffrey-epstein-leslie-abigail-wexner-pro-israel-philanthropic-foundation',
+            ),
             Organization('WizzAir', email_addresses=['noreply@wizzair.com'], is_interesting=False, is_emailer=True),
         ],
         patterns=[
@@ -2095,11 +2100,20 @@ HIGHLIGHTED_NAMES = [
                 EHUD_BARAK,
                 "former prime minister of Israel, Epstein business partner",
                 r"(ehud|e?h) barac?k|\behud",
-                url=WIKIPEDIA,
+                url=[
+                    WIKIPEDIA,
+                    DROPSITE_EPSTEIN_CAMERAS_URL,
+                ],
             ),
             Entity('Eytan Raff', "chairman of Bank Leumi ca. money laundering trouble time", match_partial=None),
             Entity('Mitchell Bard', "director of the American-Israeli Cooperative Enterprise (AICE)", match_partial=None),
-            Entity(NILI_PRIELL_BARAK, f"wife of {EHUD_BARAK}", r"Nili Priell?", match_partial=None),
+            Entity(
+                NILI_PRIELL_BARAK,
+                f"wife of {EHUD_BARAK}",
+                r"Nili Priell?",
+                match_partial=None,
+                url=DROPSITE_EPSTEIN_CAMERAS_URL,
+            ),
             Organization(
                 'Bank Leumi',
                 'Israeli bank that helped Americans avoid taxes',
@@ -2271,7 +2285,7 @@ HIGHLIGHTED_NAMES = [
             the_publication(PALM_BEACH_POST),
             the_publication(VI_DAILY_NEWS, r"Virgin Is(al|la)nd?s Daily News"),
             the_publication(WAPO, r"Wa(shington )?Po(st)?"),
-            Organization('Conde Nast', 'magazine publisher behind Vanity Fair, New Yoerk, Vogue, GQ, Wired, and mnay more'),
+            Organization('Conde Nast', 'magazine publisher behind Vanity Fair, New Yorker, Vogue, GQ, Wired, and mnay more'),
             Organization('Effective Altruism', 'cult popular with tech CEOs who want an excuse for hoarding money (e.g. SBF of FTX)'),
             Organization('Futurism', f'odd outlet that seems hooked up with {MASHA_DROKOVA}'),
             Organization('Gawker', f'independent news site killed by a Hulk Hogan lawsuit funded by {PETER_THIEL}'),
@@ -2422,6 +2436,7 @@ HIGHLIGHTED_NAMES = [
         style='sandy_brown',
         entities=[
             Entity('Bernard Kruger', "Epstein's doctor", match_partial=None),
+            Entity('Harry Fisch', "men's health expert at New York-Presbyterian / Weill Cornell (?)"),
             Entity('James Watson', 'one of the discoverers of DNA', match_partial=None),
             Entity(
                 MELANIE_WALKER,
@@ -3095,10 +3110,14 @@ HIGHLIGHTED_NAMES = [
                 f"former Olympic snowboarder, {CRYPTO_PR_LAB} co-founder, long time recruiter for Epstein, WEF, Story VC",
                 r"Ma(sha|riy?a) (Prusa?(kova|so))",
                 aliases=['Masha Prusso', 'Mary Prusakova'],
-                email_addresses=['maryfrommoscow@hotmail.com'],
+                email_addresses=[
+                    'maryfrommoscow@hotmail.com',
+                    'maria.prusakova@lgt.com',
+                ],
                 url=[
                     'https://www.scamurai.io/p/epstein-files-suggest-ex-polygon',
                     'https://www.reddit.com/r/Epstein/comments/1qvsnqs/a_detailed_report_on_masha_prusso_aka_maria/',
+                    'https://www.reddit.com/r/globalboostcoin/comments/1qsv9up/breaking_web3_community_seems_to_be_funded_by/',
                     'https://www.olympedia.org/athletes/109974',
                     'https://web.archive.org/web/20260202130053/https://www.mashaprusso.com/',
                 ],
@@ -3428,6 +3447,7 @@ HIGHLIGHTED_NAMES = [
             r"Macbook( Pro)",
             r"Microsoft",
             r"MSFT",
+            r"Open Whisper( Systems)?",
             r"Overstock(.com)?",
             r"PageRank",
             r"Paypal",
