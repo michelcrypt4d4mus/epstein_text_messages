@@ -87,7 +87,7 @@ def doublespace_lists(s: str) -> str:
 
     s = SECTION_LIST_REGEX.sub(r"\n\n\1", s)
     s = BULLET_LIST_REGEX.sub(r"\n\1", s)
-    return ORDINAL_LIST_REGEX.sub(r"\n\1", s)
+    return collapse_newlines(ORDINAL_LIST_REGEX.sub(r"\n\1", s))
 
 
 def doublespace_paragraphs(s: str):

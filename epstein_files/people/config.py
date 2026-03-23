@@ -3447,6 +3447,7 @@ HIGHLIGHTED_NAMES = [
             r"Macbook( Pro)",
             r"Microsoft",
             r"MSFT",
+            r"Open Whisper( Systems)?",
             r"Overstock(.com)?",
             r"PageRank",
             r"Paypal",
