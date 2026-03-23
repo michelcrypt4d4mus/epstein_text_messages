@@ -1361,10 +1361,22 @@ HIGHLIGHTED_NAMES = [
                 DARREN_INDYKE,
                 "Epstein's lawyer and estate executor",
                 r"darren$|Darren (K(\.|eith)? )?[il]n[dq]_?yke?|dkiesq",
-                url='https://en.wikipedia.org/wiki/Estate_of_Jeffrey_Epstein',
+                url=[
+                    'https://en.wikipedia.org/wiki/Estate_of_Jeffrey_Epstein',
+                    'https://finance.yahoo.com/news/jeffrey-epstein-lawyers-darren-indyke-jeffrey-schantz-164305188.html',
+                ]
             ),
-            Entity(EMAD_HANNA, f"Project controller for {RICHARD_KAHN}'s HBRK Associates", match_partial=None),
-            Entity(HENRY_JARECKI, 'philanthropist, previous metals guy, owned neighboring island', r"(Dr\.?|Henry) Jarecki", match_partial=None),
+            Entity(EMAD_HANNA, f"project controller for {RICHARD_KAHN}'s HBRK Associates", match_partial=None),
+            Entity(
+                HENRY_JARECKI,
+                'owner of neighboring island, psychiatrist, precious metals trader, film producer',
+                r"(Dr\.?|Henry) Jarecki",
+                match_partial=None,
+                url=[
+                    'https://www.hollywoodreporter.com/news/general-news/nicholas-jareckis-jeffrey-epstein-1236511097/',
+                    WIKIPEDIA,
+                ],
+            ),
             Entity("Michelle Fern Saipher", f"wife of {DARREN_INDYKE}", r"Michelle( F(ern|\.)?)? Saipher"),
             Entity(PAUL_HOFFMAN, "alternate executor of Epstein' estate", match_partial=None),
             Entity(
@@ -3031,7 +3043,7 @@ HIGHLIGHTED_NAMES = [
             Entity(DASHA_GRUPMAN, 'recruiter of girls for Epstein', r"Da(ry|sh)a Grupman"),
             Entity(EKATERINA_GUSAROVA, f'Instagram model {QUESTION_MARKS}', r"(Ekaterina|Katya)? Gusm?arova", aliases=['Katya']),
             Entity(GULSUM_OSMANOVA, QUESTION_MARKS, r"Gul'?sum|Osmanova", email_addresses=['g.a.osmanova@gmail.com']),
-            Entity('Irina Vodolazova', 'Russian model', match_partial='both'),
+            Entity('Irina Vodolazova', 'model', match_partial='both', url='https://www.instagram.com/vodochka/'),
             Entity(JESSICA_BANKS, f'co-founder of {QUESTION_MARKS}', match_partial=None),
             Entity(
                 JULIA_SANTOS,  # TODO: Jmail says her email is julia.santos@hbs.edu
@@ -3084,6 +3096,7 @@ HIGHLIGHTED_NAMES = [
                 url='https://davidzmorris.substack.com/p/i-found-epstein-i-just-didnt-realize',
             ),
             Entity('Masha Manyuk', 'owner of Linea12 modeling / escort agency in Kiev'),
+            Entity(MIRANDA_MAKO, f'Epstein recruiter, internship at {CLIFFORD_CHANCE} with {MARIA_PRUSAKOVA}?'),
             Entity(OLGA_PONOMAR_BECKER, QUESTION_MARKS),
             Entity(
                 RENATA_BOLOTOVA,
@@ -3557,7 +3570,6 @@ HIGHLIGHTED_NAMES = [
                 ],
             ),
             Entity('Lucrezia Camponovo', QUESTION_MARKS),
-            Entity('Miranda', f'appears to have done an internship at {CLIFFORD_CHANCE} with {MARIA_PRUSAKOVA}?'),
             Entity(PAULA_HEIL_FISHER, "Epstein's ex-girlfriend who works in opera now", match_partial=None),
             # Contact('Regina E. Frangul', f'Amex travel agent {QUESTION_MARKS}'),
             Entity('Saige Gonzalez', VICTIM_EVIDENCE, match_partial=None),

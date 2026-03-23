@@ -43,6 +43,7 @@ def test_acronym():
 def test_bio():
     yulia = ENTITIES_DICT[YULIA_DOROKHINA]
     brock = ENTITIES_DICT[BROCK_PIERCE]
+
     assert brock.bio_txt.plain == \
         'Brock Pierce [crypto] sex crime history, Bannon partner at IGN, Tether co-founder, friend of Yair Netanyahu [protos/sbstk/wiki]'
 
@@ -90,6 +91,12 @@ def test_law_enforcment():
     assert usao.highlight_regex.match('US Attorney')
     assert usao.highlight_regex.match('U.S. Attorney')
     assert usao.highlight_regex.match('United States Attorney')
+
+
+def test_links():
+    naomi = ENTITIES_DICT[NAOMI_CAMPBELL]
+    assert 'wiki' in naomi.links_txt().plain
+    assert 'wiki' not in naomi.links_txt(False).plain
 
 
 def test_middle_initial(epstein):

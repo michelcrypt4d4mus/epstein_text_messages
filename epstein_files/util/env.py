@@ -12,7 +12,7 @@ from yaralyzer.util.cli_option_validators import DirValidator
 from epstein_files.output.site.site_config import ALL_OTHER_FILES_MULTIPLIER, DEFAULT_WIDTH, MobileConfig, SiteConfig
 from epstein_files.output.site.sites import *
 from epstein_files.util.constant.strings import SUPPRESS_OUTPUT
-from epstein_files.util.helpers.env_helpers import get_env_dir
+from epstein_files.util.helpers.env_helpers import get_env_dir, is_env_var_set
 from epstein_files.util.logging import env_log_level, exit_with_error, logger, set_log_level
 
 BUILD_TO_DEFAULT = 'default_file'  # default value if --build is specified without an arg
@@ -31,10 +31,10 @@ DOJ_PDFS_20260130_DIR: Path = get_env_dir(DOJ_PDFS_20260130_DIR_ENV_VAR, must_ex
 DOJ_TXTS_20260130_DIR: Path = get_env_dir(DOJ_TXTS_20260130_DIR_ENV_VAR, must_exist=False)
 DROPSITE_EMLS_DIR: Path = get_env_dir(DROPSITE_EMLS_DIR_ENV_VAR, must_exist=False)
 
+OUTPUT_ARGS = ['all', 'colors_only', 'json', 'make_clean', 'output', 'show']
 SLOW_FILE_SECONDS = 1.0
 
-is_env_var_set = lambda s: len(environ.get(s) or '') > 0
-is_output_arg = lambda arg: any([arg.startswith(pfx) for pfx in ['all', 'colors_only', 'json', 'make_clean', 'output', 'show']])
+is_output_arg = lambda arg: any([arg.startswith(pfx) for pfx in OUTPUT_ARGS])
 
 
 RichHelpFormatterPlus.choose_theme('morning_glory')
@@ -86,7 +86,7 @@ scripts.add_argument('--raw', action='store_true', help='show raw contents of fi
 scripts.add_argument('--whole-file', '-wf', action='store_true', help='print whole files')
 
 debug = parser.add_argument_group('DEBUG')
-output.add_argument('--almost-most-interesting', '-a10', action='store_true', help='almost the highest scoring documents')
+debug.add_argument('--almost-most-interesting', '-a10', action='store_true', help='almost the highest scoring documents')
 debug.add_argument('--char-nums', '-cn', nargs="?", default=None, const=100, type=int, help='inject char nums every N chars')
 debug.add_argument('--colors-only', '-c', action='store_true', help='print header with color key table and links and exit')
 debug.add_argument('--constantize', action='store_true', help='constantize names when printing repr() of objects')
@@ -106,7 +106,7 @@ debug.add_argument('--write-txt', '-wt', action='store_true', help='write a plai
 
 
 # Parse args
-if environ.get('INVOKED_BY_PYTEST'):
+if is_env_var_set('INVOKED_BY_PYTEST'):
     args = parser.parse_args([EPSTEIN_GENERATE])
 else:
     args = parser.parse_args()
@@ -118,10 +118,6 @@ HtmlDir.HTML_DIR = args.build_dir or HtmlDir.HTML_DIR
 if args.build_dir and not args.build:
     args.build = BUILD_TO_DEFAULT
 
-args.debug = args.deep_debug or args.debug or is_env_var_set('DEBUG')
-args._debug_highlight_patterns = (args.colors_only and args.debug)
-
-# args.names = [name.title() for name in args.names] if args.names and args.names[0][0].islower() else args.names
 args.names = [None if n == 'None' else n.strip() for n in (args.names or [])]
 args.output_chrono = args.output_chrono or args.all_chrono or args.output_most_interesting or args.almost_most_interesting
 args.output_emails = args.output_emails or args.all_emails
@@ -220,6 +216,10 @@ if args.open_both:
 if args.repair or args.load_new:
     args.constantize = True
 
+
+args.debug = args.deep_debug or args.debug or is_env_var_set('DEBUG')
+args._debug_highlight_patterns = (args.colors_only and args.debug)
+
 # Log level args
 if args.deep_debug:
     set_log_level(logging.DEBUG)
@@ -232,8 +232,7 @@ elif not env_log_level:
 
 logger.warning(f"Building site '{args._site}' to '{Site.html_output_path(args._site)}'")
 logger.debug(f'Log level set to {logger.level}...')
-args_str = ',\n'.join([f"{k}={v}" for k, v in vars(args).items() if v])
-logger.debug(f"'{parser.prog}' script invoked\n{args_str}")
+logger.debug(f"'{parser.prog}' invoked\n" + ',\n'.join([f"{k}={v}" for k, v in vars(args).items() if v]))
 logger.debug(f"Reading Epstein documents from '{DOCS_DIR}'...")
 logger.info(f"site_config set to {site_config.__name__}...")
 
