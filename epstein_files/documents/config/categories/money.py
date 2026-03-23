@@ -13,6 +13,8 @@ from epstein_files.util.constant.strings import *
 from epstein_files.util.env import args
 from epstein_files.util.helpers.string_helper import join_truthy
 
+PURCHASE_OF_BIN_ENNAKHILL = 'purchase of Bin Ennakhill palace in Marrakech'
+
 MONEY_OCR_REPAIRS: OcrRepair = {
     re.compile(r"to[ ,]*if[\n ](s?he)[\n ]survives me"): fr"to {REDACTED}, if \1 survives me",
     re.compile(r"[\n ]if[\n ](s?he)[\n ]survives me"): r" if \1 survives me",
@@ -201,7 +203,7 @@ MONEY_CFGS = [
         is_interesting=10,
         truncate_to=400,
     ),
-    EmailCfg(id='EFTA01036804', note=f"Epstein's lawyers advise against his purchase of Bin Ennakhill in Marrakech"),
+    EmailCfg(id='EFTA01036804', note=f"Epstein's lawyers advise against his {PURCHASE_OF_BIN_ENNAKHILL}"),
     EmailCfg(id='EFTA00080250', note=f"{LEON_BLACK} / Rothschild Group {DEUTSCHE_BANK} transactions, source of some of Epstein's wealth", is_interesting=10),
     EmailCfg(id='EFTA02633194', note=f'{NICOLE_JUNKERMANN} quotes an appraisal by "FSB (Russians)"', is_interesting=10),
     EmailCfg(id='EFTA01435454', note=f"{DEUTSCHE_BANK} finally sets up a trading account for Epstein's Southern Financial"),
@@ -216,8 +218,8 @@ MONEY_CFGS = [
     EmailCfg(id='EFTA01802355', note=f'{MC2_MODEL_MGMT} line of credit and other people owes money to or is owed money by'),
     EmailCfg(id='EFTA01870235', note=f'{MC2_MODEL_MGMT} IRS woes and line of credit repayment'),
     EmailCfg(id='EFTA01942664', note=f'payment from {MC2_MODEL_MGMT}'),
-    EmailCfg(id='EFTA00552943', note=f"purchase of {BIN_ENNAKHILL}"),
-    EmailCfg(id='EFTA00552220', note=f"purchase of {BIN_ENNAKHILL} (by {KARYNA_SHULIAK}??)", is_interesting=7),
+    EmailCfg(id='EFTA00552943', note=PURCHASE_OF_BIN_ENNAKHILL),
+    EmailCfg(id='EFTA00552220', note=f"{PURCHASE_OF_BIN_ENNAKHILL} (by {KARYNA_SHULIAK}??)", is_interesting=7),
     EmailCfg(
         id='EFTA01816514',
         comment='Different Gary, different Gensler',
