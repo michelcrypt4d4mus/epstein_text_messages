@@ -273,7 +273,7 @@ GIRLS_CFGS = [
         author=SVETLANA_POZHIDAEVA,
         author_reason='Josh Fink, BlackBerry signature',
         is_interesting=12,
-        note=f"jealous boyfriend {JOSHUA_FINK} accuses Svetlana had an affair with Navalny {QUESTION_MARKS}",
+        note=f"jealous boyfriend {JOSHUA_FINK} accuses Svetlana of having an affair with Navalny {QUESTION_MARKS}",
     ),
     EmailCfg(
         id='EFTA01870453',
