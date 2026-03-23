@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from epstein_files.documents.config.communication_cfg import CommunicationCfg, skype_log
+from epstein_files.documents.config.communication_cfg import TextCfg, imessage_screenshot, skype_log
 from epstein_files.documents.config.doc_cfg import DocCfg
 from epstein_files.documents.config.email_cfg import EmailCfg
 from epstein_files.people.names import *
@@ -68,6 +68,14 @@ ACADEMIA_CFGS = [
     DocCfg(id='EFTA01114145', author=f"{BEN_GOERTZEL}, {GINO_YU}", note="OpenCog AGI Toddler Project", date='2011-06-01', date_uncertain=True),
     EmailCfg(id='EFTA00954900', note=f'Epstein donation to {MOUNT_SINAI}'),
     EmailCfg(id='EFTA00955864', note=f'Epstein donation to {MOUNT_SINAI}', is_interesting=False),
+    imessage_screenshot('EFTA01616222', author=HARRY_FISCH, date='2018-04-23T14:25:30'),
+    imessage_screenshot('EFTA01616232', author=HARRY_FISCH, date='2018-04-23T14:25:30'),
+    imessage_screenshot(
+        'EFTA01617527',
+        author='Eduardo Teodorani',
+        highlight_quote='interesting pussy than Fl in Milano interesting pussy as well',
+        truncate_to=(1_700, 2_200),
+    ),
     skype_log('032206', recipients=[LAWRENCE_KRAUSS], is_interesting=False),
     skype_log('032208', recipients=[LAWRENCE_KRAUSS], is_interesting=False),
     skype_log('032209', recipients=[LAWRENCE_KRAUSS], is_interesting=False),

@@ -176,6 +176,7 @@ GOVERNMENT_CFGS = [
     fbi_interview('EFTA00081226', MINOR_VICTIM),
     fbi_interview('EFTA00038915', MINOR_VICTIM, 'claims Epstein knew she was 14'),
     fbi_interview('EFTA00090602', STEVE_SCULLY, date='2019-08-09', show_full_panel=True),
+    fbi_interview('EFTA01699136', f"{VIRGINIA_GIUFFRE} and other victims", f'"Turkish girl" might be {GULSUM_OSMANOVA}', date='2011-03-17'),
     fbi_interview('EFTA00101927', None, f"claims Glenn and {EVA_DUBIN}'s Swiss au pair was being held against her will"),
     fbi_interview('EFTA00159321', None, f'covers {PAOLO_ZAMPOLLI}, Epstein, and the possibility Epstein introduced Melania to Donald Trump'),
     # FBI reports

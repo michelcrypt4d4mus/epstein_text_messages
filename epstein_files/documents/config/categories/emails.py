@@ -1317,6 +1317,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA02339109', note=f'someone named Sue needs help (probably a sham marriage to {BROCK_PIERCE}, see later emails)', is_interesting=5),
     EmailCfg(id='EFTA02309843', note=f'{STEVE_BANNON} meets {EHUD_BARAK} over some "Jew food"', is_interesting=True),
     EmailCfg(id='EFTA01764152', note=f"thoughts on {STEVEN_SINOFSKY} joining a16z (which he later did)", is_interesting=3),
+    EmailCfg(id='EFTA01775983', note='trying to get a meeting with Paul Allen'),
     EmailCfg(id='EFTA00582508', note=f'{UMAR_DZHABRAILOV} was found dead in his Moscow penthouse in March 2026', is_interesting=10),
     EmailCfg(id='EFTA00532500', note=f"visa applications for Russia, Belarus, and Kazakhstan", is_interesting=10, truncate_to=420),
     EmailCfg(id='EFTA02412854', note=f'who\'s "D>>>" and what does he have to be careful about?', is_interesting=3),

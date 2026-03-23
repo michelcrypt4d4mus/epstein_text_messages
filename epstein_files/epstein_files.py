@@ -499,7 +499,7 @@ for cfg in CONFIGS_BY_ID.values():
         CONFIGURED_NON_ENTITIES[name] = Entity(name, is_emailer=False, is_interesting=False)
         log_msg = f"Configured name has no Entity object: {quote(name)}"
 
-        if ',' in name or isinstance(cfg, EmailCfg) and (cfg.has_uninteresting_ccs or cfg.has_uninteresting_bccs):
+        if ',' in name or ' v. ' in name or isinstance(cfg, EmailCfg) and (cfg.has_uninteresting_ccs or cfg.has_uninteresting_bccs):
             cfg._debug_log(log_msg)
         else:
             cfg._log(log_msg)

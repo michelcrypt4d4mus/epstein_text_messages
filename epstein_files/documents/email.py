@@ -145,15 +145,17 @@ OCR_REPAIRS: OcrRepair = {
     'gyahoo.com': '@yahoo.com',
     # Signatures
     'Envoy& de': 'Envoyé de',
-    'Envoye avec BlackBerry° d': 'Envoye avec BlackBerry® d',
+    'Envoye avec BlackBerry° d': 'Envoyé avec BlackBerry® d',
     'from Samsung Mob.le': 'from Samsung Mobile',
     'gJeremyRubin': '@JeremyRubin',
     'Mail for i Phone': 'Mail for iPhone',
     'Sent from Mabfl': 'Sent from Mobile',  # NADIA_MARCINKO signature bad OCR
     'twitter glhsummers': 'twitter @lhsummers',
+    # NOTE: These three must come in this order!
     re.compile(r'Blac[il]cBerry'): 'BlackBerry',
-    'BlackBerry by AT &T': 'BlackBerry by AT&T',  # Must come after previous
+    'BlackBerry by AT &T': 'BlackBerry by AT&T',
     'BlackBerry from T- Mobile': 'BlackBerry from T-Mobile',
+    re.compile(r"Envoy[ée] de mon iPhon[ce]"): 'Envoyé de mon iPhone',
     re.compile(r"[cC]o-authored with i ?Phone auto-correct"): "Co-authored with iPhone auto-correct",
     re.compile(r"from my ['!()=]([Pp]hone)"): r'from my i\1',
     re.compile(r'from my BlackBerry[0°] wireless device'): 'from my BlackBerry® wireless device',

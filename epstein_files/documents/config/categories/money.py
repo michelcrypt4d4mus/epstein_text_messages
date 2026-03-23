@@ -121,6 +121,7 @@ MONEY_CFGS = [
     DocCfg(id='EFTA01086463', note=f"{MORTIMER_ZUCKERMAN}'s art collection valuations", is_valid_for_name_scan=False),
     DocCfg(id='EFTA01273102', note=f"payment from Epstein to {RENATA_BOLOTOVA}'s father's account at Sberbank"),
     DocCfg(id='EFTA00238499', note='wire transfer to Signature Bank account'),
+    deutsche_bank_doc('EFTA01286706', f"Plan D, LLC bank statement showing $22,500,000 incoming and $15,000,000 outgoing"),
     deutsche_bank_doc('EFTA01361270', f"$60,000 transfer from {SOUTHERN_TRUST_COMPANY} to {BEN_GOERTZEL}'s Novamente", date='2014-01-02'),
     deutsche_bank_doc('EFTA00101280', f"Epstein's {DEUTSCHE_BANK} accounts", show_full_panel=True),
     deutsche_bank_doc('EFTA01681865', "explanations of all of Epstein's large payments prepared for DOJ", '2019-09-12', is_interesting=20),
@@ -177,7 +178,6 @@ MONEY_CFGS = [
 
     # Emails
     EmailCfg(id='EFTA00037187', note=f"Epstein's {DEUTSCHE_BANK} banker Paul Morris lawyers up immediately when contacted by the FBI", is_interesting=5),
-    EmailCfg(id='EFTA00994380', highlight_quote='please confirm $500 to Sergey Pozhidaev', truncate_to=500),
     EmailCfg(
         id='EFTA01409449',
         note=f"{DEUTSCHE_BANK} employees scrubbing Epstein's name off his Souther Financial account (and its TWTR (Twitter) trades)",
@@ -232,4 +232,8 @@ MONEY_CFGS = [
         truncate_to=(2_200, 2_900),
     ),
     sar('EFTA01648787', JP_MORGAN, "$1.1 billion in Epstein transfers"),
+    EmailCfg(
+        id='EFTA01299330',
+        note=f"AML / Suspicious Activity report on structured deposits by {DARREN_INDYKE}",
+    ),
 ]

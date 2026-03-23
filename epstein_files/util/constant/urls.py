@@ -131,6 +131,7 @@ CRYPTADAMUS_SOCIAL_LINKS = [
 ]
 
 # biographical links
+COURTHOUSE_NEWS_2024_LAWSUIT_URL = 'https://www.courthousenews.com/eight-epstein-victims-sue-fbi-over-failure-to-investigate-sex-abuse-tips-as-early-as-1996/'
 DITE_ANATA_JUILLIARD_URL = 'https://usatoday.com/story/news/politics/2026/02/19/jeffrey-epstein-emails-files-power-for-benefit/88701802007/'
 DROPSITE_EPSTEIN_CAMERAS_URL = 'https://www.dropsitenews.com/p/israeli-government-surveillance-epstein-apartment-66th-street-ehud-barak'
 HAPOALIM_BUST_URL = 'https://www.haaretz.com/2005-03-07/ty-article/24-arrested-accounts-frozen-in-massive-money-laundering-probe-at-hapoalim/0000017f-e682-d97e-a37f-f7e744980000'
