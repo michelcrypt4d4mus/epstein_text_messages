@@ -636,6 +636,7 @@ HIGHLIGHTED_NAMES = [
         ],
         patterns=[
             r"adderall",
+            r"blackmail(e[dr]|ing)?",
             r'cocaine',
             r"coercion",
             r'(drug|mexican) (cartel|traffick(ers?|ing))',
