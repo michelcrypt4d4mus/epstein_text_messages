@@ -258,6 +258,10 @@ GIRLS_CFGS = [
     EmailCfg(id='EFTA00671662', author=MIRANDA_MAKO, author_reason='quoted signature "Miranda"', note="yet another girl finder"),
     EmailCfg(id='EFTA02026255', author=MARIA_PRUSAKOVA, author_uncertain=CLIFFORD_CHANCE, truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA01047249', author=NADIA_MARCINKO, author_reason='Miro', url='https://archive.ph/Qa6vU#selection-1621.160-1621.184'),
+    EmailCfg(id='EFTA00962525', author=NADIA_MARCINKO, author_reason='carstensen', highlight_quote="I was a teenager in love. You were 51.", is_interesting=2),
+    EmailCfg(id='EFTA01897098', author=NADIA_MARCINKO, note=f"{NADIA_MARCINKO} wants $5 million to part with Epstein"),
+    EmailCfg(id='EFTA00677154', author=NADIA_MARCINKO),
+    EmailCfg(id='EFTA02456758', note=f'ongoing financial support for {NADIA_MARCINKO}', show_with_name=NADIA_MARCINKO),
     EmailCfg(id='EFTA02441035', author=STEVEN_VICTOR_MD, note="complaints about free medical treatment for Epstein's girls"),
     EmailCfg(
         id='EFTA00659941',

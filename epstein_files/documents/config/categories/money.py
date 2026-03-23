@@ -201,6 +201,7 @@ MONEY_CFGS = [
         is_interesting=10,
         truncate_to=400,
     ),
+    EmailCfg(id='EFTA01036804', note=f"Epstein's lawyers advise against his purchase of Bin Ennakhill in Marrakech"),
     EmailCfg(id='EFTA00080250', note=f"{LEON_BLACK} / Rothschild Group {DEUTSCHE_BANK} transactions, source of some of Epstein's wealth", is_interesting=10),
     EmailCfg(id='EFTA02633194', note=f'{NICOLE_JUNKERMANN} quotes an appraisal by "FSB (Russians)"', is_interesting=10),
     EmailCfg(id='EFTA01435454', note=f"{DEUTSCHE_BANK} finally sets up a trading account for Epstein's Southern Financial"),

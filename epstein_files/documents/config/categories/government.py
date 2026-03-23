@@ -134,6 +134,13 @@ GOVERNMENT_CFGS = [
     doj_memo('EFTA02731200', "potential prosecution of Epstein's assistant", is_interesting=10),
     doj_memo('EFTA02731082', "investigation into Epstein's co-conspirators"),
     doj_memo('EFTA02731226', f"charging {GHISLAINE_MAXWELL} with additional offenses", '2021-03-14'),
+    DocCfg(
+        id='EFTA00157613',
+        author=DOJ,
+        date='2021-06-08',
+        note=f"witness prep of Juan Alessi, Epstein's former house manager in Palm Beach describing Trump's visits",
+        truncate_to=(6_000, 7_000),
+    ),
     DocCfg(id='EFTA02730741', author=DOJ, date='2025-05-01', date_uncertain=True, note="Evidence list for 50D-NY-3027571 Filtering On 'Type(s): 1B'"),
     DocCfg(id='EFTA02730486', author=DOJ, date='2025-05-01', date_uncertain=True, note="Evidence list for 50D-NY-3027571 Filtering On '1A'"),
     DocCfg(id='EFTA00040006', author=DOJ, date='2019-08-27', note='Personal History of Defendant Jeffrey Epstein + grand jury indictment'),
