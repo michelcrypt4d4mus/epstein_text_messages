@@ -139,10 +139,6 @@ def build_cfg_from_text(doc: 'Document') -> DocCfg | None:
     return cfg
 
 
-def binant_redacted(id: str, truncate_to: int = 700) -> EmailCfg:
-    return EmailCfg(id=id, truncate_to=truncate_to, note=f"redacted discussion of art advisor {ETIENNE_BINANT}")
-
-
 def fbi_defense_witness(id: str, witness: Name, date: str = '') -> DocCfg:
     note = f'Research and Key Findings for {witness or UNKNOWN}, defense witness for {GHISLAINE_MAXWELL}'
     return _set_fbi_doc_fields(DocCfg(id=id, date=date, note=note))
@@ -222,16 +218,6 @@ def phone_bill_cfg(id: str, author: str, dates: str = '', **kwargs) -> DocCfg:
 
 def press_release(id: str, author: Name, date: str = '', note: str = '', **kwargs) -> DocCfg:
     return DocCfg(id=id, author=author, category=Neutral.PRESSER, date=date, note=note, **kwargs)
-
-
-def shaher_murder_email(id: str, note: str = '', **kwargs) -> EmailCfg:
-    return EmailCfg(
-        id=id,
-        is_interesting=10,
-        non_participants=[JOI_ITO],
-        note=join_truthy(note, f"discussion of the murder of Martine Vik Magnussen by {SHAHER_ABDULHAK_BESHER}'s son Farouk"),
-        **kwargs
-    )
 
 
 def starr_letter(id: str, date: str, duplicate_ids: list[str], dupe_type: DuplicateType = 'same', **kwargs) -> CommunicationCfg:

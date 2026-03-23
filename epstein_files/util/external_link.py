@@ -37,6 +37,7 @@ SHORT_LINKS = {
     'businessinsider.com': 'BI',
     'cryptadamus.substack': 'thechronicles',
     'dossier.center': 'dossier',
+    'dropsitenews': 'dropsite',
     'graziadaily': 'grazia',
     'hollywoodreporter': 'hollywood',
     'justice.gov': 'DOJ',
