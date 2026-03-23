@@ -320,10 +320,10 @@ GIRLS_CFGS = [
     ),
     EmailCfg(id='EFTA01877224', author=SVETLANA_POZHIDAEVA, author_reason=f"{JOSHUA_FINK} texts", is_interesting=20, note=f"intimate texts with {JOSHUA_FINK}"),
     EmailCfg(id='EFTA00937507', author=SVETLANA_POZHIDAEVA, author_reason=f"{JOSHUA_FINK} texts", is_interesting=20, note=f"intimate texts with {JOSHUA_FINK}"),
-    EmailCfg(id='EFTA02605514', author=SVETLANA_POZHIDAEVA, note=f"{SVETLANA_POZHIDAEVA} meets {BILL_GATES}"),
-    EmailCfg(id='EFTA02634573', author=SVETLANA_POZHIDAEVA, note='updating Epstein on Women Empowerment'),
     EmailCfg(id='EFTA01805014', author=SVETLANA_POZHIDAEVA, author_uncertain='"BlackBerry from T-Mobile"', note=f'recruiting "Regina"'),
     EmailCfg(id='EFTA01772677', author=SVETLANA_POZHIDAEVA, author_uncertain='device signature'),
+    EmailCfg(id='EFTA02605514', author=SVETLANA_POZHIDAEVA, note=f"{SVETLANA_POZHIDAEVA} meets {BILL_GATES}"),
+    EmailCfg(id='EFTA02634573', author=SVETLANA_POZHIDAEVA, note='updating Epstein on Women Empowerment'),
     EmailCfg(id='EFTA01024246', is_interesting=10, note=f"invoice from {SVETLANA_POZHIDAEVA}'s WE Talks", show_with_name=SVETLANA_POZHIDAEVA),
     EmailCfg(
         id='EFTA01744405',
