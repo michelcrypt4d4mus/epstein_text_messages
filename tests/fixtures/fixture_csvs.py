@@ -91,6 +91,9 @@ def write_files_csv():
         if isinstance(has_timestamp_diff, str):
             doc._warn(has_timestamp_diff)
             row['timestamp'] = old_timestamp
+        elif has_timestamp_diff:
+            doc._warn(f"timestamp diff between CSV='{old_timestamp}' and current '{doc.timestamp}'")
+            row['timestamp'] = doc.timestamp
         else:
             row['timestamp'] = doc.timestamp
 
