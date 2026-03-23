@@ -77,7 +77,7 @@ GIRLS_CFGS = [
     ),
     DocCfg(id='EFTA02701609', author=GIANNI_SERAZZI, note='2morrow business plan', date='2014-09-30', date_uncertain=True),
     DocCfg(id='EFTA01078143', author=GIANNI_SERAZZI, note='2morrow modeling pitch deck', date='2014-09-30', date_uncertain=True),
-    DocCfg(id='EFTA00306033', author=SERGEY_BELYAKOV, note='Epstein Russian visa', show_full_panel=True),
+    DocCfg(id='EFTA00306033', author=SERGEY_BELYAKOV, note='Epstein Russian visa', show_full_panel=True),  # TODO: this belong here?
     DocCfg(
         id='EFTA01366289',
         author=BUTTERFLY_TRUST,
@@ -100,6 +100,13 @@ GIRLS_CFGS = [
         author=FRENCH_MINISTRY_OF_JUSTICE,
         note=f"allegations of sexual assault by {JEAN_LUC_BRUNEL}",
         date='2020-07-08',
+    ),
+    DocCfg(
+        id='EFTA01114895',
+        author=MARIA_PRUSAKOVA,
+        date='2016-06-01',
+        date_uncertain='near her move to Berkley',
+        note='application letter to UC Berkeley',
     ),
 
     # Communications

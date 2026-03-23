@@ -3110,7 +3110,10 @@ HIGHLIGHTED_NAMES = [
                 f"former Olympic snowboarder, {CRYPTO_PR_LAB} co-founder, long time recruiter for Epstein, WEF, Story VC",
                 r"Ma(sha|riy?a) (Prusa?(kova|so))",
                 aliases=['Masha Prusso', 'Mary Prusakova'],
-                email_addresses=['maryfrommoscow@hotmail.com'],
+                email_addresses=[
+                    'maryfrommoscow@hotmail.com',
+                    'maria.prusakova@lgt.com',
+                ],
                 url=[
                     'https://www.scamurai.io/p/epstein-files-suggest-ex-polygon',
                     'https://www.reddit.com/r/Epstein/comments/1qvsnqs/a_detailed_report_on_masha_prusso_aka_maria/',
