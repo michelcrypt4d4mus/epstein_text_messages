@@ -40,6 +40,7 @@ SHORT_LINKS = {
     'graziadaily': 'grazia',
     'hollywoodreporter': 'hllywd',
     'justice.gov': 'DOJ',
+    'instagram.com': 'insta',
     'lunch.publishersmarketplace': 'publ',
     'newyorker.com': 'NYer',
     'nypost.com': 'nyp',

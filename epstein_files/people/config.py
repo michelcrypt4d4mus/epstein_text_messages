@@ -3043,7 +3043,7 @@ HIGHLIGHTED_NAMES = [
             Entity(DASHA_GRUPMAN, 'recruiter of girls for Epstein', r"Da(ry|sh)a Grupman"),
             Entity(EKATERINA_GUSAROVA, f'Instagram model {QUESTION_MARKS}', r"(Ekaterina|Katya)? Gusm?arova", aliases=['Katya']),
             Entity(GULSUM_OSMANOVA, QUESTION_MARKS, r"Gul'?sum|Osmanova", email_addresses=['g.a.osmanova@gmail.com']),
-            Entity('Irina Vodolazova', 'Russian model', match_partial='both'),
+            Entity('Irina Vodolazova', 'model', match_partial='both', url='https://www.instagram.com/vodochka/'),
             Entity(JESSICA_BANKS, f'co-founder of {QUESTION_MARKS}', match_partial=None),
             Entity(
                 JULIA_SANTOS,  # TODO: Jmail says her email is julia.santos@hbs.edu
