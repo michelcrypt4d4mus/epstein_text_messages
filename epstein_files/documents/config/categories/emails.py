@@ -1281,8 +1281,8 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00664252', note='Epstein explains his "no wives / no girlfriends" policy', truncate_to=NO_TRUNCATE),
     EmailCfg(
         id='EFTA02689871',
-        highlight_quote='add China and Europe to Russia & Belorussia',
-        note=f"Epstein instructs {DAVID_STERN} to avoid {BANQUE_HAVILLAND}",
+        highlight_quote='As instructed I will stay =way',
+        note=f'Epstein tells {DAVID_STERN} to avoid {BANQUE_HAVILLAND} as it "add[s] China and Europe to Russia & Belorussia"',
         truncate_to=1_000,
     ),
     EmailCfg(id='EFTA00949376', note=f"Epstein paying {MC2_MODEL_MGMT}", truncate_to=NO_TRUNCATE),
