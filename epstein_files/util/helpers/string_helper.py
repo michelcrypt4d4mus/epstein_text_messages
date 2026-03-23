@@ -8,7 +8,7 @@ from typing import Any
 from inflection import underscore
 
 from epstein_files.util.constant.strings import AMPERSAND_CHAR_GROUP, QUESTION_MARKS_REGEX
-from epstein_files.util.logging import logger, print_text_block
+from epstein_files.util.logging import logger, text_block
 
 EMOJI_REGEX = re.compile(r"(?:^|\s)([:;=][-^]?[oODP()]|[oO()][-^]?[:=])(?=$|\s)")
 INTEGER_REGEX = re.compile(r'^\d+$')
@@ -108,14 +108,15 @@ def doublespace_paragraphs(s: str):
             msg = f"short line with period ({len(line)} chars) vs. average in doc of {avg_line_length}"
 
             if len(next_line := lines[i + 1]) > avg_line_length:
-                logger.warning(f"{msg}, inserting line break!")
+                logger.debug(f"{msg}, inserting line break!")
                 new_lines.append('')
             else:
-                logger.warning(f"skipping {msg}...")
+                logger.debug(f"skipping {msg}...")
 
-    s = '\n'.join(new_lines)
-    print_text_block(s, 'doublespaced paragraphs')
-    return s
+    if (new_text := '\n'.join(new_lines)) != s:
+        logger.warning(text_block(new_text[:10_000], 'doublespaced paragraphs'))
+
+    return new_text
 
 
 def extract_emojis(s: str) -> list[str]:

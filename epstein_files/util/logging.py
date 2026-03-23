@@ -72,12 +72,16 @@ def exception_suffix(e: Exception | None = None) -> str:
 
 
 def print_text_block(s: str, label: str) -> None:
-    print(f"\n-------- {label} ----------\n{s}\n-------- end {label} --------\n\n")
+    print(text_block(s, label))
 
 
 def set_log_level(log_level: int | str) -> None:
     for lg in [logger] + logger.handlers:
         lg.setLevel(log_level)
+
+
+def text_block(s: str, label: str) -> str:
+    return f"\n-------- {label} ----------\n{s}\n-------- end {label} --------\n\n"
 
 
 if env_log_level_str:
