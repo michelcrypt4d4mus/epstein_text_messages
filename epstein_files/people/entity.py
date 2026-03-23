@@ -207,6 +207,10 @@ class Entity(LoggingEntity):
         return as_pattern(join_patterns([pattern, *self.email_addresses]))
 
     @property
+    def wikipedia_url(self) -> str:
+        return wikipedia_url(self.name)
+
+    @property
     def _identifier(self) -> str:
         """`LoggingEntity` abstract method implementation."""
         return quote(self.name)
@@ -301,8 +305,12 @@ class Entity(LoggingEntity):
 
     def links_txt(self, include_wikipedia: bool = True) -> Text:
         """All links concatenated into one Text object."""
-        links = [link.domain_link() for link in self.links() if include_wikipedia or (WIKIPEDIA not in link.url)]
-        return self._joined_links(links)
+        links = self.links()
+
+        if links and links[0].url == self.wikipedia_url and not include_wikipedia:
+            links = links[1:]
+
+        return self._joined_links([link.domain_link() for link in links])
 
     def _joined_links(self, links: Sequence[ExternalLink | Text]) -> Text:
         """Join links to '[link/link/link]' Text."""
