@@ -463,6 +463,7 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
     TYLER_SHEARS: ["Sent from my iPhone"],
     UNKNOWN_GIRL: [
         'Sent from my iPad',
+        'Sent using BlackBerry® from Orange',
         'Sent via BlackBerry from T-Mobile',
     ],
     USANYS: [

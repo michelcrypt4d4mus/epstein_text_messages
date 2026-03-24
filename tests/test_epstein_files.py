@@ -99,7 +99,7 @@ def test_all_configured_file_ids_exist(epstein_files):
 def test_imessage_text_counts(epstein_files):
     immesage_log_ids = sorted([doc.file_id for doc in epstein_files.imessage_logs])
     assert immesage_log_ids == IMESSAGE_LOG_IDS
-    assert MESSENGER_LOG_AUTHOR_COUNTS == MessengerLog.count_authors(epstein_files.imessage_logs)
+    assert MessengerLog.count_authors(epstein_files.imessage_logs) == MESSENGER_LOG_AUTHOR_COUNTS
 
 
 def test_no_files_after_2025(epstein_files):
