@@ -294,7 +294,7 @@ class DojFile(OtherFile):
         dupe_idx = 0
         # TODO: Years of 2001 are often garbage pared from '1.6' etc.
         sort_timestamp = self.timestamp or FALLBACK_TIMESTAMP
-        sort_timestamp = FALLBACK_TIMESTAMP if sort_timestamp.year <= 2001 else sort_timestamp
+        sort_timestamp = FALLBACK_TIMESTAMP if sort_timestamp.year == 2001 else sort_timestamp
         return (sort_timestamp, self.file_id, dupe_idx)
 
     def external_links_txt(self, _style: str = '', with_alt_links: bool = True) -> Text:

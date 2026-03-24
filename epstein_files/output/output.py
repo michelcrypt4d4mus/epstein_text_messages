@@ -98,7 +98,7 @@ def print_chronological(epstein_files: EpsteinFiles, printer: DocPrinter) -> Non
             return bool(doc.is_interesting if not args.invert_chrono else not doc.is_interesting)
 
     docs = [d for d in epstein_files.unique_documents if should_print(d)]
-    docs = DocList.uniquify_by_id(docs, allow_dupes=False)
+    docs = DocList.sort_by_timestamp(DocList.uniquify_by_id(docs, allow_dupes=False))
     logger.warning(f'Printing {len(docs)} documents chronologically...')
     printer.print_section_subtitle('Selected Files of Interest in Chronological Order')
     printer.print_documents(_max_records(docs))
