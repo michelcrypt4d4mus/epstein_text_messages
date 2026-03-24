@@ -341,7 +341,7 @@ GOVERNMENT_CFGS = [
         'EFTA01657299',
         highlight_quote='Brunel uses MC2 as a legitimate transport agency of underage girls into America for purposes of sex',
         note=f'interview of {JEAN_LUC_BRUNEL} partner Sergio Cordero',
-        truncate_to=(10_200, 14_500),
+        truncate_to=(10_240, 14_500),
     ),
     fbi_internal('EFTA01648955'),
     fbi_internal('EFTA00037690', highlight_quote='seems to be a conduit for money paid to female victims', note=BUTTERFLY_TRUST),
