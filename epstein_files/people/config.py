@@ -3297,7 +3297,7 @@ HIGHLIGHTED_NAMES = [
                 url=['https://4chan.org/', WIKIPEDIA],
             ),
             Entity('Claudia Leschuck', f"assistant to {NATHAN_MYHRVOLD}", r"Claudia Leschu[ck]+"),
-            Entity('Danny Hillis', "computer scientist, artificial intelligence researcher", r"Dan(iel|ny) Hillis?"),
+            Entity(DANNY_HILLIS, "computer scientist, artificial intelligence researcher", r"Dan(iel|ny) Hillis?"),
             Entity(
                 DAVID_FISZEL,
                 f"CIO {HONEYCOMB_ASSET_MANAGEMENT}, Epstein invested in Spotify through him",
@@ -3306,8 +3306,8 @@ HIGHLIGHTED_NAMES = [
             Entity(
                 'David Sacks',
                 f"Craft Ventures, {ALL_IN_PODCAST}, anti-Ukraine / pro-Russia VC with connections to Wirecard",
-                url='https://www.thecaptainslog.io/the-david-sacks-files-part-i/',
                 match_partial=None,
+                url='https://www.thecaptainslog.io/the-david-sacks-files-part-i/',
             ),
             Entity('Drew Houston', 'CEO of Dropbox', match_partial=None),
             Entity(
