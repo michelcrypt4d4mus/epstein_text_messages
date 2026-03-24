@@ -260,7 +260,7 @@ MONEY_CFGS = [
         id='EFTA01816514',
         comment='Different Gary, different Gensler',
         non_participants=['Gary Gensler'],
-        note=f"discussion of open invoices includes $854,598 line of credit for {MC2_MODEL_MGMT}",
+        note=f"discussion of open invoices includes $854,598 line of credit for {MC2_MODEL_MGMT}, also Ossa Properties (Mark Epstein)",
         truncate_to=(2_200, 2_900),
     ),
     sar('EFTA01648787', JP_MORGAN, "$1.1 billion in Epstein transfers"),

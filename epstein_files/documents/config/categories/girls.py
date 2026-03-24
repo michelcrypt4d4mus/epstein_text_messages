@@ -518,9 +518,11 @@ GIRLS_CFGS = [
     DocCfg(
         id='EFTA00009622',
         date='2006-07-19',
-        note='handwritten notes from a victim interview transcribed by Claude AI',
-        is_interesting=10,
         display_text=EFTA00009622_TEXT,
+        is_interesting=10,
+        note='handwritten notes from a victim interview transcribed by Claude AI',
+        show_full_panel=True,
+        truncate_to=(1_500, 2_350),
     ),
     EmailCfg(
         id='EFTA00577409',
