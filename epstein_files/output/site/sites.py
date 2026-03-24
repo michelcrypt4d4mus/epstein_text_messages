@@ -165,14 +165,11 @@ class Site(StrEnum):
         from epstein_files.output.highlight_config import get_style_for_category
         link_text = escape(f"category[{category}]")
 
-        link = link_text_obj(cls.get_url(cls.CATEGORY, category), link_text, get_style_for_category(category) or '')
-        # return link.append(' only files in this category')
-
         ext_link = ExternalLink(
             cls.get_url(cls.CATEGORY, category),
             link_text,
             link_style=get_style_for_category(category) or '',
-            comment=f'only files related to {category}',
+            comment=f'all files related to {category}',
             comment_style='color(147) dim italic'
         )
 
