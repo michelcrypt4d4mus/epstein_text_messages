@@ -3296,7 +3296,7 @@ HIGHLIGHTED_NAMES = [
                 match_partial=None,
                 url=['https://4chan.org/', WIKIPEDIA],
             ),
-            Entity('Claudia Leschuck', f"assistant to {NATHAN_MYHRVOLD} {QUESTION_MARKS}", r"Claudia Leschu[ck]+"),
+            Entity('Claudia Leschuck', f"assistant to {NATHAN_MYHRVOLD}", r"Claudia Leschu[ck]+"),
             Entity('Danny Hillis', "computer scientist, artificial intelligence researcher", r"Dan(iel|ny) Hillis?"),
             Entity(
                 DAVID_FISZEL,
