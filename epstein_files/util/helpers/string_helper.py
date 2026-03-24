@@ -40,7 +40,6 @@ ORDINAL_PATTERN = '|'.join([o.upper() for o in 'first second third fourth fifth 
 ORDINAL_LIST_REGEX = list_item_regex(ORDINAL_PATTERN, re.DOTALL | re.MULTILINE)
 SECTION_LIST_REGEX = re.compile(r"[^\n](\nSection \d+)")  # doesn't match already doublespaced
 
-
 capitalize_first = lambda s: s[0].upper() + s[1:]
 capture_group_marker = lambda label: fr"?P<{label}>"
 collapse_newlines = lambda text: MULTINEWLINE_REGEX.sub('\n\n', text)
@@ -53,12 +52,10 @@ is_integer = lambda s: isinstance(s, int) or bool(INTEGER_REGEX.match(s))
 join_patterns = lambda patterns: '|'.join(patterns)
 iso_date = lambda dt: dt.isoformat()[0:10]
 iso_timestamp = lambda dt: dt.isoformat().replace('T', ' ')
+or_equal_sign_char_group = lambda s: f"[{s}=]"  # DataSet 11 has a lot of random '=' replacing characters
 strip_pdfalyzer_panels = lambda s: PDFALYZER_IMAGE_PANEL_REGEX.sub('', s)
 timestamp_str = lambda dt: dt.isoformat()[0:19]
 timestamp_human = lambda dt: timestamp_str(dt).replace('T', ' ')
-
-# regexes
-or_equal_sign_char_group = lambda s: f"[{s}=]"  # DataSet 11 has a lot of random '=' replacing characters
 
 
 def as_pattern(s: str) -> str:
