@@ -62,7 +62,7 @@ def house_file_id_int() -> int:
 
 @pytest.fixture
 def house_file_stem(house_file_id) -> str:
-    return file_stem_for_id(house_file_id)
+    return house_file_stem(house_file_id)
 
 
 @pytest.fixture

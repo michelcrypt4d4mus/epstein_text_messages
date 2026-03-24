@@ -5,8 +5,8 @@ DOJ_ID = 'EFTA01001153'
 
 
 def test_build_filename_for_id():
-    assert file_stem_for_id(123) == 'HOUSE_OVERSIGHT_000123'
-    assert file_stem_for_id('001234_2') == 'HOUSE_OVERSIGHT_001234_2'
+    assert house_file_stem(123) == 'HOUSE_OVERSIGHT_000123'
+    assert house_file_stem('001234_2') == 'HOUSE_OVERSIGHT_001234_2'
 
 
 def test_coerce_file_stem(house_file_id, house_file_stem, house_filename, house_extract_filename):

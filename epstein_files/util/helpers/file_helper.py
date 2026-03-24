@@ -75,9 +75,9 @@ def coerce_file_stem(filename_or_id: int | str | Path) -> str:
 
     if isinstance(filename_or_id, str) and filename_or_id.startswith(HOUSE_OVERSIGHT_PREFIX):
         file_id = extract_file_id(filename_or_id)
-        file_stem = file_stem_for_id(file_id)
+        file_stem = house_file_stem(file_id)
     else:
-        file_stem = file_stem_for_id(str(filename_or_id))
+        file_stem = house_file_stem(str(filename_or_id))
 
     if not HOUSE_OVERSIGHT_NOV_2025_FILE_STEM_REGEX.match(file_stem):
         raise RuntimeError(f"Invalid stem '{file_stem}' from '{filename_or_id}'")
@@ -156,18 +156,18 @@ def file_size_to_str(size: int, digits: int | None = None) -> str:
     return f"{size_num:,.{digits}f} {size_str}"
 
 
-def file_stem_for_id(id: int | str) -> str:
-    if isinstance(id, int) or (isinstance(id, str) and len(id) <= 6):
+def format_house_oversight_id(id: int | str) -> str:
+    """Make sure there's enough leading zeroes for 6 digit ID."""
+    return f"{int(id):06d}"
+
+
+def house_file_stem(id: int | str) -> str:
+    if is_integer(id):
         return f"{HOUSE_OVERSIGHT_PREFIX}{format_house_oversight_id(id)}"
     elif HOUSE_OVERSIGHT_NOV_2025_ID_REGEX.match(id):
         return f"{HOUSE_OVERSIGHT_PREFIX}{id}"
     else:
         raise ValueError(f"Unknown kind of file id {id}")
-
-
-def format_house_oversight_id(id: int | str) -> str:
-    """Make sure there's enough leading zeroes for 6 digit ID."""
-    return f"{int(id):06d}"
 
 
 def is_doj_file(file: str | Path) -> bool:
