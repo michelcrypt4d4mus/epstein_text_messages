@@ -420,6 +420,7 @@ GIRLS_CFGS = [
         id='EFTA01035876',
         author=YULIA_DOROKHINA,
         author_uncertain='"Yulia" in reply',
+        is_interesting=5,
         note=f'looking for a job under {JIDE_ZEITLIN}',
         show_with_name=JIDE_ZEITLIN,
     ),
@@ -730,6 +731,7 @@ GIRLS_CFGS = [
     # Descriptions
     EmailCfg(
         id='EFTA02627361',
+        is_interesting=5,
         note=f'Epstein sending {YULIA_DOROKHINA} {QUESTION_MARKS} to {JIDE_ZEITLIN}',
         recipients=[JIDE_ZEITLIN],
         recipient_uncertain=True,

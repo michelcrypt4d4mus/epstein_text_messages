@@ -271,6 +271,13 @@ MONEY_CFGS = [
         note=f"AML / Suspicious Activity report on structured deposits by {DARREN_INDYKE}",
     ),
 
+    # David Stern
+    EmailCfg(
+        id='EFTA02410642',
+        is_interesting=2,
+        note=f'"PA" is probably {PRINCE_ANDREW} plus a meeting with {NICOLE_JUNKERMANN}',
+        show_with_name=NICOLE_JUNKERMANN,
+    ),
     # Joi Ito
     EmailCfg(id='EFTA01964198'),  # no profits/charity
     EmailCfg(id='EFTA01754913'),  # no profits/charity
