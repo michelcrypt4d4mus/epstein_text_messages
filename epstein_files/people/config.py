@@ -2756,11 +2756,11 @@ HIGHLIGHTED_NAMES = [
             Entity('Sergio Cordero', f"modeling agent {MC2_MODEL_MGMT}, business partner of {JEAN_LUC_BRUNEL}", match_partial=None),
             Entity(
                 'Tigran Khachatrian',
-                f'model scout, friend of {DANIEL_SIAD}, in "Girl Model" documentary, 6 years in prison for identity theft',  #  in 2012
+                f'model scout, friend of {DANIEL_SIAD}, appears in "Girl Model" documentary', #, 6 years in prison for identity theft',  #  in 2012
                 r"Tigrane?( Khachatrian)?",
                 match_partial='both',
                 url=[
-                    'https://archives.fbi.gov/archives/portland/press-releases/2012/defendant-sentenced-to-70-months-in-federal-prison-for-identity-theft-scheme',
+                    # 'https://archives.fbi.gov/archives/portland/press-releases/2012/defendant-sentenced-to-70-months-in-federal-prison-for-identity-theft-scheme',
                     'https://en.wikipedia.org/wiki/Girl_Model',
                 ],
             ),
