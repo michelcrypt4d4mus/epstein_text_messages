@@ -50,10 +50,9 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         label='dollars',
         style=FINANCIAL_COLOR,
         patterns=[
-            r"[€$£][\dO,.]+(\s*(bn|[bm](illl?ion|m)?|k|thousand))?( dollars?)?",
-            r"[\dO,.]+\s*(GBP|euros?(?!pe)|[bm]illl?ion( (dollars|euros))?( loan)?)",
+            r"[€$£]\d([\d,.]|(?-i:O))*(\s*(bn|[bm](illl?ion|m)?|k|thousand))?( dollars?)?",
+            r"\d([\d,.]|(?-i:O))*\s*(GBP|euros?(?!pe)|[bm]illl?ion( (dollars|euros))?( loan)?)",
         ],
-        regex_flags = re.MULTILINE,  # No IGNORECASE
     ),
     HighlightPatterns(
         label='metoo',
