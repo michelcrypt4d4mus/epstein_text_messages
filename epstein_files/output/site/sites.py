@@ -193,7 +193,7 @@ SITE_DESCRIPTIONS = {
     Site.MOST_INTERESTING:      f"most interesting:the cream of the crop",
     Site.CHRONOLOGICAL:         f"chronological curated:all types intermingled",
     Site.CURATED:               f"emailers curated:emails grouped by person of interest",
-    Site.EMAILERS:              f"emailers:all emails grouped by person",
+    Site.EMAILERS:              f"emailers all:all emails grouped by person",
     Site.EMAILS_CHRONOLOGICAL:  f"emails chronological:all emails chronological order",
     Site.BIOGRAPHIES:           f"people:one line biographies with some links",
     Site.DEVICE_SIGNATURES:     f"signatures:email signatures/emojis and who uses them",

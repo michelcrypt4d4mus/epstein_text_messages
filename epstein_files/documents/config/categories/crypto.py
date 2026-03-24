@@ -15,7 +15,6 @@ from epstein_files.util.helpers.string_helper import join_truthy, quote
 BEN_LAWSKY_NYDFS = f'head of NY Dept of Financial Services {BEN_LAWSKY}'
 KYARA_FUND = f"Epstein crypto fund {KYARA_INVESTMENT}"
 RIOT_BLOCKCHAIN_DESCRIPTION = 'RIOT Blockchain (FKA "Bioptix") is a sketchy bitcoin miner in Texas'
-VALAR_FUND = f"{PETER_THIEL}'s {VALAR_VENTURES} fund"
 
 CRYPTO_NAMES = [
     AUSTIN_HILL,
@@ -614,23 +613,6 @@ CRYPTO_CFGS = [
     EmailCfg(id='EFTA01804670', highlight_quote='Andreessen really into this whole virtual money space', truncate_to=700),
     EmailCfg(id='EFTA00661348', note=f'epstein asking {STEVEN_SINOFSKY} for information on the Coinbase IPO', truncate_to=NO_TRUNCATE, is_interesting=2),
     EmailCfg(id='EFTA00976203', note=f'comments about {BEN_LAWSKY_NYDFS} and crypto regulations', is_interesting=2),
-    # Valar Ventures
-    DocCfg(
-        id='EFTA00591045',
-        attached_to_email_id='EFTA01001339',
-        author=VALAR_VENTURES,
-        note='pitch deck',
-        non_participants=[MASAYOSHI_SON],
-    ),
-    DocCfg(id='EFTA00810239', author=VALAR_VENTURES, note='pitch deck'),
-    DocCfg(id='EFTA00810510', author=VALAR_VENTURES, note='Fall 2016 Update'),
-    DocCfg(id='EFTA00810474', author=VALAR_VENTURES, note='Fall 2018 Update'),
-    DocCfg(id='EFTA01121910', author=VALAR_VENTURES, note="contract"),
-    DocCfg(id='EFTA00808277', author=VALAR_VENTURES, note="contract"),
-    DocCfg(id='EFTA01088484', author=VALAR_VENTURES, note="contract"),
-    DocCfg(id='EFTA00591691', author=VALAR_VENTURES, note="contract"),
-    DocCfg(id='EFTA00810362', author=VALAR_VENTURES, note="investor questionnaire"),
-    EmailCfg(id='EFTA01001339', note=f"{PETER_THIEL} introduces Epstein to the {VALAR_VENTURES} founders", is_interesting=10),
     # Vincenzo
     EmailCfg(id='EFTA00637023', note=f"discussion of getting around money laundering laws in places like Myanmar + Mongolia"),
     EmailCfg(id='EFTA02588723', note=f'discussion of crypto food stamps debit cards', is_interesting=10),
