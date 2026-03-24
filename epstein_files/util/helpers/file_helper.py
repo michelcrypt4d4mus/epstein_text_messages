@@ -6,10 +6,11 @@ from subprocess import check_output, run
 from rich.panel import Panel
 from rich.text import Text
 
-from epstein_files.util.constant.strings import (DOJ_FILE_STEM_REGEX, DOJ_FILE_NAME_REGEX, EFTA_PREFIX,
+from epstein_files.util.constant.strings import (DOJ_FILE_STEM_REGEX, DOJ_FILE_NAME_REGEX, DROPSITE_FILE_ID_REGEX, DUMMY_ID, EFTA_PREFIX,
      HOUSE_OVERSIGHT_NOV_2025_FILE_NAME_REGEX, HOUSE_OVERSIGHT_NOV_2025_FILE_STEM_REGEX,
      HOUSE_OVERSIGHT_NOV_2025_ID_REGEX, HOUSE_OVERSIGHT_PREFIX, LOCAL_EXTRACT_REGEX)
 from epstein_files.util.env import DOCS_DIR, DOJ_PDFS_20260130_DIR, DOJ_TXTS_20260130_DIR, DROPSITE_EMLS_DIR
+from epstein_files.util.helpers.string_helper import is_integer, join_patterns
 from epstein_files.util.logging import logger
 
 PROJECT_DIR = Path(__file__).parent.parent.parent.parent
@@ -19,6 +20,15 @@ DOJ_FILE_ID_REGEX = re.compile(fr".*{DOJ_FILE_NAME_REGEX.pattern}")
 DROPSITE_FILE_NAME_REGEX = re.compile(fr"{DROPSITE_EMLS_DIR}.* (\d\d\d\d-\d\d-\d\d \d+)\.eml")
 HOUSE_FILE_ID_REGEX = re.compile(fr".*{HOUSE_OVERSIGHT_NOV_2025_FILE_NAME_REGEX.pattern}")
 
+ID_PATTERNS = [
+    DOJ_FILE_STEM_REGEX.pattern,
+    DUMMY_ID,
+    DROPSITE_FILE_ID_REGEX.pattern,
+    HOUSE_OVERSIGHT_NOV_2025_ID_REGEX.pattern,
+]
+
+VALID_ID_REGEX = re.compile(fr"^({join_patterns(ID_PATTERNS)})$")
+
 FILENAME_LENGTH = len(HOUSE_OVERSIGHT_PREFIX) + 6  # TODO: this is obsolete
 DIFF_COLORS = ['spring_green4', 'sea_green1']
 DIFF_PFXES = ['<', '>']
@@ -27,6 +37,7 @@ MB = KB * KB
 
 # File stat helpers
 file_size = lambda file_path: Path(file_path).stat().st_size
+is_valid_id = lambda id: bool(VALID_ID_REGEX.match(id))
 modified_at = lambda file_path: datetime.fromtimestamp(Path(file_path).stat().st_mtime)
 
 # Document path helpers
@@ -105,7 +116,7 @@ def extract_efta_id(file_id: str) -> int:
 
 
 def extract_file_id(filename_or_id: int | str | Path) -> str:
-    # DOJ 2026-01 files have different pattern
+    """DOJ 2026-01 files have different pattern."""
     if isinstance(filename_or_id, (str, Path)) and is_doj_file(filename_or_id):
         return Path(filename_or_id).stem
     elif isinstance(filename_or_id, (str, Path)) and (m := DROPSITE_FILE_NAME_REGEX.match(str(filename_or_id))):
@@ -113,13 +124,12 @@ def extract_file_id(filename_or_id: int | str | Path) -> str:
     elif isinstance(filename_or_id, str):
         filename_or_id = filename_or_id.removesuffix(',')  # clean up commas from bad args.positional_args copypasta
 
-    if isinstance(filename_or_id, int) or (isinstance(filename_or_id, str) and len(filename_or_id) <= 6):
-        return format_house_oversight_id(filename_or_id)
-
     filename_str = str(filename_or_id)
 
-    if (file_match := HOUSE_OVERSIGHT_NOV_2025_ID_REGEX.search(filename_str.upper())):
-        return file_match.group(1)
+    if is_integer(filename_str):
+        return format_house_oversight_id(filename_str)
+    elif (id_match := HOUSE_OVERSIGHT_NOV_2025_ID_REGEX.search(filename_str.upper())):
+        return id_match.group(1)
     else:
         logger.error(f"filename_str='{filename_str}', HOUSE_FILE_ID_REGEX='{HOUSE_FILE_ID_REGEX.pattern}'")
         raise RuntimeError(f"Failed to extract file ID from '{filename_or_id}' (type: {type(filename_or_id).__name__}!")

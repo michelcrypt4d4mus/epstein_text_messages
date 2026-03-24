@@ -329,6 +329,10 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
         "Sent from my iPad",
         "Sent from my iPhone"
     ],
+    LAURA_T_NEWMAN: [
+        'Sent from my Verizon Wireless BlackBerry',
+        'Sent from my Verizon Wireless Phone',
+    ],
     LAWRANCE_VISOSKI: [
         "Sent from my iPad",
         "Sent from my iPhone"

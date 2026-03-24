@@ -154,7 +154,7 @@ UNINTERESTING_EMAIL_IDS = [
     # Christina Galbraith
     '031591',
     # Danny Hillis
-    'EFTA01880902'
+    'EFTA01880902',
     # David Stern
     'EFTA02507454',
     'EFTA02478704',

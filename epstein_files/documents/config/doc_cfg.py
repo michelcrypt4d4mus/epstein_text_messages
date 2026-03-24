@@ -18,7 +18,7 @@ from epstein_files.util.constant.strings import *
 from epstein_files.util.env import args, site_config
 from epstein_files.util.external_link import ExternalLink
 from epstein_files.util.helpers.data_helpers import coerce_utc_strict, without_falsey
-from epstein_files.util.helpers.file_helper import is_doj_file
+from epstein_files.util.helpers.file_helper import is_doj_file, is_valid_id
 from epstein_files.util.helpers.rich_helpers import CharRangeAuto, enclose
 from epstein_files.util.helpers.string_helper import collapse_whitespace, is_bool_prop, join_truthy, quote
 from epstein_files.util.logging import logger
@@ -182,7 +182,9 @@ class DocCfg(LoggingEntity):
     PREFIX_NOTE_WITH_CATEGORY: ClassVar[bool] = True
 
     def __post_init__(self):
-        if self.id in self.duplicate_ids:
+        if not is_valid_id(self.id):
+            raise ValueError(f"Invalid file ID '{self.id}'")
+        elif self.id in self.duplicate_ids:
             raise ValueError(f"{self.id} is a duplicate of itself!")
         elif self.truncate_to == AUTO:
             if not self.highlight_quote:
