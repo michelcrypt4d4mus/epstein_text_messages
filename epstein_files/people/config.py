@@ -3564,6 +3564,7 @@ HIGHLIGHTED_NAMES = [
             r"\bMatt C\b",
             r"Michael (D\.? )?Cohen",
             r"Paul Rampell",
+            r"REAL C(adre|ONTRAD)",
             r"rona",
             r"(The )?Art of the Deal",
         ],

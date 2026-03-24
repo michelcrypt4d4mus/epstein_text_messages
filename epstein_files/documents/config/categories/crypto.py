@@ -5,6 +5,7 @@ Crypto and virtual currency / fintech related files
 from epstein_files.documents.config.communication_cfg import CommunicationCfg, imessage_log, imessage_screenshot, whatsapp_log
 from epstein_files.documents.config.doc_cfg import EMAIL_TRUNCATE_TO, NO_TRUNCATE, DocCfg
 from epstein_files.documents.config.email_cfg import EmailCfg
+from epstein_files.documents.config.categories.government import fbi_tip
 from epstein_files.people.names import *
 from epstein_files.util.constant.strings import *
 from epstein_files.util.env import args
@@ -385,7 +386,14 @@ CRYPTO_CFGS = [
     EmailCfg(id='EFTA01973301', recipients=[LINDA_STONE], author_reason='signature'),
     EmailCfg(id='EFTA00473175', truncate_to=1_000),
     # Kushner
-    DocCfg(id='EFTA00128987', note='suspicious activity report (SAR) about Kushner co. crypto payments to suspicious Russian person'),
+    fbi_tip(
+        'EFTA00128987',
+        f'from {DEUTSCHE_BANK} anti-money laundering employee about Jared Kushner co. RealCadre crypto payments to suspicious Russians',
+        date='2019-08-21',
+        is_interesting=30,
+        non_participants=['Marla Maples'],
+        truncate_to=(11_000, 14_000),
+    ),
     # Larry Summers
     EmailCfg(id='EFTA01062556', is_interesting=10, note=f"{LARRY_SUMMERS} gives Epstein his thoughts on Gary Gensler", truncate_to=780),
     EmailCfg(id='EFTA00818073', is_interesting=10, note="Epstein and Gary Gensler meeting about crypto", truncate_to=250),

@@ -557,7 +557,8 @@ GIRLS_CFGS = [
     EmailCfg(
         id='EFTA00959489',
         highlight_quote='she is a little freaked by the age difference',
-        note=f'girl is {EKATERINA_GUSAROVA}',
+        is_interesting=6,
+        note=f'girl is {EKATERINA_GUSAROVA}, "pro or civilian?"',
         show_with_name=EKATERINA_GUSAROVA,
     ),
     EmailCfg(
