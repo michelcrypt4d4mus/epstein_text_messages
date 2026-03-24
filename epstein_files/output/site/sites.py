@@ -9,6 +9,7 @@ from typing import Self
 from rich.markup import escape
 from rich.text import Text
 
+from epstein_files.documents.documents.categories import Interesting
 from epstein_files.util.constant.strings import (AUX_SITE_LINK_STYLE, CHRONOLOGICAL, DOJ_2026_TRANCHE,
      EPSTEIN_FILES_NOV_2025, HOUSE_OVERSIGHT_TRANCHE)
 from epstein_files.util.external_link import ExternalLink, link_text_obj, parenthesize
@@ -27,11 +28,14 @@ EXTRACTS_BASE_URL = f'{GH_MASTER_URL}/emails_extracted_from_legal_filings'
 BASE_DEPLOY_URL = f"{GH_PAGES_BASE_URL}/{GH_REPO_NAME}"
 PROJECT_LINK = ExternalLink(BASE_DEPLOY_URL, f"Michel de Cryptadamus Epstein Investigations")
 
+CATEGORY_SITES = [Interesting.CRYPTO, Interesting.GIRLS, Interesting.MONEY]
 CATEGORY_PREFIX = 'for_category_'
 CUSTOM_HTML_PREFIX = 'real_html_'
 NAMES_PREFIX = 'only_names_'
 MOBILE_SUFFIX = '_mobile'
 PHONE_LOG_FILE_ID = 'EFTA01242527'
+
+category_link_text = lambda category: f"category[{category}]"
 
 
 class Site(StrEnum):
@@ -64,9 +68,11 @@ class Site(StrEnum):
         return {site: cls.get_url(site) for site in cls}
 
     @classmethod
-    def all_links(cls) -> dict['Site', Text]:
+    def all_links(cls) -> 'dict[Site | str, Text]':
         """Use `SITE_DESCRIPTIONS` dict because it's ordered and also omits unpublished site types."""
-        return {site: Site.link_txt(site) for site in SITE_DESCRIPTIONS}
+        links = {site: cls.link_txt(site) for site in SITE_DESCRIPTIONS}
+        links.update({category_link_text(c): cls.link_to_category(c) for c in CATEGORY_SITES})
+        return links
 
     @classmethod
     def custom_html_build_path(cls, site: 'Site | Path') -> Path:
@@ -80,7 +86,7 @@ class Site(StrEnum):
         return {k: v for k, v in cls.all_links().items() if not cls.is_mobile(k)}
 
     @classmethod
-    def html_output_path(cls, _site: 'Site') -> Path:
+    def html_output_path(cls, _site: 'Site', category: str = '') -> Path:
         """Defaults to `[site].html` if not configured in `HTML_BUILD_FILENAMES`."""
         if _site in [cls.CATEGORY, cls.NAMES]:
             from epstein_files.util.env import args
@@ -90,7 +96,11 @@ class Site(StrEnum):
                 suffixes = ['unknown' if n is None else n for n in args.names]
             else:
                 prefix = CATEGORY_PREFIX
-                suffixes = [args.category]
+
+                if (category := category or args.category):
+                    suffixes = [category]
+                else:
+                    suffixes = []
 
             site = prefix + '__'.join(sorted(suffixes)).replace(' ', '_').lower()
         elif _site == cls.CATEGORY:
@@ -108,8 +118,8 @@ class Site(StrEnum):
         return output_path.parent.joinpath(output_path.name.replace('.html', '_mobile.html'))
 
     @classmethod
-    def get_url(cls, site: 'Site') -> str:
-        return f"{BASE_DEPLOY_URL}/{cls.html_output_path(site).name}"
+    def get_url(cls, site: 'Site', category: str = '') -> str:
+        return f"{BASE_DEPLOY_URL}/{cls.html_output_path(site, category).name}"
 
     @classmethod
     def get_mobile_redirect_url(cls, site: Self) -> str:
@@ -149,6 +159,24 @@ class Site(StrEnum):
         style_mod = '' if cls._is_lesser_site(site) else 'bold'
         link = link_text_obj(Site.get_url(site), escape(description), f"{style} {style_mod}")
         return link.append(extra_info)
+
+    @classmethod
+    def link_to_category(cls, category: str) -> Text:
+        from epstein_files.output.highlight_config import get_style_for_category
+        link_text = escape(f"category[{category}]")
+
+        link = link_text_obj(cls.get_url(cls.CATEGORY, category), link_text, get_style_for_category(category) or '')
+        # return link.append(' only files in this category')
+
+        ext_link = ExternalLink(
+            cls.get_url(cls.CATEGORY, category),
+            link_text,
+            link_style=get_style_for_category(category) or '',
+            comment=f'only files related to {category}',
+            comment_style='color(147) dim italic'
+        )
+
+        return ext_link.__rich__()
 
     @classmethod
     def mobile_compatible_types(cls) -> list['Site']:
@@ -224,6 +252,12 @@ DEPLOY_CUSTOM_HTML_SITES = [
 def make_clean() -> None:
     """Delete all build artifacts."""
     for site in Site:
+        if site == Site.CATEGORY:
+            for category in CATEGORY_SITES:
+                logger.error(f'should clean file but not for category: {category}')
+
+            continue
+
         for build_file in [Site.html_output_path(site)]: #, Site.custom_html_build_path(site)]:
             if site == Site.NAMES:
                 paths = [f for f in build_file.parent.glob(f"{build_file.stem}*.html")]
@@ -240,6 +274,16 @@ def use_custom_html() -> None:
     for site in DEPLOY_CUSTOM_HTML_SITES:
         from_path = Site.custom_html_build_path(site)
         to_path = Site.html_output_path(site)
+
+        if from_path.exists():
+            logger.warning(f"Copying/overwriting '{from_path}' to '{to_path}'...")
+            shutil.copy2(from_path, to_path)
+        else:
+            logger.error(f"No custom HTML file found at '{from_path}'")
+
+    for category in CATEGORY_SITES:
+        to_path = Site.html_output_path(Site.CATEGORY, category)
+        from_path = Site.custom_html_build_path(to_path)
 
         if from_path.exists():
             logger.warning(f"Copying/overwriting '{from_path}' to '{to_path}'...")

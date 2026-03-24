@@ -86,7 +86,7 @@ def doublespace_paragraphs(s: str):
     if avg_line_length < DOUBLESPACE_PARAGRAPH_MIN_AVG_LEN:
         return s
 
-    logger.warning(f"{len(lines)} lines with average length {avg_line_length}\nlengths: {sorted(line_lengths)}")
+    logger.info(f"{len(lines)} lines with average length {avg_line_length}\nlengths: {sorted(line_lengths)}")
     new_lines = []
 
     for i, line in enumerate(lines):
