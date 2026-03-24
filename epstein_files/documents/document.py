@@ -32,6 +32,7 @@ from epstein_files.documents.emails.email_header import DETECT_EMAIL_REGEX
 from epstein_files.output.highlight_config import HIGHLIGHTED_ENTITIES, get_style_for_category, get_style_for_name, styled_name
 from epstein_files.output.html.builder import VERTICAL_MARGIN_EMS
 from epstein_files.output.layout_elements.base_panel import BasePanel
+from epstein_files.output.layout_elements.image_panel import ImagePanel
 from epstein_files.output.layout_elements.layout import Layout
 from epstein_files.output.rich import (INFO_STYLE, NA_TXT, SYMBOL_STYLE, add_cols_to_table, build_table, console,
      styled_key_value, prefix_with, snip_msg_txt, styled_dict)
@@ -254,6 +255,13 @@ class Document(LoggingEntity):
     def html_margin_bottom(self) -> str:
         """Overloaded in `Email` for case of emails with attachments."""
         return VERTICAL_MARGIN_EMS
+
+    @property
+    def image_url(self) -> str:
+        if self._config.show_image:
+            return f'doc_images/{self.file_id}.png'
+        else:
+            return ''
 
     @property
     def is_email_attachment(self) -> bool:
@@ -515,13 +523,26 @@ class Document(LoggingEntity):
         background_color: str = ''
     ) -> Layout:
         """Allows for proper right vs. left justify."""
-        return Layout(
-            background_color=self._config.background_color or background_color or DOC_PANEL_BG_COLOR,
-            body_panel=BasePanel(
+        panel_timestamp = Text(f"({self.panel_title_timestamp})", style='dim') if self.panel_title_timestamp else None
+
+        if self._config.show_image:
+            self._warn(f"creating ImagePanel for")
+
+            body_panel = ImagePanel(
+                border_style=self.border_style,
+                img_url=self.image_url,
+                title=panel_timestamp
+            )
+        else:
+            body_panel = BasePanel(
                 border_style=self.border_style,
                 text=self.prettified_txt,
-                title=Text(f"({self.panel_title_timestamp})", style='dim') if self.panel_title_timestamp else None,
-            ),
+                title=panel_timestamp,
+            )
+
+        return Layout(
+            background_color=self._config.background_color or background_color or DOC_PANEL_BG_COLOR,
+            body_panel=body_panel,
             body_indent=site_config.indents.info,
             document=self,
             file_info=self.file_id_panel,

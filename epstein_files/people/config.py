@@ -1930,6 +1930,7 @@ HIGHLIGHTED_NAMES = [
             law_enforcement('DOJ Chief Psychologist', is_emailer=True),
             law_enforcement('DOJ Inspector General'),
             law_enforcement('DOJ London', is_emailer=True),
+            law_enforcement('Federal Soup', is_emailer=True),
             law_enforcement(FBI, emailer_pattern=r"(?<!NY )((?-i:FBI)|fbi\.s?gov)"),
             law_enforcement(FRENCH_MINISTRY_OF_JUSTICE),
             law_enforcement('Judge Mark Filip'),
@@ -3038,7 +3039,7 @@ HIGHLIGHTED_NAMES = [
                 url='https://www.newyorker.com/magazine/2023/03/06/how-the-biggest-fraud-in-german-history-unravelled',
             ),
             Organization(
-                'Women Empowerment',
+                WOMAN_EMPOWERMENT,
                 f"organization started by Epstein's assistant {SVETLANA_POZHIDAEVA}",
                 r"Women Empowerment|We Talk(s| Enterprises)",
                 aliases=['WE Talks'],
@@ -3102,6 +3103,7 @@ HIGHLIGHTED_NAMES = [
             ),
             Entity(DASHA_GRUPMAN, 'recruiter of girls for Epstein', r"Da(ry|sh)a Grupman"),
             Entity(EKATERINA_GUSAROVA, f'Instagram model {QUESTION_MARKS}', r"(Ekaterina|Katya)? Gusm?arova", aliases=['Katya']),
+            Entity(EKATERINA_NORTON, '27 year old Russian banker at UBS', match_partial=None),
             Entity(GULSUM_OSMANOVA, QUESTION_MARKS, r"Gul'?sum|Osmanova", email_addresses=['g.a.osmanova@gmail.com']),
             Entity('Irina Vodolazova', 'model', match_partial='both', url='https://www.instagram.com/vodochka/'),
             Entity(JESSICA_BANKS, f'co-founder of {QUESTION_MARKS}', match_partial=None),
@@ -3628,6 +3630,7 @@ HIGHLIGHTED_NAMES = [
             Entity('Jennifer Aros', 'abused by Epstein starting at age 14', url='https://x.com/epsteinsearchin/status/2031730091827544180'),
             Entity('Jennifer Laduke', VICTIM_EVIDENCE),
             Entity('Justina Auškelytė', 'Julliard student from Latvia', r"Justina Au[fšs]kelyt[eė]", url=DITE_ANATA_JUILLIARD_URL),
+            Entity('Katherine Khuat', '"Barry Josephson\'s girl"', url='https://www.shutterstock.com/image-photo/katherine-khuat-dinner-friends-cocktail-party-111352049'),
             Entity(KATHERINE_KEATING, "daughter of former Australian prime minister Paul Keating", match_partial=None),
             Entity(
                 LAURA_T_NEWMAN,

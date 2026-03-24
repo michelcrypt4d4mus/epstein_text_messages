@@ -50,6 +50,7 @@ def print_test_panels():
 
 
 doc_types_to_sample = [
+    [d for d in epstein_files.documents if d._config.show_image],
     [d for d in epstein_files.documents if d._config.background_color], # Configured BG
     [d for d in epstein_files.other_files if d.category in CATEGORY_BG_STYLES],  # BG by category
     [e for e in epstein_files.emails if 'https' in e.text[0:1500]],

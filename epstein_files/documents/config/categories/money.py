@@ -207,6 +207,7 @@ MONEY_CFGS = [
     schwab_doc('EFTA01265978', date='2019-07-10', note='account opened 3 months before death'),
 
     # Emails
+    EmailCfg(id='EFTA02246580', note=f"Epstein commissioning painting of little girl", truncate_to=305),
     EmailCfg(id='EFTA00037187', note=f"Epstein's {DEUTSCHE_BANK} banker Paul Morris lawyers up immediately when contacted by the FBI", is_interesting=5),
     EmailCfg(
         id='EFTA01409449',

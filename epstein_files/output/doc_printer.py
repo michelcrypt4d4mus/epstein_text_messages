@@ -279,6 +279,9 @@ class DocPrinter(DocList):
     def _append_element_with_bio_div(self, element: str, bio_panel: str = '') -> None:
         """Cache the `last_bio_panel` html so it can be placed inside div with document."""
         if self._last_bio_panel:
+            if bio_panel:
+                logger.warning(f"overwriting bio_panel '{bio_panel}' with cached value\n\n{self._last_bio_panel}\n")
+
             bio_panel = self._last_bio_panel
             self._last_bio_panel = ''
 

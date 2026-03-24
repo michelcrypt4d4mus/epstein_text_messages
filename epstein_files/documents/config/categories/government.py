@@ -55,6 +55,10 @@ def bop_policy_doc(id: str, display_text: str, date: str = '') -> DocCfg:
     return bop_doc(id, date=date, display_text=display_text)
 
 
+def doj_doc(id: str, note: str, **kwargs) -> DocCfg:
+    return DocCfg(id=id, note=note, author=DOJ, **kwargs)
+
+
 def doj_memo(id: str, note: str, date: str = '', **kwargs) -> DocCfg:
     return memo(id, DOJ, note, date, **kwargs)
 
@@ -153,6 +157,8 @@ GOVERNMENT_CFGS = [
         note='Powerpoint summary of Epstein investigation by Child Sex Trafficking Task Force',
         is_interesting=10,
     ),
+    doj_doc('EFTA00025091', f"arrest warrant and other discovery materials"),
+    doj_doc('EFTA00009809', f"sealed indictment of Jeffrey Epstein", date='2019-07-02', is_interesting=2),
     doj_memo('EFTA02731039', f'prosecution memo naming {LESLEY_GROFF}', is_interesting=10),
     doj_memo('EFTA02731200', "potential prosecution of Epstein's assistant", is_interesting=10),
     doj_memo('EFTA02731082', "investigation into Epstein's co-conspirators"),
@@ -163,7 +169,9 @@ GOVERNMENT_CFGS = [
         date='2021-06-08',
         note=f"witness prep of Juan Alessi, Epstein's former house manager in Palm Beach describing Trump's visits",
         truncate_to=(6_000, 7_000),
+        show_full_panel=True,  # TODO: show pic
     ),
+    DocCfg(id='EFTA00014822', note=f"fake Austrian passport under the name Marius Robert with Saudi address found in Epstein's possessions", show_image=True),
     DocCfg(id='EFTA02730741', author=DOJ, date='2025-05-01', date_uncertain=True, note="Evidence list for 50D-NY-3027571 Filtering On 'Type(s): 1B'"),
     DocCfg(id='EFTA02730486', author=DOJ, date='2025-05-01', date_uncertain=True, note="Evidence list for 50D-NY-3027571 Filtering On '1A'"),
     DocCfg(id='EFTA00040006', author=DOJ, date='2019-08-27', note='Personal History of Defendant Jeffrey Epstein + grand jury indictment'),
@@ -284,8 +292,19 @@ GOVERNMENT_CFGS = [
     DocCfg(id='EFTA00001884', note='photo of letter from Virgin Islands DOJ to Epstein', date='2019-03-14'),
     DocCfg(id='EFTA00007157', note='victim list and police log'),
     DocCfg(id='EFTA01649103', date='2025-03-17T22:33:37', note='"MCC Corruption Case" is about guards on duty when Epstein died'),
+    fbi_report('EFTA02729877', '"MCC Corruption Case" is about guards on duty when Epstein died'),
+    DocCfg(id='EFTA00029805', author=DOJ, note='policy doc', is_interesting=False),
     letter('EFTA01653121', FBI, ['USCIS'], "regarding an individual's cooperation in the investigation of Epstein and Maxwell"),
     letter('EFTA00098456', PAUL_G_CASSELL, ['Scotland Yard'], 'International Sex Trafficking by Jeffrey Epstein, contains court filings'),
+    letter(
+        'EFTA00016124',
+        SDNY,
+        [CHRISTIAN_EVERDELL, LAURA_A_MENNINGER, BOBBI_C_STERNHEIM],
+        "re: unsearched Epstein computer backups that are no inaccessible",
+        '2019-04-09',
+        highlight_quote='the Government cannot permit you to review the contents of the Discs',
+        truncate_to=(2_900, 3_900),
+    ),
 
     # Emails
     EmailCfg(
@@ -311,6 +330,8 @@ GOVERNMENT_CFGS = [
     fbi_evidence_review('EFTA01657111'),
     fbi_evidence_review('EFTA01657107'),
     fbi_evidence_review('EFTA01657097'),
+    fbi_evidence_review('EFTA01657119'),
+    fbi_evidence_review('EFTA01657124'),
     fbi_internal(
         'EFTA00172840',
         note=f'FBI investigation of {DAVID_COPPERFIELD} for rape of a young female closed by prosecutors',
@@ -402,11 +423,22 @@ GOVERNMENT_CFGS = [
         recipient_uncertain=True,
         truncate_to=7000,
     ),
+    EmailCfg(id='EFTA00037551', author=BUREAU_OF_PRISONS, recipients=[BUREAU_OF_PRISONS], recipient_uncertain=True),
+    EmailCfg(id='EFTA00014718', author=USANYS, recipients=['Daily Beast']),
+    EmailCfg(id='EFTA00018398', author=BUREAU_OF_PRISONS, author_uncertain=True, recipients=[USANYS], recipient_uncertain=True),
+    EmailCfg(id='EFTA00037692', author=BUREAU_OF_PRISONS, author_uncertain=True, recipients=[BUREAU_OF_PRISONS], recipient_uncertain=True),
+    EmailCfg(id='EFTA00019994', author=BUREAU_OF_PRISONS, author_uncertain=True, recipients=[BUREAU_OF_PRISONS], recipient_uncertain=True),
     EmailCfg(id='EFTA02731593', author=USANYS, recipients=['Manhattan DA']),
     EmailCfg(id='EFTA00039419', author=USANYS, recipients=['Manhattan DA']),
     EmailCfg(id='EFTA02731617', author=USANYS, recipients=[SDNY], date='2021-04-28T15:05:41'),
     EmailCfg(id='EFTA00151184', author=USANYS, recipients=[USANYS]),
+    EmailCfg(id='EFTA00029435', author=USANYS),
+    EmailCfg(id='EFTA00014767', author=USANYS, recipients=[USANYS], author_uncertain=True, is_interesting=False),
+    EmailCfg(id='EFTA00015851', author=USANYS, recipients=[USANYS], author_uncertain=True, is_interesting=False),
+    fbi_internal('EFTA00021353'),
+    EmailCfg(id='EFTA00013640', author=USANYS, recipients=[USANYS], author_uncertain=True, truncate_to=(600, 1_700), note='list of devices'),
     EmailCfg(id='EFTA02731615', author=USANYS, recipients=[USANYS], author_uncertain=True),
+    EmailCfg(id='EFTA00030842', author=USANYS, recipients=[USANYS], author_uncertain=True),
     EmailCfg(id='EFTA02731684', author=USANYS, recipients=[USANYS], author_uncertain=True),
     EmailCfg(id='EFTA02731485', author=USANYS, recipients=[USANYS], author_uncertain=True),
     EmailCfg(id='EFTA02731736', author=USANYS, recipients=[USANYS], author_uncertain=True),

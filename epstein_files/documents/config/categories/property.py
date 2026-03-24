@@ -1,6 +1,7 @@
 from epstein_files.documents.documents.categories import Neutral
 from epstein_files.documents.config.config_builder import press_release
 from epstein_files.documents.config.doc_cfg import DocCfg
+from epstein_files.documents.config.email_cfg import EmailCfg
 from epstein_files.people.names import THE_REAL_DEAL
 from epstein_files.util.constant.strings import (PALM_BEACH, PALM_BEACH_CODE_ENFORCEMENT, PALM_BEACH_TSV,
      PALM_BEACH_PROPERTY_INFO, PALM_BEACH_WATER_COMMITTEE, VIRGIN_ISLANDS)
@@ -36,4 +37,9 @@ PROPERTY_CFGS = [
     palm_beach_doc('016698', f"{PALM_BEACH_TSV} info (broken?)"),
     palm_beach_doc('016696', f"{PALM_BEACH_TSV} info (water quality?"),
     press_release('026759', 'Great Bay Condominium Owners Association', '2017-09-13', 'Hurricane Irma damage', is_interesting=False),
+
+    # Epstein
+    EmailCfg(id='EFTA02505788', note='building tunnels on the island'),
+    EmailCfg(id='EFTA02286220', highlight_quote='I saw yesterday work began on tunnels', is_interesting=True),
+    EmailCfg(id='EFTA02636770', highlight_quote="after completing the rebuild o= the bunker below 5palms", truncate_to=501),
 ]

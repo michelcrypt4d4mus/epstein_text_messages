@@ -12,7 +12,7 @@ from epstein_files.util.helpers.string_helper import join_truthy, quote
 from epstein_files.util.logging import logger
 
 PRUSAKOVA_BERKELY = 'Epstein paid for Prusakova to go to Berkeley'
-WOMEN_EMPOWERMENT = f"Women Empowerment (WE) conference"
+WOMEN_EMPOWERMENT = f"{WOMAN_EMPOWERMENT} (WE) conference"
 
 
 def immigration_letter(id: str, author: Name, date: str = '', note: str = '', show_with_name = '', **kwargs) -> CommunicationCfg:
@@ -48,6 +48,7 @@ def blaine_letter(id: str, date: str, suffix: str = '', **kwargs) -> Communicati
 
 GIRLS_CFGS = [
     DocCfg(id='019300', author=SVETLANA_POZHIDAEVA, note=f'{WOMEN_EMPOWERMENT} f. {KATHRYN_RUEMMLER}', date='2019-04-05', show_full_panel=True),
+    DocCfg(id='EFTA02445716', author=SVETLANA_POZHIDAEVA, note=f'{WOMEN_EMPOWERMENT} pilot event', date='2019-04-12'),
     DocCfg(id='022267', author=SVETLANA_POZHIDAEVA, note=f'{WOMEN_EMPOWERMENT} founder essay about growing the seminar business'),
     DocCfg(id='022407', author=SVETLANA_POZHIDAEVA, note=f'{WOMEN_EMPOWERMENT} seminar pitch deck'),
     EmailCfg(id='031177', highlight_quote="in Ibiza so invited a lots of girls from Russia all models"),
@@ -180,6 +181,7 @@ GIRLS_CFGS = [
     ),
 
     # Authors
+    # EmailCfg(id='EFTA01061418', recipients=[ANNABELLE_NEILSON], author_reason='signature', duplicate_ids=['EFTA02421743'], dupe_type='quoted'),
     EmailCfg(
         id='EFTA02339926',
         author=JULIA_SANTOS,
@@ -203,6 +205,7 @@ GIRLS_CFGS = [
     EmailCfg(id='EFTA01969878', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA01981669', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA01791918', author=LAURA_T_NEWMAN, note='recruiting a ballet dancer', truncate_to=NO_TRUNCATE),
+    EmailCfg(id='EFTA02436739', author=LAURA_T_NEWMAN, note='recruiting?'),
     EmailCfg(
         id='033178',
         author=MARIA_PRUSAKOVA,
@@ -372,6 +375,7 @@ GIRLS_CFGS = [
     EmailCfg(id='EFTA02431535', author=UNKNOWN_GIRL),
     EmailCfg(id='EFTA01875607', author=UNKNOWN_GIRL),
     EmailCfg(id='EFTA00901581', author=UNKNOWN_GIRL),
+    EmailCfg(id='EFTA02416005', author=UNKNOWN_GIRL, highlight_quote="he'll put me in touch with a romanian lady wich knows everything in London", is_interesting=True),
     EmailCfg(id='EFTA02449477', author=UNKNOWN_GIRL, note='argument about finding girls for Epstein', is_interesting=10, truncate_to=NO_TRUNCATE),
     EmailCfg(
         id='EFTA02027844',
@@ -762,6 +766,7 @@ GIRLS_CFGS = [
     EmailCfg(id='EFTA00964428', comment=JULIA_SANTOS + ' Valdson'),
     EmailCfg(id='EFTA02398135', comment=JULIA_SANTOS + ' "Sochi"'),
     EmailCfg(id='EFTA00766770'),
+    EmailCfg(id='EFTA01990860', note=f"{PRINCE_ANDREW}'s public denial draft"),
 
     # Text msg
     TextCfg(

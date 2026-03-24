@@ -142,6 +142,7 @@ class DocCfg(LoggingEntity):
         num_preview_chars (int, optional): customize number of preview_chars shown in `OtherFile` tables
         people (list[str]): override `Document.people()` with a fixed set of names (meaning no scan of the text)
         show_full_panel (bool, optional): set `is_interesting=True` and show in a full panel view, not in a table
+        show_image (bool, optional): requires file in docs/doc_images/EFTAXXXXXXX.pnd
         show_with_name (str, optional): if set this document will be displayed all with the person specified
         truncate_to (int | tuple[int, int], optional): Limite characters displayed, also sets `show_full_panel=True`
         url (str, optional): URL with more info about this document
@@ -171,6 +172,7 @@ class DocCfg(LoggingEntity):
     note: str = ''
     num_preview_chars: int | None = None
     show_full_panel: bool = False
+    show_image: bool = False
     show_with_name: str = ''
     truncate_to: CharRangeAuto | int | None = None
     url: str = ''

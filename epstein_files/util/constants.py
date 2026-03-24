@@ -186,6 +186,7 @@ UNINTERESTING_EMAIL_IDS = [
     '033011',
     # Jean Luc Brunel
     'EFTA01987855',  # TODO not entirely uninteresting...
+    'EFTA01822611',
     # Jeremy Rubin
     'EFTA00714127',
     # John Page
@@ -316,6 +317,10 @@ UNINTERESTING_EMAIL_IDS = [
     'EFTA02431535',  # visible in EFTA00888467
     'EFTA00363992',  # car rental
     'EFTA02187735',  # housekeeping
+    'EFTA00020508',  # Proffer
+    'EFTA00023292',  # out of office
+    'EFTA00016800',  # judicial stay
+    'EFTA00037454',  # federal soup
 ]
 
 UNINTERESTING_OTHER_FILE_IDS = [
@@ -528,9 +533,13 @@ NOT_CHRONOLOGICAL_VIEW_IDS = [cfg.id for cfg in FLIGHT_LOG_CFGS] + [
     '029583',
     '017827',
     # unknown
+    'EFTA01848947',
     '030244',
     '028757',
+    'EFTA02418669',  # unknown atty?
     'EFTA00364437',  # ivory coast
+    'EFTA02422954',  # Celinas clothers
+    'EFTA02514663',
     # '024185', # UN
 ]
 
