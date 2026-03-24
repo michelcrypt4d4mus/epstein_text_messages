@@ -1048,13 +1048,13 @@ HIGHLIGHTED_NAMES = [
             Entity('Alex Mayorkas', 'future DHS secretary', r"Al(i|ex) Mayorkas"),
             Entity('Andrew Cuomo', 'governor of New York'),
             Entity(BILL_RICHARDSON, 'former governor of New Mexico', r"(Governor )?(Bill )?Richardson", url=WIKIPEDIA),
-            Entity('Ed Mezvinsky', 'former congressman, criminal Ponzi schemer', r"(Ed(ward)? )?Mezvinsky",),
+            Entity('Edward Mezvinsky', 'former congressman, criminal Ponzi schemer', r"(Ed(ward)? )?Mezvinsky", url=WIKIPEDIA),
             Entity(
                 'Eliot Spitzer', 'prosecutor / NY governor who went after big banks, prostitution scandal',
                 r"(Eliott? )?Spitzer(, Eliot)?",
                 url=WIKIPEDIA
             ),
-            Entity('George Mitchell', 'former US senator from Maine', match_partial=None),
+            Entity('George J. Mitchell', 'former US senator from Maine', match_partial=None, url=WIKIPEDIA),
             Entity(
                 'Greg Craig',
                 'former Obama White House counsel, worked w/Paul Manafort in Ukraine, acquitted of charges',
@@ -1062,7 +1062,7 @@ HIGHLIGHTED_NAMES = [
                 url='https://www.politico.com/story/2019/05/13/rick-gates-roger-stone-greg-craig-1318870',
             ),
             Entity('Janis Hartley', f'assistant to Governor Bill Richardson {QUESTION_MARKS}', match_partial=None),
-            Entity('Joel Klein', 'chancellor of the NYC Dept. of Education', match_partial=None),
+            Entity('Joel Klein', 'chancellor of the NYC Dept. of Education', match_partial=None, url=WIKIPEDIA),
             Entity('Mark Middleton', "Clinton assistant, arranged Epstein's White House visits, suicide 2022", match_partial=None),
             Entity(PAUL_PROSPERI, "friend of Bill Clinton"),
             Entity('Senator Ron Wyden'),
