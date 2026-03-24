@@ -102,7 +102,7 @@ MONEY_CFGS = [
         author=JP_MORGAN,
         highlight_quote='two outstanding federal tax liens totaling $593,789',
         note=f'due diligence report on {MC2_MODEL_MGMT}',
-        truncate_to=500 if args.output_most_interesting else NO_TRUNCATE
+        truncate_to=(200, 500) if args.output_most_interesting else NO_TRUNCATE
     ),
     DocCfg(
         id='EFTA01111057',
