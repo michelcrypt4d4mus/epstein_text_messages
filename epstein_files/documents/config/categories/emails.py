@@ -963,7 +963,7 @@ EMAILS_CONFIG = [
         author=RENATA_BOLOTOVA,
         note='this file has been removed from the DOJ site',
     ),
-    EmailCfg(id='EFTA02025944', author=RENATA_BOLOTOVA, recipients=[JEFFREY_EPSTEIN], date='2012-01-23 06:00:00', is_interesting=False, comment='visible in EFTA01846434'),
+    EmailCfg(id='EFTA02025944', author=RENATA_BOLOTOVA, recipients=[JEFFREY_EPSTEIN], date='2012-01-23 06:00:00', visible_in_id='EFTA01846434'),
     EmailCfg(id='EFTA01985762', author=RENATA_BOLOTOVA, recipients=[JEFFREY_EPSTEIN], date='2012-01-24 09:35:00'),
     EmailCfg(id='EFTA00711422', author=RENATA_BOLOTOVA, author_reason="Bolotova went on to work on water projects at IPI", author_uncertain=True),
     EmailCfg(id='EFTA00920177', author=RENATA_BOLOTOVA, author_reason='discussion of employment at Institute', truncate_to=350),
