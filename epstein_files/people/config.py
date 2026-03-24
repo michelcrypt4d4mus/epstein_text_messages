@@ -1137,6 +1137,7 @@ HIGHLIGHTED_NAMES = [
             Entity(LYN_FONTANILLA, "Filipino housekeeper", r"(Rosa)?L.nn?( V\.?)? Fontanilla"),
             Entity('Maria Macaraeg', 'applied for housekeeper/nanny job'),
             Entity(MERWIN_DELA_CRUZ, "housekeeper", r"Merwin( de ?la)? Cruz", match_partial=None),
+            Entity('Michael Glidden'),  # TODO: employee?
             Entity('Miles Alexander', "former island property manager, Operations Manager Michaelhouse Balgowan KwaZulu-Natal South Africa", match_partial=None),
             Entity(
                 'Myla Trestiza',

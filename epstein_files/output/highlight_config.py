@@ -51,7 +51,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         style=FINANCIAL_COLOR,
         patterns=[
             r"[€$£][\dO,.]+(\s*(bn|[bm](illl?ion|m)?|k|thousand))?( dollars?)?",
-            r"[\dO,.]+\s*(GBP|euro(?!pe)s?|[bm]illl?ion( (dollars|euros)?)?( loan)?)",
+            r"[\dO,.]+\s*(GBP|euros?(?!pe)|[bm]illl?ion( (dollars|euros))?( loan)?)",
         ],
         regex_flags = re.MULTILINE,  # No IGNORECASE
     ),
@@ -255,7 +255,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         style=TIMESTAMP_STYLE,
         patterns=[
             fr"({DATE_PATTERN} )?{TIME_PATTERN}",
-            fr"\b({DATE_PATTERN}|\d{{1,2}}:\d{{2}} ?([AaPp]m))\b",
+            fr"\b({DATE_PATTERN}|\d{{1,2}}:\d{{2}}[ap]m)\b",
         ],
     ),
 
