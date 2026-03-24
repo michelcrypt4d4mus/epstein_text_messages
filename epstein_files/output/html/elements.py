@@ -77,6 +77,11 @@ def img(src: str, class_name: str = '', css_props: OptionalCssProps = None) -> s
     return f'<img src="{src}" class="{class_name}" {to_inline_style_arg(css_props)}/>'
 
 
+def safe_padding(dimensions: list[int | float]) -> PaddingDimensions:
+    """Round any floats."""
+    return tuple([round(d) for d in dimensions])
+
+
 def strip_outer_tag(_html: str, tag: str) -> str:
     html = re.sub(fr"^\s*<{tag}.*?>", '', _html)
     html = re.sub(fr"</{tag}>\s*$", '', html)

@@ -33,6 +33,7 @@ from epstein_files.output.epstein_highlighter import highlighter
 from epstein_files.output.highlight_config import HIGHLIGHTED_NAMES, get_style_for_name
 from epstein_files.output.html.builder import table_to_html
 from epstein_files.output.html.positioned_rich import to_em
+from epstein_files.output.layout_elements.base_panel import BasePanel
 from epstein_files.output.layout_elements.layout import Layout, TableLayout, JustifyMethod
 from epstein_files.output.rich import DEFAULT_TABLE_KWARGS, build_table
 from epstein_files.util.constant.strings import APPEARS_IN, ARCHIVE_LINK_COLOR, AUTO, REDACTED, TIMESTAMP_DIM, OcrRepair
@@ -400,10 +401,10 @@ class Email(Communication):
         return EmailParts(header, body)
 
     @property
-    def html_margin_bottom(self) -> str:
+    def html_margin_bottom(self) -> float:
         """Overloaded in `Email` for case of emails with attachments."""
         if self.attached_docs:
-            return '6px'
+            return 0.2
         else:
             return super().html_margin_bottom
 
@@ -496,7 +497,8 @@ class Email(Communication):
             author_txt,
             self.recipients_txt(),
             self.timestamp,
-            self._config.category_bracketed
+            self._config.category_bracketed,
+            is_date_uncertain=bool(self._config.date_uncertain),
         )
 
     @property
@@ -618,6 +620,7 @@ class Email(Communication):
             body_indent=indent,
             justify=justify,
             margin_bottom=self.html_margin_bottom,
+            side_panel=self.side_panel,
             subheaders=self.subheaders,
         )
 

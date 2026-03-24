@@ -312,6 +312,7 @@ HIGHLIGHTED_NAMES = [
             Organization('Boom Boom Room', '"models and bottles" style club in NYC'),
             Organization('Mercury Films', is_interesting=False),
             Organization('Phaidon', 'titan of art book publishing', url=WIKIPEDIA),
+            Organization('Rita Paintings To Go', is_emailer=True),
         ],
         patterns=[
             r"Arnold Schwarzenegger",
@@ -371,6 +372,7 @@ HIGHLIGHTED_NAMES = [
                 url='https://www.theguardian.com/us-news/2026/feb/05/jes-staley-barclays-rape-allegation-us-prosecutors-epstein',
             ),
             Entity('Jonathan Rowland', f"Banque Havilland", match_partial=None),
+            Entity('Laurie Eisenhart', QUESTION_MARKS),
             Entity('Kumar Sambhav', f"{DEUTSCHE_BANK} technical writer {QUESTION_MARKS}"),
             Entity(NORMAN_D_RAU, "managing director at Morgan Stanley", match_partial=None),
             Entity(
@@ -387,7 +389,7 @@ HIGHLIGHTED_NAMES = [
                 phone_numbers=['5167456644', '6464087001'],
                 url='https://www.cnbc.com/2023/03/13/signature-bank-third-biggest-bank-failure-in-us-history.html',
             ),
-            Entity('Stewart Oldfield', f"worked on Epstein related accounts at {DEUTSCHE_BANK}", r"Stewart Oldfiel?d"),
+            Entity(STEWART_OLDFIELD, f"worked on Epstein related accounts at {DEUTSCHE_BANK}", r"Stewart Oldfiel?d"),
             Entity('Vaishali Mehta', f'Head of Anti-Money Laundering Business Risk at {DEUTSCHE_BANK}', r"Vaishali.{,5}Mehta"),
             Entity('Velmir Vejzovic', DEUTSCHE_BANK),
             Entity(VINIT_SAHNI, f"analyst at {DEUTSCHE_BANK} and {GOLDMAN_SACHS}", match_partial='both'),
@@ -3290,6 +3292,7 @@ HIGHLIGHTED_NAMES = [
                 match_partial=None,
                 url=['https://4chan.org/', WIKIPEDIA],
             ),
+            Entity('Claudia Leschuck', f"assistant to {NATHAN_MYHRVOLD} {QUESTION_MARKS}", r"Claudia Leschu[ck]+"),
             Entity('Danny Hillis', "computer scientist, artificial intelligence researcher", r"Dan(iel|ny) Hillis?"),
             Entity(
                 DAVID_FISZEL,
@@ -3338,7 +3341,7 @@ HIGHLIGHTED_NAMES = [
             ),
             Entity(MASAYOSHI_SON, 'CEO of Softbank, often referred to as "Masa"', r"Masa(yoshi)?(\sSon)?", match_partial='first'),
             Entity(MELANIE_PHILLIPS, f'girlfriend of {STEVEN_SINOFSKY}', match_partial=None),
-            Entity('Nathan Myhrvold', f"former CTO of Microsoft, co-founder of Intellectual Ventures"),
+            Entity(NATHAN_MYHRVOLD, f"former CTO of Microsoft, co-founder of Intellectual Ventures"),
             Entity(
                 PETER_THIEL,
                 f"Paypal mafia, Palantir co-founder, Facebook investor, Epstein invested ~$40 million in his fund {VALAR_VENTURES}",
@@ -3393,7 +3396,7 @@ HIGHLIGHTED_NAMES = [
                 r"Honeycomb( (Offshore Fund|Partners)( (LP|Ltd))?)?",
             ),
             Organization('iCog Labs', f'AI co. in Addis Ababa founded by {BEN_GOERTZEL} and Getnet Assefa Gesaw (funded by Epstein?)'),
-            Organization('Intellectual Ventures'),  # Nathan Myhrvold
+            Organization('Intellectual Ventures', belongs_to=NATHAN_MYHRVOLD),  # Nathan Myhrvold
             Organization('Jawbone', f'wireless earpiece company invested in by Epstein and {IAN_OSBORNE}'),
             Organization('LinkedIn', "LinkedIn", r"Linked[Il]n( Updates)?", is_emailer=True, is_interesting=False),
             Organization('Mandiant', 'cybersecurity company'),

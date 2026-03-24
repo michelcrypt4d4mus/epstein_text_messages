@@ -158,7 +158,7 @@ def panel_to_div(panel: Panel, css_props: OptionalCssProps) -> str:
 
 def render_at_console_width(obj: RenderableType) -> str:
     """render at the width currently used by the main rich.Console obj."""
-    return _render_at_width(obj, console.width)
+    return render_at_width(obj, console.width)
 
 
 def render_at_css_width(obj: RenderableType, props: OptionalCssProps = None) -> str:
@@ -171,7 +171,7 @@ def render_at_css_width(obj: RenderableType, props: OptionalCssProps = None) -> 
     else:
         logger.debug(f"no width found in CSS when render_at_css_width() called, no point in using this function.")
 
-    return _render_at_width(obj, css_width or HTML_RENDER_CONSOLE.width)
+    return render_at_width(obj, css_width or HTML_RENDER_CONSOLE.width)
 
 
 def render_at_obj_width(obj: RenderableType) -> str:
@@ -180,9 +180,15 @@ def render_at_obj_width(obj: RenderableType) -> str:
         return render_to_html(obj, _renderer)
 
 
+def render_at_width(obj: RenderableType, width: int) -> str:
+    """render `obj` to HTML but temporarily change the console width."""
+    with tmp_console(width) as _renderer:
+        return render_to_html(obj, _renderer)
+
+
 def render_max_width(obj: RenderableType) -> str:
     """render obj to a <pre> block formatted entirely by rich monospace layout that is MAX_RENDER_WIDTH chars wide."""
-    return _render_at_width(obj, MAX_RENDER_WIDTH)
+    return render_at_width(obj, MAX_RENDER_WIDTH)
 
 
 def render_to_html(obj: RenderableType, renderer_console: Console | None = None) -> str:
@@ -324,12 +330,6 @@ def _obj_width_renderer(obj: RenderableType) -> Generator[Console, None, None]:
     """temporarily set html_renderer.width to this object's width to constrain rich output."""
     with tmp_console(HTML_RENDER_CONSOLE.measure(obj).minimum) as _tmp_console:
         yield _tmp_console
-
-
-def _render_at_width(obj: RenderableType, width: int) -> str:
-    """render `obj` to HTML but temporarily change the console width."""
-    with tmp_console(width) as _renderer:
-        return render_to_html(obj, _renderer)
 
 
 def _table_cell(contents: RenderableType, props: OptionalCssProps = None, extra_class: str = '') -> str:

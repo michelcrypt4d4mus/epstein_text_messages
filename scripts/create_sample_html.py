@@ -23,7 +23,7 @@ from epstein_files.util.helpers.data_helpers import flatten
 from epstein_files.util.helpers.file_helper import open_file_or_url
 from epstein_files.util.logging import logger
 
-SAMPLE_SIZE = 2
+SAMPLE_SIZE = 4
 
 TEST_PANELS = [
     Panel('bright_red', style='bright_red'),
@@ -56,10 +56,10 @@ doc_types_to_sample = [
     [e for e in epstein_files.emails if 'https' in e.text[0:1500]],
     [o for o in epstein_files.other_files if o.config and o.config.show_full_panel],
     [d for d in epstein_files._documents if d.suppressed_txt],
-    [o for o in epstein_files.other_files if o._config.note_txt],  # other file with description
+    [o for o in epstein_files.other_files if o._config.note_txt()],  # other file with description
     [o for o in epstein_files.other_files if 1000 < o.length < 5000 and not o._config.note_txt], # other files no desc
-    [e for e in epstein_files.emails if e._config.note_txt], # emails with description
-    [e for e in epstein_files.emails if not e._config.note_txt],  # email no desc
+    [e for e in epstein_files.emails if e._config.note_txt()], # emails with description
+    [e for e in epstein_files.emails if not e._config.note_txt()],  # email no desc
     epstein_files.emails_with_attachments,
     epstein_files.imessage_logs,
 ]

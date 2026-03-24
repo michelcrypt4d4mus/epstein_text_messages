@@ -15,6 +15,12 @@ TECH_CFGS = [
         recipients=[JAMES_STEWART],
         truncate_to=(810, 930),
     ),
-    EmailCfg(id='EFTA02226642', note=f"Myrhvold introduces Epstein to {MIROSLAV_LAJCAK}"),
-    EmailCfg(id='EFTA02186054', note='Myrhvold meeting', truncate_to=1_500),
+    EmailCfg(id='EFTA02226642', note=f"{NATHAN_MYHRVOLD} introduces Epstein to {MIROSLAV_LAJCAK}"),
+    EmailCfg(
+        id='EFTA02186054',
+        author_reason='Laurie visible in EFTA02226642',
+        recipients=['Claudia Leschuck', 'Laurie Eisenhart'],
+        note=f'{NATHAN_MYHRVOLD} meeting',
+        truncate_to=1_500,
+    ),
 ]

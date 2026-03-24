@@ -82,7 +82,8 @@ class MobileConfig:
         author: Text,
         recipients: Text,
         timestamp: datetime | Text,
-        category: Text | None = None
+        category: Text | None = None,
+        is_date_uncertain: bool = False,
     ) -> Text:
         prefix = f"{capitalize_first(email_type)} from " if email_type != 'email' else ''
         txt = Text('', SUBHEADER_STYLE).append(category.append(' ') if category else Text(''))
@@ -143,12 +144,16 @@ class SiteConfig(MobileConfig):
         author: Text,
         recipients: Text,
         timestamp: datetime,
-        category: Text | None = None
+        category: Text | None = None,
+        is_date_uncertain: bool = False,
     ) -> Text:
+        sent_at_str = ('probably ' if is_date_uncertain else '') + 'sent at'
+
         return super().email_subheader(
             f"OCR text of {email_type}",
             author,
             recipients,
-            Text(f" probably sent at ").append(timestamp_human(timestamp), style=TIMESTAMP_STYLE),
+            Text(f" {sent_at_str} ").append(timestamp_human(timestamp), style=TIMESTAMP_STYLE),
             category,
+            is_date_uncertain,
         )
