@@ -245,7 +245,13 @@ CRYPTO_CFGS = [
     DocCfg(id='EFTA00803464', author=HONEYCOMB_ASSET_MANAGEMENT, note="July 2018 report", date='2018-07-17'),
     # Howard Lutnick
     DocCfg(id='EFTA01582043', note=f"{DEUTSCHE_BANK} / {CANTOR_FITZGERALD} transaction"),
-    DocCfg(id='EFTA01230639', date='2012-12-22', date_uncertain=True, show_full_panel=True),
+    DocCfg(
+        id='EFTA01230639',
+        date='2012-12-22',
+        date_uncertain=True,
+        note="photo of Epstein and Howard Lutnick on Epstein's island that was removed from DOJ website",
+        show_image=True,
+    ),
     DocCfg(id='EFTA00434306', note='calendar reminder for call with Howard Lutnick', date='2011-04-26', show_full_panel=True),
     DocCfg(
         id='EFTA00020515',
@@ -258,14 +264,22 @@ CRYPTO_CFGS = [
         date='2012-12-28',
         is_interesting=10,
         note=f'{HOWARD_LUTNICK} and Epstein business deal for Adfin Solutions, Inc. (Southern Trust is Epstein)',
+        show_with_name=HOWARD_LUTNICK,
         truncate_to=(160_000, 162_000),
     ),
     DocCfg(
         id='EFTA01249210',
         author=FBI,
         note="tip linking American commerce secretary and Tether asset custodian Howard Lutnick to Ponzi schemes and Russian money",
-        is_interesting=10,
-        show_with_name=BROCK_PIERCE,
+        show_full_panel=True,
+        show_with_name=HOWARD_LUTNICK,
+    ),
+    DocCfg(
+        id='EFTA01249207',
+        author=FBI,
+        note="tip linking American commerce secretary and Tether asset custodian Howard Lutnick to Ponzi schemes and Russian money",
+        show_full_panel=True,
+        show_with_name=HOWARD_LUTNICK,
     ),
     DocCfg(
         id='EFTA01733746',
@@ -274,14 +288,8 @@ CRYPTO_CFGS = [
         note=f'schedule showing "drinks" with {HOWARD_LUTNICK}',
         is_valid_for_name_scan=False,
         show_full_panel=True,
+        show_with_name=HOWARD_LUTNICK,
         truncate_to=700,
-    ),
-    DocCfg(
-        id='EFTA01249207',
-        author=FBI,
-        note="tip linking American commerce secretary and Tether asset custodian Howard Lutnick to Ponzi schemes and Russian money",
-        show_full_panel=True,
-        show_with_name=BROCK_PIERCE,
     ),
     DocCfg(
         id='EFTA01684300',
@@ -300,8 +308,8 @@ CRYPTO_CFGS = [
     ),
     EmailCfg(
         id='EFTA00873541',
-        is_interesting=10,
-        note=f"Epstein says his neighbor {HOWARD_LUTNICK} (recently seen with {PRINCE_ANDREW}) is smart",
+        is_interesting=20,
+        note=f'Epstein says his neighbor {HOWARD_LUTNICK} (recently seen with {PRINCE_ANDREW}) is "smart"',
         show_with_name=HOWARD_LUTNICK,
     ),
     EmailCfg(id='EFTA02374900', note=f'article about {HOWARD_LUTNICK} real estate purchase'),
@@ -313,6 +321,7 @@ CRYPTO_CFGS = [
     EmailCfg(id='EFTA00398719', note=f'{HOWARD_LUTNICK} visit to the island', is_interesting=10, truncate_to=2500),
     EmailCfg(id='EFTA00401065', note=f'{HOWARD_LUTNICK} visit to the island', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA00398853', note=f'{HOWARD_LUTNICK} visit to the island', truncate_to=NO_TRUNCATE),
+    EmailCfg(id='EFTA01913269', note=f'{HOWARD_LUTNICK} visit to the island', truncate_to=NO_TRUNCATE, show_with_name=HOWARD_LUTNICK),
     EmailCfg(id='EFTA00873540', note=f'{HOWARD_LUTNICK} and {PRINCE_ANDREW}'),
     EmailCfg(id='EFTA02191245', note=f"interesting that calls with {HOWARD_LUTNICK} seem to start shortly after Epstein discovers bitcoin"),
     EmailCfg(id='EFTA00443752', note=f"invitation from {HOWARD_LUTNICK}", recipients=[JEFFREY_EPSTEIN, 'Matthew Gilbert']),
@@ -338,6 +347,7 @@ CRYPTO_CFGS = [
     EmailCfg(id='EFTA02343669', note='rumours that people are using bitcoin to exfiltrate capital from China', is_interesting=10),
     # Joi Ito / Kyara
     DocCfg(id='024256', author=JOI_ITO, note=f"Internet & Society: The Technologies and Politics of Control"),
+    EmailCfg(id='028925', note=f'{JOI_ITO} plays down Epstein\'s "bad press"', truncate_to=NO_TRUNCATE),
     EmailCfg(id='025598', is_interesting=False),
     EmailCfg(id='028847', note=f"the announcement of a hunt for Putin's money seems to greatly concern Epstein and {JOI_ITO}"),
     EmailCfg(id='026360', note=f"{JOI_ITO} writes to Epstein to thank him for providing funding for the bitcoin core development team"),

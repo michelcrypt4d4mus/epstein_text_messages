@@ -30,6 +30,7 @@ class Neutral(StrEnum):
     MISC = auto()
     PRESSER = auto()
     RESUMÉ = auto()
+    TECH = auto()
 
 class Uninteresting(StrEnum):
     ACADEMIA = auto()

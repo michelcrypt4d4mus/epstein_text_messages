@@ -15,6 +15,7 @@ class Platform(StrEnum):
     IMESSAGE = 'iMessage'
     LETTER = auto()
     SKYPE = 'Skype'
+    SMS = 'SMS'
     TEXT_MSG = 'text message'
     WHATSAPP = 'WhatsApp'
 
@@ -76,7 +77,7 @@ class CommunicationCfg(DocCfg):
             author = f"{self.author} {QUESTION_MARKS}" if self.author and self.author_uncertain else self.author
             recipients = self.recipients_str
 
-            if self.platform in [Platform.SKYPE, Platform.WHATSAPP]:
+            if self.platform in [Platform.SKYPE, Platform.SMS, Platform.WHATSAPP]:
                 description = f"{self.platform} log"
                 recipients = join_truthy(author, recipients, ', ')
                 recipients_sep = ' of conversation with '
@@ -136,6 +137,10 @@ def imessage_screenshot(id: str, **kwargs) -> CommunicationCfg:
 
 def skype_log(id: str, **kwargs) -> CommunicationCfg:
     return _communication_app_log(id, Platform.SKYPE, **kwargs)
+
+
+def sms(id: str, **kwargs) -> CommunicationCfg:
+    return _communication_app_log(id, Platform.SMS, **kwargs)
 
 
 def whatsapp_log(id: str, **kwargs) -> CommunicationCfg:

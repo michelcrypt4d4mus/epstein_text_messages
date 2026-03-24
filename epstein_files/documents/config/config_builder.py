@@ -160,8 +160,8 @@ def fbi_tip(id: str, about: str, **kwargs) -> DocCfg:
     return _set_fbi_doc_fields(DocCfg(id=id, note=f"tip {about}", **kwargs))
 
 
-def fedex_invoice(id: str, date: str) -> DocCfg:
-    return DocCfg(id=id, author='FedEx', date=date, display_text='invoice')
+def fedex_invoice(id: str, date: str, **kwargs) -> DocCfg:
+    return DocCfg(id=id, author='FedEx', date=date, display_text='invoice', **kwargs)
 
 
 def grand_jury(id: str, case_name: str = '', note: str = '', **kwargs) -> DocCfg:

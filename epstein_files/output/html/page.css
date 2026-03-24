@@ -68,6 +68,10 @@ div.document_panel_header {
     top: 0px;
 }
 
+div.img_panel {
+    margin-top: 5px;
+}
+
 div.no_expand {
     display: inline-block;
     width: fit-content;
@@ -115,6 +119,11 @@ fieldset {
     /* padding: 20px; */
     width: inherit;
     z-index: 10;
+}
+
+img.vertical {
+    max-width: 600px;
+    max-height: 1400px;
 }
 
 legend {

@@ -73,6 +73,10 @@ def from_em(units: str | None) -> int | None:
     return int(units.removesuffix('em'))
 
 
+def img(src: str, class_name: str = '', css_props: OptionalCssProps = None) -> str:
+    return f'<img src="{src}" class="{class_name}" {to_inline_style_arg(css_props)}/>'
+
+
 def strip_outer_tag(_html: str, tag: str) -> str:
     html = re.sub(fr"^\s*<{tag}.*?>", '', _html)
     html = re.sub(fr"</{tag}>\s*$", '', html)
@@ -85,7 +89,7 @@ def strip_outer_tag(_html: str, tag: str) -> str:
 
 def tag(tag: str, contents: HtmlElements, css_props: OptionalCssProps = None, **kwargs) -> str:
     """Surround `contents` with <tag style="[CSS_STRING]">."""
-    tag_kwargs = f' style="{to_inline_css(css_props)}"' if css_props else ''
+    tag_kwargs = to_inline_style_arg(css_props)
 
     if kwargs:
         if 'class_name' in kwargs:
@@ -98,6 +102,10 @@ def tag(tag: str, contents: HtmlElements, css_props: OptionalCssProps = None, **
 
 def to_inline_css(d: Mapping[str, str | int]) -> str:
     return '; '.join([f'{k}: {v}' for k, v in sort_dict_by_keys(d).items() if v])
+
+
+def to_inline_style_arg(css_props: OptionalCssProps = None) -> str:
+    return f' style="{to_inline_css(css_props)}"' if css_props else ''
 
 
 def _html_elements_to_str(contents: HtmlElements) -> str:

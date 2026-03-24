@@ -8,17 +8,30 @@ from epstein_files.util.logging import logger
 
 FBI_REPORT_FIELDS = [
     'Approved By',
+    'Case Agent Name',
     'Case ID #',
+    'City',
+    'Classified By',
     'Contact',
+    'Country',
+    'Date of Contact',
+    'Date of Report',
+    'Declassify On',
+    'Derived From',
     'Drafted By',
     'Date/Time Received',
     'Details',
+    'Field Office/Division',
     'Form Type',
     'Precedence',
     'SentinelCaseld',
     'SentToSentinel',
+    'Source ID',
+    'Squad',
+    'State',
     'Synopsis',
     'Title',
+    'Type of Contact',
 ]
 
 
@@ -42,12 +55,25 @@ def bop_policy_doc(id: str, display_text: str, date: str = '') -> DocCfg:
     return bop_doc(id, date=date, display_text=display_text)
 
 
+def doj_doc(id: str, note: str, **kwargs) -> DocCfg:
+    return DocCfg(id=id, note=note, author=DOJ, **kwargs)
+
+
 def doj_memo(id: str, note: str, date: str = '', **kwargs) -> DocCfg:
     return memo(id, DOJ, note, date, **kwargs)
 
 
 def fbi_internal(id: str, **kwargs) -> EmailCfg:
     return EmailCfg(id=id, author=FBI, recipients=[FBI], **kwargs)
+
+
+def fbi_evidence_review(id: str) -> EmailCfg:
+    return EmailCfg(id=id, author=FBI, recipients=[FBI, NYPD], note='summary of pictures and videos from Epstein computers')
+
+
+def fincen_sar(id: str, bank: str, subject: str, activity: str, **kwargs) -> DocCfg:
+    note = f"Suspicious Activity Report filed by {bank} about {subject} for {activity}"
+    return DocCfg(id=id, author=FINCEN, note=note, **kwargs)
 
 
 GOVERNMENT_CFGS = [
@@ -127,12 +153,32 @@ GOVERNMENT_CFGS = [
         author=DOJ,
         date='2025-09-01',
         date_uncertain='approximate',
-        note='Powerpoint summary of Child Sex Trafficking Task Force Epstein investigation',
-        is_interesting=True,
+        duplicate_ids=['EFTA01660622'],
+        note='Powerpoint summary of Epstein investigation by Child Sex Trafficking Task Force',
+        is_interesting=10,
     ),
-    doj_memo('EFTA02731200', "potential prosecution of Epstein's assistant"),
+    doj_doc('EFTA00025091', f"arrest warrant and other discovery materials"),
+    doj_doc('EFTA00009809', f"sealed indictment of Jeffrey Epstein", date='2019-07-02', is_interesting=2),
+    doj_memo('EFTA02731039', f'prosecution memo naming {LESLEY_GROFF}', is_interesting=10),
+    doj_memo('EFTA02731200', "potential prosecution of Epstein's assistant", is_interesting=10),
     doj_memo('EFTA02731082', "investigation into Epstein's co-conspirators"),
     doj_memo('EFTA02731226', f"charging {GHISLAINE_MAXWELL} with additional offenses", '2021-03-14'),
+    DocCfg(
+        id='EFTA00157613',
+        author=DOJ,
+        date='2021-06-08',
+        note=f"witness prep of Juan Alessi, Epstein's former house manager in Palm Beach describing Trump's visits",
+        truncate_to=(6_000, 7_000),
+        show_full_panel=True,  # TODO: show pic
+    ),
+    DocCfg(
+        id='EFTA00014822',
+        date='1982-06-01',
+        date_uncertain=True,
+        note=f"fake Austrian passport with Saudi address under the name Marius Robert Fortelni found in Epstein's possession",
+        show_image=True,
+        url='https://nypost.com/2025/12/23/us-news/jeffrey-epsteins-fake-austrian-passport-pictured-in-latest-doj-document-dump/',
+    ),
     DocCfg(id='EFTA02730741', author=DOJ, date='2025-05-01', date_uncertain=True, note="Evidence list for 50D-NY-3027571 Filtering On 'Type(s): 1B'"),
     DocCfg(id='EFTA02730486', author=DOJ, date='2025-05-01', date_uncertain=True, note="Evidence list for 50D-NY-3027571 Filtering On '1A'"),
     DocCfg(id='EFTA00040006', author=DOJ, date='2019-08-27', note='Personal History of Defendant Jeffrey Epstein + grand jury indictment'),
@@ -163,11 +209,13 @@ GOVERNMENT_CFGS = [
         is_interesting=10,
         truncate_to=(6_000, 7_500),
     ),
+    fbi_interview('EFTA01309589', ANTHONY_FIGUEROA, 'recruiting from high schools', '2020-08-27', is_interesting=True),
     fbi_interview('EFTA02858481', 'Jennifer Aros', 'Epstein and Trump accuser', '2019-08-07', is_interesting=True),
     fbi_interview('EFTA00174375', LUKE_D_THORBURN, f"lots of takes on Epstein, China, and {STEVE_BANNON}"),
     fbi_interview('EFTA00081226', MINOR_VICTIM),
     fbi_interview('EFTA00038915', MINOR_VICTIM, 'claims Epstein knew she was 14'),
     fbi_interview('EFTA00090602', STEVE_SCULLY, date='2019-08-09', show_full_panel=True),
+    fbi_interview('EFTA01699136', f"{VIRGINIA_GIUFFRE} and other victims", f'"Turkish girl" might be {GULSUM_OSMANOVA}', date='2011-03-17'),
     fbi_interview('EFTA00101927', None, f"claims Glenn and {EVA_DUBIN}'s Swiss au pair was being held against her will"),
     fbi_interview('EFTA00159321', None, f'covers {PAOLO_ZAMPOLLI}, Epstein, and the possibility Epstein introduced Melania to Donald Trump'),
     # FBI reports
@@ -211,7 +259,6 @@ GOVERNMENT_CFGS = [
         is_interesting=4,
     ),
     fbi_report('EFTA00151754', 'declaration of Law Enforcement Officer for Victim of Trafficking', is_interesting=True),
-    fbi_report('EFTA01249591', f"allegations against {HENRY_JARECKI}", show_full_panel=True),
     fbi_report('EFTA00173569', 'hack of FBI Epstein files repository by foreign actor', is_interesting=True),
     fbi_report('EFTA00020506', highlight_quote='chauffeur also told Epstein "I have something on you remember what I buried!"'),
     # FBI tips
@@ -221,15 +268,26 @@ GOVERNMENT_CFGS = [
         show_full_panel=True,
         url='https://www.bbc.com/news/articles/c6271ngl014o',
     ),
+    fbi_tip('EFTA01249591', f"about {HENRY_JARECKI}", show_full_panel=True),
     fbi_tip('EFTA00108851', f"from {STEVEN_HOFFENBERG} re: Epstein and the murder of Arthur Shapiro", is_interesting=True, truncate_to=(1_700, 2_600)),
     fbi_tip('EFTA00020490', 'from woman who thinks she encountered Epstein as a young girl'),
     fbi_tip('EFTA00090314', f'about {MASHA_DROKOVA}, Jared Kushner, Ivanka Trump, Chabad, {ALAN_DERSHOWITZ}, etc.', is_interesting=True),
+    fbi_tip(
+        'EFTA01683874',
+        'from Confidential Human Source about "Epstein\'s personal hacker"',
+        date='2017-11-27',
+        is_interesting=10,
+        truncate_to=(853, 4_200),
+    ),
+    fincen_sar('EFTA01656415', 'Charles Schwab', RICHARD_KAHN, "$45 million transaction"),
+    fincen_sar('EFTA01656409', DEUTSCHE_BANK, DARREN_INDYKE, 'structured transactions'),
     grand_jury(
         'EFTA00222943',
         note='FBI agent testimony',
         highlight_quote="I believe that certain items were purposely removed from Mr. Epstein's home in anticipation of an execution of a search warrant",
         truncate_to=AUTO,
     ),
+    grand_jury('EFTA00016349', note='charge list', date='2008-02-01', date_uncertain='before the arrest?'),
     DocCfg(id='EFTA00084614', author=PALM_BEACH_POLICE, note='incident report detailing the investigation into Jeffrey Epstein'),
     DocCfg(id='EFTA00007893', author=PALM_BEACH_POLICE, note=f"receipts, notes, bank statements of {GHISLAINE_MAXWELL}"),
     DocCfg(id='EFTA00005569', author=PALM_BEACH_POLICE, display_text='photo lineup featuring Epstein', date='2005-03-17'),
@@ -240,8 +298,20 @@ GOVERNMENT_CFGS = [
     DocCfg(id='EFTA00263284', note='notes about deceit and sexual manipulation by Australian professor Vincent Bulone', is_interesting=True),
     DocCfg(id='EFTA00001884', note='photo of letter from Virgin Islands DOJ to Epstein', date='2019-03-14'),
     DocCfg(id='EFTA00007157', note='victim list and police log'),
+    DocCfg(id='EFTA01649103', date='2025-03-17T22:33:37', note='"MCC Corruption Case" is about guards on duty when Epstein died'),
+    fbi_report('EFTA02729877', '"MCC Corruption Case" is about guards on duty when Epstein died'),
+    DocCfg(id='EFTA00029805', author=DOJ, note='policy doc', is_interesting=False),
     letter('EFTA01653121', FBI, ['USCIS'], "regarding an individual's cooperation in the investigation of Epstein and Maxwell"),
     letter('EFTA00098456', PAUL_G_CASSELL, ['Scotland Yard'], 'International Sex Trafficking by Jeffrey Epstein, contains court filings'),
+    letter(
+        'EFTA00016124',
+        SDNY,
+        [CHRISTIAN_EVERDELL, LAURA_A_MENNINGER, BOBBI_C_STERNHEIM],
+        "re: unsearched Epstein computer backups that are no inaccessible",
+        '2019-04-09',
+        highlight_quote='the Government cannot permit you to review the contents of the Discs',
+        truncate_to=(2_900, 3_900),
+    ),
 
     # Emails
     EmailCfg(
@@ -257,7 +327,18 @@ GOVERNMENT_CFGS = [
     EmailCfg(id='EFTA02731552', author=FBI, recipients=[USANYS], recipient_uncertain=True, date='2021-05-26 16:12:00'),
     EmailCfg(id='EFTA00039971', author=FBI, recipients=[USANYS], recipient_uncertain=True),
     EmailCfg(id='EFTA00163507', author=FBI, note="quotes from Epstein's cellmate", is_interesting=True),
+    EmailCfg(id='EFTA01649194', highlight_quote='Attached please find an updated list of the discrepancies'),
+    DocCfg(id='EFTA01649074', attached_to_email_id='EFTA01649194'),
     EmailCfg(id='EFTA00037683', note=f"tip that the murder of DC Madam Jeanne Palfrey might be connected to Epstein's network"),
+    fbi_evidence_review('EFTA01657122'),
+    fbi_evidence_review('EFTA01657117'),
+    fbi_evidence_review('EFTA01657113'),
+    fbi_evidence_review('EFTA01657121'),
+    fbi_evidence_review('EFTA01657111'),
+    fbi_evidence_review('EFTA01657107'),
+    fbi_evidence_review('EFTA01657097'),
+    fbi_evidence_review('EFTA01657119'),
+    fbi_evidence_review('EFTA01657124'),
     fbi_internal(
         'EFTA00172840',
         note=f'FBI investigation of {DAVID_COPPERFIELD} for rape of a young female closed by prosecutors',
@@ -267,8 +348,9 @@ GOVERNMENT_CFGS = [
         'EFTA01657299',
         highlight_quote='Brunel uses MC2 as a legitimate transport agency of underage girls into America for purposes of sex',
         note=f'interview of {JEAN_LUC_BRUNEL} partner Sergio Cordero',
-        truncate_to=(10_200, 14_500),
+        truncate_to=(10_240, 14_500),
     ),
+    fbi_internal('EFTA01648955'),
     fbi_internal('EFTA00037690', highlight_quote='seems to be a conduit for money paid to female victims', note=BUTTERFLY_TRUST),
 
     # DOJ / USANYS emails
@@ -348,11 +430,23 @@ GOVERNMENT_CFGS = [
         recipient_uncertain=True,
         truncate_to=7000,
     ),
+    EmailCfg(id='EFTA00037551', author=BUREAU_OF_PRISONS, recipients=[BUREAU_OF_PRISONS], recipient_uncertain=True),
+    EmailCfg(id='EFTA00039878', author=BUREAU_OF_PRISONS, author_uncertain=True, recipients=[BUREAU_OF_PRISONS]),
+    EmailCfg(id='EFTA00014718', author=USANYS, recipients=['Daily Beast']),
+    EmailCfg(id='EFTA00018398', author=BUREAU_OF_PRISONS, author_uncertain=True, recipients=[USANYS], recipient_uncertain=True),
+    EmailCfg(id='EFTA00037692', author=BUREAU_OF_PRISONS, author_uncertain=True, recipients=[BUREAU_OF_PRISONS], recipient_uncertain=True),
+    EmailCfg(id='EFTA00019994', author=BUREAU_OF_PRISONS, author_uncertain=True, recipients=[BUREAU_OF_PRISONS], recipient_uncertain=True),
     EmailCfg(id='EFTA02731593', author=USANYS, recipients=['Manhattan DA']),
     EmailCfg(id='EFTA00039419', author=USANYS, recipients=['Manhattan DA']),
     EmailCfg(id='EFTA02731617', author=USANYS, recipients=[SDNY], date='2021-04-28T15:05:41'),
     EmailCfg(id='EFTA00151184', author=USANYS, recipients=[USANYS]),
+    EmailCfg(id='EFTA00029435', author=USANYS),
+    EmailCfg(id='EFTA00014767', author=USANYS, recipients=[USANYS], author_uncertain=True, is_interesting=False),
+    EmailCfg(id='EFTA00015851', author=USANYS, recipients=[USANYS], author_uncertain=True, is_interesting=False),
+    fbi_internal('EFTA00021353'),
+    EmailCfg(id='EFTA00013640', author=USANYS, recipients=[USANYS], author_uncertain=True, truncate_to=(600, 1_700), note='list of devices'),
     EmailCfg(id='EFTA02731615', author=USANYS, recipients=[USANYS], author_uncertain=True),
+    EmailCfg(id='EFTA00030842', author=USANYS, recipients=[USANYS], author_uncertain=True),
     EmailCfg(id='EFTA02731684', author=USANYS, recipients=[USANYS], author_uncertain=True),
     EmailCfg(id='EFTA02731485', author=USANYS, recipients=[USANYS], author_uncertain=True),
     EmailCfg(id='EFTA02731736', author=USANYS, recipients=[USANYS], author_uncertain=True),

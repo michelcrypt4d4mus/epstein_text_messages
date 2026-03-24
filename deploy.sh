@@ -10,6 +10,7 @@ source .env
 THIS_DIR=$(dirname -- "$(readlink -f -- "$0";)";)
 REPO_SCRIPTS_DIR="$THIS_DIR/scripts"
 EXTRACT_DOJ_PDFS_PATH="$REPO_SCRIPTS_DIR/extract_doj_pdfs.py"
+PICKLE_ARG=$([[ $1 == '--pickled' ]] && echo "" || echo "--overwrite-pickle")
 source "$REPO_SCRIPTS_DIR/bash_lib/shared.sh"
 
 

@@ -13,6 +13,8 @@ from epstein_files.util.constant.strings import *
 from epstein_files.util.env import args
 from epstein_files.util.helpers.string_helper import join_truthy
 
+PURCHASE_OF_BIN_ENNAKHILL = 'purchase of Bin Ennakhill palace in Marrakech'
+
 MONEY_OCR_REPAIRS: OcrRepair = {
     re.compile(r"to[ ,]*if[\n ](s?he)[\n ]survives me"): fr"to {REDACTED}, if \1 survives me",
     re.compile(r"[\n ]if[\n ](s?he)[\n ]survives me"): r" if \1 survives me",
@@ -32,6 +34,10 @@ def cabinet_inventory(id: str, container: str, **kwargs) -> DocCfg:
 
 def deutsche_bank_doc(id: str, note: str, date: str = '', **kwargs) -> DocCfg:
     return DocCfg(id=id, author=DEUTSCHE_BANK, date=date, note=note, **kwargs)
+
+
+def schwab_doc(id: str, **kwargs) -> DocCfg:
+    return DocCfg(id=id, author='Charles Schwab', **kwargs)
 
 
 def epstein_will(
@@ -85,17 +91,18 @@ MONEY_CFGS = [
     DocCfg(id='EFTA01282282', author=BUTTERFLY_TRUST, note=f"almost completely redacted list of beneficiaries"),
     DocCfg(id='EFTA00803405', author=HONEYCOMB_ASSET_MANAGEMENT, note="fund brochure"),
     DocCfg(
-        id='EFTA00006069',
-        author='NES LLC',
-        display_text='W-2 tax form issued for <REDACTED> employee whom Epstein paid $185,323',
-        date='2006-01-01'
-    ),
-    DocCfg(
         id='EFTA01413294',
         comment='related to EFTA01357341, EFTA01363125, + more based on Vavilov Street address',
         date='2016-12-16',
         date_uncertain='hard to tell',
         note='compliance report on payment from Epstein to Sberbank account of Nikolay Aleksandrovich Gyrov',
+    ),
+    DocCfg(
+        id='EFTA01480940',
+        author=JP_MORGAN,
+        highlight_quote='two outstanding federal tax liens totaling $593,789',
+        note=f'due diligence report on {MC2_MODEL_MGMT}',
+        truncate_to=(200, 500) if args.output_most_interesting else NO_TRUNCATE
     ),
     DocCfg(
         id='EFTA01111057',
@@ -105,11 +112,10 @@ MONEY_CFGS = [
         non_participants=['Marla Maples'],
     ),
     DocCfg(
-        id='EFTA01480940',
-        author=JP_MORGAN,
-        highlight_quote='two outstanding federal tax liens totaling $593,789',
-        note=f'due diligence report on {MC2_MODEL_MGMT}',
-        truncate_to=500 if args.output_most_interesting else NO_TRUNCATE
+        id='EFTA00006069',
+        author='NES LLC',
+        display_text='W-2 tax form issued for <REDACTED> employee whom Epstein paid $185,323',
+        date='2006-01-01'
     ),
     DocCfg(id='EFTA01478313', note=f'list of investments (maybe of {LEON_BLACK})', date='2016-03-31'),
     DocCfg(id='EFTA01222951', note=f"credit card expenses for Carlos L Rodriguez using Plum Card", date='2019-02-12'),
@@ -119,10 +125,12 @@ MONEY_CFGS = [
     DocCfg(id='EFTA01086463', note=f"{MORTIMER_ZUCKERMAN}'s art collection valuations", is_valid_for_name_scan=False),
     DocCfg(id='EFTA01273102', note=f"payment from Epstein to {RENATA_BOLOTOVA}'s father's account at Sberbank"),
     DocCfg(id='EFTA00238499', note='wire transfer to Signature Bank account'),
-    deutsche_bank_doc('EFTA00166317', "statement for Epstein's account 690519", date='2016-05-30'),
+    deutsche_bank_doc('EFTA00166863', f"Southern Financial Know Your Customer form filled out by {PAUL_MORRIS}", date='2019-07-30', truncate_to=(8_400, 10_500)),
+    deutsche_bank_doc('EFTA01286706', f"Plan D, LLC bank statement showing $22,500,000 incoming and $15,000,000 outgoing"),
     deutsche_bank_doc('EFTA01361270', f"$60,000 transfer from {SOUTHERN_TRUST_COMPANY} to {BEN_GOERTZEL}'s Novamente", date='2014-01-02'),
     deutsche_bank_doc('EFTA00101280', f"Epstein's {DEUTSCHE_BANK} accounts", show_full_panel=True),
     deutsche_bank_doc('EFTA01681865', "explanations of all of Epstein's large payments prepared for DOJ", '2019-09-12', is_interesting=20),
+    deutsche_bank_doc('EFTA00166317', "statement for Epstein's account 690519", date='2016-05-30'),
     deutsche_bank_doc('EFTA01285411', f"statement for Epstein's {SOUTHERN_TRUST_COMPANY} showing $82 million balance"),
     epstein_will(
         'EFTA01266457',
@@ -144,10 +152,32 @@ MONEY_CFGS = [
         '2007-09-20',
         [HENRY_JARECKI, JAMES_CAYNE, PAUL_HOFFMAN],
         note='codicil',
+        truncate_to=(12_870, 13_500),
         # non_participants=[JOI_ITO],
-        truncate_to=(12_750, 14_500),
     ),
-    epstein_will('EFTA00099424', '2017-01-30', [EVA_DUBIN, DARREN_INDYKE, RICHARD_KAHN], '2017', truncate_to=(4_600, 14_000)),
+    epstein_will(
+        'EFTA01266268',
+        '2017-06-29',
+        [DARREN_INDYKE, EVA_DUBIN, KATHRYN_RUEMMLER, RICHARD_KAHN, TERJE_ROD_LARSEN],
+        note=f'witnessed by Leo Loking and {KARYNA_SHULIAK}',
+    ),
+    epstein_will(
+        'EFTA01266403',
+        '2015-05-20',
+        [DARREN_INDYKE, DAVID_MITCHELL, JES_STALEY],
+        '2014',
+        note='amendment',
+        truncate_to=(4_000, 8_000),
+    ),
+    epstein_will(
+        'EFTA01266298',
+        '2003-06-27',
+        [GHISLAINE_MAXWELL, IRA_ZICHERMAN],
+        '2001',
+        note='amendment removing Jeffrey A. Schantz as trustee',
+        truncate_to=(4_800, 8_600),
+    ),
+    epstein_will('EFTA00099424', '2017-01-30', [DARREN_INDYKE, EVA_DUBIN, RICHARD_KAHN], '2017', truncate_to=(4_600, 14_000)),
     epstein_will('EFTA00016884', '2014-11-18', [DARREN_INDYKE, JES_STALEY, DAVID_MITCHELL, LARRY_SUMMERS], truncate_to=2_500),
     epstein_will('EFTA01266380', '2014-11-18', [DARREN_INDYKE, JES_STALEY, DAVID_MITCHELL], '2014', truncate_to=(4_500, 13_000)),
     cabinet_inventory('EFTA00299850', 'FILE CABINET ONE'),
@@ -173,9 +203,12 @@ MONEY_CFGS = [
         truncate_to=(552, 1_300),
     ),
 
+    # Schwab
+    schwab_doc('EFTA01265978', date='2019-07-10', note='account opened 3 months before death'),
+
     # Emails
+    EmailCfg(id='EFTA02246580', note=f"Epstein commissioning painting of little girl", truncate_to=305),
     EmailCfg(id='EFTA00037187', note=f"Epstein's {DEUTSCHE_BANK} banker Paul Morris lawyers up immediately when contacted by the FBI", is_interesting=5),
-    EmailCfg(id='EFTA00994380', highlight_quote='please confirm $500 to Sergey Pozhidaev', truncate_to=500),
     EmailCfg(
         id='EFTA01409449',
         note=f"{DEUTSCHE_BANK} employees scrubbing Epstein's name off his Souther Financial account (and its TWTR (Twitter) trades)",
@@ -201,26 +234,38 @@ MONEY_CFGS = [
         is_interesting=10,
         truncate_to=400,
     ),
+    EmailCfg(id='EFTA01430282', note=f"{DEUTSCHE_BANK} internal discussion of Epstein leaving money to {CELINA_DUBIN} and account closures"),
+    EmailCfg(id='EFTA01036804', note=f"Epstein's lawyers advise against his {PURCHASE_OF_BIN_ENNAKHILL}"),
     EmailCfg(id='EFTA00080250', note=f"{LEON_BLACK} / Rothschild Group {DEUTSCHE_BANK} transactions, source of some of Epstein's wealth", is_interesting=10),
     EmailCfg(id='EFTA02633194', note=f'{NICOLE_JUNKERMANN} quotes an appraisal by "FSB (Russians)"', is_interesting=10),
     EmailCfg(id='EFTA01435454', note=f"{DEUTSCHE_BANK} finally sets up a trading account for Epstein's Southern Financial"),
     EmailCfg(id='EFTA02630431', note=f"{CARBYNE} is an Israeli company invested in by Epstein, {NICOLE_JUNKERMANN}, & {EHUD_BARAK}"),
-    EmailCfg(id='EFTA01375243', note=f"{DEUTSCHE_BANK} anti-money laundering team flags Epstein's $237k transfer to {SVETLANA_POZHIDAEVA}'s family"),
+    EmailCfg(
+        id='EFTA01375243',
+        is_interesting=6,
+        note=f"{DEUTSCHE_BANK} anti-money laundering team flags Epstein's $237,270 transfer to {SVETLANA_POZHIDAEVA}'s family",
+    ),
     EmailCfg(id='EFTA00836182', note=f'email to investors in {VALAR_FUND}'),
     EmailCfg(id='EFTA00382048', note=f'setting up an ISDA (special account for high volume traders) with {DEUTSCHE_BANK}'),
     EmailCfg(id='EFTA00629657', note=f"arranging {LEON_BLACK}'s finances"),
     EmailCfg(id='EFTA00371120', note=f"Epstein appears to invest in {ATORUS}"),
     EmailCfg(id='EFTA00652799', note=f'Epstein calls Ari Glass "a bit sketchy" despite investing ~$50 million in his fund Boothbay'),
     EmailCfg(id='EFTA01388422', note='Nadean Novogratz is probably the sister-in-law of crypto ponzi billionaire Mike Novogratz'),
-    EmailCfg(id='EFTA01802355', note=f'{MC2_MODEL_MGMT} line of credit and other people owes money to or is owed money by'),
+    EmailCfg(id='EFTA01802355', note=f'{MC2_MODEL_MGMT} line of credit and other people Epstein owes money to/is owed money by'),
     EmailCfg(id='EFTA01870235', note=f'{MC2_MODEL_MGMT} IRS woes and line of credit repayment'),
     EmailCfg(id='EFTA01942664', note=f'payment from {MC2_MODEL_MGMT}'),
+    EmailCfg(id='EFTA00552943', note=PURCHASE_OF_BIN_ENNAKHILL),
+    EmailCfg(id='EFTA00552220', note=f"{PURCHASE_OF_BIN_ENNAKHILL} (by {KARYNA_SHULIAK}??)", is_interesting=7),
     EmailCfg(
         id='EFTA01816514',
         comment='Different Gary, different Gensler',
         non_participants=['Gary Gensler'],
-        note=f"discussion of open invoices includes $854,598 line of credit for {MC2_MODEL_MGMT}",
+        note=f"discussion of open invoices includes $854,598 line of credit for {MC2_MODEL_MGMT}, also Ossa Properties (Mark Epstein)",
         truncate_to=(2_200, 2_900),
     ),
     sar('EFTA01648787', JP_MORGAN, "$1.1 billion in Epstein transfers"),
+    EmailCfg(
+        id='EFTA01299330',
+        note=f"AML / Suspicious Activity report on structured deposits by {DARREN_INDYKE}",
+    ),
 ]

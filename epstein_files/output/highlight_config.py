@@ -51,8 +51,9 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         style=FINANCIAL_COLOR,
         patterns=[
             r"[€$£][\dO,.]+(\s*(bn|[bm](illl?ion|m)?|k|thousand))?( dollars?)?",
-            r"[\dO,.]+\s*(GBP|euros?|[bm]illl?ion( (dollars|euros)?)?( loan)?)",
-        ]
+            r"[\dO,.]+\s*(GBP|euro(?!pe)s?|[bm]illl?ion( (dollars|euros)?)?( loan)?)",
+        ],
+        regex_flags = re.MULTILINE,  # No IGNORECASE
     ),
     HighlightPatterns(
         label='metoo',
@@ -196,7 +197,15 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"(\b|\+)[\d+]{10,12}\b",
         ],
     ),
-     HighlightPatterns(
+    HighlightPatterns(
+        label='page_number',
+        style='wheat4',
+        patterns=[
+            r"^Page \d+$",
+            r"SECRET//NOFORN",
+        ],
+    ),
+    HighlightPatterns(
         label='header_field',  # email_header (or FBI)
         style='plum4',
         patterns=[

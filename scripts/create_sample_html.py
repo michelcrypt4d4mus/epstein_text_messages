@@ -50,6 +50,7 @@ def print_test_panels():
 
 
 doc_types_to_sample = [
+    [d for d in epstein_files.documents if d._config.show_image],
     [d for d in epstein_files.documents if d._config.background_color], # Configured BG
     [d for d in epstein_files.other_files if d.category in CATEGORY_BG_STYLES],  # BG by category
     [e for e in epstein_files.emails if 'https' in e.text[0:1500]],
@@ -62,6 +63,9 @@ doc_types_to_sample = [
     epstein_files.emails_with_attachments,
     epstein_files.imessage_logs,
 ]
+
+images = [d for d in epstein_files.documents if d._config.show_image]
+logger.warning(f"images found: {len(images)}, IDs: {[d.file_id for d in images]}")
 
 sample_docs = DocList.uniquify_by_id(flatten([docs[:SAMPLE_SIZE] for docs in doc_types_to_sample]))
 printer = DocPrinter(epstein_files=epstein_files)

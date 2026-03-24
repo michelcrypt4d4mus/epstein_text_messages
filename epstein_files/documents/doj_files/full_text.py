@@ -58,7 +58,7 @@ walked me up there stripping out all this picture
 She pulled out massage table me     front of couch     blanket over table     opened drawer     whole bunch of lotions     + pick some out
 She told me keep bra + panties on + get undress
 
-No <REDACTED>     told her I thought a massage keep your clothing
+No <REDACTED>  told her I thought a massage keep your clothing
 
 Page 4
 
@@ -66,16 +66,13 @@ stay in the room
 I came in the room     HE + shook hands
 Came back in the room
 
-JE:     old     50ish
+JE: old 50ish
 
-initially     guy golfy     khaki pants pullover
-
+initially   guy golfy   khaki pants pullover
 t-shirt + jeans     thong     bra
 
 hesitant     thinking what's going on. I didn't care cause I wanted $200
-
 He laid on massage table     He said grab any 3 lotions
-
 Started to give him
 
 What M.S.     did you go to told     him she was 16 Not     do you like to do     small talk <REDACTED>
@@ -86,9 +83,8 @@ Page 5
 
 He asked if I wanted to make an extra $300
 Straddle him
-
 massage over -
-but if you're not comfortable giving a massage can I     <REDACTED>     on you     ~~anything~~
+but if you're not comfortable giving a massage can I <REDACTED> on you     ~~anything~~
 <REDACTED>     said ok
 JE left + came ba
 
