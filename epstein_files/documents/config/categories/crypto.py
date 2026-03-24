@@ -390,7 +390,7 @@ CRYPTO_CFGS = [
         'EFTA00128987',
         f'from {DEUTSCHE_BANK} anti-money laundering employee about Jared Kushner co. RealCadre crypto payments to suspicious Russians',
         date='2019-08-21',
-        is_interesting=20,
+        is_interesting=30,
         non_participants=['Marla Maples'],
         truncate_to=(11_000, 14_000),
     ),
