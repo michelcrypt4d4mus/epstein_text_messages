@@ -2761,7 +2761,7 @@ HIGHLIGHTED_NAMES = [
             Entity('pink@mc2mm.com', JEAN_LUC_MC2, r"^Pink$|pink@mc2mm\.com"),
             Entity(
                 'Tigran Khachatrian',
-                f'model scout, friend of {DANIEL_SIAD}, in "Girl Model" documentary, 6 year prison sentence for identity theft in 2012',
+                f'model scout, friend of {DANIEL_SIAD}, in "Girl Model" documentary, 6 years in prison for identity theft',  #  in 2012
                 r"Tigrane?( Khachatrian)?",
                 match_partial='both',
                 url=[
