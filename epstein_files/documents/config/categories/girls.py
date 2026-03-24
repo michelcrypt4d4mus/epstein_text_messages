@@ -768,7 +768,7 @@ GIRLS_CFGS = [
         duplicate_ids=['EFTA00732294'],
     ),
     EmailCfg(id='EFTA00927927', note=f"{RENATA_BOLOTOVA} possibly talking about recruiting girls"),
-    EmailCfg(id='EFTA01816788', note=f"Russian girl for {PRINCE_ANDREW}"),
+    EmailCfg(id='EFTA01816788', note=f"Russian girl for {PRINCE_ANDREW}", is_interesting=9),
     EmailCfg(id='EFTA00876739', note=f'scouting girls in Ukraine {QUESTION_MARKS}'),
     EmailCfg(id='EFTA00901905', note="smoking in the house oh no!"),
     EmailCfg(
@@ -777,11 +777,10 @@ GIRLS_CFGS = [
         note=f"Epstein can't go to \"nats\" but (because?) {SVETLANA_POZHIDAEVA} and {JOSHUA_FINK} will be there",
         show_with_name=SVETLANA_POZHIDAEVA,
     ),
-    EmailCfg(id='EFTA01798715', note=f"{SVETLANA_POZHIDAEVA} taking an interest in {JOSHUA_FINK}'s investments in Eritrea in between hair gigs"),
+    EmailCfg(id='EFTA01798715', note=f"{SVETLANA_POZHIDAEVA} taking an interest in {JOSHUA_FINK}'s investments in Eritrea in between hair gigs", is_interesting=10),
     EmailCfg(id='EFTA00572157', note='translation: "Congratulations on the new addition!!! What did you name the little miracle?" (seems to be about a cat)'),
     EmailCfg(id='EFTA00631762', note="visa problems for Epstein's South African friend"),
     EmailCfg(id='EFTA00376832', show_with_name=MARIANA_IDZKOWSKA),
-    EmailCfg(id='EFTA00743526', note=f"Epstein and {RAMSEY_ELKHOLY} trying to get a Next Models contract for Regina", truncate_to=(800, 2_160)),
     EmailCfg(id='EFTA02664956', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA00689698', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA02702141', truncate_to=NO_TRUNCATE, comment=ELON_MUSK),
@@ -799,6 +798,7 @@ GIRLS_CFGS = [
     EmailCfg(id='EFTA02398135', comment=JULIA_SANTOS + ' "Sochi"'),
     EmailCfg(id='EFTA00766770'),
     EmailCfg(id='EFTA01990860', note=f"{PRINCE_ANDREW}'s public denial draft"),
+    EmailCfg(id='EFTA00743526', note=f"Epstein and {RAMSEY_ELKHOLY} trying to get a Next Models contract for Regina", truncate_to=(800, 2_160)),
 
     # Text msg
     TextCfg(
