@@ -424,6 +424,7 @@ GOVERNMENT_CFGS = [
         truncate_to=7000,
     ),
     EmailCfg(id='EFTA00037551', author=BUREAU_OF_PRISONS, recipients=[BUREAU_OF_PRISONS], recipient_uncertain=True),
+    EmailCfg(id='EFTA00039878', author=BUREAU_OF_PRISONS, author_uncertain=True, recipients=[BUREAU_OF_PRISONS]),
     EmailCfg(id='EFTA00014718', author=USANYS, recipients=['Daily Beast']),
     EmailCfg(id='EFTA00018398', author=BUREAU_OF_PRISONS, author_uncertain=True, recipients=[USANYS], recipient_uncertain=True),
     EmailCfg(id='EFTA00037692', author=BUREAU_OF_PRISONS, author_uncertain=True, recipients=[BUREAU_OF_PRISONS], recipient_uncertain=True),

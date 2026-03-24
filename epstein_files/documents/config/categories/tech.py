@@ -16,4 +16,5 @@ TECH_CFGS = [
         truncate_to=(810, 930),
     ),
     EmailCfg(id='EFTA02226642', note=f"Myrhvold introduces Epstein to {MIROSLAV_LAJCAK}"),
+    EmailCfg(id='EFTA02186054', note='Myrhvold meeting', truncate_to=1_500),
 ]

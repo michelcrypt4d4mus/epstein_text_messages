@@ -57,6 +57,7 @@ HIGHLIGHTED_NAMES = [
                 r"(Dr\.?|Elkhonon) Goldberg",
                 match_partial='first',
             ),
+            Entity('Jack Horner', 'paleontologist'),
             Entity(
                 JAMES_TAGG,
                 "The Penrose Institute, Sunlight Aerospace, claims to be inventor of the eSIM",
@@ -3102,7 +3103,7 @@ HIGHLIGHTED_NAMES = [
                 url=SUBSTACK_POST_INSIGHTSPOD_URL,
             ),
             Entity(DASHA_GRUPMAN, 'recruiter of girls for Epstein', r"Da(ry|sh)a Grupman"),
-            Entity(EKATERINA_GUSAROVA, f'Instagram model {QUESTION_MARKS}', r"(Ekaterina|Katya)? Gusm?arova", aliases=['Katya']),
+            Entity(EKATERINA_GUSAROVA, f'Instagram model {QUESTION_MARKS}', r"(Ekaterina|Katya)? Gusm?arova?", aliases=['Katya']),
             Entity(EKATERINA_NORTON, '27 year old Russian banker at UBS', match_partial=None),
             Entity(GULSUM_OSMANOVA, QUESTION_MARKS, r"Gul'?sum|Osmanova", email_addresses=['g.a.osmanova@gmail.com']),
             Entity('Irina Vodolazova', 'model', match_partial='both', url='https://www.instagram.com/vodochka/'),

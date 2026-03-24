@@ -152,7 +152,7 @@ MONEY_CFGS = [
         '2007-09-20',
         [HENRY_JARECKI, JAMES_CAYNE, PAUL_HOFFMAN],
         note='codicil',
-        truncate_to=(12_750, 14_500),
+        truncate_to=(12_870, 13_500),
         # non_participants=[JOI_ITO],
     ),
     epstein_will(

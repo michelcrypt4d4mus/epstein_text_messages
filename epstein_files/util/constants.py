@@ -153,6 +153,8 @@ UNINTERESTING_EMAIL_IDS = [
     'EFTA00875181',
     # Christina Galbraith
     '031591',
+    # Danny Hillis
+    'EFTA01880902'
     # David Stern
     'EFTA02507454',
     'EFTA02478704',
@@ -265,6 +267,7 @@ UNINTERESTING_EMAIL_IDS = [
     'EFTA02731648',
     'EFTA02731473',
     'EFTA02731735',
+    'EFTA00016800',
     'EFTA02731734',
     'EFTA02731628',
     'EFTA00040144',
@@ -319,7 +322,6 @@ UNINTERESTING_EMAIL_IDS = [
     'EFTA02187735',  # housekeeping
     'EFTA00020508',  # Proffer
     'EFTA00023292',  # out of office
-    'EFTA00016800',  # judicial stay
     'EFTA00037454',  # federal soup
 ]
 
