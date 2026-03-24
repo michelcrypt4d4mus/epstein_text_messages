@@ -270,4 +270,8 @@ MONEY_CFGS = [
         id='EFTA01299330',
         note=f"AML / Suspicious Activity report on structured deposits by {DARREN_INDYKE}",
     ),
+
+    # Joi Ito
+    EmailCfg(id='EFTA01964198'),  # no profits/charity
+    EmailCfg(id='EFTA01754913'),  # no profits/charity
 ]

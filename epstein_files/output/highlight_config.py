@@ -274,6 +274,10 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
 HIGHLIGHTED_ENTITIES = flatten([hn.entities for hn in HIGHLIGHTED_NAMES])
 
 
+def entities_in_category(category: str) -> list[Entity]:
+    return flatten([hn.entities for hn in HIGHLIGHTED_NAMES if hn.category == category])
+
+
 def get_entity(name: str) -> Entity | None:
     if (group := get_highlight_group_for_name(name)) and isinstance(group, HighlightedNames):
         return group.entities_by_name.get(name)

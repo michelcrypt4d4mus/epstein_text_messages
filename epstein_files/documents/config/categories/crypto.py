@@ -416,6 +416,8 @@ CRYPTO_CFGS = [
     EmailCfg(id='EFTA00989593', note=f'donations from {LEON_BLACK} to {MIT_MEDIA_LAB} / Digital Currency Initiative {QUESTION_MARKS}'),
     EmailCfg(id='EFTA00999549', note=f"{JOI_ITO} and {JEREMY_RUBIN} meet {LARRY_SUMMERS} to discuss bitcoin", is_interesting=10),
     EmailCfg(id='EFTA01752601', note=f"{JOI_ITO} and Epstein name their new fund Kyara", is_interesting=10),
+    EmailCfg(id='EFTA01756112', note=f'{JOI_ITO} plays down Epstein\'s "jail thing"', is_interesting=3),
+    EmailCfg(id='EFTA00965561'),
     EmailCfg(id='EFTA02703885', author=LINDA_STONE, author_reason='sig', note=f"{LINDA_STONE} introducing Epstein to {JEREMY_RUBIN}"),
     EmailCfg(id='EFTA02505439', note=f'summary of {KYARA_INVESTMENT} shell companies with {JOI_ITO}', is_interesting=10),
     EmailCfg(id='EFTA01973301', recipients=[LINDA_STONE], author_reason='signature'),

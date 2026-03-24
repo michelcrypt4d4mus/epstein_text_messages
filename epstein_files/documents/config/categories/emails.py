@@ -1196,7 +1196,6 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA02565917', note='Hassan Mohammed Abdul Latif Jameel is a Saudi businessman and philanthropist'),
     EmailCfg(id='EFTA02277132', note='hotel booking in Kiev'),
     EmailCfg(id='EFTA00927227', note=f"{IAN_OSBORNE} pitches his new venture fund {HEDOSOPHIA} to Epstein", is_interesting=True),
-    EmailCfg(id='EFTA01756112', note=f'{JOI_ITO} plays down Epstein\'s "jail thing"'),
     EmailCfg(id='EFTA01767036', note=f'"Karim" is probably {ALLEGED_KARIM_WADE}'),
     EmailCfg(id='EFTA02515416', note=f'{JEAN_LUC_BRUNEL} is having visa problems', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA02513560', note=f"{JEAN_LUC_BRUNEL} doesn't want to speak on the phone", truncate_to=NO_TRUNCATE),
