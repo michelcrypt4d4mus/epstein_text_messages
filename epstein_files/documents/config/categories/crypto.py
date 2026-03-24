@@ -76,9 +76,9 @@ CRYPTO_CFGS = [
         id='EFTA01776893',
         author=DONALD_NORMAN,
         author_reason='"This is Donald"',
-        comment='visible in EFTA00915426',
         duplicate_ids=['EFTA00915423'],
         is_interesting=False,
+        visible_in_id='EFTA00915426',
     ),
     EmailCfg(
         id='EFTA00656005',
@@ -112,6 +112,8 @@ CRYPTO_CFGS = [
     EmailCfg(id='EFTA02639760', note='Epstein pushing cryptocurrency on Bill Gates'),
     # Bitmain
     EmailCfg(id='EFTA01004576'),
+    EmailCfg(id='EFTA01004511', visible_in_id='EFTA02600944'),
+    EmailCfg(id='EFTA02600944'),
 
     # Blockstream / Austin Hill
     DocCfg(id='EFTA00797613', note='Alphabit crypto fund pitch deck', attached_to_email_id='EFTA00955063'),
@@ -403,6 +405,8 @@ CRYPTO_CFGS = [
     EmailCfg(id='EFTA00957552', note=f'thank you note for a $50,000 donation in honor of Tether banker {HOWARD_LUTNICK}', is_interesting=10),
     EmailCfg(id='EFTA00970606', show_with_name=HOWARD_LUTNICK),
     EmailCfg(id='EFTA01778423', show_with_name=HOWARD_LUTNICK),
+    EmailCfg(id='EFTA02654255', is_interesting=5),
+    EmailCfg(id='EFTA01050772', is_interesting=5),
     # Jason Calacanis
     EmailCfg(id='EFTA02540384', note='Epstein asks for an intro to the bitcoin team he would go on to fund', is_interesting=20),
     EmailCfg(id='EFTA00914512', note=f"{JASON_CALACANIS} happy to hang out with Epstein right after he got out of jail"),

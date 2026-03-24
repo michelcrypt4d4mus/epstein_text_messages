@@ -1,4 +1,5 @@
 # NEXT RELEASE
+* `EmailCfg.visible_in_id` property
 * New `--output-most-interesting` (with site) and `--almost-top10` args
 * New `--output-notes` argument and site
 * Experimental `--side-panel-notes` option for custom HTML
