@@ -2754,11 +2754,6 @@ HIGHLIGHTED_NAMES = [
                 url='https://ramseyelkholyny.com/',
             ),
             Entity('Sergio Cordero', f"modeling agent {MC2_MODEL_MGMT}, business partner of {JEAN_LUC_BRUNEL}", match_partial=None),
-            # Contact('Regina', f'model, Epstein and {FAITH_KATES} tried to get her a contract'),
-            Entity('Vladimir Yudashkin', "director of the 1 Mother Agency"),
-            Entity('Yfke Sturm', 'model from Holland', match_partial='both', url=WIKIPEDIA),
-            Entity('lorraine@mc2mm.com', JEAN_LUC_MC2),
-            Entity('pink@mc2mm.com', JEAN_LUC_MC2, r"^Pink$|pink@mc2mm\.com"),
             Entity(
                 'Tigran Khachatrian',
                 f'model scout, friend of {DANIEL_SIAD}, in "Girl Model" documentary, 6 years in prison for identity theft',  #  in 2012
@@ -2769,6 +2764,11 @@ HIGHLIGHTED_NAMES = [
                     'https://en.wikipedia.org/wiki/Girl_Model',
                 ],
             ),
+            # Contact('Regina', f'model, Epstein and {FAITH_KATES} tried to get her a contract'),
+            Entity('Vladimir Yudashkin', "director of the 1 Mother Agency"),
+            Entity('Yfke Sturm', 'model from Holland', match_partial='both', url=WIKIPEDIA),
+            Entity('lorraine@mc2mm.com', JEAN_LUC_MC2),
+            Entity('pink@mc2mm.com', JEAN_LUC_MC2, r"^Pink$|pink@mc2mm\.com"),
             # Orgs
             Organization('2morrow'),
             Organization('Elite Models', 'well known modeling agency'),
