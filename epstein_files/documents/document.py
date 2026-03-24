@@ -30,7 +30,7 @@ from epstein_files.documents.emails.constants import DOJ_EMAIL_OCR_REPAIRS, FALL
 from epstein_files.documents.emails.emailers import get_entities
 from epstein_files.documents.emails.email_header import DETECT_EMAIL_REGEX
 from epstein_files.output.highlight_config import HIGHLIGHTED_ENTITIES, get_style_for_category, get_style_for_name, styled_name
-from epstein_files.output.html.builder import VERTICAL_MARGIN_EMS
+from epstein_files.output.html.positioned_rich import VERTICAL_MARGIN
 from epstein_files.output.layout_elements.base_panel import BasePanel
 from epstein_files.output.layout_elements.image_panel import ImagePanel
 from epstein_files.output.layout_elements.layout import Layout
@@ -252,9 +252,9 @@ class Document(LoggingEntity):
         return self.file_info.filename
 
     @property
-    def html_margin_bottom(self) -> str:
+    def html_margin_bottom(self) -> float:
         """Overloaded in `Email` for case of emails with attachments."""
-        return VERTICAL_MARGIN_EMS
+        return VERTICAL_MARGIN
 
     @property
     def image_url(self) -> str:
@@ -390,6 +390,19 @@ class Document(LoggingEntity):
         return pretty_txt
 
     @property
+    def side_panel(self) -> BasePanel | None:
+        """Experimental feature to put note in a horizontal layout panel."""
+        if (args.side_panel_notes or self._config.show_image) and (note_txt := self._config.note_txt()):
+            return BasePanel(
+                background_color='grey11',
+                border_style='grey23',
+                padding=2,
+                text=note_txt,
+            )
+        else:
+            return None
+
+    @property
     def subheader_info(self) -> Text | None:
         """Secondary info about this file (description, recipients, etc). Overload in subclasses."""
         return None
@@ -397,7 +410,10 @@ class Document(LoggingEntity):
     @property
     def subheaders(self) -> list[Text]:
         """0 to 2 sentences containing the `subheader_info` and any configured `note` text."""
-        return without_falsey([self.subheader_info, self._config.note_txt()])
+        return without_falsey([
+            self.subheader_info,
+            None if self.side_panel else self._config.note_txt(),
+        ])
 
     @property
     def suppressed_txt(self) -> Text | None:
@@ -550,6 +566,7 @@ class Document(LoggingEntity):
             indent=indent,
             justify=justify,
             margin_bottom=self.html_margin_bottom,
+            side_panel=self.side_panel,
             subheaders=self.subheaders,
         )
 

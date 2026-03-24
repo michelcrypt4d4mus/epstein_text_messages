@@ -1,4 +1,5 @@
 from epstein_files.documents.config.doc_cfg import DocCfg
+from epstein_files.documents.config.email_cfg import EmailCfg
 from epstein_files.people.names import *
 from epstein_files.util.constant.strings import *
 
@@ -27,4 +28,6 @@ ARTS_CFGS = [
         date='2010-10-13',
         note=f'art show flier for "The House Of The Nobleman"',
     ),
+    # Emails
+    EmailCfg(id='032906', is_interesting=4, comment='David Blaine email'),
 ]

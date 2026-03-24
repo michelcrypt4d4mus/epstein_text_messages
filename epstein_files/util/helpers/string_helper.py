@@ -10,6 +10,9 @@ from inflection import underscore
 from epstein_files.util.constant.strings import AMPERSAND_CHAR_GROUP, QUESTION_MARKS_REGEX
 from epstein_files.util.logging import logger, text_block
 
+DATE_LENGTH = len('2025-05-05')
+WHITESPACE_CHAR = r"[-_.\s]*"
+
 EMOJI_REGEX = re.compile(r"(?:^|\s)([:;=][-^]?[oODP()]|[oO()][-^]?[:=])(?=$|\s)")
 INTEGER_REGEX = re.compile(r'^\d+$')
 MULTINEWLINE_REGEX = re.compile(r"\n{2,}")
@@ -19,24 +22,23 @@ TIMESTAMP_SECONDS_REGEX = re.compile(r":\d{2}(\.\d+)?([-+]\d{2}:\d{2})?$")
 WHITESPACE_REGEX = re.compile(r"\s{2,}|\t|\n", re.MULTILINE)
 
 # Auto doublespacing
+DOUBLESPACE_IF_LINE_LEN_OVER = 130
+DOUBLESPACE_IF_LONG_LINE_PCT = 0.5
 DOUBLESPACE_LIST_MIN_LEN = 100
 DOUBLESPACE_LIST_MAX_LEN = 1_900
 DOUBLESPACE_PARAGRAPH_MIN_AVG_LEN = 80
-LIST_ELEMENT_PATTERN = fr".{{{DOUBLESPACE_LIST_MIN_LEN},{DOUBLESPACE_LIST_MAX_LEN}}}?"
-LIST_REGEX_FLAGS = re.DOTALL | re.IGNORECASE | re.MULTILINE
-HAS_LETTER_LIST_REGEX = re.compile(fr"^a[.)] {LIST_ELEMENT_PATTERN}\nb[.)] ", LIST_REGEX_FLAGS)
-LETTER_LIST_ITEM_REGEX = re.compile(fr"^([a-z][.)] {LIST_ELEMENT_PATTERN})(?=\n[a-z][.)] |\Z)", LIST_REGEX_FLAGS)
-HAS_NUMBERED_LIST_REGEX = re.compile(fr"^2\. {LIST_ELEMENT_PATTERN}\n3\. ", LIST_REGEX_FLAGS)
-NUMBERED_LIST_ITEM_REGEX = re.compile(fr"^(\d+\. {LIST_ELEMENT_PATTERN})(?=\n\d+\.|\Z)", LIST_REGEX_FLAGS)
-BULLET_LIST_REGEX = re.compile(fr"^(• {LIST_ELEMENT_PATTERN})(?=\n• |\Z)", LIST_REGEX_FLAGS)
-ORDINAL_PATTERN = '|'.join([o.upper() for o in 'first second third fourth fifth sixth seventh eighth ninth tenth'.split()])
-ORDINAL_LIST_REGEX = re.compile(fr"^(({ORDINAL_PATTERN}): .*?)(?=(\n{ORDINAL_PATTERN}:|\Z))", re.DOTALL | re.MULTILINE)
-SECTION_LIST_REGEX = re.compile(r"[^\n](\nSection \d)")
 
-DATE_LENGTH = len('2025-05-05')
-DOUBLESPACE_IF_LINE_LEN_OVER = 130
-DOUBLESPACE_IF_LONG_LINE_PCT = 0.5
-WHITESPACE_CHAR = r"[-_.\s]*"
+LIST_REGEX_FLAGS = re.DOTALL | re.IGNORECASE | re.MULTILINE
+LIST_ELEMENT_TEXT_PATTERN = fr".{{{DOUBLESPACE_LIST_MIN_LEN},{DOUBLESPACE_LIST_MAX_LEN}}}?"
+
+def list_item_regex(pattern: str, flags: re.RegexFlag = LIST_REGEX_FLAGS) -> re.Pattern:
+    return re.compile(fr"^({pattern} +{LIST_ELEMENT_TEXT_PATTERN})(?=\n{pattern}\s|\Z)", flags)
+
+BULLETED_ITEM_REGEX = list_item_regex('•')
+LIST_ITEM_REGEX = list_item_regex(r"\(?[a-z\d][.)]")
+ORDINAL_PATTERN = '|'.join([o.upper() for o in 'first second third fourth fifth sixth seventh eighth ninth tenth'.split()])
+ORDINAL_LIST_REGEX = list_item_regex(ORDINAL_PATTERN, re.DOTALL | re.MULTILINE)
+SECTION_LIST_REGEX = re.compile(r"[^\n](\nSection \d+)")  # doesn't match already doublespaced
 
 capitalize_first = lambda s: s[0].upper() + s[1:]
 capture_group_marker = lambda label: fr"?P<{label}>"
@@ -44,19 +46,16 @@ collapse_newlines = lambda text: MULTINEWLINE_REGEX.sub('\n\n', text)
 collapse_spaces = lambda s: MULTISPACE_REGEX.sub(' ', s)
 collapse_whitespace = lambda s: WHITESPACE_REGEX.sub(' ', s).strip()
 constantize = lambda s: underscore(s.upper())
-contains_letter_list = lambda s: bool(HAS_LETTER_LIST_REGEX.search(s))
-contains_numbered_list = lambda s: bool(HAS_NUMBERED_LIST_REGEX.search(s))
+contains_list = lambda s: bool(LIST_ITEM_REGEX.search(s) or BULLETED_ITEM_REGEX.search(s))
 is_bool_prop = lambda prop: prop.startswith('is_')
-is_integer = lambda s: bool(INTEGER_REGEX.match(s))
+is_integer = lambda s: isinstance(s, int) or bool(INTEGER_REGEX.match(s))
 join_patterns = lambda patterns: '|'.join(patterns)
 iso_date = lambda dt: dt.isoformat()[0:10]
 iso_timestamp = lambda dt: dt.isoformat().replace('T', ' ')
+or_equal_sign_char_group = lambda s: f"[{s}=]"  # DataSet 11 has a lot of random '=' replacing characters
 strip_pdfalyzer_panels = lambda s: PDFALYZER_IMAGE_PANEL_REGEX.sub('', s)
 timestamp_str = lambda dt: dt.isoformat()[0:19]
 timestamp_human = lambda dt: timestamp_str(dt).replace('T', ' ')
-
-# regexes
-or_equal_sign_char_group = lambda s: f"[{s}=]"  # DataSet 11 has a lot of random '=' replacing characters
 
 
 def as_pattern(s: str) -> str:
@@ -67,30 +66,19 @@ def as_pattern(s: str) -> str:
 
 def doublespace_lines(s: str) -> str:
     """Doublespace \n chars if s has a high pct of long lines, doublespace numbered lists."""
-    lines = s.split('\n')
-    long_lines = [line for line in lines if len(line) > DOUBLESPACE_IF_LINE_LEN_OVER]
-
-    if (len(long_lines) / len(lines)) > DOUBLESPACE_IF_LONG_LINE_PCT:
-        s = s.replace('\n', '\n\n')
-
-    return doublespace_lists(s)
+    return collapse_newlines(doublespace_lists(doublespace_paragraphs(s)))
 
 
 def doublespace_lists(s: str) -> str:
-    s = doublespace_paragraphs(s)
+    """Doublespace things that look like bulleted/numbered/lettered lists in the text."""
+    for regex in [BULLETED_ITEM_REGEX, LIST_ITEM_REGEX, ORDINAL_LIST_REGEX]:
+        s = regex.sub(r"\n\1", s)
 
-    if contains_numbered_list(s):
-        s = NUMBERED_LIST_ITEM_REGEX.sub(r"\n\1", s)
-
-    if contains_letter_list(s):
-        s = LETTER_LIST_ITEM_REGEX.sub(r"\n\1", s)
-
-    s = SECTION_LIST_REGEX.sub(r"\n\n\1", s)
-    s = BULLET_LIST_REGEX.sub(r"\n\1", s)
-    return collapse_newlines(ORDINAL_LIST_REGEX.sub(r"\n\1", s))
+    return SECTION_LIST_REGEX.sub(r"\n\n\1", s)  # Triple space 'Section 1.'
 
 
 def doublespace_paragraphs(s: str):
+    """Heuristic to find paragraph endpoints and create extra line breaks after them."""
     lines = s.split('\n')
     line_lengths = [len(line) for line in lines]
     avg_line_length = int(sum(line_lengths) / len(lines))
@@ -104,17 +92,17 @@ def doublespace_paragraphs(s: str):
     for i, line in enumerate(lines):
         new_lines.append(line)
 
-        if i < (len(lines) - 1) and line.endswith('.') and len(line) < avg_line_length:
+        if i < (len(lines) - 1) and len(line) < avg_line_length and line.endswith('.'):
             msg = f"short line with period ({len(line)} chars) vs. average in doc of {avg_line_length}"
 
-            if len(next_line := lines[i + 1]) > avg_line_length:
+            if len(lines[i + 1]) > avg_line_length:
                 logger.debug(f"{msg}, inserting line break!")
                 new_lines.append('')
             else:
                 logger.debug(f"skipping {msg}...")
 
     if (new_text := '\n'.join(new_lines)) != s:
-        logger.warning(text_block(new_text[:10_000], 'doublespaced paragraphs'))
+        logger.info(text_block(new_text[:10_000], 'doublespaced paragraphs'))
 
     return new_text
 

@@ -312,6 +312,7 @@ HIGHLIGHTED_NAMES = [
             Organization('Boom Boom Room', '"models and bottles" style club in NYC'),
             Organization('Mercury Films', is_interesting=False),
             Organization('Phaidon', 'titan of art book publishing', url=WIKIPEDIA),
+            Organization('Rita Paintings To Go', is_emailer=True),
         ],
         patterns=[
             r"Arnold Schwarzenegger",
@@ -371,6 +372,7 @@ HIGHLIGHTED_NAMES = [
                 url='https://www.theguardian.com/us-news/2026/feb/05/jes-staley-barclays-rape-allegation-us-prosecutors-epstein',
             ),
             Entity('Jonathan Rowland', f"Banque Havilland", match_partial=None),
+            Entity('Laurie Eisenhart', QUESTION_MARKS),
             Entity('Kumar Sambhav', f"{DEUTSCHE_BANK} technical writer {QUESTION_MARKS}"),
             Entity(NORMAN_D_RAU, "managing director at Morgan Stanley", match_partial=None),
             Entity(
@@ -387,7 +389,7 @@ HIGHLIGHTED_NAMES = [
                 phone_numbers=['5167456644', '6464087001'],
                 url='https://www.cnbc.com/2023/03/13/signature-bank-third-biggest-bank-failure-in-us-history.html',
             ),
-            Entity('Stewart Oldfield', f"worked on Epstein related accounts at {DEUTSCHE_BANK}", r"Stewart Oldfiel?d"),
+            Entity(STEWART_OLDFIELD, f"worked on Epstein related accounts at {DEUTSCHE_BANK}", r"Stewart Oldfiel?d"),
             Entity('Vaishali Mehta', f'Head of Anti-Money Laundering Business Risk at {DEUTSCHE_BANK}', r"Vaishali.{,5}Mehta"),
             Entity('Velmir Vejzovic', DEUTSCHE_BANK),
             Entity(VINIT_SAHNI, f"analyst at {DEUTSCHE_BANK} and {GOLDMAN_SACHS}", match_partial='both'),
@@ -550,8 +552,8 @@ HIGHLIGHTED_NAMES = [
         label='woo',
         style='chartreuse2',
         entities=[
-            Entity(CAROLYN_RANGEL, f"{DEEPAK_CHOPRA}'s assistant {'(???)'}"),
-            Entity(DEEPAK_CHOPRA, "woo woo")
+            Entity(DEEPAK_CHOPRA, "woo woo"),
+            Entity.assistant(CAROLYN_RANGEL, DEEPAK_CHOPRA, QUESTION_MARKS),
         ],
         patterns=[
             r"CBD",
@@ -824,7 +826,6 @@ HIGHLIGHTED_NAMES = [
                     'https://www.infinitescroll.us/p/marc-andreessen-as-avatar-for-societal',
                 ],
             ),
-            Entity('Matthew Gilbert', 'assistant to Howard Lutnick', match_partial=None),
             Entity("Matthew Roszak", 'co-founder of Bloq, accusations of insider trading'),
             Entity(
                 'Mike Novogratz',
@@ -854,6 +855,9 @@ HIGHLIGHTED_NAMES = [
             Entity('W. Bradford Stephens', f"co-founder of {BLOCKCHAIN_CAPITAL}", r"(Brad(ford)?|Bart) Stephens", match_partial=None),
             Entity('William Wheeler', f'co-founder of cashintocoins.com, {EXPRESSCOIN} with {BROCK_PIERCE}', match_partial=None),
             Entity("Wladimir van der Laan", 'bitcoin core developer', r"Wladimir( van der Laan)?"),
+            Entity.assistant('Matthew Gilbert', HOWARD_LUTNICK),
+
+            # Organizations
             Organization(
                 'a16z',
                 "crypto heavy venture fund of Marc Andreessen / Ben Horowitz, invested in many scams",
@@ -1046,24 +1050,24 @@ HIGHLIGHTED_NAMES = [
             Entity('Alex Mayorkas', 'future DHS secretary', r"Al(i|ex) Mayorkas"),
             Entity('Andrew Cuomo', 'governor of New York'),
             Entity(BILL_RICHARDSON, 'former governor of New Mexico', r"(Governor )?(Bill )?Richardson", url=WIKIPEDIA),
-            Entity('Ed Mezvinsky', 'former congressman, criminal Ponzi schemer', r"(Ed(ward)? )?Mezvinsky",),
+            Entity('Edward Mezvinsky', 'former congressman, criminal Ponzi schemer', r"(Ed(ward)? )?Mezvinsky", url=WIKIPEDIA),
             Entity(
                 'Eliot Spitzer', 'prosecutor / NY governor who went after big banks, prostitution scandal',
                 r"(Eliott? )?Spitzer(, Eliot)?",
                 url=WIKIPEDIA
             ),
-            Entity('George Mitchell', 'former US senator from Maine', match_partial=None),
+            Entity('George J. Mitchell', 'former US senator from Maine', match_partial=None, url=WIKIPEDIA),
             Entity(
                 'Greg Craig',
-                'former Obama White House counsel, worked w/Paul Manafort in Ukraine, acquitted of charges',
+                'former Obama White House counsel, worked with Paul Manafort in Ukraine, acquitted of charges',
                 match_partial=None,
                 url='https://www.politico.com/story/2019/05/13/rick-gates-roger-stone-greg-craig-1318870',
             ),
-            Entity('Janis Hartley', f'assistant to Governor Bill Richardson {QUESTION_MARKS}', match_partial=None),
-            Entity('Joel Klein', 'chancellor of the NYC Dept. of Education', match_partial=None),
-            Entity('Mark Middleton', "Clinton assistant, arranged Epstein's White House visits, suicide 2022", match_partial=None),
+            Entity('Joel Klein', 'chancellor of the NYC Dept. of Education', match_partial=None, url=WIKIPEDIA),
             Entity(PAUL_PROSPERI, "friend of Bill Clinton"),
             Entity('Senator Ron Wyden'),
+            Entity.assistant('Janis Hartley', BILL_RICHARDSON, QUESTION_MARKS),
+            Entity.assistant('Mark Middleton', 'Bill Clinton', "arranged Epstein's White House visits, suicide 2022"),
         ],
         patterns=[
             r"(Al )?Franken",
@@ -1132,11 +1136,12 @@ HIGHLIGHTED_NAMES = [
             Entity('Lalasa', f'house cleaner {QUESTION_MARKS}'),
             Entity('Larry E. Morrison', "Epstein's pilot", match_partial=None),
             Entity(LAWRANCE_VISOSKI, "Epstein's pilot", r"La(rry|wr[ae]nce)( Paul)? Visoski?|Lvjet"),
-            Entity(LESLEY_GROFF, "unindicted co-conspirator, assistant who managed Epstein's calendar", r"Lesl(ey|ie) (K(\.|atherine)? )?Gro(ff)?"),
+            Entity(LESLEY_GROFF, "assistant who managed Epstein's calendar, unindicted co-conspirator", r"Lesl(ey|ie) (K(\.|atherine)? )?Gro(ff)?"),
             Entity('Linda Pinto', "interior design at Alberto Pinto Cabinet"),
             Entity(LYN_FONTANILLA, "Filipino housekeeper", r"(Rosa)?L.nn?( V\.?)? Fontanilla"),
             Entity('Maria Macaraeg', 'applied for housekeeper/nanny job'),
             Entity(MERWIN_DELA_CRUZ, "housekeeper", r"Merwin( de ?la)? Cruz", match_partial=None),
+            Entity('Michael Glidden'),  # TODO: employee?
             Entity('Miles Alexander', "former island property manager, Operations Manager Michaelhouse Balgowan KwaZulu-Natal South Africa", match_partial=None),
             Entity(
                 'Myla Trestiza',
@@ -1946,6 +1951,7 @@ HIGHLIGHTED_NAMES = [
             law_enforcement('USAHUB', emailer_pattern=r"USAJournal111"),
             law_enforcement('USAMA Victim Assistance', is_emailer=True),
             law_enforcement(USANYS, is_emailer=True),
+            law_enforcement('USAFLS', r"(?-i:USAF[IL]S)", 'Florida federal prosecutors office', is_emailer=True),
             law_enforcement('US Attorney'),
             law_enforcement('US District Court'),
             law_enforcement('US Secret Service'),
@@ -2293,6 +2299,7 @@ HIGHLIGHTED_NAMES = [
             publication("Journal of Criminal Law and Criminology"),
             publication('Law.com'),
             publication('Law360'),
+            publication('Lawfare'),
             publication('Litigation Daily'),
             publication("MarketWatch"),
             publication('Politico'),
@@ -2360,7 +2367,6 @@ HIGHLIGHTED_NAMES = [
             r"(Katie )?Couric",
             r"Keith Larsen",
             r"L\.?A\.? Times",
-            r"Law(360|\.com|fare)",
             r"(Les )?Moonves",
             r"Mi(chael|ke) Bloomber[gq]",
             r"(Michele )?Dargan",
@@ -2751,18 +2757,21 @@ HIGHLIGHTED_NAMES = [
                 url='https://ramseyelkholyny.com/',
             ),
             Entity('Sergio Cordero', f"modeling agent {MC2_MODEL_MGMT}, business partner of {JEAN_LUC_BRUNEL}", match_partial=None),
+            Entity(
+                'Tigran Khachatrian',
+                f'model scout, friend of {DANIEL_SIAD}, appears in "Girl Model" documentary', #, 6 years in prison for identity theft',  #  in 2012
+                r"Tigrane?( Khachatrian)?",
+                match_partial='both',
+                url=[
+                    # 'https://archives.fbi.gov/archives/portland/press-releases/2012/defendant-sentenced-to-70-months-in-federal-prison-for-identity-theft-scheme',
+                    'https://en.wikipedia.org/wiki/Girl_Model',
+                ],
+            ),
             # Contact('Regina', f'model, Epstein and {FAITH_KATES} tried to get her a contract'),
             Entity('Vladimir Yudashkin', "director of the 1 Mother Agency"),
             Entity('Yfke Sturm', 'model from Holland', match_partial='both', url=WIKIPEDIA),
             Entity('lorraine@mc2mm.com', JEAN_LUC_MC2),
             Entity('pink@mc2mm.com', JEAN_LUC_MC2, r"^Pink$|pink@mc2mm\.com"),
-            Entity(
-                'Tigran Khachatrian',
-                f'model scout, worked with {DANIEL_SIAD}, appears in "Girl Model" documentary',
-                r"Tigrane?( Khachatrian)?",
-                match_partial='both',
-                url='https://en.wikipedia.org/wiki/Girl_Model',
-            ),
             # Orgs
             Organization('2morrow'),
             Organization('Elite Models', 'well known modeling agency'),
@@ -2826,7 +2835,6 @@ HIGHLIGHTED_NAMES = [
                 r"[Il]an Osbou?(rn|m)e",
                 url='https://www.businessinsider.com/profile-ian-osborne-cofounder-chamath-palihapitiya-social-capital-hedosophia-spac-2021-5',
             ),
-            Entity('Lila Walker', f"assistant to {PEGGY_SIEGAL}", match_partial=None),
             Entity(MATTHEW_HILTZIK, "crisis PR at Hiltzik Strategies", r"(Matt(hew)? )?Hiltzi[gk]", url=WIKIPEDIA),
             Entity(MICHAEL_SITRICK, "crisis PR", r"(Mi(chael|ke).{0,5})?[CS]itrick"),
             Entity('Owen Blicksilver', "OBPR, Inc."),
@@ -2838,6 +2846,7 @@ HIGHLIGHTED_NAMES = [
                 f"reputation management, worked on with {CHRISTINA_GALBRAITH}",
                 r"T[vy]ler Shears",
             ),
+            Entity.assistant('Lila Walker', PEGGY_SIEGAL),
             Organization(HEDOSOPHIA, f"{IAN_OSBORNE} VC fund, invested in Alibaba, launched infamous SPACs with Chamath advised by Epstein"),
             Organization('Wagging Tail Entertainment', f"{PEGGY_SIEGAL} company"),
         ],
@@ -2860,14 +2869,17 @@ HIGHLIGHTED_NAMES = [
                 url='https://www.npr.org/2019/07/12/739881163/alexander-acosta-steps-down-as-labor-secretary-amid-epstein-controversy',
             ),
             Entity('Betsy Devos', 'heir to the Amway multi-level marketing fortune, brother of Erik Prince, Trump education secretary', match_partial=None, url=WIKIPEDIA),
-            Entity('Chris Christie', 'former governor of New Jersey, Trump 1.0 transition team head', r"(Chris\s+)?Christie"),
+            Entity('Chris Christie', 'former governor of New Jersey, Trump 1.0 transition team head', r"(Chris\s+)?Christie", match_partial=None),
             Entity('Darrell Issa', 'congressman described as a Russian agent by other Republicans, helped form SpaceX'),
             Entity('Don McGahn', 'White House Counsel to Trump 1.0'),
-            Entity('Elliott Broidy', 'fundraiser, impregnated / paid off / paid for an abortion for a Playboy Playmate he had affair with'),
+            Entity(
+                'Elliott Broidy',
+                'RNC chair, impregnated / paid off / paid for an abortion for a Playboy Playmate he had affair with',
+            ),
             Entity('Juleanna Glover', "CEO of powerful DC lobbying firm Ridgely|Walsh", url=WIKIPEDIA),
+            Entity('Nikki Haley', match_partial='both', url=WIKIPEDIA),
             Entity(RUDY_GIULIANI, 'disbarred former mayor of NYC', r"Rud(olph|y)( W\.?)? Giuliani", url=WIKIPEDIA),
             Entity(TULSI_GABBARD, 'former Democrat, National Security Advisor under Trump 2.0', url=WIKIPEDIA),
-            Entity('Nikki Haley', match_partial='both', url=WIKIPEDIA),
         ],
         patterns=[
             r"Alberto Gonzale[sz]",
@@ -2990,7 +3002,6 @@ HIGHLIGHTED_NAMES = [
                 url='https://dossier.center/jeffreyepsteinrusconnect-en/',
             ),
             Entity('Sergey Lavrov', 'foreign minister under Putin', url=WIKIPEDIA),
-            Entity('Svetlana Pudina', 'assistant to Vladislav Doronin'),
             Entity(
                 UMAR_DZHABRAILOV,
                 f'Chechen oligarch who called {GHISLAINE_MAXWELL} his "soulmate", died by "suicide" March 2026',
@@ -3016,7 +3027,8 @@ HIGHLIGHTED_NAMES = [
                 match_partial=None,
                 url=SVETLANA_NEWSGROUND,
             ),
-            Entity('Yury Molodtsov', f"assistant to {MASHA_DROKOVA} {QUESTION_MARKS}"),
+            Entity.assistant('Svetlana Pudina', 'Vladislav Doronin'),
+            Entity.assistant('Yury Molodtsov', MASHA_DROKOVA, QUESTION_MARKS),
 
             # Orgs
             acronym('St. Petersburg International Economic Forum', f"{SERGEY_BELYAKOV} conference, attended by {SVETLANA_POZHIDAEVA}"),
@@ -3265,7 +3277,6 @@ HIGHLIGHTED_NAMES = [
         label=TECH,
         style='bright_cyan',
         entities=[
-            Entity('Alisa Bekins', f"{PETER_THIEL}'s assistant"),
             Entity(ANDREW_MCCORMACK, f"co-founder of {THIELS_VALAR}", r"Andrew McCorm(ack?)?"),
             Entity("Andy Rubin", "ex-Microsoft, ex-Google, fired for #MeToo reasons", match_partial=None),
             Entity('Auren Hoffman', "CEO of SafeGraph (mobile device location data co.), LiveRamp", match_partial=None),
@@ -3289,7 +3300,7 @@ HIGHLIGHTED_NAMES = [
                 match_partial=None,
                 url=['https://4chan.org/', WIKIPEDIA],
             ),
-            Entity('Danny Hillis', "computer scientist, artificial intelligence researcher", r"Dan(iel|ny) Hillis?"),
+            Entity(DANNY_HILLIS, "computer scientist, artificial intelligence researcher", r"Dan(iel|ny) Hillis?"),
             Entity(
                 DAVID_FISZEL,
                 f"CIO {HONEYCOMB_ASSET_MANAGEMENT}, Epstein invested in Spotify through him",
@@ -3298,8 +3309,8 @@ HIGHLIGHTED_NAMES = [
             Entity(
                 'David Sacks',
                 f"Craft Ventures, {ALL_IN_PODCAST}, anti-Ukraine / pro-Russia VC with connections to Wirecard",
-                url='https://www.thecaptainslog.io/the-david-sacks-files-part-i/',
                 match_partial=None,
+                url='https://www.thecaptainslog.io/the-david-sacks-files-part-i/',
             ),
             Entity('Drew Houston', 'CEO of Dropbox', match_partial=None),
             Entity(
@@ -3337,7 +3348,7 @@ HIGHLIGHTED_NAMES = [
             ),
             Entity(MASAYOSHI_SON, 'CEO of Softbank, often referred to as "Masa"', r"Masa(yoshi)?(\sSon)?", match_partial='first'),
             Entity(MELANIE_PHILLIPS, f'girlfriend of {STEVEN_SINOFSKY}', match_partial=None),
-            Entity('Nathan Myhrvold', f"former CTO of Microsoft, co-founder of Intellectual Ventures"),
+            Entity(NATHAN_MYHRVOLD, f"former CTO of Microsoft, co-founder of Intellectual Ventures", r"(Nathan )?My[hr][hr]vold"),
             Entity(
                 PETER_THIEL,
                 f"Paypal mafia, Palantir co-founder, Facebook investor, Epstein invested ~$40 million in his fund {VALAR_VENTURES}",
@@ -3349,8 +3360,6 @@ HIGHLIGHTED_NAMES = [
             Entity('Rajeev Misra', "formerly Softbank Vision Fund executive", r"[NR]ajeev"),
             Entity(REID_HOFFMAN, "PayPal mafia member, founder of LinkedIn, Democrat donor", match_partial=None),
             Entity('Reuben Kobulnik', THIELS_VALAR),
-            Entity('Saida Sapieva', f'maybe assistant to {REID_HOFFMAN} {QUESTION_MARKS}'),
-            Entity('Talia Parnass', f"{PETER_THIEL}'s assistant"),
             Entity(TED_LEONSIS, 'AOL executive, owner of Monumental Sports (Wizards, Capitals)'),
             Entity(
                 VINCENZO_IOZZO,
@@ -3365,6 +3374,10 @@ HIGHLIGHTED_NAMES = [
                 match_partial='first',
                 url=SUBSTACK_POST_INSIGHTSPOD_URL,
             ),
+            Entity.assistant('Alisa Bekins', PETER_THIEL),
+            Entity.assistant('Claudia Leschuck', NATHAN_MYHRVOLD, emailer_pattern=r"Claudia Leschu[ck]+"),
+            Entity.assistant('Saida Sapieva', REID_HOFFMAN, QUESTION_MARKS),
+            Entity.assistant('Talia Parnass', PETER_THIEL),
 
             # Organizations
             Organization('Accel Partners', 'venture capital firm', r"Accel( Partners)?"),
@@ -3392,7 +3405,7 @@ HIGHLIGHTED_NAMES = [
                 r"Honeycomb( (Offshore Fund|Partners)( (LP|Ltd))?)?",
             ),
             Organization('iCog Labs', f'AI co. in Addis Ababa founded by {BEN_GOERTZEL} and Getnet Assefa Gesaw (funded by Epstein?)'),
-            Organization('Intellectual Ventures'),  # Nathan Myhrvold
+            Organization('Intellectual Ventures', belongs_to=NATHAN_MYHRVOLD),  # Nathan Myhrvold
             Organization('Jawbone', f'wireless earpiece company invested in by Epstein and {IAN_OSBORNE}'),
             Organization('LinkedIn', "LinkedIn", r"Linked[Il]n( Updates)?", is_emailer=True, is_interesting=False),
             Organization('Mandiant', 'cybersecurity company'),
@@ -3407,8 +3420,8 @@ HIGHLIGHTED_NAMES = [
                 f"virtual world with early attempt at virtual currency the Linden Dollar",
                 r"Second Life",
                 url=[
-                    'https://law.stanford.edu/stanford-lawyer/articles/this-is-not-a-game-law-and-order-in-virtual-worlds/',
                     WIKIPEDIA,
+                    'https://law.stanford.edu/stanford-lawyer/articles/this-is-not-a-game-law-and-order-in-virtual-worlds/',
                 ],
             ),
             Organization('Silverlake', 'massive late stage silicon valley venture capital fund'),
@@ -3468,8 +3481,10 @@ HIGHLIGHTED_NAMES = [
             r"(?-i:A)pple",
             r"Artificial (General )?Intelligence",
             r"Cash App?",
+            r"Chief Technology Officer",
             r"Cisco",
             r"computer",
+            r"CTO",
             r"cyber( (security|space))?",
             r"deep learning",
             r"Dropbox",
@@ -3854,7 +3869,6 @@ HIGHLIGHTED_NAMES = [
                 f"{GHISLAINE_MAXWELL}'s lawyer ca. 2021, Cohen & Gresser",
                 r"C(hristian )?Everdell?",
             ),
-            Entity('Emmy Tayler', f"{GHISLAINE_MAXWELL}'s personal assistant"),
             Entity(
                 GHISLAINE_MAXWELL,
                 "Epstein's girlfriend, daughter of the spy Robert Maxwell",
@@ -3870,6 +3884,7 @@ HIGHLIGHTED_NAMES = [
             ),
             Entity('Scott Borgenson', f"boyfriend (and lawyer?) of {GHISLAINE_MAXWELL}"),
             Entity('Ted Waitt', f"boyfriend of {GHISLAINE_MAXWELL}, guest at Chelsea Clinton wedding"),
+            Entity.assistant('Emmy Tayler', GHISLAINE_MAXWELL),
             Organization(
                 "The Terramar Project",
                 f"clean oceans environmental nonprofit launched by {GHISLAINE_MAXWELL} for reputation repair",

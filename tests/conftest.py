@@ -61,13 +61,13 @@ def house_file_id_int() -> int:
 
 
 @pytest.fixture
-def house_file_stem(house_file_id) -> str:
-    return file_stem_for_id(house_file_id)
+def house_stem(house_file_id) -> str:
+    return house_file_stem(house_file_id)
 
 
 @pytest.fixture
-def house_filename(house_file_stem) -> str:
-    return f"{house_file_stem}.txt"
+def house_filename(house_stem) -> str:
+    return f"{house_stem}.txt"
 
 
 @pytest.fixture

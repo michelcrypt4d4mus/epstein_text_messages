@@ -8,11 +8,10 @@ from rich.table import Table
 from rich.text import Text
 from rich.panel import Panel
 
-from epstein_files.output.html.builder import (PANEL_BASE_PROPS, VERTICAL_MARGIN_EMS, border_css_props,
-     one_row_table_html, render_to_html, text_to_list, text_to_div, margin_vertical_css)
-from epstein_files.output.html.elements import OptionalCssProps, div_class, div_with_legend, div_tag
+from epstein_files.output.html.builder import one_row_table_html, text_to_div, margin_vertical_css
+from epstein_files.output.html.elements import div_class, div_tag, safe_padding
 from epstein_files.output.html.rich_style import RichStyle
-from epstein_files.output.html.positioned_rich import PositionedRich, dimensions_to_margin_css
+from epstein_files.output.html.positioned_rich import VERTICAL_MARGIN, PositionedRich, dimensions_to_margin_css
 from epstein_files.output.layout_elements.base_panel import BasePanel
 from epstein_files.output.layout_elements.list_panel import ListPanel
 from epstein_files.util.env import site_config
@@ -21,6 +20,7 @@ from epstein_files.util.external_link import join_texts
 from epstein_files.util.helpers.data_helpers import without_falsey
 
 BOTTOM_PADDING = 1
+SIDE_PANEL_WIDTH = 30
 SUBHEADER_VERTICAL_MARGIN = 0.3
 
 DOC_DIV_CSS_PROPS = {
@@ -34,13 +34,14 @@ class Layout:
     """Allows for proper right vs. left justify of a Document display."""
     background_color: str = ''
     body_indent: int | float = 0
-    body_panel: BasePanel | Table
+    body_panel: BasePanel
     document: 'Document'
     file_info: BasePanel | None = None
     file_info_indent: int | float = 0
     indent: int | float = 0
     justify: JustifyMethod | None = None
-    margin_bottom: str = VERTICAL_MARGIN_EMS  # Margin below the entire agglomeration of elements, not just the body
+    margin_bottom: float = VERTICAL_MARGIN  # Margin below the entire agglomeration of elements, not just the body
+    side_panel: BasePanel | None = None
     subheaders: list[Text] = field(default_factory=list)
 
     def __post_init__(self):
@@ -52,6 +53,18 @@ class Layout:
 
         if self.file_info_indent:
             self.file_info.indent = self.file_info_indent
+
+    @property
+    def body_html(self) -> str:
+        """Overload in subclass."""
+        return self.body_panel.to_div(self.body_margin_horizontal)
+
+    @property
+    def body_margin_horizontal(self) -> list[int | float]:
+        """Just left and right margin, vertical margins are zeroed out."""
+        margin_dimensions = self.body_margin
+        margin_dimensions[0] = margin_dimensions[2] = 0
+        return margin_dimensions
 
     @property
     def body_margin(self) -> list[int | float]:
@@ -68,7 +81,7 @@ class Layout:
 
     @property
     def container_margin(self) -> list[int | float]:
-        margin = PositionedRich.zero_dimensions()
+        margin = [0, 0, self.margin_bottom, 0]
 
         # Set subtle indent
         if self.justify == 'right':
@@ -79,19 +92,8 @@ class Layout:
         return margin
 
     @property
-    def body_margin_horizontal(self) -> list[int | float]:
-        """Just left and right margin, vertical margins are zeroed out."""
-        margin_dimensions = self.body_margin
-        margin_dimensions[0] = margin_dimensions[2] = 0
-        return margin_dimensions
-
-    @property
     def horizontal_body_margin_css(self) -> dict[str, str]:
         return dimensions_to_margin_css(self.body_margin_horizontal)
-
-    @property
-    def is_table(self) -> bool:
-        return isinstance(self.body_panel, Table)
 
     @property
     def justified_subheaders(self) -> list[Text]:
@@ -120,29 +122,34 @@ class Layout:
 
         return text_to_div(Text('\n').join(self.subheaders), css_props)
 
+    def side_panel_html(self) -> str:
+        if self.side_panel:
+            return self.side_panel.to_div(css={
+                'margin-bottom': 'auto',
+                'margin-left': 'auto',
+                'margin-right': 'auto',
+                'margin-top': 'auto',
+            }, width=SIDE_PANEL_WIDTH)
+        else:
+            return ''
+
     def to_html(self) -> str:
+        elements = without_falsey([
+            self.file_info.to_div() if self.file_info else None,
+            self.subheader_div,
+            self.body_html,
+        ])
+
         container_css = {
             **DOC_DIV_CSS_PROPS,
-            'margin-bottom': self.margin_bottom,
             **dimensions_to_margin_css(self.container_margin),
         }
 
-        # Add more vertical margin before/after text messages  # TODO: this shouold be configured
-        if isinstance(self.body_panel, ListPanel):
-            container_css.update(margin_vertical_css(2))
+        if (side_panel_html := self.side_panel_html()):
+            inner_container = div_class([self.body_html, side_panel_html], 'horiz_container')
+            elements[-1] = inner_container
 
-        if self.is_table:
-            body_html = one_row_table_html(self.body_panel, self.horizontal_body_margin_css)
-        else:
-            body_html = self.body_panel.to_div(self.body_margin_horizontal)
-
-        elements = [
-            self.file_info.to_div() if self.file_info else None,
-            self.subheader_div,
-            body_html,
-        ]
-
-        return div_tag(without_falsey(elements), container_css)
+        return div_tag(elements, container_css)
 
     def _align(self, element: RenderableType) -> RenderableType:
         return Align(element, self.justify) if self.justify else element
@@ -150,17 +157,26 @@ class Layout:
     def __rich_console__(self, console: Console, options: ConsoleOptions) -> RenderResult:
         """Default `Document` renderer (Email and MessengerLog override this)."""
         # Set justify on the Text in the body panel
-        if self.justify and not self.is_table and isinstance(self.body_panel.text, Text):
+        if self.justify and isinstance(self.body_panel.text, Text):
             self.body_panel.text.justify = self.justify
 
         indented_elemeents = [*self.justified_subheaders, self.body_panel]
-        indented_elemeents = [Padding(e, self.body_margin) for e in indented_elemeents]
+        indented_elemeents = [Padding(e, safe_padding(self.body_margin)) for e in indented_elemeents]
         indented_elemeents[-1].bottom = BOTTOM_PADDING
         elements = ([self.file_info] if self.file_info else []) + indented_elemeents
 
         for element in elements:
-            element = Padding(element, self.container_margin) if self.indent else element
+            element = Padding(element, safe_padding(self.container_margin)) if self.indent else element
             yield self._align(element)
 
     def __str__(self) -> str:
         return f"{type(self).__name__}('{self.document.file_id}')"
+
+
+@dataclass(kw_only=True)
+class TableLayout(Layout):
+    body_panel: Table
+
+    @property
+    def body_html(self) -> str:
+        return one_row_table_html(self.body_panel, self.horizontal_body_margin_css)

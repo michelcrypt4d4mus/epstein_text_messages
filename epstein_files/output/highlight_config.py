@@ -50,10 +50,9 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         label='dollars',
         style=FINANCIAL_COLOR,
         patterns=[
-            r"[€$£][\dO,.]+(\s*(bn|[bm](illl?ion|m)?|k|thousand))?( dollars?)?",
-            r"[\dO,.]+\s*(GBP|euro(?!pe)s?|[bm]illl?ion( (dollars|euros)?)?( loan)?)",
+            r"[€$£]\d([\d,.]|(?-i:O))*(\s*(bn|[bm](illl?ion|m)?|k|thousand))?( dollars?)?",
+            r"\d([\d,.]|(?-i:O))*\s*(GBP|euros?(?!pe)|[bm]illl?ion( (dollars|euros))?( loan)?)",
         ],
-        regex_flags = re.MULTILINE,  # No IGNORECASE
     ),
     HighlightPatterns(
         label='metoo',
@@ -255,7 +254,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         style=TIMESTAMP_STYLE,
         patterns=[
             fr"({DATE_PATTERN} )?{TIME_PATTERN}",
-            fr"\b{DATE_PATTERN}\b",
+            fr"\b({DATE_PATTERN}|\d{{1,2}}:\d{{2}}[ap]m)\b",
         ],
     ),
 
@@ -273,6 +272,10 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
 ]
 
 HIGHLIGHTED_ENTITIES = flatten([hn.entities for hn in HIGHLIGHTED_NAMES])
+
+
+def entities_in_category(category: str) -> list[Entity]:
+    return flatten([hn.entities for hn in HIGHLIGHTED_NAMES if category in [hn.category, hn.label]])
 
 
 def get_entity(name: str) -> Entity | None:

@@ -18,7 +18,7 @@ class ListPanel(BasePanel):
     """For <ul> / <ol>."""
     text: list[Text]
 
-    def to_div(self, margins: list[int | float] | None = None, css: OptionalCssProps = None) -> str:
+    def to_div(self, margins: list[int | float] | None = None, css: OptionalCssProps = None, width: int = 0) -> str:
         """Create an HTML <div> string for this panel."""
         div_props = {
             **self._base_div_css(margins),

@@ -33,7 +33,8 @@ from epstein_files.output.epstein_highlighter import highlighter
 from epstein_files.output.highlight_config import HIGHLIGHTED_NAMES, get_style_for_name
 from epstein_files.output.html.builder import table_to_html
 from epstein_files.output.html.positioned_rich import to_em
-from epstein_files.output.layout_elements.layout import Layout, JustifyMethod
+from epstein_files.output.layout_elements.base_panel import BasePanel
+from epstein_files.output.layout_elements.layout import Layout, TableLayout, JustifyMethod
 from epstein_files.output.rich import DEFAULT_TABLE_KWARGS, build_table
 from epstein_files.util.constant.strings import APPEARS_IN, ARCHIVE_LINK_COLOR, AUTO, REDACTED, TIMESTAMP_DIM, OcrRepair
 from epstein_files.util.constant.urls import URL_SIGNIFIERS
@@ -54,7 +55,7 @@ LINK_LINE_REGEX = re.compile(r"^[>• ]*htt")
 LINK_LINE2_REGEX = re.compile(r"^[-\w.%&=/]{5,}$")
 QUOTED_REPLY_LINE_REGEX = re.compile(r'(\nFrom:(.*)|wrote:)\n', re.IGNORECASE)
 REPLY_TEXT_REGEX = re.compile(rf"^(.*?){REPLY_LINE_PATTERN}", re.DOTALL | re.IGNORECASE | re.MULTILINE)
-XML_PLIST_REGEX = re.compile(r"[<0=oO?]?xml version.{,500}</(plist|xml)>", re.DOTALL)
+XML_PLIST_REGEX = re.compile(r"[<0=oO?]{,2}xml version.{,700}</(plist|xml)>", re.DOTALL)
 
 # Timestamp regexes
 BAD_TIMEZONE_REGEX = re.compile(fr'\((UTC|GMT\+\d\d:\d\d)\)|{REDACTED}')
@@ -150,6 +151,7 @@ OCR_REPAIRS: OcrRepair = {
     'gJeremyRubin': '@JeremyRubin',
     'Mail for i Phone': 'Mail for iPhone',
     'Sent from Mabfl': 'Sent from Mobile',  # NADIA_MARCINKO signature bad OCR
+    'Sent from my Vcrizon': 'Sent from my Verizon',
     'twitter glhsummers': 'twitter @lhsummers',
     # NOTE: These three must come in this order!
     re.compile(r'Blac[il]cBerry'): 'BlackBerry',
@@ -399,10 +401,10 @@ class Email(Communication):
         return EmailParts(header, body)
 
     @property
-    def html_margin_bottom(self) -> str:
+    def html_margin_bottom(self) -> float:
         """Overloaded in `Email` for case of emails with attachments."""
         if self.attached_docs:
-            return '6px'
+            return 0.2
         else:
             return super().html_margin_bottom
 
@@ -495,7 +497,8 @@ class Email(Communication):
             author_txt,
             self.recipients_txt(),
             self.timestamp,
-            self._config.category_bracketed
+            self._config.category_bracketed,
+            is_date_uncertain=bool(self._config.date_uncertain),
         )
 
     @property
@@ -599,7 +602,7 @@ class Email(Communication):
         justify: JustifyMethod = 'default',
         indent: int = site_config.indents.info,
         background_color: str = ''
-    ) -> Layout:
+    ) -> TableLayout:
         """Allows for proper right vs. left justify."""
         table = self._body_as_table()
         table_bg = self._config.background_color or background_color
@@ -609,7 +612,7 @@ class Email(Communication):
             self._debug_log(f"setting table bg to '{bg_style}'")
             table.rows[0].style = bg_style
 
-        return Layout(
+        return TableLayout(
             background_color=self._config.background_color or background_color,
             body_panel=table,
             document=self,
@@ -617,6 +620,7 @@ class Email(Communication):
             body_indent=indent,
             justify=justify,
             margin_bottom=self.html_margin_bottom,
+            side_panel=self.side_panel,
             subheaders=self.subheaders,
         )
 

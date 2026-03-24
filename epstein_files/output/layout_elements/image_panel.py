@@ -22,7 +22,7 @@ class ImagePanel(BasePanel):
     """For <img>."""
     img_url: str
 
-    def to_div(self, margins: list[int | float] | None = None, css: OptionalCssProps = None) -> str:
+    def to_div(self, margins: list[int | float] | None = None, css: OptionalCssProps = None, width: int = 0) -> str:
         """Create an HTML <div> string for this panel."""
         div_props = {
             **self._base_div_css(margins),
@@ -30,8 +30,8 @@ class ImagePanel(BasePanel):
             **(css or {}),
         }
 
-        return div_class(img(self.img_url, 'vertical', BORDER_RADIUS_CSS), CSS_CLASS, div_props)
+        return div_class(self.html_contents, CSS_CLASS, div_props)
 
-    # def __rich__(self) -> str:
-    #     logger.warning(f"__rich__() called on ImagePanel for {self.img_url}")
-    #     return ''
+    @property
+    def html_contents(self) -> str:
+        return img(self.img_url, 'vertical', BORDER_RADIUS_CSS)

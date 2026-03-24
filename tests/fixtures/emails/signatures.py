@@ -242,7 +242,10 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
         "Sent from my iPad",
         "Sent from my iPhone"
     ],
-    BUREAU_OF_PRISONS: ['Sent from my Verizon, Samsung Galaxy smartphone'],
+    BUREAU_OF_PRISONS: [
+        'Sent from my Vcrizon, Samsung Galaxy smartphone',
+        'Sent from my Verizon, Samsung Galaxy smartphone',
+    ],
     CECILE_DE_JONGH: ["Sent from my iPhone and misspellings courtesy of iPhone."],
     CECILIA_STEEN: [
         "Sent from my iPad"
@@ -262,6 +265,10 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
     EHUD_BARAK: [
         "Sent from my iPad",
         "Sent from my iPhone"
+    ],
+    EKATERINA_GUSAROVA: [
+        'Envoyé de mon iPhone',
+        'Sent from my iPhone',
     ],
     "Erika Kellerhals": ["Sent from my iPhone"],
     EVA_DUBIN: [
@@ -328,6 +335,10 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
     LARRY_SUMMERS: [
         "Sent from my iPad",
         "Sent from my iPhone"
+    ],
+    LAURA_T_NEWMAN: [
+        'Sent from my Verizon Wireless BlackBerry',
+        'Sent from my Verizon Wireless Phone',
     ],
     LAWRANCE_VISOSKI: [
         "Sent from my iPad",
@@ -463,6 +474,7 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
     TYLER_SHEARS: ["Sent from my iPhone"],
     UNKNOWN_GIRL: [
         'Sent from my iPad',
+        'Sent using BlackBerry® from Orange',
         'Sent via BlackBerry from T-Mobile',
     ],
     USANYS: [

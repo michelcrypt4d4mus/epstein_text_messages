@@ -25,6 +25,7 @@ from epstein_files.documents.config.categories.politics import POLITICS_CFGS
 from epstein_files.documents.config.categories.property import PROPERTY_CFGS
 from epstein_files.documents.config.categories.reputation import REPUTATION_CFGS
 from epstein_files.documents.config.categories.resume import RESUMÉ_CFGS
+from epstein_files.documents.config.categories.russia import RUSSIA_CFGS
 from epstein_files.documents.config.categories.social import SOCIAL_CFGS, TWEET_CFGS
 from epstein_files.documents.config.categories.tech import TECH_CFGS
 from epstein_files.documents.config.config_builder import victim_diary
@@ -154,7 +155,7 @@ UNINTERESTING_EMAIL_IDS = [
     # Christina Galbraith
     '031591',
     # Danny Hillis
-    'EFTA01880902'
+    'EFTA01880902',
     # David Stern
     'EFTA02507454',
     'EFTA02478704',
@@ -225,6 +226,8 @@ UNINTERESTING_EMAIL_IDS = [
     'EFTA02229659',
     'EFTA01987383',
     'EFTA02067872',
+    # Madars Virza
+    'EFTA02614678',
     # Maria Prusakova
     'EFTA01772533',
     'EFTA01740489',
@@ -280,7 +283,7 @@ UNINTERESTING_EMAIL_IDS = [
     'EFTA02731526',
     'EFTA00039867',
     'EFTA00039981',
-    'EFTA00104945',
+    'EFTA00104945',  # Quoted (i think)
     'EFTA00039893',
     'EFTA02385456',
     'EFTA02730481',
@@ -535,6 +538,7 @@ NOT_CHRONOLOGICAL_VIEW_IDS = [cfg.id for cfg in FLIGHT_LOG_CFGS] + [
     '029583',
     '017827',
     # unknown
+    'EFTA00888467',  # mj
     'EFTA01848947',
     '030244',
     '028757',

@@ -7,10 +7,10 @@ from rich.padding import Padding, PaddingDimensions
 from rich.text import Text
 from rich.panel import Panel
 
-from epstein_files.output.html.builder import PANEL_BASE_PROPS, border_css_props, render_to_html
+from epstein_files.output.html.builder import OUTER_PANEL_DIV_PADDING_CSS, PANEL_BASE_PROPS, border_css_props, render_at_width, render_to_html
 from epstein_files.output.html.elements import OptionalCssProps, div_class, div_with_legend, div_tag
 from epstein_files.output.html.rich_style import RichStyle
-from epstein_files.output.html.positioned_rich import CssProps, PositionedRich, dimensions_to_margin_css, margin_horizontal_css
+from epstein_files.output.html.positioned_rich import CssProps, PositionedRich, dimensions_to_margin_css, dimensions_to_padding_css, margin_horizontal_css
 from epstein_files.util.env import site_config
 from epstein_files.util.external_link import join_texts
 from epstein_files.util.helpers.data_helpers import without_falsey
@@ -22,6 +22,7 @@ class BasePanel:
     background_color: str = ''
     border_style: str
     indent: int | float = 0
+    padding: PaddingDimensions = 0
     text: Text
     title: Text | None = None
     title_justify: JustifyMethod = 'right'
@@ -31,23 +32,31 @@ class BasePanel:
         return RichStyle(self.style).to_css if self.style else {}
 
     @property
+    def padding_css(self) -> CssProps:
+        if self.padding:
+            return dimensions_to_padding_css(self.padding)
+        else:
+            return OUTER_PANEL_DIV_PADDING_CSS
+
+    @property
     def style(self) -> str:
         return f"on {self.background_color}" if self.background_color else ''
 
-    def to_div(self, margins: list[int | float] | None = None, css: OptionalCssProps = None) -> str:
+    def to_div(self, margins: list[int | float] | None = None, css: OptionalCssProps = None, width: int = 0) -> str:
         """Create an HTML <div> string for this panel."""
         div_props = {
             **self._base_div_css(margins),
             **PANEL_BASE_PROPS,
             **border_css_props(self.border_style),
             **self.color_css,
+            **self.padding_css,
             **(margin_horizontal_css(self.indent) if self.indent else {}),
             **(css or {}),
         }
 
-        # TODO: make the title 'dim'
-        title = self.title.plain if self.title else ''
-        return div_with_legend(render_to_html(self.text), title, div_props)
+        title = self.title.plain if self.title else ''   # TODO: make the title 'dim'
+        html = render_at_width(self.text, width) if width else render_to_html(self.text)
+        return div_with_legend(html, title, div_props)
 
     def _base_div_css(self, margins: list[int | float] | None = None) -> CssProps:
         return dimensions_to_margin_css(margins or PositionedRich.zero_dimensions())

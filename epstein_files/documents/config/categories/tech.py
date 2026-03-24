@@ -15,6 +15,23 @@ TECH_CFGS = [
         recipients=[JAMES_STEWART],
         truncate_to=(810, 930),
     ),
-    EmailCfg(id='EFTA02226642', note=f"Myrhvold introduces Epstein to {MIROSLAV_LAJCAK}"),
-    EmailCfg(id='EFTA02186054', note='Myrhvold meeting', truncate_to=1_500),
+
+    # Emails
+    EmailCfg(id='EFTA02068282', recipients=[ANDREW_MCCORMACK]),
+    EmailCfg(id='EFTA00955694', note=f"Epstein thanks {ELON_MUSK} for the SpaceX tour that Musk claimed never happened", is_interesting=10),
+    EmailCfg(id='EFTA02226642', note=f"{NATHAN_MYHRVOLD} introduces Epstein to {MIROSLAV_LAJCAK}"),
+    EmailCfg(id='EFTA01003346', note=f"{PETER_THIEL} tells Epstein to invest in his fund", is_interesting=True),
+    EmailCfg(id='EFTA02561277', note=f"planning for {ELON_MUSK} to get a massage", is_interesting=10),
+    EmailCfg(
+        id='EFTA02186054',
+        author_reason='Laurie visible in EFTA02226642',
+        recipients=['Claudia Leschuck', 'Laurie Eisenhart'],
+        note=f'{NATHAN_MYHRVOLD} meeting',
+        truncate_to=1_500,
+    ),
+    # Chris Poole
+    EmailCfg(id='EFTA01848168', show_with_name=CHRIS_POOLE),
+    EmailCfg(id='EFTA01849797', show_with_name=CHRIS_POOLE),
+    EmailCfg(id='EFTA02179653', show_with_name=CHRIS_POOLE),
+    EmailCfg(id='EFTA01987383', show_with_name=CHRIS_POOLE),
 ]

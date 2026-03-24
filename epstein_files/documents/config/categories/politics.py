@@ -54,16 +54,11 @@ POLITICS_CFGS = [
 
     # Emails
     EmailCfg(
-        id='EFTA02605815',
-        comment=KATHRYN_RUEMMLER,
-        highlight_quote="Am totally tricked out by Uncle Jeffrey today! Jeffrey boots, handbag, and w=tch!",
-        is_interesting=10,
-    ),
-    EmailCfg(
         id='025879',
         note="internal email from Epstein's island manager to Epstein's lawyer saying Bill Clinton was never on the island",
         is_interesting=True
     ),
+    EmailCfg(id='030878', is_fwded_article=True, comment="Steve Bannon almost appeared in Michael Moore's 'Fahrenheit 11/9'"),
     EmailCfg(id='029679', highlight_quote='his driver MAtt was the bag man', note="(re: Trump)"),
     EmailCfg(id='026505', highlight_quote='I know how dirty donald is'),
     EmailCfg(id='031659', highlight_quote='i have met some very bad people „ none as bad as trump'),
@@ -71,4 +66,14 @@ POLITICS_CFGS = [
     EmailCfg(id='031451', highlight_quote='would you like photso of donald and girls in bikinis in my kitchen'),
     EmailCfg(id='031596', highlight_quote='would you like photso of donald and girls in bikinis in my kitchen', truncate_to=500),
     EmailCfg(id='031601', highlight_quote='Old gf i gave to donald', truncate_to=2_000),
+    EmailCfg(id='029299', is_interesting=True, note='letter of recommendation from Trump', duplicate_ids=['033594']),
+    EmailCfg(id='030714', is_interesting=True, note='Bannon gets a shout out from Russian nationalist Alexander Dugan'),
+    EmailCfg(id='029342', is_interesting=True, note='Hakeem Jeffries fundraiser', truncate_to=2_000),
+    # DOJ emails
+    EmailCfg(
+        id='EFTA02605815',
+        comment=KATHRYN_RUEMMLER,
+        highlight_quote="Am totally tricked out by Uncle Jeffrey today! Jeffrey boots, handbag, and w=tch!",
+        is_interesting=10,
+    ),
 ]

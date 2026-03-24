@@ -117,6 +117,7 @@ class MessengerLog(Communication):
             file_info=self.file_id_panel,
             indent=indent,
             justify=justify,
+            margin_bottom=2,
             subheaders=self.subheaders,
         )
 

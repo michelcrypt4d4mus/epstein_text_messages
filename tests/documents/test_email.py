@@ -24,6 +24,16 @@ def email_with_category_but_no_note(get_email) -> Email:
     return get_email('EFTA00738485')
 
 
+@pytest.fixture
+def svet_email(get_email) -> Email:
+    return get_email('EFTA01870453')
+
+
+@pytest.fixture
+def uninteresting_email(get_email) -> Email:
+    return get_email('EFTA00037454')
+
+
 def test_attached_docs(email_with_attachments):
     assert len(email_with_attachments.attached_docs) == 3
 
@@ -79,19 +89,24 @@ def test_junk_emailers():
     assert len(JUNK_EMAILERS) == 5
 
 
-def test_note(get_email, email_with_category_but_no_note):
-    email: Email = get_email('EFTA00901581')
-    assert email._config.note_txt() is None
+def test_note(email_with_category_but_no_note, svet_email, uninteresting_email):
+    assert svet_email._config.note_txt(include_category=False).plain == \
+        'Svetlana Pozhidaeva fwds a discussion about an abortion to Epstein, see quote: "You have known you are preg for a week"'
+
+    assert uninteresting_email._config.note_txt() is None
+    assert len(uninteresting_email.subheaders) == 1
     assert len(email_with_category_but_no_note.subheaders) == 1
     assert email_with_category_but_no_note.subheaders[0].plain.startswith('[girls]')
     assert not email_with_category_but_no_note._body_as_table().columns[0].header
-    svet = get_email('EFTA01870453')
-    assert len(svet.subheaders) == 1
-    assert svet.subheaders[0].plain == \
-        '[girls] OCR text of email from Svetlana Pozhidaeva (???) to Jeffrey Epstein probably sent at 2011-04-05 16:51:26'
-    assert svet._config.note_txt(include_category=False).plain == \
-        'Svetlana Pozhidaeva fwds a discussion about an abortion to Epstein, see quote: "You have known you are preg for a week"'
 
+
+def test_subheader(get_email, svet_email):
+    assert len(svet_email.subheaders) == 1
+
+    assert svet_email.subheaders[0].plain == \
+        '[girls] OCR text of email from Svetlana Pozhidaeva (???) to Jeffrey Epstein sent at 2011-04-05 16:51:26'
+    assert get_email('EFTA02730468').subheaders[0].plain == \
+        '[government] OCR text of email from USANYS to USANYS probably sent at 2019-07-11 08:25:00'
 
 
 def test_timestamp(attributed_email):

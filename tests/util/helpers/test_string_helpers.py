@@ -1,15 +1,23 @@
-from epstein_files.util.helpers.string_helper import doublespace_lists, as_pattern, extract_emojis, has_line_starting_with, indented
+from epstein_files.util.helpers.string_helper import *
 
 EMAIL_TEXT = ">From: umar ovk.ru\n>To:\n>Subject:"
+LOREM_IPSUM = 'Lorem Ipsum ipsum dipsum'
+LONG_LOREM = ' '.join([LOREM_IPSUM for i in range(20)])
 
-NUMBERED_LIST = """
+NUMBERED_LIST = f"""
 Lorem Ipsum ipsum dipsum
 Lorem Ipsum ipsum dipsum
-1. Solo no goes
-2. Unmoving
-3. Sorry
-4. For All
-5. the fish"""
+1. Solo no goes {LONG_LOREM}
+2. Unmoving {LONG_LOREM}
+3. Sorry {LONG_LOREM}
+4. For All {LONG_LOREM}
+5. the fish {LONG_LOREM}"""
+
+BULLET_LIST = f"""
+• Solo no goes {LONG_LOREM}
+• Solo no goes {LONG_LOREM}
+• Solo no goes {LONG_LOREM}
+"""
 
 
 def test_as_pattern():
@@ -17,20 +25,30 @@ def test_as_pattern():
     assert as_pattern('nas     illmatic') == r"nas[-_.\s]*illmatic"
 
 
-def test_doublespace_numbered_lists():
-    assert doublespace_lists(NUMBERED_LIST) == """
+def test_doublespace_lists():
+    assert contains_list(BULLET_LIST)
+    assert doublespace_lists(BULLET_LIST.strip()) == f"""
+• Solo no goes {LONG_LOREM}
+
+• Solo no goes {LONG_LOREM}
+
+• Solo no goes {LONG_LOREM}"""
+
+    assert contains_list(NUMBERED_LIST)
+    print(f"\n\nLIST_ITEM_REGEX='{LIST_ITEM_REGEX.pattern}'\n\n")
+    assert doublespace_lists(NUMBERED_LIST) == f"""
 Lorem Ipsum ipsum dipsum
 Lorem Ipsum ipsum dipsum
 
-1. Solo no goes
+1. Solo no goes {LONG_LOREM}
 
-2. Unmoving
+2. Unmoving {LONG_LOREM}
 
-3. Sorry
+3. Sorry {LONG_LOREM}
 
-4. For All
+4. For All {LONG_LOREM}
 
-5. the fish"""
+5. the fish {LONG_LOREM}"""
 
 
 def test_extract_emojis():

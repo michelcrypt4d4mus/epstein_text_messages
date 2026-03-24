@@ -1,9 +1,11 @@
 # NEXT RELEASE
-* Entity.is_scannable property
-* INDEX_HTML_SITE chooses what is built as index.html main landing page
-* New --output-top10 and --almost-top10 args
+* `EmailCfg.visible_in_id` property
+* New `--output-most-interesting` (with site) and `--almost-top10` args
+* New `--output-notes` argument and site
+* Experimental `--side-panel-notes` option for custom HTML
+* `Entity.is_scannable` property
+* `INDEX_HTML_SITE` chooses what is built as index.html main landing page
 * `truncate_to` config forces `show_full_panel=True`
-* `--output-notes` argument and site
 * Auto doublespace numbered lists and letter lists
 * `'auto` option for truncation of `highlight_quote` documents
 * Add `[category]` prefixes to subheaders

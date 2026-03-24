@@ -271,18 +271,41 @@ GIRLS_CFGS = [
         highlight_quote="to work as escort girl, to go for dinners, be someone's company and maybe have sex for the agency",
         truncate_to=AUTO,
     ),
+    EmailCfg(
+        id='EFTA01993032',
+        is_interesting=9,
+        note=f'{IAN_OSBORNE} calls Greg Craig "my guy", offers to help with visa for woman Epstein "prefers not be part of my file"',
+    ),
     EmailCfg(id='032375', author=MARIA_PRUSAKOVA, author_reason=PRUSAKOVA_BERKELY, truncate_to=295),
     EmailCfg(id='033246', author=MARIA_PRUSAKOVA, author_reason='Kind regards/Cordialement in signature'),
-    EmailCfg(id='EFTA01990879', author=MIRANDA_MAKO, author_uncertain='Clifford Chance, could be Miranda'),
+    EmailCfg(id='EFTA00920848', author=MARIA_PRUSAKOVA, author_uncertain='law school'),
+    EmailCfg(id='EFTA02038002', author=MARIA_PRUSAKOVA, author_uncertain=CLIFFORD_CHANCE, highlight_quote="did you find the my new girlfrined?"),
+    EmailCfg(id='EFTA02036490', author=MARIA_PRUSAKOVA, author_uncertain=CLIFFORD_CHANCE),
+    EmailCfg(id='EFTA02022813', author=MARIA_PRUSAKOVA, author_uncertain=CLIFFORD_CHANCE, highlight_quote='I want to learn more sexual tricks'),
+    EmailCfg(id='EFTA02001536', author=MARIA_PRUSAKOVA, author_uncertain=CLIFFORD_CHANCE),
+    EmailCfg(id='EFTA01772533', author=MARIA_PRUSAKOVA, author_uncertain=CLIFFORD_CHANCE),
+    EmailCfg(id='EFTA01775280', author=MARIA_PRUSAKOVA, author_uncertain=CLIFFORD_CHANCE, truncate_to=2000),
+    EmailCfg(id='EFTA02507271', author=MARIA_PRUSAKOVA, author_uncertain='LGT Bank in signature'),
     EmailCfg(id='EFTA01990168', author=MARIA_PRUSAKOVA, author_uncertain='"experiments"'),
-    EmailCfg(id='EFTA00671662', author=MIRANDA_MAKO, author_reason='quoted signature "Miranda"', note="yet another girl finder"),
     EmailCfg(id='EFTA02026255', author=MARIA_PRUSAKOVA, author_uncertain=CLIFFORD_CHANCE, truncate_to=NO_TRUNCATE),
+    EmailCfg(id='EFTA00684871', author=MARIANA_IDZKOWSKA),
+    EmailCfg(id='EFTA00674483', author=MARIANA_IDZKOWSKA),
+    EmailCfg(id='EFTA01990879', author=MIRANDA_MAKO, author_uncertain='Clifford Chance, could be Miranda'),
+    EmailCfg(id='EFTA00671662', author=MIRANDA_MAKO, author_reason='quoted signature "Miranda"', note="yet another girl finder"),
+    EmailCfg(id='EFTA00662373', author=MASHA_DROKOVA, author_reason='"Best, Masha"', highlight_quote='She is interesting. Great looks'),
+    # Nadia
+    EmailCfg(id='021814', author=NADIA_MARCINKO, author_reason='reply'),
+    EmailCfg(id='021808', author=NADIA_MARCINKO, author_reason='reply', truncate_to=NO_TRUNCATE),
+    EmailCfg(id='021818', author=NADIA_MARCINKO, author_reason='reply'),
+    EmailCfg(id='022214', author=NADIA_MARCINKO, author_reason='Reply header'),
+    EmailCfg(id='021811', author=NADIA_MARCINKO, author_reason='signature and email address in the message'),
     EmailCfg(id='EFTA01047249', author=NADIA_MARCINKO, author_reason='Miro', url='https://archive.ph/Qa6vU#selection-1621.160-1621.184'),
     EmailCfg(id='EFTA00962525', author=NADIA_MARCINKO, author_reason='carstensen', highlight_quote="I was a teenager in love. You were 51.", is_interesting=2),
     EmailCfg(id='EFTA01897098', author=NADIA_MARCINKO, note=f"{NADIA_MARCINKO} wants $5 million to part with Epstein"),
     EmailCfg(id='EFTA00677154', author=NADIA_MARCINKO),
     EmailCfg(id='EFTA02456758', note=f'ongoing financial support for {NADIA_MARCINKO}', show_with_name=NADIA_MARCINKO),
     EmailCfg(id='EFTA02441035', author=STEVEN_VICTOR_MD, note="complaints about free medical treatment for Epstein's girls"),
+    EmailCfg(id='EFTA00664619', author=SUE, author_reason='"Dear Sue"'),
     EmailCfg(
         id='EFTA00659941',
         author=SVETLANA_POZHIDAEVA,
@@ -374,7 +397,7 @@ GIRLS_CFGS = [
     ),
     EmailCfg(id='EFTA02431535', author=UNKNOWN_GIRL),
     EmailCfg(id='EFTA01875607', author=UNKNOWN_GIRL),
-    EmailCfg(id='EFTA00901581', author=UNKNOWN_GIRL),
+    EmailCfg(id='EFTA00901581', author=UNKNOWN_GIRL, highlight_quote='he got crazy, punched her in front of all the friends', is_interesting=True),
     EmailCfg(id='EFTA02416005', author=UNKNOWN_GIRL, highlight_quote="he'll put me in touch with a romanian lady wich knows everything in London", is_interesting=True),
     EmailCfg(id='EFTA02449477', author=UNKNOWN_GIRL, note='argument about finding girls for Epstein', is_interesting=10, truncate_to=NO_TRUNCATE),
     EmailCfg(
@@ -397,6 +420,7 @@ GIRLS_CFGS = [
         id='EFTA01035876',
         author=YULIA_DOROKHINA,
         author_uncertain='"Yulia" in reply',
+        is_interesting=5,
         note=f'looking for a job under {JIDE_ZEITLIN}',
         show_with_name=JIDE_ZEITLIN,
     ),
@@ -432,6 +456,8 @@ GIRLS_CFGS = [
     ),
     EmailCfg(id='EFTA01904318', recipients=[MARIA_PRUSAKOVA], recipient_uncertain=PRUSAKOVA_REDDIT_URL),
     EmailCfg(id='EFTA00719146', recipients=[MARIA_PRUSAKOVA], recipient_uncertain='Clifford Chance, could be Miranda'),
+    EmailCfg(id='EFTA00681554', recipients=[OLGA_PONOMAR_BECKER]),
+    EmailCfg(id='EFTA02669915', recipients=[OLGA_PONOMAR_BECKER]),
     EmailCfg(
         id='EFTA01889182',
         is_interesting=10,
@@ -571,8 +597,14 @@ GIRLS_CFGS = [
         note=f"{STEVE_TISCH}, {EKATERINA_GUSAROVA}, {JEAN_LUC_BRUNEL} attending",
         show_with_name=EKATERINA_GUSAROVA,
     ),
+    EmailCfg(
+        id='EFTA00680327',
+        author=EKATERINA_GUSAROVA,
+        highlight_quote="Steve Tisch didn't email me yet",
+        is_interesting=5,
+        truncate_to=1_000,
+    ),
     EmailCfg(id='EFTA00657216', highlight_quote='Is Katya coming over?', note=f'"Katya" is {EKATERINA_GUSAROVA}'),
-    EmailCfg(id='EFTA00680327', highlight_quote="Steve Tisch didn't email me yet", is_interesting=5, truncate_to=1_000),
 
     # Quotes
     EmailCfg(
@@ -698,10 +730,14 @@ GIRLS_CFGS = [
         highlight_quote='How is the marriage plan going',
         note=f'"JF" is {JOSHUA_FINK}',
     ),
+    EmailCfg(id='EFTA00937981', note=f"Epstein looking for {JOSHUA_FINK} (again)", is_interesting=10),
+    EmailCfg(id='EFTA00668344', note=f"Epstein looking for {JOSHUA_FINK} (again)", is_interesting=10),
+    EmailCfg(id='EFTA01856467', note=f"Epstein looking for {JOSHUA_FINK} (again)", is_interesting=10, truncate_to=NO_TRUNCATE),
 
     # Descriptions
     EmailCfg(
         id='EFTA02627361',
+        is_interesting=5,
         note=f'Epstein sending {YULIA_DOROKHINA} {QUESTION_MARKS} to {JIDE_ZEITLIN}',
         recipients=[JIDE_ZEITLIN],
         recipient_uncertain=True,
@@ -721,9 +757,6 @@ GIRLS_CFGS = [
     EmailCfg(id='EFTA01817903', note=f'Epstein, Brunel, and {SULTAN_BIN_SULAYEM} sharing news of a Liberian sex scandal', is_interesting=10),
     EmailCfg(id='EFTA01818540', note=f'Epstein forwarding news of the Liberian sex scandal to {JES_STALEY}', truncate_to=415),
     EmailCfg(id='EFTA01140210', note='Epstein asks about fake Instagram followers'),
-    EmailCfg(id='EFTA00937981', note=f"Epstein looking for {JOSHUA_FINK} (again)", is_interesting=10),
-    EmailCfg(id='EFTA00668344', note=f"Epstein looking for {JOSHUA_FINK} (again)", is_interesting=10),
-    EmailCfg(id='EFTA01856467', note=f"Epstein looking for {JOSHUA_FINK} (again)", is_interesting=10, truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA01854125', note=f'Epstein says to {HENRY_JARECKI} "you torture, and mistreat each" girl', is_interesting=10),
     EmailCfg(id='EFTA01936438', note=f'Epstein\'s standard password might be "MVEMJSNUP"', is_interesting=10),
     EmailCfg(id='EFTA02559808', note=f"{EVA_DUBIN} delivering amphetamines (adderall) to Epstein", is_interesting=10, truncate_to=200),
@@ -732,6 +765,7 @@ GIRLS_CFGS = [
     EmailCfg(id='EFTA00855566', note=f"introducing {SANITA}", truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA01145923', note=f"{JEAN_LUC_BRUNEL} modeling contract for {MC2_MODEL_MGMT}"),
     EmailCfg(id='EFTA01660651', note='list of Trump accusers', is_interesting=10),
+    EmailCfg(id='EFTA00932166', note=f"{MARK_ZEFF}'s letter of visa recommendation for South African girl in EFTA00537633"),  # TODO: make it an attachment?
     EmailCfg(id='EFTA02609062', note=f"{MASHA_DROKOVA} is assembling a team", is_interesting=10),
     EmailCfg(id='EFTA02557291', note='possibly recruiting girls'),
     EmailCfg(
@@ -740,7 +774,7 @@ GIRLS_CFGS = [
         duplicate_ids=['EFTA00732294'],
     ),
     EmailCfg(id='EFTA00927927', note=f"{RENATA_BOLOTOVA} possibly talking about recruiting girls"),
-    EmailCfg(id='EFTA01816788', note=f"Russian girl for {PRINCE_ANDREW}"),
+    EmailCfg(id='EFTA01816788', note=f"Russian girl for {PRINCE_ANDREW}", is_interesting=9),
     EmailCfg(id='EFTA00876739', note=f'scouting girls in Ukraine {QUESTION_MARKS}'),
     EmailCfg(id='EFTA00901905', note="smoking in the house oh no!"),
     EmailCfg(
@@ -749,11 +783,10 @@ GIRLS_CFGS = [
         note=f"Epstein can't go to \"nats\" but (because?) {SVETLANA_POZHIDAEVA} and {JOSHUA_FINK} will be there",
         show_with_name=SVETLANA_POZHIDAEVA,
     ),
-    EmailCfg(id='EFTA01798715', note=f"{SVETLANA_POZHIDAEVA} taking an interest in {JOSHUA_FINK}'s investments in Eritrea in between hair gigs"),
+    EmailCfg(id='EFTA01798715', note=f"{SVETLANA_POZHIDAEVA} taking an interest in {JOSHUA_FINK}'s investments in Eritrea in between hair gigs", is_interesting=10),
     EmailCfg(id='EFTA00572157', note='translation: "Congratulations on the new addition!!! What did you name the little miracle?" (seems to be about a cat)'),
     EmailCfg(id='EFTA00631762', note="visa problems for Epstein's South African friend"),
     EmailCfg(id='EFTA00376832', show_with_name=MARIANA_IDZKOWSKA),
-    EmailCfg(id='EFTA00743526', note=f"Epstein and {RAMSEY_ELKHOLY} trying to get a Next Models contract for Regina", truncate_to=(800, 2_160)),
     EmailCfg(id='EFTA02664956', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA00689698', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA02702141', truncate_to=NO_TRUNCATE, comment=ELON_MUSK),
@@ -771,6 +804,7 @@ GIRLS_CFGS = [
     EmailCfg(id='EFTA02398135', comment=JULIA_SANTOS + ' "Sochi"'),
     EmailCfg(id='EFTA00766770'),
     EmailCfg(id='EFTA01990860', note=f"{PRINCE_ANDREW}'s public denial draft"),
+    EmailCfg(id='EFTA00743526', note=f"Epstein and {RAMSEY_ELKHOLY} trying to get a Next Models contract for Regina", truncate_to=(800, 2_160)),
 
     # Text msg
     TextCfg(

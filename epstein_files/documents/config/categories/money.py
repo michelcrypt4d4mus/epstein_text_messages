@@ -24,6 +24,7 @@ MONEY_OCR_REPAIRS: OcrRepair = {
     'Southern Trust Company,\nInc.\n$': 'Southern Trust Company, Inc $',
     'Black do\nApollo Management': 'Black c/o Apollo Management',
     re.compile(r'Boothbay Absolute Strategies\nFund LP\n\$'): "Boothbay Absolute Strategies Fund LP $",
+    'D.B. Zwim': 'D.B. Zwirn',
 }
 
 
@@ -207,6 +208,7 @@ MONEY_CFGS = [
     schwab_doc('EFTA01265978', date='2019-07-10', note='account opened 3 months before death'),
 
     # Emails
+    EmailCfg(id='032458', note='discussion of acquiring pieces for Epstein\'s art collection', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA02246580', note=f"Epstein commissioning painting of little girl", truncate_to=305),
     EmailCfg(id='EFTA00037187', note=f"Epstein's {DEUTSCHE_BANK} banker Paul Morris lawyers up immediately when contacted by the FBI", is_interesting=5),
     EmailCfg(
@@ -229,10 +231,10 @@ MONEY_CFGS = [
         note=f"Ike Groff invests $250,000 in Mangrove Partners managed by Nathaniel August",
     ),
     EmailCfg(
-        id='030727',
-        note='Epstein requesting help for Russia, discussion of unknown dead Chinese shareholder',
+        id='EFTA01769169',
         is_interesting=10,
-        truncate_to=400,
+        note='Epstein tells Jean Luc Brunel he can spend up to $25 million (on what?)',
+        truncate_to=NO_TRUNCATE,
     ),
     EmailCfg(id='EFTA01430282', note=f"{DEUTSCHE_BANK} internal discussion of Epstein leaving money to {CELINA_DUBIN} and account closures"),
     EmailCfg(id='EFTA01036804', note=f"Epstein's lawyers advise against his {PURCHASE_OF_BIN_ENNAKHILL}"),
@@ -268,4 +270,15 @@ MONEY_CFGS = [
         id='EFTA01299330',
         note=f"AML / Suspicious Activity report on structured deposits by {DARREN_INDYKE}",
     ),
+
+    # David Stern
+    EmailCfg(
+        id='EFTA02410642',
+        is_interesting=2,
+        note=f'"PA" is probably {PRINCE_ANDREW} plus a meeting with {NICOLE_JUNKERMANN}',
+        show_with_name=NICOLE_JUNKERMANN,
+    ),
+    # Joi Ito
+    EmailCfg(id='EFTA01964198'),  # no profits/charity
+    EmailCfg(id='EFTA01754913'),  # no profits/charity
 ]
