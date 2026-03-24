@@ -117,6 +117,13 @@ LEGAL_CFGS = [
     DocCfg(id='017904', author=JASTA_SAUDI_LAWSUIT, note=f"Westlaw search results", date='2019-01-01'),
     DocCfg(id='014037', author='Journal of Criminal Law and Criminology', note=f"article on {CVRA}"),
     DocCfg(
+        id='EFTA00129013',
+        author=VI_DAILY_NEWS,
+        date='2023-05-26',
+        note=f"{JP_MORGAN} calls {CECILE_DE_JONGH} Epstein's local fixer",
+        truncate_to=(400, 1_400),
+    ),
+    DocCfg(
         id='029416',
         author="National Enquirer / Radar Online v. FBI",
         note=f"FOIA lawsuit filing",

@@ -1949,6 +1949,7 @@ HIGHLIGHTED_NAMES = [
             law_enforcement('USAHUB', emailer_pattern=r"USAJournal111"),
             law_enforcement('USAMA Victim Assistance', is_emailer=True),
             law_enforcement(USANYS, is_emailer=True),
+            law_enforcement('USAFLS', r"(?-i:USAF[IL]S)", 'Florida federal prosecutors office', is_emailer=True),
             law_enforcement('US Attorney'),
             law_enforcement('US District Court'),
             law_enforcement('US Secret Service'),

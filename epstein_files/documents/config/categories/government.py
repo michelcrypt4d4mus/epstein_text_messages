@@ -2,7 +2,7 @@ from epstein_files.documents.config.config_builder import fbi_defense_witness, f
 from epstein_files.documents.config.doc_cfg import NO_TRUNCATE, SHORT_TRUNCATE_TO, DocCfg
 from epstein_files.documents.config.email_cfg import EmailCfg
 from epstein_files.people.names import *
-from epstein_files.util.constant.strings import AUTO, MINOR_VICTIM, REDACTED
+from epstein_files.util.constant.strings import AUTO, CVRA, MINOR_VICTIM, REDACTED
 from epstein_files.util.helpers.string_helper import join_truthy, quote
 from epstein_files.util.logging import logger
 
@@ -339,6 +339,18 @@ GOVERNMENT_CFGS = [
     EmailCfg(id='EFTA01649194', highlight_quote='Attached please find an updated list of the discrepancies'),
     DocCfg(id='EFTA01649074', attached_to_email_id='EFTA01649194'),
     EmailCfg(id='EFTA00037683', note=f"tip that the murder of DC Madam Jeanne Palfrey might be connected to Epstein's network"),
+    EmailCfg(
+        id='EFTA00215004',
+        author='Alex Acosta',
+        highlight_quote='Please do whatever you can to keep this from becoming public',
+        note=f"Epstein's lawyer ask Acosta to keep the terms of the non-prosecution agreement secret (which is illegal)",
+        recipients=['USAFLS'],
+    ),
+    EmailCfg(
+        id='EFTA00214992',
+        highlight_quote='marching orders regarding what they can tell the girls',
+        note=f"not informing victims is a violation of {CVRA}",
+    ),
     fbi_evidence_review('EFTA01657122'),
     fbi_evidence_review('EFTA01657117'),
     fbi_evidence_review('EFTA01657113'),
