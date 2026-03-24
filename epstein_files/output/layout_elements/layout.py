@@ -13,7 +13,6 @@ from epstein_files.output.html.elements import div_class, div_tag, safe_padding
 from epstein_files.output.html.rich_style import RichStyle
 from epstein_files.output.html.positioned_rich import VERTICAL_MARGIN, PositionedRich, dimensions_to_margin_css
 from epstein_files.output.layout_elements.base_panel import BasePanel
-from epstein_files.output.layout_elements.list_panel import ListPanel
 from epstein_files.util.env import site_config
 from epstein_files.output.rich import indent_txt
 from epstein_files.util.external_link import join_texts

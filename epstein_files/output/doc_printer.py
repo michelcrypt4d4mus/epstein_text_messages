@@ -19,7 +19,8 @@ from epstein_files.documents.emails.emailers import ENTITY_CATEGORIES, get_entit
 from epstein_files.documents.messenger_log import MessengerLog
 from epstein_files.documents.other_file import OtherFile
 from epstein_files.output.layout_elements.base_panel import BasePanel
-from epstein_files.output.layout_elements.layout import Layout, ListPanel
+from epstein_files.output.layout_elements.layout import Layout
+from epstein_files.output.layout_elements.list_panel import ListPanel
 from epstein_files.output.html.builder import (console_buffer_to_html, render_at_obj_width, panel_to_div,
      render_to_html, text_to_div, write_templated_html)
 from epstein_files.output.html.elements import div_class, tag

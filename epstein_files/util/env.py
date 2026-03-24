@@ -41,6 +41,7 @@ RichHelpFormatterPlus.choose_theme('morning_glory')
 parser = ArgumentParser(description="Parse epstein OCR docs and generate HTML pages.", formatter_class=RichHelpFormatterPlus)
 parser.add_argument('--build', '-b', nargs="?", default=None, const=BUILD_TO_DEFAULT, help='write output to HTML file')
 parser.add_argument('--build-dir', default=DEFAULT_HTML_DIR, type=DirValidator(), help='dir to render HTML etc. to')
+parser.add_argument('--category', '-cat', help='only output communications in this category')
 parser.add_argument('--make-clean', action='store_true', help='delete all HTML build artifact and write latest URLs to .urls.env')
 parser.add_argument('--name', '-n', action='append', dest='names', help='specify the name(s) whose communications should be output')
 parser.add_argument('--overwrite-pickle', '-op', action='store_true', help='re-parse the files and ovewrite cached data')
@@ -120,7 +121,7 @@ if args.build_dir and not args.build:
     args.build = BUILD_TO_DEFAULT
 
 args.names = [None if n == 'None' else n.strip() for n in (args.names or [])]
-args.output_chrono = args.output_chrono or args.all_chrono or args.output_most_interesting or args.almost_most_interesting
+args.output_chrono = args.output_chrono or args.all_chrono or args.output_most_interesting or args.almost_most_interesting or args.category
 args.output_emails = args.output_emails or args.all_emails
 args.output_other = args.output_other or args.all_other_files or args.uninteresting
 args.output_texts = args.output_texts or args.all_texts
@@ -180,6 +181,8 @@ if is_html_script:
             args._site = Site.TEXT_MESSAGES
         elif args.all_other_files:
             args._site = Site.OTHER_FILES_TABLE
+        elif args.category:
+            args._site = Site.CATEGORY
         elif args.json_metadata:
             args._site = Site.JSON_METADATA
         elif args.output_notes:

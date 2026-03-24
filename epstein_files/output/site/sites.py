@@ -27,6 +27,7 @@ EXTRACTS_BASE_URL = f'{GH_MASTER_URL}/emails_extracted_from_legal_filings'
 BASE_DEPLOY_URL = f"{GH_PAGES_BASE_URL}/{GH_REPO_NAME}"
 PROJECT_LINK = ExternalLink(BASE_DEPLOY_URL, f"Michel de Cryptadamus Epstein Investigations")
 
+CATEGORY_PREFIX = 'for_category_'
 CUSTOM_HTML_PREFIX = 'real_html_'
 NAMES_PREFIX = 'only_names_'
 MOBILE_SUFFIX = '_mobile'
@@ -36,6 +37,7 @@ PHONE_LOG_FILE_ID = 'EFTA01242527'
 class Site(StrEnum):
     ANNOTATED = auto()       # only things with `note`s.
     BIOGRAPHIES = auto()
+    CATEGORY = auto()
     COLORS_ONLY = auto()
     CURATED = auto()
     CURATED_MOBILE = auto()
@@ -80,10 +82,19 @@ class Site(StrEnum):
     @classmethod
     def html_output_path(cls, _site: 'Site') -> Path:
         """Defaults to `[site].html` if not configured in `HTML_BUILD_FILENAMES`."""
-        if _site == cls.NAMES:
+        if _site in [cls.CATEGORY, cls.NAMES]:
             from epstein_files.util.env import args
-            names = sorted(['unknown' if n is None else n for n in args.names])
-            site = NAMES_PREFIX + '__'.join(sorted(names)).replace(' ', '_').lower()
+
+            if _site == cls.NAMES:
+                prefix = NAMES_PREFIX
+                suffixes = ['unknown' if n is None else n for n in args.names]
+            else:
+                prefix = CATEGORY_PREFIX
+                suffixes = [args.category]
+
+            site = prefix + '__'.join(sorted(suffixes)).replace(' ', '_').lower()
+        elif _site == cls.CATEGORY:
+            site = CATEGORY_PREFIX
         elif _site == INDEX_HTML_SITE:
             site = 'index'
         else:

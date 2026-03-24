@@ -121,6 +121,13 @@ class EpsteinFiles(DocList):
         docs = flatten([fxn(name) for fxn in [self.emails_for, self.imessage_logs_for, self.other_files_for]])
         return DocList.sort_by_timestamp(DocList.uniquify_by_id(docs))
 
+    def docs_for_category(self, category: str) -> Sequence[Document]:
+        category_docs = [d for d in self.documents if d.category == category]
+        category_people = [p for p in self.people if p.category == category]
+        docs = DocList.uniquify_by_id(category_docs + flatten([p.unique_documents for p in category_people]))
+        logger.warning(f"Found {len(docs)} docs in category '{category}' ({len(category_docs)} explicit, others from Person)")
+        return DocList.sort_by_timestamp(docs)
+
     def email_author_counts(self) -> dict[Name, int]:
         """Returns dict counting up how many emails were written by each person."""
         return {
