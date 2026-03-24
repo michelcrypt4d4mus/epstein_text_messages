@@ -66,21 +66,15 @@ def as_pattern(s: str) -> str:
 
 def doublespace_lines(s: str) -> str:
     """Doublespace \n chars if s has a high pct of long lines, doublespace numbered lists."""
-    lines = s.split('\n')
-    long_lines = [line for line in lines if len(line) > DOUBLESPACE_IF_LINE_LEN_OVER]
-
-    if (len(long_lines) / len(lines)) > DOUBLESPACE_IF_LONG_LINE_PCT:
-        s = s.replace('\n', '\n\n')
-
-    return doublespace_lists(s)
+    return collapse_newlines(doublespace_lists(doublespace_paragraphs(s)))
 
 
 def doublespace_lists(s: str) -> str:
-    s = doublespace_paragraphs(s)
-    s = BULLETED_ITEM_REGEX.sub(r"\n\1", s)
-    s = LIST_ITEM_REGEX.sub(r"\n\1", s)
-    s = SECTION_LIST_REGEX.sub(r"\n\n\1", s)
-    return collapse_newlines(ORDINAL_LIST_REGEX.sub(r"\n\1", s))
+    """Doublespace things that look like bulleted/numbered/lettered lists in the text."""
+    for regex in [BULLETED_ITEM_REGEX, LIST_ITEM_REGEX, ORDINAL_LIST_REGEX]:
+        s = regex.sub(r"\n\1", s)
+
+    return SECTION_LIST_REGEX.sub(r"\n\n\1", s)  # Triple space 'Section 1.'
 
 
 def doublespace_paragraphs(s: str):
@@ -98,17 +92,17 @@ def doublespace_paragraphs(s: str):
     for i, line in enumerate(lines):
         new_lines.append(line)
 
-        if i < (len(lines) - 1) and line.endswith('.') and len(line) < avg_line_length:
+        if i < (len(lines) - 1) and len(line) < avg_line_length and line.endswith('.'):
             msg = f"short line with period ({len(line)} chars) vs. average in doc of {avg_line_length}"
 
-            if len(next_line := lines[i + 1]) > avg_line_length:
+            if len(lines[i + 1]) > avg_line_length:
                 logger.debug(f"{msg}, inserting line break!")
                 new_lines.append('')
             else:
                 logger.debug(f"skipping {msg}...")
 
     if (new_text := '\n'.join(new_lines)) != s:
-        logger.warning(text_block(new_text[:10_000], 'doublespaced paragraphs'))
+        logger.info(text_block(new_text[:10_000], 'doublespaced paragraphs'))
 
     return new_text
 
