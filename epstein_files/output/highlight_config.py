@@ -275,7 +275,7 @@ HIGHLIGHTED_ENTITIES = flatten([hn.entities for hn in HIGHLIGHTED_NAMES])
 
 
 def entities_in_category(category: str) -> list[Entity]:
-    return flatten([hn.entities for hn in HIGHLIGHTED_NAMES if hn.category == category])
+    return flatten([hn.entities for hn in HIGHLIGHTED_NAMES if category in [hn.category, hn.label]])
 
 
 def get_entity(name: str) -> Entity | None:
