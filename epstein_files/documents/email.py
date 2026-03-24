@@ -150,6 +150,7 @@ OCR_REPAIRS: OcrRepair = {
     'gJeremyRubin': '@JeremyRubin',
     'Mail for i Phone': 'Mail for iPhone',
     'Sent from Mabfl': 'Sent from Mobile',  # NADIA_MARCINKO signature bad OCR
+    'Sent from my Vcrizon': 'Sent from my Verizon',
     'twitter glhsummers': 'twitter @lhsummers',
     # NOTE: These three must come in this order!
     re.compile(r'Blac[il]cBerry'): 'BlackBerry',
