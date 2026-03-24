@@ -34,4 +34,22 @@ TECH_CFGS = [
     EmailCfg(id='EFTA01849797', show_with_name=CHRIS_POOLE),
     EmailCfg(id='EFTA02179653', show_with_name=CHRIS_POOLE),
     EmailCfg(id='EFTA01987383', show_with_name=CHRIS_POOLE),
+    # Valar Ventures
+    DocCfg(
+        id='EFTA00591045',
+        attached_to_email_id='EFTA01001339',
+        author=VALAR_VENTURES,
+        is_interesting=True,
+        note='pitch deck',
+        non_participants=[MASAYOSHI_SON],
+    ),
+    DocCfg(id='EFTA00810239', author=VALAR_VENTURES, note='pitch deck', is_interesting=True),
+    DocCfg(id='EFTA00810510', author=VALAR_VENTURES, note='Fall 2016 Update', is_interesting=True),
+    DocCfg(id='EFTA00810474', author=VALAR_VENTURES, note='Fall 2018 Update', is_interesting=True),
+    DocCfg(id='EFTA01121910', author=VALAR_VENTURES, note="contract", is_interesting=True),
+    DocCfg(id='EFTA00808277', author=VALAR_VENTURES, note="contract", is_interesting=True),
+    DocCfg(id='EFTA01088484', author=VALAR_VENTURES, note="contract", is_interesting=True),
+    DocCfg(id='EFTA00591691', author=VALAR_VENTURES, note="contract", is_interesting=True),
+    DocCfg(id='EFTA00810362', author=VALAR_VENTURES, note="investor questionnaire", is_interesting=True),
+    EmailCfg(id='EFTA01001339', note=f"{PETER_THIEL} introduces Epstein to the {VALAR_VENTURES} founders", is_interesting=10),
 ]

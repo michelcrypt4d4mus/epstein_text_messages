@@ -38,9 +38,7 @@ from epstein_files.util.helpers.string_helper import join_truthy, quote
 from epstein_files.util.logging import logger
 
 CFGS_SUFFIX = '_CFGS'
-OTHER_FILES_PFX = 'OTHER_FILES_'
 PARTICIPANTS_FIELD = 'Participants: field'
-VALAR_FUND = f"{PETER_THIEL}'s {VALAR_VENTURES} fund"
 
 HEADER_ABBREVIATIONS = {
     "AD": "Abu Dhabi",

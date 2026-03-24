@@ -164,7 +164,7 @@ GOVERNMENT_CFGS = [
     doj_doc('EFTA00025091', f"arrest warrant and other discovery materials"),
     doj_doc('EFTA00009809', f"sealed indictment of Jeffrey Epstein", date='2019-07-02', is_interesting=2),
     doj_memo('EFTA02731039', f'prosecution memo naming {LESLEY_GROFF}', is_interesting=10),
-    doj_memo('EFTA02731200', "potential prosecution of Epstein's assistant", is_interesting=10),
+    doj_memo('EFTA02731200', "potential prosecution of Epstein's assistant", is_interesting=10, truncate_to=(14_000, 18_500)),
     doj_memo('EFTA02731082', "investigation into Epstein's co-conspirators"),
     doj_memo('EFTA02731226', f"charging {GHISLAINE_MAXWELL} with additional offenses", '2021-03-14'),
     DocCfg(
@@ -214,7 +214,7 @@ GOVERNMENT_CFGS = [
         truncate_to=(6_000, 7_500),
     ),
     fbi_interview('EFTA01309589', ANTHONY_FIGUEROA, 'recruiting from high schools', '2020-08-27', is_interesting=True),
-    fbi_interview('EFTA02858481', 'Jennifer Aros', 'Epstein and Trump accuser', '2019-08-07', is_interesting=True),
+    fbi_interview('EFTA02858481', 'Jennifer Aros', 'Epstein and Trump accuser', '2019-08-07', is_interesting=True, truncate_to=(16_500, 20_000)),
     fbi_interview('EFTA00174375', LUKE_D_THORBURN, f"lots of takes on Epstein, China, and {STEVE_BANNON}"),
     fbi_interview('EFTA00081226', MINOR_VICTIM),
     fbi_interview('EFTA00038915', MINOR_VICTIM, 'claims Epstein knew she was 14'),

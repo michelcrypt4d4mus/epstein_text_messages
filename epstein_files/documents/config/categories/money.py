@@ -3,7 +3,6 @@ Epstein money related files. This category makes is_interesting = True.
 """
 import re
 
-from epstein_files.documents.config.categories.crypto import VALAR_FUND
 from epstein_files.documents.config.config_builder import inventory, letter, memo
 from epstein_files.documents.config.doc_cfg import NO_TRUNCATE, DocCfg
 from epstein_files.documents.config.email_cfg import EmailCfg
@@ -14,6 +13,7 @@ from epstein_files.util.env import args
 from epstein_files.util.helpers.string_helper import join_truthy
 
 PURCHASE_OF_BIN_ENNAKHILL = 'purchase of Bin Ennakhill palace in Marrakech'
+VALAR_FUND = f"{PETER_THIEL}'s {VALAR_VENTURES} fund"
 
 MONEY_OCR_REPAIRS: OcrRepair = {
     re.compile(r"to[ ,]*if[\n ](s?he)[\n ]survives me"): fr"to {REDACTED}, if \1 survives me",
