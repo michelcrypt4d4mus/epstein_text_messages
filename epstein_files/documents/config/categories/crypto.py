@@ -245,7 +245,13 @@ CRYPTO_CFGS = [
     DocCfg(id='EFTA00803464', author=HONEYCOMB_ASSET_MANAGEMENT, note="July 2018 report", date='2018-07-17'),
     # Howard Lutnick
     DocCfg(id='EFTA01582043', note=f"{DEUTSCHE_BANK} / {CANTOR_FITZGERALD} transaction"),
-    DocCfg(id='EFTA01230639', date='2012-12-22', date_uncertain=True, show_full_panel=True),
+    DocCfg(
+        id='EFTA01230639',
+        date='2012-12-22',
+        date_uncertain=True,
+        note="photo of Epstein and Howard Lutnick on Epstein's island that was removed from DOJ website",
+        show_image=True,
+    ),
     DocCfg(id='EFTA00434306', note='calendar reminder for call with Howard Lutnick', date='2011-04-26', show_full_panel=True),
     DocCfg(
         id='EFTA00020515',

@@ -171,7 +171,14 @@ GOVERNMENT_CFGS = [
         truncate_to=(6_000, 7_000),
         show_full_panel=True,  # TODO: show pic
     ),
-    DocCfg(id='EFTA00014822', note=f"fake Austrian passport under the name Marius Robert with Saudi address found in Epstein's possessions", show_image=True),
+    DocCfg(
+        id='EFTA00014822',
+        date='1982-06-01',
+        date_uncertain=True,
+        note=f"fake Austrian passport with Saudi address under the name Marius Robert Fortelni found in Epstein's possession",
+        show_image=True,
+        url='https://nypost.com/2025/12/23/us-news/jeffrey-epsteins-fake-austrian-passport-pictured-in-latest-doj-document-dump/',
+    ),
     DocCfg(id='EFTA02730741', author=DOJ, date='2025-05-01', date_uncertain=True, note="Evidence list for 50D-NY-3027571 Filtering On 'Type(s): 1B'"),
     DocCfg(id='EFTA02730486', author=DOJ, date='2025-05-01', date_uncertain=True, note="Evidence list for 50D-NY-3027571 Filtering On '1A'"),
     DocCfg(id='EFTA00040006', author=DOJ, date='2019-08-27', note='Personal History of Defendant Jeffrey Epstein + grand jury indictment'),

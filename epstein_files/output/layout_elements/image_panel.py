@@ -20,7 +20,6 @@ CSS_CLASS = f"{BLACK_BACKGROUND} img_panel"
 @dataclass(kw_only=True)
 class ImagePanel(BasePanel):
     """For <img>."""
-    text: None = None
     img_url: str
 
     def to_div(self, margins: list[int | float] | None = None, css: OptionalCssProps = None) -> str:
@@ -33,6 +32,6 @@ class ImagePanel(BasePanel):
 
         return div_class(img(self.img_url, 'vertical', BORDER_RADIUS_CSS), CSS_CLASS, div_props)
 
-    def __rich__(self) -> str:
-        logger.warning(f"__rich__() called on ImagePanel for {self.img_url}")
-        return ''
+    # def __rich__(self) -> str:
+    #     logger.warning(f"__rich__() called on ImagePanel for {self.img_url}")
+    #     return ''

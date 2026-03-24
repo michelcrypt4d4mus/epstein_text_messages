@@ -525,15 +525,13 @@ class Document(LoggingEntity):
         """Allows for proper right vs. left justify."""
         panel_timestamp = Text(f"({self.panel_title_timestamp})", style='dim') if self.panel_title_timestamp else None
 
-        if self.file_id == 'EFTA00014822':
-            import pdb;pdb.set_trace()
-
         if self._config.show_image:
             self._warn(f"creating ImagePanel for")
 
             body_panel = ImagePanel(
                 border_style=self.border_style,
                 img_url=self.image_url,
+                text=self.prettified_txt,
                 title=panel_timestamp
             )
         else:
