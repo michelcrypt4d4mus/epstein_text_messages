@@ -182,4 +182,10 @@ ARTICLE_CFGS = [
         is_interesting=True,
         note='article about iCog Labs titled "A Harvard Financier, Jeffrey Epstein, Advances Artificial Intelligence in Ethiopia"',
     ),
+    DocCfg(
+        id='EFTA01689016',
+        date='2001-11-01',
+        note=f"article about {VIRGINIA_GIUFFRE}'s former trafficker Ronald Eppinger and other Giuffre",
+        truncate_to=(11_000, 13_000),
+    ),
 ]

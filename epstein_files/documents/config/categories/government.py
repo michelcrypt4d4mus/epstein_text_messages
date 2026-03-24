@@ -272,6 +272,7 @@ GOVERNMENT_CFGS = [
         highlight_quote="I believe that certain items were purposely removed from Mr. Epstein's home in anticipation of an execution of a search warrant",
         truncate_to=AUTO,
     ),
+    grand_jury('EFTA00016349', note='charge list', date='2008-02-01', date_uncertain='before the arrest?'),
     DocCfg(id='EFTA00084614', author=PALM_BEACH_POLICE, note='incident report detailing the investigation into Jeffrey Epstein'),
     DocCfg(id='EFTA00007893', author=PALM_BEACH_POLICE, note=f"receipts, notes, bank statements of {GHISLAINE_MAXWELL}"),
     DocCfg(id='EFTA00005569', author=PALM_BEACH_POLICE, display_text='photo lineup featuring Epstein', date='2005-03-17'),
@@ -282,6 +283,7 @@ GOVERNMENT_CFGS = [
     DocCfg(id='EFTA00263284', note='notes about deceit and sexual manipulation by Australian professor Vincent Bulone', is_interesting=True),
     DocCfg(id='EFTA00001884', note='photo of letter from Virgin Islands DOJ to Epstein', date='2019-03-14'),
     DocCfg(id='EFTA00007157', note='victim list and police log'),
+    DocCfg(id='EFTA01649103', date='2025-03-17T22:33:37', note='"MCC Corruption Case" is about guards on duty when Epstein died'),
     letter('EFTA01653121', FBI, ['USCIS'], "regarding an individual's cooperation in the investigation of Epstein and Maxwell"),
     letter('EFTA00098456', PAUL_G_CASSELL, ['Scotland Yard'], 'International Sex Trafficking by Jeffrey Epstein, contains court filings'),
 

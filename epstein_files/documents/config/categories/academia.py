@@ -64,6 +64,7 @@ ACADEMIA_CFGS = [
         date='2011-05-01',
         note='OpenCog Hong Kong Project Interim Report',
     ),
+    imessage_screenshot('EFTA01616545', author=DEEPAK_CHOPRA, date='2016-10-09T22:01:25'),
     DocCfg(id='EFTA01114164', author=BEN_GOERTZEL, note='OpenCog Road Map 2011-2023', date='2011-01-01', date_uncertain=True),
     DocCfg(id='EFTA01114145', author=f"{BEN_GOERTZEL}, {GINO_YU}", note="OpenCog AGI Toddler Project", date='2011-06-01', date_uncertain=True),
     EmailCfg(id='EFTA00954900', note=f'Epstein donation to {MOUNT_SINAI}'),

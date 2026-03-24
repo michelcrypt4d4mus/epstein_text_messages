@@ -36,6 +36,10 @@ def deutsche_bank_doc(id: str, note: str, date: str = '', **kwargs) -> DocCfg:
     return DocCfg(id=id, author=DEUTSCHE_BANK, date=date, note=note, **kwargs)
 
 
+def schwab_doc(id: str, **kwargs) -> DocCfg:
+    return DocCfg(id=id, author='Charles Schwab', **kwargs)
+
+
 def epstein_will(
     id: str,
     date: str = '',
@@ -198,6 +202,9 @@ MONEY_CFGS = [
         note="concerning Jeepers, the children's theme park owned by Epstein",
         truncate_to=(552, 1_300),
     ),
+
+    # Schwab
+    schwab_doc('EFTA01265978', date='2019-07-10', note='account opened 3 months before death'),
 
     # Emails
     EmailCfg(id='EFTA00037187', note=f"Epstein's {DEUTSCHE_BANK} banker Paul Morris lawyers up immediately when contacted by the FBI", is_interesting=5),
