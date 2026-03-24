@@ -99,7 +99,5 @@ def test_subheader(get_email):
         '[government] OCR text of email from USANYS to USANYS probably sent at 2019-07-11 08:25:00'
 
 
-
-
 def test_timestamp(attributed_email):
     assert attributed_email.timestamp_without_seconds == '2018-01-15 15:17'
