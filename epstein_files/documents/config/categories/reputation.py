@@ -57,6 +57,7 @@ REPUTATION_CFGS = [
     EmailCfg(id='EFTA01745739', recipients=[CHRISTINA_GALBRAITH, JEFFREY_EPSTEIN], author_reason='topic, cell: in redacted sig'),
     EmailCfg(id='EFTA02518357', recipients=[CHRISTINA_GALBRAITH, RICHARD_KAHN], author_reason='"Christina" appears in email'),
     EmailCfg(id='EFTA01830035', note=AL_SECKEL_BILL_FIGHT),
+    EmailCfg(id='EFTA00901970', note=f"{AL_SECKEL}'s response to Epstein's forged email", is_interesting=10, truncate_to=3_000),
     EmailCfg(id='EFTA02417620', note=f"{AL_SECKEL} is creating a fake Jeffrey Epstein to improve the real Epstein's Google search results"),
     EmailCfg(id='EFTA00751523', truncate_to=2_100),
 ]

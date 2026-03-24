@@ -15,6 +15,12 @@ RUSSIA_CFGS = [
     EmailCfg(id='EFTA01175429', note=f"Andrey Vavilov offers to buy Epstein's house for $100 million", is_interesting=False),
     EmailCfg(id='EFTA01970982', note='Epstein planning a meeting with Vladimir Putin', is_interesting=20),
     EmailCfg(id='EFTA01914954', note='Epstein planning a meeting with Vladimir Putin', is_interesting=20),
+    EmailCfg(
+        id='030727',
+        note='Epstein requesting help for Russia, discussion of unknown dead Chinese shareholder',
+        is_interesting=10,
+        truncate_to=400,
+    ),
     EmailCfg(id='EFTA02455633', note=f"{MASHA_DROKOVA} loves WeWork", truncate_to=NO_TRUNCATE, is_interesting=2),
     EmailCfg(
         id='EFTA00582171',

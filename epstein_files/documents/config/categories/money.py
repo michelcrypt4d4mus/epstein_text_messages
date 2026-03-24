@@ -231,12 +231,6 @@ MONEY_CFGS = [
         note=f"Ike Groff invests $250,000 in Mangrove Partners managed by Nathaniel August",
     ),
     EmailCfg(
-        id='030727',
-        note='Epstein requesting help for Russia, discussion of unknown dead Chinese shareholder',
-        is_interesting=10,
-        truncate_to=400,
-    ),
-    EmailCfg(
         id='EFTA01769169',
         is_interesting=10,
         note='Epstein tells Jean Luc Brunel he can spend up to $25 million (on what?)',

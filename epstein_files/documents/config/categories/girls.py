@@ -271,6 +271,11 @@ GIRLS_CFGS = [
         highlight_quote="to work as escort girl, to go for dinners, be someone's company and maybe have sex for the agency",
         truncate_to=AUTO,
     ),
+    EmailCfg(
+        id='EFTA01993032',
+        is_interesting=9,
+        note=f'{IAN_OSBORNE} calls Greg Craig "my guy", offers to help with visa for woman Epstein "prefers not be part of my file"',
+    ),
     EmailCfg(id='032375', author=MARIA_PRUSAKOVA, author_reason=PRUSAKOVA_BERKELY, truncate_to=295),
     EmailCfg(id='033246', author=MARIA_PRUSAKOVA, author_reason='Kind regards/Cordialement in signature'),
     EmailCfg(id='EFTA00920848', author=MARIA_PRUSAKOVA, author_uncertain='law school'),

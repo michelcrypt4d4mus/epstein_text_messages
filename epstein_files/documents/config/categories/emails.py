@@ -1042,24 +1042,14 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00039663', author=STACEY_RICHMAN, recipients=[USANYS], author_reason='unredacted in EFTA00039662'),
 
     # Recipients
-    EmailCfg(
-        id='EFTA01043393',
-        note=f'did Epstein and {BROCK_PIERCE} have a falling out?',
-        is_interesting=True,
-        recipients=[ANDREW_FARKAS],
-    ),
-    EmailCfg(id='EFTA02068282', recipients=[ANDREW_MCCORMACK]),
     EmailCfg(id='EFTA00825164', recipients=[ARIANE_DE_ROTHSCHILD], author_reason='reply'),
     EmailCfg(id='EFTA01822512', recipients=[DAVID_STERN]),
-    EmailCfg(id='EFTA00915426', recipients=[DONALD_NORMAN], author_reason='"This is Donald"'),
-    EmailCfg(id='EFTA00916133', recipients=[DONALD_NORMAN], author_reason='signed "Donald"', duplicate_ids=['EFTA01862243']),
     EmailCfg(id='EFTA02662381', recipients=[FAWZI_SIAM]),
     EmailCfg(id='EFTA01054971', recipients=[FAWZI_SIAM], truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA02646138', recipients=[GANBAT_CHULUUNKHUU]),
     EmailCfg(id='EFTA01041151', recipients=[GANBAT_CHULUUNKHUU]),
     EmailCfg(id='EFTA01041159', recipients=[GANBAT_CHULUUNKHUU]),
     EmailCfg(id='EFTA01040918', recipients=[GANBAT_CHULUUNKHUU]),
-    EmailCfg(id='EFTA00913164', recipients=[GAVIN_ANDRESEN]),
     EmailCfg(id='EFTA02624738', recipients=[JEFFREY_EPSTEIN]),
     EmailCfg(id='EFTA02629770', recipients=[JEFFREY_EPSTEIN]),
     EmailCfg(id='EFTA00705664', recipients=[JEFFREY_EPSTEIN]),
@@ -1132,15 +1122,14 @@ EMAILS_CONFIG = [
     ),
     EmailCfg(id='EFTA00949295', is_interesting=5),
     EmailCfg(
-        id='EFTA01993032',
-        is_interesting=6,
-        note=f'{IAN_OSBORNE} calls Greg Craig "my guy", offers to help with visa for woman Epstein "prefers not be part of my file"',
+        id='EFTA02062130',
+        is_interesting=15,
+        note=f'{NILI_PRIELL_BARAK} installing cameras at Epstein\'s house, probably with Israeli government help',
+        url=DROPSITE_EPSTEIN_CAMERAS_URL,
     ),
-    EmailCfg(id='EFTA02062130', is_interesting=10, note=f'{NILI_PRIELL_BARAK} installing cameras at Epstein\'s house', url=DROPSITE_EPSTEIN_CAMERAS_URL),
     EmailCfg(id='EFTA02730481', date='2023-07-07T11:01:00', date_uncertain='actually reply timestamp'),
     EmailCfg(id='EFTA02731577', date='2024-10-16T00:00:00', date_uncertain='actually reply timestamp'),
     # Generated basd on OtherFile.extract_timestamp()
-    EmailCfg(id='EFTA00901970', note=f"{AL_SECKEL}'s response to Epstein's forged email", is_interesting=10, truncate_to=3_000),
     EmailCfg(id='EFTA02367311', note='Alice Rothschild', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA00992595', note=f"{ARIANE_DE_ROTHSCHILD} mentions her visit to Mongolia", is_interesting=2),
     EmailCfg(
@@ -1180,7 +1169,6 @@ EMAILS_CONFIG = [
     ),
     EmailCfg(id='EFTA00756577', note=f"{BEN_GOERTZEL} congratulates Epstein on getting out of jail", is_interesting=True, truncate_to=2500),
     EmailCfg(id='EFTA00322570', note=f'booking flight for {REDACTED} from Hong Kong to NYC'),
-    EmailCfg(id='EFTA02573653', note=f'discussion of {PRINCE_ANDREW}\'s Urramoor, "Howard" is probably {HOWARD_LUTNICK} which Urramoor partnered with'),
     EmailCfg(id='EFTA02629771', note=f"discussion of {RENATA_BOLOTOVA}'s employment at IPI", is_interesting=3),
     EmailCfg(id='EFTA00671263', note="Eagle's View Capital Management September 2017 Performance Update"),
     EmailCfg(id='EFTA00932166', note=f"discussion of {MARK_ZEFF}'s letter of visa recommendation for South African girl in EFTA00537633"),  # TODO: make it an attachment?
