@@ -321,6 +321,7 @@ GOVERNMENT_CFGS = [
         show_full_panel=True,
         truncate_to=NO_TRUNCATE,  # TODO this shouldn't be necessary?
     ),
+    EmailCfg(id='EFTA00039357', author=BUREAU_OF_PRISONS, recipients=['DOJ Inspector General']),
     EmailCfg(id='EFTA00036630', author=BUREAU_OF_PRISONS, recipients=[BUREAU_OF_PRISONS], note='about cameras'),
     EmailCfg(id='EFTA00019169', author=FBI, author_uncertain=True, recipients=[USANYS], recipient_uncertain=True),
     EmailCfg(id='EFTA02730483', author=FBI, date='2023-07-11T08:25:00', date_uncertain='actually reply timestamp'),
@@ -499,4 +500,5 @@ GOVERNMENT_CFGS = [
     EmailCfg(id='EFTA02731697', author=USANYS, recipients=[USANYS], date='2021-06-07 17:33:00', author_uncertain=True),
     EmailCfg(id='EFTA02731583', author=USANYS, recipients=[USANYS], date='2022-01-21 17:28:00', author_uncertain=True),
     EmailCfg(id='EFTA02731587', author=USANYS, recipients=[USANYS], date='2022-01-21 17:28:00', author_uncertain=True),
+    EmailCfg(id='EFTA02731632', recipients=[OFFICE_OF_THE_DEPUTY_ATTORNEY_GENERAL]),
 ]

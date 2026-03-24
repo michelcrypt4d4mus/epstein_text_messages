@@ -21,6 +21,7 @@ REPUTATION_CFGS = [
     DocCfg(id='030875', note=f"Epstein's Wikipedia page", date='2014-02-08'),  # Date is based on tyler shears; seckel was 2010
     DocCfg(id='026583', note=f"Google search results for '{JEFFREY_EPSTEIN}' with analysis ({OSBORNE_LLP}?)"),
     DocCfg(id='029350', note=f"Microsoft Bing search results for Epstein with sex offender at top", attached_to_email_id='EFTA00675542'),
+    EmailCfg(id='025233', is_interesting=True, note='Reputation.com discussion'),
     EmailCfg(id='022203', note=AL_SECKEL_BILL_FIGHT, truncate_to=500),
     EmailCfg(id='022219', note=AL_SECKEL_BILL_FIGHT, truncate_to=2404),
 
@@ -35,9 +36,27 @@ REPUTATION_CFGS = [
     skype_log('EFTA01217787', recipients=[TYLER_SHEARS, HANNA_TRAFF]),
     skype_log('EFTA01217703', recipients=[ATHENA_ZELCOVICH, JOSCHA_BACH, LAWRENCE_KRAUSS, TYLER_SHEARS]),
     skype_log('EFTA01217736', recipients=[ATHENA_ZELCOVICH, TYLER_SHEARS], truncate_to=(5000, 5800)),
-    EmailCfg(id='EFTA02417620', note=f"{AL_SECKEL} is creating a fake Jeffrey Epstein to improve the real Epstein's Google search results"),
-    EmailCfg(id='EFTA00751527', note=f"more details of {AL_SECKEL}'s approach to online reputation repair", recipients=[JEFFREY_EPSTEIN, JESSICA_BANKS], author_reason='visible in EFTA00751523'),
+    EmailCfg(id='EFTA01851487', author=CHRISTINA_GALBRAITH, author_reason='topic, cell: in redacted sig'),
+    EmailCfg(id='EFTA01851738', author=CHRISTINA_GALBRAITH, author_reason='topic, cell: in redacted sig'),
+    EmailCfg(id='EFTA01947908', author=CHRISTINA_GALBRAITH, author_reason='"Christina" appears in EFTA01950559'),
+    EmailCfg(id='EFTA01940349', author=CHRISTINA_GALBRAITH, author_uncertain='subject matter'),
+    EmailCfg(
+        id='EFTA00751527',
+        author_reason='visible in EFTA00751523',
+        note=f"more details of {AL_SECKEL}'s approach to online reputation repair",
+        recipients=[JEFFREY_EPSTEIN, JESSICA_BANKS],
+    ),
+    EmailCfg(
+        id='EFTA01913311',
+        duplicate_ids=['EFTA00994273'],
+        is_interesting=15,
+        note='login/password for jeffreyepsteinnet@gmail.com',
+        recipients=[CHRISTINA_GALBRAITH],
+    ),
+    EmailCfg(id='EFTA01950559', recipients=[CHRISTINA_GALBRAITH], recipient_uncertain='"Christina" in thread'),
+    EmailCfg(id='EFTA01745739', recipients=[CHRISTINA_GALBRAITH, JEFFREY_EPSTEIN], author_reason='topic, cell: in redacted sig'),
+    EmailCfg(id='EFTA02518357', recipients=[CHRISTINA_GALBRAITH, RICHARD_KAHN], author_reason='"Christina" appears in email'),
     EmailCfg(id='EFTA01830035', note=AL_SECKEL_BILL_FIGHT),
+    EmailCfg(id='EFTA02417620', note=f"{AL_SECKEL} is creating a fake Jeffrey Epstein to improve the real Epstein's Google search results"),
     EmailCfg(id='EFTA00751523', truncate_to=2_100),
-    EmailCfg(id='EFTA01913311', recipients=[CHRISTINA_GALBRAITH], duplicate_ids=['EFTA00994273'], note='login/password for jeffreyepsteinnet@gmail.com', is_interesting=20),
 ]

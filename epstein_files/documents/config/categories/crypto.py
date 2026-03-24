@@ -223,6 +223,8 @@ CRYPTO_CFGS = [
     imessage_screenshot(id='EFTA01611042', author=ED_BOYLE, recipients=[None, MARIA_PRUSAKOVA]),
     whatsapp_log(id='EFTA01613731', note='Medici Bank conversation on Whatsapp'),
     EmailCfg(id='EFTA00495372', note=f'discussion of Medici Bank, a new successor to Noble Bank as a crypto bank', is_interesting=10),
+    EmailCfg(id='EFTA02266524', recipients=[MARIA_PRUSAKOVA], author_reason=CRYPTO_PR_LAB, note='Medici Bank'),
+    EmailCfg(id='EFTA02503155', recipients=[MARIA_PRUSAKOVA], author_reason='visible in quoted reply'),
     EmailCfg(
         id='EFTA01030070',
         note="Bo Collins inspired by Epstein to set up Mercantile Global Holdings crypto trading offering stablecoins to people who can't get bank accounts",
