@@ -163,11 +163,10 @@ class Site(StrEnum):
     @classmethod
     def link_to_category(cls, category: str) -> Text:
         from epstein_files.output.highlight_config import get_style_for_category
-        link_text = escape(f"category[{category}]")
 
         ext_link = ExternalLink(
             cls.get_url(cls.CATEGORY, category),
-            link_text,
+            escape(f"category[{category}]"),
             link_style=get_style_for_category(category) or '',
             comment=f'all files related to {category}',
             comment_style='color(147) dim italic'
