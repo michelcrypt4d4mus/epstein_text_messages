@@ -73,8 +73,8 @@ def from_em(units: str | None) -> int | None:
     return int(units.removesuffix('em'))
 
 
-def img(src: str, css_props: OptionalCssProps = None) -> str:
-    return f'<img src="{src}" {to_inline_style_arg(css_props)}/>'
+def img(src: str, class_name: str = '', css_props: OptionalCssProps = None) -> str:
+    return f'<img src="{src}" class="{class_name}" {to_inline_style_arg(css_props)}/>'
 
 
 def strip_outer_tag(_html: str, tag: str) -> str:

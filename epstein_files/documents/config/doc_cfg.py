@@ -200,6 +200,7 @@ class DocCfg(LoggingEntity):
                 self._exit_with_error(f"Failed to parse configured date '{self.date}'", e)
 
         self.set_category(self.category)
+        self.show_full_panel = self.show_full_panel or self.show_image
 
         # background_color, highlight_quote, or a tuple truncate_to set show_full_panel to true
         if self.background_color or self.highlight_quote or isinstance(self.truncate_to, tuple):
