@@ -85,12 +85,19 @@ def test_note(get_email, email_with_category_but_no_note):
     assert len(email_with_category_but_no_note.subheaders) == 1
     assert email_with_category_but_no_note.subheaders[0].plain.startswith('[girls]')
     assert not email_with_category_but_no_note._body_as_table().columns[0].header
-    svet = get_email('EFTA01870453')
-    assert len(svet.subheaders) == 1
-    assert svet.subheaders[0].plain == \
-        '[girls] OCR text of email from Svetlana Pozhidaeva (???) to Jeffrey Epstein probably sent at 2011-04-05 16:51:26'
-    assert svet._config.note_txt(include_category=False).plain == \
+
+
+def test_subheader(get_email):
+    svet_email = get_email('EFTA01870453')
+    assert len(svet_email.subheaders) == 1
+
+    assert svet_email.subheaders[0].plain == \
+        '[girls] OCR text of email from Svetlana Pozhidaeva (???) to Jeffrey Epstein sent at 2011-04-05 16:51:26'
+    assert svet_email._config.note_txt(include_category=False).plain == \
         'Svetlana Pozhidaeva fwds a discussion about an abortion to Epstein, see quote: "You have known you are preg for a week"'
+    assert get_email('EFTA02730468').subheaders[0].plain == \
+        '[government] OCR text of email from USANYS to USANYS probably sent at 2019-07-11 08:25:00'
+
 
 
 
