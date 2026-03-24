@@ -24,6 +24,7 @@ MONEY_OCR_REPAIRS: OcrRepair = {
     'Southern Trust Company,\nInc.\n$': 'Southern Trust Company, Inc $',
     'Black do\nApollo Management': 'Black c/o Apollo Management',
     re.compile(r'Boothbay Absolute Strategies\nFund LP\n\$'): "Boothbay Absolute Strategies Fund LP $",
+    'D.B. Zwim': 'D.B. Zwirn',
 }
 
 
