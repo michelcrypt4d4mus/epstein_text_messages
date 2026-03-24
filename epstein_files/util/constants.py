@@ -26,6 +26,7 @@ from epstein_files.documents.config.categories.property import PROPERTY_CFGS
 from epstein_files.documents.config.categories.reputation import REPUTATION_CFGS
 from epstein_files.documents.config.categories.resume import RESUMÉ_CFGS
 from epstein_files.documents.config.categories.social import SOCIAL_CFGS, TWEET_CFGS
+from epstein_files.documents.config.categories.tech import TECH_CFGS
 from epstein_files.documents.config.config_builder import victim_diary
 from epstein_files.documents.config.doc_cfg import DocCfg
 from epstein_files.documents.config.email_cfg import EmailCfg

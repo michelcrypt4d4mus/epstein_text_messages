@@ -54,7 +54,7 @@ from epstein_files.util.logging_entity import LoggingEntity
 CLOSE_PROPERTIES_CHAR = ']'
 HOUSE_OVERSIGHT = HOUSE_OVERSIGHT_PREFIX.replace('_', ' ').strip()
 DOC_PANEL_BG_COLOR = 'grey7'  # TODO: unify this with the dict of background colors by category
-MAX_LEN_FOR_HYPERLINKS = 50_000
+MAX_LEN_FOR_HYPERLINKS = 90_000
 TRIM_MSG_JOIN = '\n'
 
 FILENAME_MATCH_STYLES = [

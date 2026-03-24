@@ -389,6 +389,7 @@ HIGHLIGHTED_NAMES = [
             Entity('Vaishali Mehta', f'Head of Anti-Money Laundering Business Risk at {DEUTSCHE_BANK}', r"Vaishali.{,5}Mehta"),
             Entity('Velmir Vejzovic', DEUTSCHE_BANK),
             Entity(VINIT_SAHNI, f"analyst at {DEUTSCHE_BANK} and {GOLDMAN_SACHS}", match_partial='both'),
+            Entity('Yoonsun Chung', f"Anti-Money Laundering at {DEUTSCHE_BANK}", match_partial=None),
 
             # Organizations
             acronym(f"{DEUTSCHE_BANK} AG New York"),
@@ -2226,6 +2227,7 @@ HIGHLIGHTED_NAMES = [
             ),
             Entity(JAMES_HILL, "ABC News", r"hill, james e.|james.e.hill@abc.com", match_partial=None),
             Entity('James Patterson', f'pulp fiction author, wrote a book about Epstein with {STEVEN_HOFFENBERG}'),
+            Entity(JAMES_STEWART, 'New York Times reporter', match_partial=None),
             Entity(JENNIFER_JACQUET, "Future Science magazine"),
             Entity(
                 JOHN_BROCKMAN,

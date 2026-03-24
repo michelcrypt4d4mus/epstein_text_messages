@@ -164,6 +164,11 @@ GIRLS_CFGS = [
         note='recruiting russian girls',
         url=JULIA_SANTOS_REDDIT_URL,
     ),
+    skype_log(
+        id='EFTA01613468',
+        author=EKATERINA_GUSAROVA,
+        author_uncertain='Carstensen',
+    ),
     whatsapp_log(
         id='EFTA01612733',
         author=MARIA_PRUSAKOVA,

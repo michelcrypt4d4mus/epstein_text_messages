@@ -259,6 +259,7 @@ HOWARD_LUTNICK = 'Howard Lutnick'
 IAN_ODONNELL = "Ian O'Donnell"
 JAMES_CAYNE = 'James Cayne'
 JAMES_FITZGERALD = 'James Fitzgerald'
+JAMES_STEWART = 'James Stewart'
 JAMES_TAGG = 'James Tagg'
 JASON_CALACANIS = 'Jason Calacanis'
 JEM_BENDELL = 'Jem Bendell'
