@@ -134,6 +134,17 @@ GIRLS_CFGS = [
         author_uncertain='sneaky',
         highlight_quote='how many new girls are there in the island W you now?'
     ),
+    imessage_screenshot(
+        'EFTA01617527',
+        author='Eduardo Teodorani',
+        highlight_quote='interesting pussy than Fl in Milano interesting pussy as well',
+        truncate_to=(1_700, 2_200),
+    ),
+    imessage_screenshot(
+        'EFTA01619579',
+        author=DEEPAK_CHOPRA,
+        truncate_to=500,
+    ),
     imessage_screenshot('EFTA02731525', author=LEON_BLACK, author_uncertain=True, is_interesting=10),
     imessage_screenshot('EFTA01622387', author=RENATA_BOLOTOVA, author_uncertain='sneaky'),
     imessage_screenshot('EFTA01618494', author=RENATA_BOLOTOVA, author_uncertain='sneaky'),

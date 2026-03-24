@@ -70,12 +70,6 @@ ACADEMIA_CFGS = [
     EmailCfg(id='EFTA00955864', note=f'Epstein donation to {MOUNT_SINAI}', is_interesting=False),
     imessage_screenshot('EFTA01616222', author=HARRY_FISCH, date='2018-04-23T14:25:30'),
     imessage_screenshot('EFTA01616232', author=HARRY_FISCH, date='2018-04-23T14:25:30'),
-    imessage_screenshot(
-        'EFTA01617527',
-        author='Eduardo Teodorani',
-        highlight_quote='interesting pussy than Fl in Milano interesting pussy as well',
-        truncate_to=(1_700, 2_200),
-    ),
     skype_log('032206', recipients=[LAWRENCE_KRAUSS], is_interesting=False),
     skype_log('032208', recipients=[LAWRENCE_KRAUSS], is_interesting=False),
     skype_log('032209', recipients=[LAWRENCE_KRAUSS], is_interesting=False),

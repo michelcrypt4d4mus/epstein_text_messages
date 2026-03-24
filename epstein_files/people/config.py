@@ -3602,7 +3602,7 @@ HIGHLIGHTED_NAMES = [
             Entity("Audrey/Aubrey Raimbault", 'appears in flight logs'),
             Entity('Brittany Beale', VICTIM_EVIDENCE),
             Entity(CECILIA_STEEN, f'Epstein assistant, moved to Dubai to work for money launderers (?)'),
-            Entity(CELINA_DUBIN, f"daughter of Glenn &{EVA_DUBIN}, called Epstein 'unc'", match_partial=None),
+            Entity(CELINA_DUBIN, f"daughter of Glenn &{EVA_DUBIN}, called Epstein 'unc'", r"Celina (E(\.|dith)? )?Dubin", match_partial=None),
             Entity('Emma Sergeant', 'painter introduced to Ghislaine by Robert Hanson', url='https://www.bbc.co.uk/radio4/womanshour/02/2008_43_tue.shtml'),
             Entity(
                 EVA_DUBIN,
