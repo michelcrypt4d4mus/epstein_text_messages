@@ -2761,10 +2761,13 @@ HIGHLIGHTED_NAMES = [
             Entity('pink@mc2mm.com', JEAN_LUC_MC2, r"^Pink$|pink@mc2mm\.com"),
             Entity(
                 'Tigran Khachatrian',
-                f'model scout, worked with {DANIEL_SIAD}, appears in "Girl Model" documentary',
+                f'model scout, friend of {DANIEL_SIAD}, in "Girl Model" documentary, 6 year prison sentence for identity theft in 2012',
                 r"Tigrane?( Khachatrian)?",
                 match_partial='both',
-                url='https://en.wikipedia.org/wiki/Girl_Model',
+                url=[
+                    'https://archives.fbi.gov/archives/portland/press-releases/2012/defendant-sentenced-to-70-months-in-federal-prison-for-identity-theft-scheme',
+                    'https://en.wikipedia.org/wiki/Girl_Model',
+                ],
             ),
             # Orgs
             Organization('2morrow'),
