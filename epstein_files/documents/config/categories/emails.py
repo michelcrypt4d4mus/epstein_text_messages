@@ -1171,7 +1171,6 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00322570', note=f'booking flight for {REDACTED} from Hong Kong to NYC'),
     EmailCfg(id='EFTA02629771', note=f"discussion of {RENATA_BOLOTOVA}'s employment at IPI", is_interesting=3),
     EmailCfg(id='EFTA00671263', note="Eagle's View Capital Management September 2017 Performance Update"),
-    EmailCfg(id='EFTA00932166', note=f"discussion of {MARK_ZEFF}'s letter of visa recommendation for South African girl in EFTA00537633"),  # TODO: make it an attachment?
     EmailCfg(id='EFTA00537622', author='Kathleen Gallagher', note=f"discussion of {MARK_ZEFF}'s letter of visa recommendation for South African girl in EFTA00537633"),  # TODO: make it an attachment?
     EmailCfg(id='EFTA00877726', note=f'Epstein and {DAVID_STERN} discuss plans to manage Chinese money in Africa'),
     EmailCfg(id='EFTA00941197', note=f'Epstein appears to be helping with an investment in Jawbone by {HEDOSOPHIA}'),

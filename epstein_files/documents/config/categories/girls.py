@@ -757,6 +757,7 @@ GIRLS_CFGS = [
     EmailCfg(id='EFTA00855566', note=f"introducing {SANITA}", truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA01145923', note=f"{JEAN_LUC_BRUNEL} modeling contract for {MC2_MODEL_MGMT}"),
     EmailCfg(id='EFTA01660651', note='list of Trump accusers', is_interesting=10),
+    EmailCfg(id='EFTA00932166', note=f"{MARK_ZEFF}'s letter of visa recommendation for South African girl in EFTA00537633"),  # TODO: make it an attachment?
     EmailCfg(id='EFTA02609062', note=f"{MASHA_DROKOVA} is assembling a team", is_interesting=10),
     EmailCfg(id='EFTA02557291', note='possibly recruiting girls'),
     EmailCfg(
