@@ -16,6 +16,7 @@ TECH_CFGS = [
         truncate_to=(810, 930),
     ),
     EmailCfg(id='EFTA02226642', note=f"{NATHAN_MYHRVOLD} introduces Epstein to {MIROSLAV_LAJCAK}"),
+    EmailCfg(id='EFTA01003346', note=f"{PETER_THIEL} tells Epstein to invest in his fund", is_interesting=True),
     EmailCfg(
         id='EFTA02186054',
         author_reason='Laurie visible in EFTA02226642',

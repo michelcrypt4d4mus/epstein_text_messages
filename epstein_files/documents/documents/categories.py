@@ -18,6 +18,7 @@ class Interesting(StrEnum):
     GIRLS = auto()
     MONEY = auto()
     REPUTATION = auto()
+    RUSSIA = auto()
     SOCIAL = auto()
 
 class Neutral(StrEnum):
