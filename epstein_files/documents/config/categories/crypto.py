@@ -486,6 +486,13 @@ CRYPTO_CFGS = [
     EmailCfg(id='EFTA01916343', highlight_quote='If i could short bitcoin i would'),
     # Peter Thiel
     EmailCfg(id='EFTA01916226', note=f"{PETER_THIEL} is concerned about the government attempting to regulate bitcoin", truncate_to=NO_TRUNCATE),
+    # Philip Rosedale
+    EmailCfg(
+        id='EFTA00926593',
+        author=PHILIP_ROSEDALE,
+        note='organizing a symposium on deception and alternative finance',
+        is_interesting=4,
+    ),
     # Reid Hoffman
     EmailCfg(id='EFTA00820371', note='bank digital currencies article', is_interesting=True),
     # Russia

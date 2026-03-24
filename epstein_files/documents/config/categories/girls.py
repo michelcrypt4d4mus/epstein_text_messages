@@ -288,6 +288,12 @@ GIRLS_CFGS = [
     EmailCfg(id='EFTA01990879', author=MIRANDA_MAKO, author_uncertain='Clifford Chance, could be Miranda'),
     EmailCfg(id='EFTA00671662', author=MIRANDA_MAKO, author_reason='quoted signature "Miranda"', note="yet another girl finder"),
     EmailCfg(id='EFTA00662373', author=MASHA_DROKOVA, author_reason='"Best, Masha"', highlight_quote='She is interesting. Great looks'),
+    # Nadia
+    EmailCfg(id='021814', author=NADIA_MARCINKO, author_reason='reply'),
+    EmailCfg(id='021808', author=NADIA_MARCINKO, author_reason='reply', truncate_to=NO_TRUNCATE),
+    EmailCfg(id='021818', author=NADIA_MARCINKO, author_reason='reply'),
+    EmailCfg(id='022214', author=NADIA_MARCINKO, author_reason='Reply header'),
+    EmailCfg(id='021811', author=NADIA_MARCINKO, author_reason='signature and email address in the message'),
     EmailCfg(id='EFTA01047249', author=NADIA_MARCINKO, author_reason='Miro', url='https://archive.ph/Qa6vU#selection-1621.160-1621.184'),
     EmailCfg(id='EFTA00962525', author=NADIA_MARCINKO, author_reason='carstensen', highlight_quote="I was a teenager in love. You were 51.", is_interesting=2),
     EmailCfg(id='EFTA01897098', author=NADIA_MARCINKO, note=f"{NADIA_MARCINKO} wants $5 million to part with Epstein"),

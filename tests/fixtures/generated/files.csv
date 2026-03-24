@@ -275,10 +275,10 @@ file_id,category,author,is_interesting,timestamp,recipients_str,sent_from_device
 021764,email,Jeffrey Epstein,False,2010-02-26 15:01:31+00:00,Alan Dershowitz,,
 021775,article,Palm Beach Post,False,2010-02-26 15:01:31+00:00,,,"Palm Beach Post article about 'He Was 50. And They Were Girls', attached to email 021764"
 021806,email,,True,2015-01-03 22:34:00+00:00,Jeffrey Epstein,Sent from my iPhone,
-021808,email,Nadia Marcinko,,2015-01-09 18:56:00+00:00,Jeffrey Epstein,,
-021811,email,Nadia Marcinko,,2015-01-09 19:01:00+00:00,Jeffrey Epstein,,
-021814,email,Nadia Marcinko,,2015-01-09 19:27:00+00:00,Jeffrey Epstein,,
-021818,email,Nadia Marcinko,,2015-01-09 20:50:00+00:00,Jeffrey Epstein,,
+021808,girls,Nadia Marcinko,True,2015-01-09 18:56:00+00:00,Jeffrey Epstein,,
+021811,girls,Nadia Marcinko,True,2015-01-09 19:01:00+00:00,Jeffrey Epstein,,
+021814,girls,Nadia Marcinko,True,2015-01-09 19:27:00+00:00,Jeffrey Epstein,,
+021818,girls,Nadia Marcinko,True,2015-01-09 20:50:00+00:00,Jeffrey Epstein,,
 021823,email,Jean Luc Brunel,True,2015-01-20 02:19:00+00:00,Jeffrey Epstein,,
 021824,deposition,Paul G. Cassell,,2015-10-22 00:00:00+00:00,,,deposition of Paul G. Cassell from Brad Edwards & Paul G. Cassell v. Alan Dershowitz
 021956,email,,True,2016-01-20 02:10:00+00:00,Jeffrey Epstein,Sent from my iPhone,
@@ -296,7 +296,7 @@ file_id,category,author,is_interesting,timestamp,recipients_str,sent_from_device
 022211,article,Virgin Islands Daily News,False,2019-03-02 00:00:00+00:00,,,Virgin Islands Daily News
 022212,article,Virgin Islands Daily News,False,2020-03-22 00:00:00+00:00,,,Virgin Islands Daily News
 022213,social,,False,,,,screenshot of Facebook group called 'Shit Pilots Say' disparaging a 'global girl'
-022214,email,Nadia Marcinko,,2013-01-31 11:32:00+00:00,Jeffrey Epstein,,
+022214,girls,Nadia Marcinko,True,2013-01-31 11:32:00+00:00,Jeffrey Epstein,,
 022216,email,Al Seckel,True,2010-12-15 17:36:27+00:00,Jeffrey Epstein,,
 022219,reputation,Al Seckel,True,2010-12-16 13:15:29+00:00,Jeffrey Epstein,,Al Seckel and Epstein fight about the bill for reputation management services
 022223,email,Al Seckel,True,2010-12-16 13:20:06+00:00,Jeffrey Epstein,,
@@ -1698,7 +1698,7 @@ file_id,category,author,is_interesting,timestamp,recipients_str,sent_from_device
 030873,email,Michael Wolff,,2017-10-09 13:18:25+00:00,Jeffrey Epstein,,
 030874,email,,True,2017-10-12 18:36:24+00:00,Jeffrey Epstein,,
 030875,reputation,,True,2014-02-08 00:00:00+00:00,,,Epstein's Wikipedia page
-030878,email,Richard Kahn,False,2018-09-15 01:09:39+00:00,Jeffrey Epstein,,
+030878,politics,Richard Kahn,False,2018-09-15 01:09:39+00:00,Jeffrey Epstein,,
 030880,email,Michael Wolff,,2019-03-11 20:08:25+00:00,Jeffrey Epstein,,
 030881,email,,True,2013-09-22 14:08:00+00:00,Jeffrey Epstein,,
 030882,email,,True,2013-12-15 05:16:35+00:00,Jeffrey Epstein,,
@@ -2194,7 +2194,7 @@ file_id,category,author,is_interesting,timestamp,recipients_str,sent_from_device
 032455,email,Lesley Groff,,2017-02-03 23:47:50+00:00,Jeffrey Epstein,Sent from my iPhone,
 032456,email,Lawrance Visoski,,2017-02-05 00:32:54+00:00,Darren Indyke;Jeffrey Epstein,Sent from my iPhone,
 032457,email,Paul Krassner,,2017-02-08 00:34:24+00:00,Jeffrey Epstein;Nancy Cain,,
-032458,email,Etienne Binant,,2017-02-10 17:40:45+00:00,Caroline Lang;Jeffrey Epstein,,discussion of acquiring pieces for Epstein's art collection
+032458,money,Etienne Binant,True,2017-02-10 17:40:45+00:00,Caroline Lang;Jeffrey Epstein,,discussion of acquiring pieces for Epstein's art collection
 032461,email,Caroline Lang,,2017-02-10 18:37:32+00:00,Etienne Binant;Jeffrey Epstein,,
 032464,email,Darren Indyke,,2017-02-15 11:11:40+00:00,Jeffrey Epstein,Sent from my iPhone,redacted discussion of art advisor Etienne Binant
 032467,email,Darren Indyke,,2017-02-15 11:49:48+00:00,Jeffrey Epstein,Sent from my iPhone,redacted discussion of art advisor Etienne Binant
@@ -5205,7 +5205,7 @@ EFTA00039665_3,email,Christopher Dilorio,,2020-09-05 07:08:00+00:00,SEC,,
 EFTA00039689_1,email,Christopher Dilorio,,2021-05-28 14:58:07+00:00,SEC,,
 EFTA00039790,email,USANYS,,2021-04-16 22:09:33+00:00,USANYS,,
 EFTA00039794,legal,Jack Scarola,,2021-04-19 16:33:18+00:00,Michael Danchuk;USANYS,,
-EFTA00039796,email,SDNY,,2021-04-19 18:37:10+00:00,USANYS,,
+EFTA00039796,government,SDNY,,2021-04-19 18:37:10+00:00,USANYS,,
 EFTA00039797,email,USANYS,,2021-04-20 01:04:39+00:00,USANYS,,
 EFTA00039798,email,ODAG,,2019-03-01 15:15:50+00:00,USANYS,,
 EFTA00039799,email,,False,2019-02-24 20:18:01+00:00,None,Sent from my iPhone,
@@ -5238,7 +5238,7 @@ EFTA00039880,,,,,,,
 EFTA00039881,,,,,,,
 EFTA00039882,,,,,,,
 EFTA00039883,,,,,,,
-EFTA00039884,email,Audrey Strauss,,2020-07-10 15:08:20+00:00,USANYS,Sent from my iPhone,
+EFTA00039884,government,Audrey Strauss,,2020-07-10 15:08:20+00:00,USANYS,Sent from my iPhone,
 EFTA00039885,email,,True,2019-09-17 20:30:38+00:00,FBI,,
 EFTA00039886,government,USANYS,,2019-05-14 22:13:53+00:00,NY FBI,,
 EFTA00039888,email,Alex Conlon,,2019-05-14 16:49:00+00:00,Alexandra Elenowitz-Hess,,
@@ -5259,7 +5259,7 @@ EFTA00039980,email,USANYS,,2019-09-09 17:47:35+00:00,USANYS,,
 EFTA00039981,email,,False,2019-09-10 00:50:24+00:00,USANYS,,
 EFTA00039983,government,USANYS,,2019-09-10 14:47:16+00:00,USANYS,,
 EFTA00039985,email,Florence Hutner,,2019-09-11 14:19:37+00:00,USANYS,,
-EFTA00039989,email,USANYS,True,2019-09-12 11:57:01+00:00,USANYS,Sent from my iPhone,ICE has an immigration hold on a man who might have important info about the Epstein case
+EFTA00039989,government,USANYS,True,2019-09-12 11:57:01+00:00,USANYS,Sent from my iPhone,ICE has an immigration hold on a man who might have important info about the Epstein case
 EFTA00039995,government,USANYS,False,2019-09-12 14:41:06+00:00,,,
 EFTA00039996,email,USMS,,2019-09-12 20:37:55+00:00,USMS,,
 EFTA00039998,,,,2026-01-02 00:00:00+00:00,,,
@@ -5576,8 +5576,8 @@ EFTA00572157,girls,,True,2016-10-17 13:19:22+00:00,Karyna Shuliak,Отправл
 EFTA00572771,email,Lesley Groff,,2016-01-12 13:08:11+00:00,Karyna Shuliak,,
 EFTA00577409,girls,Jeffrey Epstein,True,2003-06-01 00:00:00+00:00,Ghislaine Maxwell,,"Epstein and Ghislaine discuss girl ""from donad trumps party"" who blackmailed [someone]"
 EFTA00579769,email,Ghislaine Maxwell,True,2002-10-23 15:49:00+00:00,Melania,,Melania... Trump?
-EFTA00582171,email,Ghislaine Maxwell,False,2001-05-24 22:26:32+00:00,Umar Dzhabrailov,,
-EFTA00582504,email,Ghislaine Maxwell,True,2001-05-25 14:49:28+00:00,Umar Dzhabrailov,,
+EFTA00582171,russia,Ghislaine Maxwell,False,2001-05-24 22:26:32+00:00,Umar Dzhabrailov,,
+EFTA00582504,russia,Ghislaine Maxwell,True,2001-05-25 14:49:28+00:00,Umar Dzhabrailov,,
 EFTA00582508,email,Umar Dzhabrailov,True,2001-05-24 08:02:13+00:00,Ghislaine Maxwell,,Umar Dzhabrailov was found dead in his Moscow penthouse in March 2026
 EFTA00584696,crypto,,True,2014-09-04 00:00:00+00:00,,,Epstein crypto fund Kyara Investment III LLC operating agreement
 EFTA00589797,girls,Terje Rød-Larsen,True,2015-05-02 00:00:00+00:00,,,letter from Terje Rød-Larsen to INS
@@ -5743,7 +5743,7 @@ EFTA00702609,email,Stephen Hanson,,2016-04-05 22:52:56+00:00,Jeffrey Epstein,Sen
 EFTA00703417,email,Linda Stone,,2013-07-19 13:15:54+00:00,Jeffrey Epstein,"Typos, misspellings courtesy of iPhone word & thought substitution",
 EFTA00703980,email,Renata Bolotova,True,2016-05-14 13:19:57+00:00,Jeffrey Epstein,,
 EFTA00704065,email,Andrew McCormack,,2015-09-18 17:43:33+00:00,James Fitzgerald;Jeffrey Epstein,,
-EFTA00704085,email,Sergey Belyakov,True,2016-01-30 21:02:44+00:00,Jeffrey Epstein,,
+EFTA00704085,russia,Sergey Belyakov,True,2016-01-30 21:02:44+00:00,Jeffrey Epstein,,
 EFTA00704551,email,Sultan Ahmed Bin Sulayem,,2017-08-03 17:04:41+00:00,Jeffrey Epstein,Sent from my iPhone,
 EFTA00704924,girls,,True,2013-03-24 10:11:50+00:00,Jeffrey Epstein,,stalking Josh Fink (attachment is pic of Joshua Fink and Filipa Perovic who later married)
 EFTA00705664,email,Jeffrey Epstein,,2014-04-11 23:16:32+00:00,Jeffrey Epstein,,
@@ -5895,9 +5895,9 @@ EFTA00848188,email,David Stern,True,2018-03-26 08:06:54+00:00,Jeffrey Epstein,,
 EFTA00848644,girls,Jeffrey Epstein,True,2015-08-15 23:05:09+00:00,unknown girl,,"see quote: ""take a selfie of your pussy and send"""
 EFTA00849560,email,Richard Kahn,,2015-08-03 21:15:27+00:00,Jeffrey Epstein,,
 EFTA00849957,email,Madars Virza,True,2018-03-27 23:50:20+00:00,Jeffrey Epstein;Steve Bannon,,
-EFTA00850130,email,Jeffrey Epstein,True,2015-07-29 10:45:12+00:00,Sergey Belyakov,,
+EFTA00850130,russia,Jeffrey Epstein,True,2015-07-29 10:45:12+00:00,Sergey Belyakov,,
 EFTA00851916,email,Madars Virza,True,2018-03-22 22:55:19+00:00,Jeffrey Epstein,,
-EFTA00852324,email,Sergey Belyakov,True,2015-07-06 18:39:12+00:00,Elena Bolyakina;Jeffrey Epstein;Peter Thiel;Sergey Belyakov,,
+EFTA00852324,russia,Sergey Belyakov,True,2015-07-06 18:39:12+00:00,Elena Bolyakina;Jeffrey Epstein;Peter Thiel;Sergey Belyakov,,Epstein brings Sergey Belyakov to meet Peter Thiel
 EFTA00853240,email,David Stern,True,2018-03-24 05:08:30+00:00,Jeffrey Epstein,,
 EFTA00854166,girls,Larry Summers,True,2015-06-18 11:43:51+00:00,Jeffrey Epstein,Sent from my iPhone,"see quote: ""kazak contract will be ready for your review"""
 EFTA00855280,email,Jeffrey Epstein,True,2018-03-20 11:56:51+00:00,None,,
@@ -5905,7 +5905,7 @@ EFTA00855566,girls,Kira Dikhtyar,True,2015-06-01 22:49:07+00:00,Jeffrey Epstein,
 EFTA00855567,email,,True,2015-06-01 22:49:07+00:00,None,,
 EFTA00857165,email,Jeffrey Epstein,,2015-05-12 17:02:07+00:00,Seth Lloyd,,
 EFTA00857669,girls,Jeffrey Epstein,True,2015-05-04 15:13:50+00:00,Sanita,,Sanita is maybe the only great girl with right thinking in the entire Epstein files
-EFTA00858688,email,Sergey Belyakov,True,2015-04-23 03:07:33+00:00,Jeffrey Epstein,,Epstein introduces Ehud Barak to Sergey Belyakov
+EFTA00858688,russia,Sergey Belyakov,True,2015-04-23 03:07:33+00:00,Jeffrey Epstein,,Epstein introduces Ehud Barak to Sergey Belyakov
 EFTA00859299,email,Jeffrey Epstein,,2018-03-19 01:24:49+00:00,John Brockman,,
 EFTA00861107,email,Richard Kahn,,2015-03-28 18:58:32+00:00,Jeffrey Epstein,,
 EFTA00864590,email,Jeffrey Epstein,False,2015-02-12 16:54:01+00:00,Brock Pierce,,
@@ -5976,9 +5976,9 @@ EFTA00920848,girls,Maria Prusakova,True,2011-09-30 14:35:14+00:00,Jeffrey Epstei
 EFTA00921172,girls,Ekaterina Gusarova,True,2011-10-08 19:59:44+00:00,Jeffrey Epstein,,"see quote: ""We had sex,I did massage for u non-stop,I took a bath with u and your girls even ,if I don't like it"""
 EFTA00922824,social,Jeffrey Epstein,True,2011-10-24 16:08:01+00:00,Boris Nikolic,,Epstein meets with Chris Poole (founder of 4chan) the day the infamous /pol/ board is created
 EFTA00923284,email,Jeffrey Epstein,,2011-11-03 01:08:19+00:00,Stephen R. Alexander,,
-EFTA00923902,email,,True,2011-11-09 18:43:30+00:00,Jeffrey Epstein,Sent via BlackBerry from T-Mobile,Andrey Vavilov offers to buy Epstein's house for $100 million
+EFTA00923902,russia,,True,2011-11-09 18:43:30+00:00,Jeffrey Epstein,Sent via BlackBerry from T-Mobile,Andrey Vavilov offers to buy Epstein's house for $100 million
 EFTA00926261,email,Jeffrey Epstein,True,2011-12-21 12:23:23+00:00,None,,
-EFTA00926593,email,Philip Rosedale,True,2011-12-17 06:23:19+00:00,Jeffrey Epstein,,discussion of a symposium on deception and alternative finance
+EFTA00926593,crypto,Philip Rosedale,True,2011-12-17 06:23:19+00:00,Jeffrey Epstein,,organizing a symposium on deception and alternative finance
 EFTA00927227,email,Jeffrey Epstein,True,2012-01-03 23:30:32+00:00,Ian Osborne,,Ian Osborne pitches his new venture fund Hedosophia to Epstein
 EFTA00927927,girls,Renata Bolotova,True,2012-01-28 18:07:00+00:00,Jeffrey Epstein,,Renata Bolotova possibly talking about recruiting girls
 EFTA00927963,email,Jeffrey Epstein,True,2012-01-29 14:36:23+00:00,Renata Bolotova,,
@@ -6014,7 +6014,7 @@ EFTA00954009,email,Jeffrey Epstein,,2013-02-12 12:32:38+00:00,Roger Schank,,
 EFTA00954900,academia,Jeffrey Epstein,False,2013-02-25 17:16:20+00:00,Richard Kahn,,Epstein donation to Mount Sinai
 EFTA00955063,crypto,Austin Hill,True,2017-11-16 08:36:50+00:00,Jeffrey Epstein,,Austin Hill explains that some crypto funds are engaged in fraudulent wash trading (the attached Excel sheet listing those funds has not been found)
 EFTA00955558,email,Jeffrey Epstein,,2017-11-16 16:29:21+00:00,Melanie Spinella,,
-EFTA00955694,email,Elon Musk,True,2013-02-28 21:08:46+00:00,Jeffrey Epstein,,Epstein thanks Elon Musk for the SpaceX tour that Musk has said never happened
+EFTA00955694,tech,Elon Musk,True,2013-02-28 21:08:46+00:00,Jeffrey Epstein,,Epstein thanks Elon Musk for the SpaceX tour that Musk claimed never happened
 EFTA00955864,academia,Jeffrey Epstein,False,2013-03-07 21:56:43+00:00,None,,Epstein donation to Mount Sinai
 EFTA00956237,email,Philip Rosedale,True,2013-03-06 04:39:10+00:00,Jeffrey Epstein,,
 EFTA00957552,crypto,David Rattner,True,2017-11-14 01:33:03+00:00,Jeffrey Epstein,,"thank you note for a $50,000 donation in honor of Tether banker Howard Lutnick"
@@ -6112,7 +6112,7 @@ EFTA01002459,email,Lesley Groff,,2014-11-29 17:22:06+00:00,Jeffrey Epstein;Jojo 
 EFTA01002518,crypto,Jeffrey Epstein,True,2014-12-05 18:52:26+00:00,Andrew Farkas,,confirmation that Epstein did indeed meet head of NY Dept of Financial Services Ben Lawsky to discuss a 'high yield product'
 EFTA01003115,crypto,Masha Drokova,True,2017-09-30 10:58:38+00:00,Jeffrey Epstein,,"""Dylan"" is probably Dylan Love who wrote a story about Epstein and bitcoin arranged by Masha Drokova"
 EFTA01003336,email,Jeffrey Epstein,False,2014-12-17 22:36:35+00:00,Peter Thiel,,
-EFTA01003346,email,Peter Thiel,True,2014-12-18 06:03:49+00:00,Jeffrey Epstein,,Peter Thiel tells Epstein to invest in his fund
+EFTA01003346,tech,Peter Thiel,True,2014-12-18 06:03:49+00:00,Jeffrey Epstein,,Peter Thiel tells Epstein to invest in his fund
 EFTA01003348,email,Ian O'Donnell,,2014-12-18 08:04:50+00:00,Hongbo Robert Bao;Reuben Kobulnik,,
 EFTA01003389,email,Nicole Junkermann,,2014-12-18 18:45:30+00:00,Jeffrey Epstein,,
 EFTA01004115,email,Vincenzo Iozzo,True,2018-08-02 20:08:52+00:00,Jeffrey Epstein,Sent from my Iphone,
@@ -6344,7 +6344,7 @@ EFTA01145923,girls,Jean Luc Brunel,True,2012-10-25 22:31:23+00:00,Jeffrey Epstei
 EFTA01146942,email,Match.com,,2012-08-03 12:15:44+00:00,Jeffrey Epstein,,
 EFTA01158019,crypto,Valar Ventures,True,2015-10-22 00:00:00+00:00,,,Valar Ventures requesting money previously promised by Epstein to invest in a new opportunity
 EFTA01174648,email,,True,2014-07-27 16:15:47+00:00,Jeffrey Epstein,Отправлено с iPhone,
-EFTA01175429,email,,False,2012-03-29 16:26:00+00:00,Jeffrey Epstein,,Andrey Vavilov offers to buy Epstein's house for $100 million
+EFTA01175429,russia,,False,2012-03-29 16:26:00+00:00,Jeffrey Epstein,,Andrey Vavilov offers to buy Epstein's house for $100 million
 EFTA01177826,email,Richard Kahn,,2014-02-18 14:45:56+00:00,Jeffrey Epstein,,
 EFTA01183391,email,Vincenzo Iozzo,True,2016-04-14 22:45:37+00:00,Jeffrey Epstein,,
 EFTA01186455,crypto,,True,2014-06-10 00:00:00+00:00,,,Epstein crypto fund Kyara Investment II LLC operating agreement
@@ -6360,7 +6360,7 @@ EFTA01217736,reputation,,True,2014-05-26 19:52:08+00:00,,,"Skype log of conversa
 EFTA01217787,reputation,,False,2014-08-22 20:12:59+00:00,,,"Skype log of conversation with Hanna Traff, Tyler Shears"
 EFTA01218267,messengerlogpdf,,True,2015-07-13 09:31:44+00:00,,,
 EFTA01222951,money,,True,2019-02-12 00:00:00+00:00,,,credit card expenses for Carlos L Rodriguez using Plum Card
-EFTA01227877,government,,True,2018-06-25 00:00:00+00:00,,,multi entry visa for the Russian Federation
+EFTA01227877,russia,,True,2018-06-25 00:00:00+00:00,,,multi entry visa for the Russian Federation
 EFTA01230639,crypto,,True,2012-12-22 00:00:00+00:00,,,photo of Epstein and Howard Lutnick on Epstein's island that was removed from DOJ website
 EFTA01242527,misc,,True,2024-03-01 12:26:00+00:00,,,"3,000 pages of Epstein phone logs, call to Scott Shay at Hyperion Partners, see link for call counts"
 EFTA01246346,email,Cecilia Steen,,2006-04-05 12:56:00+00:00,Aleksandra Rastovic,,
@@ -6559,7 +6559,7 @@ EFTA01767237,girls,Kira Dikhtyar,True,2012-07-13 23:49:00+00:00,Jeffrey Epstein,
 EFTA01767424,email,Shaher Abdulhak Besher,,2012-10-26 15:00:00+00:00,Jeffrey Epstein,Sent from my iPad,
 EFTA01768288,email,Natalia Belousova,,2012-07-03 13:16:00+00:00,Jeffrey Epstein,,
 EFTA01768670,girls,Boris Nikolic,True,2012-04-15 16:59:00+00:00,Jeffrey Epstein,Sent from my Windows Phone,"but Boris Nikolic is a ""biotech investor""..., see quote: ""find girls for the agency"""
-EFTA01769169,email,Jean Luc Brunel,True,2012-07-09 14:46:00+00:00,Jeffrey Epstein,,Epstein tells Jean Luc Brunel he can spend up to $25 million (on what?)
+EFTA01769169,money,Jean Luc Brunel,True,2012-07-09 14:46:00+00:00,Jeffrey Epstein,,Epstein tells Jean Luc Brunel he can spend up to $25 million (on what?)
 EFTA01770220,crypto,Jeffrey Epstein,True,2012-02-29 13:32:00+00:00,Boris Nikolic,,
 EFTA01771244,email,Bella Klein,,2012-01-04 02:08:00+00:00,Jeffrey Epstein,Sent from my iPhone,
 EFTA01771746,email,Anastasiya Siroochenko,,2011-12-23 15:47:00+00:00,Jeffrey Epstein,,
@@ -6700,7 +6700,7 @@ EFTA01913269,crypto,,True,2012-12-21 16:13:09+00:00,Brice;Jeffrey Epstein,,Howar
 EFTA01913311,reputation,Tyler Shears,True,2014-07-28 20:25:18+00:00,Christina Galbraith,,login/password for jeffreyepsteinnet@gmail.com
 EFTA01914104,email,Nicole Junkermann,,2014-07-27 23:25:09+00:00,Jeffrey Epstein,,
 EFTA01914912,email,Peter Thiel,True,2014-07-20 19:38:07+00:00,Jeffrey Epstein,,
-EFTA01914954,email,Joi Ito,True,2014-07-20 19:48:29+00:00,Jeffrey Epstein;Reid Hoffman,,Epstein planning a meeting with Vladimir Putin
+EFTA01914954,russia,Joi Ito,True,2014-07-20 19:48:29+00:00,Jeffrey Epstein;Reid Hoffman,,Epstein planning a meeting with Vladimir Putin
 EFTA01915234,crypto,Andrew Farkas,True,2014-07-21 23:49:36+00:00,Jeffrey Epstein,,discussion of crypto regulations
 EFTA01915883,crypto,Jeffrey Epstein,True,2014-07-31 21:10:17+00:00,Joi Ito,,Epstein doesn't trust Austin Hill (for good reason)
 EFTA01916126,email,,True,2014-08-10 15:05:41+00:00,None,Sent from my iPhone,
@@ -6720,7 +6720,7 @@ EFTA01925969,crypto,Daphne Wallace,True,2014-04-16 13:34:42+00:00,Austin Hill;Fr
 EFTA01926051,email,Jeffrey Epstein,,2014-04-16 13:36:32+00:00,Daphne Wallace,,
 EFTA01926082,crypto,Austin Hill,True,2014-05-01 00:47:42+00:00,Adam Back;Jeffrey Epstein,Sent from Mailbox for iPad,
 EFTA01926438,email,Stephen R. Alexander,,2014-05-06 13:02:35+00:00,Jeffrey Epstein,,
-EFTA01926669,email,Sergey Belyakov,True,2014-05-04 12:49:21+00:00,Jeffrey Epstein,,
+EFTA01926669,russia,Sergey Belyakov,True,2014-05-04 12:49:21+00:00,Jeffrey Epstein,,
 EFTA01926961,girls,Svetlana Pozhidaeva,True,2014-05-09 21:19:03+00:00,Jeffrey Epstein,,"see quote: ""If you take too many more trips to Russia, I'm going to assume that you're FSB/ KGB by your parents"""
 EFTA01927746,email,Tyler Shears,True,2014-05-20 18:47:23+00:00,Jeffrey Epstein;Richard Kahn,,
 EFTA01928811,crypto,Austin Hill,True,2014-04-24 14:39:03+00:00,Jeffrey Epstein,Sent from Mailbox for iPhone,Austin Hill meets with a16z
@@ -6772,7 +6772,7 @@ EFTA01967208,email,Steven Sinofsky,True,2013-07-07 18:31:11+00:00,Jeffrey Epstei
 EFTA01969016,email,Jeffrey Epstein,True,2013-06-17 12:51:22+00:00,None,,
 EFTA01969322,email,Renata Bolotova,False,2013-06-29 04:38:05+00:00,Jeffrey Epstein,Sent from my iPhone,
 EFTA01969878,girls,Jeffrey Epstein,True,2013-06-04 18:20:02+00:00,Lesley Groff,,
-EFTA01970982,email,Jeffrey Epstein,True,2013-05-21 22:13:54+00:00,Ehud Barak,,Epstein planning a meeting with Vladimir Putin
+EFTA01970982,russia,Jeffrey Epstein,True,2013-05-21 22:13:54+00:00,Ehud Barak,,Epstein planning a meeting with Vladimir Putin
 EFTA01972665,email,Brock Pierce,True,2013-05-09 12:19:52+00:00,Jeffrey Epstein,Sent from my iPad,
 EFTA01973301,crypto,Jeffrey Epstein,True,2013-05-29 23:09:39+00:00,Linda Stone,,
 EFTA01973594,email,Boris Nikolic,,2013-05-17 21:37:34+00:00,Jeffrey Epstein,Sent from my Windows Phone,
@@ -7130,7 +7130,7 @@ EFTA02450511,email,Karim Wade,True,2016-09-26 11:17:00+00:00,Jeffrey Epstein,,
 EFTA02453248,email,,True,2016-08-23 16:07:00+00:00,Jeffrey Epstein,,
 EFTA02454725,email,Jeffrey Epstein,,2016-08-22 10:57:00+00:00,Kathryn Ruemmler,,
 EFTA02455567,email,Renata Bolotova,True,2016-08-03 21:34:00+00:00,Jeffrey Epstein,,completely redacted email body
-EFTA02455633,email,Masha Drokova,True,2018-04-28 00:41:00+00:00,Jeffrey Epstein,Sent via Superhuman iOS,Masha Drokova loves WeWork
+EFTA02455633,russia,Masha Drokova,True,2018-04-28 00:41:00+00:00,Jeffrey Epstein,Sent via Superhuman iOS,Masha Drokova loves WeWork
 EFTA02456758,girls,Jeffrey Epstein,True,2016-07-15 19:53:00+00:00,Nadia;Richard Kahn,,ongoing financial support for Nadia Marcinko
 EFTA02457608,email,Jeffrey Epstein,True,2016-08-03 13:18:00+00:00,Jeremy Rubin,,
 EFTA02457735,email,,True,2016-07-11 14:43:00+00:00,Jeffrey Epstein,Sent from Yahoo Mail for iPhone,
@@ -7250,7 +7250,7 @@ EFTA02557757,girls,Jeffrey Epstein,True,2012-08-03 03:35:00+00:00,Barbro C. Ehnb
 EFTA02559311,crypto,Jeffrey Epstein,True,2012-09-10 12:18:00+00:00,None,,Epstein has some connection to the sovereign wealth fund of Kazakhstan
 EFTA02559808,girls,Eva Dubin,True,2012-09-07 21:12:00+00:00,Jeffrey Epstein,Sent from my Verizon Wireless BlackBerry,Eva Dubin delivering amphetamines (adderall) to Epstein
 EFTA02560884,girls,Jeffrey Epstein,True,2012-09-25 14:55:00+00:00,Svetlana Pozhidaeva,,is Epstein drafting Svetlana Pozhidaeva's romantic responses to Joshua Fink (???)
-EFTA02561277,email,Kira Dikhtyar,True,2012-09-22 17:34:00+00:00,Jeffrey Epstein,,planning for Elon Musk to get a massage
+EFTA02561277,tech,Kira Dikhtyar,True,2012-09-22 17:34:00+00:00,Jeffrey Epstein,,planning for Elon Musk to get a massage
 EFTA02561760,email,Renata Bolotova,True,2017-11-29 23:16:00+00:00,Jeffrey Epstein,,
 EFTA02565917,email,,True,2013-02-05 15:39:00+00:00,None;Jeffrey Epstein,,Hassan Mohammed Abdul Latif Jameel is a Saudi businessman and philanthropist
 EFTA02568700,email,Austin Hill,True,2017-11-14 13:19:00+00:00,Jeffrey Epstein,,
@@ -7462,8 +7462,8 @@ EFTA02731475,government,USANYS,,2023-05-31 20:53:00+00:00,USANYS,,
 EFTA02731477,government,USANYS,,2023-06-12 13:59:00+00:00,USANYS,,
 EFTA02731478,government,USANYS,,2023-06-12 13:47:00+00:00,USANYS,,
 EFTA02731479,email,Jeanne M. Christensen,True,2023-07-21 21:55:00+00:00,None,,
-EFTA02731480,email,Jeanne M. Christensen,,2023-06-09 16:53:00+00:00,USANYS,,
-EFTA02731482,email,Jeanne M. Christensen,,2023-05-25 18:58:00+00:00,USANYS,,
+EFTA02731480,government,Jeanne M. Christensen,,2023-06-09 16:53:00+00:00,USANYS,,
+EFTA02731482,government,Jeanne M. Christensen,,2023-05-25 18:58:00+00:00,USANYS,,
 EFTA02731484,government,USANYS,,2023-07-21 22:04:00+00:00,USANYS,,
 EFTA02731485,government,USANYS,,2023-06-12 13:53:00+00:00,USANYS,,
 EFTA02731486,government,USANYS,,2023-05-30 10:20:00+00:00,USANYS,,
@@ -7472,10 +7472,10 @@ EFTA02731490,government,USANYS,,2024-03-12 12:48:30+00:00,USANYS,,
 EFTA02731500,,,,,,,
 EFTA02731501,government,USANYS,,2024-03-12 12:50:30+00:00,Douglas Wigdor;Jeanne M. Christensen;Meredith Firetog,,
 EFTA02731510,,,,,,,
-EFTA02731511,email,Jeanne M. Christensen,,2024-03-07 19:10:20+00:00,USANYS,,
-EFTA02731512,email,Jeanne M. Christensen,,2024-03-07 18:54:05+00:00,USANYS,,specific allegations against Ghislaine Maxwell
-EFTA02731514,email,Jeanne M. Christensen,,2024-03-07 18:54:26+00:00,USANYS,,
-EFTA02731515,email,Jeanne M. Christensen,,2024-03-07 21:20:52+00:00,USANYS,,
+EFTA02731511,government,Jeanne M. Christensen,,2024-03-07 19:10:20+00:00,USANYS,,
+EFTA02731512,government,Jeanne M. Christensen,,2024-03-07 18:54:05+00:00,USANYS,,specific allegations against Ghislaine Maxwell
+EFTA02731514,government,Jeanne M. Christensen,,2024-03-07 18:54:26+00:00,USANYS,,
+EFTA02731515,government,Jeanne M. Christensen,,2024-03-07 21:20:52+00:00,USANYS,,
 EFTA02731517,email,Jeanne M. Christensen,True,2024-03-11 16:34:00+00:00,None;Douglas Wigdor;Meredith Firetog,,
 EFTA02731521,,,,,,,
 EFTA02731524,,,,2020-03-18 00:00:00+00:00,,,
@@ -7488,7 +7488,7 @@ EFTA02731556,,,,2013-04-22 00:00:00+00:00,,,
 EFTA02731576,girls,,True,,,,iMessage to Leon Black making contemporaneous accusations
 EFTA02731577,email,USANYS,,2024-10-16 00:00:00+00:00,USANYS,,
 EFTA02731578,government,USANYS,True,2021-05-28 10:00:00+00:00,None,,
-EFTA02731582,email,FBI,,2023-07-03 17:24:39+00:00,USANYS,,
+EFTA02731582,government,FBI,,2023-07-03 17:24:39+00:00,USANYS,,
 EFTA02731583,government,USANYS,,2022-01-21 17:28:00+00:00,USANYS,,
 EFTA02731587,government,USANYS,,2022-01-21 17:28:00+00:00,USANYS,,
 EFTA02731593,government,USANYS,,2023-06-22 08:20:45+00:00,Manhattan DA,,
@@ -7528,10 +7528,10 @@ EFTA02731709,,,,,,,
 EFTA02731710,,,,,,,
 EFTA02731711,,,,,,,
 EFTA02731712,,,,,,,
-EFTA02731713,email,Douglas Wigdor,,2024-03-05 14:59:39+00:00,USANYS,,
-EFTA02731715,email,Jeanne M. Christensen,,2023-07-29 13:38:22+00:00,USANYS,,
-EFTA02731718,email,Jeanne M. Christensen,,2024-07-09 18:34:24+00:00,USANYS,,
-EFTA02731721,email,Jeanne M. Christensen,,2024-03-13 09:16:34+00:00,USANYS,,
+EFTA02731713,government,Douglas Wigdor,,2024-03-05 14:59:39+00:00,USANYS,,
+EFTA02731715,government,Jeanne M. Christensen,,2023-07-29 13:38:22+00:00,USANYS,,
+EFTA02731718,government,Jeanne M. Christensen,,2024-07-09 18:34:24+00:00,USANYS,,
+EFTA02731721,government,Jeanne M. Christensen,,2024-03-13 09:16:34+00:00,USANYS,,
 EFTA02731724,government,USANYS,,2024-05-30 11:01:19+00:00,USANYS,,
 EFTA02731726,junk,,False,,,,
 EFTA02731727,email,,True,2024-03-05 11:44:43+00:00,None,,
@@ -7540,7 +7540,7 @@ EFTA02731729,government,USANYS,,2021-08-17 16:22:00+00:00,USANYS,,
 EFTA02731732,government,USANYS,,2024-03-06 12:21:00+00:00,USANYS,,
 EFTA02731733,government,USANYS,,2021-05-17 17:29:00+00:00,USANYS,,
 EFTA02731734,email,,False,2024-08-01 16:51:00+00:00,None,,
-EFTA02731735,email,,False,2024-03-04 05:04:00+00:00,USANYS,,
+EFTA02731735,government,,False,2024-03-04 05:04:00+00:00,USANYS,,
 EFTA02731736,government,USANYS,,2023-06-12 13:53:00+00:00,USANYS,,
 EFTA02731737,government,USANYS,True,2023-06-30 16:05:00+00:00,FBI,,
 EFTA02731754,government,USANYS,,2024-03-06 23:24:00+00:00,USANYS,,
