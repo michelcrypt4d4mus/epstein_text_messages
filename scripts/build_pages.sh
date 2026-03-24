@@ -29,7 +29,7 @@ print_deploy_step "Building --output-most-interesting..."
 $GENERATE_CMD --output-most-interesting
 print_deploy_step "Building notes pages..."
 $GENERATE_CMD --output-notes
-print_deploy_step "Building email signatures page..."
+print_deploy_step "Building biographies page..."
 $GENERATE_CMD --output-bios
 print_deploy_step "Building email signatures page..."
 $GENERATE_CMD --output-devices
