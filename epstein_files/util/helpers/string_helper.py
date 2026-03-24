@@ -10,6 +10,9 @@ from inflection import underscore
 from epstein_files.util.constant.strings import AMPERSAND_CHAR_GROUP, QUESTION_MARKS_REGEX
 from epstein_files.util.logging import logger, text_block
 
+DATE_LENGTH = len('2025-05-05')
+WHITESPACE_CHAR = r"[-_.\s]*"
+
 EMOJI_REGEX = re.compile(r"(?:^|\s)([:;=][-^]?[oODP()]|[oO()][-^]?[:=])(?=$|\s)")
 INTEGER_REGEX = re.compile(r'^\d+$')
 MULTINEWLINE_REGEX = re.compile(r"\n{2,}")
@@ -19,25 +22,24 @@ TIMESTAMP_SECONDS_REGEX = re.compile(r":\d{2}(\.\d+)?([-+]\d{2}:\d{2})?$")
 WHITESPACE_REGEX = re.compile(r"\s{2,}|\t|\n", re.MULTILINE)
 
 # Auto doublespacing
+DOUBLESPACE_IF_LINE_LEN_OVER = 130
+DOUBLESPACE_IF_LONG_LINE_PCT = 0.5
 DOUBLESPACE_LIST_MIN_LEN = 100
 DOUBLESPACE_LIST_MAX_LEN = 1_900
 DOUBLESPACE_PARAGRAPH_MIN_AVG_LEN = 80
+
 LIST_REGEX_FLAGS = re.DOTALL | re.IGNORECASE | re.MULTILINE
+LIST_ELEMENT_TEXT_PATTERN = fr".{{{DOUBLESPACE_LIST_MIN_LEN},{DOUBLESPACE_LIST_MAX_LEN}}}?"
 
-LIST_ELEMENT_PATTERN = fr".{{{DOUBLESPACE_LIST_MIN_LEN},{DOUBLESPACE_LIST_MAX_LEN}}}?"
-HAS_LETTER_LIST_REGEX = re.compile(fr"^\(?a[.)] {LIST_ELEMENT_PATTERN}\n\(?b[.)] ", LIST_REGEX_FLAGS)
-LETTER_LIST_ITEM_REGEX = re.compile(fr"^(\(?[a-z][.)] {LIST_ELEMENT_PATTERN})(?=\n\(?[a-z][.)] |\Z)", LIST_REGEX_FLAGS)
-HAS_NUMBERED_LIST_REGEX = re.compile(fr"^2\. {LIST_ELEMENT_PATTERN}\n3\. ", LIST_REGEX_FLAGS)
-NUMBERED_LIST_ITEM_REGEX = re.compile(fr"^(\d+\. {LIST_ELEMENT_PATTERN})(?=\n\d+\.|\Z)", LIST_REGEX_FLAGS)
-BULLET_LIST_REGEX = re.compile(fr"^(• {LIST_ELEMENT_PATTERN})(?=\n• |\Z)", LIST_REGEX_FLAGS)
+def list_item_regex(pattern: str, flags: re.RegexFlag = LIST_REGEX_FLAGS) -> re.Pattern:
+    return re.compile(fr"^({pattern} +{LIST_ELEMENT_TEXT_PATTERN})(?=\n{pattern}\s|\Z)", flags)
+
+BULLETED_ITEM_REGEX = list_item_regex('•')
+LIST_ITEM_REGEX = list_item_regex(r"\(?[a-z\d][.)]")
 ORDINAL_PATTERN = '|'.join([o.upper() for o in 'first second third fourth fifth sixth seventh eighth ninth tenth'.split()])
-ORDINAL_LIST_REGEX = re.compile(fr"^(({ORDINAL_PATTERN}): .*?)(?=(\n{ORDINAL_PATTERN}:|\Z))", re.DOTALL | re.MULTILINE)
-SECTION_LIST_REGEX = re.compile(r"[^\n](\nSection \d)")
+ORDINAL_LIST_REGEX = list_item_regex(ORDINAL_PATTERN, re.DOTALL | re.MULTILINE)
+SECTION_LIST_REGEX = re.compile(r"[^\n](\nSection \d+)")  # doesn't match already doublespaced
 
-DATE_LENGTH = len('2025-05-05')
-DOUBLESPACE_IF_LINE_LEN_OVER = 130
-DOUBLESPACE_IF_LONG_LINE_PCT = 0.5
-WHITESPACE_CHAR = r"[-_.\s]*"
 
 capitalize_first = lambda s: s[0].upper() + s[1:]
 capture_group_marker = lambda label: fr"?P<{label}>"
@@ -45,8 +47,7 @@ collapse_newlines = lambda text: MULTINEWLINE_REGEX.sub('\n\n', text)
 collapse_spaces = lambda s: MULTISPACE_REGEX.sub(' ', s)
 collapse_whitespace = lambda s: WHITESPACE_REGEX.sub(' ', s).strip()
 constantize = lambda s: underscore(s.upper())
-contains_letter_list = lambda s: bool(HAS_LETTER_LIST_REGEX.search(s))
-contains_numbered_list = lambda s: bool(HAS_NUMBERED_LIST_REGEX.search(s))
+contains_list = lambda s: bool(LIST_ITEM_REGEX.search(s) or BULLETED_ITEM_REGEX.search(s))
 is_bool_prop = lambda prop: prop.startswith('is_')
 is_integer = lambda s: isinstance(s, int) or bool(INTEGER_REGEX.match(s))
 join_patterns = lambda patterns: '|'.join(patterns)
@@ -79,15 +80,9 @@ def doublespace_lines(s: str) -> str:
 
 def doublespace_lists(s: str) -> str:
     s = doublespace_paragraphs(s)
-
-    if contains_numbered_list(s):
-        s = NUMBERED_LIST_ITEM_REGEX.sub(r"\n\1", s)
-
-    if contains_letter_list(s):
-        s = LETTER_LIST_ITEM_REGEX.sub(r"\n\1", s)
-
+    s = BULLETED_ITEM_REGEX.sub(r"\n\1", s)
+    s = LIST_ITEM_REGEX.sub(r"\n\1", s)
     s = SECTION_LIST_REGEX.sub(r"\n\n\1", s)
-    s = BULLET_LIST_REGEX.sub(r"\n\1", s)
     return collapse_newlines(ORDINAL_LIST_REGEX.sub(r"\n\1", s))
 
 
