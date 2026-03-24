@@ -164,7 +164,7 @@ GOVERNMENT_CFGS = [
     doj_doc('EFTA00025091', f"arrest warrant and other discovery materials"),
     doj_doc('EFTA00009809', f"sealed indictment of Jeffrey Epstein", date='2019-07-02', is_interesting=2),
     doj_memo('EFTA02731039', f'prosecution memo naming {LESLEY_GROFF}', is_interesting=10),
-    doj_memo('EFTA02731200', "potential prosecution of Epstein's assistant", is_interesting=10),
+    doj_memo('EFTA02731200', "potential prosecution of Epstein's assistant", is_interesting=10, truncate_to=(14_000, 18_500)),
     doj_memo('EFTA02731082', "investigation into Epstein's co-conspirators"),
     doj_memo('EFTA02731226', f"charging {GHISLAINE_MAXWELL} with additional offenses", '2021-03-14'),
     DocCfg(
