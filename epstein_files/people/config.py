@@ -235,6 +235,7 @@ HIGHLIGHTED_NAMES = [
         entities=[
             Entity(ANDRES_SERRANO, '"Piss Christ" artist', url=WIKIPEDIA),
             Entity('Barry Josephson', "American film producer", url=WIKIPEDIA),  #, editor FamilySecurityMatters.org"),
+            Entity(BECHET_ALLEN, f"daughter of {WOODY_ALLEN} and {SOON_YI_PREVIN}"),
             Entity(BILL_SIEGEL, "documentary film producer and director", match_partial=None),
             Entity('Bobby Slayton', 'comedian and actor'),
             Entity(
@@ -470,7 +471,7 @@ HIGHLIGHTED_NAMES = [
             Entity('Bob Dudley', 'CEO of BP / British Petroleum', r"[BR]ob(ert) Dudley|Dudley, Robe?r?t?"),
             Entity(DAVID_L_NEUHAUSER, f'Livermore Partners, partner of {JOSHUA_FINK}'),
             Entity('Ed Razek', "Victoria's Secret executive"),
-            Entity('Eduardo Teodorani', 'Italian, CNH Industrial', r"(Eduardo )?Teodorani(,? Eduardo)?"),
+            Entity(EDUARDO_TEODORANI, 'Italian, CNH Industrial', r"(Eduardo )?Teodorani(,? Eduardo)?"),
             Entity(FILIPA_PEROVIC, f"now Filipa Fink (married to {JOSHUA_FINK}), Coatue Management"),
             Entity('Jeanne Houweling', f'CEO of Adfin, a company Epstein and {HOWARD_LUTNICK} invested in'),
             Entity(
@@ -1205,10 +1206,11 @@ HIGHLIGHTED_NAMES = [
             Entity(
                 MARK_EPSTEIN,
                 "brother of Jeffrey",
-                r"Mark (L\.? )?(Epstein|Lloyd)",
+                r"Mark (L(awrence|\.)? )?Epstein",
                 match_partial=None,
                 url='https://thehill.com/homenews/administration/5610555-mark-epstein-jeffrey-epstein-donald-trump-dirt/',
             ),
+            Entity('Robert Goodman', f"cousin of Jeffrey Epstein", match_partial=None),
             epstein_co(EPSTEIN_VI_FOUNDATION),
         ]
     ),
@@ -1643,7 +1645,7 @@ HIGHLIGHTED_NAMES = [
                 match_partial='both',
                 url='https://www.propublica.org/article/the-bizarre-fall-of-the-ceo-of-coach-and-kate-spades-parent-company',
             ),
-            Entity('Ira Zicherman', f"former {BEAR_STEARNS} exec, co-trustee of J. Epstein Foundation with Ghislaine"),
+            Entity(IRA_ZICHERMAN, f"former {BEAR_STEARNS} exec, co-trustee of J. Epstein Foundation with Ghislaine"),
             Entity(
                 JAMES_CAYNE,
                 f"CEO of {BEAR_STEARNS} when it collapsed in 2008, executor of Epstein's will",
@@ -2446,6 +2448,7 @@ HIGHLIGHTED_NAMES = [
             Entity(BOB_CROWE, "partner at Nelson Mullins", r"[BR]ob Crowe", match_partial=None),
             Entity('Elisabeth Feliho', f'Nelson Mullins Riley, worked on getting {KARIM_WADE} out of jail'),
             Entity('Joshua Cooper Ramo', "co-CEO of Henry Kissinger Associates"),
+            Entity('Mark Lloyd', f'real estate broker {QUESTION_MARKS}', match_partial=None),
             Entity(OLIVIER_COLOM, f"Epstein's banker at {EDMOND_DE_ROTHSCHILD} (Suisse) SA Bank", r"Colom, Olivier?|Olivier Colom"),
             Entity('Paul Keating', "former prime minister of Australia", match_partial=None),
             Entity('Stanley Rosenberg', "former President of the Massachusetts Senate", match_partial=None),
@@ -3377,6 +3380,7 @@ HIGHLIGHTED_NAMES = [
                 r"Coatue( (Enterprises?|Management|Mgmt))?",
             ),
             Organization('Coursera', is_emailer=True, is_interesting=False),
+            Organization('CrowdStrike', "cybersecurity company"),
             Organization(GOOGLE_PLUS, "Google Plus", r"Google\+", is_emailer=True, is_interesting=False),
             Organization('Greylock', 'O.G. silicon valley venture capital firm', r"Greylock( Partners)?"),
             Organization(
@@ -3601,6 +3605,7 @@ HIGHLIGHTED_NAMES = [
         style=VICTIM_COLOR,
         entities=[
             Entity('Aleksandra Eriksson', QUESTION_MARKS),
+            Entity(ANTHONY_FIGUEROA, "boyfriend of a victim, paid $200 per girl to recruit", match_partial=None),
             Entity("Audrey/Aubrey Raimbault", 'appears in flight logs'),
             Entity('Brittany Beale', VICTIM_EVIDENCE),
             Entity(CECILIA_STEEN, f'Epstein assistant, moved to Dubai to work for money launderers (?)'),
@@ -3785,6 +3790,7 @@ HIGHLIGHTED_NAMES = [
         label=REAL_ESTATE,
         style='sea_green3',
         entities=[
+            Entity('Alex Peto', 'Kensington real estate agent', match_partial=None),
             Entity('André Balazs', 'hotelier, CEO of André Balazs Properties', r"Andre Bala(sz|zs)"),
             Entity('Anthony Barrett', "Ossa Properties (Mark Epstein company)", match_partial=None),
             Entity('Daniel Rosenberg', 'real estate developer', match_partial=None),

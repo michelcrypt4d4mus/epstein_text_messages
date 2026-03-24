@@ -128,6 +128,7 @@ GIRLS_CFGS = [
         recipients=[LEON_BLACK],
         show_full_panel=True,
     ),
+    imessage_log('EFTA01616775', author=BECHET_ALLEN, date='2017-03-29', note=f"grooming {BECHET_ALLEN}"),
     imessage_screenshot(
         'EFTA01618381',
         author=RENATA_BOLOTOVA,
@@ -136,10 +137,11 @@ GIRLS_CFGS = [
     ),
     imessage_screenshot(
         'EFTA01617527',
-        author='Eduardo Teodorani',
+        author=EDUARDO_TEODORANI,
         highlight_quote='interesting pussy than Fl in Milano interesting pussy as well',
         truncate_to=(1_700, 2_200),
     ),
+    imessage_log(id='EFTA01617521', author=EDUARDO_TEODORANI),
     imessage_screenshot(
         'EFTA01619579',
         author=DEEPAK_CHOPRA,

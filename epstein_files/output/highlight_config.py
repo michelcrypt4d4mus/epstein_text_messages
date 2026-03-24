@@ -202,6 +202,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         style='wheat4',
         patterns=[
             r"^Page \d+$",
+            r"SECRET//NOFORN",
         ],
     ),
     HighlightPatterns(

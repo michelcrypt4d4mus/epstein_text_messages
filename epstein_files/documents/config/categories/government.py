@@ -8,17 +8,30 @@ from epstein_files.util.logging import logger
 
 FBI_REPORT_FIELDS = [
     'Approved By',
+    'Case Agent Name',
     'Case ID #',
+    'City',
+    'Classified By',
     'Contact',
+    'Country',
+    'Date of Contact',
+    'Date of Report',
+    'Declassify On',
+    'Derived From',
     'Drafted By',
     'Date/Time Received',
     'Details',
+    'Field Office/Division',
     'Form Type',
     'Precedence',
     'SentinelCaseld',
     'SentToSentinel',
+    'Source ID',
+    'Squad',
+    'State',
     'Synopsis',
     'Title',
+    'Type of Contact',
 ]
 
 
@@ -48,6 +61,15 @@ def doj_memo(id: str, note: str, date: str = '', **kwargs) -> DocCfg:
 
 def fbi_internal(id: str, **kwargs) -> EmailCfg:
     return EmailCfg(id=id, author=FBI, recipients=[FBI], **kwargs)
+
+
+def fbi_evidence_review(id: str) -> EmailCfg:
+    return EmailCfg(id=id, author=FBI, recipients=[FBI, NYPD], note='summary of pictures and videos from Epstein computers')
+
+
+def fincen_sar(id: str, bank: str, subject: str, activity: str, **kwargs) -> DocCfg:
+    note = f"Suspicious Activity Report filed by {bank} about {subject} for {activity}"
+    return DocCfg(id=id, author=FINCEN, note=note, **kwargs)
 
 
 GOVERNMENT_CFGS = [
@@ -127,8 +149,9 @@ GOVERNMENT_CFGS = [
         author=DOJ,
         date='2025-09-01',
         date_uncertain='approximate',
-        note='Powerpoint summary of Child Sex Trafficking Task Force Epstein investigation',
-        is_interesting=True,
+        duplicate_ids=['EFTA01660622'],
+        note='Powerpoint summary of Epstein investigation by Child Sex Trafficking Task Force',
+        is_interesting=10,
     ),
     doj_memo('EFTA02731039', f'prosecution memo naming {LESLEY_GROFF}', is_interesting=10),
     doj_memo('EFTA02731200', "potential prosecution of Epstein's assistant", is_interesting=10),
@@ -171,6 +194,7 @@ GOVERNMENT_CFGS = [
         is_interesting=10,
         truncate_to=(6_000, 7_500),
     ),
+    fbi_interview('EFTA01309589', ANTHONY_FIGUEROA, 'recruiting from high schools', '2020-08-27', is_interesting=True),
     fbi_interview('EFTA02858481', 'Jennifer Aros', 'Epstein and Trump accuser', '2019-08-07', is_interesting=True),
     fbi_interview('EFTA00174375', LUKE_D_THORBURN, f"lots of takes on Epstein, China, and {STEVE_BANNON}"),
     fbi_interview('EFTA00081226', MINOR_VICTIM),
@@ -233,6 +257,15 @@ GOVERNMENT_CFGS = [
     fbi_tip('EFTA00108851', f"from {STEVEN_HOFFENBERG} re: Epstein and the murder of Arthur Shapiro", is_interesting=True, truncate_to=(1_700, 2_600)),
     fbi_tip('EFTA00020490', 'from woman who thinks she encountered Epstein as a young girl'),
     fbi_tip('EFTA00090314', f'about {MASHA_DROKOVA}, Jared Kushner, Ivanka Trump, Chabad, {ALAN_DERSHOWITZ}, etc.', is_interesting=True),
+    fbi_tip(
+        'EFTA01683874',
+        'from Confidential Human Source about "Epstein\'s personal hacker"',
+        date='2017-11-27',
+        is_interesting=10,
+        truncate_to=(853, 4_200),
+    ),
+    fincen_sar('EFTA01656415', 'Charles Schwab', RICHARD_KAHN, "$45 million transaction"),
+    fincen_sar('EFTA01656409', DEUTSCHE_BANK, DARREN_INDYKE, 'structured transactions'),
     grand_jury(
         'EFTA00222943',
         note='FBI agent testimony',
@@ -266,7 +299,16 @@ GOVERNMENT_CFGS = [
     EmailCfg(id='EFTA02731552', author=FBI, recipients=[USANYS], recipient_uncertain=True, date='2021-05-26 16:12:00'),
     EmailCfg(id='EFTA00039971', author=FBI, recipients=[USANYS], recipient_uncertain=True),
     EmailCfg(id='EFTA00163507', author=FBI, note="quotes from Epstein's cellmate", is_interesting=True),
+    EmailCfg(id='EFTA01649194', highlight_quote='Attached please find an updated list of the discrepancies'),
+    DocCfg(id='EFTA01649074', attached_to_email_id='EFTA01649194'),
     EmailCfg(id='EFTA00037683', note=f"tip that the murder of DC Madam Jeanne Palfrey might be connected to Epstein's network"),
+    fbi_evidence_review('EFTA01657122'),
+    fbi_evidence_review('EFTA01657117'),
+    fbi_evidence_review('EFTA01657113'),
+    fbi_evidence_review('EFTA01657121'),
+    fbi_evidence_review('EFTA01657111'),
+    fbi_evidence_review('EFTA01657107'),
+    fbi_evidence_review('EFTA01657097'),
     fbi_internal(
         'EFTA00172840',
         note=f'FBI investigation of {DAVID_COPPERFIELD} for rape of a young female closed by prosecutors',
@@ -278,6 +320,7 @@ GOVERNMENT_CFGS = [
         note=f'interview of {JEAN_LUC_BRUNEL} partner Sergio Cordero',
         truncate_to=(10_200, 14_500),
     ),
+    fbi_internal('EFTA01648955'),
     fbi_internal('EFTA00037690', highlight_quote='seems to be a conduit for money paid to female victims', note=BUTTERFLY_TRUST),
 
     # DOJ / USANYS emails
