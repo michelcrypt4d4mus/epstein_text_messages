@@ -723,6 +723,9 @@ GIRLS_CFGS = [
         highlight_quote='How is the marriage plan going',
         note=f'"JF" is {JOSHUA_FINK}',
     ),
+    EmailCfg(id='EFTA00937981', note=f"Epstein looking for {JOSHUA_FINK} (again)", is_interesting=10),
+    EmailCfg(id='EFTA00668344', note=f"Epstein looking for {JOSHUA_FINK} (again)", is_interesting=10),
+    EmailCfg(id='EFTA01856467', note=f"Epstein looking for {JOSHUA_FINK} (again)", is_interesting=10, truncate_to=NO_TRUNCATE),
 
     # Descriptions
     EmailCfg(
@@ -746,9 +749,6 @@ GIRLS_CFGS = [
     EmailCfg(id='EFTA01817903', note=f'Epstein, Brunel, and {SULTAN_BIN_SULAYEM} sharing news of a Liberian sex scandal', is_interesting=10),
     EmailCfg(id='EFTA01818540', note=f'Epstein forwarding news of the Liberian sex scandal to {JES_STALEY}', truncate_to=415),
     EmailCfg(id='EFTA01140210', note='Epstein asks about fake Instagram followers'),
-    EmailCfg(id='EFTA00937981', note=f"Epstein looking for {JOSHUA_FINK} (again)", is_interesting=10),
-    EmailCfg(id='EFTA00668344', note=f"Epstein looking for {JOSHUA_FINK} (again)", is_interesting=10),
-    EmailCfg(id='EFTA01856467', note=f"Epstein looking for {JOSHUA_FINK} (again)", is_interesting=10, truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA01854125', note=f'Epstein says to {HENRY_JARECKI} "you torture, and mistreat each" girl', is_interesting=10),
     EmailCfg(id='EFTA01936438', note=f'Epstein\'s standard password might be "MVEMJSNUP"', is_interesting=10),
     EmailCfg(id='EFTA02559808', note=f"{EVA_DUBIN} delivering amphetamines (adderall) to Epstein", is_interesting=10, truncate_to=200),
