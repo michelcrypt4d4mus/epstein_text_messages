@@ -386,7 +386,7 @@ GIRLS_CFGS = [
     ),
     EmailCfg(id='EFTA02431535', author=UNKNOWN_GIRL),
     EmailCfg(id='EFTA01875607', author=UNKNOWN_GIRL),
-    EmailCfg(id='EFTA00901581', author=UNKNOWN_GIRL),
+    EmailCfg(id='EFTA00901581', author=UNKNOWN_GIRL, highlight_quote='he got crazy, punched her in front of all the friends', is_interesting=True),
     EmailCfg(id='EFTA02416005', author=UNKNOWN_GIRL, highlight_quote="he'll put me in touch with a romanian lady wich knows everything in London", is_interesting=True),
     EmailCfg(id='EFTA02449477', author=UNKNOWN_GIRL, note='argument about finding girls for Epstein', is_interesting=10, truncate_to=NO_TRUNCATE),
     EmailCfg(
