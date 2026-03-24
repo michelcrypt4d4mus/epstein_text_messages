@@ -23,7 +23,7 @@ BOTTOM_PADDING = 1
 SIDE_PANEL_WIDTH = 30
 SUBHEADER_VERTICAL_MARGIN = 0.3
 
-DOC_DIV_CSS_PROPS = {
+FLEX_CONTAINER_CSS = {
     'display': 'flex',
     'flex-direction': 'column',
 }
@@ -60,18 +60,11 @@ class Layout:
         return self.body_panel.to_div(self.body_margin_horizontal)
 
     @property
-    def body_margin_horizontal(self) -> list[int | float]:
-        """Just left and right margin, vertical margins are zeroed out."""
-        margin_dimensions = self.body_margin
-        margin_dimensions[0] = margin_dimensions[2] = 0
-        return margin_dimensions
-
-    @property
     def body_margin(self) -> list[int | float]:
         """Margin for the body. Top/bottom always zero currrently."""
         padding = PositionedRich.zero_dimensions()
 
-        # Set subtle indent
+        # Usually subtle indent
         if self.justify == 'right':
             padding[1] = self.body_indent
         else:
@@ -80,10 +73,17 @@ class Layout:
         return padding
 
     @property
+    def body_margin_horizontal(self) -> list[int | float]:
+        """Just left and right margin, vertical margins are zeroed out."""
+        margin_dimensions = self.body_margin
+        margin_dimensions[0] = margin_dimensions[2] = 0
+        return margin_dimensions
+
+    @property
     def container_margin(self) -> list[int | float]:
+        """The margins for the whole `Layout` including all panels."""
         margin = [0, 0, self.margin_bottom, 0]
 
-        # Set subtle indent
         if self.justify == 'right':
             margin[1] = self.indent
         else:
@@ -137,17 +137,18 @@ class Layout:
         elements = without_falsey([
             self.file_info.to_div() if self.file_info else None,
             self.subheader_div,
-            self.body_html,
         ])
-
-        container_css = {
-            **DOC_DIV_CSS_PROPS,
-            **dimensions_to_margin_css(self.container_margin),
-        }
 
         if (side_panel_html := self.side_panel_html()):
             inner_container = div_class([self.body_html, side_panel_html], 'horiz_container')
-            elements[-1] = inner_container
+            elements.append(inner_container)
+        else:
+            elements.append(self.body_html)
+
+        container_css = {
+            **FLEX_CONTAINER_CSS,
+            **dimensions_to_margin_css(self.container_margin),
+        }
 
         return div_tag(elements, container_css)
 
