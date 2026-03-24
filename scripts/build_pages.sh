@@ -20,13 +20,13 @@ if [[ -z $SKIP_CHRONO ]]; then
     $GENERATE_CMD --output-chrono
     print_deploy_step "Building curated chronological mobile page..."
     $GENERATE_MOBILE_CMD --output-chrono
+    print_deploy_step "Building --output-most-interesting..."
+    $GENERATE_CMD --output-most-interesting
 else
     print_deploy_step "Skipping chronological builds..."
 fi
 
 # Fast pages
-print_deploy_step "Building --output-most-interesting..."
-$GENERATE_CMD --output-most-interesting
 print_deploy_step "Building notes pages..."
 $GENERATE_CMD --output-notes
 print_deploy_step "Building biographies page..."
