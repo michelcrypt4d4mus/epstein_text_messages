@@ -3407,8 +3407,8 @@ HIGHLIGHTED_NAMES = [
                 f"virtual world with early attempt at virtual currency the Linden Dollar",
                 r"Second Life",
                 url=[
-                    'https://law.stanford.edu/stanford-lawyer/articles/this-is-not-a-game-law-and-order-in-virtual-worlds/',
                     WIKIPEDIA,
+                    'https://law.stanford.edu/stanford-lawyer/articles/this-is-not-a-game-law-and-order-in-virtual-worlds/',
                 ],
             ),
             Organization('Silverlake', 'massive late stage silicon valley venture capital fund'),
