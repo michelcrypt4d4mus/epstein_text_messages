@@ -8,7 +8,7 @@ from rich.text import Text
 
 from epstein_files.output.html.rich_style import RichStyle
 from epstein_files.people.names import UNKNOWN, Name, constantize_name, extract_first_name, extract_last_name
-from epstein_files.util.constant.strings import INDENT_NEWLINE, INDENTED_JOIN, JOURNALISM_STYLE, LAW_ENFORCEMENT, WIKIPEDIA, PartialName
+from epstein_files.util.constant.strings import INDENT_NEWLINE, INDENTED_JOIN, JOURNALISM_STYLE, LAW_ENFORCEMENT, QUESTION_MARKS, WIKIPEDIA, PartialName
 from epstein_files.util.constant.urls import EPSTEINIFY, PERSON_LINK_BUILDERS, EpsteinSite, wikipedia_url
 from epstein_files.util.env import args, site_config
 from epstein_files.util.external_link import ExternalLink, link_text_obj
@@ -111,7 +111,13 @@ class Entity(LoggingEntity):
     @classmethod
     def anon(cls, name: str) -> Self:
         """Alternate convenience constructor for names like 'Jane Doe'."""
-        return cls(name, match_partial=None, is_interesting=False, is_emailer=False)
+        return cls(name, is_interesting=False, is_emailer=False, match_partial=None)
+
+    @classmethod
+    def assistant(cls, name: str, to: str, note: str = '', **kwargs) -> Self:
+        """Alternative constructor for people's assistants."""
+        note = join_truthy(f"assistant to {to}", note, ' ' if note == QUESTION_MARKS else  ', ')
+        return cls(name, note, match_partial=None, **kwargs)
 
     @property
     def alt_links(self) -> list[ExternalLink]:
