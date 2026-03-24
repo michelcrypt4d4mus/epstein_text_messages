@@ -226,6 +226,8 @@ UNINTERESTING_EMAIL_IDS = [
     'EFTA02229659',
     'EFTA01987383',
     'EFTA02067872',
+    # Madars Virza
+    'EFTA02614678',
     # Maria Prusakova
     'EFTA01772533',
     'EFTA01740489',

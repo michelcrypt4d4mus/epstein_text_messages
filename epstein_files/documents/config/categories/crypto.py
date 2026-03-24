@@ -114,6 +114,9 @@ CRYPTO_CFGS = [
     EmailCfg(id='EFTA01004576'),
     EmailCfg(id='EFTA01004511', visible_in_id='EFTA02600944'),
     EmailCfg(id='EFTA02600944'),
+    EmailCfg(id='EFTA01004537'),
+    EmailCfg(id='EFTA01004524', note=f"Epstein finds the capital structure of Bitmain to be kinda sus", is_interesting=5),
+    EmailCfg(id='EFTA01004523'),
 
     # Blockstream / Austin Hill
     DocCfg(id='EFTA00797613', note='Alphabit crypto fund pitch deck', attached_to_email_id='EFTA00955063'),
@@ -389,6 +392,7 @@ CRYPTO_CFGS = [
         note=f'{PRINCE_ANDREW}\'s Urramoor partnership with "Howard" (probably {HOWARD_LUTNICK})',
         truncate_to=791,
     ),
+    EmailCfg(id='EFTA00398745', highlight_quote='Nice seeing you. Please read #2 dot three', note=f"Lutnick thanks Epstein for the island visit and asks him to read something"),
     EmailCfg(id='EFTA02374900', note=f'article about {HOWARD_LUTNICK} real estate purchase'),
     EmailCfg(id='EFTA00685520', note=f'call with {HOWARD_LUTNICK}'),
     EmailCfg(id='EFTA00436468', note=f'call with {HOWARD_LUTNICK} after he goes overseas', is_interesting=10, truncate_to=NO_TRUNCATE),
@@ -421,6 +425,7 @@ CRYPTO_CFGS = [
     EmailCfg(id='EFTA00630785', note='alternative currencies discussion'),
     EmailCfg(id='EFTA02724230', note='alternative currencies discussion', truncate_to=NO_TRUNCATE),
     # Jeremy Rubin
+    EmailCfg(id='EFTA02461765'),
     EmailCfg(id='EFTA02466979', note='"AID Coin"'),
     EmailCfg(id='EFTA02476156', note=f"Epstein offers {JEREMY_RUBIN} a job working on bitcoin", url=JEREMY_RUBIN_DLNEWS_URL, is_interesting=10),
     EmailCfg(id='EFTA02343669', note='rumours that people are using bitcoin to exfiltrate capital from China', is_interesting=10),
@@ -598,9 +603,12 @@ CRYPTO_CFGS = [
     EmailCfg(id='EFTA02396341', note='the Sharia Coin gambit', is_interesting=10),
     EmailCfg(id='EFTA01005117', note='announcement that the Stellar blockchain is Sharia compliant', is_interesting=10),
     # Steven Sinofsky / a16z
+    EmailCfg(id='029963', is_fwded_article=True),
+    EmailCfg(id='EFTA01951206', note=f"explaining how Ross Ulbricht and Silk Road got busted"),
     EmailCfg(id='EFTA00721168', author=STEVEN_SINOFSKY, author_uncertain='Sinofsky in previous To: field', is_interesting=False),
     EmailCfg(id='EFTA01804670', highlight_quote='Andreessen really into this whole virtual money space', truncate_to=700),
     EmailCfg(id='EFTA00661348', note=f'epstein asking {STEVEN_SINOFSKY} for information on the Coinbase IPO', truncate_to=NO_TRUNCATE, is_interesting=2),
+    EmailCfg(id='EFTA00976203', note=f'comments about {BEN_LAWSKY_NYDFS} and crypto regulations', is_interesting=2),
     # Valar Ventures
     DocCfg(
         id='EFTA00591045',
@@ -629,6 +637,11 @@ CRYPTO_CFGS = [
     EmailCfg(id='EFTA02517850', note=f"apparently {VINCENZO_IOZZO} visited Zorro Ranch"),
     EmailCfg(id='EFTA01977800', note=f"Vincenzo looking for things in the financial markets [that be better with crypto]"),
     # ZCash / Madars Virza
+    EmailCfg(
+        id='EFTA02374960',
+        note=f"Epstein says that he will fund a seat at MIT Media Lab for ZCash founder {MADARS_VIRZA}",
+        is_interesting=10,
+    ),
     DocCfg(id='EFTA00811130', author=PERKINS_COIE, note='tax opinion on ZCash tokens'),
     DocCfg(id='EFTA00603348', note=f"Electric Coin Company created the untraceable crypto ZCash funded by {LARRY_SUMMERS}'s DCG"),
     EmailCfg(id='EFTA02282357', author=DAPHNE_WALLACE, author_uncertain='could be Lesley'),
@@ -636,11 +649,9 @@ CRYPTO_CFGS = [
     EmailCfg(id='EFTA02620980', note=f"{MADARS_VIRZA} says Tether was created to avoid anti-money laundering laws", is_interesting=10),
     EmailCfg(id='EFTA01781741', note=f'{JOI_ITO} introduces Epstein to {MADARS_VIRZA} and the untraceable private crypto ZCash', is_interesting=10),
     EmailCfg(id='EFTA02645742', note=f"tax implications of the untraceable 'privacy coin' ZCash", is_interesting=10),
-    EmailCfg(
-        id='EFTA02374960',
-        note=f"Epstein says that he will fund a seat at MIT Media Lab for ZCash founder {MADARS_VIRZA}",
-        is_interesting=10,
-    ),
+    EmailCfg(id='EFTA00842748', note=f"Epstein helping {MADARS_VIRZA} with taxes on his untraceable cryptocurrency ZCash", is_interesting=10),
+    EmailCfg(id='EFTA01021269', note='stablecoin discussion', is_interesting=5),
+    EmailCfg(id='EFTA02613233', is_interesting=False, comment='math puzzle'),
     # Unsorted
     EmailCfg(
         id='EFTA00096009',
