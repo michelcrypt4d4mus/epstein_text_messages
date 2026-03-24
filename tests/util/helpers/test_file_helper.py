@@ -27,7 +27,6 @@ def test_extract_file_id(doj_file_id, doj_filename, house_file_id, house_filenam
     assert extract_file_id(house_extract_filename) == house_extract_file_id
     assert extract_file_id(doj_file_id) == doj_file_id
     assert extract_file_id(doj_filename) == doj_file_id
-    assert extract_file_id('EFTA01880902EFTA02507454') == 'wfwew'
 
 
 def test_is_local_file_extract(doj_file_id, doj_filename, house_filename, house_extract_filename):

@@ -22,10 +22,11 @@ WHITESPACE_REGEX = re.compile(r"\s{2,}|\t|\n", re.MULTILINE)
 DOUBLESPACE_LIST_MIN_LEN = 100
 DOUBLESPACE_LIST_MAX_LEN = 1_900
 DOUBLESPACE_PARAGRAPH_MIN_AVG_LEN = 80
-LIST_ELEMENT_PATTERN = fr".{{{DOUBLESPACE_LIST_MIN_LEN},{DOUBLESPACE_LIST_MAX_LEN}}}?"
 LIST_REGEX_FLAGS = re.DOTALL | re.IGNORECASE | re.MULTILINE
-HAS_LETTER_LIST_REGEX = re.compile(fr"^a[.)] {LIST_ELEMENT_PATTERN}\nb[.)] ", LIST_REGEX_FLAGS)
-LETTER_LIST_ITEM_REGEX = re.compile(fr"^([a-z][.)] {LIST_ELEMENT_PATTERN})(?=\n[a-z][.)] |\Z)", LIST_REGEX_FLAGS)
+
+LIST_ELEMENT_PATTERN = fr".{{{DOUBLESPACE_LIST_MIN_LEN},{DOUBLESPACE_LIST_MAX_LEN}}}?"
+HAS_LETTER_LIST_REGEX = re.compile(fr"^\(?a[.)] {LIST_ELEMENT_PATTERN}\n\(?b[.)] ", LIST_REGEX_FLAGS)
+LETTER_LIST_ITEM_REGEX = re.compile(fr"^(\(?[a-z][.)] {LIST_ELEMENT_PATTERN})(?=\n\(?[a-z][.)] |\Z)", LIST_REGEX_FLAGS)
 HAS_NUMBERED_LIST_REGEX = re.compile(fr"^2\. {LIST_ELEMENT_PATTERN}\n3\. ", LIST_REGEX_FLAGS)
 NUMBERED_LIST_ITEM_REGEX = re.compile(fr"^(\d+\. {LIST_ELEMENT_PATTERN})(?=\n\d+\.|\Z)", LIST_REGEX_FLAGS)
 BULLET_LIST_REGEX = re.compile(fr"^(• {LIST_ELEMENT_PATTERN})(?=\n• |\Z)", LIST_REGEX_FLAGS)
@@ -91,6 +92,7 @@ def doublespace_lists(s: str) -> str:
 
 
 def doublespace_paragraphs(s: str):
+    """Heuristic to find paragraph endpoints and create extra line breaks after them."""
     lines = s.split('\n')
     line_lengths = [len(line) for line in lines]
     avg_line_length = int(sum(line_lengths) / len(lines))
