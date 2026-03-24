@@ -157,7 +157,7 @@ class Layout:
     def __rich_console__(self, console: Console, options: ConsoleOptions) -> RenderResult:
         """Default `Document` renderer (Email and MessengerLog override this)."""
         # Set justify on the Text in the body panel
-        if self.justify and isinstance(self.body_panel.text, Text):
+        if self.justify and not isinstance(self.body_panel, Table) and isinstance(self.body_panel.text, Text):
             self.body_panel.text.justify = self.justify
 
         indented_elemeents = [*self.justified_subheaders, self.body_panel]
