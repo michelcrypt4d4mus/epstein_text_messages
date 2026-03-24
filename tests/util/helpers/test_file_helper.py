@@ -9,10 +9,10 @@ def test_build_filename_for_id():
     assert house_file_stem('001234_2') == 'HOUSE_OVERSIGHT_001234_2'
 
 
-def test_coerce_file_stem(house_file_id, house_file_stem, house_filename, house_extract_filename):
-    assert coerce_file_stem(house_file_id) == house_file_stem
-    assert coerce_file_stem(house_file_stem) == house_file_stem
-    assert coerce_file_stem(house_filename) == house_file_stem
+def test_coerce_file_stem(house_file_id, house_stem, house_filename, house_extract_filename):
+    assert coerce_file_stem(house_file_id) == house_stem
+    assert coerce_file_stem(house_stem) == house_stem
+    assert coerce_file_stem(house_filename) == house_stem
     assert coerce_file_stem(house_extract_filename) == 'HOUSE_OVERSIGHT_012345_1'
 
 

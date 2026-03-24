@@ -266,6 +266,10 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
         "Sent from my iPad",
         "Sent from my iPhone"
     ],
+    EKATERINA_GUSAROVA: [
+        'Envoyé de mon iPhone',
+        'Sent from my iPhone',
+    ],
     "Erika Kellerhals": ["Sent from my iPhone"],
     EVA_DUBIN: [
         'Sent from my Verizon Wireless BlackBerry',
