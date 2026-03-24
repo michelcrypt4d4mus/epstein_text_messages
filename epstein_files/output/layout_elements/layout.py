@@ -34,7 +34,7 @@ class Layout:
     """Allows for proper right vs. left justify of a Document display."""
     background_color: str = ''
     body_indent: int | float = 0
-    body_panel: BasePanel | Table
+    body_panel: BasePanel
     document: 'Document'
     file_info: BasePanel | None = None
     file_info_indent: int | float = 0
@@ -52,6 +52,18 @@ class Layout:
 
         if self.file_info_indent:
             self.file_info.indent = self.file_info_indent
+
+    @property
+    def body_html(self) -> str:
+        """Overload in subclass."""
+        return self.body_panel.to_div(self.body_margin_horizontal)
+
+    @property
+    def body_margin_horizontal(self) -> list[int | float]:
+        """Just left and right margin, vertical margins are zeroed out."""
+        margin_dimensions = self.body_margin
+        margin_dimensions[0] = margin_dimensions[2] = 0
+        return margin_dimensions
 
     @property
     def body_margin(self) -> list[int | float]:
@@ -76,22 +88,17 @@ class Layout:
         else:
             margin[3] = self.indent
 
-        return margin
+        # Add more vertical margin before/after text messages  # TODO: this shouold be configured
+        if isinstance(self.body_panel, ListPanel):
+            margin[0] = margin[2] = 2
+        # elif self.margin_bottom:
+        #     margin[2] = self.margin_bottom # TODO: this should be set in int/float not ems str
 
-    @property
-    def body_margin_horizontal(self) -> list[int | float]:
-        """Just left and right margin, vertical margins are zeroed out."""
-        margin_dimensions = self.body_margin
-        margin_dimensions[0] = margin_dimensions[2] = 0
-        return margin_dimensions
+        return margin
 
     @property
     def horizontal_body_margin_css(self) -> dict[str, str]:
         return dimensions_to_margin_css(self.body_margin_horizontal)
-
-    @property
-    def is_table(self) -> bool:
-        return isinstance(self.body_panel, Table)
 
     @property
     def justified_subheaders(self) -> list[Text]:
@@ -121,26 +128,17 @@ class Layout:
         return text_to_div(Text('\n').join(self.subheaders), css_props)
 
     def to_html(self) -> str:
-        container_css = {
-            **DOC_DIV_CSS_PROPS,
-            'margin-bottom': self.margin_bottom,
-            **dimensions_to_margin_css(self.container_margin),
-        }
-
-        # Add more vertical margin before/after text messages  # TODO: this shouold be configured
-        if isinstance(self.body_panel, ListPanel):
-            container_css.update(margin_vertical_css(2))
-
-        if self.is_table:
-            body_html = one_row_table_html(self.body_panel, self.horizontal_body_margin_css)
-        else:
-            body_html = self.body_panel.to_div(self.body_margin_horizontal)
-
         elements = [
             self.file_info.to_div() if self.file_info else None,
             self.subheader_div,
-            body_html,
+            self.body_html,
         ]
+
+        container_css = {
+            **DOC_DIV_CSS_PROPS,
+            'margin-bottom': self.margin_bottom,  # TODO: this should be part of container_margin
+            **dimensions_to_margin_css(self.container_margin),
+        }
 
         return div_tag(without_falsey(elements), container_css)
 
@@ -150,7 +148,7 @@ class Layout:
     def __rich_console__(self, console: Console, options: ConsoleOptions) -> RenderResult:
         """Default `Document` renderer (Email and MessengerLog override this)."""
         # Set justify on the Text in the body panel
-        if self.justify and not self.is_table and isinstance(self.body_panel.text, Text):
+        if self.justify and isinstance(self.body_panel.text, Text):
             self.body_panel.text.justify = self.justify
 
         indented_elemeents = [*self.justified_subheaders, self.body_panel]
@@ -164,3 +162,12 @@ class Layout:
 
     def __str__(self) -> str:
         return f"{type(self).__name__}('{self.document.file_id}')"
+
+
+@dataclass(kw_only=True)
+class TableLayout(Layout):
+    body_panel: Table
+
+    @property
+    def body_html(self) -> str:
+        return one_row_table_html(self.body_panel, self.horizontal_body_margin_css)

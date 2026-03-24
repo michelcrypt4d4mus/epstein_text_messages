@@ -30,8 +30,8 @@ class ImagePanel(BasePanel):
             **(css or {}),
         }
 
-        return div_class(img(self.img_url, 'vertical', BORDER_RADIUS_CSS), CSS_CLASS, div_props)
+        return div_class(self.html_contents, CSS_CLASS, div_props)
 
-    # def __rich__(self) -> str:
-    #     logger.warning(f"__rich__() called on ImagePanel for {self.img_url}")
-    #     return ''
+    @property
+    def html_contents(self) -> str:
+        return img(self.img_url, 'vertical', BORDER_RADIUS_CSS)

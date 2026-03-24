@@ -33,7 +33,7 @@ from epstein_files.output.epstein_highlighter import highlighter
 from epstein_files.output.highlight_config import HIGHLIGHTED_NAMES, get_style_for_name
 from epstein_files.output.html.builder import table_to_html
 from epstein_files.output.html.positioned_rich import to_em
-from epstein_files.output.layout_elements.layout import Layout, JustifyMethod
+from epstein_files.output.layout_elements.layout import Layout, TableLayout, JustifyMethod
 from epstein_files.output.rich import DEFAULT_TABLE_KWARGS, build_table
 from epstein_files.util.constant.strings import APPEARS_IN, ARCHIVE_LINK_COLOR, AUTO, REDACTED, TIMESTAMP_DIM, OcrRepair
 from epstein_files.util.constant.urls import URL_SIGNIFIERS
@@ -600,7 +600,7 @@ class Email(Communication):
         justify: JustifyMethod = 'default',
         indent: int = site_config.indents.info,
         background_color: str = ''
-    ) -> Layout:
+    ) -> TableLayout:
         """Allows for proper right vs. left justify."""
         table = self._body_as_table()
         table_bg = self._config.background_color or background_color
@@ -610,7 +610,7 @@ class Email(Communication):
             self._debug_log(f"setting table bg to '{bg_style}'")
             table.rows[0].style = bg_style
 
-        return Layout(
+        return TableLayout(
             background_color=self._config.background_color or background_color,
             body_panel=table,
             document=self,
