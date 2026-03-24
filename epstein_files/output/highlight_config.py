@@ -255,7 +255,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         style=TIMESTAMP_STYLE,
         patterns=[
             fr"({DATE_PATTERN} )?{TIME_PATTERN}",
-            fr"\b{DATE_PATTERN}\b",
+            fr"\b({DATE_PATTERN}|\d{{1,2}}:\d{{2}} ?([AaPp]m))\b",
         ],
     ),
 
