@@ -75,7 +75,15 @@ CRYPTO_CFGS = [
 
     # Blockstream / Austin Hill
     DocCfg(id='EFTA00797613', note='Alphabit crypto fund pitch deck', attached_to_email_id='EFTA00955063'),
+    EmailCfg(id='EFTA01929919'),
+    EmailCfg(id='EFTA01932159'),
+    EmailCfg(id='EFTA00987576'),
+    EmailCfg(id='EFTA01005702'),
+    EmailCfg(id='EFTA00673388', is_interesting=5),
+    EmailCfg(id='EFTA01028886', is_interesting=6),
+    EmailCfg(id='EFTA01926082', is_interesting=13),
     EmailCfg(id='EFTA02229342', author=AUSTIN_HILL),
+    EmailCfg(id='EFTA01917472', truncate_to=400),
     EmailCfg(
         id='EFTA02406818',
         author=AUSTIN_HILL,
@@ -105,7 +113,9 @@ CRYPTO_CFGS = [
     EmailCfg(id='EFTA01915883', is_interesting=10, note=f"Epstein doesn't trust {AUSTIN_HILL} (for good reason)", comment='stellar note in next email'),
     EmailCfg(id='EFTA00988395', note=f'"Andy Back" is probably Blockstream bitcoin dev {ADAM_BACK}', is_interesting=10, duplicate_ids=['EFTA01928856']),
     EmailCfg(id='EFTA01925969', note=f"{AUSTIN_HILL} and {ADAM_BACK} and some women plan a trip to Epstein's island", is_interesting=10),
+    EmailCfg(id='EFTA01928866', note=f"{AUSTIN_HILL} and {ADAM_BACK} and some women plan a trip to Epstein's island", is_interesting=10),
     EmailCfg(id='EFTA00994706', note=f"{AUSTIN_HILL} spewing classic crypto bro nonsense about crypto enabling charitable work", is_interesting=20),
+    EmailCfg(id='EFTA01928811', note=f"{AUSTIN_HILL} meets with a16z"),
     EmailCfg(id='EFTA00929418', note=f"Epstein forwards information from {AUSTIN_HILL} about fraudulent crypto trading operations to {PAUL_BARRETT}"),
     EmailCfg(id='EFTA01010209', note=f"{AUSTIN_HILL} calls {AMIR_TAAKI} \"a bit crazy\'"),
     EmailCfg(id='EFTA01788532', note=f"{AUSTIN_HILL} asking about Jeffrey Katzenberg's contact info"),
@@ -492,6 +502,9 @@ CRYPTO_CFGS = [
     ),
     # Sharia coin
     EmailCfg(id='032359', note='HBJ brings up "e-currency" (Sharia Coin, probably)', is_interesting=10),
+    EmailCfg(id='EFTA00665479', note=f"Epstein and {AUSTIN_HILL} planning Sharia Coin", is_interesting=11),
+    EmailCfg(id='EFTA00691410', note=f"Epstein and {AUSTIN_HILL} planning Sharia Coin", is_interesting=11),
+    EmailCfg(id='EFTA00462608', highlight_quote='Sharia Coin Brainstorming Session', recipients=[LESLEY_GROFF]),
     EmailCfg(id='EFTA00964459', note=f'discussion of sharia compliant crypto token', is_interesting=10),
     EmailCfg(id='EFTA00990442', note=f"Epstein offers to cover all costs for Sharia Coin", is_interesting=10),
     EmailCfg(id='EFTA02396341', note='the Sharia Coin gambit', is_interesting=10),
