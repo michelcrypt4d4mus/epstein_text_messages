@@ -261,6 +261,7 @@ MONEY_CFGS = [
     EmailCfg(id='EFTA00629657', note=f"arranging {LEON_BLACK}'s finances"),
     EmailCfg(id='EFTA00371120', note=f"Epstein appears to invest in {ATORUS}"),
     EmailCfg(id='EFTA00652799', note=f'Epstein calls Ari Glass "a bit sketchy" despite investing ~$50 million in his fund Boothbay'),
+    EmailCfg(id='EFTA01900599', note=f'{JES_STALEY} calls Epstein "boss"'),
     EmailCfg(id='EFTA01388422', note='Nadean Novogratz is probably the sister-in-law of crypto ponzi billionaire Mike Novogratz'),
     EmailCfg(id='EFTA01802355', note=f'{MC2_MODEL_MGMT} line of credit and other people Epstein owes money to/is owed money by'),
     EmailCfg(id='EFTA01870235', note=f'{MC2_MODEL_MGMT} IRS woes and line of credit repayment'),
@@ -280,6 +281,17 @@ MONEY_CFGS = [
         id='EFTA01299330',
         note=f"AML / Suspicious Activity report on structured deposits by {DARREN_INDYKE}",
     ),
+    # Leon Black
+    EmailCfg(
+        id='EFTA01389074',
+        author=RICHARD_KAHN,
+        date='2017-04-11 18:30:00',
+        date_uncertain='based on reply',
+        recipients=['Cynthia Rodriguez'],
+        show_with_name=LEON_BLACK,
+    ),
+    EmailCfg(id='EFTA01376515', show_with_name=LEON_BLACK),
+    EmailCfg(id='EFTA01404535', truncate_to=(1_150, 2_200)),
 
     # David Stern
     EmailCfg(

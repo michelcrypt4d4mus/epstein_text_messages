@@ -360,6 +360,7 @@ HIGHLIGHTED_NAMES = [
             Entity('Andrea Stewart', DEUTSCHE_BANK, match_partial=None),
             Entity('Andrew Gallivan', f"manager at {DEUTSCHE_BANK}"),
             Entity('Boris Collardi', 'CEO of the Swiss bank Julius Baer'),
+            Entity('Cynthia Rodriguez', DEUTSCHE_BANK),
             Entity(DANIEL_SABBA, f"{UBS} Investment Bank"),
             Entity(
                 'David Rowland',
@@ -409,10 +410,11 @@ HIGHLIGHTED_NAMES = [
                 url=WIKIPEDIA,
             ),
             Organization('Bayerische Landesbank', 'publicly owned bank in Bavaria', url=WIKIPEDIA),
+            Organization(f"{DEUTSCHE_BANK} AML Compliance", f"anti-money laundering", r"Amlcompliance Inquiries", is_emailer=True),
             Organization(
                 DEUTSCHE_BANK,
                 'favoured bank of Epstein, the Trump family, and Russian money launderers',
-                r"Deutsche? (Asset|(Post)?[BD]ank)|\bDB\b(?!\s+Zw)",
+                r"Deutsche? (Asset|(Post)?[BD]a[nr]k)|\bDB\b(?!\s+Zw)",
                 url='https://www.ft.com/content/b1d9e8c4-1874-4c82-941d-9a2e1512bc4c',
             ),
             Organization("FirstBank", 'Puerto Rican bank used by Epstein', r"First Bank( of Puerto Rico)?"),
