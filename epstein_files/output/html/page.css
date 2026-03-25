@@ -178,6 +178,6 @@ ul.site_directory_right {
 } */
 
 li::marker {
-  content: '➱ ';
-  font-size: 1.2em;
+    content: '➱ ';
+    /* font-size: 1.2em; */
 }

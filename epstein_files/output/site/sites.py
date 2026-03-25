@@ -87,7 +87,7 @@ class Site(StrEnum):
     @classmethod
     def directory(cls) -> 'SiteDirectory':
         return SiteDirectory(
-            [cls.get_site_link(site) for site in SITE_DESCRIPTIONS if not cls.is_mobile(site)],
+            {site: cls.get_site_link(site) for site in SITE_DESCRIPTIONS if not cls.is_mobile(site)},
             [],
             [cls.link_to_category(c) for c in CATEGORY_SITES],
         )
@@ -245,12 +245,12 @@ SITE_DESCRIPTIONS = {
     Site.CURATED:               f"emailers curated:emails grouped by person of interest",
     Site.EMAILERS:              f"emailers all:all emails grouped by person",
     Site.EMAILS_CHRONOLOGICAL:  f"emails chronological:all emails chronological order",
+    Site.TEXT_MESSAGES:         f"text messages:{HOUSE_OVERSIGHT_TRANCHE}",
+    Site.OTHER_FILES_TABLE:     f"other:files that are not emails or texts",
     Site.BIOGRAPHIES:           f"people:one line biographies with some links",
     Site.DEVICE_SIGNATURES:     f"signatures:email signatures/emojis and who uses them",
-    Site.TEXT_MESSAGES:         f"text messages:{HOUSE_OVERSIGHT_TRANCHE}",
     Site.CURATED_MOBILE:        f"mobile:an attempt at mobile compatibility",
     Site.CHRONOLOGICAL_MOBILE:  f"chrono mobile:another attempt at mobile compatibility",
-    Site.OTHER_FILES_TABLE:     f"other:files that are not emails or texts",
     Site.DOCUMENT_NOTES:        f"notes:on the most interesting files",
     Site.PHONE_NUMBERS:         f"phone numbers:called by Epstein's phones",
     Site.WORD_COUNT:            f"word count:of Epstein's communications",

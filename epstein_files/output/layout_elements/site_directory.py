@@ -27,27 +27,36 @@ TITLE = Text('').append(SITE_GLOSSARY_MSG, style=f'{DIRECTORY_STYLE} bold')
 
 @dataclass
 class SiteDirectory:
-    primary_links: list[ExternalLink] = field(default_factory=list)
-    secondary_links: list[ExternalLink] = field(default_factory=list)
+    primary_links: dict[str, ExternalLink] = field(default_factory=dict)
+    secondary_links: list[ExternalLink] = field(default_factory=list)  # TODO: unused
     category_links: list[ExternalLink] = field(default_factory=list)
 
     @property
     def all_links(self) -> list[ExternalLink]:
-        return self.primary_links + self.secondary_links + self.category_links
+        return [link for link in self.primary_links.values()] + self.secondary_links + self.category_links
 
-    def directory_links(self) -> dict[str, ExternalLink]:
+    @property
+    def link_directory(self) -> dict[str, ExternalLink]:
         """Everything but mobile."""
-        return {link.link_text: link for link in self.all_links}
+        return {
+            **self.primary_links,
+            **{cl.link_text: cl for cl in self.category_links}
+        }
 
     def to_html(self) -> str:
         from epstein_files.output.layout_elements.list_panel import ListPanel
-        from epstein_files.util.env import site_config
+        from epstein_files.util.env import args, site_config
+
+        link_txts = [
+            link.__rich__().append(Text(' ').append(YOU_ARE_HERE) if site == args._site else '')
+            for site, link in self.link_directory.items()
+        ]
 
         list_panel = ListPanel(
             border_style='gray15 dim',
             list_css_class='site_directory',
             padding=site_config.directory_padding,
-            text=[link.__rich__() for link in self.all_links],
+            text=link_txts,
             title=TITLE,
         )
 
@@ -63,8 +72,8 @@ class SiteDirectory:
         base_width = len(SITE_GLOSSARY_MSG)
 
         links_txts = [
-            _bulleted_site_link('CRUFT_VERY_BAD', link.__rich__())  # TODO: this is wrong/bad
-            for link in self.all_links
+            _bulleted_site_link(site, link.__rich__())
+            for site, link in self.link_directory.items()
         ]
 
         if args.mobile:
@@ -100,18 +109,19 @@ class SiteDirectory:
 # def _bulleted_site_link(site: Site, link: Text) -> Text:
 def _bulleted_site_link(site: str, link: Text) -> Text:
     """These go in the site directory panel."""
+    from epstein_files.output.site.sites import Site
+    from epstein_files.util.env import args
     you_are_here = ''
 
-    # if args.mobile:
-    #     if site == Site.CHRONOLOGICAL_MOBILE and args.output_chrono:
-    #         you_are_here = YOU_ARE_HERE
-    #     elif site == Site.CURATED:
-    #         you_are_here = YOU_ARE_HERE
+    if args.mobile:
+        if site == Site.CHRONOLOGICAL_MOBILE and args.output_chrono:
+            you_are_here = YOU_ARE_HERE
+        elif site == Site.CURATED:
+            you_are_here = YOU_ARE_HERE
 
-    #     if site not in Site.mobile_compatible_types():
-    #         link.stylize('dim strike')
-    # el
-    # if site == args._site:
-    #     you_are_here = YOU_ARE_HERE
+        if args._site not in Site.mobile_compatible_types():
+            link.stylize('dim strike')
+    elif site == args._site:
+        you_are_here = YOU_ARE_HERE
 
     return Text('➱ ').append(link).append(' ').append(you_are_here)
