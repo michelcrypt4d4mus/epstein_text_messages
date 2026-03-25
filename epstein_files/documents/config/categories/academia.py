@@ -70,6 +70,7 @@ ACADEMIA_CFGS = [
     EmailCfg(id='EFTA00954900', note=f'Epstein donation to {MOUNT_SINAI}'),
     EmailCfg(id='EFTA00955864', note=f'Epstein donation to {MOUNT_SINAI}', is_interesting=False),
     EmailCfg(id='EFTA02257779', author=LESLEY_GROFF, recipients=['Lisa']),
+    EmailCfg(id='EFTA00763822', note=f"{LAWRENCE_KRAUSS} proposal for Epstein image rehabilitation", truncate_to=(1_750, 5_500)),
     imessage_screenshot('EFTA01616222', author=HARRY_FISCH, date='2018-04-23T14:25:30'),
     imessage_screenshot('EFTA01616232', author=HARRY_FISCH, date='2018-04-23T14:25:30'),
     skype_log('032206', recipients=[LAWRENCE_KRAUSS], is_interesting=False),

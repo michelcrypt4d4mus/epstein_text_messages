@@ -37,6 +37,10 @@ def deutsche_bank_doc(id: str, note: str, date: str = '', **kwargs) -> DocCfg:
     return DocCfg(id=id, author=DEUTSCHE_BANK, date=date, note=note, **kwargs)
 
 
+def jpm_doc(id: str, note: str, date: str = '', **kwargs) -> DocCfg:
+    return DocCfg(id=id, author=DEUTSCHE_BANK, date=date, note=note, **kwargs)
+
+
 def schwab_doc(id: str, **kwargs) -> DocCfg:
     return DocCfg(id=id, author='Charles Schwab', **kwargs)
 
@@ -185,6 +189,9 @@ MONEY_CFGS = [
     cabinet_inventory('EFTA00299850', 'FILE CABINET ONE'),
     cabinet_inventory('EFTA00299927', 'FILE CABINET TWO', note=f"{JAMES_CAYNE} estate plan"),
     memo('EFTA01366011', DARREN_INDYKE, f"$3,000 expense reimbursement for {LASMA_KUHTARSKA}", show_with_name=LASMA_KUHTARSKA),  # TODO: to "marjorie"
+
+    # JPM
+    jpm_doc('EFTA01480542', 'Epstein source of wealth filing'),
 
     # Jeepers, Inc.
     DocCfg(id='EFTA01255549', note=f'due diligence on {JEEPERS_INC} amusement park owned by Epstein', date='2018-09-27'),

@@ -139,6 +139,7 @@ HIGHLIGHTED_NAMES = [
             r"MIT",
             r"Murray Gell-Mann",
             r"New York University",
+            r"Nobel Prize",
             r"NYU",
             r"Oxford(?! Analytica)",
             r"PhD",
@@ -1251,7 +1252,6 @@ HIGHLIGHTED_NAMES = [
             epstein_co('Liquid Funding', url='https://craigunger.substack.com/p/jeffrey-epsteins-really-big-short'),
             epstein_co('Maple, Inc.', info='in Virgin Islands'),
             epstein_co('Narrow Holdings'),
-            epstein_co('Nautilus Education', r"(?-i:N)autilus( Education)?"),
             epstein_co('Neptune, LLC'),
             epstein_co('NES LLC'),
             epstein_co('New York Strategy Group'),
@@ -1264,6 +1264,10 @@ HIGHLIGHTED_NAMES = [
             epstein_co('Zorro Development Corp'),
             epstein_co('Zorro Management'),
             epstein_co('Zorro Ranch', info="property in New Mexico"),
+            # Foundations
+            epstein_co('Florida Science Foundation'),
+            epstein_co('Nautilus Education', r"(?-i:N)autilus( Education)?"),
+            # Trusts
             epstein_trust('2007'),
             epstein_trust('2012', trustees=[ANDREW_FARKAS, DARREN_INDYKE, JES_STALEY]),
             epstein_trust('2014', trustees=[DARREN_INDYKE, DAVID_MITCHELL, JES_STALEY]),
@@ -2482,7 +2486,7 @@ HIGHLIGHTED_NAMES = [
         entities=[
             Entity('Bernard Kruger', "Epstein's doctor", match_partial=None),
             Entity(HARRY_FISCH, "urologist at New York-Presbyterian / Weill Cornell (?)", r"Harry Fisc?h"),
-            Entity('James Watson', 'one of the discoverers of DNA', match_partial=None),
+            Entity('James Watson', 'one of the discoverers of DNA', r"J(ames|im) Watson", match_partial=None),
             Entity(
                 MELANIE_WALKER,
                 f"neurosurgeon, Gates Foundation, Epstein science advisor",
@@ -3365,6 +3369,7 @@ HIGHLIGHTED_NAMES = [
             Entity(MASAYOSHI_SON, 'CEO of Softbank, often referred to as "Masa"', r"Masa(yoshi)?(\sSon)?", match_partial='first'),
             Entity(MELANIE_PHILLIPS, f'girlfriend of {STEVEN_SINOFSKY}', match_partial=None),
             Entity(NATHAN_MYHRVOLD, f"former CTO of Microsoft, co-founder of Intellectual Ventures", r"(Nathan )?My[hr][hr]vold"),
+            Entity(PETER_DIAMANDIS, 'XPrize Foundation and Singularity University founder, claimed he met Epstein in 2013'),
             Entity(
                 PETER_THIEL,
                 f"Paypal mafia, Palantir co-founder, Facebook investor, Epstein invested ~$40 million in his fund {VALAR_VENTURES}",
@@ -3457,6 +3462,12 @@ HIGHLIGHTED_NAMES = [
                 'WeWork',
                 'infamously stupid failed temporary office space company',
                 url='https://www.theguardian.com/business/2023/nov/06/wework-bankruptcy-rise-fall',
+            ),
+            Organization(
+                'XPrize Foundation',
+                'gives awards for "radical breakthroughs for the benefit of humanity"',
+                r"X Prize( Foundation)?",
+                url=WIKIPEDIA,
             ),
         ],
         patterns=[

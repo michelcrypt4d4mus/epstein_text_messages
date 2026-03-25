@@ -15,11 +15,15 @@ def test_create_hyperlinks():
     assert hyperlink_line(f"> {URL} blah") == Text('> ').append(Text.from_markup(f"[link={URL}]{URL}[/link]")).append(' blah')
 
 
+def test_domain_link():
+    assert BBC_LINK.domain_link(bracketed=True).plain == '[bbc]'
+    assert ExternalLink('https://cryptadamus.substack.com').domain_link().plain == 'cryptadamus'
+
+
 def test_external_link():
     assert ExternalLink('foobar.com').url == 'https://foobar.com'
     assert ExternalLink('http://foobar.com').url == 'http://foobar.com'
     assert ExternalLink('https://foobar.com').url == 'https://foobar.com'
-    assert BBC_LINK.domain_link(bracketed=True).plain == '[bbc]'
 
 
 def test_extract_domain():

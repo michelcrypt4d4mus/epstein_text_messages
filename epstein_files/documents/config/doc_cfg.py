@@ -218,6 +218,9 @@ class DocCfg(LoggingEntity):
         if self.show_full_panel and self.is_interesting is None:
             self.is_interesting = 10
 
+        if self.show_with_name and not self.is_interesting:
+            self.is_interesting = True
+
         if self.truncate_to and not self.show_full_panel:
             self.show_full_panel = True
 

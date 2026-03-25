@@ -17,6 +17,7 @@ HTTPS = 'https://'
 BARE_URL_REGEX = re.compile(r"^[-\w.]+(/|\Z)")  # bare = 'missing https'
 LINK_REGEX = re.compile(r"^https?://.*")
 LINK_HREF_LINE_REGEX = re.compile(r"^([>• ]*)(http\S+)(.*)")
+SUBSTACK_REGEX = re.compile(r'//(\w+)\.substack\.com')
 TLD_REGEX = re.compile(r"\.(com|co.(nz|uk)|edu|fr|gov|io|net|org|ph)$")
 
 EXTERNAL_LINK_STYLE = 'light_slate_grey bold'
@@ -35,7 +36,7 @@ SHORT_LINKS = {
     'aljazeera.com': 'alj',
     'bloomberg.com': 'bbg',
     'businessinsider.com': 'bi',
-    'cryptadamus.substack': 'chronicles',
+    # 'cryptadamus.substack': 'chronicles',
     'dossier.center': 'dossier',
     'dropsitenews': 'dropsite',
     'graziadaily': 'grazia',
@@ -48,7 +49,7 @@ SHORT_LINKS = {
     'nytimes.com': 'nyt',
     'reddit.com': 'rddt',
     'stanford.edu': 'stanford',
-    'substack.com': 'sbstk',
+    # 'substack.com': 'sbstk',
     'tabletmag': 'tablet',
     'tommycarstensen.com': 'carstensen',
     'usatoday.com': 'usa',
@@ -119,6 +120,9 @@ class ExternalLink(TextCast):
             if domain in self.url:
                 link_text = shorthand
                 break
+
+        if not link_text and (match := SUBSTACK_REGEX.search(self.url)):
+            link_text = match.group(1)
 
         link_text = link_text or self.domain(True).removeprefix('the')
         link = link_text_obj(self.url, link_text, self.link_style)
