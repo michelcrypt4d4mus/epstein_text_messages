@@ -1,15 +1,8 @@
 from dataclasses import dataclass
 
 from epstein_files.documents.config.doc_cfg import DocCfg
+from epstein_files.util.helpers.file_helper import is_picture
 from epstein_files.output.html.html_dir import HtmlDir
-
-IMG_EXTENSIONS = [
-    'gif',
-    'jpeg',
-    'jpg',
-    'png',
-    'webp',
-]
 
 
 @dataclass(kw_only=True)
@@ -20,7 +13,7 @@ class PicCfg(DocCfg):
 
     @property
     def has_valid_id(self) -> bool:
-        return any(self.id.endswith(ext) for ext in IMG_EXTENSIONS)
+        return is_picture(self.id)
 
     @property
     def image_url(self) -> str:

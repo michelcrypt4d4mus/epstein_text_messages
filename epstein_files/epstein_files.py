@@ -16,6 +16,7 @@ from yaralyzer.util.helpers.interaction_helper import ask_to_proceed
 
 from epstein_files.documents.config.doc_cfg import Metadata
 from epstein_files.documents.config.manual_config import create_configs
+from epstein_files.documents.config.pic_cfg import PicCfg
 from epstein_files.documents.document import Document, DocType
 from epstein_files.documents.documents.doc_list import DocList
 from epstein_files.documents.documents.search_result import SearchResult
@@ -29,6 +30,8 @@ from epstein_files.documents.json_file import JsonFile
 from epstein_files.documents.messenger_log import MSG_REGEX, MessengerLog
 from epstein_files.documents.messenger_log_pdf import IMESSAGE_PDF_IDS, MessengerLogPdf
 from epstein_files.documents.other_file import OtherFile
+from epstein_files.documents.picture import Picture
+from epstein_files.output.html.html_dir import HtmlDir
 from epstein_files.output.rich import TABLE_TITLE_STYLE, console
 from epstein_files.people.entity import Entity
 from epstein_files.people.person import PEOPLE_BIOS, Person
@@ -203,6 +206,9 @@ class EpsteinFiles(DocList):
             raise ValueError(f"No {required_type.__name__} found for {file_id} (found {doc})")
 
         return doc
+
+    def get_pictures(self) -> list[Picture]:
+        return [Picture(HtmlDir.local_pic_path(cfg.id)) for cfg in PIC_CFGS]
 
     def grep_documents(self, pattern: re.Pattern | str, names: list[Name] | None = None) -> list[SearchResult]:
         """Find documents whose text matches `pattern` optionally limited to only docs involving `name`)."""

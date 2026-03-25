@@ -15,3 +15,7 @@ class HtmlDir:
     @classmethod
     def image_url(cls, filename: str) -> str:
         return str(IMAGES_DIR.joinpath(filename))
+
+    @classmethod
+    def local_pic_path(cls, filename: str) -> Path:
+        return DEFAULT_HTML_DIR.joinpath(IMAGES_DIR, filename)

@@ -108,6 +108,12 @@ GOVERNMENT_CFGS = [
         note=f"heavily redacted report on Epstein's potential involvement in Caribbean drug money laundering, {MARIANA_IDZKOWSKA}'s name is unredacted",
         truncate_to=(7_700, 12_600),
     ),
+    DocCfg(
+        id='EFTA00003095',
+        date='2019-08-12',
+        display_text=f"handwritten evidence inventory of photos from Little St. James Island",
+        # TODO: show list image?
+    ),
     bop_doc(
         'EFTA00034357',
         "internal message about discovery of Epstein's body",
@@ -298,9 +304,15 @@ GOVERNMENT_CFGS = [
     fincen_sar('EFTA01656409', DEUTSCHE_BANK, DARREN_INDYKE, 'structured transactions'),
     grand_jury(
         'EFTA00222943',
-        note='FBI agent testimony',
         highlight_quote="I believe that certain items were purposely removed from Mr. Epstein's home in anticipation of an execution of a search warrant",
+        note='FBI agent testimony',
         truncate_to=AUTO,
+    ),
+    grand_jury(
+        'EFTA00009632',
+        date='2007-02-06',
+        note='FBI agent testimony',
+        truncate_to=(2_300, 3_500),
     ),
     grand_jury('EFTA00016349', note='charge list', date='2008-02-01', date_uncertain='before the arrest?'),
     DocCfg(id='EFTA00084614', author=PALM_BEACH_POLICE, note='incident report detailing the investigation into Jeffrey Epstein'),

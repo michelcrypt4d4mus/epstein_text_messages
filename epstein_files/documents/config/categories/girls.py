@@ -652,6 +652,7 @@ GIRLS_CFGS = [
     EmailCfg(
         id='EFTA00935996',
         highlight_quote='I treat you betteer than all the other wives',
+        is_interesting=True,
         note='implicit threat of deportation',
         recipients=[RENATA_BOLOTOVA],
         recipient_uncertain=SNEAKY_DOG,
@@ -666,7 +667,7 @@ GIRLS_CFGS = [
     EmailCfg(id='EFTA00971793', highlight_quote='Attached is resume of Lutnick nanny', note=f"why does Epstein need a nanny?"),
     EmailCfg(id='EFTA00994380', highlight_quote='please confirm $500 to Sergey Pozhidaev', truncate_to=500),
     EmailCfg(id='EFTA01965732', highlight_quote='facilictating his illicit trysts, with married women, to being asked to provide adderall fro bridge tournamnts', is_interesting=5),
-    EmailCfg(id='EFTA01768670', highlight_quote='find girls for the agency', note=f'but {BORIS_NIKOLIC} is a "biotech investor"...'),
+    EmailCfg(id='EFTA01768670', highlight_quote='find girls for the agency', note=f'but {BORIS_NIKOLIC} is a "biotech investor"...', is_interesting=True),
     EmailCfg(id='EFTA01905320', highlight_quote='girls and i are going to see elon musk at space x tomorrow'),
     EmailCfg(id='EFTA01803353', highlight_quote='having problems with regina', note='(Ramsey?)', is_interesting=True),
     EmailCfg(id='EFTA00950394', highlight_quote='how old will you go?'),

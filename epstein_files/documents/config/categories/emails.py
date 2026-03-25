@@ -31,10 +31,10 @@ def binant_redacted(id: str, truncate_to: int = 700) -> EmailCfg:
     return EmailCfg(id=id, truncate_to=truncate_to, note=f"redacted discussion of art advisor {ETIENNE_BINANT}")
 
 
-def shaher_murder_email(id: str, note: str = '', **kwargs) -> EmailCfg:
+def shaher_murder_email(id: str, note: str = '', is_interesting: bool | int = 10, **kwargs) -> EmailCfg:
     return EmailCfg(
         id=id,
-        is_interesting=10,
+        is_interesting=is_interesting,
         non_participants=[JOI_ITO],
         note=join_truthy(note, f"discussion of the murder of Martine Vik Magnussen by {SHAHER_ABDULHAK_BESHER}'s son Farouk"),
         **kwargs
@@ -664,6 +664,7 @@ EMAILS_CONFIG = [
         id='030950',
         note=f"{IAN_OSBORNE} spending quality time in Russia before Jawbone investment",
         highlight_quote='fatty at LinkedIn',
+        is_interesting=True,
         truncate_to=4500,
     ),
     EmailCfg(id='029098', note=f"{MASHA_DROKOVA}'s skype contact is in Moscow", is_interesting=True),
@@ -1285,6 +1286,7 @@ EMAILS_CONFIG = [
         'EFTA01878623',
         author=SHAHER_ABDULHAK_BESHER,
         author_reason='"S A" + "your son"',
+        is_interesting=True,
         note='khat is a Yemeni drug',
     ),
 
