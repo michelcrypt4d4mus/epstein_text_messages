@@ -21,5 +21,5 @@ class PicCfg(DocCfg):
 
 
 PIC_CFGS = [
-    PicCfg(id='Epstein_and_MBS.webp', date='2016-09-01', date_uncertain='approximate'),
+    PicCfg(id='Epstein_and_MBS.webp', date='2016-09-01', date_uncertain='approximate'), # TODO: show with EFTA02647641
 ]

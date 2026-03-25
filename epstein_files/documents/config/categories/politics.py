@@ -1,6 +1,7 @@
 """
 Politics related files. By default uninteresting.
 """
+from epstein_files.documents.config.communication_cfg import imessage_screenshot
 from epstein_files.documents.config.config_builder import letter, passenger_manifest
 from epstein_files.documents.config.doc_cfg import DocCfg
 from epstein_files.documents.config.email_cfg import EmailCfg
@@ -77,4 +78,15 @@ POLITICS_CFGS = [
         is_interesting=10,
     ),
     EmailCfg(id='EFTA00661468', highlight_quote='carpets and all', note="the prince of Saudi Arabia sent Epstein a tent", is_interesting=5),
+
+    # Bannon
+    imessage_screenshot('EFTA01615703', recipients=[STEVE_BANNON], date='2019-04-01'),
+    imessage_screenshot('EFTA01615808', recipients=[STEVE_BANNON]),
+    imessage_screenshot('EFTA01620249', recipients=[STEVE_BANNON], date='2019-03-04'),
+    imessage_screenshot(
+        'EFTA01620912',
+        highlight_quote="first we need to push back on the lies ; then crush the pedo/trafficking narrative ; then rebuild your image as philanthropist",
+        recipients=[STEVE_BANNON],
+        truncate_to=(950, 2_500),
+    ),
 ]

@@ -391,7 +391,7 @@ HIGHLIGHTED_NAMES = [
                 phone_numbers=['5167456644', '6464087001'],
                 url='https://www.cnbc.com/2023/03/13/signature-bank-third-biggest-bank-failure-in-us-history.html',
             ),
-            Entity(STEWART_OLDFIELD, f"worked on Epstein related accounts at {DEUTSCHE_BANK}", r"Stewart Oldfiel?d"),
+            Entity(STEWART_OLDFIELD, f"worked on Epstein related accounts at {DEUTSCHE_BANK}", r"Stewart [0O]ldfiel?d"),
             Entity('Vaishali Mehta', f'Head of Anti-Money Laundering Business Risk at {DEUTSCHE_BANK}', r"Vaishali.{,5}Mehta"),
             Entity('Velmir Vejzovic', DEUTSCHE_BANK),
             Entity(VINIT_SAHNI, f"analyst at {DEUTSCHE_BANK} and {GOLDMAN_SACHS}", match_partial='both'),
@@ -651,7 +651,11 @@ HIGHLIGHTED_NAMES = [
             Entity('Efrain Reyes', "Epstein's cellmate at MCC", match_partial=None),
             Entity('John Gotti', 'boss of the Gambino crime family'),
             Entity('Michael Bilotti', 'murderer', r"Michael (A\.? )?Bilotti"),
-            Entity('Nicholas Tartaglione', "former NYPD convicted of drug trafficking and murder, Epstein cell mate at MCC"),
+            Entity(
+                'Nicholas Tartaglione',
+                "former NYPD, convicted of drug trafficking and murder, Epstein cell mate at MCC",
+                r"Nic(k|holas) Tartaglione",
+            ),
             Organization(
                 'Aubin Securities',
                 'Ponzi scheme run by U.S. marine Christopher Aubin',
@@ -1657,7 +1661,7 @@ HIGHLIGHTED_NAMES = [
                 ],
             ),
             Entity(GLENN_DUBIN, "Highbridge Capital Management, married to Epstein's ex-gf Eva", match_partial='first', url=WIKIPEDIA),
-            Entity(HEATHER_GRAY, f"Leon Black family office {ELYSIUM_MANAGEMENT}", match_partial=None),
+            Entity(HEATHER_GRAY, f"Leon Black family office {ELYSIUM_MANAGEMENT} {QUESTION_MARKS}", match_partial=None),
             Entity(
                 JIDE_ZEITLIN,
                 f"former partner at {GOLDMAN_SACHS}, Kate Spade, #MeToo allegations",

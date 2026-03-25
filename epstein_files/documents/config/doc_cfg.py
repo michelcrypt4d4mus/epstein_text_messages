@@ -26,7 +26,7 @@ from epstein_files.util.logging import logger
 from epstein_files.util.logging_entity import LoggingEntity
 
 DebugDict = dict[str, bool | datetime | set | str | Path | None]
-DuplicateType = Literal['bounced', 'earlier', 'quoted', 'redacted', 'same']
+DuplicateType = Literal['bounced', 'earlier', 'quoted', 'redacted', 'same', 'screenshot']
 Metadata = dict[str, bool | datetime | int | str | None | list[str | None] | dict[str, bool | str]]
 
 AUTO_QUOTE_NUM_CHARS = 400 if args.output_most_interesting else 1_600  # Number of chars before and after highlight_quote for auto truncation
@@ -73,6 +73,7 @@ DUPE_TYPE_STRS: dict[DuplicateType, str] = {
     'quoted': 'quoted in full in',
     'redacted': 'a redacted version of',
     SAME: 'the same as',
+    'screenshot': 'a screenshot of',
 }
 
 # only used to order fields in metadtaa and repr()

@@ -299,9 +299,11 @@ GOVERNMENT_CFGS = [
         is_interesting=10,
         truncate_to=(853, 4_200),
     ),
+    EmailCfg(id='EFTA01660868', note="re: Epstein's suicide attempt", truncate_to=(1044, 2_600)),
     # FinCEN
     fincen_sar('EFTA01656415', 'Charles Schwab', RICHARD_KAHN, "$45 million transaction"),
     fincen_sar('EFTA01656409', DEUTSCHE_BANK, DARREN_INDYKE, 'structured transactions'),
+    # Grand Jury
     grand_jury(
         'EFTA00222943',
         highlight_quote="I believe that certain items were purposely removed from Mr. Epstein's home in anticipation of an execution of a search warrant",
