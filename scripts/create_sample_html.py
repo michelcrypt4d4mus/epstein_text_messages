@@ -73,15 +73,15 @@ printer.print_title_page_top()
 printer.print_title_page_bottom()
 
 # Print docs
-# printer.print_documents(sample_docs)
+printer.print_documents(sample_docs)
 
 # print some People and their emails
-# print_sample_people()
+print_sample_people()
 
 #Print big emailers summary table
-# all_emailers = sorted(epstein_files.emailers, key=lambda person: person.sort_key)
-# people_table = Person.emailer_info_table(all_emailers, all_emailers, show_epstein_total=False)
-# printer.html_elements.append(table_to_html(people_table))
+all_emailers = sorted(epstein_files.emailers, key=lambda person: person.sort_key)
+people_table = Person.emailer_info_table(all_emailers, all_emailers, show_epstein_total=False)
+printer.html_elements.append(table_to_html(people_table))
 
 # print contacts
 # Entity.print_all_biographies(printer)

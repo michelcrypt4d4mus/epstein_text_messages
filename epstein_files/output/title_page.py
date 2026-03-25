@@ -139,6 +139,7 @@ def title_page_bottom_elements(epstein_files: 'EpsteinFiles') -> list[Renderable
         _abbreviations_table(),
         Text('External Links', style=TABLE_TITLE_STYLE),
         *[link for link in sorted(EXTERNAL_LINKS, key=lambda link: -len(link.__rich__()))],
+        NewLine(),
         epstein_files.overview_table(),
         color_key(),
         Text.from_markup(f"(if you think there's an attribution error or can deanonymize an {UNKNOWN} contact {CRYPTADAMUS_X_LINK_MARKUP})", style='grey46'),
