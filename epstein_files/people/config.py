@@ -1727,6 +1727,7 @@ HIGHLIGHTED_NAMES = [
                 f'fund run by Ari Glass whom Epstein called "a bit sketchy" but invested $50 million with',
                 r"Booth\s*bay(\s(Fund\sManagement|(Absolute|Enhanced|Multi)( Return)?( Strateg(ies|y))?( Fund)?))?",
             ),
+            Organization('BV70, LLC', f"holding company of {LEON_BLACK}'s yacht"),
             Organization('D.B. Zwirn Special Opportunities Fund', 'hedge fund that failed in 2008'),
             Organization('Enso Capital Management', belongs_to=JOSHUA_FINK, is_interesting=False),
             Organization(ELYSIUM_MANAGEMENT, f"family office managing {LEON_BLACK}'s money", belongs_to=LEON_BLACK),

@@ -26,6 +26,7 @@ class PicCfg(DocCfg):
     def image_url(self) -> str:
         return str(HtmlDir.image_url(f"{self.id}.png"))
 
+
 PIC_CFGS = [
     PicCfg(id='Epstein_and_MBS.webp', date='2016-09-01', date_uncertain='approximate'),
 ]
