@@ -115,6 +115,7 @@ GIRLS_CFGS = [
         note='notes from Emma Sergeant interview describing being introduced to Trump by Epstein & Maxwell',
         truncate_to=(6_400, 7_800),
     ),
+    DocCfg(id='EFTA00143433', date='2022-06-01', date_uncertain='approx based on JPM lawsuit Nov 22', note='victim impact statement'),
 
     # Communications
     CommunicationCfg(
@@ -609,6 +610,7 @@ GIRLS_CFGS = [
     EmailCfg(id='EFTA00657216', highlight_quote='Is Katya coming over?', note=f'"Katya" is {EKATERINA_GUSAROVA}'),
 
     # Quotes
+    EmailCfg(id='011908_3', highlight_quote='sex trafficking allegations have stopped us from working with • your agency for the past 5-6 years'),
     EmailCfg(
         id='EFTA02504370',
         highlight_quote=f'lovely girl with financial troubles',
@@ -672,7 +674,7 @@ GIRLS_CFGS = [
     EmailCfg(id='EFTA01803353', highlight_quote='having problems with regina', note='(Ramsey?)', is_interesting=True),
     EmailCfg(id='EFTA00950394', highlight_quote='how old will you go?'),
     EmailCfg(id='EFTA02551185', highlight_quote='I believe this girl belongs to Jeffery already'),
-    EmailCfg(id='011908_3', highlight_quote='the sex trafficking allegations have stopped us from working with • your agency for the past 5-6 years'),
+    EmailCfg(id='EFTA02504630', highlight_quote="I found at least 3 very good young poor"),
     EmailCfg(id='EFTA02499884', highlight_quote='I gave another girl to kimball and he is thrilled', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA02557757', highlight_quote="I have a girl Sana working half time/who by the way you'd like", is_interesting=True),
     EmailCfg(id='EFTA00771856', highlight_quote="I know 23 is on the old side for you", note=quote("she's 23 but oozes sex"), truncate_to=3_000),

@@ -94,4 +94,8 @@ POLITICS_CFGS = [
     bannon_imessage('EFTA01615720', date='2019-04-05'),
     bannon_imessage('EFTA01615642', date='2019-03-01'),
     bannon_imessage('EFTA01615808'),
+
+    # Albert Bryan
+    EmailCfg(id='EFTA02258597', recipients=[DAPHNE_WALLACE, 'Albert Bryan']),
+    EmailCfg(id='EFTA02258608', author=DAPHNE_WALLACE, recipients=['John Engerman', 'Albert Bryan']),
 ]

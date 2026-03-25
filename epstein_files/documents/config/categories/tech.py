@@ -66,4 +66,6 @@ TECH_CFGS = [
     EmailCfg(id='EFTA02190190', author=LESLEY_GROFF, author_uncertain=True),
     EmailCfg(id='EFTA02190192', author=LESLEY_GROFF, author_uncertain=True),
     EmailCfg(id='EFTA02143396', recipients=[LESLEY_GROFF], is_interesting=10, note='inviting CEO of Google to dinner'),
+    # Misc
+    EmailCfg(id='EFTA02283085', highlight_quote="dont use my name. set a call today with Lori Goler"),
 ]

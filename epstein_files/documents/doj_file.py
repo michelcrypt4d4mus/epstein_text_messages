@@ -270,10 +270,12 @@ class DojFile(OtherFile):
         else:
             return not bool(WORD_REGEX.search(self.text))
 
+    # TODO: is No Images Produced "empty?"
     @property
     def is_empty(self) -> bool:
         """Overloads superclass method."""
-        return len(self.text.strip().removesuffix(NO_IMAGE_SUFFIX)) < MIN_VALID_LENGTH
+        return len(self.text.strip().removesuffix(NO_IMAGE_SUFFIX)) < MIN_VALID_LENGTH and \
+            self.text.strip() != 'No Images Produced'
 
     @property
     def preview_chars(self) -> str:

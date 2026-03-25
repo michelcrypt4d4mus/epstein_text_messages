@@ -152,12 +152,14 @@ GOVERNMENT_CFGS = [
     bop_policy_doc('EFTA00039312', 'Program Statement / Memo about BOP Pharmacy Program'),
     bop_policy_doc('EFTA00039351', 'Program Statement / Memo about BOP Pharmacy Program', date='2004-11-17'),
     bop_policy_doc('EFTA00039156', 'Standards of Employee Conduct'),
+    EmailCfg(id='EFTA00020596', note='Ghislaine has complaints', recipients=[BUREAU_OF_PRISONS, CHRISTIAN_EVERDELL], recipient_uncertain=True),
     DocCfg(
         id='EFTA01125108',
         author='DHS',
         note=f'receipt for I129 Petition for a Nonimmigrant Worker filed by Sublime Art LLC, {ARDA_BESKARDES}',
         is_interesting=True,
     ),
+    EmailCfg(id='EFTA00109041', author='DHS', recipients=[BUREAU_OF_PRISONS], date='2019-10-01', date_uncertain=True),
     DocCfg(
         id='EFTA00164939',
         author=DOJ,
@@ -196,6 +198,8 @@ GOVERNMENT_CFGS = [
     DocCfg(id='EFTA00023055', author=FBI, note="evidence of notes left about newly recruited underage girls by girls giving massages"),
     DocCfg(id='EFTA01731217', author=FBI, note=f'requesting INS allow {NADIA_MARCINKO} be allowed to stay in the US because of an ongoing sex-trafficking case', is_interesting=True),
     DocCfg(id='EFTA00247131', author=FBI, note='search warrant for New York house', date='2019-07-07'),
+    # FBI
+    DocCfg(id='EFTA00020832', author=FBI, note='subpoena of Experian'),
     fbi_defense_witness('EFTA02730267', 'Malcolm Grumbridge', '2022-04-14'),
     fbi_defense_witness('EFTA02730477', 'Roderic Alexander', '2022-01-19'),
     fbi_defense_witness('EFTA02730271', None, '2022-03-22'),
@@ -308,6 +312,15 @@ GOVERNMENT_CFGS = [
         truncate_to=(853, 4_200),
     ),
     EmailCfg(id='EFTA01660868', note="re: Epstein's suicide attempt", truncate_to=(1044, 2_600)),
+    EmailCfg(
+        id='EFTA00172146',
+        author=FBI,
+        highlight_quote="people inside the FBI have been working night and day to destroy files on these servers",
+        recipients=[FBI],
+        recipient_uncertain=True,
+        truncate_to=AUTO,
+    ),
+    EmailCfg(id='EFTA00164742', note='summary of video evidence', is_interesting=10),
     # FinCEN
     fincen_sar('EFTA01656415', 'Charles Schwab', RICHARD_KAHN, "$45 million transaction"),
     fincen_sar('EFTA01656409', DEUTSCHE_BANK, DARREN_INDYKE, 'structured transactions'),
@@ -447,6 +460,8 @@ GOVERNMENT_CFGS = [
         note=f"ICE has an immigration hold on a man who might have important info about the Epstein case",
         is_interesting=4,
     ),
+    usanys_internal_email('EFTA00031633'),
+    usanys_internal_email('EFTA00018778'),
     usanys_internal_email('EFTA02731615'),
     usanys_internal_email('EFTA00030842'),
     usanys_internal_email('EFTA02731684'),
