@@ -183,7 +183,7 @@ class DocCfg(LoggingEntity):
     PREFIX_NOTE_WITH_CATEGORY: ClassVar[bool] = True
 
     def __post_init__(self):
-        if not is_valid_id(self.id):
+        if not self.has_valid_id:
             raise ValueError(f"Invalid file ID '{self.id}'")
         elif self.id in self.duplicate_ids:
             raise ValueError(f"{self.id} is a duplicate of itself!")
@@ -344,9 +344,13 @@ class DocCfg(LoggingEntity):
         return bool(self.display_text and len(self.display_text) > MobileConfig.other_files_preview_chars)
 
     @property
+    def has_valid_id(self) -> bool:
+        return is_valid_id(self.id)
+
+    @property
     def image_url(self) -> str:
         if self.show_image:
-            return f'doc_images/{self.id}.png'
+            return str(HtmlDir.image_url(f"{self.id}.png"))
         else:
             return ''
 

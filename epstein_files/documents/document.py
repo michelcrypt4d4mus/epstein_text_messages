@@ -257,13 +257,6 @@ class Document(LoggingEntity):
         return VERTICAL_MARGIN
 
     @property
-    def image_url(self) -> str:
-        if self._config.show_image:
-            return f'doc_images/{self.file_id}.png'
-        else:
-            return ''
-
-    @property
     def is_email_attachment(self) -> bool:
         """True if this `Document` appears in an `Email` object's `attached_docs` list."""
         return bool(self._config.attached_to_email_id)
@@ -546,7 +539,7 @@ class Document(LoggingEntity):
 
             body_panel = ImagePanel(
                 border_style=self.border_style,
-                img_url=self.image_url,
+                img_url=self._config.image_url,
                 text=self.prettified_txt,
                 title=panel_timestamp
             )
