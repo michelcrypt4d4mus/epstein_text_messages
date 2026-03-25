@@ -1169,7 +1169,7 @@ HIGHLIGHTED_NAMES = [
             ),
             Entity(
                 NATALIA_MOLOTKOVA,
-                "Epstein's relationship manager at American Express",
+                "Epstein's relationship manager at American Express, Russian citizen",
                 r"((Natalia|Natasha) )?Molotkova",
                 email_addresses=['natalia.molotkova@centurion.com'],
             ),
@@ -3702,7 +3702,13 @@ HIGHLIGHTED_NAMES = [
             Entity('Justina Auškelytė', 'Julliard student from Latvia', r"Justina Au[fšs]kelyt[eė]", url=DITE_ANATA_JUILLIARD_URL),
             Entity('Katherine Khuat', '"Barry Josephson\'s girl"', url='https://www.shutterstock.com/image-photo/katherine-khuat-dinner-friends-cocktail-party-111352049'),
             Entity(KATHERINE_KEATING, "daughter of former Australian prime minister Paul Keating", match_partial=None),
-            Entity('Kimberly Ko', QUESTION_MARKS, aliases=['Penelopy Kimberly', 'Penny'], match_partial=None),
+            Entity(
+                'Kimberly Ko',
+                f"friend of Wandi Zhu {QUESTION_MARKS}",
+                aliases=['Penelopy Kimberly', 'Penny'],
+                match_partial=None,
+                url='https://www.instagram.com/ppennyyyyy/',
+            ),
             Entity(
                 LAURA_T_NEWMAN,
                 'sued Epstein for abuse',

@@ -837,6 +837,12 @@ GIRLS_CFGS = [
 
     # Asia
     EmailCfg(id='EFTA02046979', is_interesting=True, note=f"flights for Kimberly Ko and Wandi Zhu", truncate_to=(1_140, 1_800)),
+    EmailCfg(
+        id='EFTA02047748',
+        is_interesting=15,
+        note=f"Epstein's travel booker at Amex holds a Russian passport (and his Chinese girlfriends lost their passports)",
+        truncate_to=800,
+    ),
 
     # Immigration
     EmailCfg(

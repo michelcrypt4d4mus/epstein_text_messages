@@ -217,7 +217,7 @@ EMAIL_SIGNATURE_REGEXES = {
     MARTIN_WEINBERG: re.compile(r"(Martin G. Weinberg, Esq.\n20 Park Plaza((, )|\n)Suite 1000\nBoston, MA 02116(\n61.*?)?(\n.*?([cC]ell|Office))*\n)?This Electronic Message contains.*?contents of this message is.*?prohibited.", re.DOTALL),
     MICHAEL_FOWLER: re.compile(r"The information contained [=i]n this e-mail message.{,1650}complete\s+loss\s+of\s+[c=]api[ct=]al", re.DOTALL),
     MICHAEL_MILLER: re.compile(r"Michael C. Miller\nPartner\nwww.steptoe.com/mmiller\nSteptoe\n(Privileged.*\n)?(\+1\s+)?direct.*\n(\+1\s+)?(\+1\s+)?fax.*\n(\+1.*)?cell.*\n(www.steptoe.com\n)?This message and any.*\nyou are not.*\nnotify the sender.*"),
-    NATALIA_MOLOTKOVA: re.compile(r"^Centurion Relationship Manager\nnatal.*\n\(\d.*\nHours.*", re.MULTILINE),
+    NATALIA_MOLOTKOVA: re.compile(r"^Centurion Relationship Manager(\nnatal.*)?(\n\(\d.*)?\nHours.*", re.MULTILINE),
     NICHOLAS_RIBIS: re.compile(r"60 Morris Turnpike 2FL\nSummit,? NJ.*\n0:\nF:\n\*{20,}\nCONFIDENTIALITY NOTICE.*\nattachments.*\ncopying.*\nIf you have.*\nthe copy.*\nThank.*\n\*{20,}"),
     PAUL_BARRETT: re.compile(r"Paul Barrett[\n\s]+Alpha Group Capital LLC[\n\s]+(142 W 57th Street, 11th Floor, New York, NY 10019?[\n\s]+)?(al?[\n\s]*)?ALPHA GROUP[\n\s]+CAPITAL"),
     'Paul Venables': re.compile(fr"{QUOTE_INDENT_GROUP_NEWLINES}*This email{QUOTE_INDENT_GROUP_NEWLINES}*\(including attachments\) is confidential.{{,600}}Matrix{QUOTE_INDENT_GROUP_NEWLINES}*Chambers.*?(?=\Z|\n)", re.DOTALL),
