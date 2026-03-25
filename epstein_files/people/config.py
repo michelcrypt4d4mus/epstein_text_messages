@@ -3350,6 +3350,7 @@ HIGHLIGHTED_NAMES = [
                 url='https://www.npr.org/2025/07/09/nx-s1-5462609/grok-elon-musk-antisemitic-racist-content',
                 match_partial='both'
             ),
+            Entity(ERIC_SCHMIDT, 'former CEO of Google', match_partial=None),
             Entity(
                 'Frank Creer',
                 'CEO of Draper Hero Institute alleged to be a sexual blackmailer by the Secret Service',
@@ -3431,6 +3432,7 @@ HIGHLIGHTED_NAMES = [
             Organization('CrowdStrike', "cybersecurity company"),
             Organization(GOOGLE_PLUS, "Google Plus", r"Google\+", is_emailer=True, is_interesting=False),
             Organization('Greylock', 'O.G. silicon valley venture capital firm', r"Greylock( Partners)?"),
+            Organization('Hillspire LLC', f"family office of Google CEO Eric Schmidt", belongs_to=ERIC_SCHMIDT),
             Organization(
                 HONEYCOMB_ASSET_MANAGEMENT,
                 'venture fund invested in Tencent, Epstein invested in Spotify through them',

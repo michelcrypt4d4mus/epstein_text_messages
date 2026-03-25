@@ -1,7 +1,7 @@
 """
 Politics related files. By default uninteresting.
 """
-from epstein_files.documents.config.communication_cfg import imessage_screenshot
+from epstein_files.documents.config.communication_cfg import CommunicationCfg, imessage_screenshot
 from epstein_files.documents.config.config_builder import letter, passenger_manifest
 from epstein_files.documents.config.doc_cfg import DocCfg
 from epstein_files.documents.config.email_cfg import EmailCfg
@@ -11,6 +11,10 @@ from epstein_files.util.helpers.string_helper import join_truthy, quote
 
 DIANA_DEGETTE_CAMPAIGN = "Colorado legislator Diana DeGette's campaign"
 TRUMP_DISCLOSURES = f"Donald Trump financial disclosures from U.S. Office of Government Ethics"
+
+
+def bannon_imessage(id: str, date: str = '', **kwargs) -> CommunicationCfg:
+    return imessage_screenshot(id, date=date, recipients=[STEVE_BANNON], **kwargs)
 
 
 POLITICS_CFGS = [
@@ -80,13 +84,14 @@ POLITICS_CFGS = [
     EmailCfg(id='EFTA00661468', highlight_quote='carpets and all', note="the prince of Saudi Arabia sent Epstein a tent", is_interesting=5),
 
     # Bannon
-    imessage_screenshot('EFTA01615703', recipients=[STEVE_BANNON], date='2019-04-01'),
-    imessage_screenshot('EFTA01615808', recipients=[STEVE_BANNON]),
-    imessage_screenshot('EFTA01620249', recipients=[STEVE_BANNON], date='2019-03-04'),
-    imessage_screenshot(
+    bannon_imessage(
         'EFTA01620912',
         highlight_quote="first we need to push back on the lies ; then crush the pedo/trafficking narrative ; then rebuild your image as philanthropist",
-        recipients=[STEVE_BANNON],
         truncate_to=(950, 2_500),
     ),
+    bannon_imessage('EFTA01615703', date='2019-04-01'),
+    bannon_imessage('EFTA01620249', date='2019-03-04'),
+    bannon_imessage('EFTA01615720', date='2019-04-05'),
+    bannon_imessage('EFTA01615642', date='2019-03-01'),
+    bannon_imessage('EFTA01615808'),
 ]

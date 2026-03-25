@@ -131,6 +131,7 @@ MONEY_CFGS = [
     DocCfg(id='EFTA01086463', note=f"{MORTIMER_ZUCKERMAN}'s art collection valuations", is_valid_for_name_scan=False),
     DocCfg(id='EFTA01273102', note=f"payment from Epstein to {RENATA_BOLOTOVA}'s father's account at Sberbank"),
     DocCfg(id='EFTA00238499', note='wire transfer to Signature Bank account'),
+    deutsche_bank_doc('EFTA01436428', f"client list showing Hillspire, Third Lake, Southern Financial, Elysium all managed by {STEWART_OLDFIELD}"),
     deutsche_bank_doc('EFTA00166863', f"Southern Financial Know Your Customer form filled out by {PAUL_MORRIS}", date='2019-07-30', truncate_to=(8_400, 10_500)),
     deutsche_bank_doc('EFTA01286706', f"Plan D, LLC bank statement showing $22,500,000 incoming and $15,000,000 outgoing"),
     deutsche_bank_doc('EFTA01361270', f"$60,000 transfer from {SOUTHERN_TRUST_COMPANY} to {BEN_GOERTZEL}'s Novamente", date='2014-01-02'),
@@ -192,7 +193,8 @@ MONEY_CFGS = [
 
     # JPM
     jpm_doc('EFTA01480542', 'Epstein source of wealth filing'),
-    jpm_doc('EFTA01480623', f"was going to drop Epstein as a client until {JES_STALEY} intervened", is_interesting=5),
+    jpm_doc('EFTA01480623', f"was going to drop Epstein as a client until {JES_STALEY} intervened", is_interesting=5, truncate_to=2_050),
+    jpm_doc('EFTA01480690', f"Know Your Customer information", date='2013-11-01', date_uncertain="asked to leave Aug 2013"),
 
     # Jeepers, Inc.
     DocCfg(id='EFTA01255549', note=f'due diligence on {JEEPERS_INC} amusement park owned by Epstein', date='2018-09-27'),
