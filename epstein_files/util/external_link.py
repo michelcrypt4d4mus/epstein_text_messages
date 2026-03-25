@@ -33,14 +33,14 @@ SOCIAL_PLATFORMS = {
 
 SHORT_LINKS = {
     'aljazeera.com': 'alj',
-    'bloomberg.com': 'BBG',
-    'businessinsider.com': 'BI',
+    'bloomberg.com': 'bbg',
+    'businessinsider.com': 'bi',
     'cryptadamus.substack': 'chronicles',
     'dossier.center': 'dossier',
     'dropsitenews': 'dropsite',
     'graziadaily': 'grazia',
     'hollywoodreporter': 'hollywood',
-    'justice.gov': 'DOJ',
+    'justice.gov': 'doj',
     'instagram.com': 'insta',
     'lunch.publishersmarketplace': 'publ',
     'newyorker.com': 'NYer',
