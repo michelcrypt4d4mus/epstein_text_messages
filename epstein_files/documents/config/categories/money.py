@@ -95,6 +95,7 @@ MONEY_CFGS = [
     DocCfg(id='EFTA00606411', display_text='proposed jet ownership structure flowchart', date='2017-01-01', date_uncertain='guess'),
     DocCfg(id='EFTA01282282', author=BUTTERFLY_TRUST, note=f"almost completely redacted list of beneficiaries"),
     DocCfg(id='EFTA00803405', author=HONEYCOMB_ASSET_MANAGEMENT, note="fund brochure"),
+    DocCfg(id='EFTA02710849', author='Pensum', note='BJAV Marine Ltd / Arcadia Group invoice', is_in_chrono=False),
     DocCfg(
         id='EFTA01413294',
         comment='related to EFTA01357341, EFTA01363125, + more based on Vavilov Street address',
@@ -294,6 +295,7 @@ MONEY_CFGS = [
     ),
     EmailCfg(id='EFTA01376515', show_with_name=LEON_BLACK),
     EmailCfg(id='EFTA01404535', truncate_to=(1_150, 2_200)),
+    EmailCfg(id='EFTA01915851', highlight_quote="we need to create a lie for leon and ronald lauder to own the painting"),
 
     # David Stern
     EmailCfg(

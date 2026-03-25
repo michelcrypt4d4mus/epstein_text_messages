@@ -54,4 +54,16 @@ TECH_CFGS = [
     DocCfg(id='EFTA00591691', author=VALAR_VENTURES, note="contract", is_interesting=True),
     DocCfg(id='EFTA00810362', author=VALAR_VENTURES, note="investor questionnaire", is_interesting=True),
     EmailCfg(id='EFTA01001339', note=f"{PETER_THIEL} introduces Epstein to the {VALAR_VENTURES} founders", is_interesting=10),
+    # Google guys
+    EmailCfg(
+        id='EFTA02335254',
+        date='2003-04-12 19:00:00',
+        date_uncertain='approximate based on reply',
+        highlight_quote="eric schmidt is founder of google, big supporter of ours",
+    ),
+    # Evidence
+    EmailCfg(id='EFTA02190185', recipients=[LESLEY_GROFF]),
+    EmailCfg(id='EFTA02190190', author=LESLEY_GROFF, author_uncertain=True),
+    EmailCfg(id='EFTA02190192', author=LESLEY_GROFF, author_uncertain=True),
+    EmailCfg(id='EFTA02143396', recipients=[LESLEY_GROFF], is_interesting=10, note='inviting CEO of Google to dinner'),
 ]

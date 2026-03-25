@@ -695,6 +695,9 @@ GIRLS_CFGS = [
     EmailCfg(id='EFTA01930501', highlight_quote="Your littlest girl was a little naughty"),
     EmailCfg(id='DropSite 2006-05-29 1329', highlight_quote='I am giving the little girl a modeling\n> lesson', is_interesting=True),
 
+    # Faith Kates
+    EmailCfg(id='EFTA02512317', recipients=[FAITH_KATES], author_reason='"faith,"', note="Epstein suggests Next Models take on a girl"),
+
     # Josh Fink
     EmailCfg(
         id='EFTA01868066',
@@ -831,6 +834,9 @@ GIRLS_CFGS = [
         note=f'grooming a new girl with a "pornhub introduction"',
         recipients=['Harry Fish', 'Karin', EVA_DUBIN, TERJE_ROD_LARSEN],
     ),
+
+    # Asia
+    EmailCfg(id='EFTA02046979', is_interesting=True, note=f"flights for Kimberly Ko and Wandi Zhu", truncate_to=(1_140, 1_800)),
 
     # Immigration
     EmailCfg(

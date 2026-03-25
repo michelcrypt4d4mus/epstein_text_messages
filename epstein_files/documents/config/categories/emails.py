@@ -659,7 +659,14 @@ EMAILS_CONFIG = [
     EmailCfg(id='026449', note="comments about Trump's 'former bridge girl and toy'", is_interesting=True),
     EmailCfg(id='032842', note='discussion of "stealing" a casino in Atlantic City', is_interesting=True),
     EmailCfg(id='033377', note="Epstein says he knows Russian oligarch Oleg Deripaska", is_interesting=10),
-    EmailCfg(id='023454', note='Email invitation sent to tech CEOs and Epstein', is_interesting=True, truncate_to=1878),
+    EmailCfg(
+        id='023454',
+        duplicate_ids=['EFTA02364089'],
+        dupe_type='quoted',
+        is_interesting=True,
+        note='Email invitation sent to tech CEOs and Epstein',
+        truncate_to=1_878,
+    ),
     EmailCfg(
         id='030950',
         note=f"{IAN_OSBORNE} spending quality time in Russia before Jawbone investment",
