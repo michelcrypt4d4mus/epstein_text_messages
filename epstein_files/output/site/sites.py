@@ -2,20 +2,26 @@
 HTML file paths and URLs for files built by `epstein_generate`.
 """
 import shutil
+from dataclasses import dataclass, field
 from enum import auto, StrEnum
 from pathlib import Path
 from typing import Self
 
+from rich.console import Group, NewLine
 from rich.markup import escape
+from rich.padding import Padding
+from rich.panel import Panel
 from rich.text import Text
 
 from epstein_files.documents.documents.categories import Interesting
-from epstein_files.util.constant.strings import (AUX_SITE_LINK_STYLE, CHRONOLOGICAL, DOJ_2026_TRANCHE,
-     EPSTEIN_FILES_NOV_2025, HOUSE_OVERSIGHT_TRANCHE)
+from epstein_files.util.constant.strings import (AUX_SITE_LINK_STYLE, CHRONOLOGICAL,
+     DOJ_2026_TRANCHE, EPSTEIN_FILES_NOV_2025, HOUSE_OVERSIGHT_TRANCHE)
+from epstein_files.output.html.html_dir import DEFAULT_HTML_DIR, HtmlDir
+from epstein_files.output.layout_elements.site_directory import SiteDirectory
 from epstein_files.util.external_link import ExternalLink, link_text_obj, parenthesize
+from epstein_files.util.helpers.rich_helpers import bold, join_texts
 from epstein_files.util.logging import logger
 
-DEFAULT_HTML_DIR = Path('docs')
 EMAILERS_TABLE_PNG_PATH = DEFAULT_HTML_DIR.joinpath('emailers_info_table.png')
 
 # Github URLs
@@ -34,6 +40,10 @@ CUSTOM_HTML_PREFIX = 'real_html_'
 NAMES_PREFIX = 'only_names_'
 MOBILE_SUFFIX = '_mobile'
 PHONE_LOG_FILE_ID = 'EFTA01242527'
+
+# Site directory
+SITE_GLOSSARY_MSG = f"The following views of the underlying selection of Epstein Files are available:"
+YOU_ARE_HERE = Text('«').append('you are here', style='bold khaki1 blink').append('»')
 
 category_link_text = lambda category: f"category[{category}]"
 
@@ -71,8 +81,16 @@ class Site(StrEnum):
     def all_links(cls) -> 'dict[Site | str, Text]':
         """Use `SITE_DESCRIPTIONS` dict because it's ordered and also omits unpublished site types."""
         links = {site: cls.link_txt(site) for site in SITE_DESCRIPTIONS}
-        links.update({category_link_text(c): cls.link_to_category(c) for c in CATEGORY_SITES})
+        links.update({category_link_text(c): cls.link_to_category(c).__rich__() for c in CATEGORY_SITES})
         return links
+
+    @classmethod
+    def directory(cls) -> 'SiteDirectory':
+        return SiteDirectory(
+            [cls.get_site_link(site) for site in SITE_DESCRIPTIONS if not cls.is_mobile(site)],
+            [],
+            [cls.link_to_category(c) for c in CATEGORY_SITES],
+        )
 
     @classmethod
     def custom_html_build_path(cls, site: 'Site | Path') -> Path:
@@ -118,6 +136,40 @@ class Site(StrEnum):
         return output_path.parent.joinpath(output_path.name.replace('.html', '_mobile.html'))
 
     @classmethod
+    def get_site_link(cls, site: Self, category: str = '') -> ExternalLink:
+        link_parens_style = ''
+
+        if site == cls.CATEGORY:
+            link_text = category_link_text(category)
+            link_style = 'red'
+            link_comment = 'only files in this category'
+            link_comment_style = 'grey50'
+        else:
+            link_text = SITE_DESCRIPTIONS.get(site, site)
+            link_style = AUX_SITE_LINK_STYLE
+            link_comment_style = 'plum4 italic'
+            link_comment = ''
+
+            if ':' in link_text:
+                link_text, link_comment = SITE_DESCRIPTIONS[site].split(':')
+                link_parens_style = 'color(147) dim'
+                # extra_info = Text(escape(extra_info), style=f'plum4 italic')
+                # extra_info = Text(' ').append(parenthesize(extra_info, 'color(147) dim'))
+
+        if cls._is_lesser_site(site):
+            link_style = 'gray30'# 'light_pink4'
+
+        return ExternalLink(
+            Site.get_url(site, category),
+            escape(link_text),
+            link_comment,
+            comment_style=link_comment_style,
+            link_style=bold(link_style),
+            parentheses_style=link_parens_style,
+        )
+        link = link_text_obj(Site.get_url(site), escape(link_text), f"{style} {style_mod}")
+
+    @classmethod
     def get_url(cls, site: 'Site', category: str = '') -> str:
         return f"{BASE_DEPLOY_URL}/{cls.html_output_path(site, category).name}"
 
@@ -142,37 +194,20 @@ class Site(StrEnum):
         return site.endswith(MOBILE_SUFFIX)
 
     @classmethod
-    def link_txt(cls, site: Self) -> Text:
-        description = SITE_DESCRIPTIONS[site]
-        extra_info = ''
-
-        if cls._is_lesser_site(site):
-            style = 'gray30'# 'light_pink4'
-        else:
-            style = AUX_SITE_LINK_STYLE
-
-        if ':' in description:
-            description, extra_info = SITE_DESCRIPTIONS[site].split(':')
-            extra_info = Text(escape(extra_info), style=f'plum4 italic')
-            extra_info = Text(' ').append(parenthesize(extra_info, 'color(147) dim'))
-
-        style_mod = '' if cls._is_lesser_site(site) else 'bold'
-        link = link_text_obj(Site.get_url(site), escape(description), f"{style} {style_mod}")
-        return link.append(extra_info)
+    def link_txt(cls, site: Self, category: str = '') -> Text:
+        return cls.get_site_link(site, category).__rich__()
 
     @classmethod
-    def link_to_category(cls, category: str) -> Text:
+    def link_to_category(cls, category: str) -> ExternalLink:
         from epstein_files.output.highlight_config import get_style_for_category
 
-        ext_link = ExternalLink(
+        return ExternalLink(
             cls.get_url(cls.CATEGORY, category),
             escape(f"category[{category}]"),
             link_style=get_style_for_category(category) or '',
             comment=f'all files related to {category}',
             comment_style='color(147) dim italic'
         )
-
-        return ext_link.__rich__()
 
     @classmethod
     def mobile_compatible_types(cls) -> list['Site']:
@@ -183,15 +218,6 @@ class Site(StrEnum):
     @classmethod
     def _is_lesser_site(cls, site: Self) -> bool:
         return site in [cls.DOJ_FILES, cls.JSON_METADATA]  #+ [cls.JSON_FILES]
-
-
-class HtmlDir:
-    """Container to hold state of HTML_DIR value because we can't add class vars to `Site` enum."""
-    HTML_DIR = DEFAULT_HTML_DIR
-
-    @classmethod
-    def build_path(cls, filename: str) -> Path:
-        return cls.HTML_DIR.joinpath(filename)
 
 
 INDEX_HTML_SITE = Site.MOST_INTERESTING
@@ -243,6 +269,7 @@ DEPLOY_CUSTOM_HTML_SITES = [
     Site.MOST_INTERESTING,
     Site.OTHER_FILES_TABLE,
 ]
+
 
 
 def make_clean() -> None:

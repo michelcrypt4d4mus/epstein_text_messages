@@ -17,6 +17,7 @@ from epstein_files.documents.messenger_log import MessengerLog
 from epstein_files.documents.other_file import FIRST_FEW_LINES, OtherFile
 from epstein_files.epstein_files import EpsteinFiles
 from epstein_files.output.doc_printer import DocPrinter
+from epstein_files.output.html.html_dir import HtmlDir
 from epstein_files.output.layout_elements.layout import Layout
 from epstein_files.output.epstein_highlighter import highlighter
 from epstein_files.output.rich import *

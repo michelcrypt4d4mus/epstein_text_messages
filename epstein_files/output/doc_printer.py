@@ -20,6 +20,7 @@ from epstein_files.documents.messenger_log import MessengerLog
 from epstein_files.documents.other_file import OtherFile
 from epstein_files.output.layout_elements.base_panel import BasePanel
 from epstein_files.output.layout_elements.layout import Layout
+from epstein_files.output.layout_elements.site_directory import SiteDirectory
 from epstein_files.output.layout_elements.list_panel import ListPanel
 from epstein_files.output.html.builder import (console_buffer_to_html, render_at_obj_width, panel_to_div,
      render_to_html, text_to_div, write_templated_html)
@@ -234,13 +235,15 @@ class DocPrinter(DocList):
             elif isinstance(positioned.obj, BasePanel):
                 margin = unpack_dimensions((site_config.indents.info, 0))  # TODO: this margin dimension should only exist on one side if aligned
                 self.html_elements.append(positioned.obj.to_div(margin))
+            elif isinstance(positioned.obj, SiteDirectory):
+                self.html_elements.append(positioned.obj.to_html())
             elif isinstance(positioned.obj, Text):
                 self.html_elements.append(text_to_div(positioned.obj, positioned.css))
             elif '__rich__' in dir(positioned.obj) and (rich_obj := positioned.obj.__rich__()):
                 if isinstance(rich_obj, Text):
                     element_html = text_to_div(rich_obj, positioned.css)
                 else:
-                    logger.warning(f"printinng possibly not fully supported object type {type(positioned.obj).__name__}\n{positioned.obj}")
+                    logger.warning(f"printing possibly not fully supported object type {type(positioned.obj).__name__}\n{positioned.obj}")
                     element_html = render_to_html(rich_obj)
 
                 self.html_elements.append(element_html)
