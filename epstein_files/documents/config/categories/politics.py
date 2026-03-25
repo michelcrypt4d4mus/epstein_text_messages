@@ -76,4 +76,5 @@ POLITICS_CFGS = [
         highlight_quote="Am totally tricked out by Uncle Jeffrey today! Jeffrey boots, handbag, and w=tch!",
         is_interesting=10,
     ),
+    EmailCfg(id='EFTA00661468', note="the prince of Saudi Arabia sent Epstein a whole tent", is_interesting=5),
 ]

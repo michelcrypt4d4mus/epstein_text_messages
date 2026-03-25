@@ -11,6 +11,7 @@ from rich.text import Text
 
 from epstein_files.documents.documents.categories import (Category, Interesting, Neutral, Uninteresting,
      is_category, is_interesting, is_uninteresting)
+from epstein_files.output.html.html_dir import HtmlDir
 from epstein_files.output.site.site_config import MobileConfig
 from epstein_files.people.interesting_people import PERSONS_OF_INTEREST
 from epstein_files.people.names import *
@@ -260,6 +261,16 @@ class DocCfg(LoggingEntity):
             return (0, self.truncate_to)
 
     @property
+    def char_range_as_table_row(self) -> tuple[int, int] | None:
+        """The char range that should be shown in `OtherFile` rollup tables."""
+        if self.num_preview_chars:
+            return (0, self.num_preview_chars)
+        elif self.category in SHORT_TRUNCATE_CATEGORIES:
+            return (0, int(site_config.other_files_preview_chars / 2))
+        else:
+            return (0, site_config.other_files_preview_chars)
+
+    @property
     def complete_description(self) -> str:
         """String that summarizes what is known about this document."""
         author = f"{self.author} {QUESTION_MARKS}" if self.author and self.author_uncertain else self.author
@@ -332,23 +343,12 @@ class DocCfg(LoggingEntity):
         """`display_text` longer than other_files_preview_chars is considered a drop in replacement, not a short description."""
         return bool(self.display_text and len(self.display_text) > MobileConfig.other_files_preview_chars)
 
-    def note_txt(self, include_category: bool = True) -> Text | None:
-        """Add formatting to `self.complete_description`."""
-        if include_category and self.PREFIX_NOTE_WITH_CATEGORY and self.category_bracketed:
-            txt = self.category_bracketed.append(' ')
+    @property
+    def image_url(self) -> str:
+        if self.show_image:
+            return f'doc_images/{self.id}.png'
         else:
-            txt = None
-
-        if self.complete_description:
-            txt = (txt or Text('')).append(self.complete_description, NOTE_STYLE)
-        else:
-            return txt
-
-        if self.external_link_txt:
-            txt.append(' ').append(self.external_link_txt)
-
-        from epstein_files.output.epstein_highlighter import non_epstein_highlighter
-        return non_epstein_highlighter(txt)
+            return ''
 
     @property
     def replacement_preview_text(self) -> str:
@@ -451,16 +451,6 @@ class DocCfg(LoggingEntity):
         return [self.author] if self.author else []
 
     @property
-    def char_range_as_table_row(self) -> tuple[int, int] | None:
-        """The char range that should be shown in `OtherFile` rollup tables."""
-        if self.num_preview_chars:
-            return (0, self.num_preview_chars)
-        elif self.category in SHORT_TRUNCATE_CATEGORIES:
-            return (0, int(site_config.other_files_preview_chars / 2))
-        else:
-            return (0, site_config.other_files_preview_chars)
-
-    @property
     def timestamp(self) -> datetime | None:
         if self.date and (parsed_dt := coerce_utc_strict(parse(self.date))):
             # self._debug_log(f"parsed {parsed_dt.isoformat()} from date='{self.date}'")
@@ -537,6 +527,24 @@ class DocCfg(LoggingEntity):
             dupe_cfg.dupe_type = self.dupe_type
             dupe_cfg.is_synthetic = True
             yield dupe_cfg
+
+    def note_txt(self, include_category: bool = True) -> Text | None:
+        """Add formatting to `self.complete_description`."""
+        if include_category and self.PREFIX_NOTE_WITH_CATEGORY and self.category_bracketed:
+            txt = self.category_bracketed.append(' ')
+        else:
+            txt = None
+
+        if self.complete_description:
+            txt = (txt or Text('')).append(self.complete_description, NOTE_STYLE)
+        else:
+            return txt
+
+        if self.external_link_txt:
+            txt.append(' ').append(self.external_link_txt)
+
+        from epstein_files.output.epstein_highlighter import non_epstein_highlighter
+        return non_epstein_highlighter(txt)
 
     def set_category(self, category: str) -> None:
         """Update the title if we changed to a category that allows titling (books, academia, finance)."""

@@ -2559,7 +2559,14 @@ HIGHLIGHTED_NAMES = [
             ),
             Entity('Hayel Besher', f"relative of {SHAHER_ABDULHAK_BESHER} {QUESTION_MARKS}", match_partial=None),
             Entity('Kairat Kelimbetov', 'former governor of the central bank of Kazakhstan', match_partial='both', url=WIKIPEDIA),
-            Entity("Mohammed bin Salman", 'prince of Saudi Arabia', r"Mohammed bin Salman|MBS", aliases=['MBS'], match_partial=None),
+            Entity(
+                "Mohammed bin Salman",
+                'prince of Saudi Arabia',
+                r"Mohammed bin Salman|MBS",
+                aliases=['MBS'],
+                match_partial=None,
+                url='https://www.cbsnews.com/news/jeffrey-epstein-saudi-arabia/',
+            ),
             Entity('Mohammed bin Zayed', 'ruler of Abu Dhabi', r"Mohamed bin Zayed|MBZ", aliases=['MBZ'], match_partial=None),
             Entity(
                 'Muhammad bin Nayef',

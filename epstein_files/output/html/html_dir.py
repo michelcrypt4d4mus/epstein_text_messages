@@ -1,6 +1,7 @@
 from pathlib import Path
 
 DEFAULT_HTML_DIR = Path('docs')
+IMAGES_DIR = Path('doc_images')
 
 
 class HtmlDir:
@@ -10,3 +11,7 @@ class HtmlDir:
     @classmethod
     def build_path(cls, filename: str) -> Path:
         return cls.HTML_DIR.joinpath(filename)
+
+    @classmethod
+    def image_url(cls, filename: str) -> str:
+        return str(IMAGES_DIR.joinpath(filename))
