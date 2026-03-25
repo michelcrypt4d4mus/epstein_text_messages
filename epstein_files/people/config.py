@@ -940,6 +940,12 @@ HIGHLIGHTED_NAMES = [
             ),
             Organization('LedgerX', 'crypto derivatives platform acquired by FTX for $298 million in a very shady deal'),
             Organization(
+                'Liberty Reserve',
+                'creator of the early digital currency Liberty Dollar, 20 year sentence for money laundering',
+                r"Liberty (Dollar|Reserve)",
+                url=WIKIPEDIA,
+            ),
+            Organization(
                 'Libra',
                 f"Facebook's attempt at a stablecoin that was canceled by the US government",
                 url='https://www.amazon.com/Libra-Shrugged-Facebook-Tried-Money-ebook/dp/B08KK9SZP6',
