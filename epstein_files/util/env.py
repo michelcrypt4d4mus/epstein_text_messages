@@ -10,8 +10,9 @@ from rich_argparse_plus import RichHelpFormatterPlus
 from yaralyzer.util.cli_option_validators import DirValidator
 
 from epstein_files.output.site.site_config import ALL_OTHER_FILES_MULTIPLIER, DEFAULT_WIDTH, MobileConfig, SiteConfig
-from epstein_files.output.site.sites import *
-from epstein_files.util.constant.strings import SUPPRESS_OUTPUT
+from epstein_files.output.site.sites import Site
+from epstein_files.util.constant.strings import  SUPPRESS_OUTPUT
+from epstein_files.output.html.html_dir import DEFAULT_HTML_DIR, HtmlDir
 from epstein_files.util.helpers.env_helpers import get_env_dir, is_env_var_set
 from epstein_files.util.logging import env_log_level, exit_with_error, logger, set_log_level
 

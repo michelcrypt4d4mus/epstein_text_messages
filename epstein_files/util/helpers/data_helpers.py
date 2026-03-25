@@ -10,7 +10,6 @@ from dateutil import tz
 from typing import Any, Callable, Hashable, Iterable, Mapping, Sequence, TypeVar
 
 from epstein_files.people import names
-from epstein_files.util.env import args
 from epstein_files.util.helpers.string_helper import timestamp_str
 from epstein_files.util.logging import logger
 
@@ -144,6 +143,7 @@ def prefix_keys(prefix: str, _dict: dict[str, T], sep='.') -> dict[str, T]:
 
 
 def sort_dict(d: dict[str | None, int] | dict[str, int]) -> list[tuple[str | None, int]]:
+    from epstein_files.util.env import args
     alpha_key = lambda kv: (kv[0] or '').lower()
 
     try:

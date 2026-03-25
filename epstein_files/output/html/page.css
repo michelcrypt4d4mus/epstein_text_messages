@@ -159,3 +159,25 @@ ul.no_bullets {
     margin: 0;
     padding: 0;
 }
+
+ul.site_directory {
+    margin-left: 5em;
+    /* text-align: right; */
+    /* background-position: 100% .4em; */
+}
+
+ul.site_directory_right {
+    margin-right: 5em;
+    direction: rtl;
+}
+
+/* .directory::marker {
+    content: "\2714\0020  ";
+    color: #4ac1bb;
+    font-size: 1.5em;
+} */
+
+li::marker {
+    content: '➱ ';
+    /* font-size: 1.2em; */
+}

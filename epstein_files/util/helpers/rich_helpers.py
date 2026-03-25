@@ -41,6 +41,7 @@ CharRange = tuple[int, int]
 Textish = TextType | TextCast
 TextVar = TypeVar('TextVar', bound=TextType)
 
+bold = lambda style: style if 'bold' in style else f"{style} bold"
 left_indent_padding = lambda num_spaces: (0, 0, 0, num_spaces)
 left_indent = lambda obj, num_spaces: Padding(obj, left_indent_padding(num_spaces))
 no_bold = lambda style: style.replace('bold', '').strip()

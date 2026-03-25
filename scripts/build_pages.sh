@@ -10,6 +10,12 @@ set -e
 THIS_DIR=$(dirname -- "$(readlink -f -- "$0";)";)
 source "$THIS_DIR/bash_lib/shared.sh"
 
+CATEGORIES=(
+    crypto
+    girls
+    money
+)
+
 BUILD_DIR=${1:-docs/}
 GENERATE_CMD="$GENERATE_CMD --build-dir $BUILD_DIR"
 print_deploy_step "Building pages to BUILD_DIR '$BUILD_DIR'"
@@ -25,6 +31,12 @@ if [[ -z $SKIP_CHRONO ]]; then
 else
     print_deploy_step "Skipping chronological builds..."
 fi
+
+# Categories
+for category in "${CATEGORIES[@]}"; do
+    print_deploy_step "Building category $category page..."
+    $GENERATE_CMD --category $category
+done
 
 # Fast pages
 print_deploy_step "Building notes pages..."

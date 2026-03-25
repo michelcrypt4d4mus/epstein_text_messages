@@ -65,8 +65,6 @@ doc_types_to_sample = [
 ]
 
 images = [d for d in epstein_files.documents if d._config.show_image]
-logger.warning(f"images found: {len(images)}, IDs: {[d.file_id for d in images]}")
-
 sample_docs = DocList.uniquify_by_id(flatten([docs[:SAMPLE_SIZE] for docs in doc_types_to_sample]))
 printer = DocPrinter(epstein_files=epstein_files)
 
@@ -78,7 +76,7 @@ printer.print_title_page_bottom()
 printer.print_documents(sample_docs)
 
 # print some People and their emails
-# print_sample_people()
+print_sample_people()
 
 #Print big emailers summary table
 all_emailers = sorted(epstein_files.emailers, key=lambda person: person.sort_key)

@@ -44,6 +44,7 @@ class MobileConfig:
     abbreviations_width: ClassVar[int | None] = None
     character_bio_padding: ClassVar[tuple[int, int, int, int]] = (0, 0, 1, 2)
     contact_list_padding: ClassVar[PaddingDimensions] = (0, 0, 0, 1)
+    directory_padding: ClassVar[PaddingDimensions] = (1, 1, 0, 1)
     max_alt_links: ClassVar[int | None] = 1
     not_all_files_warning: ClassVar[str] = starred_header(NOT_ALL_FILES_MSG, num_spaces=1, num_stars=1)
     num_color_key_cols: ClassVar[int] = 2
@@ -110,6 +111,7 @@ class SiteConfig(MobileConfig):
     abbreviations_width: ClassVar[int | None] = 62
     character_bio_padding: ClassVar[tuple[int, int, int, int]] = (0, 1, 0, 0)
     contact_list_padding: ClassVar[PaddingDimensions] = (0, 0, 0, 5)
+    directory_padding: ClassVar[PaddingDimensions] = (1, 4, 0, 4)
     max_alt_links: ClassVar[int | None] = None
     not_all_files_warning: ClassVar[str] = starred_header(NOT_ALL_FILES_MSG, num_spaces=6, num_stars=14)
     num_color_key_cols: ClassVar[int] = 5
