@@ -278,6 +278,7 @@ GOVERNMENT_CFGS = [
     fbi_tip(
         'EFTA01660676',
         "about recently convicted rapists Tal and Oren Alexander at Epstein's house",
+        date='2025-03-25',
         show_full_panel=True,
         url='https://www.bbc.com/news/articles/c6271ngl014o',
     ),

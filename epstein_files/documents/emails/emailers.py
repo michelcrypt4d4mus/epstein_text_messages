@@ -25,7 +25,6 @@ ADDITIONAL_EMAILERS = [
     Entity('BS Stern', emailer_pattern=r"BS Ste(m|rn)"),
     Entity(INTELLIGENCE_SQUARED, emailer_pattern=r"intelligence\s*squared"),
     Entity('Matthew Schafer', emailer_pattern=r"matthew\.?schafer?"),
-    Entity(MICHAEL_BUCHHOLTZ, emailer_pattern=r"Michael.*Buchholtz"),
     Entity(SAMUEL_LEFF, emailer_pattern=r"Sam(uel)?(/Walli)? Leff"),
     Entity(THANU_BOONYAWATANA, emailer_pattern=r"Thanu (BOONYAWATANA|Cnx)"),
     # No custom regex

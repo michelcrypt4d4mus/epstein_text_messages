@@ -1832,6 +1832,7 @@ HIGHLIGHTED_NAMES = [
                 url='https://nypost.com/2012/06/01/fink-kid-is-a-big-fat-loser/',
             ),
             Entity('linkspirit', "Skype username of someone Epstein communicated with"),
+            Entity(MICHAEL_BUCHHOLTZ, "childhood friend", aliases=['Frog'], emailer_pattern=r"Michael.*Buchholtz"),
             Entity(
                 'Perry Bard',
                 f"{PALM_BEACH} chiropractor, phone number came up in Epstein victim investigations, left $3 million in Epstein's will",
