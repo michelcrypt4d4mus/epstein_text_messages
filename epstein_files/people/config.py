@@ -9,8 +9,8 @@ from rich.text import Text
 from epstein_files.documents.config.categories.legal import EPSTEIN_V_ROTHSTEIN_EDWARDS
 from epstein_files.documents.documents.categories import RUSSIAN_GIRL, Interesting, Neutral, Uninteresting
 from epstein_files.output.highlighted_names import HighlightedNames
-from epstein_files.people.entity import (Entity, Organization, acronym, epstein_co, epstein_trust,
-     island_employee, law_enforcement, publication, the_publication)
+from epstein_files.people.entity import (Entity, Organization, acronym, deutsche_bank_employee,
+     epstein_co, epstein_trust, island_employee, law_enforcement, publication, the_publication)
 from epstein_files.people.names import *
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constant.urls import *
@@ -356,11 +356,7 @@ HIGHLIGHTED_NAMES = [
         style='dark_sea_green4',
         entities=[
             Entity(AMANDA_ENS, "Citigroup", r"ens, amanda?|Amanda.Ens", match_partial=None),
-            Entity('Amanda Kirby', f"associate at {DEUTSCHE_BANK}", match_partial=None),
-            Entity('Andrea Stewart', DEUTSCHE_BANK, match_partial=None),
-            Entity('Andrew Gallivan', f"manager at {DEUTSCHE_BANK}"),
             Entity('Boris Collardi', 'CEO of the Swiss bank Julius Baer'),
-            Entity('Cynthia Rodriguez', DEUTSCHE_BANK),
             Entity(DANIEL_SABBA, f"{UBS} Investment Bank"),
             Entity(
                 'David Rowland',
@@ -375,7 +371,6 @@ HIGHLIGHTED_NAMES = [
             ),
             Entity('Jonathan Rowland', f"Banque Havilland", match_partial=None),
             Entity('Laurie Eisenhart', QUESTION_MARKS),
-            Entity('Kumar Sambhav', f"{DEUTSCHE_BANK} technical writer {QUESTION_MARKS}"),
             Entity(NORMAN_D_RAU, "managing director at Morgan Stanley", match_partial=None),
             Entity(
                 PAUL_MORRIS,
@@ -392,10 +387,17 @@ HIGHLIGHTED_NAMES = [
                 url='https://www.cnbc.com/2023/03/13/signature-bank-third-biggest-bank-failure-in-us-history.html',
             ),
             Entity(STEWART_OLDFIELD, f"worked on Epstein related accounts at {DEUTSCHE_BANK}", r"Stewart [0O]ldfiel?d"),
-            Entity('Vaishali Mehta', f'Head of Anti-Money Laundering Business Risk at {DEUTSCHE_BANK}', r"Vaishali.{,5}Mehta"),
-            Entity('Velmir Vejzovic', DEUTSCHE_BANK),
             Entity(VINIT_SAHNI, f"analyst at {DEUTSCHE_BANK} and {GOLDMAN_SACHS}", match_partial='both'),
-            Entity('Yoonsun Chung', f"Anti-Money Laundering at {DEUTSCHE_BANK}", match_partial=None),
+            deutsche_bank_employee('Amanda Kirby', 'associate'),
+            deutsche_bank_employee('Andrea Stewart'),
+            deutsche_bank_employee('Andrew Gallivan', 'manager', match_partial='last'),
+            deutsche_bank_employee('Cynthia Rodriguez'),
+            deutsche_bank_employee('Kumar Sambhav', f'technical writer {QUESTION_MARKS}'),
+            deutsche_bank_employee('Martin Zeman'),
+            deutsche_bank_employee('Vaishali Mehta', 'Head of Anti-Money Laundering Business Risk', emailer_pattern=r"Vaishali.{,5}Mehta"),
+            deutsche_bank_employee('Velmir Vejzovic', match_partial='last'),
+            deutsche_bank_employee('Xavier Avila'),
+            deutsche_bank_employee('Yoonsun Chung', "Anti-Money Laundering"),
 
             # Organizations
             acronym(f"{DEUTSCHE_BANK} AG New York"),
