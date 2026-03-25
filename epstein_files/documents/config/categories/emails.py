@@ -1075,6 +1075,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00468081', recipients=[LESLEY_GROFF], recipient_uncertain=True),
     EmailCfg(id='EFTA02068436', recipients=[LESLEY_GROFF], recipient_uncertain=True),
     EmailCfg(id='EFTA02068531', recipients=[LESLEY_GROFF], recipient_uncertain=True),
+    EmailCfg(id='EFTA02239782', recipients=['Andrew Superintendent', LESLEY_GROFF, MERWIN_DELA_CRUZ], recipient_uncertain=True),
     EmailCfg(id='EFTA02175423', recipients=[LESLEY_GROFF], truncate_to=650),
     EmailCfg(id='EFTA00313867', recipients=[LESLEY_GROFF], truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA00383027', recipients=[LINDA_STONE]),
