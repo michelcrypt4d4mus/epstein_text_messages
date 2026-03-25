@@ -1153,6 +1153,7 @@ HIGHLIGHTED_NAMES = [
             Entity('Lalasa', f'house cleaner {QUESTION_MARKS}'),
             Entity('Larry E. Morrison', "Epstein's pilot", match_partial=None),
             Entity(LAWRANCE_VISOSKI, "Epstein's pilot", r"La(rry|wr[ae]nce)( Paul)? Visoski?|Lvjet"),
+            Entity(LEO_LOKING, "witness to Epstein's last weill and testament"),
             Entity(LESLEY_GROFF, "assistant who managed Epstein's calendar, unindicted co-conspirator", r"Lesl(ey|ie) (K(\.|atherine)? )?Gro(ff)?"),
             Entity('Linda Pinto', "interior design at Alberto Pinto Cabinet"),
             Entity(LYN_FONTANILLA, "Filipino housekeeper", r"(Rosa)?L.nn?( V\.?)? Fontanilla"),
@@ -1959,6 +1960,7 @@ HIGHLIGHTED_NAMES = [
             law_enforcement('DOJ London', is_emailer=True),
             law_enforcement('Federal Soup', is_emailer=True),
             law_enforcement(FBI, emailer_pattern=r"(?<!NY )((?-i:FBI)|fbi\.s?gov)"),
+            law_enforcement('FBI CID', info="FBI Criminal Investigations Division", is_emailer=True),
             law_enforcement(FRENCH_MINISTRY_OF_JUSTICE),
             law_enforcement('Judge Mark Filip'),
             law_enforcement('Manhattan DA', is_emailer=True),
@@ -3514,6 +3516,7 @@ HIGHLIGHTED_NAMES = [
         category=TECH,
         entities=[
             Organization.well_known('FedEx'),
+            Organization.well_known('Google Calendar', is_emailer=True),
             Organization.well_known('MetroPCS'),
             Organization.well_known('T-Mobile'),
         ],

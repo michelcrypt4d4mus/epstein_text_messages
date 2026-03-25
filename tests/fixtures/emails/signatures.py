@@ -347,7 +347,7 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
     'Lawrence Delson': ['Sent on Android'],
     LAWRENCE_KRAUSS: ["Sent from my iPhone"],
     'Leighton Candler': ['Sent from my BlackBerry Wireless Device'],
-    'Leo Loking': ['Sent from Yahoo Mail for iPhone'],
+    LEO_LOKING: ['Sent from Yahoo Mail for iPhone'],
     LESLEY_GROFF: [
         "Sent from my iPhone",
     ],

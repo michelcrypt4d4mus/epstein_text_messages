@@ -118,6 +118,7 @@ NO_WARNING_NAMES = [
     'Unik',
     'Vlad',
     'karen',
+    UNKNOWN,
 ]
 
 
