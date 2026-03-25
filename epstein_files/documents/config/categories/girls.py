@@ -140,6 +140,7 @@ GIRLS_CFGS = [
         'EFTA01617527',
         author=EDUARDO_TEODORANI,
         highlight_quote='interesting pussy than Fl in Milano interesting pussy as well',
+        is_interesting=True,
         truncate_to=(1_700, 2_200),
     ),
     imessage_log(id='EFTA01617521', author=EDUARDO_TEODORANI),
@@ -566,6 +567,7 @@ GIRLS_CFGS = [
         author=LESLEY_GROFF,
         comment='very broken file',
         date='2012-05-25 19:51:20',
+        is_interesting=True,
         note=f'emphasis quotes by {LESLEY_GROFF}',
         highlight_quote='Jeffrey was asking if you and "your friend" could come by and meet Peter',
         recipients=[None],
@@ -768,6 +770,7 @@ GIRLS_CFGS = [
     EmailCfg(id='EFTA00932166', note=f"{MARK_ZEFF}'s letter of visa recommendation for South African girl in EFTA00537633"),  # TODO: make it an attachment?
     EmailCfg(id='EFTA02609062', note=f"{MASHA_DROKOVA} is assembling a team", is_interesting=10),
     EmailCfg(id='EFTA02557291', note='possibly recruiting girls'),
+    EmailCfg(id='EFTA01990860', note=f"{PRINCE_ANDREW}'s public denial draft"),
     EmailCfg(
         id='EFTA01811230',
         note=f'"Renat" is probably {RENATA_BOLOTOVA}, {REDACTED} might be "Irina" or {SVETLANA_POZHIDAEVA}',
@@ -783,15 +786,19 @@ GIRLS_CFGS = [
         note=f"Epstein can't go to \"nats\" but (because?) {SVETLANA_POZHIDAEVA} and {JOSHUA_FINK} will be there",
         show_with_name=SVETLANA_POZHIDAEVA,
     ),
-    EmailCfg(id='EFTA01798715', note=f"{SVETLANA_POZHIDAEVA} taking an interest in {JOSHUA_FINK}'s investments in Eritrea in between hair gigs", is_interesting=10),
+    EmailCfg(
+        id='EFTA01798715',
+        is_interesting=10,
+        note=f"{SVETLANA_POZHIDAEVA} taking an interest in {JOSHUA_FINK}'s investments in Eritrea in between hair gigs",
+    ),
     EmailCfg(id='EFTA00572157', note='translation: "Congratulations on the new addition!!! What did you name the little miracle?" (seems to be about a cat)'),
     EmailCfg(id='EFTA00631762', note="visa problems for Epstein's South African friend"),
     EmailCfg(id='EFTA00376832', show_with_name=MARIANA_IDZKOWSKA),
-    EmailCfg(id='EFTA02664956', truncate_to=NO_TRUNCATE),
-    EmailCfg(id='EFTA00689698', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA02702141', truncate_to=NO_TRUNCATE, comment=ELON_MUSK),
     EmailCfg(id='EFTA00819508', truncate_to=NO_TRUNCATE, comment=JULIA_SANTOS),
     EmailCfg(id='EFTA00460312', truncate_to=NO_TRUNCATE, comment=JULIA_SANTOS),
+    EmailCfg(id='EFTA02664956', truncate_to=NO_TRUNCATE),
+    EmailCfg(id='EFTA00689698', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA00878255', comment=BORIS_NIKOLIC),
     EmailCfg(id='EFTA02538269', comment=BORIS_NIKOLIC, duplicate_ids=['EFTA01866636']),
     EmailCfg(id='EFTA00736518', comment=JES_STALEY + ' beauty and the beast'),
@@ -803,8 +810,12 @@ GIRLS_CFGS = [
     EmailCfg(id='EFTA00964428', comment=JULIA_SANTOS + ' Valdson'),
     EmailCfg(id='EFTA02398135', comment=JULIA_SANTOS + ' "Sochi"'),
     EmailCfg(id='EFTA00766770'),
-    EmailCfg(id='EFTA01990860', note=f"{PRINCE_ANDREW}'s public denial draft"),
-    EmailCfg(id='EFTA00743526', note=f"Epstein and {RAMSEY_ELKHOLY} trying to get a Next Models contract for Regina", truncate_to=(800, 2_160)),
+    EmailCfg(
+        id='EFTA00743526',
+        is_interesting=True,
+        note=f"Epstein and {RAMSEY_ELKHOLY} trying to get a Next Models contract for Regina",
+        truncate_to=(800, 2_160),
+    ),
 
     # Text msg
     TextCfg(

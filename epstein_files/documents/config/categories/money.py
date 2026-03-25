@@ -102,6 +102,7 @@ MONEY_CFGS = [
         id='EFTA01480940',
         author=JP_MORGAN,
         highlight_quote='two outstanding federal tax liens totaling $593,789',
+        is_interesting=True,
         note=f'due diligence report on {MC2_MODEL_MGMT}',
         truncate_to=(200, 500) if args.output_most_interesting else NO_TRUNCATE
     ),
@@ -261,6 +262,7 @@ MONEY_CFGS = [
     EmailCfg(
         id='EFTA01816514',
         comment='Different Gary, different Gensler',
+        is_interesting=3,
         non_participants=['Gary Gensler'],
         note=f"discussion of open invoices includes $854,598 line of credit for {MC2_MODEL_MGMT}, also Ossa Properties (Mark Epstein)",
         truncate_to=(2_200, 2_900),
