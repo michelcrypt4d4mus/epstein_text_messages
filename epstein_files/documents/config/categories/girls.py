@@ -777,7 +777,13 @@ GIRLS_CFGS = [
         duplicate_ids=['EFTA00732294'],
     ),
     EmailCfg(id='EFTA00927927', note=f"{RENATA_BOLOTOVA} possibly talking about recruiting girls"),
-    EmailCfg(id='EFTA01816788', note=f"Russian girl for {PRINCE_ANDREW}", is_interesting=9),
+    EmailCfg(
+        id='EFTA01816788',
+        highlight_quote="she 26, russian, clevere beautiful, trustworthy and yes she has your email",
+        is_interesting=9,
+        note=f"Russian girl for {PRINCE_ANDREW}",
+        truncate_to=370,
+    ),
     EmailCfg(id='EFTA00876739', note=f'scouting girls in Ukraine {QUESTION_MARKS}'),
     EmailCfg(id='EFTA00901905', note="smoking in the house oh no!"),
     EmailCfg(
