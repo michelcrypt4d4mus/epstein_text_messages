@@ -273,6 +273,7 @@ GOVERNMENT_CFGS = [
     fbi_report('EFTA00173569', 'hack of FBI Epstein files repository by foreign actor', is_interesting=True),
     fbi_report('EFTA00020506', highlight_quote='chauffeur also told Epstein "I have something on you remember what I buried!"'),
     fbi_report('EFTA02729877', '"MCC Corruption Case" is about guards on duty when Epstein died', is_interesting=True),
+    fbi_report('EFTA00161465', 'evidence inventory including a "List of Absent Items"', is_interesting=True),
     # FBI tips
     fbi_tip(
         'EFTA01660676',
@@ -291,6 +292,7 @@ GOVERNMENT_CFGS = [
         is_interesting=10,
         truncate_to=(853, 4_200),
     ),
+    # FinCEN
     fincen_sar('EFTA01656415', 'Charles Schwab', RICHARD_KAHN, "$45 million transaction"),
     fincen_sar('EFTA01656409', DEUTSCHE_BANK, DARREN_INDYKE, 'structured transactions'),
     grand_jury(
@@ -443,9 +445,10 @@ GOVERNMENT_CFGS = [
     usanys_internal_email('EFTA02731484'),
     usanys_internal_email('EFTA02731757'),
     usanys_internal_email('EFTA02731623'),
+    usanys_internal_email('EFTA00089649', note=f"128,175 email attachments permanently lost", is_interesting=True),
     usanys_internal_email('EFTA00013640', note='list of devices', truncate_to=(600, 1_700)),
-    usanys_internal_email('EFTA02731655', note=f"specific allegations against {LEON_BLACK}", is_interesting=10),
     usanys_internal_email('EFTA02731488', note=f"possible evidence of girls being trafficked to {LEON_BLACK}", is_interesting=10),
+    usanys_internal_email('EFTA02731655', note=f"specific allegations against {LEON_BLACK}", is_interesting=10),
     usanys_internal_email('EFTA02731689', date='2023-06-09 20:14:00', truncate_to=SHORT_TRUNCATE_TO),
     usanys_internal_email('EFTA02731733', date='2021-05-17 17:29:00'),
     usanys_internal_email('EFTA02731754', date='2024-03-06T23:24:00'),
