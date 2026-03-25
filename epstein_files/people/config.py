@@ -476,6 +476,7 @@ HIGHLIGHTED_NAMES = [
             Entity(DAVID_L_NEUHAUSER, f'Livermore Partners, partner of {JOSHUA_FINK}'),
             Entity('Ed Razek', "Victoria's Secret executive"),
             Entity(EDUARDO_TEODORANI, 'Italian, CNH Industrial', r"(Eduardo )?Teodorani(,? Eduardo)?"),
+            Entity('Evelyn Lauder', f"Estée Lauder family fortune", match_partial=None, url=WIKIPEDIA),
             Entity(FILIPA_PEROVIC, f"now Filipa Fink (married to {JOSHUA_FINK}), Coatue Management"),
             Entity('Jeanne Houweling', f'CEO of Adfin, a company Epstein and {HOWARD_LUTNICK} invested in'),
             Entity(
@@ -502,6 +503,7 @@ HIGHLIGHTED_NAMES = [
                 r"Robert (Lawrence )?Kuhn",
                 url=WIKIPEDIA,
             ),
+            Entity('Ronald Lauder', 'heir to the Estée Lauder fortune, Trump megadonor', r"Ron(ald)? Lauder", url=WIKIPEDIA),
             Entity('Sam Belzberg', "Canadian businessman"),
             Entity(STEVE_WYNN, f'gambling magnate, possible dispute with {MILES_GUO}', match_partial=None, url=WIKIPEDIA),
             Entity(TOM_PRITZKER, "chairman of The Pritzker Organization and Hyatt Hotels"),
@@ -1345,6 +1347,7 @@ HIGHLIGHTED_NAMES = [
             Entity(MARTIN_WEINBERG, CRIMINAL_DEFENSE_ATTORNEY, r"Martin.{,15}Weinberg"),
             Entity('Michael J. Pike', 'Epstein lawyer', match_partial=None),
             Entity(MICHAEL_MILLER, "Steptoe LLP partner", r"Micha(el)? Miller|Miller, Micha(el)?", match_partial=None),
+            Entity('Paul Tweed', "UK defamation lawyer", match_partial=None),
             Entity(REID_WEINGARTEN, "Steptoe LLP partner", r"Weingarten, Rei[cdi]|Rei[cdi] Weingarten"),
             Entity(ROBERT_D_CRITTON_JR, CRIMINAL_DEFENSE_ATTORNEY, r"Robert D.? Critton,? Jr\.?", match_partial=None),
             Entity('Robert Gold', "helped Epstein track down money belonging to Spanish families", match_partial=None),
@@ -1430,10 +1433,8 @@ HIGHLIGHTED_NAMES = [
                     'https://en.wikipedia.org/wiki/Estate_of_Jeffrey_Epstein',
                 ]
             ),
+            Organization('HBRK Associates', f"{RICHARD_KAHN}'s company, managed Epstein money", r"HBRK( (Associates,? )?Inc)?"),
         ],
-        patterns=[
-            r"HBRK( (Associates,? )?Inc)?",
-        ]
     ),
     HighlightedNames(
         label='Europe',
@@ -2160,6 +2161,11 @@ HIGHLIGHTED_NAMES = [
                 match_partial=None,
                 url=DROPSITE_EPSTEIN_CAMERAS_URL,
             ),
+            Entity(
+                YONI_KOREN,
+                f"assistant to {EHUD_BARAK}, ex-Mossad",
+                url='https://www.dropsitenews.com/p/israeli-spy-yoni-koren-stayed-jeffrey-epstein-apartment-ehud-barak',
+            ),
             Organization(
                 'Bank Leumi',
                 'Israeli bank that helped Americans avoid taxes',
@@ -2198,7 +2204,6 @@ HIGHLIGHTED_NAMES = [
             r"Yitzhak", r"Rabin",
             r"YIVO",
             r"Yom Kippur",
-            r"Yoni Koren",
             r"zionists?",
         ],
     ),
@@ -3938,22 +3943,24 @@ HIGHLIGHTED_NAMES = [
         category=FRIEND
     ),
     HighlightedNames(
+        label=PRINCE_ANDREW,
+        style='dodger_blue1',
+        category='Europe',
         entities=[
+            Entity.assistant('Amanda Thirsk', PRINCE_ANDREW, url=WIKIPEDIA),
             Entity(
                 PRINCE_ANDREW,
                 "British royal family",
                 r"Prince Andrew|The Duke",
                 match_partial=None,
                 url='https://www.cnn.com/world/live-news/andrew-mountbatten-windsor-arrested-uk-police-02-19-26',
-            )
+            ),
         ],
         patterns=[
             r'\b(?<!FOI/)PA\b',
             r"(?<!Cantor )Urramoor(\s*Limited)?",
             r"Mr\. T",
         ],
-        style='dodger_blue1',
-        category='Europe',
     ),
     # HighlightedNames(
     #     entities=[],

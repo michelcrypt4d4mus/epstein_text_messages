@@ -60,4 +60,5 @@ REPUTATION_CFGS = [
     EmailCfg(id='EFTA00901970', note=f"{AL_SECKEL}'s response to Epstein's forged email", is_interesting=10, truncate_to=3_000),
     EmailCfg(id='EFTA02417620', note=f"{AL_SECKEL} is creating a fake Jeffrey Epstein to improve the real Epstein's Google search results"),
     EmailCfg(id='EFTA00751523', truncate_to=2_100),
+    EmailCfg(id='EFTA01838653', note="PR drafts of public statements retracting allegations against Epstein"),
 ]

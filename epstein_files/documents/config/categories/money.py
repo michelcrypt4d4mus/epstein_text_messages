@@ -38,7 +38,7 @@ def deutsche_bank_doc(id: str, note: str, date: str = '', **kwargs) -> DocCfg:
 
 
 def jpm_doc(id: str, note: str, date: str = '', **kwargs) -> DocCfg:
-    return DocCfg(id=id, author=DEUTSCHE_BANK, date=date, note=note, **kwargs)
+    return DocCfg(id=id, author=JP_MORGAN, date=date, note=note, **kwargs)
 
 
 def schwab_doc(id: str, **kwargs) -> DocCfg:
@@ -192,6 +192,7 @@ MONEY_CFGS = [
 
     # JPM
     jpm_doc('EFTA01480542', 'Epstein source of wealth filing'),
+    jpm_doc('EFTA01480623', f"was going to drop Epstein as a client until {JES_STALEY} intervened", is_interesting=5),
 
     # Jeepers, Inc.
     DocCfg(id='EFTA01255549', note=f'due diligence on {JEEPERS_INC} amusement park owned by Epstein', date='2018-09-27'),
