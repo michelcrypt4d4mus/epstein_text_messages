@@ -321,6 +321,7 @@ GOVERNMENT_CFGS = [
     grand_jury(
         'EFTA00009632',
         date='2007-02-06',
+        is_interesting=True,
         note='FBI agent testimony',
         truncate_to=(2_300, 3_500),
     ),
