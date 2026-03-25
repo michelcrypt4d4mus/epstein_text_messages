@@ -1957,6 +1957,9 @@ HIGHLIGHTED_NAMES = [
             law_enforcement('US Secret Service'),
             law_enforcement('US Congress'),
             law_enforcement('US Senate'),
+            # TODO: These are in UNINTERESTING_AUTHORS but that should be configured here
+            law_enforcement(PALM_BEACH_CODE_ENFORCEMENT),
+            law_enforcement(PALM_BEACH_WATER_COMMITTEE),
             Organization('BaFin', "German financial regulator, tried to arrest journalists who exposed Wirecard's fraud"),
             Organization('FINRA', "Financial Industry Regulatory Authority", r"(www\.)?FINRA(\.org)?|Financial Industry Regulatory Authority",),
             Organization('INS', "US Immigration and Naturalization Service", r"(?-i:INS)"),
@@ -1972,9 +1975,6 @@ HIGHLIGHTED_NAMES = [
                 r"Secure Technologies Exploitation Unit|STXU",
                 aliases=['STXU'],
             ),
-            # TODO: These are in UNINTERESTING_AUTHORS but that should be configured here
-            law_enforcement(PALM_BEACH_CODE_ENFORCEMENT),
-            law_enforcement(PALM_BEACH_WATER_COMMITTEE),
         ],
         patterns=[
             r"(?<!Data\s)AG",
@@ -2030,6 +2030,7 @@ HIGHLIGHTED_NAMES = [
             r"NPA",
             r"NS(A|C)",
             r"NYPD",
+            r"Patriot Act",
             r"PBPD",
             r"police",
             r"POTUS",
