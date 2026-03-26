@@ -42,33 +42,36 @@ CFGS_SUFFIX = '_CFGS'
 PARTICIPANTS_FIELD = 'Participants: field'
 
 HEADER_ABBREVIATIONS = {
-    "AD": "Abu Dhabi",
     "Barak": f"former Israeli prime minister {EHUD_BARAK}",
-    "Barrack": "Tom Barrack (Trump ally)",
     'BG, Bill': "Bill Gates",
     "Brock": 'Brock Pierce (crypto bro with a very sordid past)',
-    "DB": "Deutsche Bank (maybe??)",
     "GRAT": "Grantor Retained Annuity Trust (tax shelter)",
     'HBJ, Jabor Y': "Sheikh Hamad bin Jassim (former Qatari prime minister)",
     'Jared': "Jared Kushner",
-    'Jagland': 'Thorbjørn Jagland (former Norwegian prime minister)',
     'Joi': f"Joi Ito ({MIT_MEDIA_LAB}, MIT Digital Currency Initiative)",
-    "Hoffenberg": f"{STEVEN_HOFFENBERG} (Epstein's ponzi scheme partner)",
     'KSA': "Kingdom of Saudi Arabia",
-    'Kurz': 'Sebastian Kurz (former Austrian Chancellor)',
-    'Kwok': "Chinese criminal Miles Kwok AKA Miles Guo AKA Guo Wengui",
     'LSJ': "Little St. James (Epstein's island)",
     'Madars': 'Madars Virza (co-founder of privacy crypto ZCash)',
-    'Mapp': f'{KENNETH_E_MAPP} (Governor of {VIRGIN_ISLANDS})',
     'MBS': "Mohammed bin Salman Al Saud (Saudi ruler)",
     'MBZ': "Mohamed bin Zayed Al Nahyan (Emirates sheikh)",
-    "Miro": MIROSLAV_LAJCAK,
     "Mooch": "Anthony 'The Mooch' Scaramucci (Skybridge crypto bro)",
     "NPA": 'non-prosecution agreement',
     "PA": PRINCE_ANDREW,
     "Terje": TERJE_ROD_LARSEN,
     "VI": f"U.S. {VIRGIN_ISLANDS}",
     "Woody": "Woody Allen",
+}
+
+TEXT_MSG_ABBREVIATIONS = {
+    "AD": "Abu Dhabi",
+    "Barrack": "Tom Barrack (Trump ally)",
+    "DB": "Deutsche Bank (maybe??)",
+    "Hoffenberg": f"{STEVEN_HOFFENBERG} (Epstein's ponzi scheme partner)",
+    'Jagland': 'Thorbjørn Jagland (former Norwegian prime minister)',
+    'Kwok': "Chinese criminal Miles Kwok AKA Miles Guo AKA Guo Wengui",
+    'Kurz': 'Sebastian Kurz (former Austrian Chancellor)',
+    'Mapp': f'{KENNETH_E_MAPP} (Governor of {VIRGIN_ISLANDS})',
+    "Miro": MIROSLAV_LAJCAK,
 }
 
 
