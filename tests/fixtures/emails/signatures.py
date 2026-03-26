@@ -7,7 +7,7 @@ DEVICE_SIGNATURE_TO_AUTHORS = {
     'Envoyé de mon iPhone': [
         'Fabrice Aidan',
     ],
-    'Envoye de mon iPhone': [
+    'Envoyé de mon iPhone': [
         JULIA_SANTOS,
     ],
     "Sent from AOL Mobile Mail": [
@@ -196,7 +196,7 @@ DEVICE_SIGNATURE_TO_AUTHORS = {
 AUTHORS_TO_DEVICE_SIGNATURES = {
     UNKNOWN: [
         'Отправлено с iPhone',
-        'Envoye de mon iPhone',
+        'Envoyé de mon iPhone',
         'Sent from Yahoo Mail for iPhone',
         'Sent from my Verizon Wireless BlackBerry',
         "Sent from my Windows 10 phone",
@@ -310,10 +310,10 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
         "Sent from my iPhone"
     ],
     JULIA_SANTOS: [
-        'Envoye de mon iPhone'
+        'Envoyé de mon iPhone'
     ],
     KARIM_WADE: [
-        "Envoye avec BlackBerry® d'Orange"
+        "Envoyé avec BlackBerry® d'Orange"
     ],
     KARYNA_SHULIAK: [
         'From my Android phone on T-Mobile. The first nationwide 4G network.',
@@ -392,7 +392,7 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
         'Sent from my Samsung Galaxy smartphone.',
         'Sent from my iPhone',
     ],
-    OLIVIER_COLOM: ['Envoye de mon iPhone'],
+    OLIVIER_COLOM: ['Envoyé de mon iPhone'],
     PAULA_HEIL_FISHER: ["Sent via BlackBerry from T-Mobile"],
     PEGGY_SIEGAL: [
         "Sent from my iPad",
@@ -459,7 +459,7 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
         "Sent from my iPhone",
     ],
     SVETLANA_POZHIDAEVA: [
-        'Envoye de mon iPhone',
+        'Envoyé de mon iPhone',
         'Sent via BlackBerry from T-Mobile',
     ],
     TERJE_ROD_LARSEN: [
@@ -489,6 +489,7 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
 
 SIGNATURE_SUBSTITUTION_COUNTS = {
     "(unknown)": 2,
+    ADA_CLAPP: 1,
     ALAN_DLUGASH: 10,
     ANDREW_FARKAS: 35,
     'Andrew Nikou': 2,

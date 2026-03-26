@@ -4,6 +4,7 @@ from itertools import chain
 import pytest
 from rich.panel import Panel
 
+from epstein_files.documents.config.pic_cfg import PicCfg
 from epstein_files.documents.document import Document
 from epstein_files.documents.email import Email
 from epstein_files.documents.messenger_log import MessengerLog
@@ -91,8 +92,8 @@ def test_file_contents(epstein_files):
 
 
 def test_all_configured_file_ids_exist(epstein_files):
-    all_ids = [doc.file_id for doc in epstein_files._documents]
-    missing_ids = [id for id in CONFIGS_BY_ID.keys() if id not in all_ids]
+    doc_ids = [doc.file_id for doc in epstein_files._documents]
+    missing_ids = [id for id, cfg in CONFIGS_BY_ID.items() if id not in doc_ids and not isinstance(cfg, PicCfg)]
     assert len(missing_ids) == 0, f"Missing {len(missing_ids)} files that are configured: {missing_ids}"
 
 

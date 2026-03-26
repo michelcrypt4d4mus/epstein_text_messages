@@ -46,7 +46,7 @@ def test_bio():
     brock = ENTITIES_DICT[BROCK_PIERCE]
 
     assert brock.bio_txt.plain == \
-        'Brock Pierce [crypto] sex crime history, Bannon partner at IGN, Tether co-founder, friend of Yair Netanyahu [protos/chronicles/wiki]'
+        'Brock Pierce [crypto] sex crime history, Bannon partner at IGN, Tether co-founder, friend of Yair Netanyahu [protos/cryptadamus/wiki]'
 
 
 def test_epstein_co():
