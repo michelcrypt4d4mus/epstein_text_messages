@@ -1954,12 +1954,16 @@ HIGHLIGHTED_NAMES = [
                 url='https://www.nytimes.com/2016/03/01/nyregion/goldman-sachs-puts-worker-linked-to-donald-trump-on-leave.html',
             ),
             Entity(
+                'Matthew I. Menchel',
+                "former prosecutor who dined with Epstein",
+                url='https://www.law.com/dailybusinessreview/2026/02/26/how-a-former-miami-chief-criminal-prosecutor-stayed-in-touch-with-epstein-after-his-plea-deal-/',
+            ),
+            Entity(
                 'Michael Reiter',
                 f"{PALM_BEACH_POLICE} chief who first caught Epstein",
                 url='https://www.bbc.com/news/articles/cx2407jrn83o',
             ),
             Entity('Michael Thomas', "MCC 'guard of interest' at time of Epstein's death, fired", match_partial=None),
-            Entity('Tova Noel', "MCC 'guard of interest' at time of Epstein's death, fired", match_partial=None),
             Entity('Paula Speer', "court reporter", match_partial=None),
             Entity(
                 'Regina Dugan',  # EFTA02009735
@@ -1967,6 +1971,7 @@ HIGHLIGHTED_NAMES = [
                 match_partial=None,
                 url='https://www.engadget.com/2012-03-12-darpa-director-exits-agency-for-google-assumes-mysterious-role.html',
             ),
+            Entity('Tova Noel', "MCC 'guard of interest' at time of Epstein's death, fired", match_partial=None),
             Entity("Valerie Plame-Wilson", f"CIA agent at the center of The Plame Affair", url='https://en.wikipedia.org/wiki/Plame_affair'),
             acronym('Confidential Human Source', 'FBI speak for a tipster'),
             acronym('Foreign Corrupt Practices Act'),
