@@ -1190,6 +1190,7 @@ EMAILS_CONFIG = [
         note=f'Epstein tells {DAVID_STERN} to avoid {BANQUE_HAVILLAND} as it "add[s] China and Europe to Russia & Belorussia"',
         truncate_to=1_000,
     ),
+    EmailCfg(id='EFTA00406579', note='Epstein had multiple passports', highlight_quote="JE's Main and Second Passport"),
     EmailCfg(id='EFTA00949376', note=f"Epstein paying {MC2_MODEL_MGMT}", truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA01060612', note=f"Epstein plots against the JASTA bill"),
     EmailCfg(id='EFTA00630134', note=f'Epstein recommends Signal encrypted messenger to {ALLEGED_KARIM_WADE}', is_interesting=10),

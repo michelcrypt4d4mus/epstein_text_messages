@@ -508,6 +508,7 @@ HIGHLIGHTED_NAMES = [
                 url=WIKIPEDIA,
             ),
             Entity('Ronald Lauder', 'heir to the Estée Lauder fortune, Trump megadonor', r"Ron(ald)? Lauder", url=WIKIPEDIA),
+            Entity('Ronald Perelman', "owner of Revlon, Trump donor, Israel supporter", r"Ron(ald)? Perelman"),
             Entity('Sam Belzberg', "Canadian businessman"),
             Entity(STEVE_WYNN, f'gambling magnate, possible dispute with {MILES_GUO}', match_partial=None, url=WIKIPEDIA),
             Entity(TOM_PRITZKER, "chairman of The Pritzker Organization and Hyatt Hotels", r"Th?om(as)? Pr(it|ti)zker"),

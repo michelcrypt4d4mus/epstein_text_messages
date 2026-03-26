@@ -1,5 +1,6 @@
-from epstein_files.documents.config.config_builder import JANE_DOE_V_USA, letter, starr_letter
-from epstein_files.documents.config.doc_cfg import DocCfg
+from epstein_files.documents.config.config_builder import JANE_DOE_V_USA, letter
+from epstein_files.documents.config.communication_cfg import CommunicationCfg
+from epstein_files.documents.config.doc_cfg import DocCfg, DuplicateType
 from epstein_files.documents.config.email_cfg import EmailCfg
 from epstein_files.people.names import *
 from epstein_files.util.constant.strings import *
@@ -20,6 +21,19 @@ REDACTED_V_EPSTEIN_ESATE = f"{REDACTED} v. Estate of Jeffrey Epstein, {GHISLAINE
 
 # Misc
 LEXIS_NEXIS_CVRA_SEARCH = f"{LEXIS_NEXIS} search for case law around the {CVRA}"
+
+
+def starr_letter(id: str, date: str, duplicate_ids: list[str], dupe_type: DuplicateType = 'same', **kwargs) -> CommunicationCfg:
+    return letter(
+        id=id,
+        author=KEN_STARR,
+        date=date,
+        duplicate_ids=duplicate_ids,
+        dupe_type=dupe_type,
+        note="requesting lenient treatment for Epstein",
+        recipients=['Judge Mark Filip'],
+        **kwargs
+    )
 
 
 LEGAL_CFGS = [
@@ -159,7 +173,7 @@ LEGAL_CFGS = [
     letter('031447', MARTIN_WEINBERG, ['Melanie Ann Pustay', "Sean O'Neill"], "re: Epstein FOIA request", '2015-08-19'),
     letter('020662', f"Mishcon de Reya", ['Daily Mail'], f"threatening libel lawsuit"),
     starr_letter('025353', '2008-05-19', ['010723', '019224'], 'redacted', non_participants=[LANDON_THOMAS]),
-    starr_letter('025704', '2008-05-27', ['010732', '019221'], 'redacted'),
+    starr_letter('025704', '2008-05-27', ['010732', '019221', 'EFTA00605382'], 'redacted'),
     starr_letter('012130', '2008-06-19', ['012135'], non_participants=[LESLEY_GROFF]),
 
     # DOJ files
@@ -182,4 +196,6 @@ LEGAL_CFGS = [
     # emails
     EmailCfg(id='EFTA00039794', recipients=['Michael Danchuk', USANYS]),
     EmailCfg(id='EFTA00039816', is_interesting=False),
+    EmailCfg(id='EFTA00188608', note=f"contains filing in {JANE_DOE_V_USA}"),
+    letter('EFTA00625093', MARTIN_WEINBERG, [KATHRYN_RUEMMLER], date='2014-06-01', date_uncertain='guess'),
 ]

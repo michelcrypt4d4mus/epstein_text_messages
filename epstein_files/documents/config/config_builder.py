@@ -234,19 +234,6 @@ def press_release(id: str, author: Name, date: str = '', note: str = '', **kwarg
     return DocCfg(id=id, author=author, category=Neutral.PRESSER, date=date, note=note, **kwargs)
 
 
-def starr_letter(id: str, date: str, duplicate_ids: list[str], dupe_type: DuplicateType = 'same', **kwargs) -> CommunicationCfg:
-    return letter(
-        id=id,
-        author=KEN_STARR,
-        date=date,
-        duplicate_ids=duplicate_ids,
-        dupe_type=dupe_type,
-        note="requesting lenient treatment for Epstein",
-        recipients=['Judge Mark Filip'],
-        **kwargs
-    )
-
-
 def valar_cfg(id: str, note: str = '', text: str = '') -> DocCfg:
     return DocCfg(
         id=id,

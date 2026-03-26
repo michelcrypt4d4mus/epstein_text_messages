@@ -90,6 +90,10 @@ def fincen_sar(id: str, bank: str, subject: str, activity: str, **kwargs) -> Doc
     return DocCfg(id=id, author=FINCEN, note=note, **kwargs)
 
 
+def sdfl_internal_email(id: str, **kwargs) -> EmailCfg:
+    return EmailCfg(id=id, author='SDFL', recipients=['SDFL'], author_uncertain=True, recipient_uncertain=True, **kwargs)
+
+
 def usanys_internal_email(id: str, **kwargs) -> EmailCfg:
     return EmailCfg(id=id, author=USANYS, recipients=[USANYS], author_uncertain=True, **kwargs)
 
@@ -531,6 +535,10 @@ GOVERNMENT_CFGS = [
     ),
     EmailCfg(id='EFTA00039796', author=SDNY, recipients=[USANYS]),
     fbi_internal('EFTA00021353'),
+
+    # SDFL
+    sdfl_internal_email('EFTA00215139'),
+    sdfl_internal_email('EFTA00214699'),
 
     # USANYS
     EmailCfg(
