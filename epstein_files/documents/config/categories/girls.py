@@ -350,6 +350,7 @@ GIRLS_CFGS = [
         is_interesting=10,
         note=f"email about a job for {RENATA_BOLOTOVA} at {TERJE_ROD_LARSEN}'s International Peace Institute",
     ),
+    EmailCfg(id='EFTA00775732', author='Sarah', author_reason='https://jmail.world/thread/EFTA02443569?view=inbox'),
     EmailCfg(id='EFTA02441035', author=STEVEN_VICTOR_MD, note="complaints about free medical treatment for Epstein's girls"),
     EmailCfg(id='EFTA00664619', author=SUE, author_reason='"Dear Sue"'),
     EmailCfg(
@@ -649,7 +650,11 @@ GIRLS_CFGS = [
     EmailCfg(id='EFTA00657216', highlight_quote='Is Katya coming over?', note=f'"Katya" is {EKATERINA_GUSAROVA}'),
 
     # Quotes
-    EmailCfg(id='011908_3', highlight_quote='sex trafficking allegations have stopped us from working with • your agency for the past 5-6 years'),
+    EmailCfg(
+        id='011908_3',
+        highlight_quote='sex trafficking allegations have stopped us from working with • your agency for the past 5-6 years',
+        is_interesting=5,
+    ),
     EmailCfg(
         id='EFTA02504370',
         highlight_quote=f'lovely girl with financial troubles',
@@ -703,6 +708,7 @@ GIRLS_CFGS = [
         highlight_quote='she met this Congressman recently who, from what I unde=stood gives her everything, a private driver, bodyguard',
         is_interesting=True,
     ),
+    EmailCfg(id='EFTA00772798', highlight_quote="how old was she in 99 then?", note='Epstein tells Ghislaine that Giuffre was 17'),
     EmailCfg(id='EFTA00682682', highlight_quote='Working girl?', truncate_to=300, duplicate_ids=['EFTA00680779'], dupe_type='redacted'),
     EmailCfg(id='EFTA01891832', highlight_quote="Anya, do u have any 20 years old girl for Jeffrey in Kiev?"),
     EmailCfg(id='EFTA01740839', highlight_quote='is the invitation for Sultan AND his wife?', note='note capital "AND"', is_interesting=True),

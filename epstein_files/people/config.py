@@ -1291,6 +1291,7 @@ HIGHLIGHTED_NAMES = [
             epstein_co('Prytanee, LLC'),
             epstein_co('SCI JEP'),
             epstein_co('Southern Country International'),
+            epstein_co('The Mothers Army', r"(The )?Mothers Army", "rehabilitate Epstein's image with help of powerful women"),
             epstein_co('Thomas World Air'),
             epstein_co('Zorro Development Corp'),
             epstein_co('Zorro Management'),
@@ -2310,6 +2311,7 @@ HIGHLIGHTED_NAMES = [
             ),
             Entity('Kia Kokalitcheva', 'US venture capital news at Pitchbook'),
             Entity(LANDON_THOMAS, "New York Times financial reporter", r"lando[nr] thomas( jr)?|thomas jr.?, lando[nr]"),
+            Entity('Liz Murdoch', 'daughter of Rupert, heir to the Fox News media empire', match_partial=None),
             Entity('Matthew Goldstein', f"New York Times reporter", match_partial=None),
             Entity(
                 MICHAEL_WOLFF,
