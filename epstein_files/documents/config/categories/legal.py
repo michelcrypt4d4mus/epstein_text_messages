@@ -115,6 +115,7 @@ LEGAL_CFGS = [
         # author=JANE_DOE_V_USA,
         date='2007-09-12',
         highlight_quote='spending some quality time with Title 18 looking for misdemeanors',
+        non_participants=['MCC'],
         note='long and chummy conversation between Epstein defense attorneys and Florida prosecutors',
         is_interesting=9,
         truncate_to=AUTO

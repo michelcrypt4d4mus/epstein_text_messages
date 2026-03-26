@@ -2907,7 +2907,7 @@ HIGHLIGHTED_NAMES = [
             Entity('Owen Blicksilver', "OBPR, Inc."),
             Entity(PEGGY_SIEGAL, "socialite, movie promoter", r"Peggy Sieg[ae]l?", url=WIKIPEDIA),
             Entity('R. Couri Hay', 'PR (?)'),
-            Entity(ROSS_GOW, "Acuity Reputation Management", r"Ross(acuity)? Gow|(ross@)?acuity reputation(\.com)?"),
+            Entity(ROSS_GOW, "Acuity Reputation Management", r"Ross(acuity)? Gow|(ross@)?acuity reputation(\.com)?", match_partial=None),
             Entity(
                 TYLER_SHEARS,
                 f"reputation management, worked on with {CHRISTINA_GALBRAITH}",
@@ -3624,7 +3624,7 @@ HIGHLIGHTED_NAMES = [
                 match_partial=None,
             ),
             Entity(JOHN_PHELAN, 'current US Secretary of the Navy', url=WIKIPEDIA),
-            Entity('Marla Maples', 'ex-wife of Donald Trump', match_partial='both', url=WIKIPEDIA),
+            Entity('Marla Maples', 'ex-wife of Donald Trump', match_partial=None, url=WIKIPEDIA),  # bannon texts
             Entity(
                 'Melania',
                 "...Trump?",
