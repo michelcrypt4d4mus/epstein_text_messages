@@ -385,7 +385,7 @@ GOVERNMENT_CFGS = [
         recipient_uncertain=True,
         truncate_to=AUTO,
     ),
-    EmailCfg(id='EFTA00164742', note='summary of video evidence', is_interesting=10),
+    fbi_internal('EFTA00164742', note='summary of video evidence', is_interesting=10),
     EmailCfg(
         id='EFTA00146839',
         highlight_quote="did not support federal criminal activity, specifically Obstruction of Justice",
