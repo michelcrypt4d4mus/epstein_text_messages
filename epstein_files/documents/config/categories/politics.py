@@ -95,8 +95,12 @@ POLITICS_CFGS = [
     bannon_imessage('EFTA01615720', date='2019-04-05'),
     bannon_imessage('EFTA01615642', date='2019-03-01'),
     bannon_imessage('EFTA01615808'),
+    bannon_imessage('EFTA00783660', date='2019-02-06'),
 
     # Albert Bryan
     EmailCfg(id='EFTA02258597', recipients=[ALBERT_BRYAN, DAPHNE_WALLACE]),
     EmailCfg(id='EFTA02258608', author=DAPHNE_WALLACE, recipients=[ALBERT_BRYAN, JOHN_ENGERMAN]),
+
+    # USVI
+    EmailCfg(id='EFTA00705527', note='discussion of Virgin Islands radio station acquisition', is_interesting=True),
 ]

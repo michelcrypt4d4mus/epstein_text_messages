@@ -490,6 +490,7 @@ HIGHLIGHTED_NAMES = [
             Entity(EDUARDO_TEODORANI, 'Italian, CNH Industrial', r"(Eduardo )?Teodorani(,? Eduardo)?"),
             Entity('Evelyn Lauder', f"Estée Lauder family fortune", match_partial=None, url=WIKIPEDIA),
             Entity(FILIPA_PEROVIC, f"now Filipa Fink (married to {JOSHUA_FINK}), Coatue Management"),
+            Entity('James P. McGee', f"{NEWGRANGE_CONSULTING} plans for USVI political control", match_partial=None),
             Entity('Jeanne Houweling', f'CEO of Adfin, a company Epstein and {HOWARD_LUTNICK} invested in'),
             Entity(
                 LES_WEXNER,
@@ -520,6 +521,8 @@ HIGHLIGHTED_NAMES = [
             Entity('Sam Belzberg', "Canadian businessman"),
             Entity(STEVE_WYNN, f'gambling magnate, possible dispute with {MILES_GUO}', match_partial=None, url=WIKIPEDIA),
             Entity(TOM_PRITZKER, "chairman of The Pritzker Organization and Hyatt Hotels", r"Th?om(as)? Pr(it|ti)[sz]ker"),
+
+            # Orgs
             Organization('501c3', 'IRS code for a non-profit entity'),
             Organization(ATT_COURT_APPEARANCE_TEAM, "AT&T", is_interesting=False),
             Organization('CNH Industrial', 'Italian multinational metals company'),
@@ -527,6 +530,7 @@ HIGHLIGHTED_NAMES = [
             Organization('Island Global Yachting', belongs_to=ANDREW_FARKAS),
             Organization('Junkermann Group', JUNKERMANN_FUND),
             Organization('Lockheed Martin', 'American military contractor', r"Lockheed( Martin)?"),
+            Organization(NEWGRANGE_CONSULTING, "planned Epstein's Virgin Islands media influence", r"Newgrange( Consulting)?"),
             Organization('NJF Capital', JUNKERMANN_FUND, r"NJF( Capital)?"),
             Organization('Western Union', 'international money transmitter', emailer_pattern=r"Western Union( Financial)?"),
             Organization("Wexner Children's Trust", emailer_pattern="Wexner Children's Trust( I*)?", belongs_to=LES_WEXNER),
@@ -1287,7 +1291,6 @@ HIGHLIGHTED_NAMES = [
             epstein_co('Maple, Inc.', info='in Virgin Islands'),
             epstein_co('Narrow Holdings'),
             epstein_co('Neptune, LLC'),
-            epstein_co(NEWGRANGE_CONSULTING, r"Newgrange( Consulting)?", "Virgin Islands media influence"),
             epstein_co('NES LLC'),
             epstein_co('New York Strategy Group'),
             epstein_co('Plan D'),
@@ -1470,7 +1473,7 @@ HIGHLIGHTED_NAMES = [
                     'https://en.wikipedia.org/wiki/Estate_of_Jeffrey_Epstein',
                 ]
             ),
-            Organization('HBRK Associates', f"{RICHARD_KAHN}'s company, managed Epstein money", r"HBRK( (Associates,? )?Inc)?"),
+            Organization('HBRK Associates', f"{RICHARD_KAHN}'s company, managed Epstein money", r"HBRK( Associates)?,?( Inc)?"),
         ],
     ),
     HighlightedNames(

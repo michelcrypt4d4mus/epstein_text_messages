@@ -195,6 +195,15 @@ MONEY_CFGS = [
     memo('EFTA01366011', DARREN_INDYKE, f"$3,000 expense reimbursement for {LASMA_KUHTARSKA}", show_with_name=LASMA_KUHTARSKA),  # TODO: to "marjorie"
     letter('EFTA00587879', DARREN_INDYKE, ['BV70 LLC'], "extremely dodgy charitable donation to Epstein associated co. Gratitude", is_interesting=11),
     DocCfg(id='EFTA00622816', note="Plan D note promising $8,000,000 to Leon Black's BV70 LLC", date='2017-04-17', is_interesting=10, truncate_to=500),
+    DocCfg(
+        id='EFTA00709105',
+        note="Epstein employee payroll 2010",
+        date='2011-01-15',
+        date_uncertain='approx',
+        is_interesting=15,
+        show_full_panel=True, # TODO: show image?
+        truncate_to=1_600,
+    ),
 
     # JPM
     jpm_doc('EFTA01480542', 'Epstein source of wealth filing'),
@@ -232,6 +241,8 @@ MONEY_CFGS = [
         note=f"Epstein and {KATHRYN_RUEMMLER} plan fees for resolving {EDMOND_DE_ROTHSCHILD}'s money laundering issues",
         truncate_to=1_390,
     ),
+    EmailCfg(id='EFTA02477238', is_interesting=10, note=f"Epstein sends $250,000 to {TERJE_ROD_LARSEN}", truncate_to=700),
+    EmailCfg(id='EFTA01732929', is_interesting=10, note=f"$250,000 to {TERJE_ROD_LARSEN} from {SOUTHERN_TRUST_COMPANY}", truncate_to=500),
 
     # Schwab
     schwab_doc('EFTA01265978', date='2019-07-10', note='account opened 3 months before death'),
@@ -326,6 +337,7 @@ MONEY_CFGS = [
     ),
     EmailCfg(id='EFTA01376515', show_with_name=LEON_BLACK),
     EmailCfg(id='EFTA01404535', truncate_to=(1_150, 2_200)),
+    EmailCfg(id='EFTA00697318', show_with_name=LEON_BLACK),
     EmailCfg(id='EFTA01915851', highlight_quote="we need to create a lie for leon and ronald lauder to own the painting"),
 
     # David Stern
@@ -335,6 +347,7 @@ MONEY_CFGS = [
         note=f'"PA" is probably {PRINCE_ANDREW} plus a meeting with {NICOLE_JUNKERMANN}',
         show_with_name=NICOLE_JUNKERMANN,
     ),
+
     # Joi Ito
     EmailCfg(id='EFTA01964198'),  # no profits/charity
     EmailCfg(id='EFTA01754913'),  # no profits/charity
