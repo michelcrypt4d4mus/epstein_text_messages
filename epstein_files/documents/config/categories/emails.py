@@ -961,18 +961,6 @@ EMAILS_CONFIG = [
         duplicate_ids=['EFTA00945344', 'EFTA02563292', 'EFTA00948275'],
     ),
     EmailCfg(
-        id='EFTA02538649',
-        author=RENATA_BOLOTOVA,
-        author_reason=f'{SNEAKY_DOG} + {TERJE_ROD_LARSEN} mention',
-        note=f"email about a future job at {TERJE_ROD_LARSEN}'s International Peace Institute",
-    ),
-    EmailCfg(
-        id='EFTA02540487',
-        author_reason=f'{SNEAKY_DOG} + {TERJE_ROD_LARSEN} mention',
-        author=RENATA_BOLOTOVA,
-        note=f"email about a future job at {TERJE_ROD_LARSEN}'s International Peace Institute",
-    ),
-    EmailCfg(
         id='EFTA00912012',
         author_reason='renbolotova in body',
         author=RENATA_BOLOTOVA,

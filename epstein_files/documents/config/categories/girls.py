@@ -297,9 +297,15 @@ GIRLS_CFGS = [
     EmailCfg(id='EFTA02026255', author=MARIA_PRUSAKOVA, author_uncertain=CLIFFORD_CHANCE, truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA00684871', author=MARIANA_IDZKOWSKA),
     EmailCfg(id='EFTA00674483', author=MARIANA_IDZKOWSKA),
+    EmailCfg(
+        id='EFTA00662373',
+        author=MASHA_DROKOVA,
+        author_reason='"Best, Masha"',
+        highlight_quote='She is interesting. Great looks',
+        is_interesting=True,
+    ),
     EmailCfg(id='EFTA01990879', author=MIRANDA_MAKO, author_uncertain='Clifford Chance, could be Miranda'),
     EmailCfg(id='EFTA00671662', author=MIRANDA_MAKO, author_reason='quoted signature "Miranda"', note="yet another girl finder"),
-    EmailCfg(id='EFTA00662373', author=MASHA_DROKOVA, author_reason='"Best, Masha"', highlight_quote='She is interesting. Great looks'),
     # Nadia
     EmailCfg(id='021814', author=NADIA_MARCINKO, author_reason='reply'),
     EmailCfg(id='021808', author=NADIA_MARCINKO, author_reason='reply', truncate_to=NO_TRUNCATE),
@@ -311,6 +317,19 @@ GIRLS_CFGS = [
     EmailCfg(id='EFTA01897098', author=NADIA_MARCINKO, note=f"{NADIA_MARCINKO} wants $5 million to part with Epstein"),
     EmailCfg(id='EFTA00677154', author=NADIA_MARCINKO),
     EmailCfg(id='EFTA02456758', note=f'ongoing financial support for {NADIA_MARCINKO}', show_with_name=NADIA_MARCINKO),
+    EmailCfg(
+        id='EFTA02538649',
+        author=RENATA_BOLOTOVA,
+        author_reason=f'{SNEAKY_DOG} + {TERJE_ROD_LARSEN} mention',
+        note=f"email about a future job at {TERJE_ROD_LARSEN}'s International Peace Institute",
+    ),
+    EmailCfg(
+        id='EFTA02540487',
+        author=RENATA_BOLOTOVA,
+        author_reason=f'{SNEAKY_DOG} + {TERJE_ROD_LARSEN} mention',
+        is_interesting=10,
+        note=f"email about a job for {RENATA_BOLOTOVA} at {TERJE_ROD_LARSEN}'s International Peace Institute",
+    ),
     EmailCfg(id='EFTA02441035', author=STEVEN_VICTOR_MD, note="complaints about free medical treatment for Epstein's girls"),
     EmailCfg(id='EFTA00664619', author=SUE, author_reason='"Dear Sue"'),
     EmailCfg(
