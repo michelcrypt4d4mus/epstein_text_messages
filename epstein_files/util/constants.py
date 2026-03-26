@@ -59,7 +59,6 @@ HEADER_ABBREVIATIONS = {
     'Kwok': "Chinese criminal Miles Kwok AKA Miles Guo AKA Guo Wengui",
     'LSJ': "Little St. James (Epstein's island)",
     'Madars': 'Madars Virza (co-founder of privacy crypto ZCash)',
-    'Mapp': f'{KENNETH_E_MAPP} (Governor of {VIRGIN_ISLANDS})',
     'MBS': "Mohammed bin Salman Al Saud (Saudi ruler)",
     'MBZ': "Mohamed bin Zayed Al Nahyan (Emirates sheikh)",
     "Miro": MIROSLAV_LAJCAK,
