@@ -3732,8 +3732,17 @@ HIGHLIGHTED_NAMES = [
             Entity("Audrey/Aubrey Raimbault", 'appears in flight logs'),
             Entity('Brittany Beale', VICTIM_EVIDENCE),
             Entity(CECILIA_STEEN, f'Epstein assistant, moved to Dubai to work for money launderers (?)'),
-            Entity(CELINA_DUBIN, f"daughter of Glenn &{EVA_DUBIN}, called Epstein 'unc'", r"Celina (E(\.|dith)? )?Dubin", match_partial=None),
-            Entity('Emma Sergeant', 'painter introduced to Ghislaine by Robert Hanson', url='https://www.bbc.co.uk/radio4/womanshour/02/2008_43_tue.shtml'),
+            Entity(
+                CELINA_DUBIN,
+                f"daughter of Glenn &{EVA_DUBIN}, called Epstein 'unc', major beneficiary of Epstein's will",
+                r"Celina (E(\.|dith)? )?Dubin",
+                match_partial=None,
+            ),
+            Entity(
+                'Emma Sergeant',
+                'painter introduced to Ghislaine by Robert Hanson',
+                url='https://www.bbc.co.uk/radio4/womanshour/02/2008_43_tue.shtml',
+            ),
             Entity(
                 EVA_DUBIN,
                 f"Epstein's ex-gf now married to {GLENN_DUBIN}, doctor at {MOUNT_SINAI}",
@@ -3751,7 +3760,11 @@ HIGHLIGHTED_NAMES = [
             Entity('Jennifer Aros', 'abused by Epstein starting at age 14', url='https://x.com/epsteinsearchin/status/2031730091827544180'),
             Entity('Jennifer Laduke', VICTIM_EVIDENCE),
             Entity('Justina Auškelytė', 'Julliard student from Latvia', r"Justina Au[fšs]kelyt[eė]", url=DITE_ANATA_JUILLIARD_URL),
-            Entity('Katherine Khuat', '"Barry Josephson\'s girl"', url='https://www.shutterstock.com/image-photo/katherine-khuat-dinner-friends-cocktail-party-111352049'),
+            Entity(
+                'Katherine Khuat',
+                '"Barry Josephson\'s girl"',
+                url='https://www.shutterstock.com/image-photo/katherine-khuat-dinner-friends-cocktail-party-111352049',
+            ),
             Entity(KATHERINE_KEATING, "daughter of former Australian prime minister Paul Keating", match_partial=None),
             Entity(
                 'Kimberly Ko',
@@ -3762,7 +3775,7 @@ HIGHLIGHTED_NAMES = [
             ),
             Entity(
                 LAURA_T_NEWMAN,
-                'sued Epstein for abuse',
+                'named plaintiff in lawsuit against Epstein',
                 email_addresses=['lauratnewman@mac.com'],
                 match_partial=None,
                 url=COURTHOUSE_NEWS_2024_LAWSUIT_URL,
@@ -3852,6 +3865,7 @@ HIGHLIGHTED_NAMES = [
             r"teenager?",
             r"Tinkerbell",
             r"underage",
+            r"xnxx(\.com)?",
             r"vibrator",
             r"victim list",
             r"you are preg",
