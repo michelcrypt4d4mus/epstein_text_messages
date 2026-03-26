@@ -166,6 +166,14 @@ GOVERNMENT_CFGS = [
     bop_doc('EFTA00108552', 'roster of inmates at Metropolitan Correctional Center', '2019-07-23'),
     bop_doc('EFTA00039025', "report on death of Jeffrey Epstein", '2023-06-22', is_interesting=10),
     bop_doc('EFTA00039190', 'Special Housing Units', '2016-11-23', is_interesting=False),
+    bop_memo(
+        'EFTA00036336',
+        f"Epstein's final phone call (he claime it was to his mother, it was to {KARYNA_SHULIAK})",
+        date='2019-08-10',
+        duplicate_ids=['EFTA00033630'],
+        show_full_panel=True,
+        truncate_to=(100, 1_200),
+    ),  # TODO: show image?
     bop_memo('EFTA00036136', 'camera project'),
     bop_memo('EFTA00143071', 'Epstein and his cellmate Efrain Reyes', is_interesting=True),
     bop_policy_doc('EFTA00120459', 'handwritten log of prisoner movements', date='2019-08-09'),

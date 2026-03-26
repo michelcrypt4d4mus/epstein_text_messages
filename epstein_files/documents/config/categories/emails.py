@@ -750,6 +750,7 @@ EMAILS_CONFIG = [
     binant_redacted('032464', NO_TRUNCATE),
 
     # Authors DOJ files
+    EmailCfg(id='EFTA02052550', author='Ananda Apfelbaum'),
     EmailCfg(id='EFTA00645449', author=ANASTASIYA_SIROOCHENKO, author_reason='Jmail'),
     EmailCfg(id='EFTA00040142', author=ATT_COURT_APPEARANCE_TEAM, recipients=[USANYS]),
     EmailCfg(id='EFTA01040692', author=ALAN_DLUGASH, note='meeting about tax implications of ZCash'),

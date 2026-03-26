@@ -55,6 +55,7 @@ GIRLS_CFGS = [
     EmailCfg(id='030152', note=f"model scout Tigrane apparently used to work for Trump Models"),
     EmailCfg(id='025874', note=f"possibly about {VIRGINIA_GIUFFRE} {QUESTION_MARKS}"),
     EmailCfg(id='030609', duplicate_ids=['030495']),
+    EmailCfg(id='026998', note=f"{JONATHAN_FARKAS} in love with an Epstein girl"),
 
     # DOJ Files
     DocCfg(
