@@ -53,6 +53,8 @@ TECH_CFGS = [
     DocCfg(id='EFTA01088484', author=VALAR_VENTURES, note="contract", is_interesting=True),
     DocCfg(id='EFTA00591691', author=VALAR_VENTURES, note="contract", is_interesting=True),
     DocCfg(id='EFTA00810362', author=VALAR_VENTURES, note="investor questionnaire", is_interesting=True),
+    DocCfg(id='EFTA00511309', author=KARYNA_SHULIAK, note='personal address book', truncate_to=800),
+    DocCfg(id='EFTA00512483', author=KARYNA_SHULIAK, note='personal address book', truncate_to=800),
     EmailCfg(id='EFTA01001339', note=f"{PETER_THIEL} introduces Epstein to the {VALAR_VENTURES} founders", is_interesting=10),
     # Google guys
     EmailCfg(
@@ -71,4 +73,6 @@ TECH_CFGS = [
     # Misc
     EmailCfg(id='EFTA00442950', highlight_quote="old hard drives Darren had me review & erase", is_interesting=True, truncate_to=AUTO),
     EmailCfg(id='EFTA02283085', highlight_quote="dont use my name. set a call today with Lori Goler"),
+    EmailCfg(id='EFTA00501483', highlight_quote="Jeffrey has asked that James wipe clean"),
+    EmailCfg(id='EFTA00501484', highlight_quote="Jeffrey has asked that James wipe clean old computer"),
 ]

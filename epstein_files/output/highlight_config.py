@@ -85,6 +85,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"((anti )?money )?launder(s?|ers?|ing)?( money)?",
             r"(?<!(alfa|ture|hase|rahi|sche|sica)\s)bank(?!\s+(Leumi|of|secrecy))",
             r"billionaire",
+            r"binding arbitration",
             r"Black Sc?holes",
             r"brokerage",
             r"capital controls",

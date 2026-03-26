@@ -51,6 +51,7 @@ ACADEMIA_CFGS = [
         is_interesting=False,
     ),
     DocCfg(id='EFTA00584059', author=LEON_BLACK, note=f"donation to {LAWRENCE_KRAUSS}", truncate_to=2_000),
+    DocCfg(id='EFTA00582627', note='space station'),
 
     # DOJ Files
     DocCfg(

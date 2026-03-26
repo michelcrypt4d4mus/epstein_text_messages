@@ -57,6 +57,9 @@ GIRLS_CFGS = [
     EmailCfg(id='030609', duplicate_ids=['030495']),
     EmailCfg(id='026998', note=f"{JONATHAN_FARKAS} in love with an Epstein girl"),
     EmailCfg(id='EFTA00540166', note=f"irregular admission of {KARYNA_SHULIAK} to Columbia Dental School", truncate_to=2_000),
+    EmailCfg(id='EFTA00539168', note=f"irregular admission of {KARYNA_SHULIAK} to Columbia Dental School"),
+    EmailCfg(id='EFTA00535421', note=f"irregular admission of {KARYNA_SHULIAK} to Columbia Dental School"),
+    EmailCfg(id='EFTA00529914', note=f"special help from Columbia Dental School for {KARYNA_SHULIAK}"),
 
     # DOJ Files
     DocCfg(
@@ -864,6 +867,7 @@ GIRLS_CFGS = [
     DocCfg(id='EFTA02312343_1', note='translation of visa email', attached_to_email_id='EFTA02312343', show_full_panel=True),
     EmailCfg(id='EFTA02652017', note="inquiry about someone's immigration asylum application", is_interesting=True),
     EmailCfg(id='EFTA00637127', note=f"{CECILE_DE_JONGH} helping with girls' visa issues"),
+    EmailCfg(id='EFTA00458715', show_with_name=MASHA_DROKOVA),
     blaine_letter('019086', date='2015-05-27', suffix='naming various Putin puppet regimes', show_full_panel=True),
     blaine_letter('019474', date='2015-05-29'),
     blaine_letter('019476', date='2015-06-01'),

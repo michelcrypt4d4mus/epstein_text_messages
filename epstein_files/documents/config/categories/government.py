@@ -1,6 +1,6 @@
 from epstein_files.documents.config.config_builder import (fbi_defense_witness, fbi_interview, fbi_tip, fbi_report,
      grand_jury, interview, inventory, letter, memo)
-from epstein_files.documents.config.doc_cfg import NO_TRUNCATE, SHORT_TRUNCATE_TO, DocCfg
+from epstein_files.documents.config.doc_cfg import EMAIL_TRUNCATE_TO, NO_TRUNCATE, SHORT_TRUNCATE_TO, DocCfg
 from epstein_files.documents.config.email_cfg import EmailCfg
 from epstein_files.people.names import *
 from epstein_files.util.constant.strings import AUTO, CVRA, MINOR_VICTIM, REDACTED
@@ -317,6 +317,7 @@ GOVERNMENT_CFGS = [
             SVETLANA_POZHIDAEVA
         ],
     ),
+    fbi_report('EFTA00173481', 'statement of Aaron E. Spivack re: investigation into missing evidence', date='2024-01-26', is_interesting=5, truncate_to=EMAIL_TRUNCATE_TO),
     fbi_report('021569'),
     fbi_report('021434', is_valid_for_name_scan=False),
     fbi_report('019352', f"contains clippings of various press items about Epstein"),

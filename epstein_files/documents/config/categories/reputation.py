@@ -1,4 +1,5 @@
 from epstein_files.documents.config.communication_cfg import skype_log
+from epstein_files.documents.config.config_builder import letter
 from epstein_files.documents.config.doc_cfg import DocCfg
 from epstein_files.documents.config.email_cfg import EmailCfg
 from epstein_files.people.names import *
@@ -63,4 +64,5 @@ REPUTATION_CFGS = [
     EmailCfg(id='EFTA00751523', truncate_to=2_100),
     EmailCfg(id='EFTA01838653', note="PR drafts of public statements retracting allegations against Epstein"),
     EmailCfg(id='EFTA00682303', highlight_quote="Harvey Levin, who runs TMZ, is a good friend", is_interesting=True),
+    letter('EFTA00604145', MICHAEL_SITRICK, [JEFFREY_EPSTEIN], 'lawsuit about unpaid bills', truncate_to=900),
 ]

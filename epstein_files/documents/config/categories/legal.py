@@ -128,6 +128,7 @@ LEGAL_CFGS = [
     DocCfg(id='032321', author=JANE_DOE_V_EPSTEIN_TRUMP, note=f"Notice of Initial Conference", date='2016-10-04'),
     DocCfg(id='010735', author=JANE_DOE_V_USA, note=f"Dershowitz Reply in Support of Motion for Limited Intervention", date='2015-02-02'),
     DocCfg(id='014084', author=JANE_DOE_V_USA, note=f"Jane Doe Response to Dershowitz's Motion for Limited Intervention", date='2015-03-24'),
+    DocCfg(id='EFTA00191148', author=JANE_DOE_V_USA, date='2013-06-19', truncate_to=2_000),
     DocCfg(
         id='EFTA00020729',
         author=JANE_DOE_V_USA, note=f"declaration of {VIRGINIA_GIUFFRE} claiming threats",
@@ -181,6 +182,7 @@ LEGAL_CFGS = [
     letter('028965', MARTIN_WEINBERG, ['Good Morning America'], "threatening libel lawsuit against ABC", duplicate_ids=['028928']),
     letter('031447', MARTIN_WEINBERG, ['Melanie Ann Pustay', "Sean O'Neill"], "re: Epstein FOIA request", '2015-08-19'),
     letter('020662', f"Mishcon de Reya", ['Daily Mail'], f"threatening libel lawsuit"),
+    letter('EFTA00177459', 'SDFL', ['Robert Josefsberg'], 'with victim notifications, Palm Beach police investigation, affidavit', truncate_to=1200, date='2008-09-15'),
     starr_letter('025353', '2008-05-19', ['010723', '019224'], 'redacted', non_participants=[LANDON_THOMAS]),
     starr_letter('025704', '2008-05-27', ['010732', '019221', 'EFTA00605382'], 'redacted'),
     starr_letter('012130', '2008-06-19', ['012135'], non_participants=[LESLEY_GROFF]),

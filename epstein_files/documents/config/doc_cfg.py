@@ -30,7 +30,7 @@ DuplicateType = Literal['bounced', 'earlier', 'quoted', 'redacted', 'same', 'scr
 Metadata = dict[str, bool | datetime | int | str | None | list[str | None] | dict[str, bool | str]]
 
 AUTO_QUOTE_NUM_CHARS = 400 if args.output_most_interesting else 600  # Number of chars before and after highlight_quote for auto truncation
-DOC_CHAR_RANGE = (0, 12_000)
+DOC_CHAR_RANGE = (0, 5_000)
 EMAIL_TRUNCATE_TO = int(DOC_CHAR_RANGE[1] / 3)
 SHORT_TRUNCATE_TO = int(EMAIL_TRUNCATE_TO / 3)
 WHOLE_FILE_CHAR_RANGE = (0, 10_000_000_000)
