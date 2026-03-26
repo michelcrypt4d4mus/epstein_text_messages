@@ -200,6 +200,7 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
         "Sent from my Verizon Wireless BlackBerry",
         "Sent from my iPhone"
     ],
+    'Alex Acosta': ['Sent from my BlackBerry Wireless Handheld'],
     'Amir Stemhell': ['Sent from Yahoo Mail on Android'],
     ANAS_ALRASHEED: ["Sent from my iPhone"],
     ANDREW_FARKAS: [
@@ -233,7 +234,7 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
         "Sent from my iPhone"
     ],
     BUREAU_OF_PRISONS: [
-        'Sent from my Vcrizon, Samsung Galaxy smartphone',
+        # 'Sent from my Vcrizon, Samsung Galaxy smartphone',
         'Sent from my Verizon, Samsung Galaxy smartphone',
     ],
     CECILE_DE_JONGH: ["Sent from my iPhone and misspellings courtesy of iPhone."],
@@ -355,7 +356,7 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
     LISA_RANDALL: ["Sent from my Verizon Wireless BlackBerry"],
     MARIANA_IDZKOWSKA: ['Wyslane z iPada'],
     MARK_EPSTEIN: [
-        "Sent from my iPad",
+        # "Sent from my iPad",
         "Sent via tin can and string.",
     ],
     MARTIN_WEINBERG: ["Sent from my iPhone"],
