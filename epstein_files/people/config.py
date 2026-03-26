@@ -1267,7 +1267,7 @@ HIGHLIGHTED_NAMES = [
             epstein_co('Jeepers Inc.', info="(children's amusement park)", url='https://x.com/arthurcolle/status/2019348601890119886'),
             # epstein_co('JEGE LLC'),
             epstein_co('JEGE, Inc.'),
-            epstein_co('LSJ LLC'),
+            epstein_co('LSJ, LLC', info="Little St. James", is_emailer=True),
             epstein_co('LSJE, LLC'),
             epstein_co('Laurel, Inc.', r"Laurel,? Inc\.?"),
             epstein_co('Liquid Funding', url='https://craigunger.substack.com/p/jeffrey-epsteins-really-big-short'),
