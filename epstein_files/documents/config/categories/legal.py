@@ -120,6 +120,7 @@ LEGAL_CFGS = [
         is_interesting=9,
         truncate_to=AUTO
     ),
+    DocCfg(id='EFTA00728793', author=JANE_DOE_2_V_EPSTEIN, note='harassment by private investigators', date='2010-07-02'),
     DocCfg(id='025939', author=JANE_DOE_V_EPSTEIN_TRUMP, note=f'Affidavit of Jane Doe describing being raped by Epstein', date='2016-06-20'),
     DocCfg(id='013489', author=JANE_DOE_V_EPSTEIN_TRUMP, note=f'Affidavit of {BRAD_EDWARDS}', date='2010-07-20'),
     DocCfg(id='029398', author=JANE_DOE_V_EPSTEIN_TRUMP, note=f'article in Law.com'),
