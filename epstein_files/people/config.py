@@ -3438,6 +3438,7 @@ HIGHLIGHTED_NAMES = [
                 is_emailer=True,
                 url=WIKIPEDIA,
             ),
+            Organization('Citrix', 'address book software used by Epstein'),
             Organization(
                 'Coatue Management',
                 "VC fund founded by Philippe Laffont possibly invested in by Epstein",

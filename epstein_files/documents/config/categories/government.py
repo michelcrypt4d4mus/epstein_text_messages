@@ -185,6 +185,8 @@ GOVERNMENT_CFGS = [
     ),
     EmailCfg(id='EFTA00109000', author='DHS', recipients=[BUREAU_OF_PRISONS], recipient_uncertain=True),
     EmailCfg(id='EFTA00109041', author='DHS', recipients=[BUREAU_OF_PRISONS], date='2019-10-01', date_uncertain=True),
+
+    # DOJ
     DocCfg(
         id='EFTA00164939',
         author=DOJ,
@@ -201,6 +203,7 @@ GOVERNMENT_CFGS = [
     doj_memo('EFTA02731200', "potential prosecution of Epstein's assistant", is_interesting=10, truncate_to=(14_000, 18_500)),
     doj_memo('EFTA02731082', "investigation into Epstein's co-conspirators"),
     doj_memo('EFTA02731226', f"charging {GHISLAINE_MAXWELL} with additional offenses", '2021-03-14'),
+    letter('EFTA00091391', DOJ, [BOBBI_C_STERNHEIM, CHRISTIAN_EVERDELL, LAURA_A_MENNINGER], "evidence list", '2020-10-20'),
     DocCfg(
         id='EFTA00157613',
         author=DOJ,
@@ -220,9 +223,7 @@ GOVERNMENT_CFGS = [
     DocCfg(id='EFTA02730741', author=DOJ, date='2025-05-01', date_uncertain=True, note="Evidence list for 50D-NY-3027571 Filtering On 'Type(s): 1B'"),
     DocCfg(id='EFTA02730486', author=DOJ, date='2025-05-01', date_uncertain=True, note="Evidence list for 50D-NY-3027571 Filtering On '1A'"),
     DocCfg(id='EFTA00040006', author=DOJ, date='2019-08-27', note='Personal History of Defendant Jeffrey Epstein + grand jury indictment'),
-    DocCfg(id='EFTA00023055', author=FBI, note="evidence of notes left about newly recruited underage girls by girls giving massages"),
-    DocCfg(id='EFTA01731217', author=FBI, note=f'requesting INS allow {NADIA_MARCINKO} be allowed to stay in the US because of an ongoing sex-trafficking case', is_interesting=True),
-    DocCfg(id='EFTA00247131', author=FBI, note='search warrant for New York house', date='2019-07-07'),
+    EmailCfg(id='EFTA00162988', author='DOJ', recipients=['DOJ', FBI], recipient_uncertain=True),
 
     # FBI
     DocCfg(id='EFTA00020832', author=FBI, note='subpoena of Experian'),
@@ -258,6 +259,8 @@ GOVERNMENT_CFGS = [
         is_interesting=True,
         truncate_to=(16_500, 20_000),
     ),
+    fbi_interview('EFTA00156204', f"{GHISLAINE_MAXWELL}'s receptionist", date='2021-10-08', is_interesting=True),
+    fbi_interview('EFTA00159380', '<REDACTED> former Epstein employee', date='2021-05-14', is_interesting=True),
     fbi_interview('EFTA01309589', ANTHONY_FIGUEROA, 'recruiting from high schools', '2020-08-27', is_interesting=True),
     fbi_interview('EFTA00174375', LUKE_D_THORBURN, f"lots of takes on Epstein, China, and {STEVE_BANNON}"),
     fbi_interview('EFTA00081226', MINOR_VICTIM),
@@ -341,6 +344,10 @@ GOVERNMENT_CFGS = [
         is_interesting=10,
         truncate_to=(853, 4_200),
     ),
+    DocCfg(id='EFTA00023055', author=FBI, note="evidence of notes left about newly recruited underage girls by girls giving massages"),
+    DocCfg(id='EFTA01731217', author=FBI, note=f'requesting INS allow {NADIA_MARCINKO} be allowed to stay in the US because of an ongoing sex-trafficking case', is_interesting=True),
+    DocCfg(id='EFTA00247131', author=FBI, note='search warrant for New York house', date='2019-07-07'),
+    EmailCfg(id='EFTA00148385', note='inventory of seized devices', is_interesting=9),
     EmailCfg(id='EFTA01660868', note="re: Epstein's suicide attempt", truncate_to=(1044, 2_600)),
     EmailCfg(
         id='EFTA00172146',
@@ -507,7 +514,11 @@ GOVERNMENT_CFGS = [
         is_interesting=4,
     ),
     EmailCfg(id='EFTA00094900', author=USANYS, recipients=[BUREAU_OF_PRISONS], recipient_uncertain=True),
-    usanys_internal_email('EFTA00031633'),
+    EmailCfg(id='EFTA00068446', author=USANYS, author_uncertain=True, recipients=['NY FBI'], note='evidence discussion'),
+    EmailCfg(id='EFTA00089743', author=USANYS, note='evidence discussion'),
+    EmailCfg(id='EFTA00090656', author=FBI, recipients=[USANYS], recipient_uncertain=True, note='evidence discussion'),
+    usanys_internal_email('EFTA00098000', note='evidence discussion'),
+    usanys_internal_email('EFTA00031633', is_interesting=False),
     usanys_internal_email('EFTA00018778'),
     usanys_internal_email('EFTA02731615'),
     usanys_internal_email('EFTA00030842'),
@@ -538,6 +549,7 @@ GOVERNMENT_CFGS = [
     usanys_internal_email('EFTA02731484'),
     usanys_internal_email('EFTA02731757'),
     usanys_internal_email('EFTA02731623'),
+    usanys_internal_email('EFTA00077309'),
     usanys_internal_email(
         'EFTA00089649',
         note=f"128,175 email attachments permanently lost",
@@ -589,6 +601,7 @@ GOVERNMENT_CFGS = [
     EmailCfg(id='EFTA02731644', author=USANYS),
     EmailCfg(id='EFTA00040144', author=USANYS),
     EmailCfg(id='EFTA00039813', author=USANYS),
+    EmailCfg(id='EFTA00024819', is_interesting=False),
     EmailCfg(id='EFTA00039995', author=USANYS, is_interesting=False),
     EmailCfg(id='EFTA00039890', author=USANYS, is_interesting=False),
     EmailCfg(id='EFTA00039815', author=USANYS, is_interesting=False),

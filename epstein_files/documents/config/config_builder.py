@@ -44,6 +44,10 @@ CASE_IDS = {
     '9:08-cv-80736-KAM': JANE_DOE_V_USA,
 }
 
+FILING_DATES = {
+    'EFTA00145666': '2023-04-12',
+}
+
 EMERGENCY_CONTACT_DATES = {
     'EFTA00003042': '2019-02-06',
     'EFTA00003060': '2018-03-19',
@@ -123,7 +127,7 @@ def build_cfg_from_text(doc: 'Document') -> DocCfg | None:
     elif (case_match := LEGAL_FILING_REGEX.search(text)):
         case_name = CASE_IDS.get(case_match.group(1), f"case {case_match.group(1)}")
         note = join_truthy(f"legal filing in {case_name}", DESCRIPTIONS.get(doc.file_id, ''))
-        cfg = _cfg(category=Neutral.LEGAL, note=note)
+        cfg = _cfg(category=Neutral.LEGAL, note=note, date=FILING_DATES.get(doc.file_id, ''))
     elif len(text) < 2600 and HARD_DRIVE_REGEX.search(text):
         cfg = _cfg(category=Neutral.MISC, note='photo of a hard drive')
     elif lines[0].lower().strip() == 'valuation report':

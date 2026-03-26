@@ -121,6 +121,11 @@ MISC_CFGS = [
     DocCfg(id='EFTA00007693', note="driving directions from Epstein's house to <REDACTED>, flight details for Sandy Berger"),
 
     # Misc
+    DocCfg(
+        id='EFTA00159394',
+        note='notes from interview with employee and copy of 2005 household manual for Palm Beach residence',
+        date='2021-09-30',
+    ),
     fedex_invoice('EFTA00217072', '2005-06-20'),
     fedex_invoice('EFTA00217080', '2005-06-27'),
     imessage_screenshot(id='033434', author=BRAD_EDWARDS, author_uncertain=f"labeled 'Edwards'", is_interesting=False),
