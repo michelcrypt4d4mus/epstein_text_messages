@@ -265,6 +265,7 @@ HONGBO_ROBERT_BAO = 'Hongbo Robert Bao'
 HOSAIN_RAHMAN = 'Hosain Rahman'
 HOWARD_LUTNICK = 'Howard Lutnick'
 IAN_ODONNELL = "Ian O'Donnell"
+IGOR_ZINOVIEV = 'Igor Zinoviev'
 IRA_ZICHERMAN = 'Ira Zicherman'
 JAMES_CAYNE = 'James Cayne'
 JAMES_FITZGERALD = 'James Fitzgerald'
@@ -430,6 +431,7 @@ SDNY = 'SDNY'
 
 # Epstein organizations/trusts
 BUTTERFLY_TRUST = 'Butterfly Trust'
+EL_BRILLO_ADDRESS = '358 El Brillo Way'
 JEEPERS_INC = 'Jeepers, Inc.'
 JEGE_INC = 'JEGE, Inc.'
 SOUTHERN_TRUST_COMPANY = 'Southern Trust Company'

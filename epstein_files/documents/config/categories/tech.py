@@ -65,6 +65,7 @@ TECH_CFGS = [
     ),
     EmailCfg(id='EFTA00958075', truncate_to=NO_TRUNCATE),
     # Evidence
+    EmailCfg(id='EFTA00775324', comment='Citrix'),
     EmailCfg(id='EFTA02190185', recipients=[LESLEY_GROFF]),
     EmailCfg(id='EFTA00435053'),
     EmailCfg(id='EFTA00955649', highlight_quote='wipe both', is_interesting=True),

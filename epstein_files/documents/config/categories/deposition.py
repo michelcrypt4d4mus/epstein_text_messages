@@ -21,7 +21,7 @@ DEPOSITION_CFGS = [
     DocCfg(id='EFTA00009329', author='Alex Acosta', note='pages 101-200', date='2020-04-30', is_interesting=10),
     DocCfg(id='EFTA00009016', author='Alex Acosta', note='pages 201-300', date='2020-04-30', is_interesting=10),
     DocCfg(id='EFTA00009116', author='Alex Acosta', note='pages 300-411', date='2020-04-30', is_interesting=10),
-    DocCfg(id='EFTA00806751', author='Igor Zinoviev', note='notice of subpoena'),
+    DocCfg(id='EFTA00806751', author=IGOR_ZINOVIEV, note='notice of subpoena'),
     DocCfg(
         id='EFTA00008744',
         author='FBI',

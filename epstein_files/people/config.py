@@ -1269,7 +1269,7 @@ HIGHLIGHTED_NAMES = [
         label='Epstein',
         style=EPSTEIN_COLOR,
         entities=[
-            Entity('358 El Brillo Way', "Epstein's address in Palm Beach", match_partial=None),
+            Entity(EL_BRILLO_ADDRESS, "Epstein's address in Palm Beach", match_partial=None),
             Entity('sultan175', f"Epstein's account name on Match.com", is_emailer=False),
             Organization(
                 f"{ASIA_GATEWAY} Limited",
@@ -3050,7 +3050,7 @@ HIGHLIGHTED_NAMES = [
                 url=['https://www.nytimes.com/2018/09/07/arts/design/dmitry-rybolovlev-monaco-investigation.html'],
             ),
             Entity('Elena Bolyakina', f"visited {PETER_THIEL} with {SERGEY_BELYAKOV}"),
-            Entity('Igor Zinoviev', f"Epstein's bodyguard, MMA fighter"),
+            Entity(IGOR_ZINOVIEV, f"Epstein's bodyguard, former MMA fighter"),
             Entity('Irina Pozhidaeva', f'mother of {SVETLANA_POZHIDAEVA}', match_partial=None),
             Entity('Len Blavatnik', 'oligarch', url=WIKIPEDIA),
             Entity('Mikhail Prokhorov', 'Russian-Israeli oligarch', url=WIKIPEDIA),

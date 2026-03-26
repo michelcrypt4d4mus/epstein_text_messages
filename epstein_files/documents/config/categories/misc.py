@@ -137,6 +137,7 @@ MISC_CFGS = [
         note='notes from interview with employee and copy of 2005 household manual for Palm Beach residence',
         date='2021-09-30',
     ),
+    DocCfg(id='EFTA00728864', note=f'security orders for {EL_BRILLO_ADDRESS} showing {IGOR_ZINOVIEV} had door power'),
     fedex_invoice('EFTA00217072', '2005-06-20'),
     fedex_invoice('EFTA00217080', '2005-06-27'),
     imessage_screenshot(id='033434', author=BRAD_EDWARDS, author_uncertain=f"labeled 'Edwards'", is_interesting=False),
