@@ -1302,7 +1302,6 @@ HIGHLIGHTED_NAMES = [
             epstein_co('Prytanee, LLC'),
             epstein_co('SCI JEP'),
             epstein_co('Southern Country International'),
-            epstein_co('The Mothers Army', r"(The )?Mothers Army", "rehabilitate Epstein's image with help of powerful women"),
             epstein_co('Thomas World Air'),
             epstein_co('Zorro Development Corp'),
             epstein_co('Zorro Management'),
@@ -3839,6 +3838,7 @@ HIGHLIGHTED_NAMES = [
             Entity.anon(MINOR_VICTIM),
             Entity.anon('Tiffany Doe'),
             Entity.anon(UNKNOWN_GIRL),
+            epstein_co('The Mothers Army', r"(The )?Mothers Army", "rehabilitate Epstein's image with help of powerful women"),
         ],
         patterns=[
             r"abortion",

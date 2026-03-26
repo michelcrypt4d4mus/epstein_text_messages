@@ -53,8 +53,6 @@ TECH_CFGS = [
     DocCfg(id='EFTA01088484', author=VALAR_VENTURES, note="contract", is_interesting=True),
     DocCfg(id='EFTA00591691', author=VALAR_VENTURES, note="contract", is_interesting=True),
     DocCfg(id='EFTA00810362', author=VALAR_VENTURES, note="investor questionnaire", is_interesting=True),
-    DocCfg(id='EFTA00511309', author=KARYNA_SHULIAK, note='personal address book', truncate_to=800),
-    DocCfg(id='EFTA00512483', author=KARYNA_SHULIAK, note='personal address book', truncate_to=800),
     EmailCfg(id='EFTA01001339', note=f"{PETER_THIEL} introduces Epstein to the {VALAR_VENTURES} founders", is_interesting=10),
     # Google guys
     EmailCfg(
@@ -74,6 +72,10 @@ TECH_CFGS = [
     EmailCfg(id='EFTA02143396', recipients=[LESLEY_GROFF], is_interesting=10, note='inviting CEO of Google to dinner'),
     EmailCfg(id='EFTA00560756', note="Epstein moving computers out of the house, getting rid of Citrix", is_interesting=4),
     EmailCfg(id='EFTA00705965', note='installing 7 cameras'),
+    # computer drive dumps
+    DocCfg(id='EFTA00511309', author=KARYNA_SHULIAK, note='personal address book', truncate_to=800),
+    DocCfg(id='EFTA00512483', author=KARYNA_SHULIAK, note='personal address book', truncate_to=800),
+    DocCfg(id='EFTA01068342', author=STORY_COWLES, note='personal address book', truncate_to=800),
     # Misc
     EmailCfg(id='EFTA00442950', highlight_quote="old hard drives Darren had me review & erase", is_interesting=True, truncate_to=AUTO),
     EmailCfg(id='EFTA02283085', highlight_quote="dont use my name. set a call today with Lori Goler"),

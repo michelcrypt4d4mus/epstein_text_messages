@@ -719,6 +719,7 @@ GIRLS_CFGS = [
         highlight_quote='she met this Congressman recently who, from what I unde=stood gives her everything, a private driver, bodyguard',
         is_interesting=True,
     ),
+    EmailCfg(id='EFTA00985636', highlight_quote='Gonna meet Steve Tisch next week for a dinner', is_interesting=True, recipients=[UNKNOWN_GIRL]),
     EmailCfg(id='EFTA00772798', highlight_quote="how old was she in 99 then?", note='Epstein tells Ghislaine that Giuffre was 17'),
     EmailCfg(id='EFTA00682682', highlight_quote='Working girl?', truncate_to=300, duplicate_ids=['EFTA00680779'], dupe_type='redacted'),
     EmailCfg(id='EFTA01891832', highlight_quote="Anya, do u have any 20 years old girl for Jeffrey in Kiev?"),

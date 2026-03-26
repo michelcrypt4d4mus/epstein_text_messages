@@ -1169,6 +1169,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00756577', note=f"{BEN_GOERTZEL} congratulates Epstein on getting out of jail", is_interesting=True, truncate_to=2500),
     EmailCfg(id='EFTA00322570', note=f'booking flight for {REDACTED} from Hong Kong to NYC'),
     EmailCfg(id='EFTA00900412', note='Christmas in St. Barths party guest list'),
+    EmailCfg(id='EFTA00991049', note="daily schedule"),
     EmailCfg(id='EFTA02629771', note=f"discussion of {RENATA_BOLOTOVA}'s employment at IPI", is_interesting=3),
     EmailCfg(id='EFTA00671263', note="Eagle's View Capital Management September 2017 Performance Update"),
     EmailCfg(id='EFTA00537622', author='Kathleen Gallagher', note=f"discussion of {MARK_ZEFF}'s letter of visa recommendation for South African girl in EFTA00537633"),  # TODO: make it an attachment?
