@@ -3383,10 +3383,10 @@ HIGHLIGHTED_NAMES = [
             Entity(
                 ELON_MUSK,
                 "father of Mecha-Hitler",
+                match_partial='both',
                 url='https://www.npr.org/2025/07/09/nx-s1-5462609/grok-elon-musk-antisemitic-racist-content',
-                match_partial='both'
             ),
-            Entity(ERIC_SCHMIDT, 'former CEO of Google', match_partial=None),
+            Entity(ERIC_SCHMIDT, 'former CEO of Google', match_partial=None, url=WIKIPEDIA),
             Entity(
                 'Frank Creer',
                 'CEO of Draper Hero Institute alleged to be a sexual blackmailer by the Secret Service',
