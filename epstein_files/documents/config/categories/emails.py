@@ -1113,7 +1113,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00977447', recipients=[RENATA_BOLOTOVA], recipient_uncertain=SNEAKY_DOG, duplicate_ids=['EFTA02577917', 'EFTA01946045']),
     EmailCfg(id='EFTA01843319', recipients=[RENATA_BOLOTOVA], recipient_uncertain=SNEAKY_DOG, duplicate_ids=['EFTA00929871', 'EFTA01773449', 'EFTA02550388']),
     EmailCfg(id='EFTA00857165', recipients=['Seth Lloyd'], author_reason='quoted reply line'),
-    EmailCfg(id='EFTA02316013', recipients=[BELLA_KLEIN, RICHARD_KAHN, 'Stephen Bastone']),
+    EmailCfg(id='EFTA02316013', recipients=[BELLA_KLEIN, RICHARD_KAHN, STEPHEN_BASTONE]),
     EmailCfg(
         id='EFTA00749241',
         author_reason='widely reported',

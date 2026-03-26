@@ -47,6 +47,17 @@ def bop_doc(id: str, note: str = '', date: str = '', display_text: str = '', **k
     )
 
 
+def bop_internal(id: str, **kwargs) -> EmailCfg:
+    return EmailCfg(
+        id=id,
+        author=BUREAU_OF_PRISONS,
+        author_uncertain=True,
+        recipients=[BUREAU_OF_PRISONS],
+        recipient_uncertain=True,
+        **kwargs
+    )
+
+
 def bop_memo(id: str, note: str, date: str = '', **kwargs) -> DocCfg:
     return memo(id, BUREAU_OF_PRISONS, note, date, **kwargs)
 
@@ -160,13 +171,19 @@ GOVERNMENT_CFGS = [
     bop_policy_doc('EFTA00039312', 'Program Statement / Memo about BOP Pharmacy Program'),
     bop_policy_doc('EFTA00039351', 'Program Statement / Memo about BOP Pharmacy Program', date='2004-11-17'),
     bop_policy_doc('EFTA00039156', 'Standards of Employee Conduct'),
+    bop_internal('EFTA00037760'),
+    bop_internal('EFTA00037757'),
+    bop_internal('EFTA00036154', highlight_quote="Injury report for inmate Epstein"),
     EmailCfg(id='EFTA00020596', note='Ghislaine has complaints', recipients=[BUREAU_OF_PRISONS, CHRISTIAN_EVERDELL], recipient_uncertain=True),
+
+    # DHS
     DocCfg(
         id='EFTA01125108',
         author='DHS',
         note=f'receipt for I129 Petition for a Nonimmigrant Worker filed by Sublime Art LLC, {ARDA_BESKARDES}',
         is_interesting=True,
     ),
+    EmailCfg(id='EFTA00109000', author='DHS', recipients=[BUREAU_OF_PRISONS], recipient_uncertain=True),
     EmailCfg(id='EFTA00109041', author='DHS', recipients=[BUREAU_OF_PRISONS], date='2019-10-01', date_uncertain=True),
     DocCfg(
         id='EFTA00164939',
@@ -206,6 +223,7 @@ GOVERNMENT_CFGS = [
     DocCfg(id='EFTA00023055', author=FBI, note="evidence of notes left about newly recruited underage girls by girls giving massages"),
     DocCfg(id='EFTA01731217', author=FBI, note=f'requesting INS allow {NADIA_MARCINKO} be allowed to stay in the US because of an ongoing sex-trafficking case', is_interesting=True),
     DocCfg(id='EFTA00247131', author=FBI, note='search warrant for New York house', date='2019-07-07'),
+
     # FBI
     DocCfg(id='EFTA00020832', author=FBI, note='subpoena of Experian'),
     fbi_defense_witness('EFTA02730267', 'Malcolm Grumbridge', '2022-04-14'),
@@ -279,6 +297,7 @@ GOVERNMENT_CFGS = [
         'wiretap linking phone number in John Gotti / Gambino / Michael Bilotti investigation to phone in Epstein investigation',
         is_interesting=True,
     ),
+    fbi_report('EFTA00036859', date='2019-09-24'),
     fbi_report('EFTA01688746'),
     fbi_report(
         'EFTA00164480',
@@ -292,6 +311,8 @@ GOVERNMENT_CFGS = [
     fbi_report('EFTA00173569', 'hack of FBI Epstein files repository by foreign actor', is_interesting=True),
     fbi_report('EFTA00020506', highlight_quote='chauffeur also told Epstein "I have something on you remember what I buried!"'),
     fbi_report('EFTA02729877', '"MCC Corruption Case" is about guards on duty when Epstein died', is_interesting=True),
+    fbi_report('EFTA00147020', "status of Epstein death investigation", date='2019-08-13'),
+    fbi_report('EFTA00165518', 'investigation update', date='2019-08-29'),
     fbi_report(
         'EFTA00161465',
         'evidence inventory including',
@@ -308,6 +329,7 @@ GOVERNMENT_CFGS = [
         show_full_panel=True,
         url='https://www.bbc.com/news/articles/c6271ngl014o',
     ),
+    fbi_tip('EFTA00128750', f"from Reynaldo Clark about Epstein bribing USVI elected officials", date='2022-10-24', is_interesting=3),
     fbi_tip('EFTA01249591', f"about {HENRY_JARECKI}", show_full_panel=True),
     fbi_tip('EFTA00108851', f"from {STEVEN_HOFFENBERG} re: Epstein and the murder of Arthur Shapiro", is_interesting=True, truncate_to=(1_700, 2_600)),
     fbi_tip('EFTA00020490', 'from woman who thinks she encountered Epstein as a young girl'),
@@ -337,6 +359,7 @@ GOVERNMENT_CFGS = [
         truncate_to=AUTO,
     ),
     EmailCfg(id='EFTA00101087', note=f"discussion of scanning of evidence"),
+    EmailCfg(id='EFTA00038617', note='scheduling a call', is_interesting=False),
     # FinCEN
     fincen_sar('EFTA01656415', 'Charles Schwab', RICHARD_KAHN, "$45 million transaction"),
     fincen_sar('EFTA01656409', DEUTSCHE_BANK, DARREN_INDYKE, 'structured transactions'),
@@ -483,6 +506,7 @@ GOVERNMENT_CFGS = [
         note=f"ICE has an immigration hold on a man who might have important info about the Epstein case",
         is_interesting=4,
     ),
+    EmailCfg(id='EFTA00094900', author=USANYS, recipients=[BUREAU_OF_PRISONS], recipient_uncertain=True),
     usanys_internal_email('EFTA00031633'),
     usanys_internal_email('EFTA00018778'),
     usanys_internal_email('EFTA02731615'),
@@ -520,6 +544,12 @@ GOVERNMENT_CFGS = [
         highlight_quote="FBI's technology was not able to extract the full emails and attachments",
         is_interesting=True,
         # truncate_to=(2_000, 3_000),
+        truncate_to=AUTO,
+    ),
+    usanys_internal_email(
+        'EFTA00097133',
+        highlight_quote="the Wexner Foundation donated $185,000 for the Epstein Lodge",
+        note='Interlochen donations',
         truncate_to=AUTO,
     ),
     usanys_internal_email('EFTA00013640', note='list of devices', truncate_to=(600, 1_700)),

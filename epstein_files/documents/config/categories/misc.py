@@ -10,6 +10,12 @@ LUTNICKS_CANTOR = f"Howard Lutnick's {CANTOR_FITZGERALD}"
 
 
 MISC_CFGS = [
+    letter(
+        id='026011',
+        author='Gennady Mashtalyar',
+        date='2016-06-24',  # date is based on Brexit reference but he could be backtesting,
+        note=f"about algorithmic trading",
+    ),
     press_release('015462', 'Nautilus Education', note=f'magazine issue for Epstein foundation {QUESTION_MARKS}', is_interesting=True),
     press_release('029326', EPSTEIN_VI_FOUNDATION, '2013-02-15'),
     press_release('026565', EPSTEIN_VI_FOUNDATION, '2013-02-15', comment=f'maybe a draft of 029326'),
@@ -120,13 +126,8 @@ MISC_CFGS = [
     imessage_screenshot(id='033434', author=BRAD_EDWARDS, author_uncertain=f"labeled 'Edwards'", is_interesting=False),
     important_messages_pad('EFTA01719859', '2005-10-03'),
     important_messages_pad('EFTA01682477', '2005-04-01'),
-    letter(
-        id='026011',
-        author='Gennady Mashtalyar',
-        date='2016-06-24',  # date is based on Brexit reference but he could be backtesting,
-        note=f"about algorithmic trading",
-    ),
-    letter(id='EFTA00007609', recipients=['Alberto Pinto'], duplicate_ids=['EFTA00007582']),
+    letter('EFTA00090261', INTERLOCHEN_CENTER_FOR_THE_ARTS, [JEFFREY_EPSTEIN], "thanking him for donations", '1997-09-18'),
+    letter('EFTA00007609', recipients=['Alberto Pinto'], duplicate_ids=['EFTA00007582']),
     skype_log('032210', recipients=['linkspirit'], is_interesting=True),
     skype_log('018224', recipients=['linkspirit', LAWRENCE_KRAUSS], is_interesting=True),  # we don't know who linkspirit is yet
     skype_log(
