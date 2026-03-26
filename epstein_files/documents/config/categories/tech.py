@@ -1,6 +1,6 @@
 from epstein_files.documents.config.communication_cfg import sms
 from epstein_files.documents.config.config_builder import fedex_invoice
-from epstein_files.documents.config.doc_cfg import DocCfg
+from epstein_files.documents.config.doc_cfg import NO_TRUNCATE, DocCfg
 from epstein_files.documents.config.email_cfg import EmailCfg
 from epstein_files.people.names import *
 from epstein_files.util.constant.strings import *
@@ -63,16 +63,26 @@ TECH_CFGS = [
         date_uncertain='approximate based on reply',
         highlight_quote="eric schmidt is founder of google, big supporter of ours",
     ),
+    EmailCfg(id='EFTA00958075', truncate_to=NO_TRUNCATE),
     # Evidence
     EmailCfg(id='EFTA02190185', recipients=[LESLEY_GROFF]),
     EmailCfg(id='EFTA00435053'),
+    EmailCfg(id='EFTA00955649', highlight_quote='wipe both', is_interesting=True),
     EmailCfg(id='EFTA02190190', author=LESLEY_GROFF, author_uncertain=True),
     EmailCfg(id='EFTA02190192', author=LESLEY_GROFF, author_uncertain=True),
     EmailCfg(id='EFTA02143396', recipients=[LESLEY_GROFF], is_interesting=10, note='inviting CEO of Google to dinner'),
     EmailCfg(id='EFTA00560756', note="Epstein moving computers out of the house, getting rid of Citrix", is_interesting=4),
+    EmailCfg(id='EFTA00705965', note='installing 7 cameras'),
     # Misc
     EmailCfg(id='EFTA00442950', highlight_quote="old hard drives Darren had me review & erase", is_interesting=True, truncate_to=AUTO),
     EmailCfg(id='EFTA02283085', highlight_quote="dont use my name. set a call today with Lori Goler"),
     EmailCfg(id='EFTA00501483', highlight_quote="Jeffrey has asked that James wipe clean"),
     EmailCfg(id='EFTA00501484', highlight_quote="Jeffrey has asked that James wipe clean old computer"),
+    EmailCfg(
+        id='EFTA02355429',
+        highlight_quote="Sh abdallah accepts the dinner with b gates",
+        is_interesting=True,
+        url='https://x.com/sayerjigmi/status/2037207142101303428',
+    ),
+    EmailCfg(id='EFTA00853250', highlight_quote='there is talk about the possibility of Clapper attending', truncate_to=AUTO),
 ]

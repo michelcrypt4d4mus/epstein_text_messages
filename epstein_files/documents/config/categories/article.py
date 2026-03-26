@@ -187,7 +187,7 @@ ARTICLE_CFGS = [
         id='EFTA01689016',
         date='2001-11-01',
         is_interesting=True,
-        note=f"article about {VIRGINIA_GIUFFRE}'s former trafficker Ronald Eppinger and other Giuffre",
+        note=f"article about {VIRGINIA_GIUFFRE}'s former trafficker {RONALD_EPPINGER} and other Giuffre",
         truncate_to=(11_000, 13_000),
     ),
     DocCfg(id='EFTA00173333', note='article about destruction of evidence at FBI'),

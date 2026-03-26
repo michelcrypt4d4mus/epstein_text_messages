@@ -220,6 +220,19 @@ MONEY_CFGS = [
         truncate_to=(552, 1_300),
     ),
 
+    # Rothschild
+    EmailCfg(
+        id='EFTA02586251',
+        highlight_quote="please keep Mr Jeffrey Epstein fully informed of the state of our=negotiations with the DOJ",
+        recipients=[JEFFREY_EPSTEIN, YVES_PERRIER],
+    ),
+    EmailCfg(
+        id='EFTA01732655',
+        is_interesting=10,
+        note=f"Epstein and {KATHRYN_RUEMMLER} plan fees for resolving {EDMOND_DE_ROTHSCHILD}'s money laundering issues",
+        truncate_to=1_390,
+    ),
+
     # Schwab
     schwab_doc('EFTA01265978', date='2019-07-10', note='account opened 3 months before death'),
 
@@ -295,6 +308,7 @@ MONEY_CFGS = [
         id='EFTA01299330',
         note=f"AML / Suspicious Activity report on structured deposits by {DARREN_INDYKE}",
     ),
+
     # Leon Black
     DocCfg(
         id='EFTA00599517',
@@ -324,4 +338,7 @@ MONEY_CFGS = [
     # Joi Ito
     EmailCfg(id='EFTA01964198'),  # no profits/charity
     EmailCfg(id='EFTA01754913'),  # no profits/charity
+
+    # Ehud / Yoni
+    EmailCfg(id='EFTA00863806', highlight_quote='please send 10k dollars to yoni'),
 ]

@@ -648,12 +648,18 @@ GIRLS_CFGS = [
         truncate_to=1_000,
     ),
     EmailCfg(id='EFTA00657216', highlight_quote='Is Katya coming over?', note=f'"Katya" is {EKATERINA_GUSAROVA}'),
+    EmailCfg(id='EFTA00959850', highlight_quote="send me a number to call I dont like records of these conversations"),
 
     # Quotes
     EmailCfg(
         id='011908_3',
         highlight_quote='sex trafficking allegations have stopped us from working with • your agency for the past 5-6 years',
         is_interesting=5,
+    ),
+    EmailCfg(
+        id='EFTA00740146',
+        highlight_quote='I might want to fund an exhibition entitled statutory',
+        is_interesting=3,
     ),
     EmailCfg(
         id='EFTA02504370',
@@ -907,6 +913,7 @@ GIRLS_CFGS = [
     DocCfg(id='EFTA02312343_1', note='translation of visa email', attached_to_email_id='EFTA02312343', show_full_panel=True),
     EmailCfg(id='EFTA02652017', note="inquiry about someone's immigration asylum application", is_interesting=True),
     EmailCfg(id='EFTA00637127', note=f"{CECILE_DE_JONGH} helping with girls' visa issues"),
+    EmailCfg(id='EFTA00695768', note=f"{CECILE_DE_JONGH} helping with girls' visa issues", is_interesting=4),
     EmailCfg(id='EFTA00458715', show_with_name=MASHA_DROKOVA),
     blaine_letter('019086', date='2015-05-27', suffix='naming various Putin puppet regimes', show_full_panel=True),
     blaine_letter('019474', date='2015-05-29'),
