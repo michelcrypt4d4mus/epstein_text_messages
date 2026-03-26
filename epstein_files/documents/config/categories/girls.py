@@ -651,7 +651,7 @@ GIRLS_CFGS = [
     ),
     EmailCfg(
         id='EFTA00878421',
-        highlight_quote="said that she felt gods presence next to her when she was in bed",
+        highlight_quote="she knows that Jesus watches over her. and he helped save her life. Whoops",
         is_interesting=10,
         recipients=[NADIA_MARCINKO],
         recipient_uncertain='https://archive.ph/Qa6vU',  # https://www.nybooks.com/articles/2026/03/26/the-devil-himself-jeffrey-epstein-enright/
