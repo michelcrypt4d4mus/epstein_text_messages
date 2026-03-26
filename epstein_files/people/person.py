@@ -349,7 +349,7 @@ class Person(DocList, LoggingEntity):
             self.entity.style = self.entity._style.dim
 
         if not self.entity.info:
-            self.entity._warn(f"no entity info determinable...")
+            self.entity._log(f"no entity info determinable...")
 
     def __str__(self):
         return f"{self.name_str}"
