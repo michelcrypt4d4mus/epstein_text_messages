@@ -202,7 +202,7 @@ class Document(LoggingEntity):
         char_range = self._config.char_range
 
         if char_range == 'auto':
-            self._warn(f"Computing auto range for highlighted quote..")
+            self._debug_log(f"Computing auto range for highlighted quote..")
             quote_regex = re.compile(self._config.highlighted_pattern, re.IGNORECASE)
 
             if (quote_match := quote_regex.search(self.text)):
@@ -548,7 +548,7 @@ class Document(LoggingEntity):
         panel_timestamp = Text(f"({self.panel_title_timestamp})", style='dim') if self.panel_title_timestamp else None
 
         if self._config.show_image:
-            self._warn(f"creating ImagePanel for")
+            self._debug_log(f"creating ImagePanel...")
 
             body_panel = ImagePanel(
                 border_style=self.border_style,
