@@ -527,6 +527,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='029433', is_fwded_article=True, truncate_to=SHORT_TRUNCATE_TO, comment='Kahn taxes'),
     EmailCfg(id='031764', is_fwded_article=True, truncate_to=3500, comment='broidy malaysia'),
     EmailCfg(id='026273', is_fwded_article=True),
+    EmailCfg(id='EFTA00436099', is_fwded_article=True, note="Epstein's homecoming gala"),
     EmailCfg(id='032475', date='2017-02-15 13:31:25'),
     EmailCfg(id='030373', date='2018-10-03 01:49:27'),
     EmailCfg(id='026631', duplicate_ids=['026632'], dupe_type='quoted'),
@@ -750,6 +751,7 @@ EMAILS_CONFIG = [
     binant_redacted('032464', NO_TRUNCATE),
 
     # Authors DOJ files
+    EmailCfg(id='EFTA00628928', author=JONATHAN_FARKAS, recipients=['Catherine']),
     EmailCfg(id='EFTA02052550', author='Ananda Apfelbaum'),
     EmailCfg(id='EFTA00645449', author=ANASTASIYA_SIROOCHENKO, author_reason='Jmail'),
     EmailCfg(id='EFTA00040142', author=ATT_COURT_APPEARANCE_TEAM, recipients=[USANYS]),
@@ -852,6 +854,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA02266060', author=LESLEY_GROFF, author_uncertain=True),
     EmailCfg(id='EFTA00552880', author=LESLEY_GROFF, author_uncertain=True),
     EmailCfg(id='EFTA00494858', author=LESLEY_GROFF, author_uncertain=True),
+    EmailCfg(id='EFTA00423898', author=LESLEY_GROFF, author_uncertain=True),
     EmailCfg(id='EFTA00357521', author=LESLEY_GROFF, author_uncertain=True),
     EmailCfg(id='EFTA02100999', author=LESLEY_GROFF, author_uncertain=True),
     EmailCfg(id='EFTA02090028', author=LESLEY_GROFF, author_uncertain=True),
@@ -1190,7 +1193,9 @@ EMAILS_CONFIG = [
         note=f'Epstein tells {DAVID_STERN} to avoid {BANQUE_HAVILLAND} as it "add[s] China and Europe to Russia & Belorussia"',
         truncate_to=1_000,
     ),
+    EmailCfg(id='EFTA00640384', note=f"Newsweek reporter sniffing around Virgin Islands corruption", is_interesting=True),
     EmailCfg(id='EFTA00406579', note='Epstein had multiple passports', highlight_quote="JE's Main and Second Passport"),
+    EmailCfg(id='EFTA00562357', author=SARAH_KELLEN, note='Epstein had multiple passports'),
     EmailCfg(id='EFTA00949376', note=f"Epstein paying {MC2_MODEL_MGMT}", truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA01060612', note=f"Epstein plots against the JASTA bill"),
     EmailCfg(id='EFTA00630134', note=f'Epstein recommends Signal encrypted messenger to {ALLEGED_KARIM_WADE}', is_interesting=10),

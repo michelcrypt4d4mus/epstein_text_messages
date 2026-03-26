@@ -64,6 +64,7 @@ HIGHLIGHTED_NAMES = [
                 url='https://www.sunlightx.com/james-tagg'
             ),
             Entity(JEM_BENDELL, 'board member of Community Forge, provider of alternative currency software', match_partial='both'),
+            Entity('Jessica Zilo', f"Columbia Dental School tutor for {KARYNA_SHULIAK}", match_partial=None),
             Entity(JOSCHA_BACH, "cognitive science / AI research", match_partial='both'),
             Entity(
                 LAWRENCE_KRAUSS,
@@ -371,6 +372,7 @@ HIGHLIGHTED_NAMES = [
             ),
             Entity('Jonathan Rowland', f"Banque Havilland", match_partial=None),
             Entity('Laurie Eisenhart', QUESTION_MARKS),
+            Entity('Mary Erdoes', f"CEO of Wealth Management at {JP_MORGAN}", r"Mary( E\.?)? Erdoes"),
             Entity(NORMAN_D_RAU, "managing director at Morgan Stanley", match_partial=None),
             Entity(
                 PAUL_MORRIS,
@@ -1176,8 +1178,8 @@ HIGHLIGHTED_NAMES = [
             ),
             Entity(PERRY_LANG, f"Epstein's personal chef 1998-2002", r"(Adam )?Perry Lang", match_partial=None),
             Entity('Richard Barnett', "logistics for Epstein's properties", r"Rich(ard)? Barnett", match_partial=None),
-            Entity('Sarah Kellen', "now Sarah Vickers, named co-conspirator", r"(Sarah )?(Kellen|Vickers)"),
-            Entity('Scott Denett', 'IT', match_partial=None),
+            Entity(SARAH_KELLEN, "now Sarah Vickers, named co-conspirator", r"(Sarah )?(Kellen|Vickers)"),
+            Entity('Scott Denett', 'IT', r'Scott Denn?ett', match_partial=None),
             Entity('Sean J. Lancaster', "airplane reseller"),
             Entity(STEPHEN_BASTONE, 'contractor'),
             Entity('Steve Griffis', 'building employee', r"Steve (Griffis|\(from downstairs)", aliases=['Steve from downstairs']),
@@ -1433,7 +1435,7 @@ HIGHLIGHTED_NAMES = [
                     'https://en.wikipedia.org/wiki/Estate_of_Jeffrey_Epstein',
                 ]
             ),
-            Entity(EMAD_HANNA, f"project controller for {RICHARD_KAHN}'s HBRK Associates", match_partial=None),
+            Entity(EMAD_HANNA, f"project controller for {RICHARD_KAHN}'s HBRK Associates", match_partial='first'),
             Entity(
                 HENRY_JARECKI,
                 'owner of neighboring island, psychiatrist, precious metals trader, film producer',
@@ -2278,6 +2280,7 @@ HIGHLIGHTED_NAMES = [
                 match_partial='first',
                 url='https://www.newyorker.com/news/annals-of-communications/why-didnt-vanity-fair-break-the-jeffrey-epstein-story',
             ),
+            Entity('Harvey Levin', "founder of TMZ", is_emailer=False, match_partial=None),
             Entity(JAMES_HILL, "ABC News", r"hill, james e.|james.e.hill@abc.com", match_partial=None),
             Entity('James Patterson', f'pulp fiction author, wrote a book about Epstein with {STEVEN_HOFFENBERG}'),
             Entity(JAMES_STEWART, 'New York Times reporter', match_partial=None),
@@ -2351,6 +2354,7 @@ HIGHLIGHTED_NAMES = [
             publication('South Florida Sun Sentinel'),
             publication('Tatler'),
             publication(THE_REAL_DEAL),
+            publication('TMZ'),
             the_publication('Boston Globe'),
             the_publication(DAILY_MAIL),
             the_publication(DAILY_TELEGRAPH),

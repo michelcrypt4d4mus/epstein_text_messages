@@ -175,6 +175,7 @@ LEGAL_CFGS = [
     starr_letter('025353', '2008-05-19', ['010723', '019224'], 'redacted', non_participants=[LANDON_THOMAS]),
     starr_letter('025704', '2008-05-27', ['010732', '019221', 'EFTA00605382'], 'redacted'),
     starr_letter('012130', '2008-06-19', ['012135'], non_participants=[LESLEY_GROFF]),
+    EmailCfg(id='EFTA00407717', recipients=[KEN_STARR]),
 
     # DOJ files
     DocCfg(id='EFTA01106135', author=BILL_GATES, note=f"gives Epstein power to negotiate on behalf of {BORIS_NIKOLIC}"),

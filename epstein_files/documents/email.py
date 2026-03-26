@@ -152,6 +152,7 @@ OCR_REPAIRS: OcrRepair = {
     'Mail for i Phone': 'Mail for iPhone',
     'Sent from Mabfl': 'Sent from Mobile',  # NADIA_MARCINKO signature bad OCR
     'Sent from my Vcrizon': 'Sent from my Verizon',
+    'Sony for all the typos': 'Sorry for all the typos',
     'twitter glhsummers': 'twitter @lhsummers',
     # NOTE: These three must come in this order!
     re.compile(r'Blac[il]cBerry'): 'BlackBerry',
@@ -203,6 +204,7 @@ OCR_REPAIRS: OcrRepair = {
     # Misc
     'AVG°': 'AVGO',
     'Saw Matt C with DTF at golf': 'Saw Matt C with DJT at golf',
+    re.compile(r'\bSony,'): 'sorry,',
     re.compile(r"[i. ]*Privileged[- ]*Redacted[i. ]*"): '<PRIVILEGED - REDACTED>',
     re.compile(r"SONY ?(Court|Judge|(, |/)NY)", re.IGNORECASE): r'SDNY \1',
 }

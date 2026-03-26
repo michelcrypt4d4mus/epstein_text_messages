@@ -56,6 +56,7 @@ GIRLS_CFGS = [
     EmailCfg(id='025874', note=f"possibly about {VIRGINIA_GIUFFRE} {QUESTION_MARKS}"),
     EmailCfg(id='030609', duplicate_ids=['030495']),
     EmailCfg(id='026998', note=f"{JONATHAN_FARKAS} in love with an Epstein girl"),
+    EmailCfg(id='EFTA00540166', note=f"irregular admission of {KARYNA_SHULIAK} to Columbia Dental School", truncate_to=2_000),
 
     # DOJ Files
     DocCfg(
@@ -665,6 +666,7 @@ GIRLS_CFGS = [
         highlight_quote='she met this Congressman recently who, from what I unde=stood gives her everything, a private driver, bodyguard',
         is_interesting=True,
     ),
+    EmailCfg(id='EFTA00682682', highlight_quote='Working girl?', truncate_to=300),
     EmailCfg(id='EFTA01891832', highlight_quote="Anya, do u have any 20 years old girl for Jeffrey in Kiev?"),
     EmailCfg(id='EFTA01740839', highlight_quote='is the invitation for Sultan AND his wife?', note='note capital "AND"', is_interesting=True),
     EmailCfg(id='EFTA00971793', highlight_quote='Attached is resume of Lutnick nanny', note=f"why does Epstein need a nanny?"),
@@ -861,6 +863,7 @@ GIRLS_CFGS = [
     ),
     DocCfg(id='EFTA02312343_1', note='translation of visa email', attached_to_email_id='EFTA02312343', show_full_panel=True),
     EmailCfg(id='EFTA02652017', note="inquiry about someone's immigration asylum application", is_interesting=True),
+    EmailCfg(id='EFTA00637127', note=f"{CECILE_DE_JONGH} helping with girls' visa issues"),
     blaine_letter('019086', date='2015-05-27', suffix='naming various Putin puppet regimes', show_full_panel=True),
     blaine_letter('019474', date='2015-05-29'),
     blaine_letter('019476', date='2015-06-01'),
