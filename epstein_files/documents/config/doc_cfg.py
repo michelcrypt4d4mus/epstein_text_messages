@@ -645,7 +645,7 @@ class DocCfg(LoggingEntity):
         for id in ids:
             if (manual_cfg := cfg_dict.get(id)):
                 if (manual_val := getattr(manual_cfg, prop)) and manual_val != new_val:
-                    manual_cfg._warn(f"overwriting manual '{prop}' value '{manual_val}' with '{new_val}' from configured list")
+                    manual_cfg._log(f"overwriting manual '{prop}' value '{manual_val}' with '{new_val}' from configured list")
 
                 setattr(manual_cfg, prop, new_val)
                 updated += 1
