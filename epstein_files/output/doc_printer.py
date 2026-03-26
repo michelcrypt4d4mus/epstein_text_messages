@@ -295,6 +295,7 @@ class DocPrinter(DocList):
     def _biographical_panel(self, _entities: list[Entity]) -> Panel | None:
         """Panel showing biographical info for a list of names."""
         if (entities := self.new_entities_with_bios(_entities)):
+            entities = sorted(entities, key=lambda e: e.category)
             bios = [Text('', justify='right').append(e.bio_txt) for e in entities if e.has_bio]
             logger.debug(f"Creating bios panel for {len(entities)} new names (out of {len(_entities)} _entities)")
 
