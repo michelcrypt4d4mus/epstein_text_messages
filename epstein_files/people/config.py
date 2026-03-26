@@ -1335,7 +1335,7 @@ HIGHLIGHTED_NAMES = [
             Entity(ADA_CLAPP, f"Chief Legal Officer of {LEON_BLACK}'s {ELYSIUM_MANAGEMENT}"),
             Entity(ALAN_DLUGASH, 'tax partner at Paneth and Shrone', r"Alan (J.? )?Dlugash"),
             Entity('Alan S. Halperin', "partner at Paul, Weiss", r"(Alan.{8})?Halperin(, Alan S)?"),
-            Entity(ALAN_DERSHOWITZ, f"{HARVARD} Law School professor", r"(alan.{1,7})?dershowi(lz?|t?z)|AlanDersh"),
+            Entity(ALAN_DERSHOWITZ, f"{HARVARD} Law School professor", r"(alan.{1,7})?dershowi(lz?|t?z)|AlanDersh", url=WIKIPEDIA),
             Entity('Andrew G. Celli', f"{ALAN_DERSHOWITZ}'s lawyer", match_partial=None),
             Entity(ARDA_BESKARDES, "NYC immigration attorney allegedly involved in sex-trafficking operations"),
             Entity('Bebe Avdiu', f'legal assistant to {DARREN_INDYKE}', r"Bebe A(vdiu|ydin)"),
