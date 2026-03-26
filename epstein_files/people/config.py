@@ -3640,7 +3640,7 @@ HIGHLIGHTED_NAMES = [
             Entity(
                 'Michael Caputo',
                 'former Putin and Gazprom PR guy, Trump appointee, acolyte of Roger Stone',
-                url='https://en.wikipedia.org/wiki/Michael_Caputo',
+                url=WIKIPEDIA,
             ),
             Entity(MICHAEL_J_BOCCIO, f"former Trump Organization employee"),
             Entity(NICHOLAS_RIBIS, f"Hilton CEO, former president of {TRUMP_ORG}", r"Nic(holas|k)[\s._]Ribi?s?|Ribbis"),
