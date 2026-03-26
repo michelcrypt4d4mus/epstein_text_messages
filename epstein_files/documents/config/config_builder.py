@@ -146,8 +146,7 @@ def fbi_defense_witness(id: str, witness: Name, date: str = '') -> DocCfg:
 
 
 def fbi_interview(id: str, interviewee: Name, note: str = '', date: str = '', **kwargs) -> CommunicationCfg:
-    note = join_truthy(f"interview of {interviewee or UNKNOWN}", note, ', ')
-    cfg = CommunicationCfg(id=id, date=date, note=note, recipients=[interviewee], **kwargs)
+    cfg = interview(id, FBI, interviewee, note, date=date, **kwargs)
     return _set_fbi_doc_fields(cfg)
 
 
@@ -173,6 +172,11 @@ def grand_jury(id: str, case_name: str = '', note: str = '', **kwargs) -> DocCfg
 def important_messages_pad(id: str, date: str = '') -> DocCfg:
     display_text = '"Important Message" formatted notepad with notes about missed phone calls etc.'
     return DocCfg(id=id, date=date, display_text=display_text)
+
+
+def interview(id: str, author: str, interviewee: Name, note: str = '', **kwargs) -> CommunicationCfg:
+    note = join_truthy(f"interview of {interviewee or UNKNOWN}", note, ', ')
+    return CommunicationCfg(id=id, author=author, note=note, recipients=[interviewee], **kwargs)
 
 
 def inventory(id: str, container: str, note: str = '', **kwargs) -> DocCfg:

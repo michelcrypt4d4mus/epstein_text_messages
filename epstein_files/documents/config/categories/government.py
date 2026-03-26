@@ -1,4 +1,5 @@
-from epstein_files.documents.config.config_builder import fbi_defense_witness, fbi_interview, fbi_tip, fbi_report, grand_jury, letter, memo
+from epstein_files.documents.config.config_builder import (fbi_defense_witness, fbi_interview, fbi_tip, fbi_report,
+     grand_jury, interview, inventory, letter, memo)
 from epstein_files.documents.config.doc_cfg import NO_TRUNCATE, SHORT_TRUNCATE_TO, DocCfg
 from epstein_files.documents.config.email_cfg import EmailCfg
 from epstein_files.people.names import *
@@ -113,6 +114,13 @@ GOVERNMENT_CFGS = [
         date='2019-08-12',
         display_text=f"handwritten evidence inventory of photos from Little St. James Island",
         # TODO: show list image?
+    ),
+    interview(
+        'EFTA00063136',
+        "DOJ Office of the Inspector General",
+        "BOP employee Hughwon <REDACTED>",
+        "about cameras at MCC",
+        date='2021-09-29',
     ),
     bop_doc(
         'EFTA00034357',
@@ -321,6 +329,14 @@ GOVERNMENT_CFGS = [
         truncate_to=AUTO,
     ),
     EmailCfg(id='EFTA00164742', note='summary of video evidence', is_interesting=10),
+    EmailCfg(
+        id='EFTA00146839',
+        highlight_quote="did not support federal criminal activity, specifically Obstruction of Justice",
+        is_interesting=True,
+        is_in_chrono=False,
+        truncate_to=AUTO,
+    ),
+    EmailCfg(id='EFTA00101087', note=f"discussion of scanning of evidence"),
     # FinCEN
     fincen_sar('EFTA01656415', 'Charles Schwab', RICHARD_KAHN, "$45 million transaction"),
     fincen_sar('EFTA01656409', DEUTSCHE_BANK, DARREN_INDYKE, 'structured transactions'),
@@ -357,6 +373,12 @@ GOVERNMENT_CFGS = [
     DocCfg(id='EFTA00007157', note='victim list and police log'),
     DocCfg(id='EFTA01649103', date='2025-03-17T22:33:37', note='"MCC Corruption Case" is about guards on duty when Epstein died'),
     DocCfg(id='EFTA00029805', author=DOJ, note='policy doc', is_interesting=False),
+    DocCfg(
+        id='EFTA00095751',
+        author=DOJ,
+        is_interesting=10,
+        note=f"63 page evidence list from {GHISLAINE_MAXWELL} trial, removed from DOJ site by Pam Bondi DOJ",
+    ),
     letter('EFTA01653121', FBI, ['USCIS'], "regarding an individual's cooperation in the investigation of Epstein and Maxwell"),
     letter('EFTA00098456', PAUL_G_CASSELL, ['Scotland Yard'], 'International Sex Trafficking by Jeffrey Epstein, contains court filings'),
     letter(
@@ -426,6 +448,7 @@ GOVERNMENT_CFGS = [
     ),
     fbi_internal('EFTA01648955'),
     fbi_internal('EFTA00037690', highlight_quote='seems to be a conduit for money paid to female victims', note=BUTTERFLY_TRUST),
+    inventory('EFTA00066350', 'Epstein boxed never obtained from SDFL prosecutor office', is_interesting=10),
 
     # DOJ / USANYS emails
     EmailCfg(id='EFTA00039967', author='DOJ London', recipients=[USANYS]),

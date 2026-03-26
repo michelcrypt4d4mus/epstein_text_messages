@@ -67,6 +67,11 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
 
     # Highlight regexes for things other than names, only used by RegexHighlighter pattern matching
     HighlightPatterns(
+        label='box_number',
+        style='wheat4 bold underline',
+        patterns=[r'^Box \d+:$'],
+    ),
+    HighlightPatterns(
         label='financial',
         style=FINANCIAL_COLOR,
         use_word_boundary=True,
