@@ -48,7 +48,6 @@ def blaine_letter(id: str, date: str, suffix: str = '', **kwargs) -> Communicati
 
 GIRLS_CFGS = [
     DocCfg(id='019300', author=SVETLANA_POZHIDAEVA, note=f'{WOMEN_EMPOWERMENT} f. {KATHRYN_RUEMMLER}', date='2019-04-05', show_full_panel=True),
-    DocCfg(id='EFTA02445716', author=SVETLANA_POZHIDAEVA, note=f'{WOMEN_EMPOWERMENT} pilot event', date='2019-04-12'),
     DocCfg(id='022267', author=SVETLANA_POZHIDAEVA, note=f'{WOMEN_EMPOWERMENT} founder essay about growing the seminar business'),
     DocCfg(id='022407', author=SVETLANA_POZHIDAEVA, note=f'{WOMEN_EMPOWERMENT} seminar pitch deck'),
     EmailCfg(id='031177', highlight_quote="in Ibiza so invited a lots of girls from Russia all models"),
@@ -188,7 +187,21 @@ GIRLS_CFGS = [
     ),
 
     # Authors
-    # EmailCfg(id='EFTA01061418', recipients=[ANNABELLE_NEILSON], author_reason='signature', duplicate_ids=['EFTA02421743'], dupe_type='quoted'),
+    EmailCfg(
+        id='EFTA01742539',
+        author=EKATERINA_GUSAROVA,
+        author_reason='Carstensen',
+        highlight_quote='tell katya that you will pay her for recommendations that work out',
+    ),
+    EmailCfg(
+        id='EFTA01984912',
+        recipients=[ANNABELLE_NEILSON],
+        author_reason='signature',
+        duplicate_ids=['EFTA02421743'],
+        dupe_type='quoted',
+        highlight_quote="a few of my girls, who would be perfect for the job but are unfortunately past their sell by date",
+        is_interesting=4,
+    ),
     EmailCfg(
         id='EFTA02339926',
         author=JULIA_SANTOS,
@@ -211,6 +224,7 @@ GIRLS_CFGS = [
     EmailCfg(id='EFTA01759826', highlight_quote='especially if you find me interesing girls there', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA01969878', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA01981669', truncate_to=NO_TRUNCATE),
+
     EmailCfg(id='EFTA01791918', author=LAURA_T_NEWMAN, note='recruiting a ballet dancer', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA02436739', author=LAURA_T_NEWMAN, note='recruiting?'),
     EmailCfg(
@@ -359,12 +373,7 @@ GIRLS_CFGS = [
         highlight_quote="You have known you are preg for a week",
         note=f'{SVETLANA_POZHIDAEVA} fwds a discussion about an abortion to Epstein',
     ),
-    EmailCfg(
-        id='EFTA01742539',
-        author=EKATERINA_GUSAROVA,
-        author_reason='Carstensen',
-        highlight_quote='tell katya that you will pay her for recommendations that work out',
-    ),
+    DocCfg(id='EFTA02445716', author=SVETLANA_POZHIDAEVA, note=f'{WOMEN_EMPOWERMENT} pilot event', date='2019-04-12'),
     EmailCfg(
         id='EFTA01894879',
         note='"most of all its cheap excort"',

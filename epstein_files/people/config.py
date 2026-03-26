@@ -2773,6 +2773,13 @@ HIGHLIGHTED_NAMES = [
                 url='https://www.vanityfair.com/news/story/melania-trump-epstein-files',
             ),
             Entity(
+                ANNABELLE_NEILSON,
+                "British model and socialite, former Rothschild",
+                aliases=["Annabelle Rothschild"],
+                match_partial=None,
+                url=WIKIPEDIA,
+            ),
+            Entity(
                 ATHENA_ZELCOVICH,
                 'actress', r"Athe(na )?Zelco(vich)?",
                 email_addresses=['athezelco'],  # actually a skype handle
