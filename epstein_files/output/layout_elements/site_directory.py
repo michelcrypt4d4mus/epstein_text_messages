@@ -2,21 +2,16 @@
 Site directory panel.
 """
 from dataclasses import dataclass, field
-from pathlib import Path
-from typing import Self
 
-from rich.console import Group, NewLine
-from rich.markup import escape
+from rich.console import Group
 from rich.padding import Padding
 from rich.panel import Panel
 from rich.text import Text
 
 # from epstein_files.output.html.elements import div_class, div_tag, build_html_list
 from epstein_files.output.html.positioned_rich import CENTERED
-from epstein_files.util.constant.strings import (AUX_SITE_LINK_STYLE, CHRONOLOGICAL, DOJ_2026_TRANCHE,
-     EPSTEIN_FILES_NOV_2025, HOUSE_OVERSIGHT_TRANCHE)
 from epstein_files.util.external_link import ExternalLink
-from epstein_files.util.helpers.rich_helpers import bold, join_texts
+from epstein_files.util.helpers.rich_helpers import join_texts
 from epstein_files.util.logging import logger
 
 DIRECTORY_STYLE = 'wheat4'

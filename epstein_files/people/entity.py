@@ -214,7 +214,7 @@ class Entity(LoggingEntity):
                 pattern += self.DEFAULT_PATTERN_SFX
 
             if len(self._names) == 2 or (len(self._names) == 3 and self._middle_initial):
-                pattern = join_patterns([pattern, f"{self._names[-1]},? {self._names[0]}"])
+                pattern = join_patterns([pattern, fr"{self._names[-1]},? {self._names[0]}{self.DEFAULT_PATTERN_SFX}"])
 
         return as_pattern(join_patterns([pattern, *self.email_addresses]))
 
@@ -473,8 +473,8 @@ def epstein_trust_name(name: str) -> str:
     return f"Jeffrey E. Epstein {name} Trust" if is_integer(name) else name
 
 
-def island_employee(name: str, job_title: str) -> Entity:
-    return Entity(name, f"{job_title} at the island", match_partial=None)
+def island_employee(name: str, job_title: str, **kwargs) -> Entity:
+    return Entity(name, f"{job_title} at the island", match_partial=None, **kwargs)
 
 
 def law_enforcement(name: str, emailer_pattern: str = '', info: str = '', **kwargs) -> Organization:

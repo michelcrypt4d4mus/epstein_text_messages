@@ -1036,6 +1036,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00039663', author=STACEY_RICHMAN, recipients=[USANYS], author_reason='unredacted in EFTA00039662'),
 
     # Recipients
+    EmailCfg(id='EFTA02239782', recipients=['Andrew Superintendent', LESLEY_GROFF, MERWIN_DELA_CRUZ], recipient_uncertain=True),
     EmailCfg(id='EFTA00825164', recipients=[ARIANE_DE_ROTHSCHILD], author_reason='reply'),
     EmailCfg(id='EFTA01822512', recipients=[DAVID_STERN]),
     EmailCfg(id='EFTA02662381', recipients=[FAWZI_SIAM]),
@@ -1053,6 +1054,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00716532', recipients=[JEFFREY_EPSTEIN], truncate_to=479),
     EmailCfg(id='EFTA02328335', recipients=[JEFFREY_EPSTEIN, KARYNA_SHULIAK, None]),
     EmailCfg(id='EFTA02622513', recipients=[JULIA_SANTOS], author_reason='https://x.com/FlippersUpNow/status/2021662725412110565'),
+    EmailCfg(id='EFTA02296655', recipients=[LEO_LOKING, 'Marites Tess McCorquodale', MERWIN_DELA_CRUZ], recipient_uncertain='"Leo"'),
     EmailCfg(
         id='EFTA02256631',
         recipients=[LESLEY_GROFF],
@@ -1080,7 +1082,6 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA02068436', recipients=[LESLEY_GROFF], recipient_uncertain=True),
     EmailCfg(id='EFTA00450187', recipients=[LESLEY_GROFF], recipient_uncertain=True),
     EmailCfg(id='EFTA02068531', recipients=[LESLEY_GROFF], recipient_uncertain=True),
-    EmailCfg(id='EFTA02239782', recipients=['Andrew Superintendent', LESLEY_GROFF, MERWIN_DELA_CRUZ], recipient_uncertain=True),
     EmailCfg(id='EFTA02175423', recipients=[LESLEY_GROFF], truncate_to=650),
     EmailCfg(id='EFTA00313867', recipients=[LESLEY_GROFF], truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA00383027', recipients=[LINDA_STONE]),

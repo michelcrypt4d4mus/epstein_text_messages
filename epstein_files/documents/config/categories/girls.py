@@ -336,7 +336,12 @@ GIRLS_CFGS = [
     ),
     EmailCfg(id='EFTA01897098', author=NADIA_MARCINKO, note=f"{NADIA_MARCINKO} wants $5 million to part with Epstein"),
     EmailCfg(id='EFTA00677154', author=NADIA_MARCINKO),
-    EmailCfg(id='EFTA02456758', note=f'ongoing financial support for {NADIA_MARCINKO}', show_with_name=NADIA_MARCINKO),
+    EmailCfg(
+        id='EFTA02456758',
+        note=f'ongoing financial support for {NADIA_MARCINKO}',
+        recipients=[NADIA_MARCINKO, RICHARD_KAHN],
+        show_with_name=NADIA_MARCINKO,
+    ),
     EmailCfg(
         id='EFTA02538649',
         author=RENATA_BOLOTOVA,
@@ -903,6 +908,9 @@ GIRLS_CFGS = [
         note=f"Epstein's travel booker at Amex holds a Russian passport (and his Chinese girlfriends lost their passports)",
         truncate_to=800,
     ),
+
+    # Sarah Kellene
+    EmailCfg(id='EFTA02412698', author=SARAH_KELLEN),
 
     # Immigration
     EmailCfg(
