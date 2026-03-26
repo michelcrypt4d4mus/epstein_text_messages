@@ -1,4 +1,6 @@
 # NEXT RELEASE
+
+# 1.11.0
 * Add `--category` option to limit output by category
 * `EmailCfg.visible_in_id` property
 * New `--output-most-interesting` (with site) and `--almost-top10` args
