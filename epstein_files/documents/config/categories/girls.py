@@ -666,7 +666,7 @@ GIRLS_CFGS = [
         highlight_quote='she met this Congressman recently who, from what I unde=stood gives her everything, a private driver, bodyguard',
         is_interesting=True,
     ),
-    EmailCfg(id='EFTA00682682', highlight_quote='Working girl?', truncate_to=300),
+    EmailCfg(id='EFTA00682682', highlight_quote='Working girl?', truncate_to=300, duplicate_ids=['EFTA00680779'], dupe_type='redacted'),
     EmailCfg(id='EFTA01891832', highlight_quote="Anya, do u have any 20 years old girl for Jeffrey in Kiev?"),
     EmailCfg(id='EFTA01740839', highlight_quote='is the invitation for Sultan AND his wife?', note='note capital "AND"', is_interesting=True),
     EmailCfg(id='EFTA00971793', highlight_quote='Attached is resume of Lutnick nanny', note=f"why does Epstein need a nanny?"),

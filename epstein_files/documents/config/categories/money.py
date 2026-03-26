@@ -191,6 +191,8 @@ MONEY_CFGS = [
     cabinet_inventory('EFTA00299850', 'FILE CABINET ONE'),
     cabinet_inventory('EFTA00299927', 'FILE CABINET TWO', note=f"{JAMES_CAYNE} estate plan"),
     memo('EFTA01366011', DARREN_INDYKE, f"$3,000 expense reimbursement for {LASMA_KUHTARSKA}", show_with_name=LASMA_KUHTARSKA),  # TODO: to "marjorie"
+    letter('EFTA00587879', DARREN_INDYKE, ['BV70 LLC'], "extremely dodgy charitable donation to Epstein associated co. Gratitude", is_interesting=11),
+    DocCfg(id='EFTA00622816', note="Plan D note promising $8,000,000 to Leon Black's BV70 LLC", is_interesting=5, truncate_to=500),
 
     # JPM
     jpm_doc('EFTA01480542', 'Epstein source of wealth filing'),
@@ -290,6 +292,11 @@ MONEY_CFGS = [
         note=f"AML / Suspicious Activity report on structured deposits by {DARREN_INDYKE}",
     ),
     # Leon Black
+    DocCfg(
+        id='EFTA00599517',
+        is_interesting=6,
+        note=f'list of {LEON_BLACK} companies that {EILEEN_ALEXANDERSON} can make financial transactions for'
+    ),
     EmailCfg(
         id='EFTA01389074',
         author=RICHARD_KAHN,

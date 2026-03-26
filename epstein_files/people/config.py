@@ -396,6 +396,7 @@ HIGHLIGHTED_NAMES = [
             deutsche_bank_employee('Cynthia Rodriguez'),
             deutsche_bank_employee('Kumar Sambhav', f'technical writer {QUESTION_MARKS}'),
             deutsche_bank_employee('Martin Zeman'),
+            deutsche_bank_employee('Tazia Smith'),
             deutsche_bank_employee('Vaishali Mehta', 'Head of Anti-Money Laundering Business Risk', emailer_pattern=r"Vaishali.{,5}Mehta"),
             deutsche_bank_employee('Velmir Vejzovic', match_partial='last'),
             deutsche_bank_employee('Xavier Avila'),
@@ -1332,7 +1333,7 @@ HIGHLIGHTED_NAMES = [
             Entity(ALAN_DERSHOWITZ, f"{HARVARD} Law School professor", r"(alan.{1,7})?dershowi(lz?|t?z)|AlanDersh"),
             Entity('Andrew G. Celli', f"{ALAN_DERSHOWITZ}'s lawyer", match_partial=None),
             Entity(ARDA_BESKARDES, "NYC immigration attorney allegedly involved in sex-trafficking operations"),
-            Entity('Bebe Avdiu', f'legal assistant to {DARREN_INDYKE}'),
+            Entity('Bebe Avdiu', f'legal assistant to {DARREN_INDYKE}', r"Bebe A(vdiu|ydin)"),
             Entity(
                 BENNET_MOSKOWITZ,
                 "represented the Epstein estate executors",
@@ -1701,12 +1702,13 @@ HIGHLIGHTED_NAMES = [
             Entity(
                 LEON_BLACK,
                 'Apollo CEO, paid Epstein more than $150 million for "tax advice", serious allegations by multiple Epstein victims',
-                r"Leon\s*(D\.? )?Black?|(?<!Marc )Leon(?!\s(Botstein|Jaworski|Wieseltier))",
+                r"Leon\s*(D\.? )?Black?|(?<!Marc )Leon(?!\s(Botstein|Peshkin|Jaworski|Wieseltier))",
                 match_partial=None,
                 url='https://x.com/kevinnbass/status/2027255769595302219',
             ),
             Entity('Lyndon Lea', f"Lion Capital", match_partial=None),
             Entity(MELANIE_SPINELLA, f"representative of {LEON_BLACK}", r"M?elanie Spine[Il]{2}a"),
+            Entity(EILEEN_ALEXANDERSON, f"{LEON_BLACK}'s {ELYSIUM_MANAGEMENT}"),
             Entity(MICHAEL_FOWLER, f"{ATORUS} / Red Dot Trade fund co-founder", match_partial=None),
             Entity('Michael Milken', 'infamous junk bond king who went to prison in the 1980s', r"(Mi(chael|ke) )?Milken( Conference|Institute)?", url=WIKIPEDIA),
             Entity(
@@ -1758,6 +1760,7 @@ HIGHLIGHTED_NAMES = [
             ),
             Organization('BV70, LLC', f"holding company of {LEON_BLACK}'s yacht"),
             Organization('D.B. Zwirn Special Opportunities Fund', 'hedge fund that failed in 2008'),
+            Organization('Eisvogel Capital'),
             Organization('Enso Capital Management', belongs_to=JOSHUA_FINK, is_interesting=False),
             Organization(ELYSIUM_MANAGEMENT, f"family office managing {LEON_BLACK}'s money", belongs_to=LEON_BLACK),
             Organization('Hyperion Partners', 'Scott Shay, maybe related to Epstein co. Hyperion Air?'),
@@ -2113,6 +2116,7 @@ HIGHLIGHTED_NAMES = [
                 url='https://protos.com/larry-summers-gives-up-advisory-role-at-crypto-firm-dcg-amid-criticism/',
             ),
             Entity('Leah Reis-Dennis', f"producer for {LISA_NEW}'s Poetry in America"),
+            Entity('Leon Peshkin', 'researcher'),
             Entity(
                 LISA_NEW,
                 f'professor of poetry, wife of {LARRY_SUMMERS}',
@@ -2424,6 +2428,7 @@ HIGHLIGHTED_NAMES = [
             r"NY(er| mag(azine)?)",
             r"PERVERSION OF JUSTICE",
             r"Pro Publica",
+            r"radio station",
             r"(Sean )?Hannity",
             r"Sharon Churcher",  # Daily Mail
             r"Sulzberger",
@@ -3387,6 +3392,7 @@ HIGHLIGHTED_NAMES = [
             Entity(HOSAIN_RAHMAN, 'CEO of Jawbone', match_partial='first'),
             Entity(IAN_ODONNELL, THIELS_VALAR, r"Ian O'?Donnell|O'?Donnell, Ian"),
             Entity('Jack Dorsey', 'co-founder of Twitter and Block (FKA Square)', url=WIKIPEDIA),
+            Entity('James Ce', 'tech support', match_partial=None),
             Entity(JAMES_FITZGERALD, f"co-founder of {THIELS_VALAR}", r"James Fitz[g\s]eral?d?", match_partial=None),
             Entity('James Meisken', 'biotech at Delos'),
             Entity(
@@ -3432,6 +3438,7 @@ HIGHLIGHTED_NAMES = [
                 match_partial='first',
                 url=SUBSTACK_POST_INSIGHTSPOD_URL,
             ),
+            Entity.assistant('Connie Fox', PETER_DIAMANDIS),
             Entity.assistant('Alisa Bekins', PETER_THIEL),
             Entity.assistant('Claudia Leschuck', NATHAN_MYHRVOLD, emailer_pattern=r"Claudia Leschu[ck]+"),
             Entity.assistant('Saida Sapieva', REID_HOFFMAN, QUESTION_MARKS),

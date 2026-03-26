@@ -110,6 +110,15 @@ LEGAL_CFGS = [
         note=f'Affidavit of Tiffany Doe describing Jane Doe being raped by Epstein and Trump',
         date='2016-06-20',
     ),
+    DocCfg(
+        id='EFTA00235326',
+        # author=JANE_DOE_V_USA,
+        date='2007-09-12',
+        highlight_quote='spending some quality time with Title 18 looking for misdemeanors',
+        note='long and chummy conversation between Epstein defense attorneys and Florida prosecutors',
+        is_interesting=9,
+        truncate_to=AUTO
+    ),
     DocCfg(id='025939', author=JANE_DOE_V_EPSTEIN_TRUMP, note=f'Affidavit of Jane Doe describing being raped by Epstein', date='2016-06-20'),
     DocCfg(id='013489', author=JANE_DOE_V_EPSTEIN_TRUMP, note=f'Affidavit of {BRAD_EDWARDS}', date='2010-07-20'),
     DocCfg(id='029398', author=JANE_DOE_V_EPSTEIN_TRUMP, note=f'article in Law.com'),

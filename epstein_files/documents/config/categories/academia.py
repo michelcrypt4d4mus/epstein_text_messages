@@ -50,6 +50,7 @@ ACADEMIA_CFGS = [
         duplicate_ids=['029356'],  # 029356 is zoomed in corner
         is_interesting=False,
     ),
+    DocCfg(id='EFTA00584059', author=LEON_BLACK, note=f"donation to {LAWRENCE_KRAUSS}", truncate_to=2_000),
 
     # DOJ Files
     DocCfg(
