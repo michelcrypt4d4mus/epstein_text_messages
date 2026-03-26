@@ -485,6 +485,7 @@ GOVERNMENT_CFGS = [
         id='EFTA00214992',
         highlight_quote='marching orders regarding what they can tell the girls',
         note=f"not informing victims is a violation of {CVRA}",
+        truncate_to=515,
     ),
     fbi_evidence_review('EFTA01657122'),
     fbi_evidence_review('EFTA01657117'),
