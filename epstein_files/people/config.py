@@ -1143,6 +1143,7 @@ HIGHLIGHTED_NAMES = [
             Entity('Alfredo Rodriguez', "Epstein's butler, stole Epstein's black book", match_partial=None),
             Entity('Arline M. Toylo', 'employee'),
             Entity(BELLA_KLEIN, "one of Epstein's accountants", match_partial=None),
+            Entity('Brahakmana Mellawa', 'house staff', match_partial='both'),
             Entity('Brice Gordon', 'property manager', match_partial=None),
             Entity('Carluz N. Toylo', 'employee'),
             Entity('Charles Pickett', 'pilot', r"Ch(arles|ip) Pickett"),
