@@ -20,7 +20,7 @@ from epstein_files.output.site.site_config import MOBILE_WARNING_TXT
 from epstein_files.people.names import UNKNOWN
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constant.urls import *
-from epstein_files.util.constants import HEADER_ABBREVIATIONS
+from epstein_files.util.constants import HEADER_ABBREVIATIONS, TEXT_MSG_ABBREVIATIONS
 from epstein_files.util.env import args, site_config
 from epstein_files.util.external_link import SUBSTACK_POST_LINK_STYLE, join_texts, link_markup, link_text_obj, parenthesize
 from epstein_files.util.helpers.rich_helpers import starred_header_txt, vertically_pad
@@ -161,6 +161,10 @@ def _abbreviations_table() -> Padding:
 
     for k, v in HEADER_ABBREVIATIONS.items():
         table.add_row(highlighter(k), v)
+
+    if args.output_texts:
+        for k, v in TEXT_MSG_ABBREVIATIONS.items():
+            table.add_row(highlighter(k), v)
 
     return vertically_pad(table)
 
