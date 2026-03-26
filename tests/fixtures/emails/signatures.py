@@ -170,27 +170,16 @@ DEVICE_SIGNATURE_TO_AUTHORS = {
     "Sent via BlackBerry from T-Mobile": [
         PAULA_HEIL_FISHER
     ],
-    'Sent via Superhuman iOS': [
-        MASHA_DROKOVA
-    ],
-    "Sent via tin can and string.": [
-        MARK_EPSTEIN,
-    ],
+    'Sent via Superhuman iOS': [MASHA_DROKOVA],
+    "Sent via tin can and string.": [MARK_EPSTEIN],
     'Sent with BlackBerry': [
         BRAD_KARP
     ],
-    "Sorry for all the typos .Sent from my iPhone": [
-        JEFFREY_EPSTEIN
-    ],
-    'Typos, misspellings courtesy of iPhone': [
-        LINDA_STONE,
-    ],
-    'Typos, misspellings courtesy of iPhone word & thought substitution.': [
-        LINDA_STONE,
-    ],
-    'Typos, misspellings courtesy of iPhone.': [
-        LINDA_STONE,
-    ],
+    "Sorry for all the typos .Sent from my iPhone": [JEFFREY_EPSTEIN],
+    'Typos, misspellings courtesy of iPhone': [LINDA_STONE],
+    'Typos, misspellings courtesy of iPhone word & thought substitution.': [LINDA_STONE],
+    'Typos, misspellings courtesy of iPhone.': [LINDA_STONE],
+    '发自我的 iPhone': [WANDI_ZHU],
 }
 
 AUTHORS_TO_DEVICE_SIGNATURES = {
@@ -480,6 +469,7 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
     USANYS: [
         "Sent from my iPhone"
     ],
+    WANDI_ZHU: ['发自我的 iPhone'],
     VINCENZO_IOZZO: [
         'Sent from my Iphone',
         'Sent from my iphone',
@@ -497,6 +487,7 @@ SIGNATURE_SUBSTITUTION_COUNTS = {
     ARDA_BESKARDES: 9,
     ARIANE_DE_ROTHSCHILD: 4,
     BARBRO_C_EHNBOM: 5,
+    BOBBI_C_STERNHEIM: 3,
     BRAD_KARP: 5,
     'Bradford Stephens': 9,
     BROCK_PIERCE: 117,
