@@ -3261,7 +3261,7 @@ HIGHLIGHTED_NAMES = [
             Entity(
                 MASHA_DROKOVA,
                 'silicon valley venture capitalist (Day One Ventures), former Putin Youth member, star of "Putin\'s Kiss"',
-                r"(Marii?y?a|Masha) (Bucher|Drokova)",
+                r"(Marii?y?a|Masha) (Bucher|Drokova)|Drokova Masha",
                 aliases=['Masha Bucher'],
                 url='https://davidzmorris.substack.com/p/i-found-epstein-i-just-didnt-realize',
             ),
