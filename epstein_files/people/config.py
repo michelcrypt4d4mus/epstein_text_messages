@@ -236,6 +236,7 @@ HIGHLIGHTED_NAMES = [
         label=ARTS,
         style='wheat4',
         entities=[
+            Entity('Ananda Apfelbaum', 'author of "Thai Massage, Sacred Bodywork"', r"Ananda Apfelbaum|Thai Massage Sacred Bodywork"),
             Entity(ANDRES_SERRANO, '"Piss Christ" artist', url=WIKIPEDIA),
             Entity('Barry Josephson', "American film producer", url=WIKIPEDIA),  #, editor FamilySecurityMatters.org"),
             Entity(BECHET_ALLEN, f"daughter of {WOODY_ALLEN} and {SOON_YI_PREVIN}"),
