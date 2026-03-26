@@ -1891,12 +1891,10 @@ HIGHLIGHTED_NAMES = [
             ),
             Entity(STEPHEN_HANSON, emailer_pattern=r"ste(phen|ve) hanson?|Shanson900"),
             Entity(TERRY_KAFKA, "CEO of Impact Outdoor (highway billboards), lifelong friend of Epstein", match_partial=None),
-            Entity(TOM_BARRACK, "long time friend of Trump", url=WIKIPEDIA),
             Entity('Warren Eisenstein', 'childhood friend of Epstein'),
         ],
         patterns=[
             r"Jonanthan and Kimberly Farkus",
-            r"Thomas (J\.? )?Barrack( Jr)?",
         ],
     ),
     HighlightedNames(
@@ -2902,7 +2900,7 @@ HIGHLIGHTED_NAMES = [
                 url='https://www.tabletmag.com/sections/news/articles/the-illusionist-al-seckel',
             ),
             Entity('Barnaby Marsh', "co-founder of philanthropy services company Saint Partners", match_partial=None),
-            Entity(CHRISTINA_GALBRAITH, f"{EPSTEIN_VI_FOUNDATION} Media/PR, worked with {TYLER_SHEARS}"),
+            Entity(CHRISTINA_GALBRAITH, f"{EPSTEIN_VI_FOUNDATION} Media/PR, worked with {TYLER_SHEARS}", match_partial=None),
             Entity(
                 IAN_OSBORNE,
                 f"PR for Epstein, runs {HEDOSOPHIA} which launched SPACs with {CHAMATH_PALIHAPITIYA} advised by Epstein",
@@ -3658,6 +3656,12 @@ HIGHLIGHTED_NAMES = [
                 match_partial=None,
                 url=WIKIPEDIA,
             ),
+            Entity(
+                TOM_BARRACK,
+                "long time friend of Trump, US ambassador to Turkey",
+                r"Th?om(as)? (J\.? )?Barrack( Jr)?",
+                url=WIKIPEDIA,
+            ),
             Organization("Trump Properties LLC"),
         ],
         patterns=[
@@ -3683,12 +3687,12 @@ HIGHLIGHTED_NAMES = [
         label='USVI',
         style='sea_green1',
         entities=[
-            Entity('Albert Bryan', "Virgin Islands governor", match_partial=None),
+            Entity(ALBERT_BRYAN, "Virgin Islands governor", match_partial=None),
             Entity(CECILE_DE_JONGH, "Virgin Islands first lady 2007-2015, Epstein office manager"),
             Entity('Denise George', "Virgin Islands Attorney General from 2019, sued JP Morgan", match_partial=None),
-            Entity('John Engerman'),
+            Entity(JOHN_ENGERMAN, 'Albert Bryan campaign manager'),
             Entity(KENNETH_E_MAPP, "Virgin Islands Governor"),
-            Entity('Michael Harrigan', 'Deputy Superintendent of Schools for St. Thomas / St. John districts of the Virgin Islands', match_partial=None),
+            Entity('Michael Harrigan', 'St. Thomas / St. John islands school administrator', match_partial=None),
             Entity(STACEY_PLASKETT, "Virgin Islands non-voting member of Congress"),
             acronym('British Virgin Islands', 'infamous offshore tax haven'),
             Organization('Generation Now', 'political group in USVI', r"(?-i:G)eneration (?-i:N)ow"),
