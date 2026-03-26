@@ -140,6 +140,7 @@ LEGAL_CFGS = [
     DocCfg(id='023361', author=JASTA_SAUDI_LAWSUIT, note=f"legal text and court documents", date='2012-01-20'),
     DocCfg(id='017830', author=JASTA_SAUDI_LAWSUIT, note=f"legal text and court documents"),
     DocCfg(id='017904', author=JASTA_SAUDI_LAWSUIT, note=f"Westlaw search results", date='2019-01-01'),
+    DocCfg(id='EFTA00725932', author=REDACTED_V_EPSTEIN_ESATE, truncate_to=(3_300, 14_000)),
     DocCfg(id='014037', author='Journal of Criminal Law and Criminology', note=f"article on {CVRA}"),
     DocCfg(
         id='EFTA00129013',

@@ -3731,7 +3731,7 @@ HIGHLIGHTED_NAMES = [
             Entity(ANTHONY_FIGUEROA, "boyfriend of a victim, paid $200 per girl to recruit", match_partial=None),
             Entity("Audrey/Aubrey Raimbault", 'appears in flight logs'),
             Entity('Brittany Beale', VICTIM_EVIDENCE),
-            Entity(CECILIA_STEEN, f'Epstein assistant, moved to Dubai to work for money launderers (?)'),
+            Entity(CECILIA_STEEN, f'Epstein assistant, moved to Dubai to work for money launderers (?)', r"Cec[ei]lia Ste[ei]n"),
             Entity(
                 CELINA_DUBIN,
                 f"daughter of Glenn &{EVA_DUBIN}, called Epstein 'unc', major beneficiary of Epstein's will",
