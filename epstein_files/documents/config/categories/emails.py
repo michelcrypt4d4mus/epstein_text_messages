@@ -1304,7 +1304,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA02628058', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA02626427', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA01880345', author=SHAHER_ABDULHAK_BESHER),
-    shaher_murder_email('EFTA02021096'),
+    shaher_murder_email('EFTA02021096', truncate_to=1_890),
     shaher_murder_email('EFTA00937008', author=SHAHER_ABDULHAK_BESHER, author_reason='Etisalat signature'),
     shaher_murder_email(
         'EFTA01878623',

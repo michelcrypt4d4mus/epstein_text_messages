@@ -695,6 +695,7 @@ CRYPTO_CFGS = [
         note=f"Epstein planning a symposium \"on Alternative Money or Complementary Currency\" in 2012",
         is_interesting=10,
         recipients=[LESLEY_GROFF],
+        truncate_to=1_300,
     ),
     EmailCfg(
         id='EFTA01965506',
