@@ -476,7 +476,7 @@ def island_employee(name: str, job_title: str) -> Entity:
 
 def law_enforcement(name: str, emailer_pattern: str = '', info: str = '', **kwargs) -> Organization:
     is_interesting = _pop_kwarg(kwargs, 'is_interesting', False)
-    is_emailer = _pop_kwarg(kwargs, 'is_emailer', False)
+    is_emailer = _pop_kwarg(kwargs, 'is_emailer', False) or bool(emailer_pattern)
 
     if name.startswith('US ') and not emailer_pattern:
         emailer_pattern = r"U(\.|nited)? S(\.|tates)? " + name.removeprefix('US ')
