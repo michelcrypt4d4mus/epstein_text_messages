@@ -362,7 +362,13 @@ GOVERNMENT_CFGS = [
     fbi_tip('EFTA00096249', "about Epstein wiring money to Albert bryan", date='', truncate_to=(4_000, 6_000)),
     fbi_tip('EFTA00128750', f"from Reynaldo Clark about Epstein bribing USVI elected officials", date='2022-10-24', is_interesting=3),
     fbi_tip('EFTA01249591', f"about {HENRY_JARECKI}", show_full_panel=True),
-    fbi_tip('EFTA00108851', f"from {STEVEN_HOFFENBERG} re: Epstein and the murder of Arthur Shapiro", is_interesting=True, truncate_to=(1_700, 2_600)),
+    fbi_tip(
+        'EFTA00108851',
+        f"from {STEVEN_HOFFENBERG} re: Epstein and the murder of Arthur Shapiro",
+        date='2010-09-02',
+        is_interesting=2,
+        truncate_to=(1_700, 2_600),
+    ),
     fbi_tip('EFTA00020490', 'from woman who thinks she encountered Epstein as a young girl'),
     fbi_tip('EFTA00090314', f'about {MASHA_DROKOVA}, Jared Kushner, Ivanka Trump, Chabad, {ALAN_DERSHOWITZ}, etc.', is_interesting=True),
     fbi_tip(

@@ -191,6 +191,7 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
         "Sent from my Windows 10 phone",
         "Sent from my iPad",
         "Sent from my iPhone",
+        'Sent from my Verizon, Samsung Galaxy smartphone',
         "Sent via BlackBerry by AT&T",
         'Sent via BlackBerry from T-Mobile',
     ],
@@ -336,7 +337,10 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
     'Lawrence Delson': ['Sent on Android'],
     LAWRENCE_KRAUSS: ["Sent from my iPhone"],
     'Leighton Candler': ['Sent from my BlackBerry Wireless Device'],
-    LEO_LOKING: ['Sent from Yahoo Mail for iPhone'],
+    LEO_LOKING: [
+        'Sent from Yahoo Mail for iPhone',
+        'Sent from my iPhone',
+    ],
     LESLEY_GROFF: [
         "Sent from my iPhone",
     ],
@@ -521,6 +525,7 @@ SIGNATURE_SUBSTITUTION_COUNTS = {
     MARTIN_WEINBERG: 17,
     MICHAEL_FOWLER: 4,
     'Michael Miller': 6,
+    NATALIA_MOLOTKOVA: 8,
     NICHOLAS_RIBIS: 2,
     PAUL_BARRETT: 10,
     'Paul Venables': 4,

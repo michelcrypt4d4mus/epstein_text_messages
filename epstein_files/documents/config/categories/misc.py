@@ -123,7 +123,7 @@ MISC_CFGS = [
     DocCfg(id='EFTA00005386', display_text='heavily redacted photo album, lot of photos of girls'),
     DocCfg(id='EFTA01628970', display_text='redacted pictures of naked women'),
     DocCfg(id='EFTA00004070', display_text="photos of Epstein with handwritten caption that didn't OCR well"),
-    DocCfg(id='EFTA02731260', display_text='notebook full of handwritten love letters with terrible OCR text'),
+    DocCfg(id='EFTA02731260', display_text='notebook full of handwritten love letters with terrible OCR text', date='2012-07-16'),
     DocCfg(id='EFTA00006100', display_text='Palm Beach Police fax machine activity log 2005-12-28 to 2006-01-04'),
     # Attachments
     DocCfg(id='EFTA00590685', attached_to_email_id='EFTA00830911'),

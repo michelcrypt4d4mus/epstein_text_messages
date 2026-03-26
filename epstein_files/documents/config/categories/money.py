@@ -106,6 +106,8 @@ MONEY_CFGS = [
     DocCfg(
         id='EFTA01480940',
         author=JP_MORGAN,
+        date='2011-01-01',
+        date_uncertain='tax lien filed 2009-07-21, mentions visits to Epstein in jail',
         highlight_quote='two outstanding federal tax liens totaling $593,789',
         is_interesting=True,
         note=f'due diligence report on {MC2_MODEL_MGMT}',
