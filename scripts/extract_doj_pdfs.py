@@ -16,12 +16,14 @@ from epstein_files.output.rich import console
 from epstein_files.util.constant.strings import DOJ_FILE_NAME_REGEX
 from epstein_files.util.env import DOJ_PDFS_20260130_DIR, DOJ_TXTS_20260130_DIR, DOJ_PDFS_20260130_DIR_ENV_VAR, args
 from epstein_files.util.helpers.env_helpers import get_env_dir
+from epstein_files.util.helpers.file_helper import extract_file_id
 from epstein_files.util.logging import logger
 
 assert DOJ_PDFS_20260130_DIR is not None, f"{DOJ_PDFS_20260130_DIR_ENV_VAR} env var is not set!"
 assert DOJ_TXTS_20260130_DIR is not None
 
 BROKEN_PDFS_DIR = get_env_dir('BROKEN_PDFS_DIR', must_exist=True)
+KNOWN_BAD_JMAIL_IDS_PATH = BROKEN_PDFS_DIR.joinpath('broken_jmail_ids.txt')
 JMAIL_FILENAME_REGEX = re.compile(r"vol(\d+)-(?:official-doj-latest-)?(efta\d+)(-pdf)?.pdf")
 BAD_FILENAME_REGEX = re.compile(r".*/EFTA\d+-\d\.pdf")
 EXTRACT_ARGS = ['extract_pdf_text', '--no-page-number-panels', '--panelize-image-text']
@@ -30,6 +32,12 @@ EXTRACT_ARGS = ['extract_pdf_text', '--no-page-number-panels', '--panelize-image
 if not DOJ_TXTS_20260130_DIR.exists():
     ask_to_proceed(f"Dir {DOJ_TXTS_20260130_DIR} doesn't exist, create?")
     DOJ_TXTS_20260130_DIR.mkdir()
+
+if KNOWN_BAD_JMAIL_IDS_PATH.exists():
+    known_bad_ids = set(KNOWN_BAD_JMAIL_IDS_PATH.read_text().split('\n'))
+    logger.warning(f"Loaded {known_bad_ids} known bad IDs from '{KNOWN_BAD_JMAIL_IDS_PATH}'...")
+else:
+    known_bad_ids = set([])
 
 skipped = 0
 
@@ -77,11 +85,14 @@ for dir in [d for d in DOJ_PDFS_20260130_DIR.glob('*') if d.is_dir()]:
 
         if not txt_file_path.exists():
             if pdf_path.read_text().startswith('<!DOCTYPE html>'):
-                logger.error(f"{pdf_path} is an HTML file, not a PDF, moving to '{BROKEN_PDFS_DIR}'...")
+                logger.error(f"'{pdf_path}' is an HTML file, not a PDF, moving to '{BROKEN_PDFS_DIR}'...")
+                known_bad_ids.add(extract_file_id(pdf_path))
             else:
                 logger.error(f"Failed to extract any text from {pdf_path}, moving to '{BROKEN_PDFS_DIR}'...")
 
             shutil.move(pdf_path, BROKEN_PDFS_DIR.joinpath(pdf_path.name))
 
+KNOWN_BAD_JMAIL_IDS_PATH.write_text('\n'.join(known_bad_ids))
+logger.warning(f"Wrote {len(known_bad_ids)} known bad IDs to '{KNOWN_BAD_JMAIL_IDS_PATH}'")
 args.constantize = True
 EpsteinFiles.get_files().load_new_files()
