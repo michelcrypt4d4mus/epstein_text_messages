@@ -1,7 +1,9 @@
 import re
+from contextlib import contextmanager
 from datetime import datetime
 from pathlib import Path
 from subprocess import check_output, run
+from typing import Generator
 
 from rich.panel import Panel
 from rich.text import Text
@@ -11,9 +13,11 @@ from epstein_files.util.constant.strings import (DOJ_FILE_STEM_REGEX, DOJ_FILE_N
      HOUSE_OVERSIGHT_NOV_2025_FILE_NAME_REGEX, HOUSE_OVERSIGHT_NOV_2025_FILE_STEM_REGEX,
      HOUSE_OVERSIGHT_NOV_2025_ID_REGEX, HOUSE_OVERSIGHT_PREFIX, LOCAL_EXTRACT_REGEX)
 from epstein_files.util.env import DOCS_DIR, DOJ_PDFS_20260130_DIR, DOJ_TXTS_20260130_DIR, DROPSITE_EMLS_DIR
+from epstein_files.util.helpers.env_helpers import get_env_dir
 from epstein_files.util.helpers.string_helper import is_integer, join_patterns
 from epstein_files.util.logging import logger
 
+BROKEN_PDFS_DIR = get_env_dir('BROKEN_PDFS_DIR', must_exist=False)
 PROJECT_DIR = Path(__file__).parent.parent.parent.parent
 EXTRACTED_EMAILS_DIR = PROJECT_DIR.joinpath('emails_extracted_from_legal_filings')
 
@@ -53,6 +57,12 @@ all_txt_paths = lambda: doj_txt_paths() + oversight_txt_paths() + dropsite_eml_p
 doj_txt_paths = lambda: [f for f in DOJ_TXTS_20260130_DIR.glob('**/*.txt')] if DOJ_TXTS_20260130_DIR else []
 dropsite_eml_paths = lambda: [f for f in DROPSITE_EMLS_DIR.glob('*.eml')]
 oversight_txt_paths = lambda: [f for f in DOCS_DIR.iterdir() if f.is_file() and not f.name.startswith('.')]
+
+
+def broken_pdfs_dir() -> Path:
+    """Location of broken PDFs, if env var is set."""
+    assert BROKEN_PDFS_DIR, f"BROKEN_PDFS_DIR not set!"
+    return BROKEN_PDFS_DIR
 
 
 # Coerce methods handle both string and int arguments.
@@ -114,11 +124,6 @@ def diff_files(file1: str | Path, file2: str | Path, print_to_console: bool = Tr
         _print_colored_diff_output(diff_result, [file1, file2])
 
     return diff_result
-
-
-def local_doj_file_path(id: str, data_set_id: int) -> Path:
-    """Build a path to a DOj PDF on the local filesystem."""
-    return DOJ_PDFS_20260130_DIR.joinpath(f"DataSet {data_set_id}", f"{id}.pdf")
 
 
 def extract_efta_id(file_id: str) -> int:
@@ -201,6 +206,29 @@ def is_local_extract_file(filename: str | Path) -> bool:
 
 def is_picture(file_name: str) -> bool:
     return any(file_name.endswith(ext) for ext in IMG_EXTENSIONS) or 'Epstein_and_MBS' in file_name
+
+
+@contextmanager
+def jmail_download_bad_ids() -> Generator[set[str], None, None]:
+    """Track file IDs that don't download correctly when pulled from Jmail via constructed URLs."""
+    known_bad_jmail_ids_path = broken_pdfs_dir().joinpath('broken_jmail_ids.txt')
+
+    if known_bad_jmail_ids_path.exists():
+        known_bad_ids = set(known_bad_jmail_ids_path.read_text().split('\n'))
+        logger.warning(f"Loaded {known_bad_ids} known bad IDs from '{known_bad_jmail_ids_path}'...")
+    else:
+        known_bad_ids = set([])
+
+    try:
+        yield known_bad_ids
+    finally:
+        known_bad_jmail_ids_path.write_text('\n'.join(known_bad_ids))
+        logger.warning(f"Wrote {len(known_bad_ids)} known bad IDs to '{known_bad_jmail_ids_path}'")
+
+
+def local_doj_file_path(id: str, data_set_id: int) -> Path:
+    """Build a path to a DOj PDF on the local filesystem."""
+    return DOJ_PDFS_20260130_DIR.joinpath(f"DataSet {data_set_id}", f"{id}.pdf")
 
 
 def log_file_write(file_path: str | Path) -> None:

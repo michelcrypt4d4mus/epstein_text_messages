@@ -112,7 +112,7 @@ OCR_REPAIRS: OcrRepair = {
     re.compile(r"I ?(od|nl)ine-Images:"): 'Inline-Images:',
     re.compile(r"^([Cc][Cc]|To)$", re.MULTILINE): r'\1:',
     re.compile(r"^((?:B?cc|To):.*)\n(>?;.*)", re.IGNORECASE | re.MULTILINE): r'\1 \2',
-    re.compile(r"^(Sent|Subject) (?![Ff]rom|on|using|[Rr]emote|[Vv]ia|with)", re.MULTILINE): r'\1: ',
+    re.compile(r"^(Sent|Subject) (?!by|[Ff]rom|on|using|[Rr]emote|[Vv]ia|with)", re.MULTILINE): r'\1: ',
     re.compile(r"^Subject[.•]{,2} ", re.MULTILINE): 'Subject: ',
     re.compile(r"^(Forwarded|Original) Message$", re.IGNORECASE | re.MULTILINE): r"--- \1 Message ---",  # Make forward lines match our highlight
     # Excessive quote chars
@@ -145,8 +145,6 @@ OCR_REPAIRS: OcrRepair = {
     re.compile(r"[ijlp']ee[vy]acation[©@a(&,P ]{1,3}g?mail.com"): 'jeevacation@gmail.com',
     'gyahoo.com': '@yahoo.com',
     # Signatures
-    'Envoy& de': 'Envoyé de',
-    'Envoye avec BlackBerry° d': 'Envoyé avec BlackBerry® d',
     'from Samsung Mob.le': 'from Samsung Mobile',
     'gJeremyRubin': '@JeremyRubin',
     'Mail for i Phone': 'Mail for iPhone',
@@ -158,7 +156,8 @@ OCR_REPAIRS: OcrRepair = {
     re.compile(r'Blac[il]cBerry'): 'BlackBerry',
     'BlackBerry by AT &T': 'BlackBerry by AT&T',
     'BlackBerry from T- Mobile': 'BlackBerry from T-Mobile',
-    re.compile(r"Envoy[ée] de mon iPhon[ce]"): 'Envoyé de mon iPhone',
+    'BlackBerry°': 'BlackBerry®',
+    re.compile(r"Envoy[ée&s] (avec|de mon iPhon[ce])"): r'Envoyé \1',
     re.compile(r"[cC]o-authored with i ?Phone auto-correct"): "Co-authored with iPhone auto-correct",
     re.compile(r"from my ['!()=]([Pp]hone)"): r'from my i\1',
     re.compile(r'from my BlackBerry[0°] wireless device'): 'from my BlackBerry® wireless device',

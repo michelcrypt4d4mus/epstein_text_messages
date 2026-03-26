@@ -97,8 +97,9 @@ WARN_ON_ENTITY_NAMES = set([
     'Brice',
     'Juliya',
     'Leo',
-    "Peter Green",
+    'Mary E Erdoes',
     'Nadia',
+    "Peter Green",
 ])
 
 T = TypeVar('T', bound=str | Text)

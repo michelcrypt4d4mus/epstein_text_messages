@@ -123,7 +123,7 @@ MISC_CFGS = [
     DocCfg(id='EFTA00005386', display_text='heavily redacted photo album, lot of photos of girls'),
     DocCfg(id='EFTA01628970', display_text='redacted pictures of naked women'),
     DocCfg(id='EFTA00004070', display_text="photos of Epstein with handwritten caption that didn't OCR well"),
-    DocCfg(id='EFTA02731260', display_text='notebook full of handwritten love letters with terrible OCR text'),
+    DocCfg(id='EFTA02731260', display_text='notebook full of handwritten love letters with terrible OCR text', date='2012-07-16'),
     DocCfg(id='EFTA00006100', display_text='Palm Beach Police fax machine activity log 2005-12-28 to 2006-01-04'),
     # Attachments
     DocCfg(id='EFTA00590685', attached_to_email_id='EFTA00830911'),
@@ -137,6 +137,7 @@ MISC_CFGS = [
         note='notes from interview with employee and copy of 2005 household manual for Palm Beach residence',
         date='2021-09-30',
     ),
+    DocCfg(id='EFTA00728864', note=f'security orders for {EL_BRILLO_ADDRESS} showing {IGOR_ZINOVIEV} had door power'),
     fedex_invoice('EFTA00217072', '2005-06-20'),
     fedex_invoice('EFTA00217080', '2005-06-27'),
     imessage_screenshot(id='033434', author=BRAD_EDWARDS, author_uncertain=f"labeled 'Edwards'", is_interesting=False),

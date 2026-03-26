@@ -48,7 +48,6 @@ def blaine_letter(id: str, date: str, suffix: str = '', **kwargs) -> Communicati
 
 GIRLS_CFGS = [
     DocCfg(id='019300', author=SVETLANA_POZHIDAEVA, note=f'{WOMEN_EMPOWERMENT} f. {KATHRYN_RUEMMLER}', date='2019-04-05', show_full_panel=True),
-    DocCfg(id='EFTA02445716', author=SVETLANA_POZHIDAEVA, note=f'{WOMEN_EMPOWERMENT} pilot event', date='2019-04-12'),
     DocCfg(id='022267', author=SVETLANA_POZHIDAEVA, note=f'{WOMEN_EMPOWERMENT} founder essay about growing the seminar business'),
     DocCfg(id='022407', author=SVETLANA_POZHIDAEVA, note=f'{WOMEN_EMPOWERMENT} seminar pitch deck'),
     EmailCfg(id='031177', highlight_quote="in Ibiza so invited a lots of girls from Russia all models"),
@@ -188,7 +187,21 @@ GIRLS_CFGS = [
     ),
 
     # Authors
-    # EmailCfg(id='EFTA01061418', recipients=[ANNABELLE_NEILSON], author_reason='signature', duplicate_ids=['EFTA02421743'], dupe_type='quoted'),
+    EmailCfg(
+        id='EFTA01742539',
+        author=EKATERINA_GUSAROVA,
+        author_reason='Carstensen',
+        highlight_quote='tell katya that you will pay her for recommendations that work out',
+    ),
+    EmailCfg(
+        id='EFTA01984912',
+        recipients=[ANNABELLE_NEILSON],
+        author_reason='signature',
+        duplicate_ids=['EFTA02421743'],
+        dupe_type='quoted',
+        highlight_quote="a few of my girls, who would be perfect for the job but are unfortunately past their sell by date",
+        is_interesting=4,
+    ),
     EmailCfg(
         id='EFTA02339926',
         author=JULIA_SANTOS,
@@ -211,6 +224,7 @@ GIRLS_CFGS = [
     EmailCfg(id='EFTA01759826', highlight_quote='especially if you find me interesing girls there', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA01969878', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA01981669', truncate_to=NO_TRUNCATE),
+
     EmailCfg(id='EFTA01791918', author=LAURA_T_NEWMAN, note='recruiting a ballet dancer', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA02436739', author=LAURA_T_NEWMAN, note='recruiting?'),
     EmailCfg(
@@ -297,9 +311,15 @@ GIRLS_CFGS = [
     EmailCfg(id='EFTA02026255', author=MARIA_PRUSAKOVA, author_uncertain=CLIFFORD_CHANCE, truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA00684871', author=MARIANA_IDZKOWSKA),
     EmailCfg(id='EFTA00674483', author=MARIANA_IDZKOWSKA),
+    EmailCfg(
+        id='EFTA00662373',
+        author=MASHA_DROKOVA,
+        author_reason='"Best, Masha"',
+        highlight_quote='She is interesting. Great looks',
+        is_interesting=True,
+    ),
     EmailCfg(id='EFTA01990879', author=MIRANDA_MAKO, author_uncertain='Clifford Chance, could be Miranda'),
     EmailCfg(id='EFTA00671662', author=MIRANDA_MAKO, author_reason='quoted signature "Miranda"', note="yet another girl finder"),
-    EmailCfg(id='EFTA00662373', author=MASHA_DROKOVA, author_reason='"Best, Masha"', highlight_quote='She is interesting. Great looks'),
     # Nadia
     EmailCfg(id='021814', author=NADIA_MARCINKO, author_reason='reply'),
     EmailCfg(id='021808', author=NADIA_MARCINKO, author_reason='reply', truncate_to=NO_TRUNCATE),
@@ -307,10 +327,30 @@ GIRLS_CFGS = [
     EmailCfg(id='022214', author=NADIA_MARCINKO, author_reason='Reply header'),
     EmailCfg(id='021811', author=NADIA_MARCINKO, author_reason='signature and email address in the message'),
     EmailCfg(id='EFTA01047249', author=NADIA_MARCINKO, author_reason='Miro', url='https://archive.ph/Qa6vU#selection-1621.160-1621.184'),
-    EmailCfg(id='EFTA00962525', author=NADIA_MARCINKO, author_reason='carstensen', highlight_quote="I was a teenager in love. You were 51.", is_interesting=2),
+    EmailCfg(
+        id='EFTA00962525',
+        author=NADIA_MARCINKO,
+        author_reason='carstensen',
+        highlight_quote="I was a teenager in love. You were 51.",
+        is_interesting=2,
+    ),
     EmailCfg(id='EFTA01897098', author=NADIA_MARCINKO, note=f"{NADIA_MARCINKO} wants $5 million to part with Epstein"),
     EmailCfg(id='EFTA00677154', author=NADIA_MARCINKO),
     EmailCfg(id='EFTA02456758', note=f'ongoing financial support for {NADIA_MARCINKO}', show_with_name=NADIA_MARCINKO),
+    EmailCfg(
+        id='EFTA02538649',
+        author=RENATA_BOLOTOVA,
+        author_reason=f'{SNEAKY_DOG} + {TERJE_ROD_LARSEN} mention',
+        note=f"email about a future job at {TERJE_ROD_LARSEN}'s International Peace Institute",
+    ),
+    EmailCfg(
+        id='EFTA02540487',
+        author=RENATA_BOLOTOVA,
+        author_reason=f'{SNEAKY_DOG} + {TERJE_ROD_LARSEN} mention',
+        is_interesting=10,
+        note=f"email about a job for {RENATA_BOLOTOVA} at {TERJE_ROD_LARSEN}'s International Peace Institute",
+    ),
+    EmailCfg(id='EFTA00775732', author='Sarah', author_reason='https://jmail.world/thread/EFTA02443569?view=inbox'),
     EmailCfg(id='EFTA02441035', author=STEVEN_VICTOR_MD, note="complaints about free medical treatment for Epstein's girls"),
     EmailCfg(id='EFTA00664619', author=SUE, author_reason='"Dear Sue"'),
     EmailCfg(
@@ -334,12 +374,7 @@ GIRLS_CFGS = [
         highlight_quote="You have known you are preg for a week",
         note=f'{SVETLANA_POZHIDAEVA} fwds a discussion about an abortion to Epstein',
     ),
-    EmailCfg(
-        id='EFTA01742539',
-        author=EKATERINA_GUSAROVA,
-        author_reason='Carstensen',
-        highlight_quote='tell katya that you will pay her for recommendations that work out',
-    ),
+    DocCfg(id='EFTA02445716', author=SVETLANA_POZHIDAEVA, note=f'{WOMEN_EMPOWERMENT} pilot event', date='2019-04-12'),
     EmailCfg(
         id='EFTA01894879',
         note='"most of all its cheap excort"',
@@ -613,9 +648,19 @@ GIRLS_CFGS = [
         truncate_to=1_000,
     ),
     EmailCfg(id='EFTA00657216', highlight_quote='Is Katya coming over?', note=f'"Katya" is {EKATERINA_GUSAROVA}'),
+    EmailCfg(id='EFTA00959850', highlight_quote="send me a number to call I dont like records of these conversations"),
 
     # Quotes
-    EmailCfg(id='011908_3', highlight_quote='sex trafficking allegations have stopped us from working with • your agency for the past 5-6 years'),
+    EmailCfg(
+        id='011908_3',
+        highlight_quote='sex trafficking allegations have stopped us from working with • your agency for the past 5-6 years',
+        is_interesting=5,
+    ),
+    EmailCfg(
+        id='EFTA00740146',
+        highlight_quote='I might want to fund an exhibition entitled statutory',
+        is_interesting=3,
+    ),
     EmailCfg(
         id='EFTA02504370',
         highlight_quote=f'lovely girl with financial troubles',
@@ -651,7 +696,7 @@ GIRLS_CFGS = [
     ),
     EmailCfg(
         id='EFTA00878421',
-        highlight_quote="said that she felt gods presence next to her when she was in bed",
+        highlight_quote="she knows that Jesus watches over her. and he helped save her life. Whoops",
         is_interesting=10,
         recipients=[NADIA_MARCINKO],
         recipient_uncertain='https://archive.ph/Qa6vU',  # https://www.nybooks.com/articles/2026/03/26/the-devil-himself-jeffrey-epstein-enright/
@@ -669,6 +714,7 @@ GIRLS_CFGS = [
         highlight_quote='she met this Congressman recently who, from what I unde=stood gives her everything, a private driver, bodyguard',
         is_interesting=True,
     ),
+    EmailCfg(id='EFTA00772798', highlight_quote="how old was she in 99 then?", note='Epstein tells Ghislaine that Giuffre was 17'),
     EmailCfg(id='EFTA00682682', highlight_quote='Working girl?', truncate_to=300, duplicate_ids=['EFTA00680779'], dupe_type='redacted'),
     EmailCfg(id='EFTA01891832', highlight_quote="Anya, do u have any 20 years old girl for Jeffrey in Kiev?"),
     EmailCfg(id='EFTA01740839', highlight_quote='is the invitation for Sultan AND his wife?', note='note capital "AND"', is_interesting=True),
@@ -692,7 +738,7 @@ GIRLS_CFGS = [
     EmailCfg(id='EFTA00775255', highlight_quote='she is 20 years old but she looks younger', non_participants=[BROCK_PIERCE]),
     EmailCfg(id='EFTA00366629', highlight_quote='stunning girls to bring over drinks when your next available'),
     EmailCfg(id='EFTA01895036', highlight_quote='svetlana will be in paris 17-20', note=f"Epstein invites {ELON_MUSK} to Paris"),
-    EmailCfg(id='EFTA02415943', highlight_quote='tell geir, she is serious , not a toy, . toys are also availble', truncate_to=1_500, is_interesting=5),
+    EmailCfg(id='EFTA02415943', highlight_quote='tell geir, she is serious , not a toy, . toys are also availble', truncate_to=800, is_interesting=5),
     EmailCfg(id='EFTA02387676', highlight_quote="thats the closest i get to karyna providing me new pussy"),
     EmailCfg(id='EFTA00908180', highlight_quote='two cinderellas', is_interesting=True),
     EmailCfg(id='EFTA01930285', highlight_quote='ukraine upheaval should provide many opportunites'),
@@ -867,6 +913,7 @@ GIRLS_CFGS = [
     DocCfg(id='EFTA02312343_1', note='translation of visa email', attached_to_email_id='EFTA02312343', show_full_panel=True),
     EmailCfg(id='EFTA02652017', note="inquiry about someone's immigration asylum application", is_interesting=True),
     EmailCfg(id='EFTA00637127', note=f"{CECILE_DE_JONGH} helping with girls' visa issues"),
+    EmailCfg(id='EFTA00695768', note=f"{CECILE_DE_JONGH} helping with girls' visa issues", is_interesting=4),
     EmailCfg(id='EFTA00458715', show_with_name=MASHA_DROKOVA),
     blaine_letter('019086', date='2015-05-27', suffix='naming various Putin puppet regimes', show_full_panel=True),
     blaine_letter('019474', date='2015-05-29'),

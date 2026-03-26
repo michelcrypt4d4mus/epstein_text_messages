@@ -7,7 +7,7 @@ DEVICE_SIGNATURE_TO_AUTHORS = {
     'Envoyé de mon iPhone': [
         'Fabrice Aidan',
     ],
-    'Envoye de mon iPhone': [
+    'Envoyé de mon iPhone': [
         JULIA_SANTOS,
     ],
     "Sent from AOL Mobile Mail": [
@@ -170,38 +170,28 @@ DEVICE_SIGNATURE_TO_AUTHORS = {
     "Sent via BlackBerry from T-Mobile": [
         PAULA_HEIL_FISHER
     ],
-    'Sent via Superhuman iOS': [
-        MASHA_DROKOVA
-    ],
-    "Sent via tin can and string.": [
-        MARK_EPSTEIN,
-    ],
+    'Sent via Superhuman iOS': [MASHA_DROKOVA],
+    "Sent via tin can and string.": [MARK_EPSTEIN],
     'Sent with BlackBerry': [
         BRAD_KARP
     ],
-    "Sorry for all the typos .Sent from my iPhone": [
-        JEFFREY_EPSTEIN
-    ],
-    'Typos, misspellings courtesy of iPhone': [
-        LINDA_STONE,
-    ],
-    'Typos, misspellings courtesy of iPhone word & thought substitution.': [
-        LINDA_STONE,
-    ],
-    'Typos, misspellings courtesy of iPhone.': [
-        LINDA_STONE,
-    ],
+    "Sorry for all the typos .Sent from my iPhone": [JEFFREY_EPSTEIN],
+    'Typos, misspellings courtesy of iPhone': [LINDA_STONE],
+    'Typos, misspellings courtesy of iPhone word & thought substitution.': [LINDA_STONE],
+    'Typos, misspellings courtesy of iPhone.': [LINDA_STONE],
+    '发自我的 iPhone': [WANDI_ZHU],
 }
 
 AUTHORS_TO_DEVICE_SIGNATURES = {
     UNKNOWN: [
         'Отправлено с iPhone',
-        'Envoye de mon iPhone',
+        'Envoyé de mon iPhone',
         'Sent from Yahoo Mail for iPhone',
         'Sent from my Verizon Wireless BlackBerry',
         "Sent from my Windows 10 phone",
         "Sent from my iPad",
         "Sent from my iPhone",
+        'Sent from my Verizon, Samsung Galaxy smartphone',
         "Sent via BlackBerry by AT&T",
         'Sent via BlackBerry from T-Mobile',
     ],
@@ -210,6 +200,7 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
         "Sent from my Verizon Wireless BlackBerry",
         "Sent from my iPhone"
     ],
+    'Alex Acosta': ['Sent from my BlackBerry Wireless Handheld'],
     'Amir Stemhell': ['Sent from Yahoo Mail on Android'],
     ANAS_ALRASHEED: ["Sent from my iPhone"],
     ANDREW_FARKAS: [
@@ -243,7 +234,7 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
         "Sent from my iPhone"
     ],
     BUREAU_OF_PRISONS: [
-        'Sent from my Vcrizon, Samsung Galaxy smartphone',
+        # 'Sent from my Vcrizon, Samsung Galaxy smartphone',
         'Sent from my Verizon, Samsung Galaxy smartphone',
     ],
     CECILE_DE_JONGH: ["Sent from my iPhone and misspellings courtesy of iPhone."],
@@ -310,10 +301,10 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
         "Sent from my iPhone"
     ],
     JULIA_SANTOS: [
-        'Envoye de mon iPhone'
+        'Envoyé de mon iPhone'
     ],
     KARIM_WADE: [
-        "Envoye avec BlackBerry® d'Orange"
+        "Envoyé avec BlackBerry® d'Orange"
     ],
     KARYNA_SHULIAK: [
         'From my Android phone on T-Mobile. The first nationwide 4G network.',
@@ -347,7 +338,10 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
     'Lawrence Delson': ['Sent on Android'],
     LAWRENCE_KRAUSS: ["Sent from my iPhone"],
     'Leighton Candler': ['Sent from my BlackBerry Wireless Device'],
-    LEO_LOKING: ['Sent from Yahoo Mail for iPhone'],
+    LEO_LOKING: [
+        'Sent from Yahoo Mail for iPhone',
+        'Sent from my iPhone',
+    ],
     LESLEY_GROFF: [
         "Sent from my iPhone",
     ],
@@ -362,7 +356,7 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
     LISA_RANDALL: ["Sent from my Verizon Wireless BlackBerry"],
     MARIANA_IDZKOWSKA: ['Wyslane z iPada'],
     MARK_EPSTEIN: [
-        "Sent from my iPad",
+        # "Sent from my iPad",
         "Sent via tin can and string.",
     ],
     MARTIN_WEINBERG: ["Sent from my iPhone"],
@@ -392,7 +386,7 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
         'Sent from my Samsung Galaxy smartphone.',
         'Sent from my iPhone',
     ],
-    OLIVIER_COLOM: ['Envoye de mon iPhone'],
+    OLIVIER_COLOM: ['Envoyé de mon iPhone'],
     PAULA_HEIL_FISHER: ["Sent via BlackBerry from T-Mobile"],
     PEGGY_SIEGAL: [
         "Sent from my iPad",
@@ -459,7 +453,7 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
         "Sent from my iPhone",
     ],
     SVETLANA_POZHIDAEVA: [
-        'Envoye de mon iPhone',
+        'Envoyé de mon iPhone',
         'Sent via BlackBerry from T-Mobile',
     ],
     TERJE_ROD_LARSEN: [
@@ -480,6 +474,7 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
     USANYS: [
         "Sent from my iPhone"
     ],
+    WANDI_ZHU: ['发自我的 iPhone'],
     VINCENZO_IOZZO: [
         'Sent from my Iphone',
         'Sent from my iphone',
@@ -489,6 +484,7 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
 
 SIGNATURE_SUBSTITUTION_COUNTS = {
     "(unknown)": 2,
+    ADA_CLAPP: 1,
     ALAN_DLUGASH: 10,
     ANDREW_FARKAS: 35,
     'Andrew Nikou': 2,
@@ -496,6 +492,7 @@ SIGNATURE_SUBSTITUTION_COUNTS = {
     ARDA_BESKARDES: 9,
     ARIANE_DE_ROTHSCHILD: 4,
     BARBRO_C_EHNBOM: 5,
+    BOBBI_C_STERNHEIM: 3,
     BRAD_KARP: 5,
     'Bradford Stephens': 9,
     BROCK_PIERCE: 117,
@@ -529,6 +526,7 @@ SIGNATURE_SUBSTITUTION_COUNTS = {
     MARTIN_WEINBERG: 17,
     MICHAEL_FOWLER: 4,
     'Michael Miller': 6,
+    NATALIA_MOLOTKOVA: 8,
     NICHOLAS_RIBIS: 2,
     PAUL_BARRETT: 10,
     'Paul Venables': 4,
