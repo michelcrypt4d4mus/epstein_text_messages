@@ -9,6 +9,7 @@ from epstein_files.documents.config.communication_cfg import CommunicationCfg, P
 from epstein_files.documents.config.doc_cfg import DocCfg, DuplicateType
 from epstein_files.documents.config.email_cfg import EmailCfg
 from epstein_files.people.names import *
+from epstein_files.util.constant.strings import MINOR_VICTIM
 from epstein_files.util.helpers.string_helper import as_pattern, has_line_starting_with, join_truthy
 from epstein_files.util.logging import logger
 
@@ -151,6 +152,10 @@ def fbi_defense_witness(id: str, witness: Name, date: str = '') -> DocCfg:
 
 def fbi_interview(id: str, interviewee: Name, note: str = '', date: str = '', **kwargs) -> CommunicationCfg:
     cfg = interview(id, FBI, interviewee, note, date=date, **kwargs)
+
+    if interviewee == MINOR_VICTIM:
+        cfg.is_interesting = True
+
     return _set_fbi_doc_fields(cfg)
 
 

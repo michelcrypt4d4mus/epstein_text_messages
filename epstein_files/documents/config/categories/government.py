@@ -7,6 +7,8 @@ from epstein_files.util.constant.strings import AUTO, CVRA, MINOR_VICTIM, REDACT
 from epstein_files.util.helpers.string_helper import join_truthy, quote
 from epstein_files.util.logging import logger
 
+ALESSI_WITNESS_PREP = f"witness prep of {JUAN_ALESSI} (Epstein's Palm Beach house manager)"
+
 FBI_REPORT_FIELDS = [
     'Approved By',
     'Case Agent Name',
@@ -153,6 +155,7 @@ GOVERNMENT_CFGS = [
         highlight_quote='staff observed inmate Epstein, Jeffrey lying in the fetal position on the floor with a homemade fashioned noose around his neck',
         truncate_to=(7_500, 12_500),
     ),
+    bop_doc('EFTA00139235', 'psychological profile of Jeffrey Epstein', date='2020-05-14', is_interesting=True),
     bop_doc('EFTA00035921', "Lieutenant's Logs", '2019-08-06'),
     bop_doc('EFTA00039153', 'List of Exhibits, Chapter 2', '2019-01-06'),
     bop_doc('EFTA00109163', 'Metropolitan Correctional Center forms showing Konstantin Ignatov', '2019-08-08', is_interesting=True),
@@ -196,6 +199,7 @@ GOVERNMENT_CFGS = [
         note='Powerpoint summary of Epstein investigation by Child Sex Trafficking Task Force',
         is_interesting=10,
     ),
+    doj_doc('EFTA00163964', 'summary of Epstein and Maxwell Related Investigations', is_interesting=True),
     doj_doc('EFTA00025091', f"arrest warrant and other discovery materials"),
     doj_doc('EFTA01683641', f"video download of MCC cameras failed", date='2019-08-22'),
     doj_doc('EFTA00009809', f"sealed indictment of Jeffrey Epstein", date='2019-07-02', is_interesting=2),
@@ -208,10 +212,11 @@ GOVERNMENT_CFGS = [
         id='EFTA00157613',
         author=DOJ,
         date='2021-06-08',
-        note=f"witness prep of Juan Alessi, Epstein's former house manager in Palm Beach describing Trump's visits",
+        note=f"witness prep of Juan Alessi (Epstein's former house manager in Palm Beach), describes Trump's visits",
         truncate_to=(6_000, 7_000),
         show_full_panel=True,  # TODO: show pic
     ),
+    doj_doc('EFTA00157634', ALESSI_WITNESS_PREP, date='2021-12-01', is_interesting=True),
     DocCfg(
         id='EFTA00014822',
         date='1982-06-01',
@@ -259,13 +264,21 @@ GOVERNMENT_CFGS = [
         is_interesting=True,
         truncate_to=(16_500, 20_000),
     ),
+    fbi_interview('EFTA00129035', 'Denise George', date='2023-10-02'),
     fbi_interview('EFTA00156204', f"{GHISLAINE_MAXWELL}'s receptionist", date='2021-10-08', is_interesting=True),
     fbi_interview('EFTA00159380', '<REDACTED> former Epstein employee', date='2021-05-14', is_interesting=True),
     fbi_interview('EFTA01309589', ANTHONY_FIGUEROA, 'recruiting from high schools', '2020-08-27', is_interesting=True),
     fbi_interview('EFTA00174375', LUKE_D_THORBURN, f"lots of takes on Epstein, China, and {STEVE_BANNON}"),
+    fbi_interview('EFTA00090600', 'Michael Turnball', date='2020-01-10'),
+    fbi_interview('EFTA00040794', "prison guard OFFICER 1", "death of Epstein", date='2019-08-19'),
+    fbi_interview('EFTA00075281', "prison guard", "death of Epstein", date='2019-08-16'),
+    fbi_interview('EFTA00084954', "prison guard", "death of Epstein", date='2019-08-19'),
+    fbi_interview('EFTA00135082', "prison guard", "death of Epstein", date='2019-08-16'),
     fbi_interview('EFTA00081226', MINOR_VICTIM),
+    fbi_interview('EFTA00105454', MINOR_VICTIM, date='2019-03-22'),
     fbi_interview('EFTA00038915', MINOR_VICTIM, 'claims Epstein knew she was 14'),
     fbi_interview('EFTA00090602', STEVE_SCULLY, date='2019-08-09', show_full_panel=True),
+    fbi_interview('EFTA00086868', 'employee of Next Models', date='2020-04-23', is_interesting=True),
     fbi_interview('EFTA01699136', f"{VIRGINIA_GIUFFRE} and other victims", f'"Turkish girl" might be {GULSUM_OSMANOVA}', date='2011-03-17'),
     fbi_interview('EFTA00101927', None, f"claims Glenn and {EVA_DUBIN}'s Swiss au pair was being held against her will"),
     fbi_interview('EFTA00159321', None, f'covers {PAOLO_ZAMPOLLI}, Epstein, and the possibility Epstein introduced Melania to Donald Trump'),
@@ -310,6 +323,7 @@ GOVERNMENT_CFGS = [
         date_uncertain='after death, before scheduled interviews Oct. 18th',
         is_interesting=4,
     ),
+    fbi_report('EFTA00172473', 'executive summary of Epstein cases', date='2025-05-01', date_uncertain=True),
     fbi_report('EFTA00151754', 'declaration of Law Enforcement Officer for Victim of Trafficking', is_interesting=True),
     fbi_report('EFTA00173569', 'hack of FBI Epstein files repository by foreign actor', is_interesting=True),
     fbi_report('EFTA00020506', highlight_quote='chauffeur also told Epstein "I have something on you remember what I buried!"'),
@@ -332,6 +346,7 @@ GOVERNMENT_CFGS = [
         show_full_panel=True,
         url='https://www.bbc.com/news/articles/c6271ngl014o',
     ),
+    fbi_tip('EFTA00096249', "about Epstein wiring money to Albert bryan", date='', truncate_to=(4_000, 6_000)),
     fbi_tip('EFTA00128750', f"from Reynaldo Clark about Epstein bribing USVI elected officials", date='2022-10-24', is_interesting=3),
     fbi_tip('EFTA01249591', f"about {HENRY_JARECKI}", show_full_panel=True),
     fbi_tip('EFTA00108851', f"from {STEVEN_HOFFENBERG} re: Epstein and the murder of Arthur Shapiro", is_interesting=True, truncate_to=(1_700, 2_600)),
@@ -367,6 +382,7 @@ GOVERNMENT_CFGS = [
     ),
     EmailCfg(id='EFTA00101087', note=f"discussion of scanning of evidence"),
     EmailCfg(id='EFTA00038617', note='scheduling a call', is_interesting=False),
+    EmailCfg(id='EFTA00173330', note='concerning destruction of evidence'),
     # FinCEN
     fincen_sar('EFTA01656415', 'Charles Schwab', RICHARD_KAHN, "$45 million transaction"),
     fincen_sar('EFTA01656409', DEUTSCHE_BANK, DARREN_INDYKE, 'structured transactions'),
@@ -408,6 +424,7 @@ GOVERNMENT_CFGS = [
         author=DOJ,
         is_interesting=10,
         note=f"63 page evidence list from {GHISLAINE_MAXWELL} trial, removed from DOJ site by Pam Bondi DOJ",
+        truncate_to=12_000,
     ),
     letter('EFTA01653121', FBI, ['USCIS'], "regarding an individual's cooperation in the investigation of Epstein and Maxwell"),
     letter('EFTA00098456', PAUL_G_CASSELL, ['Scotland Yard'], 'International Sex Trafficking by Jeffrey Epstein, contains court filings'),

@@ -191,5 +191,5 @@ ARTICLE_CFGS = [
         truncate_to=(11_000, 13_000),
     ),
     DocCfg(id='EFTA00173333', note='article about destruction of evidence at FBI'),
-    DocCfg(id='EFTA00067272', author='The Jeffrey Epstein Archives'),
+    DocCfg(id='EFTA00067272', author='The Jeffrey Epstein Archives', note='comtemporaneous history'),
 ]
