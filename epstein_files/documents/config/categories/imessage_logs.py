@@ -4,6 +4,7 @@ Custom configurations for iMessage logs.
 from epstein_files.documents.documents.categories import Interesting
 from epstein_files.documents.config.communication_cfg import TextCfg
 from epstein_files.people.names import *
+from epstein_files.util.constant.strings import AUTO
 
 PARTICIPANTS_FIELD = 'Participants: field'
 
@@ -108,6 +109,7 @@ UNCONFIRMED_TEXTS_CONFIG = [
         id='EFTA00508054',
         note=f'Multiple counterparties, at least some Bannon. Epstein brings up the suicide of Ruslana Korshunova whom he "knew very well".'
     ),
+    TextCfg(id='EFTA00509584', note='multiple counterparties', highlight_quote="each girl knew why she was coming to the house massage with extra , hardly coercion", truncate_to=AUTO),
 ]
 
 # Necessary because some of these will be marked uninteresting, which overrides the config

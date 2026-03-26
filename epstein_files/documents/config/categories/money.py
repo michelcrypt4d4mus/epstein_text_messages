@@ -4,7 +4,7 @@ Epstein money related files. This category makes is_interesting = True.
 import re
 
 from epstein_files.documents.config.config_builder import inventory, letter, memo
-from epstein_files.documents.config.doc_cfg import NO_TRUNCATE, DocCfg
+from epstein_files.documents.config.doc_cfg import EMAIL_TRUNCATE_TO, NO_TRUNCATE, DocCfg
 from epstein_files.documents.config.email_cfg import EmailCfg
 from epstein_files.people.entity import epstein_trust_name
 from epstein_files.people.names import *
@@ -191,6 +191,8 @@ MONEY_CFGS = [
     cabinet_inventory('EFTA00299850', 'FILE CABINET ONE'),
     cabinet_inventory('EFTA00299927', 'FILE CABINET TWO', note=f"{JAMES_CAYNE} estate plan"),
     memo('EFTA01366011', DARREN_INDYKE, f"$3,000 expense reimbursement for {LASMA_KUHTARSKA}", show_with_name=LASMA_KUHTARSKA),  # TODO: to "marjorie"
+    letter('EFTA00587879', DARREN_INDYKE, ['BV70 LLC'], "extremely dodgy charitable donation to Epstein associated co. Gratitude", is_interesting=11),
+    DocCfg(id='EFTA00622816', note="Plan D note promising $8,000,000 to Leon Black's BV70 LLC", date='2017-04-17', is_interesting=10, truncate_to=500),
 
     # JPM
     jpm_doc('EFTA01480542', 'Epstein source of wealth filing'),
@@ -221,6 +223,7 @@ MONEY_CFGS = [
 
     # Emails
     EmailCfg(id='032458', note='discussion of acquiring pieces for Epstein\'s art collection', truncate_to=NO_TRUNCATE),
+    EmailCfg(id='EFTA00649282', note=f"planning {BILL_GATES} donor advised fund with {JES_STALEY} on board"),
     EmailCfg(id='EFTA02246580', note=f"Epstein commissioning painting of little girl", truncate_to=305),
     EmailCfg(id='EFTA00037187', note=f"Epstein's {DEUTSCHE_BANK} banker Paul Morris lawyers up immediately when contacted by the FBI", is_interesting=5),
     EmailCfg(
@@ -252,6 +255,8 @@ MONEY_CFGS = [
         note='Epstein tells Jean Luc Brunel he can spend up to $25 million (on what?)',
         truncate_to=NO_TRUNCATE,
     ),
+    EmailCfg(id='EFTA00570566', truncate_to=500),
+    EmailCfg(id='EFTA00457596', note=f"Epstein asking to see Ron Lauder's tax return and will"),
     EmailCfg(id='EFTA01430282', note=f"{DEUTSCHE_BANK} internal discussion of Epstein leaving money to {CELINA_DUBIN} and account closures"),
     EmailCfg(id='EFTA01036804', note=f"Epstein's lawyers advise against his {PURCHASE_OF_BIN_ENNAKHILL}"),
     EmailCfg(id='EFTA00080250', note=f"{LEON_BLACK} / Rothschild Group {DEUTSCHE_BANK} transactions, source of some of Epstein's wealth", is_interesting=10),
@@ -289,6 +294,12 @@ MONEY_CFGS = [
         note=f"AML / Suspicious Activity report on structured deposits by {DARREN_INDYKE}",
     ),
     # Leon Black
+    DocCfg(
+        id='EFTA00599517',
+        is_interesting=6,
+        note=f'list of {LEON_BLACK} companies that {EILEEN_ALEXANDERSON} can make financial transactions for',
+        truncate_to=EMAIL_TRUNCATE_TO,
+    ),
     EmailCfg(
         id='EFTA01389074',
         author=RICHARD_KAHN,

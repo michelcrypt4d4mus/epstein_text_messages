@@ -536,6 +536,12 @@ CRYPTO_CFGS = [
         note=f'memo to NYDFS of NYC Bitcoin Exchange, Balaji Srinivisan & {ANDREW_FARKAS} on board',
         date_uncertain='mentions ethereum so must be after 2015-06',
     ),
+    EmailCfg(
+        id='EFTA00459459',
+        highlight_quote=f"mileage to be gained by quoting you in a story about how proper implementation of cryptocurrency might solve financial corruption",
+        duplicate_ids=['033255'],
+        dupe_type='quoted',
+    ),
     DocCfg(id='EFTA00811666', note='asset valuations of Epstein\'s holdings, includes "Coinbase via grat"', date='2018-01-31'),
     DocCfg(id='EFTA01734786', note='LedgerX Series B pitch deck'),
     DocCfg(id='EFTA00605996', note='Wedbush BUY rating on Digital Currency Group GBTC', is_interesting=False),

@@ -1,5 +1,6 @@
-from epstein_files.documents.config.config_builder import JANE_DOE_V_USA, letter, starr_letter
-from epstein_files.documents.config.doc_cfg import DocCfg
+from epstein_files.documents.config.config_builder import JANE_DOE_V_USA, letter
+from epstein_files.documents.config.communication_cfg import CommunicationCfg
+from epstein_files.documents.config.doc_cfg import DocCfg, DuplicateType
 from epstein_files.documents.config.email_cfg import EmailCfg
 from epstein_files.people.names import *
 from epstein_files.util.constant.strings import *
@@ -20,6 +21,19 @@ REDACTED_V_EPSTEIN_ESATE = f"{REDACTED} v. Estate of Jeffrey Epstein, {GHISLAINE
 
 # Misc
 LEXIS_NEXIS_CVRA_SEARCH = f"{LEXIS_NEXIS} search for case law around the {CVRA}"
+
+
+def starr_letter(id: str, date: str, duplicate_ids: list[str], dupe_type: DuplicateType = 'same', **kwargs) -> CommunicationCfg:
+    return letter(
+        id=id,
+        author=KEN_STARR,
+        date=date,
+        duplicate_ids=duplicate_ids,
+        dupe_type=dupe_type,
+        note="requesting lenient treatment for Epstein",
+        recipients=['Judge Mark Filip'],
+        **kwargs
+    )
 
 
 LEGAL_CFGS = [
@@ -96,6 +110,15 @@ LEGAL_CFGS = [
         note=f'Affidavit of Tiffany Doe describing Jane Doe being raped by Epstein and Trump',
         date='2016-06-20',
     ),
+    DocCfg(
+        id='EFTA00235326',
+        # author=JANE_DOE_V_USA,
+        date='2007-09-12',
+        highlight_quote='spending some quality time with Title 18 looking for misdemeanors',
+        note='long and chummy conversation between Epstein defense attorneys and Florida prosecutors',
+        is_interesting=9,
+        truncate_to=AUTO
+    ),
     DocCfg(id='025939', author=JANE_DOE_V_EPSTEIN_TRUMP, note=f'Affidavit of Jane Doe describing being raped by Epstein', date='2016-06-20'),
     DocCfg(id='013489', author=JANE_DOE_V_EPSTEIN_TRUMP, note=f'Affidavit of {BRAD_EDWARDS}', date='2010-07-20'),
     DocCfg(id='029398', author=JANE_DOE_V_EPSTEIN_TRUMP, note=f'article in Law.com'),
@@ -105,6 +128,7 @@ LEGAL_CFGS = [
     DocCfg(id='032321', author=JANE_DOE_V_EPSTEIN_TRUMP, note=f"Notice of Initial Conference", date='2016-10-04'),
     DocCfg(id='010735', author=JANE_DOE_V_USA, note=f"Dershowitz Reply in Support of Motion for Limited Intervention", date='2015-02-02'),
     DocCfg(id='014084', author=JANE_DOE_V_USA, note=f"Jane Doe Response to Dershowitz's Motion for Limited Intervention", date='2015-03-24'),
+    DocCfg(id='EFTA00191148', author=JANE_DOE_V_USA, date='2013-06-19', truncate_to=2_000),
     DocCfg(
         id='EFTA00020729',
         author=JANE_DOE_V_USA, note=f"declaration of {VIRGINIA_GIUFFRE} claiming threats",
@@ -158,9 +182,11 @@ LEGAL_CFGS = [
     letter('028965', MARTIN_WEINBERG, ['Good Morning America'], "threatening libel lawsuit against ABC", duplicate_ids=['028928']),
     letter('031447', MARTIN_WEINBERG, ['Melanie Ann Pustay', "Sean O'Neill"], "re: Epstein FOIA request", '2015-08-19'),
     letter('020662', f"Mishcon de Reya", ['Daily Mail'], f"threatening libel lawsuit"),
+    letter('EFTA00177459', 'SDFL', ['Robert Josefsberg'], 'with victim notifications, Palm Beach police investigation, affidavit', truncate_to=1200, date='2008-09-15'),
     starr_letter('025353', '2008-05-19', ['010723', '019224'], 'redacted', non_participants=[LANDON_THOMAS]),
-    starr_letter('025704', '2008-05-27', ['010732', '019221'], 'redacted'),
+    starr_letter('025704', '2008-05-27', ['010732', '019221', 'EFTA00605382'], 'redacted'),
     starr_letter('012130', '2008-06-19', ['012135'], non_participants=[LESLEY_GROFF]),
+    EmailCfg(id='EFTA00407717', recipients=[KEN_STARR]),
 
     # DOJ files
     DocCfg(id='EFTA01106135', author=BILL_GATES, note=f"gives Epstein power to negotiate on behalf of {BORIS_NIKOLIC}"),
@@ -182,4 +208,6 @@ LEGAL_CFGS = [
     # emails
     EmailCfg(id='EFTA00039794', recipients=['Michael Danchuk', USANYS]),
     EmailCfg(id='EFTA00039816', is_interesting=False),
+    EmailCfg(id='EFTA00188608', note=f"contains filing in {JANE_DOE_V_USA}"),
+    letter('EFTA00625093', MARTIN_WEINBERG, [KATHRYN_RUEMMLER], date='2014-06-01', date_uncertain='guess'),
 ]

@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Use --pickled arg to use pickled data file, otherwise pickled data will always be overwritten
 #
-#   - ONLY_CURATED=true to skip build/deploy of full emails site.
+#   - ONLY_MOST_INTERESTING=true to skip build/deploy of full emails site.
 #   - ONLY_MOBILE=true for only mobile sites
 #   - TAG_RELEASE=true to deploy DOJ files site and upload the pkl.gz file to the repo
 set -e
@@ -53,7 +53,7 @@ fi
 git checkout $GH_PAGES_BRANCH
 git merge --no-edit master --quiet
 
-export ONLY_CURATED
+export ONLY_MOST_INTERESTING
 export ONLY_MOBILE
 export SKIP_CHRONO
 export TAG_RELEASE

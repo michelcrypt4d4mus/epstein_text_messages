@@ -28,6 +28,10 @@ MISC_CFGS = [
     DocCfg(id='026634', author='Michael Carrier', note=f'comments about an Apollo linked fund "DE Fund VIII"'),
     DocCfg(id='031425', author=SCOTT_J_LINK, note=f'completely redacted email', is_interesting=False),
     DocCfg(id='020447', author='Working Group on Chinese Influence Activities in the US', note=f'Promoting Constructive Vigilance'),
+    DocCfg(id='EFTA00298515', date='2010-09-10', note=f"guest list for a get together with {EHUD_BARAK}", show_full_panel=True),
+    DocCfg(id='EFTA00587235', note="Epstein's website", date='2012-11-14'),
+    DocCfg(id='EFTA00432804', note='recorded conversation of Epstein', highlight_quote="Katie Couric, I thought, was going to start to vomit", truncate_to=AUTO, is_interesting=True),
+    DocCfg(id='EFTA00582807', note=f"plans for a media empire involved buying {VI_DAILY_NEWS} which had criticized Epstein", is_interesting=5, truncate_to=(2_500, 5_000)),
     DocCfg(id='012718', note=f"{CVRA} congressional record", date='2011-06-17'),
     DocCfg(id='019448', note=f"Haitian business investment proposal called Jacmel", attached_to_email_id='019446'),
     DocCfg(id='023644', note=f"interview with Mohammed bin Salman", date='2016-04-25', is_interesting=False),
@@ -47,6 +51,7 @@ MISC_CFGS = [
         f"end of {DONALD_TRUMP} & {NICHOLAS_RIBIS} working relationship at Trump's casino",
         is_interesting=True,
     ),
+    press_release('EFTA00613875', f"Virgin Islands Legislature", '2014-06-16'),
 
     # DOJ files
     DocCfg(
@@ -77,6 +82,12 @@ MISC_CFGS = [
         is_valid_for_name_scan=False,
         url=Site.get_url(Site.PHONE_NUMBERS),
     ),
+    DocCfg(id='EFTA00285783', note='daily schedule', date='2019-03-01'),
+    DocCfg(id='EFTA00301520', note='daily schedule', date='2013-01-26'),
+    DocCfg(id='EFTA00285597', note='daily schedule', date='2018-09-01'),
+    DocCfg(id='EFTA00285309', note='daily schedule', date='2017-04-01'),
+    DocCfg(id='EFTA00586992', author=NEWGRANGE_CONSULTING, note='contract with Island Global Yachting', date='2010-08-01', date_uncertain='August', truncate_to=1_600),
+    DocCfg(id='EFTA00285041', note='birthday book list', date='2015-11-15', show_full_panel=True, truncate_to=1_600),
     DocCfg(id='EFTA00000019', note=f"{MERWIN_DELA_CRUZ} cooling tower maintenance", date='2018-12-10', is_interesting=False),
     DocCfg(id='EFTA00008486', note=f"chain of custody evidence envelope", date='2009-11-02'),
     DocCfg(id='EFTA00006378', note=f"message pad with {LES_WEXNER}'s name", date='2003-03-14'),

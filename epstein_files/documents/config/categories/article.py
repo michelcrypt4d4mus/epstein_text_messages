@@ -192,4 +192,5 @@ ARTICLE_CFGS = [
     ),
     DocCfg(id='EFTA00173333', note='article about destruction of evidence at FBI'),
     DocCfg(id='EFTA00067272', author='The Jeffrey Epstein Archives', note='comtemporaneous history'),
+    DocCfg(id='EFTA00316182', author='Conchita Sarnoff'),
 ]

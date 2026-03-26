@@ -1,6 +1,6 @@
 from epstein_files.documents.config.config_builder import (fbi_defense_witness, fbi_interview, fbi_tip, fbi_report,
      grand_jury, interview, inventory, letter, memo)
-from epstein_files.documents.config.doc_cfg import NO_TRUNCATE, SHORT_TRUNCATE_TO, DocCfg
+from epstein_files.documents.config.doc_cfg import EMAIL_TRUNCATE_TO, NO_TRUNCATE, SHORT_TRUNCATE_TO, DocCfg
 from epstein_files.documents.config.email_cfg import EmailCfg
 from epstein_files.people.names import *
 from epstein_files.util.constant.strings import AUTO, CVRA, MINOR_VICTIM, REDACTED
@@ -90,6 +90,10 @@ def fincen_sar(id: str, bank: str, subject: str, activity: str, **kwargs) -> Doc
     return DocCfg(id=id, author=FINCEN, note=note, **kwargs)
 
 
+def sdfl_internal_email(id: str, **kwargs) -> EmailCfg:
+    return EmailCfg(id=id, author='SDFL', recipients=['SDFL'], author_uncertain=True, recipient_uncertain=True, **kwargs)
+
+
 def usanys_internal_email(id: str, **kwargs) -> EmailCfg:
     return EmailCfg(id=id, author=USANYS, recipients=[USANYS], author_uncertain=True, **kwargs)
 
@@ -166,6 +170,14 @@ GOVERNMENT_CFGS = [
     bop_doc('EFTA00108552', 'roster of inmates at Metropolitan Correctional Center', '2019-07-23'),
     bop_doc('EFTA00039025', "report on death of Jeffrey Epstein", '2023-06-22', is_interesting=10),
     bop_doc('EFTA00039190', 'Special Housing Units', '2016-11-23', is_interesting=False),
+    bop_memo(
+        'EFTA00036336',
+        f"Epstein's final phone call (he claime it was to his mother, it was to {KARYNA_SHULIAK})",
+        date='2019-08-10',
+        duplicate_ids=['EFTA00033630'],
+        show_full_panel=True,
+        truncate_to=(100, 1_200),
+    ),  # TODO: show image?
     bop_memo('EFTA00036136', 'camera project'),
     bop_memo('EFTA00143071', 'Epstein and his cellmate Efrain Reyes', is_interesting=True),
     bop_policy_doc('EFTA00120459', 'handwritten log of prisoner movements', date='2019-08-09'),
@@ -305,6 +317,7 @@ GOVERNMENT_CFGS = [
             SVETLANA_POZHIDAEVA
         ],
     ),
+    fbi_report('EFTA00173481', 'statement of Aaron E. Spivack re: investigation into missing evidence', date='2024-01-26', is_interesting=5, truncate_to=EMAIL_TRUNCATE_TO),
     fbi_report('021569'),
     fbi_report('021434', is_valid_for_name_scan=False),
     fbi_report('019352', f"contains clippings of various press items about Epstein"),
@@ -372,7 +385,7 @@ GOVERNMENT_CFGS = [
         recipient_uncertain=True,
         truncate_to=AUTO,
     ),
-    EmailCfg(id='EFTA00164742', note='summary of video evidence', is_interesting=10),
+    fbi_internal('EFTA00164742', note='summary of video evidence', is_interesting=10),
     EmailCfg(
         id='EFTA00146839',
         highlight_quote="did not support federal criminal activity, specifically Obstruction of Justice",
@@ -523,6 +536,10 @@ GOVERNMENT_CFGS = [
     ),
     EmailCfg(id='EFTA00039796', author=SDNY, recipients=[USANYS]),
     fbi_internal('EFTA00021353'),
+
+    # SDFL
+    sdfl_internal_email('EFTA00215139'),
+    sdfl_internal_email('EFTA00214699'),
 
     # USANYS
     EmailCfg(

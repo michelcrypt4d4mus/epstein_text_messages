@@ -1,4 +1,5 @@
 from epstein_files.documents.config.communication_cfg import skype_log
+from epstein_files.documents.config.config_builder import letter
 from epstein_files.documents.config.doc_cfg import DocCfg
 from epstein_files.documents.config.email_cfg import EmailCfg
 from epstein_files.people.names import *
@@ -33,6 +34,7 @@ REPUTATION_CFGS = [
         is_interesting=True,
         attached_to_email_id='EFTA01931256'
     ),
+    DocCfg(id='EFTA00306981', is_interesting=False),
     skype_log('EFTA01217787', recipients=[TYLER_SHEARS, HANNA_TRAFF]),
     skype_log('EFTA01217703', recipients=[ATHENA_ZELCOVICH, JOSCHA_BACH, LAWRENCE_KRAUSS, TYLER_SHEARS]),
     skype_log('EFTA01217736', recipients=[ATHENA_ZELCOVICH, TYLER_SHEARS], truncate_to=(5_000, 5_800)),
@@ -61,4 +63,6 @@ REPUTATION_CFGS = [
     EmailCfg(id='EFTA02417620', note=f"{AL_SECKEL} is creating a fake Jeffrey Epstein to improve the real Epstein's Google search results"),
     EmailCfg(id='EFTA00751523', truncate_to=2_100),
     EmailCfg(id='EFTA01838653', note="PR drafts of public statements retracting allegations against Epstein"),
+    EmailCfg(id='EFTA00682303', highlight_quote="Harvey Levin, who runs TMZ, is a good friend", is_interesting=True),
+    letter('EFTA00604145', MICHAEL_SITRICK, [JEFFREY_EPSTEIN], 'lawsuit about unpaid bills', truncate_to=900),
 ]

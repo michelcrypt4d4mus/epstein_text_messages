@@ -2,7 +2,7 @@
 # Build the various HTML pages. First argument is the --build-dir (if provided).
 #
 # Env var options:
-#   - ONLY_CURATED=true to skip build/deploy of full emails site
+#   - ONLY_MOST_INTERESTING=true to skip build/deploy of full emails site
 #   - ONLY_MOBILE=true for only mobile sites
 #   - SKIP_CHRONO=true to skip chrono builds
 #   - TAG_RELEASE=true to deploy DOJ files site
@@ -56,16 +56,14 @@ $GENERATE_CMD --output-notes
 print_deploy_step "Building other files table page..."
 $GENERATE_CMD --all-other-files
 
-# Slower pages
-print_deploy_step "Building curated page..."
-$GENERATE_CMD
-print_deploy_step "Building curated mobile page... "
-$GENERATE_MOBILE_CMD
-
-# Skip big emails pages in ONLY_CURATED=true
-if [ -n "$ONLY_CURATED" ]; then
-    print_deploy_step "Skipping build of emails pages..."
+# Skip big emails pages if ONLY_MOST_INTERESTING=true
+if [ -n "$ONLY_MOST_INTERESTING" ]; then
+    print_deploy_step "Skipping build of curated emails and all emails pages..."
 else
+    print_deploy_step "Building curated page..."
+    $GENERATE_CMD
+    print_deploy_step "Building curated mobile page... "
+    $GENERATE_MOBILE_CMD
     print_deploy_step "Building all emails page..."
     $GENERATE_CMD --all-emails
     print_deploy_step "Building emails chronological page..."
