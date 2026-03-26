@@ -534,6 +534,7 @@ HIGHLIGHTED_NAMES = [
                 url='https://www.dropsitenews.com/p/jeffrey-epstein-leslie-abigail-wexner-pro-israel-philanthropic-foundation',
             ),
             Organization('WizzAir', email_addresses=['noreply@wizzair.com'], is_interesting=False, is_emailer=True),
+            Organization.well_known('Amex Centurian Travel', emailer_pattern=r"Amex Centuri[ao]n Travel", is_emailer=True),
         ],
         patterns=[
             r"Arthur Klein",
