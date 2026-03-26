@@ -213,6 +213,9 @@ class Entity(LoggingEntity):
             if len(self.name) >= MIN_LEN_FOR_OPTIONAL_LAST_CHAR:
                 pattern += self.DEFAULT_PATTERN_SFX
 
+            if len(self._names) == 2 or (len(self._names) == 3 and self._middle_initial):
+                pattern = join_patterns([pattern, f"{self._names[-1]},? {self._names[0]}"])
+
         return as_pattern(join_patterns([pattern, *self.email_addresses]))
 
     @property
