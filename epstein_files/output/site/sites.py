@@ -246,7 +246,7 @@ SITE_DESCRIPTIONS = {
     Site.EMAILERS:              f"emailers all:all emails grouped by person",
     Site.EMAILS_CHRONOLOGICAL:  f"emails chronological:all emails chronological order",
     Site.TEXT_MESSAGES:         f"text messages:{HOUSE_OVERSIGHT_TRANCHE}",
-    Site.OTHER_FILES_TABLE:     f"other:files that are not emails or texts",
+    Site.OTHER_FILES_TABLE:     f"other files:files that are not emails or texts",
     Site.BIOGRAPHIES:           f"people:one line biographies with some links",
     Site.DEVICE_SIGNATURES:     f"signatures:email signatures/emojis and who uses them",
     Site.CURATED_MOBILE:        f"mobile:an attempt at mobile compatibility",

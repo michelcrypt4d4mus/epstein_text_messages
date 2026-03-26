@@ -6,6 +6,7 @@ from subprocess import check_output, run
 from rich.panel import Panel
 from rich.text import Text
 
+from epstein_files.output.html.html_dir import IMAGES_DIR, HtmlDir
 from epstein_files.util.constant.strings import (DOJ_FILE_STEM_REGEX, DOJ_FILE_NAME_REGEX, DROPSITE_FILE_ID_REGEX, DUMMY_ID, EFTA_PREFIX,
      HOUSE_OVERSIGHT_NOV_2025_FILE_NAME_REGEX, HOUSE_OVERSIGHT_NOV_2025_FILE_STEM_REGEX,
      HOUSE_OVERSIGHT_NOV_2025_ID_REGEX, HOUSE_OVERSIGHT_PREFIX, LOCAL_EXTRACT_REGEX)
@@ -28,12 +29,19 @@ ID_PATTERNS = [
 ]
 
 VALID_ID_REGEX = re.compile(fr"^({join_patterns(ID_PATTERNS)})$")
-
 FILENAME_LENGTH = len(HOUSE_OVERSIGHT_PREFIX) + 6  # TODO: this is obsolete
 DIFF_COLORS = ['spring_green4', 'sea_green1']
 DIFF_PFXES = ['<', '>']
-KB = 1024
+KB = 1_024
 MB = KB * KB
+
+IMG_EXTENSIONS = [
+    'gif',
+    'jpeg',
+    'jpg',
+    'png',
+    'webp',
+]
 
 # File stat helpers
 file_size = lambda file_path: Path(file_path).stat().st_size
@@ -68,7 +76,9 @@ def coerce_file_path(filename_or_id: int | str) -> Path:
 
 def coerce_file_stem(filename_or_id: int | str | Path) -> str:
     """Generate a valid file stem no matter what form the argument comes in."""
-    if isinstance(filename_or_id, str) and is_doj_file(filename_or_id):
+    logger.debug(f"coerce_file_stem(): {filename_or_id}")
+
+    if isinstance(filename_or_id, str) and (is_doj_file(filename_or_id) or is_picture(str(filename_or_id))):
         return Path(filename_or_id).stem
     elif isinstance(filename_or_id, Path):
         return filename_or_id.stem
@@ -117,7 +127,7 @@ def extract_efta_id(file_id: str) -> int:
 
 def extract_file_id(filename_or_id: int | str | Path) -> str:
     """DOJ 2026-01 files have different pattern."""
-    if isinstance(filename_or_id, (str, Path)) and is_doj_file(filename_or_id):
+    if isinstance(filename_or_id, (str, Path)) and is_file_id_the_file_stem(Path(filename_or_id)):
         return Path(filename_or_id).stem
     elif isinstance(filename_or_id, (str, Path)) and (m := DROPSITE_FILE_NAME_REGEX.match(str(filename_or_id))):
         return f"DropSite {m.group(1)}"
@@ -175,6 +185,10 @@ def is_doj_file(file: str | Path) -> bool:
     return bool(DOJ_FILE_STEM_REGEX.search(str(file)))
 
 
+def is_file_id_the_file_stem(file_path: Path) -> bool:
+    return is_doj_file(file_path) or str(IMAGES_DIR) in str(file_path)
+
+
 def is_house_oversight_file(file: str | Path) -> bool:
     return bool(HOUSE_OVERSIGHT_NOV_2025_FILE_STEM_REGEX.search(str(file)))
 
@@ -183,6 +197,10 @@ def is_local_extract_file(filename: str | Path) -> bool:
     """Return True if `filename` is of form 'HOUSE_OVERSIGHT_029835_1.txt'."""
     match = HOUSE_FILE_ID_REGEX.search(str(filename)) or DOJ_FILE_ID_REGEX.search(str(filename))
     return True if match and match.group(2) else False
+
+
+def is_picture(file_name: str) -> bool:
+    return any(file_name.endswith(ext) for ext in IMG_EXTENSIONS) or 'Epstein_and_MBS' in file_name
 
 
 def log_file_write(file_path: str | Path) -> None:

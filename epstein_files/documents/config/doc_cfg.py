@@ -11,6 +11,7 @@ from rich.text import Text
 
 from epstein_files.documents.documents.categories import (Category, Interesting, Neutral, Uninteresting,
      is_category, is_interesting, is_uninteresting)
+from epstein_files.output.html.html_dir import HtmlDir
 from epstein_files.output.site.site_config import MobileConfig
 from epstein_files.people.interesting_people import PERSONS_OF_INTEREST
 from epstein_files.people.names import *
@@ -25,7 +26,7 @@ from epstein_files.util.logging import logger
 from epstein_files.util.logging_entity import LoggingEntity
 
 DebugDict = dict[str, bool | datetime | set | str | Path | None]
-DuplicateType = Literal['bounced', 'earlier', 'quoted', 'redacted', 'same']
+DuplicateType = Literal['bounced', 'earlier', 'quoted', 'redacted', 'same', 'screenshot']
 Metadata = dict[str, bool | datetime | int | str | None | list[str | None] | dict[str, bool | str]]
 
 AUTO_QUOTE_NUM_CHARS = 400 if args.output_most_interesting else 1_600  # Number of chars before and after highlight_quote for auto truncation
@@ -72,6 +73,7 @@ DUPE_TYPE_STRS: dict[DuplicateType, str] = {
     'quoted': 'quoted in full in',
     'redacted': 'a redacted version of',
     SAME: 'the same as',
+    'screenshot': 'a screenshot of',
 }
 
 # only used to order fields in metadtaa and repr()
@@ -182,7 +184,7 @@ class DocCfg(LoggingEntity):
     PREFIX_NOTE_WITH_CATEGORY: ClassVar[bool] = True
 
     def __post_init__(self):
-        if not is_valid_id(self.id):
+        if not self.has_valid_id:
             raise ValueError(f"Invalid file ID '{self.id}'")
         elif self.id in self.duplicate_ids:
             raise ValueError(f"{self.id} is a duplicate of itself!")
@@ -216,6 +218,9 @@ class DocCfg(LoggingEntity):
         # show_full_panel (and highlight_quote) set is_interesting=10
         if self.show_full_panel and self.is_interesting is None:
             self.is_interesting = 10
+
+        if self.show_with_name and not self.is_interesting:
+            self.is_interesting = True
 
         if self.truncate_to and not self.show_full_panel:
             self.show_full_panel = True
@@ -258,6 +263,16 @@ class DocCfg(LoggingEntity):
             return self.truncate_to
         else:
             return (0, self.truncate_to)
+
+    @property
+    def char_range_as_table_row(self) -> tuple[int, int] | None:
+        """The char range that should be shown in `OtherFile` rollup tables."""
+        if self.num_preview_chars:
+            return (0, self.num_preview_chars)
+        elif self.category in SHORT_TRUNCATE_CATEGORIES:
+            return (0, int(site_config.other_files_preview_chars / 2))
+        else:
+            return (0, site_config.other_files_preview_chars)
 
     @property
     def complete_description(self) -> str:
@@ -332,23 +347,16 @@ class DocCfg(LoggingEntity):
         """`display_text` longer than other_files_preview_chars is considered a drop in replacement, not a short description."""
         return bool(self.display_text and len(self.display_text) > MobileConfig.other_files_preview_chars)
 
-    def note_txt(self, include_category: bool = True) -> Text | None:
-        """Add formatting to `self.complete_description`."""
-        if include_category and self.PREFIX_NOTE_WITH_CATEGORY and self.category_bracketed:
-            txt = self.category_bracketed.append(' ')
+    @property
+    def has_valid_id(self) -> bool:
+        return is_valid_id(self.id)
+
+    @property
+    def image_url(self) -> str:
+        if self.show_image:
+            return str(HtmlDir.image_url(f"{self.id}.png"))
         else:
-            txt = None
-
-        if self.complete_description:
-            txt = (txt or Text('')).append(self.complete_description, NOTE_STYLE)
-        else:
-            return txt
-
-        if self.external_link_txt:
-            txt.append(' ').append(self.external_link_txt)
-
-        from epstein_files.output.epstein_highlighter import non_epstein_highlighter
-        return non_epstein_highlighter(txt)
+            return ''
 
     @property
     def replacement_preview_text(self) -> str:
@@ -451,16 +459,6 @@ class DocCfg(LoggingEntity):
         return [self.author] if self.author else []
 
     @property
-    def char_range_as_table_row(self) -> tuple[int, int] | None:
-        """The char range that should be shown in `OtherFile` rollup tables."""
-        if self.num_preview_chars:
-            return (0, self.num_preview_chars)
-        elif self.category in SHORT_TRUNCATE_CATEGORIES:
-            return (0, int(site_config.other_files_preview_chars / 2))
-        else:
-            return (0, site_config.other_files_preview_chars)
-
-    @property
     def timestamp(self) -> datetime | None:
         if self.date and (parsed_dt := coerce_utc_strict(parse(self.date))):
             # self._debug_log(f"parsed {parsed_dt.isoformat()} from date='{self.date}'")
@@ -537,6 +535,24 @@ class DocCfg(LoggingEntity):
             dupe_cfg.dupe_type = self.dupe_type
             dupe_cfg.is_synthetic = True
             yield dupe_cfg
+
+    def note_txt(self, include_category: bool = True) -> Text | None:
+        """Add formatting to `self.complete_description`."""
+        if include_category and self.PREFIX_NOTE_WITH_CATEGORY and self.category_bracketed:
+            txt = self.category_bracketed.append(' ')
+        else:
+            txt = None
+
+        if self.complete_description:
+            txt = (txt or Text('')).append(self.complete_description, NOTE_STYLE)
+        else:
+            return txt
+
+        if self.external_link_txt:
+            txt.append(' ').append(self.external_link_txt)
+
+        from epstein_files.output.epstein_highlighter import non_epstein_highlighter
+        return non_epstein_highlighter(txt)
 
     def set_category(self, category: str) -> None:
         """Update the title if we changed to a category that allows titling (books, academia, finance)."""

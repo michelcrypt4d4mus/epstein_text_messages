@@ -20,6 +20,8 @@ BUILD_TO_DEFAULT = 'default_file'  # default value if --build is specified witho
 EPSTEIN_GENERATE = 'epstein_generate'
 HTML_SCRIPTS = [EPSTEIN_GENERATE]
 PICKLED_PATH = Path("the_epstein_files.local.pkl.gz")
+OUTPUT_ARGS = ['all', 'colors_only', 'json', 'make_clean', 'output', 'show']
+SLOW_FILE_SECONDS = 1.0
 
 # Get source file dirs from these vars
 DOCS_DIR_ENV_VAR = 'EPSTEIN_DOCS_DIR'
@@ -31,9 +33,7 @@ DOCS_DIR: Path = get_env_dir(DOCS_DIR_ENV_VAR, must_exist=True)
 DOJ_PDFS_20260130_DIR: Path = get_env_dir(DOJ_PDFS_20260130_DIR_ENV_VAR, must_exist=False)
 DOJ_TXTS_20260130_DIR: Path = get_env_dir(DOJ_TXTS_20260130_DIR_ENV_VAR, must_exist=False)
 DROPSITE_EMLS_DIR: Path = get_env_dir(DROPSITE_EMLS_DIR_ENV_VAR, must_exist=False)
-
-OUTPUT_ARGS = ['all', 'colors_only', 'json', 'make_clean', 'output', 'show']
-SLOW_FILE_SECONDS = 1.0
+SOURCE_DATA_DIR: Path = get_env_dir('SOURCE_DATA_DIR', must_exist=False)
 
 is_output_arg = lambda arg: any([arg.startswith(pfx) for pfx in OUTPUT_ARGS])
 

@@ -10,6 +10,12 @@ LUTNICKS_CANTOR = f"Howard Lutnick's {CANTOR_FITZGERALD}"
 
 
 MISC_CFGS = [
+    letter(
+        id='026011',
+        author='Gennady Mashtalyar',
+        date='2016-06-24',  # date is based on Brexit reference but he could be backtesting,
+        note=f"about algorithmic trading",
+    ),
     press_release('015462', 'Nautilus Education', note=f'magazine issue for Epstein foundation {QUESTION_MARKS}', is_interesting=True),
     press_release('029326', EPSTEIN_VI_FOUNDATION, '2013-02-15'),
     press_release('026565', EPSTEIN_VI_FOUNDATION, '2013-02-15', comment=f'maybe a draft of 029326'),
@@ -71,10 +77,13 @@ MISC_CFGS = [
         is_valid_for_name_scan=False,
         url=Site.get_url(Site.PHONE_NUMBERS),
     ),
+    DocCfg(id='EFTA00000019', note=f"{MERWIN_DELA_CRUZ} cooling tower maintenance", date='2018-12-10', is_interesting=False),
+    DocCfg(id='EFTA00008486', note=f"chain of custody evidence envelope", date='2009-11-02'),
+    DocCfg(id='EFTA00006378', note=f"message pad with {LES_WEXNER}'s name", date='2003-03-14'),
     DocCfg(id='EFTA00165515', note="contractor describes Epstein's gun safes", show_full_panel=True),
     DocCfg(id='EFTA00266322', note=f"documents about pitches for non-profits in Australia, including to Effective Altruism"),
     DocCfg(id='EFTA00005783', note='heavily redacted handwritten note, 30+ completely redacted pages', date='2019-08-29'),
-    DocCfg(id='EFTA02697975', note='island employee list', show_full_panel=True),
+    DocCfg(id='EFTA02697975', note='island employee list', show_full_panel=True, is_interesting=2),
     inventory('EFTA01063691', 'address books and Skype logs seized from Epstein computers'),
     DocCfg(id='EFTA00024275', note='large Wexner funded payments to OB-GYN'),
     DocCfg(id='EFTA01193705', note="list of Epstein's known email addresses, internet accounts, cars, boats, airplanes, and telephone numbers"),
@@ -112,18 +121,18 @@ MISC_CFGS = [
     DocCfg(id='EFTA00007693', note="driving directions from Epstein's house to <REDACTED>, flight details for Sandy Berger"),
 
     # Misc
+    DocCfg(
+        id='EFTA00159394',
+        note='notes from interview with employee and copy of 2005 household manual for Palm Beach residence',
+        date='2021-09-30',
+    ),
     fedex_invoice('EFTA00217072', '2005-06-20'),
     fedex_invoice('EFTA00217080', '2005-06-27'),
     imessage_screenshot(id='033434', author=BRAD_EDWARDS, author_uncertain=f"labeled 'Edwards'", is_interesting=False),
     important_messages_pad('EFTA01719859', '2005-10-03'),
     important_messages_pad('EFTA01682477', '2005-04-01'),
-    letter(
-        id='026011',
-        author='Gennady Mashtalyar',
-        date='2016-06-24',  # date is based on Brexit reference but he could be backtesting,
-        note=f"about algorithmic trading",
-    ),
-    letter(id='EFTA00007609', recipients=['Alberto Pinto'], duplicate_ids=['EFTA00007582']),
+    letter('EFTA00090261', INTERLOCHEN_CENTER_FOR_THE_ARTS, [JEFFREY_EPSTEIN], "thanking him for donations", '1997-09-18'),
+    letter('EFTA00007609', recipients=['Alberto Pinto'], duplicate_ids=['EFTA00007582']),
     skype_log('032210', recipients=['linkspirit'], is_interesting=True),
     skype_log('018224', recipients=['linkspirit', LAWRENCE_KRAUSS], is_interesting=True),  # we don't know who linkspirit is yet
     skype_log(

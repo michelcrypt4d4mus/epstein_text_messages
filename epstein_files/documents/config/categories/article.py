@@ -133,6 +133,7 @@ ARTICLE_CFGS = [
     DocCfg(id='023046', author=VI_DAILY_NEWS, note='article', date='2019-02-27'),
     DocCfg(id='031170', author=VI_DAILY_NEWS, note='article', date='2019-03-06'),
     DocCfg(id='016506', author=VI_DAILY_NEWS, note='article', date='2019-02-28'),
+    DocCfg(id='EFTA00129017', author=VI_DAILY_NEWS),
     DocCfg(id='018862', author=VI_DAILY_NEWS, note='articles about Sen. Alvin Williams Jr. Fraud case, arson', date='2012-11-09'),
     DocCfg(id='016507', author=VI_DAILY_NEWS, note=f'"Perversion of Justice" by {JULIE_K_BROWN}', date='2018-12-19'),
     DocCfg(id='019212', author=WAPO, note=f'and Times Tribune articles about Bannon, Trump, and healthcare execs'),
@@ -185,7 +186,10 @@ ARTICLE_CFGS = [
     DocCfg(
         id='EFTA01689016',
         date='2001-11-01',
+        is_interesting=True,
         note=f"article about {VIRGINIA_GIUFFRE}'s former trafficker Ronald Eppinger and other Giuffre",
         truncate_to=(11_000, 13_000),
     ),
+    DocCfg(id='EFTA00173333', note='article about destruction of evidence at FBI'),
+    DocCfg(id='EFTA00067272', author='The Jeffrey Epstein Archives', note='comtemporaneous history'),
 ]

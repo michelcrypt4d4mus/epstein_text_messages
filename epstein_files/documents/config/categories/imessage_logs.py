@@ -66,7 +66,7 @@ UNCONFIRMED_TEXTS_CONFIG = [
     TextCfg(id='027594', author=STEVE_BANNON),
     TextCfg(id='027549', author=STEVE_BANNON),
     TextCfg(id='027764', author=STEVE_BANNON, note=f"includes discussion of Facebook's attempt at crypto called Libra", is_interesting=True),
-    TextCfg(id='027585', author=STEVE_BANNON, author_uncertain='references Tokyo trip'),
+    TextCfg(id='027585', author=STEVE_BANNON, author_uncertain='references Tokyo trip', duplicate_ids=['EFTA01615642'], dupe_type='screenshot'),  # TODO: something with screenshots
     TextCfg(id='027434', author=STEVE_BANNON, author_uncertain='references Maher appearance'),
     TextCfg(id='027428', author=STEVE_BANNON, author_uncertain='references HBJ meeting on 9/28 from other Bannon/Epstein convo'),
     TextCfg(id='027374', author=STEVE_BANNON, author_uncertain='AI says China strategy and geopolitics'),

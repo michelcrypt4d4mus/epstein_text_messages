@@ -9,6 +9,7 @@ from epstein_files.documents.config.communication_cfg import CommunicationCfg, P
 from epstein_files.documents.config.doc_cfg import DocCfg, DuplicateType
 from epstein_files.documents.config.email_cfg import EmailCfg
 from epstein_files.people.names import *
+from epstein_files.util.constant.strings import MINOR_VICTIM
 from epstein_files.util.helpers.string_helper import as_pattern, has_line_starting_with, join_truthy
 from epstein_files.util.logging import logger
 
@@ -44,8 +45,13 @@ CASE_IDS = {
     '9:08-cv-80736-KAM': JANE_DOE_V_USA,
 }
 
+FILING_DATES = {
+    'EFTA00145666': '2023-04-12',
+}
+
 EMERGENCY_CONTACT_DATES = {
-    'EFTA00003042': '2019-02-06'
+    'EFTA00003042': '2019-02-06',
+    'EFTA00003060': '2018-03-19',
 }
 
 DESCRIPTIONS = {
@@ -122,7 +128,7 @@ def build_cfg_from_text(doc: 'Document') -> DocCfg | None:
     elif (case_match := LEGAL_FILING_REGEX.search(text)):
         case_name = CASE_IDS.get(case_match.group(1), f"case {case_match.group(1)}")
         note = join_truthy(f"legal filing in {case_name}", DESCRIPTIONS.get(doc.file_id, ''))
-        cfg = _cfg(category=Neutral.LEGAL, note=note)
+        cfg = _cfg(category=Neutral.LEGAL, note=note, date=FILING_DATES.get(doc.file_id, ''))
     elif len(text) < 2600 and HARD_DRIVE_REGEX.search(text):
         cfg = _cfg(category=Neutral.MISC, note='photo of a hard drive')
     elif lines[0].lower().strip() == 'valuation report':
@@ -145,8 +151,11 @@ def fbi_defense_witness(id: str, witness: Name, date: str = '') -> DocCfg:
 
 
 def fbi_interview(id: str, interviewee: Name, note: str = '', date: str = '', **kwargs) -> CommunicationCfg:
-    note = join_truthy(f"interview of {interviewee or UNKNOWN}", note, ', ')
-    cfg = CommunicationCfg(id=id, date=date, note=note, recipients=[interviewee], **kwargs)
+    cfg = interview(id, FBI, interviewee, note, date=date, **kwargs)
+
+    if interviewee == MINOR_VICTIM:
+        cfg.is_interesting = True
+
     return _set_fbi_doc_fields(cfg)
 
 
@@ -172,6 +181,11 @@ def grand_jury(id: str, case_name: str = '', note: str = '', **kwargs) -> DocCfg
 def important_messages_pad(id: str, date: str = '') -> DocCfg:
     display_text = '"Important Message" formatted notepad with notes about missed phone calls etc.'
     return DocCfg(id=id, date=date, display_text=display_text)
+
+
+def interview(id: str, author: str, interviewee: Name, note: str = '', **kwargs) -> CommunicationCfg:
+    note = join_truthy(f"interview of {interviewee or UNKNOWN}", note, ', ')
+    return CommunicationCfg(id=id, author=author, note=note, recipients=[interviewee], **kwargs)
 
 
 def inventory(id: str, container: str, note: str = '', **kwargs) -> DocCfg:

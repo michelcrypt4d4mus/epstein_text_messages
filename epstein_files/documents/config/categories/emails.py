@@ -31,10 +31,10 @@ def binant_redacted(id: str, truncate_to: int = 700) -> EmailCfg:
     return EmailCfg(id=id, truncate_to=truncate_to, note=f"redacted discussion of art advisor {ETIENNE_BINANT}")
 
 
-def shaher_murder_email(id: str, note: str = '', **kwargs) -> EmailCfg:
+def shaher_murder_email(id: str, note: str = '', is_interesting: bool | int = 10, **kwargs) -> EmailCfg:
     return EmailCfg(
         id=id,
-        is_interesting=10,
+        is_interesting=is_interesting,
         non_participants=[JOI_ITO],
         note=join_truthy(note, f"discussion of the murder of Martine Vik Magnussen by {SHAHER_ABDULHAK_BESHER}'s son Farouk"),
         **kwargs
@@ -659,11 +659,19 @@ EMAILS_CONFIG = [
     EmailCfg(id='026449', note="comments about Trump's 'former bridge girl and toy'", is_interesting=True),
     EmailCfg(id='032842', note='discussion of "stealing" a casino in Atlantic City', is_interesting=True),
     EmailCfg(id='033377', note="Epstein says he knows Russian oligarch Oleg Deripaska", is_interesting=10),
-    EmailCfg(id='023454', note='Email invitation sent to tech CEOs and Epstein', is_interesting=True, truncate_to=1878),
+    EmailCfg(
+        id='023454',
+        duplicate_ids=['EFTA02364089'],
+        dupe_type='quoted',
+        is_interesting=True,
+        note='Email invitation sent to tech CEOs and Epstein',
+        truncate_to=1_878,
+    ),
     EmailCfg(
         id='030950',
         note=f"{IAN_OSBORNE} spending quality time in Russia before Jawbone investment",
         highlight_quote='fatty at LinkedIn',
+        is_interesting=True,
         truncate_to=4500,
     ),
     EmailCfg(id='029098', note=f"{MASHA_DROKOVA}'s skype contact is in Moscow", is_interesting=True),
@@ -1074,6 +1082,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00468081', recipients=[LESLEY_GROFF], recipient_uncertain=True),
     EmailCfg(id='EFTA02068436', recipients=[LESLEY_GROFF], recipient_uncertain=True),
     EmailCfg(id='EFTA02068531', recipients=[LESLEY_GROFF], recipient_uncertain=True),
+    EmailCfg(id='EFTA02239782', recipients=['Andrew Superintendent', LESLEY_GROFF, MERWIN_DELA_CRUZ], recipient_uncertain=True),
     EmailCfg(id='EFTA02175423', recipients=[LESLEY_GROFF], truncate_to=650),
     EmailCfg(id='EFTA00313867', recipients=[LESLEY_GROFF], truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA00383027', recipients=[LINDA_STONE]),
@@ -1104,6 +1113,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00977447', recipients=[RENATA_BOLOTOVA], recipient_uncertain=SNEAKY_DOG, duplicate_ids=['EFTA02577917', 'EFTA01946045']),
     EmailCfg(id='EFTA01843319', recipients=[RENATA_BOLOTOVA], recipient_uncertain=SNEAKY_DOG, duplicate_ids=['EFTA00929871', 'EFTA01773449', 'EFTA02550388']),
     EmailCfg(id='EFTA00857165', recipients=['Seth Lloyd'], author_reason='quoted reply line'),
+    EmailCfg(id='EFTA02316013', recipients=[BELLA_KLEIN, RICHARD_KAHN, STEPHEN_BASTONE]),
     EmailCfg(
         id='EFTA00749241',
         author_reason='widely reported',
@@ -1285,6 +1295,7 @@ EMAILS_CONFIG = [
         'EFTA01878623',
         author=SHAHER_ABDULHAK_BESHER,
         author_reason='"S A" + "your son"',
+        is_interesting=True,
         note='khat is a Yemeni drug',
     ),
 

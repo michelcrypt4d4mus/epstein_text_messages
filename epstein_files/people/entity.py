@@ -1,14 +1,15 @@
 import re
 from dataclasses import dataclass, field, fields
-from typing import ClassVar, Literal, Self, Sequence
+from typing import ClassVar, Literal, Self, Sequence, TypeVar
 
 from rich.padding import Padding
 from rich.style import Style
 from rich.text import Text
 
 from epstein_files.output.html.rich_style import RichStyle
-from epstein_files.people.names import UNKNOWN, Name, constantize_name, extract_first_name, extract_last_name
-from epstein_files.util.constant.strings import INDENT_NEWLINE, INDENTED_JOIN, JOURNALISM_STYLE, LAW_ENFORCEMENT, QUESTION_MARKS, WIKIPEDIA, PartialName
+from epstein_files.people.names import DEUTSCHE_BANK, constantize_name, extract_first_name, extract_last_name
+from epstein_files.util.constant.strings import (INDENT_NEWLINE, INDENTED_JOIN, JOURNALISM_STYLE, LAW_ENFORCEMENT,
+     QUESTION_MARKS, WIKIPEDIA, PartialName)
 from epstein_files.util.constant.urls import EPSTEINIFY, PERSON_LINK_BUILDERS, EpsteinSite, wikipedia_url
 from epstein_files.util.env import args, site_config
 from epstein_files.util.external_link import ExternalLink, link_text_obj
@@ -33,6 +34,8 @@ MGMT_REGEX = re.compile(MGMT_PATTERN)
 COMPANY_SUFFIX_REGEX = re.compile(fr".*?(,? (Inc\.?|LLC|{MGMT_PATTERN}))$")
 MIDDLE_INITIAL_REGEX = re.compile(r"^[A-Z]\.?$")
 SIMPLE_NAME_REGEX = re.compile(r"^[-\w, ]+$", re.IGNORECASE)
+
+EntityKwarg = TypeVar('EntityKwarg', bound=str | bool | None)
 
 
 @dataclass
@@ -431,6 +434,12 @@ def acronym(name: str, info: str = '', **kwargs) -> Organization:
     )
 
 
+def deutsche_bank_employee(name: str, role: str = '', **kwargs) -> Entity:
+    match_partial = _pop_kwarg(kwargs, 'match_partial', None)
+    note = f"{role} at {DEUTSCHE_BANK}" if role else f"{DEUTSCHE_BANK} employee"
+    return Entity(name, note, match_partial=match_partial, **kwargs)
+
+
 def epstein_co(name: str, emailer_pattern: str = '', info: str = '', **kwargs) -> Organization:
     return Organization(name, join_truthy('Epstein company', info), emailer_pattern, **kwargs)
 
@@ -504,6 +513,6 @@ def the_publication(name: str, emailer_pattern: str = '', is_scannable: bool = F
     return publication(name, fr"(The )?{pattern}", is_scannable=is_scannable, **kwargs)
 
 
-def _pop_kwarg(kwargs: dict, key: str, default: bool = False) -> bool:
+def _pop_kwarg(kwargs: dict, key: str, default: EntityKwarg = False) -> EntityKwarg:
     """Pop a kwarg and return if it exists, elese return `default`."""
     return kwargs.pop(key) if key in kwargs else default

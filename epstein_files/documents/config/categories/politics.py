@@ -1,6 +1,7 @@
 """
 Politics related files. By default uninteresting.
 """
+from epstein_files.documents.config.communication_cfg import CommunicationCfg, imessage_screenshot
 from epstein_files.documents.config.config_builder import letter, passenger_manifest
 from epstein_files.documents.config.doc_cfg import DocCfg
 from epstein_files.documents.config.email_cfg import EmailCfg
@@ -10,6 +11,10 @@ from epstein_files.util.helpers.string_helper import join_truthy, quote
 
 DIANA_DEGETTE_CAMPAIGN = "Colorado legislator Diana DeGette's campaign"
 TRUMP_DISCLOSURES = f"Donald Trump financial disclosures from U.S. Office of Government Ethics"
+
+
+def bannon_imessage(id: str, date: str = '', **kwargs) -> CommunicationCfg:
+    return imessage_screenshot(id, date=date, recipients=[STEVE_BANNON], **kwargs)
 
 
 POLITICS_CFGS = [
@@ -50,6 +55,7 @@ POLITICS_CFGS = [
     DocCfg(id='016699', note=TRUMP_DISCLOSURES, date='2017-01-20', is_interesting=True, attached_to_email_id='033091'),
     letter(id='EFTA02731023', author='Senator Ron Wyden', recipients=[LEON_BLACK], is_interesting=False),
     letter(id='EFTA02731018', author='Senator Ron Wyden', recipients=['Marc Rowan'], is_interesting=False),
+    letter('EFTA00173350', 'Senator Dick Durban', ['Senator Chuck Grassley', 'Pam Bondi']),
     passenger_manifest('007300', '2006-03-03', f"current US Navy Secretary Navy {JOHN_PHELAN} and {JEAN_LUC_BRUNEL}", truncate_to=650),
 
     # Emails
@@ -76,4 +82,21 @@ POLITICS_CFGS = [
         highlight_quote="Am totally tricked out by Uncle Jeffrey today! Jeffrey boots, handbag, and w=tch!",
         is_interesting=10,
     ),
+    EmailCfg(id='EFTA00661468', highlight_quote='carpets and all', note="the prince of Saudi Arabia sent Epstein a tent", is_interesting=5),
+
+    # Bannon
+    bannon_imessage(
+        'EFTA01620912',
+        highlight_quote="first we need to push back on the lies ; then crush the pedo/trafficking narrative ; then rebuild your image as philanthropist",
+        truncate_to=(950, 2_500),
+    ),
+    bannon_imessage('EFTA01615703', date='2019-04-01'),
+    bannon_imessage('EFTA01620249', date='2019-03-04'),
+    bannon_imessage('EFTA01615720', date='2019-04-05'),
+    bannon_imessage('EFTA01615642', date='2019-03-01'),
+    bannon_imessage('EFTA01615808'),
+
+    # Albert Bryan
+    EmailCfg(id='EFTA02258597', recipients=[DAPHNE_WALLACE, 'Albert Bryan']),
+    EmailCfg(id='EFTA02258608', author=DAPHNE_WALLACE, recipients=['John Engerman', 'Albert Bryan']),
 ]

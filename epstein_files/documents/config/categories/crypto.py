@@ -227,7 +227,7 @@ CRYPTO_CFGS = [
     EmailCfg(
         id='EFTA02436105',
         is_interesting=10,
-        note="one of Epstein's goals in life as of the year bitcoin was created was to make a lot of money in virtual currency",
+        note="one of Epstein's goals in life the year bitcoin was created was to make a lot of money in virtual currency",
     ),
     # Coinbase
     DocCfg(
@@ -543,6 +543,7 @@ CRYPTO_CFGS = [
         id='EFTA01620764',
         author=MELANIE_WALKER,
         author_uncertain=True,
+        is_interesting=True,
         note=f'about crypto philanthropy and Bill Gates being drunk all the time',
         recipients=[JEFFREY_EPSTEIN],
         truncate_to=(250, 3_500),

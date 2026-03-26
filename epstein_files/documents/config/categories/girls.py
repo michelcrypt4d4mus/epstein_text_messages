@@ -115,6 +115,7 @@ GIRLS_CFGS = [
         note='notes from Emma Sergeant interview describing being introduced to Trump by Epstein & Maxwell',
         truncate_to=(6_400, 7_800),
     ),
+    DocCfg(id='EFTA00143433', date='2022-06-01', date_uncertain='approx based on JPM lawsuit Nov 22', note='victim impact statement'),
 
     # Communications
     CommunicationCfg(
@@ -140,6 +141,7 @@ GIRLS_CFGS = [
         'EFTA01617527',
         author=EDUARDO_TEODORANI,
         highlight_quote='interesting pussy than Fl in Milano interesting pussy as well',
+        is_interesting=True,
         truncate_to=(1_700, 2_200),
     ),
     imessage_log(id='EFTA01617521', author=EDUARDO_TEODORANI),
@@ -566,6 +568,7 @@ GIRLS_CFGS = [
         author=LESLEY_GROFF,
         comment='very broken file',
         date='2012-05-25 19:51:20',
+        is_interesting=True,
         note=f'emphasis quotes by {LESLEY_GROFF}',
         highlight_quote='Jeffrey was asking if you and "your friend" could come by and meet Peter',
         recipients=[None],
@@ -607,6 +610,7 @@ GIRLS_CFGS = [
     EmailCfg(id='EFTA00657216', highlight_quote='Is Katya coming over?', note=f'"Katya" is {EKATERINA_GUSAROVA}'),
 
     # Quotes
+    EmailCfg(id='011908_3', highlight_quote='sex trafficking allegations have stopped us from working with • your agency for the past 5-6 years'),
     EmailCfg(
         id='EFTA02504370',
         highlight_quote=f'lovely girl with financial troubles',
@@ -650,6 +654,7 @@ GIRLS_CFGS = [
     EmailCfg(
         id='EFTA00935996',
         highlight_quote='I treat you betteer than all the other wives',
+        is_interesting=True,
         note='implicit threat of deportation',
         recipients=[RENATA_BOLOTOVA],
         recipient_uncertain=SNEAKY_DOG,
@@ -664,12 +669,12 @@ GIRLS_CFGS = [
     EmailCfg(id='EFTA00971793', highlight_quote='Attached is resume of Lutnick nanny', note=f"why does Epstein need a nanny?"),
     EmailCfg(id='EFTA00994380', highlight_quote='please confirm $500 to Sergey Pozhidaev', truncate_to=500),
     EmailCfg(id='EFTA01965732', highlight_quote='facilictating his illicit trysts, with married women, to being asked to provide adderall fro bridge tournamnts', is_interesting=5),
-    EmailCfg(id='EFTA01768670', highlight_quote='find girls for the agency', note=f'but {BORIS_NIKOLIC} is a "biotech investor"...'),
+    EmailCfg(id='EFTA01768670', highlight_quote='find girls for the agency', note=f'but {BORIS_NIKOLIC} is a "biotech investor"...', is_interesting=True),
     EmailCfg(id='EFTA01905320', highlight_quote='girls and i are going to see elon musk at space x tomorrow'),
     EmailCfg(id='EFTA01803353', highlight_quote='having problems with regina', note='(Ramsey?)', is_interesting=True),
     EmailCfg(id='EFTA00950394', highlight_quote='how old will you go?'),
     EmailCfg(id='EFTA02551185', highlight_quote='I believe this girl belongs to Jeffery already'),
-    EmailCfg(id='011908_3', highlight_quote='the sex trafficking allegations have stopped us from working with • your agency for the past 5-6 years'),
+    EmailCfg(id='EFTA02504630', highlight_quote="I found at least 3 very good young poor"),
     EmailCfg(id='EFTA02499884', highlight_quote='I gave another girl to kimball and he is thrilled', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA02557757', highlight_quote="I have a girl Sana working half time/who by the way you'd like", is_interesting=True),
     EmailCfg(id='EFTA00771856', highlight_quote="I know 23 is on the old side for you", note=quote("she's 23 but oozes sex"), truncate_to=3_000),
@@ -691,6 +696,9 @@ GIRLS_CFGS = [
     EmailCfg(id='EFTA01754444', highlight_quote="You want me to introduce to a young beautiful Russian model ,right?"),
     EmailCfg(id='EFTA01930501', highlight_quote="Your littlest girl was a little naughty"),
     EmailCfg(id='DropSite 2006-05-29 1329', highlight_quote='I am giving the little girl a modeling\n> lesson', is_interesting=True),
+
+    # Faith Kates
+    EmailCfg(id='EFTA02512317', recipients=[FAITH_KATES], author_reason='"faith,"', note="Epstein suggests Next Models take on a girl"),
 
     # Josh Fink
     EmailCfg(
@@ -768,13 +776,20 @@ GIRLS_CFGS = [
     EmailCfg(id='EFTA00932166', note=f"{MARK_ZEFF}'s letter of visa recommendation for South African girl in EFTA00537633"),  # TODO: make it an attachment?
     EmailCfg(id='EFTA02609062', note=f"{MASHA_DROKOVA} is assembling a team", is_interesting=10),
     EmailCfg(id='EFTA02557291', note='possibly recruiting girls'),
+    EmailCfg(id='EFTA01990860', note=f"{PRINCE_ANDREW}'s public denial draft"),
     EmailCfg(
         id='EFTA01811230',
         note=f'"Renat" is probably {RENATA_BOLOTOVA}, {REDACTED} might be "Irina" or {SVETLANA_POZHIDAEVA}',
         duplicate_ids=['EFTA00732294'],
     ),
     EmailCfg(id='EFTA00927927', note=f"{RENATA_BOLOTOVA} possibly talking about recruiting girls"),
-    EmailCfg(id='EFTA01816788', note=f"Russian girl for {PRINCE_ANDREW}", is_interesting=9),
+    EmailCfg(
+        id='EFTA01816788',
+        highlight_quote="she 26, russian, clevere beautiful, trustworthy and yes she has your email",
+        is_interesting=9,
+        note=f"Russian girl for {PRINCE_ANDREW}",
+        truncate_to=370,
+    ),
     EmailCfg(id='EFTA00876739', note=f'scouting girls in Ukraine {QUESTION_MARKS}'),
     EmailCfg(id='EFTA00901905', note="smoking in the house oh no!"),
     EmailCfg(
@@ -783,15 +798,19 @@ GIRLS_CFGS = [
         note=f"Epstein can't go to \"nats\" but (because?) {SVETLANA_POZHIDAEVA} and {JOSHUA_FINK} will be there",
         show_with_name=SVETLANA_POZHIDAEVA,
     ),
-    EmailCfg(id='EFTA01798715', note=f"{SVETLANA_POZHIDAEVA} taking an interest in {JOSHUA_FINK}'s investments in Eritrea in between hair gigs", is_interesting=10),
+    EmailCfg(
+        id='EFTA01798715',
+        is_interesting=10,
+        note=f"{SVETLANA_POZHIDAEVA} taking an interest in {JOSHUA_FINK}'s investments in Eritrea in between hair gigs",
+    ),
     EmailCfg(id='EFTA00572157', note='translation: "Congratulations on the new addition!!! What did you name the little miracle?" (seems to be about a cat)'),
     EmailCfg(id='EFTA00631762', note="visa problems for Epstein's South African friend"),
     EmailCfg(id='EFTA00376832', show_with_name=MARIANA_IDZKOWSKA),
-    EmailCfg(id='EFTA02664956', truncate_to=NO_TRUNCATE),
-    EmailCfg(id='EFTA00689698', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA02702141', truncate_to=NO_TRUNCATE, comment=ELON_MUSK),
     EmailCfg(id='EFTA00819508', truncate_to=NO_TRUNCATE, comment=JULIA_SANTOS),
     EmailCfg(id='EFTA00460312', truncate_to=NO_TRUNCATE, comment=JULIA_SANTOS),
+    EmailCfg(id='EFTA02664956', truncate_to=NO_TRUNCATE),
+    EmailCfg(id='EFTA00689698', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA00878255', comment=BORIS_NIKOLIC),
     EmailCfg(id='EFTA02538269', comment=BORIS_NIKOLIC, duplicate_ids=['EFTA01866636']),
     EmailCfg(id='EFTA00736518', comment=JES_STALEY + ' beauty and the beast'),
@@ -803,8 +822,12 @@ GIRLS_CFGS = [
     EmailCfg(id='EFTA00964428', comment=JULIA_SANTOS + ' Valdson'),
     EmailCfg(id='EFTA02398135', comment=JULIA_SANTOS + ' "Sochi"'),
     EmailCfg(id='EFTA00766770'),
-    EmailCfg(id='EFTA01990860', note=f"{PRINCE_ANDREW}'s public denial draft"),
-    EmailCfg(id='EFTA00743526', note=f"Epstein and {RAMSEY_ELKHOLY} trying to get a Next Models contract for Regina", truncate_to=(800, 2_160)),
+    EmailCfg(
+        id='EFTA00743526',
+        is_interesting=True,
+        note=f"Epstein and {RAMSEY_ELKHOLY} trying to get a Next Models contract for Regina",
+        truncate_to=(800, 2_160),
+    ),
 
     # Text msg
     TextCfg(
@@ -812,6 +835,21 @@ GIRLS_CFGS = [
         highlight_quote="The kid » couldn't have done bikini wax cause hair are « too short",
         note=f'grooming a new girl with a "pornhub introduction"',
         recipients=['Harry Fish', 'Karin', EVA_DUBIN, TERJE_ROD_LARSEN],
+    ),
+
+    # Asia
+    EmailCfg(
+        id='EFTA02046979',
+        is_interesting=True,
+        note=f"flights for Kimberly Ko and {WANDI_ZHU}",
+        show_with_name=WANDI_ZHU,
+        truncate_to=(1_140, 1_800),
+    ),
+    EmailCfg(
+        id='EFTA02047748',
+        is_interesting=15,
+        note=f"Epstein's travel booker at Amex holds a Russian passport (and his Chinese girlfriends lost their passports)",
+        truncate_to=800,
     ),
 
     # Immigration

@@ -70,6 +70,7 @@ EMAILERS_OF_INTEREST = [
     LOLA_MIGNON,
     JOSHUA_FINK,
     SANITA,
+    WANDI_ZHU,
     None,
 ]
 

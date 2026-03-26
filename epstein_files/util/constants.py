@@ -31,6 +31,7 @@ from epstein_files.documents.config.categories.tech import TECH_CFGS
 from epstein_files.documents.config.config_builder import victim_diary
 from epstein_files.documents.config.doc_cfg import DocCfg
 from epstein_files.documents.config.email_cfg import EmailCfg
+from epstein_files.documents.config.pic_cfg import PIC_CFGS, PicCfg
 from epstein_files.documents.documents.categories import Category, Interesting, Neutral, Uninteresting
 from epstein_files.people.names import *
 from epstein_files.util.constant.strings import *
@@ -568,7 +569,7 @@ for category in CATEGORIES_WITH_CFGS_VAR:
     DocCfg.set_categories(category_cfgs, category)
     CATEGORY_CONFIGS.extend(category_cfgs)
 
-ALL_CONFIGS = CATEGORY_CONFIGS + EMAILS_CONFIG + TEXTS_CONFIG
+ALL_CONFIGS = CATEGORY_CONFIGS + EMAILS_CONFIG + PIC_CFGS + TEXTS_CONFIG
 DocCfg.update_or_create_cfgs(UNINTERESTING_OTHER_FILE_IDS, ALL_CONFIGS, 'is_interesting', False)
 EmailCfg.update_or_create_cfgs(MOST_INTERESTING_EMAIL_IDS, ALL_CONFIGS, 'is_interesting', 10)
 EmailCfg.update_or_create_cfgs(UNINTERESTING_EMAIL_IDS, ALL_CONFIGS, 'is_interesting', False)

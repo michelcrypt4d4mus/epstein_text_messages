@@ -92,6 +92,14 @@ METADATA_FIELDS = [
     'timestamp',
 ]
 
+WARN_ON_ENTITY_NAMES = set([
+    'Brice',
+    'Juliya',
+    'Leo',
+    "Peter Green",
+    'Nadia',
+])
+
 T = TypeVar('T', bound=str | Text)
 
 
@@ -255,13 +263,6 @@ class Document(LoggingEntity):
     def html_margin_bottom(self) -> float:
         """Overloaded in `Email` for case of emails with attachments."""
         return VERTICAL_MARGIN
-
-    @property
-    def image_url(self) -> str:
-        if self._config.show_image:
-            return f'doc_images/{self.file_id}.png'
-        else:
-            return ''
 
     @property
     def is_email_attachment(self) -> bool:
@@ -508,8 +509,8 @@ class Document(LoggingEntity):
             `exclude` (EntityScanArg, optional): optimization to avoid expensive rescans if bio was already printed.
             `include` (EntityScanArg, optional): additional names to include (used by subclass overrides)
         """
-        entities = get_entities([self.author] + self._config.entity_names + self._coerce_entities(include))
         excluded_names = set(Entity.coerce_entity_names(exclude) + self._config.non_participants)
+        entities = get_entities([self.author] + self._config.entity_names + self._coerce_entities(include))
 
         if self._config.entity_names or not self._config.is_valid_for_name_scan:
             return [e for e in entities if e.name not in excluded_names]
@@ -521,6 +522,10 @@ class Document(LoggingEntity):
             # check excluded list first to avoid expensive rescans
             if c.name not in excluded_names and c.is_scannable and c.highlight_regex.search(text_to_scan)
         ]
+
+        if (warn_on_names := [e.name for e in entities if e.name in WARN_ON_ENTITY_NAMES]):
+            for name in warn_on_names:
+                self._warn(f"Found mystery entity '{name}'")
 
         return self._coerce_entities(entities)
 
@@ -546,7 +551,7 @@ class Document(LoggingEntity):
 
             body_panel = ImagePanel(
                 border_style=self.border_style,
-                img_url=self.image_url,
+                img_url=self._config.image_url,
                 text=self.prettified_txt,
                 title=panel_timestamp
             )
