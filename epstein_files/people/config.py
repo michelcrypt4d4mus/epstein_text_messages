@@ -3630,6 +3630,7 @@ HIGHLIGHTED_NAMES = [
             ),
             Entity(JOHN_PHELAN, 'current US Secretary of the Navy', url=WIKIPEDIA),
             Entity('Marla Maples', 'ex-wife of Donald Trump', match_partial=None, url=WIKIPEDIA),  # bannon texts
+            Entity('Matt Calamari', 'COO of The Trump Organization', r"(Matt(hew)? )?Calamari|\bMatt C\b"),
             Entity(
                 'Melania',
                 "...Trump?",
@@ -3674,8 +3675,6 @@ HIGHLIGHTED_NAMES = [
             r"Jared", r"(?<!Tony )Kushner",
             r"(Madeleine )?Westerhout",
             r"Mar[-\s]*a[-\s]*Lago",
-            r"(Matt(hew)? )?Calamari",
-            r"\bMatt C\b",
             r"Michael (D\.? )?Cohen",
             r"Paul Rampell",
             r"REAL C(adre|ONTRAD)",
