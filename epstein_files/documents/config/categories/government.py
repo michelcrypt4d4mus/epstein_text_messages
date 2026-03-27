@@ -1,5 +1,5 @@
 from epstein_files.documents.config.communication_cfg import CommunicationCfg
-from epstein_files.documents.config.config_builder import Cfg, grand_jury, interview, inventory, letter, memo
+from epstein_files.documents.config.config_builder import Cfg, fbi_report, grand_jury, interview, inventory, letter, memo
 from epstein_files.documents.config.doc_cfg import EMAIL_TRUNCATE_TO, NO_TRUNCATE, SHORT_TRUNCATE_TO, DocCfg
 from epstein_files.documents.config.email_cfg import EmailCfg
 from epstein_files.documents.documents.categories import Neutral
@@ -9,7 +9,6 @@ from epstein_files.util.helpers.string_helper import join_truthy, quote
 from epstein_files.util.logging import logger
 
 ALESSI_WITNESS_PREP = f"witness prep of {JUAN_ALESSI} (Epstein's Palm Beach house manager)"
-EPSTEIN_INVESTIGATION = 'Epstein investigation'
 
 FBI_REPORT_FIELDS = [
     'Approved By',
@@ -37,12 +36,6 @@ FBI_REPORT_FIELDS = [
     'Synopsis',
     'Title',
     'Type of Contact',
-]
-
-# Don't join with "about" if the note starts with one of these words
-REPORT_ABOUT_PREFIXES = [
-    'contain',
-    # 'with',
 ]
 
 
@@ -105,12 +98,6 @@ def fbi_interview(id: str, interviewee: Name, note: str = '', date: str = '', **
         cfg.is_interesting = True
 
     return _set_fbi_doc_fields(cfg)
-
-
-def fbi_report(id: str, note: str = EPSTEIN_INVESTIGATION, **kwargs) -> DocCfg:
-    joiner = ', ' if any(note.startswith(word) for word in REPORT_ABOUT_PREFIXES) else ' about '
-    note = join_truthy('report', note, joiner)
-    return _set_fbi_doc_fields(DocCfg(id=id, note=note, **kwargs))
 
 
 def fbi_tip(id: str, about: str, **kwargs) -> DocCfg:

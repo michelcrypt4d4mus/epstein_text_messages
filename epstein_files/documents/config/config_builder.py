@@ -25,9 +25,16 @@ SUBPOENA_REGEX = re.compile(r"GRAND JURY SUBPOENA")
 VALAR_CAPITAL_CALL_REGEX = re.compile(r"^Val[ao]r.{,190} Capital Call", re.MULTILINE | re.IGNORECASE | re.DOTALL)
 VI_DAILY_NEWS_REGEX = re.compile(r'virgin\s*is[kl][ai]nds\s*daily\s*news', re.IGNORECASE)
 
+EPSTEIN_INVESTIGATION = 'Epstein investigation'
 JANE_DOE_V_USA = 'Jane Doe #1 and Jane Doe #2 v. United States'
 LEDGERX_MSG = 'LedgerX was later acquired by FTX for $298 million'
 WOLFF_EPSTEIN_ARTICLE_DRAFT = f"draft of an unpublished article ca. 2014"
+
+# Don't join with "about" if the note starts with one of these words
+REPORT_ABOUT_PREFIXES = [
+    'contain',
+    # 'with',
+]
 
 DUPLICATES = {
     'EFTA00811539': ['EFTA00599617'],
@@ -137,6 +144,12 @@ def build_cfg_from_text(doc: 'Document') -> DocCfg | None:
         cfg.duplicate_ids = DUPLICATES.get(cfg.id, [])
 
     return cfg
+
+
+def fbi_report(id: str, note: str = EPSTEIN_INVESTIGATION, **kwargs) -> DocCfg:
+    joiner = ', ' if any(note.startswith(word) for word in REPORT_ABOUT_PREFIXES) else ' about '
+    note = join_truthy('report', note, joiner)
+    return DocCfg(id=id, author=FBI, note=note, **kwargs)
 
 
 def fedex_invoice(id: str, date: str, **kwargs) -> DocCfg:
