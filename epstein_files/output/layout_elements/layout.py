@@ -126,6 +126,7 @@ class Layout:
         if self.side_panel:
             return self.side_panel.to_div(
                 css={
+                    'border-style': 'solid double double double',
                     'margin-bottom': 'auto',
                     'margin-left': 'auto',
                     'margin-right': 'auto',
