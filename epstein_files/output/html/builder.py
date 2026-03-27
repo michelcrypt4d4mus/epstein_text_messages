@@ -109,7 +109,16 @@ def one_row_table_html(table: Table, css_props: OptionalCssProps = None) -> str:
         header_span = render_to_html(Text('', style=col1.header_style or '').append(header))
         header_div = div_class(header_span, 'document_panel_header', header_props)
 
-    body_html = render_to_html(Text('', style=col1.style).append(col1._cells[0]))
+    body_txt = Text('', style=col1.style).append(col1._cells[0])
+    # body_div_css = {**PANEL_BASE_PROPS}
+
+    if (max_width := col1.max_width or col1.width):
+        logger.warning(f"Rendering obj at max_width {max_width}")
+        body_html = render_at_width(body_txt, max_width)
+        # body_div_css['max-width'] = to_em(max_width). # TODO: CSS is unecessary bc wrapping + width set in render()
+    else:
+        body_html = render_to_html(body_txt)
+
     body_div = div_class(body_html, PANEL_BODY_CSS_CLASS, PANEL_BASE_PROPS)
 
     return div_class(

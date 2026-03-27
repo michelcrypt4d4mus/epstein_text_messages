@@ -19,7 +19,7 @@ from epstein_files.documents.emails.emailers import ENTITY_CATEGORIES, get_entit
 from epstein_files.documents.messenger_log import MessengerLog
 from epstein_files.documents.other_file import OtherFile
 from epstein_files.output.layout_elements.base_panel import BasePanel
-from epstein_files.output.layout_elements.layout import Layout
+from epstein_files.output.layout_elements.layout import MAX_BODY_PANEL_WIDTH, Layout
 from epstein_files.output.layout_elements.site_directory import SiteDirectory
 from epstein_files.output.layout_elements.list_panel import ListPanel
 from epstein_files.output.html.builder import (console_buffer_to_html, render_at_obj_width, panel_to_div,
@@ -234,7 +234,7 @@ class DocPrinter(DocList):
                 self.html_elements.append(panel_to_div(positioned.obj, positioned.css))
             elif isinstance(positioned.obj, BasePanel):
                 margin = unpack_dimensions((site_config.indents.info, 0))  # TODO: this margin dimension should only exist on one side if aligned
-                self.html_elements.append(positioned.obj.to_div(margin))
+                self.html_elements.append(positioned.obj.to_div(margin, width=MAX_BODY_PANEL_WIDTH))
             elif isinstance(positioned.obj, SiteDirectory):
                 self.html_elements.append(positioned.obj.to_html())
             elif isinstance(positioned.obj, Text):

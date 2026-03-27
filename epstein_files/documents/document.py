@@ -33,7 +33,7 @@ from epstein_files.output.highlight_config import HIGHLIGHTED_ENTITIES, get_styl
 from epstein_files.output.html.positioned_rich import VERTICAL_MARGIN
 from epstein_files.output.layout_elements.base_panel import BasePanel
 from epstein_files.output.layout_elements.image_panel import ImagePanel
-from epstein_files.output.layout_elements.layout import Layout
+from epstein_files.output.layout_elements.layout import MAX_BODY_PANEL_WIDTH, Layout
 from epstein_files.output.rich import (INFO_STYLE, NA_TXT, SYMBOL_STYLE, add_cols_to_table, build_table, console,
      styled_key_value, prefix_with, snip_msg_txt, styled_dict)
 from epstein_files.output.site.sites import EXTRACTS_BASE_URL
@@ -560,6 +560,7 @@ class Document(LoggingEntity):
         else:
             body_panel = BasePanel(
                 border_style=self.border_style,
+                max_width=MAX_BODY_PANEL_WIDTH,
                 text=self.prettified_txt,
                 title=panel_timestamp,
             )
