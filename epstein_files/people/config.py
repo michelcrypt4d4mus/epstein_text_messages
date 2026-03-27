@@ -2929,7 +2929,7 @@ HIGHLIGHTED_NAMES = [
             Organization('IMG Models', 'agency', r"(?-i:IMG)( Models)?"),
             Organization('Karin Models', f'agency in Paris owned by {JEAN_LUC_BRUNEL}'),
             Organization('Kate Spade', 'American maker of luxury handbags'),
-            Organization(MC2_MODEL_MGMT, f"{JEAN_LUC_BRUNEL} and Epstein's modeling agency", r"MC2( Model Management)?", is_emailer=False),
+            Organization(MC2_MODEL_MGMT, f"{JEAN_LUC_BRUNEL} and Epstein's modeling agency", r"MC(2| squared)( Model Management)?", is_emailer=False),
             Organization('Next Models', f"modeling agency co-founded by {FAITH_KATES}"),
             Organization('One Model Management', 'agency'),
             Organization('Scoop Models', 'agency in Copenhagen'),
