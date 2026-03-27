@@ -25,6 +25,7 @@ REPUTATION_CFGS = [
     EmailCfg(id='025233', is_interesting=True, note='Reputation.com discussion'),
     EmailCfg(id='022203', note=AL_SECKEL_BILL_FIGHT, truncate_to=500),
     EmailCfg(id='022219', note=AL_SECKEL_BILL_FIGHT, truncate_to=2404),
+    DocCfg(id='EFTA00261990', note="screenshots of Esptein's wikipedia", date='2019-06-01'),
 
     # DOJ files
     DocCfg(

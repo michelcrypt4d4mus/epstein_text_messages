@@ -39,7 +39,9 @@ PROPERTY_CFGS = [
     press_release('026759', 'Great Bay Condominium Owners Association', '2017-09-13', 'Hurricane Irma damage', is_interesting=False),
 
     # Epstein
+    DocCfg(id='EFTA00605620', author='Arthur Gensler', note='contract for architectural work', date='2009-10-06'),
     EmailCfg(id='EFTA02505788', note='building tunnels on the island'),
     EmailCfg(id='EFTA02286220', highlight_quote='I saw yesterday work began on tunnels', is_interesting=True),
     EmailCfg(id='EFTA02636770', highlight_quote="after completing the rebuild o= the bunker below 5palms", truncate_to=501),
+
 ]

@@ -334,6 +334,7 @@ MONEY_CFGS = [
     EmailCfg(id='EFTA01942664', note=f'payment from {MC2_MODEL_MGMT}'),
     EmailCfg(id='EFTA00552943', note=PURCHASE_OF_BIN_ENNAKHILL),
     EmailCfg(id='EFTA00669222', note=PURCHASE_OF_BIN_ENNAKHILL),
+    DocCfg(id='EFTA00585171', note=PURCHASE_OF_BIN_ENNAKHILL),
     EmailCfg(id='EFTA00552220', note=f"{PURCHASE_OF_BIN_ENNAKHILL} (by {KARYNA_SHULIAK}??)", is_interesting=7),
     EmailCfg(
         id='EFTA01816514',

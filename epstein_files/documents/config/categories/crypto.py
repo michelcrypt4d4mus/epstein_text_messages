@@ -399,6 +399,13 @@ CRYPTO_CFGS = [
         is_interesting=20,
         note=f"Epstein asks {HOWARD_LUTNICK} to read something after the island visit",
     ),
+    EmailCfg(
+        id='EFTA00462650',
+        highlight_quote='as a close friend of the Lutnicks',
+        note=f"Epstein didn't use the $50,000 table he bought",
+        show_with_name=HOWARD_LUTNICK,
+        truncate_to=EMAIL_TRUNCATE_TO,
+    ),
     EmailCfg(id='EFTA02374900', note=f'article about {HOWARD_LUTNICK} real estate purchase'),
     EmailCfg(id='EFTA00685520', note=f'call with {HOWARD_LUTNICK}'),
     EmailCfg(id='EFTA00436468', note=f'call with {HOWARD_LUTNICK} after he goes overseas', is_interesting=10, truncate_to=NO_TRUNCATE),

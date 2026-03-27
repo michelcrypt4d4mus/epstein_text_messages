@@ -378,6 +378,10 @@ NOT_CHRONOLOGICAL_VIEW_IDS = [cfg.id for cfg in FLIGHT_LOG_CFGS] + [
     'EFTA01870235',
     # Story Cowles
     'EFTA00563586',
+    # Frederika Finkelstein
+    'EFTA00383769',
+    'EFTA00383531',
+    'EFTA00676865',
     #
     'EFTA00582504',
     '024432',

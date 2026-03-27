@@ -132,6 +132,7 @@ CRYPTADAMUS_SOCIAL_LINKS = [
 ]
 
 # biographical links
+DAILY_BEAST_ASSISTANTS_URL = 'https://www.thedailybeast.com/jeffrey-epsteins-alleged-accomplices-where-are-sarah-kellen-nadia-marcinkova-adriana-ross-and-lesley-groff/'
 COURTHOUSE_NEWS_2024_LAWSUIT_URL = 'https://www.courthousenews.com/eight-epstein-victims-sue-fbi-over-failure-to-investigate-sex-abuse-tips-as-early-as-1996/'
 DITE_ANATA_JUILLIARD_URL = 'https://usatoday.com/story/news/politics/2026/02/19/jeffrey-epstein-emails-files-power-for-benefit/88701802007/'
 DROPSITE_EPSTEIN_CAMERAS_URL = 'https://www.dropsitenews.com/p/israeli-government-surveillance-epstein-apartment-66th-street-ehud-barak'

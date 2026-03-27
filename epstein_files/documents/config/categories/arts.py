@@ -1,3 +1,4 @@
+from epstein_files.documents.config.communication_cfg import imessage_log
 from epstein_files.documents.config.doc_cfg import DocCfg
 from epstein_files.documents.config.email_cfg import EmailCfg
 from epstein_files.people.names import *
@@ -35,4 +36,5 @@ ARTS_CFGS = [
     ),
     # Emails
     EmailCfg(id='032906', is_interesting=4, comment='David Blaine email'),
+    imessage_log('EFTA00508702'),
 ]

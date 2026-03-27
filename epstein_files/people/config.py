@@ -97,6 +97,7 @@ HIGHLIGHTED_NAMES = [
             Entity(ROGER_SCHANK, "AI pioneer, Teachers College, Columbia University, deceased"),
             Entity('Sandy Pentland', MIT_MEDIA_LAB, r"((Alex|Sandy) )?Pentland"),
             Entity(SETH_LLOYD, "professor of mechanical engineering at MIT", match_partial=None),
+            Entity('Stuart R. Hameroff', f'consciousness researcher, Roger Penrose Institute {QUESTION_MARKS}'),
             Entity('Valeria Chomsky', f"wife of {NOAM_CHOMSKY}", match_partial='both'),
             Entity(
                 'Victoria Stodden',
@@ -703,6 +704,7 @@ HIGHLIGHTED_NAMES = [
         patterns=[
             r"Adcirca",
             r"add?erall",
+            r"Ambien",
             r"Ativan",
             r"avanafil",
             r"blackmail(e[dr]|ing)?",
@@ -711,6 +713,7 @@ HIGHLIGHTED_NAMES = [
             r"coercion",
             r'criminals?(?! (defense|division))( (law|prosecution))?',
             r'crime famil(ies|y)',
+            r'Cymbalta',
             r'dark web',
             r'(drug|mexican) (cartel|traffick(ers?|ing))',
             r'Gambino',
@@ -725,6 +728,7 @@ HIGHLIGHTED_NAMES = [
             r"Nuvigil",
             r"(on )?drug(gy|s)",
             r"organized crime(?! drug enforcement)",
+            r"Paxil",
             r"Prontalgine",
             r"Provigil",
             r"(forcibl[ey] )?rap(ed?|ing)",
@@ -853,7 +857,7 @@ HIGHLIGHTED_NAMES = [
             Entity(
                 HOWARD_LUTNICK,
                 "Tether's banker, Cantor Fitzgerald, Trump Secretary of Commerce",
-                r"Lutnic?k(,? Howard)|How.rd( W(\.|illiam)?)? Lutnick|HWL",
+                r"Lutnic?k(,? Howard)?|How.rd( W(\.|illiam)?)? Lutnick|HWL",
                 url='https://cryptadamus.substack.com/p/trumps-transition-team-is-tethered',
             ),
             Entity(
@@ -1193,10 +1197,16 @@ HIGHLIGHTED_NAMES = [
         label='employee',
         style='light_slate_blue',
         entities=[
-            Entity('Adriana Ross', 'named co-conspirator', match_partial=None),
+            # Entity('Adriana Ross', 'named co-conspirator', match_partial=None),
             Entity('Alberto Pinto', 'interior designer', match_partial=None),
             Entity('Alfredo Rodriguez', "Epstein's butler, stole Epstein's black book", match_partial=None),
             Entity('Arline M. Toylo', 'employee'),
+            Entity(
+                'Arthur Gensler',
+                'architect',
+                r"(Arthur )?(?<!Gary )Gensler( (Architect|Jr))?",
+                match_partial=None,
+            ),
             Entity(BELLA_KLEIN, "one of Epstein's accountants", match_partial=None),
             Entity('Brahakmana Mellawa', 'house staff', match_partial='both'), # TODO: Lucien?
             Entity('Brice Gordon', 'property manager', match_partial='first'),
@@ -1220,7 +1230,12 @@ HIGHLIGHTED_NAMES = [
             Entity('Larry E. Morrison', "Epstein's pilot", match_partial=None),
             Entity(LAWRANCE_VISOSKI, "Epstein's pilot", r"La(rry|wr[ae]nce)( Paul)? Visoski?|Lvjet"),
             Entity(LEO_LOKING, "witness to Epstein's last weill and testament"),
-            Entity(LESLEY_GROFF, "assistant who managed Epstein's calendar, unindicted co-conspirator", r"Lesl(ey|ie) (K(\.|atherine)? )?Gro(ff)?"),
+            Entity(
+                LESLEY_GROFF,
+                "assistant who managed Epstein's calendar, unindicted co-conspirator",
+                r"Lesl(ey|ie) (K(\.|atherine)? )?Gro(ff)?",
+                url=DAILY_BEAST_ASSISTANTS_URL,
+            ),
             Entity('Linda Pinto', "interior design at Alberto Pinto Cabinet"),
             Entity(LYN_FONTANILLA, "Filipino housekeeper", r"(Rosa)?L.nn?( V\.?)? Fontanilla"),
             Entity('Maria Macaraeg', 'applied for housekeeper/nanny job'),
@@ -1247,6 +1262,7 @@ HIGHLIGHTED_NAMES = [
                 "now Sarah Vickers, named co-conspirator",
                 r"(Sarah )?(Kellen|Vickers)|Sarah K\b",
                 email_addresses=['littlereds@mobileemail.vodafone.net'],
+                url=DAILY_BEAST_ASSISTANTS_URL,
             ),
             Entity('Scott Denett', 'IT', r'Scott Denn?ett', match_partial=None),
             Entity('Sean J. Lancaster', "airplane reseller"),
@@ -2013,7 +2029,13 @@ HIGHLIGHTED_NAMES = [
                 match_partial=None,
             ),
             Entity('Florence Hutner', "New York Office of Chief Medical Examiner", match_partial=None),
-            Entity('Gary Gensler', 'ex-Goldman Sachs, future SEC Chair under Biden, taught MIT course on blockchain'),
+            Entity(
+                'Gary Gensler',
+                'ex-Goldman Sachs, future SEC Chair under Biden, taught MIT course on blockchain',
+                r"(Gary )?(?<!Arthur )Gensler(?! (Architect|Jr))",
+                match_partial=None,
+                url=WIKIPEDIA,
+            ),
             Entity("Geoff Ling", "director of DARPA Biological Technologies Office", r"Geoff(rey)? Ling", match_partial=None),
             Entity('James Clapper', 'US Director of National Intelligence'),
             Entity('Joseph Recarey', f"{PALM_BEACH_POLICE} detective"),
@@ -2135,6 +2157,7 @@ HIGHLIGHTED_NAMES = [
             r"DARPA",
             r"(David|Mr\.?) Weinstein",  # US Attorney
             r"Dep(artmen)?t\.? of (the )?(Justice|Treasury)",
+            r"empl?oyment authorisation card",
             r"FCPA",
             r"FDIC",
             r"FDLE",
@@ -2597,6 +2620,7 @@ HIGHLIGHTED_NAMES = [
             r"(Nicolas )?Maduro",
             r"Panama( Papers)?",
             r"Peru(vian)?",
+            r"Puerto Vallarta",
             r"Salvadoran",
             r"South American?",
             r"Venezuelan?",
@@ -3845,6 +3869,12 @@ HIGHLIGHTED_NAMES = [
         label=Interesting.GIRLS,
         style=VICTIM_COLOR,
         entities=[
+            Entity(
+                'Adriana Ross',
+                f"assistant, named co-conspirator",
+                aliases=['Adriana Mucinska'],
+                url=DAILY_BEAST_ASSISTANTS_URL,
+            ),
             Entity('Aleksandra Eriksson', QUESTION_MARKS),
             Entity(ANTHONY_FIGUEROA, "boyfriend of a victim, paid $200 per girl to recruit", match_partial=None),
             Entity("Audrey/Aubrey Raimbault", 'appears in flight logs'),
@@ -3917,7 +3947,10 @@ HIGHLIGHTED_NAMES = [
                 r"Na[dď]i?a Marcinko(v[aá])?",
                 aliases=['Emma Marcinko', 'Nadja Marcinkova'],
                 email_addresses=['nadja2102@yahoo.com'],
-                url='https://archive.ph/Qa6vU',  # https://www.nybooks.com/articles/2026/03/26/the-devil-himself-jeffrey-epstein-enright/
+                url=[
+                    'https://archive.ph/Qa6vU',
+                    DAILY_BEAST_ASSISTANTS_URL,  # https://www.nybooks.com/articles/2026/03/26/the-devil-himself-jeffrey-epstein-enright/
+                ],
             ),
             Entity('Nadia Bjorlin', 'actress on "Days of Our Lives"'),
             Entity('Natalya Malyshev', 'named co-conspirator from South Africa'),
@@ -4085,6 +4118,7 @@ HIGHLIGHTED_NAMES = [
             ),
             Organization(BIN_ENNAKHILL, 'palace in Morocco that Epstein was in the process of purchasing'),
             Organization("Integra Realty Resources"),
+            Organization('Kensington Luxury Properties', f'broker handling sale of {BIN_ENNAKHILL}'),
             Organization('Ossa Properties', f"{MARK_EPSTEIN} company"),
             Organization('Park Partners NYC', emailer_pattern=r"Park Partners"),
             Organization('Yacht Haven Grande', f"marina owned by Epstein and {ANDREW_FARKAS} {QUESTION_MARKS}"),

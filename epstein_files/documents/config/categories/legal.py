@@ -232,4 +232,5 @@ LEGAL_CFGS = [
     letter('EFTA00625093', MARTIN_WEINBERG, [KATHRYN_RUEMMLER], date='2014-06-01', date_uncertain='guess'),
     letter('EFTA00180294', JAY_LEFKOWITZ, ['SDFL'], date='2011-07-29'),
     letter('EFTA00210074', 'Kirkland & Ellis', ['SDFL'], date='2008-09-01', date_uncertain='approx'),
+    letter('EFTA00223149', 'Roy Black', ['SDFL'], 'non-prosecution agreement and more', date='2008-11-24'),
 ]

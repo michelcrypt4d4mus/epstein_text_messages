@@ -195,4 +195,9 @@ ARTICLE_CFGS = [
     DocCfg(id='EFTA00316182', author='Conchita Sarnoff'),
     DocCfg(id='EFTA00129169', author='Front Page', note='article about Epstein visit to Cuba with Pastrada in 2003', date='2019-08-23'),
     DocCfg(id='EFTA00260609', author='New York Post', note='collection of articles about Epstein', date='2005-11-02'),
+    DocCfg(
+        id='EFTA00264995',
+        highlight_quote="reportedly removed computer drives and other electronic equipment from the financier's Florida mansion",
+        truncate_to=AUTO,
+    ),
 ]

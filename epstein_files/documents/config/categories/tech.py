@@ -64,6 +64,7 @@ TECH_CFGS = [
     DocCfg(id='EFTA00591691', author=VALAR_VENTURES, note="contract", is_interesting=True),
     DocCfg(id='EFTA00810362', author=VALAR_VENTURES, note="investor questionnaire", is_interesting=True),
     EmailCfg(id='EFTA01001339', note=f"{PETER_THIEL} introduces Epstein to the {VALAR_VENTURES} founders", is_interesting=10),
+
     # Google guys
     EmailCfg(
         id='EFTA02335254',
@@ -71,21 +72,30 @@ TECH_CFGS = [
         date_uncertain='approximate based on reply',
         highlight_quote="eric schmidt is founder of google, big supporter of ours",
     ),
+    EmailCfg(id='EFTA00393175', author=LESLEY_GROFF, author_uncertain=True),
+    EmailCfg(id='EFTA00534241', author=LESLEY_GROFF, author_uncertain=True),
     EmailCfg(id='EFTA00958075', truncate_to=NO_TRUNCATE),
+
     # Evidence
+    EmailCfg(id='EFTA00435053'),
     EmailCfg(id='EFTA00775324', comment='Citrix'),
     EmailCfg(id='EFTA02190185', recipients=[LESLEY_GROFF]),
-    EmailCfg(id='EFTA00435053'),
     EmailCfg(id='EFTA00955649', highlight_quote='wipe both', is_interesting=True),
     EmailCfg(id='EFTA02190190', author=LESLEY_GROFF, author_uncertain=True),
     EmailCfg(id='EFTA02190192', author=LESLEY_GROFF, author_uncertain=True),
     EmailCfg(id='EFTA02143396', recipients=[LESLEY_GROFF], is_interesting=10, note='inviting CEO of Google to dinner'),
     EmailCfg(id='EFTA00560756', note="Epstein moving computers out of the house, getting rid of Citrix", is_interesting=4),
     EmailCfg(id='EFTA00705965', note='installing 7 cameras'),
+
     # computer drive dumps
     DocCfg(id='EFTA00511309', author=KARYNA_SHULIAK, note='personal address book', truncate_to=800),
     DocCfg(id='EFTA00512483', author=KARYNA_SHULIAK, note='personal address book', truncate_to=800),
     DocCfg(id='EFTA01068342', author=STORY_COWLES, note='personal address book', truncate_to=800),
+    DocCfg(id='EFTA00507197', author=SARAH_KELLEN, note='personal address book', truncate_to=800, date='2016-09-16', date_uncertain='modified 2017 nov.'),
+    DocCfg(id='EFTA00507111', note='personal address book', date='2017-11-02', date_uncertain=True, truncate_to=800),
+    DocCfg(id='EFTA00513929', note='personal address book', date='2018-09-08', date_uncertain=True, truncate_to=800),
+    DocCfg(id='EFTA00513467', note='personal address book', date='2019-07-02', date_uncertain=True, truncate_to=800),
+
     # Misc
     EmailCfg(id='EFTA00442950', highlight_quote="old hard drives Darren had me review & erase", is_interesting=True, truncate_to=AUTO),
     EmailCfg(id='EFTA02283085', highlight_quote="dont use my name. set a call today with Lori Goler"),
