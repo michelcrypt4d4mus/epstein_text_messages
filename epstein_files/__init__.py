@@ -30,7 +30,7 @@ from epstein_files.output.output import (print_chronological, print_document_not
      print_signatures_and_emojis, print_emailers_info, print_json_metadata, show_urls, print_annotated_only)
 from epstein_files.output.rich import console, print_json, print_subtitle_panel
 from epstein_files.output.site.sites import Site, make_clean, use_custom_html
-from epstein_files.util.constant.strings import HOUSE_OVERSIGHT_NOV_2025_ID_REGEX
+from epstein_files.util.constant.strings import HOUSE_OVERSIGHT_2025_ID_REGEX
 from epstein_files.util.constants import ALL_CONFIGS
 from epstein_files.util.env import BUILD_TO_DEFAULT, args, site_config
 from epstein_files.util.helpers.data_helpers import flatten, uniquify
@@ -117,7 +117,7 @@ def epstein_grep():
     """Search the cleaned up text of the files."""
     epstein_files = EpsteinFiles.get_files()
 
-    if HOUSE_OVERSIGHT_NOV_2025_ID_REGEX.match(args.positional_args[0]):
+    if HOUSE_OVERSIGHT_2025_ID_REGEX.match(args.positional_args[0]):
         logger.warning(f"'{args.positional_args[0]}' seems to be an ID, running epstein_show instead...")
         epstein_show()
         return

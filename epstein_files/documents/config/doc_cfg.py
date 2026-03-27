@@ -371,7 +371,7 @@ class DocCfg(LoggingEntity):
         from epstein_files.output.epstein_highlighter import highlighter, temp_highlighter
 
         if self.highlighted_pattern:
-            return temp_highlighter(self.highlighted_pattern)
+            return temp_highlighter(self.highlighted_pattern, HIGHLIGHTED_QUOTE)
         else:
             return highlighter
 
