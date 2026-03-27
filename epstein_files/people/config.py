@@ -1196,7 +1196,7 @@ HIGHLIGHTED_NAMES = [
             Entity(
                 SARAH_KELLEN,
                 "now Sarah Vickers, named co-conspirator",
-                r"(Sarah )?(K(\.|ellen)|Vickers)",
+                r"(Sarah )?(Kellen|Vickers)|Sarah K\.",
                 email_addresses=['littlereds@mobileemail.vodafone.net'],
             ),
             Entity('Scott Denett', 'IT', r'Scott Denn?ett', match_partial=None),
@@ -1912,7 +1912,12 @@ HIGHLIGHTED_NAMES = [
                 url=WIKIPEDIA,
             ),
             Entity(STEPHEN_HANSON, emailer_pattern=r"ste(phen|ve) hanson?|Shanson900"),
-            Entity(TERRY_KAFKA, "CEO of Impact Outdoor (highway billboards), lifelong friend of Epstein", match_partial=None),
+            Entity(
+                TERRY_KAFKA,
+                "CEO of Impact Outdoor (highway billboards), lifelong friend of Epstein",
+                r"Te(rr|n)y Kafka",
+                match_partial=None,
+            ),
             Entity('Todd Meister', 'son of Robert Meister', match_partial=None),
             Entity('Warren Eisenstein', 'childhood friend of Epstein'),
         ],
