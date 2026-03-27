@@ -187,6 +187,11 @@ MONEY_CFGS = [
         note='amendment removing Jeffrey A. Schantz as trustee',
         truncate_to=(4_800, 8_600),
     ),
+    epstein_will(
+        'EFTA00098341',
+        '2019-01-18',
+        [DARREN_INDYKE, RICHARD_KAHN],
+    ),
     epstein_will('EFTA00099424', '2017-01-30', [DARREN_INDYKE, EVA_DUBIN, RICHARD_KAHN], '2017', truncate_to=(4_600, 14_000)),
     epstein_will('EFTA00016884', '2014-11-18', [DARREN_INDYKE, JES_STALEY, DAVID_MITCHELL, LARRY_SUMMERS], truncate_to=2_500),
     epstein_will('EFTA01266380', '2014-11-18', [DARREN_INDYKE, JES_STALEY, DAVID_MITCHELL], '2014', truncate_to=(4_500, 13_000)),

@@ -338,8 +338,9 @@ GIRLS_CFGS = [
     EmailCfg(id='EFTA00677154', author=NADIA_MARCINKO),
     EmailCfg(
         id='EFTA02456758',
-        note=f'ongoing financial support for {NADIA_MARCINKO}',
+        note=f'financial support for {NADIA_MARCINKO} or Nadia Bjorlin',
         recipients=[NADIA_MARCINKO, RICHARD_KAHN],
+        recipient_uncertain='could be Bjorlin',
         show_with_name=NADIA_MARCINKO,
     ),
     EmailCfg(

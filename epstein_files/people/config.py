@@ -1985,6 +1985,7 @@ HIGHLIGHTED_NAMES = [
             acronym('Know Your Customer', 'anti-money laundering legal framework'),
             acronym('Metropolitan Detention Center'),
             acronym('Metropolitan Correctional Center', 'jail where Epstein died'),
+            acronym('Mutual Legal Assistance Treaty'),
             acronym('National Threat Operations Center', 'FBI center'),
             acronym('New York Dept. of Financial Services', "America's second most important financial regulator"),
             acronym(OFFICE_OF_THE_DEPUTY_ATTORNEY_GENERAL, is_emailer=True, is_interesting=False),
@@ -3825,6 +3826,8 @@ HIGHLIGHTED_NAMES = [
                 email_addresses=['nadja2102@yahoo.com'],
                 url='https://archive.ph/Qa6vU',  # https://www.nybooks.com/articles/2026/03/26/the-devil-himself-jeffrey-epstein-enright/
             ),
+            Entity('Nadia Bjorlin', 'actress on "Days of Our Lives"'),
+            Entity('Natalya Malyshev', 'named co-conspirator from South Africa'),
             Entity(PAULA_HEIL_FISHER, "Epstein's ex-girlfriend who works in opera now", match_partial=None),
             # Contact('Regina E. Frangul', f'Amex travel agent {QUESTION_MARKS}'),
             Entity('Saige Gonzalez', VICTIM_EVIDENCE, match_partial=None),

@@ -38,7 +38,7 @@ BULLETED_ITEM_REGEX = list_item_regex('•')
 LIST_ITEM_REGEX = list_item_regex(r"\(?[a-z\d][.)]")
 ORDINAL_PATTERN = '|'.join([o.upper() for o in 'first second third fourth fifth sixth seventh eighth ninth tenth'.split()])
 ORDINAL_LIST_REGEX = list_item_regex(ORDINAL_PATTERN, re.DOTALL | re.MULTILINE)
-SECTION_LIST_REGEX = re.compile(r"[^\n](\nSection \d+)")  # doesn't match already doublespaced
+SECTION_LIST_REGEX = re.compile(r"(\nSection \d+)")  # doesn't match already doublespaced
 
 capitalize_first = lambda s: s[0].upper() + s[1:]
 capture_group_marker = lambda label: fr"?P<{label}>"
