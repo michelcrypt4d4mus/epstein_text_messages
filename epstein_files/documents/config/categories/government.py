@@ -197,6 +197,7 @@ GOVERNMENT_CFGS = [
     bop_doc('EFTA00108552', 'roster of inmates at Metropolitan Correctional Center', '2019-07-23'),
     bop_doc('EFTA00039025', "report on death of Jeffrey Epstein", '2023-06-22', is_interesting=10),
     bop_doc('EFTA00039190', 'Special Housing Units', '2016-11-23', is_interesting=False),
+    bop_doc('EFTA00142820', 'After Action Review on death of Jeffrey Epstein', date='2019-08-10'),
     bop_memo(
         'EFTA00036336',
         f"Epstein's final phone call (he claime it was to his mother, it was to {KARYNA_SHULIAK})",
@@ -309,6 +310,7 @@ GOVERNMENT_CFGS = [
         is_interesting=True,
         truncate_to=(16_500, 20_000),
     ),
+    fbi_interview('EFTA00158608', f"{INTERLOCHEN_CENTER_FOR_THE_ARTS} related", date='2020-03-11'),
     fbi_interview('EFTA01309589', ANTHONY_FIGUEROA, 'recruiting from high schools', '2020-08-27', is_interesting=True),
     fbi_interview('EFTA00129035', 'Denise George', date='2023-10-02'),
     fbi_interview('EFTA00086868', 'employee of Next Models', date='2020-04-23', is_interesting=True),
@@ -378,6 +380,8 @@ GOVERNMENT_CFGS = [
     fbi_report('EFTA02729877', '"MCC Corruption Case" is about guards on duty when Epstein died', is_interesting=True),
     fbi_report('EFTA00147020', "status of Epstein death investigation", date='2019-08-13'),
     fbi_report('EFTA00165518', 'investigation update', date='2019-08-29'),
+    fbi_report('EFTA00129637', 'return of property / case closed / transfer files'),
+    fbi_report('EFTA00108872', f"{STEVEN_HOFFENBERG} info request", is_interesting=False, date='2010-10-25'),
     fbi_report(
         'EFTA00161465',
         'evidence inventory including',
@@ -395,7 +399,6 @@ GOVERNMENT_CFGS = [
         url='https://www.bbc.com/news/articles/c6271ngl014o',
     ),
     fbi_tip('EFTA01249593', f"about {LES_WEXNER}"),
-    fbi_tip('EFTA00099817', f"about rape at knifepoint by Epstein", is_interesting=False),
     fbi_tip('EFTA01249586', 'about abduction by Jay-Z, Harvey Weinstein, and Jeffrey Epstein'),
     fbi_tip('EFTA01249191', f"from {LES_WEXNER}'s former bodyguard", is_interesting=4, show_full_panel=True),
     fbi_tip('EFTA00096249', "about Epstein wiring money to Albert bryan", date='', truncate_to=(4_000, 6_000)),
@@ -418,10 +421,14 @@ GOVERNMENT_CFGS = [
         is_interesting=10,
         truncate_to=(853, 4_200),
     ),
+    # Questionable
+    fbi_tip('EFTA00099817', f"about rape at knifepoint by Epstein", is_interesting=False),
+    EmailCfg(id='EFTA00154698', note="about Marshall Mathers", is_interesting=False),
     letter('EFTA01249854', 'Erez Zadok', [FBI], "tip about Wexner Foundatoin and Epstein", '2019-08-26', is_interesting=5),
     DocCfg(id='EFTA00023055', author=FBI, note="evidence of notes left about newly recruited underage girls by girls giving massages"),
     DocCfg(id='EFTA01731217', author=FBI, note=f'requesting INS allow {NADIA_MARCINKO} be allowed to stay in the US because of an ongoing sex-trafficking case', is_interesting=True),
     DocCfg(id='EFTA00247131', author=FBI, note='search warrant for New York house', date='2019-07-07'),
+    DocCfg(id='EFTA00104913', author=FBI, note='news clips', date='2020-02-12'),
     EmailCfg(id='EFTA00148385', note='inventory of seized devices', is_interesting=9),
     EmailCfg(id='EFTA01660868', note="re: Epstein's suicide attempt", truncate_to=(1044, 2_600)),
     EmailCfg(
@@ -432,7 +439,10 @@ GOVERNMENT_CFGS = [
         recipient_uncertain=True,
         truncate_to=AUTO,
     ),
+    fbi_internal('EFTA00149112'),
     fbi_internal('EFTA00074466'),
+    fbi_internal('EFTA00156644'),
+    fbi_internal('EFTA00161528'),
     fbi_internal('EFTA00038448', note=f"Maria Farmer 1996 complaint {QUESTION_MARKS}"),
     fbi_internal('EFTA00037703', note='photos of Epstein cell in MCC'),
     fbi_internal('EFTA00164742', note='summary of video evidence', is_interesting=10),
@@ -592,7 +602,6 @@ GOVERNMENT_CFGS = [
     fbi_internal('EFTA00021353'),
     fbi_internal('EFTA00147046'),
     fbi_internal('EFTA00148374'),
-    fbi_internal('EFTA00149112'),
 
     # SDFL
     sdfl_internal_email('EFTA00215139'),

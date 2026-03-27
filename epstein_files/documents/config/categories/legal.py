@@ -200,6 +200,7 @@ LEGAL_CFGS = [
     DocCfg(id='EFTA01125109', author=EDWARDS_V_DERSHOWITZ, note='interview with minor victim', is_interesting=True),
     DocCfg(id='EFTA01139414', author=EDWARDS_V_DERSHOWITZ, note='interview with minor victim', is_interesting=True),
     DocCfg(id='EFTA00211168', author=JANE_DOE_V_EPSTEIN_TRUMP, note='Epstein employee affidavit alleging sexual assaults'),
+    DocCfg(id='EFTA00159250', author=JANE_DOE_2_V_EPSTEIN, note='deposition of witness'),
     DocCfg(id='EFTA00177201', author=JANE_DOE_V_USA, note='court docket and many filings', is_interesting=True),
     DocCfg(id='EFTA00590940', author=JANE_DOE_V_USA, note='interview with minor victim', is_interesting=True),
     DocCfg(id='EFTA01081391', author=JANE_DOE_V_USA, note='interview with minor victim', is_interesting=True),

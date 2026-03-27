@@ -142,6 +142,8 @@ MONEY_CFGS = [
     deutsche_bank_doc('EFTA01681865', "explanations of all of Epstein's large payments prepared for DOJ", '2019-09-12', is_interesting=20),
     deutsche_bank_doc('EFTA00166317', "statement for Epstein's account 690519", date='2016-05-30'),
     deutsche_bank_doc('EFTA01285411', f"statement for Epstein's {SOUTHERN_TRUST_COMPANY} showing $82 million balance"),
+    deutsche_bank_doc('EFTA00167059', 'KYC showing Caroline Lang co-ownership with Epstein (?)'),
+    deutsche_bank_doc('EFTA00165652', 'showing Caroline Lang co-ownership with Epstein (?)'),
     epstein_will(
         'EFTA01266457',
         '2018-05-08',
@@ -156,6 +158,13 @@ MONEY_CFGS = [
         THE_1953_TRUST,
         "amended 2 days before death",
         truncate_to=(5_500, 15_000),
+    ),
+    epstein_will(
+        'EFTA00099303',  # TODO: dupe of EFTA01266204?
+        '2019-08-08',
+        [DARREN_INDYKE, RICHARD_KAHN],
+        THE_1953_TRUST,
+        truncate_to=14_000,
     ),
     epstein_will(
         'EFTA00089546',
