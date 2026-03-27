@@ -18,16 +18,17 @@ CATEGORIES=(
 
 BUILD_DIR=${1:-docs/}
 GENERATE_CMD="$GENERATE_CMD --build-dir $BUILD_DIR"
+GENERATE_SIDE_PANELS_CMD = "$GENERTE_CMD --side-panel-notes"
 print_deploy_step "Building pages to BUILD_DIR '$BUILD_DIR'"
 
 
 if [[ -z $SKIP_CHRONO ]]; then
     print_deploy_step "Building curated chronological page with '$GENERATE_CMD'..."
-    $GENERATE_CMD --output-chrono
+    $GENERATE_SIDE_PANELS_CMD --output-chrono
     print_deploy_step "Building curated chronological mobile page..."
     $GENERATE_MOBILE_CMD --output-chrono
     print_deploy_step "Building --output-most-interesting..."
-    $GENERATE_CMD --output-most-interesting
+    $GENERATE_SIDE_PANELS_CMD --output-most-interesting
 else
     print_deploy_step "Skipping chronological builds..."
 fi
@@ -35,7 +36,7 @@ fi
 # Categories
 for category in "${CATEGORIES[@]}"; do
     print_deploy_step "Building category $category page..."
-    $GENERATE_CMD --category $category
+    $GENERATE_SIDE_PANELS_CMD --category $category
 done
 
 # Fast pages
