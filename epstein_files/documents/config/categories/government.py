@@ -278,7 +278,7 @@ GOVERNMENT_CFGS = [
         id='EFTA00014822',
         date='1982-06-01',
         date_uncertain=True,
-        note=f"fake Austrian passport under the name Marius Robert Fortelni with Saudi Ariabian home address, expired in 1987",
+        note=f"fake Austrian passport under the name Marius Robert Fortelni with Saudi Arabian home address, expired in 1987",
         show_image=True,
         url='https://nypost.com/2025/12/23/us-news/jeffrey-epsteins-fake-austrian-passport-pictured-in-latest-doj-document-dump/',
     ),

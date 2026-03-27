@@ -671,7 +671,7 @@ class Email(Communication):
             style=f"on {self._config.background_color}" if self._config.background_color else '',
         )
 
-        panel.add_column(note_txt or '')
+        panel.add_column(note_txt or '', max_width=)
         panel.add_row(self.prettified_txt)
         return panel
 
