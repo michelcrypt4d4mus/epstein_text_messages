@@ -606,6 +606,13 @@ GOVERNMENT_CFGS = [
     # SDFL
     sdfl_internal_email('EFTA00215139'),
     sdfl_internal_email('EFTA00214699'),
+    sdfl_internal_email(
+        'EFTA00223748',
+        highlight_quote="We are pretty sure we can charge DC and his assistants with a conspiracy of 1201 (kidnapping)",
+        note=f'investigation of {DAVID_COPPERFIELD}',
+        truncate_to=AUTO,
+    ),
+    EmailCfg(id='EFTA00176910', author='USAFLS', author_uncertain=True),
 
     # USANYS
     EmailCfg(

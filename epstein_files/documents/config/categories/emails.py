@@ -316,6 +316,8 @@ EMAILS_CONFIG = [
     EmailCfg(id='029992', author=TERRY_KAFKA, author_reason='Quoted reply'),
     EmailCfg(id='029985', author=TERRY_KAFKA, author_reason='Quoted reply in 029992'),
     EmailCfg(id='020666', author=TERRY_KAFKA, author_reason="Ends with 'Terry'"),
+
+    # Recipients
     EmailCfg(id='033021', recipients=[ANAS_ALRASHEED], author_reason='visible in 033022'),
     EmailCfg(id='027063', recipients=[ANTHONY_BARRETT]),
     EmailCfg(id='030764', recipients=[ARIANE_DE_ROTHSCHILD], author_reason='reply'),
@@ -1166,6 +1168,7 @@ EMAILS_CONFIG = [
         note=f"the (possibly faked) death of {AL_SECKEL}",
         url='https://www.tabletmag.com/sections/news/articles/the-illusionist-al-seckel',
     ),
+    EmailCfg(id='EFTA00393338', note=f"{BECHET_ALLEN} on the jet", show_with_name=BECHET_ALLEN),
     EmailCfg(id='EFTA00756577', note=f"{BEN_GOERTZEL} congratulates Epstein on getting out of jail", is_interesting=True, truncate_to=2500),
     EmailCfg(id='EFTA00322570', note=f'booking flight for {REDACTED} from Hong Kong to NYC'),
     EmailCfg(id='EFTA00900412', note='Christmas in St. Barths party guest list'),
