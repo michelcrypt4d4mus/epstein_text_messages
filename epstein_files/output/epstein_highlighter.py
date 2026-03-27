@@ -10,9 +10,7 @@ from rich.highlighter import RegexHighlighter, ReprHighlighter
 from rich.text import Text
 
 from epstein_files.output.highlight_config import HIGHLIGHT_GROUPS, HIGHLIGHTED_NAMES
-# from epstein_files.util.constant.strings import JEE, REGEX_STYLE_PREFIX
-from epstein_files.util.constant.strings import *
-from epstein_files.util.helpers.file_helper import ID_PATTERNS
+from epstein_files.util.constant.strings import JEE, REGEX_STYLE_PREFIX
 from epstein_files.util.env import args
 from epstein_files.util.helpers.data_helpers import sort_dict
 
@@ -61,16 +59,6 @@ class EpsteinHighlighter(RegexHighlighter):
 class NonEpsteinHighlighter(EpsteinHighlighter):
     """Doesn't highlight Epstein's name, highlights only `HighlightedNames` patterns (no `HighlightPatterns`)."""
     highlights: list[re.Pattern] = [hn.regex for hn in HIGHLIGHTED_NAMES if hn.label not in [JEE]]
-
-
-
-class LogHighlighter(ReprHighlighter):
-    """Augment the standard log highlighter with 'epstein_filename' matcher."""
-    highlights = ReprHighlighter.highlights + [
-        *[fr"(?P<{doc_type}>{doc_type}(Cfg|s)?)" for doc_type in DOC_TYPE_STYLES.keys()],
-        "(?P<epstein_filename>" + '|'.join(ID_PATTERNS) + ')',
-        # *EpsteinHighlighter.highlights,
-    ]
 
 
 def temp_highlighter(pattern: str, theme_style: str) -> EpsteinHighlighter:

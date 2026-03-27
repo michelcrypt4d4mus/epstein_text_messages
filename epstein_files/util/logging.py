@@ -35,9 +35,10 @@ LOG_LEVEL_ENV_VAR = 'EPSTEIN_LOG_LEVEL'
 
 # Augment the standard log highlighter with 'epstein_filename' matcher
 class LogHighlighter(ReprHighlighter):
+    """Augment the standard log highlighter with 'epstein_filename' matcher."""
     highlights = ReprHighlighter.highlights + [
         *[fr"(?P<{doc_type}>{doc_type}(Cfg|s)?)" for doc_type in DOC_TYPE_STYLES.keys()],
-        "(?P<epstein_filename>" + '|'.join([HOUSE_OVERSIGHT_2025_FILENAME_REGEX.pattern, DOJ_FILE_NAME_REGEX.pattern]) + ')',
+        fr"(?P<epstein_filename>{FILE_ID_PATTERN})",
     ]
 
 

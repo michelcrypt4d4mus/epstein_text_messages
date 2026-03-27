@@ -120,6 +120,15 @@ HOUSE_OVERSIGHT_2025_FILENAME_REGEX = re.compile(fr"{HOUSE_OVERSIGHT_2025_FILE_S
 LOCAL_EXTRACT_REGEX = re.compile(r"_\d{1,2}$")
 QUESTION_MARKS_REGEX = re.compile(fr' {re.escape(QUESTION_MARKS)}$')
 
+ID_PATTERNS = [
+    DOJ_FILE_STEM_REGEX.pattern,
+    DUMMY_ID,
+    DROPSITE_FILE_ID_REGEX.pattern,
+    HOUSE_OVERSIGHT_2025_ID_REGEX.pattern,
+]
+
+FILE_ID_PATTERN = '|'.join(ID_PATTERNS)
+
 # Other regexes
 AMPERSAND_CHAR_GROUP = r"[®©@ae]"  # Chars the OCR messes up when scanning '@'
 CASE_ID_REGEX = re.compile(r"Case\s+(Number:\s+)?\d:\d{2}-[a-z]{2}-\d{5}-[A-Z]{3}")
