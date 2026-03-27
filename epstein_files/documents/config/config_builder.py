@@ -6,8 +6,7 @@ from typing import TypeVar
 
 from epstein_files.documents.documents.categories import Category, Interesting, Neutral, Uninteresting
 from epstein_files.documents.config.communication_cfg import CommunicationCfg, Platform
-from epstein_files.documents.config.doc_cfg import DocCfg, DuplicateType
-from epstein_files.documents.config.email_cfg import EmailCfg
+from epstein_files.documents.config.doc_cfg import DocCfg
 from epstein_files.people.names import *
 from epstein_files.util.constant.strings import MINOR_VICTIM
 from epstein_files.util.helpers.string_helper import as_pattern, has_line_starting_with, join_truthy
@@ -26,7 +25,6 @@ SUBPOENA_REGEX = re.compile(r"GRAND JURY SUBPOENA")
 VALAR_CAPITAL_CALL_REGEX = re.compile(r"^Val[ao]r.{,190} Capital Call", re.MULTILINE | re.IGNORECASE | re.DOTALL)
 VI_DAILY_NEWS_REGEX = re.compile(r'virgin\s*is[kl][ai]nds\s*daily\s*news', re.IGNORECASE)
 
-EPSTEIN_INVESTIGATION = 'Epstein investigation'
 JANE_DOE_V_USA = 'Jane Doe #1 and Jane Doe #2 v. United States'
 LEDGERX_MSG = 'LedgerX was later acquired by FTX for $298 million'
 WOLFF_EPSTEIN_ARTICLE_DRAFT = f"draft of an unpublished article ca. 2014"
@@ -58,12 +56,6 @@ EMERGENCY_CONTACT_DATES = {
 DESCRIPTIONS = {
     'EFTA00015532': "alleging Epstein tried to buy victim's silence",
 }
-
-# Don't join with "about" if the note starts with one of these words
-REPORT_ABOUT_PREFIXES = [
-    'contain',
-    # 'with',
-]
 
 Cfg = TypeVar('Cfg', bound=DocCfg)
 
@@ -144,30 +136,6 @@ def build_cfg_from_text(doc: 'Document') -> DocCfg | None:
         cfg.duplicate_ids = DUPLICATES.get(cfg.id, [])
 
     return cfg
-
-
-def fbi_defense_witness(id: str, witness: Name, date: str = '') -> DocCfg:
-    note = f'Research and Key Findings for {witness or UNKNOWN}, defense witness for {GHISLAINE_MAXWELL}'
-    return _set_fbi_doc_fields(DocCfg(id=id, date=date, note=note))
-
-
-def fbi_interview(id: str, interviewee: Name, note: str = '', date: str = '', **kwargs) -> CommunicationCfg:
-    cfg = interview(id, FBI, interviewee, note, date=date, **kwargs)
-
-    if interviewee == MINOR_VICTIM:
-        cfg.is_interesting = True
-
-    return _set_fbi_doc_fields(cfg)
-
-
-def fbi_report(id: str, note: str = EPSTEIN_INVESTIGATION, **kwargs) -> DocCfg:
-    joiner = ', ' if any(note.startswith(word) for word in REPORT_ABOUT_PREFIXES) else ' about '
-    note = join_truthy('report', note, joiner)
-    return _set_fbi_doc_fields(DocCfg(id=id, note=note, **kwargs))
-
-
-def fbi_tip(id: str, about: str, **kwargs) -> DocCfg:
-    return _set_fbi_doc_fields(DocCfg(id=id, note=f"tip {about}", **kwargs))
 
 
 def fedex_invoice(id: str, date: str, **kwargs) -> DocCfg:
@@ -258,10 +226,3 @@ def wolff_draft_cfg(id: str, suffix: str = '', **kwargs) -> DocCfg:
         note=join_truthy(WOLFF_EPSTEIN_ARTICLE_DRAFT, suffix),
         **kwargs
     )
-
-
-def _set_fbi_doc_fields(cfg: Cfg) -> Cfg:
-    """Mutate `cfg` to set FBI related properties. Returns `cfg` argument for convenience."""
-    cfg.author = FBI
-    cfg.category = Neutral.GOVERNMENT
-    return cfg

@@ -1,13 +1,15 @@
-from epstein_files.documents.config.config_builder import (fbi_defense_witness, fbi_interview, fbi_tip, fbi_report,
-     grand_jury, interview, inventory, letter, memo)
+from epstein_files.documents.config.communication_cfg import CommunicationCfg
+from epstein_files.documents.config.config_builder import Cfg, grand_jury, interview, inventory, letter, memo
 from epstein_files.documents.config.doc_cfg import EMAIL_TRUNCATE_TO, NO_TRUNCATE, SHORT_TRUNCATE_TO, DocCfg
 from epstein_files.documents.config.email_cfg import EmailCfg
+from epstein_files.documents.documents.categories import Neutral
 from epstein_files.people.names import *
 from epstein_files.util.constant.strings import AUTO, CVRA, MINOR_VICTIM, REDACTED
 from epstein_files.util.helpers.string_helper import join_truthy, quote
 from epstein_files.util.logging import logger
 
 ALESSI_WITNESS_PREP = f"witness prep of {JUAN_ALESSI} (Epstein's Palm Beach house manager)"
+EPSTEIN_INVESTIGATION = 'Epstein investigation'
 
 FBI_REPORT_FIELDS = [
     'Approved By',
@@ -35,6 +37,12 @@ FBI_REPORT_FIELDS = [
     'Synopsis',
     'Title',
     'Type of Contact',
+]
+
+# Don't join with "about" if the note starts with one of these words
+REPORT_ABOUT_PREFIXES = [
+    'contain',
+    # 'with',
 ]
 
 
@@ -77,12 +85,36 @@ def doj_memo(id: str, note: str, date: str = '', **kwargs) -> DocCfg:
     return memo(id, DOJ, note, date, **kwargs)
 
 
-def fbi_internal(id: str, **kwargs) -> EmailCfg:
-    return EmailCfg(id=id, author=FBI, recipients=[FBI], **kwargs)
+def fbi_defense_witness(id: str, witness: Name, date: str = '') -> DocCfg:
+    note = f'Research and Key Findings for {witness or UNKNOWN}, defense witness for {GHISLAINE_MAXWELL}'
+    return _set_fbi_doc_fields(DocCfg(id=id, date=date, note=note))
 
 
 def fbi_evidence_review(id: str) -> EmailCfg:
     return EmailCfg(id=id, author=FBI, recipients=[FBI, NYPD], note='summary of pictures and videos from Epstein computers')
+
+
+def fbi_internal(id: str, **kwargs) -> EmailCfg:
+    return EmailCfg(id=id, author=FBI, recipients=[FBI], **kwargs)
+
+
+def fbi_interview(id: str, interviewee: Name, note: str = '', date: str = '', **kwargs) -> CommunicationCfg:
+    cfg = interview(id, FBI, interviewee, note, date=date, **kwargs)
+
+    if interviewee == MINOR_VICTIM:
+        cfg.is_interesting = True
+
+    return _set_fbi_doc_fields(cfg)
+
+
+def fbi_report(id: str, note: str = EPSTEIN_INVESTIGATION, **kwargs) -> DocCfg:
+    joiner = ', ' if any(note.startswith(word) for word in REPORT_ABOUT_PREFIXES) else ' about '
+    note = join_truthy('report', note, joiner)
+    return _set_fbi_doc_fields(DocCfg(id=id, note=note, **kwargs))
+
+
+def fbi_tip(id: str, about: str, **kwargs) -> DocCfg:
+    return _set_fbi_doc_fields(DocCfg(id=id, note=f"tip {about}", **kwargs))
 
 
 def fincen_sar(id: str, bank: str, subject: str, activity: str, **kwargs) -> DocCfg:
@@ -96,6 +128,13 @@ def sdfl_internal_email(id: str, **kwargs) -> EmailCfg:
 
 def usanys_internal_email(id: str, **kwargs) -> EmailCfg:
     return EmailCfg(id=id, author=USANYS, recipients=[USANYS], author_uncertain=True, **kwargs)
+
+
+def _set_fbi_doc_fields(cfg: Cfg) -> Cfg:
+    """Mutate `cfg` to set FBI related properties. Returns `cfg` argument for convenience."""
+    cfg.author = FBI
+    cfg.category = Neutral.GOVERNMENT
+    return cfg
 
 
 GOVERNMENT_CFGS = [
@@ -189,7 +228,12 @@ GOVERNMENT_CFGS = [
     bop_internal('EFTA00037760'),
     bop_internal('EFTA00037757'),
     bop_internal('EFTA00036154', highlight_quote="Injury report for inmate Epstein"),
-    EmailCfg(id='EFTA00020596', note='Ghislaine has complaints', recipients=[BUREAU_OF_PRISONS, CHRISTIAN_EVERDELL], recipient_uncertain=True),
+    EmailCfg(
+        id='EFTA00020596',
+        note='Ghislaine has complaints',
+        recipients=[BUREAU_OF_PRISONS, CHRISTIAN_EVERDELL],
+        recipient_uncertain=True,
+    ),
 
     # DHS
     DocCfg(
@@ -642,13 +686,13 @@ GOVERNMENT_CFGS = [
     EmailCfg(id='EFTA02731644', author=USANYS),
     EmailCfg(id='EFTA00040144', author=USANYS),
     EmailCfg(id='EFTA00039813', author=USANYS),
+    EmailCfg(id='EFTA02731783', author=USANYS, date='2022-01-21 17:28:00'),
+    EmailCfg(id='EFTA02731578', author=USANYS, date='2021-05-28 10:00:00'),
     EmailCfg(id='EFTA00024819', is_interesting=False),
     EmailCfg(id='EFTA00039995', author=USANYS, is_interesting=False),
     EmailCfg(id='EFTA00039890', author=USANYS, is_interesting=False),
     EmailCfg(id='EFTA00039815', author=USANYS, is_interesting=False),
     EmailCfg(id='EFTA00039825', author=USANYS, is_interesting=False),
-    EmailCfg(id='EFTA02731783', author=USANYS, date='2022-01-21 17:28:00'),
-    EmailCfg(id='EFTA02731578', author=USANYS, date='2021-05-28 10:00:00'),
     EmailCfg(id='EFTA00039983', author=USANYS, author_uncertain=True),
     EmailCfg(id='EFTA00039886', author=USANYS, author_uncertain=True),
     EmailCfg(id='EFTA02731651', author=USANYS, author_uncertain=True),
@@ -658,10 +702,6 @@ GOVERNMENT_CFGS = [
     EmailCfg(id='EFTA02731643', author=USANYS, author_uncertain=True),
     EmailCfg(id='EFTA02731501', author=USANYS, author_uncertain=True),
     EmailCfg(id='EFTA02731633', author=USANYS, author_uncertain=True),
-    EmailCfg(id='EFTA01660679', author=USANYS, author_uncertain=True, recipients=[FBI], recipient_uncertain=True),
-    EmailCfg(id='EFTA02731699', author=USANYS, author_uncertain=True, recipients=[FBI], date='2021-05-27 10:19:00'),
-    EmailCfg(id='EFTA02730468', author=USANYS, recipients=[USANYS], date='2019-07-11T08:25:00', date_uncertain='just wrong'),
-    EmailCfg(id='EFTA00019925', author=USANYS, recipients=[USANYS], note="death of Epstein's cellmate Efrain Reyes"),
     EmailCfg(id='EFTA00040121', author=USANYS, recipients=[ATT_COURT_APPEARANCE_TEAM]),
     EmailCfg(id='EFTA02731630', author=USANYS, recipients=[FBI]),
     EmailCfg(id='EFTA00014718', author=USANYS, recipients=['Daily Beast']),
@@ -669,17 +709,21 @@ GOVERNMENT_CFGS = [
     EmailCfg(id='EFTA00039419', author=USANYS, recipients=['Manhattan DA']),
     EmailCfg(id='EFTA02731617', author=USANYS, recipients=[SDNY], date='2021-04-28T15:05:41'),
     EmailCfg(id='EFTA00151184', author=USANYS, recipients=[USANYS]),
-    EmailCfg(id='EFTA00014767', author=USANYS, recipients=[USANYS], author_uncertain=True, is_interesting=False),
-    EmailCfg(id='EFTA00015851', author=USANYS, recipients=[USANYS], author_uncertain=True, is_interesting=False),
+    EmailCfg(id='EFTA01660679', author=USANYS, author_uncertain=True, recipients=[FBI], recipient_uncertain=True),
+    EmailCfg(id='EFTA02731699', author=USANYS, author_uncertain=True, recipients=[FBI], date='2021-05-27 10:19:00'),
+    EmailCfg(id='EFTA00014767', author=USANYS, author_uncertain=True, recipients=[USANYS], is_interesting=False),
+    EmailCfg(id='EFTA00015851', author=USANYS, author_uncertain=True, recipients=[USANYS], is_interesting=False),
+    EmailCfg(id='EFTA02730468', author=USANYS, recipients=[USANYS], date='2019-07-11T08:25:00', date_uncertain='just wrong'),
+    EmailCfg(id='EFTA00019925', author=USANYS, recipients=[USANYS], note="death of Epstein's cellmate Efrain Reyes"),
     EmailCfg(id='EFTA00039879', author=USANYS, recipients=[USANYS], recipient_uncertain=True),
     EmailCfg(id='EFTA02731632', recipients=[OFFICE_OF_THE_DEPUTY_ATTORNEY_GENERAL]),
     EmailCfg(id='EFTA02731721', recipients=[USANYS]),
     EmailCfg(id='EFTA02731582', recipients=[USANYS]),
     EmailCfg(id='EFTA00039884', recipients=[USANYS]),
-    EmailCfg(id='EFTA02731512', recipients=[USANYS], note=f'specific allegations against {GHISLAINE_MAXWELL}'),
     EmailCfg(id='EFTA02731514', recipients=[USANYS], comment='journal upload followup'),
     EmailCfg(id='EFTA02731511', recipients=[USANYS], comment='journal upload followup'),
     EmailCfg(id='EFTA02731515', recipients=[USANYS], comment='journal upload followup'),
+    EmailCfg(id='EFTA02731512', recipients=[USANYS], note=f'specific allegations against {GHISLAINE_MAXWELL}'),
     EmailCfg(id='EFTA02731735', recipients=[USANYS], recipient_uncertain=True, date='2024-03-04T05:04:00'),
     EmailCfg(id='EFTA02731480', recipients=[USANYS], recipient_uncertain=True),
     EmailCfg(id='EFTA02731482', recipients=[USANYS], recipient_uncertain=True),
