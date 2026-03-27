@@ -210,6 +210,14 @@ MONEY_CFGS = [
         show_full_panel=True, # TODO: show image?
         truncate_to=1_600,
     ),
+    DocCfg(
+        id='EFTA00076491',
+        note="inventory of Epstein's estate",
+        date='2019-12-31',
+        is_interesting=15,
+        no_doublespace=True,
+        truncate_to=10_000,
+    ),
 
     # JPM
     jpm_doc('EFTA01480542', 'Epstein source of wealth filing'),
