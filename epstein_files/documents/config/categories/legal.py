@@ -1,4 +1,4 @@
-from epstein_files.documents.config.config_builder import JANE_DOE_V_USA, letter
+from epstein_files.documents.config.config_builder import JANE_DOE_V_USA, JANE_DOE_2_V_EPSTEIN, letter
 from epstein_files.documents.config.communication_cfg import CommunicationCfg
 from epstein_files.documents.config.doc_cfg import DocCfg, DuplicateType
 from epstein_files.documents.config.email_cfg import EmailCfg
@@ -14,10 +14,10 @@ GIUFFRE_V_DERSHOWITZ = f"{VIRGINIA_GIUFFRE} v. {ALAN_DERSHOWITZ}"
 GIUFFRE_V_EPSTEIN = f"{VIRGINIA_GIUFFRE} v. {JEFFREY_EPSTEIN}"
 GIUFFRE_V_MAXWELL = f"{VIRGINIA_GIUFFRE} v. {GHISLAINE_MAXWELL}"
 JANE_DOE_V_EPSTEIN_TRUMP = f"Jane Doe v. Donald Trump and {JEFFREY_EPSTEIN}"
-JANE_DOE_2_V_EPSTEIN = f'Jane Doe #2 v. {JEFFREY_EPSTEIN}'
 JASTA_SAUDI_LAWSUIT = f"{JASTA} lawsuit against Saudi Arabia by 9/11 victims"
 NEW_YORK_V_EPSTEIN = f"New York v. {JEFFREY_EPSTEIN}"
 REDACTED_V_EPSTEIN_ESATE = f"{REDACTED} v. Estate of Jeffrey Epstein, {GHISLAINE_MAXWELL}"
+US_V_EPSTEIN = f'U.S. v. {JEFFREY_EPSTEIN}'
 US_V_GHISLAINE = f"U.S. v. {GHISLAINE_MAXWELL}"
 
 # Misc
@@ -40,6 +40,7 @@ def starr_letter(id: str, date: str, duplicate_ids: list[str], dupe_type: Duplic
 LEGAL_CFGS = [
     DocCfg(id='017789', author=ALAN_DERSHOWITZ, note=f'letter to {HARVARD} Crimson complaining he was defamed'),
     DocCfg(id='011908', author=BRUNEL_V_EPSTEIN, note=f"court filing"),
+    DocCfg(id='EFTA00599855', author=BRUNEL_V_EPSTEIN, date='2015-02-09', note=f"court filing"),
     DocCfg(id='017603', author=DAVID_SCHOEN, note=LEXIS_NEXIS_CVRA_SEARCH, date='2019-02-28'),
     DocCfg(id='017635', author=DAVID_SCHOEN, note=LEXIS_NEXIS_CVRA_SEARCH, date='2019-02-28'),
     DocCfg(id='016509', author=DAVID_SCHOEN, note=LEXIS_NEXIS_CVRA_SEARCH, date='2019-02-28'),
@@ -74,6 +75,7 @@ LEGAL_CFGS = [
     DocCfg(id='012103', author=EPSTEIN_V_ROTHSTEIN_EDWARDS, note=f"Telephone Interview with {VIRGINIA_GIUFFRE}", date='2011-05-17'),
     DocCfg(id='029315', author=EPSTEIN_V_ROTHSTEIN_EDWARDS, note=f"Plaintiff Motion for Summary Judgment by {JACK_SCAROLA}", date='2013-09-13'),
     DocCfg(id='013304', author=EPSTEIN_V_ROTHSTEIN_EDWARDS, note=f"Plaintiff Response to Epstein's Motion for Summary Judgment", date='2014-04-17'),
+    DocCfg(id='EFTA00598330', author=EPSTEIN_V_ROTHSTEIN_EDWARDS, note='Motion To Preclude At Trial The Use Of The Following Items', date='2013-09-27'),
     DocCfg(id='017792', author=GIUFFRE_V_DERSHOWITZ, note=f"article about {ALAN_DERSHOWITZ}'s appearance on Wolf Blitzer"),
     DocCfg(id='017767', author=GIUFFRE_V_DERSHOWITZ, note=f"article about {ALAN_DERSHOWITZ} working with {JEFFREY_EPSTEIN}"),
     DocCfg(id='017796', author=GIUFFRE_V_DERSHOWITZ, note=f"article about {ALAN_DERSHOWITZ}"),
@@ -130,6 +132,7 @@ LEGAL_CFGS = [
     DocCfg(id='026384', author=JANE_DOE_V_EPSTEIN_TRUMP, note=f"Complaint for rape and sexual abuse", date='2016-06-20', attached_to_email_id='029837'),
     DocCfg(id='029257', author=JANE_DOE_V_EPSTEIN_TRUMP, note=f'allegations and identity of plaintiff Katie Johnson', date='2016-04-26'),
     DocCfg(id='032321', author=JANE_DOE_V_EPSTEIN_TRUMP, note=f"Notice of Initial Conference", date='2016-10-04'),
+    DocCfg(id='EFTA00206732', author=JANE_DOE_V_EPSTEIN_TRUMP, note="statement of facts", date='2010-10-30', date_uncertain='approx'),
     DocCfg(id='010735', author=JANE_DOE_V_USA, note=f"Dershowitz Reply in Support of Motion for Limited Intervention", date='2015-02-02'),
     DocCfg(id='014084', author=JANE_DOE_V_USA, note=f"Jane Doe Response to Dershowitz's Motion for Limited Intervention", date='2015-03-24'),
     DocCfg(id='EFTA00191148', author=JANE_DOE_V_USA, date='2013-06-19', truncate_to=2_000),
@@ -211,10 +214,22 @@ LEGAL_CFGS = [
     DocCfg(id='EFTA00039817', note='notice of hearing', date='2021-04-19', duplicate_ids=['EFTA00039791'], is_interesting=False),
     DocCfg(id='EFTA00074744', note="USVI court filing about Epstein will and estate"),
     DocCfg(id='EFTA00005586', display_text='completely redacted 69 pages labeled "Grand Jury - NY"'),
+    DocCfg(
+        id='EFTA00194840',
+        author=DOJ,
+        note=f"criminal indictment of {JEFFREY_EPSTEIN}",
+        date='2006-07-01',
+        date_uncertain='approx',
+        is_interesting=5,
+        show_full_panel=True,
+        truncate_to=(280, 2_500),
+    ),
 
     # emails
     EmailCfg(id='EFTA00039794', recipients=['Michael Danchuk', USANYS]),
     EmailCfg(id='EFTA00039816', is_interesting=False),
     EmailCfg(id='EFTA00188608', note=f"contains filing in {JANE_DOE_V_USA}"),
     letter('EFTA00625093', MARTIN_WEINBERG, [KATHRYN_RUEMMLER], date='2014-06-01', date_uncertain='guess'),
+    letter('EFTA00180294', JAY_LEFKOWITZ, ['SDFL'], date='2011-07-29'),
+    letter('EFTA00210074', 'Kirkland & Ellis', ['SDFL'], date='2008-09-01', date_uncertain='approx'),
 ]

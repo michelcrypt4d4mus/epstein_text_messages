@@ -1208,7 +1208,7 @@ HIGHLIGHTED_NAMES = [
             Entity(EDUARDO_ROBLES, "home builder at Creative Kingdom Dubai", r"Ed(uardo)? Robles", match_partial=None),
             Entity(ERIC_ROTH, "jet decorator at International Jet", match_partial=None),
             Entity(GWENDOLYN_BECK, "Epstein fund manager in the 90s, ran for Congress", match_partial='first'),
-            Entity('Harry Beller', "one of Epstein's accountants"),
+            Entity('Harry Beller', "one of Epstein's accountants/traders"),
             Entity('Ike Groff', f"maybe brother or husband of {LESLEY_GROFF}?", match_partial=None),
             Entity(JANUSZ_BANASIAK, "Epstein's house manager", r"Janu[is]z Banasiak", match_partial='both'),
             Entity('John Allessi', "Epstein's houseman"),
@@ -1241,6 +1241,7 @@ HIGHLIGHTED_NAMES = [
             ),
             Entity(PERRY_LANG, f"Epstein's personal chef 1998-2002", r"(Adam )?Perry Lang", match_partial=None),
             Entity('Richard Barnett', "logistics for Epstein's properties", r"Rich(ard)? Barnett", match_partial=None),
+            Entity('Robert Couturier', 'interior designer'),
             Entity(
                 SARAH_KELLEN,
                 "now Sarah Vickers, named co-conspirator",
@@ -1943,7 +1944,7 @@ HIGHLIGHTED_NAMES = [
             Entity('linkspirit', "Skype username of someone Epstein communicated with"),
             Entity(MICHAEL_BUCHHOLTZ, "childhood friend", aliases=['Frog'], emailer_pattern=r"Michael.*Buchholtz"),
             Entity(
-                'Perry Bard',
+                PERRY_BARD,
                 f"{PALM_BEACH} chiropractor, phone number came up in Epstein victim investigations, left $3 million in Epstein's will",
                 match_partial=None,
             ),
@@ -2015,6 +2016,7 @@ HIGHLIGHTED_NAMES = [
             Entity('Gary Gensler', 'ex-Goldman Sachs, future SEC Chair under Biden, taught MIT course on blockchain'),
             Entity("Geoff Ling", "director of DARPA Biological Technologies Office", r"Geoff(rey)? Ling", match_partial=None),
             Entity('James Clapper', 'US Director of National Intelligence'),
+            Entity('Joseph Recarey', f"{PALM_BEACH_POLICE} detective"),
             Entity('Justin Alfano', f"American {LAW_ENFORCEMENT}"),
             Entity(
                 LUKE_D_THORBURN,
@@ -3809,6 +3811,7 @@ HIGHLIGHTED_NAMES = [
             Entity('Michael Harrigan', 'St. Thomas / St. John islands school administrator', match_partial=None),
             Entity(STACEY_PLASKETT, "Virgin Islands non-voting member of Congress"),
             acronym('British Virgin Islands', 'infamous offshore tax haven'),
+            acronym('Great Saint James', "larger island also purchased by Epstein"),
             Organization('Generation Now', 'political group in USVI', r"(?-i:G)eneration (?-i:N)ow"),
             Organization('Southland Gaming', f'gambling company {QUESTION_MARKS} in USVI'),
         ],
@@ -3820,7 +3823,7 @@ HIGHLIGHTED_NAMES = [
             r"Cura[cç]ao",
             r"Dominica(n Republic)?",
             r"Grand Cayman",
-            r"(Great|Little) St.? James",
+            r"Little St.? James",  # TODO: merge with proper Entity
             r"Haiti(an)?",
             r"Jamaican?",
             r"(John )deJongh( Jr\.?)",
@@ -3866,6 +3869,7 @@ HIGHLIGHTED_NAMES = [
                 match_partial=None,
                 url=EPSTEIN_DOCTORS_LINKS,
             ),
+            Entity('Haley Robson', 'recruited by Epstein at age 16'),
             Entity('Jacqueline Josephson', f"wife of {BARRY_JOSEPHSON}", match_partial=None),
             Entity(
                 JENNIFER_KALIN,

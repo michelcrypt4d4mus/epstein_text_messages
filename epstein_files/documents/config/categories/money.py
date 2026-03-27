@@ -143,6 +143,7 @@ MONEY_CFGS = [
     deutsche_bank_doc('EFTA00166317', "statement for Epstein's account 690519", date='2016-05-30'),
     deutsche_bank_doc('EFTA01285411', f"statement for Epstein's {SOUTHERN_TRUST_COMPANY} showing $82 million balance"),
     deutsche_bank_doc('EFTA00167059', 'KYC showing Caroline Lang co-ownership with Epstein (?)'),
+    deutsche_bank_doc('EFTA00168946', 'KYC information about Southern Financial', '2019-07-11'),
     deutsche_bank_doc('EFTA00165652', 'showing Caroline Lang co-ownership with Epstein (?)'),
     epstein_will(
         'EFTA01266457',
@@ -207,6 +208,7 @@ MONEY_CFGS = [
     epstein_will('EFTA01266380', '2014-11-18', [DARREN_INDYKE, JES_STALEY, DAVID_MITCHELL], '2014', truncate_to=(4_500, 13_000)),
     cabinet_inventory('EFTA00299850', 'FILE CABINET ONE'),
     cabinet_inventory('EFTA00299927', 'FILE CABINET TWO', note=f"{JAMES_CAYNE} estate plan"),
+    inventory('EFTA00300480', 'document binders related to financial transactions', highlight_quote='Sale of 727 to Qatar', truncate_to=1_000),
     memo('EFTA01366011', DARREN_INDYKE, f"$3,000 expense reimbursement for {LASMA_KUHTARSKA}", show_with_name=LASMA_KUHTARSKA),  # TODO: to "marjorie"
     letter('EFTA00587879', DARREN_INDYKE, ['BV70 LLC'], "extremely dodgy charitable donation to Epstein associated co. Gratitude", is_interesting=11),
     DocCfg(id='EFTA00622816', note="Plan D note promising $8,000,000 to Leon Black's BV70 LLC", date='2017-04-17', is_interesting=10, truncate_to=500),
@@ -394,5 +396,6 @@ MONEY_CFGS = [
     EmailCfg(id='EFTA00641250', note=f"money for {ROBERT_TRIVERS}", is_in_chrono=False),
 
     # Misc
+    DocCfg(id='EFTA00186431', author='NES, LLC', display_text='159 pages of documents related to finances etc.', is_interesting=True),
     EmailCfg(id='EFTA00420694', note='Offshore Reinsurance', is_in_chrono=False),
 ]

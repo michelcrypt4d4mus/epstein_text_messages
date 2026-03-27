@@ -194,4 +194,5 @@ ARTICLE_CFGS = [
     DocCfg(id='EFTA00067272', author='The Jeffrey Epstein Archives', note='comtemporaneous history'),
     DocCfg(id='EFTA00316182', author='Conchita Sarnoff'),
     DocCfg(id='EFTA00129169', author='Front Page', note='article about Epstein visit to Cuba with Pastrada in 2003', date='2019-08-23'),
+    DocCfg(id='EFTA00260609', author='New York Post', note='collection of articles about Epstein', date='2005-11-02'),
 ]
