@@ -90,7 +90,7 @@ file_id,category,author,is_interesting,timestamp,recipients_str,sent_from_device
 014731,finance,BofA / Merrill Lynch,False,2016-11-16 00:00:00+00:00,,,"BofA / Merrill Lynch report: ""Global Rates, FX & EM 2017 Year Ahead"""
 014788,legal,Virginia Giuffre v. Ghislaine Maxwell,,2017-03-17 00:00:00+00:00,,,Virginia Giuffre v. Ghislaine Maxwell: Maxwell Response to Plaintiff's Omnibus Motion in Limine
 014797,legal,Virginia Giuffre v. Ghislaine Maxwell,,2017-03-17 00:00:00+00:00,,,Virginia Giuffre v. Ghislaine Maxwell: Declaration of Laura A. Menninger in Opposition to Plaintiff's Motion
-014797_1,email,Ross Gow,True,2015-01-02 20:38:00+00:00,Sarah Kellen;david.brown@thetimes.co.uk;io-anne.pugh@bbc.co.uk;martin.robinson@mailonline.co.uk;p.peachev@independent.co.uk,Sent from my BlackBerry® wireless device,
+014797_1,email,Ross Gow,True,2015-01-02 20:38:00+00:00,david.brown@thetimes.co.uk;io-anne.pugh@bbc.co.uk;martin.robinson@mailonline.co.uk;nick.alwav@bbc.co.uk;nick.sommerlad@mirror.co.uk;p.peachev@independent.co.uk,Sent from my BlackBerry® wireless device,
 014857,email,Richard Kahn,False,2017-04-04 17:28:21+00:00,Jeffrey Epstein,,
 014860,email,Amanda Ens,,2017-04-07 12:24:59+00:00,Jeffrey Epstein;Richard Kahn,,
 014865,article,Boston Globe,False,2017-04-07 00:00:00+00:00,,,Boston Globe article about Alan Dershowitz
@@ -7120,7 +7120,7 @@ EFTA02003519,email,Laura T. Newman,,2011-09-03 20:08:55+00:00,Jeffrey Epstein,Se
 EFTA02005667,crypto,Clearstone,True,2011-02-01 00:00:00+00:00,,,Clearstone Online Gaming Fund pitch deck
 EFTA02005819,email,Lesley Groff,,2012-09-07 18:47:59+00:00,Jeffrey Epstein,,
 EFTA02005826,email,Svetlana Pozhidaeva,True,2012-09-25 20:49:58+00:00,Jeffrey Epstein,,
-EFTA02005962,email,Sarah Kellen,,2012-01-06 21:49:33+00:00,Jeffrey Epstein,Sent from my iPhone,
+EFTA02005962,email,Nina K.,,2012-01-06 21:49:33+00:00,Jeffrey Epstein,Sent from my iPhone,
 EFTA02007083,girls,Boris Nikolic,True,2012-09-20 04:39:09+00:00,Jeffrey Epstein,Sent from my Windows Phone,Boris Nikolic encourages Kimbal Musk to ditch his girlfriend for Epstein's girl Jennifer Kalin (and he says yes)
 EFTA02009735,email,Boris Nikolic,,2012-03-13 06:54:50+00:00,Jeffrey Epstein,,
 EFTA02010302,email,,True,2013-04-04 01:26:06+00:00,Jeffrey Epstein,,
