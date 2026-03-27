@@ -187,6 +187,12 @@ MONEY_CFGS = [
         note='amendment removing Jeffrey A. Schantz as trustee',
         truncate_to=(4_800, 8_600),
     ),
+    epstein_will(
+        'EFTA00098341',
+        '2019-01-18',
+        [DARREN_INDYKE, RICHARD_KAHN],
+        truncate_to=(5_000, 16_000),
+    ),
     epstein_will('EFTA00099424', '2017-01-30', [DARREN_INDYKE, EVA_DUBIN, RICHARD_KAHN], '2017', truncate_to=(4_600, 14_000)),
     epstein_will('EFTA00016884', '2014-11-18', [DARREN_INDYKE, JES_STALEY, DAVID_MITCHELL, LARRY_SUMMERS], truncate_to=2_500),
     epstein_will('EFTA01266380', '2014-11-18', [DARREN_INDYKE, JES_STALEY, DAVID_MITCHELL], '2014', truncate_to=(4_500, 13_000)),
@@ -203,6 +209,14 @@ MONEY_CFGS = [
         is_interesting=15,
         show_full_panel=True, # TODO: show image?
         truncate_to=1_600,
+    ),
+    DocCfg(
+        id='EFTA00076491',
+        note="inventory of Epstein's estate",
+        date='2019-12-31',
+        is_interesting=15,
+        no_doublespace=True,
+        truncate_to=10_000,
     ),
 
     # JPM
@@ -246,6 +260,9 @@ MONEY_CFGS = [
 
     # Schwab
     schwab_doc('EFTA01265978', date='2019-07-10', note='account opened 3 months before death'),
+
+    # Wexner
+    letter('EFTA01110729', None, [LES_WEXNER], highlight_quote='You and I had " gang stuff " for over 15 years'),
 
     # Emails
     EmailCfg(id='032458', note='discussion of acquiring pieces for Epstein\'s art collection', truncate_to=NO_TRUNCATE),
@@ -335,10 +352,11 @@ MONEY_CFGS = [
         recipients=['Cynthia Rodriguez'],
         show_with_name=LEON_BLACK,
     ),
-    EmailCfg(id='EFTA01376515', show_with_name=LEON_BLACK),
-    EmailCfg(id='EFTA01404535', truncate_to=(1_150, 2_200)),
-    EmailCfg(id='EFTA00697318', show_with_name=LEON_BLACK),
     EmailCfg(id='EFTA01915851', highlight_quote="we need to create a lie for leon and ronald lauder to own the painting"),
+    EmailCfg(id='EFTA01018608', note=f'BV70 and {DEUTSCHE_BANK}'),
+    EmailCfg(id='EFTA01376515', show_with_name=LEON_BLACK),
+    EmailCfg(id='EFTA00697318', show_with_name=LEON_BLACK),
+    EmailCfg(id='EFTA01404535', truncate_to=(1_150, 2_200)),
 
     # David Stern
     EmailCfg(
@@ -354,4 +372,5 @@ MONEY_CFGS = [
 
     # Ehud / Yoni
     EmailCfg(id='EFTA00863806', highlight_quote='please send 10k dollars to yoni'),
+    deutsche_bank_doc(id='EFTA01401501', note=f'$10,000 transfer to {YONI_KOREN}'),
 ]

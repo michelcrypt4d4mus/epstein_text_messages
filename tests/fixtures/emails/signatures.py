@@ -206,6 +206,10 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
     ANDREW_FARKAS: [
         'Sent from my iPad',
     ],
+    ARIANE_DE_ROTHSCHILD: [
+        'Envoyé de mon iPhone',
+        'Sent from my iPhone',
+    ],
     'Audrey Strauss': ["Sent from my iPhone"],
     AUSTIN_HILL: [
         'Get Outlook for iOS',
@@ -496,6 +500,7 @@ SIGNATURE_SUBSTITUTION_COUNTS = {
     BRAD_KARP: 5,
     'Bradford Stephens': 9,
     BROCK_PIERCE: 117,
+    CECILE_DE_JONGH: 1,
     'Cantor Fitzgerald': 5,
     "Christine O'Neill": 5,
     DANIEL_SIAD: 5,

@@ -366,11 +366,11 @@ class Document(LoggingEntity):
         if char_range and char_range[1] > 0:
             display_chars = extract_range(display_chars, char_range[1] + 200)
 
+        if not (args.no_doublespace or self._config.no_doublespace):
+            display_chars = doublespace_lines(display_chars)
+
         # Avoid trying to add hyperlinks etc. to huge files
         if len(display_chars) < MAX_LEN_FOR_HYPERLINKS:
-            if not args.no_doublespace:
-                display_chars = doublespace_lines(display_chars)
-
             display_txt = hyperlink_text(display_chars)
         else:
             display_txt = Text(display_chars)

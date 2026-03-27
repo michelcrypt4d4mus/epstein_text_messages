@@ -18,6 +18,7 @@ JANE_DOE_2_V_EPSTEIN = f'Jane Doe #2 v. {JEFFREY_EPSTEIN}'
 JASTA_SAUDI_LAWSUIT = f"{JASTA} lawsuit against Saudi Arabia by 9/11 victims"
 NEW_YORK_V_EPSTEIN = f"New York v. {JEFFREY_EPSTEIN}"
 REDACTED_V_EPSTEIN_ESATE = f"{REDACTED} v. Estate of Jeffrey Epstein, {GHISLAINE_MAXWELL}"
+US_V_GHISLAINE = f"U.S. v. {GHISLAINE_MAXWELL}"
 
 # Misc
 LEXIS_NEXIS_CVRA_SEARCH = f"{LEXIS_NEXIS} search for case law around the {CVRA}"
@@ -67,6 +68,7 @@ LEGAL_CFGS = [
         note=f"Giuffre Response to Dershowitz Motion for Clarification of Confidentiality Order",
         date='2016-02-08',
     ),
+    DocCfg(id='EFTA01102188', author=EPSTEIN_V_ROTHSTEIN_EDWARDS, note='Epstein motion to block statements to the press', date='2011-03-31'),
     DocCfg(id='010566', author=EPSTEIN_V_ROTHSTEIN_EDWARDS, note=f"Statement of Undisputed Facts", date='2010-11-04'),
     DocCfg(id='012707', author=EPSTEIN_V_ROTHSTEIN_EDWARDS, note=f"Master Contact List - Privilege Log", date='2011-03-22'),
     DocCfg(id='012103', author=EPSTEIN_V_ROTHSTEIN_EDWARDS, note=f"Telephone Interview with {VIRGINIA_GIUFFRE}", date='2011-05-17'),
@@ -143,6 +145,7 @@ LEGAL_CFGS = [
     DocCfg(id='017904', author=JASTA_SAUDI_LAWSUIT, note=f"Westlaw search results", date='2019-01-01'),
     DocCfg(id='EFTA00725932', author=REDACTED_V_EPSTEIN_ESATE, note='response to Defendant interrogatories', date='2009-08-04', truncate_to=(3_300, 14_000)),
     DocCfg(id='014037', author='Journal of Criminal Law and Criminology', note=f"article on {CVRA}"),
+    DocCfg(id='EFTA00068582', author=US_V_GHISLAINE, note='trial transcript', is_interesting=True, truncate_to=4_000),
     DocCfg(
         id='EFTA00129013',
         author=VI_DAILY_NEWS,

@@ -1,13 +1,15 @@
-from epstein_files.documents.config.config_builder import (fbi_defense_witness, fbi_interview, fbi_tip, fbi_report,
-     grand_jury, interview, inventory, letter, memo)
+from epstein_files.documents.config.communication_cfg import CommunicationCfg
+from epstein_files.documents.config.config_builder import Cfg, grand_jury, interview, inventory, letter, memo
 from epstein_files.documents.config.doc_cfg import EMAIL_TRUNCATE_TO, NO_TRUNCATE, SHORT_TRUNCATE_TO, DocCfg
 from epstein_files.documents.config.email_cfg import EmailCfg
+from epstein_files.documents.documents.categories import Neutral
 from epstein_files.people.names import *
 from epstein_files.util.constant.strings import AUTO, CVRA, MINOR_VICTIM, REDACTED
 from epstein_files.util.helpers.string_helper import join_truthy, quote
 from epstein_files.util.logging import logger
 
 ALESSI_WITNESS_PREP = f"witness prep of {JUAN_ALESSI} (Epstein's Palm Beach house manager)"
+EPSTEIN_INVESTIGATION = 'Epstein investigation'
 
 FBI_REPORT_FIELDS = [
     'Approved By',
@@ -35,6 +37,12 @@ FBI_REPORT_FIELDS = [
     'Synopsis',
     'Title',
     'Type of Contact',
+]
+
+# Don't join with "about" if the note starts with one of these words
+REPORT_ABOUT_PREFIXES = [
+    'contain',
+    # 'with',
 ]
 
 
@@ -77,12 +85,36 @@ def doj_memo(id: str, note: str, date: str = '', **kwargs) -> DocCfg:
     return memo(id, DOJ, note, date, **kwargs)
 
 
-def fbi_internal(id: str, **kwargs) -> EmailCfg:
-    return EmailCfg(id=id, author=FBI, recipients=[FBI], **kwargs)
+def fbi_defense_witness(id: str, witness: Name, date: str = '') -> DocCfg:
+    note = f'Research and Key Findings for {witness or UNKNOWN}, defense witness for {GHISLAINE_MAXWELL}'
+    return _set_fbi_doc_fields(DocCfg(id=id, date=date, note=note))
 
 
 def fbi_evidence_review(id: str) -> EmailCfg:
     return EmailCfg(id=id, author=FBI, recipients=[FBI, NYPD], note='summary of pictures and videos from Epstein computers')
+
+
+def fbi_internal(id: str, **kwargs) -> EmailCfg:
+    return EmailCfg(id=id, author=FBI, recipients=[FBI], **kwargs)
+
+
+def fbi_interview(id: str, interviewee: Name, note: str = '', date: str = '', **kwargs) -> CommunicationCfg:
+    cfg = interview(id, FBI, interviewee, note, date=date, **kwargs)
+
+    if interviewee == MINOR_VICTIM:
+        cfg.is_interesting = True
+
+    return _set_fbi_doc_fields(cfg)
+
+
+def fbi_report(id: str, note: str = EPSTEIN_INVESTIGATION, **kwargs) -> DocCfg:
+    joiner = ', ' if any(note.startswith(word) for word in REPORT_ABOUT_PREFIXES) else ' about '
+    note = join_truthy('report', note, joiner)
+    return _set_fbi_doc_fields(DocCfg(id=id, note=note, **kwargs))
+
+
+def fbi_tip(id: str, about: str, **kwargs) -> DocCfg:
+    return _set_fbi_doc_fields(DocCfg(id=id, note=f"tip {about}", **kwargs))
 
 
 def fincen_sar(id: str, bank: str, subject: str, activity: str, **kwargs) -> DocCfg:
@@ -96,6 +128,13 @@ def sdfl_internal_email(id: str, **kwargs) -> EmailCfg:
 
 def usanys_internal_email(id: str, **kwargs) -> EmailCfg:
     return EmailCfg(id=id, author=USANYS, recipients=[USANYS], author_uncertain=True, **kwargs)
+
+
+def _set_fbi_doc_fields(cfg: Cfg) -> Cfg:
+    """Mutate `cfg` to set FBI related properties. Returns `cfg` argument for convenience."""
+    cfg.author = FBI
+    cfg.category = Neutral.GOVERNMENT
+    return cfg
 
 
 GOVERNMENT_CFGS = [
@@ -159,6 +198,7 @@ GOVERNMENT_CFGS = [
         highlight_quote='staff observed inmate Epstein, Jeffrey lying in the fetal position on the floor with a homemade fashioned noose around his neck',
         truncate_to=(7_500, 12_500),
     ),
+    bop_doc('EFTA00056410', display_text='suicide watch log from MCC', is_interesting=True),
     bop_doc('EFTA00139235', 'psychological profile of Jeffrey Epstein', date='2020-05-14', is_interesting=True),
     bop_doc('EFTA00035921', "Lieutenant's Logs", '2019-08-06'),
     bop_doc('EFTA00039153', 'List of Exhibits, Chapter 2', '2019-01-06'),
@@ -189,7 +229,12 @@ GOVERNMENT_CFGS = [
     bop_internal('EFTA00037760'),
     bop_internal('EFTA00037757'),
     bop_internal('EFTA00036154', highlight_quote="Injury report for inmate Epstein"),
-    EmailCfg(id='EFTA00020596', note='Ghislaine has complaints', recipients=[BUREAU_OF_PRISONS, CHRISTIAN_EVERDELL], recipient_uncertain=True),
+    EmailCfg(
+        id='EFTA00020596',
+        note='Ghislaine has complaints',
+        recipients=[BUREAU_OF_PRISONS, CHRISTIAN_EVERDELL],
+        recipient_uncertain=True,
+    ),
 
     # DHS
     DocCfg(
@@ -241,6 +286,7 @@ GOVERNMENT_CFGS = [
     DocCfg(id='EFTA02730486', author=DOJ, date='2025-05-01', date_uncertain=True, note="Evidence list for 50D-NY-3027571 Filtering On '1A'"),
     DocCfg(id='EFTA00040006', author=DOJ, date='2019-08-27', note='Personal History of Defendant Jeffrey Epstein + grand jury indictment'),
     EmailCfg(id='EFTA00162988', author='DOJ', recipients=['DOJ', FBI], recipient_uncertain=True),
+    DocCfg(id='EFTA00042963', note='emails from barket epstein lawfirm?', is_interesting=False),
 
     # FBI
     DocCfg(id='EFTA00020832', author=FBI, note='subpoena of Experian'),
@@ -276,10 +322,13 @@ GOVERNMENT_CFGS = [
         is_interesting=True,
         truncate_to=(16_500, 20_000),
     ),
+    fbi_interview('EFTA01309589', ANTHONY_FIGUEROA, 'recruiting from high schools', '2020-08-27', is_interesting=True),
     fbi_interview('EFTA00129035', 'Denise George', date='2023-10-02'),
+    fbi_interview('EFTA00086868', 'employee of Next Models', date='2020-04-23', is_interesting=True),
+    fbi_interview('EFTA00090339', "Epstein employee", date='2020-11-04'),
     fbi_interview('EFTA00156204', f"{GHISLAINE_MAXWELL}'s receptionist", date='2021-10-08', is_interesting=True),
     fbi_interview('EFTA00159380', '<REDACTED> former Epstein employee', date='2021-05-14', is_interesting=True),
-    fbi_interview('EFTA01309589', ANTHONY_FIGUEROA, 'recruiting from high schools', '2020-08-27', is_interesting=True),
+    fbi_interview('EFTA01249911', f"{INTERLOCHEN_CENTER_FOR_THE_ARTS} vice president", date='2021-09-17'),
     fbi_interview('EFTA00174375', LUKE_D_THORBURN, f"lots of takes on Epstein, China, and {STEVE_BANNON}"),
     fbi_interview('EFTA00090600', 'Michael Turnball', date='2020-01-10'),
     fbi_interview('EFTA00040794', "prison guard OFFICER 1", "death of Epstein", date='2019-08-19'),
@@ -290,7 +339,6 @@ GOVERNMENT_CFGS = [
     fbi_interview('EFTA00105454', MINOR_VICTIM, date='2019-03-22'),
     fbi_interview('EFTA00038915', MINOR_VICTIM, 'claims Epstein knew she was 14'),
     fbi_interview('EFTA00090602', STEVE_SCULLY, date='2019-08-09', show_full_panel=True),
-    fbi_interview('EFTA00086868', 'employee of Next Models', date='2020-04-23', is_interesting=True),
     fbi_interview('EFTA01699136', f"{VIRGINIA_GIUFFRE} and other victims", f'"Turkish girl" might be {GULSUM_OSMANOVA}', date='2011-03-17'),
     fbi_interview('EFTA00101927', None, f"claims Glenn and {EVA_DUBIN}'s Swiss au pair was being held against her will"),
     fbi_interview('EFTA00159321', None, f'covers {PAOLO_ZAMPOLLI}, Epstein, and the possibility Epstein introduced Melania to Donald Trump'),
@@ -359,9 +407,13 @@ GOVERNMENT_CFGS = [
         show_full_panel=True,
         url='https://www.bbc.com/news/articles/c6271ngl014o',
     ),
+    fbi_tip('EFTA01249593', f"about {LES_WEXNER}"),
+    fbi_tip('EFTA01249586', 'about abduction by Jay-Z, Harvey Weinstein, and Jeffrey Epstein'),
+    fbi_tip('EFTA01249191', f"from {LES_WEXNER}'s former bodyguard", is_interesting=4, show_full_panel=True),
     fbi_tip('EFTA00096249', "about Epstein wiring money to Albert bryan", date='', truncate_to=(4_000, 6_000)),
     fbi_tip('EFTA00128750', f"from Reynaldo Clark about Epstein bribing USVI elected officials", date='2022-10-24', is_interesting=3),
     fbi_tip('EFTA01249591', f"about {HENRY_JARECKI}", show_full_panel=True),
+    fbi_tip('EFTA01249848', f"from Erez Zadok about Epstein's connection to the Wexner Foundation", show_full_panel=True),
     fbi_tip(
         'EFTA00108851',
         f"from {STEVEN_HOFFENBERG} re: Epstein and the murder of Arthur Shapiro",
@@ -378,6 +430,7 @@ GOVERNMENT_CFGS = [
         is_interesting=10,
         truncate_to=(853, 4_200),
     ),
+    letter('EFTA01249854', 'Erez Zadok', [FBI], "tip about Wexner Foundatoin and Epstein", '2019-08-26', is_interesting=5),
     DocCfg(id='EFTA00023055', author=FBI, note="evidence of notes left about newly recruited underage girls by girls giving massages"),
     DocCfg(id='EFTA01731217', author=FBI, note=f'requesting INS allow {NADIA_MARCINKO} be allowed to stay in the US because of an ongoing sex-trafficking case', is_interesting=True),
     DocCfg(id='EFTA00247131', author=FBI, note='search warrant for New York house', date='2019-07-07'),
@@ -391,7 +444,12 @@ GOVERNMENT_CFGS = [
         recipient_uncertain=True,
         truncate_to=AUTO,
     ),
+    fbi_internal('EFTA00074466'),
+    fbi_internal('EFTA00037759', is_interesting=False),
+    fbi_internal('EFTA00038448', note=f"Maria Farmer 1996 complaint {QUESTION_MARKS}"),
+    fbi_internal('EFTA00037703', note='photos of Epstein cell in MCC'),
     fbi_internal('EFTA00164742', note='summary of video evidence', is_interesting=10),
+    fbi_internal('EFTA00078171', note=f're: murder of Arthur Shapiro and {STEVEN_HOFFENBERG}'),
     EmailCfg(
         id='EFTA00146839',
         highlight_quote="did not support federal criminal activity, specifically Obstruction of Justice",
@@ -561,6 +619,7 @@ GOVERNMENT_CFGS = [
     usanys_internal_email('EFTA00098000', note='evidence discussion'),
     usanys_internal_email('EFTA00031633', is_interesting=False),
     usanys_internal_email('EFTA00018778'),
+    usanys_internal_email('EFTA00079595', note=f'request for info on {JEAN_LUC_BRUNEL} from French police'),
     usanys_internal_email('EFTA02731615'),
     usanys_internal_email('EFTA00030842'),
     usanys_internal_email('EFTA02731684'),
@@ -583,6 +642,7 @@ GOVERNMENT_CFGS = [
     usanys_internal_email('EFTA02731771'),
     usanys_internal_email('EFTA02731486'),
     usanys_internal_email('EFTA02731604'),
+    usanys_internal_email('EFTA00078263'),
     usanys_internal_email('EFTA02731618'),
     usanys_internal_email('EFTA02731608'),
     usanys_internal_email('EFTA02731612'),
@@ -642,13 +702,13 @@ GOVERNMENT_CFGS = [
     EmailCfg(id='EFTA02731644', author=USANYS),
     EmailCfg(id='EFTA00040144', author=USANYS),
     EmailCfg(id='EFTA00039813', author=USANYS),
+    EmailCfg(id='EFTA02731783', author=USANYS, date='2022-01-21 17:28:00'),
+    EmailCfg(id='EFTA02731578', author=USANYS, date='2021-05-28 10:00:00'),
     EmailCfg(id='EFTA00024819', is_interesting=False),
     EmailCfg(id='EFTA00039995', author=USANYS, is_interesting=False),
     EmailCfg(id='EFTA00039890', author=USANYS, is_interesting=False),
     EmailCfg(id='EFTA00039815', author=USANYS, is_interesting=False),
     EmailCfg(id='EFTA00039825', author=USANYS, is_interesting=False),
-    EmailCfg(id='EFTA02731783', author=USANYS, date='2022-01-21 17:28:00'),
-    EmailCfg(id='EFTA02731578', author=USANYS, date='2021-05-28 10:00:00'),
     EmailCfg(id='EFTA00039983', author=USANYS, author_uncertain=True),
     EmailCfg(id='EFTA00039886', author=USANYS, author_uncertain=True),
     EmailCfg(id='EFTA02731651', author=USANYS, author_uncertain=True),
@@ -658,10 +718,6 @@ GOVERNMENT_CFGS = [
     EmailCfg(id='EFTA02731643', author=USANYS, author_uncertain=True),
     EmailCfg(id='EFTA02731501', author=USANYS, author_uncertain=True),
     EmailCfg(id='EFTA02731633', author=USANYS, author_uncertain=True),
-    EmailCfg(id='EFTA01660679', author=USANYS, author_uncertain=True, recipients=[FBI], recipient_uncertain=True),
-    EmailCfg(id='EFTA02731699', author=USANYS, author_uncertain=True, recipients=[FBI], date='2021-05-27 10:19:00'),
-    EmailCfg(id='EFTA02730468', author=USANYS, recipients=[USANYS], date='2019-07-11T08:25:00', date_uncertain='just wrong'),
-    EmailCfg(id='EFTA00019925', author=USANYS, recipients=[USANYS], note="death of Epstein's cellmate Efrain Reyes"),
     EmailCfg(id='EFTA00040121', author=USANYS, recipients=[ATT_COURT_APPEARANCE_TEAM]),
     EmailCfg(id='EFTA02731630', author=USANYS, recipients=[FBI]),
     EmailCfg(id='EFTA00014718', author=USANYS, recipients=['Daily Beast']),
@@ -669,17 +725,21 @@ GOVERNMENT_CFGS = [
     EmailCfg(id='EFTA00039419', author=USANYS, recipients=['Manhattan DA']),
     EmailCfg(id='EFTA02731617', author=USANYS, recipients=[SDNY], date='2021-04-28T15:05:41'),
     EmailCfg(id='EFTA00151184', author=USANYS, recipients=[USANYS]),
-    EmailCfg(id='EFTA00014767', author=USANYS, recipients=[USANYS], author_uncertain=True, is_interesting=False),
-    EmailCfg(id='EFTA00015851', author=USANYS, recipients=[USANYS], author_uncertain=True, is_interesting=False),
+    EmailCfg(id='EFTA01660679', author=USANYS, author_uncertain=True, recipients=[FBI], recipient_uncertain=True),
+    EmailCfg(id='EFTA02731699', author=USANYS, author_uncertain=True, recipients=[FBI], date='2021-05-27 10:19:00'),
+    EmailCfg(id='EFTA00014767', author=USANYS, author_uncertain=True, recipients=[USANYS], is_interesting=False),
+    EmailCfg(id='EFTA00015851', author=USANYS, author_uncertain=True, recipients=[USANYS], is_interesting=False),
+    EmailCfg(id='EFTA02730468', author=USANYS, recipients=[USANYS], date='2019-07-11T08:25:00', date_uncertain='just wrong'),
+    EmailCfg(id='EFTA00019925', author=USANYS, recipients=[USANYS], note="death of Epstein's cellmate Efrain Reyes"),
     EmailCfg(id='EFTA00039879', author=USANYS, recipients=[USANYS], recipient_uncertain=True),
     EmailCfg(id='EFTA02731632', recipients=[OFFICE_OF_THE_DEPUTY_ATTORNEY_GENERAL]),
     EmailCfg(id='EFTA02731721', recipients=[USANYS]),
     EmailCfg(id='EFTA02731582', recipients=[USANYS]),
     EmailCfg(id='EFTA00039884', recipients=[USANYS]),
-    EmailCfg(id='EFTA02731512', recipients=[USANYS], note=f'specific allegations against {GHISLAINE_MAXWELL}'),
     EmailCfg(id='EFTA02731514', recipients=[USANYS], comment='journal upload followup'),
     EmailCfg(id='EFTA02731511', recipients=[USANYS], comment='journal upload followup'),
     EmailCfg(id='EFTA02731515', recipients=[USANYS], comment='journal upload followup'),
+    EmailCfg(id='EFTA02731512', recipients=[USANYS], note=f'specific allegations against {GHISLAINE_MAXWELL}'),
     EmailCfg(id='EFTA02731735', recipients=[USANYS], recipient_uncertain=True, date='2024-03-04T05:04:00'),
     EmailCfg(id='EFTA02731480', recipients=[USANYS], recipient_uncertain=True),
     EmailCfg(id='EFTA02731482', recipients=[USANYS], recipient_uncertain=True),

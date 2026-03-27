@@ -96,11 +96,16 @@ POLITICS_CFGS = [
     bannon_imessage('EFTA01615642', date='2019-03-01'),
     bannon_imessage('EFTA01615808'),
     bannon_imessage('EFTA00783660', date='2019-02-06'),
+    EmailCfg(id='EFTA01014138', highlight_quote="do you know bill barr. CIA", truncate_to=222),
 
     # Albert Bryan
     EmailCfg(id='EFTA02258597', recipients=[ALBERT_BRYAN, DAPHNE_WALLACE]),
     EmailCfg(id='EFTA02258608', author=DAPHNE_WALLACE, recipients=[ALBERT_BRYAN, JOHN_ENGERMAN]),
 
     # USVI
-    EmailCfg(id='EFTA00705527', note='discussion of Virgin Islands radio station acquisition', is_interesting=True),
+    EmailCfg(id='EFTA00705527', note='acquiring a Virgin Islands radio station', visible_in_id='EFTA01053946'),
+    EmailCfg(id='EFTA01053946', note='acquiring a Virgin Islands radio station', is_interesting=True, truncate_to=2_500),
+
+    # Ehud
+    EmailCfg(id='EFTA01013193', highlight_quote="you should make clear that i dont work for mossad. :)", is_interesting=True, truncate_to=AUTO),
 ]
