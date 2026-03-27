@@ -1,6 +1,6 @@
-from epstein_files.documents.config.config_builder import JANE_DOE_V_USA, JANE_DOE_2_V_EPSTEIN, letter
+from epstein_files.documents.config.config_builder import JANE_DOE_V_USA, JANE_DOE_2_V_EPSTEIN, letter, memo
 from epstein_files.documents.config.communication_cfg import CommunicationCfg
-from epstein_files.documents.config.doc_cfg import DocCfg, DuplicateType
+from epstein_files.documents.config.doc_cfg import NO_TRUNCATE, DocCfg, DuplicateType
 from epstein_files.documents.config.email_cfg import EmailCfg
 from epstein_files.people.names import *
 from epstein_files.util.constant.strings import *
@@ -233,4 +233,11 @@ LEGAL_CFGS = [
     letter('EFTA00180294', JAY_LEFKOWITZ, ['SDFL'], date='2011-07-29'),
     letter('EFTA00210074', 'Kirkland & Ellis', ['SDFL'], date='2008-09-01', date_uncertain='approx'),
     letter('EFTA00223149', 'Roy Black', ['SDFL'], 'non-prosecution agreement and more', date='2008-11-24'),
+    memo(
+        'EFTA00727491',
+        DARREN_INDYKE,
+        f"Epstein's complaints about the fact that his lawyers failed to get him off",
+        date='2008-09-25',
+        truncate_to=NO_TRUNCATE,
+    )
 ]
