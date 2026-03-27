@@ -191,6 +191,7 @@ MONEY_CFGS = [
         'EFTA00098341',
         '2019-01-18',
         [DARREN_INDYKE, RICHARD_KAHN],
+        truncate_to=(5_000, 16_000),
     ),
     epstein_will('EFTA00099424', '2017-01-30', [DARREN_INDYKE, EVA_DUBIN, RICHARD_KAHN], '2017', truncate_to=(4_600, 14_000)),
     epstein_will('EFTA00016884', '2014-11-18', [DARREN_INDYKE, JES_STALEY, DAVID_MITCHELL, LARRY_SUMMERS], truncate_to=2_500),
