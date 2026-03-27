@@ -20,6 +20,8 @@ div.horiz_container {
 }
 
 div.page_container {
+    background-image: url('doc_images/trump_drawn_with_redactions_lower_opacity.jpg');
+    fill-opacity: 0.1;
     padding-top: 1.5em;
 }
 
