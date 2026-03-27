@@ -18,7 +18,7 @@ CATEGORIES=(
 
 BUILD_DIR=${1:-docs/}
 GENERATE_CMD="$GENERATE_CMD --build-dir $BUILD_DIR"
-GENERATE_SIDE_PANELS_CMD = "$GENERTE_CMD --side-panel-notes"
+GENERATE_SIDE_PANELS_CMD="$GENERTE_CMD --side-panel-notes"
 print_deploy_step "Building pages to BUILD_DIR '$BUILD_DIR'"
 
 
