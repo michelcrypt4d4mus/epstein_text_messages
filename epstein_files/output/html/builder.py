@@ -113,7 +113,7 @@ def one_row_table_html(table: Table, css_props: OptionalCssProps = None) -> str:
     # body_div_css = {**PANEL_BASE_PROPS}
 
     if (max_width := col1.max_width or col1.width):
-        logger.warning(f"Rendering obj at max_width {max_width}")
+        logger.debug(f"Rendering obj at max_width {max_width}")
         body_html = render_at_width(body_txt, max_width)
         # body_div_css['max-width'] = to_em(max_width). # TODO: CSS is unecessary bc wrapping + width set in render()
     else:
