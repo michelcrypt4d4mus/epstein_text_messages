@@ -1098,6 +1098,7 @@ HIGHLIGHTED_NAMES = [
                 url='https://www.politico.com/story/2019/05/13/rick-gates-roger-stone-greg-craig-1318870',
             ),
             Entity('Joel Klein', 'chancellor of the NYC Dept. of Education', match_partial=None, url=WIKIPEDIA),
+            Entity('Mark Wetjen', 'CFTC acting chairman under Obama, crypto bro'),
             Entity(PAUL_PROSPERI, "friend of Bill Clinton"),
             Entity('Senator Ron Wyden'),
             Entity.assistant('Janis Hartley', BILL_RICHARDSON, QUESTION_MARKS),
@@ -2981,6 +2982,7 @@ HIGHLIGHTED_NAMES = [
                 'Elliott Broidy',
                 'RNC chair, impregnated / paid off / paid for an abortion for a Playboy Playmate he had affair with',
             ),
+            Entity('Jim Newsome', 'CFTC chairman under Reagan'),
             Entity('Juleanna Glover', "CEO of powerful DC lobbying firm Ridgely|Walsh", url=WIKIPEDIA),
             Entity('Nikki Haley', match_partial='both', url=WIKIPEDIA),
             Entity(RUDY_GIULIANI, 'disbarred former mayor of NYC', r"Rud(olph|y)( W\.?)? Giuliani", url=WIKIPEDIA),
@@ -3520,6 +3522,7 @@ HIGHLIGHTED_NAMES = [
             Organization('iCog Labs', f'AI co. in Addis Ababa founded by {BEN_GOERTZEL} and Getnet Assefa Gesaw (funded by Epstein?)'),
             Organization('Intellectual Ventures', belongs_to=NATHAN_MYHRVOLD),  # Nathan Myhrvold
             Organization('Jawbone', f'wireless earpiece company invested in by Epstein and {IAN_OSBORNE}'),
+            Organization('Lightspeed Venture Partners', "silicon valley venture capital firm"),
             Organization('LinkedIn', "LinkedIn", r"Linked[Il]n( Updates)?", is_emailer=True, is_interesting=False),
             Organization('Mandiant', 'cybersecurity company'),
             Organization('Match.com', 'dating site', r"match\.com|matchmail", is_emailer=True, is_interesting=False),
