@@ -256,10 +256,11 @@ GOVERNMENT_CFGS = [
         note='Powerpoint summary of Epstein investigation by Child Sex Trafficking Task Force',
         is_interesting=10,
     ),
-    doj_doc('EFTA00163964', 'summary of Epstein and Maxwell Related Investigations', is_interesting=True),
+    doj_doc('EFTA00157634', ALESSI_WITNESS_PREP, date='2021-12-01', is_interesting=True),
     doj_doc('EFTA00025091', f"arrest warrant and other discovery materials"),
     doj_doc('EFTA01683641', f"video download of MCC cameras failed", date='2019-08-22'),
     doj_doc('EFTA00009809', f"sealed indictment of Jeffrey Epstein", date='2019-07-02', is_interesting=2),
+    doj_doc('EFTA00163964', 'summary of Epstein and Maxwell Related Investigations', is_interesting=True),
     doj_memo('EFTA02731039', f'prosecution memo naming {LESLEY_GROFF}', is_interesting=10),
     doj_memo('EFTA02731200', "potential prosecution of Epstein's assistant", is_interesting=10, truncate_to=(14_000, 18_500)),
     doj_memo('EFTA02731082', "investigation into Epstein's co-conspirators"),
@@ -273,7 +274,6 @@ GOVERNMENT_CFGS = [
         truncate_to=(6_000, 7_000),
         show_full_panel=True,  # TODO: show pic
     ),
-    doj_doc('EFTA00157634', ALESSI_WITNESS_PREP, date='2021-12-01', is_interesting=True),
     DocCfg(
         id='EFTA00014822',
         date='1982-06-01',
