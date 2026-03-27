@@ -614,6 +614,7 @@ GOVERNMENT_CFGS = [
         truncate_to=AUTO,
     ),
     EmailCfg(id='EFTA00176910', author='USAFLS', author_uncertain=True),
+    EmailCfg(id='EFTA00211910', author='USAFLS', recipients=['USAWAW']),
 
     # USANYS
     EmailCfg(

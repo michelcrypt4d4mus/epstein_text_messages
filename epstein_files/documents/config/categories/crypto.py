@@ -586,6 +586,9 @@ CRYPTO_CFGS = [
     EmailCfg(id='EFTA00820371', note='bank digital currencies article', is_interesting=True),
     # Russia
     EmailCfg(id='EFTA02591998', note='Epstein spoke to Vladimir Putin about digital currency', is_interesting=10),
+    # Saylor
+    EmailCfg(id='EFTA02426831', truncate_to=NO_TRUNCATE),
+    EmailCfg(id='EFTA02427847', truncate_to=NO_TRUNCATE),
     # SEC / NYDFS
     EmailCfg(id='EFTA00668932', note=f"pressing Farkas for a meeting with {BEN_LAWSKY_NYDFS}"),
     EmailCfg(id='EFTA01747752', note=f"Farkas delivering {BEN_LAWSKY_NYDFS}", is_interesting=20, truncate_to=700),

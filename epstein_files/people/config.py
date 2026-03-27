@@ -495,6 +495,7 @@ HIGHLIGHTED_NAMES = [
             Entity('Barry W. Zelin', 'Axiom Capital', url='https://epsteingraph.com/people/barry-w-zelin'),
             Entity('Bob Dudley', 'CEO of BP / British Petroleum', r"[BR]ob(ert) Dudley|Dudley, Robe?r?t?"),
             Entity(DAVID_L_NEUHAUSER, f'Livermore Partners, partner of {JOSHUA_FINK}'),
+            Entity('David Reuben', 'precious metals billionaire', match_partial=None, url='https://en.wikipedia.org/wiki/David_and_Simon_Reuben'),
             Entity('Ed Razek', "Victoria's Secret executive"),
             Entity(EDUARDO_TEODORANI, 'Italian, CNH Industrial', match_partial='last'),
             Entity('Evelyn Lauder', f"Estée Lauder family fortune", match_partial=None, url=WIKIPEDIA),
@@ -877,7 +878,8 @@ HIGHLIGHTED_NAMES = [
                     'https://www.infinitescroll.us/p/marc-andreessen-as-avatar-for-societal',
                 ],
             ),
-            Entity("Matthew Roszak", 'co-founder of Bloq, accusations of insider trading'),
+            Entity('Matthew Roszak', 'co-founder of Bloq, accusations of insider trading'),
+            Entity('Michael Saylor', "CEO of MicroStrategy, the world's largest pile of bitcoins masquerading as a company"),
             Entity(
                 'Mike Novogratz',
                 'CEO of Galaxy Digital, reportedly made a billion dollars in the Terra/Luna ponzi',

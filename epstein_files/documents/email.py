@@ -205,7 +205,7 @@ OCR_REPAIRS: OcrRepair = {
     # Misc
     'AVG°': 'AVGO',
     'Saw Matt C with DTF at golf': 'Saw Matt C with DJT at golf',
-    re.compile(r'\bSony,'): 'sorry,',
+    re.compile(r'\bSony(,| I)'): r'sorry\1',
     re.compile(r"[i. ]*Privileged[- ]*Redacted[i. ]*"): '<PRIVILEGED - REDACTED>',
     re.compile(r"SONY ?(Court|Judge|(, |/)NY)", re.IGNORECASE): r'SDNY \1',
 }
