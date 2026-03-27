@@ -1,17 +1,20 @@
+import logging
 import re
 from collections import defaultdict
 from copy import deepcopy
 
 from rich.console import Console
+from rich.logging import RichHandler
 from rich.panel import Panel
-from rich.highlighter import RegexHighlighter
+from rich.highlighter import RegexHighlighter, ReprHighlighter
 from rich.text import Text
 
 from epstein_files.output.highlight_config import HIGHLIGHT_GROUPS, HIGHLIGHTED_NAMES
-from epstein_files.util.constant.strings import HIGHLIGHTED_QUOTE, JEE, REGEX_STYLE_PREFIX
+from epstein_files.util.constant.strings import JEE, REGEX_STYLE_PREFIX
 from epstein_files.util.env import args
 from epstein_files.util.helpers.data_helpers import sort_dict
-from epstein_files.util.logging import logger
+
+from epstein_files.util.logging import DOC_TYPE_STYLES, logger
 
 WEAK_DATE_REGEX = re.compile(r"^(\d\d?/|20|http|On ).*")
 
@@ -58,10 +61,18 @@ class NonEpsteinHighlighter(EpsteinHighlighter):
     highlights: list[re.Pattern] = [hn.regex for hn in HIGHLIGHTED_NAMES if hn.label not in [JEE]]
 
 
-def temp_highlighter(pattern: str, theme_style_name: str = HIGHLIGHTED_QUOTE) -> EpsteinHighlighter:
-    """Temporary highlighter that adds `pattern` to the usual highlight regexes."""
+def temp_highlighter(pattern: str, theme_style: str) -> EpsteinHighlighter:
+    """
+    Temporary highlighter that adds `pattern` to the usual highlight regexes.
+
+    Args:
+        theme_style (str): must be defined in THEME_STYLES with regex prefix.
+    """
     class TempHighlighter(EpsteinHighlighter):
-        highlights = [re.compile(fr"(?P<{theme_style_name}>{pattern})", re.IGNORECASE)] + EpsteinHighlighter.highlights
+        highlights = [
+            re.compile(fr"(?P<{theme_style}>{pattern})", re.IGNORECASE),
+            *EpsteinHighlighter.highlights,
+        ]
 
     return TempHighlighter()
 

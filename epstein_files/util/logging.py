@@ -3,7 +3,7 @@ import sys
 from os import environ
 
 from rich.console import Console
-from rich.highlighter import ReprHighlighter
+from rich.highlighter import ReprHighlighter, RegexHighlighter
 from rich.logging import RichHandler
 from rich.theme import Theme
 from yaralyzer.util.helpers.env_helper import console_width_possibilities
@@ -35,9 +35,10 @@ LOG_LEVEL_ENV_VAR = 'EPSTEIN_LOG_LEVEL'
 
 # Augment the standard log highlighter with 'epstein_filename' matcher
 class LogHighlighter(ReprHighlighter):
+    """Augment the standard log highlighter with 'epstein_filename' matcher."""
     highlights = ReprHighlighter.highlights + [
         *[fr"(?P<{doc_type}>{doc_type}(Cfg|s)?)" for doc_type in DOC_TYPE_STYLES.keys()],
-        "(?P<epstein_filename>" + '|'.join([HOUSE_OVERSIGHT_NOV_2025_FILE_NAME_REGEX.pattern, DOJ_FILE_NAME_REGEX.pattern]) + ')',
+        fr"(?P<epstein_filename>{FILE_ID_PATTERN})",
     ]
 
 
@@ -48,11 +49,16 @@ log_console = Console(
     width=max(console_width_possibilities())
 )
 
-datefmt = r'%H:%M:%S' if SUPPRESS_OUTPUT in sys.argv else ' '
-log_handler = RichHandler(console=log_console, highlighter=LogHighlighter(), show_path=False)
-logging.basicConfig(level="NOTSET", format="%(message)s", datefmt=datefmt, handlers=[log_handler])
-logger = logging.getLogger("epstein_text_files")
+logging.basicConfig(
+    level="NOTSET",
+    format="%(message)s",
+    datefmt=r'%H:%M:%S' if SUPPRESS_OUTPUT in sys.argv else ' ',
+    handlers=[
+        RichHandler(console=log_console, highlighter=LogHighlighter(), show_path=False),
+    ],
+)
 
+logger = logging.getLogger("epstein_text_files")
 
 # Set log levels to suppress annoying output from other packages
 logging.getLogger('datefinder').setLevel(logging.FATAL)

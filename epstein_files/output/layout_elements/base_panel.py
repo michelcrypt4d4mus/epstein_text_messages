@@ -14,6 +14,7 @@ from epstein_files.output.html.positioned_rich import CssProps, PositionedRich, 
 from epstein_files.util.env import site_config
 from epstein_files.util.external_link import join_texts
 from epstein_files.util.helpers.data_helpers import without_falsey
+from epstein_files.util.logging import logger
 
 
 @dataclass(kw_only=True)
@@ -22,6 +23,7 @@ class BasePanel:
     background_color: str = ''
     border_style: str
     indent: int | float = 0
+    max_width: int = 0
     padding: PaddingDimensions = 0
     text: Text
     title: Text | None = None
@@ -44,6 +46,8 @@ class BasePanel:
 
     def to_div(self, margins: list[int | float] | None = None, css: OptionalCssProps = None, width: int = 0) -> str:
         """Create an HTML <div> string for this panel."""
+        from epstein_files.output.layout_elements.layout import MAX_BODY_PANEL_WIDTH
+
         div_props = {
             **self._base_div_css(margins),
             **PANEL_BASE_PROPS,
@@ -54,8 +58,10 @@ class BasePanel:
             **(css or {}),
         }
 
+        render_width = width or self.max_width
         title = self.title.plain if self.title else ''   # TODO: make the title 'dim'
-        html = render_at_width(self.text, width) if width else render_to_html(self.text)
+        logger.warning(f"rendering object at width {width}")
+        html = render_at_width(self.text, render_width) if render_width else render_to_html(self.text)
         return div_with_legend(html, title, div_props)
 
     def _base_div_css(self, margins: list[int | float] | None = None) -> CssProps:

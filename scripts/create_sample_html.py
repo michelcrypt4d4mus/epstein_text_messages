@@ -18,6 +18,7 @@ from epstein_files.output.html.builder import table_to_html, panel_to_div
 from epstein_files.output.site.sites import Site
 from epstein_files.output.rich import CATEGORY_BG_STYLES
 from epstein_files.people.entity import Entity
+from epstein_files.people.names import HOWARD_LUTNICK
 from epstein_files.people.person import Person
 from epstein_files.util.helpers.data_helpers import flatten
 from epstein_files.util.helpers.file_helper import open_file_or_url
@@ -37,7 +38,11 @@ TEST_PANELS = [
 
 def print_sample_people(num_people_to_print: int = 3):
     """people panels and email history etc."""
-    good_sample_people = [p for p in epstein_files.emailers if 5 <= len(p.unique_emails) <= 15]
+    good_sample_people = [
+        p for
+        p in epstein_files.emailers
+        if p.name != HOWARD_LUTNICK and (5 <= len(p.unique_emails) <= 15)
+    ]
 
     for i, person in enumerate(good_sample_people[0:num_people_to_print], 1):
         person.print_docs(printer)
@@ -79,9 +84,9 @@ printer.print_documents(sample_docs)
 print_sample_people()
 
 #Print big emailers summary table
-all_emailers = sorted(epstein_files.emailers, key=lambda person: person.sort_key)
-people_table = Person.emailer_info_table(all_emailers, all_emailers, show_epstein_total=False)
-printer.html_elements.append(table_to_html(people_table))
+# all_emailers = sorted(epstein_files.emailers, key=lambda person: person.sort_key)
+# people_table = Person.emailer_info_table(all_emailers, all_emailers, show_epstein_total=False)
+# printer.html_elements.append(table_to_html(people_table))
 
 # print contacts
 # Entity.print_all_biographies(printer)

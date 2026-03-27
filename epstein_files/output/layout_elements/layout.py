@@ -13,13 +13,14 @@ from epstein_files.output.html.elements import div_class, div_tag, safe_padding
 from epstein_files.output.html.rich_style import RichStyle
 from epstein_files.output.html.positioned_rich import VERTICAL_MARGIN, PositionedRich, dimensions_to_margin_css
 from epstein_files.output.layout_elements.base_panel import BasePanel
-from epstein_files.util.env import site_config
+from epstein_files.util.env import DEFAULT_WIDTH, args
 from epstein_files.output.rich import indent_txt
 from epstein_files.util.external_link import join_texts
 from epstein_files.util.helpers.data_helpers import without_falsey
 
 BOTTOM_PADDING = 1
 SIDE_PANEL_WIDTH = 30
+MAX_BODY_PANEL_WIDTH = (args.width or DEFAULT_WIDTH) - SIDE_PANEL_WIDTH
 SUBHEADER_VERTICAL_MARGIN = 0.3
 
 FLEX_CONTAINER_CSS = {
@@ -123,12 +124,15 @@ class Layout:
 
     def side_panel_html(self) -> str:
         if self.side_panel:
-            return self.side_panel.to_div(css={
-                'margin-bottom': 'auto',
-                'margin-left': 'auto',
-                'margin-right': 'auto',
-                'margin-top': 'auto',
-            }, width=SIDE_PANEL_WIDTH)
+            return self.side_panel.to_div(
+                css={
+                    'margin-bottom': 'auto',
+                    'margin-left': 'auto',
+                    'margin-right': 'auto',
+                    'margin-top': 'auto',
+                },
+                width=SIDE_PANEL_WIDTH
+            )
         else:
             return ''
 

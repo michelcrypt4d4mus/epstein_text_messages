@@ -127,7 +127,7 @@ args.output_emails = args.output_emails or args.all_emails
 args.output_other = args.output_other or args.all_other_files or args.uninteresting
 args.output_texts = args.output_texts or args.all_texts
 args.overwrite_pickle = args.overwrite_pickle or (is_env_var_set('OVERWRITE_PICKLE') and not is_env_var_set('PICKLED'))
-args.width = site_config.width if is_html_script else None
+args.width = site_config.width if is_html_script else None  # max width for epstein_grep etc.
 
 if args.names:
     args._site = Site.NAMES
@@ -221,7 +221,12 @@ if args.open_both:
 if args.repair or args.load_new:
     args.constantize = True
 
+if args.side_panel_notes and args.mobile:
+    logger.error(f"--side-panel-notes does not work with --mobile, turning off...")
+    args.side_panel_notes = False
 
+
+# Logging
 args.debug = args.deep_debug or args.debug or is_env_var_set('DEBUG')
 args._debug_highlight_patterns = (args.colors_only and args.debug)
 

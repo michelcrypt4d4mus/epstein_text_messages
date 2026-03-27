@@ -9,9 +9,10 @@ from rich.panel import Panel
 from rich.text import Text
 
 from epstein_files.output.html.html_dir import IMAGES_DIR, HtmlDir
-from epstein_files.util.constant.strings import (DOJ_FILE_STEM_REGEX, DOJ_FILE_NAME_REGEX, DROPSITE_FILE_ID_REGEX, DUMMY_ID, EFTA_PREFIX,
-     HOUSE_OVERSIGHT_NOV_2025_FILE_NAME_REGEX, HOUSE_OVERSIGHT_NOV_2025_FILE_STEM_REGEX,
-     HOUSE_OVERSIGHT_NOV_2025_ID_REGEX, HOUSE_OVERSIGHT_PREFIX, LOCAL_EXTRACT_REGEX)
+from epstein_files.util.constant.strings import (DOJ_FILE_STEM_REGEX, DOJ_FILE_NAME_REGEX,
+     EFTA_PREFIX, FILE_ID_PATTERN, HOUSE_OVERSIGHT_2025_FILENAME_REGEX,
+     HOUSE_OVERSIGHT_2025_FILE_STEM_REGEX, HOUSE_OVERSIGHT_2025_ID_REGEX, HOUSE_OVERSIGHT_PREFIX,
+     LOCAL_EXTRACT_REGEX)
 from epstein_files.util.env import DOCS_DIR, DOJ_PDFS_20260130_DIR, DOJ_TXTS_20260130_DIR, DROPSITE_EMLS_DIR
 from epstein_files.util.helpers.env_helpers import get_env_dir
 from epstein_files.util.helpers.string_helper import is_integer, join_patterns
@@ -23,16 +24,9 @@ EXTRACTED_EMAILS_DIR = PROJECT_DIR.joinpath('emails_extracted_from_legal_filings
 
 DOJ_FILE_ID_REGEX = re.compile(fr".*{DOJ_FILE_NAME_REGEX.pattern}")
 DROPSITE_FILE_NAME_REGEX = re.compile(fr"{DROPSITE_EMLS_DIR}.* (\d\d\d\d-\d\d-\d\d \d+)\.eml")
-HOUSE_FILE_ID_REGEX = re.compile(fr".*{HOUSE_OVERSIGHT_NOV_2025_FILE_NAME_REGEX.pattern}")
+HOUSE_FILE_ID_REGEX = re.compile(fr".*{HOUSE_OVERSIGHT_2025_FILENAME_REGEX.pattern}")
+VALID_ID_REGEX = re.compile(fr"^({FILE_ID_PATTERN})$")
 
-ID_PATTERNS = [
-    DOJ_FILE_STEM_REGEX.pattern,
-    DUMMY_ID,
-    DROPSITE_FILE_ID_REGEX.pattern,
-    HOUSE_OVERSIGHT_NOV_2025_ID_REGEX.pattern,
-]
-
-VALID_ID_REGEX = re.compile(fr"^({join_patterns(ID_PATTERNS)})$")
 FILENAME_LENGTH = len(HOUSE_OVERSIGHT_PREFIX) + 6  # TODO: this is obsolete
 DIFF_COLORS = ['spring_green4', 'sea_green1']
 DIFF_PFXES = ['<', '>']
@@ -99,7 +93,7 @@ def coerce_file_stem(filename_or_id: int | str | Path) -> str:
     else:
         file_stem = house_file_stem(str(filename_or_id))
 
-    if not HOUSE_OVERSIGHT_NOV_2025_FILE_STEM_REGEX.match(file_stem):
+    if not HOUSE_OVERSIGHT_2025_FILE_STEM_REGEX.match(file_stem):
         raise RuntimeError(f"Invalid stem '{file_stem}' from '{filename_or_id}'")
 
     return file_stem
@@ -143,7 +137,7 @@ def extract_file_id(filename_or_id: int | str | Path) -> str:
 
     if is_integer(filename_str):
         return format_house_oversight_id(filename_str)
-    elif (id_match := HOUSE_OVERSIGHT_NOV_2025_ID_REGEX.search(filename_str.upper())):
+    elif (id_match := HOUSE_OVERSIGHT_2025_ID_REGEX.search(filename_str.upper())):
         return id_match.group(1)
     else:
         logger.error(f"filename_str='{filename_str}', HOUSE_FILE_ID_REGEX='{HOUSE_FILE_ID_REGEX.pattern}'")
@@ -179,7 +173,7 @@ def format_house_oversight_id(id: int | str) -> str:
 def house_file_stem(id: int | str) -> str:
     if is_integer(id):
         return f"{HOUSE_OVERSIGHT_PREFIX}{format_house_oversight_id(id)}"
-    elif HOUSE_OVERSIGHT_NOV_2025_ID_REGEX.match(id):
+    elif HOUSE_OVERSIGHT_2025_ID_REGEX.match(id):
         return f"{HOUSE_OVERSIGHT_PREFIX}{id}"
     else:
         raise ValueError(f"Unknown kind of file id {id}")
@@ -195,7 +189,7 @@ def is_file_id_the_file_stem(file_path: Path) -> bool:
 
 
 def is_house_oversight_file(file: str | Path) -> bool:
-    return bool(HOUSE_OVERSIGHT_NOV_2025_FILE_STEM_REGEX.search(str(file)))
+    return bool(HOUSE_OVERSIGHT_2025_FILE_STEM_REGEX.search(str(file)))
 
 
 def is_local_extract_file(filename: str | Path) -> bool:

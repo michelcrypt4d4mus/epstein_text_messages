@@ -495,7 +495,7 @@ CRYPTO_CFGS = [
         date='2005-04-05',
         is_interesting=20,
         note=f"call log shows then Hapoalim director/future crypto bank SBNY founder Scott Shay calling with investment ideas 4 weeks after Hapoalim's money laundering bust, also Steve Cohen and Barry Diller",
-        truncate_to=(1_240, 1_500) if args.output_most_interesting else 7_700,
+        truncate_to=(1_240, 1_500) if args.output_most_interesting else (500, 3_000),
         url=HAPOALIM_BUST_URL,
     ),
     DocCfg(
