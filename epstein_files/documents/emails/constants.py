@@ -222,6 +222,7 @@ EMAIL_SIGNATURE_REGEXES = {
     NATALIA_MOLOTKOVA: re.compile(r"^Centurion Relationship Manager(\nnatal.*)?(\n\(\d.*)?\nHours.*", re.MULTILINE),
     NICHOLAS_RIBIS: re.compile(r"60 Morris Turnpike 2FL\nSummit,? NJ.*\n0:\nF:\n\*{20,}\nCONFIDENTIALITY NOTICE.*\nattachments.*\ncopying.*\nIf you have.*\nthe copy.*\nThank.*\n\*{20,}"),
     PAUL_BARRETT: re.compile(r"Paul Barrett[\n\s]+Alpha Group Capital LLC[\n\s]+(142 W 57th Street, 11th Floor, New York, NY 10019?[\n\s]+)?(al?[\n\s]*)?ALPHA GROUP[\n\s]+CAPITAL"),
+    'Paul Tweed': re.compile(r"Paul Tweed is also a member of.{,1100}arising from any bug or virus infection", re.DOTALL),
     'Paul Venables': re.compile(fr"{QUOTE_INDENT_GROUP_NEWLINES}*This email{QUOTE_INDENT_GROUP_NEWLINES}*\(including attachments\) is confidential.{{,600}}Matrix{QUOTE_INDENT_GROUP_NEWLINES}*Chambers.*?(?=\Z|\n)", re.DOTALL),
     PETER_ATTIA: re.compile(r"The information contained in this transmission may contain.*\n(laws|patient).*\n(distribution|named).*\n(distribution.*\nplease.*|copies.*)"),
     PETER_MANDELSON: re.compile(r'Disclaimer\s+This email and any attachments to.*?with\s+number(.*?EC4V\s+6BJ\.?)?', re.DOTALL | re.IGNORECASE),

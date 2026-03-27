@@ -436,6 +436,7 @@ GOVERNMENT_CFGS = [
         truncate_to=AUTO,
     ),
     fbi_internal('EFTA00164742', note='summary of video evidence', is_interesting=10),
+    fbi_internal('EFTA00078171', note=f're: murder of Arthur Shapiro and {STEVEN_HOFFENBERG}'),
     EmailCfg(
         id='EFTA00146839',
         highlight_quote="did not support federal criminal activity, specifically Obstruction of Justice",

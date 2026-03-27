@@ -247,6 +247,9 @@ MONEY_CFGS = [
     # Schwab
     schwab_doc('EFTA01265978', date='2019-07-10', note='account opened 3 months before death'),
 
+    # Wexner
+    letter('EFTA01110729', None, [LES_WEXNER], highlight_quote='You and I had " gang stuff " for over 15 years'),
+
     # Emails
     EmailCfg(id='032458', note='discussion of acquiring pieces for Epstein\'s art collection', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA00649282', note=f"planning {BILL_GATES} donor advised fund with {JES_STALEY} on board"),

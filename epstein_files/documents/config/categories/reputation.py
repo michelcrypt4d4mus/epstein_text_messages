@@ -63,6 +63,8 @@ REPUTATION_CFGS = [
     EmailCfg(id='EFTA02417620', note=f"{AL_SECKEL} is creating a fake Jeffrey Epstein to improve the real Epstein's Google search results"),
     EmailCfg(id='EFTA00751523', truncate_to=2_100),
     EmailCfg(id='EFTA01838653', note="PR drafts of public statements retracting allegations against Epstein"),
+    DocCfg(id='EFTA01097431', attached_to_email_id='EFTA01838653'),  # not actually an attachment of this particular email
     EmailCfg(id='EFTA00682303', highlight_quote="Harvey Levin, who runs TMZ, is a good friend", is_interesting=True),
     letter('EFTA00604145', MICHAEL_SITRICK, [JEFFREY_EPSTEIN], 'lawsuit about unpaid bills', truncate_to=900),
 ]
+# EFTA01097431
