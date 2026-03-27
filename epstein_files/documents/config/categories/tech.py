@@ -36,6 +36,16 @@ TECH_CFGS = [
     EmailCfg(id='EFTA01987383', show_with_name=CHRIS_POOLE),
     # Diamandis
     EmailCfg(id='EFTA01780987', note='Diamandis claimed he met Epstein in 2013, not 2009'),
+    # Elon
+    EmailCfg(id='EFTA00404451', show_with_name=ELON_MUSK),
+    EmailCfg(
+        id='EFTA00661616',
+        duplicate_ids=['EFTA01998027'],
+        highlight_quote="What day/night will be the wildest party on your island?",
+        is_interesting=20,
+    ),
+    # Myrhvold
+    EmailCfg(id='EFTA00637339', highlight_quote=f"i will only bring <REDACTED> if you want", is_interesting=True),
     # Valar Ventures
     DocCfg(
         id='EFTA00591045',

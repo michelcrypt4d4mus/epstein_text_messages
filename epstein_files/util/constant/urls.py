@@ -50,6 +50,7 @@ EPSTEINIFY_URL = f'https://{EPSTEINIFY}.com'
 EPSTEIN_MEDIA_URL = f'https://{EPSTEIN_MEDIA}'
 EPSTEIN_WEB_URL = 'https://epsteinweb.org'
 JMAIL_URL = 'https://jmail.world'
+JMAIL_JCAL_URL = f"{JMAIL_URL}/calendar"
 JMAIL_RAW_URL = 'https://assets.getkino.com/documents'
 
 DOC_LINK_BASE_URLS: dict[EpsteinSite, str] = {

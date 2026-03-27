@@ -41,6 +41,8 @@ SHORT_LINKS = {
     'dropsitenews': 'dropsite',
     'graziadaily': 'grazia',
     'hollywoodreporter': 'hollywood',
+    'jmail.world/calendar': 'jcal',
+    'jmail.world': 'jmail',
     'justice.gov': 'doj',
     'instagram.com': 'insta',
     'lunch.publishersmarketplace': 'publ',

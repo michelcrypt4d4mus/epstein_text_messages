@@ -408,6 +408,7 @@ CRYPTO_CFGS = [
     EmailCfg(id='EFTA00398719', note=f'{HOWARD_LUTNICK} visit to the island', is_interesting=10, truncate_to=2500),
     EmailCfg(id='EFTA00401065', note=f'{HOWARD_LUTNICK} visit to the island', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA00398853', note=f'{HOWARD_LUTNICK} visit to the island', truncate_to=NO_TRUNCATE),
+    EmailCfg(id='EFTA00398729', note=f'{HOWARD_LUTNICK} visit to the island', truncate_to=NO_TRUNCATE, duplicate_ids=['EFTA00661498']),
     EmailCfg(id='EFTA01913269', note=f'{HOWARD_LUTNICK} visit to the island', truncate_to=NO_TRUNCATE, show_with_name=HOWARD_LUTNICK),
     EmailCfg(id='EFTA00873540', note=f'{HOWARD_LUTNICK} and {PRINCE_ANDREW}'),
     EmailCfg(id='EFTA02191245', note=f"interesting that calls with {HOWARD_LUTNICK} seem to start shortly after Epstein discovers bitcoin"),
@@ -589,6 +590,7 @@ CRYPTO_CFGS = [
     # Saylor
     EmailCfg(id='EFTA02426831', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA02427847', truncate_to=NO_TRUNCATE),
+    EmailCfg(id='EFTA01936985'),
     # SEC / NYDFS
     EmailCfg(id='EFTA00668932', note=f"pressing Farkas for a meeting with {BEN_LAWSKY_NYDFS}"),
     EmailCfg(id='EFTA01747752', note=f"Farkas delivering {BEN_LAWSKY_NYDFS}", is_interesting=20, truncate_to=700),

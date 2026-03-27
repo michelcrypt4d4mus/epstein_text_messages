@@ -331,6 +331,7 @@ MONEY_CFGS = [
     EmailCfg(id='EFTA01870235', note=f'{MC2_MODEL_MGMT} IRS woes and line of credit repayment'),
     EmailCfg(id='EFTA01942664', note=f'payment from {MC2_MODEL_MGMT}'),
     EmailCfg(id='EFTA00552943', note=PURCHASE_OF_BIN_ENNAKHILL),
+    EmailCfg(id='EFTA00669222', note=PURCHASE_OF_BIN_ENNAKHILL),
     EmailCfg(id='EFTA00552220', note=f"{PURCHASE_OF_BIN_ENNAKHILL} (by {KARYNA_SHULIAK}??)", is_interesting=7),
     EmailCfg(
         id='EFTA01816514',
@@ -366,6 +367,12 @@ MONEY_CFGS = [
     EmailCfg(id='EFTA01376515', show_with_name=LEON_BLACK),
     EmailCfg(id='EFTA00697318', show_with_name=LEON_BLACK),
     EmailCfg(id='EFTA01404535', truncate_to=(1_150, 2_200)),
+    EmailCfg(
+        id='EFTA00647703',
+        highlight_quote='client buying a huge art work, what form should he buy it in',
+        is_interesting=True,
+        truncate_to=AUTO,
+    ),
 
     # David Stern
     EmailCfg(
@@ -382,4 +389,10 @@ MONEY_CFGS = [
     # Ehud / Yoni
     EmailCfg(id='EFTA00863806', highlight_quote='please send 10k dollars to yoni'),
     deutsche_bank_doc(id='EFTA01401501', note=f'$10,000 transfer to {YONI_KOREN}'),
+
+    # Trivers
+    EmailCfg(id='EFTA00641250', note=f"money for {ROBERT_TRIVERS}", is_in_chrono=False),
+
+    # Misc
+    EmailCfg(id='EFTA00420694', note='Offshore Reinsurance', is_in_chrono=False),
 ]

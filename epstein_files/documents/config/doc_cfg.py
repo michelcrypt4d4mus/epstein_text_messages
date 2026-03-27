@@ -459,7 +459,7 @@ class DocCfg(LoggingEntity):
     @property
     def names(self) -> list[str]:
         """Names configured for this document. Overloaded in subclass to add recipients."""
-        return [self.author] if self.author else []
+        return without_falsey([self.author, self.show_with_name])
 
     @property
     def timestamp(self) -> datetime | None:

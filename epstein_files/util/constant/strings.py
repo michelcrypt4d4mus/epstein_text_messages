@@ -132,7 +132,7 @@ ID_PATTERNS = [
 FILE_ID_PATTERN = '|'.join(ID_PATTERNS)
 
 # Other regexes
-AMPERSAND_CHAR_GROUP = r"[®©@ae]"  # Chars the OCR messes up when scanning '@'
+AMPERSAND_CHAR_GROUP = r"[®©@aeg]"  # Chars the OCR messes up when scanning '@'
 CASE_ID_REGEX = re.compile(r"Case\s+(Number:\s+)?\d:\d{2}-[a-z]{2}-\d{5}-[A-Z]{3}")
 
 # Decorative
