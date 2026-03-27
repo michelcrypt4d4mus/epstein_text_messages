@@ -35,7 +35,7 @@ def list_item_regex(pattern: str, flags: re.RegexFlag = LIST_REGEX_FLAGS) -> re.
     return re.compile(fr"^({pattern} +{LIST_ELEMENT_TEXT_PATTERN})(?=\n{pattern}\s|\Z)", flags)
 
 BULLETED_ITEM_REGEX = list_item_regex('•')
-LIST_ITEM_REGEX = list_item_regex(r"\(?[a-z\d][.)]")
+LIST_ITEM_REGEX = list_item_regex(r"\(?([a-z]{1,2}|\d+)[.)]")
 ORDINAL_PATTERN = '|'.join([o.upper() for o in 'first second third fourth fifth sixth seventh eighth ninth tenth'.split()])
 ORDINAL_LIST_REGEX = list_item_regex(ORDINAL_PATTERN, re.DOTALL | re.MULTILINE)
 SECTION_LIST_REGEX = re.compile(r"(\nSection \d+)")  # doesn't match already doublespaced
