@@ -206,6 +206,10 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
     ANDREW_FARKAS: [
         'Sent from my iPad',
     ],
+    ARIANE_DE_ROTHSCHILD: [
+        'Envoyé de mon iPhone',
+        'Sent from my iPhone',
+    ],
     'Audrey Strauss': ["Sent from my iPhone"],
     AUSTIN_HILL: [
         'Get Outlook for iOS',
