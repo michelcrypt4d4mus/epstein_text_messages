@@ -96,7 +96,7 @@ POLITICS_CFGS = [
     bannon_imessage('EFTA01615642', date='2019-03-01'),
     bannon_imessage('EFTA01615808'),
     bannon_imessage('EFTA00783660', date='2019-02-06'),
-    EmailCfg(id='EFTA01014138', highlight_quote="do you know bill barr. CIA"),
+    EmailCfg(id='EFTA01014138', highlight_quote="do you know bill barr. CIA", truncate_to=222),
 
     # Albert Bryan
     EmailCfg(id='EFTA02258597', recipients=[ALBERT_BRYAN, DAPHNE_WALLACE]),

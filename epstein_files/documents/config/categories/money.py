@@ -338,10 +338,11 @@ MONEY_CFGS = [
         recipients=['Cynthia Rodriguez'],
         show_with_name=LEON_BLACK,
     ),
-    EmailCfg(id='EFTA01376515', show_with_name=LEON_BLACK),
-    EmailCfg(id='EFTA01404535', truncate_to=(1_150, 2_200)),
-    EmailCfg(id='EFTA00697318', show_with_name=LEON_BLACK),
     EmailCfg(id='EFTA01915851', highlight_quote="we need to create a lie for leon and ronald lauder to own the painting"),
+    EmailCfg(id='EFTA01018608', note=f'BV70 and {DEUTSCHE_BANK}'),
+    EmailCfg(id='EFTA01376515', show_with_name=LEON_BLACK),
+    EmailCfg(id='EFTA00697318', show_with_name=LEON_BLACK),
+    EmailCfg(id='EFTA01404535', truncate_to=(1_150, 2_200)),
 
     # David Stern
     EmailCfg(
@@ -357,4 +358,5 @@ MONEY_CFGS = [
 
     # Ehud / Yoni
     EmailCfg(id='EFTA00863806', highlight_quote='please send 10k dollars to yoni'),
+    deutsche_bank_doc(id='EFTA01401501', note=f'$10,000 transfer to {YONI_KOREN}'),
 ]

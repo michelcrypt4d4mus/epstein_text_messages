@@ -1894,6 +1894,7 @@ HIGHLIGHTED_NAMES = [
             Entity('Philip Diaz', match_partial=None),
             Entity('Philip Kafka', f"president of Prince Concepts (son of {TERRY_KAFKA}?)", match_partial=None),
             Entity('Rob Goldsamt', 'CEO of Basic Care Networks'),
+            Entity('Robert Meister', 'friend', match_partial=None),
             Entity('Sam Jaradeh', f"business partner of {BORIS_NIKOLIC}"),
             Entity(
                 SOON_YI_PREVIN,
@@ -1904,6 +1905,7 @@ HIGHLIGHTED_NAMES = [
             ),
             Entity(STEPHEN_HANSON, emailer_pattern=r"ste(phen|ve) hanson?|Shanson900"),
             Entity(TERRY_KAFKA, "CEO of Impact Outdoor (highway billboards), lifelong friend of Epstein", match_partial=None),
+            Entity('Todd Meister', 'son of Robert Meister', match_partial=None),
             Entity('Warren Eisenstein', 'childhood friend of Epstein'),
         ],
         patterns=[
@@ -3865,6 +3867,7 @@ HIGHLIGHTED_NAMES = [
             r"Juliya",
             r"Katie Johnson",
             r"lingerie",
+            r"Lolita",
             r"marri(age|ed)",
             r"Marta",
             r"massag(e(d|use)?s?|ing)( table)?",
