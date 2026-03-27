@@ -356,10 +356,12 @@ CRYPTO_CFGS = [
     ),
     DocCfg(
         id='EFTA01733746',
-        date='2011-05-18',
+        date='2011-05-01',
+        dupe_type='version',
+        duplicate_ids=['EFTA00307013', 'EFTA00307015'],
         is_interesting=10,
-        note=f'schedule showing "drinks" with {HOWARD_LUTNICK}',
         is_valid_for_name_scan=False,
+        note=f'schedule showing "drinks" with {HOWARD_LUTNICK}',
         show_full_panel=True,
         show_with_name=HOWARD_LUTNICK,
         truncate_to=700,
@@ -397,6 +399,13 @@ CRYPTO_CFGS = [
         is_interesting=20,
         note=f"Epstein asks {HOWARD_LUTNICK} to read something after the island visit",
     ),
+    EmailCfg(
+        id='EFTA00462650',
+        highlight_quote='as a close friend of the Lutnicks',
+        note=f"Epstein didn't use the $50,000 table he bought",
+        show_with_name=HOWARD_LUTNICK,
+        truncate_to=EMAIL_TRUNCATE_TO,
+    ),
     EmailCfg(id='EFTA02374900', note=f'article about {HOWARD_LUTNICK} real estate purchase'),
     EmailCfg(id='EFTA00685520', note=f'call with {HOWARD_LUTNICK}'),
     EmailCfg(id='EFTA00436468', note=f'call with {HOWARD_LUTNICK} after he goes overseas', is_interesting=10, truncate_to=NO_TRUNCATE),
@@ -406,6 +415,7 @@ CRYPTO_CFGS = [
     EmailCfg(id='EFTA00398719', note=f'{HOWARD_LUTNICK} visit to the island', is_interesting=10, truncate_to=2500),
     EmailCfg(id='EFTA00401065', note=f'{HOWARD_LUTNICK} visit to the island', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA00398853', note=f'{HOWARD_LUTNICK} visit to the island', truncate_to=NO_TRUNCATE),
+    EmailCfg(id='EFTA00398729', note=f'{HOWARD_LUTNICK} visit to the island', truncate_to=NO_TRUNCATE, duplicate_ids=['EFTA00661498']),
     EmailCfg(id='EFTA01913269', note=f'{HOWARD_LUTNICK} visit to the island', truncate_to=NO_TRUNCATE, show_with_name=HOWARD_LUTNICK),
     EmailCfg(id='EFTA00873540', note=f'{HOWARD_LUTNICK} and {PRINCE_ANDREW}'),
     EmailCfg(id='EFTA02191245', note=f"interesting that calls with {HOWARD_LUTNICK} seem to start shortly after Epstein discovers bitcoin"),
@@ -584,6 +594,10 @@ CRYPTO_CFGS = [
     EmailCfg(id='EFTA00820371', note='bank digital currencies article', is_interesting=True),
     # Russia
     EmailCfg(id='EFTA02591998', note='Epstein spoke to Vladimir Putin about digital currency', is_interesting=10),
+    # Saylor
+    EmailCfg(id='EFTA02426831', truncate_to=NO_TRUNCATE),
+    EmailCfg(id='EFTA02427847', truncate_to=NO_TRUNCATE),
+    EmailCfg(id='EFTA01936985'),
     # SEC / NYDFS
     EmailCfg(id='EFTA00668932', note=f"pressing Farkas for a meeting with {BEN_LAWSKY_NYDFS}"),
     EmailCfg(id='EFTA01747752', note=f"Farkas delivering {BEN_LAWSKY_NYDFS}", is_interesting=20, truncate_to=700),

@@ -182,6 +182,7 @@ EMAIL_SIGNATURE_REGEXES = {
     ARIANE_DE_ROTHSCHILD: re.compile(r"Ensemble adoptons des gestes responsables : .{,1300}Espanol I Chinese$", re.DOTALL | re.MULTILINE),
     # 'Asia Gateway': re.compile('Michelin House\n81 Fulham Road?\nLondon.*\nUK(\n(Tel|Fax):.*)*'),
     BARBRO_C_EHNBOM: re.compile(r"Barbro C.? Ehn.*\nChairman, Swedish-American.*\n((Office|Cell|Sweden):.*\n)*(360.*\nNew York.*)?"),
+    BARRY_JOSEPHSON: re.compile(r"11900 W Olympic.*\nSuite.*\nLos.*(\n\(.*)?"),
     BOBBI_C_STERNHEIM: re.compile(r"Law Offices of Bobbi.{,70}\n.{,2}Covid-19 Notice: The office is currently closed.{,700}delete this message.\s+Thank\s+you\.?", re.DOTALL | re.MULTILINE),
     BRAD_KARP: re.compile(r"This message is intended only for the use of the Addressee and may contain information.*\nnot the intended recipient, you are hereby notified.*\nreceived this communication in error.*"),
     # TODO: two brads

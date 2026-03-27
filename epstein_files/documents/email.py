@@ -122,6 +122,8 @@ OCR_REPAIRS: OcrRepair = {
     # HTML garbage
     '&lt;': '<',
     '<mime-attachment.gif>': '',
+    '<br>': '',
+    '&quot;': '',
     re.compile(r'<=[8R]>'): '',
     re.compile(r'(fi|[&S5d])gt;'): '>',
     re.compile(r'[</=]{,3}(cl|d)?iv>|&[=n]bs[=p];|<=span>|=C\d+\b'): '',
@@ -133,16 +135,17 @@ OCR_REPAIRS: OcrRepair = {
     re.compile(r"^--\w+-- (conversation-id|date-last-viewed).*(flags|remote-id\s\d+)(\s*\d{6,}.*remote-id.*\d+)?", re.MULTILINE): '',
     re.compile(r"<mailto:([-\w=.@]+)[»>]"): r'\1',
     # Names / email addresses
-    r'Alireza lttihadieh': ALIREZA_ITTIHADIEH,
-    r'bamaby': 'barnaby',
-    r'Miroslav Laj6ak': MIROSLAV_LAJCAK,
-    r'Ross G°w': ROSS_GOW,
-    r'Torn Pritzker': TOM_PRITZKER,
+    'Alireza lttihadieh': ALIREZA_ITTIHADIEH,
+    'bamaby': 'barnaby',
+    'Miroslav Laj6ak': MIROSLAV_LAJCAK,
+    'Ross G°w': ROSS_GOW,
+    'Torn Pritzker': TOM_PRITZKER,
     re.compile(r"( [AP]M,)\s+wrote:$", re.MULTILINE): r'\1 <REDACTED> wrote:',
     re.compile(r' Banno(r]?|\b)'): ' Bannon',
     re.compile(r"\bBamaby\b"): 'Barnaby',
     re.compile(r'gmax ?[1l] ?[@g]ellmax.c ?om'): 'gmax1@ellmax.com',
     re.compile(r"[ijlp']ee[vy]acation[©@a(&,P ]{1,3}g?mail.com"): 'jeevacation@gmail.com',
+    re.compile(r"\bLany\b"): 'Larry',
     'gyahoo.com': '@yahoo.com',
     # Signatures
     'from Samsung Mob.le': 'from Samsung Mobile',
@@ -203,7 +206,7 @@ OCR_REPAIRS: OcrRepair = {
     # Misc
     'AVG°': 'AVGO',
     'Saw Matt C with DTF at golf': 'Saw Matt C with DJT at golf',
-    re.compile(r'\bSony,'): 'sorry,',
+    re.compile(r'\bSony(,| I)'): r'sorry\1',
     re.compile(r"[i. ]*Privileged[- ]*Redacted[i. ]*"): '<PRIVILEGED - REDACTED>',
     re.compile(r"SONY ?(Court|Judge|(, |/)NY)", re.IGNORECASE): r'SDNY \1',
 }

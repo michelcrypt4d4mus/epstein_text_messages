@@ -34,6 +34,7 @@ IMESSAGE_PDF_IDS = [
     'EFTA00508054',  # TODO: needs review, might be missing messages
     'EFTA01218267',
     'EFTA00509258',
+    'EFTA00508702',    # TODO: verify
     # 'EFTA01616222',  # TODO: Doesn't parse well
     # 'EFTA01613143',  # TODO: Doesn't parse well
 ]

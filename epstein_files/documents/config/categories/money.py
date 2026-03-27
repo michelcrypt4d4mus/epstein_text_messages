@@ -142,6 +142,9 @@ MONEY_CFGS = [
     deutsche_bank_doc('EFTA01681865', "explanations of all of Epstein's large payments prepared for DOJ", '2019-09-12', is_interesting=20),
     deutsche_bank_doc('EFTA00166317', "statement for Epstein's account 690519", date='2016-05-30'),
     deutsche_bank_doc('EFTA01285411', f"statement for Epstein's {SOUTHERN_TRUST_COMPANY} showing $82 million balance"),
+    deutsche_bank_doc('EFTA00167059', 'KYC showing Caroline Lang co-ownership with Epstein (?)'),
+    deutsche_bank_doc('EFTA00168946', 'KYC information about Southern Financial', '2019-07-11'),
+    deutsche_bank_doc('EFTA00165652', 'showing Caroline Lang co-ownership with Epstein (?)'),
     epstein_will(
         'EFTA01266457',
         '2018-05-08',
@@ -156,6 +159,13 @@ MONEY_CFGS = [
         THE_1953_TRUST,
         "amended 2 days before death",
         truncate_to=(5_500, 15_000),
+    ),
+    epstein_will(
+        'EFTA00099303',  # TODO: dupe of EFTA01266204?
+        '2019-08-08',
+        [DARREN_INDYKE, RICHARD_KAHN],
+        THE_1953_TRUST,
+        truncate_to=14_000,
     ),
     epstein_will(
         'EFTA00089546',
@@ -198,6 +208,7 @@ MONEY_CFGS = [
     epstein_will('EFTA01266380', '2014-11-18', [DARREN_INDYKE, JES_STALEY, DAVID_MITCHELL], '2014', truncate_to=(4_500, 13_000)),
     cabinet_inventory('EFTA00299850', 'FILE CABINET ONE'),
     cabinet_inventory('EFTA00299927', 'FILE CABINET TWO', note=f"{JAMES_CAYNE} estate plan"),
+    inventory('EFTA00300480', 'document binders related to financial transactions', highlight_quote='Sale of 727 to Qatar', truncate_to=1_000),
     memo('EFTA01366011', DARREN_INDYKE, f"$3,000 expense reimbursement for {LASMA_KUHTARSKA}", show_with_name=LASMA_KUHTARSKA),  # TODO: to "marjorie"
     letter('EFTA00587879', DARREN_INDYKE, ['BV70 LLC'], "extremely dodgy charitable donation to Epstein associated co. Gratitude", is_interesting=11),
     DocCfg(id='EFTA00622816', note="Plan D note promising $8,000,000 to Leon Black's BV70 LLC", date='2017-04-17', is_interesting=10, truncate_to=500),
@@ -322,6 +333,8 @@ MONEY_CFGS = [
     EmailCfg(id='EFTA01870235', note=f'{MC2_MODEL_MGMT} IRS woes and line of credit repayment'),
     EmailCfg(id='EFTA01942664', note=f'payment from {MC2_MODEL_MGMT}'),
     EmailCfg(id='EFTA00552943', note=PURCHASE_OF_BIN_ENNAKHILL),
+    EmailCfg(id='EFTA00669222', note=PURCHASE_OF_BIN_ENNAKHILL),
+    DocCfg(id='EFTA00585171', note=PURCHASE_OF_BIN_ENNAKHILL),
     EmailCfg(id='EFTA00552220', note=f"{PURCHASE_OF_BIN_ENNAKHILL} (by {KARYNA_SHULIAK}??)", is_interesting=7),
     EmailCfg(
         id='EFTA01816514',
@@ -357,6 +370,12 @@ MONEY_CFGS = [
     EmailCfg(id='EFTA01376515', show_with_name=LEON_BLACK),
     EmailCfg(id='EFTA00697318', show_with_name=LEON_BLACK),
     EmailCfg(id='EFTA01404535', truncate_to=(1_150, 2_200)),
+    EmailCfg(
+        id='EFTA00647703',
+        highlight_quote='client buying a huge art work, what form should he buy it in',
+        is_interesting=True,
+        truncate_to=AUTO,
+    ),
 
     # David Stern
     EmailCfg(
@@ -373,4 +392,11 @@ MONEY_CFGS = [
     # Ehud / Yoni
     EmailCfg(id='EFTA00863806', highlight_quote='please send 10k dollars to yoni'),
     deutsche_bank_doc(id='EFTA01401501', note=f'$10,000 transfer to {YONI_KOREN}'),
+
+    # Trivers
+    EmailCfg(id='EFTA00641250', note=f"money for {ROBERT_TRIVERS}", is_in_chrono=False),
+
+    # Misc
+    DocCfg(id='EFTA00186431', author='NES, LLC', display_text='159 pages of documents related to finances etc.', is_interesting=True),
+    EmailCfg(id='EFTA00420694', note='Offshore Reinsurance', is_in_chrono=False),
 ]

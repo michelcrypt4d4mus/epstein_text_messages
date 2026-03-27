@@ -46,8 +46,6 @@ class BasePanel:
 
     def to_div(self, margins: list[int | float] | None = None, css: OptionalCssProps = None, width: int = 0) -> str:
         """Create an HTML <div> string for this panel."""
-        from epstein_files.output.layout_elements.layout import MAX_BODY_PANEL_WIDTH
-
         div_props = {
             **self._base_div_css(margins),
             **PANEL_BASE_PROPS,
@@ -60,7 +58,6 @@ class BasePanel:
 
         render_width = width or self.max_width
         title = self.title.plain if self.title else ''   # TODO: make the title 'dim'
-        logger.warning(f"rendering object at width {width}")
         html = render_at_width(self.text, render_width) if render_width else render_to_html(self.text)
         return div_with_legend(html, title, div_props)
 

@@ -41,6 +41,8 @@ EXCERPT_STYLE = 'cornsilk1'
 INFO_STYLE = 'gray50 italic'
 JOURNALISM_STYLE = 'bright_yellow'
 NOTE_STYLE = 'bright_white italic'
+SIDE_PANEL_BG_STYLE = '#1e1a1a'
+SIDE_PANEL_BORDER_STYLE = 'grey82'
 SUBHEADER_STYLE = 'dim gray54'
 SUBHEADER_ITALIC = f'{SUBHEADER_STYLE} italic'
 TEXT_LINK = 'text_link'
@@ -130,7 +132,7 @@ ID_PATTERNS = [
 FILE_ID_PATTERN = '|'.join(ID_PATTERNS)
 
 # Other regexes
-AMPERSAND_CHAR_GROUP = r"[®©@ae]"  # Chars the OCR messes up when scanning '@'
+AMPERSAND_CHAR_GROUP = r"[®©@aeg]"  # Chars the OCR messes up when scanning '@'
 CASE_ID_REGEX = re.compile(r"Case\s+(Number:\s+)?\d:\d{2}-[a-z]{2}-\d{5}-[A-Z]{3}")
 
 # Decorative

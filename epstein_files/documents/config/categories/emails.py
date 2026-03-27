@@ -4,7 +4,7 @@ Custom configurations for emails of no particular category.
 from epstein_files.documents.documents.categories import Interesting, Neutral
 from epstein_files.documents.config.config_builder import WOLFF_EPSTEIN_ARTICLE_DRAFT
 from epstein_files.documents.config.doc_cfg import EMAIL_TRUNCATE_TO, NO_TRUNCATE, SHORT_TRUNCATE_TO
-from epstein_files.documents.config.email_cfg import SNEAKY_DOG, EmailCfg
+from epstein_files.documents.config.email_cfg import SNEAKY_DOG, EmailCfg, daily_schedule_email
 from epstein_files.documents.emails.constants import FLIGHT_IN_2012_PEOPLE, IRAN_DEAL_RECIPIENTS, TRIVERS_CCS
 from epstein_files.people.names import *
 from epstein_files.util.constant.strings import *
@@ -316,6 +316,8 @@ EMAILS_CONFIG = [
     EmailCfg(id='029992', author=TERRY_KAFKA, author_reason='Quoted reply'),
     EmailCfg(id='029985', author=TERRY_KAFKA, author_reason='Quoted reply in 029992'),
     EmailCfg(id='020666', author=TERRY_KAFKA, author_reason="Ends with 'Terry'"),
+
+    # Recipients
     EmailCfg(id='033021', recipients=[ANAS_ALRASHEED], author_reason='visible in 033022'),
     EmailCfg(id='027063', recipients=[ANTHONY_BARRETT]),
     EmailCfg(id='030764', recipients=[ARIANE_DE_ROTHSCHILD], author_reason='reply'),
@@ -349,6 +351,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='030347', recipients=[JEFFREY_EPSTEIN]),
     EmailCfg(id='033274', recipients=[JEFFREY_EPSTEIN]),
     EmailCfg(id='032780', recipients=[JEFFREY_EPSTEIN]),
+    EmailCfg(id='EFTA00684125', recipients=[JEFFREY_EPSTEIN]),
     EmailCfg(id='033386', recipients=[JEFFREY_EPSTEIN, None], duplicate_ids=['033599']),
     EmailCfg(id='029324', recipients=[JEFFREY_EPSTEIN, "Jojo Fontanilla", "Lyn Fontanilla"]),
     EmailCfg(id='013482', recipients=[JEFFREY_EPSTEIN], is_fwded_article=True),
@@ -406,6 +409,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00832976', highlight_quote="i represent the rothschilds"),
     EmailCfg(id='EFTA02694762', highlight_quote="I would like to meet the crazy french doctor"),
     EmailCfg(id='EFTA01798486', highlight_quote='you need to turn mike in', note="who's mike?"),
+    EmailCfg(id='EFTA00676865', highlight_quote="What did you do, give him a roofie!?"),
     # actual_text
     EmailCfg(id='029344', actual_text='I thought of you when I read this article. Was this your idea? Alan', is_fwded_article=True),
     EmailCfg(id='032358', actual_text=REDACTED),
@@ -693,7 +697,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='026028', is_interesting=10, note=f"Epstein introduces {LARRY_SUMMERS} to {ALLEGED_KARIM_WADE}"),
     EmailCfg(
         id='029914',
-        note='Epstein and Lord Mandelson discuss Russian investments',
+        note=f'Epstein and {PETER_MANDELSON} discuss Russian investments',
         is_interesting=True,
         truncate_to=4500,
     ),
@@ -751,7 +755,6 @@ EMAILS_CONFIG = [
     binant_redacted('032464', NO_TRUNCATE),
 
     # Authors DOJ files
-    EmailCfg(id='EFTA00628928', author=JONATHAN_FARKAS, recipients=['Catherine']),
     EmailCfg(id='EFTA02052550', author='Ananda Apfelbaum'),
     EmailCfg(id='EFTA00645449', author=ANASTASIYA_SIROOCHENKO, author_reason='Jmail'),
     EmailCfg(id='EFTA00040142', author=ATT_COURT_APPEARANCE_TEAM, recipients=[USANYS]),
@@ -805,8 +808,10 @@ EMAILS_CONFIG = [
         author_uncertain='https://x.com/FlippersUpNow/status/2021662725412110565',
         note='author apparently is daughter of an FSB officer',
     ),
+    EmailCfg(id='EFTA00628928', author=JONATHAN_FARKAS, recipients=['Catherine'], truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA02296929', author=KARYNA_SHULIAK, author_reason='Valentines Day congrats'),
     EmailCfg(id='EFTA00953261', author=LARRY_SUMMERS, recipients=[JEFFREY_EPSTEIN]),
+    EmailCfg(id='EFTA00403880', author=LAWRANCE_VISOSKI, author_uncertain='"via BlackBerry AT&T', show_with_name=FRANCISCO_DAGOSTINO),
     EmailCfg(
         id='EFTA00357525',
         author=LESLEY_GROFF,
@@ -828,8 +833,8 @@ EMAILS_CONFIG = [
         id='EFTA00675596',
         author=LESLEY_GROFF,
         author_uncertain='epstein scheduling',
+        is_interesting=True,
         note=f"the president of Mongolia plans to vist Epstein",
-        is_interesting=True
     ),
     EmailCfg(id='EFTA02065181', author=LESLEY_GROFF),
     EmailCfg(id='EFTA02062308', author=LESLEY_GROFF),
@@ -837,6 +842,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00461202', author=LESLEY_GROFF),
     EmailCfg(id='EFTA02246744', author=LESLEY_GROFF),
     EmailCfg(id='EFTA02102384', author=LESLEY_GROFF),
+    EmailCfg(id='EFTA00398728', author=LESLEY_GROFF),
     EmailCfg(id='EFTA00368493', author=LESLEY_GROFF),
     EmailCfg(id='EFTA02040938', author=LESLEY_GROFF, note='cancelling a planned trip to Tsinghua University', is_interesting=True),
     EmailCfg(id='EFTA02067245', author=LESLEY_GROFF, note=VALAR_MEETING, is_interesting=True, author_uncertain=True, truncate_to=600),
@@ -848,8 +854,17 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00334935', author=LESLEY_GROFF, author_uncertain=True),
     EmailCfg(id='EFTA02246686', author=LESLEY_GROFF, author_uncertain=True),
     EmailCfg(id='EFTA00464618', author=LESLEY_GROFF, author_uncertain=True),
+    EmailCfg(id='EFTA00328832', author=LESLEY_GROFF, author_uncertain=True),
+    EmailCfg(id='EFTA00505096', author=LESLEY_GROFF, author_uncertain=True, recipients=[JEFFREY_EPSTEIN], recipient_uncertain='could be any staff'),
+    EmailCfg(id='EFTA00403939', author=LESLEY_GROFF, author_uncertain=True),
     EmailCfg(id='EFTA02220616', author=LESLEY_GROFF, author_uncertain=True),
+    EmailCfg(id='EFTA00675860', author=LESLEY_GROFF, author_uncertain=True),
+    EmailCfg(id='EFTA00415016', author=LESLEY_GROFF, author_uncertain=True),
     EmailCfg(id='EFTA00384399', author=LESLEY_GROFF, author_uncertain=True),
+    EmailCfg(id='EFTA00437116', author=LESLEY_GROFF, author_uncertain=True),
+    EmailCfg(id='EFTA00563804', author=LESLEY_GROFF, author_uncertain=True),
+    EmailCfg(id='EFTA00424844', author=LESLEY_GROFF, author_uncertain=True),
+    EmailCfg(id='EFTA00350675', author=LESLEY_GROFF, author_uncertain=True),
     EmailCfg(id='EFTA02254640', author=LESLEY_GROFF, author_uncertain=True),
     EmailCfg(id='EFTA00480639', author=LESLEY_GROFF, author_uncertain=True),
     EmailCfg(id='EFTA00481891', author=LESLEY_GROFF, author_uncertain=True),
@@ -864,6 +879,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA02090028', author=LESLEY_GROFF, author_uncertain=True),
     EmailCfg(id='EFTA00357488', author=LESLEY_GROFF, author_uncertain=True),
     EmailCfg(id='EFTA00642571', author=LESLEY_GROFF, author_uncertain=True),
+    EmailCfg(id='EFTA00363258', author=LESLEY_GROFF, author_uncertain=True),
     EmailCfg(id='EFTA00357379', author=LESLEY_GROFF, author_uncertain=True),
     EmailCfg(id='EFTA00357957', author=LESLEY_GROFF, author_uncertain=True),
     EmailCfg(id='EFTA02229858', author=LESLEY_GROFF, author_uncertain=True),
@@ -1031,6 +1047,7 @@ EMAILS_CONFIG = [
     ),
     EmailCfg(id='EFTA01961947', author=RENATA_BOLOTOVA, author_uncertain=SNEAKY_DOG, recipients=[JEFFREY_EPSTEIN]),
     EmailCfg(id='EFTA00826575', author=RENATA_BOLOTOVA, author_uncertain=SNEAKY_DOG, duplicate_ids=['EFTA02462211']),
+    EmailCfg(id='EFTA00562357', author=SARAH_KELLEN, note='Epstein had multiple passports'),
     EmailCfg(id='EFTA01767424', author=SHAHER_ABDULHAK_BESHER, author_reason='"sincerely shaher"'),
     EmailCfg(id='EFTA00658903', author=SHAHER_ABDULHAK_BESHER, note='Epstein serving as intermediary during Yemen negotiations', is_interesting=5),
     EmailCfg(id='EFTA00039663', author=STACEY_RICHMAN, recipients=[USANYS], author_reason='unredacted in EFTA00039662'),
@@ -1049,12 +1066,15 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA02624738', recipients=[JEFFREY_EPSTEIN]),
     EmailCfg(id='EFTA02629770', recipients=[JEFFREY_EPSTEIN]),
     EmailCfg(id='EFTA00705664', recipients=[JEFFREY_EPSTEIN]),
+    EmailCfg(id='EFTA00653278', recipients=[JEFFREY_EPSTEIN], note=f'notes for confrontation with {LES_WEXNER} {QUESTION_MARKS}'),
+    EmailCfg(id='EFTA00631928', recipients=[JEFFREY_EPSTEIN], note=f'notes for confrontation with {LES_WEXNER} {QUESTION_MARKS}'),
     EmailCfg(id='EFTA02160715', recipients=[JEFFREY_EPSTEIN], recipient_uncertain='looks like lesley'),
     EmailCfg(id='EFTA01763770', recipients=[JEFFREY_EPSTEIN, JEAN_LUC_BRUNEL]),
     EmailCfg(id='EFTA00716532', recipients=[JEFFREY_EPSTEIN], truncate_to=479),
     EmailCfg(id='EFTA02328335', recipients=[JEFFREY_EPSTEIN, KARYNA_SHULIAK, None]),
     EmailCfg(id='EFTA02622513', recipients=[JULIA_SANTOS], author_reason='https://x.com/FlippersUpNow/status/2021662725412110565'),
     EmailCfg(id='EFTA02296655', recipients=[LEO_LOKING, 'Marites Tess McCorquodale', MERWIN_DELA_CRUZ], recipient_uncertain='"Leo"'),
+    EmailCfg(id='EFTA00318111', recipients=[LEO_LOKING, MERWIN_DELA_CRUZ, YONI_KOREN]),
     EmailCfg(
         id='EFTA02256631',
         recipients=[LESLEY_GROFF],
@@ -1082,6 +1102,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA02068436', recipients=[LESLEY_GROFF], recipient_uncertain=True),
     EmailCfg(id='EFTA00450187', recipients=[LESLEY_GROFF], recipient_uncertain=True),
     EmailCfg(id='EFTA02068531', recipients=[LESLEY_GROFF], recipient_uncertain=True),
+    EmailCfg(id='EFTA00392502', recipients=[LESLEY_GROFF], recipient_uncertain=True, truncate_to=500),
     EmailCfg(id='EFTA02175423', recipients=[LESLEY_GROFF], truncate_to=650),
     EmailCfg(id='EFTA00313867', recipients=[LESLEY_GROFF], truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA00383027', recipients=[LINDA_STONE]),
@@ -1158,6 +1179,18 @@ EMAILS_CONFIG = [
     ),
 
     # Descriptions
+    daily_schedule_email('EFTA00317801'),
+    daily_schedule_email('EFTA00991049'),
+    daily_schedule_email('EFTA00399801'),
+    daily_schedule_email('EFTA00398014'),
+    daily_schedule_email('EFTA00365211'),
+    daily_schedule_email('EFTA00391777'),
+    daily_schedule_email('EFTA00390161'),
+    daily_schedule_email('EFTA00350957', author=LESLEY_GROFF),
+    daily_schedule_email('EFTA00481869', author=LESLEY_GROFF),
+    daily_schedule_email('EFTA00479255', author=LESLEY_GROFF),
+    daily_schedule_email('EFTA00391916', author=LESLEY_GROFF, author_uncertain=True),
+    daily_schedule_email('EFTA00378753', author=LESLEY_GROFF, author_uncertain=True, note='Mark Tollison was fired'),
     EmailCfg(
         id='EFTA00339256',
         author=LESLEY_GROFF,
@@ -1166,13 +1199,17 @@ EMAILS_CONFIG = [
         note=f"the (possibly faked) death of {AL_SECKEL}",
         url='https://www.tabletmag.com/sections/news/articles/the-illusionist-al-seckel',
     ),
+    EmailCfg(id='EFTA00393338', note=f"{BECHET_ALLEN} on the jet", show_with_name=BECHET_ALLEN),
     EmailCfg(id='EFTA00756577', note=f"{BEN_GOERTZEL} congratulates Epstein on getting out of jail", is_interesting=True, truncate_to=2500),
     EmailCfg(id='EFTA00322570', note=f'booking flight for {REDACTED} from Hong Kong to NYC'),
     EmailCfg(id='EFTA00900412', note='Christmas in St. Barths party guest list'),
-    EmailCfg(id='EFTA00991049', note="daily schedule"),
     EmailCfg(id='EFTA02629771', note=f"discussion of {RENATA_BOLOTOVA}'s employment at IPI", is_interesting=3),
     EmailCfg(id='EFTA00671263', note="Eagle's View Capital Management September 2017 Performance Update"),
-    EmailCfg(id='EFTA00537622', author='Kathleen Gallagher', note=f"discussion of {MARK_ZEFF}'s letter of visa recommendation for South African girl in EFTA00537633"),  # TODO: make it an attachment?
+    EmailCfg(
+        id='EFTA00537622',
+        author='Kathleen Gallagher',
+        note=f"discussion of {MARK_ZEFF}'s letter of visa recommendation for South African girl in EFTA00537633",  # TODO: make it an attachment?
+    ),
     EmailCfg(id='EFTA00877726', note=f'Epstein and {DAVID_STERN} discuss plans to manage Chinese money in Africa'),
     EmailCfg(id='EFTA00941197', note=f'Epstein appears to be helping with an investment in Jawbone by {HEDOSOPHIA}'),
     EmailCfg(id='EFTA02592748', note=f"Epstein asks {BROCK_PIERCE} for a favour related to someone named 'Sue'", truncate_to=300),
@@ -1193,8 +1230,8 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00406579', note='Epstein had multiple passports', highlight_quote="JE's Main and Second Passport"),
     EmailCfg(id='EFTA00773169', note='hanging out with Epstein the day he gets out of jail', truncate_to=420),
     EmailCfg(id='EFTA00492651', note='how to get a 2nd passport', truncate_to=1_160, is_interesting=4),
+    EmailCfg(id='EFTA00578629', note=f"itinerary for Bill Clinton's trip to Africa on Epstein's jet", is_interesting=True),
     EmailCfg(id='EFTA00351535', note="Jeffrey's 2nd Passport"),
-    EmailCfg(id='EFTA00562357', author=SARAH_KELLEN, note='Epstein had multiple passports'),
     EmailCfg(id='EFTA00949376', note=f"Epstein paying {MC2_MODEL_MGMT}", truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA01060612', note=f"Epstein plots against the JASTA bill"),
     EmailCfg(id='EFTA00630134', note=f'Epstein recommends Signal encrypted messenger to {ALLEGED_KARIM_WADE}', is_interesting=10),
@@ -1241,6 +1278,8 @@ EMAILS_CONFIG = [
         recipients=[MELANIE_PHILLIPS],
         recipient_uncertain='maybe Boris Nikolic but Boris asks Epstein same question a few months later',
     ),
+    EmailCfg(id='EFTA00579833', date='2003-03-16 18:00:00', date_uncertain='based on reply'),
+    EmailCfg(id='EFTA00579836', date='2003-03-16 19:00:00', date_uncertain='based on reply'),
     EmailCfg(id='EFTA00039888', date='2019-05-14 16:49:00'),
     EmailCfg(id='EFTA02730485', date='2021-12-03 00:00:00'),
     EmailCfg(id='EFTA01858685', is_interesting=True, comment='Boris asks about Stanley Ho (maybe)'),
@@ -1271,6 +1310,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00915298', truncate_to=300),
     EmailCfg(id='EFTA00915300', truncate_to=250),
     EmailCfg(id='EFTA01834902', truncate_to=250),
+    EmailCfg(id='EFTA00368716', truncate_to=300),
     EmailCfg(id='EFTA00847613', truncate_to=320),
     EmailCfg(id='EFTA00982864', truncate_to=350),
     EmailCfg(id='EFTA00982451', truncate_to=400),

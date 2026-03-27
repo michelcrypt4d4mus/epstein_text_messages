@@ -208,8 +208,8 @@ def jmail_download_bad_ids() -> Generator[set[str], None, None]:
     known_bad_jmail_ids_path = broken_pdfs_dir().joinpath('broken_jmail_ids.txt')
 
     if known_bad_jmail_ids_path.exists():
-        known_bad_ids = set(known_bad_jmail_ids_path.read_text().split('\n'))
-        logger.warning(f"Loaded {known_bad_ids} known bad IDs from '{known_bad_jmail_ids_path}'...")
+        known_bad_ids = set(known_bad_jmail_ids_path.read_text().strip().split('\n'))
+        logger.warning(f"Loaded {len(known_bad_ids)} known bad IDs from '{known_bad_jmail_ids_path}'...")
     else:
         known_bad_ids = set([])
 

@@ -1,12 +1,17 @@
-from epstein_files.documents.config.config_builder import fedex_invoice, important_messages_pad, inventory, letter, press_release
+from epstein_files.documents.config.config_builder import fedex_invoice, important_messages_pad, inventory, letter, memo, press_release
 from epstein_files.documents.config.doc_cfg import DocCfg
 from epstein_files.documents.config.communication_cfg import imessage_screenshot, skype_log
 from epstein_files.documents.documents.categories import Interesting, Neutral
 from epstein_files.output.site.sites import Site
 from epstein_files.people.names import *
 from epstein_files.util.constant.strings import *
+from epstein_files.util.constant.urls import JMAIL_JCAL_URL
 
 LUTNICKS_CANTOR = f"Howard Lutnick's {CANTOR_FITZGERALD}"
+
+
+def daily_schedule(id: str, date: str, **kwargs) -> DocCfg:
+    return DocCfg(id=id, date=date, note='daily schedule', url=JMAIL_JCAL_URL, **kwargs)
 
 
 MISC_CFGS = [
@@ -16,10 +21,12 @@ MISC_CFGS = [
         date='2016-06-24',  # date is based on Brexit reference but he could be backtesting,
         note=f"about algorithmic trading",
     ),
+    memo('EFTA00577389', JEFFREY_EPSTEIN, 'reporting responsibilities', '2004-07-26'),
     press_release('015462', 'Nautilus Education', note=f'magazine issue for Epstein foundation {QUESTION_MARKS}', is_interesting=True),
     press_release('029326', EPSTEIN_VI_FOUNDATION, '2013-02-15'),
     press_release('026565', EPSTEIN_VI_FOUNDATION, '2013-02-15', comment=f'maybe a draft of 029326'),
     DocCfg(id='022494', author='DOJ', note=f'Foreign Corrupt Practices Act (FCPA) Resource Guide'),
+    DocCfg(id='EFTA00616025', author='Alberto Pinto Cabinet', note='furniture inventory', truncate_to=900),
     DocCfg(id='023096', author=EPSTEIN_VI_FOUNDATION, note=f'blog post', date='2012-11-15'),
     DocCfg(id='027071', author=FEMALE_HEALTH_COMPANY, note=f"brochure requesting donations for female condoms in Uganda"),
     DocCfg(id='027074', author=FEMALE_HEALTH_COMPANY, note=f"pitch deck (USAID was a customer)"),
@@ -82,11 +89,28 @@ MISC_CFGS = [
         is_valid_for_name_scan=False,
         url=Site.get_url(Site.PHONE_NUMBERS),
     ),
-    DocCfg(id='EFTA00285783', note='daily schedule', date='2019-03-01'),
-    DocCfg(id='EFTA00301520', note='daily schedule', date='2013-01-26'),
-    DocCfg(id='EFTA00285597', note='daily schedule', date='2018-09-01'),
-    DocCfg(id='EFTA00285309', note='daily schedule', date='2017-04-01'),
-    DocCfg(id='EFTA00586992', author=NEWGRANGE_CONSULTING, note='contract with Island Global Yachting', date='2010-08-01', date_uncertain='August', truncate_to=1_600),
+    DocCfg(
+        id='EFTA00522943',
+        is_interesting=10,
+        note=f"Epstein's medicine cabinet includes fertility drugs, benzos, opioids, ED drugs, and stimulants",
+        show_full_panel=True,
+        truncate_to=(1_200, 2_700),
+    ),
+    DocCfg(id='EFTA00579398', date='2003-11-26'),
+    DocCfg(id='EFTA00416586', date='2012-03-29'),
+    DocCfg(id='EFTA00314072', author='Darius Paduch', note=f"confirms he was Epstein's doctor", is_interesting=6, date='2018-09-26'),
+    DocCfg(
+        id='EFTA00586992',
+        author=NEWGRANGE_CONSULTING,
+        note='contract with Island Global Yachting',
+        date='2010-08-01',
+        date_uncertain='August',
+        truncate_to=1_600,
+    ),
+    DocCfg(id='EFTA00309068', note='personal cell phone and email address list', is_interesting=5),
+    DocCfg(id='EFTA00221072', note=f"Operation Leap Year contact list", is_interesting=True),
+    DocCfg(id='EFTA00315184', note="pre-printed welcome cards for Epstein's apartments"),
+    DocCfg(id='EFTA00313981', note='architectural plans for chateau on Great St. James island'),
     DocCfg(id='EFTA00285041', note='birthday book list', date='2015-11-15', show_full_panel=True, truncate_to=1_600),
     DocCfg(id='EFTA00000019', note=f"{MERWIN_DELA_CRUZ} cooling tower maintenance", date='2018-12-10', is_interesting=False),
     DocCfg(id='EFTA00008486', note=f"chain of custody evidence envelope", date='2009-11-02'),
@@ -95,13 +119,24 @@ MISC_CFGS = [
     DocCfg(id='EFTA00266322', note=f"documents about pitches for non-profits in Australia, including to Effective Altruism"),
     DocCfg(id='EFTA00005783', note='heavily redacted handwritten note, 30+ completely redacted pages', date='2019-08-29'),
     DocCfg(id='EFTA02697975', note='island employee list', show_full_panel=True, is_interesting=2),
-    inventory('EFTA01063691', 'address books and Skype logs seized from Epstein computers'),
     DocCfg(id='EFTA00024275', note='large Wexner funded payments to OB-GYN'),
     DocCfg(id='EFTA01193705', note="list of Epstein's known email addresses, internet accounts, cars, boats, airplanes, and telephone numbers"),
     DocCfg(id='EFTA00728783', note='list of names and phone numbers'),
     DocCfg(id='EFTA00298379', note='RSVP list for Yom Kippur dinner', date='2010-09-18'),
     DocCfg(id='EFTA01611898', note=f"screenshot of recent contacts in an iPhone"),
     DocCfg(id='EFTA00007585', note='various fedex receipts and realtor notes', date='2005-09-20'),
+    DocCfg(id='EFTA00191467', display_text=f"Epstein's black book with contacts", is_interesting=10, date='2015-06-01', date_uncertain='leaked some time 2015'),
+    daily_schedule('EFTA00314248', '2010-04-07'),
+    daily_schedule('EFTA00304809', '2011-01-05', date_uncertain=True),
+    daily_schedule('EFTA00308123', '2012-11-08'),
+    daily_schedule('EFTA00301520', '2013-01-26'),
+    daily_schedule('EFTA00284890', '2014-01-01'),
+    daily_schedule('EFTA00293621', '2016-03-01'),
+    daily_schedule('EFTA00285309', '2017-04-01'),
+    daily_schedule('EFTA00285408', '2017-10-01'),
+    daily_schedule('EFTA00285597', '2018-09-01'),
+    daily_schedule('EFTA00285783', '2019-03-01'),
+    inventory('EFTA01063691', 'address books and Skype logs seized from Epstein computers'),
     # Urramoor
     DocCfg(
         id='EFTA01107738',
@@ -138,8 +173,14 @@ MISC_CFGS = [
         date='2021-09-30',
     ),
     DocCfg(id='EFTA00728864', note=f'security orders for {EL_BRILLO_ADDRESS} showing {IGOR_ZINOVIEV} had door power'),
+    DocCfg(id='EFTA00305998', note='inventory and TODO list'),
+    fedex_invoice('EFTA00219491', '2001-04-30'),
+    fedex_invoice('EFTA00217257', '2001-12-31'),
     fedex_invoice('EFTA00082601', '2002-10-14'),
     fedex_invoice('EFTA00040687', '2002-10-14'),
+    fedex_invoice('EFTA00218262', '2003-03-10'),
+    fedex_invoice('EFTA00218394', '2003-04-21'),
+    fedex_invoice('EFTA00218870', '2003-11-24'),
     fedex_invoice('EFTA00217072', '2005-06-20'),
     fedex_invoice('EFTA00217080', '2005-06-27'),
     imessage_screenshot(id='033434', author=BRAD_EDWARDS, author_uncertain=f"labeled 'Edwards'", is_interesting=False),

@@ -3,7 +3,9 @@ from typing import ClassVar
 
 from epstein_files.documents.config.doc_cfg import SHORT_TRUNCATE_TO
 from epstein_files.documents.config.communication_cfg import CommunicationCfg, Platform
+from epstein_files.util.constant.urls import JMAIL_JCAL_URL
 from epstein_files.util.helpers.rich_helpers import CharRangeAuto
+from epstein_files.util.helpers.string_helper import join_truthy
 
 SNEAKY_DOG = '"sneaky dog"'
 
@@ -62,3 +64,12 @@ class EmailCfg(CommunicationCfg):
     # This is necessary because for some dumb reason @dataclass(repr=False) doesn't cut it
     def __repr__(self) -> str:
         return super().__repr__()
+
+
+def daily_schedule_email(id: str, note: str = '', **kwargs) -> EmailCfg:
+    return EmailCfg(
+        id=id,
+        note=join_truthy('daily schedule', note, ', '),
+        url=JMAIL_JCAL_URL,
+        **kwargs
+    )

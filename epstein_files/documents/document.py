@@ -397,8 +397,8 @@ class Document(LoggingEntity):
         """Experimental feature to put note in a horizontal layout panel."""
         if (args.side_panel_notes or self._config.show_image) and (note_txt := self._config.note_txt()):
             return BasePanel(
-                background_color='grey11',
-                border_style='grey23',
+                background_color=SIDE_PANEL_BG_STYLE,
+                border_style=SIDE_PANEL_BORDER_STYLE,
                 padding=2,
                 text=note_txt,
             )

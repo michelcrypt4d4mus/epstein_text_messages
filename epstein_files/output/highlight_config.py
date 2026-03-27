@@ -148,6 +148,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"lawyer",
             r"Notary Public",
             r"Page \d+ of \d+",
+            r"(?-i:C)lause \d+\.?",
             r"passport",
             r"testimony",
             r"(eye)?witness(es)?",
@@ -261,6 +262,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         patterns=[
             fr"({DATE_PATTERN} )?{TIME_PATTERN}",
             fr"\b({DATE_PATTERN}|\d{{1,2}}:\d{{2}}[ap]m)\b",
+            fr"({join_patterns([w.upper() for w in WEEKDAYS])})( (Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec))?",
         ],
     ),
 
