@@ -695,7 +695,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='026028', is_interesting=10, note=f"Epstein introduces {LARRY_SUMMERS} to {ALLEGED_KARIM_WADE}"),
     EmailCfg(
         id='029914',
-        note='Epstein and Lord Mandelson discuss Russian investments',
+        note=f'Epstein and {PETER_MANDELSON} discuss Russian investments',
         is_interesting=True,
         truncate_to=4500,
     ),
@@ -1033,6 +1033,7 @@ EMAILS_CONFIG = [
     ),
     EmailCfg(id='EFTA01961947', author=RENATA_BOLOTOVA, author_uncertain=SNEAKY_DOG, recipients=[JEFFREY_EPSTEIN]),
     EmailCfg(id='EFTA00826575', author=RENATA_BOLOTOVA, author_uncertain=SNEAKY_DOG, duplicate_ids=['EFTA02462211']),
+    EmailCfg(id='EFTA00562357', author=SARAH_KELLEN, note='Epstein had multiple passports'),
     EmailCfg(id='EFTA01767424', author=SHAHER_ABDULHAK_BESHER, author_reason='"sincerely shaher"'),
     EmailCfg(id='EFTA00658903', author=SHAHER_ABDULHAK_BESHER, note='Epstein serving as intermediary during Yemen negotiations', is_interesting=5),
     EmailCfg(id='EFTA00039663', author=STACEY_RICHMAN, recipients=[USANYS], author_reason='unredacted in EFTA00039662'),
@@ -1175,7 +1176,11 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00991049', note="daily schedule"),
     EmailCfg(id='EFTA02629771', note=f"discussion of {RENATA_BOLOTOVA}'s employment at IPI", is_interesting=3),
     EmailCfg(id='EFTA00671263', note="Eagle's View Capital Management September 2017 Performance Update"),
-    EmailCfg(id='EFTA00537622', author='Kathleen Gallagher', note=f"discussion of {MARK_ZEFF}'s letter of visa recommendation for South African girl in EFTA00537633"),  # TODO: make it an attachment?
+    EmailCfg(
+        id='EFTA00537622',
+        author='Kathleen Gallagher',
+        note=f"discussion of {MARK_ZEFF}'s letter of visa recommendation for South African girl in EFTA00537633",  # TODO: make it an attachment?
+    ),
     EmailCfg(id='EFTA00877726', note=f'Epstein and {DAVID_STERN} discuss plans to manage Chinese money in Africa'),
     EmailCfg(id='EFTA00941197', note=f'Epstein appears to be helping with an investment in Jawbone by {HEDOSOPHIA}'),
     EmailCfg(id='EFTA02592748', note=f"Epstein asks {BROCK_PIERCE} for a favour related to someone named 'Sue'", truncate_to=300),
@@ -1196,8 +1201,8 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00406579', note='Epstein had multiple passports', highlight_quote="JE's Main and Second Passport"),
     EmailCfg(id='EFTA00773169', note='hanging out with Epstein the day he gets out of jail', truncate_to=420),
     EmailCfg(id='EFTA00492651', note='how to get a 2nd passport', truncate_to=1_160, is_interesting=4),
+    EmailCfg(id='EFTA00578629', note=f"itinerary for Bill Clinton's trip to Africa on Epstein's jet", is_interesting=True),
     EmailCfg(id='EFTA00351535', note="Jeffrey's 2nd Passport"),
-    EmailCfg(id='EFTA00562357', author=SARAH_KELLEN, note='Epstein had multiple passports'),
     EmailCfg(id='EFTA00949376', note=f"Epstein paying {MC2_MODEL_MGMT}", truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA01060612', note=f"Epstein plots against the JASTA bill"),
     EmailCfg(id='EFTA00630134', note=f'Epstein recommends Signal encrypted messenger to {ALLEGED_KARIM_WADE}', is_interesting=10),

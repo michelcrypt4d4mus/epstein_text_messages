@@ -122,6 +122,8 @@ OCR_REPAIRS: OcrRepair = {
     # HTML garbage
     '&lt;': '<',
     '<mime-attachment.gif>': '',
+    '<br>': '',
+    '&quot;': '',
     re.compile(r'<=[8R]>'): '',
     re.compile(r'(fi|[&S5d])gt;'): '>',
     re.compile(r'[</=]{,3}(cl|d)?iv>|&[=n]bs[=p];|<=span>|=C\d+\b'): '',
