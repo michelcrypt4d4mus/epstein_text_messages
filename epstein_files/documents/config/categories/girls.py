@@ -620,6 +620,7 @@ GIRLS_CFGS = [
     ),
     DocCfg(
         id='EFTA00009622',
+        background_color='black',
         date='2006-07-19',
         display_text=EFTA00009622_TEXT,
         is_interesting=10,
