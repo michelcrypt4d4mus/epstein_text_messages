@@ -12,7 +12,7 @@ REPO_SCRIPTS_DIR="$THIS_DIR/scripts"
 EXTRACT_DOJ_PDFS_PATH="$REPO_SCRIPTS_DIR/extract_doj_pdfs.py"
 PICKLE_ARG=$([[ $1 == '--pickled' ]] && echo "" || echo "--overwrite-pickle")
 source "$REPO_SCRIPTS_DIR/bash_lib/shared.sh"
-
+ensure_safe_branch
 
 if any_uncommitted_changes; then
     exit 1
