@@ -523,6 +523,7 @@ GIRLS_CFGS = [
     EmailCfg(id='EFTA02669915', recipients=[OLGA_PONOMAR_BECKER]),
     EmailCfg(
         id='EFTA01889182',
+        highlighted_quote="I had my first voluntary playing with a girl and guy",
         is_interesting=10,
         note=f'"Olympic snowboarder" is {MARIA_PRUSAKOVA} who seems to have entered Epstein world at this time',
         recipients=[MIRANDA_MAKO],
