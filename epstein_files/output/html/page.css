@@ -18,6 +18,10 @@ div.black_background {
     font-family: "Special Elite", Menlo, 'DejaVu Sans Mono', consolas, 'Courier New', monospace;
 }
 
+.category_money {
+    font-family: "Space Mono", Menlo, 'DejaVu Sans Mono', consolas, 'Courier New', monospace;
+}
+
 div.doc_container {
     font-family: Menlo, 'DejaVu Sans Mono', consolas, 'Courier New', monospace;
     display: flex;
