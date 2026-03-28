@@ -134,6 +134,11 @@ img.vertical {
     max-height: 1400px;
 }
 
+img.horizontal {
+    max-width: 1200px;
+    max-height: 600px;
+}
+
 legend {
     background-color: black;
     font-family: Menlo, 'DejaVu Sans Mono', consolas, 'Courier New', monospace;

@@ -2,6 +2,7 @@ from epstein_files.documents.config.communication_cfg import CommunicationCfg
 from epstein_files.documents.config.config_builder import Cfg, fbi_report, grand_jury, interview, inventory, letter, memo
 from epstein_files.documents.config.doc_cfg import EMAIL_TRUNCATE_TO, NO_TRUNCATE, SHORT_TRUNCATE_TO, DocCfg
 from epstein_files.documents.config.email_cfg import EmailCfg
+from epstein_files.documents.config.pic_cfg import PicCfg
 from epstein_files.documents.documents.categories import Neutral
 from epstein_files.people.names import *
 from epstein_files.util.constant.strings import AUTO, CVRA, MINOR_VICTIM, REDACTED
@@ -166,10 +167,15 @@ GOVERNMENT_CFGS = [
         date='2021-09-29',
     ),
     bop_doc(
-        'EFTA00034357',
+        'EFTA00034357',  # TODO: show an image?
         "internal message about discovery of Epstein's body",
         '2019-08-10',
         background_color='red',
+        pic_cfg=PicCfg(
+            id='EFTA00034357',
+            is_horizontal=True,
+        ),
+        is_displayed_as_img=True,
     ),
     bop_doc(
         'EFTA00034275',
@@ -267,8 +273,8 @@ GOVERNMENT_CFGS = [
         id='EFTA00014822',
         date='1982-06-01',
         date_uncertain=True,
-        note=f"fake Austrian passport under the name Marius Robert Fortelni with Saudi Arabian home address, expired in 1987",
-        show_image=True,
+        note=f"fake Austrian passport under the name Marius Robert Fortelni with Saudi Arabian home address that Epstein ussed to enter several countries, expired in 1987",
+        is_displayed_as_img=True,
         url='https://nypost.com/2025/12/23/us-news/jeffrey-epsteins-fake-austrian-passport-pictured-in-latest-doj-document-dump/',
     ),
     DocCfg(id='EFTA02730741', author=DOJ, date='2025-05-01', date_uncertain=True, note="Evidence list for 50D-NY-3027571 Filtering On 'Type(s): 1B'"),

@@ -14,7 +14,7 @@ class PicCfg(DocCfg):
     """Configure a picture to be displayed in the timeline."""
     date: str
     file_type: ImgExt = 'png'
-    show_image: bool = True
+    is_horizontal: bool = False
 
     def __post_init__(self):
         return super().__post_init__()
@@ -25,7 +25,6 @@ class PicCfg(DocCfg):
 
     @property
     def image_url(self) -> str:
-        import pdb;pdb.set_trace()
         return str(HtmlDir.image_url(self.image_filename))
 
 
@@ -34,7 +33,7 @@ PIC_CFGS = [
         id='EFTA02647641',
         note='sent after MBS successfully purged his political rivals in Saudi Arabia',
         pic_cfg=PicCfg(
-            id='EFTA02647641', # TODO: show image
+            id='EFTA02647641',
             date='2016-09-01',
             date_uncertain='approximate',
             file_type='webp',

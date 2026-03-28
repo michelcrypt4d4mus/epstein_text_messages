@@ -323,7 +323,7 @@ CRYPTO_CFGS = [
         date='2012-12-22',
         date_uncertain=True,
         note="photo of Epstein and Howard Lutnick on Epstein's island that was removed from DOJ website",
-        show_image=True,
+        is_displayed_as_img=True,
     ),
     DocCfg(id='EFTA00434306', note='calendar reminder for call with Howard Lutnick', date='2011-04-26', show_full_panel=True),
     DocCfg(

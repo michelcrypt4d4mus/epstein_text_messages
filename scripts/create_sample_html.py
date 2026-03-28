@@ -56,21 +56,21 @@ def print_test_panels():
 
 doc_types_to_sample = [
     [d for d in epstein_files.documents if d._config.pic_cfg],
-    [d for d in epstein_files.documents if d._config.show_image],
+    [d for d in epstein_files.documents if d._config.is_displayed_as_img],
     [d for d in epstein_files.documents if d._config.background_color], # Configured BG
-    # [d for d in epstein_files.other_files if d.category in CATEGORY_BG_STYLES],  # BG by category
-    # [e for e in epstein_files.emails if 'https' in e.text[0:1500]],
-    # [o for o in epstein_files.other_files if o.config and o.config.show_full_panel],
-    # [d for d in epstein_files._documents if d.suppressed_txt],
-    # [o for o in epstein_files.other_files if o._config.note_txt()],  # other file with description
-    # [o for o in epstein_files.other_files if 1000 < o.length < 5000 and not o._config.note_txt], # other files no desc
-    # [e for e in epstein_files.emails if e._config.note_txt()], # emails with description
-    # [e for e in epstein_files.emails if not e._config.note_txt()],  # email no desc
-    # epstein_files.emails_with_attachments,
-    # epstein_files.imessage_logs,
+    [d for d in epstein_files.other_files if d.category in CATEGORY_BG_STYLES],  # BG by category
+    [e for e in epstein_files.emails if 'https' in e.text[0:1500]],
+    [o for o in epstein_files.other_files if o.config and o.config.show_full_panel],
+    [d for d in epstein_files._documents if d.suppressed_txt],
+    [o for o in epstein_files.other_files if o._config.note_txt()],  # other file with description
+    [o for o in epstein_files.other_files if 1000 < o.length < 5000 and not o._config.note_txt], # other files no desc
+    [e for e in epstein_files.emails if e._config.note_txt()], # emails with description
+    [e for e in epstein_files.emails if not e._config.note_txt()],  # email no desc
+    epstein_files.emails_with_attachments,
+    epstein_files.imessage_logs,
 ]
 
-images = [d for d in epstein_files.documents if d._config.show_image]
+images = [d for d in epstein_files.documents if d._config.is_displayed_as_img]
 sample_docs = DocList.uniquify_by_id(flatten([docs[:SAMPLE_SIZE] for docs in doc_types_to_sample]))
 printer = DocPrinter(epstein_files=epstein_files)
 
