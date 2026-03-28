@@ -1075,6 +1075,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA02622513', recipients=[JULIA_SANTOS], author_reason='https://x.com/FlippersUpNow/status/2021662725412110565'),
     EmailCfg(id='EFTA02296655', recipients=[LEO_LOKING, 'Marites Tess McCorquodale', MERWIN_DELA_CRUZ], recipient_uncertain='"Leo"'),
     EmailCfg(id='EFTA00318111', recipients=[LEO_LOKING, MERWIN_DELA_CRUZ, YONI_KOREN]),
+    EmailCfg(id='EFTA00564404', recipients=[LEO_LOKING]),
     EmailCfg(
         id='EFTA02256631',
         recipients=[LESLEY_GROFF],
@@ -1179,7 +1180,6 @@ EMAILS_CONFIG = [
     ),
 
     # Descriptions
-    daily_schedule_email('EFTA00317801'),
     daily_schedule_email('EFTA00991049'),
     daily_schedule_email('EFTA00399801'),
     daily_schedule_email('EFTA00398014'),
@@ -1191,6 +1191,7 @@ EMAILS_CONFIG = [
     daily_schedule_email('EFTA00479255', author=LESLEY_GROFF),
     daily_schedule_email('EFTA00391916', author=LESLEY_GROFF, author_uncertain=True),
     daily_schedule_email('EFTA00378753', author=LESLEY_GROFF, author_uncertain=True, note='Mark Tollison was fired'),
+    daily_schedule_email('EFTA00317801', recipients=[JOJO_FONTANILLA, LEO_LOKING, MERWIN_DELA_CRUZ]),
     EmailCfg(
         id='EFTA00339256',
         author=LESLEY_GROFF,

@@ -399,4 +399,5 @@ MONEY_CFGS = [
     # Misc
     DocCfg(id='EFTA00186431', author='NES, LLC', display_text='159 pages of documents related to finances etc.', is_interesting=True),
     EmailCfg(id='EFTA00420694', note='Offshore Reinsurance', is_in_chrono=False),
+    EmailCfg(id='EFTA01030932', note="someone is in a hurry to buy Epstein's jet", is_interesting=True),
 ]
