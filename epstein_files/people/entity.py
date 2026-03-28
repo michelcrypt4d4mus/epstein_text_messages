@@ -141,7 +141,7 @@ class Entity(LoggingEntity):
         bio_pieces.extend([Text('aka ', AKA_STYLE).append(Text(alias, self.style)) for alias in self.aliases])
 
         if self.category:
-            category_style = self._style.style if str(self._style).startswith('dark') else self._style.dim
+            category_style = self._style.style if 'red' in str(self._style) else self._style.dim
             category_txt = Text(self.category.lower(), style=category_style)
             bio_pieces.append(enclose(category_txt, encloser='[]', encloser_style='dim'))
 
