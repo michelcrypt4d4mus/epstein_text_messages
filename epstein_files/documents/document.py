@@ -400,7 +400,7 @@ class Document(LoggingEntity):
                 pic_cfg=self._config.pic_cfg,
                 text=self.prettified_txt,
             )
-        elif (note_txt := self._config.note_txt()) and (args.side_panel_notes or self._config.is_displayed_as_img):
+        elif (note_txt := self._config.note_txt()) and not self._config.is_note_in_subheader:
             return BasePanel(
                 background_color=SIDE_PANEL_BG_STYLE,
                 border_style=SIDE_PANEL_BORDER_STYLE,
@@ -421,7 +421,7 @@ class Document(LoggingEntity):
         return without_falsey([
             self.subheader_info,
             # pic_cfg existence keeps the subtitle around instead of moving note to side_panel
-            None if (self.side_panel and not self._config.pic_cfg) else self._config.note_txt(),
+            self._config.note_txt() if self._config.is_note_in_subheader else None,
         ])
 
     @property

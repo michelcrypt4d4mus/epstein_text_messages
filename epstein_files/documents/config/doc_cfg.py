@@ -369,6 +369,13 @@ class DocCfg(LoggingEntity):
         return self.pic_cfg.image_url if self.pic_cfg else ''
 
     @property
+    def is_note_in_subheader(self) -> bool:
+        if self.pic_cfg:
+            return not self.is_displayed_as_img
+        else:
+            return not args.side_panel_notes
+
+    @property
     def replacement_preview_text(self) -> str:
         """Returns a string if `self.display_text` exists and is not too long."""
         return self.display_text if self.display_text and not self.has_full_ocr_text_replacement else ''
