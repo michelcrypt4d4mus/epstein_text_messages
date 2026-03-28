@@ -305,7 +305,7 @@ GOVERNMENT_CFGS = [
     fbi_interview(
         'EFTA01246710',
         PERRY_LANG,
-        "Epstein's chef claims Donald Trump came to Epstein's house for dinner",
+        "Epstein's chef who says Donald Trump came to Epstein's house for dinner",
         is_interesting=10,
         truncate_to=(6_000, 7_500),
     ),
