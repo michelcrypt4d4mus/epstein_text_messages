@@ -370,6 +370,7 @@ class DocCfg(LoggingEntity):
 
     @property
     def is_note_in_subheader(self) -> bool:
+        """Subhedaer is still needed if there's a side panel image."""
         if self.pic_cfg:
             return not self.is_displayed_as_img
         else:
@@ -484,6 +485,7 @@ class DocCfg(LoggingEntity):
     @property
     def truthy_props(self) -> dict[str, bool | str | None]:
         props = {k: v for k, v in asdict(self).items() if v or (is_bool_prop(k) and v is False)}
+        props.update({'is_note_in_subheader': self.is_note_in_subheader})
 
         if self.is_of_interest is not None:
             if self.is_of_interest == props.get('is_interesting'):
