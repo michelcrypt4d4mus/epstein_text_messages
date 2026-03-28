@@ -14,6 +14,11 @@ body {{
     color: {foreground};
 }}"""
 
+SPECIAL_ELITE_FONT_HTML = """
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
+"""
 
 @dataclass
 class HtmlTemplate:
@@ -27,6 +32,7 @@ class HtmlTemplate:
     <link rel="icon" type="image/x-icon" href="https://media.universeodon.com/accounts/avatars/109/363/179/904/598/380/original/eecdc2393e75e8bf.jpg" />
     <meta charset="UTF-8">
     {self.js_redirect()}
+    {SPECIAL_ELITE_FONT_HTML}
 
     <style>
         {STYLE_TEMPLATE}

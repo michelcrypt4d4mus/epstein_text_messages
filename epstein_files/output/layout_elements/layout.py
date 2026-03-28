@@ -180,7 +180,6 @@ class Layout:
         elements = ([self.file_info] if self.file_info else []) + indented_elemeents
 
         for i, element in enumerate(elements):
-            logger.warning(f'safe_padding(self.container_margin) is { safe_padding(self.container_margin)}')
             padding = self.container_margin if i == len(elements) - 1 else self.container_margin_horizontal
             element = Padding(element, safe_padding(padding)) if self.indent else element
             yield self._align(element)

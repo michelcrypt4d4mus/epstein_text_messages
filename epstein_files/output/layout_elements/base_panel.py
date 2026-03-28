@@ -22,6 +22,7 @@ class BasePanel:
     """Basically for a <div>."""
     background_color: str = ''
     border_style: str
+    document: 'Document | None' = None
     indent: int | float = 0
     max_width: int = 0
     padding: PaddingDimensions = 0
@@ -46,20 +47,22 @@ class BasePanel:
 
     def to_div(self, margins: list[int | float] | None = None, css: OptionalCssProps = None, width: int = 0) -> str:
         """Create an HTML <div> string for this panel."""
-        div_props = {
-            **self._base_div_css(margins),
-            **PANEL_BASE_PROPS,
-            **border_css_props(self.border_style),
-            **self.color_css,
-            **self.padding_css,
-            **(margin_horizontal_css(self.indent) if self.indent else {}),
-            **(css or {}),
-        }
-
         render_width = width or self.max_width
-        title = self.title.plain if self.title else ''   # TODO: make the title 'dim'
-        html = render_at_width(self.text, render_width) if render_width else render_to_html(self.text)
-        return div_with_legend(html, title, div_props)
+
+        return div_with_legend(
+            contents=render_at_width(self.text, render_width) if render_width else render_to_html(self.text),
+            legend=self.title.plain if self.title else '',  # TODO: make the title 'dim'
+            css_props={
+                **self._base_div_css(margins),
+                **PANEL_BASE_PROPS,
+                **border_css_props(self.border_style),
+                **self.color_css,
+                **self.padding_css,
+                **(margin_horizontal_css(self.indent) if self.indent else {}),
+                **(css or {}),
+            },
+            class_name=f"category_{self.document.category}" if self.document else ''  # Changes the font for category_article
+        )
 
     def _base_div_css(self, margins: list[int | float] | None = None) -> CssProps:
         return dimensions_to_margin_css(margins or PositionedRich.zero_dimensions())

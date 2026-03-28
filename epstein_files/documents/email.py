@@ -33,7 +33,6 @@ from epstein_files.output.epstein_highlighter import highlighter
 from epstein_files.output.highlight_config import HIGHLIGHTED_NAMES, get_style_for_name
 from epstein_files.output.html.builder import table_to_html
 from epstein_files.output.html.positioned_rich import to_em
-from epstein_files.output.layout_elements.base_panel import BasePanel
 from epstein_files.output.layout_elements.layout import MAX_BODY_PANEL_WIDTH, Layout, TableLayout, JustifyMethod
 from epstein_files.output.rich import DEFAULT_TABLE_KWARGS, build_table
 from epstein_files.util.constant.strings import APPEARS_IN, ARCHIVE_LINK_COLOR, AUTO, REDACTED, TIMESTAMP_DIM, OcrRepair
