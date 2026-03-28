@@ -17,6 +17,7 @@ from epstein_files.util.env import DEFAULT_WIDTH, args
 from epstein_files.output.rich import indent_txt
 from epstein_files.util.external_link import join_texts
 from epstein_files.util.helpers.data_helpers import without_falsey
+from epstein_files.util.logging import logger
 
 BOTTOM_PADDING = 1
 SIDE_PANEL_WIDTH = 30
@@ -57,7 +58,7 @@ class Layout:
     @property
     def body_html(self) -> str:
         """Overload in subclass."""
-        return self.body_panel.to_div(self.body_margin_horizontal)
+        return self.body_panel.to_div(self.horizontal_body_margin)
 
     @property
     def body_margin(self) -> list[int | float]:
@@ -73,16 +74,15 @@ class Layout:
         return padding
 
     @property
-    def body_margin_horizontal(self) -> list[int | float]:
-        """Just left and right margin, vertical margins are zeroed out."""
-        margin_dimensions = self.body_margin
-        margin_dimensions[0] = margin_dimensions[2] = 0
-        return margin_dimensions
-
-    @property
     def container_margin(self) -> list[int | float]:
         """The margins for the whole `Layout` including all panels."""
-        margin = [0, 0, self.margin_bottom, 0]
+        margin = self.container_margin_horizontal
+        margin[2] += self.margin_bottom
+        return margin
+
+    @property
+    def container_margin_horizontal(self) -> list[int | float]:
+        margin = PositionedRich.zero_dimensions()
 
         if self.justify == 'right':
             margin[1] = self.indent
@@ -92,8 +92,15 @@ class Layout:
         return margin
 
     @property
+    def horizontal_body_margin(self) -> list[int | float]:
+        """Just left and right margin, vertical margins are zeroed out."""
+        margin_dimensions = self.body_margin
+        margin_dimensions[0] = margin_dimensions[2] = 0
+        return margin_dimensions
+
+    @property
     def horizontal_body_margin_css(self) -> dict[str, str]:
-        return dimensions_to_margin_css(self.body_margin_horizontal)
+        return dimensions_to_margin_css(self.horizontal_body_margin)
 
     @property
     def justified_subheaders(self) -> list[Text]:
@@ -172,8 +179,10 @@ class Layout:
         indented_elemeents[-1].bottom = BOTTOM_PADDING
         elements = ([self.file_info] if self.file_info else []) + indented_elemeents
 
-        for element in elements:
-            element = Padding(element, safe_padding(self.container_margin)) if self.indent else element
+        for i, element in enumerate(elements):
+            logger.warning(f'safe_padding(self.container_margin) is { safe_padding(self.container_margin)}')
+            padding = self.container_margin if i == len(elements) - 1 else self.container_margin_horizontal
+            element = Padding(element, safe_padding(padding)) if self.indent else element
             yield self._align(element)
 
     def __str__(self) -> str:

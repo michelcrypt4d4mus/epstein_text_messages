@@ -51,6 +51,7 @@ def epstein_will(
     executors: list[str] | None = None,
     trust: str = '',
     note: str = '',
+    is_interesting: int = 13,
     **kwargs
 ) -> DocCfg:
     if trust:
@@ -66,7 +67,14 @@ def epstein_will(
         executors = sorted(executors)
         note += f" naming {', '.join(executors)} as {executor_label}" + ('s' if len(executors) > 1 else '')
 
-    return DocCfg(id=id, date=date, is_interesting=20, note=note, show_full_panel=True, **kwargs)
+    return DocCfg(
+        id=id,
+        date=date,
+        is_interesting=is_interesting,
+        note=note,
+        show_full_panel=True,
+        **kwargs
+    )
 
 
 def sar(id: str, author: str, note: str = '') -> DocCfg:
@@ -194,6 +202,7 @@ MONEY_CFGS = [
         '2003-06-27',
         [GHISLAINE_MAXWELL, IRA_ZICHERMAN],
         '2001',
+        is_interesting=2,
         note='amendment removing Jeffrey A. Schantz as trustee',
         truncate_to=(4_800, 8_600),
     ),
