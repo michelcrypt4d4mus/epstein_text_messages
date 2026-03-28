@@ -216,7 +216,7 @@ GIRLS_CFGS = [
         is_interesting=12,
         note=f"{KIRA_DIKHTYAR} connecting {NATALIA_SHAVKUNOVA} and asking for Warren Buffett's autograph for Mikhail Prokhorov",
     ),
-    EmailCfg(id='EFTA01890941', is_interesting=5),
+    EmailCfg(id='EFTA01890941', highlight_quote=f"{LOLA_MIGNON} announces her pseudonym", is_interesting=5),
     EmailCfg(id='EFTA01759826', highlight_quote='especially if you find me interesing girls there', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA01969878', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA01981669', truncate_to=NO_TRUNCATE),
@@ -523,7 +523,7 @@ GIRLS_CFGS = [
     EmailCfg(id='EFTA02669915', recipients=[OLGA_PONOMAR_BECKER]),
     EmailCfg(
         id='EFTA01889182',
-        highlighted_quote="I had my first voluntary playing with a girl and guy",
+        highlight_quote="I had my first voluntary playing with a girl and guy",
         is_interesting=10,
         note=f'"Olympic snowboarder" is {MARIA_PRUSAKOVA} who seems to have entered Epstein world at this time',
         recipients=[MIRANDA_MAKO],
