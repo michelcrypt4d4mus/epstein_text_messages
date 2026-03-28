@@ -655,6 +655,11 @@ GIRLS_CFGS = [
         recipients=[LESLEY_GROFF],
         show_with_name=KARYNA_SHULIAK,
     ),
+    EmailCfg(
+        id='EFTA00438475',
+        highlight_quote="it will be best for Karyna to travel as Crew member",
+        show_with_name=KARYNA_SHULIAK,
+    ),
 
     # Katya Gusarova
     EmailCfg(id='EFTA00695655', author=EKATERINA_GUSAROVA, comment='related to EFTA00680327'),
