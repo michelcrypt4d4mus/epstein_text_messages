@@ -327,6 +327,9 @@ GIRLS_CFGS = [
     EmailCfg(id='EFTA01990879', author=MIRANDA_MAKO, author_uncertain='Clifford Chance, could be Miranda'),
     EmailCfg(id='EFTA00671662', author=MIRANDA_MAKO, author_reason='quoted signature "Miranda"', note="yet another girl finder"),
 
+    # Alysia
+    EmailCfg(id='EFTA01154417', recipients=[ALYSIA_RIABENKOVA], recipient_uncertain=True),
+
     # Nadia
     EmailCfg(id='021814', author=NADIA_MARCINKO, author_reason='reply'),
     EmailCfg(id='021808', author=NADIA_MARCINKO, author_reason='reply', truncate_to=NO_TRUNCATE),
@@ -988,6 +991,7 @@ GIRLS_CFGS = [
         id='EFTA00902144',
         note=f"{RAMSEY_ELKHOLY} severing ties with Regina who is dating the same boyfriend as {RUSLANA_KORSHUNOVA} was before her death",
     ),
+    DocCfg(id='EFTA01130064', attached_to_email_id='EFTA00902144'),
 
     # Text msg
     TextCfg(
@@ -1014,6 +1018,7 @@ GIRLS_CFGS = [
 
     # Virginia Giuffre
     EmailCfg(id='EFTA00906567', highlight_quote="i need to totally discredit virgina roberts", truncate_to=AUTO),
+    EmailCfg(id='EFTA01159195', note=f'criminal history of {RONALD_EPPINGER} whom Epstein calls {VIRGINIA_GIUFFRE}\'s "pimp"', truncate_to=500),
 
     # Sarah Kellene
     EmailCfg(id='EFTA02412698', author=SARAH_KELLEN),

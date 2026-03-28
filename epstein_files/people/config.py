@@ -2394,7 +2394,7 @@ HIGHLIGHTED_NAMES = [
         style=JOURNALISM_STYLE,
         entities=[
             Entity('Adam Bly', "editor of SEED magazine"),
-            Entity('Alain Forget', "author of \"How To Get Out Of This World ALIVE\"", match_partial=None),
+            Entity(ALAIN_FORGET, "author of \"How To Get Out Of This World ALIVE\"", match_partial=None),
             Entity('Alex Yablon', "New York Magazine fact checker (?)"),
             Entity('Barry Diller', 'billionaire co-founder of Fox News', url=WIKIPEDIA),
             Entity(
@@ -2695,7 +2695,7 @@ HIGHLIGHTED_NAMES = [
             ),
             Entity(NEAL_KASSELL, "professor of neurosurgery at University of Virginia"),
             Entity(PETER_ATTIA, "longevity medicine"),
-            Entity('Samuel Klagsbrun', "psychiatrist, treated women in Epstein's circle"),
+            Entity(SAMUEL_C_KLAGSBRUN, "psychiatrist, treated women in Epstein's circle"),
             Entity(
                 'Stephen R. Alexander',
                 f"Epstein's sex-addiction therapist {QUESTION_MARKS}",
@@ -2976,6 +2976,7 @@ HIGHLIGHTED_NAMES = [
             ),
             Entity(JEFF_FULLER, f"president of {JEAN_LUC_MC2} USA", email_addresses=['jeff@mc2mm.com'], match_partial=None),
             Entity(MANUELA_MARTINEZ, "Mega Partners (Brazilian agency)", r"Manuela (- Mega Partners|Martinez)", match_partial=None),
+            Entity('Mark Kaminski', f'boyfriend of {RUSLANA_KORSHUNOVA} (at the time of her death?)'),
             Entity(MARIANA_IDZKOWSKA, 'Polish model, island visitor', r"(Mariana )?[Il]d[źiz]kowska?"),
             Entity('Michael Sanka', f"{JEAN_LUC_MC2} {QUESTION_MARKS}", match_partial=None),
             Entity(NAOMI_CAMPBELL, 'supermodel', match_partial=None, url=WIKIPEDIA),
@@ -3034,7 +3035,7 @@ HIGHLIGHTED_NAMES = [
             r"Faena",
             r"(?<!(ID|ge|in|mg|op|te|xt)\s)model(ing|s)",
             r"noah\s*models(.com)?",
-            r"Victoria's Secret",
+            r"Victoria'?s Secret",
         ],
     ),
     HighlightedNames(
@@ -3352,7 +3353,7 @@ HIGHLIGHTED_NAMES = [
             Entity(ALEKSANDRA_KARPOVA, f"{CRYPTO_PR_LAB} co-founder", r"Aleksandra Karpova"),
             Entity('Alena Davydenkova', 'girl'),
             Entity('Alisa Khayrutdinova', 'girl'),
-            Entity('Alysia Riabenkova', 'Russian painter', r"Alesia|Alysia( Riabenkova)?|Riabenkova"),
+            Entity(ALYSIA_RIABENKOVA, 'Russian painter', r"Alesia|Alysia( Riabenkova)?|Riabenkova"),
             Entity(ANASTASIYA_SIROOCHENKO, 'girl', r"Anastasiya( Siro(chenko)?)?"),
             Entity(ANNA_KASATKINA, 'Russian girl'),
             Entity(
@@ -3931,6 +3932,7 @@ HIGHLIGHTED_NAMES = [
                 r"Celina( E(\.|dith)?)?( Dubin)?(?! Midelfart)",
                 match_partial=None,
             ),
+            Entity('Clemence Biau', 'French', match_partial=None),
             Entity(
                 'Emma Sergeant',
                 'painter introduced to Ghislaine by Robert Hanson',

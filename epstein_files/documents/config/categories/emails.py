@@ -477,7 +477,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='025643', is_fwded_article=True, comment='Alice Fisher stated to be in the mix of potential candidates for new FBI director.'),
     EmailCfg(id='029905', is_fwded_article=True, comment='Ann Coulter'),
     EmailCfg(id='031340', is_fwded_article=True, comment='article about Alex Jones threatening Robert Mueller'),
-    EmailCfg(id='029021', is_fwded_article=True, comment='article about bannon sent by Alain Forget'),
+    EmailCfg(id='029021', is_fwded_article=True, comment=f'article about bannon sent by {ALAIN_FORGET}'),
     EmailCfg(id='026605', is_fwded_article=True, comment='article about Ruemmler turning down attorney general job by NEDRA PICKLER'),
     EmailCfg(id='031569', is_fwded_article=True, comment='article by Kathryn Alexeeff fwded to Peter Thiel'),
     EmailCfg(id='013405', is_fwded_article=True, comment='articles about epstein case'),

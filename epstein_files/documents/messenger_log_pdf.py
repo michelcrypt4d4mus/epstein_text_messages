@@ -11,10 +11,11 @@ from epstein_files.util.helpers.data_helpers import coerce_utc
 from epstein_files.util.logging import logger
 from epstein_files.util.helpers.string_helper import collapse_whitespace, indented, quote
 
+MSG_START_PATTERN = '(iMessage|Skype)'
 BRACKET_NUM_PATTERN = r"\s*\[?[\dIl]*\]?\s*"
 DATE_PATTERN = r"(?P<timestamp>\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2})\s+\(?UTC\)?" + fr"(?:{BRACKET_NUM_PATTERN})?"
 SENDER_PATTERN = r"\s*Sender:(?P<sender>.*?)Participants:?(?P<participants>(\s*?|.*?\))$)"
-MSG_REGEX = re.compile(fr'iMessage\s+(?:{BRACKET_NUM_PATTERN})?{DATE_PATTERN}{SENDER_PATTERN}(?P<msg>.*?)(?=iMessage|NYCO24362|SMS)', re.DOTALL | re.M)
+MSG_REGEX = re.compile(fr'{MSG_START_PATTERN}\s+(?:{BRACKET_NUM_PATTERN})?{DATE_PATTERN}{SENDER_PATTERN}(?P<msg>.*?)(?={MSG_START_PATTERN}|NYCO24362|SMS)', re.DOTALL | re.M)
 REDACTED_AUTHOR_REGEX = re.compile(r"^([-+•_1MENO.=F]+|[4Ide])$")
 # Sometimes participants field ends up in the message
 JUNK_PREFIX_REGEX = re.compile(r"Sender: Self .{1,3}eeitunes.{,10}Participants: ? \(?")
@@ -36,6 +37,7 @@ IMESSAGE_PDF_IDS = [
     'EFTA00509258',
     'EFTA00508702',    # TODO: verify
     'EFTA00786793',    # TODO: verify
+    'EFTA01214317',    # TODO: verify, also includes Skype logs
     # 'EFTA01616222',  # TODO: Doesn't parse well
     # 'EFTA01613143',  # TODO: Doesn't parse well
 ]
@@ -58,6 +60,8 @@ class MessengerLogPdf(MessengerLog):
 
             if sender.startswith('Self'):
                 sender = JEFFREY_EPSTEIN
+            elif 'alain forget' in sender:
+                sender = ALAIN_FORGET
             elif self.file_id == 'EFTA00781689' and timestamp_str.startswith('2018-10-0') and sender in ['', 't']:
                 sender = STEVE_BANNON
             elif self.file_id == 'EFTA00508054' and sender == 'Lawrence':
