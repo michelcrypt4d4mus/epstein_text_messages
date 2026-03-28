@@ -145,8 +145,9 @@ class DocCfg(LoggingEntity):
         note (str, optional): description of what's in this file
         num_preview_chars (int, optional): customize number of preview_chars shown in `OtherFile` tables
         people (list[str]): override `Document.people()` with a fixed set of names (meaning no scan of the text)
+        pic_cfg (PicCfg): configuration for image to show alongside or instead of (see `is_displayed_as_img`) the contents of the file
         show_full_panel (bool, optional): set `is_interesting=True` and show in a full panel view, not in a table
-        show_image (bool, optional): requires file in docs/doc_images/EFTAXXXXXXX.pnd
+        is_displayed_as_img (bool, optional): show image instead of text, requires file in `docs/doc_images/`
         show_with_name (str, optional): if set this document will be displayed all with the person specified
         truncate_to (int | tuple[int, int], optional): Limite characters displayed, also sets `show_full_panel=True`
         url (str, optional): URL with more info about this document
@@ -176,8 +177,9 @@ class DocCfg(LoggingEntity):
     non_participants: list[str] = field(default_factory=list)  # TODO: this sucks
     note: str = ''
     num_preview_chars: int | None = None
+    pic_cfg: 'PicCfg | None' = None
     show_full_panel: bool = False
-    show_image: bool = False
+    is_displayed_as_img: bool = False
     show_with_name: str = ''
     truncate_to: CharRangeAuto | int | None = None
     url: str = ''
@@ -207,7 +209,7 @@ class DocCfg(LoggingEntity):
                 self._exit_with_error(f"Failed to parse configured date '{self.date}'", e)
 
         self.set_category(self.category)
-        self.show_full_panel = self.show_full_panel or self.show_image
+        self.show_full_panel = self.show_full_panel or self.is_displayed_as_img
 
         # background_color, highlight_quote, or a tuple truncate_to set show_full_panel to true
         if self.background_color or self.highlight_quote or isinstance(self.truncate_to, tuple):
@@ -219,14 +221,22 @@ class DocCfg(LoggingEntity):
                 self.note = join_truthy(self.note, f'{QUOTE_PREFIX}: {quote(quote_note)}', joiner)
 
         # show_full_panel (and highlight_quote) set is_interesting=10
-        if self.show_full_panel and self.is_interesting is None:
+        if (self.show_full_panel or self.pic_cfg) and self.is_interesting is None:
             self.is_interesting = 10
 
         if self.show_with_name and not self.is_interesting:
             self.is_interesting = True
 
+        # TODO: probably some things with truncate_to are not worth showing
         if self.truncate_to and not self.show_full_panel:
             self.show_full_panel = True
+
+        if self.is_displayed_as_img and not self.pic_cfg:
+            from epstein_files.documents.config.pic_cfg import PicCfg
+            self.pic_cfg = PicCfg(id=self.id)
+
+        if self.pic_cfg and not self.pic_cfg.id:
+            self.pic_cfg.id = self.id
 
         if self.duplicate_of_id or self.duplicate_ids:
             self.dupe_type = self.dupe_type or SAME
@@ -356,10 +366,7 @@ class DocCfg(LoggingEntity):
 
     @property
     def image_url(self) -> str:
-        if self.show_image:
-            return str(HtmlDir.image_url(f"{self.id}.png"))
-        else:
-            return ''
+        return self.pic_cfg.image_url if self.pic_cfg else ''
 
     @property
     def replacement_preview_text(self) -> str:

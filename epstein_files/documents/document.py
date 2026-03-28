@@ -395,7 +395,12 @@ class Document(LoggingEntity):
     @property
     def side_panel(self) -> BasePanel | None:
         """Experimental feature to put note in a horizontal layout panel."""
-        if (args.side_panel_notes or self._config.show_image) and (note_txt := self._config.note_txt()):
+        if self._config.pic_cfg and not self._config.is_displayed_as_img:
+            return ImagePanel(
+                pic_cfg=self._config.pic_cfg,
+                text=self.prettified_txt,
+            )
+        elif (note_txt := self._config.note_txt()) and (args.side_panel_notes or self._config.is_displayed_as_img):
             return BasePanel(
                 background_color=SIDE_PANEL_BG_STYLE,
                 border_style=SIDE_PANEL_BORDER_STYLE,
@@ -415,7 +420,8 @@ class Document(LoggingEntity):
         """0 to 2 sentences containing the `subheader_info` and any configured `note` text."""
         return without_falsey([
             self.subheader_info,
-            None if self.side_panel else self._config.note_txt(),
+            # pic_cfg existence keeps the subtitle around instead of moving note to side_panel
+            None if (self.side_panel and not self._config.pic_cfg) else self._config.note_txt(),
         ])
 
     @property
@@ -548,12 +554,11 @@ class Document(LoggingEntity):
         """Allows for proper right vs. left justify."""
         panel_timestamp = Text(f"({self.panel_title_timestamp})", style='dim') if self.panel_title_timestamp else None
 
-        if self._config.show_image:
-            self._debug_log(f"creating ImagePanel...")
+        if self._config.is_displayed_as_img:
+            self._log(f"showing ImagePanel instead of text contents...")
 
             body_panel = ImagePanel(
-                border_style=self.border_style,
-                img_url=self._config.image_url,
+                pic_cfg=self._config.pic_cfg,
                 text=self.prettified_txt,
                 title=panel_timestamp
             )
