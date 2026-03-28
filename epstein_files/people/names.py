@@ -235,10 +235,12 @@ BILL_GATES = 'Bill Gates'
 BILL_RICHARDSON = 'Bill Richardson'
 BOBBI_C_STERNHEIM = 'Bobbi C. Sternheim'
 BOBBY_KOTICK = 'Bobby Kotick'
+BRICE_GORDON = 'Brice Gordon'
 BROCK_PIERCE = 'Brock Pierce'
 CHRIS_POOLE = 'Chris Poole'
 CHRISTIAN_EVERDELL = 'Christian Everdell'
 CHRISTOPHER_DILORIO = 'Christopher Dilorio'
+CLARE_IVEAGH = 'Clare Iveagh'
 DANIEL_SCHMACHTENBERGER = 'Daniel Schmachtenberger'
 DANNY_HILLIS = 'Danny Hillis'
 DAPHNE_WALLACE = 'Daphne Wallace'
@@ -294,12 +296,14 @@ LORENZO_DE_MEDICI = 'Lorenzo de Medici'
 LUKE_D_THORBURN = 'Luke D. Thorburn'
 MADARS_VIRZA = 'Madars Virza'
 MARK_ZEFF = 'Mark Zeff'
+MARVIN_MINSKY = 'Marvin Minsky'
 MELANIE_PHILLIPS = 'Melanie Phillips'
 MICHAEL_FOWLER = 'Michael Fowler'
 MIRANDA_MAKO = 'Miranda Mako'
 NATALIA_BELOUSOVA = 'Natalia Belousova'
 NATALIA_MOLOTKOVA = 'Natalia Molotkova'
 NATALIA_SHAVKUNOVA = 'Natalia Shavkunova'
+NATALYA_MALYSHEV = 'Natalya Malyshev'
 NATHAN_MYHRVOLD = 'Nathan Myhrvold'
 NATHANIEL_AUGUST = 'Nathaniel August'
 NICOLE_JUNKERMANN = 'Nicole Junkermann'
@@ -331,6 +335,7 @@ UMAR_DZHABRAILOV = 'Umar Dzhabrailov'
 VALDAS_PETREIKIS = 'Valdas Petreikis'
 WANDI_ZHU = 'Wandi Zhu'
 WHITFIELD_DIFFIE = 'Whitfield Diffie'
+WILLIAM_RILEY = 'William Riley'
 YONI_KOREN = 'Yoni Koren'
 YUKO_BARNABY = 'Yuko Barnaby'
 YULIA_DOROKHINA = 'Yulia Dorokhina'
@@ -363,6 +368,7 @@ NAOMI_CAMPBELL = 'Naomi Campbell'
 NERIO_ALESSANDRI = 'Nerio Alessandri'
 PAUL_G_CASSELL = 'Paul G. Cassell'
 RUDY_GIULIANI = 'Rudy Giuliani'
+RUSLANA_KORSHUNOVA = 'Ruslana Korshunova'
 SERGEY_BELYAKOV = 'Sergey Belyakov'
 STEVE_WYNN = 'Steve Wynn'
 TED_LEONSIS = 'Ted Leonsis'
@@ -370,6 +376,7 @@ TULSI_GABBARD = 'Tulsi Gabbard'
 VIRGINIA_GIUFFRE = 'Virginia Giuffre'
 
 # Organizations
+ALBERTO_PINTO_CABINET = 'Alberto Pinto Cabinet'
 ALL_IN_PODCAST = 'All-In Podcast'
 ASIA_GATEWAY = 'Asia Gateway'
 ATORUS = 'ATorus'
@@ -551,20 +558,6 @@ def extract_last_name(name: str) -> str:
         return ' '.join(first_last_names[-2:])
     else:
         return first_last_names[-1]
-
-
-def reverse_first_and_last_names(name: Name) -> Name:
-    """If there's a comma in the name in the style 'Lastname, Firstname', reverse it and remove comma."""
-    if name is None:
-        return None
-    elif '@' in name:
-        return name.lower()
-
-    if ', ' in name:
-        names = name.split(', ')
-        return f"{names[1]} {names[0]}"
-    else:
-        return name
 
 
 def sort_names(names: Sequence[Name]) -> list[Name]:

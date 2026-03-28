@@ -1,7 +1,8 @@
 # NEXT RELEASE
-* Automatically copy custom HTML into place
 * Change font depending on category
 * Add `PicCfg` to allow images to be shown next to/instead of text
+* Fix `epstein_diff` so it works with EFTA files
+* Automatically copy custom HTML into place
 
 # 1.11.0
 * Add `--category` option to limit output by category

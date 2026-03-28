@@ -166,12 +166,11 @@ def epstein_grep():
                 console.print(doc._debug_txt(), style='dim')
                 console.line()
 
-        matched_ids = [result.document.file_id for result in search_results]
-        txt = Text("\n\n'").append(search_term, style='bright_red').append("'").append(' matched IDs: ')
-        console.print(txt.append(' '.join(matched_ids), style='cyan'))
+        matched_docs = [result.document for result in search_results]
+        DocList.print_doc_ids(matched_docs, f"Matched '{search_term}'")
 
         if args.repair:
-            epstein_files.repair_ids(matched_ids)
+            epstein_files.repair_ids([doc.file_id for doc in matched_docs])
 
 
 def epstein_pdf_path():
@@ -196,7 +195,7 @@ def epstein_show():
     try:
         if args.names:
             people = EpsteinFiles.get_files().person_objs(args.names)
-            raw_docs = [doc for doc in flatten([p.emails for p in people])]
+            raw_docs = [doc for doc in flatten([p.unique_documents for p in people])]
         else:
             ids = [extract_file_id(arg.upper().strip().strip('_')) for arg in args.positional_args]
             with_attachment_ids = list(set(ids).intersection(ids_with_attachments))
@@ -260,6 +259,9 @@ def epstein_show():
 
         if args.debug:
             console.print(doc._debug_txt(), style='dim')
+
+    if args.names:
+        DocList.print_doc_ids(docs, f"{', '.join(args.names)}")
 
     if args.stats:
         print_json(highlighter.highlight_counts, "Highlight counts")

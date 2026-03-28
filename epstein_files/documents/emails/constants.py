@@ -102,11 +102,11 @@ REPLY_PATTERNS = [
     fr"(?<!M)On ({REPLY_ON_DATE_PATTERN})[=., ].*{REPLY_LINE_ENDING_PATTERN}",
     FORWARDED_LINE_PATTERN,
     r"At \d{2}:\d{2} [AP]M.*wrote:",
-    r"In a message dated \d+/\d+/\d+.*writes:",
+    r"In a message dated.*writes:",
     r"Le .* a [eo](cr|m)it ?:?",                        # French
     r"Am \d\d\.\d\d\..*schrieb.*",                      # German
     r"[Il][Il] giorno .*scritto:",                      # Italian
-    r"(Den .* folgende|(fre|lor|son)\. .* skrev .*):",  # Norwegian
+    r"(Den .* skrev .*):",  # Norwegian
     r"Dnia .*napisal\(a\):",                            # Polish
     fr"({join_patterns(RUSSIAN_WEEKDAYS)}).*:",         # Russian
     r"^.* написал(\([аa]\))?:$",                        # Russian
@@ -145,7 +145,7 @@ SENT_FROM_DEVICE_SUFFIXES = [
     r"and string",
     r"AT&T",
     r"Droid",
-    "from Etisalat",
+    r"from Etisalat",
     r" gesendet",
     r"iOS",
     r"iPada?",
@@ -154,6 +154,7 @@ SENT_FROM_DEVICE_SUFFIXES = [
     r"Samsung Mobile",
     r"Surface(\s+RT)?",
     r"BlackBerry(.*(AT&T|device|Handheld|Orange|smartphone|T- ?Mobile))?",
+    r"Wireless Device",
 ]
 
 # bespoke signature patterns
@@ -203,15 +204,16 @@ EMAIL_SIGNATURE_REGEXES = {
     EDUARDO_ROBLES: re.compile(r"(• )?email:.*\n(• )?email:\n(• )?website: www.creativekingdom.com\n(• )?address: 5th Floor Office No:504 Aspect Tower,\nBusiness Bay, Dubai United Arab Emirates."),
     'Erika Kellerhals': re.compile(r"Notice: This communica.ion may contain privileged or other confidential.{,310}delete the copy you recei.ed. Thank you.?", re.DOTALL),
     ERIC_ROTH: re.compile(r"2221 Smithtown Avenue\nLong Island.*\nRonkonkoma.*\n(.1. )?Phone\nFax\nCell\ne-mail"),
-    FAITH_KATES: re.compile(r"(15 Watts Street.{,40})?NOTE ?: ?This message including any attachments contains information.{,750}messagelabs.com/email", re.DOTALL),
+    FAITH_KATES: re.compile(r"(15 Watts Street.{,40})?NOTE ?: ?This message including any attachments contains information.{,750}(omissions\s+in\s+this\s+message\s+or\s+any\s+attachments\.?|messagelabs.com/email)", re.DOTALL),
     FRANCESCA_HALL: re.compile(r"The contents of this e-mail message and.{,600}message and its attachments[.,]? if any", re.DOTALL),
-    GHISLAINE_MAXWELL: re.compile(r"FACEBOOK\nTWITTER\nG\+\nPINTEREST\nINSTAGRAM\nPLEDGE\nTHE DAILY CATCH"),
+    GHISLAINE_MAXWELL: re.compile(r"(\n(FACEBOOK|TWITTER|G\+|PINTEREST|INSTAGRAM|PLEDGE|THE DAILY CATCH)){5,}"),
     'Javier Solano': re.compile(r"www.SolanoLegal.{,120}Bronx.{,20}?$(\n[TF]:$)*", re.DOTALL | re.MULTILINE),
     JEANNE_M_CHRISTENSEN: re.compile(r"[A ]*(Please consider the environment before printing this e-mail.{,5})?This communication may contain Confidential.{,500}(facsimile|mail)\s+or\s+phone. Thank you\.?|Partner\s+WIGDOR.{,12}(85 Fifth Avenue|New York).{,20}\s+(T:.{,6}\n)?.{,15}com", re.DOTALL),
-    JEFFREY_EPSTEIN: re.compile(r"(([* =0,]+|please .ote.{,6})\s+)?([>»•]+ )*[T=]h[e=][ =]inf[o=].ma[t=][i=][o=][n=] [c=][o=][n=][t=]a[i=]ne. i. t..s..ommunic.ti.{,600}all\s+([>»] )*.t.a.hm..t..([>»\s]+copyright\s+.[ae]ll[\s=]+[r=][i=][g=][h=][t=][s=]\s+[r=][e=][s=][e=][r=][v=][e=][d=]?)?", re.DOTALL),
+    JEFFREY_EPSTEIN: re.compile(r"(([* =0,]+|please .ote.{,6})\s+)?([>»•]+ )*[T=]h[e=][ =][Ii]nf[o=].ma[t=][i=][o=][n=] [c=][o=][n=][t=]a[i=]ne. [iI=]. t..s..ommunic.ti.{,600}all\s+([>»] )*.t.a.hm..t..([>»\s]+copyright\s+.[ae]ll[\s=]+[r=][i=][g=][h=][t=][s=]\s+[r=][e=][s=][e=][r=][v=][e=][d=]?)?", re.DOTALL),
     JES_STALEY: re.compile(r"This email is confidential and subject to important.{,250}disclosures/email\.?", re.DOTALL),
     JESSICA_CADWELL: re.compile(r"(f.*\n)?Certified Para.*\nFlorida.*\nBURMAN.*\n515.*\nSuite.*\nWest Palm.*(\nTel:.*)?(\nEmail:.*)?", re.IGNORECASE),
     JOSHUA_FINK: re.compile(r"(\*{,80}\s+)?This e-mail and any attachments thereto.{,650}will be provided upon request\.", re.DOTALL),
+    JP_MORGAN: re.compile(r"NOT AN OFFICIAL CONFIRMATION.{,1000}contact your JPMorgan Advisor\.?", re.DOTALL),
     KEN_JENNE: re.compile(r"Ken Jenne\nRothstein.*\n401 E.*\nFort Lauderdale.*", re.IGNORECASE),
     LARRY_SUMMERS: re.compile(r"Please direc. all scheduling.{,150}?(\n(Follow me on twitter? ?@?l?h?s?u?m?m?e?r?s?|www.la(n|rr)ysummer..\w{3,5})){1,}(<.{,6}[>»])?(\s*<http.{,30}/?[>»])?", re.IGNORECASE | re.DOTALL),
     LAWRENCE_KRAUSS: re.compile(r"Lawrence (M. )?Krauss\n(Director.*\n)?(Co-director.*\n)?Foundation.*\nSchool.*\n(Co-director.*\n)?(and Director.*\n)?Arizona.*(\nResearch.*\nOri.*\n(krauss.*\n)?origins.*)?", re.IGNORECASE),
@@ -222,6 +224,7 @@ EMAIL_SIGNATURE_REGEXES = {
     MICHAEL_MILLER: re.compile(r"Michael C. Miller\nPartner\nwww.steptoe.com/mmiller\nSteptoe\n(Privileged.*\n)?(\+1\s+)?direct.*\n(\+1\s+)?(\+1\s+)?fax.*\n(\+1.*)?cell.*\n(www.steptoe.com\n)?This message and any.*\nyou are not.*\nnotify the sender.*"),
     NATALIA_MOLOTKOVA: re.compile(r"^Centurion Relationship Manager(\nnatal.*)?(\n\(\d.*)?\nHours.*", re.MULTILINE),
     NICHOLAS_RIBIS: re.compile(r"60 Morris Turnpike 2FL\nSummit,? NJ.*\n0:\nF:\n\*{20,}\nCONFIDENTIALITY NOTICE.*\nattachments.*\ncopying.*\nIf you have.*\nthe copy.*\nThank.*\n\*{20,}"),
+    NICOLE_JUNKERMANN: re.compile(r"(Mob:.{,14}\n)?Disclaimer: The information contained in this e-mail message is intended.{,600}products or services mentioned in this e-mail\.?", re.DOTALL),
     PAUL_BARRETT: re.compile(r"Paul Barrett[\n\s]+Alpha Group Capital LLC[\n\s]+(142 W 57th Street, 11th Floor, New York, NY 10019?[\n\s]+)?(al?[\n\s]*)?ALPHA GROUP[\n\s]+CAPITAL"),
     'Paul Tweed': re.compile(r"Paul Tweed is also a member of.{,1100}arising from any bug or virus infection", re.DOTALL),
     'Paul Venables': re.compile(fr"{QUOTE_INDENT_GROUP_NEWLINES}*This email{QUOTE_INDENT_GROUP_NEWLINES}*\(including attachments\) is confidential.{{,600}}Matrix{QUOTE_INDENT_GROUP_NEWLINES}*Chambers.*?(?=\Z|\n)", re.DOTALL),
@@ -239,6 +242,7 @@ EMAIL_SIGNATURE_REGEXES = {
     TONJA_HADDAD_COLEMAN: re.compile(fr"Tonja Haddad Coleman.*\nTonja Haddad.*\nAdvocate Building\n315 SE 7th.*(\nSuite.*)?\nFort Lauderdale.*(\n({REDACTED} )?facsimile)?(\nwww.tonjahaddad.com?)?(\nPlease add this efiling.*\nThe information.*\nyou are not.*\nyou are not.*)?", re.IGNORECASE),
     UNKNOWN: re.compile(r"(This message is directed to and is for the use of the above-noted addressee only.*\nhereon\.)", re.DOTALL),
     USANYS: re.compile(r"Southern District of New York\s+One Saint Andrew's Plaza\s+New York,?\s*New York 10007(\s+Tel)?"),
+    WILLIAM_RILEY: re.compile(r"This message \(and any associated files\) is intended only.{,950}provided by any third party sources\.?", re.DOTALL),
 }
 
 

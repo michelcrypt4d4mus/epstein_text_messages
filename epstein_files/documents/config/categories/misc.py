@@ -26,7 +26,6 @@ MISC_CFGS = [
     press_release('029326', EPSTEIN_VI_FOUNDATION, '2013-02-15'),
     press_release('026565', EPSTEIN_VI_FOUNDATION, '2013-02-15', comment=f'maybe a draft of 029326'),
     DocCfg(id='022494', author='DOJ', note=f'Foreign Corrupt Practices Act (FCPA) Resource Guide'),
-    DocCfg(id='EFTA00616025', author='Alberto Pinto Cabinet', note='furniture inventory', truncate_to=900),
     DocCfg(id='023096', author=EPSTEIN_VI_FOUNDATION, note=f'blog post', date='2012-11-15'),
     DocCfg(id='027071', author=FEMALE_HEALTH_COMPANY, note=f"brochure requesting donations for female condoms in Uganda"),
     DocCfg(id='027074', author=FEMALE_HEALTH_COMPANY, note=f"pitch deck (USAID was a customer)"),

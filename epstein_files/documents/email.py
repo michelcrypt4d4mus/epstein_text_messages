@@ -48,7 +48,7 @@ from epstein_files.util.logging import logger
 
 # Email bod regexes
 BAD_FIRST_LINE_REGEX = re.compile(r'^(>>|Grant_Smith066474"eMailContent.htm|LOVE & KISSES)$')
-BAD_LINE_REGEX = re.compile(r'^([>=];?|[>»]*=20|\d{1,2}|PAGE INTENTIONALLY LEFT BLANK|Classification: External Communication|Hide caption|Importance:?\s*High|Priority: normal|[iI,•]|[1i] (_ )?[il]|, [-,]|L\._|_filtered|si.nature.asc|.*(yiv0232|font-family:|margin-bottom:).*)$')
+BAD_LINE_REGEX = re.compile(r'^([>=];?|[>»]*=20|\d{1,2}|PAGE INTENTIONALLY LEFT BLANK|Classification: External Communication|Hide caption|Importance:?\s*(High|Normal)|Priority: normal|[iI,•]|[1i] (_ )?[il]|, [-,]|L\._|_filtered|si.nature.asc|.*(yiv0232|font-family:|margin-bottom:).*)$')
 BAD_SUBJECT_CONTINUATIONS = ['orwarded', 'Hi ', 'Sent ', 'AmLaw', 'Original Message', 'Privileged', 'Sorry', '---']
 LINK_LINE_REGEX = re.compile(r"^[>• ]*htt")
 LINK_LINE2_REGEX = re.compile(r"^[-\w.%&=/]{5,}$")
@@ -105,7 +105,7 @@ OCR_REPAIRS: OcrRepair = {
     re.compile(r"([<.=_HIM][<>.=_HIM14]{5,}[<>.=_HIM]|MOMMINNEMUMMIN) *(wrote:?)?"): rf"{REDACTED} \2",
     re.compile(r"([,<>_]|AM|PM)\n(>)? ?wrote:?"): r'\1\2 wrote:',
     # Headers
-    re.compile(r"^From "): 'From: ',  # first line only
+    re.compile(r"\AFrom([• ]|$)", re.MULTILINE): 'From: ',  # first line only
     re.compile(r"^((From|To):? ?)[_1.]{5,}", re.MULTILINE): rf"\1: {REDACTED}",  # Redacted email addresses
     re.compile(fr"^(From|To) ?{REDACTED}", re.MULTILINE): fr"\1: {REDACTED}",
     re.compile(r"I ?(od|nl)ine-Images:"): 'Inline-Images:',
@@ -113,6 +113,7 @@ OCR_REPAIRS: OcrRepair = {
     re.compile(r"^((?:B?cc|To):.*)\n(>?;.*)", re.IGNORECASE | re.MULTILINE): r'\1 \2',
     re.compile(r"^(Sent|Subject) (?!by|[Ff]rom|on|using|[Rr]emote|[Vv]ia|with)", re.MULTILINE): r'\1: ',
     re.compile(r"^Subject[.•]{,2} ", re.MULTILINE): 'Subject: ',
+    re.compile('^Reply ?- ?T[°o]:?', re.MULTILINE): 'Reply-To:',
     re.compile(r"^(Forwarded|Original) Message$", re.IGNORECASE | re.MULTILINE): r"--- \1 Message ---",  # Make forward lines match our highlight
     # Excessive quote chars
     re.compile(r"wrote:\n[>»]+(\n[>»]+)"): r"wrote:\1",
@@ -136,6 +137,7 @@ OCR_REPAIRS: OcrRepair = {
     # Names / email addresses
     'Alireza lttihadieh': ALIREZA_ITTIHADIEH,
     'bamaby': 'barnaby',
+    'lan Osborne': 'Ian Osborne',
     'Miroslav Laj6ak': MIROSLAV_LAJCAK,
     'Ross G°w': ROSS_GOW,
     'Torn Pritzker': TOM_PRITZKER,
@@ -155,7 +157,7 @@ OCR_REPAIRS: OcrRepair = {
     'Sony for all the typos': 'Sorry for all the typos',
     'twitter glhsummers': 'twitter @lhsummers',
     # NOTE: These three must come in this order!
-    re.compile(r'Blac[il]cBerry'): 'BlackBerry',
+    re.compile(r'Blac(k|[il]c)?Be(r[rt]|n)y'): 'BlackBerry',
     'BlackBerry by AT &T': 'BlackBerry by AT&T',
     'BlackBerry from T- Mobile': 'BlackBerry from T-Mobile',
     'BlackBerry°': 'BlackBerry®',
@@ -166,6 +168,7 @@ OCR_REPAIRS: OcrRepair = {
     re.compile(r'^INW$', re.MULTILINE): REDACTED,
     re.compile(r'Sent from one of my many test mobile devices while on the go and changing the world\s+:\s+so\s+my\s+apologies for any typos'): 'Sent from one of my many test mobile devices while on the go and changing the world : so my apologies for any typos',
     re.compile(r"twitter\.com[i/][lI]krauss[1lt]"): "twitter.com/lkrauss1",
+    re.compile('Ornpaaneuo c iPhone'): 'Отправлено с iPhone',
     # links
     'classified-intelligence-\nmichael-flynn-trump': 'classified-intelligence-michael-flynn-trump',
     'on-accusers-rose-\nmcgowan/ ': 'on-accusers-rose-\nmcgowan/\n',
@@ -205,6 +208,7 @@ OCR_REPAIRS: OcrRepair = {
     # Misc
     'AVG°': 'AVGO',
     'Saw Matt C with DTF at golf': 'Saw Matt C with DJT at golf',
+    re.compile(r'\beamed\b'): 'earned',
     re.compile(r'\bSony(,| I)'): r'sorry\1',
     re.compile(r"[i. ]*Privileged[- ]*Redacted[i. ]*"): '<PRIVILEGED - REDACTED>',
     re.compile(r"SONY ?(Court|Judge|(, |/)NY)", re.IGNORECASE): r'SDNY \1',

@@ -91,7 +91,7 @@ def dict_sets_to_lists(d: dict[str, set]) -> dict[str, list]:
     return {k: sorted(list(v)) for k, v in d.items()}
 
 
-def flatten(_list: Sequence[list[T] | set[T]]) -> list[T]:
+def flatten(_list: Sequence[Sequence[T] | list[T] | set[T]]) -> list[T]:
     if not _list:
         return []
     elif all(isinstance(element, set) for element in _list):

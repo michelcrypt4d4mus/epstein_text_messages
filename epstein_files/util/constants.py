@@ -372,6 +372,7 @@ NOT_CHRONOLOGICAL_VIEW_IDS = [cfg.id for cfg in FLIGHT_LOG_CFGS] + [
     'EFTA00756817',
     'EFTA01775500',
     'EFTA02689871',
+    'EFTA00751392',  # article about sarah ferguson
     # Jeremy Rubin
     'EFTA00367406',
     # MC2
@@ -552,7 +553,7 @@ NOT_CHRONOLOGICAL_VIEW_IDS = [cfg.id for cfg in FLIGHT_LOG_CFGS] + [
     'EFTA01848947',
     '030244',
     '028757',
-    'EFTA02418669',  # unknown atty?
+    'EFTA00778536',  # unknown atty?
     'EFTA00364437',  # ivory coast
     'EFTA02422954',  # Celinas clothers
     'EFTA02514663',

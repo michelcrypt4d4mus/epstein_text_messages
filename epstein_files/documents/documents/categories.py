@@ -10,7 +10,6 @@ from epstein_files.util.constant.strings import *
 
 DEFAULT_CATEGORY_STYLE = 'wheat4'
 SOCIAL_STYLE = 'khaki3'
-RUSSIAN_GIRL = 'russian girl'
 
 class Interesting(StrEnum):
     CRYPTO = auto()

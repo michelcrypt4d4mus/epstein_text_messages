@@ -94,8 +94,6 @@ def print_chronological(epstein_files: EpsteinFiles, printer: DocPrinter) -> Non
                 return int(doc._config.is_interesting or 0) > INTERESTING_CUTOFF
         elif args.almost_most_interesting:
             return doc._config.is_interesting is True and doc._config.is_in_chrono is not False
-        elif args.category:
-            return doc.category == args.category
         else:
             return bool(doc.is_interesting if not args.invert_chrono else not doc.is_interesting)
 

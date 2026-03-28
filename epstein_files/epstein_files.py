@@ -125,9 +125,15 @@ class EpsteinFiles(DocList):
         return DocList.sort_by_timestamp(DocList.uniquify_by_id(docs))
 
     def docs_for_category(self, category: str) -> Sequence[Document]:
-        category_docs = [d for d in self.documents if d.category == category]
-        category_people = [p for p in self.people if p.category == category]
+        """Return all documents for a specified `category`."""
+        category_docs = [d for d in self.documents if category in d.category]
+        category_people = [p for p in self.people if category in p.category]
         docs = DocList.uniquify_by_id(category_docs + flatten([p.unique_documents for p in category_people]))
+
+        if category == Interesting.GIRLS:
+            docs += self.docs_for_category(MODELING)
+            docs += self.docs_for_category(RUSSIAN_GIRL)
+
         logger.warning(f"Found {len(docs)} docs in category '{category}' ({len(category_docs)} explicit, others from Person)")
         return DocList.sort_by_timestamp(docs)
 
@@ -327,6 +333,7 @@ class EpsteinFiles(DocList):
             doc_paths += updated_paths
 
         logger.warning(msg)
+        doc_paths = uniquify(doc_paths)
         repaired_docs = self._load_file_paths(doc_paths)
 
         if environ.get('RESPLIT_BIG_EMAILS'):

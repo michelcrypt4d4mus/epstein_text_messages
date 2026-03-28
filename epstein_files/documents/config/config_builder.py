@@ -124,10 +124,14 @@ def build_cfg_from_text(doc: 'Document') -> DocCfg | None:
         cfg = _cfg(category=Uninteresting.ARTICLE, author=VI_DAILY_NEWS)
     elif has_line_starting_with(text, [VALAR_GLOBAL_FUND, VALAR_VENTURES.upper()], 2):
         cfg = valar_cfg(doc.file_id, text=text)
+    elif DEUTSCHE_SOUTHERN_REGEX.match(text):
+        cfg = _cfg(
+            author=DEUTSCHE_BANK,
+            category=Interesting.MONEY,
+            note=f"statement for Epstein's Southern Trust Company",
+        )
     elif SOUTHERN_FINANCIAL_REGEX.match(text):
         cfg = _cfg(category=Interesting.MONEY, note="transactions by Epstein's Southern Financial LLC")
-    elif DEUTSCHE_SOUTHERN_REGEX.match(text):
-        cfg = _cfg(category=Interesting.MONEY, note=f"{DEUTSCHE_BANK} statement for Epstein's Southern Trust Company")
     elif VALAR_CAPITAL_CALL_REGEX.search(text):
         cfg = valar_cfg(doc.file_id, 'requesting money previously promised by Epstein to invest in a new opportunity')
     elif (case_match := LEGAL_FILING_REGEX.search(text)):

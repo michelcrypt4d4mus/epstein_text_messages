@@ -134,7 +134,6 @@ MONEY_CFGS = [
         display_text='W-2 tax form issued for <REDACTED> employee whom Epstein paid $185,323',
         date='2006-01-01'
     ),
-    DocCfg(id='EFTA01478313', note=f'list of investments (maybe of {LEON_BLACK})', date='2016-03-31'),
     DocCfg(id='EFTA01222951', note=f"credit card expenses for Carlos L Rodriguez using Plum Card", date='2019-02-12'),
     DocCfg(id='EFTA01583819', note=f"Epstein had control of {JAMES_CAYNE}'s assets"),
     DocCfg(id='EFTA01265973', note="large transfers around time of Epstein arrest", show_full_panel=True),
@@ -239,6 +238,17 @@ MONEY_CFGS = [
         truncate_to=10_000,
     ),
 
+    # Designer babies
+    EmailCfg(
+        id='EFTA01004841',
+        highlight_quote='i cant program but iam not bad at structuring :)',
+        note='"structuring" usually means illegally hiding money',
+    ),
+
+    # Fashion TV
+    EmailCfg(id='EFTA00762263', author=DAVID_STERN, author_reason='quoted reply', note=f"Epsstein and {DAVID_STERN} discuss acquiring FashionTV"),
+    EmailCfg(id='EFTA00888980', note=f"Epsstein and {DAVID_STERN} discuss acquiring FashionTV"),
+
     # JPM
     jpm_doc('EFTA01480542', 'Epstein source of wealth filing'),
     jpm_doc('EFTA01480623', f"was going to drop Epstein as a client until {JES_STALEY} intervened", is_interesting=5, truncate_to=2_050),
@@ -279,6 +289,14 @@ MONEY_CFGS = [
     EmailCfg(id='EFTA01732929', is_interesting=10, note=f"$250,000 to {TERJE_ROD_LARSEN} from {SOUTHERN_TRUST_COMPANY}", truncate_to=500),
 
     # Schwab
+    DocCfg(
+        id='EFTA00811973',
+        author=DARREN_INDYKE,
+        date='2019-04-08',
+        note=f'$250,000 check to open Charles Schwab account from {SOUTHERN_TRUST_COMPANY} account at FirstBank',
+        show_full_panel=True,
+        truncate_to=350,
+    ),
     schwab_doc('EFTA01265978', date='2019-07-10', note='account opened 3 months before death'),
 
     # Wexner
@@ -289,6 +307,7 @@ MONEY_CFGS = [
     EmailCfg(id='EFTA00649282', note=f"planning {BILL_GATES} donor advised fund with {JES_STALEY} on board"),
     EmailCfg(id='EFTA02246580', note=f"Epstein commissioning painting of little girl", truncate_to=305),
     EmailCfg(id='EFTA00037187', note=f"Epstein's {DEUTSCHE_BANK} banker Paul Morris lawyers up immediately when contacted by the FBI", is_interesting=5),
+    EmailCfg(id='EFTA00911738', highlight_quote="I have been your guarantor, in our more intimate arrangements", is_interesting=True),
     EmailCfg(
         id='EFTA00091269',
         highlight_quote="two weeks before Epstein's arrest, there were several large garbage bags with shredded documents",
@@ -343,6 +362,7 @@ MONEY_CFGS = [
     EmailCfg(id='EFTA01942664', note=f'payment from {MC2_MODEL_MGMT}'),
     EmailCfg(id='EFTA00552943', note=PURCHASE_OF_BIN_ENNAKHILL),
     EmailCfg(id='EFTA00669222', note=PURCHASE_OF_BIN_ENNAKHILL),
+    EmailCfg(id='EFTA00696744', author=HAMAD_BIN_JASSIM, note=PURCHASE_OF_BIN_ENNAKHILL),
     DocCfg(id='EFTA00585171', note=PURCHASE_OF_BIN_ENNAKHILL),
     EmailCfg(id='EFTA00552220', note=f"{PURCHASE_OF_BIN_ENNAKHILL} (by {KARYNA_SHULIAK}??)", is_interesting=7),
     EmailCfg(
@@ -366,6 +386,7 @@ MONEY_CFGS = [
         note=f'list of {LEON_BLACK} companies that {EILEEN_ALEXANDERSON} can make financial transactions for',
         truncate_to=EMAIL_TRUNCATE_TO,
     ),
+    DocCfg(id='EFTA01478313', note=f'list of investments (maybe of {LEON_BLACK})', date='2016-03-31'),
     EmailCfg(
         id='EFTA01389074',
         author=RICHARD_KAHN,
@@ -392,6 +413,11 @@ MONEY_CFGS = [
         is_interesting=2,
         note=f'"PA" is probably {PRINCE_ANDREW} plus a meeting with {NICOLE_JUNKERMANN}',
         show_with_name=NICOLE_JUNKERMANN,
+    ),
+    EmailCfg(
+        id='EFTA00704095',
+        highlight_quote="Need world class private security (personal protection) firm in Israel or US. It's for China to build up operations there",
+        is_interesting=True,
     ),
 
     # Joi Ito
