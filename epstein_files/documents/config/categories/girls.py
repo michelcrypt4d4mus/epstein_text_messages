@@ -712,8 +712,8 @@ GIRLS_CFGS = [
     ),
     EmailCfg(
         id='EFTA01885139',
-        highlight_quote='Kimbal really like Jen',
-        note=f'({JENNIFER_KALIN}, Epstein\'s girl whom {KIMBAL_MUSK} soon dated)',
+        highlight_quote='Kimbal really like Jen;-) We will need to distract the ex (any spare ambien);-)',
+        note=f'{JENNIFER_KALIN}, Epstein\'s girl whom {KIMBAL_MUSK} soon dated, jokes about drugging women with Ambien',
     ),
     EmailCfg(
         id='EFTA02415420',
