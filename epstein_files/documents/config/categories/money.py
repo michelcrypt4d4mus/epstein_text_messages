@@ -281,6 +281,14 @@ MONEY_CFGS = [
     EmailCfg(id='EFTA01732929', is_interesting=10, note=f"$250,000 to {TERJE_ROD_LARSEN} from {SOUTHERN_TRUST_COMPANY}", truncate_to=500),
 
     # Schwab
+    DocCfg(
+        id='EFTA00811973',
+        author=DARREN_INDYKE,
+        date='2019-04-08',
+        note=f'$250,000 check to open Charles Schwab account from {SOUTHERN_TRUST_COMPANY} account at FirstBank',
+        show_full_panel=True,
+        truncate_to=350,
+    ),
     schwab_doc('EFTA01265978', date='2019-07-10', note='account opened 3 months before death'),
 
     # Wexner

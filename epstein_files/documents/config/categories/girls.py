@@ -228,6 +228,7 @@ GIRLS_CFGS = [
     EmailCfg(id='EFTA01759826', highlight_quote='especially if you find me interesing girls there', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA01969878', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA01981669', truncate_to=NO_TRUNCATE),
+    EmailCfg(id='EFTA00876896', author=LAURA_T_NEWMAN, author_reason='visible in quoted'),
     EmailCfg(id='EFTA00737310', author=LAURA_T_NEWMAN, author_uncertain='". xo"'),
     EmailCfg(id='EFTA01791918', author=LAURA_T_NEWMAN, note='recruiting a ballet dancer', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA02436739', author=LAURA_T_NEWMAN, note='recruiting?'),
@@ -330,6 +331,7 @@ GIRLS_CFGS = [
     EmailCfg(id='021818', author=NADIA_MARCINKO, author_reason='reply'),
     EmailCfg(id='022214', author=NADIA_MARCINKO, author_reason='Reply header'),
     EmailCfg(id='021811', author=NADIA_MARCINKO, author_reason='signature and email address in the message'),
+    EmailCfg(id='EFTA01015397', note=f"routing money through {NADIA_MARCINKO}'s Aviloop LLC", show_with_name=NADIA_MARCINKO),
     EmailCfg(id='EFTA01047249', author=NADIA_MARCINKO, author_reason='Miro', url='https://archive.ph/Qa6vU#selection-1621.160-1621.184'),
     EmailCfg(
         id='EFTA00962525',

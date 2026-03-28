@@ -401,6 +401,7 @@ HIGHLIGHTED_NAMES = [
             Entity('Jonathan Rowland', f"Banque Havilland", match_partial=None),
             Entity('Laurie Eisenhart', QUESTION_MARKS),
             Entity('Mary E. Erdoes', f"CEO of Wealth Management at {JP_MORGAN}"),
+            Entity('Monica Dicenso', f"{JP_MORGAN} equity strategist"),
             Entity(NORMAN_D_RAU, "managing director at Morgan Stanley", match_partial=None),
             Entity(
                 PAUL_MORRIS,
@@ -4011,6 +4012,7 @@ HIGHLIGHTED_NAMES = [
             Entity.anon('Tiffany Doe'),
             Entity.anon(UNKNOWN_GIRL),
             epstein_co('The Mothers Army', r"(The )?Mothers Army", "rehabilitate Epstein's image with help of powerful women"),
+            Organization('Aviloop LLC', belongs_to=NADIA_MARCINKO),
         ],
         patterns=[
             r"abortion",

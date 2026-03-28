@@ -213,6 +213,7 @@ EMAIL_SIGNATURE_REGEXES = {
     JES_STALEY: re.compile(r"This email is confidential and subject to important.{,250}disclosures/email\.?", re.DOTALL),
     JESSICA_CADWELL: re.compile(r"(f.*\n)?Certified Para.*\nFlorida.*\nBURMAN.*\n515.*\nSuite.*\nWest Palm.*(\nTel:.*)?(\nEmail:.*)?", re.IGNORECASE),
     JOSHUA_FINK: re.compile(r"(\*{,80}\s+)?This e-mail and any attachments thereto.{,650}will be provided upon request\.", re.DOTALL),
+    JP_MORGAN: re.compile(r"NOT AN OFFICIAL CONFIRMATION.{,1000}contact your JPMorgan Advisor\.?", re.DOTALL),
     KEN_JENNE: re.compile(r"Ken Jenne\nRothstein.*\n401 E.*\nFort Lauderdale.*", re.IGNORECASE),
     LARRY_SUMMERS: re.compile(r"Please direc. all scheduling.{,150}?(\n(Follow me on twitter? ?@?l?h?s?u?m?m?e?r?s?|www.la(n|rr)ysummer..\w{3,5})){1,}(<.{,6}[>»])?(\s*<http.{,30}/?[>»])?", re.IGNORECASE | re.DOTALL),
     LAWRENCE_KRAUSS: re.compile(r"Lawrence (M. )?Krauss\n(Director.*\n)?(Co-director.*\n)?Foundation.*\nSchool.*\n(Co-director.*\n)?(and Director.*\n)?Arizona.*(\nResearch.*\nOri.*\n(krauss.*\n)?origins.*)?", re.IGNORECASE),

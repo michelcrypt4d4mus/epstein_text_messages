@@ -105,7 +105,7 @@ OCR_REPAIRS: OcrRepair = {
     re.compile(r"([<.=_HIM][<>.=_HIM14]{5,}[<>.=_HIM]|MOMMINNEMUMMIN) *(wrote:?)?"): rf"{REDACTED} \2",
     re.compile(r"([,<>_]|AM|PM)\n(>)? ?wrote:?"): r'\1\2 wrote:',
     # Headers
-    re.compile(r"^From(•|\b)"): 'From: ',  # first line only
+    re.compile(r"\AFrom([• ]|$)", re.MULTILINE): 'From: ',  # first line only
     re.compile(r"^((From|To):? ?)[_1.]{5,}", re.MULTILINE): rf"\1: {REDACTED}",  # Redacted email addresses
     re.compile(fr"^(From|To) ?{REDACTED}", re.MULTILINE): fr"\1: {REDACTED}",
     re.compile(r"I ?(od|nl)ine-Images:"): 'Inline-Images:',
@@ -113,6 +113,7 @@ OCR_REPAIRS: OcrRepair = {
     re.compile(r"^((?:B?cc|To):.*)\n(>?;.*)", re.IGNORECASE | re.MULTILINE): r'\1 \2',
     re.compile(r"^(Sent|Subject) (?!by|[Ff]rom|on|using|[Rr]emote|[Vv]ia|with)", re.MULTILINE): r'\1: ',
     re.compile(r"^Subject[.•]{,2} ", re.MULTILINE): 'Subject: ',
+    re.compile('Reply-T[°o]:?'): 'Reply-To:',
     re.compile(r"^(Forwarded|Original) Message$", re.IGNORECASE | re.MULTILINE): r"--- \1 Message ---",  # Make forward lines match our highlight
     # Excessive quote chars
     re.compile(r"wrote:\n[>»]+(\n[>»]+)"): r"wrote:\1",
@@ -167,6 +168,7 @@ OCR_REPAIRS: OcrRepair = {
     re.compile(r'^INW$', re.MULTILINE): REDACTED,
     re.compile(r'Sent from one of my many test mobile devices while on the go and changing the world\s+:\s+so\s+my\s+apologies for any typos'): 'Sent from one of my many test mobile devices while on the go and changing the world : so my apologies for any typos',
     re.compile(r"twitter\.com[i/][lI]krauss[1lt]"): "twitter.com/lkrauss1",
+    re.compile('Ornpaaneuo c iPhone'): 'Отправлено с iPhone',
     # links
     'classified-intelligence-\nmichael-flynn-trump': 'classified-intelligence-michael-flynn-trump',
     'on-accusers-rose-\nmcgowan/ ': 'on-accusers-rose-\nmcgowan/\n',
