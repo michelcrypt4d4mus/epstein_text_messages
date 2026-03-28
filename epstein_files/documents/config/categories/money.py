@@ -240,6 +240,7 @@ MONEY_CFGS = [
 
     # Fashion TV
     EmailCfg(id='EFTA00762263', author=DAVID_STERN, author_reason='quoted reply', note=f"Epsstein and {DAVID_STERN} discuss acquiring FashionTV"),
+    EmailCfg(id='EFTA00888980', note=f"Epsstein and {DAVID_STERN} discuss acquiring FashionTV"),
 
     # JPM
     jpm_doc('EFTA01480542', 'Epstein source of wealth filing'),

@@ -34,6 +34,9 @@ class EmailCfg(CommunicationCfg):
     def __post_init__(self):
         super().__post_init__()
 
+        if self.visible_in_id == self.id:
+            raise ValueError(f"{self.id} visible_in_id is same as ID!")
+
         if self.show_full_panel:
             self._debug_log(f"show_full_panel=True, overriding because unecessary")  # TODO: this sucks
             self.show_full_panel = False

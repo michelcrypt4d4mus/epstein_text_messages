@@ -342,6 +342,7 @@ HIGHLIGHTED_NAMES = [
             Organization('Mercury Films', is_interesting=False),
             Organization('Phaidon', 'titan of art book publishing', url=WIKIPEDIA),
             Organization('Rita Paintings To Go', is_emailer=True),
+            Organization('Robot Heart', 'burning man related'),
         ],
         patterns=[
             r"Arnold Schwarzenegger",
@@ -1209,7 +1210,7 @@ HIGHLIGHTED_NAMES = [
         style='light_slate_blue',
         entities=[
             # Entity('Adriana Ross', 'named co-conspirator', match_partial=None),
-            Entity('Alberto Pinto', 'interior designer', match_partial=None),
+            Entity('Alberto Pinto', 'interior designer', match_partial=None),  # TODO linda matches last name
             Entity('Alfredo Rodriguez', "Epstein's butler, stole Epstein's black book", match_partial=None),
             Entity('Arline M. Toylo', 'employee'),
             Entity(
@@ -1247,7 +1248,7 @@ HIGHLIGHTED_NAMES = [
                 r"Lesl(ey|ie) (K(\.|atherine)? )?Gro(ff)?",
                 url=DAILY_BEAST_ASSISTANTS_URL,
             ),
-            Entity('Linda Pinto', "interior design at Alberto Pinto Cabinet"),
+            Entity('Linda Pinto', f"interior design at {ALBERTO_PINTO_CABINET}"),
             Entity(LYN_FONTANILLA, "Filipino housekeeper", r"(Rosa)?L.nn?( V\.?)? Fontanilla"),
             Entity('Maria Macaraeg', 'applied for housekeeper/nanny job'),
             Entity(MERWIN_DELA_CRUZ, "housekeeper", r"Merwin( de ?la)? Cruz", match_partial=None),
@@ -1324,6 +1325,11 @@ HIGHLIGHTED_NAMES = [
             island_employee('Carlos L. Rodrigue', 'boat captain'),
             island_employee('Casey Johnson', 'boat captain'),
             island_employee('William B. Hague', 'engineering'),
+            Organization(
+                ALBERTO_PINTO_CABINET,
+                'interior design favoured by Epstein',
+                r"Cabinet Alberto Pinto|Alberto Pinto Cabinet",
+            ),
         ],
     ),
     HighlightedNames(
@@ -1494,6 +1500,8 @@ HIGHLIGHTED_NAMES = [
                 email_addresses=['haddadfm@aol.com'],
                 match_partial='first',
             ),
+            Entity(WILLIAM_RILEY, 'private investigator', r"[BW]ill(iam)? Riley", match_partial=None),
+            # Orgs
             Organization('Susman Godfrey', "law firm representing Epstein as president of Jeepers, Inc. in litigation against D.B. Zwirn"),
             Organization('Mishcon de Reya', f"{ALAN_DERSHOWITZ}'s UK law firm"),
         ],
@@ -3008,6 +3016,7 @@ HIGHLIGHTED_NAMES = [
             # Orgs
             Organization('2morrow'),
             Organization('Elite Models', 'well known modeling agency'),
+            epstein_co('Fashion TV', f'bought by Epstein and {DAVID_STERN}'),
             Organization('Icarine', f"agency with connections to {JEAN_LUC_BRUNEL}"),
             Organization('ID Models', "Paolo Zampolli's modeling agency"),
             Organization('IMG Models', 'agency', r"(?-i:IMG)( Models)?"),
@@ -3469,6 +3478,7 @@ HIGHLIGHTED_NAMES = [
             Organization('Story VC', f'venture fund where {MARIA_PRUSAKOVA} is a partner'),
         ],
         patterns=[
+            r"Anya",
             r"[DM]asha",
             r"[JY]ulia",
             r"Nastya",
@@ -4024,6 +4034,7 @@ HIGHLIGHTED_NAMES = [
             r"Cinderella",
             r"condom",
             r"dancer",
+            r"designer bab(ie|y)",
             r"dildo",
             r"(?<!drug )(child\s*)?(sex\s*)?traffi?c?k(ers?|ing)",
             r"(?<!enn\s)Dubin",

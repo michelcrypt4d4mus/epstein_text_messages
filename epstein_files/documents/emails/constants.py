@@ -206,7 +206,7 @@ EMAIL_SIGNATURE_REGEXES = {
     ERIC_ROTH: re.compile(r"2221 Smithtown Avenue\nLong Island.*\nRonkonkoma.*\n(.1. )?Phone\nFax\nCell\ne-mail"),
     FAITH_KATES: re.compile(r"(15 Watts Street.{,40})?NOTE ?: ?This message including any attachments contains information.{,750}(omissions\s+in\s+this\s+message\s+or\s+any\s+attachments\.?|messagelabs.com/email)", re.DOTALL),
     FRANCESCA_HALL: re.compile(r"The contents of this e-mail message and.{,600}message and its attachments[.,]? if any", re.DOTALL),
-    GHISLAINE_MAXWELL: re.compile(r"FACEBOOK\nTWITTER\nG\+\nPINTEREST\nINSTAGRAM\nPLEDGE\nTHE DAILY CATCH"),
+    GHISLAINE_MAXWELL: re.compile(r"(\n(FACEBOOK|TWITTER|G\+|PINTEREST|INSTAGRAM|PLEDGE|THE DAILY CATCH)){5,}"),
     'Javier Solano': re.compile(r"www.SolanoLegal.{,120}Bronx.{,20}?$(\n[TF]:$)*", re.DOTALL | re.MULTILINE),
     JEANNE_M_CHRISTENSEN: re.compile(r"[A ]*(Please consider the environment before printing this e-mail.{,5})?This communication may contain Confidential.{,500}(facsimile|mail)\s+or\s+phone. Thank you\.?|Partner\s+WIGDOR.{,12}(85 Fifth Avenue|New York).{,20}\s+(T:.{,6}\n)?.{,15}com", re.DOTALL),
     JEFFREY_EPSTEIN: re.compile(r"(([* =0,]+|please .ote.{,6})\s+)?([>»•]+ )*[T=]h[e=][ =]inf[o=].ma[t=][i=][o=][n=] [c=][o=][n=][t=]a[i=]ne. i. t..s..ommunic.ti.{,600}all\s+([>»] )*.t.a.hm..t..([>»\s]+copyright\s+.[ae]ll[\s=]+[r=][i=][g=][h=][t=][s=]\s+[r=][e=][s=][e=][r=][v=][e=][d=]?)?", re.DOTALL),
@@ -242,6 +242,7 @@ EMAIL_SIGNATURE_REGEXES = {
     TONJA_HADDAD_COLEMAN: re.compile(fr"Tonja Haddad Coleman.*\nTonja Haddad.*\nAdvocate Building\n315 SE 7th.*(\nSuite.*)?\nFort Lauderdale.*(\n({REDACTED} )?facsimile)?(\nwww.tonjahaddad.com?)?(\nPlease add this efiling.*\nThe information.*\nyou are not.*\nyou are not.*)?", re.IGNORECASE),
     UNKNOWN: re.compile(r"(This message is directed to and is for the use of the above-noted addressee only.*\nhereon\.)", re.DOTALL),
     USANYS: re.compile(r"Southern District of New York\s+One Saint Andrew's Plaza\s+New York,?\s*New York 10007(\s+Tel)?"),
+    WILLIAM_RILEY: re.compile(r"This message \(and any associated files\) is intended only.{,950}provided by any third party sources\.?", re.DOTALL),
 }
 
 

@@ -82,7 +82,12 @@ ACADEMIA_CFGS = [
     EmailCfg(id='EFTA02257779', author=LESLEY_GROFF, recipients=['Lisa']),
     EmailCfg(id='EFTA00763822', is_interesting=True, note=f"{LAWRENCE_KRAUSS} proposal for Epstein image rehabilitation", truncate_to=(1_750, 5_500)),
     EmailCfg(id='EFTA00687286', show_with_name=MARVIN_MINSKY, is_in_chrono=False),
-    EmailCfg(id='EFTA00710174', highlight_quote=f"I would hope that you'd promptly throttle both Epstein and Dershowitz", truncate_to=800),
+    EmailCfg(
+        id='EFTA00710174',
+        highlight_quote=f"I would hope that you'd promptly throttle both Epstein and Dershowitz",
+        note="one of the few heroes of the Epstein Files",
+        truncate_to=800,
+    ),
     imessage_screenshot('EFTA01616222', author=HARRY_FISCH, date='2018-04-23T14:25:30'),
     imessage_screenshot('EFTA01616232', author=HARRY_FISCH, date='2018-04-23T14:25:30'),
     skype_log('032206', recipients=[LAWRENCE_KRAUSS], is_interesting=False),
