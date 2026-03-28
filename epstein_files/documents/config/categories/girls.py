@@ -384,7 +384,7 @@ GIRLS_CFGS = [
         author=SVETLANA_POZHIDAEVA,
         author_uncertain=f"{JOSHUA_FINK} texts",
         highlight_quote="You have known you are preg for a week",
-        note=f'{SVETLANA_POZHIDAEVA} fwds a discussion about an abortion to Epstein',
+        note=f'{SVETLANA_POZHIDAEVA} fwds intimate texts from Joshua Fink about an abortion to Epstein',
     ),
     DocCfg(id='EFTA02445716', author=SVETLANA_POZHIDAEVA, note=f'{WOMEN_EMPOWERMENT} pilot event', date='2019-04-12'),
     EmailCfg(
