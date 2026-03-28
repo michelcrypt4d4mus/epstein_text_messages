@@ -1,4 +1,5 @@
 # NEXT RELEASE
+* Automatically copy custom HTML into place
 * Change font depending on category
 * Add `PicCfg` to allow images to be shown next to/instead of text
 

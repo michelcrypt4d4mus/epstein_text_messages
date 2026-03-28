@@ -85,6 +85,22 @@ class Site(StrEnum):
         return links
 
     @classmethod
+    def copy_custom_html_into_place(cls, site: Self | Path, category: str = '') -> Path | None:
+        if isinstance(site, Path) or site not in DEPLOY_CUSTOM_HTML_SITES:
+            logger.warning(f"[Site] nothing to copy for '{site}'")
+            return
+
+        to_path = Site.html_output_path(site, category)
+        from_path = Site.custom_html_build_path(to_path)
+
+        if from_path.exists():
+            logger.warning(f"Copying/overwriting '{from_path}' to '{to_path}'...")
+            shutil.copy2(from_path, to_path)
+            return to_path
+        else:
+            logger.error(f"No custom HTML file found at '{from_path}'")
+
+    @classmethod
     def directory(cls) -> 'SiteDirectory':
         return SiteDirectory(
             {site: cls.get_site_link(site) for site in SITE_DESCRIPTIONS if not cls.is_mobile(site)},
@@ -292,18 +308,9 @@ def make_clean() -> None:
                 file.unlink()
 
 
+# TODO: make this obsolete
 def use_custom_html() -> None:
     """Overwrite normal rich html export with custom HTML for all `DEPLOY_CUSTOM_HTML_SITES`."""
-    for site in DEPLOY_CUSTOM_HTML_SITES:
-        from_path = Site.custom_html_build_path(site)
-        to_path = Site.html_output_path(site)
-
-        if from_path.exists():
-            logger.warning(f"Copying/overwriting '{from_path}' to '{to_path}'...")
-            shutil.copy2(from_path, to_path)
-        else:
-            logger.error(f"No custom HTML file found at '{from_path}'")
-
     for category in CATEGORY_SITES:
         to_path = Site.html_output_path(Site.CATEGORY, category)
         from_path = Site.custom_html_build_path(to_path)

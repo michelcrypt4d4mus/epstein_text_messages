@@ -275,7 +275,8 @@ class DocPrinter(DocList):
             from epstein_files.output.output import write_html
             write_html(write_to)
 
-        return write_templated_html(self.html_elements, output_path)
+        html_path = write_templated_html(self.html_elements, output_path)
+        return Site.copy_custom_html_into_place(write_to, args.category) or html_path
 
     def _align_biographical_panel(self, panel: Panel) -> Align:
         return Align(Padding(panel, site_config.character_bio_padding), 'right')
