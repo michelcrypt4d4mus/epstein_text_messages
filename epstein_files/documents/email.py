@@ -136,6 +136,7 @@ OCR_REPAIRS: OcrRepair = {
     # Names / email addresses
     'Alireza lttihadieh': ALIREZA_ITTIHADIEH,
     'bamaby': 'barnaby',
+    'lan Osborne': 'Ian Osborne',
     'Miroslav Laj6ak': MIROSLAV_LAJCAK,
     'Ross G°w': ROSS_GOW,
     'Torn Pritzker': TOM_PRITZKER,
@@ -155,7 +156,7 @@ OCR_REPAIRS: OcrRepair = {
     'Sony for all the typos': 'Sorry for all the typos',
     'twitter glhsummers': 'twitter @lhsummers',
     # NOTE: These three must come in this order!
-    re.compile(r'Blac[il]cBerry'): 'BlackBerry',
+    re.compile(r'Blac(k|[il]c)?Be(r[rt]|n)y'): 'BlackBerry',
     'BlackBerry by AT &T': 'BlackBerry by AT&T',
     'BlackBerry from T- Mobile': 'BlackBerry from T-Mobile',
     'BlackBerry°': 'BlackBerry®',

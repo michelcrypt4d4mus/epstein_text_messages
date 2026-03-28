@@ -43,5 +43,4 @@ PROPERTY_CFGS = [
     EmailCfg(id='EFTA02505788', note='building tunnels on the island'),
     EmailCfg(id='EFTA02286220', highlight_quote='I saw yesterday work began on tunnels', is_interesting=True),
     EmailCfg(id='EFTA02636770', highlight_quote="after completing the rebuild o= the bunker below 5palms", truncate_to=501),
-
 ]

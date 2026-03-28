@@ -345,6 +345,7 @@ MONEY_CFGS = [
     EmailCfg(id='EFTA01942664', note=f'payment from {MC2_MODEL_MGMT}'),
     EmailCfg(id='EFTA00552943', note=PURCHASE_OF_BIN_ENNAKHILL),
     EmailCfg(id='EFTA00669222', note=PURCHASE_OF_BIN_ENNAKHILL),
+    EmailCfg(id='EFTA00696744', author=HAMAD_BIN_JASSIM, note=PURCHASE_OF_BIN_ENNAKHILL),
     DocCfg(id='EFTA00585171', note=PURCHASE_OF_BIN_ENNAKHILL),
     EmailCfg(id='EFTA00552220', note=f"{PURCHASE_OF_BIN_ENNAKHILL} (by {KARYNA_SHULIAK}??)", is_interesting=7),
     EmailCfg(
@@ -395,6 +396,11 @@ MONEY_CFGS = [
         is_interesting=2,
         note=f'"PA" is probably {PRINCE_ANDREW} plus a meeting with {NICOLE_JUNKERMANN}',
         show_with_name=NICOLE_JUNKERMANN,
+    ),
+    EmailCfg(
+        id='EFTA00704095',
+        highlight_quote="Need world class private security (personal protection) firm in Israel or US. It's for China to build up operations there",
+        is_interesting=True,
     ),
 
     # Joi Ito

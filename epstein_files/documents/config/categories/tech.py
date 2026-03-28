@@ -29,6 +29,7 @@ TECH_CFGS = [
         note=f'{NATHAN_MYHRVOLD} meeting',
         truncate_to=1_500,
     ),
+
     # Chris Poole
     EmailCfg(id='EFTA01848168', show_with_name=CHRIS_POOLE),
     EmailCfg(id='EFTA01849797', show_with_name=CHRIS_POOLE),
@@ -44,8 +45,10 @@ TECH_CFGS = [
         highlight_quote="What day/night will be the wildest party on your island?",
         is_interesting=20,
     ),
+
     # Myrhvold
     EmailCfg(id='EFTA00637339', highlight_quote=f"i will only bring <REDACTED> if you want", is_interesting=True),
+
     # Valar Ventures
     DocCfg(
         id='EFTA00591045',
