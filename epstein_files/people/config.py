@@ -3886,7 +3886,7 @@ HIGHLIGHTED_NAMES = [
             Entity(CECILIA_STEEN, f'Epstein assistant, moved to Dubai to work for money launderers (?)', r"Cec[ei]lia Ste[ei]n"),
             Entity(
                 CELINA_DUBIN,
-                f"daughter of Glenn &{EVA_DUBIN}, called Epstein 'unc', major beneficiary of Epstein's will",
+                f"daughter of Glenn & {EVA_DUBIN}, called Epstein 'unc', major beneficiary of Epstein's will",
                 r"Celina( E(\.|dith)?)?( Dubin)?(?! Midelfart)",
                 match_partial=None,
             ),
