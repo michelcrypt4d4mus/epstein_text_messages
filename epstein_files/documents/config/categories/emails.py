@@ -1228,7 +1228,12 @@ EMAILS_CONFIG = [
         note=f'Epstein tells {DAVID_STERN} to avoid {BANQUE_HAVILLAND} as it "add[s] China and Europe to Russia & Belorussia"',
         truncate_to=1_000,
     ),
-    EmailCfg(id='EFTA00406579', note='Epstein had multiple passports', highlight_quote="JE's Main and Second Passport"),
+    EmailCfg(
+        id='EFTA00406579',
+        note='Epstein had multiple passports',
+        highlight_quote="JE's Main and Second Passport",
+        is_interesting=True,
+    ),
     EmailCfg(id='EFTA00773169', note='hanging out with Epstein the day he gets out of jail', truncate_to=420),
     EmailCfg(id='EFTA00492651', note='how to get a 2nd passport', truncate_to=1_160, is_interesting=4),
     EmailCfg(id='EFTA00578629', note=f"itinerary for Bill Clinton's trip to Africa on Epstein's jet", is_interesting=True),

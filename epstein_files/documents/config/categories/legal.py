@@ -236,7 +236,7 @@ LEGAL_CFGS = [
     memo(
         'EFTA00727491',
         DARREN_INDYKE,
-        f"Epstein Epstein whining that his highly paid lawyers couldn't get him off",
+        f"Epstein whining that his highly paid lawyers couldn't get him off",
         date='2008-09-25',
         is_interesting=10,
         truncate_to=(7_100, 8_600),

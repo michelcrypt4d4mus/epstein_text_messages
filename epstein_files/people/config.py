@@ -3312,7 +3312,7 @@ HIGHLIGHTED_NAMES = [
         label=RUSSIAN_GIRL,
         style='color(161)',
         entities=[
-            Entity('Aksana Samy', QUESTION_MARKS),
+            Entity('Aksana Samy', f"Belorussian model", url='https://minskherald.com/2014/05/belarusian-model-aksana-samy/'),
             Entity(ALEKSANDRA_KARPOVA, f"{CRYPTO_PR_LAB} co-founder", r"Aleksandra Karpova"),
             Entity('Alena Davydenkova', 'girl'),
             Entity('Alisa Khayrutdinova', 'girl'),
