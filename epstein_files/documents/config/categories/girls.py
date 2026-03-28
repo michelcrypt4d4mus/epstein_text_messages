@@ -20,7 +20,7 @@ def immigration_letter(id: str, author: Name, date: str = '', note: str = '', sh
     person_recommended_for_visa = show_with_name or 'someone'
     suffix = f"recommending \"genius\" visa for {person_recommended_for_visa}"
 
-    if person_recommended_for_visa not in note and person_recommended_for_visa != 'someone':
+    if person_recommended_for_visa not in note:
         note = join_truthy(note, suffix)
 
     return letter(
@@ -1052,7 +1052,7 @@ GIRLS_CFGS = [
     immigration_letter('EFTA02389172', 'Michael Harrigan'),
     immigration_letter('EFTA00308104', MARTIN_NOWAK, '2017-06-06', f'possibly about {MASHA_DROKOVA} visa', show_with_name=MASHA_DROKOVA),
     immigration_letter('EFTA00589797', TERJE_ROD_LARSEN, '2015-05-02'),
-    immigration_letter('EFTA01086449', ARIANE_DE_ROTHSCHILD),
+    immigration_letter('EFTA01086449', ARIANE_DE_ROTHSCHILD, show_with_name=SVETLANA_POZHIDAEVA, comment='"Economic Forum" is probably St. Petersburg'),
     immigration_letter('EFTA01143800', None, show_with_name=SVETLANA_POZHIDAEVA),
     immigration_letter('EFTA00537633', MARK_ZEFF, '2012-03-19', 'about SLK Designs, someone in interior design industry'),
 ]
