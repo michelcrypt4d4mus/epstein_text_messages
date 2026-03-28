@@ -8,7 +8,7 @@ from typing import Optional
 from epstein_files.documents.documents.categories import is_uninteresting
 from epstein_files.documents.emails.constants import UNINTERESTING_EMAILERS
 from epstein_files.output.highlight_config import HIGHLIGHTED_ENTITIES
-from epstein_files.people.entity import Entity, Organization
+from epstein_files.people.entity import COMPANY_SUFFIX_REGEX, Entity, Organization
 from epstein_files.people.names import *
 from epstein_files.util.constant.strings import REDACTED
 from epstein_files.util.helpers.data_helpers import escape_single_quotes, flatten, groupby, uniq_sorted, without_falsey
@@ -154,7 +154,7 @@ def extract_emailer_names(emailer_str: str) -> list[Name]:
 
         return names_found
 
-    names_found = [reverse_first_and_last_names(name) for name in (names_found or [emailer_str])]
+    names_found = [_reverse_first_and_last_names(name) for name in (names_found or [emailer_str])]
     logger.debug(f"names_found in '{emailer_str}': {names_found}")
     return names_found
 
@@ -180,3 +180,18 @@ def get_entities(_names: Sequence[Name | Entity], doc: Optional['Document'] = No
     """Also uniquifies and removes None / empty string."""
     names = Entity.coerce_entity_names(without_falsey(_names))
     return [get_entity(name, doc) for name in uniq_sorted(names)]
+
+
+def _reverse_first_and_last_names(name: Name) -> Name:
+    """If there's a comma in the name in the style 'Lastname, Firstname', reverse it and remove comma."""
+    if name is None:
+        return None
+    elif '@' in name:
+        return name.lower()
+    elif COMPANY_SUFFIX_REGEX.match(name):
+        return name
+    elif ', ' in name:
+        names = name.split(', ')
+        return f"{names[1]} {names[0]}"
+    else:
+        return name

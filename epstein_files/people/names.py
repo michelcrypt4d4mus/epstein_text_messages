@@ -556,19 +556,5 @@ def extract_last_name(name: str) -> str:
         return first_last_names[-1]
 
 
-def reverse_first_and_last_names(name: Name) -> Name:
-    """If there's a comma in the name in the style 'Lastname, Firstname', reverse it and remove comma."""
-    if name is None:
-        return None
-    elif '@' in name:
-        return name.lower()
-
-    if ', ' in name:
-        names = name.split(', ')
-        return f"{names[1]} {names[0]}"
-    else:
-        return name
-
-
 def sort_names(names: Sequence[Name]) -> list[Name]:
     return sorted(names, key=lambda name: name or UNKNOWN)
