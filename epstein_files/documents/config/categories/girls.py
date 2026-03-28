@@ -340,6 +340,8 @@ GIRLS_CFGS = [
         recipients=[NADIA_MARCINKO],
     ),
     EmailCfg(id='EFTA00877202', recipients=[NADIA_MARCINKO], recipient_uncertain='"Aviloop"'),
+    EmailCfg(id='EFTA00966975', recipients=[NADIA_MARCINKO], recipient_uncertain='"Aviloop"'),
+    EmailCfg(id='EFTA00966504', recipients=[NADIA_MARCINKO], recipient_uncertain='"Aviloop"'),
     EmailCfg(
         id='EFTA01015397',
         author=NADIA_MARCINKO,
@@ -365,6 +367,12 @@ GIRLS_CFGS = [
         show_with_name=NADIA_MARCINKO,
     ),
     EmailCfg(id='EFTA00737722', recipients=[NADIA_MARCINKO], author_reason='visible in quoted replies'),
+    EmailCfg(
+        id='EFTA00876637',
+        is_interesting=5,
+        note=f"accounting of money spent on or given to {NADIA_MARCINKO}",
+        show_with_name=NADIA_MARCINKO,
+    ),
 
     # Natalya Malyshev
     EmailCfg(id='EFTA00752360', recipients=[JEFFREY_EPSTEIN]),
@@ -814,7 +822,8 @@ GIRLS_CFGS = [
     EmailCfg(id='EFTA01895036', highlight_quote='svetlana will be in paris 17-20', note=f"Epstein invites {ELON_MUSK} to Paris"),
     EmailCfg(id='EFTA02415943', highlight_quote='tell geir, she is serious , not a toy, . toys are also availble', truncate_to=800, is_interesting=5),
     EmailCfg(id='EFTA02387676', highlight_quote="thats the closest i get to karyna providing me new pussy"),
-    EmailCfg(id='EFTA00628544', highlight_quote="the water gazelle is really stunning...what a beautiful and smart girl!"),
+    EmailCfg(id='EFTA00628544', highlight_quote="the water gazelle is really stunning...what a beautiful and smart girl!", note=f'"water gazelle\'s" name is "Jane"'),
+    EmailCfg(id='EFTA00953438', highlight_quote="how is my water gaselle???", note=f'"water gazelle\'s" name is "Jane"'),
     EmailCfg(id='EFTA00465937', highlight_quote="there are 3 teenage girls there. ! Let them get out!"),
     EmailCfg(id='EFTA00908180', highlight_quote='two cinderellas', is_interesting=True),
     EmailCfg(id='EFTA01930285', highlight_quote='ukraine upheaval should provide many opportunites'),
@@ -834,6 +843,7 @@ GIRLS_CFGS = [
     EmailCfg(id='EFTA00747461', note=f'photo shoot for 11 year old {CELINA_DUBIN}', truncate_to=NO_TRUNCATE, is_in_chrono=False),
     EmailCfg(id='EFTA00747744', note=f'photo shoot for 11 year old {CELINA_DUBIN}', truncate_to=NO_TRUNCATE, is_in_chrono=False),
     EmailCfg(id='EFTA01055103', note=f"looks like someone stole {CELINA_DUBIN}'s gift card", show_with_name=CELINA_DUBIN, is_in_chrono=False),
+    EmailCfg(id='EFTA00913853', recipients=[EVA_DUBIN]),
 
     # Faith Kates
     EmailCfg(id='EFTA02512317', recipients=[FAITH_KATES], author_reason='"faith,"', note="Epstein suggests Next Models take on a girl"),
@@ -966,11 +976,17 @@ GIRLS_CFGS = [
     EmailCfg(id='EFTA00964428', comment=JULIA_SANTOS + ' Valdson'),
     EmailCfg(id='EFTA02398135', comment=JULIA_SANTOS + ' "Sochi"'),
     EmailCfg(id='EFTA00766770'),
+
+    # Ramsey
     EmailCfg(
         id='EFTA00743526',
         is_interesting=True,
         note=f"Epstein and {RAMSEY_ELKHOLY} trying to get a Next Models contract for Regina",
         truncate_to=(800, 2_160),
+    ),
+    EmailCfg(
+        id='EFTA00902144',
+        note=f"{RAMSEY_ELKHOLY} severing ties with Regina who is dating the same boyfriend as {RUSLANA_KORSHUNOVA} was before her death",
     ),
 
     # Text msg

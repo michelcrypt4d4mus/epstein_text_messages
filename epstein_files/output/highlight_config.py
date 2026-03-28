@@ -39,7 +39,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
     ManualHighlight(
         label='legal_question',
         style='wheat4',
-        pattern=r"^([Q][. ])(?P<legal_question>.{,500}?)(?=^[A][. ])",
+        pattern=r"^(?P<legal_question>Q[. ].{,500}?)(?=^[A][. ])",
         regex_flags=re.DOTALL | re.MULTILINE,
     ),
 

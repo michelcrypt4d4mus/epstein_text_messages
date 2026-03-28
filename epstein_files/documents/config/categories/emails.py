@@ -409,6 +409,12 @@ EMAILS_CONFIG = [
         is_interesting=5,
         note=f"{FRANCISCO_DAGOSTINO} ensuring Epstein's plane isn't searched in Caracas",
     ),
+    EmailCfg(
+        id='EFTA00916001',
+        highlight_quote="the house next to where I live, its Kazakhstan premier minister Karim Masimov",
+        is_interesting=True,
+        is_in_chrono=False,
+    ),
     EmailCfg(id='EFTA00904611', highlight_quote="Be careful , zampoli is trouble . Lots", note=f"Epstein's thoughts on {PAOLO_ZAMPOLLI}"),
     EmailCfg(id='EFTA01745253', highlight_quote="The life you lead is so outrageous, and yet I can't tell a soul"),
     EmailCfg(id='EFTA02641374', highlight_quote='the mongolians are also going after you.  shame on you'),
@@ -1203,6 +1209,7 @@ EMAILS_CONFIG = [
     daily_schedule_email('EFTA00479255', author=LESLEY_GROFF),
     daily_schedule_email('EFTA00423898', author=LESLEY_GROFF, author_uncertain=True),
     daily_schedule_email('EFTA00391916', author=LESLEY_GROFF, author_uncertain=True),
+    daily_schedule_email('EFTA00948189', author=LESLEY_GROFF, author_uncertain=True),
     daily_schedule_email('EFTA00378753', author=LESLEY_GROFF, author_uncertain=True, note='Mark Tollison was fired'),
     daily_schedule_email('EFTA00317801', recipients=[JEFFREY_EPSTEIN, JOJO_FONTANILLA, LEO_LOKING, MERWIN_DELA_CRUZ]),
     EmailCfg(
@@ -1256,6 +1263,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00927227', note=f"{IAN_OSBORNE} pitches his new venture fund {HEDOSOPHIA} to Epstein", is_interesting=True),
     EmailCfg(id='EFTA02415612', note='invitation to a party in Cairo from oligarch Vladislav Doronin', is_interesting=10),
     EmailCfg(id='EFTA00758094', note='invited guests includes Cyrus Vance, Valerie Plame-Wilson, Harvey Weinstein, and more', is_interesting=10),
+    EmailCfg(id='EFTA00924696', note=f"island visit for {IAN_OSBORNE}, {MARVIN_MINSKY}, {LAWRENCE_KRAUSS}, and maybe {YURI_MILNER}"),
     EmailCfg(id='EFTA00578629', note=f"itinerary for Bill Clinton's trip to Africa on Epstein's jet", is_interesting=True),
     EmailCfg(id='EFTA00351535', note="Jeffrey's 2nd Passport"),
     EmailCfg(id='EFTA00778636', note=f"{JEFFREY_EPSTEIN}, M.D.", is_interesting=4),

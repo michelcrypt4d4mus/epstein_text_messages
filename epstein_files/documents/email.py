@@ -48,7 +48,7 @@ from epstein_files.util.logging import logger
 
 # Email bod regexes
 BAD_FIRST_LINE_REGEX = re.compile(r'^(>>|Grant_Smith066474"eMailContent.htm|LOVE & KISSES)$')
-BAD_LINE_REGEX = re.compile(r'^([>=];?|[>»]*=20|\d{1,2}|PAGE INTENTIONALLY LEFT BLANK|Classification: External Communication|Hide caption|Importance:?\s*High|Priority: normal|[iI,•]|[1i] (_ )?[il]|, [-,]|L\._|_filtered|si.nature.asc|.*(yiv0232|font-family:|margin-bottom:).*)$')
+BAD_LINE_REGEX = re.compile(r'^([>=];?|[>»]*=20|\d{1,2}|PAGE INTENTIONALLY LEFT BLANK|Classification: External Communication|Hide caption|Importance:?\s*(High|Normal)|Priority: normal|[iI,•]|[1i] (_ )?[il]|, [-,]|L\._|_filtered|si.nature.asc|.*(yiv0232|font-family:|margin-bottom:).*)$')
 BAD_SUBJECT_CONTINUATIONS = ['orwarded', 'Hi ', 'Sent ', 'AmLaw', 'Original Message', 'Privileged', 'Sorry', '---']
 LINK_LINE_REGEX = re.compile(r"^[>• ]*htt")
 LINK_LINE2_REGEX = re.compile(r"^[-\w.%&=/]{5,}$")
@@ -208,6 +208,7 @@ OCR_REPAIRS: OcrRepair = {
     # Misc
     'AVG°': 'AVGO',
     'Saw Matt C with DTF at golf': 'Saw Matt C with DJT at golf',
+    re.compile(r'\beamed\b'): 'earned',
     re.compile(r'\bSony(,| I)'): r'sorry\1',
     re.compile(r"[i. ]*Privileged[- ]*Redacted[i. ]*"): '<PRIVILEGED - REDACTED>',
     re.compile(r"SONY ?(Court|Judge|(, |/)NY)", re.IGNORECASE): r'SDNY \1',

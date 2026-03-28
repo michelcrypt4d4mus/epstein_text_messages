@@ -113,7 +113,7 @@ UNCONFIRMED_TEXTS_CONFIG = [
     ),
     TextCfg(
         id='EFTA00508054',
-        note=f'Multiple counterparties, at least some Bannon. Epstein brings up the suicide of Ruslana Korshunova whom he "knew very well".'
+        note=f'Multiple counterparties, at least some Bannon. Epstein brings up the suicide of {RUSLANA_KORSHUNOVA} whom he "knew very well".'
     ),
     TextCfg(id='EFTA00509584', note='multiple counterparties', highlight_quote="each girl knew why she was coming to the house massage with extra , hardly coercion", truncate_to=AUTO),
 ]
