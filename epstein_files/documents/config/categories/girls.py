@@ -63,17 +63,6 @@ GIRLS_CFGS = [
 
     # DOJ Files
     DocCfg(
-        id='EFTA01334058',
-        author='New York Post',
-        category=Uninteresting.ARTICLE,
-        date='2005-01-14',
-        non_participants=['Casey Johnson', DEEPAK_CHOPRA, 'John Gotti', LES_WEXNER],  # TODO: maybe scan_only_excerpt arg?
-        note="press snippets about Epstein's attempt to buy IMG Models as well as his relationships with Brett Ratner and Alina Pascau",
-        # is_in_chrono=False,
-        is_interesting=5,
-        truncate_to=1_200,
-    ),
-    DocCfg(
         id='EFTA01297974',
         note=f"DOJ queries OffshoreLeaks database for {SVETLANA_POZHIDAEVA}'s mother",
         show_full_panel=True,

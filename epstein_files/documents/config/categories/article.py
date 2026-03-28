@@ -172,6 +172,7 @@ ARTICLE_CFGS = [
         id='EFTA02711825',
         author='Techonomy',
         author_uncertain='either this or EFTA01139627 are referenced in email EFTA01745739',
+        is_in_chrono=False,
         is_interesting=True,
         note='article titled "Artificial Intelligence Ignites in Ethiopia"',
     ),
@@ -181,6 +182,7 @@ ARTICLE_CFGS = [
         author_uncertain='either this or EFTA02711825 are referenced in email EFTA01745739',
         date='2014-08-15',
         date_uncertain=f'using date of {BEN_GOERTZEL} email',
+        is_in_chrono=False,
         is_interesting=True,
         note='article about iCog Labs titled "A Harvard Financier, Jeffrey Epstein, Advances Artificial Intelligence in Ethiopia"',
     ),
@@ -200,5 +202,17 @@ ARTICLE_CFGS = [
         id='EFTA00264995',
         highlight_quote="reportedly removed computer drives and other electronic equipment from the financier's Florida mansion",
         truncate_to=AUTO,
+    ),
+
+    # Interesting
+    DocCfg(
+        id='EFTA01334058',
+        author='New York Post',
+        date='2005-01-14',
+        non_participants=['Casey Johnson', DEEPAK_CHOPRA, 'John Gotti', LES_WEXNER],  # TODO: maybe scan_only_excerpt arg?
+        note="press snippets about Epstein's attempt to buy IMG Models as well as his relationships with Brett Ratner and Alina Pascau",
+        # is_in_chrono=False,
+        is_interesting=5,
+        truncate_to=1_200,
     ),
 ]
