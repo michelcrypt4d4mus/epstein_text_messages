@@ -382,7 +382,7 @@ file_id,category,author,is_interesting,timestamp,recipients_str,sent_from_device
 022841,email,Jeffrey Epstein,,2015-01-16 20:12:46+00:00,Landon Thomas Jr,,
 022844,article,Michael Wolff,True,2014-09-01 00:00:00+00:00,,,Michael Wolff draft of an unpublished article ca. 2014
 022863,article,Michael Wolff,True,2014-09-01 00:00:00+00:00,,,Michael Wolff draft of an unpublished article ca. 2014
-022894,article,Michael Wolff,True,2014-08-31 00:00:00+00:00,,,"Michael Wolff draft of an unpublished article ca. 2014 claiming Kelimbetov, Brock Pierce, and Larry Summers all visited Epstein around the time Tether was founded"
+022894,article,Michael Wolff,True,2014-08-31 00:00:00+00:00,,,"Michael Wolff draft of an unpublished article ca. 2014 claiming Kelimbetov, Brock Pierce, & Larry Summers visited Epstein around when Tether was founded, see quote: ""you are going to have some low quality characters playing early in the space…"""
 022926,email,Jeffrey Epstein,,2015-04-22 19:16:34+00:00,Darren Indyke,,
 022931,email,Jeffrey Epstein,,2015-04-22 19:34:00+00:00,Alan Dershowitz,,
 022936,email,Jeffrey Epstein,True,2016-01-20 10:21:00+00:00,None,,
@@ -5633,11 +5633,11 @@ EFTA00314931,girls,Terje Rød-Larsen,True,2017-06-08 00:00:00+00:00,,,"letter fr
 EFTA00315076,government,,True,2008-06-01 00:00:00+00:00,,,visitor list during Epstein's 2009 incarceration in Palm Beach
 EFTA00315184,misc,,,,,,pre-printed welcome cards for Epstein's apartments
 EFTA00316182,article,Conchita Sarnoff,False,2010-03-26 00:00:00+00:00,,,Conchita Sarnoff
-EFTA00317801,email,Lesley Groff,,2016-10-02 17:34:23+00:00,Jeffrey Epstein;Jojo Fontanilla;Leo;Merwin Dela Cruz,,daily schedule
+EFTA00317801,email,Lesley Groff,,2016-10-02 17:34:23+00:00,Jojo Fontanilla;Leo Loking;Merwin Dela Cruz,,daily schedule
 EFTA00318013,email,Lesley Groff,,2016-09-28 12:16:17+00:00,Jeffrey Epstein,,
 EFTA00318111,email,Lesley Groff,,2016-09-28 16:14:37+00:00,Leo Loking;Merwin Dela Cruz;Yoni Koren,,
 EFTA00318745,email,,True,2016-09-19 14:26:52+00:00,None,,
-EFTA00320384,email,Zorro,,2016-08-23 21:09:42+00:00,Anna Rodriquez;Bella Klein;Billy Hammond;Daphne Wallace;Darren Indyke;Janusz Banasiak;Jennaine Ruan;Jojo Fontanilla;Larry E. Morrison;Lawrance Visoski;Renato Otan;Richard Kahn;Una Pascal,,
+EFTA00320384,email,Zorro,,2016-08-23 21:09:42+00:00,Ann Rodriguez;Bella Klein;Billy Hammond;Daphne Wallace;Darren Indyke;Janusz Banasiak;Jennaine Ruan;Jojo Fontanilla;Larry E. Morrison;Lawrance Visoski;Renato Otan;Richard Kahn;Una Pascal,,
 EFTA00322570,email,Lesley Groff,True,2016-07-06 19:15:11+00:00,None,,booking flight for <REDACTED> from Hong Kong to NYC
 EFTA00324390,email,Lesley Groff,False,2016-05-25 19:00:03+00:00,Bebe Avdiu,,
 EFTA00327023,email,Lesley Groff,,2016-04-01 15:18:58+00:00,Jeffrey Epstein,Sent from my iPhone,
@@ -5763,6 +5763,7 @@ EFTA00436142,email,Lesley Groff,,2011-04-04 19:43:54+00:00,Jeffrey Epstein,,
 EFTA00436468,crypto,,True,2011-03-24 17:08:20+00:00,Jeffrey Epstein,,call with Howard Lutnick after he goes overseas
 EFTA00437116,email,Lesley Groff,,2011-03-08 12:32:08+00:00,Jes Staley,Sent via BlackBeny by AT&T,
 EFTA00438431,girls,Abdullah Al Maari,True,2016-11-02 10:15:55+00:00,Lesley Groff,,visa invitation for Karyna Shuliak to visit (???)
+EFTA00438475,girls,David Rodgers,True,2016-11-02 14:11:42+00:00,Lesley Groff,,"see quote: ""it will be best for Karyna to travel as Crew member"""
 EFTA00439532,email,Jeffrey Epstein,,2016-11-20 23:00:34+00:00,Lesley Groff,,
 EFTA00442950,tech,Lesley Groff,True,2017-01-18 15:15:49+00:00,James Ce,,"see quote: ""old hard drives Darren had me review & erase"""
 EFTA00443752,crypto,Christopher Petrock,True,2017-01-24 22:33:43+00:00,Jeffrey Epstein;Matthew Gilbert,,invitation from Howard Lutnick
@@ -5863,7 +5864,7 @@ EFTA00561348,email,Sarah Kellen,True,2011-03-31 13:48:25+00:00,None;Jeffrey Epst
 EFTA00562357,email,Sarah Kellen,,2011-06-13 14:05:24+00:00,Darren Indyke,,Epstein had multiple passports
 EFTA00563586,email,,True,2011-08-08 11:07:16+00:00,Story Cowles,,
 EFTA00563804,email,Lesley Groff,,2011-08-12 21:13:55+00:00,Stephen Hanson,,
-EFTA00564404,email,Karyna Shuliak,,2018-02-20 05:27:40+00:00,Apruta;Leo cIMIa,,
+EFTA00564404,email,Karyna Shuliak,,2018-02-20 05:27:40+00:00,Leo Loking,,
 EFTA00569859,email,,True,2017-09-06 17:47:37+00:00,Karyna Shuliak,Отправлено с iPhone,
 EFTA00570566,money,Richard Kahn,True,2017-04-12 21:40:24+00:00,Cynthia Rodriguez;Karyna Shuliak;Stewart Oldfield,,
 EFTA00572157,girls,,True,2016-10-17 13:19:22+00:00,Karyna Shuliak,Отправлено с iPhone,"translation: ""Congratulations on the new addition!!! What did you name the little miracle?"" (seems to be about a cat)"
@@ -6204,7 +6205,7 @@ EFTA00768367,email,Barry W. Zelin,,2009-11-06 14:23:47+00:00,Jeffrey Epstein,,
 EFTA00768891,email,Nicole Junkermann,,2009-11-18 22:10:51+00:00,Jeffrey Epstein,,
 EFTA00770066,email,Lisa Randall,,2009-09-11 14:57:05+00:00,Jeffrey Epstein,Sent from my Verizon Wireless BlackBerry,Epstein lists conferences he intends to fund
 EFTA00771142,email,Ben Goertzel,,2009-10-09 12:22:26+00:00,Jeffrey Epstein,,
-EFTA00771388,email,David Stern,True,2009-10-14 17:28:00+00:00,Jeffrey Epstein,,Naomi Campbell seems to have made some introductions to Russian oligarchs
+EFTA00771388,email,David Stern,True,2009-10-14 17:28:00+00:00,Jeffrey Epstein,,Naomi Campbell made some introductions to Russian oligarchs
 EFTA00771856,girls,Ramsey Elkholy,True,2009-10-22 11:51:36+00:00,Jeffrey Epstein,,"""she's 23 but oozes sex"", see quote: ""I know 23 is on the old side for you"""
 EFTA00772147,email,Ken Starr,,2009-06-19 16:14:47+00:00,Jeffrey Epstein,,
 EFTA00772798,girls,Ghislaine Maxwell,True,2009-07-19 02:34:05+00:00,None,,"Epstein tells Ghislaine that Giuffre was 17, see quote: ""how old was she in 99 then?"""
@@ -6660,6 +6661,7 @@ EFTA01030070,crypto,Nicholas Ribis,True,2019-02-17 12:20:59+00:00,Jeffrey Epstei
 EFTA01030418,email,Richard Kahn,,2019-03-13 13:58:17+00:00,Jeffrey Epstein,,
 EFTA01030561,email,Ganbat Chuluunkhuu,False,2017-09-06 15:03:36+00:00,Jeffrey Epstein,,
 EFTA01030582,email,Svetlana Pozhidaeva,True,2019-03-12 01:56:58+00:00,Jeffrey Epstein,,
+EFTA01030932,money,Jeffrey Epstein,True,2019-03-08 14:57:52+00:00,Lawrance Visoski,,someone is in a hurry to buy Epstein's jet
 EFTA01030965,email,Richard Kahn,,2017-09-06 18:47:55+00:00,Jeffrey Epstein,,
 EFTA01031007,email,Richard Kahn,,2019-03-07 20:44:29+00:00,Jeffrey Epstein,,
 EFTA01031685,email,Nicole Junkermann,,2019-03-04 16:11:02+00:00,Jeffrey Epstein,Sent from my iPhone,
@@ -6859,7 +6861,7 @@ EFTA01299550,,,,2016-03-31 00:00:00+00:00,,,
 EFTA01299820,crypto,Crypto PR Lab,True,2018-12-18 00:00:00+00:00,,,Crypto PR Lab bank transfer
 EFTA01309589,government,FBI,True,2020-08-27 00:00:00+00:00,,,"FBI interview of Anthony Figueroa, recruiting from high schools"
 EFTA01317889,tech,FedEx,,2002-11-04 00:00:00+00:00,,,"invoice, Danny Hillis"
-EFTA01334058,girls,New York Post,True,2005-01-14 00:00:00+00:00,,,New York Post press snippets about Epstein's attempt to buy IMG Models as well as his relationships with Brett Ratner and Alina Pascau
+EFTA01334058,article,New York Post,True,2005-01-14 00:00:00+00:00,,,New York Post press snippets about Epstein's attempt to buy IMG Models as well as his relationships with Brett Ratner and Alina Pascau
 EFTA01344195,email,Lesley Groff,,2014-01-08 10:06:35+00:00,Amanda Kirby,,
 EFTA01357341,,,,2026-01-02 00:00:00+00:00,,,
 EFTA01359508,,,,2015-09-28 00:00:00+00:00,,,
@@ -7143,9 +7145,9 @@ EFTA01861257,email,Donna Air,,2011-07-18 22:59:22+00:00,Jeffrey Epstein,Sent fro
 EFTA01862308,email,David Stern,False,2011-06-30 06:21:14+00:00,Jeffrey Epstein,,
 EFTA01862563,crypto,Jeffrey Epstein,True,2011-06-11 12:24:09+00:00,None;John Brockman,,Epstein still trying to track down the bitcoin development team
 EFTA01866387,email,Jeffrey Epstein,,2011-06-06 11:54:00+00:00,John Brockman,,
-EFTA01868066,girls,,True,2011-03-28 20:33:42+00:00,Jeffrey Epstein,Sent via BlackBerry from T-Mobile,"impersonating [someone] talking to Joshua Fink, ""Dana"" could be typo of ""Lana"" (Svetlana Pozhidaeva)"
+EFTA01868066,girls,,True,2011-03-28 20:33:42+00:00,Jeffrey Epstein,Sent via BlackBerry from T-Mobile,"impersonating [someone] talking to Joshua Fink (""Dana"" could be typo of ""Lana"", as Svetlana Pozhidaeva and Josh Fink dated)"
 EFTA01870235,money,Jean Luc Brunel,True,2011-03-23 16:03:57+00:00,Jeffrey Epstein,Sent via BlackBerry from T-Mobile,MC2 Model Management IRS woes and line of credit repayment
-EFTA01870453,girls,Svetlana Pozhidaeva,True,2011-04-05 16:51:26+00:00,Jeffrey Epstein,Sent via BlackBerry from T-Mobile,"Svetlana Pozhidaeva fwds a discussion about an abortion to Epstein, see quote: ""You have known you are preg for a week"""
+EFTA01870453,girls,Svetlana Pozhidaeva,True,2011-04-05 16:51:26+00:00,Jeffrey Epstein,Sent via BlackBerry from T-Mobile,"Svetlana Pozhidaeva fwds intimate texts from Joshua Fink about an abortion to Epstein, see quote: ""You have known you are preg for a week"""
 EFTA01875607,girls,unknown girl,True,2012-08-15 17:15:28+00:00,Jeffrey Epstein,,
 EFTA01877084,girls,Jean Luc Brunel,True,2012-06-07 18:51:08+00:00,Jeffrey Epstein,,"Epstein and Jean Luc Brunel ""managing"" Joshua Fink's relationship with Svetlana Pozhidaeva"
 EFTA01877224,girls,Svetlana Pozhidaeva,True,2012-06-08 20:15:01+00:00,Jeffrey Epstein,Sent via BlackBerry from T-Mobile,intimate texts with Joshua Fink

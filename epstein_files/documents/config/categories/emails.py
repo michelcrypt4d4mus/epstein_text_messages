@@ -1191,7 +1191,7 @@ EMAILS_CONFIG = [
     daily_schedule_email('EFTA00479255', author=LESLEY_GROFF),
     daily_schedule_email('EFTA00391916', author=LESLEY_GROFF, author_uncertain=True),
     daily_schedule_email('EFTA00378753', author=LESLEY_GROFF, author_uncertain=True, note='Mark Tollison was fired'),
-    daily_schedule_email('EFTA00317801', recipients=[JOJO_FONTANILLA, LEO_LOKING, MERWIN_DELA_CRUZ]),
+    daily_schedule_email('EFTA00317801', recipients=[JEFFREY_EPSTEIN, JOJO_FONTANILLA, LEO_LOKING, MERWIN_DELA_CRUZ]),
     EmailCfg(
         id='EFTA00339256',
         author=LESLEY_GROFF,

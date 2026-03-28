@@ -2966,7 +2966,7 @@ HIGHLIGHTED_NAMES = [
             Entity('Sergio Cordero', f"modeling agent {MC2_MODEL_MGMT}, business partner of {JEAN_LUC_BRUNEL}", match_partial=None),
             Entity(
                 'Tigran Khachatrian',
-                f'model scout, friend of {DANIEL_SIAD}, appears in "Girl Model" documentary', #, 6 years in prison for identity theft',  #  in 2012
+                f'model scout formerly with Trump Models, appears in "Girl Model" documentary', #, 6 years in prison for identity theft',  #  in 2012
                 r"Tigrane?( Khachatrian)?",
                 match_partial='both',
                 url=[
