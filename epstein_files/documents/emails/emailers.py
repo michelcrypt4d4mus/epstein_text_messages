@@ -194,4 +194,4 @@ def _reverse_first_and_last_names(name: Name) -> Name:
         names = name.split(', ')
         return f"{names[1]} {names[0]}"
     else:
-        return name
+        return name.removesuffix(' I')  # redaction cruft
