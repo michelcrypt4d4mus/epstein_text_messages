@@ -327,6 +327,7 @@ class EpsteinFiles(DocList):
             doc_paths += updated_paths
 
         logger.warning(msg)
+        doc_paths = uniquify(doc_paths)
         repaired_docs = self._load_file_paths(doc_paths)
 
         if environ.get('RESPLIT_BIG_EMAILS'):

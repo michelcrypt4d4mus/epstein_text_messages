@@ -588,6 +588,7 @@ GOVERNMENT_CFGS = [
         note=f'interview of {JEAN_LUC_BRUNEL} partner Sergio Cordero',
         truncate_to=(10_240, 14_500),
     ),
+    fbi_internal('EFTA00144222'),
     fbi_internal('EFTA01648955'),
     fbi_internal('EFTA00037690', highlight_quote='seems to be a conduit for money paid to female victims', note=BUTTERFLY_TRUST),
     inventory('EFTA00066350', 'Epstein boxed never obtained from SDFL prosecutor office', is_interesting=10),
