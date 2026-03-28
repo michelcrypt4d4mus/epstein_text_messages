@@ -8,6 +8,11 @@ from epstein_files.output.html.html_dir import HtmlDir
 
 ImgExt = Literal['jpg', 'jpeg', 'gif', 'webp', 'png']
 
+# Maybe some day these PDFs could be converted to images
+POSSIBLE_IMAGE_CONVERSIONS = [
+    'EFTA00315076',
+]
+
 
 @dataclass(kw_only=True)
 class PicCfg(DocCfg):

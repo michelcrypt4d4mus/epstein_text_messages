@@ -648,7 +648,8 @@ CRYPTO_CFGS = [
     EmailCfg(
         id='EFTA02374960',
         note=f"Epstein says that he will fund a seat at MIT Media Lab for ZCash founder {MADARS_VIRZA}",
-        is_interesting=10,
+        is_interesting=20,
+        truncate_to=(700, 1_900),
     ),
     DocCfg(id='EFTA00811130', author=PERKINS_COIE, note='tax opinion on ZCash tokens'),
     DocCfg(id='EFTA00603348', note=f"Electric Coin Company created the untraceable crypto ZCash funded by {LARRY_SUMMERS}'s DCG"),
