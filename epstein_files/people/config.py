@@ -2930,6 +2930,7 @@ HIGHLIGHTED_NAMES = [
                 url='https://wwd.com/fashion-news/fashion-scoops/next-model-faith-kates-management-stays-quiet-departure-1238368757/',
             ),
             Entity(GIANNI_SERAZZI, "founder of 2morrow"),
+            Entity('Ginta Lapina', f'Latvian, possibly signed to {MC2_MODEL_MGMT}', url='https://www.instagram.com/gintalapina'),
             Entity(HEATHER_MANN, f"South African model, ex-girlfriend of {PRINCE_ANDREW} (?)", match_partial=None),
             Entity(
                 JEAN_LUC_BRUNEL,
