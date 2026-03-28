@@ -4,7 +4,7 @@ from typing import Literal
 
 # Types
 OcrRepair = dict[str | re.Pattern, str]
-PartialName = Literal['both', 'first', 'last']
+PartialName = Literal['both', 'first', 'last', 'suffix']
 
 # Categories
 ACADEMIA = 'academia'

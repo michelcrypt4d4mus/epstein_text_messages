@@ -371,7 +371,7 @@ class Entity(LoggingEntity):
 class Organization(Entity):
     # Different defaults
     is_emailer: bool | None = None
-    match_partial: PartialName | None = None
+    match_partial: PartialName | None = 'suffix'
     # Additional properties
     belongs_to: str = ''
 
@@ -381,22 +381,23 @@ class Organization(Entity):
         if self.emailer_pattern and self.is_emailer is not False:
             self.is_emailer = True
 
-        if (suffix_match := COMPANY_SUFFIX_REGEX.match(self.name)) and not self.emailer_pattern:
-            suffix = suffix_match.group(1)
-            emailer_pattern = self.name.removesuffix(suffix)
+        if not self.emailer_pattern:
+            if self.match_partial == 'suffix' and (suffix_match := COMPANY_SUFFIX_REGEX.match(self.name)):
+                suffix = suffix_match.group(1)
+                emailer_pattern = self.name.removesuffix(suffix)
 
-            if not MGMT_REGEX.search(suffix):
-                if suffix.startswith(','):
-                    suffix = suffix.replace(',', ',?')
-                else:
-                    suffix = f",?{suffix}"
+                if not MGMT_REGEX.search(suffix):
+                    if suffix.startswith(','):
+                        suffix = suffix.replace(',', ',?')
+                    else:
+                        suffix = f",?{suffix}"
 
-            if suffix.endswith('.'):
-                suffix = suffix.replace('.', r'\.?')
+                if suffix.endswith('.'):
+                    suffix = suffix.replace('.', r'\.?')
 
-            self.emailer_pattern += fr"{emailer_pattern}({suffix})?"
-        elif self.name.startswith('UAB ') and not self.emailer_pattern:
-            self.emailer_pattern = self.name.removeprefix('UAB ')
+                self.emailer_pattern += fr"{emailer_pattern}({suffix})?"
+            elif self.name.startswith('UAB '):
+                self.emailer_pattern = self.name.removeprefix('UAB ')
 
         if self.belongs_to:
             if self.info:
@@ -484,6 +485,9 @@ def law_enforcement(name: str, emailer_pattern: str = '', info: str = '', **kwar
 
     if name.startswith('US ') and not emailer_pattern:
         emailer_pattern = r"U(\.|nited)? S(\.|tates)? " + name.removeprefix('US ')
+        match_partial = None
+    else:
+        match_partial = 'suffix'
 
     return Organization(
         name,
@@ -491,6 +495,7 @@ def law_enforcement(name: str, emailer_pattern: str = '', info: str = '', **kwar
         emailer_pattern,
         is_emailer=is_emailer,
         is_interesting=is_interesting,
+        match_partial=match_partial,
         **kwargs
     )
 

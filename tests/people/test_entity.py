@@ -9,7 +9,7 @@ from epstein_files.people.names import *
 from epstein_files.util.constant.strings import WIKIPEDIA
 
 NAME = 'Nasir Jones'
-EMAILER_PATTERN = r"Nasir[-_.\s]*Jones?"
+EMAILER_PATTERN = r"Nasir[-_.\s]*Jones?|Jones,?[-_.\s]*Nasir?"
 HIGHLIGHT_PATTERN = fr"{EMAILER_PATTERN}|Jones,?[-_.\s]*Nasir"
 URL = 'https://nasir.jones/ill'
 WIKIPEDIA_URL = 'https://en.wikipedia.org/wiki/Nasir_Jones'
@@ -62,7 +62,7 @@ def test_epstein_site_links(epstein):
 def test_epstein_trust():
     butterfly = epstein_trust(BUTTERFLY_TRUST, beneficiaries=['Karyna'])
     assert butterfly.info == 'Epstein financial trust, sole beneficiary Karyna'
-    assert butterfly.match_partial is None
+    assert butterfly.match_partial == 'suffix'
     butterfly = epstein_trust(BUTTERFLY_TRUST, beneficiaries=['Karyna', 'Dave'])
     assert butterfly.info == "Epstein financial trust, beneficiaries Karyna, Dave"
     year_trust = epstein_trust('2012', trustees=['Bob', 'Dylan'])
@@ -106,20 +106,21 @@ def test_middle_initial(epstein):
     assert Entity('Robert D Critton')._middle_initial == 'D'
     critton = Entity('Robert D. Critton')
     assert critton._middle_initial == 'D'
-    assert critton.emailer_regex.pattern == r"Robert[-_.\s]*(D\.?[-_.\s]*)?Critton?"
+    assert critton.emailer_regex.pattern == r"Robert[-_.\s]*(D\.?[-_.\s]*)?Critton?|Critton,?[-_.\s]*Robert?"
 
 
 def test_organization():
     jege = Organization('Jege LLC')
     assert jege.emailer_pattern == r"Jege(,? LLC)?"
-    assert jege.match_partial is None
+    assert jege.match_partial == 'suffix'
     assert jege.is_emailer is None
     assert Organization('Jege, LLC').emailer_pattern == r"Jege(,? LLC)?"
+    assert Organization('Jege, LLC', match_partial=None).emailer_pattern == ''
     assert Organization('Butterfly Inc').emailer_pattern == r"Butterfly(,? Inc)?"
     assert Organization('Butterfly, Inc.').emailer_pattern == r"Butterfly(,? Inc\.?)?"
     assert Organization(USANYS).emailer_regex.pattern == 'USANYS'
     coatue = Organization('Coatue Management', 'VC fund')
-    assert coatue.match_partial is None
+    assert coatue.match_partial == 'suffix'
     assert coatue.emailer_pattern == r'Coatue( Management)?'
     northward = Organization('NorthwardEducation')
     assert northward.emailer_regex.pattern == 'NorthwardEducation'
@@ -129,8 +130,8 @@ def test_organization():
 
 def test_pattern():
     assert _build_contact().pattern == EMAILER_PATTERN
-    assert Entity('Robert D Critton').pattern == r"Robert[-_.\s]*(D\.?[-_.\s]*)?Critton?"
-    assert Entity('Alan J. Dlugash').pattern == r"Alan[-_.\s]*(J\.?[-_.\s]*)?Dlugash?"
+    assert Entity('Robert D Critton').pattern == r"Robert[-_.\s]*(D\.?[-_.\s]*)?Critton?|Critton,?[-_.\s]*Robert?"
+    assert Entity('Alan J. Dlugash').pattern == r"Alan[-_.\s]*(J\.?[-_.\s]*)?Dlugash?|Dlugash,?[-_.\s]*Alan?"
 
 
 def test_repr(epstein):
