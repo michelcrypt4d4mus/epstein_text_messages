@@ -646,6 +646,7 @@ GOVERNMENT_CFGS = [
     EmailCfg(id='EFTA00068446', author=USANYS, author_uncertain=True, recipients=['NY FBI'], note='evidence discussion'),
     EmailCfg(id='EFTA00089743', author=USANYS, note='evidence discussion'),
     EmailCfg(id='EFTA00090656', author=FBI, recipients=[USANYS], recipient_uncertain=True, note='evidence discussion'),
+    usanys_internal_email('EFTA01660651', note='list of Trump accusers', is_interesting=10),
     usanys_internal_email('EFTA00098000', note='evidence discussion'),
     usanys_internal_email('EFTA00031633', is_interesting=False),
     usanys_internal_email('EFTA00018778'),
