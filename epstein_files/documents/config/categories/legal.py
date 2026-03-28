@@ -239,6 +239,6 @@ LEGAL_CFGS = [
         f"Epstein Epstein whining that his highly paid lawyers couldn't get him off",
         date='2008-09-25',
         is_interesting=10,
-        truncate_to=NO_TRUNCATE,
+        truncate_to=(7_100, 8_600),
     )
 ]

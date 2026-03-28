@@ -641,7 +641,11 @@ CRYPTO_CFGS = [
     EmailCfg(id='EFTA02584771', note=f"discussion of decentralized prediction markets (e.g. Polymarket)", is_interesting=10),
     EmailCfg(id='EFTA01008242', note='Epstein passes on an investment in Radius'),
     EmailCfg(id='EFTA00995269', note=f"Epstein suggests Monaco and Vatican City as good places for crypto"),
-    EmailCfg(id='EFTA02598396', note=f'Epstein is too ethical and law abiding to invest in a crypto project {VINCENZO_IOZZO}\' brings him'),
+    EmailCfg(
+        id='EFTA02598396',
+        is_interesting=8,
+        note=f'Epstein is too ethical and law abiding to invest in a crypto project {VINCENZO_IOZZO}\' brings him',
+    ),
     EmailCfg(id='EFTA02517850', note=f"apparently {VINCENZO_IOZZO} visited Zorro Ranch"),
     EmailCfg(id='EFTA01977800', note=f"Vincenzo looking for things in the financial markets [that be better with crypto]"),
     # ZCash / Madars Virza
@@ -684,8 +688,8 @@ CRYPTO_CFGS = [
     EmailCfg(id='EFTA01784901', note=f"{JEREMY_RUBIN} has cashed multiple checks directly from Epstein", is_interesting=10),
     EmailCfg(
         id='EFTA01007544',
-        note=f'{JEREMY_RUBIN} describes "grey area between pump and develop" when Epstein objects on ethical grounds',
         is_interesting=10,
+        note=f'{JEREMY_RUBIN} describes "grey area between pump and develop" when Epstein objects on ethical grounds',
     ),
     EmailCfg(
         id='EFTA01748990',

@@ -226,7 +226,7 @@ MONEY_CFGS = [
         note="Epstein employee payroll 2010",
         date='2011-01-15',
         date_uncertain='approx',
-        is_interesting=15,
+        is_interesting=11,
         show_full_panel=True, # TODO: show image?
         truncate_to=1_600,
     ),
