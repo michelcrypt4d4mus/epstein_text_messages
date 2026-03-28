@@ -223,6 +223,7 @@ EMAIL_SIGNATURE_REGEXES = {
     MICHAEL_MILLER: re.compile(r"Michael C. Miller\nPartner\nwww.steptoe.com/mmiller\nSteptoe\n(Privileged.*\n)?(\+1\s+)?direct.*\n(\+1\s+)?(\+1\s+)?fax.*\n(\+1.*)?cell.*\n(www.steptoe.com\n)?This message and any.*\nyou are not.*\nnotify the sender.*"),
     NATALIA_MOLOTKOVA: re.compile(r"^Centurion Relationship Manager(\nnatal.*)?(\n\(\d.*)?\nHours.*", re.MULTILINE),
     NICHOLAS_RIBIS: re.compile(r"60 Morris Turnpike 2FL\nSummit,? NJ.*\n0:\nF:\n\*{20,}\nCONFIDENTIALITY NOTICE.*\nattachments.*\ncopying.*\nIf you have.*\nthe copy.*\nThank.*\n\*{20,}"),
+    NICOLE_JUNKERMANN: re.compile(r"(Mob:.{,14}\n)?Disclaimer: The information contained in this e-mail message is intended.{,600}products or services mentioned in this e-mail\.?", re.DOTALL),
     PAUL_BARRETT: re.compile(r"Paul Barrett[\n\s]+Alpha Group Capital LLC[\n\s]+(142 W 57th Street, 11th Floor, New York, NY 10019?[\n\s]+)?(al?[\n\s]*)?ALPHA GROUP[\n\s]+CAPITAL"),
     'Paul Tweed': re.compile(r"Paul Tweed is also a member of.{,1100}arising from any bug or virus infection", re.DOTALL),
     'Paul Venables': re.compile(fr"{QUOTE_INDENT_GROUP_NEWLINES}*This email{QUOTE_INDENT_GROUP_NEWLINES}*\(including attachments\) is confidential.{{,600}}Matrix{QUOTE_INDENT_GROUP_NEWLINES}*Chambers.*?(?=\Z|\n)", re.DOTALL),
