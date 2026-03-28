@@ -145,7 +145,7 @@ SENT_FROM_DEVICE_SUFFIXES = [
     r"and string",
     r"AT&T",
     r"Droid",
-    "from Etisalat",
+    r"from Etisalat",
     r" gesendet",
     r"iOS",
     r"iPada?",
@@ -154,6 +154,7 @@ SENT_FROM_DEVICE_SUFFIXES = [
     r"Samsung Mobile",
     r"Surface(\s+RT)?",
     r"BlackBerry(.*(AT&T|device|Handheld|Orange|smartphone|T- ?Mobile))?",
+    r"Wireless Device",
 ]
 
 # bespoke signature patterns

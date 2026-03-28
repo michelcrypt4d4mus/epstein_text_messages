@@ -3951,7 +3951,7 @@ HIGHLIGHTED_NAMES = [
             Entity(
                 NADIA_MARCINKO,
                 'Lolita Express pilot',
-                r"Na[dď]i?a Marcinko(v[aá])?",
+                r"(Emma|Na[dď][ij]?a) Marcinko(v[aá])?",
                 aliases=['Emma Marcinko', 'Nadja Marcinkova'],
                 email_addresses=['nadja2102@yahoo.com'],
                 url=[
