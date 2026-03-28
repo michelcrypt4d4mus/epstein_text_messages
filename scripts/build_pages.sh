@@ -54,13 +54,13 @@ print_deploy_step "Building JSON metadata page..."
 $GENERATE_CMD --json-metadata
 print_deploy_step "Building --output-notes..."
 $GENERATE_CMD --output-notes
-print_deploy_step "Building other files table page..."
-$GENERATE_CMD --all-other-files
 
 # Skip big emails pages if ONLY_MOST_INTERESTING=true
 if [ -n "$ONLY_MOST_INTERESTING" ]; then
-    print_deploy_step "Skipping build of curated emails and all emails pages..."
+    print_deploy_step "Skipping build of curated emails and all emails/all other files pages..."
 else
+    print_deploy_step "Building other files table page..."
+    $GENERATE_CMD --all-other-files
     print_deploy_step "Building curated page..."
     $GENERATE_CMD
     print_deploy_step "Building curated mobile page... "

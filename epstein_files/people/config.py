@@ -3277,6 +3277,7 @@ HIGHLIGHTED_NAMES = [
             r"Domodedovo",
             r"FSB",
             r"GRU",
+            r"Igor",
             r"KGB",
             r"Kislyak",
             r"Kremlin",

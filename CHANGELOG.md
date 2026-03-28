@@ -1,4 +1,5 @@
 # NEXT RELEASE
+* Change font depending on category
 * Add `PicCfg` to allow images to be shown next to/instead of text
 
 # 1.11.0

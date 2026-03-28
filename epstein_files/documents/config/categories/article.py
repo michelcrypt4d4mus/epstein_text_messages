@@ -56,7 +56,8 @@ ARTICLE_CFGS = [
     wolff_draft_cfg('024229'),
     wolff_draft_cfg(
         '022894',
-        f"claiming Kelimbetov, {BROCK_PIERCE}, and {LARRY_SUMMERS} all visited Epstein around the time Tether was founded",
+        f"claiming Kelimbetov, {BROCK_PIERCE}, & {LARRY_SUMMERS} visited Epstein around when Tether was founded",
+        highlight_quote="you are going to have some low quality characters playing early in the space…",
         show_with_name=BROCK_PIERCE,
         truncate_to=(13_500, 16_000),
     ),

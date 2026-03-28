@@ -565,6 +565,7 @@ class Document(LoggingEntity):
         else:
             body_panel = BasePanel(
                 border_style=self.border_style,
+                document=self,
                 max_width=MAX_BODY_PANEL_WIDTH,
                 text=self.prettified_txt,
                 title=panel_timestamp,

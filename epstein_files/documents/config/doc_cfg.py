@@ -576,6 +576,7 @@ class DocCfg(LoggingEntity):
     def set_category(self, category: str) -> None:
         """Update the title if we changed to a category that allows titling (books, academia, finance)."""
         self.category = category.lower().strip()
+        # self._warn(f"set category '{self.category}'")
 
         if not self.category:
             return

@@ -138,10 +138,11 @@ class Entity(LoggingEntity):
         """Biographical info about this entity with links etc."""
         from epstein_files.output.epstein_highlighter import non_epstein_highlighter
         bio_pieces: list[Textish] = [Text('').append(self.name_with_link)]
-        bio_pieces.extend([Text('').append('aka ', AKA_STYLE).append(Text(alias, self.style)) for alias in self.aliases])
+        bio_pieces.extend([Text('aka ', AKA_STYLE).append(Text(alias, self.style)) for alias in self.aliases])
 
         if self.category:
-            category_txt = Text(self.category.lower(), style=self._style.dim)
+            category_style = self._style.style if 'red' in str(self._style) else self._style.dim
+            category_txt = Text(self.category.lower(), style=category_style)
             bio_pieces.append(enclose(category_txt, encloser='[]', encloser_style='dim'))
 
         bio_pieces.append(non_epstein_highlighter(Text(self.info, BIO_STYLE)) if self.info else QUESTION_MARKS_TXT)
