@@ -2064,6 +2064,7 @@ HIGHLIGHTED_NAMES = [
             ),
             Entity('Tova Noel', "MCC 'guard of interest' at time of Epstein's death, fired", match_partial=None),
             Entity("Valerie Plame-Wilson", f"CIA agent at the center of The Plame Affair", url='https://en.wikipedia.org/wiki/Plame_affair'),
+            Entity('Wes Clark', 'military general', r"(General )?Wes Clark", match_partial=None),
             acronym('Confidential Human Source', 'FBI speak for a tipster'),
             acronym('Foreign Corrupt Practices Act'),
             acronym('Justice Against Sponsors of Terrorism Act', 'law permitting 9/11 survivors to sue Saudi Arabia'),
