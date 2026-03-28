@@ -1248,7 +1248,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA02464628', note=f"{KATHRYN_RUEMMLER} and Epstein on {JEAN_LUC_BRUNEL}'s immunity deal (for Epstein testimony?)", is_interesting=True),
     EmailCfg(id='EFTA01854384', note=f"{KARIM_WADE} asks if Epstein is free to meet the president (of Senegal?)", truncate_to=NO_TRUNCATE, is_interesting=5),
     EmailCfg(id='EFTA01958867', note=f'"Mr. T" is {PRINCE_ANDREW}, "Howard" is {HOWARD_LUTNICK}', is_interesting=10),
-    EmailCfg(id='EFTA00771388', note=f"{NAOMI_CAMPBELL} seems to have made some introductions to Russian oligarchs", is_interesting=5),
+    EmailCfg(id='EFTA00771388', note=f"{NAOMI_CAMPBELL} made some introductions to Russian oligarchs", is_interesting=4, truncate_to=510),
     EmailCfg(id='EFTA00640384', note=f"Newsweek reporter sniffing around Virgin Islands corruption", is_interesting=True),
     EmailCfg(id='EFTA00754450', note='"PA" is probably Prince Andrew', duplicate_ids=['EFTA02418244']),
     EmailCfg(id='EFTA02087543', note="password for Epstein's RingCentral home security system", is_interesting=True, truncate_to=500),
