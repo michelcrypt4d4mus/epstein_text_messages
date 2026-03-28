@@ -2915,7 +2915,7 @@ HIGHLIGHTED_NAMES = [
         ],
     ),
     HighlightedNames(
-        label='modeling',
+        label=MODELING,
         style='pale_violet_red1',
         entities=[
             Entity('Abi Schwinck', f"{JEAN_LUC_MC2} {QUESTION_MARKS}"),

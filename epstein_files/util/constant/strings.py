@@ -15,10 +15,12 @@ JOURNALIST = 'journalist'
 LAWYER = 'lawyer'
 LOBBYIST = 'lobbyist'
 MIDEAST = 'mideast'
+MODELING = 'modeling'
 PUBLICIST = 'publicist'
 REAL_ESTATE = 'real estate'
 REPUTATION = 'reputation'
 REPUTATION_MGMT = f'{REPUTATION} management'
+RUSSIAN_GIRL = 'russian girl'
 TECH = 'tech'
 
 # Locations

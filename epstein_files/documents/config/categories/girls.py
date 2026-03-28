@@ -333,6 +333,12 @@ GIRLS_CFGS = [
     EmailCfg(id='021818', author=NADIA_MARCINKO, author_reason='reply'),
     EmailCfg(id='022214', author=NADIA_MARCINKO, author_reason='Reply header'),
     EmailCfg(id='021811', author=NADIA_MARCINKO, author_reason='signature and email address in the message'),
+    EmailCfg(
+        id='EFTA01015310',
+        author_reason='thank you Nadia',
+        highlight_quote="wire was sent today from JEGE LLC to Aviloop account",
+        recipients=[NADIA_MARCINKO],
+    ),
     EmailCfg(id='EFTA00877202', recipients=[NADIA_MARCINKO], recipient_uncertain='"Aviloop"'),
     EmailCfg(
         id='EFTA01015397',
