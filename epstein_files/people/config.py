@@ -4013,6 +4013,12 @@ HIGHLIGHTED_NAMES = [
                 aliases=['Natalie Malyshev'],
                 email_addresses=['natalie.malyshev@gmail.com'],
             ),
+            Entity(
+                'Ornella Corazza',
+                f"on {GINO_YU}'s team {QUESTION_MARKS}",
+                match_partial='first',
+                url='https://researchprofiles.herts.ac.uk/en/persons/ornella-corazza/',
+            ),
             Entity(PAULA_HEIL_FISHER, "Epstein's ex-girlfriend who works in opera now", match_partial=None),
             # Contact('Regina E. Frangul', f'Amex travel agent {QUESTION_MARKS}'),
             Entity('Saige Gonzalez', VICTIM_EVIDENCE, match_partial=None),

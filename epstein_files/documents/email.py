@@ -147,6 +147,7 @@ OCR_REPAIRS: OcrRepair = {
     re.compile(r'gmax ?[1l] ?[@g]ellmax.c ?om'): 'gmax1@ellmax.com',
     re.compile(r"[ijlp']ee[vy]acation[©@a(&,P ]{1,3}g?mail.com"): 'jeevacation@gmail.com',
     re.compile(r"\bLany\b"): 'Larry',
+    re.compile(r"\bOmella", re.IGNORECASE): 'Ornella',
     'gyahoo.com': '@yahoo.com',
     # Signatures
     'from Samsung Mob.le': 'from Samsung Mobile',

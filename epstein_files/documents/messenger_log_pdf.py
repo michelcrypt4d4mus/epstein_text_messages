@@ -3,6 +3,7 @@ from dateutil.parser import parse
 from dataclasses import dataclass, field
 from datetime import datetime
 
+from epstein_files.documents.emails.emailers import extract_emailer_names
 from epstein_files.documents.messenger_log import MessengerLog
 from epstein_files.documents.imessage.text_message import TextMessage
 from epstein_files.people.names import *
@@ -38,6 +39,7 @@ IMESSAGE_PDF_IDS = [
     'EFTA00508702',    # TODO: verify
     'EFTA00786793',    # TODO: verify
     'EFTA01214317',    # TODO: verify, also includes Skype logs
+    'EFTA01209254',    # TODO: verify, also includes Skype logs
     # 'EFTA01616222',  # TODO: Doesn't parse well
     # 'EFTA01613143',  # TODO: Doesn't parse well
 ]
@@ -60,8 +62,6 @@ class MessengerLogPdf(MessengerLog):
 
             if sender.startswith('Self'):
                 sender = JEFFREY_EPSTEIN
-            elif 'alain forget' in sender:
-                sender = ALAIN_FORGET
             elif self.file_id == 'EFTA00781689' and timestamp_str.startswith('2018-10-0') and sender in ['', 't']:
                 sender = STEVE_BANNON
             elif self.file_id == 'EFTA00508054' and sender == 'Lawrence':
@@ -70,6 +70,11 @@ class MessengerLogPdf(MessengerLog):
                 sender = TERJE_ROD_LARSEN
             elif sender == 'Eva':
                 sender = EVA_DUBIN
+            elif (extracted_names := extract_emailer_names(sender)):
+                if len(extracted_names) > 1:
+                    self._error(f"Found multiple names, using first only! {extracted_names}")
+
+                sender = extracted_names[0]
             elif not VALID_SENDER_REGEX.search(sender):
                 self._log(f"text message sender '{sender}' is not a valid name")
                 sender = None
