@@ -196,7 +196,7 @@ def epstein_show():
     try:
         if args.names:
             people = EpsteinFiles.get_files().person_objs(args.names)
-            raw_docs = [doc for doc in flatten([p.emails for p in people])]
+            raw_docs = [doc for doc in flatten([p.unique_documents for p in people])]
         else:
             ids = [extract_file_id(arg.upper().strip().strip('_')) for arg in args.positional_args]
             with_attachment_ids = list(set(ids).intersection(ids_with_attachments))
