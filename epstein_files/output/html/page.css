@@ -25,11 +25,12 @@ div.black_background {
 
 .category_legal {
     font-size: 1.2em;
-    font-family: "Special Elite", Menlo, 'DejaVu Sans Mono', consolas, 'Courier New', monospace;
+    font-family: "Space Mono", Menlo, 'DejaVu Sans Mono', consolas, 'Courier New', monospace;
 }
 
 .category_money {
-    font-family: "Space Mono", Menlo, 'DejaVu Sans Mono', consolas, 'Courier New', monospace;
+    font-family: "Kode Mono", Menlo, 'DejaVu Sans Mono', consolas, 'Courier New', monospace;
+    font-optical-sizing: auto;
 }
 
 div.doc_container {
