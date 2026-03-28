@@ -81,6 +81,7 @@ div.img_panel {
 
 div.no_expand {
     display: inline-block;
+    height: fit-content;
     width: fit-content;
 }
 

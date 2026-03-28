@@ -15,11 +15,13 @@ from epstein_files.util.logging import logger
 
 BORDER_RADIUS_CSS = {'border-radius': '20px'}
 CSS_CLASS = f"{BLACK_BACKGROUND} img_panel"
+DEFAULT_IMAGE_BORDER_STYLE = ''
 
 
 @dataclass(kw_only=True)
 class ImagePanel(BasePanel):
     """For <img>."""
+    border_style: str = DEFAULT_IMAGE_BORDER_STYLE
     img_url: str
 
     def to_div(self, margins: list[int | float] | None = None, css: OptionalCssProps = None, width: int = 0) -> str:

@@ -145,6 +145,7 @@ class DocCfg(LoggingEntity):
         note (str, optional): description of what's in this file
         num_preview_chars (int, optional): customize number of preview_chars shown in `OtherFile` tables
         people (list[str]): override `Document.people()` with a fixed set of names (meaning no scan of the text)
+        pic_cfg (PicCfg): configuration for image to show alongside (not instead of!) the contents of the file
         show_full_panel (bool, optional): set `is_interesting=True` and show in a full panel view, not in a table
         show_image (bool, optional): requires file in docs/doc_images/EFTAXXXXXXX.pnd
         show_with_name (str, optional): if set this document will be displayed all with the person specified
@@ -176,6 +177,7 @@ class DocCfg(LoggingEntity):
     non_participants: list[str] = field(default_factory=list)  # TODO: this sucks
     note: str = ''
     num_preview_chars: int | None = None
+    pic_cfg: 'PicCfg | None' = None
     show_full_panel: bool = False
     show_image: bool = False
     show_with_name: str = ''
@@ -219,7 +221,7 @@ class DocCfg(LoggingEntity):
                 self.note = join_truthy(self.note, f'{QUOTE_PREFIX}: {quote(quote_note)}', joiner)
 
         # show_full_panel (and highlight_quote) set is_interesting=10
-        if self.show_full_panel and self.is_interesting is None:
+        if (self.show_full_panel or self.pic_cfg) and self.is_interesting is None:
             self.is_interesting = 10
 
         if self.show_with_name and not self.is_interesting:

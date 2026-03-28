@@ -395,7 +395,14 @@ class Document(LoggingEntity):
     @property
     def side_panel(self) -> BasePanel | None:
         """Experimental feature to put note in a horizontal layout panel."""
-        if (args.side_panel_notes or self._config.show_image) and (note_txt := self._config.note_txt()):
+        if not (args.side_panel_notes or self._config.show_image or self._config.pic_cfg):
+            return None
+        elif self._config.pic_cfg:
+            return ImagePanel(
+                text=self.prettified_txt,
+                img_url=self._config.pic_cfg.image_url,
+            )
+        elif (note_txt := self._config.note_txt()):
             return BasePanel(
                 background_color=SIDE_PANEL_BG_STYLE,
                 border_style=SIDE_PANEL_BORDER_STYLE,
@@ -552,7 +559,6 @@ class Document(LoggingEntity):
             self._debug_log(f"creating ImagePanel...")
 
             body_panel = ImagePanel(
-                border_style=self.border_style,
                 img_url=self._config.image_url,
                 text=self.prettified_txt,
                 title=panel_timestamp
