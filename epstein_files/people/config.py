@@ -1372,7 +1372,7 @@ HIGHLIGHTED_NAMES = [
             epstein_co('Liquid Funding', url='https://craigunger.substack.com/p/jeffrey-epsteins-really-big-short'),
             epstein_co('LSJ, LLC', info="Little St. James", is_emailer=True),
             epstein_co('LSJE, LLC', info=f"LSJ Emergency {QUESTION_MARKS}"),
-            epstein_co('Lyn and Jojo, LLC'),
+            epstein_co('Lyn and Jojo, LLC', match_partial=None, emailer_pattern=r"Lyn and Jojo,? LLC"),
             epstein_co('Maple, Inc.', info='in Virgin Islands'),
             epstein_co("Michelle's Transportation, LLC"),
             epstein_co('Narrow Holdings'),
