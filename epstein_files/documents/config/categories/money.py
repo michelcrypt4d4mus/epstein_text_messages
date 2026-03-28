@@ -134,7 +134,6 @@ MONEY_CFGS = [
         display_text='W-2 tax form issued for <REDACTED> employee whom Epstein paid $185,323',
         date='2006-01-01'
     ),
-    DocCfg(id='EFTA01478313', note=f'list of investments (maybe of {LEON_BLACK})', date='2016-03-31'),
     DocCfg(id='EFTA01222951', note=f"credit card expenses for Carlos L Rodriguez using Plum Card", date='2019-02-12'),
     DocCfg(id='EFTA01583819', note=f"Epstein had control of {JAMES_CAYNE}'s assets"),
     DocCfg(id='EFTA01265973', note="large transfers around time of Epstein arrest", show_full_panel=True),
@@ -238,6 +237,9 @@ MONEY_CFGS = [
         no_doublespace=True,
         truncate_to=10_000,
     ),
+
+    # Fashion TV
+    EmailCfg(id='EFTA00762263', author=DAVID_STERN, author_reason='quoted reply', note=f"Epsstein and {DAVID_STERN} discuss acquiring FashionTV"),
 
     # JPM
     jpm_doc('EFTA01480542', 'Epstein source of wealth filing'),
@@ -366,6 +368,7 @@ MONEY_CFGS = [
         note=f'list of {LEON_BLACK} companies that {EILEEN_ALEXANDERSON} can make financial transactions for',
         truncate_to=EMAIL_TRUNCATE_TO,
     ),
+    DocCfg(id='EFTA01478313', note=f'list of investments (maybe of {LEON_BLACK})', date='2016-03-31'),
     EmailCfg(
         id='EFTA01389074',
         author=RICHARD_KAHN,

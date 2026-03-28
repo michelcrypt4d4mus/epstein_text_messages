@@ -204,7 +204,7 @@ EMAIL_SIGNATURE_REGEXES = {
     EDUARDO_ROBLES: re.compile(r"(• )?email:.*\n(• )?email:\n(• )?website: www.creativekingdom.com\n(• )?address: 5th Floor Office No:504 Aspect Tower,\nBusiness Bay, Dubai United Arab Emirates."),
     'Erika Kellerhals': re.compile(r"Notice: This communica.ion may contain privileged or other confidential.{,310}delete the copy you recei.ed. Thank you.?", re.DOTALL),
     ERIC_ROTH: re.compile(r"2221 Smithtown Avenue\nLong Island.*\nRonkonkoma.*\n(.1. )?Phone\nFax\nCell\ne-mail"),
-    FAITH_KATES: re.compile(r"(15 Watts Street.{,40})?NOTE ?: ?This message including any attachments contains information.{,750}messagelabs.com/email", re.DOTALL),
+    FAITH_KATES: re.compile(r"(15 Watts Street.{,40})?NOTE ?: ?This message including any attachments contains information.{,750}(omissions\s+in\s+this\s+message\s+or\s+any\s+attachments\.?|messagelabs.com/email)", re.DOTALL),
     FRANCESCA_HALL: re.compile(r"The contents of this e-mail message and.{,600}message and its attachments[.,]? if any", re.DOTALL),
     GHISLAINE_MAXWELL: re.compile(r"FACEBOOK\nTWITTER\nG\+\nPINTEREST\nINSTAGRAM\nPLEDGE\nTHE DAILY CATCH"),
     'Javier Solano': re.compile(r"www.SolanoLegal.{,120}Bronx.{,20}?$(\n[TF]:$)*", re.DOTALL | re.MULTILINE),

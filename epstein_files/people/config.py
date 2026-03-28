@@ -2976,6 +2976,7 @@ HIGHLIGHTED_NAMES = [
             ),
             # Contact('Regina', f'model, Epstein and {FAITH_KATES} tried to get her a contract'),
             Entity('Vladimir Yudashkin', "director of the 1 Mother Agency"),
+            Entity('Yaron Jakubowicz', 'CEO of FashionTV'),
             Entity('Yfke Sturm', 'model from Holland', match_partial='both', url=WIKIPEDIA),
             Entity('lorraine@mc2mm.com', JEAN_LUC_MC2),
             Entity('pink@mc2mm.com', JEAN_LUC_MC2, r"^Pink$|pink@mc2mm\.com"),

@@ -787,6 +787,10 @@ GIRLS_CFGS = [
     EmailCfg(id='EFTA01930501', highlight_quote="Your littlest girl was a little naughty"),
     EmailCfg(id='DropSite 2006-05-29 1329', highlight_quote='I am giving the little girl a modeling\n> lesson', is_interesting=True),
 
+    # Dubins
+    EmailCfg(id='EFTA00747141', note=f'photo shoot for 11 year old {CELINA_DUBIN}', truncate_to=NO_TRUNCATE, is_in_chrono=False),
+    EmailCfg(id='EFTA00747461', note=f'photo shoot for 11 year old {CELINA_DUBIN}', truncate_to=NO_TRUNCATE, is_in_chrono=False),
+
     # Faith Kates
     EmailCfg(id='EFTA02512317', recipients=[FAITH_KATES], author_reason='"faith,"', note="Epstein suggests Next Models take on a girl"),
 
