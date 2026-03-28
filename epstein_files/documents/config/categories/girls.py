@@ -47,7 +47,15 @@ def blaine_letter(id: str, date: str, suffix: str = '', **kwargs) -> Communicati
 
 
 GIRLS_CFGS = [
-    DocCfg(id='019300', author=SVETLANA_POZHIDAEVA, note=f'{WOMEN_EMPOWERMENT} f. {KATHRYN_RUEMMLER}', date='2019-04-05', show_full_panel=True),
+    DocCfg(
+        id='019300',
+        author=SVETLANA_POZHIDAEVA,
+        date='2019-04-05',
+        duplicate_ids=['EFTA00810724'],
+        note=f'{WOMEN_EMPOWERMENT} f. {KATHRYN_RUEMMLER}',
+        show_full_panel=True,
+        show_with_name=KATHRYN_RUEMMLER,
+    ),
     DocCfg(id='022267', author=SVETLANA_POZHIDAEVA, note=f'{WOMEN_EMPOWERMENT} founder essay about growing the seminar business'),
     DocCfg(id='022407', author=SVETLANA_POZHIDAEVA, note=f'{WOMEN_EMPOWERMENT} seminar pitch deck'),
     EmailCfg(id='031177', highlight_quote="in Ibiza so invited a lots of girls from Russia all models"),

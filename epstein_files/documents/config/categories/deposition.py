@@ -12,6 +12,13 @@ DEPOSITION_CFGS = [
     # DOJ
     DocCfg(id='EFTA00615804', author=ALAN_DERSHOWITZ, date='2016-01-12', note='pages 334-461 (heavily redacted)'),
     DocCfg(
+        id='EFTA00800508',
+        author=BRAD_EDWARDS,
+        highlight_quote="cars, boats, houses that were placed in Larry Visoski's name",
+        note=EPSTEIN_V_ROTHSTEIN_EDWARDS,
+        truncate_to=AUTO,
+    ),
+    DocCfg(
         id='EFTA00159483',
         author=LAWRANCE_VISOSKI,
         is_interesting=True,
