@@ -80,7 +80,7 @@ def coerce_file_path(filename_or_id: int | str) -> Path:
 
 def coerce_file_stem(filename_or_id: int | str | Path) -> str:
     """Generate a valid file stem no matter what form the argument comes in."""
-    logger.debug(f"coerce_file_stem(): {filename_or_id}")
+    # logger.debug(f"coerce_file_stem(): {filename_or_id}")
 
     if isinstance(filename_or_id, str) and (is_doj_file(filename_or_id) or is_picture(str(filename_or_id))):
         return Path(filename_or_id).stem

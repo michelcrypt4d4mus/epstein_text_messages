@@ -1220,7 +1220,7 @@ HIGHLIGHTED_NAMES = [
             ),
             Entity(BELLA_KLEIN, "one of Epstein's accountants", match_partial=None),
             Entity('Brahakmana Mellawa', 'house staff', match_partial='both'), # TODO: Lucien?
-            Entity('Brice Gordon', 'property manager', match_partial='first'),
+            Entity(BRICE_GORDON, 'property manager', match_partial='first'),
             Entity('Carluz N. Toylo', 'employee'),
             Entity('Charles Pickett', 'pilot', r"Ch(arles|ip) Pickett"),
             Entity(DAPHNE_WALLACE, "LSJE accountant", r"Da.hne Wallace", match_partial=None),
@@ -1621,7 +1621,7 @@ HIGHLIGHTED_NAMES = [
             Entity(
                 THORBJORN_JAGLAND,
                 "former prime minister of Norway, Nobel Peace Prize Committee, indicted",
-                r"(Thor.{3,8})?Jag[il]and?",
+                r"(Thor.{3,8})?Jag[il]and?|Thorbj?orn",
                 url='https://www.bbc.com/news/articles/c5yqr8eggvwo',
             ),
             Entity(

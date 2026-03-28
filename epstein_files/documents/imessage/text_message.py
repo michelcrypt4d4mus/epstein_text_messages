@@ -3,6 +3,8 @@ from dataclasses import dataclass, field, fields
 from datetime import datetime
 from typing import Self
 
+from rich.errors import MarkupError
+from rich.markup import escape
 from rich.text import Text
 
 from epstein_files.documents.emails.constants import FALLBACK_TIMESTAMP
@@ -79,7 +81,11 @@ class TextMessage:
 
     def _message(self) -> Text:
         if self.is_link():
-            return Text.from_markup(f"[link={self.text}]{self.text}[/link]", style=TEXT_LINK)
+            try:
+                return Text.from_markup(f"[link={self.text}]{escape(self.text)}[/link]", style=TEXT_LINK)
+            except MarkupError as e:
+                logger.error(f"failed to make link from '{self.text}'")
+                return highlighter(self.text)
         else:
             return highlighter(self.text)
 

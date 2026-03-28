@@ -113,7 +113,7 @@ OCR_REPAIRS: OcrRepair = {
     re.compile(r"^((?:B?cc|To):.*)\n(>?;.*)", re.IGNORECASE | re.MULTILINE): r'\1 \2',
     re.compile(r"^(Sent|Subject) (?!by|[Ff]rom|on|using|[Rr]emote|[Vv]ia|with)", re.MULTILINE): r'\1: ',
     re.compile(r"^Subject[.•]{,2} ", re.MULTILINE): 'Subject: ',
-    re.compile('Reply-T[°o]:?'): 'Reply-To:',
+    re.compile('^Reply ?- ?T[°o]:?', re.MULTILINE): 'Reply-To:',
     re.compile(r"^(Forwarded|Original) Message$", re.IGNORECASE | re.MULTILINE): r"--- \1 Message ---",  # Make forward lines match our highlight
     # Excessive quote chars
     re.compile(r"wrote:\n[>»]+(\n[>»]+)"): r"wrote:\1",

@@ -325,13 +325,21 @@ GIRLS_CFGS = [
     ),
     EmailCfg(id='EFTA01990879', author=MIRANDA_MAKO, author_uncertain='Clifford Chance, could be Miranda'),
     EmailCfg(id='EFTA00671662', author=MIRANDA_MAKO, author_reason='quoted signature "Miranda"', note="yet another girl finder"),
+
     # Nadia
     EmailCfg(id='021814', author=NADIA_MARCINKO, author_reason='reply'),
     EmailCfg(id='021808', author=NADIA_MARCINKO, author_reason='reply', truncate_to=NO_TRUNCATE),
     EmailCfg(id='021818', author=NADIA_MARCINKO, author_reason='reply'),
     EmailCfg(id='022214', author=NADIA_MARCINKO, author_reason='Reply header'),
     EmailCfg(id='021811', author=NADIA_MARCINKO, author_reason='signature and email address in the message'),
-    EmailCfg(id='EFTA01015397', note=f"routing money through {NADIA_MARCINKO}'s Aviloop LLC", show_with_name=NADIA_MARCINKO),
+    EmailCfg(id='EFTA00877202', recipients=[NADIA_MARCINKO], recipient_uncertain='"Aviloop"'),
+    EmailCfg(
+        id='EFTA01015397',
+        author=NADIA_MARCINKO,
+        author_uncertain='"Aviloop"',
+        is_interesting=4,
+        note=f"routing money through {NADIA_MARCINKO}'s Aviloop LLC, possibly to show income for visa/immigration purposes",
+    ),
     EmailCfg(id='EFTA01047249', author=NADIA_MARCINKO, author_reason='Miro', url='https://archive.ph/Qa6vU#selection-1621.160-1621.184'),
     EmailCfg(
         id='EFTA00962525',
@@ -808,6 +816,7 @@ GIRLS_CFGS = [
     EmailCfg(id='EFTA00747141', note=f'photo shoot for 11 year old {CELINA_DUBIN}', truncate_to=NO_TRUNCATE, is_in_chrono=False),
     EmailCfg(id='EFTA00747461', note=f'photo shoot for 11 year old {CELINA_DUBIN}', truncate_to=NO_TRUNCATE, is_in_chrono=False),
     EmailCfg(id='EFTA00747744', note=f'photo shoot for 11 year old {CELINA_DUBIN}', truncate_to=NO_TRUNCATE, is_in_chrono=False),
+    EmailCfg(id='EFTA01055103', note=f"looks like someone stole {CELINA_DUBIN}'s gift card", show_with_name=CELINA_DUBIN, is_in_chrono=False),
 
     # Faith Kates
     EmailCfg(id='EFTA02512317', recipients=[FAITH_KATES], author_reason='"faith,"', note="Epstein suggests Next Models take on a girl"),

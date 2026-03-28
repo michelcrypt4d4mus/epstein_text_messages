@@ -5,7 +5,7 @@ from datetime import datetime
 
 from epstein_files.documents.messenger_log import MessengerLog
 from epstein_files.documents.imessage.text_message import TextMessage
-from epstein_files.people.names import JEFFREY_EPSTEIN, LAWRENCE_KRAUSS, STEVE_BANNON, TERJE_ROD_LARSEN
+from epstein_files.people.names import *
 from epstein_files.util.env import args
 from epstein_files.util.helpers.data_helpers import coerce_utc
 from epstein_files.util.logging import logger
@@ -35,6 +35,7 @@ IMESSAGE_PDF_IDS = [
     'EFTA01218267',
     'EFTA00509258',
     'EFTA00508702',    # TODO: verify
+    'EFTA00786793',    # TODO: verify
     # 'EFTA01616222',  # TODO: Doesn't parse well
     # 'EFTA01613143',  # TODO: Doesn't parse well
 ]
@@ -61,8 +62,10 @@ class MessengerLogPdf(MessengerLog):
                 sender = STEVE_BANNON
             elif self.file_id == 'EFTA00508054' and sender == 'Lawrence':
                 sender = LAWRENCE_KRAUSS
-            elif sender == 'Terje':
+            elif sender in ['Terje', 'Tetje']:
                 sender = TERJE_ROD_LARSEN
+            elif sender == 'Eva':
+                sender = EVA_DUBIN
             elif not VALID_SENDER_REGEX.search(sender):
                 self._log(f"text message sender '{sender}' is not a valid name")
                 sender = None
