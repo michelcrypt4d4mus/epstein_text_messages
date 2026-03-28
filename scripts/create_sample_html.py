@@ -57,6 +57,7 @@ def print_test_panels():
 doc_types_to_sample = [
     [d for d in epstein_files.documents if d.category == 'article' and d._config.show_full_panel],
     [d for d in epstein_files.documents if d.category == 'government' and d._config.show_full_panel],
+    [d for d in epstein_files.documents if d.category == 'money' and d._config.show_full_panel],
     [d for d in epstein_files.documents if d._config.pic_cfg],
     [d for d in epstein_files.documents if d._config.is_displayed_as_img],
     [d for d in epstein_files.documents if d._config.background_color], # Configured BG
