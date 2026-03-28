@@ -222,7 +222,7 @@ LEGAL_CFGS = [
         date_uncertain='approx',
         is_interesting=5,
         show_full_panel=True,
-        truncate_to=(280, 2_500),
+        truncate_to=(1_400, 2_600),
     ),
 
     # emails

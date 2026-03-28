@@ -4000,6 +4000,8 @@ HIGHLIGHTED_NAMES = [
             r"intercourse",
             r"Juliya",
             r"Katie Johnson",
+            r"lascivious",
+            r"lewd",
             r"lingerie",
             r"Lolita",
             r"marri(age|ed)",
