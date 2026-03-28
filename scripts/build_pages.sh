@@ -23,12 +23,12 @@ print_deploy_step "Building pages to BUILD_DIR '$BUILD_DIR'"
 
 
 if [[ -z $SKIP_CHRONO ]]; then
-    print_deploy_step "Building curated chronological page with '$GENERATE_CMD'..."
+    print_deploy_step "Building most interesting page with $GENERATE_SIDE_PANELS_CMD --output-most-interesting"
+    $GENERATE_SIDE_PANELS_CMD --output-most-interesting
+    print_deploy_step "Building curated chronological page with '$GENERATE_SIDE_PANELS_CMD'"
     $GENERATE_SIDE_PANELS_CMD --output-chrono
     print_deploy_step "Building curated chronological mobile page..."
     $GENERATE_MOBILE_CMD --output-chrono
-    print_deploy_step "Building --output-most-interesting..."
-    $GENERATE_SIDE_PANELS_CMD --output-most-interesting
 else
     print_deploy_step "Skipping chronological builds..."
 fi
