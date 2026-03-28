@@ -49,6 +49,14 @@ class BasePanel:
         """Create an HTML <div> string for this panel."""
         render_width = width or self.max_width
 
+        # Putting category in <div> class name changes the font depending on category
+        if self.document and 'handwritten' in self.document._config.complete_description:
+            css_category = 'handwritten'
+        elif self.document and self.document.category:
+            css_category = self.document.category
+        else:
+            css_category = ''
+
         return div_with_legend(
             contents=render_at_width(self.text, render_width) if render_width else render_to_html(self.text),
             legend=self.title.plain if self.title else '',  # TODO: make the title 'dim'
@@ -61,7 +69,7 @@ class BasePanel:
                 **(margin_horizontal_css(self.indent) if self.indent else {}),
                 **(css or {}),
             },
-            class_name=f"category_{self.document.category}" if self.document else ''  # Changes the font for category_article
+            class_name=f"category_{css_category}" if css_category else ''
         )
 
     def _base_div_css(self, margins: list[int | float] | None = None) -> CssProps:

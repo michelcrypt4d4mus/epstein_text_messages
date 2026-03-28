@@ -18,6 +18,16 @@ div.black_background {
     font-family: "Special Elite", Menlo, 'DejaVu Sans Mono', consolas, 'Courier New', monospace;
 }
 
+.category_handwritten {
+    font-size: 1.1em;
+    font-family: "Gloria Hallelujah", Menlo, 'DejaVu Sans Mono', consolas, 'Courier New', monospace;
+}
+
+.category_legal {
+    font-size: 1.2em;
+    font-family: "Special Elite", Menlo, 'DejaVu Sans Mono', consolas, 'Courier New', monospace;
+}
+
 .category_money {
     font-family: "Space Mono", Menlo, 'DejaVu Sans Mono', consolas, 'Courier New', monospace;
 }
