@@ -152,6 +152,7 @@ MONEY_CFGS = [
     deutsche_bank_doc('EFTA00167059', 'KYC showing Caroline Lang co-ownership with Epstein (?)'),
     deutsche_bank_doc('EFTA00168946', 'KYC information about Southern Financial', '2019-07-11'),
     deutsche_bank_doc('EFTA00165652', 'showing Caroline Lang co-ownership with Epstein (?)'),
+    deutsche_bank_doc('EFTA01292412', "checks including $51,736 check to Insurance Office of Central Ohio"),  #truncate_to=1000
     epstein_will(
         'EFTA01266457',
         '2018-05-08',

@@ -1,5 +1,5 @@
 from epstein_files.documents.config.communication_cfg import CommunicationCfg
-from epstein_files.documents.config.config_builder import Cfg, fbi_report, grand_jury, interview, inventory, letter, memo
+from epstein_files.documents.config.config_builder import Cfg, fbi_doc, grand_jury, interview, inventory, letter, memo
 from epstein_files.documents.config.doc_cfg import EMAIL_TRUNCATE_TO, NO_TRUNCATE, SHORT_TRUNCATE_TO, DocCfg
 from epstein_files.documents.config.email_cfg import EmailCfg
 from epstein_files.documents.config.pic_cfg import PicCfg
@@ -297,6 +297,7 @@ GOVERNMENT_CFGS = [
     fbi_defense_witness('EFTA02730267', 'Malcolm Grumbridge', '2022-04-14'),
     fbi_defense_witness('EFTA02730477', 'Roderic Alexander', '2022-01-19'),
     fbi_defense_witness('EFTA02730271', None, '2022-03-22'),
+    fbi_doc('EFTA01682078'),
     # FBI interviews
     fbi_interview(
         'EFTA00064309',
@@ -333,6 +334,8 @@ GOVERNMENT_CFGS = [
         highlight_quote="he did not have the number of a trader. GROFF had anxiety trying to get a trader. EPSTEIN did a lot with politics",
         truncate_to=AUTO,
     ),
+    fbi_interview('EFTA01249718', MICHAEL_REITER, date='2020-04-30'),
+    fbi_interview('EFTA01249968', UNKNOWN_GIRL, date='2021-01-12'),
     fbi_interview('EFTA01248266', STEVEN_HOFFENBERG, date='2010-12-10'),
     fbi_interview('EFTA01248259', 'Robert Couturier', date='2010-11-16'),
     fbi_interview('EFTA00210958', VIRGINIA_GIUFFRE, date='2013-07-05', is_interesting=True, highlight_quote="1999 began working at Donald Trump's  Mar-A-Lago", truncate_to=AUTO),
@@ -358,7 +361,7 @@ GOVERNMENT_CFGS = [
     fbi_interview('EFTA00101927', None, f"claims Glenn and {EVA_DUBIN}'s Swiss au pair was being held against her will"),
     fbi_interview('EFTA00159321', None, f'covers {PAOLO_ZAMPOLLI}, Epstein, and the possibility Epstein introduced Melania to Donald Trump'),
     # FBI reports
-    fbi_report(
+    fbi_doc(
         '018872',
         non_participants=[
             BILL_GATES,
@@ -380,18 +383,25 @@ GOVERNMENT_CFGS = [
             SVETLANA_POZHIDAEVA
         ],
     ),
-    fbi_report('EFTA00173481', 'statement of Aaron E. Spivack re: investigation into missing evidence', date='2024-01-26', is_interesting=5, truncate_to=EMAIL_TRUNCATE_TO),
-    fbi_report('021569'),
-    fbi_report('021434', is_valid_for_name_scan=False),
-    fbi_report('019352', f"contains clippings of various press items about Epstein"),
-    fbi_report(
+    fbi_doc(
+        'EFTA00173481',
+        'statement of Aaron E. Spivack re: investigation into missing evidence',
+        date='2024-01-26',
+        is_interesting=4,
+        truncate_to=EMAIL_TRUNCATE_TO,
+    ),
+    fbi_doc('021569'),
+    fbi_doc('021434', is_valid_for_name_scan=False),
+    fbi_doc('019352', f"contains clippings of various press items about Epstein"),
+    fbi_doc(
         'EFTA00129085',
         'wiretap linking phone number in John Gotti / Gambino / Michael Bilotti investigation to phone in Epstein investigation',
         is_interesting=True,
     ),
-    fbi_report('EFTA00036859', date='2019-09-24'),
-    fbi_report('EFTA01688746'),
-    fbi_report(
+    fbi_doc('EFTA01688746'),
+    fbi_doc('EFTA00036859', date='2019-09-24'),
+    fbi_doc('EFTA01682078', 'investigation targets', is_displayed_as_img=True),
+    fbi_doc(
         'EFTA00164480',
         'Epstein death investigation (Powerpoint slides)',
         # background_color='dark_red',
@@ -399,24 +409,24 @@ GOVERNMENT_CFGS = [
         date_uncertain='after death, before scheduled interviews Oct. 18th',
         is_interesting=4,
     ),
-    fbi_report('EFTA00172473', 'executive summary of Epstein cases', date='2025-05-01', date_uncertain=True),
-    fbi_report('EFTA00151754', 'declaration of Law Enforcement Officer for Victim of Trafficking', is_interesting=True),
-    fbi_report('EFTA00173569', 'hack of FBI Epstein files repository by foreign actor', is_interesting=True),
-    fbi_report('EFTA00020506', highlight_quote='chauffeur also told Epstein "I have something on you remember what I buried!"'),
-    fbi_report('EFTA02729877', '"MCC Corruption Case" is about guards on duty when Epstein died', is_interesting=True),
-    fbi_report('EFTA00147020', "status of Epstein death investigation", date='2019-08-13'),
-    fbi_report('EFTA00165518', 'investigation update', date='2019-08-29'),
-    fbi_report('EFTA00129637', 'return of property / case closed / transfer files'),
-    fbi_report('EFTA00270345', "investigation of Epstein possibly connection to murder of Arthur Shapiro"),
-    fbi_report(
+    fbi_doc('EFTA00172473', 'executive summary of Epstein cases', date='2025-05-01', date_uncertain=True),
+    fbi_doc('EFTA00151754', 'declaration of Law Enforcement Officer for Victim of Trafficking', is_interesting=True),
+    fbi_doc('EFTA00173569', 'hack of FBI Epstein files repository by foreign actor', is_interesting=True),
+    fbi_doc('EFTA00020506', highlight_quote='chauffeur also told Epstein "I have something on you remember what I buried!"'),
+    fbi_doc('EFTA02729877', '"MCC Corruption Case" is about guards on duty when Epstein died', is_interesting=True),
+    fbi_doc('EFTA00147020', "status of Epstein death investigation", date='2019-08-13'),
+    fbi_doc('EFTA00165518', 'investigation update', date='2019-08-29'),
+    fbi_doc('EFTA00129637', 'return of property / case closed / transfer files'),
+    fbi_doc('EFTA00270345', "investigation of Epstein possibly connection to murder of Arthur Shapiro"),
+    fbi_doc(
         'EFTA00261337',
         'Bank Secrecy Act, firearm, and border crossing information',
         date='2019-08-29',
         is_interesting=True,
         truncate_to=(19_000, 19_900),
     ),
-    fbi_report('EFTA00108872', f"{STEVEN_HOFFENBERG} info request", is_interesting=False, date='2010-10-25'),
-    fbi_report(
+    fbi_doc('EFTA00108872', f"{STEVEN_HOFFENBERG} info request", is_interesting=False, date='2010-10-25'),
+    fbi_doc(
         'EFTA00161465',
         'evidence inventory including',
         date='2025-03-25',

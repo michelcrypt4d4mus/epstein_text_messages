@@ -368,6 +368,7 @@ JOHN_PHELAN = 'John Phelan'
 JULIE_K_BROWN = 'Julie K. Brown'
 KARIM_SADJADPOUR = 'KARIM SADJADPOUR'.title()
 MICHAEL_J_BOCCIO = 'Michael J. Boccio'
+MICHAEL_REITER = 'Michael Reiter'
 MILES_GUO = 'Miles Guo'
 NAOMI_CAMPBELL = 'Naomi Campbell'
 NERIO_ALESSANDRI = 'Nerio Alessandri'
