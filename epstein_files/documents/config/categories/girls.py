@@ -767,7 +767,7 @@ GIRLS_CFGS = [
         id='EFTA00465926',
         highlight_quote='we will cancel this ticket prior to departure',
         note='Paris, possible immigration fraud',
-        truncate_to=700
+        truncate_to=350,
     ),
     EmailCfg(
         id='EFTA01022353',

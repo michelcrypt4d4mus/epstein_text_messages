@@ -249,7 +249,13 @@ CRYPTO_CFGS = [
     DocCfg(id='EFTA01121035', author=COINBASE, note='Series C preferred stock purchase', date='2014-10-24'),
     EmailCfg(id='EFTA02606117', comment='Coinbase valuation'),
     EmailCfg(id='EFTA02608112', comment='Coinbase valuation'),
-    EmailCfg(id='EFTA00901772', note=f"Epstein's investment in {COINBASE} would earn him most of $100 million", is_interesting=10),
+    EmailCfg(
+        id='EFTA00901772',
+        note=f"Epstein's investment in {COINBASE} would earn him most of $100 million (he only sold 50% at this time)",
+        highlight_quote="we figured that Jeffrey may want to take the --$12m of profit from this $3m investment",
+        is_interesting=10,
+        truncate_to=AUTO,
+    ),
     EmailCfg(id='EFTA00900908', note="negotiation of repurchase of part of Epstein's stake in Coinbase"),
     # Crypto PR Lab
     DocCfg(id='EFTA00295126', author=CRYPTO_PR_LAB, note="accounting statement", show_full_panel=True),
