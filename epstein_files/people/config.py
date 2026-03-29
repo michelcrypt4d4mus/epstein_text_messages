@@ -3793,8 +3793,7 @@ HIGHLIGHTED_NAMES = [
             r"Dropbox",
             r"Facebook",
             r"Google( (rank(ing)?|search(es)?))?",
-            r"(?-i:IMG) \d+( \d+)\.(jpe?g|png)",
-            r"(?-i:VID) \d+( \d+)\.(avi|mp..?)",
+            r"hack(e[dr]|ing)",
             r"Instagram",
             r"k[ce]ychain( cracking)?",
             r"(?-i:I)ntel",
@@ -3820,6 +3819,9 @@ HIGHLIGHTED_NAMES = [
             # Video games
             r"Call of Duty",
             r"World of Warcraft",
+            # file types
+            r"(?-i:IMG) \d+( \d+)\.(jpe?g|png)",
+            r"(?-i:VID) \d+( \d+)\.(avi|mp..?)",
         ],
     ),
     # aquamarine1
