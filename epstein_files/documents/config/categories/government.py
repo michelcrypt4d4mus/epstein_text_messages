@@ -441,6 +441,7 @@ GOVERNMENT_CFGS = [
         show_full_panel=True,
         url='https://www.bbc.com/news/articles/c6271ngl014o',
     ),
+    fbi_tip('EFTA01249562', 'John Houshmand about cameras'),
     fbi_tip('EFTA01249281', f'from {UNKNOWN_GIRL}'),
     fbi_tip('EFTA01249623', 'from New Mexico police officer about Zorro Ranch'),
     fbi_tip('EFTA01249296', 'from former escort about Alexander Guest, Ghislaine, and Epstein'),
