@@ -447,8 +447,10 @@ GOVERNMENT_CFGS = [
     fbi_tip(
         'EFTA01660676',
         "about recently convicted rapists Tal and Oren Alexander at Epstein's house",
-        date='2025-03-25',
+        date='2019-08-08',
+        highlight_quote="<REDACTED> stated Oren raped <REDACTED> and Oren's brother, Tal, raped a 14 year old girl named <REDACTED>. <REDACTED> tried to slit her wrist after the incident",
         show_full_panel=True,
+        truncate_to=AUTO,
         url='https://www.bbc.com/news/articles/c6271ngl014o',
     ),
     fbi_tip('EFTA01249562', 'John Houshmand about cameras'),
