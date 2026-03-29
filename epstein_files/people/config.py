@@ -304,7 +304,12 @@ HIGHLIGHTED_NAMES = [
                 url='https://www.npr.org/2026/02/19/nx-s1-5707290/epstein-files-victims-interlochen-ghislaine-maxwell',
             ),
             Entity('Jane Fonda', 'actress, fitness instructor, activist', url=WIKIPEDIA),
-            Entity('Jimmy Buffet', f'"Margaritaville" singer, retirement home executive', url=WIKIPEDIA),
+            Entity(
+                'Jimmy Buffet',
+                '"Margaritaville" singer, retirement home executive',
+                r"(?<!Warren )(Jimmy )?Buffett?",
+                url=WIKIPEDIA,
+            ),
             Entity(
                 'Jim Wiatt',
                 'CEO of talent agency William Morris (WMA)',
@@ -611,6 +616,7 @@ HIGHLIGHTED_NAMES = [
             r"Robin\s?hood",
             r"Trilateral Commission",
             r"Valhi",
+            r"Warren Buffett?",
             r"(Yves )?Bouvier",
         ],
     ),
