@@ -297,7 +297,6 @@ GOVERNMENT_CFGS = [
     fbi_defense_witness('EFTA02730267', 'Malcolm Grumbridge', '2022-04-14'),
     fbi_defense_witness('EFTA02730477', 'Roderic Alexander', '2022-01-19'),
     fbi_defense_witness('EFTA02730271', None, '2022-03-22'),
-    fbi_doc('EFTA01682078'),
     # FBI interviews
     fbi_interview(
         'EFTA00064309',
