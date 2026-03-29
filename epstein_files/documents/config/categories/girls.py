@@ -124,6 +124,7 @@ GIRLS_CFGS = [
         id='EFTA01612665',
         note='Epstein gives advice on how to recruit girls',
         highlight_quote="stressed about finding girls. It's hard",
+        is_interesting=5,
         show_full_panel=True,
         truncate_to=AUTO,
     ),
