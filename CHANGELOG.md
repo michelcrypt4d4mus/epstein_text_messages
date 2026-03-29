@@ -1,4 +1,6 @@
 # NEXT RELEASE
+
+# 1.12.0
 * Change font depending on category
 * Add `PicCfg` to allow images to be shown next to/instead of text
 * Fix `epstein_diff` so it works with EFTA files
