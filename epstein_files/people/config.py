@@ -273,7 +273,7 @@ HIGHLIGHTED_NAMES = [
             Entity('Daniel M. Rosenberg', 'film producer', match_partial=None, url='https://www.jpost.com/diaspora/article-888233'),
             Entity(DAVID_BLAINE, "famous magician", url=WIKIPEDIA),
             Entity('David Brenner', "American comedian and actor", url=WIKIPEDIA),
-            Entity(DAVID_COPPERFIELD, "famous magician, allegations of sexual assault", url=WIKIPEDIA),
+            Entity(DAVID_COPPERFIELD, "famous magician, investigated by FBI for rape and kidnapping", url=WIKIPEDIA),
             Entity('David Geffen', 'record label and film studio owner', url=WIKIPEDIA),
             Entity('David Ross', 'head of School of Visual Arts MFA program, director of Whitney Museum', match_partial=None),
             Entity('David Slade', 'film director', match_partial=None),
@@ -525,7 +525,7 @@ HIGHLIGHTED_NAMES = [
             Entity('Jeanne Houweling', f'CEO of Adfin, a company Epstein and {HOWARD_LUTNICK} invested in'),
             Entity(
                 LES_WEXNER,
-                "CEO of L Brands (The Limited, Victoria's Secret, Abercrombie, Express, etc), gave Epstein a house and power of attorney",
+                "CEO of L Brands (The Limited, Victoria's Secret, Abercrombie), gave Epstein a house + power of attorney",
                 r"(Les(lie)? )?Wexner(?! (Children('s)? Trust|Foundation))",
                 match_partial=None,
                 url='https://en.wikipedia.org/wiki/Les_Wexner#Jeffrey_Epstein_association',

@@ -596,6 +596,7 @@ GOVERNMENT_CFGS = [
         highlight_quote='Please do whatever you can to keep this from becoming public',
         note=f"Epstein's lawyer asks Acosta to (illegally) keep the non-prosecution agreement a secret",
         recipients=['USAFLS'],
+        truncate_to=1_000,
     ),
     EmailCfg(
         id='EFTA00214992',
