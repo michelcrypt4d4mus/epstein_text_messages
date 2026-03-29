@@ -376,10 +376,11 @@ CRYPTO_CFGS = [
     EmailCfg(
         id='EFTA00173881',
         author='US Secret Service',
+        highlight_quote='HOWARD LUTNICK was accused of fraud and money laundering',
         is_interesting=10,
         recipients=['Enterprise Vetting Center'],
         show_with_name=HOWARD_LUTNICK,
-        truncate_to=800,
+        truncate_to=1_000,
     ),
     EmailCfg(
         id='EFTA00873541',
