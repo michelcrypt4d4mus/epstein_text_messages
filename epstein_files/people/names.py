@@ -7,6 +7,8 @@ from epstein_files.util.helpers.string_helper import remove_question_marks
 Name = str | None
 
 # Unknown / None
+JANE_DOE = 'Jane Doe'
+TIFFANY_DOE = 'Tiffany Doe'
 UNKNOWN = '(unknown)'
 UNKNOWN_GIRL = 'unknown girl'
 

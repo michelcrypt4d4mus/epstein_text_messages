@@ -4,7 +4,7 @@ from epstein_files.documents.config.doc_cfg import NO_TRUNCATE, DocCfg, Duplicat
 from epstein_files.documents.config.email_cfg import EmailCfg
 from epstein_files.people.names import *
 from epstein_files.util.constant.strings import *
-from epstein_files.util.helpers.string_helper import as_pattern
+from epstein_files.util.helpers.string_helper import join_truthy
 
 # Legal cases
 BRUNEL_V_EPSTEIN = f"{JEAN_LUC_BRUNEL} v. {JEFFREY_EPSTEIN} and Tyler McDonald d/b/a YI.org"
@@ -22,6 +22,17 @@ US_V_GHISLAINE = f"U.S. v. {GHISLAINE_MAXWELL}"
 
 # Misc
 LEXIS_NEXIS_CVRA_SEARCH = f"{LEXIS_NEXIS} search for case law around the {CVRA}"
+
+
+def legal_filing(id: str, case_name: str, author: Name = None, note: str = '', **kwargs) -> DocCfg:
+    _note = join_truthy(f"legal filing", case_name, ' in ')
+
+    return DocCfg(
+        id=id,
+        author=author,
+        note=join_truthy(_note, note, ', '),
+        **kwargs
+    )
 
 
 def starr_letter(id: str, date: str, duplicate_ids: list[str], dupe_type: DuplicateType = 'same', **kwargs) -> CommunicationCfg:
