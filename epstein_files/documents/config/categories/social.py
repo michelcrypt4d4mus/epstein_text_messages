@@ -38,6 +38,7 @@ SOCIAL_CFGS = [
         dupe_type='quoted',
         duplicate_ids=['026014'],
         is_interesting=10,
+        truncate_to=700,
         url=SUBSTACK_POST_INSIGHTSPOD_URL,
     ),
     EmailCfg(

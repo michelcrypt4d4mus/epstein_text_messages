@@ -188,6 +188,7 @@ MONEY_CFGS = [
         '2017-06-29',
         [DARREN_INDYKE, EVA_DUBIN, KATHRYN_RUEMMLER, RICHARD_KAHN, TERJE_ROD_LARSEN],
         note=f'witnessed by {LEO_LOKING} and {KARYNA_SHULIAK}',
+        truncate_to=3_000,
     ),
     epstein_will(
         'EFTA01266403',
