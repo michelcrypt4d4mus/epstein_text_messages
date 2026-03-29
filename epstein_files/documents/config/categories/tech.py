@@ -101,15 +101,23 @@ TECH_CFGS = [
     DocCfg(id='EFTA01064310', note='personal address book', date='2019-07-02', date_uncertain=True, truncate_to=800),
 
     # Misc
-    EmailCfg(id='EFTA00442950', highlight_quote="old hard drives Darren had me review & erase", is_interesting=True, truncate_to=AUTO),
+    EmailCfg(id='EFTA00442950', highlight_quote="old hard drives Darren had me review & erase", is_interesting=4, truncate_to=AUTO),
     EmailCfg(id='EFTA02283085', highlight_quote="dont use my name. set a call today with Lori Goler"),
-    EmailCfg(id='EFTA00501483', highlight_quote="Jeffrey has asked that James wipe clean"),
-    EmailCfg(id='EFTA00501484', highlight_quote="Jeffrey has asked that James wipe clean old computer"),
+    EmailCfg(
+        id='EFTA00501483',
+        duplicate_ids=['EFTA00501484'],
+        highlight_quote="Jeffrey has asked that James wipe clean old computer and then we sent to <REDACTED> in Barcelona",
+        truncate_to=250,
+    ),
     EmailCfg(
         id='EFTA02355429',
         highlight_quote="Sh abdallah accepts the dinner with b gates",
         is_interesting=True,
         url='https://x.com/sayerjigmi/status/2037207142101303428',
     ),
-    EmailCfg(id='EFTA00853250', highlight_quote='there is talk about the possibility of Clapper attending', truncate_to=AUTO),
+    EmailCfg(
+        id='EFTA00853250',
+        highlight_quote='there is talk about the possibility of Clapper attending',
+        truncate_to=AUTO,
+    ),
 ]

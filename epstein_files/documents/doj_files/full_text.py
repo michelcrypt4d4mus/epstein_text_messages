@@ -15,17 +15,13 @@ EFTA00009622_TEXT = """<REDACTED> s GJ Test.          7/19/2006
 met for first time the night before went to JE
 11:30 ish 10
 do you want to make $200
-
-met my friend Jeff  bighouse
-
+meet my friend Jeff  bighouse
 but you have to give massage 45 min + that's all you have to do get $200
 
-<REDACTED> told <REDACTED> + <REDACTED> went to Bathroom
-to argue
+<REDACTED> told <REDACTED> + <REDACTED> went to Bathroom to argue
 came back out <REDACTED> called Jeff on the phone.
 1 assistant answered the pho...
 
-Page 2
 Jeff asst answered phone - <REDACTED> had someone to give massage Lady asked how old I was
 she told the lady 18 + went to <REDACTED>
 
@@ -59,34 +55,28 @@ She pulled out massage table me     front of couch     blanket over table     op
 She told me keep bra + panties on + get undress
 
 No <REDACTED>  told her I thought a massage keep your clothing
-
-Page 4
-
 stay in the room
 I came in the room     HE + shook hands
 Came back in the room
-
 JE: old 50ish
 
 initially   guy golfy   khaki pants pullover
 t-shirt + jeans     thong     bra
 
-hesitant     thinking what's going on. I didn't care cause I wanted $200
+hesitant     thinking what's going on.
+I didn't care cause I wanted $200
 He laid on massage table     He said grab any 3 lotions
 Started to give him
-
-What M.S.     did you go to told     him she was 16 Not     do you like to do     small talk <REDACTED>
-
+What M.S.     did you go to told     him she was 16 Not
+do you like to do     small talk <REDACTED>
 Sat on table     15-20 minute conversation     another house in NY
-
-Page 5
 
 He asked if I wanted to make an extra $300
 Straddle him
 massage over -
-but if you're not comfortable giving a massage can I <REDACTED> on you     ~~anything~~
+but if you're not comfortable giving a massage can I <REDACTED> on you  ~~anything~~
 <REDACTED>     said ok
-JE left + came ba
+JE left + came back
 
 <REDACTED>     kind of like a <REDACTED>
 grabbed that + layed down back on table     ~~old~~ ~~old~~ hands

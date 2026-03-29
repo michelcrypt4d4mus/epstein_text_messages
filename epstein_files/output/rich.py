@@ -46,7 +46,7 @@ TABLE_TITLE_STYLE = f"gray54 italic"
 TITLE_STYLE = 'black on white'  # color(103)'
 TRIMMED_MSG_STYLE = 'dim italic'
 
-CATEGORY_BG_STYLES: dict[CategoryType, str] = defaultdict(lambda: 'gray19')
+CATEGORY_BG_STYLES: dict[CategoryType, str] = defaultdict(lambda: 'gray11')
 
 CATEGORY_BG_STYLES.update({
     Interesting.MONEY: '#081a0d',

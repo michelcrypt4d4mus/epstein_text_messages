@@ -273,7 +273,7 @@ HIGHLIGHTED_NAMES = [
             Entity('Daniel M. Rosenberg', 'film producer', match_partial=None, url='https://www.jpost.com/diaspora/article-888233'),
             Entity(DAVID_BLAINE, "famous magician", url=WIKIPEDIA),
             Entity('David Brenner', "American comedian and actor", url=WIKIPEDIA),
-            Entity(DAVID_COPPERFIELD, "famous magician, allegations of sexual assault", url=WIKIPEDIA),
+            Entity(DAVID_COPPERFIELD, "famous magician, investigated by FBI for rape and kidnapping", url=WIKIPEDIA),
             Entity('David Geffen', 'record label and film studio owner', url=WIKIPEDIA),
             Entity('David Ross', 'head of School of Visual Arts MFA program, director of Whitney Museum', match_partial=None),
             Entity('David Slade', 'film director', match_partial=None),
@@ -521,11 +521,12 @@ HIGHLIGHTED_NAMES = [
             Entity(EDUARDO_TEODORANI, 'Italian, CNH Industrial', match_partial='last'),
             Entity('Evelyn Lauder', f"Estée Lauder family fortune", match_partial=None, url=WIKIPEDIA),
             Entity(FILIPA_PEROVIC, f"now Filipa Fink (married to {JOSHUA_FINK}), Coatue Management"),
+            Entity(GORDON_GETTY, "heir to oil tycoon J. Paul Getty"),
             Entity('James P. McGee', f"{NEWGRANGE_CONSULTING} plans for USVI political control", match_partial=None),
             Entity('Jeanne Houweling', f'CEO of Adfin, a company Epstein and {HOWARD_LUTNICK} invested in'),
             Entity(
                 LES_WEXNER,
-                "CEO of L Brands (The Limited, Victoria's Secret, Abercrombie, Express, etc), gave Epstein a house and power of attorney",
+                "CEO of L Brands (The Limited, Victoria's Secret, Abercrombie), gave Epstein a house + power of attorney",
                 r"(Les(lie)? )?Wexner(?! (Children('s)? Trust|Foundation))",
                 match_partial=None,
                 url='https://en.wikipedia.org/wiki/Les_Wexner#Jeffrey_Epstein_association',
@@ -540,7 +541,14 @@ HIGHLIGHTED_NAMES = [
                 url='https://www.yahoo.com/news/articles/german-countess-advised-nhs-called-130000074.html',
             ),
             Entity('Nikolajs Smirnovs', f"{NICOLE_JUNKERMANN}'s NJF Capital / JunkermannGroup", r"Nikolajs (NJF|Smirnovs)"),
-            Entity(GORDON_GETTY, "heir to oil tycoon J. Paul Getty"),
+            Entity(
+                'Noah Tepperberg',
+                'nightclub owner',
+                url=[
+                    WIKIPEDIA,
+                    'https://archive.vanityfair.com/article/2004/4/kings-and-queens-of-clubs',
+                ],
+            ),
             Entity('Reza Bundy', f"founder of IronPlanet"),
             Entity(
                 ROBERT_LAWRENCE_KUHN,
@@ -1137,8 +1145,8 @@ HIGHLIGHTED_NAMES = [
         label='Democrat',
         style='sky_blue1',
         entities=[
-            Entity('Alex Mayorkas', 'future DHS secretary', r"Al(i|ex) Mayorkas"),
-            Entity('Andrew Cuomo', 'governor of New York'),
+            Entity('Alex Mayorkas', 'future DHS secretary', r"Al(i|ex) Mayorkas", url='https://en.wikipedia.org/wiki/Alejandro_Mayorkas'),
+            Entity('Andrew Cuomo', 'governor of New York', url=WIKIPEDIA),
             Entity(BILL_RICHARDSON, 'former governor of New Mexico', r"(Governor )?(Bill )?Richardson", url=WIKIPEDIA),
             Entity('Edward Mezvinsky', 'former congressman, criminal Ponzi schemer', r"(Ed(ward)? )?Mezvinsky", url=WIKIPEDIA),
             Entity(
@@ -2145,9 +2153,10 @@ HIGHLIGHTED_NAMES = [
             law_enforcement(PALM_BEACH_CODE_ENFORCEMENT),
             law_enforcement(PALM_BEACH_WATER_COMMITTEE),
             Organization('BaFin', "German financial regulator, tried to arrest journalists who exposed Wirecard's fraud"),
+            Organization('Dodd-Frank Act', 'financial regulations put in place after 2008', r"Dodd Frank( Act)?"),
             Organization('FINRA', "Financial Industry Regulatory Authority", r"(www\.)?FINRA(\.org)?|Financial Industry Regulatory Authority",),
-            Organization('INS', "US Immigration and Naturalization Service", r"(?-i:INS)"),
             Organization('FinCEN', 'Financial Crimes Enforcement Network', r"(Director (of )?)?(Financial Crimes Enforcement Network|FinCEN)"),
+            Organization('INS', "US Immigration and Naturalization Service", r"(?-i:INS)"),
             Organization(
                 SECURITIES_AND_EXCHANGE_COMMISSION,
                 "US financial markets regulator",

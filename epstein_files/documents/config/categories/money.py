@@ -262,7 +262,8 @@ MONEY_CFGS = [
         id='EFTA01166616',
         date='2009-07-01',
         date_uncertain='date of last email in file',
-        is_interesting=6,
+        is_in_chrono=False,
+        is_interesting=True,
         note=f"many emails about {JEEPERS_INC}, Financial Trust Company, D.B. Zwirn, etc. in rough format showing Harry Beller working for Epstein",
         truncate_to=EMAIL_TRUNCATE_TO,
     ),
@@ -393,7 +394,7 @@ MONEY_CFGS = [
         id='EFTA00599517',
         is_interesting=6,
         note=f'list of {LEON_BLACK} companies that {EILEEN_ALEXANDERSON} can make financial transactions for',
-        truncate_to=EMAIL_TRUNCATE_TO,
+        truncate_to=1_500,
     ),
     DocCfg(id='EFTA01478313', note=f'list of investments (maybe of {LEON_BLACK})', date='2016-03-31'),
     EmailCfg(

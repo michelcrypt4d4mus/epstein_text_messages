@@ -46,7 +46,7 @@ SHORT_LINKS = {
     'justice.gov': 'doj',
     'instagram.com': 'insta',
     'lunch.publishersmarketplace': 'publ',
-    'newyorker.com': 'NYer',
+    'newyorker.com': 'nyer',
     'nypost.com': 'nyp',
     'nytimes.com': 'nyt',
     'reddit.com': 'rddt',

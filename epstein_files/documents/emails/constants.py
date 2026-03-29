@@ -12,9 +12,9 @@ from epstein_files.util.env import args
 from epstein_files.util.helpers.data_helpers import coerce_utc_strict
 from epstein_files.util.helpers.string_helper import join_patterns, or_equal_sign_char_group, snip_msg
 from epstein_files.util.logging import logger
-
+# [>»•\s]
 FALLBACK_TIMESTAMP = coerce_utc_strict(parse("1/1/2051 12:01:01 AM"))
-QUOTE_CHARS = '->»•'
+QUOTE_CHARS = '-•>»'
 QUOTE_INDENT_CHAR_GROUP = fr'[{QUOTE_CHARS} ]'
 QUOTE_INDENT_GROUP_NEWLINES = fr'[{QUOTE_CHARS}\s]'
 XML_STRIPPED_MSG = snip_msg('removed Apple XML plist')
@@ -65,10 +65,12 @@ GERMAN_HEADER_PATTERNS = [
 ]
 
 RUSSIAN_HEADER_PATTERNS = [
+    'Отправлено',
     'Тема',
     'Кому',
     'Дата',
     'От',
+    'Копия',
 ]
 
 FRENCH_HEADER_PATTERNS = [h + ' ?' for h in FRENCH_HEADER_PATTERNS]
@@ -115,7 +117,6 @@ REPLY_PATTERNS = [
 REPLY_LINE_PATTERN = fr"^({QUOTE_INDENT_CHAR_GROUP}*({join_patterns(REPLY_PATTERNS)}))"
 REPLY_REGEX = re.compile(REPLY_LINE_PATTERN, re.IGNORECASE | re.MULTILINE)
 
-
 # DojFile specific repairs must be applied before checking doc.is_email
 DOJ_EMAIL_OCR_REPAIRS: dict[str | re.Pattern, str] = {
     re.compile(r"^Sent (Sun|Mon|Tue|Wed|Thu|Fri|Sat)", re.MULTILINE): r"Sent: \1",
@@ -123,7 +124,6 @@ DOJ_EMAIL_OCR_REPAIRS: dict[str | re.Pattern, str] = {
     re.compile(r"^Subject[•]", re.MULTILINE): 'Subject:',
     re.compile(r"^Fran:", re.MULTILINE): 'From:',
 }
-
 
 # Device signatures ("Sent from my iPhone" regexes etc)
 SENT_FROM_DEVICE_PREFIXES = [
@@ -169,6 +169,24 @@ DEVICE_PATTERN = fr"({join_patterns(SENT_FROM_DEVICE_PREFIXES)}).*({join_pattern
 EPSTEIN_TYPO_PREFIX = r"((Please forgive|Sorry for all the) typos.{1,4})"
 SENT_FROM_DEVICE_PATTERN = join_patterns([DEVICE_PATTERN] + SIGNATURE_PATTERNS)
 SENT_FROM_REGEX = re.compile(fr'^{EPSTEIN_TYPO_PREFIX}?({SENT_FROM_DEVICE_PATTERN})\.?( -*)?', re.MULTILINE | re.IGNORECASE)
+
+
+# Russian headers
+RUSSIAN_HEADER_OCR_REPAIRS: OcrRepair = {
+    r'B(TOpHHK|oc[xKm]pec\w{,6})': 'Вторник',
+    r"Cpe\w{2,6},": 'среда,',
+    r"Cy66.rr?a": 'суббота',
+    r"Ornpa[aeu]ne[aeu]o": 'Отправлено',
+    r"TeMa:": 'Тема:',
+    r"Ko[iM]y:": 'Кому:',
+    r"Aara:": 'Дата:',
+    r"[O0]T:": 'От:',
+}
+
+RUSSIAN_HEADER_OCR_REPAIRS = {
+    re.compile(fr"^({QUOTE_INDENT_CHAR_GROUP}{{,6}}){k}", re.MULTILINE | re.IGNORECASE): fr"\1{v}"
+    for k, v in RUSSIAN_HEADER_OCR_REPAIRS.items()
+}
 
 
 # Signatures

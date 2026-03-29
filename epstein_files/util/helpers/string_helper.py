@@ -13,7 +13,7 @@ from epstein_files.util.logging import logger, text_block
 DATE_LENGTH = len('2025-05-05')
 WHITESPACE_CHAR = r"[-_.\s]*"
 
-EMOJI_REGEX = re.compile(r"(?:^|\s)([:;=][-^]?[oODP()]|[oO()][-^]?[:=])(?=$|\s)")
+EMOJI_REGEX = re.compile(r"(?:^|\s)([:;=][-^]?([oODP]|[()]+)|([oO]|[()]+)[-^]?[:=])(?=$|\s)", re.MULTILINE)
 INTEGER_REGEX = re.compile(r'^\d+$')
 MULTINEWLINE_REGEX = re.compile(r"\n{2,}")
 MULTISPACE_REGEX = re.compile(" +")
