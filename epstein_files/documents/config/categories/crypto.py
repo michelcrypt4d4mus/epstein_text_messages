@@ -688,7 +688,7 @@ CRYPTO_CFGS = [
     DocCfg(id='EFTA00603348', note=f"Electric Coin Company created the untraceable crypto ZCash funded by {LARRY_SUMMERS}'s DCG"),
     EmailCfg(id='EFTA02282357', author=DAPHNE_WALLACE, author_uncertain='could be Lesley'),
     EmailCfg(id='EFTA02283028', author=DAPHNE_WALLACE, author_uncertain='could be Lesley'),
-    EmailCfg(id='EFTA02620980', note=f"{MADARS_VIRZA} says Tether was created to avoid anti-money laundering laws", is_interesting=10),
+    EmailCfg(id='EFTA02620980', note=f"{MADARS_VIRZA} says {HOWARD_LUTNICK}'s Tether was created to enable money laundering", is_interesting=10),
     EmailCfg(id='EFTA01781741', note=f'{JOI_ITO} introduces Epstein to {MADARS_VIRZA} and the untraceable private crypto ZCash', is_interesting=10),
     EmailCfg(id='EFTA02645742', note=f"tax implications of the untraceable 'privacy coin' ZCash", is_interesting=10),
     EmailCfg(id='EFTA00842748', note=f"Epstein helping {MADARS_VIRZA} with taxes on his untraceable cryptocurrency ZCash", is_interesting=10),
