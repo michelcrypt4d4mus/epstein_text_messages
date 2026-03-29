@@ -466,7 +466,14 @@ CRYPTO_CFGS = [
     # Jeremy Rubin
     EmailCfg(id='EFTA02461765'),
     EmailCfg(id='EFTA02466979', note='"AID Coin"'),
-    EmailCfg(id='EFTA02476156', note=f"Epstein offers {JEREMY_RUBIN} a job working on bitcoin", url=JEREMY_RUBIN_DLNEWS_URL, is_interesting=10),
+    EmailCfg(
+        id='EFTA02476156',
+        highlight_quote="you can merely work for me",
+        is_interesting=6,
+        note=f"Epstein offers {JEREMY_RUBIN} a job working on crypto",
+        truncate_to=1_200,
+        url=JEREMY_RUBIN_DLNEWS_URL,
+    ),
     EmailCfg(id='EFTA02343669', note='rumours that people are using bitcoin to exfiltrate capital from China', is_interesting=10),
     # Joi Ito / Kyara
     DocCfg(id='024256', author=JOI_ITO, note=f"Internet & Society: The Technologies and Politics of Control"),
