@@ -288,7 +288,6 @@ DEPLOY_CUSTOM_HTML_SITES = [
 ]
 
 
-
 def make_clean() -> None:
     """Delete all build artifacts."""
     for site in Site:
