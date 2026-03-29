@@ -56,6 +56,7 @@ SHORT_LINKS = {
     'tommycarstensen.com': 'carstensen',
     'usatoday.com': 'usa',
     'vanityfair.com': 'vf',
+    'web.archive': 'archv',
     'wikipedia': 'wiki',
     'yahoo.com': 'yahoo',
 }
