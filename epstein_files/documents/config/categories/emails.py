@@ -1299,7 +1299,12 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA01764152', note=f"thoughts on {STEVEN_SINOFSKY} joining a16z (which he later did)", is_interesting=3),
     EmailCfg(id='EFTA01775983', note='trying to get a meeting with Paul Allen'),
     EmailCfg(id='EFTA00582508', note=f'{UMAR_DZHABRAILOV} was found dead in his Moscow penthouse in March 2026', is_interesting=10),
-    EmailCfg(id='EFTA00532500', note=f"visa applications for Russia, Belarus, and Kazakhstan", is_interesting=10, truncate_to=420),
+    EmailCfg(
+        id='EFTA00532500',
+        is_interesting=10,
+        note='visa applications for Russia, Belarus, and Kazakhstan for "employees" of Financial Trust Company',
+        truncate_to=420,
+    ),
     EmailCfg(id='EFTA02412854', note=f'who\'s "D>>>" and what does he have to be careful about?', is_interesting=2),
     EmailCfg(id='EFTA02353279', note=f'why is a frenchman like {JEAN_LUC_BRUNEL} "normally in Israel"?'),
     EmailCfg(
