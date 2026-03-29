@@ -9,22 +9,22 @@ div.black_background {
 }
 
 .category_article {
-    font-size: 1.3em;
     font-family: "Times New Roman", Times, serif;
+    font-size: 1.3em;
 }
 
 .category_government {
-    font-size: 1.2em;
     font-family: "Special Elite", Menlo, 'DejaVu Sans Mono', consolas, 'Courier New', monospace;
+    font-size: 1.2em;
+    line-height: 1.3em;
 }
 
 .category_handwritten {
-    font-size: 1.2em;
     font-family: "Gloria Hallelujah", Menlo, 'DejaVu Sans Mono', consolas, 'Courier New', monospace;
+    font-size: 1.2em;
 }
 
 .category_legal {
-    font-size: 1em;
     font-family: "Space Mono", Menlo, 'DejaVu Sans Mono', consolas, 'Courier New', monospace;
 }
 
