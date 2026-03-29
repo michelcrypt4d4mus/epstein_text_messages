@@ -2153,6 +2153,7 @@ HIGHLIGHTED_NAMES = [
             law_enforcement(PALM_BEACH_CODE_ENFORCEMENT),
             law_enforcement(PALM_BEACH_WATER_COMMITTEE),
             Organization('BaFin', "German financial regulator, tried to arrest journalists who exposed Wirecard's fraud"),
+            Organization('Dodd-Frank Act', 'financial regulations put in place after 2008', r"Dodd Frank( Act)?"),
             Organization('FINRA', "Financial Industry Regulatory Authority", r"(www\.)?FINRA(\.org)?|Financial Industry Regulatory Authority",),
             Organization('INS', "US Immigration and Naturalization Service", r"(?-i:INS)"),
             Organization('FinCEN', 'Financial Crimes Enforcement Network', r"(Director (of )?)?(Financial Crimes Enforcement Network|FinCEN)"),
