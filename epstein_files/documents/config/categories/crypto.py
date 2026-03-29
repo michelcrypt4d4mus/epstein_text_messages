@@ -466,7 +466,14 @@ CRYPTO_CFGS = [
     # Jeremy Rubin
     EmailCfg(id='EFTA02461765'),
     EmailCfg(id='EFTA02466979', note='"AID Coin"'),
-    EmailCfg(id='EFTA02476156', note=f"Epstein offers {JEREMY_RUBIN} a job working on bitcoin", url=JEREMY_RUBIN_DLNEWS_URL, is_interesting=10),
+    EmailCfg(
+        id='EFTA02476156',
+        highlight_quote="you can merely work for me",
+        is_interesting=6,
+        note=f"Epstein offers {JEREMY_RUBIN} a job working on crypto",
+        truncate_to=1_200,
+        url=JEREMY_RUBIN_DLNEWS_URL,
+    ),
     EmailCfg(id='EFTA02343669', note='rumours that people are using bitcoin to exfiltrate capital from China', is_interesting=10),
     # Joi Ito / Kyara
     DocCfg(id='024256', author=JOI_ITO, note=f"Internet & Society: The Technologies and Politics of Control"),
@@ -648,13 +655,13 @@ CRYPTO_CFGS = [
         truncate_to=700,
     ),
     # Sharia coin
-    EmailCfg(id='032359', note='HBJ brings up "e-currency" (Sharia Coin, probably)', is_interesting=10),
-    EmailCfg(id='EFTA00665479', note=f"Epstein and {AUSTIN_HILL} planning Sharia Coin", is_interesting=11, truncate_to=350),
-    EmailCfg(id='EFTA00691410', note=f"Epstein and {AUSTIN_HILL} planning Sharia Coin", is_interesting=True),
-    EmailCfg(id='EFTA00462608', highlight_quote='Sharia Coin Brainstorming Session', recipients=[LESLEY_GROFF]),
+    EmailCfg(id='032359', note='HBJ brings up "e-currency" (ShariaCoin, probably)', is_interesting=10),
+    EmailCfg(id='EFTA00665479', note=f"Epstein and {AUSTIN_HILL} planning ShariaCoin", is_interesting=11, truncate_to=350),
+    EmailCfg(id='EFTA00691410', note=f"Epstein and {AUSTIN_HILL} planning ShariaCoin", is_interesting=True),
+    EmailCfg(id='EFTA00462608', highlight_quote='ShariaCoin Brainstorming Session', recipients=[LESLEY_GROFF]),
     EmailCfg(id='EFTA00964459', note=f'discussion of sharia compliant crypto token', is_interesting=10, truncate_to=500),
-    EmailCfg(id='EFTA00990442', note=f"Epstein offers to cover all costs for Sharia Coin", is_interesting=10),
-    EmailCfg(id='EFTA02396341', note='the Sharia Coin gambit', is_interesting=10),
+    EmailCfg(id='EFTA00990442', note=f"Epstein offers to cover all costs for ShariaCoin", is_interesting=10),
+    EmailCfg(id='EFTA02396341', note='the ShariaCoin gambit', is_interesting=10),
     EmailCfg(id='EFTA01005117', note='announcement that the Stellar blockchain is Sharia compliant', is_interesting=10),
     # Steven Sinofsky / a16z
     EmailCfg(id='029963', is_fwded_article=True),
@@ -714,7 +721,12 @@ CRYPTO_CFGS = [
     EmailCfg(id='EFTA02414991', note=f"Epstein signs up for World of Warcraft", is_interesting=10, truncate_to=350),
     EmailCfg(id='EFTA01434500', note=f"everyone assumes Epstein's banker {PAUL_BARRETT} will want to know about the blockchain event"),
     EmailCfg(id='EFTA01388354', note=f"invitation to {DEUTSCHE_BANK} blockchain event with Mike Novogratz"),
-    EmailCfg(id='EFTA01784901', note=f"{JEREMY_RUBIN} has cashed multiple checks directly from Epstein", is_interesting=10, truncate_to=1_200),
+    EmailCfg(
+        id='EFTA01784901',
+        is_interesting=10,
+        note=f"{JEREMY_RUBIN} has cashed multiple checks directly from Epstein",
+        truncate_to=700,
+    ),
     EmailCfg(
         id='EFTA01007544',
         is_interesting=10,

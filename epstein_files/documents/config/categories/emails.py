@@ -429,7 +429,11 @@ EMAILS_CONFIG = [
     EmailCfg(id='031036', note=f'{BARBRO_C_EHNBOM} related donation / Swedish girls discussion', is_interesting=True),
     EmailCfg(id='030737', note='Bannon says there is a "crazed jihad" against Epstein', is_interesting=True),
     EmailCfg(id='030738', note='Bannon tells Epstein "somebody big has u in the gunsights"', is_interesting=True),
-    EmailCfg(id='032946', note='discussion of obtaining a Moroccan visa for unnamed woman, epstein is Palm Beach and "all trump people here"', is_interesting=5),
+    EmailCfg(
+        id='032946',
+        note='discussion of obtaining a Moroccan visa for unnamed woman, epstein is Palm Beach and "all trump people here"',
+        is_interesting=4,
+    ),
     EmailCfg(id='031152', note='discussion of notoriously corrupt Kazakh politician (and friend of Epstein) Rakhat Aliyev', is_interesting=10, truncate_to=(1_000, 5_300)),
     EmailCfg(id='032671', note='connections to Fusion GPS who produced the Steele Dossier on Trump'),
     EmailCfg(id='033052', note='connections to Fusion GPS who produced the Steele Dossier on Trump'),
@@ -1301,7 +1305,7 @@ EMAILS_CONFIG = [
     EmailCfg(
         id='EFTA00826876',
         highlight_quote='I would have gladly share your expenses for the gawker suit',
-        note=f"{PETER_THIEL} backed Hulk Hogan's lawsuit that destroyed Gawker",
+        note=f"Epstein offering to help with the {PETER_THIEL} funded Hulk Hogan lawsuit that destroyed Gawker",
         is_interesting=10
     ),
     EmailCfg(
