@@ -2928,7 +2928,7 @@ HIGHLIGHTED_NAMES = [
             r"Saddam",
             r"Salman(?! Rushdie)",
             r"Saudi( Arabian?)?",
-            r"Shariah?",
+            r"Shariah?( Coin)?",
             r"SHC",
             r"sheikh?",
             r"shia",

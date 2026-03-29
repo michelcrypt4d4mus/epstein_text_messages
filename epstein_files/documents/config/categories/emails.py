@@ -432,7 +432,7 @@ EMAILS_CONFIG = [
     EmailCfg(
         id='032946',
         note='discussion of obtaining a Moroccan visa for unnamed woman, epstein is Palm Beach and "all trump people here"',
-        is_interesting=True,
+        is_interesting=4,
     ),
     EmailCfg(id='031152', note='discussion of notoriously corrupt Kazakh politician (and friend of Epstein) Rakhat Aliyev', is_interesting=10, truncate_to=(1_000, 5_300)),
     EmailCfg(id='032671', note='connections to Fusion GPS who produced the Steele Dossier on Trump'),
