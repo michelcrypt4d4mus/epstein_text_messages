@@ -1137,8 +1137,8 @@ HIGHLIGHTED_NAMES = [
         label='Democrat',
         style='sky_blue1',
         entities=[
-            Entity('Alex Mayorkas', 'future DHS secretary', r"Al(i|ex) Mayorkas"),
-            Entity('Andrew Cuomo', 'governor of New York'),
+            Entity('Alex Mayorkas', 'future DHS secretary', r"Al(i|ex) Mayorkas", url='https://en.wikipedia.org/wiki/Alejandro_Mayorkas'),
+            Entity('Andrew Cuomo', 'governor of New York', url=WIKIPEDIA),
             Entity(BILL_RICHARDSON, 'former governor of New Mexico', r"(Governor )?(Bill )?Richardson", url=WIKIPEDIA),
             Entity('Edward Mezvinsky', 'former congressman, criminal Ponzi schemer', r"(Ed(ward)? )?Mezvinsky", url=WIKIPEDIA),
             Entity(
