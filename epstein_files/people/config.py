@@ -541,6 +541,14 @@ HIGHLIGHTED_NAMES = [
             ),
             Entity('Nikolajs Smirnovs', f"{NICOLE_JUNKERMANN}'s NJF Capital / JunkermannGroup", r"Nikolajs (NJF|Smirnovs)"),
             Entity(GORDON_GETTY, "heir to oil tycoon J. Paul Getty"),
+            Entity(
+                'Noah Tepperberg',
+                'nightclub owner',
+                url=[
+                    WIKIPEDIA,
+                    'https://archive.vanityfair.com/article/2004/4/kings-and-queens-of-clubs',
+                ],
+            ),
             Entity('Reza Bundy', f"founder of IronPlanet"),
             Entity(
                 ROBERT_LAWRENCE_KUHN,
