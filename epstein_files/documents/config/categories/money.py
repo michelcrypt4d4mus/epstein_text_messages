@@ -423,7 +423,7 @@ MONEY_CFGS = [
     EmailCfg(id='EFTA01018608', note=f'BV70 and {DEUTSCHE_BANK}'),
     EmailCfg(id='EFTA01376515', show_with_name=LEON_BLACK),
     EmailCfg(id='EFTA00697318', show_with_name=LEON_BLACK),
-    EmailCfg(id='EFTA01404535', truncate_to=(1_150, 2_200)),
+    EmailCfg(id='EFTA01404535', highlight_quote="This LLC currently owns Mr. Black's Yacht", truncate_to=(1_150, 2_200)),
     EmailCfg(
         id='EFTA00647703',
         highlight_quote='client buying a huge art work, what form should he buy it in',

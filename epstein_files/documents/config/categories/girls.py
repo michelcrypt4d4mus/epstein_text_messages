@@ -170,8 +170,10 @@ GIRLS_CFGS = [
         id='EFTA01623342',
         author=ANNA_KASATKINA,
         author_uncertain=True,
+        highlight_quote='send me your bank account details . i will send you the money for your life in moscow',
         is_interesting=15,
-        note='recruiting russian girls',
+        note=f'Epstein paying {ANNA_KASATKINA} or {JULIA_SANTOS} to recruit Russian girls',
+        truncate_to=AUTO,
         url=JULIA_SANTOS_REDDIT_URL,
     ),
     skype_log(
