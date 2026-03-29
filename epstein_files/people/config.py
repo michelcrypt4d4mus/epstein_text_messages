@@ -1222,7 +1222,7 @@ HIGHLIGHTED_NAMES = [
         entities=[
             # Entity('Adriana Ross', 'named co-conspirator', match_partial=None),
             Entity('Alberto Pinto', 'interior designer', match_partial=None),  # TODO linda matches last name
-            Entity('Alfredo Rodriguez', "Epstein's butler, stole Epstein's black book", match_partial=None),
+            Entity('Alfredo Rodriguez', "Epstein's butler, stole Epstein's black book", r'Alfredo Rodri[gq]uez', match_partial=None),
             Entity('Arline M. Toylo', 'employee'),
             Entity(
                 'Arthur Gensler',
@@ -2637,7 +2637,7 @@ HIGHLIGHTED_NAMES = [
         style='yellow',
         entities=[
             Entity('Edgar Zambrano', 'Venezuelan politician'),
-            Entity(FRANCISCO_DAGOSTINO, 'Venezuelan island visitor', match_partial=None),
+            Entity(FRANCISCO_DAGOSTINO, 'Venezuelan island visitor', r"Francisco D'?Agostino", match_partial=None),
             Entity('Hernando de Soto', 'Peruvian economist', match_partial=None),
             Entity(
                 REINALDO_AVILA_DA_SILVA,

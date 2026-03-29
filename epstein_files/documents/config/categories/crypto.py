@@ -488,11 +488,12 @@ CRYPTO_CFGS = [
     # Kushner
     fbi_tip(
         'EFTA00128987',
-        f'from {DEUTSCHE_BANK} anti-money laundering employee about Jared Kushner co. RealCadre crypto payments to suspicious Russians',
+        f'from {DEUTSCHE_BANK} anti-money laundering employee about Jared Kushner co. RealCadre crypto payments to suspicious Russians (she was overruled)',
         date='2019-08-21',
+        highlight_quote="REAL CONTRAD appeared to be paying an employee in crypto-currency. HILL-MCFADDEN thought the activity was mind boggling and she had never seen a flow like that",
         is_interesting=30,
         non_participants=['Marla Maples'],
-        truncate_to=(11_000, 14_000),
+        truncate_to=(11_000, 13_300),
     ),
     # Larry Summers
     EmailCfg(id='EFTA01062556', is_interesting=10, note=f"{LARRY_SUMMERS} gives Epstein his thoughts on Gary Gensler", truncate_to=780),

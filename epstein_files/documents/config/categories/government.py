@@ -399,7 +399,15 @@ GOVERNMENT_CFGS = [
     ),
     fbi_doc('EFTA01688746'),
     fbi_doc('EFTA00036859', date='2019-09-24'),
-    fbi_doc('EFTA01682078', 'investigation targets', is_displayed_as_img=True),
+    fbi_doc(
+        'EFTA01682078',
+        'investigation targets',
+        is_displayed_as_img=True,
+        pic_cfg=PicCfg(
+            id='EFTA01682078',
+            is_horizontal=True,
+        ),
+    ),
     fbi_doc(
         'EFTA00164480',
         'Epstein death investigation (Powerpoint slides)',
@@ -453,7 +461,12 @@ GOVERNMENT_CFGS = [
     fbi_tip('EFTA01249593', f"about {LES_WEXNER}"),
     fbi_tip('EFTA01249586', 'about abduction by Jay-Z, Harvey Weinstein, and Jeffrey Epstein'),
     fbi_tip('EFTA01249191', f"from {LES_WEXNER}'s former bodyguard", is_interesting=4, show_full_panel=True),
-    fbi_tip('EFTA00096249', "about Epstein wiring money to Albert bryan", date='', truncate_to=(4_000, 6_000)),
+    fbi_tip(
+        'EFTA00096249',
+        f"about Epstein wiring money to {ALBERT_BRYAN} and other corruption in the Virgin Islands",
+        date='2019-07-29',
+        truncate_to=(4_200, 5_000),
+    ),
     fbi_tip('EFTA00128750', f"from Reynaldo Clark about Epstein bribing USVI elected officials", date='2022-10-24', is_interesting=3),
     fbi_tip('EFTA01249591', f"about {HENRY_JARECKI}", show_full_panel=True),
     fbi_tip('EFTA01249848', f"from Erez Zadok about Epstein's connection to the Wexner Foundation", show_full_panel=True),

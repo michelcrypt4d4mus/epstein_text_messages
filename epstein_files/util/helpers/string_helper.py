@@ -61,8 +61,13 @@ timestamp_human = lambda dt: timestamp_str(dt).replace('T', ' ')
 def as_pattern(s: str) -> str:
     """Replace spaces with regex pattern for whitespace and ampersands with common OCR fails."""
     s = collapse_spaces(s).replace('@', AMPERSAND_CHAR_GROUP)
-    return s if '?<!' in s else s.replace(' ', WHITESPACE_CHAR)
 
+    # Make single quotes optional matches
+    if "'" in s and "'?" not in s:
+        logger.debug(f"Adding ? to apostrophe in '{s}'")
+        s = s.replace("'", "'?")
+
+    return s if '?<!' in s else s.replace(' ', WHITESPACE_CHAR)
 
 def doublespace_lines(s: str) -> str:
     """Doublespace \n chars if s has a high pct of long lines, doublespace numbered lists."""
