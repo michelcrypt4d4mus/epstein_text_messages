@@ -5,6 +5,7 @@ from epstein_files.documents.config.communication_cfg import (CommunicationCfg, 
 from epstein_files.documents.config.config_builder import letter
 from epstein_files.documents.config.doc_cfg import NO_TRUNCATE, DocCfg
 from epstein_files.documents.config.email_cfg import SNEAKY_DOG, EmailCfg
+from epstein_files.documents.config.pic_cfg import PicCfg
 from epstein_files.people.names import *
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constant.urls import DITE_ANATA_JUILLIARD_URL, JULIA_SANTOS_REDDIT_URL, PRUSAKOVA_REDDIT_URL, SVETLANA_NEWSGROUND
@@ -117,7 +118,12 @@ GIRLS_CFGS = [
         note='notes from Emma Sergeant interview describing being introduced to Trump by Epstein & Maxwell',
         truncate_to=(6_400, 7_800),
     ),
-    DocCfg(id='EFTA00143433', date='2022-06-01', date_uncertain='approx based on JPM lawsuit Nov 22', note='victim impact statement'),
+    DocCfg(
+        id='EFTA00143433',
+        date='2022-06-01',
+        date_uncertain='approx based on JPM lawsuit Nov 22',
+        note='victim impact statement',
+    ),
 
     # Communications
     CommunicationCfg(

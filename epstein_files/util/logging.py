@@ -22,6 +22,7 @@ DOC_TYPE_STYLES = {
     MESSENGER_LOG_CLASS: 'deep_pink4',
     f"{MESSENGER_LOG_CLASS}Pdf": 'deep_pink4',
     OTHER_FILE_CLASS: 'dark_sea_green',
+    'Picture': 'hot_pink',
 }
 
 LOG_THEME = {

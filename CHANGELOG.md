@@ -1,4 +1,5 @@
 # NEXT RELEASE
+* `Picture` class for files not part of the official releases
 
 # 1.12.0
 * Change font depending on category

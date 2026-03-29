@@ -16,7 +16,7 @@ from yaralyzer.util.helpers.interaction_helper import ask_to_proceed
 
 from epstein_files.documents.config.doc_cfg import Metadata
 from epstein_files.documents.config.manual_config import create_configs
-from epstein_files.documents.config.pic_cfg import PicCfg
+from epstein_files.documents.config.pic_cfg import PicCfg, PIC_CFGS
 from epstein_files.documents.document import Document, DocType
 from epstein_files.documents.documents.doc_list import DocList
 from epstein_files.documents.documents.search_result import SearchResult
@@ -42,6 +42,7 @@ from epstein_files.util.helpers.data_helpers import flatten, json_safe, sort_dic
 from epstein_files.util.helpers.file_helper import all_txt_paths, doj_txt_paths, extract_file_id, file_size_str, modified_at
 from epstein_files.util.timer import Timer
 
+PICS = [Picture.from_pic_cfg(cfg) for cfg in PIC_CFGS if isinstance(cfg, PicCfg)]
 # Lists of properties to copy into duplicate documents (will be preceded with 'extracted_')
 PROPS_TO_COPY = ['author', 'timestamp']
 EMAIL_PROPS_TO_COPY = ['recipients']

@@ -3,8 +3,9 @@ from typing import Literal
 
 from epstein_files.documents.config.doc_cfg import DocCfg
 from epstein_files.documents.config.email_cfg import EmailCfg
-from epstein_files.util.helpers.file_helper import is_picture
-from epstein_files.output.html.html_dir import HtmlDir
+from epstein_files.output.html.html_dir import IMAGES_DIR, HtmlDir
+from epstein_files.people.names import DONALD_TRUMP
+from epstein_files.util.helpers.file_helper import is_picture, is_valid_id
 
 ImgExt = Literal['jpg', 'jpeg', 'gif', 'webp', 'png']
 
@@ -30,7 +31,14 @@ class PicCfg(DocCfg):
 
     @property
     def image_url(self) -> str:
-        return str(HtmlDir.image_url(self.image_filename))
+        if is_valid_id(self.id):
+            return str(HtmlDir.image_url(self.image_filename))
+        else:
+            return str(IMAGES_DIR.joinpath(self.image_filename))
+
+    @property
+    def has_valid_id(self) -> bool:
+        return True  # TODO: check file exists
 
 
 PIC_CFGS = [
@@ -43,5 +51,12 @@ PIC_CFGS = [
             date_uncertain='approximate',
             file_type='webp',
         ),
+    ),
+    PicCfg(
+        id='trump_birthday_note',
+        author=DONALD_TRUMP,
+        date='2003-01-20',
+        is_displayed_as_img = True,
+        note='birthday letter to Jeffrey Epstein',
     ),
 ]

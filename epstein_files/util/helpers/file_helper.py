@@ -8,7 +8,7 @@ from typing import Generator
 from rich.panel import Panel
 from rich.text import Text
 
-from epstein_files.output.html.html_dir import IMAGES_DIR, HtmlDir
+from epstein_files.output.html.html_dir import DOC_IMAGES_DIR, HtmlDir
 from epstein_files.util.constant.strings import (DOJ_FILE_STEM_REGEX, DOJ_FILE_NAME_REGEX,
      EFTA_PREFIX, FILE_ID_PATTERN, HOUSE_OVERSIGHT_2025_FILENAME_REGEX,
      HOUSE_OVERSIGHT_2025_FILE_STEM_REGEX, HOUSE_OVERSIGHT_2025_ID_REGEX, HOUSE_OVERSIGHT_PREFIX,
@@ -185,7 +185,7 @@ def is_doj_file(file: str | Path) -> bool:
 
 
 def is_file_id_the_file_stem(file_path: Path) -> bool:
-    return is_doj_file(file_path) or str(IMAGES_DIR) in str(file_path)
+    return is_doj_file(file_path) or str(DOC_IMAGES_DIR) in str(file_path)
 
 
 def is_house_oversight_file(file: str | Path) -> bool:
@@ -198,8 +198,8 @@ def is_local_extract_file(filename: str | Path) -> bool:
     return True if match and match.group(2) else False
 
 
-def is_picture(file_name: str) -> bool:
-    return any(file_name.endswith(ext) for ext in IMG_EXTENSIONS) or 'Epstein_and_MBS' in file_name
+def is_picture(file_name: str | Path) -> bool:
+    return any(str(file_name).endswith(ext) for ext in IMG_EXTENSIONS)  # or 'Epstein_and_MBS' in file_name
 
 
 @contextmanager
