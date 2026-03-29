@@ -1257,7 +1257,12 @@ EMAILS_CONFIG = [
     ),
     EmailCfg(id='EFTA00949376', note=f"Epstein paying {MC2_MODEL_MGMT}", truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA01060612', note=f"Epstein plots against the JASTA bill"),
-    EmailCfg(id='EFTA00630134', note=f'Epstein recommends Signal encrypted messenger to {ALLEGED_KARIM_WADE}', is_interesting=10),
+    EmailCfg(
+        id='EFTA00630134',
+        highlight_quote="if you download SIGNAL privacy app on your iphone, it will allow advanced encryption . voice and text",
+        note=f'Epstein recommends Signal encrypted messenger to {ALLEGED_KARIM_WADE}',
+        is_interesting=10,
+    ),
     EmailCfg(id='EFTA00773169', note='hanging out with Epstein the day he gets out of jail', truncate_to=420),
     EmailCfg(id='EFTA02277132', note='hotel booking in Kiev'),
     EmailCfg(id='EFTA00492651', note='how to get a 2nd passport', truncate_to=1_160, is_interesting=4),

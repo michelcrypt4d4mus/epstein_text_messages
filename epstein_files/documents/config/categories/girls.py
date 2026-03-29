@@ -735,10 +735,10 @@ GIRLS_CFGS = [
         id='EFTA00680327',
         author=EKATERINA_GUSAROVA,
         highlight_quote="Steve Tisch didn't email me yet",
-        is_interesting=5,
+        is_interesting=True,
         truncate_to=1_000,
     ),
-    EmailCfg(id='EFTA00657216', highlight_quote='Is Katya coming over?', note=f'"Katya" is {EKATERINA_GUSAROVA}'),
+    EmailCfg(id='EFTA00657216', highlight_quote='Is Katya coming over?', note=f'"Katya" is {EKATERINA_GUSAROVA}', truncate_to=600),
     EmailCfg(id='EFTA00959850', highlight_quote="send me a number to call I dont like records of these conversations"),
 
     # Quotes
@@ -824,7 +824,6 @@ GIRLS_CFGS = [
     EmailCfg(id='EFTA02499884', highlight_quote='I gave another girl to kimball and he is thrilled', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA02557757', highlight_quote="I have a girl Sana working half time/who by the way you'd like", is_interesting=True),
     EmailCfg(id='EFTA00771856', highlight_quote="I know 23 is on the old side for you", note=quote("she's 23 but oozes sex"), truncate_to=3_000),
-    EmailCfg(id='EFTA01974447', highlight_quote='I know you are going to meet putin on the 20th'),
     EmailCfg(id='EFTA01888497', highlight_quote="I think I am perverted", is_interesting=True),
     EmailCfg(id='EFTA00986371', highlight_quote="I'm going to have a lunch right now with Steve Tisch:) lol", is_interesting=True, recipients=[UNKNOWN_GIRL]),
     EmailCfg(id='EFTA01740839', highlight_quote='is the invitation for Sultan AND his wife?', note='note capital "AND"', is_interesting=True),

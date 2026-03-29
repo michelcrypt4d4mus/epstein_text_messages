@@ -102,6 +102,9 @@ POLITICS_CFGS = [
     EmailCfg(id='EFTA02258597', recipients=[ALBERT_BRYAN, DAPHNE_WALLACE]),
     EmailCfg(id='EFTA02258608', author=DAPHNE_WALLACE, recipients=[ALBERT_BRYAN, JOHN_ENGERMAN]),
 
+    # russia
+    EmailCfg(id='EFTA01974447', highlight_quote='I know you are going to meet putin on the 20th'),
+
     # USVI
     EmailCfg(id='EFTA00705527', note='acquiring a Virgin Islands radio station', visible_in_id='EFTA01053946'),
     EmailCfg(id='EFTA01053946', note='acquiring a Virgin Islands radio station', is_interesting=True, truncate_to=2_500),
