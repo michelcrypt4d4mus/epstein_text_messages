@@ -563,9 +563,11 @@ CRYPTO_CFGS = [
     ),
     EmailCfg(
         id='EFTA00459459',
-        highlight_quote=f"mileage to be gained by quoting you in a story about how proper implementation of cryptocurrency might solve financial corruption",
         duplicate_ids=['033255'],
         dupe_type='quoted',
+        highlight_quote=f"mileage to be gained by quoting you in a story about how proper implementation of cryptocurrency might solve financial corruption",
+        note=f"{MASHA_DROKOVA} finds a \"journalist\" willing to write about Epstein and crypto for $10,000",
+        truncate_to=1_800,
     ),
     DocCfg(id='EFTA00811666', note='asset valuations of Epstein\'s holdings, includes "Coinbase via grat"', date='2018-01-31'),
     DocCfg(id='EFTA01734786', note='LedgerX Series B pitch deck'),
@@ -636,7 +638,7 @@ CRYPTO_CFGS = [
     ),
     # Sharia coin
     EmailCfg(id='032359', note='HBJ brings up "e-currency" (Sharia Coin, probably)', is_interesting=10),
-    EmailCfg(id='EFTA00665479', note=f"Epstein and {AUSTIN_HILL} planning Sharia Coin", is_interesting=11),
+    EmailCfg(id='EFTA00665479', note=f"Epstein and {AUSTIN_HILL} planning Sharia Coin", is_interesting=11, truncate_to=350),
     EmailCfg(id='EFTA00691410', note=f"Epstein and {AUSTIN_HILL} planning Sharia Coin", is_interesting=11),
     EmailCfg(id='EFTA00462608', highlight_quote='Sharia Coin Brainstorming Session', recipients=[LESLEY_GROFF]),
     EmailCfg(id='EFTA00964459', note=f'discussion of sharia compliant crypto token', is_interesting=10),
