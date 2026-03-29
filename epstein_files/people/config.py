@@ -3486,7 +3486,11 @@ HIGHLIGHTED_NAMES = [
                 match_partial='both',
                 url=WIKIPEDIA,
             ),
-            Entity(SANITA, "hero who blew up at Epstein when he suggeted a massage"),
+            Entity(
+                SANITA,
+                "blew up at Epstein when he suggeted a massage",
+                url='https://www.reddit.com/r/Epstein/comments/1qywffi/comment/o47li3n/',
+            ),
             Entity('Sasha Volkova', 'girl'),
             Entity(
                 SVETLANA_POZHIDAEVA,
