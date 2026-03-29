@@ -714,7 +714,12 @@ CRYPTO_CFGS = [
     EmailCfg(id='EFTA02414991', note=f"Epstein signs up for World of Warcraft", is_interesting=10, truncate_to=350),
     EmailCfg(id='EFTA01434500', note=f"everyone assumes Epstein's banker {PAUL_BARRETT} will want to know about the blockchain event"),
     EmailCfg(id='EFTA01388354', note=f"invitation to {DEUTSCHE_BANK} blockchain event with Mike Novogratz"),
-    EmailCfg(id='EFTA01784901', note=f"{JEREMY_RUBIN} has cashed multiple checks directly from Epstein", is_interesting=10, truncate_to=1_200),
+    EmailCfg(
+        id='EFTA01784901',
+        is_interesting=10,
+        note=f"{JEREMY_RUBIN} has cashed multiple checks directly from Epstein",
+        truncate_to=700,
+    ),
     EmailCfg(
         id='EFTA01007544',
         is_interesting=10,
