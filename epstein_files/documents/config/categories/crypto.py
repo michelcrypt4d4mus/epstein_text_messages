@@ -692,7 +692,7 @@ CRYPTO_CFGS = [
     EmailCfg(id='EFTA01781741', note=f'{JOI_ITO} introduces Epstein to {MADARS_VIRZA} and the untraceable private crypto ZCash', is_interesting=10),
     EmailCfg(id='EFTA02645742', note=f"tax implications of the untraceable 'privacy coin' ZCash", is_interesting=10),
     EmailCfg(id='EFTA00842748', note=f"Epstein helping {MADARS_VIRZA} with taxes on his untraceable cryptocurrency ZCash", is_interesting=10),
-    EmailCfg(id='EFTA01021269', note='stablecoin discussion', is_interesting=5),
+    EmailCfg(id='EFTA01021269', note='stablecoin discussion', is_interesting=5, truncate_to=1_000),
     EmailCfg(id='EFTA02613233', is_interesting=False, comment='math puzzle'),
     # Unsorted
     EmailCfg(
