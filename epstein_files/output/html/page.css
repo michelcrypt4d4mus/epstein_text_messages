@@ -24,14 +24,18 @@ div.black_background {
 }
 
 .category_legal {
-    font-size: 1.1em;
+    font-size: 1em;
     font-family: "Space Mono", Menlo, 'DejaVu Sans Mono', consolas, 'Courier New', monospace;
 }
 
 .category_money {
+    font-family: "PT Mono", Menlo, 'DejaVu Sans Mono', consolas, 'Courier New', monospace;
+}
+
+/* .category_tech {
     font-family: "Kode Mono", Menlo, 'DejaVu Sans Mono', consolas, 'Courier New', monospace;
     font-optical-sizing: auto;
-}
+} */
 
 div.doc_container {
     font-family: Menlo, 'DejaVu Sans Mono', consolas, 'Courier New', monospace;
