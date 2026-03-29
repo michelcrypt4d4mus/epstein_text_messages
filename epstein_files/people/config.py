@@ -521,6 +521,7 @@ HIGHLIGHTED_NAMES = [
             Entity(EDUARDO_TEODORANI, 'Italian, CNH Industrial', match_partial='last'),
             Entity('Evelyn Lauder', f"Estée Lauder family fortune", match_partial=None, url=WIKIPEDIA),
             Entity(FILIPA_PEROVIC, f"now Filipa Fink (married to {JOSHUA_FINK}), Coatue Management"),
+            Entity(GORDON_GETTY, "heir to oil tycoon J. Paul Getty"),
             Entity('James P. McGee', f"{NEWGRANGE_CONSULTING} plans for USVI political control", match_partial=None),
             Entity('Jeanne Houweling', f'CEO of Adfin, a company Epstein and {HOWARD_LUTNICK} invested in'),
             Entity(
@@ -540,7 +541,6 @@ HIGHLIGHTED_NAMES = [
                 url='https://www.yahoo.com/news/articles/german-countess-advised-nhs-called-130000074.html',
             ),
             Entity('Nikolajs Smirnovs', f"{NICOLE_JUNKERMANN}'s NJF Capital / JunkermannGroup", r"Nikolajs (NJF|Smirnovs)"),
-            Entity(GORDON_GETTY, "heir to oil tycoon J. Paul Getty"),
             Entity(
                 'Noah Tepperberg',
                 'nightclub owner',
@@ -2155,8 +2155,8 @@ HIGHLIGHTED_NAMES = [
             Organization('BaFin', "German financial regulator, tried to arrest journalists who exposed Wirecard's fraud"),
             Organization('Dodd-Frank Act', 'financial regulations put in place after 2008', r"Dodd Frank( Act)?"),
             Organization('FINRA', "Financial Industry Regulatory Authority", r"(www\.)?FINRA(\.org)?|Financial Industry Regulatory Authority",),
-            Organization('INS', "US Immigration and Naturalization Service", r"(?-i:INS)"),
             Organization('FinCEN', 'Financial Crimes Enforcement Network', r"(Director (of )?)?(Financial Crimes Enforcement Network|FinCEN)"),
+            Organization('INS', "US Immigration and Naturalization Service", r"(?-i:INS)"),
             Organization(
                 SECURITIES_AND_EXCHANGE_COMMISSION,
                 "US financial markets regulator",
