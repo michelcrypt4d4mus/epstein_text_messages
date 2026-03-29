@@ -211,7 +211,6 @@ LEGAL_CFGS = [
     ),
     legal_filing('016420', NEW_YORK_V_EPSTEIN, 'New York Post', "Motion to Unseal Appellate Briefs", '2019-01-11'),
     DocCfg(id='028540', author='SCOTUS', note=f"decision in Budha Ismail Jam et al. v. INTERNATIONAL FINANCE CORP"),
-    DocCfg(id='022277', note=f"text of National Labour Relations Board (NLRB) law", is_interesting=False),
 
     # legal letters
     letter(
@@ -271,7 +270,6 @@ LEGAL_CFGS = [
     DocCfg(id='EFTA00143492', note=f"court filing in which a victim calls Giuffre lawyer {STANLEY_POTTINGER} an abuser"),
     DocCfg(id='EFTA00796700', note=f"detailed notes on Epstein's relationship with {ALAN_DERSHOWITZ}", is_interesting=True),
     DocCfg(id='EFTA00009440', note='FBI agent testimony on subpoenas of JP Morgan, Western Union, Adult Video Warehouse'),
-    DocCfg(id='EFTA00039817', note='notice of hearing', date='2021-04-19', duplicate_ids=['EFTA00039791'], is_interesting=False),
     DocCfg(id='EFTA00074744', note="USVI court filing about Epstein will and estate"),
     DocCfg(id='EFTA00005586', display_text='completely redacted 69 pages labeled "Grand Jury - NY"'),
     DocCfg(
@@ -288,6 +286,10 @@ LEGAL_CFGS = [
     # emails
     EmailCfg(id='EFTA00407717', recipients=[KEN_STARR]),
     EmailCfg(id='EFTA00039794', recipients=['Michael Danchuk', USANYS]),
-    EmailCfg(id='EFTA00039816', is_interesting=False),
     EmailCfg(id='EFTA00188608', note=f"contains filing in {JANE_DOE_V_USA}"),
+
+    # uninteresting
+    DocCfg(id='022277', note=f"text of National Labour Relations Board (NLRB) law", is_interesting=False),
+    DocCfg(id='EFTA00039817', note='notice of hearing', date='2021-04-19', duplicate_ids=['EFTA00039791'], is_interesting=False),
+    EmailCfg(id='EFTA00039816', is_interesting=False),
 ]
