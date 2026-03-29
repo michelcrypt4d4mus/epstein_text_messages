@@ -41,7 +41,6 @@ HIGHLIGHTED_NAMES = [
         style='light_goldenrod2',
         entities=[
             Entity(BEN_GOERTZEL, 'AI researcher, Humanity+ chairman, iCog Labs, funded by Epstein'),
-            Entity('Bill Cosby', 'comedian, rapist'),
             Entity('Brian Greene', 'physicist at Columbia University', match_partial=None),
             Entity('Daniel Kahneman', "Nobel economic sciences laureate and cognitivie psychologist (?)", r"Dan(iel|ny) Kahneman"),
             Entity(
@@ -91,8 +90,8 @@ HIGHLIGHTED_NAMES = [
             Entity('Nancy Dahl', f"wife of {LAWRENCE_KRAUSS}"),
             Entity('Nathan Wolfe', "virologist", match_partial=None, url=WIKIPEDIA),
             Entity('Neri Oxman', f"MIT, wife of Bill Ackman", match_partial='both', url=WIKIPEDIA),
-            Entity('Nicholas Christakis', f"Yale professor of Social and Natural Science"),
-            Entity(NOAM_CHOMSKY, "professor of linguistics at MIT", match_partial='both'),
+            Entity('Nicholas Christakis', f"Yale professor of Social and Natural Science", url=WIKIPEDIA),
+            Entity(NOAM_CHOMSKY, "professor of linguistics at MIT", match_partial='both', url=WIKIPEDIA),
             Entity(
                 'Norman Finkelstein',
                 f"scholar, well known critic of Israel, sworn enemy of {ALAN_DERSHOWITZ}",
@@ -257,6 +256,7 @@ HIGHLIGHTED_NAMES = [
             Entity(ANDRES_SERRANO, '"Piss Christ" artist', url=WIKIPEDIA),
             Entity(BARRY_JOSEPHSON, "American film producer", match_partial=None, url=WIKIPEDIA),  #, editor FamilySecurityMatters.org"),
             Entity(BECHET_ALLEN, f"daughter of {WOODY_ALLEN} and {SOON_YI_PREVIN}", match_partial='first'),
+            Entity('Bill Cosby', 'comedian, rapist', url=WIKIPEDIA),
             Entity(BILL_SIEGEL, "documentary film producer and director", match_partial=None),
             Entity('Bobby Slayton', 'comedian and actor'),
             Entity(
