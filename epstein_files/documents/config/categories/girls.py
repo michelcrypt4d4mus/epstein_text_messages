@@ -188,6 +188,7 @@ GIRLS_CFGS = [
         id='EFTA01612733',
         author=MARIA_PRUSAKOVA,
         author_uncertain=True,
+        date='2019-05-08',
         highlight_quote='way better than supplying you ladies',
         note=f'saying being Epstein\'s lawyer would be preferable to recruiting, discusses Medici Bank',
         truncate_to=AUTO,
