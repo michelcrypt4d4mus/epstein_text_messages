@@ -639,9 +639,9 @@ CRYPTO_CFGS = [
     # Sharia coin
     EmailCfg(id='032359', note='HBJ brings up "e-currency" (Sharia Coin, probably)', is_interesting=10),
     EmailCfg(id='EFTA00665479', note=f"Epstein and {AUSTIN_HILL} planning Sharia Coin", is_interesting=11, truncate_to=350),
-    EmailCfg(id='EFTA00691410', note=f"Epstein and {AUSTIN_HILL} planning Sharia Coin", is_interesting=11),
+    EmailCfg(id='EFTA00691410', note=f"Epstein and {AUSTIN_HILL} planning Sharia Coin", is_interesting=True),
     EmailCfg(id='EFTA00462608', highlight_quote='Sharia Coin Brainstorming Session', recipients=[LESLEY_GROFF]),
-    EmailCfg(id='EFTA00964459', note=f'discussion of sharia compliant crypto token', is_interesting=10),
+    EmailCfg(id='EFTA00964459', note=f'discussion of sharia compliant crypto token', is_interesting=10, truncate_to=500),
     EmailCfg(id='EFTA00990442', note=f"Epstein offers to cover all costs for Sharia Coin", is_interesting=10),
     EmailCfg(id='EFTA02396341', note='the Sharia Coin gambit', is_interesting=10),
     EmailCfg(id='EFTA01005117', note='announcement that the Stellar blockchain is Sharia compliant', is_interesting=10),
