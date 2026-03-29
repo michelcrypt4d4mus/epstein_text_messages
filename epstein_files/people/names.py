@@ -436,6 +436,7 @@ ORGANIZED_CRIME_DRUG_ENFORCEMENT_TASK_FORCE = 'Organized Crime Drug Enforcement 
 OSBORNE_LLP = f"{IAN_OSBORNE} & Partners"  # Ian Osborne's PR firm
 PALM_BEACH_POLICE = f"{PALM_BEACH} Police"
 ROTHSTEIN_ROSENFELDT_ADLER = "Rothstein Rosenfeldt Adler"  # and a crook
+SDFL = 'SDFL'
 SECURITIES_AND_EXCHANGE_COMMISSION = 'Securities & Exchange Commission'
 SWEDISH_LIFE_SCIENCES_SUMMIT = f"Swedish American Life Science Summit"
 TRUMP_ORG = 'Trump Organization'

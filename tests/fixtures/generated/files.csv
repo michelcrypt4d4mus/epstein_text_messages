@@ -3,23 +3,23 @@ file_id,category,author,is_interesting,timestamp,recipients_str,sent_from_device
 010477,book,James Patterson,False,2016-10-10 00:00:00+00:00,,,"book titled pages of ""Filthy Rich: The Shocking True Story of Jeffrey Epstein"" by James Patterson"
 010486,book,James Patterson,False,2016-10-10 00:00:00+00:00,,,"book titled pages of ""Filthy Rich: The Shocking True Story of Jeffrey Epstein"" by James Patterson"
 010560,legal,Gloria Allred,,2019-06-19 00:00:00+00:00,,,letter from Gloria Allred to Scott J. Link alleging abuse of a girl from Kansas
-010566,legal,"Epstein v. Scott Rothstein, Brad Edwards, & L.M.",,2010-11-04 00:00:00+00:00,,,"Epstein v. Scott Rothstein, Brad Edwards, & L.M.: Statement of Undisputed Facts"
+010566,legal,,True,2010-11-04 00:00:00+00:00,,,"court filing in Epstein v. Scott Rothstein, Brad Edwards, & L.M.: Statement of Undisputed Facts"
 010609,finance,BofA / Merrill Lynch,False,2016-09-22 00:00:00+00:00,,,"BofA / Merrill Lynch report: ""Liquid Insight Trump's effect on MXN"""
 010617,politics,,False,2017-01-20 00:00:00+00:00,,,"Donald Trump financial disclosures from U.S. Office of Government Ethics, attached to email 033091"
 010715,article,Peggy Siegal,False,2012-02-27 00:00:00+00:00,,,Peggy Siegal Oscar Diary April
-010735,legal,Jane Doe #1 and Jane Doe #2 v. United States,,2015-02-02 00:00:00+00:00,,,Jane Doe #1 and Jane Doe #2 v. United States: Dershowitz Reply in Support of Motion for Limited Intervention
+010735,legal,Alan Dershowitz,,2015-02-02 00:00:00+00:00,,,Alan Dershowitz court filing in Jane Doe #1 and Jane Doe #2 v. United States: Reply in Support of Motion for Limited Intervention
 010754,article,U.S. News,False,2015-11-05 00:00:00+00:00,,,U.S. News article about Yitzhak Rabin
-010757,legal,Brad Edwards & Paul G. Cassell v. Alan Dershowitz,,2015-11-23 00:00:00+00:00,,,Brad Edwards & Paul G. Cassell v. Alan Dershowitz: plaintiff response to Dershowitz Motion to Determine Confidentiality of Court Records
-010887,legal,Brad Edwards & Paul G. Cassell v. Alan Dershowitz,,2016-01-29 00:00:00+00:00,,,Brad Edwards & Paul G. Cassell v. Alan Dershowitz: Dershowitz Motion for Clarification of Confidentiality Order
+010757,legal,Brad Edwards,,2015-11-23 00:00:00+00:00,,,Brad Edwards court filing in Brad Edwards & Paul G. Cassell v. Alan Dershowitz: plaintiff response to Dershowitz Motion to Determine Confidentiality of Court Records
+010887,legal,Alan Dershowitz,,2016-01-29 00:00:00+00:00,,,Alan Dershowitz court filing in Brad Edwards & Paul G. Cassell v. Alan Dershowitz: Motion for Clarification of Confidentiality Order
 010912,book,Gordon Getty,False,2018-10-18 00:00:00+00:00,,,"book titled ""Free Growth and Other Surprises"" (draft) by Gordon Getty"
 011170,social,InsightsPod,False,2016-06-23 00:00:00+00:00,,,"InsightsPod case study of social media vibe analysis using tweets from #Brexit from Zubair Khan and Anya Rasulova, attached to email 033171"
 011277,email,Amanda Ens,,2016-12-09 15:46:19+00:00,Jeffrey Epstein;Richard Kahn,,
 011280,email,Amanda Ens,,2016-12-09 16:03:45+00:00,Jeffrey Epstein;Richard Kahn,,
-011304,legal,Virginia Giuffre v. Ghislaine Maxwell,,2017-03-17 00:00:00+00:00,,,Virginia Giuffre v. Ghislaine Maxwell: Oral Argument Transcript
+011304,legal,,True,2017-03-17 00:00:00+00:00,,,court filing in Virginia Giuffre v. Ghislaine Maxwell: Oral Argument Transcript
 011472,book,Ehud Barak,False,2006-07-12 00:00:00+00:00,,,"book titled ""Night Flight"" (draft) by Ehud Barak"
 011904,email,Lawrence Krauss,False,2018-04-05 22:16:55+00:00,Jeffrey Epstein,Sent from my iPhone,
 011907,email,Nicholas Ribis,,2019-05-07 13:53:22+00:00,Jeffrey Epstein,,
-011908,legal,Jean Luc Brunel v. Jeffrey Epstein and Tyler McDonald d/b/a YI.org,,2015-01-26 12:26:55+00:00,,,Jean Luc Brunel v. Jeffrey Epstein and Tyler McDonald d/b/a YI.org: court filing
+011908,legal,Jean Luc Brunel,True,2015-02-09 00:00:00+00:00,,,Jean Luc Brunel court filing in Jean Luc Brunel v. Jeffrey Epstein and Tyler McDonald d/b/a YI.org: Amended Complaint
 011908_1,email,Michael Sanka,True,2014-12-12 12:48:00+00:00,Jean Luc Brunel,,
 011908_2,email,Abi Schwinck,True,2015-01-16 05:16:00+00:00,Jean Luc Brunel;Jeff Fuller;pink@mc2mm.com,,
 011908_3,girls,Manuela Martinez,True,2014-10-17 21:36:00+00:00,Jean Luc Brunel,,"see quote: ""sex trafficking allegations have stopped us from working with • your agency for the past 5-6 years"""
@@ -30,9 +30,9 @@ file_id,category,author,is_interesting,timestamp,recipients_str,sent_from_device
 012044,email,Jeffrey Epstein,,2016-12-09 15:56:27+00:00,Amanda Ens,,
 012048,finance,,False,2019-03-29 00:00:00+00:00,,,Rockefeller Partners with Gregory J. Fleming to Create Independent Financial Services Firm and other articles
 012102,email,Jeffrey Epstein,,2019-05-07 04:29:00+00:00,Nicholas Ribis,,
-012103,legal,"Epstein v. Scott Rothstein, Brad Edwards, & L.M.",,2011-05-17 00:00:00+00:00,,,"Epstein v. Scott Rothstein, Brad Edwards, & L.M.: Telephone Interview with Virginia Giuffre"
+012103,legal,Virginia Giuffre,,2011-05-17 00:00:00+00:00,,,"Virginia Giuffre court filing in Epstein v. Scott Rothstein, Brad Edwards, & L.M.: Telephone Interview"
 012130,legal,Ken Starr,,2008-06-19 00:00:00+00:00,,,letter from Ken Starr to Judge Mark Filip requesting lenient treatment for Epstein
-012197,legal,SDFL,,2014-12-13 15:00:00+00:00,,,SDFL response to Jay Lefkowitz on Epstein Plea Agreement Compliance
+012197,legal,SDFL,,2008-05-19 00:00:00+00:00,,,letter from SDFL to Jay Lefkowitz re: Epstein plea agreement compliance w/many legal filings
 012197_1,email,Jay Lefkowitz,,2007-09-27 14:53:00+00:00,Ann Marie Villafana;USAFLS,,
 012197_2,email,Jay Lefkowitz,,2007-09-19 11:58:00+00:00,Ann Marie Villafana;USAFLS,,
 012197_3,email,Ann Marie Villafana,,2007-09-25 20:37:00+00:00,Jay Lefkowitz,,
@@ -41,14 +41,14 @@ file_id,category,author,is_interesting,timestamp,recipients_str,sent_from_device
 012690,article,Peggy Siegal,False,2011-02-27 00:00:00+00:00,,,Peggy Siegal film events diary early draft of 012700
 012700,article,Peggy Siegal,False,2011-02-27 00:00:00+00:00,,,Peggy Siegal film events diary
 012704,article,Daily Business Review,False,2011-04-21 00:00:00+00:00,,,Daily Business Review article about Jane Doe #1 and Jane Doe #2 v. United States and Crime Victims' Rights Act [CVRA]
-012707,legal,"Epstein v. Scott Rothstein, Brad Edwards, & L.M.",,2011-03-22 00:00:00+00:00,,,"Epstein v. Scott Rothstein, Brad Edwards, & L.M.: Master Contact List - Privilege Log"
+012707,legal,,True,2011-03-22 00:00:00+00:00,,,"court filing in Epstein v. Scott Rothstein, Brad Edwards, & L.M.: Master Contact List - Privilege Log"
 012718,misc,,False,2011-06-17 00:00:00+00:00,,,Crime Victims' Rights Act [CVRA] congressional record
 012740,article,Peggy Siegal,False,2011-08-31 00:00:00+00:00,,,Peggy Siegal article about Venice Film Festival
 012747,book,Marc D. Hauser,False,2017-03-20 00:00:00+00:00,,,"book titled ""Evilicious: Explaining Our Taste For Excessive Harm"" by Marc D. Hauser"
 012899,book,Ben Goertzel,False,2013-09-19 00:00:00+00:00,,,"book titled ""Engineering General Intelligence: A Path to Advanced AGI Via Embodied Learning and Cognitive Synergy"" by Ben Goertzel"
 013268,article,JetGala,False,2014-01-29 00:00:00+00:00,,,JetGala article about airplane interior designer Eric Roth
 013275,article,Bloomberg,False,2013-12-26 00:00:00+00:00,,,Bloomberg article on notable 2013 obituaries
-013304,legal,"Epstein v. Scott Rothstein, Brad Edwards, & L.M.",,2014-04-17 00:00:00+00:00,,,"Epstein v. Scott Rothstein, Brad Edwards, & L.M.: Plaintiff Response to Epstein's Motion for Summary Judgment"
+013304,legal,Brad Edwards,,2014-04-17 00:00:00+00:00,,,"Brad Edwards court filing in Epstein v. Scott Rothstein, Brad Edwards, & L.M.: Plaintiff Response to Motion for Summary Judgment"
 013403,article,,False,2009-12-24 00:00:00+00:00,,,Lexis Nexis result from The Evening Standard about Bernie Madoff
 013405,email,Darren Indyke,False,2011-04-07 13:44:00+00:00,Jackie Perczek,,
 013415,email,Darren Indyke,,2011-04-07 13:27:00+00:00,Jackie Perczek,,
@@ -60,12 +60,12 @@ file_id,category,author,is_interesting,timestamp,recipients_str,sent_from_device
 013463,deposition,Scott Rothstein,,2010-03-23 00:00:00+00:00,,,deposition of Scott Rothstein from Jane Doe v. Donald Trump and Jeffrey Epstein
 013482,email,Steven Victor MD,False,2012-11-23 13:06:38+00:00,Jeffrey Epstein,,
 013484,email,Ian Osborne,True,2012-11-28 17:55:14+00:00,Jeffrey Epstein,,Peter Thiel conference speaker list
-013489,legal,Jane Doe v. Donald Trump and Jeffrey Epstein,,2010-07-20 00:00:00+00:00,,,Jane Doe v. Donald Trump and Jeffrey Epstein: Affidavit of Brad Edwards
+013489,legal,Brad Edwards,,2010-07-20 00:00:00+00:00,,,Brad Edwards court filing in Jane Doe v. Donald Trump and Jeffrey Epstein: Affidavit
 013501,book,Arnold J. Mandell,False,2005-01-01 00:00:00+00:00,,,"book titled ""The Nearness Of Grace: A Personal Science Of Spiritual Transformation"" by Arnold J. Mandell"
 013796,book,Tim Ferriss,False,2009-03-29 00:00:00+00:00,,,"book titled ""The 4-Hour Workweek"" by Tim Ferriss"
-014037,legal,Journal of Criminal Law and Criminology,,2014-07-29 00:00:00+00:00,,,Journal of Criminal Law and Criminology article on Crime Victims' Rights Act [CVRA]
-014084,legal,Jane Doe #1 and Jane Doe #2 v. United States,,2015-03-24 00:00:00+00:00,,,Jane Doe #1 and Jane Doe #2 v. United States: Jane Doe Response to Dershowitz's Motion for Limited Intervention
-014118,legal,Virginia Giuffre v. Jeffrey Epstein,,2016-10-21 00:00:00+00:00,,,Virginia Giuffre v. Jeffrey Epstein: Declaration in Support of Motion to Compel Production of Documents
+014037,article,Journal of Criminal Law and Criminology,False,2014-07-29 00:00:00+00:00,,,Journal of Criminal Law and Criminology article on Crime Victims' Rights Act [CVRA]
+014084,legal,Jane Doe,,2015-03-24 00:00:00+00:00,,,Jane Doe court filing in Jane Doe #1 and Jane Doe #2 v. United States: Response to Motion for Limited Intervention
+014118,legal,,True,2016-10-21 00:00:00+00:00,,,court filing in Virginia Giuffre v. Jeffrey Epstein: Declaration in Support of Motion to Compel Production of Documents
 014310,email,Amanda Ens,,2016-11-15 14:44:06+00:00,Jeffrey Epstein;Richard Kahn,,
 014312,email,Amanda Ens,,2016-11-17 18:05:47+00:00,Jeffrey Epstein;Richard Kahn,,
 014315,conference,BofA / Merrill Lynch,False,2016-11-17 18:05:47+00:00,,,"BofA / Merrill Lynch 2016 Future of Financials Conference, attached to email 014312"
@@ -82,14 +82,14 @@ file_id,category,author,is_interesting,timestamp,recipients_str,sent_from_device
 014525,email,Paul Morris,False,2017-01-05 15:31:54+00:00,Sean T Lehane,,
 014532,finance,Goldman Sachs Investment Management Division,False,2017-01-01 00:00:00+00:00,,,"Goldman Sachs Investment Management Division report: ""Outlook - Half Full"""
 014622,finance,BofA / Merrill Lynch,False,2017-01-03 00:00:00+00:00,,,"BofA / Merrill Lynch report: ""Top 10 US Ideas Quarterly"""
-014652,legal,Virginia Giuffre v. Ghislaine Maxwell,,2015-04-22 00:00:00+00:00,,,Virginia Giuffre v. Ghislaine Maxwell: Complaint
+014652,legal,,True,2015-04-22 00:00:00+00:00,,,court filing in Virginia Giuffre v. Ghislaine Maxwell: Complaint
 014695,email,Amanda Ens,,2017-01-27 20:03:49+00:00,Jeffrey Epstein;Richard Kahn,,
 014697,academia,ASU Origins Project,False,2017-03-29 00:00:00+00:00,,,"report: ""Challenges of AI: Envisioning and Addressing Adverse Outcomes"" by ASU Origins Project"
 014717,email,Amanda Ens,,2017-03-16 18:27:30+00:00,Jeffrey Epstein;Richard Kahn,,
 014721,finance,BofA / Merrill Lynch,False,2017-02-13 00:00:00+00:00,,,"BofA / Merrill Lynch report: ""Cause and Effect Fade the Trump Risk Premium"""
 014731,finance,BofA / Merrill Lynch,False,2016-11-16 00:00:00+00:00,,,"BofA / Merrill Lynch report: ""Global Rates, FX & EM 2017 Year Ahead"""
-014788,legal,Virginia Giuffre v. Ghislaine Maxwell,,2017-03-17 00:00:00+00:00,,,Virginia Giuffre v. Ghislaine Maxwell: Maxwell Response to Plaintiff's Omnibus Motion in Limine
-014797,legal,Virginia Giuffre v. Ghislaine Maxwell,,2017-03-17 00:00:00+00:00,,,Virginia Giuffre v. Ghislaine Maxwell: Declaration of Laura A. Menninger in Opposition to Plaintiff's Motion
+014788,legal,Ghislaine Maxwell,,2017-03-17 00:00:00+00:00,,,Ghislaine Maxwell court filing in Virginia Giuffre v. Ghislaine Maxwell: Response to Plaintiff's Omnibus Motion in Limine
+014797,legal,Laura A. Menninger,,2017-03-17 00:00:00+00:00,,,Laura A. Menninger court filing in Virginia Giuffre v. Ghislaine Maxwell: Opposition to Plaintiff's Motion
 014797_1,email,Ross Gow,True,2015-01-02 20:38:00+00:00,david.brown@thetimes.co.uk;io-anne.pugh@bbc.co.uk;martin.robinson@mailonline.co.uk;nick.alwav@bbc.co.uk;nick.sommerlad@mirror.co.uk;p.peachev@independent.co.uk,Sent from my BlackBerry® wireless device,
 014857,email,Richard Kahn,False,2017-04-04 17:28:21+00:00,Jeffrey Epstein,,
 014860,email,Amanda Ens,,2017-04-07 12:24:59+00:00,Jeffrey Epstein;Richard Kahn,,
@@ -104,19 +104,19 @@ file_id,category,author,is_interesting,timestamp,recipients_str,sent_from_device
 015032,book,Paul Krassner,False,2017-07-29 00:00:00+00:00,,,book titled 60 Years of Investigative Satire: The Best of Paul Krassner by Paul Krassner
 015462,misc,Nautilus Education,True,2013-10-29 00:00:00+00:00,,,Nautilus Education magazine issue for Epstein foundation (???)
 015501,academia,"Moshe Hoffman, Erez Yoeli, and Carlos David Navarrete",False,2016-03-29 00:00:00+00:00,,,"""Game Theory and Morality"" by Moshe Hoffman, Erez Yoeli, and Carlos David Navarrete"
-015529,legal,Virginia Giuffre v. Ghislaine Maxwell,,2015-09-21 00:00:00+00:00,,,Virginia Giuffre v. Ghislaine Maxwell: Defamation Complaint
+015529,legal,,True,2015-09-21 00:00:00+00:00,,,court filing in Virginia Giuffre v. Ghislaine Maxwell: Defamation Complaint
 015529_1,email,James Hill,,2015-01-28 15:34:00+00:00,Jack Scarola,,
-015590,legal,Brad Edwards & Paul G. Cassell v. Alan Dershowitz,,2016-02-03 00:00:00+00:00,,,Brad Edwards & Paul G. Cassell v. Alan Dershowitz: Dershowitz Redacted Motion to Modify Confidentiality Order
-015650,legal,Brad Edwards & Paul G. Cassell v. Alan Dershowitz,,2016-02-08 00:00:00+00:00,,,Brad Edwards & Paul G. Cassell v. Alan Dershowitz: Giuffre Response to Dershowitz Motion for Clarification of Confidentiality Order
+015590,legal,Alan Dershowitz,,2016-02-03 00:00:00+00:00,,,Alan Dershowitz court filing in Brad Edwards & Paul G. Cassell v. Alan Dershowitz: Dershowitz Redacted Motion to Modify Confidentiality Order
+015650,legal,Virginia Giuffre,,2016-02-08 00:00:00+00:00,,,Virginia Giuffre court filing in Brad Edwards & Paul G. Cassell v. Alan Dershowitz: Giuffre Response to Dershowitz Motion for Clarification of Confidentiality Order
 015671,resumé,Robin Solomon,,2015-06-02 00:00:00+00:00,,,professional resumé of Robin Solomon professional resumé
 015672,resumé,Robin Solomon,,2015-06-02 00:00:00+00:00,,,professional resumé of Robin Solomon professional resumé
 015675,book,James Tagg,False,2015-06-01 00:00:00+00:00,,,"book titled ""Are the Androids Dreaming Yet? Amazing Brain Human Communication, Creativity & Free Will"" by James Tagg"
 016111,finance,BofA / Merrill Lynch,False,2016-06-30 00:00:00+00:00,,,"BofA / Merrill Lynch report: ""GEMs Paper #26 Saudi Arabia: beyond oil but not so fast"""
-016197,legal,Virginia Giuffre v. Alan Dershowitz,,2019-07-03 00:00:00+00:00,,,Virginia Giuffre v. Alan Dershowitz: response to Florida Bar complaint by Alan Dershowitz about David Boies from Paul G. Cassell
+016197,legal,Paul G. Cassell,,2019-07-03 00:00:00+00:00,,,Paul G. Cassell court filing in Virginia Giuffre v. Alan Dershowitz: response to Florida Bar complaint by Alan Dershowitz about David Boies
 016203,email,editorialstaff@flipboard.com,False,2019-07-13 21:06:05+00:00,Jeffrey Epstein,,
 016218,email,Richard Kahn,False,2018-05-09 01:51:01+00:00,Jeffrey Epstein,,
 016413,email,Paul Morris,,2019-01-15 16:44:33+00:00,Jeffrey Epstein,,
-016420,legal,New York v. Jeffrey Epstein,,2019-01-11 00:00:00+00:00,,,New York v. Jeffrey Epstein: New York Post Motion to Unseal Appellate Briefs
+016420,legal,New York Post,,2019-01-11 00:00:00+00:00,,,New York Post court filing in New York v. Jeffrey Epstein: Motion to Unseal Appellate Briefs
 016420_1,email,Danny Frost,,2018-12-06 17:27:00+00:00,Susan Edelman,,
 016506,article,Virgin Islands Daily News,False,2019-02-28 00:00:00+00:00,,,Virgin Islands Daily News article
 016507,article,Virgin Islands Daily News,False,2018-12-19 00:00:00+00:00,,,"Virgin Islands Daily News ""Perversion of Justice"" by Julie K. Brown"
@@ -156,19 +156,19 @@ file_id,category,author,is_interesting,timestamp,recipients_str,sent_from_device
 017603,legal,David Schoen,False,2019-02-28 00:00:00+00:00,,,David Schoen Lexis Nexis search for case law around the Crime Victims' Rights Act [CVRA]
 017635,legal,David Schoen,False,2019-02-28 00:00:00+00:00,,,David Schoen Lexis Nexis search for case law around the Crime Victims' Rights Act [CVRA]
 017714,legal,David Schoen,False,2019-02-28 00:00:00+00:00,,,David Schoen Lexis Nexis search for case law around the Crime Victims' Rights Act [CVRA]
-017767,legal,Virginia Giuffre v. Alan Dershowitz,False,2019-04-16 00:00:00+00:00,,,Virginia Giuffre v. Alan Dershowitz: article about Alan Dershowitz working with Jeffrey Epstein
-017771,legal,Virginia Giuffre v. Alan Dershowitz,,2011-06-27 00:00:00+00:00,,,"Virginia Giuffre v. Alan Dershowitz: Vanity Fair article ""The Talented Mr. Epstein"" by Vicky Ward"
+017767,legal,,True,2019-04-16 00:00:00+00:00,,,court filing in Virginia Giuffre v. Alan Dershowitz: article about Alan Dershowitz working with Jeffrey Epstein
+017771,legal,,True,2011-06-27 00:00:00+00:00,,,"court filing in Virginia Giuffre v. Alan Dershowitz: Vanity Fair article ""The Talented Mr. Epstein"" by Vicky Ward"
 017787,tweet,Alan Dershowitz,False,2019-04-16 00:00:00+00:00,,,Tweet by Alan Dershowitz about Virginia Giuffre
 017789,legal,Alan Dershowitz,,2019-04-16 00:00:00+00:00,,,Alan Dershowitz letter to Harvard Crimson complaining he was defamed
-017792,legal,Virginia Giuffre v. Alan Dershowitz,False,2019-04-16 00:00:00+00:00,,,Virginia Giuffre v. Alan Dershowitz: article about Alan Dershowitz's appearance on Wolf Blitzer
-017796,legal,Virginia Giuffre v. Alan Dershowitz,False,2019-04-16 00:00:00+00:00,,,Virginia Giuffre v. Alan Dershowitz: article about Alan Dershowitz
-017800,legal,Virginia Giuffre v. Alan Dershowitz,,2019-04-16 00:00:00+00:00,,,"Virginia Giuffre v. Alan Dershowitz: Miami Herald ""Perversion of Justice"" by Julie K. Brown"
-017818,legal,Virginia Giuffre v. Alan Dershowitz,,2018-12-27 00:00:00+00:00,,,Virginia Giuffre v. Alan Dershowitz: Miami Herald article about accusations against Alan Dershowitz by Julie K. Brown
-017824,legal,Virginia Giuffre v. Alan Dershowitz,,2019-04-16 00:00:00+00:00,,,Virginia Giuffre v. Alan Dershowitz: Miami Herald article by Julie K. Brown
+017792,legal,,True,2019-04-16 00:00:00+00:00,,,court filing in Virginia Giuffre v. Alan Dershowitz: article about Alan Dershowitz's appearance on Wolf Blitzer
+017796,legal,,True,2019-04-16 00:00:00+00:00,,,court filing in Virginia Giuffre v. Alan Dershowitz: article about Alan Dershowitz
+017800,legal,,True,2019-04-16 00:00:00+00:00,,,"court filing in Virginia Giuffre v. Alan Dershowitz: Miami Herald ""Perversion of Justice"" by Julie K. Brown"
+017818,legal,,True,2018-12-27 00:00:00+00:00,,,court filing in Virginia Giuffre v. Alan Dershowitz: Miami Herald article about accusations against Alan Dershowitz by Julie K. Brown
+017824,legal,Julie K. Brown,,2019-04-16 00:00:00+00:00,,,Julie K. Brown court filing in Virginia Giuffre v. Alan Dershowitz: Miami Herald article
 017827,email,Jeffrey Epstein,True,2019-04-23 09:55:44+00:00,Steve Bannon,,Bannon / Peggy Siegal email about netflix doc on Epstein
-017830,legal,JASTA lawsuit against Saudi Arabia by 9/11 victims,,2012-10-03 20:04:00+00:00,,,JASTA lawsuit against Saudi Arabia by 9/11 victims legal text and court documents
-017904,legal,JASTA lawsuit against Saudi Arabia by 9/11 victims,,2019-01-01 00:00:00+00:00,,,JASTA lawsuit against Saudi Arabia by 9/11 victims Westlaw search results
-017935,legal,Virginia Giuffre v. Alan Dershowitz,,2019-04-16 00:00:00+00:00,,,Virginia Giuffre v. Alan Dershowitz: defamation complaint
+017830,legal,,True,2012-10-03 20:04:00+00:00,,,court filing in JASTA lawsuit against Saudi Arabia by 9/11 victims: legal text and court documents
+017904,legal,,True,2019-01-01 00:00:00+00:00,,,court filing in JASTA lawsuit against Saudi Arabia by 9/11 victims: Westlaw search results
+017935,legal,Virginia Giuffre,,2019-04-16 00:00:00+00:00,,,Virginia Giuffre court filing in Virginia Giuffre v. Alan Dershowitz: defamation complaint
 018045,email,Jeffrey Epstein,,2010-09-10 16:01:03+00:00,Lesley Groff,,
 018085,article,The Shimon Post,False,2011-06-07 00:00:00+00:00,,,The Shimon Post selection of articles about the mideast
 018119,email,Jeffrey Epstein,,2011-09-22 04:48:35+00:00,Sultan Ahmed Bin Sulayem,,
@@ -303,7 +303,7 @@ file_id,category,author,is_interesting,timestamp,recipients_str,sent_from_device
 022226,email,Al Seckel,True,2010-12-16 13:27:48+00:00,Jeffrey Epstein,,
 022230,email,Al Seckel,True,2010-12-16 13:31:21+00:00,Jeffrey Epstein,,
 022234,email,,True,2011-03-08 20:32:00+00:00,Jeffrey Epstein,,
-022237,legal,Virginia Giuffre v. Alan Dershowitz,,2014-12-29 00:00:00+00:00,,,Virginia Giuffre v. Alan Dershowitz: partial court filing with fact checking questions?
+022237,legal,,True,2014-12-29 00:00:00+00:00,,,court filing in Virginia Giuffre v. Alan Dershowitz: partial court filing with fact checking questions?
 022245,email,Jeffrey Epstein,,2009-09-28 23:34:06+00:00,Ghislaine Maxwell,,
 022247,email,Jeffrey Epstein,True,2011-03-04 16:38:00+00:00,None,,
 022250,email,Jeffrey Epstein,,2011-04-03 19:15:00+00:00,Lesley Groff,,
@@ -538,7 +538,7 @@ file_id,category,author,is_interesting,timestamp,recipients_str,sent_from_device
 023208_98,email,Jeffrey Epstein,,2015-05-01 14:36:00+00:00,Leon Black;Melanie Spinella,,
 023208_99,email,Jeffrey Epstein,,2015-05-01 19:08:00+00:00,Leon Black;Melanie Spinella,,
 023287,article,Daily Telegraph,False,2017-09-15 00:00:00+00:00,,,Daily Telegraph article about a play based on the Oslo Accords
-023361,legal,JASTA lawsuit against Saudi Arabia by 9/11 victims,,2012-01-20 00:00:00+00:00,,,JASTA lawsuit against Saudi Arabia by 9/11 victims legal text and court documents
+023361,legal,,True,2012-01-20 00:00:00+00:00,,,court filing in JASTA lawsuit against Saudi Arabia by 9/11 victims: legal text and court documents
 023416,academia,,False,,,,Harvard poetry stuff from Lisa New
 023418,email,Kathryn Ruemmler,,2014-09-20 02:37:36+00:00,Jeffrey Epstein,,
 023426,email,Lisa New,,2014-09-23 22:17:55+00:00,Jeffrey Epstein,Sent from my iPhone,
@@ -733,8 +733,8 @@ file_id,category,author,is_interesting,timestamp,recipients_str,sent_from_device
 025918,email,Philip Kafka,,2016-03-09 22:22:23+00:00,Jeffrey Epstein;Terry Kafk,,
 025926,email,Terry Kafka,,2016-03-09 22:33:53+00:00,Jeffrey Epstein;Philip Kafka,,
 025935,email,Michael Wolff,,2016-05-25 11:23:50+00:00,Jeffrey Epstein,,
-025937,legal,Jane Doe v. Donald Trump and Jeffrey Epstein,,2016-06-20 00:00:00+00:00,,,Jane Doe v. Donald Trump and Jeffrey Epstein: Affidavit of Tiffany Doe describing Jane Doe being raped by Epstein and Trump
-025939,legal,Jane Doe v. Donald Trump and Jeffrey Epstein,,2016-06-20 00:00:00+00:00,,,Jane Doe v. Donald Trump and Jeffrey Epstein: Affidavit of Jane Doe describing being raped by Epstein
+025937,legal,Tiffany Doe,,2016-06-20 00:00:00+00:00,,,Tiffany Doe court filing in Jane Doe v. Donald Trump and Jeffrey Epstein: Affidavit describing Jane Doe being raped by Epstein and Trump
+025939,legal,Jane Doe,,2016-06-20 00:00:00+00:00,,,Jane Doe court filing in Jane Doe v. Donald Trump and Jeffrey Epstein: Affidavit describing being raped by Epstein
 025942,email,Noam Chomsky,True,2016-06-27 12:23:53+00:00,None;Jeffrey Epstein,,
 025944,email,Bruce Moskowitz,,2016-06-30 14:25:23+00:00,Jeffrey Epstein,Sent from my iPad,
 025945,email,Bruce Moskowitz,,2016-06-30 18:26:23+00:00,Jeffrey Epstein,Sent from my iPhone,
@@ -865,7 +865,7 @@ file_id,category,author,is_interesting,timestamp,recipients_str,sent_from_device
 026378,email,Jeffrey Epstein,,2016-02-27 19:38:48+00:00,Kathryn Ruemmler,,
 026381,email,Jeffrey Epstein,,2016-03-31 10:23:07+00:00,Richard Kahn,,
 026383,email,Jeffrey Epstein,,2016-06-02 10:21:17+00:00,Raafat Alsabbagh,,
-026384,legal,Jane Doe v. Donald Trump and Jeffrey Epstein,False,2016-06-20 00:00:00+00:00,,,"Jane Doe v. Donald Trump and Jeffrey Epstein: Complaint for rape and sexual abuse, attached to email 029837"
+026384,legal,,False,2016-06-20 00:00:00+00:00,,,"court filing in Jane Doe v. Donald Trump and Jeffrey Epstein: Complaint for rape and sexual abuse, attached to email 029837"
 026393,email,Jeffrey Epstein,,2016-07-23 08:41:23+00:00,Joscha Bach,,
 026399,email,Jeffrey Epstein,,2016-07-23 22:20:08+00:00,Joscha Bach,,
 026406,email,Jeffrey Epstein,,2016-07-24 05:43:22+00:00,Joscha Bach,,
@@ -981,7 +981,7 @@ file_id,category,author,is_interesting,timestamp,recipients_str,sent_from_device
 026849,email,Darren Indyke,,2016-05-20 03:54:08+00:00,Jeffrey Epstein,Sent from my iPhone,
 026851,article,Politifact,False,2016-07-26 00:00:00+00:00,,,Politifact lying politicians chart
 026852,email,Darren Indyke,,2016-07-23 23:38:22+00:00,Jeffrey Epstein,Sent from my iPhone,
-026854,legal,Jane Doe v. Donald Trump and Jeffrey Epstein,,2016-09-09 15:15:00+00:00,,,Jane Doe v. Donald Trump and Jeffrey Epstein: Civil Docket
+026854,legal,,True,2016-09-09 15:15:00+00:00,,,court filing in Jane Doe v. Donald Trump and Jeffrey Epstein: Civil Docket
 026856,politics,Kevin Rudd,False,2018-06-26 00:00:00+00:00,,,"Kevin Rudd speech ""Xi Jinping, China And The Global Order"""
 026866,email,Richard Kahn,,2018-08-01 13:34:23+00:00,Jeffrey Epstein,,
 026868,article,Robert Lawrence Kuhn,False,2018-09-18 00:00:00+00:00,,,"Robert Lawrence Kuhn CNN ""Quest Means Business New China Tariffs — Trade War"""
@@ -1246,7 +1246,7 @@ file_id,category,author,is_interesting,timestamp,recipients_str,sent_from_device
 029246,email,Jeffrey Epstein,,2015-12-02 17:58:02+00:00,Lesley Groff,,
 029251,email,Jeffrey Epstein,,2015-12-07 19:04:18+00:00,Lisa New,,
 029253,email,Jeffrey Epstein,,2015-12-08 17:59:54+00:00,Soon-Yi Previn,,
-029257,legal,Jane Doe v. Donald Trump and Jeffrey Epstein,,2016-04-26 00:00:00+00:00,,,Jane Doe v. Donald Trump and Jeffrey Epstein: allegations and identity of plaintiff Katie Johnson
+029257,legal,Katie Johnson,,2016-04-26 00:00:00+00:00,,,Katie Johnson court filing in Jane Doe v. Donald Trump and Jeffrey Epstein: allegations and identity of plaintiff
 029266,email,Jeffrey Epstein,,2016-05-03 18:37:06+00:00,Moshe Hoffman,,
 029269,email,Jeffrey Epstein,,2016-05-04 18:28:25+00:00,Soon-Yi Previn,,
 029271,email,Jeffrey Epstein,,2016-05-25 11:09:21+00:00,Michael Wolff,,
@@ -1269,7 +1269,7 @@ file_id,category,author,is_interesting,timestamp,recipients_str,sent_from_device
 029302,resumé,Michael J. Boccio,False,2011-08-07 00:00:00+00:00,,,"professional resumé of Michael J. Boccio professional resumé (former lawyer at the Trump Organization), attached to email 029299"
 029304,resumé,Michael J. Boccio,False,2011-08-07 16:01:33+00:00,,,"professional resumé of Michael J. Boccio recommendation letter by Donald Trump, attached to email 029299"
 029305,finance,CCH Tax,False,2013-06-27 00:00:00+00:00,,,CCH Tax Briefing on end of Defense of Marriage Act
-029315,legal,"Epstein v. Scott Rothstein, Brad Edwards, & L.M.",,2013-09-13 00:00:00+00:00,,,"Epstein v. Scott Rothstein, Brad Edwards, & L.M.: Plaintiff Motion for Summary Judgment by Jack Scarola"
+029315,legal,Jack Scarola,,2013-09-13 00:00:00+00:00,,,"Jack Scarola court filing in Epstein v. Scott Rothstein, Brad Edwards, & L.M.: Plaintiff Motion for Summary Judgment"
 029324,email,Lesley Groff,,2014-03-14 14:24:48+00:00,Jeffrey Epstein;Jojo Fontanilla;Lyn Fontanilla,,
 029325,email,Tyler Shears,True,2014-03-20 14:46:17+00:00,Christina Galbraith;Jeffrey Epstein,Sent from my iPhone,
 029326,misc,Jeffrey Epstein VI Foundation,,2013-02-15 00:00:00+00:00,,,Jeffrey Epstein VI Foundation
@@ -1285,10 +1285,10 @@ file_id,category,author,is_interesting,timestamp,recipients_str,sent_from_device
 029354,junk,,False,2013-07-26 00:00:00+00:00,,,joke about Obama
 029355,academia,,False,2013-01-12 00:00:00+00:00,,,screenshot of quote in book about Larry Summers
 029357,politics,,False,2015-01-15 00:00:00+00:00,,,possibly book extract about Israel's challenges entering 2015
-029398,legal,Jane Doe v. Donald Trump and Jeffrey Epstein,,2016-10-10 00:00:00+00:00,,,Jane Doe v. Donald Trump and Jeffrey Epstein: article in Law.com
+029398,legal,,True,2016-10-10 00:00:00+00:00,,,court filing in Jane Doe v. Donald Trump and Jeffrey Epstein: article in Law.com
 029401,email,Donald Rubin,,2017-01-22 19:31:32+00:00,Jeffrey Epstein,,
 029402,email,Deepak Chopra,,2017-03-22 19:29:01+00:00,Barnaby Marsh;Jeffrey Epstein,,
-029416,legal,National Enquirer / Radar Online v. FBI,,2017-05-25 00:00:00+00:00,,,National Enquirer / Radar Online v. FBI: FOIA lawsuit filing
+029416,legal,,True,2017-05-25 00:00:00+00:00,,,court filing in National Enquirer / Radar Online v. FBI: FOIA lawsuit filing
 029427,conference,,True,2017-06-19 00:00:00+00:00,,,seems related to an IRL meeting about Chinese attempts to absorb Mongolia
 029429,email,Joi Ito,False,2017-07-07 12:05:21+00:00,Jeffrey Epstein,,
 029431,email,Lisa New,,2017-12-17 19:18:33+00:00,Jeffrey Epstein,,
@@ -2115,7 +2115,7 @@ file_id,category,author,is_interesting,timestamp,recipients_str,sent_from_device
 032317,email,Peter Attia,,2016-10-19 12:54:06+00:00,Jeffrey Epstein,,
 032319,social,Zubair Khan,True,2016-10-29 13:40:09+00:00,Jeffrey Epstein,,Zubair Khan says social media vibes are good for Trump in last week before the 2016 election
 032320,email,Richard Kahn,,2016-10-29 21:04:53+00:00,Jeffrey Epstein,,
-032321,legal,Jane Doe v. Donald Trump and Jeffrey Epstein,,2016-10-04 00:00:00+00:00,,,Jane Doe v. Donald Trump and Jeffrey Epstein: Notice of Initial Conference
+032321,legal,,True,2016-10-04 00:00:00+00:00,,,court filing in Jane Doe v. Donald Trump and Jeffrey Epstein: Notice of Initial Conference
 032323,email,Zubair Khan,True,2016-11-04 12:43:32+00:00,Jeffrey Epstein,,
 032324,social,InsightsPod,False,2016-11-05 00:00:00+00:00,,,"InsightsPod social media election sentiment analysis from Zubair Khan and Anya Rasulova, attached to email 032323"
 032325,social,Zubair Khan,True,2016-11-04 13:07:21+00:00,Jeffrey Epstein,,Zubair Khan predicts Trump winning in 2016
@@ -5150,7 +5150,7 @@ EFTA00020506,government,FBI,True,2020-09-14 16:12:00+00:00,,,"FBI report about E
 EFTA00020508,email,,False,2025-11-26 15:25:49+00:00,,,
 EFTA00020515,crypto,FBI,True,2020-10-19 16:11:00+00:00,,,FBI tip about Howard Lutnick and financial irregularities
 EFTA00020596,government,Bobbi C. Sternheim,,2021-06-17 18:20:49+00:00,Bureau of Prisons;Christian Everdell,,Ghislaine has complaints
-EFTA00020729,legal,Jane Doe #1 and Jane Doe #2 v. United States,True,2015-02-06 00:00:00+00:00,,,"Jane Doe #1 and Jane Doe #2 v. United States: declaration of Virginia Giuffre claiming threats from men impersonating FBI agents, see quote: ""a call from this supposed FBI Agent made me very scared"""
+EFTA00020729,legal,Virginia Giuffre,True,2015-02-06 00:00:00+00:00,,,"Virginia Giuffre court filing in Jane Doe #1 and Jane Doe #2 v. United States: claiming threats from men impersonating FBI agents, see quote: ""a call from this supposed FBI Agent made me very scared"""
 EFTA00020832,government,FBI,True,,,,FBI subpoena of Experian
 EFTA00021353,government,FBI,True,2019-04-25 22:45:03+00:00,FBI,,
 EFTA00022133,girls,,True,2019-12-02 00:00:00+00:00,,,table listing Epstein accusations collated from the press and court hearings
@@ -5319,7 +5319,7 @@ EFTA00066350,government,,True,2026-01-06 00:00:00+00:00,,,inventory of the conte
 EFTA00066441,girls,,True,2018-12-06 13:40:33+00:00,None,,"see quote: 'Daniel Siad, whom Jean Luc describes as a ""scout"" or recruiter of girls'"
 EFTA00067272,article,The Jeffrey Epstein Archives,False,2006-09-05 12:12:00+00:00,,,The Jeffrey Epstein Archives comtemporaneous history
 EFTA00068446,government,USANYS,,2021-05-12 02:35:50+00:00,NY FBI,,evidence discussion
-EFTA00068582,legal,U.S. v. Ghislaine Maxwell,True,2021-12-01 08:45:00+00:00,,,U.S. v. Ghislaine Maxwell: trial transcript
+EFTA00068582,legal,,True,2021-12-01 08:45:00+00:00,,,court filing in U.S. v. Ghislaine Maxwell: trial transcript
 EFTA00074466,government,FBI,True,2020-02-13 21:33:14+00:00,FBI,,
 EFTA00074744,legal,,,2026-01-16 00:00:00+00:00,,,USVI court filing about Epstein will and estate
 EFTA00075281,government,FBI,True,2019-08-16 00:00:00+00:00,,,"FBI interview of prison guard, death of Epstein"
@@ -5500,7 +5500,7 @@ EFTA00157613,government,DOJ,True,2021-06-08 00:00:00+00:00,,,"DOJ witness prep o
 EFTA00157634,government,DOJ,True,2021-12-01 00:00:00+00:00,,,DOJ witness prep of Juan Alessi (Epstein's Palm Beach house manager)
 EFTA00158608,government,FBI,True,2020-03-11 00:00:00+00:00,,,FBI interview of Interlochen Center for the Arts related
 EFTA00158752,deposition,"<REDACTED> v. Estate of Jeffrey Epstein, Ghislaine Maxwell",,2026-01-19 00:00:00+00:00,,,"deposition of <REDACTED> v. Estate of Jeffrey Epstein, Ghislaine Maxwell Ghislaine Maxwell ""was relentless"""
-EFTA00159250,legal,Jane Doe #2 v. Jeffrey Epstein,,2026-01-24 00:00:00+00:00,,,Jane Doe #2 v. Jeffrey Epstein: deposition of witness
+EFTA00159250,legal,,True,2026-01-24 00:00:00+00:00,,,court filing in Jane Doe #2 v. Jeffrey Epstein: deposition of witness
 EFTA00159321,government,FBI,True,2026-01-11 00:00:00+00:00,,,"FBI interview of (unknown), covers Paolo Zampolli, Epstein, and the possibility Epstein introduced Melania to Donald Trump"
 EFTA00159380,government,FBI,True,2021-05-14 00:00:00+00:00,,,FBI interview of <REDACTED> former Epstein employee
 EFTA00159394,misc,,,2021-09-30 00:00:00+00:00,,,notes from interview with employee and copy of 2005 household manual for Palm Beach residence
@@ -5538,7 +5538,7 @@ EFTA00173953,government,OCDETF,True,2015-05-18 00:00:00+00:00,,,"OCDETF heavily 
 EFTA00174043,government,FBI,True,2022-02-22 17:58:14+00:00,FBI,,death of Jean Luc Brunel
 EFTA00174375,government,FBI,True,2026-01-17 00:00:00+00:00,,,"FBI interview of Luke D. Thorburn, lots of takes on Epstein, China, and Steve Bannon"
 EFTA00176910,government,USAFLS,,2008-02-28 16:34:00+00:00,USAFLS,,
-EFTA00177201,legal,Jane Doe #1 and Jane Doe #2 v. United States,True,2026-01-09 00:00:00+00:00,,,Jane Doe #1 and Jane Doe #2 v. United States: court docket and many filings
+EFTA00177201,legal,,True,2026-01-09 00:00:00+00:00,,,court filing in Jane Doe #1 and Jane Doe #2 v. United States: court docket and many filings
 EFTA00177459,legal,SDFL,,2008-09-15 00:00:00+00:00,,,"letter from SDFL to Robert Josefsberg with victim notifications, Palm Beach police investigation, affidavit"
 EFTA00179446,,,,,,,
 EFTA00179797,government,SDFL,,2007-08-07 16:02:00+00:00,SDFL,,many emails concerning David Copperfield investigation and more
@@ -5550,17 +5550,17 @@ EFTA00182657,,,,,,,
 EFTA00186431,money,"NES, LLC",True,2026-01-28 00:00:00+00:00,,,159 pages of documents related to finances etc.
 EFTA00186835,government,DOJ,True,2007-03-13 00:00:00+00:00,,,DOJ subpoena of Perry Bard
 EFTA00188608,legal,Roy Black,,2015-02-11 08:50:00+00:00,USAFLS,,contains filing in Jane Doe #1 and Jane Doe #2 v. United States
-EFTA00191148,legal,Jane Doe #1 and Jane Doe #2 v. United States,,2013-06-19 00:00:00+00:00,,,Jane Doe #1 and Jane Doe #2 v. United States
+EFTA00191148,legal,,,2013-06-19 00:00:00+00:00,,,court filing in Jane Doe #1 and Jane Doe #2 v. United States
 EFTA00191467,misc,,True,2015-06-01 00:00:00+00:00,,,Epstein's little black book with contacts
 EFTA00194840,legal,DOJ,True,2006-07-01 00:00:00+00:00,,,DOJ criminal indictment of Jeffrey Epstein
 EFTA00195963,money,,True,2005-12-31 00:00:00+00:00,,,Epstein's financial transactions and account balances at Bear Stearns less than two years before it collapsed in 2008
-EFTA00206732,legal,Jane Doe v. Donald Trump and Jeffrey Epstein,,2010-10-30 00:00:00+00:00,,,Jane Doe v. Donald Trump and Jeffrey Epstein: statement of facts
+EFTA00206732,legal,,,2010-10-30 00:00:00+00:00,,,court filing in Jane Doe v. Donald Trump and Jeffrey Epstein: statement of facts
 EFTA00210074,legal,Kirkland & Ellis,,2008-09-01 00:00:00+00:00,,,letter from Kirkland & Ellis to SDFL
 EFTA00210921,legal,,,2009-05-04 00:00:00+00:00,,,legal filing in Jane Doe #2 v. Jeffrey Epstein
 EFTA00210958,government,FBI,True,2013-07-05 00:00:00+00:00,,,"FBI interview of Virginia Giuffre, see quote: ""1999 began working at Donald Trump's Mar-A-Lago"""
 EFTA00211084,email,USAFLS,,2017-02-28 00:31:34+00:00,Brad Edwards,,
 EFTA00211150,government,USANYS,,2016-08-04 20:30:59+00:00,USANYS,,
-EFTA00211168,legal,Jane Doe v. Donald Trump and Jeffrey Epstein,,2026-01-09 00:00:00+00:00,,,Jane Doe v. Donald Trump and Jeffrey Epstein: Epstein employee affidavit alleging sexual assaults
+EFTA00211168,legal,,True,2026-01-09 00:00:00+00:00,,,court filing in Jane Doe v. Donald Trump and Jeffrey Epstein: Epstein employee affidavit alleging sexual assaults
 EFTA00211910,government,USAFLS,,2008-09-05 18:39:23+00:00,USAWAW,,
 EFTA00214699,government,SDFL,,2007-12-10 19:54:46+00:00,SDFL,,
 EFTA00214992,government,USAFLS,True,2007-09-26 15:00:53+00:00,Jay Lefkowitz,,"not informing victims is a violation of Crime Victims' Rights Act [CVRA], see quote: ""marching orders regarding what they can tell the girls"""
@@ -5898,7 +5898,7 @@ EFTA00587879,money,Darren Indyke,True,2015-10-14 00:00:00+00:00,,,letter from Da
 EFTA00589586,,,,2013-02-08 00:00:00+00:00,,,
 EFTA00589797,girls,Terje Rød-Larsen,True,2015-05-02 00:00:00+00:00,,,"letter from Terje Rød-Larsen to INS recommending ""genius"" visa for someone"
 EFTA00590685,misc,,False,2016-03-23 22:11:58+00:00,,,attached to email EFTA00830911
-EFTA00590940,legal,Jane Doe #1 and Jane Doe #2 v. United States,True,2026-01-20 00:00:00+00:00,,,Jane Doe #1 and Jane Doe #2 v. United States: interview with minor victim
+EFTA00590940,legal,,True,2026-01-20 00:00:00+00:00,,,court filing in Jane Doe #1 and Jane Doe #2 v. United States: interview with minor victim
 EFTA00591045,tech,Valar Ventures,False,2014-11-15 16:10:28+00:00,,,"Valar Ventures pitch deck, attached to email EFTA01001339"
 EFTA00591276,money,Susman Godfrey,True,2010-01-14 00:00:00+00:00,,,"letter from Susman Godfrey to Fortress Investment Group concerning Jeepers, the children's theme park owned by Epstein, see quote: ""I represent Jeepers, Inc., Financial Trust Company, Inc., and Jeffrey Epstein"""
 EFTA00591691,tech,Valar Ventures,True,2026-01-02 00:00:00+00:00,,,Valar Ventures contract
@@ -5908,10 +5908,9 @@ EFTA00593276,finance,Edmond de Rothschild,True,2026-01-11 00:00:00+00:00,,,Edmon
 EFTA00593789,crypto,Valar Ventures,True,2016-07-01 00:00:00+00:00,,,Valar Ventures requesting money previously promised by Epstein to invest in a new opportunity
 EFTA00597484,crypto,Valar Ventures,True,2015-09-30 00:00:00+00:00,,,Valar Ventures is a fintech focused Peter Thiel fund Epstein was invested in
 EFTA00597489,crypto,Valar Ventures,True,2015-09-30 00:00:00+00:00,,,Valar Ventures is a fintech focused Peter Thiel fund Epstein was invested in
-EFTA00598330,legal,"Epstein v. Scott Rothstein, Brad Edwards, & L.M.",,2013-09-27 00:00:00+00:00,,,"Epstein v. Scott Rothstein, Brad Edwards, & L.M.: Motion To Preclude At Trial The Use Of The Following Items"
+EFTA00598330,legal,,,2013-09-27 00:00:00+00:00,,,"court filing in Epstein v. Scott Rothstein, Brad Edwards, & L.M.: Motion To Preclude At Trial The Use Of The Following Items"
 EFTA00599517,money,,True,2015-06-26 00:00:00+00:00,,,list of Leon Black companies that Eileen Alexanderson can make financial transactions for
 EFTA00599617,money,,True,2017-07-31 00:00:00+00:00,,,valuations of Epstein's investments
-EFTA00599855,legal,Jean Luc Brunel v. Jeffrey Epstein and Tyler McDonald d/b/a YI.org,,2015-02-09 00:00:00+00:00,,,Jean Luc Brunel v. Jeffrey Epstein and Tyler McDonald d/b/a YI.org: court filing
 EFTA00603348,crypto,,True,2018-04-18 00:00:00+00:00,,,Electric Coin Company created the untraceable crypto ZCash funded by Larry Summers's DCG
 EFTA00603445,crypto,Honeycomb Asset Management,True,2026-01-02 00:00:00+00:00,,,Honeycomb Asset Management July 2017 report
 EFTA00604145,reputation,Michael Sitrick,True,2026-01-09 00:00:00+00:00,,,letter from Michael Sitrick to Jeffrey Epstein lawsuit about unpaid bills
@@ -6181,11 +6180,11 @@ EFTA00719146,girls,Jeffrey Epstein,True,2011-12-19 19:23:34+00:00,Maria Prusakov
 EFTA00719151,email,,True,2011-12-21 06:55:17+00:00,Boris Nikolic;Jeffrey Epstein,,
 EFTA00719854,social,Boris Nikolic,True,2011-10-20 02:31:25+00:00,Jeffrey Epstein,,"Boris Nikolic introduces Epstein to Chris Poole AKA ""moot"", the founder of 4chan"
 EFTA00721168,crypto,Steven Sinofsky,False,2014-06-22 23:15:41+00:00,Jeffrey Epstein,Sent from Surface,
-EFTA00725932,legal,"<REDACTED> v. Estate of Jeffrey Epstein, Ghislaine Maxwell",True,2009-08-04 00:00:00+00:00,,,"<REDACTED> v. Estate of Jeffrey Epstein, Ghislaine Maxwell: response to Defendant interrogatories"
+EFTA00725932,legal,Jane Doe,True,2009-08-04 00:00:00+00:00,,,"Jane Doe court filing in <REDACTED> v. Estate of Jeffrey Epstein, Ghislaine Maxwell: response to Defendant interrogatories"
 EFTA00727491,legal,Darren Indyke,True,2008-09-25 00:00:00+00:00,,,Darren Indyke memo about Epstein whining that his highly paid lawyers couldn't get him off
-EFTA00727684,legal,<REDACTED> v. Jeffrey Epstein,,2009-03-29 00:00:00+00:00,,,"<REDACTED> v. Jeffrey Epstein: sworn testimony, list of co-conspirators"
+EFTA00727684,legal,,True,2009-03-29 00:00:00+00:00,,,"court filing in <REDACTED> v. Jeffrey Epstein: sworn testimony, list of co-conspirators"
 EFTA00728783,misc,,,,,,list of names and phone numbers
-EFTA00728793,legal,Jane Doe #2 v. Jeffrey Epstein,True,2010-07-02 00:00:00+00:00,,,Jane Doe #2 v. Jeffrey Epstein: harassment by private investigators
+EFTA00728793,legal,Jane Doe,True,2010-07-02 00:00:00+00:00,,,Jane Doe court filing in Jane Doe #2 v. Jeffrey Epstein: alleging harassment by private investigators
 EFTA00728864,misc,,,,,,security orders for 358 El Brillo Way showing Igor Zinoviev had door power
 EFTA00729992,academia,,False,,,,"""Science"" contact list"
 EFTA00733036,email,Jeffrey Epstein,,2010-04-24 15:22:39+00:00,Martin Weinberg,,
@@ -6868,7 +6867,7 @@ EFTA01068342,tech,Story Cowles,,2014-09-20 11:18:22+00:00,,,Story Cowles persona
 EFTA01074293,crypto,"Jerry Brito, Houman Shadab, & Andrea Castillo",True,2014-04-10 00:00:00+00:00,,,"Jerry Brito, Houman Shadab, & Andrea Castillo discussion draft of ""Bitcoin Financial Regulation"" paper"
 EFTA01078143,girls,Gianni Serazzi,True,2014-09-30 00:00:00+00:00,,,Gianni Serazzi 2morrow modeling pitch deck
 EFTA01078403,finance,ATorus,False,2014-05-14 00:00:00+00:00,,,ATorus investment adviser uniform application
-EFTA01081391,legal,Jane Doe #1 and Jane Doe #2 v. United States,True,2026-01-20 00:00:00+00:00,,,Jane Doe #1 and Jane Doe #2 v. United States: interview with minor victim
+EFTA01081391,legal,,True,2026-01-20 00:00:00+00:00,,,court filing in Jane Doe #1 and Jane Doe #2 v. United States: interview with minor victim
 EFTA01082451,crypto,Blockchain Capital,True,2014-11-10 00:00:00+00:00,,,Blockchain Capital / Coinbase nondisclosure agreement possibly regarding Epstein investment
 EFTA01086449,girls,Ariane de Rothschild,True,,,,"letter from Ariane de Rothschild to INS recommending ""genius"" visa for Svetlana Pozhidaeva"
 EFTA01086463,money,,True,2006-08-15 00:00:00+00:00,,,Mortimer Zuckerman's art collection valuations
@@ -6889,7 +6888,7 @@ EFTA01093471,crypto,Crypto Currency Partners II,False,2014-11-12 00:26:47+00:00,
 EFTA01093509,crypto,Crypto Currency Partners II,True,2026-01-01 00:00:00+00:00,,,Crypto Currency Partners II partnership draft for Epstein crypto fund
 EFTA01097431,reputation,,False,,,,attached to email EFTA01838653
 EFTA01099834,legal,Brad Edwards,,2008-10-16 00:00:00+00:00,,,letter from Brad Edwards to DOJ filed in Jane Doe #1 and Jane Doe #2 v. United States (multiple letters)
-EFTA01102188,legal,"Epstein v. Scott Rothstein, Brad Edwards, & L.M.",,2011-03-31 00:00:00+00:00,,,"Epstein v. Scott Rothstein, Brad Edwards, & L.M.: Epstein motion to block statements to the press"
+EFTA01102188,legal,Jeffrey Epstein,,2011-03-31 00:00:00+00:00,,,"Jeffrey Epstein court filing in Epstein v. Scott Rothstein, Brad Edwards, & L.M.: motion to block statements to the press"
 EFTA01103374,deposition,Jeffrey Epstein,True,2026-01-22 00:00:00+00:00,,,deposition of Jeffrey Epstein taken as part of Jane Doe #2 v. Jeffrey Epstein
 EFTA01103465,misc,Ben Goertzel,,2013-12-02 00:00:00+00:00,,,Ben Goertzel funding proposal for AI labs in Africa etc.
 EFTA01103509,academia,Ben Goertzel,False,2013-02-01 00:00:00+00:00,,,"""Creating Robots with Toddler-Level Intelligence Using the OpenCog AGI Architecture"" proposal for Epstein Foundation by Ben Goertzel"
@@ -6902,7 +6901,7 @@ EFTA01108807,deposition,Jane Doe,,2010-02-09 00:00:00+00:00,,,deposition of Jane
 EFTA01110414,crypto,,True,2016-03-29 00:00:00+00:00,,,LedgerX was later acquired by FTX for $298 million
 EFTA01110729,money,,True,,,,"letter to Les Wexner see quote: 'You and I had "" gang stuff "" for over 15 years'"
 EFTA01111057,money,Mortimer Zuckerman,True,2014-07-10 00:00:00+00:00,,,Mortimer Zuckerman Mortimer B. Zuckerman Management Trust
-EFTA01112265,legal,Brad Edwards & Paul G. Cassell v. Alan Dershowitz,True,2017-06-20 00:00:00+00:00,,,Brad Edwards & Paul G. Cassell v. Alan Dershowitz: interview with minor victim
+EFTA01112265,legal,,True,2017-06-20 00:00:00+00:00,,,court filing in Brad Edwards & Paul G. Cassell v. Alan Dershowitz: interview with minor victim
 EFTA01114145,academia,"Ben Goertzel, Gino Yu",False,2011-06-01 00:00:00+00:00,,,"""OpenCog AGI Toddler Project"" by Ben Goertzel, Gino Yu"
 EFTA01114164,academia,Ben Goertzel,False,2011-01-01 00:00:00+00:00,,,"""OpenCog Road Map 2011-2023"" by Ben Goertzel"
 EFTA01114895,girls,Maria Prusakova,True,2016-06-01 00:00:00+00:00,,,Maria Prusakova application letter to UC Berkeley
@@ -6917,13 +6916,13 @@ EFTA01121678,crypto,Valar Ventures,True,2016-04-06 00:00:00+00:00,,,Valar Ventur
 EFTA01121910,tech,Valar Ventures,True,2026-01-01 00:00:00+00:00,,,Valar Ventures contract
 EFTA01123862,crypto,Valar Ventures,True,2015-06-30 00:00:00+00:00,,,Valar Ventures is a fintech focused Peter Thiel fund Epstein was invested in
 EFTA01125108,government,DHS,True,2026-01-01 00:00:00+00:00,,,"DHS receipt for I129 Petition for a Nonimmigrant Worker filed by Sublime Art LLC, Arda Beskardes"
-EFTA01125109,legal,Brad Edwards & Paul G. Cassell v. Alan Dershowitz,True,2015-11-29 00:00:00+00:00,,,Brad Edwards & Paul G. Cassell v. Alan Dershowitz: interview with minor victim
+EFTA01125109,legal,,True,2015-11-29 00:00:00+00:00,,,court filing in Brad Edwards & Paul G. Cassell v. Alan Dershowitz: interview with minor victim
 EFTA01125964,crypto,ExpressCoin,False,2014-03-11 19:28:58+00:00,,,"ExpressCoin pitch deck for Brock Pierce co., attached to email EFTA00985076"
 EFTA01126582,crypto,ExpressCoin,False,2014-06-02 17:46:19+00:00,,,"ExpressCoin pitch deck for Brock Pierce co., attached to email EFTA00990186"
 EFTA01130064,girls,,False,2011-01-08 02:02:09+00:00,,,attached to email EFTA00902144
 EFTA01132792,email,Daniel Siad,True,2013-10-26 13:53:48+00:00,Jeffrey Epstein,,
 EFTA01139067,crypto,Jeffrey Epstein,True,2014-11-07 15:33:30+00:00,Andrew Farkas,,Epstein tells Farkas he has not invested in Crypto Currency Partners II
-EFTA01139414,legal,Brad Edwards & Paul G. Cassell v. Alan Dershowitz,True,2015-03-29 00:00:00+00:00,,,Brad Edwards & Paul G. Cassell v. Alan Dershowitz: interview with minor victim
+EFTA01139414,legal,,True,2015-03-29 00:00:00+00:00,,,court filing in Brad Edwards & Paul G. Cassell v. Alan Dershowitz: interview with minor victim
 EFTA01139627,article,Techonomy,True,2014-08-15 00:00:00+00:00,,,"Techonomy (???) article about iCog Labs titled ""A Harvard Financier, Jeffrey Epstein, Advances Artificial Intelligence in Ethiopia"""
 EFTA01140210,girls,Ekaterina Gusarova,True,2013-12-22 22:09:34+00:00,Jeffrey Epstein,,Epstein asks about fake Instagram followers
 EFTA01141453,misc,,True,2013-11-29 00:00:00+00:00,,,referral agreement between Mr. T's (Prince Andrew?) Urramoor and Howard Lutnick's Cantor Fitzgerald

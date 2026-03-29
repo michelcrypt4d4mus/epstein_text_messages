@@ -2150,7 +2150,7 @@ HIGHLIGHTED_NAMES = [
             law_enforcement(PALM_BEACH_POLICE),
             law_enforcement('Police Code Enforcement', info=f"{PALM_BEACH} buildings code enforcement"),
             law_enforcement('SCOTUS'),
-            law_enforcement('SDFL', 'federal prosecutors covering South Florida', is_interesting=True),
+            law_enforcement(SDFL, 'federal prosecutors covering South Florida', is_interesting=True),
             law_enforcement("SDNY Cybercrimes", is_emailer=True),
             law_enforcement('USAHUB', emailer_pattern=r"USAJournal111"),
             law_enforcement('USAMA Victim Assistance', is_emailer=True),

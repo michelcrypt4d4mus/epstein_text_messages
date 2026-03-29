@@ -38,6 +38,7 @@ ARTICLE_CFGS = [
     DocCfg(id='023720', author='Future Science', note=f'article: "Is Shame Necessary?" by {JENNIFER_JACQUET}'),
     DocCfg(id='021094', author='Globe and Mail', note=f"article about Gerd Heinrich"),
     DocCfg(id='013268', author='JetGala', note=f"article about airplane interior designer {ERIC_ROTH}"),
+    DocCfg(id='014037', author='Journal of Criminal Law and Criminology', note=f"article on {CVRA}"),
     DocCfg(id='029539', author=LA_TIMES, note=f"Alan Trounson interview on California stem cell research and CIRM"),
     DocCfg(id='029865', author=LA_TIMES, note=f"front page article about {DEEPAK_CHOPRA} and young Iranians", date='2016-11-05'),
     DocCfg(id='026598', author=LA_TIMES, note=f"op-ed about why America needs a Ministry of Culture"),
