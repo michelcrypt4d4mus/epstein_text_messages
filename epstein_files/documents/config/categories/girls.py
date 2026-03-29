@@ -176,6 +176,7 @@ GIRLS_CFGS = [
         author=EKATERINA_GUSAROVA,
         author_uncertain='Carstensen',
     ),
+    skype_log('EFTA01621978', author=DANIEL_SIAD, date='2017-04-04'),
     whatsapp_log(
         id='EFTA01612733',
         author=MARIA_PRUSAKOVA,
@@ -1015,6 +1016,9 @@ GIRLS_CFGS = [
         note=f"Epstein's travel booker at Amex holds a Russian passport (and his Chinese girlfriends lost their passports)",
         truncate_to=800,
     ),
+
+    # Jean Luc
+    EmailCfg(id='EFTA01885240', note=f'"little russian girl" is {IRINA_STREMYAKOVA}', show_with_name=IRINA_STREMYAKOVA),
 
     # Virginia Giuffre
     EmailCfg(id='EFTA00906567', highlight_quote="i need to totally discredit virgina roberts", truncate_to=AUTO),

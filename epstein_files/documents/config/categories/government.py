@@ -324,6 +324,7 @@ GOVERNMENT_CFGS = [
         highlight_quote="he did not have the number of a trader. GROFF had anxiety trying to get a trader. EPSTEIN did a lot with politics",
         truncate_to=AUTO,
     ),
+    fbi_interview('EFTA01248266', STEVEN_HOFFENBERG, date='2010-12-10'),
     fbi_interview('EFTA01248259', 'Robert Couturier', date='2010-11-16'),
     fbi_interview('EFTA00210958', VIRGINIA_GIUFFRE, date='2013-07-05', is_interesting=True, highlight_quote="1999 began working at Donald Trump's  Mar-A-Lago", truncate_to=AUTO),
     fbi_interview('EFTA00158608', f"{INTERLOCHEN_CENTER_FOR_THE_ARTS} related", date='2020-03-11'),
@@ -422,6 +423,7 @@ GOVERNMENT_CFGS = [
         show_full_panel=True,
         url='https://www.bbc.com/news/articles/c6271ngl014o',
     ),
+    fbi_tip('EFTA01249232', 'from <REDACTED> about an Epstein party with little girls and boys', is_interesting=False),
     fbi_tip('EFTA01244926', "from ANONYMOUS about Rupert Murdoch's granddaughter"),
     fbi_tip('EFTA01249593', f"about {LES_WEXNER}"),
     fbi_tip('EFTA01249586', 'about abduction by Jay-Z, Harvey Weinstein, and Jeffrey Epstein'),
@@ -648,8 +650,8 @@ GOVERNMENT_CFGS = [
     # USANYS
     EmailCfg(
         id='EFTA00039989',
-        note=f"ICE has an immigration hold on a man who might have important info about the Epstein case",
         is_interesting=4,
+        note=f"ICE has an immigration hold on a man who might have important info about the Epstein case",
     ),
     EmailCfg(id='EFTA00094900', author=USANYS, recipients=[BUREAU_OF_PRISONS], recipient_uncertain=True),
     EmailCfg(id='EFTA00068446', author=USANYS, author_uncertain=True, recipients=['NY FBI'], note='evidence discussion'),
@@ -783,6 +785,7 @@ GOVERNMENT_CFGS = [
     EmailCfg(id='EFTA02731511', recipients=[USANYS], comment='journal upload followup'),
     EmailCfg(id='EFTA02731515', recipients=[USANYS], comment='journal upload followup'),
     EmailCfg(id='EFTA02731512', recipients=[USANYS], note=f'specific allegations against {GHISLAINE_MAXWELL}'),
+    EmailCfg(id='EFTA01250175', recipients=[USANYS], note='urging DOJ to not allow Epstein out on bail because he will flee'),
     EmailCfg(id='EFTA02731735', recipients=[USANYS], recipient_uncertain=True, date='2024-03-04T05:04:00'),
     EmailCfg(id='EFTA02731480', recipients=[USANYS], recipient_uncertain=True),
     EmailCfg(id='EFTA02731482', recipients=[USANYS], recipient_uncertain=True),

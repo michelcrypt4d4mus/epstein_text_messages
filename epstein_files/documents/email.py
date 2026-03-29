@@ -137,6 +137,7 @@ OCR_REPAIRS: OcrRepair = {
     # Names / email addresses
     'Alireza lttihadieh': ALIREZA_ITTIHADIEH,
     'bamaby': 'barnaby',
+    'Clam Iveagh': CLARE_IVEAGH,
     'lan Osborne': 'Ian Osborne',
     'Miroslav Laj6ak': MIROSLAV_LAJCAK,
     'Ross G°w': ROSS_GOW,

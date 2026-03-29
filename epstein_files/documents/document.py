@@ -66,6 +66,7 @@ FILENAME_MATCH_STYLES = [
 
 OCR_REPAIRS: OcrRepair = {
     'Bear Steams': 'Bear Stearns',
+    'Case ID it': 'Case ID #:',
     re.compile(r'\.corn\b'): '.com',
     re.compile('ln(adequate|dyke)'): r'In\1',
     'Nil Priell': 'Nili Priell',

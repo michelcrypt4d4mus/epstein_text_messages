@@ -1268,6 +1268,7 @@ HIGHLIGHTED_NAMES = [
             ),
             Entity(PERRY_LANG, f"Epstein's personal chef 1998-2002", r"(Adam )?Perry Lang", match_partial=None),
             Entity('Richard Barnett', "logistics for Epstein's properties", r"Rich(ard)? Barnett", match_partial=None),
+            Entity(RINALDO_RIZZO, QUESTION_MARKS, match_partial=None),
             Entity('Robert Couturier', 'interior designer'),
             Entity(
                 SARAH_KELLEN,
@@ -1667,7 +1668,7 @@ HIGHLIGHTED_NAMES = [
             r"Amsterdam",
             r"(Angela )?Merk(el|le)",
             r"Austrian?",
-            r"Barcelona",
+            r"Barc[ce]lona",
             r"Belgi(an|um)",
             r"(Benjamin )?Harnwell",
             r"Berlin",
@@ -3403,6 +3404,7 @@ HIGHLIGHTED_NAMES = [
             Entity(
                 LASMA_KUHTARSKA,
                 'Latvian co-founder of Dubai based fintech company Noda',
+                match_partial='both',
                 url='https://medium.com/authority-magazine/innovation-with-purpose-lasma-kuhtarska-of-noda-on-the-worlds-most-successful-purpose-driven-b7dc4d7b966a',
             ),
             Entity(
@@ -3435,7 +3437,7 @@ HIGHLIGHTED_NAMES = [
             Entity(
                 NATALIA_SHAVKUNOVA,
                 'casting director, recruiter',
-                r"Na(talia|ya)( Shavkunova)?",
+                r"Natalia Shavkunova?|Naya( Shavkunova)?",
                 aliases=['Naya'],
             ),
             Entity(OLGA_PONOMAR_BECKER, QUESTION_MARKS),
@@ -3939,6 +3941,7 @@ HIGHLIGHTED_NAMES = [
                 match_partial=None,
             ),
             Entity('Clemence Biau', 'French', match_partial=None),
+            Entity('Elina Kalnina', QUESTION_MARKS, match_partial='first'),
             Entity(
                 'Emma Sergeant',
                 'painter introduced to Ghislaine by Robert Hanson',
