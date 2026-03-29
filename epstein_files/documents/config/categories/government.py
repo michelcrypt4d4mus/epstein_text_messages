@@ -384,10 +384,12 @@ GOVERNMENT_CFGS = [
     ),
     fbi_doc(
         'EFTA00173481',
-        'statement of Aaron E. Spivack re: investigation into missing evidence',
+        'statement of Aaron E. Spivack re: investigation into missing evidence and cyber intrusion',
         date='2024-01-26',
+        highlight_quote="Special Agent Aaron E. Spivack improperly handled, documented, and stored digital evidence and failed to secure CSAM within policy, resulting in a cyber intrusion",
         is_interesting=4,
         truncate_to=EMAIL_TRUNCATE_TO,
+        url='https://www.wired.com/story/security-news-this-week-a-hacker-accidentally-broke-into-the-fbis-epstein-files/',
     ),
     fbi_doc('021569'),
     fbi_doc('021434', is_valid_for_name_scan=False),
