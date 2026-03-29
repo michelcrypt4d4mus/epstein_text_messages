@@ -769,9 +769,11 @@ GOVERNMENT_CFGS = [
         author=USANYS,
         author_uncertain=True,
         date='2023-06-30T16:05:00',
+        highlight_quote='Described him looking like Shrek',
         is_interesting=10,
+        note=f'allegations against {LEON_BLACK}',
         recipients=[FBI],
-        truncate_to=5000,
+        truncate_to=(800, 4_800),
     ),
     EmailCfg(
         id='EFTA00090614',
