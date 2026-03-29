@@ -95,6 +95,7 @@ ACADEMIA_CFGS = [
     skype_log('032209', recipients=[LAWRENCE_KRAUSS], is_interesting=False),
 
     # Medical
+    DocCfg(id='EFTA01118550', author=SAMUEL_C_KLAGSBRUN, date='2011-07-31', note='bill for psychiatric services'),
     EmailCfg(id='EFTA01767129', note=f"Epstein paying for {YONI_KOREN}'s medical treatment, routed through {LEON_BLACK}"),
     EmailCfg(id='EFTA01198246', highlight_quote=f"Got a fresh shipment", is_interesting=3),
 ]

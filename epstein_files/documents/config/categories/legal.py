@@ -1,4 +1,4 @@
-from epstein_files.documents.config.config_builder import JANE_DOE_V_USA, JANE_DOE_2_V_EPSTEIN, letter, memo
+from epstein_files.documents.config.config_builder import GIUFFRE_V_MAXWELL, JANE_DOE_V_USA, JANE_DOE_2_V_EPSTEIN, letter, memo
 from epstein_files.documents.config.communication_cfg import CommunicationCfg
 from epstein_files.documents.config.doc_cfg import NO_TRUNCATE, DocCfg, DuplicateType
 from epstein_files.documents.config.email_cfg import EmailCfg
@@ -12,7 +12,7 @@ EDWARDS_V_DERSHOWITZ = f"{BRAD_EDWARDS} & {PAUL_G_CASSELL} v. {ALAN_DERSHOWITZ}"
 EPSTEIN_V_ROTHSTEIN_EDWARDS = f"Epstein v. {SCOTT_ROTHSTEIN}, {BRAD_EDWARDS}, & L.M."
 GIUFFRE_V_DERSHOWITZ = f"{VIRGINIA_GIUFFRE} v. {ALAN_DERSHOWITZ}"
 GIUFFRE_V_EPSTEIN = f"{VIRGINIA_GIUFFRE} v. {JEFFREY_EPSTEIN}"
-GIUFFRE_V_MAXWELL = f"{VIRGINIA_GIUFFRE} v. {GHISLAINE_MAXWELL}"
+# JANE_DOE_V_EPSTEIN = f"Jane Doe v. {JEFFREY_EPSTEIN}"
 JANE_DOE_V_EPSTEIN_TRUMP = f"Jane Doe v. Donald Trump and {JEFFREY_EPSTEIN}"
 JASTA_SAUDI_LAWSUIT = f"{JASTA} lawsuit against Saudi Arabia by 9/11 victims"
 NEW_YORK_V_EPSTEIN = f"New York v. {JEFFREY_EPSTEIN}"
@@ -233,6 +233,7 @@ LEGAL_CFGS = [
     letter('EFTA00180294', JAY_LEFKOWITZ, ['SDFL'], date='2011-07-29'),
     letter('EFTA00210074', 'Kirkland & Ellis', ['SDFL'], date='2008-09-01', date_uncertain='approx'),
     letter('EFTA00223149', 'Roy Black', ['SDFL'], 'non-prosecution agreement and more', date='2008-11-24'),
+    letter('EFTA01099834', BRAD_EDWARDS, [DOJ], f'filed in {JANE_DOE_V_USA} (multiple letters)', date='2008-10-16'),
     memo(
         'EFTA00727491',
         DARREN_INDYKE,

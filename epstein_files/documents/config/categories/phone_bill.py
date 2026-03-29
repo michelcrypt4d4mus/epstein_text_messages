@@ -15,4 +15,5 @@ PHONE_BILL_CFGS = [
     # These two are subpoena response letters w/attached phone bill)
     phone_bill_cfg('EFTA00007301', 'T-Mobile', 'Blackberry phone logs for 2005', date='2007-03-23'),
     phone_bill_cfg('EFTA00007253', 'T-Mobile', date='2007-03-23'),
+    phone_bill_cfg('EFTA01310850', 'AT&T', date='2004-10-11'),
 ]

@@ -176,6 +176,14 @@ GIRLS_CFGS = [
         author=EKATERINA_GUSAROVA,
         author_uncertain='Carstensen',
     ),
+    skype_log('EFTA01621978', author=DANIEL_SIAD, date='2017-04-04'),
+    skype_log(
+        'EFTA01612695',
+        author=DANIEL_SIAD,
+        date='2019-02-05',
+        highlight_quote="my friend the Thai actrice is new York if you have time to invite her",
+        truncate_to=AUTO,
+    ),
     whatsapp_log(
         id='EFTA01612733',
         author=MARIA_PRUSAKOVA,
@@ -326,6 +334,9 @@ GIRLS_CFGS = [
     ),
     EmailCfg(id='EFTA01990879', author=MIRANDA_MAKO, author_uncertain='Clifford Chance, could be Miranda'),
     EmailCfg(id='EFTA00671662', author=MIRANDA_MAKO, author_reason='quoted signature "Miranda"', note="yet another girl finder"),
+
+    # Alysia
+    EmailCfg(id='EFTA01154417', recipients=[ALYSIA_RIABENKOVA], recipient_uncertain=True),
 
     # Nadia
     EmailCfg(id='021814', author=NADIA_MARCINKO, author_reason='reply'),
@@ -646,6 +657,7 @@ GIRLS_CFGS = [
     EmailCfg(id='EFTA01814983', note=f"Epstein and {NICOLE_JUNKERMANN} used to date", show_with_name=NICOLE_JUNKERMANN),
     EmailCfg(id='EFTA02049364', note='Epstein arranging for healthcare for five girls', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA02209622', note=f'flight to Riga for {LASMA_KUHTARSKA}', show_with_name=LASMA_KUHTARSKA, truncate_to=600),
+    EmailCfg(id='EFTA02199773', note=f'flight for {LASMA_KUHTARSKA}', show_with_name=LASMA_KUHTARSKA, truncate_to=600),
     EmailCfg(id='EFTA00968086', note='request for help for a Juilliard student', url=DITE_ANATA_JUILLIARD_URL),
     EmailCfg(
         id='EFTA00883738',
@@ -988,6 +1000,7 @@ GIRLS_CFGS = [
         id='EFTA00902144',
         note=f"{RAMSEY_ELKHOLY} severing ties with Regina who is dating the same boyfriend as {RUSLANA_KORSHUNOVA} was before her death",
     ),
+    DocCfg(id='EFTA01130064', attached_to_email_id='EFTA00902144'),
 
     # Text msg
     TextCfg(
@@ -1012,8 +1025,12 @@ GIRLS_CFGS = [
         truncate_to=800,
     ),
 
+    # Jean Luc
+    EmailCfg(id='EFTA01885240', note=f'"little russian girl" is {IRINA_STREMYAKOVA}', show_with_name=IRINA_STREMYAKOVA),
+
     # Virginia Giuffre
     EmailCfg(id='EFTA00906567', highlight_quote="i need to totally discredit virgina roberts", truncate_to=AUTO),
+    EmailCfg(id='EFTA01159195', note=f'criminal history of {RONALD_EPPINGER} whom Epstein calls {VIRGINIA_GIUFFRE}\'s "pimp"', truncate_to=500),
 
     # Sarah Kellene
     EmailCfg(id='EFTA02412698', author=SARAH_KELLEN),

@@ -152,6 +152,7 @@ MONEY_CFGS = [
     deutsche_bank_doc('EFTA00167059', 'KYC showing Caroline Lang co-ownership with Epstein (?)'),
     deutsche_bank_doc('EFTA00168946', 'KYC information about Southern Financial', '2019-07-11'),
     deutsche_bank_doc('EFTA00165652', 'showing Caroline Lang co-ownership with Epstein (?)'),
+    deutsche_bank_doc('EFTA01292412', "checks including $51,736 check to Insurance Office of Central Ohio"),  #truncate_to=1000
     epstein_will(
         'EFTA01266457',
         '2018-05-08',
@@ -257,6 +258,14 @@ MONEY_CFGS = [
     # Jeepers, Inc.
     DocCfg(id='EFTA01255549', note=f'due diligence on {JEEPERS_INC} amusement park owned by Epstein', date='2018-09-27'),
     DocCfg(id='EFTA01286368', author=DEUTSCHE_BANK, note=f'bank statements showing receipt of $2 million from {JEEPERS_INC}'),
+    DocCfg(
+        id='EFTA01166616',
+        date='2009-07-01',
+        date_uncertain='date of last email in file',
+        is_interesting=6,
+        note=f"many emails about {JEEPERS_INC}, Financial Trust Company, D.B. Zwirn, etc. in rough format showing Harry Beller working for Epstein",
+        truncate_to=EMAIL_TRUNCATE_TO,
+    ),
     EmailCfg(id='EFTA01424585', note=f'{DEUTSCHE_BANK} anti-money laundering review of "high risk" {JEEPERS_INC}'),
     EmailCfg(
         id='EFTA01416658',

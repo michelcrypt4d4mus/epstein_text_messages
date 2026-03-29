@@ -3,6 +3,7 @@ from dateutil.parser import parse
 from dataclasses import dataclass, field
 from datetime import datetime
 
+from epstein_files.documents.emails.emailers import extract_emailer_names
 from epstein_files.documents.messenger_log import MessengerLog
 from epstein_files.documents.imessage.text_message import TextMessage
 from epstein_files.people.names import *
@@ -11,10 +12,11 @@ from epstein_files.util.helpers.data_helpers import coerce_utc
 from epstein_files.util.logging import logger
 from epstein_files.util.helpers.string_helper import collapse_whitespace, indented, quote
 
+MSG_START_PATTERN = '(iMessage|Skype)'
 BRACKET_NUM_PATTERN = r"\s*\[?[\dIl]*\]?\s*"
 DATE_PATTERN = r"(?P<timestamp>\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2})\s+\(?UTC\)?" + fr"(?:{BRACKET_NUM_PATTERN})?"
 SENDER_PATTERN = r"\s*Sender:(?P<sender>.*?)Participants:?(?P<participants>(\s*?|.*?\))$)"
-MSG_REGEX = re.compile(fr'iMessage\s+(?:{BRACKET_NUM_PATTERN})?{DATE_PATTERN}{SENDER_PATTERN}(?P<msg>.*?)(?=iMessage|NYCO24362|SMS)', re.DOTALL | re.M)
+MSG_REGEX = re.compile(fr'{MSG_START_PATTERN}\s+(?:{BRACKET_NUM_PATTERN})?{DATE_PATTERN}{SENDER_PATTERN}(?P<msg>.*?)(?={MSG_START_PATTERN}|Notes|NYCO24362|SMS)', re.DOTALL | re.M)
 REDACTED_AUTHOR_REGEX = re.compile(r"^([-+•_1MENO.=F]+|[4Ide])$")
 # Sometimes participants field ends up in the message
 JUNK_PREFIX_REGEX = re.compile(r"Sender: Self .{1,3}eeitunes.{,10}Participants: ? \(?")
@@ -36,6 +38,10 @@ IMESSAGE_PDF_IDS = [
     'EFTA00509258',
     'EFTA00508702',    # TODO: verify
     'EFTA00786793',    # TODO: verify
+    'EFTA01214317',    # TODO: verify, also includes Skype logs
+    'EFTA01209254',    # TODO: verify, also includes Skype logs
+    'EFTA01212440',    # TODO: verify, also includes Skype logs
+    'EFTA01209934',    # TODO: verify, also includes Skype logs
     # 'EFTA01616222',  # TODO: Doesn't parse well
     # 'EFTA01613143',  # TODO: Doesn't parse well
 ]
@@ -66,6 +72,11 @@ class MessengerLogPdf(MessengerLog):
                 sender = TERJE_ROD_LARSEN
             elif sender == 'Eva':
                 sender = EVA_DUBIN
+            elif (extracted_names := extract_emailer_names(sender)):
+                if len(extracted_names) > 1:
+                    self._error(f"Found multiple names, using first only! {extracted_names}")
+
+                sender = extracted_names[0]
             elif not VALID_SENDER_REGEX.search(sender):
                 self._log(f"text message sender '{sender}' is not a valid name")
                 sender = None

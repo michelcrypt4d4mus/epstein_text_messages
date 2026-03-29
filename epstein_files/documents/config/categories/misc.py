@@ -184,6 +184,7 @@ MISC_CFGS = [
     fedex_invoice('EFTA00218870', '2003-11-24'),
     fedex_invoice('EFTA00217072', '2005-06-20'),
     fedex_invoice('EFTA00217080', '2005-06-27'),
+    fedex_invoice('EFTA01258746', '2004-07-12'),
     imessage_screenshot(id='033434', author=BRAD_EDWARDS, author_uncertain=f"labeled 'Edwards'", is_interesting=False),
     important_messages_pad('EFTA01719859', '2005-10-03'),
     important_messages_pad('EFTA01682477', '2005-04-01'),
