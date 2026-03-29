@@ -53,6 +53,7 @@ SHORT_LINKS = {
     'stanford.edu': 'stanford',
     # 'substack.com': 'sbstk',
     'tabletmag': 'tablet',
+    'techcrunch': 'tc',
     'tommycarstensen.com': 'carstensen',
     'usatoday.com': 'usa',
     'vanityfair.com': 'vf',
