@@ -185,7 +185,8 @@ GIRLS_CFGS = [
         author=DANIEL_SIAD,
         date='2019-02-05',
         highlight_quote="my friend the Thai actrice is new York if you have time to invite her",
-        truncate_to=AUTO,
+        is_interesting=True,
+        truncate_to=(300, 450),
     ),
     whatsapp_log(
         id='EFTA01612733',
