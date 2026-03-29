@@ -177,6 +177,13 @@ GIRLS_CFGS = [
         author_uncertain='Carstensen',
     ),
     skype_log('EFTA01621978', author=DANIEL_SIAD, date='2017-04-04'),
+    skype_log(
+        'EFTA01612695',
+        author=DANIEL_SIAD,
+        date='2019-02-05',
+        highlight_quote="my friend the Thai actrice is new York if you have time to invite her",
+        truncate_to=AUTO,
+    ),
     whatsapp_log(
         id='EFTA01612733',
         author=MARIA_PRUSAKOVA,
