@@ -190,6 +190,7 @@ GIRLS_CFGS = [
         author_uncertain=True,
         highlight_quote='way better than supplying you ladies',
         note=f'saying being Epstein\'s lawyer would be preferable to recruiting, discusses Medici Bank',
+        truncate_to=AUTO,
     ),
 
     # Authors
