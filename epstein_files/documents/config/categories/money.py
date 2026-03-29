@@ -257,6 +257,14 @@ MONEY_CFGS = [
     # Jeepers, Inc.
     DocCfg(id='EFTA01255549', note=f'due diligence on {JEEPERS_INC} amusement park owned by Epstein', date='2018-09-27'),
     DocCfg(id='EFTA01286368', author=DEUTSCHE_BANK, note=f'bank statements showing receipt of $2 million from {JEEPERS_INC}'),
+    DocCfg(
+        id='EFTA01166616',
+        date='2009-07-01',
+        date_uncertain='date of last email in file',
+        is_interesting=6,
+        note=f"many emails about {JEEPERS_INC}, Financial Trust Company, D.B. Zwirn, etc. in rough format showing Harry Beller working for Epstein",
+        truncate_to=EMAIL_TRUNCATE_TO,
+    ),
     EmailCfg(id='EFTA01424585', note=f'{DEUTSCHE_BANK} anti-money laundering review of "high risk" {JEEPERS_INC}'),
     EmailCfg(
         id='EFTA01416658',

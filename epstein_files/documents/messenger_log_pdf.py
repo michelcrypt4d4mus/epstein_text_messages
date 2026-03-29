@@ -16,7 +16,7 @@ MSG_START_PATTERN = '(iMessage|Skype)'
 BRACKET_NUM_PATTERN = r"\s*\[?[\dIl]*\]?\s*"
 DATE_PATTERN = r"(?P<timestamp>\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2})\s+\(?UTC\)?" + fr"(?:{BRACKET_NUM_PATTERN})?"
 SENDER_PATTERN = r"\s*Sender:(?P<sender>.*?)Participants:?(?P<participants>(\s*?|.*?\))$)"
-MSG_REGEX = re.compile(fr'{MSG_START_PATTERN}\s+(?:{BRACKET_NUM_PATTERN})?{DATE_PATTERN}{SENDER_PATTERN}(?P<msg>.*?)(?={MSG_START_PATTERN}|NYCO24362|SMS)', re.DOTALL | re.M)
+MSG_REGEX = re.compile(fr'{MSG_START_PATTERN}\s+(?:{BRACKET_NUM_PATTERN})?{DATE_PATTERN}{SENDER_PATTERN}(?P<msg>.*?)(?={MSG_START_PATTERN}|Notes|NYCO24362|SMS)', re.DOTALL | re.M)
 REDACTED_AUTHOR_REGEX = re.compile(r"^([-+•_1MENO.=F]+|[4Ide])$")
 # Sometimes participants field ends up in the message
 JUNK_PREFIX_REGEX = re.compile(r"Sender: Self .{1,3}eeitunes.{,10}Participants: ? \(?")
@@ -40,6 +40,8 @@ IMESSAGE_PDF_IDS = [
     'EFTA00786793',    # TODO: verify
     'EFTA01214317',    # TODO: verify, also includes Skype logs
     'EFTA01209254',    # TODO: verify, also includes Skype logs
+    'EFTA01212440',    # TODO: verify, also includes Skype logs
+    'EFTA01209934',    # TODO: verify, also includes Skype logs
     # 'EFTA01616222',  # TODO: Doesn't parse well
     # 'EFTA01613143',  # TODO: Doesn't parse well
 ]

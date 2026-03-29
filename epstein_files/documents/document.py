@@ -70,7 +70,7 @@ OCR_REPAIRS: OcrRepair = {
     re.compile('ln(adequate|dyke)'): r'In\1',
     'Nil Priell': 'Nili Priell',
     re.compile(r"EFTA\d{8}( *\n){3,}"): '',
-    re.compile(r"This document contains.{,50}of the FBI.{,100}distributed\s+outside\s+your\s+agency\.?", re.DOTALL | re.I): '',
+    re.compile(r"This document co(ntains|mairn).{,50}of the FBI.{,100}distributed\s+outside\s+your\s+agency\.?", re.DOTALL | re.I): '',
 }
 
 DEBUG_PROPS = [

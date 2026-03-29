@@ -109,13 +109,22 @@ UNCONFIRMED_TEXTS_CONFIG = [
         id='EFTA00786793',
         author_reason='/Users/jee/Library/Messages/Archive/2018-07-04/Karina',
         note=f"Eptein and {SOON_YI_PREVIN} talk shit about {ALAN_DERSHOWITZ}, {EVA_DUBIN} asks for medical advice",
-        recipients=[KARYNA_SHULIAK, STEVE_BANNON, TERJE_ROD_LARSEN, WOODY_ALLEN],
+        recipients=[KARYNA_SHULIAK, STEVE_BANNON, TERJE_ROD_LARSEN, WOODY_ALLEN, None],
+    ),
+    TextCfg(
+        id='EFTA01209934',
+        recipients=[ANIL_AMBANI, WOODY_ALLEN, None],
     ),
     TextCfg(
         id='EFTA00508054',
         note=f'Multiple counterparties, at least some Bannon. Epstein brings up the suicide of {RUSLANA_KORSHUNOVA} whom he "knew very well".'
     ),
-    TextCfg(id='EFTA00509584', note='multiple counterparties', highlight_quote="each girl knew why she was coming to the house massage with extra , hardly coercion", truncate_to=AUTO),
+    TextCfg(
+        id='EFTA00509584',
+        note='multiple counterparties',
+        highlight_quote="each girl knew why she was coming to the house massage with extra , hardly coercion",
+        truncate_to=AUTO,
+    ),
 ]
 
 # Necessary because some of these will be marked uninteresting, which overrides the config

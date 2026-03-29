@@ -1,6 +1,7 @@
 """
 Methods to help with building various kinds of `DocCfg` or `EmailCfg` objects.
 """
+from datetime import date
 from dateutil.parser import parse
 from typing import TypeVar
 
@@ -16,6 +17,7 @@ from epstein_files.util.logging import logger
 DEUTSCHE_SOUTHERN_REGEX = re.compile(r"^.{,50}Deutsche Bank.{,1000}(SOUTHERN TRUST|RED HOOK QUARTER)", re.DOTALL)
 EVIDENCE_REGEX = re.compile(r".{,1000}ITEM\s+WAS\s+NOT\s+SCANNED")
 FBI_FILE_REGEX = re.compile(r"^(UNCLASSIFIED\s+)?FEDERAL BUREAU OF INVESTIGATION")
+FILED_DATE_REGEX = re.compile(r"(?:Docket|Filed) (\d{2})/(\d{2})/(\d{2,4})")
 GRAND_JURY_REGEX = re.compile(r"Grand Jury", re.IGNORECASE)
 HARD_DRIVE_REGEX = re.compile(r"westerndigital|Gold SATA")
 LEGAL_FILING_REGEX = re.compile(r"^Case (\d+:\d+-.*?)\s+Doc")
@@ -26,6 +28,7 @@ VALAR_CAPITAL_CALL_REGEX = re.compile(r"^Val[ao]r.{,190} Capital Call", re.MULTI
 VI_DAILY_NEWS_REGEX = re.compile(r'virgin\s*is[kl][ai]nds\s*daily\s*news', re.IGNORECASE)
 
 EPSTEIN_INVESTIGATION = 'Epstein investigation'
+GIUFFRE_V_MAXWELL = f"{VIRGINIA_GIUFFRE} v. {GHISLAINE_MAXWELL}"
 JANE_DOE_2_V_EPSTEIN = f'Jane Doe #2 v. {JEFFREY_EPSTEIN}'
 JANE_DOE_V_USA = 'Jane Doe #1 and Jane Doe #2 v. United States'
 LEDGERX_MSG = 'LedgerX was later acquired by FTX for $298 million'
@@ -50,6 +53,7 @@ CASE_IDS = {
     '1:22-cv-10904-JSR': f"US Virgin Islands v. JPMorgan Chase",
     '9:08-cv-80736-KAM': JANE_DOE_V_USA,
     '9:09-cv-80656-KAM': JANE_DOE_2_V_EPSTEIN,
+    '1:15-cv-07433-RWS': GIUFFRE_V_MAXWELL,
 }
 
 FILING_DATES = {
@@ -138,6 +142,14 @@ def build_cfg_from_text(doc: 'Document') -> DocCfg | None:
         case_name = CASE_IDS.get(case_match.group(1), f"case {case_match.group(1)}")
         note = join_truthy(f"legal filing in {case_name}", DESCRIPTIONS.get(doc.file_id, ''))
         cfg = _cfg(category=Neutral.LEGAL, note=note, date=FILING_DATES.get(doc.file_id, ''))
+
+        if (filed_match := FILED_DATE_REGEX.search(text[:1000])):
+            if len((year := filed_match.group(3))) == 2:
+                year = f"20{year}"
+            elif len(year) == 3:
+                raise ValueError(f"year is only 3 chars long {filed_match}")
+
+            cfg.date = f"{year}-{filed_match.group(1)}-{filed_match.group(2)}"
     elif len(text) < 2600 and HARD_DRIVE_REGEX.search(text):
         cfg = _cfg(category=Neutral.MISC, note='photo of a hard drive')
     elif lines[0].lower().strip() == 'valuation report':

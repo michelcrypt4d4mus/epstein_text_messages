@@ -36,6 +36,7 @@ DEPOSITION_CFGS = [
         note='grand jury testimony of Child Exploitation & Human Trafficking Task Force member',
     ),
     DocCfg(id='EFTA01108807', author='Jane Doe', date='2010-02-09', note='vol. III of IV'),
+    DocCfg(id='EFTA01103374', author=JEFFREY_EPSTEIN, note=f'taken as part of {JANE_DOE_2_V_EPSTEIN}', is_interesting=9, truncate_to=5_000),
     DocCfg(id='EFTA00023557', author='victim', note=f'who says {GHISLAINE_MAXWELL} and Epstein pay for nudes'),
     # DocCfg(id='EFTA00064843', author=UNKNOWN_GIRL, note=f'{GHISLAINE_MAXWELL} "relentless"'),
     DocCfg(id='EFTA00078311', author=REDACTED_V_EPSTEIN_ESATE, note=f'Boies Schiller filing about sexual abuse of their client'),
