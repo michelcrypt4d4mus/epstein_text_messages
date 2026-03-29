@@ -3,7 +3,6 @@
 #
 # Env var options:
 #   - ONLY_MOST_INTERESTING=true to skip build/deploy of full emails site
-#   - ONLY_MOBILE=true for only mobile sites
 #   - SKIP_CHRONO=true to skip chrono builds
 #   - TAG_RELEASE=true to deploy DOJ files site
 set -e
