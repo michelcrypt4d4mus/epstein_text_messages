@@ -2981,6 +2981,7 @@ HIGHLIGHTED_NAMES = [
                 url='https://en.wikipedia.org/wiki/Jean-Luc_Brunel',
             ),
             Entity(JEFF_FULLER, f"president of {JEAN_LUC_MC2} USA", email_addresses=['jeff@mc2mm.com'], match_partial=None),
+            Entity('Peter Listerman', 'Russian model scout and self-described "matchmaker"'),
             Entity(MANUELA_MARTINEZ, "Mega Partners (Brazilian agency)", r"Manuela (- Mega Partners|Martinez)", match_partial=None),
             Entity('Mark Kaminski', f'boyfriend of {RUSLANA_KORSHUNOVA} (at the time of her death?)'),
             Entity(MARIANA_IDZKOWSKA, 'Polish model, island visitor', r"(Mariana )?[Il]d[źiz]kowska?"),
@@ -3962,7 +3963,7 @@ HIGHLIGHTED_NAMES = [
                 r"Frederi[ck]a (Amelia )?Finkelstein",
                 match_partial=None,
             ),
-            Entity('Haley Robson', 'recruited by Epstein at age 16'),
+            Entity(HALEY_ROBSON, 'recruited by Epstein at age 16'),
             Entity('Jacqueline Josephson', f"wife of {BARRY_JOSEPHSON}", match_partial=None),
             Entity(
                 JENNIFER_KALIN,

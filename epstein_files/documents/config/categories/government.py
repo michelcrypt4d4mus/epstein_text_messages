@@ -166,6 +166,14 @@ GOVERNMENT_CFGS = [
         "about cameras at MCC",
         date='2021-09-29',
     ),
+    interview(
+        'EFTA01333100',
+        PALM_BEACH_POLICE,
+        f"{HALEY_ROBSON} and other victims",
+        date='2006-05-01',
+        highlight_quote='He told her the younger the better',
+        truncate_to=AUTO,
+    ),
     bop_doc(
         'EFTA00034357',  # TODO: show an image?
         "internal message about discovery of Epstein's body",
@@ -282,6 +290,7 @@ GOVERNMENT_CFGS = [
     DocCfg(id='EFTA00040006', author=DOJ, date='2019-08-27', note='Personal History of Defendant Jeffrey Epstein + grand jury indictment'),
     EmailCfg(id='EFTA00162988', author='DOJ', recipients=['DOJ', FBI], recipient_uncertain=True),
     DocCfg(id='EFTA00042963', note='emails from barket epstein lawfirm?', is_interesting=False),
+    DocCfg(id='EFTA01248315', note="list of persons of interest in the Epstein investigation with photos", is_interesting=4),
 
     # FBI
     DocCfg(id='EFTA00020832', author=FBI, note='subpoena of Experian'),

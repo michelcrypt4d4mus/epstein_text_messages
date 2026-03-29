@@ -356,6 +356,7 @@ DONALD_TRUMP = 'Donald Trump'
 EKATERINA_NORTON = 'Ekaterina Norton'
 GEORGE_VRADENBURG = 'George Vradenburg'
 GLORIA_ALLRED = 'Gloria Allred'
+HALEY_ROBSON = 'Haley Robson'
 HENRY_HOLT = 'Henry Holt'  # Actually a company?
 IRINA_STREMYAKOVA = 'Irina Stremyakova'
 IVANKA = 'Ivanka'
