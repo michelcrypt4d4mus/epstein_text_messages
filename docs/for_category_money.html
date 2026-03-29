@@ -34,7 +34,7 @@ div.black_background {
 
 .category_government {
     font-family: "Special Elite", Menlo, 'DejaVu Sans Mono', consolas, 'Courier New', monospace;
-    font-size: 1.2em;
+    font-size: 1.1em;
     line-height: 1.3em;
 }
 
@@ -219,6 +219,9 @@ ul.no_bullets {
 
 ul.site_directory {
     margin-left: 5em;
+    ::marker {
+        content: '➱ ';
+    }
     /* text-align: right; */
     /* background-position: 100% .4em; */
 }
@@ -234,9 +237,11 @@ ul.site_directory_right {
     font-size: 1.5em;
 } */
 
-li::marker {
-    content: '➱ ';
-    /* font-size: 1.2em; */
+li.site_directory {
+    ::marker {
+        content: '➱ ';
+        /* font-size: 1.2em; */
+    }
 }
 
 body {
@@ -591,7 +596,6 @@ body {
 <span style="color: #7f7f7f; text-decoration-color: #7f7f7f; background-color: #121212">║</span><span style="background-color: #121212">                                                                                         </span><span style="color: #005f87; text-decoration-color: #005f87; background-color: #121212">FCPA</span><span style="background-color: #121212"> </span><span style="color: #7f7f7f; text-decoration-color: #7f7f7f; background-color: #121212">[</span><span style="color: #002f43; text-decoration-color: #002f43; background-color: #121212; font-weight: bold">government</span><span style="color: #7f7f7f; text-decoration-color: #7f7f7f; background-color: #121212">]</span><span style="background-color: #121212"> </span><span style="color: #005f87; text-decoration-color: #005f87; background-color: #121212; font-weight: bold; font-style: italic">Foreign Corrupt Practices Act</span><span style="background-color: #121212"> </span><span style="color: #7f7f7f; text-decoration-color: #7f7f7f; background-color: #121212">║</span>
 <span style="color: #7f7f7f; text-decoration-color: #7f7f7f; background-color: #121212">║</span><span style="background-color: #121212">                                             </span><span style="color: #005f87; text-decoration-color: #005f87; background-color: #121212">SDNY</span><span style="background-color: #121212"> </span><span style="color: #7f7f7f; text-decoration-color: #7f7f7f; background-color: #121212">[</span><span style="color: #002f43; text-decoration-color: #002f43; background-color: #121212; font-weight: bold">government</span><span style="color: #7f7f7f; text-decoration-color: #7f7f7f; background-color: #121212">]</span><span style="background-color: #121212"> </span><span style="color: #005f87; text-decoration-color: #005f87; background-color: #121212; font-weight: bold; font-style: italic">Southern District of New York</span><span style="color: #b2b2b2; text-decoration-color: #b2b2b2; background-color: #121212; font-style: italic">, </span><span style="color: #005f87; text-decoration-color: #005f87; background-color: #121212; font-weight: bold; font-style: italic">federal prosecutors</span><span style="color: #b2b2b2; text-decoration-color: #b2b2b2; background-color: #121212; font-style: italic"> covering New York City</span><span style="background-color: #121212"> </span><span style="color: #7f7f7f; text-decoration-color: #7f7f7f; background-color: #121212">║</span>
 <span style="color: #7f7f7f; text-decoration-color: #7f7f7f; background-color: #121212">║</span><span style="background-color: #121212">                                                            </span><span style="color: #005f87; text-decoration-color: #005f87; background-color: #121212">Securities &amp; Exchange Commission</span><span style="background-color: #121212"> </span><span style="color: #7f7f7f; text-decoration-color: #7f7f7f; background-color: #121212">[</span><span style="color: #002f43; text-decoration-color: #002f43; background-color: #121212; font-weight: bold">government</span><span style="color: #7f7f7f; text-decoration-color: #7f7f7f; background-color: #121212">]</span><span style="background-color: #121212"> </span><span style="color: #b2b2b2; text-decoration-color: #b2b2b2; background-color: #121212; font-style: italic">US financial markets regulator</span><span style="background-color: #121212"> </span><span style="color: #7f7f7f; text-decoration-color: #7f7f7f; background-color: #121212">║</span>
-<span style="color: #7f7f7f; text-decoration-color: #7f7f7f; background-color: #121212">║</span><span style="background-color: #121212">                                                                      </span><span style="color: #ffff00; text-decoration-color: #ffff00; background-color: #121212">James C. Kennedy</span><span style="background-color: #121212"> </span><span style="color: #7f7f7f; text-decoration-color: #7f7f7f; background-color: #121212">[</span><span style="color: #7f7f00; text-decoration-color: #7f7f00; background-color: #121212">journalist</span><span style="color: #7f7f7f; text-decoration-color: #7f7f7f; background-color: #121212">]</span><span style="background-color: #121212"> </span><span style="color: #b2b2b2; text-decoration-color: #b2b2b2; background-color: #121212; font-style: italic">media exec, chair of Cox Enterprises</span><span style="background-color: #121212"> </span><span style="color: #7f7f7f; text-decoration-color: #7f7f7f; background-color: #121212">║</span>
 <span style="color: #7f7f7f; text-decoration-color: #7f7f7f; background-color: #121212">╚═════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╝</span>
 </pre></div>
 <div style="margin-bottom: 1em; margin-left: 2em" class="table_container">
@@ -2256,23 +2260,15 @@ any jurisdiction other than the state or territory of my domicile at the date of
 <span style="color: #875f87; text-decoration-color: #875f87">Cc:</span> <span style="color: #00ff5f; text-decoration-color: #00ff5f">Vahe Stepanian</span>; sanjay.mehta@<span style="color: #5faf5f; text-decoration-color: #5faf5f">db</span>.com; Sowmya-D R &lt;sowmya-d.r@<span style="color: #5faf5f; text-decoration-color: #5faf5f">db</span>.com&gt;
 <span style="color: #875f87; text-decoration-color: #875f87">Classification:</span> <span style="color: #d7d7af; text-decoration-color: #d7d7af">For internal use only</span>
 
-<span style="color: #7f7f6b; text-decoration-color: #7f7f6b; font-style: italic">&lt;...trimmed first 10,800 characters...&gt;</span>
-<span style="color: #ffffd7; text-decoration-color: #ffffd7">...</span><span style="color: #875f87; text-decoration-color: #875f87">:</span><span style="color: #ffffd7; text-decoration-color: #ffffd7"> </span><span style="color: #d7d7af; text-decoration-color: #d7d7af">RE: Need your assistance***</span><span style="color: #0000ff; text-decoration-color: #0000ff">Southern Financial LLC</span><span style="color: #d7d7af; text-decoration-color: #d7d7af">*** [I]</span>
-<span style="color: #875f87; text-decoration-color: #875f87">Classification:</span><span style="color: #ffffd7; text-decoration-color: #ffffd7"> </span><span style="color: #d7d7af; text-decoration-color: #d7d7af">For internal use only</span>
-
-<span style="color: #ffffd7; text-decoration-color: #ffffd7">Prabhuling- when do you expect this to be done?</span>
-
-<span style="color: #875f87; text-decoration-color: #875f87">From:</span><span style="color: #ffffd7; text-decoration-color: #ffffd7"> Jay Lipman</span>
-<span style="color: #875f87; text-decoration-color: #875f87">Sent:</span><span style="color: #ffffd7; text-decoration-color: #ffffd7"> </span><span style="color: #008787; text-decoration-color: #008787">Wednesday, February 11, 2015 10:27 AM</span>
-<span style="color: #875f87; text-decoration-color: #875f87">To:</span><span style="color: #ffffd7; text-decoration-color: #ffffd7"> Prabhuling-C Kottalagi</span>
-<span style="color: #875f87; text-decoration-color: #875f87">Cc:</span><span style="color: #ffffd7; text-decoration-color: #ffffd7"> corporate chasing; Sowmya-D R; Sanjay Mehta; Adrian De-Nicola; </span><span style="color: #5faf5f; text-decoration-color: #5faf5f">Daniel Sabba</span><span style="color: #ffffd7; text-decoration-color: #ffffd7">; </span><span style="color: #00ff5f; text-decoration-color: #00ff5f">Vahe Stepanian</span>
+<span style="color: #7f7f6b; text-decoration-color: #7f7f6b; font-style: italic">&lt;...trimmed first 11,125 characters...&gt;</span>
+<span style="color: #ffffd7; text-decoration-color: #ffffd7">...</span><span style="color: #00ff5f; text-decoration-color: #00ff5f">anian</span>
 <span style="color: #875f87; text-decoration-color: #875f87">Subject:</span><span style="color: #ffffd7; text-decoration-color: #ffffd7"> </span><span style="color: #d7d7af; text-decoration-color: #d7d7af">RE: Need your assistance***</span><span style="color: #0000ff; text-decoration-color: #0000ff">Southern Financial LLC</span><span style="color: #d7d7af; text-decoration-color: #d7d7af">*** [I]</span>
 
 <span style="color: #ffffd7; text-decoration-color: #ffffd7">Hi Prabhuling,</span>
 <span style="color: #ffffd7; text-decoration-color: #ffffd7">Can you assist us in making the following changes to this confirm, as we</span>
 <span style="color: #ffffd7; text-decoration-color: #ffffd7">noticed a few issues.</span>
-<span style="color: #ffffd7; text-decoration-color: #ffffd7">Please remove the client&#x27;s personal name &quot;</span><span style="color: #0000ff; text-decoration-color: #0000ff">Jeff Epstein</span><span style="color: #ffffd7; text-decoration-color: #ffffd7">&quot; in the</span>
-<span style="color: #875f87; text-decoration-color: #875f87">To:</span><span style="color: #ffffd7; text-decoration-color: #ffffd7"> Client line</span>
+<span style="color: #c0c0c0; text-decoration-color: #c0c0c0; background-color: #262626; font-style: italic; text-decoration: underline">Please remove the client&#x27;s personal name &quot;</span><span style="color: #0000ff; text-decoration-color: #0000ff; background-color: #262626; font-style: italic; text-decoration: underline">Jeff Epstein</span><span style="color: #c0c0c0; text-decoration-color: #c0c0c0; background-color: #262626; font-style: italic; text-decoration: underline">&quot; in the</span>
+<span style="color: #875f87; text-decoration-color: #875f87; background-color: #262626; font-style: italic; text-decoration: underline">To:</span><span style="color: #c0c0c0; text-decoration-color: #c0c0c0; background-color: #262626; font-style: italic; text-decoration: underline"> Client line</span>
 <span style="color: #ffffd7; text-decoration-color: #ffffd7">Name and address of </span><span style="color: #0000ff; text-decoration-color: #0000ff">Southern Financial</span><span style="color: #ffffd7; text-decoration-color: #ffffd7"> should be consistent on</span>
 <span style="color: #ffffd7; text-decoration-color: #ffffd7">both pages: o On page 1, the client name/address is </span><span style="color: #0000ff; text-decoration-color: #0000ff">Southern Financial</span>
 <span style="color: #0000ff; text-decoration-color: #0000ff">LLC</span><span style="color: #ffffd7; text-decoration-color: #ffffd7">, Wilmington. On page 2, the name/address is </span><span style="color: #0000ff; text-decoration-color: #0000ff">Southern Financial LLC</span><span style="color: #ffffd7; text-decoration-color: #ffffd7">, 6100</span>
@@ -2362,7 +2358,10 @@ any jurisdiction other than the state or territory of my domicile at the date of
 <span style="color: #ffffff; text-decoration-color: #ffffff; font-style: italic">scrubbing Epstein&#x27;s name off </span>
 <span style="color: #ffffff; text-decoration-color: #ffffff; font-style: italic">his Souther Financial account </span>
 <span style="color: #ffffff; text-decoration-color: #ffffff; font-style: italic">(and its </span><span style="color: #87d7ff; text-decoration-color: #87d7ff; font-style: italic">TWTR</span><span style="color: #ffffff; text-decoration-color: #ffffff; font-style: italic"> (</span><span style="color: #87d7ff; text-decoration-color: #87d7ff; font-style: italic">Twitter</span><span style="color: #ffffff; text-decoration-color: #ffffff; font-style: italic">) </span>
-<span style="color: #ffffff; text-decoration-color: #ffffff; font-style: italic">trades)</span></pre></fieldset></div></div></div>
+<span style="color: #ffffff; text-decoration-color: #ffffff; font-style: italic">trades), see quote: Please </span>
+<span style="color: #ffffff; text-decoration-color: #ffffff; font-style: italic">remove the client&#x27;s personal </span>
+<span style="color: #ffffff; text-decoration-color: #ffffff; font-style: italic">name &quot;Jeff Epstein&quot; in the To:</span>
+<span style="color: #ffffff; text-decoration-color: #ffffff; font-style: italic">Client line</span></pre></fieldset></div></div></div>
 
 <div class="doc_container"><div class="sticky_person_bio_panel"><pre><span style="color: #7f7f7f; text-decoration-color: #7f7f7f; background-color: #121212">╔═══════════════════════════════════════════════════════════</span><span style="color: #6d6d6d; text-decoration-color: #6d6d6d; background-color: #121212; font-style: italic"> new names in next file </span><span style="color: #7f7f7f; text-decoration-color: #7f7f7f; background-color: #121212">═╗</span>
 <span style="color: #7f7f7f; text-decoration-color: #7f7f7f; background-color: #121212">║</span><span style="background-color: #121212"> </span><span style="color: #005fff; text-decoration-color: #005fff; background-color: #121212; font-weight: bold; text-decoration: underline"><a href="https://www.dropsitenews.com/p/israeli-spy-yoni-koren-stayed-jeffrey-epstein-apartment-ehud-barak">Yoni Koren</a></span><span style="background-color: #121212"> </span><span style="color: #626262; text-decoration-color: #626262; background-color: #121212; font-style: italic">aka </span><span style="color: #005fff; text-decoration-color: #005fff; background-color: #121212; font-style: italic">Itzhak Koren</span><span style="background-color: #121212"> </span><span style="color: #7f7f7f; text-decoration-color: #7f7f7f; background-color: #121212">[</span><span style="color: #002f7f; text-decoration-color: #002f7f; background-color: #121212">israel</span><span style="color: #7f7f7f; text-decoration-color: #7f7f7f; background-color: #121212">]</span><span style="background-color: #121212"> </span><span style="color: #b2b2b2; text-decoration-color: #b2b2b2; background-color: #121212; font-style: italic">assistant to </span><span style="color: #005fff; text-decoration-color: #005fff; background-color: #121212; font-style: italic">Ehud Barak</span><span style="color: #b2b2b2; text-decoration-color: #b2b2b2; background-color: #121212; font-style: italic">, ex-</span><span style="color: #005fff; text-decoration-color: #005fff; background-color: #121212; font-style: italic">Mossad</span><span style="background-color: #121212"> </span><span style="color: #3a3a3a; text-decoration-color: #3a3a3a; background-color: #121212; font-weight: bold">[</span><span style="color: #ffff00; text-decoration-color: #ffff00; background-color: #121212; text-decoration: underline"><a href="https://www.dropsitenews.com/p/israeli-spy-yoni-koren-stayed-jeffrey-epstein-apartment-ehud-barak">dropsite</a></span><span style="color: #3a3a3a; text-decoration-color: #3a3a3a; background-color: #121212; font-weight: bold">]</span><span style="background-color: #121212"> </span><span style="color: #7f7f7f; text-decoration-color: #7f7f7f; background-color: #121212">║</span>
@@ -3037,7 +3036,7 @@ Administrator.</pre></div></div>
 <div class="doc_container"><div class="sticky_person_bio_panel"><pre><span style="color: #7f7f7f; text-decoration-color: #7f7f7f; background-color: #121212">╔════════════════════════════════════════════════════════════</span><span style="color: #6d6d6d; text-decoration-color: #6d6d6d; background-color: #121212; font-style: italic"> new names in next file </span><span style="color: #7f7f7f; text-decoration-color: #7f7f7f; background-color: #121212">═╗</span>
 <span style="color: #7f7f7f; text-decoration-color: #7f7f7f; background-color: #121212">║</span><span style="background-color: #121212">                            </span><span style="color: #87d7ff; text-decoration-color: #87d7ff; background-color: #121212; font-weight: bold; text-decoration: underline"><a href="https://en.wikipedia.org/wiki/Bill_Richardson">Bill Richardson</a></span><span style="background-color: #121212"> </span><span style="color: #7f7f7f; text-decoration-color: #7f7f7f; background-color: #121212">[</span><span style="color: #436b7f; text-decoration-color: #436b7f; background-color: #121212">democrat</span><span style="color: #7f7f7f; text-decoration-color: #7f7f7f; background-color: #121212">]</span><span style="background-color: #121212"> </span><span style="color: #b2b2b2; text-decoration-color: #b2b2b2; background-color: #121212; font-style: italic">former governor of New Mexico</span><span style="background-color: #121212"> </span><span style="color: #7f7f7f; text-decoration-color: #7f7f7f; background-color: #121212">║</span>
 <span style="color: #7f7f7f; text-decoration-color: #7f7f7f; background-color: #121212">║</span><span style="background-color: #121212">                                             </span><span style="color: #0000ff; text-decoration-color: #0000ff; background-color: #121212">JSC Interiors</span><span style="background-color: #121212"> </span><span style="color: #7f7f7f; text-decoration-color: #7f7f7f; background-color: #121212">[</span><span style="color: #00007f; text-decoration-color: #00007f; background-color: #121212">epstein</span><span style="color: #7f7f7f; text-decoration-color: #7f7f7f; background-color: #121212">]</span><span style="background-color: #121212"> </span><span style="color: #b2b2b2; text-decoration-color: #b2b2b2; background-color: #121212; font-style: italic">Epstein company</span><span style="background-color: #121212"> </span><span style="color: #7f7f7f; text-decoration-color: #7f7f7f; background-color: #121212">║</span>
-<span style="color: #7f7f7f; text-decoration-color: #7f7f7f; background-color: #121212">║</span><span style="background-color: #121212">                             </span><span style="color: #ffd787; text-decoration-color: #ffd787; background-color: #121212">Noam Chomsky</span><span style="background-color: #121212"> </span><span style="color: #7f7f7f; text-decoration-color: #7f7f7f; background-color: #121212">[</span><span style="color: #7f6b43; text-decoration-color: #7f6b43; background-color: #121212">academia</span><span style="color: #7f7f7f; text-decoration-color: #7f7f7f; background-color: #121212">]</span><span style="background-color: #121212"> </span><span style="color: #b2b2b2; text-decoration-color: #b2b2b2; background-color: #121212; font-style: italic">professor of linguistics at </span><span style="color: #ffd787; text-decoration-color: #ffd787; background-color: #121212; font-style: italic">MIT</span><span style="background-color: #121212"> </span><span style="color: #7f7f7f; text-decoration-color: #7f7f7f; background-color: #121212">║</span>
+<span style="color: #7f7f7f; text-decoration-color: #7f7f7f; background-color: #121212">║</span><span style="background-color: #121212">                             </span><span style="color: #ffd787; text-decoration-color: #ffd787; background-color: #121212; font-weight: bold; text-decoration: underline"><a href="https://en.wikipedia.org/wiki/Noam_Chomsky">Noam Chomsky</a></span><span style="background-color: #121212"> </span><span style="color: #7f7f7f; text-decoration-color: #7f7f7f; background-color: #121212">[</span><span style="color: #7f6b43; text-decoration-color: #7f6b43; background-color: #121212">academia</span><span style="color: #7f7f7f; text-decoration-color: #7f7f7f; background-color: #121212">]</span><span style="background-color: #121212"> </span><span style="color: #b2b2b2; text-decoration-color: #b2b2b2; background-color: #121212; font-style: italic">professor of linguistics at </span><span style="color: #ffd787; text-decoration-color: #ffd787; background-color: #121212; font-style: italic">MIT</span><span style="background-color: #121212"> </span><span style="color: #7f7f7f; text-decoration-color: #7f7f7f; background-color: #121212">║</span>
 <span style="color: #7f7f7f; text-decoration-color: #7f7f7f; background-color: #121212">║</span><span style="background-color: #121212">                                             </span><span style="color: #87875f; text-decoration-color: #87875f; background-color: #121212; font-weight: bold; text-decoration: underline"><a href="https://en.wikipedia.org/wiki/Larry_Gagosian">Larry Gagosian</a></span><span style="background-color: #121212"> </span><span style="color: #7f7f7f; text-decoration-color: #7f7f7f; background-color: #121212">[</span><span style="color: #43432f; text-decoration-color: #43432f; background-color: #121212">arts</span><span style="color: #7f7f7f; text-decoration-color: #7f7f7f; background-color: #121212">]</span><span style="background-color: #121212"> </span><span style="color: #b2b2b2; text-decoration-color: #b2b2b2; background-color: #121212; font-style: italic">famous art dealer</span><span style="background-color: #121212"> </span><span style="color: #7f7f7f; text-decoration-color: #7f7f7f; background-color: #121212">║</span>
 <span style="color: #7f7f7f; text-decoration-color: #7f7f7f; background-color: #121212">║</span><span style="background-color: #121212">         </span><span style="color: #5faf5f; text-decoration-color: #5faf5f; background-color: #121212">Stewart Oldfield</span><span style="background-color: #121212"> </span><span style="color: #7f7f7f; text-decoration-color: #7f7f7f; background-color: #121212">[</span><span style="color: #2f572f; text-decoration-color: #2f572f; background-color: #121212">bank</span><span style="color: #7f7f7f; text-decoration-color: #7f7f7f; background-color: #121212">]</span><span style="background-color: #121212"> </span><span style="color: #b2b2b2; text-decoration-color: #b2b2b2; background-color: #121212; font-style: italic">worked on Epstein related accounts at </span><span style="color: #5faf5f; text-decoration-color: #5faf5f; background-color: #121212; font-style: italic">Deutsche Bank</span><span style="background-color: #121212"> </span><span style="color: #7f7f7f; text-decoration-color: #7f7f7f; background-color: #121212">║</span>
 <span style="color: #7f7f7f; text-decoration-color: #7f7f7f; background-color: #121212">║</span><span style="background-color: #121212"> </span><span style="color: #00ff5f; text-decoration-color: #00ff5f; background-color: #121212; font-weight: bold; text-decoration: underline"><a href="https://en.wikipedia.org/wiki/Glenn_Dubin">Glenn Dubin</a></span><span style="background-color: #121212"> </span><span style="color: #7f7f7f; text-decoration-color: #7f7f7f; background-color: #121212">[</span><span style="color: #007f2f; text-decoration-color: #007f2f; background-color: #121212">finance</span><span style="color: #7f7f7f; text-decoration-color: #7f7f7f; background-color: #121212">]</span><span style="background-color: #121212"> </span><span style="color: #b2b2b2; text-decoration-color: #b2b2b2; background-color: #121212; font-style: italic">Highbridge Capital Management, </span><span style="color: #ff87ff; text-decoration-color: #ff87ff; background-color: #121212; font-style: italic">married</span><span style="color: #b2b2b2; text-decoration-color: #b2b2b2; background-color: #121212; font-style: italic"> to Epstein&#x27;s ex-gf Eva</span><span style="background-color: #121212"> </span><span style="color: #7f7f7f; text-decoration-color: #7f7f7f; background-color: #121212">║</span>
@@ -4012,421 +4011,8 @@ CONFIDENTIAL SDNY_GM_00007845
 
 B. If my <span style="color: #afffaf; text-decoration-color: #afffaf">estate</span> must be administered in whole or in part in
 any jurisdiction other than the state or territory of my domicile at the date of my death and if my
-<span style="color: #afffaf; text-decoration-color: #afffaf">Executor</span> is unable or unwilling to serve in such jurisdiction, then I appoint the successor
-<span style="color: #afffaf; text-decoration-color: #afffaf">Executor</span> of my <span style="color: #afffaf; text-decoration-color: #afffaf">estate</span> designated in Paragraph A of Article THIRD provided that he or she is
-able and willing to serve in such jurisdiction. If no <span style="color: #afffaf; text-decoration-color: #afffaf">Executor</span> or successor <span style="color: #afffaf; text-decoration-color: #afffaf">Executor</span> is able and
-willing to serve in such jurisdiction, my <span style="color: #afffaf; text-decoration-color: #afffaf">Executor</span> shall designate a successor <span style="color: #afffaf; text-decoration-color: #afffaf">Executor</span> to serve
-in such jurisdiction. Such designation shall be made by written instrument delivered to such
-successor <span style="color: #afffaf; text-decoration-color: #afffaf">Executor</span>.
-
-C. No <span style="color: #afffaf; text-decoration-color: #afffaf">bond</span> or other security shall be required of any
-<span style="color: #afffaf; text-decoration-color: #afffaf">Executor</span> in any jurisdiction.
-D. Any <span style="color: #afffaf; text-decoration-color: #afffaf">Executor</span> may resign in the manner provided for by
-the governing statutes of the state or territory having jurisdiction of the administration of my
-<span style="color: #afffaf; text-decoration-color: #afffaf">estate</span> or in the absence of such statutory guidance, by filing a written notice of resignation with
-the Court having jurisdiction of the administration of my <span style="color: #afffaf; text-decoration-color: #afffaf">estate</span>. Any <span style="color: #afffaf; text-decoration-color: #afffaf">Executor</span> who resigns shall
-not be entitled to any compensation hereunder for any services rendered as <span style="color: #afffaf; text-decoration-color: #afffaf">Executor</span> prior to his
-or her resignation.
-
-E. My <span style="color: #afffaf; text-decoration-color: #afffaf">Executor</span> shall not be accountable or responsible to any
-person interested in my <span style="color: #afffaf; text-decoration-color: #afffaf">estate</span> for the manner in which my <span style="color: #afffaf; text-decoration-color: #afffaf">Executor</span> in good faith exercises or
-declines to exercise any discretionary authority or power of my <span style="color: #afffaf; text-decoration-color: #afffaf">Executor</span>. My <span style="color: #afffaf; text-decoration-color: #afffaf">Executor</span> shall not
-be liable for any loss or depreciation in value occasioned by reason of any negligence, error or
-mistake of judgment in entering into any transaction, in making any sale or <span style="color: #afffaf; text-decoration-color: #afffaf">investment</span>, in
-continuing to hold any property or by reason of any action or omission, whether by my <span style="color: #afffaf; text-decoration-color: #afffaf">Executor</span>
-or any other fiduciary, unless my <span style="color: #afffaf; text-decoration-color: #afffaf">Executor</span> has acted in bad faith. In the absence of proof by
-affirmative evidence to the contrary, each <span style="color: #afffaf; text-decoration-color: #afffaf">Executor</span> shall be deemed to have acted within the
-scope of my <span style="color: #afffaf; text-decoration-color: #afffaf">Executor</span>&#x27;s authority, to have exercised reasonable care, diligence and prudence and
-to have acted impartially as to all interested persons. An <span style="color: #afffaf; text-decoration-color: #afffaf">Executor</span> shall not be liable for the acts
-or defaults of another <span style="color: #afffaf; text-decoration-color: #afffaf">Executor</span>.
-FOURTH: The following provisions shall apply to my <span style="color: #afffaf; text-decoration-color: #afffaf">estate</span> and to my
-<span style="color: #afffaf; text-decoration-color: #afffaf">Executor</span>, except as is otherwise specifically provided in this Will:
-
-A. My <span style="color: #afffaf; text-decoration-color: #afffaf">Executor</span> has the entire care and custody of all assets
-of my <span style="color: #afffaf; text-decoration-color: #afffaf">estate</span>. My <span style="color: #afffaf; text-decoration-color: #afffaf">Executor</span> has the power to do everything my <span style="color: #afffaf; text-decoration-color: #afffaf">Executor</span> in good faith deems
-advisable without necessity of any judicial authorization or approval, even though but for this
-power it would not be authorized or appropriate for fiduciaries under any statutory or other rule
-of law. My <span style="color: #afffaf; text-decoration-color: #afffaf">Executor</span> shall exercise my <span style="color: #afffaf; text-decoration-color: #afffaf">Executor</span>&#x27;s best judgment and discretion for what my
-<span style="color: #afffaf; text-decoration-color: #afffaf">Executor</span> believes to be in the best interests of the beneficiaries hereunder. If more than two
-<span style="color: #afffaf; text-decoration-color: #afffaf">Executors</span> are empowered to participate in the decision to exercise or not exercise any fiduciary
-power granted by this Will or by law, a majority of such <span style="color: #afffaf; text-decoration-color: #afffaf">Executors</span> shall be empowered to make
-such decision.
-
-B. Except as otherwise provided herein, my <span style="color: #afffaf; text-decoration-color: #afffaf">Executor</span> shall
-have the power:
-2
-CONFIDENTIAL SONY_GM_00007846
-<span style="color: #5f8787; text-decoration-color: #5f8787">Last Will &amp; Testament</span> of <span style="color: #0000ff; text-decoration-color: #0000ff">Jeffrey E</span>. <span style="color: #0000ff; text-decoration-color: #0000ff">Epstein</span>
-<span style="color: #5f8787; text-decoration-color: #5f8787">Page 3 of 10</span>
-
-(1) to enter upon and take possession of the
-assets of my <span style="color: #afffaf; text-decoration-color: #afffaf">estate</span> and collect the income and profits from such assets, and to invest and
-reinvest such assets in real, personal or mixed assets (including the common trust funds of a
-corporate fiduciary) or in undivided interests therein without being limited by any present or
-future <span style="color: #afffaf; text-decoration-color: #afffaf">investment</span> laws;
-
-(2) to retain all or any part of the assets of my
-<span style="color: #afffaf; text-decoration-color: #afffaf">estate</span> (without regard to the proportion that any one asset or class of assets may bear to the
-whole) in the form in which such assets were received or acquired by my <span style="color: #afffaf; text-decoration-color: #afffaf">Executor</span>;
-
-(3) to sell or dispose of, exchange, transfer,
-invest or loan all or any part of the assets of my <span style="color: #afffaf; text-decoration-color: #afffaf">estate</span> which may, at any time, be held by my
-<span style="color: #afffaf; text-decoration-color: #afffaf">Executor</span> for such sums or upon such terms as to payment, security or otherwise as my <span style="color: #afffaf; text-decoration-color: #afffaf">Executor</span>
-determines, either by public or private transactions;
-
-(4) to buy and sell options, <span style="color: #afffaf; text-decoration-color: #afffaf">warrants</span>, puts, calls
-or other rights to purchase or sell (collectively &quot;options&quot;) relating to any security or <span style="color: #afffaf; text-decoration-color: #afffaf">securities</span>,
-regardless of whether such security or <span style="color: #afffaf; text-decoration-color: #afffaf">securities</span> are then held by my <span style="color: #afffaf; text-decoration-color: #afffaf">Executor</span>, and whether
-such options are purchased or sold on a national <span style="color: #afffaf; text-decoration-color: #afffaf">securities</span> exchange, and to exercise with
-respect to such options all powers which an individual owner thereof could exercise, including,
-without limitation, the right to allow the same to expire;
-(5) with respect to oil, natural gas, minerals,
-and all other natural resources and rights to and interests therein (together with all equipment
-pertaining thereto) including, without limiting the generality of the foregoing, oil and gas
-royalties, leases, or other oil and gas interests of any character, whether owned in fee, as lessee,
-lessor, licensee, concessionaire or otherwise, or alone or jointly with others as partner, joint
-<span style="color: #5fd787; text-decoration-color: #5fd787">tenant</span>, or joint venture in any other noncorporate manner, (a) to make oil, gas and mineral leases
-or subleases; (b) to pay delay rentals, lease bonuses, royalties, overriding royalties, <span style="color: #afffaf; text-decoration-color: #afffaf">taxes</span>,
-agqnsments, and all other charges; (c) to sell, lease, exchange, <span style="color: #5fd787; text-decoration-color: #5fd787">mortgage</span>, pledge or otherwise
-hypothecate any or all of such rights and interests; (d) to surrender or abandon, with or without
-consideration, any or all of such rights and interests; (e) to make farm-out, pooling, and
-unitization agreements; (0 to make reservations or impose conditions on the transfer of any such
-rights or interests; (g) to employ the most advantageous business form in which properly to
-exploit such rights and interests, whether as corporations, partnerships, limited partnerships,
-mining partnerships, limited liability companies, joint ventures, co-tenancies, or otherwise
-exploit any and all such rights and interests; (h) to produce, process, sell or exchange all
-products recovered through the exploitation of such rights and interests, and to enter into
-contracts and agreements for or in respect of the installation or operation of absorption,
-reprocessing or other processing plants; (i) to carry any or all such interests in the name or
-names of a nominee or nominees; (j) to delegate, to the extent permitted by law, any or all of the
-powers set forth herein to the operator of such property; and (k) to employ personnel, rent office
-space, buy or lease office equipment, contract and pay for geological surveys and studies,
-procure appraisals, and generally to conduct and engage in any and all activities incident to the
-foregoing powers, with full power to borrow and pledge in order to finance such activities;
-together with the power to allocate between principal and income any net proceeds received as
-3
-CONFIDENTIAL SONY_GM_00007847
-<span style="color: #5f8787; text-decoration-color: #5f8787">Last Will &amp; Testament</span> of <span style="color: #0000ff; text-decoration-color: #0000ff">Jeffrey E</span>. <span style="color: #0000ff; text-decoration-color: #0000ff">Epstein</span>
-<span style="color: #5f8787; text-decoration-color: #5f8787">Page 4 of 10</span>
-consideration, whether as royalties or otherwise, for the permanent severance from lands of oil,
-natural gas, minerals, and all other natural resources;
-
-(6) to hold all or any part of the assets of my
-<span style="color: #afffaf; text-decoration-color: #afffaf">estate</span> in cash or in <span style="color: #afffaf; text-decoration-color: #afffaf">bank</span> accounts without the necessity of investing the same;
-
-(7) to improve, repair, partition, plat or
-subdivide all or any part of the assets of my <span style="color: #afffaf; text-decoration-color: #afffaf">estate</span>;
-(8) to litigate, defend, compromise, settle,
-abandon or submit to arbitration on such terms and conditions as my <span style="color: #afffaf; text-decoration-color: #afffaf">Executor</span> determines any
-claims in favor of or against my <span style="color: #afffaf; text-decoration-color: #afffaf">estate</span> or the assets of my <span style="color: #afffaf; text-decoration-color: #afffaf">estate</span>;
-
-(9) to loan or borrow <span style="color: #afffaf; text-decoration-color: #afffaf">money</span> in such amounts
-and upon such terms and conditions as my <span style="color: #afffaf; text-decoration-color: #afffaf">Executor</span> determines, assume such obligations or give
-such guarantees as my <span style="color: #afffaf; text-decoration-color: #afffaf">Executor</span> determines, for the purpose of the acquisition, improvement,
-protection, retention or preservation of the assets of my <span style="color: #afffaf; text-decoration-color: #afffaf">estate</span>, or for the welfare of the
-beneficiaries of my <span style="color: #afffaf; text-decoration-color: #afffaf">estate</span>;
-
-(10) to carry on for as long and in such manner
-as my <span style="color: #afffaf; text-decoration-color: #afffaf">Executor</span> determines any business enterprise in which I owned any interest at my death,
-either individually, or as a partner, member, joint venture, stockholder or trust beneficiary; to
-sell such business enterprise as an ongoing business; to consolidate, merge, encumber, dissolve,
-liquidate or undertake any other extraordinary corporate transaction relating to such business
-enterprise;
-
-(11) to vote in person or by proxy any and all
-stock or <span style="color: #afffaf; text-decoration-color: #afffaf">securities</span> and to become a party to any voting trusts, reorganization, consolidation or
-other capital or debt readjustment of any corporation, association, partnership, limited liability
-partnership, limited liability company or individual with respect to stocks, <span style="color: #afffaf; text-decoration-color: #afffaf">securities</span> or debts
-held by my <span style="color: #afffaf; text-decoration-color: #afffaf">estate</span>;
-
-(12) except as provided for in Sections (20) and
-(21) of this Article Fourth, to enter into any good faith transactions with any <span style="color: #afffaf; text-decoration-color: #afffaf">Executor</span>
-individually or with any corporation, partnership or other entity in which any <span style="color: #afffaf; text-decoration-color: #afffaf">Executor</span> has an
-ownership interest;
-
-(13) To purchase from my <span style="color: #afffaf; text-decoration-color: #afffaf">estate</span> any stocks,
-<span style="color: #afffaf; text-decoration-color: #afffaf">bonds</span>, <span style="color: #afffaf; text-decoration-color: #afffaf">securities</span>, real or personal property, or other assets, or make loans to my <span style="color: #afffaf; text-decoration-color: #afffaf">estate</span> even
-though the same person or persons occupy the office of my <span style="color: #afffaf; text-decoration-color: #afffaf">Trustee</span> and the office of the
-<span style="color: #afffaf; text-decoration-color: #afffaf">Executor</span> of my <span style="color: #afffaf; text-decoration-color: #afffaf">estate</span>;
-
-(14) to lease, <span style="color: #5fd787; text-decoration-color: #5fd787">mortgage</span>, pledge, grant a security
-interest in or otherwise encumber all or any part of the assets of my <span style="color: #afffaf; text-decoration-color: #afffaf">estate</span> for any term of years
-whether or not beyond the duration of my <span style="color: #afffaf; text-decoration-color: #afffaf">estate</span> (including, without limitation, any such action
-for the benefit of any of the beneficiaries of my <span style="color: #afffaf; text-decoration-color: #afffaf">estate</span>);
-4
-CONFIDENTIAL SDNY_GM_00007848
-<span style="color: #5f8787; text-decoration-color: #5f8787">Last Will &amp; Testament</span> of <span style="color: #0000ff; text-decoration-color: #0000ff">Jeffrey E</span>. <span style="color: #0000ff; text-decoration-color: #0000ff">Epstein</span>
-<span style="color: #5f8787; text-decoration-color: #5f8787">Page 5 of 10</span>
-
-(15) to abandon any property of my <span style="color: #afffaf; text-decoration-color: #afffaf">estate</span>, real
-or personal, which my <span style="color: #afffaf; text-decoration-color: #afffaf">Executor</span> may deem worthless or not of sufficient value to warrant
-keeping or protecting; to abstain from the payment of <span style="color: #afffaf; text-decoration-color: #afffaf">taxes</span>, water rents or assessments and to
-forego making repairs, maintaining or keeping up any such property; and to permit such
-property to be lost by <span style="color: #afffaf; text-decoration-color: #afffaf">tax</span> sale or other proceedings or to convey any such property for a nominal
-consideration or without consideration so as to prevent the imposition of any liability by reason
-of the continued ownership thereof;
-
-(16) to elect the mode of distribution of the
-proceeds payable to my <span style="color: #afffaf; text-decoration-color: #afffaf">estate</span> from any profit-sharing plan, pension plan, employee benefit
-plan, individual retirement plan, insurance contract or annuity contract pursuant to the terms of
-such plan;
-
-(17) to allocate, in my <span style="color: #afffaf; text-decoration-color: #afffaf">Executors</span> discretion, any
-adjustment to basis provided to my <span style="color: #afffaf; text-decoration-color: #afffaf">estate</span> under the provisions of Federal and State law with
-respect to property comprising my <span style="color: #afffaf; text-decoration-color: #afffaf">estate</span>, without any obligation to make a compensatory
-adjustment among the beneficiaries hereunder on account of such allocation;
-
-(18) to conduct any audit, assessment or
-investigation with respect to any asset of my <span style="color: #afffaf; text-decoration-color: #afffaf">estate</span> regarding compliance with any law or
-regulation having as its object protection of public health, natural resources or the environment
-(&quot;Environmental Laws&quot;); to pay from the assets of my <span style="color: #afffaf; text-decoration-color: #afffaf">estate</span> to remedy any failure to comply
-with any Environmental Law (even to the exhaustion of all of the assets of my <span style="color: #afffaf; text-decoration-color: #afffaf">estate</span>); and, as
-may be required in my <span style="color: #afffaf; text-decoration-color: #afffaf">Executor</span>&#x27;s judgment by any Environmental Law, to notify any
-governmental authority of any past, present or future non-compliance with any Environmental
-Law; and
-
-(19) to sell to the <span style="color: #afffaf; text-decoration-color: #afffaf">Trustee</span> under the <span style="color: #afffaf; text-decoration-color: #afffaf">Trust</span>
-<span style="color: #afffaf; text-decoration-color: #afffaf">Agreement</span> any stocks, <span style="color: #afffaf; text-decoration-color: #afffaf">bonds</span>, <span style="color: #afffaf; text-decoration-color: #afffaf">securities</span>, real or personal property or other assets or borrow
-from the <span style="color: #afffaf; text-decoration-color: #afffaf">Trustee</span> under the <span style="color: #afffaf; text-decoration-color: #afffaf">Trust Agreement</span> even though the same person or persons occupy the
-office of the <span style="color: #afffaf; text-decoration-color: #afffaf">Executor</span> of my <span style="color: #afffaf; text-decoration-color: #afffaf">estate</span> and the <span style="color: #afffaf; text-decoration-color: #afffaf">Trustee</span> under the <span style="color: #afffaf; text-decoration-color: #afffaf">Trust Agreement</span>.
-
-(20) No <span style="color: #afffaf; text-decoration-color: #afffaf">executor</span> shall directly or indirectly buy
-or sell any property for the <span style="color: #afffaf; text-decoration-color: #afffaf">estate</span> from or to himself, or from or to his relative, employer,
-employee, partner, or other business associate.
-
-(21) No <span style="color: #afffaf; text-decoration-color: #afffaf">executor</span> shall lend <span style="color: #afffaf; text-decoration-color: #afffaf">estate</span> funds to
-himself, or to his relative, employer, employee, partner, or other business associate.
-
-C. Except as otherwise provided herein, my <span style="color: #afffaf; text-decoration-color: #afffaf">Executor</span> shall
-have the power:
-(1) to employ agents, attorneys-at-law,
-consultants, <span style="color: #afffaf; text-decoration-color: #afffaf">investment advisers</span> (to whom my <span style="color: #afffaf; text-decoration-color: #afffaf">Executor</span> has discretion to delegate my
-<span style="color: #afffaf; text-decoration-color: #afffaf">Executor</span>&#x27;s <span style="color: #afffaf; text-decoration-color: #afffaf">investment</span> authority and responsibility), other <span style="color: #afffaf; text-decoration-color: #afffaf">executors</span> and other fiduciaries in the
-administration of my <span style="color: #afffaf; text-decoration-color: #afffaf">Executor</span>&#x27;s duties; to delegate to such persons, or to one or more of my
-<span style="color: #afffaf; text-decoration-color: #afffaf">Executors</span>, the custody, control or management of any part of my <span style="color: #afffaf; text-decoration-color: #afffaf">estate</span> as my <span style="color: #afffaf; text-decoration-color: #afffaf">Executor</span>
-5
-CONFIDENTIAL SDNY_GM_00007849
-<span style="color: #5f8787; text-decoration-color: #5f8787">Last Will &amp; Testament</span> of <span style="color: #0000ff; text-decoration-color: #0000ff">Jeffrey E</span>. <span style="color: #0000ff; text-decoration-color: #0000ff">Epstein</span>
-<span style="color: #5f8787; text-decoration-color: #5f8787">Page 6 of 10</span>
-determines and to pay for such services from the assets of my <span style="color: #afffaf; text-decoration-color: #afffaf">estate</span>, without obtaining judicial
-authorization or approval;
-
-(2) to delegate, in whole or in part, to any
-person or persons the authority and power to (a) sign checks, drafts or orders for the payment or
-withdrawal of funds, <span style="color: #afffaf; text-decoration-color: #afffaf">securities</span> and other assets from any <span style="color: #afffaf; text-decoration-color: #afffaf">bank</span>, <span style="color: #afffaf; text-decoration-color: #afffaf">brokerage</span>, custody or other
-account in which funds, <span style="color: #afffaf; text-decoration-color: #afffaf">securities</span> or other assets of my <span style="color: #afffaf; text-decoration-color: #afffaf">estate</span> shall be deposited, (b) endorse for
-sale, transfer or delivery, or sell, transfer or deliver, or purchase or otherwise acquire, any and
-all property, stocks, stock <span style="color: #afffaf; text-decoration-color: #afffaf">warrants</span>, stock rights, options, <span style="color: #afffaf; text-decoration-color: #afffaf">bonds</span> or other <span style="color: #afffaf; text-decoration-color: #afffaf">securities</span> whatsoever,
-
-(c) gain access to any safe deposit box or boxes in which my assets or assets of my <span style="color: #afffaf; text-decoration-color: #afffaf">estate</span> may
-be located or which may be in the name of my <span style="color: #afffaf; text-decoration-color: #afffaf">Executor</span> and remove part or all of the contents of
-any such safe deposit box or boxes and release and surrender the same, and (d) take any other
-action that my <span style="color: #afffaf; text-decoration-color: #afffaf">Executor</span> may have the power to take with respect to my <span style="color: #afffaf; text-decoration-color: #afffaf">estate</span> and the property
-thereof; no person or corporation acting in reliance on any such delegation shall be charged with
-notice of any revocation or change of such delegation unless such person or corporation receives
-actual notice thereof;
-
-(3) to pay any property distributable to a
-beneficiary under a legal disability or who has not attained the age of 21, without liability to my
-<span style="color: #afffaf; text-decoration-color: #afffaf">Executor</span>, by paying such property (a) to such beneficiary, (b) for the use of such beneficiary, (c)
-to a legal representative of such beneficiary appointed by a court or if none, to a relative for the
-use of such beneficiary, or (d) to a custodian for such beneficiary designated by my <span style="color: #afffaf; text-decoration-color: #afffaf">Executor</span>, to
-hold until age 21 or such earlier age as shall be the maximum permitted under applicable law;
-
-(4) to distribute to any of the beneficiaries of
-my <span style="color: #afffaf; text-decoration-color: #afffaf">estate</span> in kind or in cash, or partly in kind and partly in cash, and to allocate different kinds
-or disproportionate shares of assets or undivided interests in assets among all of such
-beneficiaries;
-
-(5) to have evidence of ownership of any
-security maintained in the records of a Federal Reserve <span style="color: #afffaf; text-decoration-color: #afffaf">Bank</span> under the Federal Reserve Book
-Entry System; to deposit funds in any <span style="color: #afffaf; text-decoration-color: #afffaf">bank</span> or trust company; to carry in the name of my
-<span style="color: #afffaf; text-decoration-color: #afffaf">Executor</span> or the nominee or nominees of my <span style="color: #afffaf; text-decoration-color: #afffaf">Executor</span> and with or without designation of
-fiduciary capacity, or to hold in bearer form, <span style="color: #afffaf; text-decoration-color: #afffaf">securities</span> or other property requiring or permitting
-of registration; and to cause any <span style="color: #afffaf; text-decoration-color: #afffaf">securities</span> to be held by a depository corporation of which an
-<span style="color: #afffaf; text-decoration-color: #afffaf">Executor</span> is a member or by an agent under a safekeeping contract; provided, however, that the
-books and records of my <span style="color: #afffaf; text-decoration-color: #afffaf">Executor</span> shall at all times show that such <span style="color: #afffaf; text-decoration-color: #afffaf">investments</span> are part of my
-<span style="color: #afffaf; text-decoration-color: #afffaf">estate</span>;
-
-(6) to renounce and disclaim, in whole or in
-part, and in accordance with applicable law, any assets, interests, rights or powers (including
-any power of appointment) which are payable to (or exercisable by) me or my <span style="color: #afffaf; text-decoration-color: #afffaf">estate</span>, which are
-includible in my <span style="color: #afffaf; text-decoration-color: #afffaf">estate</span> or Gross <span style="color: #afffaf; text-decoration-color: #afffaf">Estate</span> or over which I have any right, title, interest or power;
-and
-
-(7) to make, execute and deliver any and all
-such instruments in writing as shall be necessary or proper to carry out any power, right, duty or
-6
-CONFIDENTIAL SDNY_GM_00007850
-<span style="color: #5f8787; text-decoration-color: #5f8787">Last Will &amp; Testament</span> of <span style="color: #0000ff; text-decoration-color: #0000ff">Jeffrey E</span>. <span style="color: #0000ff; text-decoration-color: #0000ff">Epstein</span>
-<span style="color: #5f8787; text-decoration-color: #5f8787">Page 7 of 10</span>
-obligation of my <span style="color: #afffaf; text-decoration-color: #afffaf">Executor</span> or any disposition whatsoever of my <span style="color: #afffaf; text-decoration-color: #afffaf">estate</span> or any asset of my <span style="color: #afffaf; text-decoration-color: #afffaf">estate</span>
-and to exercise any and all other powers incidental or necessary to carry out or to fulfill the
-terms, provisions and purposes of my <span style="color: #afffaf; text-decoration-color: #afffaf">estate</span>.
-
-D. In connection with any insurance policy or annuity on the
-life of an <span style="color: #afffaf; text-decoration-color: #afffaf">Executor</span> which is included in my <span style="color: #afffaf; text-decoration-color: #afffaf">estate</span>, such <span style="color: #afffaf; text-decoration-color: #afffaf">Executor</span> shall not participate in the
-decision to exercise or not exercise any fiduciary power in connection with any incidents of
-ownership for such policy or annuity, including, without limitation, any decision to continue,
-assign, terminate or convert such policy or annuity or to name the beneficiary of such policy or
-annuity.
-
-E. An <span style="color: #afffaf; text-decoration-color: #afffaf">Executor</span> hereunder may by a written notice delivered
-to the other <span style="color: #afffaf; text-decoration-color: #afffaf">Executor</span> (or <span style="color: #afffaf; text-decoration-color: #afffaf">Executors</span>) decline to participate in the decision to exercise or not
-exercise any fiduciary power granted by this Will or by law.
-
-F. If an <span style="color: #afffaf; text-decoration-color: #afffaf">Executor</span> is not empowered (because of a conflict of
-interest, declination to act or otherwise) to participate in the decision to exercise or not exercise
-any fiduciary power granted by this Will or by law, then the remaining <span style="color: #afffaf; text-decoration-color: #afffaf">Executor</span> or <span style="color: #afffaf; text-decoration-color: #afffaf">Executors</span>
-shall be empowered to make such decision. If no <span style="color: #afffaf; text-decoration-color: #afffaf">Executor</span> is empowered to participate in such
-decision, then the successor <span style="color: #afffaf; text-decoration-color: #afffaf">Executor</span> of my <span style="color: #afffaf; text-decoration-color: #afffaf">estate</span> designated in Paragraph A of Article THIRD
-and able and willing to act shall be empowered to make such decision. If no <span style="color: #afffaf; text-decoration-color: #afffaf">Executor</span> or
-successor <span style="color: #afffaf; text-decoration-color: #afffaf">Executor</span> is empowered to participate in such decision, my <span style="color: #afffaf; text-decoration-color: #afffaf">Executor</span> may designate a
-successor <span style="color: #afffaf; text-decoration-color: #afffaf">Executor</span> to serve as <span style="color: #afffaf; text-decoration-color: #afffaf">Executor</span> of my <span style="color: #afffaf; text-decoration-color: #afffaf">estate</span> who shall be empowered to make such
-decision but shall have no other power or authority of my <span style="color: #afffaf; text-decoration-color: #afffaf">Executor</span>. Such designation shall be
-by written notice delivered to such successor <span style="color: #afffaf; text-decoration-color: #afffaf">Executor</span>.
-
-G. (1) Except as otherwise specifically provided herein
-and except as provided in Paragraph G(2) of this Article, my <span style="color: #afffaf; text-decoration-color: #afffaf">Executor</span> shall allocate receipts and
-disbursements in accordance with sound trust accounting principles and shall have discretion to
-allocate receipts and disbursements when the treatment is uncertain under applicable laws or
-generally accepted accounting principles in the judgment of my <span style="color: #afffaf; text-decoration-color: #afffaf">Executor</span>.
-
-(2) Except as otherwise specifically provided in this
-Will, my <span style="color: #afffaf; text-decoration-color: #afffaf">Executor</span> shall not treat any part of the principal amount of the proceeds of sale of any
-asset of my <span style="color: #afffaf; text-decoration-color: #afffaf">estate</span> as income distributable to or for the benefit of any beneficiary entitled to
-distributions of income; provided, however, that my <span style="color: #afffaf; text-decoration-color: #afffaf">Executor</span> shall treat a portion of any
-proceeds of sale of any financial instrument originally issued or acquired at a discount equal to
-the amount which (a) has previously been characterized as ordinary income for <span style="color: #afffaf; text-decoration-color: #afffaf">income tax</span>
-purposes or (b) will be characterized as ordinary income for <span style="color: #afffaf; text-decoration-color: #afffaf">income tax</span> purposes in the year of
-such sale, as income for trust accounting purposes.
-FIFTH: Where a party to any proceeding with respect to my <span style="color: #afffaf; text-decoration-color: #afffaf">estate</span> has the
-same interest as a person under a disability, it shall not be necessary to serve legal process on the
-person under a disability.
-SIXTH: If any beneficiary under the Trust shall in any way directly or
-indirectly (a) contest or object to the probate of my Will or to the validity of any disposition or
-7
-CONFIDENTIAL SDNY_GM_00007851
-<span style="color: #5f8787; text-decoration-color: #5f8787">Last Will &amp; Testament</span> of <span style="color: #0000ff; text-decoration-color: #0000ff">Jeffrey E</span>. <span style="color: #0000ff; text-decoration-color: #0000ff">Epstein</span>
-<span style="color: #5f8787; text-decoration-color: #5f8787">Page 8 of 10</span>
-provision of my Will or of the Trust or (b) institute or prosecute, or be in any way directly or
-indirectly instrumental in the institution or prosecution of, any action, proceeding, contest,
-objection or claim for the purpose of setting aside or invalidating my Will or the Trust or any
-disposition therein or provision thereof, then I direct that (a) any and all provisions in the Trust
-for such beneficiary and his issue in any degree shall be null and void and (b) my <span style="color: #afffaf; text-decoration-color: #afffaf">estate</span>, whether
-passing under my Will or the Trust or pursuant to the laws of intestacy, shall be disposed of as if
-such beneficiary and his issue in any degree had all failed to survive me.
-SEVENTH: A. As used herein:
-
-(1) The term &quot;<span style="color: #afffaf; text-decoration-color: #afffaf">Executor</span>&quot; of a person&#x27;s <span style="color: #afffaf; text-decoration-color: #afffaf">estate</span>
-means all persons or entities who occupy the office of <span style="color: #afffaf; text-decoration-color: #afffaf">executor</span>, administrator, personal
-representative, or ancillary administrator while such persons or entities occupy such office,
-whether one or more persons or entities occupy such office at the same time or times, and
-includes any successor or successors to that office. The term &quot;<span style="color: #afffaf; text-decoration-color: #afffaf">Trustee</span>&quot; means all persons or
-entities who occupy the office of <span style="color: #afffaf; text-decoration-color: #afffaf">Trustee</span> under the <span style="color: #afffaf; text-decoration-color: #afffaf">Trust Agreement</span> while such persons or
-entities occupy such office, whether one or more persons or entities occupy the office of <span style="color: #afffaf; text-decoration-color: #afffaf">Trustee</span>
-at the same time or times, and includes any successor <span style="color: #afffaf; text-decoration-color: #afffaf">Trustee</span> or <span style="color: #afffaf; text-decoration-color: #afffaf">Trustees</span>. A reference to a
-person&#x27;s <span style="color: #afffaf; text-decoration-color: #afffaf">estate</span> or probate <span style="color: #afffaf; text-decoration-color: #afffaf">estate</span> means that person&#x27;s <span style="color: #afffaf; text-decoration-color: #afffaf">estate</span> which is subject to probate
-administration. A reference to a person&#x27;s Will means such person&#x27;s <span style="color: #5f8787; text-decoration-color: #5f8787">Last Will and Testament</span> and
-any <span style="color: #5f8787; text-decoration-color: #5f8787">Codicil</span> or <span style="color: #5f8787; text-decoration-color: #5f8787">Codicils</span> thereto.
-
-(2) The term &quot;IRC section&quot; means a section of
-the Internal Revenue Code of 1986, as amended, or the corresponding provision of any
-successor Internal Revenue law, as in effect as of the date of my death.
-
-(3) A reference to any <span style="color: #afffaf; text-decoration-color: #afffaf">tax</span> also includes any
-interest or penalties thereon. A reference to a person&#x27;s &quot;Gross <span style="color: #afffaf; text-decoration-color: #afffaf">Estate</span>&quot; means such person&#x27;s gross
-<span style="color: #afffaf; text-decoration-color: #afffaf">estate</span> as finally determined for purposes of computing such person&#x27;s federal <span style="color: #afffaf; text-decoration-color: #afffaf">estate</span> <span style="color: #afffaf; text-decoration-color: #afffaf">tax</span>.
-
-(4) Whenever the singular number is used, the
-same shall include the plural, and the masculine gender shall include the feminine and neuter
-genders.
-
-B. (1) The federal and state transfer <span style="color: #afffaf; text-decoration-color: #afffaf">taxes</span> which my
-<span style="color: #afffaf; text-decoration-color: #afffaf">Executor</span> shall be obligated to pay pursuant to Paragraph B of Article FIRST shall consist of all
-federal and state <span style="color: #afffaf; text-decoration-color: #afffaf">estate</span>, inheritance, succession, and similar <span style="color: #afffaf; text-decoration-color: #afffaf">taxes</span> (including any federal or state
-generation-skipping transfer <span style="color: #afffaf; text-decoration-color: #afffaf">tax</span>) imposed upon my probate <span style="color: #afffaf; text-decoration-color: #afffaf">estate</span> or by reason of my death in
-respect to all assets which pass under this Will or the <span style="color: #afffaf; text-decoration-color: #afffaf">Trust Agreement</span>. Subject to Paragraph
-B(2) of this Article, all federal <span style="color: #afffaf; text-decoration-color: #afffaf">estate</span> <span style="color: #afffaf; text-decoration-color: #afffaf">taxes</span> with respect to assets not passing under this Will or
-the <span style="color: #afffaf; text-decoration-color: #afffaf">Trust Agreement</span> (such assets are referred to as the &quot;Apportionment Assets&quot;) and any
-applicable state <span style="color: #afffaf; text-decoration-color: #afffaf">estate</span> <span style="color: #afffaf; text-decoration-color: #afffaf">taxes</span> with respect to the Apportionment Assets shall be apportioned
-among all persons interested in the Apportionment Assets. My <span style="color: #afffaf; text-decoration-color: #afffaf">Executor</span> shall make reasonable
-efforts to collect all federal <span style="color: #afffaf; text-decoration-color: #afffaf">estate</span> <span style="color: #afffaf; text-decoration-color: #afffaf">taxes</span> and state <span style="color: #afffaf; text-decoration-color: #afffaf">estate</span>, inheritance, succession and similar <span style="color: #afffaf; text-decoration-color: #afffaf">taxes</span>
-allocable to the Apportionment Assets from the recipients of the Apportionment Assets. Without
-changing the apportionment of <span style="color: #afffaf; text-decoration-color: #afffaf">taxes</span> in this Paragraph B(1), my <span style="color: #afffaf; text-decoration-color: #afffaf">Executor</span> has discretion, but is
-not required, to pay all or part of such <span style="color: #afffaf; text-decoration-color: #afffaf">taxes</span> allocable to the Apportionment Assets. To the
-8
-CONFIDENTIAL SDNY_GM_00007852
-<span style="color: #5f8787; text-decoration-color: #5f8787">Last Will &amp; Testament</span> of <span style="color: #0000ff; text-decoration-color: #0000ff">Jeffrey E</span>. <span style="color: #0000ff; text-decoration-color: #0000ff">Epstein</span>
-<span style="color: #5f8787; text-decoration-color: #5f8787">Page 9 of 10</span>
-extent my <span style="color: #afffaf; text-decoration-color: #afffaf">Executor</span> pays such <span style="color: #afffaf; text-decoration-color: #afffaf">taxes</span> allocable to the Apportionment Assets, my <span style="color: #afffaf; text-decoration-color: #afffaf">Executor</span> shall
-seek reimbursement for such <span style="color: #afffaf; text-decoration-color: #afffaf">taxes</span> from the recipients of the Apportionment Assets. My
-<span style="color: #afffaf; text-decoration-color: #afffaf">Executor</span> shall not be personally liable for any of such <span style="color: #afffaf; text-decoration-color: #afffaf">taxes</span> if my <span style="color: #afffaf; text-decoration-color: #afffaf">Executor</span> is unable, with
-reasonable efforts, to collect payment (or reimbursement) from any recipient of any
-Apportionment Assets for any or all of such <span style="color: #afffaf; text-decoration-color: #afffaf">taxes</span> allocable to such assets.
-
-(2) My <span style="color: #afffaf; text-decoration-color: #afffaf">Executor</span> has discretion to direct the
-<span style="color: #afffaf; text-decoration-color: #afffaf">Trustee</span> of the <span style="color: #afffaf; text-decoration-color: #afffaf">Trust Agreement</span> to pay all or any portion of the <span style="color: #afffaf; text-decoration-color: #afffaf">taxes</span> which my <span style="color: #afffaf; text-decoration-color: #afffaf">Executor</span> is
-directed or obligated to pay pursuant to Paragraph B of Article FIRST and this Paragraph B
-pursuant to a written direction delivered to the <span style="color: #afffaf; text-decoration-color: #afffaf">Trustee</span> under the <span style="color: #afffaf; text-decoration-color: #afffaf">Trust Agreement</span>. Any <span style="color: #afffaf; text-decoration-color: #afffaf">taxes</span>
-which my <span style="color: #afffaf; text-decoration-color: #afffaf">Executor</span> directs the <span style="color: #afffaf; text-decoration-color: #afffaf">Trustee</span> under the <span style="color: #afffaf; text-decoration-color: #afffaf">Trust Agreement</span> to pay shall be allocated and
-paid from the trusts under the <span style="color: #afffaf; text-decoration-color: #afffaf">Trust Agreement</span> as provided under the <span style="color: #afffaf; text-decoration-color: #afffaf">Trust Agreement</span>.
-
-C. Except as otherwise specifically provided in this Will, a
-bequest or devise to an individual who does not survive me shall lapse notwithstanding any law
-to the contrary.
-
-D. To the extent that the distribution to the <span style="color: #afffaf; text-decoration-color: #afffaf">Trustee</span> under the
-<span style="color: #afffaf; text-decoration-color: #afffaf">Trust Agreement</span> pursuant to Article SECOND shall not be effective, I give all the rest of my
-property, real and personal, wherever situated, after the payments and distributions provided in
-Article FIRST, to the person or persons named as <span style="color: #afffaf; text-decoration-color: #afffaf">Trustee</span> or <span style="color: #afffaf; text-decoration-color: #afffaf">Trustees</span> under the <span style="color: #afffaf; text-decoration-color: #afffaf">Trust</span>
-<span style="color: #afffaf; text-decoration-color: #afffaf">Agreement</span>, be to held in trust under this Will in accordance with the provisions comprising the
-<span style="color: #afffaf; text-decoration-color: #afffaf">Trust Agreement</span> at the time of my death, which provisions are incorporated in this Will by
-reference.
-IN <span style="color: #5f8787; text-decoration-color: #5f8787">WITNESS</span> WHEREOF, I have duly executed this Will thisQl 4hday of June,
-2017.
-<span style="color: #0000ff; text-decoration-color: #0000ff">JEFFREY E</span>. EPS
-The foregoing written instrument was, on the date thereof, igned, published
-and declared by the Testator therein named as the Testator&#x27;s Will in the presence of us and of
-each of us, who, at the Testator&#x27;s request, in the Testator&#x27;s presence, and in the presence of
-each other have subscribed our names as <span style="color: #5f8787; text-decoration-color: #5f8787">witnesses</span> thereto.
-__,.„--:---c-
-<span style="color: #8787ff; text-decoration-color: #8787ff">LEO Loking</span>
-residing at
-/e.--- --2-- ------ residing at
-<span style="color: #d7005f; text-decoration-color: #d7005f">Karyna Shuliak</span> I
-9
-CONFIDENTIAL SDNY_GM_00007853
-<span style="color: #5f8787; text-decoration-color: #5f8787">Last Will &amp; Testament</span> of <span style="color: #0000ff; text-decoration-color: #0000ff">Jeffrey E</span>. <span style="color: #0000ff; text-decoration-color: #0000ff">Epstein</span>
-<span style="color: #5f8787; text-decoration-color: #5f8787">Page 10 of 10</span>
-<span style="color: #5f8787; text-decoration-color: #5f8787">AFFIDAVIT</span>
-We, <span style="color: #0000ff; text-decoration-color: #0000ff">JEFFREY E</span>. <span style="color: #0000ff; text-decoration-color: #0000ff">EPSTEIN</span>, leO LOY-A 0,C)
-and the <span style="color: #5f8787; text-decoration-color: #5f8787">witnesses</span>, respectively, whose names are
-been sworn, declared to the undersigned officer
-<span style="color: #5f8787; text-decoration-color: #5f8787">witnesses</span>, signed the instrument as his Will, that he
-presence of the Testator and in the presence of each
-STATE OF NEW YORK
-)ss:
-COUNTY OF NEW YORK
-, and ioaryna inuIt0K. the Testator
-signed to the foregoing instrument, having
-that the Testator, in the presence of the
-signed, and that each of the <span style="color: #5f8787; text-decoration-color: #5f8787">witnesses</span>, in the
-other, signed the Will as a <span style="color: #5f8787; text-decoration-color: #5f8787">witness</span>.
-Subscribed and sworn to before me by <span style="color: #0000ff; text-decoration-color: #0000ff">JEFFREY E</span>. <span style="color: #0000ff; text-decoration-color: #0000ff">EPSTEIN</span>, the Testator, who is personally
-known to me or who has produced   as identification, and by
-Leo 1—OKvEn , a <span style="color: #5f8787; text-decoration-color: #5f8787">witness</span> who is personally known to me or who has produced
-as identification, and daNna , a <span style="color: #5f8787; text-decoration-color: #5f8787">witness</span> who is personally known to me or
-who has produced as identification, on June .2q  2017.
-Sworn to before me this (Pr  day of June, 2017.
-a/0AM daith <span style="color: #5f8787; text-decoration-color: #5f8787">Notary Public</span>
-HABIBE AVOIU
-<span style="color: #5f8787; text-decoration-color: #5f8787">NOTARY PUBLIC</span>-STATE OF NEW YORK
-
-No. 01AV6313116
-Qualified in Richmond County
-My Commission Expires October 14. 2018
-CONFIDENTIAL SONY_GM_000071354</pre></fieldset>
+<span style="color: #afffaf; text-decoration-color: #afffaf">Executor</span> is unable or unwilling to serve in such jurisdiction, then I appoi...
+<span style="color: #7f7f7f; text-decoration-color: #7f7f7f; font-style: italic">&lt;...trimmed to 3,000 characters of 28,585, read the rest at </span><span style="color: #004040; text-decoration-color: #004040; font-style: italic; text-decoration: underline"><a href="https://www.justice.gov/epstein/files/DataSet%2010/EFTA01266268.pdf">EFTA01266268</a></span><span style="color: #7f7f7f; text-decoration-color: #7f7f7f; font-style: italic">...&gt;</span></pre></fieldset>
 <fieldset style="background-color: #1e1a1a; border-color: #d0d0d0; border-radius: 14px; border-style: solid; border-width: 4px; display: inline-block; margin-bottom: auto; margin-left: auto; margin-right: auto; margin-top: auto; padding-bottom: 2em; padding-left: 2em; padding-right: 2em; padding-top: 2em; width: fit-content" class=""><pre><span style="color: #87875f; text-decoration-color: #87875f">[</span><span style="color: #00ff5f; text-decoration-color: #00ff5f">money</span><span style="color: #87875f; text-decoration-color: #87875f">]</span> <span style="color: #ffffff; text-decoration-color: #ffffff; font-style: italic">Epstein last will and </span>
 <span style="color: #ffffff; text-decoration-color: #ffffff; font-style: italic">testament witnessed by </span><span style="color: #8787ff; text-decoration-color: #8787ff; font-style: italic">Leo </span>
 <span style="color: #8787ff; text-decoration-color: #8787ff; font-style: italic">Loking</span><span style="color: #ffffff; text-decoration-color: #ffffff; font-style: italic"> and </span><span style="color: #d7005f; text-decoration-color: #d7005f; font-style: italic">Karyna Shuliak</span><span style="color: #ffffff; text-decoration-color: #ffffff; font-style: italic"> </span>
@@ -5132,21 +4718,8 @@ Jeffrey,
 Here is a deck about my <span style="color: #ff87ff; text-decoration-color: #ff87ff">designer baby</span> project:
 <span style="color: #5f5fd7; text-decoration-color: #5f5fd7; text-decoration: underline"><a href="http://diyhpl.us/—bryan/designer-babies-deck.pdf">http://diyhpl.us/—bryan/designer-babies-deck.pdf</a></span>
 I have talked with <span style="color: #ffaf00; text-decoration-color: #ffaf00; font-weight: bold">Austin</span> again, and we have a series of questions about how serious you are about
-wanting this, and what the ground rules are for me even exploring this with you and getting to next steps.
-Most of these questions are around your requirements for secrecy and privacy, specifically regarding
-reputational risk and also any financial involvement. I think there would also need to be some
-understanding about goals and feasibility of different results.
-I think that one way this could be done is under the banner of my <span style="color: #ff87ff; text-decoration-color: #ff87ff">designer babies</span> project, since the other
-deliverable is similar and shares so many of the same procedures and lab requirements. This might offer a
-sufficient level of deniability.
-I propose another call on <span style="color: #008787; text-decoration-color: #008787">Monday</span> in the afternoon to discuss these issues, please propose a time.
-Thank you.
-- Bryan
-<span style="color: #2c2c2c; text-decoration-color: #2c2c2c; font-style: italic">&lt;...snipped jeffrey epstein email signature...&gt;</span>
-- Bryan
-<span style="color: #5f5fd7; text-decoration-color: #5f5fd7; text-decoration: underline"><a href="http://heykryalsg/_">http://heykryalsg/_</a></span>
-1 <span style="color: #00ff00; text-decoration-color: #00ff00">512 203 0507</span>
-<span style="color: #2c2c2c; text-decoration-color: #2c2c2c; font-style: italic">&lt;...snipped jeffrey epstein email signature...&gt;</span></pre></div></div>
+wanting this, and what the ground rules are for me even exploring ...
+<span style="color: #7f7f7f; text-decoration-color: #7f7f7f; font-style: italic">&lt;...trimmed to 1,600 characters of 2,402, read the rest at </span><span style="color: #00007f; text-decoration-color: #00007f; font-style: italic; text-decoration: underline"><a href="https://www.justice.gov/epstein/files/DataSet%209/EFTA01004841.pdf">EFTA01004841</a></span><span style="color: #7f7f7f; text-decoration-color: #7f7f7f; font-style: italic">...&gt;</span></pre></div></div>
 <fieldset style="background-color: #1e1a1a; border-color: #d0d0d0; border-radius: 14px; border-style: solid; border-width: 4px; display: inline-block; margin-bottom: auto; margin-left: auto; margin-right: auto; margin-top: auto; padding-bottom: 2em; padding-left: 2em; padding-right: 2em; padding-top: 2em; width: fit-content" class=""><pre><span style="color: #ffffff; text-decoration-color: #ffffff; font-style: italic">&quot;structuring&quot; usually means </span>
 <span style="color: #ffffff; text-decoration-color: #ffffff; font-style: italic">illegally hiding money, see </span>
 <span style="color: #ffffff; text-decoration-color: #ffffff; font-style: italic">quote: &quot;i cant program but iam</span>
@@ -9069,7 +8642,7 @@ December 18, 2014 to July 10, 2020, involving <span style="color: #d70087; text-
 FYI, we engaged Morris yesterday, and he retained counsel. We will likely be conducting a proffer of him in the near
 future. You folks are welcome to toss any questions you would like us to pose to him.
 His attorney is already attempting to devalue his roll, indicating he was just a low level relationship manager, amongst
-many. (Note, he appears to have done very well for himself as a low level relationship manager).
+many. (<span style="color: #c0c0c0; text-decoration-color: #c0c0c0; background-color: #262626; font-style: italic; text-decoration: underline">Note, he appears to have done very well for himself as a low level relationship manager</span>).
 Secondly, after out attorney&#x27;s jump through some hoops, we will likely be seeking to interview <span style="color: #0000ff; text-decoration-color: #0000ff">Epstein</span>&#x27;s attorney, who 
 was
 responsible for a lot of the transactions, and appears to have made efforts to structure transactions, so as to avoid 
@@ -9132,7 +8705,10 @@ Thanks!</pre></div></div>
 <fieldset style="background-color: #1e1a1a; border-color: #d0d0d0; border-radius: 14px; border-style: solid; border-width: 4px; display: inline-block; margin-bottom: auto; margin-left: auto; margin-right: auto; margin-top: auto; padding-bottom: 2em; padding-left: 2em; padding-right: 2em; padding-top: 2em; width: fit-content" class=""><pre><span style="color: #ffffff; text-decoration-color: #ffffff; font-style: italic">Epstein&#x27;s </span><span style="color: #5faf5f; text-decoration-color: #5faf5f; font-style: italic">Deutsche Bank</span><span style="color: #ffffff; text-decoration-color: #ffffff; font-style: italic"> banker</span>
 <span style="color: #5faf5f; text-decoration-color: #5faf5f; font-style: italic">Paul Morris</span><span style="color: #ffffff; text-decoration-color: #ffffff; font-style: italic"> lawyers up </span>
 <span style="color: #ffffff; text-decoration-color: #ffffff; font-style: italic">immediately when contacted by </span>
-<span style="color: #ffffff; text-decoration-color: #ffffff; font-style: italic">the </span><span style="color: #005f87; text-decoration-color: #005f87; font-weight: bold; font-style: italic">FBI</span></pre></fieldset></div></div></div>
+<span style="color: #ffffff; text-decoration-color: #ffffff; font-style: italic">the </span><span style="color: #005f87; text-decoration-color: #005f87; font-weight: bold; font-style: italic">FBI</span><span style="color: #ffffff; text-decoration-color: #ffffff; font-style: italic">, see quote: &quot;Note, he </span>
+<span style="color: #ffffff; text-decoration-color: #ffffff; font-style: italic">appears to have done very well</span>
+<span style="color: #ffffff; text-decoration-color: #ffffff; font-style: italic">for himself as a low level </span>
+<span style="color: #ffffff; text-decoration-color: #ffffff; font-style: italic">relationship manager&quot;</span></pre></fieldset></div></div></div>
 
 <div style="margin-bottom: 1em; margin-left: 2em" class="table_container">
 <div style="border-color: #4e4e4e; border-radius: 4px; border-style: solid; border-width: 2px" role="table" class="table"><div style="border-bottom-width: 1px; border-color: #4e4e4e; border-style: solid" role="row" class="row"><div style="font-weight: bold; max-width: 22em; text-align: center" role="cell" class="columnheader column"><pre>File</pre></div>
