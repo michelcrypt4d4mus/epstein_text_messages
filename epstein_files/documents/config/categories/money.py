@@ -141,6 +141,12 @@ MONEY_CFGS = [
     DocCfg(id='EFTA01086463', note=f"{MORTIMER_ZUCKERMAN}'s art collection valuations", is_valid_for_name_scan=False),
     DocCfg(id='EFTA01273102', note=f"payment from Epstein to {RENATA_BOLOTOVA}'s father's account at Sberbank"),
     DocCfg(id='EFTA00238499', note='wire transfer to Signature Bank account'),
+    DocCfg(
+        id='EFTA00195963',
+        date='2005-12-31',
+        is_interesting=10,
+        note=f"Epstein's financial transactions and account balances at Bear Stearns less than two years before it collapsed in 2008",
+    ),
     deutsche_bank_doc('EFTA01436428', f"client list showing Hillspire, Third Lake, Southern Financial, Elysium all managed by {STEWART_OLDFIELD}"),
     deutsche_bank_doc('EFTA00166863', f"Southern Financial Know Your Customer form filled out by {PAUL_MORRIS}", date='2019-07-30', truncate_to=(8_400, 10_500)),
     deutsche_bank_doc('EFTA01286706', f"Plan D, LLC bank statement showing $22,500,000 incoming and $15,000,000 outgoing"),
