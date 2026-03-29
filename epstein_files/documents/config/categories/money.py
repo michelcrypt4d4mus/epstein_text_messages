@@ -329,9 +329,10 @@ MONEY_CFGS = [
     ),
     EmailCfg(
         id='EFTA01409449',
+        highlight_quote='Please remove the client\'s personal name "Jeff Epstein" in the To: Client line',
         note=f"{DEUTSCHE_BANK} employees scrubbing Epstein's name off his Souther Financial account (and its TWTR (Twitter) trades)",
         is_interesting=20,
-        truncate_to=(10_800, 14_500),
+        truncate_to=(11_125, 14_500),
     ),
     EmailCfg(
         id='EFTA00461557',

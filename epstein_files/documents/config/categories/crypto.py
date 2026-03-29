@@ -632,6 +632,7 @@ CRYPTO_CFGS = [
         is_interesting=10,
         recipients=[LESLEY_GROFF],
         recipient_uncertain=True,
+        truncate_to=700,
     ),
     # Sharia coin
     EmailCfg(id='032359', note='HBJ brings up "e-currency" (Sharia Coin, probably)', is_interesting=10),

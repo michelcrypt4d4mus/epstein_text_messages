@@ -719,6 +719,7 @@ GIRLS_CFGS = [
         is_interesting=6,
         note=f'girl is {EKATERINA_GUSAROVA}, "pro or civilian?"',
         show_with_name=EKATERINA_GUSAROVA,
+        truncate_to=590,
     ),
     EmailCfg(
         id='EFTA00921172',
@@ -726,7 +727,7 @@ GIRLS_CFGS = [
     ),
     EmailCfg(
         id='EFTA02037406',
-        is_interesting=5,
+        is_interesting=True,
         note=f"{STEVE_TISCH}, {EKATERINA_GUSAROVA}, {JEAN_LUC_BRUNEL} attending",
         show_with_name=EKATERINA_GUSAROVA,
     ),
