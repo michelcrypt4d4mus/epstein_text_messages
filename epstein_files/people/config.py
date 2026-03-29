@@ -1945,6 +1945,7 @@ HIGHLIGHTED_NAMES = [
         label=FRIEND,
         style='tan',
         entities=[
+            Entity('Alexander Guest', "socialite, son of CZ Guest", match_partial=None),
             Entity(
                 ANDREW_FARKAS,
                 "heir to Alexander's department store fortune, recently claimed he barely knew Epstein",

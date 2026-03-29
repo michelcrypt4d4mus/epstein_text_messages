@@ -441,6 +441,7 @@ GOVERNMENT_CFGS = [
         show_full_panel=True,
         url='https://www.bbc.com/news/articles/c6271ngl014o',
     ),
+    fbi_tip('EFTA01249296', 'from former escort about Alexander Guest and Epstein'),
     fbi_tip('EFTA01249232', 'from <REDACTED> about an Epstein party with little girls and boys', is_interesting=False),
     fbi_tip('EFTA01244926', "from ANONYMOUS about Rupert Murdoch's granddaughter"),
     fbi_tip('EFTA01249593', f"about {LES_WEXNER}"),
