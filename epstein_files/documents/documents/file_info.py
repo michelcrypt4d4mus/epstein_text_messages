@@ -43,7 +43,10 @@ class FileInfo(LoggingEntity):
     file_id: str = field(init=False)
 
     def __post_init__(self):
-        self.file_id = extract_file_id(self.local_path)
+        if is_picture(self.local_path):
+            self.file_id = self.local_path.stem
+        else:
+            self.file_id = extract_file_id(self.local_path)
 
         # Extract the DOJ dataset ID from the path
         if self.is_doj_file:

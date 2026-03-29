@@ -111,7 +111,7 @@ def fincen_sar(id: str, bank: str, subject: str, activity: str, **kwargs) -> Doc
 
 
 def sdfl_internal_email(id: str, **kwargs) -> EmailCfg:
-    return EmailCfg(id=id, author='SDFL', recipients=['SDFL'], author_uncertain=True, recipient_uncertain=True, **kwargs)
+    return EmailCfg(id=id, author=SDFL, recipients=[SDFL], author_uncertain=True, recipient_uncertain=True, **kwargs)
 
 
 def usanys_internal_email(id: str, **kwargs) -> EmailCfg:
@@ -670,7 +670,7 @@ GOVERNMENT_CFGS = [
     fbi_internal('EFTA00148374'),
 
     # SDFL
-    DocCfg(id='EFTA00225378', author='SDFL', note="NYC travel authorization", date='2008-06-20'),
+    DocCfg(id='EFTA00225378', author=SDFL, note="NYC travel authorization", date='2008-06-20'),
     sdfl_internal_email('EFTA00215139'),
     sdfl_internal_email('EFTA00214699'),
     sdfl_internal_email('EFTA00179797', note=f"many emails concerning {DAVID_COPPERFIELD} investigation and more"),  # TODO: split up

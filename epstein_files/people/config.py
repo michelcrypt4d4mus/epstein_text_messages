@@ -2151,7 +2151,7 @@ HIGHLIGHTED_NAMES = [
             law_enforcement(PALM_BEACH_POLICE),
             law_enforcement('Police Code Enforcement', info=f"{PALM_BEACH} buildings code enforcement"),
             law_enforcement('SCOTUS'),
-            law_enforcement('SDFL', 'federal prosecutors covering South Florida', is_interesting=True),
+            law_enforcement(SDFL, 'federal prosecutors covering South Florida', is_interesting=True),
             law_enforcement("SDNY Cybercrimes", is_emailer=True),
             law_enforcement('USAHUB', emailer_pattern=r"USAJournal111"),
             law_enforcement('USAMA Victim Assistance', is_emailer=True),
@@ -3108,7 +3108,12 @@ HIGHLIGHTED_NAMES = [
                 "Isabel Maxwell's husband, Mindshift Conference organizer, mysterious death (possibly faked)",
                 url='https://www.tabletmag.com/sections/news/articles/the-illusionist-al-seckel',
             ),
-            Entity('Barnaby Marsh', "co-founder of philanthropy services company Saint Partners", match_partial=None),
+            Entity(
+                BARNABY_MARSH,
+                "co-founder of philanthropy services company Saint Partners",
+                match_partial=None,
+                url='https://www.edge.org/memberbio/barnaby_marsh',
+            ),
             Entity(CHRISTINA_GALBRAITH, f"{EPSTEIN_VI_FOUNDATION} Media/PR, worked with {TYLER_SHEARS}", match_partial=None),
             Entity(
                 IAN_OSBORNE,

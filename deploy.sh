@@ -2,7 +2,7 @@
 # Use --pickled arg to use pickled data file, otherwise pickled data will always be overwritten
 #
 #   - ONLY_MOST_INTERESTING=true to skip build/deploy of full emails site.
-#   - ONLY_MOBILE=true for only mobile sites
+#   - SKIP_CHRONO=true to skip chrono builds
 #   - TAG_RELEASE=true to deploy DOJ files site and upload the pkl.gz file to the repo
 set -e
 source .env
