@@ -106,7 +106,12 @@ CRYPTO_CFGS = [
     EmailCfg(id='EFTA00874793', note=f'Bannon says that they need to stop EU regulation of crypto scams "dead in its tracks"', is_interesting=10),
     EmailCfg(id='EFTA02517572', note=f'Bannon says that they need to stop EU regulation of crypto scams "dead in its tracks"'),
     EmailCfg(id='EFTA00881711', note=f"Bannon and Epstein discuss bitcoin and crypto donations", is_interesting=10),
-    EmailCfg(id='EFTA00881759', note=f"Epstein and {STEVE_BANNON} discuss collection donations in bitcoin", is_interesting=10),
+    EmailCfg(
+        id='EFTA00881759',
+        highlight_quote='we r on the cusp of real power',
+        note=f"Epstein and {STEVE_BANNON} discuss collection donations in bitcoin",
+        truncate_to=600,
+    ),
     # Bill Gates
     EmailCfg(id='EFTA02639760', note='Epstein pushing cryptocurrency on Bill Gates'),
     # Bitmain
