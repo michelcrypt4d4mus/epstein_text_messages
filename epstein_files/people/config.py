@@ -769,6 +769,7 @@ HIGHLIGHTED_NAMES = [
             r"strangled?",
             r"suicide",
             r"syringe",
+            r"terror?is[mt]",
             r"Tramadol",
             r"Ultram",
             r"xanax",
