@@ -170,7 +170,6 @@ OCR_REPAIRS: OcrRepair = {
     re.compile(r'^INW$', re.MULTILINE): REDACTED,
     re.compile(r'Sent from one of my many test mobile devices while on the go and changing the world\s+:\s+so\s+my\s+apologies for any typos'): 'Sent from one of my many test mobile devices while on the go and changing the world : so my apologies for any typos',
     re.compile(r"twitter\.com[i/][lI]krauss[1lt]"): "twitter.com/lkrauss1",
-    re.compile('Ornpaaneuo c iPhone'): 'Отправлено с iPhone',
     # links
     'classified-intelligence-\nmichael-flynn-trump': 'classified-intelligence-michael-flynn-trump',
     'on-accusers-rose-\nmcgowan/ ': 'on-accusers-rose-\nmcgowan/\n',
@@ -196,15 +195,9 @@ OCR_REPAIRS: OcrRepair = {
     re.compile(r"PROCEEDINGS FOR THE ST THOMAS ATTACHMENT OF\s*ALL JEFF EPSTEIN ASSETS"): "PROCEEDINGS FOR THE ST THOMAS ATTACHMENT OF ALL JEFF EPSTEIN ASSETS",
     re.compile(r"Subject:\s*Fwd: Trending Now: Friends for three decades"): "Subject: Fwd: Trending Now: Friends for three decades",
     # Russian
-    # Bocmpeceime
-    re.compile(r'^B(TOpHHK|oc[xKm]pec\w+)', re.MULTILINE | re.IGNORECASE): 'Вторник',
-    re.compile(r"^Cpe\w{2,},", re.MULTILINE | re.IGNORECASE): 'среда,',
-    re.compile(r"^Cy66.rr?a", re.MULTILINE | re.IGNORECASE): 'суббота',
+    re.compile(r'Ornpa[ae]ne[eu]o c iPhone'): 'Отправлено с iPhone',
     re.compile(r"^flo\w{7,8}[HKhkw],", re.MULTILINE): 'понедельник,',
-    re.compile(r"^TeMa:", re.MULTILINE | re.IGNORECASE): 'Тема:',
-    re.compile(r"^KoMy:", re.MULTILINE | re.IGNORECASE): 'Кому:',
-    re.compile(r"^Aara:", re.MULTILINE | re.IGNORECASE): 'Дата:',
-    re.compile(r"^[O0]T:", re.MULTILINE | re.IGNORECASE): 'От:',
+    **RUSSIAN_HEADER_OCR_REPAIRS,  # Must come after     'Отправлено с iPhone'
     # XML footers
     re.compile('<[iI] ?nteger>'): '<integer>',
     # Misc

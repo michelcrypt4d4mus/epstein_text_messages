@@ -217,7 +217,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         label='header_field',  # email_header (or FBI)
         style='plum4',
         patterns=[
-            fr"^([>»•\s]{{,4}}({join_patterns(EMAIL_HEADER_FIELD_PATTERNS)}):|on behalf of)",
+            fr"^({QUOTE_INDENT_CHAR_GROUP}{{,4}}({join_patterns(EMAIL_HEADER_FIELD_PATTERNS)}):|on behalf of)",
             fr"^({join_patterns(FBI_REPORT_FIELDS)}):",
         ],
     ),
