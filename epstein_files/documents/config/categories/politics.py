@@ -115,5 +115,11 @@ POLITICS_CFGS = [
     EmailCfg(id='EFTA01053946', note='acquiring a Virgin Islands radio station', is_interesting=True, truncate_to=2_500),
 
     # Ehud
-    EmailCfg(id='EFTA01013193', highlight_quote="you should make clear that i dont work for mossad. :)", is_interesting=True, truncate_to=AUTO),
+    EmailCfg(id='EFTA00873126', note=f"Epstein emailing {EHUD_BARAK} hoping for a U.S. attack on Iran", is_interesting=10),
+    EmailCfg(
+        id='EFTA01013193',
+        highlight_quote="you should make clear that i dont work for mossad. :)",
+        is_interesting=True,
+        truncate_to=AUTO,
+    ),
 ]
