@@ -51,6 +51,7 @@ SHORT_LINKS = {
     'newyorker.com': 'nyer',
     'nypost.com': 'nyp',
     'nytimes.com': 'nyt',
+    'palmbeachpost': 'pbpost',
     'reddit.com': 'rddt',
     'stanford.edu': 'stanford',
     # 'substack.com': 'sbstk',
