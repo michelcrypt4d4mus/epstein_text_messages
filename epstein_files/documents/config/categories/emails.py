@@ -1305,7 +1305,7 @@ EMAILS_CONFIG = [
     EmailCfg(
         id='EFTA00826876',
         highlight_quote='I would have gladly share your expenses for the gawker suit',
-        note=f"{PETER_THIEL} backed Hulk Hogan's lawsuit that destroyed Gawker",
+        note=f"Epstein offering to help with the {PETER_THIEL} funded Hulk Hogan lawsuit that destroyed Gawker",
         is_interesting=10
     ),
     EmailCfg(

@@ -362,6 +362,7 @@ HIGHLIGHTED_NAMES = [
             r"(Frank\s)?Gehry",
             r"Giacommetti",
             r"Harvey Weinstein", r"wientstein", r"Weinstein Co(s?|mpany)",
+            r"Hulk Hogan",
             r"IFP",
             r"Independent Filmmaker Project",
             r"Jagger",
