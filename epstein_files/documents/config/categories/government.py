@@ -139,13 +139,6 @@ GOVERNMENT_CFGS = [
         show_full_panel=True,
     ),
     DocCfg(
-        id='EFTA00306074',
-        date='2008-06-01',
-        date_uncertain=True,
-        note=f"approved mail list during Epstein's 2009 incarceration in {PALM_BEACH}",
-        show_full_panel=True,
-    ),
-    DocCfg(
         id='EFTA00173953',
         author=OCDETF,
         date='2015-05-18',
