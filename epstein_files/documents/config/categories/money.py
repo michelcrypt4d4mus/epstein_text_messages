@@ -245,6 +245,7 @@ MONEY_CFGS = [
         id='EFTA01004841',
         highlight_quote='i cant program but iam not bad at structuring :)',
         note='"structuring" usually means illegally hiding money',
+        truncate_to=1_600,
     ),
 
     # Fashion TV

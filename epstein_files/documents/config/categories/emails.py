@@ -676,7 +676,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='012197_4', fwded_text_after='Thanks -- Jay', is_fwded_article=False),
     EmailCfg(id='026449', note="comments about Trump's 'former bridge girl and toy'", is_interesting=True),
     EmailCfg(id='032842', note='discussion of "stealing" a casino in Atlantic City', is_interesting=True),
-    EmailCfg(id='033377', note="Epstein says he knows Russian oligarch Oleg Deripaska", is_interesting=10),
+    EmailCfg(id='033377', note="Epstein says he knows Russian oligarch Oleg Deripaska", is_interesting=10, truncate_to=500),
     EmailCfg(
         id='023454',
         duplicate_ids=['EFTA02364089'],

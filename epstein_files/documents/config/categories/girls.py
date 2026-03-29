@@ -561,7 +561,7 @@ GIRLS_CFGS = [
     EmailCfg(id='EFTA01024729', author=YULIA_DOROKHINA, author_uncertain='thread'),
     EmailCfg(id='EFTA02634523', author=YULIA_DOROKHINA, author_uncertain='"Yulia"'),
     EmailCfg(id='EFTA01028241', author=YULIA_DOROKHINA, author_uncertain='"Yulia" in other emails in thread', truncate_to=NO_TRUNCATE),
-    EmailCfg(id='EFTA01026136', author=YULIA_DOROKHINA, highlight_quote='send the masturbation video', truncate_to=5_000),
+    EmailCfg(id='EFTA01026136', author=YULIA_DOROKHINA, highlight_quote='send the masturbation video', truncate_to=1_050),
 
     # Recipients
     EmailCfg(

@@ -513,7 +513,7 @@ CRYPTO_CFGS = [
         truncate_to=(11_000, 13_300),
     ),
     # Larry Summers
-    EmailCfg(id='EFTA01062556', is_interesting=10, note=f"{LARRY_SUMMERS} gives Epstein his thoughts on Gary Gensler", truncate_to=780),
+    EmailCfg(id='EFTA01062556', is_interesting=True, note=f"{LARRY_SUMMERS} gives Epstein his thoughts on Gary Gensler", truncate_to=780),
     EmailCfg(id='EFTA00818073', is_interesting=10, note="Epstein and Gary Gensler meeting about crypto", truncate_to=250),
     # Masha Drokova
     EmailCfg(
