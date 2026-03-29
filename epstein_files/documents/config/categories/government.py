@@ -421,7 +421,7 @@ GOVERNMENT_CFGS = [
     fbi_doc('EFTA00172473', 'executive summary of Epstein cases', date='2025-05-01', date_uncertain=True),
     fbi_doc('EFTA00151754', 'declaration of Law Enforcement Officer for Victim of Trafficking', is_interesting=True),
     fbi_doc('EFTA00173569', 'hack of FBI Epstein files repository by foreign actor', is_interesting=True),
-    fbi_doc('EFTA00020506', highlight_quote='chauffeur also told Epstein "I have something on you remember what I buried!"'),
+    fbi_doc('EFTA00020506', highlight_quote='chauffeur also told Epstein "I have something on you, remember what I buried!"'),
     fbi_doc('EFTA02729877', '"MCC Corruption Case" is about guards on duty when Epstein died', is_interesting=True),
     fbi_doc('EFTA00147020', "status of Epstein death investigation", date='2019-08-13'),
     fbi_doc('EFTA00165518', 'investigation update', date='2019-08-29'),

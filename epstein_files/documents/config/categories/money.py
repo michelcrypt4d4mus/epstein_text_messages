@@ -316,7 +316,12 @@ MONEY_CFGS = [
     EmailCfg(id='032458', note='discussion of acquiring pieces for Epstein\'s art collection', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA00649282', note=f"planning {BILL_GATES} donor advised fund with {JES_STALEY} on board"),
     EmailCfg(id='EFTA02246580', note=f"Epstein commissioning painting of little girl", truncate_to=305),
-    EmailCfg(id='EFTA00037187', note=f"Epstein's {DEUTSCHE_BANK} banker Paul Morris lawyers up immediately when contacted by the FBI", is_interesting=5),
+    EmailCfg(
+        id='EFTA00037187',
+        highlight_quote='Note, he appears to have done very well for himself as a low level relationship manager',
+        note=f"Epstein's {DEUTSCHE_BANK} banker Paul Morris lawyers up immediately when contacted by the FBI",
+        is_interesting=True,
+    ),
     EmailCfg(id='EFTA00911738', highlight_quote="I have been your guarantor, in our more intimate arrangements", is_interesting=True),
     EmailCfg(
         id='EFTA00091269',
