@@ -535,7 +535,7 @@ GIRLS_CFGS = [
         truncate_to=NO_TRUNCATE,
     ),
     EmailCfg(id='EFTA00763537', author=UNKNOWN_GIRL, highlight_quote="19 but I look younger than her"),
-    EmailCfg(id='EFTA01782788', author=UNKNOWN_GIRL, highlight_quote='I need 21-24, wiling to travel and work hard', truncate_to=NO_TRUNCATE),
+    EmailCfg(id='EFTA01782788', author=UNKNOWN_GIRL, highlight_quote='I need 21 24, wiling to travel and work hard', truncate_to=NO_TRUNCATE),
     EmailCfg(
         id='EFTA01024118',
         author=YULIA_DOROKHINA,
