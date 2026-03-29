@@ -111,7 +111,7 @@ class MessengerLog(Communication):
             background_color=self._config.background_color or background_color,
             body_indent=site_config.indents.info,
             body_panel=ListPanel(
-                border_style=self.border_style,
+                border_style='',  # TODO: no border?
                 text=[msg.__rich__() for msg in self.messages],
             ),
             document=self,

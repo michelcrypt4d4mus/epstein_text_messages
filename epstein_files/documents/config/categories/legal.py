@@ -138,7 +138,7 @@ LEGAL_CFGS = [
     DocCfg(id='EFTA00191148', author=JANE_DOE_V_USA, date='2013-06-19', truncate_to=2_000),
     DocCfg(
         id='EFTA00020729',
-        author=JANE_DOE_V_USA, note=f"declaration of {VIRGINIA_GIUFFRE} claiming threats",
+        author=JANE_DOE_V_USA, note=f"declaration of {VIRGINIA_GIUFFRE} claiming threats from men impersonating FBI agents",
         date='2015-02-06',
         highlight_quote='a call from this supposed FBI Agent made me very scared',
         truncate_to=AUTO,

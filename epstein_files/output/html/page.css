@@ -15,7 +15,7 @@ div.black_background {
 
 .category_government {
     font-family: "Special Elite", Menlo, 'DejaVu Sans Mono', consolas, 'Courier New', monospace;
-    font-size: 1.2em;
+    font-size: 1.1em;
     line-height: 1.3em;
 }
 
@@ -200,6 +200,9 @@ ul.no_bullets {
 
 ul.site_directory {
     margin-left: 5em;
+    ::marker {
+        content: '➱ ';
+    }
     /* text-align: right; */
     /* background-position: 100% .4em; */
 }
@@ -215,7 +218,9 @@ ul.site_directory_right {
     font-size: 1.5em;
 } */
 
-li::marker {
-    content: '➱ ';
-    /* font-size: 1.2em; */
+li.site_directory {
+    ::marker {
+        content: '➱ ';
+        /* font-size: 1.2em; */
+    }
 }

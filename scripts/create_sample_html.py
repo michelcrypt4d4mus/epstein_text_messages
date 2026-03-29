@@ -55,13 +55,13 @@ def print_test_panels():
 
 
 doc_types_to_sample = [
-    [d for d in epstein_files.documents if d.file_id == 'EFTA00009622'],
-    [d for d in epstein_files.documents if d.category == 'article' and d._config.show_full_panel],
-    [d for d in epstein_files.documents if d.category == 'government' and d._config.show_full_panel],
-    [d for d in epstein_files.documents if d.category == 'money' and d._config.show_full_panel],
-    [d for d in epstein_files.documents if d._config.pic_cfg],
-    [d for d in epstein_files.documents if d._config.is_displayed_as_img],
-    [d for d in epstein_files.documents if d._config.background_color], # Configured BG
+    # [d for d in epstein_files.documents if d.file_id == 'EFTA00009622'],
+    # [d for d in epstein_files.documents if d.category == 'article' and d._config.show_full_panel],
+    # [d for d in epstein_files.documents if d.category == 'government' and d._config.show_full_panel],
+    # [d for d in epstein_files.documents if d.category == 'money' and d._config.show_full_panel],
+    # [d for d in epstein_files.documents if d._config.pic_cfg],
+    # [d for d in epstein_files.documents if d._config.is_displayed_as_img],
+    # [d for d in epstein_files.documents if d._config.background_color], # Configured BG
     # [d for d in epstein_files.other_files if d.category in CATEGORY_BG_STYLES],  # BG by category
     # [e for e in epstein_files.emails if 'https' in e.text[0:1500]],
     # [o for o in epstein_files.other_files if o.config and o.config.show_full_panel],
@@ -71,7 +71,7 @@ doc_types_to_sample = [
     # [e for e in epstein_files.emails if e._config.note_txt()], # emails with description
     # [e for e in epstein_files.emails if not e._config.note_txt()],  # email no desc
     # epstein_files.emails_with_attachments,
-    # epstein_files.imessage_logs,
+    epstein_files.imessage_logs,
 ]
 
 images = [d for d in epstein_files.documents if d._config.is_displayed_as_img]
@@ -79,8 +79,8 @@ sample_docs = DocList.uniquify_by_id(flatten([docs[:SAMPLE_SIZE] for docs in doc
 printer = DocPrinter(epstein_files=epstein_files)
 
 # print header
-# printer.print_title_page_top()
-# printer.print_title_page_bottom()
+printer.print_title_page_top()
+printer.print_title_page_bottom()
 
 # Print docs
 printer.print_documents(sample_docs)

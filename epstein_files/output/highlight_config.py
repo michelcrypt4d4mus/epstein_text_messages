@@ -150,6 +150,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"lawyer",
             r"Notary Public",
             r"Page \d+ of \d+",
+            r"paralegal",
             r"(?-i:C)lause \d+\.?",
             r"passport",
             r"testimony",

@@ -188,6 +188,7 @@ MONEY_CFGS = [
         '2017-06-29',
         [DARREN_INDYKE, EVA_DUBIN, KATHRYN_RUEMMLER, RICHARD_KAHN, TERJE_ROD_LARSEN],
         note=f'witnessed by {LEO_LOKING} and {KARYNA_SHULIAK}',
+        truncate_to=3_000,
     ),
     epstein_will(
         'EFTA01266403',
@@ -244,6 +245,7 @@ MONEY_CFGS = [
         id='EFTA01004841',
         highlight_quote='i cant program but iam not bad at structuring :)',
         note='"structuring" usually means illegally hiding money',
+        truncate_to=1_600,
     ),
 
     # Fashion TV
@@ -316,7 +318,12 @@ MONEY_CFGS = [
     EmailCfg(id='032458', note='discussion of acquiring pieces for Epstein\'s art collection', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA00649282', note=f"planning {BILL_GATES} donor advised fund with {JES_STALEY} on board"),
     EmailCfg(id='EFTA02246580', note=f"Epstein commissioning painting of little girl", truncate_to=305),
-    EmailCfg(id='EFTA00037187', note=f"Epstein's {DEUTSCHE_BANK} banker Paul Morris lawyers up immediately when contacted by the FBI", is_interesting=5),
+    EmailCfg(
+        id='EFTA00037187',
+        highlight_quote='Note, he appears to have done very well for himself as a low level relationship manager',
+        note=f"Epstein's {DEUTSCHE_BANK} banker Paul Morris lawyers up immediately when contacted by the FBI",
+        is_interesting=True,
+    ),
     EmailCfg(id='EFTA00911738', highlight_quote="I have been your guarantor, in our more intimate arrangements", is_interesting=True),
     EmailCfg(
         id='EFTA00091269',
@@ -324,9 +331,10 @@ MONEY_CFGS = [
     ),
     EmailCfg(
         id='EFTA01409449',
+        highlight_quote='Please remove the client\'s personal name "Jeff Epstein" in the To: Client line',
         note=f"{DEUTSCHE_BANK} employees scrubbing Epstein's name off his Souther Financial account (and its TWTR (Twitter) trades)",
         is_interesting=20,
-        truncate_to=(10_800, 14_500),
+        truncate_to=(11_125, 14_500),
     ),
     EmailCfg(
         id='EFTA00461557',

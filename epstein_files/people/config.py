@@ -190,6 +190,7 @@ HIGHLIGHTED_NAMES = [
             Entity('Macky Sall', "prime minister of Senegal, defeated Abdoulaye Wade", match_partial=None),
             Entity('Okey Enelamah', f"Nigerian trade minister"),
             Entity(RASSECK_BOURGI, f"{KARIM_WADE}'s lawyer", r"(Rasseck|Ute) Bourgi?", match_partial='both'),
+            Entity('Robert Mugabe', "Zimbabwean dictator"),
             Entity('Ute Bourgi', f"wife of {RASSECK_BOURGI}", match_partial=None),
             Entity(
                 'Willis Knuckles',
@@ -1170,6 +1171,7 @@ HIGHLIGHTED_NAMES = [
             ),
             Entity('Ira Magaziner', 'former head of the Clinton Health Access Initiative'),
             Entity('Joel Klein', 'chancellor of the NYC Dept. of Education', match_partial=None, url=WIKIPEDIA),
+            Entity('John Kennedy Jr.'),
             Entity('Mark Wetjen', 'CFTC acting chairman under Obama, crypto bro'),
             Entity(PAUL_PROSPERI, "friend of Bill Clinton"),
             Entity('Rodney Slater', 'Clinton Transportation Secretary', match_partial=None),
@@ -1453,7 +1455,7 @@ HIGHLIGHTED_NAMES = [
             Entity(ADA_CLAPP, f"Chief Legal Officer of {LEON_BLACK}'s {ELYSIUM_MANAGEMENT}"),
             Entity(ALAN_DLUGASH, 'tax partner at Paneth and Shrone', r"Alan (J.? )?Dlugash"),
             Entity('Alan S. Halperin', "partner at Paul, Weiss", r"(Alan.{8})?Halperin(, Alan S)?"),
-            Entity(ALAN_DERSHOWITZ, f"{HARVARD} Law School professor", r"(alan.{1,7})?dershowi(lz?|t?z)|AlanDersh", url=WIKIPEDIA),
+            Entity(ALAN_DERSHOWITZ, f"{HARVARD} Law School professor", r"(Alan.{,7})?Dershowi(lz?|t?z)|AlanDersh", url=WIKIPEDIA),
             Entity('Andrew G. Celli', f"{ALAN_DERSHOWITZ}'s lawyer", match_partial=None),
             Entity(ARDA_BESKARDES, "NYC immigration attorney allegedly involved in sex-trafficking operations"),
             Entity('Bebe Avdiu', f'legal assistant to {DARREN_INDYKE}', r"Bebe A(vdiu|ydin)"),
@@ -2457,7 +2459,7 @@ HIGHLIGHTED_NAMES = [
             Entity('James Patterson', f'pulp fiction author, wrote a book about Epstein with {STEVEN_HOFFENBERG}'),
             Entity(JAMES_STEWART, 'New York Times reporter', match_partial=None),
             Entity(JENNIFER_JACQUET, "Future Science magazine"),
-            Entity('James C. Kennedy', 'media exec, chair of Cox Enterprises', r"J[ai]m(es)?( C\.?)? Kennedy"),
+            Entity('James C. Kennedy', 'media exec, chair of Cox Enterprises', r"J[ai]m(es)?( C\.?)? Kennedy", match_partial=None),
             Entity(
                 JOHN_BROCKMAN,
                 "literary agent and author specializing in scientific literature",
@@ -3792,8 +3794,7 @@ HIGHLIGHTED_NAMES = [
             r"Dropbox",
             r"Facebook",
             r"Google( (rank(ing)?|search(es)?))?",
-            r"(?-i:IMG) \d+( \d+)\.(jpe?g|png)",
-            r"(?-i:VID) \d+( \d+)\.(avi|mp..?)",
+            r"hack(e[dr]|ing)",
             r"Instagram",
             r"k[ce]ychain( cracking)?",
             r"(?-i:I)ntel",
@@ -3819,6 +3820,9 @@ HIGHLIGHTED_NAMES = [
             # Video games
             r"Call of Duty",
             r"World of Warcraft",
+            # file types
+            r"(?-i:IMG) \d+( \d+)\.(jpe?g|png)",
+            r"(?-i:VID) \d+( \d+)\.(avi|mp..?)",
         ],
     ),
     # aquamarine1

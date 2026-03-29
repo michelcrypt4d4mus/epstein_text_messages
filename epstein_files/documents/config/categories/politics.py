@@ -82,7 +82,12 @@ POLITICS_CFGS = [
         highlight_quote="Am totally tricked out by Uncle Jeffrey today! Jeffrey boots, handbag, and w=tch!",
         is_interesting=10,
     ),
-    EmailCfg(id='EFTA00661468', highlight_quote='carpets and all', note="the prince of Saudi Arabia sent Epstein a tent", is_interesting=5),
+    EmailCfg(
+        id='EFTA00661468',
+        highlight_quote='carpets and all', note="the prince of Saudi Arabia sent Epstein a tent",
+        is_interesting=5,
+        truncate_to=500,
+    ),
 
     # Bannon
     bannon_imessage(
@@ -101,6 +106,9 @@ POLITICS_CFGS = [
     # Albert Bryan
     EmailCfg(id='EFTA02258597', recipients=[ALBERT_BRYAN, DAPHNE_WALLACE]),
     EmailCfg(id='EFTA02258608', author=DAPHNE_WALLACE, recipients=[ALBERT_BRYAN, JOHN_ENGERMAN]),
+
+    # russia
+    EmailCfg(id='EFTA01974447', highlight_quote='I know you are going to meet putin on the 20th'),
 
     # USVI
     EmailCfg(id='EFTA00705527', note='acquiring a Virgin Islands radio station', visible_in_id='EFTA01053946'),
