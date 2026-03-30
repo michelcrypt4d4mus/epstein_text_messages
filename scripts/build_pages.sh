@@ -32,12 +32,6 @@ else
     print_deploy_step "Skipping chronological builds..."
 fi
 
-# Categories
-for category in "${CATEGORIES[@]}"; do
-    print_deploy_step "Building category $category page..."
-    $GENERATE_SIDE_PANELS_CMD --category $category
-done
-
 # Fast pages
 print_deploy_step "Building notes pages..."
 $GENERATE_CMD --output-notes
@@ -58,6 +52,12 @@ $GENERATE_CMD --output-notes
 if [ -n "$ONLY_MOST_INTERESTING" ]; then
     print_deploy_step "Skipping build of curated emails and all emails/all other files pages..."
 else
+    # Categories
+    for category in "${CATEGORIES[@]}"; do
+        print_deploy_step "Building category $category page..."
+        $GENERATE_SIDE_PANELS_CMD --category $category
+    done
+
     print_deploy_step "Building other files table page..."
     $GENERATE_CMD --all-other-files
     print_deploy_step "Building curated page..."
