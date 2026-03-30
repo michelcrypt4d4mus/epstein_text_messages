@@ -65,7 +65,7 @@ HIGHLIGHTED_NAMES = [
             ),
             Entity(JEM_BENDELL, 'board member of Community Forge, provider of alternative currency software', match_partial='both'),
             Entity('Jessica Zilo', f"Columbia Dental School tutor for {KARYNA_SHULIAK}", match_partial=None),
-            Entity(JOSCHA_BACH, "cognitive science / AI research", match_partial='both'),
+            Entity(JOSCHA_BACH, "cognitive science / AI research", match_partial='first'),
             Entity('Joseph Thakuria', 'MGH genetics'),
             Entity(
                 LAWRENCE_KRAUSS,
