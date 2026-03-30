@@ -92,6 +92,10 @@ class DocList:
         return [e for e in self.emails if e.attached_docs]
 
     @property
+    def file_ids(self) -> set[str]:
+        return set([d.file_id for d in self.documents])
+
+    @property
     def imessage_logs(self) -> list[MessengerLog]:
         return MessengerLog.filter_for_type(self.documents)
 
