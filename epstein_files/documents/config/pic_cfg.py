@@ -79,6 +79,7 @@ PIC_CFGS = [
         date='2003-01-20',
         is_displayed_as_img = True,
         is_interesting=20,
-        note='birthday letter to Jeffrey Epstein',
+        note='from the Jeffrey Epstein birthday book "The First Fifty Years"',
+        url='https://www.documentcloud.org/documents/26086390-jeffey-epstein-50th-birthday-book/',
     ),
 ]
