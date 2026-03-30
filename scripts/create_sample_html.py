@@ -25,7 +25,7 @@ from epstein_files.util.helpers.data_helpers import flatten
 from epstein_files.util.helpers.file_helper import open_file_or_url
 from epstein_files.util.logging import logger
 
-SAMPLE_SIZE = 2
+SAMPLE_SIZE = 3
 
 TEST_PANELS = [
     Panel('bright_red', style='bright_red'),
