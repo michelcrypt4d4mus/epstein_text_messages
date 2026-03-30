@@ -29,7 +29,7 @@ MONEY_OCR_REPAIRS: OcrRepair = {
 
 
 def banca_del_fucino_doc(id: str, note: str = '', **kwargs) -> DocCfg:
-    return DocCfg(id=id, author='Banca del Fucino', **kwargs)
+    return DocCfg(id=id, author='Banca del Fucino', note=note, **kwargs)
 
 
 def cabinet_inventory(id: str, container: str, **kwargs) -> DocCfg:
@@ -156,6 +156,7 @@ MONEY_CFGS = [
     deutsche_bank_doc('EFTA00168622', 'KYC for Epstein', date='2017-03-07'),
     deutsche_bank_doc('EFTA00168920', 'KYC for Epstein', date='2018-02-13'),
     deutsche_bank_doc('EFTA00316340', 'wire transfer'),
+    deutsche_bank_doc('EFTA00522616', f'wire transfer to {KARYNA_SHULIAK} finishing school Institut Villa Pierrefeu'),
     deutsche_bank_doc('EFTA00169211', 'transaction statement', '2014-04-10'),
     deutsche_bank_doc('EFTA00297946', 'wire transfer'),
     deutsche_bank_doc('EFTA00151495', 'consent order for laundering Epstein money', date='2020-07-06'),
@@ -380,6 +381,9 @@ MONEY_CFGS = [
     # Wexner
     letter('EFTA01110729', None, [LES_WEXNER], highlight_quote='You and I had " gang stuff " for over 15 years'),
 
+    # Misc
+    DocCfg(id='EFTA00600099', date='2012-08-30', note='valuations of Epstein holdings'),
+
     # Emails
     EmailCfg(id='032458', note='discussion of acquiring pieces for Epstein\'s art collection', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA00649282', note=f"planning {BILL_GATES} donor advised fund with {JES_STALEY} on board"),
@@ -546,4 +550,5 @@ MONEY_CFGS = [
         note=f"at least $40,000,000 in redemptions from {HIGHVIEW_GLOBAL_MACRO}, {HIGHBRIDGE_EQUITY_FUND}, and {PINEHURST_PLUS}",
     ),
     EmailCfg(id='EFTA00396664', note="Jamie Dimon's contact info"),
+    EmailCfg(id='EFTA00719742', note='sale of 727 jet to Qatar', is_interesting=5),
 ]

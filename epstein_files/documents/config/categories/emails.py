@@ -8,7 +8,7 @@ from epstein_files.documents.config.email_cfg import SNEAKY_DOG, EmailCfg, daily
 from epstein_files.documents.emails.constants import FLIGHT_IN_2012_PEOPLE, IRAN_DEAL_RECIPIENTS, TRIVERS_CCS
 from epstein_files.people.names import *
 from epstein_files.util.constant.strings import *
-from epstein_files.util.constant.urls import DROPSITE_EPSTEIN_CAMERAS_URL
+from epstein_files.util.constant.urls import DROPSITE_EPSTEIN_CAMERAS_URL, JMAIL_JCAL_URL
 from epstein_files.util.helpers.string_helper import join_truthy, quote
 
 # Atribution reasons
@@ -32,6 +32,7 @@ def meeting_notification(id: str, note: str = '', **kwargs) -> EmailCfg:
         id=id,
         is_interesting=False,
         note=join_truthy('meeting notification', note),
+        url=JMAIL_JCAL_URL,
         **kwargs,
     )
 
@@ -101,7 +102,10 @@ EMAILS_CONFIG = [
     EmailCfg(id='026069', author=ARIANE_DE_ROTHSCHILD, author_reason='signature'),
     EmailCfg(id='030741', author=ARIANE_DE_ROTHSCHILD, author_reason='signature'),
     EmailCfg(id='026018', author=ARIANE_DE_ROTHSCHILD, author_reason='signature'),
+    EmailCfg(id='EFTA00707304', author=ARIANE_DE_ROTHSCHILD, author_reason='signature'),
+    EmailCfg(id='EFTA00658389', author=ARIANE_DE_ROTHSCHILD, author_reason='signature'),
     EmailCfg(id='EFTA01744418', author=ARIANE_DE_ROTHSCHILD, author_reason='signature'),
+    EmailCfg(id='EFTA00691448', author=ARIANE_DE_ROTHSCHILD, author_reason='signature'),
     EmailCfg(
         id='029504',
         author='Audrey/Aubrey Raimbault',
@@ -235,6 +239,11 @@ EMAILS_CONFIG = [
     ),
     EmailCfg(id='027046', author=LAWRANCE_VISOSKI, duplicate_ids=['028789']),
     EmailCfg(id='033488', author=LAWRANCE_VISOSKI, duplicate_ids=['033154']),
+
+    EmailCfg(id='EFTA00630191', author=LINDA_STONE, author_reason='"Co-authored with iPhone autocorrect"'),
+    EmailCfg(id='EFTA00711250', author=LINDA_STONE, author_reason='"Co-authored with iPhone autocorrect"'),
+    EmailCfg(id='EFTA00658370', author=LINDA_STONE, author_reason='"Co-authored with iPhone autocorrect"'),
+    EmailCfg(id='EFTA00630147', author=LINDA_STONE, author_reason='"Co-authored with iPhone autocorrect"'),
     EmailCfg(id='033309', author=LINDA_STONE, author_reason='"Co-authored with iPhone autocorrect"'),
     EmailCfg(id='017581', author=LISA_RANDALL, author_reason='reply header'),
     EmailCfg(id='026609', author='Mark Green', author_reason='Actually a fwd, Mark Green is in signature'),
@@ -1159,7 +1168,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA02176727', recipients=[LESLEY_GROFF], recipient_uncertain=True),
     EmailCfg(id='EFTA00357885', recipients=[LESLEY_GROFF], recipient_uncertain=True),
 
-    EmailCfg(id='EFTA00418918', recipients=[LESLEY_GROFF], recipient_uncertain='scheduling'),
+    EmailCfg(id='EFTA00418918', author=LESLEY_GROFF, author_uncertain='scheduling'),
     EmailCfg(id='EFTA02068436', recipients=[LESLEY_GROFF], recipient_uncertain=True),
     EmailCfg(id='EFTA00450187', recipients=[LESLEY_GROFF], recipient_uncertain=True),
     EmailCfg(id='EFTA02068531', recipients=[LESLEY_GROFF], recipient_uncertain=True),
@@ -1248,6 +1257,7 @@ EMAILS_CONFIG = [
     daily_schedule_email('EFTA00391777'),
     daily_schedule_email('EFTA00390161'),
     daily_schedule_email('EFTA00404196'),
+    daily_schedule_email('EFTA00492926', author=JEFFREY_EPSTEIN, author_uncertain=True),
     daily_schedule_email('EFTA00391752'),
     daily_schedule_email('EFTA00350957', author=LESLEY_GROFF),
     daily_schedule_email('EFTA00481869', author=LESLEY_GROFF),
@@ -1256,6 +1266,7 @@ EMAILS_CONFIG = [
     daily_schedule_email('EFTA00375683', author=LESLEY_GROFF, author_uncertain=True),
     daily_schedule_email('EFTA01949912', author=LESLEY_GROFF, author_uncertain=True),
     daily_schedule_email('EFTA00423898', author=LESLEY_GROFF, author_uncertain=True),
+    daily_schedule_email('EFTA00627630', author=LESLEY_GROFF, author_uncertain=True),
     daily_schedule_email('EFTA00391916', author=LESLEY_GROFF, author_uncertain=True),
     daily_schedule_email('EFTA00948189', author=LESLEY_GROFF, author_uncertain=True),
     daily_schedule_email('EFTA00378753', author=LESLEY_GROFF, author_uncertain=True, note='Mark Tollison was fired'),
@@ -1263,6 +1274,8 @@ EMAILS_CONFIG = [
     daily_schedule_email('EFTA00427826', recipients=[LESLEY_GROFF]),
     daily_schedule_email('EFTA00346567', recipients=[LESLEY_GROFF], recipient_uncertain=True, author=LYN_FONTANILLA),
     meeting_notification('EFTA00427118'),
+    meeting_notification('EFTA02127820'),
+    meeting_notification('EFTA00497911'),
     meeting_notification('EFTA00394469', author=LESLEY_GROFF, recipients=[JEFFREY_EPSTEIN]),
     EmailCfg(
         id='EFTA00339256',

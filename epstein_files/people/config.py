@@ -121,6 +121,7 @@ HIGHLIGHTED_NAMES = [
                 url='https://www.npr.org/2019/07/19/742725946/a-young-jeffrey-epstein-made-an-impression-on-his-high-school-students',
             ),
             Organization('Illumina Accelerator', 'DNA sequencer'),
+            Organization('Institut Villa Pierrefeu', 'finishing school'),
             Organization(
                 MIT_MEDIA_LAB,
                 f"once great research institute overtaken by get rich quick schemes under {JOI_ITO}",
@@ -579,6 +580,7 @@ HIGHLIGHTED_NAMES = [
             Entity('Sam Belzberg', "Canadian businessman"),
             Entity(STEVE_WYNN, f'gambling magnate, possible dispute with {MILES_GUO}', match_partial=None, url=WIKIPEDIA),
             Entity(TOM_PRITZKER, "chairman of The Pritzker Organization and Hyatt Hotels", r"Th?om(as)? Pr(it|ti)[sz]ker"),
+            Entity.assistant('Susan Powelson', 'Sam Belzberg'),
 
             # Orgs
             Organization.well_known("American Express", is_emailer=True),
@@ -1639,6 +1641,7 @@ HIGHLIGHTED_NAMES = [
                 match_partial='both',
             ),
             Entity('Jack Lang', "former French Minister of National Education", match_partial=None),
+            Entity('Kjell Magne Bondevik', 'president of Oslo Center for Peace and Human Rights'),
             Entity(
                 'Martine Vik Magnussen',
                 f'murdered by son of {SHAHER_ABDULHAK_BESHER}',
@@ -1867,7 +1870,7 @@ HIGHLIGHTED_NAMES = [
             Entity('Lyndon Lea', f"Lion Capital", match_partial=None),
             Entity('Marc Lasry', 'billionaire co-founder of Avenue Capital'),
             Entity(MELANIE_SPINELLA, f"representative of {LEON_BLACK}", r"M?elanie Spine[Il]{2}a"),
-            Entity(EILEEN_ALEXANDERSON, f"{LEON_BLACK}'s {ELYSIUM_MANAGEMENT}"),
+            Entity(EILEEN_ALEXANDERSON, f"{LEON_BLACK}'s {ELYSIUM_MANAGEMENT}", email_addresses=['ealexanderson@apollo.advisors.com']),
             Entity(MICHAEL_FOWLER, f"{ATORUS} / Red Dot Trade fund co-founder", match_partial=None),
             Entity('Michael Milken', 'infamous junk bond king who went to prison in the 1980s', r"(Mi(chael|ke) )?Milken( Conference|Institute)?", url=WIKIPEDIA),
             Entity(
@@ -3544,6 +3547,7 @@ HIGHLIGHTED_NAMES = [
                     # 'https://archive.ph/0nVfp',
                 ],
             ),
+            Entity('Svetlana Zhuravleva'),
             Entity(
                 YULIA_DOROKHINA,
                 'prolific recruiter of girls, possibly formally employed by Epstein at some point',

@@ -1028,6 +1028,9 @@ GIRLS_CFGS = [
     EmailCfg(id='EFTA02398135', comment=JULIA_SANTOS + ' "Sochi"'),
     EmailCfg(id='EFTA00766770'),
 
+    # Jean Luc
+    EmailCfg(id='EFTA00660742', author=JEAN_LUC_BRUNEL, author_reason='reply', non_participants=[SVETLANA_POZHIDAEVA]),
+
     # Ramsey
     EmailCfg(
         id='EFTA00743526',
