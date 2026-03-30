@@ -188,8 +188,10 @@ class DocPrinter(DocList):
 
             # Change the layout for OtherFile (indented, file info panel offset intward)
             if isinstance(doc, (OtherFile, Picture)):
-                bg_color = CATEGORY_BG_STYLES[doc.category]
-                doc = doc.make_layout(background_color=bg_color, indent=site_config.indents.show_with)
+                doc = doc.make_layout(
+                    background_color=CATEGORY_BG_STYLES[doc.category],
+                    indent=site_config.indents.show_with if isinstance(doc, OtherFile) else site_config.indents.picture,
+                )
 
                 if doc.file_info:
                     doc.file_info_indent = doc.file_info.indent = 1
