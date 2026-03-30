@@ -455,6 +455,12 @@ GOVERNMENT_CFGS = [
         truncate_to=AUTO,
         url='https://www.bbc.com/news/articles/c6271ngl014o',
     ),
+    fbi_tip(
+        'EFTA01249602',
+        '',
+        highlight_quote="in return for the janitor's silence that Epstein paid the tuition costs for the janitor's son",
+        truncate_to=AUTO,
+    ),
     fbi_tip('EFTA01249562', 'John Houshmand about cameras'),
     fbi_tip('EFTA01249281', f'from {UNKNOWN_GIRL}'),
     fbi_tip('EFTA01249623', 'from New Mexico police officer about Zorro Ranch'),

@@ -101,13 +101,17 @@ MONEY_CFGS = [
     DocCfg(id='024003', note=f"New Leaf Ventures ($375 million biotech fund) private placement memorandum"),
     letter(id='026134', recipients=['George'], note=f'about opportunities to buy banks in Ukraine'),
 
-    # DOJ files
+    # Honeycomb
+    DocCfg(id='EFTA00803515', author=HONEYCOMB_ASSET_MANAGEMENT, note='limited partner agreement'),
     DocCfg(id='EFTA00313995', author=HONEYCOMB_ASSET_MANAGEMENT, note='HONEYCOMB VENTURES IV LP', date='2019-03-11'),
+    DocCfg(id='EFTA00803477', author=HONEYCOMB_ASSET_MANAGEMENT, note='investor update'),
+    DocCfg(id='EFTA00803405', author=HONEYCOMB_ASSET_MANAGEMENT, note="fund brochure"),
+
+    # DOJ files
     DocCfg(id='EFTA00007781', display_text='paychecks signed by Epstein deposited at Colonial Bank', date='2005-08-12'),
     DocCfg(id='EFTA00000476', display_text='photo of JEFFREY EPSTEIN CASH DISBURSEMENTS', date='2006-09-01', is_interesting=False),
     DocCfg(id='EFTA00606411', display_text='proposed jet ownership structure flowchart', date='2017-01-01', date_uncertain='guess'),
     DocCfg(id='EFTA01282282', author=BUTTERFLY_TRUST, note=f"almost completely redacted list of beneficiaries"),
-    DocCfg(id='EFTA00803405', author=HONEYCOMB_ASSET_MANAGEMENT, note="fund brochure"),
     DocCfg(id='EFTA02710849', author='Pensum', note='BJAV Marine Ltd / Arcadia Group invoice', is_in_chrono=False),
     DocCfg(
         id='EFTA01413294',
@@ -152,10 +156,23 @@ MONEY_CFGS = [
         is_interesting=10,
         note=f"Epstein's financial transactions and account balances at Bear Stearns less than two years before it collapsed in 2008",
     ),
+    deutsche_bank_doc('EFTA01253364', epstein_trust_name('2007')),
+    deutsche_bank_doc('EFTA01253411', epstein_trust_name('2007')),
+    deutsche_bank_doc('EFTA01253425', epstein_trust_name('2007')),
+    deutsche_bank_doc('EFTA01253490', epstein_trust_name('2007')),
+    deutsche_bank_doc('EFTA01253642', epstein_trust_name('2007')),
+    deutsche_bank_doc('EFTA01253710', epstein_trust_name('2007')),
+    deutsche_bank_doc('EFTA01253783', epstein_trust_name('2007')),
+    deutsche_bank_doc('EFTA01253920', 'LSJE, LLC statement with $500,000 deposit, transfers to Russian/Chinese banks', date='2019-01-31', is_interesting=True),
+    deutsche_bank_doc('EFTA01297175', 'HBRK Associates transactions'),
+    deutsche_bank_doc('EFTA01416824', 'Bank Leumi transfer inquiry'),
+    deutsche_bank_doc('EFTA01363138', 'money laundering inquiry about $40,000 to Bank Leumi account'),
+    deutsche_bank_doc('EFTA00811549', 'analysis of Epstein accounts', date='2017-07-31', is_interesting=True),
     deutsche_bank_doc('EFTA00168742', 'KYC for Epstein and HBRK Associates and New York Strategy Group', date='2019-07-11'),
     deutsche_bank_doc('EFTA00168622', 'KYC for Epstein', date='2017-03-07'),
     deutsche_bank_doc('EFTA00168920', 'KYC for Epstein', date='2018-02-13'),
     deutsche_bank_doc('EFTA00316340', 'wire transfer'),
+    deutsche_bank_doc('EFTA00799059', f'wire transfer to {SCOTT_J_LINK}'),
     deutsche_bank_doc('EFTA00522616', f'wire transfer to {KARYNA_SHULIAK} finishing school Institut Villa Pierrefeu'),
     deutsche_bank_doc('EFTA00169211', 'transaction statement', '2014-04-10'),
     deutsche_bank_doc('EFTA00297946', 'wire transfer'),
@@ -276,8 +293,11 @@ MONEY_CFGS = [
     cabinet_inventory('EFTA00299927', 'FILE CABINET TWO', note=f"{JAMES_CAYNE} estate plan"),
     cabinet_inventory('EFTA00299859', 'FILE CABINET ONE DRAWER 1'),
     inventory('EFTA00300480', 'document binders related to financial transactions', highlight_quote='Sale of 727 to Qatar', truncate_to=1_000),
-    memo('EFTA01366011', DARREN_INDYKE, f"$3,000 expense reimbursement for {LASMA_KUHTARSKA}", show_with_name=LASMA_KUHTARSKA),  # TODO: to "marjorie"
     letter('EFTA00587879', DARREN_INDYKE, ['BV70 LLC'], "extremely dodgy charitable donation to Epstein associated co. Gratitude", is_interesting=11),
+    memo('EFTA01366011', DARREN_INDYKE, f"$3,000 expense reimbursement for {LASMA_KUHTARSKA}", show_with_name=LASMA_KUHTARSKA),  # TODO: to "marjorie"
+    memo('EFTA01360528', DARREN_INDYKE, f'to Amanda Kirby wiring $1,000,000 to {CARBYNE}', date='2015-03-16'),
+    memo('EFTA01360536', DARREN_INDYKE, f'to Amanda Kirby wiring $1,000,000 to {CARBYNE}', date='2015-03-16'),
+    memo('EFTA01404004', DARREN_INDYKE, f'to Amanda Kirby wiring $1,000,000 to {CARBYNE}', date='2015-03-16'),
     DocCfg(id='EFTA00622816', note="Plan D note promising $8,000,000 to Leon Black's BV70 LLC", date='2017-04-17', is_interesting=10, truncate_to=500),
     DocCfg(
         id='EFTA00709105',
@@ -287,6 +307,15 @@ MONEY_CFGS = [
         is_interesting=11,
         show_full_panel=True, # TODO: show image?
         truncate_to=1_600,
+    ),
+    DocCfg(
+        id='EFTA01192347',
+        date='2015-01-15',
+        date_uncertain='approx',
+        is_interesting=11,
+        note="Epstein employee payroll 2014",
+        show_full_panel=True, # TODO: show image?
+        truncate_to=1_290,
     ),
     DocCfg(
         id='EFTA00076491',
@@ -433,6 +462,7 @@ MONEY_CFGS = [
     EmailCfg(id='EFTA02633194', note=f'{NICOLE_JUNKERMANN} quotes an appraisal by "FSB (Russians)"', is_interesting=10),
     EmailCfg(id='EFTA01435454', note=f"{DEUTSCHE_BANK} finally sets up a trading account for Epstein's Southern Financial"),
     EmailCfg(id='EFTA02630431', note=f"{CARBYNE} is an Israeli company invested in by Epstein, {NICOLE_JUNKERMANN}, & {EHUD_BARAK}"),
+    EmailCfg(id='EFTA00822267', note=f'details of {CARBYNE} / Reporty deal', truncate_to=2_000),
     EmailCfg(
         id='EFTA01375243',
         is_interesting=6,
@@ -467,6 +497,9 @@ MONEY_CFGS = [
         note=f"AML / Suspicious Activity report on structured deposits by {DARREN_INDYKE}",
     ),
 
+    # Boothbay
+    EmailCfg(id='EFTA00815157', note=f"withdrawal of $10,000,000 from Boothbay", truncate_to=250, is_interesting=5),
+
     # Leon Black
     DocCfg(
         id='EFTA00599517',
@@ -474,8 +507,7 @@ MONEY_CFGS = [
         note=f'list of {LEON_BLACK} companies that {EILEEN_ALEXANDERSON} can make financial transactions for',
         truncate_to=1_500,
     ),
-    letter('EFTA00587395', LEON_BLACK, [BEN_GOERTZEL], "$300,000 donation"),
-    letter('EFTA00587177', LEON_BLACK, [MARTIN_NOWAK], "$5,000,000 pledge"),
+    DocCfg(id='EFTA01203778', note=f"master list of entities controlled by {LEON_BLACK} family", is_interesting=10),
     DocCfg(id='EFTA01478313', note=f'list of investments (maybe of {LEON_BLACK})', date='2016-03-31'),
     DocCfg(id='EFTA00585292', author=SOUTHERN_TRUST_COMPANY, note=f'invoice for $20,000,000 to {LEON_BLACK}', show_full_panel=True, is_interesting=15),
     DocCfg(id='EFTA00587737', author='Avioneta', note='letter of intent to buy jet for $27 million'),
@@ -498,7 +530,8 @@ MONEY_CFGS = [
         is_interesting=True,
         truncate_to=AUTO,
     ),
-
+    letter('EFTA00587395', LEON_BLACK, [BEN_GOERTZEL], "$300,000 donation"),
+    letter('EFTA00587177', LEON_BLACK, [MARTIN_NOWAK], "$5,000,000 pledge"),
 
     # David Stern
     EmailCfg(
@@ -512,6 +545,7 @@ MONEY_CFGS = [
         highlight_quote="Need world class private security (personal protection) firm in Israel or US. It's for China to build up operations there",
         is_interesting=True,
     ),
+    EmailCfg(id='EFTA00819795', note='attempt to broker deal to sell Stansted Airport to the Chinese'),
 
     # George Church
     EmailCfg(id='EFTA02482178', note=f"Epstein invests $5 million in eGenesis", is_interesting=10),

@@ -1,5 +1,5 @@
 from epstein_files.documents.documents.categories import Neutral
-from epstein_files.documents.config.config_builder import press_release
+from epstein_files.documents.config.config_builder import letter, press_release
 from epstein_files.documents.config.doc_cfg import DocCfg
 from epstein_files.documents.config.email_cfg import EmailCfg
 from epstein_files.people.names import *
@@ -59,4 +59,13 @@ PROPERTY_CFGS = [
 
     # Faith Kates
     EmailCfg(id='EFTA00756294', note=f"Epstein and {FAITH_KATES} buy a Manhattan apartment together"),
+    EmailCfg(id='EFTA00736341', note=f"Epstein and {FAITH_KATES} buy a Manhattan apartment together"),
+
+    # Misc
+    EmailCfg(id='EFTA00767027', author='Fite Shavell & Associates'),
+    EmailCfg(id='EFTA00764574', author='Fite Shavell & Associates'),
+    DocCfg(id='EFTA00788401', note=f"{NOAM_CHOMSKY} property transaction", date='2017-12-18'),
+    letter('EFTA00586847', DARREN_INDYKE, ['R.S. Giraud'], 'purchase of Skorpios Island'),
+    EmailCfg(id='EFTA00923390', recipients=['R.S. Giraud', BORIS_NIKOLIC], note='purchase of Skorpios Island'),
+
 ]

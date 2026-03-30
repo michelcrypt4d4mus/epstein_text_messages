@@ -1,5 +1,6 @@
 from epstein_files.documents.config.doc_cfg import NO_TRUNCATE, DocCfg
 from epstein_files.documents.config.email_cfg import EmailCfg
+from epstein_files.documents.config.pic_cfg import PicCfg
 from epstein_files.people.names import *
 from epstein_files.util.constant.strings import *
 
@@ -8,6 +9,17 @@ RUSSIA_CFGS = [
     DocCfg(id='EFTA01227877', note='multi entry visa for the Russian Federation', date='2018-06-25', show_full_panel=True),
 
     # DOJ
+    DocCfg(
+        id='EFTA00306033',
+        author=SERGEY_BELYAKOV,
+        is_interesting=10,
+        note='Epstein Russian visa',
+        pic_cfg=PicCfg(
+            id='EFTA00306033',
+        ),
+        show_full_panel=True,
+    ),
+    EmailCfg(id='EFTA01974447', highlight_quote='I know you are going to meet putin on the 20th'),
     EmailCfg(id='EFTA01926669', author=SERGEY_BELYAKOV),
     EmailCfg(id='EFTA00858688', author=SERGEY_BELYAKOV, note=f"Epstein introduces {EHUD_BARAK} to {SERGEY_BELYAKOV}", is_interesting=10),
     EmailCfg(id='EFTA00704085', author=SERGEY_BELYAKOV, author_reason='response to EFTA00835324'),
@@ -41,4 +53,7 @@ RUSSIA_CFGS = [
         note=f"Epstein brings {SERGEY_BELYAKOV} to meet {PETER_THIEL}",
         recipients=[SERGEY_BELYAKOV, JEFFREY_EPSTEIN, 'Elena Bolyakina', PETER_THIEL],
     ),
+    # Banks
+    EmailCfg(id='EFTA01008774', note='$250,000 transfer to Sberbank account'),
+
 ]

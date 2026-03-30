@@ -90,6 +90,7 @@ POLITICS_CFGS = [
         truncate_to=500,
     ),
     EmailCfg(id='EFTA00319913', note=f'Epstein buys {KATHRYN_RUEMMLER} a Hermes handbag'),
+    EmailCfg(id='EFTA00819729', note=f'Epstein buys {KATHRYN_RUEMMLER} a Hermes handbag'),
 
     # Bannon
     bannon_imessage(
@@ -104,32 +105,22 @@ POLITICS_CFGS = [
     bannon_imessage('EFTA01615808'),
     bannon_imessage('EFTA01615165', '2018-06-29'),
     bannon_imessage('EFTA00783660', date='2019-02-06'),
-    imessage_log('EFTA01612618', author=BORGE_BRENDE, date='2018-03-17'),
     bannon_imessage('EFTA01615587', date='2019-01-22'),
     bannon_imessage('EFTA01615683', date='2019-03-29'),
     EmailCfg(id='EFTA01014138', highlight_quote="do you know bill barr. CIA", truncate_to=222),
     DocCfg(id='EFTA00296095', note=f"Mitt Romney victory party"),
+    imessage_log('EFTA01612618', author=BORGE_BRENDE, date='2018-03-17'),
+    imessage_log('EFTA01212310', date='2019-03-28'),
+    imessage_log('EFTA01618718', date='2019-06-07'),
 
     # Albert Bryan
     EmailCfg(id='EFTA02258597', recipients=[ALBERT_BRYAN, DAPHNE_WALLACE]),
     EmailCfg(id='EFTA02258608', author=DAPHNE_WALLACE, recipients=[ALBERT_BRYAN, JOHN_ENGERMAN]),
 
-    # Russia
-    DocCfg(
-        id='EFTA00306033',
-        author=SERGEY_BELYAKOV,
-        is_interesting=10,
-        note='Epstein Russian visa',
-        pic_cfg=PicCfg(
-            id='EFTA00306033',
-        ),
-        show_full_panel=True,
-    ),
-    EmailCfg(id='EFTA01974447', highlight_quote='I know you are going to meet putin on the 20th'),
-
     # USVI
     EmailCfg(id='EFTA00705527', note='acquiring a Virgin Islands radio station', visible_in_id='EFTA01053946'),
     EmailCfg(id='EFTA01053946', note='acquiring a Virgin Islands radio station', is_interesting=True, truncate_to=2_500),
+    EmailCfg(id='EFTA00750027', note=f"Epstein paying {CECILE_DE_JONGH}'s children's tuition", is_interesting=True),
 
     # Ehud
     EmailCfg(id='EFTA00873126', note=f"Epstein emailing {EHUD_BARAK} hoping for a U.S. attack on Iran", is_interesting=10),
@@ -144,4 +135,7 @@ POLITICS_CFGS = [
 
     # Terje
     imessage_log('EFTA01621521', author=TERJE_ROD_LARSEN, note=f"{TERJE_ROD_LARSEN} and Epstein meet former CIA head Bill Burns ('BB')"),
+
+    # Trump
+    EmailCfg(id='EFTA01058838', highlight_quote="come to visit the island. new adminstration people visiting"),
 ]
