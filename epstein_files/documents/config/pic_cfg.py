@@ -23,7 +23,8 @@ class PicCfg(DocCfg):
     is_horizontal: bool = False
 
     def __post_init__(self):
-        return super().__post_init__()
+        super().__post_init__()
+        print(f"PicCfg for '{self.image_filename}', url='{self.image_url}'")
 
     @property
     def image_filename(self) -> str:
