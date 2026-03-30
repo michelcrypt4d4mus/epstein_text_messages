@@ -226,6 +226,7 @@ LEGAL_CFGS = [
         note="offering to take over Epstein's business and resolve his legal issues",
         recipients=[DARREN_INDYKE],
     ),
+    letter('EFTA00175998', GERALD_LEFCOURT, [ANN_MARIE_VILLAFANA], date='2007-06-12'),
     letter('010560', GLORIA_ALLRED, [SCOTT_J_LINK], "alleging abuse of a girl from Kansas", '2019-06-19'),
     letter('028965', MARTIN_WEINBERG, ['Good Morning America'], "threatening libel lawsuit against ABC", duplicate_ids=['028928']),
     letter('031447', MARTIN_WEINBERG, ['Melanie Ann Pustay', "Sean O'Neill"], "re: Epstein FOIA request", '2015-08-19'),
@@ -282,6 +283,8 @@ LEGAL_CFGS = [
         show_full_panel=True,
         truncate_to=(1_400, 2_600),
     ),
+    # DocCfg(id='EFTA00182344', note=),
+    DocCfg(id='EFTA00087286', author=DOJ, note='criminal activity lien on the estate'),
 
     # emails
     EmailCfg(id='EFTA00407717', recipients=[KEN_STARR]),

@@ -66,6 +66,7 @@ HIGHLIGHTED_NAMES = [
             Entity(JEM_BENDELL, 'board member of Community Forge, provider of alternative currency software', match_partial='both'),
             Entity('Jessica Zilo', f"Columbia Dental School tutor for {KARYNA_SHULIAK}", match_partial=None),
             Entity(JOSCHA_BACH, "cognitive science / AI research", match_partial='both'),
+            Entity('Joseph Thakuria', 'MGH genetics'),
             Entity(
                 LAWRENCE_KRAUSS,
                 "theoretical physicist with #MeToo problems",
@@ -349,6 +350,7 @@ HIGHLIGHTED_NAMES = [
             acronym('Ultimate Fighting Championship', is_emailer=True),
             acronym('Independent Filmmaker Project'),
             Organization('Boom Boom Room', '"models and bottles" style club in NYC'),
+            Organization.well_known('Hermes', info='luxury handbags', emailer_pattern=r"(?-i:Hermes)", is_emailer=True),
             Organization('Mercury Films', is_interesting=False),
             Organization('Phaidon', 'titan of art book publishing', url=WIKIPEDIA),
             Organization('Rita Paintings To Go', is_emailer=True),
@@ -526,6 +528,7 @@ HIGHLIGHTED_NAMES = [
             Entity(BARRY_J_COHEN, emailer_pattern=r"barry ((j.?|james) )?cohen?", match_partial=None),
             Entity('Barry W. Zelin', 'Axiom Capital', url='https://epsteingraph.com/people/barry-w-zelin'),
             Entity('Bob Dudley', 'CEO of BP / British Petroleum', r"[BR]ob(ert) Dudley|Dudley, Robe?r?t?"),
+            Entity('Dan Snyder', 'owner of the Redskins', match_partial=None),
             Entity(DAVID_L_NEUHAUSER, f'Livermore Partners, partner of {JOSHUA_FINK}'),
             Entity('David Reuben', 'precious metals billionaire', match_partial=None, url='https://en.wikipedia.org/wiki/David_and_Simon_Reuben'),
             Entity('Ed Razek', "Victoria's Secret executive"),
@@ -575,6 +578,7 @@ HIGHLIGHTED_NAMES = [
             Entity(TOM_PRITZKER, "chairman of The Pritzker Organization and Hyatt Hotels", r"Th?om(as)? Pr(it|ti)[sz]ker"),
 
             # Orgs
+            Organization.well_known("American Express", is_emailer=True),
             Organization('501c3', 'IRS code for a non-profit entity'),
             Organization(ATT_COURT_APPEARANCE_TEAM, "AT&T", is_interesting=False),
             Organization('CNH Industrial', 'Italian multinational metals company'),
@@ -2282,7 +2286,7 @@ HIGHLIGHTED_NAMES = [
         style='light_goldenrod3',
         entities=[
             Entity('Donald Rubin', "statistics professor", match_partial=None),
-            Entity('George Church', 'geneticist', match_partial=None, url=WIKIPEDIA),
+            Entity('George Church', 'geneticist', r"George Church|gc@hms.harvard(\.edu)?", email_addresses=['gc@hms.harvard.edu'], match_partial=None, url=WIKIPEDIA),
             Entity('Henry Rosovsky', f'emeritus dean of {HARVARD}', r"(Henry )?Rosovs(k|lc)y"),
             Entity('Kelly Friendly', f"longtime aide and spokesperson of {LARRY_SUMMERS}", match_partial=None),
             Entity(
@@ -3371,6 +3375,7 @@ HIGHLIGHTED_NAMES = [
             r"Kislyak",
             r"Kremlin",
             r"(Anastasia )?Kuznetsova",
+            r"Krajisnik",
             r"Lavrov",
             r"Lukoil",
             r"Minsk",
@@ -3980,6 +3985,7 @@ HIGHLIGHTED_NAMES = [
                 'Adriana Ross',
                 f"assistant, named co-conspirator",
                 aliases=['Adriana Mucinska'],
+                match_partial=None,
                 url=DAILY_BEAST_ASSISTANTS_URL,
             ),
             Entity('Aleksandra Eriksson', QUESTION_MARKS),

@@ -41,6 +41,8 @@ ACADEMIA_CFGS = [
     DocCfg(id='029603', note=HARVARD_POETRY),
     DocCfg(id='029298', note=HARVARD_POETRY),
     DocCfg(id='029592', note=HARVARD_POETRY),
+    DocCfg(id='EFTA00304646', date='2014-02-10'),
+    DocCfg(id='EFTA00300837', author='American Express', note='travel for Misha Gromov', date='2015-12-04'),
     DocCfg(id='019396', note=f'{HARVARD} Economics 1545 Professor Kenneth Rogoff syllabus'),
     DocCfg(id='022445', note=f"Inference: International Review of Science Feedback & Comments", date='2018-11-01'),
     DocCfg(
@@ -95,7 +97,12 @@ ACADEMIA_CFGS = [
     skype_log('032209', recipients=[LAWRENCE_KRAUSS], is_interesting=False),
 
     # Medical
+    DocCfg(id='EFTA00309099', author=PETER_ATTIA, date='2016-01-15'),
     DocCfg(id='EFTA01118550', author=SAMUEL_C_KLAGSBRUN, date='2011-07-31', note='bill for psychiatric services'),
     EmailCfg(id='EFTA01767129', note=f"Epstein paying for {YONI_KOREN}'s medical treatment, routed through {LEON_BLACK}"),
     EmailCfg(id='EFTA01198246', highlight_quote=f"Got a fresh shipment", is_interesting=3),
+    DocCfg(id='EFTA00311293', note=f"$4.6 million donation to Icahn School of Medicine at Mount Sinai", is_interesting=True, truncate_to=300),
+    DocCfg(id='EFTA00304572', note='money for Thakuria'),
+
+
 ]

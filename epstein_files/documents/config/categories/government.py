@@ -167,6 +167,7 @@ GOVERNMENT_CFGS = [
         highlight_quote='He told her the younger the better',
         truncate_to=AUTO,
     ),
+    interview('EFTA00173820', DOJ, 'possibly employee', 'concerning large sums of money Epstein started giving to employees as he was about to be indicted'),
     bop_doc(
         'EFTA00034357',  # TODO: show an image?
         "internal message about discovery of Epstein's body",
@@ -326,6 +327,8 @@ GOVERNMENT_CFGS = [
         highlight_quote="he did not have the number of a trader. GROFF had anxiety trying to get a trader. EPSTEIN did a lot with politics",
         truncate_to=AUTO,
     ),
+    fbi_interview('EFTA00153918', 'Gloria Allred', date='2020-01-14'),
+    fbi_interview('EFTA00153737', None, f'maybe PBPD police chief {QUESTION_MARKS}'),
     fbi_interview('EFTA01249718', MICHAEL_REITER, date='2020-04-30'),
     fbi_interview('EFTA01249968', UNKNOWN_GIRL, date='2021-01-12'),
     fbi_interview('EFTA01248266', STEVEN_HOFFENBERG, date='2010-12-10'),
@@ -335,6 +338,8 @@ GOVERNMENT_CFGS = [
     fbi_interview('EFTA01309589', ANTHONY_FIGUEROA, 'recruiting from high schools', '2020-08-27', is_interesting=True),
     fbi_interview('EFTA00129035', 'Denise George', date='2023-10-02'),
     fbi_interview('EFTA00086868', 'employee of Next Models', date='2020-04-23', is_interesting=True),
+    fbi_interview('EFTA00182344', f"Epstein employee", highlight_quote='I asked you about David Copperfield', truncate_to=AUTO),
+    fbi_interview('EFTA00159180', DAVID_RODGERS, date='2020-04-23'),
     fbi_interview('EFTA00090339', "Epstein employee", date='2020-11-04'),
     fbi_interview('EFTA00156204', f"{GHISLAINE_MAXWELL}'s receptionist", date='2021-10-08', is_interesting=True),
     fbi_interview('EFTA00159380', '<REDACTED> former Epstein employee', date='2021-05-14', is_interesting=True),
@@ -346,6 +351,7 @@ GOVERNMENT_CFGS = [
     fbi_interview('EFTA00084954', "prison guard", "death of Epstein", date='2019-08-19'),
     fbi_interview('EFTA00135082', "prison guard", "death of Epstein", date='2019-08-16'),
     fbi_interview('EFTA00081226', MINOR_VICTIM),
+    fbi_interview('EFTA00086877', 'victim', date='2020-04-23'),
     fbi_interview('EFTA00105454', MINOR_VICTIM, date='2019-03-22'),
     fbi_interview('EFTA00038915', MINOR_VICTIM, 'claims Epstein knew she was 14'),
     fbi_interview('EFTA00090602', STEVE_SCULLY, date='2019-08-09', show_full_panel=True),
@@ -375,6 +381,8 @@ GOVERNMENT_CFGS = [
             SVETLANA_POZHIDAEVA
         ],
     ),
+    fbi_doc('EFTA00161021', "Director's AM News Briefing", date='2019-09-24'),
+    fbi_doc('EFTA00261437', 'review of phone numbers connected to human trafficking', is_interesting=True, truncate_to=4_000),
     fbi_doc('EFTA01301660', f"arrest of {GHISLAINE_MAXWELL}", date='2020-07-21', truncate_to=500, is_interesting=5),
     fbi_doc(
         'EFTA00173481',
@@ -725,10 +733,14 @@ GOVERNMENT_CFGS = [
     usanys_internal_email('EFTA02731660'),
     usanys_internal_email('EFTA00039820'),
     usanys_internal_email('EFTA02731638'),
+    usanys_internal_email('EFTA00211839'),
+    usanys_internal_email('EFTA00020141', truncate_to=NO_TRUNCATE),
+    usanys_internal_email('EFTA00064799'),
     usanys_internal_email('EFTA02731636'),
     usanys_internal_email('EFTA02731637'),
     usanys_internal_email('EFTA02731659'),
     usanys_internal_email('EFTA02731781'),
+    usanys_internal_email('EFTA00022364'),
     usanys_internal_email('EFTA02731774'),
     usanys_internal_email('EFTA02731724'),
     usanys_internal_email('EFTA02731771'),
@@ -841,4 +853,7 @@ GOVERNMENT_CFGS = [
     EmailCfg(id='EFTA02731713', recipients=[USANYS], recipient_uncertain=True),
     EmailCfg(id='EFTA02731718', recipients=[USANYS], recipient_uncertain=True),
     EmailCfg(id='EFTA02731715', recipients=[USANYS], duplicate_ids=['EFTA02731762']),
+
+    # USVI
+    DocCfg(id='EFTA00129040', note='subpoena'),
 ]

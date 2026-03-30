@@ -880,7 +880,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA01785283', author=LESLEY_GROFF, author_uncertain=True),
     EmailCfg(id='EFTA02001184', author=LESLEY_GROFF, author_uncertain=True),
     EmailCfg(id='EFTA02092771', author=LESLEY_GROFF, author_uncertain=True),
-
+    EmailCfg(id='EFTA00329448', author=LESLEY_GROFF, author_uncertain=True),
     EmailCfg(id='EFTA00403939', author=LESLEY_GROFF, author_uncertain=True),
     EmailCfg(id='EFTA02220616', author=LESLEY_GROFF, author_uncertain=True),
     EmailCfg(id='EFTA00675860', author=LESLEY_GROFF, author_uncertain=True),
@@ -906,6 +906,8 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00363258', author=LESLEY_GROFF, author_uncertain=True),
     EmailCfg(id='EFTA00357379', author=LESLEY_GROFF, author_uncertain=True),
     EmailCfg(id='EFTA00357957', author=LESLEY_GROFF, author_uncertain=True),
+    EmailCfg(id='EFTA02273951', author=LESLEY_GROFF, author_uncertain=True),
+
     EmailCfg(id='EFTA02229858', author=LESLEY_GROFF, author_uncertain=True),
     EmailCfg(id='EFTA02174702', author=LESLEY_GROFF, author_uncertain=True),
     EmailCfg(id='EFTA02068381', author=LESLEY_GROFF, author_uncertain=True),
@@ -1135,10 +1137,14 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00482121', recipients=[LESLEY_GROFF]),
     EmailCfg(id='EFTA00368951', recipients=[LESLEY_GROFF], author_reason='can be seen in EFTA00368958'),
     EmailCfg(id='EFTA00468081', recipients=[LESLEY_GROFF], recipient_uncertain=True),
+    daily_schedule_email(id='EFTA00346567', recipients=[LESLEY_GROFF], recipient_uncertain=True, author=LYN_FONTANILLA),
+    daily_schedule_email('EFTA00338290', author=LESLEY_GROFF, author_uncertain=True),
     EmailCfg(id='EFTA02176727', recipients=[LESLEY_GROFF], recipient_uncertain=True),
     EmailCfg(id='EFTA02068436', recipients=[LESLEY_GROFF], recipient_uncertain=True),
     EmailCfg(id='EFTA00450187', recipients=[LESLEY_GROFF], recipient_uncertain=True),
     EmailCfg(id='EFTA02068531', recipients=[LESLEY_GROFF], recipient_uncertain=True),
+    EmailCfg(id='EFTA02279007', recipients=[LESLEY_GROFF], recipient_uncertain=True, duplicate_ids=['EFTA02279018']),
+
     EmailCfg(id='EFTA00392502', recipients=[LESLEY_GROFF], recipient_uncertain=True, truncate_to=500),
     EmailCfg(id='EFTA02175423', recipients=[LESLEY_GROFF], truncate_to=650),
     EmailCfg(id='EFTA00313867', recipients=[LESLEY_GROFF], truncate_to=NO_TRUNCATE),

@@ -458,6 +458,8 @@ GIRLS_CFGS = [
         highlight_quote="You have known you are preg for a week",
         note=f'{SVETLANA_POZHIDAEVA} fwds intimate texts from Joshua Fink about an abortion to Epstein',
     ),
+    EmailCfg(id='EFTA02449228', recipients=[SVETLANA_POZHIDAEVA], recipient_uncertain='Carstensen'),
+    EmailCfg(id='EFTA02439200', author=SVETLANA_POZHIDAEVA, duplicate_ids=['EFTA02439624'], dupe_type='quoted'),
     DocCfg(id='EFTA02445716', author=SVETLANA_POZHIDAEVA, note=f'{WOMEN_EMPOWERMENT} pilot event', date='2019-04-12'),
     EmailCfg(
         id='EFTA01894879',

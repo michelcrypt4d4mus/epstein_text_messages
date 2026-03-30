@@ -55,6 +55,7 @@ ARTICLE_CFGS = [
     wolff_draft_cfg('022863'),
     wolff_draft_cfg('022952'),
     wolff_draft_cfg('024229'),
+    wolff_draft_cfg('EFTA00307947'),
     wolff_draft_cfg(
         '022894',
         f"claiming Kelimbetov, {BROCK_PIERCE}, & {LARRY_SUMMERS} visited Epstein around when Tether was founded",
@@ -199,11 +200,14 @@ ARTICLE_CFGS = [
     DocCfg(id='EFTA00316182', author='Conchita Sarnoff'),
     DocCfg(id='EFTA00129169', author='Front Page', note='article about Epstein visit to Cuba with Pastrada in 2003', date='2019-08-23'),
     DocCfg(id='EFTA00260609', author='New York Post', note='collection of articles about Epstein', date='2005-11-02'),
+    DocCfg(id='EFTA00204650', author='Vanity Fair', note=f'"The Talented Mr. Epstein" by Vicky Ward', date='2003-03-01'),
+
     DocCfg(
         id='EFTA00264995',
         highlight_quote="reportedly removed computer drives and other electronic equipment from the financier's Florida mansion",
         truncate_to=AUTO,
     ),
+    DocCfg(id='EFTA00163119'),
 
     # Interesting
     DocCfg(
@@ -215,5 +219,4 @@ ARTICLE_CFGS = [
         # is_in_chrono=False,
         is_interesting=5,
         truncate_to=1_200,
-    ),
-]
+    ),]

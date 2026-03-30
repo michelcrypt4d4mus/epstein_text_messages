@@ -79,7 +79,6 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"1040",
             r"accountant",
             r"accounting firm",
-            r"American Express",
             r"Amex",
             r"alterna[tv]i[tv]e finance",
             r"((anti )?money )?launder(s?|ers?|ing)?( money)?",
