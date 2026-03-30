@@ -817,6 +817,7 @@ EMAILS_CONFIG = [
         author_reason=f"{ASIA_GATEWAY} + 'D.' in signature",
         note="Bank Leumi would get in trouble for helping Americans avoid taxes a few years after this",
     ),
+    EmailCfg(id='EFTA00739045', author=DAVID_STERN),
     EmailCfg(id='EFTA01775500', author=DAVID_STERN, author_reason='in quoted reply', note=f'"PA" is probably {PRINCE_ANDREW}'),
     EmailCfg(id='EFTA01862308', author=DAVID_STERN, author_uncertain='timing + David rowland'),
     EmailCfg(id='EFTA02570707', author=DAVID_STERN, author_uncertain='in quoted reply', truncate_to=NO_TRUNCATE),
@@ -999,6 +1000,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA01063008', author=OLGA_PONOMAR_BECKER, author_reason='Jmail'),
     EmailCfg(id='EFTA00756415', author=PETER_MANDELSON, author_reason='reply'),
     EmailCfg(id='EFTA02436834', author=PETER_MANDELSON, author_reason='reply'),
+    EmailCfg(id='EFTA00749611', author=PETER_MANDELSON, author_uncertain='Carstensen'),
     EmailCfg(id='EFTA01834130', author=PETER_MANDELSON, author_reason='reply', is_interesting=False),
     EmailCfg(id='EFTA01816402', recipients=[PETER_MANDELSON], author_reason='quoted', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA00777382', recipients=[PETER_MANDELSON]),
@@ -1116,6 +1118,7 @@ EMAILS_CONFIG = [
     # Recipients
     EmailCfg(id='EFTA02239782', recipients=['Andrew Superintendent', LESLEY_GROFF, MERWIN_DELA_CRUZ], recipient_uncertain=True),
     EmailCfg(id='EFTA00825164', recipients=[ARIANE_DE_ROTHSCHILD], author_reason='reply'),
+    EmailCfg(id='EFTA00848844', recipients=[ARIANE_DE_ROTHSCHILD], author_reason='reply'),
     EmailCfg(id='EFTA01822512', recipients=[DAVID_STERN]),
     EmailCfg(id='EFTA02662381', recipients=[FAWZI_SIAM]),
     EmailCfg(id='EFTA01054971', recipients=[FAWZI_SIAM], truncate_to=NO_TRUNCATE),

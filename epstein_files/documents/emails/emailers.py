@@ -36,6 +36,7 @@ ADDITIONAL_EMAILERS = [
     Entity(JOHN_PAGE, match_partial=None),
     Entity('Julie Shample'),
     Entity('Kathleen Ruderman'),
+    Entity('Keith Frankel', match_partial=None),
     Entity('Kevin Bright', match_partial=None),
     Entity('Larry Cohen', match_partial=None),
     Entity('Lawrence Delson'),

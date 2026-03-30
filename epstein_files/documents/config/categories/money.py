@@ -156,6 +156,17 @@ MONEY_CFGS = [
         is_interesting=10,
         note=f"Epstein's financial transactions and account balances at Bear Stearns less than two years before it collapsed in 2008",
     ),
+    deutsche_bank_doc('EFTA01253364', epstein_trust_name('2007')),
+    deutsche_bank_doc('EFTA01253411', epstein_trust_name('2007')),
+    deutsche_bank_doc('EFTA01253425', epstein_trust_name('2007')),
+    deutsche_bank_doc('EFTA01253490', epstein_trust_name('2007')),
+    deutsche_bank_doc('EFTA01253642', epstein_trust_name('2007')),
+    deutsche_bank_doc('EFTA01253710', epstein_trust_name('2007')),
+    deutsche_bank_doc('EFTA01253783', epstein_trust_name('2007')),
+    deutsche_bank_doc('EFTA01253920', 'LSJE, LLC statement with $500,000 deposit, transfers to Russian/Chinese banks', date='2019-01-31', is_interesting=True),
+    deutsche_bank_doc('EFTA01297175', 'HBRK Associates transactions'),
+    deutsche_bank_doc('EFTA01416824', 'Bank Leumi transfer inquiry'),
+    deutsche_bank_doc('EFTA01363138', 'money laundering inquiry about $40,000 to Bank Leumi account'),
     deutsche_bank_doc('EFTA00811549', 'analysis of Epstein accounts', date='2017-07-31', is_interesting=True),
     deutsche_bank_doc('EFTA00168742', 'KYC for Epstein and HBRK Associates and New York Strategy Group', date='2019-07-11'),
     deutsche_bank_doc('EFTA00168622', 'KYC for Epstein', date='2017-03-07'),
@@ -282,8 +293,11 @@ MONEY_CFGS = [
     cabinet_inventory('EFTA00299927', 'FILE CABINET TWO', note=f"{JAMES_CAYNE} estate plan"),
     cabinet_inventory('EFTA00299859', 'FILE CABINET ONE DRAWER 1'),
     inventory('EFTA00300480', 'document binders related to financial transactions', highlight_quote='Sale of 727 to Qatar', truncate_to=1_000),
-    memo('EFTA01366011', DARREN_INDYKE, f"$3,000 expense reimbursement for {LASMA_KUHTARSKA}", show_with_name=LASMA_KUHTARSKA),  # TODO: to "marjorie"
     letter('EFTA00587879', DARREN_INDYKE, ['BV70 LLC'], "extremely dodgy charitable donation to Epstein associated co. Gratitude", is_interesting=11),
+    memo('EFTA01366011', DARREN_INDYKE, f"$3,000 expense reimbursement for {LASMA_KUHTARSKA}", show_with_name=LASMA_KUHTARSKA),  # TODO: to "marjorie"
+    memo('EFTA01360528', DARREN_INDYKE, f'to Amanda Kirby wiring $1,000,000 to {CARBYNE}', date='2015-03-16'),
+    memo('EFTA01360536', DARREN_INDYKE, f'to Amanda Kirby wiring $1,000,000 to {CARBYNE}', date='2015-03-16'),
+    memo('EFTA01404004', DARREN_INDYKE, f'to Amanda Kirby wiring $1,000,000 to {CARBYNE}', date='2015-03-16'),
     DocCfg(id='EFTA00622816', note="Plan D note promising $8,000,000 to Leon Black's BV70 LLC", date='2017-04-17', is_interesting=10, truncate_to=500),
     DocCfg(
         id='EFTA00709105',
@@ -293,6 +307,15 @@ MONEY_CFGS = [
         is_interesting=11,
         show_full_panel=True, # TODO: show image?
         truncate_to=1_600,
+    ),
+    DocCfg(
+        id='EFTA01192347',
+        date='2015-01-15',
+        date_uncertain='approx',
+        is_interesting=11,
+        note="Epstein employee payroll 2014",
+        show_full_panel=True, # TODO: show image?
+        truncate_to=1_290,
     ),
     DocCfg(
         id='EFTA00076491',
@@ -484,8 +507,7 @@ MONEY_CFGS = [
         note=f'list of {LEON_BLACK} companies that {EILEEN_ALEXANDERSON} can make financial transactions for',
         truncate_to=1_500,
     ),
-    letter('EFTA00587395', LEON_BLACK, [BEN_GOERTZEL], "$300,000 donation"),
-    letter('EFTA00587177', LEON_BLACK, [MARTIN_NOWAK], "$5,000,000 pledge"),
+    DocCfg(id='EFTA01203778', note=f"master list of entities controlled by {LEON_BLACK} family", is_interesting=10),
     DocCfg(id='EFTA01478313', note=f'list of investments (maybe of {LEON_BLACK})', date='2016-03-31'),
     DocCfg(id='EFTA00585292', author=SOUTHERN_TRUST_COMPANY, note=f'invoice for $20,000,000 to {LEON_BLACK}', show_full_panel=True, is_interesting=15),
     DocCfg(id='EFTA00587737', author='Avioneta', note='letter of intent to buy jet for $27 million'),
@@ -508,6 +530,8 @@ MONEY_CFGS = [
         is_interesting=True,
         truncate_to=AUTO,
     ),
+    letter('EFTA00587395', LEON_BLACK, [BEN_GOERTZEL], "$300,000 donation"),
+    letter('EFTA00587177', LEON_BLACK, [MARTIN_NOWAK], "$5,000,000 pledge"),
 
     # David Stern
     EmailCfg(

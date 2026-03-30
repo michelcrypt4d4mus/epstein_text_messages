@@ -105,6 +105,7 @@ OCR_REPAIRS: OcrRepair = {
     re.compile(r"([<.=_HIM][<>.=_HIM14]{5,}[<>.=_HIM]|MOMMINNEMUMMIN) *(wrote:?)?"): rf"{REDACTED} \2",
     re.compile(r"([,<>_]|AM|PM)\n(>)? ?wrote:?"): r'\1\2 wrote:',
     # Headers
+    '!nvoye': 'Envoye',
     re.compile(r"\AFrom([•. ]|$)", re.MULTILINE): 'From: ',  # first line only
     re.compile(r"^((From|To):? ?)[_1.]{5,}", re.MULTILINE): rf"\1: {REDACTED}",  # Redacted email addresses
     re.compile(fr"^(From|To) ?{REDACTED}", re.MULTILINE): fr"\1: {REDACTED}",

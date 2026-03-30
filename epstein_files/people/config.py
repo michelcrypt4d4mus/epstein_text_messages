@@ -350,6 +350,7 @@ HIGHLIGHTED_NAMES = [
             Entity.assistant('Jennifer Andia', 'Chad Oppenheim'),
             acronym('Ultimate Fighting Championship', is_emailer=True),
             acronym('Independent Filmmaker Project'),
+            Organization('Artace', f'$2.5 million from {LEON_BLACK}, $250,000 from {ANASTASIYA_SIROOCHENKO}'),
             Organization('Boom Boom Room', '"models and bottles" style club in NYC'),
             Organization.well_known('Hermes', info='luxury handbags', emailer_pattern=r"(?-i:Hermes)", is_emailer=True),
             Organization('Mercury Films', is_interesting=False),
@@ -412,7 +413,7 @@ HIGHLIGHTED_NAMES = [
             Entity(
                 JES_STALEY,
                 "former CEO of Barclays, allegations by multiple Epstein victims",
-                r"J(ames|es) (E\.? )?Staley",
+                r"[Jl](ames|es) (E\.? )?Staley",
                 url='https://www.theguardian.com/us-news/2026/feb/05/jes-staley-barclays-rape-allegation-us-prosecutors-epstein',
             ),
             Entity('John Duffy', JP_MORGAN, match_partial=None),
@@ -639,6 +640,7 @@ HIGHLIGHTED_NAMES = [
         entities=[
             Entity(DEEPAK_CHOPRA, "woo woo"),
             Entity.assistant(CAROLYN_RANGEL, DEEPAK_CHOPRA, QUESTION_MARKS),
+            Entity.assistant('Poonacha Machaiah', DEEPAK_CHOPRA, QUESTION_MARKS)
         ],
         patterns=[
             r"CBD",
@@ -1331,6 +1333,7 @@ HIGHLIGHTED_NAMES = [
             island_employee('Ann Rodriguez', 'property manager', emailer_pattern=r"Anna? Rodri[gq]uez"),
             island_employee('Benford B. Lewis', 'construction'),
             island_employee('Cathy Alexander', 'property manager'),
+            island_employee('Gary Kerney', 'highly paid property manager'),
             island_employee('Michael R. Groves', 'boats'),
             island_employee('Phillip Blaize', 'boats'),
             island_employee('Brian K. Bates', 'maintenance'),
@@ -1868,7 +1871,7 @@ HIGHLIGHTED_NAMES = [
                 url='https://x.com/kevinnbass/status/2027255769595302219',
             ),
             Entity('Lyndon Lea', f"Lion Capital", match_partial=None),
-            Entity('Marc Lasry', 'billionaire co-founder of Avenue Capital'),
+            Entity('Marc Lasry', 'billionaire co-founder of Avenue Capital', r"Mar[ck] Lasry"),
             Entity(MELANIE_SPINELLA, f"representative of {LEON_BLACK}", r"M?elanie Spine[Il]{2}a"),
             Entity(EILEEN_ALEXANDERSON, f"{LEON_BLACK}'s {ELYSIUM_MANAGEMENT}", email_addresses=['ealexanderson@apollo.advisors.com']),
             Entity(MICHAEL_FOWLER, f"{ATORUS} / Red Dot Trade fund co-founder", match_partial=None),
@@ -3432,7 +3435,7 @@ HIGHLIGHTED_NAMES = [
             Entity('Alena Davydenkova', 'girl'),
             Entity('Alisa Khayrutdinova', 'girl'),
             Entity(ALYSIA_RIABENKOVA, 'Russian painter', r"Alesia|Alysia( Riabenkova)?|Riabenkova"),
-            Entity(ANASTASIYA_SIROOCHENKO, 'girl', r"Anastasiya( Siro(chenko)?)?"),
+            Entity(ANASTASIYA_SIROOCHENKO, 'investor in Artace', r"Anastasiya( Siro(chenko)?)?"),
             Entity(ANNA_KASATKINA, 'Russian girl'),
             Entity(
                 ANYA_RASULOVA,
@@ -4289,12 +4292,14 @@ HIGHLIGHTED_NAMES = [
                 match_partial=None,
             ),
             Entity('Nick Candy', 'British property developer, treasurer of Reform UK', match_partial=None),
+            Organization('Fite Shavell & Associates', 'real estate broker', is_emailer=True),
             Organization(BIN_ENNAKHILL, 'palace in Morocco that Epstein was in the process of purchasing'),
             Organization('Granite Reality'),
             Organization("Integra Realty Resources"),
             Organization('Kensington Luxury Properties', f'broker handling sale of {BIN_ENNAKHILL}'),
             Organization('Ossa Properties', f"{MARK_EPSTEIN} company"),
             Organization('Park Partners NYC', emailer_pattern=r"Park Partners"),
+            Organization('Richard Steeve Giraud', 'island broker', r"Richard (Stee?ve )?Giraud|r\.? s\.? giraud"),
             Organization('Yacht Haven Grande', f"marina owned by Epstein and {ANDREW_FARKAS} {QUESTION_MARKS}"),
         ],
         patterns=[
@@ -4382,7 +4387,13 @@ HIGHLIGHTED_NAMES = [
         style='dodger_blue1',
         category='Europe',
         entities=[
-            Entity('Sarah Ferguson', f'former Duchess of York / wife of {PRINCE_ANDREW}', aliases=['Fergie'], match_partial=None),
+            Entity(
+                'Sarah Ferguson',
+                f'former Duchess of York / wife of {PRINCE_ANDREW}',
+                r"Sarah Duchess of York|Sarah Ferguson?",
+                aliases=['Fergie'],
+                match_partial=None,
+            ),
             Entity(
                 PRINCE_ANDREW,
                 "British royal family",

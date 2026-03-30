@@ -390,6 +390,7 @@ GIRLS_CFGS = [
     ),
     EmailCfg(id='EFTA01897098', author=NADIA_MARCINKO, note=f"{NADIA_MARCINKO} wants $5 million to part with Epstein"),
     EmailCfg(id='EFTA00677154', author=NADIA_MARCINKO),
+    EmailCfg(id='EFTA00921757', author=NADIA_MARCINKO),
     EmailCfg(
         id='EFTA02456758',
         note=f'financial support for {NADIA_MARCINKO} or Nadia Bjorlin',
@@ -827,6 +828,8 @@ GIRLS_CFGS = [
     ),
     EmailCfg(
         id='EFTA02555750',
+        dupe_type='redacted',
+        duplicate_ids=['EFTA00936543'],
         highlight_quote='suspend any billing from now on until further notification from you or the model',
         note=f"who's \"the model\" {JEAN_LUC_BRUNEL} is \"billing\" {JOSHUA_FINK} for?",
     ),
@@ -1035,6 +1038,7 @@ GIRLS_CFGS = [
     EmailCfg(id='EFTA00766770'),
 
     # Jean Luc
+    EmailCfg(id='EFTA01187606', recipients=[JEAN_LUC_BRUNEL, JEFFREY_EPSTEIN], recipient_uncertain=True),
     EmailCfg(id='EFTA00660742', author=JEAN_LUC_BRUNEL, author_reason='reply', non_participants=[SVETLANA_POZHIDAEVA]),
 
     # Ramsey
@@ -1103,6 +1107,7 @@ GIRLS_CFGS = [
     EmailCfg(id='EFTA00637127', note=f"{CECILE_DE_JONGH} helping with girls' visa issues"),
     EmailCfg(id='EFTA00695768', note=f"{CECILE_DE_JONGH} helping with girls' visa issues", is_interesting=4),
     EmailCfg(id='EFTA00458715', show_with_name=MASHA_DROKOVA),
+    EmailCfg(id='EFTA01036594', show_with_name=MASHA_DROKOVA, truncate_to=NO_TRUNCATE, recipients=[LESLEY_GROFF], recipient_uncertain=True),
     EmailCfg(id='EFTA00349192', note='contains visa info'),
     blaine_letter('019086', date='2015-05-27', suffix='naming various Putin puppet regimes', show_full_panel=True),
     blaine_letter('019474', date='2015-05-29'),
