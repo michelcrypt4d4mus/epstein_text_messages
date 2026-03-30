@@ -5,6 +5,7 @@ from epstein_files.documents.config.communication_cfg import CommunicationCfg, i
 from epstein_files.documents.config.config_builder import letter, passenger_manifest
 from epstein_files.documents.config.doc_cfg import DocCfg
 from epstein_files.documents.config.email_cfg import EmailCfg
+from epstein_files.documents.config.pic_cfg import PicCfg
 from epstein_files.people.names import *
 from epstein_files.util.constant.strings import *
 from epstein_files.util.helpers.string_helper import join_truthy, quote
@@ -113,7 +114,17 @@ POLITICS_CFGS = [
     EmailCfg(id='EFTA02258597', recipients=[ALBERT_BRYAN, DAPHNE_WALLACE]),
     EmailCfg(id='EFTA02258608', author=DAPHNE_WALLACE, recipients=[ALBERT_BRYAN, JOHN_ENGERMAN]),
 
-    # russia
+    # Russia
+    DocCfg(
+        id='EFTA00306033',
+        author=SERGEY_BELYAKOV,
+        is_interesting=10,
+        note='Epstein Russian visa',
+        pic_cfg=PicCfg(
+            id='EFTA00306033',
+        ),
+        show_full_panel=True,
+    ),
     EmailCfg(id='EFTA01974447', highlight_quote='I know you are going to meet putin on the 20th'),
 
     # USVI
