@@ -210,7 +210,7 @@ LEGAL_CFGS = [
         is_interesting=9,
         truncate_to=AUTO
     ),
-    DocCfg(id='028540', author='SCOTUS', note=f"decision in Budha Ismail Jam et al. v. INTERNATIONAL FINANCE CORP", is_interesting=False),
+    DocCfg(id='028540', author='SCOTUS', note=f"decision in Budha Ismail Jam et al. v. INTERNATIONAL FINANCE CORP"),
 
     # legal letters
     letter(
