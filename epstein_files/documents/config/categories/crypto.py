@@ -171,7 +171,7 @@ CRYPTO_CFGS = [
         id='EFTA00994706',
         is_interesting=9,
         note=f"{AUSTIN_HILL} spewing standard crypto bro bullshit about crypto being good for charity",
-        truncate_to=19,
+        truncate_to=1_900,
     ),
     EmailCfg(id='EFTA01928811', note=f"{AUSTIN_HILL} meets with a16z", is_interesting=6),
     EmailCfg(id='EFTA00929418', note=f"Epstein forwards information from {AUSTIN_HILL} about fraudulent crypto trading operations to {PAUL_BARRETT}"),
