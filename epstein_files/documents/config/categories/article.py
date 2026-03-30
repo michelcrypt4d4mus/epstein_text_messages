@@ -208,6 +208,7 @@ ARTICLE_CFGS = [
         truncate_to=AUTO,
     ),
     DocCfg(id='EFTA00163119'),
+    DocCfg(id='EFTA00752691', note=f'GQ cover with Sam Jaradeh', is_interesting=False, show_with_name='Sam Jaradeh'),
 
     # Interesting
     DocCfg(

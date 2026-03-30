@@ -90,6 +90,7 @@ POLITICS_CFGS = [
         truncate_to=500,
     ),
     EmailCfg(id='EFTA00319913', note=f'Epstein buys {KATHRYN_RUEMMLER} a Hermes handbag'),
+    EmailCfg(id='EFTA00819729', note=f'Epstein buys {KATHRYN_RUEMMLER} a Hermes handbag'),
 
     # Bannon
     bannon_imessage(
@@ -130,6 +131,7 @@ POLITICS_CFGS = [
     # USVI
     EmailCfg(id='EFTA00705527', note='acquiring a Virgin Islands radio station', visible_in_id='EFTA01053946'),
     EmailCfg(id='EFTA01053946', note='acquiring a Virgin Islands radio station', is_interesting=True, truncate_to=2_500),
+    EmailCfg(id='EFTA00750027', note=f"Epstein paying {CECILE_DE_JONGH}'s children's tuition", is_interesting=True),
 
     # Ehud
     EmailCfg(id='EFTA00873126', note=f"Epstein emailing {EHUD_BARAK} hoping for a U.S. attack on Iran", is_interesting=10),

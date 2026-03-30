@@ -230,6 +230,7 @@ CRYPTO_CFGS = [
     EmailCfg(id='EFTA01840666', note="Michael Milkin, like all great grifters, is very interested in crypto"),
     EmailCfg(id='EFTA00752383', note=f"Mindshift conference attendee list including {BROCK_PIERCE}", is_interesting=10),
     EmailCfg(id='EFTA00626220', note=f'setting up "sidecar fund" with {BROCK_PIERCE} / {CRYPTO_CURRENCY_PARTNERS_II}', is_interesting=10),
+    EmailCfg(id='EFTA00833642', show_with_name=BROCK_PIERCE),
     # Boris Nikolic
     EmailCfg(id='EFTA00844780'),
     EmailCfg(id='EFTA01770220'),

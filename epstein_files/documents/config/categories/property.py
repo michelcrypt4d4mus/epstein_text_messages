@@ -59,4 +59,9 @@ PROPERTY_CFGS = [
 
     # Faith Kates
     EmailCfg(id='EFTA00756294', note=f"Epstein and {FAITH_KATES} buy a Manhattan apartment together"),
+
+    # Misc
+    EmailCfg(id='EFTA00767027', author='Fite Shavell & Associates'),
+    EmailCfg(id='EFTA00764574', author='Fite Shavell & Associates'),
+
 ]

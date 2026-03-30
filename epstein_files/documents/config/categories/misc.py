@@ -209,6 +209,7 @@ MISC_CFGS = [
     ),
     DocCfg(id='EFTA00728864', note=f'security orders for {EL_BRILLO_ADDRESS} showing {IGOR_ZINOVIEV} had door power'),
     DocCfg(id='EFTA00305998', note='inventory and TODO list'),
+    DocCfg(id='EFTA00748438', note=f"tuition invoice (for {CECILE_DE_JONGH}'s children {QUESTION_MARKS})"),
     fedex_invoice('EFTA00219491', '2001-04-30'),
     fedex_invoice('EFTA00217257', '2001-12-31'),
     fedex_invoice('EFTA00082601', '2002-10-14'),

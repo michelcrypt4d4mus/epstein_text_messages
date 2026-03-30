@@ -355,6 +355,9 @@ GIRLS_CFGS = [
     # Alysia
     EmailCfg(id='EFTA01154417', recipients=[ALYSIA_RIABENKOVA], recipient_uncertain=True),
 
+    # Ghislaine
+    EmailCfg(id='EFTA00774399', is_fwded_article=True, note=f'article about {JAMES_CAYNE} sexual harassment settlement'),
+
     # Nadia
     EmailCfg(id='021814', author=NADIA_MARCINKO, author_reason='reply'),
     EmailCfg(id='021808', author=NADIA_MARCINKO, author_reason='reply', truncate_to=NO_TRUNCATE),
@@ -458,6 +461,8 @@ GIRLS_CFGS = [
         note=f'{SVETLANA_POZHIDAEVA} fwds intimate texts from Joshua Fink about an abortion to Epstein',
     ),
     EmailCfg(id='EFTA02449228', recipients=[SVETLANA_POZHIDAEVA], recipient_uncertain='Carstensen'),
+    EmailCfg(id='EFTA00816829', author=SVETLANA_POZHIDAEVA, author_uncertain='Carstensen'),
+    EmailCfg(id='EFTA00772745', author=SVETLANA_POZHIDAEVA, author_uncertain='Carstensen'),
     EmailCfg(id='EFTA02439200', author=SVETLANA_POZHIDAEVA, duplicate_ids=['EFTA02439624'], dupe_type='quoted'),
     DocCfg(id='EFTA02445716', author=SVETLANA_POZHIDAEVA, note=f'{WOMEN_EMPOWERMENT} pilot event', date='2019-04-12'),
     EmailCfg(
@@ -534,6 +539,7 @@ GIRLS_CFGS = [
     EmailCfg(id='EFTA02431535', author=UNKNOWN_GIRL),
     EmailCfg(id='EFTA01875607', author=UNKNOWN_GIRL),
     EmailCfg(id='EFTA01789837', author=UNKNOWN_GIRL),
+    EmailCfg(id='EFTA00754507', author=UNKNOWN_GIRL, truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA00901581', author=UNKNOWN_GIRL, highlight_quote='he got crazy, punched her in front of all the friends', is_interesting=True),
     EmailCfg(id='EFTA02416005', author=UNKNOWN_GIRL, highlight_quote="he'll put me in touch with a romanian lady wich knows everything in London", is_interesting=True),
     EmailCfg(id='EFTA02565917', author=UNKNOWN_GIRL, note='Hassan Mohammed Abdul Latif Jameel is a Saudi businessman and philanthropist'),

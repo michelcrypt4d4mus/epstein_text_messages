@@ -433,6 +433,7 @@ MONEY_CFGS = [
     EmailCfg(id='EFTA02633194', note=f'{NICOLE_JUNKERMANN} quotes an appraisal by "FSB (Russians)"', is_interesting=10),
     EmailCfg(id='EFTA01435454', note=f"{DEUTSCHE_BANK} finally sets up a trading account for Epstein's Southern Financial"),
     EmailCfg(id='EFTA02630431', note=f"{CARBYNE} is an Israeli company invested in by Epstein, {NICOLE_JUNKERMANN}, & {EHUD_BARAK}"),
+    EmailCfg(id='EFTA00822267', note=f'details of {CARBYNE} / Reporty deal', truncate_to=2_000),
     EmailCfg(
         id='EFTA01375243',
         is_interesting=6,
@@ -512,6 +513,7 @@ MONEY_CFGS = [
         highlight_quote="Need world class private security (personal protection) firm in Israel or US. It's for China to build up operations there",
         is_interesting=True,
     ),
+    EmailCfg(id='EFTA00819795', note='attempt to broker deal to sell Stansted Airport to the Chinese'),
 
     # George Church
     EmailCfg(id='EFTA02482178', note=f"Epstein invests $5 million in eGenesis", is_interesting=10),

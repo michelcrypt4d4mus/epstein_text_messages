@@ -1901,6 +1901,7 @@ HIGHLIGHTED_NAMES = [
             Entity('Ted Forstmann', "private equity, founder of Forstmann Little & co.", r"T(ed(dy)|heodore?) Forstmann?"),
             Entity('Ted Serure', f"Enhanced Education account manager at {DEUTSCHE_BANK}"),
             Entity('Vahe Stepanian', "Cetera Financial Group", match_partial='both'),
+            Entity('Wayne Holman', 'founder of Ridgeback Capital, former employee of Steve Cohen Capital under manager convicted of insider trading'),
             Entity.assistant('Ginny Moore', 'Cliff Sosin'),
 
             # Organizations
@@ -3450,7 +3451,10 @@ HIGHLIGHTED_NAMES = [
                 JULIA_SANTOS,  # TODO: Jmail says her email is julia.santos@hbs.edu
                 "recruiter of girls from Ukraine for Epstein, possibly Harvard Business School student",
                 match_partial=None,
-                url=JULIA_SANTOS_REDDIT_URL,
+                url=[
+                    'https://www.occrp.org/en/scoop/amid-reports-of-family-ties-to-russian-intelligence-longtime-epstein-assistant-speaks-out',
+                    JULIA_SANTOS_REDDIT_URL,
+                ],
             ),
             Entity(
                 KARYNA_SHULIAK,
@@ -3765,6 +3769,7 @@ HIGHLIGHTED_NAMES = [
             Organization('Number26', f'fintech frontend for Wirecard Bank, renamed "N26"', r"N(umber)?26"),
             Organization('Pandora', is_interesting=False, is_emailer=True),
             Organization('Parler', 'twitter clone on which the January 6th attacks were coordinated', r"(?-i:P)arler", url=WIKIPEDIA),
+            Organization('PKJ Ventures', 'early stage venture capital'),
             Organization(
                 'Second Life',
                 f"virtual world with early attempt at virtual currency the Linden Dollar",

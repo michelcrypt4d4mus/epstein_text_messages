@@ -102,6 +102,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='026069', author=ARIANE_DE_ROTHSCHILD, author_reason='signature'),
     EmailCfg(id='030741', author=ARIANE_DE_ROTHSCHILD, author_reason='signature'),
     EmailCfg(id='026018', author=ARIANE_DE_ROTHSCHILD, author_reason='signature'),
+    EmailCfg(id='EFTA00838167', author=ARIANE_DE_ROTHSCHILD, author_reason='signature'),
     EmailCfg(id='EFTA00707304', author=ARIANE_DE_ROTHSCHILD, author_reason='signature'),
     EmailCfg(id='EFTA00658389', author=ARIANE_DE_ROTHSCHILD, author_reason='signature'),
     EmailCfg(id='EFTA01744418', author=ARIANE_DE_ROTHSCHILD, author_reason='signature'),
@@ -941,6 +942,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00361736', author=LESLEY_GROFF, author_uncertain=True),
     EmailCfg(id='EFTA00371755', author=LESLEY_GROFF, author_uncertain=True),
     EmailCfg(id='EFTA02092108', author=LESLEY_GROFF, author_uncertain=True),
+    EmailCfg(id='EFTA00418918', author=LESLEY_GROFF, author_uncertain='scheduling'),
     EmailCfg(id='EFTA00424931', author=LESLEY_GROFF, author_uncertain=True, duplicate_ids=['EFTA02181004']),
     EmailCfg(id='EFTA02005819', author=LESLEY_GROFF, author_uncertain=True, duplicate_ids=['EFTA01890165']),
     EmailCfg(id='EFTA00357509', author=LESLEY_GROFF, author_uncertain=True, duplicate_ids=['EFTA02089323']),
@@ -995,9 +997,11 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA01986756', author=MELANIE_PHILLIPS, author_uncertain=f"{STEVEN_SINOFSKY}'s gf at the time"),
     EmailCfg(id='EFTA00355684', author='Mira Bach', is_interesting=False),
     EmailCfg(id='EFTA01063008', author=OLGA_PONOMAR_BECKER, author_reason='Jmail'),
+    EmailCfg(id='EFTA00756415', author=PETER_MANDELSON, author_reason='reply'),
     EmailCfg(id='EFTA02436834', author=PETER_MANDELSON, author_reason='reply'),
     EmailCfg(id='EFTA01834130', author=PETER_MANDELSON, author_reason='reply', is_interesting=False),
     EmailCfg(id='EFTA01816402', recipients=[PETER_MANDELSON], author_reason='quoted', truncate_to=NO_TRUNCATE),
+    EmailCfg(id='EFTA00777382', recipients=[PETER_MANDELSON]),
     EmailCfg(id='EFTA01817483', show_with_name=REINALDO_AVILA_DA_SILVA),
     EmailCfg(id='EFTA01826888', show_with_name=REINALDO_AVILA_DA_SILVA),
     EmailCfg(id='EFTA01825605', show_with_name=REINALDO_AVILA_DA_SILVA),
@@ -1167,8 +1171,6 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00358838', recipients=[LESLEY_GROFF], recipient_uncertain=True),
     EmailCfg(id='EFTA02176727', recipients=[LESLEY_GROFF], recipient_uncertain=True),
     EmailCfg(id='EFTA00357885', recipients=[LESLEY_GROFF], recipient_uncertain=True),
-
-    EmailCfg(id='EFTA00418918', author=LESLEY_GROFF, author_uncertain='scheduling'),
     EmailCfg(id='EFTA02068436', recipients=[LESLEY_GROFF], recipient_uncertain=True),
     EmailCfg(id='EFTA00450187', recipients=[LESLEY_GROFF], recipient_uncertain=True),
     EmailCfg(id='EFTA02068531', recipients=[LESLEY_GROFF], recipient_uncertain=True),
@@ -1177,7 +1179,11 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA02175423', recipients=[LESLEY_GROFF], truncate_to=650),
     EmailCfg(id='EFTA00313867', recipients=[LESLEY_GROFF], truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA00383027', recipients=[LINDA_STONE]),
+    EmailCfg(id='EFTA00822865', recipients=[LINDA_STONE], author_reason='signature'),
     EmailCfg(id='EFTA01002282', recipients=[LINDA_STONE], author_reason='signature'),
+    EmailCfg(id='EFTA00822882', recipients=[LINDA_STONE], author_reason='signature'),
+    EmailCfg(id='EFTA00822900', recipients=[LINDA_STONE], author_reason='signature'),
+    EmailCfg(id='EFTA00822906', recipients=[LINDA_STONE], author_reason='signature'),
     EmailCfg(
         id='EFTA00579769',
         recipients=['Melania'],
@@ -1386,6 +1392,8 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00039888', date='2019-05-14 16:49:00'),
     EmailCfg(id='EFTA02730485', date='2021-12-03 00:00:00'),
     EmailCfg(id='EFTA01858685', is_interesting=True, comment='Boris asks about Stanley Ho (maybe)'),
+
+    EmailCfg(id='EFTA00735766', show_with_name=CECILE_DE_JONGH),
 
     # Duplicates
     EmailCfg(id='EFTA02018251', duplicate_ids=['033153']),
