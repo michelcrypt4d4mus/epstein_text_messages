@@ -1,4 +1,5 @@
 # NEXT RELEASE
+* Auto update if new PicCfg / Picture objects
 
 ### 1.12.1
 * `Picture` class for files not part of the official releases

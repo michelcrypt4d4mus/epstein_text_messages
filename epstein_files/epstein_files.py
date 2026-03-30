@@ -85,6 +85,9 @@ class EpsteinFiles(DocList):
                 epstein_files.load_new_files()
             elif args.reload_doj:
                 epstein_files.reload_doj_files()
+            elif epstein_files.has_new_pic_cfgs:
+                logger.warning(f"Found new Picture objects, updating...")
+                epstein_files._finalize_data_and_write_to_disk([])
 
             return epstein_files
 
@@ -111,8 +114,17 @@ class EpsteinFiles(DocList):
         return [p for p in self._people if p.emails]
 
     @property
+    def has_new_pic_cfgs(self) -> bool:
+        pic_ids = set([d.file_id for d in self.pictures])
+        return len(pic_ids.intersection(self.file_ids)) != len(pic_ids)
+
+    @property
     def people(self) -> list[Person]:
         return self._people
+
+    @property
+    def pictures(self) -> list[Picture]:
+        return [p for p in self.documents if isinstance(p, Picture)]
 
     @property
     def uninteresting_emailers(self) -> list[Name]:
