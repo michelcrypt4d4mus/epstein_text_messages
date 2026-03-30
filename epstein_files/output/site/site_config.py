@@ -33,6 +33,7 @@ class IndentCfg:
     email_body: int
     info: int
     other_files_table: int
+    picture: int
     show_with: int
     supressed_msg: int
     text_msgs: int
@@ -63,6 +64,7 @@ class MobileConfig:
         email_body=0,
         info=1,
         other_files_table=0,
+        picture=0,
         show_with=0,
         supressed_msg=0,
         text_msgs=0,
@@ -130,6 +132,7 @@ class SiteConfig(MobileConfig):
         email_body=1,
         info=1,
         other_files_table=2,
+        picture=6,
         show_with=3,
         supressed_msg=1,
         text_msgs=2,
