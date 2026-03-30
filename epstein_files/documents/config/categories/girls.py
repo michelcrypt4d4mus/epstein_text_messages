@@ -461,6 +461,7 @@ GIRLS_CFGS = [
         note=f'{SVETLANA_POZHIDAEVA} fwds intimate texts from Joshua Fink about an abortion to Epstein',
     ),
     EmailCfg(id='EFTA02449228', recipients=[SVETLANA_POZHIDAEVA], recipient_uncertain='Carstensen'),
+    EmailCfg(id='EFTA00816831', recipients=[SVETLANA_POZHIDAEVA], recipient_uncertain='Carstensen'),
     EmailCfg(id='EFTA00816829', author=SVETLANA_POZHIDAEVA, author_uncertain='Carstensen'),
     EmailCfg(id='EFTA00772745', author=SVETLANA_POZHIDAEVA, author_uncertain='Carstensen'),
     EmailCfg(id='EFTA02439200', author=SVETLANA_POZHIDAEVA, duplicate_ids=['EFTA02439624'], dupe_type='quoted'),

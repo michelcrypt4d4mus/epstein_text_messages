@@ -101,13 +101,17 @@ MONEY_CFGS = [
     DocCfg(id='024003', note=f"New Leaf Ventures ($375 million biotech fund) private placement memorandum"),
     letter(id='026134', recipients=['George'], note=f'about opportunities to buy banks in Ukraine'),
 
-    # DOJ files
+    # Honeycomb
+    DocCfg(id='EFTA00803515', author=HONEYCOMB_ASSET_MANAGEMENT, note='limited partner agreement'),
     DocCfg(id='EFTA00313995', author=HONEYCOMB_ASSET_MANAGEMENT, note='HONEYCOMB VENTURES IV LP', date='2019-03-11'),
+    DocCfg(id='EFTA00803477', author=HONEYCOMB_ASSET_MANAGEMENT, note='investor update'),
+    DocCfg(id='EFTA00803405', author=HONEYCOMB_ASSET_MANAGEMENT, note="fund brochure"),
+
+    # DOJ files
     DocCfg(id='EFTA00007781', display_text='paychecks signed by Epstein deposited at Colonial Bank', date='2005-08-12'),
     DocCfg(id='EFTA00000476', display_text='photo of JEFFREY EPSTEIN CASH DISBURSEMENTS', date='2006-09-01', is_interesting=False),
     DocCfg(id='EFTA00606411', display_text='proposed jet ownership structure flowchart', date='2017-01-01', date_uncertain='guess'),
     DocCfg(id='EFTA01282282', author=BUTTERFLY_TRUST, note=f"almost completely redacted list of beneficiaries"),
-    DocCfg(id='EFTA00803405', author=HONEYCOMB_ASSET_MANAGEMENT, note="fund brochure"),
     DocCfg(id='EFTA02710849', author='Pensum', note='BJAV Marine Ltd / Arcadia Group invoice', is_in_chrono=False),
     DocCfg(
         id='EFTA01413294',
@@ -152,10 +156,12 @@ MONEY_CFGS = [
         is_interesting=10,
         note=f"Epstein's financial transactions and account balances at Bear Stearns less than two years before it collapsed in 2008",
     ),
+    deutsche_bank_doc('EFTA00811549', 'analysis of Epstein accounts', date='2017-07-31', is_interesting=True),
     deutsche_bank_doc('EFTA00168742', 'KYC for Epstein and HBRK Associates and New York Strategy Group', date='2019-07-11'),
     deutsche_bank_doc('EFTA00168622', 'KYC for Epstein', date='2017-03-07'),
     deutsche_bank_doc('EFTA00168920', 'KYC for Epstein', date='2018-02-13'),
     deutsche_bank_doc('EFTA00316340', 'wire transfer'),
+    deutsche_bank_doc('EFTA00799059', f'wire transfer to {SCOTT_J_LINK}'),
     deutsche_bank_doc('EFTA00522616', f'wire transfer to {KARYNA_SHULIAK} finishing school Institut Villa Pierrefeu'),
     deutsche_bank_doc('EFTA00169211', 'transaction statement', '2014-04-10'),
     deutsche_bank_doc('EFTA00297946', 'wire transfer'),
@@ -468,6 +474,9 @@ MONEY_CFGS = [
         note=f"AML / Suspicious Activity report on structured deposits by {DARREN_INDYKE}",
     ),
 
+    # Boothbay
+    EmailCfg(id='EFTA00815157', note=f"withdrawal of $10,000,000 from Boothbay", truncate_to=250, is_interesting=5),
+
     # Leon Black
     DocCfg(
         id='EFTA00599517',
@@ -499,7 +508,6 @@ MONEY_CFGS = [
         is_interesting=True,
         truncate_to=AUTO,
     ),
-
 
     # David Stern
     EmailCfg(

@@ -63,5 +63,6 @@ PROPERTY_CFGS = [
     # Misc
     EmailCfg(id='EFTA00767027', author='Fite Shavell & Associates'),
     EmailCfg(id='EFTA00764574', author='Fite Shavell & Associates'),
+    DocCfg(id='EFTA00788401', note=f"{NOAM_CHOMSKY} property transaction", date='2017-12-18'),
 
 ]
