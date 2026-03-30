@@ -18,6 +18,7 @@ from epstein_files.documents.email import Email
 from epstein_files.documents.emails.emailers import ENTITY_CATEGORIES, get_entities
 from epstein_files.documents.messenger_log import MessengerLog
 from epstein_files.documents.other_file import OtherFile
+from epstein_files.documents.picture import Picture
 from epstein_files.output.layout_elements.base_panel import BasePanel
 from epstein_files.output.layout_elements.layout import MAX_BODY_PANEL_WIDTH, Layout
 from epstein_files.output.layout_elements.site_directory import SiteDirectory
@@ -186,7 +187,7 @@ class DocPrinter(DocList):
             self._print_other_files_queue()
 
             # Change the layout for OtherFile (indented, file info panel offset intward)
-            if isinstance(doc, OtherFile):
+            if isinstance(doc, (OtherFile, Picture)):
                 bg_color = CATEGORY_BG_STYLES[doc.category]
                 doc = doc.make_layout(background_color=bg_color, indent=site_config.indents.show_with)
 
