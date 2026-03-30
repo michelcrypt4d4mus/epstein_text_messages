@@ -24,7 +24,7 @@ class PicCfg(DocCfg):
 
     def __post_init__(self):
         super().__post_init__()
-        print(f"PicCfg for '{self.image_filename}', url='{self.image_url}'")
+        self._debug_log(f"PicCfg for '{self.image_filename}', url='{self.image_url}'")
 
     @property
     def image_filename(self) -> str:
