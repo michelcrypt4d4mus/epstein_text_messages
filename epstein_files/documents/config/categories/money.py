@@ -24,8 +24,12 @@ MONEY_OCR_REPAIRS: OcrRepair = {
     'Southern Trust Company,\nInc.\n$': 'Southern Trust Company, Inc $',
     'Black do\nApollo Management': 'Black c/o Apollo Management',
     re.compile(r'Boothbay Absolute Strategies\nFund LP\n\$'): "Boothbay Absolute Strategies Fund LP $",
-    'D.B. Zwim': 'D.B. Zwirn',
+    'D.B. Zwim': DB_ZWIRN,
 }
+
+
+def banca_del_fucino_doc(id: str, note: str = '', **kwargs) -> DocCfg:
+    return DocCfg(id=id, author='Banca del Fucino', **kwargs)
 
 
 def cabinet_inventory(id: str, container: str, **kwargs) -> DocCfg:
@@ -151,7 +155,6 @@ MONEY_CFGS = [
     deutsche_bank_doc('EFTA00168742', 'KYC for Epstein and HBRK Associates and New York Strategy Group', date='2019-07-11'),
     deutsche_bank_doc('EFTA00168622', 'KYC for Epstein', date='2017-03-07'),
     deutsche_bank_doc('EFTA00168920', 'KYC for Epstein', date='2018-02-13'),
-
     deutsche_bank_doc('EFTA00316340', 'wire transfer'),
     deutsche_bank_doc('EFTA00169211', 'transaction statement', '2014-04-10'),
     deutsche_bank_doc('EFTA00297946', 'wire transfer'),
@@ -293,6 +296,9 @@ MONEY_CFGS = [
         truncate_to=10_000,
     ),
 
+    # Banca del Fucino
+    banca_del_fucino_doc('EFTA00592970', 'bank statement showing 3,761'),
+
     # Designer babies
     EmailCfg(
         id='EFTA01004841',
@@ -322,7 +328,7 @@ MONEY_CFGS = [
         date_uncertain='date of last email in file',
         is_in_chrono=False,
         is_interesting=True,
-        note=f"many emails about {JEEPERS_INC}, Financial Trust Company, D.B. Zwirn, etc. in rough format showing Harry Beller working for Epstein",
+        note=f"many emails about {JEEPERS_INC}, Financial Trust Company, {DB_ZWIRN}, etc. in rough format showing Harry Beller working for Epstein",
         truncate_to=EMAIL_TRUNCATE_TO,
     ),
     EmailCfg(id='EFTA01424585', note=f'{DEUTSCHE_BANK} anti-money laundering review of "high risk" {JEEPERS_INC}'),
@@ -464,7 +470,11 @@ MONEY_CFGS = [
         note=f'list of {LEON_BLACK} companies that {EILEEN_ALEXANDERSON} can make financial transactions for',
         truncate_to=1_500,
     ),
+    letter('EFTA00587395', LEON_BLACK, [BEN_GOERTZEL], "$300,000 donation"),
+    letter('EFTA00587177', LEON_BLACK, [MARTIN_NOWAK], "$5,000,000 pledge"),
     DocCfg(id='EFTA01478313', note=f'list of investments (maybe of {LEON_BLACK})', date='2016-03-31'),
+    DocCfg(id='EFTA00585292', author=SOUTHERN_TRUST_COMPANY, note=f'invoice for $20,000,000 to {LEON_BLACK}', show_full_panel=True, is_interesting=15),
+    DocCfg(id='EFTA00587737', author='Avioneta', note='letter of intent to buy jet for $27 million'),
     EmailCfg(
         id='EFTA01389074',
         author=RICHARD_KAHN,
@@ -484,6 +494,7 @@ MONEY_CFGS = [
         is_interesting=True,
         truncate_to=AUTO,
     ),
+
 
     # David Stern
     EmailCfg(
@@ -529,4 +540,10 @@ MONEY_CFGS = [
     EmailCfg(id='EFTA01704991', author=f"American Express", note=f"Epstein's statement", date='2004-12-07'),
     EmailCfg(id='EFTA01843541', note=f"opening accounts for Nautilus, Maple, Cypress, and Laurel", is_interesting=4),
     EmailCfg(id='EFTA01955672', note=f"$1,000,000 payment from {STEVEN_SINOFSKY} {QUESTION_MARKS}", is_interesting=5),
+    EmailCfg(
+        id='EFTA00614037',
+        is_interesting=5,
+        note=f"at least $40,000,000 in redemptions from {HIGHVIEW_GLOBAL_MACRO}, {HIGHBRIDGE_EQUITY_FUND}, and {PINEHURST_PLUS}",
+    ),
+    EmailCfg(id='EFTA00396664', note="Jamie Dimon's contact info"),
 ]

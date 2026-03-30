@@ -69,7 +69,6 @@ ACADEMIA_CFGS = [
         note='OpenCog Hong Kong Project Interim Report',
     ),
     DocCfg(id='EFTA00729992', note='"Science" contact list'),
-    imessage_screenshot('EFTA01616545', author=DEEPAK_CHOPRA, date='2016-10-09T22:01:25'),
     DocCfg(id='EFTA01114164', author=BEN_GOERTZEL, note='OpenCog Road Map 2011-2023', date='2011-01-01', date_uncertain=True),
     DocCfg(
         id='EFTA01114145',
@@ -79,9 +78,11 @@ ACADEMIA_CFGS = [
         date_uncertain=True,
     ),
     DocCfg(id='EFTA00804855', note='Human Germline Genetic Modification References'),
+    DocCfg(id='EFTA00586425', date='2012-11-14'),
     EmailCfg(id='EFTA00954900', note=f'Epstein donation to {MOUNT_SINAI}'),
     EmailCfg(id='EFTA00955864', note=f'Epstein donation to {MOUNT_SINAI}', is_interesting=False),
-    EmailCfg(id='EFTA02257779', author=LESLEY_GROFF, recipients=['Lisa']),
+    EmailCfg(id='EFTA00428482', note=f"$2,000,000 donation letter from {LEON_BLACK} to {MARTIN_NOWAK}"),
+    EmailCfg(id='EFTA02257779', author=LESLEY_GROFF, author_uncertain=True, recipients=['Lisa']),
     EmailCfg(id='EFTA00763822', is_interesting=True, note=f"{LAWRENCE_KRAUSS} proposal for Epstein image rehabilitation", truncate_to=(1_750, 5_500)),
     EmailCfg(id='EFTA00687286', show_with_name=MARVIN_MINSKY, is_in_chrono=False),
     EmailCfg(
@@ -90,6 +91,7 @@ ACADEMIA_CFGS = [
         note="one of the few heroes of the Epstein Files",
         truncate_to=800,
     ),
+    imessage_screenshot('EFTA01616545', author=DEEPAK_CHOPRA, date='2016-10-09T22:01:25'),
     imessage_screenshot('EFTA01616222', author=HARRY_FISCH, date='2018-04-23T14:25:30'),
     imessage_screenshot('EFTA01616232', author=HARRY_FISCH, date='2018-04-23T14:25:30'),
     skype_log('032206', recipients=[LAWRENCE_KRAUSS], is_interesting=False),
@@ -103,6 +105,4 @@ ACADEMIA_CFGS = [
     EmailCfg(id='EFTA01198246', highlight_quote=f"Got a fresh shipment", is_interesting=3),
     DocCfg(id='EFTA00311293', note=f"$4.6 million donation to Icahn School of Medicine at Mount Sinai", is_interesting=True, truncate_to=300),
     DocCfg(id='EFTA00304572', note='money for Thakuria'),
-
-
 ]

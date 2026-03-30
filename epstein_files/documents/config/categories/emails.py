@@ -27,6 +27,15 @@ IS_IT_ROGER_STONE = "is the 'roger' Epstein is trying to meet Roger Stone?"
 VALAR_MEETING = f"meeting with {PETER_THIEL}'s {VALAR_VENTURES} fund"
 
 
+def meeting_notification(id: str, note: str = '', **kwargs) -> EmailCfg:
+    return EmailCfg(
+        id=id,
+        is_interesting=False,
+        note=join_truthy('meeting notification', note),
+        **kwargs,
+    )
+
+
 def binant_redacted(id: str, truncate_to: int = 700) -> EmailCfg:
     return EmailCfg(id=id, truncate_to=truncate_to, note=f"redacted discussion of art advisor {ETIENNE_BINANT}")
 
@@ -112,6 +121,7 @@ EMAILS_CONFIG = [
         dupe_type='redacted',
         comment="the same except for 'your Anna!'. author must be specified because email address is redacted in 026745 so it needs the config",
     ),
+    EmailCfg(id='EFTA00459520', author=BARBRO_C_EHNBOM),
     EmailCfg(
         id='019446',
         author=CHRISTINA_GALBRAITH,
@@ -403,6 +413,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='029581', recipients=[RENATA_BOLOTOVA], author_reason=BOLOTOVA_REASON),
     EmailCfg(id='019334', recipients=[STEVE_BANNON], author_reason='quoted reply'),
     EmailCfg(id='021106', recipients=[STEVE_BANNON], author_reason='reply'),
+
     # Quotes
     EmailCfg(
         id='EFTA00701318',
@@ -416,6 +427,7 @@ EMAILS_CONFIG = [
         is_interesting=True,
         is_in_chrono=False,
     ),
+    EmailCfg(id='EFTA00412994', highlight_quote="We have had shredding lots of papers already and will continue to do so", truncate_to=1_000),
     EmailCfg(id='EFTA00904611', highlight_quote="Be careful , zampoli is trouble . Lots", note=f"Epstein's thoughts on {PAOLO_ZAMPOLLI}"),
     EmailCfg(id='EFTA01745253', highlight_quote="The life you lead is so outrageous, and yet I can't tell a soul", truncate_to=320, is_interesting=5),
     EmailCfg(id='EFTA02641374', highlight_quote='the mongolians are also going after you.  shame on you'),
@@ -423,10 +435,12 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA02694762', highlight_quote="I would like to meet the crazy french doctor"),
     EmailCfg(id='EFTA01798486', highlight_quote='you need to turn mike in', note="who's mike?"),
     EmailCfg(id='EFTA00676865', highlight_quote="What did you do, give him a roofie!?"),
+
     # actual_text
     EmailCfg(id='029344', actual_text='I thought of you when I read this article. Was this your idea? Alan', is_fwded_article=True),
     EmailCfg(id='032358', actual_text=REDACTED),
-    # description
+
+    # Description
     EmailCfg(id='031036', note=f'{BARBRO_C_EHNBOM} related donation / Swedish girls discussion', is_interesting=True),
     EmailCfg(id='030737', note='Bannon says there is a "crazed jihad" against Epstein', is_interesting=True),
     EmailCfg(id='030738', note='Bannon tells Epstein "somebody big has u in the gunsights"', is_interesting=True),
@@ -907,7 +921,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00357379', author=LESLEY_GROFF, author_uncertain=True),
     EmailCfg(id='EFTA00357957', author=LESLEY_GROFF, author_uncertain=True),
     EmailCfg(id='EFTA02273951', author=LESLEY_GROFF, author_uncertain=True),
-
+    EmailCfg(id='EFTA00347837', author=LESLEY_GROFF, author_uncertain=True),
     EmailCfg(id='EFTA02229858', author=LESLEY_GROFF, author_uncertain=True),
     EmailCfg(id='EFTA02174702', author=LESLEY_GROFF, author_uncertain=True),
     EmailCfg(id='EFTA02068381', author=LESLEY_GROFF, author_uncertain=True),
@@ -1135,16 +1149,21 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA02227488', recipients=[LESLEY_GROFF]),
     EmailCfg(id='EFTA02234448', recipients=[LESLEY_GROFF]),
     EmailCfg(id='EFTA00482121', recipients=[LESLEY_GROFF]),
+    EmailCfg(id='EFTA00434537', recipients=[LESLEY_GROFF]),
+    EmailCfg(id='EFTA00427723', recipients=[LESLEY_GROFF]),
+    EmailCfg(id='EFTA00427730', recipients=[LESLEY_GROFF]),
     EmailCfg(id='EFTA00368951', recipients=[LESLEY_GROFF], author_reason='can be seen in EFTA00368958'),
+    EmailCfg(id='EFTA00418806', recipients=[LESLEY_GROFF], recipient_uncertain='"lesley"'),
     EmailCfg(id='EFTA00468081', recipients=[LESLEY_GROFF], recipient_uncertain=True),
-    daily_schedule_email(id='EFTA00346567', recipients=[LESLEY_GROFF], recipient_uncertain=True, author=LYN_FONTANILLA),
-    daily_schedule_email('EFTA00338290', author=LESLEY_GROFF, author_uncertain=True),
+    EmailCfg(id='EFTA00358838', recipients=[LESLEY_GROFF], recipient_uncertain=True),
     EmailCfg(id='EFTA02176727', recipients=[LESLEY_GROFF], recipient_uncertain=True),
+    EmailCfg(id='EFTA00357885', recipients=[LESLEY_GROFF], recipient_uncertain=True),
+
+    EmailCfg(id='EFTA00418918', recipients=[LESLEY_GROFF], recipient_uncertain='scheduling'),
     EmailCfg(id='EFTA02068436', recipients=[LESLEY_GROFF], recipient_uncertain=True),
     EmailCfg(id='EFTA00450187', recipients=[LESLEY_GROFF], recipient_uncertain=True),
     EmailCfg(id='EFTA02068531', recipients=[LESLEY_GROFF], recipient_uncertain=True),
     EmailCfg(id='EFTA02279007', recipients=[LESLEY_GROFF], recipient_uncertain=True, duplicate_ids=['EFTA02279018']),
-
     EmailCfg(id='EFTA00392502', recipients=[LESLEY_GROFF], recipient_uncertain=True, truncate_to=500),
     EmailCfg(id='EFTA02175423', recipients=[LESLEY_GROFF], truncate_to=650),
     EmailCfg(id='EFTA00313867', recipients=[LESLEY_GROFF], truncate_to=NO_TRUNCATE),
@@ -1228,15 +1247,23 @@ EMAILS_CONFIG = [
     daily_schedule_email('EFTA00365211'),
     daily_schedule_email('EFTA00391777'),
     daily_schedule_email('EFTA00390161'),
+    daily_schedule_email('EFTA00404196'),
+    daily_schedule_email('EFTA00391752'),
     daily_schedule_email('EFTA00350957', author=LESLEY_GROFF),
     daily_schedule_email('EFTA00481869', author=LESLEY_GROFF),
     daily_schedule_email('EFTA00479255', author=LESLEY_GROFF),
+    daily_schedule_email('EFTA00338290', author=LESLEY_GROFF, author_uncertain=True),
+    daily_schedule_email('EFTA00375683', author=LESLEY_GROFF, author_uncertain=True),
     daily_schedule_email('EFTA01949912', author=LESLEY_GROFF, author_uncertain=True),
     daily_schedule_email('EFTA00423898', author=LESLEY_GROFF, author_uncertain=True),
     daily_schedule_email('EFTA00391916', author=LESLEY_GROFF, author_uncertain=True),
     daily_schedule_email('EFTA00948189', author=LESLEY_GROFF, author_uncertain=True),
     daily_schedule_email('EFTA00378753', author=LESLEY_GROFF, author_uncertain=True, note='Mark Tollison was fired'),
     daily_schedule_email('EFTA00317801', recipients=[JEFFREY_EPSTEIN, JOJO_FONTANILLA, LEO_LOKING, MERWIN_DELA_CRUZ]),
+    daily_schedule_email('EFTA00427826', recipients=[LESLEY_GROFF]),
+    daily_schedule_email('EFTA00346567', recipients=[LESLEY_GROFF], recipient_uncertain=True, author=LYN_FONTANILLA),
+    meeting_notification('EFTA00427118'),
+    meeting_notification('EFTA00394469', author=LESLEY_GROFF, recipients=[JEFFREY_EPSTEIN]),
     EmailCfg(
         id='EFTA00339256',
         author=LESLEY_GROFF,

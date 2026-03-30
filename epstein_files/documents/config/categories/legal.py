@@ -283,8 +283,8 @@ LEGAL_CFGS = [
         show_full_panel=True,
         truncate_to=(1_400, 2_600),
     ),
-    # DocCfg(id='EFTA00182344', note=),
     DocCfg(id='EFTA00087286', author=DOJ, note='criminal activity lien on the estate'),
+    DocCfg(id='EFTA00587012', note=f"draft of opening statement in {JEEPERS_INC} v. {DB_ZWIRN}", is_interesting=True, truncate_to=4_000),
 
     # emails
     EmailCfg(id='EFTA00407717', recipients=[KEN_STARR]),
