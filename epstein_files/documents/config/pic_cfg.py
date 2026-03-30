@@ -4,7 +4,7 @@ from typing import Literal
 from epstein_files.documents.config.doc_cfg import DocCfg
 from epstein_files.documents.config.email_cfg import EmailCfg
 from epstein_files.output.html.html_dir import IMAGES_DIR, HtmlDir
-from epstein_files.people.names import DONALD_TRUMP
+from epstein_files.people.names import *
 from epstein_files.util.helpers.file_helper import is_picture, is_valid_id
 
 ImgExt = Literal['jpg', 'jpeg', 'gif', 'webp', 'png']
