@@ -46,6 +46,7 @@ PIC_CFGS = [
     DocCfg(
         id='EFTA01372264',
         author=SVETLANA_POZHIDAEVA,
+        is_displayed_as_img = True,
         note='Russian Federation passport',
         pic_cfg=PicCfg(
             id='EFTA01372264',

@@ -1279,7 +1279,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00778636', note=f"{JEFFREY_EPSTEIN}, M.D.", is_interesting=4),
     EmailCfg(id='EFTA01767036', note=f'"Karim" is probably {ALLEGED_KARIM_WADE}', is_interesting=4),
     EmailCfg(id='EFTA02515416', note=f'{JEAN_LUC_BRUNEL} is having visa problems', truncate_to=NO_TRUNCATE),
-    EmailCfg(id='EFTA02513560', note=f"{JEAN_LUC_BRUNEL} doesn't want to speak on the phone", truncate_to=NO_TRUNCATE),
+    EmailCfg(id='EFTA02513560', note=f"{JEAN_LUC_BRUNEL} doesn't want to speak on the phone", truncate_to=NO_TRUNCATE, is_interesting=10),
     EmailCfg(id='EFTA02671523', note=f"Jones is former Google chief technology advocate / CEO of Epstein investment Wearality"),
     EmailCfg(id='EFTA02464628', note=f"{KATHRYN_RUEMMLER} and Epstein on {JEAN_LUC_BRUNEL}'s immunity deal (for Epstein testimony?)", is_interesting=True),
     EmailCfg(id='EFTA01854384', note=f"{KARIM_WADE} asks if Epstein is free to meet the president (of Senegal?)", truncate_to=NO_TRUNCATE, is_interesting=5),
