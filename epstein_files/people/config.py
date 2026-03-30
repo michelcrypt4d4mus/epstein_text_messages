@@ -2032,7 +2032,7 @@ HIGHLIGHTED_NAMES = [
             Entity(
                 TERRY_KAFKA,
                 "CEO of Impact Outdoor (highway billboards), lifelong friend of Epstein",
-                r"Te(rr|n)y Kafka",
+                r"Te(rr|n)y Kafka?",
                 match_partial=None,
             ),
             Entity('Todd Meister', 'son of Robert Meister', match_partial=None),
