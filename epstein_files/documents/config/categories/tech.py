@@ -120,7 +120,10 @@ TECH_CFGS = [
         highlight_quote='there is talk about the possibility of Clapper attending',
         truncate_to=AUTO,
     ),
+    EmailCfg(id='EFTA01959363', note=f"Gates Foundation meeting notes"),
 
     # Sinofsky
+    EmailCfg(id='EFTA01959192', note=f"payment from {STEVEN_SINOFSKY}?"),
     EmailCfg(id='EFTA01756928', note=f"Epstein bragging about coaching {STEVEN_SINOFSKY} through his Microsoft exit"),
+    EmailCfg(id='EFTA01955091', note=f"{STEVEN_SINOFSKY} meeting with a16z"),
 ]

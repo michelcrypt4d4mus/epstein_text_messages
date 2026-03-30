@@ -967,6 +967,10 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA01063008', author=OLGA_PONOMAR_BECKER, author_reason='Jmail'),
     EmailCfg(id='EFTA02436834', author=PETER_MANDELSON, author_reason='reply'),
     EmailCfg(id='EFTA01834130', author=PETER_MANDELSON, author_reason='reply', is_interesting=False),
+    EmailCfg(id='EFTA01816402', recipients=[PETER_MANDELSON], author_reason='quoted', truncate_to=NO_TRUNCATE),
+    EmailCfg(id='EFTA01817483', show_with_name=REINALDO_AVILA_DA_SILVA),
+    EmailCfg(id='EFTA01826888', show_with_name=REINALDO_AVILA_DA_SILVA),
+    EmailCfg(id='EFTA01825605', show_with_name=REINALDO_AVILA_DA_SILVA),
     EmailCfg(
         id='EFTA01988194',
         author=RASSECK_BOURGI,
@@ -1214,6 +1218,7 @@ EMAILS_CONFIG = [
     daily_schedule_email('EFTA00350957', author=LESLEY_GROFF),
     daily_schedule_email('EFTA00481869', author=LESLEY_GROFF),
     daily_schedule_email('EFTA00479255', author=LESLEY_GROFF),
+    daily_schedule_email('EFTA01949912', author=LESLEY_GROFF, author_uncertain=True),
     daily_schedule_email('EFTA00423898', author=LESLEY_GROFF, author_uncertain=True),
     daily_schedule_email('EFTA00391916', author=LESLEY_GROFF, author_uncertain=True),
     daily_schedule_email('EFTA00948189', author=LESLEY_GROFF, author_uncertain=True),

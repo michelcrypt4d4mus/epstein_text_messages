@@ -119,6 +119,7 @@ HIGHLIGHTED_NAMES = [
                 'NYC private high school where Epstein got his first job after lying about his credentials',
                 url='https://www.npr.org/2019/07/19/742725946/a-young-jeffrey-epstein-made-an-impression-on-his-high-school-students',
             ),
+            Organization('Illumina Accelerator', 'DNA sequencer'),
             Organization(
                 MIT_MEDIA_LAB,
                 f"once great research institute overtaken by get rich quick schemes under {JOI_ITO}",
@@ -1646,7 +1647,7 @@ HIGHLIGHTED_NAMES = [
             Entity(
                 PETER_MANDELSON,
                 "recently arrested former UK ambassador to the US",
-                r"((Lord|Peter) )?M[ae]nde?le?son",
+                r"((Lord|Peter) )?M[ae]nde?le?son?",
                 url='https://bylinetimes.com/2026/02/05/peter-mandelsons-downfall-puts-morgan-mcsweeneys-future-in-doubt/',
             ),
             Entity('Sarah Ferguson', f'former Duchess of York / wife of {PRINCE_ANDREW}', aliases=['Fergie'], match_partial=None),
@@ -1831,6 +1832,7 @@ HIGHLIGHTED_NAMES = [
                 url='https://www.propublica.org/article/the-bizarre-fall-of-the-ceo-of-coach-and-kate-spades-parent-company',
             ),
             Entity(IRA_ZICHERMAN, f"former {BEAR_STEARNS} exec, co-trustee of J. Epstein Foundation with Ghislaine"),
+            Entity('Izzy Englander'),
             Entity(
                 JAMES_CAYNE,
                 f"CEO of {BEAR_STEARNS} when it collapsed in 2008, executor of Epstein's will",
@@ -1839,6 +1841,7 @@ HIGHLIGHTED_NAMES = [
                 url=WIKIPEDIA,
             ),
             Entity('John Paulson', f"hedge fund guy, Trump donor", match_partial=None, url=WIKIPEDIA),
+            Entity('Josh Harris', f'co-founder of Apollo with {LEON_BLACK}', match_partial=None, url='https://en.wikipedia.org/wiki/Josh_Harris_(businessman)'),
             Entity('Kamila Bobinska', f"Argan Capital Advisors, Dots Ventures, Movens Capital, ex-{DEUTSCHE_BANK}"),
             Entity('Larry Fink', f"CEO of Blackrock (world's largest money manager), father of {JOSHUA_FINK}", match_partial=None, url=WIKIPEDIA),
             Entity('Laurie Cameron', "currency trading", match_partial=None),
@@ -4236,7 +4239,7 @@ HIGHLIGHTED_NAMES = [
             Entity(
                 DAVID_MITCHELL,
                 "New York real estate developer, Mitchell Holdings",
-                r"David (J\.? )?Mitchell",
+                r"David (J\.? )?Mitchell?",
                 match_partial=None,
             ),
             Entity(GERALD_BARTON, "Maryland property developer Landmark Land Company", r"(?<!Wes )Barton"),
@@ -4305,12 +4308,12 @@ HIGHLIGHTED_NAMES = [
                 match_partial=None,
                 url=WIKIPEDIA,
             ),
-            Entity('Scott Borgenson', f"boyfriend (and lawyer?) of {GHISLAINE_MAXWELL}"),
+            Entity('Scott Borgenson', f"boyfriend (and lawyer?) of {GHISLAINE_MAXWELL}", r"Scott( G\.?)? Borge[nr]son"),
             Entity('Ted Waitt', f"boyfriend of {GHISLAINE_MAXWELL}, guest at Chelsea Clinton wedding"),
             Entity.assistant('Emmy Tayler', GHISLAINE_MAXWELL),
             Organization('ELLMAX LLC', f"{GHISLAINE_MAXWELL} financial vehicle"),
             Organization('Max Foundation', f"{GHISLAINE_MAXWELL} financial vehicle"),
-            Organization('Montpelier Trust', f"{GHISLAINE_MAXWELL} financial vehicle"),
+            Organization('Montpelier Trust', f"{GHISLAINE_MAXWELL} financial vehicle", r"(Angara( (Trust|LLC))?|Montpelier Trust)", aliases=['Angara']),
             Organization(
                 "The Terramar Project",
                 f"clean oceans environmental nonprofit launched by {GHISLAINE_MAXWELL} for reputation repair",

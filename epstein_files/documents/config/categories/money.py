@@ -488,4 +488,6 @@ MONEY_CFGS = [
         is_interesting=8,
     ),
     EmailCfg(id='EFTA01704991', author=f"American Express", note=f"Epstein's statement", date='2004-12-07'),
+    EmailCfg(id='EFTA01843541', note=f"opening accounts for Nautilus, Maple, Cypress, and Laurel", is_interesting=4),
+    EmailCfg(id='EFTA01955672', note=f"$1,000,000 payment from {STEVEN_SINOFSKY} {QUESTION_MARKS}", is_interesting=5),
 ]
