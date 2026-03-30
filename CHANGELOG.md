@@ -1,4 +1,6 @@
 # NEXT RELEASE
+
+### 1.12.1
 * `Picture` class for files not part of the official releases
 
 # 1.12.0
