@@ -57,6 +57,7 @@ PIC_CFGS = [
         author=DONALD_TRUMP,
         date='2003-01-20',
         is_displayed_as_img = True,
+        is_interesting=20,
         note='birthday letter to Jeffrey Epstein',
     ),
 ]

@@ -101,7 +101,8 @@ class EpsteinFiles(DocList):
     @property
     def documents(self) -> Sequence[Document]:
         """Overloads mixing @property to exclude split up big files."""
-        return [d for d in self._documents if not (isinstance(d, Email) and d._was_split_up)]
+        docs = [d for d in self._documents if not (isinstance(d, Email) and d._was_split_up)]
+        return DocList.sort_by_timestamp(docs + PICS)
 
     @property
     def emailers(self) -> list[Person]:
