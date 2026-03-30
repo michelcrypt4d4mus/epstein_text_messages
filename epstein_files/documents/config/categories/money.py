@@ -551,5 +551,5 @@ MONEY_CFGS = [
         truncate_to=370,
     ),
     EmailCfg(id='EFTA00396664', note="Jamie Dimon's contact info"),
-    EmailCfg(id='EFTA00719742', note='sale of 727 jet to Qatar', is_interesting=5),
+    EmailCfg(id='EFTA00719742', note='sale of 727 jet to Qatar', is_interesting=5, truncate_to=500),
 ]
