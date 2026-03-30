@@ -287,6 +287,8 @@ LEGAL_CFGS = [
     EmailCfg(id='EFTA00407717', recipients=[KEN_STARR]),
     EmailCfg(id='EFTA00039794', recipients=['Michael Danchuk', USANYS]),
     EmailCfg(id='EFTA00188608', note=f"contains filing in {JANE_DOE_V_USA}"),
+    EmailCfg(id='EFTA00884246', truncate_to=(450, 1_250)),
+
 
     # uninteresting
     DocCfg(id='022277', note=f"text of National Labour Relations Board (NLRB) law", is_interesting=False),

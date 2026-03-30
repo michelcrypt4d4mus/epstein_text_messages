@@ -1526,8 +1526,9 @@ HIGHLIGHTED_NAMES = [
             ),
             Entity(WILLIAM_RILEY, 'private investigator', r"[BW]ill(iam)? Riley", match_partial=None),
             # Orgs
-            Organization('Susman Godfrey', "law firm representing Epstein as president of Jeepers, Inc. in litigation against D.B. Zwirn"),
             Organization('Mishcon de Reya', f"{ALAN_DERSHOWITZ}'s UK law firm"),
+            Organization('Riley Kiraly', f"private investigator firm, hired by Epstein to discredit {VIRGINIA_GIUFFRE}", belongs_to=WILLIAM_RILEY),
+            Organization('Susman Godfrey', "law firm representing Epstein as president of Jeepers, Inc. in litigation against D.B. Zwirn"),
         ],
         patterns=[
             r"dersh",
