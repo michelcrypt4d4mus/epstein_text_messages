@@ -56,6 +56,7 @@ PIC_CFGS = [
         id='sawed_open_safe',
         author=FBI,
         date='2019-07-06',
+        file_type='webp',
         is_displayed_as_img = True,
         is_interesting=15,
         note="photo of Jeffrey Epstein's sawed-open safe with hard drives and binders that were not seized due to not being specified in the warrant piled on top",
